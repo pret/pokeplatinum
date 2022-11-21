@@ -16161,3 +16161,5 @@ _0225120C:
 	; .align 2, 0
 	thumb_func_end ov9_022511F4
 	; 0x02251210
+
+	.incbin "data/overlay9.bin"

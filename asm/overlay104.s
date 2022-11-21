@@ -36353,3 +36353,5 @@ _0223F286:
 	; .align 2, 0
 	thumb_func_end ov104_0223F27C
 	; 0x0223F290
+
+	.incbin "data/overlay104.bin"

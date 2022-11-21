@@ -6269,3 +6269,5 @@ _02222A5E:
 _02222A60: .word 0x00000BC4
 	thumb_func_end ov10_02222A48
 	; 0x02222A64
+
+	.incbin "data/overlay10.bin"

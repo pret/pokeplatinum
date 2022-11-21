@@ -1597,3 +1597,5 @@ ov67_0225D3D0: ; 0x0225D3D0
 	pop {r3, pc}
 	thumb_func_end ov67_0225D3D0
 	; 0x0225D3EC
+
+	.incbin "data/overlay67.bin"

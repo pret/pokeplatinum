@@ -11183,3 +11183,5 @@ _02240E92:
 	pop {r4, pc}
 	thumb_func_end ov84_02240E5C
 	; 0x02240E94
+
+	.incbin "data/overlay84.bin"

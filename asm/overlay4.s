@@ -83523,3 +83523,5 @@ ov4_0221585C: ; 0x0221585C
 _02215864: .word sub_020C8D10
 	arm_func_end ov4_0221585C
 	; 0x02215868
+
+	.incbin "data/overlay4.bin"

@@ -401,3 +401,5 @@ ov55_02256468: ; 0x02256468
 	; .align 2, 0
 	thumb_func_end ov55_02256468
 	; 0x02256484
+
+	.incbin "data/overlay55.bin"

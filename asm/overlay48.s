@@ -1127,3 +1127,5 @@ _02256A26:
 	; .align 2, 0
 	thumb_func_end ov48_022569FC
 	; 0x02256A2C
+
+	.incbin "data/overlay48.bin"

@@ -245,3 +245,5 @@ ov57_021D0F44: ; 0x021D0F44
 _021D0F6C: .word 0x00000BB8
 	thumb_func_end ov57_021D0F44
 	; 0x021D0F70
+
+	.incbin "data/overlay57.bin"

@@ -4226,3 +4226,5 @@ _0223D36C: .word 0x00001BE4
 _0223D370: .word 0x00001BE8
 	thumb_func_end ov86_0223D2A8
 	; 0x0223D374
+
+	.incbin "data/overlay86.bin"

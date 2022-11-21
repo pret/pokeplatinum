@@ -8720,3 +8720,5 @@ _02232196:
 _0223219C: .word 0x000001C1
 	thumb_func_end ov64_0223217C
 	; 0x022321A0
+
+	.incbin "data/overlay64.bin"

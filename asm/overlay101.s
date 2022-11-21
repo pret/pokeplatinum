@@ -16164,3 +16164,5 @@ ov101_021D8574: ; 0x021D8574
 	pop {r4, pc}
 	thumb_func_end ov101_021D8574
 	; 0x021D8588
+
+	.incbin "data/overlay101.bin"

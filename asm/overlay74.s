@@ -1791,3 +1791,5 @@ _021D1BEC: .word 0x021D1C0C
 _021D1BF0: .word ov74_021D1968
 	thumb_func_end ov74_021D1BE4
 	; 0x021D1BF4
+
+	.incbin "data/overlay74.bin"

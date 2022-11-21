@@ -8448,3 +8448,5 @@ _022608A8:
 	; .align 2, 0
 	thumb_func_end ov113_02260884
 	; 0x022608AC
+
+	.incbin "data/overlay113.bin"

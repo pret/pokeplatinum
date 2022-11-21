@@ -49685,3 +49685,5 @@ _02248724: .word 0x0000FFFF
 _02248728: .word 0x00001D4C
 	thumb_func_end ov62_022486A4
 	; 0x0224872C
+
+	.incbin "data/overlay62.bin"

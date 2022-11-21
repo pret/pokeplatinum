@@ -31357,3 +31357,5 @@ ov19_021DFDEC: ; 0x021DFDEC
 	bx lr
 	thumb_func_end ov19_021DFDEC
 	; 0x021DFDF0
+
+	.incbin "data/overlay19.bin"

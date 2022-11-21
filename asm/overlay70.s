@@ -34712,3 +34712,5 @@ _0226D4C2:
 	pop {r4, r5, r6, r7, pc}
 	thumb_func_end ov70_0226D46C
 	; 0x0226D4CC
+
+	.incbin "data/overlay70.bin"

@@ -5512,3 +5512,5 @@ ov79_021D38D0: ; 0x021D38D0
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov79_021D38D0
 	; 0x021D3910
+
+	.incbin "data/overlay79.bin"

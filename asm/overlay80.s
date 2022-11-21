@@ -4230,3 +4230,5 @@ _021D2E56:
 	; .align 2, 0
 	thumb_func_end ov80_021D2E24
 	; 0x021D2E5C
+
+	.incbin "data/overlay80.bin"

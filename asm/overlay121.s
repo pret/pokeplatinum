@@ -717,3 +717,5 @@ _021D1368:
 	pop {r3, r4, pc}
 	thumb_func_end ov121_021D1318
 	; 0x021D1378
+
+	.incbin "data/overlay121.bin"

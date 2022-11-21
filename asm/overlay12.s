@@ -50819,3 +50819,5 @@ _0223858A:
 _02238590: .word 0x0000013B
 	thumb_func_end ov12_022384F0
 	; 0x02238594
+
+	.incbin "data/overlay12.bin"

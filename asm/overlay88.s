@@ -7387,3 +7387,5 @@ _0223EE20:
 _0223EE24: .word 0x000005DC
 	thumb_func_end ov88_0223EE14
 	; 0x0223EE28
+
+	.incbin "data/overlay88.bin"

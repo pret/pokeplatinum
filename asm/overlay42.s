@@ -669,3 +669,5 @@ _022566A0: .word 0xFFFFE000
 _022566A4: .word 0x00000676
 	thumb_func_end ov42_022565C4
 	; 0x022566A8
+
+	.incbin "data/overlay42.bin"

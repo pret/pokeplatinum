@@ -1470,3 +1470,5 @@ _02256CAE:
 	; .align 2, 0
 	thumb_func_end ov44_02256AC8
 	; 0x02256CB4
+
+	.incbin "data/overlay44.bin"

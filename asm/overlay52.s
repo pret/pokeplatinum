@@ -1489,3 +1489,5 @@ _02256D24: .word 0x00010804
 _02256D28: .word 0x02256D84
 	thumb_func_end ov52_02256C64
 	; 0x02256D2C
+
+	.incbin "data/overlay52.bin"

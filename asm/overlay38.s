@@ -391,3 +391,5 @@ ov38_02256458: ; 0x02256458
 	; .align 2, 0
 	thumb_func_end ov38_02256458
 	; 0x02256474
+
+	.incbin "data/overlay38.bin"

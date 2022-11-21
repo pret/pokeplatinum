@@ -14907,3 +14907,5 @@ _0225BD70: .word 0x00000181
 _0225BD74: .word 0x00010200
 	thumb_func_end ov22_0225BC18
 	; 0x0225BD78
+
+	.incbin "data/overlay22.bin"

@@ -16386,3 +16386,5 @@ ov107_02249DBC: ; 0x02249DBC
 _02249DFC: .word 0x000003D9
 	thumb_func_end ov107_02249DBC
 	; 0x02249E00
+
+	.incbin "data/overlay107.bin"

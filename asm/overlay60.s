@@ -11463,3 +11463,5 @@ _02228C44:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end ov60_02228BC8
 	; 0x02228C4C
+
+	.incbin "data/overlay60.bin"

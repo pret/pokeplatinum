@@ -391,3 +391,5 @@ ov51_02256458: ; 0x02256458
 	; .align 2, 0
 	thumb_func_end ov51_02256458
 	; 0x02256474
+
+	.incbin "data/overlay51.bin"

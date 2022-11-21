@@ -3630,3 +3630,5 @@ _02243666:
 	; .align 2, 0
 	thumb_func_end ov108_02243660
 	; 0x0224367C
+
+	.incbin "data/overlay108.bin"

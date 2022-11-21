@@ -2124,3 +2124,5 @@ _0225722C:
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov56_022571D0
 	; 0x02257238
+
+	.incbin "data/overlay56.bin"

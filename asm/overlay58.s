@@ -4078,3 +4078,5 @@ _021D2DA6:
 	; .align 2, 0
 	thumb_func_end ov58_021D2D4C
 	; 0x021D2DD4
+
+	.incbin "data/overlay58.bin"

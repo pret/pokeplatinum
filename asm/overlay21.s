@@ -53439,3 +53439,5 @@ ov21_021E9B08: ; 0x021E9B08
 	; .align 2, 0
 	thumb_func_end ov21_021E9B08
 	; 0x021E9B24
+
+	.incbin "data/overlay21.bin"

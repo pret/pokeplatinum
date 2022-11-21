@@ -10372,3 +10372,5 @@ _0224ECAE:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov7_0224EC9C
 	; 0x0224ED0C
+
+	.incbin "data/overlay7.bin"

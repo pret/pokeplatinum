@@ -3373,3 +3373,5 @@ _021D28F2:
 _021D2908: .word 0x0000FFFF
 	thumb_func_end ov92_021D28C0
 	; 0x021D290C
+
+	.incbin "data/overlay92.bin"

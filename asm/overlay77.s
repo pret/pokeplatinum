@@ -12363,3 +12363,5 @@ ov77_021D7268: ; 0x021D7268
 	; .align 2, 0
 	thumb_func_end ov77_021D7268
 	; 0x021D72C8
+
+	.incbin "data/overlay77.bin"

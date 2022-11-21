@@ -22169,3 +22169,5 @@ ov65_02238910: ; 0x02238910
 	; .align 2, 0
 	thumb_func_end ov65_02238910
 	; 0x0223892C
+
+	.incbin "data/overlay65.bin"

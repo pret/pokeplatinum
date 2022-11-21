@@ -34262,3 +34262,5 @@ _0223D658:
 _0223D670: .word 0x02240AF4
 	arm_func_end ov97_0223D62C
 	; 0x0223D674
+
+	.incbin "data/overlay97.bin"

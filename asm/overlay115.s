@@ -11355,3 +11355,5 @@ ov115_02265ADC: ; 0x02265ADC
 	bx lr
 	thumb_func_end ov115_02265ADC
 	; 0x02265AE0
+
+	.incbin "data/overlay115.bin"

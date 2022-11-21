@@ -2472,3 +2472,5 @@ _021D218E:
 _021D2190: .word 0x021D227C
 	thumb_func_end ov110_021D216C
 	; 0x021D2194
+
+	.incbin "data/overlay110.bin"

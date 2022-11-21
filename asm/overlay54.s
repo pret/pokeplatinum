@@ -685,3 +685,5 @@ _022566C0:
 	; .align 2, 0
 	thumb_func_end ov54_022566A8
 	; 0x022566D4
+
+	.incbin "data/overlay54.bin"

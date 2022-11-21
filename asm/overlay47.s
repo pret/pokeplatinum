@@ -1148,3 +1148,5 @@ _02256A48:
 	pop {r4, r5, r6, r7, pc}
 	thumb_func_end ov47_02256968
 	; 0x02256A4C
+
+	.incbin "data/overlay47.bin"

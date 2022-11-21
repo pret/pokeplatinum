@@ -5936,3 +5936,5 @@ _0222D8E0:
 	; .align 2, 0
 	thumb_func_end ov63_0222D8D0
 	; 0x0222D900
+
+	.incbin "data/overlay63.bin"

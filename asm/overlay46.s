@@ -2019,3 +2019,5 @@ ov46_0225710C: ; 0x0225710C
 	; .align 2, 0
 	thumb_func_end ov46_0225710C
 	; 0x02257114
+
+	.incbin "data/overlay46.bin"

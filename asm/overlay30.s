@@ -658,3 +658,5 @@ _02256666:
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov30_02256658
 	; 0x02256678
+
+	.incbin "data/overlay30.bin"

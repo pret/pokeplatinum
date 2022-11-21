@@ -5489,3 +5489,5 @@ _0225F008:
 	; .align 2, 0
 	thumb_func_end ov69_0225EFEC
 	; 0x0225F014
+
+	.incbin "data/overlay69.bin"

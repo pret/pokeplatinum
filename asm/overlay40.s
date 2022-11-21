@@ -1134,3 +1134,5 @@ _02256A30:
 	pop {r3, pc}
 	thumb_func_end ov40_02256A14
 	; 0x02256A38
+
+	.incbin "data/overlay40.bin"

@@ -588,3 +588,5 @@ _022565D4:
 _022565EC: .word 0x02256614
 	thumb_func_end ov39_0225659C
 	; 0x022565F0
+
+	.incbin "data/overlay39.bin"

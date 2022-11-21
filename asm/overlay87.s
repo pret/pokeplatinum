@@ -1701,3 +1701,5 @@ _021D1AC4:
 	; .align 2, 0
 	thumb_func_end ov87_021D1AB8
 	; 0x021D1AD8
+
+	.incbin "data/overlay87.bin"

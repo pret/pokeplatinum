@@ -1121,3 +1121,5 @@ ov34_02256A0C: ; 0x02256A0C
 	; .align 2, 0
 	thumb_func_end ov34_02256A0C
 	; 0x02256A1C
+
+	.incbin "data/overlay34.bin"

@@ -852,3 +852,5 @@ _021D143E:
 _021D1498: .word 0x021D15C8
 	thumb_func_end ov93_021D13C0
 	; 0x021D149C
+
+	.incbin "data/overlay93.bin"

@@ -571,3 +571,5 @@ _022565C8:
 _022565D0: .word 0x00000663
 	thumb_func_end ov37_02256588
 	; 0x022565D4
+
+	.incbin "data/overlay37.bin"

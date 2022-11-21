@@ -497,3 +497,5 @@ ov120_021D1178: ; 0x021D1178
 	; .align 2, 0
 	thumb_func_end ov120_021D1178
 	; 0x021D1190
+
+	.incbin "data/overlay120.bin"

@@ -1411,3 +1411,5 @@ ov45_02256C90: ; 0x02256C90
 	bx lr
 	thumb_func_end ov45_02256C90
 	; 0x02256C98
+
+	.incbin "data/overlay45.bin"

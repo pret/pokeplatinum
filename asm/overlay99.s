@@ -7192,3 +7192,5 @@ _021D46C4: .word 0x00001114
 _021D46C8: .word 0x00001118
 	thumb_func_end ov99_021D44CC
 	; 0x021D46CC
+
+	.incbin "data/overlay99.bin"

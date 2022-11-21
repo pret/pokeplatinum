@@ -1292,3 +1292,5 @@ _02256B20:
 	; .align 2, 0
 	thumb_func_end ov29_02256B18
 	; 0x02256B3C
+
+	.incbin "data/overlay29.bin"

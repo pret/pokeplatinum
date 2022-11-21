@@ -1840,3 +1840,5 @@ _02256F84:
 	; .align 2, 0
 	thumb_func_end ov27_02256F7C
 	; 0x02256F98
+
+	.incbin "data/overlay27.bin"

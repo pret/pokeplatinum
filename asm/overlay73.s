@@ -5229,3 +5229,5 @@ ov73_021D37AC: ; 0x021D37AC
 	; .align 2, 0
 	thumb_func_end ov73_021D37AC
 	; 0x021D37C4
+
+	.incbin "data/overlay73.bin"

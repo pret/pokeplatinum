@@ -549,3 +549,5 @@ _0223B526:
 	; .align 2, 0
 	thumb_func_end ov82_0223B510
 	; 0x0223B550
+
+	.incbin "data/overlay82.bin"

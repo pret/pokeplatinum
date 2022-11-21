@@ -2007,3 +2007,5 @@ _021D1D3C:
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov90_021D1C90
 	; 0x021D1D5C
+
+	.incbin "data/overlay90.bin"

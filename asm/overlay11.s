@@ -179,3 +179,5 @@ ov11_0221F930: ; 0x0221F930
 _0221F948: .word 0x02100DF4
 	thumb_func_end ov11_0221F930
 	; 0x0221F94C
+
+	.incbin "data/overlay11.bin"
