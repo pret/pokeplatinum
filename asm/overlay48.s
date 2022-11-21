@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov48_022561C0
 ov48_022561C0: @ 0x022561C0

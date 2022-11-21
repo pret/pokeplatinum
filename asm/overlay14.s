@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov14_0221FC20
 ov14_0221FC20: @ 0x0221FC20

@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov24_02253CE0
 ov24_02253CE0: @ 0x02253CE0

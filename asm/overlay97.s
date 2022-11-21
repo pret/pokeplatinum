@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov97_0222AE60
 ov97_0222AE60: @ 0x0222AE60

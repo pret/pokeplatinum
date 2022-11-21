@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov10_0221F800
 ov10_0221F800: @ 0x0221F800

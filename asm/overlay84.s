@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov84_0223B5A0
 ov84_0223B5A0: @ 0x0223B5A0

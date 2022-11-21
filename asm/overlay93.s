@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov93_021D0D80
 ov93_021D0D80: @ 0x021D0D80

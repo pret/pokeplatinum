@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov98_02246C20
 ov98_02246C20: @ 0x02246C20

@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov106_02241AE0
 ov106_02241AE0: @ 0x02241AE0

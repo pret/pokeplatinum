@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov9_02249960
 ov9_02249960: @ 0x02249960

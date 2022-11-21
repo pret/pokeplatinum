@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov69_0225C700
 ov69_0225C700: @ 0x0225C700

@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov72_0223D7A0
 ov72_0223D7A0: @ 0x0223D7A0

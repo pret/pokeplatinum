@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov22_02254DE0
 ov22_02254DE0: @ 0x02254DE0

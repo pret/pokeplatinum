@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov6_0223E140
 ov6_0223E140: @ 0x0223E140

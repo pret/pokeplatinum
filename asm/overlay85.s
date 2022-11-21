@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov85_02241440
 ov85_02241440: @ 0x02241440

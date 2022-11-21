@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov62_0222F2C0
 ov62_0222F2C0: @ 0x0222F2C0

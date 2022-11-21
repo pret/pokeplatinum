@@ -1,3 +1,7 @@
+	.include "macros/function.inc"
+
+
+	.text
 
 	thumb_func_start ov117_02260440
 ov117_02260440: @ 0x02260440
