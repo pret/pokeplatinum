@@ -9,7 +9,7 @@ ov16_0223B140: ; 0x0223B140
 	sub sp, #0x28
 	add r4, r1, #0
 	add r6, r0, #0
-	bl FUN_02006840
+	bl sub_02006840
 	ldr r1, [r4, #0]
 	add r5, r0, #0
 	cmp r1, #0xf
@@ -44,7 +44,7 @@ _0223B182:
 	mov r0, #3
 	mov r1, #5
 	lsl r2, r2, #0x10
-	bl FUN_02017FC8
+	bl sub_02017FC8
 	ldr r1, [r5, #0]
 	mov r0, #4
 	tst r0, r1
@@ -69,22 +69,22 @@ _0223B1AE:
 	mov r0, #0x4b
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
-	bl FUN_02038F8C
-	bl FUN_020389B8
+	bl sub_02038F8C
+	bl sub_020389B8
 	cmp r0, #0
 	bne _0223B1D6
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
 	mov r1, #0x14
-	bl FUN_0202CF28
+	bl sub_0202CF28
 	b _0223B1E2
 _0223B1D6:
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
 	mov r1, #0x19
-	bl FUN_0202CF28
+	bl sub_0202CF28
 _0223B1E2:
 	mov r0, #2
 	str r0, [r4, #0]
@@ -137,15 +137,15 @@ _0223B23A:
 	cmp r0, #1
 	bne _0223B260
 	ldr r0, _0223B378 ; =0x0000000A
-	bl FUN_02006514
+	bl sub_02006514
 	mov r0, #7
 	str r0, [r4, #0]
 	mov r0, #0x3d
-	bl FUN_020364F0
+	bl sub_020364F0
 	b _0223B370
 _0223B256:
 	mov r0, #0x3d
-	bl FUN_02036540
+	bl sub_02036540
 	cmp r0, #0
 	bne _0223B262
 _0223B260:
@@ -157,10 +157,10 @@ _0223B262:
 _0223B268:
 	ldr r0, _0223B37C ; =0x0000000B
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	ldr r0, _0223B380 ; =0x0000000C
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	add r0, r6, #0
 	bl ov16_0223B790
 	mov r0, #9
@@ -186,7 +186,7 @@ _0223B29A:
 	b _0223B370
 _0223B2AA:
 	mov r0, #5
-	bl FUN_0201807C
+	bl sub_0201807C
 	mov r0, #0xd
 	str r0, [r4, #0]
 	b _0223B370
@@ -196,9 +196,9 @@ _0223B2B6:
 	cmp r0, #1
 	bne _0223B370
 	ldr r0, _0223B378 ; =0x0000000A
-	bl FUN_02006514
+	bl sub_02006514
 	mov r0, #5
-	bl FUN_0201807C
+	bl sub_0201807C
 	mov r0, #0xc
 	str r0, [r4, #0]
 	b _0223B370
@@ -215,10 +215,10 @@ _0223B2D8:
 	mov r0, #3
 	mov r1, #0x49
 	lsl r2, r0, #0x10
-	bl FUN_02017FC8
+	bl sub_02017FC8
 	ldr r0, [r5, #4]
 	ldr r1, [sp, #0x24]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r1, r0, #0
 	mov r0, #0x5a
 	lsl r0, r0, #2
@@ -249,7 +249,7 @@ _0223B2D8:
 	add r3, #0xe7
 	ldr r0, [r5, #4]
 	ldr r3, [r5, r3]
-	bl FUN_0207AE68
+	bl sub_0207AE68
 	mov r1, #0x66
 	lsl r1, r1, #2
 	str r0, [r5, r1]
@@ -265,13 +265,13 @@ _0223B348:
 	lsl r0, r0, #2
 	ldr r5, [r5, r0]
 	add r0, r5, #0
-	bl FUN_0207B0D0
+	bl sub_0207B0D0
 	cmp r0, #1
 	bne _0223B370
 	add r0, r5, #0
-	bl FUN_0207B0E0
+	bl sub_0207B0E0
 	mov r0, #0x49
-	bl FUN_0201807C
+	bl sub_0201807C
 	mov r0, #0xd
 	str r0, [r4, #0]
 	b _0223B370
@@ -305,7 +305,7 @@ ov16_0223B384: ; 0x0223B384
 	orr r0, r2
 	strb r0, [r4, r1]
 	mov r0, #2
-	bl FUN_02002C60
+	bl sub_02002C60
 	add r0, r4, #0
 	mov r1, #3
 	bl ov16_0223F314
@@ -314,15 +314,15 @@ ov16_0223B384: ; 0x0223B384
 	cmp r0, #0
 	bne _0223B3C0
 	ldr r0, _0223B3D8 ; =0x0000000C
-	bl FUN_02006514
+	bl sub_02006514
 	b _0223B3C6
 _0223B3C0:
 	ldr r0, _0223B3DC ; =0x0000000E
-	bl FUN_02006514
+	bl sub_02006514
 _0223B3C6:
 	ldr r0, _0223B3E0 ; =0x0000000D
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	pop {r4, pc}
 	; .align 2, 0
 _0223B3D0: .word 0x000023FF
@@ -338,13 +338,13 @@ ov16_0223B3E4: ; 0x0223B3E4
 	add r4, r0, #0
 	mov r0, #0
 	add r1, r0, #0
-	bl FUN_02017798
+	bl sub_02017798
 	mov r0, #0x67
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	bl ov16_02268A14
 	ldr r0, [r4, #8]
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	ldr r0, [r4, #4]
 	bl ov16_0223C288
 	add r0, r4, #0
@@ -355,13 +355,13 @@ ov16_0223B3E4: ; 0x0223B3E4
 	add r1, #0x94
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
-	bl FUN_0200D0B0
+	bl sub_0200D0B0
 	add r4, #0x90
 	ldr r0, [r4, #0]
-	bl FUN_0200C8D4
-	bl FUN_0201DC3C
+	bl sub_0200C8D4
+	bl sub_0201DC3C
 	mov r0, #2
-	bl FUN_02002C60
+	bl sub_02002C60
 	pop {r4, pc}
 	thumb_func_end ov16_0223B3E4
 
@@ -371,37 +371,37 @@ ov16_0223B430: ; 0x0223B430
 	sub sp, #8
 	add r5, r0, #0
 	ldr r0, _0223B528 ; =0x0000000D
-	bl FUN_02006514
+	bl sub_02006514
 	ldr r0, _0223B52C ; =0x00002445
 	ldrb r0, [r5, r0]
 	cmp r0, #0
 	bne _0223B44E
 	ldr r0, _0223B530 ; =0x0000000C
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	b _0223B456
 _0223B44E:
 	ldr r0, _0223B534 ; =0x0000000E
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 _0223B456:
 	add r0, r5, #0
 	mov r1, #0
 	bl ov16_0223F314
-	bl FUN_02024208
+	bl sub_02024208
 	add r4, r0, #0
-	bl FUN_02024200
+	bl sub_02024200
 	add r1, r0, #0
 	mov r0, #0
 	add r2, r4, #0
-	bl FUN_020C4AF0
+	bl sub_020C4AF0
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r4, r0, #0
 	add r0, r5, #0
 	bl ov16_0223F6E4
@@ -422,7 +422,7 @@ _0223B456:
 	str r0, [r5, r1]
 	mov r0, #2
 	mov r1, #5
-	bl FUN_02002BB8
+	bl sub_02002BB8
 	ldr r1, _0223B538 ; =0x000023FF
 	mov r0, #2
 	ldrb r2, [r5, r1]
@@ -432,7 +432,7 @@ _0223B456:
 	bl ov16_02268744
 	mov r0, #0x10
 	mov r1, #1
-	bl FUN_0201FF74
+	bl sub_0201FF74
 	mov r0, #0x67
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
@@ -453,20 +453,20 @@ _0223B456:
 	add r0, r4, #0
 	bl ov16_02268D40
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r4, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	mov r0, #1
-	bl FUN_020027A8
+	bl sub_020027A8
 	add r0, r5, #0
 	bl ov16_0223DD4C
 	add r5, #0x90
 	ldr r0, [r5, #0]
-	bl FUN_0200C738
+	bl sub_0200C738
 	mov r2, #0x11
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl FUN_0200964C
+	bl sub_0200964C
 	add sp, #8
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -482,22 +482,22 @@ ov16_0223B53C: ; 0x0223B53C
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #8]
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	mov r0, #1
 	mov r1, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	mov r0, #2
 	mov r1, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	ldr r0, [r4, #4]
 	mov r1, #1
-	bl FUN_02019044
+	bl sub_02019044
 	ldr r0, [r4, #4]
 	mov r1, #2
-	bl FUN_02019044
+	bl sub_02019044
 	ldr r0, [r4, #4]
 	mov r1, #3
-	bl FUN_02019044
+	bl sub_02019044
 	add r0, r4, #0
 	bl ov16_0223F3EC
 	pop {r4, pc}
@@ -530,26 +530,26 @@ _0223B592:
 	ldr r0, [r5, #4]
 	add r2, sp, #0x14
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	ldr r0, [r5, #4]
 	mov r1, #1
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	ldr r0, [r5, #4]
 	mov r1, #2
 	add r2, sp, #0x30
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	ldr r0, [r5, #4]
 	mov r1, #2
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	ldr r0, [r5, #4]
 	mov r1, #3
 	add r2, sp, #0x4c
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	ldr r0, [r5, #4]
 	mov r1, #3
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	ldr r1, _0223B734 ; =0x04000008
 	mov r0, #3
 	ldrh r2, [r1]
@@ -558,7 +558,7 @@ _0223B592:
 	orr r2, r0
 	strh r2, [r1]
 	add r1, r0, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	add r0, r5, #0
 	bl ov16_0223EDE0
 	add r4, r0, #0
@@ -571,7 +571,7 @@ _0223B592:
 	ldr r0, [r5, #4]
 	add r2, r1, #0
 	mov r3, #0xa
-	bl FUN_0200E218
+	bl sub_0200E218
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -585,7 +585,7 @@ _0223B592:
 	mov r0, #7
 	add r1, r1, #3
 	mov r3, #3
-	bl FUN_02006E3C
+	bl sub_02006E3C
 	add r0, r5, #0
 	bl ov16_0223EC04
 	add r2, r0, #0
@@ -602,9 +602,9 @@ _0223B592:
 	add r3, #0xac
 	add r2, r3, r2
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	add r0, r4, #0
-	bl FUN_0200DD08
+	bl sub_0200DD08
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -615,7 +615,7 @@ _0223B592:
 	ldr r0, [r5, #0x28]
 	mov r1, #0x26
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0x20
@@ -626,7 +626,7 @@ _0223B592:
 	mov r1, #0xe
 	mov r2, #7
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -638,7 +638,7 @@ _0223B592:
 	mov r0, #7
 	mov r1, #2
 	mov r3, #3
-	bl FUN_02006E60
+	bl sub_02006E60
 	mov r0, #1
 	lsl r0, r0, #0x1a
 	ldr r2, [r0, #0]
@@ -659,16 +659,16 @@ _0223B592:
 	ldrh r2, [r0]
 	bic r2, r1
 	strh r2, [r0]
-	bl FUN_0201FFD0
+	bl sub_0201FFD0
 	mov r0, #0x10
 	mov r1, #1
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	mov r0, #0x10
 	mov r1, #1
-	bl FUN_0201FF74
+	bl sub_0201FF74
 	ldr r0, _0223B744 ; =ov16_0223CE68
 	add r1, r5, #0
-	bl FUN_02017798
+	bl sub_02017798
 	ldr r0, _0223B72C ; =0x000023FF
 	mov r3, #2
 	ldrb r1, [r5, r0]
@@ -687,15 +687,15 @@ _0223B592:
 	str r0, [sp, #0x10]
 	ldr r0, [r5, #4]
 	ldr r1, [r5, #8]
-	bl FUN_0201A7E8
+	bl sub_0201A7E8
 	ldr r0, [r5, #8]
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	ldr r0, [r5, #8]
 	mov r1, #0
 	mov r2, #1
 	mov r3, #0xa
-	bl FUN_0200E060
+	bl sub_0200E060
 	add r0, r5, #0
 	bl ov16_0223DD4C
 	add sp, #0x68
@@ -719,24 +719,24 @@ ov16_0223B748: ; 0x0223B748
 	ldrb r0, [r5, r0]
 	cmp r0, r4
 	bne _0223B75A
-	bl FUN_02022974
+	bl sub_02022974
 _0223B75A:
 	ldr r0, _0223B784 ; =0x00002445
 	cmp r4, #0
 	strb r4, [r5, r0]
 	bne _0223B772
 	ldr r0, _0223B788 ; =0x0000000E
-	bl FUN_02006514
+	bl sub_02006514
 	ldr r0, _0223B78C ; =0x0000000C
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	pop {r3, r4, r5, pc}
 _0223B772:
 	ldr r0, _0223B78C ; =0x0000000C
-	bl FUN_02006514
+	bl sub_02006514
 	ldr r0, _0223B788 ; =0x0000000E
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	pop {r3, r4, r5, pc}
 	nop
 _0223B784: .word 0x00002445
@@ -749,36 +749,36 @@ ov16_0223B790: ; 0x0223B790
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	add r5, r0, #0
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_02006840
+	bl sub_02006840
 	add r7, r0, #0
-	bl FUN_020241F8
+	bl sub_020241F8
 	add r5, r0, #0
-	bl FUN_020241F0
+	bl sub_020241F0
 	add r1, r0, #0
 	mov r0, #0
 	add r2, r5, #0
-	bl FUN_020C4AF0
-	bl FUN_02024208
+	bl sub_020C4AF0
+	bl sub_02024208
 	add r5, r0, #0
-	bl FUN_02024200
+	bl sub_02024200
 	add r1, r0, #0
 	mov r0, #0
 	add r2, r5, #0
-	bl FUN_020C4AF0
+	bl sub_020C4AF0
 	bl ov16_0223CD7C
 	str r0, [r4, #0]
-	bl FUN_020177A4
+	bl sub_020177A4
 	mov r0, #2
 	mov r1, #5
-	bl FUN_02002BB8
+	bl sub_02002BB8
 	mov r0, #0xe
 	mov r1, #2
 	mov r2, #0xf
 	mov r3, #5
-	bl FUN_0200C440
+	bl sub_0200C440
 	mov r1, #0x6a
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -786,39 +786,39 @@ ov16_0223B790: ; 0x0223B790
 	add r0, r1, #4
 	str r2, [r4, r0]
 	mov r0, #5
-	bl FUN_02002F38
+	bl sub_02002F38
 	str r0, [r4, #0x28]
 	mov r1, #1
-	bl FUN_02003858
+	bl sub_02003858
 	mov r2, #2
 	ldr r0, [r4, #0x28]
 	mov r1, #0
 	lsl r2, r2, #8
 	mov r3, #5
-	bl FUN_02002F70
+	bl sub_02002F70
 	mov r1, #1
 	ldr r0, [r4, #0x28]
 	lsl r2, r1, #9
 	mov r3, #5
-	bl FUN_02002F70
+	bl sub_02002F70
 	mov r2, #7
 	ldr r0, [r4, #0x28]
 	mov r1, #2
 	lsl r2, r2, #6
 	mov r3, #5
-	bl FUN_02002F70
+	bl sub_02002F70
 	mov r2, #2
 	ldr r0, [r4, #0x28]
 	mov r1, #3
 	lsl r2, r2, #8
 	mov r3, #5
-	bl FUN_02002F70
+	bl sub_02002F70
 	mov r0, #5
-	bl FUN_02018340
+	bl sub_02018340
 	str r0, [r4, #4]
 	mov r0, #5
 	mov r1, #3
-	bl FUN_0201A778
+	bl sub_0201A778
 	str r0, [r4, #8]
 	mov r6, #0
 	add r5, r4, #0
@@ -826,7 +826,7 @@ _0223B850:
 	mov r1, #0x32
 	mov r0, #5
 	lsl r1, r1, #6
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x1d
 	lsl r1, r1, #4
 	str r0, [r5, r1]
@@ -836,14 +836,14 @@ _0223B850:
 	blt _0223B850
 	mov r0, #0x40
 	mov r1, #5
-	bl FUN_0201DBEC
+	bl sub_0201DBEC
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	add r0, r4, #0
 	bl ov16_0223F6E4
@@ -863,9 +863,9 @@ _0223B850:
 	lsl r1, r1, #2
 	str r0, [r4, r1]
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	ldr r1, [r4, #4]
 	add r0, r4, #0
 	bl ov16_0223C004
@@ -883,17 +883,17 @@ _0223B850:
 	ldr r1, [r4, #8]
 	mov r2, #1
 	mov r3, #2
-	bl FUN_0201A7E8
+	bl sub_0201A7E8
 	ldr r0, [r4, #8]
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	ldr r0, [r4, #8]
 	mov r1, #0
 	mov r2, #1
 	mov r3, #0xa
-	bl FUN_0200E060
+	bl sub_0200E060
 	mov r0, #5
-	bl FUN_0200C6E4
+	bl sub_0200C6E4
 	add r1, r4, #0
 	add r1, #0x90
 	str r0, [r1, #0]
@@ -903,16 +903,16 @@ _0223B850:
 	ldr r1, _0223BB90 ; =0x0226E2E4
 	ldr r2, _0223BB94 ; =0x0226E29C
 	mov r3, #0x20
-	bl FUN_0200C73C
+	bl sub_0200C73C
 	ldr r1, _0223BB98 ; =0x00100010
 	mov r0, #1
-	bl FUN_0200966C
+	bl sub_0200966C
 	mov r0, #1
-	bl FUN_02009704
+	bl sub_02009704
 	add r0, r4, #0
 	add r0, #0x90
 	ldr r0, [r0, #0]
-	bl FUN_0200C704
+	bl sub_0200C704
 	add r1, r4, #0
 	add r1, #0x94
 	str r0, [r1, #0]
@@ -923,7 +923,7 @@ _0223B850:
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	mov r2, #0x80
-	bl FUN_0200C7C0
+	bl sub_0200C7C0
 	add r0, r4, #0
 	add r1, r4, #0
 	add r0, #0x90
@@ -931,26 +931,26 @@ _0223B850:
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	ldr r2, _0223BB9C ; =0x0226E2B0
-	bl FUN_0200CB30
+	bl sub_0200CB30
 	add r0, r4, #0
 	add r0, #0x90
 	ldr r0, [r0, #0]
-	bl FUN_0200C738
+	bl sub_0200C738
 	mov r2, #0x11
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl FUN_0200964C
+	bl sub_0200964C
 	mov r0, #0x67
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	bl ov16_02268A88
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -968,11 +968,11 @@ _0223B850:
 	add r0, r5, #0
 	bl ov16_02268D40
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	mov r0, #5
-	bl FUN_0200762C
+	bl sub_0200762C
 	add r1, r4, #0
 	add r1, #0x88
 	str r0, [r1, #0]
@@ -981,7 +981,7 @@ _0223B850:
 	ldr r0, [r0, #0]
 	mov r1, #0
 	mov r2, #0xc0
-	bl FUN_02008A84
+	bl sub_02008A84
 	add r0, r4, #0
 	bl ov16_0223F36C
 	bl ov16_0223CE28
@@ -992,44 +992,44 @@ _0223B850:
 	str r0, [r1, #0]
 	add r0, r4, #0
 	bl ov16_0223C210
-	bl FUN_0201E3D8
+	bl sub_0201E3D8
 	mov r0, #4
-	bl FUN_0201E450
+	bl sub_0201E450
 	mov r2, #0x17
 	mov r0, #1
 	mov r1, #0x1a
 	lsl r2, r2, #4
 	mov r3, #5
-	bl FUN_0200B144
+	bl sub_0200B144
 	str r0, [r4, #0xc]
 	mov r0, #1
 	mov r1, #0x1a
 	mov r2, #0
 	mov r3, #5
-	bl FUN_0200B144
+	bl sub_0200B144
 	str r0, [r4, #0x10]
 	mov r0, #5
-	bl FUN_0200B358
+	bl sub_0200B358
 	str r0, [r4, #0x14]
 	mov r0, #5
 	lsl r0, r0, #6
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	str r0, [r4, #0x18]
 	ldr r0, [r4, #0x28]
 	mov r1, #0
-	bl FUN_02003164
+	bl sub_02003164
 	ldr r1, _0223BBA0 ; =0x00002228
 	mov r2, #0xe0
 	add r1, r4, r1
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [r4, #0x28]
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	ldr r1, _0223BBA4 ; =0x00002308
 	mov r2, #0xe0
 	add r1, r4, r1
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, r4, #0
 	bl ov16_0223EC04
 	mov r1, #0
@@ -1048,7 +1048,7 @@ _0223B850:
 	ldr r3, [r6, r3]
 	lsl r3, r3, #0x10
 	lsr r3, r3, #0x10
-	bl FUN_020038B0
+	bl sub_020038B0
 	mov r0, #0xc0
 	str r0, [sp]
 	add r0, #0x40
@@ -1065,7 +1065,7 @@ _0223B850:
 	mov r2, #2
 	lsl r3, r3, #0x10
 	lsr r3, r3, #0x10
-	bl FUN_020038B0
+	bl sub_020038B0
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0xdf
@@ -1082,7 +1082,7 @@ _0223B850:
 	add r2, r1, #0
 	lsl r3, r3, #0x10
 	lsr r3, r3, #0x10
-	bl FUN_020038B0
+	bl sub_020038B0
 	mov r1, #0
 	mov r0, #0xa0
 	str r0, [sp]
@@ -1091,7 +1091,7 @@ _0223B850:
 	ldr r0, [r4, #0x28]
 	add r2, r1, #0
 	add r3, r1, #0
-	bl FUN_020038B0
+	bl sub_020038B0
 	mov r2, #0
 	str r2, [sp]
 	mov r0, #0xff
@@ -1099,7 +1099,7 @@ _0223B850:
 	ldr r0, [r4, #0x28]
 	mov r1, #1
 	add r3, r2, #0
-	bl FUN_020038B0
+	bl sub_020038B0
 	mov r2, #0
 	str r2, [sp]
 	mov r0, #0xff
@@ -1107,33 +1107,33 @@ _0223B850:
 	ldr r0, [r4, #0x28]
 	ldr r3, _0223BBB0 ; =0x0000FFFF
 	mov r1, #3
-	bl FUN_020038B0
+	bl sub_020038B0
 	ldr r0, [r4, #0x28]
 	mov r1, #0
 	mov r2, #0xb
 	mov r3, #5
-	bl FUN_0201567C
+	bl sub_0201567C
 	mov r1, #0x1b
 	lsl r1, r1, #4
 	str r0, [r4, r1]
 	ldr r0, [r4, r1]
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	ldr r0, _0223BBB4 ; =ov16_0223CF48
 	ldr r2, _0223BBB8 ; =0x0000EA60
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x1c]
 	ldr r0, _0223BBBC ; =ov16_0223CF8C
 	ldr r2, _0223BBC0 ; =0x0000C350
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x20]
 	mov r2, #0x4b
 	ldr r0, _0223BBC4 ; =ov16_0223D0C4
 	add r1, r4, #0
 	lsl r2, r2, #4
-	bl FUN_0200DA04
+	bl sub_0200DA04
 	str r0, [r4, #0x24]
 	mov r1, #0x32
 	ldr r0, _0223BBC8 ; =0x00002438
@@ -1143,17 +1143,17 @@ _0223B850:
 	bl ov16_0223DD4C
 	add r0, r4, #0
 	bl ov16_0223E1B0
-	bl FUN_0207D9F8
+	bl sub_0207D9F8
 	mov r0, #5
 	mov r1, #4
 	mov r2, #0
-	bl FUN_02015F84
+	bl sub_02015F84
 	mov r1, #0x72
 	lsl r1, r1, #2
 	str r0, [r4, r1]
 	mov r0, #4
 	mov r1, #5
-	bl FUN_0201DCC8
+	bl sub_0201DCC8
 	mov r1, #0x73
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -1200,7 +1200,7 @@ _0223BBCC: .word 0x0000240C
 	thumb_func_start ov16_0223BBD0
 ov16_0223BBD0: ; 0x0223BBD0
 	push {r3, r4, r5, r6, r7, lr}
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r4, r0, #0
 	ldr r2, [r4, #0x2c]
 	mov r1, #4
@@ -1315,10 +1315,10 @@ _0223BCB0: .word 0x000023FE
 ov16_0223BCB4: ; 0x0223BCB4
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r0, #0
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_02006840
+	bl sub_02006840
 	ldr r3, _0223BFD4 ; =0x0000244C
 	mov r2, #0x67
 	ldr r1, [r4, r3]
@@ -1335,7 +1335,7 @@ ov16_0223BCB4: ; 0x0223BCB4
 	mov r1, #0x10
 	tst r1, r2
 	bne _0223BCE8
-	bl FUN_0202F8AC
+	bl sub_0202F8AC
 _0223BCE8:
 	ldr r0, _0223BFD8 ; =0x00002445
 	ldrb r0, [r4, r0]
@@ -1347,10 +1347,10 @@ _0223BCE8:
 _0223BCF8:
 	mov r0, #0
 	add r1, r0, #0
-	bl FUN_0200F344
+	bl sub_0200F344
 	mov r0, #1
 	mov r1, #0
-	bl FUN_0200F344
+	bl sub_0200F344
 	add r0, r4, #0
 	bl ov16_0223EE70
 	ldr r0, _0223BFDC ; =0x00002420
@@ -1359,7 +1359,7 @@ _0223BCF8:
 	beq _0223BD26
 	ldr r0, [r4, #0x6c]
 	mov r1, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r1, r0, #0
 	add r0, r4, #0
 	bl ov16_0223EF68
@@ -1371,16 +1371,16 @@ _0223BD26:
 _0223BD2E:
 	ldr r0, [r5, #0x68]
 	ldr r1, [r6, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [r5, #0x68]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r1, r6, #0
 	add r1, #0xf8
 	ldr r0, [r5, #0x48]
 	ldr r1, [r1, #0]
-	bl FUN_02025E80
+	bl sub_02025E80
 	ldr r0, [r5, #0x48]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp]
 	add r6, r6, #4
 	add r0, r0, #1
@@ -1391,21 +1391,21 @@ _0223BD2E:
 	mov r0, #0x1b
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
-	bl FUN_02015760
+	bl sub_02015760
 	mov r1, #0x42
 	lsl r1, r1, #2
 	ldr r0, [r4, #0x58]
 	ldr r1, [r7, r1]
-	bl FUN_0207D3EC
+	bl sub_0207D3EC
 	ldr r0, [r4, #0x58]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r1, #0x11
 	lsl r1, r1, #4
 	ldr r0, [r4, #0x60]
 	ldr r1, [r7, r1]
-	bl FUN_02026338
+	bl sub_02026338
 	ldr r0, [r4, #0x60]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #0x45
 	ldr r1, [r4, #0x64]
 	lsl r0, r0, #2
@@ -1519,38 +1519,38 @@ _0223BD2E:
 	lsl r7, r7, #4
 _0223BE76:
 	ldr r0, [r5, r7]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r6, r6, #1
 	add r5, #0x10
 	cmp r6, #4
 	blt _0223BE76
 	ldr r0, [r4, #0x18]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #0x28]
 	mov r1, #0
-	bl FUN_02002FA0
+	bl sub_02002FA0
 	ldr r0, [r4, #0x28]
 	mov r1, #1
-	bl FUN_02002FA0
+	bl sub_02002FA0
 	ldr r0, [r4, #0x28]
 	mov r1, #2
-	bl FUN_02002FA0
+	bl sub_02002FA0
 	ldr r0, [r4, #0x28]
 	mov r1, #3
-	bl FUN_02002FA0
+	bl sub_02002FA0
 	ldr r0, [r4, #0x28]
-	bl FUN_02002F54
+	bl sub_02002F54
 	ldr r0, [r4, #0xc]
-	bl FUN_0200B190
+	bl sub_0200B190
 	ldr r0, [r4, #0x10]
-	bl FUN_0200B190
+	bl sub_0200B190
 	ldr r0, [r4, #0x14]
-	bl FUN_0200B3F0
+	bl sub_0200B3F0
 	mov r0, #0x72
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_02015FB8
-	bl FUN_020141E4
+	bl sub_02015FB8
+	bl sub_020141E4
 	add r0, r4, #0
 	add r0, #0x8c
 	ldr r0, [r0, #0]
@@ -1577,7 +1577,7 @@ _0223BF00:
 	add r0, r4, #0
 	add r0, #0x88
 	ldr r0, [r0, #0]
-	bl FUN_02007B6C
+	bl sub_02007B6C
 	ldr r0, _0223BFE8 ; =0x000023FD
 	ldrb r0, [r4, r0]
 	cmp r0, #2
@@ -1586,58 +1586,58 @@ _0223BF00:
 	bl ov16_0223B3E4
 _0223BF18:
 	mov r0, #0
-	bl FUN_02002AC8
+	bl sub_02002AC8
 	mov r0, #0
-	bl FUN_02002AE4
+	bl sub_02002AE4
 	mov r0, #0
-	bl FUN_02002B20
+	bl sub_02002B20
 	ldr r0, [r4, #8]
 	mov r1, #3
-	bl FUN_0201A928
+	bl sub_0201A928
 	ldr r0, [r4, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #0x22
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #0x89
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #0x6a
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_0200C560
+	bl sub_0200C560
 	mov r0, #2
-	bl FUN_02002C60
+	bl sub_02002C60
 	ldr r0, [r4, #0x1c]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	ldr r0, [r4, #0x20]
-	bl FUN_0200DA58
-	bl FUN_0201E530
+	bl sub_0200DA58
+	bl sub_0201E530
 	ldr r0, [r4, #0]
 	bl ov16_0223CE20
 	ldr r0, _0223BFEC ; =0x00002434
 	ldr r0, [r4, r0]
-	bl FUN_0201D2DC
+	bl sub_0201D2DC
 	add r0, r4, #0
 	bl ov16_0223F450
 	cmp r0, #0
 	beq _0223BF8C
 	ldr r0, _0223BFF0 ; =0x00000704
 	mov r1, #0
-	bl FUN_020057A4
+	bl sub_020057A4
 _0223BF8C:
 	mov r0, #0x73
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_0201DCF0
+	bl sub_0201DCF0
 	add r0, r4, #0
 	bl ov16_0223F710
 	cmp r0, #0
 	beq _0223BFA6
 	mov r0, #0x7f
-	bl FUN_0200500C
+	bl sub_0200500C
 _0223BFA6:
 	ldr r0, _0223BFF4 ; =0x0000247C
 	ldr r0, [r4, r0]
@@ -1646,16 +1646,16 @@ _0223BFA6:
 	bl ov16_0226E174
 _0223BFB2:
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, _0223BFF8 ; =0x0000000B
-	bl FUN_02006514
+	bl sub_02006514
 	ldr r0, _0223BFFC ; =0x0000000C
-	bl FUN_02006514
-	bl FUN_020389B8
+	bl sub_02006514
+	bl sub_020389B8
 	cmp r0, #0
 	bne _0223BFD2
 	ldr r0, _0223C000 ; =0x00000015
-	bl FUN_02006514
+	bl sub_02006514
 _0223BFD2:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1679,11 +1679,11 @@ ov16_0223C004: ; 0x0223C004
 	sub sp, #0x9c
 	add r5, r0, #0
 	add r4, r1, #0
-	bl FUN_0201FF00
+	bl sub_0201FF00
 	mov r0, #0
-	bl FUN_0200F338
+	bl sub_0200F338
 	mov r0, #1
-	bl FUN_0200F338
+	bl sub_0200F338
 	ldr r6, _0223C1EC ; =0x0226E32C
 	add r3, sp, #0x20
 	mov r2, #5
@@ -1693,31 +1693,31 @@ _0223C022:
 	sub r2, r2, #1
 	bne _0223C022
 	add r0, sp, #0x20
-	bl FUN_0201FE94
+	bl sub_0201FE94
 	mov r1, #6
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	ldr r6, _0223C1F0 ; =0x0226E26C
 	add r3, sp, #0x10
 	add r2, r3, #0
@@ -1726,7 +1726,7 @@ _0223C022:
 	ldmia r6!, {r0, r1}
 	stmia r3!, {r0, r1}
 	add r0, r2, #0
-	bl FUN_02018368
+	bl sub_02018368
 	ldr r1, _0223C1F4 ; =0x000023FF
 	mov r0, #1
 	ldrb r2, [r5, r1]
@@ -1748,26 +1748,26 @@ _0223C090:
 	add r0, r4, #0
 	add r2, sp, #0x48
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	add r0, r4, #0
 	mov r1, #1
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	add r0, r4, #0
 	mov r1, #2
 	add r2, sp, #0x64
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	add r0, r4, #0
 	mov r1, #2
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	add r0, r4, #0
 	mov r1, #3
 	add r2, sp, #0x80
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	add r0, r4, #0
 	mov r1, #3
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	ldr r1, _0223C1FC ; =0x04000008
 	mov r0, #3
 	ldrh r2, [r1]
@@ -1776,7 +1776,7 @@ _0223C090:
 	orr r2, r0
 	strh r2, [r1]
 	add r1, r0, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	add r0, r4, #0
 	bl ov16_02268744
 	add r0, r5, #0
@@ -1791,7 +1791,7 @@ _0223C090:
 	add r0, r4, #0
 	add r2, r1, #0
 	mov r3, #0xa
-	bl FUN_0200E218
+	bl sub_0200E218
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -1805,7 +1805,7 @@ _0223C090:
 	add r2, r4, #0
 	add r1, r1, #3
 	mov r3, #3
-	bl FUN_02006E3C
+	bl sub_02006E3C
 	add r0, r5, #0
 	bl ov16_0223EC04
 	add r6, r0, #0
@@ -1822,9 +1822,9 @@ _0223C090:
 	add r2, #0xac
 	add r2, r2, r6
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	add r0, r7, #0
-	bl FUN_0200DD08
+	bl sub_0200DD08
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -1835,7 +1835,7 @@ _0223C090:
 	ldr r0, [r5, #0x28]
 	mov r1, #0x26
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0x20
@@ -1846,7 +1846,7 @@ _0223C090:
 	mov r1, #0xe
 	mov r2, #7
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -1858,7 +1858,7 @@ _0223C090:
 	mov r1, #2
 	add r2, r4, #0
 	mov r3, #3
-	bl FUN_02006E60
+	bl sub_02006E60
 	mov r0, #1
 	lsl r0, r0, #0x1a
 	ldr r2, [r0, #0]
@@ -1879,16 +1879,16 @@ _0223C090:
 	ldrh r2, [r0]
 	bic r2, r1
 	strh r2, [r0]
-	bl FUN_0201FFD0
+	bl sub_0201FFD0
 	mov r0, #0x10
 	mov r1, #1
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	mov r0, #0x10
 	mov r1, #1
-	bl FUN_0201FF74
+	bl sub_0201FF74
 	ldr r0, _0223C20C ; =ov16_0223CE68
 	add r1, r5, #0
-	bl FUN_02017798
+	bl sub_02017798
 	add sp, #0x9c
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1944,7 +1944,7 @@ _0223C24C:
 	bl ov16_0223DFAC
 	mov r1, #0x9b
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r2, r0, #0
 	ldr r1, [r6, #0x34]
 	add r0, r5, #0
@@ -1966,19 +1966,19 @@ ov16_0223C288: ; 0x0223C288
 	add r4, r0, #0
 	mov r0, #1
 	mov r1, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	mov r0, #2
 	mov r1, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	add r0, r4, #0
 	mov r1, #1
-	bl FUN_02019044
+	bl sub_02019044
 	add r0, r4, #0
 	mov r1, #2
-	bl FUN_02019044
+	bl sub_02019044
 	add r0, r4, #0
 	mov r1, #3
-	bl FUN_02019044
+	bl sub_02019044
 	add r0, r4, #0
 	bl ov16_022687A0
 	pop {r4, pc}
@@ -2003,13 +2003,13 @@ ov16_0223C2C0: ; 0x0223C2C0
 	add r5, r1, #0
 _0223C2D2:
 	mov r0, #5
-	bl FUN_02025E6C
+	bl sub_02025E6C
 	add r1, r0, #0
 	add r0, r5, #0
 	str r1, [r6, #0x48]
 	add r0, #0xf8
 	ldr r0, [r0, #0]
-	bl FUN_02025E80
+	bl sub_02025E80
 	mov r0, #0x46
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
@@ -2039,7 +2039,7 @@ _0223C310:
 	add r5, r5, #4
 	cmp r6, #4
 	blt _0223C310
-	bl FUN_0201D2D0
+	bl sub_0201D2D0
 	ldr r1, _0223C634 ; =0x00002434
 	ldr r2, [sp, #4]
 	str r0, [r4, r1]
@@ -2060,23 +2060,23 @@ _0223C310:
 	sub r1, #0x28
 	str r0, [r4, r1]
 	mov r0, #5
-	bl FUN_0207D3C0
+	bl sub_0207D3C0
 	str r0, [r4, #0x58]
 	mov r1, #0x42
 	ldr r0, [sp, #4]
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
 	ldr r1, [r4, #0x58]
-	bl FUN_0207D3EC
+	bl sub_0207D3EC
 	mov r0, #5
-	bl FUN_02026324
+	bl sub_02026324
 	str r0, [r4, #0x60]
 	mov r1, #0x11
 	ldr r0, [sp, #4]
 	lsl r1, r1, #4
 	ldr r0, [r0, r1]
 	ldr r1, [r4, #0x60]
-	bl FUN_02026338
+	bl sub_02026338
 	mov r1, #0x45
 	lsl r1, r1, #2
 	ldr r0, [sp, #4]
@@ -2200,7 +2200,7 @@ _0223C310:
 	ldr r0, [r0, r1]
 	cmp r0, #0
 	bne _0223C46E
-	bl FUN_02022974
+	bl sub_02022974
 _0223C46E:
 	ldr r5, [sp, #4]
 	mov r0, #0
@@ -2247,7 +2247,7 @@ _0223C48E:
 	mov r7, #5
 _0223C4C2:
 	add r0, r7, #0
-	bl FUN_02079FF4
+	bl sub_02079FF4
 	str r0, [r5, #0x68]
 	add r6, r6, #1
 	add r5, r5, #4
@@ -2259,23 +2259,23 @@ _0223C4C2:
 _0223C4D8:
 	ldr r0, [r6, #4]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223C50A
 _0223C4E4:
 	ldr r0, [r6, #4]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r7, r0, #0
-	bl FUN_02075D6C
+	bl sub_02075D6C
 	str r0, [sp, #0x44]
 	add r0, r7, #0
 	mov r1, #0x6f
 	add r2, sp, #0x44
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [r6, #4]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223C4E4
 _0223C50A:
@@ -2292,7 +2292,7 @@ _0223C50A:
 	b _0223C8CC
 _0223C520:
 	add r0, r4, #0
-	bl FUN_0207A6DC
+	bl sub_0207A6DC
 	add r0, r4, #0
 	bl ov16_0223F6E4
 	lsl r0, r0, #0x18
@@ -2332,7 +2332,7 @@ _0223C56A:
 	ldr r0, [sp, #4]
 	ldr r1, [r5, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [sp, #4]
 	add r6, r6, #1
 	add r0, r0, #4
@@ -2349,35 +2349,35 @@ _0223C56A:
 _0223C596:
 	ldr r0, [r7, #0x68]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223C5E0
 _0223C5A2:
 	ldr r0, [r7, #0x68]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C5D4
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C5D4
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C5E0
 _0223C5D4:
 	ldr r0, [r7, #0x68]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223C5A2
 _0223C5E0:
@@ -2449,7 +2449,7 @@ _0223C666:
 	ldr r0, [sp, #4]
 	ldr r1, [r5, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [sp, #4]
 	add r6, r6, #1
 	add r0, r0, #4
@@ -2466,35 +2466,35 @@ _0223C666:
 _0223C692:
 	ldr r0, [r7, #0x68]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223C6DC
 _0223C69E:
 	ldr r0, [r7, #0x68]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C6D0
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C6D0
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C6DC
 _0223C6D0:
 	ldr r0, [r7, #0x68]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223C69E
 _0223C6DC:
@@ -2552,7 +2552,7 @@ _0223C740:
 	ldr r0, [sp, #4]
 	ldr r1, [r5, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [sp, #4]
 	add r6, r6, #1
 	add r0, r0, #4
@@ -2574,13 +2574,13 @@ _0223C762:
 	add r7, r4, r0
 	ldr r0, [r7, #0x68]
 	mov r6, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223C7FA
 _0223C77A:
 	ldr r0, [r7, #0x68]
 	add r1, r6, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	ldr r1, [sp, #0x18]
 	add r5, r0, #0
 	cmp r1, #1
@@ -2595,44 +2595,44 @@ _0223C77A:
 	add r0, r5, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C7EE
 	add r0, r5, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C7EE
 	add r0, r5, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C7FA
 	b _0223C7EE
 _0223C7C6:
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C7EE
 	add r0, r5, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C7EE
 	add r0, r5, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C7FA
 _0223C7EE:
 	ldr r0, [r7, #0x68]
 	add r6, r6, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r6, r0
 	blt _0223C77A
 _0223C7FA:
@@ -2682,38 +2682,38 @@ _0223C84E:
 	ldr r0, [sp, #4]
 	ldr r1, [r7, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [r7, #0x68]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223C8A2
 _0223C864:
 	ldr r0, [r7, #0x68]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C896
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C896
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C8A2
 _0223C896:
 	ldr r0, [r7, #0x68]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223C864
 _0223C8A2:
@@ -2768,7 +2768,7 @@ _0223C902:
 	ldr r0, [sp, #4]
 	ldr r1, [r5, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [sp, #4]
 	add r6, r6, #1
 	add r0, r0, #4
@@ -2797,19 +2797,19 @@ _0223C930:
 	bne _0223C970
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C998
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C998
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C998
 	ldr r0, [sp, #0x3c]
@@ -2819,19 +2819,19 @@ _0223C930:
 _0223C970:
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223C998
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C998
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223C9A6
 _0223C998:
@@ -2902,7 +2902,7 @@ _0223CA1A:
 	ldr r0, [sp, #4]
 	ldr r1, [r5, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [sp, #4]
 	add r6, r6, #1
 	add r0, r0, #4
@@ -2919,35 +2919,35 @@ _0223CA1A:
 _0223CA3E:
 	ldr r0, [r7, #0x68]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223CA88
 _0223CA4A:
 	ldr r0, [r7, #0x68]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223CA7C
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CA7C
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CA88
 _0223CA7C:
 	ldr r0, [r7, #0x68]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223CA4A
 _0223CA88:
@@ -3005,7 +3005,7 @@ _0223CAEC:
 	ldr r0, [sp, #4]
 	ldr r1, [r5, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [sp, #4]
 	add r6, r6, #1
 	add r0, r0, #4
@@ -3027,13 +3027,13 @@ _0223CB0E:
 	add r7, r4, r0
 	ldr r0, [r7, #0x68]
 	mov r6, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223CBA6
 _0223CB26:
 	ldr r0, [r7, #0x68]
 	add r1, r6, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	ldr r1, [sp, #0x24]
 	add r5, r0, #0
 	cmp r1, #1
@@ -3048,44 +3048,44 @@ _0223CB26:
 	add r0, r5, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223CB9A
 	add r0, r5, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CB9A
 	add r0, r5, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CBA6
 	b _0223CB9A
 _0223CB72:
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223CB9A
 	add r0, r5, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CB9A
 	add r0, r5, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CBA6
 _0223CB9A:
 	ldr r0, [r7, #0x68]
 	add r6, r6, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r6, r0
 	blt _0223CB26
 _0223CBA6:
@@ -3138,38 +3138,38 @@ _0223CC02:
 	ldr r0, [sp, #4]
 	ldr r1, [r7, #0x68]
 	ldr r0, [r0, #4]
-	bl FUN_0207A21C
+	bl sub_0207A21C
 	ldr r0, [r7, #0x68]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223CC56
 _0223CC18:
 	ldr r0, [r7, #0x68]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0223CC4A
 	add r0, r6, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CC4A
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223CC56
 _0223CC4A:
 	ldr r0, [r7, #0x68]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223CC18
 _0223CC56:
@@ -3202,11 +3202,11 @@ _0223CC84:
 	beq _0223CCA0
 	ldr r0, [r4, #0x6c]
 	mov r1, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r2, r4, #0
 	mov r1, #0x90
 	add r2, #0xf4
-	bl FUN_02074470
+	bl sub_02074470
 _0223CCA0:
 	ldr r1, [r4, #0x2c]
 	mov r0, #1
@@ -3226,7 +3226,7 @@ _0223CCA0:
 _0223CCC2:
 	ldr r0, [r4, #0x68]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223CCF2
 	ldr r6, _0223CD38 ; =0x00002408
@@ -3234,21 +3234,21 @@ _0223CCC2:
 _0223CCD2:
 	ldr r0, [r4, #0x68]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	ldr r2, [r4, r6]
 	add r1, r7, #0
 	lsl r2, r2, #0x10
 	lsr r2, r2, #0x10
-	bl FUN_02075C74
+	bl sub_02075C74
 	ldr r0, [r4, #0x68]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223CCD2
 _0223CCF2:
 	ldr r0, [r4, #0x70]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0223CD22
 	ldr r6, _0223CD38 ; =0x00002408
@@ -3256,15 +3256,15 @@ _0223CCF2:
 _0223CD02:
 	ldr r0, [r4, #0x70]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	ldr r2, [r4, r6]
 	add r1, r7, #0
 	lsl r2, r2, #0x10
 	lsr r2, r2, #0x10
-	bl FUN_02075C74
+	bl sub_02075C74
 	ldr r0, [r4, #0x70]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0223CD02
 _0223CD22:
@@ -3328,7 +3328,7 @@ ov16_0223CD7C: ; 0x0223CD7C
 	str r0, [sp, #4]
 	mov r0, #5
 	add r3, r1, #0
-	bl FUN_02024220
+	bl sub_02024220
 	add sp, #8
 	pop {r3, pc}
 	nop
@@ -3340,7 +3340,7 @@ ov16_0223CD9C: ; 0x0223CD9C
 	push {r3, lr}
 	mov r0, #1
 	add r1, r0, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	ldr r0, _0223CE08 ; =0x04000008
 	mov r1, #3
 	ldrh r2, [r0]
@@ -3377,13 +3377,13 @@ ov16_0223CD9C: ; 0x0223CD9C
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl FUN_020BFC74
+	bl sub_020BFC74
 	mov r0, #0
 	ldr r2, _0223CE14 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl FUN_020BFD58
+	bl sub_020BFD58
 	ldr r1, _0223CE18 ; =0xBFFF0000
 	ldr r0, _0223CE1C ; =0x04000580
 	str r1, [r0, #0]
@@ -3399,10 +3399,10 @@ _0223CE1C: .word 0x04000580
 
 	thumb_func_start ov16_0223CE20
 ov16_0223CE20: ; 0x0223CE20
-	ldr r3, _0223CE24 ; =FUN_020242C4
+	ldr r3, _0223CE24 ; =sub_020242C4
 	bx r3
 	; .align 2, 0
-_0223CE24: .word FUN_020242C4
+_0223CE24: .word sub_020242C4
 	thumb_func_end ov16_0223CE20
 
 	thumb_func_start ov16_0223CE28
@@ -3425,13 +3425,13 @@ ov16_0223CE28: ; 0x0223CE28
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0223CE50
-	bl FUN_02022974
+	bl sub_02022974
 _0223CE50:
 	cmp r5, #0
 	bne _0223CE58
-	bl FUN_02022974
+	bl sub_02022974
 _0223CE58:
-	bl FUN_02014000
+	bl sub_02014000
 	pop {r3, r4, r5, pc}
 	nop
 _0223CE60: .word 0x02100DEC
@@ -3474,7 +3474,7 @@ _0223CE9E:
 	sub r2, r2, #1
 	bne _0223CE9E
 	add r0, sp, #0x28
-	bl FUN_0201FE94
+	bl sub_0201FE94
 _0223CEAC:
 	ldr r1, _0223CF00 ; =0x000023FF
 	ldrb r2, [r4, r1]
@@ -3493,18 +3493,18 @@ _0223CEC2:
 	sub r2, r2, #1
 	bne _0223CEC2
 	add r0, sp, #0
-	bl FUN_0201FE94
+	bl sub_0201FE94
 _0223CED0:
 	add r0, r4, #0
 	add r0, #0x88
 	ldr r0, [r0, #0]
-	bl FUN_02008A94
-	bl FUN_0201DCAC
-	bl FUN_0200C800
+	bl sub_02008A94
+	bl sub_0201DCAC
+	bl sub_0200C800
 	ldr r0, [r4, #0x28]
-	bl FUN_02003694
+	bl sub_02003694
 	ldr r0, [r4, #4]
-	bl FUN_0201C2B8
+	bl sub_0201C2B8
 	ldr r3, _0223CF14 ; =0x027E0000
 	ldr r1, _0223CF18 ; =0x00003FF8
 	mov r0, #1
@@ -3528,10 +3528,10 @@ ov16_0223CF1C: ; 0x0223CF1C
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #0xc]
-	bl FUN_02003694
-	bl FUN_0201DCAC
+	bl sub_02003694
+	bl sub_0201DCAC
 	ldr r0, [r4, #4]
-	bl FUN_0201C2B8
+	bl sub_0201C2B8
 	ldr r3, _0223CF40 ; =0x027E0000
 	ldr r1, _0223CF44 ; =0x00003FF8
 	mov r0, #1
@@ -3550,7 +3550,7 @@ ov16_0223CF48: ; 0x0223CF48
 	add r4, r1, #0
 	ldr r1, [r4, #4]
 	mov r0, #5
-	bl FUN_02038A1C
+	bl sub_02038A1C
 	ldr r0, _0223CF88 ; =0x000023FD
 	ldrb r0, [r4, r0]
 	cmp r0, #0
@@ -3565,14 +3565,14 @@ _0223CF68:
 	add r0, r4, #0
 	add r0, #0x88
 	ldr r0, [r0, #0]
-	bl FUN_02007768
+	bl sub_02007768
 	add r4, #0x94
 	ldr r0, [r4, #0]
-	bl FUN_0200C7EC
-	bl FUN_0200C808
+	bl sub_0200C7EC
+	bl sub_0200C808
 	mov r0, #1
 	mov r1, #0
-	bl FUN_020241BC
+	bl sub_020241BC
 _0223CF86:
 	pop {r4, pc}
 	; .align 2, 0
@@ -3606,7 +3606,7 @@ _0223CFB2:
 	beq _0223D0BC
 	ldr r0, _0223D0C0 ; =0x00000704
 	add r1, r6, #0
-	bl FUN_020057A4
+	bl sub_020057A4
 	add r0, r5, #0
 	mov r1, #2
 	bl ov16_0223F460
@@ -3652,11 +3652,11 @@ _0223D00E:
 	lsr r0, r0, #0x10
 	lsr r1, r1, #0x10
 	mov r2, #0x30
-	bl FUN_0208C104
+	bl sub_0208C104
 	cmp r0, #1
 	bne _0223D036
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r6, r0
 _0223D036:
 	ldr r0, [sp]
@@ -3671,7 +3671,7 @@ _0223D03E:
 	cmp r0, #0
 	bne _0223D064
 	ldr r0, _0223D0C0 ; =0x00000704
-	bl FUN_02005748
+	bl sub_02005748
 	add r0, r5, #0
 	mov r1, #1
 	bl ov16_0223F460
@@ -3688,7 +3688,7 @@ _0223D064:
 	beq _0223D082
 	ldr r0, _0223D0C0 ; =0x00000704
 	mov r1, #0
-	bl FUN_020057A4
+	bl sub_020057A4
 	add r0, r5, #0
 	mov r1, #0
 	bl ov16_0223F460
@@ -3701,13 +3701,13 @@ _0223D082:
 	bl ov16_0223F47C
 	add r4, r0, #0
 	ldr r0, _0223D0C0 ; =0x00000704
-	bl FUN_020057D4
+	bl sub_020057D4
 	cmp r0, #0
 	bne _0223D0BC
 	sub r1, r4, #1
 	bne _0223D0B2
 	ldr r0, _0223D0C0 ; =0x00000704
-	bl FUN_02005748
+	bl sub_02005748
 	add r0, r5, #0
 	mov r1, #4
 	bl ov16_0223F48C
@@ -3736,13 +3736,13 @@ ov16_0223D0C4: ; 0x0223D0C4
 	ldr r0, [r4, #4]
 	ldr r3, [r4, r3]
 	mov r2, #3
-	bl FUN_02019184
+	bl sub_02019184
 	ldr r0, _0223D0F0 ; =0x00002438
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	bne _0223D0EC
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0223D0EC:
 	pop {r3, r4, r5, pc}
 	nop
@@ -3752,12 +3752,12 @@ _0223D0F0: .word 0x00002438
 	thumb_func_start ov16_0223D0F4
 ov16_0223D0F4: ; 0x0223D0F4
 	push {r3, lr}
-	bl FUN_020389B8
+	bl sub_020389B8
 	cmp r0, #0
 	bne _0223D106
 	ldr r0, _0223D108 ; =0x00000015
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 _0223D106:
 	pop {r3, pc}
 	; .align 2, 0
@@ -3771,7 +3771,7 @@ ov16_0223D10C: ; 0x0223D10C
 	add r4, r1, #0
 	ldr r1, _0223D330 ; =0x00001028
 	mov r2, #5
-	bl FUN_0200681C
+	bl sub_0200681C
 	add r5, r0, #0
 	ldr r0, _0223D334 ; =0x00001020
 	str r4, [r5, #0]
@@ -3782,16 +3782,16 @@ ov16_0223D10C: ; 0x0223D10C
 	add r0, r0, #2
 	strh r2, [r5, r0]
 	mov r0, #5
-	bl FUN_02002F38
+	bl sub_02002F38
 	str r0, [r5, #0xc]
 	mov r1, #1
-	bl FUN_02003858
+	bl sub_02003858
 	mov r2, #2
 	ldr r0, [r5, #0xc]
 	mov r1, #0
 	lsl r2, r2, #8
 	mov r3, #5
-	bl FUN_02002F70
+	bl sub_02002F70
 	mov r1, #0
 	mov r0, #1
 	str r1, [sp]
@@ -3800,17 +3800,17 @@ ov16_0223D10C: ; 0x0223D10C
 	ldr r0, [r5, #0xc]
 	mov r2, #2
 	add r3, r1, #0
-	bl FUN_020038B0
+	bl sub_020038B0
 	mov r0, #5
-	bl FUN_02018340
+	bl sub_02018340
 	str r0, [r5, #4]
 	mov r0, #5
 	mov r1, #1
-	bl FUN_0201A778
+	bl sub_0201A778
 	str r0, [r5, #8]
 	add r0, r5, #0
-	bl FUN_0207A744
-	bl FUN_0201FF00
+	bl sub_0207A744
+	bl sub_0201FF00
 	ldr r6, _0223D338 ; =0x0226E304
 	add r3, sp, #0x40
 	mov r2, #5
@@ -3820,37 +3820,37 @@ _0223D17E:
 	sub r2, r2, #1
 	bne _0223D17E
 	add r0, sp, #0x40
-	bl FUN_0201FE94
+	bl sub_0201FE94
 	mov r1, #6
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r1, #5
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #8
-	bl FUN_020C4AF0
+	bl sub_020C4AF0
 	ldr r6, _0223D33C ; =0x0226E27C
 	add r3, sp, #0x30
 	add r2, r3, #0
@@ -3859,7 +3859,7 @@ _0223D17E:
 	ldmia r6!, {r0, r1}
 	stmia r3!, {r0, r1}
 	add r0, r2, #0
-	bl FUN_02018368
+	bl sub_02018368
 	ldr r6, _0223D340 ; =0x0226E2C8
 	add r3, sp, #0x14
 	ldmia r6!, {r0, r1}
@@ -3874,14 +3874,14 @@ _0223D17E:
 	str r0, [r3, #0]
 	ldr r0, [r5, #4]
 	mov r3, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	ldr r0, [r5, #4]
 	mov r1, #1
-	bl FUN_02019EBC
+	bl sub_02019EBC
 	mov r0, #0x13
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
-	bl FUN_02027B50
+	bl sub_02027B50
 	add r4, r0, #0
 	lsl r0, r4, #0x18
 	lsr r0, r0, #0x18
@@ -3892,7 +3892,7 @@ _0223D17E:
 	ldr r0, [r5, #4]
 	add r2, r1, #0
 	mov r3, #0xa
-	bl FUN_0200E218
+	bl sub_0200E218
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0x20
@@ -3903,9 +3903,9 @@ _0223D17E:
 	mov r1, #0xe
 	mov r2, #7
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	add r0, r4, #0
-	bl FUN_0200DD08
+	bl sub_0200DD08
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -3916,7 +3916,7 @@ _0223D17E:
 	ldr r0, [r5, #0xc]
 	mov r1, #0x26
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r1, #0
 	mov r0, #1
 	str r1, [sp]
@@ -3925,11 +3925,11 @@ _0223D17E:
 	ldr r0, [r5, #0xc]
 	add r2, r1, #0
 	add r3, r1, #0
-	bl FUN_020038B0
-	bl FUN_0201FFD0
+	bl sub_020038B0
+	bl sub_0201FFD0
 	mov r0, #0x10
 	mov r1, #1
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	mov r0, #0x13
 	str r0, [sp]
 	mov r0, #0x1b
@@ -3944,31 +3944,31 @@ _0223D17E:
 	ldr r1, [r5, #8]
 	mov r2, #1
 	mov r3, #2
-	bl FUN_0201A7E8
+	bl sub_0201A7E8
 	ldr r0, [r5, #8]
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	ldr r0, [r5, #8]
 	mov r1, #0
 	mov r2, #1
 	mov r3, #0xa
-	bl FUN_0200E060
+	bl sub_0200E060
 	mov r2, #0x17
 	mov r0, #1
 	mov r1, #0x1a
 	lsl r2, r2, #4
 	mov r3, #5
-	bl FUN_0200B144
+	bl sub_0200B144
 	add r4, r0, #0
 	mov r0, #1
 	lsl r0, r0, #8
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r6, r0, #0
 	ldr r1, _0223D344 ; =0x0000039B
 	add r0, r4, #0
 	add r2, r6, #0
-	bl FUN_0200B1B8
+	bl sub_0200B1B8
 	mov r3, #0
 	str r3, [sp]
 	str r3, [sp, #4]
@@ -3976,14 +3976,14 @@ _0223D17E:
 	ldr r0, [r5, #8]
 	mov r1, #1
 	add r2, r6, #0
-	bl FUN_0201D738
+	bl sub_0201D738
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r4, #0
-	bl FUN_0200B190
+	bl sub_0200B190
 	ldr r0, _0223D348 ; =ov16_0223CF1C
 	add r1, r5, #0
-	bl FUN_02017798
+	bl sub_02017798
 	mov r0, #0x10
 	str r0, [sp]
 	mov r3, #0
@@ -3992,10 +3992,10 @@ _0223D17E:
 	ldr r0, [r5, #0xc]
 	ldr r2, _0223D34C ; =0x0000FFFF
 	mov r1, #5
-	bl FUN_02003178
+	bl sub_02003178
 	ldr r0, [r5, #8]
 	mov r1, #1
-	bl FUN_0200E7FC
+	bl sub_0200E7FC
 	ldr r1, _0223D350 ; =0x00001024
 	str r0, [r5, r1]
 	bl ov16_0223DECC
@@ -4017,11 +4017,11 @@ _0223D350: .word 0x00001024
 ov16_0223D354: ; 0x0223D354
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0xc
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r4, r0, #0
 	ldr r1, [r4, #4]
 	mov r0, #5
-	bl FUN_02038A1C
+	bl sub_02038A1C
 	ldr r0, _0223D658 ; =0x00001021
 	mov r7, #0
 	ldrb r1, [r4, r0]
@@ -4072,9 +4072,9 @@ _0223D37E: ; jump table
 	.short _0223D77E - _0223D37E - 2 ; case 33
 _0223D3C2:
 	add r0, r7, #0
-	bl FUN_0200F338
+	bl sub_0200F338
 	mov r0, #1
-	bl FUN_02036378
+	bl sub_02036378
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4082,7 +4082,7 @@ _0223D3C2:
 	b _0223D798
 _0223D3D8:
 	ldr r0, [r4, #0xc]
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _0223D486
 	ldr r0, _0223D658 ; =0x00001021
@@ -4092,7 +4092,7 @@ _0223D3D8:
 	b _0223D798
 _0223D3EC:
 	mov r0, #0x32
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4100,11 +4100,11 @@ _0223D3EC:
 	b _0223D798
 _0223D3FC:
 	mov r0, #0x32
-	bl FUN_02036540
+	bl sub_02036540
 	cmp r0, #0
 	beq _0223D41E
 	mov r0, #0x33
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D65C ; =0x00001022
 	add r1, r7, #0
 	strh r1, [r4, r0]
@@ -4124,13 +4124,13 @@ _0223D41E:
 	cmp r1, r0
 	bls _0223D486
 	mov r0, #1
-	bl FUN_02038AE0
+	bl sub_02038AE0
 	b _0223D798
 _0223D436:
 	mov r1, #5
 	add r0, r4, #0
 	lsl r1, r1, #6
-	bl FUN_0207A8F4
+	bl sub_0207A8F4
 	cmp r0, #1
 	bne _0223D486
 	ldr r0, _0223D658 ; =0x00001021
@@ -4140,11 +4140,11 @@ _0223D436:
 	b _0223D798
 _0223D44E:
 	add r0, r4, #0
-	bl FUN_0207A960
+	bl sub_0207A960
 	cmp r0, #1
 	bne _0223D486
 	mov r0, #0x34
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4152,7 +4152,7 @@ _0223D44E:
 	b _0223D798
 _0223D468:
 	add r0, r4, #0
-	bl FUN_0207A988
+	bl sub_0207A988
 	cmp r0, #1
 	bne _0223D486
 	ldr r0, _0223D658 ; =0x00001021
@@ -4162,14 +4162,14 @@ _0223D468:
 	b _0223D798
 _0223D47C:
 	add r0, r4, #0
-	bl FUN_0207A9CC
+	bl sub_0207A9CC
 	cmp r0, #1
 	beq _0223D488
 _0223D486:
 	b _0223D798
 _0223D488:
 	mov r0, #0x35
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4177,7 +4177,7 @@ _0223D488:
 	b _0223D798
 _0223D498:
 	add r0, r4, #0
-	bl FUN_0207A9F8
+	bl sub_0207A9F8
 	cmp r0, #1
 	bne _0223D592
 	ldr r0, _0223D658 ; =0x00001021
@@ -4187,11 +4187,11 @@ _0223D498:
 	b _0223D798
 _0223D4AC:
 	add r0, r4, #0
-	bl FUN_0207AA38
+	bl sub_0207AA38
 	cmp r0, #1
 	bne _0223D592
 	mov r0, #0x36
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4199,7 +4199,7 @@ _0223D4AC:
 	b _0223D798
 _0223D4C6:
 	add r0, r4, #0
-	bl FUN_0207AA5C
+	bl sub_0207AA5C
 	cmp r0, #1
 	bne _0223D592
 	ldr r0, _0223D658 ; =0x00001021
@@ -4209,11 +4209,11 @@ _0223D4C6:
 	b _0223D798
 _0223D4DA:
 	add r0, r4, #0
-	bl FUN_0207AAA0
+	bl sub_0207AAA0
 	cmp r0, #1
 	bne _0223D592
 	mov r0, #0x37
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4221,7 +4221,7 @@ _0223D4DA:
 	b _0223D798
 _0223D4F4:
 	add r0, r4, #0
-	bl FUN_0207AAC8
+	bl sub_0207AAC8
 	cmp r0, #1
 	bne _0223D592
 	ldr r0, _0223D658 ; =0x00001021
@@ -4231,11 +4231,11 @@ _0223D4F4:
 	b _0223D798
 _0223D508:
 	add r0, r4, #0
-	bl FUN_0207AAFC
+	bl sub_0207AAFC
 	cmp r0, #1
 	bne _0223D592
 	mov r0, #0x38
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4243,7 +4243,7 @@ _0223D508:
 	b _0223D798
 _0223D522:
 	add r0, r4, #0
-	bl FUN_0207AB58
+	bl sub_0207AB58
 	cmp r0, #1
 	bne _0223D592
 	ldr r0, _0223D658 ; =0x00001021
@@ -4261,11 +4261,11 @@ _0223D536:
 	strb r1, [r4, r0]
 	b _0223D798
 _0223D546:
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D55E
 	mov r0, #0x39
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4274,11 +4274,11 @@ _0223D546:
 _0223D55E:
 	add r0, r4, #0
 	mov r1, #1
-	bl FUN_0207AB9C
+	bl sub_0207AB9C
 	cmp r0, #1
 	bne _0223D592
 	mov r0, #0x39
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4288,11 +4288,11 @@ _0223D57A:
 	mov r1, #1
 	sub r0, r0, #1
 	strb r1, [r4, r0]
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D59E
 	mov r0, #0x39
-	bl FUN_02036540
+	bl sub_02036540
 	cmp r0, #1
 	beq _0223D594
 _0223D592:
@@ -4307,7 +4307,7 @@ _0223D59E:
 	add r0, r4, #0
 	mov r1, #1
 	mov r2, #0x39
-	bl FUN_0207ABD0
+	bl sub_0207ABD0
 	cmp r0, #1
 	bne _0223D694
 	ldr r0, _0223D658 ; =0x00001021
@@ -4316,11 +4316,11 @@ _0223D59E:
 	strb r1, [r4, r0]
 	b _0223D798
 _0223D5B6:
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D5CE
 	mov r0, #0x3a
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4329,11 +4329,11 @@ _0223D5B6:
 _0223D5CE:
 	add r0, r4, #0
 	mov r1, #3
-	bl FUN_0207AB9C
+	bl sub_0207AB9C
 	cmp r0, #1
 	bne _0223D694
 	mov r0, #0x3a
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4343,11 +4343,11 @@ _0223D5EA:
 	mov r1, #1
 	sub r0, r0, #1
 	strb r1, [r4, r0]
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D60C
 	mov r0, #0x3a
-	bl FUN_02036540
+	bl sub_02036540
 	cmp r0, #1
 	bne _0223D694
 	ldr r0, _0223D658 ; =0x00001021
@@ -4359,7 +4359,7 @@ _0223D60C:
 	add r0, r4, #0
 	mov r1, #3
 	mov r2, #0x3a
-	bl FUN_0207ABD0
+	bl sub_0207ABD0
 	cmp r0, #1
 	bne _0223D694
 	ldr r0, _0223D658 ; =0x00001021
@@ -4368,11 +4368,11 @@ _0223D60C:
 	strb r1, [r4, r0]
 	b _0223D798
 _0223D624:
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D63C
 	mov r0, #0x3b
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4381,11 +4381,11 @@ _0223D624:
 _0223D63C:
 	add r0, r4, #0
 	mov r1, #1
-	bl FUN_0207AC28
+	bl sub_0207AC28
 	cmp r0, #1
 	bne _0223D694
 	mov r0, #0x3b
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D658 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4399,11 +4399,11 @@ _0223D664:
 	mov r1, #1
 	sub r0, r0, #1
 	strb r1, [r4, r0]
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D686
 	mov r0, #0x3b
-	bl FUN_02036540
+	bl sub_02036540
 	cmp r0, #1
 	bne _0223D694
 	ldr r0, _0223D7A0 ; =0x00001021
@@ -4415,7 +4415,7 @@ _0223D686:
 	add r0, r4, #0
 	mov r1, #1
 	mov r2, #0x3b
-	bl FUN_0207AC54
+	bl sub_0207AC54
 	cmp r0, #1
 	beq _0223D696
 _0223D694:
@@ -4427,11 +4427,11 @@ _0223D696:
 	strb r1, [r4, r0]
 	b _0223D798
 _0223D6A0:
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D6B8
 	mov r0, #0x3c
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D7A0 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4440,11 +4440,11 @@ _0223D6A0:
 _0223D6B8:
 	add r0, r4, #0
 	mov r1, #3
-	bl FUN_0207AC28
+	bl sub_0207AC28
 	cmp r0, #1
 	bne _0223D798
 	mov r0, #0x3c
-	bl FUN_020364F0
+	bl sub_020364F0
 	ldr r0, _0223D7A0 ; =0x00001021
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -4454,11 +4454,11 @@ _0223D6D4:
 	mov r1, #1
 	sub r0, r0, #1
 	strb r1, [r4, r0]
-	bl FUN_0203608C
+	bl sub_0203608C
 	cmp r0, #0
 	beq _0223D6F6
 	mov r0, #0x3c
-	bl FUN_02036540
+	bl sub_02036540
 	cmp r0, #1
 	bne _0223D798
 	ldr r0, _0223D7A0 ; =0x00001021
@@ -4470,7 +4470,7 @@ _0223D6F6:
 	add r0, r4, #0
 	mov r1, #3
 	mov r2, #0x3c
-	bl FUN_0207AC54
+	bl sub_0207AC54
 	cmp r0, #1
 	bne _0223D798
 	ldr r0, _0223D7A0 ; =0x00001021
@@ -4479,7 +4479,7 @@ _0223D6F6:
 	strb r1, [r4, r0]
 	b _0223D798
 _0223D70E:
-	bl FUN_02035E18
+	bl sub_02035E18
 	ldr r1, _0223D7A4 ; =0x00001020
 	ldrb r2, [r4, r1]
 	cmp r2, r0
@@ -4492,7 +4492,7 @@ _0223D70E:
 	add r5, r4, #0
 _0223D726:
 	ldr r0, [r5, #0x10]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r6, r6, #1
 	add r5, r5, #4
 	cmp r6, #4
@@ -4519,7 +4519,7 @@ _0223D734:
 	ldr r0, [r4, #0xc]
 	ldr r2, _0223D7A8 ; =0x0000FFFF
 	mov r1, #5
-	bl FUN_02003178
+	bl sub_02003178
 	b _0223D798
 _0223D764:
 	add r0, r1, #2
@@ -4532,19 +4532,19 @@ _0223D764:
 	cmp r1, r0
 	bls _0223D798
 	mov r0, #1
-	bl FUN_02038AE0
+	bl sub_02038AE0
 	b _0223D798
 _0223D77E:
 	ldr r0, [r4, #0xc]
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _0223D798
 	ldr r0, _0223D7B0 ; =0x00001024
 	mov r7, #1
 	ldr r0, [r4, r0]
-	bl FUN_0200EBA0
+	bl sub_0200EBA0
 	mov r0, #0
-	bl FUN_02036378
+	bl sub_02036378
 _0223D798:
 	add r0, r7, #0
 	add sp, #0xc
@@ -4560,32 +4560,32 @@ _0223D7B0: .word 0x00001024
 	thumb_func_start ov16_0223D7B4
 ov16_0223D7B4: ; 0x0223D7B4
 	push {r4, lr}
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r4, r0, #0
 	mov r0, #0
 	add r1, r0, #0
-	bl FUN_02017798
+	bl sub_02017798
 	mov r0, #0
 	add r1, r0, #0
-	bl FUN_0200F344
+	bl sub_0200F344
 	ldr r0, [r4, #0xc]
 	mov r1, #0
-	bl FUN_02002FA0
+	bl sub_02002FA0
 	ldr r0, [r4, #0xc]
-	bl FUN_02002F54
+	bl sub_02002F54
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_0201A928
+	bl sub_0201A928
 	mov r0, #2
 	mov r1, #0
-	bl FUN_0201FF0C
+	bl sub_0201FF0C
 	ldr r0, [r4, #4]
 	mov r1, #1
-	bl FUN_02019044
+	bl sub_02019044
 	ldr r0, [r4, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, pc}
 	thumb_func_end ov16_0223D7B4
 
@@ -4595,15 +4595,15 @@ ov16_0223D800: ; 0x0223D800
 	ldr r1, _0223D938 ; =0x00002484
 	add r5, r0, #0
 	mov r2, #5
-	bl FUN_0200681C
+	bl sub_0200681C
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_02006840
+	bl sub_02006840
 	add r5, r0, #0
 	ldr r2, _0223D938 ; =0x00002484
 	mov r0, #0
 	add r1, r4, #0
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	add r0, r4, #0
 	add r1, r5, #0
 	bl ov16_0223C2C0
@@ -4620,13 +4620,13 @@ ov16_0223D800: ; 0x0223D800
 	tst r0, r1
 	beq _0223D848
 _0223D840:
-	bl FUN_02039794
+	bl sub_02039794
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 _0223D848:
 	ldr r0, _0223D940 ; =0x0000000A
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	ldr r1, [r4, #0x2c]
 	mov r0, #8
 	tst r0, r1
@@ -4636,19 +4636,19 @@ _0223D848:
 _0223D85C:
 	mov r0, #5
 	mov r1, #0x30
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x71
 	lsl r1, r1, #2
 	str r0, [r4, r1]
 	ldr r1, [r4, r1]
 	mov r0, #0
 	mov r2, #0x30
-	bl FUN_020C4BB8
-	bl FUN_0203608C
+	bl sub_020C4BB8
+	bl sub_0203608C
 	lsl r0, r0, #0x18
 	lsr r5, r0, #0x18
 	add r0, r5, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	cmp r0, #3
 	bhi _0223D8E0
 	add r0, r0, r0
@@ -4708,7 +4708,7 @@ _0223D8E0:
 	add r0, #0x28
 	strb r1, [r0]
 	add r0, r5, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	cmp r0, #3
 	bhi _0223D92A
 	add r0, r0, r0
@@ -4753,7 +4753,7 @@ _0223D940: .word 0x0000000A
 	thumb_func_start ov16_0223D944
 ov16_0223D944: ; 0x0223D944
 	push {r3, r4, r5, r6, r7, lr}
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r6, r0, #0
 	mov r0, #0x71
 	lsl r0, r0, #2
@@ -4772,7 +4772,7 @@ _0223D962:
 	ldr r0, [r0, #0x14]
 	cmp r0, #0
 	beq _0223D970
-	bl FUN_020181C4
+	bl sub_020181C4
 _0223D970:
 	add r4, r4, #1
 	add r5, r5, #4
@@ -4781,7 +4781,7 @@ _0223D970:
 	mov r0, #0x71
 	lsl r0, r0, #2
 	ldr r0, [r6, r0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _0223D986:
@@ -4794,10 +4794,10 @@ _0223D986:
 ov16_0223D98C: ; 0x0223D98C
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r0, #0
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_02006840
+	bl sub_02006840
 	ldr r0, [r4, #0x2c]
 	mov r1, #4
 	tst r1, r0
@@ -4811,23 +4811,23 @@ ov16_0223D98C: ; 0x0223D98C
 	tst r0, r1
 	beq _0223D9BC
 _0223D9B4:
-	bl FUN_02039794
+	bl sub_02039794
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _0223D9BC:
-	bl FUN_0203608C
+	bl sub_0203608C
 	lsl r0, r0, #0x18
 	lsr r5, r0, #0x18
 	mov r0, #5
 	mov r1, #0x30
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x71
 	lsl r1, r1, #2
 	str r0, [r4, r1]
 	ldr r1, [r4, r1]
 	mov r0, #0
 	mov r2, #0x30
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	ldr r1, [r4, #0x2c]
 	mov r0, #8
 	tst r0, r1
@@ -4836,7 +4836,7 @@ _0223D9BC:
 	add r5, r4, #0
 _0223D9E8:
 	add r0, r6, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	mov r2, #0x71
 	lsl r2, r2, #2
 	ldr r2, [r4, r2]
@@ -4845,11 +4845,11 @@ _0223D9E8:
 	add r0, r2, r0
 	str r1, [r0, #4]
 	add r0, r6, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r7, r0, #0
 	ldr r0, [r5, #0x48]
 	mov r1, #5
-	bl FUN_02025F04
+	bl sub_02025F04
 	mov r1, #0x71
 	lsl r1, r1, #2
 	ldr r2, [r4, r1]
@@ -4876,7 +4876,7 @@ _0223D9E8:
 _0223DA3A:
 	add r0, r5, #0
 	lsl r7, r5, #2
-	bl FUN_020362F4
+	bl sub_020362F4
 	mov r2, #0x71
 	lsl r2, r2, #2
 	add r1, r4, r7
@@ -4889,7 +4889,7 @@ _0223DA3A:
 	eor r0, r5
 	lsl r6, r0, #2
 	str r0, [sp]
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r1, r4, r6
 	ldr r2, [r1, #0x68]
 	mov r1, #0x71
@@ -4899,12 +4899,12 @@ _0223DA3A:
 	add r0, r1, r0
 	str r2, [r0, #4]
 	add r0, r5, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r5, r0, #0
 	add r0, r4, r7
 	ldr r0, [r0, #0x48]
 	mov r1, #5
-	bl FUN_02025F04
+	bl sub_02025F04
 	mov r1, #0x71
 	lsl r1, r1, #2
 	ldr r2, [r4, r1]
@@ -4912,12 +4912,12 @@ _0223DA3A:
 	add r1, r2, r1
 	str r0, [r1, #0x14]
 	ldr r0, [sp]
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r5, r0, #0
 	add r0, r4, r6
 	ldr r0, [r0, #0x48]
 	mov r1, #5
-	bl FUN_02025F04
+	bl sub_02025F04
 	mov r1, #0x71
 	lsl r1, r1, #2
 	ldr r3, [r4, r1]
@@ -4949,7 +4949,7 @@ _0223DAD0: .word 0x0000240C
 	thumb_func_start ov16_0223DAD4
 ov16_0223DAD4: ; 0x0223DAD4
 	push {r3, r4, r5, r6, r7, lr}
-	bl FUN_0200682C
+	bl sub_0200682C
 	add r6, r0, #0
 	mov r0, #0x71
 	lsl r0, r0, #2
@@ -4968,7 +4968,7 @@ _0223DAF2:
 	ldr r0, [r0, #0x14]
 	cmp r0, #0
 	beq _0223DB00
-	bl FUN_020181C4
+	bl sub_020181C4
 _0223DB00:
 	add r4, r4, #1
 	add r5, r5, #4
@@ -4977,7 +4977,7 @@ _0223DB00:
 	mov r0, #0x71
 	lsl r0, r0, #2
 	ldr r0, [r6, r0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _0223DB16:
@@ -4990,7 +4990,7 @@ _0223DB16:
 ov16_0223DB1C: ; 0x0223DB1C
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0xc
-	bl FUN_02006840
+	bl sub_02006840
 	add r7, r0, #0
 	ldr r0, [r7, #0]
 	mov r1, #4
@@ -5010,15 +5010,15 @@ _0223DB40:
 	mov r0, #0
 	pop {r4, r5, r6, r7, pc}
 _0223DB46:
-	bl FUN_0203608C
+	bl sub_0203608C
 	lsl r0, r0, #0x18
 	lsr r4, r0, #0x18
 	ldr r0, _0223DD08 ; =0x0000000A
 	mov r1, #2
-	bl FUN_02006590
+	bl sub_02006590
 	mov r0, #5
 	mov r1, #0x30
-	bl FUN_02018144
+	bl sub_02018144
 	add r6, r0, #0
 	mov r0, #0x66
 	lsl r0, r0, #2
@@ -5026,7 +5026,7 @@ _0223DB46:
 	mov r0, #0
 	add r1, r6, #0
 	mov r2, #0x30
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	str r7, [r6, #0]
 	ldr r0, [r7, #0x14]
 	cmp r0, #5
@@ -5045,55 +5045,55 @@ _0223DB84: ; jump table
 	.short _0223DBFA - _0223DB84 - 2 ; case 4
 	.short _0223DBD8 - _0223DB84 - 2 ; case 5
 _0223DB90:
-	bl FUN_020389B8
+	bl sub_020389B8
 	cmp r0, #0
 	bne _0223DBA6
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r1, #0x15
-	bl FUN_0202CF28
+	bl sub_0202CF28
 	b _0223DBFA
 _0223DBA6:
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r1, #0x1a
-	bl FUN_0202CF28
+	bl sub_0202CF28
 	b _0223DBFA
 _0223DBB4:
-	bl FUN_020389B8
+	bl sub_020389B8
 	cmp r0, #0
 	bne _0223DBCA
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r1, #0x16
-	bl FUN_0202CF28
+	bl sub_0202CF28
 	b _0223DBFA
 _0223DBCA:
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r1, #0x1b
-	bl FUN_0202CF28
+	bl sub_0202CF28
 	b _0223DBFA
 _0223DBD8:
-	bl FUN_020389B8
+	bl sub_020389B8
 	cmp r0, #0
 	bne _0223DBEE
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r1, #0x17
-	bl FUN_0202CF28
+	bl sub_0202CF28
 	b _0223DBFA
 _0223DBEE:
 	mov r0, #0x51
 	lsl r0, r0, #2
 	ldr r0, [r7, r0]
 	mov r1, #0x1c
-	bl FUN_0202CF28
+	bl sub_0202CF28
 _0223DBFA:
 	ldr r1, [r7, #0]
 	mov r0, #8
@@ -5103,19 +5103,19 @@ _0223DBFA:
 	add r5, r7, #0
 _0223DC06:
 	add r0, r4, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	lsl r0, r0, #2
 	ldr r1, [r5, #4]
 	add r0, r6, r0
 	str r1, [r0, #4]
 	add r0, r4, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	str r0, [sp, #8]
 	add r0, r5, #0
 	add r0, #0xf8
 	ldr r0, [r0, #0]
 	mov r1, #5
-	bl FUN_02025F04
+	bl sub_02025F04
 	ldr r1, [sp, #8]
 	add r4, r4, #1
 	lsl r1, r1, #2
@@ -5151,7 +5151,7 @@ _0223DC64:
 	lsl r0, r4, #2
 	str r0, [sp]
 	add r0, r4, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	ldr r1, [sp]
 	lsl r0, r0, #2
 	add r1, r7, r1
@@ -5162,32 +5162,32 @@ _0223DC64:
 	eor r0, r4
 	lsl r5, r0, #2
 	str r0, [sp, #4]
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r1, r7, r5
 	lsl r0, r0, #2
 	ldr r1, [r1, #4]
 	add r0, r6, r0
 	str r1, [r0, #4]
 	add r0, r4, #0
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r4, r0, #0
 	ldr r0, [sp]
 	mov r1, #5
 	add r0, r7, r0
 	add r0, #0xf8
 	ldr r0, [r0, #0]
-	bl FUN_02025F04
+	bl sub_02025F04
 	lsl r1, r4, #2
 	add r1, r6, r1
 	str r0, [r1, #0x14]
 	ldr r0, [sp, #4]
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r4, r0, #0
 	add r0, r7, r5
 	add r0, #0xf8
 	ldr r0, [r0, #0]
 	mov r1, #5
-	bl FUN_02025F04
+	bl sub_02025F04
 	lsl r1, r4, #2
 	add r1, r6, r1
 	str r0, [r1, #0x14]
@@ -5232,7 +5232,7 @@ _0223DD0C: .word 0x000001B2
 	thumb_func_start ov16_0223DD10
 ov16_0223DD10: ; 0x0223DD10
 	push {r4, r5, r6, lr}
-	bl FUN_02006840
+	bl sub_02006840
 	mov r1, #0x66
 	lsl r1, r1, #2
 	ldr r6, [r0, r1]
@@ -5247,14 +5247,14 @@ _0223DD2A:
 	ldr r0, [r5, #0x14]
 	cmp r0, #0
 	beq _0223DD34
-	bl FUN_020181C4
+	bl sub_020181C4
 _0223DD34:
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #4
 	blt _0223DD2A
 	add r0, r6, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 _0223DD46:
@@ -5277,19 +5277,19 @@ ov16_0223DD4C: ; 0x0223DD4C
 	beq _0223DD74
 _0223DD60:
 	mov r0, #1
-	bl FUN_02002AE4
+	bl sub_02002AE4
 	mov r0, #1
-	bl FUN_02002AC8
+	bl sub_02002AC8
 	mov r0, #0
-	bl FUN_02002B20
+	bl sub_02002B20
 	pop {r3, pc}
 _0223DD74:
 	mov r0, #3
-	bl FUN_02002AE4
+	bl sub_02002AE4
 	mov r0, #1
-	bl FUN_02002AC8
+	bl sub_02002AC8
 	mov r0, #1
-	bl FUN_02002B20
+	bl sub_02002B20
 	pop {r3, pc}
 	; .align 2, 0
 _0223DD88: .word 0x00000404
@@ -5326,9 +5326,9 @@ _0223DDB6:
 	stmia r5!, {r2}
 	cmp r3, #4
 	blt _0223DDB6
-	bl FUN_0203608C
+	bl sub_0203608C
 	str r0, [sp, #0x10]
-	bl FUN_02035E18
+	bl sub_02035E18
 	str r0, [sp, #0xc]
 	mov r0, #0
 	str r0, [sp, #4]
@@ -5406,10 +5406,10 @@ _0223DE4A:
 	tst r0, r1
 	beq _0223DEB0
 	ldr r0, [sp, #0x10]
-	bl FUN_020362F4
+	bl sub_020362F4
 	add r4, r0, #0
 	ldr r0, [sp, #0x30]
-	bl FUN_020362F4
+	bl sub_020362F4
 	cmp r0, #3
 	bhi _0223DEBE
 	add r0, r0, r0
@@ -5468,23 +5468,23 @@ _0223DEC8: .word 0x000023FC
 	thumb_func_start ov16_0223DECC
 ov16_0223DECC: ; 0x0223DECC
 	push {r3, lr}
-	bl FUN_02039734
-	bl FUN_020389B8
+	bl sub_02039734
+	bl sub_020389B8
 	cmp r0, #0
 	beq _0223DEE8
 	bl FUN_021D7EAC
 	mov r1, #3
 	sub r0, r1, r0
-	bl FUN_020397B0
+	bl sub_020397B0
 	pop {r3, pc}
 _0223DEE8:
-	bl FUN_02033E1C
+	bl sub_02033E1C
 	cmp r0, #0
 	beq _0223DEFC
-	bl FUN_020CE814
+	bl sub_020CE814
 	mov r1, #3
 	sub r0, r1, r0
-	bl FUN_020397B0
+	bl sub_020397B0
 _0223DEFC:
 	pop {r3, pc}
 	; .align 2, 0
@@ -5588,7 +5588,7 @@ _0223DF7E:
 	lsl r0, r4, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x68]
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	pop {r3, r4, r5, pc}
 _0223DF8A:
 	ldr r1, [r5, #0x2c]
@@ -5599,13 +5599,13 @@ _0223DF8A:
 	lsr r0, r0, #0x1d
 	add r0, r5, r0
 	ldr r0, [r0, #0x68]
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	pop {r3, r4, r5, pc}
 _0223DFA0:
 	lsl r0, r4, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x68]
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0223DF60
 
@@ -5631,7 +5631,7 @@ _0223DFCC:
 	add r0, r5, r0
 	ldr r0, [r0, #0x68]
 	add r1, r6, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	pop {r4, r5, r6, pc}
 _0223DFDA:
 	ldr r1, [r5, #0x2c]
@@ -5643,14 +5643,14 @@ _0223DFDA:
 	add r0, r5, r0
 	ldr r0, [r0, #0x68]
 	add r1, r6, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	pop {r4, r5, r6, pc}
 _0223DFF2:
 	lsl r0, r4, #2
 	add r0, r5, r0
 	ldr r0, [r0, #0x68]
 	add r1, r6, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_0223DFAC
 
@@ -5995,11 +5995,11 @@ ov16_0223E1B0: ; 0x0223E1B0
 ov16_0223E1B4: ; 0x0223E1B4
 	lsl r1, r1, #2
 	add r0, r0, r1
-	ldr r3, _0223E1C0 ; =FUN_02025F30
+	ldr r3, _0223E1C0 ; =sub_02025F30
 	ldr r0, [r0, #0x48]
 	bx r3
 	nop
-_0223E1C0: .word FUN_02025F30
+_0223E1C0: .word sub_02025F30
 	thumb_func_end ov16_0223E1B4
 
 	thumb_func_start ov16_0223E1C4
@@ -6026,7 +6026,7 @@ _0223E1E8:
 	ldr r0, [r6, #0x44]
 	cmp r4, r0
 	blt _0223E1F2
-	bl FUN_02022974
+	bl sub_02022974
 _0223E1F2:
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -6272,13 +6272,13 @@ _0223E380:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E414
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #7
 	str r0, [sp, #0x20]
 	tst r1, r0
@@ -6289,7 +6289,7 @@ _0223E380:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	add r2, sp, #0x20
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E3D0
@@ -6334,13 +6334,13 @@ _0223E414:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E478
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _0223E628 ; =0x00000F88
 	str r0, [sp, #0x20]
 	tst r1, r0
@@ -6351,7 +6351,7 @@ _0223E414:
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E454
@@ -6382,13 +6382,13 @@ _0223E478:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E4DC
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x10
 	str r0, [sp, #0x20]
 	tst r1, r0
@@ -6399,7 +6399,7 @@ _0223E478:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	add r2, sp, #0x20
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E4B8
@@ -6430,13 +6430,13 @@ _0223E4DC:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E540
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x20
 	str r0, [sp, #0x20]
 	tst r1, r0
@@ -6447,7 +6447,7 @@ _0223E4DC:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	add r2, sp, #0x20
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E51C
@@ -6478,13 +6478,13 @@ _0223E540:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E5A4
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x40
 	str r0, [sp, #0x20]
 	tst r1, r0
@@ -6495,7 +6495,7 @@ _0223E540:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	add r2, sp, #0x20
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E580
@@ -6526,7 +6526,7 @@ _0223E5A4:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E5EC
 	ldr r0, [sp, #0x10]
@@ -6561,7 +6561,7 @@ _0223E5EC:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E648
 	ldr r0, [sp, #0x10]
@@ -6604,7 +6604,7 @@ _0223E648:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E6A2
 	ldr r0, [sp, #4]
@@ -6645,7 +6645,7 @@ _0223E6A2:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E6E0
 	ldr r0, [sp, #0x10]
@@ -6675,7 +6675,7 @@ _0223E6E0:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E71E
 	ldr r0, [sp, #0x10]
@@ -6705,7 +6705,7 @@ _0223E71E:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E75C
 	ldr r0, [sp, #0x10]
@@ -6735,7 +6735,7 @@ _0223E75C:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E79A
 	ldr r0, [sp, #0x10]
@@ -6765,7 +6765,7 @@ _0223E79A:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E7D8
 	ldr r0, [sp, #0x10]
@@ -6795,7 +6795,7 @@ _0223E7D8:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E816
 	ldr r0, [sp, #0x10]
@@ -6825,7 +6825,7 @@ _0223E816:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E860
 	ldr r0, [sp, #0x10]
@@ -6861,7 +6861,7 @@ _0223E860:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E8F6
 	ldr r0, [sp, #0x38]
@@ -6869,26 +6869,26 @@ _0223E860:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #0x20]
 	add r1, r4, #0
 	ldr r0, [sp, #0x18]
 	add r1, #0x3a
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r0, #0
 	add r1, r4, #0
 	ldr r0, [sp, #0x18]
 	add r1, #0x42
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r5, r0
 	beq _0223E8F6
 	add r1, r4, #0
 	ldr r0, [sp, #0x18]
 	ldr r2, [sp, #0x20]
 	add r1, #0x3a
-	bl FUN_0207536C
+	bl sub_0207536C
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E8B8
@@ -6912,7 +6912,7 @@ _0223E8B8:
 	bl ov16_02252060
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r5
 	bne _0223E8F2
 	add r4, #0x1f
@@ -6930,7 +6930,7 @@ _0223E8F6:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E994
 	ldr r0, [sp, #0x38]
@@ -6938,7 +6938,7 @@ _0223E8F6:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #0x20]
 	mov r4, #0
 _0223E91A:
@@ -6946,20 +6946,20 @@ _0223E91A:
 	ldr r0, [sp, #0x18]
 	add r1, #0x3a
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r0, #0
 	add r1, r4, #0
 	ldr r0, [sp, #0x18]
 	add r1, #0x42
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r5, r0
 	beq _0223E98E
 	add r1, r4, #0
 	ldr r0, [sp, #0x18]
 	ldr r2, [sp, #0x20]
 	add r1, #0x3a
-	bl FUN_0207536C
+	bl sub_0207536C
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223E950
@@ -6983,7 +6983,7 @@ _0223E950:
 	bl ov16_02252060
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r5
 	bne _0223E98A
 	add r2, r4, #0
@@ -7005,7 +7005,7 @@ _0223E994:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	bne _0223E9A8
 	b _0223EAB0
@@ -7017,13 +7017,13 @@ _0223E9A8:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223E9D2
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0223E9DE
 	mov r0, #1
@@ -7033,7 +7033,7 @@ _0223E9D2:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x20]
 _0223E9DE:
 	ldr r0, [sp, #0x20]
@@ -7042,12 +7042,12 @@ _0223E9DE:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r4, r0, #0
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa4
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r4, r0
 	beq _0223EAB0
 	ldr r0, [sp, #0x38]
@@ -7055,7 +7055,7 @@ _0223E9DE:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #0x20]
 	cmp r0, #0xfd
 	beq _0223EA3E
@@ -7066,14 +7066,14 @@ _0223E9DE:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa4
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x20]
 	b _0223EA5E
 _0223EA28:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa4
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsr r0, r0, #1
 	str r0, [sp, #0x20]
 	bne _0223EA5E
@@ -7084,12 +7084,12 @@ _0223EA3E:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa4
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x19
 	mul r1, r0
 	add r0, r1, #0
 	mov r1, #0x64
-	bl FUN_020E2178
+	bl sub_020E2178
 	str r0, [sp, #0x20]
 	cmp r0, #0
 	bne _0223EA5E
@@ -7099,13 +7099,13 @@ _0223EA5E:
 	ldr r0, [sp, #0x18]
 	ldr r2, [sp, #0x20]
 	mov r1, #0xa3
-	bl FUN_0207536C
+	bl sub_0207536C
 	ldr r0, [sp, #0x38]
 	mov r1, #0x17
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	bne _0223EAAC
 	ldr r0, [sp, #4]
@@ -7141,13 +7141,13 @@ _0223EAB0:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223EAE6
 	ldr r0, [sp, #0x18]
 	mov r1, #9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0x64
 	bhs _0223EAE6
 	ldr r0, [sp, #0x14]
@@ -7158,7 +7158,7 @@ _0223EAB0:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #8]
 _0223EAE6:
 	ldr r0, [sp, #0x38]
@@ -7166,19 +7166,19 @@ _0223EAE6:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223EB2A
 	ldr r0, [sp, #0x18]
 	mov r1, #9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0x64
 	blo _0223EB2A
 	ldr r0, [sp, #0x18]
 	mov r1, #9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0xc8
 	bhs _0223EB2A
 	ldr r0, [sp, #0x14]
@@ -7189,7 +7189,7 @@ _0223EAE6:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #8]
 _0223EB2A:
 	ldr r0, [sp, #0x38]
@@ -7197,13 +7197,13 @@ _0223EB2A:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _0223EB60
 	ldr r0, [sp, #0x18]
 	mov r1, #9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0xc8
 	blo _0223EB60
 	ldr r0, [sp, #0x14]
@@ -7214,7 +7214,7 @@ _0223EB2A:
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #8]
 _0223EB60:
 	ldr r0, [sp, #8]
@@ -7224,7 +7224,7 @@ _0223EB60:
 	ldr r0, [sp, #0x18]
 	mov r1, #0x9b
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0xb
 	bne _0223EB7C
 	ldr r0, [sp, #8]
@@ -7234,7 +7234,7 @@ _0223EB7C:
 	ldr r0, [sp, #0x18]
 	mov r1, #0x98
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r4, r0, #0
 	ldr r0, [sp, #4]
 	bl ov16_0223E24C
@@ -7247,27 +7247,27 @@ _0223EB98:
 	ldr r0, [sp, #0x18]
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x38]
 	mov r1, #1
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0x35
 	bne _0223EBC4
 	ldr r1, [sp, #8]
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #8]
 _0223EBC4:
 	ldr r0, [sp, #0x18]
 	ldr r2, [sp, #8]
 	mov r1, #9
-	bl FUN_0207536C
+	bl sub_0207536C
 	ldr r0, [sp, #0x10]
 	cmp r0, r6
 	beq _0223EBDA
@@ -7376,7 +7376,7 @@ ov16_0223EC58: ; 0x0223EC58
 	add r0, r5, #0
 	add r1, r6, #0
 	bl ov16_0223E258
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r4
 	bne _0223ECC0
 	mov r0, #1
@@ -7400,7 +7400,7 @@ _0223EC8A:
 	bhi _0223ECB8
 _0223ECAE:
 	mov r0, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r4
 	beq _0223ECBC
 _0223ECB8:
@@ -7447,12 +7447,12 @@ _0223ECF0:
 	mov r6, #0x5e
 	lsl r6, r6, #2
 _0223ECFC:
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r5, r6]
 	tst r0, r1
 	beq _0223ED1E
 	ldr r0, [r4, #0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r3, #0x5e
 	lsl r3, r3, #2
 	mov r2, #0
@@ -7473,7 +7473,7 @@ _0223ED28:
 	cmp r1, #6
 	bge _0223ED50
 	ldr r0, [r5, #4]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r3, #0x59
 	str r7, [sp]
 	lsl r3, r3, #2
@@ -7483,7 +7483,7 @@ _0223ED28:
 	ldr r0, [r5, #4]
 	mov r2, #0
 	lsr r3, r3, #0x10
-	bl FUN_02076B94
+	bl sub_02076B94
 	str r0, [sp, #4]
 	cmp r0, #0
 	bne _0223ED5C
@@ -7516,7 +7516,7 @@ ov16_0223ED6C: ; 0x0223ED6C
 	ldr r0, [r4, #0x30]
 	cmp r0, #0
 	bne _0223ED7A
-	bl FUN_02022974
+	bl sub_02022974
 _0223ED7A:
 	ldr r1, [r4, #0x30]
 	add r0, r4, #0
@@ -7572,7 +7572,7 @@ _0223EDC4:
 	mov r1, #0x6d
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
-	bl FUN_02027AF8
+	bl sub_02027AF8
 	cmp r0, #0
 	bne _0223EDD6
 	mov r0, #1
@@ -7588,11 +7588,11 @@ _0223EDDC: .word 0x0000240C
 ov16_0223EDE0: ; 0x0223EDE0
 	mov r1, #0x6d
 	lsl r1, r1, #2
-	ldr r3, _0223EDEC ; =FUN_02027B50
+	ldr r3, _0223EDEC ; =sub_02027B50
 	ldr r0, [r0, r1]
 	bx r3
 	nop
-_0223EDEC: .word FUN_02027B50
+_0223EDEC: .word sub_02027B50
 	thumb_func_end ov16_0223EDE0
 
 	thumb_func_start ov16_0223EDF0
@@ -7613,7 +7613,7 @@ _0223EE08:
 	mov r1, #0x6d
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
-	bl FUN_02027AC0
+	bl sub_02027AC0
 	pop {r3, pc}
 	; .align 2, 0
 _0223EE14: .word 0x0000240C
@@ -7623,11 +7623,11 @@ _0223EE14: .word 0x0000240C
 ov16_0223EE18: ; 0x0223EE18
 	mov r1, #0x6d
 	lsl r1, r1, #2
-	ldr r3, _0223EE24 ; =FUN_02027B14
+	ldr r3, _0223EE24 ; =sub_02027B14
 	ldr r0, [r0, r1]
 	bx r3
 	nop
-_0223EE24: .word FUN_02027B14
+_0223EE24: .word sub_02027B14
 	thumb_func_end ov16_0223EE18
 
 	thumb_func_start ov16_0223EE28
@@ -7699,7 +7699,7 @@ _0223EE8C:
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	mov r0, #0x67
@@ -7707,7 +7707,7 @@ _0223EE8C:
 	cmp r1, r0
 	bne _0223EF18
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0223EF28 ; =0x00002418
 	ldrb r1, [r5, r1]
 	tst r0, r1
@@ -7761,7 +7761,7 @@ _0223EF0E:
 	add r0, r6, #0
 	mov r1, #0x70
 	add r2, sp, #0
-	bl FUN_02074B30
+	bl sub_02074B30
 _0223EF18:
 	add r0, r5, #0
 	mov r1, #0
@@ -7781,7 +7781,7 @@ ov16_0223EF2C: ; 0x0223EF2C
 	add r5, r0, #0
 	add r0, r2, #0
 	add r4, r1, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0223EF44 ; =0x00002418
 	add r2, r5, r1
 	ldrb r1, [r2, r4]
@@ -7801,11 +7801,11 @@ ov16_0223EF48: ; 0x0223EF48
 	cmp r0, #0
 	beq _0223EF64
 	add r0, r1, #0
-	bl FUN_02076B10
+	bl sub_02076B10
 	add r4, #0x98
 	add r1, r0, #0
 	ldr r0, [r4, #0]
-	bl FUN_02056A48
+	bl sub_02056A48
 _0223EF64:
 	pop {r4, pc}
 	; .align 2, 0
@@ -7825,7 +7825,7 @@ ov16_0223EF68: ; 0x0223EF68
 	add r0, #0x9c
 	ldrh r3, [r3, r4]
 	ldr r0, [r0, #0]
-	bl FUN_0206D160
+	bl sub_0206D160
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -7840,13 +7840,13 @@ ov16_0223EF8C: ; 0x0223EF8C
 	add r4, r0, #0
 	mov r0, #5
 	lsl r1, r1, #0x10
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x22
 	lsl r1, r1, #4
 	str r0, [r4, r1]
 	mov r0, #5
 	sub r1, #0x20
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x89
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -7855,17 +7855,17 @@ ov16_0223EF8C: ; 0x0223EF8C
 	ldr r0, _0223F1E4 ; =0x06010000
 	ldr r1, [r4, r1]
 	lsl r2, r2, #0x10
-	bl FUN_020C4B68
+	bl sub_020C4B68
 	mov r0, #0x89
 	lsl r0, r0, #2
 	ldr r5, [r4, r0]
 	ldr r0, [r4, #0x28]
 	mov r1, #0
-	bl FUN_02003164
+	bl sub_02003164
 	mov r2, #2
 	add r1, r5, #0
 	lsl r2, r2, #8
-	bl FUN_020C4B68
+	bl sub_020C4B68
 	mov r0, #0x19
 	lsl r0, r0, #0x16
 	str r0, [sp, #0x24]
@@ -7873,7 +7873,7 @@ ov16_0223EF8C: ; 0x0223EF8C
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	ldr r1, [r0, #4]
 	ldr r0, [sp, #0x24]
 	add r0, r0, r1
@@ -7989,7 +7989,7 @@ _0223F086:
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	ldr r1, [r0, #4]
 	ldr r0, [sp, #8]
 	mov r7, #0x26
@@ -8130,7 +8130,7 @@ _0223F190:
 	ldr r2, [r4, r2]
 	mov r1, #3
 	lsl r3, r3, #5
-	bl FUN_0201958C
+	bl sub_0201958C
 	mov r0, #0x5f
 	lsl r0, r0, #2
 	add r0, r4, r0
@@ -8235,7 +8235,7 @@ ov16_0223F24C: ; 0x0223F24C
 	mov r2, #0x87
 	lsl r2, r2, #2
 	ldr r0, [r0, r2]
-	bl FUN_0202CF28
+	bl sub_0202CF28
 _0223F262:
 	pop {r3, pc}
 	; .align 2, 0
@@ -8254,7 +8254,7 @@ ov16_0223F268: ; 0x0223F268
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
 	mov r1, #0x16
-	bl FUN_0202CFEC
+	bl sub_0202CFEC
 _0223F280:
 	pop {r3, pc}
 	nop
@@ -8311,7 +8311,7 @@ ov16_0223F2B8: ; 0x0223F2B8
 	add r4, r0, #0
 	cmp r5, #4
 	blt _0223F2C6
-	bl FUN_02022974
+	bl sub_02022974
 _0223F2C6:
 	lsl r0, r5, #4
 	ldr r0, [r4, r0]
@@ -8326,7 +8326,7 @@ ov16_0223F2CC: ; 0x0223F2CC
 	add r6, r2, #0
 	cmp r4, #4
 	blt _0223F2DC
-	bl FUN_02022974
+	bl sub_02022974
 _0223F2DC:
 	lsl r0, r4, #4
 	add r0, r5, r0
@@ -8342,7 +8342,7 @@ ov16_0223F2E4: ; 0x0223F2E4
 	add r6, r2, #0
 	cmp r4, #4
 	blt _0223F2F4
-	bl FUN_02022974
+	bl sub_02022974
 _0223F2F4:
 	lsl r0, r4, #4
 	add r0, r5, r0
@@ -8358,7 +8358,7 @@ ov16_0223F2FC: ; 0x0223F2FC
 	add r6, r2, #0
 	cmp r4, #4
 	blt _0223F30C
-	bl FUN_02022974
+	bl sub_02022974
 _0223F30C:
 	lsl r0, r4, #4
 	add r0, r5, r0
@@ -8612,7 +8612,7 @@ ov16_0223F48C: ; 0x0223F48C
 	add r5, r0, #0
 	cmp r4, #0xf
 	blo _0223F49A
-	bl FUN_02022974
+	bl sub_02022974
 _0223F49A:
 	ldr r1, _0223F4AC ; =0x000023FF
 	mov r0, #0xe0
@@ -8694,7 +8694,7 @@ ov16_0223F500: ; 0x0223F500
 	cmp r1, r0
 	bhs _0223F528
 	add r0, r6, #0
-	bl FUN_0202F868
+	bl sub_0202F868
 	ldrh r0, [r4, r5]
 	add r0, r0, #1
 	strh r0, [r4, r5]
@@ -8725,7 +8725,7 @@ ov16_0223F530: ; 0x0223F530
 	cmp r1, r6
 	bhs _0223F568
 	add r0, r3, #0
-	bl FUN_0202F884
+	bl sub_0202F884
 	ldr r1, [sp]
 	mov r7, #0
 	strb r0, [r1]
@@ -8802,7 +8802,7 @@ _0223F5DE:
 	add r0, r7, #0
 	ldrh r1, [r5, r1]
 	add r1, r4, r1
-	bl FUN_0202F884
+	bl sub_0202F884
 	add r2, r6, #1
 	lsl r2, r2, #0x18
 	add r1, r6, #0
@@ -8835,7 +8835,7 @@ _0223F612:
 _0223F620:
 	cmp r6, #0x1c
 	bls _0223F628
-	bl FUN_02022974
+	bl sub_02022974
 _0223F628:
 	add r0, r6, #0
 	add sp, #8
@@ -8898,7 +8898,7 @@ _0223F68A:
 	add r0, r5, #0
 	ldrh r1, [r3, r1]
 	add r1, r4, r1
-	bl FUN_0202F868
+	bl sub_0202F868
 	add r4, r4, #1
 	cmp r4, r7
 	blt _0223F68A
@@ -9025,10 +9025,10 @@ ov16_0223F720: ; 0x0223F720
 	mov r0, #3
 	add r2, r1, #0
 	add r3, r1, #0
-	bl FUN_0200F174
-	bl FUN_0200569C
+	bl sub_0200F174
+	bl sub_0200569C
 	mov r0, #0
-	bl FUN_0200500C
+	bl sub_0200500C
 	ldr r1, _0223F7A0 ; =0x00002478
 	mov r0, #1
 	ldr r2, [r5, r1]
@@ -9259,18 +9259,18 @@ ov16_0223F904: ; 0x0223F904
 	add r6, r1, #0
 	add r5, r0, #0
 	add r0, r6, #0
-	bl FUN_02025F58
+	bl sub_02025F58
 	lsl r0, r0, #0x18
 	lsr r4, r0, #0x18
 	add r0, r5, #0
-	bl FUN_02077550
+	bl sub_02077550
 	ldr r1, _0223F934 ; =0x0226E564
 	lsl r0, r0, #2
 	ldrb r1, [r1, r4]
 	add r4, r1, #0
 	mul r4, r0
 	add r0, r6, #0
-	bl FUN_02025F74
+	bl sub_02025F74
 	cmp r4, r0
 	bls _0223F930
 	add r4, r0, #0
@@ -9314,7 +9314,7 @@ ov16_0223F938: ; 0x0223F938
 _0223F976:
 	ldr r0, [r5, #0x60]
 	add r1, r6, #0
-	bl FUN_020272A4
+	bl sub_020272A4
 _0223F97E:
 	mov r0, #1
 	tst r0, r4
@@ -9322,14 +9322,14 @@ _0223F97E:
 	add r0, r6, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x67
 	lsl r1, r1, #2
 	cmp r0, r1
 	bne _0223F99E
 	ldr r0, [r5, #0x60]
 	add r1, r6, #0
-	bl FUN_0202736C
+	bl sub_0202736C
 _0223F99E:
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_0223F938
@@ -9361,7 +9361,7 @@ ov16_0223F9A0: ; 0x0223F9A0
 	bl ov16_0223DFAC
 	add r1, r0, #0
 	ldr r0, [r5, #0x60]
-	bl FUN_0202736C
+	bl sub_0202736C
 _0223F9DC:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -9369,13 +9369,13 @@ _0223F9DC:
 
 	thumb_func_start ov16_0223F9E0
 ov16_0223F9E0: ; 0x0223F9E0
-	ldr r3, _0223F9EC ; =FUN_02026F9C
+	ldr r3, _0223F9EC ; =sub_02026F9C
 	lsl r1, r1, #0x10
 	ldr r0, [r0, #0x60]
 	lsr r1, r1, #0x10
 	bx r3
 	nop
-_0223F9EC: .word FUN_02026F9C
+_0223F9EC: .word sub_02026F9C
 	thumb_func_end ov16_0223F9E0
 
 	thumb_func_start ov16_0223F9F0
@@ -9414,7 +9414,7 @@ ov16_0223F9FC: ; 0x0223F9FC
 	mul r1, r0
 	add r0, r4, r1
 	mov r1, #5
-	bl FUN_02014B34
+	bl sub_02014B34
 	b _0223FA44
 _0223FA34:
 	ldr r0, [sp, #0xc]
@@ -9423,12 +9423,12 @@ _0223FA34:
 	mul r1, r0
 	add r0, r4, r1
 	mov r1, #5
-	bl FUN_02014B34
+	bl sub_02014B34
 _0223FA44:
 	add r4, r0, #0
 	add r0, r6, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	mov r3, #0
 	ldr r0, [sp, #0x28]
 	str r3, [sp]
@@ -9438,10 +9438,10 @@ _0223FA44:
 	str r0, [sp, #8]
 	add r0, r6, #0
 	add r2, r4, #0
-	bl FUN_0201D738
+	bl sub_0201D738
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	b _0223FB0C
 _0223FA6E:
 	cmp r7, #0x64
@@ -9458,7 +9458,7 @@ _0223FA80:
 	mov r5, #0
 _0223FA82:
 	ldr r0, [r4, #0x48]
-	bl FUN_02025FCC
+	bl sub_02025FCC
 	cmp r0, #0
 	beq _0223FA94
 	add r5, r5, #1
@@ -9476,14 +9476,14 @@ _0223FA9E:
 	mov r0, #0
 	mov r1, #0x1a
 	mov r3, #5
-	bl FUN_0200B144
+	bl sub_0200B144
 	add r1, r7, #0
 	str r0, [sp, #0x10]
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	add r0, r6, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	mov r3, #0
 	ldr r0, [sp, #0x28]
 	str r3, [sp]
@@ -9493,22 +9493,22 @@ _0223FA9E:
 	str r0, [sp, #8]
 	add r0, r6, #0
 	add r2, r4, #0
-	bl FUN_0201D738
+	bl sub_0201D738
 	add r5, r0, #0
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x10]
-	bl FUN_0200B190
+	bl sub_0200B190
 	b _0223FB0C
 _0223FAE0:
 	ldr r2, [r4, #0x18]
 	add r0, r5, #0
 	add r1, r7, #0
 	mov r3, #5
-	bl FUN_020792F8
+	bl sub_020792F8
 	add r0, r6, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	mov r3, #0
 	ldr r0, [sp, #0x28]
 	str r3, [sp]
@@ -9518,7 +9518,7 @@ _0223FAE0:
 	str r0, [sp, #8]
 	ldr r2, [r4, #0x18]
 	add r0, r6, #0
-	bl FUN_0201D738
+	bl sub_0201D738
 	add r5, r0, #0
 _0223FB0C:
 	lsl r0, r5, #0x18
@@ -9555,7 +9555,7 @@ ov16_0223FB24: ; 0x0223FB24
 	bl ov16_02240584
 	add r0, r7, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	mov r3, #0
 	str r3, [sp]
 	ldr r0, _0223FB74 ; =ov16_022405A4
@@ -9564,7 +9564,7 @@ ov16_0223FB24: ; 0x0223FB24
 	ldr r2, [r5, #0x18]
 	add r0, r7, #0
 	mov r1, #1
-	bl FUN_0201D738
+	bl sub_0201D738
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -9594,7 +9594,7 @@ ov16_0223FB78: ; 0x0223FB78
 	beq _0223FBAC
 	add r0, r4, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 _0223FBAC:
 	ldr r1, [sp, #0x28]
 	mov r0, #2
@@ -9603,7 +9603,7 @@ _0223FBAC:
 	mov r0, #0
 	ldr r1, [r5, #0x18]
 	add r2, r0, #0
-	bl FUN_02002D7C
+	bl sub_02002D7C
 	ldr r1, [sp, #0x2c]
 	sub r3, r1, r0
 	b _0223FBC6
@@ -9621,7 +9621,7 @@ _0223FBC6:
 	ldr r4, [sp, #0x20]
 	ldr r2, [r5, #0x18]
 	add r3, r4, r3
-	bl FUN_0201D738
+	bl sub_0201D738
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -9887,7 +9887,7 @@ _0223FDBA:
 	strh r0, [r4, #2]
 	pop {r4, r5, r6, pc}
 _0223FDDE:
-	bl FUN_02022974
+	bl sub_02022974
 _0223FDE2:
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_0223FBE8
@@ -10632,7 +10632,7 @@ _0224041E:
 	bl ov16_02240460
 	pop {r3, r4, r5, pc}
 _0224045A:
-	bl FUN_02022974
+	bl sub_02022974
 _0224045E:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0223FDE4
@@ -10652,27 +10652,27 @@ ov16_02240460: ; 0x02240460
 	add r2, r0, #0
 	ldr r0, [r5, #0x14]
 	add r1, r4, #0
-	bl FUN_0200B5CC
+	bl sub_0200B5CC
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02240460
 
 	thumb_func_start ov16_02240484
 ov16_02240484: ; 0x02240484
-	ldr r3, _0224048C ; =FUN_0200B630
+	ldr r3, _0224048C ; =sub_0200B630
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_0224048C: .word FUN_0200B630
+_0224048C: .word sub_0200B630
 	thumb_func_end ov16_02240484
 
 	thumb_func_start ov16_02240490
 ov16_02240490: ; 0x02240490
-	ldr r3, _02240498 ; =FUN_0200B70C
+	ldr r3, _02240498 ; =sub_0200B70C
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_02240498: .word FUN_0200B70C
+_02240498: .word sub_0200B70C
 	thumb_func_end ov16_02240490
 
 	thumb_func_start ov16_0224049C
@@ -10685,7 +10685,7 @@ ov16_0224049C: ; 0x0224049C
 	str r3, [sp, #4]
 	ldr r0, [r0, #0x14]
 	mov r3, #5
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	add sp, #8
 	pop {r3, pc}
 	thumb_func_end ov16_0224049C
@@ -10700,7 +10700,7 @@ ov16_022404B4: ; 0x022404B4
 	str r4, [sp]
 	str r4, [sp, #4]
 	ldr r0, [r0, #0x14]
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	add sp, #8
 	pop {r4, pc}
 _022404CC:
@@ -10709,7 +10709,7 @@ _022404CC:
 	str r3, [sp, #4]
 	ldr r0, [r0, #0x14]
 	mov r3, #5
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	add sp, #8
 	pop {r4, pc}
 	; .align 2, 0
@@ -10717,38 +10717,38 @@ _022404CC:
 
 	thumb_func_start ov16_022404E0
 ov16_022404E0: ; 0x022404E0
-	ldr r3, _022404E8 ; =FUN_0200B7EC
+	ldr r3, _022404E8 ; =sub_0200B7EC
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_022404E8: .word FUN_0200B7EC
+_022404E8: .word sub_0200B7EC
 	thumb_func_end ov16_022404E0
 
 	thumb_func_start ov16_022404EC
 ov16_022404EC: ; 0x022404EC
-	ldr r3, _022404F4 ; =FUN_0200B6A0
+	ldr r3, _022404F4 ; =sub_0200B6A0
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_022404F4: .word FUN_0200B6A0
+_022404F4: .word sub_0200B6A0
 	thumb_func_end ov16_022404EC
 
 	thumb_func_start ov16_022404F8
 ov16_022404F8: ; 0x022404F8
-	ldr r3, _02240500 ; =FUN_0200B824
+	ldr r3, _02240500 ; =sub_0200B824
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_02240500: .word FUN_0200B824
+_02240500: .word sub_0200B824
 	thumb_func_end ov16_022404F8
 
 	thumb_func_start ov16_02240504
 ov16_02240504: ; 0x02240504
-	ldr r3, _0224050C ; =FUN_0200B85C
+	ldr r3, _0224050C ; =sub_0200B85C
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_0224050C: .word FUN_0200B85C
+_0224050C: .word sub_0200B85C
 	thumb_func_end ov16_02240504
 
 	thumb_func_start ov16_02240510
@@ -10766,7 +10766,7 @@ ov16_02240510: ; 0x02240510
 	add r2, r0, #0
 	ldr r0, [r5, #0x14]
 	add r1, r4, #0
-	bl FUN_0200B538
+	bl sub_0200B538
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02240510
@@ -10779,11 +10779,11 @@ ov16_02240534: ; 0x02240534
 
 	thumb_func_start ov16_02240538
 ov16_02240538: ; 0x02240538
-	ldr r3, _02240540 ; =FUN_0200B890
+	ldr r3, _02240540 ; =sub_0200B890
 	ldr r0, [r0, #0x14]
 	bx r3
 	nop
-_02240540: .word FUN_0200B890
+_02240540: .word sub_0200B890
 	thumb_func_end ov16_02240538
 
 	thumb_func_start ov16_02240544
@@ -10796,7 +10796,7 @@ ov16_02240544: ; 0x02240544
 	add r2, r0, #0
 	ldr r0, [r5, #0x14]
 	add r1, r4, #0
-	bl FUN_0200B9D0
+	bl sub_0200B9D0
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02240544
 
@@ -10810,7 +10810,7 @@ ov16_0224055C: ; 0x0224055C
 	add r2, r0, #0
 	ldr r0, [r5, #0x14]
 	add r1, r4, #0
-	bl FUN_0200BA74
+	bl sub_0200BA74
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0224055C
 
@@ -10821,7 +10821,7 @@ ov16_02240574: ; 0x02240574
 	add r3, r2, #0
 	ldr r0, [r4, #0x14]
 	ldr r2, [r4, #0x64]
-	bl FUN_0200BD40
+	bl sub_0200BD40
 	pop {r4, pc}
 	thumb_func_end ov16_02240574
 
@@ -10831,14 +10831,14 @@ ov16_02240584: ; 0x02240584
 	add r5, r0, #0
 	add r0, r1, #0
 	ldrh r1, [r2, #2]
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	ldr r0, [r5, #0x14]
 	ldr r1, [r5, #0x18]
 	add r2, r4, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02240584
 
@@ -10862,24 +10862,24 @@ _022405B8: ; jump table
 	.short _022405DC - _022405B8 - 2 ; case 4
 	.short _022405E4 - _022405B8 - 2 ; case 5
 _022405C4:
-	bl FUN_020057E0
+	bl sub_020057E0
 	add r4, r0, #0
 	b _022405EA
 _022405CC:
-	bl FUN_020061E4
+	bl sub_020061E4
 	add r4, r0, #0
 	b _022405EA
 _022405D4:
 	ldr r0, _022405F0 ; =0x00000484
-	bl FUN_02006150
+	bl sub_02006150
 	b _022405EA
 _022405DC:
 	ldr r0, _022405F4 ; =0x000005E6
-	bl FUN_02005748
+	bl sub_02005748
 	b _022405EA
 _022405E4:
 	ldr r0, _022405F8 ; =0x00000483
-	bl FUN_02006150
+	bl sub_02006150
 _022405EA:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -11519,7 +11519,7 @@ _02240AEC:
 	tst r0, r1
 	beq _02240B16
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02240B38 ; =0x00003108
 	ldrb r1, [r6, r1]
 	tst r0, r1
@@ -12552,7 +12552,7 @@ _022412CC:
 	tst r0, r1
 	bne _022412F4
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0224133C ; =0x00003108
 	ldrb r1, [r7, r1]
 	tst r0, r1
@@ -12717,7 +12717,7 @@ _022413A0:
 	ldr r1, [r5, r1]
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _022414D0 ; =0x00002144
 	str r0, [r5, r1]
 _0224142C:
@@ -12739,7 +12739,7 @@ _0224142C:
 	add r0, #0xa
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, _022414D0 ; =0x00002144
 	str r0, [r5, r1]
 _0224145A:
@@ -12780,7 +12780,7 @@ _02241480:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _022414D0 ; =0x00002144
 	add sp, #0x1c
 	str r0, [r5, r1]
@@ -13330,7 +13330,7 @@ ov16_022418C0: ; 0x022418C0
 	cmp r1, #0
 	bne _02241916
 	str r4, [r5, #0x74]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02241920 ; =0x0000213C
 	lsl r0, r0, #0x18
 	ldr r2, [r5, r1]
@@ -13368,7 +13368,7 @@ ov16_02241924: ; 0x02241924
 	add r1, r4, #0
 	bl ov16_02265D98
 	ldr r0, [r4, #0x74]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _02241980 ; =0x0000213C
 	lsl r3, r0, #0x18
 	mov r0, #0
@@ -13378,7 +13378,7 @@ ov16_02241924: ; 0x02241924
 	and r0, r1
 	str r0, [r4, r2]
 	ldr r0, [r4, #0x74]
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x85
 	lsl r1, r1, #6
 	ldr r2, [r4, r1]
@@ -13422,7 +13422,7 @@ ov16_02241984: ; 0x02241984
 	ldr r0, _02241A14 ; =0x00000C03
 	tst r0, r1
 	bne _022419B8
-	bl FUN_02022798
+	bl sub_02022798
 	cmp r0, #0
 	beq _022419BE
 _022419B8:
@@ -13925,7 +13925,7 @@ _02241D70:
 	add r4, r0, #0
 	add r0, r7, #0
 	bl ov16_0223DF20
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02241DFE
 _02241D88:
@@ -13936,17 +13936,17 @@ _02241D88:
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02241DEC
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02241DEC
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r5, #0x74]
 	asr r1, r1, #1
 	lsl r1, r1, #0x1f
@@ -13963,7 +13963,7 @@ _02241DCC:
 	add r0, r6, #0
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	add r0, r5, #0
@@ -13979,7 +13979,7 @@ _02241DEC:
 	mov r1, #0
 	add r4, r4, #1
 	bl ov16_0223DF20
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _02241D88
 _02241DFE:
@@ -13991,7 +13991,7 @@ _02241DFE:
 	lsl r0, r0, #6
 	ldrh r0, [r1, r0]
 	mov r1, #9
-	bl FUN_020759F0
+	bl sub_020759F0
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	ldr r2, [r5, #0x74]
@@ -14002,7 +14002,7 @@ _02241DFE:
 	ldrb r0, [r2, r0]
 	mul r0, r1
 	mov r1, #7
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	ldr r1, [sp]
 	lsr r0, r0, #0x10
@@ -14011,7 +14011,7 @@ _02241DFE:
 	lsr r4, r0, #1
 	ldr r1, [sp, #4]
 	add r0, r4, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r5, #0
 	add r1, #0x9c
 	str r0, [r1, #0]
@@ -14027,7 +14027,7 @@ _02241DFE:
 _02241E56:
 	ldr r1, [sp]
 	add r0, r4, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r5, #0
 	add r1, #0xa0
 	str r0, [r1, #0]
@@ -14042,7 +14042,7 @@ _02241E56:
 	b _02241EA2
 _02241E76:
 	ldr r1, [sp, #4]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r5, #0
 	add r1, #0x9c
 	str r0, [r1, #0]
@@ -14082,7 +14082,7 @@ ov16_02241EB0: ; 0x02241EB0
 	bl ov16_02248AF0
 	mov r0, #5
 	mov r1, #0x58
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x5e
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -14097,7 +14097,7 @@ ov16_02241EB0: ; 0x02241EB0
 	str r2, [r0, #0x48]
 	ldr r0, _02241EEC ; =ov16_02248E74
 	ldr r1, [r4, r1]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 	nop
@@ -14170,7 +14170,7 @@ _02241F56:
 	tst r0, r1
 	beq _02241F80
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r4, r0
 	mov r0, #0
 	str r0, [sp]
@@ -14202,15 +14202,15 @@ _02241F92:
 	bl ov16_0223E258
 	str r0, [sp, #0x10]
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r4
 	bne _02241FDE
 	ldr r0, [sp, #0x10]
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r4
 	bne _02241FDE
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r4, r0
 	add r0, r6, #0
 	add r1, r5, #0
@@ -14218,7 +14218,7 @@ _02241F92:
 	b _02241FDE
 _02241FCC:
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r4
 	bne _02241FDE
 	add r0, r6, #0
@@ -14309,7 +14309,7 @@ _02242044:
 	ldr r0, _02242128 ; =0x000021A0
 	strb r2, [r1, r0]
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x85
 	lsl r1, r1, #6
 	ldr r1, [r5, r1]
@@ -14317,7 +14317,7 @@ _02242044:
 	tst r0, r1
 	bne _022420A0
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x85
 	lsl r1, r1, #6
 	ldr r1, [r5, r1]
@@ -14440,7 +14440,7 @@ _02242160:
 	bic r1, r0
 	add r0, r4, #0
 	str r1, [r3, r2]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r3, _022421C4 ; =0x00003108
 	mov r2, #0
 	mvn r2, r2
@@ -14535,7 +14535,7 @@ ov16_0224221C: ; 0x0224221C
 	add r6, r0, #0
 	mov r0, #5
 	mov r1, #0x58
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x5e
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -14555,7 +14555,7 @@ ov16_0224221C: ; 0x0224221C
 	str r3, [r0, #0x2c]
 	ldr r0, _02242268 ; =ov16_02249B80
 	ldr r1, [r4, r1]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -14734,7 +14734,7 @@ _022423A2:
 _022423AC:
 	ldr r0, [r4, #0]
 	add r1, r5, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [r4, #0]
 	b _022423FA
 _022423B8:
@@ -14749,11 +14749,11 @@ _022423C0:
 	b _022423FA
 _022423C8:
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	str r0, [r4, #0]
 	b _022423FA
 _022423D2:
-	bl FUN_02022974
+	bl sub_02022974
 	b _022423FA
 _022423D8:
 	ldr r0, [r4, #0]
@@ -14774,7 +14774,7 @@ _022423EE:
 	str r0, [r4, #0]
 	b _022423FA
 _022423F6:
-	bl FUN_02022974
+	bl sub_02022974
 _022423FA:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -15646,7 +15646,7 @@ _02242ABA:
 	b _02242B04
 _02242AC2:
 	add r1, r4, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0xc]
 	b _02242B04
 _02242ACC:
@@ -15659,11 +15659,11 @@ _02242AD2:
 	b _02242B04
 _02242AD8:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	str r0, [sp, #0xc]
 	b _02242B04
 _02242AE2:
-	bl FUN_02022974
+	bl sub_02022974
 	b _02242B04
 _02242AE8:
 	sub r0, r0, r4
@@ -15681,7 +15681,7 @@ _02242AFA:
 	str r0, [sp, #0xc]
 	b _02242B04
 _02242B00:
-	bl FUN_02022974
+	bl sub_02022974
 _02242B04:
 	cmp r6, #0x1a
 	bne _02242B1A
@@ -15875,7 +15875,7 @@ ov16_02242C6C: ; 0x02242C6C
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	add r1, r4, #1
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	mov r0, #0x4d
 	add r1, r6, r1
 	lsl r0, r0, #2
@@ -15982,7 +15982,7 @@ _02242D50:
 _02242D5A:
 	ldr r0, [r4, #0]
 	ldr r1, [r1, #0]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [r4, #0]
 	b _02242DB6
 _02242D66:
@@ -16001,7 +16001,7 @@ _02242D72:
 	b _02242DB6
 _02242D7E:
 	ldr r0, [r1, #0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	str r0, [r4, #0]
 	b _02242DB6
 _02242D88:
@@ -16030,7 +16030,7 @@ _02242DA8:
 	str r0, [r4, #0]
 	b _02242DB6
 _02242DB2:
-	bl FUN_02022974
+	bl sub_02022974
 _02242DB6:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -16144,7 +16144,7 @@ _02242E80:
 _02242E8A:
 	ldr r0, [sp, #0xc]
 	ldr r1, [r1, #0]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0xc]
 	b _02242EE6
 _02242E96:
@@ -16163,7 +16163,7 @@ _02242EA2:
 	b _02242EE6
 _02242EAE:
 	ldr r0, [r1, #0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	str r0, [sp, #0xc]
 	b _02242EE6
 _02242EB8:
@@ -16192,7 +16192,7 @@ _02242ED8:
 	str r0, [sp, #0xc]
 	b _02242EE6
 _02242EE2:
-	bl FUN_02022974
+	bl sub_02022974
 _02242EE6:
 	cmp r5, #0x11
 	beq _02242F16
@@ -16568,7 +16568,7 @@ ov16_022431BC: ; 0x022431BC
 	str r2, [sp]
 	mov r0, #5
 	mov r1, #0x6c
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	ldr r0, [sp]
 	add r6, r7, #0
@@ -16577,11 +16577,11 @@ ov16_022431BC: ; 0x022431BC
 	str r0, [sp, #4]
 	ldrh r0, [r6, r0]
 	add r1, sp, #8
-	bl FUN_0207938C
+	bl sub_0207938C
 	ldr r0, [sp, #4]
 	add r1, r4, #0
 	ldrh r0, [r6, r0]
-	bl FUN_0207939C
+	bl sub_0207939C
 	add r0, sp, #8
 	ldrb r1, [r0]
 	cmp r1, #3
@@ -16682,7 +16682,7 @@ _0224328C:
 	mul r5, r1
 _0224329E:
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
 	add sp, #0x3c
 	pop {r4, r5, r6, r7, pc}
@@ -16725,7 +16725,7 @@ _022432EE:
 	mov r1, #0
 	bl ov16_0223E16C
 	add r1, r4, #0
-	bl FUN_02025F94
+	bl sub_02025F94
 	b _02243316
 _022432FE:
 	ldr r0, [r5, #0x68]
@@ -16736,7 +16736,7 @@ _022432FE:
 	mov r1, #0
 	bl ov16_0223E16C
 	add r1, r4, #0
-	bl FUN_02025FB8
+	bl sub_02025FB8
 _02243316:
 	cmp r4, #0
 	beq _02243322
@@ -17161,7 +17161,7 @@ _02243662:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r6, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r2, [r4, #0x64]
 	mov r0, #0xc0
 	mul r0, r2
@@ -17489,7 +17489,7 @@ _022438DA:
 	mov r1, #0x13
 	lsl r1, r1, #4
 	ldr r1, [r4, r1]
-	bl FUN_02025F94
+	bl sub_02025F94
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -17855,7 +17855,7 @@ _02243B70:
 	add r0, r6, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r5
 	bge _02243BF4
 	ldr r1, [r4, #0x64]
@@ -17944,7 +17944,7 @@ _02243C4C:
 	add r0, r6, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r5
 	bge _02243CA4
 	ldr r1, [r4, #0x64]
@@ -18093,7 +18093,7 @@ _02243DA6:
 _02243DA8:
 	ldr r0, [r4, #0]
 	ldr r1, [r1, #0]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _02243DB8
@@ -18214,7 +18214,7 @@ _02243E82:
 	add r1, r1, r3
 	strb r0, [r1, r2]
 	add r0, r3, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02243EEC ; =0x00002DCC
 	mov r4, #0xc0
 	add r3, r6, r1
@@ -18275,7 +18275,7 @@ _02243F04:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	ldr r1, _02243F50 ; =0x000001D3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r0, r1, #1
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
@@ -18741,7 +18741,7 @@ _02244250:
 	add r5, r2, #0
 	mul r5, r1
 	mov r1, #5
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r2, [r4, r5]
 	mov r0, #0x38
 	bic r2, r0
@@ -19184,7 +19184,7 @@ _022445F2:
 	beq _0224463A
 _02244632:
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r7, r0
 _0224463A:
 	add r6, r6, #1
@@ -19217,7 +19217,7 @@ _02244666:
 	ror r0, r7
 	add r6, r1, r0
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r4
 	bne _02244666
 	ldr r0, [r5, #0x64]
@@ -19255,7 +19255,7 @@ ov16_022446A0: ; 0x022446A0
 	add r1, r1, #4
 	ldr r1, [r2, r1]
 	mov r2, #0x40
-	bl FUN_0208C0BC
+	bl sub_0208C0BC
 	ldr r3, _022446E8 ; =0x0226E584
 	mov r2, #0
 _022446C6:
@@ -19422,7 +19422,7 @@ _022447FA:
 	mov r2, #0x10
 	bl ov16_0224A984
 	add r4, r0, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _022448E4 ; =0x00003108
 	ldrb r1, [r5, r1]
 	tst r0, r1
@@ -19492,7 +19492,7 @@ _02244866:
 	mov r2, #0x10
 	bl ov16_0224A984
 	add r4, r0, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _022448E4 ; =0x00003108
 	ldrb r1, [r5, r1]
 	tst r0, r1
@@ -19571,7 +19571,7 @@ _02244938:
 	add r1, r5, r0
 	ldr r0, _02244A04 ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	lsl r1, r7, #3
 	add r2, r5, r1
 	mov r1, #0x71
@@ -19986,23 +19986,23 @@ _02244C78:
 _02244C80:
 	ldr r0, [sp, #0x18]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02244CB4
 	add r0, r4, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _02244CB4
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02244CB4
 	add r7, r7, #1
@@ -20029,7 +20029,7 @@ _02244CD8:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r6, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r0, [sp, #0x10]
 	add r5, r1, #0
 	add r5, r5, r0
@@ -20041,23 +20041,23 @@ _02244CD8:
 	beq _02244CD8
 	ldr r0, [sp, #0x18]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r1, r7, #0
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02244CD8
 	add r0, r4, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #1
 	beq _02244CD8
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02244CD8
 	ldr r0, [sp, #4]
@@ -21226,7 +21226,7 @@ _0224564A:
 	bl ov16_02248AF0
 	b _0224566E
 _02245654:
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02245678 ; =0x00002DB0
 	mov r2, #0xc0
 	add r1, r4, r1
@@ -21393,7 +21393,7 @@ ov16_02245784: ; 0x02245784
 	add r0, r5, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r0, _02245824 ; =0x00003120
 	strb r1, [r4, r0]
 	ldrb r1, [r4, r0]
@@ -21852,7 +21852,7 @@ ov16_02245A7C: ; 0x02245A7C
 	mov r0, #0x28
 	mul r0, r1
 	mov r1, #0x3f
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _02245B60 ; =0x00002154
 	add r0, #0x1e
 	str r0, [r4, r1]
@@ -21861,7 +21861,7 @@ ov16_02245A7C: ; 0x02245A7C
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0x3f
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #1
 	ldr r0, _02245B64 ; =0x00002160
 	str r1, [r4, r0]
@@ -22030,7 +22030,7 @@ ov16_02245BC8: ; 0x02245BC8
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [r5, r4]
 	b _02245CA8
 _02245CA0:
@@ -22173,26 +22173,26 @@ _02245D9E:
 	beq _02245DFC
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02245DF4
 	add r0, r4, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02245DF4
 	add r0, r4, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02245FAC ; =0x000001EE
 	cmp r0, r1
 	beq _02245DF4
 	add r0, r4, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02245DFC
 _02245DF4:
@@ -22209,22 +22209,22 @@ _02245DFC:
 	add r4, r0, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #4]
 	add r0, r4, #0
 	mov r1, #0x70
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r6, r0, #0
 	add r0, r4, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r4, r0, #0
 	ldr r0, [sp, #4]
 	add r1, r6, #0
 	mov r2, #1
-	bl FUN_020759CC
+	bl sub_020759CC
 	ldr r1, _02245FB0 ; =0x00002144
 	ldr r2, _02245FB4 ; =0x00003044
 	str r0, [r5, r1]
@@ -22238,7 +22238,7 @@ _02245DFC:
 	str r2, [r5, r1]
 	lsl r0, r4, #1
 	mov r1, #5
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _02245FB0 ; =0x00002144
 	add r0, r0, #2
 	ldr r2, [r5, r1]
@@ -22256,16 +22256,16 @@ _02245DFC:
 	mov r2, #2
 	lsl r1, r1, #0x1b
 	lsr r1, r1, #0x1b
-	bl FUN_020759CC
+	bl sub_020759CC
 	add r1, r0, #0
 	ldr r0, _02245FB0 ; =0x00002144
 	ldr r0, [r5, r0]
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, _02245FB0 ; =0x00002144
 	str r0, [r5, r1]
 	ldr r0, [r5, r1]
 	mov r1, #0x32
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _02245FB0 ; =0x00002144
 	str r0, [r5, r1]
 	ldr r0, [r5, r1]
@@ -22290,7 +22290,7 @@ _02245DFC:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _02245FB0 ; =0x00002144
 	str r0, [r5, r1]
 _02245EC8:
@@ -22356,26 +22356,26 @@ _02245F28:
 	beq _02245F98
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02245F7A
 	add r0, r4, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02245F7A
 	add r0, r4, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02245FAC ; =0x000001EE
 	cmp r0, r1
 	beq _02245F7A
 	add r0, r4, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02245F98
 _02245F7A:
@@ -22466,7 +22466,7 @@ ov16_02246004: ; 0x02246004
 	mov r2, #0x10
 	bl ov16_0224A984
 	add r4, r0, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0224609C ; =0x00003108
 	ldrb r1, [r5, r1]
 	tst r0, r1
@@ -22568,7 +22568,7 @@ _02246102:
 	add r1, r4, r0
 	ldr r0, _022461A8 ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp]
 	lsl r1, r1, #3
 	add r2, r4, r1
@@ -22583,7 +22583,7 @@ _02246102:
 	add r1, r4, r0
 	ldr r0, _022461A8 ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	lsl r1, r7, #3
 	add r2, r4, r1
 	mov r1, #0x71
@@ -22724,13 +22724,13 @@ _02246226:
 	mov r1, #0xae
 	mov r2, #0
 	str r0, [sp, #8]
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02246296
 	ldr r0, [sp, #8]
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _022462D4 ; =0x000001EE
 	cmp r0, r1
 	beq _02246296
@@ -22740,7 +22740,7 @@ _0224625E:
 	ldr r0, [sp, #8]
 	add r1, #0x36
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
 	add r0, r6, #0
@@ -22775,7 +22775,7 @@ _022462A2:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r7, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r1, r1, #1
 	add r0, sp, #0x18
 	ldrh r2, [r0, r1]
@@ -22958,7 +22958,7 @@ ov16_022463E8: ; 0x022463E8
 	ldr r1, [r2, r1]
 	cmp r1, #0
 	beq _0224641A
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x7b
 	add r2, r5, r4
 	lsl r1, r1, #2
@@ -22975,7 +22975,7 @@ _0224641A:
 	ldr r1, [r2, r1]
 	cmp r1, #0
 	beq _02246448
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r5, #0x64]
 	lsl r1, r1, #6
 	add r2, r5, r1
@@ -23203,7 +23203,7 @@ _02246586:
 	add r1, r5, r0
 	ldr r0, _02246628 ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x71
 	lsl r1, r1, #2
 	add r3, r5, r1
@@ -23261,7 +23261,7 @@ ov16_02246630: ; 0x02246630
 	add r1, r1, #4
 	ldr r1, [r2, r1]
 	mul r0, r3
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, _02246678 ; =0x00002154
 	str r0, [r4, r1]
 	ldr r0, [r4, r1]
@@ -24228,7 +24228,7 @@ ov16_02246DAC: ; 0x02246DAC
 	lsl r2, r2, #2
 	add r2, r4, r2
 	ldr r1, [r2, r1]
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r1, r0, #1
 	ldr r0, _02246DEC ; =0x00002154
 	str r1, [r4, r0]
@@ -24291,7 +24291,7 @@ ov16_02246DF0: ; 0x02246DF0
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _02246EE0 ; =0x00002144
 	str r0, [r5, r1]
 	mov r0, #0x71
@@ -24457,7 +24457,7 @@ ov16_02246F70: ; 0x02246F70
 	add r1, r1, #4
 	ldr r1, [r3, r1]
 	mul r0, r2
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r1, r0, #1
 	ldr r0, _02246FA4 ; =0x00002154
 	str r1, [r4, r0]
@@ -25445,20 +25445,20 @@ _02247718:
 	mov r1, #0xae
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
 	add r0, r4, #0
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #4]
 	add r0, r4, #0
 	mov r1, #0xa
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	str r0, [sp]
@@ -25475,21 +25475,21 @@ _02247718:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #0
 	bne _022477E6
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r5, r1, #0
 	add r0, r4, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	sub r0, r0, #1
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	lsl r0, r0, #0x18
 	lsr r3, r0, #0x18
 	cmp r3, #0xa
@@ -25510,7 +25510,7 @@ _022477A4:
 	add r0, r4, #0
 	mov r1, #6
 	add r2, r5, r2
-	bl FUN_02074B30
+	bl sub_02074B30
 	b _022477E6
 _022477BE:
 	cmp r5, #0x62
@@ -25525,7 +25525,7 @@ _022477BE:
 	add r0, r4, #0
 	mov r1, #6
 	add r2, r2, r3
-	bl FUN_02074B30
+	bl sub_02074B30
 	b _022477E6
 _022477DC:
 	add r1, r1, #1
@@ -25550,7 +25550,7 @@ _022477E6:
 	mov r1, #0xa1
 	str r2, [sp, #0xc]
 	mov r5, #0xa
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x18
 	lsr r1, r0, #0x18
 	cmp r1, #0xa
@@ -25566,12 +25566,12 @@ _0224781E:
 	ldr r0, [sp, #0xc]
 	cmp r0, #0xa
 	blt _02247828
-	bl FUN_02022974
+	bl sub_02022974
 _02247828:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r2, [sp, #0xc]
 	ldr r0, _02247878 ; =0x0226EAB4
 	ldrb r0, [r0, r2]
@@ -25582,7 +25582,7 @@ _02247828:
 	add r0, r4, #0
 	mov r1, #6
 	add r2, sp, #0xc
-	bl FUN_02074B30
+	bl sub_02074B30
 _0224784C:
 	ldr r0, [sp, #8]
 	mov r1, #0
@@ -26294,7 +26294,7 @@ _02247DCE:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _02247DDA:
-	bl FUN_02022974
+	bl sub_02022974
 _02247DDE:
 	ldr r0, _02247E0C ; =0x00002D90
 	add r1, r5, r6
@@ -26355,12 +26355,12 @@ _02247E44:
 _02247E4E:
 	cmp r4, #0
 	bne _02247E56
-	bl FUN_02022974
+	bl sub_02022974
 _02247E56:
 	add r0, r6, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r4
 	bge _02247E7E
 	add r0, r5, #0
@@ -26433,7 +26433,7 @@ ov16_02247E98: ; 0x02247E98
 	ldr r1, [r5, #0x64]
 	add r0, r6, #0
 	bl ov16_0223EE30
-	bl FUN_02006494
+	bl sub_02006494
 	b _02247F06
 _02247EFE:
 	ldr r1, [r5, #0x64]
@@ -26458,7 +26458,7 @@ _02247F1C:
 	add r0, r6, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r4
 	ble _02247F3E
 	add r0, r5, #0
@@ -26491,7 +26491,7 @@ ov16_02247F44: ; 0x02247F44
 	ldr r0, [r4, r0]
 	lsl r0, r0, #4
 	add r0, r2, r0
-	bl FUN_02079104
+	bl sub_02079104
 	mov r1, #0x4d
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -27029,35 +27029,35 @@ _02248376:
 	bl ov16_0223DF14
 	add r0, r7, #0
 	mov r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _022483E4
 _022483A6:
 	add r0, r7, #0
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022483D8
 	add r0, r6, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _022484CC ; =0x000001EE
 	cmp r0, r1
 	beq _022483D8
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r5, r0
 _022483D8:
 	add r0, r7, #0
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _022483A6
 _022483E4:
@@ -27079,35 +27079,35 @@ _022483E4:
 _02248406:
 	ldr r0, [sp, #8]
 	mov r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02248450
 	ldr r7, _022484CC ; =0x000001EE
 _02248414:
 	ldr r0, [sp, #8]
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02248444
 	add r0, r6, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, r7
 	beq _02248444
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r5, r0
 _02248444:
 	ldr r0, [sp, #8]
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _02248414
 _02248450:
@@ -27127,35 +27127,35 @@ _0224845E:
 	bl ov16_0223DF14
 	add r0, r7, #0
 	mov r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _022484BA
 _0224847C:
 	add r0, r7, #0
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022484AE
 	add r0, r6, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _022484CC ; =0x000001EE
 	cmp r0, r1
 	beq _022484AE
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r5, r0
 _022484AE:
 	add r0, r7, #0
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _0224847C
 _022484BA:
@@ -27211,7 +27211,7 @@ _02248508:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r4, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r1, r1, #2
 	add r0, sp, #4
 	ldr r0, [r0, r1]
@@ -27412,7 +27412,7 @@ ov16_02248660: ; 0x02248660
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r0, [sp, #4]
 	cmp r1, r0
 	bge _022486B2
@@ -27500,12 +27500,12 @@ ov16_02248708: ; 0x02248708
 	add r6, r0, #0
 	mov r1, #0xa
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp]
 	add r0, r6, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r2, r0, #0
 	ldr r0, _022487A0 ; =0x00002D67
 	add r1, r5, r4
@@ -27761,7 +27761,7 @@ ov16_02248944: ; 0x02248944
 	cmp r0, #6
 	bne _02248970
 	ldr r0, [r5, #0x64]
-	bl FUN_020799A0
+	bl sub_020799A0
 	cmp r0, #0x12
 	beq _02248980
 _02248970:
@@ -27893,7 +27893,7 @@ ov16_02248A34: ; 0x02248A34
 	ldr r1, [r1, #0]
 	ldr r2, [sp]
 	add r0, r6, #0
-	bl FUN_020759CC
+	bl sub_020759CC
 	mov r1, #0x4d
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -28514,16 +28514,16 @@ _02248EAE:
 	mov r1, #6
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r1, #1
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0x33
 	beq _02248EF6
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	add r2, r0, #0
 	ldr r1, [r4, #4]
 	ldr r0, [sp, #0x28]
@@ -28618,12 +28618,12 @@ _02248F88:
 	add r0, r6, #0
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r1, #1
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	str r0, [sp, #0x18]
 	ldr r0, [sp, #0x3c]
 	mov r1, #1
@@ -28640,7 +28640,7 @@ _02248F88:
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02248FE6
 	ldr r1, [r4, #4]
@@ -28649,7 +28649,7 @@ _02248F88:
 	cmp r0, #0
 	bne _02248FE6
 	ldr r0, _0224921C ; =0x00000467
-	bl FUN_0200549C
+	bl sub_0200549C
 	ldr r1, [r4, #4]
 	ldr r0, _02249218 ; =0x00003144
 	mov r2, #1
@@ -28666,13 +28666,13 @@ _02248FE6:
 	ldr r2, [sp, #0x38]
 	add r0, r6, #0
 	mov r1, #0xa3
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0224900C
 	add r0, r6, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0x64
 	bne _0224900E
 _0224900C:
@@ -28681,7 +28681,7 @@ _0224900E:
 	ldr r0, [r4, #4]
 	str r0, [sp, #0x24]
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x44]
 	lsl r2, r1, #2
 	ldr r1, [sp, #0x24]
@@ -28713,7 +28713,7 @@ _02249044:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E2178
+	bl sub_020E2178
 	str r0, [sp, #0x38]
 _02249058:
 	ldr r0, [sp, #0x20]
@@ -28723,7 +28723,7 @@ _02249058:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E2178
+	bl sub_020E2178
 	str r0, [sp, #0x38]
 _0224906C:
 	ldr r0, [r4, #0]
@@ -28734,7 +28734,7 @@ _0224906C:
 	add r0, r6, #0
 	mov r1, #0xc
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02249220 ; =0x020E4C44
 	ldrb r1, [r1]
 	cmp r1, r0
@@ -28743,7 +28743,7 @@ _0224906C:
 	mov r0, #0xaa
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E2178
+	bl sub_020E2178
 	str r0, [sp, #0x38]
 	b _022490A8
 _0224909A:
@@ -28751,7 +28751,7 @@ _0224909A:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E2178
+	bl sub_020E2178
 	str r0, [sp, #0x38]
 _022490A8:
 	mov r1, #2
@@ -28761,10 +28761,10 @@ _022490AE:
 	add r0, r6, #0
 	mov r1, #8
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x4c]
 	add r0, r6, #0
-	bl FUN_02075AAC
+	bl sub_02075AAC
 	ldr r1, [sp, #0x4c]
 	sub r0, r1, r0
 	str r0, [r4, #0x3c]
@@ -28787,7 +28787,7 @@ _022490E4:
 	add r0, r6, #0
 	mov r1, #8
 	add r2, sp, #0x4c
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [r4, #4]
 	ldr r1, [r0, #0x74]
 	str r0, [sp, #0x1c]
@@ -28844,7 +28844,7 @@ _0224915A:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02249206
 	ldr r0, [r4, #0x28]
@@ -28897,7 +28897,7 @@ _022491B0:
 	pop {r3, r4, r5, r6, r7, pc}
 _022491C4:
 	add r0, r6, #0
-	bl FUN_02076B14
+	bl sub_02076B14
 	cmp r0, #0
 	beq _022491F4
 	ldr r1, [r4, #4]
@@ -28954,11 +28954,11 @@ _02249230:
 	add r0, r6, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x34]
 	mov r0, #5
 	mov r1, #0x18
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0x5f
 	ldr r2, [r4, #4]
 	lsl r1, r1, #2
@@ -28974,7 +28974,7 @@ _02249264:
 	ldr r1, [r1, r2]
 	add r0, r6, #0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #0x50]
 	lsl r2, r1, #2
 	ldr r1, [sp, #0x30]
@@ -28991,9 +28991,9 @@ _02249264:
 	add r0, r6, #0
 	mov r1, #0
 	lsr r2, r2, #0x10
-	bl FUN_02075C74
+	bl sub_02075C74
 	add r0, r6, #0
-	bl FUN_020741B8
+	bl sub_020741B8
 	ldr r1, [r4, #4]
 	ldr r0, _022495E8 ; =0x0000219C
 	add r2, r1, r7
@@ -29005,7 +29005,7 @@ _02249264:
 	bl ov16_02251C94
 _022492B2:
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r4, #4]
 	ldr r2, _022495EC ; =0x00003109
 	ldrb r3, [r1, r2]
@@ -29041,7 +29041,7 @@ _022492FC:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	beq _0224930C
 	b _0224998E
@@ -29088,10 +29088,10 @@ _02249336:
 	strh r1, [r0]
 	mov r0, #1
 	add r1, r0, #0
-	bl FUN_02019060
+	bl sub_02019060
 	mov r0, #2
 	mov r1, #0
-	bl FUN_02019060
+	bl sub_02019060
 	ldr r0, [r4, #0]
 	mov r1, #2
 	bl ov16_0223F8DC
@@ -29101,8 +29101,8 @@ _02249336:
 	mov r1, #2
 	mov r2, #1
 	mov r3, #0
-	bl FUN_0200DA60
-	bl FUN_0200DAA0
+	bl sub_0200DA60
+	bl sub_0200DAA0
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -29113,7 +29113,7 @@ _02249336:
 	add r0, r7, #0
 	mov r1, #0x26
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r0, #7
 	str r0, [sp]
 	mov r0, #0xe
@@ -29128,15 +29128,15 @@ _02249336:
 	add r1, r5, #0
 	mov r2, #2
 	mov r3, #0x11
-	bl FUN_0201A7E8
+	bl sub_0201A7E8
 	add r0, r5, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #1
 	mov r3, #8
-	bl FUN_0200DC48
+	bl sub_0200DC48
 	mov r0, #0xa
 	add sp, #0xd8
 	str r0, [r4, #0x28]
@@ -29204,7 +29204,7 @@ _02249416:
 	ldr r1, [r1, r2]
 	add r0, r6, #0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #0x2c]
 	lsl r2, r5, #2
 	ldr r1, [r1, r2]
@@ -29256,7 +29256,7 @@ _022494A0:
 	mov r2, #0x50
 	mov r3, #0
 	add r7, r0, #0
-	bl FUN_0201AE78
+	bl sub_0201AE78
 	mov r1, #0
 	str r1, [sp, #0x50]
 	add r5, sp, #0xb4
@@ -29270,7 +29270,7 @@ _022494D2:
 	strb r0, [r5, #1]
 	add r0, r6, #0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0xb8]
 	mov r0, #3
 	str r0, [sp, #0xd0]
@@ -29305,12 +29305,12 @@ _02249522:
 	ldr r0, _0224960C ; =0x00000C03
 	tst r0, r1
 	bne _02249534
-	bl FUN_02022798
+	bl sub_02022798
 	cmp r0, #0
 	beq _022495C2
 _02249534:
 	ldr r0, _02249610 ; =0x000005DC
-	bl FUN_02005748
+	bl sub_02005748
 	ldr r0, [r4, #0x28]
 	add sp, #0xd8
 	add r0, r0, #1
@@ -29322,9 +29322,9 @@ _02249544:
 	bl ov16_0223DF04
 	add r6, r0, #0
 	mov r1, #0
-	bl FUN_0200DC9C
+	bl sub_0200DC9C
 	add r0, r6, #0
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	ldr r1, _022495F0 ; =0x04000008
 	mov r0, #3
 	ldrh r2, [r1]
@@ -29333,10 +29333,10 @@ _02249544:
 	orr r2, r0
 	strh r2, [r1]
 	mov r1, #0
-	bl FUN_02019060
+	bl sub_02019060
 	mov r0, #2
 	mov r1, #1
-	bl FUN_02019060
+	bl sub_02019060
 	ldr r0, [r4, #0]
 	mov r1, #0
 	bl ov16_0223F8DC
@@ -29354,7 +29354,7 @@ _02249592:
 	ldr r1, [r4, #4]
 	lsl r0, r0, #2
 	ldr r0, [r1, r0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	mov r0, #0xf
 	add sp, #0xd8
 	str r0, [r4, #0x28]
@@ -29366,7 +29366,7 @@ _022495A6:
 	add r0, r6, #0
 	add r1, #0x38
 	add r2, sp, #0x48
-	bl FUN_0207727C
+	bl sub_0207727C
 	cmp r0, #0
 	beq _022495CC
 	ldr r1, _02249614 ; =0x0000FFFE
@@ -29491,7 +29491,7 @@ _022496BA:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _022496FE
 	ldr r0, [r4, #0x28]
@@ -29555,7 +29555,7 @@ _0224973A:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02249840
 	ldr r0, [r4, #0]
@@ -29675,7 +29675,7 @@ _02249832:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	beq _02249842
 _02249840:
@@ -29717,7 +29717,7 @@ _02249872:
 	add r0, r6, #0
 	add r1, #0x36
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0xbc]
 	ldr r0, [r4, #0]
 	bl ov16_0223EDF0
@@ -29776,7 +29776,7 @@ _022498D6:
 	add r0, r6, #0
 	add r1, #0x3e
 	add r2, sp, #0x50
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r1, [r4, #0x40]
 	ldr r2, [r4, #0x44]
 	lsl r1, r1, #0x10
@@ -29784,7 +29784,7 @@ _022498D6:
 	add r0, r6, #0
 	lsr r1, r1, #0x10
 	lsr r2, r2, #0x18
-	bl FUN_02077230
+	bl sub_02077230
 	ldr r1, [r4, #4]
 	ldr r0, _022499BC ; =0x0000219C
 	add r2, r1, r7
@@ -29803,7 +29803,7 @@ _0224993C:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _0224998E
 	mov r0, #0xf
@@ -29812,7 +29812,7 @@ _0224993C:
 	pop {r3, r4, r5, r6, r7, pc}
 _02249952:
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x44]
 	ldr r2, [r4, #4]
 	mov r3, #0
@@ -29836,9 +29836,9 @@ _02249978:
 	lsl r0, r0, #2
 	str r2, [r1, r0]
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp, #0x14]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0224998E:
 	add sp, #0xd8
 	pop {r3, r4, r5, r6, r7, pc}
@@ -29866,26 +29866,26 @@ ov16_022499C0: ; 0x022499C0
 	add r1, r3, #0
 	mov r2, #5
 	mov r4, #0
-	bl FUN_02075874
+	bl sub_02075874
 	add r7, r0, #0
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #6
 	add r2, r4, #0
 	str r0, [sp, #0x14]
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
 	add r0, r6, #0
 	mov r1, #1
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	add r5, r0, #0
 	add r0, r6, #0
 	mov r1, #2
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	add r6, r0, #0
 	add r0, r4, #0
 	str r0, [sp, #0x18]
@@ -29897,7 +29897,7 @@ _02249A0E:
 	ldr r0, [sp, #0x14]
 	add r1, #0xd
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #0xc]
 	strb r0, [r1]
 	add r0, r1, #0
@@ -29945,7 +29945,7 @@ _02249A60: ; jump table
 _02249A6C:
 	add r0, r7, #0
 	mov r1, #0xa
-	bl FUN_020758B0
+	bl sub_020758B0
 	lsl r0, r0, #0x10
 	asr r4, r0, #0x10
 	cmp r5, #0x7a
@@ -29957,7 +29957,7 @@ _02249A6C:
 _02249A84:
 	add r0, r7, #0
 	mov r1, #0xb
-	bl FUN_020758B0
+	bl sub_020758B0
 	lsl r0, r0, #0x10
 	asr r4, r0, #0x10
 	cmp r5, #0x75
@@ -29969,7 +29969,7 @@ _02249A84:
 _02249A9C:
 	add r0, r7, #0
 	mov r1, #0xc
-	bl FUN_020758B0
+	bl sub_020758B0
 	lsl r0, r0, #0x10
 	asr r4, r0, #0x10
 	cmp r5, #0x76
@@ -29981,7 +29981,7 @@ _02249A9C:
 _02249AB4:
 	add r0, r7, #0
 	mov r1, #0xd
-	bl FUN_020758B0
+	bl sub_020758B0
 	lsl r0, r0, #0x10
 	asr r4, r0, #0x10
 	cmp r5, #0x79
@@ -29993,7 +29993,7 @@ _02249AB4:
 _02249ACC:
 	add r0, r7, #0
 	mov r1, #0xe
-	bl FUN_020758B0
+	bl sub_020758B0
 	lsl r0, r0, #0x10
 	asr r4, r0, #0x10
 	cmp r5, #0x77
@@ -30005,7 +30005,7 @@ _02249ACC:
 _02249AE4:
 	add r0, r7, #0
 	mov r1, #0xf
-	bl FUN_020758B0
+	bl sub_020758B0
 	lsl r0, r0, #0x10
 	asr r4, r0, #0x10
 	cmp r5, #0x78
@@ -30015,12 +30015,12 @@ _02249AE4:
 	asr r4, r0, #0x10
 _02249AFA:
 	ldr r0, [sp, #4]
-	bl FUN_020787CC
+	bl sub_020787CC
 	add r1, r0, #0
 	lsl r1, r1, #0x18
 	ldr r0, [sp]
 	lsr r1, r1, #0x18
-	bl FUN_02077758
+	bl sub_02077758
 	cmp r0, #0
 	beq _02249B14
 	lsl r0, r4, #0x11
@@ -30065,7 +30065,7 @@ _02249B40:
 	str r0, [sp, #0x18]
 	ldr r0, [sp, #0x14]
 	add r1, #0xd
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [sp, #0x10]
 	add r0, r0, #1
 	str r0, [sp, #0x10]
@@ -30077,7 +30077,7 @@ _02249B40:
 	b _02249A44
 _02249B72:
 	add r0, r7, #0
-	bl FUN_020759B8
+	bl sub_020759B8
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -30102,7 +30102,7 @@ ov16_02249B80: ; 0x02249B80
 	str r0, [sp, #0x24]
 	add r0, r7, #0
 	ldr r6, [r4, #4]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02249ED4 ; =0x00003108
 	ldrb r1, [r6, r1]
 	tst r0, r1
@@ -30203,7 +30203,7 @@ _02249C60:
 	mov r0, #1
 	str r0, [r4, #0x28]
 	ldr r0, _02249EDC ; =0x0000070A
-	bl FUN_02005748
+	bl sub_02005748
 	ldr r2, [r4, #0]
 	ldr r0, _02249EE0 ; =0x00002422
 	ldrh r1, [r2, r0]
@@ -30234,7 +30234,7 @@ _02249C88:
 	mov r0, #1
 	str r0, [r4, #0x28]
 	ldr r0, _02249EDC ; =0x0000070A
-	bl FUN_02005748
+	bl sub_02005748
 	ldr r2, [r4, #0]
 	ldr r0, _02249EE0 ; =0x00002422
 	ldrh r1, [r2, r0]
@@ -30258,7 +30258,7 @@ _02249CCC:
 	beq _02249CFC
 	ldr r0, _02249EE4 ; =0x000005E6
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	ldr r0, [r4, #8]
 	mov r1, #2
 	bl FUN_022368C8
@@ -30269,7 +30269,7 @@ _02249CCC:
 _02249CFC:
 	ldr r0, _02249EE8 ; =0x00000708
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	ldr r0, [r4, #8]
 	mov r1, #1
 	bl FUN_022368C8
@@ -30388,7 +30388,7 @@ _02249DDA:
 	bl FUN_022368C8
 	ldr r0, _02249EEC ; =0x00000709
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	mov r0, #8
 	add sp, #0x158
 	str r0, [r4, #0x28]
@@ -30418,7 +30418,7 @@ _02249DFA:
 	mov r0, #9
 	str r0, [r4, #0x28]
 	ldr r0, _02249EF4 ; =0x00000467
-	bl FUN_0200549C
+	bl sub_0200549C
 	ldr r0, [r4, #0]
 	mov r1, #2
 	bl ov16_0223F460
@@ -30428,7 +30428,7 @@ _02249E40:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02249E72
 	mov r0, #0xa
@@ -30482,7 +30482,7 @@ _02249E76:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -30506,13 +30506,13 @@ _02249F00:
 	add r0, r5, #0
 	mov r1, #0xf
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	ldr r0, [sp, #0x24]
 	mov r2, #0x10
 	add r3, r1, #0
 	str r1, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 	mov r0, #0x20
 	add sp, #0x158
 	str r0, [r4, #0x28]
@@ -30521,7 +30521,7 @@ _02249F20:
 	add r0, r6, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r1, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F9E0
@@ -30530,7 +30530,7 @@ _02249F20:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -30540,13 +30540,13 @@ _02249F20:
 	add r0, r5, #0
 	mov r1, #5
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	ldr r0, [sp, #0x24]
 	mov r2, #0x10
 	add r3, r1, #0
 	str r1, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 	mov r0, #0x10
 	add sp, #0x158
 	str r0, [r4, #0x28]
@@ -30578,7 +30578,7 @@ _02249FA0:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02249FF8
 	ldr r0, [r4, #0x34]
@@ -30596,22 +30596,22 @@ _02249FA0:
 	add r0, r5, #0
 	mov r1, #5
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	ldr r0, [sp, #0x24]
 	str r1, [sp]
 	mov r2, #0x10
 	add r3, r1, #0
-	bl FUN_0200872C
+	bl sub_0200872C
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	add sp, #0x158
 	pop {r3, r4, r5, r6, r7, pc}
 _02249FEE:
 	add r0, r5, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	beq _02249FFA
 _02249FF8:
@@ -30620,7 +30620,7 @@ _02249FFA:
 	ldr r0, [r4, #8]
 	bl FUN_0223783C
 	ldr r0, [sp, #0x24]
-	bl FUN_02007DD4
+	bl sub_02007DD4
 	ldr r0, [r4, #0]
 	bl ov16_0223B53C
 	ldr r0, [r4, #0]
@@ -30658,9 +30658,9 @@ _02249FFA:
 	str r0, [sp, #0xe0]
 	ldr r0, [r4, #0]
 	bl ov16_0223E068
-	bl FUN_0207A280
+	bl sub_0207A280
 	str r0, [sp, #0xe4]
-	bl FUN_0201EE9C
+	bl sub_0201EE9C
 	str r0, [r4, #0x54]
 	add r0, sp, #0xd0
 	bl FUN_021E8D48
@@ -30683,11 +30683,11 @@ _0224A082:
 	str r0, [r4, #0x28]
 	b _0224A0AE
 _0224A09C:
-	bl FUN_02022798
+	bl sub_02022798
 	cmp r0, #0
 	beq _0224A0AE
 	ldr r0, _0224A2A0 ; =0x000005DC
-	bl FUN_02005748
+	bl sub_02005748
 	mov r0, #0xe
 	str r0, [r4, #0x28]
 _0224A0AE:
@@ -30703,7 +30703,7 @@ _0224A0AE:
 	add r0, r5, #0
 	mov r1, #5
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	ldr r0, [r4, #0x50]
 	mov r1, #0
 	bl FUN_021E8E04
@@ -30715,16 +30715,16 @@ _0224A0D6:
 	add r5, r0, #0
 	mov r1, #0
 	mov r2, #4
-	bl FUN_02008274
+	bl sub_02008274
 	add r0, r5, #0
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #0x80
 	blt _0224A13E
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x80
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	mov r0, #0xf
 	add sp, #0x158
 	str r0, [r4, #0x28]
@@ -30733,7 +30733,7 @@ _0224A104:
 	ldr r0, [r4, #0x50]
 	bl FUN_021E8DD0
 	ldr r0, [r4, #0x54]
-	bl FUN_0201EEB8
+	bl sub_0201EEB8
 	ldr r0, [r4, #0]
 	bl ov16_0223B578
 	mov r0, #0x10
@@ -30745,14 +30745,14 @@ _0224A104:
 	add r0, r5, #0
 	mov r1, #5
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r0, #0x11
 	add sp, #0x158
 	str r0, [r4, #0x28]
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A134:
 	add r0, r5, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	beq _0224A140
 _0224A13E:
@@ -30769,7 +30769,7 @@ _0224A140:
 	ldr r0, [r4, #8]
 	bl FUN_0223783C
 	ldr r0, [sp, #0x24]
-	bl FUN_02007DD4
+	bl sub_02007DD4
 	ldr r0, [r4, #0]
 	mov r1, #0
 	bl ov16_0223DF14
@@ -30782,7 +30782,7 @@ _0224A140:
 	add r0, sp, #0xc0
 	add r1, r6, #0
 	mov r2, #2
-	bl FUN_02075EF4
+	bl sub_02075EF4
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -30792,7 +30792,7 @@ _0224A140:
 	add r1, sp, #0xc0
 	mov r2, #0x80
 	mov r3, #0x48
-	bl FUN_02007C34
+	bl sub_02007C34
 	mov r0, #0x10
 	str r0, [sp]
 	mov r0, #0
@@ -30802,20 +30802,20 @@ _0224A140:
 	add r0, r5, #0
 	mov r1, #5
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r2, #0
 	ldr r0, [sp, #0x24]
 	mov r1, #0x10
 	add r3, r2, #0
 	str r2, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 	mov r0, #0x11
 	add sp, #0x158
 	str r0, [r4, #0x28]
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A1C4:
 	add r0, r5, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _0224A274
 	mov r0, #0x12
@@ -30823,10 +30823,10 @@ _0224A1C4:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #0
-	bl FUN_02015738
+	bl sub_02015738
 	add r0, r5, #0
 	mov r1, #1
-	bl FUN_02003858
+	bl sub_02003858
 	add sp, #0x158
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A1EA:
@@ -30868,7 +30868,7 @@ _0224A232:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -30878,20 +30878,20 @@ _0224A232:
 	add r0, r5, #0
 	mov r1, #0xf
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	ldr r0, [sp, #0x24]
 	mov r2, #0x10
 	add r3, r1, #0
 	str r1, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 	mov r0, #0x14
 	add sp, #0x158
 	str r0, [r4, #0x28]
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A26A:
 	add r0, r5, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	beq _0224A276
 _0224A274:
@@ -30899,10 +30899,10 @@ _0224A274:
 _0224A276:
 	mov r0, #0
 	add r1, r0, #0
-	bl FUN_0200F344
+	bl sub_0200F344
 	mov r0, #1
 	mov r1, #0
-	bl FUN_0200F344
+	bl sub_0200F344
 	ldr r2, [r4, #4]
 	ldr r0, [r4, #0]
 	add r3, r2, r7
@@ -30921,7 +30921,7 @@ _0224A2A4:
 	mov r1, #5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223EDA4
@@ -30930,7 +30930,7 @@ _0224A2A4:
 	mov r1, #1
 	add r2, r5, #0
 	mov r3, #0xa
-	bl FUN_0208712C
+	bl sub_0208712C
 	add r5, r0, #0
 	str r5, [r4, #0x54]
 	ldr r0, [r4, #0]
@@ -30950,7 +30950,7 @@ _0224A2EA:
 	add r0, r6, #0
 	mov r1, #0x70
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [r5, #8]
 	ldr r0, [r4, #0]
 	bl ov16_0223E228
@@ -30958,12 +30958,12 @@ _0224A2EA:
 	add r0, r6, #0
 	mov r1, #0x6f
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [r5, #0x10]
 	ldr r0, _0224A58C ; =0x020F2DAC
 	add r1, r5, #0
 	mov r2, #5
-	bl FUN_020067E8
+	bl sub_020067E8
 	str r0, [r4, #0x50]
 	mov r0, #0x15
 	str r0, [r4, #0x28]
@@ -30983,7 +30983,7 @@ _0224A330:
 	ldr r0, [r6, #0x18]
 	cmp r0, #0
 	beq _0224A346
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	str r7, [r6, #0x18]
 _0224A346:
 	ldr r0, [r4, #0]
@@ -31001,7 +31001,7 @@ _0224A352:
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A364:
 	ldr r0, [r4, #0x50]
-	bl FUN_02006844
+	bl sub_02006844
 	cmp r0, #0
 	beq _0224A3BC
 	ldr r2, [r4, #4]
@@ -31017,15 +31017,15 @@ _0224A364:
 	bne _0224A396
 	ldr r2, [r5, #0x18]
 	mov r1, #0x78
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r0, [r4, #0]
 	mov r1, #0x31
 	bl ov16_0223F24C
 _0224A396:
 	add r0, r5, #0
-	bl FUN_0208716C
+	bl sub_0208716C
 	ldr r0, [r4, #0x50]
-	bl FUN_02006814
+	bl sub_02006814
 	ldr r0, [r4, #0]
 	mov r1, #2
 	bl ov16_0223F314
@@ -31035,7 +31035,7 @@ _0224A396:
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A3B2:
 	add r0, r5, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	beq _0224A3BE
 _0224A3BC:
@@ -31073,7 +31073,7 @@ _0224A3BE:
 	bl ov16_022666BC
 	ldr r0, [sp, #0x28]
 	add r1, r6, #0
-	bl FUN_0207A048
+	bl sub_0207A048
 	cmp r0, #1
 	bne _0224A452
 	ldr r0, [r4, #0x28]
@@ -31082,7 +31082,7 @@ _0224A3BE:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -31092,13 +31092,13 @@ _0224A3BE:
 	add r0, r5, #0
 	mov r1, #0xf
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	ldr r0, [sp, #0x24]
 	mov r2, #0x10
 	add r3, r1, #0
 	str r1, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 _0224A44A:
 	mov r0, #0x20
 	add sp, #0x158
@@ -31108,32 +31108,32 @@ _0224A452:
 	ldr r0, [r4, #0]
 	bl ov16_0223E228
 	str r0, [sp, #0x1c]
-	bl FUN_0207999C
+	bl sub_0207999C
 	str r0, [sp, #0x18]
 	ldr r0, [sp, #0x1c]
-	bl FUN_020799A0
+	bl sub_020799A0
 	str r0, [sp, #0x14]
 	ldr r0, [sp, #0x1c]
 	ldr r1, [sp, #0x14]
-	bl FUN_02079A94
+	bl sub_02079A94
 	mov r5, #0
 _0224A472:
 	add r1, r5, #0
 	add r0, r6, #0
 	add r1, #0x42
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r1, r5, #0
 	str r0, [sp, #0x2c]
 	add r0, r6, #0
 	add r1, #0x3a
 	add r2, sp, #0x2c
-	bl FUN_02074B30
+	bl sub_02074B30
 	add r5, r5, #1
 	cmp r5, #4
 	blt _0224A472
 	add r0, r6, #0
-	bl FUN_02077A00
+	bl sub_02077A00
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -31143,11 +31143,11 @@ _0224A472:
 	bl ov16_0223F9A0
 _0224A4A8:
 	add r0, r6, #0
-	bl FUN_02076B10
+	bl sub_02076B10
 	add r2, r0, #0
 	ldr r0, [sp, #0x1c]
 	ldr r1, [sp, #0x14]
-	bl FUN_020798A0
+	bl sub_020798A0
 	ldr r0, [r4, #0x28]
 	cmp r0, #0x16
 	bne _0224A51A
@@ -31204,7 +31204,7 @@ _0224A522:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _0224A5DE
 	ldr r0, [r4, #0x34]
@@ -31214,7 +31214,7 @@ _0224A522:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -31224,13 +31224,13 @@ _0224A522:
 	add r0, r5, #0
 	mov r1, #0xf
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	ldr r0, [sp, #0x24]
 	mov r2, #0x10
 	add r3, r1, #0
 	str r1, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 	mov r0, #0x20
 	add sp, #0x158
 	str r0, [r4, #0x28]
@@ -31275,7 +31275,7 @@ _0224A5C8:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _0224A5DE
 	ldr r0, [r4, #0x34]
@@ -31310,7 +31310,7 @@ _0224A60E:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _0224A716
 	ldr r0, [r4, #0x34]
@@ -31323,9 +31323,9 @@ _0224A60E:
 	lsl r0, r0, #2
 	str r2, [r1, r0]
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp, #0x10]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #0x158
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A63E:
@@ -31381,7 +31381,7 @@ _0224A6A4:
 	ldr r0, [r4, #0x30]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _0224A716
 	ldr r0, [r4, #0x34]
@@ -31394,14 +31394,14 @@ _0224A6A4:
 	lsl r0, r0, #2
 	str r2, [r1, r0]
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp, #0x10]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #0x158
 	pop {r3, r4, r5, r6, r7, pc}
 _0224A6D4:
 	add r0, r5, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _0224A716
 	ldr r0, [r4, #0]
@@ -31413,7 +31413,7 @@ _0224A6D4:
 	ldr r0, [r4, #8]
 	bl FUN_0223783C
 	ldr r0, [sp, #0x24]
-	bl FUN_02007DD4
+	bl sub_02007DD4
 _0224A6F8:
 	ldr r1, [r4, #0]
 	ldr r0, _0224A720 ; =0x00002420
@@ -31425,9 +31425,9 @@ _0224A6F8:
 	lsl r0, r0, #2
 	str r2, [r1, r0]
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp, #0x10]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0224A716:
 	add sp, #0x158
 	pop {r3, r4, r5, r6, r7, pc}
@@ -31464,7 +31464,7 @@ _0224A73E:
 	lsl r0, r0, #6
 	ldrh r0, [r1, r0]
 	mov r1, #8
-	bl FUN_020759F0
+	bl sub_020759F0
 	ldr r1, _0224A954 ; =0x0000311C
 	ldr r2, _0224A958 ; =0x0226E638
 	ldrb r1, [r4, r1]
@@ -31474,7 +31474,7 @@ _0224A73E:
 	add r0, r2, #0
 	ldr r2, _0224A95C ; =0x0226E639
 	ldrb r1, [r2, r1]
-	bl FUN_020E2178
+	bl sub_020E2178
 	str r0, [sp]
 	b _0224A78A
 _0224A776:
@@ -31485,7 +31485,7 @@ _0224A776:
 	lsl r0, r0, #6
 	ldrh r0, [r1, r0]
 	mov r1, #8
-	bl FUN_020759F0
+	bl sub_020759F0
 	str r0, [sp]
 _0224A78A:
 	ldr r1, [r4, #0x6c]
@@ -31629,7 +31629,7 @@ _0224A87E:
 	add r0, r1, #0
 	mul r0, r5
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, _0224A96C ; =0x00002D8C
 	add r2, r4, r7
 	ldr r1, [r2, r1]
@@ -31639,7 +31639,7 @@ _0224A87E:
 	mul r1, r0
 	add r0, r1, #0
 	ldr r1, [sp, #4]
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r1, r0, #0
 	ldr r0, _0224A970 ; =0x00002DAC
 	add r2, r4, r7
@@ -31655,7 +31655,7 @@ _0224A8C4:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r1, r0, #0
 _0224A8D6:
 	cmp r1, #0xff
@@ -31668,7 +31668,7 @@ _0224A8DE:
 	strh r2, [r0]
 	mov r0, #0xff
 	lsl r0, r0, #0x10
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, _0224A978 ; =0x040002B8
 	add r2, r1, #0
 	str r0, [r1, #0]
@@ -31704,7 +31704,7 @@ _0224A91E:
 	ldr r1, _0224A97C ; =0x040002B4
 	ldr r0, _0224A980 ; =0x000FFFF0
 	ldr r1, [r1, #0]
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r7, r0, #0
 	mov r5, #0
 _0224A932:
@@ -32063,7 +32063,7 @@ _0224ABD4:
 _0224ABDA:
 	cmp r5, #0xff
 	bne _0224ABE2
-	bl FUN_02022974
+	bl sub_02022974
 _0224ABE2:
 	add r0, r5, #0
 	add sp, #0x10
@@ -33275,7 +33275,7 @@ ov16_0224B520: ; 0x0224B520
 	add r0, r6, #0
 	add r1, r4, #0
 	add r3, #0xe5
-	bl FUN_0200CBDC
+	bl sub_0200CBDC
 	mov r0, #0x1b
 	str r0, [sp]
 	mov r0, #0x52
@@ -33291,7 +33291,7 @@ ov16_0224B520: ; 0x0224B520
 	str r0, [sp, #0x14]
 	add r0, r7, #0
 	add r3, r4, #0
-	bl FUN_0200CD7C
+	bl sub_0200CD7C
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _0224B7A8 ; =0x00004E2D
@@ -33301,7 +33301,7 @@ ov16_0224B520: ; 0x0224B520
 	add r0, r6, #0
 	add r1, r4, #0
 	add r3, #0xe6
-	bl FUN_0200CE0C
+	bl sub_0200CE0C
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _0224B7A8 ; =0x00004E2D
@@ -33311,15 +33311,15 @@ ov16_0224B520: ; 0x0224B520
 	add r0, r6, #0
 	add r1, r4, #0
 	add r3, #0xe7
-	bl FUN_0200CE3C
+	bl sub_0200CE3C
 	ldr r2, _0224B7AC ; =0x0226E6C4
 	add r0, r6, #0
 	add r1, r4, #0
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	str r0, [r5, #0xc]
-	bl FUN_0200D330
+	bl sub_0200D330
 	ldr r0, [sp, #0x18]
-	bl FUN_02079D80
+	bl sub_02079D80
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -33330,8 +33330,8 @@ ov16_0224B520: ; 0x0224B520
 	str r0, [sp, #8]
 	add r0, r6, #0
 	mov r2, #0x13
-	bl FUN_0200D888
-	bl FUN_02079FD0
+	bl sub_0200D888
+	bl sub_02079FD0
 	mov r1, #0x13
 	str r1, [sp]
 	str r0, [sp, #4]
@@ -33347,8 +33347,8 @@ ov16_0224B520: ; 0x0224B520
 	add r0, r7, #0
 	add r2, r6, #0
 	add r3, r4, #0
-	bl FUN_0200CD7C
-	bl FUN_02079FDC
+	bl sub_0200CD7C
+	bl sub_02079FDC
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -33357,8 +33357,8 @@ ov16_0224B520: ; 0x0224B520
 	str r0, [sp, #4]
 	add r0, r6, #0
 	mov r2, #0x13
-	bl FUN_0200CE0C
-	bl FUN_02079FE8
+	bl sub_0200CE0C
+	bl sub_02079FE8
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -33367,28 +33367,28 @@ ov16_0224B520: ; 0x0224B520
 	str r0, [sp, #4]
 	add r0, r6, #0
 	mov r2, #0x13
-	bl FUN_0200CE3C
+	bl sub_0200CE3C
 	ldr r2, _0224B7BC ; =0x0226E6F8
 	add r0, r6, #0
 	add r1, r4, #0
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	str r0, [r5, #0x10]
 	ldr r0, [sp, #0x18]
-	bl FUN_02079FC4
+	bl sub_02079FC4
 	add r1, r0, #0
 	ldr r0, [r5, #0x10]
 	ldr r0, [r0, #0]
-	bl FUN_02021F24
+	bl sub_02021F24
 	ldr r0, [r5, #0x10]
-	bl FUN_0200D330
+	bl sub_0200D330
 	mov r0, #1
 	mov r1, #5
-	bl FUN_02012744
+	bl sub_02012744
 	str r0, [r5, #0x50]
 	ldr r0, [sp, #0x18]
 	mov r1, #0xb0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0224B688
 	mov r0, #2
@@ -33397,14 +33397,14 @@ _0224B688:
 	ldr r0, [sp, #0x18]
 	mov r1, #0x6f
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 _0224B692:
 	cmp r0, #0
 	bne _0224B6A4
 	mov r1, #0x3b
 	ldr r0, [sp, #0x28]
 	lsl r1, r1, #4
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r6, r0, #0
 	b _0224B6BE
 _0224B6A4:
@@ -33412,25 +33412,25 @@ _0224B6A4:
 	bne _0224B6B4
 	ldr r0, [sp, #0x28]
 	ldr r1, _0224B7C0 ; =0x000003B1
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r6, r0, #0
 	b _0224B6BE
 _0224B6B4:
 	ldr r0, [sp, #0x28]
 	ldr r1, _0224B7C4 ; =0x000003B2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r6, r0, #0
 _0224B6BE:
 	ldr r0, [sp, #0x18]
-	bl FUN_02076B10
+	bl sub_02076B10
 	add r2, r0, #0
 	ldr r0, [sp, #0x24]
 	mov r1, #0
-	bl FUN_0200B5CC
+	bl sub_0200B5CC
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -33438,15 +33438,15 @@ _0224B6BE:
 	ldr r0, [sp, #0x24]
 	mov r3, #3
 	str r1, [sp, #4]
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x20]
 	add r2, r6, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, sp, #0x68
-	bl FUN_0201A7A0
+	bl sub_0201A7A0
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -33454,7 +33454,7 @@ _0224B6BE:
 	add r1, sp, #0x68
 	mov r2, #0xc
 	mov r3, #4
-	bl FUN_0201A870
+	bl sub_0201A870
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0xff
@@ -33465,25 +33465,25 @@ _0224B6BE:
 	add r0, sp, #0x68
 	add r3, r1, #0
 	str r1, [sp, #0xc]
-	bl FUN_0201D78C
+	bl sub_0201D78C
 	add r0, sp, #0x68
 	mov r1, #1
 	mov r2, #5
-	bl FUN_02012898
+	bl sub_02012898
 	mov r1, #1
 	add r2, r1, #0
 	add r3, sp, #0x5c
-	bl FUN_0201ED94
+	bl sub_0201ED94
 	ldr r0, [r5, #0x50]
 	str r0, [sp, #0x2c]
 	add r0, sp, #0x68
 	str r0, [sp, #0x30]
 	add r0, r4, #0
-	bl FUN_0200D9B0
+	bl sub_0200D9B0
 	str r0, [sp, #0x34]
 	ldr r1, _0224B7A4 ; =0x00004E30
 	add r0, r4, #0
-	bl FUN_0200D04C
+	bl sub_0200D04C
 	mov r1, #0
 	str r0, [sp, #0x38]
 	ldr r0, [sp, #0x60]
@@ -33501,7 +33501,7 @@ _0224B6BE:
 	str r0, [sp, #0x58]
 	add r0, sp, #0x2c
 	str r1, [sp, #0x4c]
-	bl FUN_020127E8
+	bl sub_020127E8
 	add r2, r5, #0
 	add r3, sp, #0x5c
 	str r0, [r5, #0x14]
@@ -33512,9 +33512,9 @@ _0224B6BE:
 	mov r1, #1
 	str r0, [r2, #0]
 	ldr r0, [r5, #0x14]
-	bl FUN_02012AC0
+	bl sub_02012AC0
 	add r0, sp, #0x68
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	add sp, #0x78
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -33538,40 +33538,40 @@ ov16_0224B7CC: ; 0x0224B7CC
 	bl ov16_0223E018
 	add r4, r0, #0
 	ldr r0, [r5, #0xc]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, [r5, #0x10]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, [r5, #0x14]
-	bl FUN_02012870
+	bl sub_02012870
 	add r0, r5, #0
 	add r0, #0x18
-	bl FUN_0201EE28
+	bl sub_0201EE28
 	ldr r1, _0224B838 ; =0x00004E35
 	add r0, r4, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _0224B83C ; =0x00004E30
 	add r0, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	ldr r1, _0224B840 ; =0x00004E2D
 	add r0, r4, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, _0224B840 ; =0x00004E2D
 	add r0, r4, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	ldr r1, _0224B844 ; =0x00004E36
 	add r0, r4, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _0224B848 ; =0x00004E31
 	add r0, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	ldr r1, _0224B84C ; =0x00004E2E
 	add r0, r4, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, _0224B84C ; =0x00004E2E
 	add r0, r4, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	ldr r0, [r5, #0x50]
-	bl FUN_020127BC
+	bl sub_020127BC
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0224B838: .word 0x00004E35
@@ -33657,7 +33657,7 @@ _0224B8AC:
 	add r0, r7, #0
 	mov r1, #8
 	lsr r2, r2, #0x10
-	bl FUN_02075C74
+	bl sub_02075C74
 	pop {r3, r4, r5, r6, r7, pc}
 _0224B8F2:
 	add r0, r5, #0
@@ -33667,7 +33667,7 @@ _0224B8F2:
 	add r0, r7, #0
 	mov r1, #6
 	lsr r2, r2, #0x10
-	bl FUN_02075C74
+	bl sub_02075C74
 	pop {r3, r4, r5, r6, r7, pc}
 _0224B908:
 	add r0, r5, #0
@@ -33677,7 +33677,7 @@ _0224B908:
 	add r0, r7, #0
 	mov r1, #6
 	lsr r2, r2, #0x10
-	bl FUN_02075C74
+	bl sub_02075C74
 _0224B91C:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -33711,12 +33711,12 @@ ov16_0224B940: ; 0x0224B940
 	ldr r1, _0224B984 ; =0x00003158
 	add r5, r0, #0
 	mov r0, #5
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	ldr r2, _0224B984 ; =0x00003158
 	mov r0, #0
 	add r1, r4, #0
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	add r0, r4, #0
 	bl ov16_022541C4
 	add r0, r5, #0
@@ -33727,9 +33727,9 @@ ov16_0224B940: ; 0x0224B940
 	bl ov16_02251604
 	ldr r0, _0224B988 ; =0x000003DE
 	add r0, r4, r0
-	bl FUN_020790B0
+	bl sub_020790B0
 	mov r0, #5
-	bl FUN_0207D388
+	bl sub_0207D388
 	ldr r1, _0224B98C ; =0x00002120
 	str r0, [r4, r1]
 	add r0, r4, #0
@@ -33786,9 +33786,9 @@ ov16_0224B9DC: ; 0x0224B9DC
 	add r4, r0, #0
 	ldr r0, _0224B9F0 ; =0x00002120
 	ldr r0, [r4, r0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, pc}
 	; .align 2, 0
 _0224B9F0: .word 0x00002120
@@ -34082,7 +34082,7 @@ _0224BBFC:
 	bne _0224BCF4
 _0224BC08:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _0224BE68 ; =0x00003108
 	ldr r1, [sp, #0x1c]
 	ldrb r1, [r1, r2]
@@ -35384,7 +35384,7 @@ _0224C5FC:
 	ldr r0, _0224C704 ; =0x000021E8
 	ldrb r5, [r1, r0]
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0224C708 ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -36674,7 +36674,7 @@ _0224CFC8:
 	add r1, r4, r1
 	ldrb r5, [r1, r0]
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0224D2FC ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -37356,7 +37356,7 @@ _0224D4FE:
 	mov r6, #0xf1
 	add r0, r5, #0
 	str r1, [r7, r2]
-	bl FUN_020787CC
+	bl sub_020787CC
 	add r3, r6, #0
 	add r3, #0x8f
 	lsl r2, r0, #8
@@ -37380,7 +37380,7 @@ _0224D544:
 	mov r6, #0xf1
 	add r0, r5, #0
 	str r1, [r7, r2]
-	bl FUN_020787CC
+	bl sub_020787CC
 	add r3, r6, #0
 	add r3, #0x8f
 	lsl r2, r0, #8
@@ -38001,7 +38001,7 @@ _0224DA06:
 	ldr r0, _0224DBF8 ; =0x000021EC
 	ldrb r6, [r1, r0]
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0224DBFC ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -38119,7 +38119,7 @@ _0224DAF0:
 	ldr r0, _0224DBF8 ; =0x000021EC
 	ldrb r6, [r1, r0]
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0224DBFC ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -38531,7 +38531,7 @@ _0224DE02:
 	str r0, [r4, r1]
 	b _0224DE26
 _0224DE1C:
-	bl FUN_020787EC
+	bl sub_020787EC
 	mov r1, #0x13
 	lsl r1, r1, #4
 	str r0, [r4, r1]
@@ -38606,12 +38606,12 @@ _0224DE80:
 	ldrh r1, [r6]
 	mov r2, #1
 	mov r3, #5
-	bl FUN_0207D60C
+	bl sub_0207D60C
 	add r0, r7, #0
 	bl ov16_0223E1B0
 	ldrh r1, [r6]
 	ldrb r2, [r6, #2]
-	bl FUN_0207DA1C
+	bl sub_0207DA1C
 _0224DEBA:
 	ldrh r1, [r6]
 	mov r0, #0x4a
@@ -38833,7 +38833,7 @@ ov16_0224E058: ; 0x0224E058
 	add r0, r5, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	mov r0, #0x4e
 	lsl r0, r0, #2
 	str r1, [r4, r0]
@@ -38882,7 +38882,7 @@ ov16_0224E0B8: ; 0x0224E0B8
 	add r0, r5, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	mov r0, #0x4e
 	lsl r0, r0, #2
 	str r1, [r4, r0]
@@ -39007,7 +39007,7 @@ _0224E1B0:
 	pop {r3, r4, r5, r6, r7, pc}
 _0224E1CA:
 	ldr r0, [sp, #0x28]
-	bl FUN_02025F58
+	bl sub_02025F58
 	cmp r0, #8
 	blt _0224E1DA
 	add sp, #0x30
@@ -39016,19 +39016,19 @@ _0224E1CA:
 _0224E1DA:
 	ldr r0, [sp, #0x28]
 	mov r6, #0xa
-	bl FUN_02025F58
+	bl sub_02025F58
 	cmp r0, #2
 	blt _0224E1E8
 	mov r6, #0x1e
 _0224E1E8:
 	ldr r0, [sp, #0x28]
-	bl FUN_02025F58
+	bl sub_02025F58
 	cmp r0, #4
 	blt _0224E1F4
 	mov r6, #0x32
 _0224E1F4:
 	ldr r0, [sp, #0x28]
-	bl FUN_02025F58
+	bl sub_02025F58
 	cmp r0, #6
 	blt _0224E200
 	mov r6, #0x46
@@ -39121,7 +39121,7 @@ _0224E27C:
 	add r1, r4, r0
 	ldr r0, _0224E440 ; =0x000030BC
 	ldrh r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	add r3, r0, #0
 	mov r0, #0
 	mvn r0, r0
@@ -39144,7 +39144,7 @@ _0224E2D0:
 	mov r1, #3
 	and r0, r1
 	str r0, [sp, #0x2c]
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r6
 	bne _0224E2D0
 	ldr r0, [r4, #0x64]
@@ -39507,7 +39507,7 @@ _0224E58A:
 	tst r0, r2
 	bne _0224E5D8
 	add r0, r1, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	add r1, r7, #0
 	sub r1, #0x80
 	ldr r2, [r5, r1]
@@ -39958,7 +39958,7 @@ _0224E916:
 	ldr r0, [sp, #0x18]
 	bl ov16_0223F4BC
 	mov r1, #5
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #0
 	beq _0224E958
 	ldr r0, [sp, #0x1c]
@@ -40421,7 +40421,7 @@ _0224ECC8:
 	and r0, r1
 	beq _0224ED28
 	lsr r0, r0, #0x10
-	bl FUN_020787EC
+	bl sub_020787EC
 	mov r1, #0x46
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -40896,7 +40896,7 @@ _0224F06C:
 	ldr r2, _0224F264 ; =0x0226EAD1
 	ldrb r1, [r2, r1]
 	mul r0, r4
-	bl FUN_020E2178
+	bl sub_020E2178
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	add r0, r5, #0
@@ -40907,7 +40907,7 @@ _0224F06C:
 	mov r0, #0x82
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F09A:
@@ -40945,7 +40945,7 @@ _0224F09A:
 	mov r0, #0x50
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F0EC:
@@ -40965,7 +40965,7 @@ _0224F0EC:
 	mov r0, #0x50
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F116:
@@ -40979,7 +40979,7 @@ _0224F116:
 	mov r0, #6
 	mul r0, r4
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F132:
@@ -40994,7 +40994,7 @@ _0224F132:
 	mov r0, #0x50
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F152:
@@ -41014,7 +41014,7 @@ _0224F152:
 	mov r0, #0x32
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F17C:
@@ -41031,7 +41031,7 @@ _0224F17C:
 	mov r1, #0x64
 	sub r0, r1, r0
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F1A2:
@@ -41049,7 +41049,7 @@ _0224F1A2:
 	add r0, #0x64
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F1CA:
@@ -41064,7 +41064,7 @@ _0224F1CA:
 	add r0, r4, #0
 	mul r0, r6
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F1EA:
@@ -41082,7 +41082,7 @@ _0224F1EA:
 	mov r0, #0x78
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F20E:
@@ -41096,14 +41096,14 @@ _0224F20E:
 	mov r0, #0xa
 	mul r0, r4
 	mov r1, #6
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0224F22A:
 	ldr r0, [sp, #4]
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r0, r1, #1
 	cmp r0, r4
 	ble _0224F246
@@ -42039,7 +42039,7 @@ _0224F91E:
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	blt _0224F940
-	bl FUN_02022974
+	bl sub_02022974
 _0224F940:
 	ldr r1, [r4, #0x64]
 	add r0, r7, #0
@@ -42202,7 +42202,7 @@ _0224FA62:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r0, [sp]
 	cmp r1, r0
 	bge _0224FAA2
@@ -42348,7 +42348,7 @@ _0224FB66:
 	add r1, #0x10
 	str r2, [r0, r1]
 	ldr r0, [r4, #0x64]
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x7b
 	ldr r3, [r4, #0x6c]
 	lsl r1, r1, #2
@@ -42396,7 +42396,7 @@ _0224FBD4:
 	lsl r0, r0, #8
 	str r2, [r1, r0]
 	ldr r0, [r4, #0x64]
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #0x81
 	ldr r3, [r4, #0x6c]
 	lsl r1, r1, #2
@@ -43022,7 +43022,7 @@ _022500C4:
 	add r1, r4, r7
 	ldrb r7, [r1, r0]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02250168 ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -43320,7 +43320,7 @@ _0225030A:
 	ldr r0, _0225042C ; =0x000021EC
 	ldrb r6, [r1, r0]
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02250430 ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -43405,7 +43405,7 @@ _022503BE:
 	ldr r0, _0225042C ; =0x000021EC
 	ldrb r6, [r1, r0]
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02250430 ; =0x00003108
 	ldrb r1, [r4, r1]
 	tst r0, r1
@@ -43463,7 +43463,7 @@ ov16_02250438: ; 0x02250438
 	and r0, r1
 	beq _0225046E
 	lsr r0, r0, #0x1c
-	bl FUN_020787EC
+	bl sub_020787EC
 	str r0, [r4, #0x74]
 	ldr r1, _02250474 ; =0x0000213C
 	ldr r0, _02250478 ; =0x0FFFFFFF
@@ -43868,7 +43868,7 @@ _02250748: .word 0x0000311F
 ov16_0225074C: ; 0x0225074C
 	push {r4, lr}
 	add r4, r1, #0
-	bl FUN_0200F2AC
+	bl sub_0200F2AC
 	cmp r0, #1
 	bne _0225075C
 	mov r0, #0x2b
@@ -43892,14 +43892,14 @@ ov16_02250760: ; 0x02250760
 	mov r1, #0
 	bl ov16_0223DF20
 	add r6, r0, #0
-	bl FUN_020776B0
+	bl sub_020776B0
 	add r0, r6, #0
-	bl FUN_0207782C
+	bl sub_0207782C
 _02250786:
 	cmp r4, #0
 	beq _02250790
 	mov r0, #0x16
-	bl FUN_020360DC
+	bl sub_020360DC
 _02250790:
 	mov r0, #0x2c
 	str r0, [r5, #8]
@@ -44012,7 +44012,7 @@ _02250842:
 	bl ov16_0223DF14
 	add r0, r6, #0
 	add r5, r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _022508BA
 	ldr r0, [sp, #0x2c]
@@ -44024,24 +44024,24 @@ _02250842:
 _0225086E:
 	add r0, r6, #0
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022508AE
 	add r0, r4, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02250A3C ; =0x000001EE
 	cmp r0, r1
 	beq _022508AE
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022508AE
 	ldr r2, [sp, #8]
@@ -44053,14 +44053,14 @@ _0225086E:
 _022508AE:
 	add r0, r6, #0
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0225086E
 _022508BA:
 	cmp r7, #0
 	bne _022508DE
 	ldr r0, [sp, #0x2c]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _02250A44 ; =0x00003108
 	ldr r1, [sp, #4]
 	ldrb r1, [r1, r2]
@@ -44105,42 +44105,42 @@ _022508FA:
 	bl ov16_0223DF14
 	add r0, r6, #0
 	add r5, r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02250962
 _02250924:
 	add r0, r6, #0
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02250956
 	add r0, r4, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02250A3C ; =0x000001EE
 	cmp r0, r1
 	beq _02250956
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r7, r0
 _02250956:
 	add r0, r6, #0
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _02250924
 _02250962:
 	cmp r7, #0
 	bne _02250986
 	ldr r0, [sp, #0x2c]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _02250A44 ; =0x00003108
 	ldr r1, [sp, #4]
 	ldrb r1, [r1, r2]
@@ -44311,35 +44311,35 @@ _02250A7C:
 	bl ov16_0223DF14
 	add r0, r6, #0
 	add r4, r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02250B04
 _02250AC6:
 	add r0, r6, #0
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r5, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02250AF8
 	add r0, r5, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02250D98 ; =0x000001EE
 	cmp r0, r1
 	beq _02250AF8
 	add r0, r5, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r7, r0
 _02250AF8:
 	add r0, r6, #0
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _02250AC6
 _02250B04:
@@ -44391,69 +44391,69 @@ _02250B3A:
 	str r0, [sp, #0x14]
 	add r0, r7, #0
 	add r5, r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02250BAC
 _02250B6E:
 	add r0, r7, #0
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02250BA0
 	add r0, r6, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02250D98 ; =0x000001EE
 	cmp r0, r1
 	beq _02250BA0
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r4, r4, r0
 _02250BA0:
 	add r0, r7, #0
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _02250B6E
 _02250BAC:
 	ldr r0, [sp, #0x18]
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02250BF6
 	ldr r7, _02250D98 ; =0x000001EE
 _02250BBA:
 	ldr r0, [sp, #0x18]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02250BEA
 	add r0, r6, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, r7
 	beq _02250BEA
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r4, r4, r0
 _02250BEA:
 	ldr r0, [sp, #0x18]
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _02250BBA
 _02250BF6:
@@ -44495,35 +44495,35 @@ _02250C20:
 	str r0, [sp, #0x10]
 	add r0, r6, #0
 	add r4, r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02250C8A
 _02250C4C:
 	add r0, r6, #0
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r5, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02250C7E
 	add r0, r5, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02250D98 ; =0x000001EE
 	cmp r0, r1
 	beq _02250C7E
 	add r0, r5, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r7, r0
 _02250C7E:
 	add r0, r6, #0
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _02250C4C
 _02250C8A:
@@ -44640,27 +44640,27 @@ _02250D0E: ; jump table
 	.short _02250D68 - _02250D0E - 2 ; case 40
 _02250D60:
 	ldr r0, _02250D9C ; =0x00000469
-	bl FUN_0200549C
+	bl sub_0200549C
 	b _02250DBC
 _02250D68:
 	ldr r0, _02250DA0 ; =0x000004B3
-	bl FUN_0200549C
+	bl sub_0200549C
 	b _02250DBC
 _02250D70:
 	ldr r0, _02250DA4 ; =0x0000046A
-	bl FUN_0200549C
+	bl sub_0200549C
 	b _02250DBC
 _02250D78:
 	ldr r0, _02250DA8 ; =0x0000046B
-	bl FUN_0200549C
+	bl sub_0200549C
 	b _02250DBC
 _02250D80:
 	ldr r0, _02250DAC ; =0x0000046C
-	bl FUN_0200549C
+	bl sub_0200549C
 	b _02250DBC
 _02250D88:
 	ldr r0, _02250DB0 ; =0x0000046D
-	bl FUN_0200549C
+	bl sub_0200549C
 	b _02250DBC
 _02250D90:
 	ldr r0, _02250DB4 ; =0x00000468
@@ -44676,7 +44676,7 @@ _02250DAC: .word 0x0000046C
 _02250DB0: .word 0x0000046D
 _02250DB4: .word 0x00000468
 _02250DB8:
-	bl FUN_0200549C
+	bl sub_0200549C
 _02250DBC:
 	ldr r0, [sp]
 	mov r1, #2
@@ -44752,7 +44752,7 @@ _02250E2E:
 	ldr r0, [sp]
 	add r1, r6, #0
 	bl ov16_0223E258
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02250E84 ; =0x00003108
 	ldrb r1, [r5, r1]
 	tst r0, r1
@@ -44855,7 +44855,7 @@ ov16_02250EF4: ; 0x02250EF4
 	add r6, r2, #0
 	str r3, [sp, #4]
 	mov r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02250F90 ; =0x0000213C
 	lsl r0, r0, #0x18
 	ldr r2, [r5, r1]
@@ -44873,7 +44873,7 @@ _02250F24:
 	add r4, r4, #1
 	add r0, r5, r4
 	ldrb r0, [r0, r7]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r5, r6]
 	lsl r0, r0, #0x18
 	tst r1, r0
@@ -44887,7 +44887,7 @@ _02250F36:
 	asr r0, r0, #0x18
 	and r1, r3
 	str r1, [r5, r2]
-	bl FUN_020787EC
+	bl sub_020787EC
 	str r0, [r5, #0x74]
 	ldr r0, [sp, #4]
 	cmp r0, #1
@@ -44959,7 +44959,7 @@ _02250FBE:
 	asr r0, r0, #0x1c
 	and r1, r3
 	str r1, [r5, r2]
-	bl FUN_020787EC
+	bl sub_020787EC
 	mov r2, #0x45
 	str r0, [r5, #0x74]
 	add r0, r5, #0
@@ -45426,7 +45426,7 @@ _02251342:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r6
 	bge _02251396
 	ldr r0, _022513A4 ; =0x00003044
@@ -45789,7 +45789,7 @@ ov16_02251604: ; 0x02251604
 	add r1, r1, r2
 	ldr r2, _02251684 ; =0x00001DE0
 	mov r0, #0
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r0, #1
 	tst r0, r4
 	beq _02251678
@@ -45990,41 +45990,41 @@ ov16_0225177C: ; 0x0225177C
 	mov r1, #5
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #0x18]
 	mov r2, #0
 	strh r0, [r1, r5]
 	add r0, r4, #0
 	mov r1, #0xa5
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B34 ; =0x00002D42
 	add r2, r7, r5
 	strh r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B38 ; =0x00002D44
 	add r2, r7, r5
 	strh r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa7
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B3C ; =0x00002D46
 	add r2, r7, r5
 	strh r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa8
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B40 ; =0x00002D48
 	add r2, r7, r5
 	strh r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r1, r7, r5
 	ldr r2, _02251B44 ; =0x00002D4A
 	str r1, [sp, #0xc]
@@ -46038,7 +46038,7 @@ _02251806:
 	add r0, r4, #0
 	add r1, #0x36
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp, #0x14]
 	ldr r1, _02251B48 ; =0x00002D4C
 	strh r0, [r2, r1]
@@ -46046,7 +46046,7 @@ _02251806:
 	add r0, r4, #0
 	add r1, #0x3a
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp, #0x10]
 	ldr r1, _02251B4C ; =0x00002D6C
 	strb r0, [r2, r1]
@@ -46054,7 +46054,7 @@ _02251806:
 	add r0, r4, #0
 	add r1, #0x3e
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp, #0x10]
 	ldr r1, _02251B50 ; =0x00002D70
 	add r6, r6, #1
@@ -46073,7 +46073,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x46
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [r6, r5]
 	mov r2, #0x1f
 	bic r1, r2
@@ -46084,7 +46084,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x47
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x1b
 	ldr r2, [r6, r5]
 	ldr r1, _02251B54 ; =0xFFFFFC1F
@@ -46095,7 +46095,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x48
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x1b
 	ldr r2, [r6, r5]
 	ldr r1, _02251B58 ; =0xFFFF83FF
@@ -46106,7 +46106,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x49
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x1b
 	ldr r2, [r6, r5]
 	ldr r1, _02251B5C ; =0xFFF07FFF
@@ -46117,7 +46117,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x4a
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x1b
 	ldr r2, [r6, r5]
 	ldr r1, _02251B60 ; =0xFE0FFFFF
@@ -46128,7 +46128,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x4b
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x1b
 	ldr r2, [r6, r5]
 	ldr r1, _02251B64 ; =0xC1FFFFFF
@@ -46139,7 +46139,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [r6, r5]
 	ldr r1, _02251B68 ; =0xBFFFFFFF
 	lsl r0, r0, #0x1f
@@ -46150,7 +46150,7 @@ _02251806:
 	add r0, r4, #0
 	mov r1, #0x4d
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [r6, r5]
 	ldr r1, _02251B6C ; =0x7FFFFFFF
 	lsl r0, r0, #0x1f
@@ -46224,14 +46224,14 @@ _02251932:
 	add r0, r4, #0
 	mov r1, #0xb1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B88 ; =0x00002D64
 	add r2, r7, r5
 	strb r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xb2
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B8C ; =0x00002D65
 	add r2, r7, r5
 	strb r0, [r2, r1]
@@ -46239,7 +46239,7 @@ _02251932:
 	add r0, r7, r1
 	str r0, [sp, #0x1c]
 	add r0, r4, #0
-	bl FUN_02075D6C
+	bl sub_02075D6C
 	ldr r1, [sp, #0x1c]
 	mov r2, #0xf
 	ldrb r1, [r1, r5]
@@ -46253,7 +46253,7 @@ _02251932:
 	add r0, r7, r0
 	str r0, [sp, #0x20]
 	add r0, r4, #0
-	bl FUN_02075E0C
+	bl sub_02075E0C
 	ldr r1, [sp, #0x20]
 	lsl r0, r0, #0x1f
 	ldrb r1, [r1, r5]
@@ -46286,14 +46286,14 @@ _02251A12:
 	add r0, r4, #0
 	mov r1, #0xa
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B94 ; =0x00002D67
 	add r2, r7, r5
 	strb r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B98 ; =0x00002DAC
 	add r2, r7, r5
 	str r0, [r2, r1]
@@ -46304,7 +46304,7 @@ _02251A12:
 	add r0, r4, #0
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	strh r0, [r6, r5]
 _02251A46:
 	ldr r0, [sp]
@@ -46329,7 +46329,7 @@ _02251A6E:
 	add r0, r4, #0
 	mov r1, #0x70
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #0x20]
 	mov r2, #0x1f
 	ldrb r1, [r1, r5]
@@ -46349,56 +46349,56 @@ _02251A8E:
 	add r0, r4, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251B9C ; =0x00002D74
 	add r2, r7, r6
 	strb r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BA0 ; =0x00002D75
 	add r2, r7, r6
 	strb r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BA4 ; =0x00002D8C
 	add r2, r7, r6
 	str r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0xa4
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BA8 ; =0x00002D90
 	add r2, r7, r6
 	str r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #8
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BAC ; =0x00002DA4
 	add r2, r7, r6
 	str r0, [r2, r1]
 	mov r1, #0
 	add r0, r4, #0
 	add r2, r1, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BB0 ; =0x00002DA8
 	add r2, r7, r6
 	str r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #7
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BB4 ; =0x00002DB4
 	add r2, r7, r6
 	str r0, [r2, r1]
 	add r0, r4, #0
 	mov r1, #0x9d
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #0x1c]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
@@ -46413,7 +46413,7 @@ _02251A8E:
 	strb r1, [r0, r5]
 	add r0, r4, #0
 	mov r1, #0x9b
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251BB8 ; =0x00002DBF
 	b _02251BBC
 	; .align 2, 0
@@ -46458,36 +46458,36 @@ _02251BBC:
 	ldrb r0, [r0, r5]
 	lsl r0, r0, #0x1b
 	lsr r0, r0, #0x1b
-	bl FUN_02098988
+	bl sub_02098988
 	mov r0, #5
-	bl FUN_02098700
+	bl sub_02098700
 	mov r1, #0
 	mov r2, #5
 	str r0, [sp, #0x24]
-	bl FUN_0209872C
+	bl sub_0209872C
 	ldr r1, [sp, #0x18]
 	ldr r0, [sp, #0x24]
 	ldrh r1, [r1, r5]
-	bl FUN_02098828
+	bl sub_02098828
 	ldr r1, _02251C78 ; =0x00002D60
 	add r2, r7, r6
 	str r0, [r2, r1]
 	ldr r0, [sp, #0x24]
-	bl FUN_020987BC
+	bl sub_020987BC
 	ldr r0, [sp, #0x24]
-	bl FUN_02098718
+	bl sub_02098718
 	ldr r2, _02251C7C ; =0x00002D76
 	add r0, r4, #0
 	add r2, r7, r2
 	mov r1, #0x75
 	add r2, r2, r6
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, _02251C80 ; =0x00002D94
 	add r0, r4, #0
 	add r2, r7, r2
 	mov r1, #0x90
 	add r2, r2, r6
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r0, _02251C84 ; =0x00002DBC
 	mov r2, #0
 	add r1, r7, r6
@@ -46502,7 +46502,7 @@ _02251BBC:
 	add r1, r7, r0
 	ldr r0, _02251C88 ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	lsl r1, r4, #3
 	add r2, r7, r1
 	mov r1, #0x71
@@ -46563,7 +46563,7 @@ ov16_02251C94: ; 0x02251C94
 	mov r1, #0xa5
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46572,7 +46572,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46581,7 +46581,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa7
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46590,7 +46590,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa8
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46599,7 +46599,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46608,7 +46608,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46617,7 +46617,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46626,7 +46626,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46635,7 +46635,7 @@ ov16_02251C94: ; 0x02251C94
 	add r0, r6, #0
 	mov r1, #0xa4
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46661,7 +46661,7 @@ ov16_02251C94: ; 0x02251C94
 	str r0, [sp, #0xc]
 _02251D82:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, [sp, #0xc]
 	ldr r1, [sp, #8]
 	ldr r1, [r2, r1]
@@ -46673,21 +46673,21 @@ _02251D82:
 	add r0, r6, #0
 	add r1, #0x36
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251E0C ; =0x00002D4C
 	mov r2, #0
 	strh r0, [r7, r1]
 	add r1, r4, #0
 	add r0, r6, #0
 	add r1, #0x3a
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251E10 ; =0x00002D6C
 	mov r2, #0
 	strb r0, [r5, r1]
 	add r1, r4, #0
 	add r0, r6, #0
 	add r1, #0x3e
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _02251E14 ; =0x00002D70
 	strb r0, [r5, r1]
 _02251DC6:
@@ -46699,7 +46699,7 @@ _02251DC6:
 	add r0, r6, #0
 	mov r1, #8
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r2, r2, r1
@@ -46732,12 +46732,12 @@ ov16_02251E1C: ; 0x02251E1C
 	add r5, r0, #0
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_02006B58
+	bl sub_02006B58
 	mov r1, #0x19
 	lsl r1, r1, #6
 	cmp r0, r1
 	blo _02251E38
-	bl FUN_02022974
+	bl sub_02022974
 _02251E38:
 	add r0, r5, #0
 	add r0, #0xac
@@ -46754,7 +46754,7 @@ _02251E38:
 	add r0, r5, r0
 	add r1, r4, #0
 	add r2, r6, #0
-	bl FUN_02006AA4
+	bl sub_02006AA4
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_02251E1C
 
@@ -46766,19 +46766,19 @@ ov16_02251E5C: ; 0x02251E5C
 	add r5, r0, #0
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_02006B58
+	bl sub_02006B58
 	mov r1, #0x19
 	lsl r1, r1, #6
 	cmp r0, r1
 	blo _02251E78
-	bl FUN_02022974
+	bl sub_02022974
 _02251E78:
 	add r0, r5, #0
 	add r0, #0xb8
 	ldr r0, [r0, #0]
 	cmp r0, #4
 	blt _02251E86
-	bl FUN_02022974
+	bl sub_02022974
 _02251E86:
 	add r1, r5, #0
 	add r1, #0xb8
@@ -46832,7 +46832,7 @@ _02251E86:
 	lsl r0, r0, #8
 	add r0, r5, r0
 	add r1, r4, #0
-	bl FUN_02006AA4
+	bl sub_02006AA4
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_02251E5C
 
@@ -46911,7 +46911,7 @@ _02251F6C:
 _02251F74:
 	cmp r3, #0x10
 	blt _02251F7C
-	bl FUN_02022974
+	bl sub_02022974
 _02251F7C:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -46925,7 +46925,7 @@ ov16_02251F80: ; 0x02251F80
 	str r2, [sp]
 	add r4, r3, #0
 	bne _02251F90
-	bl FUN_02022974
+	bl sub_02022974
 _02251F90:
 	ldr r0, [sp]
 	lsl r6, r5, #6
@@ -46955,7 +46955,7 @@ _02251FB6:
 _02251FBE:
 	cmp r2, #0x10
 	blt _02251FC6
-	bl FUN_02022974
+	bl sub_02022974
 _02251FC6:
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_02251F80
@@ -47022,7 +47022,7 @@ ov16_0225201C: ; 0x0225201C
 	cmp r1, r0
 	ble _02252034
 	mov r0, #1
-	bl FUN_02038AE0
+	bl sub_02038AE0
 _02252034:
 	pop {r3, pc}
 	nop
@@ -47281,7 +47281,7 @@ _022521EA:
 	add r1, #0x30
 	ldrh r0, [r0, #0xc]
 	ldrb r1, [r1]
-	bl FUN_020790DC
+	bl sub_020790DC
 	pop {r4, r5, r6, pc}
 _022521FE:
 	add r4, #0x34
@@ -47306,7 +47306,7 @@ _0225221C:
 	add r4, #0x36
 	add r0, r3, #0
 	add r1, r4, #0
-	bl FUN_02023D28
+	bl sub_02023D28
 	b _022523E2
 _02252228:
 	ldr r0, [r4, #0x4c]
@@ -47581,7 +47581,7 @@ _022523D4:
 	bl ov16_02252060
 	pop {r4, r5, r6, pc}
 _022523DE:
-	bl FUN_02022974
+	bl sub_02022974
 _022523E2:
 	mov r0, #0
 	pop {r4, r5, r6, pc}
@@ -47884,7 +47884,7 @@ _022525F4:
 	strb r1, [r0]
 	pop {r4, r5, r6, pc}
 _02252600:
-	bl FUN_02022974
+	bl sub_02022974
 	pop {r4, r5, r6, pc}
 _02252606:
 	ldrb r0, [r3]
@@ -48432,7 +48432,7 @@ _022529F4:
 	bl ov16_022523E8
 	pop {r4, r5, r6, pc}
 _022529FE:
-	bl FUN_02022974
+	bl sub_02022974
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _02252A04: .word 0xF87FFFFF
@@ -48696,7 +48696,7 @@ _02252BD6:
 	add r1, #0x30
 	ldrh r0, [r0, #0xc]
 	ldrb r1, [r1]
-	bl FUN_020790DC
+	bl sub_020790DC
 	add r4, #0x2c
 	ldrb r1, [r4, r6]
 	add r1, r5, r1
@@ -49063,7 +49063,7 @@ _02252E60:
 	strb r0, [r4]
 	pop {r4, r5, r6, pc}
 _02252E82:
-	bl FUN_02022974
+	bl sub_02022974
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _02252E88: .word 0xFFFFFC1F
@@ -49231,7 +49231,7 @@ _02252FDA:
 	mul r0, r2
 	ldr r2, _022531D4 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r6, r0, #0
 	ldr r0, [sp, #0x14]
 	lsl r1, r7, #1
@@ -49243,7 +49243,7 @@ _02252FDA:
 	mul r0, r2
 	ldr r2, _022531D4 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r4, r0, #0
 	mov r0, #0xd
 	str r0, [sp]
@@ -49339,7 +49339,7 @@ _022530B2:
 	mov r0, #0xf
 	mul r0, r6
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r6, r0, #0
 _022530C4:
 	ldr r0, [sp, #0x58]
@@ -49367,7 +49367,7 @@ _022530DA:
 	mov r0, #0xf
 	mul r0, r6
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r6, r0, #0
 	b _0225310C
 _022530FC:
@@ -49430,14 +49430,14 @@ _02253162:
 	bne _022531A0
 	ldr r1, [sp, #0x54]
 	mov r0, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #0
 	ldr r0, [sp, #8]
 	lsl r0, r0, #1
 	add r2, r5, r0
 	ldr r0, _022531EC ; =0x0000310C
 	ldrh r0, [r2, r0]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #0
 	bne _022531A0
 	mov r0, #1
@@ -49490,7 +49490,7 @@ _022531F4:
 	add r1, r5, r1
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #0x54]
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r2, [sp, #0x68]
 	ldr r1, [sp, #0x18]
 	ldr r1, [r2, r1]
@@ -49549,7 +49549,7 @@ _0225325E:
 	mov r0, #0xf
 	mul r0, r4
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r4, r0, #0
 _02253270:
 	ldr r0, [sp, #0x50]
@@ -49577,7 +49577,7 @@ _02253286:
 	mov r0, #0xf
 	mul r0, r4
 	mov r1, #0xa
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r4, r0, #0
 	b _022532B8
 _022532A8:
@@ -49640,14 +49640,14 @@ _0225330E:
 	bne _0225334C
 	ldr r1, [sp, #0x4c]
 	mov r0, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #0
 	ldr r0, [sp, #0xc]
 	lsl r0, r0, #1
 	add r2, r5, r0
 	ldr r0, _02253500 ; =0x0000310C
 	ldrh r0, [r2, r0]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #0
 	bne _0225334C
 	mov r0, #1
@@ -49686,7 +49686,7 @@ _02253366:
 	add r1, r5, r7
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #0x4c]
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, _02253508 ; =0x00002D8C
 	add r2, r5, r7
 	ldr r2, [r2, r1]
@@ -50040,13 +50040,13 @@ ov16_022535F0: ; 0x022535F0
 	add r6, #0xa4
 _02253616:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02253660 ; =0x00003108
 	ldrb r1, [r5, r1]
 	tst r0, r1
 	bne _0225364C
 	ldr r0, [sp]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02253660 ; =0x00003108
 	ldrb r1, [r5, r1]
 	tst r0, r1
@@ -50059,7 +50059,7 @@ _02253616:
 	ldr r0, _02253668 ; =0x0000219C
 	add r1, r5, r4
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r6, #0]
 	orr r0, r1
 	str r0, [r6, #0]
@@ -50301,12 +50301,12 @@ _02253810:
 _0225381A:
 	cmp r6, #0
 	bne _02253822
-	bl FUN_02022974
+	bl sub_02022974
 _02253822:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r6
 	bge _0225383E
 	ldr r1, _02253948 ; =0x0000213C
@@ -50371,12 +50371,12 @@ _0225389A:
 _022538A4:
 	cmp r7, #0
 	bne _022538AC
-	bl FUN_02022974
+	bl sub_02022974
 _022538AC:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r7
 	bge _0225392A
 	ldr r2, _02253930 ; =0x00002174
@@ -51370,7 +51370,7 @@ _02254028:
 	ldr r0, [sp, #8]
 	mov r1, #0xd
 	mov r2, #5
-	bl FUN_02079280
+	bl sub_02079280
 	cmp r0, #0
 	beq _02254064
 	mov r1, #0x85
@@ -51408,7 +51408,7 @@ _0225406C:
 	ldr r0, [sp, #8]
 	mov r1, #0xe
 	mov r2, #5
-	bl FUN_02079280
+	bl sub_02079280
 	cmp r0, #0
 	beq _022540AC
 	ldr r1, _022541BC ; =0x00002E7D
@@ -51440,23 +51440,23 @@ _022540B4:
 	mov r6, #0
 	add r5, r0, #0
 	add r4, r6, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _022540F6
 _022540D4:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022540EA
 	add r6, r6, #1
 _022540EA:
 	add r0, r5, #0
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _022540D4
 _022540F6:
@@ -51465,7 +51465,7 @@ _022540F6:
 	ldr r0, [sp, #8]
 	mov r1, #0xf
 	mov r2, #5
-	bl FUN_02079280
+	bl sub_02079280
 	cmp r0, #0
 	beq _02254120
 	ldr r1, _022541BC ; =0x00002E7D
@@ -51497,23 +51497,23 @@ _02254128:
 	mov r6, #0
 	add r5, r0, #0
 	add r4, r6, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0225416A
 _02254148:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0225415E
 	add r6, r6, #1
 _0225415E:
 	add r0, r5, #0
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _02254148
 _0225416A:
@@ -51529,7 +51529,7 @@ _0225416A:
 	ldr r0, [sp, #8]
 	mov r1, #0x10
 	mov r2, #5
-	bl FUN_02079280
+	bl sub_02079280
 	cmp r0, #0
 	beq _022541A2
 	ldr r1, _022541BC ; =0x00002E7D
@@ -51667,7 +51667,7 @@ _02254288:
 	mov r0, #0
 	add r1, r6, #0
 	mov r2, #0x1c
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	add r1, r5, r4
 	ldr r0, _022542B4 ; =0x000021A4
 	add r4, r4, #1
@@ -51719,13 +51719,13 @@ _022542C2:
 	tst r0, r1
 	bne _02254316
 	add r0, r1, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02254334 ; =0x00003108
 	ldrb r2, [r6, r1]
 	orr r0, r2
 	strb r0, [r6, r1]
 	mov r0, #3
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _02254334 ; =0x00003108
 	ldrb r2, [r6, r1]
 	orr r0, r2
@@ -51934,14 +51934,14 @@ _0225448E:
 	add r7, r0, r1
 _0225449E:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0225468C ; =0x00002DB0
 	lsl r0, r0, #0x10
 	ldr r1, [r5, r1]
 	tst r0, r1
 	beq _022544C6
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0225468C ; =0x00002DB0
 	lsl r2, r0, #0x10
 	mov r0, #0
@@ -52156,7 +52156,7 @@ _022545AE:
 	add r0, #0x80
 	strh r3, [r2, r0]
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #6
 	lsl r3, r0, #8
 	mov r0, #0
@@ -52321,14 +52321,14 @@ _02254792:
 	str r1, [r4, r0]
 _022547B4:
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0225496C ; =0x00002DB0
 	lsl r0, r0, #0x10
 	ldr r1, [r4, r1]
 	tst r0, r1
 	beq _022547DC
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, _0225496C ; =0x00002DB0
 	lsl r2, r0, #0x10
 	mov r0, #0
@@ -52469,7 +52469,7 @@ _0225482E:
 	add r0, #0x80
 	strh r4, [r2, r0]
 	add r0, r5, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	mov r1, #6
 	lsl r3, r0, #8
 	mov r0, #0
@@ -52572,11 +52572,11 @@ _022549AE:
 	mov r0, #0
 	add r1, r7, #0
 	mov r2, #0x40
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	mov r0, #0
 	add r1, r6, #0
 	mov r2, #4
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	ldr r0, _02254A58 ; =0x00002DB0
 	ldr r1, [r4, r0]
 	ldr r0, [sp, #8]
@@ -52756,7 +52756,7 @@ _02254B14:
 	cmp r0, #0
 	beq _02254B2A
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254B2A:
 	ldr r1, [sp, #0x30]
@@ -52768,7 +52768,7 @@ _02254B2A:
 	cmp r0, #0
 	beq _02254B42
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254B42:
 	ldr r0, [sp, #0x44]
@@ -52781,7 +52781,7 @@ _02254B42:
 	cmp r0, #0
 	beq _02254B5C
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254B5C:
 	ldr r1, [sp, #0x20]
@@ -52801,7 +52801,7 @@ _02254B5C:
 	tst r0, r1
 	beq _02254B84
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254B84:
 	ldr r1, [sp, #0x3c]
@@ -52822,7 +52822,7 @@ _02254B84:
 	cmp r0, #0
 	bne _02254BAE
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254BAE:
 	ldr r3, _02254C98 ; =0x00002D4C
@@ -52837,7 +52837,7 @@ _02254BAE:
 	cmp r0, #0
 	beq _02254BCE
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254BCE:
 	ldr r3, _02254C98 ; =0x00002D4C
@@ -52852,7 +52852,7 @@ _02254BCE:
 	cmp r0, #0
 	beq _02254BEE
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254BEE:
 	ldr r3, _02254C98 ; =0x00002D4C
@@ -52867,7 +52867,7 @@ _02254BEE:
 	cmp r0, #0
 	beq _02254C0E
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254C0E:
 	ldr r0, [sp, #0x4c]
@@ -52879,7 +52879,7 @@ _02254C0E:
 	cmp r1, r0
 	beq _02254C26
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254C26:
 	ldr r0, [sp, #0x34]
@@ -52915,7 +52915,7 @@ _02254C54:
 	cmp r1, r0
 	beq _02254C6C
 	add r0, r6, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02254C6C:
 	ldr r0, [sp, #0x30]
@@ -52959,7 +52959,7 @@ ov16_02254CA8: ; 0x02254CA8
 	bl ov16_02254A6C
 	str r0, [sp, #0xc]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0xc]
 	tst r0, r1
 	beq _02254CFA
@@ -52992,7 +52992,7 @@ _02254CFA:
 	bl ov16_02254A6C
 	str r0, [sp, #0x10]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x10]
 	tst r0, r1
 	beq _02254D32
@@ -53018,7 +53018,7 @@ _02254D32:
 	bl ov16_02254A6C
 	str r0, [sp, #0x14]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x14]
 	tst r0, r1
 	beq _02254D78
@@ -53051,7 +53051,7 @@ _02254D78:
 	bl ov16_02254A6C
 	str r0, [sp, #0x18]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x18]
 	tst r0, r1
 	beq _02254DC0
@@ -53085,7 +53085,7 @@ _02254DC0:
 	bl ov16_02254A6C
 	str r0, [sp, #0x1c]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x1c]
 	tst r0, r1
 	beq _02254E06
@@ -53118,7 +53118,7 @@ _02254E06:
 	bl ov16_02254A6C
 	str r0, [sp, #0x20]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x20]
 	tst r0, r1
 	beq _02254E50
@@ -53154,7 +53154,7 @@ _02254E50:
 	bl ov16_02254A6C
 	str r0, [sp, #0x24]
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x24]
 	tst r0, r1
 	beq _02254E90
@@ -53184,7 +53184,7 @@ _02254E90:
 	bl ov16_02254A6C
 	add r5, r0, #0
 	add r0, r7, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	tst r0, r5
 	beq _02254EB6
 	mov r0, #0
@@ -53430,7 +53430,7 @@ _0225507A:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x50]
 _02255088:
 	add r0, r5, #0
@@ -53678,7 +53678,7 @@ _02255266:
 	str r0, [sp, #0x1c]
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x50]
 _0225527E:
 	ldr r0, [sp, #0x54]
@@ -54325,7 +54325,7 @@ _022556F6:
 	cmp r6, r0
 	bne _0225572C
 	ldr r0, [sp, #0x18]
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r4, r0
 _0225572C:
 	ldr r0, [sp, #0x38]
@@ -54538,7 +54538,7 @@ ov16_0225588C: ; 0x0225588C
 	blo _022558A4
 	bl ov16_0223F4BC
 	mov r1, #0x70
-	bl FUN_020E2178
+	bl sub_020E2178
 	mov r2, #0
 _022558A4:
 	lsl r0, r1, #1
@@ -54580,7 +54580,7 @@ _022558D8:
 	ldrb r0, [r4, #2]
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #0
 _022558F2:
 	cmp r6, r7
@@ -54590,7 +54590,7 @@ _022558F2:
 	ldrb r0, [r4, #2]
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #0
 _02255906:
 	add r4, r4, #3
@@ -54685,7 +54685,7 @@ ov16_02255980: ; 0x02255980
 	ldr r0, _022559D8 ; =0x0000219C
 	add r1, r5, r6
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp]
 	lsl r1, r1, #3
 	add r2, r5, r1
@@ -54698,7 +54698,7 @@ ov16_02255980: ; 0x02255980
 	bne _022559CE
 	ldr r0, [sp, #4]
 	ldrh r0, [r4, r0]
-	bl FUN_0207D2D0
+	bl sub_0207D2D0
 	cmp r0, #0
 	bne _022559CE
 	mov r7, #1
@@ -54719,7 +54719,7 @@ ov16_022559DC: ; 0x022559DC
 	add r1, r0, r2
 	ldr r0, _022559F8 ; =0x00002DB8
 	ldrh r0, [r1, r0]
-	bl FUN_0207D2D0
+	bl sub_0207D2D0
 	cmp r0, #0
 	bne _022559F4
 	mov r0, #1
@@ -54962,23 +54962,23 @@ _02255BA2:
 _02255BA6:
 	ldr r0, [sp, #0x14]
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02255BE6
 	add r0, r4, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _02255BE6
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02255BE6
 	ldr r0, [sp, #0xc]
@@ -55313,7 +55313,7 @@ _02255E4C:
 	cmp r2, r1
 	bhs _02255E96
 	lsl r0, r2, #7
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, _02255EBC ; =0x0000311E
 	ldrb r2, [r5, r1]
 	mov r1, #0x1e
@@ -56004,7 +56004,7 @@ _0225634C:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #3
 	bge _022563CE
 	ldr r0, [sp, #8]
@@ -56087,7 +56087,7 @@ ov16_022563F8: ; 0x022563F8
 _02256406:
 	mov r4, #1
 _02256408:
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r0, #0
 	bne _02256412
 	add r0, r4, #0
@@ -56619,7 +56619,7 @@ _022567CC:
 	ldr r0, _02256AA0 ; =0x0226EBE0
 	ldrb r0, [r0, r2]
 	mul r0, r3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, [sp, #0x78]
 	add r0, r1, r0
 	str r0, [sp, #0x78]
@@ -56634,7 +56634,7 @@ _022567CC:
 	ldr r0, _02256AA0 ; =0x0226EBE0
 	ldrb r0, [r0, r2]
 	mul r0, r3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, [sp, #0x74]
 	add r0, r1, r0
 	str r0, [sp, #0x74]
@@ -57099,7 +57099,7 @@ _02256B8C:
 	add r0, r6, #0
 	bl ov16_0223F4BC
 	add r1, r4, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	mov r0, #0xc0
 	add r2, r7, #0
 	mul r2, r0
@@ -57866,7 +57866,7 @@ _0225714A:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #3
 	bge _022571D8
 	add r0, r5, #0
@@ -58107,13 +58107,13 @@ _02257320:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #3
 	bge _022573EC
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #0
 	beq _0225735A
 	cmp r1, #1
@@ -58218,7 +58218,7 @@ _02257408:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #3
 	bge _022574FE
 	add r0, r5, #0
@@ -58293,7 +58293,7 @@ _0225749E:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #3
 	bge _022574FE
 	add r0, r5, #0
@@ -58380,7 +58380,7 @@ _0225753A:
 	add r0, r7, #0
 	bl ov16_0223F4BC
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #3
 	bge _0225760A
 	add r0, r5, #0
@@ -59269,7 +59269,7 @@ _02257BD4:
 	str r1, [r4, r0]
 	ldr r0, _02257CE0 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -59303,7 +59303,7 @@ _02257C1E:
 	str r1, [r4, r0]
 	ldr r0, _02257CE0 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -59334,7 +59334,7 @@ _02257C4E:
 	str r1, [r4, r0]
 	ldr r0, _02257CE0 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -59365,7 +59365,7 @@ _02257C8A:
 	str r1, [r4, r0]
 	ldr r0, _02257CE0 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -59404,7 +59404,7 @@ _02257CE4:
 	str r1, [r4, r0]
 	ldr r0, _02257FE0 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -59434,7 +59434,7 @@ _02257D32:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59471,7 +59471,7 @@ _02257D78:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59506,7 +59506,7 @@ _02257DBE:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59541,7 +59541,7 @@ _02257E04:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59576,7 +59576,7 @@ _02257E4A:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59614,7 +59614,7 @@ _02257E92:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59647,7 +59647,7 @@ _02257ED4:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -59673,7 +59673,7 @@ _02257F0C:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r7, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r0, r5, r1
 	ldrsb r0, [r0, r6]
 	cmp r0, #0xc
@@ -59741,7 +59741,7 @@ _02257F86:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60300,7 +60300,7 @@ _022583C2:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60331,7 +60331,7 @@ _022583F4:
 	str r1, [r4, r0]
 	ldr r0, _0225844C ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -60374,7 +60374,7 @@ _02258450:
 	str r1, [r4, r0]
 	ldr r0, _02258744 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -60406,7 +60406,7 @@ _0225848E:
 	str r1, [r4, r0]
 	ldr r0, _02258744 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -60438,7 +60438,7 @@ _022584CC:
 	str r1, [r4, r0]
 	ldr r0, _02258744 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -60473,7 +60473,7 @@ _02258518:
 	str r1, [r4, r0]
 	ldr r0, _02258744 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -60504,7 +60504,7 @@ _0225855C:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60539,7 +60539,7 @@ _022585A2:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60575,7 +60575,7 @@ _022585EA:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60611,7 +60611,7 @@ _02258632:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60650,7 +60650,7 @@ _0225867C:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60686,7 +60686,7 @@ _022586C4:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60720,7 +60720,7 @@ _02258708:
 	add r1, r4, r1
 	ldr r0, [r1, r0]
 	add r1, r7, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	ldr r1, [sp, #0x14]
 	ldr r1, [r1, r5]
 	cmp r1, r0
@@ -60757,7 +60757,7 @@ _02258766:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	mov r1, #5
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r0, r5, r1
 	ldrsb r0, [r0, r7]
 	cmp r0, #0xc
@@ -61003,7 +61003,7 @@ _0225891A:
 	add r1, r5, r0
 	ldr r0, _02258A9C ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #8]
 	lsl r1, r1, #3
 	add r2, r5, r1
@@ -61651,7 +61651,7 @@ _02258DF0:
 	add r2, r5, r1
 	ldr r1, _02259040 ; =0x00002D70
 	ldrb r1, [r2, r1]
-	bl FUN_020790DC
+	bl sub_020790DC
 	add r1, r4, r7
 	add r2, r5, r1
 	ldr r1, _02259044 ; =0x00002D6C
@@ -61791,7 +61791,7 @@ _02258EDE:
 	add r2, r4, r0
 	ldr r0, _0225904C ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r6, #1
 	cmp r0, r1
 	bne _02258F1E
@@ -61827,7 +61827,7 @@ _02258F24:
 	add r2, r4, r0
 	ldr r0, _0225904C ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r6, #1
 	cmp r0, r1
 	bne _02258F64
@@ -61863,7 +61863,7 @@ _02258F6A:
 	add r2, r4, r0
 	ldr r0, _0225904C ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r6, #1
 	cmp r0, r1
 	bne _02258FAA
@@ -61899,7 +61899,7 @@ _02258FB0:
 	add r2, r4, r0
 	ldr r0, _0225904C ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r6, #1
 	cmp r0, r1
 	bne _02258FF0
@@ -61948,7 +61948,7 @@ _02259048: .word 0x00002DB0
 _0225904C: .word 0x00002DA8
 _02259050:
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r6, #1
 	cmp r0, r1
 	bne _02259060
@@ -62069,7 +62069,7 @@ _02259120:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r7, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r0, [r4, #0x64]
 	add r2, r0, #0
 	mul r2, r6
@@ -62112,7 +62112,7 @@ _0225916A:
 	ldr r0, _02259200 ; =0x00002DB8
 	add r1, r4, r1
 	ldrh r0, [r1, r0]
-	bl FUN_0207D324
+	bl sub_0207D324
 	cmp r0, #1
 	bne _02259180
 	mov r6, #1
@@ -62363,7 +62363,7 @@ _02259342:
 	add r2, r6, r1
 	ldr r1, _02259574 ; =0x00002D70
 	ldrb r1, [r2, r1]
-	bl FUN_020790DC
+	bl sub_020790DC
 	ldr r1, [sp, #8]
 	add r1, r4, r1
 	add r2, r6, r1
@@ -62556,7 +62556,7 @@ _0225949E:
 	add r2, r4, r0
 	ldr r0, _02259580 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r5, #1
 	cmp r0, r1
 	ldr r0, _0225955C ; =0x00003118
@@ -62589,7 +62589,7 @@ _022594E0:
 	add r2, r4, r0
 	ldr r0, _02259580 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r5, #1
 	cmp r0, r1
 	ldr r0, _0225955C ; =0x00003118
@@ -62622,7 +62622,7 @@ _02259522:
 	add r2, r4, r0
 	ldr r0, _02259580 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r5, #1
 	cmp r0, r1
 	ldr r0, _0225955C ; =0x00003118
@@ -62669,7 +62669,7 @@ _02259592:
 	add r2, r4, r0
 	ldr r0, _02259840 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r5, #1
 	cmp r0, r1
 	ldr r0, _02259844 ; =0x00003118
@@ -62702,7 +62702,7 @@ _022595D4:
 	add r2, r4, r0
 	ldr r0, _02259840 ; =0x00002DA8
 	ldr r0, [r2, r0]
-	bl FUN_02077648
+	bl sub_02077648
 	sub r1, r5, #1
 	cmp r0, r1
 	ldr r0, _02259844 ; =0x00003118
@@ -62921,7 +62921,7 @@ _02259788:
 	ldr r0, [sp]
 	bl ov16_0223F4BC
 	add r1, r7, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r0, [r4, #0x6c]
 	add r2, r0, #0
 	mul r2, r6
@@ -63238,7 +63238,7 @@ _022599E4:
 	lsr r1, r1, #0x10
 	mov r2, #0x30
 	mov r6, #0
-	bl FUN_0208C104
+	bl sub_0208C104
 	ldr r1, _02259A24 ; =0x00002DAC
 	add r2, r5, r4
 	ldr r1, [r2, r1]
@@ -63316,7 +63316,7 @@ ov16_02259A5C: ; 0x02259A5C
 	add r0, r6, #0
 	mov r1, #0x9b
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r2, r0, #0
 	b _02259A9E
 _02259A9A:
@@ -63329,7 +63329,7 @@ _02259A9E:
 	ldr r1, [sp, #0xc]
 	ldr r3, [sp, #8]
 	add r0, r6, #0
-	bl FUN_02077E64
+	bl sub_02077E64
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -63371,13 +63371,13 @@ ov16_02259ADC: ; 0x02259ADC
 	mov r1, #0
 	bl ov16_0223E16C
 	add r4, r0, #0
-	bl FUN_02025F20
+	bl sub_02025F20
 	add r6, r0, #0
 	add r0, r4, #0
-	bl FUN_02025F30
+	bl sub_02025F30
 	add r7, r0, #0
 	add r0, r4, #0
-	bl FUN_02025EF0
+	bl sub_02025EF0
 	ldr r2, [r5, #0x64]
 	mov r1, #0xc0
 	add r4, r2, #0
@@ -63398,7 +63398,7 @@ ov16_02259ADC: ; 0x02259ADC
 	add r1, r5, r1
 	add r1, r1, r4
 	mov r2, #7
-	bl FUN_02002238
+	bl sub_02002238
 	cmp r0, #0
 	bne _02259B30
 	mov r0, #1
@@ -63418,34 +63418,34 @@ ov16_02259B38: ; 0x02259B38
 	mov r1, #0
 	bl ov16_0223E16C
 	add r4, r0, #0
-	bl FUN_02025F20
+	bl sub_02025F20
 	add r6, r0, #0
 	add r0, r4, #0
-	bl FUN_02025F30
+	bl sub_02025F30
 	add r7, r0, #0
 	add r0, r4, #0
-	bl FUN_02025EF0
+	bl sub_02025EF0
 	add r4, r0, #0
 	add r0, r5, #0
 	mov r1, #0x90
 	add r2, sp, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r0, r5, #0
 	mov r1, #7
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r6, r0
 	bne _02259B96
 	add r0, r5, #0
 	mov r1, #0x9d
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r7, r0
 	bne _02259B96
 	add r0, r4, #0
 	add r1, sp, #0
 	mov r2, #7
-	bl FUN_02002238
+	bl sub_02002238
 	cmp r0, #0
 	bne _02259B96
 	add sp, #0x10
@@ -63948,10 +63948,10 @@ _02259F26:
 	mov r2, #5
 	ldrh r0, [r1, r0]
 	mov r1, #1
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
-	bl FUN_02077988
+	bl sub_02077988
 	mov r1, #0x46
 	lsl r1, r1, #2
 	ldr r1, [r5, r1]
@@ -64036,7 +64036,7 @@ _0225A002:
 	b _0225A150
 _0225A012:
 	mov r0, #5
-	bl FUN_02073C74
+	bl sub_02073C74
 	add r4, r0, #0
 	add r0, r7, #0
 	bl ov16_0223DF0C
@@ -64064,25 +64064,25 @@ _0225A040:
 	add r0, r7, #0
 	bl ov16_0223DFAC
 	add r1, r4, #0
-	bl FUN_020775EC
+	bl sub_020775EC
 	mov r0, #0
 	str r0, [sp, #0xc]
 	add r0, r4, #0
 	mov r1, #6
 	add r2, sp, #0xc
-	bl FUN_02074B30
+	bl sub_02074B30
 	mov r0, #0
 	str r0, [sp, #0xc]
 	add r0, r4, #0
 	mov r1, #0x70
 	add r2, sp, #0xc
-	bl FUN_02074B30
+	bl sub_02074B30
 	add r0, r4, #0
-	bl FUN_02077A00
+	bl sub_02077A00
 	add r0, r4, #0
 	mov r1, #0xa5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x46
 	lsl r1, r1, #2
 	ldr r2, [r5, r1]
@@ -64094,7 +64094,7 @@ _0225A040:
 	add r0, r4, #0
 	mov r1, #0xa6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x46
 	lsl r1, r1, #2
 	ldr r2, [r5, r1]
@@ -64106,7 +64106,7 @@ _0225A040:
 	add r0, r4, #0
 	mov r1, #0xa7
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x46
 	lsl r1, r1, #2
 	ldr r2, [r5, r1]
@@ -64118,7 +64118,7 @@ _0225A040:
 	add r0, r4, #0
 	mov r1, #0xa8
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x46
 	lsl r1, r1, #2
 	ldr r2, [r5, r1]
@@ -64130,7 +64130,7 @@ _0225A040:
 	add r0, r4, #0
 	mov r1, #0xa9
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r1, #0x46
 	lsl r1, r1, #2
 	ldr r2, [r5, r1]
@@ -64142,7 +64142,7 @@ _0225A040:
 	add r0, r4, #0
 	mov r1, #0xa
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	mov r6, #0x46
 	lsl r6, r6, #2
 	ldr r2, [r5, r6]
@@ -64173,7 +64173,7 @@ _0225A040:
 	add r1, r5, #0
 	bl ov16_022662FC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r1, r6, #0
 	ldr r0, [sp, #4]
 	sub r1, #0x12
@@ -64351,7 +64351,7 @@ ov16_0225A280: ; 0x0225A280
 	cmp r0, #1
 	beq _0225A2A4
 	bhi _0225A2A4
-	bl FUN_02022974
+	bl sub_02022974
 _0225A2A4:
 	add r0, sp, #0x90
 	ldrb r0, [r0, #0x1c]
@@ -64603,13 +64603,13 @@ _0225A4C8:
 	ldr r0, [r5, r0]
 	cmp r0, #0xa
 	bge _0225A4D4
-	bl FUN_02022974
+	bl sub_02022974
 _0225A4D4:
 	ldr r0, _0225A72C ; =0x00002158
 	mov r1, #0xa
 	ldr r0, [r5, r0]
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	add r0, sp, #0x90
@@ -64640,7 +64640,7 @@ _0225A504:
 	mov r0, #0xf
 	mul r0, r4
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A522:
@@ -64654,7 +64654,7 @@ _0225A522:
 	mov r0, #0xf
 	mul r0, r4
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A53E:
@@ -64712,7 +64712,7 @@ _0225A590:
 	mov r1, #0x64
 	add r0, #0x64
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	b _0225A5B8
@@ -64729,7 +64729,7 @@ _0225A5B8:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x7c]
@@ -64741,7 +64741,7 @@ _0225A5D0:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x74]
@@ -64764,7 +64764,7 @@ _0225A5E8:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x74]
@@ -64787,7 +64787,7 @@ _0225A616:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x10]
@@ -64867,7 +64867,7 @@ _0225A6BE:
 	mov r1, #0x64
 	add r0, #0x64
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A6D6:
@@ -64888,7 +64888,7 @@ _0225A6E4:
 	mov r1, #0x64
 	add r0, #0x64
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A6FE:
@@ -64929,7 +64929,7 @@ _0225A748:
 	mov r1, #0x64
 	add r0, #0x64
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A75E:
@@ -64943,7 +64943,7 @@ _0225A75E:
 	mov r1, #0x64
 	add r0, #0x64
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A77A:
@@ -64958,7 +64958,7 @@ _0225A77A:
 	add r0, #0x64
 	str r0, [sp, #0x2c]
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A798:
@@ -64983,7 +64983,7 @@ _0225A7B4:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x7c]
@@ -64997,7 +64997,7 @@ _0225A7CA:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x7c]
@@ -65016,7 +65016,7 @@ _0225A7E6:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x78]
@@ -65036,7 +65036,7 @@ _0225A80E:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x74]
@@ -65056,7 +65056,7 @@ _0225A838:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x74]
@@ -65091,14 +65091,14 @@ _0225A892:
 	bne _0225A8B6
 	ldr r0, [sp, #0x4c]
 	mov r1, #3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, [sp, #0x50]
 	cmp r1, r0
 	bgt _0225A8B6
 	mov r0, #0x96
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A8B6:
@@ -65108,14 +65108,14 @@ _0225A8B6:
 	bne _0225A8DA
 	ldr r0, [sp, #0x4c]
 	mov r1, #3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, [sp, #0x50]
 	cmp r1, r0
 	bgt _0225A8DA
 	mov r0, #0x96
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A8DA:
@@ -65125,14 +65125,14 @@ _0225A8DA:
 	bne _0225A8FE
 	ldr r0, [sp, #0x4c]
 	mov r1, #3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, [sp, #0x50]
 	cmp r1, r0
 	bgt _0225A8FE
 	mov r0, #0x96
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A8FE:
@@ -65142,14 +65142,14 @@ _0225A8FE:
 	bne _0225A922
 	ldr r0, [sp, #0x4c]
 	mov r1, #3
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	ldr r1, [sp, #0x50]
 	cmp r1, r0
 	bgt _0225A922
 	mov r0, #0x96
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A922:
@@ -65177,7 +65177,7 @@ _0225A93A:
 	mov r0, #0x7d
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225A95C:
@@ -65310,7 +65310,7 @@ _0225AA08:
 	mov r0, #0x7d
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225AA56:
@@ -65329,7 +65329,7 @@ _0225AA56:
 	mov r0, #0x4b
 	mul r0, r4
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0225AA7C:
@@ -65345,7 +65345,7 @@ _0225AA80:
 	mov r0, #0xc
 	mul r0, r4
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	b _0225AAA4
@@ -65384,7 +65384,7 @@ _0225AAA4:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x74]
@@ -65404,7 +65404,7 @@ _0225AB00:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x10]
@@ -65425,7 +65425,7 @@ _0225AB12:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x7c]
@@ -65451,7 +65451,7 @@ _0225AB3E:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x10]
@@ -65484,7 +65484,7 @@ _0225AB8C:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	b _0225ABD0
 _0225ABB4:
@@ -65500,7 +65500,7 @@ _0225ABBA:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 _0225ABD0:
 	ldr r0, [sp, #0x84]
@@ -65510,7 +65510,7 @@ _0225ABD0:
 	str r1, [sp, #0x84]
 	lsl r0, r0, #1
 	mov r1, #5
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #2
 	ldr r0, [sp, #0x84]
 	mul r1, r0
@@ -65528,7 +65528,7 @@ _0225ABD0:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x78]
 	b _0225AC22
 _0225AC0C:
@@ -65540,14 +65540,14 @@ _0225AC0C:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x78]
 _0225AC22:
 	ldr r0, [sp, #0x84]
 	ldr r1, [sp, #0x78]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	mov r1, #0x32
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	ldr r0, [sp, #0x48]
 	mov r1, #0x10
@@ -65587,7 +65587,7 @@ _0225AC5E:
 	ldr r0, [sp, #0x84]
 	mov r1, #3
 	lsl r0, r0, #1
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	b _0225AD86
 _0225AC82:
@@ -65613,7 +65613,7 @@ _0225AC8E:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	b _0225ACD0
 _0225ACB4:
@@ -65629,7 +65629,7 @@ _0225ACBA:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 _0225ACD0:
 	ldr r0, [sp, #0x84]
@@ -65639,7 +65639,7 @@ _0225ACD0:
 	str r1, [sp, #0x84]
 	lsl r0, r0, #1
 	mov r1, #5
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, r0, #2
 	ldr r0, [sp, #0x84]
 	mul r1, r0
@@ -65657,7 +65657,7 @@ _0225ACD0:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x10]
 	b _0225AD22
 _0225AD0C:
@@ -65669,14 +65669,14 @@ _0225AD0C:
 	mul r0, r2
 	ldr r2, _0225AD78 ; =0x0226EBE1
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x10]
 _0225AD22:
 	ldr r0, [sp, #0x84]
 	ldr r1, [sp, #0x10]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	mov r1, #0x32
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	ldr r0, [sp, #0xc]
 	mov r1, #2
@@ -65701,7 +65701,7 @@ _0225AD22:
 	ldr r0, [sp, #0x84]
 	mov r1, #3
 	lsl r0, r0, #1
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	b _0225AD86
 	nop
@@ -65806,7 +65806,7 @@ _0225AE32:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 _0225AE40:
 	ldr r1, _0225AEB4 ; =0x000080CF
@@ -65836,7 +65836,7 @@ _0225AE6A:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 	b _0225AE84
 _0225AE7A:
@@ -65859,7 +65859,7 @@ _0225AE84:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0xa
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	str r0, [sp, #0x84]
 _0225AEA6:
 	ldr r0, [sp, #0x84]
@@ -65886,7 +65886,7 @@ ov16_0225AEB8: ; 0x0225AEB8
 	mov r1, #0x64
 	sub r0, r1, r0
 	mul r0, r4
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r4, r0, #0
 	bne _0225AEDE
 	mov r4, #1
@@ -65994,7 +65994,7 @@ _0225AF8A:
 	bl ov16_0223F4BC
 	ldr r1, _0225AFF0 ; =0x0226EBA0
 	ldrb r1, [r1, r5]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, #0
 	bne _0225AFD4
 	ldr r2, [sp, #4]
@@ -66205,13 +66205,13 @@ ov16_0225B0FC: ; 0x0225B0FC
 	add r0, r1, #0
 	mov r1, #0
 	add r4, r2, #0
-	bl FUN_0207CE78
+	bl sub_0207CE78
 	add r1, r0, #0
 	ldr r0, _0225B11C ; =0x00002120
 	ldr r0, [r5, r0]
-	bl FUN_0207D3B0
+	bl sub_0207D3B0
 	add r1, r4, #0
-	bl FUN_0207D014
+	bl sub_0207D014
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225B11C: .word 0x00002120
@@ -66548,7 +66548,7 @@ _0225B37A:
 	add r1, r5, r0
 	ldr r0, _0225B400 ; =0x0000219C
 	ldrb r0, [r1, r0]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #4]
 	lsl r1, r1, #3
 	add r2, r5, r1
@@ -66760,7 +66760,7 @@ _0225B518:
 	ldr r0, [r4, #0xc]
 	pop {r4, pc}
 _0225B51C:
-	bl FUN_02022974
+	bl sub_02022974
 	mov r0, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -66844,7 +66844,7 @@ _0225B5B6:
 	strb r4, [r1, r0]
 	pop {r3, r4, r5, pc}
 _0225B5BE:
-	bl FUN_02022974
+	bl sub_02022974
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225B5C4: .word 0xFFFF8FFF
@@ -66901,7 +66901,7 @@ _0225B61C:
 _0225B622:
 	cmp r4, #0x91
 	blo _0225B62A
-	bl FUN_02022974
+	bl sub_02022974
 _0225B62A:
 	ldr r0, _0225B638 ; =0x0226EE24
 	lsl r1, r4, #2
@@ -67079,7 +67079,7 @@ _0225B74A:
 	ldrb r4, [r1, r0]
 	b _0225B75E
 _0225B75A:
-	bl FUN_02022974
+	bl sub_02022974
 _0225B75E:
 	mov r0, #0xc0
 	mul r0, r6
@@ -67492,7 +67492,7 @@ _0225B9CA:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0x3f
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r5, r0, #1
 	cmp r5, #9
 	blt _0225BA78
@@ -67618,7 +67618,7 @@ _0225BAFC:
 	mov r1, #0xae
 	mov r2, #0
 	str r0, [sp, #0x68]
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	beq _0225BBD8
@@ -67628,11 +67628,11 @@ _0225BAFC:
 	ldr r0, [sp, #0x68]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0225BBD8
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x50]
 	tst r0, r1
 	bne _0225BBD8
@@ -67675,14 +67675,14 @@ _0225BAFC:
 	ldr r0, [sp, #0x68]
 	mov r1, #0xb1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	str r0, [sp, #0x58]
 	ldr r0, [sp, #0x68]
 	mov r1, #0xb2
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	str r0, [sp, #0x54]
@@ -67713,7 +67713,7 @@ _0225BAFC:
 	b _0225BBE8
 _0225BBD8:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x50]
 	orr r0, r1
 	lsl r0, r0, #0x18
@@ -67740,7 +67740,7 @@ _0225BC06:
 	add r0, r4, #0
 	add r1, #0x36
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x3c]
@@ -67758,7 +67758,7 @@ _0225BC06:
 	add r0, r4, #0
 	mov r1, #0xa
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x70]
 	add r0, r5, #0
 	add r1, r6, #0
@@ -67808,7 +67808,7 @@ _0225BC9A:
 	cmp r0, #4
 	bne _0225BCB2
 	ldr r0, [sp, #0x38]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp, #0x50]
 	orr r0, r1
 	lsl r0, r0, #0x18
@@ -67846,7 +67846,7 @@ _0225BCD8:
 	mov r1, #0xae
 	mov r2, #0
 	str r0, [sp, #0x1c]
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	beq _0225BCF8
@@ -67859,7 +67859,7 @@ _0225BCFA:
 	ldr r0, [sp, #0x1c]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0225BDFE
 	ldr r0, _0225BE18 ; =0x0000219C
@@ -67901,7 +67901,7 @@ _0225BD4C:
 	ldr r0, [sp, #0x1c]
 	add r1, #0x36
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #0x8c]
@@ -68050,7 +68050,7 @@ _0225BE6E:
 	add r0, r4, #0
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r1, r0, #0
 	lsl r1, r1, #0x10
 	add r0, r6, #0
@@ -68063,7 +68063,7 @@ _0225BE8A:
 	add r0, r4, #0
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r1, r0, #0
 	lsl r1, r1, #0x10
 	add r0, r6, #0
@@ -68151,32 +68151,32 @@ _0225BF18:
 	add r0, r4, #0
 	mov r1, #0x4b
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r5, r0, #0
 	add r0, r4, #0
 	mov r1, #0x4a
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r6, r0, #0
 	add r0, r4, #0
 	mov r1, #0x49
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r0, #0
 	add r0, r4, #0
 	mov r1, #0x48
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #4]
 	add r0, r4, #0
 	mov r1, #0x46
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #8]
 	add r0, r4, #0
 	mov r1, #0x47
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r1, r0, #0
 	lsl r2, r6, #0x1f
 	lsl r0, r5, #0x1f
@@ -68200,7 +68200,7 @@ _0225BF18:
 	mov r0, #0xf
 	mul r0, r1
 	mov r1, #0x3f
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r5, r0, #1
 	cmp r5, #9
 	blt _0225BFEE
@@ -68267,13 +68267,13 @@ ov16_0225BFFC: ; 0x0225BFFC
 	mov r1, #0x6b
 	mov r0, #5
 	lsl r1, r1, #2
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r2, #0x6b
 	mov r0, #0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	mov r0, #0x65
 	ldrb r1, [r5]
 	lsl r0, r0, #2
@@ -68283,7 +68283,7 @@ ov16_0225BFFC: ; 0x0225BFFC
 	strb r1, [r4, r0]
 	mov r0, #0x93
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	mov r1, #0x69
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -68407,16 +68407,16 @@ _0225C114:
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	beq _0225C11E
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 _0225C11E:
 	add r0, r4, #0
 	bl ov16_022647D8
 	mov r0, #0x69
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0225C104
@@ -68515,7 +68515,7 @@ ov16_0225C1CC: ; 0x0225C1CC
 	add r4, r1, #0
 	add r5, r0, #0
 	ldr r0, [r4, #0x20]
-	bl FUN_02007DC8
+	bl sub_02007DC8
 	mov r1, #0x65
 	lsl r1, r1, #2
 	ldrb r1, [r4, r1]
@@ -68720,7 +68720,7 @@ ov16_0225C328: ; 0x0225C328
 	add r5, r0, #0
 	ldr r0, [r4, #0x20]
 	mov r1, #6
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #1
 	bne _0225C34A
 	mov r1, #0x65
@@ -68945,7 +68945,7 @@ ov16_0225C47C: ; 0x0225C47C
 	str r0, [sp, #8]
 _0225C4B2:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldrb r1, [r6, #1]
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x1c
@@ -68955,13 +68955,13 @@ _0225C4B2:
 	add r0, r7, #0
 	add r1, #0x36
 	add r2, r5, #0
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldr r2, [sp, #8]
 	add r1, r4, #0
 	add r0, r7, #0
 	add r1, #0x3a
 	add r2, r2, r4
-	bl FUN_02074B30
+	bl sub_02074B30
 _0225C4DC:
 	add r4, r4, #1
 	add r5, r5, #2
@@ -68971,7 +68971,7 @@ _0225C4E4:
 	ldrb r0, [r6, #1]
 	lsl r0, r0, #0x1c
 	lsr r0, r0, #0x1c
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [r6, #8]
 	tst r0, r1
 	bne _0225C500
@@ -68979,16 +68979,16 @@ _0225C4E4:
 	add r0, r7, #0
 	mov r1, #6
 	add r2, #0xc
-	bl FUN_02074B30
+	bl sub_02074B30
 _0225C500:
 	add r0, r7, #0
 	mov r1, #0xa3
 	add r2, r6, #2
-	bl FUN_02074B30
+	bl sub_02074B30
 	add r0, r7, #0
 	mov r1, #0xa0
 	add r2, r6, #4
-	bl FUN_02074B30
+	bl sub_02074B30
 	ldrh r0, [r6, #0x2a]
 	cmp r0, #0
 	beq _0225C526
@@ -68996,7 +68996,7 @@ _0225C500:
 	add r0, r7, #0
 	mov r1, #0x70
 	add r2, #0x20
-	bl FUN_02074B30
+	bl sub_02074B30
 _0225C526:
 	ldrh r0, [r6, #0x28]
 	cmp r0, #0
@@ -69005,9 +69005,9 @@ _0225C526:
 	add r0, r7, #0
 	mov r1, #0xa
 	add r2, #0x24
-	bl FUN_02074B30
+	bl sub_02074B30
 	add r0, r7, #0
-	bl FUN_0207418C
+	bl sub_0207418C
 _0225C53E:
 	mov r2, #0x65
 	ldr r1, [sp, #4]
@@ -69123,7 +69123,7 @@ _0225C602:
 _0225C61C:
 	mov r1, #0xa
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 _0225C624:
 	ldrh r1, [r4, #2]
 	cmp r1, #0xd7
@@ -69135,7 +69135,7 @@ _0225C630:
 	add r0, r6, #0
 	mov r1, #0xa0
 	add r2, sp, #8
-	bl FUN_02074B30
+	bl sub_02074B30
 _0225C63A:
 	ldr r0, [sp, #4]
 	add r5, r5, #1
@@ -69208,9 +69208,9 @@ _0225C6A0:
 	ldrh r1, [r4, #2]
 	ldrb r2, [r4, #4]
 	add r0, sp, #0x14
-	bl FUN_02075FB4
+	bl sub_02075FB4
 	ldr r0, [r5, #0x20]
-	bl FUN_02008A90
+	bl sub_02008A90
 	add r7, r0, #0
 	add r2, sp, #0x14
 	add r3, r7, #0
@@ -69219,7 +69219,7 @@ _0225C6A0:
 	ldmia r2!, {r0, r1}
 	stmia r3!, {r0, r1}
 	ldr r0, [r5, #0x20]
-	bl FUN_020089A0
+	bl sub_020089A0
 	ldr r0, [sp, #0x10]
 	bl ov16_0223E0C8
 	mov r1, #0x65
@@ -69237,7 +69237,7 @@ _0225C6A0:
 	str r0, [sp, #0xc]
 	ldrh r0, [r7]
 	ldrh r1, [r7, #2]
-	bl FUN_02013750
+	bl sub_02013750
 	ldr r0, [sp, #0x10]
 	bl ov16_0223E0C8
 	mov r1, #0x65
@@ -69259,7 +69259,7 @@ _0225C6A0:
 	ldrb r1, [r4, #4]
 	ldrb r3, [r4, #1]
 	lsr r2, r2, #0x18
-	bl FUN_02076648
+	bl sub_02076648
 	add r6, r0, #0
 	ldr r0, [sp, #0x10]
 	bl ov16_0223E0C8
@@ -69276,7 +69276,7 @@ _0225C6A0:
 	ldr r0, [r5, #0x20]
 	mov r1, #1
 	add r2, r6, r2
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	mov r1, #0x65
 	lsl r1, r1, #2
 	ldrb r1, [r5, r1]
@@ -69320,11 +69320,11 @@ ov16_0225C79C: ; 0x0225C79C
 	bne _0225C822
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	add r0, r5, #0
 	bl ov16_0223E02C
@@ -69340,9 +69340,9 @@ ov16_0225C79C: ; 0x0225C79C
 	mov r1, #0
 	bl ov16_0226BCCC
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	mov r1, #0x65
 	lsl r1, r1, #2
 	ldrb r1, [r4, r1]
@@ -69726,23 +69726,23 @@ _0225CABA:
 	bl ov16_0223DF20
 	add r6, r0, #0
 	mov r5, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0225CB28
 _0225CACE:
 	add r0, r6, #0
 	add r1, r5, #0
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #5
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0225CB1C
 	add r0, r4, #0
 	mov r1, #0x4c
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _0225CB1C
 	ldr r0, [sp]
@@ -69753,7 +69753,7 @@ _0225CACE:
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [sp, #8]
 	add r0, r1, r0
 	str r0, [sp, #8]
@@ -69762,12 +69762,12 @@ _0225CB10:
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r7, r0
 _0225CB1C:
 	add r0, r6, #0
 	add r5, r5, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	blt _0225CACE
 _0225CB28:
@@ -69824,9 +69824,9 @@ ov16_0225CB80: ; 0x0225CB80
 	bl ov16_0223DF04
 	add r6, r0, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	add r0, r6, #0
-	bl FUN_0201ACCC
+	bl sub_0201ACCC
 	mov r1, #0x65
 	lsl r1, r1, #2
 	ldrb r1, [r4, r1]
@@ -69852,7 +69852,7 @@ ov16_0225CBB8: ; 0x0225CBB8
 	add r4, r0, #0
 	mov r0, #5
 	mov r1, #0x18
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	str r4, [r1, #0]
 	mov r2, #0
@@ -69860,7 +69860,7 @@ ov16_0225CBB8: ; 0x0225CBB8
 	strb r2, [r1, #0x15]
 	ldr r0, _0225CBD8 ; =ov16_02263014
 	strb r2, [r1, #0x16]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, pc}
 	; .align 2, 0
 _0225CBD8: .word ov16_02263014
@@ -69879,7 +69879,7 @@ ov16_0225CBDC: ; 0x0225CBDC
 	bl ov16_0223DF0C
 	mov r0, #5
 	mov r1, #0x30
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r2, #0
 	ldr r0, _0225CE00 ; =0x00000195
@@ -69904,7 +69904,7 @@ ov16_0225CBDC: ; 0x0225CBDC
 	ldr r1, _0225CE04 ; =0x0223B0B8
 	mov r2, #0x58
 	ldrsh r1, [r1, r3]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0225CC58
 _0225CC32:
 	ldr r0, [sp, #0x24]
@@ -69923,7 +69923,7 @@ _0225CC32:
 	ldr r1, _0225CE04 ; =0x0223B0B8
 	mov r2, #0x88
 	ldrsh r1, [r1, r3]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225CC58:
 	ldrb r0, [r5, #1]
 	lsl r0, r0, #0x1d
@@ -69949,7 +69949,7 @@ _0225CC66:
 	lsl r2, r2, #0x1e
 	add r0, sp, #0x5c
 	lsr r2, r2, #0x1e
-	bl FUN_02075FB4
+	bl sub_02075FB4
 	ldr r0, [r5, #4]
 	str r0, [sp]
 	ldrb r3, [r5, #1]
@@ -69959,7 +69959,7 @@ _0225CC66:
 	lsl r3, r3, #0x18
 	lsr r1, r1, #0x1e
 	lsr r3, r3, #0x1b
-	bl FUN_02076648
+	bl sub_02076648
 	str r0, [sp, #0x2c]
 	mov r0, #0x69
 	lsl r0, r0, #2
@@ -69967,20 +69967,20 @@ _0225CC66:
 	ldrh r2, [r5, #2]
 	ldr r0, [r6, r0]
 	add r1, #2
-	bl FUN_02078A80
+	bl sub_02078A80
 	mov r0, #0x69
 	lsl r0, r0, #2
 	add r1, sp, #0x30
 	ldrh r2, [r5, #2]
 	ldr r0, [r6, r0]
 	add r1, #1
-	bl FUN_02078AA4
+	bl sub_02078AA4
 	mov r0, #0x69
 	lsl r0, r0, #2
 	ldrh r2, [r5, #2]
 	ldr r0, [r6, r0]
 	add r1, sp, #0x30
-	bl FUN_02078AC8
+	bl sub_02078AC8
 	mov r3, #0x69
 	lsl r3, r3, #2
 	ldr r0, [r6, r3]
@@ -69989,7 +69989,7 @@ _0225CC66:
 	ldrh r2, [r5, #2]
 	ldrb r3, [r6, r3]
 	add r1, #3
-	bl FUN_020789BC
+	bl sub_020789BC
 	ldr r1, _0225CE00 ; =0x00000195
 	mov r0, #6
 	ldrb r2, [r6, r1]
@@ -70037,7 +70037,7 @@ _0225CC66:
 	mov r1, #8
 	ldr r0, [r4, #8]
 	add r2, r1, #0
-	bl FUN_020086FC
+	bl sub_020086FC
 _0225CD46:
 	ldrb r0, [r4, #0x13]
 	cmp r0, #2
@@ -70049,21 +70049,21 @@ _0225CD46:
 	beq _0225CD86
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r7, r0, #0
 	ldr r0, [r4, #8]
 	mov r1, #0x2e
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0xc0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r2, r7, #0
 	ldr r0, [r4, #8]
 	mov r1, #1
 	sub r2, #0x88
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	strh r7, [r4, #0x14]
 	b _0225CD92
 _0225CD86:
@@ -70097,7 +70097,7 @@ _0225CD92:
 	ldrb r0, [r6, r0]
 	str r0, [r4, #0x1c]
 	ldr r0, [r5, #4]
-	bl FUN_02075BFC
+	bl sub_02075BFC
 	str r0, [r4, #0x24]
 	ldrb r0, [r5, #1]
 	lsl r0, r0, #0x1d
@@ -70114,16 +70114,16 @@ _0225CD92:
 	ldr r0, _0225CE14 ; =ov16_0225E894
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	b _0225CDF6
 _0225CDEC:
 	ldr r0, _0225CE18 ; =ov16_0225E4E8
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 _0225CDF6:
 	mov r0, #1
-	bl FUN_02005454
+	bl sub_02005454
 	add sp, #0x6c
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -70146,7 +70146,7 @@ ov16_0225CE1C: ; 0x0225CE1C
 	bl ov16_0223DF0C
 	mov r0, #5
 	mov r1, #0x9c
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	ldr r0, _0225CF68 ; =0x00000195
 	ldrb r1, [r6, r0]
@@ -70188,7 +70188,7 @@ _0225CE58:
 	ldrb r3, [r3]
 	add r0, #0x14
 	lsr r2, r2, #0x1e
-	bl FUN_02075FB4
+	bl sub_02075FB4
 	ldr r0, [r5, #4]
 	add r2, r4, #0
 	str r0, [sp]
@@ -70200,7 +70200,7 @@ _0225CE58:
 	ldrb r2, [r2]
 	lsr r1, r1, #0x1e
 	lsr r3, r3, #0x1b
-	bl FUN_02076648
+	bl sub_02076648
 	add r1, r4, #0
 	add r1, #0x85
 	strb r0, [r1]
@@ -70210,21 +70210,21 @@ _0225CE58:
 	ldrh r2, [r5, #2]
 	ldr r0, [r6, r0]
 	add r1, #0x90
-	bl FUN_02078A80
+	bl sub_02078A80
 	mov r0, #0x69
 	lsl r0, r0, #2
 	add r1, r4, #0
 	ldrh r2, [r5, #2]
 	ldr r0, [r6, r0]
 	add r1, #0x91
-	bl FUN_02078AA4
+	bl sub_02078AA4
 	mov r0, #0x69
 	lsl r0, r0, #2
 	add r1, r4, #0
 	ldrh r2, [r5, #2]
 	ldr r0, [r6, r0]
 	add r1, #0x93
-	bl FUN_02078AC8
+	bl sub_02078AC8
 	add r0, r6, #0
 	bl ov16_02263B10
 	str r7, [r4, #0]
@@ -70270,7 +70270,7 @@ _0225CE58:
 	add r0, #0x8c
 	strb r1, [r0]
 	ldr r0, [r5, #4]
-	bl FUN_02075BFC
+	bl sub_02075BFC
 	add r1, r4, #0
 	add r1, #0x8d
 	strb r0, [r1]
@@ -70289,11 +70289,11 @@ _0225CE58:
 	add r0, #0x94
 	strh r1, [r0]
 	mov r0, #1
-	bl FUN_02005454
+	bl sub_02005454
 	ldr r0, _0225CF6C ; =ov16_0225EA80
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -70311,7 +70311,7 @@ ov16_0225CF70: ; 0x0225CF70
 	bl ov16_0223DF0C
 	mov r0, #5
 	mov r1, #0x9c
-	bl FUN_02018144
+	bl sub_02018144
 	add r5, r0, #0
 	add r1, r5, #0
 	mov r0, #0
@@ -70359,7 +70359,7 @@ _0225CFB8:
 	ldrb r3, [r3]
 	add r0, #0x14
 	lsr r2, r2, #0x1e
-	bl FUN_02075FB4
+	bl sub_02075FB4
 	ldr r0, [r4, #4]
 	add r2, r5, #0
 	str r0, [sp]
@@ -70371,7 +70371,7 @@ _0225CFB8:
 	ldrb r2, [r2]
 	lsr r1, r1, #0x1e
 	lsr r3, r3, #0x1b
-	bl FUN_02076648
+	bl sub_02076648
 	add r1, r5, #0
 	add r1, #0x85
 	strb r0, [r1]
@@ -70381,21 +70381,21 @@ _0225CFB8:
 	ldrh r2, [r4, #2]
 	ldr r0, [r6, r0]
 	add r1, #0x90
-	bl FUN_02078A80
+	bl sub_02078A80
 	mov r0, #0x69
 	lsl r0, r0, #2
 	add r1, r5, #0
 	ldrh r2, [r4, #2]
 	ldr r0, [r6, r0]
 	add r1, #0x91
-	bl FUN_02078AA4
+	bl sub_02078AA4
 	mov r0, #0x69
 	lsl r0, r0, #2
 	add r1, r5, #0
 	ldrh r2, [r4, #2]
 	ldr r0, [r6, r0]
 	add r1, #0x93
-	bl FUN_02078AC8
+	bl sub_02078AC8
 	add r0, r6, #0
 	bl ov16_02263B10
 	str r7, [r5, #0]
@@ -70434,7 +70434,7 @@ _0225CFB8:
 	add r0, #0x8c
 	strb r1, [r0]
 	ldr r0, [r4, #4]
-	bl FUN_02075BFC
+	bl sub_02075BFC
 	add r1, r5, #0
 	add r1, #0x8d
 	strb r0, [r1]
@@ -70503,7 +70503,7 @@ _0225D0BC:
 	ldr r0, _0225D114 ; =ov16_0225F0C0
 	add r1, r5, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -70519,7 +70519,7 @@ ov16_0225D118: ; 0x0225D118
 	mov r0, #5
 	mov r1, #0x74
 	str r2, [sp]
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	str r5, [r1, #0]
 	str r4, [r1, #4]
@@ -70593,7 +70593,7 @@ _0225D17C:
 	blt _0225D17C
 	ldr r0, _0225D1C0 ; =ov16_0225F764
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0225D1C0: .word ov16_0225F764
@@ -70607,7 +70607,7 @@ ov16_0225D1C4: ; 0x0225D1C4
 	mov r0, #5
 	mov r1, #0x10
 	add r6, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r7, [r4, #0]
 	ldr r0, [r5, #0x20]
@@ -70633,15 +70633,15 @@ ov16_0225D1C4: ; 0x0225D1C4
 	mov r2, #0x10
 	str r0, [sp]
 	ldr r0, [r4, #4]
-	bl FUN_020086FC
+	bl sub_020086FC
 	ldr r0, [r4, #4]
 	mov r1, #0x2d
 	mov r2, #1
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, _0225D224 ; =ov16_0225FA00
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0225D220: .word 0x0226F1AE
@@ -70657,7 +70657,7 @@ ov16_0225D228: ; 0x0225D228
 	mov r0, #5
 	mov r1, #0x20
 	add r7, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r2, #0
 	ldr r0, _0225D34C ; =0x00000195
@@ -70681,7 +70681,7 @@ ov16_0225D228: ; 0x0225D228
 	ldr r1, _0225D350 ; =0x0223B0B8
 	ldrsh r1, [r1, r2]
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0225D294
 _0225D270:
 	add r0, r6, #0
@@ -70699,7 +70699,7 @@ _0225D270:
 	ldr r1, _0225D350 ; =0x0223B0B8
 	ldrsh r1, [r1, r2]
 	mov r2, #0x88
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225D294:
 	add r0, r6, #0
 	bl ov16_0223DF0C
@@ -70782,12 +70782,12 @@ _0225D32C:
 	mov r1, #3
 	mov r2, #2
 	mov r3, #0x84
-	bl FUN_02019184
+	bl sub_02019184
 _0225D33C:
 	ldr r0, _0225D35C ; =ov16_0225FA70
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -70806,7 +70806,7 @@ ov16_0225D360: ; 0x0225D360
 	mov r0, #5
 	mov r1, #0x1c
 	add r7, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r0, #0
 	strb r0, [r4, #0xa]
@@ -70841,13 +70841,13 @@ _0225D39A:
 	ldrb r2, [r2, #1]
 	add r0, r6, #0
 	bl ov16_02264768
-	bl FUN_020788D0
+	bl sub_020788D0
 _0225D3BA:
 	str r0, [r4, #0xc]
 	ldr r0, _0225D3C8 ; =ov16_0225FD5C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0225D3C8: .word ov16_0225FD5C
@@ -70860,7 +70860,7 @@ ov16_0225D3CC: ; 0x0225D3CC
 	add r4, r1, #0
 	mov r0, #5
 	mov r1, #0x10
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r0, #0
 	strb r0, [r1, #0xa]
@@ -70885,7 +70885,7 @@ _0225D402:
 	strb r0, [r1, #0xb]
 	ldr r0, _0225D410 ; =ov16_02260284
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	nop
 _0225D410: .word ov16_02260284
@@ -70901,7 +70901,7 @@ ov16_0225D414: ; 0x0225D414
 	bl ov16_0223E000
 	mov r0, #5
 	mov r1, #0x10
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r0, #0
 	ldr r1, _0225D494 ; =0x00000195
@@ -70951,7 +70951,7 @@ _0225D43E:
 	ldrb r0, [r5, r0]
 	strb r0, [r4, #9]
 	ldr r0, _0225D4A4 ; =ov16_02260384
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -70973,7 +70973,7 @@ ov16_0225D4A8: ; 0x0225D4A8
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	mov r0, #0x65
 	str r7, [r4, #0xc]
 	lsl r0, r0, #2
@@ -71050,7 +71050,7 @@ ov16_0225D4A8: ; 0x0225D4A8
 	ldr r0, _0225D56C ; =ov16_0226040C
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x10]
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -71068,7 +71068,7 @@ ov16_0225D570: ; 0x0225D570
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	mov r0, #0x65
 	str r6, [r4, #0xc]
 	lsl r0, r0, #2
@@ -71088,7 +71088,7 @@ ov16_0225D570: ; 0x0225D570
 	ldr r0, _0225D5B4 ; =ov16_02260480
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x10]
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -71103,12 +71103,12 @@ ov16_0225D5B8: ; 0x0225D5B8
 	mov r0, #5
 	mov r1, #0x3c
 	add r7, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x3c
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	mov r2, #0
 	strb r2, [r4, #0xa]
 	strb r2, [r4, #0xb]
@@ -71210,7 +71210,7 @@ _0225D668:
 	add r1, r4, #0
 	ldr r0, [r0, #0]
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_0225D5B8
 
@@ -71222,7 +71222,7 @@ ov16_0225D698: ; 0x0225D698
 	mov r0, #5
 	mov r1, #0x24
 	add r7, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r3, r0, #0
 	mov r1, #0x65
 	mov r4, #0
@@ -71268,7 +71268,7 @@ _0225D6DA:
 	strh r0, [r3, #0x22]
 	ldr r0, [sp]
 	ldr r0, [r0, #4]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0225D698
@@ -71282,7 +71282,7 @@ ov16_0225D708: ; 0x0225D708
 	mov r0, #5
 	mov r1, #0x34
 	add r5, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r6, r0, #0
 	mov r0, #0
 	strb r0, [r6, #0xf]
@@ -71338,7 +71338,7 @@ _0225D784:
 	ldr r0, [r7, #8]
 	add r1, r6, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -71353,19 +71353,19 @@ ov16_0225D794: ; 0x0225D794
 	mov r0, #5
 	mov r1, #0x34
 	str r2, [sp, #4]
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r0, #5
 	mov r1, #0x34
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r4, #8]
 	mov r0, #5
 	mov r1, #0x38
-	bl FUN_02018144
+	bl sub_02018144
 	ldr r1, [r4, #8]
 	str r0, [r1, #4]
 	mov r0, #5
-	bl FUN_02079FF4
+	bl sub_02079FF4
 	ldr r1, [r4, #8]
 	mov r6, #0
 	ldr r1, [r1, #4]
@@ -71425,7 +71425,7 @@ _0225D80C:
 	add r1, r4, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -71439,7 +71439,7 @@ ov16_0225D840: ; 0x0225D840
 	mov r0, #5
 	mov r1, #0x34
 	add r7, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r2, r0, #0
 	mov r3, #0
 	strb r3, [r2, #0xa]
@@ -71484,7 +71484,7 @@ _0225D884:
 	add r1, r2, #0
 	ldr r0, [r0, #0x10]
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0225D840
@@ -71497,7 +71497,7 @@ ov16_0225D8AC: ; 0x0225D8AC
 	mov r0, #5
 	mov r1, #0x1c
 	add r4, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #0xe]
@@ -71520,7 +71520,7 @@ ov16_0225D8AC: ; 0x0225D8AC
 	ldr r0, [r4, #8]
 	str r0, [r1, #0x14]
 	ldr r0, [r5, #0x14]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0225D8AC
@@ -71536,7 +71536,7 @@ ov16_0225D8F0: ; 0x0225D8F0
 	str r0, [sp]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r6, [r4, #0]
 	ldrb r0, [r5]
@@ -71568,7 +71568,7 @@ ov16_0225D8F0: ; 0x0225D8F0
 	ldr r0, _0225D954 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -71585,7 +71585,7 @@ ov16_0225D958: ; 0x0225D958
 	str r0, [sp]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	add r0, r6, #0
 	str r5, [r4, #0]
@@ -71607,7 +71607,7 @@ ov16_0225D958: ; 0x0225D958
 	ldr r0, _0225D9A4 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0225D9A4: .word ov16_02262F7C
@@ -71621,7 +71621,7 @@ ov16_0225D9A8: ; 0x0225D9A8
 	mov r0, #5
 	mov r1, #0x70
 	add r4, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r6, r0, #0
 	mov r1, #0
 	add r0, #0x6a
@@ -71688,7 +71688,7 @@ _0225DA20:
 	ldr r0, _0225DA40 ; =ov16_022626C0
 	add r1, r6, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0225DA40: .word ov16_022626C0
@@ -71701,7 +71701,7 @@ ov16_0225DA44: ; 0x0225DA44
 	add r4, r1, #0
 	mov r0, #5
 	mov r1, #0xc
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #9]
@@ -71714,7 +71714,7 @@ ov16_0225DA44: ; 0x0225DA44
 	strb r0, [r1, #8]
 	ldr r0, _0225DA70 ; =ov16_0226292C
 	strb r2, [r1, #0xa]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225DA70: .word ov16_0226292C
@@ -71729,14 +71729,14 @@ ov16_0225DA74: ; 0x0225DA74
 	add r5, r2, #0
 	cmp r0, #0
 	bne _0225DA86
-	bl FUN_02022974
+	bl sub_02022974
 _0225DA86:
 	add r4, r6, #0
 	add r4, #0x28
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #1
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	str r7, [r4, #0xc]
 	add r0, r4, #0
 	ldrb r1, [r5]
@@ -71780,7 +71780,7 @@ _0225DAE4:
 	ldr r0, _0225DAFC ; =ov16_02262988
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x10]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -71798,14 +71798,14 @@ ov16_0225DB00: ; 0x0225DB00
 	add r5, r2, #0
 	cmp r0, #0
 	bne _0225DB12
-	bl FUN_02022974
+	bl sub_02022974
 _0225DB12:
 	add r4, r6, #0
 	add r4, #0x28
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #1
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	str r7, [r4, #0xc]
 	add r0, r4, #0
 	ldrb r1, [r5]
@@ -71833,7 +71833,7 @@ _0225DB12:
 	ldr r0, _0225DB70 ; =ov16_022629DC
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x10]
 	pop {r3, r4, r5, r6, r7, pc}
 _0225DB5E:
@@ -71857,7 +71857,7 @@ ov16_0225DB74: ; 0x0225DB74
 	mov r0, #5
 	mov r1, #0x74
 	str r2, [sp]
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	ldr r0, _0225DC44 ; =0x00000195
 	ldrb r2, [r4, r0]
@@ -71954,7 +71954,7 @@ _0225DC02:
 	blt _0225DC02
 	ldr r0, _0225DC48 ; =ov16_02262A9C
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0225DC44: .word 0x00000195
@@ -71982,7 +71982,7 @@ _0225DC60:
 	bl ov16_02266ABC
 	ldrh r0, [r5, #2]
 	add r1, r4, #0
-	bl FUN_02005728
+	bl sub_02005728
 	pop {r3, r4, r5, pc}
 	nop
 _0225DC78: .word 0x00000195
@@ -71995,7 +71995,7 @@ ov16_0225DC7C: ; 0x0225DC7C
 	add r4, r1, #0
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #6]
@@ -72009,7 +72009,7 @@ ov16_0225DC7C: ; 0x0225DC7C
 	ldrb r0, [r4, r0]
 	strb r0, [r1, #5]
 	ldr r0, _0225DCAC ; =ov16_02262D28
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	nop
 _0225DCAC: .word ov16_02262D28
@@ -72023,7 +72023,7 @@ ov16_0225DCB0: ; 0x0225DCB0
 	mov r0, #5
 	mov r1, #0x68
 	str r2, [sp]
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	str r5, [r1, #0]
 	ldr r0, [sp]
@@ -72085,7 +72085,7 @@ _0225DCFC:
 	blt _0225DCFC
 	ldr r0, _0225DD40 ; =ov16_02262DC4
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0225DD40: .word ov16_02262DC4
@@ -72100,7 +72100,7 @@ ov16_0225DD44: ; 0x0225DD44
 	add r4, r2, #0
 	cmp r0, #0
 	bne _0225DD56
-	bl FUN_02022974
+	bl sub_02022974
 _0225DD56:
 	ldrb r1, [r4, #1]
 	add r0, r5, #0
@@ -72135,7 +72135,7 @@ ov16_0225DD7C: ; 0x0225DD7C
 	str r0, [sp, #4]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r6, [r4, #0]
 	ldrb r0, [r7]
@@ -72158,7 +72158,7 @@ ov16_0225DD7C: ; 0x0225DD7C
 	ldr r0, _0225DDD4 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -72179,7 +72179,7 @@ ov16_0225DDD8: ; 0x0225DDD8
 	str r0, [sp]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	ldrb r0, [r7]
@@ -72199,7 +72199,7 @@ ov16_0225DDD8: ; 0x0225DDD8
 	ldr r0, _0225DE2C ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -72220,7 +72220,7 @@ ov16_0225DE30: ; 0x0225DE30
 	str r0, [sp]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	ldrb r0, [r7]
@@ -72240,7 +72240,7 @@ ov16_0225DE30: ; 0x0225DE30
 	ldr r0, _0225DE84 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -72260,7 +72260,7 @@ ov16_0225DE88: ; 0x0225DE88
 	add r7, r0, #0
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	mov r0, #0x22
@@ -72280,7 +72280,7 @@ ov16_0225DE88: ; 0x0225DE88
 	ldr r0, _0225DED8 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -72301,7 +72301,7 @@ ov16_0225DEDC: ; 0x0225DEDC
 	str r0, [sp]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	ldrb r0, [r7]
@@ -72321,7 +72321,7 @@ ov16_0225DEDC: ; 0x0225DEDC
 	ldr r0, _0225DF30 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -72335,7 +72335,7 @@ ov16_0225DF34: ; 0x0225DF34
 	add r4, r1, #0
 	mov r0, #5
 	mov r1, #0xc
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	add r0, r4, #0
 	str r5, [r1, #0]
@@ -72351,7 +72351,7 @@ ov16_0225DF34: ; 0x0225DF34
 	strb r2, [r1, #0xa]
 	ldr r0, _0225DF68 ; =ov16_02262F30
 	str r4, [r1, #4]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	nop
 _0225DF68: .word ov16_02262F30
@@ -72371,7 +72371,7 @@ ov16_0225DF6C: ; 0x0225DF6C
 	str r0, [sp]
 	mov r0, #5
 	mov r1, #0xc
-	bl FUN_02018144
+	bl sub_02018144
 	add r7, r0, #0
 	str r6, [r7, #0]
 	ldrb r0, [r4]
@@ -72393,7 +72393,7 @@ ov16_0225DF6C: ; 0x0225DF6C
 	ldr r0, _0225E004 ; =ov16_02262FC0
 	add r1, r7, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, r6, r7, pc}
 _0225DFBE:
 	cmp r2, #1
@@ -72442,7 +72442,7 @@ ov16_0225E008: ; 0x0225E008
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	mov r0, #0x65
 	str r7, [r4, #0xc]
 	lsl r0, r0, #2
@@ -72528,7 +72528,7 @@ ov16_0225E0BC: ; 0x0225E0BC
 	mov r0, #5
 	mov r1, #0x10
 	add r4, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #0xa]
@@ -72544,7 +72544,7 @@ ov16_0225E0BC: ; 0x0225E0BC
 	ldrb r0, [r4, #1]
 	strb r0, [r1, #0xe]
 	ldr r0, _0225E0F0 ; =ov16_022633A4
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _0225E0F0: .word ov16_022633A4
@@ -72558,7 +72558,7 @@ ov16_0225E0F4: ; 0x0225E0F4
 	mov r0, #5
 	mov r1, #0x10
 	add r4, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #0xa]
@@ -72577,7 +72577,7 @@ ov16_0225E0F4: ; 0x0225E0F4
 	ldrb r0, [r4, #2]
 	strb r0, [r1, #0xd]
 	ldr r0, _0225E130 ; =ov16_022634DC
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	nop
 _0225E130: .word ov16_022634DC
@@ -72591,7 +72591,7 @@ ov16_0225E134: ; 0x0225E134
 	mov r0, #5
 	mov r1, #0x10
 	add r4, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r0, #0
 	strb r0, [r1, #7]
@@ -72616,7 +72616,7 @@ _0225E15E:
 	ldr r0, _0225E178 ; =ov16_0226354C
 	mov r2, #0
 	strb r2, [r1, #0xe]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _0225E178: .word ov16_0226354C
@@ -72630,7 +72630,7 @@ ov16_0225E17C: ; 0x0225E17C
 	mov r0, #5
 	mov r1, #0x10
 	add r6, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #7]
@@ -72646,7 +72646,7 @@ ov16_0225E17C: ; 0x0225E17C
 	strb r0, [r1, #6]
 	ldr r0, _0225E1B0 ; =ov16_02263604
 	strb r2, [r1, #0xe]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _0225E1B0: .word ov16_02263604
@@ -72660,7 +72660,7 @@ ov16_0225E1B4: ; 0x0225E1B4
 	mov r0, #5
 	mov r1, #0x10
 	add r4, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r0, #0
 	strb r0, [r1, #7]
@@ -72686,7 +72686,7 @@ _0225E1DE:
 	strb r0, [r1, #0xe]
 	ldr r0, _0225E1FC ; =ov16_0226354C
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	nop
 _0225E1FC: .word ov16_0226354C
@@ -72700,7 +72700,7 @@ ov16_0225E200: ; 0x0225E200
 	mov r0, #5
 	mov r1, #0x10
 	add r6, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #7]
@@ -72717,7 +72717,7 @@ ov16_0225E200: ; 0x0225E200
 	mov r0, #1
 	strb r0, [r1, #0xe]
 	ldr r0, _0225E238 ; =ov16_02263604
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	nop
 _0225E238: .word ov16_02263604
@@ -72747,7 +72747,7 @@ ov16_0225E23C: ; 0x0225E23C
 	mov r1, #0
 	bl ov16_0223DF04
 	mov r1, #1
-	bl FUN_0200E7FC
+	bl sub_0200E7FC
 	add r1, r0, #0
 	add r0, r5, #0
 	bl ov16_0223F2A4
@@ -72799,7 +72799,7 @@ ov16_0225E2C8: ; 0x0225E2C8
 	add r4, r1, #0
 	mov r0, #5
 	mov r1, #0x10
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #0xe]
@@ -72816,7 +72816,7 @@ ov16_0225E2C8: ; 0x0225E2C8
 	ldr r0, [r4, #0x20]
 	str r0, [r1, #8]
 	ldr r0, _0225E2FC ; =ov16_02263688
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225E2FC: .word ov16_02263688
@@ -72829,7 +72829,7 @@ ov16_0225E300: ; 0x0225E300
 	add r4, r1, #0
 	mov r0, #5
 	mov r1, #0x10
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	mov r2, #0
 	strb r2, [r1, #0xe]
@@ -72846,7 +72846,7 @@ ov16_0225E300: ; 0x0225E300
 	ldr r0, [r4, #0x20]
 	str r0, [r1, #8]
 	ldr r0, _0225E334 ; =ov16_022636D4
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225E334: .word ov16_022636D4
@@ -72865,7 +72865,7 @@ ov16_0225E338: ; 0x0225E338
 	add r7, r0, #0
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	mov r0, #0x3b
@@ -72885,7 +72885,7 @@ ov16_0225E338: ; 0x0225E338
 	ldr r0, _0225E388 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -72905,7 +72905,7 @@ ov16_0225E38C: ; 0x0225E38C
 	add r7, r0, #0
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	mov r0, #0x3c
@@ -72925,7 +72925,7 @@ ov16_0225E38C: ; 0x0225E38C
 	ldr r0, _0225E3DC ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -72945,7 +72945,7 @@ ov16_0225E3E0: ; 0x0225E3E0
 	add r7, r0, #0
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	str r5, [r4, #0]
 	mov r0, #0x3d
@@ -72965,7 +72965,7 @@ ov16_0225E3E0: ; 0x0225E3E0
 	ldr r0, _0225E430 ; =ov16_02262F7C
 	add r1, r4, #0
 	mov r2, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -73025,15 +73025,15 @@ _0225E480:
 	b _0225E4A6
 _0225E490:
 	ldr r0, _0225E4BC ; =0x000006FE
-	bl FUN_02005728
+	bl sub_02005728
 	b _0225E4A6
 _0225E498:
 	ldr r0, _0225E4C0 ; =0x000006FC
-	bl FUN_02005728
+	bl sub_02005728
 	b _0225E4A6
 _0225E4A0:
 	ldr r0, _0225E4C4 ; =0x000006FD
-	bl FUN_02005728
+	bl sub_02005728
 _0225E4A6:
 	mov r1, #0x65
 	lsl r1, r1, #2
@@ -73056,7 +73056,7 @@ ov16_0225E4C8: ; 0x0225E4C8
 	add r6, r0, #0
 	ldrh r0, [r4, #2]
 	add r5, r1, #0
-	bl FUN_0200549C
+	bl sub_0200549C
 	mov r1, #0x65
 	lsl r1, r1, #2
 	ldrb r1, [r5, r1]
@@ -73118,7 +73118,7 @@ _0225E53A:
 	add r2, sp, #0x14
 	ldr r0, [r0, #0]
 	add r2, #2
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x1c]
 	cmp r0, #1
 	beq _0225E54E
@@ -73134,20 +73134,20 @@ _0225E54E:
 	ldr r0, [r0, #0]
 	mov r1, #8
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225E570
 _0225E566:
 	ldr r0, [r0, #0]
 	mov r1, #0xc0
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225E570:
 	ldr r0, [r4, #0xc]
 	add r2, sp, #0x14
 	ldr r0, [r0, #0]
 	add r1, sp, #0x18
 	add r2, #2
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x1c]
 	cmp r0, #1
 	bne _0225E594
@@ -73156,14 +73156,14 @@ _0225E570:
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	b _0225E5E4
 _0225E594:
 	cmp r0, #3
 	bne _0225E5BE
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r3, sp, #0x14
 	mov r2, #4
 	ldrsh r1, [r3, r2]
@@ -73176,14 +73176,14 @@ _0225E594:
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
 	neg r2, r2
-	bl FUN_02008274
+	bl sub_02008274
 	b _0225E5E4
 _0225E5BE:
 	cmp r0, #5
 	bne _0225E5E4
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r3, sp, #0x14
 	mov r2, #4
 	ldrsh r1, [r3, r2]
@@ -73195,11 +73195,11 @@ _0225E5BE:
 	strh r0, [r3, #4]
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
-	bl FUN_02008274
+	bl sub_02008274
 _0225E5E4:
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	mov r1, #0x14
 	ldrsh r1, [r4, r1]
 	cmp r0, r1
@@ -73209,20 +73209,20 @@ _0225E5F4:
 _0225E5F6:
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	ldr r0, [r4, #8]
 	mov r1, #0x2c
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #8]
 	mov r1, #0x2d
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	mov r2, #0x14
 	ldrsh r2, [r4, r2]
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
 	add r1, r0, #0
@@ -73238,7 +73238,7 @@ _0225E5F6:
 	ldr r0, [r2, r0]
 	ldrh r3, [r4, #0x16]
 	ldr r2, [r4, #8]
-	bl FUN_020789F4
+	bl sub_020789F4
 	mov r0, #0x69
 	ldr r3, [r4, #0x1c]
 	ldr r1, [r4, #4]
@@ -73249,7 +73249,7 @@ _0225E5F6:
 	ldrh r2, [r4, #0x16]
 	add r1, #1
 	lsr r3, r3, #0x10
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	ldrb r1, [r4, #0x11]
 	ldr r0, [r4, #0]
 	bl ov16_0223EE30
@@ -73269,7 +73269,7 @@ _0225E5F6:
 	ldrh r2, [r4, #0x16]
 	ldrb r3, [r3]
 	ldr r1, [r4, #0x18]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	ldr r0, [r4, #0x1c]
 	cmp r0, #1
 	beq _0225E690
@@ -73280,14 +73280,14 @@ _0225E690:
 	mov r1, #0xc0
 	ldr r0, [r0, #0]
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225E69C:
 	mov r2, #0
 	str r2, [sp]
 	ldr r0, [r4, #8]
 	mov r1, #8
 	add r3, r2, #0
-	bl FUN_020086FC
+	bl sub_020086FC
 	ldrb r0, [r4, #0x12]
 	add sp, #0x74
 	add r0, r0, #1
@@ -73297,7 +73297,7 @@ _0225E6B4:
 	add r2, sp, #0x14
 	ldr r0, [r0, #0]
 	add r2, #2
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x1c]
 	cmp r0, #0
 	beq _0225E6C8
@@ -73313,20 +73313,20 @@ _0225E6C8:
 	ldr r0, [r0, #0]
 	sub r1, #0xc
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225E6EA
 _0225E6E0:
 	ldr r0, [r0, #0]
 	mov r1, #0x40
 	mov r2, #0x88
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225E6EA:
 	ldr r0, [r4, #0xc]
 	add r2, sp, #0x14
 	ldr r0, [r0, #0]
 	add r1, sp, #0x18
 	add r2, #2
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x1c]
 	cmp r0, #0
 	bne _0225E70E
@@ -73335,14 +73335,14 @@ _0225E6EA:
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	b _0225E75E
 _0225E70E:
 	cmp r0, #2
 	bne _0225E736
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r3, sp, #0x14
 	mov r2, #4
 	ldrsh r1, [r3, r2]
@@ -73354,14 +73354,14 @@ _0225E70E:
 	strh r0, [r3, #4]
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
-	bl FUN_02008274
+	bl sub_02008274
 	b _0225E75E
 _0225E736:
 	cmp r0, #4
 	bne _0225E75E
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r3, sp, #0x14
 	mov r2, #4
 	ldrsh r1, [r3, r2]
@@ -73374,13 +73374,13 @@ _0225E736:
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
 	neg r2, r2
-	bl FUN_02008274
+	bl sub_02008274
 _0225E75E:
 	mov r0, #0x14
 	ldrsh r5, [r4, r0]
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, r5
 	ble _0225E770
 	b _0225E88E
@@ -73388,7 +73388,7 @@ _0225E770:
 	ldr r0, [r4, #8]
 	mov r1, #0
 	add r2, r5, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
 	add r1, r0, #0
@@ -73404,7 +73404,7 @@ _0225E770:
 	ldr r0, [r2, r0]
 	ldrh r3, [r4, #0x16]
 	ldr r2, [r4, #8]
-	bl FUN_020789F4
+	bl sub_020789F4
 	mov r0, #0x69
 	ldr r3, [r4, #0x1c]
 	ldr r1, [r4, #4]
@@ -73414,7 +73414,7 @@ _0225E770:
 	ldrh r2, [r4, #0x16]
 	add r1, sp, #0x14
 	lsr r3, r3, #0x10
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	ldrb r1, [r4, #0x11]
 	ldr r0, [r4, #0]
 	bl ov16_0223EE30
@@ -73435,7 +73435,7 @@ _0225E770:
 	ldrh r2, [r4, #0x16]
 	ldrb r3, [r3]
 	ldr r1, [r4, #0x18]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	ldr r0, [r4, #0x1c]
 	cmp r0, #0
 	beq _0225E7EC
@@ -73446,7 +73446,7 @@ _0225E7EC:
 	mov r1, #0x40
 	ldr r0, [r0, #0]
 	mov r2, #0x88
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225E7F8:
 	ldrb r0, [r4, #0x12]
 	add sp, #0x74
@@ -73457,11 +73457,11 @@ _0225E802:
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
 	ldrb r1, [r4, #0x11]
-	bl FUN_020160F4
+	bl sub_020160F4
 	cmp r0, #1
 	bne _0225E88E
 	ldr r0, [r4, #8]
-	bl FUN_02007C24
+	bl sub_02007C24
 	cmp r0, #0
 	bne _0225E88E
 	ldr r0, [r4, #0x28]
@@ -73506,15 +73506,15 @@ _0225E856:
 	pop {r3, r4, r5, r6, pc}
 _0225E872:
 	mov r0, #0
-	bl FUN_02005454
+	bl sub_02005454
 	ldrb r1, [r4, #0x11]
 	ldrb r2, [r4, #0x10]
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225E88E:
 	add sp, #0x74
 	pop {r3, r4, r5, r6, pc}
@@ -73567,7 +73567,7 @@ _0225E8DA:
 	ldr r0, [r0, #0]
 	add r1, sp, #0x18
 	add r2, #2
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x1c]
 	cmp r0, #1
 	beq _0225E8F2
@@ -73583,27 +73583,27 @@ _0225E8F2:
 	ldr r0, [r0, #0]
 	mov r1, #8
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225E914
 _0225E90A:
 	ldr r0, [r0, #0]
 	mov r1, #0xc0
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225E914:
 	ldr r0, [r4, #0xc]
 	add r2, sp, #0x14
 	ldr r0, [r0, #0]
 	add r1, sp, #0x18
 	add r2, #2
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #8]
 	mov r1, #1
 	mov r2, #4
-	bl FUN_02008274
+	bl sub_02008274
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_020080C0
+	bl sub_020080C0
 	mov r1, #0x14
 	ldrsh r1, [r4, r1]
 	cmp r0, r1
@@ -73613,20 +73613,20 @@ _0225E93C:
 _0225E93E:
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	ldr r0, [r4, #8]
 	mov r1, #0x2c
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #8]
 	mov r1, #0x2d
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	mov r2, #0x14
 	ldrsh r2, [r4, r2]
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
 	add r1, r0, #0
@@ -73642,7 +73642,7 @@ _0225E93E:
 	ldr r0, [r2, r0]
 	ldrh r3, [r4, #0x16]
 	ldr r2, [r4, #8]
-	bl FUN_020789F4
+	bl sub_020789F4
 	mov r0, #0x69
 	ldr r3, [r4, #0x1c]
 	ldr r1, [r4, #4]
@@ -73652,7 +73652,7 @@ _0225E93E:
 	ldrh r2, [r4, #0x16]
 	add r1, sp, #0x14
 	lsr r3, r3, #0x10
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	ldrb r1, [r4, #0x11]
 	ldr r0, [r4, #0]
 	bl ov16_0223EE30
@@ -73672,18 +73672,18 @@ _0225E93E:
 	ldrh r2, [r4, #0x16]
 	ldrb r3, [r3]
 	ldr r1, [r4, #0x18]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	ldr r0, [r4, #0xc]
 	mov r1, #0xc0
 	ldr r0, [r0, #0]
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	mov r2, #0
 	str r2, [sp]
 	ldr r0, [r4, #8]
 	mov r1, #8
 	add r3, r2, #0
-	bl FUN_020086FC
+	bl sub_020086FC
 	ldrb r0, [r4, #0x12]
 	add sp, #0x74
 	add r0, r0, #1
@@ -73693,11 +73693,11 @@ _0225E9F0:
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
 	ldrb r1, [r4, #0x11]
-	bl FUN_020160F4
+	bl sub_020160F4
 	cmp r0, #1
 	bne _0225EA7C
 	ldr r0, [r4, #8]
-	bl FUN_02007C24
+	bl sub_02007C24
 	cmp r0, #0
 	bne _0225EA7C
 	ldr r0, [r4, #0x28]
@@ -73742,15 +73742,15 @@ _0225EA44:
 	pop {r3, r4, r5, r6, pc}
 _0225EA60:
 	mov r0, #0
-	bl FUN_02005454
+	bl sub_02005454
 	ldrb r1, [r4, #0x11]
 	ldrb r2, [r4, #0x10]
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225EA7C:
 	add sp, #0x74
 	pop {r3, r4, r5, r6, pc}
@@ -73936,7 +73936,7 @@ _0225EBCC:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, sp, #0x28
-	bl FUN_020789BC
+	bl sub_020789BC
 	add r0, r4, #0
 	add r0, #0x82
 	ldrb r3, [r0]
@@ -73985,22 +73985,22 @@ _0225EBCC:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
 	ldr r0, [r0, #0x20]
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #0xd
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #0x2c
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #6
 	ldr r0, [r0, #0x20]
 	mov r2, #1
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r0, r4, #0
 	add r0, #0x8e
 	ldrh r0, [r0]
@@ -74013,12 +74013,12 @@ _0225EBCC:
 	str r0, [sp]
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_020086FC
+	bl sub_020086FC
 	ldr r0, [r4, #4]
 	mov r1, #6
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #8]
 	bl FUN_022363B4
 	add r0, r4, #0
@@ -74028,12 +74028,12 @@ _0225EBCC:
 	ldr r0, _0225EEF8 ; =0x00000706
 	bne _0225ECBA
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	b _0225ECC2
 _0225ECBA:
 	mov r1, #0x74
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 _0225ECC2:
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
@@ -74068,7 +74068,7 @@ _0225ECFC:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
 	ldr r0, [r0, #0x20]
-	bl FUN_020080C0
+	bl sub_020080C0
 	mov r1, #1
 	lsl r1, r1, #8
 	cmp r0, r1
@@ -74088,12 +74088,12 @@ _0225ED1A:
 	bne _0225ED90
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	ldr r0, [r4, #4]
 	mov r1, #0x2d
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -74106,7 +74106,7 @@ _0225ED1A:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, #3
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -74132,12 +74132,12 @@ _0225ED1A:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	b _0225EDEE
 _0225ED90:
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -74150,7 +74150,7 @@ _0225ED90:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, #2
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -74177,7 +74177,7 @@ _0225ED90:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 _0225EDEE:
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
@@ -74200,7 +74200,7 @@ _0225EDEE:
 	ldr r0, [r2, r0]
 	ldrh r3, [r3]
 	ldr r2, [r2, #0x20]
-	bl FUN_020789F4
+	bl sub_020789F4
 	add r0, r4, #0
 	add r0, #0x8e
 	ldrh r0, [r0]
@@ -74213,7 +74213,7 @@ _0225EDEE:
 	str r0, [sp]
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_020086FC
+	bl sub_020086FC
 	mov r0, #5
 	add r4, #0x83
 	add sp, #0xb4
@@ -74223,7 +74223,7 @@ _0225EE44:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
 	ldr r0, [r0, #0x20]
-	bl FUN_020080C0
+	bl sub_020080C0
 	mov r2, #1
 	lsl r2, r2, #8
 	cmp r0, r2
@@ -74233,13 +74233,13 @@ _0225EE44:
 _0225EE5A:
 	ldr r0, [r0, #0x20]
 	mov r1, #0xc
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #0xd
 	add r2, r1, #0
 	ldr r0, [r0, #0x20]
 	add r2, #0xf3
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r0, r4, #0
 	add r0, #0x84
 	ldrb r0, [r0]
@@ -74248,12 +74248,12 @@ _0225EE5A:
 	bne _0225EEFC
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	ldr r0, [r4, #4]
 	mov r1, #0x2d
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -74266,7 +74266,7 @@ _0225EE5A:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, #1
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -74292,7 +74292,7 @@ _0225EE5A:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	b _0225EF58
 	nop
 _0225EEE8: .word 0x0223B0BA
@@ -74303,7 +74303,7 @@ _0225EEF8: .word 0x00000706
 _0225EEFC:
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -74315,7 +74315,7 @@ _0225EEFC:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, sp, #0x24
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -74342,7 +74342,7 @@ _0225EEFC:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 _0225EF58:
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
@@ -74365,7 +74365,7 @@ _0225EF58:
 	ldr r0, [r2, r0]
 	ldrh r3, [r3]
 	ldr r2, [r2, #0x20]
-	bl FUN_020789F4
+	bl sub_020789F4
 	add r0, r4, #0
 	add r0, #0x8e
 	ldrh r0, [r0]
@@ -74378,7 +74378,7 @@ _0225EF58:
 	str r0, [sp]
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_020086FC
+	bl sub_020086FC
 	mov r0, #5
 	add r4, #0x83
 	add sp, #0xb4
@@ -74388,17 +74388,17 @@ _0225EFAE:
 	ldr r0, [r0, #0x20]
 	mov r1, #0xc
 	mov r2, #0x20
-	bl FUN_02008274
+	bl sub_02008274
 	ldr r0, [r4, #4]
 	mov r1, #0xd
 	ldr r0, [r0, #0x20]
 	mov r2, #0x20
-	bl FUN_02008274
+	bl sub_02008274
 	ldr r0, [r4, #4]
 	mov r1, #0x90
 	ldrsb r1, [r4, r1]
 	ldr r0, [r0, #0x20]
-	bl FUN_020087C8
+	bl sub_020087C8
 	add sp, #0xb4
 	pop {r4, r5, pc}
 _0225EFD4:
@@ -74417,12 +74417,12 @@ _0225EFE8:
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
-	bl FUN_020160F4
+	bl sub_020160F4
 	cmp r0, #1
 	bne _0225F0B8
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_02007C24
+	bl sub_02007C24
 	cmp r0, #0
 	bne _0225F0B8
 	ldr r0, [r4, #4]
@@ -74490,7 +74490,7 @@ _0225F06E:
 	pop {r4, r5, pc}
 _0225F094:
 	mov r0, #0
-	bl FUN_02005454
+	bl sub_02005454
 	add r1, r4, #0
 	add r2, r4, #0
 	add r1, #0x81
@@ -74500,9 +74500,9 @@ _0225F094:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225F0B8:
 	add sp, #0xb4
 	pop {r4, r5, pc}
@@ -74599,7 +74599,7 @@ _0225F148:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, sp, #0x34
-	bl FUN_020789BC
+	bl sub_020789BC
 	add r0, r4, #0
 	add r0, #0x82
 	ldrb r3, [r0]
@@ -74648,22 +74648,22 @@ _0225F148:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
 	ldr r0, [r0, #0x20]
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #0xd
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #0x2c
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #6
 	ldr r0, [r0, #0x20]
 	mov r2, #1
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	mov r0, #0
 	str r0, [r4, #0x10]
 	ldr r0, [r4, #0]
@@ -74753,12 +74753,12 @@ _0225F29A:
 	str r0, [sp]
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_020086FC
+	bl sub_020086FC
 	ldr r0, [r4, #4]
 	mov r1, #6
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #8]
 	bl FUN_022363B4
 	add r0, r4, #0
@@ -74768,12 +74768,12 @@ _0225F29A:
 	ldr r0, _0225F454 ; =0x00000706
 	bne _0225F2DC
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	b _0225F2E4
 _0225F2DC:
 	mov r1, #0x74
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 _0225F2E4:
 	add r0, r4, #0
 	add r0, #0x83
@@ -74799,7 +74799,7 @@ _0225F30C:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
 	ldr r0, [r0, #0x20]
-	bl FUN_020080C0
+	bl sub_020080C0
 	mov r1, #1
 	lsl r1, r1, #8
 	cmp r0, r1
@@ -74819,12 +74819,12 @@ _0225F32A:
 	bne _0225F3A0
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	ldr r0, [r4, #4]
 	mov r1, #0x2d
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -74837,7 +74837,7 @@ _0225F32A:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, #3
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -74863,12 +74863,12 @@ _0225F32A:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	b _0225F3FE
 _0225F3A0:
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -74881,7 +74881,7 @@ _0225F3A0:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, #2
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -74908,7 +74908,7 @@ _0225F3A0:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 _0225F3FE:
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
@@ -74931,7 +74931,7 @@ _0225F3FE:
 	ldr r0, [r2, r0]
 	ldrh r3, [r3]
 	ldr r2, [r2, #0x20]
-	bl FUN_020789F4
+	bl sub_020789F4
 	add r0, r4, #0
 	add r0, #0x8e
 	ldrh r0, [r0]
@@ -74953,7 +74953,7 @@ _0225F458:
 	str r0, [sp]
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_020086FC
+	bl sub_020086FC
 	mov r0, #5
 	add r4, #0x83
 	add sp, #0x1dc
@@ -74963,7 +74963,7 @@ _0225F470:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
 	ldr r0, [r0, #0x20]
-	bl FUN_020080C0
+	bl sub_020080C0
 	mov r2, #1
 	lsl r2, r2, #8
 	cmp r0, r2
@@ -74973,13 +74973,13 @@ _0225F470:
 _0225F486:
 	ldr r0, [r0, #0x20]
 	mov r1, #0xc
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #4]
 	mov r1, #0xd
 	add r2, r1, #0
 	ldr r0, [r0, #0x20]
 	add r2, #0xf3
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r0, r4, #0
 	add r0, #0x84
 	ldrb r0, [r0]
@@ -74988,12 +74988,12 @@ _0225F486:
 	bne _0225F512
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	ldr r0, [r4, #4]
 	mov r1, #0x2d
 	ldr r0, [r0, #0x20]
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -75006,7 +75006,7 @@ _0225F486:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, #1
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -75032,12 +75032,12 @@ _0225F486:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	b _0225F56E
 _0225F512:
 	ldr r0, [r0, #0x20]
 	mov r1, #1
-	bl FUN_02007B98
+	bl sub_02007B98
 	add r2, r4, #0
 	add r3, r4, #0
 	mov r0, #0x69
@@ -75049,7 +75049,7 @@ _0225F512:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	add r1, sp, #0x24
-	bl FUN_02078A4C
+	bl sub_02078A4C
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
@@ -75076,7 +75076,7 @@ _0225F512:
 	ldrh r2, [r2]
 	ldrb r3, [r3]
 	ldr r1, [r1, #0]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 _0225F56E:
 	ldr r0, [r4, #0]
 	bl ov16_0223EE28
@@ -75099,7 +75099,7 @@ _0225F56E:
 	ldr r0, [r2, r0]
 	ldrh r3, [r3]
 	ldr r2, [r2, #0x20]
-	bl FUN_020789F4
+	bl sub_020789F4
 	add r0, r4, #0
 	add r0, #0x8e
 	ldrh r0, [r0]
@@ -75112,7 +75112,7 @@ _0225F56E:
 	str r0, [sp]
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_020086FC
+	bl sub_020086FC
 	mov r0, #5
 	add r4, #0x83
 	add sp, #0x1dc
@@ -75122,17 +75122,17 @@ _0225F5C4:
 	ldr r0, [r0, #0x20]
 	mov r1, #0xc
 	mov r2, #0x20
-	bl FUN_02008274
+	bl sub_02008274
 	ldr r0, [r4, #4]
 	mov r1, #0xd
 	ldr r0, [r0, #0x20]
 	mov r2, #0x20
-	bl FUN_02008274
+	bl sub_02008274
 	ldr r0, [r4, #4]
 	mov r1, #0x90
 	ldrsb r1, [r4, r1]
 	ldr r0, [r0, #0x20]
-	bl FUN_020087C8
+	bl sub_020087C8
 	add sp, #0x1dc
 	pop {r3, r4, r5, r6, pc}
 _0225F5EA:
@@ -75151,12 +75151,12 @@ _0225F5FE:
 	add r1, r4, #0
 	add r1, #0x81
 	ldrb r1, [r1]
-	bl FUN_020160F4
+	bl sub_020160F4
 	cmp r0, #1
 	bne _0225F61E
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x20]
-	bl FUN_02007C24
+	bl sub_02007C24
 	cmp r0, #0
 	beq _0225F620
 _0225F61E:
@@ -75307,9 +75307,9 @@ _0225F73E:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225F75C:
 	add sp, #0x1dc
 	pop {r3, r4, r5, r6, pc}
@@ -75532,7 +75532,7 @@ _0225F8FA:
 	add r3, r1, #0
 	str r0, [sp]
 	ldr r0, [r4, #8]
-	bl FUN_020086FC
+	bl sub_020086FC
 	add r4, #0x6a
 	ldrb r0, [r4]
 	cmp r0, #5
@@ -75554,18 +75554,18 @@ _0225F93E:
 	mov r1, #0x74
 	ldr r0, _0225F9FC ; =0x00000706
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 	add sp, #0x178
 	pop {r4, r5, r6, pc}
 _0225F94C:
 	ldr r0, _0225F9FC ; =0x00000706
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	add sp, #0x178
 	pop {r4, r5, r6, pc}
 _0225F958:
 	ldr r0, [r4, #8]
-	bl FUN_020087B4
+	bl sub_020087B4
 	cmp r0, #0
 	bne _0225F9EA
 	add r0, r4, #0
@@ -75581,24 +75581,24 @@ _0225F972:
 	add r2, r1, #0
 	ldr r0, [r4, #8]
 	sub r2, #0x2c
-	bl FUN_02008274
+	bl sub_02008274
 	mov r1, #0xd
 	add r2, r1, #0
 	ldr r0, [r4, #8]
 	sub r2, #0x2d
-	bl FUN_02008274
+	bl sub_02008274
 	add r1, r4, #0
 	add r1, #0x6c
 	ldrb r1, [r1]
 	ldr r0, [r4, #8]
-	bl FUN_020087C8
+	bl sub_020087C8
 	ldr r0, [r4, #8]
 	mov r1, #0xc
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #0
 	bgt _0225F9EA
 	ldr r0, [r4, #8]
-	bl FUN_02007DC8
+	bl sub_02007DC8
 	mov r0, #7
 	add r4, #0x6b
 	add sp, #0x178
@@ -75626,9 +75626,9 @@ _0225F9CC:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225F9EA:
 	add sp, #0x178
 	pop {r4, r5, r6, pc}
@@ -75655,12 +75655,12 @@ _0225FA12:
 	add r2, r1, #0
 	ldr r0, [r4, #4]
 	sub r2, #0x2c
-	bl FUN_02008274
+	bl sub_02008274
 	mov r1, #0xd
 	add r2, r1, #0
 	ldr r0, [r4, #4]
 	sub r2, #0x2d
-	bl FUN_02008274
+	bl sub_02008274
 	ldrb r0, [r4, #0xc]
 	cmp r0, #0
 	beq _0225FA3E
@@ -75669,15 +75669,15 @@ _0225FA12:
 	mov r1, #1
 	ldr r0, [r4, #4]
 	sub r2, r1, #2
-	bl FUN_02008274
+	bl sub_02008274
 _0225FA3E:
 	ldr r0, [r4, #4]
 	mov r1, #0xc
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #0
 	bgt _0225FA6E
 	ldr r0, [r4, #4]
-	bl FUN_02007DC8
+	bl sub_02007DC8
 	ldrb r0, [r4, #0xb]
 	add r0, r0, #1
 	strb r0, [r4, #0xb]
@@ -75688,9 +75688,9 @@ _0225FA58:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225FA6E:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0225FA00
@@ -75721,7 +75721,7 @@ _0225FA96:
 	mov r1, #3
 	mov r2, #1
 	mov r3, #4
-	bl FUN_02019184
+	bl sub_02019184
 	ldr r0, [r4, #0x1c]
 	add r0, r0, #1
 	str r0, [r4, #0x1c]
@@ -75745,15 +75745,15 @@ _0225FAC0: ; jump table
 	.short _0225FD42 - _0225FAC0 - 2 ; case 4
 _0225FACA:
 	ldr r0, [r4, #8]
-	bl FUN_0200D358
+	bl sub_0200D358
 	cmp r0, #2
 	bls _0225FAE4
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_0200D3CC
+	bl sub_0200D3CC
 	ldr r0, [r4, #8]
 	mov r1, #2
-	bl FUN_0200D364
+	bl sub_0200D364
 _0225FAE4:
 	mov r0, #0x1c
 	str r0, [r4, #0x18]
@@ -75772,12 +75772,12 @@ _0225FAF8:
 	ldr r0, [r0, #0]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	ldr r0, [r4, #8]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldrb r0, [r4, #0xf]
 	cmp r0, #2
 	ldr r0, [r4, #0x14]
@@ -75798,20 +75798,20 @@ _0225FB24:
 	ldr r0, [r0, #0]
 	mov r1, #8
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225FB46
 _0225FB3C:
 	ldr r0, [r0, #0]
 	mov r1, #0xc0
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225FB46:
 	ldr r0, [r4, #4]
 	add r1, sp, #4
 	ldr r0, [r0, #0]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x14]
 	cmp r0, #1
 	beq _0225FB6A
@@ -75830,7 +75830,7 @@ _0225FB6A:
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0225FBC8
 _0225FB7C:
 	cmp r0, #3
@@ -75851,7 +75851,7 @@ _0225FB7C:
 	neg r1, r1
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225FBC8
 _0225FBA6:
 	cmp r0, #5
@@ -75869,13 +75869,13 @@ _0225FBA6:
 	ldrsh r1, [r2, r1]
 	ldr r0, [r4, #8]
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 _0225FBC8:
 	add r1, sp, #0
 	ldr r0, [r4, #8]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	mov r0, #0x10
 	ldrsh r1, [r4, r0]
 	add r3, sp, #0
@@ -75889,7 +75889,7 @@ _0225FBE4:
 	mov r2, #0
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	ldr r0, [r4, #0x14]
 	cmp r0, #1
 	beq _0225FBF8
@@ -75900,18 +75900,18 @@ _0225FBF8:
 	mov r1, #0xc0
 	ldr r0, [r0, #0]
 	mov r2, #0x58
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225FC04:
 	ldr r0, [r4, #8]
-	bl FUN_0200D358
+	bl sub_0200D358
 	cmp r0, #1
 	bls _0225FC2E
 	ldr r0, [r4, #8]
 	mov r1, #0
-	bl FUN_0200D3CC
+	bl sub_0200D3CC
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldrh r1, [r4, #0x12]
 	mov r0, #1
 	add sp, #8
@@ -75940,20 +75940,20 @@ _0225FC3E:
 	ldr r0, [r0, #0]
 	sub r1, #0xe
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225FC60
 _0225FC56:
 	ldr r0, [r0, #0]
 	mov r1, #0x40
 	mov r2, #0x88
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225FC60:
 	ldr r0, [r4, #4]
 	add r1, sp, #4
 	ldr r0, [r0, #0]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #0x14]
 	cmp r0, #0
 	beq _0225FC88
@@ -75974,7 +75974,7 @@ _0225FC88:
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0225FCE6
 _0225FC9A:
 	cmp r0, #2
@@ -75992,7 +75992,7 @@ _0225FC9A:
 	ldrsh r1, [r2, r1]
 	ldr r0, [r4, #8]
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	b _0225FCE6
 _0225FCBE:
 	cmp r0, #4
@@ -76013,13 +76013,13 @@ _0225FCBE:
 	neg r1, r1
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 _0225FCE6:
 	add r1, sp, #0
 	ldr r0, [r4, #8]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	mov r0, #0x10
 	ldrsh r1, [r4, r0]
 	add r3, sp, #0
@@ -76030,7 +76030,7 @@ _0225FCE6:
 	mov r2, #0
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #8]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	ldr r0, [r4, #0x14]
 	cmp r0, #0
 	beq _0225FD14
@@ -76041,7 +76041,7 @@ _0225FD14:
 	mov r1, #0x40
 	ldr r0, [r0, #0]
 	mov r2, #0x88
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0225FD20:
 	mov r0, #4
 	add sp, #8
@@ -76049,7 +76049,7 @@ _0225FD20:
 	pop {r4, r5, r6, pc}
 _0225FD28:
 	ldr r0, [r4, #8]
-	bl FUN_0200D3B8
+	bl sub_0200D3B8
 	cmp r0, #1
 	bne _0225FD3E
 	ldr r1, [r4, #8]
@@ -76066,9 +76066,9 @@ _0225FD42:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0225FD58:
 	add sp, #8
 	pop {r4, r5, r6, pc}
@@ -76207,15 +76207,15 @@ _0225FE00:
 	ldr r0, [r4, #4]
 	mov r1, #0
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D3CC
+	bl sub_0200D3CC
 	ldr r0, [r4, #4]
 	mov r1, #1
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldr r0, [r4, #4]
 	mov r1, #1
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D390
+	bl sub_0200D390
 	mov r0, #3
 	add sp, #0x120
 	strb r0, [r4, #0xa]
@@ -76228,13 +76228,13 @@ _0225FE7A:
 	ldr r0, [r0, #0x18]
 	mov r1, #5
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	ldr r0, [r4, #4]
 	add r1, sp, #4
 	ldr r0, [r0, #0x18]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #4
 	mov r0, #2
 	ldrsh r0, [r1, r0]
@@ -76300,7 +76300,7 @@ _0225FF1C:
 	add r5, r0, #0
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, [r4, #4]
 	mov r1, #0
 	str r1, [r0, #0x18]
@@ -76310,28 +76310,28 @@ _0225FF1C:
 	ldrb r2, [r2, r1]
 	ldr r1, _0225FFF4 ; =0x00004E2F
 	add r1, r2, r1
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r2, [r4, #4]
 	ldr r1, _0225FFF0 ; =0x00000195
 	add r0, r5, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _0225FFF8 ; =0x00004E2A
 	add r1, r2, r1
-	bl FUN_0200D080
+	bl sub_0200D080
 	ldr r2, [r4, #4]
 	ldr r1, _0225FFF0 ; =0x00000195
 	add r0, r5, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _0225FFFC ; =0x00004E27
 	add r1, r2, r1
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r2, [r4, #4]
 	ldr r1, _0225FFF0 ; =0x00000195
 	add r0, r5, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _0225FFFC ; =0x00004E27
 	add r1, r2, r1
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	mov r0, #6
 	add sp, #0x120
 	strb r0, [r4, #0xa]
@@ -76339,15 +76339,15 @@ _0225FF1C:
 _0225FF7A:
 	ldr r0, [r0, #0x18]
 	mov r1, #0
-	bl FUN_0200D3CC
+	bl sub_0200D3CC
 	ldr r0, [r4, #4]
 	mov r1, #1
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldr r0, [r4, #4]
 	mov r1, #1
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D390
+	bl sub_0200D390
 	mov r0, #2
 	add sp, #0x120
 	strb r0, [r4, #0xa]
@@ -76358,13 +76358,13 @@ _0225FF9E:
 	ldr r0, [r0, #0x18]
 	mvn r1, r1
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	ldr r0, [r4, #4]
 	add r1, sp, #4
 	ldr r0, [r0, #0x18]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r1, [r4, #4]
 	add r0, r1, #0
 	add r0, #0x88
@@ -76374,7 +76374,7 @@ _0225FF9E:
 	b _022600EC
 _0225FFC8:
 	ldr r0, [r1, #0x18]
-	bl FUN_0200D3E0
+	bl sub_0200D3E0
 	ldr r1, [r4, #0xc]
 	str r0, [sp]
 	lsl r5, r0, #2
@@ -76515,7 +76515,7 @@ _022600FA:
 	add r5, r0, #0
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, [r4, #4]
 	mov r1, #0
 	str r1, [r0, #0x18]
@@ -76525,28 +76525,28 @@ _022600FA:
 	ldrb r2, [r2, r1]
 	ldr r1, _02260270 ; =0x00004E2F
 	add r1, r2, r1
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r2, [r4, #4]
 	ldr r1, _0226026C ; =0x00000195
 	add r0, r5, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _02260274 ; =0x00004E2A
 	add r1, r2, r1
-	bl FUN_0200D080
+	bl sub_0200D080
 	ldr r2, [r4, #4]
 	ldr r1, _0226026C ; =0x00000195
 	add r0, r5, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _02260278 ; =0x00004E27
 	add r1, r2, r1
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r2, [r4, #4]
 	ldr r1, _0226026C ; =0x00000195
 	add r0, r5, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _02260278 ; =0x00004E27
 	add r1, r2, r1
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	mov r0, #6
 	add sp, #0x120
 	strb r0, [r4, #0xa]
@@ -76557,10 +76557,10 @@ _02260158:
 	ldr r0, [r0, #0x18]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D3E0
+	bl sub_0200D3E0
 	add r7, r0, #0
 	cmp r7, #4
 	bne _02260180
@@ -76631,7 +76631,7 @@ _02260180:
 	cmp r0, #3
 	beq _02260266
 	ldr r0, _02260280 ; =0x0000070A
-	bl FUN_02005748
+	bl sub_02005748
 	add sp, #0x120
 	pop {r3, r4, r5, r6, r7, pc}
 _0226020A:
@@ -76676,9 +76676,9 @@ _02260250:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02260266:
 	add sp, #0x120
 	pop {r3, r4, r5, r6, r7, pc}
@@ -76712,13 +76712,13 @@ _0226029A:
 	ldr r0, [r0, #0x18]
 	mov r1, #5
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	ldr r0, [r5, #4]
 	add r1, sp, #0
 	ldr r0, [r0, #0x18]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	mov r0, #2
 	ldrsh r1, [r1, r0]
@@ -76736,13 +76736,13 @@ _022602D2:
 	ldr r0, [r0, #0x18]
 	mvn r1, r1
 	mov r2, #0
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 	ldr r0, [r5, #4]
 	add r1, sp, #0
 	ldr r0, [r0, #0x18]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	mov r0, #2
 	ldrsh r1, [r1, r0]
@@ -76760,7 +76760,7 @@ _02260302:
 	add r4, r0, #0
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0x18]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, [r5, #4]
 	mov r1, #0
 	str r1, [r0, #0x18]
@@ -76770,36 +76770,36 @@ _02260302:
 	ldrb r2, [r2, r1]
 	ldr r1, _02260378 ; =0x00004E2F
 	add r1, r2, r1
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r2, [r5, #4]
 	ldr r1, _02260374 ; =0x00000195
 	add r0, r4, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _0226037C ; =0x00004E2A
 	add r1, r2, r1
-	bl FUN_0200D080
+	bl sub_0200D080
 	ldr r2, [r5, #4]
 	ldr r1, _02260374 ; =0x00000195
 	add r0, r4, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _02260380 ; =0x00004E27
 	add r1, r2, r1
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r2, [r5, #4]
 	ldr r1, _02260374 ; =0x00000195
 	add r0, r4, #0
 	ldrb r2, [r2, r1]
 	ldr r1, _02260380 ; =0x00004E27
 	add r1, r2, r1
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	ldrb r1, [r5, #9]
 	ldrb r2, [r5, #8]
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0226036E:
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
@@ -76826,7 +76826,7 @@ _02260396:
 	ldr r0, [r4, #4]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	ldrb r0, [r4, #0xb]
 	add r2, sp, #0
 	cmp r0, #0
@@ -76866,7 +76866,7 @@ _022603E0:
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	ldr r0, [r4, #4]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	pop {r3, r4, r5, pc}
 _022603F2:
 	ldrb r1, [r4, #9]
@@ -76874,9 +76874,9 @@ _022603F2:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02260384
@@ -76939,7 +76939,7 @@ _02260462:
 	mov r0, #0
 	str r0, [r4, #0x10]
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0226047E:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0226040C
@@ -76974,7 +76974,7 @@ _022604A0:
 	mov r0, #0
 	str r0, [r4, #0x10]
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add r0, r4, #0
 	mov r1, #0
 	bl ov16_02267620
@@ -77188,7 +77188,7 @@ _0226065E:
 	add r0, r4, #0
 	add r0, #0x35
 	ldrb r0, [r0]
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02260690
 	mov r0, #3
@@ -77213,11 +77213,11 @@ _02260690:
 _02260692:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	ldrb r1, [r4, #9]
 	add r0, sp, #0x10
@@ -77431,9 +77431,9 @@ _02260844:
 	add r0, r6, #0
 	bl ov16_022691BC
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	ldr r0, [sp, #8]
 	cmp r0, #0
 	beq _02260878
@@ -77486,7 +77486,7 @@ _022608D8: .word 0x00000197
 _022608DC: .word 0x021BF67C
 _022608E0: .word 0x000005DD
 _022608E4:
-	bl FUN_02005748
+	bl sub_02005748
 	mov r0, #6
 	add sp, #0x58
 	strb r0, [r4, #0xa]
@@ -77532,11 +77532,11 @@ _02260920:
 _02260934:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r3, #0
 	str r3, [sp]
@@ -77555,18 +77555,18 @@ _02260934:
 	ldr r0, [sp, #0xc]
 	bl ov16_022647D8
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	b _02260A16
 _02260980:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r3, #0
 	str r3, [sp]
@@ -77585,18 +77585,18 @@ _02260980:
 	ldr r0, [sp, #0xc]
 	bl ov16_022647D8
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	b _02260A16
 _022609CC:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	add r0, r6, #0
 	bl ov16_0226D088
@@ -77615,12 +77615,12 @@ _022609F4:
 	str r3, [sp, #4]
 	bl ov16_02268C04
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	b _02260A16
 _02260A12:
-	bl FUN_02022974
+	bl sub_02022974
 _02260A16:
 	add r0, r6, #0
 	bl ov16_02269218
@@ -77635,11 +77635,11 @@ _02260A24:
 	bne _02260AB0
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r3, #0
 	str r3, [sp]
@@ -77662,9 +77662,9 @@ _02260A24:
 	mov r0, #8
 	strb r0, [r4, #0xa]
 	add r0, r5, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x58
 	pop {r3, r4, r5, r6, r7, pc}
 _02260A86:
@@ -77681,9 +77681,9 @@ _02260A86:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r7, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02260AB0:
 	add sp, #0x58
 	pop {r3, r4, r5, r6, r7, pc}
@@ -77706,9 +77706,9 @@ ov16_02260AB4: ; 0x02260AB4
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02260AB4
 
@@ -77722,9 +77722,9 @@ ov16_02260AE4: ; 0x02260AE4
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02260AE4
@@ -77746,7 +77746,7 @@ ov16_02260B04: ; 0x02260B04
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	mov r1, #0x1a
-	bl FUN_020759F0
+	bl sub_020759F0
 	ldr r2, _02260B7C ; =0x0226F194
 	lsl r1, r5, #1
 	ldrb r2, [r2, r1]
@@ -77754,12 +77754,12 @@ ov16_02260B04: ; 0x02260B04
 	add r0, r2, #0
 	ldr r2, _02260B80 ; =0x0226F195
 	ldrb r1, [r2, r1]
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F4BC
 	mov r1, #0xff
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r1, r5
 	ldr r0, [r4, #0]
 	bgt _02260B5C
@@ -77777,9 +77777,9 @@ _02260B64:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _02260B7C: .word 0x0226F194
@@ -77800,9 +77800,9 @@ ov16_02260B84: ; 0x02260B84
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02260B84
 
@@ -77842,9 +77842,9 @@ _02260BDC:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02260BAC
 
@@ -77923,11 +77923,11 @@ _02260C68:
 	bl ov16_02269218
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	str r0, [sp, #0xc]
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r5, sp, #0x14
 	str r0, [sp, #8]
 	mov r2, #0
@@ -77960,9 +77960,9 @@ _02260CB0:
 	mov r3, #0xb
 	bl ov16_02268C04
 	ldr r0, [sp, #0xc]
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	ldr r0, [sp, #8]
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r4, #0
 	add r0, #0x20
 	ldrb r0, [r0]
@@ -77980,7 +77980,7 @@ _02260D00:
 	cmp r0, r1
 	beq _02260DA2
 	ldr r0, _02260DAC ; =0x000005DD
-	bl FUN_02005748
+	bl sub_02005748
 	add r0, r4, #0
 	add r0, #0x20
 	ldrb r0, [r0]
@@ -78041,9 +78041,9 @@ _02260D7A:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02260DA2:
 	add sp, #0x4c
 	pop {r4, r5, r6, r7, pc}
@@ -78091,7 +78091,7 @@ _02260DF6:
 	add r5, sp, #0x10
 _02260DFC:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldrh r1, [r6, #0x22]
 	tst r0, r1
 	bne _02260E0E
@@ -78105,7 +78105,7 @@ _02260E0E:
 	ldr r0, [r6, #0]
 	bl ov16_0223F4BC
 	add r1, r7, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r1, r1, #2
 	add r0, sp, #0x10
 	ldr r4, [r0, r1]
@@ -78137,9 +78137,9 @@ _02260E4E:
 	ldr r0, [r6, #0]
 	bl ov16_02266ABC
 	add r0, r6, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp, #8]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02260E6E:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
@@ -78157,9 +78157,9 @@ ov16_02260E78: ; 0x02260E78
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02260E78
@@ -78216,9 +78216,9 @@ _02260EEA:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -78277,11 +78277,11 @@ _02260F6A:
 _02260F76:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r2, sp, #0x10
 	add r6, r0, #0
 	mov r0, #0
@@ -78322,9 +78322,9 @@ _02260F92:
 	mov r3, #0xc
 	bl ov16_02268C04
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	ldrb r0, [r4, #0xf]
 	add sp, #0x34
 	add r0, r0, #1
@@ -78339,7 +78339,7 @@ _02260FEE:
 	cmp r0, r1
 	beq _022610A0
 	ldr r0, _022610A4 ; =0x000005DD
-	bl FUN_02005748
+	bl sub_02005748
 	ldrb r0, [r4, #0xf]
 	add sp, #0x34
 	add r0, r0, #1
@@ -78410,9 +78410,9 @@ _02261080:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp, #8]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _022610A0:
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
@@ -78435,7 +78435,7 @@ ov16_022610A8: ; 0x022610A8
 	add r4, r0, #1
 	cmp r4, #5
 	blt _022610CA
-	bl FUN_02022974
+	bl sub_02022974
 _022610CA:
 	ldrb r1, [r5, #0xd]
 	ldr r0, [r5, #0]
@@ -78446,9 +78446,9 @@ _022610CA:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_022610A8
 
@@ -78462,9 +78462,9 @@ ov16_022610EC: ; 0x022610EC
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_022610EC
@@ -78571,9 +78571,9 @@ _022611B8:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r7, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_0226110C
 
@@ -78638,7 +78638,7 @@ _02261242:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	mov r2, #3
 	str r1, [sp]
@@ -78650,7 +78650,7 @@ _02261242:
 	add r0, r5, #0
 	lsl r2, r2, #0xa
 	sub r3, #0xd
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -78661,7 +78661,7 @@ _02261242:
 	ldr r2, _022615C0 ; =0x0000FFFF
 	add r0, r5, #0
 	sub r3, #0x12
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0xe]
 	add sp, #0x1fc
 	add sp, #0x14
@@ -78669,18 +78669,18 @@ _02261242:
 	strb r0, [r4, #0xe]
 	pop {r3, r4, r5, r6, r7, pc}
 _02261298:
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _02261360
 	ldr r0, [r4, #0]
 	bl ov16_0223B384
 	mov r0, #5
 	mov r1, #0x34
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r4, #4]
 	mov r1, #0
 	mov r2, #0x34
-	bl FUN_020D5124
+	bl sub_020D5124
 	ldr r1, [r4, #0]
 	ldr r0, [r4, #4]
 	str r1, [r0, #0]
@@ -78822,10 +78822,10 @@ _022613C4:
 	mov r1, #6
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_0207A014
+	bl sub_0207A014
 	ldr r0, [sp, #0x14]
 	mov r6, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02261412
 	mov r0, #6
@@ -78840,7 +78840,7 @@ _022613E2:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_0207A048
+	bl sub_0207A048
 	ldr r1, [r4, #8]
 	ldrb r0, [r5, #0x18]
 	ldr r1, [r1, #4]
@@ -78850,7 +78850,7 @@ _022613E2:
 	strb r0, [r1]
 	ldr r0, [sp, #0x14]
 	add r6, r6, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r6, r0
 	blt _022613E2
 _02261412:
@@ -79004,7 +79004,7 @@ _0226151A:
 	add r0, r5, #0
 	lsl r2, r2, #0xa
 	sub r3, #0xd
-	bl FUN_02003178
+	bl sub_02003178
 	mov r0, #0x10
 	str r0, [sp]
 	mov r0, #0
@@ -79015,7 +79015,7 @@ _0226151A:
 	ldr r2, _022615C0 ; =0x0000FFFF
 	add r0, r5, #0
 	sub r3, #0x12
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0xe]
 	add sp, #0x1fc
 	add sp, #0x14
@@ -79023,7 +79023,7 @@ _0226151A:
 	strb r0, [r4, #0xe]
 	pop {r3, r4, r5, r6, r7, pc}
 _0226156A:
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	beq _02261574
 _02261572:
@@ -79032,7 +79032,7 @@ _02261574:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #0
-	bl FUN_02015738
+	bl sub_02015738
 	ldr r0, [r4, #4]
 	ldrh r0, [r0, #0x1c]
 	cmp r0, #0
@@ -79108,7 +79108,7 @@ _02261608:
 	mov r1, #0x74
 	ldr r0, _02261928 ; =0x000005EC
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 	mov r0, #0x15
 	strh r0, [r4, #0x12]
 	b _022616FA
@@ -79123,7 +79123,7 @@ _02261626:
 	mov r1, #0x74
 	ldr r0, _02261928 ; =0x000005EC
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 	mov r0, #0x1d
 	strh r0, [r4, #0x12]
 	b _022616FA
@@ -79156,7 +79156,7 @@ _02261664:
 	mov r1, #0x26
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261694
 	ldr r0, [r4, #0]
@@ -79170,7 +79170,7 @@ _02261684:
 	mov r1, #0x74
 	ldr r0, _02261928 ; =0x000005EC
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 	mov r0, #0x15
 	strh r0, [r4, #0x12]
 	b _022616FA
@@ -79203,7 +79203,7 @@ _022616C2:
 	mov r1, #0x74
 	ldr r0, _02261928 ; =0x000005EC
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 	mov r0, #0xf
 	strh r0, [r4, #0x12]
 	b _022616FA
@@ -79218,7 +79218,7 @@ _022616E0:
 	mov r1, #0x74
 	ldr r0, _02261928 ; =0x000005EC
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 	mov r0, #0xf
 	strh r0, [r4, #0x12]
 	b _022616FA
@@ -79282,18 +79282,18 @@ _0226173A:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r7, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #0x1fc
 	add sp, #0x14
 	pop {r3, r4, r5, r6, r7, pc}
@@ -79327,7 +79327,7 @@ _0226178C:
 	pop {r3, r4, r5, r6, r7, pc}
 _022617C8:
 	ldrb r0, [r4, #0x11]
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _022617DE
 	ldrb r0, [r4, #0x17]
@@ -79628,7 +79628,7 @@ _02261A1C:
 	mov r1, #0
 	mov r2, #1
 	add r5, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r0, [r4, #0]
 	add r1, r6, #0
 	bl ov16_0223E1F8
@@ -79648,7 +79648,7 @@ _02261A1C:
 	mov r1, #0xa3
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, [r4, #8]
 	mov r2, #0
 	ldr r1, [r1, #4]
@@ -79657,7 +79657,7 @@ _02261A1C:
 	str r0, [r5, #0x28]
 	add r0, r6, #0
 	mov r1, #0xa4
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [r5, #0x2c]
 	ldr r0, [r4, #8]
 	mov r1, #0xa0
@@ -79666,7 +79666,7 @@ _02261A1C:
 	ldrh r0, [r0, #0x20]
 	str r0, [r5, #0x30]
 	add r0, r6, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _02261AA2
 	add r0, r5, #0
@@ -79787,7 +79787,7 @@ _02261B5E:
 	bl ov16_0223DFAC
 	mov r1, #0xa0
 	add r2, r5, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _02261B9A
 	ldr r0, [sp, #0x10]
@@ -79814,7 +79814,7 @@ _02261B9A:
 	str r0, [sp, #0x24]
 	ldr r0, [r4, #4]
 	ldrh r0, [r0, #0x1c]
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261BCE
 	mov r6, #0
@@ -79824,7 +79824,7 @@ _02261BCE:
 	mov r1, #0x10
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261BE2
 	mov r6, #1
@@ -79834,7 +79834,7 @@ _02261BE2:
 	mov r1, #0x11
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261BF6
 	mov r6, #2
@@ -79844,7 +79844,7 @@ _02261BF6:
 	mov r1, #0x12
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261C0A
 	mov r6, #3
@@ -79854,7 +79854,7 @@ _02261C0A:
 	mov r1, #0x13
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261C1E
 	mov r6, #4
@@ -79864,7 +79864,7 @@ _02261C1E:
 	mov r1, #0x14
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261C32
 	mov r6, #5
@@ -79874,7 +79874,7 @@ _02261C32:
 	mov r1, #0x15
 	ldrh r0, [r0, #0x1c]
 	mov r2, #5
-	bl FUN_0207CFF0
+	bl sub_0207CFF0
 	cmp r0, #0
 	beq _02261C46
 	mov r6, #6
@@ -79977,7 +79977,7 @@ _02261CD2:
 	pop {r3, r4, r5, r6, r7, pc}
 _02261D00:
 	ldrb r0, [r4, #0x11]
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02261D22
 	ldrb r0, [r4, #0x17]
@@ -80034,16 +80034,16 @@ ov16_02261D50: ; 0x02261D50
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -80061,16 +80061,16 @@ ov16_02261DA8: ; 0x02261DA8
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02261DA8
@@ -80141,16 +80141,16 @@ _02261E36:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #8]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #8
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_02261DE0
@@ -80184,9 +80184,9 @@ _02261EB6:
 	bl ov16_0223DF04
 	add r6, r0, #0
 	mov r1, #0xff
-	bl FUN_0201ADA4
+	bl sub_0201ADA4
 	add r0, r6, #0
-	bl FUN_0201ACCC
+	bl sub_0201ACCC
 	ldr r0, [r4, #0]
 	bl ov16_0223E02C
 	bl ov16_0226CD08
@@ -80194,7 +80194,7 @@ _02261EB6:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	mov r2, #3
 	str r1, [sp]
@@ -80206,7 +80206,7 @@ _02261EB6:
 	add r0, r5, #0
 	lsl r2, r2, #0xa
 	sub r3, #0xd
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -80217,14 +80217,14 @@ _02261EB6:
 	ldr r2, _0226221C ; =0x0000FFFF
 	add r0, r5, #0
 	sub r3, #0x12
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0xa]
 	add sp, #0x24
 	add r0, r0, #1
 	strb r0, [r4, #0xa]
 	pop {r4, r5, r6, r7, pc}
 _02261F20:
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	beq _02261F2A
 _02261F28:
@@ -80234,10 +80234,10 @@ _02261F2A:
 	bl ov16_0223B384
 	mov r0, #5
 	mov r1, #0x38
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r4, #4]
 	mov r0, #5
-	bl FUN_02079FF4
+	bl sub_02079FF4
 	ldr r1, [r4, #4]
 	str r0, [r1, #0]
 	ldr r0, [r4, #0]
@@ -80273,19 +80273,19 @@ _02261F7A:
 	str r0, [sp, #0x14]
 _02261F88:
 	mov r0, #5
-	bl FUN_02073C74
+	bl sub_02073C74
 	add r6, r0, #0
 	mov r5, #0
 _02261F92:
 	ldr r0, [r4, #4]
 	add r1, r6, #0
 	ldr r0, [r0, #0]
-	bl FUN_0207A048
+	bl sub_0207A048
 	add r5, r5, #1
 	cmp r5, #6
 	blt _02261F92
 	add r0, r6, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #0]
 	ldr r1, [sp, #0x18]
 	mov r7, #0
@@ -80306,10 +80306,10 @@ _02261FC0:
 	ldr r0, [r4, #4]
 	add r1, r6, #0
 	ldr r0, [r0, #0]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r1, r0, #0
 	ldr r0, [sp, #0x1c]
-	bl FUN_020775EC
+	bl sub_020775EC
 	ldr r0, [r4, #4]
 	ldrb r1, [r5, #0x1c]
 	add r0, r0, r6
@@ -80346,10 +80346,10 @@ _02262016:
 	ldr r0, [r4, #4]
 	ldr r1, [sp, #0xc]
 	ldr r0, [r0, #0]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	add r1, r0, #0
 	ldr r0, [sp, #0x20]
-	bl FUN_020775EC
+	bl sub_020775EC
 	ldr r0, [r4, #4]
 	ldrb r1, [r5, #0x1c]
 	add r0, r0, r7
@@ -80417,7 +80417,7 @@ _022620A8:
 	bl ov16_0223DF20
 	str r0, [sp, #0x10]
 	mov r6, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _022620F2
 	mov r0, #6
@@ -80431,7 +80431,7 @@ _022620C6:
 	add r1, r0, #0
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0]
-	bl FUN_0207A048
+	bl sub_0207A048
 	ldr r0, [r4, #4]
 	ldrb r1, [r5, #0x1c]
 	add r0, r0, r6
@@ -80440,7 +80440,7 @@ _022620C6:
 	ldr r0, [sp, #0x10]
 	add r5, r5, #1
 	add r6, r6, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r6, r0
 	blt _022620C6
 _022620F2:
@@ -80475,7 +80475,7 @@ _022620F2:
 	add r0, #0x32
 	strb r1, [r0]
 	ldrb r0, [r4, #9]
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldrb r1, [r4, #0x18]
 	tst r0, r1
 	bne _02262142
@@ -80501,7 +80501,7 @@ _0226215C:
 	ldrb r1, [r4, #9]
 	ldr r0, [r4, #0]
 	bl ov16_0223E258
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldrb r1, [r4, #0x18]
 	tst r0, r1
 	bne _02262180
@@ -80550,7 +80550,7 @@ _02262196:
 	add r0, r5, #0
 	lsl r2, r2, #0xa
 	sub r3, #0xd
-	bl FUN_02003178
+	bl sub_02003178
 	mov r0, #0x10
 	str r0, [sp]
 	mov r0, #0
@@ -80561,20 +80561,20 @@ _02262196:
 	ldr r2, _0226221C ; =0x0000FFFF
 	add r0, r5, #0
 	sub r3, #0x12
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0xa]
 	add sp, #0x24
 	add r0, r0, #1
 	strb r0, [r4, #0xa]
 	pop {r4, r5, r6, r7, pc}
 _022621F2:
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _02262252
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #0
-	bl FUN_02015738
+	bl sub_02015738
 	ldr r3, [r4, #4]
 	ldr r0, [r4, #0]
 	ldrb r2, [r3, #0x11]
@@ -80600,13 +80600,13 @@ _0226222E:
 	bl ov16_02266ABC
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r4, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262252:
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
@@ -80654,7 +80654,7 @@ _02262282:
 	bl ov16_0223DF20
 	str r0, [sp, #8]
 	mov r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _022622E6
 	ldr r0, [sp, #4]
@@ -80667,7 +80667,7 @@ _022622B8:
 	bl ov16_0223DFAC
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022622DA
 	ldrb r0, [r7, #0xc]
@@ -80679,7 +80679,7 @@ _022622B8:
 _022622DA:
 	ldr r0, [sp, #8]
 	add r4, r4, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r4, r0
 	blt _022622B8
 _022622E6:
@@ -80692,9 +80692,9 @@ _022622E6:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [sp]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -80710,9 +80710,9 @@ ov16_0226230C: ; 0x0226230C
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226230C
@@ -80762,7 +80762,7 @@ _02262376:
 _0226237E:
 	add r1, sp, #0
 	ldrb r5, [r1]
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r5, r0
 	ldr r0, [r4, #0]
 	ble _02262392
@@ -80775,7 +80775,7 @@ _02262392:
 	mov r1, #0xa3
 	mov r2, #0
 	add r5, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	bne _022623AE
 	ldr r0, [r4, #0]
@@ -80784,7 +80784,7 @@ _022623AE:
 	add r0, r5, #0
 	mov r1, #0xae
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	ldr r1, _022623EC ; =0x000001EE
 	cmp r0, r1
 	bne _022623C4
@@ -80801,9 +80801,9 @@ _022623C4:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	nop
@@ -80898,7 +80898,7 @@ _02262498:
 	ldrh r0, [r4, #0x1a]
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	beq _022624AE
 	ldr r0, [r4, #0x10]
@@ -80909,11 +80909,11 @@ _022624AC:
 _022624AE:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	add r0, r5, #0
 	bl ov16_02269218
@@ -80992,14 +80992,14 @@ _02262544:
 	bl ov16_02268C04
 	b _0226255E
 _0226255A:
-	bl FUN_02022974
+	bl sub_02022974
 _0226255E:
 	mov r0, #2
 	strb r0, [r4, #0xe]
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x38
 	pop {r3, r4, r5, r6, r7, pc}
 _02262572:
@@ -81011,7 +81011,7 @@ _02262572:
 	cmp r0, r1
 	beq _02262622
 	ldr r0, _02262628 ; =0x000005DD
-	bl FUN_02005748
+	bl sub_02005748
 	mov r0, #3
 	add sp, #0x38
 	strb r0, [r4, #0xe]
@@ -81023,11 +81023,11 @@ _02262590:
 	bne _02262622
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	str r0, [sp, #8]
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	ldr r0, [r4, #4]
 	bl ov16_022675AC
@@ -81054,9 +81054,9 @@ _022625E4:
 	mov r0, #4
 	strb r0, [r4, #0xe]
 	ldr r0, [sp, #8]
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x38
 	pop {r3, r4, r5, r6, r7, pc}
 _022625F8:
@@ -81073,9 +81073,9 @@ _022625F8:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262622:
 	add sp, #0x38
 	pop {r3, r4, r5, r6, r7, pc}
@@ -81093,9 +81093,9 @@ ov16_0226262C: ; 0x0226262C
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226262C
@@ -81110,9 +81110,9 @@ ov16_0226264C: ; 0x0226264C
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226264C
@@ -81153,9 +81153,9 @@ _0226269C:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0226266C
 
@@ -81201,7 +81201,7 @@ _022626F8:
 	bne _02262746
 	ldr r0, [r4, #8]
 	mov r1, #6
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #0
 	bne _02262746
 	add r0, r4, #0
@@ -81298,7 +81298,7 @@ _022627C6:
 	ldr r0, [r4, #0]
 	bl ov16_0223E000
 	mov r1, #1
-	bl FUN_02008B54
+	bl sub_02008B54
 _022627DC:
 	add r3, r4, #0
 	ldr r0, [r4, #0]
@@ -81335,7 +81335,7 @@ _02262814:
 	ldr r0, [r4, #0]
 	bl ov16_0223E000
 	mov r1, #1
-	bl FUN_02008B60
+	bl sub_02008B60
 _0226282A:
 	ldrh r0, [r4, #0x1e]
 	lsl r0, r0, #0x1f
@@ -81346,7 +81346,7 @@ _0226282A:
 	bne _02262878
 	ldr r0, [r4, #8]
 	mov r1, #6
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #0
 	bne _02262878
 	add r0, r4, #0
@@ -81432,9 +81432,9 @@ _022628E0:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #0x1fc
 	add sp, #0x14
 	pop {r3, r4, r5, pc}
@@ -81478,13 +81478,13 @@ ov16_0226292C: ; 0x0226292C
 	add r0, r0, #1
 	strb r0, [r4, #9]
 	ldr r0, [r4, #4]
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r3, r0, #0
 	mov r2, #1
 	ldr r0, [r4, #4]
 	mov r1, #6
 	eor r2, r3
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	pop {r3, r4, r5, pc}
 _02262960:
 	sub r0, r0, #1
@@ -81494,15 +81494,15 @@ _02262966:
 	ldr r0, [r4, #4]
 	mov r1, #6
 	mov r2, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldrb r1, [r4, #8]
 	ldr r0, [r4, #0]
 	mov r2, #0x17
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0226292C
 
@@ -81546,7 +81546,7 @@ _022629BE:
 	mov r0, #0
 	str r0, [r4, #0x10]
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _022629D8:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -81571,7 +81571,7 @@ _022629F2:
 	add r0, #0x4e
 	strb r1, [r0]
 	ldr r0, _02262A98 ; =0x0000070B
-	bl FUN_02005748
+	bl sub_02005748
 	ldr r1, [r4, #0x40]
 	add r0, r4, #0
 	bl ov16_0226752C
@@ -81605,7 +81605,7 @@ _02262A26:
 	blo _02262A4C
 	ldr r0, _02262A98 ; =0x0000070B
 	mov r1, #0
-	bl FUN_020057A4
+	bl sub_020057A4
 	mov r0, #0x64
 	strb r0, [r4]
 	pop {r3, r4, r5, pc}
@@ -81629,7 +81629,7 @@ _02262A54:
 	blo _02262A94
 	ldr r0, _02262A98 ; =0x0000070B
 	mov r1, #0
-	bl FUN_020057A4
+	bl sub_020057A4
 	mov r0, #0x64
 	strb r0, [r4]
 	pop {r3, r4, r5, pc}
@@ -81644,7 +81644,7 @@ _02262A7A:
 	mov r0, #0
 	str r0, [r4, #0x10]
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262A94:
 	pop {r3, r4, r5, pc}
 	nop
@@ -81816,7 +81816,7 @@ _02262BB8:
 	add r3, #0x6b
 	ldrh r2, [r2]
 	ldrb r3, [r3]
-	bl FUN_02077DB4
+	bl sub_02077DB4
 	add r0, r4, #0
 	add r0, #0x66
 	ldrb r0, [r0]
@@ -81825,7 +81825,7 @@ _02262BB8:
 	add r0, #0x66
 	strb r1, [r0]
 _02262BF8:
-	bl FUN_0200598C
+	bl sub_0200598C
 	cmp r0, #0
 	beq _02262C02
 _02262C00:
@@ -81847,16 +81847,16 @@ _02262C12:
 	ldr r0, _02262D24 ; =0x00000703
 	bne _02262C26
 	mov r1, #0x75
-	bl FUN_02005728
+	bl sub_02005728
 	b _02262C2E
 _02262C26:
 	mov r1, #0x74
 	mvn r1, r1
-	bl FUN_02005728
+	bl sub_02005728
 _02262C2E:
 	ldr r0, [r4, #8]
 	mov r1, #0x29
-	bl FUN_020080C0
+	bl sub_020080C0
 	cmp r0, #0
 	ble _02262C44
 	mov r0, #7
@@ -81873,7 +81873,7 @@ _02262C44:
 _02262C4E:
 	ldr r0, [r4, #8]
 	mov r1, #0x29
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r5, r0, #0
 	sub r5, #8
 	bpl _02262C5E
@@ -81882,7 +81882,7 @@ _02262C5E:
 	ldr r0, [r4, #8]
 	mov r1, #0x29
 	add r2, r5, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	cmp r5, #0
 	bne _02262D20
 	add r0, r4, #0
@@ -81907,14 +81907,14 @@ _02262C7A:
 	ldrb r1, [r1]
 	ldrb r2, [r2]
 	ldrb r3, [r3]
-	bl FUN_02076648
+	bl sub_02076648
 	mov r3, #0x50
 	sub r0, r3, r0
 	str r0, [sp]
 	mov r1, #0
 	ldr r0, [r4, #8]
 	add r2, r1, #0
-	bl FUN_020086D4
+	bl sub_020086D4
 	add r0, r4, #0
 	add r0, #0x66
 	ldrb r0, [r0]
@@ -81926,15 +81926,15 @@ _02262C7A:
 _02262CBA:
 	ldr r0, [r4, #8]
 	mov r1, #1
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r2, r0, #0
 	ldr r0, [r4, #8]
 	mov r1, #1
 	add r2, #8
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r0, [r4, #8]
 	mov r1, #0x12
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r5, r0, #0
 	sub r5, #8
 	bpl _02262CDE
@@ -81943,11 +81943,11 @@ _02262CDE:
 	ldr r0, [r4, #8]
 	mov r1, #0x12
 	add r2, r5, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	cmp r5, #0
 	bne _02262D20
 	ldr r0, [r4, #8]
-	bl FUN_02007DC8
+	bl sub_02007DC8
 	add r0, r4, #0
 	add r0, #0x66
 	ldrb r0, [r0]
@@ -81966,9 +81966,9 @@ _02262D02:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262D20:
 	add sp, #0x114
 	pop {r3, r4, r5, r6, pc}
@@ -82001,7 +82001,7 @@ _02262D52:
 	ldr r0, [r5, #0]
 	bl ov16_0223E220
 	mov r1, #1
-	bl FUN_02015738
+	bl sub_02015738
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0x10
@@ -82011,22 +82011,22 @@ _02262D52:
 	add r0, r4, #0
 	mov r1, #0xf
 	mov r3, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r1, #0
 	add r0, r7, #0
 	mov r2, #0x10
 	add r3, r1, #0
 	str r1, [sp]
-	bl FUN_0200872C
+	bl sub_0200872C
 	mov r0, #0
 	mov r1, #0x10
-	bl FUN_0200564C
+	bl sub_0200564C
 	ldrb r0, [r5, #6]
 	add r0, r0, #1
 	strb r0, [r5, #6]
 _02262D90:
 	add r0, r4, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _02262DBA
 	ldrb r0, [r5, #6]
@@ -82040,9 +82040,9 @@ _02262DA4:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262DBA:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
@@ -82087,7 +82087,7 @@ _02262DF6:
 	add r2, #0x63
 	ldrb r2, [r2]
 	mov r1, #6
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	add r0, r4, #0
 	add r0, #0x63
 	ldrb r0, [r0]
@@ -82224,9 +82224,9 @@ _02262F0C:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262F2A:
 	add sp, #0x110
 	pop {r4, r5, r6, pc}
@@ -82249,7 +82249,7 @@ _02262F42:
 	add r1, #0xb
 	bl ov16_0226834C
 	ldr r0, _02262F78 ; =0x0000070C
-	bl FUN_02005748
+	bl sub_02005748
 	ldrb r0, [r4, #0xa]
 	add r0, r0, #1
 	strb r0, [r4, #0xa]
@@ -82263,9 +82263,9 @@ _02262F58:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262F74:
 	pop {r3, r4, r5, pc}
 	nop
@@ -82283,13 +82283,13 @@ ov16_02262F7C: ; 0x02262F7C
 	beq _02262F9E
 	ldr r0, [r4, #0]
 	bl ov16_0223F29C
-	bl FUN_0200EBA0
+	bl sub_0200EBA0
 	ldr r0, [r4, #0]
 	mov r1, #0
 	bl ov16_0223F2A4
 _02262F9E:
 	ldrb r0, [r4, #6]
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02262FBE
 	ldrb r1, [r4, #5]
@@ -82297,9 +82297,9 @@ _02262F9E:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02262FBE:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02262F7C
@@ -82317,7 +82317,7 @@ ov16_02262FC0: ; 0x02262FC0
 	pop {r3, r4, r5, pc}
 _02262FD2:
 	ldrb r0, [r4, #6]
-	bl FUN_0201D724
+	bl sub_0201D724
 	cmp r0, #0
 	bne _02263012
 	ldrb r0, [r4, #7]
@@ -82341,9 +82341,9 @@ _02262FE8:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02263012:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02262FC0
@@ -82414,7 +82414,7 @@ _02263066:
 	ldr r0, [r4, #8]
 	bl FUN_02238004
 	ldr r0, _02263390 ; =0x0000084F
-	bl FUN_02005748
+	bl sub_02005748
 	mov r0, #1
 	strb r0, [r4, #0x14]
 _022630A6:
@@ -82432,7 +82432,7 @@ _022630A6:
 	str r0, [sp, #8]
 	add r0, r7, #0
 	mov r1, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #0x10
@@ -82444,7 +82444,7 @@ _022630A6:
 	str r0, [sp, #8]
 	add r0, r7, #0
 	mov r1, #4
-	bl FUN_02003178
+	bl sub_02003178
 _022630E0:
 	ldrb r0, [r4, #0x15]
 	cmp r0, #0xa
@@ -82462,7 +82462,7 @@ _022630E0:
 _022630FA:
 	add r0, r7, #0
 	mov r1, #1
-	bl FUN_0200316C
+	bl sub_0200316C
 	add r6, r0, #0
 	mov r0, #1
 	mov r5, #0
@@ -82496,33 +82496,33 @@ _02263136:
 	bne _02263144
 	mov r0, #0x85
 	lsl r0, r0, #4
-	bl FUN_02005748
+	bl sub_02005748
 _02263144:
 	ldrb r0, [r4, #0x15]
 	cmp r0, #0x1c
 	bne _02263236
 	add r0, r7, #0
 	mov r1, #0
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F204
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [r4, #0]
 	bl ov16_0223DF0C
 	cmp r0, #0x4a
 	bne _02263186
 	add r0, r7, #0
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _022631E8
 _02263186:
 	ldr r0, [r4, #0]
@@ -82531,13 +82531,13 @@ _02263186:
 	tst r0, r1
 	beq _022631AA
 	add r0, r7, #0
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _022631E8
 _022631AA:
 	ldr r0, [r4, #0]
@@ -82547,24 +82547,24 @@ _022631AA:
 	beq _022631D0
 	add r0, r7, #0
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _022631E8
 _022631D0:
 	add r0, r7, #0
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0x80
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _022631E8:
 	mov r0, #0x10
 	str r0, [sp]
@@ -82577,7 +82577,7 @@ _022631E8:
 	ldr r2, _02263394 ; =0x0000F3FF
 	add r0, r7, #0
 	mov r1, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r0, #0x10
 	str r0, [sp]
 	ldr r0, [sp, #0xc]
@@ -82589,7 +82589,7 @@ _022631E8:
 	ldr r2, _02263398 ; =0x00003FFF
 	add r0, r7, #0
 	mov r1, #4
-	bl FUN_02003178
+	bl sub_02003178
 	mov r0, #0x10
 	str r0, [sp]
 	ldr r0, [sp, #0xc]
@@ -82601,7 +82601,7 @@ _022631E8:
 	ldr r2, _0226339C ; =0x0000FFFF
 	add r0, r7, #0
 	mov r1, #0xa
-	bl FUN_02003178
+	bl sub_02003178
 _02263236:
 	ldrb r0, [r4, #0x15]
 	cmp r0, #0x32
@@ -82615,7 +82615,7 @@ _02263236:
 	add r0, r7, #0
 	mov r1, #1
 	lsl r2, r2, #0xa
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0x14]
 	add sp, #0x18
 	add r0, r0, #1
@@ -82640,11 +82640,11 @@ _02263278:
 	ldr r0, [r4, #0]
 	bl ov16_0223E220
 	mov r1, #0
-	bl FUN_02015738
+	bl sub_02015738
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 _02263294:
@@ -82658,26 +82658,26 @@ _02263294:
 _022632A6:
 	add r0, r7, #0
 	mov r1, #0
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F204
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [r4, #0]
 	bl ov16_0223DF0C
 	cmp r0, #0x4a
 	bne _022632E2
 	add r0, r7, #0
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _02263344
 _022632E2:
 	ldr r0, [r4, #0]
@@ -82686,13 +82686,13 @@ _022632E2:
 	tst r0, r1
 	beq _02263306
 	add r0, r7, #0
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _02263344
 _02263306:
 	ldr r0, [r4, #0]
@@ -82702,24 +82702,24 @@ _02263306:
 	beq _0226332C
 	add r0, r7, #0
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _02263344
 _0226332C:
 	add r0, r7, #0
 	mov r1, #2
-	bl FUN_02003164
+	bl sub_02003164
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0x80
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _02263344:
 	mov r3, #0
 	str r3, [sp]
@@ -82729,7 +82729,7 @@ _02263344:
 	ldr r2, _0226339C ; =0x0000FFFF
 	add r0, r7, #0
 	mov r1, #1
-	bl FUN_02003178
+	bl sub_02003178
 	mov r3, #0
 	str r3, [sp]
 	ldr r2, _0226339C ; =0x0000FFFF
@@ -82738,7 +82738,7 @@ _02263344:
 	add r0, r7, #0
 	mov r1, #4
 	lsr r2, r2, #2
-	bl FUN_02003178
+	bl sub_02003178
 	mov r3, #0
 	str r3, [sp]
 	ldr r0, _022633A0 ; =0x00007FFF
@@ -82747,7 +82747,7 @@ _02263344:
 	ldr r2, _0226339C ; =0x0000FFFF
 	add r0, r7, #0
 	mov r1, #0xa
-	bl FUN_02003178
+	bl sub_02003178
 	mov r0, #3
 	strb r0, [r4, #0x14]
 _02263384:
@@ -82798,21 +82798,21 @@ _022633D0:
 	add r3, r1, #0
 	ldr r2, _022634D8 ; =0x0000FFFF
 	sub r3, #0x12
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0xa]
 	add sp, #0xc
 	add r0, r0, #1
 	strb r0, [r4, #0xa]
 	pop {r3, r4, r5, r6, pc}
 _022633F0:
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _022634D4
 	ldr r0, [r4, #0]
 	bl ov16_0223B384
 	mov r0, #5
 	mov r1, #0x38
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r4, #4]
 	ldrb r1, [r4, #9]
 	ldr r0, [r4, #0]
@@ -82874,14 +82874,14 @@ _02263460:
 	ldr r2, _022634D8 ; =0x0000FFFF
 	add r0, r6, #0
 	sub r3, #0x12
-	bl FUN_02003178
+	bl sub_02003178
 	ldrb r0, [r4, #0xa]
 	add sp, #0xc
 	add r0, r0, #1
 	strb r0, [r4, #0xa]
 	pop {r3, r4, r5, r6, pc}
 _02263492:
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _022634D4
 	ldr r0, [r4, #4]
@@ -82904,11 +82904,11 @@ _022634B8:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	ldr r0, [r4, #4]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _022634D4:
 	add sp, #0xc
 	pop {r3, r4, r5, r6, pc}
@@ -82936,7 +82936,7 @@ _022634EE:
 	strb r0, [r5, #0xc]
 	ldr r0, [r5, #4]
 	mov r1, #0x28
-	bl FUN_020080C0
+	bl sub_020080C0
 	add r4, r0, #0
 	ldrb r0, [r5, #0xb]
 	cmp r4, r0
@@ -82951,7 +82951,7 @@ _02263514:
 	ldr r0, [r5, #4]
 	mov r1, #0x28
 	add r2, r4, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldrb r0, [r5, #0xb]
 	cmp r4, r0
 	bne _02263548
@@ -82969,9 +82969,9 @@ _02263532:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02263548:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -83065,9 +83065,9 @@ _022635E8:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _022635FE:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
@@ -83135,9 +83135,9 @@ _0226366E:
 	ldr r0, [r5, #0]
 	bl ov16_02266ABC
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r7, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02263684:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -83156,7 +83156,7 @@ ov16_02263688: ; 0x02263688
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _022636A2
-	bl FUN_02022974
+	bl sub_02022974
 _022636A2:
 	ldrb r2, [r4, #0xd]
 	ldr r0, [r4, #0]
@@ -83175,9 +83175,9 @@ _022636BA:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02263688
@@ -83192,7 +83192,7 @@ ov16_022636D4: ; 0x022636D4
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _022636E8
-	bl FUN_02022974
+	bl sub_02022974
 _022636E8:
 	ldr r0, [r4, #4]
 	add r0, #0x8c
@@ -83221,9 +83221,9 @@ _02263702:
 	ldr r0, [r4, #0]
 	bl ov16_02266ABC
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_022636D4
@@ -83735,13 +83735,13 @@ ov16_02263B0C: ; 0x02263B0C
 
 	thumb_func_start ov16_02263B10
 ov16_02263B10: ; 0x02263B10
-	ldr r3, _02263B1C ; =FUN_020C4CF4
+	ldr r3, _02263B1C ; =sub_020C4CF4
 	add r0, #0x80
 	mov r1, #0
 	mov r2, #8
 	bx r3
 	nop
-_02263B1C: .word FUN_020C4CF4
+_02263B1C: .word sub_020C4CF4
 	thumb_func_end ov16_02263B10
 
 	thumb_func_start ov16_02263B20
@@ -83750,7 +83750,7 @@ ov16_02263B20: ; 0x02263B20
 	ldr r0, [r0, #0x18]
 	cmp r0, #0
 	beq _02263B2C
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 _02263B2C:
 	pop {r3, pc}
 	; .align 2, 0
@@ -83793,7 +83793,7 @@ _02263B62:
 	str r0, [sp, #0xc]
 	ldrh r0, [r5]
 	ldrh r1, [r5, #2]
-	bl FUN_02013750
+	bl sub_02013750
 	add r0, r7, #0
 	bl ov16_0223E0C8
 	ldrh r2, [r5]
@@ -83823,7 +83823,7 @@ _02263B62:
 	ldr r0, [sp, #0x14]
 	add r1, r5, #0
 	add r3, r4, r3
-	bl FUN_02007C7C
+	bl sub_02007C7C
 	add r4, r0, #0
 	ldr r0, [sp, #0x1c]
 	cmp r0, #0
@@ -83835,30 +83835,30 @@ _02263BD4:
 	add r0, r4, #0
 	mov r1, #0x2a
 	add r2, r6, #0
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r2, [sp, #0x4c]
 	add r0, r4, #0
 	mov r1, #0x2e
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r2, [sp, #0x38]
 	add r0, r4, #0
 	mov r1, #0x14
 	add r2, #0x24
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r2, [sp, #0x48]
 	add r0, r4, #0
 	mov r1, #0x15
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r3, [sp, #0x40]
 	mov r2, #0x24
 	add r0, r4, #0
 	mov r1, #0x16
 	sub r2, r2, r3
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	ldr r2, [sp, #0x44]
 	add r0, r4, #0
 	mov r1, #0x29
-	bl FUN_02007DEC
+	bl sub_02007DEC
 _02263C16:
 	add r0, r4, #0
 	add sp, #0x24
@@ -84709,7 +84709,7 @@ ov16_02264270: ; 0x02264270
 	ble _022642B8
 _02264288:
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r1, [sp]
 	ldrb r1, [r1, #1]
 	tst r0, r1
@@ -84894,7 +84894,7 @@ _022643E6:
 	ldrsh r3, [r3, r4]
 	ldr r0, [sp, #0x18]
 	ldr r1, [sp, #0x14]
-	bl FUN_02076994
+	bl sub_02076994
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
 	thumb_func_end ov16_022643B8
@@ -85121,7 +85121,7 @@ ov16_022645B8: ; 0x022645B8
 	ldrh r6, [r0, #0x10]
 	mov r1, #9
 	add r0, r6, #0
-	bl FUN_020790C4
+	bl sub_020790C4
 	mov r1, #0x40
 	tst r0, r1
 	bne _022645D8
@@ -85133,7 +85133,7 @@ _022645DA:
 	strb r0, [r4]
 	add r0, r6, #0
 	mov r1, #9
-	bl FUN_020790C4
+	bl sub_020790C4
 	mov r1, #0x80
 	tst r0, r1
 	beq _022645F0
@@ -85202,7 +85202,7 @@ ov16_02264650: ; 0x02264650
 	add r5, r0, #0
 	ldr r0, [r5, #8]
 	mov r4, #0
-	bl FUN_0200D81C
+	bl sub_0200D81C
 	cmp r0, #1
 	beq _02264668
 	ldr r1, _022646C0 ; =0x00000FFF
@@ -85221,13 +85221,13 @@ _02264668:
 	strh r0, [r5, #0x12]
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	add r1, r0, #0
 	add r2, r4, #0
 	str r2, [r1, #0]
 	ldr r0, _022646C4 ; =ov16_022646C8
 	str r2, [r1, #4]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	b _022646BC
 _02264692:
 	mov r4, #1
@@ -85245,10 +85245,10 @@ _02264696:
 	beq _022646BC
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_0200D3CC
+	bl sub_0200D3CC
 	ldr r0, [r5, #8]
 	sub r1, r6, #1
-	bl FUN_0200D364
+	bl sub_0200D364
 	mov r4, #1
 _022646BC:
 	add r0, r4, #0
@@ -85278,14 +85278,14 @@ _022646DE:
 	mov r1, #0x10
 	mov r2, #0
 	mov r3, #0x3d
-	bl FUN_0200AAE0
+	bl sub_0200AAE0
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
 	pop {r3, r4, r5, pc}
 _022646F6:
 	mov r0, #1
-	bl FUN_0200AC1C
+	bl sub_0200AC1C
 	cmp r0, #1
 	bne _0226472E
 	mov r0, #1
@@ -85294,20 +85294,20 @@ _022646F6:
 	mov r1, #0
 	mov r2, #0x10
 	mov r3, #0x3d
-	bl FUN_0200AAE0
+	bl sub_0200AAE0
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
 	pop {r3, r4, r5, pc}
 _02264718:
 	mov r0, #1
-	bl FUN_0200AC1C
+	bl sub_0200AC1C
 	cmp r0, #1
 	bne _0226472E
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0226472E:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_022646C8
@@ -85355,7 +85355,7 @@ ov16_02264768: ; 0x02264768
 	add r0, r5, #0
 	add r1, r6, #0
 	bl ov16_0223E16C
-	bl FUN_02025FCC
+	bl sub_02025FCC
 	cmp r0, #0
 	bne _02264794
 	cmp r4, #1
@@ -85390,7 +85390,7 @@ ov16_02264798: ; 0x02264798
 	ldr r0, _022647D0 ; =ov16_02264800
 	ldr r2, _022647D4 ; =0x000003F2
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	mov r1, #0x66
 	lsl r1, r1, #2
 	str r0, [r4, r1]
@@ -85410,7 +85410,7 @@ ov16_022647D8: ; 0x022647D8
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	beq _022647FE
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0x66
 	mov r2, #0
 	lsl r0, r0, #2
@@ -85419,7 +85419,7 @@ ov16_022647D8: ; 0x022647D8
 	strh r2, [r4, r0]
 	ldr r0, [r4, #0x20]
 	mov r1, #4
-	bl FUN_02007DEC
+	bl sub_02007DEC
 _022647FE:
 	pop {r4, pc}
 	thumb_func_end ov16_022647D8
@@ -85446,12 +85446,12 @@ _02264820:
 	mov r0, #0x67
 	lsl r0, r0, #2
 	ldrh r0, [r4, r0]
-	bl FUN_0201D15C
+	bl sub_0201D15C
 	mov r2, #6
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xa
 	mov r3, #0
-	bl FUN_020E1F1C
+	bl sub_020E1F1C
 	add r2, r1, #0
 	mov r1, #4
 	add r5, r0, #0
@@ -85467,7 +85467,7 @@ _02264820:
 	lsr r2, r2, #0x14
 	add r2, r3, r2
 	asr r2, r2, #0xc
-	bl FUN_02007DEC
+	bl sub_02007DEC
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02264800
@@ -85718,7 +85718,7 @@ ov16_02264A04: ; 0x02264A04
 	cmp r0, #1
 	bne _02264A48
 	mov r4, #0
-	bl FUN_02035E18
+	bl sub_02035E18
 	cmp r0, #0
 	ble _02264A48
 _02264A32:
@@ -85728,7 +85728,7 @@ _02264A32:
 	add r2, r7, #0
 	bl ov16_02251F44
 	add r4, r4, #1
-	bl FUN_02035E18
+	bl sub_02035E18
 	cmp r4, r0
 	blt _02264A32
 _02264A48:
@@ -85739,7 +85739,7 @@ _02264A48:
 	str r0, [sp]
 	add r0, r5, #0
 	add r3, r6, #0
-	bl FUN_0207A81C
+	bl sub_0207A81C
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 _02264A5E:
@@ -86384,7 +86384,7 @@ _02264F18:
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
 	lsr r3, r3, #0x18
-	bl FUN_02076648
+	bl sub_02076648
 	b _02264F8E
 _02264F6C:
 	add r0, r3, #0
@@ -86402,7 +86402,7 @@ _02264F6C:
 	lsl r1, r1, #0x1c
 	lsr r1, r1, #0x1c
 	lsr r3, r3, #0x18
-	bl FUN_02076648
+	bl sub_02076648
 _02264F8E:
 	add r1, sp, #0xc
 	strb r0, [r1, #1]
@@ -86556,7 +86556,7 @@ _02265070:
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
 	lsr r3, r3, #0x18
-	bl FUN_02076648
+	bl sub_02076648
 	b _022650E0
 _022650BE:
 	add r0, r5, #0
@@ -86574,7 +86574,7 @@ _022650BE:
 	lsl r1, r1, #0x1c
 	lsr r1, r1, #0x1c
 	lsr r3, r3, #0x18
-	bl FUN_02076648
+	bl sub_02076648
 _022650E0:
 	add r1, sp, #8
 	strb r0, [r1, #1]
@@ -86731,12 +86731,12 @@ ov16_022651DC: ; 0x022651DC
 	add r6, r0, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0x10]
 	add r0, r6, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0xc]
 	mov r0, #0xc
 	add r3, sp, #0x14
@@ -86809,7 +86809,7 @@ _02265278:
 _02265292:
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0xc]
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	mov r1, #0xc0
 	mul r1, r4
 	add r2, r5, r1
@@ -86820,11 +86820,11 @@ _02265292:
 	str r0, [sp, #0x1c]
 	ldr r0, [sp, #0x10]
 	add r1, r1, #1
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	add r5, r0, #0
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0xc]
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	sub r0, r5, r0
 	str r0, [sp, #0x20]
 	ldrh r1, [r7, r6]
@@ -86891,7 +86891,7 @@ ov16_02265330: ; 0x02265330
 	add r1, sp, #0x28
 	mov r2, #0x2c
 	add r6, r3, #0
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	ldr r0, [sp, #4]
 	bl ov16_0223DF10
 	ldr r1, [sp, #0xc]
@@ -86909,7 +86909,7 @@ _02265360:
 	cmp r0, #0
 	bne _02265374
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	orr r5, r0
 _02265374:
 	ldr r0, [sp, #4]
@@ -86952,7 +86952,7 @@ _022653B8:
 	bl ov16_0223DF20
 	str r0, [sp, #0x24]
 	mov r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0226544E
 	mov r0, #6
@@ -86970,11 +86970,11 @@ _022653E2:
 	ldr r1, _02265684 ; =0x0000312C
 	ldr r0, [sp, #0x24]
 	ldrb r1, [r6, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r4, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265440
 	ldr r1, _02265688 ; =0x000001EE
@@ -86983,13 +86983,13 @@ _022653E2:
 	add r0, r4, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265428
 	add r0, r4, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265422
 	mov r0, #3
@@ -87010,7 +87010,7 @@ _0226542C:
 	b _0226543C
 _02265436:
 	add r0, r4, #0
-	bl FUN_02075A10
+	bl sub_02075A10
 _0226543C:
 	strb r0, [r5, #2]
 	add r5, r5, #1
@@ -87018,7 +87018,7 @@ _02265440:
 	ldr r0, [sp, #0x24]
 	add r6, r6, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _022653E2
 _0226544E:
@@ -87058,7 +87058,7 @@ _0226548A:
 	bl ov16_0223DF20
 	str r0, [sp, #0x10]
 	mov r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02265506
 	mov r0, #6
@@ -87071,11 +87071,11 @@ _022654AC:
 	ldr r1, _02265684 ; =0x0000312C
 	ldr r0, [sp, #0x10]
 	ldrb r1, [r4, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022654F8
 	ldr r1, _02265688 ; =0x000001EE
@@ -87084,13 +87084,13 @@ _022654AC:
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022654F2
 	add r0, r6, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _022654EC
 	mov r0, #3
@@ -87109,7 +87109,7 @@ _022654F8:
 	ldr r0, [sp, #0x10]
 	add r4, r4, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _022654AC
 _02265506:
@@ -87133,7 +87133,7 @@ _02265524:
 	bl ov16_0223DF20
 	str r0, [sp, #0x14]
 	mov r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0226562A
 	mov r0, #6
@@ -87147,11 +87147,11 @@ _02265548:
 	ldr r1, _02265684 ; =0x0000312C
 	ldr r0, [sp, #0x14]
 	ldrb r1, [r4, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265594
 	ldr r1, _02265688 ; =0x000001EE
@@ -87160,13 +87160,13 @@ _02265548:
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0226558E
 	add r0, r6, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265588
 	mov r0, #3
@@ -87185,7 +87185,7 @@ _02265594:
 	ldr r0, [sp, #0x14]
 	add r4, r4, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _02265548
 	b _0226562A
@@ -87200,7 +87200,7 @@ _022655A4:
 	bl ov16_0223DF20
 	str r0, [sp, #0x18]
 	mov r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _0226562A
 	mov r0, #6
@@ -87213,11 +87213,11 @@ _022655D0:
 	ldr r1, _02265684 ; =0x0000312C
 	ldr r0, [sp, #0x18]
 	ldrb r1, [r4, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	add r6, r0, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _0226561C
 	ldr r1, _02265688 ; =0x000001EE
@@ -87226,13 +87226,13 @@ _022655D0:
 	add r0, r6, #0
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265616
 	add r0, r6, #0
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02265610
 	mov r0, #3
@@ -87251,7 +87251,7 @@ _0226561C:
 	ldr r0, [sp, #0x18]
 	add r4, r4, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _022655D0
 _0226562A:
@@ -87396,7 +87396,7 @@ _0226572A:
 	ldr r0, _02265784 ; =0x00002D4C
 	ldrb r1, [r4, r1]
 	ldrh r0, [r6, r0]
-	bl FUN_020790DC
+	bl sub_020790DC
 	strb r0, [r5, #0x10]
 	ldr r0, [sp, #0x10]
 	add r6, r6, #2
@@ -87675,14 +87675,14 @@ _02265920:
 	cmp r0, #0x4a
 	bne _022659FE
 	mov r0, #1
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _02265A68 ; =0x00003108
 	ldr r1, [sp, #8]
 	ldrb r1, [r1, r2]
 	tst r0, r1
 	bne _02265984
 	mov r0, #3
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _02265A68 ; =0x00003108
 	ldr r1, [sp, #8]
 	ldrb r1, [r1, r2]
@@ -87697,7 +87697,7 @@ _02265920:
 	b _02265A48
 _02265984:
 	mov r0, #1
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldr r2, _02265A68 ; =0x00003108
 	ldr r1, [sp, #8]
 	add r3, sp, #0x10
@@ -88082,12 +88082,12 @@ ov16_02265C38: ; 0x02265C38
 	add r4, r0, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r0, #0
 	add r0, r4, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r6, r0, #0
 	mov r0, #0x18
 	add r3, sp, #0xc
@@ -88138,7 +88138,7 @@ _02265CB0:
 _02265CBE:
 	add r0, r7, #0
 	add r1, r6, #0
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	ldr r1, _02265D10 ; =0x00002DA4
 	add r2, r5, r4
 	ldr r1, [r2, r1]
@@ -88146,11 +88146,11 @@ _02265CBE:
 	str r0, [sp, #0x18]
 	add r0, r7, #0
 	add r1, r6, #1
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	add r4, r0, #0
 	add r0, r7, #0
 	add r1, r6, #0
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	sub r0, r4, r0
 	str r0, [sp, #0x1c]
 	mov r0, #0x14
@@ -88187,12 +88187,12 @@ ov16_02265D14: ; 0x02265D14
 	add r6, r0, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r7, r0, #0
 	add r0, r6, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	add r6, r0, #0
 	mov r1, #0x19
 	add r0, sp, #0xc
@@ -88201,7 +88201,7 @@ ov16_02265D14: ; 0x02265D14
 	add r1, r6, #0
 	str r0, [sp, #0x10]
 	add r0, r7, #0
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	mov r1, #0xc0
 	mul r1, r4
 	add r2, r5, r1
@@ -88211,11 +88211,11 @@ ov16_02265D14: ; 0x02265D14
 	str r0, [sp, #0x14]
 	add r0, r7, #0
 	add r1, r6, #1
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	add r5, r0, #0
 	add r0, r7, #0
 	add r1, r6, #0
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	sub r0, r5, r0
 	str r0, [sp, #0x18]
 	mov r0, #0x10
@@ -88627,7 +88627,7 @@ ov16_02266058: ; 0x02266058
 	mov r0, #0x64
 	mul r0, r1
 	add r1, r2, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r1, sp, #4
 	strh r0, [r1, #2]
 	mov r0, #4
@@ -88669,7 +88669,7 @@ _022660BE:
 	mul r0, r1
 	add r1, r2, #4
 	ldr r1, [r6, r1]
-	bl FUN_020E2178
+	bl sub_020E2178
 	add r1, sp, #4
 	strh r0, [r1, #2]
 _022660D0:
@@ -88828,12 +88828,12 @@ ov16_022661CC: ; 0x022661CC
 	add r6, r0, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #0xc]
 	add r0, r6, #0
 	mov r1, #0xa1
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	str r0, [sp, #8]
 	mov r0, #0x26
 	add r3, sp, #0x10
@@ -88906,7 +88906,7 @@ _02266266:
 _02266280:
 	ldr r0, [sp, #0xc]
 	ldr r1, [sp, #8]
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	mov r1, #0xc0
 	mul r1, r4
 	add r2, r5, r1
@@ -88917,11 +88917,11 @@ _02266280:
 	str r0, [sp, #0x18]
 	ldr r0, [sp, #0xc]
 	add r1, r1, #1
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	add r5, r0, #0
 	ldr r0, [sp, #0xc]
 	ldr r1, [sp, #8]
-	bl FUN_02075AD0
+	bl sub_02075AD0
 	sub r0, r5, r0
 	str r0, [sp, #0x1c]
 	ldrh r1, [r7, r6]
@@ -89510,7 +89510,7 @@ ov16_022666E0: ; 0x022666E0
 	mov r1, #4
 	tst r0, r1
 	beq _02266734
-	bl FUN_0202F250
+	bl sub_0202F250
 	cmp r0, #1
 	bne _02266734
 	ldr r0, _02266738 ; =0x0000240C
@@ -89526,7 +89526,7 @@ ov16_022666E0: ; 0x022666E0
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	blo _02266724
-	bl FUN_02022974
+	bl sub_02022974
 _02266724:
 	mov r0, #0x20
 	str r0, [sp]
@@ -89706,7 +89706,7 @@ _02266862:
 	cmp r0, #0x10
 	bne _02266876
 	add r0, r4, #0
-	bl FUN_020787CC
+	bl sub_020787CC
 	ldrb r1, [r7, #1]
 	orr r0, r1
 	strb r0, [r7, #1]
@@ -89722,7 +89722,7 @@ _02266884:
 	mov r1, #4
 	tst r0, r1
 	beq _022668B4
-	bl FUN_0202F250
+	bl sub_0202F250
 	cmp r0, #1
 	bne _022668B4
 	ldr r0, _022668CC ; =0x0000240C
@@ -89738,7 +89738,7 @@ _02266884:
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	blo _022668B4
-	bl FUN_02022974
+	bl sub_02022974
 _022668B4:
 	mov r0, #0x20
 	str r0, [sp]
@@ -89768,7 +89768,7 @@ ov16_022668D0: ; 0x022668D0
 	mov r1, #4
 	tst r0, r1
 	beq _02266912
-	bl FUN_0202F250
+	bl sub_0202F250
 	cmp r0, #1
 	bne _02266912
 	ldr r0, _02266928 ; =0x0000240C
@@ -89784,7 +89784,7 @@ ov16_022668D0: ; 0x022668D0
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	blo _02266912
-	bl FUN_02022974
+	bl sub_02022974
 _02266912:
 	mov r0, #0x20
 	str r0, [sp]
@@ -89962,7 +89962,7 @@ ov16_02266A38: ; 0x02266A38
 	mov r0, #4
 	tst r0, r4
 	beq _02266A86
-	bl FUN_0202F250
+	bl sub_0202F250
 	cmp r0, #1
 	bne _02266A86
 	ldr r0, _02266A9C ; =0x0000240C
@@ -89978,7 +89978,7 @@ ov16_02266A38: ; 0x02266A38
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	bls _02266A86
-	bl FUN_02022974
+	bl sub_02022974
 _02266A86:
 	mov r0, #0x24
 	str r0, [sp]
@@ -90018,7 +90018,7 @@ ov16_02266ABC: ; 0x02266ABC
 	add r0, sp, #4
 	add r4, r1, #0
 	strb r2, [r0]
-	bl FUN_0203608C
+	bl sub_0203608C
 	add r1, sp, #4
 	strb r0, [r1, #1]
 	mov r0, #4
@@ -90319,7 +90319,7 @@ ov16_02266CF0: ; 0x02266CF0
 	add r1, r5, #0
 	mov r2, #8
 	add r6, r3, #0
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	ldr r0, [sp]
 	bl ov16_0223DF0C
 	add r4, r0, #0
@@ -90378,7 +90378,7 @@ _02266D74:
 	mov r4, #0
 	str r0, [sp, #0x10]
 	add r7, r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02266DF4
 	mov r0, #6
@@ -90390,11 +90390,11 @@ _02266D94:
 	ldr r1, _02266F14 ; =0x0000312C
 	ldr r0, [sp, #0x10]
 	ldrb r1, [r6, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	str r0, [sp, #0x14]
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266DE6
 	ldr r1, _02266F18 ; =0x000001EE
@@ -90403,13 +90403,13 @@ _02266D94:
 	ldr r0, [sp, #0x14]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266DDE
 	ldr r0, [sp, #0x14]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266DD6
 	add r1, r5, r4
@@ -90431,7 +90431,7 @@ _02266DE6:
 	ldr r0, [sp, #0x10]
 	add r6, r6, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _02266D94
 _02266DF4:
@@ -90441,7 +90441,7 @@ _02266DF4:
 	str r0, [sp, #8]
 	mov r4, #3
 	mov r7, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	bgt _02266E0C
 	b _02266F0E
@@ -90455,11 +90455,11 @@ _02266E16:
 	ldr r1, _02266F14 ; =0x0000312C
 	ldr r0, [sp, #8]
 	ldrb r1, [r6, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	str r0, [sp, #0x18]
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266E68
 	ldr r1, _02266F18 ; =0x000001EE
@@ -90468,13 +90468,13 @@ _02266E16:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266E60
 	ldr r0, [sp, #0x18]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266E58
 	add r1, r5, r4
@@ -90496,7 +90496,7 @@ _02266E68:
 	ldr r0, [sp, #8]
 	add r6, r6, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _02266E16
 	add sp, #0x20
@@ -90519,7 +90519,7 @@ _02266E8E:
 	mov r4, #0
 	str r0, [sp, #0xc]
 	add r7, r4, #0
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r0, #0
 	ble _02266F0E
 	ldr r0, [sp, #0x38]
@@ -90531,11 +90531,11 @@ _02266EAE:
 	ldr r1, _02266F14 ; =0x0000312C
 	ldr r0, [sp, #0xc]
 	ldrb r1, [r6, r1]
-	bl FUN_0207A0FC
+	bl sub_0207A0FC
 	mov r1, #0xae
 	mov r2, #0
 	str r0, [sp, #0x1c]
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266F00
 	ldr r1, _02266F18 ; =0x000001EE
@@ -90544,13 +90544,13 @@ _02266EAE:
 	ldr r0, [sp, #0x1c]
 	mov r1, #0xa3
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266EF8
 	ldr r0, [sp, #0x1c]
 	mov r1, #0xa0
 	mov r2, #0
-	bl FUN_02074470
+	bl sub_02074470
 	cmp r0, #0
 	beq _02266EF0
 	add r1, r5, r4
@@ -90572,7 +90572,7 @@ _02266F00:
 	ldr r0, [sp, #0xc]
 	add r6, r6, #1
 	add r7, r7, #1
-	bl FUN_0207A0F8
+	bl sub_0207A0F8
 	cmp r7, r0
 	blt _02266EAE
 _02266F0E:
@@ -90604,7 +90604,7 @@ ov16_02266F1C: ; 0x02266F1C
 	add r0, r5, #0
 	add r1, r6, #0
 	add r2, r4, #0
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	str r4, [sp]
 	mov r0, #0x47
 	str r0, [sp, #4]
@@ -90619,7 +90619,7 @@ ov16_02266F1C: ; 0x02266F1C
 	ldr r0, [sp, #0x18]
 	add r2, r5, #0
 	add r3, r6, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	ldr r3, [r7, #0x1c]
 	mov r0, #1
 	str r0, [sp]
@@ -90627,7 +90627,7 @@ ov16_02266F1C: ; 0x02266F1C
 	add r0, r5, #0
 	add r1, r6, #0
 	add r2, r4, #0
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	ldr r3, [r7, #0x20]
 	mov r0, #1
 	str r0, [sp]
@@ -90635,7 +90635,7 @@ ov16_02266F1C: ; 0x02266F1C
 	add r0, r5, #0
 	add r1, r6, #0
 	add r2, r4, #0
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	str r4, [sp]
 	mov r0, #0x47
 	str r0, [sp, #4]
@@ -90650,7 +90650,7 @@ ov16_02266F1C: ; 0x02266F1C
 	ldr r0, [sp, #0x18]
 	add r2, r5, #0
 	add r3, r6, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	ldr r0, [sp, #0x30]
 	sub r0, r0, #6
 	cmp r0, #1
@@ -90669,7 +90669,7 @@ ov16_02266F1C: ; 0x02266F1C
 	ldr r0, [sp, #0x18]
 	add r2, r5, #0
 	add r3, r6, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 _02266FD4:
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
@@ -90701,7 +90701,7 @@ ov16_02266FE4: ; 0x02266FE4
 	add r0, r6, #0
 	add r1, r7, #0
 	add r2, r5, #0
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	str r5, [sp]
 	mov r0, #0x47
 	str r0, [sp, #4]
@@ -90716,7 +90716,7 @@ ov16_02266FE4: ; 0x02266FE4
 	ldr r0, [sp, #0x18]
 	add r2, r6, #0
 	add r3, r7, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	ldr r3, [r4, #0x1c]
 	mov r0, #1
 	str r0, [sp]
@@ -90724,7 +90724,7 @@ ov16_02266FE4: ; 0x02266FE4
 	add r0, r6, #0
 	add r1, r7, #0
 	add r2, r5, #0
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	ldr r3, [r4, #0x20]
 	mov r0, #1
 	str r0, [sp]
@@ -90732,7 +90732,7 @@ ov16_02266FE4: ; 0x02266FE4
 	add r1, r7, #0
 	add r2, r5, #0
 	str r3, [sp, #4]
-	bl FUN_0200CE54
+	bl sub_0200CE54
 _02267056:
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
@@ -90751,10 +90751,10 @@ ov16_02267060: ; 0x02267060
 	add r2, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	add r4, r0, #0
 	ldr r0, [r4, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02267060
@@ -90768,7 +90768,7 @@ ov16_02267084: ; 0x02267084
 	add r4, r2, #0
 	cmp r0, #0
 	bne _02267096
-	bl FUN_02022974
+	bl sub_02022974
 _02267096:
 	add r0, r5, #0
 	add r0, #0x25
@@ -90983,14 +90983,14 @@ ov16_02267220: ; 0x02267220
 	ldr r0, [r4, #0x50]
 	cmp r0, #0
 	beq _02267232
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #0x50]
 _02267232:
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq _02267240
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	mov r0, #0
 	str r0, [r4, #4]
 _02267240:
@@ -91005,7 +91005,7 @@ ov16_02267244: ; 0x02267244
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	beq _02267256
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	mov r0, #0
 	str r0, [r4, #8]
 _02267256:
@@ -91026,13 +91026,13 @@ ov16_02267258: ; 0x02267258
 	bl ov16_0223E018
 	ldr r1, [r4, #0x14]
 	add r5, r0, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, [r4, #0x1c]
 	add r0, r5, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, [r4, #0x20]
 	add r0, r5, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_02267258
 
@@ -91051,13 +91051,13 @@ ov16_0226728C: ; 0x0226728C
 	bl ov16_0223E018
 	ldr r1, [r4, #0x14]
 	add r5, r0, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, [r4, #0x1c]
 	add r0, r5, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, [r4, #0x20]
 	add r0, r5, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 _022672C0:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -91070,7 +91070,7 @@ ov16_022672C4: ; 0x022672C4
 	add r5, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	ldr r0, [r5, #0xc]
 	bl ov16_0223E010
@@ -91126,10 +91126,10 @@ ov16_022672C4: ; 0x022672C4
 	lsl r1, r1, #0x10
 	ldrsh r2, [r4, r2]
 	asr r1, r1, #0x10
-	bl FUN_0200D494
+	bl sub_0200D494
 _02267352:
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -91182,7 +91182,7 @@ _0226738E:
 	strb r1, [r0]
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r4, r0, #0
 	add r0, r5, #0
 	add r0, #0x4f
@@ -91206,7 +91206,7 @@ _0226738E:
 	add r2, #0x20
 	add r1, r1, r2
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r0, #0x47
 	bl ov16_02268250
 	add r2, r5, #0
@@ -91220,7 +91220,7 @@ _0226738E:
 	add r2, #0x20
 	add r1, r1, r2
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r0, #0x45
 	bl ov16_02268250
 	add r1, r5, #0
@@ -91234,7 +91234,7 @@ _0226738E:
 	add r1, r1, r3
 	ldr r3, _022674B8 ; =0x0226F3D6
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r1, [r5, #0x28]
 	add r0, r5, #0
 	mov r2, #6
@@ -91256,7 +91256,7 @@ _0226743A:
 	add r1, r1, r3
 	ldr r3, _022674BC ; =0x0226F376
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r0, #0x44
 	bl ov16_02268250
 	add r1, r5, #0
@@ -91270,7 +91270,7 @@ _0226743A:
 	add r1, r1, r3
 	ldr r3, _022674C0 ; =0x0226F3A6
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r0, #0x26
 	bl ov16_02268250
 	add r2, r5, #0
@@ -91284,7 +91284,7 @@ _0226743A:
 	add r2, #0x20
 	add r1, r1, r2
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r1, [r5, #0x28]
 	add r0, r5, #0
 	mov r2, #1
@@ -91424,7 +91424,7 @@ ov16_0226757C: ; 0x0226757C
 	beq _02267596
 	ldr r0, [r0, #0]
 	mov r1, #1
-	bl FUN_02021CC8
+	bl sub_02021CC8
 	add r0, r4, #0
 	mov r1, #1
 	bl ov16_022675F8
@@ -91450,11 +91450,11 @@ ov16_022675AC: ; 0x022675AC
 	beq _022675D0
 	ldr r0, [r0, #0]
 	mov r1, #0
-	bl FUN_02021CC8
+	bl sub_02021CC8
 	ldr r0, [r4, #8]
 	mov r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_02021E50
+	bl sub_02021E50
 	add r0, r4, #0
 	mov r1, #0
 	bl ov16_022675F8
@@ -91472,12 +91472,12 @@ ov16_022675D8: ; 0x022675D8
 	add r4, r1, #0
 	cmp r0, #0
 	beq _022675F4
-	bl FUN_0200D460
+	bl sub_0200D460
 	ldr r0, [r5, #8]
 	cmp r0, #0
 	beq _022675F4
 	add r1, r4, #0
-	bl FUN_0200D460
+	bl sub_0200D460
 _022675F4:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -91502,7 +91502,7 @@ ov16_022675F8: ; 0x022675F8
 _02267616:
 	ldr r0, [r5, #8]
 	add r1, r4, #0
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 _0226761E:
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_022675F8
@@ -91515,7 +91515,7 @@ ov16_02267620: ; 0x02267620
 	add r4, r1, #0
 	cmp r0, #0
 	beq _02267638
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	add r0, r5, #0
 	add r1, r4, #0
 	bl ov16_022675F8
@@ -91533,7 +91533,7 @@ ov16_0226763C: ; 0x0226763C
 	add r7, r2, #0
 	cmp r0, #0
 	bne _0226764E
-	bl FUN_02022974
+	bl sub_02022974
 _0226764E:
 	add r0, r5, #0
 	add r0, #0x25
@@ -91552,7 +91552,7 @@ _0226764E:
 	ldr r0, [r0, #0]
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
-	bl FUN_0200D494
+	bl sub_0200D494
 	ldr r0, [r5, #8]
 	cmp r0, #0
 	beq _022676A0
@@ -91572,7 +91572,7 @@ _0226764E:
 	add r2, r2, r7
 	lsl r2, r2, #0x10
 	asr r2, r2, #0x10
-	bl FUN_0200D494
+	bl sub_0200D494
 _022676A0:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -91586,12 +91586,12 @@ ov16_022676A8: ; 0x022676A8
 	add r5, r1, #0
 	cmp r4, #0
 	bne _022676B6
-	bl FUN_02022974
+	bl sub_02022974
 _022676B6:
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	bne _022676C0
-	bl FUN_02022974
+	bl sub_02022974
 _022676C0:
 	add r0, r4, #0
 	add r0, #0x4f
@@ -91658,7 +91658,7 @@ _02267738:
 	ldr r0, _02267744 ; =ov16_0226774C
 	ldr r2, _02267748 ; =0x000003DE
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _02267744: .word ov16_0226774C
@@ -91680,7 +91680,7 @@ ov16_0226774C: ; 0x0226774C
 	ldr r0, [r5, #4]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r0, r5, #0
 	add r0, #0x25
 	ldrb r0, [r0]
@@ -91775,7 +91775,7 @@ _02267810:
 	ldrsh r1, [r2, r1]
 	ldrsh r2, [r2, r3]
 	ldr r0, [r5, #4]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	ldr r0, [r5, #8]
 	cmp r0, #0
 	beq _02267844
@@ -91792,7 +91792,7 @@ _02267810:
 	sub r1, r3, r1
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _02267844:
 	cmp r4, #0
 	ble _0226785C
@@ -91804,7 +91804,7 @@ _02267844:
 	orr r0, r1
 	strb r0, [r5]
 	add r0, r7, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0226785C:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -91827,12 +91827,12 @@ ov16_02267864: ; 0x02267864
 	add r4, r0, #0
 	mov r0, #0x16
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	mov r1, #0xf1
 	str r0, [sp, #0x18]
 	add r0, r7, #0
 	lsl r1, r1, #2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r1, r5, #0
 	add r2, r5, #0
 	add r1, #0x24
@@ -91842,15 +91842,15 @@ ov16_02267864: ; 0x02267864
 	ldrb r2, [r2]
 	ldr r0, [r5, #0xc]
 	bl ov16_0223DFAC
-	bl FUN_02076B10
+	bl sub_02076B10
 	add r2, r0, #0
 	add r0, r4, #0
 	mov r1, #0
-	bl FUN_0200B5CC
+	bl sub_0200B5CC
 	ldr r1, [sp, #0x18]
 	ldr r2, [sp, #0x1c]
 	add r0, r4, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0xf
@@ -91859,7 +91859,7 @@ ov16_02267864: ; 0x02267864
 	add r1, sp, #0x24
 	mov r2, #8
 	mov r3, #2
-	bl FUN_0201A870
+	bl sub_0201A870
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0xff
@@ -91872,11 +91872,11 @@ ov16_02267864: ; 0x02267864
 	str r1, [sp, #0x14]
 	add r0, sp, #0x24
 	add r3, r1, #0
-	bl FUN_0201D7E0
+	bl sub_0201D7E0
 	ldr r0, [r5, #4]
 	ldr r6, [sp, #0x30]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r4, r0, #0
 	mov r0, #1
 	lsl r0, r0, #8
@@ -91896,7 +91896,7 @@ ov16_02267864: ; 0x02267864
 	add r0, r6, #0
 	ldrh r2, [r2, r7]
 	add r1, r3, r1
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, r5, #0
 	add r0, #0x25
 	ldrb r0, [r0]
@@ -91911,7 +91911,7 @@ ov16_02267864: ; 0x02267864
 	ldr r0, [sp, #0x20]
 	ldrh r2, [r2, r7]
 	add r1, r3, r1
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, r5, #0
 	add r0, #0x25
 	ldrb r0, [r0]
@@ -91928,7 +91928,7 @@ ov16_02267864: ; 0x02267864
 	add r1, r1, r3
 	ldr r3, _022679BC ; =0x0226F656
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r5, #0x25
 	ldrb r0, [r5]
 	ldr r4, [r4, #4]
@@ -91945,13 +91945,13 @@ ov16_02267864: ; 0x02267864
 	ldr r3, _022679C4 ; =0x0226F65A
 	add r1, r4, r1
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, sp, #0x24
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	ldr r0, [sp, #0x18]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x1c]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -91994,7 +91994,7 @@ _022679E8:
 	add r7, r0, #0
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r4, r0, #0
 	add r0, r5, #0
 	add r0, #0x25
@@ -92010,7 +92010,7 @@ _022679E8:
 	ldr r3, _02267A40 ; =0x0226F47E
 	add r0, r7, #0
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r5, #0x25
 	ldrb r0, [r5]
 	ldr r1, _02267A44 ; =0x0226F480
@@ -92022,7 +92022,7 @@ _022679E8:
 	add r1, r3, r1
 	ldr r3, _02267A48 ; =0x0226F482
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02267A3C: .word 0x0226F47C
@@ -92038,16 +92038,16 @@ ov16_02267A4C: ; 0x02267A4C
 	str r0, [sp, #4]
 	mov r0, #5
 	mov r1, #0x60
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r0, #5
 	mov r1, #0xc0
-	bl FUN_02018144
+	bl sub_02018144
 	add r7, r0, #0
 	add r0, r4, #0
 	mov r1, #0xff
 	mov r2, #0x60
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r0, [sp, #4]
 	ldr r0, [r0, #0xc]
 	bl ov16_0223E054
@@ -92057,11 +92057,11 @@ ov16_02267A4C: ; 0x02267A4C
 	ldrb r1, [r1]
 	mov r2, #3
 	mov r3, #0
-	bl FUN_0200C67C
+	bl sub_0200C67C
 	ldr r0, [sp, #4]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	str r0, [sp, #8]
 	ldr r0, [sp, #4]
 	ldr r1, _02267B5C ; =0x0226F3EC
@@ -92078,7 +92078,7 @@ ov16_02267A4C: ; 0x02267A4C
 	ldrh r2, [r3, r2]
 	add r0, r0, r1
 	add r1, r7, #0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [sp, #4]
 	ldr r1, _02267B64 ; =0x0226F3F0
 	add r0, #0x25
@@ -92095,7 +92095,7 @@ ov16_02267A4C: ; 0x02267A4C
 	add r0, r0, r1
 	add r1, r7, #0
 	add r1, #0x60
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r2, #0
 	add r1, r2, #0
 _02267ADE:
@@ -92133,7 +92133,7 @@ _02267AE2:
 	ldr r3, _02267B60 ; =0x0226F3EE
 	add r0, r7, #0
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [sp, #4]
 	ldr r3, _02267B64 ; =0x0226F3F0
 	add r0, #0x25
@@ -92151,11 +92151,11 @@ _02267AE2:
 	ldr r3, _02267B68 ; =0x0226F3F2
 	add r0, #0x60
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r7, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -92172,21 +92172,21 @@ ov16_02267B6C: ; 0x02267B6C
 	add r6, r1, #0
 	mov r0, #5
 	mov r1, #0x60
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0xff
 	mov r2, #0x60
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r0, [r5, #0xc]
 	bl ov16_0223E04C
 	str r4, [sp]
 	add r1, r6, #0
 	mov r2, #3
 	mov r3, #1
-	bl FUN_0200C67C
+	bl sub_0200C67C
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r6, r0, #0
 	add r0, r5, #0
 	add r0, #0x25
@@ -92202,7 +92202,7 @@ ov16_02267B6C: ; 0x02267B6C
 	ldr r3, _02267BEC ; =0x0226F41E
 	add r0, r4, #0
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r5, #0x25
 	ldrb r0, [r5]
 	ldr r3, _02267BF0 ; =0x0226F420
@@ -92216,9 +92216,9 @@ ov16_02267B6C: ; 0x02267B6C
 	ldr r3, _02267BF4 ; =0x0226F422
 	ldrh r2, [r3, r2]
 	add r0, r4, r0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _02267BE8: .word 0x0226F41C
@@ -92233,21 +92233,21 @@ ov16_02267BF8: ; 0x02267BF8
 	add r5, r0, #0
 	mov r0, #5
 	mov r1, #0x60
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0xff
 	mov r2, #0x60
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r0, [r5, #0xc]
 	bl ov16_0223E04C
 	str r4, [sp]
 	ldr r1, [r5, #0x2c]
 	mov r2, #3
 	mov r3, #0
-	bl FUN_0200C67C
+	bl sub_0200C67C
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r1, r0, #0
 	add r5, #0x25
 	ldrb r0, [r5]
@@ -92262,9 +92262,9 @@ ov16_02267BF8: ; 0x02267BF8
 	ldr r3, _02267C54 ; =0x0226F3BE
 	add r0, r4, #0
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _02267C50: .word 0x0226F3BC
@@ -92289,7 +92289,7 @@ _02267C72:
 	add r4, r0, #0
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r5, #0x25
 	add r1, r0, #0
 	ldrb r0, [r5]
@@ -92304,7 +92304,7 @@ _02267C72:
 	ldr r3, _02267CA4 ; =0x0226F38E
 	add r1, r4, r1
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	pop {r3, r4, r5, pc}
 	nop
 _02267CA0: .word 0x0226F38C
@@ -92320,7 +92320,7 @@ ov16_02267CA8: ; 0x02267CA8
 	add r4, r0, #0
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r5, #0x25
 	add r1, r0, #0
 	ldrb r0, [r5]
@@ -92335,7 +92335,7 @@ ov16_02267CA8: ; 0x02267CA8
 	ldr r3, _02267CE4 ; =0x0226F35E
 	add r1, r4, r1
 	ldrh r2, [r3, r2]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	pop {r3, r4, r5, pc}
 	nop
 _02267CE0: .word 0x0226F35C
@@ -92359,11 +92359,11 @@ ov16_02267CE8: ; 0x02267CE8
 	tst r2, r1
 	beq _02267D10
 	sub r1, #0x4a
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	b _02267D16
 _02267D10:
 	add r1, #0xc4
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 _02267D16:
 	add r7, r0, #0
 	mov r0, #0
@@ -92374,7 +92374,7 @@ _02267D16:
 	add r1, sp, #0x18
 	mov r2, #0xd
 	mov r3, #2
-	bl FUN_0201A870
+	bl sub_0201A870
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0xff
@@ -92387,11 +92387,11 @@ _02267D16:
 	str r1, [sp, #0x14]
 	add r0, sp, #0x18
 	add r3, r1, #0
-	bl FUN_0201D7E0
+	bl sub_0201D7E0
 	ldr r0, [r4, #4]
 	ldr r5, [sp, #0x24]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r4, r0, #0
 	mov r2, #0x1a
 	mov r6, #0x19
@@ -92403,7 +92403,7 @@ _02267D16:
 	add r1, r1, r2
 	add r0, r5, #0
 	mov r2, #0xc0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r2, #0xd
 	mov r0, #0x1a
 	lsl r2, r2, #6
@@ -92413,7 +92413,7 @@ _02267D16:
 	add r1, r1, r2
 	add r0, r5, r0
 	mov r2, #0xc0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r2, #0xa
 	lsl r2, r2, #8
 	add r0, r5, #0
@@ -92422,7 +92422,7 @@ _02267D16:
 	add r1, r1, r2
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r0, #0x1a
 	mov r1, #0xb
 	lsl r0, r0, #4
@@ -92433,11 +92433,11 @@ _02267D16:
 	add r1, r2, r1
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, sp, #0x18
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	add r0, r7, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -92461,7 +92461,7 @@ ov16_02267DC4: ; 0x02267DC4
 	add r7, r0, #0
 	mov r0, #0x1e
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	mov r1, #1
 	add r6, r0, #0
 	lsl r1, r1, #0xa
@@ -92470,13 +92470,13 @@ ov16_02267DC4: ; 0x02267DC4
 	beq _02267E04
 	ldr r0, [sp, #0x20]
 	sub r1, #0x49
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x18]
 	b _02267E0E
 _02267E04:
 	ldr r0, [sp, #0x20]
 	add r1, #0xc5
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x18]
 _02267E0E:
 	mov r0, #1
@@ -92488,11 +92488,11 @@ _02267E0E:
 	add r0, r7, #0
 	mov r1, #0
 	mov r3, #2
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	ldr r2, [sp, #0x18]
 	add r0, r7, #0
 	add r1, r6, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0xf
@@ -92501,7 +92501,7 @@ _02267E0E:
 	add r1, sp, #0x24
 	mov r2, #0xd
 	mov r3, #2
-	bl FUN_0201A870
+	bl sub_0201A870
 	mov r1, #0
 	str r1, [sp]
 	mov r0, #0xff
@@ -92514,11 +92514,11 @@ _02267E0E:
 	str r1, [sp, #0x14]
 	add r0, sp, #0x24
 	add r3, r1, #0
-	bl FUN_0201D7E0
+	bl sub_0201D7E0
 	ldr r0, [r4, #4]
 	ldr r5, [sp, #0x30]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r4, r0, #0
 	mov r7, #0x19
 	mov r2, #0x11
@@ -92529,7 +92529,7 @@ _02267E0E:
 	add r1, r1, r2
 	add r0, r5, #0
 	mov r2, #0xc0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r2, #0x15
 	mov r0, #0x1a
 	lsl r2, r2, #6
@@ -92539,7 +92539,7 @@ _02267E0E:
 	add r1, r1, r2
 	add r0, r5, r0
 	mov r2, #0xc0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r2, #3
 	lsl r2, r2, #0xa
 	add r0, r5, #0
@@ -92548,7 +92548,7 @@ _02267E0E:
 	add r1, r1, r2
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	mov r0, #0x1a
 	mov r1, #0xd
 	lsl r0, r0, #4
@@ -92559,13 +92559,13 @@ _02267E0E:
 	add r1, r2, r1
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r0, sp, #0x24
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x18]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -92603,8 +92603,8 @@ _02267F00:
 _02267F12:
 	ldr r6, [r5, #0x40]
 	add r0, r6, #0
-	bl FUN_020E1F6C
-	bl FUN_020D4070
+	bl sub_020E1F6C
+	bl sub_020D4070
 	mov r1, #0xc
 	lsl r0, r0, #0x10
 	add r3, r5, #0
@@ -92659,7 +92659,7 @@ ov16_02267F70: ; 0x02267F70
 	ldr r0, [r6, #4]
 	add r4, r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r5, r0, #0
 	cmp r4, #0
 	beq _02267F8E
@@ -92679,7 +92679,7 @@ _02267F8E:
 	add r3, #0x34
 	bl ov16_02268194
 	mov r1, #0x30
-	bl FUN_0208C0D4
+	bl sub_0208C0D4
 	cmp r0, #1
 	beq _02267FBE
 	cmp r0, #2
@@ -92726,7 +92726,7 @@ _02267FD6:
 	add r2, r3, r2
 	add r1, r1, r2
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _02268032
 _02268006:
 	ldrb r0, [r0, r4]
@@ -92749,7 +92749,7 @@ _02268006:
 	add r1, r1, r3
 	add r1, r2, r1
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _02268032:
 	add r0, r4, #1
 	lsl r0, r0, #0x18
@@ -92810,7 +92810,7 @@ _0226808C:
 	add r0, r6, r0
 	add r1, r3, r1
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _022680C0
 _022680AA:
 	ldrb r0, [r0, r4]
@@ -92822,7 +92822,7 @@ _022680AA:
 	add r1, r1, r2
 	add r0, r6, r0
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _022680C0:
 	add r0, r4, #1
 	lsl r0, r0, #0x18
@@ -92891,7 +92891,7 @@ _0226812E:
 	bge _0226816E
 	lsl r0, r0, #8
 	add r1, r2, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	cmp r6, #0
 	ldr r1, [r5, #0]
 	bge _02268152
@@ -92978,14 +92978,14 @@ _022681BE:
 	add r0, r1, #0
 	mul r0, r2
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 	lsr r0, r0, #8
 	b _022681DC
 _022681D2:
 	add r0, r1, #0
 	mul r0, r2
 	add r1, r6, #0
-	bl FUN_020E2178
+	bl sub_020E2178
 _022681DC:
 	add r2, r0, #0
 	cmp r0, #0
@@ -93039,18 +93039,18 @@ _02268228:
 	add r0, r7, #0
 	mul r0, r6
 	add r1, r5, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r7, r0, #0
 	add r0, r4, #0
 	mul r0, r6
 	add r1, r5, #0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r1, r7, #0x18
 	lsl r0, r0, #0x18
 	asr r1, r1, #0x18
 	asr r0, r0, #0x18
 	sub r0, r1, r0
-	bl FUN_020D4070
+	bl sub_020D4070
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02268210
@@ -93115,7 +93115,7 @@ _022682A4:
 	mov r0, #5
 	pop {r3, pc}
 _022682A8:
-	bl FUN_02022974
+	bl sub_02022974
 	mov r0, #0
 	pop {r3, pc}
 	thumb_func_end ov16_0226825C
@@ -93162,7 +93162,7 @@ _022682EA:
 	ldr r0, _02268310 ; =0x0226F57C
 	pop {r3, pc}
 _022682EE:
-	bl FUN_02022974
+	bl sub_02022974
 	mov r0, #0
 	pop {r3, pc}
 	nop
@@ -93202,7 +93202,7 @@ _0226833A:
 	mov r0, #0
 	pop {r3, pc}
 _0226833E:
-	bl FUN_02022974
+	bl sub_02022974
 	mov r0, #0
 	pop {r3, pc}
 	nop
@@ -93218,18 +93218,18 @@ ov16_0226834C: ; 0x0226834C
 	strb r0, [r6]
 	mov r0, #5
 	mov r1, #0xc
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0
 	mov r2, #0xc
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	mov r2, #0xfa
 	str r5, [r4, #0]
 	ldr r0, _0226837C ; =ov16_02268380
 	add r1, r4, #0
 	lsl r2, r2, #2
 	str r6, [r4, #4]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r4, r5, r6, pc}
 	nop
 _0226837C: .word ov16_02268380
@@ -93261,12 +93261,12 @@ _022683AC:
 	ldr r1, _0226845C ; =0x00004E27
 	add r0, r5, #0
 	mov r2, #1
-	bl FUN_0200D05C
+	bl sub_0200D05C
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	add r1, r5, #0
 	ldr r0, [r0, #4]
-	bl FUN_0200D41C
+	bl sub_0200D41C
 	strb r5, [r4, #9]
 	ldrb r0, [r4, #8]
 	add r0, r0, #1
@@ -93294,7 +93294,7 @@ _022683E0:
 	add r0, r6, #0
 	lsl r2, r2, #0x14
 	lsr r2, r2, #0x10
-	bl FUN_020039B0
+	bl sub_020039B0
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 _022683FC:
@@ -93321,25 +93321,25 @@ _02268414:
 	add r0, r6, #0
 	lsl r2, r2, #0x14
 	lsr r2, r2, #0x10
-	bl FUN_020039B0
+	bl sub_020039B0
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 _02268430:
 	ldr r1, _02268464 ; =0x00004E26
 	add r0, r5, #0
 	mov r2, #1
-	bl FUN_0200D05C
+	bl sub_0200D05C
 	add r1, r0, #0
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #4]
-	bl FUN_0200D41C
+	bl sub_0200D41C
 	ldr r0, [r4, #4]
 	mov r1, #1
 	strb r1, [r0]
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r7, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -93374,7 +93374,7 @@ ov16_02268470: ; 0x02268470
 	ldr r0, _02268490 ; =ov16_022684BC
 	ldr r2, _02268494 ; =0x000003F2
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0x50]
 _0226848E:
 	pop {r4, pc}
@@ -93390,7 +93390,7 @@ ov16_02268498: ; 0x02268498
 	ldr r0, [r4, #0x50]
 	cmp r0, #0
 	beq _022684AA
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #0x50]
 _022684AA:
@@ -93430,12 +93430,12 @@ _022684E4:
 	add r0, r4, #0
 	add r0, #0x54
 	ldrh r0, [r0]
-	bl FUN_0201D15C
+	bl sub_0201D15C
 	mov r2, #6
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xa
 	mov r3, #0
-	bl FUN_020E1F1C
+	bl sub_020E1F1C
 	mov r2, #2
 	add r3, r0, #0
 	add r5, r1, #0
@@ -93463,7 +93463,7 @@ ov16_02268520: ; 0x02268520
 	add r5, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r4, r0, #0
 	ldr r0, [r5, #4]
 	bl ov16_0223E010
@@ -93508,7 +93508,7 @@ _0226857A:
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x20]
 	add r2, r4, #0
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	ldr r0, [r5, #4]
 	bl ov16_0223E064
 	str r4, [sp]
@@ -93531,7 +93531,7 @@ _0226857A:
 	ldr r1, _02268628 ; =0x00004E29
 	str r1, [sp, #0x14]
 	mov r1, #2
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	ldr r0, [r5, #4]
 	bl ov16_0223E064
 	mov r1, #0
@@ -93549,7 +93549,7 @@ _0226857A:
 	add r2, r2, r3
 	ldrh r2, [r5, r2]
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, [sp, #0x24]
@@ -93557,7 +93557,7 @@ _0226857A:
 	ldr r3, [sp, #0x1c]
 	add r2, r4, #0
 	str r6, [sp, #4]
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, [sp, #0x24]
@@ -93565,9 +93565,9 @@ _0226857A:
 	ldr r3, [sp, #0x18]
 	add r2, r4, #0
 	str r6, [sp, #4]
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	add r0, r4, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -93595,10 +93595,10 @@ ov16_0226862C: ; 0x0226862C
 	ldr r5, _0226865C ; =0x022700CC
 	mul r2, r3
 	add r2, r5, r2
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	str r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	pop {r3, r4, r5, pc}
 	nop
 _0226865C: .word 0x022700CC
@@ -93611,7 +93611,7 @@ ov16_02268660: ; 0x02268660
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	beq _02268672
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	mov r0, #0
 	str r0, [r4, #0]
 _02268672:
@@ -93636,16 +93636,16 @@ _0226868C:
 	add r5, r1, #0
 	add r0, r4, #0
 	sub r5, #8
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _022686B8 ; =0x00004E29
 	add r0, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	add r0, r4, #0
 	add r1, r5, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _022686B0: .word 0x00004E2D
@@ -93659,7 +93659,7 @@ ov16_022686BC: ; 0x022686BC
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _022686C8
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 _022686C8:
 	pop {r3, pc}
 	; .align 2, 0
@@ -93675,13 +93675,13 @@ ov16_022686CC: ; 0x022686CC
 	add r1, r5, #0
 	mov r2, #0x10
 	add r7, r3, #0
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	str r4, [r5, #4]
 	strb r6, [r5, #8]
 	strb r7, [r5, #9]
 	cmp r7, #0x18
 	blt _022686F2
-	bl FUN_02022974
+	bl sub_02022974
 	mov r0, #0
 	strb r0, [r5, #9]
 _022686F2:
@@ -93702,7 +93702,7 @@ ov16_02268700: ; 0x02268700
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x10
-	bl FUN_020C4BB8
+	bl sub_020C4BB8
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02268700
@@ -93712,11 +93712,11 @@ ov16_0226871C: ; 0x0226871C
 	push {r4, lr}
 	ldr r1, _0226873C ; =0x000006EC
 	mov r0, #5
-	bl FUN_02018144
+	bl sub_02018144
 	ldr r2, _0226873C ; =0x000006EC
 	mov r1, #0
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	mov r1, #0
 	ldr r0, _02268740 ; =0x0000068B
 	mvn r1, r1
@@ -93742,27 +93742,27 @@ _0226874E:
 	lsr r1, r1, #0x18
 	add r2, r6, #0
 	add r3, r7, #0
-	bl FUN_020183C4
+	bl sub_020183C4
 	add r1, r4, #4
 	lsl r1, r1, #0x18
 	ldr r2, _0226879C ; =0x000002FF
 	add r0, r5, #0
 	lsr r1, r1, #0x18
-	bl FUN_02019EE0
+	bl sub_02019EE0
 	add r1, r4, #4
 	lsl r1, r1, #0x18
 	mov r2, #0
 	add r0, r5, #0
 	lsr r1, r1, #0x18
 	add r3, r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	add r1, r4, #4
 	lsl r1, r1, #0x18
 	add r0, r5, #0
 	lsr r1, r1, #0x18
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 	add r4, r4, #1
 	add r6, #0x1c
 	cmp r4, #4
@@ -93784,12 +93784,12 @@ _022687A8:
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	add r1, r6, #0
-	bl FUN_02019120
+	bl sub_02019120
 	add r1, r4, #4
 	lsl r1, r1, #0x18
 	add r0, r5, #0
 	lsr r1, r1, #0x18
-	bl FUN_02019044
+	bl sub_02019044
 	add r4, r4, #1
 	cmp r4, #4
 	blo _022687A8
@@ -93826,17 +93826,17 @@ _022687EC:
 	blo _02268808
 	mov r0, #0
 	str r0, [sp, #0x14]
-	bl FUN_02022974
+	bl sub_02022974
 _02268808:
 	mov r0, #0xd
 	mov r1, #5
-	bl FUN_02012744
+	bl sub_02012744
 	ldr r2, _022689F4 ; =0x000004CC
 	add r1, r6, #0
 	str r0, [r6, r2]
 	ldr r0, _022689F8 ; =ov16_0226BCE4
 	add r2, #0x52
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	ldr r1, _022689FC ; =0x00000698
 	mov r4, #0
 	str r0, [r6, r1]
@@ -93846,7 +93846,7 @@ _02268828:
 	mov r1, #2
 	mov r0, #5
 	lsl r1, r1, #0xa
-	bl FUN_02018144
+	bl sub_02018144
 	lsl r1, r4, #2
 	add r1, r6, r1
 	str r0, [r1, #0x40]
@@ -93870,7 +93870,7 @@ _02268854:
 	mov r0, #7
 	mov r2, #1
 	add r3, sp, #0x20
-	bl FUN_02006F6C
+	bl sub_02006F6C
 	add r5, r0, #0
 	lsl r0, r4, #2
 	add r0, r6, r0
@@ -93879,9 +93879,9 @@ _02268854:
 	mov r2, #2
 	add r0, #0xc
 	lsl r2, r2, #0xa
-	bl FUN_020C4B68
+	bl sub_020C4B68
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r4, r4, #1
 _0226887E:
 	cmp r4, #7
@@ -93899,7 +93899,7 @@ _02268894:
 	mov r1, #2
 	mov r0, #5
 	lsl r1, r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r6, #0x5c]
 	mov r0, #1
 	str r0, [sp]
@@ -93910,7 +93910,7 @@ _02268894:
 	mov r1, #7
 	add r2, r4, #0
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 	ldr r0, [sp, #0x14]
 	ldr r2, _02268A04 ; =0x022704E4
 	lsl r3, r0, #2
@@ -93928,15 +93928,15 @@ _02268894:
 	ldr r0, [sp, #0x18]
 	mov r1, #7
 	mov r3, #5
-	bl FUN_02003050
+	bl sub_02003050
 _022688DC:
 	ldr r0, [sp, #0x18]
 	mov r1, #1
-	bl FUN_02003164
+	bl sub_02003164
 	mov r2, #2
 	ldr r1, [r6, #0x5c]
 	lsl r2, r2, #8
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	add r5, r6, #0
 	mov r7, #0x46
 	mov r4, #0
@@ -93949,7 +93949,7 @@ _022688FA:
 	add r0, r5, r0
 	mov r1, #0xff
 	mov r2, #0x18
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	add r4, r4, #1
 _0226890A:
 	cmp r4, #4
@@ -93968,10 +93968,10 @@ _02268916:
 	b _0226893C
 _02268924:
 	add r0, r7, #0
-	bl FUN_0208C098
+	bl sub_0208C098
 	add r1, r0, #0
 	mov r0, #5
-	bl FUN_02018144
+	bl sub_02018144
 	lsl r1, r5, #2
 	add r1, r4, r1
 	add r1, #0x84
@@ -93989,22 +93989,22 @@ _02268946:
 	blt _02268916
 	mov r0, #5
 	mov r1, #0x40
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r6, #0x60]
 	mov r0, #5
 	mov r1, #0x40
-	bl FUN_02018144
+	bl sub_02018144
 	str r0, [r6, #0x64]
 	ldr r1, [r6, #0x60]
 	ldr r0, [r6, #0x5c]
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r1, [r6, #0x60]
 	ldr r0, [r6, #0x5c]
 	add r1, #0x20
 	add r0, #0xe0
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [sp, #0xc]
 	bl ov16_0223DF0C
 	mov r2, #0x80
@@ -94028,7 +94028,7 @@ _0226899E:
 	mov r0, #7
 	add r2, sp, #0x1c
 	mov r3, #5
-	bl FUN_02006F88
+	bl sub_02006F88
 	add r4, r0, #0
 	ldr r0, [sp, #0xc]
 	bl ov16_0223DF0C
@@ -94039,22 +94039,22 @@ _0226899E:
 	ldr r0, [sp, #0x1c]
 	mov r2, #0x40
 	ldr r0, [r0, #0xc]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	b _022689CE
 _022689C4:
 	ldr r0, [sp, #0x1c]
 	mov r2, #0x20
 	ldr r0, [r0, #0xc]
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _022689CE:
 	add r0, r4, #0
-	bl FUN_020181C4
-	bl FUN_02002B4C
-	bl FUN_02002B6C
+	bl sub_020181C4
+	bl sub_02002B4C
+	bl sub_02002B6C
 	ldr r0, _02268A0C ; =ov16_0226BD74
 	ldr r2, _02268A10 ; =0x0000D6D8
 	add r1, r6, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r6, #0x68]
 	add r0, r6, #0
 	add sp, #0x24
@@ -94091,31 +94091,31 @@ _02268A26:
 	bl ov16_02268B8C
 	ldr r0, _02268A80 ; =0x000004CC
 	ldr r0, [r6, r0]
-	bl FUN_020127BC
+	bl sub_020127BC
 	ldr r0, _02268A84 ; =0x00000698
 	ldr r0, [r6, r0]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r4, #0
 	add r5, r6, #0
 _02268A4C:
 	ldr r0, [r5, #0x40]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #7
 	blt _02268A4C
 	ldr r0, [r6, #0x5c]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
 	bl ov16_0226ABE8
 	ldr r0, [r6, #0x60]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r6, #0x64]
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r6, #0x68]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add r0, r6, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _02268A80: .word 0x000004CC
@@ -94161,12 +94161,12 @@ _02268AC0:
 	mov r0, #7
 	add r2, r5, #0
 	mov r3, #4
-	bl FUN_02006E3C
+	bl sub_02006E3C
 	ldr r2, _02268B70 ; =0x00004E31
 	add r0, r6, #0
 	add r1, r4, #0
 	add r3, r2, #0
-	bl FUN_0207C9EC
+	bl sub_0207C9EC
 	ldr r0, [r7, #0]
 	bl ov16_0223E064
 	mov r1, #2
@@ -94176,7 +94176,7 @@ _02268AC0:
 	str r1, [sp, #4]
 	mov r1, #3
 	add r3, r4, #0
-	bl FUN_0207C9B0
+	bl sub_0207C9B0
 	mov r5, #0
 _02268B02:
 	ldr r0, _02268B78 ; =0x00004E39
@@ -94186,7 +94186,7 @@ _02268B02:
 	add r0, r6, #0
 	mov r2, #2
 	mov r3, #0
-	bl FUN_0207C948
+	bl sub_0207C948
 	add r5, r5, #1
 	cmp r5, #4
 	blt _02268B02
@@ -94254,17 +94254,17 @@ ov16_02268B8C: ; 0x02268B8C
 _02268BA2:
 	add r0, r5, #0
 	add r1, r4, r6
-	bl FUN_0207CA34
+	bl sub_0207CA34
 	add r4, r4, #1
 	cmp r4, #4
 	blt _02268BA2
 	ldr r1, _02268BF0 ; =0x00004E34
 	add r0, r5, #0
-	bl FUN_0207CA3C
+	bl sub_0207CA3C
 	ldr r1, _02268BF4 ; =0x00004E31
 	add r0, r5, #0
 	add r2, r1, #0
-	bl FUN_0207CA44
+	bl sub_0207CA44
 	ldr r0, [r7, #0]
 	bl ov16_0223DF0C
 	mov r1, #1
@@ -94308,7 +94308,7 @@ ov16_02268C04: ; 0x02268C04
 	add r1, r7, #0
 	add r1, #0x1c
 	mov r2, #0x22
-	bl FUN_020C4DB0
+	bl sub_020C4DB0
 _02268C22:
 	ldr r0, _02268D24 ; =0x0000068E
 	mov r1, #0
@@ -94352,7 +94352,7 @@ _02268C5C:
 	ldr r1, [r7, #0x5c]
 	mov r2, #1
 	mov r3, #0
-	bl FUN_02002FBC
+	bl sub_02002FBC
 	ldr r6, [sp, #0x2c]
 	mov r4, #0
 _02268C82:
@@ -94376,12 +94376,12 @@ _02268C96:
 	ldr r2, [r2, #0x40]
 	lsr r1, r1, #0x18
 	lsl r3, r3, #0xa
-	bl FUN_02019574
+	bl sub_02019574
 	add r1, r4, #4
 	lsl r1, r1, #0x18
 	ldr r0, [sp, #0x28]
 	lsr r1, r1, #0x18
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 _02268CB8:
 	add r4, r4, #1
 	add r6, r6, #2
@@ -94405,7 +94405,7 @@ _02268CB8:
 	ldr r3, [sp, #0x20]
 	str r1, [sp, #0x14]
 	mov r1, #3
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	ldr r1, _02268D28 ; =0x0000068B
 	ldr r0, [sp, #0x1c]
 	mov r2, #0xf
@@ -94415,7 +94415,7 @@ _02268CB8:
 	ldr r0, _02268D38 ; =0x04001050
 	mov r1, #2
 	mov r3, #8
-	bl FUN_020BF55C
+	bl sub_020BF55C
 	add r0, r7, #0
 	bl ov16_0226B1E8
 	ldr r0, [sp, #0x2c]
@@ -94430,7 +94430,7 @@ _02268D16:
 	ldr r0, _02268D3C ; =ov16_0226BC50
 	add r1, r7, #0
 	mov r2, #0xa
-	bl FUN_0200DA3C
+	bl sub_0200DA3C
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -94460,7 +94460,7 @@ ov16_02268D40: ; 0x02268D40
 	cmp r0, #0
 	beq _02268D60
 _02268D5C:
-	bl FUN_02022974
+	bl sub_02022974
 _02268D60:
 	ldr r0, [sp, #0x14]
 	ldr r0, [r0, #0]
@@ -94480,7 +94480,7 @@ _02268D60:
 	ldr r0, [sp, #0x18]
 	add r2, r4, #0
 	mov r3, #0xd0
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _02268ED4 ; =0x00004E2F
@@ -94489,7 +94489,7 @@ _02268D60:
 	ldr r0, [sp, #0x18]
 	add r2, r4, #0
 	mov r3, #0xcf
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _02268ED4 ; =0x00004E2F
@@ -94498,7 +94498,7 @@ _02268D60:
 	ldr r0, [sp, #0x18]
 	add r2, r4, #0
 	mov r3, #0xd1
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	mov r0, #1
 	str r0, [sp]
 	mov r0, #2
@@ -94509,7 +94509,7 @@ _02268D60:
 	ldr r0, [sp, #0x18]
 	add r2, r4, #0
 	mov r3, #0xcd
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _02268EDC ; =0x00004E30
@@ -94518,7 +94518,7 @@ _02268D60:
 	ldr r0, [sp, #0x18]
 	add r2, r4, #0
 	mov r3, #0xcc
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _02268EDC ; =0x00004E30
@@ -94527,7 +94527,7 @@ _02268D60:
 	ldr r0, [sp, #0x18]
 	add r2, r4, #0
 	mov r3, #0xce
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	mov r0, #0
 	ldr r4, [sp, #0x14]
 	str r0, [sp, #0x1c]
@@ -94537,7 +94537,7 @@ _02268DFE:
 	ldr r0, [sp, #0x18]
 	ldr r2, _02268EE0 ; =0x02270414
 	add r1, r7, #0
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	ldr r1, _02268ECC ; =0x000005D8
 	mov r3, #0x11
 	str r0, [r4, r1]
@@ -94548,15 +94548,15 @@ _02268DFE:
 	asr r1, r1, #0x10
 	mov r2, #0xd
 	lsl r3, r3, #0x10
-	bl FUN_0200D4D0
+	bl sub_0200D4D0
 	ldr r0, _02268ECC ; =0x000005D8
 	mov r1, #1
 	ldr r0, [r4, r0]
-	bl FUN_0200D6A4
+	bl sub_0200D6A4
 	ldr r0, [sp, #0x18]
 	ldr r2, _02268EE4 ; =0x02270448
 	add r1, r7, #0
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	mov r1, #0x5f
 	lsl r1, r1, #4
 	str r0, [r4, r1]
@@ -94568,7 +94568,7 @@ _02268DFE:
 	asr r1, r1, #0x10
 	mov r2, #9
 	lsl r3, r3, #0x10
-	bl FUN_0200D4D0
+	bl sub_0200D4D0
 	ldr r0, [sp, #0x1c]
 	add r4, r4, #4
 	add r0, r0, #1
@@ -94583,12 +94583,12 @@ _02268DFE:
 	ldr r0, [r0, #8]
 	cmp r0, #0
 	beq _02268E70
-	bl FUN_02022974
+	bl sub_02022974
 _02268E70:
 	ldr r0, _02268EE8 ; =ov16_02268FCC
 	ldr r1, [sp, #0x14]
 	ldr r2, _02268EEC ; =0x00000514
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	ldr r1, [sp, #0x14]
 	str r0, [r1, #8]
 	add r0, r1, #0
@@ -94656,7 +94656,7 @@ ov16_02268F00: ; 0x02268F00
 	cmp r0, #0
 	bne _02268F18
 _02268F14:
-	bl FUN_02022974
+	bl sub_02022974
 _02268F18:
 	ldr r0, [r6, #0]
 	bl ov16_0223E010
@@ -94664,37 +94664,37 @@ _02268F18:
 	bl ov16_0223E018
 	ldr r1, _02268FB0 ; =0x00004E37
 	add r7, r0, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _02268FB4 ; =0x00004E2F
 	add r0, r7, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, _02268FB4 ; =0x00004E2F
 	add r0, r7, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	ldr r1, _02268FB8 ; =0x00004E38
 	add r0, r7, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _02268FBC ; =0x00004E30
 	add r0, r7, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, _02268FBC ; =0x00004E30
 	add r0, r7, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	ldr r1, _02268FB0 ; =0x00004E37
 	add r0, r7, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	mov r4, #0
 	add r5, r6, #0
 _02268F60:
 	ldr r0, _02268FAC ; =0x000005D8
 	ldr r0, [r5, r0]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, _02268FAC ; =0x000005D8
 	mov r1, #0
 	str r1, [r5, r0]
 	add r0, #0x18
 	ldr r0, [r5, r0]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	mov r0, #0x5f
 	mov r1, #0
 	lsl r0, r0, #4
@@ -94704,7 +94704,7 @@ _02268F60:
 	cmp r4, #6
 	blt _02268F60
 	ldr r0, [r6, #8]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	ldr r3, _02268FC0 ; =0x00004FAA
 	mov r0, #0
 	str r0, [r6, #8]
@@ -94758,7 +94758,7 @@ _02268FF4:
 	ldr r0, _02269144 ; =0x000005D8
 	ldr r0, [r5, r0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D400
+	bl sub_0200D400
 	cmp r0, #0
 	beq _02269008
 	ldrb r0, [r4, #2]
@@ -94771,7 +94771,7 @@ _0226900A:
 	strb r0, [r4, #4]
 	mov r0, #0xa
 	strb r0, [r4, #5]
-	bl FUN_0201D2E8
+	bl sub_0201D2E8
 	lsr r1, r0, #0x1f
 	lsl r3, r0, #0x1d
 	ldrb r2, [r4, #5]
@@ -94803,7 +94803,7 @@ _02269046:
 	mov r1, #2
 	ldr r0, [r5, r0]
 	lsl r1, r1, #0xa
-	bl FUN_0200D7C0
+	bl sub_0200D7C0
 	mov r0, #0
 	ldrsh r1, [r4, r0]
 	mov r0, #6
@@ -94824,7 +94824,7 @@ _02269046:
 	asr r1, r1, #0x10
 	mov r2, #0xd
 	lsl r3, r3, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldrb r0, [r4, #6]
 	add r0, r0, #1
 	strb r0, [r4, #6]
@@ -94844,7 +94844,7 @@ _0226909C:
 	ldr r0, _02269144 ; =0x000005D8
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_0200D79C
+	bl sub_0200D79C
 	ldr r0, _02269144 ; =0x000005D8
 	lsl r1, r6, #0x10
 	mov r3, #0x11
@@ -94852,7 +94852,7 @@ _0226909C:
 	asr r1, r1, #0x10
 	mov r2, #0xd
 	lsl r3, r3, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	mov r0, #0
 	strh r0, [r4]
 	ldrb r0, [r4, #8]
@@ -94878,7 +94878,7 @@ _022690DE:
 	ldr r0, _02269144 ; =0x000005D8
 	ldr r1, _02269148 ; =0xFFFFF800
 	ldr r0, [r5, r0]
-	bl FUN_0200D7C0
+	bl sub_0200D7C0
 	mov r0, #0
 	ldrsh r1, [r4, r0]
 	mov r0, #6
@@ -94899,7 +94899,7 @@ _022690DE:
 	asr r1, r1, #0x10
 	mov r2, #0xd
 	lsl r3, r3, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldrb r0, [r4, #6]
 	add r0, r0, #1
 	strb r0, [r4, #6]
@@ -94961,11 +94961,11 @@ _02269172:
 	ldr r0, _022691B8 ; =0x000005D8
 	ldr r0, [r5, r0]
 	ldr r0, [r0, #0]
-	bl FUN_02021D6C
+	bl sub_02021D6C
 	ldr r0, _022691B8 ; =0x000005D8
 	ldr r0, [r5, r0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	ldrb r0, [r7, r4]
 	bl ov16_0226A934
 	add r1, r0, #0
@@ -94973,12 +94973,12 @@ _02269172:
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	ldr r0, [r0, #0]
-	bl FUN_02021D6C
+	bl sub_02021D6C
 	mov r0, #0x5f
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #6
@@ -95001,7 +95001,7 @@ ov16_022691BC: ; 0x022691BC
 	cmp r0, #0
 	bne _022691D4
 _022691D0:
-	bl FUN_02022974
+	bl sub_02022974
 _022691D4:
 	ldr r7, _02269214 ; =0x000005D8
 	mov r6, #0
@@ -95010,7 +95010,7 @@ _022691DA:
 	ldr r0, [r4, r7]
 	mov r1, #1
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	add r6, r6, #1
 	add r4, r4, #4
 	cmp r6, #6
@@ -95028,7 +95028,7 @@ _02269200:
 	ldr r0, [r5, r6]
 	add r1, r7, #0
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #6
@@ -95052,7 +95052,7 @@ ov16_02269218: ; 0x02269218
 	cmp r0, #0
 	bne _02269230
 _0226922C:
-	bl FUN_02022974
+	bl sub_02022974
 _02269230:
 	ldr r7, _02269258 ; =0x000005D8
 	mov r4, #0
@@ -95062,11 +95062,11 @@ _02269238:
 	ldr r0, [r5, r7]
 	mov r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	ldr r0, [r5, r6]
 	mov r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #6
@@ -95086,7 +95086,7 @@ ov16_0226925C: ; 0x0226925C
 	sub r0, r6, #1
 	cmp r1, r0
 	bne _02269270
-	bl FUN_02022974
+	bl sub_02022974
 _02269270:
 	ldr r0, _02269338 ; =0x0000068B
 	ldr r3, _0226933C ; =0x02270670
@@ -95109,7 +95109,7 @@ _02269290:
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	bne _0226929A
-	bl FUN_02022974
+	bl sub_02022974
 _0226929A:
 	ldr r0, [r5, #0]
 	bl ov16_0223DF0C
@@ -95123,7 +95123,7 @@ _0226929A:
 	b _022692CC
 _022692B2:
 	ldr r0, [r4, #0x14]
-	bl FUN_02022664
+	bl sub_02022664
 	add r7, r0, #0
 	mov r0, #0
 	mvn r0, r0
@@ -95171,7 +95171,7 @@ _02269308:
 	mov r1, #0
 	add r0, r5, r0
 	mov r2, #4
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r0, _02269344 ; =0x000006D8
 	ldr r0, [r5, r0]
 	bl ov16_0226DDE8
@@ -95316,7 +95316,7 @@ _02269400:
 	mov r0, #0xb
 	pop {r3, pc}
 _02269404:
-	bl FUN_02022974
+	bl sub_02022974
 	mov r0, #0
 	pop {r3, pc}
 	thumb_func_end ov16_02269368
@@ -95395,7 +95395,7 @@ ov16_0226947C: ; 0x0226947C
 	ldr r0, _022694A4 ; =ov16_022694A8
 	add r1, r3, #0
 	lsl r2, r2, #4
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 _0226949E:
 	pop {r4, pc}
 	; .align 2, 0
@@ -95451,7 +95451,7 @@ _022694EE:
 	add r6, r3, r6
 	mov r2, #0
 	asr r3, r6, #8
-	bl FUN_02019184
+	bl sub_02019184
 	add r0, r5, #0
 	bl ov16_0226940C
 	cmp r4, #1
@@ -95459,20 +95459,20 @@ _022694EE:
 	ldr r2, _02269544 ; =0x000002FF
 	add r0, r7, #0
 	mov r1, #7
-	bl FUN_02019EE0
+	bl sub_02019EE0
 	mov r0, #7
 	mov r1, #0
-	bl FUN_02019120
+	bl sub_02019120
 	mov r0, #7
 	mov r1, #0
-	bl FUN_02019060
+	bl sub_02019060
 	ldr r2, _02269548 ; =0x04001000
 	ldr r0, _0226954C ; =0xFFFF1FFF
 	ldr r1, [r2, #0]
 	and r0, r1
 	str r0, [r2, #0]
 	ldr r0, [sp]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _02269538:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -95537,11 +95537,11 @@ ov16_02269550: ; 0x02269550
 	str r0, [r1, #0]
 	mov r0, #5
 	mov r1, #0x14
-	bl FUN_02018144
+	bl sub_02018144
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	str r5, [r4, #0]
 	ldr r0, _02269638 ; =0xFFFF9C64
 	strb r6, [r4, #0x12]
@@ -95554,7 +95554,7 @@ ov16_02269550: ; 0x02269550
 	ldr r0, _0226963C ; =0x0000639C
 	sub r0, r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	strh r0, [r4, #0xc]
 	mov r0, #0xa
 	ldrsh r1, [r4, r0]
@@ -95562,25 +95562,25 @@ ov16_02269550: ; 0x02269550
 	lsl r0, r0, #4
 	sub r0, r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	strh r0, [r4, #0xe]
 	ldr r0, _02269640 ; =0x0000070E
-	bl FUN_02005748
+	bl sub_02005748
 	ldr r0, _02269644 ; =ov16_0226B988
 	ldr r2, _02269648 ; =0x000004BA
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	ldr r0, _0226964C ; =ov16_0226BB94
 	add r1, r4, #0
-	bl FUN_020177BC
+	bl sub_020177BC
 	cmp r0, #1
 	beq _02269616
-	bl FUN_02022974
+	bl sub_02022974
 _02269616:
 	ldr r0, _02269650 ; =ov16_0226BA88
 	add r1, r4, #0
 	mov r2, #0xa
-	bl FUN_0200DA04
+	bl sub_0200DA04
 	str r0, [r4, #4]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -95633,16 +95633,16 @@ ov16_02269668: ; 0x02269668
 	beq _022696B4
 	ldr r1, _0226986C ; =0x000003A3
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	mov r1, #0xe9
 	str r0, [sp, #0x24]
 	add r0, r4, #0
 	lsl r1, r1, #2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x20]
 	ldr r1, _02269870 ; =0x000003A5
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x1c]
 	b _02269704
 _022696B4:
@@ -95654,31 +95654,31 @@ _022696B4:
 	beq _022696E4
 	ldr r1, _02269874 ; =0x000004C7
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	mov r1, #0xe9
 	str r0, [sp, #0x24]
 	add r0, r4, #0
 	lsl r1, r1, #2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x20]
 	ldr r1, _02269870 ; =0x000003A5
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x1c]
 	b _02269704
 _022696E4:
 	mov r1, #0xe7
 	add r0, r4, #0
 	lsl r1, r1, #2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x24]
 	ldr r1, _02269878 ; =0x0000039D
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x20]
 	ldr r1, _0226987C ; =0x0000039E
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x1c]
 _02269704:
 	ldr r0, _02269864 ; =0x000006E1
@@ -95688,14 +95688,14 @@ _02269704:
 	mov r1, #0x3a
 	add r0, r4, #0
 	lsl r1, r1, #4
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	mov r1, #1
 	b _02269728
 _0226971C:
 	ldr r1, _02269880 ; =0x0000039F
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	mov r1, #0
 _02269728:
@@ -95779,13 +95779,13 @@ _02269728:
 	add r2, r4, #0
 	bl ov16_0226A98C
 	ldr r0, [sp, #0x24]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x20]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x1c]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [r5, #0]
 	bl ov16_0223DF0C
 	mov r1, #0x22
@@ -95815,7 +95815,7 @@ _02269728:
 	ldr r0, [r5, r0]
 	add r1, sp, #0x2c
 	add r2, sp, #0x28
-	bl FUN_020129A4
+	bl sub_020129A4
 	cmp r7, #4
 	bne _02269840
 	mov r0, #0x4e
@@ -95842,7 +95842,7 @@ _02269846:
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	lsl r3, r3, #0xc
-	bl FUN_0200D500
+	bl sub_0200D500
 _02269860:
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
@@ -95898,22 +95898,22 @@ ov16_022698BC: ; 0x022698BC
 	add r4, r0, #0
 	mov r1, #4
 	mov r3, #0
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	add r0, r4, #0
 	mov r1, #5
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	ldr r0, _02269918 ; =0x000004E4
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _0226991C ; =0x000004F8
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269920 ; =0x0000050C
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	add sp, #0x10
 	pop {r3, r4, r5, pc}
 	nop
@@ -95955,7 +95955,7 @@ ov16_02269938: ; 0x02269938
 	mov r1, #4
 	mov r3, #0
 	add r4, r0, #0
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #0x10
 	str r0, [sp]
 	mov r0, #0xa
@@ -95968,18 +95968,18 @@ ov16_02269938: ; 0x02269938
 	add r0, r4, #0
 	mov r1, #4
 	mov r3, #0x16
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	add r0, r4, #0
 	mov r1, #5
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	ldr r0, _022699A4 ; =0x000004E4
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _022699A8 ; =0x000004F8
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	add sp, #0x10
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -95996,7 +95996,7 @@ ov16_022699AC: ; 0x022699AC
 	add r6, r5, #0
 	add r6, #0x1c
 	bne _022699BC
-	bl FUN_02022974
+	bl sub_02022974
 _022699BC:
 	ldrb r1, [r6, #0x10]
 	ldr r0, _02269C3C ; =0x0000068A
@@ -96179,7 +96179,7 @@ _02269B2E:
 	blt _02269AA4
 	ldr r0, [sp, #0x1c]
 	ldr r1, _02269C5C ; =0x000003A1
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	ldr r0, _02269C60 ; =0x000A0B0C
 	mov r1, #0x52
@@ -96202,7 +96202,7 @@ _02269B2E:
 	add r2, r4, #0
 	bl ov16_0226A98C
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	mov r4, #0
 	mov r7, #3
 	b _02269B98
@@ -96212,7 +96212,7 @@ _02269B72:
 	cmp r0, #0
 	beq _02269B8C
 	add r1, r7, #0
-	bl FUN_020790C4
+	bl sub_020790C4
 	add r1, r0, #0
 	add r0, r5, #0
 	add r2, r4, #0
@@ -96238,15 +96238,15 @@ _02269B9C:
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	mov r1, #0
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269C64 ; =0x00000534
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269C68 ; =0x00000584
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 _02269BC8:
 	ldrh r0, [r6, #2]
 	cmp r0, #0
@@ -96254,15 +96254,15 @@ _02269BC8:
 	ldr r0, _02269C48 ; =0x000004E4
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269C6C ; =0x00000548
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269C70 ; =0x00000598
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 _02269BEC:
 	ldrh r0, [r6, #4]
 	cmp r0, #0
@@ -96270,15 +96270,15 @@ _02269BEC:
 	ldr r0, _02269C4C ; =0x000004F8
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269C74 ; =0x0000055C
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	ldr r0, _02269C78 ; =0x000005AC
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 _02269C10:
 	ldrh r0, [r6, #6]
 	cmp r0, #0
@@ -96286,17 +96286,17 @@ _02269C10:
 	ldr r0, _02269C50 ; =0x0000050C
 	mov r1, #0
 	ldr r0, [r5, r0]
-	bl FUN_020129D0
+	bl sub_020129D0
 	mov r0, #0x57
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	mov r1, #0
-	bl FUN_020129D0
+	bl sub_020129D0
 	mov r0, #0x17
 	lsl r0, r0, #6
 	ldr r0, [r5, r0]
 	mov r1, #0
-	bl FUN_020129D0
+	bl sub_020129D0
 _02269C38:
 	add sp, #0x2c
 	pop {r4, r5, r6, r7, pc}
@@ -96329,11 +96329,11 @@ ov16_02269C7C: ; 0x02269C7C
 	mov r1, #0xeb
 	lsl r1, r1, #2
 	add r6, r0, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	ldr r1, _02269D00 ; =0x000003AD
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r6, r0, #0
 	ldr r0, _02269D04 ; =0x00010203
 	mov r1, #0x4d
@@ -96375,9 +96375,9 @@ ov16_02269C7C: ; 0x02269C7C
 	add r2, r6, #0
 	bl ov16_0226A98C
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x1c
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -96397,11 +96397,11 @@ ov16_02269D14: ; 0x02269D14
 	bl ov16_0223E05C
 	ldr r1, _02269D98 ; =0x0000049D
 	add r6, r0, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	ldr r1, _02269D9C ; =0x0000049E
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r6, r0, #0
 	ldr r0, _02269DA0 ; =0x00010203
 	mov r1, #0x4d
@@ -96443,9 +96443,9 @@ ov16_02269D14: ; 0x02269D14
 	add r2, r6, #0
 	bl ov16_0226A98C
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x1c
 	pop {r3, r4, r5, r6, pc}
 	nop
@@ -96470,32 +96470,32 @@ ov16_02269DB0: ; 0x02269DB0
 	add r4, r0, #0
 	ldr r1, _02269E7C ; =0x000004A2
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x1c]
 	ldr r1, _02269E80 ; =0x000004A3
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x20]
 	mov r0, #0x64
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r6, r0, #0
 	mov r0, #0x64
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r7, r0, #0
 	ldrh r2, [r5, #0x1c]
 	add r0, r4, #0
 	mov r1, #0
-	bl FUN_0200B630
+	bl sub_0200B630
 	ldr r2, [sp, #0x1c]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	add r1, r7, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldr r0, _02269E84 ; =0x00010203
 	mov r1, #0x4d
 	str r0, [sp]
@@ -96536,13 +96536,13 @@ ov16_02269DB0: ; 0x02269DB0
 	add r2, r7, #0
 	bl ov16_0226A98C
 	ldr r0, [sp, #0x1c]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x20]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r7, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -96565,11 +96565,11 @@ ov16_02269E94: ; 0x02269E94
 	mov r1, #2
 	mov r2, #0xf
 	mov r3, #0x1f
-	bl FUN_020BF55C
+	bl sub_020BF55C
 	ldr r0, [r5, #0]
 	bl ov16_0223E05C
 	ldr r1, _02269F5C ; =0x000004EC
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	mov r0, #5
 	str r0, [sp]
@@ -96577,26 +96577,26 @@ ov16_02269E94: ; 0x02269E94
 	mov r1, #0x2e
 	mov r2, #1
 	add r3, sp, #0x1c
-	bl FUN_02006F6C
+	bl sub_02006F6C
 	add r6, r0, #0
 	ldr r0, [sp, #0x1c]
 	mov r2, #2
 	ldr r1, [r5, #0x58]
 	add r0, #0xc
 	lsl r2, r2, #0xa
-	bl FUN_020C4B68
+	bl sub_020C4B68
 	add r0, r6, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	ldr r0, [r5, #0]
 	bl ov16_0223DF00
 	mov r1, #4
 	ldr r2, [r5, #0x58]
 	add r6, r0, #0
 	lsl r3, r1, #9
-	bl FUN_02019574
+	bl sub_02019574
 	add r0, r6, #0
 	mov r1, #4
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	ldr r0, [r5, #0]
 	bl ov16_0223DF00
 	mov r2, #2
@@ -96604,16 +96604,16 @@ ov16_02269E94: ; 0x02269E94
 	ldr r1, [r5, #0x50]
 	mov r0, #0
 	lsl r2, r2, #0xa
-	bl FUN_020C4B4C
+	bl sub_020C4B4C
 	mov r3, #2
 	ldr r2, [r5, #0x50]
 	add r0, r6, #0
 	mov r1, #5
 	lsl r3, r3, #0xa
-	bl FUN_02019574
+	bl sub_02019574
 	add r0, r6, #0
 	mov r1, #5
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	ldr r0, _02269F60 ; =0x00010203
 	mov r1, #0x4d
 	str r0, [sp]
@@ -96635,7 +96635,7 @@ ov16_02269E94: ; 0x02269E94
 	add r2, r4, #0
 	bl ov16_0226A98C
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x20
 	pop {r4, r5, r6, pc}
 	nop
@@ -96658,32 +96658,32 @@ ov16_02269F68: ; 0x02269F68
 	add r4, r0, #0
 	ldr r1, _0226A034 ; =0x000004C1
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x1c]
 	ldr r1, _0226A038 ; =0x000004C2
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x20]
 	mov r0, #0x64
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r6, r0, #0
 	mov r0, #0x64
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r7, r0, #0
 	ldrh r2, [r5, #0x1c]
 	add r0, r4, #0
 	mov r1, #0
-	bl FUN_0200B630
+	bl sub_0200B630
 	ldr r2, [sp, #0x1c]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	add r1, r7, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldr r0, _0226A03C ; =0x00010203
 	mov r1, #0x4d
 	str r0, [sp]
@@ -96724,13 +96724,13 @@ ov16_02269F68: ; 0x02269F68
 	add r2, r7, #0
 	bl ov16_0226A98C
 	ldr r0, [sp, #0x1c]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x20]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r7, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -96755,33 +96755,33 @@ ov16_0226A04C: ; 0x0226A04C
 	add r4, r0, #0
 	ldr r1, _0226A118 ; =0x000004BF
 	add r0, r6, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	mov r1, #0x13
 	str r0, [sp, #0x1c]
 	add r0, r6, #0
 	lsl r1, r1, #6
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x20]
 	mov r0, #0x64
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r6, r0, #0
 	mov r0, #0x64
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	add r7, r0, #0
 	ldrh r2, [r5, #0x1c]
 	add r0, r4, #0
 	mov r1, #0
-	bl FUN_0200B630
+	bl sub_0200B630
 	ldr r2, [sp, #0x1c]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	add r1, r7, #0
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldr r0, _0226A11C ; =0x00010203
 	mov r1, #0x4d
 	str r0, [sp]
@@ -96822,13 +96822,13 @@ ov16_0226A04C: ; 0x0226A04C
 	add r2, r7, #0
 	bl ov16_0226A98C
 	ldr r0, [sp, #0x1c]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x20]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r6, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r0, r7, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -96879,7 +96879,7 @@ ov16_0226A12C: ; 0x0226A12C
 	bl ov16_0223F858
 	mov r0, #0x18
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	str r0, [sp, #0x28]
 	mov r0, #0x4d
 	lsl r0, r0, #4
@@ -96907,7 +96907,7 @@ _0226A198:
 	bne _0226A1C6
 	ldr r0, [sp, #0x2c]
 	ldr r1, _0226A2F4 ; =0x000003C2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x24]
 	b _0226A1E2
 _0226A1C6:
@@ -96915,14 +96915,14 @@ _0226A1C6:
 	bne _0226A1D6
 	ldr r0, [sp, #0x2c]
 	ldr r1, _0226A2F8 ; =0x000003C3
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x24]
 	b _0226A1E2
 _0226A1D6:
 	mov r1, #0xf1
 	ldr r0, [sp, #0x2c]
 	lsl r1, r1, #2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x24]
 _0226A1E2:
 	lsl r2, r6, #3
@@ -96931,15 +96931,15 @@ _0226A1E2:
 	add r1, r6, #0
 	bl ov16_0223DFAC
 	str r0, [sp, #0x20]
-	bl FUN_02076B10
+	bl sub_02076B10
 	add r2, r0, #0
 	ldr r0, [sp, #0x1c]
 	mov r1, #0
-	bl FUN_0200B5CC
+	bl sub_0200B5CC
 	ldr r0, [sp, #0x1c]
 	ldr r1, [sp, #0x28]
 	ldr r2, [sp, #0x24]
-	bl FUN_0200C388
+	bl sub_0200C388
 	mov r0, #1
 	tst r0, r4
 	beq _0226A212
@@ -96975,7 +96975,7 @@ _0226A214:
 	add r0, r5, #0
 	bl ov16_0226A98C
 	ldr r0, [sp, #0x24]
-	bl FUN_020237BC
+	bl sub_020237BC
 	cmp r4, #1
 	beq _0226A25A
 	cmp r4, #3
@@ -97025,10 +97025,10 @@ _0226A2A4:
 	b _0226A198
 _0226A2AA:
 	ldr r0, [sp, #0x28]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x2c]
 	ldr r1, _0226A30C ; =0x000003A2
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	add r4, r0, #0
 	ldr r0, _0226A310 ; =0x000A0B0C
 	mov r3, #2
@@ -97052,7 +97052,7 @@ _0226A2AA:
 	add r1, r5, r1
 	bl ov16_0226A98C
 	add r0, r4, #0
-	bl FUN_020237BC
+	bl sub_020237BC
 	add sp, #0x44
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -97451,10 +97451,10 @@ _0226A5E8:
 	ldr r2, _0226A628 ; =0x000002FF
 	add r6, r0, #0
 	mov r1, #5
-	bl FUN_02019EE0
+	bl sub_02019EE0
 	add r0, r6, #0
 	mov r1, #5
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	add r0, r4, #0
 	add r1, r5, #0
 	bl ov16_0226B314
@@ -97541,7 +97541,7 @@ ov16_0226A698: ; 0x0226A698
 	ldr r0, [r5, #0]
 	bl ov16_0223E064
 	add r5, r0, #0
-	bl FUN_02079FD0
+	bl sub_02079FD0
 	mov r1, #0x13
 	str r1, [sp]
 	str r0, [sp, #4]
@@ -97556,8 +97556,8 @@ ov16_0226A698: ; 0x0226A698
 	str r0, [sp, #0x14]
 	add r0, r5, #0
 	add r3, r6, #0
-	bl FUN_0200CD7C
-	bl FUN_02079FD8
+	bl sub_0200CD7C
+	bl sub_02079FD8
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -97566,8 +97566,8 @@ ov16_0226A698: ; 0x0226A698
 	str r0, [sp, #4]
 	add r0, r4, #0
 	mov r2, #0x13
-	bl FUN_0200CE0C
-	bl FUN_02079FE4
+	bl sub_0200CE0C
+	bl sub_02079FE4
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -97576,7 +97576,7 @@ ov16_0226A698: ; 0x0226A698
 	str r0, [sp, #4]
 	add r0, r4, #0
 	mov r2, #0x13
-	bl FUN_0200CE3C
+	bl sub_0200CE3C
 	add sp, #0x18
 	pop {r4, r5, r6, pc}
 	nop
@@ -97591,22 +97591,22 @@ ov16_0226A718: ; 0x0226A718
 	bl ov16_0223E018
 	ldr r1, _0226A754 ; =0x00004E44
 	add r4, r0, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _0226A758 ; =0x00004E45
 	add r0, r4, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _0226A75C ; =0x00004E46
 	add r0, r4, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _0226A760 ; =0x00004E35
 	add r0, r4, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, _0226A760 ; =0x00004E35
 	add r0, r4, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	ldr r1, _0226A764 ; =0x00004E36
 	add r0, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	pop {r4, pc}
 	nop
 _0226A754: .word 0x00004E44
@@ -97628,7 +97628,7 @@ _0226A772:
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _0226A782
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, _0226A79C ; =0x00000628
 	str r6, [r5, r0]
 _0226A782:
@@ -97636,7 +97636,7 @@ _0226A782:
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _0226A792
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	ldr r0, _0226A7A0 ; =0x00000638
 	str r7, [r5, r0]
 _0226A792:
@@ -97671,7 +97671,7 @@ _0226A7BA:
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	beq _0226A7CA
-	bl FUN_02022974
+	bl sub_02022974
 _0226A7CA:
 	lsl r0, r5, #2
 	add r1, r4, r0
@@ -97679,7 +97679,7 @@ _0226A7CA:
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	beq _0226A7DA
-	bl FUN_02022974
+	bl sub_02022974
 _0226A7DA:
 	cmp r6, #5
 	bhi _0226A802
@@ -97706,7 +97706,7 @@ _0226A7FE:
 	ldr r6, _0226A914 ; =0x00004E46
 	b _0226A80C
 _0226A802:
-	bl FUN_02022974
+	bl sub_02022974
 	add sp, #0x50
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -97718,7 +97718,7 @@ _0226A80C:
 	bl ov16_0223E018
 	str r0, [sp, #0x14]
 	ldr r0, [sp, #0xc]
-	bl FUN_02079D80
+	bl sub_02079D80
 	add r3, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -97728,7 +97728,7 @@ _0226A80C:
 	ldr r1, [sp, #0x14]
 	mov r2, #0x13
 	str r6, [sp, #8]
-	bl FUN_0200CBDC
+	bl sub_0200CBDC
 	ldr r3, _0226A918 ; =0x022704B0
 	add r2, sp, #0x1c
 	mov r7, #6
@@ -97751,7 +97751,7 @@ _0226A83E:
 	strh r1, [r0, #2]
 	ldr r0, [sp, #0x18]
 	ldr r1, [sp, #0x14]
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	add r3, sp, #0x1c
 	mov r1, #0
 	mov r2, #2
@@ -97760,12 +97760,12 @@ _0226A83E:
 	mov r3, #0x11
 	lsl r3, r3, #0x10
 	add r6, r0, #0
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r0, [sp, #0xc]
-	bl FUN_02079FC4
+	bl sub_02079FC4
 	add r1, r0, #0
 	ldr r0, [r6, #0]
-	bl FUN_02021F24
+	bl sub_02021F24
 	ldr r0, [sp, #0x10]
 	mov r7, #0
 	cmp r0, #0
@@ -97782,7 +97782,7 @@ _0226A83E:
 	lsr r0, r0, #0x10
 	lsr r1, r1, #0x10
 	mov r2, #0x30
-	bl FUN_0208C104
+	bl sub_0208C104
 	cmp r0, #4
 	bhi _0226A8D4
 	add r0, r0, r0
@@ -97811,10 +97811,10 @@ _0226A8D2:
 _0226A8D4:
 	add r0, r6, #0
 	add r1, r7, #0
-	bl FUN_0200D364
+	bl sub_0200D364
 _0226A8DC:
 	add r0, r6, #0
-	bl FUN_0200D330
+	bl sub_0200D330
 	lsl r0, r5, #2
 	add r1, r4, r0
 	ldr r0, _0226A904 ; =0x00000628
@@ -97822,7 +97822,7 @@ _0226A8DC:
 	str r6, [r1, r0]
 	ldr r0, _0226A924 ; =ov16_0226A928
 	add r1, r6, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	lsl r1, r5, #2
 	add r2, r4, r1
 	ldr r1, _0226A908 ; =0x00000638
@@ -97844,11 +97844,11 @@ _0226A924: .word ov16_0226A928
 
 	thumb_func_start ov16_0226A928
 ov16_0226A928: ; 0x0226A928
-	ldr r3, _0226A930 ; =FUN_0200D330
+	ldr r3, _0226A930 ; =sub_0200D330
 	add r0, r1, #0
 	bx r3
 	nop
-_0226A930: .word FUN_0200D330
+_0226A930: .word sub_0200D330
 	thumb_func_end ov16_0226A928
 
 	thumb_func_start ov16_0226A934
@@ -97889,14 +97889,14 @@ ov16_0226A95C: ; 0x0226A95C
 	add r1, r4, #0
 	mov r2, #0
 	add r7, r3, #0
-	bl FUN_02002D7C
+	bl sub_02002D7C
 	add r4, r0, #0
 	asr r1, r4, #2
 	lsr r1, r1, #0x1d
 	add r1, r4, r1
 	asr r5, r1, #3
 	mov r1, #8
-	bl FUN_020BD140
+	bl sub_020BD140
 	cmp r0, #0
 	beq _0226A984
 	add r5, r5, #1
@@ -97920,7 +97920,7 @@ ov16_0226A98C: ; 0x0226A98C
 	ldr r4, [sp, #0xa8]
 	cmp r0, #0
 	beq _0226A9A6
-	bl FUN_02022974
+	bl sub_02022974
 _0226A9A6:
 	ldr r0, [r7, #0]
 	bl ov16_0223E018
@@ -97945,7 +97945,7 @@ _0226A9D0:
 	cmp r4, #0
 	bne _0226AA0E
 	add r0, sp, #0x3c
-	bl FUN_0201A7A0
+	bl sub_0201A7A0
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -97955,7 +97955,7 @@ _0226A9D0:
 	add r1, sp, #0x3c
 	lsr r2, r2, #0x18
 	mov r3, #2
-	bl FUN_0201A870
+	bl sub_0201A870
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #0xff
@@ -97968,7 +97968,7 @@ _0226A9D0:
 	ldr r2, [sp, #0x18]
 	add r0, sp, #0x3c
 	str r3, [sp, #0x14]
-	bl FUN_0201D7E0
+	bl sub_0201D7E0
 	b _0226AA1A
 _0226AA0E:
 	add r3, r4, #0
@@ -97981,11 +97981,11 @@ _0226AA1A:
 	add r0, sp, #0x3c
 	mov r1, #2
 	mov r2, #5
-	bl FUN_02012898
+	bl sub_02012898
 	mov r1, #1
 	mov r2, #2
 	add r3, sp, #0x30
-	bl FUN_0201ED94
+	bl sub_0201ED94
 	ldr r0, [sp, #0xa4]
 	cmp r0, #1
 	bne _0226AA3E
@@ -98001,11 +98001,11 @@ _0226AA3E:
 	add r0, sp, #0x3c
 	str r0, [sp, #0x50]
 	ldr r0, [sp, #0x20]
-	bl FUN_0200D9B0
+	bl sub_0200D9B0
 	str r0, [sp, #0x54]
 	ldr r0, [sp, #0x20]
 	ldr r1, [sp, #0x98]
-	bl FUN_0200D04C
+	bl sub_0200D04C
 	str r0, [sp, #0x58]
 	mov r0, #0
 	ldr r1, [sp, #0x34]
@@ -98025,21 +98025,21 @@ _0226AA3E:
 	add r0, sp, #0x4c
 	str r6, [sp, #0x64]
 	str r1, [sp, #0x68]
-	bl FUN_020127E8
+	bl sub_020127E8
 	ldr r1, [sp, #0x94]
 	add r7, r0, #0
-	bl FUN_02012AC0
+	bl sub_02012AC0
 	mov r2, #0x42
 	ldr r3, [sp, #0xa0]
 	lsl r2, r2, #2
 	add r0, r7, #0
 	add r1, r6, #0
 	add r2, r3, r2
-	bl FUN_020128C4
+	bl sub_020128C4
 	cmp r4, #0
 	bne _0226AAA4
 	add r0, sp, #0x3c
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 _0226AAA4:
 	str r7, [r5, #0]
 	add r3, sp, #0x30
@@ -98070,9 +98070,9 @@ _0226AACC:
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _0226AAE6
-	bl FUN_02012870
+	bl sub_02012870
 	add r0, r4, #0
-	bl FUN_0201EE28
+	bl sub_0201EE28
 	mov r0, #0x4d
 	lsl r0, r0, #4
 	str r7, [r5, r0]
@@ -98095,7 +98095,7 @@ ov16_0226AAF8: ; 0x0226AAF8
 	ldr r0, [r7, #0]
 	bl ov16_0223DF00
 	mov r1, #5
-	bl FUN_02019FE4
+	bl sub_02019FE4
 	add r4, r0, #0
 	add r0, r7, #0
 	add r1, sp, #4
@@ -98254,14 +98254,14 @@ _0226AC1C:
 	ldr r0, [sp, #4]
 	add r0, #0x84
 	ldr r0, [r0, #0]
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r4, #0
 	add r0, #0xa0
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _0226AC36
 	add r0, r7, #0
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 _0226AC36:
 	add r0, r4, #0
 	add r0, #0xf0
@@ -98269,7 +98269,7 @@ _0226AC36:
 	cmp r0, #0
 	beq _0226AC46
 	add r0, r6, #0
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 _0226AC46:
 	mov r0, #5
 	lsl r0, r0, #6
@@ -98277,7 +98277,7 @@ _0226AC46:
 	cmp r0, #0
 	beq _0226AC56
 	add r0, r5, #0
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 _0226AC56:
 	ldr r0, [sp, #4]
 	add r4, #0x14
@@ -98329,22 +98329,22 @@ ov16_0226AC98: ; 0x0226AC98
 	bl ov16_0226ABD4
 	str r0, [sp, #0x38]
 	mov r0, #6
-	bl FUN_0208C098
+	bl sub_0208C098
 	str r0, [sp, #0xc]
 	ldr r1, _0226AE94 ; =0x000003AA
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x28]
 	ldr r0, [r7, #0]
 	bl ov16_0223E0D0
 	str r0, [sp, #0x24]
 	mov r0, #0x10
 	mov r1, #5
-	bl FUN_02023790
+	bl sub_02023790
 	str r0, [sp, #0x30]
 	ldr r1, _0226AE98 ; =0x000003A9
 	add r0, r4, #0
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	ldr r4, [sp, #0x38]
 	str r0, [sp, #0x2c]
 	mov r0, #0
@@ -98372,28 +98372,28 @@ _0226AD06:
 	cmp r0, #0
 	beq _0226AD4C
 	mov r1, #3
-	bl FUN_020790C4
+	bl sub_020790C4
 	str r0, [sp, #0x3c]
-	bl FUN_0207C944
+	bl sub_0207C944
 	str r0, [sp, #0x40]
 	ldr r0, [sp, #0x3c]
-	bl FUN_0207C908
+	bl sub_0207C908
 	add r1, r0, #0
 	mov r0, #5
 	str r0, [sp]
 	ldr r0, [sp, #0x40]
 	mov r2, #1
 	add r3, sp, #0x4c
-	bl FUN_02006F50
+	bl sub_02006F50
 	str r0, [sp, #0x44]
 	ldr r0, [sp, #0x4c]
 	ldr r1, [sp, #0x1c]
 	ldr r0, [r0, #0x14]
 	ldr r1, [r1, #0x18]
 	ldr r2, [sp, #0xc]
-	bl FUN_020C4B68
+	bl sub_020C4B68
 	ldr r0, [sp, #0x44]
-	bl FUN_020181C4
+	bl sub_020181C4
 _0226AD4C:
 	ldr r0, [r6, #0x34]
 	cmp r0, #0
@@ -98407,7 +98407,7 @@ _0226AD4C:
 _0226AD5E:
 	ldrh r0, [r5]
 	mov r1, #5
-	bl FUN_0200B2EC
+	bl sub_0200B2EC
 	str r0, [sp, #0x48]
 	ldr r0, _0226AE9C ; =0x00070809
 	ldr r1, [sp, #0x48]
@@ -98417,7 +98417,7 @@ _0226AD5E:
 	mov r2, #2
 	bl ov16_0226AEA0
 	ldr r0, [sp, #0x48]
-	bl FUN_020237BC
+	bl sub_020237BC
 _0226AD7E:
 	add r0, r6, #0
 	add r0, #0x84
@@ -98452,7 +98452,7 @@ _0226ADAE:
 	ldr r0, [sp, #0x24]
 	mov r1, #0
 	mov r3, #2
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	mov r0, #1
 	str r0, [sp]
 	mov r0, #0
@@ -98461,11 +98461,11 @@ _0226ADAE:
 	ldr r0, [sp, #0x24]
 	mov r1, #1
 	mov r3, #2
-	bl FUN_0200B60C
+	bl sub_0200B60C
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x30]
 	ldr r2, [sp, #0x2c]
-	bl FUN_0200C388
+	bl sub_0200C388
 	ldrh r0, [r5, #8]
 	ldrh r1, [r5, #0x10]
 	bl ov16_0226B924
@@ -98537,11 +98537,11 @@ _0226AE3E:
 	b _0226AD06
 _0226AE68:
 	ldr r0, [sp, #0x28]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x2c]
-	bl FUN_020237BC
+	bl sub_020237BC
 	ldr r0, [sp, #0x30]
-	bl FUN_020237BC
+	bl sub_020237BC
 	mov r0, #0xc
 _0226AE7C:
 	ldr r1, [sp, #8]
@@ -98583,10 +98583,10 @@ ov16_0226AEA0: ; 0x0226AEA0
 	cmp r0, #0
 	beq _0226AECC
 	add r0, r4, #0
-	bl FUN_0201A8FC
+	bl sub_0201A8FC
 _0226AECC:
 	add r0, r4, #0
-	bl FUN_0201A7A0
+	bl sub_0201A7A0
 	ldr r0, [r5, #0]
 	bl ov16_0223DF00
 	mov r1, #0
@@ -98597,7 +98597,7 @@ _0226AECC:
 	lsl r2, r2, #0x18
 	lsr r2, r2, #0x18
 	mov r3, #2
-	bl FUN_0201A870
+	bl sub_0201A870
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #0xff
@@ -98610,7 +98610,7 @@ _0226AECC:
 	add r0, r4, #0
 	add r2, r6, #0
 	str r3, [sp, #0x14]
-	bl FUN_0201D7E0
+	bl sub_0201D7E0
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_0226AEA0
@@ -98654,7 +98654,7 @@ _0226AF4C:
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	beq _0226AF5C
-	bl FUN_02022974
+	bl sub_02022974
 _0226AF5C:
 	ldr r0, [sp, #4]
 	lsl r1, r4, #1
@@ -98662,7 +98662,7 @@ _0226AF5C:
 	cmp r0, #0
 	beq _0226AFD6
 	mov r1, #3
-	bl FUN_020790C4
+	bl sub_020790C4
 	add r2, r0, #0
 	ldr r0, _0226AFEC ; =0x00004E39
 	ldr r1, _0226AFF0 ; =0x022702B4
@@ -98678,7 +98678,7 @@ _0226AF5C:
 	ldr r1, [sp, #8]
 	strh r0, [r6, #2]
 	ldr r0, [sp, #0xc]
-	bl FUN_0207CA58
+	bl sub_0207CA58
 	lsl r1, r4, #2
 	add r2, r5, r1
 	ldr r1, _0226AFE8 ; =0x00000608
@@ -98691,16 +98691,16 @@ _0226AF5C:
 	ldrsh r1, [r6, r1]
 	ldrsh r2, [r6, r2]
 	lsl r3, r3, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	lsl r0, r4, #2
 	add r1, r5, r0
 	ldr r0, _0226AFE8 ; =0x00000608
 	ldr r0, [r1, r0]
 	ldr r0, [r0, #0]
-	bl FUN_02021F98
+	bl sub_02021F98
 	add r7, r0, #0
 	mov r0, #6
-	bl FUN_0208C098
+	bl sub_0208C098
 	add r2, r0, #0
 	ldr r0, [sp]
 	lsl r3, r4, #2
@@ -98710,7 +98710,7 @@ _0226AF5C:
 	lsl r3, r3, #0x14
 	ldr r0, [r0, #0x18]
 	add r1, r3, r1
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _0226AFD6:
 	add r4, r4, #1
 _0226AFD8:
@@ -98741,7 +98741,7 @@ _0226B00A:
 	ldr r0, [r5, r7]
 	cmp r0, #0
 	beq _0226B018
-	bl FUN_0207CA88
+	bl sub_0207CA88
 	ldr r0, _0226B024 ; =0x00000608
 	str r6, [r5, r0]
 _0226B018:
@@ -98770,11 +98770,11 @@ _0226B03E:
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _0226B058
-	bl FUN_0207CB00
+	bl sub_0207CB00
 	ldr r1, _0226B068 ; =0x00004E3D
 	add r0, r6, #0
 	add r1, r4, r1
-	bl FUN_0207CAF8
+	bl sub_0207CAF8
 	ldr r0, _0226B064 ; =0x00000618
 	str r7, [r5, r0]
 _0226B058:
@@ -98837,7 +98837,7 @@ _0226B09A:
 	add r0, r6, #0
 	mov r2, #1
 	lsr r3, r3, #0x10
-	bl FUN_02002FBC
+	bl sub_02002FBC
 	add r4, r4, #1
 _0226B0CE:
 	cmp r4, #4
@@ -98893,10 +98893,10 @@ ov16_0226B0DC: ; 0x0226B0DC
 	add r0, r7, #0
 	mov r2, #1
 	lsr r3, r3, #0x10
-	bl FUN_02002FBC
+	bl sub_02002FBC
 	add r0, r6, #0
 	mov r1, #4
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	ldr r0, _0226B190 ; =0x022702C4
 	lsl r1, r4, #2
 	ldrb r2, [r0, r1]
@@ -98922,10 +98922,10 @@ ov16_0226B0DC: ; 0x0226B0DC
 	ldrb r3, [r3, #2]
 	ldr r2, _0226B194 ; =0x000002FF
 	add r0, r6, #0
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	add r0, r6, #0
 	mov r1, #5
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -98948,13 +98948,13 @@ _0226B1A0:
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	add r1, r4, #0
-	bl FUN_02019120
+	bl sub_02019120
 	b _0226B1BC
 _0226B1B2:
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	add r1, r6, #0
-	bl FUN_02019120
+	bl sub_02019120
 _0226B1BC:
 	add r5, r5, #1
 	cmp r5, #4
@@ -98976,7 +98976,7 @@ _0226B1D2:
 	ldr r0, _0226B1E4 ; =ov16_0226BCBC
 	add r1, r5, #0
 	mov r2, #0xa
-	bl FUN_0200DA3C
+	bl sub_0200DA3C
 _0226B1E0:
 	pop {r3, r4, r5, pc}
 	nop
@@ -99110,17 +99110,17 @@ ov16_0226B2BC: ; 0x0226B2BC
 	ldr r0, [r4, #0xc]
 	cmp r0, #0
 	beq _0226B2CC
-	bl FUN_02022974
+	bl sub_02022974
 _0226B2CC:
 	ldr r0, _0226B2E8 ; =0x0000069C
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x24
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r2, _0226B2EC ; =0x00000514
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #0xc]
 	pop {r3, r4, r5, pc}
 	nop
@@ -99135,13 +99135,13 @@ ov16_0226B2F0: ; 0x0226B2F0
 	ldr r0, [r4, #0xc]
 	cmp r0, #0
 	beq _0226B30C
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	ldr r0, _0226B310 ; =0x0000069C
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x24
 	str r1, [r4, #0xc]
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 _0226B30C:
 	pop {r4, pc}
 	nop
@@ -99172,7 +99172,7 @@ ov16_0226B31C: ; 0x0226B31C
 	bl ov16_0223DF00
 	mov r1, #4
 	str r0, [sp, #4]
-	bl FUN_02019FE4
+	bl sub_02019FE4
 	mov ip, r0
 	lsl r0, r7, #2
 	add r0, r5, r0
@@ -99218,7 +99218,7 @@ _0226B37A:
 _0226B384:
 	ldr r0, [sp, #4]
 	mov r1, #4
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_0226B31C
@@ -99261,7 +99261,7 @@ _0226B3AE:
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
 	add r1, sp, #8
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r0, _0226B4D8 ; =0x000006AD
 	ldr r2, [sp, #4]
 	ldrb r1, [r4, r0]
@@ -99273,7 +99273,7 @@ _0226B3AE:
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #8]
-	bl FUN_020128C4
+	bl sub_020128C4
 	ldr r0, _0226B4DC ; =0x000006AE
 	ldrb r1, [r4, r0]
 	cmp r1, #0xff
@@ -99286,7 +99286,7 @@ _0226B3AE:
 	beq _0226B414
 	mov r1, #0
 	sub r2, r1, #2
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 _0226B414:
 	ldr r0, _0226B4D4 ; =0x0000069C
 	add sp, #0xc
@@ -99331,7 +99331,7 @@ _0226B43C:
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
 	add r1, sp, #8
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r0, _0226B4D8 ; =0x000006AD
 	ldr r2, [sp, #4]
 	ldrb r1, [r4, r0]
@@ -99343,7 +99343,7 @@ _0226B43C:
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #8]
-	bl FUN_020128C4
+	bl sub_020128C4
 	ldr r0, _0226B4DC ; =0x000006AE
 	ldrb r1, [r4, r0]
 	cmp r1, #0xff
@@ -99356,7 +99356,7 @@ _0226B43C:
 	beq _0226B4A2
 	mov r1, #0
 	mov r2, #1
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 _0226B4A2:
 	ldr r0, _0226B4D4 ; =0x0000069C
 	add sp, #0xc
@@ -99493,13 +99493,13 @@ _0226B56A:
 	str r0, [sp, #0xc]
 	ldr r0, [r7, r0]
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r0, [sp, #0xc]
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r7, r0]
 	ldr r1, [sp, #0x20]
 	sub r2, r2, #2
-	bl FUN_020128C4
+	bl sub_020128C4
 	mov r0, #0x4d
 	lsl r0, r0, #4
 	add r7, r4, r0
@@ -99509,13 +99509,13 @@ _0226B56A:
 	ldr r0, [r7, r0]
 	add r1, sp, #0x20
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r0, [sp, #0x10]
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r7, r0]
 	ldr r1, [sp, #0x20]
 	sub r2, r2, #2
-	bl FUN_020128C4
+	bl sub_020128C4
 	mov r0, #0x4d
 	lsl r0, r0, #4
 	add r6, r4, r0
@@ -99526,12 +99526,12 @@ _0226B56A:
 	ldr r0, [r6, r7]
 	add r1, sp, #0x20
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r6, r7]
 	ldr r1, [sp, #0x20]
 	sub r2, r2, #2
-	bl FUN_020128C4
+	bl sub_020128C4
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	beq _0226B640
@@ -99542,7 +99542,7 @@ _0226B56A:
 	mov r1, #0
 	ldr r0, [r0, #0]
 	sub r2, r1, #2
-	bl FUN_0200D5AC
+	bl sub_0200D5AC
 	ldr r0, _0226B77C ; =0x00000618
 	add r1, r4, r5
 	ldr r0, [r1, r0]
@@ -99551,21 +99551,21 @@ _0226B56A:
 	mov r1, #0
 	ldr r0, [r0, #0]
 	sub r2, r1, #2
-	bl FUN_0200D5AC
+	bl sub_0200D5AC
 	b _0226B640
 _0226B624:
 	mov r0, #0x52
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	mov r0, #0x52
 	lsl r0, r0, #4
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r4, r0]
 	ldr r1, [sp, #0x20]
 	sub r2, r2, #2
-	bl FUN_020128C4
+	bl sub_020128C4
 _0226B640:
 	ldr r0, _0226B774 ; =0x0000069C
 	add sp, #0x24
@@ -99615,13 +99615,13 @@ _0226B66A:
 	str r0, [sp, #0x14]
 	ldr r0, [r7, r0]
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r0, [sp, #0x14]
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r7, r0]
 	ldr r1, [sp, #0x20]
 	add r2, r2, #1
-	bl FUN_020128C4
+	bl sub_020128C4
 	mov r0, #0x4d
 	lsl r0, r0, #4
 	add r7, r4, r0
@@ -99631,13 +99631,13 @@ _0226B66A:
 	ldr r0, [r7, r0]
 	add r1, sp, #0x20
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r0, [sp, #0x18]
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r7, r0]
 	ldr r1, [sp, #0x20]
 	add r2, r2, #1
-	bl FUN_020128C4
+	bl sub_020128C4
 	mov r0, #0x4d
 	lsl r0, r0, #4
 	add r6, r4, r0
@@ -99648,12 +99648,12 @@ _0226B66A:
 	ldr r0, [r6, r7]
 	add r1, sp, #0x20
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r6, r7]
 	ldr r1, [sp, #0x20]
 	add r2, r2, #1
-	bl FUN_020128C4
+	bl sub_020128C4
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	beq _0226B740
@@ -99664,7 +99664,7 @@ _0226B66A:
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #1
-	bl FUN_0200D5AC
+	bl sub_0200D5AC
 	ldr r0, _0226B77C ; =0x00000618
 	add r1, r4, r5
 	ldr r0, [r1, r0]
@@ -99673,21 +99673,21 @@ _0226B66A:
 	ldr r0, [r0, #0]
 	mov r1, #0
 	mov r2, #1
-	bl FUN_0200D5AC
+	bl sub_0200D5AC
 	b _0226B740
 _0226B724:
 	mov r0, #0x52
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
 	add r2, sp, #0x1c
-	bl FUN_020129A4
+	bl sub_020129A4
 	mov r0, #0x52
 	lsl r0, r0, #4
 	ldr r2, [sp, #0x1c]
 	ldr r0, [r4, r0]
 	ldr r1, [sp, #0x20]
 	add r2, r2, #1
-	bl FUN_020128C4
+	bl sub_020128C4
 _0226B740:
 	ldr r0, _0226B774 ; =0x0000069C
 	add sp, #0x24
@@ -99781,7 +99781,7 @@ _0226B7C0:
 	beq _0226B80E
 	add r1, sp, #0xc
 	add r2, sp, #8
-	bl FUN_020129A4
+	bl sub_020129A4
 	mov r0, #0x14
 	mul r0, r5
 	add r1, r4, r0
@@ -99791,7 +99791,7 @@ _0226B7C0:
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #0xc]
 	sub r2, r2, #2
-	bl FUN_020128C4
+	bl sub_020128C4
 _0226B80E:
 	lsl r0, r5, #2
 	add r1, r4, r0
@@ -99801,7 +99801,7 @@ _0226B80E:
 	beq _0226B822
 	mov r1, #0
 	sub r2, r1, #2
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 _0226B822:
 	add r5, r5, #1
 _0226B824:
@@ -99865,7 +99865,7 @@ _0226B866:
 	beq _0226B8B4
 	add r1, sp, #0xc
 	add r2, sp, #8
-	bl FUN_020129A4
+	bl sub_020129A4
 	mov r0, #0x14
 	mul r0, r5
 	add r1, r4, r0
@@ -99875,7 +99875,7 @@ _0226B866:
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #0xc]
 	add r2, r2, #1
-	bl FUN_020128C4
+	bl sub_020128C4
 _0226B8B4:
 	lsl r0, r5, #2
 	add r1, r4, r0
@@ -99885,7 +99885,7 @@ _0226B8B4:
 	beq _0226B8C8
 	mov r1, #0
 	mov r2, #1
-	bl FUN_0200D5DC
+	bl sub_0200D5DC
 _0226B8C8:
 	add r5, r5, #1
 _0226B8CA:
@@ -100023,13 +100023,13 @@ _0226B9A4:
 	lsl r0, r0, #2
 	sub r0, r0, r1
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	strh r0, [r5, #0xc]
 	mov r0, #0xa
 	ldrsh r0, [r5, r0]
 	mov r1, #0x64
 	neg r0, r0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	strh r0, [r5, #0xe]
 	mov r0, #8
 	ldrsh r0, [r5, r0]
@@ -100056,8 +100056,8 @@ _0226B9FA:
 	mov r2, #0
 	strb r2, [r1, r0]
 	ldr r0, [r5, #4]
-	bl FUN_0200DA58
-	bl FUN_020177A4
+	bl sub_0200DA58
+	bl sub_020177A4
 	ldr r2, _0226BA80 ; =0x04001000
 	ldr r0, _0226BA84 ; =0xFFFF1FFF
 	ldr r1, [r2, #0]
@@ -100079,30 +100079,30 @@ _0226BA26:
 	add r0, r4, #0
 	mov r1, #4
 	add r3, r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	add r0, r4, #0
 	mov r1, #4
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r2, #0
 	add r0, r4, #0
 	mov r1, #5
 	add r3, r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	add r0, r4, #0
 	mov r1, #5
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 	ldr r0, [r5, #0]
 	mov r1, #1
 	ldr r0, [r0, #0]
 	bl ov16_0223F288
 	add r0, r5, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	add r0, r6, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 _0226BA76:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -100134,7 +100134,7 @@ _0226BAAA:
 	add r0, r6, #0
 	mov r1, #4
 	mov r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r3, #0xc
 	ldrsh r4, [r5, r3]
 	mov r3, #0xff
@@ -100142,12 +100142,12 @@ _0226BAAA:
 	mov r1, #5
 	mov r2, #0
 	sub r3, r3, r4
-	bl FUN_02019184
+	bl sub_02019184
 	mov r0, #8
 	ldrsh r0, [r5, r0]
 	mov r1, #0x64
 	neg r0, r0
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r4, r0, #0
 	b _0226BB06
 _0226BAD6:
@@ -100160,17 +100160,17 @@ _0226BAE0:
 	add r0, r6, #0
 	mov r1, #4
 	mov r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r3, #0xc
 	ldrsh r3, [r5, r3]
 	add r0, r6, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r0, #8
 	ldrsh r0, [r5, r0]
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r4, r0, #0
 	add r4, #0xff
 _0226BB06:
@@ -100178,16 +100178,16 @@ _0226BB06:
 	mov r1, #4
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 	add r0, r6, #0
 	mov r1, #5
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r0, #0xa
 	ldrsh r0, [r5, r0]
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	add r0, #0x90
 	cmp r4, #0
 	bge _0226BB32
@@ -100264,24 +100264,24 @@ ov16_0226BB94: ; 0x0226BB94
 	mov r1, #4
 	add r3, r2, #0
 	add r5, r0, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r3, #0x10
 	ldrsh r3, [r4, r3]
 	add r0, r5, #0
 	mov r1, #4
 	mov r2, #3
-	bl FUN_02019184
+	bl sub_02019184
 	mov r2, #0
 	add r0, r5, #0
 	mov r1, #5
 	add r3, r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r3, #0x10
 	ldrsh r3, [r4, r3]
 	add r0, r5, #0
 	mov r1, #5
 	mov r2, #3
-	bl FUN_02019184
+	bl sub_02019184
 	pop {r4, r5, r6, pc}
 _0226BBDE:
 	cmp r0, #0xc0
@@ -100299,7 +100299,7 @@ _0226BBDE:
 	mov r1, #4
 	mov r2, #0
 	sub r3, r3, r6
-	bl FUN_02019184
+	bl sub_02019184
 	mov r3, #0xc
 	ldrsh r4, [r4, r3]
 	mov r3, #0xff
@@ -100307,31 +100307,31 @@ _0226BBDE:
 	mov r1, #5
 	mov r2, #0
 	sub r3, r3, r4
-	bl FUN_02019184
+	bl sub_02019184
 	b _0226BC30
 _0226BC16:
 	mov r3, #0xc
 	ldrsh r3, [r4, r3]
 	mov r1, #4
 	mov r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 	mov r3, #0xc
 	ldrsh r3, [r4, r3]
 	add r0, r5, #0
 	mov r1, #5
 	mov r2, #0
-	bl FUN_02019184
+	bl sub_02019184
 _0226BC30:
 	add r0, r5, #0
 	mov r1, #4
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 	add r0, r5, #0
 	mov r1, #5
 	mov r2, #3
 	mov r3, #0
-	bl FUN_02019184
+	bl sub_02019184
 _0226BC48:
 	pop {r4, r5, r6, pc}
 	nop
@@ -100359,14 +100359,14 @@ _0226BC66:
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	mov r1, #0
-	bl FUN_02019120
+	bl sub_02019120
 	b _0226BC86
 _0226BC7A:
 	add r0, r4, #4
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	mov r1, #1
-	bl FUN_02019120
+	bl sub_02019120
 _0226BC86:
 	add r4, r4, #1
 	add r5, r5, #2
@@ -100380,13 +100380,13 @@ _0226BC90:
 	lsl r1, r1, #0x18
 	lsr r0, r0, #0x18
 	lsr r1, r1, #0x18
-	bl FUN_02019060
+	bl sub_02019060
 	add r4, r4, #1
 	add r6, r6, #2
 	cmp r4, #4
 	blt _0226BC90
 	ldr r0, [sp]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0226BCB0: .word 0x0000068B
@@ -100400,7 +100400,7 @@ ov16_0226BCBC: ; 0x0226BCBC
 	add r4, r0, #0
 	bl ov16_0226B198
 	add r0, r4, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r4, pc}
 	thumb_func_end ov16_0226BCBC
 
@@ -100433,7 +100433,7 @@ ov16_0226BCE4: ; 0x0226BCE4
 	ldr r0, [r5, #0]
 	bl ov16_0223E064
 	add r4, r0, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _0226BD64
 	ldr r0, _0226BD68 ; =0x00000696
@@ -100448,7 +100448,7 @@ ov16_0226BCE4: ; 0x0226BCE4
 	ldr r0, _0226BD6C ; =0x00007E37
 	str r0, [sp, #4]
 	add r0, r4, #0
-	bl FUN_020039B0
+	bl sub_020039B0
 	ldr r1, _0226BD70 ; =0x00000694
 	ldrb r0, [r5, r1]
 	cmp r0, #0
@@ -100504,21 +100504,21 @@ _0226BD70: .word 0x00000694
 ov16_0226BD74: ; 0x0226BD74
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r1, #0
-	bl FUN_02002B3C
+	bl sub_02002B3C
 	add r6, r0, #0
-	bl FUN_02002B5C
+	bl sub_02002B5C
 	add r7, r0, #0
-	bl FUN_02002B4C
-	bl FUN_02002B6C
+	bl sub_02002B4C
+	bl sub_02002B6C
 	ldr r0, [r5, #0]
 	bl ov16_0223E064
 	add r4, r0, #0
-	bl FUN_0200384C
+	bl sub_0200384C
 	cmp r0, #0
 	bne _0226BE40
 	add r0, r4, #0
 	mov r1, #1
-	bl FUN_0200316C
+	bl sub_0200316C
 	add r4, r0, #0
 	ldr r0, _0226BE44 ; =0x021BF6BC
 	ldrh r0, [r0, #0x22]
@@ -100534,7 +100534,7 @@ _0226BDB6:
 	add r0, #0x10
 	add r1, #0x10
 	mov r2, #0x10
-	bl FUN_020D5190
+	bl sub_020D5190
 	cmp r0, #0
 	bne _0226BE40
 	ldr r0, [r5, #0]
@@ -100545,20 +100545,20 @@ _0226BDB6:
 	beq _0226BDEE
 	add r1, r4, #0
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [r5, #0x64]
 	add r4, #0xe0
 	add r0, #0x20
 	add r1, r4, #0
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	pop {r3, r4, r5, r6, r7, pc}
 _0226BDEE:
 	add r4, #0x10
 	add r0, #0x10
 	add r1, r4, #0
 	mov r2, #0x10
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	pop {r3, r4, r5, r6, r7, pc}
 _0226BDFC:
 	ldr r1, [r5, #0x64]
@@ -100566,7 +100566,7 @@ _0226BDFC:
 	add r0, #0x10
 	add r1, #0x10
 	mov r2, #0x10
-	bl FUN_020D5190
+	bl sub_020D5190
 	cmp r0, #0
 	bne _0226BE40
 	ldr r0, [r5, #0]
@@ -100577,20 +100577,20 @@ _0226BDFC:
 	beq _0226BE34
 	add r1, r4, #0
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	ldr r0, [r5, #0x60]
 	add r4, #0xe0
 	add r0, #0x20
 	add r1, r4, #0
 	mov r2, #0x20
-	bl FUN_020C4B18
+	bl sub_020C4B18
 	pop {r3, r4, r5, r6, r7, pc}
 _0226BE34:
 	add r4, #0x10
 	add r0, #0x10
 	add r1, r4, #0
 	mov r2, #0x10
-	bl FUN_020C4B18
+	bl sub_020C4B18
 _0226BE40:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -100633,7 +100633,7 @@ _0226BE82:
 	cmp r0, #0
 	bne _0226BE8C
 	ldr r0, _0226BEBC ; =0x000005DC
-	bl FUN_02005748
+	bl sub_02005748
 _0226BE8C:
 	mov r1, #1
 	mov r0, #0x6e
@@ -100778,7 +100778,7 @@ _0226BF82:
 	mov r0, #1
 	strb r0, [r4, #1]
 	ldr r0, _0226C098 ; =0x000005DC
-	bl FUN_02005748
+	bl sub_02005748
 	mov r5, #0x20
 	b _0226BFCA
 _0226BFB4:
@@ -100790,7 +100790,7 @@ _0226BFB4:
 	mov r0, #1
 	strb r0, [r4, #1]
 	ldr r0, _0226C098 ; =0x000005DC
-	bl FUN_02005748
+	bl sub_02005748
 	mov r5, #0x10
 _0226BFCA:
 	cmp r5, #0x20
@@ -101178,7 +101178,7 @@ _0226C2A6:
 	ldr r0, _0226C370 ; =0x022701E4
 	add r1, sp, #8
 	mov r2, #6
-	bl FUN_020C4DB0
+	bl sub_020C4DB0
 	add r0, r4, #0
 	mov r1, #2
 	mov r2, #3
@@ -101362,7 +101362,7 @@ ov16_0226C3C8: ; 0x0226C3C8
 	ldr r0, _0226C6B4 ; =0x022701DC
 	add r1, sp, #0x50
 	mov r2, #6
-	bl FUN_020C4DB0
+	bl sub_020C4DB0
 	add r1, sp, #0x58
 	add r0, r6, #0
 	add r1, #2
@@ -102585,7 +102585,7 @@ _0226CCD4:
 	beq _0226CCF0
 _0226CCE8:
 	ldr r0, _0226CD04 ; =0x000005DC
-	bl FUN_02005748
+	bl sub_02005748
 	b _0226CCFA
 _0226CCF0:
 	mov r0, #0xf0
@@ -102635,7 +102635,7 @@ ov16_0226CD18: ; 0x0226CD18
 	ldrb r0, [r4, r0]
 	cmp r0, #2
 	blo _0226CD44
-	bl FUN_02022974
+	bl sub_02022974
 _0226CD44:
 	ldr r1, _0226CD78 ; =0x000006E8
 	add r0, r4, #0
@@ -102844,7 +102844,7 @@ ov16_0226CEB0: ; 0x0226CEB0
 	ldrsb r0, [r0, r1]
 	cmp r0, #0x12
 	beq _0226CED8
-	bl FUN_02022974
+	bl sub_02022974
 _0226CED8:
 	mov r0, #0
 	str r0, [sp]
@@ -102853,12 +102853,12 @@ _0226CED8:
 	mov r2, #0x20
 	mov r3, #1
 	str r1, [sp, #4]
-	bl FUN_0200DAA4
+	bl sub_0200DAA4
 	add r0, r6, #0
 	mov r1, #1
 	mov r2, #0x10
 	mov r3, #0x20
-	bl FUN_02003070
+	bl sub_02003070
 	mov r0, #6
 	str r0, [sp]
 	mov r3, #1
@@ -102868,7 +102868,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x20
 	str r3, [sp, #0xc]
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #0x1c
@@ -102880,7 +102880,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x21
 	mov r3, #2
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -102891,7 +102891,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x22
 	mov r3, #0x1e
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #7
 	str r0, [sp]
 	mov r3, #1
@@ -102902,7 +102902,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x23
 	str r3, [sp, #0xc]
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #7
 	str r0, [sp]
 	mov r1, #1
@@ -102914,7 +102914,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x25
 	mov r3, #0x1e
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #0xb
 	str r0, [sp]
 	mov r3, #1
@@ -102924,7 +102924,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x26
 	str r3, [sp, #0xc]
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #0xb
 	str r0, [sp]
 	mov r0, #0x1c
@@ -102936,7 +102936,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x27
 	mov r3, #2
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #0xb
 	str r0, [sp]
 	mov r0, #1
@@ -102947,7 +102947,7 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x28
 	mov r3, #0x1e
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	mov r0, #7
 	str r0, [sp]
 	mov r0, #0x1c
@@ -102960,10 +102960,10 @@ _0226CED8:
 	mov r1, #5
 	mov r2, #0x24
 	mov r3, #2
-	bl FUN_02019CB8
+	bl sub_02019CB8
 	add r0, r5, #0
 	mov r1, #5
-	bl FUN_0201C3C0
+	bl sub_0201C3C0
 	ldr r0, [sp, #0x1c]
 	ldr r0, [r0, #0]
 	bl ov16_0223E05C
@@ -102998,13 +102998,13 @@ _0226D018:
 	ldr r0, [r6, r0]
 	cmp r0, #0
 	beq _0226D028
-	bl FUN_02022974
+	bl sub_02022974
 	add sp, #0x38
 	pop {r3, r4, r5, r6, r7, pc}
 _0226D028:
 	ldrh r1, [r4]
 	ldr r0, [sp, #0x20]
-	bl FUN_0200B1EC
+	bl sub_0200B1EC
 	str r0, [sp, #0x24]
 	ldr r0, _0226D080 ; =0x00010200
 	add r1, r7, #1
@@ -103028,7 +103028,7 @@ _0226D028:
 	mov r3, #0
 	bl ov16_0226A98C
 	ldr r0, [sp, #0x24]
-	bl FUN_020237BC
+	bl sub_020237BC
 	add r7, r7, #1
 	add r6, #0x14
 	add r4, r4, #2
@@ -103063,7 +103063,7 @@ ov16_0226D094: ; 0x0226D094
 	mov r0, #0x1b
 	mov r1, #5
 	add r7, r2, #0
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	str r6, [sp]
 	mov r0, #0x6e
@@ -103079,7 +103079,7 @@ ov16_0226D094: ; 0x0226D094
 	add r0, r7, #0
 	add r2, r5, #0
 	add r3, r4, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	mov r0, #1
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -103090,7 +103090,7 @@ ov16_0226D094: ; 0x0226D094
 	add r1, r4, #0
 	add r2, r6, #0
 	lsl r3, r3, #2
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _0226D11C ; =0x00004FB7
@@ -103099,7 +103099,7 @@ ov16_0226D094: ; 0x0226D094
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, _0226D124 ; =0x00004FAC
@@ -103108,9 +103108,9 @@ ov16_0226D094: ; 0x0226D094
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -103127,16 +103127,16 @@ ov16_0226D12C: ; 0x0226D12C
 	push {r4, lr}
 	ldr r1, _0226D150 ; =0x00004FBD
 	add r4, r0, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	ldr r1, _0226D154 ; =0x00004E45
 	add r0, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	ldr r1, _0226D158 ; =0x00004FB7
 	add r0, r4, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, _0226D15C ; =0x00004FAC
 	add r0, r4, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	pop {r4, pc}
 	; .align 2, 0
 _0226D150: .word 0x00004FBD
@@ -103150,12 +103150,12 @@ ov16_0226D160: ; 0x0226D160
 	push {r4, lr}
 	mov r0, #5
 	lsl r1, r0, #6
-	bl FUN_02018144
+	bl sub_02018144
 	mov r2, #5
 	mov r1, #0
 	lsl r2, r2, #6
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -103168,10 +103168,10 @@ ov16_0226D17C: ; 0x0226D17C
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq _0226D18A
-	bl FUN_02022974
+	bl sub_02022974
 _0226D18A:
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226D17C
@@ -103262,7 +103262,7 @@ ov16_0226D220: ; 0x0226D220
 	add r7, r2, #0
 	cmp r6, #0
 	bne _0226D230
-	bl FUN_02022974
+	bl sub_02022974
 _0226D230:
 	add r0, r6, #0
 	add r1, r4, #0
@@ -103315,12 +103315,12 @@ ov16_0226D27C: ; 0x0226D27C
 	push {r4, r5, r6, lr}
 	add r6, r0, #0
 	ldr r0, [r6, #0]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	mov r4, #0
 	add r5, r6, #0
 _0226D28A:
 	ldr r0, [r5, #0x1c]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	add r4, r4, #1
 	add r5, #0x30
 	cmp r4, #6
@@ -103348,16 +103348,16 @@ ov16_0226D2A0: ; 0x0226D2A0
 _0226D2BA:
 	cmp r1, #0
 	bne _0226D2C2
-	bl FUN_02022974
+	bl sub_02022974
 _0226D2C2:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r1, [sp, #0x18]
 	ldr r2, _0226D338 ; =0x02270A3C
 	add r0, r7, #0
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	str r0, [r5, #0]
 	cmp r6, #0
 	ldr r0, [r5, #0]
@@ -103367,11 +103367,11 @@ _0226D2C2:
 	ldrsh r2, [r2, r3]
 	mov r1, #0x16
 	lsl r1, r1, #4
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	ldr r0, [r5, #0]
 	mov r1, #8
 	ldr r0, [r0, #0]
-	bl FUN_02021D6C
+	bl sub_02021D6C
 	b _0226D310
 _0226D2F8:
 	ldr r2, _0226D340 ; =0x02270A24
@@ -103379,15 +103379,15 @@ _0226D2F8:
 	ldrsh r2, [r2, r3]
 	mov r1, #0x5f
 	mvn r1, r1
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	ldr r0, [r5, #0]
 	mov r1, #7
 	ldr r0, [r0, #0]
-	bl FUN_02021D6C
+	bl sub_02021D6C
 _0226D310:
 	ldr r0, [r5, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	str r6, [r5, #0xc]
 	mov r2, #0x7d
 	str r4, [r5, #0x10]
@@ -103396,10 +103396,10 @@ _0226D310:
 	ldr r0, _0226D344 ; =ov16_0226D34C
 	add r1, r5, #0
 	lsl r2, r2, #2
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r5, #4]
 	ldr r0, _0226D348 ; =0x00000711
-	bl FUN_02005748
+	bl sub_02005748
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0226D338: .word 0x02270A3C
@@ -103425,7 +103425,7 @@ _0226D35E:
 	ldr r0, [r4, #0]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	mov r0, #2
 	ldrsh r0, [r1, r0]
@@ -103460,7 +103460,7 @@ _0226D39A:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	add sp, #4
 	pop {r3, r4, pc}
 _0226D3B2:
@@ -103485,11 +103485,11 @@ _0226D3CA:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	add sp, #4
 	pop {r3, r4, pc}
 _0226D3E2:
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #4]
 	add sp, #4
@@ -103511,7 +103511,7 @@ ov16_0226D3F8: ; 0x0226D3F8
 	cmp r0, #0
 	beq _0226D40E
 _0226D40A:
-	bl FUN_02022974
+	bl sub_02022974
 _0226D40E:
 	mov r0, #0
 	strb r0, [r5, #0x1a]
@@ -103526,7 +103526,7 @@ _0226D41C:
 	ldr r0, _0226D430 ; =ov16_0226D434
 	add r1, r5, #0
 	lsl r2, r2, #2
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r5, #4]
 	pop {r3, r4, r5, pc}
 	nop
@@ -103552,7 +103552,7 @@ _0226D44C:
 	ldr r0, [r4, #0]
 	add r1, #2
 	add r2, sp, #4
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #4
 	mov r0, #2
 	ldrsh r0, [r1, r0]
@@ -103560,7 +103560,7 @@ _0226D44C:
 	lsl r0, r0, #8
 	str r0, [r4, #0x14]
 	ldr r0, [r4, #0]
-	bl FUN_0200D810
+	bl sub_0200D810
 	mov r0, #1
 	lsl r0, r0, #0xc
 	strh r0, [r4, #0x18]
@@ -103573,7 +103573,7 @@ _0226D44C:
 	sub r0, r0, r3
 	str r0, [sp]
 	ldr r0, _0226D530 ; =0x04000050
-	bl FUN_020BF55C
+	bl sub_020BF55C
 	ldrb r0, [r4, #0x1a]
 	add r0, r0, #1
 	strb r0, [r4, #0x1a]
@@ -103608,7 +103608,7 @@ _0226D4A0:
 	ldr r0, [r4, #0]
 	ldrsh r2, [r2, r3]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0226D4E4
 _0226D4CA:
 	mov r0, #1
@@ -103622,7 +103622,7 @@ _0226D4CA:
 	ldr r0, [r4, #0]
 	ldrsh r2, [r2, r3]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0226D4E4:
 	mov r1, #0x18
 	ldrsh r2, [r4, r1]
@@ -103637,7 +103637,7 @@ _0226D4E4:
 	strh r1, [r4, #0x18]
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	ldrb r0, [r4, #0x1a]
 	add r0, r0, #1
 	strb r0, [r4, #0x1a]
@@ -103656,7 +103656,7 @@ _0226D508:
 _0226D51E:
 	bl ov16_0223F9F0
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #4]
 	add sp, #8
@@ -103687,16 +103687,16 @@ ov16_0226D540: ; 0x0226D540
 _0226D55C:
 	cmp r1, #0
 	bne _0226D564
-	bl FUN_02022974
+	bl sub_02022974
 _0226D564:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x30
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x28]
 	ldr r2, _0226D634 ; =0x02270A70
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	str r0, [r5, #0]
 	cmp r6, #0
 	ldr r0, [r5, #0]
@@ -103707,7 +103707,7 @@ _0226D564:
 	ldr r2, _0226D638 ; =0x02270A34
 	lsl r1, r1, #2
 	ldrsh r2, [r2, r3]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0226D5A2
 _0226D592:
 	ldr r2, [sp, #0x18]
@@ -103716,15 +103716,15 @@ _0226D592:
 	ldr r2, _0226D63C ; =0x02270A1C
 	mvn r1, r1
 	ldrsh r2, [r2, r3]
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0226D5A2:
 	ldr r0, [r5, #0]
 	ldr r1, [sp, #0x20]
 	ldr r0, [r0, #0]
-	bl FUN_02021D6C
+	bl sub_02021D6C
 	ldr r0, [r5, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	add r0, r5, #0
 	str r6, [r5, #8]
 	add r0, #0x2d
@@ -103781,14 +103781,14 @@ _0226D600:
 	strh r0, [r5, #0x28]
 	ldr r0, _0226D64C ; =ov16_0226D654
 	add r1, r5, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r5, #4]
 	pop {r3, r4, r5, r6, r7, pc}
 _0226D626:
 	ldr r0, _0226D650 ; =ov16_0226D854
 	strh r1, [r5, #0x28]
 	add r1, r5, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r5, #4]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -103833,7 +103833,7 @@ _0226D680:
 	ldr r0, [r4, #0]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	mov r0, #2
 	ldrsh r0, [r1, r0]
@@ -103869,7 +103869,7 @@ _0226D6B2:
 	bgt _0226D6E0
 	str r0, [r4, #0x1c]
 	ldrh r0, [r4, #0x2a]
-	bl FUN_02005748
+	bl sub_02005748
 	add r0, r4, #0
 	add r0, #0x2c
 	ldrb r0, [r0]
@@ -103886,7 +103886,7 @@ _0226D6E0:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0226D72A
 _0226D6F6:
 	mov r0, #0x12
@@ -103914,11 +103914,11 @@ _0226D716:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0226D72A:
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	pop {r3, r4, r5, pc}
 _0226D734:
 	ldr r1, [r4, #0x14]
@@ -103941,7 +103941,7 @@ _0226D74C:
 	beq _0226D760
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	pop {r3, r4, r5, pc}
 _0226D760:
 	ldr r0, [r4, #8]
@@ -103950,12 +103950,12 @@ _0226D760:
 	bne _0226D772
 	ldr r0, [r0, #0]
 	mov r1, #1
-	bl FUN_02021E50
+	bl sub_02021E50
 	b _0226D77A
 _0226D772:
 	ldr r0, [r0, #0]
 	mov r1, #1
-	bl FUN_02021E50
+	bl sub_02021E50
 _0226D77A:
 	mov r0, #0
 	strh r0, [r4, #0x28]
@@ -103979,7 +103979,7 @@ _0226D78C:
 	add r1, #0x2e
 	ldrb r1, [r1]
 	ldr r0, [r0, #0]
-	bl FUN_02021D6C
+	bl sub_02021D6C
 	mov r0, #0
 	strh r0, [r4, #0x28]
 	add r0, r4, #0
@@ -104019,7 +104019,7 @@ _0226D7E2:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0226D82C
 _0226D7F8:
 	mov r0, #6
@@ -104047,19 +104047,19 @@ _0226D818:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0226D82C:
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	pop {r3, r4, r5, pc}
 _0226D836:
 	ldr r0, [r4, #0]
 	mov r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_02021E50
+	bl sub_02021E50
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #4]
 _0226D84A:
@@ -104088,7 +104088,7 @@ _0226D86C:
 	ldr r0, [r4, #0]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	mov r0, #2
 	ldrsh r0, [r1, r0]
@@ -104097,7 +104097,7 @@ _0226D86C:
 	str r0, [r4, #0x1c]
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_02021E50
+	bl sub_02021E50
 	add r0, r4, #0
 	add r0, #0x2c
 	ldrb r0, [r0]
@@ -104144,7 +104144,7 @@ _0226D8D2:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	add sp, #4
 	pop {r3, r4, pc}
 _0226D8EA:
@@ -104173,11 +104173,11 @@ _0226D90A:
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	add sp, #4
 	pop {r3, r4, pc}
 _0226D922:
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #4]
 	add sp, #4
@@ -104201,7 +104201,7 @@ ov16_0226D938: ; 0x0226D938
 	cmp r0, #0
 	beq _0226D952
 _0226D94E:
-	bl FUN_02022974
+	bl sub_02022974
 _0226D952:
 	add r0, r5, #0
 	mov r1, #0
@@ -104220,7 +104220,7 @@ _0226D952:
 	strb r1, [r0]
 	ldr r0, _0226D994 ; =ov16_0226D99C
 	add r1, r5, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r5, #4]
 	pop {r3, r4, r5, r6, r7, pc}
 _0226D97C:
@@ -104230,7 +104230,7 @@ _0226D97C:
 	strb r1, [r0]
 	ldr r0, _0226D998 ; =ov16_0226DAAC
 	add r1, r5, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r5, #4]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -104275,7 +104275,7 @@ _0226D9D2:
 	ldr r0, [r4, #0]
 	add r1, #2
 	add r2, sp, #0
-	bl FUN_0200D550
+	bl sub_0200D550
 	add r1, sp, #0
 	mov r0, #2
 	ldrsh r0, [r1, r0]
@@ -104283,7 +104283,7 @@ _0226D9D2:
 	lsl r0, r0, #8
 	str r0, [r4, #0x1c]
 	ldr r0, [r4, #0]
-	bl FUN_0200D810
+	bl sub_0200D810
 	add r0, r4, #0
 	add r0, #0x2c
 	ldrb r0, [r0]
@@ -104328,7 +104328,7 @@ _0226DA24:
 	ldr r0, [r4, #0]
 	ldrsh r2, [r2, r3]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 	b _0226DA62
 _0226DA48:
 	mov r0, #3
@@ -104342,7 +104342,7 @@ _0226DA48:
 	ldr r0, [r4, #0]
 	ldrsh r2, [r2, r3]
 	asr r1, r1, #0x10
-	bl FUN_0200D4C4
+	bl sub_0200D4C4
 _0226DA62:
 	ldr r1, [r4, #0x1c]
 	ldr r0, _0226DAA8 ; =0xFFFFF000
@@ -104363,15 +104363,15 @@ _0226DA72:
 _0226DA80:
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl FUN_0200D324
+	bl sub_0200D324
 	pop {r3, r4, r5, pc}
 _0226DA8A:
 	ldr r0, [r4, #0]
 	mov r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #4]
 	pop {r3, r4, r5, pc}
@@ -104408,7 +104408,7 @@ _0226DAC4:
 _0226DAD6:
 	ldr r0, [r4, #0]
 	mov r1, #1
-	bl FUN_0200D810
+	bl sub_0200D810
 	add r0, r4, #0
 	add r0, #0x2c
 	ldrb r0, [r0]
@@ -104420,9 +104420,9 @@ _0226DAEC:
 	ldr r0, [r4, #0]
 	mov r1, #0
 	ldr r0, [r0, #0]
-	bl FUN_0200D3EC
+	bl sub_0200D3EC
 	add r0, r5, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	mov r0, #0
 	str r0, [r4, #4]
 _0226DB00:
@@ -104524,7 +104524,7 @@ ov16_0226DB7C: ; 0x0226DB7C
 	mov r0, #0x1b
 	add r1, r3, #0
 	add r7, r2, #0
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	str r6, [sp]
 	mov r0, #0x50
@@ -104541,7 +104541,7 @@ ov16_0226DB7C: ; 0x0226DB7C
 	add r0, r7, #0
 	add r2, r5, #0
 	add r3, r4, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	mov r0, #1
 	str r0, [sp]
 	mov r0, #2
@@ -104552,7 +104552,7 @@ ov16_0226DB7C: ; 0x0226DB7C
 	add r0, r5, #0
 	add r2, r6, #0
 	mov r3, #0xfa
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, [sp, #0x38]
@@ -104561,7 +104561,7 @@ ov16_0226DB7C: ; 0x0226DB7C
 	add r0, r5, #0
 	add r2, r6, #0
 	mov r3, #0xfb
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	mov r0, #1
 	str r0, [sp]
 	ldr r0, [sp, #0x3c]
@@ -104570,9 +104570,9 @@ ov16_0226DB7C: ; 0x0226DB7C
 	add r0, r5, #0
 	add r2, r6, #0
 	mov r3, #0xfc
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_0226DB7C
@@ -104583,16 +104583,16 @@ ov16_0226DBFC: ; 0x0226DBFC
 	add r5, r0, #0
 	add r4, r2, #0
 	add r6, r3, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226DBFC
@@ -104628,28 +104628,28 @@ _0226DC36:
 	ldr r0, [sp, #0x60]
 	str r0, [sp, #0x30]
 	mov r0, ip
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0
 	mov r2, #0x18
 	str r0, [sp]
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r5, [sp]
 	mov r4, #0
 _0226DC6E:
 	add r0, r6, #0
 	add r1, r7, #0
 	add r2, sp, #4
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	mov r1, #0
 	stmia r5!, {r0}
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	add r4, r4, #1
 	cmp r4, #5
 	blt _0226DC6E
 	ldr r0, _0226DCA0 ; =ov16_0226DE10
 	ldr r1, [sp]
 	ldr r2, _0226DCA4 ; =0x00009C40
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	ldr r1, [sp]
 	str r0, [r1, #0x14]
 	add r0, r1, #0
@@ -104669,15 +104669,15 @@ ov16_0226DCA8: ; 0x0226DCA8
 	add r5, r6, #0
 _0226DCB0:
 	ldr r0, [r5, #0]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #5
 	blt _0226DCB0
 	ldr r0, [r6, #0x14]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add r0, r6, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov16_0226DCA8
 
@@ -104693,7 +104693,7 @@ ov16_0226DCCC: ; 0x0226DCCC
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	add r3, r4, #0
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r2, [sp, #0x10]
 	lsl r1, r6, #0x10
 	lsl r2, r2, #0x10
@@ -104701,7 +104701,7 @@ ov16_0226DCCC: ; 0x0226DCCC
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	add r3, r4, #0
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r1, [sp, #0x14]
 	ldr r2, [sp, #0x18]
 	lsl r1, r1, #0x10
@@ -104710,7 +104710,7 @@ ov16_0226DCCC: ; 0x0226DCCC
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	add r3, r4, #0
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r1, [sp, #0x1c]
 	ldr r2, [sp, #0x20]
 	lsl r1, r1, #0x10
@@ -104719,25 +104719,25 @@ ov16_0226DCCC: ; 0x0226DCCC
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	add r3, r4, #0
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r0, [r5, #0]
 	mov r1, #0
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldr r0, [r5, #4]
 	mov r1, #1
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldr r0, [r5, #8]
 	mov r1, #2
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldr r0, [r5, #0xc]
 	mov r1, #3
-	bl FUN_0200D364
+	bl sub_0200D364
 	mov r4, #0
 	mov r6, #1
 _0226DD42:
 	ldr r0, [r5, #0]
 	add r1, r6, #0
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #4
@@ -104819,13 +104819,13 @@ ov16_0226DDC0: ; 0x0226DDC0
 	ldr r3, [sp, #0x10]
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r0, [r5, #0x10]
 	add r1, r4, #0
-	bl FUN_0200D364
+	bl sub_0200D364
 	ldr r0, [r5, #0x10]
 	mov r1, #1
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov16_0226DDC0
 
@@ -104838,7 +104838,7 @@ ov16_0226DDE8: ; 0x0226DDE8
 _0226DDF0:
 	ldr r0, [r5, #0]
 	add r1, r6, #0
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #5
@@ -104849,12 +104849,12 @@ _0226DDF0:
 
 	thumb_func_start ov16_0226DE04
 ov16_0226DE04: ; 0x0226DE04
-	ldr r3, _0226DE0C ; =FUN_0200D3F4
+	ldr r3, _0226DE0C ; =sub_0200D3F4
 	ldr r0, [r0, #0x10]
 	mov r1, #0
 	bx r3
 	; .align 2, 0
-_0226DE0C: .word FUN_0200D3F4
+_0226DE0C: .word sub_0200D3F4
 	thumb_func_end ov16_0226DE04
 
 	thumb_func_start ov16_0226DE10
@@ -104862,24 +104862,24 @@ ov16_0226DE10: ; 0x0226DE10
 	push {r4, r5, r6, lr}
 	add r6, r1, #0
 	ldr r0, [r6, #0]
-	bl FUN_0200D408
+	bl sub_0200D408
 	cmp r0, #0
 	beq _0226DE40
 	mov r4, #0
 	add r5, r6, #0
 _0226DE22:
 	ldr r0, [r5, #0]
-	bl FUN_0200D330
+	bl sub_0200D330
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #4
 	blt _0226DE22
 	ldr r0, [r6, #0x10]
-	bl FUN_0200D408
+	bl sub_0200D408
 	cmp r0, #1
 	bne _0226DE40
 	ldr r0, [r6, #0x10]
-	bl FUN_0200D330
+	bl sub_0200D330
 _0226DE40:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -104894,7 +104894,7 @@ ov16_0226DE44: ; 0x0226DE44
 	mov r0, #0x52
 	add r1, r2, #0
 	add r7, r3, #0
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	str r6, [sp]
 	mov r0, #0xb
@@ -104911,7 +104911,7 @@ ov16_0226DE44: ; 0x0226DE44
 	add r0, r7, #0
 	add r2, r5, #0
 	add r3, r4, #0
-	bl FUN_0200CDC4
+	bl sub_0200CDC4
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #2
@@ -104922,7 +104922,7 @@ ov16_0226DE44: ; 0x0226DE44
 	add r0, r5, #0
 	add r2, r6, #0
 	mov r3, #0xa
-	bl FUN_0200CC3C
+	bl sub_0200CC3C
 	mov r0, #0
 	str r0, [sp]
 	ldr r0, [sp, #0x38]
@@ -104931,7 +104931,7 @@ ov16_0226DE44: ; 0x0226DE44
 	add r0, r5, #0
 	add r2, r6, #0
 	mov r3, #0xc
-	bl FUN_0200CE24
+	bl sub_0200CE24
 	mov r0, #0
 	str r0, [sp]
 	ldr r0, [sp, #0x3c]
@@ -104940,9 +104940,9 @@ ov16_0226DE44: ; 0x0226DE44
 	add r0, r5, #0
 	add r2, r6, #0
 	mov r3, #0xd
-	bl FUN_0200CE54
+	bl sub_0200CE54
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov16_0226DE44
@@ -104953,16 +104953,16 @@ ov16_0226DEC4: ; 0x0226DEC4
 	add r5, r0, #0
 	add r4, r2, #0
 	add r6, r3, #0
-	bl FUN_0200D070
+	bl sub_0200D070
 	add r0, r5, #0
 	add r1, r4, #0
-	bl FUN_0200D080
+	bl sub_0200D080
 	add r0, r5, #0
 	add r1, r6, #0
-	bl FUN_0200D090
+	bl sub_0200D090
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
-	bl FUN_0200D0A0
+	bl sub_0200D0A0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226DEC4
@@ -104997,25 +104997,25 @@ _0226DEFC:
 	ldr r0, [sp, #0x60]
 	str r0, [sp, #0x30]
 	add r0, r2, #0
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	ldr r1, [sp]
 	add r0, r7, #0
 	add r2, sp, #4
-	bl FUN_0200CE6C
+	bl sub_0200CE6C
 	mov r1, #0
 	str r0, [r4, #0]
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	mov r0, #3
 	lsl r0, r0, #0x12
 	str r0, [r4, #0x14]
 	ldr r0, _0226DF60 ; =ov16_0226DFD8
 	ldr r2, _0226DF64 ; =0x000003E7
 	add r1, r4, #0
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	str r0, [r4, #4]
 	add r0, r4, #0
 	add sp, #0x38
@@ -105031,11 +105031,11 @@ ov16_0226DF68: ; 0x0226DF68
 	push {r4, lr}
 	add r4, r0, #0
 	ldr r0, [r4, #0]
-	bl FUN_0200D0F4
+	bl sub_0200D0F4
 	ldr r0, [r4, #4]
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r4, pc}
 	thumb_func_end ov16_0226DF68
 
@@ -105056,10 +105056,10 @@ ov16_0226DF80: ; 0x0226DF80
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	add r3, r6, #0
-	bl FUN_0200D500
+	bl sub_0200D500
 	ldr r0, [r5, #0]
 	mov r1, #1
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end ov16_0226DF80
@@ -105079,7 +105079,7 @@ ov16_0226DFBC: ; 0x0226DFBC
 	add r4, r0, #0
 	ldr r0, [r4, #0]
 	mov r1, #0
-	bl FUN_0200D3F4
+	bl sub_0200D3F4
 	add r0, r4, #0
 	bl ov16_0226E13C
 	pop {r4, pc}
@@ -105120,7 +105120,7 @@ _0226DFE6:
 	strb r0, [r4, #0x1a]
 _0226DFFC:
 	ldr r0, [r4, #0]
-	bl FUN_0200D408
+	bl sub_0200D408
 	cmp r0, #0
 	bne _0226E008
 	b _0226E134
@@ -105154,15 +105154,15 @@ _0226E036:
 	bne _0226E08A
 	ldr r0, [r4, #0x10]
 	mov r1, #0x64
-	bl FUN_020E1F6C
+	bl sub_020E1F6C
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
-	bl FUN_0201D15C
+	bl sub_0201D15C
 	mov r2, #0xe
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl FUN_020E1F1C
+	bl sub_020E1F1C
 	add r5, r1, #0
 	ldr r1, [r4, #8]
 	mov r2, #2
@@ -105186,7 +105186,7 @@ _0226E036:
 	ldr r0, [r4, #0]
 	ldr r3, [r4, #0x14]
 	asr r2, r2, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 _0226E08A:
 	ldrb r0, [r4, #0x1c]
 	cmp r0, #1
@@ -105228,7 +105228,7 @@ _0226E0C2:
 	ldr r3, [r4, #0x14]
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	mov r0, #1
 	strb r0, [r4, #0x1b]
 	ldrb r0, [r4, #0x1d]
@@ -105251,7 +105251,7 @@ _0226E0E4:
 	ldr r3, [r4, #0x14]
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
-	bl FUN_0200D500
+	bl sub_0200D500
 	mov r0, #0
 	strb r0, [r4, #0x1e]
 	ldrb r0, [r4, #0x1d]
@@ -105274,7 +105274,7 @@ _0226E112:
 	strb r0, [r4, #0x1d]
 _0226E12E:
 	ldr r0, [r4, #0]
-	bl FUN_0200D330
+	bl sub_0200D330
 _0226E134:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -105297,17 +105297,17 @@ ov16_0226E148: ; 0x0226E148
 	add r5, r0, #0
 	mov r0, #5
 	mov r1, #8
-	bl FUN_02018144
+	bl sub_02018144
 	mov r1, #0
 	mov r2, #8
 	add r4, r0, #0
-	bl FUN_020C4CF4
+	bl sub_020C4CF4
 	mov r2, #0xfa
 	ldr r0, _0226E170 ; =ov16_0226E188
 	add r1, r4, #0
 	lsl r2, r2, #2
 	str r5, [r4, #0]
-	bl FUN_0200D9E8
+	bl sub_0200D9E8
 	pop {r3, r4, r5, pc}
 	nop
 _0226E170: .word ov16_0226E188
@@ -105317,10 +105317,10 @@ _0226E170: .word ov16_0226E188
 ov16_0226E174: ; 0x0226E174
 	push {r4, lr}
 	add r4, r0, #0
-	bl FUN_0201CED0
-	bl FUN_020181C4
+	bl sub_0201CED0
+	bl sub_020181C4
 	add r0, r4, #0
-	bl FUN_0200DA58
+	bl sub_0200DA58
 	pop {r4, pc}
 	thumb_func_end ov16_0226E174
 
@@ -105351,15 +105351,15 @@ _0226E1AA: ; jump table
 _0226E1B4:
 	cmp r5, #0
 	bne _0226E1BC
-	bl FUN_02022974
+	bl sub_02022974
 _0226E1BC:
 	mov r0, #7
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r6, r0, #0
 	mov r0, #0x1b
 	mov r1, #5
-	bl FUN_02006C24
+	bl sub_02006C24
 	add r7, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -105370,9 +105370,9 @@ _0226E1BC:
 	mov r3, #0x12
 	bl ov16_02268C04
 	add r0, r6, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	add r0, r7, #0
-	bl FUN_02006CA8
+	bl sub_02006CA8
 	mov r0, #4
 	ldrsh r0, [r4, r0]
 	add sp, #8
@@ -105399,7 +105399,7 @@ _0226E20E:
 	cmp r0, #1
 	bne _0226E252
 	ldr r0, _0226E258 ; =0x000005DD
-	bl FUN_02005748
+	bl sub_02005748
 	mov r0, #4
 	ldrsh r0, [r4, r0]
 	add sp, #8

@@ -36,7 +36,7 @@ ov11_0221F81C: ; 0x0221F81C
 	add r0, r5, #0
 	add r2, r4, #0
 	lsr r3, r3, #0x10
-	bl FUN_02002FBC
+	bl sub_02002FBC
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov11_0221F81C
@@ -48,7 +48,7 @@ ov11_0221F840: ; 0x0221F840
 	mov r1, #0x12
 	lsl r1, r1, #0xa
 	add r4, r0, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r2, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -57,16 +57,16 @@ ov11_0221F840: ; 0x0221F840
 	ldr r1, _0221F884 ; =ov11_0221F930
 	lsl r3, r3, #0xa
 	str r4, [sp, #4]
-	bl FUN_02014014
+	bl sub_02014014
 	add r4, r0, #0
-	bl FUN_02014784
+	bl sub_02014784
 	add r2, r0, #0
 	beq _0221F878
 	mov r0, #1
 	mov r1, #0xe1
 	lsl r0, r0, #0xc
 	lsl r1, r1, #0xe
-	bl FUN_020206BC
+	bl sub_020206BC
 _0221F878:
 	add r0, r4, #0
 	add sp, #8
@@ -83,7 +83,7 @@ ov11_0221F888: ; 0x0221F888
 	mov r1, #0x42
 	lsl r1, r1, #8
 	add r4, r0, #0
-	bl FUN_02018144
+	bl sub_02018144
 	add r2, r0, #0
 	bne _0221F8A0
 	add sp, #8
@@ -97,16 +97,16 @@ _0221F8A0:
 	ldr r1, _0221F8D4 ; =ov11_0221F930
 	lsl r3, r3, #8
 	str r4, [sp, #4]
-	bl FUN_02014014
+	bl sub_02014014
 	add r4, r0, #0
-	bl FUN_02014784
+	bl sub_02014784
 	add r2, r0, #0
 	beq _0221F8C8
 	mov r0, #1
 	mov r1, #0xe1
 	lsl r0, r0, #0xc
 	lsl r1, r1, #0xe
-	bl FUN_020206BC
+	bl sub_020206BC
 _0221F8C8:
 	add r0, r4, #0
 	add sp, #8
@@ -120,29 +120,29 @@ _0221F8D4: .word ov11_0221F930
 ov11_0221F8D8: ; 0x0221F8D8
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
-	bl FUN_02014730
+	bl sub_02014730
 	add r4, r0, #0
 	add r0, r5, #0
-	bl FUN_0201411C
+	bl sub_0201411C
 	add r0, r4, #0
-	bl FUN_020181C4
+	bl sub_020181C4
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov11_0221F8D8
 
 	thumb_func_start ov11_0221F8F0
 ov11_0221F8F0: ; 0x0221F8F0
 	push {r3, lr}
-	bl FUN_020241B4
-	bl FUN_02014680
+	bl sub_020241B4
+	bl sub_02014680
 	cmp r0, #0
 	beq _0221F912
-	bl FUN_0201469C
+	bl sub_0201469C
 	cmp r0, #0
 	ble _0221F90E
-	bl FUN_020241B4
-	bl FUN_020A73C0
+	bl sub_020241B4
+	bl sub_020A73C0
 _0221F90E:
-	bl FUN_020146C0
+	bl sub_020146C0
 _0221F912:
 	pop {r3, pc}
 	thumb_func_end ov11_0221F8F0
@@ -155,7 +155,7 @@ ov11_0221F914: ; 0x0221F914
 	ldr r3, [r3, #0]
 	blx r3
 	add r4, r0, #0
-	bl FUN_020145B4
+	bl sub_020145B4
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0xd
 	pop {r4, pc}
@@ -171,7 +171,7 @@ ov11_0221F930: ; 0x0221F930
 	ldr r3, [r3, #0]
 	blx r3
 	add r4, r0, #0
-	bl FUN_020145F4
+	bl sub_020145F4
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0xd
 	pop {r4, pc}
