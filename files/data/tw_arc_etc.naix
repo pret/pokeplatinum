@@ -1,0 +1,42 @@
+/*****************************************************************************
+	Archive file index definition.
+	File: tw_arc_etc.naix
+
+	This file was created by NINTENDO NITRO-System Archiver.
+
+	Update:2008-01-29T15:45:20
+ *****************************************************************************/
+
+#ifndef NARC_TW_ARC_ETC_NAIX_
+#define NARC_TW_ARC_ETC_NAIX_
+
+enum {
+	NARC_tw_arc_etc_yabu_worldbg_NCGR = 0,
+	NARC_tw_arc_etc_yabu_worldbg_NCLR = 1,
+	NARC_tw_arc_etc_yaby_worldbg0_NSCR = 2,
+	NARC_tw_arc_etc_yabu_cloud_01_NCER = 3,
+	NARC_tw_arc_etc_yabu_cloud_01_NCGR = 4,
+	NARC_tw_arc_etc_yabu_cloud_01_NANR = 5,
+	NARC_tw_arc_etc_yabu_cloud_02_NCER = 6,
+	NARC_tw_arc_etc_yabu_cloud_02_NCGR = 7,
+	NARC_tw_arc_etc_yabu_cloud_02_NANR = 8,
+	NARC_tw_arc_etc_yabu_cloud_03_NCER = 9,
+	NARC_tw_arc_etc_yabu_cloud_03_NCGR = 10,
+	NARC_tw_arc_etc_yabu_cloud_03_NANR = 11,
+	NARC_tw_arc_etc_yabu_cloud_04_NCER = 12,
+	NARC_tw_arc_etc_yabu_cloud_04_NCGR = 13,
+	NARC_tw_arc_etc_yabu_cloud_04_NANR = 14,
+	NARC_tw_arc_etc_yabu_cloud_05_NCER = 15,
+	NARC_tw_arc_etc_yabu_cloud_05_NCGR = 16,
+	NARC_tw_arc_etc_yabu_cloud_05_NANR = 17,
+	NARC_tw_arc_etc_yabu_cloud_06_NCER = 18,
+	NARC_tw_arc_etc_yabu_cloud_06_NCGR = 19,
+	NARC_tw_arc_etc_yabu_cloud_06_NANR = 20,
+	NARC_tw_arc_etc_yabu_cloud_07_NCER = 21,
+	NARC_tw_arc_etc_yabu_cloud_07_NCGR = 22,
+	NARC_tw_arc_etc_yabu_cloud_07_NANR = 23,
+	NARC_tw_arc_etc_cloud_all_NCLR = 24
+};
+
+/* NARC_TW_ARC_ETC_NAIX_ */
+#endif

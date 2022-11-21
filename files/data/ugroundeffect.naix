@@ -1,0 +1,24 @@
+/*****************************************************************************
+	Archive file index definition.
+	File: ugroundeffect.naix
+
+	This file was created by NINTENDO NITRO-System Archiver.
+
+	Update:2007-12-05T16:08:12
+ *****************************************************************************/
+
+#ifndef NARC_UGROUNDEFFECT_NAIX_
+#define NARC_UGROUNDEFFECT_NAIX_
+
+enum {
+	NARC_ugroundeffect_uground_cell_resdat = 0,
+	NARC_ugroundeffect_uground_cellanm_resdat = 1,
+	NARC_ugroundeffect_uground_char_resdat = 2,
+	NARC_ugroundeffect_uground_char2_resdat = 3,
+	NARC_ugroundeffect_uground_clact_cldat = 4,
+	NARC_ugroundeffect_uground_pltt_resdat = 5,
+	NARC_ugroundeffect_uground_pltt2_resdat = 6
+};
+
+/* NARC_UGROUNDEFFECT_NAIX_ */
+#endif
