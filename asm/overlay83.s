@@ -202,7 +202,7 @@ ov83_0223B710: ; 0x0223B710
 	bl sub_0203608C
 	cmp r0, #0
 	bne _0223B73A
-	bl FUN_021D25FC
+	bl ov4_021D25FC
 _0223B73A:
 	add r0, r6, #0
 	bl ov83_0223D1EC
@@ -3924,7 +3924,7 @@ ov83_0223D508: ; 0x0223D508
 	beq _0223D52C
 	mov r4, #0
 _0223D52C:
-	bl FUN_021D1404
+	bl ov4_021D1404
 	cmp r0, #0
 	bne _0223D536
 	mov r4, #0

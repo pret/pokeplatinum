@@ -52,7 +52,7 @@ ov82_0223B164: ; 0x0223B164
 	ldr r1, [r5, #0x24]
 	cmp r1, #0
 	beq _0223B1A4
-	bl FUN_021D1E74
+	bl ov4_021D1E74
 _0223B1A4:
 	add r0, r4, #0
 	ldr r1, [r5, #0x20]
@@ -179,7 +179,7 @@ _0223B26C:
 	ldr r0, [r4, #0x24]
 	cmp r0, #0
 	beq _0223B296
-	bl FUN_021D1F18
+	bl ov4_021D1F18
 _0223B296:
 	ldr r0, [sp]
 	bl sub_0201807C
