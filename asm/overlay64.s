@@ -2982,7 +2982,7 @@ _0222F438:
 	ldr r3, [sp, #0x18]
 	mov r1, #0
 	mov r2, #0x10
-	bl FUN_0222AE60
+	bl ov63_0222AE60
 	ldr r1, [sp, #0x14]
 	ldr r3, [sp, #0x18]
 	add r1, #0xb4
@@ -2992,7 +2992,7 @@ _0222F438:
 	add r0, #0xb4
 	ldr r0, [r0, #0]
 	mov r2, #2
-	bl FUN_0222B02C
+	bl ov63_0222B02C
 	ldr r0, [sp, #0x14]
 	add r0, #0xb8
 	bl sub_0201A7A0
@@ -3198,11 +3198,11 @@ _0222F61A:
 	add r0, r5, #0
 	add r0, #0xb4
 	ldr r0, [r0, #0]
-	bl FUN_0222B078
+	bl ov63_0222B078
 	add r0, r5, #0
 	add r0, #0xb4
 	ldr r0, [r0, #0]
-	bl FUN_0222AF14
+	bl ov63_0222AF14
 	mov r4, #0
 	add r5, #8
 _0222F654:
@@ -4845,7 +4845,7 @@ _022302D4:
 	ldr r0, [r5, #0x18]
 	cmp r0, #0
 	beq _022302E0
-	bl FUN_0222B210
+	bl ov63_0222B210
 	str r6, [r5, #0x18]
 _022302E0:
 	add r4, r4, #1
@@ -4915,7 +4915,7 @@ _02230328:
 	ldr r2, [sp, #0x1c]
 	ldr r3, [sp, #0x4c]
 	add r1, sp, #0x20
-	bl FUN_0222B0C0
+	bl ov63_0222B0C0
 	lsl r1, r4, #2
 	add r1, r5, r1
 	str r0, [r1, #0x18]
