@@ -36659,7 +36659,7 @@ ov16_0224CF7C: ; 0x0224CF7C
 	cmp r0, #1
 	bne _0224CFBC
 _0224CFB8:
-	bl FUN_0224D998
+	bl _0224D998
 _0224CFBC:
 	ldr r1, [r4, #0x1c]
 	ldr r0, [sp, #0xc]
