@@ -1735,7 +1735,7 @@ ov6_0223EE5C: ; 0x0223EE5C
 _0223EE6C:
 	cmp r1, #0x14
 	bls _0223EE74
-	bl FUN_0223F6CA
+	bl _0223F6CA
 _0223EE74:
 	add r0, r1, r1
 	add r0, pc
@@ -1770,7 +1770,7 @@ _0223EEAA:
 	bne _0223EEB0
 	b _0223F668
 _0223EEB0:
-	bl FUN_0223F6CA
+	bl _0223F6CA
 _0223EEB4:
 	add r1, r4, #0
 	mov r0, #0
@@ -2759,10 +2759,7 @@ _0223F668:
 	add r0, r0, #1
 	str r0, [r4, #0x18]
 	b _0223F6D4
-	thumb_func_end ov6_0223EE5C
-
-	non_word_aligned_thumb_func_start FUN_0223F6CA
-FUN_0223F6CA: ; 0x0223F6CA
+_0223F6CA:
 	mov r0, #0
 	str r0, [r4, #0x18]
 	add sp, #0x14
@@ -2822,7 +2819,7 @@ _0223F738:
 	pop {r4, r5, r6, r7, pc}
 	nop
 _0223F740: .word 0x02248EAC
-	thumb_func_end FUN_0223F6CA
+	thumb_func_end ov6_0223EE5C
 
 	thumb_func_start ov6_0223F744
 ov6_0223F744: ; 0x0223F744
