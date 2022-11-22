@@ -1863,7 +1863,7 @@ _022208CC:
 	bl ov12_0221FDD4
 	cmp r0, #0
 	bne _02220920
-	bl FUN_0223F9F0
+	bl ov16_0223F9F0
 	add r0, r5, #0
 	mov r1, #1
 	bl ov12_022233B0
@@ -1893,7 +1893,7 @@ _022208CC:
 	bl sub_02019120
 	b _02220924
 _02220920:
-	bl FUN_022413D8
+	bl ov17_022413D8
 _02220924:
 	mov r1, #0x1a
 	lsl r1, r1, #4
@@ -4824,10 +4824,10 @@ _02221F0C:
 	bl ov12_0221FDD4
 	cmp r0, #0
 	bne _02221F1C
-	bl FUN_0223F9F0
+	bl ov16_0223F9F0
 	b _02221F20
 _02221F1C:
-	bl FUN_022413D8
+	bl ov17_022413D8
 _02221F20:
 	ldr r0, [r4, #0x48]
 	mov r1, #2
@@ -7868,13 +7868,13 @@ ov12_022234F8: ; 0x022234F8
 	str r0, [r4, #0]
 	str r5, [r4, #4]
 	add r0, r7, #0
-	bl FUN_0223E010
+	bl ov16_0223E010
 	str r0, [r4, #8]
 	add r0, r7, #0
-	bl FUN_0223E018
+	bl ov16_0223E018
 	str r0, [r4, #0xc]
 	add r0, r7, #0
-	bl FUN_0223E064
+	bl ov16_0223E064
 	str r0, [r4, #0x10]
 	mov r6, #0
 	add r5, r4, #0
@@ -7883,7 +7883,7 @@ _0222353E:
 	str r0, [r5, #0x24]
 	add r0, r7, #0
 	add r1, r6, #0
-	bl FUN_0223F2AC
+	bl ov16_0223F2AC
 	str r0, [r5, #0x34]
 	add r6, r6, #1
 	add r5, r5, #4
@@ -7892,11 +7892,11 @@ _0222353E:
 	add r1, r4, #0
 	add r0, r7, #0
 	add r1, #0x44
-	bl FUN_0223F87C
+	bl ov16_0223F87C
 	add r1, r4, #0
 	add r0, r7, #0
 	add r1, #0x48
-	bl FUN_0223F8AC
+	bl ov16_0223F8AC
 	ldr r1, [sp, #0x18]
 	mov r0, #0x1b
 	bl sub_02006C24
@@ -8233,7 +8233,7 @@ ov12_022237F0: ; 0x022237F0
 	add r5, r0, #0
 	add r6, r1, #0
 	add r7, r2, #0
-	bl FUN_0221F840
+	bl ov11_0221F840
 	add r4, r0, #0
 	mov r0, #0x1d
 	add r1, r6, #0
@@ -8255,7 +8255,7 @@ ov12_02223818: ; 0x02223818
 	add r6, r1, #0
 	add r7, r2, #0
 	str r3, [sp]
-	bl FUN_0221F840
+	bl ov11_0221F840
 	add r4, r0, #0
 	add r0, r6, #0
 	add r1, r7, #0
@@ -8287,7 +8287,7 @@ ov12_0222384C: ; 0x0222384C
 	add r0, r5, #0
 	add r7, r2, #0
 	str r3, [sp]
-	bl FUN_0221F888
+	bl ov11_0221F888
 	add r4, r0, #0
 	bne _02223864
 	mov r0, #0
@@ -8321,10 +8321,10 @@ _02223890: .word 0x02238DB0
 
 	thumb_func_start ov12_02223894
 ov12_02223894: ; 0x02223894
-	ldr r3, _02223898 ; =FUN_0221F8D8
+	ldr r3, _02223898 ; =ov11_0221F8D8
 	bx r3
 	; .align 2, 0
-_02223898: .word FUN_0221F8D8
+_02223898: .word ov11_0221F8D8
 	thumb_func_end ov12_02223894
 
 	thumb_func_start ov12_0222389C
