@@ -14967,7 +14967,7 @@ _022346DC:
 	ldrh r2, [r1, #2]
 	strh r2, [r1, #6]
 	add r1, sp, #0x34
-	bl FUN_0225C700
+	bl ov70_0225C700
 	mov r0, #1
 	ldr r1, [sp, #0x3c]
 	lsl r0, r0, #0x10
@@ -15091,7 +15091,7 @@ ov66_022347D4: ; 0x022347D4
 	add r4, r0, #0
 	add r0, r1, #0
 	add r1, sp, #0
-	bl FUN_0225C700
+	bl ov70_0225C700
 	mov r0, #1
 	ldr r1, [sp, #8]
 	lsl r0, r0, #0x10
