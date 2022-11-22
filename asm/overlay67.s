@@ -248,7 +248,7 @@ _0225C8EA:
 	b _0225CB0A
 _0225C8F8:
 	ldr r0, [r6, #4]
-	bl FUN_0222E3BC
+	bl ov66_0222E3BC
 	add r1, r0, #0
 	ldr r0, [r5, #0]
 	bl sub_0203878C
@@ -283,7 +283,7 @@ _0225C93C:
 	b _0225CB0A
 _0225C946:
 	ldr r0, [r6, #4]
-	bl FUN_0222F16C
+	bl ov66_0222F16C
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -330,19 +330,19 @@ _0225C9A2:
 	add r7, r0, #0
 	ldr r0, [r7, #0]
 	ldr r1, [r7, #4]
-	bl FUN_022316F4
+	bl ov66_022316F4
 	str r0, [sp, #0xc]
 	ldr r7, [r7, #0]
 	b _0225C9CC
 _0225C9BE:
-	bl FUN_022326DC
-	bl FUN_0223270C
+	bl ov66_022326DC
+	bl ov66_0223270C
 	add r7, r0, #0
 	mov r0, #0x20
 	str r0, [sp, #0xc]
 _0225C9CC:
 	ldr r0, [r6, #4]
-	bl FUN_0222F198
+	bl ov66_0222F198
 	add r0, r5, #0
 	add r0, #0x40
 	bl ov67_0225D294
@@ -373,7 +373,7 @@ _0225C9FE:
 	bl sub_020382F8
 	add r1, r0, #0
 	ldmia r1, {r0, r1}
-	bl FUN_02231718
+	bl ov66_02231718
 	cmp r0, #0
 	bne _0225CA26
 	mov r0, #0xb
@@ -735,7 +735,7 @@ _0225CD00:
 	bl ov67_0225D2EC
 	b _0225CDB6
 _0225CD0E:
-	bl FUN_02232C8C
+	bl ov66_02232C8C
 	mov r0, #0xe1
 	lsl r0, r0, #2
 	str r0, [r5, #8]
@@ -746,7 +746,7 @@ _0225CD1E:
 	ldr r0, [r5, #8]
 	sub r0, r0, #1
 	str r0, [r5, #8]
-	bl FUN_02232CB8
+	bl ov66_02232CB8
 	cmp r0, #0
 	bne _0225CD32
 	ldr r0, [r5, #8]
@@ -769,7 +769,7 @@ _0225CD42:
 	add r0, r5, #0
 	bl ov67_0225D310
 	ldr r0, [r6, #4]
-	bl FUN_0222F198
+	bl ov66_0222F198
 	mov r0, #7
 	str r0, [r4, #0]
 	b _0225CDB6
