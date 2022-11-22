@@ -10098,7 +10098,7 @@ ov7_0224EAD0: ; 0x0224EAD0
 	add r0, #0x94
 	mov r2, #4
 	mov r3, #0xb
-	bl FUN_021D2F14
+	bl ov5_021D2F14
 	add r7, r5, #0
 	ldr r4, _0224EB10 ; =0x0224F358
 	mov r6, #0
@@ -10106,7 +10106,7 @@ ov7_0224EAD0: ; 0x0224EAD0
 _0224EAE8:
 	add r0, r7, #0
 	add r1, r4, #0
-	bl FUN_021D3104
+	bl ov5_021D3104
 	mov r1, #0x7e
 	lsl r1, r1, #2
 	str r0, [r5, r1]
@@ -10141,7 +10141,7 @@ _0224EB20:
 	blo _0224EB20
 	add r7, #0x94
 	add r0, r7, #0
-	bl FUN_021D30A8
+	bl ov5_021D30A8
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov7_0224EB14
 
@@ -10265,7 +10265,7 @@ ov7_0224EC20: ; 0x0224EC20
 	push {r4, lr}
 	mov r0, #0
 	add r4, r1, #0
-	bl FUN_021D1744
+	bl ov5_021D1744
 	ldr r0, _0224EC34 ; =0x00000233
 	mov r1, #0xf
 	strb r1, [r4, r0]
