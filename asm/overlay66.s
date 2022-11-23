@@ -18074,7 +18074,7 @@ _02236908:
 	str r0, [sp, #0x44]
 	ldr r4, [r2, #0x10]
 	ldr r0, [r2, #0x14]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia lr, {r2, r3}
 	add r5, lr, #8
 	ldmia ip, {r2, r3}
@@ -19936,7 +19936,7 @@ _0223838C:
 	str r4, [sp, #0x10]
 	str r3, [sp, #0x14]
 	add r1, r1, #0x14c
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	add sp, sp, #0x70
 	stmia r1, {r2, r3}
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -21183,7 +21183,7 @@ _022394F0:
 	str r0, [sp, #0x230]
 	ldr r4, [r2, #0x10]
 	ldr r0, [r2, #0x14]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r7, {r2, r3}
 	add r5, r7, #8
 	ldmia r6, {r2, r3}
@@ -21225,7 +21225,7 @@ _022394F0:
 	stmia r5, {r2, r3}
 	add r2, r6, #8
 	add r0, r5, #8
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r0, {r2, r3}
 	ldr r2, [r6, #0x10]
 	ldr r3, [r6, #0x14]
@@ -21318,7 +21318,7 @@ _022394F0:
 	str r0, [sp, #0xec]
 	ldr r1, [r2, #0x10]
 	ldr r0, [r2, #0x14]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r7, {r2, r3}
 	add r5, r7, #8
 	ldmia r6, {r2, r3}
@@ -21363,7 +21363,7 @@ _022394F0:
 	str r0, [sp, #0x80]
 	ldr r4, [r2, #0x10]
 	ldr r0, [r2, #0x14]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r7, {r2, r3}
 	add r5, r7, #8
 	ldmia r6, {r2, r3}
@@ -22464,7 +22464,7 @@ _0223A794:
 	str r1, [r4, #0x150]
 	add r2, r4, #0x14c
 	add r0, sp, #0x10
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r0, {r2, r3}
 	mov r1, #8
 	mov r3, r0
@@ -22829,7 +22829,7 @@ _0223AC2C:
 	stmia r0, {r2, r3}
 	add r2, r5, #0xc
 	add r1, r0, #8
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r1, {r2, r3}
 	ldr r1, [r5, #0x14]
 	str r1, [r0, #0x10]
@@ -25577,7 +25577,7 @@ ov66_0223D0F4: ; 0x0223D0F4
 	str r3, [sp, #8]
 	str lr, [sp, #0x14]
 	str ip, [sp, #0x18]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223D19C
 	ldr r0, [sp, #0x2c]
 	bl sub_020E4000
@@ -25660,7 +25660,7 @@ _0223D270:
 	bgt _0223D354
 	ldr r0, [r0, #0]
 	str r7, [sp]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223DFD4
 	ldr r2, [sp, #0x68]
 	add r0, sp, #0x48
@@ -25673,7 +25673,7 @@ _0223D270:
 	str r6, [sp, #0x44]
 	str r3, [sp, #0x40]
 	str r7, [sp]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223DFD4
 	ldr r0, [sp, #0x68]
 	add r1, sp, #0x68
@@ -25707,7 +25707,7 @@ _0223D354:
 	str r4, [sp]
 	stmib sp, {r3, r7}
 	ldr r0, [r0, #0]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223D19C
 	ldr r4, [sp, #0x70]
 	add r0, sp, #0x48
@@ -25718,7 +25718,7 @@ _0223D354:
 	ldr r1, [r1, #0]
 	add r2, sp, #0x68
 	stmib sp, {r3, r7}
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223D19C
 	add r0, sp, #0x60
 	add r1, sp, #0x48
@@ -26820,7 +26820,7 @@ _0223E2F0:
 	str ip, [sp, #0x64]
 	str r6, [sp, #0x68]
 	str r7, [sp, #8]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223D19C
 	ldr r2, [sp, #0xa0]
 	add r0, sp, #0x7c
@@ -26837,7 +26837,7 @@ _0223E2F0:
 	str ip, [sp, #0x54]
 	str r6, [sp, #0x58]
 	str r7, [sp, #8]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	bl ov66_0223D19C
 	ldr r1, [sp, #0x98]
 	ldr r3, [sp, #0xa0]
@@ -34469,7 +34469,7 @@ _02244B3C:
 	add r6, r2, #8
 	ldr r4, [r2, #0x10]
 	ldr r0, [r2, #0x14]
-	ldmia r2, {r2, r3}
+	ldmia r2!, {r2, r3}
 	stmia r7, {r2, r3}
 	add r5, r7, #8
 	ldmia r6, {r2, r3}

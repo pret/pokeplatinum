@@ -486,7 +486,7 @@ _02249CB6:
 	ldr r0, _02249E08 ; =0x0224F5A0
 	ldr r2, [r0, #0]
 	ldr r0, [r2, #0x50]
-	ldmia r2, {r1, r2}
+	ldmia r2!, {r1, r2}
 	bl sub_0200C388
 	ldr r0, _02249E08 ; =0x0224F5A0
 	mov r1, #0
@@ -562,7 +562,7 @@ _02249DB8:
 	ldr r0, _02249E08 ; =0x0224F5A0
 	ldr r2, [r0, #0]
 	ldr r0, [r2, #0x50]
-	ldmia r2, {r1, r2}
+	ldmia r2!, {r1, r2}
 	bl sub_0200C388
 	ldr r0, _02249E08 ; =0x0224F5A0
 	mov r1, #0
@@ -772,7 +772,7 @@ _02249F7C:
 	bl sub_0200B1B8
 	ldr r2, [r4, #0]
 	ldr r0, [r2, #0x50]
-	ldmia r2, {r1, r2}
+	ldmia r2!, {r1, r2}
 	bl sub_0200C388
 	ldr r1, [r4, #0]
 	mov r2, #0
@@ -1353,7 +1353,7 @@ _0224A454:
 	ldr r0, _0224A50C ; =0x0224F5A0
 	ldr r2, [r0, #0]
 	ldr r0, [r2, #0x50]
-	ldmia r2, {r1, r2}
+	ldmia r2!, {r1, r2}
 	bl sub_0200C388
 	ldr r0, _0224A50C ; =0x0224F5A0
 	lsl r4, r4, #4

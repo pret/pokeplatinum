@@ -11540,7 +11540,7 @@ _022660F4: ; jump table
 	.short _022662BE - _022660F4 - 2 ; case 2
 	.short _0226633A - _022660F4 - 2 ; case 3
 	.short _022663B6 - _022660F4 - 2 ; case 4
-	.short _0226A7B6 - _022660F4 - 2 ; case 5
+	nop
 _02266100: .word 0x02267D20
 _02266104:
 	sub r0, #0x3c
@@ -11979,7 +11979,7 @@ _02266498: ; jump table
 	.short _02266662 - _02266498 - 2 ; case 2
 	.short _022666E0 - _02266498 - 2 ; case 3
 	.short _0226675C - _02266498 - 2 ; case 4
-	.short _0226AB5A - _02266498 - 2 ; case 5
+	nop
 _022664A4: .word 0x02267D10
 _022664A8:
 	sub r0, #0x3c
@@ -12422,7 +12422,7 @@ _02266840: ; jump table
 	.short _02266AB4 - _02266840 - 2 ; case 4
 	.short _02266B30 - _02266840 - 2 ; case 5
 	.short _02266B9A - _02266840 - 2 ; case 6
-	.short _0226AF02 - _02266840 - 2 ; case 7
+	nop
 _02266850: .word 0x02267D30
 _02266854:
 	sub r0, #0x3c
@@ -12903,7 +12903,7 @@ _02266C3C: ; jump table
 	.short _02266EB0 - _02266C3C - 2 ; case 4
 	.short _02266F2C - _02266C3C - 2 ; case 5
 	.short _02266F96 - _02266C3C - 2 ; case 6
-	.short _0226B2FE - _02266C3C - 2 ; case 7
+	nop
 _02266C4C: .word 0x02267D50
 _02266C50:
 	sub r0, #0x3c
