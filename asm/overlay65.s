@@ -6330,7 +6330,7 @@ _02230EA2:
 	add r1, r1, #1
 	strh r1, [r0, #0x12]
 	lsl r1, r7, #3
-	ldmia r2, {r0, r2}
+	ldmia r2!, {r0, r2}
 	str r0, [r4, r1]
 	add r3, r4, r1
 	add r0, r7, #1

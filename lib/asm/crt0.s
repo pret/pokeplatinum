@@ -1,7 +1,13 @@
 	.include "asm/macros/function.inc"
 
-	arm_func_start sub_02000800
-sub_02000800: ; 0x02000800
+	.text
+
+	.extern sub_020E28B8
+	.extern sub_020E402C
+	.extern sub_02000C88
+
+	arm_func_start _start
+_start: ; 0x02000800
 	mov ip, #0x4000000
 	str ip, [ip, #0x208]
 _02000808:
@@ -43,11 +49,11 @@ _02000854:
 	ldr r1, _0200093C ; =0x07000000
 	mov r2, #0x400
 	bl sub_02000954
-	ldr r1, _02000940 ; =0x02000BA0
+	ldr r1, _02000940 ; =_start_ModuleParams
 	ldr r0, [r1, #0x14]
 	bl sub_02000970
 	bl sub_02000A1C
-	ldr r0, _02000940 ; =0x02000BA0
+	ldr r0, _02000940 ; =_start_ModuleParams
 	ldr r1, [r0, #0xc]
 	ldr r2, [r0, #0x10]
 	mov r3, r1
@@ -62,9 +68,9 @@ _020008CC:
 	blo _020008BC
 	bic r1, r3, #0x1f
 _020008D4:
-	mcr p15, #0, r0, c7, c10, #4
-	mcr p15, #0, r1, c7, c5, #1
-	mcr p15, #0, r1, c7, c14, #1
+	mcr p15, 0, r0, c7, c10, 4
+	mcr p15, 0, r1, c7, c5, 1
+	mcr p15, 0, r1, c7, c14, 1
 	add r1, r1, #0x20
 	cmp r1, r2
 	blt _020008D4
@@ -92,12 +98,12 @@ _02000930: .word 0x027E0000
 _02000934: .word 0x00000800
 _02000938: .word 0x05000000
 _0200093C: .word 0x07000000
-_02000940: .word 0x02000BA0
+_02000940: .word _start_ModuleParams
 _02000944: .word 0x027FFF9C
 _02000948: .word 0x01FF8000
 _0200094C: .word sub_02000C88
 _02000950: .word 0xFFFF0000
-	arm_func_end sub_02000800
+	arm_func_end _start
 
 	arm_func_start sub_02000954
 sub_02000954: ; 0x02000954
@@ -151,15 +157,15 @@ _020009D8:
 	bge _020009D8
 _020009E8:
 	cmp r3, r1
-	lsl r5, r5, #1
+	mov r5, r5, lsl #1
 	bgt _020009A4
 _020009F4:
 	mov r0, #0
 	bic r3, r1, #0x1f
 _020009FC:
-	mcr p15, #0, r0, c7, c10, #4
-	mcr p15, #0, r3, c7, c5, #1
-	mcr p15, #0, r3, c7, c14, #1
+	mcr p15, 0, r0, c7, c10, 4
+	mcr p15, 0, r3, c7, c5, 1
+	mcr p15, 0, r3, c7, c14, 1
 	add r3, r3, #0x20
 	cmp r3, r4
 	blt _020009FC
@@ -170,7 +176,7 @@ _02000A18:
 
 	arm_func_start sub_02000A1C
 sub_02000A1C: ; 0x02000A1C
-	ldr r0, _02000AA8 ; =0x02000BA0
+	ldr r0, _02000AA8 ; =_start_ModuleParams
 	ldr r1, [r0, #0]
 	ldr r2, [r0, #4]
 	ldr r3, [r0, #8]
@@ -207,68 +213,71 @@ _02000A80:
 	blo _02000A70
 	bic r4, r5, #0x1f
 _02000A88:
-	mcr p15, #0, r7, c7, c10, #4
-	mcr p15, #0, r4, c7, c5, #1
-	mcr p15, #0, r4, c7, c14, #1
+	mcr p15, 0, r7, c7, c10, 4
+	mcr p15, 0, r4, c7, c5, 1
+	mcr p15, 0, r4, c7, c14, 1
 	add r4, r4, #0x20
 	cmp r4, r6
 	blt _02000A88
 	b _02000A2C
 _02000AA4:
-	b _02000AAC
+	b _start_AutoloadDoneCallback
 	; .align 2, 0
-_02000AA8: .word 0x02000BA0
+_02000AA8: .word _start_ModuleParams
 	arm_func_end sub_02000A1C
-_02000AAC:
+
+	arm_func_start _start_AutoloadDoneCallback
+_start_AutoloadDoneCallback:
 	bx lr
+	arm_func_end _start_AutoloadDoneCallback
 
 	arm_func_start sub_02000AB0
 sub_02000AB0: ; 0x02000AB0
-	mrc p15, #0, r0, c1, c0, #0
+	mrc p15, 0, r0, c1, c0, 0
 	ldr r1, _02000B68 ; =0x000F9005
 	bic r0, r0, r1
-	mcr p15, #0, r0, c1, c0, #0
+	mcr p15, 0, r0, c1, c0, 0
 	mov r0, #0
-	mcr p15, #0, r0, c7, c5, #0
-	mcr p15, #0, r0, c7, c6, #0
-	mcr p15, #0, r0, c7, c10, #4
+	mcr p15, 0, r0, c7, c5, 0
+	mcr p15, 0, r0, c7, c6, 0
+	mcr p15, 0, r0, c7, c10, 4
 	ldr r0, _02000B6C ; =0x04000033
-	mcr p15, #0, r0, c6, c0, #0
+	mcr p15, 0, r0, c6, c0, 0
 	ldr r0, _02000B70 ; =0x0200002D
-	mcr p15, #0, r0, c6, c1, #0
+	mcr p15, 0, r0, c6, c1, 0
 	ldr r0, _02000B74 ; =0x027E0021
-	mcr p15, #0, r0, c6, c2, #0
+	mcr p15, 0, r0, c6, c2, 0
 	ldr r0, _02000B78 ; =0x08000035
-	mcr p15, #0, r0, c6, c3, #0
+	mcr p15, 0, r0, c6, c3, 0
 	ldr r0, _02000B7C ; =0x027E0000
 	orr r0, r0, #0x1a
 	orr r0, r0, #1
-	mcr p15, #0, r0, c6, c4, #0
+	mcr p15, 0, r0, c6, c4, 0
 	ldr r0, _02000B80 ; =0x0100002F
-	mcr p15, #0, r0, c6, c5, #0
+	mcr p15, 0, r0, c6, c5, 0
 	ldr r0, _02000B84 ; =0xFFFF001D
-	mcr p15, #0, r0, c6, c6, #0
+	mcr p15, 0, r0, c6, c6, 0
 	ldr r0, _02000B88 ; =0x027FF017
-	mcr p15, #0, r0, c6, c7, #0
+	mcr p15, 0, r0, c6, c7, 0
 	mov r0, #0x20
-	mcr p15, #0, r0, c9, c1, #1
+	mcr p15, 0, r0, c9, c1, 1
 	ldr r0, _02000B7C ; =0x027E0000
 	orr r0, r0, #0xa
-	mcr p15, #0, r0, c9, c1, #0
+	mcr p15, 0, r0, c9, c1, 0
 	mov r0, #0x42
-	mcr p15, #0, r0, c2, c0, #1
+	mcr p15, 0, r0, c2, c0, 1
 	mov r0, #0x42
-	mcr p15, #0, r0, c2, c0, #0
+	mcr p15, 0, r0, c2, c0, 0
 	mov r0, #2
-	mcr p15, #0, r0, c3, c0, #0
+	mcr p15, 0, r0, c3, c0, 0
 	ldr r0, _02000B8C ; =0x05100011
-	mcr p15, #0, r0, c5, c0, #3
+	mcr p15, 0, r0, c5, c0, 3
 	ldr r0, _02000B90 ; =0x15111011
-	mcr p15, #0, r0, c5, c0, #2
-	mrc p15, #0, r0, c1, c0, #0
+	mcr p15, 0, r0, c5, c0, 2
+	mrc p15, 0, r0, c1, c0, 0
 	ldr r1, _02000B94 ; =0x0005707D
 	orr r0, r0, r1
-	mcr p15, #0, r0, c1, c0, #0
+	mcr p15, 0, r0, c1, c0, 0
 	bx lr
 	; .align 2, 0
 _02000B68: .word 0x000F9005
@@ -294,7 +303,10 @@ sub_02000B98: ; 0x02000B98
 sub_02000B9C: ; 0x02000B9C
 	bx lr
 	arm_func_end sub_02000B9C
-_02000BA0:
+
+	.rodata
+	.public _start_ModuleParams
+_start_ModuleParams:
 	.byte 0xE0, 0x23, 0x10, 0x02, 0xF8, 0x23, 0x10, 0x02, 0x20, 0x1D, 0x10, 0x02, 0x20, 0x1D, 0x10, 0x02
 	.byte 0x80, 0x0D, 0x1D, 0x02, 0x00, 0x00, 0x00, 0x00, 0x31, 0x75, 0x02, 0x04, 0x21, 0x06, 0xC0, 0xDE
 	.byte 0xDE, 0xC0, 0x06, 0x21, 0x5B, 0x53, 0x44, 0x4B, 0x2B, 0x4E, 0x49, 0x4E, 0x54, 0x45, 0x4E, 0x44
@@ -310,3 +322,4 @@ _02000BA0:
 	.byte 0x51, 0x55, 0x49, 0x54, 0x4F, 0x55, 0x53, 0x3A, 0x43, 0x50, 0x53, 0x5D, 0x00, 0x00, 0x00, 0x00
 	.byte 0x5B, 0x53, 0x44, 0x4B, 0x2B, 0x55, 0x42, 0x49, 0x51, 0x55, 0x49, 0x54, 0x4F, 0x55, 0x53, 0x3A
 	.byte 0x53, 0x53, 0x4C, 0x5D, 0x00, 0x00, 0x00, 0x00
+

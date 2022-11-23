@@ -78068,7 +78068,7 @@ ov5_021F5C18: ; 0x021F5C18
 	sub sp, #8
 	ldr r6, _021F5C48 ; =0x02200B7C
 	add r4, r3, #0
-	ldmia r6, {r5, r6}
+	ldmia r6!, {r5, r6}
 	add r3, sp, #0
 	str r5, [sp]
 	str r6, [sp, #4]

@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "global.inc"
 
+	.section .itcm
+
 	arm_func_start sub_01FF8000
 sub_01FF8000: ; 0x01FF8000
 	stmdb sp!, {lr}
@@ -25,9 +27,9 @@ _01FF8038:
 	clz r0, r1
 	bic r1, r1, r3, lsr r0
 	bne _01FF8038
-	lsr r1, r3, r0
+	mov r1, r3, lsr r0
 	str r1, [ip, #4]
-	neg r0, r0x1f
+	rsb r0, r0, #0x1f
 	ldr r1, _01FF8060 ; =0x027E0000
 	ldr r0, [r1, r0, lsl #2]
 	ldr lr, _01FF8064 ; =sub_01FF8068
@@ -273,7 +275,7 @@ _01FF8324:
 	add r5, r5, r4
 	cmp r5, #0x8000
 	bhs _01FF837C
-	neg r0, r5x8000
+	rsb r0, r5, #0x8000
 	add r6, r6, r0
 	sub r7, r7, r0
 	mov r5, #0x8000
@@ -302,7 +304,7 @@ sub_01FF83A8: ; 0x01FF83A8
 	bic r3, r5, #0x7000000
 	ldr r5, _01FF8474 ; =0x040001A4
 	orr r3, r3, #0xa1000000
-	neg ip, r4
+	rsb ip, r4, #0
 _01FF83CC:
 	ldr r4, [r5, #0]
 	tst r4, #-0x80000000
@@ -312,16 +314,16 @@ _01FF83CC:
 	strb r4, [r7]
 	cmp ip, r2
 	add r0, r0, ip
-	ldmia sp!,ge {r3, r4, r5, r6, r7, r8, sb, pc}
+	ldmgeia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	ldr r4, _01FF847C ; =0x04100010
-	lsr sb, r0, #8
+	mov sb, r0, lsr #8
 	mov r6, #0xb7
 	mov r5, #0
 _01FF8400:
 	strb r6, [r7, #7]
-	lsr lr, r0, #0x18
+	mov lr, r0, lsr #0x18
 	strb lr, [r7, #8]
-	lsr lr, r0, #0x10
+	mov lr, r0, lsr #0x10
 	strb lr, [r7, #9]
 	strb sb, [r7, #0xa]
 	strb r0, [r7, #0xb]
@@ -365,7 +367,7 @@ sub_01FF8480: ; 0x01FF8480
 	mov r4, r3
 	bl sub_020C3D98
 	mov r1, #0xc
-	mul r2, r7
+	mul r2, r7, r2
 	add r1, r2, #0xb0
 	add r2, r2, #0x4000000
 	str r6, [r2, #0xb0]
@@ -385,7 +387,7 @@ sub_01FF84C0: ; 0x01FF84C0
 	mov r4, r3
 	bl sub_020C3D98
 	mov r1, #0xc
-	mul r2, r7
+	mul r2, r7, r2
 	add r1, r2, #0xb0
 	add r2, r2, #0x4000000
 	str r6, [r2, #0xb0]
@@ -413,7 +415,7 @@ _01FF852C: .word 0x81400001
 	arm_func_start sub_01FF8530
 sub_01FF8530: ; 0x01FF8530
 	mov ip, #0xc
-	mul ip, r0
+	mul ip, r0, ip
 	add r0, ip, #0xb0
 	add ip, ip, #0x4000000
 	str r1, [ip, #0xb0]
@@ -425,9 +427,9 @@ sub_01FF8530: ; 0x01FF8530
 
 	arm_func_start sub_01FF8554
 sub_01FF8554: ; 0x01FF8554
-	push {r3, lr}
+	stmfd sp!, {r3, lr}
 	mov ip, #0xc
-	mul lr, r0
+	mul lr, r0, lr
 	add ip, lr, #0xb0
 	add lr, lr, #0x4000000
 	str r1, [lr, #0xb0]
@@ -492,7 +494,7 @@ _01FF8634:
 	ldr r0, [r6, #0]
 	tst r0, #0x80000000
 	bne _01FF8634
-	ldmia sp! {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
+	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 _01FF8644: .word 0x04000400
 _01FF8648: .word 0x84400000
 	arm_func_end sub_01FF85B8

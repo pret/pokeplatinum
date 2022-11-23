@@ -8744,7 +8744,7 @@ _021D4F9A:
 	sub r0, r0, r3
 	str r0, [sp]
 	ldr r0, _021D4FAC ; =0x04000050
-	ldmia r2, {r1, r2}
+	ldmia r2!, {r1, r2}
 	bl sub_020BF55C
 	pop {r3, pc}
 	nop

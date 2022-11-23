@@ -372,7 +372,7 @@ _0225C9FE:
 	beq _0225CA2C
 	bl sub_020382F8
 	add r1, r0, #0
-	ldmia r1, {r0, r1}
+	ldmia r1!, {r0, r1}
 	bl ov66_02231718
 	cmp r0, #0
 	bne _0225CA26

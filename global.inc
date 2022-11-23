@@ -15,7 +15,7 @@
 .public sub_0200069E
 .public sub_02000708
 .public sub_0200078A
-.public sub_02000800
+.public _start
 .public sub_02000954
 .public sub_02000970
 .public sub_02000A1C
@@ -34737,4 +34737,11 @@
 .public ov99_021D439C
 .public ov99_021D44CC
 
+.public sub_020C3E08
+
 .public sub_01FF85B8
+.public sub_01FF81E4
+.public sub_01FF8554
+.public sub_01FF84C0
+.public sub_01FF8530
+.public sub_01FF8480

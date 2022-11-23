@@ -1111,7 +1111,7 @@ ov48_022569FC: ; 0x022569FC
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _02256A26
-	ldmia r1, {r0, r1}
+	ldmia r1!, {r0, r1}
 	add r2, sp, #4
 	add r3, sp, #0
 	bl ov25_02255DBC
