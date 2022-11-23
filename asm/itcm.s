@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "global.inc"
 
-	.section .itcm
+	.section .text
 
 	arm_func_start sub_01FF8000
 sub_01FF8000: ; 0x01FF8000
