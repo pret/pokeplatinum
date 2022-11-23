@@ -201,9 +201,8 @@ $(NEF): $(LCF) $(RESPONSE) $(ALL_OBJS)
 .INTERMEDIATE: $(BUILD_DIR)/obj.list
 
 $(SBIN): build/%.sbin: build/%.nef
-
 ifeq ($(COMPARE),1)
-	$(SHA1SUM) --quiet -c $*.sha1
+	-$(SHA1SUM) --quiet -c $*.sha1
 endif
 
 $(ELF): %.elf: %.nef

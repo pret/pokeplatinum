@@ -45,7 +45,7 @@ clean: tidy clean-tools
 sdk9 sdk7: sdk
 main filesystem: | sdk9
 
-main: $(SBIN) $(ELF)
+main: $(SBIN)
 
 ROMSPEC        := rom.rsf
 MAKEROM_FLAGS  := $(DEFINES)
