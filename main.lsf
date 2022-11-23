@@ -53,6 +53,7 @@ Overlay overlay4
 {
 	After	main
 	Object asm/overlay4.o
+}
 
 Overlay overlay5
 {
@@ -694,6 +695,7 @@ Overlay overlay111
 {
 	After main
 	Object asm/overlay111.o
+}
 
 Overlay overlay112
 {

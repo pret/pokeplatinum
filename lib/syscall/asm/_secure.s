@@ -1,5 +1,7 @@
 	.include "asm/macros/function.inc"
 
+	.section .text
+
 	.global SecureAreaStart
 SecureAreaStart:
 	.byte 0xFF, 0xDE, 0xFF, 0xE7, 0xFF, 0xDE, 0xFF, 0xE7, 0xFF, 0xDE, 0xFF, 0xE7, 0xFF, 0xDE, 0x92, 0x8E
@@ -13,7 +15,7 @@ SecureAreaStart:
 
 	non_word_aligned_thumb_func_start sub_0200007A
 sub_0200007A: ; 0x0200007A
-	swi #0xd
+	swi 0xd
 	bx lr
 	thumb_func_end sub_0200007A
 _0200007E:
@@ -27,7 +29,7 @@ _0200007E:
 
 	thumb_func_start sub_020000E0
 sub_020000E0: ; 0x020000E0
-	swi #0x12
+	swi 0x12
 	bx lr
 	thumb_func_end sub_020000E0
 _020000E4:
@@ -42,7 +44,7 @@ _020000E4:
 
 	thumb_func_start sub_02000160
 sub_02000160: ; 0x02000160
-	swi #0xe
+	swi 0xe
 	bx lr
 	thumb_func_end sub_02000160
 _02000164:
@@ -56,7 +58,7 @@ _02000164:
 
 	thumb_func_start sub_020001C4
 sub_020001C4: ; 0x020001C4
-	swi #9
+	swi 9
 	bx lr
 	thumb_func_end sub_020001C4
 _020001C8:
@@ -73,7 +75,7 @@ _020001C8:
 	non_word_aligned_thumb_func_start sub_02000246
 sub_02000246: ; 0x02000246
 	mov r2, #0
-	swi #5
+	swi 5
 	bx lr
 	thumb_func_end sub_02000246
 _0200024C:
@@ -88,7 +90,7 @@ _0200024C:
 
 	thumb_func_start sub_020002BC
 sub_020002BC: ; 0x020002BC
-	swi #0x11
+	swi 0x11
 	bx lr
 	thumb_func_end sub_020002BC
 _020002C0:
@@ -101,7 +103,7 @@ _020002C0:
 
 	non_word_aligned_thumb_func_start sub_02000316
 sub_02000316: ; 0x02000316
-	swi #6
+	swi 6
 	bx lr
 	thumb_func_end sub_02000316
 _0200031A:
@@ -117,7 +119,7 @@ _0200031A:
 
 	non_word_aligned_thumb_func_start sub_0200039A
 sub_0200039A: ; 0x0200039A
-	swi #0x14
+	swi 0x14
 	bx lr
 	thumb_func_end sub_0200039A
 _0200039E:
@@ -138,7 +140,7 @@ _0200039E:
 
 	non_word_aligned_thumb_func_start sub_0200046A
 sub_0200046A: ; 0x0200046A
-	swi #0xf
+	swi 0xf
 	bx lr
 	thumb_func_end sub_0200046A
 _0200046E:
@@ -152,7 +154,7 @@ _0200046E:
 
 	thumb_func_start sub_020004C4
 sub_020004C4: ; 0x020004C4
-	swi #0x15
+	swi 0x15
 	bx lr
 	thumb_func_end sub_020004C4
 _020004C8:
@@ -166,7 +168,7 @@ _020004C8:
 
 	non_word_aligned_thumb_func_start sub_02000522
 sub_02000522: ; 0x02000522
-	swi #3
+	swi 3
 	bx lr
 	thumb_func_end sub_02000522
 _02000526:
@@ -178,7 +180,7 @@ _02000526:
 
 	thumb_func_start sub_02000570
 sub_02000570: ; 0x02000570
-	swi #0xb
+	swi 0xb
 	bx lr
 	thumb_func_end sub_02000570
 _02000574:
@@ -193,7 +195,7 @@ _02000574:
 
 	thumb_func_start sub_020005E4
 sub_020005E4: ; 0x020005E4
-	swi #0x13
+	swi 0x13
 	bx lr
 	thumb_func_end sub_020005E4
 _020005E8:
@@ -207,7 +209,7 @@ _020005E8:
 
 	non_word_aligned_thumb_func_start sub_0200064A
 sub_0200064A: ; 0x0200064A
-	swi #0x10
+	swi 0x10
 	bx lr
 	thumb_func_end sub_0200064A
 _0200064E:
@@ -221,7 +223,7 @@ _0200064E:
 	non_word_aligned_thumb_func_start sub_0200069E
 sub_0200069E: ; 0x0200069E
 	mov r2, #0
-	swi #4
+	swi 4
 	bx lr
 	thumb_func_end sub_0200069E
 _020006A4:
@@ -235,7 +237,7 @@ _020006A4:
 
 	thumb_func_start sub_02000708
 sub_02000708: ; 0x02000708
-	swi #0
+	swi 0
 	bx lr
 	thumb_func_end sub_02000708
 _0200070C:
@@ -251,7 +253,7 @@ _0200070C:
 
 	non_word_aligned_thumb_func_start sub_0200078A
 sub_0200078A: ; 0x0200078A
-	swi #0xc
+	swi 0xc
 	bx lr
 	thumb_func_end sub_0200078A
 _0200078E:

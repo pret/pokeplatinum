@@ -7,9 +7,9 @@ LIBS           := -Llib -lsyscall -nostdlib
 OPTFLAGS       := -O4,p
 
 # Config
-BUILD_DIR := build/platinum
+BUILD_DIR := build/platinum.us
 NEFNAME := main
-buildname := platinum
+buildname := platinum.us
 TITLE_NAME := POKEMON PL
 GAME_CODE := CPUE
 SECURE_CRC := 0xF8B8
@@ -21,9 +21,10 @@ ALL_BUILDDIRS  := $(BUILD_DIR)/lib
 include common.mk
 
 ROM             := $(BUILD_DIR)/poke$(buildname).nds
-BANNER          := $(ROM:%.nds=%.bnr)
-BANNER_SPEC     := $(buildname)/banner.bsf
-ICON_PNG        := $(buildname)/icon.png
+#BANNER          := $(ROM:%.nds=%.bnr)
+#BANNER_SPEC     := $(buildname)/banner.bsf
+#ICON_PNG        := $(buildname)/icon.png
+BANNER          := $(buildname)/banner.bnr
 HEADER_TEMPLATE := $(buildname)/rom_header_template.sbin
 
 .PHONY: main libsyscall sdk sdk9 sdk7
@@ -58,15 +59,16 @@ $(BUILD_DIR)/component.files: main ;
 
 $(HEADER_TEMPLATE): ;
 
-$(ROM): $(ROMSPEC) filesystem main_lz $(BANNER)
+#$(ROM): $(ROMSPEC) filesystem $(BANNER)
+$(ROM): $(ROMSPEC) main
 	$(WINE) $(MAKEROM) $(MAKEROM_FLAGS) -DBUILD_DIR=$(BUILD_DIR) -DNITROFS_FILES="$(NITROFS_FILES:files/%=%)" -DTITLE_NAME="$(TITLE_NAME)" -DBNR="$(BANNER)" -DHEADER_TEMPLATE="$(HEADER_TEMPLATE)" $< $@
 	$(FIXROM) $@ --secure-crc $(SECURE_CRC) --game-code $(GAME_CODE)
 ifeq ($(COMPARE),1)
 	$(SHA1SUM) -c $(buildname)/rom.sha1
 endif
 
-$(BANNER): $(BANNER_SPEC) $(ICON_PNG:%.png=%.nbfp) $(ICON_PNG:%.png=%.nbfc)
-	$(WINE) $(MAKEBNR) $< $@
+#$(BANNER): $(BANNER_SPEC) $(ICON_PNG:%.png=%.nbfp) $(ICON_PNG:%.png=%.nbfc)
+#	$(WINE) $(MAKEBNR) $< $@
 
 # TODO: move to NitroSDK makefile
 FX_CONST_H := $(WORK_DIR)/lib/include/nitro/fx/fx_const.h

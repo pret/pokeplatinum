@@ -30,6 +30,7 @@ export LM_LICENSE_FILE := $(TOOLSDIR)/mwccarm/license.dat
 # Native tools
 FIXROM       := $(TOOLSDIR)/fixrom/fixrom$(EXE)
 ASPATCH      := $(TOOLSDIR)/mwasmarm_patcher/mwasmarm_patcher$(EXE)
+MKFXCONST    := $(TOOLSDIR)/gen_fx_consts/gen_fx_consts$(EXE)
 
 # Other tools
 NTRMERGE      := $(TOOLSDIR)/ntr_merge_elf/ntr_merge_elf.sh
@@ -37,7 +38,8 @@ ASM_PROCESSOR := $(TOOLSDIR)/asm_processor/compile.sh
 
 NATIVE_TOOLS := \
 	$(FIXROM) \
-	$(ASPATCH)
+	$(ASPATCH) \
+	$(MKFXCONST)
 
 TOOLDIRS := $(foreach tool,$(NATIVE_TOOLS),$(dir $(tool)))
 

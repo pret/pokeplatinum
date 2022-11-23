@@ -9,14 +9,11 @@ tools/bin/**
 
 # Build folder
 build/**
-arm*/build/**
+sub/build/**
 
 # CLion folders
 .idea/
 cmake-build-debug/
-
-# VSCOde folder
-.vscode/
 
 # ROM
 *.srl
@@ -30,15 +27,26 @@ cmake-build-debug/
 *.gbapal
 
 # For asmdiff
-arm*/baserom.*
+*/baserom.*
 *.dump
 
+# For decomp.me
+ctx.c
+
 *.lcf.template
+*.lcf
+*.response.template
+*.response
 
 # Working files
-arm9/modules/module_*.s
-arm9/modules/module_*.sbin
-arm9/modules/module_*.cfg
+overlays/*/module_*.s
+overlays/*/module_*.sbin
+overlays/*/module_*.cfg
+
+*.sbin
+*.bnr
+*.nbfp
+*.nbfc
 
 # Dism scripts
 dism.sh
@@ -53,6 +61,31 @@ symbols.csv
 files/**/*.c
 *.o
 *.naix
+*.a
+
+# Utilities
+ntruncompbw
+*.elf
+cmake-build-*
+*.sbin_LZ
+*.diff
+
+*.dSYM
+
+# MacOS garbage
+.DS_Store
+
+# Depfiles
+*.d
+
+diff.txt
+
+.vscode/
 
 temp_asm/
 asm_old/
+
+!platinum.us/rom_header_template.sbin
+!platinum.us/banner.bnr
+!sub/*.sbin
+
