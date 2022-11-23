@@ -5079,8 +5079,8 @@ ov61_0222D7B0: ; 0x0222D7B0
 	strb r1, [sp, #1]
 	ldrh r1, [r0, #0x40]
 	ldr r0, _0222D8F0 ; =0x0222E764
-	asr r2, r1, #8
-	lsl r1, r1, #8
+	mov r2, r1, asr #8
+	mov r1, r1, lsl #8
 	and r2, r2, #0xff
 	and r1, r1, #0xff00
 	orr r1, r2, r1
@@ -5522,7 +5522,7 @@ ov61_0222DD8C: ; 0x0222DD8C
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	mov lr, #0
-	asr ip, r0, #0x1f
+	mov ip, r0, asr #0x1f
 	str r0, [sp, #4]
 	mov r2, r1
 	ldr r0, _0222DDC8 ; =0x00004E21
@@ -5575,7 +5575,7 @@ ov61_0222DE34: ; 0x0222DE34
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	mov lr, #0
-	asr ip, r0, #0x1f
+	mov ip, r0, asr #0x1f
 	str r0, [sp, #4]
 	mov r2, r1
 	ldr r0, _0222DE70 ; =0x00005209
@@ -5797,7 +5797,7 @@ ov61_0222E0B8: ; 0x0222E0B8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, #0
 	cmp r1, #0
-	ldmia sp!,le {r3, r4, r5, pc}
+	ldmleia sp!, {r3, r4, r5, pc}
 	ldr lr, _0222E10C ; =0x0222E65C
 	mov ip, r5
 _0222E0D0:
@@ -5826,7 +5826,7 @@ ov61_0222E110: ; 0x0222E110
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, #0
 	cmp r1, #0
-	ldmia sp!,le {r3, r4, r5, pc}
+	ldmleia sp!, {r3, r4, r5, pc}
 	ldr lr, _0222E164 ; =0x0222E65C
 	mov ip, r5
 _0222E128:
