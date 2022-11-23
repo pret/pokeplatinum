@@ -1,0 +1,757 @@
+############################################################
+###       Linker spec file for Pokemon Platinum US       ###
+###      Pass this to the SDK's makelcf.exe utility      ###
+###           along with the ARM9-TS template.           ###
+###                        WIP                           ###
+############################################################
+
+Static main
+{
+	Address 0x02000000
+	StackSize 0 2048
+	Object asm/arm9.o
+}
+
+Autoload ITCM
+{
+	Address 0x01FF8000
+	Object asm/itcm.o
+}
+
+Autoload DTCM
+{
+	Address 0x027E0000
+	Object asm/dtcm.o (.dtcm)
+	Object asm/dtcm.o (.bss)
+}
+
+Overlay overlay0
+{
+	After main
+	Object asm/overlay0.o
+}
+
+Overlay overlay1
+{
+	After	main
+	Object asm/overlay1.o
+}
+
+Overlay overlay2
+{
+	After	overlay1
+	Object asm/overlay2.o
+}
+
+Overlay overlay3
+{
+	After	ITCM
+	Object asm/overlay3.o
+}
+
+Overlay overlay4
+{
+	After	main
+	Object asm/overlay4.o
+
+Overlay overlay5
+{
+	After	main
+	Object asm/overlay5.o
+}
+
+Overlay overlay6
+{
+	After	overlay5
+	Object asm/overlay6.o
+}
+
+Overlay overlay7
+{
+	After overlay6
+	Object asm/overlay7.o
+}
+
+Overlay overlay8
+{
+	After overlay6
+	Object asm/overlay8.o
+}
+
+Overlay overlay9
+{
+	After overlay6
+	Object asm/overlay9.o
+}
+
+Overlay overlay10
+{
+	After overlay4
+	Object asm/overlay10.o
+}
+
+Overlay overlay11
+{
+	After overlay4
+	Object asm/overlay11.o
+}
+
+Overlay overlay12
+{
+	After overlay11
+	Object asm/overlay12.o
+}
+
+Overlay overlay13
+{
+	After overlay11
+	Object asm/overlay13.o
+}
+
+Overlay overlay14
+{
+	After overlay11
+	Object asm/overlay14.o
+}
+
+Overlay overlay15
+{
+	After main
+	Object asm/overlay15.o
+}
+
+Overlay overlay16
+{
+	After overlay12
+	Object asm/overlay16.o
+}
+
+Overlay overlay17
+{
+	After overlay12
+	Object asm/overlay17.o
+}
+
+Overlay overlay18
+{
+	After overlay4
+	Object asm/overlay18.o
+}
+
+Overlay overlay19
+{
+	After main
+	Object asm/overlay19.o
+}
+
+Overlay overlay20
+{
+	After main
+	Object asm/overlay20.o
+}
+
+Overlay overlay21
+{
+	After main
+	Object asm/overlay21.o
+}
+
+Overlay overlay22
+{
+	After overlay17
+	Object asm/overlay22.o
+}
+
+Overlay overlay23
+{
+	After overlay5
+	Object asm/overlay23.o
+}
+
+Overlay overlay24
+{
+	After overlay9
+	Object asm/overlay24.o
+}
+
+Overlay overlay25
+{
+	After overlay9
+	Object asm/overlay25.o
+}
+
+Overlay overlay26
+{
+	After overlay25
+	Object asm/overlay26.o
+}
+
+Overlay overlay27
+{
+	After overlay25
+	Object asm/overlay27.o
+}
+
+Overlay overlay28
+{
+	After overlay25
+	Object asm/overlay28.o
+}
+
+Overlay overlay29
+{
+	After overlay25
+	Object asm/overlay29.o
+}
+
+Overlay overlay30
+{
+	After overlay25
+	Object asm/overlay30.o
+}
+
+Overlay overlay31
+{
+	After overlay25
+	Object asm/overlay31.o
+}
+
+Overlay overlay32
+{
+	After overlay25
+	Object asm/overlay32.o
+}
+
+Overlay overlay33
+{
+	After overlay25
+	Object asm/overlay33.o
+}
+
+Overlay overlay34
+{
+	After overlay25
+	Object asm/overlay34.o
+}
+
+Overlay overlay35
+{
+	After overlay25
+	Object asm/overlay35.o
+}
+
+Overlay overlay36
+{
+	After overlay25
+	Object asm/overlay36.o
+}
+
+Overlay overlay37
+{
+	After overlay25
+	Object asm/overlay37.o
+}
+
+Overlay overlay38
+{
+	After overlay25
+	Object asm/overlay38.o
+}
+
+Overlay overlay39
+{
+	After overlay25
+	Object asm/overlay39.o
+}
+
+Overlay overlay40
+{
+	After overlay25
+	Object asm/overlay40.o
+}
+
+Overlay overlay41
+{
+	After overlay25
+	Object asm/overlay41.o
+}
+
+Overlay overlay42
+{
+	After overlay25
+	Object asm/overlay42.o
+}
+
+Overlay overlay43
+{
+	After overlay25
+	Object asm/overlay43.o
+}
+
+Overlay overlay44
+{
+	After overlay25
+	Object asm/overlay44.o
+}
+
+Overlay overlay45
+{
+	After overlay25
+	Object asm/overlay45.o
+}
+
+Overlay overlay46
+{
+	After overlay25
+	Object asm/overlay46.o
+}
+
+Overlay overlay47
+{
+	After overlay25
+	Object asm/overlay47.o
+}
+
+Overlay overlay48
+{
+	After overlay25
+	Object asm/overlay48.o
+}
+
+Overlay overlay49
+{
+	After overlay25
+	Object asm/overlay49.o
+}
+
+Overlay overlay50
+{
+	After overlay25
+	Object asm/overlay50.o
+}
+
+Overlay overlay51
+{
+	After overlay25
+	Object asm/overlay51.o
+}
+
+Overlay overlay52
+{
+	After overlay25
+	Object asm/overlay52.o
+}
+
+Overlay overlay53
+{
+	After overlay25
+	Object asm/overlay53.o
+}
+
+Overlay overlay54
+{
+	After overlay25
+	Object asm/overlay54.o
+}
+
+Overlay overlay55
+{
+	After overlay25
+	Object asm/overlay55.o
+}
+
+Overlay overlay56
+{
+	After overlay25
+	Object asm/overlay56.o
+}
+
+Overlay overlay57
+{
+	After main
+	Object asm/overlay57.o
+}
+
+Overlay overlay58
+{
+	After main
+	Object asm/overlay58.o
+}
+
+Overlay overlay59
+{
+	After main
+	Object asm/overlay59.o
+}
+
+Overlay overlay60
+{
+	After overlay4
+	Object asm/overlay60.o
+}
+
+Overlay overlay61
+{
+	After overlay60
+	Object asm/overlay61.o
+}
+
+Overlay overlay62
+{
+	After overlay61
+	Object asm/overlay62.o
+}
+
+Overlay overlay63
+{
+	After overlay60
+	Object asm/overlay63.o
+}
+
+Overlay overlay64
+{
+	After overlay63
+	Object asm/overlay64.o
+}
+
+Overlay overlay65
+{
+	After overlay63
+	Object asm/overlay65.o
+}
+
+Overlay overlay66
+{
+	After overlay63
+	Object asm/overlay66.o
+}
+
+Overlay overlay67
+{
+	After overlay66
+	Object asm/overlay67.o
+}
+
+Overlay overlay68
+{
+	After overlay66
+	Object asm/overlay68.o
+}
+
+Overlay overlay69
+{
+	After overlay66
+	Object asm/overlay69.o
+}
+
+Overlay overlay70
+{
+	After overlay66
+	Object asm/overlay70.o
+}
+
+Overlay overlay71
+{
+	After overlay12
+	Object asm/overlay71.o
+}
+
+Overlay overlay72
+{
+	After overlay71
+	Object asm/overlay72.o
+}
+
+Overlay overlay73
+{
+	After main
+	Object asm/overlay73.o
+}
+
+Overlay overlay74
+{
+	After main
+	Object asm/overlay74.o
+}
+
+Overlay overlay75
+{
+	After main
+	Object asm/overlay75.o
+}
+
+Overlay overlay76
+{
+	After overlay12
+	Object asm/overlay76.o
+}
+
+Overlay overlay77
+{
+	After main
+	Object asm/overlay77.o
+}
+
+Overlay overlay78
+{
+	After main
+	Object asm/overlay78.o
+}
+
+Overlay overlay79
+{
+	After main
+	Object asm/overlay79.o
+}
+
+Overlay overlay80
+{
+	After main
+	Object asm/overlay80.o
+}
+
+Overlay overlay81
+{
+	After main
+	Object asm/overlay81.o
+}
+
+Overlay overlay82
+{
+	After overlay12
+	Object asm/overlay82.o
+}
+
+Overlay overlay83
+{
+	After overlay82
+	Object asm/overlay83.o
+}
+
+Overlay overlay84
+{
+	After overlay82
+	Object asm/overlay84.o
+}
+
+Overlay overlay85
+{
+	After overlay84
+	Object asm/overlay85.o
+}
+
+Overlay overlay86
+{
+	After overlay12
+	Object asm/overlay86.o
+}
+
+Overlay overlay87
+{
+	After main
+	Object asm/overlay87.o
+}
+
+Overlay overlay88
+{
+	After overlay12
+	Object asm/overlay88.o
+}
+
+Overlay overlay89
+{
+	After main
+	Object asm/overlay89.o
+}
+
+Overlay overlay90
+{
+	After main
+	Object asm/overlay90.o
+}
+
+Overlay overlay91
+{
+	After main
+	Object asm/overlay91.o
+}
+
+Overlay overlay92
+{
+	After main
+	Object asm/overlay92.o
+}
+
+Overlay overlay93
+{
+	After main
+	Object asm/overlay93.o
+}
+
+Overlay overlay94
+{
+	After overlay12
+	Object asm/overlay94.o
+}
+
+Overlay overlay95
+{
+	After overlay94
+	Object asm/overlay95.o
+}
+
+Overlay overlay96
+{
+	After overlay12
+	Object asm/overlay96.o
+}
+
+Overlay overlay97
+{
+	After overlay60
+	Object asm/overlay97.o
+}
+
+Overlay overlay98
+{
+	After overlay94
+	Object asm/overlay98.o
+}
+
+Overlay overlay99
+{
+	After main
+	Object asm/overlay99.o
+}
+
+Overlay overlay100
+{
+	After main
+	Object asm/overlay100.o
+}
+
+Overlay overlay101
+{
+	After main
+	Object asm/overlay101.o
+}
+
+Overlay overlay102
+{
+	After main
+	Object asm/overlay102.o
+}
+
+Overlay overlay103
+{
+	After overlay63
+	Object asm/overlay103.o
+}
+
+Overlay overlay104
+{
+	After overlay63
+	Object asm/overlay104.o
+}
+
+Overlay overlay105
+{
+	After overlay104
+	Object asm/overlay105.o
+}
+
+Overlay overlay106
+{
+	After overlay104
+	Object asm/overlay106.o
+}
+
+Overlay overlay107
+{
+	After overlay104
+	Object asm/overlay107.o
+}
+
+Overlay overlay108
+{
+	After overlay104
+	Object asm/overlay108.o
+}
+
+Overlay overlay109
+{
+	After main
+	Object asm/overlay109.o
+}
+
+Overlay overlay110
+{
+	After main
+	Object asm/overlay110.o
+}
+
+Overlay overlay111
+{
+	After main
+	Object asm/overlay111.o
+
+Overlay overlay112
+{
+	After overlay66
+	Object asm/overlay112.o
+}
+
+Overlay overlay113
+{
+	After overlay66
+	Object asm/overlay113.o
+}
+
+Overlay overlay114
+{
+	After overlay66
+	Object asm/overlay114.o
+}
+
+Overlay overlay115
+{
+	After overlay114
+	Object asm/overlay115.o
+}
+
+Overlay overlay116
+{
+	After overlay114
+	Object asm/overlay116.o
+}
+
+Overlay overlay117
+{
+	After overlay114
+	Object asm/overlay117.o
+}
+
+Overlay overlay118
+{
+	After main
+	Object asm/overlay118.o
+}
+
+Overlay overlay119
+{
+	After main
+	Object asm/overlay119.o
+}
+
+Overlay overlay120
+{
+	After main
+	Object asm/overlay120.o
+}
+
+Overlay overlay121
+{
+	After main
+	Object asm/overlay121.o
+}
+

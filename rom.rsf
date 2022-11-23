@@ -1,0 +1,32 @@
+Arm9
+{
+	Static $(BUILD_DIR)/main.sbin
+	OverlayDefs $(BUILD_DIR)/main_defs.sbin
+	OverlayTable $(BUILD_DIR)/main_table.sbin
+	Nef $(BUILD_DIR)/main.nef
+}
+
+Arm7
+{
+	Static sub/ichneumon_sub.sbin
+	OverlayDefs sub/ichneumon_sub_defs.sbin
+}
+
+Property
+{
+	RomHeaderTemplate "$(HEADER_TEMPLATE)"
+	TitleName "$(TITLE_NAME)"
+	MakerCode "01"
+	RemasterVersion 0
+	RomSpeedType 1TROM
+	RomSize 1G
+	RomFootPadding TRUE
+	BannerFile $(BNR)
+}
+
+RomSpec
+{
+	Segment All
+	HostRoot files/
+	File $(NITROFS_FILES)
+}
