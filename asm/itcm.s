@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "global.inc"
 
-	.section .text
+	.section .itcm
 
 	arm_func_start sub_01FF8000
 sub_01FF8000: ; 0x01FF8000
@@ -494,7 +494,7 @@ _01FF8634:
 	ldr r0, [r6, #0]
 	tst r0, #0x80000000
 	bne _01FF8634
-	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
+	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _01FF8644: .word 0x04000400
 _01FF8648: .word 0x84400000
 	arm_func_end sub_01FF85B8

@@ -15,7 +15,7 @@ Static main
 Autoload ITCM
 {
 	Address 0x01FF8000
-	Object asm/itcm.o
+	Object asm/itcm.o (.itcm)
 }
 
 Autoload DTCM
