@@ -9,7 +9,32 @@ Static main
 {
 	Address 0x02000000
 	StackSize 0 2048
-	Object asm/arm9.o
+	Object asm/arm9_0.o
+	Object asm/arm9_1.o
+	Object asm/arm9_2.o
+	Object asm/arm9_3.o
+	Object asm/arm9_4.o
+	Object asm/arm9_5.o
+	Object asm/arm9_6.o
+	Object asm/arm9_7.o
+	Object asm/arm9_8.o
+	Object asm/arm9_9.o
+	Object asm/arm9_10.o
+	Object asm/arm9_10_arm.o
+	Object asm/arm9_11.o
+	Object asm/arm9_11_thumb.o
+	Object asm/arm9_11_2.o
+	Object asm/arm9_11_thumb2.o
+	Object asm/arm9_11_3.o
+	Object asm/arm9_11_thumb3.o
+	Object asm/arm9_11_4.o
+	Object asm/arm9_11_thumb4.o
+	Object asm/arm9_11_5.o
+	Object asm/arm9_11_thumb5.o
+	Object asm/arm9_11_6.o
+	Object asm/arm9_11_thumb6.o
+	Object asm/arm9_11_7.o
+	Object asm/arm9_12.o
 }
 
 Autoload ITCM
