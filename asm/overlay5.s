@@ -59221,7 +59221,9 @@ ov5_021ED2AC: ; 0x021ED2AC
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov5_021ED2AC
-_021ED2D0:
+
+	thumb_func_start ov5_021ED2D0
+ov5_021ED2D0:
 	ldr r3, [r2, #0]
 	cmp r3, r0
 	bne _021ED2DA
@@ -59231,10 +59233,11 @@ _021ED2DA:
 	add r2, #8
 	ldr r3, [r2, #0]
 	cmp r3, r1
-	bne _021ED2D0
+	bne ov5_021ED2D0
 	mov r0, #0
 	bx lr
 	; .align 2, 0
+	thumb_func_end ov5_021ED2D0
 
 	thumb_func_start ov5_021ED2E8
 ov5_021ED2E8: ; 0x021ED2E8
@@ -59254,7 +59257,7 @@ _021ED302:
 	ldr r2, [sp, #0x18]
 	add r0, r4, #0
 	add r1, r7, #0
-	bl _021ED2D0
+	bl ov5_021ED2D0
 	add r7, r0, #0
 	bne _021ED314
 	bl sub_02022974
@@ -59302,7 +59305,7 @@ _021ED360:
 	ldr r1, _021ED38C ; =0x0000FFFF
 	add r0, r4, #0
 	add r2, r7, #0
-	bl _021ED2D0
+	bl ov5_021ED2D0
 	add r2, r0, #0
 	bne _021ED372
 	mov r0, #2

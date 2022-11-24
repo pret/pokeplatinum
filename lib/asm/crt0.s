@@ -136,7 +136,7 @@ _02000994:
 	ldrb r5, [r3, #-1]!
 	mov r6, #8
 _020009A4:
-	sub r6, r6, #1
+	subs r6, r6, #1
 	blt _02000994
 	tst r5, #0x80
 	bne _020009C0
@@ -153,7 +153,7 @@ _020009C0:
 _020009D8:
 	ldrb r0, [r2, r7]
 	strb r0, [r2, #-1]!
-	sub ip, ip, #0x10
+	subs ip, ip, #0x10
 	bge _020009D8
 _020009E8:
 	cmp r3, r1
