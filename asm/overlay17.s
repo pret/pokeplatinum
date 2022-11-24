@@ -49929,4 +49929,4 @@ _02252D88: .word ov17_0224B20C
 	thumb_func_end ov17_02252D7C
 	; 0x02252D8C
 
-	.incbin "data/overlay17.bin"
+	.incbin "incbin/overlay17.bin"

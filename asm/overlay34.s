@@ -1122,4 +1122,4 @@ ov34_02256A0C: ; 0x02256A0C
 	thumb_func_end ov34_02256A0C
 	; 0x02256A1C
 
-	.incbin "data/overlay34.bin"
+	.incbin "incbin/overlay34.bin"

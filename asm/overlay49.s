@@ -568,4 +568,4 @@ _022565D0: .word 0x00000663
 	thumb_func_end ov49_02256594
 	; 0x022565D4
 
-	.incbin "data/overlay49.bin"
+	.incbin "incbin/overlay49.bin"

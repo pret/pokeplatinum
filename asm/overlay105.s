@@ -9104,4 +9104,4 @@ _022462C8: .word 0x000003D9
 	thumb_func_end ov105_0224628C
 	; 0x022462CC
 
-	.incbin "data/overlay105.bin"
+	.incbin "incbin/overlay105.bin"

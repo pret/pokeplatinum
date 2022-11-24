@@ -21230,4 +21230,4 @@ _022459F4: .word 0x00000EFC
 	thumb_func_end ov94_022459B4
 	; 0x022459F8
 
-	.incbin "data/overlay94.bin"
+	.incbin "incbin/overlay94.bin"

@@ -10482,4 +10482,4 @@ _0224BE70: .word 0x000005E6
 	thumb_func_end ov95_0224BD5C
 	; 0x0224BE74
 
-	.incbin "data/overlay95.bin"
+	.incbin "incbin/overlay95.bin"

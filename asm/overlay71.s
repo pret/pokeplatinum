@@ -4438,4 +4438,4 @@ _0223D4A4: .word 0x0000FFFF
 	thumb_func_end ov71_0223D470
 	; 0x0223D4A8
 
-	.incbin "data/overlay71.bin"
+	.incbin "incbin/overlay71.bin"

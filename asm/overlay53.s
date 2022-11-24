@@ -953,4 +953,4 @@ _022568DC: .word 0x000003E7
 	thumb_func_end ov53_02256874
 	; 0x022568E0
 
-	.incbin "data/overlay53.bin"
+	.incbin "incbin/overlay53.bin"

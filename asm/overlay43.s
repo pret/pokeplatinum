@@ -1186,4 +1186,4 @@ _02256A88: .word 0x00000000
 	thumb_func_end ov43_02256A4C
 	; 0x02256A8C
 
-	.incbin "data/overlay43.bin"
+	.incbin "incbin/overlay43.bin"

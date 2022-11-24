@@ -8149,4 +8149,4 @@ _021D50D0: .word 0x04000064
 	thumb_func_end ov100_021D503C
 	; 0x021D50D4
 
-	.incbin "data/overlay100.bin"
+	.incbin "incbin/overlay100.bin"

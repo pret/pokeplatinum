@@ -22170,4 +22170,4 @@ ov65_02238910: ; 0x02238910
 	thumb_func_end ov65_02238910
 	; 0x0223892C
 
-	.incbin "data/overlay65.bin"
+	.incbin "incbin/overlay65.bin"

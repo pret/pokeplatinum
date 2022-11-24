@@ -9958,4 +9958,4 @@ _022248A0: .word 0x000003D6
 	thumb_func_end ov14_022244B0
 	; 0x022248A4
 
-	.incbin "data/overlay14.bin"
+	.incbin "incbin/overlay14.bin"

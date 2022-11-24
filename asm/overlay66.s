@@ -57450,4 +57450,4 @@ ov66_022588F4: ; 0x022588F4
 	arm_func_end ov66_022588F4
 	; 0x02258918
 
-	.incbin "data/overlay66.bin"
+	.incbin "incbin/overlay66.bin"

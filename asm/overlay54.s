@@ -686,4 +686,4 @@ _022566C0:
 	thumb_func_end ov54_022566A8
 	; 0x022566D4
 
-	.incbin "data/overlay54.bin"
+	.incbin "incbin/overlay54.bin"

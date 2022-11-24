@@ -8449,4 +8449,4 @@ _022608A8:
 	thumb_func_end ov113_02260884
 	; 0x022608AC
 
-	.incbin "data/overlay113.bin"
+	.incbin "incbin/overlay113.bin"

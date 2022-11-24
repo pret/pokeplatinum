@@ -53243,4 +53243,4 @@ _02246430: .word 0x02253424
 	arm_func_end ov18_0224641C
 	; 0x02246434
 
-	.incbin "data/overlay18.bin"
+	.incbin "incbin/overlay18.bin"

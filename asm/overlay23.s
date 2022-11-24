@@ -49386,4 +49386,4 @@ _02256308: .word 0x02256B5C
 	thumb_func_end ov23_022562C8
 	; 0x0225630C
 
-	.incbin "data/overlay23.bin"
+	.incbin "incbin/overlay23.bin"

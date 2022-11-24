@@ -107,4 +107,4 @@ ov24_02253DB4: ; 0x02253DB4
 	thumb_func_end ov24_02253DB4
 	; 0x02253DB8
 
-	.incbin "data/overlay24.bin"
+	.incbin "incbin/overlay24.bin"

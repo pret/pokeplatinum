@@ -6080,4 +6080,4 @@ _02249B14:
 	thumb_func_end ov98_02249ACC
 	; 0x02249B2C
 
-	.incbin "data/overlay98.bin"
+	.incbin "incbin/overlay98.bin"

@@ -5937,4 +5937,4 @@ _0222D8E0:
 	thumb_func_end ov63_0222D8D0
 	; 0x0222D900
 
-	.incbin "data/overlay63.bin"
+	.incbin "incbin/overlay63.bin"

@@ -2125,4 +2125,4 @@ _0225722C:
 	thumb_func_end ov56_022571D0
 	; 0x02257238
 
-	.incbin "data/overlay56.bin"
+	.incbin "incbin/overlay56.bin"

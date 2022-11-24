@@ -17972,4 +17972,4 @@ _02228CF8: .word 0x000005DD
 	thumb_func_end ov13_02228B64
 	; 0x02228CFC
 
-	.incbin "data/overlay13.bin"
+	.incbin "incbin/overlay13.bin"

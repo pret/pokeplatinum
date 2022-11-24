@@ -7579,4 +7579,4 @@ _0223ECEC: .word 0x00003FF8
 	thumb_func_end ov76_0223ECB0
 	; 0x0223ECF0
 
-	.incbin "data/overlay76.bin"
+	.incbin "incbin/overlay76.bin"

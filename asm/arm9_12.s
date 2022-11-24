@@ -30234,7 +30234,7 @@ sub_020E454C: ; 0x020E454C
 _020E4554:
 	.word 0x020E28E4
 
-	.incbin "data/arm9.bin"
+	.incbin "incbin/arm9.bin"
 
 	.bss
 	.space 0xCF060

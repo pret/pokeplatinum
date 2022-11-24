@@ -34713,4 +34713,4 @@ _0226D4C2:
 	thumb_func_end ov70_0226D46C
 	; 0x0226D4CC
 
-	.incbin "data/overlay70.bin"
+	.incbin "incbin/overlay70.bin"

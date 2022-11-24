@@ -50820,4 +50820,4 @@ _02238590: .word 0x0000013B
 	thumb_func_end ov12_022384F0
 	; 0x02238594
 
-	.incbin "data/overlay12.bin"
+	.incbin "incbin/overlay12.bin"

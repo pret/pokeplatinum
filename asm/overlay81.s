@@ -4786,4 +4786,4 @@ _021D333C: .word 0x00010200
 	thumb_func_end ov81_021D3304
 	; 0x021D3340
 
-	.incbin "data/overlay81.bin"
+	.incbin "incbin/overlay81.bin"

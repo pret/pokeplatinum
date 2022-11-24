@@ -16162,4 +16162,4 @@ _0225120C:
 	thumb_func_end ov9_022511F4
 	; 0x02251210
 
-	.incbin "data/overlay9.bin"
+	.incbin "incbin/overlay9.bin"

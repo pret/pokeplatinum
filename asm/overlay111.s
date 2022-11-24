@@ -5244,4 +5244,4 @@ _021D35FC: .word 0x000003D9
 	thumb_func_end ov111_021D35C0
 	; 0x021D3600
 
-	.incbin "data/overlay111.bin"
+	.incbin "incbin/overlay111.bin"

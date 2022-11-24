@@ -5513,4 +5513,4 @@ ov79_021D38D0: ; 0x021D38D0
 	thumb_func_end ov79_021D38D0
 	; 0x021D3910
 
-	.incbin "data/overlay79.bin"
+	.incbin "incbin/overlay79.bin"

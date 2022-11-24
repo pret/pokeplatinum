@@ -1412,4 +1412,4 @@ ov45_02256C90: ; 0x02256C90
 	thumb_func_end ov45_02256C90
 	; 0x02256C98
 
-	.incbin "data/overlay45.bin"
+	.incbin "incbin/overlay45.bin"

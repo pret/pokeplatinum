@@ -1471,4 +1471,4 @@ _02256CAE:
 	thumb_func_end ov44_02256AC8
 	; 0x02256CB4
 
-	.incbin "data/overlay44.bin"
+	.incbin "incbin/overlay44.bin"

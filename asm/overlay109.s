@@ -10094,4 +10094,4 @@ ov109_021D59A8: ; 0x021D59A8
 	thumb_func_end ov109_021D59A8
 	; 0x021D59AC
 
-	.incbin "data/overlay109.bin"
+	.incbin "incbin/overlay109.bin"

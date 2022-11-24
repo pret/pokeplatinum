@@ -5230,4 +5230,4 @@ ov73_021D37AC: ; 0x021D37AC
 	thumb_func_end ov73_021D37AC
 	; 0x021D37C4
 
-	.incbin "data/overlay73.bin"
+	.incbin "incbin/overlay73.bin"

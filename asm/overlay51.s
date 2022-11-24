@@ -392,4 +392,4 @@ ov51_02256458: ; 0x02256458
 	thumb_func_end ov51_02256458
 	; 0x02256474
 
-	.incbin "data/overlay51.bin"
+	.incbin "incbin/overlay51.bin"

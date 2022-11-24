@@ -5856,4 +5856,4 @@ _0224C6D4: .word 0x0224C708
 	thumb_func_end ov8_0224C62C
 	; 0x0224C6D8
 
-	.incbin "data/overlay8.bin"
+	.incbin "incbin/overlay8.bin"

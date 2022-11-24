@@ -14136,4 +14136,4 @@ ov116_02267728: ; 0x02267728
 	pop {r4, pc}
 	; 0x02267740
 
-	.incbin "data/overlay116.bin"
+	.incbin "incbin/overlay116.bin"

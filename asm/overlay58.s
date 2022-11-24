@@ -4079,4 +4079,4 @@ _021D2DA6:
 	thumb_func_end ov58_021D2D4C
 	; 0x021D2DD4
 
-	.incbin "data/overlay58.bin"
+	.incbin "incbin/overlay58.bin"

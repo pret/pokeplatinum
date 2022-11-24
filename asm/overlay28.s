@@ -2791,4 +2791,4 @@ _02257638: .word 0x02257A50
 	thumb_func_end ov28_022575EC
 	; 0x0225763C
 
-	.incbin "data/overlay28.bin"
+	.incbin "incbin/overlay28.bin"

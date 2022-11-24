@@ -720,4 +720,4 @@ _02256714: .word 0x040002A8
 	thumb_func_end ov36_0225669C
 	; 0x02256718
 
-	.incbin "data/overlay36.bin"
+	.incbin "incbin/overlay36.bin"

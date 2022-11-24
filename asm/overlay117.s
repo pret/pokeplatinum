@@ -12200,4 +12200,4 @@ _022668F4: .word ov117_0226238C
 	thumb_func_end ov117_022668E4
 	; 0x022668F8
 
-	.incbin "data/overlay117.bin"
+	.incbin "incbin/overlay117.bin"

@@ -31358,4 +31358,4 @@ ov19_021DFDEC: ; 0x021DFDEC
 	thumb_func_end ov19_021DFDEC
 	; 0x021DFDF0
 
-	.incbin "data/overlay19.bin"
+	.incbin "incbin/overlay19.bin"

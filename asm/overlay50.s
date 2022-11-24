@@ -1054,4 +1054,4 @@ _02256988: .word 0x02256A98
 	thumb_func_end ov50_02256894
 	; 0x0225698C
 
-	.incbin "data/overlay50.bin"
+	.incbin "incbin/overlay50.bin"

@@ -1702,4 +1702,4 @@ _021D1AC4:
 	thumb_func_end ov87_021D1AB8
 	; 0x021D1AD8
 
-	.incbin "data/overlay87.bin"
+	.incbin "incbin/overlay87.bin"

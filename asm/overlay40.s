@@ -1135,4 +1135,4 @@ _02256A30:
 	thumb_func_end ov40_02256A14
 	; 0x02256A38
 
-	.incbin "data/overlay40.bin"
+	.incbin "incbin/overlay40.bin"
