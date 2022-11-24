@@ -2969,4 +2969,9 @@ _022577F8: .word 0x00000163
 	thumb_func_end ov33_022572A0
 	; 0x022577FC
 
-	.incbin "incbin/overlay33.bin"
+
+	.rodata
+	.incbin "incbin/overlay33_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay33_data.bin"

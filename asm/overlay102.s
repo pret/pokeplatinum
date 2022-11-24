@@ -913,4 +913,6 @@ _021D1524: .word 0x00010200
 	thumb_func_end ov102_021D1420
 	; 0x021D1528
 
-	.incbin "incbin/overlay102.bin"
+
+	.rodata
+	.incbin "incbin/overlay102_rodata.bin"

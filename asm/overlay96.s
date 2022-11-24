@@ -5296,4 +5296,9 @@ _0223DA74: .word 0x00000DD8
 	thumb_func_end ov96_0223DA34
 	; 0x0223DA78
 
-	.incbin "incbin/overlay96.bin"
+
+	.rodata
+	.incbin "incbin/overlay96_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay96_data.bin"

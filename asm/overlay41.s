@@ -1559,4 +1559,6 @@ _02256D64: .word 0x0000066A
 	thumb_func_end ov41_02256D1C
 	; 0x02256D68
 
-	.incbin "incbin/overlay41.bin"
+
+	.rodata
+	.incbin "incbin/overlay41_rodata.bin"

@@ -2472,4 +2472,6 @@ _0224283C: .word 0x02242A46
 	thumb_func_end ov85_02242578
 	; 0x02242840
 
-	.incbin "incbin/overlay85.bin"
+
+	.rodata
+	.incbin "incbin/overlay85_rodata.bin"

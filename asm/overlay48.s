@@ -1128,4 +1128,6 @@ _02256A26:
 	thumb_func_end ov48_022569FC
 	; 0x02256A2C
 
-	.incbin "incbin/overlay48.bin"
+
+	.rodata
+	.incbin "incbin/overlay48_rodata.bin"

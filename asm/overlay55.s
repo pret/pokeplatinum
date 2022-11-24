@@ -402,4 +402,6 @@ ov55_02256468: ; 0x02256468
 	thumb_func_end ov55_02256468
 	; 0x02256484
 
-	.incbin "incbin/overlay55.bin"
+
+	.rodata
+	.incbin "incbin/overlay55_rodata.bin"

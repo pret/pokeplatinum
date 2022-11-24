@@ -4827,4 +4827,9 @@ _021D3284: .word 0x021D33FC
 	thumb_func_end ov59_021D313C
 	; 0x021D3288
 
-	.incbin "incbin/overlay59.bin"
+
+	.rodata
+	.incbin "incbin/overlay59_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay59_data.bin"

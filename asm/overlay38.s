@@ -392,4 +392,6 @@ ov38_02256458: ; 0x02256458
 	thumb_func_end ov38_02256458
 	; 0x02256474
 
-	.incbin "incbin/overlay38.bin"
+
+	.rodata
+	.incbin "incbin/overlay38_rodata.bin"

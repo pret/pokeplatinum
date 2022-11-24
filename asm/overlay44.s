@@ -1471,4 +1471,6 @@ _02256CAE:
 	thumb_func_end ov44_02256AC8
 	; 0x02256CB4
 
-	.incbin "incbin/overlay44.bin"
+
+	.rodata
+	.incbin "incbin/overlay44_rodata.bin"

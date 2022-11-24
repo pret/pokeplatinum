@@ -11356,4 +11356,6 @@ ov115_02265ADC: ; 0x02265ADC
 	thumb_func_end ov115_02265ADC
 	; 0x02265AE0
 
-	.incbin "incbin/overlay115.bin"
+
+	.rodata
+	.incbin "incbin/overlay115_rodata.bin"

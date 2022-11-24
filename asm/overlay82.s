@@ -550,4 +550,6 @@ _0223B526:
 	thumb_func_end ov82_0223B510
 	; 0x0223B550
 
-	.incbin "incbin/overlay82.bin"
+
+	.rodata
+	.incbin "incbin/overlay82_rodata.bin"

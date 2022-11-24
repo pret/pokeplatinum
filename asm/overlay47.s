@@ -1149,4 +1149,6 @@ _02256A48:
 	thumb_func_end ov47_02256968
 	; 0x02256A4C
 
-	.incbin "incbin/overlay47.bin"
+
+	.rodata
+	.incbin "incbin/overlay47_rodata.bin"

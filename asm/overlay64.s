@@ -8721,4 +8721,9 @@ _0223219C: .word 0x000001C1
 	thumb_func_end ov64_0223217C
 	; 0x022321A0
 
-	.incbin "incbin/overlay64.bin"
+
+	.rodata
+	.incbin "incbin/overlay64_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay64_data.bin"

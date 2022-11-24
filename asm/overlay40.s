@@ -1135,4 +1135,6 @@ _02256A30:
 	thumb_func_end ov40_02256A14
 	; 0x02256A38
 
-	.incbin "incbin/overlay40.bin"
+
+	.rodata
+	.incbin "incbin/overlay40_rodata.bin"

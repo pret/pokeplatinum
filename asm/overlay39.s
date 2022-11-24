@@ -589,4 +589,6 @@ _022565EC: .word 0x02256614
 	thumb_func_end ov39_0225659C
 	; 0x022565F0
 
-	.incbin "incbin/overlay39.bin"
+
+	.rodata
+	.incbin "incbin/overlay39_rodata.bin"

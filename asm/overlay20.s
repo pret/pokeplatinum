@@ -8996,4 +8996,6 @@ _021D513C: .word 0x021D5329
 	thumb_func_end ov20_021D5124
 	; 0x021D5140
 
-	.incbin "incbin/overlay20.bin"
+
+	.rodata
+	.incbin "incbin/overlay20_rodata.bin"

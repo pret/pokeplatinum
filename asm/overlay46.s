@@ -2020,4 +2020,6 @@ ov46_0225710C: ; 0x0225710C
 	thumb_func_end ov46_0225710C
 	; 0x02257114
 
-	.incbin "incbin/overlay46.bin"
+
+	.rodata
+	.incbin "incbin/overlay46_rodata.bin"

@@ -735,4 +735,6 @@ _02256714: .word 0x040002A8
 	thumb_func_end ov26_022565F4
 	; 0x02256718
 
-	.incbin "incbin/overlay26.bin"
+
+	.rodata
+	.incbin "incbin/overlay26_rodata.bin"

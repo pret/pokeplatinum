@@ -498,4 +498,6 @@ ov120_021D1178: ; 0x021D1178
 	thumb_func_end ov120_021D1178
 	; 0x021D1190
 
-	.incbin "incbin/overlay120.bin"
+
+	.rodata
+	.incbin "incbin/overlay120_rodata.bin"

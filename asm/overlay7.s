@@ -10373,4 +10373,9 @@ _0224ECAE:
 	thumb_func_end ov7_0224EC9C
 	; 0x0224ED0C
 
-	.incbin "incbin/overlay7.bin"
+
+	.rodata
+	.incbin "incbin/overlay7_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay7_data.bin"

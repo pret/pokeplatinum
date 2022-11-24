@@ -2483,4 +2483,9 @@ _0223EB38: .word 0x0000069A
 	thumb_func_end ov72_0223EAD8
 	; 0x0223EB3C
 
-	.incbin "incbin/overlay72.bin"
+
+	.rodata
+	.incbin "incbin/overlay72_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay72_data.bin"

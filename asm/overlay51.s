@@ -392,4 +392,6 @@ ov51_02256458: ; 0x02256458
 	thumb_func_end ov51_02256458
 	; 0x02256474
 
-	.incbin "incbin/overlay51.bin"
+
+	.rodata
+	.incbin "incbin/overlay51_rodata.bin"

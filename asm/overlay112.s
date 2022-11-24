@@ -2251,4 +2251,9 @@ _0225D800:
 	thumb_func_end ov112_0225D784
 	; 0x0225D804
 
-	.incbin "incbin/overlay112.bin"
+
+	.rodata
+	.incbin "incbin/overlay112_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay112_data.bin"

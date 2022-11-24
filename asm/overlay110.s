@@ -2473,4 +2473,6 @@ _021D2190: .word 0x021D227C
 	thumb_func_end ov110_021D216C
 	; 0x021D2194
 
-	.incbin "incbin/overlay110.bin"
+
+	.rodata
+	.incbin "incbin/overlay110_rodata.bin"

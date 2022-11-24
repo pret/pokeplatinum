@@ -105423,4 +105423,9 @@ _0226E258: .word 0x000005DD
 	thumb_func_end ov16_0226E188
 	; 0x0226E25C
 
-	.incbin "incbin/overlay16.bin"
+
+	.rodata
+	.incbin "incbin/overlay16_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay16_data.bin"

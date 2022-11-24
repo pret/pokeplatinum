@@ -5937,4 +5937,6 @@ _0222D8E0:
 	thumb_func_end ov63_0222D8D0
 	; 0x0222D900
 
-	.incbin "incbin/overlay63.bin"
+
+	.rodata
+	.incbin "incbin/overlay63_rodata.bin"

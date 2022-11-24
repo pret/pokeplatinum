@@ -2858,4 +2858,9 @@ _0225DD34: .word 0x00000000
 	thumb_func_end ov68_0225DCCC
 	; 0x0225DD38
 
-	.incbin "incbin/overlay68.bin"
+
+	.rodata
+	.incbin "incbin/overlay68_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay68_data.bin"

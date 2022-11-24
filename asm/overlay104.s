@@ -36354,4 +36354,9 @@ _0223F286:
 	thumb_func_end ov104_0223F27C
 	; 0x0223F290
 
-	.incbin "incbin/overlay104.bin"
+
+	.rodata
+	.incbin "incbin/overlay104_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay104_data.bin"

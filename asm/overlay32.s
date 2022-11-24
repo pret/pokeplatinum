@@ -1450,4 +1450,6 @@ _02256CBC: .word 0x00000669
 	thumb_func_end ov32_02256C54
 	; 0x02256CC0
 
-	.incbin "incbin/overlay32.bin"
+
+	.rodata
+	.incbin "incbin/overlay32_rodata.bin"

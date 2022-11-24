@@ -7705,4 +7705,6 @@ _022600C4: .word ov114_0225CA44
 	thumb_func_end ov114_022600BC
 	; 0x022600C8
 
-	.incbin "incbin/overlay114.bin"
+
+	.rodata
+	.incbin "incbin/overlay114_rodata.bin"

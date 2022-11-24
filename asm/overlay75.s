@@ -1924,4 +1924,6 @@ _021D1CF8:
 	thumb_func_end ov75_021D1CB8
 	; 0x021D1CFC
 
-	.incbin "incbin/overlay75.bin"
+
+	.rodata
+	.incbin "incbin/overlay75_rodata.bin"

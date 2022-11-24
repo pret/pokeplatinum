@@ -14908,4 +14908,6 @@ _0225BD74: .word 0x00010200
 	thumb_func_end ov22_0225BC18
 	; 0x0225BD78
 
-	.incbin "incbin/overlay22.bin"
+
+	.rodata
+	.incbin "incbin/overlay22_rodata.bin"

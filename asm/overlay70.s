@@ -34713,4 +34713,6 @@ _0226D4C2:
 	thumb_func_end ov70_0226D46C
 	; 0x0226D4CC
 
-	.incbin "incbin/overlay70.bin"
+
+	.rodata
+	.incbin "incbin/overlay70_rodata.bin"

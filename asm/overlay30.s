@@ -659,4 +659,6 @@ _02256666:
 	thumb_func_end ov30_02256658
 	; 0x02256678
 
-	.incbin "incbin/overlay30.bin"
+
+	.rodata
+	.incbin "incbin/overlay30_rodata.bin"

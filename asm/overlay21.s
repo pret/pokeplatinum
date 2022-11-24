@@ -53440,4 +53440,6 @@ ov21_021E9B08: ; 0x021E9B08
 	thumb_func_end ov21_021E9B08
 	; 0x021E9B24
 
-	.incbin "incbin/overlay21.bin"
+
+	.rodata
+	.incbin "incbin/overlay21_rodata.bin"

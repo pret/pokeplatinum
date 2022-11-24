@@ -1598,4 +1598,6 @@ ov67_0225D3D0: ; 0x0225D3D0
 	thumb_func_end ov67_0225D3D0
 	; 0x0225D3EC
 
-	.incbin "incbin/overlay67.bin"
+
+	.rodata
+	.incbin "incbin/overlay67_rodata.bin"

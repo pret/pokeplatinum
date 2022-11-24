@@ -23091,4 +23091,9 @@ _02248E08:
 	thumb_func_end ov6_02248DD8
 	; 0x02248E14
 
-	.incbin "incbin/overlay6.bin"
+
+	.rodata
+	.incbin "incbin/overlay6_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay6_data.bin"

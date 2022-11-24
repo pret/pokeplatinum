@@ -7193,4 +7193,6 @@ _021D46C8: .word 0x00001118
 	thumb_func_end ov99_021D44CC
 	; 0x021D46CC
 
-	.incbin "incbin/overlay99.bin"
+
+	.rodata
+	.incbin "incbin/overlay99_rodata.bin"

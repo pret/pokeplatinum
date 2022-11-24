@@ -3374,4 +3374,6 @@ _021D2908: .word 0x0000FFFF
 	thumb_func_end ov92_021D28C0
 	; 0x021D290C
 
-	.incbin "incbin/overlay92.bin"
+
+	.rodata
+	.incbin "incbin/overlay92_rodata.bin"

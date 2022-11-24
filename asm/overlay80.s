@@ -4231,4 +4231,9 @@ _021D2E56:
 	thumb_func_end ov80_021D2E24
 	; 0x021D2E5C
 
-	.incbin "incbin/overlay80.bin"
+
+	.rodata
+	.incbin "incbin/overlay80_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay80_data.bin"

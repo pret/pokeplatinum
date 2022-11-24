@@ -10076,4 +10076,9 @@ _02240204: .word 0x00000708
 	thumb_func_end ov83_022401AC
 	; 0x02240208
 
-	.incbin "incbin/overlay83.bin"
+
+	.rodata
+	.incbin "incbin/overlay83_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay83_data.bin"

@@ -6101,4 +6101,9 @@ ov61_0222E478: ; 0x0222E478
 	arm_func_end ov61_0222E478
 	; 0x0222E47C
 
-	.incbin "incbin/overlay61.bin"
+
+	.rodata
+	.incbin "incbin/overlay61_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay61_data.bin"

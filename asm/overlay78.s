@@ -3604,4 +3604,6 @@ _021D2948: .word 0x00000189
 	thumb_func_end ov78_021D291C
 	; 0x021D294C
 
-	.incbin "incbin/overlay78.bin"
+
+	.rodata
+	.incbin "incbin/overlay78_rodata.bin"

@@ -2008,4 +2008,9 @@ _021D1D3C:
 	thumb_func_end ov90_021D1C90
 	; 0x021D1D5C
 
-	.incbin "incbin/overlay90.bin"
+
+	.rodata
+	.incbin "incbin/overlay90_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay90_data.bin"

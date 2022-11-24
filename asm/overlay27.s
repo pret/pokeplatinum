@@ -1841,4 +1841,6 @@ _02256F84:
 	thumb_func_end ov27_02256F7C
 	; 0x02256F98
 
-	.incbin "incbin/overlay27.bin"
+
+	.rodata
+	.incbin "incbin/overlay27_rodata.bin"

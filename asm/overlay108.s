@@ -3631,4 +3631,6 @@ _02243666:
 	thumb_func_end ov108_02243660
 	; 0x0224367C
 
-	.incbin "incbin/overlay108.bin"
+
+	.rodata
+	.incbin "incbin/overlay108_rodata.bin"

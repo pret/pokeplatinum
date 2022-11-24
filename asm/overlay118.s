@@ -498,4 +498,6 @@ _021D116C: .word 0x02100DF4
 	thumb_func_end ov118_021D114C
 	; 0x021D1170
 
-	.incbin "incbin/overlay118.bin"
+
+	.rodata
+	.incbin "incbin/overlay118_rodata.bin"

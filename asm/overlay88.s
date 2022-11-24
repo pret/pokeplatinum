@@ -7388,4 +7388,6 @@ _0223EE24: .word 0x000005DC
 	thumb_func_end ov88_0223EE14
 	; 0x0223EE28
 
-	.incbin "incbin/overlay88.bin"
+
+	.rodata
+	.incbin "incbin/overlay88_rodata.bin"

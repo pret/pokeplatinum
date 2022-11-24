@@ -11184,4 +11184,6 @@ _02240E92:
 	thumb_func_end ov84_02240E5C
 	; 0x02240E94
 
-	.incbin "incbin/overlay84.bin"
+
+	.rodata
+	.incbin "incbin/overlay84_rodata.bin"

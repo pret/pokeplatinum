@@ -1412,4 +1412,6 @@ ov45_02256C90: ; 0x02256C90
 	thumb_func_end ov45_02256C90
 	; 0x02256C98
 
-	.incbin "incbin/overlay45.bin"
+
+	.rodata
+	.incbin "incbin/overlay45_rodata.bin"

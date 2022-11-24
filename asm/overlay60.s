@@ -11464,4 +11464,9 @@ _02228C44:
 	arm_func_end ov60_02228BC8
 	; 0x02228C4C
 
-	.incbin "incbin/overlay60.bin"
+
+	.rodata
+	.incbin "incbin/overlay60_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay60_data.bin"

@@ -5230,4 +5230,6 @@ ov73_021D37AC: ; 0x021D37AC
 	thumb_func_end ov73_021D37AC
 	; 0x021D37C4
 
-	.incbin "incbin/overlay73.bin"
+
+	.rodata
+	.incbin "incbin/overlay73_rodata.bin"

@@ -16387,4 +16387,6 @@ _02249DFC: .word 0x000003D9
 	thumb_func_end ov107_02249DBC
 	; 0x02249E00
 
-	.incbin "incbin/overlay107.bin"
+
+	.rodata
+	.incbin "incbin/overlay107_rodata.bin"

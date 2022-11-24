@@ -83908,4 +83908,9 @@ ov5_021F8908: ; 0x021F8908
 	thumb_func_end ov5_021F8908
 	; 0x021F8914
 
-	.incbin "incbin/overlay5.bin"
+
+	.rodata
+	.incbin "incbin/overlay5_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay5_data.bin"

@@ -2809,4 +2809,6 @@ _021D23B4: .word 0x0000FFFF
 	thumb_func_end ov119_021D21BC
 	; 0x021D23B8
 
-	.incbin "incbin/overlay119.bin"
+
+	.rodata
+	.incbin "incbin/overlay119_rodata.bin"

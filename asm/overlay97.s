@@ -34263,4 +34263,9 @@ _0223D670: .word 0x02240AF4
 	arm_func_end ov97_0223D62C
 	; 0x0223D674
 
-	.incbin "incbin/overlay97.bin"
+
+	.rodata
+	.incbin "incbin/overlay97_rodata.bin"
+
+	.data
+	.incbin "incbin/overlay97_data.bin"

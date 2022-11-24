@@ -8449,4 +8449,6 @@ _022608A8:
 	thumb_func_end ov113_02260884
 	; 0x022608AC
 
-	.incbin "incbin/overlay113.bin"
+
+	.rodata
+	.incbin "incbin/overlay113_rodata.bin"
