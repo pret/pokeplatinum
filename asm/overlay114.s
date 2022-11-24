@@ -7708,3 +7708,7 @@ _022600C4: .word ov114_0225CA44
 
 	.rodata
 	.incbin "incbin/overlay114_rodata.bin"
+
+
+	.bss
+	.space 0x0

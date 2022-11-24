@@ -571,3 +571,7 @@ _022565D0: .word 0x00000663
 
 	.rodata
 	.incbin "incbin/overlay49_rodata.bin"
+
+
+	.bss
+	.space 0x0

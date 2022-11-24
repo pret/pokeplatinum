@@ -1708,3 +1708,6 @@ _021D1AC4:
 
 	.data
 	.incbin "incbin/overlay87_data.bin"
+
+	.bss
+	.space 0x0

@@ -5302,3 +5302,6 @@ _0223DA74: .word 0x00000DD8
 
 	.data
 	.incbin "incbin/overlay96_data.bin"
+
+	.bss
+	.space 0x120

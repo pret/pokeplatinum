@@ -31364,3 +31364,6 @@ ov19_021DFDEC: ; 0x021DFDEC
 
 	.data
 	.incbin "incbin/overlay19_data.bin"
+
+	.bss
+	.space 0x1A0

@@ -105429,3 +105429,6 @@ _0226E258: .word 0x000005DD
 
 	.data
 	.incbin "incbin/overlay16_data.bin"
+
+	.bss
+	.space 0x0

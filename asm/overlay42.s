@@ -673,3 +673,7 @@ _022566A4: .word 0x00000676
 
 	.rodata
 	.incbin "incbin/overlay42_rodata.bin"
+
+
+	.bss
+	.space 0x20

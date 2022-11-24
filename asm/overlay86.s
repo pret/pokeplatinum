@@ -4233,3 +4233,6 @@ _0223D370: .word 0x00001BE8
 
 	.data
 	.incbin "incbin/overlay86_data.bin"
+
+	.bss
+	.space 0x20

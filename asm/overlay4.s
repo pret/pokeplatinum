@@ -83530,3 +83530,6 @@ _02215864: .word sub_020C8D10
 
 	.data
 	.incbin "incbin/overlay4_data.bin"
+
+	.bss
+	.space 0x5400

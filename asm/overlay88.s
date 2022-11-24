@@ -7391,3 +7391,7 @@ _0223EE24: .word 0x000005DC
 
 	.rodata
 	.incbin "incbin/overlay88_rodata.bin"
+
+
+	.bss
+	.space 0x0

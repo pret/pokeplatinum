@@ -14142,3 +14142,6 @@ ov116_02267728: ; 0x02267728
 
 	.data
 	.incbin "incbin/overlay116_data.bin"
+
+	.bss
+	.space 0x0

@@ -183,3 +183,7 @@ _0221F948: .word 0x02100DF4
 
 	.rodata
 	.incbin "incbin/overlay11_rodata.bin"
+
+
+	.bss
+	.space 0x0

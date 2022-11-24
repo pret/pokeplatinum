@@ -1562,3 +1562,7 @@ _02256D64: .word 0x0000066A
 
 	.rodata
 	.incbin "incbin/overlay41_rodata.bin"
+
+
+	.bss
+	.space 0x0

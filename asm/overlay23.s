@@ -49392,3 +49392,6 @@ _02256308: .word 0x02256B5C
 
 	.data
 	.incbin "incbin/overlay23_data.bin"
+
+	.bss
+	.space 0x80

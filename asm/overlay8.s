@@ -5862,3 +5862,6 @@ _0224C6D4: .word 0x0224C708
 
 	.data
 	.incbin "incbin/overlay8_data.bin"
+
+	.bss
+	.space 0x0

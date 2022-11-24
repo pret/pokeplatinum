@@ -50826,3 +50826,6 @@ _02238590: .word 0x0000013B
 
 	.data
 	.incbin "incbin/overlay12_data.bin"
+
+	.bss
+	.space 0x0

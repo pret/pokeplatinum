@@ -9961,3 +9961,7 @@ _022248A0: .word 0x000003D6
 
 	.rodata
 	.incbin "incbin/overlay14_rodata.bin"
+
+
+	.bss
+	.space 0x0

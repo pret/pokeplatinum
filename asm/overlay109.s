@@ -10100,3 +10100,6 @@ ov109_021D59A8: ; 0x021D59A8
 
 	.data
 	.incbin "incbin/overlay109_data.bin"
+
+	.bss
+	.space 0x0

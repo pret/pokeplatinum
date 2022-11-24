@@ -5233,3 +5233,7 @@ ov73_021D37AC: ; 0x021D37AC
 
 	.rodata
 	.incbin "incbin/overlay73_rodata.bin"
+
+
+	.bss
+	.space 0x0

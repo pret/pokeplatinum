@@ -2812,3 +2812,7 @@ _021D23B4: .word 0x0000FFFF
 
 	.rodata
 	.incbin "incbin/overlay119_rodata.bin"
+
+
+	.bss
+	.space 0x0

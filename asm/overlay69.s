@@ -5493,3 +5493,7 @@ _0225F008:
 
 	.rodata
 	.incbin "incbin/overlay69_rodata.bin"
+
+
+	.bss
+	.space 0x0

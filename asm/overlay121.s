@@ -721,3 +721,7 @@ _021D1368:
 
 	.rodata
 	.incbin "incbin/overlay121_rodata.bin"
+
+
+	.bss
+	.space 0x0

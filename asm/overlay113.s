@@ -8452,3 +8452,7 @@ _022608A8:
 
 	.rodata
 	.incbin "incbin/overlay113_rodata.bin"
+
+
+	.bss
+	.space 0x0

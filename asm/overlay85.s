@@ -2475,3 +2475,7 @@ _0224283C: .word 0x02242A46
 
 	.rodata
 	.incbin "incbin/overlay85_rodata.bin"
+
+
+	.bss
+	.space 0x0

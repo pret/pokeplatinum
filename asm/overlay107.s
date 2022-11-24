@@ -16390,3 +16390,7 @@ _02249DFC: .word 0x000003D9
 
 	.rodata
 	.incbin "incbin/overlay107_rodata.bin"
+
+
+	.bss
+	.space 0x0

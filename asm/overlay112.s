@@ -2257,3 +2257,6 @@ _0225D800:
 
 	.data
 	.incbin "incbin/overlay112_data.bin"
+
+	.bss
+	.space 0x0

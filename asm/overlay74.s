@@ -1795,3 +1795,7 @@ _021D1BF0: .word ov74_021D1968
 
 	.rodata
 	.incbin "incbin/overlay74_rodata.bin"
+
+
+	.bss
+	.space 0x0

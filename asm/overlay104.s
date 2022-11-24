@@ -36360,3 +36360,6 @@ _0223F286:
 
 	.data
 	.incbin "incbin/overlay104_data.bin"
+
+	.bss
+	.space 0x20

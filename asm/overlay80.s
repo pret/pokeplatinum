@@ -4237,3 +4237,6 @@ _021D2E56:
 
 	.data
 	.incbin "incbin/overlay80_data.bin"
+
+	.bss
+	.space 0x0

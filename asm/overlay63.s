@@ -5940,3 +5940,7 @@ _0222D8E0:
 
 	.rodata
 	.incbin "incbin/overlay63_rodata.bin"
+
+
+	.bss
+	.space 0x0

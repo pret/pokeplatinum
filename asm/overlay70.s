@@ -34716,3 +34716,7 @@ _0226D4C2:
 
 	.rodata
 	.incbin "incbin/overlay70_rodata.bin"
+
+
+	.bss
+	.space 0x0

@@ -859,3 +859,6 @@ _021D1498: .word 0x021D15C8
 
 	.data
 	.incbin "incbin/overlay93_data.bin"
+
+	.bss
+	.space 0x0

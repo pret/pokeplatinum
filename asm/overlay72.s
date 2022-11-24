@@ -2489,3 +2489,6 @@ _0223EB38: .word 0x0000069A
 
 	.data
 	.incbin "incbin/overlay72_data.bin"
+
+	.bss
+	.space 0x0

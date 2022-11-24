@@ -8999,3 +8999,7 @@ _021D513C: .word 0x021D5329
 
 	.rodata
 	.incbin "incbin/overlay20_rodata.bin"
+
+
+	.bss
+	.space 0x0

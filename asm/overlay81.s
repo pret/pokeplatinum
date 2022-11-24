@@ -4789,3 +4789,7 @@ _021D333C: .word 0x00010200
 
 	.rodata
 	.incbin "incbin/overlay81_rodata.bin"
+
+
+	.bss
+	.space 0x0

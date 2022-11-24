@@ -21236,3 +21236,6 @@ _022459F4: .word 0x00000EFC
 
 	.data
 	.incbin "incbin/overlay94_data.bin"
+
+	.bss
+	.space 0x160

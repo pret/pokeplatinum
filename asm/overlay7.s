@@ -10379,3 +10379,6 @@ _0224ECAE:
 
 	.data
 	.incbin "incbin/overlay7_data.bin"
+
+	.bss
+	.space 0x20

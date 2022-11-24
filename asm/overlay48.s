@@ -1131,3 +1131,7 @@ _02256A26:
 
 	.rodata
 	.incbin "incbin/overlay48_rodata.bin"
+
+
+	.bss
+	.space 0x0

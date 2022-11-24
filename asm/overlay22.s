@@ -14911,3 +14911,7 @@ _0225BD74: .word 0x00010200
 
 	.rodata
 	.incbin "incbin/overlay22_rodata.bin"
+
+
+	.bss
+	.space 0x0

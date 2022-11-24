@@ -2476,3 +2476,7 @@ _021D2190: .word 0x021D227C
 
 	.rodata
 	.incbin "incbin/overlay110_rodata.bin"
+
+
+	.bss
+	.space 0x0

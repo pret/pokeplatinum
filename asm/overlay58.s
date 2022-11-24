@@ -4085,3 +4085,6 @@ _021D2DA6:
 
 	.data
 	.incbin "incbin/overlay58_data.bin"
+
+	.bss
+	.space 0x0

@@ -8155,3 +8155,6 @@ _021D50D0: .word 0x04000064
 
 	.data
 	.incbin "incbin/overlay100_data.bin"
+
+	.bss
+	.space 0x0

@@ -501,3 +501,7 @@ ov120_021D1178: ; 0x021D1178
 
 	.rodata
 	.incbin "incbin/overlay120_rodata.bin"
+
+
+	.bss
+	.space 0x0

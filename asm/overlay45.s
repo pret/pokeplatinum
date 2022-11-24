@@ -1415,3 +1415,7 @@ ov45_02256C90: ; 0x02256C90
 
 	.rodata
 	.incbin "incbin/overlay45_rodata.bin"
+
+
+	.bss
+	.space 0x0

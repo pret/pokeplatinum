@@ -12203,3 +12203,7 @@ _022668F4: .word ov117_0226238C
 
 	.rodata
 	.incbin "incbin/overlay117_rodata.bin"
+
+
+	.bss
+	.space 0x0

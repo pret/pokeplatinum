@@ -53249,3 +53249,6 @@ _02246430: .word 0x02253424
 
 	.data
 	.incbin "incbin/overlay18_data.bin"
+
+	.bss
+	.space 0x81E0

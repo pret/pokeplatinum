@@ -553,3 +553,7 @@ _0223B526:
 
 	.rodata
 	.incbin "incbin/overlay82_rodata.bin"
+
+
+	.bss
+	.space 0x0

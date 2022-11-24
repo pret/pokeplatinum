@@ -34269,3 +34269,6 @@ _0223D670: .word 0x02240AF4
 
 	.data
 	.incbin "incbin/overlay97_data.bin"
+
+	.bss
+	.space 0x1980

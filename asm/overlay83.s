@@ -10082,3 +10082,6 @@ _02240204: .word 0x00000708
 
 	.data
 	.incbin "incbin/overlay83_data.bin"
+
+	.bss
+	.space 0x0

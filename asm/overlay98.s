@@ -6086,3 +6086,6 @@ _02249B14:
 
 	.data
 	.incbin "incbin/overlay98_data.bin"
+
+	.bss
+	.space 0x20

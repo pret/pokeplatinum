@@ -10488,3 +10488,6 @@ _0224BE70: .word 0x000005E6
 
 	.data
 	.incbin "incbin/overlay95_data.bin"
+
+	.bss
+	.space 0xA0

@@ -8727,3 +8727,6 @@ _0223219C: .word 0x000001C1
 
 	.data
 	.incbin "incbin/overlay64_data.bin"
+
+	.bss
+	.space 0x0

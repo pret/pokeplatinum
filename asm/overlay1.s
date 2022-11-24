@@ -20,3 +20,7 @@ _021D0D90:
 _021D0D94:
 	.fill 0xC
 	; 0x021D0DA0
+
+
+	.bss
+	.space 0x20

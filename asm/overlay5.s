@@ -83914,3 +83914,6 @@ ov5_021F8908: ; 0x021F8908
 
 	.data
 	.incbin "incbin/overlay5_data.bin"
+
+	.bss
+	.space 0x3C020

@@ -3719,3 +3719,7 @@ _02243794: .word 0x000003D9
 
 	.rodata
 	.incbin "incbin/overlay106_rodata.bin"
+
+
+	.bss
+	.space 0x0

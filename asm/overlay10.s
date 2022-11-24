@@ -6273,3 +6273,7 @@ _02222A60: .word 0x00000BC4
 
 	.rodata
 	.incbin "incbin/overlay10_rodata.bin"
+
+
+	.bss
+	.space 0x0

@@ -2975,3 +2975,6 @@ _022577F8: .word 0x00000163
 
 	.data
 	.incbin "incbin/overlay33_data.bin"
+
+	.bss
+	.space 0x0

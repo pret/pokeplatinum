@@ -738,3 +738,7 @@ _02256714: .word 0x040002A8
 
 	.rodata
 	.incbin "incbin/overlay26_rodata.bin"
+
+
+	.bss
+	.space 0x0

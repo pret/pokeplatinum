@@ -2023,3 +2023,7 @@ ov46_0225710C: ; 0x0225710C
 
 	.rodata
 	.incbin "incbin/overlay46_rodata.bin"
+
+
+	.bss
+	.space 0x0

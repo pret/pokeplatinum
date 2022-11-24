@@ -501,3 +501,7 @@ _021D116C: .word 0x02100DF4
 
 	.rodata
 	.incbin "incbin/overlay118_rodata.bin"
+
+
+	.bss
+	.space 0x0

@@ -53443,3 +53443,7 @@ ov21_021E9B08: ; 0x021E9B08
 
 	.rodata
 	.incbin "incbin/overlay21_rodata.bin"
+
+
+	.bss
+	.space 0x0

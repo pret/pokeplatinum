@@ -16168,3 +16168,6 @@ _0225120C:
 
 	.data
 	.incbin "incbin/overlay9_data.bin"
+
+	.bss
+	.space 0x0

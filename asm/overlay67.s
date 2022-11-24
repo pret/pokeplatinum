@@ -1601,3 +1601,7 @@ ov67_0225D3D0: ; 0x0225D3D0
 
 	.rodata
 	.incbin "incbin/overlay67_rodata.bin"
+
+
+	.bss
+	.space 0x0

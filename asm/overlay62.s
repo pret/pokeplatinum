@@ -49692,3 +49692,6 @@ _02248728: .word 0x00001D4C
 
 	.data
 	.incbin "incbin/overlay62_data.bin"
+
+	.bss
+	.space 0x0

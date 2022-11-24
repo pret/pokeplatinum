@@ -11187,3 +11187,7 @@ _02240E92:
 
 	.rodata
 	.incbin "incbin/overlay84_rodata.bin"
+
+
+	.bss
+	.space 0x0

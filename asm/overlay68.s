@@ -2864,3 +2864,6 @@ _0225DD34: .word 0x00000000
 
 	.data
 	.incbin "incbin/overlay68_data.bin"
+
+	.bss
+	.space 0x0

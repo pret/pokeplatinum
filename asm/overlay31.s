@@ -792,3 +792,7 @@ _02256760: .word 0x02256950
 
 	.rodata
 	.incbin "incbin/overlay31_rodata.bin"
+
+
+	.bss
+	.space 0x0

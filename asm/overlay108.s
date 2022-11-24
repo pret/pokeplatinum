@@ -3634,3 +3634,7 @@ _02243666:
 
 	.rodata
 	.incbin "incbin/overlay108_rodata.bin"
+
+
+	.bss
+	.space 0x20

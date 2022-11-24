@@ -5519,3 +5519,6 @@ ov79_021D38D0: ; 0x021D38D0
 
 	.data
 	.incbin "incbin/overlay79_data.bin"
+
+	.bss
+	.space 0x0

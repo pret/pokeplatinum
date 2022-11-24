@@ -16171,3 +16171,6 @@ ov101_021D8574: ; 0x021D8574
 
 	.data
 	.incbin "incbin/overlay101_data.bin"
+
+	.bss
+	.space 0x0

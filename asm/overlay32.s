@@ -1453,3 +1453,7 @@ _02256CBC: .word 0x00000669
 
 	.rodata
 	.incbin "incbin/overlay32_rodata.bin"
+
+
+	.bss
+	.space 0x0

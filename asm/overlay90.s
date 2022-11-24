@@ -2014,3 +2014,6 @@ _021D1D3C:
 
 	.data
 	.incbin "incbin/overlay90_data.bin"
+
+	.bss
+	.space 0x0

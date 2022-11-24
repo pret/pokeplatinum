@@ -5250,3 +5250,6 @@ _021D35FC: .word 0x000003D9
 
 	.data
 	.incbin "incbin/overlay111_data.bin"
+
+	.bss
+	.space 0x0

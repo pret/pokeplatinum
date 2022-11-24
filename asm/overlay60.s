@@ -11470,3 +11470,6 @@ _02228C44:
 
 	.data
 	.incbin "incbin/overlay60_data.bin"
+
+	.bss
+	.space 0x1040

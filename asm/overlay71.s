@@ -4441,3 +4441,7 @@ _0223D4A4: .word 0x0000FFFF
 
 	.rodata
 	.incbin "incbin/overlay71_rodata.bin"
+
+
+	.bss
+	.space 0x0

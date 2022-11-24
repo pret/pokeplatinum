@@ -110,3 +110,7 @@ ov24_02253DB4: ; 0x02253DB4
 
 	.rodata
 	.incbin "incbin/overlay24_rodata.bin"
+
+
+	.bss
+	.space 0x0

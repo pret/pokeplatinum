@@ -3238,3 +3238,7 @@ _021D2704: .word 0x00000162
 
 	.rodata
 	.incbin "incbin/overlay91_rodata.bin"
+
+
+	.bss
+	.space 0x0

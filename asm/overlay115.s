@@ -11359,3 +11359,7 @@ ov115_02265ADC: ; 0x02265ADC
 
 	.rodata
 	.incbin "incbin/overlay115_rodata.bin"
+
+
+	.bss
+	.space 0x40

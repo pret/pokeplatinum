@@ -916,3 +916,7 @@ _021D1524: .word 0x00010200
 
 	.rodata
 	.incbin "incbin/overlay102_rodata.bin"
+
+
+	.bss
+	.space 0x0

@@ -6107,3 +6107,6 @@ ov61_0222E478: ; 0x0222E478
 
 	.data
 	.incbin "incbin/overlay61_data.bin"
+
+	.bss
+	.space 0xB60

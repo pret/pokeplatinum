@@ -12370,3 +12370,6 @@ ov77_021D7268: ; 0x021D7268
 
 	.data
 	.incbin "incbin/overlay77_data.bin"
+
+	.bss
+	.space 0x0

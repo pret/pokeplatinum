@@ -1125,3 +1125,7 @@ ov34_02256A0C: ; 0x02256A0C
 
 	.rodata
 	.incbin "incbin/overlay34_rodata.bin"
+
+
+	.bss
+	.space 0x0

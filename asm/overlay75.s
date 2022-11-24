@@ -1927,3 +1927,7 @@ _021D1CF8:
 
 	.rodata
 	.incbin "incbin/overlay75_rodata.bin"
+
+
+	.bss
+	.space 0x0

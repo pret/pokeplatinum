@@ -57456,3 +57456,6 @@ ov66_022588F4: ; 0x022588F4
 
 	.data
 	.incbin "incbin/overlay66_data.bin"
+
+	.bss
+	.space 0x1040

@@ -23097,3 +23097,6 @@ _02248E08:
 
 	.data
 	.incbin "incbin/overlay6_data.bin"
+
+	.bss
+	.space 0x20

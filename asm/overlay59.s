@@ -4833,3 +4833,6 @@ _021D3284: .word 0x021D33FC
 
 	.data
 	.incbin "incbin/overlay59_data.bin"
+
+	.bss
+	.space 0x0

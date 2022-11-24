@@ -9107,3 +9107,7 @@ _022462C8: .word 0x000003D9
 
 	.rodata
 	.incbin "incbin/overlay105_rodata.bin"
+
+
+	.bss
+	.space 0x0

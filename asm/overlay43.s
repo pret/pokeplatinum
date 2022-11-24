@@ -1189,3 +1189,7 @@ _02256A88: .word 0x00000000
 
 	.rodata
 	.incbin "incbin/overlay43_rodata.bin"
+
+
+	.bss
+	.space 0x0

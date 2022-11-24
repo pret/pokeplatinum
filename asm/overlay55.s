@@ -405,3 +405,7 @@ ov55_02256468: ; 0x02256468
 
 	.rodata
 	.incbin "incbin/overlay55_rodata.bin"
+
+
+	.bss
+	.space 0x0

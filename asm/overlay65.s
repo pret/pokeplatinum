@@ -22176,3 +22176,6 @@ ov65_02238910: ; 0x02238910
 
 	.data
 	.incbin "incbin/overlay65_data.bin"
+
+	.bss
+	.space 0x20

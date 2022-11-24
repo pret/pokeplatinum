@@ -17975,3 +17975,7 @@ _02228CF8: .word 0x000005DD
 
 	.rodata
 	.incbin "incbin/overlay13_rodata.bin"
+
+
+	.bss
+	.space 0x0
