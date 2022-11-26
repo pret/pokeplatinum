@@ -337,4 +337,5 @@ NITROFS_FILES := \
 	./resource/eng/frontier_graphic/frontier_bg.narc \
 	./resource/eng/frontier_graphic/frontier_obj.narc \
 	./resource/eng/scratch/scratch.narc \
-	./resource/eng/pms_aikotoba/pms_aikotoba.narc
+	./resource/eng/pms_aikotoba/pms_aikotoba.narc \
+	./dwc/utility.bin
