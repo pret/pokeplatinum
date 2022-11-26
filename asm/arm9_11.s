@@ -5114,7 +5114,7 @@ _020B4E38:
 	ldr r8, [r5]
 	mov r3, r0, asr #0xc
 	mul r1, r2, r7
-	mul r0, r8, sl
+	mul r0, r8, r9
 	sub r2, r1, r0
 	mul r1, r8, r4
 	mul r0, r6, r7
@@ -7235,8 +7235,8 @@ _020B6BBC:
 	ldr r2, [r0, #0x28]
 	ldrh r1, [r0, #0x2e]
 	mov r2, r2, lsl #4
-	rsbs r2, r2, #0
-	mul r3, r2, r3
+	rsb r2, r2, #0
+	mul r3, r2, r1
 	mov r1, #0x1000
 	str r3, [sp, #0x30]
 	str r1, [sp, #8]
