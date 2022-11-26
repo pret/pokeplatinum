@@ -1130,7 +1130,7 @@ _0209D338:
 	ldrh r0, [r4, #0x26]
 	cmp r6, #0
 	ldr r5, [sp, #0x18]
-	mul r2, r1, r2
+	mul r2, r1, r0
 	mov r1, r2, asr #8
 	strb r1, [sp, #0x20]
 	ldrh r1, [r4, #0x28]
@@ -1666,7 +1666,7 @@ sub_0209D998: ; 0x0209D998
 	ldr r1, [r1, #0]
 	ldr r1, [r1, #0x4c]
 	mov r1, r1, lsl #0x1f
-	mov r1, r1, lsr #0x1f
+	movs r1, r1, lsr #0x1f
 	ldrnesh r2, [r0, #0x78]
 	mvnne r1, #0
 	smulbbne r1, r2, r1
@@ -2732,7 +2732,7 @@ _0209EAFC:
 	mov r0, r6, asr #0x1f
 	umull r8, r7, r2, r6
 	mla r7, r2, r0, r7
-	add r2, r8, ip
+	adds r2, r8, ip
 	mla r7, r3, r6, r7
 	adc r0, r7, lr
 	mov r2, r2, lsr #0xc

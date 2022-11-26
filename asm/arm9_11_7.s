@@ -616,7 +616,7 @@ sub_020C55E0: ; 0x020C55E0
 	b _020C5618
 _020C5604:
 	add r3, r4, #1
-	mul r2, r4, r2
+	mul r2, r4, r1
 	mla ip, r3, r0, lr
 	mov r4, r3
 	str ip, [lr, r2]
@@ -1267,7 +1267,7 @@ _020C5E08: .word 0x021CEB80
 sub_020C5E0C: ; 0x020C5E0C
 	stmfd sp!, {r4, lr}
 	mov r1, #0x24
-	mul r4, r0, r4
+	mul r4, r0, r1
 	ldr r0, _020C5E44 ; =0x021CEB80
 	mov r1, #4
 	ldr r0, [r0, #0]
