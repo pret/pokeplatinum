@@ -19,6 +19,7 @@ DEFINES = $(GF_DEFINES) $(GLB_DEFINES)
 
 ALL_BUILDDIRS  := $(BUILD_DIR)/lib
 include common.mk
+include filesystem.mk
 
 ROM             := $(BUILD_DIR)/poke$(buildname).nds
 #BANNER          := $(ROM:%.nds=%.bnr)
