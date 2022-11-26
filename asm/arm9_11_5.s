@@ -19,39 +19,39 @@ sub_020BBC6C: ; 0x020BBC6C
 	movne sb, r1
 	smull fp, r8, r2, r6
 	smull r7, r1, r0, r3
-	sub r7, fp, r7
+	subs r7, fp, r7
 	sbc ip, r8, r1
 	ldr r4, [sl, #0x10]
 	ldr r5, [sl, #0x1c]
-	add r1, r7, #0x800
+	adds r1, r7, #0x800
 	smull fp, r8, r4, r6
 	smull r7, r6, r0, r5
 	adc r0, ip, #0
-	sub r7, fp, r7
+	subs r7, fp, r7
 	sbc r6, r8, r6
 	mov r8, r1, lsr #0xc
 	orr r8, r8, r0, lsl #20
 	smull r1, r0, r2, r5
-	add r7, r7, #0x800
+	adds r7, r7, #0x800
 	smull r5, r3, r4, r3
 	adc r2, r6, #0
 	mov r7, r7, lsr #0xc
 	orr r7, r7, r2, lsl #20
-	sub r1, r1, r5
+	subs r1, r1, r5
 	sbc r5, r0, r3
 	ldr r2, [sl]
-	add r6, r1, #0x800
+	adds r6, r1, #0x800
 	ldr fp, [sl, #4]
 	smull r4, r3, r2, r7
 	smull r1, r0, fp, r8
 	adc r2, r5, #0
 	mov r6, r6, lsr #0xc
 	orr r6, r6, r2, lsl #20
-	sub r2, r4, r1
+	subs r2, r4, r1
 	ldr r1, [sl, #8]
 	sbc r0, r3, r0
 	smlal r2, r0, r1, r6
-	add r1, r2, #0x800
+	adds r1, r2, #0x800
 	adc r2, r0, #0
 	mov r0, r1, lsr #0xc
 	mov r1, r8, asr #0x1f
@@ -60,7 +60,7 @@ sub_020BBC6C: ; 0x020BBC6C
 	str r1, [sp, #8]
 	mov r1, r6, asr #0x1f
 	str r1, [sp, #0xc]
-	orr r0, r0, r2, lsl #20
+	orrs r0, r0, r2, lsl #20
 	mov r1, #0
 	addeq sp, sp, #0x5c
 	subeq r0, r1, #1
@@ -82,7 +82,7 @@ sub_020BBC6C: ; 0x020BBC6C
 	ldr r5, [sp, #0x10]
 	ldmia sl, {r3, lr}
 	smull ip, r5, lr, r5
-	sub r0, ip, r0
+	subs r0, ip, r0
 	ldr r2, [sl, #0xc]
 	sbc r4, r5, r4
 	smull r1, r5, r2, r1
@@ -92,7 +92,7 @@ sub_020BBC6C: ; 0x020BBC6C
 	orr r5, r5, r4, lsl #20
 	smull r4, r2, lr, fp
 	ldr r0, [sp, #0x14]
-	sub r4, r4, r0
+	subs r4, r4, r0
 	ldr r0, [sp, #0x18]
 	mov r4, r4, lsr #0xc
 	sbc r0, r2, r0
@@ -100,12 +100,12 @@ sub_020BBC6C: ; 0x020BBC6C
 	ldr r0, [sp, #0x10]
 	ldr r2, [sp, #0x1c]
 	smull ip, r0, r3, r0
-	sub r2, ip, r2
+	subs r2, ip, r2
 	ldr ip, [sp, #0x20]
 	sbc r0, r0, ip
 	smull ip, fp, r3, fp
 	ldr r3, [sp, #0x28]
-	sub r1, ip, r1
+	subs r1, ip, r1
 	sbc r3, fp, r3
 	mov fp, r2, lsr #0xc
 	orr fp, fp, r0, lsl #20
@@ -160,7 +160,7 @@ sub_020BBC6C: ; 0x020BBC6C
 	smull r5, r4, r3, r1
 	ldr r1, [sl, #4]
 	smull r3, r1, r2, r1
-	sub r2, r5, r3
+	subs r2, r5, r3
 	sbc r1, r4, r1
 	mov r2, r2, lsr #0xc
 	orr r2, r2, r1, lsl #20
@@ -175,7 +175,7 @@ sub_020BBC6C: ; 0x020BBC6C
 	ldr r1, [sl, #4]
 	smull r6, r5, r4, r3
 	smull r3, r1, r2, r1
-	sub r2, r6, r3
+	subs r2, r6, r3
 	sbc r1, r5, r1
 	mov r2, r2, lsr #0xc
 	orr r2, r2, r1, lsl #20
@@ -318,11 +318,11 @@ sub_020BBFF8: ; 0x020BBFF8
 	umull sb, r7, r8, r4
 	mla r7, r8, r6, r7
 	ldr r8, [sp, #0x14]
-	add r6, fp, sb
+	adds r6, fp, sb
 	mla r7, r8, r4, r7
 	adc r7, r2, r7
 	ldr r2, [sp, #0xc]
-	add r6, r2, r6
+	adds r6, r2, r6
 	adc r2, r3, r7
 	mov r3, r6, lsr #0xc
 	orr r3, r3, r2, lsl #20
@@ -366,7 +366,7 @@ sub_020BBFF8: ; 0x020BBFF8
 	str r0, [sp, #0x18]
 	ldr r0, [r1, #0x2c]
 	mov fp, r2, asr #0x1f
-	add r0, r0, r3
+	adds r0, r0, r3
 	str r0, [sl, #0x2c]
 	ldr r3, [r1, #0x10]
 	ldr r4, [r1, #4]
@@ -377,7 +377,7 @@ sub_020BBFF8: ; 0x020BBFF8
 	smlal r6, r3, r7, r5
 	mov r4, r6, lsr #0xc
 	orr r4, r4, r3, lsl #20
-	add r0, r0, r4
+	adds r0, r0, r4
 	mov r8, sb, asr #0x1f
 	str r0, [sl, #0x28]
 	ldr r4, [r1, #0]
@@ -392,20 +392,20 @@ sub_020BBFF8: ; 0x020BBFF8
 	mla r0, r2, sb, r0
 	ldr r4, [sp, #0x10]
 	mla r0, fp, r3, r0
-	add r4, r4, r8
+	adds r4, r4, r8
 	adc r2, r5, r0
 	ldr r6, [r1, #0x18]
 	ldr r8, [r1, #0x24]
 	mov r1, r6, asr #0x1f
 	umull r5, r3, r7, r6
 	mla r3, r7, r1, r3
-	add r1, r5, r4
+	adds r1, r5, r4
 	ldr r0, [sp, #0x18]
 	mov r1, r1, lsr #0xc
 	mla r3, r0, r6, r3
 	adc r0, r3, r2
 	orr r1, r1, r0, lsl #20
-	add r0, r8, r1
+	adds r0, r8, r1
 	add r4, sp, #0x1c
 	cmp sl, r4
 	addne sp, sp, #0x4c
