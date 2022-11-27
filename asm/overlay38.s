@@ -396,6 +396,8 @@ ov38_02256458: ; 0x02256458
 	.rodata
 	.incbin "incbin/overlay38_rodata.bin"
 
+	.section .sinit, 4
+	.word ov38_022561C0+1
 
 	.bss
 	.space 0x0

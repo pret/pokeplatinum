@@ -7583,6 +7583,8 @@ _0223ECEC: .word 0x00003FF8
 	.rodata
 	.incbin "incbin/overlay76_rodata.bin"
 
+	.section .sinit, 4
+	.word ov76_0223B140+1
 
 	.bss
 	.space 0x0

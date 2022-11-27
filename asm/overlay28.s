@@ -2795,6 +2795,8 @@ _02257638: .word 0x02257A50
 	.rodata
 	.incbin "incbin/overlay28_rodata.bin"
 
+	.section .sinit, 4
+	.word ov28_022561C0+1
 
 	.bss
 	.space 0x0

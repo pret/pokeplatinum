@@ -1058,6 +1058,8 @@ _02256988: .word 0x02256A98
 	.rodata
 	.incbin "incbin/overlay50_rodata.bin"
 
+	.section .sinit, 4
+	.word ov50_022561C0+1
 
 	.bss
 	.space 0x0

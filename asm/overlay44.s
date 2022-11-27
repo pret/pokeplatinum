@@ -1475,6 +1475,8 @@ _02256CAE:
 	.rodata
 	.incbin "incbin/overlay44_rodata.bin"
 
+	.section .sinit, 4
+	.word ov44_022561C0+1
 
 	.bss
 	.space 0x0

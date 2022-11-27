@@ -1416,6 +1416,8 @@ ov45_02256C90: ; 0x02256C90
 	.rodata
 	.incbin "incbin/overlay45_rodata.bin"
 
+	.section .sinit, 4
+	.word ov45_022561C0+1
 
 	.bss
 	.space 0x0

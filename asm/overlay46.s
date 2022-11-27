@@ -2024,6 +2024,8 @@ ov46_0225710C: ; 0x0225710C
 	.rodata
 	.incbin "incbin/overlay46_rodata.bin"
 
+	.section .sinit, 4
+	.word ov46_022561C0+1
 
 	.bss
 	.space 0x0

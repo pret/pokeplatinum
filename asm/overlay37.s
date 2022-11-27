@@ -576,6 +576,8 @@ _022565D0: .word 0x00000663
 	.rodata
 	.incbin "incbin/overlay37_rodata.bin"
 
+	.section .sinit, 4
+	.word ov37_022561C0+1
 
 	.bss
 	.space 0x0

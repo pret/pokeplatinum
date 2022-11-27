@@ -1139,6 +1139,8 @@ _02256A30:
 	.rodata
 	.incbin "incbin/overlay40_rodata.bin"
 
+	.section .sinit, 4
+	.word ov40_022561C0+1
 
 	.bss
 	.space 0x0

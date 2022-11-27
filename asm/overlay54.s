@@ -690,6 +690,8 @@ _022566C0:
 	.rodata
 	.incbin "incbin/overlay54_rodata.bin"
 
+	.section .sinit, 4
+	.word ov54_022561C0+1
 
 	.bss
 	.space 0x0

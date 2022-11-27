@@ -1126,6 +1126,8 @@ ov34_02256A0C: ; 0x02256A0C
 	.rodata
 	.incbin "incbin/overlay34_rodata.bin"
 
+	.section .sinit, 4
+	.word ov34_022561C0+1
 
 	.bss
 	.space 0x0

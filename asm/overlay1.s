@@ -14,12 +14,10 @@ ov1_021D0D80: ; 0x021D0D80
 _021D0D8C: .word 0x021D0DA0
 	thumb_func_end ov1_021D0D80
 
-_021D0D90:
-	.word 0x021D0D81
 
-_021D0D94:
-	.fill 0xC
-	; 0x021D0DA0
+	.section .sinit, 4
+
+	.word ov1_021D0D80+1
 
 
 	.bss
