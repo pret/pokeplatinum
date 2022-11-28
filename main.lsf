@@ -764,6 +764,7 @@ Overlay overlay117
 {
 	After overlay114
 	Object asm/overlay117.o
+	Object asm/overlay117_1.o
 }
 
 Overlay overlay118
