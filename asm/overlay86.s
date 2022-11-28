@@ -3435,7 +3435,7 @@ ov86_0223CD00: ; 0x0223CD00
 	ldr r2, [r3, r2]
 	mov r0, #3
 	add r1, #0x14
-	.byte 0xBB, 0xF5, 0x4C, 0xEC
+	bl sub_01FF85B8
 	ldr r0, _0223CD30 ; =0x04000448
 	mov r1, #1
 	str r1, [r0, #0]
@@ -4063,7 +4063,7 @@ ov86_0223D220: ; 0x0223D220
 	ldr r2, [r4, r2]
 	mov r0, #3
 	add r1, r4, r1
-	.byte 0xBB, 0xF5, 0xBA, 0xE9
+	bl sub_01FF85B8
 	ldr r0, _0223D260 ; =0x04000448
 	mov r1, #1
 	str r1, [r0, #0]
