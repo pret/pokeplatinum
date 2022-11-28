@@ -59532,6 +59532,7 @@ ov5_021ED4E4: ; 0x021ED4E4
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov5_021ED4E4
+_021ED502: .space 0x2
 _021ED504:
 	stmia r0!, {r1}
 	sub r2, r2, #1
