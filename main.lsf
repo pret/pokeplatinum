@@ -163,6 +163,9 @@ Overlay overlay18
 {
 	After overlay4
 	Object asm/overlay18.o
+	Object asm/overlay18_1.o
+	Object asm/overlay18_2.o
+	Object asm/overlay18_3.o
 }
 
 Overlay overlay19
