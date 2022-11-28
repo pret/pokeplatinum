@@ -735,7 +735,7 @@ _0225671C: .word 0x040002A8
 	.incbin "incbin/overlay35_rodata.bin"
 
 	.section .sinit, 4
-	.word ov35_022561C0+1
+	.word ov35_022561C0
 
 	.bss
 	.space 0x0

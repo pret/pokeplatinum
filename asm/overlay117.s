@@ -1221,7 +1221,7 @@ _02260EB4: .word 0x04000580
 
 	thumb_func_start ov117_02260EB8
 ov117_02260EB8: ; 0x02260EB8
-	ldr r3, _02260EBC ; =FUN_020242C4
+	ldr r3, _02260EBC ; =sub_020242C4
 	bx r3
 	; .align 2, 0
 _02260EBC: .word sub_020242C4
@@ -4646,7 +4646,7 @@ _0226297A:
 	mov r1, #0x27
 	lsl r1, r1, #4
 	ldr r0, [r0, r1]
-	ldr r3, _02262990 ; =FUN_020E1F6C
+	ldr r3, _02262990 ; =sub_020E1F6C
 	lsl r1, r0, #2
 	ldr r0, _02262994 ; =0x02266FD8
 	ldr r0, [r0, r1]

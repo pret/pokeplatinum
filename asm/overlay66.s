@@ -762,7 +762,7 @@ ov66_0222E238: ; 0x0222E238
 	add r2, r0, #0
 	lsl r1, r1, #4
 	add r1, r2, r1
-	ldr r3, _0222E248 ; =FUN_020C4B4C
+	ldr r3, _0222E248 ; =sub_020C4B4C
 	mov r0, #0
 	mov r2, #4
 	bx r3
@@ -816,7 +816,7 @@ ov66_0222E294: ; 0x0222E294
 	mov r2, #0x3e
 	lsl r2, r2, #4
 	add r0, r0, r2
-	ldr r3, _0222E2A0 ; =FUN_020C4DB0
+	ldr r3, _0222E2A0 ; =sub_020C4DB0
 	mov r2, #4
 	bx r3
 	; .align 2, 0
@@ -1786,7 +1786,7 @@ ov66_0222E934: ; 0x0222E934
 	mov r2, #0xf3
 	lsl r2, r2, #2
 	add r0, r0, r2
-	ldr r3, _0222E940 ; =FUN_020C4DB0
+	ldr r3, _0222E940 ; =sub_020C4DB0
 	mov r2, #0x14
 	bx r3
 	; .align 2, 0
@@ -4392,7 +4392,7 @@ ov66_0222FBF0: ; 0x0222FBF0
 
 	thumb_func_start ov66_0222FC00
 ov66_0222FC00: ; 0x0222FC00
-	ldr r3, _0222FC08 ; =FUN_020181C4
+	ldr r3, _0222FC08 ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -4459,7 +4459,7 @@ _0222FC5C:
 
 	thumb_func_start ov66_0222FC68
 ov66_0222FC68: ; 0x0222FC68
-	ldr r3, _0222FC70 ; =FUN_020D5124
+	ldr r3, _0222FC70 ; =sub_020D5124
 	mov r1, #0
 	mov r2, #0x28
 	bx r3
@@ -6204,7 +6204,7 @@ ov66_022308A0: ; 0x022308A0
 
 	thumb_func_start ov66_022308BC
 ov66_022308BC: ; 0x022308BC
-	ldr r3, _022308C4 ; =FUN_02014FF0
+	ldr r3, _022308C4 ; =sub_02014FF0
 	add r0, #0xb4
 	ldr r0, [r0, #0]
 	bx r3
@@ -7166,7 +7166,7 @@ _02230F30:
 
 	thumb_func_start ov66_02230F44
 ov66_02230F44: ; 0x02230F44
-	ldr r3, _02230F4C ; =FUN_020181C4
+	ldr r3, _02230F4C ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -7253,7 +7253,7 @@ ov66_02230FA0: ; 0x02230FA0
 
 	thumb_func_start ov66_02230FE4
 ov66_02230FE4: ; 0x02230FE4
-	ldr r3, _02230FEC ; =FUN_020181C4
+	ldr r3, _02230FEC ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -7323,7 +7323,7 @@ _02231038:
 
 	thumb_func_start ov66_02231058
 ov66_02231058: ; 0x02231058
-	ldr r3, _02231060 ; =FUN_020181C4
+	ldr r3, _02231060 ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -7637,7 +7637,7 @@ ov66_0223127C: ; 0x0223127C
 
 	thumb_func_start ov66_022312A8
 ov66_022312A8: ; 0x022312A8
-	ldr r3, _022312B0 ; =FUN_020181C4
+	ldr r3, _022312B0 ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -7724,7 +7724,7 @@ ov66_02231300: ; 0x02231300
 
 	thumb_func_start ov66_02231338
 ov66_02231338: ; 0x02231338
-	ldr r3, _02231340 ; =FUN_020181C4
+	ldr r3, _02231340 ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -7833,7 +7833,7 @@ ov66_022313AC: ; 0x022313AC
 
 	thumb_func_start ov66_022313E8
 ov66_022313E8: ; 0x022313E8
-	ldr r3, _022313F0 ; =FUN_020181C4
+	ldr r3, _022313F0 ; =sub_020181C4
 	ldr r0, [r0, #0]
 	bx r3
 	nop
@@ -12849,7 +12849,7 @@ _02233784: .word 0x0225B6C0
 	thumb_func_start ov66_02233788
 ov66_02233788: ; 0x02233788
 	ldr r0, _02233794 ; =0x0225B6C0
-	ldr r3, _02233798 ; =FUN_020181C4
+	ldr r3, _02233798 ; =sub_020181C4
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0x24]
 	bx r3
@@ -14551,7 +14551,7 @@ _02234394:
 
 	thumb_func_start ov66_0223439C
 ov66_0223439C: ; 0x0223439C
-	ldr r3, _022343A4 ; =FUN_020D50B8
+	ldr r3, _022343A4 ; =sub_020D50B8
 	mov r2, #0xb6
 	lsl r2, r2, #2
 	bx r3
@@ -14852,7 +14852,7 @@ _02234600:
 
 	thumb_func_start ov66_02234604
 ov66_02234604: ; 0x02234604
-	ldr r3, _0223460C ; =FUN_02020D68
+	ldr r3, _0223460C ; =sub_02020D68
 	ldr r0, [r0, #0xc]
 	bx r3
 	nop
@@ -15323,7 +15323,7 @@ _02234938:
 
 	thumb_func_start ov66_02234958
 ov66_02234958: ; 0x02234958
-	ldr r3, _0223495C ; =FUN_02017110
+	ldr r3, _0223495C ; =sub_02017110
 	bx r3
 	; .align 2, 0
 _0223495C: .word sub_02017110
@@ -15331,7 +15331,7 @@ _0223495C: .word sub_02017110
 
 	thumb_func_start ov66_02234960
 ov66_02234960: ; 0x02234960
-	ldr r3, _02234968 ; =FUN_020B3764
+	ldr r3, _02234968 ; =sub_020B3764
 	str r1, [r0, #0x10]
 	ldr r0, [r0, #8]
 	bx r3
@@ -15347,7 +15347,7 @@ ov66_0223496C: ; 0x0223496C
 
 	thumb_func_start ov66_02234970
 ov66_02234970: ; 0x02234970
-	ldr r3, _0223497C ; =FUN_02017258
+	ldr r3, _0223497C ; =sub_02017258
 	add r2, r0, #0
 	add r0, r1, #0
 	add r1, r2, #0
@@ -15404,7 +15404,7 @@ _022349C2:
 
 	thumb_func_start ov66_022349C8
 ov66_022349C8: ; 0x022349C8
-	ldr r3, _022349D0 ; =FUN_020D5124
+	ldr r3, _022349D0 ; =sub_020D5124
 	mov r1, #0
 	mov r2, #0x90
 	bx r3
@@ -15414,7 +15414,7 @@ _022349D0: .word sub_020D5124
 
 	thumb_func_start ov66_022349D4
 ov66_022349D4: ; 0x022349D4
-	ldr r3, _022349DC ; =FUN_02017294
+	ldr r3, _022349DC ; =sub_02017294
 	add r0, #0xc
 	bx r3
 	nop

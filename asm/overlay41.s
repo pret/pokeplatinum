@@ -1564,7 +1564,7 @@ _02256D64: .word 0x0000066A
 	.incbin "incbin/overlay41_rodata.bin"
 
 	.section .sinit, 4
-	.word ov41_022561C0+1
+	.word ov41_022561C0
 
 	.bss
 	.space 0x0

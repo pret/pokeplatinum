@@ -5170,7 +5170,7 @@ _02223F0C: .word 0x02250D20
 
 	arm_func_start ov18_02223F10
 ov18_02223F10: ; 0x02223F10
-	ldr ip, _02223F20 ; =FUN_020C4CF4
+	ldr ip, _02223F20 ; =sub_020C4CF4
 	mov r1, #0
 	mov r2, #0x70
 	bx ip
@@ -5391,7 +5391,7 @@ _022241D4: .word 0x02250D60
 
 	arm_func_start ov18_022241D8
 ov18_022241D8: ; 0x022241D8
-	ldr ip, _022241E8 ; =FUN_020C4CF4
+	ldr ip, _022241E8 ; =sub_020C4CF4
 	mov r1, #0
 	mov r2, #0x20
 	bx ip
@@ -5558,7 +5558,7 @@ _022243DC: .word 0x02250D64
 	arm_func_start ov18_022243E0
 ov18_022243E0: ; 0x022243E0
 	ldr r3, _022243F8 ; =0x02250D64
-	ldr ip, _022243FC ; =FUN_020C4CF4
+	ldr ip, _022243FC ; =sub_020C4CF4
 	mov r1, #0
 	mov r2, #0x21c
 	str r0, [r3, #4]

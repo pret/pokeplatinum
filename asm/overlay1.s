@@ -17,7 +17,7 @@ _021D0D8C: .word 0x021D0DA0
 
 	.section .sinit, 4
 
-	.word ov1_021D0D80+1
+	.word ov1_021D0D80
 
 
 	.bss

@@ -6433,7 +6433,7 @@ ov60_02225530: ; 0x02225530
 
 	arm_func_start ov60_02225534
 ov60_02225534: ; 0x02225534
-	ldr ip, _02225540 ; =FUN_020C29D8
+	ldr ip, _02225540 ; =sub_020C29D8
 	ldr r0, _02225544 ; =0x02229FF8
 	bx ip
 	; .align 2, 0
@@ -6443,7 +6443,7 @@ _02225544: .word 0x02229FF8
 
 	arm_func_start ov60_02225548
 ov60_02225548: ; 0x02225548
-	ldr ip, _02225554 ; =FUN_020C2A5C
+	ldr ip, _02225554 ; =sub_020C2A5C
 	ldr r0, _02225558 ; =0x02229FF8
 	bx ip
 	; .align 2, 0
@@ -6512,7 +6512,7 @@ _022255F8: .word 0x02229FDC
 
 	arm_func_start ov60_022255FC
 ov60_022255FC: ; 0x022255FC
-	ldr ip, _0222560C ; =FUN_020C2770
+	ldr ip, _0222560C ; =sub_020C2770
 	mov r1, #0
 	mov r2, r1
 	bx ip
@@ -6551,7 +6551,7 @@ _02225638:
 
 	arm_func_start ov60_02225670
 ov60_02225670: ; 0x02225670
-	ldr ip, _02225678 ; =FUN_020D33B4
+	ldr ip, _02225678 ; =sub_020D33B4
 	bx ip
 	; .align 2, 0
 _02225678: .word sub_020D33B4
@@ -6559,7 +6559,7 @@ _02225678: .word sub_020D33B4
 
 	arm_func_start ov60_0222567C
 ov60_0222567C: ; 0x0222567C
-	ldr ip, _02225684 ; =FUN_020D3408
+	ldr ip, _02225684 ; =sub_020D3408
 	bx ip
 	; .align 2, 0
 _02225684: .word sub_020D3408
@@ -6567,7 +6567,7 @@ _02225684: .word sub_020D3408
 
 	arm_func_start ov60_02225688
 ov60_02225688: ; 0x02225688
-	ldr ip, _02225698 ; =FUN_020C4CF4
+	ldr ip, _02225698 ; =sub_020C4CF4
 	mov r2, r1
 	mov r1, #0
 	bx ip
@@ -6577,7 +6577,7 @@ _02225698: .word sub_020C4CF4
 
 	arm_func_start ov60_0222569C
 ov60_0222569C: ; 0x0222569C
-	ldr ip, _022256B0 ; =FUN_020C4DB0
+	ldr ip, _022256B0 ; =sub_020C4DB0
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3
@@ -7194,7 +7194,7 @@ ov60_02225E34: ; 0x02225E34
 
 	arm_func_start ov60_02225E38
 ov60_02225E38: ; 0x02225E38
-	ldr ip, _02225E44 ; =FUN_020C29D8
+	ldr ip, _02225E44 ; =sub_020C29D8
 	ldr r0, _02225E48 ; =0x0222A8F8
 	bx ip
 	; .align 2, 0
@@ -7204,7 +7204,7 @@ _02225E48: .word 0x0222A8F8
 
 	arm_func_start ov60_02225E4C
 ov60_02225E4C: ; 0x02225E4C
-	ldr ip, _02225E58 ; =FUN_020C2A5C
+	ldr ip, _02225E58 ; =sub_020C2A5C
 	ldr r0, _02225E5C ; =0x0222A8F8
 	bx ip
 	; .align 2, 0
@@ -7276,7 +7276,7 @@ _02225F18: .word 0x0222A910
 
 	arm_func_start ov60_02225F1C
 ov60_02225F1C: ; 0x02225F1C
-	ldr ip, _02225F30 ; =FUN_020C2770
+	ldr ip, _02225F30 ; =sub_020C2770
 	mov r1, #0
 	ldr r0, _02225F34 ; =0x0222A910
 	mov r2, r1
@@ -8516,7 +8516,7 @@ _02226F58: .word ov60_02226EB0
 
 	arm_func_start ov60_02226F5C
 ov60_02226F5C: ; 0x02226F5C
-	ldr ip, _02226F68 ; =FUN_02208540
+	ldr ip, _02226F68 ; =ov4_02208540
 	mov r0, r1
 	bx ip
 	; .align 2, 0
@@ -8641,7 +8641,7 @@ ov60_022270BC: ; 0x022270BC
 
 	arm_func_start ov60_022270D8
 ov60_022270D8: ; 0x022270D8
-	ldr ip, _022270E0 ; =FUN_020D33DC
+	ldr ip, _022270E0 ; =sub_020D33DC
 	bx ip
 	; .align 2, 0
 _022270E0: .word sub_020D33DC
@@ -8684,7 +8684,7 @@ _02227144:
 
 	arm_func_start ov60_0222714C
 ov60_0222714C: ; 0x0222714C
-	ldr ip, _02227154 ; =FUN_020D33B4
+	ldr ip, _02227154 ; =sub_020D33B4
 	bx ip
 	; .align 2, 0
 _02227154: .word sub_020D33B4
@@ -8692,7 +8692,7 @@ _02227154: .word sub_020D33B4
 
 	arm_func_start ov60_02227158
 ov60_02227158: ; 0x02227158
-	ldr ip, _02227168 ; =FUN_020C4CF4
+	ldr ip, _02227168 ; =sub_020C4CF4
 	mov r2, r1
 	mov r1, #0
 	bx ip
@@ -8702,7 +8702,7 @@ _02227168: .word sub_020C4CF4
 
 	arm_func_start ov60_0222716C
 ov60_0222716C: ; 0x0222716C
-	ldr ip, _02227180 ; =FUN_020C4DB0
+	ldr ip, _02227180 ; =sub_020C4DB0
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3

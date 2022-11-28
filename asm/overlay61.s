@@ -23,7 +23,7 @@ ov61_0222AE60: ; 0x0222AE60
 
 	thumb_func_start ov61_0222AE80
 ov61_0222AE80: ; 0x0222AE80
-	ldr r3, _0222AE84 ; =FUN_0202A824
+	ldr r3, _0222AE84 ; =sub_0202A824
 	bx r3
 	; .align 2, 0
 _0222AE84: .word sub_0202A824
@@ -185,7 +185,7 @@ ov61_0222AFA4: ; 0x0222AFA4
 
 	thumb_func_start ov61_0222AFC0
 ov61_0222AFC0: ; 0x0222AFC0
-	ldr r3, _0222AFC8 ; =FUN_020C4DB0
+	ldr r3, _0222AFC8 ; =sub_020C4DB0
 	mov r2, #0x80
 	bx r3
 	nop
@@ -1872,7 +1872,7 @@ _0222BC3C: .word 0x0222E760
 
 	thumb_func_start ov61_0222BC40
 ov61_0222BC40: ; 0x0222BC40
-	ldr r3, _0222BC48 ; =FUN_020C345C
+	ldr r3, _0222BC48 ; =sub_020C345C
 	mov r0, #0
 	bx r3
 	nop

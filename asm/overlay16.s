@@ -105428,7 +105428,7 @@ _0226E258: .word 0x000005DD
 	.incbin "incbin/overlay16_rodata.bin"
 
 	.section .sinit, 4
-	.word ov16_0223D0F4+1
+	.word ov16_0223D0F4
 
 	.data
 	.incbin "incbin/overlay16_data.bin"

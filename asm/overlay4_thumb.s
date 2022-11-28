@@ -1290,7 +1290,7 @@ ov4_021D17A0: ; 0x021D17A0
 	thumb_func_start ov4_021D17A4
 ov4_021D17A4: ; 0x021D17A4
 	ldr r0, _021D17B4 ; =0x0221A400
-	ldr r3, _021D17B8 ; =FUN_020C4CF4
+	ldr r3, _021D17B8 ; =sub_020C4CF4
 	ldr r1, [r0, #0]
 	ldr r0, _021D17BC ; =0x000010AC
 	mov r2, #0x20
@@ -4325,7 +4325,7 @@ _021D2E88: .word 0x000019F0
 	thumb_func_start ov4_021D2E8C
 ov4_021D2E8C: ; 0x021D2E8C
 	ldr r0, _021D2E98 ; =0x0221A404
-	ldr r3, _021D2E9C ; =FUN_020B8BD4
+	ldr r3, _021D2E9C ; =sub_020B8BD4
 	ldr r1, [r0, #4]
 	ldr r0, _021D2EA0 ; =0x000019F8
 	add r0, r1, r0

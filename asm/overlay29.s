@@ -1298,7 +1298,7 @@ _02256B20:
 	.incbin "incbin/overlay29_rodata.bin"
 
 	.section .sinit, 4
-	.word ov29_022561C0+1
+	.word ov29_022561C0
 
 	.bss
 	.space 0x0

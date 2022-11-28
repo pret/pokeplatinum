@@ -1846,7 +1846,7 @@ _02256F84:
 	.incbin "incbin/overlay27_rodata.bin"
 
 	.section .sinit, 4
-	.word ov27_022561C0+1
+	.word ov27_022561C0
 
 	.bss
 	.space 0x0

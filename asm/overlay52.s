@@ -1495,7 +1495,7 @@ _02256D28: .word 0x02256D84
 	.incbin "incbin/overlay52_rodata.bin"
 
 	.section .sinit, 4
-	.word ov52_022561C0+1
+	.word ov52_022561C0
 
 	.bss
 	.space 0x0

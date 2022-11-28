@@ -961,7 +961,7 @@ _02263AE0: .word 0x02266B07
 
 	arm_func_start ov117_02263AE4
 ov117_02263AE4: ; 0x02263AE4
-	ldr ip, _02263AEC ; =FUN_0200D0F4
+	ldr ip, _02263AEC ; =sub_0200D0F4
 	bx ip
 	; .align 2, 0
 _02263AEC: .word sub_0200D0F4
@@ -1337,7 +1337,7 @@ _02263DA8: .word 0x00002FCC
 	thumb_func_start ov117_02263DAC
 ov117_02263DAC: ; 0x02263DAC
 	ldr r1, _02263DBC ; =0x00001428
-	ldr r3, _02263DC0 ; =FUN_020E1F6C
+	ldr r3, _02263DC0 ; =sub_020E1F6C
 	add r2, r0, r1
 	ldr r1, [r2, #8]
 	mov r0, #0x64
@@ -6064,7 +6064,7 @@ _02266234: .word 0x000016B0
 
 	thumb_func_start ov117_02266238
 ov117_02266238: ; 0x02266238
-	ldr r3, _02266240 ; =FUN_0200D0F4
+	ldr r3, _02266240 ; =sub_0200D0F4
 	add r0, r1, #0
 	bx r3
 	nop
@@ -6092,7 +6092,7 @@ _02266264: .word 0x02266EA0
 
 	thumb_func_start ov117_02266268
 ov117_02266268: ; 0x02266268
-	ldr r3, _02266270 ; =FUN_0200D0F4
+	ldr r3, _02266270 ; =sub_0200D0F4
 	add r0, r1, #0
 	bx r3
 	nop
@@ -6576,7 +6576,7 @@ ov117_022665E8: ; 0x022665E8
 
 	thumb_func_start ov117_022665FC
 ov117_022665FC: ; 0x022665FC
-	ldr r3, _02266608 ; =FUN_02032798
+	ldr r3, _02266608 ; =sub_02032798
 	add r2, r0, #0
 	ldr r0, _0226660C ; =0x02266FE4
 	mov r1, #4

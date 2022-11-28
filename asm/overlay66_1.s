@@ -26248,7 +26248,7 @@ _0224B9CC: .word 0x00000101
 
 	arm_func_start ov66_0224B9D0
 ov66_0224B9D0: ; 0x0224B9D0
-	ldr ip, _0224B9D8 ; =FUN_020DF9B0
+	ldr ip, _0224B9D8 ; =sub_020DF9B0
 	bx ip
 	; .align 2, 0
 _0224B9D8: .word sub_020DF9B0
@@ -37923,7 +37923,7 @@ _02255B38: .word 0x0225B074
 
 	arm_func_start ov66_02255B3C
 ov66_02255B3C: ; 0x02255B3C
-	ldr ip, _02255B48 ; =FUN_021D78B0
+	ldr ip, _02255B48 ; =ov4_021D78B0
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0

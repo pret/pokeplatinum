@@ -1191,7 +1191,7 @@ _02256A88: .word 0x00000000
 	.incbin "incbin/overlay43_rodata.bin"
 
 	.section .sinit, 4
-	.word ov43_022561C0+1
+	.word ov43_022561C0
 
 	.bss
 	.space 0x0

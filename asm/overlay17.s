@@ -49934,7 +49934,7 @@ _02252D88: .word ov17_0224B20C
 	.incbin "incbin/overlay17_rodata.bin"
 
 	.section .sinit, 4
-	.word ov17_0223F118+1
+	.word ov17_0223F118
 
 	.bss
 	.space 0x0

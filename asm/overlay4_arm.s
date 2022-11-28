@@ -27126,7 +27126,7 @@ _021E9EF4: .word 0x02217744
 
 	arm_func_start ov4_021E9EF8
 ov4_021E9EF8: ; 0x021E9EF8
-	ldr ip, _021E9F14 ; =FUN_020D753C
+	ldr ip, _021E9F14 ; =sub_020D753C
 	mov r2, r0
 	mov r3, r1
 	ldr r0, [r2, #0x14]
@@ -27883,7 +27883,7 @@ _021EA894: .word 0x000082EA
 
 	arm_func_start ov4_021EA898
 ov4_021EA898: ; 0x021EA898
-	ldr ip, _021EA8A0 ; =FUN_020C24A4
+	ldr ip, _021EA8A0 ; =sub_020C24A4
 	bx ip
 	; .align 2, 0
 _021EA8A0: .word sub_020C24A4
@@ -50802,7 +50802,7 @@ _021FE0B8: .word ov4_021FE6F4
 
 	arm_func_start ov4_021FE0BC
 ov4_021FE0BC: ; 0x021FE0BC
-	ldr ip, _021FE0CC ; =FUN_020DF9B0
+	ldr ip, _021FE0CC ; =sub_020DF9B0
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	bx ip
@@ -51374,7 +51374,7 @@ _021FE77C: .word ov4_021FE6F4
 
 	arm_func_start ov4_021FE780
 ov4_021FE780: ; 0x021FE780
-	ldr ip, _021FE790 ; =FUN_020DF9B0
+	ldr ip, _021FE790 ; =sub_020DF9B0
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	bx ip
@@ -58368,7 +58368,7 @@ _02204558:
 	str r4, [r1, #4]
 	ldr r0, _022045B0 ; =0x0221DBD8
 	str r4, [r1, #0]
-	ldr r3, _022045B4 ; =FUN_020C3880
+	ldr r3, _022045B4 ; =sub_020C3880
 	str r4, [r0, #0x14]
 	ldr r2, _022045B8 ; =0x5D588B65
 	str r3, [r1, #0x18]
@@ -59676,7 +59676,7 @@ _02205648: .word 0x0221C75C
 
 	arm_func_start ov4_0220564C
 ov4_0220564C: ; 0x0220564C
-	ldr ip, _0220565C ; =FUN_020C4C14
+	ldr ip, _0220565C ; =sub_020C4C14
 	mov r2, r1
 	ldr r1, _02205660 ; =0x0221C78C
 	bx ip
@@ -73473,7 +73473,7 @@ _02210ECC: .word 0x021CCC80
 
 	arm_func_start ov4_02210ED0
 ov4_02210ED0: ; 0x02210ED0
-	ldr ip, _02210EE4 ; =FUN_020C4CF4
+	ldr ip, _02210EE4 ; =sub_020C4CF4
 	ldr r0, _02210EE8 ; =0x0221F628
 	mov r1, #0
 	mov r2, #0x170
@@ -73485,7 +73485,7 @@ _02210EE8: .word 0x0221F628
 
 	arm_func_start ov4_02210EEC
 ov4_02210EEC: ; 0x02210EEC
-	ldr ip, _02210F00 ; =FUN_020C4DB0
+	ldr ip, _02210F00 ; =sub_020C4DB0
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3
@@ -73496,7 +73496,7 @@ _02210F00: .word sub_020C4DB0
 
 	arm_func_start ov4_02210F04
 ov4_02210F04: ; 0x02210F04
-	ldr ip, _02210F18 ; =FUN_020C4DB0
+	ldr ip, _02210F18 ; =sub_020C4DB0
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3
@@ -78952,7 +78952,7 @@ _02215840: .word 0x0221F7E0
 
 	arm_func_start ov4_02215844
 ov4_02215844: ; 0x02215844
-	ldr ip, _0221584C ; =FUN_020C8C08
+	ldr ip, _0221584C ; =sub_020C8C08
 	bx ip
 	; .align 2, 0
 _0221584C: .word sub_020C8C08
@@ -78960,7 +78960,7 @@ _0221584C: .word sub_020C8C08
 
 	arm_func_start ov4_02215850
 ov4_02215850: ; 0x02215850
-	ldr ip, _02215858 ; =FUN_020C8C48
+	ldr ip, _02215858 ; =sub_020C8C48
 	bx ip
 	; .align 2, 0
 _02215858: .word sub_020C8C48
@@ -78968,7 +78968,7 @@ _02215858: .word sub_020C8C48
 
 	arm_func_start ov4_0221585C
 ov4_0221585C: ; 0x0221585C
-	ldr ip, _02215864 ; =FUN_020C8D10
+	ldr ip, _02215864 ; =sub_020C8D10
 	bx ip
 	; .align 2, 0
 _02215864: .word sub_020C8D10

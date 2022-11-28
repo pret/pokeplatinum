@@ -1455,7 +1455,7 @@ _02256CBC: .word 0x00000669
 	.incbin "incbin/overlay32_rodata.bin"
 
 	.section .sinit, 4
-	.word ov32_022561C0+1
+	.word ov32_022561C0
 
 	.bss
 	.space 0x0

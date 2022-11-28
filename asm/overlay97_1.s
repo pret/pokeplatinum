@@ -4567,7 +4567,7 @@ ov97_0223D38C: ; 0x0223D38C
 
 	arm_func_start ov97_0223D3D8
 ov97_0223D3D8: ; 0x0223D3D8
-	ldr ip, _0223D3E8 ; =FUN_020C4CF4
+	ldr ip, _0223D3E8 ; =sub_020C4CF4
 	mov r1, #0
 	mov r2, #0x14
 	bx ip
