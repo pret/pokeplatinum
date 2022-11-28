@@ -643,6 +643,7 @@ Overlay overlay97
 {
 	After overlay60
 	Object asm/overlay97.o
+	Object asm/overlay97_1.o
 }
 
 Overlay overlay98
