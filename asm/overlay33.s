@@ -2974,7 +2974,7 @@ _022577F8: .word 0x00000163
 	.incbin "incbin/overlay33_rodata.bin"
 
 	.section .sinit, 4
-	.word ov33_022561C0+1
+	.word ov33_022561C0
 
 	.data
 	.incbin "incbin/overlay33_data.bin"
