@@ -425,6 +425,7 @@ Overlay overlay61
 {
 	After overlay60
 	Object asm/overlay61.o
+	Object asm/overlay61_1.o
 }
 
 Overlay overlay62
