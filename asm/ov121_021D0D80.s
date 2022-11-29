@@ -720,7 +720,12 @@ _021D1368:
 
 
 	.rodata
-	.incbin "incbin/overlay121_rodata.bin"
+
+Unk_ov121_021D1378: ; 0x021D1378
+	.incbin "incbin/overlay121_rodata.bin", 0x0, 0x8
+
+Unk_ov121_021D1380: ; 0x021D1380
+	.incbin "incbin/overlay121_rodata.bin", 0x8, 0x30 - 0x8
 
 
 	.bss

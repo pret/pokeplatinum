@@ -776,18 +776,19 @@ Overlay overlay118
 Overlay overlay119
 {
 	After main
-	Object asm/overlay119.o
+	Object asm/ov119_021D0D80.o
+	Object asm/ov119_021D191C.o
 }
 
 Overlay overlay120
 {
 	After main
-	Object asm/overlay120.o
+	Object asm/ov120_021D0D80.o
 }
 
 Overlay overlay121
 {
 	After main
-	Object asm/overlay121.o
+	Object asm/ov121_021D0D80.o
 }
 
