@@ -763,14 +763,19 @@ Overlay overlay116
 Overlay overlay117
 {
 	After overlay114
-	Object asm/overlay117.o
-	Object asm/overlay117_1.o
+	Object asm/ov117_02260440.o
+	Object asm/ov117_02260668.o
+	Object asm/ov117_022626B0_thumb.o
+	Object asm/ov117_022626B0_arm.o
+	Object asm/ov117_02263AF0.o
+	Object asm/ov117_022665FC.o
+	Object asm/ov117_022666C0.o
 }
 
 Overlay overlay118
 {
 	After main
-	Object asm/overlay118.o
+	Object asm/ov118_021D0D80.o
 }
 
 Overlay overlay119
