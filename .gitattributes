@@ -11,6 +11,7 @@ Makefile text eol=lf
 .gitattributes text eol=lf
 .gitignore text eol=lf
 *.md text eol=lf
+*.lsf text eol=lf
 
 *.bin binary
 
