@@ -325,7 +325,8 @@ _022668F4: .word ov117_0226238C
 
 	.rodata
 
-Unk_ov117_02267014:
+	.global Unk_ov117_02267014
+Unk_ov117_02267014: ; 0x02267014
 	.incbin "incbin/overlay117_rodata.bin", 0x71C, 0x73C - 0x71C
 
 	.bss

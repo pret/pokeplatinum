@@ -969,14 +969,18 @@ _02263AEC: .word sub_0200D0F4
 
 	.rodata
 
+	.global Unk_ov117_02266B04
 Unk_ov117_02266B04: ; 0x02266B04
 	.incbin "incbin/overlay117_rodata.bin", 0x20C, 0x20D - 0x20C
 
+	.global Unk_ov117_02266B05
 Unk_ov117_02266B05: ; 0x02266B05
 	.incbin "incbin/overlay117_rodata.bin", 0x20D, 0x21A - 0x20D
 
+	.global Unk_ov117_02266B12
 Unk_ov117_02266B12: ; 0x02266B12
 	.incbin "incbin/overlay117_rodata.bin", 0x21A, 0x240 - 0x21A
 
+	.global Unk_ov117_02266B38
 Unk_ov117_02266B38: ; 0x02266B38
 	.incbin "incbin/overlay117_rodata.bin", 0x240, 0x274 - 0x240

@@ -291,8 +291,10 @@ _02260662:
 
 	.rodata
 
+	.global Unk_ov117_022668F8
 Unk_ov117_022668F8: ; 0x022668F8
 	.incbin "incbin/overlay117_rodata.bin", 0x0, 0x10
 
+	.global Unk_ov117_02266908
 Unk_ov117_02266908: ; 0x02266908
 	.incbin "incbin/overlay117_rodata.bin", 0x10, 0x20 - 0x10

@@ -1335,5 +1335,6 @@ _021D23B4: .word 0x0000FFFF
 
     .rodata
 
+	.global Unk_ov119_021D26AC
 Unk_ov119_021D26AC: ; 0x021D26AC
 	.incbin "incbin/overlay119_rodata.bin", 0x2F4, 0x2FC - 0x2F4

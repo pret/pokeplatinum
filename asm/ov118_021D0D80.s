@@ -500,6 +500,9 @@ _021D116C: .word 0x02100DF4
 
 
 	.rodata
+
+	.global Unk_ov118_021D1170
+Unk_ov118_021D1170: ; 0x021D1170
 	.incbin "incbin/overlay118_rodata.bin"
 
 

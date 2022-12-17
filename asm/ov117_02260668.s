@@ -4004,44 +4004,58 @@ ov117_022626AC: ; 0x022626AC
 
 	.rodata
 
+	.global Unk_ov117_02266918
 Unk_ov117_02266918: ; 0x02266918
 	.incbin "incbin/overlay117_rodata.bin", 0x20, 0x28 - 0x20
 
+	.global Unk_ov117_02266920
 Unk_ov117_02266920: ; 0x02266920
 	.incbin "incbin/overlay117_rodata.bin", 0x28,  0x34 - 0x28
 
+	.global Unk_ov117_0226692C
 Unk_ov117_0226692C: ; 0x226692C
 	.incbin "incbin/overlay117_rodata.bin", 0x34,  0x40 - 0x34
 
+	.global Unk_ov117_02266938
 Unk_ov117_02266938: ; 0x226692C
 	.incbin "incbin/overlay117_rodata.bin", 0x40,  0x4C - 0x40
 
+	.global Unk_ov117_02266944
 Unk_ov117_02266944: ; 0x2266944
 	.incbin "incbin/overlay117_rodata.bin", 0x4C,  0x5C - 0x4C
 
+	.global Unk_ov117_02266954
 Unk_ov117_02266954: ; 0x02266954
 	.incbin "incbin/overlay117_rodata.bin", 0x5C, 0x70 - 0x5C
 	
+	.global Unk_ov117_02266968
 Unk_ov117_02266968: ; 0x02266968
 	.incbin "incbin/overlay117_rodata.bin", 0x70, 0x84 - 0x70
 
+	.global Unk_ov117_0226697C
 Unk_ov117_0226697C: ; 0x0226697C
 	.incbin "incbin/overlay117_rodata.bin", 0x84, 0x98 - 0x84
 
+	.global Unk_ov117_02266990
 Unk_ov117_02266990: ; 0x02266990
 	.incbin "incbin/overlay117_rodata.bin", 0x98, 0xB0 - 0x98
 
+	.global Unk_ov117_022669A8
 Unk_ov117_022669A8: ; 0x022669A8
 	.incbin "incbin/overlay117_rodata.bin", 0xB0, 0xD0 - 0xB0
 
+	.global Unk_ov117_022669C8
 Unk_ov117_022669C8: ; 0x022669C8
 	.incbin "incbin/overlay117_rodata.bin", 0xD0, 0xF8 - 0xD0
 
+	.global Unk_ov117_022669F0
 Unk_ov117_022669F0: ; 0x022669F0
 	.incbin "incbin/overlay117_rodata.bin", 0xF8, 0x148 - 0xF8
 
+	.global Unk_ov117_02266A40
 Unk_ov117_02266A40: ; 0x02266A40
 	.incbin "incbin/overlay117_rodata.bin", 0x148, 0x19C - 0x148
 
+	.global Unk_ov117_02266A94
 Unk_ov117_02266A94: ; 0x02266A94
 	.incbin "incbin/overlay117_rodata.bin", 0x19C, 0x20C - 0x19C

@@ -501,21 +501,27 @@ ov120_021D1178: ; 0x021D1178
 
 	.rodata
 
+	.global Unk_ov120_021D1190
 Unk_ov120_021D1190: ; 0x021D1190
 	.incbin "incbin/overlay120_rodata.bin", 0x0, 0x10
 
+	.global Unk_ov120_021D11A0
 Unk_ov120_021D11A0: ; 0x021D11A0
 	.incbin "incbin/overlay120_rodata.bin", 0x10, 0x2C - 0x10
 
+	.global Unk_ov120_021D11BC
 Unk_ov120_021D11BC: ; 0x021D11BC
 	.incbin "incbin/overlay120_rodata.bin", 0x2C, 0x48 - 0x2C
 
+	.global Unk_ov120_021D11D8
 Unk_ov120_021D11D8: ; 0x021D11D8
 	.incbin "incbin/overlay120_rodata.bin", 0x48, 0x64 - 0x48
 
+	.global Unk_ov120_021D11F4
 Unk_ov120_021D11F4: ; 0x021D11F4
 	.incbin "incbin/overlay120_rodata.bin", 0x64, 0x80 - 0x64
 
+	.global Unk_ov120_021D1210
 Unk_ov120_021D1210: ; 0x021D1210
 	.incbin "incbin/overlay120_rodata.bin", 0x80, 0xA8 - 0x80
 

@@ -140,5 +140,6 @@ _022666BC:
 
 	.rodata
 
+	.global Unk_ov117_02266FE4
 Unk_ov117_02266FE4: ; 0x02266FE4
 	.incbin "incbin/overlay117_rodata.bin", 0x6EC, 0x71C - 0x6EC
