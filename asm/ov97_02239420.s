@@ -1,7 +1,10 @@
 	.include "macros/function.inc"
 	.include "global.inc"
 
+	
+
 	.text
+
 
 	arm_func_start ov97_02239420
 ov97_02239420: ; 0x02239420
@@ -4784,14 +4787,19 @@ _0223D658:
 	; .align 2, 0
 _0223D670: .word 0x02240AF4
 	arm_func_end ov97_0223D62C
-	; 0x0223D674
-
 
 	.rodata
-	.incbin "incbin/overlay97_rodata.bin"
+
+
+	.global Unk_ov97_0223DEC4
+Unk_ov97_0223DEC4: ; 0x0223DEC4
+	.incbin "incbin/overlay97_rodata.bin", 0x850, 0x74
+
 
 	.data
-	.incbin "incbin/overlay97_data.bin"
 
-	.bss
-	.space 0x1980
+
+	.global Unk_ov97_0223F158
+Unk_ov97_0223F158: ; 0x0223F158
+	.incbin "incbin/overlay97_data.bin", 0x1218, 0x1C
+
