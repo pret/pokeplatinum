@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "global.inc"
+	.include "include/overlay60.inc"
 
 	.text
 

@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "global.inc"
+	.include "include/arm9_2.inc"
 
 	.text
 

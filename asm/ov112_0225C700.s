@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "global.inc"
+	.include "include/ov112_0225C700.inc"
 
 	
 

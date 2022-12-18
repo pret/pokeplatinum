@@ -1,6 +1,6 @@
 
 	.include "macros/function.inc"
-	.include "global.inc"
+	.include "include/arm9_8.inc"
 
 	.text
 

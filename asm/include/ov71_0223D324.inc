@@ -1,0 +1,14 @@
+.public ov71_0223D370
+.public ov71_0223D3A0
+.public ov71_0223D3D8
+.public ov71_0223D410
+.public sub_02004B04
+.public ov71_0223D454
+.public ov71_0223D470
+.public ov71_0223D42C
+.public ov71_0223D470
+.public ov71_0223D42C
+.public ov71_0223D470
+.public ov71_0223D42C
+.public sub_02004AE8
+.public sub_02004F68

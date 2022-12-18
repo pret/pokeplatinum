@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "global.inc"
+	.include "include/itcm.inc"
 
 	.section .itcm,4,1,4
 
