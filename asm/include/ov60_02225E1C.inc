@@ -1,0 +1,12 @@
+.public sub_020C29C0
+.public sub_020C29D8
+.public sub_020C2A5C
+.public sub_020C1F24
+.public sub_020C2748
+.public sub_020C1F34
+.public sub_020C22D0
+.public ov60_022274A0
+.public ov60_02225F1C
+.public sub_020C21D4
+.public sub_020C2804
+.public sub_020C2770

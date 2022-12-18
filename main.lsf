@@ -740,8 +740,40 @@ Overlay overlay59
 Overlay overlay60
 {
 	After overlay4
-	Object asm/overlay60.o
-	Object asm/overlay60_1.o
+	Object asm/ov60_0221F800.o
+	Object asm/ov60_0221F968.o
+	Object asm/ov60_0221FE2C.o
+	Object asm/ov60_022206D4.o
+	Object asm/ov60_02220844.o
+	Object asm/ov60_02220C70.o
+	Object asm/ov60_02221390.o
+	Object asm/ov60_02221900.o
+	Object asm/ov60_022227F8.o
+	Object asm/ov60_02229B20.o
+	Object asm/ov60_02223D7C.o
+	Object asm/ov60_02223F00.o
+	Object asm/ov60_022241E8.o
+	Object asm/ov60_02224448.o
+	Object asm/ov60_02224484.o
+	Object asm/ov60_02224630.o
+	Object asm/ov60_02225214.o
+	Object asm/ov60_02225268.o
+	Object asm/ov60_02225294.o
+	Object asm/ov60_02225518.o
+	Object asm/ov60_02225670.o
+	Object asm/ov60_022256B4.o
+	Object asm/ov60_022257FC.o
+	Object asm/ov60_02225948.o
+	Object asm/ov60_02225C2C.o
+	Object asm/ov60_02225E1C.o
+	Object asm/ov60_02225F38.o
+	Object asm/ov60_022263B8.o
+	Object asm/ov60_02226B6C.o
+	Object asm/ov60_02226C04.o
+	Object asm/ov60_02226EB0.o
+	Object asm/ov60_022270D8.o
+	Object asm/ov60_02227184.o
+	Object asm/ov60_022287A0.o
 }
 
 Overlay overlay61

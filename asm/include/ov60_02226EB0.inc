@@ -1,0 +1,15 @@
+.public sub_020C41D8
+.public ov4_0220FE28
+.public ov4_02208324
+.public ov60_02226EBC
+.public ov4_02208BCC
+.public ov4_02208540
+.public ov60_02226EB0
+.public ov4_02208540
+.public ov4_02208540
+.public sub_020C24A4
+.public ov4_02208540
+.public ov4_0220837C
+.public ov4_022083D8
+.public ov4_0220848C
+.public ov4_02208534
