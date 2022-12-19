@@ -1,0 +1,17 @@
+.public ov4_021E86D4
+.public sub_020D5190
+.public ov4_021E86D4
+.public ov4_021E87D8
+.public ov4_021E86D4
+.public sub_020D5190
+.public sub_020C4DB0
+.public sub_020D5190
+.public ov4_021E8824
+.public ov4_021E8A40
+.public sub_020C8C08
+.public sub_020C8C48
+.public sub_020C8D10
+.public sub_020C4DB0
+.public sub_020C4DB0
+.public ov4_021E89D0
+.public ov4_021E89D0

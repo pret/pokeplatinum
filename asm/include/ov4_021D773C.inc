@@ -1,0 +1,12 @@
+.public ov4_021D773C
+.public ov4_021D7790
+.public ov4_021D7744
+.public ov4_021D773C
+.public ov4_021D7814
+.public ov4_021D7790
+.public ov4_021D775C
+.public sub_020C4DB0
+.public ov4_021D77C4
+.public ov4_021D7780
+.public ov4_021D7800
+.public ov4_021D77C4
