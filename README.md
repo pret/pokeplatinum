@@ -1,8 +1,8 @@
 # Pokémon Platinum
 
-This is a WIP disassembly of Pokémon Platinum. It currently does not compile anything.
+This is a WIP disassembly of Pokémon Platinum.
 
-The target ROM is:
+This repository builds the following ROMs:
 
 * [**pokeplatinum.us.nds**](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541) `sha1: ce81046eda7d232513069519cb2085349896dec7`
 
