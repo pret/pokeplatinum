@@ -141,6 +141,6 @@ Unk_ov4_02219B28: ; 0x02219B28
 
 	.global Unk_ov4_02219B38
 Unk_ov4_02219B38: ; 0x02219B38
-	    .incbin "incbin/overlay4_data.bin", 0x3CB8, 0x1FC
-    	.incbin "incbin/overlay4_data.bin", 0x3CB8 + 0x1FC, 0x1FC
+	.incbin "incbin/overlay4_data.bin", 0x3CB8, 0x1FC
+    .incbin "incbin/overlay4_data.bin", 0x3CB8 + 0x1FC, 0x1FC
 
