@@ -30234,7 +30234,15 @@ sub_020E454C: ; 0x020E454C
 _020E4554:
 	.word 0x020E28E4
 
-	.incbin "incbin/arm9.bin"
+
+	.section .exception, 4
+	.incbin "incbin/arm9_exception.bin"
+
+	.rodata
+	.incbin "incbin/arm9_rodata.bin"
+
+	.data
+	.incbin "incbin/arm9_data.bin"
 
 	.bss
 	.space 0xCF060
