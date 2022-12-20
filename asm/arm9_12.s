@@ -15122,9 +15122,9 @@ _020D768C:
 	cmp sb, r4, lsl #1
 	bhs _020D7620
 	b _020D7594
-	arm_func_end sub_020D753C
 _020D7698:
 	.byte 0x10, 0xD0, 0x8D, 0xE2, 0xF8, 0x8F, 0xBD, 0xE8
+	arm_func_end sub_020D753C
 
 	arm_func_start sub_020D76A0
 sub_020D76A0: ; 0x020D76A0
@@ -23014,9 +23014,9 @@ _020DE434:
 _020DE468:
 	strb r1, [ip], #-1
 	b _020DE434
-	arm_func_end sub_020DE424
 _020DE470:
 	.byte 0x1E, 0xFF, 0x2F, 0xE1
+	arm_func_end sub_020DE424
 
 	arm_func_start sub_020DE474
 sub_020DE474: ; 0x020DE474
@@ -24687,10 +24687,10 @@ _020DFAB0:
 	add sp, fp, #0x18
 	mov r0, r4
 	ldmia sp!, {r3, r4, fp, pc}
-	arm_func_end sub_020DFA90
 _020DFABC:
 	.byte 0x00, 0x00, 0x8B, 0xE2
 	.byte 0xDA, 0x0F, 0x00, 0xEB, 0xFE, 0xFF, 0xFF, 0xEA, 0x18, 0xD0, 0x8B, 0xE2, 0x18, 0x88, 0xBD, 0xE8
+	arm_func_end sub_020DFA90
 
 	arm_func_start sub_020DFAD0
 sub_020DFAD0: ; 0x020DFAD0
@@ -24846,9 +24846,11 @@ sub_020DFC6C: ; 0x020DFC6C
 	stmfd sp!, {r4, lr}
 	eors ip, r1, r3
 	eormi r3, r3, #0x80000000
-	bmi _020E075C
+	bmi sub_020E075C
 	arm_func_end sub_020DFC6C
-_020DFC7C:
+
+	arm_func_start sub_020DFC7C
+sub_020DFC7C: ; 0x020DFC7C
 	subs ip, r0, r2
 	sbcs lr, r1, r3
 	bhs _020DFC98
@@ -25060,7 +25062,9 @@ _020DFF60:
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0
-_020DFF80: .word 0x7FF00000
+_020DFF80:
+	.word 0x7FF00000
+	arm_func_end sub_020DFC7C
 
 	arm_func_start sub_020DFF84
 sub_020DFF84: ; 0x020DFF84
@@ -25098,7 +25102,7 @@ _020DFFF4:
 	bx lr
 _020DFFFC:
 	orrs r3, r0, r1, lsl #12
-	bne _020E0074
+	bne sub_020E0074
 	arm_func_end sub_020DFF84
 
 	arm_func_start sub_020E0004
@@ -25108,7 +25112,7 @@ sub_020E0004: ; 0x020E0004
 _020E000C:
 	cmn ip, #0x17
 	beq _020E0060
-	bmi _020E0074
+	bmi sub_020E0074
 	mov r1, r1, lsl #0xb
 	orr r1, r1, #0x80000000
 	mov r3, r1, lsr #8
@@ -25138,13 +25142,16 @@ sub_020E0064: ; 0x020E0064
 	addne r0, r0, #1
 	bx lr
 	arm_func_end sub_020E0064
-_020E0074:
+
+	arm_func_start sub_020E0074
+sub_020E0074: ; 0x020E0074
 	mov r0, r2
 	bx lr
 _020E007C:
 	mov r0, #-0x1000000
 	orr r0, r2, r0, lsr #1
 	bx lr
+	arm_func_end sub_020E0074
 
 	arm_func_start sub_020E0088
 sub_020E0088: ; 0x020E0088
@@ -25671,9 +25678,11 @@ sub_020E074C: ; 0x020E074C
 	stmfd sp!, {r4, lr}
 	eors ip, r1, r3
 	eormi r3, r3, #0x80000000
-	bmi _020DFC7C
+	bmi sub_020DFC7C
 	arm_func_end sub_020E074C
-_020E075C:
+
+	arm_func_start sub_020E075C
+sub_020E075C: ; 0x020E075C
 	subs ip, r0, r2
 	sbcs lr, r1, r3
 	bhs _020E077C
@@ -25932,15 +25941,19 @@ _020E0AEC:
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0
-_020E0AFC: .word 0x7FF00000
+_020E0AFC:
+	.word 0x7FF00000
+	arm_func_end sub_020E075C
 
 	arm_func_start sub_020E0B00
 sub_020E0B00: ; 0x020E0B00
 	eors r2, r0, r1
 	eormi r1, r1, #0x80000000
-	bmi _020E1AA8
+	bmi sub_020E1AA8
 	arm_func_end sub_020E0B00
-_020E0B0C:
+
+	arm_func_start sub_020E0B0C
+sub_020E0B0C: ; 0x020E0B0C
 	subs ip, r0, r1
 	sublo r0, r0, ip
 	addlo r1, r1, ip
@@ -26092,6 +26105,7 @@ _020E0D14:
 _020E0D1C:
 	.byte 0x02, 0x01, 0xE0, 0xE3
 	.byte 0x1E, 0xFF, 0x2F, 0xE1
+	arm_func_end sub_020E0B0C
 
 	arm_func_start sub_020E0D24
 sub_020E0D24: ; 0x020E0D24
@@ -26866,7 +26880,9 @@ sub_020E17B4: ; 0x020E17B4
 	rsbmi r0, r0, #0
 	cmp r0, #0
 	arm_func_end sub_020E17B4
-_020E17C0:
+
+	arm_func_start sub_020E17C0
+sub_020E17C0: ; 0x020E17C0
 	bxeq lr
 	clz r3, r0
 	movs r0, r0, lsl r3
@@ -26882,6 +26898,7 @@ _020E17C0:
 	andeqs r3, r0, #1
 	addne r0, r0, #1
 	bx lr
+	arm_func_end sub_020E17C0
 
 	arm_func_start sub_020E17FC
 sub_020E17FC: ; 0x020E17FC
@@ -26920,7 +26937,7 @@ _020E1854:
 	cmp r1, #0
 	bne _020E1864
 	movs r0, r0
-	b _020E17C0
+	b sub_020E17C0
 _020E1864:
 	clz r3, r1
 	movs r1, r1, lsl r3
@@ -26981,27 +26998,27 @@ _020E192C:
 	cmp r3, #0
 	beq _020E1980
 	movs r0, r0, lsl #1
-	bne _020E1A54
+	bne sub_020E1A54
 	mov ip, r1, lsr #0x17
 	mov r1, r1, lsl #9
 	ands ip, ip, #0xff
 	beq _020E1960
 	cmp ip, #0xff
-	blt _020E1A48
+	blt sub_020E1A48
 	cmp r1, #0
-	beq _020E1A48
-	b _020E1A54
+	beq sub_020E1A48
+	b sub_020E1A54
 _020E1960:
 	cmp r1, #0
-	beq _020E1A5C
-	b _020E1A48
+	beq sub_020E1A5C
+	b sub_020E1A48
 _020E196C:
 	cmp ip, #0
 	beq _020E19DC
 _020E1974:
 	movs r1, r1, lsl #1
-	bne _020E1A54
-	b _020E1A48
+	bne sub_020E1A54
+	b sub_020E1A48
 _020E1980:
 	movs r0, r0, lsl #1
 	beq _020E19B8
@@ -27025,8 +27042,8 @@ _020E19B8:
 	cmp ip, #0xff
 	blt _020E1A88
 	cmp r1, #0
-	beq _020E1A5C
-	b _020E1A54
+	beq sub_020E1A5C
+	b sub_020E1A54
 _020E19DC:
 	movs r1, r1, lsl #1
 	beq _020E1A88
@@ -27058,14 +27075,22 @@ _020E1A40:
 	mov r0, r0, lsl #1
 	b _020E1A70
 	arm_func_end sub_020E18B0
-_020E1A48:
+
+	arm_func_start sub_020E1A48
+sub_020E1A48: ; 0x020E1A48
 	mov r0, #-0x1000000
 	orr r0, r2, r0, lsr #1
 	bx lr
-_020E1A54:
+	arm_func_end sub_020E1A48
+
+	arm_func_start sub_020E1A54
+sub_020E1A54: ; 0x020E1A54
 	mvn r0, #0x80000000
 	bx lr
-_020E1A5C:
+	arm_func_end sub_020E1A54
+
+	arm_func_start sub_020E1A5C
+sub_020E1A5C: ; 0x020E1A5C
 	mvn r0, #0x80000000
 	bx lr
 _020E1A64:
@@ -27083,6 +27108,7 @@ _020E1A80:
 _020E1A88:
 	mov r0, r2
 	bx lr
+	arm_func_end sub_020E1A5C
 
 	arm_func_start sub_020E1A90
 sub_020E1A90: ; 0x020E1A90
@@ -27095,9 +27121,11 @@ sub_020E1A90: ; 0x020E1A90
 sub_020E1A9C: ; 0x020E1A9C
 	eors r2, r0, r1
 	eormi r1, r1, #0x80000000
-	bmi _020E0B0C
+	bmi sub_020E0B0C
 	arm_func_end sub_020E1A9C
-_020E1AA8:
+
+	arm_func_start sub_020E1AA8
+sub_020E1AA8: ; 0x020E1AA8
 	subs ip, r0, r1
 	eorlo ip, ip, #0x80000000
 	sublo r0, r0, ip
@@ -27269,6 +27297,7 @@ _020E1D04:
 _020E1D0C:
 	mvn r0, #0x80000000
 	bx lr
+	arm_func_end sub_020E1AA8
 
 	arm_func_start sub_020E1D14
 sub_020E1D14: ; 0x020E1D14
@@ -29203,9 +29232,9 @@ _020E3840:
 	movne r0, #0
 	strne r0, [r8, #8]
 	b _020E2FBC
-	arm_func_end sub_020E2FA8
 _020E3850:
 	.byte 0xA4, 0xD0, 0x8D, 0xE2, 0xF0, 0x8F, 0xBD, 0xE8
+	arm_func_end sub_020E2FA8
 
 	arm_func_start sub_020E3858
 sub_020E3858: ; 0x020E3858
@@ -29363,10 +29392,10 @@ _020E3ABC:
 	bl sub_020E415C
 	add sp, fp, #0x2c
 	ldmia sp!, {r4, fp, pc}
-	arm_func_end sub_020E3A30
 _020E3AC8:
 	.byte 0xB8, 0x1B, 0x10, 0x02, 0xAC, 0x1B, 0x10, 0x02
 	.byte 0xD0, 0x1B, 0x10, 0x02, 0xD8, 0x3A, 0x0E, 0x02
+	arm_func_end sub_020E3A30
 
 	arm_func_start sub_020E3AD8
 sub_020E3AD8: ; 0x020E3AD8
@@ -29558,7 +29587,9 @@ sub_020E3D18: ; 0x020E3D18
 	str r0, [r3, #0x10]
 	ldmia sp!, {r3, pc}
 	arm_func_end sub_020E3D18
-_020E3D74:
+
+	arm_func_start sub_020E3D74
+sub_020E3D74: ; 0x020E3D74
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x28
 	mov r5, r0
@@ -29620,6 +29651,7 @@ _020E3DD8:
 	bl sub_020E4488
 	add sp, sp, #0x28
 	ldmia sp!, {r3, r4, r5, pc}
+	arm_func_end sub_020E3D74
 
 	arm_func_start sub_020E3E60
 sub_020E3E60: ; 0x020E3E60
@@ -29717,12 +29749,12 @@ sub_020E3F50: ; 0x020E3F50
 	bl sub_020E3EEC
 	add sp, fp, #0x30
 	ldmia sp!, {fp, pc}
-	arm_func_end sub_020E3F50
 _020E3F6C:
 	.byte 0x18, 0x00, 0x8B, 0xE2
 	.byte 0xBA, 0xFF, 0xFF, 0xEB, 0x30, 0xD0, 0x8B, 0xE2, 0x00, 0x00, 0xA0, 0xE3, 0x00, 0x88, 0xBD, 0xE8
 	.byte 0x00, 0x00, 0x8B, 0xE2, 0xA9, 0xFE, 0xFF, 0xEB, 0xFE, 0xFF, 0xFF, 0xEA, 0x30, 0xD0, 0x8B, 0xE2
 	.byte 0x00, 0x88, 0xBD, 0xE8
+	arm_func_end sub_020E3F50
 
 	arm_func_start sub_020E3F94
 sub_020E3F94: ; 0x020E3F94
@@ -29741,10 +29773,10 @@ sub_020E3FA8: ; 0x020E3FA8
 	bl sub_020E3EEC
 	add sp, fp, #0x18
 	ldmia sp!, {fp, pc}
-	arm_func_end sub_020E3FA8
 _020E3FC0:
 	.byte 0x00, 0x00, 0x8B, 0xE2, 0x99, 0xFE, 0xFF, 0xEB, 0xFE, 0xFF, 0xFF, 0xEA, 0x18, 0xD0, 0x8B, 0xE2
 	.byte 0x00, 0x88, 0xBD, 0xE8
+	arm_func_end sub_020E3FA8
 
 	arm_func_start sub_020E3FD4
 sub_020E3FD4: ; 0x020E3FD4
@@ -29754,10 +29786,10 @@ sub_020E3FD4: ; 0x020E3FD4
 	bl sub_020E3F50
 	add sp, fp, #0x18
 	ldmia sp!, {fp, pc}
-	arm_func_end sub_020E3FD4
 _020E3FEC:
 	.byte 0x00, 0x00, 0x8B, 0xE2
 	.byte 0x8E, 0xFE, 0xFF, 0xEB, 0xFE, 0xFF, 0xFF, 0xEA, 0x18, 0xD0, 0x8B, 0xE2, 0x00, 0x88, 0xBD, 0xE8
+	arm_func_end sub_020E3FD4
 
 	arm_func_start sub_020E4000
 sub_020E4000: ; 0x020E4000
@@ -30199,7 +30231,7 @@ sub_020E44B8: ; 0x020E44B8
 	str r1, [sp, #0x4]
 	str r2, [sp, #0x8]
 	mov r0, sp
-	b _020E3D74
+	b sub_020E3D74
 	arm_func_end sub_020E44B8
 
 	arm_func_start sub_020E4500
@@ -30222,17 +30254,16 @@ sub_020E4500: ; 0x020E4500
 	str ip, [sp, #0x4]
 	str ip, [sp, #0x8]
 	mov r0, sp
-	b _020E3D74
+	b sub_020E3D74
 	arm_func_end sub_020E4500
 
 	arm_func_start sub_020E454C
 sub_020E454C: ; 0x020E454C
 	ldr ip, [pc, #0x0] ; =sys_exit
 	bx ip
-	arm_func_end sub_020E454C
-
 _020E4554:
 	.word 0x020E28E4
+	arm_func_end sub_020E454C
 
 
 	.section .exception, 4

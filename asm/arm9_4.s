@@ -8773,7 +8773,7 @@ _0203F5D2:
 	b _0203F5E6
 _0203F5E0:
 	add r1, r4, #0
-	bl _0203F610
+	bl sub_0203F610
 _0203F5E6:
 	add r1, r0, #0
 	ldr r0, _0203F60C ; =0x0000FFFF
@@ -8797,7 +8797,9 @@ _0203F606:
 	nop
 _0203F60C: .word 0x0000FFFF
 	thumb_func_end sub_0203F5C0
-_0203F610:
+
+	thumb_func_start sub_0203F610
+sub_0203F610: ; 0x0203F610
 	ldrb r2, [r0]
 	cmp r2, #0
 	bne _0203F61A
@@ -8815,10 +8817,12 @@ _0203F61A:
 	bx lr
 _0203F62C:
 	add r0, r0, #5
-	b _0203F610
+	b sub_0203F610
 _0203F630:
 	.byte 0x70, 0x47, 0xC0, 0x46
-_0203F634: .word 0x0000FFFF
+_0203F634:
+	.word 0x0000FFFF
+	thumb_func_end sub_0203F610
 
 	thumb_func_start sub_0203F638
 sub_0203F638: ; 0x0203F638
