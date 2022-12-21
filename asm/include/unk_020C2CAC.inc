@@ -1,0 +1,16 @@
+.public sub_020C2D14
+.public sub_020C6350
+.public sub_020C16DC
+.public sub_020C2E18
+.public sub_020C1434
+.public sub_020C16A8
+.public sub_020C3560
+.public sub_020C50BC
+.public sub_020C3D3C
+.public sub_020C405C
+.public sub_020C1DDC
+.public sub_020C3E30
+.public sub_020D0FB4
+.public sub_020CD6F8
+.public sub_020CACD0
+.public sub_020C2CAC

@@ -1,0 +1,10 @@
+.public sub_020C4DB0
+.public sub_020D5124
+.public sub_02023D8C
+.public sub_02023790
+.public sub_02023D28
+.public sub_02022974
+.public sub_020245BC
+.public sub_02026074
+.public sub_020245BC
+.public sub_02026034

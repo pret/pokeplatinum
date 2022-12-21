@@ -1,0 +1,11 @@
+.public sub_020C4B4C
+.public sub_020D5124
+.public sub_020556C4
+.public sub_0205EC34
+.public sub_0203A7EC
+.public sub_020245BC
+.public sub_020245BC
+.public sub_0203A79C
+.public sub_02061CA8
+.public sub_0203A79C
+.public sub_02061D04

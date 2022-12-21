@@ -1,0 +1,44 @@
+	.include "macros/function.inc"
+	.include "include/unk_020BDEEC.inc"
+
+	
+
+	.text
+
+
+	arm_func_start sub_020BDEEC
+sub_020BDEEC: ; 0x020BDEEC
+	ldr r0, _020BDF44 ; =0x021CCBA0
+	mov r2, #0
+	strh r2, [r0]
+	strh r2, [r0, #2]
+	strh r2, [r0, #4]
+	strh r2, [r0, #6]
+	strh r2, [r0, #8]
+	strh r2, [r0, #0xa]
+	strh r2, [r0, #0xc]
+	strh r2, [r0, #0xe]
+	strh r2, [r0, #0x10]
+	strh r2, [r0, #0x12]
+	strh r2, [r0, #0x14]
+	strh r2, [r0, #0x16]
+	ldr r1, _020BDF48 ; =0x04000240
+	strh r2, [r0, #0x18]
+	str r2, [r1, #0]
+	strb r2, [r1, #4]
+	strb r2, [r1, #5]
+	strb r2, [r1, #6]
+	strh r2, [r1, #8]
+	bx lr
+	; .align 2, 0
+_020BDF44: .word 0x021CCBA0
+_020BDF48: .word 0x04000240
+	arm_func_end sub_020BDEEC
+
+	.bss
+
+
+	.global Unk_021CCBA0
+Unk_021CCBA0: ; 0x021CCBA0
+	.space 0x1A
+

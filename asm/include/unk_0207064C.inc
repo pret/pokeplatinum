@@ -1,0 +1,12 @@
+.public sub_02018184
+.public sub_02050A60
+.public sub_02050A64
+.public sub_0205EB98
+.public ov6_02243F88
+.public ov6_02243FBC
+.public ov6_02243FC8
+.public sub_0203A8A0
+.public sub_02022974
+.public sub_0203A7F0
+.public sub_02053AFC
+.public sub_020181C4
