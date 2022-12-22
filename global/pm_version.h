@@ -1,0 +1,7 @@
+#ifndef POKEPLATINUM_PM_VERSION_H
+#define POKEPLATINUM_PM_VERSION_H
+
+extern const u8 Unk_020E4C40;
+extern const u8 Unk_020E4C44;
+
+#endif // POKEPLATINUM_PM_VERSION_H
