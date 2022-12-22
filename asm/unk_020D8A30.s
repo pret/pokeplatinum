@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D8A30
-sub_020D8A30: ; 0x020D8A30
+	arm_func_start raise
+raise: ; 0x020D8A30
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	cmp r5, #1
@@ -19,7 +19,7 @@ _020D8A48:
 	ldmia sp!, {r3, r4, r5, pc}
 _020D8A50:
 	ldr r0, _020D8B4C ; =0x021D0A10
-	bl sub_020C2AF4
+	bl OS_TryLockMutex
 	cmp r0, #0
 	bne _020D8A84
 	ldr r0, _020D8B50 ; =0x021CCC80
@@ -46,7 +46,7 @@ _020D8A84:
 	b _020D8ADC
 _020D8AB4:
 	ldr r0, _020D8B4C ; =0x021D0A10
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _020D8B50 ; =0x021CCC80
 	ldr r1, _020D8B54 ; =0x021D0920
 	ldr r2, [r0, #4]
@@ -68,7 +68,7 @@ _020D8ADC:
 	str r1, [r0, #0x1c]
 	bne _020D8B10
 	ldr r0, _020D8B4C ; =0x021D0A10
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 _020D8B10:
 	cmp r4, #1
 	beq _020D8B24
@@ -82,7 +82,7 @@ _020D8B2C:
 	cmp r4, #0
 	bne _020D8B3C
 	mov r0, #0
-	bl sub_020D3DC4
+	bl exit
 _020D8B3C:
 	mov r0, r5
 	blx r4
@@ -94,7 +94,7 @@ _020D8B50: .word 0x021CCC80
 _020D8B54: .word 0x021D0920
 _020D8B58: .word 0x021D0944
 _020D8B5C: .word 0x021D0D44
-	arm_func_end sub_020D8A30
+	arm_func_end raise
 
 	.bss
 

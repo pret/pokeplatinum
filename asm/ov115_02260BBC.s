@@ -17,7 +17,7 @@ ov115_02260BBC: ; 0x02260BBC
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x38
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0]
 	str r6, [r4, #8]
 	str r7, [r4, #0x30]

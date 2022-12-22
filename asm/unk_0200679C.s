@@ -23,7 +23,7 @@ sub_0200679C: ; 0x0200679C
 _020067B6:
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	b _020067C2
 _020067C0:
 	mov r4, #0

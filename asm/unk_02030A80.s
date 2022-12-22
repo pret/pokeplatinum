@@ -14,7 +14,7 @@ sub_02030A80: ; 0x02030A80
 	mov r1, #0
 	mov r2, #0x80
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -46,7 +46,7 @@ sub_02030AA0: ; 0x02030AA0
 	bl sub_02027848
 	add r7, r0, #0
 	add r0, sp, #0x10
-	bl sub_020C3FBC
+	bl OS_GetOwnerInfo
 	add r0, r7, #0
 	add r1, sp, #0xc
 	add r2, sp, #8
@@ -55,7 +55,7 @@ sub_02030AA0: ; 0x02030AA0
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_02025EF0
 	add r1, r0, #0

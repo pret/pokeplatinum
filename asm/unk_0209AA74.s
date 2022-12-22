@@ -159,7 +159,7 @@ _0209ABD6:
 	bl sub_0200106C
 	add r0, r4, #0
 	add r1, r4, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	b _0209ABD6
 	; .align 2, 0
 _0209ABE4: .word 0xFFFFE0FF

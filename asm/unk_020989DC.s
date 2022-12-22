@@ -22,7 +22,7 @@ sub_020989DC: ; 0x020989DC
 	mov r1, #0
 	lsl r2, r2, #2
 	add r7, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_0202AB28
 	str r0, [r7, #8]
@@ -184,7 +184,7 @@ sub_02098B1C: ; 0x02098B1C
 	mov r1, #0
 	mov r2, #0x18
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x2c
 	str r0, [r4, #0]
 	str r5, [r4, #0xc]
@@ -355,7 +355,7 @@ _02098C62:
 	mov r1, #0
 	mov r2, #0x40
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0xc]
 	mov r1, #0
 	ldr r0, [r0, #0x10]
@@ -499,7 +499,7 @@ sub_02098D7C: ; 0x02098D7C
 	mov r1, #0
 	mov r2, #0xc
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [r5, #0xc]
 	ldrb r0, [r1, #1]
 	lsl r0, r0, #3
@@ -735,22 +735,22 @@ _02098F46:
 	cmp r0, #5
 	beq _02098F94
 	ldrb r0, [r4, r0]
-	bl sub_020E17FC
+	bl _f_utof
 	add r1, r0, #0
 	ldr r0, _02098FF4 ; =0x3F8CCCCD
-	bl sub_020E18B0
-	bl sub_020E1774
+	bl _f_mul
+	bl _f_ftou
 	ldr r1, [sp, #4]
 	strb r0, [r4, r1]
 	add r4, sp, #8
 	ldr r0, [sp]
 	add r4, #1
 	ldrb r0, [r4, r0]
-	bl sub_020E17FC
+	bl _f_utof
 	add r1, r0, #0
 	ldr r0, _02098FF8 ; =0x3F666666
-	bl sub_020E18B0
-	bl sub_020E1774
+	bl _f_mul
+	bl _f_ftou
 	ldr r1, [sp]
 	strb r0, [r4, r1]
 _02098F94:

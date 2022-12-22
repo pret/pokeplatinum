@@ -28,12 +28,12 @@ sub_02026324: ; 0x02026324
 
 	thumb_func_start sub_02026338
 sub_02026338: ; 0x02026338
-	ldr r3, _02026340 ; =sub_020C4DB0
+	ldr r3, _02026340 ; =MI_CpuCopy8
 	mov r2, #0xc9
 	lsl r2, r2, #2
 	bx r3
 	; .align 2, 0
-_02026340: .word sub_020C4DB0
+_02026340: .word MI_CpuCopy8
 	thumb_func_end sub_02026338
 
 	thumb_func_start sub_02026344
@@ -1504,7 +1504,7 @@ sub_02026D6C: ; 0x02026D6C
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02026DC8 ; =0xBEEFCAFE
 	mov r1, #0
 	str r0, [r4, #0]
@@ -1515,7 +1515,7 @@ sub_02026D6C: ; 0x02026D6C
 	lsl r0, r0, #2
 	add r0, r4, r0
 	mov r1, #0xff
-	bl sub_020D5124
+	bl memset
 	mov r0, #0xff
 	add r1, r0, #0
 	add r1, #9

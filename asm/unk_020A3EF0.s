@@ -6,15 +6,15 @@
 	.text
 
 
-	arm_func_start sub_020A3EF0
-sub_020A3EF0: ; 0x020A3EF0
+	arm_func_start DWC_Init
+DWC_Init: ; 0x020A3EF0
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, _020A3F50 ; =0x02000BC4
 	mov r5, #0
-	bl sub_02000B9C
+	bl OSi_ReferSymbol
 	mov r0, r6
-	bl sub_020A3404
+	bl DWC_BM_Init
 	mov r4, r0
 	bl sub_020A3EA0
 	cmp r0, #0
@@ -36,4 +36,4 @@ _020A3F40:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020A3F50: .word 0x02000BC4
-	arm_func_end sub_020A3EF0
+	arm_func_end DWC_Init

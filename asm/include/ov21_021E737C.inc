@@ -56,9 +56,9 @@
 .public sub_02079FE0
 .public sub_02098828
 .public sub_020989C4
-.public sub_020A81FC
-.public sub_020D5124
-.public sub_020E1F1C
+.public NNS_G2dGetImagePaletteLocation
+.public memset
+.public _ull_mul
 .public ov21_021D13EC
 .public ov21_021D13FC
 .public ov21_021D1410

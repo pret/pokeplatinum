@@ -375,7 +375,7 @@ sub_0201DF50: ; 0x0201DF50
 	add r0, r4, #0
 	add r0, #0x3c
 	add r1, sp, #0
-	bl sub_020B38E4
+	bl NNS_G3dGetResDataByName
 	add r1, r0, #0
 	b _0201DF70
 _0201DF6E:
@@ -447,7 +447,7 @@ _0201DFC6:
 	lsl r2, r2, #4
 	lsl r0, r0, #4
 	mul r0, r2
-	bl sub_020E2178
+	bl _u32_div_f
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end sub_0201DF84
@@ -464,7 +464,7 @@ sub_0201DFE4: ; 0x0201DFE4
 	add r0, r4, #0
 	add r0, #0x3c
 	add r1, sp, #0
-	bl sub_020B38E4
+	bl NNS_G3dGetResDataByName
 	add r1, r0, #0
 	b _0201E004
 _0201E002:

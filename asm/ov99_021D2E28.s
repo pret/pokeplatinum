@@ -122,7 +122,7 @@ _021D2EE4:
 	ldr r2, [r4, #4]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r0, r0, r2
@@ -139,7 +139,7 @@ _021D2EE4:
 	ldr r2, [r4, #8]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r0, r0, r2
@@ -302,7 +302,7 @@ _021D3060:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -318,7 +318,7 @@ _021D3060:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -386,7 +386,7 @@ _021D3108:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -402,7 +402,7 @@ _021D3108:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -421,19 +421,19 @@ _021D3108:
 _021D315C:
 	ldr r0, [r5, #0x2c]
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x20]
 	sub r0, r1, r0
 	str r0, [r4, #0x20]
 	ldr r0, [r5, #0x30]
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x24]
 	sub r0, r1, r0
 	str r0, [r4, #0x24]
 	ldr r0, [r5, #0x2c]
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x20]
 	cmp r1, r0
 	bgt _021D326C
@@ -465,7 +465,7 @@ _021D3196:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	mov r2, #0
 	lsl r3, r3, #0xa
@@ -481,7 +481,7 @@ _021D3196:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -508,7 +508,7 @@ _021D3206:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -524,7 +524,7 @@ _021D3206:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa

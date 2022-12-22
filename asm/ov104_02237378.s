@@ -96,7 +96,7 @@ ov104_0223740C: ; 0x0223740C
 	mov r1, #0
 	mov r2, #0x48
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r6, #8]
 	add r1, r7, #0
 	str r0, [r4, #0]
@@ -599,7 +599,7 @@ _02237824:
 	b _02237C02
 _02237832:
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	b _02237C02
 _0223783A:
 	ldr r0, [r4, #8]

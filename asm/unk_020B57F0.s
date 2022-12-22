@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B57F0
-sub_020B57F0: ; 0x020B57F0
+	arm_func_start GetTexSRTAnmVectorVal_
+GetTexSRTAnmVectorVal_: ; 0x020B57F0
 	tst r1, #0x20000000
 	movne r0, r2
 	bxne lr
@@ -80,10 +80,10 @@ _020B58E4:
 	add r0, r0, r1
 	mov r0, r0, asr #1
 	bx lr
-	arm_func_end sub_020B57F0
+	arm_func_end GetTexSRTAnmVectorVal_
 
-	arm_func_start sub_020B58F0
-sub_020B58F0: ; 0x020B58F0
+	arm_func_start GetTexSRTAnmSinCosVal_
+GetTexSRTAnmSinCosVal_: ; 0x020B58F0
 	tst r1, #0x20000000
 	movne r0, r2
 	bxne lr
@@ -157,10 +157,10 @@ _020B59C8:
 	mov r1, r1, lsl #0x10
 	orr r0, r1, r0, lsr #16
 	bx lr
-	arm_func_end sub_020B58F0
+	arm_func_end GetTexSRTAnmSinCosVal_
 
-	arm_func_start sub_020B59FC
-sub_020B59FC: ; 0x020B59FC
+	arm_func_start GetTexSRTAnm_
+GetTexSRTAnm_: ; 0x020B59FC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r0
 	mov r6, r2
@@ -184,13 +184,13 @@ _020B5A3C:
 	mov r0, r7
 	mov r3, r6
 	ldr r8, [r5]
-	bl sub_020B57F0
+	bl GetTexSRTAnmVectorVal_
 	mov sb, r0
 	ldr r1, [r4, #0x20]
 	ldr r2, [r4, #0x24]
 	mov r0, r7
 	mov r3, r6
-	bl sub_020B57F0
+	bl GetTexSRTAnmVectorVal_
 	cmp sb, #0
 	cmpeq r0, #0
 	strne sb, [r5, #0x24]
@@ -201,7 +201,7 @@ _020B5A3C:
 	bicne r8, r8, #4
 	mov r0, r7
 	mov r3, r6
-	bl sub_020B58F0
+	bl GetTexSRTAnmSinCosVal_
 	cmp r0, #0x10000000
 	orreq r8, r8, #2
 	beq _020B5AB4
@@ -213,13 +213,13 @@ _020B5AB4:
 	mov r0, r7
 	mov r3, r6
 	ldmia r4, {r1, r2}
-	bl sub_020B57F0
+	bl GetTexSRTAnmVectorVal_
 	mov sb, r0
 	ldr r1, [r4, #8]
 	ldr r2, [r4, #0xc]
 	mov r0, r7
 	mov r3, r6
-	bl sub_020B57F0
+	bl GetTexSRTAnmVectorVal_
 	cmp sb, #0x1000
 	cmpeq r0, #0x1000
 	orreq r8, r8, #1
@@ -228,10 +228,10 @@ _020B5AB4:
 	bicne r8, r8, #1
 	str r8, [r5]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020B59FC
+	arm_func_end GetTexSRTAnm_
 
-	arm_func_start sub_020B5AFC
-sub_020B5AFC: ; 0x020B5AFC
+	arm_func_start NNSi_G3dAnmObjInitNsBta
+NNSi_G3dAnmObjInitNsBta: ; 0x020B5AFC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	cmp r2, #0
@@ -248,7 +248,7 @@ sub_020B5AFC: ; 0x020B5AFC
 	moveq r7, #0
 	strb r2, [sl, #0x19]
 	mov r2, r2, lsl #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrb r0, [sb, #9]
 	mov r6, #0
 	cmp r0, #0
@@ -276,7 +276,7 @@ _020B5B90:
 	moveq r0, r4
 	beq _020B5BA4
 	add r0, r7, #4
-	bl sub_020B3AA4
+	bl NNS_G3dGetResDictIdxByName
 _020B5BA4:
 	cmp r0, #0
 	orrge r1, r6, #0x100
@@ -290,10 +290,10 @@ _020B5BA4:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020B5BCC: .word 0x02100ED4
-	arm_func_end sub_020B5AFC
+	arm_func_end NNSi_G3dAnmObjInitNsBta
 
-	arm_func_start sub_020B5BD0
-sub_020B5BD0: ; 0x020B5BD0
+	arm_func_start NNSi_G3dAnmCalcNsBta
+NNSi_G3dAnmCalcNsBta: ; 0x020B5BD0
 	stmfd sp!, {r4, lr}
 	ldr ip, [r1]
 	mov r4, r0
@@ -302,7 +302,7 @@ sub_020B5BD0: ; 0x020B5BD0
 	mov r1, r2, lsr #0x10
 	mov r3, r4
 	mov r2, ip, asr #0xc
-	bl sub_020B59FC
+	bl GetTexSRTAnm_
 	ldr r0, [r4, #0x10]
 	bic r0, r0, #0xc0000000
 	orr r0, r0, #0x40000000
@@ -311,4 +311,4 @@ sub_020B5BD0: ; 0x020B5BD0
 	orr r0, r0, #8
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020B5BD0
+	arm_func_end NNSi_G3dAnmCalcNsBta

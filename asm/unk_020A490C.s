@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020A490C
-sub_020A490C: ; 0x020A490C
+	arm_func_start CRYPTO_RC4FastInit
+CRYPTO_RC4FastInit: ; 0x020A490C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r3, #0
 	str r3, [r0, #0]
@@ -48,10 +48,10 @@ _020A4984:
 	blt _020A4984
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
-	arm_func_end sub_020A490C
+	arm_func_end CRYPTO_RC4FastInit
 
-	arm_func_start sub_020A49A4
-sub_020A49A4: ; 0x020A49A4
+	arm_func_start CRYPTO_RC4Init
+CRYPTO_RC4Init: ; 0x020A49A4
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #4
 	mov r3, #0
@@ -90,4 +90,4 @@ _020A49E8:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, lr}
 	bx lr
-	arm_func_end sub_020A49A4
+	arm_func_end CRYPTO_RC4Init

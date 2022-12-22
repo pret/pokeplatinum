@@ -10,9 +10,9 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020BFEAC
-.public sub_020D5124
-.public sub_020E1F6C
+.public G3X_SetHOffset
+.public memset
+.public _s32_div_f
 .public ov5_021EF418
 .public ov5_021EF43C
 .public ov5_021EF5A8

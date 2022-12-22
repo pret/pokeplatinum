@@ -163,7 +163,7 @@ _02239E54:
 	str r1, [r4, r0]
 	ldr r0, [r4, r0]
 	mov r1, #0x12
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x1a
 	lsl r0, r0, #4
 	str r1, [r4, r0]
@@ -341,7 +341,7 @@ _02239FB0:
 	str r1, [r4, r0]
 	ldr r0, [r4, r0]
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x1b
 	lsl r0, r0, #4
 	str r1, [r4, r0]
@@ -351,14 +351,14 @@ _02239FB0:
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223A0A4 ; =0x00002F68
 	str r1, [r4, r0]
 	mov r0, #0x1b
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, _0223A0A8 ; =0x00002F6C
 	str r0, [r4, r2]
 	sub r1, r2, #4
@@ -546,7 +546,7 @@ ov62_0223A154: ; 0x0223A154
 	add r0, r7, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x66
 	str r0, [sp]
 	add r0, r5, #0
@@ -567,7 +567,7 @@ ov62_0223A17C: ; 0x0223A17C
 	ldr r2, _0223A280 ; =0x00002F70
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]
@@ -2217,7 +2217,7 @@ _0223AED2:
 	bl sub_0200D888
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r2, r1, #0
 	mov r0, #0x18
 	mul r2, r0
@@ -2226,7 +2226,7 @@ _0223AED2:
 	strh r2, [r0]
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x16
 	mul r1, r0
 	add r1, #0x30
@@ -4629,14 +4629,14 @@ _0223C306:
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223C404 ; =0x00002F68
 	str r1, [r5, r0]
 	mov r0, #0x1b
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r3, _0223C408 ; =0x00002F6C
 	mov r1, #0x6f
 	str r0, [r5, r3]
@@ -5524,7 +5524,7 @@ _0223CAC0:
 	ldr r2, _0223CAE8 ; =0x00002A30
 	add r0, r4, r0
 	add r1, r4, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 	nop
 _0223CAE8: .word 0x00002A30

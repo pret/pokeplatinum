@@ -259,7 +259,7 @@ _021D0F76:
 	ldr r2, _021D1084 ; =0x00001D10
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	str r7, [r4, #4]
 	ldr r0, [r5, #0x1c]
 	str r0, [r4, #8]
@@ -1081,13 +1081,13 @@ ov21_021D157C: ; 0x021D157C
 	ldr r4, [r5, #0x20]
 	mul r0, r6
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r5, #0x18]
 	add r7, r0, #0
 	add r0, r1, #0
 	mul r0, r6
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r5, #0xc]
 	ldr r2, [r5, #0x10]
 	add r1, r7, r1
@@ -2238,7 +2238,7 @@ ov21_021D1E94: ; 0x021D1E94
 	push {r4, r5, lr}
 	sub sp, #0x24
 	add r4, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -2295,8 +2295,8 @@ _021D1F0C: .word 0x000019FC
 	thumb_func_start ov21_021D1F10
 ov21_021D1F10: ; 0x021D1F10
 	push {r3, lr}
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _021D1F70 ; =0x04000060
 	ldr r2, _021D1F74 ; =0xFFFFCFFD
 	ldrh r1, [r0]
@@ -2323,7 +2323,7 @@ ov21_021D1F10: ; 0x021D1F10
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D1F7C ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -2331,11 +2331,11 @@ ov21_021D1F10: ; 0x021D1F10
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	pop {r3, pc}
 	; .align 2, 0
 _021D1F70: .word 0x04000060
@@ -2348,8 +2348,8 @@ _021D1F80: .word 0xBFFF0000
 	thumb_func_start ov21_021D1F84
 ov21_021D1F84: ; 0x021D1F84
 	push {r3, lr}
-	bl sub_020A5B1C
-	bl sub_020A5F50
+	bl NNS_GfdResetFrmTexVramState
+	bl NNS_GfdResetFrmPlttVramState
 	pop {r3, pc}
 	thumb_func_end ov21_021D1F84
 

@@ -98,7 +98,7 @@ ov77_021D670C: ; 0x021D670C
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl ov77_021D6800
 	add r0, r4, #0
@@ -124,7 +124,7 @@ ov77_021D6734: ; 0x021D6734
 	mov r1, #0
 	add r2, r6, #0
 	str r0, [r4, #4]
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0]
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
@@ -242,7 +242,7 @@ ov77_021D6800: ; 0x021D6800
 	orr r0, r1
 	str r0, [r3, #0]
 	bl ov77_021D6670
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -724,13 +724,13 @@ _021D6BBE:
 	str r0, [r2, #0]
 	bl sub_0201D2E8
 	mov r1, #0xe0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #0xa
 	lsl r0, r1, #0xc
 	str r0, [sp, #8]
 	bl sub_0201D2E8
 	mov r1, #0x38
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #0xfa
 	lsl r0, r1, #0xc
 	str r0, [sp, #0xc]

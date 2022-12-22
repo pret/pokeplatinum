@@ -235,7 +235,7 @@
 .public sub_020923C0
 .public sub_02095734
 .public sub_02098EF8
-.public sub_020A7248
-.public sub_020BF55C
-.public sub_020D5124
-.public sub_020E1F6C
+.public NNS_G2dGetUnpackedScreenData
+.public G2x_SetBlendAlpha_
+.public memset
+.public _s32_div_f

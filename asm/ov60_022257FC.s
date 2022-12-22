@@ -75,9 +75,9 @@ ov60_022258C4: ; 0x022258C4
 	str ip, [sp]
 	mov ip, #0x10
 	str ip, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _02225900 ; =0x0222A034
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0

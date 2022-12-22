@@ -68,7 +68,7 @@ _0200AA3E:
 	ldrsh r2, [r5, r2]
 	ldr r0, _0200AA70 ; =0x04000050
 	ldr r1, [r5, #0]
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	b _0200AA66
 _0200AA54:
 	mov r0, #2
@@ -78,7 +78,7 @@ _0200AA54:
 	ldrsh r2, [r5, r2]
 	ldr r0, _0200AA74 ; =0x04001050
 	ldr r1, [r5, #0]
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 _0200AA66:
 	cmp r4, #1
 	bne _0200AA6E
@@ -135,12 +135,12 @@ _0200AAC2:
 	mov r0, #0x12
 	ldrsh r0, [r5, r0]
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r5, #0x14]
 	mov r0, #0x12
 	ldrsh r0, [r5, r0]
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r5, #0x16]
 	mov r0, #0
 	strh r0, [r5, #0x18]
@@ -163,7 +163,7 @@ sub_0200AAE0: ; 0x0200AAE0
 	beq _0200AB12
 	ldr r0, _0200AB3C ; =0x04000050
 	add r1, r4, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	str r4, [sp]
 	mov r0, #1
 	str r0, [sp, #4]
@@ -180,7 +180,7 @@ _0200AB12:
 	ldr r0, _0200AB44 ; =0x04001050
 	add r1, r4, #0
 	add r2, r6, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	str r4, [sp]
 	mov r0, #2
 	str r0, [sp, #4]
@@ -210,7 +210,7 @@ sub_0200AB4C: ; 0x0200AB4C
 	beq _0200AB62
 	ldr r0, _0200AB7C ; =0x04000050
 	add r2, r5, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 _0200AB62:
 	mov r0, #2
 	tst r0, r4
@@ -218,7 +218,7 @@ _0200AB62:
 	ldr r0, _0200AB80 ; =0x04001050
 	add r1, r6, #0
 	add r2, r5, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 _0200AB72:
 	add r0, r4, #0
 	bl sub_0200ABB0
@@ -234,11 +234,11 @@ sub_0200AB84: ; 0x0200AB84
 	ldr r0, _0200ABA4 ; =0x021BF454
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0200ABA8 ; =0x021BF434
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0200ABAC ; =0x021BF434
 	mov r1, #0
 	str r1, [r0, #0x3c]
@@ -260,7 +260,7 @@ sub_0200ABB0: ; 0x0200ABB0
 	ldr r0, _0200ABE4 ; =0x021BF454
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0200ABE8 ; =0x021BF434
 	mov r1, #0
 	str r1, [r0, #0x3c]
@@ -271,7 +271,7 @@ _0200ABCA:
 	ldr r0, _0200ABEC ; =0x021BF434
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0200ABE8 ; =0x021BF434
 	mov r1, #0
 	str r1, [r0, #0x1c]

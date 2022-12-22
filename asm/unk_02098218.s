@@ -26,7 +26,7 @@ sub_02098218: ; 0x02098218
 	mov r1, #0
 	mov r2, #0x88
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	str r0, [r4, #0]

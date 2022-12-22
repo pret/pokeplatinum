@@ -56,7 +56,7 @@
 .public sub_0205DA04
 .public sub_0205EABC
 .public sub_0205EAC8
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov23_02242D60
 .public ov23_02242E58
 .public ov23_02242E78

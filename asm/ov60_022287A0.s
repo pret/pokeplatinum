@@ -233,7 +233,7 @@ _02228A60:
 	blo _02228A98
 	mov r0, sb
 	mov r1, r8
-	bl sub_020E2178
+	bl _u32_div_f
 	mul r2, r0, r8
 	cmp sl, #0
 	addne r0, r0, #0x30

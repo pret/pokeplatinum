@@ -134,10 +134,10 @@
 .public sub_02038B60
 .public sub_02039734
 .public sub_0209C390
-.public sub_020A7944
-.public sub_020C4CF4
-.public sub_020D5124
-.public sub_020E1F6C
+.public NNS_G2dInitOamManagerModule
+.public MI_CpuFill8
+.public memset
+.public _s32_div_f
 .public ov4_021D1120
 .public ov4_021D1E74
 .public ov4_021D1F18

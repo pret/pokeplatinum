@@ -1,7 +1,7 @@
-.public sub_020BB4EC
-.public sub_020BD048
-.public sub_020BD080
-.public sub_020BD218
-.public sub_020BD298
-.public sub_020BD3E4
-.public sub_020C4CA4
+.public MTX_ScaleApply33
+.public FX_GetDivResult
+.public FX_InvAsync
+.public VEC_DotProduct
+.public VEC_CrossProduct
+.public VEC_Normalize
+.public MI_Copy48B

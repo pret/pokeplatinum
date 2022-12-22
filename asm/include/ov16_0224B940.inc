@@ -16,10 +16,10 @@
 .public sub_0207D388
 .public sub_0207D60C
 .public sub_0207DA1C
-.public sub_020C4B4C
-.public sub_020C4BB8
-.public sub_020E1F6C
-.public sub_020E2178
+.public MIi_CpuClear32
+.public MIi_CpuClearFast
+.public _s32_div_f
+.public _u32_div_f
 .public ov16_0223B748
 .public ov16_0223DF0C
 .public ov16_0223DF10

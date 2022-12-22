@@ -62,9 +62,9 @@
 .public sub_020241BC
 .public sub_02025E38
 .public sub_02025F30
-.public sub_020BF55C
-.public sub_020D5124
-.public sub_020E2178
+.public G2x_SetBlendAlpha_
+.public memset
+.public _u32_div_f
 .public ov5_021DDC28
 .public ov5_021DDC44
 .public ov5_021DDD7C

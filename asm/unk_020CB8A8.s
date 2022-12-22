@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CB8A8
-sub_020CB8A8: ; 0x020CB8A8
+	arm_func_start RTC_Init
+RTC_Init: ; 0x020CB8A8
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _020CB90C ; =0x021CED58
 	ldrh r1, [r0]
@@ -21,42 +21,42 @@ sub_020CB8A8: ; 0x020CB8A8
 	str r1, [r0, #0x28]
 	str r1, [r0, #0x14]
 	str r1, [r0, #0x18]
-	bl sub_020C6350
+	bl PXI_Init
 	mov r5, #5
 	mov r4, #1
 _020CB8E8:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	beq _020CB8E8
-	ldr r1, _020CB910 ; =sub_020CBB1C
+	ldr r1, _020CB910 ; =RtcCommonCallback
 	mov r0, #5
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CB90C: .word 0x021CED58
-_020CB910: .word sub_020CBB1C
-	arm_func_end sub_020CB8A8
+_020CB910: .word RtcCommonCallback
+	arm_func_end RTC_Init
 
-	arm_func_start sub_020CB914
-sub_020CB914: ; 0x020CB914
+	arm_func_start RTC_GetDateAsync
+RTC_GetDateAsync: ; 0x020CB914
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
 	mov r4, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CB980 ; =0x021CED58
 	ldr r2, [r1, #0xc]
 	cmp r2, #0
 	beq _020CB944
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _020CB944:
 	mov r2, #1
 	str r2, [r1, #0xc]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CB980 ; =0x021CED58
 	mov r1, #0
 	str r1, [r0, #0x20]
@@ -64,53 +64,53 @@ _020CB944:
 	str r6, [r0, #0x14]
 	str r5, [r0, #0x10]
 	str r4, [r0, #0x1c]
-	bl sub_020CC114
+	bl RTCi_ReadRawDateAsync
 	cmp r0, #0
 	movne r0, #0
 	moveq r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020CB980: .word 0x021CED58
-	arm_func_end sub_020CB914
+	arm_func_end RTC_GetDateAsync
 
-	arm_func_start sub_020CB984
-sub_020CB984: ; 0x020CB984
+	arm_func_start RTC_GetDate
+RTC_GetDate: ; 0x020CB984
 	stmfd sp!, {r3, lr}
-	ldr r1, _020CB9B4 ; =sub_020CC0DC
+	ldr r1, _020CB9B4 ; =RtcGetResultCallback
 	mov r2, #0
-	bl sub_020CB914
+	bl RTC_GetDateAsync
 	ldr r1, _020CB9B8 ; =0x021CED58
 	cmp r0, #0
 	str r0, [r1, #0x2c]
 	bne _020CB9A8
-	bl sub_020CC0EC
+	bl RtcWaitBusy
 _020CB9A8:
 	ldr r0, _020CB9B8 ; =0x021CED58
 	ldr r0, [r0, #0x2c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CB9B4: .word sub_020CC0DC
+_020CB9B4: .word RtcGetResultCallback
 _020CB9B8: .word 0x021CED58
-	arm_func_end sub_020CB984
+	arm_func_end RTC_GetDate
 
-	arm_func_start sub_020CB9BC
-sub_020CB9BC: ; 0x020CB9BC
+	arm_func_start RTC_GetTimeAsync
+RTC_GetTimeAsync: ; 0x020CB9BC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
 	mov r4, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CBA2C ; =0x021CED58
 	ldr r2, [r1, #0xc]
 	cmp r2, #0
 	beq _020CB9EC
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _020CB9EC:
 	mov r2, #1
 	str r2, [r1, #0xc]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CBA2C ; =0x021CED58
 	mov r1, #1
 	str r1, [r0, #0x20]
@@ -119,54 +119,54 @@ _020CB9EC:
 	str r6, [r0, #0x14]
 	str r5, [r0, #0x10]
 	str r4, [r0, #0x1c]
-	bl sub_020CC124
+	bl RTCi_ReadRawTimeAsync
 	cmp r0, #0
 	movne r0, #0
 	moveq r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020CBA2C: .word 0x021CED58
-	arm_func_end sub_020CB9BC
+	arm_func_end RTC_GetTimeAsync
 
-	arm_func_start sub_020CBA30
-sub_020CBA30: ; 0x020CBA30
+	arm_func_start RTC_GetTime
+RTC_GetTime: ; 0x020CBA30
 	stmfd sp!, {r3, lr}
-	ldr r1, _020CBA60 ; =sub_020CC0DC
+	ldr r1, _020CBA60 ; =RtcGetResultCallback
 	mov r2, #0
-	bl sub_020CB9BC
+	bl RTC_GetTimeAsync
 	ldr r1, _020CBA64 ; =0x021CED58
 	cmp r0, #0
 	str r0, [r1, #0x2c]
 	bne _020CBA54
-	bl sub_020CC0EC
+	bl RtcWaitBusy
 _020CBA54:
 	ldr r0, _020CBA64 ; =0x021CED58
 	ldr r0, [r0, #0x2c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CBA60: .word sub_020CC0DC
+_020CBA60: .word RtcGetResultCallback
 _020CBA64: .word 0x021CED58
-	arm_func_end sub_020CBA30
+	arm_func_end RTC_GetTime
 
-	arm_func_start sub_020CBA68
-sub_020CBA68: ; 0x020CBA68
+	arm_func_start RTC_GetDateTimeAsync
+RTC_GetDateTimeAsync: ; 0x020CBA68
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
 	mov r4, r3
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CBAE0 ; =0x021CED58
 	ldr r2, [r1, #0xc]
 	cmp r2, #0
 	beq _020CBA9C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020CBA9C:
 	mov r2, #1
 	str r2, [r1, #0xc]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CBAE0 ; =0x021CED58
 	mov r1, #2
 	str r1, [r0, #0x20]
@@ -176,37 +176,37 @@ _020CBA9C:
 	str r6, [r0, #0x18]
 	str r5, [r0, #0x10]
 	str r4, [r0, #0x1c]
-	bl sub_020CC104
+	bl RTCi_ReadRawDateTimeAsync
 	cmp r0, #0
 	movne r0, #0
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CBAE0: .word 0x021CED58
-	arm_func_end sub_020CBA68
+	arm_func_end RTC_GetDateTimeAsync
 
-	arm_func_start sub_020CBAE4
-sub_020CBAE4: ; 0x020CBAE4
+	arm_func_start RTC_GetDateTime
+RTC_GetDateTime: ; 0x020CBAE4
 	stmfd sp!, {r3, lr}
-	ldr r2, _020CBB14 ; =sub_020CC0DC
+	ldr r2, _020CBB14 ; =RtcGetResultCallback
 	mov r3, #0
-	bl sub_020CBA68
+	bl RTC_GetDateTimeAsync
 	ldr r1, _020CBB18 ; =0x021CED58
 	cmp r0, #0
 	str r0, [r1, #0x2c]
 	bne _020CBB08
-	bl sub_020CC0EC
+	bl RtcWaitBusy
 _020CBB08:
 	ldr r0, _020CBB18 ; =0x021CED58
 	ldr r0, [r0, #0x2c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CBB14: .word sub_020CC0DC
+_020CBB14: .word RtcGetResultCallback
 _020CBB18: .word 0x021CED58
-	arm_func_end sub_020CBAE4
+	arm_func_end RTC_GetDateTime
 
-	arm_func_start sub_020CBB1C
-sub_020CBB1C: ; 0x020CBB1C
+	arm_func_start RtcCommonCallback
+RtcCommonCallback: ; 0x020CBB1C
 	stmfd sp!, {r3, r4, r5, lr}
 	cmp r2, #0
 	beq _020CBB78
@@ -275,22 +275,22 @@ _020CBC08:
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x18
 	mov r0, r0, lsr #0x18
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC060 ; =0x027FFDE8
 	str r0, [r5, #0]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x13
 	mov r0, r0, lsr #0x1b
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC060 ; =0x027FFDE8
 	str r0, [r5, #4]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0xa
 	mov r0, r0, lsr #0x1a
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	str r0, [r5, #8]
 	mov r0, r5
-	bl sub_020CC488
+	bl RTC_GetDayOfWeek
 	str r0, [r5, #0xc]
 	b _020CC014
 _020CBC64:
@@ -299,19 +299,19 @@ _020CBC64:
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x1a
 	mov r0, r0, lsr #0x1a
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC064 ; =0x027FFDEC
 	str r0, [r5, #0]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x11
 	mov r0, r0, lsr #0x19
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC064 ; =0x027FFDEC
 	str r0, [r5, #4]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #9
 	mov r0, r0, lsr #0x19
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	str r0, [r5, #8]
 	b _020CC014
 _020CBCB4:
@@ -319,22 +319,22 @@ _020CBCB4:
 	ldr r5, [r0, #0x14]
 	ldr r0, [r1, #0]
 	and r0, r0, #0xff
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC060 ; =0x027FFDE8
 	str r0, [r5, #0]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x13
 	mov r0, r0, lsr #0x1b
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC060 ; =0x027FFDE8
 	str r0, [r5, #4]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0xa
 	mov r0, r0, lsr #0x1a
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	str r0, [r5, #8]
 	mov r0, r5
-	bl sub_020CC488
+	bl RTC_GetDayOfWeek
 	ldr r1, _020CC064 ; =0x027FFDEC
 	str r0, [r5, #0xc]
 	ldr r0, [r1, #0]
@@ -342,19 +342,19 @@ _020CBCB4:
 	mov r0, r0, lsl #0x1a
 	mov r0, r0, lsr #0x1a
 	ldr r5, [r1, #0x18]
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC064 ; =0x027FFDEC
 	str r0, [r5, #0]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x11
 	mov r0, r0, lsr #0x19
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC064 ; =0x027FFDEC
 	str r0, [r5, #4]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #9
 	mov r0, r0, lsr #0x19
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	str r0, [r5, #8]
 	b _020CC014
 _020CBD5C:
@@ -391,13 +391,13 @@ _020CBDB0:
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #0x12
 	mov r0, r0, lsr #0x1a
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	ldr r1, _020CC064 ; =0x027FFDEC
 	str r0, [r5, #4]
 	ldr r0, [r1, #0]
 	mov r0, r0, lsl #9
 	mov r0, r0, lsr #0x19
-	bl sub_020CC06C
+	bl RtcBCD2HEX
 	str r0, [r5, #8]
 	mov r1, r4
 	ldr r0, _020CC064 ; =0x027FFDEC
@@ -444,7 +444,7 @@ _020CBE58:
 	bic r0, r0, #0xf
 	orr r0, r0, #4
 	strh r0, [r2]
-	bl sub_020CC134
+	bl RTCi_WriteRawStatus2Async
 	cmp r0, #0
 	bne _020CC014
 	ldr r0, _020CC05C ; =0x021CED58
@@ -461,7 +461,7 @@ _020CBEC4:
 	ldrh r0, [r2]
 	bic r0, r0, #0xf
 	strh r0, [r2]
-	bl sub_020CC134
+	bl RTCi_WriteRawStatus2Async
 	cmp r0, #0
 	bne _020CC014
 	ldr r0, _020CC05C ; =0x021CED58
@@ -490,7 +490,7 @@ _020CBF0C:
 	ldrh r0, [r2]
 	orr r0, r0, #0x40
 	strh r0, [r2]
-	bl sub_020CC134
+	bl RTCi_WriteRawStatus2Async
 	cmp r0, #0
 	bne _020CC014
 	ldr r0, _020CC05C ; =0x021CED58
@@ -507,7 +507,7 @@ _020CBF70:
 	ldrh r0, [r2]
 	bic r0, r0, #0x40
 	strh r0, [r2]
-	bl sub_020CC134
+	bl RTCi_WriteRawStatus2Async
 	cmp r0, #0
 	bne _020CC014
 	ldr r0, _020CC05C ; =0x021CED58
@@ -572,10 +572,10 @@ _020CC05C: .word 0x021CED58
 _020CC060: .word 0x027FFDE8
 _020CC064: .word 0x027FFDEC
 _020CC068: .word 0x027FFDEA
-	arm_func_end sub_020CBB1C
+	arm_func_end RtcCommonCallback
 
-	arm_func_start sub_020CC06C
-sub_020CC06C: ; 0x020CC06C
+	arm_func_start RtcBCD2HEX
+RtcBCD2HEX: ; 0x020CC06C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov ip, #0
 	mov r2, ip
@@ -606,19 +606,19 @@ _020CC0B0:
 	blt _020CC0B0
 	mov r0, ip
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020CC06C
+	arm_func_end RtcBCD2HEX
 
-	arm_func_start sub_020CC0DC
-sub_020CC0DC: ; 0x020CC0DC
+	arm_func_start RtcGetResultCallback
+RtcGetResultCallback: ; 0x020CC0DC
 	ldr r1, _020CC0E8 ; =0x021CED58
 	str r0, [r1, #0x2c]
 	bx lr
 	; .align 2, 0
 _020CC0E8: .word 0x021CED58
-	arm_func_end sub_020CC0DC
+	arm_func_end RtcGetResultCallback
 
-	arm_func_start sub_020CC0EC
-sub_020CC0EC: ; 0x020CC0EC
+	arm_func_start RtcWaitBusy
+RtcWaitBusy: ; 0x020CC0EC
 	ldr ip, _020CC100 ; =0x021CED64
 _020CC0F0:
 	ldr r0, [ip]
@@ -627,7 +627,7 @@ _020CC0F0:
 	bx lr
 	; .align 2, 0
 _020CC100: .word 0x021CED64
-	arm_func_end sub_020CC0EC
+	arm_func_end RtcWaitBusy
 
 	.bss
 

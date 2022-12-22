@@ -1,7 +1,7 @@
-.public sub_020C0210
-.public sub_020C0264
-.public sub_020C2C54
-.public sub_020C4BB8
+.public GX_LoadOAM
+.public GXS_LoadOAM
+.public DC_FlushRange
+.public MIi_CpuClearFast
 .public ov18_02244008
 .public ov18_02244064
 .public ov18_022440BC

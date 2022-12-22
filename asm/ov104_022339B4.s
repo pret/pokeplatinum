@@ -20,7 +20,7 @@ ov104_022339B4: ; 0x022339B4
 	ldr r2, _02233B80 ; =0x00000708
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02233B84 ; =0x02241AC0
 	ldr r5, [r0, #0]
 	add r0, r4, #0
@@ -193,7 +193,7 @@ _02233B54:
 	mov r1, #7
 	ldr r4, [r0, #0]
 	ldrh r0, [r4, #0xc]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0xe]
 	ldrb r0, [r4, #4]
 	bl ov104_0223AED4
@@ -463,7 +463,7 @@ ov104_02233D80: ; 0x02233D80
 	add r6, r2, #0
 	bl sub_0201D2E8
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r2, r0, #0x10
 	cmp r6, #0
@@ -890,7 +890,7 @@ _022340EE:
 	ldr r2, _02234108 ; =0x00000708
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_020181C4
 _022340FE:

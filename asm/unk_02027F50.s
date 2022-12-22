@@ -8,12 +8,12 @@
 
 	thumb_func_start sub_02027F50
 sub_02027F50: ; 0x02027F50
-	ldr r3, _02027F58 ; =sub_020C4CF4
+	ldr r3, _02027F58 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x24
 	bx r3
 	; .align 2, 0
-_02027F58: .word sub_020C4CF4
+_02027F58: .word MI_CpuFill8
 	thumb_func_end sub_02027F50
 
 	thumb_func_start sub_02027F5C

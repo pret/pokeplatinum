@@ -439,7 +439,7 @@ sub_0203A614: ; 0x0203A614
 	mov r1, #0
 	lsl r2, r2, #2
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl sub_0203A0EC
 	cmp r0, #0
@@ -477,7 +477,7 @@ sub_0203A64C: ; 0x0203A64C
 	mov r0, #0
 	add r1, r5, r1
 	lsl r2, r2, #8
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0xa
 	add r1, r4, #0
 	bl sub_02006B58

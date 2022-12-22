@@ -62,7 +62,7 @@ _02039CE2:
 	add r0, r5, #0
 	add r1, r4, r1
 	add r2, r7, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #8]
 	add r5, r5, r7
 	cmp r0, #0
@@ -73,7 +73,7 @@ _02039CE2:
 	add r1, r4, #2
 	mul r2, r3
 	lsl r2, r2, #1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r1, [r4, #1]
 	ldrb r0, [r4]
 	mul r0, r1
@@ -89,7 +89,7 @@ _02039D12:
 	mul r2, r3
 	lsr r0, r0, #0x10
 	lsl r2, r2, #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _02039D26:
 	ldr r0, [sp, #4]
 	cmp r0, #0
@@ -100,7 +100,7 @@ _02039D26:
 	add r0, r5, #0
 	add r1, r4, r1
 	mul r2, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r1, [r4, #1]
 	ldrb r0, [r4]
 	mul r0, r1
@@ -113,7 +113,7 @@ _02039D44:
 	mul r2, r3
 	add r1, r4, r1
 	lsl r2, r2, #1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r6, #0
 	bl sub_020181C4
 	add sp, #0xc
@@ -355,7 +355,7 @@ sub_02039EBC: ; 0x02039EBC
 	ldr r2, _02039EEC ; =0x00000708
 	add r0, r0, r1
 	add r1, r5, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	bl sub_020181C4
 	add r0, r5, #0

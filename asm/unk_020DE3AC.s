@@ -6,10 +6,10 @@
 	.text
 
 
-	arm_func_start sub_020DE3AC
-sub_020DE3AC: ; 0x020DE3AC
-	ldr ip, _020DE3B4 ; =sub_020DCED4
+	arm_func_start pow
+pow: ; 0x020DE3AC
+	ldr ip, _020DE3B4 ; =__ieee754_pow
 	bx ip
 	; .align 2, 0
-_020DE3B4: .word sub_020DCED4
-	arm_func_end sub_020DE3AC
+_020DE3B4: .word __ieee754_pow
+	arm_func_end pow

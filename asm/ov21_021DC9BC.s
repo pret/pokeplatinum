@@ -211,7 +211,7 @@ _021DCB0E:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 	str r4, [r6, #8]
 	ldr r1, [r5, #0]
 	ldr r0, _021DCB68 ; =0x00001744
@@ -348,7 +348,7 @@ _021DCC02:
 	ldr r2, _021DCCCC ; =0x00000844
 	str r0, [r4, #8]
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r5, [r4, #8]
 	ldr r0, [r7, #4]
 	mov r1, #0
@@ -1939,13 +1939,13 @@ ov21_021DD8B4: ; 0x021DD8B4
 	add r0, #0xec
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	mov r2, #0x47
 	lsl r2, r2, #4
 	add r0, r6, r2
 	mov r1, #0
 	sub r2, #0xec
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	add r0, #0xc4
 	ldr r0, [r0, #0]
@@ -2362,7 +2362,7 @@ ov21_021DDBCC: ; 0x021DDBCC
 	mov r1, #0xa
 	mov r2, #8
 	mov r3, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #2
 	mov r1, #1
 	bl sub_0201FF0C
@@ -2460,7 +2460,7 @@ _021DDC76:
 	lsr r0, r4, #0xc
 	orr r0, r2
 	lsl r1, r1, #5
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r1, r0, #0xc
 	mov r0, #1
 	lsl r0, r0, #0xc

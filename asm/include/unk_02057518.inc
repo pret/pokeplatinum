@@ -102,8 +102,8 @@
 .public sub_020656AC
 .public sub_02065838
 .public sub_0206DF60
-.public sub_020C4CF4
-.public sub_020D4070
+.public MI_CpuFill8
+.public abs
 .public ov5_021F5634
 .public ov23_02241648
 .public ov23_02243038

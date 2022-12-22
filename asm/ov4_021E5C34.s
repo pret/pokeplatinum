@@ -19,7 +19,7 @@ ov4_021E5C34: ; 0x021E5C34
 	mov r0, #0
 	mov r2, #0x24
 	str r1, [r3, #0xc]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, _021E5DD4 ; =0x0221AE2C
 	ldr r1, [r4, #0]
 	ldr r3, [r0, #0xc]
@@ -53,22 +53,22 @@ ov4_021E5C34: ; 0x021E5C34
 	str r0, [r1, #8]
 	ldr r1, [r1, #0x10]
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, #0
 	ldr r1, _021E5DD4 ; =0x0221AE2C
 	mov r2, #0x2300
 	ldr r1, [r1, #0]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, #0
 	ldr r1, _021E5DD4 ; =0x0221AE2C
 	mov r2, #0x58
 	ldr r1, [r1, #4]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, #0
 	ldr r1, _021E5DD4 ; =0x0221AE2C
 	mov r2, #0xc
 	ldr r1, [r1, #8]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r1, _021E5DD4 ; =0x0221AE2C
 	ldrb r2, [r4, #8]
 	ldr r0, [r1, #0x10]
@@ -132,13 +132,13 @@ ov4_021E5DDC: ; 0x021E5DDC
 _021E5DFC:
 	cmp r5, #7
 	bhs _021E5E24
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	bl ov4_021E78E0
 	mov r5, r0
 	bl ov4_021E6344
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _021E5E70
 _021E5E24:
 	cmp r5, #9
@@ -250,7 +250,7 @@ ov4_021E5F48: ; 0x021E5F48
 	mov r1, r5
 	add r0, r2, #0x18
 	mov r2, #0xa
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r4, #1
 _021E5F94:
 	mov r0, r4
@@ -294,12 +294,12 @@ ov4_021E5FDC: ; 0x021E5FDC
 	beq _021E6018
 	mov r0, r5
 	add r1, r4, #0x18
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _021E6024
 _021E6018:
 	add r0, r4, #0x18
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _021E6024:
 	ldr r3, [sp, #0x18]
 	mov r0, r8
@@ -325,7 +325,7 @@ ov4_021E6040: ; 0x021E6040
 	bic r3, r3, #0xf
 	orr r3, r3, #1
 	strb r3, [r4, #0xd0c]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r2, #0
 _021E607C:
 	ldrb r1, [r7, r2]
@@ -354,7 +354,7 @@ _021E60B8:
 _021E60D0:
 	mov r0, r6
 	add r1, r4, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r1, [r4, #0xe6]
 	and r0, r5, #0xff
 	and r0, r0, #3
@@ -375,7 +375,7 @@ ov4_021E60F8: ; 0x021E60F8
 	mov r0, r4
 	add r1, r1, r5, lsl #8
 	mov r2, #0xf0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021E60F8
 
@@ -620,7 +620,7 @@ _021E6418:
 	movs r4, r0
 	beq _021E6450
 	mov r1, #0x20
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, _021E649C ; =0x0221AE2C
 	mov r0, r4
 	ldr r1, [r1, #0xc]
@@ -641,7 +641,7 @@ _021E6474:
 	add r0, r3, #0x18
 	mov r1, #0
 	mov r2, #0xa
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldmia sp!, {r4, pc}
 _021E6488:
 	add r1, r1, #1
@@ -712,7 +712,7 @@ _021E652C:
 	ldrh r2, [r0, #0x7a]
 	add r0, r5, r4
 	add r1, r5, r1
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	moveq r0, #2
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}

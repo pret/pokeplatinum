@@ -275,7 +275,7 @@ ov62_02247FA8: ; 0x02247FA8
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]

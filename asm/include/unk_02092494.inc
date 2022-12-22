@@ -36,5 +36,5 @@
 .public sub_02093368
 .public sub_020933C8
 .public sub_020933E8
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f

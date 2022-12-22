@@ -57,7 +57,7 @@ sub_0208BAAC: ; 0x0208BAAC
 	mov r1, #0
 	mov r2, #0x2c
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r6, #0
 	bl sub_02006840
 	str r0, [r4, #0x28]
@@ -69,7 +69,7 @@ sub_0208BAAC: ; 0x0208BAAC
 	ldr r2, _0208BB5C ; =0x00004170
 	str r0, [r4, #0x14]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r2, r4, #0
 	ldr r1, [r4, #0x14]
 	ldr r0, _0208BB60 ; =0x00000868

@@ -27,7 +27,7 @@ ov4_02208CEC: ; 0x02208CEC
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	ldr r0, _02208DE4 ; =0x0221DE70
 	mov r2, #0x60
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02208DE8 ; =0x021CCC80
 	ldr r6, [r0, #8]
 	cmp r6, #0
@@ -49,7 +49,7 @@ _02208D54:
 	beq _02208D90
 	str r4, [r1, #4]
 	ldr r0, [r1, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _02208D90:
 	ldr r6, [r6, #0x68]
 	cmp r6, #0
@@ -88,10 +88,10 @@ ov4_02208DF0: ; 0x02208DF0
 	ldr r0, [r0, #0x24]
 	cmp r0, #0
 	bne _02208E0C
-	bl sub_020C233C
+	bl OS_YieldThread
 	ldmia sp!, {r3, pc}
 _02208E0C:
-	bl sub_020C24A4
+	bl OS_Sleep
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02208E14: .word 0x0221DDF0
@@ -114,7 +114,7 @@ ov4_02208E24: ; 0x02208E24
 	sub sp, sp, #8
 	mov r4, r0
 	ldr r0, _0220901C ; =0x02000C58
-	bl sub_02000B9C
+	bl OSi_ReferSymbol
 	ldr r3, [r4, #0x18]
 	ldr r5, [r4, #0x14]
 	cmp r3, #0
@@ -133,7 +133,7 @@ ov4_02208E24: ; 0x02208E24
 	str r1, [r0, #0x7c]
 	b _02208EAC
 _02208E7C:
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _02209020 ; =0x0221DDF0
 	ldr r3, _02209024 ; =0x6C078965
 	str r0, [r2, #0x68]
@@ -211,7 +211,7 @@ _02208EDC:
 	str r5, [r2, #0x6c]
 	add r1, r4, #0x400
 	strh r1, [r2, #8]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _02209020 ; =0x0221DDF0
 	mov r2, #0
 	strb r2, [r0, #1]
@@ -223,7 +223,7 @@ _02208EDC:
 	ldr r0, _0220904C ; =0x0221E058
 	ldr r3, _02209050 ; =0x0221F620
 	str r4, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	mov r1, #0x800
 	ldr r0, _02209044 ; =0x0221A190
 	str r1, [sp]
@@ -233,11 +233,11 @@ _02208EDC:
 	ldr r1, _02209058 ; =ov4_0220C8C0
 	ldr r3, _0220905C ; =0x0221EE20
 	mov r2, #0
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _0220904C ; =0x0221E058
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	ldr r0, _02209054 ; =0x0221DF98
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -263,10 +263,10 @@ _0220905C: .word 0x0221EE20
 	arm_func_start ov4_02209060
 ov4_02209060: ; 0x02209060
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	ldr r0, _022090A8 ; =0x0221DF98
-	bl sub_020C2204
+	bl OS_IsThreadTerminated
 	movs r5, r0
 	ldreq r1, _022090AC ; =0x0221DDF0
 	ldreq r0, [r1, #0x44]
@@ -275,10 +275,10 @@ ov4_02209060: ; 0x02209060
 	ldr r0, _022090A8 ; =0x0221DF98
 	mov r2, #1
 	str r2, [r1, #0x44]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _02209098:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -300,9 +300,9 @@ ov4_022090C0: ; 0x022090C0
 	stmfd sp!, {r3, lr}
 	bl ov4_02209060
 	ldr r0, _022090FC ; =0x0221DF98
-	bl sub_020C21D4
+	bl OS_JoinThread
 	ldr r0, _02209100 ; =0x0221E058
-	bl sub_020C2140
+	bl OS_DestroyThread
 	ldr r1, _02209104 ; =0x0221DDF0
 	mov r0, #0
 	str r0, [r1, #0x54]
@@ -326,10 +326,10 @@ ov4_02209108: ; 0x02209108
 	ldr r0, _02209138 ; =0x0221E058
 	mov r1, r4
 	str r4, [r2, #0]
-	bl sub_020C23F4
+	bl OS_SetThreadPriority
 	ldr r0, _0220913C ; =0x0221DF98
 	mov r1, r4
-	bl sub_020C23F4
+	bl OS_SetThreadPriority
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02209134: .word 0x0221A190
@@ -572,7 +572,7 @@ ov4_022093DC: ; 0x022093DC
 	add r1, r7, #6
 	mov r2, #6
 	mov r4, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r7
 	mov r3, r5
 	add r1, r7, #6
@@ -686,7 +686,7 @@ _02209578:
 	ldr r1, [ip, #0x28]
 	add r1, r3, r1
 	add r1, r1, #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _02209620 ; =0x0221DDF0
 	mov r0, r7
 	ldr r3, [r1, #0x58]
@@ -694,7 +694,7 @@ _02209578:
 	mov r2, #6
 	add r1, r3, r1
 	add r1, r1, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _02209620 ; =0x0221DDF0
 	add r0, r6, #6
 	ldr r3, [r1, #0x58]
@@ -702,7 +702,7 @@ _02209578:
 	sub r2, r5, #6
 	add r1, r3, r1
 	add r1, r1, #0xe
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #0x18]
 	cmp r0, #0
 	ldrne r2, [sp, #0x1c]
@@ -714,7 +714,7 @@ _02209578:
 	add r1, r3, r1
 	add r1, r1, #8
 	add r1, r1, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02209614:
 	ldr r0, _02209620 ; =0x0221DDF0
 	str r4, [r0, #0x28]
@@ -739,13 +739,13 @@ ov4_0220962C: ; 0x0220962C
 	addeq sp, sp, #8
 	ldmeqia sp!, {r3, pc}
 	ldr r0, [r0, #0x54]
-	bl sub_020C2204
+	bl OS_IsThreadTerminated
 	cmp r0, #0
 	addne sp, sp, #8
 	ldmneia sp!, {r3, pc}
 	ldr r0, _02209680 ; =0x0221DDF0
 	ldr r0, [r0, #0x54]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -756,7 +756,7 @@ _02209680: .word 0x0221DDF0
 ov4_02209684: ; 0x02209684
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr sb, _0220973C ; =0x0221DDF0
 	mov r6, r0
 	ldr r1, [sb, #0x30]
@@ -770,7 +770,7 @@ _022096B4:
 	ldr r1, [r8, #4]
 	mov r0, r5
 	str r1, [sb, #0x54]
-	bl sub_020C2218
+	bl OS_SleepThread
 	str r4, [sb, #0x54]
 	ldr r1, [sb, #0x30]
 	ldr r0, [sb, #0x28]
@@ -778,7 +778,7 @@ _022096B4:
 	beq _022096B4
 _022096D8:
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _0220973C ; =0x0221DDF0
 	mov r3, #0
 	ldr r5, [r0, #0x58]
@@ -811,7 +811,7 @@ _02209740: .word 0x021CCC80
 	arm_func_start ov4_02209744
 ov4_02209744: ; 0x02209744
 	stmfd sp!, {r3, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02209784 ; =0x0221DDF0
 	ldr ip, [r1, #0x30]
 	ldr r3, [r1, #0x58]
@@ -824,7 +824,7 @@ ov4_02209744: ; 0x02209744
 	cmp r3, r2
 	movhs r2, #0
 	strhs r2, [r1, #0x30]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02209784: .word 0x0221DDF0
@@ -834,7 +834,7 @@ _02209784: .word 0x0221DDF0
 ov4_02209788: ; 0x02209788
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02209840 ; =0x7F000001
 	mov r4, r0
 	cmp r5, r1
@@ -862,7 +862,7 @@ _022097E8:
 	ldr r0, [r1, #0]
 	cmp r5, r0
 	bne _02209820
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, #0xc
 	mul r3, r6, r2
 	ldr r2, _02209850 ; =0x0221DE70
@@ -880,7 +880,7 @@ _02209820:
 	blo _022097E8
 _02209830:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -900,15 +900,15 @@ ov4_02209858: ; 0x02209858
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x2a
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, sp, #0
 	mov r1, #0xff
 	mov r2, #6
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02209944 ; =0x0221E2D8
 	add r1, sp, #6
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #1
 	ldr r1, _02209948 ; =0x00000608
 	strb r0, [sp, #0xf]
@@ -921,7 +921,7 @@ ov4_02209858: ; 0x02209858
 	ldr r0, _02209944 ; =0x0221E2D8
 	add r1, sp, #0x16
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02209950 ; =0x0221DDF0
 	mov r1, r4, lsr #0x10
 	ldr r3, [r0, #0x50]
@@ -978,7 +978,7 @@ _02209978:
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	mov r0, r5
-	bl sub_020C24A4
+	bl OS_Sleep
 	mov r0, sb
 	bl ov4_02209788
 	cmp r0, #0
@@ -1015,7 +1015,7 @@ ov4_022099C4: ; 0x022099C4
 	bl ov4_0220931C
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	mov r0, r0, lsl #0x10
@@ -1035,7 +1035,7 @@ _02209A28:
 	add r1, r1, #4
 	mov r2, #6
 	strh r4, [r3, r5]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02209A60:
 	add r1, r1, #1
@@ -1072,7 +1072,7 @@ _02209AC0:
 	add r1, r1, #4
 	mov r2, #6
 	str r6, [r3, r5]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02209AFC ; =0x0221DE7A
 	strh r4, [r0, r5]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1113,7 +1113,7 @@ _02209B5C:
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	sub r1, r8, #0xe
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _02209BA4
 _02209B74:
 	mov r0, #1
@@ -1132,7 +1132,7 @@ _02209BA4:
 	ldr r0, _02209BCC ; =0x0221E2D8
 	sub r1, r8, #8
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r2, r6
 	mov r3, r5
 	sub r0, r8, #0xe
@@ -1203,8 +1203,8 @@ _02209CA4:
 	ldr r0, _02209CF0 ; =0x0221A19C
 	sub r1, r8, #0x1c
 	mov r2, #8
-	bl sub_020C4DB0
-	bl sub_020C3D98
+	bl MI_CpuCopy8
+	bl OS_DisableInterrupts
 	mov r4, r0
 	ldr r0, _02209CF4 ; =0x0221E2D8
 	str r6, [sp]
@@ -1214,7 +1214,7 @@ _02209CA4:
 	add r3, r7, #0x1c
 	bl ov4_02209438
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -1667,11 +1667,11 @@ ov4_0220A350: ; 0x0220A350
 	add r1, r4, #0x12
 	mov r2, #0xa
 	strh r3, [r4, #6]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0220A3F0 ; =0x0221E2D8
 	add r1, r4, #8
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r3, _0220A3F4 ; =0x0221DDF0
 	add r0, r4, #0x12
 	ldr r2, [r3, #0x50]
@@ -1689,11 +1689,11 @@ ov4_0220A350: ; 0x0220A350
 	mov r3, ip, lsl #8
 	orr r3, r3, ip, asr #8
 	strh r3, [r4, #0x10]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0220A3F0 ; =0x0221E2D8
 	sub r1, r4, #8
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	sub r0, r4, #0xe
 	mov r1, #0x2a
 	mov r2, #0
@@ -1861,7 +1861,7 @@ ov4_0220A620: ; 0x0220A620
 	mov r8, r0
 	mov r7, r1
 	mov r6, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0220A71C ; =0x021CCC80
 	mov r5, r0
 	ldr r1, [r1, #8]
@@ -1906,14 +1906,14 @@ _0220A648:
 	ldr r1, [r4, #0x40]
 	ldr r2, [r4, #0x44]
 	add r0, r7, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r4, #4]
 	cmp r0, #3
 	bne _0220A710
 	mov r0, #0
 	str r0, [r4, #4]
 	ldr r0, [r4, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _0220A710
 _0220A704:
 	ldr r1, [r1, #0x68]
@@ -1921,7 +1921,7 @@ _0220A704:
 	bne _0220A648
 _0220A710:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _0220A71C: .word 0x021CCC80
@@ -2264,7 +2264,7 @@ ov4_0220AB38: ; 0x0220AB38
 	mov r1, #0
 	mov r2, #0x64
 	mov r5, r3
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrh r3, [r7, #2]
 	ldr r0, _0220AC6C ; =0x0221DEF0
 	ldr r2, _0220AC70 ; =0x0221DDF0
@@ -2346,7 +2346,7 @@ ov4_0220AC74: ; 0x0220AC74
 	mov r6, r0
 	mov r5, r1
 	strb r2, [r4, #8]
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	str r0, [r4, #0x10]
@@ -2490,7 +2490,7 @@ ov4_0220ADE8: ; 0x0220ADE8
 	bl ov4_0220AC74
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _0220AE98:
-	bl sub_020C233C
+	bl OS_YieldThread
 	mov r0, r4
 	mov r1, r6
 	bl ov4_0220A810
@@ -2522,7 +2522,7 @@ _0220AEE8:
 	bl ov4_0220AB38
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _0220AF00:
-	bl sub_020C233C
+	bl OS_YieldThread
 	ldrh ip, [r5, #6]
 	ldrh r3, [r5, #4]
 	mov r0, r5
@@ -2566,7 +2566,7 @@ _0220AF00:
 	mov r0, #0
 	str r0, [r4, #4]
 	ldr r0, [r4, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov4_0220AEC0
 
@@ -2659,7 +2659,7 @@ _0220B0E0:
 	mov r0, #0
 	str r0, [r5, #4]
 	ldr r0, [r5, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _0220B104:
 	cmp r8, #0
 	beq _0220B2C8
@@ -2676,7 +2676,7 @@ _0220B10C:
 	movls r7, #1
 	cmp r8, #0
 	beq _0220B1A8
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldrb r1, [sb, #0xc]
 	ldr ip, [r5, #0x40]
 	ldr r3, [r5, #0x44]
@@ -2687,7 +2687,7 @@ _0220B10C:
 	mov r2, r8
 	add r0, sb, r1, asr #2
 	add r1, ip, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, [r5, #0x44]
 	mov r0, r4
 	add r1, r1, r8
@@ -2695,14 +2695,14 @@ _0220B10C:
 	ldr r1, [r5, #0x24]
 	add r1, r1, r8
 	str r1, [r5, #0x24]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, [r5, #4]
 	cmp r0, #2
 	bne _0220B1A8
 	mov r0, #0
 	str r0, [r5, #4]
 	ldr r0, [r5, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _0220B1A8:
 	cmp r7, #0
 	beq _0220B1FC
@@ -2723,7 +2723,7 @@ _0220B1A8:
 	mov r0, #0
 	str r0, [r5, #4]
 	ldr r0, [r5, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _0220B2C8
 _0220B1FC:
 	cmp r8, #0
@@ -2749,7 +2749,7 @@ _0220B214:
 	bne _0220B2C8
 	str r1, [r5, #4]
 	ldr r0, [r5, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _0220B2C8
 _0220B25C:
 	cmp r8, #0
@@ -2772,7 +2772,7 @@ _0220B288:
 	bne _0220B2C8
 	str r1, [r5, #4]
 	ldr r0, [r5, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _0220B2C8
 _0220B2AC:
 	tst r6, #1
@@ -2783,7 +2783,7 @@ _0220B2AC:
 	mov r0, r5
 	bl ov4_0220AB10
 _0220B2C8:
-	bl sub_020C233C
+	bl OS_YieldThread
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	arm_func_end ov4_0220AFB8
 
@@ -2826,7 +2826,7 @@ _0220B32C:
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	str r1, [r4, #4]
 	ldr r0, [r4, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _0220B364:
 	ldr r2, [r4, #0x24]
@@ -2852,7 +2852,7 @@ ov4_0220B39C: ; 0x0220B39C
 	bl ov4_0220A998
 	movs r4, r0
 	ldmeqia sp!, {r4, pc}
-	bl sub_020C233C
+	bl OS_YieldThread
 	mov r1, #0
 	strb r1, [r4, #8]
 	ldr r0, [r4, #4]
@@ -2861,7 +2861,7 @@ ov4_0220B39C: ; 0x0220B39C
 	ldmhiia sp!, {r4, pc}
 	str r1, [r4, #4]
 	ldr r0, [r4, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_0220B39C
 
@@ -2965,7 +2965,7 @@ ov4_0220B4F8: ; 0x0220B4F8
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _0220B530:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0220B700 ; =0x021CCC80
 	mov r5, r0
 	ldr r1, [r1, #8]
@@ -3059,14 +3059,14 @@ _0220B66C:
 	ldr r1, [r4, #0x40]
 	ldr r2, [r4, #0x44]
 	add r0, r7, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r4, #4]
 	cmp r0, #3
 	bne _0220B6BC
 	mov r0, #0
 	str r0, [r4, #4]
 	ldr r0, [r4, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _0220B6F4
 _0220B6BC:
 	ldr r3, [r4, #0x38]
@@ -3086,7 +3086,7 @@ _0220B6E8:
 	bne _0220B54C
 _0220B6F4:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _0220B700: .word 0x021CCC80
@@ -3181,7 +3181,7 @@ _0220B814:
 	str sb, [r6]
 	strh r4, [r6, #6]
 	strh r0, [r6, #8]
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	str r0, [r6, #0x2c]
@@ -3193,7 +3193,7 @@ _0220B814:
 	ldr r1, [r6, #0x34]
 	mov r2, r5
 	add r1, r1, #0xe
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _0220B880:
 	ldrh r0, [r7, #4]
 	cmp r0, #8
@@ -3231,7 +3231,7 @@ _0220B8B8:
 	strh r1, [r7, #4]
 	ldr r1, [r7, #0x30]
 	add r1, r1, fp, lsl #3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrh r4, [r7, #8]
 	cmp r4, #0
 	addeq sp, sp, #0xc
@@ -3639,14 +3639,14 @@ ov4_0220BE14: ; 0x0220BE14
 	str r0, [r5, #0x30]
 	mov r0, #1
 	strb r0, [r5, #8]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	mov r1, #1
 	mov r0, #0
 	str r1, [r5, #4]
-	bl sub_020C2218
+	bl OS_SleepThread
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_0220BE14
 
@@ -3696,7 +3696,7 @@ ov4_0220BEA8: ; 0x0220BEA8
 _0220BECC:
 	str r8, [sl, #0x28]
 	strb r6, [sl, #8]
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	str r0, [sl, #0x10]
@@ -3704,7 +3704,7 @@ _0220BECC:
 	mov r1, fp
 	mov r2, #0x18
 	bl ov4_0220AA9C
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov sb, r0
 	ldrb r0, [sl, #8]
 	cmp r0, #2
@@ -3714,10 +3714,10 @@ _0220BECC:
 	beq _0220BF20
 	mov r0, #0
 	str r5, [sl, #4]
-	bl sub_020C2218
+	bl OS_SleepThread
 _0220BF20:
 	mov r0, sb
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldrb r0, [sl, #8]
 	cmp r0, #4
 	moveq r0, #0
@@ -3788,7 +3788,7 @@ _0220BFE8: .word 0x021CCC80
 ov4_0220BFEC: ; 0x0220BFEC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C233C
+	bl OS_YieldThread
 	ldrb r1, [r4, #8]
 	add r0, r1, #0xfd
 	and r0, r0, #0xff
@@ -3844,7 +3844,7 @@ ov4_0220C078: ; 0x0220C078
 	mov r0, r4
 	bl ov4_02210D88
 _0220C0A4:
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r6, r0, lsr #0x10
 	orr r6, r6, r1, lsl #16
 	ldr r5, _0220C0FC ; =0x0221DDF0
@@ -3858,7 +3858,7 @@ _0220C0BC:
 	ldrneb r0, [r4, #8]
 	cmpne r0, #0
 	beq _0220C0EC
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	sub r0, r0, r6
@@ -3878,7 +3878,7 @@ ov4_0220C100: ; 0x0220C100
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r8, r1
 	mov sb, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r6, [r8, #0x44]
 	mov r7, r0
 	cmp r6, #0
@@ -3888,13 +3888,13 @@ ov4_0220C100: ; 0x0220C100
 _0220C128:
 	mov r0, r4
 	str r5, [r8, #4]
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r6, [r8, #0x44]
 	cmp r6, #0
 	beq _0220C128
 _0220C140:
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	str r6, [sb]
 	ldr r0, [r8, #0x40]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -3910,7 +3910,7 @@ ov4_0220C154: ; 0x0220C154
 	ldreqb r0, [r4, #8]
 	cmpeq r0, #4
 	bne _0220C1B4
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r8, r0
 	mov r7, #2
 	mov r6, #0
@@ -3918,7 +3918,7 @@ ov4_0220C154: ; 0x0220C154
 _0220C188:
 	mov r0, r6
 	str r7, [r4, #4]
-	bl sub_020C2218
+	bl OS_SleepThread
 _0220C194:
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
@@ -3926,10 +3926,10 @@ _0220C194:
 	cmpeq r0, #4
 	beq _0220C188
 	mov r0, r8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _0220C1B8
 _0220C1B4:
-	bl sub_020C233C
+	bl OS_YieldThread
 _0220C1B8:
 	ldr r0, [r4, #0x44]
 	str r0, [r5, #0]
@@ -3977,7 +3977,7 @@ ov4_0220C234: ; 0x0220C234
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r1
 	mov r7, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, [r4, #0x44]
 	ldr r1, [r4, #0x3c]
 	mov r5, r0
@@ -3995,10 +3995,10 @@ _0220C264:
 	sub r2, r2, r7
 	add r1, r0, r7
 	str r2, [r4, #0x44]
-	bl sub_020D50D8
+	bl memmove
 _0220C288:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldrb r0, [r4, #8]
 	cmp r0, #0xa
 	cmpne r0, #0xb
@@ -4076,7 +4076,7 @@ _0220C328:
 	mov r3, #0x18
 	sub r5, r5, r4
 	bl ov4_0220A0DC
-	bl sub_020C233C
+	bl OS_YieldThread
 	add sl, sl, r4
 	sub sb, sb, r4
 _0220C3A0:
@@ -4125,7 +4125,7 @@ ov4_0220C3FC: ; 0x0220C3FC
 	str r3, [sp, #8]
 	mov r6, r4
 	str r0, [r8, #0x34]
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	str r0, [sp, #0xc]
@@ -4139,7 +4139,7 @@ _0220C440:
 	mov r2, sb
 	str r6, [sp, #4]
 	bl ov4_0220C3C0
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r5, r0, lsr #0x10
 	ldr r4, _0220C600 ; =0x0221DDF0
 	orr r5, r5, r1, lsl #16
@@ -4156,7 +4156,7 @@ _0220C470:
 	ldr r0, [r8, #0x30]
 	cmp r1, r0
 	beq _0220C4C8
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	sub r0, r0, r5
@@ -4178,7 +4178,7 @@ _0220C4C8:
 	add r0, r0, r5
 	str r0, [sp, #0x10]
 	beq _0220C504
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	str r0, [sp, #0xc]
@@ -4193,7 +4193,7 @@ _0220C504:
 	bne _0220C588
 	cmp r6, #0
 	bne _0220C58C
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r7, r0, lsr #0x10
 	orr r7, r7, r1, lsl #16
 	ldr r4, _0220C600 ; =0x0221DDF0
@@ -4208,7 +4208,7 @@ _0220C550:
 	blx r0
 	cmp r0, #0
 	beq _0220C578
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	sub r0, r0, r7
@@ -4242,7 +4242,7 @@ _0220C5B4:
 	ldrb r0, [r8, #8]
 	cmp r0, #4
 	bne _0220C5F4
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, r0, lsr #0x10
 	ldr r0, [sp, #0xc]
 	orr r2, r2, r1, lsl #16
@@ -4347,7 +4347,7 @@ ov4_0220C6D8: ; 0x0220C6D8
 	ldr r0, [r5, #0x5c]
 	sub r2, r1, r4
 	add r1, r0, r4
-	bl sub_020D50D8
+	bl memmove
 	ldr r1, [r5, #0x60]
 	mov r0, #0
 	sub r1, r1, r4
@@ -4440,11 +4440,11 @@ ov4_0220C820: ; 0x0220C820
 	ldmeqia sp!, {r4, r5, r6, pc}
 	bl ov4_02209858
 	mov r0, #0x64
-	bl sub_020C24A4
+	bl OS_Sleep
 	ldr r0, _0220C8BC ; =0x0221DDF0
 	ldr r0, [r0, #0x50]
 	bl ov4_02209858
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r6, r0, lsr #0x10
 	orr r6, r6, r1, lsl #16
 	mov r5, #0x64
@@ -4459,13 +4459,13 @@ _0220C870:
 	ldmia sp!, {r4, r5, r6, pc}
 _0220C888:
 	mov r0, r5
-	bl sub_020C24A4
+	bl OS_Sleep
 _0220C890:
 	ldr r0, [r4, #0x48]
 	blx r0
 	cmp r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	sub r0, r0, r6
@@ -4484,7 +4484,7 @@ ov4_0220C8C0: ; 0x0220C8C0
 	ldr r0, _0220CC14 ; =0x0221DED0
 	mov r2, #0x64
 	str r1, [r3, #0x44]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0220CC10 ; =0x0221DDF0
 	mov r3, #0x180
 	ldr r0, _0220CC18 ; =0x0221E49C
@@ -4503,12 +4503,12 @@ ov4_0220C8C0: ; 0x0220C8C0
 	mov r4, #0
 _0220C91C:
 	mov r0, #0x3e8
-	bl sub_020C24A4
+	bl OS_Sleep
 	ldr r0, _0220CC10 ; =0x0221DDF0
 	ldr r1, [r0, #0x44]
 	cmp r1, #0
 	bne _0220CBF0
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _0220CC10 ; =0x0221DDF0
 	mov r5, r0, lsr #0x10
 	ldr r0, [r2, #0x48]
@@ -4657,7 +4657,7 @@ _0220CB20:
 	strb r7, [r0, #8]
 	str r7, [r0, #4]
 	ldr r0, [r0, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _0220CB78
 _0220CB58:
 	cmp r1, #4
@@ -4667,7 +4667,7 @@ _0220CB58:
 	bne _0220CB78
 	str r6, [r0, #4]
 	ldr r0, [r0, #0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _0220CB78:
 	ldr sb, [sb, #0x68]
 	cmp sb, #0
@@ -4731,7 +4731,7 @@ ov4_0220CC30: ; 0x0220CC30
 	mov r1, #0
 	mov r2, #0xec
 	mov r6, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0220CDA0 ; =0x00000101
 	mov r1, #6
 	strh r0, [r6]
@@ -4780,7 +4780,7 @@ ov4_0220CC30: ; 0x0220CC30
 	orr r3, r2, r3, asr #8
 	mov r2, #6
 	strh r3, [r6, #0xe]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0220CDAC ; =0x00008263
 	ldr r1, _0220CDB0 ; =0x00006353
 	strh r0, [r6, #0xec]
@@ -4797,14 +4797,14 @@ ov4_0220CC30: ; 0x0220CC30
 	add r1, r6, #0xf6
 	mov r2, #6
 	strb r3, [r6, #0xf5]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #0xc
 	strb r1, [r6, #0xfc]
 	mov r2, #0xa
 	ldr r0, _0220CDB8 ; =0x0221A1A8
 	add r1, r6, #0xfe
 	strb r2, [r6, #0xfd]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #0x37
 	strb r1, [r6, #0x108]
 	mov r2, #3
@@ -4838,7 +4838,7 @@ ov4_0220CDBC: ; 0x0220CDBC
 	mov r0, r5
 	mov r1, ip
 	mov r2, r4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r5, r5, r4
 _0220CDE8:
 	mov r0, r5
@@ -4979,7 +4979,7 @@ ov4_0220CFBC: ; 0x0220CFBC
 	add r1, r1, #1
 	str r0, [sp]
 	rsb fp, r1, r1, lsl #4
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r4, r0, lsr #0x10
 	orr r4, r4, r1, lsl #16
 	mov r5, #0
@@ -5192,7 +5192,7 @@ _0220D2C4:
 	beq _0220D2F8
 	cmp r5, #0
 	bne _0220D2F8
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	sub r0, r0, r4
@@ -5431,7 +5431,7 @@ _0220D5C4:
 	strb r3, [r2, #4]
 	bl ov4_0220C6D8
 	mov r4, #0
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r5, r0, lsr #0x10
 	orr r5, r5, r1, lsl #16
 	b _0220D75C
@@ -5515,7 +5515,7 @@ _0220D724:
 	bhi _0220D754
 	mov r1, fp
 	add r0, r0, #0xa
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r4, #1
 	b _0220D754
 _0220D744:
@@ -5534,7 +5534,7 @@ _0220D75C:
 	beq _0220D790
 	cmp r4, #0
 	bne _0220D790
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r0, r0, lsr #0x10
 	orr r0, r0, r1, lsl #16
 	sub r0, r0, r5

@@ -35,8 +35,8 @@
 .public sub_020738EC
 .public sub_020739B4
 .public sub_02073A6C
-.public sub_020B37A4
-.public sub_020D5124
+.public NNS_G3dMdlSetMdlFogEnableFlagAll
+.public memset
 .public ov5_021D53A4
 .public ov5_021DF4A8
 .public ov5_021DF528

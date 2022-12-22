@@ -53,13 +53,13 @@ _02227A90:
 	bne _02227ABA
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r6, r7
 	add r0, #0x27
 	strb r1, [r0]
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _02227AC4 ; =0x0000114D
 	ldr r2, [r5, #0]
 	ldrb r1, [r5, r1]
@@ -170,7 +170,7 @@ _02227B5E:
 _02227B6E:
 	sub r0, r0, #1
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _02227BA4 ; =0x00001154
 	strb r0, [r6, r1]
 _02227B7A:

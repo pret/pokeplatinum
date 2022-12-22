@@ -16,7 +16,7 @@ ov65_02235060: ; 0x02235060
 	mov r1, #0
 	add r5, r0, #0
 	str r3, [sp]
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0x24]
 	str r4, [r5, #4]
 	sub r0, r0, #1
@@ -128,7 +128,7 @@ ov65_02235130: ; 0x02235130
 	ldr r2, _02235190 ; =0x000006FC
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 _02235184: .word 0x000006F8
@@ -2014,7 +2014,7 @@ _02235F16:
 	ldr r2, _02235F90 ; =0xFFF40000
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x14
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r5, #2
 	mov r6, #0
 	lsl r5, r5, #0xa
@@ -2081,13 +2081,13 @@ ov65_02235F94: ; 0x02235F94
 	cmp r0, #0
 	ble _0223600A
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	asr r1, r0, #0x10
 	mov r0, #0xb4
 	mul r0, r1
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D15C

@@ -20,4 +20,4 @@
 .public sub_02073C74
 .public sub_02073D80
 .public sub_02074470
-.public sub_020E1F6C
+.public _s32_div_f

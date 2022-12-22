@@ -1,10 +1,10 @@
-.public sub_020C24A4
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020CBA30
-.public sub_020E1F1C
-.public sub_020E1F6C
-.public sub_020E2178
+.public OS_Sleep
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public RTC_GetTime
+.public _ull_mul
+.public _s32_div_f
+.public _u32_div_f
 .public ov4_02208324
 .public ov4_02208350
 .public ov4_022083FC

@@ -4,7 +4,7 @@
 .public sub_0201FF0C
 .public sub_020241B4
 .public sub_02075EF4
-.public sub_020A73C0
-.public sub_020AF480
-.public sub_020BFC74
-.public sub_020BFD58
+.public NNS_G2dSetupSoftwareSpriteCamera
+.public NNS_G3dGlbFlushP
+.public G3X_SetFog
+.public G3X_SetClearColor

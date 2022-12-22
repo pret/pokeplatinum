@@ -48,7 +48,7 @@ ov121_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0xe8
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x1e
 	bl ov121_021D1270
 	str r0, [r4, #0]
@@ -266,25 +266,25 @@ _021D0FA6:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add sp, #0x28
 	pop {r4, pc}
 	; .align 2, 0
@@ -378,14 +378,14 @@ ov121_021D1074: ; 0x021D1074
 	ldr r0, [r0, #0]
 	mov r1, #1
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	add r0, r5, #0
 	add r0, #0xbc
 	mov r2, #0x3f
 	ldr r0, [r0, #0]
 	mov r1, #1
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r0, #0x1e
 	str r0, [sp]
 	add r0, r5, #0
@@ -510,7 +510,7 @@ ov121_021D11A8: ; 0x021D11A8
 	str r0, [sp, #0x2c]
 	str r0, [sp, #0x30]
 	add r0, sp, #4
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	bl sub_020241B4
 	ldr r0, [r4, #4]
 	bl sub_020203D4
@@ -522,30 +522,30 @@ ov121_021D11A8: ; 0x021D11A8
 	ldr r2, _021D125C ; =0xFFFFF000
 	add r1, r0, #0
 	add r3, r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1260 ; =0x0000739C
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D1264 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D1264 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	add r0, sp, #0x28
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _021D1268 ; =0x021C5B48
 	add r0, sp, #4
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _021D126C ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, sp, #0x34
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
+	bl NNS_G3dGlbSetBaseScale
 	add r0, r4, #0
 	mov r1, #1
 	add r0, #0x8c
@@ -559,7 +559,7 @@ ov121_021D11A8: ; 0x021D11A8
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r4, #0x14
 	add r0, r4, #0
 	bl sub_02017294
@@ -567,7 +567,7 @@ ov121_021D11A8: ; 0x021D11A8
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, #0x40
 	pop {r4, pc}
 	; .align 2, 0
@@ -637,13 +637,13 @@ ov121_021D128C: ; 0x021D128C
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _021D1304 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D1308 ; =0xBFFF0000
 	ldr r0, _021D130C ; =0x04000580
 	str r1, [r0, #0]

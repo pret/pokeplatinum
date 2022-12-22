@@ -34,4 +34,4 @@
 .public sub_0201ADDC
 .public sub_0201AE78
 .public sub_0201D738
-.public sub_020E1F6C
+.public _s32_div_f

@@ -148,7 +148,7 @@ ov6_02248140: ; 0x02248140
 	mov r2, #0xdc
 	str r3, [sp, #0xc]
 	ldr r7, [sp, #0x2c]
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	ldr r1, [sp, #8]
 	add r0, #0x78
@@ -307,7 +307,7 @@ ov6_0224825C: ; 0x0224825C
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xf0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #0xdc
 	mov r1, #4
@@ -437,7 +437,7 @@ ov6_02248340: ; 0x02248340
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xf0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #0xdc
 	mov r1, #4
@@ -481,7 +481,7 @@ ov6_022483A0: ; 0x022483A0
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xf0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #0xdc
 	mov r1, #4
@@ -625,7 +625,7 @@ ov6_02248498: ; 0x02248498
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x6e
 	lsl r0, r0, #2
 	add r0, r4, r0
@@ -905,7 +905,7 @@ ov6_022486B4: ; 0x022486B4
 	mov r2, #0xcc
 	add r7, r0, #0
 	add r5, r3, #0
-	bl sub_020D5124
+	bl memset
 	ldr r1, [sp]
 	add r0, r7, #0
 	bl sub_02017258
@@ -952,7 +952,7 @@ _0224870C:
 	add r0, r7, #0
 	mov r1, #0
 	mov r2, #0xcc
-	bl sub_020D5124
+	bl memset
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov6_02248700
 
@@ -1081,7 +1081,7 @@ ov6_022487F8: ; 0x022487F8
 	add r0, r5, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02248894 ; =0x00000CFC
 	mov r1, #4
 	add r0, r5, r0

@@ -38,8 +38,8 @@
 .public sub_0207A048
 .public sub_0208C104
 .public sub_0209304C
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public _s32_div_f
 .public ov104_0222DCE0
 .public ov104_0222DCF4
 .public ov104_0222DD04

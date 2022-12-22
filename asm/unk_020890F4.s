@@ -24,7 +24,7 @@ sub_020890F4: ; 0x020890F4
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	add r5, r0, #0
@@ -131,14 +131,14 @@ _0208920A:
 	mov r1, #0
 	mov r2, #6
 	mov r3, #0xf
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	ldr r0, _02089244 ; =0x04001050
 	mov r1, #0
 	mov r2, #0xe
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, _02089248 ; =sub_020895CC
 	add r1, r4, #0
 	bl sub_02017798
@@ -424,25 +424,25 @@ _0208946C:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _020895C0 ; =0x020F2DF4
 	add r3, sp, #0x98
 	mov r2, #0xa

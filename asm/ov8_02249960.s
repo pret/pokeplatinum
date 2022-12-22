@@ -2188,7 +2188,7 @@ ov8_0224AAFC: ; 0x0224AAFC
 	asr r0, r0, #0x10
 	mov r1, #0xa
 	add r6, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r5, r0, #0x18
 	cmp r5, #3
@@ -2777,7 +2777,7 @@ _0224AF48:
 	mov r1, #3
 	ldr r0, [r4, #0]
 	lsl r1, r1, #0xe
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 	pop {r4, pc}
 	; .align 2, 0
@@ -2821,12 +2821,12 @@ ov8_0224AF84: ; 0x0224AF84
 	add r0, r4, #0
 	mov r1, #0xf
 	add r5, #0x24
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0224AFB2
 	add r0, r4, #0
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r1, r0, #1
 	ldr r0, _0224B018 ; =0x0224C7B8
 	ldrh r0, [r0, r1]
@@ -2903,7 +2903,7 @@ ov8_0224B020: ; 0x0224B020
 	str r0, [sp, #0xc]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0xc]
 	ldr r1, [r6, #4]
 	add r4, r0, #0
@@ -3760,7 +3760,7 @@ _0224B6A4:
 	mov r1, #0
 	mov r2, #0x50
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	ldr r1, _0224B70C ; =0x0224C774
 	str r0, [r4, #0x44]
@@ -3852,7 +3852,7 @@ ov8_0224B764: ; 0x0224B764
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #4]
 	mov r1, #0x1f
 	str r4, [r0, #0x24]
@@ -4049,11 +4049,11 @@ ov8_0224B8D0: ; 0x0224B8D0
 	add r0, r6, #0
 	mov r1, #0
 	sub r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0xd8
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	ldr r7, _0224B950 ; =0x0224C99C
 	str r0, [sp]
@@ -4526,7 +4526,7 @@ ov8_0224BC48: ; 0x0224BC48
 	add r1, r2, r1
 	lsl r0, r0, #0xc
 	asr r1, r1, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r0, [r4, #0x34]
 	ldr r0, [r0, #0x14]
@@ -4843,7 +4843,7 @@ _0224BEF0:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x78
-	bl sub_020D5124
+	bl memset
 	str r7, [r4, #8]
 	ldr r0, [r5, #8]
 	str r0, [r4, #0xc]
@@ -4965,7 +4965,7 @@ ov8_0224BFCC: ; 0x0224BFCC
 	mov r1, #0
 	mov r2, #0x38
 	add r7, r3, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0x10]
 	str r5, [r4, #0x34]
 	ldr r6, [r0, #0]
@@ -5213,7 +5213,7 @@ ov8_0224C198: ; 0x0224C198
 	str r0, [sp, #8]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #8]
 	str r6, [r0, #0]
 	ldr r1, [r6, #4]
@@ -5276,7 +5276,7 @@ _0224C228:
 	str r0, [sp]
 	bl sub_0201D35C
 	ldr r1, [r5, #8]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, [r5, #4]
 	add r7, r4, #4
 	add r0, r1, r0
@@ -5286,11 +5286,11 @@ _0224C228:
 _0224C25C:
 	bl sub_0201D35C
 	ldr r1, [r5, #0x14]
-	bl sub_020E2178
+	bl _u32_div_f
 	strh r1, [r4, #4]
 	bl sub_0201D35C
 	ldr r1, [r5, #0x18]
-	bl sub_020E2178
+	bl _u32_div_f
 	strh r1, [r4, #6]
 	mov r0, #4
 	ldrsh r2, [r4, r0]
@@ -5493,7 +5493,7 @@ _0224C3F8:
 	add r0, #0xc
 	add r1, r6, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #4]
 	mov r3, #0
 	str r0, [sp]

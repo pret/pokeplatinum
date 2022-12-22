@@ -167,7 +167,7 @@ _0205E90E:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	thumb_func_end sub_0205E8FC

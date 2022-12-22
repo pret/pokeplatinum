@@ -23,10 +23,10 @@
 .public sub_0202A62C
 .public sub_0202A630
 .public sub_02073C74
-.public sub_020A7118
-.public sub_020A71B0
-.public sub_020D5124
-.public sub_020E1F1C
+.public NNS_G2dGetUnpackedCharacterData
+.public NNS_G2dGetUnpackedPaletteData
+.public memset
+.public _ull_mul
 .public ov22_02254DE0
 .public ov22_02254E0C
 .public ov22_022551B4

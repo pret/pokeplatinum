@@ -105,7 +105,7 @@ ov20_021D3A98: ; 0x021D3A98
 	add r2, r1, #0
 	ldr r0, _021D3B68 ; =0x04000050
 	sub r2, #0xc
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, _021D3B6C ; =0x04000048
 	mov r2, #0x3f
 	ldrh r3, [r0]
@@ -169,7 +169,7 @@ _021D3B96:
 	beq _021D3BAE
 	add r0, r4, #0
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _021D3BAE
 	ldr r0, [sp, #0x24]
@@ -534,14 +534,14 @@ _021D3E96:
 	bne _021D3EBE
 	add r0, r5, #0
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, #0x50
 	mul r0, r1
 	add r0, #0x30
 	str r0, [sp, #8]
 	add r0, r5, #0
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r1, #0x18
 	mul r1, r0
 	add r1, #0x36
@@ -780,7 +780,7 @@ ov20_021D403C: ; 0x021D403C
 	mov r1, #2
 	mov r2, #0x3f
 	mov r3, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_02019120

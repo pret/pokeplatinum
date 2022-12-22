@@ -551,7 +551,7 @@ _0223B518:
 	bl ov60_0221FE20
 	mov r1, #0x49
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _0223B740 ; =0x02246AC0
 	str r0, [r1, #4]
 	b _0223B564
@@ -941,7 +941,7 @@ ov94_0223B7E4: ; 0x0223B7E4
 	mov r2, #0x49
 	ldr r0, _0223B824 ; =0x02246AD4
 	lsl r2, r2, #2
-	bl sub_020D50B8
+	bl memcpy
 	bl ov60_0221FC84
 	mov r0, #2
 	str r0, [sp]
@@ -1273,7 +1273,7 @@ ov94_0223BA88: ; 0x0223BA88
 	ldr r0, _0223BAE0 ; =0x02246AD4
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223BADC ; =0x02246BC0
 	mov r2, #0x49
 	str r5, [r0, #0x38]
@@ -1384,11 +1384,11 @@ ov94_0223BB84: ; 0x0223BB84
 	add r5, r0, #0
 	add r0, #0x1c
 	add r4, r1, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _0223BBD0 ; =0x02246AD4
 	add r1, r5, #0
 	mov r2, #0x64
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223BBD4 ; =0x02246BC0
 	str r4, [r0, #0x40]
 	bl ov60_0221FC84

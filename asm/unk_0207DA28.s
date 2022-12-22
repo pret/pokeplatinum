@@ -248,7 +248,7 @@ _0207DBCE:
 	mov r0, #0x36
 	bl ov18_0221F800
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	b _0207DD86
 _0207DBEA:
 	ldr r0, [r4, #0]
@@ -462,14 +462,14 @@ sub_0207DD94: ; 0x0207DD94
 	mov r1, #0
 	mov r2, #0x18
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xb
 	mov r1, #0xc
 	bl sub_02018184
 	mov r1, #0
 	mov r2, #0xc
 	str r0, [r4, #0]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -603,7 +603,7 @@ sub_0207DE90: ; 0x0207DE90
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x3c
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #0x38
 	strb r6, [r0]
@@ -649,7 +649,7 @@ sub_0207DEEC: ; 0x0207DEEC
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	str r6, [r4, #0x3c]
 	mov r0, #0
 	str r0, [r4, #0x38]
@@ -691,7 +691,7 @@ sub_0207DF40: ; 0x0207DF40
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x3c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r0, #0x38
 	strb r6, [r0]

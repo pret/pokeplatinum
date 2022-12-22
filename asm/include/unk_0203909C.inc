@@ -22,9 +22,9 @@
 .public sub_020389B8
 .public sub_0203909C
 .public sub_02039298
-.public sub_020A4118
-.public sub_020A4498
-.public sub_020A4698
-.public sub_020A474C
-.public sub_020A4828
-.public sub_020C4DB0
+.public DWC_CheckFriendKey
+.public DWC_IsValidFriendData
+.public DWC_GetGsProfileId
+.public DWC_CreateFriendKeyToken
+.public DWC_IsEqualFriendData
+.public MI_CpuCopy8

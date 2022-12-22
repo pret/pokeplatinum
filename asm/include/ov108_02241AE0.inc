@@ -70,10 +70,10 @@
 .public sub_02074470
 .public sub_0207A0FC
 .public sub_0209BA80
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020D5124
-.public sub_020E1F6C
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public memset
+.public _s32_div_f
 .public ov104_0223BD70
 .public ov104_0223BDA4
 .public ov104_0223C000

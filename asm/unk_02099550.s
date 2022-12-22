@@ -59,7 +59,7 @@ sub_02099590: ; 0x02099590
 	bl sub_02099580
 	bl sub_02099560
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_02099590
@@ -102,7 +102,7 @@ sub_020995D4: ; 0x020995D4
 	mov r0, #0x31
 	bl sub_0201807C
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	mov r0, #1
 	pop {r4, pc}
 	; .align 2, 0

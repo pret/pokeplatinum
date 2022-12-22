@@ -2,9 +2,9 @@
 .public sub_020245BC
 .public sub_02025CCC
 .public sub_02025D84
-.public sub_020C3FA0
-.public sub_020C3FBC
-.public sub_020C4040
-.public sub_020C4BB8
-.public sub_020CC16C
-.public sub_020CC218
+.public OS_GetMacAddress
+.public OS_GetOwnerInfo
+.public OS_GetOwnerRtcOffset
+.public MIi_CpuClearFast
+.public RTC_ConvertDateToDay
+.public RTC_ConvertDateTimeToSecond

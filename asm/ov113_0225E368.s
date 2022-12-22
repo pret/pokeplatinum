@@ -8,12 +8,12 @@
 
 	thumb_func_start ov113_0225E368
 ov113_0225E368: ; 0x0225E368
-	ldr r3, _0225E370 ; =sub_020C4CF4
+	ldr r3, _0225E370 ; =MI_CpuFill8
 	mov r1, #0
 	ldr r2, _0225E374 ; =0x00000744
 	bx r3
 	; .align 2, 0
-_0225E370: .word sub_020C4CF4
+_0225E370: .word MI_CpuFill8
 _0225E374: .word 0x00000744
 	thumb_func_end ov113_0225E368
 
@@ -429,13 +429,13 @@ _0225E66A:
 	cmp r0, #0
 	beq _0225E688
 	ldr r1, [r0, #4]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r5, #0]
 	mov r1, #1
-	bl sub_020AE900
+	bl NNS_G3dTexLoad
 	ldr r0, [r5, #0]
 	mov r1, #1
-	bl sub_020AEA20
+	bl NNS_G3dPlttLoad
 	str r7, [r5, #0]
 _0225E688:
 	add r4, r4, #1
@@ -480,7 +480,7 @@ ov113_0225E6B8: ; 0x0225E6B8
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r2, #9
 	lsl r2, r2, #6
 	ldr r1, [r4, r2]
@@ -575,7 +575,7 @@ ov113_0225E774: ; 0x0225E774
 	bl sub_02022974
 _0225E798:
 	ldr r0, [r5, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r5, #4]
 	cmp r0, #0
 	beq _0225E7C4
@@ -602,7 +602,7 @@ _0225E7C4:
 _0225E7C6:
 	str r0, [r5, #8]
 	ldr r0, [r5, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r5, #0xc]
 	cmp r0, #0
 	beq _0225E846
@@ -627,7 +627,7 @@ _0225E7F8:
 	ldr r0, [r5, #0xc]
 	add r1, sp, #8
 	add r2, sp, #4
-	bl sub_020AE9B8
+	bl NNS_G3dTexReleaseTexKey
 	ldr r1, _0225E84C ; =0x02100DF0
 	ldr r0, [sp, #8]
 	ldr r1, [r1, #0]
@@ -637,7 +637,7 @@ _0225E7F8:
 	ldr r1, [r1, #0]
 	blx r1
 	ldr r0, [r5, #0xc]
-	bl sub_020AEA70
+	bl NNS_G3dPlttReleasePlttKey
 	ldr r1, _0225E850 ; =0x02100DF8
 	ldr r1, [r1, #0]
 	blx r1
@@ -733,10 +733,10 @@ ov113_0225E8B0: ; 0x0225E8B0
 	add r5, r0, #0
 	mov r1, #0
 	str r1, [r5, #8]
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	add r4, r0, #0
 	add r0, r5, #0
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	ldr r3, _0225E914 ; =0x02100DEC
 	mov r1, #0
 	add r6, r0, #0
@@ -770,10 +770,10 @@ _0225E8FC:
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0
-	bl sub_020AE8EC
+	bl NNS_G3dTexSetTexKey
 	add r0, r5, #0
 	add r1, r6, #0
-	bl sub_020AEA18
+	bl NNS_G3dPlttSetPlttKey
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 	nop
@@ -813,7 +813,7 @@ ov113_0225E920: ; 0x0225E920
 	bl sub_0200723C
 	add r1, sp, #0x20
 	str r0, [sp, #0x18]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	b _0225E97C
 _0225E964:
 	mov r0, #1
@@ -825,12 +825,12 @@ _0225E964:
 	bl sub_0200723C
 	add r1, sp, #0x20
 	str r0, [sp, #0x18]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 _0225E97C:
 	ldr r1, [sp, #0x1c]
 	mov r0, #0
 	mov r2, #0x40
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, [sp, #0x20]
 	ldr r2, [sp, #0x1c]
 	ldr r1, [r0, #0x14]
@@ -977,13 +977,13 @@ ov113_0225EA60: ; 0x0225EA60
 	mov r2, #0x40
 	add r0, r1, r0
 	ldr r1, [sp, #4]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r2, [sp]
 	ldr r1, [sp, #8]
 	mov r0, #0
 	add r1, r2, r1
 	mov r2, #0x40
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	cmp r4, #3
 	beq _0225EA9C
 	cmp r4, #4
@@ -1334,22 +1334,22 @@ _0225ECBC:
 	mov r3, #0
 	asr r1, r0, #0x1f
 	asr r6, r4, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #1
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	add r2, r4, #0
 	add r3, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #0x64
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	sub r0, r0, r4
 	sbc r1, r6
 	mov r2, #2
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	ldr r1, [r5, #4]
 	mov r2, #0x64
 	add r1, r1, r0
@@ -1364,22 +1364,22 @@ _0225ECBC:
 	ldr r0, [sp, #4]
 	asr r6, r4, #0x1f
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #1
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	add r2, r4, #0
 	add r3, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #0x64
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	sub r0, r0, r4
 	sbc r1, r6
 	mov r2, #2
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	ldr r1, [r5, #8]
 	add r1, r1, r0
 	str r1, [r5, #8]
@@ -1501,7 +1501,7 @@ _0225EE1A:
 	add r0, r3, #0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	pop {r3, r4, r5, pc}
 _0225EE66:
@@ -1540,7 +1540,7 @@ ov113_0225EE98: ; 0x0225EE98
 	mov r1, #0
 	mov r2, #0xb0
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0225EEB8 ; =0x0000073D
 	ldrb r2, [r4, r1]
 	sub r0, r1, #1
@@ -1582,7 +1582,7 @@ _0225EEDA:
 	add r0, #0x94
 	mov r1, #0
 	sub r2, #0x94
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	pop {r4, pc}
 	; .align 2, 0
@@ -1747,17 +1747,17 @@ ov113_0225EFFC: ; 0x0225EFFC
 	str r0, [sp, #4]
 	add r1, r0, #0
 	add r2, r0, #0
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 	mov r2, #0x3f
 	ldr r0, [r4, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r2, #0x1f
 	ldr r0, [r4, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 _0225F036:
 	add r4, #0x1c
 	add r0, r4, #0
@@ -2517,7 +2517,7 @@ _0225F5E0:
 	lsl r0, r0, #2
 	ldrh r0, [r4, r0]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0225F63A
 	ldr r0, _0225F67C ; =0x0000016A
@@ -2600,17 +2600,17 @@ ov113_0225F680: ; 0x0225F680
 	str r0, [sp, #4]
 	add r1, r0, #0
 	add r2, r0, #0
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 	mov r2, #0x3f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r2, #0x1f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 _0225F6BC:
 	mov r4, #0
 	add r5, r7, #0
@@ -2632,17 +2632,17 @@ _0225F6C0:
 	str r0, [sp, #4]
 	add r1, r0, #0
 	add r2, r0, #0
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 	mov r2, #0x3f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r2, #0x1f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 _0225F700:
 	add r6, #0x1c
 	add r0, r6, #0
@@ -3091,17 +3091,17 @@ ov113_0225FA24: ; 0x0225FA24
 	str r0, [sp, #4]
 	add r1, r0, #0
 	add r2, r0, #0
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 	mov r2, #0x3f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r2, #0x1f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 _0225FA66:
 	mov r4, #0
 _0225FA68:
@@ -3371,17 +3371,17 @@ ov113_0225FC44: ; 0x0225FC44
 	str r0, [sp, #4]
 	add r1, r0, #0
 	add r2, r0, #0
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 	mov r2, #0x3f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r2, #0x1f
 	ldr r0, [r6, #0x14]
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 _0225FC86:
 	mov r4, #0
 _0225FC88:

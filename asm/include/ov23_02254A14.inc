@@ -26,7 +26,7 @@
 .public sub_02050A64
 .public sub_020573FC
 .public sub_0205740C
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov5_021D1B6C
 .public ov5_021D1BEC
 .public ov5_021D1C2C

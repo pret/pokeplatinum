@@ -274,14 +274,14 @@ _021EEDFA:
 	ldr r2, [sp, #0x2c]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #0x1c]
 	ldr r2, [sp, #0x30]
 	ldr r0, [sp, #0x3c]
 	str r1, [sp, #8]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r6, r0, #0
 	ldr r0, [sp, #0x28]
 	ldr r2, [sp, #0x1c]
@@ -309,7 +309,7 @@ _021EEDFA:
 	add r0, r0, r1
 	ldr r1, [sp, #0x38]
 	neg r0, r0
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [r7, #0]
 	add r5, r5, #1
 	add r7, #0xc

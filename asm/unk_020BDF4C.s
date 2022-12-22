@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020BDF4C
-sub_020BDF4C: ; 0x020BDF4C
+	arm_func_start GX_VRAMCNT_SetLCDC_
+GX_VRAMCNT_SetLCDC_: ; 0x020BDF4C
 	tst r0, #1
 	ldrne r1, _020BDFE0 ; =0x04000240
 	movne r2, #0x80
@@ -55,10 +55,10 @@ _020BDFF4: .word 0x04000245
 _020BDFF8: .word 0x04000246
 _020BDFFC: .word 0x04000248
 _020BE000: .word 0x04000249
-	arm_func_end sub_020BDF4C
+	arm_func_end GX_VRAMCNT_SetLCDC_
 
-	arm_func_start sub_020BE004
-sub_020BE004: ; 0x020BE004
+	arm_func_start GX_SetBankForBG
+GX_SetBankForBG: ; 0x020BE004
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE274 ; =0x021CCBA0
 	mvn ip, r0
@@ -240,7 +240,7 @@ _020BE258:
 _020BE264:
 	ldr r0, _020BE274 ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE274: .word 0x021CCBA0
@@ -251,10 +251,10 @@ _020BE284: .word 0x04000240
 _020BE288: .word 0x04000246
 _020BE28C: .word 0x04000245
 _020BE290: .word 0x04000244
-	arm_func_end sub_020BE004
+	arm_func_end GX_SetBankForBG
 
-	arm_func_start sub_020BE294
-sub_020BE294: ; 0x020BE294
+	arm_func_start GX_SetBankForOBJ
+GX_SetBankForOBJ: ; 0x020BE294
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE3CC ; =0x021CCBA0
 	mvn ip, r0
@@ -346,7 +346,7 @@ _020BE3B0:
 _020BE3BC:
 	ldr r0, _020BE3CC ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE3CC: .word 0x021CCBA0
@@ -355,10 +355,10 @@ _020BE3D4: .word 0x04000241
 _020BE3D8: .word 0x04000240
 _020BE3DC: .word 0x04000245
 _020BE3E0: .word 0x04000244
-	arm_func_end sub_020BE294
+	arm_func_end GX_SetBankForOBJ
 
-	arm_func_start sub_020BE3E4
-sub_020BE3E4: ; 0x020BE3E4
+	arm_func_start GX_SetBankForBGExtPltt
+GX_SetBankForBGExtPltt: ; 0x020BE3E4
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE4D8 ; =0x021CCBA0
 	mvn ip, r0
@@ -427,16 +427,16 @@ _020BE4B8:
 _020BE4C8:
 	ldr r0, _020BE4D8 ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE4D8: .word 0x021CCBA0
 _020BE4DC: .word 0x04000246
 _020BE4E0: .word 0x04000245
-	arm_func_end sub_020BE3E4
+	arm_func_end GX_SetBankForBGExtPltt
 
-	arm_func_start sub_020BE4E4
-sub_020BE4E4: ; 0x020BE4E4
+	arm_func_start GX_SetBankForOBJExtPltt
+GX_SetBankForOBJExtPltt: ; 0x020BE4E4
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE584 ; =0x021CCBA0
 	mvn ip, r0
@@ -479,16 +479,16 @@ _020BE564:
 _020BE574:
 	ldr r0, _020BE584 ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE584: .word 0x021CCBA0
 _020BE588: .word 0x04000245
 _020BE58C: .word 0x04000246
-	arm_func_end sub_020BE4E4
+	arm_func_end GX_SetBankForOBJExtPltt
 
-	arm_func_start sub_020BE590
-sub_020BE590: ; 0x020BE590
+	arm_func_start GX_SetBankForTex
+GX_SetBankForTex: ; 0x020BE590
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE74C ; =0x021CCBA0
 	mvn ip, r0
@@ -616,7 +616,7 @@ _020BE730:
 _020BE73C:
 	ldr r0, _020BE74C ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE74C: .word 0x021CCBA0
@@ -626,10 +626,10 @@ _020BE758: .word 0x04000242
 _020BE75C: .word 0x04000243
 _020BE760: .word 0x04000241
 _020BE764: .word 0x04000240
-	arm_func_end sub_020BE590
+	arm_func_end GX_SetBankForTex
 
-	arm_func_start sub_020BE768
-sub_020BE768: ; 0x020BE768
+	arm_func_start GX_SetBankForTexPltt
+GX_SetBankForTexPltt: ; 0x020BE768
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE840 ; =0x021CCBA0
 	mvn ip, r0
@@ -692,17 +692,17 @@ _020BE824:
 _020BE830:
 	ldr r0, _020BE840 ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE840: .word 0x021CCBA0
 _020BE844: .word 0x04000246
 _020BE848: .word 0x04000245
 _020BE84C: .word 0x04000244
-	arm_func_end sub_020BE768
+	arm_func_end GX_SetBankForTexPltt
 
-	arm_func_start sub_020BE850
-sub_020BE850: ; 0x020BE850
+	arm_func_start GX_SetBankForClearImage
+GX_SetBankForClearImage: ; 0x020BE850
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BE96C ; =0x021CCBA0
 	mvn ip, r0
@@ -781,7 +781,7 @@ _020BE940:
 _020BE95C:
 	ldr r0, _020BE96C ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BE96C: .word 0x021CCBA0
@@ -790,10 +790,10 @@ _020BE974: .word 0x04000241
 _020BE978: .word 0x04000060
 _020BE97C: .word 0x04000242
 _020BE980: .word 0x04000243
-	arm_func_end sub_020BE850
+	arm_func_end GX_SetBankForClearImage
 
-	arm_func_start sub_020BE984
-sub_020BE984: ; 0x020BE984
+	arm_func_start GX_SetBankForARM7
+GX_SetBankForARM7: ; 0x020BE984
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BEA24 ; =0x021CCBA0
 	mvn ip, r0
@@ -836,29 +836,29 @@ _020BEA08:
 _020BEA14:
 	ldr r0, _020BEA24 ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BEA24: .word 0x021CCBA0
 _020BEA28: .word 0x04000243
 _020BEA2C: .word 0x04000242
-	arm_func_end sub_020BE984
+	arm_func_end GX_SetBankForARM7
 
-	arm_func_start sub_020BEA30
-sub_020BEA30: ; 0x020BEA30
+	arm_func_start GX_SetBankForLCDC
+GX_SetBankForLCDC: ; 0x020BEA30
 	ldr r1, _020BEA48 ; =0x021CCBA0
-	ldr ip, _020BEA4C ; =sub_020BDF4C
+	ldr ip, _020BEA4C ; =GX_VRAMCNT_SetLCDC_
 	ldrh r2, [r1]
 	orr r2, r2, r0
 	strh r2, [r1]
 	bx ip
 	; .align 2, 0
 _020BEA48: .word 0x021CCBA0
-_020BEA4C: .word sub_020BDF4C
-	arm_func_end sub_020BEA30
+_020BEA4C: .word GX_VRAMCNT_SetLCDC_
+	arm_func_end GX_SetBankForLCDC
 
-	arm_func_start sub_020BEA50
-sub_020BEA50: ; 0x020BEA50
+	arm_func_start GX_SetBankForSubBG
+GX_SetBankForSubBG: ; 0x020BEA50
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BEAE8 ; =0x021CCBA0
 	mvn ip, r0
@@ -900,17 +900,17 @@ _020BEACC:
 _020BEAD8:
 	ldr r0, _020BEAE8 ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BEAE8: .word 0x021CCBA0
 _020BEAEC: .word 0x04000242
 _020BEAF0: .word 0x04000249
 _020BEAF4: .word 0x04000248
-	arm_func_end sub_020BEA50
+	arm_func_end GX_SetBankForSubBG
 
-	arm_func_start sub_020BEAF8
-sub_020BEAF8: ; 0x020BEAF8
+	arm_func_start GX_SetBankForSubOBJ
+GX_SetBankForSubOBJ: ; 0x020BEAF8
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BEB5C ; =0x021CCBA0
 	mvn ip, r0
@@ -936,16 +936,16 @@ _020BEB40:
 _020BEB4C:
 	ldr r0, _020BEB5C ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BEB5C: .word 0x021CCBA0
 _020BEB60: .word 0x04000249
 _020BEB64: .word 0x04000243
-	arm_func_end sub_020BEAF8
+	arm_func_end GX_SetBankForSubOBJ
 
-	arm_func_start sub_020BEB68
-sub_020BEB68: ; 0x020BEB68
+	arm_func_start GX_SetBankForSubBGExtPltt
+GX_SetBankForSubBGExtPltt: ; 0x020BEB68
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BEBDC ; =0x021CCBA0
 	mvn ip, r0
@@ -975,16 +975,16 @@ _020BEBBC:
 _020BEBCC:
 	ldr r0, _020BEBDC ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BEBDC: .word 0x021CCBA0
 _020BEBE0: .word 0x04001000
 _020BEBE4: .word 0x04000248
-	arm_func_end sub_020BEB68
+	arm_func_end GX_SetBankForSubBGExtPltt
 
-	arm_func_start sub_020BEBE8
-sub_020BEBE8: ; 0x020BEBE8
+	arm_func_start GX_SetBankForSubOBJExtPltt
+GX_SetBankForSubOBJExtPltt: ; 0x020BEBE8
 	stmfd sp!, {r3, lr}
 	ldr r1, _020BEC5C ; =0x021CCBA0
 	mvn ip, r0
@@ -1014,16 +1014,16 @@ _020BEC3C:
 _020BEC4C:
 	ldr r0, _020BEC5C ; =0x021CCBA0
 	ldrh r0, [r0]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BEC5C: .word 0x021CCBA0
 _020BEC60: .word 0x04001000
 _020BEC64: .word 0x04000249
-	arm_func_end sub_020BEBE8
+	arm_func_end GX_SetBankForSubOBJExtPltt
 
-	arm_func_start sub_020BEC68
-sub_020BEC68: ; 0x020BEC68
+	arm_func_start resetBankForX_
+resetBankForX_: ; 0x020BEC68
 	stmfd sp!, {r4, lr}
 	ldrh r4, [r0]
 	mov r2, #0
@@ -1033,115 +1033,115 @@ sub_020BEC68: ; 0x020BEC68
 	mov r0, r4
 	orr r2, r2, r4
 	strh r2, [r1]
-	bl sub_020BDF4C
+	bl GX_VRAMCNT_SetLCDC_
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BEC98: .word 0x021CCBA0
-	arm_func_end sub_020BEC68
+	arm_func_end resetBankForX_
 
-	arm_func_start sub_020BEC9C
-sub_020BEC9C: ; 0x020BEC9C
-	ldr ip, _020BECA8 ; =sub_020BEC68
+	arm_func_start GX_ResetBankForBG
+GX_ResetBankForBG: ; 0x020BEC9C
+	ldr ip, _020BECA8 ; =resetBankForX_
 	ldr r0, _020BECAC ; =0x021CCBA2
 	bx ip
 	; .align 2, 0
-_020BECA8: .word sub_020BEC68
+_020BECA8: .word resetBankForX_
 _020BECAC: .word 0x021CCBA2
-	arm_func_end sub_020BEC9C
+	arm_func_end GX_ResetBankForBG
 
-	arm_func_start sub_020BECB0
-sub_020BECB0: ; 0x020BECB0
-	ldr ip, _020BECBC ; =sub_020BEC68
+	arm_func_start GX_ResetBankForOBJ
+GX_ResetBankForOBJ: ; 0x020BECB0
+	ldr ip, _020BECBC ; =resetBankForX_
 	ldr r0, _020BECC0 ; =0x021CCBA4
 	bx ip
 	; .align 2, 0
-_020BECBC: .word sub_020BEC68
+_020BECBC: .word resetBankForX_
 _020BECC0: .word 0x021CCBA4
-	arm_func_end sub_020BECB0
+	arm_func_end GX_ResetBankForOBJ
 
-	arm_func_start sub_020BECC4
-sub_020BECC4: ; 0x020BECC4
+	arm_func_start GX_ResetBankForBGExtPltt
+GX_ResetBankForBGExtPltt: ; 0x020BECC4
 	mov r2, #0x4000000
 	ldr r1, [r2, #0]
-	ldr ip, _020BECE0 ; =sub_020BEC68
+	ldr ip, _020BECE0 ; =resetBankForX_
 	bic r1, r1, #0x40000000
 	ldr r0, _020BECE4 ; =0x021CCBAE
 	str r1, [r2, #0]
 	bx ip
 	; .align 2, 0
-_020BECE0: .word sub_020BEC68
+_020BECE0: .word resetBankForX_
 _020BECE4: .word 0x021CCBAE
-	arm_func_end sub_020BECC4
+	arm_func_end GX_ResetBankForBGExtPltt
 
-	arm_func_start sub_020BECE8
-sub_020BECE8: ; 0x020BECE8
+	arm_func_start GX_ResetBankForOBJExtPltt
+GX_ResetBankForOBJExtPltt: ; 0x020BECE8
 	mov r2, #0x4000000
 	ldr r1, [r2, #0]
-	ldr ip, _020BED04 ; =sub_020BEC68
+	ldr ip, _020BED04 ; =resetBankForX_
 	bic r1, r1, #0x80000000
 	ldr r0, _020BED08 ; =0x021CCBB0
 	str r1, [r2, #0]
 	bx ip
 	; .align 2, 0
-_020BED04: .word sub_020BEC68
+_020BED04: .word resetBankForX_
 _020BED08: .word 0x021CCBB0
-	arm_func_end sub_020BECE8
+	arm_func_end GX_ResetBankForOBJExtPltt
 
-	arm_func_start sub_020BED0C
-sub_020BED0C: ; 0x020BED0C
-	ldr ip, _020BED18 ; =sub_020BEC68
+	arm_func_start GX_ResetBankForTex
+GX_ResetBankForTex: ; 0x020BED0C
+	ldr ip, _020BED18 ; =resetBankForX_
 	ldr r0, _020BED1C ; =0x021CCBA8
 	bx ip
 	; .align 2, 0
-_020BED18: .word sub_020BEC68
+_020BED18: .word resetBankForX_
 _020BED1C: .word 0x021CCBA8
-	arm_func_end sub_020BED0C
+	arm_func_end GX_ResetBankForTex
 
-	arm_func_start sub_020BED20
-sub_020BED20: ; 0x020BED20
-	ldr ip, _020BED2C ; =sub_020BEC68
+	arm_func_start GX_ResetBankForTexPltt
+GX_ResetBankForTexPltt: ; 0x020BED20
+	ldr ip, _020BED2C ; =resetBankForX_
 	ldr r0, _020BED30 ; =0x021CCBAA
 	bx ip
 	; .align 2, 0
-_020BED2C: .word sub_020BEC68
+_020BED2C: .word resetBankForX_
 _020BED30: .word 0x021CCBAA
-	arm_func_end sub_020BED20
+	arm_func_end GX_ResetBankForTexPltt
 
-	arm_func_start sub_020BED34
-sub_020BED34: ; 0x020BED34
-	ldr ip, _020BED40 ; =sub_020BEC68
+	arm_func_start GX_ResetBankForClearImage
+GX_ResetBankForClearImage: ; 0x020BED34
+	ldr ip, _020BED40 ; =resetBankForX_
 	ldr r0, _020BED44 ; =0x021CCBAC
 	bx ip
 	; .align 2, 0
-_020BED40: .word sub_020BEC68
+_020BED40: .word resetBankForX_
 _020BED44: .word 0x021CCBAC
-	arm_func_end sub_020BED34
+	arm_func_end GX_ResetBankForClearImage
 
-	arm_func_start sub_020BED48
-sub_020BED48: ; 0x020BED48
-	ldr ip, _020BED54 ; =sub_020BEC68
+	arm_func_start GX_ResetBankForSubBG
+GX_ResetBankForSubBG: ; 0x020BED48
+	ldr ip, _020BED54 ; =resetBankForX_
 	ldr r0, _020BED58 ; =0x021CCBB2
 	bx ip
 	; .align 2, 0
-_020BED54: .word sub_020BEC68
+_020BED54: .word resetBankForX_
 _020BED58: .word 0x021CCBB2
-	arm_func_end sub_020BED48
+	arm_func_end GX_ResetBankForSubBG
 
-	arm_func_start sub_020BED5C
-sub_020BED5C: ; 0x020BED5C
-	ldr ip, _020BED68 ; =sub_020BEC68
+	arm_func_start GX_ResetBankForSubOBJ
+GX_ResetBankForSubOBJ: ; 0x020BED5C
+	ldr ip, _020BED68 ; =resetBankForX_
 	ldr r0, _020BED6C ; =0x021CCBB4
 	bx ip
 	; .align 2, 0
-_020BED68: .word sub_020BEC68
+_020BED68: .word resetBankForX_
 _020BED6C: .word 0x021CCBB4
-	arm_func_end sub_020BED5C
+	arm_func_end GX_ResetBankForSubOBJ
 
-	arm_func_start sub_020BED70
-sub_020BED70: ; 0x020BED70
+	arm_func_start GX_ResetBankForSubBGExtPltt
+GX_ResetBankForSubBGExtPltt: ; 0x020BED70
 	ldr r2, _020BED8C ; =0x04001000
-	ldr ip, _020BED90 ; =sub_020BEC68
+	ldr ip, _020BED90 ; =resetBankForX_
 	ldr r1, [r2, #0]
 	ldr r0, _020BED94 ; =0x021CCBB6
 	bic r1, r1, #0x40000000
@@ -1149,14 +1149,14 @@ sub_020BED70: ; 0x020BED70
 	bx ip
 	; .align 2, 0
 _020BED8C: .word 0x04001000
-_020BED90: .word sub_020BEC68
+_020BED90: .word resetBankForX_
 _020BED94: .word 0x021CCBB6
-	arm_func_end sub_020BED70
+	arm_func_end GX_ResetBankForSubBGExtPltt
 
-	arm_func_start sub_020BED98
-sub_020BED98: ; 0x020BED98
+	arm_func_start GX_ResetBankForSubOBJExtPltt
+GX_ResetBankForSubOBJExtPltt: ; 0x020BED98
 	ldr r2, _020BEDB4 ; =0x04001000
-	ldr ip, _020BEDB8 ; =sub_020BEC68
+	ldr ip, _020BEDB8 ; =resetBankForX_
 	ldr r1, [r2, #0]
 	ldr r0, _020BEDBC ; =0x021CCBB8
 	bic r1, r1, #0x80000000
@@ -1164,12 +1164,12 @@ sub_020BED98: ; 0x020BED98
 	bx ip
 	; .align 2, 0
 _020BEDB4: .word 0x04001000
-_020BEDB8: .word sub_020BEC68
+_020BEDB8: .word resetBankForX_
 _020BEDBC: .word 0x021CCBB8
-	arm_func_end sub_020BED98
+	arm_func_end GX_ResetBankForSubOBJExtPltt
 
-	arm_func_start sub_020BEDC0
-sub_020BEDC0: ; 0x020BEDC0
+	arm_func_start disableBankForX_
+disableBankForX_: ; 0x020BEDC0
 	stmfd sp!, {r4, lr}
 	ldrh r4, [r0]
 	mov r1, #0
@@ -1213,7 +1213,7 @@ sub_020BEDC0: ; 0x020BEDC0
 	mov r0, r4, lsl #0x10
 	ldrh r1, [r1]
 	mov r0, r0, lsr #0x10
-	bl sub_020C4150
+	bl OSi_UnlockVram
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -1227,130 +1227,130 @@ _020BEE90: .word 0x04000246
 _020BEE94: .word 0x04000248
 _020BEE98: .word 0x04000249
 _020BEE9C: .word 0x021CCB9E
-	arm_func_end sub_020BEDC0
+	arm_func_end disableBankForX_
 
-	arm_func_start sub_020BEEA0
-sub_020BEEA0: ; 0x020BEEA0
-	ldr ip, _020BEEAC ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForBG
+GX_DisableBankForBG: ; 0x020BEEA0
+	ldr ip, _020BEEAC ; =disableBankForX_
 	ldr r0, _020BEEB0 ; =0x021CCBA2
 	bx ip
 	; .align 2, 0
-_020BEEAC: .word sub_020BEDC0
+_020BEEAC: .word disableBankForX_
 _020BEEB0: .word 0x021CCBA2
-	arm_func_end sub_020BEEA0
+	arm_func_end GX_DisableBankForBG
 
-	arm_func_start sub_020BEEB4
-sub_020BEEB4: ; 0x020BEEB4
-	ldr ip, _020BEEC0 ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForOBJ
+GX_DisableBankForOBJ: ; 0x020BEEB4
+	ldr ip, _020BEEC0 ; =disableBankForX_
 	ldr r0, _020BEEC4 ; =0x021CCBA4
 	bx ip
 	; .align 2, 0
-_020BEEC0: .word sub_020BEDC0
+_020BEEC0: .word disableBankForX_
 _020BEEC4: .word 0x021CCBA4
-	arm_func_end sub_020BEEB4
+	arm_func_end GX_DisableBankForOBJ
 
-	arm_func_start sub_020BEEC8
-sub_020BEEC8: ; 0x020BEEC8
+	arm_func_start GX_DisableBankForBGExtPltt
+GX_DisableBankForBGExtPltt: ; 0x020BEEC8
 	mov r2, #0x4000000
 	ldr r1, [r2, #0]
-	ldr ip, _020BEEE4 ; =sub_020BEDC0
+	ldr ip, _020BEEE4 ; =disableBankForX_
 	bic r1, r1, #0x40000000
 	ldr r0, _020BEEE8 ; =0x021CCBAE
 	str r1, [r2, #0]
 	bx ip
 	; .align 2, 0
-_020BEEE4: .word sub_020BEDC0
+_020BEEE4: .word disableBankForX_
 _020BEEE8: .word 0x021CCBAE
-	arm_func_end sub_020BEEC8
+	arm_func_end GX_DisableBankForBGExtPltt
 
-	arm_func_start sub_020BEEEC
-sub_020BEEEC: ; 0x020BEEEC
+	arm_func_start GX_DisableBankForOBJExtPltt
+GX_DisableBankForOBJExtPltt: ; 0x020BEEEC
 	mov r2, #0x4000000
 	ldr r1, [r2, #0]
-	ldr ip, _020BEF08 ; =sub_020BEDC0
+	ldr ip, _020BEF08 ; =disableBankForX_
 	bic r1, r1, #0x80000000
 	ldr r0, _020BEF0C ; =0x021CCBB0
 	str r1, [r2, #0]
 	bx ip
 	; .align 2, 0
-_020BEF08: .word sub_020BEDC0
+_020BEF08: .word disableBankForX_
 _020BEF0C: .word 0x021CCBB0
-	arm_func_end sub_020BEEEC
+	arm_func_end GX_DisableBankForOBJExtPltt
 
-	arm_func_start sub_020BEF10
-sub_020BEF10: ; 0x020BEF10
-	ldr ip, _020BEF1C ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForTex
+GX_DisableBankForTex: ; 0x020BEF10
+	ldr ip, _020BEF1C ; =disableBankForX_
 	ldr r0, _020BEF20 ; =0x021CCBA8
 	bx ip
 	; .align 2, 0
-_020BEF1C: .word sub_020BEDC0
+_020BEF1C: .word disableBankForX_
 _020BEF20: .word 0x021CCBA8
-	arm_func_end sub_020BEF10
+	arm_func_end GX_DisableBankForTex
 
-	arm_func_start sub_020BEF24
-sub_020BEF24: ; 0x020BEF24
-	ldr ip, _020BEF30 ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForTexPltt
+GX_DisableBankForTexPltt: ; 0x020BEF24
+	ldr ip, _020BEF30 ; =disableBankForX_
 	ldr r0, _020BEF34 ; =0x021CCBAA
 	bx ip
 	; .align 2, 0
-_020BEF30: .word sub_020BEDC0
+_020BEF30: .word disableBankForX_
 _020BEF34: .word 0x021CCBAA
-	arm_func_end sub_020BEF24
+	arm_func_end GX_DisableBankForTexPltt
 
-	arm_func_start sub_020BEF38
-sub_020BEF38: ; 0x020BEF38
-	ldr ip, _020BEF44 ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForClearImage
+GX_DisableBankForClearImage: ; 0x020BEF38
+	ldr ip, _020BEF44 ; =disableBankForX_
 	ldr r0, _020BEF48 ; =0x021CCBAC
 	bx ip
 	; .align 2, 0
-_020BEF44: .word sub_020BEDC0
+_020BEF44: .word disableBankForX_
 _020BEF48: .word 0x021CCBAC
-	arm_func_end sub_020BEF38
+	arm_func_end GX_DisableBankForClearImage
 
-	arm_func_start sub_020BEF4C
-sub_020BEF4C: ; 0x020BEF4C
-	ldr ip, _020BEF58 ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForARM7
+GX_DisableBankForARM7: ; 0x020BEF4C
+	ldr ip, _020BEF58 ; =disableBankForX_
 	ldr r0, _020BEF5C ; =0x021CCBA6
 	bx ip
 	; .align 2, 0
-_020BEF58: .word sub_020BEDC0
+_020BEF58: .word disableBankForX_
 _020BEF5C: .word 0x021CCBA6
-	arm_func_end sub_020BEF4C
+	arm_func_end GX_DisableBankForARM7
 
-	arm_func_start sub_020BEF60
-sub_020BEF60: ; 0x020BEF60
-	ldr ip, _020BEF6C ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForLCDC
+GX_DisableBankForLCDC: ; 0x020BEF60
+	ldr ip, _020BEF6C ; =disableBankForX_
 	ldr r0, _020BEF70 ; =0x021CCBA0
 	bx ip
 	; .align 2, 0
-_020BEF6C: .word sub_020BEDC0
+_020BEF6C: .word disableBankForX_
 _020BEF70: .word 0x021CCBA0
-	arm_func_end sub_020BEF60
+	arm_func_end GX_DisableBankForLCDC
 
-	arm_func_start sub_020BEF74
-sub_020BEF74: ; 0x020BEF74
-	ldr ip, _020BEF80 ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForSubBG
+GX_DisableBankForSubBG: ; 0x020BEF74
+	ldr ip, _020BEF80 ; =disableBankForX_
 	ldr r0, _020BEF84 ; =0x021CCBB2
 	bx ip
 	; .align 2, 0
-_020BEF80: .word sub_020BEDC0
+_020BEF80: .word disableBankForX_
 _020BEF84: .word 0x021CCBB2
-	arm_func_end sub_020BEF74
+	arm_func_end GX_DisableBankForSubBG
 
-	arm_func_start sub_020BEF88
-sub_020BEF88: ; 0x020BEF88
-	ldr ip, _020BEF94 ; =sub_020BEDC0
+	arm_func_start GX_DisableBankForSubOBJ
+GX_DisableBankForSubOBJ: ; 0x020BEF88
+	ldr ip, _020BEF94 ; =disableBankForX_
 	ldr r0, _020BEF98 ; =0x021CCBB4
 	bx ip
 	; .align 2, 0
-_020BEF94: .word sub_020BEDC0
+_020BEF94: .word disableBankForX_
 _020BEF98: .word 0x021CCBB4
-	arm_func_end sub_020BEF88
+	arm_func_end GX_DisableBankForSubOBJ
 
-	arm_func_start sub_020BEF9C
-sub_020BEF9C: ; 0x020BEF9C
+	arm_func_start GX_DisableBankForSubBGExtPltt
+GX_DisableBankForSubBGExtPltt: ; 0x020BEF9C
 	ldr r2, _020BEFB8 ; =0x04001000
-	ldr ip, _020BEFBC ; =sub_020BEDC0
+	ldr ip, _020BEFBC ; =disableBankForX_
 	ldr r1, [r2, #0]
 	ldr r0, _020BEFC0 ; =0x021CCBB6
 	bic r1, r1, #0x40000000
@@ -1358,14 +1358,14 @@ sub_020BEF9C: ; 0x020BEF9C
 	bx ip
 	; .align 2, 0
 _020BEFB8: .word 0x04001000
-_020BEFBC: .word sub_020BEDC0
+_020BEFBC: .word disableBankForX_
 _020BEFC0: .word 0x021CCBB6
-	arm_func_end sub_020BEF9C
+	arm_func_end GX_DisableBankForSubBGExtPltt
 
-	arm_func_start sub_020BEFC4
-sub_020BEFC4: ; 0x020BEFC4
+	arm_func_start GX_DisableBankForSubOBJExtPltt
+GX_DisableBankForSubOBJExtPltt: ; 0x020BEFC4
 	ldr r2, _020BEFE0 ; =0x04001000
-	ldr ip, _020BEFE4 ; =sub_020BEDC0
+	ldr ip, _020BEFE4 ; =disableBankForX_
 	ldr r1, [r2, #0]
 	ldr r0, _020BEFE8 ; =0x021CCBB8
 	bic r1, r1, #0x80000000
@@ -1373,51 +1373,51 @@ sub_020BEFC4: ; 0x020BEFC4
 	bx ip
 	; .align 2, 0
 _020BEFE0: .word 0x04001000
-_020BEFE4: .word sub_020BEDC0
+_020BEFE4: .word disableBankForX_
 _020BEFE8: .word 0x021CCBB8
-	arm_func_end sub_020BEFC4
+	arm_func_end GX_DisableBankForSubOBJExtPltt
 
-	arm_func_start sub_020BEFEC
-sub_020BEFEC: ; 0x020BEFEC
+	arm_func_start GX_GetBankForOBJ
+GX_GetBankForOBJ: ; 0x020BEFEC
 	ldr r0, _020BEFF8 ; =0x021CCBA0
 	ldrh r0, [r0, #4]
 	bx lr
 	; .align 2, 0
 _020BEFF8: .word 0x021CCBA0
-	arm_func_end sub_020BEFEC
+	arm_func_end GX_GetBankForOBJ
 
-	arm_func_start sub_020BEFFC
-sub_020BEFFC: ; 0x020BEFFC
+	arm_func_start GX_GetBankForOBJExtPltt
+GX_GetBankForOBJExtPltt: ; 0x020BEFFC
 	ldr r0, _020BF008 ; =0x021CCBA0
 	ldrh r0, [r0, #0x10]
 	bx lr
 	; .align 2, 0
 _020BF008: .word 0x021CCBA0
-	arm_func_end sub_020BEFFC
+	arm_func_end GX_GetBankForOBJExtPltt
 
-	arm_func_start sub_020BF00C
-sub_020BF00C: ; 0x020BF00C
+	arm_func_start GX_GetBankForLCDC
+GX_GetBankForLCDC: ; 0x020BF00C
 	ldr r0, _020BF018 ; =0x021CCBA0
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
 _020BF018: .word 0x021CCBA0
-	arm_func_end sub_020BF00C
+	arm_func_end GX_GetBankForLCDC
 
-	arm_func_start sub_020BF01C
-sub_020BF01C: ; 0x020BF01C
+	arm_func_start GX_GetBankForSubOBJ
+GX_GetBankForSubOBJ: ; 0x020BF01C
 	ldr r0, _020BF028 ; =0x021CCBA0
 	ldrh r0, [r0, #0x14]
 	bx lr
 	; .align 2, 0
 _020BF028: .word 0x021CCBA0
-	arm_func_end sub_020BF01C
+	arm_func_end GX_GetBankForSubOBJ
 
-	arm_func_start sub_020BF02C
-sub_020BF02C: ; 0x020BF02C
+	arm_func_start GX_GetBankForSubOBJExtPltt
+GX_GetBankForSubOBJExtPltt: ; 0x020BF02C
 	ldr r0, _020BF038 ; =0x021CCBA0
 	ldrh r0, [r0, #0x18]
 	bx lr
 	; .align 2, 0
 _020BF038: .word 0x021CCBA0
-	arm_func_end sub_020BF02C
+	arm_func_end GX_GetBankForSubOBJExtPltt

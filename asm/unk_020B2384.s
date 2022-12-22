@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B2384
-sub_020B2384: ; 0x020B2384
+	arm_func_start NNS_G3dDraw1Mat1Shp
+NNS_G3dDraw1Mat1Shp: ; 0x020B2384
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x6c
 	mov r6, r0
@@ -23,7 +23,7 @@ sub_020B2384: ; 0x020B2384
 	str ip, [sp, #0xc]
 	str ip, [sp, #0x10]
 	str ip, [sp, #0x14]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _020B23C4:
 	cmp r7, #0
 	beq _020B2570
@@ -83,7 +83,7 @@ _020B2438:
 	add r1, sp, #0x54
 	mov r2, #6
 	str r3, [sp, #0x68]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldrh r0, [r4, #0x1e]
 	tst r0, #1
 	beq _020B2570
@@ -173,7 +173,7 @@ _020B25D8:
 	ldr r0, [r2, #8]
 	ldr r1, [r2, #0xc]
 	add r0, r2, r0
-	bl sub_020B26A8
+	bl NNS_G3dGeSendDL
 _020B25E8:
 	ldr r3, [r6, #0x20]
 	cmp r3, #0x1000
@@ -185,11 +185,11 @@ _020B25E8:
 	str r3, [sp]
 	str r3, [sp, #4]
 	str r3, [sp, #8]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, sp, #0x6c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020B261C: .word 0x00293130
 _020B2620: .word 0x00002B2A
 _020B2624: .word 0x02100F54
-	arm_func_end sub_020B2384
+	arm_func_end NNS_G3dDraw1Mat1Shp

@@ -9,7 +9,7 @@
 	arm_func_start ov4_02202698
 ov4_02202698: ; 0x02202698
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
-	bl sub_020C3920
+	bl OS_GetTickLo
 	ldr r2, _0220277C ; =0x0221B780
 	ldr r1, _02202780 ; =0x0221A0E8
 	mov r3, #1
@@ -152,7 +152,7 @@ _02202830:
 	cmp r0, #1
 	bne _022028CC
 	bl ov4_02205270
-	bl sub_020C3920
+	bl OS_GetTickLo
 	ldr r1, _022028D4 ; =0x0221B780
 	mov r2, #0
 	strh r0, [r1]
@@ -276,11 +276,11 @@ _022029F8:
 	add r4, ip, r4
 	blt _02202A44
 	add r1, r4, #0x10
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	b _02202A4C
 _02202A44:
 	add r1, r4, #0xc
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 _02202A4C:
 	ldr r0, _02202A94 ; =0x0221B780
 	mov r1, #0x40
@@ -289,10 +289,10 @@ _02202A4C:
 	add r1, r2, #1
 	strh r1, [r0]
 	strh r2, [r4, #6]
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, #0x40
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	str r0, [r4, #8]
 	ldr r1, _02202A94 ; =0x0221B780
 	mov r0, #1
@@ -324,7 +324,7 @@ ov4_02202AA4: ; 0x02202AA4
 	movs r4, r0
 	beq _02202CC4
 _02202ADC:
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r8, r0
 	mov r0, sl
 	mov sb, r1
@@ -351,7 +351,7 @@ _02202ADC:
 	ldr r0, [r6, #0x3c]
 	ldr r2, [sp, #4]
 	ldr r0, [r0, #0x474]
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	ldr r0, [r6, #0x3c]
 	bl ov4_0220523C
 	mov r0, #0
@@ -432,7 +432,7 @@ _02202C44:
 	ldr r0, [r5, #0x474]
 	ldr r1, [sp]
 	ldr r2, [sp, #4]
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, r6
 	mov r1, r5
 	bl ov4_02203C8C
@@ -531,13 +531,13 @@ _02202DB8:
 	mov r1, r7
 	mov r2, r6
 	mov r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _02202DE0
 _02202DCC:
 	mov r1, r7
 	mov r2, r6
 	mov r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r4, #0
 _02202DE0:
 	ldr r0, _02202E04 ; =0x0221B780
@@ -770,7 +770,7 @@ _022030D0:
 	mvn r0, r2, lsl r0
 	and r0, r3, r0
 	str r0, [r1, #0xf0c]
-	bl sub_020D2FE4
+	bl MATH_CountPopulation
 	sub r0, r0, #1
 	ldr r1, _02203120 ; =0x0221B780
 	cmp r0, #7
@@ -888,7 +888,7 @@ _02203288:
 	sub r1, r0, r2
 	add r0, sb, #0xc
 	str r1, [sp]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r5, #0x34]
 	sub r1, r8, #0xc
 	strb r0, [r4, #0x11]
@@ -933,7 +933,7 @@ ov4_02203328: ; 0x02203328
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldrb r6, [r4, #0x11]
 	mov r7, r0
 	mov r0, r6
@@ -983,7 +983,7 @@ _022033DC:
 	blt _02203360
 _022033E8:
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end ov4_02203328

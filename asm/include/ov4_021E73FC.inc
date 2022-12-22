@@ -1,6 +1,6 @@
-.public sub_020C4B4C
-.public sub_020C4DB0
-.public sub_020D8E28
+.public MIi_CpuClear32
+.public MI_CpuCopy8
+.public strncmp
 .public ov4_021E62EC
 .public ov4_021E74DC
 .public ov4_021E753C

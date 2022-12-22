@@ -33,7 +33,7 @@
 .public sub_02099CDC
 .public sub_02099CEC
 .public sub_02099D14
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov20_021D0E38
 .public ov20_021D0EC8
 .public ov20_021D0F64

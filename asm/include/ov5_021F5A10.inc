@@ -14,7 +14,7 @@
 .public sub_020715BC
 .public sub_020715D4
 .public sub_020715E4
-.public sub_020B37A4
+.public NNS_G3dMdlSetMdlFogEnableFlagAll
 .public ov5_021DF53C
 .public ov5_021DF554
 .public ov5_021DF55C

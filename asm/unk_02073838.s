@@ -30,7 +30,7 @@ sub_02073848: ; 0x02073848
 	mov r0, #0
 	str r0, [r5, #0]
 	add r0, r4, #0
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r5, #8]
 	cmp r0, #0
 	beq _0207388E
@@ -61,7 +61,7 @@ _0207388E:
 _02073890:
 	str r0, [r5, #0xc]
 	add r0, r4, #0
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r5, #0x10]
 	pop {r4, r5, r6, pc}
 	thumb_func_end sub_02073848
@@ -94,7 +94,7 @@ sub_020738C0: ; 0x020738C0
 	bl sub_0201CBCC
 	ldr r0, [r4, #8]
 	ldr r1, [r4, #0x10]
-	bl sub_020AF1E8
+	bl NNS_G3dBindMdlSet
 	mov r0, #1
 	str r0, [r4, #0]
 	pop {r4, pc}
@@ -151,7 +151,7 @@ sub_0207391C: ; 0x0207391C
 	beq _02073950
 	add r1, sp, #4
 	add r2, sp, #0
-	bl sub_020AE9B8
+	bl NNS_G3dTexReleaseTexKey
 	ldr r1, _02073954 ; =0x02100DF0
 	ldr r0, [sp, #4]
 	ldr r1, [r1, #0]
@@ -161,7 +161,7 @@ sub_0207391C: ; 0x0207391C
 	ldr r1, [r1, #0]
 	blx r1
 	ldr r0, [r4, #0x10]
-	bl sub_020AEA70
+	bl NNS_G3dPlttReleasePlttKey
 	ldr r1, _02073958 ; =0x02100DF8
 	ldr r1, [r1, #0]
 	blx r1
@@ -190,12 +190,12 @@ sub_0207395C: ; 0x0207395C
 
 	thumb_func_start sub_02073974
 sub_02073974: ; 0x02073974
-	ldr r3, _0207397C ; =sub_020D5124
+	ldr r3, _0207397C ; =memset
 	mov r1, #0
 	mov r2, #0x24
 	bx r3
 	; .align 2, 0
-_0207397C: .word sub_020D5124
+_0207397C: .word memset
 	thumb_func_end sub_02073974
 
 	thumb_func_start sub_02073980
@@ -262,7 +262,7 @@ sub_020739D8: ; 0x020739D8
 	add r0, r4, #0
 	mov r1, #0
 	str r4, [r5, #8]
-	bl sub_020B3C5C
+	bl NNS_G3dGetAnmByIdx
 	str r0, [r5, #0xc]
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_020739D8
@@ -302,7 +302,7 @@ sub_02073A14: ; 0x02073A14
 	ldr r1, [r5, #0xc]
 	add r0, #0x14
 	add r2, r4, #0
-	bl sub_020B2CB4
+	bl NNS_G3dAllocAnmObj
 	str r0, [r5, #0x10]
 	cmp r0, #0
 	bne _02073A3A
@@ -329,7 +329,7 @@ sub_02073A48: ; 0x02073A48
 	ldr r0, [r5, #0x10]
 	ldr r1, [r5, #0xc]
 	add r2, r4, #0
-	bl sub_020AE4F0
+	bl NNS_G3dAnmObjInit
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02073A48
 
@@ -371,7 +371,7 @@ sub_02073A90: ; 0x02073A90
 	cmp r1, #0
 	beq _02073AA4
 	add r0, #0x14
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	mov r0, #0
 	str r0, [r4, #0x10]
 _02073AA4:
@@ -493,12 +493,12 @@ _02073B4C:
 
 	thumb_func_start sub_02073B50
 sub_02073B50: ; 0x02073B50
-	ldr r3, _02073B58 ; =sub_020D5124
+	ldr r3, _02073B58 ; =memset
 	mov r1, #0
 	mov r2, #0x54
 	bx r3
 	; .align 2, 0
-_02073B58: .word sub_020D5124
+_02073B58: .word memset
 	thumb_func_end sub_02073B50
 
 	thumb_func_start sub_02073B5C
@@ -509,7 +509,7 @@ sub_02073B5C: ; 0x02073B5C
 	bl sub_02073B50
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02073B5C
 
@@ -524,10 +524,10 @@ _02073B78: .word sub_02073B5C
 
 	thumb_func_start sub_02073B7C
 sub_02073B7C: ; 0x02073B7C
-	ldr r3, _02073B80 ; =sub_020AE77C
+	ldr r3, _02073B80 ; =NNS_G3dRenderObjAddAnmObj
 	bx r3
 	; .align 2, 0
-_02073B80: .word sub_020AE77C
+_02073B80: .word NNS_G3dRenderObjAddAnmObj
 	thumb_func_end sub_02073B7C
 
 	thumb_func_start sub_02073B84

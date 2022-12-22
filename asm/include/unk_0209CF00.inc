@@ -20,4 +20,4 @@
 .public sub_020A1DA0
 .public sub_020A2238
 .public sub_020A2304
-.public sub_020E1F6C
+.public _s32_div_f

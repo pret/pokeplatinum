@@ -7,7 +7,7 @@
 .public sub_02075B78
 .public sub_02075D74
 .public sub_0207CF10
-.public sub_020E2178
+.public _u32_div_f
 .public ov97_02236380
 .public ov97_0223685C
 .public ov97_0223687C

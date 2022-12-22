@@ -4,7 +4,7 @@
 .public sub_020181C4
 .public sub_020198C0
 .public sub_0201C3C0
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov104_0223C188
 .public ov104_0223C1BC
 .public ov104_0223C208

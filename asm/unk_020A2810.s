@@ -29,7 +29,7 @@ sub_020A283C: ; 0x020A283C
 	ldr r0, _020A28FC ; =0x021C3A54
 	mov r1, r4
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _020A2900 ; =0x000007FF
 	ldr r3, [r4, #0]
 	sub r0, r1, #0x800
@@ -41,7 +41,7 @@ sub_020A283C: ; 0x020A283C
 	ldr r0, _020A2904 ; =0x021C3A59
 	add r1, r4, #8
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, [r4, #8]
 	ldr r0, [r4, #0xc]
 	mov r1, r1, lsr #3
@@ -59,7 +59,7 @@ sub_020A283C: ; 0x020A283C
 	ldr r0, _020A2908 ; =0x021C3A5E
 	add r1, r4, #0x10
 	mov r2, #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrh r1, [r4, #0x10]
 	ldr r3, _020A290C ; =0x000003FF
 	ldr r0, _020A2910 ; =0x021C3A60
@@ -70,7 +70,7 @@ sub_020A283C: ; 0x020A283C
 	mov r2, #2
 	and r3, ip, r3
 	strh r3, [r4, #0x10]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A28FC: .word 0x021C3A54
@@ -90,7 +90,7 @@ sub_020A2914: ; 0x020A2914
 	bl sub_020A3338
 	ldr r1, _020A29E8 ; =0x0000A001
 	add r0, sl, #0x200
-	bl sub_020D316C
+	bl MATHi_CRC16InitTableRev
 	mov r5, #0x100
 	ldr r6, _020A29EC ; =0x021C3A54
 	mov r8, #0
@@ -104,18 +104,18 @@ _020A294C:
 	bl sub_020A3144
 	cmp r0, #0
 	bne _020A2970
-	bl sub_020C42A8
+	bl OS_Terminate
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A2970:
 	mov r0, r6
 	mov r2, fp
 	add r1, sl, #0xf0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, sl
 	mov r2, #0xfe
 	add r0, sl, #0x200
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	strh r0, [sl, #0xfe]
 _020A2994:
 	mov r0, sb
@@ -239,7 +239,7 @@ _020A2B0C:
 	mov r1, r7
 	mov r2, r4
 	add r0, r8, #0x500
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	add r1, r8, r5, lsl #8
 	strh r0, [r1, #0xfe]
 _020A2B24:
@@ -270,12 +270,12 @@ _020A2B78: .word 0x021C3A48
 
 	arm_func_start sub_020A2B7C
 sub_020A2B7C: ; 0x020A2B7C
-	ldr ip, _020A2B8C ; =sub_020C4DB0
+	ldr ip, _020A2B8C ; =MI_CpuCopy8
 	ldr r1, _020A2B90 ; =0x021C3A54
 	mov r2, #0xe
 	bx ip
 	; .align 2, 0
-_020A2B8C: .word sub_020C4DB0
+_020A2B8C: .word MI_CpuCopy8
 _020A2B90: .word 0x021C3A54
 	arm_func_end sub_020A2B7C
 
@@ -348,11 +348,11 @@ sub_020A2C30: ; 0x020A2C30
 	add r1, sp, #4
 	mov r0, r5
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r1, sp, #0
 	mov r0, r4
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r3, [sp]
 	ldr r2, [sp, #4]
 	mvn r0, #1
@@ -464,42 +464,42 @@ _020A2DF8:
 	ldr r1, [sp]
 	mov r0, #4
 	mov r2, r5
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	mov r0, #4
 	mov r1, r4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	ldr r1, [sp, #4]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	ldr r1, [sp, #8]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	ldr r1, [sp, #0xc]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	ldr r1, [sp, #0x10]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	movge r6, #1
@@ -508,7 +508,7 @@ _020A2EA4:
 	ldr r1, [sp, #0x14]
 	mov r0, #4
 	mov r2, r5
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	movge r6, #1
@@ -517,40 +517,40 @@ _020A2EC4:
 	ldr r1, [sp, #0x18]
 	mov r0, #4
 	mov r2, r5
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2F50
 	mov r0, #4
 	mov r1, r4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2F50
 	ldr r1, [sp, #0x1c]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2F50
 	ldr r1, [sp, #0x20]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2F50
 	ldr r1, [sp, #0x24]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	movge r6, #1
 _020A2F50:
-	bl sub_020C3880
+	bl OS_GetTick
 	str r0, [sp, #0x34]
 	mov fp, r1
 	b _020A2DBC
@@ -558,21 +558,21 @@ _020A2F60:
 	ldr r1, [sp, #0x28]
 	mov r0, #4
 	mov r2, r5
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	ldr r1, [sp, #0x2c]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	blt _020A2DBC
 	ldr r1, [sp, #0x30]
 	mov r0, #4
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	movge r6, #1
@@ -582,7 +582,7 @@ _020A2FB8:
 	mov r0, #4
 	add r1, r1, #0xc00
 	mov r2, r5
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	movge r6, #1
@@ -591,7 +591,7 @@ _020A2FDC:
 	ldr r1, _020A3138 ; =0x03002100
 	mov r0, #4
 	mov r2, r5
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r6, #0
 	movge r6, #1
@@ -631,7 +631,7 @@ _020A3060:
 _020A3068:
 	mov r0, sl
 	mov r1, #1
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	cmp r7, #4
 	ldrb r0, [sl]
 	bne _020A3098
@@ -648,7 +648,7 @@ _020A3098:
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	tst r0, #0x20
 	bne _020A30F4
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, [sp, #0x34]
 	mov ip, r6
 	subs sb, r0, r2
@@ -660,7 +660,7 @@ _020A3098:
 	mla r1, lr, sb, r1
 	ldr r2, _020A3140 ; =0x000082EA
 	mov r3, r6
-	bl sub_020E1ED4
+	bl _ull_div
 	mov r2, r6
 	cmp r1, r2
 	cmpeq r0, r8
@@ -670,7 +670,7 @@ _020A30F4:
 	b _020A2DBC
 _020A30FC:
 	mov r0, #0x4000
-	bl sub_02000522
+	bl SVC_WaitByLoop
 	b _020A2DBC
 _020A3108:
 	add sp, sp, #0x3c
@@ -700,18 +700,18 @@ sub_020A3144: ; 0x020A3144
 	mov r6, r0
 	mov r0, r4
 	mov r5, r1
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	mov r8, #4
 	mov r7, #1
 _020A3164:
 	mov r0, r8
 	mov r1, r7
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	beq _020A3164
 	ldr r1, _020A31D0 ; =sub_020A3308
 	mov r0, #4
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 	mov r0, r5, lsl #0x10
 	mov r8, r0, lsr #0x10
 	mov r7, #0x40000
@@ -725,12 +725,12 @@ _020A3194:
 	cmp r0, #1
 	beq _020A31BC
 	mov r0, r7
-	bl sub_02000522
+	bl SVC_WaitByLoop
 	b _020A3194
 _020A31BC:
 	mov r0, r4
 	mov r1, r5
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -748,15 +748,15 @@ sub_020A31D4: ; 0x020A31D4
 _020A31EC:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	beq _020A31EC
 	ldr r1, _020A324C ; =sub_020A3308
 	mov r0, #4
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 	mov r0, r6
 	mov r1, r7
-	bl sub_020C2C38
+	bl DC_StoreRange
 	mov r4, #0x40000
 	mov r5, #2
 _020A3220:
@@ -768,7 +768,7 @@ _020A3220:
 	cmp r0, #1
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	mov r0, r4
-	bl sub_02000522
+	bl SVC_WaitByLoop
 	b _020A3220
 _020A3248:
 	.byte 0xF0, 0x81, 0xBD, 0xE8
@@ -791,7 +791,7 @@ sub_020A3250: ; 0x020A3250
 	mov r0, r6
 	mov r1, r4
 	mov r2, r5
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -806,12 +806,12 @@ sub_020A329C: ; 0x020A329C
 _020A32A8:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	beq _020A32A8
 	ldr r1, _020A3304 ; =sub_020A3308
 	mov r0, #4
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 	mov r4, #0x40000
 	mov r6, #7
 	mov r5, #0
@@ -824,7 +824,7 @@ _020A32D4:
 	cmp r0, #1
 	beq _020A32FC
 	mov r0, r4
-	bl sub_02000522
+	bl SVC_WaitByLoop
 	b _020A32D4
 _020A32FC:
 	mov r0, #1
@@ -861,7 +861,7 @@ sub_020A3338: ; 0x020A3338
 	str r2, [sp, #4]
 	str r3, [sp]
 	mov r2, #5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	mov ip, r2, lsr #5
@@ -879,7 +879,7 @@ sub_020A3338: ; 0x020A3338
 	str ip, [sp]
 	str r3, [sp, #4]
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrh r0, [r4, #0x10]
 	ldr r1, [sp, #4]
 	ldr r3, _020A33EC ; =0x021C3A54
@@ -893,7 +893,7 @@ sub_020A3338: ; 0x020A3338
 	mov r4, r2, asr #2
 	mov r2, #2
 	strb r4, [r3, #0xb]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _020A33EC ; =0x021C3A54
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}

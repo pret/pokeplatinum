@@ -505,7 +505,7 @@ ov4_02211BF8: ; 0x02211BF8
 	mov r1, #0
 	mov r2, #0x5c
 	mov r4, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02211C38 ; =0x67452301
 	ldr r1, _02211C3C ; =0xEFCDAB89
 	str r0, [r4, #0]
@@ -550,7 +550,7 @@ ov4_02211C4C: ; 0x02211C4C
 	mov r0, r7
 	mov r2, r5
 	add r1, r1, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r8
 	add r1, r8, #0x1c
 	mov r4, #0
@@ -574,7 +574,7 @@ _02211CEC:
 	add r0, r7, r5
 	add r1, r1, r4
 	sub r2, r6, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end ov4_02211C4C
 

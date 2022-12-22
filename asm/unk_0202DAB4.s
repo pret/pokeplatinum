@@ -122,7 +122,7 @@ _0202DB52:
 	ldr r0, [sp, #4]
 	add r1, r1, r4
 	add r2, r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _0202DBA8 ; =0x00000102
 	ldr r0, [sp]
 	mov r2, #3
@@ -205,7 +205,7 @@ _0202DBF0:
 	mul r1, r2
 	ldr r0, [sp, #4]
 	add r1, r3, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _0202DC44 ; =0x00000152
 	ldr r0, [sp, #4]
 	ldrb r0, [r0, r1]

@@ -6,14 +6,14 @@
 	.text
 
 
-	arm_func_start sub_020C4054
-sub_020C4054: ; 0x020C4054
+	arm_func_start OsCountZeroBits
+OsCountZeroBits: ; 0x020C4054
 	clz r0, r0
 	bx lr
-	arm_func_end sub_020C4054
+	arm_func_end OsCountZeroBits
 
-	arm_func_start sub_020C405C
-sub_020C405C: ; 0x020C405C
+	arm_func_start OSi_InitVramExclusive
+OSi_InitVramExclusive: ; 0x020C405C
 	ldr r0, _020C4088 ; =0x021CCFE8
 	mov r3, #0
 	str r3, [r0, #0]
@@ -29,14 +29,14 @@ _020C4070:
 	; .align 2, 0
 _020C4088: .word 0x021CCFE8
 _020C408C: .word 0x021CCFEC
-	arm_func_end sub_020C405C
+	arm_func_end OSi_InitVramExclusive
 
-	arm_func_start sub_020C4090
-sub_020C4090: ; 0x020C4090
+	arm_func_start OSi_TryLockVram
+OSi_TryLockVram: ; 0x020C4090
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r0
 	mov r8, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C4144 ; =0x021CCFE8
 	mov r6, r0
 	ldr r0, [r1, #0]
@@ -45,7 +45,7 @@ sub_020C4090: ; 0x020C4090
 	mov r4, #1
 _020C40B8:
 	mov r0, r5
-	bl sub_020C4054
+	bl OsCountZeroBits
 	rsbs r1, r0, #0x1f
 	bmi _020C40F0
 	mov r0, r1, lsl #1
@@ -55,7 +55,7 @@ _020C40B8:
 	and r5, r5, r1
 	beq _020C40B8
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _020C40F0:
@@ -66,7 +66,7 @@ _020C40F0:
 	mov r5, #1
 _020C4104:
 	mov r0, r7
-	bl sub_020C4054
+	bl OsCountZeroBits
 	rsbs r1, r0, #0x1f
 	bmi _020C4134
 	ldr r0, [sb]
@@ -79,21 +79,21 @@ _020C4104:
 	b _020C4104
 _020C4134:
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020C4144: .word 0x021CCFE8
 _020C4148: .word 0x021CCFEC
 _020C414C: .word 0x000001FF
-	arm_func_end sub_020C4090
+	arm_func_end OSi_TryLockVram
 
-	arm_func_start sub_020C4150
-sub_020C4150: ; 0x020C4150
+	arm_func_start OSi_UnlockVram
+OSi_UnlockVram: ; 0x020C4150
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r5, r0
 	mov sl, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r4, _020C41CC ; =0x021CCFE8
 	ldr r1, _020C41D0 ; =0x000001FF
 	ldr r2, [r4, #0]
@@ -105,7 +105,7 @@ sub_020C4150: ; 0x020C4150
 	mov r5, #0
 _020C4184:
 	mov r0, r8
-	bl sub_020C4054
+	bl OsCountZeroBits
 	rsbs r2, r0, #0x1f
 	bmi _020C41C0
 	mov r1, r2, lsl #1
@@ -121,13 +121,13 @@ _020C4184:
 	b _020C4184
 _020C41C0:
 	mov r0, sb
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _020C41CC: .word 0x021CCFE8
 _020C41D0: .word 0x000001FF
 _020C41D4: .word 0x021CCFEC
-	arm_func_end sub_020C4150
+	arm_func_end OSi_UnlockVram
 
 	.bss
 

@@ -12,7 +12,7 @@
 .public sub_02030D50
 .public sub_02030D98
 .public sub_02030DD0
-.public sub_020C4CF4
-.public sub_020D5124
-.public sub_020D8B7C
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public memset
+.public strcpy
+.public _s32_div_f

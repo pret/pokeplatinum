@@ -56,7 +56,7 @@ ov104_0223C2D4: ; 0x0223C2D4
 	mov r1, #0
 	mov r2, #0xc4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	str r6, [r4, #8]
 	add r0, #0xc1
@@ -315,22 +315,22 @@ ov104_0223C4CC: ; 0x0223C4CC
 	ldr r0, _0223C61C ; =0x00007FFF
 	lsl r1, r1, #0x18
 	lsl r2, r2, #8
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r2, #2
 	ldr r0, _0223C61C ; =0x00007FFF
 	ldr r1, _0223C620 ; =0x05000200
 	lsl r2, r2, #8
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r2, #2
 	ldr r0, _0223C61C ; =0x00007FFF
 	ldr r1, _0223C624 ; =0x05000400
 	lsl r2, r2, #8
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r2, #2
 	ldr r0, _0223C61C ; =0x00007FFF
 	ldr r1, _0223C628 ; =0x05000600
 	lsl r2, r2, #8
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _0223C62C ; =0x04000050
 	mov r1, #0
 	strh r1, [r0]
@@ -603,47 +603,47 @@ ov104_0223C7EC: ; 0x0223C7EC
 	cmp r4, #0
 	ble _0223C836
 	lsl r0, r4, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [sp, #4]
 	b _0223C846
 _0223C836:
 	lsl r0, r4, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [sp, #4]
 _0223C846:
 	cmp r6, #0
 	ble _0223C85E
 	lsl r0, r6, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [sp]
 	b _0223C86E
 _0223C85E:
 	lsl r0, r6, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [sp]
 _0223C86E:
 	ldr r0, [r5, #0x34]
 	bl sub_0200C738
 	str r0, [sp, #8]
 	ldr r0, [sp]
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0xc]
 	ldr r0, [sp, #4]
-	bl sub_020E1740
+	bl _f_ftoi
 	add r2, r0, #0
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #0xc]
@@ -765,25 +765,25 @@ _0223C964:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r6, _0223CB6C ; =0x022412E4
 	add r3, sp, #0x1c
 	add r2, r3, #0
@@ -1269,16 +1269,16 @@ _0223CDCA:
 	str r0, [sp, #0x14]
 	ldr r0, [r1, #0xc]
 	ldr r1, [r1, #8]
-	bl sub_020C2C54
-	bl sub_020C096C
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
 	ldr r0, [sp, #0x1c]
 	mov r1, #6
 	mov r2, #2
 	ldr r0, [r0, #0xc]
 	lsl r1, r1, #0xc
 	lsl r2, r2, #0xc
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	ldr r0, [sp, #0x14]
 	bl sub_020181C4
 _0223CE08:
@@ -1355,15 +1355,15 @@ _0223CE08:
 	add r4, r0, #0
 	ldr r0, [r1, #0xc]
 	ldr r1, [r1, #8]
-	bl sub_020C2C54
-	bl sub_020C096C
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
 	ldr r0, [sp, #0x18]
 	mov r1, #1
 	lsl r1, r1, #0xe
 	ldr r0, [r0, #0xc]
 	lsr r2, r1, #1
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	add r0, r4, #0
 	bl sub_020181C4
 _0223CECE:
@@ -1485,13 +1485,13 @@ ov104_0223CF68: ; 0x0223CF68
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0223CFE0 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0223CFE4 ; =0xBFFF0000
 	ldr r0, _0223CFE8 ; =0x04000580
 	str r1, [r0, #0]
@@ -1805,7 +1805,7 @@ _0223D236:
 	add r0, r4, r5
 	mov r1, #0
 	mov r2, #0x3c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0223D254 ; =0x0000FFFF
 	add r0, r4, r5
 	strh r1, [r0, #0xc]

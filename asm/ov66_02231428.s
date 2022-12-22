@@ -15,7 +15,7 @@ ov66_02231428: ; 0x02231428
 	add r4, r0, #0
 	add r0, sp, #0xc
 	add r1, sp, #0
-	bl sub_020CC3FC
+	bl RTC_ConvertSecondToDateTime
 	ldr r0, [sp]
 	strb r0, [r4]
 	ldr r0, [sp, #4]
@@ -43,14 +43,14 @@ ov66_0223144C: ; 0x0223144C
 	strb r1, [r0, #6]
 	ldrb r0, [r0, #6]
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #0
 	ldrb r2, [r1, #5]
 	add r0, r2, r0
 	strb r0, [r1, #5]
 	ldrb r0, [r1, #6]
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r4, #2]
 	add r0, sp, #0
 	ldrb r2, [r0, #5]
@@ -59,14 +59,14 @@ ov66_0223144C: ; 0x0223144C
 	strb r1, [r0, #5]
 	ldrb r0, [r0, #5]
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #0
 	ldrb r2, [r1, #4]
 	add r0, r2, r0
 	strb r0, [r1, #4]
 	ldrb r0, [r1, #5]
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r4, #1]
 	add r0, sp, #0
 	ldrb r2, [r0, #4]
@@ -75,7 +75,7 @@ ov66_0223144C: ; 0x0223144C
 	strb r1, [r0, #4]
 	ldrb r0, [r0, #4]
 	mov r1, #0x18
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r4]
 	add sp, #8
 	pop {r4, pc}
@@ -101,7 +101,7 @@ ov66_022314BC: ; 0x022314BC
 	bpl _022314F6
 	neg r0, r0
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r2, sp, #0
 	ldrb r3, [r2, #6]
 	add r0, r0, #1
@@ -126,7 +126,7 @@ _022314F6:
 	bpl _02231528
 	neg r0, r0
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r2, sp, #0
 	ldrb r3, [r2, #5]
 	add r0, r0, #1
@@ -150,7 +150,7 @@ _02231528:
 	bpl _02231552
 	neg r0, r0
 	mov r1, #0x18
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #0
 	add r2, r0, #1
 	mov r0, #0x18
@@ -327,7 +327,7 @@ _0223165A:
 	thumb_func_start ov66_02231668
 ov66_02231668: ; 0x02231668
 	push {r4, lr}
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _02231692
 	add r2, r0, #0
@@ -354,21 +354,21 @@ _02231694:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov66_02231668

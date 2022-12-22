@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020AB470
-sub_020AB470: ; 0x020AB470
+	arm_func_start CalcSpriteParams_
+CalcSpriteParams_: ; 0x020AB470
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #8
 	mov r6, r0
@@ -169,47 +169,47 @@ _020AB6C8: .word 0x020F96F4
 _020AB6CC: .word 0x021C5A6C
 _020AB6D0: .word 0x020F969C
 _020AB6D4: .word 0x040004AC
-	arm_func_end sub_020AB470
+	arm_func_end CalcSpriteParams_
 
-	arm_func_start sub_020AB6D8
-sub_020AB6D8: ; 0x020AB6D8
+	arm_func_start NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
+NNSi_G2dSetOamSoftEmuAutoZOffsetFlag: ; 0x020AB6D8
 	ldr r1, _020AB6E4 ; =0x021C5A6C
 	str r0, [r1, #8]
 	bx lr
 	; .align 2, 0
 _020AB6E4: .word 0x021C5A6C
-	arm_func_end sub_020AB6D8
+	arm_func_end NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 
-	arm_func_start sub_020AB6E8
-sub_020AB6E8: ; 0x020AB6E8
+	arm_func_start NNSi_G2dResetOamSoftEmuAutoZOffset
+NNSi_G2dResetOamSoftEmuAutoZOffset: ; 0x020AB6E8
 	ldr r0, _020AB6F8 ; =0x021C5A6C
 	mov r1, #0
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
 _020AB6F8: .word 0x021C5A6C
-	arm_func_end sub_020AB6E8
+	arm_func_end NNSi_G2dResetOamSoftEmuAutoZOffset
 
-	arm_func_start sub_020AB6FC
-sub_020AB6FC: ; 0x020AB6FC
+	arm_func_start NNSi_G2dSetOamSoftEmuAutoZOffsetStep
+NNSi_G2dSetOamSoftEmuAutoZOffsetStep: ; 0x020AB6FC
 	ldr r1, _020AB708 ; =0x02100EC4
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
 _020AB708: .word 0x02100EC4
-	arm_func_end sub_020AB6FC
+	arm_func_end NNSi_G2dSetOamSoftEmuAutoZOffsetStep
 
-	arm_func_start sub_020AB70C
-sub_020AB70C: ; 0x020AB70C
+	arm_func_start NNSi_G2dGetOamSoftEmuAutoZOffsetStep
+NNSi_G2dGetOamSoftEmuAutoZOffsetStep: ; 0x020AB70C
 	ldr r0, _020AB718 ; =0x02100EC4
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
 _020AB718: .word 0x02100EC4
-	arm_func_end sub_020AB70C
+	arm_func_end NNSi_G2dGetOamSoftEmuAutoZOffsetStep
 
-	arm_func_start sub_020AB71C
-sub_020AB71C: ; 0x020AB71C
+	arm_func_start NNS_G2dDrawOneOam3DDirectWithPosFast
+NNS_G2dDrawOneOam3DDirectWithPosFast: ; 0x020AB71C
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x1c
 	add ip, sp, #4
@@ -222,7 +222,7 @@ sub_020AB71C: ; 0x020AB71C
 	ldr r3, [sp, #0x38]
 	mov r0, r7
 	str ip, [sp]
-	bl sub_020AB470
+	bl CalcSpriteParams_
 	ldr r2, [r7, #0]
 	and r1, r2, #0x300
 	cmp r1, #0x100
@@ -361,7 +361,7 @@ _020AB95C: .word 0x020F9658
 _020AB960: .word 0x04000470
 _020AB964: .word 0x0400046C
 _020AB968: .word 0x02100EC4
-	arm_func_end sub_020AB71C
+	arm_func_end NNS_G2dDrawOneOam3DDirectWithPosFast
 
 	.rodata
 

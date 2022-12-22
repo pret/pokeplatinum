@@ -160,7 +160,7 @@ _02242E00:
 	movs r0, r0, lsr #0x1f
 	addeq r0, r1, #1
 	ldrne r0, [r1, #8]
-	bl sub_020DAE0C
+	bl atoi
 	movs r4, r0
 	bne _02242E48
 	add r0, sp, #0x6c
@@ -959,7 +959,7 @@ _022438F8:
 	addeq r1, sp, #1
 	ldrne r1, [sp, #8]
 	mov r0, r4
-	bl sub_020D8C44
+	bl strncpy
 	add r0, sp, #0
 	bl ov66_0223BADC
 	add sp, sp, #0xc
@@ -1425,7 +1425,7 @@ _02243F3C:
 	ldr r0, [r7, #0]
 	mov r1, r6
 	mov r2, r2, lsl #2
-	bl sub_020D50D8
+	bl memmove
 	str r4, [r7, #4]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov66_02243EF0
@@ -2020,7 +2020,7 @@ _022447C4:
 	bl ov4_021D806C
 	add r0, sp, #0xc
 	add r1, sp, #0x1c
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	ldr r2, [r5, #0xa8]
 	add r7, r5, #0xa0
 	mov r6, r0
@@ -2276,7 +2276,7 @@ _02244B3C:
 	add r0, sp, #0x104
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r4, _02244E3C ; =ov66_02242C08
 	ldr r3, _02244E40 ; =ov66_02242C24
 	ldr r1, _02244E44 ; =ov66_022430D0
@@ -2389,7 +2389,7 @@ _02244B3C:
 	bl ov4_021D806C
 	add r0, sp, #0x88
 	add r1, sp, #0x7c
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	ldr r3, _02244E64 ; =ov66_02244758
 	str r0, [sp, #0x2c]
 	str r1, [sp, #0x30]
@@ -2588,7 +2588,7 @@ _02244F8C:
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 _02244FB0:
 	mov r0, r8
-	bl sub_020D8B60
+	bl strlen
 	mov r0, #0x10
 	bl ov66_02246290
 	cmp r0, #0
@@ -2652,7 +2652,7 @@ _02245004:
 	add r0, sp, #0x58
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02245194 ; =ov66_022437FC
 	ldr r2, _02245198 ; =ov66_022430EC
 	str r0, [sp, #0x70]
@@ -2832,7 +2832,7 @@ _02245310:
 	ldmneia sp!, {r3, r4, r5, pc}
 _02245334:
 	mov r0, r4
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	cmp r0, #0x190
 	addhi sp, sp, #0x18
@@ -2898,7 +2898,7 @@ _022453FC:
 	ldmneia sp!, {r3, r4, r5, r6, pc}
 _02245420:
 	mov r0, r5
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	cmp r0, #0x190
 	addhi sp, sp, #0xc
@@ -2980,12 +2980,12 @@ _0224551C:
 	bxne lr
 _02245548:
 	ldr r0, [sp, #0x54]
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	cmp r0, #0x190
 	bhi _02245570
 	ldr r0, [sp, #0x50]
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	cmp r0, #0x14
 	bls _02245584
@@ -3114,7 +3114,7 @@ _02245708:
 	bxne lr
 _02245734:
 	ldr r0, [sp, #0x68]
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	cmp r0, #0x14
 	addhi sp, sp, #0x50
@@ -3785,8 +3785,8 @@ ov66_02246008: ; 0x02246008
 	cmp r4, r0
 	bne _0224603C
 	ldr r0, _022460DC ; =0x0225923C
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0224603C:
 	mov r1, #0
 	mov r0, #0x10

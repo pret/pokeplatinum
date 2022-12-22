@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A818C
-sub_020A818C: ; 0x020A818C
+	arm_func_start NNS_G2dInitImageProxy
+NNS_G2dInitImageProxy: ; 0x020A818C
 	mov r2, #0
 	mvn r1, #0
 _020A8194:
@@ -16,32 +16,32 @@ _020A8194:
 	cmp r2, #3
 	blt _020A8194
 	bx lr
-	arm_func_end sub_020A818C
+	arm_func_end NNS_G2dInitImageProxy
 
-	arm_func_start sub_020A81A8
-sub_020A81A8: ; 0x020A81A8
+	arm_func_start NNS_G2dSetImageLocation
+NNS_G2dSetImageLocation: ; 0x020A81A8
 	str r2, [r0, r1, lsl #2]
 	bx lr
-	arm_func_end sub_020A81A8
+	arm_func_end NNS_G2dSetImageLocation
 
-	arm_func_start sub_020A81B0
-sub_020A81B0: ; 0x020A81B0
+	arm_func_start NNS_G2dGetImageLocation
+NNS_G2dGetImageLocation: ; 0x020A81B0
 	ldr r0, [r0, r1, lsl #2]
 	bx lr
-	arm_func_end sub_020A81B0
+	arm_func_end NNS_G2dGetImageLocation
 
-	arm_func_start sub_020A81B8
-sub_020A81B8: ; 0x020A81B8
+	arm_func_start NNS_G2dIsImageReadyToUse
+NNS_G2dIsImageReadyToUse: ; 0x020A81B8
 	ldr r1, [r0, r1, lsl #2]
 	mvn r0, #0
 	cmp r1, r0
 	movne r0, #1
 	moveq r0, #0
 	bx lr
-	arm_func_end sub_020A81B8
+	arm_func_end NNS_G2dIsImageReadyToUse
 
-	arm_func_start sub_020A81D0
-sub_020A81D0: ; 0x020A81D0
+	arm_func_start NNS_G2dInitImagePaletteProxy
+NNS_G2dInitImagePaletteProxy: ; 0x020A81D0
 	mov r3, #0
 	mvn r2, #0
 _020A81D8:
@@ -51,24 +51,24 @@ _020A81D8:
 	cmp r3, #3
 	blt _020A81D8
 	bx lr
-	arm_func_end sub_020A81D0
+	arm_func_end NNS_G2dInitImagePaletteProxy
 
-	arm_func_start sub_020A81F0
-sub_020A81F0: ; 0x020A81F0
+	arm_func_start NNS_G2dSetImagePaletteLocation
+NNS_G2dSetImagePaletteLocation: ; 0x020A81F0
 	add r0, r0, r1, lsl #2
 	str r2, [r0, #8]
 	bx lr
-	arm_func_end sub_020A81F0
+	arm_func_end NNS_G2dSetImagePaletteLocation
 
-	arm_func_start sub_020A81FC
-sub_020A81FC: ; 0x020A81FC
+	arm_func_start NNS_G2dGetImagePaletteLocation
+NNS_G2dGetImagePaletteLocation: ; 0x020A81FC
 	add r0, r0, r1, lsl #2
 	ldr r0, [r0, #8]
 	bx lr
-	arm_func_end sub_020A81FC
+	arm_func_end NNS_G2dGetImagePaletteLocation
 
-	arm_func_start sub_020A8208
-sub_020A8208: ; 0x020A8208
+	arm_func_start NNS_G2dIsImagePaletteReadyToUse
+NNS_G2dIsImagePaletteReadyToUse: ; 0x020A8208
 	add r0, r0, r1, lsl #2
 	ldr r1, [r0, #8]
 	mvn r0, #0
@@ -76,10 +76,10 @@ sub_020A8208: ; 0x020A8208
 	movne r0, #1
 	moveq r0, #0
 	bx lr
-	arm_func_end sub_020A8208
+	arm_func_end NNS_G2dIsImagePaletteReadyToUse
 
-	arm_func_start sub_020A8224
-sub_020A8224: ; 0x020A8224
+	arm_func_start NNS_G2dLoadImage1DMapping
+NNS_G2dLoadImage1DMapping: ; 0x020A8224
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	movs r5, r2
@@ -110,7 +110,7 @@ _020A8270:
 _020A8288:
 	ldr r0, [r7, #0x14]
 	ldr r1, [r7, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r5, #0
 	beq _020A82B0
 	cmp r5, #1
@@ -119,24 +119,24 @@ _020A8288:
 	beq _020A82E0
 	b _020A82F0
 _020A82B0:
-	bl sub_020C0D34
+	bl GX_BeginLoadTex
 	ldr r0, [r7, #0x14]
 	ldr r2, [r7, #0x10]
 	mov r1, r6
-	bl sub_020C0D90
-	bl sub_020C0ED0
+	bl GX_LoadTex
+	bl GX_EndLoadTex
 	b _020A82F0
 _020A82CC:
 	ldr r0, [r7, #0x14]
 	ldr r2, [r7, #0x10]
 	mov r1, r6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	b _020A82F0
 _020A82E0:
 	ldr r0, [r7, #0x14]
 	ldr r2, [r7, #0x10]
 	mov r1, r6
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 _020A82F0:
 	ldr r0, [r7, #8]
 	cmp r0, #0
@@ -244,15 +244,15 @@ _020A8414:
 	mov r1, r5
 	mov r2, r6
 	str r3, [r4, #0x20]
-	bl sub_020A81A8
+	bl NNS_G2dSetImageLocation
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A8448: .word 0xFFCFFFEF
 _020A844C: .word 0x04001000
-	arm_func_end sub_020A8224
+	arm_func_end NNS_G2dLoadImage1DMapping
 
-	arm_func_start sub_020A8450
-sub_020A8450: ; 0x020A8450
+	arm_func_start NNS_G2dLoadImage2DMapping
+NNS_G2dLoadImage2DMapping: ; 0x020A8450
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	movs r5, r2
@@ -283,7 +283,7 @@ _020A849C:
 _020A84B4:
 	ldr r0, [r7, #0x14]
 	ldr r1, [r7, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r5, #0
 	beq _020A84DC
 	cmp r5, #1
@@ -292,24 +292,24 @@ _020A84B4:
 	beq _020A850C
 	b _020A851C
 _020A84DC:
-	bl sub_020C0D34
+	bl GX_BeginLoadTex
 	ldr r0, [r7, #0x14]
 	ldr r2, [r7, #0x10]
 	mov r1, r6
-	bl sub_020C0D90
-	bl sub_020C0ED0
+	bl GX_LoadTex
+	bl GX_EndLoadTex
 	b _020A851C
 _020A84F8:
 	ldr r0, [r7, #0x14]
 	ldr r2, [r7, #0x10]
 	mov r1, r6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	b _020A851C
 _020A850C:
 	ldr r0, [r7, #0x14]
 	ldr r2, [r7, #0x10]
 	mov r1, r6
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 _020A851C:
 	ldr r0, [r7, #8]
 	cmp r0, #0
@@ -417,15 +417,15 @@ _020A8640:
 	mov r1, r5
 	mov r2, r6
 	str r3, [r4, #0x20]
-	bl sub_020A81A8
+	bl NNS_G2dSetImageLocation
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A8674: .word 0xFFCFFFEF
 _020A8678: .word 0x04001000
-	arm_func_end sub_020A8450
+	arm_func_end NNS_G2dLoadImage2DMapping
 
-	arm_func_start sub_020A867C
-sub_020A867C: ; 0x020A867C
+	arm_func_start NNS_G2dLoadImageVramTransfer
+NNS_G2dLoadImageVramTransfer: ; 0x020A867C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
@@ -433,7 +433,7 @@ sub_020A867C: ; 0x020A867C
 	ldr r1, [r7, #0x10]
 	mov r5, r2
 	mov r4, r3
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r5, #0
 	ldr r0, [r7, #8]
 	beq _020A86F0
@@ -564,15 +564,15 @@ _020A8814:
 	mov r1, r5
 	mov r2, r6
 	str r3, [r4, #0x20]
-	bl sub_020A81A8
+	bl NNS_G2dSetImageLocation
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A8848: .word 0xFFCFFFEF
 _020A884C: .word 0x04001000
-	arm_func_end sub_020A867C
+	arm_func_end NNS_G2dLoadImageVramTransfer
 
-	arm_func_start sub_020A8850
-sub_020A8850: ; 0x020A8850
+	arm_func_start NNS_G2dLoadPalette
+NNS_G2dLoadPalette: ; 0x020A8850
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
 	ldr r4, [sb, #0xc]
@@ -582,7 +582,7 @@ sub_020A8850: ; 0x020A8850
 	mov r0, r4
 	mov r1, r5
 	mov r6, r3
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r7, #0
 	beq _020A890C
 	cmp r7, #1
@@ -594,43 +594,43 @@ _020A8894:
 	ldr r0, [sb, #4]
 	cmp r0, #0
 	beq _020A88BC
-	bl sub_020C0AC4
+	bl GX_BeginLoadOBJExtPltt
 	mov r0, r4
 	mov r1, r8
 	mov r2, r5
-	bl sub_020C0B0C
-	bl sub_020C0B78
+	bl GX_LoadOBJExtPltt
+	bl GX_EndLoadOBJExtPltt
 	b _020A8924
 _020A88BC:
 	mov r0, r4
 	mov r1, r8
 	mov r2, r5
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	b _020A8924
 _020A88D0:
 	ldr r0, [sb, #4]
 	cmp r0, #0
 	beq _020A88F8
-	bl sub_020C0C78
+	bl GXS_BeginLoadOBJExtPltt
 	mov r0, r4
 	mov r1, r8
 	mov r2, r5
-	bl sub_020C0C90
-	bl sub_020C0CF4
+	bl GXS_LoadOBJExtPltt
+	bl GXS_EndLoadOBJExtPltt
 	b _020A8924
 _020A88F8:
 	mov r0, r4
 	mov r1, r8
 	mov r2, r5
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	b _020A8924
 _020A890C:
-	bl sub_020C0F1C
+	bl GX_BeginLoadTexPltt
 	mov r0, r4
 	mov r1, r8
 	mov r2, r5
-	bl sub_020C0F50
-	bl sub_020C0FBC
+	bl GX_LoadTexPltt
+	bl GX_EndLoadTexPltt
 _020A8924:
 	ldr r1, [sb]
 	mov r0, r6
@@ -639,12 +639,12 @@ _020A8924:
 	mov r1, r7
 	mov r2, r8
 	str r3, [r6, #4]
-	bl sub_020A81F0
+	bl NNS_G2dSetImagePaletteLocation
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020A8850
+	arm_func_end NNS_G2dLoadPalette
 
-	arm_func_start sub_020A8948
-sub_020A8948: ; 0x020A8948
+	arm_func_start NNS_G2dLoadPaletteEx
+NNS_G2dLoadPaletteEx: ; 0x020A8948
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	mov sl, r0
@@ -673,7 +673,7 @@ _020A8990:
 	mul r6, r8, r0
 	ldr r1, [sl, #8]
 	mov r0, r5
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp fp, #0
 	beq _020A8A4C
 	cmp fp, #1
@@ -685,43 +685,43 @@ _020A89D4:
 	ldr r0, [sl, #4]
 	cmp r0, #0
 	beq _020A89FC
-	bl sub_020C0AC4
+	bl GX_BeginLoadOBJExtPltt
 	add r0, r5, r4
 	mov r2, r8
 	add r1, sb, r6
-	bl sub_020C0B0C
-	bl sub_020C0B78
+	bl GX_LoadOBJExtPltt
+	bl GX_EndLoadOBJExtPltt
 	b _020A8A64
 _020A89FC:
 	mov r2, r8
 	add r0, r5, r4
 	add r1, sb, r6
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	b _020A8A64
 _020A8A10:
 	ldr r0, [sl, #4]
 	cmp r0, #0
 	beq _020A8A38
-	bl sub_020C0C78
+	bl GXS_BeginLoadOBJExtPltt
 	add r0, r5, r4
 	mov r2, r8
 	add r1, sb, r6
-	bl sub_020C0C90
-	bl sub_020C0CF4
+	bl GXS_LoadOBJExtPltt
+	bl GXS_EndLoadOBJExtPltt
 	b _020A8A64
 _020A8A38:
 	mov r2, r8
 	add r0, r5, r4
 	add r1, sb, r6
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	b _020A8A64
 _020A8A4C:
-	bl sub_020C0F1C
+	bl GX_BeginLoadTexPltt
 	add r0, r5, r4
 	mov r2, r8
 	add r1, sb, r6
-	bl sub_020C0F50
-	bl sub_020C0FBC
+	bl GX_LoadTexPltt
+	bl GX_EndLoadTexPltt
 _020A8A64:
 	add r0, r7, #1
 	mov r1, r0, lsl #0x10
@@ -739,13 +739,13 @@ _020A8A7C:
 	mov r1, fp
 	mov r2, sb
 	str r4, [r3, #4]
-	bl sub_020A81F0
+	bl NNS_G2dSetImagePaletteLocation
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020A8948
+	arm_func_end NNS_G2dLoadPaletteEx
 
-	arm_func_start sub_020A8AAC
-sub_020A8AAC: ; 0x020A8AAC
+	arm_func_start NNSi_G2dInitializeVRamLocation
+NNSi_G2dInitializeVRamLocation: ; 0x020A8AAC
 	mov r2, #0
 	mvn r1, #0
 _020A8AB4:
@@ -754,16 +754,16 @@ _020A8AB4:
 	cmp r2, #3
 	blt _020A8AB4
 	bx lr
-	arm_func_end sub_020A8AAC
+	arm_func_end NNSi_G2dInitializeVRamLocation
 
-	arm_func_start sub_020A8AC8
-sub_020A8AC8: ; 0x020A8AC8
+	arm_func_start NNSi_G2dSetVramLocation
+NNSi_G2dSetVramLocation: ; 0x020A8AC8
 	str r2, [r0, r1, lsl #2]
 	bx lr
-	arm_func_end sub_020A8AC8
+	arm_func_end NNSi_G2dSetVramLocation
 
-	arm_func_start sub_020A8AD0
-sub_020A8AD0: ; 0x020A8AD0
+	arm_func_start NNSi_G2dGetVramLocation
+NNSi_G2dGetVramLocation: ; 0x020A8AD0
 	ldr r0, [r0, r1, lsl #2]
 	bx lr
-	arm_func_end sub_020A8AD0
+	arm_func_end NNSi_G2dGetVramLocation

@@ -15,5 +15,5 @@
 .public sub_020973A8
 .public sub_020973B0
 .public sub_020973D4
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public _s32_div_f

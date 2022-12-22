@@ -1,8 +1,8 @@
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C4B68
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
+.public MIi_CpuCopy32
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov4_02212CC8
 .public ov4_02212DE0
 .public ov4_02212E38

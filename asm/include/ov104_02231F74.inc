@@ -77,10 +77,10 @@
 .public sub_02081938
 .public sub_0208193C
 .public sub_0209B970
-.public sub_020C02BC
-.public sub_020C2C54
-.public sub_020C4CF4
-.public sub_020D5124
+.public GX_LoadOBJ
+.public DC_FlushRange
+.public MI_CpuFill8
+.public memset
 .public ov63_0222BF90
 .public ov63_0222C0E4
 .public ov63_0222C0F0

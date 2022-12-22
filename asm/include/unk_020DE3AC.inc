@@ -1,1 +1,1 @@
-.public sub_020DCED4
+.public __ieee754_pow

@@ -8,7 +8,7 @@
 .public sub_0201DF50
 .public sub_0201DFE4
 .public sub_02022974
-.public sub_020B3C1C
-.public sub_020D7510
+.public NNS_G3dGetTex
+.public sprintf
 .public ov5_021D5D30
 .public ov5_021D5E5C

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020BDC08
-sub_020BDC08: ; 0x020BDC08
+	arm_func_start GX_Init
+GX_Init: ; 0x020BDC08
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _020BDD30 ; =0x04000304
 	ldr r0, _020BDD34 ; =0xFFFFFDF1
@@ -22,18 +22,18 @@ sub_020BDC08: ; 0x020BDC08
 	ldrh r0, [r2]
 	orr r0, r0, #1
 	strh r0, [r2]
-	bl sub_020BDEEC
+	bl GX_InitGXState
 	ldr r5, _020BDD38 ; =0x021CCB9C
 	ldrh r0, [r5, #2]
 	cmp r0, #0
 	bne _020BDC7C
 	mvn r4, #2
 _020BDC58:
-	bl sub_020C1A00
+	bl OS_GetLockID
 	mov r6, r0
 	cmp r6, r4
 	bne _020BDC6C
-	bl sub_020C42A8
+	bl OS_Terminate
 _020BDC6C:
 	strh r6, [r5, #2]
 	ldrh r0, [r5, #2]
@@ -52,7 +52,7 @@ _020BDC7C:
 	beq _020BDCD4
 	add r1, r3, #8
 	mov r3, #0x60
-	bl sub_020C42D4
+	bl MI_DmaFill32
 	ldr r1, _020BDD44 ; =0x0400006C
 	mov r2, #0
 	ldr r0, _020BDD40 ; =0x02101144
@@ -60,19 +60,19 @@ _020BDC7C:
 	ldr r0, [r0, #4]
 	ldr r1, _020BDD48 ; =0x04001000
 	mov r3, #0x70
-	bl sub_020C42D4
+	bl MI_DmaFill32
 	b _020BDCFC
 _020BDCD4:
 	mov r0, r2
 	add r1, r3, #8
 	mov r2, #0x60
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r3, _020BDD44 ; =0x0400006C
 	mov r0, #0
 	ldr r1, _020BDD48 ; =0x04001000
 	mov r2, #0x70
 	strh r0, [r3]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 _020BDCFC:
 	ldr r0, _020BDD4C ; =0x04000020
 	mov r2, #0x100
@@ -97,10 +97,10 @@ _020BDD44: .word 0x0400006C
 _020BDD48: .word 0x04001000
 _020BDD4C: .word 0x04000020
 _020BDD50: .word 0x04001026
-	arm_func_end sub_020BDC08
+	arm_func_end GX_Init
 
-	arm_func_start sub_020BDD54
-sub_020BDD54: ; 0x020BDD54
+	arm_func_start GX_HBlankIntr
+GX_HBlankIntr: ; 0x020BDD54
 	ldr r2, _020BDD84 ; =0x04000004
 	cmp r0, #0
 	ldrh r0, [r2]
@@ -115,10 +115,10 @@ sub_020BDD54: ; 0x020BDD54
 	bx lr
 	; .align 2, 0
 _020BDD84: .word 0x04000004
-	arm_func_end sub_020BDD54
+	arm_func_end GX_HBlankIntr
 
-	arm_func_start sub_020BDD88
-sub_020BDD88: ; 0x020BDD88
+	arm_func_start GX_VBlankIntr
+GX_VBlankIntr: ; 0x020BDD88
 	ldr r2, _020BDDB8 ; =0x04000004
 	cmp r0, #0
 	ldrh r0, [r2]
@@ -133,10 +133,10 @@ sub_020BDD88: ; 0x020BDD88
 	bx lr
 	; .align 2, 0
 _020BDDB8: .word 0x04000004
-	arm_func_end sub_020BDD88
+	arm_func_end GX_VBlankIntr
 
-	arm_func_start sub_020BDDBC
-sub_020BDDBC: ; 0x020BDDBC
+	arm_func_start GX_DispOff
+GX_DispOff: ; 0x020BDDBC
 	stmfd sp!, {r3, lr}
 	mov lr, #0x4000000
 	ldr ip, [lr]
@@ -153,10 +153,10 @@ sub_020BDDBC: ; 0x020BDDBC
 	; .align 2, 0
 _020BDDF0: .word 0x02101144
 _020BDDF4: .word 0x021CCB9C
-	arm_func_end sub_020BDDBC
+	arm_func_end GX_DispOff
 
-	arm_func_start sub_020BDDF8
-sub_020BDDF8: ; 0x020BDDF8
+	arm_func_start GX_DispOn
+GX_DispOn: ; 0x020BDDF8
 	ldr r0, _020BDE38 ; =0x021CCB9C
 	ldr r1, _020BDE3C ; =0x02101144
 	ldrh r2, [r0]
@@ -176,10 +176,10 @@ sub_020BDDF8: ; 0x020BDDF8
 	; .align 2, 0
 _020BDE38: .word 0x021CCB9C
 _020BDE3C: .word 0x02101144
-	arm_func_end sub_020BDDF8
+	arm_func_end GX_DispOn
 
-	arm_func_start sub_020BDE40
-sub_020BDE40: ; 0x020BDE40
+	arm_func_start GX_SetGraphicsMode
+GX_SetGraphicsMode: ; 0x020BDE40
 	stmfd sp!, {r3, lr}
 	ldr r3, _020BDE9C ; =0x02101144
 	mov lr, #0x4000000
@@ -207,10 +207,10 @@ sub_020BDE40: ; 0x020BDE40
 _020BDE9C: .word 0x02101144
 _020BDEA0: .word 0x021CCB9C
 _020BDEA4: .word 0xFFF0FFF0
-	arm_func_end sub_020BDE40
+	arm_func_end GX_SetGraphicsMode
 
-	arm_func_start sub_020BDEA8
-sub_020BDEA8: ; 0x020BDEA8
+	arm_func_start GXS_SetGraphicsMode
+GXS_SetGraphicsMode: ; 0x020BDEA8
 	ldr r2, _020BDEC0 ; =0x04001000
 	ldr r1, [r2, #0]
 	bic r1, r1, #7
@@ -219,10 +219,10 @@ sub_020BDEA8: ; 0x020BDEA8
 	bx lr
 	; .align 2, 0
 _020BDEC0: .word 0x04001000
-	arm_func_end sub_020BDEA8
+	arm_func_end GXS_SetGraphicsMode
 
-	arm_func_start sub_020BDEC4
-sub_020BDEC4: ; 0x020BDEC4
+	arm_func_start GXx_SetMasterBrightness_
+GXx_SetMasterBrightness_: ; 0x020BDEC4
 	cmp r1, #0
 	moveq r1, #0
 	streqh r1, [r0]
@@ -233,7 +233,7 @@ sub_020BDEC4: ; 0x020BDEC4
 	orrle r1, r1, #0x8000
 	strleh r1, [r0]
 	bx lr
-	arm_func_end sub_020BDEC4
+	arm_func_end GXx_SetMasterBrightness_
 
 	.data
 

@@ -6,21 +6,21 @@
 	.text
 
 
-	arm_func_start sub_020D3F50
-sub_020D3F50: ; 0x020D3F50
+	arm_func_start malloc
+malloc: ; 0x020D3F50
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl sub_020DF918
+	bl __sys_alloc
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D3F50
+	arm_func_end malloc
 
-	arm_func_start sub_020D3F68
-sub_020D3F68: ; 0x020D3F68
+	arm_func_start free
+free: ; 0x020D3F68
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl sub_020DF930
+	bl __sys_free
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D3F68
+	arm_func_end free

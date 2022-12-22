@@ -134,7 +134,7 @@ _021D4ED8:
 	str r6, [r4, #0x34]
 	mov r0, #0
 	str r0, [r4, #0x30]
-	bl sub_020BF00C
+	bl GX_GetBankForLCDC
 	str r0, [r4, #0]
 	add r0, r4, #4
 	bl ov100_021D503C
@@ -156,10 +156,10 @@ ov100_021D4F0C: ; 0x021D4F0C
 	add r0, r1, #0
 	add r1, r2, #0
 	add r2, r3, #0
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #4]
 	cmp r0, #0xa
@@ -183,32 +183,32 @@ _021D4F42:
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D4F82
 _021D4F52:
 	mov r2, #2
 	ldr r1, _021D4F90 ; =0x06820000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D4F82
 _021D4F60:
 	mov r2, #2
 	ldr r1, _021D4F94 ; =0x06840000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D4F82
 _021D4F6E:
 	mov r2, #2
 	ldr r1, _021D4F98 ; =0x06860000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D4F82
 _021D4F7C:
 	mov r0, #0
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 _021D4F82:
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0x34]
@@ -282,28 +282,28 @@ _021D4FFA:
 	b _021D5020
 _021D5000:
 	mov r0, #1
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021D5026
 _021D5008:
 	mov r0, #2
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021D5026
 _021D5010:
 	mov r0, #4
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021D5026
 _021D5018:
 	mov r0, #8
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021D5026
 _021D5020:
 	mov r0, #0
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 _021D5026:
 	ldr r0, [r4, #4]
 	ldr r1, [r4, #8]
 	ldr r2, [r4, #0xc]
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	mov r0, #1
 	str r0, [r4, #0x30]
 	add r0, r5, #0
@@ -337,28 +337,28 @@ _021D505E:
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D5096
 _021D506E:
 	mov r2, #2
 	ldr r1, _021D50C4 ; =0x06820000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D5096
 _021D507C:
 	mov r2, #2
 	ldr r1, _021D50C8 ; =0x06840000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021D5096
 _021D508A:
 	mov r2, #2
 	ldr r1, _021D50CC ; =0x06860000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 _021D5096:
 	ldr r5, [r4, #0x10]
 	ldr r1, [r4, #0x1c]

@@ -1,3 +1,3 @@
-.public sub_020C2C54
-.public sub_020C2C78
+.public DC_FlushRange
+.public DC_WaitWriteBufferEmpty
 .public ov18_02223D50

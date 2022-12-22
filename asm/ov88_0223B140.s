@@ -43,7 +43,7 @@ ov88_0223B140: ; 0x0223B140
 	ldr r2, _0223B2D8 ; =0x000036B4
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x1a
 	bl sub_02018340
 	mov r1, #0x5d
@@ -195,7 +195,7 @@ ov88_0223B2F0: ; 0x0223B2F0
 	add r6, r3, #0
 	lsl r1, r1, #5
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
@@ -571,7 +571,7 @@ _0223B626:
 	add r0, #0x88
 	ldr r0, [r0, #0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	add r0, r4, #0
 	bl ov88_0223D1EC
@@ -789,7 +789,7 @@ _0223B7C0:
 	mov r1, #2
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x10]
 	mov r1, #0x69
 	str r0, [sp]
@@ -1018,7 +1018,7 @@ _0223B9DA:
 	bne _0223BA06
 	bl sub_0201D2E8
 	ldr r1, _0223BCF0 ; =0x00000445
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
 	cmp r5, #0x3c
@@ -1469,7 +1469,7 @@ ov88_0223BDA4: ; 0x0223BDA4
 	add r5, r0, #0
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223BE10 ; =0x0000221C
 	add r7, r1, #0
 	ldr r0, [r5, r0]
@@ -1477,7 +1477,7 @@ ov88_0223BDA4: ; 0x0223BDA4
 	add r6, r0, #0
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r6, #0
 	mov r2, #0x7f
 	mov r6, #0x32
@@ -1540,7 +1540,7 @@ ov88_0223BE28: ; 0x0223BE28
 	add r0, #0x88
 	ldr r0, [r0, #0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r2, #0x7f
 	add r3, r0, #0
 	lsl r2, r2, #4
@@ -1868,7 +1868,7 @@ ov88_0223C0E0: ; 0x0223C0E0
 	add r0, r5, r0
 	mul r1, r2
 	add r0, r0, r1
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	lsl r1, r4, #4
 	mov r0, #0x20
 	add r2, r5, r1
@@ -2218,7 +2218,7 @@ ov88_0223C370: ; 0x0223C370
 	ldr r0, _0223C448 ; =0x0000221C
 	mov r1, #0xff
 	ldr r0, [r5, r0]
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #4]
 	mov r1, #0x1a
 	bl sub_02025F04
@@ -2285,7 +2285,7 @@ ov88_0223C488: ; 0x0223C488
 	add r6, r0, #0
 	beq _0223C4DA
 	add r1, sp, #4
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	cmp r0, #0
 	beq _0223C4D4
 	ldr r0, [sp, #0x1c]
@@ -2511,7 +2511,7 @@ ov88_0223C66C: ; 0x0223C66C
 	sub sp, #0x14
 	add r5, r0, #0
 	add r7, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7f
@@ -2734,7 +2734,7 @@ ov88_0223C800: ; 0x0223C800
 	mov r1, #0x32
 	add r0, r4, #0
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #1
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
@@ -3574,7 +3574,7 @@ _0223CF06:
 	add r0, sp, #0
 	mov r1, #0x3a
 	mov r2, #2
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, pc}
 	thumb_func_end ov88_0223CEF0
 
@@ -4001,7 +4001,7 @@ _0223D256:
 	add r0, #0x88
 	ldr r0, [r0, #0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r5, #0
 	add r0, #0x20
 	strb r1, [r0]
@@ -5477,7 +5477,7 @@ ov88_0223DE7C: ; 0x0223DE7C
 	mov r1, #0x14
 	str r2, [sp, #8]
 	ldr r5, [sp, #0x4c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mul r0, r6
 	add r0, r4, r0
 	str r0, [sp, #0x24]
@@ -5485,7 +5485,7 @@ ov88_0223DE7C: ; 0x0223DE7C
 	ldr r0, [r7, #0x10]
 	mov r1, #0x14
 	sub r0, r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mul r0, r6
 	add r0, r4, r0
 	str r0, [sp, #0x28]

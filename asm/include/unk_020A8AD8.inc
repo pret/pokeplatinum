@@ -1,2 +1,2 @@
-.public sub_020A8B4C
-.public sub_020C4AF0
+.public NNSi_G2dSrtcSetInitialValue
+.public MIi_CpuClear16

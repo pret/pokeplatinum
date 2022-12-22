@@ -1,5 +1,5 @@
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C42A8
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
+.public OS_Terminate
+.public MI_CpuFill8
+.public MI_CpuCopy8

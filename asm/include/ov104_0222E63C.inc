@@ -9,7 +9,7 @@
 .public sub_02023790
 .public sub_020237BC
 .public sub_0209B974
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov104_0222E7CC
 .public ov104_0222E7FC
 .public ov104_0222E82C

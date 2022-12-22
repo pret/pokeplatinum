@@ -13,7 +13,7 @@ ov61_0222B008: ; 0x0222B008
 	add r4, r1, #0
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x51
 	add r3, r4, #0
 	ldr r1, [r4, #4]
@@ -62,7 +62,7 @@ _0222B02C:
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _0222B0EC ; =0x000002B7
 	ldr r3, [r4, #4]
 	mov r0, #0
@@ -395,7 +395,7 @@ _0222B2EC:
 	lsl r1, r1, #2
 	add r1, r5, r1
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r2, #0x19
 	lsl r2, r2, #4
 	ldr r0, [r5, #0]
@@ -455,7 +455,7 @@ _0222B35A:
 	add r1, r0, #0
 	add r0, r4, #0
 	mov r2, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0222B38C ; =0x00000411
 	mov r1, #0x3c
 	strb r1, [r5, r0]
@@ -488,7 +488,7 @@ _0222B3AA:
 	add r0, r5, r0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0x19
 	lsl r1, r1, #4
 	strh r4, [r5, r1]
@@ -532,7 +532,7 @@ _0222B3FC:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x19
 	ldr r1, _0222B444 ; =0x0000FFFF
 	lsl r0, r0, #4
@@ -581,7 +581,7 @@ _0222B45C:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x19
 	ldr r1, _0222B4A0 ; =0x0000FFFF
 	lsl r0, r0, #4
@@ -629,7 +629,7 @@ _0222B4B8:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #5
 	lsl r1, r1, #6
 	add r0, r1, #0
@@ -662,7 +662,7 @@ _0222B4F4:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #5
 	lsl r1, r1, #6
 	add r0, r1, #0
@@ -826,7 +826,7 @@ _0222B624:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xfb
 	ldr r1, _0222B6CC ; =0x000059DC
 	lsl r0, r0, #2
@@ -862,7 +862,7 @@ _0222B66A:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xf
 	lsl r0, r0, #6
 	ldr r1, [r4, r0]
@@ -872,7 +872,7 @@ _0222B66A:
 	add r0, #0xc
 	add r0, r4, r0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0xef
 	lsl r1, r1, #2
 	ldr r0, [r4, r1]
@@ -896,7 +896,7 @@ _0222B6B0:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xf
 	mov r1, #0
 	lsl r0, r0, #6
@@ -1626,11 +1626,11 @@ ov61_0222BBF0: ; 0x0222BBF0
 	add r1, r5, #0
 	add r2, r5, r6
 	mov r3, #1
-	bl sub_020C33B4
+	bl OS_InitAlloc
 	add r4, r0, #0
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	add r2, r5, r6
 	add r4, #0x1f
 	mov r0, #0x1f
@@ -1639,12 +1639,12 @@ ov61_0222BBF0: ; 0x0222BBF0
 	bic r2, r0
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C3470
+	bl OS_CreateHeap
 	add r1, r0, #0
 	ldr r0, _0222BC3C ; =0x0222E760
 	str r1, [r0, #0]
 	mov r0, #0
-	bl sub_020C3384
+	bl OS_SetCurrentHeap
 	add r0, r5, #0
 	pop {r4, r5, r6, pc}
 	nop
@@ -1653,11 +1653,11 @@ _0222BC3C: .word 0x0222E760
 
 	thumb_func_start ov61_0222BC40
 ov61_0222BC40: ; 0x0222BC40
-	ldr r3, _0222BC48 ; =sub_020C345C
+	ldr r3, _0222BC48 ; =OS_ClearAlloc
 	mov r0, #0
 	bx r3
 	nop
-_0222BC48: .word sub_020C345C
+_0222BC48: .word OS_ClearAlloc
 	thumb_func_end ov61_0222BC40
 
 	.rodata

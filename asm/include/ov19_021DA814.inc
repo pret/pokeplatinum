@@ -4,7 +4,7 @@
 .public sub_020181C4
 .public sub_02021D6C
 .public sub_02021E90
-.public sub_020A818C
+.public NNS_G2dInitImageProxy
 .public ov19_021D77D0
 .public ov19_021D7820
 .public ov19_021D783C

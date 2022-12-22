@@ -82,11 +82,11 @@
 .public sub_0207A0F8
 .public sub_0207A0FC
 .public sub_0207CFF0
-.public sub_020C4B18
-.public sub_020C4BB8
-.public sub_020C4CF4
-.public sub_020D5124
-.public sub_020E1F6C
+.public MIi_CpuCopy16
+.public MIi_CpuClearFast
+.public MI_CpuFill8
+.public memset
+.public _s32_div_f
 .public ov12_0221FC20
 .public ov12_0221FCDC
 .public ov12_0221FDF4

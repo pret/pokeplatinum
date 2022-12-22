@@ -1,5 +1,5 @@
-.public sub_020C3880
-.public sub_020C4CF4
+.public OS_GetTick
+.public MI_CpuFill8
 .public ov4_021E4AE8
 .public ov4_02204160
 .public ov4_02204188

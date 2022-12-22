@@ -71,7 +71,7 @@ ov4_02208C88: ; 0x02208C88
 	ldr r5, [r4, #0x64]
 	add r0, r5, #0xe0
 	ldr r6, [r5, #0xc4]
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r1, [r7, #0x10]
 	cmp r1, #0
 	beq _02208CC8
@@ -89,7 +89,7 @@ _02208CC8:
 	str r0, [r6, #0xc]
 _02208CDC:
 	add r0, r5, #0xe0
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov4_02208C88

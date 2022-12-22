@@ -1,5 +1,5 @@
-.public sub_020C00B4
-.public sub_020C048C
+.public GX_LoadBGPltt
+.public GXS_LoadBG1Scr
 .public ov18_0222B580
 .public ov18_0222B6A0
 .public ov18_0222B700

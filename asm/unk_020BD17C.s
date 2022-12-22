@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020BD17C
-sub_020BD17C: ; 0x020BD17C
+	arm_func_start VEC_Add
+VEC_Add: ; 0x020BD17C
 	ldr ip, [r0]
 	ldr r3, [r1, #0]
 	add r3, ip, r3
@@ -20,10 +20,10 @@ sub_020BD17C: ; 0x020BD17C
 	add r0, r3, r0
 	str r0, [r2, #8]
 	bx lr
-	arm_func_end sub_020BD17C
+	arm_func_end VEC_Add
 
-	arm_func_start sub_020BD1B0
-sub_020BD1B0: ; 0x020BD1B0
+	arm_func_start VEC_Subtract
+VEC_Subtract: ; 0x020BD1B0
 	ldr ip, [r0]
 	ldr r3, [r1, #0]
 	sub r3, ip, r3
@@ -37,10 +37,10 @@ sub_020BD1B0: ; 0x020BD1B0
 	sub r0, r3, r0
 	str r0, [r2, #8]
 	bx lr
-	arm_func_end sub_020BD1B0
+	arm_func_end VEC_Subtract
 
-	arm_func_start sub_020BD1E4
-sub_020BD1E4: ; 0x020BD1E4
+	arm_func_start VEC_Fx16Add
+VEC_Fx16Add: ; 0x020BD1E4
 	ldrsh ip, [r0]
 	ldrsh r3, [r1]
 	add r3, ip, r3
@@ -54,10 +54,10 @@ sub_020BD1E4: ; 0x020BD1E4
 	add r0, r3, r0
 	strh r0, [r2, #4]
 	bx lr
-	arm_func_end sub_020BD1E4
+	arm_func_end VEC_Fx16Add
 
-	arm_func_start sub_020BD218
-sub_020BD218: ; 0x020BD218
+	arm_func_start VEC_DotProduct
+VEC_DotProduct: ; 0x020BD218
 	stmfd sp!, {r4, lr}
 	ldr r3, [r0, #4]
 	ldr r2, [r1, #4]
@@ -73,10 +73,10 @@ sub_020BD218: ; 0x020BD218
 	mov r0, r0, lsr #0xc
 	orr r0, r0, r1, lsl #20
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020BD218
+	arm_func_end VEC_DotProduct
 
-	arm_func_start sub_020BD254
-sub_020BD254: ; 0x020BD254
+	arm_func_start VEC_Fx16DotProduct
+VEC_Fx16DotProduct: ; 0x020BD254
 	stmfd sp!, {r3, r4, r5, lr}
 	ldrsh lr, [r0, #2]
 	ldrsh ip, [r1, #2]
@@ -94,10 +94,10 @@ sub_020BD254: ; 0x020BD254
 	mov r0, r2, lsr #0xc
 	orr r0, r0, r1, lsl #20
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020BD254
+	arm_func_end VEC_Fx16DotProduct
 
-	arm_func_start sub_020BD298
-sub_020BD298: ; 0x020BD298
+	arm_func_start VEC_CrossProduct
+VEC_CrossProduct: ; 0x020BD298
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldmia r0, {r5, lr}
 	ldr r6, [r1, #8]
@@ -131,10 +131,10 @@ sub_020BD298: ; 0x020BD298
 	orr r1, r1, r0, lsl #20
 	str r1, [r2, #8]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020BD298
+	arm_func_end VEC_CrossProduct
 
-	arm_func_start sub_020BD31C
-sub_020BD31C: ; 0x020BD31C
+	arm_func_start VEC_Fx16CrossProduct
+VEC_Fx16CrossProduct: ; 0x020BD31C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldrsh r4, [r1, #4]
 	ldrsh ip, [r0, #2]
@@ -161,10 +161,10 @@ sub_020BD31C: ; 0x020BD31C
 	mov r0, r1, asr #0xc
 	strh r0, [r2, #4]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020BD31C
+	arm_func_end VEC_Fx16CrossProduct
 
-	arm_func_start sub_020BD384
-sub_020BD384: ; 0x020BD384
+	arm_func_start VEC_Mag
+VEC_Mag: ; 0x020BD384
 	ldr r1, [r0, #4]
 	ldr r2, [r0, #0]
 	smull ip, r3, r1, r1
@@ -191,10 +191,10 @@ _020BD3BC:
 	; .align 2, 0
 _020BD3DC: .word 0x040002B0
 _020BD3E0: .word 0x040002B4
-	arm_func_end sub_020BD384
+	arm_func_end VEC_Mag
 
-	arm_func_start sub_020BD3E4
-sub_020BD3E4: ; 0x020BD3E4
+	arm_func_start VEC_Normalize
+VEC_Normalize: ; 0x020BD3E4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldr r2, [r0, #4]
 	ldr r3, [r0, #0]
@@ -268,10 +268,10 @@ _020BD458:
 _020BD4F0: .word 0x04000280
 _020BD4F4: .word 0x040002B4
 _020BD4F8: .word 0x040002A0
-	arm_func_end sub_020BD3E4
+	arm_func_end VEC_Normalize
 
-	arm_func_start sub_020BD4FC
-sub_020BD4FC: ; 0x020BD4FC
+	arm_func_start VEC_Fx16Normalize
+VEC_Fx16Normalize: ; 0x020BD4FC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldrsh r5, [r0]
 	ldrsh r2, [r0, #2]
@@ -350,10 +350,10 @@ _020BD584:
 _020BD61C: .word 0x04000280
 _020BD620: .word 0x040002B4
 _020BD624: .word 0x040002A0
-	arm_func_end sub_020BD4FC
+	arm_func_end VEC_Fx16Normalize
 
-	arm_func_start sub_020BD628
-sub_020BD628: ; 0x020BD628
+	arm_func_start VEC_MultAdd
+VEC_MultAdd: ; 0x020BD628
 	stmfd sp!, {r4, lr}
 	ldr r4, [r1, #0]
 	ldr lr, [r2]
@@ -377,4 +377,4 @@ sub_020BD628: ; 0x020BD628
 	add r0, ip, r0
 	str r0, [r3, #8]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020BD628
+	arm_func_end VEC_MultAdd

@@ -2269,7 +2269,7 @@ ov94_02240DD0: ; 0x02240DD0
 	add r4, r0, #0
 	beq _02240DF2
 	add r1, r5, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _02240DF2
 	add r0, r4, #0
@@ -2306,7 +2306,7 @@ ov94_02240DF8: ; 0x02240DF8
 	ldr r0, [r0, #0x14]
 	add r1, #0xc
 	lsl r2, r2, #8
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	lsl r0, r7, #4
 	add r0, #0xc
 	lsl r0, r0, #5
@@ -2352,12 +2352,12 @@ _02240E6E:
 	add r0, r5, #0
 	add r0, #0xc
 	add r1, r6, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	ldr r1, [r5, #0]
 	add r0, #0xc
 	add r2, r6, #0
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	ldr r0, [r5, #8]
 	ldr r1, [r5, #4]
 	bl sub_02021E90

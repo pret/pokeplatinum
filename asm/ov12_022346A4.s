@@ -376,7 +376,7 @@ _02234992:
 	ldr r0, [r4, #0x10]
 	bl sub_0200D3E0
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, [r4, #8]
 	ldr r0, [r4, #0x10]
 	add r1, r2, r1

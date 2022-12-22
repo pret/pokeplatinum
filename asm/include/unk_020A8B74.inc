@@ -1,1 +1,1 @@
-.public sub_020A8B3C
+.public NNSi_G2dSrtcInitControl

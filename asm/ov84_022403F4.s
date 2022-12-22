@@ -1062,13 +1062,13 @@ ov84_02240C48: ; 0x02240C48
 	bge _02240C82
 	sub r0, r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r2, #0
 	b _02240C8C
 _02240C82:
 	sub r0, r1, r0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r2, #1
 _02240C8C:
 	ldr r1, _02240CE8 ; =0x00000455

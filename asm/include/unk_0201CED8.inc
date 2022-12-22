@@ -1,10 +1,10 @@
 .public sub_0201D018
 .public sub_0201D03C
 .public sub_0201D090
-.public sub_020AF480
-.public sub_020AF4BC
-.public sub_020AF4EC
-.public sub_020B2628
-.public sub_020B275C
-.public sub_020BFE80
-.public sub_020C4C88
+.public NNS_G3dGlbFlushP
+.public NNS_G3dGlbSetBaseTrans
+.public NNS_G3dGlbSetBaseScale
+.public NNS_G3dGeFlushBuffer
+.public NNS_G3dGeBufferOP_N
+.public G3X_GetBoxTestResult
+.public MI_Copy36B

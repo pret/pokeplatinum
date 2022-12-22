@@ -44,7 +44,7 @@ sub_02030F10: ; 0x02030F10
 	ldr r1, _02030F38 ; =0x021C07A8
 	ldr r0, _02030F3C ; =sub_02030F40
 	ldr r1, [r1, #4]
-	bl sub_020CEDC8
+	bl WM_SetParentParameter
 	cmp r0, #2
 	beq _02030F34
 	bl sub_02030EF4
@@ -93,22 +93,22 @@ sub_02030F64: ; 0x02030F64
 	mov r0, #1
 	pop {r4, pc}
 _02030F78:
-	bl sub_020CE3F4
+	bl WMi_GetStatusAddress
 	add r4, r0, #0
 	mov r0, #0x66
 	lsl r0, r0, #2
 	add r0, r4, r0
 	mov r1, #4
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	mov r0, #0x66
 	mov r1, #0
 	lsl r0, r0, #2
 	str r1, [r4, r0]
 	add r0, r4, r0
 	mov r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02030FC8 ; =sub_02030FD0
-	bl sub_020CEF50
+	bl WM_StartParent
 	cmp r0, #2
 	beq _02030FAC
 	bl sub_02030EF4
@@ -203,13 +203,13 @@ _02031022:
 	ldr r0, _020310D4 ; =0x02100A18
 	add r1, #0x15
 	mov r2, #3
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _02031078
 _02031060:
 	ldrh r1, [r5, #0x10]
 	mov r0, #0
-	bl sub_020CF2E8
+	bl WM_Disconnect
 	cmp r0, #2
 	beq _020310C0
 	bl sub_02030EF4
@@ -299,7 +299,7 @@ _020310F4:
 	ldr r0, _02031148 ; =sub_0203114C
 	lsr r2, r2, #0x10
 	add r3, r4, r3
-	bl sub_020CF5E4
+	bl WM_StartMP
 	cmp r0, #2
 	beq _02031130
 	bl sub_02030EF4
@@ -374,7 +374,7 @@ sub_020311A8: ; 0x020311A8
 	mov r0, #3
 	bl sub_02030EE0
 	ldr r0, _020311C8 ; =sub_020311CC
-	bl sub_020CF77C
+	bl WM_EndMP
 	cmp r0, #2
 	beq _020311C2
 	bl sub_02030EF4
@@ -409,7 +409,7 @@ _020311EA:
 sub_020311EC: ; 0x020311EC
 	push {r3, lr}
 	ldr r0, _02031204 ; =sub_02031208
-	bl sub_020CEF60
+	bl WM_EndParent
 	cmp r0, #2
 	beq _02031200
 	bl sub_02030EF4
@@ -569,7 +569,7 @@ _0203131C: .word 0x021C07A8
 	thumb_func_start sub_02031320
 sub_02031320: ; 0x02031320
 	push {r3, r4, r5, r6, r7, lr}
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	add r5, r0, #0
 	mov r0, #2
 	lsl r0, r0, #0xe
@@ -629,9 +629,9 @@ _02031394:
 	sub r0, #0x28
 	strh r2, [r3, r0]
 _02031398:
-	bl sub_020CE934
+	bl WM_GetDispersionScanPeriod
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, _020313D4 ; =0x021C07A8
 	ldr r1, _020313E0 ; =0x000012E6
 	ldr r3, [r2, #4]
@@ -646,7 +646,7 @@ _02031398:
 	sub r1, r1, #6
 	ldr r0, _020313E4 ; =sub_020313E8
 	add r1, r2, r1
-	bl sub_020CEFA0
+	bl WM_StartScan
 	cmp r0, #2
 	beq _020313CE
 	bl sub_02030EF4
@@ -701,7 +701,7 @@ _02031420:
 	sub r0, #0xf0
 	add r0, r2, r0
 	mov r1, #0xc0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, _020314B0 ; =0x021C07A8
 	ldr r1, [r0, #4]
 	ldr r0, _020314B8 ; =0x00001320
@@ -793,7 +793,7 @@ _020314E0: .word 0x00001310
 sub_020314E4: ; 0x020314E4
 	push {r3, lr}
 	ldr r0, _020314FC ; =sub_02031500
-	bl sub_020CF1DC
+	bl WM_EndScan
 	cmp r0, #2
 	beq _020314F8
 	bl sub_02030EF4
@@ -856,7 +856,7 @@ _02031550:
 	ldr r0, _0203159C ; =0x02100A18
 	add r1, #1
 	mov r2, #3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl sub_0203895C
 	add r1, sp, #4
 	strb r0, [r1]
@@ -869,7 +869,7 @@ _02031550:
 	mov r3, #1
 	add r1, r2, r1
 	add r2, sp, #4
-	bl sub_020CF21C
+	bl WM_StartConnectEx
 	cmp r0, #2
 	beq _0203158E
 	bl sub_02030EF4
@@ -1003,7 +1003,7 @@ sub_02031668: ; 0x02031668
 	ldr r0, _020316B4 ; =sub_020316B8
 	lsr r2, r2, #0x10
 	add r3, r4, r3
-	bl sub_020CF5E4
+	bl WM_StartMP
 	cmp r0, #2
 	beq _020316A2
 	bl sub_02030EF4
@@ -1081,7 +1081,7 @@ sub_0203171C: ; 0x0203171C
 	mov r0, #3
 	bl sub_02030EE0
 	ldr r0, _0203173C ; =sub_02031740
-	bl sub_020CF77C
+	bl WM_EndMP
 	cmp r0, #2
 	beq _02031736
 	bl sub_02030EF4
@@ -1121,7 +1121,7 @@ sub_02031764: ; 0x02031764
 	bl sub_02030EE0
 	ldr r0, _02031788 ; =sub_0203178C
 	mov r1, #0
-	bl sub_020CF2E8
+	bl WM_Disconnect
 	cmp r0, #2
 	beq _02031784
 	bl sub_02030EF4
@@ -1156,7 +1156,7 @@ sub_020317A4: ; 0x020317A4
 	mov r0, #3
 	bl sub_02030EE0
 	ldr r0, _020317C4 ; =sub_020317C8
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	beq _020317BE
 	bl sub_02030EF4
@@ -1202,7 +1202,7 @@ sub_020317E8: ; 0x020317E8
 	add r0, r1, r0
 	ldr r1, [r1, r2]
 	add r7, r3, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02031838 ; =0x0000FFFF
 	add r1, r7, #0
 	str r0, [sp]
@@ -1214,7 +1214,7 @@ sub_020317E8: ; 0x020317E8
 	ldr r0, _0203183C ; =sub_02031840
 	add r2, r5, #0
 	add r3, r6, #0
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	cmp r0, #2
 	bne _0203182A
 	add sp, #0xc
@@ -1310,7 +1310,7 @@ sub_020318B0: ; 0x020318B0
 _020318C0:
 	mov r0, #0
 	add r1, r0, #0
-	bl sub_020A2654
+	bl WVR_TerminateAsync
 	mov r0, #0
 	bl sub_02030EE0
 	pop {r3, pc}
@@ -1409,7 +1409,7 @@ sub_0203195C: ; 0x0203195C
 	push {r3, r4, r5, lr}
 	sub sp, #8
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _020319E4 ; =0x027FFC3C
 	ldr r3, [r0, #0]
 	add r0, sp, #0
@@ -1479,7 +1479,7 @@ _020319F4: .word 0x00003039
 sub_020319F8: ; 0x020319F8
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	mov r1, #2
 	lsl r1, r1, #0xe
 	cmp r0, r1
@@ -1608,7 +1608,7 @@ sub_02031AF0: ; 0x02031AF0
 	str r1, [sp]
 	mov r1, #3
 	mov r2, #0x11
-	bl sub_020D07C4
+	bl WM_MeasureChannel
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end sub_02031AF0
@@ -1825,7 +1825,7 @@ sub_02031C70: ; 0x02031C70
 	ldr r0, [r0, #4]
 	mov r2, #2
 	add r0, #0x40
-	bl sub_020CECC8
+	bl WM_Initialize
 	b _02031C9E
 _02031C8E:
 	ldr r0, _02031CB4 ; =0x021C07A8
@@ -1834,7 +1834,7 @@ _02031C8E:
 	mov r2, #2
 	add r0, #0x40
 	mov r3, #0
-	bl sub_020CECD8
+	bl WM_InitializeForListening
 _02031C9E:
 	cmp r0, #2
 	beq _02031CB0
@@ -1865,7 +1865,7 @@ sub_02031CBC: ; 0x02031CBC
 	pop {r3, pc}
 _02031CD6:
 	ldr r0, _02031CFC ; =sub_02031C58
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	cmp r0, #0
 	beq _02031CF2
 	bl sub_02030EF4
@@ -1904,7 +1904,7 @@ sub_02031D04: ; 0x02031D04
 	ldr r1, _02031DCC ; =0x0000FFFF
 	mov r3, #5
 	str r2, [sp]
-	bl sub_020D0764
+	bl WM_SetLifeTime
 _02031D28:
 	ldr r1, _02031DD0 ; =0x021C07A8
 	mov r0, #7
@@ -2012,7 +2012,7 @@ sub_02031DD8: ; 0x02031DD8
 	ldr r1, _02031E5C ; =0x0000FFFF
 	mov r3, #5
 	str r2, [sp]
-	bl sub_020D0764
+	bl WM_SetLifeTime
 _02031DFA:
 	ldr r2, _02031E60 ; =0x021C07A8
 	mov r3, #2
@@ -2042,14 +2042,14 @@ _02031E26:
 	ldr r1, _02031E68 ; =0x00001220
 	add r1, r2, r1
 	mov r2, #0xc0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02031E60 ; =0x021C07A8
 	ldr r1, [r0, #4]
 	ldr r0, _02031E68 ; =0x00001220
 	add r0, r1, r0
 	mov r1, #0xc0
-	bl sub_020C2C54
-	bl sub_020C2C78
+	bl DC_FlushRange
+	bl DC_WaitWriteBufferEmpty
 	bl sub_02031538
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
@@ -2076,7 +2076,7 @@ sub_02031E6C: ; 0x02031E6C
 	ldr r1, _02031E98 ; =sub_02031868
 	lsr r0, r0, #0x10
 	mov r2, #0
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 	cmp r0, #0
 	beq _02031E8E
 	mov r0, #9
@@ -2207,7 +2207,7 @@ sub_02031F6C: ; 0x02031F6C
 	mov r0, #3
 	bl sub_02030EE0
 	ldr r0, _02031F8C ; =sub_020318B0
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	beq _02031F88
 	mov r0, #9
@@ -2348,7 +2348,7 @@ sub_02032034: ; 0x02032034
 	add r1, r6, #0
 	lsr r2, r2, #0x10
 	add r3, r4, #0
-	bl sub_020D065C
+	bl WM_SetGameInfo
 _02032062:
 	add sp, #8
 	pop {r4, r5, r6, pc}
@@ -2389,7 +2389,7 @@ sub_0203208C: ; 0x0203208C
 	cmp r0, #4
 	bne _020320B2
 	ldr r0, _020320C0 ; =sub_02032070
-	bl sub_020D083C
+	bl WM_SetEntry
 	cmp r0, #2
 	bne _020320B2
 	mov r0, #1

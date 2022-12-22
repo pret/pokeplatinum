@@ -529,12 +529,12 @@ _02224AD2:
 	str r0, [sp, #0x60]
 	ldr r0, [sp, #0xc]
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x14]
 	mov r1, #0xfa
 	ldr r0, [sp, #0xc]
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0xfa
 	lsl r0, r0, #2
 	mul r0, r1
@@ -3777,7 +3777,7 @@ _02226448:
 	ldr r1, [sp]
 	add r0, r7, r0
 	ldr r1, [r1, #0xc]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldrb r0, [r4, r1]
 	add r6, r6, #1
 	strb r7, [r4, r1]
@@ -3833,14 +3833,14 @@ ov18_022264A4: ; 0x022264A4
 	ldr r0, [r5, #0]
 	ldr r1, [sp]
 	add r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r1, #0x18
 	lsr r7, r0, #0x18
 	ldrb r6, [r4, r7]
 	ldr r0, [r5, #4]
 	ldr r1, [sp]
 	add r0, r6, r0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r1, #0x18
 	lsr r1, r0, #0x18
 	ldrb r0, [r4, r1]
@@ -3850,7 +3850,7 @@ ov18_022264A4: ; 0x022264A4
 	strb r0, [r4, r7]
 	ldr r1, [r5, #0xc]
 	add r0, r6, r0
-	bl sub_020E2178
+	bl _u32_div_f
 	ldrb r0, [r4, r1]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -4018,7 +4018,7 @@ ov18_022265F8: ; 0x022265F8
 	asr r4, r1, #1
 	add r1, r6, #0
 	add r7, r3, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0
 	cmp r4, #0
 	ble _0222662A
@@ -4149,7 +4149,7 @@ _022266DA:
 	mov r4, #0x64
 _022266E4:
 	add r0, r4, #0
-	bl sub_020C24A4
+	bl OS_Sleep
 	ldr r0, [r5, #0]
 	cmp r0, #0
 	beq _022266E4
@@ -4213,20 +4213,20 @@ ov18_02226744: ; 0x02226744
 	add r3, r0, #0
 	add r0, r1, #0
 	add r1, r3, #0
-	ldr r3, _02226750 ; =sub_020C4DB0
+	ldr r3, _02226750 ; =MI_CpuCopy8
 	bx r3
 	nop
-_02226750: .word sub_020C4DB0
+_02226750: .word MI_CpuCopy8
 	thumb_func_end ov18_02226744
 
 	thumb_func_start ov18_02226754
 ov18_02226754: ; 0x02226754
-	ldr r3, _0222675C ; =sub_020C4CF4
+	ldr r3, _0222675C ; =MI_CpuFill8
 	lsl r1, r1, #0x18
 	lsr r1, r1, #0x18
 	bx r3
 	; .align 2, 0
-_0222675C: .word sub_020C4CF4
+_0222675C: .word MI_CpuFill8
 	thumb_func_end ov18_02226754
 
 	thumb_func_start ov18_02226760
@@ -4256,7 +4256,7 @@ ov18_02226774: ; 0x02226774
 	ldr r2, _022267C4 ; =0x01FF6210
 	asr r1, r0, #0x1f
 	add r3, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	lsr r3, r0, #6
 	lsl r2, r1, #0x1a
 	orr r3, r2
@@ -4267,7 +4267,7 @@ ov18_02226774: ; 0x02226774
 	ldr r2, _022267C4 ; =0x01FF6210
 	asr r1, r0, #0x1f
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	lsr r3, r0, #6
 	lsl r2, r1, #0x1a
 	orr r3, r2
@@ -4436,7 +4436,7 @@ ov18_0222688C: ; 0x0222688C
 	mov r2, #0xc
 	bl ov18_02226754
 	add r0, sp, #0
-	bl sub_020CBA30
+	bl RTC_GetTime
 	cmp r0, #0
 	bne _022268BE
 	ldr r0, [sp]

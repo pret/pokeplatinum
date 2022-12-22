@@ -33,7 +33,7 @@
 .public sub_02022974
 .public sub_02023790
 .public sub_020237BC
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov23_022421EC
 .public ov23_02253E40
 .public ov23_02253E6C

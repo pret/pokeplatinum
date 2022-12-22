@@ -16,7 +16,7 @@ ov4_021DA6C8: ; 0x021DA6C8
 	mov r2, #0x280
 	mov r4, r3
 	str r0, [ip, #4]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021DA748 ; =0x0221A68C
 	mov r2, #0
 	ldr r1, [r0, #4]
@@ -102,7 +102,7 @@ _021DA7F4:
 	ldr r0, [r0, #0x30]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r3, _021DA86C ; =0x0221A68C
 	ldr r2, _021DA870 ; =0x000082EA
 	ldr ip, [r3, #4]
@@ -114,7 +114,7 @@ _021DA7F4:
 	mov r1, r0, lsl #6
 	orr r1, r1, lr, lsr #26
 	mov r0, lr, lsl #6
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r2, _021DA874 ; =0x0000EA60
 	cmp r1, #0
 	cmpeq r0, r2
@@ -364,15 +364,15 @@ ov4_021DAB30: ; 0x021DAB30
 	add r0, r4, #0x48
 	mov r5, r2
 	mov r4, r3
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r0, _021DABC8 ; =0x0221A68C
 	mov r1, r6
 	ldr r0, [r0, #4]
 	add r0, r0, #0x148
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r0, _021DABC8 ; =0x0221A68C
 	ldr r6, [r0, #4]
-	bl sub_020C3880
+	bl OS_GetTick
 	str r0, [r6, #0x34]
 	str r1, [r6, #0x38]
 	mov r3, #1
@@ -406,13 +406,13 @@ ov4_021DABCC: ; 0x021DABCC
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x48
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021DAD7C ; =0x0221A68C
 	str r5, [r0, #8]
 	str r4, [r0, #0]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0x1c]
-	bl sub_020A4488
+	bl DWCi_Acc_IsAuthentic
 	cmp r0, #0
 	beq _021DAC2C
 	ldr r0, _021DAD7C ; =0x0221A68C
@@ -421,20 +421,20 @@ ov4_021DABCC: ; 0x021DABCC
 	add r2, r1, #0x248
 	ldr r1, [r0, #0x24]
 	add r0, r0, #0x10
-	bl sub_020A4234
+	bl DWCi_Acc_LoginIdToUserName
 	b _021DACE0
 _021DAC2C:
 	ldr r0, _021DAD7C ; =0x0221A68C
 	ldr r0, [r0, #4]
 	add r0, r0, #0x3c
-	bl sub_020A4470
+	bl DWCi_Acc_IsValidLoginId
 	cmp r0, #0
 	bne _021DAC94
 	ldr r0, _021DAD7C ; =0x0221A68C
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0x1c]
 	add r0, r0, #4
-	bl sub_020A4404
+	bl DWCi_Acc_CheckConsoleUserId
 	cmp r0, #0
 	beq _021DAC80
 	ldr r0, _021DAD7C ; =0x0221A68C
@@ -449,10 +449,10 @@ _021DAC80:
 	ldr r0, _021DAD7C ; =0x0221A68C
 	ldr r0, [r0, #4]
 	add r0, r0, #0x3c
-	bl sub_020A4340
+	bl DWCi_Acc_CreateTempLoginId
 	b _021DACC8
 _021DAC94:
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _021DAD80 ; =0x6C078965
 	ldr r3, _021DAD84 ; =0x5D588B65
 	umull ip, r4, r0, r2
@@ -464,14 +464,14 @@ _021DAC94:
 	ldr r3, [r3, #4]
 	adc r1, r4, #0
 	add r0, r3, #0x3c
-	bl sub_020A3FEC
+	bl DWCi_Acc_SetPlayerId
 _021DACC8:
 	ldr r0, _021DAD7C ; =0x0221A68C
 	ldr r2, [r0, #4]
 	ldr r1, [r2, #0xc]
 	add r0, r2, #0x3c
 	add r2, r2, #0x248
-	bl sub_020A4234
+	bl DWCi_Acc_LoginIdToUserName
 _021DACE0:
 	ldr r0, _021DAD7C ; =0x0221A68C
 	ldr r0, [r0, #4]
@@ -483,13 +483,13 @@ _021DACE0:
 	add r2, r2, #2
 	ldr r0, [r1, #0x10]
 	add r1, sp, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _021DAD7C ; =0x0221A68C
 	add r0, sp, #0x34
 	ldr r1, [r1, #4]
 	add r1, r1, #0x51
 	add r1, r1, #0x200
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r4, _021DAD8C ; =ov4_021D7780
 	ldr r3, _021DAD90 ; =ov4_021D77C4
 	ldr r1, _021DAD94 ; =0x00001C14
@@ -502,7 +502,7 @@ _021DACE0:
 	mov r4, r0
 	ldr r0, [r1, #4]
 	str r4, [r0, #0x24]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _021DAD7C ; =0x0221A68C
 	ldr r2, [r2, #4]
 	str r0, [r2, #0x28]
@@ -536,13 +536,13 @@ ov4_021DAD98: ; 0x021DAD98
 	ldr r0, [r0, #4]
 	add r1, r1, #0x56
 	add r0, r0, #0x48
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r0, _021DAF88 ; =0x0221A68C
 	add r1, sp, #0x300
 	ldr r0, [r0, #4]
 	add r1, r1, #0x83
 	add r0, r0, #0x148
-	bl sub_020D8B7C
+	bl strcpy
 	bl ov4_021D32AC
 	ldr r1, _021DAF88 ; =0x0221A68C
 	mov r0, #0
@@ -556,7 +556,7 @@ ov4_021DAD98: ; 0x021DAD98
 	str r2, [r1, #0x24]
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0x1c]
-	bl sub_020A4488
+	bl DWCi_Acc_IsAuthentic
 	cmp r0, #0
 	beq _021DAE44
 	ldr r0, _021DAF88 ; =0x0221A68C
@@ -582,7 +582,7 @@ _021DAE68:
 	cmp r0, #0
 	addeq sp, sp, #0x3d0
 	ldmeqia sp!, {r3, pc}
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r3, _021DAF88 ; =0x0221A68C
 	ldr r2, _021DAF90 ; =0x000082EA
 	ldr ip, [r3, #4]
@@ -594,7 +594,7 @@ _021DAE68:
 	mov r1, r0, lsl #6
 	orr r1, r1, lr, lsr #26
 	mov r0, lr, lsl #6
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r2, _021DAF94 ; =0x00002710
 	cmp r1, #0
 	cmpeq r0, r2
@@ -622,7 +622,7 @@ _021DAF04:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x48
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021DAF88 ; =0x0221A68C
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0x10]
@@ -633,13 +633,13 @@ _021DAF04:
 	add r2, r2, #2
 	ldr r0, [r1, #0x10]
 	add r1, sp, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _021DAF88 ; =0x0221A68C
 	add r0, sp, #0x34
 	ldr r1, [r1, #4]
 	add r1, r1, #0x51
 	add r1, r1, #0x200
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r2, _021DAF98 ; =ov4_021D7780
 	ldr r0, _021DAF88 ; =0x0221A68C
 	str r2, [sp, #0x40]
@@ -682,7 +682,7 @@ ov4_021DAFA0: ; 0x021DAFA0
 	ldr r1, [r2, #0xc]
 	add r2, sp, #0x32
 	add r0, r0, #4
-	bl sub_020A4234
+	bl DWCi_Acc_LoginIdToUserName
 	ldr r1, _021DB138 ; =0x00000705
 	add r2, sp, #0x32
 	mov r0, r5
@@ -725,10 +725,10 @@ _021DB078:
 	ldr r1, [r2, #0xc]
 	add r2, sp, #0x1d
 	add r0, r0, #4
-	bl sub_020A4234
+	bl DWCi_Acc_LoginIdToUserName
 	add r1, sp, #0x1d
 	add r0, r4, #0x8e
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _021DB108
 	ldr r0, _021DB134 ; =0x0221A68C
@@ -736,13 +736,13 @@ _021DB078:
 	ldr r0, [r0, #4]
 	ldr r1, [r0, #0xc]
 	add r0, r0, #0x3c
-	bl sub_020A4234
+	bl DWCi_Acc_LoginIdToUserName
 	ldr r0, _021DB134 ; =0x0221A68C
 	ldr r2, [r4, #4]
 	ldr r1, [r0, #4]
 	ldr r0, [r1, #0x1c]
 	add r1, r1, #0x3c
-	bl sub_020A45A4
+	bl DWCi_Acc_SetLoginIdToUserData
 	ldr r1, _021DB134 ; =0x0221A68C
 	mov r3, #2
 	ldr r2, [r1, #4]

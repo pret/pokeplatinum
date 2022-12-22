@@ -8,12 +8,12 @@
 
 	thumb_func_start ov6_02246444
 ov6_02246444: ; 0x02246444
-	ldr r3, _0224644C ; =sub_020C4CF4
+	ldr r3, _0224644C ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x18
 	bx r3
 	; .align 2, 0
-_0224644C: .word sub_020C4CF4
+_0224644C: .word MI_CpuFill8
 	thumb_func_end ov6_02246444
 
 	thumb_func_start ov6_02246450

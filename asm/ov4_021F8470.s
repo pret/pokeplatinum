@@ -282,7 +282,7 @@ ov4_021F877C: ; 0x021F877C
 	ldr r1, _021F87AC ; =0x022196FC
 	ldr r2, _021F87B0 ; =0x022196CC
 	ldr r3, _021F87B4 ; =0x000001A3
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F87A0:
 	str r4, [r5, #0x40]
 	ldmia sp!, {r3, r4, r5, pc}
@@ -302,7 +302,7 @@ ov4_021F87B8: ; 0x021F87B8
 	ldr r1, _021F87E4 ; =0x022196FC
 	ldr r2, _021F87E8 ; =0x022196E4
 	ldr r3, _021F87EC ; =0x000001AA
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F87D8:
 	ldr r0, [r4, #0x40]
 	ldmia sp!, {r4, pc}

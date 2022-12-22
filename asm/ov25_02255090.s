@@ -365,7 +365,7 @@ _022552AC:
 	mov r1, #0xfa
 	add r0, r2, r0
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r1, r0, #3
 	cmp r1, #3
 	bls _022552E4
@@ -420,11 +420,11 @@ _02255334:
 	blt _02255334
 	add r0, r5, #0
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	lsl r1, r7, #5
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	add r0, r5, #0
 	bl sub_020181C4
 _02255358:
@@ -453,12 +453,12 @@ ov25_02255360: ; 0x02255360
 	ldr r0, [sp]
 	mov r1, #0x80
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	lsl r1, r5, #5
 	ldr r0, [r0, #0xc]
 	mov r2, #0x80
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	add r0, r4, #0
 	bl sub_020181C4
 _0225539E:
@@ -511,17 +511,17 @@ _022553EA:
 	bl sub_02006DC8
 	add r0, r7, #0
 	add r1, sp, #0x20
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0x20]
 	add r1, r5, #0
 	ldr r0, [r0, #0x14]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x20]
 	ldr r1, [sp, #0x10]
 	ldr r0, [r0, #0x14]
 	add r1, r1, r4
 	add r2, r5, #0
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	ldr r0, [sp, #0x18]
 	add r6, r6, #4
 	add r1, r0, #1
@@ -609,7 +609,7 @@ ov25_02255440: ; 0x02255440
 	bl sub_020198C0
 	add r0, r5, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r1, #0xa
 	mul r1, r0
 	add r0, r0, #4

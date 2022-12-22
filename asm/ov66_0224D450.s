@@ -38,7 +38,7 @@ _0224D48C:
 	ldrb r3, [r6, r4]
 	strb r3, [r6, r5]
 	strb r2, [r6, r4]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r5, r5, #1
 	cmp r5, #0x100
 	and r0, r1, #0xff

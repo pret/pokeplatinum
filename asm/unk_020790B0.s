@@ -49,7 +49,7 @@ _020790E6:
 	mul r0, r4
 	mul r0, r5
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, r0
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18

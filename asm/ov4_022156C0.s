@@ -25,7 +25,7 @@ _022156C4:
 	arm_func_start ov4_022156EC
 ov4_022156EC: ; 0x022156EC
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	bl ov4_02213964
 	cmp r0, #0
@@ -39,7 +39,7 @@ ov4_022156EC: ; 0x022156EC
 	mov r5, r0
 _02215720:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_022156EC
@@ -77,7 +77,7 @@ _02215788:
 	add r0, r0, r2
 	blt _02215788
 _0221579C:
-	bl sub_020E1F6C
+	bl _s32_div_f
 _022157A0:
 	and r0, r0, #0xff
 	ldmia sp!, {r3, pc}

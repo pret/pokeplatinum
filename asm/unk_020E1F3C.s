@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E1F3C
-sub_020E1F3C: ; 0x020E1F3C
+	arm_func_start _ull_sll
+_ull_sll: ; 0x020E1F3C
 	ands r2, r2, #0x3f
 	bxeq lr
 	subs r3, r2, #0x20
@@ -20,4 +20,4 @@ _020E1F60:
 	mov r1, r0, lsl r3
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020E1F3C
+	arm_func_end _ull_sll

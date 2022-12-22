@@ -1,5 +1,5 @@
-.public sub_020C29D8
-.public sub_020C2A5C
+.public OS_LockMutex
+.public OS_UnlockMutex
 .public ov4_02205FF4
 .public ov4_0220613C
 .public ov4_02206224

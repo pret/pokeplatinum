@@ -1,8 +1,8 @@
-.public sub_020C1AF0
-.public sub_020C3880
-.public sub_020C3FA0
-.public sub_020D8B60
-.public sub_020D8C44
-.public sub_020D8E28
-.public sub_020D8E5C
+.public OS_SNPrintf
+.public OS_GetTick
+.public OS_GetMacAddress
+.public strlen
+.public strncpy
+.public strncmp
+.public strchr
 .public ov4_021D8948

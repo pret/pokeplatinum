@@ -6,13 +6,13 @@
 	.text
 
 
-	arm_func_start sub_020A4DE8
-sub_020A4DE8: ; 0x020A4DE8
+	arm_func_start FindContainHeap
+FindContainHeap: ; 0x020A4DE8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	mov r1, #0
 	mov r6, r0
-	bl sub_020A4DBC
+	bl NNS_FndGetNextListObject
 	movs r4, r0
 	beq _020A4E48
 _020A4E04:
@@ -24,38 +24,38 @@ _020A4E04:
 	bhs _020A4E34
 	mov r1, r5
 	add r0, r4, #0xc
-	bl sub_020A4DE8
+	bl FindContainHeap
 	cmp r0, #0
 	moveq r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 _020A4E34:
 	mov r0, r6
 	mov r1, r4
-	bl sub_020A4DBC
+	bl NNS_FndGetNextListObject
 	movs r4, r0
 	bne _020A4E04
 _020A4E48:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020A4DE8
+	arm_func_end FindContainHeap
 
-	arm_func_start sub_020A4E50
-sub_020A4E50: ; 0x020A4E50
+	arm_func_start FindListContainHeap
+FindListContainHeap: ; 0x020A4E50
 	stmfd sp!, {r4, lr}
 	ldr r4, _020A4E74 ; =0x021C3AA4
 	mov r1, r0
 	mov r0, r4
-	bl sub_020A4DE8
+	bl FindContainHeap
 	cmp r0, #0
 	addne r4, r0, #0xc
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A4E74: .word 0x021C3AA4
-	arm_func_end sub_020A4E50
+	arm_func_end FindListContainHeap
 
-	arm_func_start sub_020A4E78
-sub_020A4E78: ; 0x020A4E78
+	arm_func_start NNSi_FndInitHeapHead
+NNSi_FndInitHeapHead: ; 0x020A4E78
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldrh r0, [sp, #8]
@@ -69,37 +69,37 @@ sub_020A4E78: ; 0x020A4E78
 	add r0, r4, #0xc
 	mov r1, #4
 	str r2, [r4, #0x20]
-	bl sub_020A4C10
+	bl NNS_FndInitList
 	ldr r0, _020A4EEC ; =0x021C3AA0
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _020A4ED8
 	ldr r0, _020A4EF0 ; =0x021C3AA4
 	mov r1, #4
-	bl sub_020A4C10
+	bl NNS_FndInitList
 	ldr r0, _020A4EEC ; =0x021C3AA0
 	mov r1, #1
 	str r1, [r0, #0]
 _020A4ED8:
 	mov r0, r4
-	bl sub_020A4E50
+	bl FindListContainHeap
 	mov r1, r4
-	bl sub_020A4C54
+	bl NNS_FndAppendListObject
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A4EEC: .word 0x021C3AA0
 _020A4EF0: .word 0x021C3AA4
-	arm_func_end sub_020A4E78
+	arm_func_end NNSi_FndInitHeapHead
 
-	arm_func_start sub_020A4EF4
-sub_020A4EF4: ; 0x020A4EF4
+	arm_func_start NNSi_FndFinalizeHeap
+NNSi_FndFinalizeHeap: ; 0x020A4EF4
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020A4E50
+	bl FindListContainHeap
 	mov r1, r4
-	bl sub_020A4D5C
+	bl NNS_FndRemoveListObject
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A4EF4
+	arm_func_end NNSi_FndFinalizeHeap
 
 	.bss
 

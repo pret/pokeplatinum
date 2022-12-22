@@ -181,7 +181,7 @@ _021DDE62:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020D5124
+	bl memset
 	str r4, [r5, #8]
 	add r0, r4, #0
 	add r1, r6, #0
@@ -265,7 +265,7 @@ _021DDEF0:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0x2c
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -953,7 +953,7 @@ _021DE416:
 _021DE426:
 	ldr r0, [r5, #0]
 	mov r1, #0x55
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	cmp r1, #2
 	ble _021DE436
@@ -1209,7 +1209,7 @@ _021DE5EA:
 	mul r1, r0
 	add r0, r1, #0
 	mov r1, #0xb0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	asr r0, r0, #4
@@ -1220,7 +1220,7 @@ _021DE5EA:
 	lsl r2, r2, #0x10
 	mov r3, #0
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa

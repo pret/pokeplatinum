@@ -1338,7 +1338,7 @@ _021D17A4:
 	add r0, #0x52
 	ldrh r0, [r0]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #9
 	add r4, #0x50
 	strh r1, [r4]
@@ -1352,7 +1352,7 @@ _021D17C2:
 	add r0, #0x52
 	ldrh r0, [r0]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, #0x50
 	strh r1, [r4]
 	mov r0, #1

@@ -17,7 +17,7 @@
 .public sub_0207A0FC
 .public sub_0207A184
 .public sub_0207A268
-.public sub_020C4DB0
+.public MI_CpuCopy8
 .public ov104_0223AA50
 .public ov104_0223B7A8
 .public ov104_0223BD70

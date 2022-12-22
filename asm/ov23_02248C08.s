@@ -20,7 +20,7 @@ ov23_02248C08: ; 0x02248C08
 	str r0, [sp, #0xc]
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0x28]
 	ldr r0, [sp, #0xc]
 	cmp r1, #0

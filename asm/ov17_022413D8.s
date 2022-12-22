@@ -93,7 +93,7 @@ ov17_0224145C: ; 0x0224145C
 	mov r1, #0
 	mov r2, #0xc
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0x5c]
 	ldr r2, _0224148C ; =0x00009CA4
 	str r0, [r4, #0]
@@ -224,7 +224,7 @@ _0224154C:
 	mov r2, #0x32
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0x14]
 	lsl r0, r6, #5
 	str r1, [sp]
@@ -401,7 +401,7 @@ _022416AC:
 	ldr r1, [r6, #0]
 	mov r0, #0
 	lsl r2, r2, #6
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -994,7 +994,7 @@ ov17_02241B3C: ; 0x02241B3C
 	mov r1, #0
 	mov r2, #0x28
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	strb r0, [r7]
 	str r7, [r4, #4]
@@ -1511,7 +1511,7 @@ ov17_02241F34: ; 0x02241F34
 	add r0, r3, #0
 	mov r1, #0xa
 	str r2, [sp, #4]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #8]
 	cmp r0, #0x18
 	ble _02241F50
@@ -1560,11 +1560,11 @@ _02241F7A:
 _02241F9A:
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r5, r1, #0
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x14]
 	lsl r0, r5, #2
 	add r0, r7, r0
@@ -1648,7 +1648,7 @@ ov17_02242048: ; 0x02242048
 	mov r1, #0
 	mov r2, #0x10
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	mov r1, #0
 	str r5, [r4, #0]
@@ -1692,11 +1692,11 @@ _02242092:
 _022420AE:
 	ldr r0, [r4, #4]
 	ldr r1, _02242150 ; =0x3E99999A
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [r4, #4]
 	ldr r0, [r4, #8]
 	ldr r1, _02242150 ; =0x3E99999A
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [r4, #8]
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #4]
@@ -1708,7 +1708,7 @@ _022420AE:
 	mov r1, #0xff
 	ldr r0, [r4, #4]
 	lsl r1, r1, #0x16
-	bl sub_020E10AC
+	bl _f_fge
 	blo _0224214A
 	ldrb r0, [r4, #0xc]
 	add r0, r0, #1
@@ -1717,11 +1717,11 @@ _022420AE:
 _022420E8:
 	ldr r0, [r4, #4]
 	ldr r1, _02242150 ; =0x3E99999A
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [r4, #4]
 	ldr r0, [r4, #8]
 	ldr r1, _02242150 ; =0x3E99999A
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [r4, #8]
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #4]
@@ -1733,7 +1733,7 @@ _022420E8:
 	mov r1, #0xfe
 	ldr r0, [r4, #4]
 	lsl r1, r1, #0x16
-	bl sub_020E1164
+	bl _f_fle
 	bhi _0224214A
 	mov r1, #0xfe
 	lsl r1, r1, #0x16
@@ -1986,13 +1986,13 @@ _022422E2:
 	ldr r0, [r4, #0x10]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x28]
 	ldr r1, [r4, #0x24]
 	ldr r0, [r4, #0x14]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x2a]
 	add r0, r4, #0
 	add r0, #0x2e
@@ -2077,13 +2077,13 @@ _02242398:
 	ldr r0, [r4, #0x10]
 	sub r0, r1, r0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x28]
 	ldr r1, [r4, #0x24]
 	ldr r0, [r4, #0x14]
 	sub r0, r1, r0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x2a]
 	add r0, r4, #0
 	add r0, #0x2e
@@ -2234,7 +2234,7 @@ ov17_022424D4: ; 0x022424D4
 	str r1, [sp]
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #4]
 	cmp r0, #5
 	ble _022424F0
@@ -2300,7 +2300,7 @@ _0224251E:
 	mov r1, #0
 	mov r2, #0x34
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x1c]
 	lsl r1, r5, #2
 	str r0, [r4, #0]
@@ -2506,7 +2506,7 @@ ov17_022426E8: ; 0x022426E8
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #0]
 	mov r2, #0xfa
 	strb r6, [r4, #0xd]
@@ -2554,7 +2554,7 @@ _02242742:
 	str r1, [sp]
 	mov r2, #0xe
 	mov r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r1, #1
 	ldr r0, [r4, #0]
 	add r2, r1, #0
@@ -2571,7 +2571,7 @@ _0224276A:
 	ldr r0, _0224287C ; =0x04000050
 	mov r1, #4
 	mov r2, #0xe
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, [r4, #0]
 	mov r1, #0
 	mov r2, #1
@@ -2626,7 +2626,7 @@ _022427D2:
 	mov r1, #4
 	mov r2, #0xe
 	mov r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	b _02242814
 _022427F2:
 	mov r1, #0
@@ -2639,7 +2639,7 @@ _022427F2:
 	ldr r0, _0224287C ; =0x04000050
 	mov r2, #0xe
 	add r3, r1, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r1, #1
 	ldr r0, [r4, #0]
 	add r2, r1, #0
@@ -3798,7 +3798,7 @@ ov17_02243120: ; 0x02243120
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #6
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	lsl r0, r6, #1
 	add r1, r5, r0
 	ldr r0, _02243148 ; =0x00000236
@@ -3846,7 +3846,7 @@ _0224316E:
 ov17_02243174: ; 0x02243174
 	push {r4, lr}
 	mov r1, #0x32
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r0, #4
 	blo _02243182
 	mov r0, #3
@@ -3884,7 +3884,7 @@ ov17_022431A0: ; 0x022431A0
 	mov r1, #0
 	mov r2, #0x14
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x1c]
 	str r5, [r4, #0]
 	str r0, [r4, #0x10]
@@ -3997,7 +3997,7 @@ _0224328A:
 	ldrb r0, [r4, #0xb]
 	mov r1, #0x32
 	lsl r0, r0, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0xf
 	ldrsb r2, [r4, r1]
 	cmp r2, r0
@@ -4125,66 +4125,66 @@ _0224337E:
 	mov r0, #6
 	ldrsh r0, [r6, r0]
 	sub r0, #0x28
-	bl sub_020E17B4
+	bl _f_itof
 	str r0, [sp, #0x14]
 	mov r0, #4
 	ldrsh r1, [r6, r0]
 	ldr r0, [sp, #0x10]
 	sub r0, r1, r0
-	bl sub_020E17B4
+	bl _f_itof
 	add r4, r0, #0
 	ldr r0, [sp, #0x14]
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	ldr r0, _022434CC ; =0x45800000
 	bls _022433C0
 	ldr r1, [sp, #0x14]
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [sp]
 	b _022433D0
 _022433C0:
 	ldr r1, [sp, #0x14]
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [sp]
 _022433D0:
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	ldr r0, _022434CC ; =0x45800000
 	bls _022433EE
 	add r1, r4, #0
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _022433FC
 _022433EE:
 	add r1, r4, #0
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _022433FC:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r4, r0, #0
 	ldr r0, [sp]
-	bl sub_020E1740
+	bl _f_ftoi
 	add r1, r0, #0
 	add r0, r4, #0
-	bl sub_020BDA20
+	bl FX_Atan2Idx
 	ldr r1, _022434D0 ; =0x00008CA0
 	mul r1, r0
 	add r0, r1, #0
 	ldr r1, _022434D4 ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #4]
@@ -4195,7 +4195,7 @@ _02243422:
 	mov r1, #0
 	mov r2, #0x28
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x38]
 	add r1, r4, #0
 	str r0, [r4, #4]
@@ -4247,7 +4247,7 @@ _02243492:
 	lsl r0, r0, #8
 	lsl r1, r2, #1
 	add r1, r2, r1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x1c]
 	mov r0, #2
 	ldrsh r0, [r6, r0]
@@ -4373,7 +4373,7 @@ _02243586:
 	mov r1, #0x64
 	lsr r4, r0, #8
 	ldrh r0, [r5, #0x1e]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D1D4
@@ -4382,7 +4382,7 @@ _02243586:
 	ldrh r0, [r5, #0x1e]
 	mov r1, #0x64
 	asr r7, r6, #0x1f
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D15C
@@ -4391,14 +4391,14 @@ _02243586:
 	add r2, r6, #0
 	asr r1, r0, #0x1f
 	add r3, r7, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #8]
 	ldr r0, [sp, #4]
 	add r4, r1, #0
 	asr r1, r0, #0x1f
 	add r2, r6, #0
 	add r3, r7, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	add r2, r1, #0
 	add r1, r5, #0
@@ -4476,7 +4476,7 @@ ov17_0224365C: ; 0x0224365C
 	mov r1, #0
 	mov r2, #0xc
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #0]
 	ldr r0, _02243688 ; =ov17_022436A4
 	ldr r2, _0224368C ; =0x00009C40
@@ -4561,7 +4561,7 @@ _022436F2:
 	mov r1, #0
 	mov r2, #0x28
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp]
 	ldr r2, _02243748 ; =0x00009C40
 	str r0, [r4, #0]
@@ -4662,14 +4662,14 @@ _022437AA:
 _022437C6:
 	ldrh r0, [r5, #0xc]
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D15C
 	add r4, r0, #0
 	ldrh r0, [r5, #0xc]
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D1D4
@@ -4682,7 +4682,7 @@ _022437C6:
 	add r0, r4, #0
 	lsl r2, r2, #0xe
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #6
 	str r0, [sp]
 	add r4, r1, #0
@@ -4690,7 +4690,7 @@ _022437C6:
 	add r0, r6, #0
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r1, #0
 	ldr r1, [r5, #0x1c]
 	mov r6, #2
@@ -4767,10 +4767,10 @@ _022438A2:
 	mov r1, #3
 	lsl r1, r1, #8
 	str r1, [r5, #0x14]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	lsl r0, r4, #8
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x18]
 	ldrb r0, [r5, #0x10]
 	cmp r0, r6
@@ -4928,7 +4928,7 @@ ov17_022439C8: ; 0x022439C8
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	strh r5, [r4, #4]
 	cmp r5, #0x8f
 	bgt _022439FE

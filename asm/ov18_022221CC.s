@@ -10,7 +10,7 @@
 ov18_022221CC: ; 0x022221CC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -74,7 +74,7 @@ _02222298: .word 0x02250D20
 ov18_0222229C: ; 0x0222229C
 	stmfd sp!, {r3, lr}
 	ldr r0, _022222E4 ; =ov18_02222330
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	mov r1, r0
 	mov r0, #0x80
 	bl ov18_02223ED8
@@ -85,7 +85,7 @@ ov18_0222229C: ; 0x0222229C
 	ldrh r1, [r3, #6]
 	ldrh r2, [r3, #2]
 	ldrh r3, [r3]
-	bl sub_020D0764
+	bl WM_SetLifeTime
 	mov r1, r0
 	mov r0, #0x1d
 	bl ov18_02223ED8
@@ -187,7 +187,7 @@ _02222418:
 	ldr r1, _02222B78 ; =0x02250D20
 	ldr r0, _02222B7C ; =ov18_02222330
 	ldr r1, [r1, #8]
-	bl sub_020CEDC8
+	bl WM_SetParentParameter
 	mov r1, r0
 	mov r0, #7
 	bl ov18_02223ED8
@@ -202,7 +202,7 @@ _0222243C:
 	blx r2
 	ldr r0, _02222B7C ; =ov18_02222330
 	mov r1, #1
-	bl sub_020D0714
+	bl WM_SetBeaconIndication
 	mov r1, r0
 	mov r0, #0x19
 	bl ov18_02223ED8
@@ -228,7 +228,7 @@ _022224B0:
 	ldr r1, _02222B80 ; =0x0224976C
 	ldr r0, _02222B7C ; =ov18_02222330
 	ldr r1, [r1, #0xc]
-	bl sub_020CEEF4
+	bl WMi_StartParentEx
 	mov r1, r0
 	mov r0, #8
 	bl ov18_02223ED8
@@ -352,7 +352,7 @@ _022225B4:
 	ldr r1, [ip, #0x504]
 	ldr r0, _02222B7C ; =ov18_02222330
 	add r3, ip, #0x40
-	bl sub_020CF540
+	bl WM_StartMPEx
 	mov r1, r0
 	mov r0, #0xe
 	bl ov18_02223ED8
@@ -480,7 +480,7 @@ _02222850:
 	cmp r2, #1
 	bne _02222860
 	ldr r0, _02222B84 ; =0x000032C8
-	bl sub_020C3E08
+	bl OS_SpinWait
 _02222860:
 	ldr r0, _02222B78 ; =0x02250D20
 	mov r2, #0
@@ -561,7 +561,7 @@ _02222978:
 	ldr r0, _02222B7C ; =ov18_02222330
 	add r1, r1, #0x500
 	strh r2, [r1, #0x28]
-	bl sub_020CED88
+	bl WM_End
 	mov r1, r0
 	mov r0, #2
 	bl ov18_02223ED8
@@ -571,9 +571,9 @@ _022229A4:
 	mov r1, #0
 	mov r2, r1
 	mov r0, #1
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 	mov r0, #0
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	ldrh r0, [r4, #2]
 	cmp r0, #0
 	beq _022229F8
@@ -592,7 +592,7 @@ _022229A4:
 _022229F8:
 	ldr r0, _02222B7C ; =ov18_02222330
 	mov r1, #0
-	bl sub_020D0714
+	bl WM_SetBeaconIndication
 	mov r1, r0
 	mov r0, #0x19
 	bl ov18_02223ED8
@@ -685,7 +685,7 @@ _02222B2C:
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, pc}
 _02222B4C:
-	bl sub_020C42A8
+	bl OS_Terminate
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, pc}
 _02222B58:
@@ -802,7 +802,7 @@ _02222CB4:
 	ldrh r1, [r3, #6]
 	ldrh r2, [r3, #2]
 	ldrh r3, [r3]
-	bl sub_020D0764
+	bl WM_SetLifeTime
 	mov r1, r0
 	mov r0, #0x1d
 	bl ov18_02223ED8
@@ -843,7 +843,7 @@ _02222D14:
 	ldr r0, _02223418 ; =ov18_02222BF8
 	ldr r1, _0222341C ; =0x02250D40
 	str r2, [r4, #0x5e8]
-	bl sub_020CEFA0
+	bl WM_StartScan
 	mov r1, r0
 	mov r0, #0xa
 	bl ov18_02223ED8
@@ -941,7 +941,7 @@ _02222EBC:
 	mov r0, #0x180
 	mla r0, r5, r0, r1
 	mov r1, #0xc0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, _02223410 ; =0x02250D20
 	add r2, r4, #0x600
 	mov r0, #0x180
@@ -949,7 +949,7 @@ _02222EBC:
 	ldrh r0, [r1]
 	add r1, r4, #0x440
 	mov r3, #0xc0
-	bl sub_020C43C4
+	bl MI_DmaCopy16
 	str r5, [r4, #0x5ec]
 	b _02222F7C
 _02222F08:
@@ -968,12 +968,12 @@ _02222F0C:
 	add r1, r1, #0xc0
 	mov r2, #0xb8
 	strh r7, [r3, #0xe0]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r1, r4, #0x600
 	mov r0, #0x180
 	mla r0, r5, r0, r1
 	mov r1, #0xc0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, _02223410 ; =0x02250D20
 	add r2, r4, #0x600
 	mov r0, #0x180
@@ -981,7 +981,7 @@ _02222F0C:
 	ldrh r0, [r1]
 	add r1, r4, #0x440
 	mov r3, #0xc0
-	bl sub_020C43C4
+	bl MI_DmaCopy16
 	str r5, [r4, #0x5ec]
 _02222F7C:
 	ldr r2, [r4, #0x51c]
@@ -1003,7 +1003,7 @@ _02222F7C:
 _02222FBC:
 	ldr r0, _02223418 ; =ov18_02222BF8
 	ldr r1, _0222341C ; =0x02250D40
-	bl sub_020CEFA0
+	bl WM_StartScan
 	mov r1, r0
 	mov r0, #0xa
 	bl ov18_02223ED8
@@ -1029,7 +1029,7 @@ _02222FDC:
 _0222301C:
 	ldr r0, _02223418 ; =ov18_02222BF8
 	ldr r1, _0222341C ; =0x02250D40
-	bl sub_020CEFA0
+	bl WM_StartScan
 	mov r1, r0
 	mov r0, #0xa
 	bl ov18_02223ED8
@@ -1058,7 +1058,7 @@ _02223078:
 	ldr r0, _02223418 ; =ov18_02222BF8
 	mov r3, #1
 	str r2, [sp]
-	bl sub_020CF21C
+	bl WM_StartConnectEx
 	mov r1, r0
 	mov r0, #0xc
 	bl ov18_02223ED8
@@ -1115,7 +1115,7 @@ _0222312C:
 	mov r0, #1
 	mov r2, #0
 	strh r0, [r3, #0x2a]
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 	cmp r0, #0
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -1141,7 +1141,7 @@ _0222312C:
 	ldr r1, [r4, #0x504]
 	ldr r0, _02223418 ; =ov18_02222BF8
 	add r3, r4, #0x40
-	bl sub_020CF540
+	bl WM_StartMPEx
 	mov r1, r0
 	mov r0, #0xe
 	bl ov18_02223ED8
@@ -1253,7 +1253,7 @@ _02223340:
 	ldr r0, _02223418 ; =ov18_02222BF8
 	add r1, r1, #0x500
 	strh r2, [r1, #0x28]
-	bl sub_020CED88
+	bl WM_End
 	mov r1, r0
 	mov r0, #2
 	bl ov18_02223ED8
@@ -1295,7 +1295,7 @@ _022233D4:
 	cmp r0, #0x17
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _022233EC:
-	bl sub_020C42A8
+	bl OS_Terminate
 	add sp, sp, #0x1c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _022233F8:
@@ -1318,7 +1318,7 @@ ov18_02223424: ; 0x02223424
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	mov r1, #0
 	add r2, sp, #0
 	mov r3, r1
@@ -1366,10 +1366,10 @@ ov18_0222348C: ; 0x0222348C
 	cmp r7, #0x10000
 	bic r5, r0, #0x1f
 	bne _022234E0
-	bl sub_020CEB20
+	bl WM_GetNextTgid
 	mov r7, r0
 _022234E0:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r3, _02223668 ; =0x0000FFFF
 	ldr r1, _0222366C ; =0x0224976C
 	mov r2, #5
@@ -1389,11 +1389,11 @@ _022234E0:
 	mov r0, #0
 	mov r2, #0x1e00
 	str r5, [r3, #0xc]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, r5
 	mov r0, #0
 	mov r2, #0x1340
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrb r0, [sb, #1]
 	add r2, r4, #0x530
 	mov r1, #0
@@ -1427,7 +1427,7 @@ _022235AC:
 	mov r0, sb
 	add r1, r5, #0x1300
 	mov r2, #0x16
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r0, [sb, #1]
 	cmp r0, #0xa
 	bhs _022235D8
@@ -1468,7 +1468,7 @@ _022235D8:
 	strh r2, [r1, #0x16]
 	add r1, r5, #0x1000
 	str r3, [r1, #0x31c]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -1519,14 +1519,14 @@ ov18_022236E0: ; 0x022236E0
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	mov r4, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02223774 ; =0x02250D20
 	mov r6, r0
 	ldr r1, [r1, #8]
 	ldrb r1, [r1, #0x50d]
 	cmp r1, #0
 	beq _02223714
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 _02223714:
@@ -1537,7 +1537,7 @@ _02223714:
 	cmp r0, #0
 	bne _0222373C
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 _0222373C:
@@ -1552,7 +1552,7 @@ _0222373C:
 	ldr r1, [r2, #8]
 	add r1, r1, #0x500
 	strh r3, [r1, #2]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -1588,7 +1588,7 @@ _022237D4:
 	ldrh r2, [r4]
 	ldmib r4, {r0, r1}
 	ldr r1, [r1, #0x508]
-	bl sub_020CECC8
+	bl WM_Initialize
 	cmp r0, #4
 	beq _022237D4
 	cmp r0, #2
@@ -1597,7 +1597,7 @@ _022237D4:
 	ldr r0, _02223848 ; =0x02250D20
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x508]
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	ldr r0, _02223848 ; =0x02250D20
 	mov r2, #1
 	ldr r1, [r0, #8]
@@ -1607,7 +1607,7 @@ _022237D4:
 _02223820:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x508]
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	mov r0, r4
 	ldr r0, [r0, #8]
 	mov r1, #1
@@ -1623,7 +1623,7 @@ _02223848: .word 0x02250D20
 ov18_0222384C: ; 0x0222384C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r3, _02223A1C ; =0x02250D20
 	mov r4, r0
 	ldr r0, [r3, #8]
@@ -1638,7 +1638,7 @@ ov18_0222384C: ; 0x0222384C
 	add r1, r5, #0x1000
 	ldr r6, [r1, #0x4e4]
 	add r1, r5, #0x1340
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r0, r6
 	bl ov18_0221F84C
 	ldr r1, _02223A1C ; =0x02250D20
@@ -1682,14 +1682,14 @@ _022238F0:
 	ldr r1, [r3, #0xc]
 	add r1, r1, #0x388
 	add r1, r1, #0x1400
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _02223A1C ; =0x02250D20
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x1e
 	add r0, r0, #0x354
 	add r0, r0, #0x1400
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _02223A1C ; =0x02250D20
 	mov r2, #1
 	ldr r0, [r1, #8]
@@ -1728,10 +1728,10 @@ _022238F0:
 	bl ov18_02223778
 	mov r5, r0
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0xf
 	mov r1, #1
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	ldr r1, _02223A1C ; =0x02250D20
 	ldr r1, [r1, #0xc]
 	add r1, r1, #0x7000
@@ -1766,7 +1766,7 @@ ov18_02223A54: ; 0x02223A54
 	ldr r0, _02223A88 ; =0x02250D20
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x508]
-	bl sub_020CED50
+	bl WM_Reset
 	mov r4, r0
 	mov r1, r4
 	mov r0, #1
@@ -1791,7 +1791,7 @@ _02223A94: .word ov18_02223A54
 ov18_02223A98: ; 0x02223A98
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, #1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02223B24 ; =0x02250D20
 	mov r4, r0
 	ldr r2, [r1, #8]
@@ -1824,7 +1824,7 @@ _02223B0C:
 	mov r5, r0
 _02223B14:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1835,7 +1835,7 @@ _02223B28: .word ov18_02223A8C
 	arm_func_start ov18_02223B2C
 ov18_02223B2C: ; 0x02223B2C
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02223B64 ; =0x02250D20
 	mov r4, r0
 	ldr r0, [r1, #0xc]
@@ -1843,11 +1843,11 @@ ov18_02223B2C: ; 0x02223B2C
 	ldr r0, [r0, #0x320]
 	cmp r0, #0
 	bne _02223B54
-	bl sub_020C42A8
+	bl OS_Terminate
 _02223B54:
 	bl ov18_02223A98
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02223B64: .word 0x02250D20
@@ -1859,7 +1859,7 @@ ov18_02223B68: ; 0x02223B68
 	mov r5, r0
 	ldr r0, _02223CE8 ; =ov18_02222330
 	mov r1, r5
-	bl sub_020CF2E8
+	bl WM_Disconnect
 	cmp r5, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	cmp r5, #0x10
@@ -1876,14 +1876,14 @@ ov18_02223B68: ; 0x02223B68
 	add r0, r0, #0xa8
 	add r0, r0, #0x1400
 	add r0, r0, r4, lsl #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02223CEC ; =0x02250D20
 	mov r2, #0x16
 	ldr r0, [r0, #0xc]
 	mov r1, #0
 	add r0, r0, #0x1340
 	mla r0, r4, r2, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, r5
 	bl ov18_02224400
 	ldr ip, _02223CEC ; =0x02250D20
@@ -1981,7 +1981,7 @@ ov18_02223D04: ; 0x02223D04
 	mov r4, #3
 	mov r1, #0
 	str r4, [sp, #8]
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	mov r4, r0
 	mov r1, r4
 	mov r0, #0xf

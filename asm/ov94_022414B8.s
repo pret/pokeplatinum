@@ -508,7 +508,7 @@ ov94_022418B8: ; 0x022418B8
 	str r0, [r4, r1]
 	ldr r1, [r4, r1]
 	mov r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r2, _0224191C ; =0x00001084
 	mov r0, #0x3e
 	ldr r2, [r4, r2]
@@ -2047,7 +2047,7 @@ ov94_02242548: ; 0x02242548
 	ldr r2, _022425A0 ; =0x000001EE
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r2, #0
 	str r2, [sp]
 	add r0, sp, #8
@@ -2107,7 +2107,7 @@ ov94_022425A8: ; 0x022425A8
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	add r1, r5, #0
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	b _022425F4
 _022425DC:
 	mov r0, #0x46

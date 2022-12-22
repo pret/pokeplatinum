@@ -45,9 +45,9 @@
 .public sub_02039734
 .public sub_0206CFCC
 .public sub_0207D69C
-.public sub_020C4CF4
-.public sub_020D5124
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public memset
+.public _s32_div_f
 .public ov4_021D25FC
 .public ov83_0223B5A0
 .public ov83_0223B784

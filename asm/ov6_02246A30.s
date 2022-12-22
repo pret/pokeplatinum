@@ -185,7 +185,7 @@ ov6_02246B40: ; 0x02246B40
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r1, sp, #0
 	bl ov6_02246AF8
@@ -197,7 +197,7 @@ ov6_02246B40: ; 0x02246B40
 _02246B62:
 	bl sub_0201D35C
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, sp, #0
 	ldrb r0, [r0, r1]
 	add sp, #0x24

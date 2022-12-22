@@ -110,7 +110,7 @@ _021D0E50:
 	mov r1, #0
 	mov r2, #0x28
 	str r0, [r4, #4]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	mov r1, #4
 	mov r2, #8
@@ -874,11 +874,11 @@ ov5_021D1444: ; 0x021D1444
 	add r1, sp, #0
 	strh r0, [r1]
 	mov r1, #2
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add sp, #0x68
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -912,7 +912,7 @@ ov5_021D1524: ; 0x021D1524
 ov5_021D154C: ; 0x021D154C
 	push {lr}
 	sub sp, #0x14
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7c
@@ -1073,13 +1073,13 @@ _021D165C:
 	ldr r1, _021D16E8 ; =0x021C5A94
 	add r0, sp, #0
 	mov r2, #0x40
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	ldr r1, _021D16EC ; =0x021C5B0C
 	mov r0, #0x50
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	str r2, [r1, #0x7c]
-	bl sub_020AF480
+	bl NNS_G3dGlbFlushP
 	ldr r0, [r4, #0x40]
 	bl ov5_021DF4F8
 	bl sub_02020C08
@@ -1093,13 +1093,13 @@ _021D16B8:
 	ldr r1, _021D16E8 ; =0x021C5A94
 	add r0, sp, #0x40
 	mov r2, #0x40
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	ldr r1, _021D16EC ; =0x021C5B0C
 	mov r0, #0x50
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	str r2, [r1, #0x7c]
-	bl sub_020AF480
+	bl NNS_G3dGlbFlushP
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #4]
 	bl ov5_021D1B18

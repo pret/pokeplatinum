@@ -23,7 +23,7 @@ ov93_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0xa0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	add r5, r0, #0
@@ -69,13 +69,13 @@ _021D0DF8:
 	ldrsh r2, [r3, r7]
 	ldrsh r3, [r3, r6]
 	add r0, r4, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r2, [r5, #4]
 	lsl r1, r4, #1
 	add r1, r2, r1
 	ldrh r1, [r1, #0x18]
 	add r0, r4, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	add r0, r4, #1
 	lsl r0, r0, #0x18
 	lsr r4, r0, #0x18
@@ -85,12 +85,12 @@ _021D0DF8:
 	ldrh r0, [r2, #0x20]
 	ldrh r1, [r2, #0x22]
 	ldr r2, [r2, #0x28]
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r2, [r5, #4]
 	ldrh r0, [r2, #0x24]
 	ldrh r1, [r2, #0x26]
 	ldr r2, [r2, #0x2c]
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	ldr r3, [r5, #4]
 	ldr r0, [r3, #0x40]
 	str r0, [sp]
@@ -100,7 +100,7 @@ _021D0DF8:
 	ldr r1, [r3, #0x34]
 	ldr r2, [r3, #0x38]
 	ldr r3, [r3, #0x3c]
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 	mov r0, #0
 	mov r1, #0x48
 	bl sub_0208C120
@@ -246,7 +246,7 @@ _021D0F68:
 	add r1, #0x80
 	ldr r1, [r1, #0]
 	add r0, r7, #0
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	ldr r0, [r5, #0x60]
 	bl sub_020181C4
 	add r0, r4, #1
@@ -297,7 +297,7 @@ ov93_021D0FA8: ; 0x021D0FA8
 	orr r0, r1
 	strh r0, [r2]
 	ldr r0, _021D1008 ; =0x021D14A8
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	bl sub_0201FFE8
 	pop {r3, pc}
 	nop
@@ -361,26 +361,26 @@ ov93_021D102C: ; 0x021D102C
 	add r2, #0x5c
 	bl sub_0201CA3C
 	ldr r0, [r5, #0x5c]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [sp, #4]
 	ldr r0, [r5, #0x58]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r5, #0x58]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r5, #0x58]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r5, #0x58]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	add r0, r5, #0
 	str r0, [sp, #8]
 	add r0, #0x70
@@ -405,12 +405,12 @@ _021D10AE:
 	bl sub_02006CB8
 	str r0, [r4, #0x60]
 	mov r1, #0
-	bl sub_020B3C5C
+	bl NNS_G3dGetAnmByIdx
 	add r7, r0, #0
 	ldr r0, [sp, #8]
 	ldr r2, [r5, #0x58]
 	add r1, r7, #0
-	bl sub_020B2CB4
+	bl NNS_G3dAllocAnmObj
 	add r1, r4, #0
 	add r1, #0x80
 	str r0, [r1, #0]
@@ -420,11 +420,11 @@ _021D10AE:
 	ldr r2, [r5, #0x58]
 	ldr r3, [sp, #4]
 	add r1, r7, #0
-	bl sub_020AE4F0
+	bl NNS_G3dAnmObjInit
 	add r4, #0x80
 	ldr r1, [r4, #0]
 	add r0, r5, #4
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 	add r0, r6, #1
 	lsl r0, r0, #0x18
 	lsr r6, r0, #0x18

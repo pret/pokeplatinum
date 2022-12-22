@@ -24,7 +24,7 @@ ov80_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0xe4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _021D0DD4 ; =0x00000139
 	str r5, [r4, #0x2c]
 	ldrb r0, [r5, r0]
@@ -141,7 +141,7 @@ ov80_021D0E68: ; 0x021D0E68
 	beq _021D0E7E
 	blx r1
 _021D0E7E:
-	bl sub_020A635C
+	bl NNS_GfdDoVramTransfer
 	add r0, r4, #0
 	bl ov80_021D2AEC
 	ldr r0, [r4, #0x28]
@@ -812,7 +812,7 @@ ov80_021D13DC: ; 0x021D13DC
 	add r2, r1, #0
 	mov r3, #0x1f
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0
 	add r1, r0, #0
 	bl sub_0200F344

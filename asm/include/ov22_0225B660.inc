@@ -63,8 +63,8 @@
 .public sub_02076B10
 .public sub_02095888
 .public sub_020958B8
-.public sub_020A73C0
-.public sub_020D5124
+.public NNS_G2dSetupSoftwareSpriteCamera
+.public memset
 .public ov22_02255094
 .public ov22_022550B4
 .public ov22_022551E4

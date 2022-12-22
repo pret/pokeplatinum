@@ -62,4 +62,4 @@
 .public sub_0208B028
 .public sub_0208B090
 .public sub_0208B230
-.public sub_020E2178
+.public _u32_div_f

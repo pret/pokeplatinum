@@ -11,9 +11,9 @@
 .public sub_020A380C
 .public sub_020A388C
 .public sub_020A3A3C
-.public sub_020C4AF0
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D316C
-.public sub_020D32D4
-.public sub_020D5190
+.public MIi_CpuClear16
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public MATHi_CRC16InitTableRev
+.public MATH_CalcCRC16
+.public memcmp

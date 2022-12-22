@@ -14,7 +14,7 @@ ov97_02236380: ; 0x02236380
 	mov r1, #0x18
 	add r5, r2, #0
 	mov r6, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0x17
 	bhi _022363D6
 	add r0, r1, r1
@@ -2256,7 +2256,7 @@ _02237256:
 	str r3, [sp, #8]
 	orr r0, r2
 	mov r1, #0x1c
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp, #8]
 	add r0, r4, #0
 	mov r1, #0x70

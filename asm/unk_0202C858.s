@@ -20,7 +20,7 @@ sub_0202C860: ; 0x0202C860
 	ldr r2, _0202C874 ; =0x00000FF8
 	add r1, r0, #0
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, #0x1e
 	bl sub_02025C84
 	pop {r3, pc}

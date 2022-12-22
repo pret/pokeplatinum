@@ -21,7 +21,7 @@ sub_0205A0D8: ; 0x0205A0D8
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0xc]
 	bl sub_02025E38
 	add r1, r0, #0
@@ -77,7 +77,7 @@ sub_0205A164: ; 0x0205A164
 	mov r1, #0
 	mov r2, #0x40
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0x24]
 	ldr r0, [r0, #0xc]
 	bl sub_02025E44
@@ -204,7 +204,7 @@ _0205A26A:
 	add r0, #0x2c
 	add r1, #0x3d
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r4, #4]
 	add r0, #0x22
 	ldrb r0, [r0]
@@ -1300,7 +1300,7 @@ _0205AB1E:
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x8c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	mov r1, #5
 	add r0, #0x43
@@ -1489,7 +1489,7 @@ _0205ACA6:
 	bl sub_0207A0FC
 	add r1, r4, #0
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r5, r5, #1
 	add r4, r4, r6
 	cmp r5, #3
@@ -1658,7 +1658,7 @@ sub_0205ADAC: ; 0x0205ADAC
 	mul r2, r4
 	add r1, r3, r2
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r6, #0x50]
 	mov r1, #3
 	bl sub_0207A014

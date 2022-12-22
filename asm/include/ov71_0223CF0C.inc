@@ -27,9 +27,9 @@
 .public sub_02021D6C
 .public sub_02021F9C
 .public sub_02022974
-.public sub_020A71B0
-.public sub_020A7944
-.public sub_020A81FC
-.public sub_020C0160
-.public sub_020C2C54
+.public NNS_G2dGetUnpackedPaletteData
+.public NNS_G2dInitOamManagerModule
+.public NNS_G2dGetImagePaletteLocation
+.public GX_LoadOBJPltt
+.public DC_FlushRange
 .public ov71_0223D2F4

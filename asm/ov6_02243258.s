@@ -1831,7 +1831,7 @@ ov6_02243FDC: ; 0x02243FDC
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0x60]
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
@@ -3792,7 +3792,7 @@ ov6_02244E54: ; 0x02244E54
 	bl sub_02006CB8
 	add r1, r5, #0
 	add r4, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r1, [r5, #0]
 	mov r0, #3
 	ldr r1, [r1, #0xc]
@@ -3816,7 +3816,7 @@ ov6_02244E7C: ; 0x02244E7C
 	bl sub_02006CB8
 	add r1, r4, #0
 	add r6, r0, #0
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r3, [r4, #0]
 	mov r0, #0
 	str r0, [sp]
@@ -3855,7 +3855,7 @@ ov6_02244EB4: ; 0x02244EB4
 	bl sub_02006CB8
 	add r1, r4, #0
 	add r6, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r3, [r4, #0]
 	add r0, r5, #0
 	add r2, r3, #0
@@ -4189,17 +4189,17 @@ ov6_02245118: ; 0x02245118
 	bl sub_02009DC8
 	bl sub_0200A534
 	mov r1, #1
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	mov r1, #0x32
 	add r5, r0, #0
 	add r0, r4, #0
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r2, #0x32
 	add r0, r4, #0
 	add r1, r5, #0
 	lsl r2, r2, #6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov6_02245118
 
@@ -4244,15 +4244,15 @@ ov6_02245170: ; 0x02245170
 	add r1, r6, #0
 	bl sub_0200A72C
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r5, r0, #0
 	add r0, r4, #0
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov6_02245170
@@ -6066,7 +6066,7 @@ _02245F54:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

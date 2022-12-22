@@ -5,15 +5,15 @@
 	.text
 
 
-	arm_func_start sub_020E17B4
-sub_020E17B4: ; 0x020E17B4
+	arm_func_start _f_itof
+_f_itof: ; 0x020E17B4
 	ands r2, r0, #0x80000000
 	rsbmi r0, r0, #0
 	cmp r0, #0
-	arm_func_end sub_020E17B4
+	arm_func_end _f_itof
 
-	arm_func_start sub_020E17C0
-sub_020E17C0: ; 0x020E17C0
+	arm_func_start __f_itof_common
+__f_itof_common: ; 0x020E17C0
 	bxeq lr
 	clz r3, r0
 	movs r0, r0, lsl r3
@@ -29,15 +29,15 @@ sub_020E17C0: ; 0x020E17C0
 	andeqs r3, r0, #1
 	addne r0, r0, #1
 	bx lr
-	arm_func_end sub_020E17C0
+	arm_func_end __f_itof_common
 
-	arm_func_start sub_020E17FC
-sub_020E17FC: ; 0x020E17FC
+	arm_func_start _f_utof
+_f_utof: ; 0x020E17FC
 	cmp r0, #0
-	arm_func_end sub_020E17FC
+	arm_func_end _f_utof
 
-	arm_func_start sub_020E1800
-sub_020E1800: ; 0x020E1800
+	arm_func_start __f_utof_common
+__f_utof_common: ; 0x020E1800
 	bxeq lr
 	mov r3, #0x9e
 	bmi _020E1818
@@ -56,4 +56,4 @@ _020E1818:
 	andeqs r1, r0, #1
 	addne r0, r0, #1
 	bx lr
-	arm_func_end sub_020E1800
+	arm_func_end __f_utof_common

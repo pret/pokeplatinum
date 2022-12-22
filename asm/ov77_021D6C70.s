@@ -114,7 +114,7 @@ ov77_021D6CFC: ; 0x021D6CFC
 	add r4, r2, #0
 	and r4, r1
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	add r2, r1, #0
 	mov r1, #0
 	add r6, sp, #0x28
@@ -265,9 +265,9 @@ ov77_021D6E50: ; 0x021D6E50
 	push {r4, lr}
 	add r4, r0, #0
 	beq _021D6E74
-	bl sub_020B2628
+	bl NNS_G3dGeFlushBuffer
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r4, #0]
 	bl sub_02007768
 	bl ov77_021D725C

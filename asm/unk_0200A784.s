@@ -85,7 +85,7 @@ _0200A7F4:
 	lsl r2, r4, #0x10
 	lsr r1, r1, #0x10
 	lsr r2, r2, #0x10
-	bl sub_020A7A04
+	bl NNS_G2dGetNewOamManagerInstance
 	cmp r0, #0
 	bne _0200A820
 	bl sub_02022974
@@ -108,7 +108,7 @@ _0200A820:
 	lsr r1, r1, #0x10
 	lsr r2, r2, #0x10
 	lsr r3, r3, #0x10
-	bl sub_020A7A04
+	bl NNS_G2dGetNewOamManagerInstance
 	cmp r0, #0
 	bne _0200A850
 	bl sub_02022974
@@ -126,11 +126,11 @@ sub_0200A858: ; 0x0200A858
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _0200A870
-	bl sub_020A8124
+	bl NNS_G2dApplyAndResetOamManagerBuffer
 	ldr r0, _0200A874 ; =0x021BF430
 	ldr r0, [r0, #0]
 	add r0, #0x1c
-	bl sub_020A8124
+	bl NNS_G2dApplyAndResetOamManagerBuffer
 _0200A870:
 	pop {r3, pc}
 	nop
@@ -261,7 +261,7 @@ sub_0200A94C: ; 0x0200A94C
 	add r2, r1, #0
 	ldr r0, [r0, #0]
 	add r1, r3, #0
-	bl sub_020A7C50
+	bl NNS_G2dEntryOamManagerOamWithAffineIdx
 	add r4, r0, #0
 	bne _0200A964
 	bl sub_02022974
@@ -281,7 +281,7 @@ sub_0200A96C: ; 0x0200A96C
 	ldr r0, [r0, #0]
 	add r1, r3, #0
 	add r0, #0x1c
-	bl sub_020A7C50
+	bl NNS_G2dEntryOamManagerOamWithAffineIdx
 	add r4, r0, #0
 	bne _0200A986
 	bl sub_02022974
@@ -298,7 +298,7 @@ sub_0200A990: ; 0x0200A990
 	add r1, r0, #0
 	ldr r0, _0200A9AC ; =0x021BF430
 	ldr r0, [r0, #0]
-	bl sub_020A7D34
+	bl NNS_G2dEntryOamManagerAffine
 	add r4, r0, #0
 	ldr r0, _0200A9B0 ; =0x0000FFFE
 	cmp r4, r0
@@ -319,7 +319,7 @@ sub_0200A9B4: ; 0x0200A9B4
 	ldr r0, _0200A9D4 ; =0x021BF430
 	ldr r0, [r0, #0]
 	add r0, #0x1c
-	bl sub_020A7D34
+	bl NNS_G2dEntryOamManagerAffine
 	add r4, r0, #0
 	ldr r0, _0200A9D8 ; =0x0000FFFE
 	cmp r4, r0

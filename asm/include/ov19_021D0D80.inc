@@ -88,8 +88,8 @@
 .public sub_0208C324
 .public sub_0208D720
 .public sub_0208E9C0
-.public sub_020C4B68
-.public sub_020E1F6C
+.public MIi_CpuCopy32
+.public _s32_div_f
 .public ov19_021D0EA0
 .public ov19_021D0EB0
 .public ov19_021D0EC0

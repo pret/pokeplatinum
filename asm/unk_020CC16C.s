@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CC16C
-sub_020CC16C: ; 0x020CC16C
+	arm_func_start RTC_ConvertDateToDay
+RTC_ConvertDateToDay: ; 0x020CC16C
 	ldr r3, [r0, #0]
 	cmp r3, #0x64
 	bhs _020CC1BC
@@ -49,30 +49,30 @@ _020CC1E4:
 	; .align 2, 0
 _020CC1F8: .word 0x0210144C
 _020CC1FC: .word 0x0000016D
-	arm_func_end sub_020CC16C
+	arm_func_end RTC_ConvertDateToDay
 
-	arm_func_start sub_020CC200
-sub_020CC200: ; 0x020CC200
+	arm_func_start RTCi_ConvertTimeToSecond
+RTCi_ConvertTimeToSecond: ; 0x020CC200
 	mov r1, #0x3c
 	ldmia r0, {r2, r3}
 	mla r3, r2, r1, r3
 	ldr r0, [r0, #8]
 	mla r0, r3, r1, r0
 	bx lr
-	arm_func_end sub_020CC200
+	arm_func_end RTCi_ConvertTimeToSecond
 
-	arm_func_start sub_020CC218
-sub_020CC218: ; 0x020CC218
+	arm_func_start RTC_ConvertDateTimeToSecond
+RTC_ConvertDateTimeToSecond: ; 0x020CC218
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r1
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	mov r4, r0
 	mvn r0, #0
 	cmp r4, r0
 	moveq r1, r0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r0, r5
-	bl sub_020CC200
+	bl RTCi_ConvertTimeToSecond
 	mvn r2, #0
 	cmp r0, r2
 	moveq r1, r2
@@ -90,10 +90,10 @@ _020CC270:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CC278: .word 0x00015180
-	arm_func_end sub_020CC218
+	arm_func_end RTC_ConvertDateTimeToSecond
 
-	arm_func_start sub_020CC27C
-sub_020CC27C: ; 0x020CC27C
+	arm_func_start RTC_ConvertDayToDate
+RTC_ConvertDayToDate: ; 0x020CC27C
 	stmfd sp!, {r4, lr}
 	ldr r2, _020CC36C ; =0x00008EAC
 	cmp r1, #0
@@ -165,10 +165,10 @@ _020CC36C: .word 0x00008EAC
 _020CC370: .word 0x92492493
 _020CC374: .word 0x0000016D
 _020CC378: .word 0x02101450
-	arm_func_end sub_020CC27C
+	arm_func_end RTC_ConvertDayToDate
 
-	arm_func_start sub_020CC37C
-sub_020CC37C: ; 0x020CC37C
+	arm_func_start RTCi_ConvertSecondToTime
+RTCi_ConvertSecondToTime: ; 0x020CC37C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _020CC3F4 ; =0x0001517F
 	cmp r1, #0
@@ -202,10 +202,10 @@ sub_020CC37C: ; 0x020CC37C
 	; .align 2, 0
 _020CC3F4: .word 0x0001517F
 _020CC3F8: .word 0x88888889
-	arm_func_end sub_020CC37C
+	arm_func_end RTCi_ConvertSecondToTime
 
-	arm_func_start sub_020CC3FC
-sub_020CC3FC: ; 0x020CC3FC
+	arm_func_start RTC_ConvertSecondToDateTime
+RTC_ConvertSecondToDateTime: ; 0x020CC3FC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r2
 	mov r4, r3
@@ -227,26 +227,26 @@ _020CC43C:
 	mov r0, r5
 	mov r1, r4
 	mov r3, #0
-	bl sub_020E1D14
+	bl _ll_mod
 	mov r1, r0
 	mov r0, r6
-	bl sub_020CC37C
+	bl RTCi_ConvertSecondToTime
 	ldr r2, _020CC484 ; =0x00015180
 	mov r0, r5
 	mov r1, r4
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 	mov r1, r0
 	mov r0, r7
-	bl sub_020CC27C
+	bl RTC_ConvertDayToDate
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CC480: .word 0xBC19137F
 _020CC484: .word 0x00015180
-	arm_func_end sub_020CC3FC
+	arm_func_end RTC_ConvertSecondToDateTime
 
-	arm_func_start sub_020CC488
-sub_020CC488: ; 0x020CC488
+	arm_func_start RTC_GetDayOfWeek
+RTC_GetDayOfWeek: ; 0x020CC488
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, [r0, #4]
 	ldr r2, [r0, #0]
@@ -295,7 +295,7 @@ sub_020CC488: ; 0x020CC488
 _020CC538: .word 0x51EB851F
 _020CC53C: .word 0x66666667
 _020CC540: .word 0x92492493
-	arm_func_end sub_020CC488
+	arm_func_end RTC_GetDayOfWeek
 
 	.data
 

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C5580
-sub_020C5580: ; 0x020C5580
+	arm_func_start SND_Init
+SND_Init: ; 0x020C5580
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C55B0 ; =0x021CD020
 	ldr r0, [r1, #0]
@@ -16,34 +16,34 @@ sub_020C5580: ; 0x020C5580
 	ldr r0, _020C55B4 ; =0x021CD024
 	mov r2, #1
 	str r2, [r1, #0]
-	bl sub_020C29C0
-	bl sub_020C55E0
-	bl sub_020C5CF0
+	bl OS_InitMutex
+	bl SND_CommandInit
+	bl SND_AlarmInit
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C55B0: .word 0x021CD020
 _020C55B4: .word 0x021CD024
-	arm_func_end sub_020C5580
+	arm_func_end SND_Init
 
-	arm_func_start sub_020C55B8
-sub_020C55B8: ; 0x020C55B8
-	ldr ip, _020C55C4 ; =sub_020C29D8
+	arm_func_start SNDi_LockMutex
+SNDi_LockMutex: ; 0x020C55B8
+	ldr ip, _020C55C4 ; =OS_LockMutex
 	ldr r0, _020C55C8 ; =0x021CD024
 	bx ip
 	; .align 2, 0
-_020C55C4: .word sub_020C29D8
+_020C55C4: .word OS_LockMutex
 _020C55C8: .word 0x021CD024
-	arm_func_end sub_020C55B8
+	arm_func_end SNDi_LockMutex
 
-	arm_func_start sub_020C55CC
-sub_020C55CC: ; 0x020C55CC
-	ldr ip, _020C55D8 ; =sub_020C2A5C
+	arm_func_start SNDi_UnlockMutex
+SNDi_UnlockMutex: ; 0x020C55CC
+	ldr ip, _020C55D8 ; =OS_UnlockMutex
 	ldr r0, _020C55DC ; =0x021CD024
 	bx ip
 	; .align 2, 0
-_020C55D8: .word sub_020C2A5C
+_020C55D8: .word OS_UnlockMutex
 _020C55DC: .word 0x021CD024
-	arm_func_end sub_020C55CC
+	arm_func_end SNDi_UnlockMutex
 
 	.bss
 

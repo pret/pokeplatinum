@@ -2664,7 +2664,7 @@ ov5_021EC638: ; 0x021EC638
 	asr r4, r1, #0xc
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r1, r4, r1
 	add r0, r5, #0
 	lsl r1, r1, #0xc
@@ -2917,10 +2917,10 @@ ov5_021EC804: ; 0x021EC804
 	mov r1, #1
 	lsl r2, r2, #0x10
 	add r4, r0, #0
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	ldr r1, [r5, #0x10]
 	add r0, r4, #0
-	bl sub_020B3764
+	bl NNS_G3dMdlSetMdlAlphaAll
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov5_021EC804

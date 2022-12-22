@@ -32,5 +32,5 @@
 .public sub_02079FD0
 .public sub_02079FD8
 .public sub_02079FE4
-.public sub_020A7944
+.public NNS_G2dInitOamManagerModule
 .public ov106_022435C8

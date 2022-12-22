@@ -660,7 +660,7 @@ ov94_0223E9B8: ; 0x0223E9B8
 	str r0, [r4, r1]
 	ldr r1, [r4, r1]
 	mov r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r2, _0223EA1C ; =0x00001084
 	mov r0, #0x3e
 	ldr r2, [r4, r2]
@@ -997,10 +997,10 @@ _0223EC8C:
 	add r1, sp, #0
 	bl ov4_021D806C
 	add r0, sp, #0xc
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	add r4, r0, #0
 	add r0, sp, #0x1c
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	sub r0, r4, r0
 	bmi _0223ECCE
 	cmp r0, #3
@@ -1049,7 +1049,7 @@ _0223ED10:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0223ED8C ; =0x00000B7E
 	add r0, sp, #0
 	ldrsh r2, [r5, r1]

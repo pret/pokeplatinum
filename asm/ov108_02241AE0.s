@@ -29,7 +29,7 @@ ov108_02241AE0: ; 0x02241AE0
 	mov r1, #0
 	lsl r2, r2, #2
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x67
 	bl sub_02018340
 	add r1, r5, #0
@@ -1769,12 +1769,12 @@ ov108_022428C0: ; 0x022428C0
 	ldr r0, [sp]
 	mov r1, #0xe0
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0xe0
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4
@@ -2334,7 +2334,7 @@ _02242C98:
 	bl ov108_02242A14
 	mov r1, #7
 	str r0, [sp]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r2, r0, #0x10
 	ldr r1, [sp]
@@ -2591,7 +2591,7 @@ _02242E54:
 _02242E70:
 	bl sub_0201D2E8
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	add r0, r0, r4
@@ -2665,7 +2665,7 @@ ov108_02242EF4: ; 0x02242EF4
 	mov r5, #0
 	bl sub_0201D2E8
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r2, r0, #0x10
 	ldr r3, _02242F34 ; =0x022436B0

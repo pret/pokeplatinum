@@ -17,9 +17,9 @@
 .public sub_0200D3F4
 .public sub_0200D500
 .public sub_02022974
-.public sub_020B275C
-.public sub_020BDA20
-.public sub_020E1D24
+.public NNS_G3dGeBufferOP_N
+.public FX_Atan2Idx
+.public _ll_sdiv
 .public ov117_02262A38
 .public ov117_02263168
 .public ov117_02263448

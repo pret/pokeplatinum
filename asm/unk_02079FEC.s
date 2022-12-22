@@ -48,7 +48,7 @@ _0207A022:
 	add r0, r5, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	mov r4, #0
 	str r4, [r5, #4]
 	str r6, [r5, #0]

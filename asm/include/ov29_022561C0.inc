@@ -2,8 +2,8 @@
 .public sub_0200DA58
 .public sub_02018144
 .public sub_020181C4
-.public sub_020D5124
-.public sub_020E1F6C
+.public memset
+.public _s32_div_f
 .public ov25_02254238
 .public ov25_0225424C
 .public ov25_02254260

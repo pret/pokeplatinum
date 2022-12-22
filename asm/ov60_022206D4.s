@@ -15,7 +15,7 @@ ov60_022206D4: ; 0x022206D4
 	ldr r1, _0222074C ; =0x02229108
 	ldr r2, _02220750 ; =0x022290E0
 	mov r3, #0x1b
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _022206F4:
 	ldr ip, [r5, #0x40]
 	cmp ip, #0
@@ -56,7 +56,7 @@ ov60_02220754: ; 0x02220754
 	ldr r1, _022207C8 ; =0x02229108
 	ldr r2, _022207CC ; =0x022290C8
 	mov r3, #0x45
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02220780:
 	ldr ip, [r6, #0x3c]
 	cmp ip, #0
@@ -91,7 +91,7 @@ ov60_022207D0: ; 0x022207D0
 	ldr r1, _0222083C ; =0x02229108
 	ldr r2, _02220840 ; =0x022290B4
 	mov r3, #0x5e
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _022207F4:
 	ldr r0, [r4, #0x150]
 	cmp r0, #0

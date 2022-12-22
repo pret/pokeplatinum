@@ -1,10 +1,10 @@
-.public sub_020D3068
-.public sub_020D50B8
-.public sub_020D7510
-.public sub_020D8B60
-.public sub_020D8C94
-.public sub_020D8CC4
-.public sub_020D8E28
+.public MATH_CalcSHA1
+.public memcpy
+.public sprintf
+.public strlen
+.public strcat
+.public strncat
+.public strncmp
 .public ov4_021D7780
 .public ov4_021D77C4
 .public ov4_021E558C

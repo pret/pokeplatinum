@@ -37,7 +37,7 @@ sub_0205965C: ; 0x0205965C
 	mov r2, #0x48
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _020596B4 ; =0x021C084C
 	mov r1, #0x32
 	ldr r0, [r0, #0]

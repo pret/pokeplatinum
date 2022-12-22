@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E00D4
-sub_020E00D4: ; 0x020E00D4
+	arm_func_start _d_dtou
+_d_dtou: ; 0x020E00D4
 	tst r1, #-0x80000000
 	bne _020E010C
 	ldr r2, _020E0128 ; =0x0000041E
@@ -33,4 +33,4 @@ _020E0120:
 	bx lr
 	; .align 2, 0
 _020E0128: .word 0x0000041E
-	arm_func_end sub_020E00D4
+	arm_func_end _d_dtou

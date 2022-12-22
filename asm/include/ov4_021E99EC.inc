@@ -1,8 +1,8 @@
-.public sub_020D407C
-.public sub_020D50B8
-.public sub_020D50D8
-.public sub_020D753C
-.public sub_020E1F6C
+.public __msl_assertion_failed
+.public memcpy
+.public memmove
+.public qsort
+.public _s32_div_f
 .public ov4_021D7880
 .public ov4_021D7894
 .public ov4_021D78B0

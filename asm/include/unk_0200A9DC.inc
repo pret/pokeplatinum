@@ -2,6 +2,6 @@
 .public sub_0200AA78
 .public sub_0200ABB0
 .public sub_02022974
-.public sub_020BF578
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public G2x_SetBlendBrightness_
+.public MI_CpuFill8
+.public _s32_div_f

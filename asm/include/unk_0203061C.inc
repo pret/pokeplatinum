@@ -9,5 +9,5 @@
 .public sub_020305AC
 .public sub_02030698
 .public sub_020306E4
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8

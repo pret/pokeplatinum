@@ -21,7 +21,7 @@
 .public sub_0209B970
 .public sub_0209B978
 .public sub_0209B988
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov104_0222E974
 .public ov104_0222EA48
 .public ov104_0222FBE4

@@ -1,8 +1,8 @@
-.public sub_020C00B4
-.public sub_020C04EC
-.public sub_020C3FBC
-.public sub_020C4AF0
-.public sub_020C4B18
+.public GX_LoadBGPltt
+.public GX_LoadBG2Scr
+.public OS_GetOwnerInfo
+.public MIi_CpuClear16
+.public MIi_CpuCopy16
 .public ov18_0222AD34
 .public ov18_0222AE04
 .public ov18_0222B004

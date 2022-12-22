@@ -21,7 +21,7 @@ _0209BE0E:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x58
-	bl sub_020D5124
+	bl memset
 	ldr r1, _0209BE34 ; =0x00001BD0
 	add r0, r6, #0
 	str r5, [r4, #0]
@@ -99,7 +99,7 @@ _0209BEA0:
 	add r0, r4, #4
 	add r2, r6, #0
 	str r5, [r7, #4]
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, #0x82
 	add r1, r4, #0
 	mov r2, #0x18
@@ -159,7 +159,7 @@ sub_0209BEF0: ; 0x0209BEF0
 	mov r2, #0x59
 	add r1, r4, #0
 	lsl r2, r2, #4
-	bl sub_020D50B8
+	bl memcpy
 	pop {r4, pc}
 	thumb_func_end sub_0209BEF0
 
@@ -256,7 +256,7 @@ _0209BF9C:
 	cmp r1, r0
 	bne _0209BFBE
 	bl sub_020318EC
-	bl sub_020D2FE4
+	bl MATH_CountPopulation
 	ldr r1, [r4, #0x2c]
 	cmp r1, r0
 	beq _0209BFC6

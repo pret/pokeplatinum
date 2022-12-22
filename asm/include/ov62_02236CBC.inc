@@ -48,11 +48,11 @@
 .public sub_0206B5B8
 .public sub_0206B5C8
 .public sub_0208B9E0
-.public sub_020BF55C
-.public sub_020C4CF4
-.public sub_020E0B00
-.public sub_020E1A9C
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public MI_CpuFill8
+.public _f_add
+.public _f_sub
+.public _s32_div_f
 .public ov62_0222F824
 .public ov62_0222FB44
 .public ov62_0222FB60

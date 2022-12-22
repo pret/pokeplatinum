@@ -13,4 +13,4 @@
 .public sub_0202DE2C
 .public sub_0202DE5C
 .public sub_0202DE8C
-.public sub_020C4DB0
+.public MI_CpuCopy8

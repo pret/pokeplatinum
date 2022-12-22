@@ -17,7 +17,7 @@ sub_0201E3BC: ; 0x0201E3BC
 	mul r0, r2
 	add r0, r1, r0
 	lsl r0, r0, #0xc
-	bl sub_020BCFF0
+	bl FX_Sqrt
 	asr r0, r0, #0xc
 	pop {r3, pc}
 	; .align 2, 0

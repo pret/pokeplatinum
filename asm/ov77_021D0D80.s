@@ -53,7 +53,7 @@ ov77_021D0D80: ; 0x021D0D80
 	ldr r2, _021D0E30 ; =0x00000504
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x1e
 	str r0, [r4, #0]
 	ldr r0, _021D0E34 ; =0x000004EC
@@ -599,43 +599,43 @@ ov77_021D1208: ; 0x021D1208
 	bl sub_0201CA3C
 	ldr r0, [r5, #0x60]
 	mov r1, #0
-	bl sub_020B3C5C
+	bl NNS_G3dGetAnmByIdx
 	add r6, r0, #0
 	ldr r0, [r5, #0x64]
 	mov r1, #0
-	bl sub_020B3C5C
+	bl NNS_G3dGetAnmByIdx
 	add r7, r0, #0
 	add r0, r5, #0
 	ldr r2, [r5, #0x58]
 	add r0, #0x70
 	add r1, r6, #0
-	bl sub_020B2CB4
+	bl NNS_G3dAllocAnmObj
 	str r0, [r5, #0x68]
 	add r0, r5, #0
 	ldr r2, [r5, #0x58]
 	add r0, #0x70
 	add r1, r7, #0
-	bl sub_020B2CB4
+	bl NNS_G3dAllocAnmObj
 	str r0, [r5, #0x6c]
 	ldr r0, [r5, #0x5c]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [sp]
 	ldr r0, [r5, #0x68]
 	ldr r2, [r5, #0x58]
 	ldr r3, [sp]
 	add r1, r6, #0
-	bl sub_020AE4F0
+	bl NNS_G3dAnmObjInit
 	ldr r0, [r5, #0x6c]
 	ldr r2, [r5, #0x58]
 	ldr r3, [sp]
 	add r1, r7, #0
-	bl sub_020AE4F0
+	bl NNS_G3dAnmObjInit
 	ldr r1, [r5, #0x68]
 	add r0, r5, #4
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 	ldr r1, [r5, #0x6c]
 	add r0, r5, #4
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 	add r3, r5, #0
 	add r6, sp, #0x10
 	mov r7, #0
@@ -698,14 +698,14 @@ ov77_021D1300: ; 0x021D1300
 	ldr r0, [r5, r0]
 	mov r1, #1
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r0, #0x56
 	lsl r0, r0, #2
 	mov r2, #0x3f
 	ldr r0, [r5, r0]
 	mov r1, #1
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	add r0, r5, #0
 	mov r1, #0x4a
 	str r4, [sp]
@@ -788,14 +788,14 @@ ov77_021D1300: ; 0x021D1300
 	ldr r0, [r5, r0]
 	mov r1, #1
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	mov r0, #0x82
 	lsl r0, r0, #2
 	mov r2, #0x3f
 	ldr r0, [r5, r0]
 	mov r1, #1
 	lsl r2, r2, #0x18
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	add r0, r5, #0
 	mov r1, #0x76
 	str r4, [sp]
@@ -901,11 +901,11 @@ ov77_021D14E4: ; 0x021D14E4
 	add r0, r4, #0
 	ldr r1, [r4, #0x68]
 	add r0, #0x70
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	add r0, r4, #0
 	ldr r1, [r4, #0x6c]
 	add r0, #0x70
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	ldr r0, [r4, #0x60]
 	bl sub_020181C4
 	ldr r0, [r4, #0x64]
@@ -1013,7 +1013,7 @@ _021D15CC:
 	mov r1, #0x5a
 	ldr r0, [r5, r0]
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0xab
 	lsl r0, r0, #2
 	str r1, [r5, r0]
@@ -1022,15 +1022,15 @@ _021D15CC:
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D250
-	bl sub_020E01B8
+	bl _d_itod
 	ldr r2, _021D16FC ; =0x33333333
 	ldr r3, _021D1700 ; =0x3FD33333
-	bl sub_020E0234
-	bl sub_020E0088
+	bl _d_mul
+	bl _d_dtoi
 	add r1, r4, #0
 	add r1, #0x84
 	ldr r1, [r1, #0]
@@ -1076,7 +1076,7 @@ _021D1640:
 	bl ov77_021D1704
 	b _021D1680
 _021D166C:
-	bl sub_020C2BE8
+	bl DC_FlushAll
 	add r1, r4, #0
 	add r3, r4, #0
 	add r0, r4, #4
@@ -1207,7 +1207,7 @@ _021D174A:
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0x16
 	lsl r0, r0, #4
 	add r0, r4, r0
@@ -1236,7 +1236,7 @@ _021D17A0:
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -1709,10 +1709,10 @@ ov77_021D1A60: ; 0x021D1A60
 	ldrsh r2, [r5, r2]
 	ldrsh r3, [r5, r3]
 	mov r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1C04 ; =0x00007FFF
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r3, _021D1C08 ; =0x00000292
 	mov r0, #1
 	add r2, r3, #2
@@ -1720,10 +1720,10 @@ ov77_021D1A60: ; 0x021D1A60
 	add r3, r3, #4
 	ldrsh r2, [r5, r2]
 	ldrsh r3, [r5, r3]
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1C04 ; =0x00007FFF
 	mov r0, #1
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r2, _021D1BF0 ; =0x04000060
 	ldr r0, _021D1BF4 ; =0xFFFFCFFF
 	ldrh r1, [r2]
@@ -1762,7 +1762,7 @@ ov77_021D1C10: ; 0x021D1C10
 	ldr r0, [r4, r0]
 	sub r0, r1, r0
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #9
 	lsl r1, r1, #6
 	ldr r2, [r4, r1]
@@ -1775,7 +1775,7 @@ ov77_021D1C10: ; 0x021D1C10
 	ldr r0, [r4, r1]
 	mov r1, #0x3c
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x91
 	lsl r1, r1, #2
 	ldr r2, [r4, r1]
@@ -1788,7 +1788,7 @@ ov77_021D1C10: ; 0x021D1C10
 	ldr r0, [r4, r1]
 	mov r1, #0x3c
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x92
 	lsl r1, r1, #2
 	ldr r2, [r4, r1]
@@ -1801,7 +1801,7 @@ ov77_021D1C10: ; 0x021D1C10
 	ldr r0, [r4, r1]
 	mov r1, #0x3c
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x93
 	lsl r1, r1, #2
 	ldr r2, [r4, r1]
@@ -1814,7 +1814,7 @@ ov77_021D1C10: ; 0x021D1C10
 	ldr r0, [r4, r1]
 	mov r1, #0x3c
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x25
 	lsl r1, r1, #4
 	ldr r2, [r4, r1]
@@ -1827,7 +1827,7 @@ ov77_021D1C10: ; 0x021D1C10
 	ldr r0, [r4, r1]
 	mov r1, #0x3c
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x95
 	lsl r1, r1, #2
 	ldr r2, [r4, r1]
@@ -1888,7 +1888,7 @@ ov77_021D1CC0: ; 0x021D1CC0
 	mov r1, #2
 	mov r2, #8
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #2
 	mov r1, #1
 	bl sub_0201FF74
@@ -1967,7 +1967,7 @@ ov77_021D1D48: ; 0x021D1D48
 	mov r1, #3
 	mov r2, #0xc
 	mov r3, #0x1a
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF74
@@ -2402,7 +2402,7 @@ _021D20FA:
 	str r1, [r0, #0]
 	ldr r1, _021D21BC ; =0x00007FFF
 	mov r0, #1
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	add r0, r6, #0
 	add r1, r7, #0
 	bl ov77_021D1CC0
@@ -2814,7 +2814,7 @@ _021D2498:
 	lsl r1, r1, #0x10
 	mov r0, #1
 	lsr r1, r1, #0x10
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	pop {r4, pc}
 	nop
 _021D24C4: .word 0x0000029A
@@ -2904,10 +2904,10 @@ ov77_021D24C8: ; 0x021D24C8
 	add r0, r4, r0
 	add r1, r4, r1
 	add r2, sp, #0xc
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0xc
 	add r1, sp, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r0, #0xa3
 	ldr r1, [sp]
 	lsl r0, r0, #2

@@ -64,7 +64,7 @@ ov66_02241C44: ; 0x02241C44
 	bl ov4_021D806C
 	add r0, sp, #0x24
 	add r1, sp, #0x18
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str r0, [r4, #8]
 	str r1, [r4, #0xc]
 	mov r1, #1
@@ -347,7 +347,7 @@ ov66_02242008: ; 0x02242008
 	bl ov4_021D806C
 	add r0, sp, #0x78
 	add r1, sp, #0x6c
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str sb, [r7, #0x2c]
 	stmib r8, {r0, r1}
 	mov r0, #1
@@ -364,7 +364,7 @@ ov66_02242008: ; 0x02242008
 	mov r1, r8
 	add r0, r6, #0x14
 	mov r2, #0x10
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -396,7 +396,7 @@ _022420E0:
 	mov r1, r0
 	mov r0, sl
 	mov r2, sb
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0224212C
 _02242128:
@@ -444,7 +444,7 @@ _02242170:
 	bl ov4_021D806C
 	add r0, sp, #0x5c
 	add r1, sp, #0x50
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str r1, [sp, #0x90]
 	ldr r1, [sp, #0x88]
 	str r0, [sp, #0x8c]
@@ -461,7 +461,7 @@ _02242170:
 	add r0, r6, #0x14
 	mov r1, r7
 	mov r2, #0x10
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -531,7 +531,7 @@ _02242250:
 	mov r1, r0
 	mov r0, r4
 	mov r2, r8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _02242334
 _02242330:
@@ -792,8 +792,8 @@ ov66_02242660: ; 0x02242660
 	cmp r4, r0
 	bne _02242694
 	ldr r0, _02242734 ; =0x0225910C
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _02242694:
 	mov r1, #0
 	mov r0, #0x10
@@ -870,11 +870,11 @@ ov66_02242738: ; 0x02242738
 	mov r2, r7
 	add r0, r3, r0, lsl #2
 	strb ip, [sp, #1]
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, r4
 	mov r2, r7
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r1, [sp, #8]
 	mov r0, #0
 	add r1, r1, r6, asr #2
@@ -1117,11 +1117,11 @@ _02242AAC:
 	add r0, r0, r3, lsl #2
 	strb ip, [sp, #1]
 	str r3, [sp, #0x18]
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, r4
 	mov r2, r7
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r1, [sp, #0xc]
 	mov r0, #0
 	add r1, r1, r5, asr #2

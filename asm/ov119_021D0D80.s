@@ -33,14 +33,14 @@ ov119_021D0DA8: ; 0x021D0DA8
 	mov r1, #0
 	mov r2, #0xe
 	mov r3, #0xb
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	ldr r0, _021D0DD0 ; =0x04001050
 	mov r1, #0
 	mov r2, #0xe
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	; .align 2, 0
 _021D0DCC: .word 0x04000050
@@ -107,13 +107,13 @@ ov119_021D0DF4: ; 0x021D0DF4
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _021D0E6C ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D0E70 ; =0xBFFF0000
 	ldr r0, _021D0E74 ; =0x04000580
 	str r1, [r0, #0]
@@ -181,25 +181,25 @@ _021D0EC8:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _021D0FC0 ; =0x021D23B8
 	add r3, sp, #0x1c
 	add r2, r3, #0
@@ -316,7 +316,7 @@ ov119_021D1004: ; 0x021D1004
 	cmp r0, #0
 	ble _021D101A
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 _021D101A:
 	bl sub_020146C0
 	mov r0, #1
@@ -1217,7 +1217,7 @@ _021D171A:
 	bl sub_0200D5DC
 	mov r0, #0
 	add r1, r7, #0
-	bl sub_020E1290
+	bl _f_fne
 	beq _021D173A
 	ldr r0, [sp]
 	add r1, r7, #0

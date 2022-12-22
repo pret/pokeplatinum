@@ -37,7 +37,7 @@ ov18_022459BC: ; 0x022459BC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r0, #1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldmia r4, {r2, r3}
 	str r3, [r2, #4]
 	ldr r3, [r4, #0]
@@ -46,7 +46,7 @@ ov18_022459BC: ; 0x022459BC
 	str r3, [r2, #0]
 	str r1, [r4, #4]
 	str r1, [r4, #0]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldmia sp!, {r4, pc}
 	arm_func_end ov18_022459BC
 
@@ -56,13 +56,13 @@ ov18_022459F4: ; 0x022459F4
 	mov r5, r0
 	mov r0, #1
 	mov r4, r1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r1, [r5, #0]
 	str r4, [r1, #4]
 	ldr r1, [r5, #0]
 	stmia r4, {r1, r5}
 	str r4, [r5, #0]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov18_022459F4
 

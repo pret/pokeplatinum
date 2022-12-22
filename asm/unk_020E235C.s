@@ -5,18 +5,18 @@
 	.text
 
 
-	arm_func_start sub_020E235C
-sub_020E235C: ; 0x020E235C
+	arm_func_start _drdiv
+_drdiv: ; 0x020E235C
 	eor r1, r1, r3
 	eor r3, r1, r3
 	eor r1, r1, r3
 	eor r0, r0, r2
 	eor r2, r0, r2
 	eor r0, r0, r2
-	arm_func_end sub_020E235C
+	arm_func_end _drdiv
 
-	arm_func_start sub_020E2374
-sub_020E2374: ; 0x020E2374
+	arm_func_start _d_div
+_d_div: ; 0x020E2374
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr lr, _020E28B4 ; =0x00000FFE
 	eor r4, r1, r3
@@ -335,4 +335,4 @@ _020E28A4:
 	bx lr
 	; .align 2, 0
 _020E28B4: .word 0x00000FFE
-	arm_func_end sub_020E2374
+	arm_func_end _d_div

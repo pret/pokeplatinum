@@ -20,7 +20,7 @@ sub_02038FFC: ; 0x02038FFC
 	add r0, #0x1f
 	mov r1, #0x1f
 	bic r0, r1
-	bl sub_020A3EF0
+	bl DWC_Init
 	add r5, r0, #0
 	add r0, r4, #0
 	bl sub_020181C4
@@ -36,14 +36,14 @@ sub_02039034: ; 0x02039034
 	push {r4, lr}
 	bl sub_0202AD28
 	add r4, r0, #0
-	bl sub_020A44C8
+	bl DWC_CheckUserData
 	cmp r0, #0
 	bne _02039052
 	ldr r1, _02039054 ; =0x4144414A
 	add r0, r4, #0
-	bl sub_020A44BC
+	bl DWC_CreateUserData
 	add r0, r4, #0
-	bl sub_020A4620
+	bl DWC_ClearDirtyFlag
 _02039052:
 	pop {r4, pc}
 	; .align 2, 0
@@ -57,10 +57,10 @@ sub_02039058: ; 0x02039058
 	bl sub_0202AD28
 	add r4, r0, #0
 	add r1, sp, #0
-	bl sub_020A4788
+	bl DWC_CreateExchangeToken
 	add r0, r4, #0
 	add r1, sp, #0
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	add sp, #0xc
 	pop {r3, r4, pc}
 	thumb_func_end sub_02039058
@@ -71,11 +71,11 @@ sub_02039074: ; 0x02039074
 	bl sub_0202B370
 	bl sub_0202AD28
 	add r4, r0, #0
-	bl sub_020A450C
+	bl DWC_CheckHasProfile
 	cmp r0, #0
 	beq _02039096
 	add r0, r4, #0
-	bl sub_020A453C
+	bl DWC_CheckValidConsole
 	cmp r0, #0
 	beq _02039096
 	mov r0, #1

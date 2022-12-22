@@ -12,5 +12,5 @@
 .public sub_0202D498
 .public sub_0202D750
 .public sub_0205CA14
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8

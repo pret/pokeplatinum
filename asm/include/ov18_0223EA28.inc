@@ -1,5 +1,5 @@
-.public sub_020C048C
-.public sub_020C2C54
+.public GXS_LoadBG1Scr
+.public DC_FlushRange
 .public ov18_0222B6A0
 .public ov18_0223E994
 .public ov18_0223EB24

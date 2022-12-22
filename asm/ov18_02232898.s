@@ -24,12 +24,12 @@ ov18_02232898: ; 0x02232898
 	mov r0, #0
 	add r1, sp, #0x10
 	mov r2, #0x16
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrb r2, [r5, #1]
 	add r0, r5, #2
 	add r1, sp, #0x10
 	mov r2, r2, lsl #1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x1c
 	str r0, [sp]
 	mov r0, #2
@@ -67,7 +67,7 @@ _02232964: .word ov18_022329E8
 ov18_02232968: ; 0x02232968
 	stmfd sp!, {r3, lr}
 	ldr r0, _022329D8 ; =0x0224A0B8
-	ldr r1, _022329DC ; =sub_020C04EC
+	ldr r1, _022329DC ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _022329E0 ; =0x04001008
 	ldr r1, _022329E4 ; =0x0400000A
@@ -95,7 +95,7 @@ ov18_02232968: ; 0x02232968
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022329D8: .word 0x0224A0B8
-_022329DC: .word sub_020C04EC
+_022329DC: .word GX_LoadBG2Scr
 _022329E0: .word 0x04001008
 _022329E4: .word 0x0400000A
 	arm_func_end ov18_02232968

@@ -72,7 +72,7 @@ ov7_0224CD88: ; 0x0224CD88
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	thumb_func_end ov7_0224CD88
@@ -1167,7 +1167,7 @@ _0224D65A:
 	mov r2, #2
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r4, #0
 	bl ov7_0224EAD0
 	add r0, r4, #0
@@ -2078,7 +2078,7 @@ _0224DDE0:
 	bl ov7_0224E098
 	pop {r3, r4, r5, pc}
 _0224DDF6:
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _0224DE8C ; =0x0000024A
 	strh r0, [r5, r1]
 	ldrh r0, [r5, r1]

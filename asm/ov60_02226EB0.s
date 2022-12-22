@@ -17,7 +17,7 @@ ov60_02226EB0: ; 0x02226EB0
 ov60_02226EBC: ; 0x02226EBC
 	stmfd sp!, {r3, lr}
 	ldr r0, _02226ED8 ; =0x0222A9F0
-	bl sub_020C41D8
+	bl OS_GetLowEntropyData
 	ldr r0, _02226ED8 ; =0x0222A9F0
 	mov r1, #0x20
 	bl ov4_0220FE28
@@ -85,7 +85,7 @@ ov60_02226F6C: ; 0x02226F6C
 	mov r5, #0x1f4
 _02226F8C:
 	mov r0, r5
-	bl sub_020C24A4
+	bl OS_Sleep
 	mov r0, r6
 	bl ov4_02208540
 	cmp r0, r4

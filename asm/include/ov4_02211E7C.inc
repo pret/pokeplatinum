@@ -1,7 +1,7 @@
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D50D8
-.public sub_020E1ED4
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public memmove
+.public _ull_div
 .public ov4_02211E7C
 .public ov4_02211EA4
 .public ov4_02211ED4

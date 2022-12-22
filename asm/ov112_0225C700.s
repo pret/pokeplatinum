@@ -27,7 +27,7 @@ ov112_0225C700: ; 0x0225C700
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0]
 	mov r1, #0x6b
 	str r0, [r4, #0]
@@ -575,7 +575,7 @@ ov112_0225CB98: ; 0x0225CB98
 	sub sp, #0x14
 	add r5, r0, #0
 	add r6, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -745,11 +745,11 @@ ov112_0225CCE8: ; 0x0225CCE8
 	mov r1, #3
 	add r7, r2, #0
 	add r6, r3, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp, #0x1c]
 	ldr r0, [sp, #0x38]
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, [sp, #0x44]
 	cmp r1, #0
 	beq _0225CD0E
@@ -846,14 +846,14 @@ ov112_0225CDA8: ; 0x0225CDA8
 	strb r1, [r5]
 	mov r1, #0x3c
 	str r0, [sp]
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r0, #1
 	strb r0, [r5, #1]
 	mov r0, #0
 	strb r0, [r5, #2]
 	ldr r0, [sp]
 	mov r1, #0x28
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [r5, #8]
 	mov r0, #1
 	strb r0, [r5, #4]
@@ -979,7 +979,7 @@ ov112_0225CE88: ; 0x0225CE88
 	mul r0, r1
 	ldr r1, [r4, #8]
 	add r0, r2, r0
-	bl sub_020E2178
+	bl _u32_div_f
 	ldrb r1, [r4, #5]
 	add r5, r0, #0
 	cmp r1, #0
@@ -1066,11 +1066,11 @@ _0225CF36:
 	ror r2, r1
 	mov r1, #0xa
 	add r7, r3, r2
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp, #0x18]
 	add r0, r5, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r7, #0
 	bne _0225CF9E
 	ldr r2, [r4, #8]
@@ -1857,7 +1857,7 @@ ov112_0225D4F8: ; 0x0225D4F8
 	ldr r0, [sp, #0x20]
 	mul r0, r1
 	ldrh r1, [r5, #4]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r0, #0
 	mov r0, #1
 	lsl r0, r0, #8
@@ -1922,7 +1922,7 @@ ov112_0225D57C: ; 0x0225D57C
 	mov r1, #0
 	mov r2, #0x70
 	str r0, [sp, #0x14]
-	bl sub_020D5124
+	bl memset
 	ldr r2, _0225D6CC ; =0x0000028D
 	ldr r3, [sp, #0x1c]
 	mov r0, #0
@@ -2223,7 +2223,7 @@ _0225D7C2:
 	sub r0, #0xe
 	lsl r0, r0, #4
 	mov r1, #0xe
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x10
 	sub r3, r1, r0
 _0225D7D0:
@@ -2240,11 +2240,11 @@ _0225D7D0:
 	bl sub_0200393C
 	add r0, r4, #4
 	mov r1, #2
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldrh r1, [r4, #6]
 	add r0, r4, #4
 	mov r2, #2
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	ldrh r0, [r4, #2]
 	add r0, r0, #1
 	strh r0, [r4, #2]

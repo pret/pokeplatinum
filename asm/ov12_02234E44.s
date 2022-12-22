@@ -128,7 +128,7 @@ _02234F20:
 	str r0, [sp]
 	ldrh r3, [r4, #0x14]
 	ldr r0, _02235048 ; =0x04000050
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldrb r0, [r4, #0x18]
 	add r0, r0, #1
 	strb r0, [r4, #0x18]

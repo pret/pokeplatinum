@@ -19,7 +19,7 @@ ov18_0223D004: ; 0x0223D004
 	add r1, ip, #4
 	mov r2, #0x600
 	str ip, [r3]
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	ldr r1, _0223D060 ; =ov18_0223D100
 	mov r0, #1
 	mov r2, #0
@@ -79,7 +79,7 @@ _0223D0D4:
 	mov r0, r8
 	mov r1, r4
 	mov r2, r6
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r5, r5, #1
 	cmp r5, r7
 	add r8, r8, #0x40
@@ -100,13 +100,13 @@ ov18_0223D100: ; 0x0223D100
 	ldmeqia sp!, {r3, pc}
 	add r0, r1, #4
 	mov r1, #0x600
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _0223D150 ; =0x02253370
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x600
 	add r0, r0, #4
-	bl sub_020C04EC
+	bl GX_LoadBG2Scr
 	ldr r0, _0223D150 ; =0x02253370
 	mov r1, #0
 	ldr r0, [r0, #0]
@@ -143,7 +143,7 @@ ov18_0223D190: ; 0x0223D190
 	mov r4, r0
 	mov r2, #0x20
 	ldmib r1, {r0, r1}
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r1, r4
 	mov r0, #1
 	bl ov18_022463AC
@@ -176,7 +176,7 @@ ov18_0223D1E8: ; 0x0223D1E8
 	ldr r0, [r1, #4]
 	mov r1, #0x5000000
 	mov r2, #0x200
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r1, r4
 	mov r0, #1
 	bl ov18_022463AC

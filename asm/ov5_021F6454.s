@@ -358,7 +358,7 @@ ov5_021F6704: ; 0x021F6704
 _021F6722:
 	ldr r2, _021F675C ; =0x000006F8
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [sp]
 	add r0, sp, #0x28
 	ldrb r0, [r0, #0x10]
@@ -1639,7 +1639,7 @@ ov5_021F70CC: ; 0x021F70CC
 	str r1, [r5, #0]
 	mul r0, r1
 	mov r1, #0x3f
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x1e
 	str r0, [r5, #0]
 _021F7168:
@@ -1672,7 +1672,7 @@ _021F7168:
 	str r1, [r4, #0]
 	mul r0, r1
 	mov r1, #0x3f
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r0, #1
 	str r0, [r4, #0]
 	cmp r0, #9

@@ -26,7 +26,7 @@ sub_0203909C: ; 0x0203909C
 	mvn r1, r1
 	str r1, [r0, #0]
 	add r0, r5, #0
-	bl sub_020A4498
+	bl DWC_IsValidFriendData
 	cmp r0, #0
 	bne _020390D6
 	add sp, #8
@@ -37,7 +37,7 @@ _020390D6:
 _020390D8:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020A4828
+	bl DWC_IsEqualFriendData
 	cmp r0, #0
 	beq _020390EE
 	ldr r0, [sp]
@@ -48,16 +48,16 @@ _020390D8:
 _020390EE:
 	add r0, r6, #0
 	add r1, r5, #0
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	cmp r0, #0
 	ble _0203911C
 	add r0, r6, #0
 	add r1, r5, #0
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	str r0, [sp, #4]
 	add r0, r6, #0
 	add r1, r4, #0
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	ldr r1, [sp, #4]
 	cmp r1, r0
 	bne _0203911C
@@ -72,7 +72,7 @@ _0203911C:
 	cmp r0, #0
 	bge _02039132
 	add r0, r4, #0
-	bl sub_020A4498
+	bl DWC_IsValidFriendData
 	cmp r0, #0
 	bne _02039132
 	ldr r0, [sp]
@@ -106,7 +106,7 @@ sub_02039140: ; 0x02039140
 	ldr r1, [sp]
 	ldr r2, [sp, #4]
 	add r0, r7, #0
-	bl sub_020A4118
+	bl DWC_CheckFriendKey
 	cmp r0, #0
 	bne _02039178
 	add sp, #0x18
@@ -116,10 +116,10 @@ _02039178:
 	ldr r1, [sp]
 	ldr r2, [sp, #4]
 	add r0, sp, #0xc
-	bl sub_020A474C
+	bl DWC_CreateFriendKeyToken
 	add r0, r7, #0
 	add r1, sp, #0xc
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	cmp r0, #0
 	bgt _02039194
 	add sp, #0x18
@@ -133,11 +133,11 @@ _02039194:
 _0203919C:
 	add r0, r7, #0
 	add r1, sp, #0xc
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	str r0, [sp, #8]
 	add r0, r7, #0
 	add r1, r5, #0
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	ldr r1, [sp, #8]
 	cmp r1, r0
 	bne _020391BC
@@ -150,7 +150,7 @@ _020391BC:
 	cmp r0, #0
 	bge _020391CE
 	add r0, r5, #0
-	bl sub_020A4498
+	bl DWC_IsValidFriendData
 	cmp r0, #0
 	bne _020391CE
 	str r4, [r6, #0]
@@ -232,7 +232,7 @@ _02039244:
 	add r0, r7, #0
 	add r1, r1, r3
 	mov r2, #0xc
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r5, #0
 	bl sub_02033114
 	b _02039284
@@ -277,7 +277,7 @@ sub_02039298: ; 0x02039298
 	bl sub_02032F1C
 	ldr r1, [sp, #8]
 	mov r2, #0xc
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _020392CE:
 	ldr r0, [sp, #0x28]
 	cmp r0, #0
@@ -377,7 +377,7 @@ _020393A6:
 	bl sub_0202AED8
 	add r1, r0, #0
 	add r0, r6, #0
-	bl sub_020A4828
+	bl DWC_IsEqualFriendData
 	cmp r0, #0
 	beq _020393BE
 	add r0, r4, #0

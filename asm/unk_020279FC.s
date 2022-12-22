@@ -20,11 +20,11 @@ sub_020279FC: ; 0x020279FC
 
 	thumb_func_start sub_02027A10
 sub_02027A10: ; 0x02027A10
-	ldr r3, _02027A18 ; =sub_020C4DB0
+	ldr r3, _02027A18 ; =MI_CpuCopy8
 	mov r2, #2
 	bx r3
 	nop
-_02027A18: .word sub_020C4DB0
+_02027A18: .word MI_CpuCopy8
 	thumb_func_end sub_02027A10
 
 	thumb_func_start sub_02027A1C
@@ -33,7 +33,7 @@ sub_02027A1C: ; 0x02027A1C
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrh r1, [r4]
 	mov r0, #0xf
 	bic r1, r0

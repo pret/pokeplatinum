@@ -13,6 +13,6 @@
 .public sub_0206C3C8
 .public sub_02074470
 .public sub_0207A0FC
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov6_02246110
 .public ov6_02246148

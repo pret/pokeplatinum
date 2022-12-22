@@ -19,7 +19,7 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020A7118
-.public sub_020A71B0
-.public sub_020C4B18
-.public sub_020D50B8
+.public NNS_G2dGetUnpackedCharacterData
+.public NNS_G2dGetUnpackedPaletteData
+.public MIi_CpuCopy16
+.public memcpy

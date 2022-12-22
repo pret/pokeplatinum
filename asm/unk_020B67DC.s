@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B67DC
-sub_020B67DC: ; 0x020B67DC
+	arm_func_start NNSi_G3dSendJointSRTSi3d
+NNSi_G3dSendJointSRTSi3d: ; 0x020B67DC
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	mov r6, r0
@@ -18,7 +18,7 @@ sub_020B67DC: ; 0x020B67DC
 	add r1, r6, #0x1c
 	mov r0, #0x1b
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _020B6808:
 	ldr r0, [r6, #0]
 	tst r0, #4
@@ -47,7 +47,7 @@ _020B6808:
 	mov ip, lr, lsr #0xc
 	orr ip, ip, r3, lsl #20
 	str ip, [sp, #8]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _020B6878:
 	ldr r0, [r6, #0]
 	tst r0, #2
@@ -57,12 +57,12 @@ _020B6878:
 	beq _020B68A0
 	mov r0, #0x19
 	mov r2, #0xc
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	b _020B68C8
 _020B68A0:
 	mov r0, #0x1a
 	mov r2, #9
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	b _020B68C8
 _020B68B0:
 	cmp r4, #0
@@ -70,14 +70,14 @@ _020B68B0:
 	add r1, r6, #0x4c
 	mov r0, #0x1c
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _020B68C8:
 	cmp r5, #0
 	bne _020B68E0
 	add r1, r6, #0x10
 	mov r0, #0x1b
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _020B68E0:
 	ldr r0, [r6, #0]
 	tst r0, #1
@@ -86,13 +86,13 @@ _020B68E0:
 	add r1, r6, #4
 	mov r0, #0x1b
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end sub_020B67DC
+	arm_func_end NNSi_G3dSendJointSRTSi3d
 
-	arm_func_start sub_020B6908
-sub_020B6908: ; 0x020B6908
+	arm_func_start NNSi_G3dGetJointScaleSi3d
+NNSi_G3dGetJointScaleSi3d: ; 0x020B6908
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r5, r0
 	tst r3, #4
@@ -127,11 +127,11 @@ _020B6978:
 	mul r6, r0, r2
 	mla r1, r4, r2, r7
 	add r0, r7, r6
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r7, r6
 	add r1, r5, #0x10
 	mov r2, #0x18
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020B69A4:
 	ldr r3, [r1, #0]
@@ -153,7 +153,7 @@ _020B69A4:
 	ldr r3, _020B6B0C ; =0x021C6AF4
 	mov r0, r1
 	mla r1, r4, r2, r3
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, _020B6B08 ; =0x021C5CF0
 	mov r2, r4, lsr #5
 	ldr r1, [r0, #0]
@@ -222,7 +222,7 @@ _020B6A2C:
 	orr r6, r6, r1, lsl #20
 	add r1, r5, #0x10
 	str r6, [r4, r3]
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020B6B08: .word 0x021C5CF0
@@ -232,10 +232,10 @@ _020B6B14: .word 0x021C6AFC
 _020B6B18: .word 0x021C6B00
 _020B6B1C: .word 0x021C6B04
 _020B6B20: .word 0x021C6B08
-	arm_func_end sub_020B6908
+	arm_func_end NNSi_G3dGetJointScaleSi3d
 
-	arm_func_start sub_020B6B24
-sub_020B6B24: ; 0x020B6B24
+	arm_func_start NNSi_G3dSendTexSRTSi3d
+NNSi_G3dSendTexSRTSi3d: ; 0x020B6B24
 	stmdb sp!, {lr}
 	sub sp, sp, #0x3c
 	ldr r1, [r0, #0]
@@ -352,10 +352,10 @@ _020B6CCC:
 	ldr r0, [sp]
 	add r1, r1, #4
 	mov r2, #0xe
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, sp, #0x3c
 	ldmia sp!, {pc}
 	; .align 2, 0
 _020B6CE8: .word 0x00101710
 _020B6CEC: .word 0x00101910
-	arm_func_end sub_020B6B24
+	arm_func_end NNSi_G3dSendTexSRTSi3d

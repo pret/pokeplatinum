@@ -63,6 +63,6 @@
 .public sub_0205EAC8
 .public sub_02062910
 .public sub_02079220
-.public sub_020D4070
-.public sub_020D5124
-.public sub_020E2178
+.public abs
+.public memset
+.public _u32_div_f

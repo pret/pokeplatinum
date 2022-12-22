@@ -1316,7 +1316,7 @@ _0222CFE8:
 _0222D028:
 	add r0, sl, #3
 	mov r1, #4
-	bl sub_020BD140
+	bl FX_ModS32
 	add r3, sp, #0xd
 	ldrb r1, [r3, sl]
 	mov r5, #0

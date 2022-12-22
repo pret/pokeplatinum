@@ -1,2 +1,2 @@
-.public sub_020B26A8
-.public sub_020B275C
+.public NNS_G3dGeSendDL
+.public NNS_G3dGeBufferOP_N

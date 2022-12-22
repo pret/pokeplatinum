@@ -9,9 +9,9 @@
 .public sub_02025F30
 .public sub_02025FCC
 .public sub_02032EE8
-.public sub_020C4BB8
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MIi_CpuClearFast
+.public MI_CpuFill8
+.public _s32_div_f
 .public ov59_021D2B44
 .public ov59_021D2B4C
 .public ov59_021D2B54

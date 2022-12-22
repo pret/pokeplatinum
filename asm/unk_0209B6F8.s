@@ -18,7 +18,7 @@ sub_0209B6F8: ; 0x0209B6F8
 	ldr r2, _0209B758 ; =0x00000A54
 	add r4, r0, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_0209B8E8
 	add r0, r4, #0
@@ -271,7 +271,7 @@ _0209B8F2:
 	add r0, #0x84
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0209B920 ; =0x0000FFFF
 	mov r2, #0
 _0209B90E:
@@ -434,7 +434,7 @@ sub_0209B9EC: ; 0x0209B9EC
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0209BA14 ; =0x0000FFFF
 	ldr r0, _0209BA10 ; =0x00000A04
 	mov r2, #0

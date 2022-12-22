@@ -1,4 +1,4 @@
-.public sub_020BD104
+.public FX_DivS32
 .public ov18_0223D390
 .public ov18_0223D514
 .public ov18_0223D5E4

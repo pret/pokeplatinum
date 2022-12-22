@@ -51,8 +51,8 @@
 .public sub_0202C2A4
 .public sub_02039734
 .public sub_0208C120
-.public sub_020C4B18
-.public sub_020D5124
+.public MIi_CpuCopy16
+.public memset
 .public ov81_021D0F00
 .public ov81_021D0F20
 .public ov81_021D0F40

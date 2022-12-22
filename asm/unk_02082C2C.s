@@ -211,7 +211,7 @@ sub_02082DA8: ; 0x02082DA8
 	ldr r0, [r5, r4]
 	bl sub_02021F98
 	mov r1, #1
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	str r0, [sp, #0x10]
 	ldr r0, [sp, #0xc]
 	bl sub_02079D80
@@ -224,18 +224,18 @@ sub_02082DA8: ; 0x02082DA8
 	bl sub_0200723C
 	add r1, sp, #0x14
 	add r6, r0, #0
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	cmp r0, #0
 	beq _02082E2C
 	ldr r1, [sp, #0x14]
 	ldr r0, [r1, #0x14]
 	ldr r1, [r1, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r2, [sp, #0x14]
 	ldr r1, [sp, #0x10]
 	ldr r0, [r2, #0x14]
 	ldr r2, [r2, #0x10]
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 _02082E2C:
 	add r0, r6, #0
 	bl sub_020181C4

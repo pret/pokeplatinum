@@ -53,7 +53,7 @@ _021D0D96:
 	ldr r2, _021D0EEC ; =0x00004AB4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x33
 	bl sub_02018340
 	str r0, [r4, #0]
@@ -389,7 +389,7 @@ _021D10CC:
 	lsl r1, r1, #5
 	add r0, r0, r1
 	mov r1, #0
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	b _021D10EC
 _021D10E6:
 	ldr r0, [r4, #0x14]
@@ -856,7 +856,7 @@ ov59_021D14A4: ; 0x021D14A4
 	sub sp, #0x18
 	add r6, r0, #0
 	str r1, [sp, #0x14]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -1659,7 +1659,7 @@ _021D1B14:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	add r0, sp, #0
 	strb r1, [r0, #2]
@@ -1752,7 +1752,7 @@ _021D1BC2:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #1
 	add r0, sp, #0
 	strb r1, [r0, #2]
@@ -2803,11 +2803,11 @@ _021D23C6:
 	strh r2, [r0]
 	add r0, sp, #0
 	mov r2, #2
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	add r0, sp, #0
 	mov r1, #0x2a
 	mov r2, #2
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end ov59_021D23B0
@@ -3425,13 +3425,13 @@ ov59_021D2860: ; 0x021D2860
 	ldr r1, _021D28A0 ; =0x021D3290
 	lsl r3, r5, #1
 	ldrh r1, [r1, r3]
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	lsl r0, r4, #5
 	add r1, r5, #7
 	add r0, r6, r0
 	lsl r1, r1, #5
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021D28A0: .word 0x021D3290

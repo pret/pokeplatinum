@@ -11,7 +11,7 @@ ov4_02205C7C: ; 0x02205C7C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, _02205CB0 ; =0x02000C30
-	bl sub_02000B9C
+	bl OSi_ReferSymbol
 	ldr r0, _02205CB4 ; =0x0221A134
 	ldr r1, [r0, #0]
 	cmp r1, #0
@@ -57,7 +57,7 @@ ov4_02205CF8: ; 0x02205CF8
 	mov r0, r4
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [r5, #0x18]
 	ldr r0, _02205E34 ; =0x0221DBF0
 	ldr r2, _02205E38 ; =ov4_02205ED8

@@ -629,7 +629,7 @@ _0226738E:
 	add r2, #0x20
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x47
 	bl ov16_02268250
 	add r2, r5, #0
@@ -643,7 +643,7 @@ _0226738E:
 	add r2, #0x20
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x45
 	bl ov16_02268250
 	add r1, r5, #0
@@ -657,7 +657,7 @@ _0226738E:
 	add r1, r1, r3
 	ldr r3, _022674B8 ; =0x0226F3D6
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, [r5, #0x28]
 	add r0, r5, #0
 	mov r2, #6
@@ -679,7 +679,7 @@ _0226743A:
 	add r1, r1, r3
 	ldr r3, _022674BC ; =0x0226F376
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x44
 	bl ov16_02268250
 	add r1, r5, #0
@@ -693,7 +693,7 @@ _0226743A:
 	add r1, r1, r3
 	ldr r3, _022674C0 ; =0x0226F3A6
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x26
 	bl ov16_02268250
 	add r2, r5, #0
@@ -707,7 +707,7 @@ _0226743A:
 	add r2, #0x20
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, [r5, #0x28]
 	add r0, r5, #0
 	mov r2, #1
@@ -1319,7 +1319,7 @@ ov16_02267864: ; 0x02267864
 	add r0, r6, #0
 	ldrh r2, [r2, r7]
 	add r1, r3, r1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r5, #0
 	add r0, #0x25
 	ldrb r0, [r0]
@@ -1334,7 +1334,7 @@ ov16_02267864: ; 0x02267864
 	ldr r0, [sp, #0x20]
 	ldrh r2, [r2, r7]
 	add r1, r3, r1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r5, #0
 	add r0, #0x25
 	ldrb r0, [r0]
@@ -1351,7 +1351,7 @@ ov16_02267864: ; 0x02267864
 	add r1, r1, r3
 	ldr r3, _022679BC ; =0x0226F656
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r5, #0x25
 	ldrb r0, [r5]
 	ldr r4, [r4, #4]
@@ -1368,7 +1368,7 @@ ov16_02267864: ; 0x02267864
 	ldr r3, _022679C4 ; =0x0226F65A
 	add r1, r4, r1
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, sp, #0x24
 	bl sub_0201A8FC
 	ldr r0, [sp, #0x18]
@@ -1433,7 +1433,7 @@ _022679E8:
 	ldr r3, _02267A40 ; =0x0226F47E
 	add r0, r7, #0
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r5, #0x25
 	ldrb r0, [r5]
 	ldr r1, _02267A44 ; =0x0226F480
@@ -1445,7 +1445,7 @@ _022679E8:
 	add r1, r3, r1
 	ldr r3, _02267A48 ; =0x0226F482
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02267A3C: .word 0x0226F47C
@@ -1470,7 +1470,7 @@ ov16_02267A4C: ; 0x02267A4C
 	add r0, r4, #0
 	mov r1, #0xff
 	mov r2, #0x60
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #4]
 	ldr r0, [r0, #0xc]
 	bl ov16_0223E054
@@ -1501,7 +1501,7 @@ ov16_02267A4C: ; 0x02267A4C
 	ldrh r2, [r3, r2]
 	add r0, r0, r1
 	add r1, r7, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #4]
 	ldr r1, _02267B64 ; =0x0226F3F0
 	add r0, #0x25
@@ -1518,7 +1518,7 @@ ov16_02267A4C: ; 0x02267A4C
 	add r0, r0, r1
 	add r1, r7, #0
 	add r1, #0x60
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #0
 	add r1, r2, #0
 _02267ADE:
@@ -1556,7 +1556,7 @@ _02267AE2:
 	ldr r3, _02267B60 ; =0x0226F3EE
 	add r0, r7, #0
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #4]
 	ldr r3, _02267B64 ; =0x0226F3F0
 	add r0, #0x25
@@ -1574,7 +1574,7 @@ _02267AE2:
 	ldr r3, _02267B68 ; =0x0226F3F2
 	add r0, #0x60
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	add r0, r7, #0
@@ -1599,7 +1599,7 @@ ov16_02267B6C: ; 0x02267B6C
 	mov r1, #0xff
 	mov r2, #0x60
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0xc]
 	bl ov16_0223E04C
 	str r4, [sp]
@@ -1625,7 +1625,7 @@ ov16_02267B6C: ; 0x02267B6C
 	ldr r3, _02267BEC ; =0x0226F41E
 	add r0, r4, #0
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r5, #0x25
 	ldrb r0, [r5]
 	ldr r3, _02267BF0 ; =0x0226F420
@@ -1639,7 +1639,7 @@ ov16_02267B6C: ; 0x02267B6C
 	ldr r3, _02267BF4 ; =0x0226F422
 	ldrh r2, [r3, r2]
 	add r0, r4, r0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	pop {r3, r4, r5, r6, r7, pc}
@@ -1660,7 +1660,7 @@ ov16_02267BF8: ; 0x02267BF8
 	mov r1, #0xff
 	mov r2, #0x60
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0xc]
 	bl ov16_0223E04C
 	str r4, [sp]
@@ -1685,7 +1685,7 @@ ov16_02267BF8: ; 0x02267BF8
 	ldr r3, _02267C54 ; =0x0226F3BE
 	add r0, r4, #0
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	pop {r3, r4, r5, pc}
@@ -1727,7 +1727,7 @@ _02267C72:
 	ldr r3, _02267CA4 ; =0x0226F38E
 	add r1, r4, r1
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r3, r4, r5, pc}
 	nop
 _02267CA0: .word 0x0226F38C
@@ -1758,7 +1758,7 @@ ov16_02267CA8: ; 0x02267CA8
 	ldr r3, _02267CE4 ; =0x0226F35E
 	add r1, r4, r1
 	ldrh r2, [r3, r2]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r3, r4, r5, pc}
 	nop
 _02267CE0: .word 0x0226F35C
@@ -1826,7 +1826,7 @@ _02267D16:
 	add r1, r1, r2
 	add r0, r5, #0
 	mov r2, #0xc0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #0xd
 	mov r0, #0x1a
 	lsl r2, r2, #6
@@ -1836,7 +1836,7 @@ _02267D16:
 	add r1, r1, r2
 	add r0, r5, r0
 	mov r2, #0xc0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #0xa
 	lsl r2, r2, #8
 	add r0, r5, #0
@@ -1845,7 +1845,7 @@ _02267D16:
 	add r1, r1, r2
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x1a
 	mov r1, #0xb
 	lsl r0, r0, #4
@@ -1856,7 +1856,7 @@ _02267D16:
 	add r1, r2, r1
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, sp, #0x18
 	bl sub_0201A8FC
 	add r0, r7, #0
@@ -1952,7 +1952,7 @@ _02267E0E:
 	add r1, r1, r2
 	add r0, r5, #0
 	mov r2, #0xc0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #0x15
 	mov r0, #0x1a
 	lsl r2, r2, #6
@@ -1962,7 +1962,7 @@ _02267E0E:
 	add r1, r1, r2
 	add r0, r5, r0
 	mov r2, #0xc0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #3
 	lsl r2, r2, #0xa
 	add r0, r5, #0
@@ -1971,7 +1971,7 @@ _02267E0E:
 	add r1, r1, r2
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, #0x1a
 	mov r1, #0xd
 	lsl r0, r0, #4
@@ -1982,7 +1982,7 @@ _02267E0E:
 	add r1, r2, r1
 	add r0, #0xc0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, sp, #0x24
 	bl sub_0201A8FC
 	add r0, r6, #0
@@ -2026,8 +2026,8 @@ _02267F00:
 _02267F12:
 	ldr r6, [r5, #0x40]
 	add r0, r6, #0
-	bl sub_020E1F6C
-	bl sub_020D4070
+	bl _s32_div_f
+	bl abs
 	mov r1, #0xc
 	lsl r0, r0, #0x10
 	add r3, r5, #0
@@ -2149,7 +2149,7 @@ _02267FD6:
 	add r2, r3, r2
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _02268032
 _02268006:
 	ldrb r0, [r0, r4]
@@ -2172,7 +2172,7 @@ _02268006:
 	add r1, r1, r3
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 _02268032:
 	add r0, r4, #1
 	lsl r0, r0, #0x18
@@ -2233,7 +2233,7 @@ _0226808C:
 	add r0, r6, r0
 	add r1, r3, r1
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _022680C0
 _022680AA:
 	ldrb r0, [r0, r4]
@@ -2245,7 +2245,7 @@ _022680AA:
 	add r1, r1, r2
 	add r0, r6, r0
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 _022680C0:
 	add r0, r4, #1
 	lsl r0, r0, #0x18
@@ -2314,7 +2314,7 @@ _0226812E:
 	bge _0226816E
 	lsl r0, r0, #8
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r6, #0
 	ldr r1, [r5, #0]
 	bge _02268152
@@ -2401,14 +2401,14 @@ _022681BE:
 	add r0, r1, #0
 	mul r0, r2
 	add r1, r6, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #8
 	b _022681DC
 _022681D2:
 	add r0, r1, #0
 	mul r0, r2
 	add r1, r6, #0
-	bl sub_020E2178
+	bl _u32_div_f
 _022681DC:
 	add r2, r0, #0
 	cmp r0, #0
@@ -2462,18 +2462,18 @@ _02268228:
 	add r0, r7, #0
 	mul r0, r6
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	add r0, r4, #0
 	mul r0, r6
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r1, r7, #0x18
 	lsl r0, r0, #0x18
 	asr r1, r1, #0x18
 	asr r0, r0, #0x18
 	sub r0, r1, r0
-	bl sub_020D4070
+	bl abs
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02268210
@@ -2645,7 +2645,7 @@ ov16_0226834C: ; 0x0226834C
 	mov r1, #0
 	mov r2, #0xc
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r2, #0xfa
 	str r5, [r4, #0]
 	ldr r0, _0226837C ; =ov16_02268380
@@ -2858,7 +2858,7 @@ _022684E4:
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	add r3, r0, #0
 	add r5, r1, #0

@@ -152,7 +152,7 @@ ov5_021E16CC: ; 0x021E16CC
 	bl sub_02006E18
 	add r0, r4, #0
 	mov r1, #0x30
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [sp]
 	b _021E1704
 _021E1702:
@@ -467,7 +467,7 @@ ov5_021E1904: ; 0x021E1904
 	add r4, r3, #0
 	bl ov5_021EF9E8
 	ldr r0, [r0, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _021E1938
 	add r2, r0, #0
@@ -493,7 +493,7 @@ _021E1938:
 _021E193A:
 	add r0, r5, #0
 	str r1, [r4, #0]
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov5_021E1904
 
@@ -504,18 +504,18 @@ ov5_021E1944: ; 0x021E1944
 	add r0, r1, #0
 	add r4, r2, #0
 	add r5, r3, #0
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _021E19C4 ; =0x021C5B48
 	add r0, r4, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _021E19C8 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, r5, #0
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
-	bl sub_020AF480
+	bl NNS_G3dGlbSetBaseScale
+	bl NNS_G3dGlbFlushP
 	add r2, sp, #0
 	ldr r0, [sp, #0x1c]
 	ldr r1, [sp, #0x18]
@@ -549,7 +549,7 @@ _021E19A8:
 	ldrh r2, [r2, #2]
 	add r0, r7, #0
 	add r1, r5, #0
-	bl sub_020B2384
+	bl NNS_G3dDraw1Mat1Shp
 	add r0, r4, #1
 	lsl r0, r0, #0x18
 	lsr r4, r0, #0x18

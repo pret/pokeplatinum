@@ -310,12 +310,12 @@ _0200F3C8:
 	bne _0200F3D8
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	b _0200F3E0
 _0200F3D8:
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 _0200F3E0:
 	ldr r0, _0200F428 ; =0x021BF500
 	mov r1, #1
@@ -358,11 +358,11 @@ sub_0200F42C: ; 0x0200F42C
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	pop {r3}
 	pop {r3}
 	add sp, #0x10
@@ -375,11 +375,11 @@ sub_0200F44C: ; 0x0200F44C
 	cmp r0, #0
 	bne _0200F45A
 	ldr r0, _0200F464 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	pop {r3, pc}
 _0200F45A:
 	ldr r0, _0200F468 ; =0x0400106C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	pop {r3, pc}
 	nop
 _0200F464: .word 0x0400006C
@@ -945,12 +945,12 @@ _0200F81E:
 	add r0, #0x14
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #0x44
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	add r2, r4, #0
 	add r2, #0x74
 	mov r1, #0x18
@@ -964,7 +964,7 @@ _0200F846:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xc0
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	thumb_func_end sub_0200F814
 

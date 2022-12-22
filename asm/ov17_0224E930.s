@@ -15,7 +15,7 @@ ov17_0224E930: ; 0x0224E930
 	mov r1, #0
 	mov r2, #0x3c
 	add r7, r3, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r0, #0x37
 	strb r4, [r0]
@@ -46,7 +46,7 @@ ov17_0224E958: ; 0x0224E958
 	add r1, #0x39
 	ldrb r4, [r1]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp]
 	str r0, [r5, #0x30]
 	add r0, r5, #0
@@ -81,17 +81,17 @@ ov17_0224E990: ; 0x0224E990
 	lsr r0, r0, #2
 	add r0, r0, r1
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [sp, #0xc]
 	b _0224E9D4
 _0224E9C0:
 	ldr r0, [sp]
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _0224EBD0 ; =0x00001388
 	add r0, r0, r1
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [sp, #0xc]
 _0224E9D4:
 	mov r0, #0x12
@@ -153,7 +153,7 @@ _0224EA36:
 	ldr r1, [sp, #0x18]
 	bl sub_02094EA0
 	ldr r1, [sp, #0x14]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r5, r1, #0
 	beq _0224EA36
 	add r0, sp, #0x2c
@@ -220,7 +220,7 @@ _0224EAB0:
 	ldr r0, _0224EBD0 ; =0x00001388
 	add r0, r1, r0
 	ldr r1, _0224EBD8 ; =0x00002710
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r1, r6, #2
 	str r0, [r4, r1]
 	add r6, r6, #1
@@ -255,7 +255,7 @@ _0224EB00:
 	ldr r1, [sp, #0x24]
 	bl sub_02094EA0
 	add r1, r6, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r5, #2
 	ldr r0, [r4, r0]
 	add r1, r0, r1
@@ -319,7 +319,7 @@ _0224EB74:
 	add r1, r6, #0
 	bl sub_02094EA0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp, #4]
 	cmp r0, r1
 	ble _0224EBA2
@@ -395,7 +395,7 @@ _0224EC0E:
 	pop {r3, r4, r5, pc}
 _0224EC16:
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 _0224EC1C:
 	pop {r3, r4, r5, pc}
 	nop
@@ -743,7 +743,7 @@ _0224EE20:
 	strb r1, [r0]
 	ldr r0, [sp, #0x40]
 	ldr r1, _0224EE8C ; =0x00002710
-	bl sub_020E2178
+	bl _u32_div_f
 	sub r0, r0, #2
 	strh r0, [r4, #0x34]
 _0224EE82:
@@ -875,7 +875,7 @@ _0224EF18:
 	ldr r1, _0224F074 ; =0x00001388
 	add r0, r0, r1
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r0, #0
 	add r1, r5, #0
 	ldr r0, [r5, #0x30]
@@ -883,7 +883,7 @@ _0224EF18:
 	bl sub_02094EA0
 	ldr r1, [sp, #0x2c]
 	add r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp, #0x2c]
 	lsr r2, r0, #0x1f
 	add r2, r0, r2
@@ -901,7 +901,7 @@ _0224EFA4:
 	add r1, #0x30
 	bl sub_02094EA0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, [sp, #0x2c]
 	ldr r0, [sp, #0x28]
 	add r0, r2, r0
@@ -984,7 +984,7 @@ _0224EFF8:
 	strb r1, [r0]
 	ldr r0, [sp, #0x60]
 	ldr r1, _0224F07C ; =0x00002710
-	bl sub_020E2178
+	bl _u32_div_f
 	sub r0, r0, #2
 	strh r0, [r5, #0x34]
 _0224F062:

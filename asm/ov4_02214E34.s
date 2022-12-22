@@ -9,13 +9,13 @@
 	arm_func_start ov4_02214E34
 ov4_02214E34: ; 0x02214E34
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	bl ov4_02213964
 	cmp r0, #0
 	bne _02214E58
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 _02214E58:
 	add r1, r0, #0x2000
@@ -26,24 +26,24 @@ _02214E58:
 	cmp r2, #0
 	ble _02214E7C
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _02214E7C:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_02214E34
 
 	arm_func_start ov4_02214E88
 ov4_02214E88: ; 0x02214E88
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	bl ov4_02213964
 	cmp r0, #0
 	mov r5, #0
 	bne _02214EB4
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 _02214EB4:
@@ -56,7 +56,7 @@ _02214EB4:
 	ldrhi r5, [r1]
 _02214ED0:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_02214E88
@@ -65,13 +65,13 @@ _02214ED0:
 ov4_02214EE0: ; 0x02214EE0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	bl ov4_02213964
 	cmp r0, #0
 	bne _02214F0C
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _02214F0C:
@@ -94,7 +94,7 @@ _02214F34:
 _02214F48:
 	strb r1, [r0, #0x26a]
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_02214EE0
@@ -103,13 +103,13 @@ _02214F48:
 ov4_02214F5C: ; 0x02214F5C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	bl ov4_02213964
 	cmp r0, #0
 	bne _02214F88
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _02214F88:
@@ -118,11 +118,11 @@ _02214F88:
 	movs r4, r0
 	mov r0, r5
 	bne _02214FA8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _02214FA8:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r0, r4, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_02214F5C
@@ -162,7 +162,7 @@ _02215018:
 	add r1, r7, #0x10
 	mov r2, #0xc0
 	strh r4, [r7, #2]
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, r7
 	bl ov4_022151F8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}

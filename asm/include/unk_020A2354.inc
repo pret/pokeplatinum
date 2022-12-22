@@ -1,1 +1,1 @@
-.public sub_020BD3E4
+.public VEC_Normalize

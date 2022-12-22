@@ -18,7 +18,7 @@ sub_02099604: ; 0x02099604
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #0xc]
 	add r0, r5, #0
 	bl sub_0202AB28

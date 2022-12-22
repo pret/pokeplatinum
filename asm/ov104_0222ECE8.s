@@ -242,7 +242,7 @@ ov104_0222EE60: ; 0x0222EE60
 	ldr r1, _0222EEA4 ; =0x00000784
 	add r2, r4, #0
 	add r1, r5, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _0222EEA4 ; =0x00000784
 	mov r2, #2
 	mov r0, #0x26
@@ -280,7 +280,7 @@ ov104_0222EEA8: ; 0x0222EEA8
 	add r2, r0, #0
 	ldr r1, [r4, r1]
 	add r0, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _0222EED2:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -1502,7 +1502,7 @@ _0222F780:
 	ldr r1, [sp, #4]
 	add r2, r6, #0
 	add r1, r1, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp]
 	add r4, r4, #1
 	add r5, r5, r6
@@ -1563,7 +1563,7 @@ _0222F7FE:
 	add r1, r6, #0
 	add r0, r0, r4
 	add r2, r5, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #4]
 	add r1, r6, #0
 	ldr r0, [r0, #0x28]
@@ -1983,7 +1983,7 @@ _0222FAF6:
 	ldr r1, [sp, #4]
 	add r2, r6, #0
 	add r1, r1, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp]
 	add r4, r4, #1
 	add r5, r5, r6
@@ -2045,7 +2045,7 @@ _0222FB76:
 	add r1, r6, #0
 	add r0, r0, r4
 	add r2, r5, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #4]
 	add r1, r6, #0
 	ldr r0, [r0, #0x70]

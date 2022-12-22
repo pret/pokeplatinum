@@ -16,26 +16,26 @@ ov18_0224510C: ; 0x0224510C
 	ldr r1, _02245184 ; =0x022533C8
 	str r0, [r1, #4]
 	add r0, sp, #0
-	bl sub_020C9D70
+	bl TP_GetUserInfo
 	cmp r0, #0
 	bne _0224513C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0224513C:
 	add r0, sp, #0
-	bl sub_020C9E04
+	bl TP_SetCalibrateParam
 	ldr r1, _02245184 ; =0x022533C8
 	mov r0, #0
 	ldr r2, [r1, #4]
 	mov r1, #4
 	mov r3, #5
-	bl sub_020CA010
+	bl TP_RequestAutoSamplingStartAsync
 	mov r0, #2
-	bl sub_020CA60C
+	bl TP_WaitBusy
 	mov r0, #2
-	bl sub_020CA624
+	bl TP_CheckError
 	cmp r0, #0
 	beq _02245178
-	bl sub_020C42A8
+	bl OS_Terminate
 _02245178:
 	bl ov18_022451C0
 	add sp, sp, #8
@@ -50,11 +50,11 @@ ov18_02245188: ; 0x02245188
 	mov r5, #4
 	mov r4, r5
 _02245194:
-	bl sub_020CA110
+	bl TP_RequestAutoSamplingStopAsync
 	mov r0, r5
-	bl sub_020CA60C
+	bl TP_WaitBusy
 	mov r0, r4
-	bl sub_020CA624
+	bl TP_CheckError
 	cmp r0, #0
 	bne _02245194
 	ldr r0, _022451BC ; =0x022533CC
@@ -157,7 +157,7 @@ ov18_022452D4: ; 0x022452D4
 	movs r0, r0, lsr #0x1f
 	movne r6, #1
 	moveq r6, #0
-	bl sub_020CA2EC
+	bl TP_GetLatestIndexInAuto
 	ldr r7, _0224546C ; =0x022533C8
 	mov r4, r5
 	ldr r3, [r7, #4]
@@ -176,7 +176,7 @@ _02245320:
 	bne _02245364
 	add r0, sp, #0
 	mov r5, #1
-	bl sub_020CA4E8
+	bl TP_GetCalibratedPoint
 	ldr r1, _0224546C ; =0x022533C8
 	ldrh r0, [sp]
 	ldr r2, [r1, #4]
@@ -188,7 +188,7 @@ _02245364:
 	mov r1, r8
 	add r4, r4, #1
 	add r0, r0, #4
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r4, #4
 	blt _02245320
 _0224537C:
@@ -552,7 +552,7 @@ ov18_02245820: ; 0x02245820
 	movs r0, r0, asr #0xf
 	ldmneia sp!, {r3, pc}
 	mov r0, #1
-	bl sub_020CB65C
+	bl PM_SetLCDPower
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
 	ldr r0, _02245894 ; =0x022533C8
@@ -565,7 +565,7 @@ _02245868:
 	movs r0, r0, asr #0xf
 	ldmeqia sp!, {r3, pc}
 	mov r0, #0
-	bl sub_020CB65C
+	bl PM_SetLCDPower
 	cmp r0, #0
 	ldrne r0, _02245894 ; =0x022533C8
 	movne r1, #1

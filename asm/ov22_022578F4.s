@@ -60,7 +60,7 @@ ov22_02257948: ; 0x02257948
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x88
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov22_02257948

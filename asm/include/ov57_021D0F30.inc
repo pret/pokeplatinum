@@ -5,4 +5,4 @@
 .public sub_0203D1A8
 .public sub_020507E4
 .public sub_0206A92C
-.public sub_020C3EE4
+.public OS_ResetSystem

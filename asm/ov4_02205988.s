@@ -11,7 +11,7 @@ ov4_02205988: ; 0x02205988
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, _02205AB4 ; =0x02000C14
-	bl sub_02000B9C
+	bl OSi_ReferSymbol
 	cmp r4, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -44,7 +44,7 @@ ov4_02205988: ; 0x02205988
 	ldr r0, _02205ABC ; =0x0221DBD8
 	mov r1, #0
 	mov r2, #0x18
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, [r4, #0x18]
 	ldr r1, _02205AB8 ; =0x0221DBCC
 	mov r0, #0
@@ -190,7 +190,7 @@ ov4_02205BA0: ; 0x02205BA0
 	mov r0, #0
 	str r0, [r4, #0]
 	str r0, [r4, #4]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldrb r2, [r6, #4]
 	and r3, r2, #0xf0
 	cmp r3, #0x40

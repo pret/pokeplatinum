@@ -340,7 +340,7 @@ ov5_021F5C18: ; 0x021F5C18
 	bne _021F5C40
 	bl sub_020213F4
 	mov r1, #0
-	bl sub_020B37A4
+	bl NNS_G3dMdlSetMdlFogEnableFlagAll
 _021F5C40:
 	add r0, r5, #0
 	add sp, #8

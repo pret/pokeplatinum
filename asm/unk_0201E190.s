@@ -30,10 +30,10 @@ sub_0201E1A0: ; 0x0201E1A0
 	sub sp, #0x30
 	add r4, r1, #0
 	add r1, sp, #0x24
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add r0, r4, #0
 	add r1, sp, #0x18
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r0, [sp, #0x24]
 	ldr r4, [sp, #0x18]
 	str r0, [sp]
@@ -50,14 +50,14 @@ sub_0201E1A0: ; 0x0201E1A0
 	ldr r3, [sp, #0xc]
 	add r1, r7, #0
 	str r0, [sp, #0x10]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #0x14]
 	add r5, r1, #0
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
 	add r2, r4, #0
 	add r3, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	ldr r3, [sp, #0x14]
 	lsl r2, r2, #0xa
@@ -80,14 +80,14 @@ sub_0201E1A0: ; 0x0201E1A0
 	add r1, r7, #0
 	add r2, r4, #0
 	add r3, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r6, r0, #0
 	add r4, r1, #0
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
 	ldr r2, [sp, #8]
 	ldr r3, [sp, #0xc]
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -116,7 +116,7 @@ _0201E252:
 	pop {r3, r4, r5, r6, r7, pc}
 _0201E25A:
 	add r1, r5, #0
-	bl sub_020BDA20
+	bl FX_Atan2Idx
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -140,7 +140,7 @@ sub_0201E268: ; 0x0201E268
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r5, r0, #0
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	ldr r0, [r4, #4]
 	ldr r3, _0201E2DC ; =0x020F983C
 	lsl r0, r0, #0x10
@@ -153,11 +153,11 @@ sub_0201E268: ; 0x0201E268
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	add r0, r5, #0
 	add r1, sp, #0
 	add r2, r5, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldr r0, [r4, #8]
 	ldr r3, _0201E2DC ; =0x020F983C
 	lsl r0, r0, #0x10
@@ -170,11 +170,11 @@ sub_0201E268: ; 0x0201E268
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r0, r5, #0
 	add r1, sp, #0
 	add r2, r5, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add sp, #0x24
 	pop {r4, r5, pc}
 	nop
@@ -197,7 +197,7 @@ sub_0201E2E0: ; 0x0201E2E0
 	add r1, r0, #0
 	ldr r0, [sp]
 	add r2, r7, #0
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r0, r4, #0
 	bl sub_0201D1D4
 	add r5, r0, #0
@@ -206,11 +206,11 @@ sub_0201E2E0: ; 0x0201E2E0
 	add r1, r0, #0
 	add r0, sp, #4
 	add r2, r5, #0
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	ldr r0, [sp]
 	add r1, sp, #4
 	add r2, r0, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r6, #0
 	bl sub_0201D1D4
 	add r4, r0, #0
@@ -219,11 +219,11 @@ sub_0201E2E0: ; 0x0201E2E0
 	add r1, r0, #0
 	add r0, sp, #4
 	add r2, r4, #0
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	ldr r0, [sp]
 	add r1, sp, #4
 	add r2, r0, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end sub_0201E2E0
@@ -243,12 +243,12 @@ sub_0201E34C: ; 0x0201E34C
 	ldrsh r1, [r1, r2]
 	add r5, r3, #0
 	ldr r4, [sp, #0x18]
-	bl sub_020BCFD0
+	bl FX_Div
 	add r2, r0, #0
 	asr r1, r6, #0x1f
 	add r0, r6, #0
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r6, #2
 	mov r2, #0
 	lsl r6, r6, #0xa
@@ -271,7 +271,7 @@ sub_0201E34C: ; 0x0201E34C
 	asr r3, r7, #0x1f
 	add r2, r7, #0
 	str r0, [r4, #0]
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #0
 	add r2, r6, #0
 	add r2, r0, r2

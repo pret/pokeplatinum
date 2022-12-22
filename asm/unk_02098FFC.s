@@ -20,7 +20,7 @@ sub_02098FFC: ; 0x02098FFC
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	cmp r5, #0x10
 	bls _02099026
@@ -50,7 +50,7 @@ sub_0209903C: ; 0x0209903C
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_020181C4
 	pop {r4, pc}
@@ -146,7 +146,7 @@ _020990DE:
 	ldr r0, [r0, r2]
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -222,7 +222,7 @@ _02099190:
 	str r0, [sp, #0x38]
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0x3c]
 	ldr r0, [sp, #0x38]
 	strh r1, [r0]
@@ -315,59 +315,59 @@ _020991B4:
 	str r0, [sp, #0x44]
 	beq _02099272
 	lsl r0, r7, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _02099280
 _02099272:
 	lsl r0, r7, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _02099280:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x48]
 	ldr r0, [sp, #0x30]
 	cmp r0, #0
 	beq _0209929E
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _020992AC
 _0209929E:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _020992AC:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x4c]
 	add r0, sp, #0x78
 	ldrh r0, [r0, #0x10]
 	cmp r0, #0
 	beq _020992CC
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _020992DA
 _020992CC:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _020992DA:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x50]
 	cmp r6, #2
 	bne _020992EE

@@ -41,7 +41,7 @@
 .public sub_0207A0F4
 .public sub_0207A0F8
 .public sub_0207A0FC
-.public sub_020C4B4C
-.public sub_020C4B68
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MIi_CpuClear32
+.public MIi_CpuCopy32
+.public MI_CpuFill8
+.public MI_CpuCopy8

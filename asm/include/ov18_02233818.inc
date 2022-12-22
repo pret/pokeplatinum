@@ -1,6 +1,6 @@
-.public sub_020BD104
-.public sub_020BD140
-.public sub_020C4CF4
+.public FX_DivS32
+.public FX_ModS32
+.public MI_CpuFill8
 .public ov18_0222B004
 .public ov18_0222B034
 .public ov18_0222B048

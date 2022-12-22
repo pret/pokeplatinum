@@ -4,8 +4,8 @@
 .public sub_020787CC
 .public sub_0207A0F8
 .public sub_0207A0FC
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f
 .public ov14_0221FC20
 .public ov14_0221FD44
 .public ov14_0221FE38

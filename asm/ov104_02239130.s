@@ -146,7 +146,7 @@ _02239246:
 	mov r2, #0x46
 	add r0, r0, r1
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _02239270
 _02239254:
 	ldr r1, _02239278 ; =0x000008D6

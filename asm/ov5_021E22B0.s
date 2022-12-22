@@ -21,7 +21,7 @@ ov5_021E22B0: ; 0x021E22B0
 	mov r0, #8
 	mov r1, #0
 	bl sub_0201FF0C
-	bl sub_020BEC9C
+	bl GX_ResetBankForBG
 	mov r0, #4
 	add r1, r0, #0
 	bl sub_02018144
@@ -29,7 +29,7 @@ ov5_021E22B0: ; 0x021E22B0
 	mov r0, #0
 	add r1, r7, #0
 	mov r2, #4
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r6, _021E230C ; =0x021F9CE0
 	add r3, sp, #0
 	mov r2, #5
@@ -62,7 +62,7 @@ ov5_021E2310: ; 0x021E2310
 	add r3, r1, #0
 	bl ov5_021E20E8
 	mov r0, #4
-	bl sub_020BE004
+	bl GX_SetBankForBG
 	mov r0, #0xe
 	mov r1, #1
 	bl sub_0201FF0C

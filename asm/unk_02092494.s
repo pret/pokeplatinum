@@ -928,7 +928,7 @@ sub_02092C24: ; 0x02092C24
 	add r2, r1, #0
 	bl sub_02074470
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #5
 	bhi _02092CA8
 	add r0, r1, r1
@@ -1139,7 +1139,7 @@ _02092DE4:
 	add r0, r7, #0
 _02092DEC:
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r2, #0xa
 	add r6, r5, #0
 	mul r6, r2

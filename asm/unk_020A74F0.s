@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A74F0
-sub_020A74F0: ; 0x020A74F0
+	arm_func_start SequenceEdgeHandle_
+SequenceEdgeHandle_: ; 0x020A74F0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x18]
@@ -46,7 +46,7 @@ _020A755C:
 	strne r0, [r4, #0xc]
 	bne _020A75D4
 	mov r0, r4
-	bl sub_020A788C
+	bl NNS_G2dResetAnimCtrlState
 	b _020A75D4
 _020A758C:
 	ldr r0, [r4, #0x20]
@@ -67,7 +67,7 @@ _020A75A8:
 	strne r0, [r4, #0xc]
 	bne _020A75D4
 	mov r0, r4
-	bl sub_020A788C
+	bl NNS_G2dResetAnimCtrlState
 _020A75D4:
 	ldr r1, [r4, #0x1c]
 	ldr r2, [r4, #0]
@@ -81,10 +81,10 @@ _020A75D4:
 	cmp r2, r1
 	strlo r1, [r4]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A74F0
+	arm_func_end SequenceEdgeHandle_
 
-	arm_func_start sub_020A7604
-sub_020A7604: ; 0x020A7604
+	arm_func_start SetAnimCtrlCurrentFrameImpl_
+SetAnimCtrlCurrentFrameImpl_: ; 0x020A7604
 	ldr r3, [r0, #0x1c]
 	ldrh r2, [r3]
 	cmp r1, r2
@@ -100,17 +100,17 @@ sub_020A7604: ; 0x020A7604
 _020A7634:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020A7604
+	arm_func_end SetAnimCtrlCurrentFrameImpl_
 
-	arm_func_start sub_020A763C
-sub_020A763C: ; 0x020A763C
+	arm_func_start NNS_G2dGetAnimCtrlCurrentElement
+NNS_G2dGetAnimCtrlCurrentElement: ; 0x020A763C
 	ldr r0, [r0, #4]
 	ldr r0, [r0, #0]
 	bx lr
-	arm_func_end sub_020A763C
+	arm_func_end NNS_G2dGetAnimCtrlCurrentElement
 
-	arm_func_start sub_020A7648
-sub_020A7648: ; 0x020A7648
+	arm_func_start NNS_G2dTickAnimCtrl
+NNS_G2dTickAnimCtrl: ; 0x020A7648
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	ldr r0, [sl, #0xc]
@@ -124,7 +124,7 @@ sub_020A7648: ; 0x020A7648
 	adc r1, r1, sb
 	mov r0, r0, lsr #0xc
 	orr r0, r0, r1, lsl #20
-	bl sub_020D4070
+	bl abs
 	mov r4, #1
 	ldr r1, [sl, #0x10]
 	mov fp, sb
@@ -179,7 +179,7 @@ _020A7740:
 	cmp r0, #0
 	beq _020A7750
 	mov r0, sl
-	bl sub_020A74F0
+	bl SequenceEdgeHandle_
 _020A7750:
 	ldr r1, [sl]
 	ldrh r0, [r1, #4]
@@ -229,21 +229,21 @@ _020A77EC:
 	bne _020A76A8
 	mov r0, sb
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020A7648
+	arm_func_end NNS_G2dTickAnimCtrl
 
-	arm_func_start sub_020A77FC
-sub_020A77FC: ; 0x020A77FC
+	arm_func_start NNS_G2dSetAnimCtrlCurrentFrame
+NNS_G2dSetAnimCtrlCurrentFrame: ; 0x020A77FC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020A7604
+	bl SetAnimCtrlCurrentFrameImpl_
 	cmp r0, #0
 	movne r1, #0
 	strne r1, [r4, #0x10]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A77FC
+	arm_func_end NNS_G2dSetAnimCtrlCurrentFrame
 
-	arm_func_start sub_020A7818
-sub_020A7818: ; 0x020A7818
+	arm_func_start NNS_G2dGetAnimCtrlCurrentFrame
+NNS_G2dGetAnimCtrlCurrentFrame: ; 0x020A7818
 	ldr r1, [r0, #0x1c]
 	ldr r2, [r0, #0]
 	ldr r0, [r1, #0xc]
@@ -251,14 +251,14 @@ sub_020A7818: ; 0x020A7818
 	mov r0, r0, lsl #0xd
 	mov r0, r0, lsr #0x10
 	bx lr
-	arm_func_end sub_020A7818
+	arm_func_end NNS_G2dGetAnimCtrlCurrentFrame
 
-	arm_func_start sub_020A7834
-sub_020A7834: ; 0x020A7834
+	arm_func_start NNS_G2dInitAnimCtrl
+NNS_G2dInitAnimCtrl: ; 0x020A7834
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x20
-	bl sub_020A7874
+	bl NNS_G2dInitAnimCallBackFunctor
 	mov r1, #0
 	str r1, [r4, #0]
 	str r1, [r4, #4]
@@ -271,20 +271,20 @@ sub_020A7834: ; 0x020A7834
 	str r1, [r4, #0x18]
 	str r1, [r4, #0x1c]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A7834
+	arm_func_end NNS_G2dInitAnimCtrl
 
-	arm_func_start sub_020A7874
-sub_020A7874: ; 0x020A7874
+	arm_func_start NNS_G2dInitAnimCallBackFunctor
+NNS_G2dInitAnimCallBackFunctor: ; 0x020A7874
 	mov r1, #0
 	str r1, [r0, #0]
 	str r1, [r0, #4]
 	str r1, [r0, #8]
 	strh r1, [r0, #0xc]
 	bx lr
-	arm_func_end sub_020A7874
+	arm_func_end NNS_G2dInitAnimCallBackFunctor
 
-	arm_func_start sub_020A788C
-sub_020A788C: ; 0x020A788C
+	arm_func_start NNS_G2dResetAnimCtrlState
+NNS_G2dResetAnimCtrlState: ; 0x020A788C
 	ldr r1, [r0, #0x14]
 	cmp r1, #0
 	movgt r2, #1
@@ -305,26 +305,26 @@ _020A78BC:
 _020A78CC:
 	str r1, [r0, #0]
 	ldr r2, [r0, #0]
-	ldr ip, _020A78E8 ; =sub_020A7648
+	ldr ip, _020A78E8 ; =NNS_G2dTickAnimCtrl
 	mov r1, #0
 	str r2, [r0, #4]
 	str r1, [r0, #0x10]
 	bx ip
 	; .align 2, 0
-_020A78E8: .word sub_020A7648
-	arm_func_end sub_020A788C
+_020A78E8: .word NNS_G2dTickAnimCtrl
+	arm_func_end NNS_G2dResetAnimCtrlState
 
-	arm_func_start sub_020A78EC
-sub_020A78EC: ; 0x020A78EC
-	ldr ip, _020A78F8 ; =sub_020A788C
+	arm_func_start NNS_G2dBindAnimCtrl
+NNS_G2dBindAnimCtrl: ; 0x020A78EC
+	ldr ip, _020A78F8 ; =NNS_G2dResetAnimCtrlState
 	str r1, [r0, #0x1c]
 	bx ip
 	; .align 2, 0
-_020A78F8: .word sub_020A788C
-	arm_func_end sub_020A78EC
+_020A78F8: .word NNS_G2dResetAnimCtrlState
+	arm_func_end NNS_G2dBindAnimCtrl
 
-	arm_func_start sub_020A78FC
-sub_020A78FC: ; 0x020A78FC
+	arm_func_start NNSi_G2dIsAnimCtrlLoopAnim
+NNSi_G2dIsAnimCtrlLoopAnim: ; 0x020A78FC
 	ldr r1, [r0, #0x18]
 	cmp r1, #0
 	ldreq r0, [r0, #0x1c]
@@ -334,4 +334,4 @@ sub_020A78FC: ; 0x020A78FC
 	moveq r0, #1
 	movne r0, #0
 	bx lr
-	arm_func_end sub_020A78FC
+	arm_func_end NNSi_G2dIsAnimCtrlLoopAnim

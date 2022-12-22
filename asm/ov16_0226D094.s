@@ -107,7 +107,7 @@ ov16_0226D160: ; 0x0226D160
 	mov r1, #0
 	lsl r2, r2, #6
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -305,7 +305,7 @@ _0226D2C2:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0x18]
 	ldr r2, _0226D338 ; =0x02270A3C
 	add r0, r7, #0
@@ -525,7 +525,7 @@ _0226D44C:
 	sub r0, r0, r3
 	str r0, [sp]
 	ldr r0, _0226D530 ; =0x04000050
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldrb r0, [r4, #0x1a]
 	add r0, r0, #1
 	strb r0, [r4, #0x1a]
@@ -644,7 +644,7 @@ _0226D564:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x28]
 	ldr r2, _0226D634 ; =0x02270A70

@@ -13,7 +13,7 @@ sub_02027B70: ; 0x02027B70
 	mov r1, #0
 	lsl r2, r2, #8
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	add r0, r1, #0
 _02027B82:
@@ -473,12 +473,12 @@ sub_02027E40: ; 0x02027E40
 	mov r1, #0x3c
 	str r0, [sp]
 	add r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r0, #0
 	ldr r0, [sp]
 	mov r1, #0x3c
 	add r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r5, #4]
 	cmp r4, #0
 	beq _02027EAA
@@ -496,7 +496,7 @@ _02027E86:
 	sub r0, r6, #1
 	add r0, r1, r0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r4, r4, r0
 	mov r0, #0
 	strb r0, [r5, #0xa]

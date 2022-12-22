@@ -1,4 +1,4 @@
-.public sub_020D8E28
+.public strncmp
 .public ov4_021D7880
 .public ov4_021EDE68
 .public ov4_021EDF5C

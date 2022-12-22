@@ -150,7 +150,7 @@ _021D5DA0:
 	ldr r1, _021D5DE8 ; =0x02201D20
 	ldr r2, [sp, #4]
 	add r0, sp, #0x10
-	bl sub_020D7510
+	bl sprintf
 	ldr r0, [r5, #4]
 	mov r2, #4
 	add r0, r0, #4
@@ -165,7 +165,7 @@ _021D5DA0:
 	bl sub_02006CB8
 	str r0, [r7, r6]
 	ldr r0, [r7, r6]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	add r1, r5, r6
 	str r0, [r1, #0x10]
 	add r0, r4, #0

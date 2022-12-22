@@ -27,7 +27,7 @@ _02232374: .word ov18_022323E4
 ov18_02232378: ; 0x02232378
 	stmfd sp!, {r3, lr}
 	ldr r0, _022323D4 ; =0x0224A090
-	ldr r1, _022323D8 ; =sub_020C04EC
+	ldr r1, _022323D8 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r2, _022323DC ; =0x04001008
 	ldr r1, _022323E0 ; =0x0400000A
@@ -50,7 +50,7 @@ ov18_02232378: ; 0x02232378
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022323D4: .word 0x0224A090
-_022323D8: .word sub_020C04EC
+_022323D8: .word GX_LoadBG2Scr
 _022323DC: .word 0x04001008
 _022323E0: .word 0x0400000A
 	arm_func_end ov18_02232378

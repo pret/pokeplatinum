@@ -124,11 +124,11 @@
 .public sub_0205CA4C
 .public sub_0209BE50
 .public sub_0209BEBC
-.public sub_020A7944
-.public sub_020C0160
-.public sub_020C02BC
-.public sub_020C4CF4
-.public sub_020D5124
+.public NNS_G2dInitOamManagerModule
+.public GX_LoadOBJPltt
+.public GX_LoadOBJ
+.public MI_CpuFill8
+.public memset
 .public ov109_021D4044
 .public ov109_021D40A8
 .public ov109_021D40D0

@@ -1,5 +1,5 @@
-.public sub_020C24A4
-.public sub_020C42A8
+.public OS_Sleep
+.public OS_Terminate
 .public ov18_0222AB50
 .public ov18_0222AC38
 .public ov18_0222AD04

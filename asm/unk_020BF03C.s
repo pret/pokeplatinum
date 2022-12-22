@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020BF03C
-sub_020BF03C: ; 0x020BF03C
+	arm_func_start G2_GetBG0ScrPtr
+G2_GetBG0ScrPtr: ; 0x020BF03C
 	ldr r1, _020BF06C ; =0x04000008
 	mov r0, #0x4000000
 	ldrh r1, [r1]
@@ -21,10 +21,10 @@ sub_020BF03C: ; 0x020BF03C
 	bx lr
 	; .align 2, 0
 _020BF06C: .word 0x04000008
-	arm_func_end sub_020BF03C
+	arm_func_end G2_GetBG0ScrPtr
 
-	arm_func_start sub_020BF070
-sub_020BF070: ; 0x020BF070
+	arm_func_start G2S_GetBG0ScrPtr
+G2S_GetBG0ScrPtr: ; 0x020BF070
 	ldr r0, _020BF08C ; =0x04001008
 	ldrh r0, [r0]
 	and r0, r0, #0x1f00
@@ -34,10 +34,10 @@ sub_020BF070: ; 0x020BF070
 	bx lr
 	; .align 2, 0
 _020BF08C: .word 0x04001008
-	arm_func_end sub_020BF070
+	arm_func_end G2S_GetBG0ScrPtr
 
-	arm_func_start sub_020BF090
-sub_020BF090: ; 0x020BF090
+	arm_func_start G2_GetBG1ScrPtr
+G2_GetBG1ScrPtr: ; 0x020BF090
 	ldr r1, _020BF0C0 ; =0x0400000A
 	mov r0, #0x4000000
 	ldrh r1, [r1]
@@ -52,10 +52,10 @@ sub_020BF090: ; 0x020BF090
 	bx lr
 	; .align 2, 0
 _020BF0C0: .word 0x0400000A
-	arm_func_end sub_020BF090
+	arm_func_end G2_GetBG1ScrPtr
 
-	arm_func_start sub_020BF0C4
-sub_020BF0C4: ; 0x020BF0C4
+	arm_func_start G2S_GetBG1ScrPtr
+G2S_GetBG1ScrPtr: ; 0x020BF0C4
 	ldr r0, _020BF0E0 ; =0x0400100A
 	ldrh r0, [r0]
 	and r0, r0, #0x1f00
@@ -65,10 +65,10 @@ sub_020BF0C4: ; 0x020BF0C4
 	bx lr
 	; .align 2, 0
 _020BF0E0: .word 0x0400100A
-	arm_func_end sub_020BF0C4
+	arm_func_end G2S_GetBG1ScrPtr
 
-	arm_func_start sub_020BF0E4
-sub_020BF0E4: ; 0x020BF0E4
+	arm_func_start G2_GetBG2ScrPtr
+G2_GetBG2ScrPtr: ; 0x020BF0E4
 	mov r0, #0x4000000
 	ldr r1, [r0, #0]
 	ldrh r3, [r0, #0xc]
@@ -107,10 +107,10 @@ _020BF158:
 _020BF160:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020BF0E4
+	arm_func_end G2_GetBG2ScrPtr
 
-	arm_func_start sub_020BF168
-sub_020BF168: ; 0x020BF168
+	arm_func_start G2S_GetBG2ScrPtr
+G2S_GetBG2ScrPtr: ; 0x020BF168
 	ldr r1, _020BF1D8 ; =0x04001000
 	ldr r0, [r1, #0]
 	ldrh r1, [r1, #0xc]
@@ -146,10 +146,10 @@ _020BF1D0:
 	bx lr
 	; .align 2, 0
 _020BF1D8: .word 0x04001000
-	arm_func_end sub_020BF168
+	arm_func_end G2S_GetBG2ScrPtr
 
-	arm_func_start sub_020BF1DC
-sub_020BF1DC: ; 0x020BF1DC
+	arm_func_start G2_GetBG3ScrPtr
+G2_GetBG3ScrPtr: ; 0x020BF1DC
 	mov r0, #0x4000000
 	ldr r1, [r0, #0]
 	ldrh r3, [r0, #0xe]
@@ -188,10 +188,10 @@ _020BF250:
 _020BF258:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020BF1DC
+	arm_func_end G2_GetBG3ScrPtr
 
-	arm_func_start sub_020BF260
-sub_020BF260: ; 0x020BF260
+	arm_func_start G2S_GetBG3ScrPtr
+G2S_GetBG3ScrPtr: ; 0x020BF260
 	ldr r1, _020BF2D0 ; =0x04001000
 	ldr r0, [r1, #0]
 	ldrh r1, [r1, #0xe]
@@ -227,10 +227,10 @@ _020BF2C8:
 	bx lr
 	; .align 2, 0
 _020BF2D0: .word 0x04001000
-	arm_func_end sub_020BF260
+	arm_func_end G2S_GetBG3ScrPtr
 
-	arm_func_start sub_020BF2D4
-sub_020BF2D4: ; 0x020BF2D4
+	arm_func_start G2_GetBG0CharPtr
+G2_GetBG0CharPtr: ; 0x020BF2D4
 	ldr r1, _020BF304 ; =0x04000008
 	mov r0, #0x4000000
 	ldrh r1, [r1]
@@ -245,10 +245,10 @@ sub_020BF2D4: ; 0x020BF2D4
 	bx lr
 	; .align 2, 0
 _020BF304: .word 0x04000008
-	arm_func_end sub_020BF2D4
+	arm_func_end G2_GetBG0CharPtr
 
-	arm_func_start sub_020BF308
-sub_020BF308: ; 0x020BF308
+	arm_func_start G2S_GetBG0CharPtr
+G2S_GetBG0CharPtr: ; 0x020BF308
 	ldr r0, _020BF324 ; =0x04001008
 	ldrh r0, [r0]
 	and r0, r0, #0x3c
@@ -258,10 +258,10 @@ sub_020BF308: ; 0x020BF308
 	bx lr
 	; .align 2, 0
 _020BF324: .word 0x04001008
-	arm_func_end sub_020BF308
+	arm_func_end G2S_GetBG0CharPtr
 
-	arm_func_start sub_020BF328
-sub_020BF328: ; 0x020BF328
+	arm_func_start G2_GetBG1CharPtr
+G2_GetBG1CharPtr: ; 0x020BF328
 	ldr r1, _020BF358 ; =0x0400000A
 	mov r0, #0x4000000
 	ldrh r1, [r1]
@@ -276,10 +276,10 @@ sub_020BF328: ; 0x020BF328
 	bx lr
 	; .align 2, 0
 _020BF358: .word 0x0400000A
-	arm_func_end sub_020BF328
+	arm_func_end G2_GetBG1CharPtr
 
-	arm_func_start sub_020BF35C
-sub_020BF35C: ; 0x020BF35C
+	arm_func_start G2S_GetBG1CharPtr
+G2S_GetBG1CharPtr: ; 0x020BF35C
 	ldr r0, _020BF378 ; =0x0400100A
 	ldrh r0, [r0]
 	and r0, r0, #0x3c
@@ -289,10 +289,10 @@ sub_020BF35C: ; 0x020BF35C
 	bx lr
 	; .align 2, 0
 _020BF378: .word 0x0400100A
-	arm_func_end sub_020BF35C
+	arm_func_end G2S_GetBG1CharPtr
 
-	arm_func_start sub_020BF37C
-sub_020BF37C: ; 0x020BF37C
+	arm_func_start G2_GetBG2CharPtr
+G2_GetBG2CharPtr: ; 0x020BF37C
 	mov r1, #0x4000000
 	ldr r0, [r1, #0]
 	ldrh r2, [r1, #0xc]
@@ -315,10 +315,10 @@ _020BF39C:
 _020BF3C4:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020BF37C
+	arm_func_end G2_GetBG2CharPtr
 
-	arm_func_start sub_020BF3CC
-sub_020BF3CC: ; 0x020BF3CC
+	arm_func_start G2S_GetBG2CharPtr
+G2S_GetBG2CharPtr: ; 0x020BF3CC
 	ldr r1, _020BF408 ; =0x04001000
 	ldr r0, [r1, #0]
 	ldrh r1, [r1, #0xc]
@@ -338,10 +338,10 @@ _020BF400:
 	bx lr
 	; .align 2, 0
 _020BF408: .word 0x04001000
-	arm_func_end sub_020BF3CC
+	arm_func_end G2S_GetBG2CharPtr
 
-	arm_func_start sub_020BF40C
-sub_020BF40C: ; 0x020BF40C
+	arm_func_start G2_GetBG3CharPtr
+G2_GetBG3CharPtr: ; 0x020BF40C
 	mov r1, #0x4000000
 	ldr r0, [r1, #0]
 	ldrh r2, [r1, #0xe]
@@ -366,10 +366,10 @@ _020BF434:
 _020BF45C:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020BF40C
+	arm_func_end G2_GetBG3CharPtr
 
-	arm_func_start sub_020BF464
-sub_020BF464: ; 0x020BF464
+	arm_func_start G2S_GetBG3CharPtr
+G2S_GetBG3CharPtr: ; 0x020BF464
 	ldr r1, _020BF4A8 ; =0x04001000
 	ldr r0, [r1, #0]
 	ldrh r1, [r1, #0xe]
@@ -391,4 +391,4 @@ _020BF4A0:
 	bx lr
 	; .align 2, 0
 _020BF4A8: .word 0x04001000
-	arm_func_end sub_020BF464
+	arm_func_end G2S_GetBG3CharPtr

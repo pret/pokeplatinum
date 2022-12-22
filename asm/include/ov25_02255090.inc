@@ -9,11 +9,11 @@
 .public sub_020198C0
 .public sub_02022974
 .public sub_02079FD0
-.public sub_020A7118
-.public sub_020C01B8
-.public sub_020C0314
-.public sub_020C2C54
-.public sub_020E2178
+.public NNS_G2dGetUnpackedCharacterData
+.public GXS_LoadOBJPltt
+.public GXS_LoadOBJ
+.public DC_FlushRange
+.public _u32_div_f
 .public ov25_02254728
 .public ov25_022550B0
 .public ov25_022550F0

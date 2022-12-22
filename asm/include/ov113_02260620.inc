@@ -13,7 +13,7 @@
 .public sub_02025E6C
 .public sub_02025F04
 .public sub_02025F30
-.public sub_020E2178
+.public _u32_div_f
 .public ov66_0222E374
 .public ov66_0222E640
 .public ov66_0222E924

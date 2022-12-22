@@ -6,22 +6,22 @@
 	.text
 
 
-	arm_func_start sub_020E1A90
-sub_020E1A90: ; 0x020E1A90
+	arm_func_start _frsb
+_frsb: ; 0x020E1A90
 	eor r0, r0, r1
 	eor r1, r0, r1
 	eor r0, r0, r1
-	arm_func_end sub_020E1A90
+	arm_func_end _frsb
 
-	arm_func_start sub_020E1A9C
-sub_020E1A9C: ; 0x020E1A9C
+	arm_func_start _f_sub
+_f_sub: ; 0x020E1A9C
 	eors r2, r0, r1
 	eormi r1, r1, #0x80000000
-	bmi sub_020E0B0C
-	arm_func_end sub_020E1A9C
+	bmi __fadd_start
+	arm_func_end _f_sub
 
-	arm_func_start sub_020E1AA8
-sub_020E1AA8: ; 0x020E1AA8
+	arm_func_start __fsub_start
+__fsub_start: ; 0x020E1AA8
 	subs ip, r0, r1
 	eorlo ip, ip, #0x80000000
 	sublo r0, r0, ip
@@ -193,4 +193,4 @@ _020E1D04:
 _020E1D0C:
 	mvn r0, #0x80000000
 	bx lr
-	arm_func_end sub_020E1AA8
+	arm_func_end __fsub_start

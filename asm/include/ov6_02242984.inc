@@ -13,7 +13,7 @@
 .public sub_0203D174
 .public sub_0205EABC
 .public sub_0205EAC8
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov6_02240C9C
 .public ov6_02242F74
 .public ov6_022477B8

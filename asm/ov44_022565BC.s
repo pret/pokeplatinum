@@ -67,7 +67,7 @@ ov44_0225660C: ; 0x0225660C
 	mov r1, #0x4a
 	bl sub_02006EC0
 	mov r1, #0x14
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, [sp, #0xc]
 	str r0, [r5, #0x64]
 	add r2, r1, #0
@@ -749,7 +749,7 @@ _02256B2E:
 	add r1, #0x84
 	ldr r0, [r6, #0]
 	ldr r1, [r1, #0]
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [r6, #0]
 	str r7, [r4, #0x70]
 	b _02256C2A
@@ -788,7 +788,7 @@ _02256B76:
 	add r1, #0x84
 	ldr r0, [r6, #0]
 	ldr r1, [r1, #0]
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [r6, #0]
 	mov r0, #1
 	str r0, [r4, #0x70]

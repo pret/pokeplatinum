@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C5CF0
-sub_020C5CF0: ; 0x020C5CF0
+	arm_func_start SND_AlarmInit
+SND_AlarmInit: ; 0x020C5CF0
 	mov r1, #0
 	ldr r2, _020C5D1C ; =0x021CEB20
 	mov r0, r1
@@ -21,10 +21,10 @@ _020C5CFC:
 	bx lr
 	; .align 2, 0
 _020C5D1C: .word 0x021CEB20
-	arm_func_end sub_020C5CF0
+	arm_func_end SND_AlarmInit
 
-	arm_func_start sub_020C5D20
-sub_020C5D20: ; 0x020C5D20
+	arm_func_start SNDi_IncAlarmId
+SNDi_IncAlarmId: ; 0x020C5D20
 	ldr r2, _020C5D3C ; =0x021CEB20
 	mov r1, #0xc
 	mla r1, r0, r1, r2
@@ -34,10 +34,10 @@ sub_020C5D20: ; 0x020C5D20
 	bx lr
 	; .align 2, 0
 _020C5D3C: .word 0x021CEB20
-	arm_func_end sub_020C5D20
+	arm_func_end SNDi_IncAlarmId
 
-	arm_func_start sub_020C5D40
-sub_020C5D40: ; 0x020C5D40
+	arm_func_start SNDi_SetAlarmHandler
+SNDi_SetAlarmHandler: ; 0x020C5D40
 	mov r3, #0xc
 	mul r3, r0, r3
 	ldr r0, _020C5D6C ; =0x021CEB20
@@ -51,10 +51,10 @@ sub_020C5D40: ; 0x020C5D40
 	bx lr
 	; .align 2, 0
 _020C5D6C: .word 0x021CEB20
-	arm_func_end sub_020C5D40
+	arm_func_end SNDi_SetAlarmHandler
 
-	arm_func_start sub_020C5D70
-sub_020C5D70: ; 0x020C5D70
+	arm_func_start SNDi_CallAlarmHandler
+SNDi_CallAlarmHandler: ; 0x020C5D70
 	stmfd sp!, {r3, lr}
 	ldr r3, _020C5DB0 ; =0x021CEB20
 	and r2, r0, #0xff
@@ -73,7 +73,7 @@ sub_020C5D70: ; 0x020C5D70
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C5DB0: .word 0x021CEB20
-	arm_func_end sub_020C5D70
+	arm_func_end SNDi_CallAlarmHandler
 
 	.bss
 

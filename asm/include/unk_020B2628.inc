@@ -1,8 +1,8 @@
-.public sub_020B2628
-.public sub_020B2684
-.public sub_020B269C
-.public sub_020B275C
-.public sub_020C4808
-.public sub_020C4A0C
-.public sub_020C4B90
-.public sub_020C4C14
+.public NNS_G3dGeFlushBuffer
+.public NNS_G3dGeWaitSendDL
+.public simpleUnlock_
+.public NNS_G3dGeBufferOP_N
+.public MI_SendGXCommandAsync
+.public MI_SendGXCommandAsyncFast
+.public MIi_CpuSend32
+.public MIi_CpuCopyFast

@@ -130,34 +130,34 @@ ov4_021D8C08: ; 0x021D8C08
 	add r0, r0, #0x400
 	bl ov4_021E4EAC
 	mov r0, r4
-	bl sub_020D8B60
+	bl strlen
 	cmp r0, #0x100
 	movhs r5, #0xff
 	bhs _021D8E0C
 	mov r0, r4
-	bl sub_020D8B60
+	bl strlen
 	mov r5, r0
 _021D8E0C:
 	ldr r1, _021D8E80 ; =0x0221B1B0
 	mov r0, r4
 	mov r2, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #0x20]
 	ldr r1, _021D8E80 ; =0x0221B1B0
 	mov r2, #0
 	strb r2, [r1, r5]
-	bl sub_020D8B60
+	bl strlen
 	cmp r0, #0x100
 	movhs r4, #0xff
 	bhs _021D8E48
 	ldr r0, [sp, #0x20]
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 _021D8E48:
 	ldr r0, [sp, #0x20]
 	ldr r1, _021D8E84 ; =0x0221B2B0
 	mov r2, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _021D8E84 ; =0x0221B2B0
 	mov r1, #0
 	strb r1, [r0, r4]
@@ -471,7 +471,7 @@ _021D9284:
 	mov r0, #0
 	add r1, r1, #0x2e
 	mov r2, #0x34
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r0, r4
 	bl ov4_021D8BDC
 	cmp r0, #0x19
@@ -486,7 +486,7 @@ _021D92D8:
 	ldr r1, [r1, #0]
 	mov r2, r5, lsl #1
 	add r1, r1, #0x2e
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 _021D92F0:
 	ldr r0, _021D9344 ; =0x0221A504
 	mov r1, #0
@@ -728,7 +728,7 @@ _021D95CC:
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #0xa
-	bl sub_020DACAC
+	bl strtoul
 	and r6, r0, #0xff
 	ldr r0, _021D9718 ; =0x02217470
 	add r1, sp, #8
@@ -738,7 +738,7 @@ _021D95CC:
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #0xa
-	bl sub_020DACAC
+	bl strtoul
 	and r0, r0, #0xff
 	cmp r0, r6
 	moveq r5, #0xd
@@ -1187,11 +1187,11 @@ ov4_021D9BD4: ; 0x021D9BD4
 	ldr r1, _021D9BFC ; =0x0221A50C
 	mov r0, #0
 	mov r2, #0x80
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r1, _021D9C00 ; =0x0221A58C
 	mov r0, #0
 	mov r2, #0x100
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D9BFC: .word 0x0221A50C
@@ -1690,43 +1690,43 @@ ov4_021DA1A4: ; 0x021DA1A4
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 	ldr r0, _021DA300 ; =0x02217478
-	bl sub_020D8B60
+	bl strlen
 	mov r2, r0
 	ldr r1, _021DA300 ; =0x02217478
 	mov r0, r4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 	ldr r0, _021DA300 ; =0x02217478
-	bl sub_020D8B60
+	bl strlen
 	add r4, r4, r0
 	mov r0, r4
 	mov r1, #0x76
-	bl sub_020D8E5C
+	bl strchr
 	sub r7, r0, r4
 	add r0, sp, #0
 	mov r1, r4
 	mov r2, r7
-	bl sub_020D8C44
+	bl strncpy
 	cmp r7, #0xa
 	addhi sp, sp, #0xc
 	ldmhiia sp!, {r4, r5, r6, r7, pc}
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0xa
-	bl sub_020DACAC
+	bl strtoul
 	cmp r0, #3
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 	ldr r0, _021DA304 ; =0x02217480
 	add r1, r7, #1
 	add r4, r4, r1
-	bl sub_020D8B60
+	bl strlen
 	mov r2, r0
 	ldr r1, _021DA304 ; =0x02217480
 	mov r0, r4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, pc}
@@ -1746,7 +1746,7 @@ ov4_021DA1A4: ; 0x021DA1A4
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 _021DA2DC:
 	ldr r0, _021DA304 ; =0x02217480
-	bl sub_020D8B60
+	bl strlen
 	mov r2, r0
 	ldr r1, [r5, #0]
 	mov r0, r6

@@ -97,8 +97,8 @@
 .public sub_0209598C
 .public sub_020959F4
 .public sub_02095A24
-.public sub_020C4B4C
-.public sub_020C4CF4
+.public MIi_CpuClear32
+.public MI_CpuFill8
 .public ov11_0221F8F0
 .public ov17_0223D0C8
 .public ov17_0223D164

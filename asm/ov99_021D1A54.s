@@ -204,7 +204,7 @@ _021D1BD4:
 	ldr r0, _021D1C94 ; =0x00001114
 	mov r2, #8
 	add r0, r5, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0x18]
 	ldr r1, [r5, #0x1c]
 	add r2, sp, #8
@@ -266,14 +266,14 @@ _021D1C46:
 	ldr r0, [r0, #0x14]
 	ldr r1, [r5, r1]
 	lsl r2, r2, #8
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r4, #0
 	bl sub_020181C4
 	ldr r0, _021D1C98 ; =0x000010F4
 	mov r1, #1
 	ldr r0, [r5, r0]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add sp, #0x3c
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -386,7 +386,7 @@ ov99_021D1D30: ; 0x021D1D30
 	add r0, r5, r0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _021D1D5A:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
@@ -722,21 +722,21 @@ ov99_021D1FD8: ; 0x021D1FD8
 	ldr r0, [r6, #0x34]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r6, #0x34]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r6, #0x34]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r6, #0x34]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r1, _021D20E8 ; =0x000010F8
 	add r0, r6, #0
 	ldr r1, [r6, r1]
@@ -747,21 +747,21 @@ ov99_021D1FD8: ; 0x021D1FD8
 	ldr r0, [r6, #0x44]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r6, #0x44]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r6, #0x44]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r6, #0x44]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	add r5, r6, #0
 	add r7, r6, #0
 	mov r4, #0
@@ -1036,7 +1036,7 @@ ov99_021D2180: ; 0x021D2180
 	ldr r0, [r0, #0xc]
 	add r1, r5, r1
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r6, #0
 	bl sub_020181C4
 	mov r2, #0
@@ -1290,21 +1290,21 @@ ov99_021D2410: ; 0x021D2410
 	ldr r0, [r7, #0x34]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r7, #0x34]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r7, #0x34]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r7, #0x34]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	add r5, r7, #0
 	add r6, r7, #0
 	mov r4, #0
@@ -1470,7 +1470,7 @@ ov99_021D24F0: ; 0x021D24F0
 	ldr r0, [r0, #0xc]
 	add r1, r5, r1
 	lsl r2, r2, #8
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r6, #0
 	bl sub_020181C4
 	mov r0, #0x20
@@ -1843,21 +1843,21 @@ ov99_021D28AC: ; 0x021D28AC
 	ldr r0, [r5, #0x34]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r5, #0x34]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r5, #0x34]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r5, #0x34]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r1, _021D2A04 ; =0x000010F8
 	add r0, r5, #0
 	ldr r1, [r5, r1]
@@ -1868,21 +1868,21 @@ ov99_021D28AC: ; 0x021D28AC
 	ldr r0, [r5, #0x44]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r5, #0x44]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r5, #0x44]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r5, #0x44]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r1, _021D2A04 ; =0x000010F8
 	add r0, r5, #0
 	ldr r1, [r5, r1]
@@ -1893,21 +1893,21 @@ ov99_021D28AC: ; 0x021D28AC
 	ldr r0, [r5, #0x54]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r0, [r5, #0x54]
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	ldr r0, [r5, #0x54]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	ldr r0, [r5, #0x54]
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	ldr r1, _021D2A04 ; =0x000010F8
 	add r0, r5, #0
 	ldr r1, [r5, r1]

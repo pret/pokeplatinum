@@ -9,7 +9,7 @@
 .public sub_02019060
 .public sub_02019184
 .public sub_02019EBC
-.public sub_020BF55C
+.public G2x_SetBlendAlpha_
 .public ov12_0221FDD4
 .public ov12_0221FDE4
 .public ov12_022201E8

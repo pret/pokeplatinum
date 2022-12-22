@@ -36,7 +36,7 @@
 .public sub_02023FCC
 .public sub_02024034
 .public sub_0202404C
-.public sub_020C00B4
-.public sub_020C0108
-.public sub_020C2C54
-.public sub_020D5124
+.public GX_LoadBGPltt
+.public GXS_LoadBGPltt
+.public DC_FlushRange
+.public memset

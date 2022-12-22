@@ -17,7 +17,7 @@ ov104_02239C58: ; 0x02239C58
 	mov r2, #0xb4
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02239C78 ; =0x02241AD0
 	ldr r0, [r0, #0]
 	str r4, [r0, #0]
@@ -140,7 +140,7 @@ ov104_02239D1C: ; 0x02239D1C
 	ldr r1, [r1, #0]
 	mov r0, #0
 	mov r2, #0x40
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [r5, #0]
 	bl sub_0207A268
 	add r1, r5, #0
@@ -434,7 +434,7 @@ _02239F70:
 	add r0, #0x2c
 	add r1, #0xa1
 	mov r2, #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	add r0, #0xa8
 	ldr r0, [r0, #0]
@@ -478,7 +478,7 @@ ov104_02239FB0: ; 0x02239FB0
 	ldr r0, [r0, #0]
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r4, #0]
 	bl sub_02025E44
 	add r1, r4, #0

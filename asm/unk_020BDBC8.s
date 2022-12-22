@@ -5,13 +5,13 @@
 	.text
 
 
-	arm_func_start sub_020BDBC8
-sub_020BDBC8: ; 0x020BDBC8
+	arm_func_start FX_Init
+FX_Init: ; 0x020BDBC8
 	bx lr
-	arm_func_end sub_020BDBC8
+	arm_func_end FX_Init
 
-	arm_func_start sub_020BDBCC
-sub_020BDBCC: ; 0x020BDBCC
+	arm_func_start FX_Modf
+FX_Modf: ; 0x020BDBCC
 	cmp r0, #0
 	ldr r2, _020BDC04 ; =0x7FFFF000
 	blt _020BDBE8
@@ -29,4 +29,4 @@ _020BDBE8:
 	bx lr
 	; .align 2, 0
 _020BDC04: .word 0x7FFFF000
-	arm_func_end sub_020BDBCC
+	arm_func_end FX_Modf

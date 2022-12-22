@@ -18,7 +18,7 @@ _021EA7CC:
 	ldrb r2, [r8, r5]
 	mov r1, r4
 	add r0, r7, r6
-	bl sub_020D7510
+	bl sprintf
 	add r5, r5, #1
 	cmp r5, #0x10
 	add r6, r6, #2

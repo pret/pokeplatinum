@@ -19,7 +19,7 @@ ov16_0225BFFC: ; 0x0225BFFC
 	mov r0, #0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x65
 	ldrb r1, [r5]
 	lsl r0, r0, #2

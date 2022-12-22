@@ -404,7 +404,7 @@ _020497E0:
 	mov r1, #0
 	add r0, r5, r0
 	mov r2, #0x46
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _020497F6
 _020497EE:
 	bl sub_02022974

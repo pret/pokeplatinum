@@ -136,10 +136,10 @@
 .public sub_02021FE0
 .public sub_020220F4
 .public sub_02022974
-.public sub_020A7944
-.public sub_020E0B00
-.public sub_020E1304
-.public sub_020E1740
-.public sub_020E17B4
-.public sub_020E18B0
-.public sub_020E1A9C
+.public NNS_G2dInitOamManagerModule
+.public _f_add
+.public _fdiv
+.public _f_ftoi
+.public _f_itof
+.public _f_mul
+.public _f_sub

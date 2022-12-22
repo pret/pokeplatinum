@@ -8,8 +8,8 @@
 .public sub_02019184
 .public sub_0201D2B8
 .public sub_0201D2C4
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public _ull_mul
+.public _s32_div_f
 .public ov99_021D2ED8
 .public ov99_021D2FA8
 .public ov99_021D2FD4

@@ -30,7 +30,7 @@ ov22_0225B660: ; 0x0225B660
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0225B730 ; =ov22_0225B848
 	add r1, r4, #0
 	bl sub_02017798
@@ -110,7 +110,7 @@ ov22_0225B738: ; 0x0225B738
 	bl sub_0200682C
 	add r5, r0, #0
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r5, #0x10]
 	bl ov22_0225AFF8
 	mov r0, #0

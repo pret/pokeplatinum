@@ -26,7 +26,7 @@ ov79_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	lsl r2, r2, #8
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x2d
 	str r0, [r4, #0]
 	str r5, [r4, #0x20]

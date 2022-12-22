@@ -14,10 +14,10 @@ ov79_021D3768: ; 0x021D3768
 	mov r1, #0
 	mov r2, #0x1c
 	add r5, r0, #0
-	bl sub_020C4CF4
-	bl sub_020B28CC
-	bl sub_020BF9AC
-	bl sub_020BFB4C
+	bl MI_CpuFill8
+	bl NNS_G3dInit
+	bl G3X_Init
+	bl G3X_InitMtxStack
 	ldr r0, _021D3804 ; =0x04000060
 	ldr r1, _021D3808 ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -47,13 +47,13 @@ ov79_021D3768: ; 0x021D3768
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _021D3810 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D3814 ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -102,8 +102,8 @@ ov79_021D3820: ; 0x021D3820
 	mov r0, #2
 	str r0, [r2, #0]
 	str r3, [r1, #0]
-	bl sub_020AF480
-	bl sub_020A73C0
+	bl NNS_G3dGlbFlushP
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r4, #4]
 	bl sub_02007768
 	ldr r0, _021D3858 ; =0x04000540

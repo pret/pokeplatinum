@@ -16,7 +16,7 @@ ov16_0226E148: ; 0x0226E148
 	mov r1, #0
 	mov r2, #8
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r2, #0xfa
 	ldr r0, _0226E170 ; =ov16_0226E188
 	add r1, r4, #0

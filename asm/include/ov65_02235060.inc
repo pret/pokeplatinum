@@ -30,9 +30,9 @@
 .public sub_02021D6C
 .public sub_02021F58
 .public sub_02022974
-.public sub_020D5124
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public memset
+.public _ull_mul
+.public _s32_div_f
 .public ov63_0222BCE8
 .public ov63_0222BD30
 .public ov63_0222BD48

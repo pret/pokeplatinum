@@ -120,9 +120,9 @@
 .public sub_02076B10
 .public sub_0207A0FC
 .public sub_0209BA80
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020D5124
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public memset
 .public ov104_0222E240
 .public ov104_0222E5D0
 .public ov104_0223B7A8

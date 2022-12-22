@@ -21,4 +21,4 @@
 .public sub_0207A0F8
 .public sub_0207A0FC
 .public sub_0207A268
-.public sub_020C4DB0
+.public MI_CpuCopy8

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020DAE20
-sub_020DAE20: ; 0x020DAE20
+	arm_func_start fwide
+fwide: ; 0x020DAE20
 	cmp r0, #0
 	beq _020DAE38
 	ldr r3, [r0, #4]
@@ -42,4 +42,4 @@ _020DAE88:
 _020DAE8C:
 	mov r0, r1
 	bx lr
-	arm_func_end sub_020DAE20
+	arm_func_end fwide

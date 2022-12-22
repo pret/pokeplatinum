@@ -1,7 +1,7 @@
 .public sub_02018144
 .public sub_020181C4
-.public sub_020E1ED4
-.public sub_020E1F1C
+.public _ull_div
+.public _ull_mul
 .public ov28_02256EC8
 .public ov28_02256EE8
 .public ov28_02256F74

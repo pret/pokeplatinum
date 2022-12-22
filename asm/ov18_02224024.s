@@ -11,7 +11,7 @@ ov18_02224024: ; 0x02224024
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 _0222402C:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r7, #0xc0]
 	mov r5, r0
 	cmp r1, #0
@@ -21,9 +21,9 @@ _0222402C:
 _02224048:
 	mov r0, r7
 	mov r1, r6
-	bl sub_020C23F4
+	bl OS_SetThreadPriority
 	mov r0, r4
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r0, [r7, #0xc0]
 	cmp r0, #0
 	beq _02224048
@@ -35,20 +35,20 @@ _02224068:
 	str r1, [r7, #0xc0]
 	ldr r1, [r4, #4]
 	mov r1, r1, lsr #1
-	bl sub_020C23F4
+	bl OS_SetThreadPriority
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r1, [r4, #8]
 	cmp r1, #0
 	beq _022240A4
 	mov r0, r4
 	blx r1
 _022240A4:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	mov r0, r7
 	ldr r6, [r4, #0xc]
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	ldr r1, [r7, #0xc0]
 	cmp r1, #0
 	moveq r1, #0
@@ -65,7 +65,7 @@ _022240E8:
 	cmp r1, r0
 	beq _022240F8
 	mov r0, r7
-	bl sub_020C23F4
+	bl OS_SetThreadPriority
 _022240F8:
 	mov r0, #0
 	str r0, [r4, #0]
@@ -81,10 +81,10 @@ _0222411C:
 	cmp r4, r0
 	beq _02224134
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _0222402C
 _02224134:
-	bl sub_020C2030
+	bl OS_ExitThread
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov18_02224024
 
@@ -94,7 +94,7 @@ ov18_0222413C: ; 0x0222413C
 	sub sp, sp, #8
 	mov r5, r0
 	mov r6, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _022241B4 ; =0x02250D60
 	mov r4, r0
 	ldr r0, [r1, #0]
@@ -113,12 +113,12 @@ ov18_0222413C: ; 0x0222413C
 	mov r2, r5
 	add r3, r3, ip
 	stmia sp, {ip, lr}
-	bl sub_020C1F34
+	bl OS_CreateThread
 	mov r0, r5
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _022241A4:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -140,12 +140,12 @@ _022241D4: .word 0x02250D60
 
 	arm_func_start ov18_022241D8
 ov18_022241D8: ; 0x022241D8
-	ldr ip, _022241E8 ; =sub_020C4CF4
+	ldr ip, _022241E8 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x20
 	bx ip
 	; .align 2, 0
-_022241E8: .word sub_020C4CF4
+_022241E8: .word MI_CpuFill8
 	arm_func_end ov18_022241D8
 
 	arm_func_start ov18_022241EC
@@ -177,7 +177,7 @@ ov18_02224204: ; 0x02224204
 	cmp r6, #0x1f
 	bls _02224288
 	mov r0, r4
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	cmp r6, #0x20
 	bne _02224264
 	cmp r0, #0
@@ -196,7 +196,7 @@ _0222427C:
 	moveq r6, r0
 	movne r6, #0x1f
 _02224288:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [sb, #4]
 	mov r5, r0
 	bic r0, r1, #1
@@ -216,7 +216,7 @@ _02224288:
 	streq r1, [r0]
 	mov r0, r4
 	str sb, [r4, #0xc0]
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	b _02224358
 _022242E0:
 	cmp sb, r0
@@ -257,7 +257,7 @@ _02224350:
 	str sb, [r1]
 _02224358:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _02224364: .word 0x02250D60
@@ -267,7 +267,7 @@ _02224364: .word 0x02250D60
 ov18_02224368: ; 0x02224368
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	bl ov18_022241BC
 	cmp r0, #0
@@ -281,7 +281,7 @@ ov18_02224368: ; 0x02224368
 	bl ov18_02224204
 _022243A0:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _022243AC: .word 0x02250D60

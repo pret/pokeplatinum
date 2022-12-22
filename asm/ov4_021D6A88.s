@@ -11,10 +11,10 @@ ov4_021D6A88: ; 0x021D6A88
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x3c
 	mov r6, r0
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 	ldr r0, _021D6C94 ; =0x02216570
-	bl sub_020D8B60
+	bl strlen
 	cmp r4, r0
 	ldreqsb r0, [r6, #7]
 	cmpeq r0, #0x20
@@ -31,12 +31,12 @@ ov4_021D6A88: ; 0x021D6A88
 	bne _021D6C88
 	add r0, sp, #0x2c
 	add r1, sp, #0x20
-	bl sub_020CBAE4
+	bl RTC_GetDateTime
 	cmp r0, #0
 	bne _021D6C88
 	add r0, sp, #0x2c
 	add r1, sp, #0x20
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r4, r0
 	mov r5, r1
 	mvn r0, #0
@@ -45,7 +45,7 @@ ov4_021D6A88: ; 0x021D6A88
 	beq _021D6C88
 	add r0, sp, #0
 	mov r1, r6
-	bl sub_020D8B7C
+	bl strcpy
 	mov r2, #0
 	ldr r1, _021D6C98 ; =0x021D0D40
 	add r0, sp, #0xc
@@ -56,7 +56,7 @@ ov4_021D6A88: ; 0x021D6A88
 	strb r2, [sp, #0x16]
 	strb r2, [sp, #0x19]
 	str r2, [r1, #0]
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D6C98 ; =0x021D0D40
 	str r0, [sp, #0x2c]
 	ldr r1, [r1, #0]
@@ -72,7 +72,7 @@ ov4_021D6A88: ; 0x021D6A88
 _021D6B7C:
 	ldr r0, [r7, r8, lsl #2]
 	mov r1, r6
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	addeq r0, r8, #1
 	streq r0, [sp, #0x30]
@@ -88,7 +88,7 @@ _021D6BA4:
 	mov r2, #0
 	add r0, sp, #5
 	str r2, [r1, #0]
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D6C98 ; =0x021D0D40
 	str r0, [sp, #0x34]
 	ldr r0, [r1, #0]
@@ -97,7 +97,7 @@ _021D6BA4:
 	mov r2, #0
 	add r0, sp, #0x11
 	str r2, [r1, #0]
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D6C98 ; =0x021D0D40
 	str r0, [sp, #0x20]
 	ldr r0, [r1, #0]
@@ -106,7 +106,7 @@ _021D6BA4:
 	mov r2, #0
 	add r0, sp, #0x14
 	str r2, [r1, #0]
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D6C98 ; =0x021D0D40
 	str r0, [sp, #0x24]
 	ldr r0, [r1, #0]
@@ -115,7 +115,7 @@ _021D6BA4:
 	mov r2, #0
 	add r0, sp, #0x17
 	str r2, [r1, #0]
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D6C98 ; =0x021D0D40
 	str r0, [sp, #0x28]
 	ldr r0, [r1, #0]
@@ -123,7 +123,7 @@ _021D6BA4:
 	beq _021D6C88
 	add r0, sp, #0x2c
 	add r1, sp, #0x20
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mvn r2, #0
 	cmp r1, r2
 	cmpeq r0, r2

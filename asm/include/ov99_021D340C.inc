@@ -12,10 +12,10 @@
 .public sub_0200D810
 .public sub_0201D2B8
 .public sub_02022974
-.public sub_020AE608
-.public sub_020BF55C
-.public sub_020C4CF4
-.public sub_020E1F1C
+.public NNS_G3dRenderObjInit
+.public G2x_SetBlendAlpha_
+.public MI_CpuFill8
+.public _ull_mul
 .public ov99_021D3588
 .public ov99_021D35C8
 .public ov99_021D35E8

@@ -149,7 +149,7 @@ _021E1A44:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r7, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
@@ -235,7 +235,7 @@ ov21_021E1AD0: ; 0x021E1AD0
 	mov r1, #0
 	mov r2, #0x3c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r1, #0
 	add r2, r4, #0
 	mov r0, #4
@@ -335,7 +335,7 @@ _021E1B8E:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0xc4
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]

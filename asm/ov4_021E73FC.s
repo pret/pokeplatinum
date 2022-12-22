@@ -24,7 +24,7 @@ _021E742C:
 	add r1, r4, #0x300
 	mov r0, #0
 	mov r2, #0x144
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, r4
 	bl ov4_021E74DC
 	strb r0, [r4, #0xd10]
@@ -40,7 +40,7 @@ _021E7464:
 	add r1, r4, #0x300
 	mov r0, #0
 	mov r2, #0x144
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0
 	mov r0, r4
 	strb r1, [r4, #0xd0f]
@@ -65,7 +65,7 @@ ov4_021E7490: ; 0x021E7490
 	ldr r1, _021E74D8 ; =0x022158A0
 	add r0, r4, #0xc
 	mov r2, #8
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	moveq r0, #8
 	ldmeqia sp!, {r4, pc}
@@ -93,7 +93,7 @@ ov4_021E74DC: ; 0x021E74DC
 	ldr r0, _021E7538 ; =0x022158A0
 	add r1, r4, #4
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #8
 	strb r1, [r4, #3]
 	add r0, r5, #1
@@ -123,7 +123,7 @@ ov4_021E753C: ; 0x021E753C
 	ldr r0, _021E761C ; =0x0221760C
 	add r1, r5, #4
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #8
 	add r0, r4, #1
 	strb r1, [r5, #3]
@@ -140,7 +140,7 @@ _021E7598:
 	ldr r0, _021E7620 ; =0x02215898
 	add r1, r5, #4
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #8
 	add r0, r4, #1
 	strb r1, [r5, #3]
@@ -157,7 +157,7 @@ _021E75D8:
 	ldr r0, _021E7624 ; =0x022158A8
 	add r1, r5, #4
 	mov r2, #0xb
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #0xb
 	add r0, r4, #1
 	strb r1, [r5, #3]

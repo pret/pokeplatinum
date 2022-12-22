@@ -1,9 +1,9 @@
-.public sub_020D407C
-.public sub_020D50B8
-.public sub_020D8B60
-.public sub_020D8C44
-.public sub_020DF9B0
-.public sub_020E1F6C
+.public __msl_assertion_failed
+.public memcpy
+.public strlen
+.public strncpy
+.public strcasecmp
+.public _s32_div_f
 .public ov4_021D7880
 .public ov4_021D7894
 .public ov4_021D78B0

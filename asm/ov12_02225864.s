@@ -188,12 +188,12 @@ _0222599A:
 
 	thumb_func_start ov12_022259A0
 ov12_022259A0: ; 0x022259A0
-	ldr r3, _022259A8 ; =sub_020BCFD0
+	ldr r3, _022259A8 ; =FX_Div
 	sub r0, r1, r0
 	lsl r1, r2, #0xc
 	bx r3
 	; .align 2, 0
-_022259A8: .word sub_020BCFD0
+_022259A8: .word FX_Div
 	thumb_func_end ov12_022259A0
 
 	thumb_func_start ov12_022259AC
@@ -201,10 +201,10 @@ ov12_022259AC: ; 0x022259AC
 	push {r3, lr}
 	sub r0, r1, r0
 	add r1, r2, #0
-	bl sub_020BCFD0
+	bl FX_Div
 	add r1, sp, #0
 	str r0, [sp]
-	bl sub_020BDBCC
+	bl FX_Modf
 	cmp r0, #0
 	beq _022259CC
 	mov r0, #1
@@ -312,13 +312,13 @@ ov12_02225A5C: ; 0x02225A5C
 	str r0, [r5, #0x14]
 	sub r0, r2, r1
 	add r1, r3, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x18]
 	add r0, sp, #0
 	ldrh r0, [r0, #0x10]
 	ldr r1, [sp, #0x1c]
 	sub r0, r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x1c]
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov12_02225A5C
@@ -362,7 +362,7 @@ _02225AAA:
 	ldr r0, [sp]
 	sub r0, r1, r0
 	ldr r1, [r5, #4]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x1c]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -405,7 +405,7 @@ _02225AEA:
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -426,7 +426,7 @@ _02225AEA:
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -815,7 +815,7 @@ ov12_02225DF4: ; 0x02225DF4
 	sub r0, r2, r1
 	add r1, r4, #0
 	str r3, [r5, #0xc]
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [r5, #0x10]
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov12_02225DF4
@@ -849,7 +849,7 @@ _02225E16:
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -884,11 +884,11 @@ _02225E7A:
 	add r1, r6, #0
 	str r0, [r4, #4]
 	lsl r0, r5, #8
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r5, r0, #0
 	lsl r0, r7, #8
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r2, [sp, #0x18]
 	lsl r0, r5, #0xc
@@ -961,11 +961,11 @@ _02225F02:
 	ldrsh r4, [r1, r0]
 	lsl r0, r6, #8
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r0, #0
 	lsl r0, r7, #8
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r2, [sp, #0x20]
 	lsl r0, r6, #0xc
@@ -975,14 +975,14 @@ _02225F02:
 	ldr r0, [sp]
 	add r1, r4, #0
 	lsl r0, r0, #8
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	add r1, sp, #8
 	mov r0, #0x10
 	ldrsh r0, [r1, r0]
 	add r1, r4, #0
 	lsl r0, r0, #8
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r2, [sp, #0x20]
 	lsl r0, r7, #0xc
@@ -1044,15 +1044,15 @@ ov12_02225FA4: ; 0x02225FA4
 	ldrsh r0, [r5, r0]
 	add r4, r1, #0
 	add r6, r2, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02225FD0 ; =0x43800000
-	bl sub_020E1304
+	bl _fdiv
 	str r0, [r4, #0]
 	mov r0, #2
 	ldrsh r0, [r5, r0]
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02225FD0 ; =0x43800000
-	bl sub_020E1304
+	bl _fdiv
 	str r0, [r6, #0]
 	pop {r4, r5, r6, pc}
 	nop
@@ -1070,7 +1070,7 @@ ov12_02225FD4: ; 0x02225FD4
 	asr r1, r4, #0x1f
 	add r0, r4, #0
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1080,10 +1080,10 @@ ov12_02225FD4: ; 0x02225FD4
 	lsr r0, r0, #0xc
 	orr r0, r1
 	lsl r1, r2, #9
-	bl sub_020BCFD0
+	bl FX_Div
 	sub r0, r4, r0
 	add r1, sp, #0
-	bl sub_020BDBCC
+	bl FX_Modf
 	cmp r0, #0
 	beq _02226012
 	mov r1, #2
@@ -1853,7 +1853,7 @@ ov12_02226544: ; 0x02226544
 	ldr r2, _022265B4 ; =0x00000624
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	cmp r4, #0
 	bne _02226566
 	bl sub_02022974
@@ -1878,13 +1878,13 @@ _02226580:
 	add r0, r6, #0
 	add r1, #0x20
 	lsl r2, r2, #8
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r2, #0x32
 	lsl r2, r2, #4
 	add r1, r4, r2
 	add r0, r6, #0
 	sub r2, #0x20
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r2, _022265B8 ; =ov12_02226528
 	ldr r3, _022265BC ; =ov12_0222653C
 	add r0, r4, #0
@@ -1983,7 +1983,7 @@ _02226648:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0x34]
 	bl ov12_022266F0
 	add r6, r0, #0
@@ -2141,7 +2141,7 @@ ov12_02226744: ; 0x02226744
 	mul r1, r0
 	add r0, r2, r1
 	lsl r0, r0, #0xc
-	bl sub_020BCFF0
+	bl FX_Sqrt
 	ldr r1, [sp, #8]
 	str r0, [r1, #0]
 	pop {r3, pc}
@@ -2161,7 +2161,7 @@ ov12_0222676C: ; 0x0222676C
 	ldr r5, [sp, #0x10]
 	lsl r0, r4, #0xc
 	asr r1, r1, #4
-	bl sub_020BDA20
+	bl FX_Atan2Idx
 	strh r0, [r5]
 	ldrh r1, [r5]
 	cmp r1, #0

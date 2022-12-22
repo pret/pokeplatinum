@@ -1,10 +1,10 @@
-.public sub_020C3214
-.public sub_020C331C
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D3068
-.public sub_020E1F6C
-.public sub_020E2178
+.public OS_AllocFromHeap
+.public OS_FreeToHeap
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public MATH_CalcSHA1
+.public _s32_div_f
+.public _u32_div_f
 .public ov97_022394DC
 .public ov97_022395DC
 .public ov97_02239780

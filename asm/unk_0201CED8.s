@@ -44,22 +44,22 @@ _0201CEF8:
 	ldrsh r3, [r4, r3]
 	bl sub_0201D018
 	add r0, sp, #0x1c
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _0201CF74 ; =0x021C5B48
 	add r0, r5, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _0201CF78 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, r7, #0
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
-	bl sub_020AF480
+	bl NNS_G3dGlbSetBaseScale
+	bl NNS_G3dGlbFlushP
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldr r0, [r4, #0x24]
 	add r1, sp, #0x10
 	str r0, [sp, #0x10]
@@ -67,7 +67,7 @@ _0201CEF8:
 	str r0, [sp, #0x18]
 	mov r0, #0x1b
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, sp, #0x28
 	bl sub_0201D03C
 	add r4, r0, #0
@@ -75,7 +75,7 @@ _0201CEF8:
 	mov r0, #0x12
 	add r1, sp, #0xc
 	str r2, [sp, #0xc]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, r4, #0
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
@@ -104,12 +104,12 @@ sub_0201CF7C: ; 0x0201CF7C
 	add r2, r0, #0
 	bl sub_0201D018
 	add r0, r5, #0
-	bl sub_020AF4BC
-	bl sub_020AF480
+	bl NNS_G3dGlbSetBaseTrans
+	bl NNS_G3dGlbFlushP
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldr r0, [r4, #0x10]
 	lsl r2, r0, #0xc
 	ldr r0, [r4, #0xc]
@@ -122,7 +122,7 @@ sub_0201CF7C: ; 0x0201CF7C
 	mov r0, #0x1b
 	add r1, sp, #0x10
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, sp, #0x1c
 	bl sub_0201D03C
 	add r4, r0, #0
@@ -130,7 +130,7 @@ sub_0201CF7C: ; 0x0201CF7C
 	mov r0, #0x12
 	add r1, sp, #0xc
 	str r2, [sp, #0xc]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, r4, #0
 	add sp, #0x28
 	pop {r3, r4, r5, pc}
@@ -193,26 +193,26 @@ sub_0201D03C: ; 0x0201D03C
 	mov r0, #0x29
 	add r1, sp, #4
 	str r2, [sp, #8]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0x40
 	add r1, sp, #0
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r1, #0
 	mov r0, #0x41
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0x70
 	add r1, r4, #0
 	mov r2, #3
-	bl sub_020B275C
-	bl sub_020B2628
+	bl NNS_G3dGeBufferOP_N
+	bl NNS_G3dGeFlushBuffer
 	add r4, sp, #8
 _0201D07A:
 	add r0, r4, #0
-	bl sub_020BFE80
+	bl G3X_GetBoxTestResult
 	cmp r0, #0
 	bne _0201D07A
 	ldr r0, [sp, #8]

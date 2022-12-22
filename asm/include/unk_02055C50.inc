@@ -60,8 +60,8 @@
 .public sub_0206D914
 .public sub_0207D570
 .public sub_0207D990
-.public sub_020BB4C8
-.public sub_020C4CF4
+.public MTX_Identity33_
+.public MI_CpuFill8
 .public ov5_021DF554
 .public ov5_021DF5A8
 .public ov5_021DF5B4

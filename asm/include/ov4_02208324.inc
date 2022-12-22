@@ -1,8 +1,8 @@
-.public sub_020C1AF0
-.public sub_020C24A4
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D3354
+.public OS_SNPrintf
+.public OS_Sleep
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public STD_CopyLString
 .public ov4_02205C7C
 .public ov4_02206224
 .public ov4_0220657C

@@ -5,17 +5,17 @@
 	.text
 
 
-	arm_func_start sub_020A5A2C
-sub_020A5A2C: ; 0x020A5A2C
+	arm_func_start AllocTexVram_
+AllocTexVram_: ; 0x020A5A2C
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020A5A2C
+	arm_func_end AllocTexVram_
 
-	arm_func_start sub_020A5A34
-sub_020A5A34: ; 0x020A5A34
+	arm_func_start FreeTexVram_
+FreeTexVram_: ; 0x020A5A34
 	mvn r0, #0
 	bx lr
-	arm_func_end sub_020A5A34
+	arm_func_end FreeTexVram_
 
 	.data
 

@@ -37,10 +37,10 @@
 .public sub_02027AC0
 .public sub_02027B50
 .public sub_02095C60
-.public sub_020BCFD0
-.public sub_020D5124
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public FX_Div
+.public memset
+.public _ull_mul
+.public _s32_div_f
 .public ov22_022597BC
 .public ov22_02259804
 .public ov22_0225A6E0

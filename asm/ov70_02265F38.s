@@ -1633,7 +1633,7 @@ ov70_02266CCC: ; 0x02266CCC
 	add r4, r0, #0
 	add r0, r1, #0
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	asr r1, r0, #0x10
 	mov r0, #4

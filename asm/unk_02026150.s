@@ -75,7 +75,7 @@ _020261C0:
 	add r0, r6, #0
 	add r1, r5, #0
 	add r2, r7, #0
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _020261D2
 	add r0, r4, #0

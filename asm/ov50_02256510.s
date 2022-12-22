@@ -96,11 +96,11 @@ ov50_022565B0: ; 0x022565B0
 	add r5, r0, #0
 	add r0, r6, #0
 	mov r1, #7
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	add r0, r6, #0
 	mov r1, #7
-	bl sub_020E2178
+	bl _u32_div_f
 	add r2, r0, #0
 	lsl r1, r4, #1
 	lsl r3, r2, #1
@@ -359,11 +359,11 @@ ov50_022567A8: ; 0x022567A8
 	add r6, r1, #0
 	add r0, r7, #0
 	mov r1, #7
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	add r0, r7, #0
 	mov r1, #7
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r1, r0, #1
 	add r0, r0, r1
 	add r0, r0, #5
@@ -485,14 +485,14 @@ ov50_02256894: ; 0x02256894
 	str r1, [sp, #0x14]
 	add r0, r5, #0
 	mov r1, #7
-	bl sub_020E2178
+	bl _u32_div_f
 	add r6, r1, #0
 	lsl r0, r6, #1
 	add r0, r6, r0
 	add r4, r0, #4
 	add r0, r5, #0
 	mov r1, #7
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r1, r0, #1
 	add r0, r0, r1
 	add r5, r0, #5
@@ -505,11 +505,11 @@ _022568C4:
 _022568C6:
 	ldr r0, [sp, #0x14]
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r0, #0
 	ldr r0, [sp, #0x14]
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp, #0x18]
 	cmp r7, #0
 	beq _0225692E

@@ -1,6 +1,6 @@
-.public sub_020C00B4
-.public sub_020C04EC
-.public sub_020C24A4
+.public GX_LoadBGPltt
+.public GX_LoadBG2Scr
+.public OS_Sleep
 .public ov18_0222AD34
 .public ov18_0222AE04
 .public ov18_0222B004

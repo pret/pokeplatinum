@@ -1,8 +1,8 @@
-.public sub_020D407C
-.public sub_020D8B60
-.public sub_020D8B7C
-.public sub_020D90B0
-.public sub_020DAE0C
+.public __msl_assertion_failed
+.public strlen
+.public strcpy
+.public strstr
+.public atoi
 .public ov4_021D7880
 .public ov4_021D78B0
 .public ov4_021EA8AC

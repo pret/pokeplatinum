@@ -323,7 +323,7 @@ ov18_0223D5E4: ; 0x0223D5E4
 	mov r0, #0x7f
 	bge _0223D61C
 	rsb r1, r4, #6
-	bl sub_020BD104
+	bl FX_DivS32
 _0223D61C:
 	bl ov18_0223E9B8
 	cmp r4, #2
@@ -334,7 +334,7 @@ _0223D61C:
 	bge _0223D648
 	rsb r1, r4, #6
 	mov r0, #0x200
-	bl sub_020BD104
+	bl FX_DivS32
 	sub r1, r0, #0x100
 _0223D648:
 	ldr r0, _0223D658 ; =0x0000FFFF

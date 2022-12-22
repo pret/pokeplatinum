@@ -22,7 +22,7 @@ ov12_02237E54: ; 0x02237E54
 	mul r1, r0
 	add r0, r2, r1
 	lsl r0, r0, #0xc
-	bl sub_020BCFF0
+	bl FX_Sqrt
 	asr r1, r0, #0xb
 	lsr r1, r1, #0x14
 	add r1, r0, r1
@@ -79,7 +79,7 @@ _02237EAC:
 _02237ED8:
 	add r0, r0, #1
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r0, #3
 	blt _02237EE6
 	mov r0, #3

@@ -6,7 +6,7 @@
 .public sub_02056934
 .public sub_02056970
 .public sub_020569A8
-.public sub_020E2178
+.public _u32_div_f
 .public ov25_02254238
 .public ov25_0225424C
 .public ov25_02254260

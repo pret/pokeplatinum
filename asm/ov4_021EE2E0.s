@@ -18,7 +18,7 @@ ov4_021EE2E0: ; 0x021EE2E0
 	ldr r5, _021EE344 ; =0x08421085
 	mov r4, #0x3e
 _021EE304:
-	bl sub_020D76A0
+	bl rand
 	umull r1, r2, r0, r5
 	sub r1, r0, r2
 	add r2, r2, r1, lsr #1
@@ -224,7 +224,7 @@ _021EE5BC:
 	ldr r1, _021EE6AC ; =0x022182E0
 	ldr r2, _021EE6B0 ; =0x0221810C
 	mov r3, #0x90
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EE600:
 	ldr r0, _021EE6B4 ; =0x0000CC74
 	add r1, sp, #4
@@ -359,7 +359,7 @@ _021EE75C:
 _021EE7DC:
 	mov r1, #0
 	mov r2, #0x308
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0x3c]
 	ldr r1, [sp, #0x2c]
 	str r0, [r4, #0x304]
@@ -454,7 +454,7 @@ ov4_021EE900: ; 0x021EE900
 	addeq r0, r4, #0x77
 	add r7, r0, #0x100
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	mov r1, r0
 	mov r0, r7
 	add r2, r5, #0xa1
@@ -473,7 +473,7 @@ ov4_021EE900: ; 0x021EE900
 	add r0, sp, #0x35
 	add r2, r4, #0x110
 	add r3, r4, #0x144
-	bl sub_020D7510
+	bl sprintf
 	add r0, sp, #0x35
 _021EE990:
 	str r0, [sp]
@@ -485,9 +485,9 @@ _021EE990:
 	str r5, [sp, #8]
 	add r2, r5, #0xa1
 	str r2, [sp, #0xc]
-	bl sub_020D7510
+	bl sprintf
 	add r0, sp, #0x87
-	bl sub_020D8B60
+	bl strlen
 	mov r1, r0
 	add r0, sp, #0x87
 	add r2, sp, #0x14
@@ -692,7 +692,7 @@ ov4_021EECA4: ; 0x021EECA4
 	mov sb, r1
 	add r0, r5, #0x77
 	add r0, r0, #0x100
-	bl sub_020D8B60
+	bl strlen
 	mov r7, r0
 	ldr r0, _021EEEFC ; =0x79707367
 	bl ov4_021EB018
@@ -790,7 +790,7 @@ _021EED18:
 	beq _021EEED0
 	add r0, sb, #0xc2
 	add r0, r0, #0x200
-	bl sub_020D8B60
+	bl strlen
 	mov r6, r0
 	ldr r0, _021EEEFC ; =0x79707367
 	bl ov4_021EB018
@@ -894,12 +894,12 @@ _021EEF90:
 	cmp r0, #0
 	beq _021EEFC4
 	add r0, sp, #0xa0
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r5, #0x1a0]
 _021EEFC4:
 	ldr r1, _021EF5AC ; =0x02218488
 	mov r0, r6
-	bl sub_020D90B0
+	bl strstr
 	cmp r0, #0
 	ldr r1, [r5, #0x418]
 	mov r0, r8
@@ -937,7 +937,7 @@ _021EF04C:
 	ldr r1, _021EF5B0 ; =0x02218490
 	mov r0, r6
 	mov r2, #5
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	beq _021EF090
 	ldr r2, _021EF5B4 ; =0x02218498
@@ -995,7 +995,7 @@ _021EF124:
 	ldr r1, _021EF5BC ; =0x022184C8
 	mov r0, r6
 	mov r2, #5
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	beq _021EF168
 	ldr r2, _021EF5B4 ; =0x02218498
@@ -1030,7 +1030,7 @@ _021EF168:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021EF1B0:
 	add r0, sp, #0xa0
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r5, #0x19c]
 	ldr r1, _021EF5C8 ; =0x022183E4
 	add r2, sp, #0xa0
@@ -1052,7 +1052,7 @@ _021EF1B0:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021EF204:
 	add r0, sp, #0xa0
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r5, #0x1a0]
 	mov r0, r8
 	mov r1, r4
@@ -1067,7 +1067,7 @@ _021EF234:
 	ldr r1, _021EF5CC ; =0x02218500
 	mov r0, r6
 	mov r2, #5
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	beq _021EF278
 	ldr r2, _021EF5B4 ; =0x02218498
@@ -1102,7 +1102,7 @@ _021EF278:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021EF2C0:
 	add r0, sp, #0xa0
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r5, #0x198]
 	ldr r1, _021EF5C0 ; =0x022183D8
 	add r2, sp, #0xa0
@@ -1124,7 +1124,7 @@ _021EF2C0:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021EF314:
 	add r0, sp, #0xa0
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r5, #0x19c]
 	ldr r1, _021EF5C8 ; =0x022183E4
 	add r2, sp, #0xa0
@@ -1146,7 +1146,7 @@ _021EF314:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021EF368:
 	add r0, sp, #0xa0
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r5, #0x1a0]
 	ldr r1, _021EF5D4 ; =0x022183BC
 	add r2, sp, #0x18
@@ -1179,7 +1179,7 @@ _021EF368:
 	add r0, sp, #0x4e
 	add r2, r5, #0x110
 	add r3, r5, #0x144
-	bl sub_020D7510
+	bl sprintf
 	add r0, sp, #0x4e
 _021EF3F8:
 	stmia sp, {r0, r4}
@@ -1190,9 +1190,9 @@ _021EF3F8:
 	ldr r3, _021EF5E4 ; =0x02218368
 	add r0, sp, #0xa0
 	str r2, [sp, #0xc]
-	bl sub_020D7510
+	bl sprintf
 	add r0, sp, #0xa0
-	bl sub_020D8B60
+	bl strlen
 	mov r1, r0
 	add r0, sp, #0xa0
 	add r2, sp, #0x2d
@@ -1219,7 +1219,7 @@ _021EF47C:
 	add r0, sp, #0x2d
 	add r1, sp, #0xa0
 	mov r2, #0x20
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _021EF4C0
 	ldr r2, _021EF5EC ; =0x02218524
@@ -1266,7 +1266,7 @@ _021EF4E8:
 _021EF530:
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0x1a0]
 	mov r3, #0
 	str r0, [r4, #4]
@@ -1351,7 +1351,7 @@ _021EF648:
 	ldr r1, _021EF68C ; =0x022182E0
 	ldr r2, _021EF690 ; =0x0221811C
 	ldr r3, _021EF694 ; =0x000002EF
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EF670:
 	mov r0, #2
 	str r0, [r4, #0x1d8]

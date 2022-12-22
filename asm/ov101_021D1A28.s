@@ -47,7 +47,7 @@ ov101_021D1A68: ; 0x021D1A68
 _021D1A72:
 	bl sub_0201D2E8
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r5, #0
 	add r0, #0xa8
 	str r1, [r0, #0]
@@ -61,7 +61,7 @@ _021D1A72:
 	mov r1, #0x2a
 	ldr r0, [r0, #0]
 	lsl r1, r1, #0x10
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r5, #0
 	add r0, #0x90
 	add r4, r4, #1
@@ -2914,7 +2914,7 @@ _021D2F58:
 	bne _021D2F86
 	ldr r0, [sp, #0xc]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #2
 	bge _021D2F86
 	add r0, r4, #0
@@ -3700,7 +3700,7 @@ _021D3544:
 	pop {r3, r4, r5, r6, r7, pc}
 _021D354A:
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _021D35F2
 	mov r0, #1
@@ -5163,7 +5163,7 @@ ov101_021D3FE8: ; 0x021D3FE8
 	str r0, [r4, r5]
 	ldr r0, [r4, r5]
 	lsl r1, r1, #0x10
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, r5]
 	ldr r1, [r4, r5]
 	asr r0, r1, #0xb
@@ -5221,7 +5221,7 @@ ov101_021D405C: ; 0x021D405C
 	push {r3, lr}
 	bl sub_0201D2E8
 	mov r1, #0x64
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r1, #0
 	pop {r3, pc}
 	thumb_func_end ov101_021D405C
@@ -5943,7 +5943,7 @@ ov101_021D45B0: ; 0x021D45B0
 	add r4, r0, #0
 	bl sub_0201D2E8
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0x34]
 	pop {r4, pc}
 	; .align 2, 0
@@ -7047,7 +7047,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r0, [sp]
 	mov r1, #1
 	add r2, r4, #4
@@ -7087,7 +7087,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	add r2, r4, #0
 	ldr r0, [sp]
 	mov r1, #0
@@ -7101,7 +7101,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	add r2, r4, #0
 	ldr r0, [sp]
 	mov r1, #0
@@ -7115,7 +7115,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	add r2, r4, #0
 	ldr r0, [sp]
 	mov r1, #0
@@ -7129,7 +7129,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r2, #0x51
 	lsl r2, r2, #2
 	ldr r0, [sp]
@@ -7144,7 +7144,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r2, #0x59
 	lsl r2, r2, #2
 	ldr r0, [sp]
@@ -7165,7 +7165,7 @@ ov101_021D4D38: ; 0x021D4D38
 	bl ov101_021D19E4
 	add r1, sp, #0
 	add r5, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r2, #0x69
 	lsl r2, r2, #2
 	ldr r0, [sp]
@@ -8191,7 +8191,7 @@ ov101_021D55A4: ; 0x021D55A4
 	ldr r0, [r0, #0]
 	mov r1, #0x15
 	add r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bge _021D55BE
 	add r1, #0x15

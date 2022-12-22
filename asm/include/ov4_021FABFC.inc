@@ -1,9 +1,9 @@
-.public sub_020D407C
-.public sub_020D50B8
-.public sub_020D7510
-.public sub_020D8B60
-.public sub_020D8E5C
-.public sub_020DAE0C
+.public __msl_assertion_failed
+.public memcpy
+.public sprintf
+.public strlen
+.public strchr
+.public atoi
 .public ov4_021EAF1C
 .public ov4_0220854C
 .public ov4_022089F4

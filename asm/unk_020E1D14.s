@@ -6,16 +6,16 @@
 	.text
 
 
-	arm_func_start sub_020E1D14
-sub_020E1D14: ; 0x020E1D14
+	arm_func_start _ll_mod
+_ll_mod: ; 0x020E1D14
 	stmfd sp!, {r4, r5, r6, r7, fp, ip, lr}
 	mov r4, r1
 	orr r4, r4, #1
 	b _020E1D34
-	arm_func_end sub_020E1D14
+	arm_func_end _ll_mod
 
-	arm_func_start sub_020E1D24
-sub_020E1D24: ; 0x020E1D24
+	arm_func_start _ll_sdiv
+_ll_sdiv: ; 0x020E1D24
 	stmfd sp!, {r4, r5, r6, r7, fp, ip, lr}
 	eor r4, r1, r3
 	mov r4, r4, asr #1
@@ -33,7 +33,7 @@ _020E1D44:
 	orrs r6, r5, r6
 	bne _020E1D78
 	mov r1, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ands r4, r4, #1
 	movne r0, r1
 	mov r1, r0, asr #0x1f
@@ -142,17 +142,17 @@ _020E1EC0:
 	blt _020E1EAC
 	ldmia sp!, {r4, r5, r6, r7, fp, ip, lr}
 	bx lr
-	arm_func_end sub_020E1D24
+	arm_func_end _ll_sdiv
 
-	arm_func_start sub_020E1ED4
-sub_020E1ED4: ; 0x020E1ED4
+	arm_func_start _ull_div
+_ull_div: ; 0x020E1ED4
 	stmfd sp!, {r4, r5, r6, r7, fp, ip, lr}
 	mov r4, #0
 	b _020E1EE8
-	arm_func_end sub_020E1ED4
+	arm_func_end _ull_div
 
-	arm_func_start sub_020E1EE0
-sub_020E1EE0: ; 0x020E1EE0
+	arm_func_start _ull_mod
+_ull_mod: ; 0x020E1EE0
 	stmfd sp!, {r4, r5, r6, r7, fp, ip, lr}
 	mov r4, #1
 _020E1EE8:
@@ -164,10 +164,10 @@ _020E1EF8:
 	orrs r5, r1, r3
 	bne _020E1D98
 	mov r1, r2
-	bl sub_020E2180
+	bl _u32_div_not_0_f
 	cmp r4, #0
 	movne r0, r1
 	mov r1, #0
 	ldmia sp!, {r4, r5, r6, r7, fp, ip, lr}
 	bx lr
-	arm_func_end sub_020E1EE0
+	arm_func_end _ull_mod

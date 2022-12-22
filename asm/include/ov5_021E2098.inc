@@ -3,10 +3,10 @@
 .public sub_0200DA3C
 .public sub_0200DA58
 .public sub_0201CED0
-.public sub_020BDE40
-.public sub_020BEA30
-.public sub_020BF00C
-.public sub_020C4BB8
+.public GX_SetGraphicsMode
+.public GX_SetBankForLCDC
+.public GX_GetBankForLCDC
+.public MIi_CpuClearFast
 .public ov5_021E2178
 .public ov5_021E21B8
 .public ov5_021E2218

@@ -32,7 +32,7 @@ _0220515C:
 	ldmneia sp!, {r4, r5, r6, pc}
 	mov r1, r0
 	mov r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	subs lr, r4, #1
 	mov r5, #0
 	beq _022051BC
@@ -80,14 +80,14 @@ _02205204: .word 0x0221C724
 ov4_02205208: ; 0x02205208
 	stmfd sp!, {r4, lr}
 	mov r4, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02205238 ; =0x0221C724
 	ldr r3, [r1, #0]
 	cmp r3, #0
 	ldrne r2, [r3]
 	movne r4, r3
 	strne r2, [r1]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -98,7 +98,7 @@ _02205238: .word 0x0221C724
 ov4_0220523C: ; 0x0220523C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0220526C ; =0x0221C724
 	mov r2, #0
 	ldr r3, [r1, #0]
@@ -106,7 +106,7 @@ ov4_0220523C: ; 0x0220523C
 	str r4, [r1, #0]
 	str r2, [r4, #4]
 	str r2, [r4, #8]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0220526C: .word 0x0221C724

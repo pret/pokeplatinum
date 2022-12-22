@@ -8,7 +8,7 @@
 .public sub_02075E0C
 .public sub_020765AC
 .public sub_02094EDC
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov12_0221FE30
 .public ov12_0222016C
 .public ov12_02220188

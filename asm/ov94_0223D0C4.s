@@ -1314,13 +1314,13 @@ ov94_0223DB2C: ; 0x0223DB2C
 	mov r1, #0x32
 	add r0, r4, #0
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r1, #0x4a
 	mov r2, #0x32
 	add r0, r4, #0
 	lsl r1, r1, #8
 	lsl r2, r2, #6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	mov r0, #0x20
 	str r0, [sp]
 	mov r0, #0x3e

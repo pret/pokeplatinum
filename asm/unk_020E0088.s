@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E0088
-sub_020E0088: ; 0x020E0088
+	arm_func_start _d_dtoi
+_d_dtoi: ; 0x020E0088
 	bic r3, r1, #0x80000000
 	ldr r2, _020E00D0 ; =0x0000041E
 	subs r2, r2, r3, lsr #20
@@ -29,4 +29,4 @@ _020E00C4:
 	bx lr
 	; .align 2, 0
 _020E00D0: .word 0x0000041E
-	arm_func_end sub_020E0088
+	arm_func_end _d_dtoi

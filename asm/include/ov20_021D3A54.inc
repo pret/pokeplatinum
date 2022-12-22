@@ -24,10 +24,10 @@
 .public sub_020237BC
 .public sub_02099CA0
 .public sub_02099CDC
-.public sub_020BF55C
-.public sub_020BF578
-.public sub_020E1F6C
-.public sub_020E2178
+.public G2x_SetBlendAlpha_
+.public G2x_SetBlendBrightness_
+.public _s32_div_f
+.public _u32_div_f
 .public ov20_021D1F94
 .public ov20_021D2E04
 .public ov20_021D2E0C

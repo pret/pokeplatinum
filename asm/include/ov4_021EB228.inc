@@ -1,6 +1,6 @@
-.public sub_020D407C
-.public sub_020D5124
-.public sub_020D8D14
+.public __msl_assertion_failed
+.public memset
+.public strcmp
 .public ov4_021D78B0
 .public ov4_021EBDCC
 .public ov4_021EBF14

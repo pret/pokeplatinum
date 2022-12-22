@@ -346,7 +346,7 @@ ov101_021D0F9C: ; 0x021D0F9C
 	mov r1, #4
 	mov r2, #0x10
 	mov r3, #8
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, _021D1078 ; =ov101_021D197C
 	add r1, r4, #0
 	bl sub_02017798
@@ -573,7 +573,7 @@ ov101_021D121C: ; 0x021D121C
 	ldr r1, _021D13BC ; =0x00000448
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r1, _021D13BC ; =0x00000448
 	mov r2, #0x1a
 	ldr r1, [r4, r1]
@@ -591,7 +591,7 @@ ov101_021D121C: ; 0x021D121C
 	ldr r1, _021D13C0 ; =0x00000444
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, _021D13C0 ; =0x00000444
 	mov r1, #0
 	ldr r3, [r4, r0]
@@ -612,7 +612,7 @@ ov101_021D121C: ; 0x021D121C
 	lsl r1, r1, #6
 	add r1, r4, r1
 	add r5, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	mov r0, #0x11
 	lsl r0, r0, #6
 	ldr r3, [r4, r0]
@@ -636,7 +636,7 @@ ov101_021D121C: ; 0x021D121C
 	ldr r1, _021D13C0 ; =0x00000444
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, _021D13C0 ; =0x00000444
 	mov r1, #0
 	ldr r3, [r4, r0]
@@ -657,7 +657,7 @@ ov101_021D121C: ; 0x021D121C
 	lsl r1, r1, #6
 	add r1, r4, r1
 	add r5, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	mov r0, #0x11
 	lsl r0, r0, #6
 	ldr r3, [r4, r0]
@@ -681,7 +681,7 @@ ov101_021D121C: ; 0x021D121C
 	ldr r1, _021D13BC ; =0x00000448
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r1, _021D13BC ; =0x00000448
 	mov r2, #0x1a
 	ldr r1, [r4, r1]
@@ -699,7 +699,7 @@ ov101_021D121C: ; 0x021D121C
 	ldr r1, _021D13C0 ; =0x00000444
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, _021D13C0 ; =0x00000444
 	mov r1, #0
 	ldr r3, [r4, r0]
@@ -720,7 +720,7 @@ ov101_021D121C: ; 0x021D121C
 	lsl r1, r1, #6
 	add r1, r4, r1
 	add r5, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	mov r0, #0x11
 	lsl r0, r0, #6
 	ldr r3, [r4, r0]
@@ -936,7 +936,7 @@ ov101_021D1550: ; 0x021D1550
 	push {r3, r4, lr}
 	sub sp, #0x1c
 	add r4, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -1485,7 +1485,7 @@ _021D19AC:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

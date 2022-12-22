@@ -28,9 +28,9 @@
 .public sub_020241B4
 .public sub_020241BC
 .public sub_02075FB4
-.public sub_020A73C0
-.public sub_020B2628
-.public sub_020E2178
+.public NNS_G2dSetupSoftwareSpriteCamera
+.public NNS_G3dGeFlushBuffer
+.public _u32_div_f
 .public ov77_021D6C70
 .public ov77_021D6C94
 .public ov77_021D725C

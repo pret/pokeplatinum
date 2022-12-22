@@ -27,7 +27,7 @@ _021D0DA4:
 	ldr r2, _021D0EE4 ; =0x000006B4
 	add r0, r5, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x25
 	lsl r0, r0, #4
 	add r0, r5, r0
@@ -186,7 +186,7 @@ _021D0F22:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #2
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -425,7 +425,7 @@ ov78_021D1110: ; 0x021D1110
 	push {r4, r5, lr}
 	sub sp, #0x24
 	add r4, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -465,8 +465,8 @@ ov78_021D1168: ; 0x021D1168
 	push {r3, r4, lr}
 	sub sp, #4
 	add r4, r0, #0
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _021D11F4 ; =0x04000060
 	ldr r1, _021D11F8 ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -506,13 +506,13 @@ _021D11B4:
 	blt _021D11B4
 	ldr r0, _021D1204 ; =0x0000063C
 	add r0, r4, r0
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	mov r1, #0
 	ldr r0, _021D1208 ; =0x000043FF
 	ldr r2, _021D120C ; =0x00007FFF
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D1210 ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -520,11 +520,11 @@ _021D11B4:
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -542,8 +542,8 @@ _021D1214: .word 0xBFFF0000
 	thumb_func_start ov78_021D1218
 ov78_021D1218: ; 0x021D1218
 	push {r3, lr}
-	bl sub_020A5B1C
-	bl sub_020A5F50
+	bl NNS_GfdResetFrmTexVramState
+	bl NNS_GfdResetFrmPlttVramState
 	pop {r3, pc}
 	thumb_func_end ov78_021D1218
 
@@ -1015,7 +1015,7 @@ ov78_021D15CC: ; 0x021D15CC
 	add r4, r3, #0
 	mov r1, #0
 	mov r2, #0x98
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r1, r6, #0
 	add r2, r4, #0
@@ -1042,7 +1042,7 @@ ov78_021D1604: ; 0x021D1604
 	add r5, r0, #0
 	mov r1, #0
 	mov r2, #0x98
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
@@ -1068,7 +1068,7 @@ ov78_021D1630: ; 0x021D1630
 	mov r0, #0x52
 	bl sub_02006FE8
 	str r0, [r4, #0x54]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r4, #0x58]
 	cmp r0, #0
 	beq _021D166E
@@ -1095,7 +1095,7 @@ _021D166E:
 _021D1670:
 	str r0, [r4, #0x5c]
 	ldr r0, [r4, #0x54]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r4, #0x60]
 	bl sub_0201CBCC
 	ldr r0, [r4, #0x54]
@@ -1103,7 +1103,7 @@ _021D1670:
 	bl sub_0201CBB0
 	ldr r1, [r4, #0x5c]
 	add r0, r4, #0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -1123,20 +1123,20 @@ ov78_021D1694: ; 0x021D1694
 	bl sub_02006FE8
 	str r0, [r4, #0x64]
 	mov r1, #0
-	bl sub_020B3C5C
+	bl NNS_G3dGetAnmByIdx
 	str r0, [r4, #0x68]
 	ldr r1, [r4, #0x68]
 	ldr r2, [r4, #0x5c]
 	add r0, r5, #0
-	bl sub_020B2CB4
+	bl NNS_G3dAllocAnmObj
 	str r0, [r4, #0x6c]
 	ldr r1, [r4, #0x68]
 	ldr r2, [r4, #0x5c]
 	ldr r3, [r4, #0x60]
-	bl sub_020AE4F0
+	bl NNS_G3dAnmObjInit
 	ldr r1, [r4, #0x6c]
 	add r0, r4, #0
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -1157,14 +1157,14 @@ _021D16E8:
 	beq _021D16FC
 	ldr r1, [r5, #0x6c]
 	add r0, r4, #0
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	ldr r0, [r5, #0x64]
 	bl sub_020181C4
 _021D16FC:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x98
-	bl sub_020D5124
+	bl memset
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov78_021D16D8
 
@@ -1174,7 +1174,7 @@ ov78_021D1708: ; 0x021D1708
 	sub sp, #0x48
 	add r4, r0, #0
 	add r0, sp, #0x24
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	add r0, r4, #0
 	add r0, #0x90
 	ldrh r0, [r0]
@@ -1187,11 +1187,11 @@ ov78_021D1708: ; 0x021D1708
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r1, sp, #0x24
 	add r0, sp, #0
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x92
 	ldrh r0, [r0]
@@ -1204,11 +1204,11 @@ ov78_021D1708: ; 0x021D1708
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	add r1, sp, #0x24
 	add r0, sp, #0
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x94
 	ldrh r0, [r0]
@@ -1221,11 +1221,11 @@ ov78_021D1708: ; 0x021D1708
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r1, sp, #0x24
 	add r0, sp, #0
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldr r0, [r4, #0x74]
 	cmp r0, #0
 	beq _021D179C
@@ -1329,7 +1329,7 @@ ov78_021D180C: ; 0x021D180C
 	ldr r1, [r1, #8]
 	ldrh r1, [r1, #4]
 	lsl r1, r1, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0x70]
 	ldr r0, [r4, #0x6c]
 	str r1, [r0, #0]
@@ -1471,18 +1471,18 @@ ov78_021D192C: ; 0x021D192C
 	ldr r2, _021D1970 ; =0xFFFFF000
 	add r1, r0, #0
 	add r3, r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1974 ; =0x00007FFF
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D1974 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D1974 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	mov r0, #0x26
 	lsl r0, r0, #4
 	mov r4, #0
@@ -1584,7 +1584,7 @@ _021D19FA:
 	mov r1, #8
 	mov r2, #0x15
 	mov r3, #0xa
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, r4, r5, pc}
 _021D1A1A:
 	ldr r0, [r4, #0xc]
@@ -1663,9 +1663,9 @@ ov78_021D1AAC: ; 0x021D1AAC
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
-	bl sub_020B2628
-	bl sub_020A73C0
+	bl NNS_G3dGeBufferOP_N
+	bl NNS_G3dGeFlushBuffer
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	mov r0, #2
 	lsl r0, r0, #8
 	ldr r0, [r4, r0]
@@ -1677,11 +1677,11 @@ ov78_021D1AAC: ; 0x021D1AAC
 	mov r0, #0x12
 	add r1, sp, #4
 	str r2, [sp, #4]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	bl sub_020203EC
 	add r0, r4, #0
 	bl ov78_021D192C
@@ -1689,7 +1689,7 @@ ov78_021D1AAC: ; 0x021D1AAC
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0
 	add r1, r0, #0
 	bl sub_020241BC
@@ -2522,7 +2522,7 @@ _021D2124:
 	add r0, r2, #0
 	mul r0, r1
 	add r1, r3, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r5, #4]
 	add r0, r0, r1
 	str r0, [r5, #0]
@@ -2820,7 +2820,7 @@ ov78_021D2368: ; 0x021D2368
 	ldr r0, _021D23B0 ; =0x0000FFFF
 	mul r0, r1
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	asr r0, r0, #4
@@ -2830,7 +2830,7 @@ ov78_021D2368: ; 0x021D2368
 	ldrsh r0, [r0, r1]
 	asr r3, r2, #0x1f
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -2843,7 +2843,7 @@ ov78_021D2368: ; 0x021D2368
 	ldr r0, [r4, #0xc]
 	ldr r1, [r4, #8]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0xc]
 	pop {r4, pc}
 	nop

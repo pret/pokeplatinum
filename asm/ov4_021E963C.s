@@ -72,7 +72,7 @@ ov4_021E9700: ; 0x021E9700
 	mov r4, r0
 	ldr r0, _021E97DC ; =0x0221AEEC
 	mov r1, r4
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r0, _021E97E0 ; =0x0221AE50
 	mvn r1, #0
 	str r1, [r0, #4]
@@ -84,7 +84,7 @@ ov4_021E9700: ; 0x021E9700
 	ldr r1, _021E97E8 ; =0x022176A4
 	add r0, sp, #0
 	mov r2, r4
-	bl sub_020D7510
+	bl sprintf
 _021E9748:
 	cmp r5, #0
 	ldrne r0, _021E97E4 ; =0x0221AEAC
@@ -108,12 +108,12 @@ _021E9748:
 	mov r1, #9
 	mov r0, r4
 	strb r1, [r2, #0x10]
-	bl sub_020D8B60
+	bl strlen
 	mov r5, r0
 	ldr r0, _021E97F4 ; =0x0221AE65
 	mov r1, r4
 	add r2, r5, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _021E97E0 ; =0x0221AE50
 	add r1, r5, #6
 	str r1, [r0, #0x50]
@@ -145,7 +145,7 @@ ov4_021E97F8: ; 0x021E97F8
 	ldr r1, _021E98A4 ; =0x0221AE5C
 	add r0, r6, #4
 	mov r2, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	movne r0, #1
 	ldmneia sp!, {r4, r5, r6, pc}
@@ -158,7 +158,7 @@ ov4_021E97F8: ; 0x021E97F8
 	ldr r1, _021E98AC ; =0x022176C8
 	mov r0, r5
 	mov r2, #3
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	movne r0, #1
 	ldmneia sp!, {r4, r5, r6, pc}

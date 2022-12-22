@@ -1266,7 +1266,7 @@ _0208F466:
 	mov r1, #0xa
 	ldrb r0, [r4, r0]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0208F56C ; =0x000006AB
 	strb r1, [r4, r0]
 	b _0208F510
@@ -1735,7 +1735,7 @@ sub_0208F800: ; 0x0208F800
 	lsl r0, r1, #0x10
 	mov r1, #0x4b
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #0x10
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
@@ -1750,7 +1750,7 @@ _0208F826:
 	lsl r0, r1, #0x10
 	mov r1, #0x4b
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #0x10
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10

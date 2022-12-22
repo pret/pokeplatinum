@@ -6,7 +6,7 @@
 .public sub_0201A9A4
 .public sub_0201C04C
 .public sub_0201C3C0
-.public sub_020D50B8
+.public memcpy
 .public ov13_022213F0
 .public ov13_022219AC
 .public ov13_02225AF0

@@ -15,7 +15,7 @@ ov21_021D3208: ; 0x021D3208
 	ldr r2, _021D32FC ; =0x00001770
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	str r0, [r5, #0]
 	ldr r1, [r4, #8]
@@ -372,7 +372,7 @@ _021D3482:
 	ldr r2, _021D367C ; =0x000003DA
 	add r0, r6, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #0x24]
 	ldr r1, _021D367C ; =0x000003DA
@@ -385,7 +385,7 @@ _021D34A0:
 	ldr r2, _021D367C ; =0x000003DA
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	mov r1, #0
 	ldr r0, [sp, #0x48]
 	str r1, [sp, #0x20]
@@ -430,13 +430,13 @@ _021D34EA:
 	add r0, r6, #0
 	add r1, r4, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	str r2, [sp, #0x24]
 	mov r1, #0
 	lsl r2, r2, #1
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x24]
@@ -458,13 +458,13 @@ _021D353E:
 	add r0, r6, #0
 	add r1, r4, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	str r2, [sp, #0x24]
 	mov r1, #0
 	lsl r2, r2, #1
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x24]
@@ -486,13 +486,13 @@ _021D357A:
 	add r0, r6, #0
 	add r1, r4, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	str r2, [sp, #0x24]
 	mov r1, #0
 	lsl r2, r2, #1
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x24]
@@ -514,13 +514,13 @@ _021D35B6:
 	add r0, r6, #0
 	add r1, r4, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	str r2, [sp, #0x24]
 	mov r1, #0
 	lsl r2, r2, #1
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x24]
@@ -542,13 +542,13 @@ _021D35F2:
 	add r0, r6, #0
 	add r1, r4, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp, #0x20]
 	add r0, r4, #0
 	str r2, [sp, #0x24]
 	mov r1, #0
 	lsl r2, r2, #1
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #0x20]
 	ldr r1, [r5, #0]
@@ -1483,7 +1483,7 @@ _021D3C32:
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x14]
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x30]
 	str r0, [r7, #0]
 	add sp, #0x1c
@@ -1602,7 +1602,7 @@ _021D3D16:
 	ldr r1, [sp, #0x10]
 	add r0, r7, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x30]
 	str r0, [r6, #0]
 	add sp, #0x18
@@ -1777,7 +1777,7 @@ _021D3E6A:
 	ldr r1, [sp, #0x10]
 	add r0, r7, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x30]
 	str r0, [r6, #0]
 	add sp, #0x18
@@ -1931,7 +1931,7 @@ _021D3F94:
 	ldr r1, [sp, #0x10]
 	add r0, r7, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x30]
 	str r0, [r6, #0]
 	add sp, #0x18

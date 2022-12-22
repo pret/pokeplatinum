@@ -1,7 +1,7 @@
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C4C14
-.public sub_020C4CF4
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
+.public MIi_CpuCopyFast
+.public MI_CpuFill8
 .public ov4_02213964
 .public ov4_02215040
 .public ov4_0221510C

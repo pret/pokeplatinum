@@ -36,10 +36,10 @@
 .public sub_02021EC4
 .public sub_02021EE8
 .public sub_02022974
-.public sub_020E0B00
-.public sub_020E1740
-.public sub_020E17B4
-.public sub_020E1A9C
+.public _f_add
+.public _f_ftoi
+.public _f_itof
+.public _f_sub
 .public ov5_021D3478
 .public ov5_021D34AC
 .public ov5_021D3518

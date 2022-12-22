@@ -20,7 +20,7 @@ ov4_021EDE68: ; 0x021EDE68
 	ldr r1, _021EDF4C ; =0x02218070
 	ldr r2, _021EDF50 ; =0x02218044
 	mov r3, #0x23
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EDE9C:
 	cmp r7, #0
 	bne _021EDEB8
@@ -28,7 +28,7 @@ _021EDE9C:
 	ldr r1, _021EDF4C ; =0x02218070
 	ldr r2, _021EDF50 ; =0x02218044
 	mov r3, #0x24
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EDEB8:
 	cmp r6, #1
 	cmpne r6, #0
@@ -37,7 +37,7 @@ _021EDEB8:
 	ldr r1, _021EDF4C ; =0x02218070
 	ldr r2, _021EDF50 ; =0x02218044
 	mov r3, #0x25
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EDED8:
 	cmp r6, #1
 	moveq r0, #1
@@ -135,7 +135,7 @@ ov4_021EE000: ; 0x021EE000
 	ldr r1, _021EE1EC ; =0x02218070
 	ldr r2, _021EE1F0 ; =0x02218034
 	mov r3, #0x6e
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EE02C:
 	ldr r0, [r7, #8]
 	cmp r0, #0
@@ -144,7 +144,7 @@ _021EE02C:
 	ldr r1, _021EE1EC ; =0x02218070
 	ldr r2, _021EE1F0 ; =0x02218034
 	mov r3, #0x6f
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EE04C:
 	ldr r1, [r7, #8]
 	ldr r2, [r7, #4]

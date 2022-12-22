@@ -26,10 +26,10 @@ ov18_0222FD3C: ; 0x0222FD3C
 	blx ov18_0222AB50
 	cmp r0, #1
 	beq _0222FD88
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222FD88:
 	mov r0, #0xa
-	bl sub_020C24A4
+	bl OS_Sleep
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -45,7 +45,7 @@ ov18_0222FDA8: ; 0x0222FDA8
 	blx ov18_0222AC38
 	cmp r0, #1
 	beq _0222FDBC
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222FDBC:
 	ldr r0, _0222FDC8 ; =0x022532D4
 	bl ov18_0224508C
@@ -90,7 +90,7 @@ _0222FE30:
 	blx ov18_0222AD04
 	cmp r0, #1
 	beq _0222FE44
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222FE44:
 	ldr r0, [sp, #0x20]
 	cmp r0, #0
@@ -123,7 +123,7 @@ ov18_0222FE88: ; 0x0222FE88
 	blx ov18_0222AD04
 	cmp r0, #1
 	beq _0222FEA4
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222FEA4:
 	add r0, sp, #0
 	bl ov18_0223E3AC

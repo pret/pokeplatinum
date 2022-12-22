@@ -41,7 +41,7 @@ sub_02055A14: ; 0x02055A14
 	add r6, r0, #0
 	add r5, r1, #0
 	add r0, r2, #0
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	ldr r1, [r5, #0x20]
 	add r4, r0, #0
 	cmp r4, r1
@@ -69,13 +69,13 @@ sub_02055A3C: ; 0x02055A3C
 	add r5, r1, #0
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str r1, [sp, #8]
 	add r1, r5, #0
 	add r7, r0, #0
 	add r0, r5, #4
 	add r1, #0x14
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	add r2, r1, #0
 	sub r1, r7, r0
 	ldr r1, [sp, #8]
@@ -100,7 +100,7 @@ _02055A80:
 	mov r2, #0x3c
 	mov r3, #0
 	str r1, [sp, #8]
-	bl sub_020E1D24
+	bl _ll_sdiv
 	add r7, r0, #0
 	cmp r7, #0
 	ble _02055ABC
@@ -288,7 +288,7 @@ sub_02055BF4: ; 0x02055BF4
 	ldr r3, [r3, #0x28]
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020CC3FC
+	bl RTC_ConvertSecondToDateTime
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02055BF4
 
@@ -304,7 +304,7 @@ sub_02055C10: ; 0x02055C10
 	ldr r3, [r3, #0x30]
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020CC3FC
+	bl RTC_ConvertSecondToDateTime
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02055C10
 

@@ -137,10 +137,10 @@ ov5_021F4EAC: ; 0x021F4EAC
 	ldr r0, [sp, #0x40]
 	str r0, [r4, #0x54]
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	str r0, [r4, #0x58]
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	str r0, [r4, #0x5c]
 _021F4F0E:
 	add r0, r5, #0
@@ -165,7 +165,7 @@ ov5_021F4F18: ; 0x021F4F18
 	mov r0, #0
 	str r0, [r4, #0x58]
 	add r0, r5, #0
-	bl sub_020E17B4
+	bl _f_itof
 	str r0, [r4, #0x5c]
 _021F4F3C:
 	add r0, r6, #0
@@ -222,14 +222,14 @@ ov5_021F4F8C: ; 0x021F4F8C
 	add r4, r1, #0
 	ldr r0, [r4, #0x58]
 	ldr r1, [r4, #0x5c]
-	bl sub_020E11CC
+	bl _f_flt
 	bhs _021F4FAE
 	ldr r0, [r4, #0x58]
-	bl sub_020E16BC
+	bl _f_ftod
 	ldr r2, _021F4FB0 ; =0x9999999A
 	ldr r3, _021F4FB4 ; =0x3FC99999
-	bl sub_020DFC6C
-	bl sub_020DFF84
+	bl _d_add
+	bl _d_dtof
 	str r0, [r4, #0x58]
 _021F4FAE:
 	pop {r4, pc}
@@ -272,22 +272,22 @@ _021F4FD2:
 	add r1, sp, #0x30
 	bl sub_020715E4
 	ldr r0, [sp, #0x24]
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, [r5, #0x58]
-	bl sub_020E18B0
-	bl sub_020E1740
+	bl _f_mul
+	bl _f_ftoi
 	str r0, [sp, #0x24]
 	ldr r0, [sp, #0x28]
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, [r5, #0x58]
-	bl sub_020E18B0
-	bl sub_020E1740
+	bl _f_mul
+	bl _f_ftoi
 	str r0, [sp, #0x28]
 	ldr r0, [sp, #0x2c]
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, [r5, #0x58]
-	bl sub_020E18B0
-	bl sub_020E1740
+	bl _f_mul
+	bl _f_ftoi
 	str r0, [sp, #0x2c]
 	mov r0, #2
 	ldr r1, [sp, #0x30]

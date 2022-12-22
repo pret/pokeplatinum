@@ -14,7 +14,7 @@
 .public sub_02036540
 .public sub_020388F4
 .public sub_0207D99C
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov4_021D1E74
 .public ov4_021D1F18
 .public ov82_0223B2E0

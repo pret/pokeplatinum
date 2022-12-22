@@ -225,7 +225,7 @@ ov16_022686CC: ; 0x022686CC
 	add r1, r5, #0
 	mov r2, #0x10
 	add r7, r3, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	str r4, [r5, #4]
 	strb r6, [r5, #8]
 	strb r7, [r5, #9]
@@ -252,7 +252,7 @@ ov16_02268700: ; 0x02268700
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov16_02268700

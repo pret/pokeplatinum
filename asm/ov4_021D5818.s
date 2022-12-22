@@ -26,7 +26,7 @@ ov4_021D5818: ; 0x021D5818
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r2, _021D58E8 ; =0x000011F4
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr ip, _021D58E0 ; =0x0221A438
 	ldr r1, _021D58EC ; =0xFFFE7961
 	ldr r0, [ip]
@@ -54,7 +54,7 @@ ov4_021D5818: ; 0x021D5818
 	ldr r0, [r1, #0]
 	add r0, r0, #0x1dc
 	add r0, r0, #0x1000
-	bl sub_020C29C0
+	bl OS_InitMutex
 	bl ov4_021D5AB0
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -158,7 +158,7 @@ _021D5A14:
 	beq _021D5A3C
 	add r0, r1, #0x11c
 	add r0, r0, #0x1000
-	bl sub_020C21D4
+	bl OS_JoinThread
 _021D5A3C:
 	ldr r0, _021D5A54 ; =0x0221A438
 	mvn r1, #6
@@ -177,14 +177,14 @@ ov4_021D5A58: ; 0x021D5A58
 	ldr r0, [r0, #0]
 	add r0, r0, #0x1dc
 	add r0, r0, #0x1000
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _021D5A94 ; =0x0221A438
 	ldr r1, [r0, #0]
 	add r0, r1, #0x1dc
 	add r1, r1, #0x1000
 	add r0, r0, #0x1000
 	ldr r4, [r1, #0]
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -214,7 +214,7 @@ ov4_021D5AB0: ; 0x021D5AB0
 	beq _021D5AE8
 	add r0, r1, #0x11c
 	add r0, r0, #0x1000
-	bl sub_020C2204
+	bl OS_IsThreadTerminated
 	cmp r0, #0
 	addeq sp, sp, #8
 	ldmeqia sp!, {r3, pc}
@@ -229,12 +229,12 @@ _021D5AE8:
 	add r0, r0, #0x1000
 	add r3, r2, #0x1000
 	str ip, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _021D5B30 ; =0x0221A438
 	ldr r0, [r0, #0]
 	add r0, r0, #0x11c
 	add r0, r0, #0x1000
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -309,7 +309,7 @@ _021D5C00:
 _021D5C28:
 	ldr r0, _021D69CC ; =0x021CCC80
 	ldr r0, [r0, #4]
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	sub r1, r0, #1
 	ldr r0, [r5, #0x14]
 	bl ov4_021D462C
@@ -320,7 +320,7 @@ _021D5C28:
 	beq _021D5C60
 	add r0, r1, #0x338
 	add r0, r0, #0x1800
-	bl sub_020C21D4
+	bl OS_JoinThread
 _021D5C60:
 	ldr r0, [r5, #0x14]
 	add r1, r0, #0x1000
@@ -358,7 +358,7 @@ _021D5CD4:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D69D0 ; =0x02216470
 	bl ov4_021D56A4
-	bl sub_020DAE0C
+	bl atoi
 	mov r6, r0
 	ldr r0, _021D69D4 ; =0x021D0D40
 	ldr r0, [r0, #0]
@@ -406,7 +406,7 @@ _021D5D30:
 	str r8, [r2, #0x28]
 	ldr r1, _021D69E4 ; =0x0221647C
 	str r3, [r2, #0x30]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	ldrne r0, _021D69BC ; =0x0221A438
 	movne r1, #1
@@ -456,7 +456,7 @@ _021D5E1C:
 	add r0, r0, #0x1000
 	ldr r4, [r0, #0x118]
 	mov r0, r4
-	bl sub_020D8B60
+	bl strlen
 	ldr r1, _021D69BC ; =0x0221A438
 	mov r3, r0
 	ldr r0, [r1, #0x14]
@@ -498,7 +498,7 @@ _021D5E8C:
 _021D5EE4:
 	ldr r0, _021D69CC ; =0x021CCC80
 	ldr r0, [r0, #4]
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	ldr r2, _021D69BC ; =0x0221A438
 	sub r1, r0, #1
 	ldr r0, [r2, #0x14]
@@ -511,7 +511,7 @@ _021D5EE4:
 	beq _021D5F24
 	add r0, r1, #0x338
 	add r0, r0, #0x1800
-	bl sub_020C21D4
+	bl OS_JoinThread
 _021D5F24:
 	ldr r2, _021D69BC ; =0x0221A438
 	ldr r0, [r2, #0x14]
@@ -552,7 +552,7 @@ _021D5F80:
 	b _021D6968
 _021D5FA8:
 	mov r0, r1
-	bl sub_020D8B60
+	bl strlen
 	add r1, r0, #1
 	ldr r0, _021D69F8 ; =0x02216408
 	blx r7
@@ -573,12 +573,12 @@ _021D5FA8:
 	b _021D6968
 _021D5FF8:
 	ldr r0, [sp, #0x14]
-	bl sub_020D8B60
+	bl strlen
 	mov r2, r0
 	ldr r1, [sp, #0x14]
 	ldr r0, [sp, #4]
 	add r2, r2, #1
-	bl sub_020D8C44
+	bl strncpy
 	b _021D6030
 _021D6018:
 	ldr r0, _021D69BC ; =0x0221A438
@@ -698,7 +698,7 @@ _021D6188:
 	ldr r2, _021D69C0 ; =0x00009C40
 	str r8, [r5, #0x28]
 	str r2, [r5, #0x30]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	movne r0, #1
 	strne r0, [r5, #0x2c]
@@ -743,7 +743,7 @@ _021D6244:
 	add r0, r0, #0x1000
 	ldr r6, [r0, #0x114]
 	mov r0, r6
-	bl sub_020D8B60
+	bl strlen
 	mov r3, r0
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D6A08 ; =0x022164C4
@@ -782,7 +782,7 @@ _021D62A8:
 _021D62F8:
 	ldr r0, _021D69CC ; =0x021CCC80
 	ldr r0, [r0, #4]
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	sub r1, r0, #1
 	ldr r0, [r5, #0x14]
 	bl ov4_021D462C
@@ -793,7 +793,7 @@ _021D62F8:
 	beq _021D6330
 	add r0, r1, #0x338
 	add r0, r0, #0x1800
-	bl sub_020C21D4
+	bl OS_JoinThread
 _021D6330:
 	ldr r0, [r5, #0x14]
 	add r1, r0, #0x1000
@@ -850,7 +850,7 @@ _021D63E8:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D69D0 ; =0x02216470
 	bl ov4_021D56A4
-	bl sub_020DAE0C
+	bl atoi
 	mov r6, r0
 	ldr r0, _021D69D4 ; =0x021D0D40
 	ldr r0, [r0, #0]
@@ -901,7 +901,7 @@ _021D6478:
 	b _021D6968
 _021D64AC:
 	add r0, sp, #0x2c
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D69D4 ; =0x021D0D40
 	ldr r1, [r1, #0]
 	cmp r1, #0x22
@@ -1066,7 +1066,7 @@ _021D670C:
 	mov r1, #0
 	strb r1, [sl, r0]
 	mov r0, sl
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D69D4 ; =0x021D0D40
 	ldr r1, [r1, #0]
 	cmp r1, #0x22
@@ -1137,7 +1137,7 @@ _021D67F0:
 _021D6818:
 	ldr r0, _021D69CC ; =0x021CCC80
 	ldr r0, [r0, #4]
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	sub r1, r0, #1
 	ldr r0, [r5, #0x14]
 	bl ov4_021D462C
@@ -1148,7 +1148,7 @@ _021D6818:
 	beq _021D6850
 	add r0, r1, #0x338
 	add r0, r0, #0x1800
-	bl sub_020C21D4
+	bl OS_JoinThread
 _021D6850:
 	ldr r0, [r5, #0x14]
 	add r1, r0, #0x1000
@@ -1194,7 +1194,7 @@ _021D68C4:
 	b _021D6968
 _021D68E8:
 	mov r0, r6
-	bl sub_020D8B60
+	bl strlen
 	add r1, r0, #1
 	ldr r0, _021D6A34 ; =0x02216450
 	blx r7
@@ -1215,16 +1215,16 @@ _021D68E8:
 	b _021D6968
 _021D6938:
 	mov r0, r6
-	bl sub_020D8B60
+	bl strlen
 	mov r2, r0
 	ldr r0, [sp]
 	mov r1, r6
 	add r2, r2, #1
-	bl sub_020D8C44
+	bl strncpy
 	ldr r0, [r5, #0x14]
 	bl ov4_021D4C2C
 	ldr r0, [sp, #8]
-	bl sub_020C24A4
+	bl OS_Sleep
 	b _021D5B98
 _021D6968:
 	cmp sb, #0
@@ -1295,7 +1295,7 @@ ov4_021D6A44: ; 0x021D6A44
 	ldr r0, [r1, #0]
 	add r0, r0, #0x1dc
 	add r0, r0, #0x1000
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r1, _021D6A84 ; =0x0221A438
 	ldr r0, [r1, #0]
 	add r0, r0, #0x1000
@@ -1303,7 +1303,7 @@ ov4_021D6A44: ; 0x021D6A44
 	ldr r0, [r1, #0]
 	add r0, r0, #0x1dc
 	add r0, r0, #0x1000
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021D6A84: .word 0x0221A438

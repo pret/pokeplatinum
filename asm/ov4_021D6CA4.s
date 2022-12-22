@@ -36,7 +36,7 @@ _021D6CD4:
 _021D6D04:
 	ldr r2, _021D6D38 ; =0x00001C20
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _021D6D2C ; =0x0221A4C8
 	mov r0, #1
 	ldr r2, [r1, #0]
@@ -87,7 +87,7 @@ ov4_021D6D88: ; 0x021D6D88
 	str r1, [r2, #0xc1c]
 	mov r1, #0
 	mov r2, #0x174
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021D6FCC ; =0x0221A4C8
 	ldr r1, [r0, #0]
 	add r0, r1, #0x1000
@@ -95,10 +95,10 @@ ov4_021D6D88: ; 0x021D6D88
 	cmp r0, #0
 	beq _021D6DE0
 	add r0, r1, #0x1b40
-	bl sub_020C2204
+	bl OS_IsThreadTerminated
 	cmp r0, #0
 	bne _021D6DE0
-	bl sub_020C42A8
+	bl OS_Terminate
 _021D6DE0:
 	ldr r0, _021D6FD0 ; =0x02215EA0
 	ldr r1, _021D6FCC ; =0x0221A4C8
@@ -114,7 +114,7 @@ _021D6DE0:
 	str r2, [sp, #0xc]
 	ldr r2, [r4, #4]
 	str r2, [sp, #0x10]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	movne r0, #1
 	strne r0, [sp, #0x14]
@@ -207,7 +207,7 @@ _021D6F2C:
 _021D6F6C:
 	ldr r0, _021D6FEC ; =0x021CCC80
 	ldr r0, [r0, #4]
-	bl sub_020C249C
+	bl OS_GetThreadPriority
 	ldr r1, _021D6FCC ; =0x0221A4C8
 	ldr r2, [r1, #0]
 	sub r1, r0, #1
@@ -255,7 +255,7 @@ ov4_021D6FF0: ; 0x021D6FF0
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
 	add r0, r1, #0x1b40
-	bl sub_020C2204
+	bl OS_IsThreadTerminated
 	cmp r0, #1
 	bne _021D70B4
 	ldr r0, _021D70BC ; =0x0221A4C8
@@ -340,7 +340,7 @@ _021D7118:
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
 _021D7144:
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D72C4 ; =0x021D0D40
 	mov r2, r0
 	ldr r0, [r1, #0]
@@ -378,7 +378,7 @@ _021D7198:
 	ldmia sp!, {r3, r4, pc}
 _021D71CC:
 	add r0, sp, #0
-	bl sub_020DAE0C
+	bl atoi
 	ldr r1, _021D72C4 ; =0x021D0D40
 	mov r2, r0
 	ldr r0, [r1, #0]

@@ -1,3 +1,3 @@
-.public sub_020A727C
-.public sub_020AE340
-.public sub_020C42A8
+.public NNS_G2dFindBinaryBlock
+.public NNSi_G2dUnpackNFT
+.public OS_Terminate

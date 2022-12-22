@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020DF7D4
-sub_020DF7D4: ; 0x020DF7D4
+	arm_func_start __msl_generic_count_bits64
+__msl_generic_count_bits64: ; 0x020DF7D4
 	mov r3, r0, lsr #1
 	ldr r2, _020DF85C ; =0x55555555
 	orr r3, r3, r1, lsl #31
@@ -45,19 +45,19 @@ sub_020DF7D4: ; 0x020DF7D4
 _020DF85C: .word 0x55555555
 _020DF860: .word 0x33333333
 _020DF864: .word 0x0F0F0F0F
-	arm_func_end sub_020DF7D4
+	arm_func_end __msl_generic_count_bits64
 
-	arm_func_start sub_020DF868
-sub_020DF868: ; 0x020DF868
+	arm_func_start __signbitd
+__signbitd: ; 0x020DF868
 	stmfd sp!, {r0, r1, r2, r3}
 	ldr r0, [sp, #4]
 	and r0, r0, #0x80000000
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end sub_020DF868
+	arm_func_end __signbitd
 
-	arm_func_start sub_020DF87C
-sub_020DF87C: ; 0x020DF87C
+	arm_func_start __fpclassifyd
+__fpclassifyd: ; 0x020DF87C
 	stmfd sp!, {r0, r1, r2, r3}
 	ldr r2, [sp, #4]
 	ldr r0, _020DF8E4 ; =0x7FF00000
@@ -89,4 +89,4 @@ _020DF8D8:
 	; .align 2, 0
 _020DF8E4: .word 0x7FF00000
 _020DF8E8: .word 0x000FFFFF
-	arm_func_end sub_020DF87C
+	arm_func_end __fpclassifyd

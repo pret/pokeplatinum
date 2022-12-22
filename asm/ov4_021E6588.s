@@ -175,7 +175,7 @@ _021E67C4:
 	mov r2, sb
 	add r0, r6, #0xc
 	add r1, r4, #4
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	ldreqb r0, [r4, #1]
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -217,7 +217,7 @@ _021E6848:
 	mov r1, r6
 	mov r2, r7
 	add r0, sl, #0xc
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	addeq r0, sb, r4, lsl #2
 	ldreqb r0, [r0, #0x445]
@@ -310,7 +310,7 @@ ov4_021E695C: ; 0x021E695C
 	add r1, r3, #0xbf0
 	mov r2, #0xc0
 	strb lr, [ip, #0x403]
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021E695C
 
@@ -342,7 +342,7 @@ _021E6A00:
 	mov r0, r1
 	add r1, r3, ip
 	mov r2, #0xc0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021E69A8
 
@@ -370,30 +370,30 @@ _021E6A44:
 	mov r0, sb
 	mov r1, fp
 	mov r2, #4
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r5, r7, r4, lsl #2
 	mov r0, r5
 	mov r1, sb
 	mov r2, #4
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r1, r5
 	mov r0, fp
 	mov r2, #4
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, sl
 	add r1, sp, #4
 	mov r2, #0xc0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #0xc0
 	mul r5, r4, r0
 	add r0, r8, r5
 	mov r1, sl
 	mov r2, #0xc0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r1, r8, r5
 	add r0, sp, #4
 	mov r2, #0xc0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r4, r6
 	sub sb, sb, #4
 	sub sl, sl, #0xc0
@@ -403,11 +403,11 @@ _021E6ADC:
 	add r1, r7, #0x28
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r1, r8, #0x780
 	mov r0, #0
 	mov r2, #0xc0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add sp, sp, #0xc4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	arm_func_end ov4_021E6A14

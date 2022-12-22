@@ -391,8 +391,8 @@ ov95_0224A690: ; 0x0224A690
 	push {r3, r4, lr}
 	sub sp, #0x24
 	add r4, r0, #0
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _0224A770 ; =0x04000060
 	ldr r1, _0224A774 ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -421,13 +421,13 @@ ov95_0224A690: ; 0x0224A690
 	orr r1, r2
 	strh r1, [r0]
 	ldr r0, _0224A77C ; =0x0224C134
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	mov r1, #0
 	ldr r0, _0224A780 ; =0x000043FF
 	ldr r2, _0224A784 ; =0x00007FFF
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0224A788 ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -435,11 +435,11 @@ ov95_0224A690: ; 0x0224A690
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF0C
@@ -525,9 +525,9 @@ ov95_0224A7B0: ; 0x0224A7B0
 	mov r3, #8
 	bl ov95_02247568
 	add r0, sp, #0x5c
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	add r0, sp, #0x38
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r2, #1
@@ -724,17 +724,17 @@ ov95_0224A934: ; 0x0224A934
 	ldr r0, [r5, #0x44]
 	ldr r1, [sp]
 	sub r0, r4, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x4c]
 	ldr r0, [r5, #0x48]
 	ldr r1, [sp]
 	sub r0, r6, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x50]
 	ldr r0, [r5, #0x5c]
 	ldr r1, [sp]
 	sub r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x60]
 	str r4, [r5, #0x54]
 	str r6, [r5, #0x58]
@@ -758,7 +758,7 @@ ov95_0224A978: ; 0x0224A978
 	add r0, #0x78
 	ldrh r0, [r0]
 	mov r1, #0xb6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r0, #0
 	mov r0, #0x5a
 	lsl r0, r0, #2
@@ -811,7 +811,7 @@ _0224A9E4:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -828,7 +828,7 @@ _0224A9E4:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -855,7 +855,7 @@ _0224A9E4:
 	add r0, #0x1c
 	add r1, #0x10
 	add r2, r5, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	pop {r4, r5, r6, pc}
 _0224AA5A:
 	add r2, r5, #0
@@ -996,7 +996,7 @@ ov95_0224AB50: ; 0x0224AB50
 	ldr r0, [r4, #0x28]
 	cmp r0, #0
 	beq _0224AB6E
-	bl sub_020BFAB8
+	bl G3X_Reset
 	ldr r0, [r4, #0x28]
 	bl ov95_02247770
 	mov r0, #0

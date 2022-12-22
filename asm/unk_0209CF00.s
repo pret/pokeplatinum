@@ -219,7 +219,7 @@ _0209D1A4:
 _0209D1BC:
 	ldrh r0, [sb, #0x4c]
 	ldrb r1, [sb, #0x80]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0209D204
 	ldr r1, [sb, #0x24]
@@ -443,7 +443,7 @@ _0209D400:
 	ldr r1, [sp, #4]
 	mov r0, r0, asr #0xc
 	ldrb r1, [r1, #0xe]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0209D538
 	mov r0, r4
@@ -563,7 +563,7 @@ _0209D6CC:
 	ldrh r1, [r5, #0x24]
 	str r0, [sp, #0x14]
 	mov r0, r2, lsl #8
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r4, [sp, #0x1c]
 	strb r0, [sp, #0x20]
 	cmp r6, #0

@@ -1,5 +1,5 @@
-.public sub_020BD104
-.public sub_020BD140
+.public FX_DivS32
+.public FX_ModS32
 .public ov18_0222AE40
 .public ov18_02243ECC
 .public ov18_02243F60

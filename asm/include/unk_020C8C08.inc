@@ -1,4 +1,4 @@
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020C8C48
-.public sub_020C8DC8
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public DGT_Hash1SetSource
+.public ProcessBlock

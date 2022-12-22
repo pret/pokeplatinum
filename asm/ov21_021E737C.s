@@ -103,7 +103,7 @@ _021E7438:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	bl ov21_021D13FC
 	str r0, [r4, #0]
@@ -271,7 +271,7 @@ _021E7558:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0xc4
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #8]
 	mov r1, #1
 	add r0, #0xb8
@@ -1732,7 +1732,7 @@ ov21_021E80D4: ; 0x021E80D4
 	mov r3, #0
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1747,7 +1747,7 @@ ov21_021E80D4: ; 0x021E80D4
 	ldrsh r0, [r0, r1]
 	lsl r2, r2, #0xe
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	mov r3, #0
@@ -2167,7 +2167,7 @@ ov21_021E8400: ; 0x021E8400
 	bl sub_0200393C
 	ldr r0, [sp, #4]
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r2, r5, #0
 	add r2, #0xbc
 	add r1, r0, #0
@@ -2192,7 +2192,7 @@ ov21_021E8400: ; 0x021E8400
 	bl sub_0200393C
 	ldr r0, [sp, #8]
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r5, #0xc0
 	add r1, r0, #0
 	ldr r2, [r5, #0]

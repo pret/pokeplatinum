@@ -31,6 +31,6 @@
 .public sub_0202ECB0
 .public sub_0203068C
 .public sub_02030698
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E2178
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _u32_div_f

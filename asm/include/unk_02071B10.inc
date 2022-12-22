@@ -5,4 +5,4 @@
 .public sub_02027F80
 .public sub_0203D174
 .public sub_02071C80
-.public sub_020D5124
+.public memset

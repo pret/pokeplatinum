@@ -14,7 +14,7 @@
 .public sub_0205EB3C
 .public sub_020655F4
 .public sub_02065638
-.public sub_020B3C0C
+.public NNS_G3dGetMdlSet
 .public ov5_021D41C8
 .public ov5_021D4250
 .public ov5_021D42B0

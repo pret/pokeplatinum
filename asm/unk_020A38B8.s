@@ -58,7 +58,7 @@ _020A3940:
 	add r0, sp, #8
 	add r1, sp, #0
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r4, _020A3A38 ; =0x020F9538
 	add r3, sp, #0
 	mov r5, #0
@@ -118,36 +118,36 @@ sub_020A3A3C: ; 0x020A3A3C
 	sub sp, sp, #0x24
 	mov sl, r0
 	bl sub_020A283C
-	bl sub_020CB8A8
+	bl RTC_Init
 	add r0, sp, #0x14
-	bl sub_020CB984
+	bl RTC_GetDate
 	cmp r0, #0
 	addne sp, sp, #0x24
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sp, #8
-	bl sub_020CBA30
+	bl RTC_GetTime
 	cmp r0, #0
 	addne sp, sp, #0x24
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sp, #0x14
 	add r1, sp, #8
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r4, r0
 	mov r0, #0
 	subs r2, r4, r0
 	sbcs r2, r1, r0
 	addlt sp, sp, #0x24
 	ldmltia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #0
 	beq _020A3AB8
-	ldr r0, _020A3C08 ; =sub_020C3880
+	ldr r0, _020A3C08 ; =OS_GetTick
 	adds r4, r4, r0
 _020A3AB8:
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldrb r0, [sp, #1]
 	ldr r5, _020A3C0C ; =0x5D588B65
 	ldr r6, _020A3C10 ; =0x00269EC3
@@ -237,7 +237,7 @@ _020A3BFC:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020A3C08: .word sub_020C3880
+_020A3C08: .word OS_GetTick
 _020A3C0C: .word 0x5D588B65
 _020A3C10: .word 0x00269EC3
 _020A3C14: .word 0x000009BF
@@ -302,36 +302,36 @@ sub_020A3CAC: ; 0x020A3CAC
 	strb r1, [r2, #4]
 	strb r1, [r2, #5]
 	bl sub_020A283C
-	bl sub_020CB8A8
+	bl RTC_Init
 	add r0, sp, #0x14
-	bl sub_020CB984
+	bl RTC_GetDate
 	cmp r0, #0
 	addne sp, sp, #0x24
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sp, #8
-	bl sub_020CBA30
+	bl RTC_GetTime
 	cmp r0, #0
 	addne sp, sp, #0x24
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sp, #0x14
 	add r1, sp, #8
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r4, r0
 	mov r0, #0
 	subs r2, r4, r0
 	sbcs r2, r1, r0
 	addlt sp, sp, #0x24
 	ldmltia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #0
 	beq _020A3D48
-	ldr r0, _020A3E3C ; =sub_020C3880
+	ldr r0, _020A3E3C ; =OS_GetTick
 	adds r4, r4, r0
 _020A3D48:
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldrb r0, [sp, #1]
 	ldr r5, _020A3E40 ; =0x5D588B65
 	ldr r6, _020A3E44 ; =0x00269EC3
@@ -396,7 +396,7 @@ _020A3E30:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020A3E3C: .word sub_020C3880
+_020A3E3C: .word OS_GetTick
 _020A3E40: .word 0x5D588B65
 _020A3E44: .word 0x00269EC3
 _020A3E48: .word 0x000009BF

@@ -24,7 +24,7 @@ _02230BA4: .word ov18_02230C28
 ov18_02230BA8: ; 0x02230BA8
 	stmfd sp!, {r3, lr}
 	ldr r0, _02230C18 ; =0x02249F84
-	ldr r1, _02230C1C ; =sub_020C04EC
+	ldr r1, _02230C1C ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _02230C20 ; =0x04001008
 	ldr r1, _02230C24 ; =0x0400000A
@@ -52,7 +52,7 @@ ov18_02230BA8: ; 0x02230BA8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02230C18: .word 0x02249F84
-_02230C1C: .word sub_020C04EC
+_02230C1C: .word GX_LoadBG2Scr
 _02230C20: .word 0x04001008
 _02230C24: .word 0x0400000A
 	arm_func_end ov18_02230BA8
@@ -196,8 +196,8 @@ ov18_02230D7C: ; 0x02230D7C
 	cmp r0, #0
 	ldmneia sp!, {r3, pc}
 	mov r0, #0x1000000
-	bl sub_020C3E08
-	bl sub_020CB218
+	bl OS_SpinWait
+	bl PM_ForceToPowerOff
 	ldmia sp!, {r3, pc}
 	arm_func_end ov18_02230D7C
 

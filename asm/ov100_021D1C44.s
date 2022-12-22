@@ -774,7 +774,7 @@ _021D2292:
 	str r0, [r5, #0x40]
 	bl sub_0201D2E8
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r5, #0x44]
 	mov r0, #0
 	str r0, [r5, #0x48]
@@ -829,7 +829,7 @@ ov100_021D2340: ; 0x021D2340
 	ldr r2, _021D2404 ; =0x00001ED0
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r1, r5, #0
 	ldr r0, _021D2408 ; =0x00001EC8
 	add r1, #0xc
@@ -871,14 +871,14 @@ ov100_021D2340: ; 0x021D2340
 	mov r1, #4
 	mov r2, #0x32
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0xa
 	str r0, [sp]
 	ldr r0, _021D2418 ; =0x04001050
 	mov r1, #3
 	mov r2, #0x12
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r2, _021D241C ; =0x04000060
 	ldr r0, _021D2420 ; =0xFFFFCFFF
 	ldrh r1, [r2]
@@ -887,7 +887,7 @@ ov100_021D2340: ; 0x021D2340
 	orr r0, r1
 	strh r0, [r2]
 	ldr r0, _021D2424 ; =0x021D5298
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	ldr r0, _021D2408 ; =0x00001EC8
 	ldr r1, [r4, r0]
 	ldr r0, [r1, #0x18]
@@ -977,14 +977,14 @@ _021D246E:
 	ldrsb r2, [r3, r2]
 	ldr r0, _021D27B4 ; =0x04000050
 	mov r1, #0x31
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r2, _021D27B0 ; =0x00001EC8
 	ldr r0, _021D27B8 ; =0x04001050
 	ldr r3, [r4, r2]
 	mov r2, #0x53
 	ldrsb r2, [r3, r2]
 	mov r1, #0x33
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -1216,14 +1216,14 @@ _021D2670:
 	mov r2, #0x53
 	ldrsb r2, [r3, r2]
 	mov r1, #0x31
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r2, _021D27B0 ; =0x00001EC8
 	ldr r0, _021D27B8 ; =0x04001050
 	ldr r3, [r4, r2]
 	mov r2, #0x53
 	ldrsb r2, [r3, r2]
 	mov r1, #0x33
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	b _021D2BB6
 _021D2692:
 	add r1, r2, #4
@@ -1349,7 +1349,7 @@ _021D2782:
 	ldr r5, [r4, #4]
 	mov r1, #0x1e
 	add r0, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r2, r0, #0
 	lsl r3, r2, #5
 	lsr r2, r5, #0x1f
@@ -1739,14 +1739,14 @@ _021D2AA2:
 	ldrsb r2, [r3, r2]
 	ldr r0, _021D2B88 ; =0x04000050
 	mov r1, #0x31
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r2, _021D2B68 ; =0x00001EC8
 	ldr r0, _021D2B8C ; =0x04001050
 	ldr r3, [r4, r2]
 	mov r2, #0x53
 	ldrsb r2, [r3, r2]
 	mov r1, #0x33
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	bl sub_020041FC
 	mov r1, #0
 	bl sub_020055D0
@@ -1787,7 +1787,7 @@ _021D2B06:
 	ldrsb r2, [r3, r2]
 	ldr r0, _021D2B88 ; =0x04000050
 	mov r1, #0x31
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r2, _021D2B68 ; =0x00001EC8
 	ldr r0, _021D2B8C ; =0x04001050
 	b _021D2B90
@@ -1822,7 +1822,7 @@ _021D2B90:
 	mov r2, #0x53
 	ldrsb r2, [r3, r2]
 	mov r1, #0x33
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]

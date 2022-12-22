@@ -18,7 +18,7 @@ ov62_02237D24: ; 0x02237D24
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]
@@ -2058,7 +2058,7 @@ _02238EBC:
 	ldr r0, [r4, r1]
 	add r1, #0xb0
 	ldr r1, [r4, r1]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x8d
 	lsl r0, r0, #2
 	str r1, [r4, r0]
@@ -3544,7 +3544,7 @@ _02239AEA:
 	ldr r2, [r4, r2]
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x75
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]

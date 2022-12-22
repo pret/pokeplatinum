@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C8C08
-sub_020C8C08: ; 0x020C8C08
+	arm_func_start DGT_Hash1Reset
+DGT_Hash1Reset: ; 0x020C8C08
 	ldr r2, _020C8C38 ; =0x67452301
 	ldr r1, _020C8C3C ; =0xEFCDAB89
 	str r2, [r0, #0]
@@ -25,10 +25,10 @@ _020C8C38: .word 0x67452301
 _020C8C3C: .word 0xEFCDAB89
 _020C8C40: .word 0x98BADCFE
 _020C8C44: .word 0x10325476
-	arm_func_end sub_020C8C08
+	arm_func_end DGT_Hash1Reset
 
-	arm_func_start sub_020C8C48
-sub_020C8C48: ; 0x020C8C48
+	arm_func_start DGT_Hash1SetSource
+DGT_Hash1SetSource: ; 0x020C8C48
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r6, r0
 	ldr r3, [r6, #0x10]
@@ -48,16 +48,16 @@ sub_020C8C48: ; 0x020C8C48
 	add r1, r6, #0x18
 	mov r0, r5
 	add r1, r1, ip
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020C8C9C:
 	add r1, r6, #0x18
 	mov r0, r5
 	mov r2, r7
 	add r1, r1, ip
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r6
-	bl sub_020C8DC8
+	bl ProcessBlock
 	sub r4, r4, r7
 	mov r8, r4, lsr #6
 	cmp r8, #0
@@ -68,10 +68,10 @@ _020C8CD0:
 	mov r0, r7
 	mov r2, r5
 	add r1, r6, #0x18
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r6
 	add r7, r7, #0x40
-	bl sub_020C8DC8
+	bl ProcessBlock
 	sub r8, r8, #1
 	cmp r8, #0
 	bgt _020C8CD0
@@ -80,12 +80,12 @@ _020C8CF8:
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	mov r0, r7
 	add r1, r6, #0x18
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020C8C48
+	arm_func_end DGT_Hash1SetSource
 
-	arm_func_start sub_020C8D10
-sub_020C8D10: ; 0x020C8D10
+	arm_func_start DGT_Hash1GetDigest_R
+DGT_Hash1GetDigest_R: ; 0x020C8D10
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r1
 	ldr r1, [r4, #0x14]
@@ -97,7 +97,7 @@ sub_020C8D10: ; 0x020C8D10
 	mov r2, #1
 	orr r6, r6, r3, lsr #29
 	mov r7, r3, lsl #3
-	bl sub_020C8C48
+	bl DGT_Hash1SetSource
 	ldr r0, [r4, #0x10]
 	mov r1, #0
 	and r3, r0, #0x3f
@@ -106,9 +106,9 @@ sub_020C8D10: ; 0x020C8D10
 	bhs _020C8D74
 	add r0, r4, #0x18
 	add r0, r0, r3
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, r4
-	bl sub_020C8DC8
+	bl ProcessBlock
 	mov r3, #0
 	mov r2, #0x40
 _020C8D74:
@@ -118,27 +118,27 @@ _020C8D74:
 	add r0, r0, r3
 	sub r2, r2, #8
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _020C8D90:
 	str r7, [r4, #0x50]
 	mov r0, r4
 	str r6, [r4, #0x54]
-	bl sub_020C8DC8
+	bl ProcessBlock
 	mov r0, r4
 	mov r1, r5
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r4
 	mov r1, #0
 	mov r2, #0x58
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C8DC4: .word 0x02101170
-	arm_func_end sub_020C8D10
+	arm_func_end DGT_Hash1GetDigest_R
 
-	arm_func_start sub_020C8DC8
-sub_020C8DC8: ; 0x020C8DC8
+	arm_func_start ProcessBlock
+ProcessBlock: ; 0x020C8DC8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldmia r0, {r2, r3, ip, lr}
 	add r4, r0, #0x18
@@ -381,7 +381,7 @@ _020C906C:
 	; .align 2, 0
 _020C9174: .word 0x02101234
 _020C9178: .word 0x02101174
-	arm_func_end sub_020C8DC8
+	arm_func_end ProcessBlock
 
 	.data
 

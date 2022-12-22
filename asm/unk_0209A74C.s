@@ -151,7 +151,7 @@ _0209A8A0:
 	bl sub_0200106C
 	add r0, r4, #0
 	add r1, r4, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	b _0209A8A0
 	nop
 _0209A8B0: .word 0xFFFFE0FF
@@ -313,7 +313,7 @@ _0209AA34:
 	bl sub_0200106C
 	add r0, r4, #0
 	add r1, r4, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	b _0209AA34
 	nop
 _0209AA44: .word 0xFFFFE0FF

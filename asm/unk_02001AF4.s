@@ -457,7 +457,7 @@ _02001E36:
 	ldrb r4, [r5, #0x15]
 	add r1, r6, #0
 	add r0, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _02001E5A
 	ldrb r0, [r5, #0xb]
@@ -489,7 +489,7 @@ _02001E70:
 	ldrb r6, [r5, #0x15]
 	sub r4, r1, #1
 	add r0, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r4, r1
 	bne _02001E92
 	ldrb r0, [r5, #0xb]
@@ -559,7 +559,7 @@ _02001EDA:
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 _02001EF2:
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	asr r2, r0, #0x18
 	b _02001F02
@@ -733,7 +733,7 @@ sub_02002018: ; 0x02002018
 	ldrb r1, [r5, #0xa]
 	add r0, r7, #0
 	add r6, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldrb r2, [r5, #0x19]
 	ldrb r1, [r5, #0x16]
 	lsl r2, r2, #1
@@ -742,7 +742,7 @@ sub_02002018: ; 0x02002018
 	strb r1, [r4]
 	ldrb r1, [r5, #0xa]
 	add r0, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldrb r2, [r5, #0xb]
 	ldrb r3, [r5, #0x1a]
 	ldrb r0, [r5, #0x18]

@@ -20,7 +20,7 @@ ov66_022343A8: ; 0x022343A8
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r2, [sp, #4]
 	mov r1, #0x90
 	add r0, r7, #0
@@ -85,7 +85,7 @@ _022343F2:
 	add r0, r5, #0
 	bl ov66_02231668
 	add r0, r5, #0
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _02234482
 	add r2, r0, #0
@@ -110,7 +110,7 @@ _02234482:
 	mov r0, #0
 _02234484:
 	mov r1, #0
-	bl sub_020B34F8
+	bl NNS_G3dMdlGetMdlLightEnableFlag
 	mov r6, #0
 	ldr r5, _02234540 ; =0x02258B28
 	str r0, [r4, #0x2c]
@@ -496,7 +496,7 @@ ov66_02234798: ; 0x02234798
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x90
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov66_02234798
@@ -714,7 +714,7 @@ ov66_022348E4: ; 0x022348E4
 	add r0, r1, #0
 	mul r0, r2
 	add r1, r3, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0xc
 	pop {r3, pc}
 	thumb_func_end ov66_022348E4
@@ -728,7 +728,7 @@ ov66_022348FC: ; 0x022348FC
 	bl ov70_0225C730
 	ldr r0, [sp]
 	str r0, [r4, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r4, #4]
 	cmp r0, #0
 	beq _02234936
@@ -755,14 +755,14 @@ _02234936:
 _02234938:
 	str r0, [r4, #8]
 	ldr r0, [r4, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r4, #0xc]
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #0xc]
 	bl sub_0201CBB0
 	ldr r0, [r4, #8]
 	mov r1, #0x14
-	bl sub_020B3724
+	bl NNS_G3dMdlSetMdlPolygonIDAll
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -778,12 +778,12 @@ _0223495C: .word sub_02017110
 
 	thumb_func_start ov66_02234960
 ov66_02234960: ; 0x02234960
-	ldr r3, _02234968 ; =sub_020B3764
+	ldr r3, _02234968 ; =NNS_G3dMdlSetMdlAlphaAll
 	str r1, [r0, #0x10]
 	ldr r0, [r0, #8]
 	bx r3
 	; .align 2, 0
-_02234968: .word sub_020B3764
+_02234968: .word NNS_G3dMdlSetMdlAlphaAll
 	thumb_func_end ov66_02234960
 
 	thumb_func_start ov66_0223496C
@@ -851,12 +851,12 @@ _022349C2:
 
 	thumb_func_start ov66_022349C8
 ov66_022349C8: ; 0x022349C8
-	ldr r3, _022349D0 ; =sub_020D5124
+	ldr r3, _022349D0 ; =memset
 	mov r1, #0
 	mov r2, #0x90
 	bx r3
 	; .align 2, 0
-_022349D0: .word sub_020D5124
+_022349D0: .word memset
 	thumb_func_end ov66_022349C8
 
 	thumb_func_start ov66_022349D4
@@ -1342,7 +1342,7 @@ ov66_02234D78: ; 0x02234D78
 	bl sub_02021430
 	add r4, #0x8c
 	ldr r1, [r4, #0]
-	bl sub_020B3664
+	bl NNS_G3dMdlSetMdlLightEnableFlagAll
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov66_02234D78
@@ -1392,7 +1392,7 @@ _02234DA2:
 	ldr r2, [r4, #0x24]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	mov r6, #0
 	lsl r3, r3, #0xa
@@ -1409,7 +1409,7 @@ _02234DA2:
 	ldr r2, [r4, #0x24]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	lsl r3, r3, #0xa
 	add r3, r0, r3
@@ -1425,7 +1425,7 @@ _02234DA2:
 	ldr r2, [r4, #0x24]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	lsl r3, r3, #0xa
 	add r3, r0, r3
@@ -1441,7 +1441,7 @@ _02234DA2:
 	ldr r2, [r4, #0x24]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	add r4, r6, #0
 	lsl r3, r3, #0xa
@@ -1454,10 +1454,10 @@ _02234DA2:
 	sub r0, r2, r1
 	str r0, [sp, #0x40]
 	add r0, sp, #0
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	ldr r1, _02234EA0 ; =0x021C5B48
 	add r0, sp, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _02234EA4 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
@@ -1465,7 +1465,7 @@ _02234DA2:
 	add r0, r5, #0
 	str r2, [r1, #0x7c]
 	bl sub_020212EC
-	bl sub_020AF4EC
+	bl NNS_G3dGlbSetBaseScale
 	add r0, sp, #0x38
 	add r1, sp, #0x24
 	bl sub_0201CF7C

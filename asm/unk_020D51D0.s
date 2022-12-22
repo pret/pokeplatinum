@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020D51D0
-sub_020D51D0: ; 0x020D51D0
+	arm_func_start __fill_mem
+__fill_mem: ; 0x020D51D0
 	cmp r2, #0x20
 	and r3, r1, #0xff
 	blo _020D5264
@@ -60,4 +60,4 @@ _020D5270:
 	subs r2, r2, #1
 	bne _020D5270
 	bx lr
-	arm_func_end sub_020D51D0
+	arm_func_end __fill_mem

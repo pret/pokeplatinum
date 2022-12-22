@@ -125,10 +125,10 @@ _02233BBE:
 	str r0, [r4, #0]
 	b _02233CD8
 _02233BDE:
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, #0x78
 	mov r3, #0
-	bl sub_020E1EE0
+	bl _ull_mod
 	add r0, r0, #1
 	str r0, [r4, #4]
 	ldr r0, [r4, #0]
@@ -172,7 +172,7 @@ _02233C32:
 	add r1, r0, #0
 	add r2, sp, #0
 	mov r3, #0x10
-	bl sub_020D1A6C
+	bl CTRDG_ReadAgbFlash
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -606,7 +606,7 @@ ov97_02233FA4: ; 0x02233FA4
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	add r6, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -893,7 +893,7 @@ ov97_022341B4: ; 0x022341B4
 	bl sub_02006AA4
 	add r0, r4, #0
 	add r1, r7, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _022341E8
 	add r0, r4, #0
@@ -916,7 +916,7 @@ ov97_022341EC: ; 0x022341EC
 	bl sub_02006D28
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov97_022341EC
@@ -949,7 +949,7 @@ _0223421A:
 	orr r0, r1
 	orr r0, r2
 	mov r1, #0x1c
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r1, #0x18
 	lsr r4, r0, #0x18
 	b _0223426E
@@ -1013,7 +1013,7 @@ ov97_02234278: ; 0x02234278
 	mov r1, #2
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, [sp, #0x18]
 	ldr r0, [sp]
 	lsl r1, r1, #4
@@ -1022,7 +1022,7 @@ ov97_02234278: ; 0x02234278
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #5
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	add r0, r4, #0
 	add r1, r7, #0
 	add r2, r5, #0
@@ -1077,7 +1077,7 @@ _02234316:
 	ldr r0, [r0, #0x14]
 	add r1, #0xc
 	lsl r2, r2, #8
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	lsl r0, r5, #4
 	add r0, #0x64
 	lsl r0, r0, #5
@@ -1118,12 +1118,12 @@ _02234374:
 	add r0, r5, #0
 	add r0, #0xc
 	add r1, r6, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	ldr r1, [r5, #0]
 	add r0, #0xc
 	add r2, r6, #0
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	ldr r0, [r5, #8]
 	ldr r1, [r5, #4]
 	bl sub_02021E90
@@ -2574,7 +2574,7 @@ ov97_02234ECC: ; 0x02234ECC
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x4c
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02234F7C ; =0x00000498
 	mov r3, #0x1b
 	add r1, r0, #0
@@ -3446,7 +3446,7 @@ ov97_02235624: ; 0x02235624
 	ldr r2, _022356CC ; =0x00012610
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x4e
 	bl sub_02018340
 	str r0, [r4, #0x20]
@@ -3487,10 +3487,10 @@ ov97_02235624: ; 0x02235624
 	ldr r1, _022356DC ; =0x00000496
 	mov r0, #9
 	bl sub_02004550
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #0
 	bne _022356BA
-	bl sub_020C3790
+	bl OS_InitTick
 _022356BA:
 	bl ov97_02238440
 	ldr r0, _022356E0 ; =0x0000E89C
@@ -3515,8 +3515,8 @@ ov97_022356E8: ; 0x022356E8
 	add r5, r1, #0
 	bl sub_0200682C
 	add r4, r0, #0
-	bl sub_020D0A04
-	bl sub_020D09B8
+	bl CTRDG_IsExisting
+	bl CTRDG_IsPulledOut
 	cmp r0, #1
 	beq _02235706
 	ldr r0, _02235A0C ; =0x02101D24

@@ -29,7 +29,7 @@ sub_02009714: ; 0x02009714
 	mov r1, #0
 	add r2, r7, #0
 	str r0, [r4, #4]
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #8]
 	mov r0, #0
 	str r0, [r4, #0xc]
@@ -1181,7 +1181,7 @@ _02009F74:
 	mov r2, #0x18
 	add r1, r5, #4
 	mul r2, r3
-	bl sub_020D50B8
+	bl memcpy
 _02009F88:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -1463,7 +1463,7 @@ sub_0200A144: ; 0x0200A144
 	add r4, r0, #0
 	add r0, r6, #0
 	add r1, r4, #0
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	str r5, [r4, #4]
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
@@ -1482,7 +1482,7 @@ sub_0200A164: ; 0x0200A164
 	add r4, r0, #0
 	add r0, r7, #0
 	add r1, r4, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	str r5, [r4, #4]
 	str r6, [r4, #8]
 	add r0, r4, #0
@@ -1500,7 +1500,7 @@ sub_0200A188: ; 0x0200A188
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020A6F38
+	bl NNS_G2dGetUnpackedCellBank
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1516,7 +1516,7 @@ sub_0200A1A4: ; 0x0200A1A4
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020A6D88
+	bl NNS_G2dGetUnpackedAnimBank
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1532,7 +1532,7 @@ sub_0200A1C0: ; 0x0200A1C0
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020A7038
+	bl NNS_G2dGetUnpackedMultiCellBank
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1548,7 +1548,7 @@ sub_0200A1DC: ; 0x0200A1DC
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020A6D94
+	bl NNS_G2dGetUnpackedMCAnimBank
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1716,7 +1716,7 @@ _0200A30C:
 	beq _0200A320
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	add r0, r4, #0
 	bl sub_020181C4
 _0200A320:

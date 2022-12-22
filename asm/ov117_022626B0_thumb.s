@@ -15,7 +15,7 @@ ov117_022626B0: ; 0x022626B0
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0]
 	ldr r1, [r0, #0x34]
 	mov r0, #0x27
@@ -287,7 +287,7 @@ _022628D4:
 	mov r0, #0x19
 	mul r0, r6
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r6, r0
 _022628F2:
 	ldr r1, _0226294C ; =0x00002FC8
@@ -361,7 +361,7 @@ _0226297A:
 	mov r1, #0x27
 	lsl r1, r1, #4
 	ldr r0, [r0, r1]
-	ldr r3, _02262990 ; =sub_020E1F6C
+	ldr r3, _02262990 ; =_s32_div_f
 	lsl r1, r0, #2
 	ldr r0, _02262994 ; =0x02266FD8
 	ldr r0, [r0, r1]
@@ -369,7 +369,7 @@ _0226297A:
 	mul r0, r2
 	bx r3
 	nop
-_02262990: .word sub_020E1F6C
+_02262990: .word _s32_div_f
 _02262994: .word 0x02266FD8
 	thumb_func_end ov117_0226296C
 
@@ -503,17 +503,17 @@ ov117_02262A70: ; 0x02262A70
 	str r0, [sp, #0x1c]
 	mov r0, #0x32
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldr r0, _02262B84 ; =0x00007FFF
 	add r1, sp, #0x18
 	str r0, [sp, #0x18]
 	mov r0, #0x33
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0
 	str r0, [sp, #0x2c]
 	mov r0, #0x13
@@ -524,7 +524,7 @@ ov117_02262A70: ; 0x02262A70
 	str r0, [sp, #0x34]
 	mov r0, #0x1c
 	mov r2, #3
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0x99
 	lsl r0, r0, #2
 	ldr r4, [r5, r0]
@@ -532,7 +532,7 @@ ov117_02262A70: ; 0x02262A70
 	ldrsh r0, [r5, r0]
 	mov r1, #0x64
 	mul r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x26
 	lsl r1, r1, #4
 	add r6, r4, r0
@@ -545,7 +545,7 @@ ov117_02262A70: ; 0x02262A70
 	mov r1, #0x64
 	add r0, r2, r0
 	mul r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, r0
 	str r0, [sp, #0x20]
 	mov r0, #1
@@ -555,23 +555,23 @@ ov117_02262A70: ; 0x02262A70
 	add r1, sp, #0x20
 	mov r2, #3
 	str r6, [sp, #0x24]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #3
 	str r0, [sp, #0x14]
 	mov r0, #0x10
 	add r1, sp, #0x14
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r1, #0
 	mov r0, #0x15
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #2
 	str r0, [sp, #0x10]
 	mov r0, #0x10
 	add r1, sp, #0x10
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #1
 	add r1, r0, #0
 	bl ov117_02262D4C
@@ -590,27 +590,27 @@ ov117_02262A70: ; 0x02262A70
 	str r0, [sp, #0xc]
 	mov r0, #0x2a
 	add r1, sp, #0xc
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	lsr r0, r4, #0x11
 	str r0, [sp, #8]
 	mov r0, #0x2b
 	add r1, sp, #8
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldr r0, _02262B94 ; =0x001F00C1
 	add r1, sp, #4
 	str r0, [sp, #4]
 	mov r0, #0x29
 	mov r2, #1
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, r5, #0
 	blx ov117_02262EAC
 	mov r2, #1
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
-	bl sub_020B2628
+	bl NNS_G3dGeBufferOP_N
+	bl NNS_G3dGeFlushBuffer
 	add sp, #0x38
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -631,7 +631,7 @@ ov117_02262B98: ; 0x02262B98
 	mov r2, #0x6e
 	bl sub_02006AC0
 	str r0, [r5, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r5, #4]
 	bl sub_0201CBCC
 	ldr r6, [r5, #4]
@@ -665,18 +665,18 @@ _02262BD0:
 	ldr r1, [r5, r1]
 	add r0, r6, r7
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #0x25
 	lsl r1, r1, #4
 	ldr r1, [r5, r1]
 	add r0, r6, r7
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0x25
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	add r1, r4, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r1, #0x96
 	ldr r0, [sp]
 	lsl r1, r1, #2
@@ -703,7 +703,7 @@ _02262C2A:
 ov117_02262C3C: ; 0x02262C3C
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020C0F1C
+	bl GX_BeginLoadTexPltt
 	mov r2, #0x25
 	lsl r2, r2, #4
 	add r1, r2, #0
@@ -712,8 +712,8 @@ ov117_02262C3C: ; 0x02262C3C
 	add r2, r2, #4
 	ldr r1, [r4, r1]
 	ldr r2, [r4, r2]
-	bl sub_020C0F50
-	bl sub_020C0FBC
+	bl GX_LoadTexPltt
+	bl GX_EndLoadTexPltt
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov117_02262C3C
@@ -728,7 +728,7 @@ ov117_02262C60: ; 0x02262C60
 	mov r1, #0x32
 	lsl r0, r0, #0xa
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x80
 	asr r3, r0, #8
 	cmp r3, #0x10
@@ -754,7 +754,7 @@ _02262C7E:
 	ldr r0, [r4, r1]
 	add r1, r1, #4
 	ldr r1, [r4, r1]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02262CB4 ; =0x00000276
 	mov r1, #1
 	strb r1, [r4, r0]
@@ -867,7 +867,7 @@ _02262D5C:
 	str r0, [sp, #4]
 	mov r0, #0x30
 	add r1, sp, #4
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	cmp r4, #0
 	beq _02262D76
 	mov r0, #1
@@ -882,7 +882,7 @@ _02262D78:
 	str r0, [sp]
 	mov r0, #0x31
 	add r1, sp, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, #8
 	pop {r4, pc}
 	nop

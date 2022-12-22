@@ -18,5 +18,5 @@
 .public sub_02022974
 .public sub_0202309C
 .public sub_020230E0
-.public sub_020BEFEC
-.public sub_020D5124
+.public GX_GetBankForOBJ
+.public memset

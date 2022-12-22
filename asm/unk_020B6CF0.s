@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B6CF0
-sub_020B6CF0: ; 0x020B6CF0
+	arm_func_start texmtxCalc_flag__dup2
+texmtxCalc_flag__dup2: ; 0x020B6CF0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sb, r1
 	ldrh r2, [sb, #0x2c]
@@ -17,7 +17,7 @@ sub_020B6CF0: ; 0x020B6CF0
 	mov fp, r1, lsl #0xc
 	mov r0, fp
 	mov r1, r8
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrsh r0, [sb, #0x22]
 	ldr r3, [sb, #0x18]
 	ldrsh r5, [sb, #0x20]
@@ -36,13 +36,13 @@ sub_020B6CF0: ; 0x020B6CF0
 	orr r4, r4, r0, lsl #20
 	str r7, [sl]
 	str r5, [sl, #0x14]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	mov r1, fp
 	mul r0, r4, r0
 	mov r0, r0, asr #0xc
 	str r0, [sl, #4]
 	mov r0, r8
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrh r1, [sb, #0x2c]
 	ldrh r8, [sb, #0x2e]
 	ldr r2, [sb, #0x28]
@@ -68,16 +68,16 @@ sub_020B6CF0: ; 0x020B6CF0
 	orr r0, r0, r2, lsl #24
 	add r0, r0, r1, lsl #15
 	str r0, [sl, #0x34]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	rsb r1, r6, #0
 	mul r0, r1, r0
 	mov r0, r0, asr #0xc
 	str r0, [sl, #0x10]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020B6CF0
+	arm_func_end texmtxCalc_flag__dup2
 
-	arm_func_start sub_020B6DF8
-sub_020B6DF8: ; 0x020B6DF8
+	arm_func_start texmtxCalc_flagS__dup2
+texmtxCalc_flagS__dup2: ; 0x020B6DF8
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r1
 	ldrh r2, [r5, #0x2c]
@@ -87,19 +87,19 @@ sub_020B6DF8: ; 0x020B6DF8
 	mov r7, r1, lsl #0xc
 	mov r0, r7
 	mov r1, r4
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrsh r0, [r5, #0x22]
 	str r0, [r6, #0]
 	ldrsh r0, [r5, #0x22]
 	str r0, [r6, #0x14]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	ldrsh r2, [r5, #0x20]
 	mov r1, r7
 	mul r0, r2, r0
 	mov r2, r0, asr #0xc
 	mov r0, r4
 	str r2, [r6, #4]
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrh r2, [r5, #0x2c]
 	ldrh r4, [r5, #0x2e]
 	ldr r1, [r5, #0x28]
@@ -129,17 +129,17 @@ sub_020B6DF8: ; 0x020B6DF8
 	orr r0, r0, r1, lsl #24
 	add r0, r0, ip, lsl #15
 	str r0, [r6, #0x34]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	ldrsh r1, [r5, #0x20]
 	rsb r1, r1, #0
 	mul r0, r1, r0
 	mov r0, r0, asr #0xc
 	str r0, [r6, #0x10]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020B6DF8
+	arm_func_end texmtxCalc_flagS__dup2
 
-	arm_func_start sub_020B6EE0
-sub_020B6EE0: ; 0x020B6EE0
+	arm_func_start texmtxCalc_flagR__dup2
+texmtxCalc_flagR__dup2: ; 0x020B6EE0
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, [r1, #0x18]
 	mov r3, #0
@@ -172,10 +172,10 @@ sub_020B6EE0: ; 0x020B6EE0
 	str r1, [r0, #0x34]
 	str r3, [r0, #0x10]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020B6EE0
+	arm_func_end texmtxCalc_flagR__dup2
 
-	arm_func_start sub_020B6F60
-sub_020B6F60: ; 0x020B6F60
+	arm_func_start texmtxCalc_flagRS__dup2
+texmtxCalc_flagRS__dup2: ; 0x020B6F60
 	mov r2, #0x1000
 	str r2, [r0, #0]
 	str r2, [r0, #0x14]
@@ -194,10 +194,10 @@ sub_020B6F60: ; 0x020B6F60
 	str r1, [r0, #0x34]
 	str ip, [r0, #0x10]
 	bx lr
-	arm_func_end sub_020B6F60
+	arm_func_end texmtxCalc_flagRS__dup2
 
-	arm_func_start sub_020B6FA8
-sub_020B6FA8: ; 0x020B6FA8
+	arm_func_start texmtxCalc_flagT__dup2
+texmtxCalc_flagT__dup2: ; 0x020B6FA8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sb, r1
 	ldrh r2, [sb, #0x2c]
@@ -207,7 +207,7 @@ sub_020B6FA8: ; 0x020B6FA8
 	mov fp, r1, lsl #0xc
 	mov r0, fp
 	mov r1, r8
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrsh r0, [sb, #0x22]
 	ldr r3, [sb, #0x18]
 	ldrsh r5, [sb, #0x20]
@@ -226,13 +226,13 @@ sub_020B6FA8: ; 0x020B6FA8
 	orr r4, r4, r0, lsl #20
 	str r7, [sl]
 	str r5, [sl, #0x14]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	mov r1, fp
 	mul r0, r4, r0
 	mov r0, r0, asr #0xc
 	str r0, [sl, #4]
 	mov r0, r8
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrh r3, [sb, #0x2c]
 	ldrh r1, [sb, #0x2e]
 	rsb r0, r3, #0
@@ -254,16 +254,16 @@ sub_020B6FA8: ; 0x020B6FA8
 	ldrh r0, [sb, #0x2e]
 	add r0, r4, r0, lsl #15
 	str r0, [sl, #0x34]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	rsb r1, r6, #0
 	mul r0, r1, r0
 	mov r0, r0, asr #0xc
 	str r0, [sl, #0x10]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020B6FA8
+	arm_func_end texmtxCalc_flagT__dup2
 
-	arm_func_start sub_020B70A0
-sub_020B70A0: ; 0x020B70A0
+	arm_func_start texmtxCalc_flagTS__dup2
+texmtxCalc_flagTS__dup2: ; 0x020B70A0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r1
 	ldrh r2, [r5, #0x2c]
@@ -273,19 +273,19 @@ sub_020B70A0: ; 0x020B70A0
 	mov r7, r1, lsl #0xc
 	mov r0, r7
 	mov r1, r4
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrsh r0, [r5, #0x22]
 	str r0, [r6, #0]
 	ldrsh r0, [r5, #0x22]
 	str r0, [r6, #0x14]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	ldrsh r2, [r5, #0x20]
 	mov r1, r7
 	mul r0, r2, r0
 	mov r2, r0, asr #0xc
 	mov r0, r4
 	str r2, [r6, #4]
-	bl sub_020BD0DC
+	bl FX_DivAsync
 	ldrh r2, [r5, #0x2c]
 	ldrh r1, [r5, #0x2e]
 	ldrsh r4, [r5, #0x22]
@@ -311,17 +311,17 @@ sub_020B70A0: ; 0x020B70A0
 	orr r0, r0, r1, lsl #24
 	add r0, r0, ip, lsl #15
 	str r0, [r6, #0x34]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	ldrsh r1, [r5, #0x20]
 	rsb r1, r1, #0
 	mul r0, r1, r0
 	mov r0, r0, asr #0xc
 	str r0, [r6, #0x10]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020B70A0
+	arm_func_end texmtxCalc_flagTS__dup2
 
-	arm_func_start sub_020B7178
-sub_020B7178: ; 0x020B7178
+	arm_func_start texmtxCalc_flagTR__dup2
+texmtxCalc_flagTR__dup2: ; 0x020B7178
 	ldr r2, [r1, #0x18]
 	mov ip, #0
 	str r2, [r0, #0]
@@ -342,10 +342,10 @@ sub_020B7178: ; 0x020B7178
 	str r1, [r0, #0x34]
 	str ip, [r0, #0x10]
 	bx lr
-	arm_func_end sub_020B7178
+	arm_func_end texmtxCalc_flagTR__dup2
 
-	arm_func_start sub_020B71C8
-sub_020B71C8: ; 0x020B71C8
+	arm_func_start texmtxCalc_flagTRS__dup2
+texmtxCalc_flagTRS__dup2: ; 0x020B71C8
 	mov r2, #0x1000
 	str r2, [r0, #0]
 	mov r1, #0
@@ -355,10 +355,10 @@ sub_020B71C8: ; 0x020B71C8
 	str r1, [r0, #0x30]
 	str r1, [r0, #0x34]
 	bx lr
-	arm_func_end sub_020B71C8
+	arm_func_end texmtxCalc_flagTRS__dup2
 
-	arm_func_start sub_020B71EC
-sub_020B71EC: ; 0x020B71EC
+	arm_func_start NNSi_G3dSendTexSRT3dsMax
+NNSi_G3dSendTexSRT3dsMax: ; 0x020B71EC
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x4c
 	mov r4, r0
@@ -437,14 +437,14 @@ _020B730C:
 	ldr r0, [sp]
 	add r1, r1, #4
 	mov r2, #0x12
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, sp, #0x4c
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _020B7328: .word 0x00101610
 _020B732C: .word 0x00101810
 _020B7330: .word 0x02101104
-	arm_func_end sub_020B71EC
+	arm_func_end NNSi_G3dSendTexSRT3dsMax
 
 	.data
 

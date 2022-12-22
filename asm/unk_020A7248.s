@@ -6,12 +6,12 @@
 	.text
 
 
-	arm_func_start sub_020A7248
-sub_020A7248: ; 0x020A7248
+	arm_func_start NNS_G2dGetUnpackedScreenData
+NNS_G2dGetUnpackedScreenData: ; 0x020A7248
 	stmfd sp!, {r4, lr}
 	mov r4, r1
 	ldr r1, _020A7278 ; =0x5343524E
-	bl sub_020A727C
+	bl NNS_G2dFindBinaryBlock
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [r4]
@@ -22,4 +22,4 @@ sub_020A7248: ; 0x020A7248
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A7278: .word 0x5343524E
-	arm_func_end sub_020A7248
+	arm_func_end NNS_G2dGetUnpackedScreenData

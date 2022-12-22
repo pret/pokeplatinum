@@ -108,11 +108,11 @@
 .public sub_02030ED0
 .public sub_02030ED4
 .public sub_02039734
-.public sub_020A7944
-.public sub_020D5124
-.public sub_020E1ED4
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public NNS_G2dInitOamManagerModule
+.public memset
+.public _ull_div
+.public _ull_mul
+.public _s32_div_f
 .public ov66_0222E12C
 .public ov66_0222E2A4
 .public ov66_0222E31C

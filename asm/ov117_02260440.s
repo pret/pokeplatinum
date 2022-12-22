@@ -20,7 +20,7 @@ ov117_02260440: ; 0x02260440
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r1, r5, #0
 	bl ov117_022605D8

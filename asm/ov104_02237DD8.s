@@ -21,7 +21,7 @@ ov104_02237DD8: ; 0x02237DD8
 	ldr r2, _02238060 ; =0x00000A88
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02238064 ; =0x02241ACC
 	ldr r5, [r0, #0]
 	add r0, r4, #0
@@ -109,7 +109,7 @@ _02237EB0:
 	mov r1, #7
 	ldr r4, [r0, #0]
 	ldrh r0, [r4, #0x18]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x1a]
 	mov r0, #0
 	str r0, [r4, #0x24]
@@ -179,7 +179,7 @@ _02237EDC:
 	strh r0, [r5, #0x18]
 	ldrh r0, [r5, #0x18]
 	mov r1, #7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r4, #0
 	strh r0, [r5, #0x1a]
 	add r7, r4, #0
@@ -536,7 +536,7 @@ _0223822A:
 	ldr r2, _0223823C ; =0x00000A88
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_020181C4
 _0223823A:
@@ -1144,15 +1144,15 @@ ov104_02238658: ; 0x02238658
 	add r5, r0, #0
 	ldr r0, [r1, #0xc]
 	ldr r1, [r1, #8]
-	bl sub_020C2C54
-	bl sub_020C096C
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
 	ldr r0, [sp, #0x10]
 	mov r1, #1
 	lsl r1, r1, #0xe
 	ldr r0, [r0, #0xc]
 	lsr r2, r1, #1
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #4
@@ -1665,7 +1665,7 @@ _02238ACC:
 	mov r1, #0
 	lsl r2, r2, #0xc
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x96
 	mov r1, #0x5e
 	bl sub_02006C24
@@ -1687,14 +1687,14 @@ _02238ACC:
 	mov r1, #2
 	add r0, r4, #0
 	lsl r1, r1, #0xc
-	bl sub_020C2C54
-	bl sub_020C096C
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
 	mov r1, #6
 	add r0, r4, #0
 	lsl r1, r1, #0xc
 	add r2, r5, #0
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	ldr r0, [sp, #4]
 	bl sub_02006CA8
 	add r0, r4, #0
@@ -1795,13 +1795,13 @@ _02238BCA:
 	add r6, r0, #0
 	bl sub_02074470
 	add r4, r0, #0
-	bl sub_020E01F8
+	bl _d_utod
 	add r2, r0, #0
 	add r3, r1, #0
 	ldr r0, _02238C10 ; =0x33333333
 	ldr r1, _02238C14 ; =0x3FF33333
-	bl sub_020E0234
-	bl sub_020E00D4
+	bl _d_mul
+	bl _d_dtou
 	str r0, [sp, #4]
 	sub r0, r0, r4
 	str r0, [sp, #4]
@@ -2033,7 +2033,7 @@ ov104_02238D8C: ; 0x02238D8C
 	str r1, [sp, #4]
 	add r1, r5, #0
 	mov r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r4, r0, #0x18
 	add r7, r6, #0
@@ -2100,7 +2100,7 @@ ov104_02238E08: ; 0x02238E08
 	str r1, [sp, #4]
 	add r1, r6, #0
 	mov r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r5, r0, #0x18
 	add r0, r7, #0
@@ -2194,7 +2194,7 @@ _02238EC0:
 	ldr r4, [r0, #8]
 _02238EC6:
 	ldrh r0, [r7, #0x20]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #1
 	ldrh r1, [r4, r0]
 	add r0, sp, #0
@@ -2245,7 +2245,7 @@ _02238F1C:
 	ldr r4, [r0, #0x14]
 _02238F22:
 	ldrh r0, [r7, #0x20]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #1
 	ldrh r1, [r4, r0]
 	add r0, sp, #0

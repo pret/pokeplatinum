@@ -40,10 +40,10 @@
 .public sub_020237E8
 .public sub_02039F04
 .public sub_02071D10
-.public sub_020BF55C
-.public sub_020C4CF4
-.public sub_020D5124
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public MI_CpuFill8
+.public memset
+.public _s32_div_f
 .public ov80_021D1848
 .public ov80_021D18A0
 .public ov80_021D18F8

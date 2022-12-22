@@ -385,7 +385,7 @@ _022566D8:
 	ldr r0, [r0, #0]
 	str r0, [sp, #4]
 	ldr r0, [sp]
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [sp]
 	ldr r0, [sp, #8]
 	add r7, r7, #4

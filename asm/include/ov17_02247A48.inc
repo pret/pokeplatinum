@@ -20,10 +20,10 @@
 .public sub_02077D3C
 .public sub_02094E98
 .public sub_02094EDC
-.public sub_020BF578
-.public sub_020C4CF4
-.public sub_020E1F6C
-.public sub_020E2178
+.public G2x_SetBlendBrightness_
+.public MI_CpuFill8
+.public _s32_div_f
+.public _u32_div_f
 .public ov12_02236004
 .public ov12_02236320
 .public ov12_02236384

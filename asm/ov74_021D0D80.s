@@ -26,7 +26,7 @@ ov74_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02027AA4
 	ldrh r1, [r4, #0x18]
@@ -484,7 +484,7 @@ ov74_021D1118: ; 0x021D1118
 	str r0, [r4, #0x10]
 _021D1148:
 	bl sub_0200C800
-	bl sub_020A635C
+	bl NNS_GfdDoVramTransfer
 	ldr r0, [r4, #0x14]
 	bl sub_0201C2B8
 	ldr r3, _021D1170 ; =0x027E0000
@@ -773,7 +773,7 @@ ov74_021D1390: ; 0x021D1390
 	bl sub_02006D28
 	add r0, r6, #0
 	add r1, sp, #0x20
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r3, [sp, #0x20]
 	mov r1, #0
 	str r1, [sp]
@@ -804,7 +804,7 @@ ov74_021D1390: ; 0x021D1390
 	bl sub_02006D28
 	add r0, r6, #0
 	add r1, sp, #0x1c
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r1, [sp, #0x1c]
 	mov r0, #0
 	ldr r1, [r1, #0xc]
@@ -833,7 +833,7 @@ ov74_021D1390: ; 0x021D1390
 	add r1, r5, #0
 	ldr r0, [r5, #0x24]
 	add r1, #0x28
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	add r0, r4, #0
 	bl sub_02006CA8
 	mov r3, #0
@@ -1577,7 +1577,7 @@ ov74_021D1A24: ; 0x021D1A24
 	ldrh r0, [r4, #2]
 	ldrh r1, [r4]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r4, #2]
 	ldr r1, [r5, #0x10]
 	add r0, r5, #0
@@ -1597,7 +1597,7 @@ _021D1A6A:
 	ldrh r0, [r4, #2]
 	add r0, r0, r1
 	sub r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r4, #2]
 	ldr r1, [r5, #0x10]
 	add r0, r5, #0
@@ -1619,7 +1619,7 @@ _021D1A94:
 	lsl r0, r0, #0x1b
 	lsr r0, r0, #0x1d
 	add r0, r0, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r2, [r5, #0x10]
 	mov r0, #0x1c
 	bic r2, r0
@@ -1657,7 +1657,7 @@ _021D1AEA:
 	lsl r0, r0, #0x1b
 	lsr r0, r0, #0x1d
 	add r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r2, [r5, #0x10]
 	mov r0, #0x1c
 	bic r2, r0

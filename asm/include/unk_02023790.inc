@@ -7,7 +7,7 @@
 .public sub_02023E4C
 .public sub_02023EB0
 .public sub_02023EF8
-.public sub_020D50B8
-.public sub_020E1ED4
-.public sub_020E1F1C
-.public sub_020E2178
+.public memcpy
+.public _ull_div
+.public _ull_mul
+.public _u32_div_f

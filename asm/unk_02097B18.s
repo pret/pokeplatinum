@@ -27,7 +27,7 @@ sub_02097B18: ; 0x02097B18
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	bl ov76_0223BE6C
 	mov r1, #0x23
 	lsl r1, r1, #4
@@ -710,7 +710,7 @@ _020980F2:
 	mov r1, #0
 	mov r2, #0x30
 	str r0, [r4, #8]
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02025E44
 	ldr r1, [r4, #8]
@@ -723,7 +723,7 @@ _020980F2:
 	mov r1, #0
 	mov r2, #0x40
 	str r0, [r4, #0xc]
-	bl sub_020D5124
+	bl memset
 	ldr r1, _0209813C ; =sub_02097F38
 	add r0, r6, #0
 	add r2, r4, #0

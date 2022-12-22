@@ -1,5 +1,5 @@
-.public sub_020D5124
-.public sub_020E2178
+.public memset
+.public _u32_div_f
 .public ov4_021D7880
 .public ov4_021D78B0
 .public ov4_021E9A8C

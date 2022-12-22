@@ -150,7 +150,7 @@ _020A200C:
 	mov r2, r1, lsl #1
 	ldrsh r1, [r3, ip]
 	ldrsh r2, [r3, r2]
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	b _020A2098
 _020A203C:
 	ldrh r1, [r0]
@@ -163,7 +163,7 @@ _020A203C:
 	mov r2, r1, lsl #1
 	ldrsh r1, [r3, ip]
 	ldrsh r2, [r3, r2]
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	b _020A2098
 _020A206C:
 	ldrh r1, [r0]
@@ -176,12 +176,12 @@ _020A206C:
 	mov r2, r1, lsl #1
 	ldrsh r1, [r3, ip]
 	ldrsh r2, [r3, r2]
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 _020A2098:
 	add r0, r4, #8
 	add r1, sp, #0
 	mov r2, r0
-	bl sub_020BBB0C
+	bl MTX_MultVec33
 	add sp, sp, #0x28
 	ldmia sp!, {r4, lr}
 	bx lr
@@ -234,7 +234,7 @@ sub_020A213C: ; 0x020A213C
 	ldrh r0, [r1, #0x26]
 	ldrh r1, [r5, #6]
 	mov r4, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	addne sp, sp, #4
 	ldmneia sp!, {r4, r5, lr}

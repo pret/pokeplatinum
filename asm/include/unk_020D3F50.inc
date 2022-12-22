@@ -1,2 +1,2 @@
-.public sub_020DF918
-.public sub_020DF930
+.public __sys_alloc
+.public __sys_free

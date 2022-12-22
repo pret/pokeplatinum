@@ -81,7 +81,7 @@ ov26_0225621C: ; 0x0225621C
 	cmp r0, #0x18
 	blo _02256256
 	mov r1, #0x18
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0x14]
 _02256256:
 	ldr r0, [r5, #0x18]
@@ -89,11 +89,11 @@ _02256256:
 	blo _02256270
 	ldr r0, [r5, #0x14]
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0x14]
 	ldr r0, [r5, #0x18]
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0x18]
 _02256270:
 	ldr r0, [r5, #0x18]

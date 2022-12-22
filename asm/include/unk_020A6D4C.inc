@@ -1,3 +1,3 @@
-.public sub_020A6D4C
-.public sub_020A6DA0
-.public sub_020A727C
+.public GetUnpackedAnimBankImpl_
+.public NNS_G2dUnpackNAN
+.public NNS_G2dFindBinaryBlock

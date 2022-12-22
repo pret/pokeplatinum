@@ -241,7 +241,7 @@ _021D19E6:
 	ldr r0, _021D1AB4 ; =0x021D3BB0
 	add r1, #0x84
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r5, #0x20]
 	ldrh r1, [r0, #6]
 	add r0, r5, #0
@@ -887,7 +887,7 @@ _021D1EEC:
 	ldr r0, _021D1F5C ; =0x021D3B90
 	add r1, #0xa4
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0x46
 	lsl r0, r0, #2
 	add r1, r5, #0

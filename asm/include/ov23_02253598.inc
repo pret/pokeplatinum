@@ -37,8 +37,8 @@
 .public sub_020361BC
 .public sub_020594FC
 .public sub_02059514
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov23_022421BC
 .public ov23_0225360C
 .public ov23_022537D4

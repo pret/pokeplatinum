@@ -830,12 +830,12 @@ ov18_0223F518: ; 0x0223F518
 	mov r4, r0
 	ldr r0, [r1, #0]
 	mov r1, #0x600
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _0223F560 ; =0x0225338C
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x600
-	bl sub_020C048C
+	bl GXS_LoadBG1Scr
 	ldr r0, _0223F560 ; =0x0225338C
 	ldr r0, [r0, #0]
 	bl ov18_0224382C

@@ -17,7 +17,7 @@
 .public sub_0200D6A4
 .public sub_0200D810
 .public sub_020181C4
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov12_022201E8
 .public ov12_02220220
 .public ov12_02220240

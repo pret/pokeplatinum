@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020AE1EC
-sub_020AE1EC: ; 0x020AE1EC
+	arm_func_start NNSi_G2dGetUnpackedFont
+NNSi_G2dGetUnpackedFont: ; 0x020AE1EC
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -81,15 +81,15 @@ _020AE2D4:
 _020AE2D8:
 	cmp r0, #0
 	bne _020AE2E4
-	bl sub_020C42A8
+	bl OS_Terminate
 _020AE2E4:
 	mov r4, #1
 _020AE2E8:
 	mov r0, r6
-	bl sub_020AE340
+	bl NNSi_G2dUnpackNFT
 	ldr r1, _020AE33C ; =0x46494E46
 	mov r0, r6
-	bl sub_020A727C
+	bl NNS_G2dFindBinaryBlock
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [r5]
@@ -109,10 +109,10 @@ _020AE32C:
 _020AE334: .word 0x4E465452
 _020AE338: .word 0x00000101
 _020AE33C: .word 0x46494E46
-	arm_func_end sub_020AE1EC
+	arm_func_end NNSi_G2dGetUnpackedFont
 
-	arm_func_start sub_020AE340
-sub_020AE340: ; 0x020AE340
+	arm_func_start NNSi_G2dUnpackNFT
+NNSi_G2dUnpackNFT: ; 0x020AE340
 	stmfd sp!, {r4, r5, r6, lr}
 	ldrh r1, [r0, #0xc]
 	ldrh r3, [r0, #0xe]
@@ -175,4 +175,4 @@ _020AE40C: .word 0x46494E46
 _020AE410: .word 0x43574448
 _020AE414: .word 0x434D4150
 _020AE418: .word 0x43474C50
-	arm_func_end sub_020AE340
+	arm_func_end NNSi_G2dUnpackNFT

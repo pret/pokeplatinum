@@ -30,7 +30,7 @@ ov22_022550B4: ; 0x022550B4
 	bl sub_0201FFE8
 	bl ov22_02255738
 	bl ov22_0225572C
-	bl sub_020BED0C
+	bl GX_ResetBankForTex
 	pop {r3, pc}
 	nop
 _022550D0: .word 0x021BF6DC
@@ -117,7 +117,7 @@ ov22_02255180: ; 0x02255180
 	push {r4, lr}
 	add r4, r0, #0
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r4, #0x1c]
 	cmp r0, #0
 	beq _02255198
@@ -377,7 +377,7 @@ ov22_02255340: ; 0x02255340
 	lsl r5, r5, #2
 	add r0, r6, #0
 	add r1, r1, r5
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [r4, #0x38]
 	ldr r0, [r0, r5]
 	pop {r4, r5, r6, pc}
@@ -655,7 +655,7 @@ ov22_0225553C: ; 0x0225553C
 	add r6, r2, #0
 	ldr r7, [sp, #0x18]
 	str r1, [r0, #0]
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r1, _022555C4 ; =0x04000470
 	lsl r0, r4, #0xc
 	str r0, [r1, #0]
@@ -672,7 +672,7 @@ ov22_0225553C: ; 0x0225553C
 	lsl r2, r2, #1
 	ldrsh r0, [r1, r0]
 	ldrsh r1, [r1, r2]
-	bl sub_020C0078
+	bl G3_RotZ
 	ldr r2, [r7, #8]
 	ldr r1, [r7, #4]
 	ldr r3, [r7, #0]
@@ -792,8 +792,8 @@ _02255650: .word 0x0225BE50
 	thumb_func_start ov22_02255654
 ov22_02255654: ; 0x02255654
 	push {r3, lr}
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF0C
@@ -830,18 +830,18 @@ ov22_02255654: ; 0x02255654
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r2, _022556D4 ; =0x04000540
 	mov r0, #2
 	ldr r1, _022556D8 ; =0xBFFF0000
 	str r0, [r2, #0]
 	str r1, [r2, #0x40]
 	mov r1, #1
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	pop {r3, pc}
 	; .align 2, 0
 _022556C8: .word 0x04000008
@@ -872,7 +872,7 @@ ov22_022556DC: ; 0x022556DC
 	mov r0, #0x10
 	orr r0, r1
 	str r0, [r2, #0]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	bl sub_0201FF00
 	bl sub_0201FF68
 	mov r0, #0x1f
@@ -891,8 +891,8 @@ _02255728: .word 0xFFCFFFEF
 	thumb_func_start ov22_0225572C
 ov22_0225572C: ; 0x0225572C
 	push {r3, lr}
-	bl sub_020A5B1C
-	bl sub_020A5F50
+	bl NNS_GfdResetFrmTexVramState
+	bl NNS_GfdResetFrmPlttVramState
 	pop {r3, pc}
 	thumb_func_end ov22_0225572C
 
@@ -901,7 +901,7 @@ ov22_02255738: ; 0x02255738
 	push {r3, lr}
 	bl sub_0201FF00
 	bl sub_0201FF68
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	pop {r3, pc}
 	thumb_func_end ov22_02255738
 
@@ -1235,7 +1235,7 @@ ov22_022559B4: ; 0x022559B4
 	mov r1, #0
 	lsl r2, r2, #2
 	str r0, [r4, #0x38]
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x77
 	str r0, [r4, #0x3c]
 	pop {r4, pc}
@@ -1277,7 +1277,7 @@ ov22_022559F8: ; 0x022559F8
 	bl sub_0201F834
 	bl sub_0201E994
 	bl sub_0201F8E4
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7c
@@ -1410,7 +1410,7 @@ _02255AF6:
 	ldr r1, [r7, #8]
 	add r0, r4, #0
 	add r1, r1, #4
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r1, [r6, #0]
 	ldr r0, [r7, #8]
 	str r1, [r0, #0]
@@ -1478,7 +1478,7 @@ _02255B5E:
 	ldr r0, [sp, #0xc]
 	add r1, r1, r7
 	add r1, r1, #4
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r0, [r4, #8]
 	add r0, r0, r7
 	ldr r0, [r0, #4]
@@ -1622,7 +1622,7 @@ ov22_02255CB8: ; 0x02255CB8
 	ldr r2, [sp]
 	mov r1, #0
 	str r0, [r5, #0]
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r1, r7, #0
 	bl sub_0202298C
@@ -1637,7 +1637,7 @@ ov22_02255CB8: ; 0x02255CB8
 	mov r1, #0
 	add r2, r4, #0
 	str r0, [r5, #8]
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	add r1, r7, #0
 	bl sub_0202298C

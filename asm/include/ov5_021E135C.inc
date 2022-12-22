@@ -11,11 +11,11 @@
 .public sub_02062DDC
 .public sub_0206309C
 .public sub_020630AC
-.public sub_020C4CF4
-.public sub_020DFC6C
-.public sub_020E0088
-.public sub_020E01B8
-.public sub_020E0234
+.public MI_CpuFill8
+.public _d_add
+.public _d_dtoi
+.public _d_itod
+.public _d_mul
 .public ov5_021E135C
 .public ov5_021E139C
 .public ov5_021E1470

@@ -9,34 +9,34 @@
 	thumb_func_start sub_02024358
 sub_02024358: ; 0x02024358
 	push {r3, lr}
-	bl sub_020C7D90
+	bl FS_IsAvailable
 	cmp r0, #0
 	bne _02024368
-	bl sub_020C42A8
+	bl OS_Terminate
 	pop {r3, pc}
 _02024368:
 	ldr r0, _020243C4 ; =0x027FF00C
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _02024392
-	bl sub_020CD6F8
+	bl CARD_Init
 	mov r2, #0x16
 	ldr r0, _020243C8 ; =0x027FFE00
 	ldr r1, _020243CC ; =0x027FF000
 	lsl r2, r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r2, #0x16
 	ldr r0, _020243C8 ; =0x027FFE00
 	ldr r1, _020243D0 ; =0x027FFA80
 	lsl r2, r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _020243D4 ; =0x4A414441
 	ldr r0, _020243C4 ; =0x027FF00C
 	str r1, [r0, #0]
 _02024392:
 	ldr r0, _020243D8 ; =0x020E5828
 	mov r1, #3
-	bl sub_020C7760
+	bl FS_FindArchive
 	ldr r1, _020243CC ; =0x027FF000
 	ldr r2, [r1, #0x48]
 	str r2, [r0, #0x2c]
@@ -55,7 +55,7 @@ _02024392:
 	cmp r1, r0
 	beq _020243C0
 _020243BC:
-	bl sub_020C42A8
+	bl OS_Terminate
 _020243C0:
 	pop {r3, pc}
 	nop
@@ -74,17 +74,17 @@ sub_020243E0: ; 0x020243E0
 	sub sp, #0x48
 	add r4, r0, #0
 	add r0, sp, #0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	add r1, r4, #0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	beq _02024404
 	ldr r1, [sp, #0x24]
 	ldr r0, _02024408 ; =0x027FFC2C
 	str r1, [r0, #0]
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 _02024404:
 	add sp, #0x48
 	pop {r4, pc}

@@ -91,7 +91,7 @@ _02220938:
 	ldr r0, [r7, #0x9c]
 	mov r2, r4
 	add r1, r0, r1
-	bl sub_020D50D8
+	bl memmove
 	mov r0, #0
 	str r0, [r7, #0xa8]
 	str r4, [r7, #0xa4]

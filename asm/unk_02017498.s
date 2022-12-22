@@ -50,7 +50,7 @@ sub_02017498: ; 0x02017498
 	mov r1, #0
 	mov r2, #0x80
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_02006840
 	str r0, [r5, #0]
@@ -252,7 +252,7 @@ sub_0201767C: ; 0x0201767C
 	mov r1, #2
 	lsl r1, r1, #0x10
 	mov r2, #0
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	str r0, [r4, #0x10]
 	bl sub_02099550
 	bl sub_020995B4
@@ -271,7 +271,7 @@ sub_020176B4: ; 0x020176B4
 	cmp r0, #1
 	bne _020176DA
 	ldr r0, [r4, #0x10]
-	bl sub_020A543C
+	bl NNS_FndDestroyExpHeap
 	ldr r0, [r4, #0xc]
 	bl sub_020181C4
 	bl sub_020995C4
@@ -288,16 +288,16 @@ sub_020176DC: ; 0x020176DC
 	push {r4, r5, r6, lr}
 	add r5, r1, #0
 	add r4, r2, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r6, r0, #0
 	ldr r0, _02017700 ; =0x021BF678
 	add r1, r5, #0
 	ldr r0, [r0, #0]
 	add r2, r4, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	add r4, r0, #0
 	add r0, r6, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -309,14 +309,14 @@ sub_02017704: ; 0x02017704
 	push {r3, r4, r5, lr}
 	add r5, r1, #0
 	beq _02017720
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	ldr r0, _02017724 ; =0x021BF678
 	add r1, r5, #0
 	ldr r0, [r0, #0]
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 _02017720:
 	pop {r3, r4, r5, pc}
 	nop

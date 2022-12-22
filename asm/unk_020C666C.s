@@ -6,12 +6,12 @@
 	.text
 
 
-	arm_func_start sub_020C666C
-sub_020C666C: ; 0x020C666C
+	arm_func_start FSi_ReleaseCommand
+FSi_ReleaseCommand: ; 0x020C666C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	mov r4, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r5, #0]
 	mov r6, r0
 	ldr r0, [r5, #4]
@@ -27,14 +27,14 @@ sub_020C666C: ; 0x020C666C
 	bic r1, r1, #0x4f
 	str r1, [r5, #0xc]
 	str r4, [r5, #0x14]
-	bl sub_020C2268
+	bl OS_WakeupThread
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C666C
+	arm_func_end FSi_ReleaseCommand
 
-	arm_func_start sub_020C66C8
-sub_020C66C8: ; 0x020C66C8
+	arm_func_start FSi_TranslateCommand
+FSi_TranslateCommand: ; 0x020C66C8
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r8, r0
 	ldr r0, [r8, #0xc]
@@ -99,7 +99,7 @@ _020C6790:
 	moveq r0, #0
 	cmp r0, #0
 	beq _020C684C
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r5, #0x1c]
 	mov r7, r0
 	tst r1, #0x200
@@ -111,7 +111,7 @@ _020C6790:
 	mov r6, #1
 _020C67D8:
 	add r0, r5, #0xc
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r0, [r5, #0x1c]
 	tst r0, #0x200
 	movne r0, r6
@@ -121,7 +121,7 @@ _020C67D8:
 _020C67F8:
 	mov r0, r7
 	ldr r4, [r8, #0x14]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _020C684C
 _020C6808:
 	ldr r0, [r8, #0xc]
@@ -135,7 +135,7 @@ _020C6808:
 	bic r2, r1, #0x100
 	mov r1, r4
 	str r2, [r5, #0x1c]
-	bl sub_020C666C
+	bl FSi_ReleaseCommand
 	b _020C684C
 _020C683C:
 	ldr r0, [r5, #0x1c]
@@ -147,4 +147,4 @@ _020C684C:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C6854: .word 0x020FE484
-	arm_func_end sub_020C66C8
+	arm_func_end FSi_TranslateCommand

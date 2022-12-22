@@ -21,7 +21,7 @@ sub_02030888: ; 0x02030888
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	mvn r0, r0
 	str r0, [r4, #0]

@@ -49,5 +49,5 @@
 .public sub_02072120
 .public sub_0207216C
 .public sub_02072230
-.public sub_020C4DB0
-.public sub_020D5124
+.public MI_CpuCopy8
+.public memset

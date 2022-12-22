@@ -1029,7 +1029,7 @@ ov4_021F9534: ; 0x021F9534
 	ldr r1, _021F95C4 ; =0x0221972C
 	mov r0, r5
 	mov r2, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	movne r0, #1
 	ldmneia sp!, {r3, r4, r5, pc}
@@ -1164,7 +1164,7 @@ _021F9724:
 	ldr r1, _021F9964 ; =0x02219734
 	mov r0, r8
 	mov r2, #2
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r4, #1
 	beq _021F974C
@@ -1270,7 +1270,7 @@ _021F9898:
 	ldr r1, _021F9964 ; =0x02219734
 	add r0, r8, #2
 	mov r2, #2
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	addeq r8, r8, #2
 	subeq r7, r7, #2
@@ -1583,7 +1583,7 @@ ov4_021F9CD0: ; 0x021F9CD0
 	ldr r1, _021F9D38 ; =0x02219740
 	ldr r2, _021F9D3C ; =0x02219714
 	ldr r3, _021F9D40 ; =0x00000475
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F9D00:
 	ldr r0, [r5, #0x60]
 	sub r1, r4, #1
@@ -1864,7 +1864,7 @@ ov4_021FA0A4: ; 0x021FA0A4
 	ldr r1, _021FA168 ; =0x02219734
 	mov r0, r8
 	mov r2, #2
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _021FA0F4
 _021FA0D4:

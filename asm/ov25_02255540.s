@@ -24,7 +24,7 @@ ov25_02255540: ; 0x02255540
 	str r7, [r4, #0]
 	str r5, [r4, #0x18]
 	add r0, r7, #0
-	bl sub_020A813C
+	bl NNS_G2dGetOamManagerOamCapacity
 	strh r0, [r4, #0x10]
 	ldrh r1, [r4, #0x10]
 	add r0, r5, #0
@@ -139,7 +139,7 @@ _02255632:
 	mov r1, #2
 	add r0, #8
 	lsl r1, r1, #0xc
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 	add r0, r4, #0
 	add r0, #0x8a
 	ldrb r0, [r0]
@@ -176,11 +176,11 @@ _0225564A:
 	ldr r2, [r4, #0x38]
 	add r0, r5, #0
 	lsr r1, r1, #0x10
-	bl sub_020A8DA0
+	bl NNS_G2dMakeCellToOams
 	b _02255722
 _0225568A:
 	ldr r0, [r4, #0x70]
-	bl sub_020BB44C
+	bl MTX_Identity22_
 	ldrh r1, [r6, #0x12]
 	mov r0, #4
 	tst r0, r1
@@ -200,7 +200,7 @@ _0225568A:
 	mov r3, #2
 	ldrsh r2, [r2, r3]
 	ldr r0, [r4, #0x70]
-	bl sub_020BB464
+	bl MTX_Rot22_
 	b _022556DA
 _022556BC:
 	add r0, r4, #0
@@ -216,7 +216,7 @@ _022556BC:
 	ldrsh r1, [r1, r3]
 	mov r3, #2
 	ldrsh r2, [r2, r3]
-	bl sub_020BB464
+	bl MTX_Rot22_
 _022556DA:
 	ldrh r1, [r6, #0x12]
 	mov r0, #2
@@ -224,20 +224,20 @@ _022556DA:
 	beq _022556FE
 	ldr r0, [r6, #4]
 	ldr r7, [r4, #0x70]
-	bl sub_020BCFE0
+	bl FX_Inv
 	str r0, [sp, #0x14]
 	ldr r0, [r6, #8]
-	bl sub_020BCFE0
+	bl FX_Inv
 	add r3, r0, #0
 	ldr r2, [sp, #0x14]
 	add r0, r7, #0
 	add r1, r7, #0
-	bl sub_020BB470
+	bl MTX_ScaleApply22
 _022556FE:
 	ldr r0, [sp, #0xc]
 	ldr r1, [r4, #0x70]
 	ldr r0, [r0, #0]
-	bl sub_020A7D34
+	bl NNS_G2dEntryOamManagerAffine
 	add r1, sp, #0x18
 	str r1, [sp]
 	str r0, [sp, #4]
@@ -249,7 +249,7 @@ _022556FE:
 	ldr r3, [r4, #0x70]
 	add r0, r5, #0
 	lsr r1, r1, #0x10
-	bl sub_020A8DA0
+	bl NNS_G2dMakeCellToOams
 _02255722:
 	ldr r1, [sp, #0x10]
 	sub r1, r1, r0
@@ -354,7 +354,7 @@ _022557D4:
 	lsl r2, r2, #0xd
 	ldr r0, [r0, #0]
 	lsr r2, r2, #0x10
-	bl sub_020A7B80
+	bl NNS_G2dEntryOamManagerOam
 _022557EE:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
@@ -392,12 +392,12 @@ ov25_02255810: ; 0x02255810
 	ldr r0, [r6, #0xc]
 	str r0, [r4, #4]
 	ldrh r1, [r5, #8]
-	bl sub_020A6EF0
+	bl NNS_G2dGetAnimSequenceByIdx
 	add r1, r0, #0
 	add r0, r4, #0
 	ldr r2, [r4, #0]
 	add r0, #8
-	bl sub_020A8C88
+	bl NNS_G2dInitCellAnimation
 	ldr r1, [r5, #0]
 	ldr r0, [r5, #4]
 	str r1, [r4, #0x68]
@@ -471,12 +471,12 @@ ov25_022558C4: ; 0x022558C4
 	lsl r1, r1, #0x10
 	ldr r0, [r4, #4]
 	lsr r1, r1, #0x10
-	bl sub_020A6EF0
+	bl NNS_G2dGetAnimSequenceByIdx
 	add r1, r0, #0
 	add r0, r4, #0
 	ldr r2, [r4, #0]
 	add r0, #8
-	bl sub_020A8C88
+	bl NNS_G2dInitCellAnimation
 	pop {r4, pc}
 	thumb_func_end ov25_022558C4
 
@@ -605,7 +605,7 @@ ov25_02255958: ; 0x02255958
 	beq _022559AA
 	add r1, r5, #0
 	add r1, #8
-	bl sub_020A6F38
+	bl NNS_G2dGetUnpackedCellBank
 	cmp r0, #0
 	bne _02255998
 	mov r0, #0
@@ -614,7 +614,7 @@ _02255998:
 	ldr r0, [r5, #4]
 	add r5, #0xc
 	add r1, r5, #0
-	bl sub_020A6D94
+	bl NNS_G2dGetUnpackedMCAnimBank
 	cmp r0, #0
 	bne _022559AA
 	mov r0, #0

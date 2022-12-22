@@ -19,7 +19,7 @@ sub_02025CB4: ; 0x02025CB4
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x5c
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r4, #0x10
 	add r0, r4, #0
 	bl sub_02025D84
@@ -49,14 +49,14 @@ sub_02025CE4: ; 0x02025CE4
 	push {r3, r4, lr}
 	sub sp, #0x54
 	add r4, r0, #0
-	bl sub_020C4040
+	bl OS_GetOwnerRtcOffset
 	str r0, [r4, #0]
 	add r0, r4, #0
 	add r0, #8
 	str r1, [r4, #4]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	add r0, sp, #0
-	bl sub_020C3FBC
+	bl OS_GetOwnerInfo
 	add r0, sp, #0
 	ldrb r1, [r0, #2]
 	strb r1, [r4, #0xe]
@@ -73,7 +73,7 @@ sub_02025D10: ; 0x02025D10
 	sub sp, #8
 	add r4, r0, #0
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	mov r2, #0
 	add r3, sp, #0
 _02025D20:
@@ -100,7 +100,7 @@ _02025D30:
 sub_02025D40: ; 0x02025D40
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020C4040
+	bl OS_GetOwnerRtcOffset
 	ldr r3, [r4, #0]
 	ldr r2, [r4, #4]
 	eor r0, r3
@@ -170,12 +170,12 @@ sub_02025D84: ; 0x02025D84
 	add r1, #0x14
 	bl sub_0201384C
 	add r0, r4, #4
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	add r1, r4, #0
 	str r0, [r4, #0x20]
 	add r0, r4, #4
 	add r1, #0x14
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str r0, [r4, #0x24]
 	str r1, [r4, #0x28]
 	mov r0, #0
@@ -233,7 +233,7 @@ sub_02025DE8: ; 0x02025DE8
 	add r1, #0x14
 	bl sub_0201384C
 	add r0, r4, #4
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	str r0, [r4, #0x20]
 	pop {r4, pc}
 	; .align 2, 0

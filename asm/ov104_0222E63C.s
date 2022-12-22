@@ -18,7 +18,7 @@ ov104_0222E63C: ; 0x0222E63C
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0xbc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	add r0, r4, #0
 	add r1, r4, #0
@@ -153,7 +153,7 @@ ov104_0222E748: ; 0x0222E748
 	mov r1, #0
 	mov r2, #0x90
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _0222E7C0 ; =0x0223F63C
 	ldr r1, _0222E7C4 ; =0x0223F674
 	ldr r2, [r2, #0]

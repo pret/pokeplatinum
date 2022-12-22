@@ -19,7 +19,7 @@ ov63_0222AE60: ; 0x0222AE60
 	ldr r2, _0222AF04 ; =0x0000229C
 	add r7, r0, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	str r4, [r7, #0]
 	mov r0, #0x92
 	add r1, r6, #0
@@ -80,7 +80,7 @@ _0222AED0:
 	mov r2, #0x18
 	mov r1, #0
 	mul r2, r3
-	bl sub_020D5124
+	bl memset
 	add r0, r7, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop

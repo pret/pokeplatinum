@@ -635,7 +635,7 @@ _0225665A:
 	ldr r0, [sp, #0x28]
 	sub r0, r0, r4
 	lsl r0, r0, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x10]
 	b _02256670
 _0225666C:
@@ -702,7 +702,7 @@ _022566D4:
 	add r1, r2, #0
 	sub r0, r0, r5
 	lsl r0, r0, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #8]
 	b _022566EC
 _022566E8:

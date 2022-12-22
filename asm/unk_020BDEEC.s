@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020BDEEC
-sub_020BDEEC: ; 0x020BDEEC
+	arm_func_start GX_InitGXState
+GX_InitGXState: ; 0x020BDEEC
 	ldr r0, _020BDF44 ; =0x021CCBA0
 	mov r2, #0
 	strh r2, [r0]
@@ -32,7 +32,7 @@ sub_020BDEEC: ; 0x020BDEEC
 	; .align 2, 0
 _020BDF44: .word 0x021CCBA0
 _020BDF48: .word 0x04000240
-	arm_func_end sub_020BDEEC
+	arm_func_end GX_InitGXState
 
 	.bss
 

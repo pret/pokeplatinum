@@ -7,7 +7,7 @@
 .public sub_02019044
 .public sub_02019448
 .public sub_020198E8
-.public sub_020C4B18
+.public MIi_CpuCopy16
 .public ov25_02254674
 .public ov25_022546B8
 .public ov25_022546F0

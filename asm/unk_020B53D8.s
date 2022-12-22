@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B53D8
-sub_020B53D8: ; 0x020B53D8
+	arm_func_start GetMatColAnmValue_
+GetMatColAnmValue_: ; 0x020B53D8
 	tst r1, #0x20000000
 	movne r0, r1, lsl #0x10
 	movne r0, r0, lsr #0x10
@@ -106,10 +106,10 @@ _020B54F0:
 	; .align 2, 0
 _020B5538: .word 0x1FFF0000
 _020B553C: .word 0x00007C1F
-	arm_func_end sub_020B53D8
+	arm_func_end GetMatColAnmValue_
 
-	arm_func_start sub_020B5540
-sub_020B5540: ; 0x020B5540
+	arm_func_start GetMatColAnmuAlphaValue_
+GetMatColAnmuAlphaValue_: ; 0x020B5540
 	tst r1, #0x20000000
 	movne r0, r1, lsl #0x10
 	movne r0, r0, lsr #0x10
@@ -174,10 +174,10 @@ _020B5620:
 	bx lr
 	; .align 2, 0
 _020B5628: .word 0x1FFF0000
-	arm_func_end sub_020B5540
+	arm_func_end GetMatColAnmuAlphaValue_
 
-	arm_func_start sub_020B562C
-sub_020B562C: ; 0x020B562C
+	arm_func_start NNSi_G3dAnmObjInitNsBma
+NNSi_G3dAnmObjInitNsBma: ; 0x020B562C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	cmp r2, #0
@@ -194,7 +194,7 @@ sub_020B562C: ; 0x020B562C
 	moveq r7, #0
 	strb r2, [sl, #0x19]
 	mov r2, r2, lsl #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrb r0, [sb, #9]
 	mov r6, #0
 	cmp r0, #0
@@ -222,7 +222,7 @@ _020B56C0:
 	moveq r0, r4
 	beq _020B56D4
 	add r0, r7, #4
-	bl sub_020B3AA4
+	bl NNS_G3dGetResDictIdxByName
 _020B56D4:
 	cmp r0, #0
 	orrge r1, r6, #0x100
@@ -236,10 +236,10 @@ _020B56D4:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020B56FC: .word 0x02100EDC
-	arm_func_end sub_020B562C
+	arm_func_end NNSi_G3dAnmObjInitNsBma
 
-	arm_func_start sub_020B5700
-sub_020B5700: ; 0x020B5700
+	arm_func_start NNSi_G3dAnmCalcNsBma
+NNSi_G3dAnmCalcNsBma: ; 0x020B5700
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r4, [r1, #8]
 	ldr r1, [r1, #0]
@@ -264,12 +264,12 @@ _020B574C:
 	ldr r1, [r6, #0]
 	mov r0, r4
 	mov r2, r5
-	bl sub_020B53D8
+	bl GetMatColAnmValue_
 	mov r8, r0
 	ldr r1, [r6, #4]
 	mov r0, r4
 	mov r2, r5
-	bl sub_020B53D8
+	bl GetMatColAnmValue_
 	ldr r1, [r7, #4]
 	orr r0, r8, r0, lsl #16
 	tst r1, #0x8000
@@ -280,12 +280,12 @@ _020B574C:
 	ldr r1, [r6, #0xc]
 	mov r0, r4
 	mov r2, r5
-	bl sub_020B53D8
+	bl GetMatColAnmValue_
 	mov r8, r0
 	ldr r1, [r6, #8]
 	mov r0, r4
 	mov r2, r5
-	bl sub_020B53D8
+	bl GetMatColAnmValue_
 	ldr r1, [r7, #8]
 	orr r0, r0, r8, lsl #16
 	tst r1, #0x8000
@@ -296,10 +296,10 @@ _020B574C:
 	ldr r1, [r6, #0x10]
 	mov r0, r4
 	mov r2, r5
-	bl sub_020B5540
+	bl GetMatColAnmuAlphaValue_
 	ldr r1, [r7, #0xc]
 	bic r1, r1, #0x1f0000
 	orr r0, r1, r0, lsl #16
 	str r0, [r7, #0xc]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020B5700
+	arm_func_end NNSi_G3dAnmCalcNsBma

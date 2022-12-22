@@ -184,7 +184,7 @@ ov18_02246318: ; 0x02246318
 	strb r6, [r4, #0x10]
 	mov r0, #1
 	strb r1, [r4, #0x11]
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r1, _022463A0 ; =0x02253424
 	mov r5, r0
 	ldr r0, [r1, #0]
@@ -202,7 +202,7 @@ _02246388:
 	b _02246370
 _02246390:
 	mov r0, r5
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0

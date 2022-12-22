@@ -50,7 +50,7 @@
 .public sub_0208A0B8
 .public sub_0208A3F4
 .public sub_0208A6CC
-.public sub_020BF55C
-.public sub_020C4B4C
-.public sub_020D5124
+.public G2x_SetBlendAlpha_
+.public MIi_CpuClear32
+.public memset
 .public ov4_021D7EAC

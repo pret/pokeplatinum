@@ -404,7 +404,7 @@ sub_02020DA8: ; 0x02020DA8
 	bl sub_02022974
 _02020DB4:
 	add r0, sp, #0
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	add r0, r5, #0
 	add r0, #0xc8
 	ldr r4, [r0, #0]
@@ -578,13 +578,13 @@ sub_02020EF8: ; 0x02020EF8
 	add r4, r1, #0
 	add r6, r2, #0
 	add r7, r3, #0
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	str r0, [sp, #8]
 	add r0, r5, #0
-	bl sub_020AE8D8
+	bl NNS_G3dTex4x4GetRequiredSize
 	str r0, [sp, #4]
 	add r0, r5, #0
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	str r0, [sp]
 	ldr r0, [sp, #8]
 	cmp r0, #0
@@ -653,9 +653,9 @@ sub_02020F90: ; 0x02020F90
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r3, #0
-	bl sub_020AE9B8
+	bl NNS_G3dTexReleaseTexKey
 	add r0, r5, #0
-	bl sub_020AEA70
+	bl NNS_G3dPlttReleasePlttKey
 	str r0, [r4, #0]
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02020F90
@@ -667,14 +667,14 @@ sub_02020FA4: ; 0x02020FA4
 	ldr r1, [r2, #0]
 	ldr r2, [r3, #0]
 	add r5, r0, #0
-	bl sub_020AE8EC
+	bl NNS_G3dTexSetTexKey
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
 	ldr r1, [r1, #0]
-	bl sub_020AEA18
+	bl NNS_G3dPlttSetPlttKey
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020AF1E8
+	bl NNS_G3dBindMdlSet
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end sub_02020FA4
@@ -726,22 +726,22 @@ _0202100C:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _02021012:
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	str r0, [sp]
 	add r0, r4, #0
-	bl sub_020AE8D8
+	bl NNS_G3dTex4x4GetRequiredSize
 	str r0, [sp, #4]
 	add r0, r4, #0
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	add r4, r0, #0
 	add r0, r5, #0
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	add r6, r0, #0
 	add r0, r5, #0
-	bl sub_020AE8D8
+	bl NNS_G3dTex4x4GetRequiredSize
 	add r7, r0, #0
 	add r0, r5, #0
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	ldr r1, [sp]
 	cmp r1, r6
 	bne _0202104E
@@ -799,7 +799,7 @@ sub_02021078: ; 0x02021078
 	add r0, r5, #0
 	ldr r1, [r1, #0]
 	add r0, #0x30
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	add r0, r5, #0
 	add r0, #0xb4
 	ldrb r0, [r0]
@@ -907,7 +907,7 @@ sub_02021148: ; 0x02021148
 	add r0, r5, #0
 	ldr r1, [r1, #0]
 	add r0, #0x30
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	add r0, r4, #0
 	bl sub_020217D4
 	add r5, #0x90
@@ -1868,7 +1868,7 @@ sub_02021788: ; 0x02021788
 	add r5, r2, #0
 	bl sub_0202189C
 	add r7, r0, #0
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	add r4, r0, #0
 	beq _020217BE
 	add r1, r4, #0
@@ -1896,7 +1896,7 @@ _020217C0:
 	cmp r5, #0
 	beq _020217CE
 	add r0, r7, #0
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r5, #0]
 _020217CE:
 	add r0, r4, #0
@@ -2018,7 +2018,7 @@ sub_0202187C: ; 0x0202187C
 	add r4, r0, #0
 	add r0, #0x84
 	ldr r0, [r0, #0]
-	bl sub_020AF298
+	bl NNS_G3dReleaseMdlSet
 	add r4, #0x8c
 	ldr r0, [r4, #0]
 	add r1, sp, #4

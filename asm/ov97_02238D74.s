@@ -493,7 +493,7 @@ _0223910C:
 	add r1, r1, #4
 	ldr r1, [r4, r1]
 	mul r0, r2
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _02239218 ; =0x00002664
 	ldr r2, [r4, r1]
 	cmp r2, r0

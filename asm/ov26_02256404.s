@@ -69,12 +69,12 @@ _02256478:
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0x40
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r1, r4, #0
 	add r0, r5, r6
 	add r1, #0x40
 	mov r2, #0x10
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r7, r7, #1
 	add r5, #0x40
 	add r4, #0x50

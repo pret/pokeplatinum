@@ -132,7 +132,7 @@ ov4_021EFA84: ; 0x021EFA84
 	ldr r1, _021EFB20 ; =0x022185C0
 	ldr r2, _021EFB24 ; =0x0221859C
 	mov r3, #0xb7
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EFAD8:
 	mov r0, r4
 	mov r1, r5
@@ -315,7 +315,7 @@ ov4_021EFD24: ; 0x021EFD24
 	ldr r1, _021F04AC ; =0x022185F4
 	mov r0, r4
 	mov r2, #4
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	beq _021EFD9C
 	ldr r2, _021F04B0 ; =0x022185FC
@@ -350,7 +350,7 @@ _021EFD9C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021EFDE4:
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	mov sb, r0
 	cmp sb, #0
 	bgt _021EFE0C
@@ -358,7 +358,7 @@ _021EFDE4:
 	ldr r1, _021F04BC ; =0x022185C0
 	ldr r2, _021F04C0 ; =0x022185AC
 	ldr r3, _021F04C4 ; =0x0000015A
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EFE0C:
 	add r2, sp, #0x10
 	mov r0, sl
@@ -444,7 +444,7 @@ _021EFE34:
 	streq r0, [sp, #0x190]
 	beq _021EFF60
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x190]
 _021EFF60:
 	ldr r2, [sp, #0x18c]
@@ -483,8 +483,8 @@ _021EFF60:
 	streq r0, [sp, #0x1a4]
 	beq _021EFFFC
 	add r0, sp, #0xec
-	bl sub_020DA448
-	bl sub_020DFF84
+	bl atof
+	bl _d_dtof
 	str r0, [sp, #0x1a4]
 _021EFFFC:
 	ldr r1, _021F04F0 ; =0x022186BC
@@ -497,8 +497,8 @@ _021EFFFC:
 	streq r0, [sp, #0x1a8]
 	beq _021F0030
 	add r0, sp, #0xec
-	bl sub_020DA448
-	bl sub_020DFF84
+	bl atof
+	bl _d_dtof
 	str r0, [sp, #0x1a8]
 _021F0030:
 	ldr r1, _021F04F4 ; =0x022186C4
@@ -523,7 +523,7 @@ _021F0030:
 	b _021F00B0
 _021F0080:
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	add r5, sp, #0x234
 	mov r1, r0
 	add r2, sp, #0x22c
@@ -565,7 +565,7 @@ _021F00FC:
 	streq r0, [sp, #0x23c]
 	beq _021F012C
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x23c]
 _021F012C:
 	ldr r2, [sp, #0x240]
@@ -587,7 +587,7 @@ _021F012C:
 	streq r0, [sp, #0x244]
 	beq _021F0180
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x244]
 _021F0180:
 	ldr r1, _021F0514 ; =0x022186F8
@@ -600,7 +600,7 @@ _021F0180:
 	streq r0, [sp, #0x248]
 	beq _021F01B0
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x248]
 _021F01B0:
 	ldr r1, _021F0518 ; =0x02218700
@@ -613,7 +613,7 @@ _021F01B0:
 	streq r0, [sp, #0x24c]
 	beq _021F01E0
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x24c]
 _021F01E0:
 	ldr r1, _021F051C ; =0x02218708
@@ -626,7 +626,7 @@ _021F01E0:
 	streq r0, [sp, #0x250]
 	beq _021F0210
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x250]
 _021F0210:
 	ldr r1, _021F0520 ; =0x02218710
@@ -639,7 +639,7 @@ _021F0210:
 	streq r0, [sp, #0x254]
 	beq _021F0240
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x254]
 _021F0240:
 	ldr r1, _021F0524 ; =0x02218718
@@ -652,7 +652,7 @@ _021F0240:
 	streq r0, [sp, #0x258]
 	beq _021F0270
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x258]
 _021F0270:
 	ldr r1, _021F0528 ; =0x02218720
@@ -665,7 +665,7 @@ _021F0270:
 	streq r0, [sp, #0x25c]
 	beq _021F02A0
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x25c]
 _021F02A0:
 	ldr r1, _021F052C ; =0x02218728
@@ -678,7 +678,7 @@ _021F02A0:
 	streq r0, [sp, #0x260]
 	beq _021F02D0
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x260]
 _021F02D0:
 	ldr r1, _021F0530 ; =0x02218730
@@ -691,7 +691,7 @@ _021F02D0:
 	streq r0, [sp, #0x264]
 	beq _021F0300
 	add r0, sp, #0xec
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [sp, #0x264]
 _021F0300:
 	ldr r1, _021F0534 ; =0x02218738
@@ -993,7 +993,7 @@ _021F0704:
 _021F0720:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0AF0 ; =0x02218698
 	add r2, sp, #0
 	mov r0, r4
@@ -1045,7 +1045,7 @@ _021F07C4:
 _021F07D8:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B0C ; =0x02218680
 	add r2, sp, #0
 	mov r0, r4
@@ -1057,7 +1057,7 @@ _021F07D8:
 _021F0804:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B10 ; =0x022187B8
 	add r2, sp, #0
 	mov r0, r4
@@ -1069,7 +1069,7 @@ _021F0804:
 _021F0830:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B14 ; =0x022187C8
 	add r2, sp, #0
 	mov r0, r4
@@ -1084,7 +1084,7 @@ _021F085C:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
 	mov r2, r2, asr #4
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B18 ; =0x022187D4
 	add r2, sp, #0
 	mov r0, r4
@@ -1099,7 +1099,7 @@ _021F0894:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
 	mov r2, r2, asr #2
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B1C ; =0x022187E0
 	add r2, sp, #0
 	mov r0, r4
@@ -1114,7 +1114,7 @@ _021F08CC:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
 	mov r2, r2, asr #2
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B20 ; =0x022187F0
 	add r2, sp, #0
 	mov r0, r4
@@ -1126,7 +1126,7 @@ _021F08CC:
 _021F0904:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B24 ; =0x02218800
 	add r2, sp, #0
 	mov r0, r4
@@ -1138,7 +1138,7 @@ _021F0904:
 _021F0930:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B28 ; =0x02218810
 	add r2, sp, #0
 	mov r0, r4
@@ -1152,7 +1152,7 @@ _021F095C:
 	cmp r2, #0
 	movne r2, #1
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B2C ; =0x02218824
 	add r2, sp, #0
 	mov r0, r4
@@ -1164,7 +1164,7 @@ _021F095C:
 _021F0990:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B30 ; =0x022186F0
 	add r2, sp, #0
 	mov r0, r4
@@ -1176,7 +1176,7 @@ _021F0990:
 _021F09BC:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B34 ; =0x022186F8
 	add r2, sp, #0
 	mov r0, r4
@@ -1188,7 +1188,7 @@ _021F09BC:
 _021F09E8:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B38 ; =0x02218700
 	add r2, sp, #0
 	mov r0, r4
@@ -1200,7 +1200,7 @@ _021F09E8:
 _021F0A14:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B3C ; =0x02218708
 	add r2, sp, #0
 	mov r0, r4
@@ -1212,7 +1212,7 @@ _021F0A14:
 _021F0A40:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B40 ; =0x02218710
 	add r2, sp, #0
 	mov r0, r4
@@ -1224,7 +1224,7 @@ _021F0A40:
 _021F0A6C:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B44 ; =0x02218718
 	add r2, sp, #0
 	mov r0, r4
@@ -1236,7 +1236,7 @@ _021F0A6C:
 _021F0A98:
 	ldr r1, _021F0AEC ; =0x02218798
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021F0B48 ; =0x02218720
 	add r2, sp, #0
 	mov r0, r4
@@ -1497,7 +1497,7 @@ _021F0E28:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F0E58:
 	mov r0, r5
-	bl sub_020D8B60
+	bl strlen
 	cmp r0, #2
 	beq _021F0E80
 	ldr r1, _021F12C4 ; =0x02218860
@@ -1578,7 +1578,7 @@ _021F0F4C:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F0F7C:
 	mov r0, r5
-	bl sub_020DAE0C
+	bl atoi
 	mov r2, r0
 	ldr r1, _021F12E4 ; =0x0000070D
 	mov r0, r6
@@ -1589,7 +1589,7 @@ _021F0F7C:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F0FA4:
 	mov r0, r5
-	bl sub_020DAE0C
+	bl atoi
 	mov r2, r0
 	ldr r1, _021F12E8 ; =0x0000070E
 	mov r0, r6
@@ -1613,7 +1613,7 @@ _021F0FCC:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F0FFC:
 	mov r0, r5
-	bl sub_020DAE0C
+	bl atoi
 	mov r2, r0
 	mov r0, r6
 	mov r1, #0x710
@@ -1637,7 +1637,7 @@ _021F1024:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F1054:
 	mov r0, r5
-	bl sub_020DAE0C
+	bl atoi
 	mov r2, r0
 	ldr r1, _021F12F4 ; =0x00000712
 	mov r0, r6
@@ -1648,7 +1648,7 @@ _021F1054:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F107C:
 	mov r0, r5
-	bl sub_020DAE0C
+	bl atoi
 	mov r2, r0
 	ldr r1, _021F12F8 ; =0x00000714
 	mov r0, r6
@@ -1659,7 +1659,7 @@ _021F107C:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F10A4:
 	mov r0, r5
-	bl sub_020DAE0C
+	bl atoi
 	mov r2, r0
 	ldr r1, _021F12FC ; =0x00000715
 	mov r0, r6

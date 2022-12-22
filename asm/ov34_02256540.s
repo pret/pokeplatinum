@@ -240,13 +240,13 @@ ov34_02256690: ; 0x02256690
 	add r0, r4, #0
 	add r0, #0x70
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r4, #0
 	mov r1, #0x1a
 	add r0, #0x70
 	lsl r1, r1, #4
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	add r0, r4, #0
 	add r0, #0x8e
 	ldrh r1, [r0]
@@ -256,13 +256,13 @@ ov34_02256690: ; 0x02256690
 	add r0, r4, #0
 	add r0, #0x70
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r4, #0
 	mov r1, #7
 	add r0, #0x70
 	lsl r1, r1, #6
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	ldr r0, [r4, #4]
 	mov r1, #6
 	bl sub_02019448

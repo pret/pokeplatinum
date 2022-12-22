@@ -16,7 +16,7 @@
 .public sub_0202E768
 .public sub_0202E794
 .public sub_0202E7C0
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov6_02246444
 .public ov6_02246450
 .public ov6_02246454

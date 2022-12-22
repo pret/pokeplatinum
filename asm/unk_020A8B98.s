@@ -6,29 +6,29 @@
 	.text
 
 
-	arm_func_start sub_020A8B98
-sub_020A8B98: ; 0x020A8B98
+	arm_func_start ApplyCurrentAnimResult_
+ApplyCurrentAnimResult_: ; 0x020A8B98
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
 	ldr r1, [r4, #4]
 	ldrh r1, [r1, #4]
 	cmp r1, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
-	bl sub_020A763C
+	bl NNS_G2dGetAnimCtrlCurrentElement
 	mov r0, r4
-	bl sub_020A763C
+	bl NNS_G2dGetAnimCtrlCurrentElement
 	mov r5, r0
 	ldr r6, [r4, #0x34]
 	ldrh r1, [r5]
 	mov r0, r6
-	bl sub_020A6F74
+	bl NNS_G2dGetCellDataByIdx
 	str r0, [r4, #0x30]
 	ldr r1, [r4, #0x1c]
 	add r0, r4, #0x3c
 	ldr r2, [r1, #4]
 	mov r1, #1
 	and r7, r2, #0xff
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	cmp r7, #0
 	beq _020A8C38
 	cmp r7, #2
@@ -36,19 +36,19 @@ sub_020A8B98: ; 0x020A8B98
 	ldrsh r1, [r5, #4]
 	ldrsh r2, [r5, #6]
 	add r0, r4, #0x3c
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 	b _020A8C38
 _020A8C10:
 	add r0, r4, #0x3c
 	ldmib r5, {r1, r2}
-	bl sub_020A8B1C
+	bl NNSi_G2dSrtcSetSRTScale
 	ldrh r1, [r5, #2]
 	add r0, r4, #0x3c
-	bl sub_020A8AFC
+	bl NNSi_G2dSrtcSetSRTRotZ
 	ldrsh r1, [r5, #0xc]
 	ldrsh r2, [r5, #0xe]
 	add r0, r4, #0x3c
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 _020A8C38:
 	ldr r2, [r6, #0xc]
 	cmp r2, #0
@@ -68,12 +68,12 @@ _020A8C38:
 	ldr r0, [r4, #0x38]
 	add r3, r2, r1, lsl #3
 	ldmia r3, {r1, r2}
-	bl sub_020AB3A8
+	bl NNS_G2dSetCellTransferStateRequested
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020A8B98
+	arm_func_end ApplyCurrentAnimResult_
 
-	arm_func_start sub_020A8C88
-sub_020A8C88: ; 0x020A8C88
+	arm_func_start NNS_G2dInitCellAnimation
+NNS_G2dInitCellAnimation: ; 0x020A8C88
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -82,17 +82,17 @@ sub_020A8C88: ; 0x020A8C88
 	add r0, r5, #0x3c
 	mov r1, #1
 	str r2, [r5, #0x38]
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	mov r0, r5
-	bl sub_020A7834
+	bl NNS_G2dInitAnimCtrl
 	mov r0, r5
 	mov r1, r4
-	bl sub_020A8D48
+	bl NNS_G2dSetCellAnimationSequence
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020A8C88
+	arm_func_end NNS_G2dInitCellAnimation
 
-	arm_func_start sub_020A8CC4
-sub_020A8CC4: ; 0x020A8CC4
+	arm_func_start NNS_G2dInitCellAnimationVramTransfered
+NNS_G2dInitCellAnimationVramTransfered: ; 0x020A8CC4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r4, r2
@@ -112,58 +112,58 @@ sub_020A8CC4: ; 0x020A8CC4
 	ldr r3, [sp, #0x30]
 	mov r0, r6
 	str ip, [sp, #0xc]
-	bl sub_020AB17C
+	bl NNSi_G2dInitCellTransferState
 	str r6, [r7, #0x38]
 	str r4, [r7, #0x34]
 	add r0, r7, #0x3c
 	mov r1, #1
 	str r6, [r7, #0x38]
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	mov r0, r7
-	bl sub_020A7834
+	bl NNS_G2dInitAnimCtrl
 	mov r0, r7
 	mov r1, r5
-	bl sub_020A8D48
+	bl NNS_G2dSetCellAnimationSequence
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020A8CC4
+	arm_func_end NNS_G2dInitCellAnimationVramTransfered
 
-	arm_func_start sub_020A8D48
-sub_020A8D48: ; 0x020A8D48
+	arm_func_start NNS_G2dSetCellAnimationSequence
+NNS_G2dSetCellAnimationSequence: ; 0x020A8D48
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020A78EC
+	bl NNS_G2dBindAnimCtrl
 	mov r0, r4
-	bl sub_020A8B98
+	bl ApplyCurrentAnimResult_
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A8D48
+	arm_func_end NNS_G2dSetCellAnimationSequence
 
-	arm_func_start sub_020A8D60
-sub_020A8D60: ; 0x020A8D60
+	arm_func_start NNS_G2dTickCellAnimation
+NNS_G2dTickCellAnimation: ; 0x020A8D60
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020A7648
+	bl NNS_G2dTickAnimCtrl
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl sub_020A8B98
+	bl ApplyCurrentAnimResult_
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A8D60
+	arm_func_end NNS_G2dTickCellAnimation
 
-	arm_func_start sub_020A8D80
-sub_020A8D80: ; 0x020A8D80
+	arm_func_start NNS_G2dSetCellAnimationCurrentFrame
+NNS_G2dSetCellAnimationCurrentFrame: ; 0x020A8D80
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020A77FC
+	bl NNS_G2dSetAnimCtrlCurrentFrame
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl sub_020A8B98
+	bl ApplyCurrentAnimResult_
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A8D80
+	arm_func_end NNS_G2dSetCellAnimationCurrentFrame
 
-	arm_func_start sub_020A8DA0
-sub_020A8DA0: ; 0x020A8DA0
+	arm_func_start NNS_G2dMakeCellToOams
+NNS_G2dMakeCellToOams: ; 0x020A8DA0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x20
 	ldrh r5, [r2]
@@ -391,4 +391,4 @@ _020A90F4: .word 0x020F9670
 _020A90F8: .word 0x020F9658
 _020A90FC: .word 0xC1FFFCFF
 _020A9100: .word 0xFE00FF00
-	arm_func_end sub_020A8DA0
+	arm_func_end NNS_G2dMakeCellToOams

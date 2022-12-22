@@ -32,7 +32,7 @@
 .public sub_02021F58
 .public sub_02021F74
 .public sub_02022974
-.public sub_020D5124
+.public memset
 .public ov63_0222AFF8
 .public ov63_0222B078
 .public ov63_0222B210

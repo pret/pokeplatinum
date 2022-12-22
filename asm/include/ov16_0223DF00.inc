@@ -60,9 +60,9 @@
 .public sub_0207A0F8
 .public sub_0207A0FC
 .public sub_0207CFF0
-.public sub_020C4B68
-.public sub_020E1F6C
-.public sub_020E2178
+.public MIi_CpuCopy32
+.public _s32_div_f
+.public _u32_div_f
 .public ov16_0223DF04
 .public ov16_0223DF0C
 .public ov16_0223DF1C

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E1740
-sub_020E1740: ; 0x020E1740
+	arm_func_start _f_ftoi
+_f_ftoi: ; 0x020E1740
 	bic r1, r0, #0x80000000
 	mov r2, #0x9e
 	subs r2, r2, r1, lsr #23
@@ -21,4 +21,4 @@ _020E1768:
 	mvn r0, r0, asr #31
 	add r0, r0, #-0x80000000
 	bx lr
-	arm_func_end sub_020E1740
+	arm_func_end _f_ftoi

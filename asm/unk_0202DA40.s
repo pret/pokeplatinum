@@ -23,13 +23,13 @@ sub_0202DA4C: ; 0x0202DA4C
 
 	thumb_func_start sub_0202DA50
 sub_0202DA50: ; 0x0202DA50
-	ldr r3, _0202DA5C ; =sub_020C4BB8
+	ldr r3, _0202DA5C ; =MIi_CpuClearFast
 	add r1, r0, #0
 	mov r0, #0
 	mov r2, #0xf8
 	bx r3
 	nop
-_0202DA5C: .word sub_020C4BB8
+_0202DA5C: .word MIi_CpuClearFast
 	thumb_func_end sub_0202DA50
 
 	thumb_func_start sub_0202DA60
@@ -50,23 +50,23 @@ sub_0202DA68: ; 0x0202DA68
 
 	thumb_func_start sub_0202DA70
 sub_0202DA70: ; 0x0202DA70
-	ldr r3, _0202DA78 ; =sub_020C4C14
+	ldr r3, _0202DA78 ; =MIi_CpuCopyFast
 	mov r2, #0xec
 	bx r3
 	nop
-_0202DA78: .word sub_020C4C14
+_0202DA78: .word MIi_CpuCopyFast
 	thumb_func_end sub_0202DA70
 
 	thumb_func_start sub_0202DA7C
 sub_0202DA7C: ; 0x0202DA7C
-	ldr r3, _0202DA88 ; =sub_020C4C14
+	ldr r3, _0202DA88 ; =MIi_CpuCopyFast
 	add r2, r0, #0
 	add r0, r1, #0
 	add r1, r2, #0
 	mov r2, #0xec
 	bx r3
 	; .align 2, 0
-_0202DA88: .word sub_020C4C14
+_0202DA88: .word MIi_CpuCopyFast
 	thumb_func_end sub_0202DA7C
 
 	thumb_func_start sub_0202DA8C

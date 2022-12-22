@@ -48,7 +48,7 @@ ov18_0223FC48: ; 0x0223FC48
 	mov r1, #0x1f
 	strb r2, [r3, #0x1e]
 	mov r2, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r1, _0223FF54 ; =0x02249708
 	mov r0, #0
 	ldrb r1, [r1, sl]
@@ -273,7 +273,7 @@ ov18_0223FFE8: ; 0x0223FFE8
 	strb r2, [r3, #0x1a]
 	ldr r1, [r1, #0]
 	ldrsb r1, [r1, #0x1a]
-	bl sub_020BF5E8
+	bl G2x_ChangeBlendBrightness_
 	ldr r1, _0224003C ; =0x02253398
 	mvn r0, #0xb
 	ldr r1, [r1, #0]
@@ -766,7 +766,7 @@ ov18_022406A4: ; 0x022406A4
 	strb r2, [r3, #0x1a]
 	ldr r1, [r1, #0]
 	ldrsb r1, [r1, #0x1a]
-	bl sub_020BF5E8
+	bl G2x_ChangeBlendBrightness_
 	ldr r0, _022406F4 ; =0x02253398
 	ldr r0, [r0, #0]
 	ldrsb r0, [r0, #0x1a]

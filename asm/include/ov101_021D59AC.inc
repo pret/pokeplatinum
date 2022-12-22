@@ -27,8 +27,8 @@
 .public sub_020715BC
 .public sub_020715D4
 .public sub_020715E4
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f
 .public ov101_021D55A4
 .public ov101_021D630C
 .public ov101_021D63A4

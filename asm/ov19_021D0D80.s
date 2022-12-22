@@ -5874,12 +5874,12 @@ _021D3D10:
 	strb r0, [r4, #7]
 	mov r0, #7
 	ldrsb r0, [r4, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r4, #5]
 	mov r0, #7
 	ldrsb r0, [r4, r0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r0, [r4, #6]
 	b _021D3D3A
 _021D3D32:
@@ -8858,7 +8858,7 @@ ov19_021D5420: ; 0x021D5420
 	add r2, r0, #0
 	ldr r0, [r5, #0]
 	ldr r1, [r4, #0]
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #0x12
 	mov r2, #7
 	lsl r0, r0, #4
@@ -8874,7 +8874,7 @@ _021D545C:
 	add r2, r0, #0
 	ldr r0, [r5, #0]
 	ldr r1, [r4, #0]
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #0x49
 	mov r1, #8
 	lsl r0, r0, #2
@@ -8965,7 +8965,7 @@ _021D54FA:
 	ldr r0, [sp, #0x20]
 	ldr r2, [sp, #0x10]
 	add r1, r5, #0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #0x12
 	lsl r0, r0, #4
 	mov r1, #0
@@ -9257,13 +9257,13 @@ ov19_021D5734: ; 0x021D5734
 	str r0, [sp, #4]
 	add r0, r7, #0
 	add r1, r7, r6
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, [sp]
 	ldr r1, [sp]
 	ldr r0, [r0, #8]
 	ldr r1, [r1, #0x14]
 	add r2, r6, #0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, [sp]
 	bl ov19_021D5E10
 	cmp r0, #0
@@ -9297,7 +9297,7 @@ _021D57A2:
 	ldr r1, [r5, r1]
 	add r0, r7, r6
 	add r2, r6, #0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 _021D57B0:
 	mov r3, #0x49
 	lsl r3, r3, #2

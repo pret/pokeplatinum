@@ -82,7 +82,7 @@ ov4_021EC60C: ; 0x021EC60C
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021EC670:
 	add r0, sp, #0x138
-	bl sub_020DAE0C
+	bl atoi
 	mov r4, r0
 	ldr r1, _021ECF88 ; =0x02217D20
 	add r2, sp, #0x138
@@ -105,7 +105,7 @@ _021EC670:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021EC6C8:
 	add r0, sp, #0x138
-	bl sub_020DAE0C
+	bl atoi
 	mov r6, r0
 	ldr r1, _021ECF8C ; =0x02217D24
 	add r2, sp, #0x138
@@ -115,7 +115,7 @@ _021EC6C8:
 	cmp r0, #0
 	beq _021EC6FC
 	add r0, sp, #0x138
-	bl sub_020DAE0C
+	bl atoi
 	b _021EC704
 _021EC6FC:
 	mov r0, #0
@@ -182,7 +182,7 @@ _021EC798:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021EC7E4:
 	add r0, sp, #0x138
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	bl ov4_021D7880
 	str r0, [r4, #8]
@@ -197,7 +197,7 @@ _021EC7E4:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021EC81C:
 	add r1, sp, #0x138
-	bl sub_020D8B7C
+	bl strcpy
 	stmia r4, {r6, sb}
 	mov r2, #0
 	str r2, [sp]
@@ -249,7 +249,7 @@ _021EC890:
 _021EC8DC:
 	ldr r1, _021ECF98 ; =0x02217D44
 	add r0, sp, #0x138
-	bl sub_020D90B0
+	bl strstr
 	movs r4, r0
 	bne _021EC920
 	ldr r2, _021ECF84 ; =0x02217CF0
@@ -268,7 +268,7 @@ _021EC920:
 	mov r1, #0
 	add r0, r4, #8
 	strb r1, [r4]
-	bl sub_020D8B60
+	bl strlen
 	cmp r0, #0x20
 	beq _021EC968
 	ldr r2, _021ECF84 ; =0x02217CF0
@@ -419,7 +419,7 @@ _021ECB14:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021ECB60:
 	add r0, sp, #0x28
-	bl sub_020DAE0C
+	bl atoi
 	str r0, [r7, #4]
 	ldr r0, [r7, #8]
 	bl ov4_021D78B0
@@ -480,16 +480,16 @@ _021ECC2C:
 	moveq r0, #0
 	beq _021ECCA4
 	add r0, sp, #0x28
-	bl sub_020DAE0C
+	bl atoi
 	mov r5, r0
 	add r0, sp, #0x28
-	bl sub_020DAE0C
+	bl atoi
 	mov fp, r0
 	add r0, sp, #0x28
-	bl sub_020DAE0C
+	bl atoi
 	mov r4, r0
 	add r0, sp, #0x28
-	bl sub_020DAE0C
+	bl atoi
 	mov r1, r4, lsr #0x18
 	mov r0, r0, lsr #8
 	mov r2, fp, lsl #8
@@ -512,7 +512,7 @@ _021ECCA4:
 	moveq r0, #0
 	beq _021ECCF4
 	add r0, sp, #0x28
-	bl sub_020DAE0C
+	bl atoi
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	mov r1, r0, asr #8
@@ -582,7 +582,7 @@ _021ECD80:
 _021ECDCC:
 	ldr r1, _021ECFB4 ; =0x02217D6C
 	add r0, sp, #0x138
-	bl sub_020D90B0
+	bl strstr
 	cmp r0, #0
 	bne _021ECE10
 	ldr r2, _021ECF84 ; =0x02217CF0
@@ -615,11 +615,11 @@ _021ECE10:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021ECE4C:
 	add r0, r0, #3
-	bl sub_020DAE0C
+	bl atoi
 	mov r4, r0
 	ldr r1, _021ECFB8 ; =0x02217D70
 	add r0, sp, #0x138
-	bl sub_020D90B0
+	bl strstr
 	movs r1, r0
 	moveq r0, #0
 	streqb r0, [sp, #0x38]
@@ -651,7 +651,7 @@ _021ECEC8:
 	add r1, sp, #0x38
 	add r0, r5, #8
 	str r4, [r5, #4]
-	bl sub_020D8B7C
+	bl strcpy
 	mov r2, #0
 	str r2, [sp]
 	add r1, sp, #0x18
@@ -966,7 +966,7 @@ _021ED2AC:
 	ldr r1, _021ED40C ; =0x02217DB8
 	ldr r2, _021ED410 ; =0x02217CA0
 	ldr r3, _021ED414 ; =0x000001FD
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021ED340:
 	ldr r0, [sp]
 	ldr r0, [r0, #8]
@@ -1006,7 +1006,7 @@ _021ED3B4:
 	ldr r1, _021ED40C ; =0x02217DB8
 	ldr r2, _021ED410 ; =0x02217CA0
 	mov r3, #0x204
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021ED3D8:
 	ldr r1, _021ED41C ; =ov4_021ED250
 	mov r0, r6

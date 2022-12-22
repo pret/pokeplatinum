@@ -25,13 +25,13 @@ ov18_0222BB34: ; 0x0222BB34
 	ldmia sp!, {r3, pc}
 _0222BB70:
 	ldr r0, _0222BBA4 ; =0x02249AE4
-	ldr r1, _0222BBA8 ; =sub_020C042C
+	ldr r1, _0222BBA8 ; =GX_LoadBG1Scr
 	ldr r0, [r0, #0]
 	bl ov18_0222B700
 	ldmia sp!, {r3, pc}
 _0222BB84:
 	ldr r0, _0222BBA4 ; =0x02249AE4
-	ldr r1, _0222BBA8 ; =sub_020C042C
+	ldr r1, _0222BBA8 ; =GX_LoadBG1Scr
 	ldr r0, [r0, #4]
 	bl ov18_0222B700
 	ldmia sp!, {r3, pc}
@@ -40,7 +40,7 @@ _0222BB98: .word 0x02253294
 _0222BB9C: .word 0x020C072C
 _0222BBA0: .word 0x02249B34
 _0222BBA4: .word 0x02249AE4
-_0222BBA8: .word sub_020C042C
+_0222BBA8: .word GX_LoadBG1Scr
 	arm_func_end ov18_0222BB34
 
 	arm_func_start ov18_0222BBAC
@@ -66,7 +66,7 @@ ov18_0222BBC0: ; 0x0222BBC0
 	mov r4, r0
 	ldr r1, [r1, #0]
 	mov r2, #0xc0
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, r4
 	bl ov18_0224382C
 	mov r0, #1
@@ -108,12 +108,12 @@ ov18_0222BC4C: ; 0x0222BC4C
 	mov r4, r0
 	ldr r0, [r1, #0]
 	mov r1, #0xc0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _0222BC88 ; =0x02253294
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0xc0
-	bl sub_020C042C
+	bl GX_LoadBG1Scr
 	mov r1, r4
 	mov r0, #1
 	bl ov18_022463AC

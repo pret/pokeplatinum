@@ -43,6 +43,6 @@
 .public sub_0208D720
 .public sub_0208E9C0
 .public sub_02099514
-.public sub_020C4BB8
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MIi_CpuClearFast
+.public MI_CpuFill8
+.public MI_CpuCopy8

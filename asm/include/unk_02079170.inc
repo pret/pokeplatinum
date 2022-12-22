@@ -30,4 +30,4 @@
 .public sub_020793B8
 .public sub_0207A014
 .public sub_0207A048
-.public sub_020E1F6C
+.public _s32_div_f

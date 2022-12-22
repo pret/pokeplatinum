@@ -5,5 +5,5 @@
 .public sub_020245E0
 .public sub_02027B70
 .public sub_02027F50
-.public sub_020C4AF0
-.public sub_020C4BB8
+.public MIi_CpuClear16
+.public MIi_CpuClearFast

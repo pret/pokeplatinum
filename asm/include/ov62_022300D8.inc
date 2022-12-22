@@ -53,10 +53,10 @@
 .public sub_020237BC
 .public sub_02030B94
 .public sub_0208C06C
-.public sub_020BF55C
-.public sub_020E1108
-.public sub_020E1A9C
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public _f_fgt
+.public _f_sub
+.public _s32_div_f
 .public ov62_02230060
 .public ov62_022306B8
 .public ov62_022307A0

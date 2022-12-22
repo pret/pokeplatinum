@@ -188,7 +188,7 @@ _021DC170:
 	mov r2, #0x2e
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	str r5, [sp]
 	add r0, sp, #0x20
 	ldrb r0, [r0, #0x10]
@@ -1821,12 +1821,12 @@ _021DCDAE:
 	ldrb r0, [r0]
 	add r1, r6, #0
 	str r0, [sp, #0x14]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r4, r0, #0x18
 	ldr r0, [sp, #0x14]
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	beq _021DCDD2
 	add r0, r4, #1

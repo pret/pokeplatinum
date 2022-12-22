@@ -49,7 +49,7 @@ _0223BCC6:
 	ldr r2, _0223BDF8 ; =0x00001488
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x3e
 	bl sub_02018340
 	str r0, [r4, #4]
@@ -130,7 +130,7 @@ _0223BCC6:
 	mov r1, #2
 	lsl r1, r1, #0x10
 	mov r2, #0
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	str r0, [r4, #0x50]
 	mov r0, #1
 	str r0, [r5, #0]
@@ -499,7 +499,7 @@ ov94_0223C0D4: ; 0x0223C0D4
 	mov r1, #0x3e
 	bl sub_02006C24
 	str r0, [sp, #0x18]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -672,12 +672,12 @@ _0223C124:
 	ldr r0, [sp, #0x1c]
 	mov r1, #0x60
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x1c]
 	mov r1, #0x60
 	ldr r0, [r0, #0xc]
 	add r2, r1, #0
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	ldr r0, [sp, #0x1c]
 	mov r7, #0x1f
 	ldr r4, [r0, #0xc]
@@ -715,12 +715,12 @@ _0223C27C:
 	ldr r0, [sp, #0x1c]
 	mov r1, #0x60
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x1c]
 	mov r1, #0xc0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x60
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	ldr r0, [sp, #0x14]
 	bl sub_020181C4
 	ldr r0, [sp, #0x18]
@@ -885,38 +885,38 @@ ov94_0223C3FC: ; 0x0223C3FC
 	cmp r1, #0
 	ble _0223C41A
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223C428
 _0223C41A:
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223C428:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp]
 	cmp r5, #0
 	ble _0223C444
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223C452
 _0223C444:
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223C452:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #4]
 	mov r0, #0
 	str r0, [sp, #8]
@@ -932,16 +932,16 @@ ov94_0223C468: ; 0x0223C468
 	push {r4, r5, r6, lr}
 	add r5, r1, #0
 	add r4, r2, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r6, r0, #0
 	ldr r0, _0223C48C ; =0x02246C04
 	add r1, r5, #0
 	ldr r0, [r0, #0]
 	add r2, r4, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	add r4, r0, #0
 	add r0, r6, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -953,14 +953,14 @@ ov94_0223C490: ; 0x0223C490
 	push {r3, r4, r5, lr}
 	add r5, r1, #0
 	beq _0223C4AC
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	ldr r0, _0223C4B0 ; =0x02246C04
 	add r1, r5, #0
 	ldr r0, [r0, #0]
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 _0223C4AC:
 	pop {r3, r4, r5, pc}
 	nop

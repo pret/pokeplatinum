@@ -6,15 +6,15 @@
 	.text
 
 
-	arm_func_start sub_020E0B00
-sub_020E0B00: ; 0x020E0B00
+	arm_func_start _f_add
+_f_add: ; 0x020E0B00
 	eors r2, r0, r1
 	eormi r1, r1, #0x80000000
-	bmi sub_020E1AA8
-	arm_func_end sub_020E0B00
+	bmi __fsub_start
+	arm_func_end _f_add
 
-	arm_func_start sub_020E0B0C
-sub_020E0B0C: ; 0x020E0B0C
+	arm_func_start __fadd_start
+__fadd_start: ; 0x020E0B0C
 	subs ip, r0, r1
 	sublo r0, r0, ip
 	addlo r1, r1, ip
@@ -166,4 +166,4 @@ _020E0D14:
 _020E0D1C:
 	.byte 0x02, 0x01, 0xE0, 0xE3
 	.byte 0x1E, 0xFF, 0x2F, 0xE1
-	arm_func_end sub_020E0B0C
+	arm_func_end __fadd_start

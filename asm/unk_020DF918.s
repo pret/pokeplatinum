@@ -6,24 +6,24 @@
 	.text
 
 
-	arm_func_start sub_020DF918
-sub_020DF918: ; 0x020DF918
-	ldr ip, _020DF92C ; =sub_020C3214
+	arm_func_start __sys_alloc
+__sys_alloc: ; 0x020DF918
+	ldr ip, _020DF92C ; =OS_AllocFromHeap
 	mov r2, r0
 	mov r0, #0
 	sub r1, r0, #1
 	bx ip
 	; .align 2, 0
-_020DF92C: .word sub_020C3214
-	arm_func_end sub_020DF918
+_020DF92C: .word OS_AllocFromHeap
+	arm_func_end __sys_alloc
 
-	arm_func_start sub_020DF930
-sub_020DF930: ; 0x020DF930
-	ldr ip, _020DF944 ; =sub_020C331C
+	arm_func_start __sys_free
+__sys_free: ; 0x020DF930
+	ldr ip, _020DF944 ; =OS_FreeToHeap
 	mov r2, r0
 	mov r0, #0
 	sub r1, r0, #1
 	bx ip
 	; .align 2, 0
-_020DF944: .word sub_020C331C
-	arm_func_end sub_020DF930
+_020DF944: .word OS_FreeToHeap
+	arm_func_end __sys_free

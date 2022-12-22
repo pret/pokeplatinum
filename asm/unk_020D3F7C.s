@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D3F7C
-sub_020D3F7C: ; 0x020D3F7C
+	arm_func_start __flush_line_buffered_output_files
+__flush_line_buffered_output_files: ; 0x020D3F7C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldr r0, _020D4004 ; =0x02101490
 	mov r4, #0
@@ -30,7 +30,7 @@ _020D3F9C:
 	mov r1, r1, lsr #0x1d
 	cmp r1, #1
 	bne _020D3FDC
-	bl sub_020D497C
+	bl fflush
 	cmp r0, #0
 	movne r4, sb
 _020D3FDC:
@@ -47,10 +47,10 @@ _020D3FF4:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020D4004: .word 0x02101490
-	arm_func_end sub_020D3F7C
+	arm_func_end __flush_line_buffered_output_files
 
-	arm_func_start sub_020D4008
-sub_020D4008: ; 0x020D4008
+	arm_func_start __flush_all
+__flush_all: ; 0x020D4008
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldr r0, _020D406C ; =0x02101490
 	mov r4, #0
@@ -64,7 +64,7 @@ _020D4028:
 	mov r1, r1, lsl #0x16
 	movs r1, r1, lsr #0x1d
 	beq _020D4044
-	bl sub_020D497C
+	bl fflush
 	cmp r0, #0
 	movne r4, sb
 _020D4044:
@@ -81,7 +81,7 @@ _020D405C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020D406C: .word 0x02101490
-	arm_func_end sub_020D4008
+	arm_func_end __flush_all
 
 	.data
 

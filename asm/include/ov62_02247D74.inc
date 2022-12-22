@@ -23,7 +23,7 @@
 .public sub_02023790
 .public sub_020237BC
 .public sub_02030B94
-.public sub_020D5124
+.public memset
 .public ov62_0222FB44
 .public ov62_0222FB60
 .public ov62_022302A8

@@ -102,7 +102,7 @@ _02246CD0:
 	bl ov5_021EF9E8
 	add r7, r0, #0
 	ldr r0, [r5, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _02246D0E
 	add r2, r0, #0
@@ -127,7 +127,7 @@ _02246D0E:
 	mov r5, #0
 _02246D10:
 	ldr r0, [r7, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _02246D3A
 	add r2, r0, #0

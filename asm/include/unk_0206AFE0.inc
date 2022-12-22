@@ -24,4 +24,4 @@
 .public sub_0206B658
 .public sub_0206B668
 .public sub_0206B678
-.public sub_020E1F6C
+.public _s32_div_f

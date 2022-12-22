@@ -22,7 +22,7 @@ ov22_02254DE0: ; 0x02254DE0
 	mov r1, #0
 	add r2, r6, #0
 	str r0, [r4, #0]
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #4]
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}

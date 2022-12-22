@@ -96,7 +96,7 @@ _0200C75A:
 	ldr r1, [r5, #0]
 	add r0, r7, #0
 	bl sub_0201F834
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	ldr r0, [r5, #8]
 	cmp r0, #1
 	bne _0200C7A6
@@ -499,20 +499,20 @@ sub_0200CA44: ; 0x0200CA44
 	cmp r3, #0
 	ble _0200CA70
 	lsl r0, r3, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0200CA7E
 _0200CA70:
 	lsl r0, r3, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0200CA7E:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #8]
 	add r1, sp, #0x28
 	mov r0, #0x10
@@ -520,20 +520,20 @@ _0200CA7E:
 	cmp r0, #0
 	ble _0200CAA0
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0200CAAE
 _0200CAA0:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0200CAAE:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0xc]
 	add r1, sp, #0x28
 	mov r0, #0x14
@@ -541,20 +541,20 @@ _0200CAAE:
 	cmp r0, #0
 	ble _0200CAD0
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0200CADE
 _0200CAD0:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0200CADE:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x10]
 	ldr r0, [sp, #0x4c]
 	cmp r0, #2
@@ -1173,60 +1173,60 @@ _0200CF1E:
 	cmp r0, #0
 	ble _0200CF78
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0200CF86
 _0200CF78:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0200CF86:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x4c]
 	mov r0, #2
 	ldrsh r0, [r5, r0]
 	cmp r0, #0
 	ble _0200CFA6
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0200CFB4
 _0200CFA6:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0200CFB4:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x50]
 	mov r0, #4
 	ldrsh r0, [r5, r0]
 	cmp r0, #0
 	ble _0200CFD4
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0200CFE2
 _0200CFD4:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0200CFE2:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x54]
 	ldr r0, [r5, #0x10]
 	cmp r0, #2
@@ -2316,13 +2316,13 @@ sub_0200D6B0: ; 0x0200D6B0
 	add r4, r0, #0
 	ldr r0, _0200D6E4 ; =0x45800000
 	add r1, r6, #0
-	bl sub_020E18B0
-	bl sub_020E1740
+	bl _f_mul
+	bl _f_ftoi
 	str r0, [r4, #0]
 	ldr r0, _0200D6E4 ; =0x45800000
 	add r1, r7, #0
-	bl sub_020E18B0
-	bl sub_020E1740
+	bl _f_mul
+	bl _f_ftoi
 	str r0, [r4, #4]
 	add r0, r5, #0
 	add r1, r4, #0
@@ -2350,26 +2350,26 @@ sub_0200D6F4: ; 0x0200D6F4
 	bl sub_02021D2C
 	add r4, r0, #0
 	ldr r0, [r4, #0]
-	bl sub_020E17B4
+	bl _f_itof
 	add r6, r0, #0
 	ldr r0, _0200D748 ; =0x45800000
 	add r1, r5, #0
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	add r0, r6, #0
-	bl sub_020E0B00
-	bl sub_020E1740
+	bl _f_add
+	bl _f_ftoi
 	str r0, [r4, #0]
 	ldr r0, [r4, #4]
-	bl sub_020E17B4
+	bl _f_itof
 	add r5, r0, #0
 	ldr r0, _0200D748 ; =0x45800000
 	ldr r1, [sp]
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	add r0, r5, #0
-	bl sub_020E0B00
-	bl sub_020E1740
+	bl _f_add
+	bl _f_ftoi
 	str r0, [r4, #4]
 	add r0, r7, #0
 	add r1, r4, #0
@@ -2396,14 +2396,14 @@ sub_0200D758: ; 0x0200D758
 	bl sub_02021D2C
 	add r6, r0, #0
 	ldr r0, [r6, #0]
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0200D784 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	str r0, [r5, #0]
 	ldr r0, [r6, #4]
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0200D784 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	str r0, [r4, #0]
 	pop {r4, r5, r6, pc}
 	nop

@@ -1,10 +1,10 @@
 .public sub_02018144
 .public sub_020181C4
-.public sub_020AF558
-.public sub_020AF56C
-.public sub_020AF590
-.public sub_020D5124
-.public sub_020E1F6C
+.public NNS_G3dGlbLightColor
+.public NNS_G3dGlbMaterialColorDiffAmb
+.public NNS_G3dGlbMaterialColorSpecEmi
+.public memset
+.public _s32_div_f
 .public ov70_0226C4CC
 .public ov70_0226C4E8
 .public ov70_0226C50C

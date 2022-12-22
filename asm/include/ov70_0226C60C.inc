@@ -1,7 +1,7 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020AF558
+.public NNS_G3dGlbLightColor
 .public ov66_0222E084
 .public ov66_0222E120
 .public ov66_0222E12C

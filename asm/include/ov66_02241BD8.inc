@@ -1,9 +1,9 @@
-.public sub_020CC218
-.public sub_020D3DA0
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020D5190
-.public sub_020D7350
+.public RTC_ConvertDateTimeToSecond
+.public abort
+.public memcpy
+.public memset
+.public memcmp
+.public printf
 .public sub_020DFBDC
 .public ov4_021D77C4
 .public ov4_021D806C

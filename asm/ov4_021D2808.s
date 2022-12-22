@@ -9,12 +9,12 @@
 	thumb_func_start ov4_021D2808
 ov4_021D2808: ; 0x021D2808
 	push {r3, r4, r5, lr}
-	bl sub_020CA638
-	bl sub_020CACD0
+	bl MIC_Init
+	bl PM_Init
 	mov r0, #1
-	bl sub_020CB240
+	bl PM_SetAmp
 	mov r0, #3
-	bl sub_020CB284
+	bl PM_SetAmpGain
 	ldr r0, _021D2898 ; =0x0221A404
 	mov r2, #0
 	ldr r1, [r0, #4]
@@ -51,12 +51,12 @@ _021D284A:
 	str r1, [r2, r0]
 	mov r0, #1
 	blx ov4_02202E80
-	bl sub_020B799C
+	bl NNS_SndInit
 	ldr r0, _021D2898 ; =0x0221A404
 	ldr r1, [r0, #4]
 	ldr r0, _021D28A8 ; =0x000019F8
 	add r0, r1, r0
-	bl sub_020B8934
+	bl NNS_SndStrmInit
 	ldr r1, _021D2898 ; =0x0221A404
 	mov r0, #0
 	ldr r2, [r1, #4]
@@ -64,7 +64,7 @@ _021D284A:
 	add r1, r2, r1
 	mov r2, #0x22
 	lsl r2, r2, #6
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _021D2898 ; =0x0221A404
 	mov r1, #0
 	str r1, [r0, #0]
@@ -102,7 +102,7 @@ _021D28C8:
 	ldr r0, [r4, #0]
 	mov r1, #0
 	add r2, r6, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r7, r7, #1
 	add r4, r4, #4
 	cmp r7, r5
@@ -119,14 +119,14 @@ _021D28DC:
 	add r0, r0, r1
 	ldr r1, _021D2960 ; =ov4_021D28B0
 	mov r2, #0
-	bl sub_020CA760
+	bl MIC_StartAutoSamplingAsync
 	ldr r1, _021D2958 ; =0x0221A404
 	mov r0, #0
 	ldr r2, [r1, #4]
 	ldr r1, _021D295C ; =0x00001A59
 	strb r0, [r2, r1]
 _021D28FE:
-	bl sub_020CA958
+	bl MIC_GetLastSamplingAddress
 	sub r0, r0, r7
 	cmp r0, r6
 	bhs _021D290A
@@ -413,7 +413,7 @@ _021D2B24: .word 0x00001A54
 	thumb_func_start ov4_021D2B28
 ov4_021D2B28: ; 0x021D2B28
 	push {r4, r5, r6, lr}
-	bl sub_020C3880
+	bl OS_GetTick
 	add r4, r0, #0
 	ldr r0, _021D2C58 ; =0x0221A404
 	add r5, r1, #0
@@ -423,7 +423,7 @@ ov4_021D2B28: ; 0x021D2B28
 	lsl r0, r0, #8
 	mul r0, r1
 	ldr r1, _021D2C5C ; =0x000082EA
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _021D2C58 ; =0x0221A404
 	ldr r3, _021D2C60 ; =0x0000411A
 	ldr r2, [r1, #0]
@@ -479,19 +479,19 @@ _021D2BA2: ; jump table
 	.short _021D2BC2 - _021D2BA2 - 2 ; case 3
 _021D2BAA:
 	mov r0, #3
-	bl sub_020CB284
+	bl PM_SetAmpGain
 	b _021D2BC8
 _021D2BB2:
 	mov r0, #2
-	bl sub_020CB284
+	bl PM_SetAmpGain
 	b _021D2BC8
 _021D2BBA:
 	mov r0, #1
-	bl sub_020CB284
+	bl PM_SetAmpGain
 	b _021D2BC8
 _021D2BC2:
 	mov r0, #0
-	bl sub_020CB284
+	bl PM_SetAmpGain
 _021D2BC8:
 	ldr r0, _021D2C58 ; =0x0221A404
 	mov r2, #0
@@ -611,7 +611,7 @@ ov4_021D2C98: ; 0x021D2C98
 	str r0, [r5, #0]
 	mov r1, #0
 	add r2, r4, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [r5, #0]
 	mov r0, #0x1f
 	add r1, #0x1f
@@ -715,13 +715,13 @@ _021D2D2C:
 	ldr r0, [r3, #4]
 	add r0, r0, r2
 	add r2, sp, #0x14
-	bl sub_020B89AC
+	bl NNS_SndStrmAllocChannel
 	ldr r0, _021D2E54 ; =0x0221A404
 	ldr r1, [r0, #4]
 	ldr r0, _021D2E68 ; =0x000019F8
 	add r0, r1, r0
 	add r1, r7, #0
-	bl sub_020B8C44
+	bl NNS_SndStrmSetVolume
 	ldr r0, _021D2E54 ; =0x0221A404
 	ldr r3, _021D2E6C ; =0x0000088C
 	ldr r2, [r0, #4]
@@ -737,7 +737,7 @@ _021D2D2C:
 	add r0, r2, r0
 	add r2, r2, r3
 	sub r3, #0xc
-	bl sub_020B8A34
+	bl NNS_SndStrmSetup
 	ldr r1, _021D2E54 ; =0x0221A404
 	ldr r0, _021D2E74 ; =0x000019EC
 	ldr r2, [r1, #4]
@@ -835,14 +835,14 @@ _021D2E88: .word 0x000019F0
 	thumb_func_start ov4_021D2E8C
 ov4_021D2E8C: ; 0x021D2E8C
 	ldr r0, _021D2E98 ; =0x0221A404
-	ldr r3, _021D2E9C ; =sub_020B8BD4
+	ldr r3, _021D2E9C ; =NNS_SndStrmStart
 	ldr r1, [r0, #4]
 	ldr r0, _021D2EA0 ; =0x000019F8
 	add r0, r1, r0
 	bx r3
 	; .align 2, 0
 _021D2E98: .word 0x0221A404
-_021D2E9C: .word sub_020B8BD4
+_021D2E9C: .word NNS_SndStrmStart
 _021D2EA0: .word 0x000019F8
 	thumb_func_end ov4_021D2E8C
 
@@ -909,17 +909,17 @@ ov4_021D2F08: ; 0x021D2F08
 	beq _021D2F64
 	ldr r0, _021D2F6C ; =0x0000198C
 	ldr r4, [r1, r0]
-	bl sub_020CA920
+	bl MIC_StopAutoSampling
 	ldr r0, _021D2F68 ; =0x0221A404
 	ldr r1, [r0, #4]
 	ldr r0, _021D2F70 ; =0x000019F8
 	add r0, r1, r0
-	bl sub_020B8C28
+	bl NNS_SndStrmStop
 	ldr r0, _021D2F68 ; =0x0221A404
 	ldr r1, [r0, #4]
 	ldr r0, _021D2F70 ; =0x000019F8
 	add r0, r1, r0
-	bl sub_020B8A0C
+	bl NNS_SndStrmFreeChannel
 	blx ov4_02205AC0
 	ldr r0, _021D2F68 ; =0x0221A404
 	ldr r1, _021D2F74 ; =0x00000888

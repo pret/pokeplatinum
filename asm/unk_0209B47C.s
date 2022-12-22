@@ -14,13 +14,13 @@ sub_0209B47C: ; 0x0209B47C
 	ldr r2, [r3, r1]
 	orr r0, r2
 	str r0, [r3, r1]
-	ldr r3, _0209B498 ; =sub_020C458C
+	ldr r3, _0209B498 ; =MI_WaitDma
 	mov r0, #3
 	bx r3
 	nop
 _0209B490: .word 0x027E0000
 _0209B494: .word 0x00003FF8
-_0209B498: .word sub_020C458C
+_0209B498: .word MI_WaitDma
 	thumb_func_end sub_0209B47C
 
 	thumb_func_start sub_0209B49C
@@ -36,15 +36,15 @@ _0209B4AA:
 	mov r1, #1
 	str r1, [r0, #0]
 	mov r0, #0
-	bl sub_020C2EAC
+	bl OS_GetInitArenaHi
 	add r1, r0, #0
 	mov r0, #0
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #0
-	bl sub_020C2F90
+	bl OS_GetInitArenaLo
 	add r1, r0, #0
 	mov r0, #0
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	mov r1, #1
 	ldr r0, _0209B6B0 ; =0x020F8B84
 	add r2, r1, #0
@@ -57,12 +57,12 @@ _0209B4AA:
 	mov r1, #0
 	bl sub_0200F344
 	mov r0, #1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r1, _0209B6B4 ; =sub_0209B47C
 	mov r0, #1
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #1
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, #0
 	add r1, r0, #0
 	bl sub_02017798
@@ -202,7 +202,7 @@ _0209B63C:
 	bne _0209B656
 	add r0, r4, #0
 	add r1, r4, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	b _0209B63C
 _0209B656:
 	ldr r5, _0209B6E8 ; =0x04000130
@@ -223,7 +223,7 @@ _0209B65E:
 	bne _0209B680
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	b _0209B65E
 _0209B680:
 	ldr r1, _0209B6F4 ; =0x00007FFF
@@ -239,7 +239,7 @@ _0209B680:
 	ldr r0, [sp, #0x10]
 	bl sub_020181C4
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 _0209B6A8:
 	add sp, #0x24
 	pop {r4, r5, r6, r7, pc}

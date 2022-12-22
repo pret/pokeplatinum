@@ -132,7 +132,7 @@ ov4_021E8298: ; 0x021E8298
 	movne r0, #0xd
 	ldmia sp!, {r4, pc}
 _021E82D0:
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r3, [r4, #0xcb0]
 	ldr r2, [r4, #0xcb4]
 	subs r3, r0, r3
@@ -142,7 +142,7 @@ _021E82D0:
 	orr r1, r1, r3, lsr #26
 	mov r0, r3, lsl #6
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	cmp r1, #0
 	cmpeq r0, #0xa
 	movlo r0, #0xc
@@ -239,7 +239,7 @@ ov4_021E8404: ; 0x021E8404
 	ldr r0, _021E84C0 ; =0x022158E8
 	mov r1, r4
 	mov r2, #0x58
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r6, #0]
 	str r0, [r4, #4]
 	ldr r0, [r6, #4]

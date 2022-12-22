@@ -19,9 +19,9 @@
 .public sub_0209BC64
 .public sub_0209BD68
 .public sub_0209BDB0
-.public sub_020C4BB8
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MIi_CpuClearFast
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov104_02239D1C
 .public ov104_02239F38
 .public ov104_02239FB0

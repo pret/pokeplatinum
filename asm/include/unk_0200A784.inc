@@ -12,7 +12,7 @@
 .public sub_02022974
 .public sub_020230AC
 .public sub_020230F0
-.public sub_020A7A04
-.public sub_020A7C50
-.public sub_020A7D34
-.public sub_020A8124
+.public NNS_G2dGetNewOamManagerInstance
+.public NNS_G2dEntryOamManagerOamWithAffineIdx
+.public NNS_G2dEntryOamManagerAffine
+.public NNS_G2dApplyAndResetOamManagerBuffer

@@ -138,7 +138,7 @@ _021E69F8:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r7, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
@@ -328,7 +328,7 @@ _021E6B44:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020D753C
-sub_020D753C: ; 0x020D753C
+	arm_func_start qsort
+qsort: ; 0x020D753C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10
 	mov sb, r1
@@ -105,4 +105,4 @@ _020D768C:
 	b _020D7594
 _020D7698:
 	.byte 0x10, 0xD0, 0x8D, 0xE2, 0xF8, 0x8F, 0xBD, 0xE8
-	arm_func_end sub_020D753C
+	arm_func_end qsort

@@ -74,9 +74,9 @@
 .public sub_0207D268
 .public sub_0207D2D0
 .public sub_0209304C
-.public sub_020C4BB8
-.public sub_020E1F6C
-.public sub_020E2178
+.public MIi_CpuClearFast
+.public _s32_div_f
+.public _u32_div_f
 .public ov5_021E622C
 .public ov5_021E6238
 .public ov5_021E6270

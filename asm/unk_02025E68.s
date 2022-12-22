@@ -26,11 +26,11 @@ sub_02025E6C: ; 0x02025E6C
 
 	thumb_func_start sub_02025E80
 sub_02025E80: ; 0x02025E80
-	ldr r3, _02025E88 ; =sub_020C4DB0
+	ldr r3, _02025E88 ; =MI_CpuCopy8
 	mov r2, #0x20
 	bx r3
 	nop
-_02025E88: .word sub_020C4DB0
+_02025E88: .word MI_CpuCopy8
 	thumb_func_end sub_02025E80
 
 	thumb_func_start sub_02025E8C
@@ -39,7 +39,7 @@ sub_02025E8C: ; 0x02025E8C
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #2
 	strb r0, [r4, #0x19]
 	add r0, r4, #0

@@ -522,7 +522,7 @@ _022304F6:
 	mov r1, #3
 	mov r7, #0
 	add r5, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r0, r0, #0x18
 	str r0, [sp, #0x1c]
@@ -1507,7 +1507,7 @@ _02230C86:
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D250
@@ -1524,7 +1524,7 @@ _02230C86:
 	lsl r1, r1, #2
 	add r0, #0x20
 	str r0, [r4, #0x20]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0x20]
 	ldr r0, [r4, #0]
 	ldr r1, [sp, #0x24]
@@ -1569,7 +1569,7 @@ _02230CEC:
 	mov r0, #0x14
 	ldrsh r0, [r4, r0]
 	ldr r1, [r4, #0x24]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0x14]
 	ldr r0, [r4, #0x28]
 	add r0, r0, #1
@@ -1648,7 +1648,7 @@ _02230DAE:
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D250
@@ -1680,7 +1680,7 @@ _02230E04:
 	mov r1, #0x5a
 	ldr r0, [r4, #0x20]
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0x20]
 	ldr r0, [r4, #0]
 	ldr r1, [sp, #0x14]
@@ -1696,11 +1696,11 @@ _02230E26:
 	blt _02230E58
 	ldr r0, [r4, #0x10]
 	ldr r1, _02230E64 ; =0x3DCCCCCD
-	bl sub_020E1108
+	bl _f_fgt
 	bls _02230E58
 	ldr r0, [r4, #0x10]
 	ldr r1, _02230E64 ; =0x3DCCCCCD
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [r4, #0x10]
 	mov r2, #0xfe
 	ldr r0, [r4, #0]
@@ -2538,14 +2538,14 @@ ov62_022314F0: ; 0x022314F0
 	ldr r0, _02231558 ; =0x04000050
 	ldr r3, [r5, #0]
 	add r2, r7, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, [r4, #0]
 	ldr r1, [sp, #0x18]
 	str r0, [sp]
 	ldr r0, _0223155C ; =0x04001050
 	ldr r2, [sp, #0x1c]
 	ldr r3, [r5, #0]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _02231528:
 	ldr r0, [sp, #0x20]
 	cmp r0, #1
@@ -2556,7 +2556,7 @@ _02231528:
 	ldr r0, _02231558 ; =0x04000050
 	ldr r3, [r5, #0]
 	add r2, r7, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _0223153E:
 	ldr r0, [sp, #0x20]
 	cmp r0, #2
@@ -2567,7 +2567,7 @@ _0223153E:
 	ldr r0, _0223155C ; =0x04001050
 	ldr r2, [sp, #0x1c]
 	ldr r3, [r5, #0]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _02231554:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -2591,14 +2591,14 @@ ov62_02231560: ; 0x02231560
 	ldr r0, _022315C0 ; =0x04000050
 	ldr r3, [r5, #0]
 	add r2, r7, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, [r4, #0]
 	ldr r1, [sp, #0x18]
 	str r0, [sp]
 	ldr r0, _022315C4 ; =0x04001050
 	ldr r2, [sp, #0x1c]
 	ldr r3, [r5, #0]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _02231590:
 	ldr r0, [sp, #0x20]
 	cmp r0, #1
@@ -2609,7 +2609,7 @@ _02231590:
 	ldr r0, _022315C0 ; =0x04000050
 	ldr r3, [r5, #0]
 	add r2, r7, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _022315A6:
 	ldr r0, [sp, #0x20]
 	cmp r0, #2
@@ -2620,7 +2620,7 @@ _022315A6:
 	ldr r0, _022315C4 ; =0x04001050
 	ldr r2, [sp, #0x1c]
 	ldr r3, [r5, #0]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _022315BC:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop

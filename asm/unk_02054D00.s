@@ -946,7 +946,7 @@ sub_020553A4: ; 0x020553A4
 	add r5, r0, #0
 	add r6, r1, #0
 	str r2, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r1, r1, #0x10
 	lsr r1, r1, #0x10
 	ldr r0, [r4, #0]
@@ -955,7 +955,7 @@ sub_020553A4: ; 0x020553A4
 	str r0, [r4, #0]
 	add r0, r5, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	ldr r1, [r4, #8]

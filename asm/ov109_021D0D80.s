@@ -34,7 +34,7 @@ ov109_021D0D80: ; 0x021D0D80
 	ldr r2, _021D0EA8 ; =0x00000DCC
 	add r6, r0, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	str r6, [r4, #0x38]
 	add r0, #0xcc
@@ -750,7 +750,7 @@ _021D12C6:
 	add r0, r0, #1
 	str r0, [r4, #0x10]
 	ldr r1, [r4, #0x14]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0x10]
 	ldr r0, [r4, #0]
 	add r1, r0, #1
@@ -1517,7 +1517,7 @@ _021D1868:
 	ldr r7, [r5, #0x30]
 	add r0, r4, #1
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r6, #1
 	add r4, r1, #0
 	cmp r6, r7
@@ -1625,7 +1625,7 @@ _021D1938:
 	bl sub_0201D2E8
 	sub r1, r7, r4
 	add r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, _021D19A0 ; =0x021D5BE4
 	add r4, r4, r1
 	ldr r0, [r0, r6]
@@ -2081,18 +2081,18 @@ ov109_021D1C90: ; 0x021D1C90
 	ldr r2, _021D1CE4 ; =0xFFFFF000
 	add r1, r0, #0
 	add r3, r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1CE8 ; =0x00007FFF
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D1CE8 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D1CE8 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	add r0, r4, #0
 	bl ov109_021D2AC8
 	add r0, r4, #0
@@ -2206,7 +2206,7 @@ ov109_021D1D10: ; 0x021D1D10
 	mov r1, #4
 	mov r2, #0x28
 	mov r3, #0xb
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -2255,8 +2255,8 @@ ov109_021D1E1C: ; 0x021D1E1C
 	push {r3, r4, lr}
 	sub sp, #4
 	add r4, r0, #0
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _021D1EAC ; =0x04000060
 	ldr r1, _021D1EB0 ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -2298,13 +2298,13 @@ _021D1E6A:
 	mov r0, #0xda
 	lsl r0, r0, #4
 	add r0, r4, r0
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	ldr r0, _021D1EBC ; =0x00007FFF
 	mov r1, #0
 	add r2, r0, #0
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D1EC0 ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -2312,11 +2312,11 @@ _021D1E6A:
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -2481,7 +2481,7 @@ ov109_021D2004: ; 0x021D2004
 	lsl r1, r1, #4
 	add r1, r4, r1
 	add r5, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r0, #0x40
 	mov r2, #0
 	ldr r1, _021D21F0 ; =0x00000D9C
@@ -2502,7 +2502,7 @@ ov109_021D2004: ; 0x021D2004
 	lsl r1, r1, #4
 	add r1, r4, r1
 	add r5, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r0, #0x40
 	ldr r1, _021D21F0 ; =0x00000D9C
 	str r0, [sp]
@@ -2530,7 +2530,7 @@ ov109_021D2004: ; 0x021D2004
 	ldr r1, _021D21F8 ; =0x00000D8C
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, _021D21F8 ; =0x00000D8C
 	mov r1, #0
 	ldr r3, [r4, r0]
@@ -2550,7 +2550,7 @@ ov109_021D2004: ; 0x021D2004
 	add r5, r0, #0
 	ldr r1, _021D21F8 ; =0x00000D8C
 	add r1, r4, r1
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, _021D21F8 ; =0x00000D8C
 	mov r1, #0
 	ldr r3, [r4, r0]
@@ -2570,7 +2570,7 @@ ov109_021D2004: ; 0x021D2004
 	ldr r1, _021D21F8 ; =0x00000D8C
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, _021D21F8 ; =0x00000D8C
 	mov r1, #0
 	ldr r3, [r4, r0]
@@ -2590,7 +2590,7 @@ ov109_021D2004: ; 0x021D2004
 	ldr r1, _021D21FC ; =0x00000D88
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _021D21FC ; =0x00000D88
 	mov r1, #2
 	ldr r3, [r4, r0]
@@ -2613,7 +2613,7 @@ ov109_021D2004: ; 0x021D2004
 	ldr r1, _021D21FC ; =0x00000D88
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _021D21FC ; =0x00000D88
 	mov r1, #3
 	ldr r3, [r4, r0]
@@ -2636,7 +2636,7 @@ ov109_021D2004: ; 0x021D2004
 	ldr r1, _021D21FC ; =0x00000D88
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _021D21FC ; =0x00000D88
 	mov r1, #6
 	ldr r3, [r4, r0]
@@ -2659,7 +2659,7 @@ ov109_021D2004: ; 0x021D2004
 	ldr r1, _021D21FC ; =0x00000D88
 	add r5, r0, #0
 	add r1, r4, r1
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _021D21FC ; =0x00000D88
 	mov r1, #7
 	ldr r3, [r4, r0]
@@ -2725,7 +2725,7 @@ ov109_021D2248: ; 0x021D2248
 	ldr r1, _021D2284 ; =0x00000D88
 	add r4, r0, #0
 	add r1, r5, r1
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _021D2284 ; =0x00000D88
 	mov r1, #6
 	ldr r3, [r5, r0]
@@ -3004,7 +3004,7 @@ ov109_021D2408: ; 0x021D2408
 	bl sub_020394A8
 	add r1, sp, #0x18
 	add r4, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r0, #0x20
 	str r0, [sp]
 	ldr r1, [sp, #0x18]
@@ -3763,7 +3763,7 @@ ov109_021D2A68: ; 0x021D2A68
 	asr r0, r0, #0xc
 	lsl r1, r1, #2
 	sub r0, r1, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, #0
 	add r0, #0x4e
 	strh r1, [r0]
@@ -4721,7 +4721,7 @@ _021D3166:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 _021D317A:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -4760,7 +4760,7 @@ ov109_021D31A8: ; 0x021D31A8
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0xa0
-	bl sub_020D5124
+	bl memset
 	mov r2, #1
 	ldr r0, _021D31DC ; =ov109_021D3180
 	add r1, r4, #0
@@ -4944,7 +4944,7 @@ ov109_021D32DC: ; 0x021D32DC
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x64
-	bl sub_020D5124
+	bl memset
 	ldr r0, _021D330C ; =ov109_021D32B8
 	ldr r2, _021D3310 ; =0x00000101
 	add r1, r4, #0
@@ -5116,7 +5116,7 @@ ov109_021D3414: ; 0x021D3414
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x78
-	bl sub_020D5124
+	bl memset
 	ldr r0, _021D3444 ; =ov109_021D33F0
 	ldr r2, _021D3448 ; =0x00000102
 	add r1, r4, #0
@@ -5746,7 +5746,7 @@ ov109_021D3884: ; 0x021D3884
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0x50
-	bl sub_020D5124
+	bl memset
 	mov r2, #0x41
 	ldr r0, _021D38B4 ; =ov109_021D3864
 	add r1, r4, #0
@@ -5943,7 +5943,7 @@ _021D39EC:
 	mov r1, #0x5a
 	ldr r0, [r4, #0]
 	lsl r1, r1, #0xe
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 	pop {r4, pc}
 	; .align 2, 0
@@ -6055,7 +6055,7 @@ _021D3AA0:
 	add r0, #0xac
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	add r4, #0xac
 	add r0, r4, #0
 	pop {r4, pc}

@@ -8,8 +8,8 @@
 .public sub_0201D15C
 .public sub_02079D8C
 .public sub_02079EDC
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f
 .public ov25_02254444
 .public ov25_02254664
 .public ov25_02254674

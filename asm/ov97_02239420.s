@@ -53,7 +53,7 @@ ov97_02239498: ; 0x02239498
 	add r0, sp, #0
 	mov r1, ip
 	mov r4, r3
-	bl sub_020D3068
+	bl MATH_CalcSHA1
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, r4
@@ -564,7 +564,7 @@ _02239BBC:
 	ldrb r0, [r0, #3]
 	str r0, [sp, #0x10]
 	add r0, r1, #0x3f
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp, #0x34]
 	mov r4, r0
 	add r0, r1, #4
@@ -826,7 +826,7 @@ _02239FD4:
 	ldr r0, [r0, r2, lsl #2]
 	mov r1, r8
 	mov r2, sl, lsl #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	cmp sb, #0
 	beq _0223A1AC
 	mov r0, #0xff
@@ -1306,7 +1306,7 @@ _0223A690:
 	beq _0223A6AC
 	mov r0, sl
 	mov r1, r7
-	bl sub_020E2178
+	bl _u32_div_f
 _0223A6AC:
 	mul ip, r0, r7
 	mul r3, r0, r6
@@ -1860,7 +1860,7 @@ ov97_0223ADFC: ; 0x0223ADFC
 	sub r0, r0, #1
 	str r2, [sp, #4]
 	mov r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov ip, #0
 	mov r0, r0, lsl #1
 	add r0, r0, #2
@@ -2083,7 +2083,7 @@ ov97_0223B148: ; 0x0223B148
 	mov sl, r0
 	mov r1, sl
 	rsb r0, sl, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	movs r8, r1
 	mov r7, sl
 	mov r5, #0
@@ -2093,11 +2093,11 @@ ov97_0223B148: ; 0x0223B148
 _0223B174:
 	mov r0, r7
 	mov r1, r8
-	bl sub_020E2178
+	bl _u32_div_f
 	mov sb, r1
 	mov r0, r7
 	mov r1, r8
-	bl sub_020E2178
+	bl _u32_div_f
 	mla r1, r0, r6, r5
 	mov r5, r6
 	mov r7, r8
@@ -2114,7 +2114,7 @@ _0223B1B0:
 	bne _0223B1D0
 	mov r0, r5
 	mov r1, sl
-	bl sub_020E2178
+	bl _u32_div_f
 _0223B1D0:
 	mov r0, r1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
@@ -3627,7 +3627,7 @@ _0223C6A8:
 _0223C6D0:
 	mov r2, r6, lsl #2
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [r4, #4]
 	mov r0, r5
 	add r1, r1, r6
@@ -4400,7 +4400,7 @@ ov97_0223D198: ; 0x0223D198
 	ldr r2, [r4, #8]
 	mov r1, #0
 	mov r2, r2, lsl #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _0223D1BC:
 	mov r0, #0
 	str r0, [r4, #4]
@@ -4434,7 +4434,7 @@ _0223D204:
 	ldr r0, [r4, #0]
 	ldr r1, [r5, #0]
 	mov r2, r2, lsl #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r4, #4]
 	str r0, [r5, #4]
 	ldr r0, [r5, #4]
@@ -4479,7 +4479,7 @@ ov97_0223D268: ; 0x0223D268
 	ldr r2, [r5, #4]
 	mov r1, r6
 	mov r2, r2, lsl #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r5, #0]
 	bl ov97_0223D5E4
 _0223D2D4:
@@ -4520,7 +4520,7 @@ ov97_0223D330: ; 0x0223D330
 	mov r1, #0
 	mov r2, #0x110
 	mov r4, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [r4, #0]
 	str r0, [r4, #0x108]
@@ -4570,12 +4570,12 @@ ov97_0223D38C: ; 0x0223D38C
 
 	arm_func_start ov97_0223D3D8
 ov97_0223D3D8: ; 0x0223D3D8
-	ldr ip, _0223D3E8 ; =sub_020C4CF4
+	ldr ip, _0223D3E8 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x14
 	bx ip
 	; .align 2, 0
-_0223D3E8: .word sub_020C4CF4
+_0223D3E8: .word MI_CpuFill8
 	arm_func_end ov97_0223D3D8
 
 	arm_func_start ov97_0223D3EC
@@ -4756,7 +4756,7 @@ ov97_0223D5E4: ; 0x0223D5E4
 _0223D610:
 	mov r0, #0
 	mvn r1, #0
-	bl sub_020C331C
+	bl OS_FreeToHeap
 	add sp, sp, #4
 	ldmia sp!, {lr}
 	bx lr
@@ -4780,7 +4780,7 @@ ov97_0223D62C: ; 0x0223D62C
 _0223D658:
 	mov r0, #0
 	mvn r1, #0
-	bl sub_020C3214
+	bl OS_AllocFromHeap
 	add sp, sp, #4
 	ldmia sp!, {lr}
 	bx lr

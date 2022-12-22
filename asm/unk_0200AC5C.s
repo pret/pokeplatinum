@@ -180,11 +180,11 @@ sub_0200AD98: ; 0x0200AD98
 	add r0, r1, #0
 	add r1, r3, #0
 	ldr r2, [r2, #4]
-	ldr r3, _0200ADA8 ; =sub_020C4B18
+	ldr r3, _0200ADA8 ; =MIi_CpuCopy16
 	lsl r2, r2, #1
 	bx r3
 	nop
-_0200ADA8: .word sub_020C4B18
+_0200ADA8: .word MIi_CpuCopy16
 	thumb_func_end sub_0200AD98
 
 	thumb_func_start sub_0200ADAC
@@ -230,7 +230,7 @@ sub_0200ADAC: ; 0x0200ADAC
 	ldr r2, [sp, #4]
 	add r0, r5, r0
 	add r1, r7, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, _0200AE54 ; =0x00091BD3
 	add r2, r4, #1
 	mul r1, r2
@@ -318,7 +318,7 @@ sub_0200AE5C: ; 0x0200AE5C
 	ldr r2, [sp, #4]
 	add r0, r5, r0
 	add r1, r7, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, _0200AF18 ; =0x00091BD3
 	add r2, r4, #1
 	mul r1, r2

@@ -1,5 +1,5 @@
-.public sub_020C3E08
-.public sub_020CB218
+.public OS_SpinWait
+.public PM_ForceToPowerOff
 .public ov18_0222B034
 .public ov18_0222B048
 .public ov18_0222B0A8

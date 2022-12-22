@@ -1143,13 +1143,13 @@ sub_020100E0: ; 0x020100E0
 	ldr r2, _020100F4 ; =0x020F983C
 	add r1, r1, #1
 	lsl r1, r1, #1
-	ldr r3, _020100F8 ; =sub_020BCFD0
+	ldr r3, _020100F8 ; =FX_Div
 	ldrsh r0, [r2, r0]
 	ldrsh r1, [r2, r1]
 	bx r3
 	; .align 2, 0
 _020100F4: .word 0x020F983C
-_020100F8: .word sub_020BCFD0
+_020100F8: .word FX_Div
 	thumb_func_end sub_020100E0
 
 	thumb_func_start sub_020100FC
@@ -1160,7 +1160,7 @@ sub_020100FC: ; 0x020100FC
 	lsl r2, r4, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1195,7 +1195,7 @@ _02010142:
 	ldr r1, [sp, #4]
 	asr r3, r4, #0x1f
 	add r2, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r0, r0, r2
@@ -1229,19 +1229,19 @@ sub_02010178: ; 0x02010178
 	add r0, r4, r0
 	asr r0, r0, #1
 	lsl r0, r0, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	pop {r4, pc}
 	thumb_func_end sub_02010178
 
 	thumb_func_start sub_02010190
 sub_02010190: ; 0x02010190
-	ldr r3, _0201019C ; =sub_020E1F6C
+	ldr r3, _0201019C ; =_s32_div_f
 	sub r0, r1, r0
 	lsl r0, r0, #7
 	add r1, r2, #0
 	bx r3
 	nop
-_0201019C: .word sub_020E1F6C
+_0201019C: .word _s32_div_f
 	thumb_func_end sub_02010190
 
 	thumb_func_start sub_020101A0
@@ -1893,7 +1893,7 @@ _02010638:
 	bl sub_02010604
 	add r1, r0, r6
 	add r2, r7, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [r5, #4]
 	add r4, r4, #1
 	cmp r4, r0
@@ -2020,7 +2020,7 @@ sub_02010728: ; 0x02010728
 	lsl r2, r2, #2
 	add r5, r0, #0
 	add r7, r3, #0
-	bl sub_020D5124
+	bl memset
 	cmp r4, #1
 	bne _02010752
 	mov r0, #6
@@ -2100,7 +2100,7 @@ _020107BA:
 	add r0, #0xc0
 	add r1, r5, #0
 	add r2, r7, #0
-	bl sub_020D50B8
+	bl memcpy
 	add r4, r4, #1
 	add r5, r5, r6
 	cmp r4, #2
@@ -3363,14 +3363,14 @@ _02011112:
 	asr r1, r0, #0x1f
 	add r2, r0, #0
 	add r3, r1, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #8]
 	ldr r0, [sp, #4]
 	add r6, r1, #0
 	add r1, r7, #0
 	add r2, r0, #0
 	add r3, r7, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	add r3, r1, #0
 	mov r0, #2
@@ -3390,7 +3390,7 @@ _02011112:
 	lsr r2, r2, #0xc
 	orr r2, r1
 	sub r0, r0, r2
-	bl sub_020BCFF0
+	bl FX_Sqrt
 	asr r2, r0, #0xc
 	ldr r0, [sp]
 	sub r0, r0, r2
@@ -3835,7 +3835,7 @@ sub_02011494: ; 0x02011494
 	add r1, r2, #0
 	ldr r6, [sp, #0x38]
 	ldr r7, [sp, #0x3c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x20]
 	ldrb r1, [r4, #4]
 	ldr r3, [sp, #0x44]
@@ -3981,7 +3981,7 @@ sub_020115B8: ; 0x020115B8
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -3993,7 +3993,7 @@ sub_020115B8: ; 0x020115B8
 	asr r7, r1, #0xc
 	lsl r0, r7, #1
 	mov r1, #0x15
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r0, #1
 	lsl r0, r0, #1
 	mov r1, #0xb4
@@ -4001,7 +4001,7 @@ sub_020115B8: ; 0x020115B8
 	ldr r0, _0201169C ; =0x0000FFFF
 	add r1, #0xb4
 	mul r0, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsr r1, r0, #0x1f
 	add r1, r0, r1
 	asr r4, r1, #1
@@ -4352,7 +4352,7 @@ sub_020118AC: ; 0x020118AC
 	lsl r2, r2, #8
 	add r0, r0, r2
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r6, #0x10]
 	sub r4, r0, #1
 	bmi _020118DE
@@ -4457,7 +4457,7 @@ sub_02011960: ; 0x02011960
 	str r0, [r5, #0x14]
 	mov r1, #0
 	mov r2, #0x38
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0x10]
 	add r1, r4, #0
 	str r0, [sp]
@@ -4704,7 +4704,7 @@ sub_02011B58: ; 0x02011B58
 	str r0, [sp]
 	ldr r0, [r0, #0xc]
 	ldr r1, _02011C78 ; =0x00003FFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	str r0, [sp, #4]
@@ -4858,7 +4858,7 @@ sub_02011C7C: ; 0x02011C7C
 	add r0, r3, #0
 	mul r0, r1
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]
@@ -4877,7 +4877,7 @@ sub_02011C94: ; 0x02011C94
 	str r0, [r5, #0x14]
 	mov r1, #0
 	mov r2, #0x38
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0x10]
 	add r1, r4, #0
 	str r0, [sp]
@@ -5208,7 +5208,7 @@ sub_02011F2C: ; 0x02011F2C
 	add r0, r3, #0
 	mul r0, r1
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]
@@ -5229,7 +5229,7 @@ sub_02011F44: ; 0x02011F44
 	str r0, [r5, #0x14]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0x10]
 	add r1, r4, #0
 	str r0, [sp]
@@ -5323,23 +5323,23 @@ sub_02011FE8: ; 0x02011FE8
 	add r0, r5, #0
 	mov r1, #1
 	mov r2, #0xc0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r0, #0xc0
 	mov r1, #1
 	mov r2, #0xc0
-	bl sub_020D5124
+	bl memset
 	b _02012038
 _02012022:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0xc0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r0, #0xc0
 	mov r1, #0
 	mov r2, #0xc0
-	bl sub_020D5124
+	bl memset
 _02012038:
 	mov r1, #0xc3
 	ldr r0, [r4, #0]
@@ -5521,7 +5521,7 @@ sub_02012174: ; 0x02012174
 	add r1, r3, #0
 	sub r0, r4, r6
 	mul r0, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r0, r6
 	cmp r6, r4
 	bhi _02012194
@@ -5575,7 +5575,7 @@ sub_020121C4: ; 0x020121C4
 	str r0, [r5, #0x14]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	ldrb r1, [r4, #0xb]
 	ldr r0, [r5, #0x14]
 	cmp r1, #0
@@ -5682,7 +5682,7 @@ sub_02012290: ; 0x02012290
 	add r7, r3, #0
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	mov r3, #0
@@ -5810,7 +5810,7 @@ sub_02012384: ; 0x02012384
 	add r7, r3, #0
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	mov r3, #0

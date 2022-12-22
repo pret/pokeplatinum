@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B5C14
-sub_020B5C14: ; 0x020B5C14
+	arm_func_start NNSi_G3dAnmObjInitNsBtp
+NNSi_G3dAnmObjInitNsBtp: ; 0x020B5C14
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	cmp r2, #0
@@ -26,7 +26,7 @@ sub_020B5C14: ; 0x020B5C14
 	str sb, [sl, #8]
 	ldrb r2, [sl, #0x19]
 	mov r2, r2, lsl #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrb r0, [sb, #0xd]
 	mov r6, #0
 	cmp r0, #0
@@ -54,7 +54,7 @@ _020B5CB0:
 	moveq r0, r4
 	beq _020B5CC4
 	add r0, r7, #4
-	bl sub_020B3AA4
+	bl NNS_G3dGetResDictIdxByName
 _020B5CC4:
 	cmp r0, #0
 	orrge r1, r6, #0x100
@@ -68,17 +68,17 @@ _020B5CC4:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020B5CEC: .word 0x02100ED8
-	arm_func_end sub_020B5C14
+	arm_func_end NNSi_G3dAnmObjInitNsBtp
 
-	arm_func_start sub_020B5CF0
-sub_020B5CF0: ; 0x020B5CF0
+	arm_func_start SetTexParamaters_
+SetTexParamaters_: ; 0x020B5CF0
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r2
 	moveq r0, #0
 	beq _020B5D0C
 	add r0, r5, #0x3c
-	bl sub_020B38E4
+	bl NNS_G3dGetResDataByName
 _020B5D0C:
 	ldr r1, [r0, #0]
 	ldr r3, [r4, #0x10]
@@ -114,7 +114,7 @@ _020B5D0C:
 	beq _020B5D98
 	mov r0, r3, lsl #0xc
 	mov r1, r1, lsl #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 _020B5D98:
 	str r0, [r4, #0x30]
 	ldrh r1, [r4, #0x2e]
@@ -123,17 +123,17 @@ _020B5D98:
 	beq _020B5DB8
 	mov r0, r5, lsl #0xc
 	mov r1, r1, lsl #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 _020B5DB8:
 	str r0, [r4, #0x34]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020B5DC0: .word 0x000007FF
 _020B5DC4: .word 0xC00F0000
-	arm_func_end sub_020B5CF0
+	arm_func_end SetTexParamaters_
 
-	arm_func_start sub_020B5DC8
-sub_020B5DC8: ; 0x020B5DC8
+	arm_func_start SetPlttParamaters_
+SetPlttParamaters_: ; 0x020B5DC8
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	ldrneh r0, [r5, #0x34]
@@ -142,7 +142,7 @@ sub_020B5DC8: ; 0x020B5DC8
 	moveq r0, #0
 	beq _020B5DEC
 	add r0, r5, r0
-	bl sub_020B38E4
+	bl NNS_G3dGetResDataByName
 _020B5DEC:
 	ldr r1, [r5, #0x2c]
 	ldrh r2, [r0, #2]
@@ -162,10 +162,10 @@ _020B5E24:
 	add r0, r0, r1
 	str r0, [r4, #0x14]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020B5DC8
+	arm_func_end SetPlttParamaters_
 
-	arm_func_start sub_020B5E30
-sub_020B5E30: ; 0x020B5E30
+	arm_func_start NNSi_G3dAnmCalcNsBtp
+NNSi_G3dAnmCalcNsBtp: ; 0x020B5E30
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r1
 	ldr r3, [r6, #0]
@@ -176,23 +176,23 @@ sub_020B5E30: ; 0x020B5E30
 	mov r0, r5
 	mov r1, r1, lsr #0x10
 	mov r2, r2, lsr #0x10
-	bl sub_020B3D10
+	bl NNSi_G3dGetTexPatAnmFV
 	mov r4, r0
 	ldrb r1, [r4, #2]
 	mov r0, r5
-	bl sub_020B3CB8
+	bl NNSi_G3dGetTexPatAnmTexNameByIdx
 	mov r1, r0
 	ldr r0, [r6, #0x14]
 	mov r2, r7
-	bl sub_020B5CF0
+	bl SetTexParamaters_
 	ldrb r1, [r4, #3]
 	cmp r1, #0xff
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r5
-	bl sub_020B3CE4
+	bl NNSi_G3dGetTexPatAnmPlttNameByIdx
 	mov r1, r0
 	ldr r0, [r6, #0x14]
 	mov r2, r7
-	bl sub_020B5DC8
+	bl SetPlttParamaters_
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020B5E30
+	arm_func_end NNSi_G3dAnmCalcNsBtp

@@ -16,13 +16,13 @@ sub_020507CC: ; 0x020507CC
 
 	thumb_func_start sub_020507D4
 sub_020507D4: ; 0x020507D4
-	ldr r3, _020507E0 ; =sub_020D5124
+	ldr r3, _020507E0 ; =memset
 	mov r2, #0xeb
 	mov r1, #0
 	lsl r2, r2, #2
 	bx r3
 	nop
-_020507E0: .word sub_020D5124
+_020507E0: .word memset
 	thumb_func_end sub_020507D4
 
 	thumb_func_start sub_020507E4

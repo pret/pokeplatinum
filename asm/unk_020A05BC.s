@@ -191,11 +191,11 @@ _020A0864:
 	strb r1, [r7, #0x2c]
 	ldrh r1, [r8, #0x24]
 	mov r1, r1, lsr #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r7, #0x28]
 	ldrh r1, [r8, #0x24]
 	ldr r0, _020A08D8 ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r7, #0x2a]
 	ldr r0, [sp, #0x20]
 	strb r0, [r7, #0x2d]
@@ -361,7 +361,7 @@ _020A0A8C:
 _020A0AF4:
 	ldr r0, [sp, #0x18]
 	ldr r1, [sp, #0xc]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp, #0x18]
 	mov r0, r0, asr #4
 	add r1, r1, #0x10000
@@ -515,7 +515,7 @@ _020A0D44:
 	add r0, sb, #0x84
 	add r1, sb, #0x8a
 	add r2, sp, #0x44
-	bl sub_020BD31C
+	bl VEC_Fx16CrossProduct
 	ldrsh r1, [sp, #0x46]
 	ldrsh r0, [sp, #0x48]
 	ldrsh r2, [sp, #0x44]
@@ -524,7 +524,7 @@ _020A0D44:
 	add r0, sp, #0x7c
 	add r1, r7, #8
 	str r2, [sp, #0x7c]
-	bl sub_020BD218
+	bl VEC_DotProduct
 	cmp r0, #0
 	bgt _020A0DAC
 	ldr r0, [r7, #8]
@@ -569,7 +569,7 @@ _020A0E14:
 	add r0, sb, #0x84
 	add r1, sb, #0x8a
 	add r2, sp, #0x4a
-	bl sub_020BD31C
+	bl VEC_Fx16CrossProduct
 	ldrsh r1, [sp, #0x4c]
 	ldrsh r0, [sp, #0x4e]
 	ldrsh r2, [sp, #0x4a]
@@ -578,7 +578,7 @@ _020A0E14:
 	add r0, sp, #0x88
 	add r1, r7, #8
 	str r2, [sp, #0x88]
-	bl sub_020BD218
+	bl VEC_DotProduct
 	cmp r0, #0
 	bge _020A0E7C
 	ldr r0, [r7, #8]
@@ -827,7 +827,7 @@ _020A10DC:
 	add r0, sp, #0xb8
 	add r1, sp, #0xac
 	str r2, [sp, #0xc0]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	b _020A1264
 _020A1228:
 	ldr r0, [r7, #8]
@@ -845,7 +845,7 @@ _020A1228:
 _020A1258:
 	add r0, r7, #8
 	add r1, sp, #0xac
-	bl sub_020BD3E4
+	bl VEC_Normalize
 _020A1264:
 	ldr r2, [sp, #0xac]
 	ldr r1, [sp, #0x10]
@@ -1030,7 +1030,7 @@ _020A14B4:
 	ldr r1, [sp, #4]
 	ldr sl, [r1, #0x10]
 	ldrb r1, [sl, #8]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldrb r0, [sl, r1]
 	strb r0, [r7, #0x2c]
 	b _020A1574
@@ -1053,11 +1053,11 @@ _020A1574:
 	ldr r0, _020A1604 ; =0x0000FFFF
 	ldr r1, [r1, #0]
 	ldrb r1, [r1, #0x48]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r7, #0x28]
 	ldrh r1, [r7, #0x24]
 	ldr r0, _020A1604 ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r7, #0x2a]
 	ldr r0, [sp, #0x40]
 	strb r0, [r7, #0x2d]
@@ -1099,10 +1099,10 @@ sub_020A1608: ; 0x020A1608
 	add r2, sp, #0
 	add r0, r4, #0x84
 	add r1, r4, #0x8a
-	bl sub_020BD31C
+	bl VEC_Fx16CrossProduct
 	add r0, sp, #0
 	mov r1, r0
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 	ldrsh r1, [sp]
 	ldr lr, [r5, #8]
 	ldrsh r0, [r4, #0x84]
@@ -1226,11 +1226,11 @@ _020A17E8:
 _020A1800:
 	add r1, sp, #6
 	add r0, r4, #0x50
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 _020A180C:
 	add r0, sp, #0
 	add r1, sp, #6
-	bl sub_020BD254
+	bl VEC_Fx16DotProduct
 	cmp r0, #0x1000
 	beq _020A1830
 	mov r1, #0x1000
@@ -1343,10 +1343,10 @@ _020A1844:
 	sub r1, r6, r2
 	strh r1, [r4, #0x8e]
 	mov r1, r0
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 	add r0, r4, #0x8a
 	mov r1, r0
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr

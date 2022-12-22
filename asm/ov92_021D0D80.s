@@ -39,7 +39,7 @@ ov92_021D0D80: ; 0x021D0D80
 	ldr r2, _021D0E90 ; =0x0000C32C
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x32
 	str r0, [r5, #0]
 	ldr r0, _021D0E94 ; =0x020E4C44
@@ -923,7 +923,7 @@ ov92_021D1530: ; 0x021D1530
 	str r0, [sp, #0x18]
 	ldr r0, [sp, #0x24]
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r0, #0
 	ldr r0, [sp, #0x18]
 	mov r5, #1
@@ -2624,7 +2624,7 @@ ov92_021D2334: ; 0x021D2334
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	asr r3, r3, #0x10
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	pop {r4, pc}
 	nop
 _021D2368: .word 0x0000C2DC
@@ -2648,7 +2648,7 @@ ov92_021D2370: ; 0x021D2370
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r5, r0, #0
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	ldr r0, [r4, #0]
 	ldr r3, _021D23E4 ; =0x020F983C
 	lsl r0, r0, #0x10
@@ -2661,11 +2661,11 @@ ov92_021D2370: ; 0x021D2370
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r0, r5, #0
 	add r1, sp, #0
 	add r2, r5, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldr r0, [r4, #8]
 	ldr r3, _021D23E4 ; =0x020F983C
 	lsl r0, r0, #0x10
@@ -2678,11 +2678,11 @@ ov92_021D2370: ; 0x021D2370
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r0, r5, #0
 	add r1, sp, #0
 	add r2, r5, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add sp, #0x24
 	pop {r4, r5, pc}
 	nop
@@ -2706,7 +2706,7 @@ ov92_021D23E8: ; 0x021D23E8
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r5, r0, #0
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	ldr r0, [r4, #4]
 	ldr r3, _021D245C ; =0x020F983C
 	neg r0, r0
@@ -2720,11 +2720,11 @@ ov92_021D23E8: ; 0x021D23E8
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r0, r5, #0
 	add r1, sp, #0
 	add r2, r5, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldr r0, [r4, #8]
 	ldr r3, _021D245C ; =0x020F983C
 	lsl r0, r0, #0x10
@@ -2737,11 +2737,11 @@ ov92_021D23E8: ; 0x021D23E8
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r0, r5, #0
 	add r1, sp, #0
 	add r2, r5, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add sp, #0x24
 	pop {r4, r5, pc}
 	; .align 2, 0
@@ -3179,7 +3179,7 @@ _021D277E:
 	add r0, r6, #0
 	add r1, sp, #0x4c
 	add r2, sp, #4
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldrh r2, [r4, #0x38]
 	cmp r2, #0
 	beq _021D27A6
@@ -3294,7 +3294,7 @@ ov92_021D2868: ; 0x021D2868
 	cmp r0, #0
 	blt _021D287C
 	ldr r1, _021D28BC ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 	b _021D2892
 _021D287C:
@@ -3302,7 +3302,7 @@ _021D287C:
 	neg r0, r0
 _021D2880:
 	ldr r1, _021D28BC ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #1
 	ldr r0, _021D28BC ; =0x0000FFFF
 	ldr r2, [r4, #0]
@@ -3314,7 +3314,7 @@ _021D2892:
 	cmp r0, #0
 	blt _021D28A2
 	ldr r1, _021D28BC ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #4]
 	pop {r4, pc}
 _021D28A2:
@@ -3322,7 +3322,7 @@ _021D28A2:
 	neg r0, r0
 _021D28A6:
 	ldr r1, _021D28BC ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #1
 	ldr r0, _021D28BC ; =0x0000FFFF
 	ldr r2, [r4, #4]
@@ -3369,7 +3369,7 @@ _021D28F2:
 	mul r0, r5
 	add r0, r1, r0
 	lsl r0, r0, #0xc
-	bl sub_020BCFF0
+	bl FX_Sqrt
 	asr r0, r0, #0xc
 	pop {r3, r4, r5, pc}
 	nop

@@ -47,7 +47,7 @@
 .public sub_0207CF40
 .public sub_0207CF44
 .public sub_0207D268
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov84_02240424
 .public ov84_022404C0
 .public ov84_02240950

@@ -6,16 +6,16 @@
 	.text
 
 
-	arm_func_start sub_020A2418
-sub_020A2418: ; 0x020A2418
+	arm_func_start WVR_StartUpAsync
+WVR_StartUpAsync: ; 0x020A2418
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C6350
+	bl PXI_Init
 	mov r0, #0xf
 	mov r1, #1
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	moveq r0, #2
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -25,7 +25,7 @@ sub_020A2418: ; 0x020A2418
 	bne _020A2478
 	mvn r4, #2
 _020A2458:
-	bl sub_020C1A00
+	bl OS_GetLockID
 	cmp r0, r4
 	moveq r0, #7
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -34,20 +34,20 @@ _020A2458:
 	cmp r0, #0
 	beq _020A2458
 _020A2478:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020A2640 ; =0x021C3A3C
 	mov r4, r0
 	ldr r2, [r1, #8]
 	cmp r2, #0
 	beq _020A249C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #5
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A249C:
 	ldrh r2, [r1, #2]
 	cmp r2, #0
 	beq _020A24B4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #5
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A24B4:
@@ -61,11 +61,11 @@ _020A24B4:
 _020A24D0:
 	ldrh r1, [r1]
 	mov r0, #4
-	bl sub_020C4090
+	bl OSi_TryLockVram
 	cmp r0, #0
 	bne _020A24F4
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #6
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A24F4:
@@ -79,11 +79,11 @@ _020A24F4:
 _020A2510:
 	ldrh r1, [r1]
 	mov r0, #8
-	bl sub_020C4090
+	bl OSi_TryLockVram
 	cmp r0, #0
 	bne _020A2534
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #6
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A2534:
@@ -97,11 +97,11 @@ _020A2534:
 _020A2550:
 	ldrh r1, [r1]
 	mov r0, #0xc
-	bl sub_020C4090
+	bl OSi_TryLockVram
 	cmp r0, #0
 	bne _020A2574
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #6
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A2574:
@@ -115,24 +115,24 @@ _020A2574:
 	strb r0, [r1, #1]
 	b _020A25A4
 _020A2598:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A25A4:
 	mov r0, #0xf
 	mov r1, #0
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	bne _020A25C4
-	ldr r1, _020A264C ; =sub_020A2734
+	ldr r1, _020A264C ; =WvrReceiveCallback
 	mov r0, #0xf
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 _020A25C4:
 	cmp r6, #0
 	ldrne r0, _020A2640 ; =0x021C3A3C
 	strne r6, [r0, #8]
 	bne _020A25E0
-	ldr r1, _020A2650 ; =sub_020A280C
+	ldr r1, _020A2650 ; =WvrDummyAsyncCallback
 	ldr r0, _020A2640 ; =0x021C3A3C
 	str r1, [r0, #8]
 _020A25E0:
@@ -141,70 +141,70 @@ _020A25E0:
 	mov r1, #0x10000
 	mov r2, #0
 	str r5, [r3, #4]
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	bge _020A2630
 	ldr r1, _020A2640 ; =0x021C3A3C
 	ldrh r0, [r1, #2]
 	ldrh r1, [r1]
-	bl sub_020C4150
+	bl OSi_UnlockVram
 	ldr r1, _020A2640 ; =0x021C3A3C
 	mov r2, #0
 	strh r2, [r1, #2]
 	mov r0, r4
 	str r2, [r1, #8]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020A2630:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020A2640: .word 0x021C3A3C
 _020A2644: .word 0x04000242
 _020A2648: .word 0x04000243
-_020A264C: .word sub_020A2734
-_020A2650: .word sub_020A280C
-	arm_func_end sub_020A2418
+_020A264C: .word WvrReceiveCallback
+_020A2650: .word WvrDummyAsyncCallback
+	arm_func_end WVR_StartUpAsync
 
-	arm_func_start sub_020A2654
-sub_020A2654: ; 0x020A2654
+	arm_func_start WVR_TerminateAsync
+WVR_TerminateAsync: ; 0x020A2654
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
-	bl sub_020C6350
+	bl PXI_Init
 	mov r0, #0xf
 	mov r1, #1
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	moveq r0, #2
 	ldmeqia sp!, {r4, r5, r6, pc}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020A2728 ; =0x021C3A3C
 	mov r4, r0
 	ldr r1, [r1, #8]
 	cmp r1, #0
 	beq _020A26A0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #5
 	ldmia sp!, {r4, r5, r6, pc}
 _020A26A0:
 	mov r0, #0xf
 	mov r1, #0
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	bne _020A26C0
-	ldr r1, _020A272C ; =sub_020A2734
+	ldr r1, _020A272C ; =WvrReceiveCallback
 	mov r0, #0xf
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 _020A26C0:
 	cmp r6, #0
 	ldrne r0, _020A2728 ; =0x021C3A3C
 	strne r6, [r0, #8]
 	bne _020A26DC
-	ldr r1, _020A2730 ; =sub_020A280C
+	ldr r1, _020A2730 ; =WvrDummyAsyncCallback
 	ldr r0, _020A2728 ; =0x021C3A3C
 	str r1, [r0, #8]
 _020A26DC:
@@ -213,29 +213,29 @@ _020A26DC:
 	mov r1, #0x20000
 	mov r2, #0
 	str r5, [r3, #4]
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	bge _020A2718
 	ldr r1, _020A2728 ; =0x021C3A3C
 	mov r2, #0
 	mov r0, r4
 	str r2, [r1, #8]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r4, r5, r6, pc}
 _020A2718:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020A2728: .word 0x021C3A3C
-_020A272C: .word sub_020A2734
-_020A2730: .word sub_020A280C
-	arm_func_end sub_020A2654
+_020A272C: .word WvrReceiveCallback
+_020A2730: .word WvrDummyAsyncCallback
+	arm_func_end WVR_TerminateAsync
 
-	arm_func_start sub_020A2734
-sub_020A2734: ; 0x020A2734
+	arm_func_start WvrReceiveCallback
+WvrReceiveCallback: ; 0x020A2734
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r0, #0x10000
 	ldr r2, _020A2808 ; =0x021C3A3C
@@ -259,7 +259,7 @@ _020A2768:
 	beq _020A27E0
 	ldrh r0, [r2, #2]
 	ldrh r1, [r2]
-	bl sub_020C4150
+	bl OSi_UnlockVram
 	ldr r0, _020A2808 ; =0x021C3A3C
 	mov r1, #0
 	strh r1, [r0, #2]
@@ -274,14 +274,14 @@ _020A27A0:
 	beq _020A27D4
 	ldrh r0, [r2, #2]
 	ldrh r1, [r2]
-	bl sub_020C4150
+	bl OSi_UnlockVram
 	ldr r0, _020A2808 ; =0x021C3A3C
 	mov r1, #0
 	strh r1, [r0, #2]
 _020A27D4:
 	mov r0, #0xf
 	mov r1, #0
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 _020A27E0:
 	cmp r4, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -295,12 +295,12 @@ _020A27E0:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020A2808: .word 0x021C3A3C
-	arm_func_end sub_020A2734
+	arm_func_end WvrReceiveCallback
 
-	arm_func_start sub_020A280C
-sub_020A280C: ; 0x020A280C
+	arm_func_start WvrDummyAsyncCallback
+WvrDummyAsyncCallback: ; 0x020A280C
 	bx lr
-	arm_func_end sub_020A280C
+	arm_func_end WvrDummyAsyncCallback
 
 	.bss
 

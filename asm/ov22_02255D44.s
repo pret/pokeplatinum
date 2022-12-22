@@ -28,7 +28,7 @@ ov22_02255D44: ; 0x02255D44
 	ldr r2, _02255E40 ; =0x000006E4
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02255E44 ; =ov22_02256940
 	add r1, r5, #0
 	bl sub_02017798
@@ -517,7 +517,7 @@ ov22_02256174: ; 0x02256174
 	ldr r2, _022562D8 ; =0x000006E4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _022562DC ; =ov22_02256940
 	add r1, r4, #0
 	bl sub_02017798
@@ -3155,12 +3155,12 @@ _02257646:
 
 	thumb_func_start ov22_0225764C
 ov22_0225764C: ; 0x0225764C
-	ldr r3, _02257654 ; =sub_020D5124
+	ldr r3, _02257654 ; =memset
 	mov r1, #0
 	mov r2, #0xac
 	bx r3
 	; .align 2, 0
-_02257654: .word sub_020D5124
+_02257654: .word memset
 	thumb_func_end ov22_0225764C
 
 	thumb_func_start ov22_02257658
@@ -3415,7 +3415,7 @@ ov22_022577EC: ; 0x022577EC
 	str r3, [sp, #4]
 	ldr r4, [sp, #0x2c]
 	ldr r5, [sp, #0x30]
-	bl sub_020E2178
+	bl _u32_div_f
 	add r1, r7, r0
 	lsl r0, r0, #1
 	add r0, r7, r0
@@ -3424,7 +3424,7 @@ ov22_022577EC: ; 0x022577EC
 	str r1, [sp, #0xc]
 	sub r0, r0, r6
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	add r2, r6, r0
 	lsl r0, r0, #1
 	ldr r1, [sp, #0x28]

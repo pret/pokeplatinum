@@ -10,7 +10,7 @@
 ov97_02232DC8: ; 0x02232DC8
 	push {r3, lr}
 	ldr r0, _02232DE4 ; =ov97_022323B0
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	cmp r0, #0
 	beq _02232DDE
 	mov r0, #4
@@ -52,7 +52,7 @@ ov97_02232E00: ; 0x02232E00
 	bhi _02232E24
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
@@ -122,7 +122,7 @@ _02232E56:
 	ldr r0, [r4, #0x34]
 	mov r1, #2
 	add r7, #0xe0
-	bl sub_020CDB18
+	bl WM_Init
 	bl ov97_02232DC8
 	str r0, [r4, #0x10]
 	mov r2, #0
@@ -217,7 +217,7 @@ _02232F38:
 	add r7, r7, r0
 	bl ov97_02233538
 	str r7, [r0, #0xc]
-	bl sub_020CEB20
+	bl WM_GetNextTgid
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _02232F5C: .word 0x00400131
@@ -613,7 +613,7 @@ ov97_02233230: ; 0x02233230
 	mov r0, #0
 	pop {r3, pc}
 _02233240:
-	bl sub_020CE814
+	bl WM_GetLinkLevel
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end ov97_02233230
@@ -846,7 +846,7 @@ ov97_022333BC: ; 0x022333BC
 	beq _022333E2
 	pop {r4, pc}
 _022333D6:
-	bl sub_020CDD28
+	bl WM_Finish
 	mov r0, #1
 	bl ov97_022334F0
 	pop {r4, pc}

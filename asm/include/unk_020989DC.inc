@@ -43,7 +43,7 @@
 .public sub_02098DE8
 .public sub_02098E0C
 .public sub_02098E88
-.public sub_020C4CF4
-.public sub_020E1774
-.public sub_020E17FC
-.public sub_020E18B0
+.public MI_CpuFill8
+.public _f_ftou
+.public _f_utof
+.public _f_mul

@@ -26,7 +26,7 @@ _02013200:
 	ldr r1, [sp]
 	add r1, r1, r2
 	add r2, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r1, [r5, #0]
 	ldr r0, [sp, #0x24]
 	add r7, r7, #1
@@ -53,7 +53,7 @@ sub_0201322C: ; 0x0201322C
 _0201323C:
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	add r6, r0, #0
 	cmp r5, #0
 	bne _0201324E
@@ -288,7 +288,7 @@ sub_020133D4: ; 0x020133D4
 _020133F2:
 	ldr r0, [sp, #0x20]
 	add r1, sp, #0x2c
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	cmp r0, #0
 	bne _02013402
 	bl sub_02022974
@@ -457,7 +457,7 @@ _0201352C:
 	add r0, r0, r1
 	ldr r1, [sp, #0x18]
 	add r1, r1, r4
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [r5, #0]
 	add r6, r6, #1
 	add r0, #0x20
@@ -637,7 +637,7 @@ sub_02013660: ; 0x02013660
 	bl sub_02006AC0
 	add r1, sp, #0
 	add r5, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #1
 	beq _0201368C
 	bl sub_02022974
@@ -646,7 +646,7 @@ _0201368C:
 	add r1, r4, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r5, #0
 	bl sub_020181C4
 	add r0, r4, #0

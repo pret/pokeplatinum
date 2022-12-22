@@ -66,8 +66,8 @@
 .public sub_020593E0
 .public sub_020594FC
 .public sub_0206A9F4
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov5_021E9230
 .public ov5_021EAFA4
 .public ov23_0223E1E4

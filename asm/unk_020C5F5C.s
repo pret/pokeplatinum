@@ -6,20 +6,20 @@
 	.text
 
 
-	arm_func_start sub_020C5F5C
-sub_020C5F5C: ; 0x020C5F5C
+	arm_func_start SND_AssignWaveArc
+SND_AssignWaveArc: ; 0x020C5F5C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
 	mov r4, r2
-	bl sub_020C55B8
+	bl SNDi_LockMutex
 	add r3, r6, r5, lsl #3
 	ldr r2, [r3, #0x18]
 	cmp r2, #0
 	beq _020C5FEC
 	cmp r4, r2
 	bne _020C5F90
-	bl sub_020C55CC
+	bl SNDi_UnlockMutex
 	ldmia sp!, {r4, r5, r6, pc}
 _020C5F90:
 	add r1, r6, #0x18
@@ -31,7 +31,7 @@ _020C5F90:
 	mov r1, #0x3c
 	str r0, [r2, #0x18]
 	ldr r0, [r3, #0x18]
-	bl sub_020C2C38
+	bl DC_StoreRange
 	b _020C5FEC
 _020C5FBC:
 	cmp r0, #0
@@ -47,7 +47,7 @@ _020C5FD8:
 	ldr r2, [r1, #0x1c]
 	mov r1, #8
 	str r2, [r0, #4]
-	bl sub_020C2C38
+	bl DC_StoreRange
 _020C5FEC:
 	add r0, r6, #0x18
 	ldr r1, [r4, #0x18]
@@ -56,21 +56,21 @@ _020C5FEC:
 	add r0, r6, r5, lsl #3
 	str r1, [r0, #0x1c]
 	str r4, [r0, #0x18]
-	bl sub_020C55CC
+	bl SNDi_UnlockMutex
 	mov r0, r6
 	mov r1, #0x3c
-	bl sub_020C2C38
+	bl DC_StoreRange
 	mov r0, r4
 	mov r1, #0x3c
-	bl sub_020C2C38
+	bl DC_StoreRange
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C5F5C
+	arm_func_end SND_AssignWaveArc
 
-	arm_func_start sub_020C6028
-sub_020C6028: ; 0x020C6028
+	arm_func_start SND_DestroyBank
+SND_DestroyBank: ; 0x020C6028
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r0
-	bl sub_020C55B8
+	bl SNDi_LockMutex
 	add r5, r7, #0x18
 	mov r6, #0
 	mov r8, #8
@@ -86,7 +86,7 @@ _020C6044:
 	ldr r2, [r1, #0x1c]
 	mov r1, r4
 	str r2, [r0, #0x18]
-	bl sub_020C2C38
+	bl DC_StoreRange
 	b _020C60A8
 _020C6074:
 	cmp r3, #0
@@ -103,21 +103,21 @@ _020C6090:
 	mov r0, r3
 	mov r1, r8
 	str r2, [r3, #4]
-	bl sub_020C2C38
+	bl DC_StoreRange
 _020C60A8:
 	add r6, r6, #1
 	cmp r6, #4
 	add r5, r5, #8
 	blt _020C6044
-	bl sub_020C55CC
+	bl SNDi_UnlockMutex
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020C6028
+	arm_func_end SND_DestroyBank
 
-	arm_func_start sub_020C60C0
-sub_020C60C0: ; 0x020C60C0
+	arm_func_start SND_DestroyWaveArc
+SND_DestroyWaveArc: ; 0x020C60C0
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r4, r0
-	bl sub_020C55B8
+	bl SNDi_LockMutex
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	beq _020C6100
@@ -128,17 +128,17 @@ _020C60E0:
 	mov r1, r4
 	str r5, [r0, #0]
 	str r5, [r0, #4]
-	bl sub_020C2C38
+	bl DC_StoreRange
 	mov r0, r6
 	cmp r6, #0
 	bne _020C60E0
 _020C6100:
-	bl sub_020C55CC
+	bl SNDi_UnlockMutex
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C60C0
+	arm_func_end SND_DestroyWaveArc
 
-	arm_func_start sub_020C6108
-sub_020C6108: ; 0x020C6108
+	arm_func_start SND_GetFirstInstDataPos
+SND_GetFirstInstDataPos: ; 0x020C6108
 	sub sp, sp, #8
 	mov r1, #0
 	str r1, [r0, #0]
@@ -147,10 +147,10 @@ sub_020C6108: ; 0x020C6108
 	str r1, [r0, #4]
 	add sp, sp, #8
 	bx lr
-	arm_func_end sub_020C6108
+	arm_func_end SND_GetFirstInstDataPos
 
-	arm_func_start sub_020C6128
-sub_020C6128: ; 0x020C6128
+	arm_func_start SND_GetNextInstData
+SND_GetNextInstData: ; 0x020C6128
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r4, [r2, #0]
 	ldr r3, [r0, #0x38]
@@ -271,37 +271,37 @@ _020C62B4:
 _020C62D0:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020C6128
+	arm_func_end SND_GetNextInstData
 
-	arm_func_start sub_020C62D8
-sub_020C62D8: ; 0x020C62D8
+	arm_func_start SND_GetWaveDataCount
+SND_GetWaveDataCount: ; 0x020C62D8
 	ldr r0, [r0, #0x38]
 	bx lr
-	arm_func_end sub_020C62D8
+	arm_func_end SND_GetWaveDataCount
 
-	arm_func_start sub_020C62E0
-sub_020C62E0: ; 0x020C62E0
+	arm_func_start SND_SetWaveDataAddress
+SND_SetWaveDataAddress: ; 0x020C62E0
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
 	mov r4, r2
-	bl sub_020C55B8
+	bl SNDi_LockMutex
 	add r0, r6, #0x3c
 	add r2, r6, r5, lsl #2
 	add r0, r0, r5, lsl #2
 	mov r1, #4
 	str r4, [r2, #0x3c]
-	bl sub_020C2C38
-	bl sub_020C55CC
+	bl DC_StoreRange
+	bl SNDi_UnlockMutex
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C62E0
+	arm_func_end SND_SetWaveDataAddress
 
-	arm_func_start sub_020C6314
-sub_020C6314: ; 0x020C6314
+	arm_func_start SND_GetWaveDataAddress
+SND_GetWaveDataAddress: ; 0x020C6314
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
-	bl sub_020C55B8
+	bl SNDi_LockMutex
 	add r0, r5, r4, lsl #2
 	ldr r4, [r0, #0x3c]
 	cmp r4, #0
@@ -312,7 +312,7 @@ sub_020C6314: ; 0x020C6314
 _020C6340:
 	mov r4, #0
 _020C6344:
-	bl sub_020C55CC
+	bl SNDi_UnlockMutex
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020C6314
+	arm_func_end SND_GetWaveDataAddress

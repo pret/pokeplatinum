@@ -19,13 +19,13 @@ ov18_02220C28: ; 0x02220C28
 	add r1, sp, #0
 	mov r2, #0x60
 	sub r6, ip, r3
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0x60
 	mov r0, r7
 	mov r1, r6
 	mov r2, #0
 	addhs r4, sp, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	b _02220C78
 _02220C74:
 	ldr r4, _02220CA4 ; =0x027FFE00
@@ -71,7 +71,7 @@ ov18_02220CA8: ; 0x02220CA8
 	mov r2, #0x160
 	sub r3, r7, r3
 	str r3, [sp, #8]
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0x160
 	ldr r7, [sb, #0x80]
 	movlt r4, fp
@@ -86,17 +86,17 @@ _02220D20:
 	cmp r7, #0
 	moveq r7, #0x1000000
 	str r1, [sp, #0xc]
-	bl sub_020C7DA0
+	bl FS_InitFile
 	ldr r0, _02221110 ; =0x02249768
 	mov r1, #3
-	bl sub_020C7760
+	bl FS_FindArchive
 	mov r1, r0
 	mvn r0, #0
 	str r0, [sp]
 	add r0, sp, #0x24
 	mov r2, #0
 	add r3, r7, #0x88
-	bl sub_020C7FC8
+	bl FS_OpenFileDirect
 	ldr r2, [sp, #0x50]
 	ldr r1, [sp, #0x48]
 	ldr r0, _0222110C ; =0x027FFE00
@@ -105,7 +105,7 @@ _02220D20:
 	mov r1, sb
 	mov r2, #0x160
 	add sl, sp, #0x24
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sb, #0x60]
 	orr r0, r0, #0x6000
 	orr r0, r0, #0x400000
@@ -118,11 +118,11 @@ _02220D9C:
 	mov r0, sl
 	add r1, r1, r7
 	mov r2, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	mov r0, sl
 	mov r1, r5
 	mov r2, #0x88
-	bl sub_020C81D4
+	bl FS_ReadFile
 	add r5, r5, #0x88
 	sub r4, r4, #0x88
 _02220DD4:
@@ -155,7 +155,7 @@ _02220E30:
 	mov r0, r8
 	mov r2, r7
 	add r1, r6, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	str r7, [r6, #0x14]
 	str r8, [r6, #0x18]
 	b _02220E50
@@ -193,11 +193,11 @@ _02220EA0:
 	mov r0, sl
 	sub r1, r1, r7
 	mov r2, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	ldr r2, [sb, #0x2c]
 	mov r0, sl
 	mov r1, r5
-	bl sub_020C81D4
+	bl FS_ReadFile
 	mov r0, #3
 	str r0, [sp]
 	ldr r1, [fp, #4]
@@ -210,11 +210,11 @@ _02220EA0:
 	mov r0, sl
 	mov r2, #0
 	sub r1, r1, r7
-	bl sub_020C81E4
+	bl FS_SeekFile
 	ldr r2, [sb, #0x3c]
 	mov r0, sl
 	add r1, r5, r4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	mov r0, #3
 	str r0, [sp]
 	ldr r1, [fp, #8]
@@ -233,11 +233,11 @@ _02220F48:
 	mov r0, sl
 	sub r1, r4, r7
 	mov r2, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	mov r0, sl
 	mov r1, r5
 	mov r2, #0x4400
-	bl sub_020C81D4
+	bl FS_ReadFile
 	mov r0, #3
 	str r0, [sp]
 	mov r0, r6
@@ -249,11 +249,11 @@ _02220F48:
 	mov r0, sl
 	sub r1, r1, r7
 	mov r2, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	mov r0, sl
 	add r1, r5, #0x4400
 	mov r2, #0x4400
-	bl sub_020C81D4
+	bl FS_ReadFile
 	mov r0, #2
 	str r0, [sp]
 	mov r0, r6
@@ -265,11 +265,11 @@ _02220F48:
 	mov r0, sl
 	sub r1, r1, r7
 	mov r2, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	mov r0, sl
 	add r1, r5, #0x8800
 	mov r2, #0x4400
-	bl sub_020C81D4
+	bl FS_ReadFile
 	mov r0, #2
 	str r0, [sp]
 	add r1, r4, #0x8800
@@ -283,12 +283,12 @@ _0222101C:
 	ldr r1, [sp, #8]
 	mov r0, sl
 	mov r2, #0
-	bl sub_020C81E4
+	bl FS_SeekFile
 	ldr r0, [sp, #0xc]
 	cmp r0, #0
 	beq _022210E8
 	add r0, sp, #0x24
-	bl sub_020C80C8
+	bl FS_CloseFile
 	ldr r0, [sp, #0x10]
 	cmp r0, #0
 	beq _022210E8
@@ -339,7 +339,7 @@ _022210E8:
 	beq _02221100
 	ldr r1, [sp, #4]
 	mov r0, sb
-	bl sub_020C2C54
+	bl DC_FlushRange
 _02221100:
 	ldr r0, [sp, #0x10]
 	add sp, sp, #0x6c
@@ -375,7 +375,7 @@ ov18_02221120: ; 0x02221120
 	sub r2, r2, lr
 	add r0, r0, lr
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldmia sp!, {r3, pc}
 _0222117C:
 	ldr r3, [r0, #4]
@@ -383,7 +383,7 @@ _0222117C:
 	add r0, r3, lr
 	add r1, r1, lr
 	sub r2, r2, lr
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r3, pc}
 	arm_func_end ov18_02221120
 
@@ -393,13 +393,13 @@ ov18_02221198: ; 0x02221198
 	mov r8, r0
 	mov r7, r1
 	mov r4, #0xff
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	bl ov18_02223EB8
 	cmp r0, #0
 	bne _022211CC
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _022211CC:
@@ -411,7 +411,7 @@ _022211CC:
 	cmp r1, #0x10
 	ble _022211F8
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _022211F8:
@@ -424,7 +424,7 @@ _02221200:
 	cmp r3, r8
 	bne _02221224
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _02221224:
@@ -440,7 +440,7 @@ _02221244:
 	cmp r6, #0x10
 	bne _0222125C
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _0222125C:
@@ -460,7 +460,7 @@ _0222125C:
 	add r0, r8, #0x1c
 	add r1, sb, #0xc4
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0222141C ; =0x02250D2C
 	mov r1, sb
 	ldr r0, [r0, #0]
@@ -471,7 +471,7 @@ _0222125C:
 	cmp r0, #0
 	bne _022212D4
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _022212D4:
@@ -555,7 +555,7 @@ _022213E0:
 	ldrb r2, [r1, #0x524]
 	add r2, r2, #1
 	strb r2, [r1, #0x524]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -593,7 +593,7 @@ _0222145C:
 	add r0, r4, #0x160
 	add r1, r5, #0x3c
 	mov r2, #0x88
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _02221498: .word 0x02246434
@@ -632,7 +632,7 @@ _022214CC:
 	str r0, [r6, #0xc]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02221510:
-	bl sub_020C42A8
+	bl OS_Terminate
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02221518:
 	ldr ip, [r7, #0x38]
@@ -671,7 +671,7 @@ _0222158C:
 _02221590:
 	cmp r2, #1
 	bne _0222159C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222159C:
 	ldr r0, [r7, #0x3c]
 	cmp r4, #0
@@ -738,7 +738,7 @@ _02221660:
 	ldr r8, [r7, #8]
 	add r0, r8, r1
 	sub r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r1, sb, lsl #1
 	ldrh r3, [r6, r1]
 	mov r2, r0, lsl #0x10

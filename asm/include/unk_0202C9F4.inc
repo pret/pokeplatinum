@@ -5,5 +5,5 @@
 .public sub_0202CA28
 .public sub_0202CAB0
 .public sub_0202CBC8
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8

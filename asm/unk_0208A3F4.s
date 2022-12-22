@@ -477,12 +477,12 @@ sub_0208A758: ; 0x0208A758
 _0208A7C0:
 	add r0, r4, #0
 	add r1, r7, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r1, #1
 	str r0, [r5, #0]
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	sub r5, #0x1c
 	sub r6, r6, #1

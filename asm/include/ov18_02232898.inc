@@ -1,6 +1,6 @@
-.public sub_020C04EC
-.public sub_020C4AF0
-.public sub_020C4B18
+.public GX_LoadBG2Scr
+.public MIi_CpuClear16
+.public MIi_CpuCopy16
 .public ov18_0222B668
 .public ov18_0222B700
 .public ov18_0222F6C4

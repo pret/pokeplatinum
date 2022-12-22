@@ -54,10 +54,10 @@ ov18_02239DB8: ; 0x02239DB8
 	ldr r1, _02239E44 ; =0x020C07EC
 	bl ov18_0222B700
 	ldr r0, _02239E48 ; =0x0224A37C
-	ldr r1, _02239E4C ; =sub_020C00B4
+	ldr r1, _02239E4C ; =GX_LoadBGPltt
 	bl ov18_0222B700
 	ldr r0, _02239E50 ; =0x0224A394
-	ldr r1, _02239E54 ; =sub_020C04EC
+	ldr r1, _02239E54 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _02239E58 ; =0x04001008
 	ldr r1, _02239E5C ; =0x0400000A
@@ -87,9 +87,9 @@ ov18_02239DB8: ; 0x02239DB8
 _02239E40: .word 0x0224A364
 _02239E44: .word 0x020C07EC
 _02239E48: .word 0x0224A37C
-_02239E4C: .word sub_020C00B4
+_02239E4C: .word GX_LoadBGPltt
 _02239E50: .word 0x0224A394
-_02239E54: .word sub_020C04EC
+_02239E54: .word GX_LoadBG2Scr
 _02239E58: .word 0x04001008
 _02239E5C: .word 0x0400000A
 	arm_func_end ov18_02239DB8
@@ -160,7 +160,7 @@ _02239F18: .word ov18_02239F1C
 ov18_02239F1C: ; 0x02239F1C
 	stmfd sp!, {r3, lr}
 	mov r0, #0xa
-	bl sub_020C24A4
+	bl OS_Sleep
 	bl ov18_0223A100
 	bl ov18_02239F3C
 	bl ov18_02239F74

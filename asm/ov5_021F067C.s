@@ -35,7 +35,7 @@ _021F06B0:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	str r0, [r4, #0]
 	ldr r0, [sp, #4]

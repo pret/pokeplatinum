@@ -6,5 +6,5 @@
 .public sub_020181C4
 .public sub_0201ADDC
 .public sub_0201AE78
-.public sub_020C4B68
-.public sub_020C4CF4
+.public MIi_CpuCopy32
+.public MI_CpuFill8

@@ -28,17 +28,17 @@ ov5_021D56D4: ; 0x021D56D4
 	add r4, r0, #0
 	add r0, sp, #4
 	add r5, r1, #0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #4
 	add r1, r4, #0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	beq _021D5770
 	add r1, sp, #0
 	add r0, sp, #4
 	add r1, #2
 	mov r2, #2
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5702
 	bl sub_02022974
@@ -46,7 +46,7 @@ _021D5702:
 	add r0, sp, #4
 	add r1, sp, #0
 	mov r2, #2
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5714
 	bl sub_02022974
@@ -75,7 +75,7 @@ _021D5742:
 	ldr r1, [r5, #0]
 	add r0, sp, #4
 	add r2, r6, #0
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5754
 	bl sub_02022974
@@ -83,13 +83,13 @@ _021D5754:
 	ldr r1, [r5, #4]
 	add r0, sp, #4
 	add r2, r4, #0
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5766
 	bl sub_02022974
 _021D5766:
 	add r0, sp, #4
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add sp, #0x4c
 	pop {r3, r4, r5, r6, pc}
 _021D5770:

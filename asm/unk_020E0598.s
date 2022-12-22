@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E0598
-sub_020E0598: ; 0x020E0598
+	arm_func_start _dsqrt
+_dsqrt: ; 0x020E0598
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _020E0728 ; =0x7FF00000
 	cmp r1, r2
@@ -123,4 +123,4 @@ _020E070C:
 _020E0728: .word 0x7FF00000
 _020E072C: .word 0x7FF80000
 _020E0730: .word 0x021D0D40
-	arm_func_end sub_020E0598
+	arm_func_end _dsqrt

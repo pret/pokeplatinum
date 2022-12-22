@@ -18,7 +18,7 @@ ov62_02246B00: ; 0x02246B00
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp]
 	add r0, r6, #1
 	str r6, [r4, #0]
@@ -810,7 +810,7 @@ _022470F4:
 	ldr r1, [r5, #4]
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [r5, #0]
 	str r1, [r5, #4]
 _0224710E:
@@ -1150,14 +1150,14 @@ _02247390:
 	add r0, r5, #0
 	sub r0, #0xc
 	mov r1, #5
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, #0x6e
 	lsl r0, r0, #2
 	strh r1, [r4, r0]
 	add r0, r5, #0
 	sub r0, #0xc
 	mov r1, #5
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _022474A4 ; =0x000001BA
 	strh r0, [r4, r1]
 _022473AE:

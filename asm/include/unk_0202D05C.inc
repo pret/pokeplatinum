@@ -8,6 +8,6 @@
 .public sub_020245BC
 .public sub_0202D514
 .public sub_0202D530
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _s32_div_f

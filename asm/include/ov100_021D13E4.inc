@@ -34,10 +34,10 @@
 .public sub_02020854
 .public sub_020241B4
 .public sub_020241BC
-.public sub_020BF55C
-.public sub_020BF578
-.public sub_020D5124
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public G2x_SetBlendBrightness_
+.public memset
+.public _s32_div_f
 .public ov100_021D1758
 .public ov100_021D17B4
 .public ov100_021D1808

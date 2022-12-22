@@ -52,7 +52,7 @@ ov6_0224663C: ; 0x0224663C
 	bl sub_02055BD0
 	add r0, r0, #6
 	mov r1, #7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, #0
 	add r5, r1, #0
 	bl sub_02055BDC
@@ -60,12 +60,12 @@ ov6_0224663C: ; 0x0224663C
 	add r0, r4, #0
 	bl sub_02055BE8
 	mov r1, #0xf
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, #0x13
 	add r4, r0, #0
 	add r0, r6, #0
 	mov r1, #0x18
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r1, #0
 	lsl r6, r6, #2
 	mov r3, #7
@@ -155,7 +155,7 @@ ov6_022466EC: ; 0x022466EC
 	ldr r0, [sp, #4]
 	mov r1, #0
 	mov r2, #0xb
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r6, #0
 	add r4, r6, #0
 	add r5, sp, #8
@@ -191,7 +191,7 @@ ov6_0224673C: ; 0x0224673C
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0xb
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	add r4, r1, #0
 	add r2, sp, #0
@@ -221,7 +221,7 @@ _0224676E:
 _0224677A:
 	bl sub_0201D35C
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, sp, #0
 	ldrb r0, [r0, r1]
 	add sp, #0xc
@@ -295,7 +295,7 @@ _022467FC:
 	add r0, r7, #0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #8]
 	str r0, [sp]
@@ -410,11 +410,11 @@ ov6_022468B0: ; 0x022468B0
 	add r0, sp, #0x1c
 	mov r1, #0
 	mov r2, #0xb
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, sp, #0xc
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #8]
 	add r1, r5, #0
 	add r2, sp, #0x1c

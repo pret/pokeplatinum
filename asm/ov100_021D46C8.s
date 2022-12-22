@@ -124,7 +124,7 @@ ov100_021D47A0: ; 0x021D47A0
 	add r1, r4, #0
 	str r0, [r2, #0]
 	add r0, r4, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r1, [sp, #0xc]
 	ldr r2, [sp, #0x10]
 	ldr r3, [sp, #0x14]
@@ -135,13 +135,13 @@ ov100_021D47A0: ; 0x021D47A0
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	asr r3, r3, #0x10
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D4830 ; =0x00007FFF
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	add r0, sp, #0
 	add r1, r0, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r1, [sp]
 	ldr r2, [sp, #4]
 	ldr r3, [sp, #8]
@@ -152,18 +152,18 @@ ov100_021D47A0: ; 0x021D47A0
 	asr r1, r1, #0x10
 	asr r2, r2, #0x10
 	asr r3, r3, #0x10
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D4834 ; =0x000066F7
 	mov r0, #1
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D4838 ; =0x00004210
 	ldr r1, _021D483C ; =0x000039CE
 	mov r2, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D4840 ; =0x00005294
 	ldr r1, _021D4838 ; =0x00004210
 	mov r2, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	add sp, #0x18
 	pop {r4, pc}
 	nop
@@ -225,31 +225,31 @@ ov100_021D4890: ; 0x021D4890
 	mov r0, #0xb6
 	mul r0, r1
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x28]
 	ldr r1, [r4, #0x10]
 	mov r0, #0xb6
 	mul r0, r1
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x2c]
 	ldr r1, [r4, #0x14]
 	mov r0, #0xb6
 	mul r0, r1
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x30]
 	ldr r0, [r4, #0x18]
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x3c]
 	ldr r0, [r4, #0x1c]
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x40]
 	ldr r0, [r4, #0x20]
 	ldr r1, [r4, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x44]
 	ldr r1, [r4, #0]
 	add r0, sp, #0
@@ -457,14 +457,14 @@ _021D4A66:
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, r5, #0
 	bl sub_02017294
 	mov r2, #1
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _021D4A82:
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov100_021D49B4
@@ -884,7 +884,7 @@ _021D4D80:
 	ldrb r0, [r0]
 	ldrb r1, [r1, r4]
 	lsl r6, r4, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	str r0, [sp]
@@ -931,12 +931,12 @@ ov100_021D4DD8: ; 0x021D4DD8
 	ldrsb r2, [r4, r2]
 	ldr r0, _021D4DFC ; =0x04000050
 	mov r1, #0x31
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	mov r2, #0x5f
 	ldrsb r2, [r4, r2]
 	ldr r0, _021D4E00 ; =0x04001050
 	mov r1, #0x33
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	pop {r4, pc}
 	nop
 _021D4DFC: .word 0x04000050

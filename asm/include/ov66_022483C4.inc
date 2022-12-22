@@ -1,6 +1,6 @@
-.public sub_020D407C
-.public sub_020D50B8
-.public sub_020D8B60
+.public __msl_assertion_failed
+.public memcpy
+.public strlen
 .public ov4_021D7880
 .public ov4_021D78B0
 .public ov4_021E9A8C

@@ -61,7 +61,7 @@ ov4_021F7FB4: ; 0x021F7FB4
 	bxeq lr
 	ldr r1, [sp, #0x34]
 	ldr r2, [sp, #0x38]
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x38]
 	str r0, [r5, #0x3c]
 _021F8014:

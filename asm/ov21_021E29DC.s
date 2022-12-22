@@ -83,7 +83,7 @@ _021E2A6E:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov21_021D13B4
 	str r0, [r4, #0]
@@ -170,7 +170,7 @@ _021E2B28:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r7, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r6, #0
@@ -366,7 +366,7 @@ _021E2C8A:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r7, #8]
 	ldr r0, [r4, #8]
 	str r1, [r0, #0]
@@ -1335,7 +1335,7 @@ _021E33D6:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov21_021D13C8
 	str r0, [r4, #0]
@@ -1567,7 +1567,7 @@ _021E3568:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]

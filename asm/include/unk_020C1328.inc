@@ -1,2 +1,2 @@
-.public sub_020C132C
-.public sub_020C164C
+.public OSi_IrqCallback
+.public OS_DisableIrqMask

@@ -1,4 +1,4 @@
-.public sub_020BC36C
-.public sub_020BCDC8
-.public sub_020BF93C
-.public sub_020BF958
+.public MTX_LookAt
+.public MTX_OrthoW
+.public G3_LoadMtx44
+.public G3_LoadMtx43

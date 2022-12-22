@@ -17,9 +17,9 @@
 .public sub_020181C4
 .public sub_0201AE78
 .public sub_02022974
-.public sub_020BDEC4
-.public sub_020D5124
-.public sub_020E1F6C
+.public GXx_SetMasterBrightness_
+.public memset
+.public _s32_div_f
 .public ov104_0223E8D8
 .public ov104_0223E9CC
 .public ov104_0223E9EC

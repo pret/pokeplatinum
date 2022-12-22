@@ -69,10 +69,10 @@
 .public sub_0203895C
 .public sub_02038974
 .public sub_020389FC
-.public sub_020A2418
-.public sub_020A2654
-.public sub_020C2C54
-.public sub_020C42A8
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020CE8A4
+.public WVR_StartUpAsync
+.public WVR_TerminateAsync
+.public DC_FlushRange
+.public OS_Terminate
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public WM_GetDispersionBeaconPeriod

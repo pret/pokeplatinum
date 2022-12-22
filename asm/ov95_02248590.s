@@ -64,7 +64,7 @@ _022485F8: .word ov95_02248E00
 ov95_022485FC: ; 0x022485FC
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	cmp r5, #0
 	beq _02248648
@@ -96,7 +96,7 @@ _02248638:
 	bl sub_020181C4
 _02248648:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov95_022485FC
 
@@ -140,7 +140,7 @@ ov95_02248688: ; 0x02248688
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _022486A8
-	bl sub_020BFAB8
+	bl G3X_Reset
 	add r4, #0xd4
 	ldr r0, [r4, #0]
 	bl ov95_02247770
@@ -447,7 +447,7 @@ ov95_022488A4: ; 0x022488A4
 	mov r1, #6
 	mov r3, #1
 	bl sub_020183C4
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r5, r0, #0
 	add r0, r4, #0
 	add r0, #0xc0
@@ -464,7 +464,7 @@ ov95_022488A4: ; 0x022488A4
 	mov r3, #2
 	bl sub_020183C4
 	add r0, r5, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -629,24 +629,24 @@ ov95_022488A4: ; 0x022488A4
 	mov r0, #0
 	add r1, r5, #0
 	mov r2, #0x60
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r5, #0
 	mov r1, #0x60
-	bl sub_020C2C54
-	bl sub_020C096C
-	bl sub_020C0BBC
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
+	bl GXS_BeginLoadBGExtPltt
 	mov r1, #6
 	add r0, r5, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0A0C
+	bl GX_LoadBGExtPltt
 	mov r1, #6
 	add r0, r5, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0BD4
-	bl sub_020C0A7C
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	add r0, r5, #0
 	bl sub_020181C4
 _02248AAA:
@@ -753,8 +753,8 @@ ov95_02248B84: ; 0x02248B84
 	push {r4, lr}
 	sub sp, #0x10
 	add r4, r0, #0
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _02248C64 ; =0x04000060
 	ldr r1, _02248C68 ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -783,13 +783,13 @@ ov95_02248B84: ; 0x02248B84
 	orr r1, r2
 	strh r1, [r0]
 	ldr r0, _02248C70 ; =0x0224BFAC
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	mov r1, #0
 	ldr r0, _02248C74 ; =0x000043FF
 	ldr r2, _02248C78 ; =0x00007FFF
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _02248C7C ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -797,11 +797,11 @@ ov95_02248B84: ; 0x02248B84
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF0C
@@ -890,9 +890,9 @@ ov95_02248CA8: ; 0x02248CA8
 	mov r3, #0xc
 	bl ov95_02247568
 	add r0, sp, #0x60
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	add r0, sp, #0x3c
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r2, #1
@@ -952,13 +952,13 @@ ov95_02248CA8: ; 0x02248CA8
 _02248D42:
 	bl sub_0201D35C
 	mov r1, #0xe8
-	bl sub_020E2178
+	bl _u32_div_f
 	add r6, r1, #0
 	add r6, #0xc
 	bl sub_0201D35C
 	mov r1, #0x71
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	add r5, r1, #0
 	mov r0, #0
 	str r0, [sp]
@@ -1432,7 +1432,7 @@ ov95_022490D0: ; 0x022490D0
 	ldr r0, [r4, #0]
 	sub r0, r1, r0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #4]
 	ldr r0, [sp]
 	str r6, [r4, #0xc]
@@ -1520,7 +1520,7 @@ ov95_02249154: ; 0x02249154
 	ldr r0, _02249224 ; =0xFFFF8000
 	sub r0, r0, r1
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x2c]
 	add r0, r4, #0
 	mov r2, #1
@@ -1596,7 +1596,7 @@ ov95_0224922C: ; 0x0224922C
 	ldrsh r0, [r5, r0]
 	add r1, r6, #0
 	sub r0, r4, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r5, #0
 	add r1, #0x5a
 	strh r0, [r1]
@@ -1631,12 +1631,12 @@ ov95_02249268: ; 0x02249268
 	ldr r0, [r5, #0x38]
 	add r1, r7, #0
 	sub r0, r4, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x40]
 	ldr r0, [r5, #0x3c]
 	add r1, r7, #0
 	sub r0, r6, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x44]
 	ldr r1, [r5, #0x38]
 	ldr r0, [r5, #0x40]
@@ -1668,7 +1668,7 @@ ov95_022492A4: ; 0x022492A4
 	ldrsh r0, [r1, r0]
 	add r1, r7, #0
 	sub r0, r6, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp]
 	add r1, r5, r1
 	add r1, #0x5e
@@ -1723,7 +1723,7 @@ _02249308:
 	add r0, #0x54
 	ldrh r0, [r0]
 	mov r1, #0xb6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r0, #0
 	mov r0, #0x5a
 	lsl r0, r0, #2
@@ -1758,7 +1758,7 @@ _02249356:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	mov r6, #0
 	lsl r3, r3, #0xa
@@ -1777,7 +1777,7 @@ _02249356:
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r4, #2
 	mov r3, #0
 	lsl r4, r4, #0xa
@@ -2110,7 +2110,7 @@ ov95_022495F8: ; 0x022495F8
 	ldr r0, _02249650 ; =0xFFFC5800
 	sub r0, r0, r1
 	mov r1, #0x35
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x2c]
 	add r0, r4, #0
 	mov r1, #0x35

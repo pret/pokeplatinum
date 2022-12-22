@@ -6,8 +6,8 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020BF55C
-.public sub_020D5124
+.public G2x_SetBlendAlpha_
+.public memset
 .public ov12_0221FDD4
 .public ov12_0221FDE4
 .public ov12_02220240

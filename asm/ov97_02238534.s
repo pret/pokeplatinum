@@ -74,7 +74,7 @@ ov97_022385A0: ; 0x022385A0
 	ldr r0, [r1, r0]
 	cmp r0, #4
 	bne _022385B2
-	bl sub_020C42A8
+	bl OS_Terminate
 _022385B2:
 	mov r0, #2
 	bl ov97_02238534
@@ -139,10 +139,10 @@ ov97_02238624: ; 0x02238624
 	ldr r0, [r1, r0]
 	cmp r0, #2
 	beq _02238638
-	bl sub_020C42A8
+	bl OS_Terminate
 	mov r0, #0
 _02238638:
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	add r4, r0, #0
 	mov r0, #2
 	lsl r0, r0, #0xe
@@ -174,7 +174,7 @@ _0223865E:
 _02238674:
 	add r0, r1, #1
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r6, #0
 	lsl r0, r1
 	tst r0, r4
@@ -235,7 +235,7 @@ _022386DA:
 	mov r1, #0x3f
 	lsl r1, r1, #6
 	add r1, r2, r1
-	bl sub_020CEFA0
+	bl WM_StartScan
 	cmp r0, #2
 	beq _022386F6
 	bl ov97_02238584
@@ -308,7 +308,7 @@ _02238772:
 	lsl r0, r0, #8
 	add r0, r1, r0
 	mov r1, #0xc0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh r0, [r4, #0x36]
 	cmp r0, #8
 	blo _0223879A
@@ -410,7 +410,7 @@ _02238854: .word 0x00001158
 ov97_02238858: ; 0x02238858
 	push {r3, lr}
 	ldr r0, _02238870 ; =ov97_02238874
-	bl sub_020CF1DC
+	bl WM_EndScan
 	cmp r0, #2
 	beq _0223886C
 	bl ov97_02238584
@@ -518,7 +518,7 @@ ov97_02238908: ; 0x02238908
 	ldr r1, _02238938 ; =ov97_0223893C
 	ldr r0, [r0, #0]
 	mov r2, #2
-	bl sub_020CECC8
+	bl WM_Initialize
 	cmp r0, #2
 	beq _0223892E
 	bl ov97_02238584
@@ -546,7 +546,7 @@ ov97_0223893C: ; 0x0223893C
 	pop {r3, pc}
 _02238950:
 	ldr r0, _02238974 ; =ov97_022388E0
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	cmp r0, #0
 	beq _02238966
 	bl ov97_02238584
@@ -571,12 +571,12 @@ ov97_02238978: ; 0x02238978
 	ldr r0, [r1, r0]
 	cmp r0, #1
 	beq _0223898A
-	bl sub_020C42A8
+	bl OS_Terminate
 _0223898A:
 	mov r0, #3
 	bl ov97_02238534
 	ldr r0, _022389C0 ; =ov97_0223888C
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	beq _022389B4
 	mov r0, #9
@@ -627,7 +627,7 @@ ov97_022389EC: ; 0x022389EC
 	mov r0, #3
 	bl ov97_02238534
 	ldr r0, _02238A0C ; =ov97_02238A10
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	beq _02238A06
 	bl ov97_02238584
@@ -750,7 +750,7 @@ ov97_02238AB4: ; 0x02238AB4
 	ldr r0, [r4, r2]
 	mov r1, #0x68
 	sub r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r2, _02238B30 ; =0x0000115C
 	add r0, r0, #1
 	strh r0, [r4, r2]
@@ -841,7 +841,7 @@ _02238B7C:
 	add r1, r2, r1
 	add r0, r4, #0
 	mov r2, #0x68
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, _02238C50 ; =0x022403F8
 	mov r2, #1
 	ldr r1, [r0, #0]
@@ -901,7 +901,7 @@ _02238BCC:
 	add r0, r4, #0
 	add r1, r1, r3
 	sub r2, r2, r3
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	b _02238C24
 _02238C10:
 	add r4, #8
@@ -912,7 +912,7 @@ _02238C10:
 	add r3, r1, #0
 	mul r3, r2
 	add r1, r4, r3
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 _02238C24:
 	ldr r1, _02238C50 ; =0x022403F8
 	ldr r0, _02238C6C ; =0x0000115E
@@ -1015,7 +1015,7 @@ _02238CC6:
 	ldr r0, _02238D40 ; =0x0000104C
 	add r0, r1, r0
 	add r1, sp, #0
-	bl sub_020A49A4
+	bl CRYPTO_RC4Init
 	ldr r0, _02238D34 ; =0x022403F8
 	ldr r2, _02238D44 ; =0x00001178
 	ldr r3, [r0, #0]
@@ -1032,7 +1032,7 @@ _02238CC6:
 	mov r0, #0
 	add r1, r1, r2
 	lsr r2, r2, #4
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, _02238D34 ; =0x022403F8
 	ldr r1, _02238D44 ; =0x00001178
 	ldr r2, [r0, #0]

@@ -28,4 +28,4 @@
 .public sub_0201FFE8
 .public sub_02023790
 .public sub_020237BC
-.public sub_020C12B4
+.public OS_WaitIrq

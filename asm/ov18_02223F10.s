@@ -8,12 +8,12 @@
 
 	arm_func_start ov18_02223F10
 ov18_02223F10: ; 0x02223F10
-	ldr ip, _02223F20 ; =sub_020C4CF4
+	ldr ip, _02223F20 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x70
 	bx ip
 	; .align 2, 0
-_02223F20: .word sub_020C4CF4
+_02223F20: .word MI_CpuFill8
 	arm_func_end ov18_02223F10
 
 	arm_func_start ov18_02223F24
@@ -23,14 +23,14 @@ ov18_02223F24: ; 0x02223F24
 	mov sb, r1
 	mov r8, r2
 	mov r7, r3
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r6, r4, #0x30
 	mov r5, r0
 	add r4, r4, #0x70
 _02223F48:
 	cmp r6, r4
 	blo _02223F54
-	bl sub_020C42A8
+	bl OS_Terminate
 _02223F54:
 	ldr r0, [r6, #0xc]
 	cmp r0, #0
@@ -46,7 +46,7 @@ _02223F78:
 	b _02223F48
 _02223F80:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	arm_func_end ov18_02223F24
 
@@ -58,7 +58,7 @@ ov18_02223F8C: ; 0x02223F8C
 	mov r7, r2
 	mov r6, r3
 	mov r4, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r2, sb, #0x30
 	add r1, sb, #0x70
 	mov r5, r0
@@ -79,7 +79,7 @@ _02223FBC:
 	mov r1, r7
 	mov r2, r6
 	add r0, r3, r0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0
 	str r0, [sb]
 	mov r4, #1
@@ -90,7 +90,7 @@ _02224008:
 	blo _02223FBC
 _02224014:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	arm_func_end ov18_02223F8C

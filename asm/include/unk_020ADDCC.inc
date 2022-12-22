@@ -1,6 +1,6 @@
-.public sub_020AC924
-.public sub_020AC9D0
-.public sub_020ACA44
-.public sub_020AD794
-.public sub_020ADDCC
-.public sub_020ADE80
+.public NNSi_G2dFontGetStringWidth
+.public NNSi_G2dFontGetTextHeight
+.public NNSi_G2dFontGetTextRect
+.public NNS_G2dCharCanvasDrawChar
+.public NNSi_G2dTextCanvasDrawString
+.public NNSi_G2dTextCanvasDrawTextAlign

@@ -1,3 +1,3 @@
-.public sub_020B275C
-.public sub_020BD048
-.public sub_020BD0DC
+.public NNS_G3dGeBufferOP_N
+.public FX_GetDivResult
+.public FX_DivAsync

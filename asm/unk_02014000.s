@@ -56,7 +56,7 @@ _0201404C:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xdc
-	bl sub_020D5124
+	bl memset
 	add r2, r4, #0
 	ldr r0, [sp, #8]
 	str r7, [r4, #0x18]
@@ -84,7 +84,7 @@ _0201404C:
 	str r0, [r2, #0]
 	ldr r2, [sp, #0xc]
 	add r0, r6, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0xc]
 	str r6, [r4, #0xc]
 	str r6, [r4, #0x10]
@@ -161,7 +161,7 @@ sub_0201411C: ; 0x0201411C
 	beq _0201413A
 	add r0, r5, #0
 	add r0, #0x58
-	bl sub_020A5D48
+	bl NNS_GfdSetFrmTexVramState
 	b _0201415A
 _0201413A:
 	mov r0, #2
@@ -174,7 +174,7 @@ _02014146:
 	ldr r0, [r4, #0x58]
 	cmp r0, #0
 	beq _02014152
-	bl sub_020A6914
+	bl NNS_GfdFreeLnkTexVram
 	str r7, [r4, #0x58]
 _02014152:
 	add r6, r6, #1
@@ -190,7 +190,7 @@ _0201415A:
 	beq _02014170
 	add r0, r5, #0
 	add r0, #0x98
-	bl sub_020A5F34
+	bl NNS_GfdSetFrmPlttVramState
 	b _02014198
 _02014170:
 	mov r0, #8
@@ -205,7 +205,7 @@ _0201417C:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _02014190
-	bl sub_020A6CAC
+	bl NNS_GfdFreeLnkPlttVram
 	add r0, r4, #0
 	add r0, #0x98
 	str r7, [r0, #0]
@@ -741,7 +741,7 @@ _020144EA:
 	beq _02014500
 	add r0, r5, #0
 	add r0, #0x58
-	bl sub_020A5D08
+	bl NNS_GfdGetFrmTexVramState
 	b _02014516
 _02014500:
 	mov r0, #2
@@ -762,7 +762,7 @@ _02014516:
 	beq _02014526
 	add r0, r5, #0
 	add r0, #0x98
-	bl sub_020A5F18
+	bl NNS_GfdGetFrmPlttVramState
 	b _02014540
 _02014526:
 	mov r0, #8
@@ -932,7 +932,7 @@ sub_02014638: ; 0x02014638
 	bl sub_020203D4
 	bl sub_020203EC
 _02014654:
-	bl sub_020AF480
+	bl NNS_G3dGlbFlushP
 	ldr r0, [r4, #0]
 	ldr r1, _02014670 ; =0x021C5AD8
 	bl sub_0209C5E0
@@ -941,7 +941,7 @@ _02014654:
 	beq _0201466A
 	bl sub_020203E0
 _0201466A:
-	bl sub_020AF480
+	bl NNS_G3dGlbFlushP
 	pop {r4, pc}
 	; .align 2, 0
 _02014670: .word 0x021C5AD8

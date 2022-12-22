@@ -521,7 +521,7 @@ _02256876:
 	pop {r3, pc}
 _0225687E:
 	lsl r0, r0, #0xc
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #5
 	lsr r0, r0, #0xc
 	bne _0225688E
@@ -667,18 +667,18 @@ _0225697C:
 	bl sub_02006DC8
 	ldr r0, [sp, #0x18]
 	add r1, sp, #0x20
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0x20]
 	mov r1, #2
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x20]
 	mov r2, #2
 	ldr r0, [r0, #0x14]
 	add r1, r7, #0
 	lsl r2, r2, #8
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	ldrh r0, [r6]
 	ldr r2, [sp, #0x1c]
 	add r1, sp, #0x24

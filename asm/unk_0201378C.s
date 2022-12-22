@@ -9,7 +9,7 @@
 	thumb_func_start sub_0201378C
 sub_0201378C: ; 0x0201378C
 	push {r3, lr}
-	bl sub_020CB8A8
+	bl RTC_Init
 	ldr r3, _020137BC ; =0x021BF5C8
 	mov r0, #0
 	add r2, r3, #0
@@ -102,7 +102,7 @@ sub_02013824: ; 0x02013824
 	add r0, #0x2c
 	add r1, #0x3c
 	add r3, r4, #0
-	bl sub_020CBA68
+	bl RTC_GetDateTimeAsync
 	str r0, [r4, #0xc]
 	cmp r0, #0
 	beq _02013846
@@ -206,12 +206,12 @@ _020138E8: .word 0x021BF5E8
 
 	thumb_func_start sub_020138EC
 sub_020138EC: ; 0x020138EC
-	ldr r3, _020138F4 ; =sub_020CC218
+	ldr r3, _020138F4 ; =RTC_ConvertDateTimeToSecond
 	ldr r0, _020138F8 ; =0x021BF5D8
 	ldr r1, _020138FC ; =0x021BF5E8
 	bx r3
 	; .align 2, 0
-_020138F4: .word sub_020CC218
+_020138F4: .word RTC_ConvertDateTimeToSecond
 _020138F8: .word 0x021BF5D8
 _020138FC: .word 0x021BF5E8
 	thumb_func_end sub_020138EC
@@ -237,14 +237,14 @@ sub_02013900: ; 0x02013900
 	bne _0201392E
 	add r0, r4, #0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0201393C
 _0201392E:
 	mov r1, #0x19
 	add r0, r4, #0
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0201393E
 _0201393C:
@@ -326,7 +326,7 @@ sub_0201398C: ; 0x0201398C
 	ldr r1, [sp, #4]
 	str r0, [r2, #0]
 	ldr r0, [sp]
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	add r2, r1, #0
 	add r3, r0, #0
 	mov r1, #0

@@ -6,10 +6,10 @@
 	.text
 
 
-	arm_func_start sub_020C0D34
-sub_020C0D34: ; 0x020C0D34
+	arm_func_start GX_BeginLoadTex
+GX_BeginLoadTex: ; 0x020C0D34
 	stmfd sp!, {r3, lr}
-	bl sub_020BED0C
+	bl GX_ResetBankForTex
 	mov r1, #6
 	mul lr, r0, r1
 	ldr r2, _020C0D80 ; =0x020FD950
@@ -32,10 +32,10 @@ _020C0D80: .word 0x020FD950
 _020C0D84: .word 0x020FD952
 _020C0D88: .word 0x020FD954
 _020C0D8C: .word 0x021CCBD8
-	arm_func_end sub_020C0D34
+	arm_func_end GX_BeginLoadTex
 
-	arm_func_start sub_020C0D90
-sub_020C0D90: ; 0x020C0D90
+	arm_func_start GX_LoadTex
+GX_LoadTex: ; 0x020C0D90
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	ldr r3, _020C0EC8 ; =0x021CCBD8
@@ -69,13 +69,13 @@ sub_020C0D90: ; 0x020C0D90
 	mov r1, r7
 	mov r3, r5
 	add r2, lr, ip
-	bl sub_020C4354
+	bl MI_DmaCopy32
 	b _020C0E2C
 _020C0E1C:
 	mov r0, r7
 	mov r2, r5
 	add r1, lr, ip
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 _020C0E2C:
 	ldr r0, _020C0ECC ; =0x02101148
 	mvn r1, #0
@@ -88,14 +88,14 @@ _020C0E2C:
 	add r1, r7, r5
 	sub r3, r6, r5
 	str ip, [sp, #4]
-	bl sub_020C44F4
+	bl MI_DmaCopy32Async
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020C0E64:
 	mov r1, r4
 	add r0, r7, r5
 	sub r2, r6, r5
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020C0E7C:
@@ -109,34 +109,34 @@ _020C0E7C:
 	mov r1, r7
 	mov r3, r6
 	str r4, [sp, #4]
-	bl sub_020C44F4
+	bl MI_DmaCopy32Async
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020C0EB0:
 	mov r1, r2
 	mov r0, r7
 	mov r2, r6
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C0EC8: .word 0x021CCBD8
 _020C0ECC: .word 0x02101148
-	arm_func_end sub_020C0D90
+	arm_func_end GX_LoadTex
 
-	arm_func_start sub_020C0ED0
-sub_020C0ED0: ; 0x020C0ED0
+	arm_func_start GX_EndLoadTex
+GX_EndLoadTex: ; 0x020C0ED0
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C0F14 ; =0x02101148
 	mvn r1, #0
 	ldr r0, [r0, #0]
 	cmp r0, r1
 	beq _020C0EEC
-	bl sub_020C458C
+	bl MI_WaitDma
 _020C0EEC:
 	ldr r0, _020C0F18 ; =0x021CCBD8
 	ldr r0, [r0, #0x14]
-	bl sub_020BE590
+	bl GX_SetBankForTex
 	ldr r0, _020C0F18 ; =0x021CCBD8
 	mov r1, #0
 	str r1, [r0, #0x1c]
@@ -147,12 +147,12 @@ _020C0EEC:
 	; .align 2, 0
 _020C0F14: .word 0x02101148
 _020C0F18: .word 0x021CCBD8
-	arm_func_end sub_020C0ED0
+	arm_func_end GX_EndLoadTex
 
-	arm_func_start sub_020C0F1C
-sub_020C0F1C: ; 0x020C0F1C
+	arm_func_start GX_BeginLoadTexPltt
+GX_BeginLoadTexPltt: ; 0x020C0F1C
 	stmfd sp!, {r3, lr}
-	bl sub_020BED20
+	bl GX_ResetBankForTexPltt
 	mov r3, r0, asr #4
 	ldr r1, _020C0F48 ; =0x021CCBD8
 	ldr r2, _020C0F4C ; =0x020FD940
@@ -165,10 +165,10 @@ sub_020C0F1C: ; 0x020C0F1C
 	; .align 2, 0
 _020C0F48: .word 0x021CCBD8
 _020C0F4C: .word 0x020FD940
-	arm_func_end sub_020C0F1C
+	arm_func_end GX_BeginLoadTexPltt
 
-	arm_func_start sub_020C0F50
-sub_020C0F50: ; 0x020C0F50
+	arm_func_start GX_LoadTexPltt
+GX_LoadTexPltt: ; 0x020C0F50
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	ldr r3, _020C0FB4 ; =0x02101148
@@ -187,32 +187,32 @@ sub_020C0F50: ; 0x020C0F50
 	mov r1, r6
 	add r2, lr, r5
 	str ip, [sp, #4]
-	bl sub_020C44F4
+	bl MI_DmaCopy32Async
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 _020C0FA4:
 	add r1, lr, r5
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C0FB4: .word 0x02101148
 _020C0FB8: .word 0x021CCBD8
-	arm_func_end sub_020C0F50
+	arm_func_end GX_LoadTexPltt
 
-	arm_func_start sub_020C0FBC
-sub_020C0FBC: ; 0x020C0FBC
+	arm_func_start GX_EndLoadTexPltt
+GX_EndLoadTexPltt: ; 0x020C0FBC
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C0FF8 ; =0x02101148
 	mvn r1, #0
 	ldr r0, [r0, #0]
 	cmp r0, r1
 	beq _020C0FD8
-	bl sub_020C458C
+	bl MI_WaitDma
 _020C0FD8:
 	ldr r0, _020C0FFC ; =0x021CCBD8
 	ldr r0, [r0, #0xc]
-	bl sub_020BE768
+	bl GX_SetBankForTexPltt
 	ldr r0, _020C0FFC ; =0x021CCBD8
 	mov r1, #0
 	str r1, [r0, #0xc]
@@ -221,12 +221,12 @@ _020C0FD8:
 	; .align 2, 0
 _020C0FF8: .word 0x02101148
 _020C0FFC: .word 0x021CCBD8
-	arm_func_end sub_020C0FBC
+	arm_func_end GX_EndLoadTexPltt
 
-	arm_func_start sub_020C1000
-sub_020C1000: ; 0x020C1000
+	arm_func_start GX_BeginLoadClearImage
+GX_BeginLoadClearImage: ; 0x020C1000
 	stmfd sp!, {r3, lr}
-	bl sub_020BED34
+	bl GX_ResetBankForClearImage
 	ldr r1, _020C1080 ; =0x021CCBD8
 	cmp r0, #0xc
 	str r0, [r1, #0]
@@ -267,10 +267,10 @@ _020C1080: .word 0x021CCBD8
 _020C1084: .word 0x06840000
 _020C1088: .word 0x067E0000
 _020C108C: .word 0x06820000
-	arm_func_end sub_020C1000
+	arm_func_end GX_BeginLoadClearImage
 
-	arm_func_start sub_020C1090
-sub_020C1090: ; 0x020C1090
+	arm_func_start GX_LoadClearImageColor
+GX_LoadClearImageColor: ; 0x020C1090
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	ldr r2, _020C10F0 ; =0x02101148
@@ -287,22 +287,22 @@ sub_020C1090: ; 0x020C1090
 	mov r0, lr
 	mov r1, r4
 	str ip, [sp, #4]
-	bl sub_020C44F4
+	bl MI_DmaCopy32Async
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 _020C10DC:
 	mov r1, r2
 	mov r2, r3
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C10F0: .word 0x02101148
 _020C10F4: .word 0x021CCBD8
-	arm_func_end sub_020C1090
+	arm_func_end GX_LoadClearImageColor
 
-	arm_func_start sub_020C10F8
-sub_020C10F8: ; 0x020C10F8
+	arm_func_start GX_LoadClearImageDepth
+GX_LoadClearImageDepth: ; 0x020C10F8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	ldr r2, _020C115C ; =0x02101148
@@ -320,33 +320,33 @@ sub_020C10F8: ; 0x020C10F8
 	mov r1, r5
 	add r2, r4, #0x20000
 	str ip, [sp, #4]
-	bl sub_020C44F4
+	bl MI_DmaCopy32Async
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 _020C1148:
 	mov r2, r3
 	add r1, r4, #0x20000
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C115C: .word 0x02101148
 _020C1160: .word 0x021CCBD8
-	arm_func_end sub_020C10F8
+	arm_func_end GX_LoadClearImageDepth
 
-	arm_func_start sub_020C1164
-sub_020C1164: ; 0x020C1164
+	arm_func_start GX_EndLoadClearImage
+GX_EndLoadClearImage: ; 0x020C1164
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C11A0 ; =0x02101148
 	mvn r1, #0
 	ldr r0, [r0, #0]
 	cmp r0, r1
 	beq _020C1180
-	bl sub_020C458C
+	bl MI_WaitDma
 _020C1180:
 	ldr r0, _020C11A4 ; =0x021CCBD8
 	ldr r0, [r0, #0]
-	bl sub_020BE850
+	bl GX_SetBankForClearImage
 	ldr r0, _020C11A4 ; =0x021CCBD8
 	mov r1, #0
 	str r1, [r0, #0]
@@ -355,7 +355,7 @@ _020C1180:
 	; .align 2, 0
 _020C11A0: .word 0x02101148
 _020C11A4: .word 0x021CCBD8
-	arm_func_end sub_020C1164
+	arm_func_end GX_EndLoadClearImage
 
 	.rodata
 

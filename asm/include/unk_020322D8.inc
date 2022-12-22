@@ -13,5 +13,5 @@
 .public sub_02032530
 .public sub_02032550
 .public sub_02032868
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8

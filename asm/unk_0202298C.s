@@ -882,7 +882,7 @@ sub_02022F70: ; 0x02022F70
 	push {r3, lr}
 	ldr r0, [r0, #0]
 	bl sub_02022B54
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end sub_02022F70
@@ -899,7 +899,7 @@ sub_02022F80: ; 0x02022F80
 _02022F90:
 	ldr r0, [r0, #0x10]
 _02022F92:
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	pop {r3, pc}
 	thumb_func_end sub_02022F80
 
@@ -911,13 +911,13 @@ sub_02022F98: ; 0x02022F98
 	str r1, [sp]
 	str r2, [sp, #4]
 	str r3, [sp, #8]
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	add r7, r0, #0
 	add r0, r5, #0
-	bl sub_020AE8D8
+	bl NNS_G3dTex4x4GetRequiredSize
 	add r6, r0, #0
 	add r0, r5, #0
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	add r4, r0, #0
 	cmp r7, #0
 	beq _02022FCE
@@ -973,13 +973,13 @@ sub_02023008: ; 0x02023008
 	bl sub_02023034
 	ldr r1, [r4, #4]
 	add r0, r4, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r4, #0
 	mov r1, #1
-	bl sub_020AE900
+	bl NNS_G3dTexLoad
 	add r0, r4, #0
 	mov r1, #1
-	bl sub_020AEA20
+	bl NNS_G3dPlttLoad
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_02023008
@@ -989,10 +989,10 @@ sub_02023034: ; 0x02023034
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r3, #0
-	bl sub_020AE8EC
+	bl NNS_G3dTexSetTexKey
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020AEA18
+	bl NNS_G3dPlttSetPlttKey
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02023034
 
@@ -1003,9 +1003,9 @@ sub_02023048: ; 0x02023048
 	add r4, r0, #0
 	add r1, sp, #4
 	add r2, sp, #0
-	bl sub_020AE9B8
+	bl NNS_G3dTexReleaseTexKey
 	add r0, r4, #0
-	bl sub_020AEA70
+	bl NNS_G3dPlttReleasePlttKey
 	add sp, #8
 	pop {r4, pc}
 	thumb_func_end sub_02023048
@@ -1023,7 +1023,7 @@ sub_02023060: ; 0x02023060
 	add r1, r6, #0
 	add r2, r5, #0
 	add r4, r0, #0
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -1033,7 +1033,7 @@ sub_02023060: ; 0x02023060
 sub_02023084: ; 0x02023084
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	add r4, r0, #0
 	bne _02023094
 	bl sub_02022974

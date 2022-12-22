@@ -57,7 +57,7 @@ _0223DCCE:
 	add r1, r0, #0
 	mov r0, #0
 	lsl r2, r2, #0xe
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r2, #0
 	add r0, r5, #0
 	mov r1, #1
@@ -229,7 +229,7 @@ _0223DE2A:
 	str r0, [r4, #0xc]
 	mov r1, #0
 	mov r2, #0x94
-	bl sub_020D5124
+	bl memset
 	ldr r5, [r4, #0xc]
 	ldr r0, [r4, #0x24]
 	mov r1, #2
@@ -440,19 +440,19 @@ _0223DE2A:
 	cmp r0, #0
 	ble _0223E01A
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [sp, #0x1c]
 	b _0223E02A
 _0223E01A:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [sp, #0x1c]
 _0223E02A:
 	mov r0, #0x28
@@ -460,23 +460,23 @@ _0223E02A:
 	cmp r0, #0
 	ble _0223E044
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223E052
 _0223E044:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223E052:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r7, r0, #0
 	ldr r0, [sp, #0x1c]
-	bl sub_020E1740
+	bl _f_ftoi
 	add r5, #0x14
 	add r1, r5, #0
 	mov r2, #0x12
@@ -924,7 +924,7 @@ ov104_0223E3CC: ; 0x0223E3CC
 	add r1, r4, r1
 	asr r5, r1, #3
 	mov r1, #8
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	beq _0223E3F4
 	add r5, r5, #1
@@ -1121,7 +1121,7 @@ ov104_0223E544: ; 0x0223E544
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1132,7 +1132,7 @@ ov104_0223E544: ; 0x0223E544
 	orr r0, r1
 	ldr r1, [r4, #0x10]
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]
@@ -1279,7 +1279,7 @@ ov104_0223E5A8: ; 0x0223E5A8
 	ldr r0, [r0, #0xc]
 	add r1, #0x40
 	add r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	ldr r0, _0223E6B4 ; =ov104_0223E6BC
@@ -1339,7 +1339,7 @@ ov104_0223E6F0: ; 0x0223E6F0
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r5, #0
 	bne _0223E71E
 	mov r0, #5

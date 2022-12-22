@@ -1,3 +1,3 @@
-.public sub_020A730C
-.public sub_020BFF50
-.public sub_020BFFB4
+.public DrawOneQuad_
+.public G3i_OrthoW_
+.public G3i_LookAt_

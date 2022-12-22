@@ -10,7 +10,7 @@
 .public sub_020553A4
 .public sub_0205DC20
 .public sub_02068390
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov5_021E1894
 .public ov5_021E18B8
 .public ov5_021E18C4

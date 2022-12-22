@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A9104
-sub_020A9104: ; 0x020A9104
+	arm_func_start SetMCDataToMCInstanceImpl_
+SetMCDataToMCInstanceImpl_: ; 0x020A9104
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r1
 	str r0, [sp]
@@ -53,11 +53,11 @@ _020A9174:
 	ldr r0, [sp]
 	ldrh r1, [r6]
 	ldr r0, [r0, #4]
-	bl sub_020A6EF0
+	bl NNS_G2dGetAnimSequenceByIdx
 	mov r4, r0
 	mov r0, r7
 	mov r1, r4
-	bl sub_020A8D48
+	bl NNS_G2dSetCellAnimationSequence
 	mov r0, #1
 	str r0, [r7, #0xc]
 	ldrh r0, [r6, #6]
@@ -79,22 +79,22 @@ _020A91F0:
 	blo _020A91F0
 _020A9208:
 	mov r0, r7
-	bl sub_020A78FC
+	bl NNSi_G2dIsAnimCtrlLoopAnim
 	cmp r0, #0
 	beq _020A9234
 	mov r0, sb
 	mov r1, r6
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, r7
 	mov r1, r1, lsl #0xc
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 	b _020A9248
 _020A9234:
 	cmp sb, r6
 	movlo r6, sb
 	mov r0, r7
 	mov r1, r6, lsl #0xc
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 _020A9248:
 	mov r0, #1
 	str r0, [r7, #0x58]
@@ -123,11 +123,11 @@ _020A9284:
 	ldr r6, [fp, r2]
 	ldr r0, [r0, #4]
 	add r5, r3, r7, lsl #3
-	bl sub_020A6EF0
+	bl NNS_G2dGetAnimSequenceByIdx
 	mov r4, r0
 	mov r0, r6
 	mov r1, r4
-	bl sub_020A8D48
+	bl NNS_G2dSetCellAnimationSequence
 	mov r0, #1
 	str r0, [r6, #0xc]
 	ldrh r0, [r5, #6]
@@ -149,22 +149,22 @@ _020A92EC:
 	blo _020A92EC
 _020A9304:
 	mov r0, r6
-	bl sub_020A78FC
+	bl NNSi_G2dIsAnimCtrlLoopAnim
 	cmp r0, #0
 	beq _020A9330
 	mov r0, sb
 	mov r1, r8
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, r6
 	mov r1, r1, lsl #0xc
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 	b _020A9344
 _020A9330:
 	cmp sb, r8
 	movlo r8, sb
 	mov r0, r6
 	mov r1, r8, lsl #0xc
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 _020A9344:
 	mov r0, #0x28
 	mla r3, r7, r0, fp
@@ -173,7 +173,7 @@ _020A9344:
 	ldrsh r1, [r5, #2]
 	ldrsh r2, [r5, #4]
 	add r0, r3, #0xc
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 	add r0, r7, #1
 	mov r0, r0, lsl #0x10
 	ldrh r1, [sl]
@@ -181,13 +181,13 @@ _020A9344:
 	cmp r1, r0, lsr #16
 	bhi _020A9284
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020A9104
+	arm_func_end SetMCDataToMCInstanceImpl_
 
-	arm_func_start sub_020A9380
-sub_020A9380: ; 0x020A9380
+	arm_func_start NNS_G2dSetAnimSequenceToMCAnimation
+NNS_G2dSetAnimSequenceToMCAnimation: ; 0x020A9380
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
-	bl sub_020A78EC
+	bl NNS_G2dBindAnimCtrl
 	mov r0, #0
 	strh r0, [r4, #0x30]
 	ldr r0, [r4, #4]
@@ -195,18 +195,18 @@ sub_020A9380: ; 0x020A9380
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r4
-	bl sub_020A763C
+	bl NNS_G2dGetAnimCtrlCurrentElement
 	mov r5, r0
 	ldrh r1, [r5]
 	ldr r0, [r4, #0x44]
-	bl sub_020A7100
+	bl NNS_G2dGetMultiCellDataByIdx
 	ldr r1, [r4, #0x1c]
 	mov r7, r0
 	ldr r1, [r1, #4]
 	add r0, r4, #0x48
 	and r6, r1, #0xff
 	mov r1, #1
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	cmp r6, #0
 	beq _020A9424
 	cmp r6, #2
@@ -214,29 +214,29 @@ sub_020A9380: ; 0x020A9380
 	ldrsh r1, [r5, #4]
 	ldrsh r2, [r5, #6]
 	add r0, r4, #0x48
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 	b _020A9424
 _020A93FC:
 	add r0, r4, #0x48
 	ldmib r5, {r1, r2}
-	bl sub_020A8B1C
+	bl NNSi_G2dSrtcSetSRTScale
 	ldrh r1, [r5, #2]
 	add r0, r4, #0x48
-	bl sub_020A8AFC
+	bl NNSi_G2dSrtcSetSRTRotZ
 	ldrsh r1, [r5, #0xc]
 	ldrsh r2, [r5, #0xe]
 	add r0, r4, #0x48
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 _020A9424:
 	ldrh r2, [r4, #0x30]
 	mov r1, r7
 	add r0, r4, #0x34
-	bl sub_020A9104
+	bl SetMCDataToMCInstanceImpl_
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020A9380
+	arm_func_end NNS_G2dSetAnimSequenceToMCAnimation
 
-	arm_func_start sub_020A9438
-sub_020A9438: ; 0x020A9438
+	arm_func_start NNS_G2dGetMCBankNumNodesRequired
+NNS_G2dGetMCBankNumNodesRequired: ; 0x020A9438
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r4, r0
 	ldrh r0, [r4]
@@ -247,7 +247,7 @@ sub_020A9438: ; 0x020A9438
 _020A9454:
 	mov r0, r4
 	mov r1, r6
-	bl sub_020A7100
+	bl NNS_G2dGetMultiCellDataByIdx
 	ldrh r0, [r0]
 	ldrh r1, [r4]
 	cmp r0, r5
@@ -260,10 +260,10 @@ _020A9454:
 _020A9484:
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020A9438
+	arm_func_end NNS_G2dGetMCBankNumNodesRequired
 
-	arm_func_start sub_020A948C
-sub_020A948C: ; 0x020A948C
+	arm_func_start NNS_G2dTickMCInstance
+NNS_G2dTickMCInstance: ; 0x020A948C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r0
 	ldr r0, [r7, #8]
@@ -280,7 +280,7 @@ sub_020A948C: ; 0x020A948C
 _020A94C0:
 	mla r0, r4, r8, r5
 	mov r1, r6
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 	ldr r1, [r7, #0]
 	add r0, r4, #1
 	mov r0, r0, lsl #0x10
@@ -298,7 +298,7 @@ _020A94FC:
 	mul r0, r4, r8
 	ldr r0, [r5, r0]
 	mov r1, r6
-	bl sub_020A8D60
+	bl NNS_G2dTickCellAnimation
 	ldr r1, [r7, #0]
 	add r0, r4, #1
 	mov r0, r0, lsl #0x10
@@ -307,16 +307,16 @@ _020A94FC:
 	cmp r1, r0, lsr #16
 	bhi _020A94FC
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020A948C
+	arm_func_end NNS_G2dTickMCInstance
 
-	arm_func_start sub_020A952C
-sub_020A952C: ; 0x020A952C
+	arm_func_start NNS_G2dTickMCAnimation
+NNS_G2dTickMCAnimation: ; 0x020A952C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
 	ldr r2, [r4, #0]
 	mov r6, r1
 	ldrh r5, [r2, #4]
-	bl sub_020A7648
+	bl NNS_G2dTickAnimCtrl
 	cmp r0, #0
 	beq _020A95FC
 	ldrh r0, [r4, #0x30]
@@ -327,18 +327,18 @@ sub_020A952C: ; 0x020A952C
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r4
-	bl sub_020A763C
+	bl NNS_G2dGetAnimCtrlCurrentElement
 	mov r5, r0
 	ldrh r1, [r5]
 	ldr r0, [r4, #0x44]
-	bl sub_020A7100
+	bl NNS_G2dGetMultiCellDataByIdx
 	ldr r1, [r4, #0x1c]
 	mov r7, r0
 	ldr r1, [r1, #4]
 	add r0, r4, #0x48
 	and r6, r1, #0xff
 	mov r1, #1
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	cmp r6, #0
 	beq _020A95E8
 	cmp r6, #2
@@ -346,55 +346,55 @@ sub_020A952C: ; 0x020A952C
 	ldrsh r1, [r5, #4]
 	ldrsh r2, [r5, #6]
 	add r0, r4, #0x48
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 	b _020A95E8
 _020A95C0:
 	add r0, r4, #0x48
 	ldmib r5, {r1, r2}
-	bl sub_020A8B1C
+	bl NNSi_G2dSrtcSetSRTScale
 	ldrh r1, [r5, #2]
 	add r0, r4, #0x48
-	bl sub_020A8AFC
+	bl NNSi_G2dSrtcSetSRTRotZ
 	ldrsh r1, [r5, #0xc]
 	ldrsh r2, [r5, #0xe]
 	add r0, r4, #0x48
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 _020A95E8:
 	ldrh r2, [r4, #0x30]
 	mov r1, r7
 	add r0, r4, #0x34
-	bl sub_020A9104
+	bl SetMCDataToMCInstanceImpl_
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020A95FC:
 	mov r1, r6
 	add r0, r4, #0x34
-	bl sub_020A948C
+	bl NNS_G2dTickMCInstance
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020A952C
+	arm_func_end NNS_G2dTickMCAnimation
 
-	arm_func_start sub_020A960C
-sub_020A960C: ; 0x020A960C
+	arm_func_start NNS_G2dSetMCAnimationCurrentFrame
+NNS_G2dSetMCAnimationCurrentFrame: ; 0x020A960C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
-	bl sub_020A77FC
+	bl NNS_G2dSetAnimCtrlCurrentFrame
 	cmp r0, #0
 	ldrne r0, [r4, #4]
 	ldrneh r0, [r0, #4]
 	cmpne r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r4
-	bl sub_020A763C
+	bl NNS_G2dGetAnimCtrlCurrentElement
 	mov r5, r0
 	ldrh r1, [r5]
 	ldr r0, [r4, #0x44]
-	bl sub_020A7100
+	bl NNS_G2dGetMultiCellDataByIdx
 	ldr r1, [r4, #0x1c]
 	mov r7, r0
 	ldr r1, [r1, #4]
 	add r0, r4, #0x48
 	and r6, r1, #0xff
 	mov r1, #1
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	cmp r6, #0
 	beq _020A96AC
 	cmp r6, #2
@@ -402,29 +402,29 @@ sub_020A960C: ; 0x020A960C
 	ldrsh r1, [r5, #4]
 	ldrsh r2, [r5, #6]
 	add r0, r4, #0x48
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 	b _020A96AC
 _020A9684:
 	add r0, r4, #0x48
 	ldmib r5, {r1, r2}
-	bl sub_020A8B1C
+	bl NNSi_G2dSrtcSetSRTScale
 	ldrh r1, [r5, #2]
 	add r0, r4, #0x48
-	bl sub_020A8AFC
+	bl NNSi_G2dSrtcSetSRTRotZ
 	ldrsh r1, [r5, #0xc]
 	ldrsh r2, [r5, #0xe]
 	add r0, r4, #0x48
-	bl sub_020A8AD8
+	bl NNSi_G2dSrtcSetTrans
 _020A96AC:
 	ldrh r2, [r4, #0x30]
 	mov r1, r7
 	add r0, r4, #0x34
-	bl sub_020A9104
+	bl SetMCDataToMCInstanceImpl_
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020A960C
+	arm_func_end NNS_G2dSetMCAnimationCurrentFrame
 
-	arm_func_start sub_020A96C0
-sub_020A96C0: ; 0x020A96C0
+	arm_func_start NNS_G2dInitMCAnimation
+NNS_G2dInitMCAnimation: ; 0x020A96C0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov r5, #0
 	str r5, [r0, #0x3c]
@@ -443,17 +443,17 @@ _020A96F4:
 	mul r4, r5, r0
 	mov r1, #1
 	add r0, sl, r4
-	bl sub_020A8B74
+	bl NNSi_G2dInitializeNode
 	mov r0, #0x58
 	mla r6, r5, r0, sb
 	mov r0, r7
 	mov r1, #0
 	str r6, [sl, r4]
-	bl sub_020A6EF0
+	bl NNS_G2dGetAnimSequenceByIdx
 	mov r1, r0
 	mov r0, r6
 	mov r2, fp
-	bl sub_020A8C88
+	bl NNS_G2dInitCellAnimation
 	add r0, r5, #1
 	mov r0, r0, lsl #0x10
 	cmp r8, r0, lsr #16
@@ -461,16 +461,16 @@ _020A96F4:
 	bhi _020A96F4
 _020A9744:
 	ldr r0, [sp]
-	bl sub_020A7834
+	bl NNS_G2dInitAnimCtrl
 	ldr r0, [sp]
 	ldr r3, [sp, #0x30]
 	ldr r2, [sp]
 	add r0, r0, #0x48
 	mov r1, #1
 	str r3, [r2, #0x44]
-	bl sub_020A8B3C
+	bl NNSi_G2dSrtcInitControl
 	ldr r0, [sp]
 	mov r1, #0
 	strh r1, [r0, #0x30]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020A96C0
+	arm_func_end NNS_G2dInitMCAnimation

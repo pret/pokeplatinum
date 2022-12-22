@@ -66,7 +66,7 @@ ov29_0225621C: ; 0x0225621C
 	add r0, #0x14
 	mov r1, #0
 	add r6, r3, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02256278 ; =0x000016F0
 	mov r1, #1
 	str r6, [r5, r0]
@@ -513,7 +513,7 @@ _0225653E:
 	ldr r0, [sp, #0x30]
 	sub r0, r0, r4
 	lsl r0, r0, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x14]
 	b _02256554
 _02256550:
@@ -598,7 +598,7 @@ _022565DA:
 	add r1, r2, #0
 	sub r0, r0, r6
 	lsl r0, r0, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0xc]
 	b _022565F2
 _022565EE:

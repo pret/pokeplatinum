@@ -5,8 +5,8 @@
 .public sub_0201E0B8
 .public sub_0201E0FC
 .public sub_02022974
-.public sub_020B2CE4
-.public sub_020C4CF4
+.public NNSi_G3dModifyMatFlag
+.public MI_CpuFill8
 .public ov5_021D52F4
 .public ov5_021D538C
 .public ov5_021D53D4

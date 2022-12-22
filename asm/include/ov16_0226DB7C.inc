@@ -19,7 +19,7 @@
 .public sub_0200DA58
 .public sub_02018144
 .public sub_020181C4
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov16_0226DCCC
 .public ov16_0226DD54
 .public ov16_0226DE10

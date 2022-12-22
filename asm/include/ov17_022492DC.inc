@@ -45,11 +45,11 @@
 .public sub_020237BC
 .public sub_02095848
 .public sub_020958C4
-.public sub_020BD140
-.public sub_020C4AF0
-.public sub_020C4B18
-.public sub_020C4B68
-.public sub_020C4CF4
+.public FX_ModS32
+.public MIi_CpuClear16
+.public MIi_CpuCopy16
+.public MIi_CpuCopy32
+.public MI_CpuFill8
 .public ov17_022492DC
 .public ov17_022493DC
 .public ov17_022495F8

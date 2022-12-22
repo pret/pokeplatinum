@@ -6,9 +6,9 @@
 .public sub_0201CED0
 .public sub_0201D35C
 .public sub_02022974
-.public sub_020D5124
-.public sub_020E1F6C
-.public sub_020E2178
+.public memset
+.public _s32_div_f
+.public _u32_div_f
 .public ov22_02255360
 .public ov22_02255390
 .public ov22_022579D8

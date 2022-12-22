@@ -1,5 +1,5 @@
-.public sub_020C161C
-.public sub_020C164C
+.public OS_EnableIrqMask
+.public OS_DisableIrqMask
 .public ov18_02243FD4
 .public ov18_02244008
 .public ov18_02244048

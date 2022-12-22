@@ -5,4 +5,4 @@
 .public sub_02032798
 .public sub_0203597C
 .public sub_020359DC
-.public sub_020C4DB0
+.public MI_CpuCopy8

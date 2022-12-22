@@ -29,10 +29,10 @@
 .public sub_020237BC
 .public sub_02023C5C
 .public sub_02023C9C
-.public sub_020A818C
-.public sub_020A81D0
-.public sub_020C2C54
-.public sub_020C4B18
+.public NNS_G2dInitImageProxy
+.public NNS_G2dInitImagePaletteProxy
+.public DC_FlushRange
+.public MIi_CpuCopy16
 .public ov20_021D1F94
 .public ov20_021D204C
 .public ov20_021D2060

@@ -61,7 +61,7 @@
 .public sub_0206A224
 .public sub_0206A230
 .public sub_0207136C
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov5_021F3F10
 .public ov5_021F5C4C
 .public ov5_021F5D8C

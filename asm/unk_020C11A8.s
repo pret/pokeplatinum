@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C11A8
-sub_020C11A8: ; 0x020C11A8
+	arm_func_start G3_BeginMakeDL
+G3_BeginMakeDL: ; 0x020C11A8
 	str r2, [r0, #0xc]
 	str r1, [r0, #8]
 	str r1, [r0, #0]
@@ -15,10 +15,10 @@ sub_020C11A8: ; 0x020C11A8
 	mov r1, #0
 	str r1, [r0, #0x10]
 	bx lr
-	arm_func_end sub_020C11A8
+	arm_func_end G3_BeginMakeDL
 
-	arm_func_start sub_020C11C8
-sub_020C11C8: ; 0x020C11C8
+	arm_func_start G3_EndMakeDL
+G3_EndMakeDL: ; 0x020C11C8
 	ldr r3, [r0, #0]
 	ldr r2, [r0, #8]
 	cmp r2, r3
@@ -69,4 +69,4 @@ _020C1260:
 	ldr r0, [r0, #8]
 	sub r0, r1, r0
 	bx lr
-	arm_func_end sub_020C11C8
+	arm_func_end G3_EndMakeDL

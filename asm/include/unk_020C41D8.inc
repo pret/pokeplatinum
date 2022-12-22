@@ -1,1 +1,1 @@
-.public sub_020C3920
+.public OS_GetTickLo

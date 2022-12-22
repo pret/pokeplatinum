@@ -109,7 +109,7 @@ _02246CEA:
 	lsl r1, r1, #2
 	str r0, [r4, r1]
 _02246D02:
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #1
 	str r0, [sp]
 	mov r0, #0x7f
@@ -241,7 +241,7 @@ _02246E16:
 ov95_02246E1C: ; 0x02246E1C
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r6, r0, #0
 	add r0, r5, #0
 	bl sub_0200682C
@@ -269,7 +269,7 @@ ov95_02246E1C: ; 0x02246E1C
 	mov r0, #0x3a
 	bl sub_0201807C
 	add r0, r6, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -392,7 +392,7 @@ ov95_02246F30: ; 0x02246F30
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x60
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r7, #0
 	bl sub_020181C4
 _02246F6A:
@@ -434,14 +434,14 @@ _02246F9A:
 	mov r1, #4
 	mov r2, #0xc
 	mov r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	ldr r0, _02246FFC ; =0x04001050
 	mov r1, #4
 	mov r2, #0xc
 	mov r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, _02247000 ; =ov95_02247060
 	add r1, r4, #0
 	mov r2, #0x14
@@ -561,23 +561,23 @@ _0224709C:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _02247140
-	bl sub_020C096C
-	bl sub_020C0BBC
+	bl GX_BeginLoadBGExtPltt
+	bl GXS_BeginLoadBGExtPltt
 	add r0, r4, #0
 	mov r1, #0x60
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r1, #6
 	add r0, r4, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0A0C
+	bl GX_LoadBGExtPltt
 	mov r1, #6
 	add r0, r4, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0BD4
-	bl sub_020C0A7C
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	mov r0, #0
 	add r4, #0xec
 	str r0, [r4, #0]
@@ -588,23 +588,23 @@ _022470DE:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _02247120
-	bl sub_020C096C
-	bl sub_020C0BBC
+	bl GX_BeginLoadBGExtPltt
+	bl GXS_BeginLoadBGExtPltt
 	add r0, r4, #0
 	mov r1, #0x60
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r1, #6
 	add r0, r4, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0A0C
+	bl GX_LoadBGExtPltt
 	mov r1, #6
 	add r0, r4, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0BD4
-	bl sub_020C0A7C
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	add r0, r4, #0
 	mov r1, #0
 	add r0, #0xec
@@ -1068,7 +1068,7 @@ _02247462:
 	bl sub_02013720
 	add r0, r7, #0
 	add r1, r6, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, [sp, #0x14]
 	mov r0, #0
 	str r0, [sp]

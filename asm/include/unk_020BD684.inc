@@ -1,4 +1,4 @@
-.public sub_020BD684
-.public sub_020BD76C
-.public sub_020BD838
-.public sub_020BD8D0
+.public FX_SinFx64c_internal
+.public FX_CosFx64c_internal
+.public FX_SinFx64c
+.public FX_CosFx64c

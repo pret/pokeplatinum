@@ -49,7 +49,7 @@ sub_0200762C: ; 0x0200762C
 	ldr r1, [r4, r1]
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r5, #0
 	mov r1, #0xc0
 	bl sub_02018144
@@ -59,7 +59,7 @@ sub_0200762C: ; 0x0200762C
 	ldr r1, [r4, r1]
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r6, #0
 	add r5, r4, #0
 	add r7, r6, #0
@@ -67,12 +67,12 @@ _020076A6:
 	add r0, r7, #0
 	add r1, r5, #0
 	mov r2, #0xac
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r6, r6, #1
 	add r5, #0xac
 	cmp r6, #4
 	blt _020076A6
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r2, _0200775C ; =0x00000333
 	mov r0, #0
 	strb r0, [r4, r2]
@@ -83,7 +83,7 @@ _020076A6:
 	bl sub_02006AC0
 	add r1, sp, #0xc
 	str r0, [sp, #4]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0xc]
 	mov r1, #0xc3
 	ldr r0, [r0, #4]
@@ -108,7 +108,7 @@ _020076A6:
 	ldrb r1, [r1]
 	ldr r0, [r4, r0]
 	lsl r2, r2, #0xe
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	mov r7, #0xbf
 	ldr r6, _02007760 ; =0x00005050
@@ -164,7 +164,7 @@ sub_02007768: ; 0x02007768
 	bl sub_02008B78
 	add r0, r5, #0
 	bl sub_02008FC8
-	bl sub_020B2628
+	bl NNS_G3dGeFlushBuffer
 	mov r6, #0xb3
 	mov r0, #0
 	ldr r4, _02007ADC ; =0x04000444
@@ -223,7 +223,7 @@ _020077DA:
 	add r1, #0x24
 	blx r2
 _020077E8:
-	bl sub_020B2628
+	bl NNS_G3dGeFlushBuffer
 	ldr r0, _02007AE4 ; =0x00000333
 	ldrb r0, [r5, r0]
 	cmp r0, #1
@@ -281,7 +281,7 @@ _02007810:
 	ldrsh r0, [r0, r2]
 	mov r2, #2
 	ldrsh r1, [r1, r2]
-	bl sub_020C0000
+	bl G3_RotX
 	ldrh r0, [r4, #0x3a]
 	asr r0, r0, #4
 	lsl r2, r0, #2
@@ -290,7 +290,7 @@ _02007810:
 	ldrsh r0, [r0, r2]
 	mov r2, #2
 	ldrsh r1, [r1, r2]
-	bl sub_020C003C
+	bl G3_RotY
 	ldrh r0, [r4, #0x3c]
 	asr r0, r0, #4
 	lsl r2, r0, #2
@@ -299,7 +299,7 @@ _02007810:
 	ldrsh r0, [r0, r2]
 	mov r2, #2
 	ldrsh r1, [r1, r2]
-	bl sub_020C0078
+	bl G3_RotZ
 	ldr r0, [r4, #0x28]
 	mov r3, #0x40
 	lsl r0, r0, #0xc
@@ -431,7 +431,7 @@ _02007810:
 	add r2, r3, r2
 	ldr r3, [sp, #0x1c]
 	asr r1, r1, #0x10
-	bl sub_020A7488
+	bl NNS_G2dDrawSpriteFast
 	b _020079FE
 _02007992:
 	mov r0, #0x34
@@ -486,7 +486,7 @@ _02007992:
 	lsl r1, r1, #0x10
 	asr r1, r1, #0x10
 	add r2, r6, r2
-	bl sub_020A7488
+	bl NNS_G2dDrawSpriteFast
 _020079FE:
 	add r0, r4, #0
 	add r0, #0x6c
@@ -648,7 +648,7 @@ _02007B08:
 	ldr r2, _02007B64 ; =0xFFFFFC18
 	asr r0, r0, #0x10
 	asr r1, r1, #0x10
-	bl sub_020A7488
+	bl NNS_G2dDrawSpriteFast
 _02007B42:
 	ldr r0, [sp, #0x14]
 	add r4, #0xac
@@ -763,14 +763,14 @@ _02007BCE:
 	thumb_func_start sub_02007C10
 sub_02007C10: ; 0x02007C10
 	add r2, r0, #0
-	ldr r3, _02007C20 ; =sub_020C4DB0
+	ldr r3, _02007C20 ; =MI_CpuCopy8
 	add r2, #0x84
 	add r0, r1, #0
 	add r1, r2, #0
 	mov r2, #0x28
 	bx r3
 	nop
-_02007C20: .word sub_020C4DB0
+_02007C20: .word MI_CpuCopy8
 	thumb_func_end sub_02007C10
 
 	thumb_func_start sub_02007C24
@@ -849,7 +849,7 @@ _02007C9C:
 	mov r0, #0
 	add r1, r5, #0
 	mov r2, #0xac
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r1, [r4, r6]
 	mov r0, #1
 	bic r1, r0
@@ -978,7 +978,7 @@ _02007C9C:
 	add r1, r4, r6
 	add r1, #0x84
 	mov r2, #0x28
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02007DAC:
 	add r0, r4, r6
 	add sp, #0xc
@@ -2874,7 +2874,7 @@ sub_02008A94: ; 0x02008A94
 	strb r1, [r4, r0]
 	sub r0, #0x81
 	add r0, r4, r0
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0xc2
 	lsl r3, r3, #2
 	mov r1, #0x20
@@ -2900,7 +2900,7 @@ sub_02008A94: ; 0x02008A94
 	ldr r1, [r4, r1]
 	mov r2, #0
 	add r3, r4, r3
-	bl sub_020A8450
+	bl NNS_G2dLoadImage2DMapping
 _02008AE2:
 	ldr r0, _02008B28 ; =0x00000332
 	ldrb r1, [r4, r0]
@@ -2910,7 +2910,7 @@ _02008AE2:
 	strb r1, [r4, r0]
 	sub r0, #0x5e
 	add r0, r4, r0
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	mov r3, #0xbe
 	lsl r3, r3, #2
 	add r0, r3, #0
@@ -2931,7 +2931,7 @@ _02008AE2:
 	add r0, r4, r0
 	mov r2, #0
 	add r3, r4, r3
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 _02008B22:
 	pop {r4, pc}
 	; .align 2, 0
@@ -3032,7 +3032,7 @@ _02008B9C:
 	bl sub_02006AC0
 	add r1, sp, #0x58
 	str r0, [sp, #0x4c]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0x58]
 	mov r1, #0xc3
 	ldr r0, [r0, #4]
@@ -3149,7 +3149,7 @@ _02008C98:
 	ldr r1, [sp, #0xc]
 	ldr r0, [sp, #0x14]
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _02008CC8
 	mov r0, #0xbf
@@ -3168,7 +3168,7 @@ _02008C98:
 _02008CC8:
 	ldr r1, [sp, #0xc]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _02008CEA
 	mov r0, #0xbf
@@ -3272,7 +3272,7 @@ _02008D88:
 	ldr r1, [sp, #8]
 	ldr r0, [sp, #0x14]
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _02008DB8
 	mov r0, #0xbf
@@ -3291,7 +3291,7 @@ _02008D88:
 _02008DB8:
 	ldr r1, [sp, #8]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _02008DD8
 	mov r0, #0xbf
@@ -3468,7 +3468,7 @@ _02008F00:
 	ldr r1, [sp, #4]
 	ldr r0, [sp]
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _02008F28
 	mov r0, #0xbf
@@ -3483,7 +3483,7 @@ _02008F00:
 _02008F28:
 	ldr r1, [sp, #4]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _02008F46
 	mov r0, #0xbf
@@ -3598,7 +3598,7 @@ _02008FDA:
 	bl sub_02006AC0
 	add r1, sp, #0x18
 	str r0, [sp, #0x10]
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r0, [sp, #0x18]
 	mov r7, #0
 	ldr r1, [r0, #0]
@@ -3644,7 +3644,7 @@ _0200901E:
 	bl sub_02006AC0
 	add r1, sp, #0x18
 	str r0, [sp, #4]
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r0, [sp, #0x18]
 	mov r7, #0xc1
 	ldr r0, [r0, #0xc]

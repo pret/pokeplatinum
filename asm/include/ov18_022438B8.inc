@@ -1,6 +1,6 @@
-.public sub_020C161C
-.public sub_020C164C
-.public sub_020C42A8
+.public OS_EnableIrqMask
+.public OS_DisableIrqMask
+.public OS_Terminate
 .public ov18_02244008
 .public ov18_02244048
 .public ov18_02244064

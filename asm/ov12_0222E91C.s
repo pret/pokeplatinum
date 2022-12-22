@@ -651,17 +651,17 @@ _0222EE66:
 	ble _0222EEBC
 	ldr r0, [r5, #0x30]
 	ldr r1, _0222EF98 ; =0x3E4CCCCD
-	bl sub_020E1A9C
+	bl _f_sub
 	str r0, [r5, #0x30]
 	ldr r0, [r5, #0x2c]
 	ldr r1, _0222EF98 ; =0x3E4CCCCD
-	bl sub_020E0B00
+	bl _f_add
 	str r0, [r5, #0x2c]
 	ldr r0, [r5, #0x30]
-	bl sub_020E16BC
+	bl _f_ftod
 	ldr r2, _0222EF9C ; =0x9999999A
 	ldr r3, _0222EFA0 ; =0x3FC99999
-	bl sub_020E0E54
+	bl _d_fle
 	bhi _0222EEA0
 	ldrb r0, [r5]
 	mov r1, #0
@@ -673,10 +673,10 @@ _0222EE66:
 _0222EEA0:
 	mov r0, #0x36
 	ldrsb r0, [r5, r0]
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	ldr r0, [r5, #0x2c]
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	ldr r0, [r5, #0x1c]
 	ldr r2, [r5, #0x30]
@@ -861,10 +861,10 @@ _0222F01C:
 	bl sub_0200D6A4
 	mov r0, #0x36
 	ldrsb r0, [r4, r0]
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	ldr r0, [r4, #0x2c]
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	ldr r0, [r4, #0x1c]
 	ldr r2, [r4, #0x30]

@@ -50,7 +50,7 @@
 .public sub_0206806C
 .public sub_0207136C
 .public sub_02071CB4
-.public sub_020D5124
+.public memset
 .public ov5_021ECDFC
 .public ov5_021F5C4C
 .public ov5_021F5D8C

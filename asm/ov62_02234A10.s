@@ -742,7 +742,7 @@ _0223501A:
 	mov r1, #0
 	mov r2, #0x54
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]
@@ -930,7 +930,7 @@ _0223518E:
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D250

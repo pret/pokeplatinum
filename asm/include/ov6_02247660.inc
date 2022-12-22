@@ -6,4 +6,4 @@
 .public sub_0202B4A0
 .public sub_02039E10
 .public sub_020615AC
-.public sub_020E1F6C
+.public _s32_div_f

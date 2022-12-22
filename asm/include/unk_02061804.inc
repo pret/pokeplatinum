@@ -211,8 +211,8 @@
 .public sub_020656DC
 .public sub_020677F4
 .public sub_02067800
-.public sub_020D50B8
-.public sub_020D5124
+.public memcpy
+.public memset
 .public ov5_021ECCC8
 .public ov5_021EDA38
 .public ov5_021EDD78

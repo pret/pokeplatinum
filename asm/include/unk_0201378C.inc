@@ -4,7 +4,7 @@
 .public sub_02013960
 .public sub_02013974
 .public sub_02022974
-.public sub_020CB8A8
-.public sub_020CBA68
-.public sub_020CC218
-.public sub_020E1F6C
+.public RTC_Init
+.public RTC_GetDateTimeAsync
+.public RTC_ConvertDateTimeToSecond
+.public _s32_div_f

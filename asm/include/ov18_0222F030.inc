@@ -1,7 +1,7 @@
-.public sub_020C3FA0
-.public sub_020C42A8
-.public sub_020C4AF0
-.public sub_020C4DB0
+.public OS_GetMacAddress
+.public OS_Terminate
+.public MIi_CpuClear16
+.public MI_CpuCopy8
 .public ov18_022246E4
 .public ov18_022269F8
 .public ov18_02226ABC

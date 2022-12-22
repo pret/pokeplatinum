@@ -6,64 +6,64 @@
 	.text
 
 
-	arm_func_start sub_020A7920
-sub_020A7920: ; 0x020A7920
-	ldr ip, _020A7930 ; =sub_020C4B18
+	arm_func_start CpuLoadOAMSub_
+CpuLoadOAMSub_: ; 0x020A7920
+	ldr ip, _020A7930 ; =MIi_CpuCopy16
 	add r1, r1, #0x400
 	add r1, r1, #0x7000000
 	bx ip
 	; .align 2, 0
-_020A7930: .word sub_020C4B18
-	arm_func_end sub_020A7920
+_020A7930: .word MIi_CpuCopy16
+	arm_func_end CpuLoadOAMSub_
 
-	arm_func_start sub_020A7934
-sub_020A7934: ; 0x020A7934
-	ldr ip, _020A7940 ; =sub_020C4B18
+	arm_func_start CpuLoadOAMMain_
+CpuLoadOAMMain_: ; 0x020A7934
+	ldr ip, _020A7940 ; =MIi_CpuCopy16
 	add r1, r1, #0x7000000
 	bx ip
 	; .align 2, 0
-_020A7940: .word sub_020C4B18
-	arm_func_end sub_020A7934
+_020A7940: .word MIi_CpuCopy16
+	arm_func_end CpuLoadOAMMain_
 
-	arm_func_start sub_020A7944
-sub_020A7944: ; 0x020A7944
+	arm_func_start NNS_G2dInitOamManagerModule
+NNS_G2dInitOamManagerModule: ; 0x020A7944
 	stmfd sp!, {r3, lr}
 	ldr r1, _020A79DC ; =0x021C3C08
 	mov r0, #0xc0
 	mov r2, #0x400
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r1, _020A79E0 ; =0x021C4148
 	mov r0, #0xc0
 	mov r2, #0x400
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r1, _020A79E4 ; =0x021C4688
 	mov r0, #0xc0
 	mov r2, #0x400
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _020A79E8 ; =0x0000FFFF
 	ldr r1, _020A79EC ; =0x021C3B08
 	mov r2, #0x100
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _020A79E8 ; =0x0000FFFF
 	ldr r1, _020A79F0 ; =0x021C4048
 	mov r2, #0x100
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _020A79E8 ; =0x0000FFFF
 	ldr r1, _020A79F4 ; =0x021C4588
 	mov r2, #0x100
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _020A79E8 ; =0x0000FFFF
 	ldr r1, _020A79F8 ; =0x021C4008
 	mov r2, #0x40
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _020A79E8 ; =0x0000FFFF
 	ldr r1, _020A79FC ; =0x021C4548
 	mov r2, #0x40
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _020A79E8 ; =0x0000FFFF
 	ldr r1, _020A7A00 ; =0x021C4A88
 	mov r2, #0x40
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020A79DC: .word 0x021C3C08
@@ -76,10 +76,10 @@ _020A79F4: .word 0x021C4588
 _020A79F8: .word 0x021C4008
 _020A79FC: .word 0x021C4548
 _020A7A00: .word 0x021C4A88
-	arm_func_end sub_020A7944
+	arm_func_end NNS_G2dInitOamManagerModule
 
-	arm_func_start sub_020A7A04
-sub_020A7A04: ; 0x020A7A04
+	arm_func_start NNS_G2dGetNewOamManagerInstance
+NNS_G2dGetNewOamManagerInstance: ; 0x020A7A04
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r5, [sp, #0x1c]
 	ldr r6, _020A7B74 ; =0x021C3B08
@@ -123,7 +123,7 @@ _020A7A68:
 	strh ip, [r6, #8]
 	ldrh r0, [r6, #0x10]
 	mov r2, r3, lsl #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	b _020A7AB4
 _020A7AAC:
 	mov r0, #0
@@ -171,7 +171,7 @@ _020A7B24:
 	ldrh r0, [r6, #0x10]
 	add r1, r3, r5, lsl #1
 	mov r2, r2, lsl #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	b _020A7B5C
 _020A7B54:
 	mov r0, #0
@@ -187,10 +187,10 @@ _020A7B5C:
 _020A7B74: .word 0x021C3B08
 _020A7B78: .word 0x0000FFFF
 _020A7B7C: .word 0x021C3B04
-	arm_func_end sub_020A7A04
+	arm_func_end NNS_G2dGetNewOamManagerInstance
 
-	arm_func_start sub_020A7B80
-sub_020A7B80: ; 0x020A7B80
+	arm_func_start NNS_G2dEntryOamManagerOam
+NNS_G2dEntryOamManagerOam: ; 0x020A7B80
 	stmfd sp!, {r3, r4, r5, lr}
 	ldrh ip, [r0, #6]
 	ldrh r5, [r0, #8]
@@ -249,10 +249,10 @@ _020A7C44:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020A7C4C: .word 0x021C3B08
-	arm_func_end sub_020A7B80
+	arm_func_end NNS_G2dEntryOamManagerOam
 
-	arm_func_start sub_020A7C50
-sub_020A7C50: ; 0x020A7C50
+	arm_func_start NNS_G2dEntryOamManagerOamWithAffineIdx
+NNS_G2dEntryOamManagerOamWithAffineIdx: ; 0x020A7C50
 	stmfd sp!, {r4, lr}
 	ldrh lr, [r0, #6]
 	ldrh ip, [r0, #8]
@@ -315,10 +315,10 @@ _020A7D24:
 	; .align 2, 0
 _020A7D2C: .word 0x021C3B08
 _020A7D30: .word 0x0000FFFE
-	arm_func_end sub_020A7C50
+	arm_func_end NNS_G2dEntryOamManagerOamWithAffineIdx
 
-	arm_func_start sub_020A7D34
-sub_020A7D34: ; 0x020A7D34
+	arm_func_start NNS_G2dEntryOamManagerAffine
+NNS_G2dEntryOamManagerAffine: ; 0x020A7D34
 	stmfd sp!, {r3, lr}
 	ldrh lr, [r0, #0xc]
 	ldrh ip, [r0, #0xe]
@@ -371,10 +371,10 @@ _020A7D78:
 	; .align 2, 0
 _020A7DF0: .word 0x0000FFFE
 _020A7DF4: .word 0x021C3B08
-	arm_func_end sub_020A7D34
+	arm_func_end NNS_G2dEntryOamManagerAffine
 
-	arm_func_start sub_020A7DF8
-sub_020A7DF8: ; 0x020A7DF8
+	arm_func_start NNS_G2dApplyOamManagerToHW
+NNS_G2dApplyOamManagerToHW: ; 0x020A7DF8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov r7, r0
 	ldr r0, [r7, #0x14]
@@ -396,7 +396,7 @@ sub_020A7DF8: ; 0x020A7DF8
 	mov r1, r8
 	add r0, r5, r3, lsl #3
 	mov r7, r2, lsr #0x10
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r6, #0
 	beq _020A7E64
 	cmp r6, #1
@@ -406,13 +406,13 @@ _020A7E64:
 	mov r1, r7
 	mov r2, r8
 	add r0, r5, r4
-	bl sub_020C0210
+	bl GX_LoadOAM
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A7E78:
 	mov r1, r7
 	mov r2, r8
 	add r0, r5, r4
-	bl sub_020C0264
+	bl GXS_LoadOAM
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A7E8C:
 	ldr r0, [r7, #0]
@@ -512,10 +512,10 @@ _020A7F8C:
 	; .align 2, 0
 _020A7FF4: .word 0x021C3B08
 _020A7FF8: .word 0x02100E90
-	arm_func_end sub_020A7DF8
+	arm_func_end NNS_G2dApplyOamManagerToHW
 
-	arm_func_start sub_020A7FFC
-sub_020A7FFC: ; 0x020A7FFC
+	arm_func_start NNS_G2dResetOamManagerBuffer
+NNS_G2dResetOamManagerBuffer: ; 0x020A7FFC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	ldr r0, [r5, #0x14]
@@ -549,7 +549,7 @@ _020A8054:
 	mov r1, r4
 	add r6, r2, r0, lsl #3
 	mov r0, r6
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, _020A8120 ; =0x02101148
 	mvn r1, #0
 	ldr r0, [r0, #0]
@@ -558,12 +558,12 @@ _020A8054:
 	beq _020A80A4
 	mov r3, r4
 	mov r2, #0xc0
-	bl sub_020C42D4
+	bl MI_DmaFill32
 	b _020A8108
 _020A80A4:
 	mov r2, r4
 	mov r0, #0xc0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	b _020A8108
 _020A80B4:
 	ldr r2, [r5, #0]
@@ -597,20 +597,20 @@ _020A8108:
 	; .align 2, 0
 _020A811C: .word 0x021C3B08
 _020A8120: .word 0x02101148
-	arm_func_end sub_020A7FFC
+	arm_func_end NNS_G2dResetOamManagerBuffer
 
-	arm_func_start sub_020A8124
-sub_020A8124: ; 0x020A8124
+	arm_func_start NNS_G2dApplyAndResetOamManagerBuffer
+NNS_G2dApplyAndResetOamManagerBuffer: ; 0x020A8124
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020A7DF8
+	bl NNS_G2dApplyOamManagerToHW
 	mov r0, r4
-	bl sub_020A7FFC
+	bl NNS_G2dResetOamManagerBuffer
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A8124
+	arm_func_end NNS_G2dApplyAndResetOamManagerBuffer
 
-	arm_func_start sub_020A813C
-sub_020A813C: ; 0x020A813C
+	arm_func_start NNS_G2dGetOamManagerOamCapacity
+NNS_G2dGetOamManagerOamCapacity: ; 0x020A813C
 	ldrh ip, [r0, #6]
 	ldrh r3, [r0, #8]
 	mov r2, #0
@@ -629,7 +629,7 @@ _020A8160:
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	bx lr
-	arm_func_end sub_020A813C
+	arm_func_end NNS_G2dGetOamManagerOamCapacity
 
 	.rodata
 

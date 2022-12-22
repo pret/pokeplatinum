@@ -6,14 +6,14 @@
 	.text
 
 
-	arm_func_start sub_020BD964
-sub_020BD964: ; 0x020BD964
+	arm_func_start FX_AtanIdx
+FX_AtanIdx: ; 0x020BD964
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	blt _020BD9B8
 	cmp r0, #0x1000
 	ble _020BD99C
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov r1, r0, asr #5
 	ldr r0, _020BDA1C ; =0x020FD83C
 	mov r1, r1, lsl #1
@@ -36,7 +36,7 @@ _020BD9B8:
 	cmp r0, r1
 	bge _020BD9F0
 	rsb r0, r0, #0
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov r1, r0, asr #5
 	ldr r0, _020BDA1C ; =0x020FD83C
 	mov r1, r1, lsl #1
@@ -59,10 +59,10 @@ _020BD9F0:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BDA1C: .word 0x020FD83C
-	arm_func_end sub_020BD964
+	arm_func_end FX_AtanIdx
 
-	arm_func_start sub_020BDA20
-sub_020BDA20: ; 0x020BDA20
+	arm_func_start FX_Atan2Idx
+FX_Atan2Idx: ; 0x020BDA20
 	stmfd sp!, {r4, lr}
 	cmp r0, #0
 	ble _020BDAB4
@@ -165,7 +165,7 @@ _020BDB64:
 	cmp r0, #0
 	mov r0, r2
 	beq _020BDBA0
-	bl sub_020BCFD0
+	bl FX_Div
 	mov r1, r0, asr #5
 	ldr r0, _020BDBC4 ; =0x020FD83C
 	mov r1, r1, lsl #1
@@ -175,7 +175,7 @@ _020BDB64:
 	mov r0, r0, lsr #0x10
 	ldmia sp!, {r4, pc}
 _020BDBA0:
-	bl sub_020BCFD0
+	bl FX_Div
 	mov r1, r0, asr #5
 	ldr r0, _020BDBC4 ; =0x020FD83C
 	mov r1, r1, lsl #1
@@ -186,7 +186,7 @@ _020BDBA0:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BDBC4: .word 0x020FD83C
-	arm_func_end sub_020BDA20
+	arm_func_end FX_Atan2Idx
 
 	.rodata
 

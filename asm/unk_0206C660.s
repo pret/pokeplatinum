@@ -133,7 +133,7 @@ sub_0206C740: ; 0x0206C740
 	mov r1, #0
 	mov r2, #0x2c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [r4, #4]
 	str r5, [r4, #0]

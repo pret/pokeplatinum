@@ -21,11 +21,11 @@
 .public sub_0207999C
 .public sub_02079C9C
 .public sub_02079D40
-.public sub_020A7164
-.public sub_020A7248
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020E1F6C
+.public NNS_G2dGetUnpackedBGCharacterData
+.public NNS_G2dGetUnpackedScreenData
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public _s32_div_f
 .public ov19_021D3B18
 .public ov19_021D3B20
 .public ov19_021D5E24

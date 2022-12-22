@@ -1869,7 +1869,7 @@ ov13_022253DC: ; 0x022253DC
 	lsl r0, r1, #0x10
 	mov r1, #0x4b
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #0x10
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
@@ -1884,7 +1884,7 @@ _02225402:
 	lsl r0, r1, #0x10
 	mov r1, #0x4b
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #0x10
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10

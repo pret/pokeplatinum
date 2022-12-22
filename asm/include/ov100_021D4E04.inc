@@ -11,10 +11,10 @@
 .public sub_02013DA4
 .public sub_02013DDC
 .public sub_0201CED0
-.public sub_020BDE40
-.public sub_020BEA30
-.public sub_020BF00C
-.public sub_020C4BB8
+.public GX_SetGraphicsMode
+.public GX_SetBankForLCDC
+.public GX_GetBankForLCDC
+.public MIi_CpuClearFast
 .public ov100_021D4E04
 .public ov100_021D4E18
 .public ov100_021D4F9C

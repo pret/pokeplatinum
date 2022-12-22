@@ -26,7 +26,7 @@ _021D0D98:
 	ldr r2, _021D0F48 ; =0x00001108
 	add r6, r0, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r2, r6, #0
 	add r2, #0x1f
 	mov r0, #0x1f
@@ -84,7 +84,7 @@ _021D0D98:
 	add r0, #0x1f
 	bic r0, r1
 	add r1, r4, #0
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	ldr r4, _021D0F44 ; =0x0221A400
 	mov r6, #0
 	ldr r2, [r4, #0]
@@ -204,7 +204,7 @@ _021D0EFC:
 	mov r0, #0xf1
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
-	bl sub_020A450C
+	bl DWC_CheckHasProfile
 	cmp r0, #0
 	bne _021D0F24
 	add sp, #8
@@ -216,7 +216,7 @@ _021D0F24:
 	mov r0, #0xf1
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
-	bl sub_020A453C
+	bl DWC_CheckValidConsole
 	cmp r0, #0
 	beq _021D0F3C
 	add sp, #8
@@ -254,7 +254,7 @@ ov4_021D0F68: ; 0x021D0F68
 	beq _021D0FA0
 	add r0, r0, #4
 	ldr r0, [r2, r0]
-	bl sub_020A543C
+	bl NNS_FndDestroyExpHeap
 	ldr r0, _021D0FD8 ; =0x0221A400
 	ldr r1, [r0, #0]
 	ldr r0, _021D0FDC ; =0x00000F98
@@ -270,7 +270,7 @@ _021D0FA0:
 	ldr r1, [r0, #0]
 	ldr r0, _021D0FE0 ; =0x00000F94
 	ldr r0, [r1, r0]
-	bl sub_020A543C
+	bl NNS_FndDestroyExpHeap
 	ldr r0, _021D0FD8 ; =0x0221A400
 	ldr r1, _021D0FE4 ; =0x00001084
 	ldr r2, [r0, #0]
@@ -394,7 +394,7 @@ _021D1076:
 	ldr r2, _021D10FC ; =0x000029E7
 	blx ov4_021D8C08
 	add r0, sp, #0x14
-	bl sub_020C3FBC
+	bl OS_GetOwnerInfo
 	mov r1, #0
 	ldr r2, _021D1100 ; =ov4_021D1650
 	add r0, sp, #0x18
@@ -548,7 +548,7 @@ _021D11CE:
 	ldr r0, _021D128C ; =0x00000FC4
 	add r0, r1, r0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021D127C ; =0x0221A400
 	ldr r2, _021D1288 ; =0x02215E94
 	ldr r1, [r0, #0]
@@ -556,12 +556,12 @@ _021D11CE:
 	add r3, r5, #0
 	add r0, r1, r0
 	ldr r1, _021D1290 ; =0x02215870
-	bl sub_020D7510
+	bl sprintf
 	ldr r0, _021D127C ; =0x0221A400
 	ldr r1, [r0, #0]
 	ldr r0, _021D128C ; =0x00000FC4
 	add r0, r1, r0
-	bl sub_020D8B60
+	bl strlen
 	cmp r0, #0x80
 	blo _021D1204
 	bl sub_02022974
@@ -904,7 +904,7 @@ _021D1478:
 	add r0, r5, #0
 	add r1, r1, #4
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r2, _021D14C4 ; =0x0221A400
 	ldr r1, _021D14CC ; =0x00001078
 	ldr r3, [r2, #0]
@@ -977,7 +977,7 @@ _021D150A:
 	add r0, r5, #0
 	add r1, r1, #4
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _021D1580 ; =0x0221A400
 	mov r2, #1
 	ldr r1, [r0, #0]
@@ -1067,7 +1067,7 @@ _021D15BA:
 	add r0, r5, #0
 	add r1, r1, #4
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _021D1640 ; =0x0221A400
 	mov r2, #1
 	ldr r1, [r0, #0]
@@ -1126,7 +1126,7 @@ ov4_021D1650: ; 0x021D1650
 	mov r0, #0xf1
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
-	bl sub_020A45FC
+	bl DWC_CheckDirtyFlag
 	cmp r0, #0
 	beq _021D1682
 	ldr r0, _021D16CC ; =0x0221A400
@@ -1134,7 +1134,7 @@ ov4_021D1650: ; 0x021D1650
 	mov r0, #0xf1
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
-	bl sub_020A4620
+	bl DWC_ClearDirtyFlag
 	ldr r0, _021D16CC ; =0x0221A400
 	mov r2, #1
 	ldr r1, [r0, #0]
@@ -1261,7 +1261,7 @@ ov4_021D1744: ; 0x021D1744
 	lsl r2, r2, #8
 	ldr r0, [r0, r2]
 	add r2, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _021D1798 ; =0x0221A400
 	ldr r1, [r0, #0]
 	ldr r0, _021D179C ; =0x00000F78
@@ -1293,7 +1293,7 @@ ov4_021D17A0: ; 0x021D17A0
 	thumb_func_start ov4_021D17A4
 ov4_021D17A4: ; 0x021D17A4
 	ldr r0, _021D17B4 ; =0x0221A400
-	ldr r3, _021D17B8 ; =sub_020C4CF4
+	ldr r3, _021D17B8 ; =MI_CpuFill8
 	ldr r1, [r0, #0]
 	ldr r0, _021D17BC ; =0x000010AC
 	mov r2, #0x20
@@ -1302,7 +1302,7 @@ ov4_021D17A4: ; 0x021D17A4
 	bx r3
 	; .align 2, 0
 _021D17B4: .word 0x0221A400
-_021D17B8: .word sub_020C4CF4
+_021D17B8: .word MI_CpuFill8
 _021D17BC: .word 0x000010AC
 	thumb_func_end ov4_021D17A4
 
@@ -1572,7 +1572,7 @@ _021D19AE:
 	add r0, r4, #4
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	blx ov4_021D9968
 	cmp r0, #0
 	bne _021D19EA
@@ -1686,7 +1686,7 @@ ov4_021D1AA0: ; 0x021D1AA0
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r1, #0
 	add r6, r2, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r7, r0, #0
 	ldr r0, _021D1AF8 ; =0x0221A400
 	add r2, r6, #0
@@ -1694,7 +1694,7 @@ ov4_021D1AA0: ; 0x021D1AA0
 	ldr r0, _021D1AFC ; =0x00000F94
 	ldr r0, [r1, r0]
 	add r1, r5, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	add r4, r0, #0
 	bne _021D1ADA
 	ldr r0, _021D1AF8 ; =0x0221A400
@@ -1707,7 +1707,7 @@ ov4_021D1AA0: ; 0x021D1AA0
 	ldr r0, [r0, r1]
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	add r4, r0, #0
 _021D1ADA:
 	cmp r4, #0
@@ -1715,12 +1715,12 @@ _021D1ADA:
 	mov r0, #1
 	bl sub_02038AE0
 	add r0, r7, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _021D1AEE:
 	add r0, r7, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1734,10 +1734,10 @@ ov4_021D1B04: ; 0x021D1B04
 	push {r3, r4, r5, lr}
 	add r5, r1, #0
 	beq _021D1B4E
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	add r0, r5, #0
-	bl sub_020A5654
+	bl NNS_FndGetGroupIDForMBlockExpHeap
 	cmp r0, #0x10
 	bne _021D1B3A
 	ldr r0, _021D1B50 ; =0x0221A400
@@ -1753,7 +1753,7 @@ _021D1B2E:
 	add r0, r0, #4
 	ldr r0, [r2, r0]
 	add r1, r5, #0
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	b _021D1B48
 _021D1B3A:
 	ldr r0, _021D1B50 ; =0x0221A400
@@ -1761,10 +1761,10 @@ _021D1B3A:
 	ldr r0, _021D1B58 ; =0x00000F94
 	ldr r0, [r1, r0]
 	add r1, r5, #0
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 _021D1B48:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 _021D1B4E:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -2294,12 +2294,12 @@ ov4_021D1F3C: ; 0x021D1F3C
 	add r6, r1, #0
 	mov r1, #0x64
 	add r4, r0, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0xfa
 	add r5, r0, #0
 	add r0, r4, #0
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, _021D2094 ; =0x00004E85
 	cmp r4, r2
 	bne _021D1F5E
@@ -2668,7 +2668,7 @@ ov4_021D21B4: ; 0x021D21B4
 	add r1, #0xf4
 	ldr r0, [r0, r1]
 	add r0, r0, r4
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	cmp r0, #0
 	beq _021D220A
 	ldr r0, _021D221C ; =0x0221A400
@@ -3066,7 +3066,7 @@ ov4_021D24D8: ; 0x021D24D8
 	mov r0, #0xf1
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
-	bl sub_020A450C
+	bl DWC_CheckHasProfile
 	cmp r0, #0
 	bne _021D2500
 	ldr r0, _021D2540 ; =0x0221A400
@@ -3075,7 +3075,7 @@ ov4_021D24D8: ; 0x021D24D8
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
 	add r1, sp, #0xc
-	bl sub_020A4788
+	bl DWC_CreateExchangeToken
 	b _021D2510
 _021D2500:
 	ldr r0, _021D2540 ; =0x0221A400
@@ -3084,7 +3084,7 @@ _021D2500:
 	lsl r0, r0, #4
 	ldr r0, [r1, r0]
 	add r1, sp, #0
-	bl sub_020A4788
+	bl DWC_CreateExchangeToken
 _021D2510:
 	mov r4, #0
 	mov r7, #1
@@ -3097,11 +3097,11 @@ _021D251A:
 	lsl r0, r0, #8
 	ldr r0, [r1, r0]
 	add r0, r0, r5
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	ldr r0, [r6, #0]
 	ldr r0, [r0, r7]
 	add r0, r0, r5
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	add r4, r4, #1
 	add r5, #0xc
 	cmp r4, #0x20
@@ -3274,7 +3274,7 @@ ov4_021D2618: ; 0x021D2618
 	bic r0, r1
 	mov r1, #0xf
 	lsl r1, r1, #0xc
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	ldr r2, _021D26D4 ; =0x0221A400
 	ldr r1, _021D26E4 ; =0x00000F9C
 	ldr r3, [r2, #0]
@@ -3282,12 +3282,12 @@ ov4_021D2618: ; 0x021D2618
 	ldr r0, [r2, #0]
 	ldr r0, [r0, r1]
 	mov r1, #0x10
-	bl sub_020A563C
+	bl NNS_FndSetGroupIDForExpHeap
 	ldr r0, _021D26D4 ; =0x0221A400
 	ldr r1, [r0, #0]
 	ldr r0, _021D26E4 ; =0x00000F9C
 	ldr r0, [r1, r0]
-	bl sub_020A5614
+	bl NNS_FndGetTotalFreeSizeForExpHeap
 	ldr r1, _021D26D4 ; =0x0221A400
 	ldr r2, [r1, #0]
 	mov r1, #0xfa
@@ -3309,7 +3309,7 @@ _021D2680:
 	beq _021D26D0
 	sub r0, #0xe8
 	ldr r0, [r4, r0]
-	bl sub_020A5614
+	bl NNS_FndGetTotalFreeSizeForExpHeap
 	mov r1, #0xfa
 	lsl r1, r1, #4
 	ldr r2, [r4, r1]
@@ -3321,7 +3321,7 @@ _021D2680:
 _021D26B2:
 	sub r0, r1, #4
 	ldr r0, [r4, r0]
-	bl sub_020A543C
+	bl NNS_FndDestroyExpHeap
 	ldr r0, _021D26D4 ; =0x0221A400
 	ldr r1, [r0, #0]
 	ldr r0, _021D26E0 ; =0x00000F98

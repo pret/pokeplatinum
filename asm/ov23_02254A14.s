@@ -444,7 +444,7 @@ ov23_02254D98: ; 0x02254D98
 	ldr r2, _02254DE4 ; =0x00000528
 	add r4, r0, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	add r1, r4, #0
 	bl ov23_02255EBC

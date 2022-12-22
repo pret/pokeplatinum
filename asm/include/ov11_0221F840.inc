@@ -11,6 +11,6 @@
 .public sub_020181C4
 .public sub_020206BC
 .public sub_020241B4
-.public sub_020A73C0
+.public NNS_G2dSetupSoftwareSpriteCamera
 .public ov11_0221F914
 .public ov11_0221F930

@@ -29,7 +29,7 @@
 .public sub_0207C814
 .public sub_0207C83C
 .public sub_0207C854
-.public sub_020A73C0
-.public sub_020BF55C
-.public sub_020BFC74
-.public sub_020BFD58
+.public NNS_G2dSetupSoftwareSpriteCamera
+.public G2x_SetBlendAlpha_
+.public G3X_SetFog
+.public G3X_SetClearColor

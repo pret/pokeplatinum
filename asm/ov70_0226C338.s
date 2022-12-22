@@ -16,7 +16,7 @@ ov70_0226C338: ; 0x0226C338
 	mov r1, #0
 	mov r2, #0x60
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r1, #0xa
 	ldr r2, _0226C394 ; =0x0226E678
 	mul r1, r5
@@ -290,13 +290,13 @@ ov70_0226C50C: ; 0x0226C50C
 	ldr r1, [sp, #0x20]
 	sub r0, r0, r7
 	mul r0, r6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r7, r0
 	strb r0, [r4]
 	ldr r0, [sp, #4]
 	ldr r1, [sp, #0x20]
 	mul r0, r6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #1
 	ldrsb r1, [r5, r1]
 	add r0, r1, r0
@@ -304,7 +304,7 @@ ov70_0226C50C: ; 0x0226C50C
 	ldr r0, [sp]
 	ldr r1, [sp, #0x20]
 	mul r0, r6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #2
 	ldrsb r1, [r5, r1]
 	add r0, r1, r0
@@ -360,7 +360,7 @@ _0226C5A8:
 	bl ov70_0226C4CC
 	ldrh r1, [r6, #2]
 	add r0, r4, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #2
@@ -378,7 +378,7 @@ _0226C5A8:
 	ldrh r0, [r1, #2]
 	ldrh r1, [r1]
 	mov r2, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, [sp]
 	add r1, sp, #4
 	add r0, #0x10
@@ -393,7 +393,7 @@ _0226C5A8:
 	ldrh r0, [r1, #2]
 	ldrh r1, [r1]
 	mov r2, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0

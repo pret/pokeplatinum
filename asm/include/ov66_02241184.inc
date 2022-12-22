@@ -1,9 +1,9 @@
-.public sub_020C4CF4
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020D8B60
-.public sub_020DACAC
-.public sub_020DAD44
+.public MI_CpuFill8
+.public memcpy
+.public memset
+.public strlen
+.public strtoul
+.public strtol
 .public ov4_021DB408
 .public ov66_022366CC
 .public ov66_02236A38

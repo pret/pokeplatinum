@@ -1,3 +1,3 @@
-.public sub_020C2C38
-.public sub_020C55B8
-.public sub_020C55CC
+.public DC_StoreRange
+.public SNDi_LockMutex
+.public SNDi_UnlockMutex

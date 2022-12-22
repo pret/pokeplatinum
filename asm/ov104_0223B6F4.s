@@ -51,7 +51,7 @@ _0223B72E:
 _0223B73A:
 	bl sub_0201D2E8
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, r1
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

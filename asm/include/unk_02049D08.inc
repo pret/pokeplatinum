@@ -73,7 +73,7 @@
 .public sub_0207A0F8
 .public sub_0207A0FC
 .public sub_0207A268
-.public sub_020C3EE4
-.public sub_020C4CF4
-.public sub_020E1F6C
-.public sub_020E2178
+.public OS_ResetSystem
+.public MI_CpuFill8
+.public _s32_div_f
+.public _u32_div_f

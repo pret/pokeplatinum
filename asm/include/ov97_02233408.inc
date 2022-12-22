@@ -1,8 +1,8 @@
-.public sub_02000160
-.public sub_020C3880
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E2178
+.public SVC_GetCRC16
+.public OS_GetTick
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _u32_div_f
 .public ov97_02233408
 .public ov97_02233410
 .public ov97_022334FC

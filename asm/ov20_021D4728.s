@@ -192,10 +192,10 @@ _021D4882:
 	add r1, r5, #0
 	add r0, #0xc
 	mov r2, #0x9a
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r5, #0
 	mov r1, #0x9a
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r7, #0
 	bl sub_020181C4
 _021D48B0:
@@ -275,7 +275,7 @@ ov20_021D48C4: ; 0x021D48C4
 	ldr r1, [sp, #4]
 	ldr r0, [r1, #0x14]
 	ldr r1, [r1, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r3, [sp, #4]
 	mov r0, #0
 	str r0, [sp]
@@ -382,9 +382,9 @@ ov20_021D4A24: ; 0x021D4A24
 	add r5, r0, #0
 	add r0, sp, #0x38
 	add r4, r1, #0
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	add r0, sp, #0x14
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r0, #0x23
 	str r0, [sp]
 	add r0, sp, #0x38

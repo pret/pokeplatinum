@@ -54,5 +54,5 @@
 .public sub_0209A0E0
 .public sub_0209A0F4
 .public sub_0209A200
-.public sub_020C3EE4
-.public sub_020D5124
+.public OS_ResetSystem
+.public memset

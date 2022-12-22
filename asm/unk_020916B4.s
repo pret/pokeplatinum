@@ -10,9 +10,9 @@
 sub_020916B4: ; 0x020916B4
 	push {r3, r4, lr}
 	sub sp, #4
-	bl sub_020B28CC
-	bl sub_020BF9AC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_Init
+	bl G3X_InitMtxStack
 	ldr r0, _02091734 ; =0x04000060
 	ldr r1, _02091738 ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -42,13 +42,13 @@ sub_020916B4: ; 0x020916B4
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _02091740 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _02091744 ; =0x04000540
 	mov r0, #0
 	str r0, [r1, #0]
@@ -95,16 +95,16 @@ sub_02091750: ; 0x02091750
 	mov r0, #2
 	str r0, [r2, #0]
 	str r3, [r1, #0]
-	bl sub_020AF480
+	bl NNS_G3dGlbFlushP
 	mov r0, #0x2f
 	lsl r0, r0, #4
 	add r0, r4, r0
 	bl sub_02091850
-	bl sub_020AF480
+	bl NNS_G3dGlbFlushP
 	add r0, r4, #0
 	bl sub_020918EC
 _0209178E:
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	mov r0, #0xae
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
@@ -673,43 +673,43 @@ sub_02091BD4: ; 0x02091BD4
 	add r6, r2, #0
 	sub r7, r1, r0
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	bls _02091C28
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _02091D48 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
-	bl sub_020E1740
+	bl _f_add
+	bl _f_ftoi
 	b _02091C4E
 _02091C28:
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _02091D48 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
-	bl sub_020E1740
+	bl _f_sub
+	bl _f_ftoi
 _02091C4E:
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
@@ -719,43 +719,43 @@ _02091C4E:
 	ldrsh r0, [r5, r0]
 	sub r7, r1, r0
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	bls _02091CA0
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _02091D48 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
-	bl sub_020E1740
+	bl _f_add
+	bl _f_ftoi
 	b _02091CC6
 _02091CA0:
 	add r0, r7, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _02091D48 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
-	bl sub_020E1740
+	bl _f_sub
+	bl _f_ftoi
 _02091CC6:
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10
@@ -765,43 +765,43 @@ _02091CC6:
 	ldrsh r0, [r5, r0]
 	sub r4, r1, r0
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	bls _02091D18
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _02091D48 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
-	bl sub_020E1740
+	bl _f_add
+	bl _f_ftoi
 	b _02091D3E
 _02091D18:
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _02091D48 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	ldr r1, _02091D4C ; =0x40800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _02091D48 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
-	bl sub_020E1740
+	bl _f_sub
+	bl _f_ftoi
 _02091D3E:
 	lsl r0, r0, #0x10
 	asr r0, r0, #0x10

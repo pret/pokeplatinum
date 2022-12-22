@@ -10,7 +10,7 @@
 ov97_02235D18: ; 0x02235D18
 	push {r3, lr}
 	mov r0, #1
-	bl sub_020D130C
+	bl CTRDG_IdentifyAgbBackup
 	cmp r0, #0
 	bne _02235D28
 	mov r0, #1
@@ -59,7 +59,7 @@ _02235D6E:
 	ldr r0, _02235D9C ; =0x08000100
 	ldr r1, _02235DA0 ; =0x0223F450
 	mov r2, #0xfc
-	bl sub_020D0CDC
+	bl CTRDG_CpuCopy32
 _02235D78:
 	bl ov97_02235D18
 	cmp r0, #0
@@ -119,14 +119,14 @@ ov97_02235DC8: ; 0x02235DC8
 	ldr r0, _02235E74 ; =0x0223EBFC
 	mov r1, #0
 	str r1, [r0, #0]
-	bl sub_020D08C0
+	bl CTRDG_IsAgbCartridge
 	cmp r0, #0
 	bne _02235DE4
 	add sp, #0xc0
 	mov r0, #1
 	pop {r3, r4, r5, pc}
 _02235DE4:
-	bl sub_020D0928
+	bl CTRDG_GetAgbGameCode
 	mov r2, #0
 	cmp r4, #0
 	ble _02235E08
@@ -155,13 +155,13 @@ _02235E08:
 	pop {r3, r4, r5, pc}
 _02235E16:
 	mov r0, #1
-	bl sub_020D0F48
+	bl CTRDG_Enable
 	add r4, sp, #0
 	mov r0, #2
 	lsl r0, r0, #0x1a
 	add r1, r4, #0
 	mov r2, #0xc0
-	bl sub_020D0CDC
+	bl CTRDG_CpuCopy32
 	ldr r3, _02235E78 ; =0x0223EC04
 	mov r2, #0
 _02235E2E:
@@ -247,7 +247,7 @@ ov97_02235EAC: ; 0x02235EAC
 	lsr r0, r0, #0x10
 	mov r1, #0
 	lsl r3, r3, #0xc
-	bl sub_020D1A6C
+	bl CTRDG_ReadAgbFlash
 	pop {r3, pc}
 	thumb_func_end ov97_02235EAC
 
@@ -353,14 +353,14 @@ ov97_02235F4C: ; 0x02235F4C
 _02235F68:
 	add r0, r4, #0
 	mov r1, #0xe
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, r7
 	add r1, r5, #0
 	bl ov97_02235EAC
 	mov r1, #1
 	add r0, r5, #0
 	lsl r1, r1, #0xc
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02235FE4 ; =0x00000FF8
 	ldr r1, [r5, r0]
 	ldr r0, _02235FE8 ; =0x08012025
@@ -612,7 +612,7 @@ _02236110:
 	add r1, r0, #0
 	ldr r2, [sp]
 	add r0, r5, #0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, _022361A0 ; =0x00000FF4
 	ldrh r0, [r5, r0]
 	cmp r0, #0
@@ -656,7 +656,7 @@ ov97_022361B0: ; 0x022361B0
 	mov r0, #0
 	add r1, r5, #0
 	lsl r2, r2, #0xc
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r6, #0
 	bl ov97_02235EC0
 	add r4, r0, #0
@@ -664,7 +664,7 @@ ov97_022361B0: ; 0x022361B0
 	bl ov97_02235EF8
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, _0223622C ; =0x0223F438
 	ldr r1, [r0, #0x10]
 	ldr r0, _02236230 ; =0x00000FFC
@@ -687,7 +687,7 @@ ov97_022361B0: ; 0x022361B0
 	ldr r0, [r0, #0xc]
 	add r0, r6, r0
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223623C ; =0x0223EBFC
 	ldr r3, _02236240 ; =ov97_02236244
 	ldr r2, [r0, #4]
@@ -698,7 +698,7 @@ ov97_022361B0: ; 0x022361B0
 	lsr r0, r0, #0x18
 	add r1, r5, #0
 	mov r2, #4
-	bl sub_020D1AD0
+	bl CTRDG_WriteAndVerifyAgbFlashAsync
 	pop {r4, r5, r6, pc}
 	nop
 _0223622C: .word 0x0223F438

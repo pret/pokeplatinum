@@ -81,7 +81,7 @@ ov104_02233324: ; 0x02233324
 	mov r1, #0
 	mov r2, #0x24
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r7, #8]
 	mov r3, #0
 	str r0, [r4, #0]
@@ -192,7 +192,7 @@ _02233418:
 	mov r1, #0
 	mov r2, #0x24
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r7, #8]
 	add r2, r4, #0
 	str r0, [r4, #0]
@@ -396,7 +396,7 @@ _022335A0:
 	b _02233892
 _022335A6:
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	b _02233892
 _022335AE:
 	ldr r0, _022338A0 ; =0x000004F4

@@ -105,7 +105,7 @@ ov11_0221F8F0: ; 0x0221F8F0
 	cmp r0, #0
 	ble _0221F90E
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 _0221F90E:
 	bl sub_020146C0
 _0221F912:

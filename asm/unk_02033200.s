@@ -22,7 +22,7 @@ sub_02033200: ; 0x02033200
 	ldr r2, _020332BC ; =0x00000D98
 	str r0, [r1, #8]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	bl sub_02031C50
 	add r1, r0, #0
 	mov r0, #0xf
@@ -38,7 +38,7 @@ sub_02033200: ; 0x02033200
 	ldr r0, _020332C0 ; =0x00000D64
 	ldr r0, [r1, r0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	bl sub_0202602C
 	add r1, r0, #0
 	mov r0, #0xf
@@ -54,7 +54,7 @@ sub_02033200: ; 0x02033200
 	ldr r0, _020332C4 ; =0x00000D7C
 	ldr r0, [r1, r0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xf
 	mov r1, #0x90
 	bl sub_02018144
@@ -184,7 +184,7 @@ _02033358:
 	ldr r1, [r1, #8]
 	mov r2, #0xc0
 	add r1, #0x54
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02033378 ; =0x021C07B8
 	ldr r1, _0203337C ; =0x00000D95
 	ldr r3, [r0, #8]
@@ -250,7 +250,7 @@ _020333A0:
 	mul r1, r2
 	add r0, r7, #0
 	add r1, r3, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, r4, r5, r6, r7, pc}
 _020333E8:
 	add r6, r6, #1
@@ -289,7 +289,7 @@ _0203340A:
 	add r1, r3, #0
 	mul r1, r2
 	add r1, r4, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0203343C ; =0x021C07B8
 	mov r2, #1
 	ldr r1, [r0, #8]
@@ -309,7 +309,7 @@ sub_0203344C: ; 0x0203344C
 	push {r3, lr}
 	cmp r1, #0
 	beq _02033456
-	bl sub_020C42A8
+	bl OS_Terminate
 _02033456:
 	ldr r0, _02033460 ; =0x021C07B8
 	mov r1, #2
@@ -343,10 +343,10 @@ sub_02033478: ; 0x02033478
 	ldr r1, _020334A0 ; =sub_0203344C
 	mov r0, #8
 	mov r2, #0
-	bl sub_020A2418
+	bl WVR_StartUpAsync
 	cmp r0, #1
 	beq _02033498
-	bl sub_020C42A8
+	bl OS_Terminate
 _02033498:
 	pop {r3, pc}
 	nop
@@ -386,12 +386,12 @@ _020334C8: .word 0x021C07B8
 
 	thumb_func_start sub_020334CC
 sub_020334CC: ; 0x020334CC
-	ldr r3, _020334D4 ; =sub_020A2654
+	ldr r3, _020334D4 ; =WVR_TerminateAsync
 	ldr r0, _020334D8 ; =sub_02033464
 	mov r1, #0
 	bx r3
 	; .align 2, 0
-_020334D4: .word sub_020A2654
+_020334D4: .word WVR_TerminateAsync
 _020334D8: .word sub_02033464
 	thumb_func_end sub_020334CC
 
@@ -449,7 +449,7 @@ _02033524:
 	add r0, r2, r0
 	mov r2, #3
 	lsl r2, r2, #0xa
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	pop {r3, r4, r5, pc}
 	nop
 _02033548: .word 0x021C07B8
@@ -1202,7 +1202,7 @@ _02033ADA:
 	add r2, r0, #0
 	add r0, r4, #0
 	add r1, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl sub_0202602C
 	add r2, r0, #0
 	ldr r0, _02033B78 ; =0x021C07B8
@@ -1211,7 +1211,7 @@ _02033ADA:
 	ldr r0, [r1, r0]
 	add r1, r5, #0
 	add r1, #0x30
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	bl sub_02025F20
 	str r0, [r5, #0]
@@ -1226,7 +1226,7 @@ _02033ADA:
 	add r0, r1, r0
 	add r1, r5, #0
 	add r1, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl sub_0203214C
 	add r5, #0x54
 	strb r0, [r5]
@@ -1247,14 +1247,14 @@ _02033B30:
 	ldr r0, [r0, #8]
 	add r1, r4, #0
 	mov r2, #0x54
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02033B58:
 	ldr r0, _02033B78 ; =0x021C07B8
 	ldr r1, [r0, #8]
 	ldr r0, _02033B7C ; =0x00000D88
 	ldr r0, [r1, r0]
 	mov r1, #0x5c
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02033B78 ; =0x021C07B8
 	ldr r1, [r0, #8]
 	ldr r0, _02033B7C ; =0x00000D88
@@ -1287,7 +1287,7 @@ sub_02033B88: ; 0x02033B88
 	ldr r0, _02033BD8 ; =0x00000D88
 	ldr r0, [r1, r0]
 	mov r1, #0x5c
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02033BD4 ; =0x021C07B8
 	ldr r1, [r0, #8]
 	ldr r0, _02033BD8 ; =0x00000D88
@@ -1759,7 +1759,7 @@ _02033F08: .word 0x0000FFFF
 sub_02033F0C: ; 0x02033F0C
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
-	bl sub_020CE8A4
+	bl WM_GetDispersionBeaconPeriod
 	add r4, r0, #0
 	cmp r5, #0x25
 	blo _02033F1E
@@ -1899,7 +1899,7 @@ _02033FF2:
 	add r1, r4, #0
 	mul r1, r2
 	add r1, r3, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02034008:
 	pop {r3, r4, r5, pc}
 	nop
@@ -1996,7 +1996,7 @@ _020340A4: .word 0x00000D95
 	thumb_func_start sub_020340A8
 sub_020340A8: ; 0x020340A8
 	ldr r1, _020340B8 ; =0x021C07B8
-	ldr r3, _020340BC ; =sub_020C4DB0
+	ldr r3, _020340BC ; =MI_CpuCopy8
 	ldr r2, [r1, #8]
 	ldr r1, _020340C0 ; =0x00000D68
 	add r1, r2, r1
@@ -2004,7 +2004,7 @@ sub_020340A8: ; 0x020340A8
 	bx r3
 	nop
 _020340B8: .word 0x021C07B8
-_020340BC: .word sub_020C4DB0
+_020340BC: .word MI_CpuCopy8
 _020340C0: .word 0x00000D68
 	thumb_func_end sub_020340A8
 
@@ -2019,7 +2019,7 @@ sub_020340C4: ; 0x020340C4
 	ldr r1, _020340E4 ; =0x00000D7C
 	add r0, r4, #0
 	ldr r1, [r3, r1]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 	nop
 _020340E0: .word 0x021C07B8
@@ -2096,7 +2096,7 @@ sub_02034150: ; 0x02034150
 	ldr r1, _02034164 ; =0x021C07B8
 	mov r2, #0x54
 	ldr r1, [r1, #8]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl sub_020340FC
 	pop {r3, pc}
 	nop

@@ -41,41 +41,41 @@ ov97_0222C1A4: ; 0x0222C1A4
 	add r5, r0, #0
 	ldr r1, _0222C20C ; =0x00002710
 	add r0, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x30
 	strh r0, [r5]
 	ldr r1, _0222C20C ; =0x00002710
 	add r0, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 	mov r1, #0xfa
 	add r0, r4, #0
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x30
 	mov r1, #0xfa
 	strh r0, [r5, #2]
 	add r0, r4, #0
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 	add r0, r4, #0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x30
 	strh r0, [r5, #4]
 	add r0, r4, #0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x30
 	strh r0, [r5, #6]
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 	add r4, #0x30
 	strh r4, [r5, #8]
@@ -567,7 +567,7 @@ ov97_0222C578: ; 0x0222C578
 	add r3, r2, #0
 	bl ov97_0223795C
 	add r0, sp, #0x10
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	add r0, sp, #0x10
 	bl ov97_022335A8
 	add r1, sp, #0x1c
@@ -910,7 +910,7 @@ _0222C8FC:
 	b _0222C92C
 _0222C912:
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	b _0222C92C
 _0222C91A:
 	add r0, r6, #0
@@ -965,7 +965,7 @@ ov97_0222C974: ; 0x0222C974
 	add r0, r5, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _0222CAA0 ; =0x000001A5
 	ldr r3, [r6, #0]
 	mov r0, #1
@@ -1064,7 +1064,7 @@ ov97_0222C974: ; 0x0222C974
 	add r0, sp, #8
 	bl sub_020138A4
 	add r0, sp, #8
-	bl sub_020CC16C
+	bl RTC_ConvertDateToDay
 	mov r1, #0xd5
 	lsl r1, r1, #2
 	str r0, [r5, r1]
@@ -1501,9 +1501,9 @@ _0222CDEC:
 	bne _0222CE1C
 	mov r0, #0xf
 	str r0, [r4, r5]
-	bl sub_020C3920
+	bl OS_GetTickLo
 	mov r1, #0x36
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x16
 	add r1, r1, #6
 	lsl r0, r0, #4
@@ -1746,7 +1746,7 @@ _0222CFF2:
 	tst r0, r1
 	beq _0222D036
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	b _0222D036
 _0222D004:
 	bl ov97_022333FC

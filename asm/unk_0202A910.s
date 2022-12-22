@@ -128,7 +128,7 @@ sub_0202A9B0: ; 0x0202A9B0
 _0202A9BC:
 	bl sub_0201D2E8
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r0, r0, #0x18
 	add r1, r5, r0
@@ -281,7 +281,7 @@ sub_0202AABC: ; 0x0202AABC
 	add r4, r0, #0
 	ldrb r0, [r4]
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	cmp r0, #5

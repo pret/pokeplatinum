@@ -2,8 +2,8 @@
 .public sub_02094E98
 .public sub_02095734
 .public sub_02095790
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public _s32_div_f
 .public ov17_02243120
 .public ov17_02243970
 .public ov17_0224399C

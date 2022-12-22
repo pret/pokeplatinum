@@ -8,11 +8,11 @@
 .public sub_0202AABC
 .public sub_020973C8
 .public sub_020973D4
-.public sub_020BCFD0
-.public sub_020D5124
-.public sub_020E1F1C
-.public sub_020E1F6C
-.public sub_020E2178
+.public FX_Div
+.public memset
+.public _ull_mul
+.public _s32_div_f
+.public _u32_div_f
 .public ov83_0223F7F4
 .public ov83_0223F8AC
 .public ov83_0223F900

@@ -3,7 +3,7 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020E2178
+.public _u32_div_f
 .public ov66_0222E158
 .public ov66_0222F104
 .public ov66_0222F114

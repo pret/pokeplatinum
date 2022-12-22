@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020ADDCC
-sub_020ADDCC: ; 0x020ADDCC
+	arm_func_start NNSi_G2dTextCanvasDrawString
+NNSi_G2dTextCanvasDrawString: ; 0x020ADDCC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10
 	mov fp, r0
@@ -35,7 +35,7 @@ _020ADE10:
 	ldr r0, [fp]
 	mov r1, r5
 	mov r3, sb
-	bl sub_020AD794
+	bl NNS_G2dCharCanvasDrawChar
 	add r0, r4, r0
 	mla sl, r0, r7, sl
 	mla sb, r0, r8, sb
@@ -55,10 +55,10 @@ _020ADE54:
 	str r1, [r0, #0]
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020ADDCC
+	arm_func_end NNSi_G2dTextCanvasDrawString
 
-	arm_func_start sub_020ADE80
-sub_020ADE80: ; 0x020ADE80
+	arm_func_start NNSi_G2dTextCanvasDrawTextAlign
+NNSi_G2dTextCanvasDrawTextAlign: ; 0x020ADE80
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x34
 	mov sl, r0
@@ -109,7 +109,7 @@ _020ADF1C:
 	ldr r2, [sp, #0x30]
 	mov r3, #0
 	ldmib sl, {r0, r1}
-	bl sub_020AC924
+	bl NNSi_G2dFontGetStringWidth
 	sub r0, fp, r0
 	mla r4, r0, sb, r4
 	mla r5, r0, r8, r5
@@ -121,7 +121,7 @@ _020ADF58:
 	ldr r2, [sp, #0x30]
 	mov r3, #0
 	ldmib sl, {r0, r1}
-	bl sub_020AC924
+	bl NNSi_G2dFontGetStringWidth
 	add r0, r0, #1
 	add r0, r0, r0, lsr #31
 	mov r1, r0, asr #1
@@ -142,7 +142,7 @@ _020ADF90:
 	mov r0, sl
 	strb r3, [sp, #9]
 	ldr r3, [sp, #0x58]
-	bl sub_020ADDCC
+	bl NNSi_G2dTextCanvasDrawString
 	ldr r0, [sp, #0x20]
 	add r6, r6, r0
 	ldr r0, [sp, #0x1c]
@@ -152,10 +152,10 @@ _020ADF90:
 	bne _020ADF1C
 	add sp, sp, #0x34
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020ADE80
+	arm_func_end NNSi_G2dTextCanvasDrawTextAlign
 
-	arm_func_start sub_020ADFE8
-sub_020ADFE8: ; 0x020ADFE8
+	arm_func_start NNSi_G2dTextCanvasDrawText
+NNSi_G2dTextCanvasDrawText: ; 0x020ADFE8
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x28
 	ldr r4, [sp, #0x44]
@@ -167,7 +167,7 @@ sub_020ADFE8: ; 0x020ADFE8
 	mov r5, r3
 	ldmib r8, {r1, r2, r3}
 	ldr r4, [sp, #0x40]
-	bl sub_020ACA44
+	bl NNSi_G2dFontGetTextRect
 	ldr r2, [sp, #0x18]
 	ldr r0, [sp, #0x1c]
 	str r2, [sp, #0x10]
@@ -230,13 +230,13 @@ _020AE0D0:
 	mov r1, r7
 	mov r2, r6
 	strb r4, [sp, #0xd]
-	bl sub_020ADE80
+	bl NNSi_G2dTextCanvasDrawTextAlign
 	add sp, sp, #0x28
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020ADFE8
+	arm_func_end NNSi_G2dTextCanvasDrawText
 
-	arm_func_start sub_020AE10C
-sub_020AE10C: ; 0x020AE10C
+	arm_func_start NNSi_G2dTextCanvasDrawTextRect
+NNSi_G2dTextCanvasDrawTextRect: ; 0x020AE10C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	ldr ip, [sp, #0x30]
@@ -249,7 +249,7 @@ sub_020AE10C: ; 0x020AE10C
 	ldr r0, [r7, #4]
 	ldr r1, [r7, #0xc]
 	ldr r2, [sp, #0x34]
-	bl sub_020AC9D0
+	bl NNSi_G2dFontGetTextHeight
 	ldrsb r2, [sp, #0x39]
 	ldr r3, [sp, #0x28]
 	ldrsb r1, [sp, #0x38]
@@ -264,7 +264,7 @@ _020AE160:
 	ldr r0, [r7, #4]
 	ldr r1, [r7, #0xc]
 	ldr r2, [sp, #0x34]
-	bl sub_020AC9D0
+	bl NNSi_G2dFontGetTextHeight
 	ldr r1, [sp, #0x28]
 	add r0, r0, #1
 	ldrsb r3, [sp, #0x39]
@@ -292,7 +292,7 @@ _020AE1A8:
 	mov r2, r5
 	mov r3, r4
 	strb ip, [sp, #0xd]
-	bl sub_020ADE80
+	bl NNSi_G2dTextCanvasDrawTextAlign
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020AE10C
+	arm_func_end NNSi_G2dTextCanvasDrawTextRect

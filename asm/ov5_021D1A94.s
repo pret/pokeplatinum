@@ -29,7 +29,7 @@ ov5_021D1A94: ; 0x021D1A94
 	ldr r1, [r4, #0xc]
 	mov r0, #0
 	add r2, r7, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r6, #0
 	bl sub_0201CD80
 	add r1, r0, #0
@@ -223,7 +223,7 @@ _021D1C14:
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x14
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 _021D1C2A:
 	pop {r4, pc}
 	thumb_func_end ov5_021D1BEC

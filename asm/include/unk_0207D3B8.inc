@@ -14,5 +14,5 @@
 .public sub_0207D7CC
 .public sub_0207D9F0
 .public sub_0207DA24
-.public sub_020C4AF0
-.public sub_020C4DB0
+.public MIi_CpuClear16
+.public MI_CpuCopy8

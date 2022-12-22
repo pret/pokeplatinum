@@ -5,5 +5,5 @@
 .public sub_0205EC34
 .public sub_02061CA8
 .public sub_02061D04
-.public sub_020C4B4C
-.public sub_020D5124
+.public MIi_CpuClear32
+.public memset

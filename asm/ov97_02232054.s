@@ -145,7 +145,7 @@ ov97_02232148: ; 0x02232148
 	mov r1, #0
 	bl sub_02024760
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 _0223217C:
 	add r0, r5, #0
 	add r0, #0x4c

@@ -264,9 +264,9 @@ ov83_0223CBA4: ; 0x0223CBA4
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
-	bl sub_020B2628
-	bl sub_020A73C0
+	bl NNS_G3dGeBufferOP_N
+	bl NNS_G3dGeFlushBuffer
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	mov r0, #0xaf
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
@@ -278,7 +278,7 @@ _0223CBCE:
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r0, #0
 	add r1, r0, #0
 	bl sub_020241BC
@@ -493,7 +493,7 @@ ov83_0223CD64: ; 0x0223CD64
 	push {r4, r5, lr}
 	sub sp, #0x24
 	add r4, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -653,8 +653,8 @@ _0223CE8A:
 ov83_0223CE9C: ; 0x0223CE9C
 	push {r3, r4, lr}
 	sub sp, #4
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _0223CF08 ; =0x04000060
 	ldr r2, _0223CF0C ; =0xFFFFCFFD
 	ldrh r1, [r0]
@@ -685,18 +685,18 @@ ov83_0223CE9C: ; 0x0223CE9C
 	ldr r0, _0223CF14 ; =0x000043FF
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r2, _0223CF18 ; =0x04000540
 	mov r0, #2
 	ldr r1, _0223CF1C ; =0xBFFF0000
 	str r0, [r2, #0]
 	str r1, [r2, #0x40]
 	mov r1, #1
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #2
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	add sp, #4
 	pop {r3, r4, pc}
 	nop
@@ -711,8 +711,8 @@ _0223CF1C: .word 0xBFFF0000
 	thumb_func_start ov83_0223CF20
 ov83_0223CF20: ; 0x0223CF20
 	push {r3, lr}
-	bl sub_020A5B1C
-	bl sub_020A5F50
+	bl NNS_GfdResetFrmTexVramState
+	bl NNS_GfdResetFrmPlttVramState
 	pop {r3, pc}
 	thumb_func_end ov83_0223CF20
 

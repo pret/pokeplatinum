@@ -71,7 +71,7 @@ _02252D54:
 	add r1, r2, r1
 	ldr r0, [sp]
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #1
 	strb r0, [r7, r5]
 	pop {r3, r4, r5, r6, r7, pc}

@@ -71,7 +71,7 @@ ov4_022062D4: ; 0x022062D4
 	mov r7, r0
 	bl ov4_0220633C
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02206338 ; =0x0221A134
 	mov r6, r0
 	ldr r1, [r1, #0]
@@ -82,7 +82,7 @@ ov4_022062D4: ; 0x022062D4
 	beq _02206328
 	mov r2, r4
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, r5
 	mov r1, r7
 	bl ov4_022063E4
@@ -90,7 +90,7 @@ ov4_022062D4: ; 0x022062D4
 	bl ov4_02208214
 _02206328:
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -247,9 +247,9 @@ ov4_02206508: ; 0x02206508
 	ldrb r2, [r5, #3]
 	mov r0, r6
 	mov r1, r7
-	bl sub_020C2748
+	bl OS_InitMessageQueue
 	add r0, r6, #0xe0
-	bl sub_020C29C0
+	bl OS_InitMutex
 	ldrh r2, [r5]
 	add r0, r6, #0x20
 	ldr r1, _02206578 ; =ov4_02206174
@@ -258,9 +258,9 @@ ov4_02206508: ; 0x02206508
 	mov r2, r6
 	add r3, r7, r4
 	str ip, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	add r0, r6, #0x20
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	add r0, r7, r4
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}

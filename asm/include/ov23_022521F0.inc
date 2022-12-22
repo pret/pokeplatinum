@@ -59,8 +59,8 @@
 .public sub_02059514
 .public sub_0206251C
 .public sub_02062974
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov23_022421BC
 .public ov23_022421DC
 .public ov23_022430D0

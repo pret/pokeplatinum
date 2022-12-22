@@ -21,7 +21,7 @@ sub_0202C804: ; 0x0202C804
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl sub_0202C844
 	add r5, r0, #0

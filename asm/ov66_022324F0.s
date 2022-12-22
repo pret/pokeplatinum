@@ -32,7 +32,7 @@ _02232512:
 	ldr r2, _02232594 ; =0x00000988
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02232590 ; =0x0225B6C0
 	ldr r0, [r0, #0]
 	str r6, [r0, #0]
@@ -1539,7 +1539,7 @@ _02232FC8:
 	add r1, r4, r5
 	ldrh r0, [r1, r0]
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	add r0, r7, #0
 	sub r0, #0x18
@@ -1887,7 +1887,7 @@ _022332A8:
 	add r0, r5, r4
 	ldrh r0, [r0, r2]
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _022332EC ; =0x000005E8
 	add r3, r0, #0
 	add r0, r5, r1
@@ -2549,7 +2549,7 @@ ov66_02233758: ; 0x02233758
 	mov r1, #0
 	ldr r0, [r0, #0x24]
 	add r2, r4, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02233784 ; =0x0225B6C0
 	ldr r0, [r0, #0]
 	str r5, [r0, #0x28]
@@ -2602,7 +2602,7 @@ _022337C4:
 	bls _022337DA
 	add r0, r5, r4
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	b _022337DC
 _022337DA:
 	add r6, r2, #0
@@ -2610,7 +2610,7 @@ _022337DC:
 	ldr r1, [sp]
 	add r0, r5, r4
 	add r2, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov66_022337A8
 
@@ -2654,7 +2654,7 @@ _02233824:
 	mul r0, r4
 	add r0, r1, r0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov66_0223380C
@@ -3408,7 +3408,7 @@ ov66_02233D94: ; 0x02233D94
 	ldr r1, _02233DCC ; =0x02258DF0
 	ldr r0, [sp, #8]
 	ldr r1, [r1, #0]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _02233DC8
 	ldr r0, _02233DD0 ; =0x0225B6C0
@@ -3418,7 +3418,7 @@ ov66_02233D94: ; 0x02233D94
 	lsl r0, r0, #2
 	add r0, r1, r0
 	ldr r1, [sp, #0xc]
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _02233DD0 ; =0x0225B6C0
 	ldr r2, [r0, #0]
 	mov r0, #0x13
@@ -3784,7 +3784,7 @@ ov66_02234054: ; 0x02234054
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #0xe4
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02234070 ; =0x0000069C
 	mov r1, #3
 	strh r1, [r4, r0]
@@ -3965,7 +3965,7 @@ _022341A4:
 	mov r1, ip
 	sbc r1, r2
 	mov r2, #0x1e
-	bl sub_020E1F1C
+	bl _ull_mul
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	add sp, #8
@@ -4198,7 +4198,7 @@ _02234336:
 	ldr r1, [r5, #0]
 	add r0, r6, #0
 	lsl r2, r4, #3
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	strh r4, [r5, #6]
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov66_0223431C
@@ -4263,12 +4263,12 @@ _02234394:
 
 	thumb_func_start ov66_0223439C
 ov66_0223439C: ; 0x0223439C
-	ldr r3, _022343A4 ; =sub_020D50B8
+	ldr r3, _022343A4 ; =memcpy
 	mov r2, #0xb6
 	lsl r2, r2, #2
 	bx r3
 	; .align 2, 0
-_022343A4: .word sub_020D50B8
+_022343A4: .word memcpy
 	thumb_func_end ov66_0223439C
 
 	.rodata

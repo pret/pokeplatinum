@@ -25,7 +25,7 @@ ov4_022080F0: ; 0x022080F0
 	tst r0, #4
 	beq _02208160
 _02208130:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r6, r0
 	mov r0, r5
 	bl ov4_022081C0
@@ -36,7 +36,7 @@ _02208130:
 	cmp r0, #0
 	mov r0, r6
 	orrgt r4, r4, #8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 _02208160:
 	ldrsb r0, [r5, #0x73]
 	mov r1, #1

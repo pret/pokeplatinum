@@ -403,7 +403,7 @@ _02232278:
 	mov r2, #0xb6
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	str r4, [sp]
 	add r0, sp, #0x20
 	ldrb r0, [r0, #0x10]
@@ -1838,7 +1838,7 @@ ov104_02232CE0: ; 0x02232CE0
 	add r0, sp, #0x38
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x90]
 	add r1, sp, #0x38
 	strh r0, [r1]
@@ -1910,12 +1910,12 @@ _02232D8A:
 	add r7, r0, #0
 	ldr r0, [sp, #0x28]
 	mov r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r2, #0x32
 	ldr r0, [sp, #0x28]
 	ldr r1, [r7, #4]
 	lsl r2, r2, #6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	ldr r0, [r6, #0]
 	bl sub_02021F9C
 	mov r1, #1
@@ -2389,7 +2389,7 @@ ov104_0223319C: ; 0x0223319C
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	pop {r4, pc}
 _022331D4:
 	mov r0, #4
@@ -2472,7 +2472,7 @@ _0223325C:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	pop {r3, r4, r5, r6, r7, pc}
 _0223326E:
 	sub r0, r0, #1

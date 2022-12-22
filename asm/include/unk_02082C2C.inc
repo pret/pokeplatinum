@@ -37,7 +37,7 @@
 .public sub_02083138
 .public sub_02083158
 .public sub_0208C104
-.public sub_020A7118
-.public sub_020A81B0
-.public sub_020C02BC
-.public sub_020C2C54
+.public NNS_G2dGetUnpackedCharacterData
+.public NNS_G2dGetImageLocation
+.public GX_LoadOBJ
+.public DC_FlushRange

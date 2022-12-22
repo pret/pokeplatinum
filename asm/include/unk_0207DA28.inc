@@ -32,7 +32,7 @@
 .public sub_02099570
 .public sub_020996A0
 .public sub_0209BA18
-.public sub_020C3EE4
-.public sub_020C4CF4
-.public sub_020D5124
+.public OS_ResetSystem
+.public MI_CpuFill8
+.public memset
 .public ov18_0221F800

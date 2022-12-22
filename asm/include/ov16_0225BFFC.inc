@@ -19,7 +19,7 @@
 .public sub_020787CC
 .public sub_0207A0F8
 .public sub_0207A0FC
-.public sub_020C4BB8
+.public MIi_CpuClearFast
 .public ov12_02237728
 .public ov12_02237E0C
 .public ov12_02237E30

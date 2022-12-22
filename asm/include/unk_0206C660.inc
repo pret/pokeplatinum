@@ -11,6 +11,6 @@
 .public sub_0206C660
 .public sub_0206C680
 .public sub_02073C74
-.public sub_020D5124
+.public memset
 .public ov6_02246234
 .public ov6_02246254

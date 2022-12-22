@@ -735,7 +735,7 @@ _021E67D0:
 	bl sub_0201D2E8
 	mov r1, #6
 	sub r1, r1, r5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldrb r0, [r6, r1]
 	add r1, r5, #0
 	strb r0, [r7, r5]
@@ -935,7 +935,7 @@ ov5_021E6948: ; 0x021E6948
 	add r1, r4, #0
 	mov r2, #0xb4
 	str r0, [sp, #0x1c]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r7, #0
 	mov r1, #5
 	mov r2, #0
@@ -2009,7 +2009,7 @@ _021E7188:
 	mul r1, r0
 	add r0, r1, #0
 	ldr r1, _021E7274 ; =0x0000FFFF
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r4, r0
 	bls _021E71D4
 	ldr r0, [sp]

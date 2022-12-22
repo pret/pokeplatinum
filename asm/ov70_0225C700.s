@@ -51,15 +51,15 @@ ov70_0225C730: ; 0x0225C730
 	add r7, r3, #0
 	bl sub_0200723C
 	add r4, r0, #0
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	add r6, r0, #0
 	bl sub_0201CBCC
 	add r0, r6, #0
 	add r1, sp, #0xc
 	add r2, sp, #8
-	bl sub_020AE9B8
+	bl NNS_G3dTexReleaseTexKey
 	add r0, r6, #0
-	bl sub_020AEA70
+	bl NNS_G3dPlttReleasePlttKey
 	str r0, [sp, #4]
 	add r0, r4, #0
 	bl sub_02022F24
@@ -70,16 +70,16 @@ ov70_0225C730: ; 0x0225C730
 	str r0, [r5, #0]
 	add r1, r4, #0
 	add r2, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [r5, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	ldr r1, [sp, #0xc]
 	ldr r2, [sp, #8]
 	add r5, r0, #0
-	bl sub_020AE8EC
+	bl NNS_G3dTexSetTexKey
 	ldr r1, [sp, #4]
 	add r0, r5, #0
-	bl sub_020AEA18
+	bl NNS_G3dPlttSetPlttKey
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #0x10
@@ -115,7 +115,7 @@ ov70_0225C7A0: ; 0x0225C7A0
 	bl sub_02017394
 	add r5, r0, #0
 	add r0, sp, #0x24
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	asr r0, r6, #4
 	lsl r3, r0, #1
 	lsl r1, r3, #1
@@ -125,11 +125,11 @@ ov70_0225C7A0: ; 0x0225C7A0
 	ldrsh r1, [r2, r1]
 	ldrsh r2, [r2, r3]
 	add r0, sp, #0
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r1, sp, #0x24
 	add r0, sp, #0
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	asr r0, r5, #4
 	lsl r2, r0, #1
 	lsl r1, r2, #1
@@ -139,11 +139,11 @@ ov70_0225C7A0: ; 0x0225C7A0
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r1, sp, #0x24
 	add r0, sp, #0
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	asr r0, r7, #4
 	lsl r2, r0, #1
 	lsl r1, r2, #1
@@ -153,11 +153,11 @@ ov70_0225C7A0: ; 0x0225C7A0
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	add r1, sp, #0x24
 	add r0, sp, #0
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldr r0, [r4, #8]
 	add r1, sp, #0x54
 	add r2, sp, #0x24

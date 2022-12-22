@@ -15,7 +15,7 @@ sub_020158A8: ; 0x020158A8
 	mov r1, #0
 	mov r2, #0x78
 	add r6, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _020158F0 ; =0x000001D1
 	mov r0, #0
 	mov r1, #0x1a

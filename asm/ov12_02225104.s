@@ -573,19 +573,19 @@ _022254DA:
 	ldr r6, [sp, #0x18]
 	mul r0, r5
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp, #4]
 	str r0, [sp]
 	add r0, r1, #0
 	mul r0, r5
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp, #8]
 	str r0, [sp, #4]
 	add r0, r1, #0
 	mul r0, r5
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #8]
 	b _0222552A
 _02225514:

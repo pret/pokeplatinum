@@ -494,7 +494,7 @@ _022525DA:
 	bl ov23_02253D40
 	add r1, sp, #0x14
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r5, #0x40]
 	str r0, [sp, #0x14]
 	add r0, r5, #0
@@ -1098,7 +1098,7 @@ _02252AC2:
 	bl ov23_02253D40
 	add r1, sp, #0x14
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r5, #0x40]
 	mov r1, #6
 	str r0, [sp, #0x14]
@@ -2324,7 +2324,7 @@ ov23_022534A0: ; 0x022534A0
 	mov r1, #0
 	lsl r2, r2, #4
 	add r6, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x92
 	str r4, [r6, #0xc]
 	lsl r0, r0, #2

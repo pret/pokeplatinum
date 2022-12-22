@@ -953,7 +953,7 @@ _020E37CC:
 _020E37EC:
 	ldr r1, [sp, #0x10]
 	add r4, r4, r0
-	bl sub_020E2178
+	bl _u32_div_f
 	movs r6, r0
 	beq _020E3820
 	mvn sl, #0
@@ -1103,7 +1103,7 @@ _020E39D4:
 	mov r0, r7
 	mov r2, r8
 	str r1, [sp, #4]
-	bl sub_020E418C
+	bl __throw_catch_compare
 	cmp r0, #0
 	addne sp, sp, #8
 	movne r0, #1
@@ -1119,8 +1119,8 @@ _020E3A24:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end sub_020E39AC
 
-	arm_func_start sub_020E3A30
-sub_020E3A30: ; 0x020E3A30
+	arm_func_start __unexpected
+__unexpected: ; 0x020E3A30
 	stmfd sp!, {r4, fp, lr}
 	sub sp, sp, #0x2c
 	mov fp, sp
@@ -1144,7 +1144,7 @@ _020E3ABC:
 _020E3AC8:
 	.byte 0xB8, 0x1B, 0x10, 0x02, 0xAC, 0x1B, 0x10, 0x02
 	.byte 0xD0, 0x1B, 0x10, 0x02, 0xD8, 0x3A, 0x0E, 0x02
-	arm_func_end sub_020E3A30
+	arm_func_end __unexpected
 
 	arm_func_start sub_020E3AD8
 sub_020E3AD8: ; 0x020E3AD8
@@ -1272,7 +1272,7 @@ _020E3C54:
 	ldr r0, [r6, #0]
 	ldr r1, [sp, #0x10]
 	mov r2, r4
-	bl sub_020E418C
+	bl __throw_catch_compare
 	cmp r0, #0
 	beq _020E3D00
 	b _020E3D0C
@@ -1402,8 +1402,8 @@ _020E3DD8:
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end sub_020E3D74
 
-	arm_func_start sub_020E3E60
-sub_020E3E60: ; 0x020E3E60
+	arm_func_start __end__catch
+__end__catch: ; 0x020E3E60
 	stmfd sp!, {r3, lr}
 	ldr r1, [r0, #0]
 	cmp r1, #0
@@ -1414,7 +1414,7 @@ sub_020E3E60: ; 0x020E3E60
 	mvn r1, #0
 	blx r2
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020E3E60
+	arm_func_end __end__catch
 
 	arm_func_start sub_020E3E88
 sub_020E3E88: ; 0x020E3E88

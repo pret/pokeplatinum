@@ -19,14 +19,14 @@ ov18_0222F030: ; 0x0222F030
 	mov r0, #0
 	mov r2, #0x104
 	strb r0, [r3]
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r3, #0x50
 	mov r2, #0xc
 	ldr r0, _0222F134 ; =0x022490FC
 	add r1, sp, #4
 	strb r3, [sp]
 	strh r2, [sp, #2]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0222F130 ; =0x022532A4
 	mov r2, #3
 	ldr r1, [r0, #4]
@@ -63,14 +63,14 @@ _0222F09C:
 	strh r2, [r0, #0xe]
 	ldr r0, [r1, #4]
 	add r0, r0, #0x110
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _0222F138 ; =ov18_0222F1F0
 	ldr r1, _0222F13C ; =ov18_0222F200
 	blx ov18_022269F8
 	cmp r0, #0
 	addeq sp, sp, #0x104
 	ldmeqia sp!, {pc}
-	bl sub_020C42A8
+	bl OS_Terminate
 	add sp, sp, #0x104
 	ldmia sp!, {pc}
 	; .align 2, 0

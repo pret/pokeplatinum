@@ -8,12 +8,12 @@
 
 	thumb_func_start sub_020302D0
 sub_020302D0: ; 0x020302D0
-	ldr r3, _020302D8 ; =sub_020C4CF4
+	ldr r3, _020302D8 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x74
 	bx r3
 	; .align 2, 0
-_020302D8: .word sub_020C4CF4
+_020302D8: .word MI_CpuFill8
 	thumb_func_end sub_020302D0
 
 	thumb_func_start sub_020302DC
@@ -211,12 +211,12 @@ _02030406:
 
 	thumb_func_start sub_02030410
 sub_02030410: ; 0x02030410
-	ldr r3, _02030418 ; =sub_020C4CF4
+	ldr r3, _02030418 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #4
 	bx r3
 	; .align 2, 0
-_02030418: .word sub_020C4CF4
+_02030418: .word MI_CpuFill8
 	thumb_func_end sub_02030410
 
 	thumb_func_start sub_0203041C

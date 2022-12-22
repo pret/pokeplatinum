@@ -94,7 +94,7 @@
 .public sub_02071CB4
 .public sub_0207A0FC
 .public sub_0207A268
-.public sub_020D5124
+.public memset
 .public ov5_021DF74C
 .public ov5_021DFB54
 .public ov5_021DFB5C

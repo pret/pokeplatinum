@@ -28,7 +28,7 @@ ov4_02205EF0: ; 0x02205EF0
 	ldr r0, _02205F7C ; =0x0221DC34
 	mov r1, r6
 	mov r2, r4
-	bl sub_020C2748
+	bl OS_InitMessageQueue
 	cmp r4, #0
 	add r5, r6, r5
 	ble _02205F68
@@ -79,7 +79,7 @@ ov4_02205FCC: ; 0x02205FCC
 	mov r2, r0
 	ldr r0, _02205FF0 ; =0x0221DC34
 	add r1, sp, #0
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	cmp r0, #0
 	ldrne r0, [sp]
 	moveq r0, #0
@@ -115,7 +115,7 @@ ov4_02206034: ; 0x02206034
 	ldmeqia sp!, {r3, pc}
 	ldr r0, _02206050 ; =0x0221DC34
 	mov r2, #0
-	bl sub_020C2770
+	bl OS_SendMessage
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02206050: .word 0x0221DC34
@@ -145,7 +145,7 @@ _02206088:
 	mov r2, #0
 _0220608C:
 	mov r1, r5
-	bl sub_020C2770
+	bl OS_SendMessage
 	movs r4, r0
 	bne _022060A4
 	mov r0, r5
@@ -179,7 +179,7 @@ ov4_022060CC: ; 0x022060CC
 	add r0, sp, #8
 	add r1, sp, #0
 	mov r2, #1
-	bl sub_020C2748
+	bl OS_InitMessageQueue
 	add r2, sp, #8
 	mov r0, r5
 	mov r1, r4
@@ -188,7 +188,7 @@ ov4_022060CC: ; 0x022060CC
 	add r0, sp, #8
 	add r1, sp, #4
 	mov r2, #1
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	b _02206130
 _02206120:
 	mov r2, #0
@@ -242,7 +242,7 @@ _02206190:
 	mov r0, sb
 	mov r1, r6
 	mov r2, r5
-	bl sub_020C2944
+	bl OS_ReadMessage
 	ldr r0, [sp]
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -250,13 +250,13 @@ _02206190:
 	ldr r1, [r0, #0]
 	blx r1
 	mov r8, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r7, r0
-	bl sub_020C25A4
+	bl OS_DisableScheduler
 	mov r0, sb
 	mov r1, r4
 	mov r2, r4
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	ldr r0, [sp]
 	ldr r0, [r0, #4]
 	cmp r0, #0
@@ -267,13 +267,13 @@ _02206190:
 	beq _02206204
 	mov r1, r8
 	mov r2, sl
-	bl sub_020C2770
+	bl OS_SendMessage
 _02206204:
 	ldr r0, [sp]
 	bl ov4_02206034
-	bl sub_020C25D8
+	bl OS_EnableScheduler
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _02206190
 	arm_func_end ov4_02206174
 _0220621C:

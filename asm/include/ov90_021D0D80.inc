@@ -82,10 +82,10 @@
 .public sub_0203068C
 .public sub_02030698
 .public sub_0208C210
-.public sub_020A635C
-.public sub_020C4DB0
-.public sub_020D5124
-.public sub_020E1F6C
+.public NNS_GfdDoVramTransfer
+.public MI_CpuCopy8
+.public memset
+.public _s32_div_f
 .public ov90_021D0ECC
 .public ov90_021D0F98
 .public ov90_021D1014

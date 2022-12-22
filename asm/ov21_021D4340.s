@@ -467,7 +467,7 @@ _021D4696:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov21_021D12EC
 	str r0, [r4, #0]
@@ -569,7 +569,7 @@ _021D4776:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov21_021D12EC
 	str r0, [r4, #0]
@@ -633,7 +633,7 @@ _021D480A:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov21_021D12EC
 	str r0, [r4, #0]

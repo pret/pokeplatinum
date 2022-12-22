@@ -107,7 +107,7 @@ ov18_022439E0: ; 0x022439E0
 	bl ov18_022440BC
 	mov r4, r0
 	mov r0, #1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	mov r6, r0
 	cmp r5, #0
 	mov r0, #0x228
@@ -144,7 +144,7 @@ _02243A84:
 	add r0, r0, #0x210
 	cmp r5, r0
 	bne _02243B24
-	bl sub_020C42A8
+	bl OS_Terminate
 	b _02243B24
 _02243AA4:
 	ldr r1, _02243B38 ; =0x022533B0
@@ -181,10 +181,10 @@ _02243B08:
 	add r0, r0, #0x200
 	cmp r5, r0
 	bne _02243B24
-	bl sub_020C42A8
+	bl OS_Terminate
 _02243B24:
 	mov r0, r6
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, r4
 	strb r8, [r4, #0xc]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}

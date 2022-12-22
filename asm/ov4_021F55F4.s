@@ -30,7 +30,7 @@ ov4_021F55F4: ; 0x021F55F4
 	add r0, sp, #0
 	mov r3, r4
 	mov r2, #1
-	bl sub_020D7510
+	bl sprintf
 	add r2, sp, #0
 	mov r0, r6
 	mov r1, r5
@@ -72,7 +72,7 @@ ov4_021F5698: ; 0x021F5698
 	add r2, sp, #4
 	add r3, sp, #8
 	str ip, [sp]
-	bl sub_020D8A08
+	bl sscanf
 	cmp r0, #3
 	addne sp, sp, #0x50
 	ldmneia sp!, {r3, r4, r5, pc}

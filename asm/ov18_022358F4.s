@@ -47,7 +47,7 @@ ov18_022358F4: ; 0x022358F4
 	ldr r4, [r0, #0]
 	mov r2, #3
 	add r0, r4, #8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	movne r0, #3
 	strneb r0, [r4, #0x14]
@@ -55,7 +55,7 @@ ov18_022358F4: ; 0x022358F4
 	add r0, r4, #8
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02235A5C ; =0x02253324
 	mov r1, #0
 	ldr r0, [r0, #0]
@@ -115,10 +115,10 @@ ov18_02235A68: ; 0x02235A68
 	ldr r1, _02235B08 ; =0x020C07EC
 	bl ov18_0222B700
 	ldr r0, _02235B0C ; =0x0224A1F0
-	ldr r1, _02235B10 ; =sub_020C00B4
+	ldr r1, _02235B10 ; =GX_LoadBGPltt
 	bl ov18_0222B700
 	ldr r0, _02235B14 ; =0x0224A208
-	ldr r1, _02235B18 ; =sub_020C04EC
+	ldr r1, _02235B18 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _02235B1C ; =0x04001008
 	ldr r1, _02235B20 ; =0x0400000A
@@ -150,9 +150,9 @@ _02235B00: .word 0x020C0160
 _02235B04: .word 0x0224A1D8
 _02235B08: .word 0x020C07EC
 _02235B0C: .word 0x0224A1F0
-_02235B10: .word sub_020C00B4
+_02235B10: .word GX_LoadBGPltt
 _02235B14: .word 0x0224A208
-_02235B18: .word sub_020C04EC
+_02235B18: .word GX_LoadBG2Scr
 _02235B1C: .word 0x04001008
 _02235B20: .word 0x0400000A
 	arm_func_end ov18_02235A68
@@ -295,7 +295,7 @@ _02235C74:
 	add r3, r3, #8
 	add r0, r0, r0, lsl #1
 	add r0, r3, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02235F38 ; =0x02253324
 	ldr r1, [r0, #0]
 	ldrb r0, [r1, #0x14]
@@ -483,7 +483,7 @@ ov18_02235F44: ; 0x02235F44
 	add r0, r3, r2
 	add r1, sp, #0
 	mov r2, #3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r2, #0
 	add r3, sp, #0
 	strb r2, [sp, #3]
@@ -498,7 +498,7 @@ _02235F9C:
 	blt _02235F9C
 _02235FB8:
 	add r0, sp, #0
-	bl sub_020DAE0C
+	bl atoi
 	cmp r0, r4
 	movge r0, #1
 	movlt r0, #0

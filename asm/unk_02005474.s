@@ -15,7 +15,7 @@ sub_02005474: ; 0x02005474
 	add r5, r0, #0
 	bl sub_020040CC
 	add r1, r6, #0
-	bl sub_020BAD78
+	bl NNS_SndArcPlayerStartSeq
 	add r4, r0, #0
 	add r0, r6, #0
 	add r1, r5, #0
@@ -96,7 +96,7 @@ sub_02005508: ; 0x02005508
 	add r0, r4, #0
 	bl sub_020040CC
 	add r1, r5, #0
-	bl sub_020BAD78
+	bl NNS_SndArcPlayerStartSeq
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end sub_02005508
@@ -130,7 +130,7 @@ sub_02005538: ; 0x02005538
 	add r0, r6, #0
 	add r3, r1, #0
 	str r5, [sp]
-	bl sub_020BADC0
+	bl NNS_SndArcPlayerStartSeqEx
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -160,7 +160,7 @@ _020055AA:
 	mov r0, #7
 	bl sub_020040CC
 	add r1, r5, #0
-	bl sub_020BAD78
+	bl NNS_SndArcPlayerStartSeq
 	add r4, r0, #0
 	add r0, r5, #0
 	bl sub_020041E8
@@ -174,14 +174,14 @@ _020055AA:
 sub_020055D0: ; 0x020055D0
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020B8034
+	bl NNS_SndPlayerStopSeqBySeqNo
 	add r0, r4, #0
 	bl sub_02004B18
 	cmp r0, #0xff
 	beq _020055EE
 	bl sub_020040F0
 	bl sub_020040CC
-	bl sub_020B80E8
+	bl NNS_SndHandleReleaseSeq
 _020055EE:
 	bl sub_020055F4
 	pop {r4, pc}
@@ -285,7 +285,7 @@ sub_0200569C: ; 0x0200569C
 	bl sub_02003D5C
 	add r4, r0, #0
 	mov r0, #0
-	bl sub_020B808C
+	bl NNS_SndPlayerStopSeqAll
 	ldrb r0, [r5]
 	cmp r0, #1
 	bne _020056C0
@@ -315,7 +315,7 @@ sub_020056D4: ; 0x020056D4
 	mov r0, #7
 	bl sub_020040CC
 	mov r1, #0
-	bl sub_020B7FC8
+	bl NNS_SndPlayerStopSeq
 	bl sub_020055F4
 	mov r5, #0
 	add r4, r5, #0
@@ -369,7 +369,7 @@ sub_02005748: ; 0x02005748
 	add r5, r0, #0
 	bl sub_020040CC
 	add r1, r6, #0
-	bl sub_020BAD78
+	bl NNS_SndArcPlayerStartSeq
 	add r4, r0, #0
 	add r0, r6, #0
 	add r1, r5, #0
@@ -394,7 +394,7 @@ sub_02005770: ; 0x02005770
 	add r1, r5, #0
 	add r3, r2, #0
 	str r4, [sp]
-	bl sub_020BADC0
+	bl NNS_SndArcPlayerStartSeqEx
 	add r5, r0, #0
 	add r0, r4, #0
 	add r1, r6, #0
@@ -407,10 +407,10 @@ sub_02005770: ; 0x02005770
 
 	thumb_func_start sub_020057A4
 sub_020057A4: ; 0x020057A4
-	ldr r3, _020057A8 ; =sub_020B8034
+	ldr r3, _020057A8 ; =NNS_SndPlayerStopSeqBySeqNo
 	bx r3
 	; .align 2, 0
-_020057A8: .word sub_020B8034
+_020057A8: .word NNS_SndPlayerStopSeqBySeqNo
 	thumb_func_end sub_020057A4
 
 	thumb_func_start sub_020057AC
@@ -419,7 +419,7 @@ sub_020057AC: ; 0x020057AC
 	add r4, r1, #0
 	bl sub_020040CC
 	add r1, r4, #0
-	bl sub_020B7FC8
+	bl NNS_SndPlayerStopSeq
 	pop {r4, pc}
 	thumb_func_end sub_020057AC
 
@@ -476,7 +476,7 @@ sub_020057FC: ; 0x020057FC
 	bl sub_020040CC
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020B81B4
+	bl NNS_SndPlayerSetTrackPan
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_020057FC
 
@@ -494,7 +494,7 @@ _02005828:
 	bl sub_020040CC
 	add r1, r7, #0
 	add r2, r6, #0
-	bl sub_020B81B4
+	bl NNS_SndPlayerSetTrackPan
 	add r5, r5, #1
 	cmp r5, #4
 	blt _02005828
@@ -568,7 +568,7 @@ _020058B8:
 	sub r1, r1, #3
 	add r2, r5, #0
 	add r3, r1, #0
-	bl sub_020BADC0
+	bl NNS_SndArcPlayerStartSeqEx
 	add r4, r0, #0
 	add r0, r5, #0
 	mov r1, #1
@@ -582,7 +582,7 @@ _020058D8:
 	sub r1, r1, #3
 	add r2, r5, #0
 	add r3, r1, #0
-	bl sub_020BADC0
+	bl NNS_SndArcPlayerStartSeqEx
 	add r4, r0, #0
 	add r0, r5, #0
 	mov r1, #8
@@ -632,11 +632,11 @@ sub_0200592C: ; 0x0200592C
 	mov r0, #1
 	bl sub_020040CC
 	add r1, r5, #0
-	bl sub_020B7FC8
+	bl NNS_SndPlayerStopSeq
 	mov r0, #8
 	bl sub_020040CC
 	add r1, r5, #0
-	bl sub_020B7FC8
+	bl NNS_SndPlayerStopSeq
 	ldrb r0, [r6]
 	cmp r0, #1
 	bne _02005970
@@ -1605,7 +1605,7 @@ _02006170:
 	mov r0, #2
 	bl sub_020040CC
 	add r1, r5, #0
-	bl sub_020BAD78
+	bl NNS_SndArcPlayerStartSeq
 	add r4, r0, #0
 	add r0, r5, #0
 	mov r1, #2
@@ -1647,7 +1647,7 @@ sub_020061C8: ; 0x020061C8
 	mov r0, #2
 	bl sub_020040CC
 	add r1, r4, #0
-	bl sub_020B7FC8
+	bl NNS_SndPlayerStopSeq
 	mov r0, #6
 	bl sub_02004974
 	bl sub_0200403C

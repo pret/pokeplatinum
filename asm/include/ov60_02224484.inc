@@ -1,5 +1,5 @@
 .public sub_020A283C
-.public sub_020C1AF0
+.public OS_SNPrintf
 .public ov4_021D7EB8
 .public ov60_02223FC8
 .public ov60_02225688

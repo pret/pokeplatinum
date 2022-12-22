@@ -48,8 +48,8 @@
 .public sub_02074470
 .public sub_02098188
 .public sub_020981AC
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public _s32_div_f
 .public ov12_02220474
 .public ov12_02223764
 .public ov12_02223770

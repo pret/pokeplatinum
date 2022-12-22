@@ -1605,7 +1605,7 @@ _0223EA3E:
 	mul r1, r0
 	add r0, r1, #0
 	mov r1, #0x64
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [sp, #0x20]
 	cmp r0, #0
 	bne _0223EA5E
@@ -1777,7 +1777,7 @@ _0223EB98:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #8]
 _0223EBC4:
 	ldr r0, [sp, #0x18]
@@ -2371,7 +2371,7 @@ ov16_0223EF8C: ; 0x0223EF8C
 	ldr r0, _0223F1E4 ; =0x06010000
 	ldr r1, [r4, r1]
 	lsl r2, r2, #0x10
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #0x89
 	lsl r0, r0, #2
 	ldr r5, [r4, r0]
@@ -2381,7 +2381,7 @@ ov16_0223EF8C: ; 0x0223EF8C
 	mov r2, #2
 	add r1, r5, #0
 	lsl r2, r2, #8
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #0x19
 	lsl r0, r0, #0x16
 	str r0, [sp, #0x24]

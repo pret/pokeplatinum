@@ -51,7 +51,7 @@ _02086962:
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x12
 	bl sub_02018340
 	mov r1, #0x16
@@ -223,7 +223,7 @@ sub_02086B30: ; 0x02086B30
 	ldr r1, _02086B60 ; =0x000057E0
 	add r6, r3, #0
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	ldr r4, [r4, #0xc]
 	add r0, r5, #0
 	add r1, r6, #0
@@ -233,7 +233,7 @@ sub_02086B30: ; 0x02086B30
 	add r0, r4, r0
 	mov r1, #0xc0
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r4, r5, r6, pc}
 	nop
 _02086B60: .word 0x000057E0
@@ -627,7 +627,7 @@ sub_02086E6C: ; 0x02086E6C
 	bne _02086E96
 	bl sub_0201D2E8
 	mov r1, #0x12
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x17
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
@@ -639,7 +639,7 @@ _02086E96:
 	bne _02086EB2
 	bl sub_0201D2E8
 	mov r1, #0x12
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x17
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
@@ -1314,7 +1314,7 @@ _02087430:
 	mov r0, #1
 	add r1, #0xd8
 	mov r2, #0x40
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, [r4, #0]
 	cmp r0, #1
 	bne _02087476
@@ -1772,7 +1772,7 @@ sub_020877F4: ; 0x020877F4
 	sub sp, #0x14
 	add r5, r0, #0
 	add r7, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -1893,7 +1893,7 @@ _0208783E:
 	mov r1, #2
 	ldr r0, [r5, r0]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	bl sub_02079FD0
 	add r1, r0, #0
 	mov r0, #0x13
@@ -1906,7 +1906,7 @@ _0208783E:
 	add r0, r1, #4
 	ldr r0, [r5, r0]
 	mov r1, #0x80
-	bl sub_020C2C54
+	bl DC_FlushRange
 _02087926:
 	mov r3, #1
 	str r3, [sp]
@@ -3436,7 +3436,7 @@ _0208852A:
 	add r0, sp, #0
 	mov r1, #0x3a
 	mov r2, #2
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, pc}
 	thumb_func_end sub_02088514
 
@@ -3609,7 +3609,7 @@ sub_02088678: ; 0x02088678
 	bl sub_02088654
 	mov r1, #2
 	lsl r1, r1, #0xa
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r7, r6, #0
 	mov r4, #0
 	add r7, #0x30
@@ -3625,14 +3625,14 @@ _020886A8:
 	mov r1, #1
 	add r0, r5, #0
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, _02088748 ; =0x020F24D8
 	mov r2, #1
 	ldrb r1, [r1, r4]
 	add r0, r5, #0
 	lsl r2, r2, #8
 	lsl r1, r1, #5
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	add r0, r4, #1
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
@@ -3665,14 +3665,14 @@ _020886EA:
 	bl sub_02088654
 	mov r1, #0x80
 	add r7, r0, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, _02088750 ; =0x020F24F0
 	lsl r2, r5, #2
 	ldr r1, [r1, r2]
 	add r0, r7, #0
 	lsl r1, r1, #5
 	mov r2, #0x80
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	add r0, r5, #1
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
@@ -4309,7 +4309,7 @@ _02088C10:
 	mov r1, #0
 	mov r2, #7
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0xd3
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]

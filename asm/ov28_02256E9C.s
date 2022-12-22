@@ -238,7 +238,7 @@ ov28_02257028: ; 0x02257028
 	ldr r1, [r5, #4]
 	ldr r2, [r6, #0]
 	ldr r3, [r6, #4]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [r4, #0]
 	str r1, [r4, #4]
 	ldrb r1, [r5, #8]
@@ -341,7 +341,7 @@ _022570E0:
 	add r1, r2, #0
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	ldr r2, _02257178 ; =0x04000290
 	mov r3, #0
 	str r0, [r2, #0]
@@ -352,7 +352,7 @@ _022570E0:
 	ldr r0, [r5, #0]
 	ldr r1, [r5, #4]
 	mov r2, #0xa
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [r5, #0]
 	ldr r2, _0225716C ; =0x04000280
 	str r1, [r5, #4]
@@ -423,7 +423,7 @@ _02257190:
 	ldr r1, [r5, #4]
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [r5, #0]
 	str r1, [r5, #4]
 	ldr r2, [r5, #0]
@@ -454,7 +454,7 @@ _022571CC:
 	ldr r1, [r5, #4]
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [r5, #0]
 	str r1, [r5, #4]
 	ldr r2, [r5, #0]
@@ -828,14 +828,14 @@ ov28_02257468: ; 0x02257468
 	add r3, r2, r5
 	ldr r2, [r2, r5]
 	ldr r3, [r3, #4]
-	bl sub_020E1ED4
+	bl _ull_div
 	ldrb r2, [r4, #9]
 	cmp r2, #1
 	bne _02257490
 	mov r2, #0
 	mvn r2, r2
 	add r3, r2, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 _02257490:
 	pop {r3, r4, r5, pc}
 	nop
@@ -867,7 +867,7 @@ _022574BA:
 	bhi _022574D2
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	sub r2, r5, r0
 	mov ip, r6
 	mov r2, ip
@@ -1062,7 +1062,7 @@ _02257616:
 	add r3, r2, r6
 	ldr r2, [r2, r6]
 	ldr r3, [r3, #4]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [r4, #0]
 	str r1, [r4, #4]
 	ldrb r0, [r5, #8]

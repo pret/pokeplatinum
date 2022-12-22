@@ -1,3 +1,3 @@
-.public sub_020BD048
-.public sub_020BD080
-.public sub_020C4C88
+.public FX_GetDivResult
+.public FX_InvAsync
+.public MI_Copy36B

@@ -57,5 +57,5 @@
 .public sub_02076AF8
 .public sub_020775A4
 .public sub_020986CC
-.public sub_020C4DB0
-.public sub_020D5124
+.public MI_CpuCopy8
+.public memset

@@ -22,7 +22,7 @@ ov73_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0xc0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x52
 	str r0, [r4, #0]
 	add r0, r5, #0
@@ -760,7 +760,7 @@ _021D139C:
 	str r0, [sp]
 	ldr r0, _021D14B0 ; =0x04000050
 	ldr r3, [r3, #0x7c]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	b _021D13DA
 _021D13C8:
 	add r0, r3, #0
@@ -770,7 +770,7 @@ _021D13C8:
 	str r0, [sp]
 	ldr r0, _021D14B4 ; =0x04001050
 	ldr r3, [r3, #0x7c]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 _021D13DA:
 	lsl r0, r4, #0x18
 	lsr r0, r0, #0x18
@@ -812,7 +812,7 @@ _021D13F8:
 	str r0, [sp]
 	ldr r0, _021D14B0 ; =0x04000050
 	ldr r3, [r3, #0x7c]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	b _021D14AA
 _021D142E:
 	add r0, r3, #0
@@ -822,7 +822,7 @@ _021D142E:
 	str r0, [sp]
 	ldr r0, _021D14B4 ; =0x04001050
 	ldr r3, [r3, #0x7c]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	b _021D14AA
 _021D1442:
 	mov r0, #3
@@ -850,7 +850,7 @@ _021D1448:
 	str r0, [sp]
 	ldr r0, _021D14B0 ; =0x04000050
 	ldr r3, [r3, #0x7c]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	b _021D14AA
 _021D1478:
 	add r0, r3, #0
@@ -860,7 +860,7 @@ _021D1478:
 	str r0, [sp]
 	ldr r0, _021D14B4 ; =0x04001050
 	ldr r3, [r3, #0x7c]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	b _021D14AA
 _021D148C:
 	mov r0, #3
@@ -1787,7 +1787,7 @@ _021D1BA8:
 	ldr r1, [r1, #0]
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, _021D1CDC ; =0x00006A3C
 	add r1, r4, #0
 	str r0, [sp]
@@ -2085,7 +2085,7 @@ _021D1E2A:
 	mov r1, #4
 	mov r2, #8
 	mov r3, #6
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r5, _021D1EF4 ; =0x021D3800
 	add r3, sp, #0x20
 	add r2, r3, #0
@@ -2148,7 +2148,7 @@ _021D1EA6:
 	mov r1, #2
 	mov r2, #8
 	mov r3, #6
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r5, _021D1EF8 ; =0x021D3830
 	add r3, sp, #0x10
 	add r2, r3, #0
@@ -2297,7 +2297,7 @@ ov73_021D1FA0: ; 0x021D1FA0
 	add r0, #0xb4
 	ldr r0, [r0, #0]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	ldr r0, _021D2008 ; =0x00006A3C
 	add r1, r4, #0
@@ -2576,7 +2576,7 @@ _021D21E0:
 	lsl r0, r6, #3
 	add r0, r6, r0
 	mul r0, r6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r4, #0
 	add r1, #0xac
 	ldr r2, [r1, #0]
@@ -2646,7 +2646,7 @@ _021D2274:
 	lsl r0, r6, #3
 	add r0, r6, r0
 	mul r0, r6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r4, #0
 	add r1, #0xac
 	ldr r2, [r1, #0]

@@ -12,4 +12,4 @@
 .public sub_0207A0F8
 .public sub_0207A0FC
 .public sub_0207A268
-.public sub_020E1F6C
+.public _s32_div_f

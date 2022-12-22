@@ -441,7 +441,7 @@ sub_02029BB0: ; 0x02029BB0
 	mov r1, #0
 	mov r2, #0x40
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r4, #0
 	add r5, #0x28
 	mov r6, #0x12
@@ -491,7 +491,7 @@ _02029C08:
 	add r0, r5, #0
 	add r1, r7, #0
 	mov r2, #0x74
-	bl sub_020D5124
+	bl memset
 	str r6, [r5, #0]
 	add r4, r4, #1
 	add r5, #0x74
@@ -507,7 +507,7 @@ _02029C28:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x98
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02029C50 ; =0x000004FC
 	add r6, r6, #1
 	str r7, [r5, r0]
@@ -554,7 +554,7 @@ sub_02029C68: ; 0x02029C68
 	mov r1, #0
 	mov r2, #0x74
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02029C84 ; =0x00001234
 	str r0, [r4, #0]
 	add r0, r4, #0
@@ -571,7 +571,7 @@ sub_02029C88: ; 0x02029C88
 	mov r1, #0
 	mov r2, #0x98
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02029CA4 ; =0x00001234
 	str r0, [r4, #0]
 	add r0, r4, #0
@@ -1006,7 +1006,7 @@ _02029F96:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x74
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02029FA8 ; =0x00001234
 	str r0, [r4, #0]
 	pop {r4, pc}
@@ -1178,7 +1178,7 @@ _0202A0E0:
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0x74
-	bl sub_020D50B8
+	bl memcpy
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0202A0CC
 
@@ -1412,7 +1412,7 @@ _0202A26E:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x98
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0202A280 ; =0x00001234
 	str r0, [r4, #0]
 	pop {r4, pc}
@@ -1576,7 +1576,7 @@ _0202A3A4:
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0x98
-	bl sub_020D50B8
+	bl memcpy
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0202A390
 
@@ -1994,11 +1994,11 @@ sub_0202A638: ; 0x0202A638
 	bne _0202A696
 	ldr r1, _0202A6A4 ; =0xEDB88320
 	add r0, sp, #4
-	bl sub_020D3230
+	bl MATHi_CRC32InitTableRev
 	add r0, sp, #4
 	add r1, r4, #0
 	mov r2, #0x74
-	bl sub_020D3328
+	bl MATH_CalcCRC32
 	add r6, r0, #0
 	mov r5, #0
 _0202A668:
@@ -2008,11 +2008,11 @@ _0202A668:
 	add r4, r0, #0
 	ldr r1, _0202A6A4 ; =0xEDB88320
 	add r0, sp, #4
-	bl sub_020D3230
+	bl MATHi_CRC32InitTableRev
 	add r0, sp, #4
 	add r1, r4, #0
 	mov r2, #0x74
-	bl sub_020D3328
+	bl MATH_CalcCRC32
 	cmp r0, r6
 	bne _0202A68E
 	mov r0, #0
@@ -2142,7 +2142,7 @@ sub_0202A75C: ; 0x0202A75C
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x60
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0]
 	mov r1, #0
 	str r0, [r4, #0]
@@ -2248,7 +2248,7 @@ sub_0202A824: ; 0x0202A824
 	add r2, r0, #0
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0]
 	mov r1, #0
 	str r0, [r4, #0]

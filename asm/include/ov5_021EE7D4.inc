@@ -12,9 +12,9 @@
 .public sub_0209872C
 .public sub_020987BC
 .public sub_02098808
-.public sub_020E1ED4
-.public sub_020E1F1C
-.public sub_020E2178
+.public _ull_div
+.public _ull_mul
+.public _u32_div_f
 .public ov5_021EE7D4
 .public ov5_021EE880
 .public ov5_021EE8A8

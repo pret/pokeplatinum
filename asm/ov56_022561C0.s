@@ -705,18 +705,18 @@ _02256778:
 	cmp r0, #0
 	ble _02256794
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	add r0, r7, #0
-	bl sub_020E0B00
+	bl _f_add
 	b _022567A0
 _02256794:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r7, #0
-	bl sub_020E1A9C
+	bl _f_sub
 _022567A0:
-	bl sub_020E1740
+	bl _f_ftoi
 	mov r1, #3
 	lsl r1, r1, #0x12
 	add r0, r0, r1
@@ -949,7 +949,7 @@ _02256960:
 	bl sub_02019FE4
 	mov r1, #6
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r5, #0x14]
 	mov r1, #7
 	bl sub_02019FE4
@@ -980,20 +980,20 @@ ov56_02256994: ; 0x02256994
 	cmp r1, #0
 	ble _022569B6
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _022569C4
 _022569B6:
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _022569C4:
-	bl sub_020E1740
+	bl _f_ftoi
 	mov r1, #3
 	lsl r1, r1, #0x12
 	add r0, r0, r1
@@ -1058,7 +1058,7 @@ _02256A14:
 	mov r0, #0x60
 	mul r0, r2
 	sub r1, r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	mov r0, #0x1a
 	lsl r0, r0, #4
@@ -1283,7 +1283,7 @@ ov56_02256BC0: ; 0x02256BC0
 	sub r4, r0, #2
 	mov r0, #0x60
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0
 	cmp r4, #0
 	ble _02256C78
@@ -1573,7 +1573,7 @@ _02256E2A:
 	bl sub_02019FE4
 	mov r1, #6
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x1c]
 	mov r1, #7
 	bl sub_02019FE4

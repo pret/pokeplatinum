@@ -13,7 +13,7 @@
 .public sub_0202E768
 .public sub_0202E7C0
 .public sub_0202E7D0
-.public sub_020C4BB8
-.public sub_020C4C14
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MIi_CpuClearFast
+.public MIi_CpuCopyFast
+.public MI_CpuFill8
+.public _s32_div_f

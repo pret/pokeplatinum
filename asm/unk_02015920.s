@@ -207,7 +207,7 @@ sub_02015A80: ; 0x02015A80
 	add r5, r0, #0
 	mov r1, #0
 	mov r2, #0x9c
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r0, #0x9b
 	ldrb r1, [r0]
@@ -592,7 +592,7 @@ _02015D44:
 	add r0, r6, #0
 	mov r1, #0
 	mov r2, #0x38
-	bl sub_020D5124
+	bl memset
 	add sp, #0x10
 	pop {r4, r5, r6, pc}
 	thumb_func_end sub_02015D00
@@ -756,7 +756,7 @@ sub_02015E64: ; 0x02015E64
 	add r5, r0, #0
 	ldr r0, [r1, #0x14]
 	ldr r1, [r1, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r3, [r4, #4]
 	ldr r0, [r4, #0x10]
 	str r0, [sp]
@@ -785,7 +785,7 @@ sub_02015EA0: ; 0x02015EA0
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #0x10]
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	bne _02015EC4
@@ -793,7 +793,7 @@ sub_02015EA0: ; 0x02015EA0
 	ldr r1, [r4, #0xc]
 	ldr r0, [r0, #0xc]
 	ldr r2, [r4, #0x10]
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	b _02015ED4
 _02015EC4:
 	cmp r0, #4
@@ -802,7 +802,7 @@ _02015EC4:
 	ldr r1, [r4, #0xc]
 	ldr r0, [r0, #0xc]
 	ldr r2, [r4, #0x10]
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 _02015ED4:
 	add r0, r5, #0
 	bl sub_0200DA58

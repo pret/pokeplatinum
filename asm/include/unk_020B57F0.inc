@@ -1,5 +1,5 @@
-.public sub_020B3AA4
-.public sub_020B57F0
-.public sub_020B58F0
-.public sub_020B59FC
-.public sub_020C4AF0
+.public NNS_G3dGetResDictIdxByName
+.public GetTexSRTAnmVectorVal_
+.public GetTexSRTAnmSinCosVal_
+.public GetTexSRTAnm_
+.public MIi_CpuClear16

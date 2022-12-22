@@ -27,8 +27,8 @@
 .public sub_0209872C
 .public sub_020987BC
 .public sub_020989B8
-.public sub_020D50B8
-.public sub_020D5124
+.public memcpy
+.public memset
 .public ov21_021D334C
 .public ov21_021D3434
 .public ov21_021D344C

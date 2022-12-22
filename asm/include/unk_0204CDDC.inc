@@ -5,4 +5,4 @@
 .public sub_020507E4
 .public sub_0206B218
 .public sub_0206B228
-.public sub_020E1F6C
+.public _s32_div_f

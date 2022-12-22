@@ -1,5 +1,5 @@
-.public sub_020C24A4
-.public sub_020C41D8
+.public OS_Sleep
+.public OS_GetLowEntropyData
 .public ov4_02208324
 .public ov4_0220837C
 .public ov4_022083D8

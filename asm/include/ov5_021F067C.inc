@@ -6,7 +6,7 @@
 .public sub_02018184
 .public sub_020181C4
 .public sub_02022974
-.public sub_020D5124
+.public memset
 .public ov5_021F070C
 .public ov5_021F0740
 .public ov5_021F07B4

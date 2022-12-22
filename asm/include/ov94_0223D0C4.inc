@@ -52,8 +52,8 @@
 .public sub_02076B10
 .public sub_0207A0F8
 .public sub_0207CFA0
-.public sub_020C02BC
-.public sub_020C2C54
+.public GX_LoadOBJ
+.public DC_FlushRange
 .public ov94_0223C300
 .public ov94_0223C3C0
 .public ov94_0223C3F4

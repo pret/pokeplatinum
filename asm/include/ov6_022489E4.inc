@@ -7,5 +7,5 @@
 .public sub_0203597C
 .public sub_020359DC
 .public sub_02073C70
-.public sub_020C4DB0
+.public MI_CpuCopy8
 .public ov6_02248A94

@@ -203,7 +203,7 @@ _02236E58:
 	ldr r0, _02236FD0 ; =0x0224A280
 	ldr r1, _02236FD4 ; =0x020C07EC
 	bl ov18_0222B700
-	ldr r1, _02236FD8 ; =sub_020C00B4
+	ldr r1, _02236FD8 ; =GX_LoadBGPltt
 	add r0, sp, #0x16
 	bl ov18_0222B700
 	ldr r0, _02236FDC ; =0x0224A298
@@ -277,7 +277,7 @@ _02236FC8: .word 0x0224A268
 _02236FCC: .word 0x020C08AC
 _02236FD0: .word 0x0224A280
 _02236FD4: .word 0x020C07EC
-_02236FD8: .word sub_020C00B4
+_02236FD8: .word GX_LoadBGPltt
 _02236FDC: .word 0x0224A298
 _02236FE0: .word 0x020C05AC
 _02236FE4: .word 0x0225332C
@@ -813,7 +813,7 @@ _022376AC:
 	ldr r0, _02237838 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	bne _0223770C
 	bl ov18_02238A80
@@ -1080,15 +1080,15 @@ _02237A80:
 	add r0, r4, #0xc0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0xc4
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0xf0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	strb r0, [r4, #0xd0]
 _02237AD8:
@@ -1098,7 +1098,7 @@ _02237AD8:
 	add r0, r4, #0xc8
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _02237AF4:
 	mov r0, #2
 	mov r1, #0
@@ -1158,7 +1158,7 @@ ov18_02237BA8: ; 0x02237BA8
 	ldr r0, _02237C60 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _02237C60 ; =0x0225332C
 	mov r4, r0
 	ldr r0, [r1, #8]
@@ -1266,11 +1266,11 @@ _02237D04:
 	addeq r0, r4, r4, lsr #31
 	moveq r4, r0, asr #1
 	add r0, sp, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, sp, #0
 	mov r2, r4
 	mov r1, #0x2a
-	bl sub_020D5124
+	bl memset
 	add r0, sp, #0
 	mov r1, r5
 	bl ov18_022380F0
@@ -1556,7 +1556,7 @@ ov18_022380F0: ; 0x022380F0
 	add r0, sp, #0xc
 	mov r1, #0
 	mov r2, #0x22
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, r6
 	mov r1, #0x20
 	bl ov18_02245E50
@@ -1603,7 +1603,7 @@ _02238160:
 	add r0, sp, #0xc
 	mov r1, #0
 	mov r2, #0x22
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	sub r4, r4, #0x10
 	cmp r4, #0
 	mov ip, #0
@@ -1657,7 +1657,7 @@ ov18_02238244: ; 0x02238244
 	ldrb r3, [ip, #3]
 	str r3, [sp, #8]
 	ldrb r3, [ip]
-	bl sub_020DCDCC
+	bl swprintf
 	mov r2, #7
 	mov r0, #0x1d
 	mul r1, r4, r0
@@ -1687,12 +1687,12 @@ ov18_022382CC: ; 0x022382CC
 	ldr r0, _022384D0 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _022384D0 ; =0x0225332C
 	mov r4, r0
 	ldrh r0, [r1, #4]
 	mov r1, #0x1d
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r1, _022384D0 ; =0x0225332C
 	rsb ip, r0, #0x34
 	ldr r1, [r1, #8]
@@ -1836,7 +1836,7 @@ ov18_022384DC: ; 0x022384DC
 	ldr r0, _02238740 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _02238744 ; =0x022492D8
 	mov r5, r0
 	ldrh r3, [r1, #4]
@@ -1871,7 +1871,7 @@ _02238564:
 	ldr r0, _02238740 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD104
+	bl FX_DivS32
 	mov r3, #0
 _02238594:
 	cmp r0, #2
@@ -1922,7 +1922,7 @@ _02238640:
 	ldr r0, _02238740 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD104
+	bl FX_DivS32
 	mov r3, #0
 _02238654:
 	cmp r0, #6
@@ -2001,7 +2001,7 @@ ov18_02238750: ; 0x02238750
 	mov r4, r0
 	ldrh r0, [r1, #4]
 	mov r1, #0x1d
-	bl sub_020BD104
+	bl FX_DivS32
 	mov r1, #0
 _0223876C:
 	cmp r0, r4
@@ -2024,7 +2024,7 @@ ov18_02238794: ; 0x02238794
 	mov r4, r0
 	ldrh r0, [r1, #4]
 	mov r1, #0x1d
-	bl sub_020BD104
+	bl FX_DivS32
 	add r0, r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -2046,7 +2046,7 @@ ov18_022387B8: ; 0x022387B8
 	ldr r0, _02238878 ; =0x0225332C
 	mov r1, #0x1d
 	ldrh r0, [r0, #4]
-	bl sub_020BD140
+	bl FX_ModS32
 	mov r5, r0
 	cmp r5, #0x17
 	bne _02238804
@@ -2100,7 +2100,7 @@ ov18_02238880: ; 0x02238880
 	add r2, r2, #6
 	strh r2, [r0, #4]
 	ldrh r0, [r0, #4]
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #6
 	blt _022388BC
 	bl ov18_022382CC
@@ -2145,12 +2145,12 @@ ov18_02238924: ; 0x02238924
 	ldmeqia sp!, {r4, pc}
 	ldrh r0, [r0, #4]
 	mov r1, #0x1d
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _02238998 ; =0x0225332C
 	mov r4, r0
 	ldrh r0, [r1, #4]
 	mov r1, #0x1d
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r2, _0223899C ; =0x022493C4
 	ldr r1, _022389A0 ; =0x01FF0000
 	sub ip, r0, #0x33
@@ -2251,7 +2251,7 @@ _02238AA4:
 	mov r4, r0
 	ldrh r0, [r1, #4]
 	mov r1, #0x1d
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _02238B28 ; =0x0225332C
 	ldrb r2, [r1, #2]
 	add r2, r2, r0

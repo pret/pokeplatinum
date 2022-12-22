@@ -16,13 +16,13 @@ _0202DF90: .word 0x00002AB0
 
 	thumb_func_start sub_0202DF94
 sub_0202DF94: ; 0x0202DF94
-	ldr r3, _0202DFA0 ; =sub_020C4B4C
+	ldr r3, _0202DFA0 ; =MIi_CpuClear32
 	add r1, r0, #0
 	mov r0, #0
 	ldr r2, _0202DFA4 ; =0x00002AB0
 	bx r3
 	nop
-_0202DFA0: .word sub_020C4B4C
+_0202DFA0: .word MIi_CpuClear32
 _0202DFA4: .word 0x00002AB0
 	thumb_func_end sub_0202DF94
 
@@ -73,7 +73,7 @@ _0202DFD6:
 	ldr r1, [sp, #0x14]
 	mov r0, #0
 	lsl r2, r2, #2
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, [sp, #0x10]
 	mov r7, #0
 	cmp r0, #0

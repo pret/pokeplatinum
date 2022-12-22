@@ -16,11 +16,11 @@
 .public sub_0201C3C0
 .public sub_0201C63C
 .public sub_0201CED0
-.public sub_020C00B4
-.public sub_020C0108
-.public sub_020C2C54
-.public sub_020D5124
-.public sub_020E1F6C
+.public GX_LoadBGPltt
+.public GXS_LoadBGPltt
+.public DC_FlushRange
+.public memset
+.public _s32_div_f
 .public ov22_022597BC
 .public ov22_02259980
 .public ov22_022599A0

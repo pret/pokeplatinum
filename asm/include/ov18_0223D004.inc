@@ -1,7 +1,7 @@
-.public sub_020C04EC
-.public sub_020C2C54
-.public sub_020C4B18
-.public sub_020C4C14
+.public GX_LoadBG2Scr
+.public DC_FlushRange
+.public MIi_CpuCopy16
+.public MIi_CpuCopyFast
 .public ov18_0223D100
 .public ov18_0223D190
 .public ov18_0223D1E8

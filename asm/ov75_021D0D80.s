@@ -23,7 +23,7 @@ ov75_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0xbc
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x29
 	str r0, [r4, #0]
 	add r0, r5, #0
@@ -609,7 +609,7 @@ _021D11FE:
 	mov r2, #8
 	mov r3, #0x1c
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0x10
 	str r0, [sp]
 	mov r0, #0
@@ -745,7 +745,7 @@ _021D132A:
 	beq _021D1338
 	bl sub_0200C800
 _021D1338:
-	bl sub_020A635C
+	bl NNS_GfdDoVramTransfer
 	ldr r0, [r4, #0x18]
 	bl sub_0201C2B8
 	ldr r3, _021D1350 ; =0x027E0000
@@ -1097,7 +1097,7 @@ ov75_021D1598: ; 0x021D1598
 	bl sub_02006D28
 	add r0, r6, #0
 	add r1, sp, #0x28
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r3, [sp, #0x28]
 	mov r0, #0
 	str r0, [sp]
@@ -1129,7 +1129,7 @@ ov75_021D1598: ; 0x021D1598
 	bl sub_02006D28
 	add r0, r6, #0
 	add r1, sp, #0x24
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r2, [sp, #0x24]
 	mov r0, #4
 	ldr r1, [r2, #0xc]
@@ -1263,7 +1263,7 @@ _021D16B4:
 	add r1, r5, #0
 	ldr r0, [r5, #0x34]
 	add r1, #0x3c
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	add r0, r4, #0
 	mov r1, #0x24
 	bl sub_02006D84
@@ -1278,7 +1278,7 @@ _021D16B4:
 	add r1, r5, #0
 	ldr r0, [r5, #0x38]
 	add r1, #0x40
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	add r0, r4, #0
 	bl sub_02006CA8
 	mov r3, #0
@@ -1387,7 +1387,7 @@ ov75_021D1868: ; 0x021D1868
 	add r2, r1, #0
 	mov r3, #0x1f
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -1815,7 +1815,7 @@ _021D1BEC:
 	add r0, sp, #0x60
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x10]
 	mov r1, #0x80
 	sub r1, r1, r0

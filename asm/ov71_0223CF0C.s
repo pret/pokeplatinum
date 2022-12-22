@@ -13,7 +13,7 @@ ov71_0223CF0C: ; 0x0223CF0C
 	add r7, r0, #0
 	str r1, [sp, #0x14]
 	bl ov71_0223D2F4
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -146,7 +146,7 @@ _0223D012:
 	beq _0223D04C
 	ldr r1, [sp, #0x1c]
 	add r1, r1, r6
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #0
 	bne _0223D050
 	mov r0, #0x1e
@@ -459,7 +459,7 @@ _0223D2B2:
 	ldr r0, [r1, r0]
 	bl sub_02021F9C
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	str r0, [sp]
 	lsl r0, r4, #5
 	str r0, [sp, #4]
@@ -471,13 +471,13 @@ _0223D2B2:
 	ldr r4, [r0, #0xc]
 	mov r1, #0x20
 	add r0, r4, r5
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r2, [sp]
 	ldr r1, [sp, #4]
 	add r0, r4, r5
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0

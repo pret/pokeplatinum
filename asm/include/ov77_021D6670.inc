@@ -32,9 +32,9 @@
 .public sub_02021CC8
 .public sub_02021D28
 .public sub_02022974
-.public sub_020A7944
-.public sub_020D5124
-.public sub_020E1F6C
+.public NNS_G2dInitOamManagerModule
+.public memset
+.public _s32_div_f
 .public ov77_021D6670
 .public ov77_021D66A0
 .public ov77_021D6800

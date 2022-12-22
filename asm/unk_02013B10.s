@@ -109,9 +109,9 @@ _02013BA6:
 sub_02013BA8: ; 0x02013BA8
 	push {r3, lr}
 	mov r0, #0
-	bl sub_020C45F4
+	bl MI_StopDma
 	mov r0, #0
-	bl sub_020C458C
+	bl MI_WaitDma
 	pop {r3, pc}
 	thumb_func_end sub_02013BA8
 
@@ -127,14 +127,14 @@ sub_02013BB8: ; 0x02013BB8
 	add r1, r6, #0
 	add r2, r5, #0
 	add r3, r4, #0
-	bl sub_020C4748
+	bl MI_HBlankDmaCopy32
 	pop {r4, r5, r6, pc}
 _02013BD2:
 	mov r0, #0
 	add r1, r6, #0
 	add r2, r5, #0
 	add r3, r4, #0
-	bl sub_020C47A8
+	bl MI_HBlankDmaCopy16
 	pop {r4, r5, r6, pc}
 	thumb_func_end sub_02013BB8
 
@@ -147,7 +147,7 @@ sub_02013BE0: ; 0x02013BE0
 	ldr r2, _02013C0C ; =0x0000079C
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r2, #3
 	lsl r2, r2, #8
 	add r0, r5, #0
@@ -217,13 +217,13 @@ _02013C2E:
 	add r1, r5, #0
 	ldr r0, [r5, r0]
 	lsl r2, r2, #8
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, _02013CA0 ; =0x00000794
 	mov r2, #3
 	lsl r2, r2, #8
 	ldr r0, [r5, r0]
 	add r1, r5, r2
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02013C90: .word 0x00000604
@@ -287,13 +287,13 @@ _02013CC2:
 	add r1, r5, #0
 	ldr r0, [r5, r0]
 	lsl r2, r2, #8
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, _02013D34 ; =0x00000794
 	mov r2, #3
 	lsl r2, r2, #8
 	ldr r0, [r5, r0]
 	add r1, r5, r2
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02013D24: .word 0x00000604
@@ -325,7 +325,7 @@ _02013D42:
 	mov r2, #3
 	ldr r1, [r4, r1]
 	lsl r2, r2, #8
-	bl sub_020D5124
+	bl memset
 _02013D68:
 	pop {r4, pc}
 	nop
@@ -381,7 +381,7 @@ sub_02013DA4: ; 0x02013DA4
 	mov r2, #3
 	ldr r0, [r4, r0]
 	lsl r2, r2, #8
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 _02013DD2:
 	pop {r4, pc}
 	; .align 2, 0
@@ -429,7 +429,7 @@ _02013E14:
 	ldrsh r0, [r0, r1]
 	ldr r3, [sp, #8]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r0, r0, r2
@@ -468,7 +468,7 @@ sub_02013E58: ; 0x02013E58
 	ldr r0, _02013EF4 ; =0x00000798
 	mov r1, #0x64
 	ldrsh r0, [r6, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r3, r0, #0x18
 	ldr r0, _02013EF8 ; =0x0000078C
@@ -500,7 +500,7 @@ _02013E86:
 	stmia r5!, {r0}
 	add r0, r3, #1
 	mov r1, #0xc0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r3, r0, #0x18
 	ldr r0, _02013F00 ; =0x0000078D
@@ -523,7 +523,7 @@ _02013EC0:
 	blt _02013EE4
 	mov r0, #0
 	ldrsh r0, [r4, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r4]
 	pop {r3, r4, r5, r6, r7, pc}
 _02013EE4:
@@ -555,7 +555,7 @@ sub_02013F04: ; 0x02013F04
 	ldr r0, _02013FB8 ; =0x00000798
 	mov r1, #0x64
 	ldrsh r0, [r6, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r7, r0, #0x18
 	ldr r0, _02013FBC ; =0x0000078C
@@ -576,7 +576,7 @@ _02013F34:
 	str r0, [sp, #4]
 	add r0, r7, #0
 	add r0, #0xb4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #1
 	add r1, r6, r0
 	ldr r0, _02013FC0 ; =0x0000060C
@@ -595,7 +595,7 @@ _02013F34:
 	stmia r5!, {r0}
 	add r0, r7, #1
 	mov r1, #0xc0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r7, r0, #0x18
 	ldr r0, _02013FC4 ; =0x0000078D
@@ -618,7 +618,7 @@ _02013F80:
 	blt _02013FA6
 	mov r0, #0
 	ldrsh r0, [r4, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add sp, #8
 	strh r1, [r4]
 	pop {r3, r4, r5, r6, r7, pc}
@@ -661,7 +661,7 @@ _02013FDA:
 	mov r1, #3
 	lsl r1, r1, #8
 	add r5, r0, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r1, #0x79
 	lsl r1, r1, #4
 	ldr r1, [r4, r1]

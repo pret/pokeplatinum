@@ -5,7 +5,7 @@
 .public sub_020790C4
 .public sub_02094E98
 .public sub_02095734
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov17_02243A98
 .public ov17_02246F24
 .public ov17_02246F9C

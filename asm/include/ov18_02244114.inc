@@ -1,6 +1,6 @@
-.public sub_020BD104
-.public sub_020BF578
-.public sub_020BF5E8
+.public FX_DivS32
+.public G2x_SetBlendBrightness_
+.public G2x_ChangeBlendBrightness_
 .public ov18_0224426C
 .public ov18_022443EC
 .public ov18_02245068

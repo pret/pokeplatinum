@@ -31,8 +31,8 @@
 .public sub_02099118
 .public sub_020993A8
 .public sub_020994B8
-.public sub_020C4CF4
-.public sub_020E0B00
-.public sub_020E1740
-.public sub_020E17B4
-.public sub_020E1A9C
+.public MI_CpuFill8
+.public _f_add
+.public _f_ftoi
+.public _f_itof
+.public _f_sub

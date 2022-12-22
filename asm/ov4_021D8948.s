@@ -16,9 +16,9 @@ ov4_021D8948: ; 0x021D8948
 	ldr r2, _021D897C ; =0x02217460
 	mov r0, r4
 	mov r1, #0x1000
-	bl sub_020C1AF0
+	bl OS_SNPrintf
 	mov r0, r4
-	bl sub_020D8B60
+	bl strlen
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -34,14 +34,14 @@ ov4_021D8980: ; 0x021D8980
 	mov r4, r3
 	mov r0, r5
 	mov r1, #0
-	bl sub_020D8E5C
+	bl strchr
 	mov r2, r0
 	mov r0, r7
 	mov r1, r6
 	mov r3, r4
 	bl ov4_021D8948
 	mov r0, r5
-	bl sub_020D8B60
+	bl strlen
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov4_021D8980
 
@@ -55,21 +55,21 @@ ov4_021D89C0: ; 0x021D89C0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r2
 	mov r1, r6
-	bl sub_020D8E5C
+	bl strchr
 	movs r5, r0
 	mvneq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 _021D89F0:
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	mov r2, r0
 	mov r1, r7
 	add r0, r5, #1
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _021D8A28
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, r5
 	ldrsb r0, [r0, #1]
 	cmp r6, r0
@@ -77,13 +77,13 @@ _021D89F0:
 _021D8A28:
 	mov r1, r6
 	add r0, r5, #1
-	bl sub_020D8E5C
+	bl strchr
 	cmp r0, #0
 	mvneq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r1, r6
 	add r0, r0, #1
-	bl sub_020D8E5C
+	bl strchr
 	movs r5, r0
 	bne _021D89F0
 	mvn r0, #0
@@ -91,25 +91,25 @@ _021D8A28:
 _021D8A5C:
 	mov r1, r6
 	add r0, r5, #1
-	bl sub_020D8E5C
+	bl strchr
 	movs r5, r0
 	mvneq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r1, r6
 	add r0, r5, #1
-	bl sub_020D8E5C
+	bl strchr
 	cmp r0, #0
 	addne r1, r5, #1
 	subne r6, r0, r1
 	bne _021D8A9C
 	add r0, r5, #1
-	bl sub_020D8B60
+	bl strlen
 	mov r6, r0
 _021D8A9C:
 	mov r0, r4
 	mov r2, r6
 	add r1, r5, #1
-	bl sub_020D8C44
+	bl strncpy
 	mov r1, #0
 	mov r0, r6
 	strb r1, [r4, r6]
@@ -139,8 +139,8 @@ ov4_021D8ABC: ; 0x021D8ABC
 	cmpeq r1, r0
 	bne _021D8B80
 	add r0, sp, #0
-	bl sub_020C3FA0
-	bl sub_020C3880
+	bl OS_GetMacAddress
+	bl OS_GetTick
 	mov r2, r1, lsl #0x18
 	ldr ip, [sp]
 	ldr r3, [sp, #4]

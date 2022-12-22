@@ -1,4 +1,4 @@
-.public sub_020C18F4
-.public sub_020C1914
-.public sub_020C1A00
-.public sub_020D14E8
+.public OS_LockCartridge
+.public OS_UnlockCartridge
+.public OS_GetLockID
+.public CTRDGi_ReadFlashID

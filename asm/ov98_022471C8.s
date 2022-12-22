@@ -51,7 +51,7 @@ ov98_022471C8: ; 0x022471C8
 	ldr r2, _022473BC ; =0x00000418
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_02006840
 	str r0, [r5, #0]
@@ -389,25 +389,25 @@ _02247524:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _022476C4 ; =0x02249BCC
 	add r3, sp, #0x38
 	add r2, r3, #0
@@ -710,7 +710,7 @@ ov98_02247704: ; 0x02247704
 	add r0, #0xec
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x2c]
 	mov r1, #4
 	add r2, sp, #0x3c
@@ -722,7 +722,7 @@ ov98_02247704: ; 0x02247704
 	ldr r0, [r0, #0xc]
 	add r1, #0xf4
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #0x3c]
 	mov r2, #0x5d
 	ldr r1, [sp, #0x10]
@@ -730,7 +730,7 @@ ov98_02247704: ; 0x02247704
 	add r1, r1, r2
 	ldr r0, [r0, #0xc]
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	mov r0, #0
@@ -826,7 +826,7 @@ _022478EA:
 	add r0, r0, r1
 	mov r1, #0x2a
 	lsl r1, r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x10]
 	mov r1, #1
 	add r0, #0xf0
@@ -911,7 +911,7 @@ ov98_02247990: ; 0x02247990
 	add r0, r1, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	mov r0, #0xca
 	lsl r0, r0, #2
 	ldrsh r0, [r4, r0]
@@ -921,7 +921,7 @@ ov98_02247990: ; 0x02247990
 	add r0, r1, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	ldr r0, _02247A20 ; =0x0000032A
 	ldrsb r1, [r4, r0]
 	cmp r1, #0
@@ -3275,7 +3275,7 @@ _02248C34:
 	bl sub_02025D74
 	add r4, r0, #0
 	add r0, r7, #0
-	bl sub_020A471C
+	bl DWC_CreateFriendKey
 	add r3, r0, #0
 	add r2, r1, #0
 	add r0, r4, #0

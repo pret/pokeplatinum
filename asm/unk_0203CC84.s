@@ -209,7 +209,7 @@ sub_0203CDB0: ; 0x0203CDB0
 	mov r1, #0
 	mov r2, #0xcc
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xb
 	mov r1, #0x10
 	bl sub_02018144

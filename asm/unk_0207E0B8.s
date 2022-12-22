@@ -1241,7 +1241,7 @@ sub_0207EA74: ; 0x0207EA74
 	mov r0, #1
 	mov r1, #0
 	add r2, r0, #0
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	mov r0, #0xc
 	bl sub_0207EAD4
 	mov r1, #0x2d
@@ -1259,7 +1259,7 @@ _0207EAA4:
 	mov r1, #0
 	mov r0, #1
 	add r2, r1, #0
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	ldr r0, [r4, #0]
 	bl sub_0207E8E0
 	mov r0, #0
@@ -1320,13 +1320,13 @@ sub_0207EAF4: ; 0x0207EAF4
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0207EB58 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0207EB5C ; =0xBFFF0000
 	ldr r0, _0207EB60 ; =0x04000580
 	str r1, [r0, #0]
@@ -1382,7 +1382,7 @@ sub_0207EB6C: ; 0x0207EB6C
 	bl sub_02006CB8
 	add r1, sp, #0x10
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r2, [sp, #0x10]
 	mov r0, #3
 	ldr r1, [r2, #0xc]
@@ -1398,7 +1398,7 @@ sub_0207EB6C: ; 0x0207EB6C
 	add r0, r5, r0
 	add r1, #0x60
 	lsl r2, r2, #8
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, #0xc
 	add r1, r6, #0
 	bl sub_02018238
@@ -1511,7 +1511,7 @@ sub_0207ECC0: ; 0x0207ECC0
 	ldr r2, _0207ED9C ; =0x00000B44
 	mov r1, #0
 	add r6, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl sub_02006840
 	ldr r1, _0207EDA0 ; =0x000005A4
@@ -7173,7 +7173,7 @@ sub_02081940: ; 0x02081940
 	bl sub_02006AC0
 	add r1, sp, #0xc
 	str r0, [sp, #8]
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, [sp, #0xc]
 	mov r4, #0
 	str r0, [sp, #4]
@@ -7184,14 +7184,14 @@ _0208196A:
 	ldr r1, [sp]
 	add r0, r5, #0
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r1, r4, #6
 	lsl r2, r1, #6
 	ldr r1, [sp, #4]
 	add r0, r6, #0
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r1, r4, #0
 	add r1, #0xc
 	lsl r2, r1, #6
@@ -7199,7 +7199,7 @@ _0208196A:
 	add r0, r7, #0
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp]
 	add r4, r4, #1
 	add r0, #0x40

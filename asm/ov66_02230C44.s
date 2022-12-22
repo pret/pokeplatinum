@@ -21,7 +21,7 @@ ov66_02230C44: ; 0x02230C44
 	mov r1, #0
 	mov r2, #0x48
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x3c]
 	ldr r0, [sp]
@@ -297,7 +297,7 @@ ov66_02230E28: ; 0x02230E28
 	str r0, [r5, #0]
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r5, #0]
 	ldr r0, [r4, #0x40]
 	str r0, [r1, #0]
@@ -648,7 +648,7 @@ ov66_0223108C: ; 0x0223108C
 	str r0, [r4, #0]
 	mov r1, #0
 	mov r2, #0x3c
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	mov r2, #0
 	add r1, r0, #0
@@ -734,7 +734,7 @@ ov66_02231134: ; 0x02231134
 	str r0, [r4, #0]
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	mov r1, #0
 	str r1, [r0, #0x3c]
@@ -816,7 +816,7 @@ ov66_022311D4: ; 0x022311D4
 	str r0, [r4, #0]
 	mov r1, #0
 	mov r2, #0x3c
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	mov r2, #0
 	add r1, r0, #0

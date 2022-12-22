@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020BC474
-sub_020BC474: ; 0x020BC474
+	arm_func_start MTX_Identity44_
+MTX_Identity44_: ; 0x020BC474
 	mov r2, #0x1000
 	mov r3, #0
 	stmia r0!, {r2, r3}
@@ -19,10 +19,10 @@ sub_020BC474: ; 0x020BC474
 	stmia r0!, {r1, r3}
 	stmia r0!, {r1, r2}
 	bx lr
-	arm_func_end sub_020BC474
+	arm_func_end MTX_Identity44_
 
-	arm_func_start sub_020BC4A0
-sub_020BC4A0: ; 0x020BC4A0
+	arm_func_start MTX_Copy44To43_
+MTX_Copy44To43_: ; 0x020BC4A0
 	ldmia r0!, {r2, r3, ip}
 	add r0, r0, #4
 	stmia r1!, {r2, r3, ip}
@@ -36,10 +36,10 @@ sub_020BC4A0: ; 0x020BC4A0
 	add r0, r0, #4
 	stmia r1!, {r2, r3, ip}
 	bx lr
-	arm_func_end sub_020BC4A0
+	arm_func_end MTX_Copy44To43_
 
-	arm_func_start sub_020BC4D4
-sub_020BC4D4: ; 0x020BC4D4
+	arm_func_start MTX_TransApply44
+MTX_TransApply44: ; 0x020BC4D4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
@@ -47,7 +47,7 @@ sub_020BC4D4: ; 0x020BC4D4
 	mov r4, r3
 	cmp r7, r6
 	beq _020BC4F4
-	bl sub_020C4CA4
+	bl MI_Copy48B
 _020BC4F4:
 	ldr r0, [r7, #0x10]
 	ldr r1, [r7, #0]
@@ -95,10 +95,10 @@ _020BC4F4:
 	add r0, r2, r0
 	str r0, [r6, #0x3c]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020BC4D4
+	arm_func_end MTX_TransApply44
 
-	thumb_func_start sub_020BC5AC
-sub_020BC5AC: ; 0x020BC5AC
+	thumb_func_start MTX_RotX44_
+MTX_RotX44_: ; 0x020BC5AC
 	str r2, [r0, #0x14]
 	str r2, [r0, #0x28]
 	str r1, [r0, #0x18]
@@ -117,10 +117,10 @@ sub_020BC5AC: ; 0x020BC5AC
 	stmia r0!, {r2, r3}
 	str r1, [r0, #0]
 	bx lr
-	thumb_func_end sub_020BC5AC
+	thumb_func_end MTX_RotX44_
 
-	thumb_func_start sub_020BC5D0
-sub_020BC5D0: ; 0x020BC5D0
+	thumb_func_start MTX_RotY44_
+MTX_RotY44_: ; 0x020BC5D0
 	str r2, [r0, #0]
 	str r2, [r0, #0x28]
 	str r1, [r0, #0x20]
@@ -139,10 +139,10 @@ sub_020BC5D0: ; 0x020BC5D0
 	stmia r0!, {r1, r2}
 	stmia r0!, {r1, r2, r3}
 	bx lr
-	thumb_func_end sub_020BC5D0
+	thumb_func_end MTX_RotY44_
 
-	thumb_func_start sub_020BC5F4
-sub_020BC5F4: ; 0x020BC5F4
+	thumb_func_start MTX_RotZ44_
+MTX_RotZ44_: ; 0x020BC5F4
 	str r2, [r0, #0]
 	str r2, [r0, #0x14]
 	str r1, [r0, #4]
@@ -161,10 +161,10 @@ sub_020BC5F4: ; 0x020BC5F4
 	stmia r0!, {r1, r2, r3}
 	bx lr
 	; .align 2, 0
-	thumb_func_end sub_020BC5F4
+	thumb_func_end MTX_RotZ44_
 
-	arm_func_start sub_020BC618
-sub_020BC618: ; 0x020BC618
+	arm_func_start MTX_Concat44
+MTX_Concat44: ; 0x020BC618
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xe8
 	cmp r2, r1
@@ -574,10 +574,10 @@ sub_020BC618: ; 0x020BC618
 	str r4, [sp]
 	add sp, sp, #0xe8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020BC618
+	arm_func_end MTX_Concat44
 
-	arm_func_start sub_020BCC7C
-sub_020BCC7C: ; 0x020BCC7C
+	arm_func_start MTX_PerspectiveW
+MTX_PerspectiveW: ; 0x020BCC7C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r4, r0
 	mov r0, r1
@@ -586,7 +586,7 @@ sub_020BCC7C: ; 0x020BCC7C
 	mov r7, r3
 	ldr r6, [sp, #0x1c]
 	ldr r5, [sp, #0x20]
-	bl sub_020BCFD0
+	bl FX_Div
 	ldr r1, [sp, #0x18]
 	ldr r2, _020BCDC4 ; =0x04000290
 	mov r3, #0
@@ -620,7 +620,7 @@ _020BCCE4:
 	str r1, [r5, #0x30]
 	str r1, [r5, #0x34]
 	str r1, [r5, #0x3c]
-	bl sub_020BD024
+	bl FX_GetDivResultFx64c
 	ldr r2, _020BCDC4 ; =0x04000290
 	mov r3, #0
 	stmia r2, {r3, r4, r8}
@@ -635,7 +635,7 @@ _020BCCE4:
 	mov r1, r3
 	mov r2, #0x1000
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 _020BCD60:
 	ldr r4, [sp, #0x18]
 	mov r2, r7, lsl #1
@@ -659,15 +659,15 @@ _020BCD60:
 	str r7, [r5, #0x28]
 	adc r0, r4, #0
 	str r0, [r5, #0x38]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	str r0, [r5, #0]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020BCDC4: .word 0x04000290
-	arm_func_end sub_020BCC7C
+	arm_func_end MTX_PerspectiveW
 
-	arm_func_start sub_020BCDC8
-sub_020BCDC8: ; 0x020BCDC8
+	arm_func_start MTX_OrthoW
+MTX_OrthoW: ; 0x020BCDC8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	str r2, [sp]
@@ -679,7 +679,7 @@ sub_020BCDC8: ; 0x020BCDC8
 	str r3, [sp, #4]
 	mov fp, r1
 	ldr sb, [sp, #0x38]
-	bl sub_020BD080
+	bl FX_InvAsync
 	mov r0, #0
 	str r0, [r8, #4]
 	str r0, [r8, #8]
@@ -691,7 +691,7 @@ sub_020BCDC8: ; 0x020BCDC8
 	str r0, [r8, #0x24]
 	str r0, [r8, #0x2c]
 	str sb, [r8, #0x3c]
-	bl sub_020BD024
+	bl FX_GetDivResultFx64c
 	mov r6, r1
 	mov r4, r0
 	ldr r1, _020BCFCC ; =0x04000290
@@ -709,7 +709,7 @@ sub_020BCDC8: ; 0x020BCDC8
 	umull r0, r1, r4, sb
 	mla r1, r4, r5, r1
 	mla r1, r6, sb, r1
-	bl sub_020E1D24
+	bl _ll_sdiv
 	mov r4, r0
 	mov r6, r1
 _020BCE78:
@@ -719,7 +719,7 @@ _020BCE78:
 	adds r0, r0, r4, lsl #13
 	adc r0, r1, #0
 	str r0, [r8]
-	bl sub_020BD024
+	bl FX_GetDivResultFx64c
 	mov r5, r0
 	mov r7, r1
 	mov r3, #0
@@ -739,7 +739,7 @@ _020BCE78:
 	umull r0, r1, r5, sb
 	mla r1, r5, ip, r1
 	mla r1, r7, sb, r1
-	bl sub_020E1D24
+	bl _ll_sdiv
 	mov r5, r0
 	mov r7, r1
 _020BCEEC:
@@ -749,7 +749,7 @@ _020BCEEC:
 	adds r0, r0, r5, lsl #13
 	adc r0, r1, #0
 	str r0, [r8, #0x14]
-	bl sub_020BD024
+	bl FX_GetDivResultFx64c
 	cmp sb, #0x1000
 	beq _020BCF34
 	mov r2, sb, asr #0x1f
@@ -760,7 +760,7 @@ _020BCEEC:
 	mov r1, r3
 	mov r2, #0x1000
 	mov r3, #0
-	bl sub_020E1D24
+	bl _ll_sdiv
 _020BCF34:
 	ldr r3, [sp, #4]
 	ldr r2, [sp]
@@ -802,4 +802,4 @@ _020BCF34:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020BCFCC: .word 0x04000290
-	arm_func_end sub_020BCDC8
+	arm_func_end MTX_OrthoW

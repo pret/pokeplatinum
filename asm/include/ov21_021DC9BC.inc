@@ -31,9 +31,9 @@
 .public sub_02021D6C
 .public sub_02021FE0
 .public sub_02022974
-.public sub_020BCFD0
-.public sub_020BF55C
-.public sub_020D5124
+.public FX_Div
+.public G2x_SetBlendAlpha_
+.public memset
 .public ov21_021D13EC
 .public ov21_021D13FC
 .public ov21_021D1410

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B8ED0
-sub_020B8ED0: ; 0x020B8ED0
+	arm_func_start NNS_SndCaptureStartReverb
+NNS_SndCaptureStartReverb: ; 0x020B8ED0
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x2c
 	mov r5, r0
@@ -15,7 +15,7 @@ sub_020B8ED0: ; 0x020B8ED0
 	mov r4, r1
 	mov r7, r2
 	mov r6, r3
-	bl sub_020B8FBC
+	bl NNS_SndCaptureStopReverb
 	ldr r0, _020B8F74 ; =0x021CB8F4
 	ldr r0, [r0, #0x48]
 	cmp r0, #0
@@ -24,10 +24,10 @@ sub_020B8ED0: ; 0x020B8ED0
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 	mov r1, r5
 	mov r2, r4
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	str r7, [sp]
 	mov r0, #0
 	str r0, [sp, #4]
@@ -46,15 +46,15 @@ sub_020B8ED0: ; 0x020B8ED0
 	mov r3, r4, lsr #1
 	add r2, r5, r4, lsr #1
 	str r0, [sp, #0x28]
-	bl sub_020B919C
+	bl NNSi_SndCaptureStart
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020B8F74: .word 0x021CB8F4
-	arm_func_end sub_020B8ED0
+	arm_func_end NNS_SndCaptureStartReverb
 
-	arm_func_start sub_020B8F78
-sub_020B8F78: ; 0x020B8F78
+	arm_func_start NNS_SndCaptureSetReverbVolume
+NNS_SndCaptureSetReverbVolume: ; 0x020B8F78
 	stmfd sp!, {r3, lr}
 	ldr r2, _020B8FB4 ; =0x021CB8F4
 	mov r3, r0
@@ -68,15 +68,15 @@ sub_020B8F78: ; 0x020B8F78
 	ldmneia sp!, {r3, pc}
 	add r0, r1, #0x3c
 	mov r1, r3, lsl #8
-	bl sub_020BB3C0
+	bl NNSi_SndFaderSet
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020B8FB4: .word 0x021CB8F4
 _020B8FB8: .word 0x021CB93C
-	arm_func_end sub_020B8F78
+	arm_func_end NNS_SndCaptureSetReverbVolume
 
-	arm_func_start sub_020B8FBC
-sub_020B8FBC: ; 0x020B8FBC
+	arm_func_start NNS_SndCaptureStopReverb
+NNS_SndCaptureStopReverb: ; 0x020B8FBC
 	stmfd sp!, {r4, lr}
 	ldr r1, _020B900C ; =0x021CB8F4
 	mov r2, r0
@@ -89,29 +89,29 @@ sub_020B8FBC: ; 0x020B8FBC
 	ldmneia sp!, {r4, pc}
 	cmp r2, #0
 	bne _020B8FF4
-	bl sub_020B9508
+	bl NNSi_SndCaptureStop
 	ldmia sp!, {r4, pc}
 _020B8FF4:
 	add r0, r4, #0x3c
 	mov r1, #0
-	bl sub_020BB3C0
+	bl NNSi_SndFaderSet
 	mov r0, #1
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020B900C: .word 0x021CB8F4
 _020B9010: .word 0x021CB93C
-	arm_func_end sub_020B8FBC
+	arm_func_end NNS_SndCaptureStopReverb
 
-	arm_func_start sub_020B9014
-sub_020B9014: ; 0x020B9014
+	arm_func_start NNS_SndCaptureStartEffect
+NNS_SndCaptureStartEffect: ; 0x020B9014
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x2c
 	mov r5, r0
 	mov r4, r1
 	mov r7, r2
 	mov r6, r3
-	bl sub_020B90C0
+	bl NNS_SndCaptureStopEffect
 	ldr r0, _020B90BC ; =0x021CB8F4
 	ldr r0, [r0, #0x48]
 	cmp r0, #0
@@ -120,10 +120,10 @@ sub_020B9014: ; 0x020B9014
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 	mov r1, r5
 	mov r2, r4
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	str r7, [sp]
 	mov r2, #0
 	str r2, [sp, #4]
@@ -144,15 +144,15 @@ sub_020B9014: ; 0x020B9014
 	mov r3, r4, lsr #1
 	add r2, r5, r4, lsr #1
 	str ip, [sp, #0x28]
-	bl sub_020B919C
+	bl NNSi_SndCaptureStart
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020B90BC: .word 0x021CB8F4
-	arm_func_end sub_020B9014
+	arm_func_end NNS_SndCaptureStartEffect
 
-	arm_func_start sub_020B90C0
-sub_020B90C0: ; 0x020B90C0
+	arm_func_start NNS_SndCaptureStopEffect
+NNS_SndCaptureStopEffect: ; 0x020B90C0
 	stmfd sp!, {r3, lr}
 	ldr r0, _020B90E8 ; =0x021CB8F4
 	ldr r1, [r0, #0x48]
@@ -161,23 +161,23 @@ sub_020B90C0: ; 0x020B90C0
 	ldr r0, [r0, #0x4c]
 	cmp r0, #1
 	ldmneia sp!, {r3, pc}
-	bl sub_020B9508
+	bl NNSi_SndCaptureStop
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020B90E8: .word 0x021CB8F4
-	arm_func_end sub_020B90C0
+	arm_func_end NNS_SndCaptureStopEffect
 
-	arm_func_start sub_020B90EC
-sub_020B90EC: ; 0x020B90EC
+	arm_func_start NNS_SndCaptureIsActive
+NNS_SndCaptureIsActive: ; 0x020B90EC
 	ldr r0, _020B90F8 ; =0x021CB8F4
 	ldr r0, [r0, #0x48]
 	bx lr
 	; .align 2, 0
 _020B90F8: .word 0x021CB8F4
-	arm_func_end sub_020B90EC
+	arm_func_end NNS_SndCaptureIsActive
 
-	arm_func_start sub_020B90FC
-sub_020B90FC: ; 0x020B90FC
+	arm_func_start NNSi_SndCaptureInit
+NNSi_SndCaptureInit: ; 0x020B90FC
 	ldr r0, _020B9110 ; =0x021CB8F4
 	mov r1, #0
 	str r1, [r0, #0]
@@ -185,10 +185,10 @@ sub_020B90FC: ; 0x020B90FC
 	bx lr
 	; .align 2, 0
 _020B9110: .word 0x021CB8F4
-	arm_func_end sub_020B90FC
+	arm_func_end NNSi_SndCaptureInit
 
-	arm_func_start sub_020B9114
-sub_020B9114: ; 0x020B9114
+	arm_func_start NNSi_SndCaptureMain
+NNSi_SndCaptureMain: ; 0x020B9114
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _020B9194 ; =0x021CB8F4
 	ldr r4, _020B9198 ; =0x021CB93C
@@ -199,19 +199,19 @@ sub_020B9114: ; 0x020B9114
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	add r0, r4, #0x3c
-	bl sub_020BB41C
+	bl NNSi_SndFaderUpdate
 	ldr r0, [r4, #0x4c]
 	cmp r0, #0
 	beq _020B9164
 	add r0, r4, #0x3c
-	bl sub_020BB434
+	bl NNSi_SndFaderIsFinished
 	cmp r0, #0
 	beq _020B9164
-	bl sub_020B9508
+	bl NNSi_SndCaptureStop
 	ldmia sp!, {r3, r4, r5, pc}
 _020B9164:
 	add r0, r4, #0x3c
-	bl sub_020BB3E8
+	bl NNSi_SndFaderGet
 	ldr r1, [r4, #0x50]
 	mov r5, r0, asr #8
 	cmp r5, r1
@@ -219,16 +219,16 @@ _020B9164:
 	ldr r0, [r4, #0x24]
 	mov r1, r5
 	mov r2, #0
-	bl sub_020C5370
+	bl SND_SetChannelVolume
 	str r5, [r4, #0x50]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020B9194: .word 0x021CB8F4
 _020B9198: .word 0x021CB93C
-	arm_func_end sub_020B9114
+	arm_func_end NNSi_SndCaptureMain
 
-	arm_func_start sub_020B919C
-sub_020B919C: ; 0x020B919C
+	arm_func_start NNSi_SndCaptureStart
+NNSi_SndCaptureStart: ; 0x020B919C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x40
 	str r1, [sp, #0x1c]
@@ -246,17 +246,17 @@ sub_020B919C: ; 0x020B919C
 	ldr sb, [sp, #0x74]
 	ldr r8, [sp, #0x7c]
 	ldr r6, _020B94FC ; =0x021CB93C
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x20]
 	mov r1, sl
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x68]
 	ldr r1, [sp, #0x78]
 	cmp r0, #1
 	moveq r7, #1
 	ldr r0, _020B9500 ; =0x00FFB0FF
 	movne r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x34]
 	ldr r0, [sp, #0x8c]
 	cmp r0, #0
@@ -271,7 +271,7 @@ sub_020B919C: ; 0x020B919C
 	cmp r7, #0
 	ldr r1, [sp, #0x88]
 	moveq r0, sl, lsr #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, [sp, #0x2c]
 	mov fp, #0x20
 	mul r0, r1, r0
@@ -302,36 +302,36 @@ _020B926C:
 	ldr r0, [sp, #0x8c]
 	cmp r0, #0
 	beq _020B92D0
-	bl sub_020B7B7C
+	bl NNS_SndAllocAlarm
 	movs r5, r0
 	addmi sp, sp, #0x40
 	movmi r0, #0
 	ldmmiia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020B92D0:
 	mov r0, r4
-	bl sub_020B7B3C
+	bl NNS_SndLockCapture
 	cmp r0, #0
 	bne _020B92FC
 	cmp r5, #0
 	blt _020B92F0
 	mov r0, r5
-	bl sub_020B7BC4
+	bl NNS_SndFreeAlarm
 _020B92F0:
 	add sp, sp, #0x40
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020B92FC:
 	ldr r0, [sp, #0x3c]
-	bl sub_020B7AC4
+	bl NNS_SndLockChannel
 	cmp r0, #0
 	bne _020B9330
 	cmp r5, #0
 	blt _020B931C
 	mov r0, r5
-	bl sub_020B7BC4
+	bl NNS_SndFreeAlarm
 _020B931C:
 	mov r0, r4
-	bl sub_020B7B60
+	bl NNS_SndUnlockCapture
 	add sp, sp, #0x40
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -350,7 +350,7 @@ _020B9330:
 	ldr r2, [sp, #0x1c]
 	moveq r3, #2
 	mov r0, #1
-	bl sub_020C53B8
+	bl SND_SetupChannelPcm
 	ldr r1, [sp, #0x6c]
 	str sb, [sp]
 	str r1, [sp, #4]
@@ -360,7 +360,7 @@ _020B9330:
 	ldr r2, [sp, #0x1c]
 	mov r0, #0
 	mov r3, r7
-	bl sub_020C5290
+	bl SND_SetupCapture
 	mov r0, #0
 	stmia sp, {r0, r7, r8}
 	str r0, [sp, #0xc]
@@ -374,7 +374,7 @@ _020B9330:
 	ldr r2, [sp, #0x20]
 	moveq r3, #2
 	mov r0, #3
-	bl sub_020C53B8
+	bl SND_SetupChannelPcm
 	ldr r2, [sp, #0x6c]
 	str sb, [sp]
 	str r2, [sp, #4]
@@ -384,16 +384,16 @@ _020B9330:
 	ldr r2, [sp, #0x20]
 	mov r3, r7
 	mov r0, #1
-	bl sub_020C5290
+	bl SND_SetupCapture
 	cmp r5, #0
 	blt _020B9418
 	ldr r1, [sp, #0x30]
-	ldr r3, _020B9504 ; =sub_020B96DC
+	ldr r3, _020B9504 ; =AlarmCallback_dup2
 	ldr r2, [sp, #0x30]
 	mov r0, r5
 	add r1, r1, fp
 	str r6, [sp]
-	bl sub_020C52D0
+	bl SND_SetupAlarm
 _020B9418:
 	ldr r0, [sp, #0x18]
 	cmp r0, #1
@@ -402,7 +402,7 @@ _020B9418:
 	mov r2, r0
 	mov r3, r0
 	mov r1, #2
-	bl sub_020C5484
+	bl SND_SetOutputSelector
 _020B9438:
 	cmp r5, #0
 	movge r0, #1
@@ -411,7 +411,7 @@ _020B9438:
 	movlt r2, #0
 	mov r1, r4
 	mov r3, #0
-	bl sub_020C5204
+	bl SND_StartTimer
 	ldr r0, [sp, #0x18]
 	ldr r2, [sp, #0x38]
 	str r0, [r6, #4]
@@ -431,7 +431,7 @@ _020B9438:
 	str r3, [r6, #8]
 	str r2, [r6, #0x10]
 	str sl, [r6, #0x14]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r3, [sp, #0x88]
 	ldr r2, [sp, #0x8c]
 	ldr r1, [sp, #0x90]
@@ -443,11 +443,11 @@ _020B9438:
 	str r2, [r6, #0x34]
 	str r1, [r6, #0x38]
 	str r8, [r6, #0x50]
-	bl sub_020BB3A8
+	bl NNSi_SndFaderInit
 	add r0, r6, #0x3c
 	mov r1, r8, lsl #8
 	mov r2, #1
-	bl sub_020BB3C0
+	bl NNSi_SndFaderSet
 	mov r0, r4
 	str r0, [r6, #0x4c]
 	mov r0, #1
@@ -456,11 +456,11 @@ _020B9438:
 	; .align 2, 0
 _020B94FC: .word 0x021CB93C
 _020B9500: .word 0x00FFB0FF
-_020B9504: .word sub_020B96DC
-	arm_func_end sub_020B919C
+_020B9504: .word AlarmCallback_dup2
+	arm_func_end NNSi_SndCaptureStart
 
-	arm_func_start sub_020B9508
-sub_020B9508: ; 0x020B9508
+	arm_func_start NNSi_SndCaptureStop
+NNSi_SndCaptureStop: ; 0x020B9508
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r0, _020B95EC ; =0x021CB8F4
 	ldr r4, _020B95F0 ; =0x021CB93C
@@ -478,39 +478,39 @@ sub_020B9508: ; 0x020B9508
 	ldr r0, [r4, #0x24]
 	ldr r1, [r4, #0x28]
 	moveq r2, #0
-	bl sub_020C522C
+	bl SND_StopTimer
 	cmp r7, #0
 	beq _020B9590
-	bl sub_020C5AAC
+	bl SND_GetCurrentCommandTag
 	mov r5, r0
 	mov r0, #1
-	bl sub_020C5884
+	bl SND_FlushCommand
 	mov r0, r5
-	bl sub_020C5A40
+	bl SND_WaitForCommandProc
 	ldr r6, _020B95F4 ; =0x021CB8FC
 	mov r5, #0
 _020B9578:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r5
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	cmp r0, #0
 	bne _020B9578
 _020B9590:
 	ldr r0, [r4, #0x28]
 	cmp r0, #0
 	beq _020B95A0
-	bl sub_020B7B60
+	bl NNS_SndUnlockCapture
 _020B95A0:
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
 	beq _020B95B0
-	bl sub_020B7B0C
+	bl NNS_SndUnlockChannel
 _020B95B0:
 	cmp r7, #0
 	beq _020B95C0
 	ldr r0, [r4, #0x2c]
-	bl sub_020B7BC4
+	bl NNS_SndFreeAlarm
 _020B95C0:
 	ldr r0, [r4, #4]
 	cmp r0, #1
@@ -519,7 +519,7 @@ _020B95C0:
 	mov r1, r0
 	mov r2, r0
 	mov r3, r0
-	bl sub_020C5484
+	bl SND_SetOutputSelector
 _020B95E0:
 	mov r0, #0
 	str r0, [r4, #0]
@@ -528,10 +528,10 @@ _020B95E0:
 _020B95EC: .word 0x021CB8F4
 _020B95F0: .word 0x021CB93C
 _020B95F4: .word 0x021CB8FC
-	arm_func_end sub_020B9508
+	arm_func_end NNSi_SndCaptureStop
 
-	arm_func_start sub_020B95F8
-sub_020B95F8: ; 0x020B95F8
+	arm_func_start NNSi_SndCaptureBeginSleep
+NNSi_SndCaptureBeginSleep: ; 0x020B95F8
 	stmfd sp!, {r4, lr}
 	ldr r0, _020B9650 ; =0x021CB8F4
 	ldr r3, _020B9654 ; =0x021CB93C
@@ -546,21 +546,21 @@ sub_020B95F8: ; 0x020B95F8
 	ldr r1, [r3, #0x28]
 	movlt r2, #0
 	mov r3, #0
-	bl sub_020C522C
-	bl sub_020C5AAC
+	bl SND_StopTimer
+	bl SND_GetCurrentCommandTag
 	mov r4, r0
 	mov r0, #1
-	bl sub_020C5884
+	bl SND_FlushCommand
 	mov r0, r4
-	bl sub_020C5A40
+	bl SND_WaitForCommandProc
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020B9650: .word 0x021CB8F4
 _020B9654: .word 0x021CB93C
-	arm_func_end sub_020B95F8
+	arm_func_end NNSi_SndCaptureBeginSleep
 
-	arm_func_start sub_020B9658
-sub_020B9658: ; 0x020B9658
+	arm_func_start NNSi_SndCaptureEndSleep
+NNSi_SndCaptureEndSleep: ; 0x020B9658
 	stmfd sp!, {r4, lr}
 	ldr r0, _020B96D4 ; =0x021CB8F4
 	ldr r4, _020B96D8 ; =0x021CB93C
@@ -571,17 +571,17 @@ sub_020B9658: ; 0x020B9658
 	mov r0, #0
 	ldr r2, [r4, #0x14]
 	str r0, [r4, #0x1c]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r1, [r4, #0x10]
 	ldr r2, [r4, #0x14]
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, [r4, #0xc]
 	ldr r1, [r4, #0x14]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r4, #0x10]
 	ldr r1, [r4, #0x14]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, [r4, #0x2c]
 	mov r3, #0
 	cmp r1, #0
@@ -590,15 +590,15 @@ sub_020B9658: ; 0x020B9658
 	ldr r0, [r4, #0x24]
 	ldr r1, [r4, #0x28]
 	movlt r2, #0
-	bl sub_020C5204
+	bl SND_StartTimer
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020B96D4: .word 0x021CB8F4
 _020B96D8: .word 0x021CB93C
-	arm_func_end sub_020B9658
+	arm_func_end NNSi_SndCaptureEndSleep
 
-	arm_func_start sub_020B96DC
-sub_020B96DC: ; 0x020B96DC
+	arm_func_start AlarmCallback_dup2
+AlarmCallback_dup2: ; 0x020B96DC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	ldr r6, [r7, #0x18]
@@ -624,7 +624,7 @@ sub_020B96DC: ; 0x020B96DC
 	str r4, [r1, #0xc]
 	mov r2, #0
 	str r5, [r1, #0x10]
-	bl sub_020C2770
+	bl OS_SendMessage
 	ldr r0, _020B97BC ; =0x021CB8F4
 	ldr r1, [r0, #4]
 	add r1, r1, #1
@@ -636,10 +636,10 @@ sub_020B96DC: ; 0x020B96DC
 _020B9764:
 	mov r0, r4
 	mov r1, r6
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	mov r0, r5
 	mov r1, r6
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [r7, #0x38]
 	mov r0, r4
 	str r1, [sp]
@@ -661,7 +661,7 @@ _020B979C:
 _020B97BC: .word 0x021CB8F4
 _020B97C0: .word 0x021CB990
 _020B97C4: .word 0x021CB8FC
-	arm_func_end sub_020B96DC
+	arm_func_end AlarmCallback_dup2
 
 	.bss
 

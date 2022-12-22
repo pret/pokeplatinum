@@ -86,7 +86,7 @@ _021D3822:
 _021D3834:
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020B3C5C
+	bl NNS_G3dGetAnmByIdx
 	add r6, r0, #0
 	bne _021D3844
 	bl sub_02022974
@@ -94,7 +94,7 @@ _021D3844:
 	ldr r0, [sp, #0x1c]
 	add r1, r6, #0
 	add r2, r7, #0
-	bl sub_020B2CB4
+	bl NNS_G3dAllocAnmObj
 	str r0, [r5, #0]
 	cmp r5, #0
 	bne _021D3858
@@ -104,7 +104,7 @@ _021D3858:
 	ldr r3, [sp, #0x18]
 	add r1, r6, #0
 	add r2, r7, #0
-	bl sub_020AE4F0
+	bl NNS_G3dAnmObjInit
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov5_021D380C
@@ -122,7 +122,7 @@ _021D3872:
 	mov r0, #0
 	pop {r3, pc}
 _021D387A:
-	bl sub_020AE870
+	bl NNS_G3dRenderObjRemoveAnmObj
 	mov r0, #1
 	pop {r3, pc}
 	; .align 2, 0
@@ -585,7 +585,7 @@ _021D3BBC:
 	add r1, r6, r1
 	ldr r0, [sp]
 	ldr r1, [r1, #0x10]
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 _021D3BCE:
 	add sp, #0x18
 	mov r0, #1
@@ -686,7 +686,7 @@ _021D3C76:
 	add r1, r4, r1
 	ldr r0, [sp, #0xc]
 	ldr r1, [r1, #0x10]
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 	mov r0, #1
 	str r0, [sp]
 	b _021D3C96
@@ -725,7 +725,7 @@ _021D3CB8:
 	bne _021D3CD2
 	ldr r1, [r5, #0x10]
 	add r0, r6, #0
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	str r7, [r5, #0x10]
 	ldr r0, [r5, #0x24]
 	bl sub_020181C4
@@ -760,7 +760,7 @@ _021D3CF4:
 	bne _021D3D10
 	ldr r1, [r5, #0]
 	add r0, r4, #0
-	bl sub_020B2CD8
+	bl NNS_G3dFreeAnmObj
 	mov r0, #0
 	str r0, [r5, #0]
 	ldr r0, [r5, #0x14]
@@ -1360,7 +1360,7 @@ _021D40C4:
 	bl ov5_021D3868
 	ldr r0, [r6, #0x14]
 	ldr r1, [sp]
-	bl sub_020AE77C
+	bl NNS_G3dRenderObjAddAnmObj
 _021D40DC:
 	add r0, r4, #1
 	lsl r0, r0, #0x18
@@ -1477,7 +1477,7 @@ ov5_021D4194: ; 0x021D4194
 	mov r0, #0
 	add r1, r4, #0
 	lsl r2, r2, #6
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0

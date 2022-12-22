@@ -1,6 +1,6 @@
-.public sub_020CC16C
-.public sub_020CC200
-.public sub_020CC27C
-.public sub_020CC37C
-.public sub_020E1D14
-.public sub_020E1D24
+.public RTC_ConvertDateToDay
+.public RTCi_ConvertTimeToSecond
+.public RTC_ConvertDayToDate
+.public RTCi_ConvertSecondToTime
+.public _ll_mod
+.public _ll_sdiv

@@ -51,7 +51,7 @@ ov17_0223CB1C: ; 0x0223CB1C
 	ldr r2, _0223CDA8 ; =0x00000F68
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x16
 	bl ov17_0223F140
 	str r0, [r5, #8]
@@ -392,7 +392,7 @@ _0223CEAA:
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _0223CEF0
 _0223CEBA:
 	cmp r0, #3
@@ -407,7 +407,7 @@ _0223CEBA:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -447,7 +447,7 @@ _0223CEF0:
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -743,25 +743,25 @@ _0223D1C8:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _0223D314 ; =0x02252EA4
 	add r3, sp, #0x1c
 	add r2, r3, #0

@@ -106,8 +106,8 @@
 .public sub_0208712C
 .public sub_0208716C
 .public sub_0208C0BC
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f
 .public ov12_022368C8
 .public ov12_022368D0
 .public ov12_02237728

@@ -6,40 +6,40 @@
 	.text
 
 
-	arm_func_start sub_020C5DB4
-sub_020C5DB4: ; 0x020C5DB4
+	arm_func_start SND_GetPlayerStatus
+SND_GetPlayerStatus: ; 0x020C5DB4
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C5DDC ; =0x021CEB80
 	mov r1, #4
 	ldr r0, [r0, #0]
 	add r0, r0, #4
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, _020C5DDC ; =0x021CEB80
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C5DDC: .word 0x021CEB80
-	arm_func_end sub_020C5DB4
+	arm_func_end SND_GetPlayerStatus
 
-	arm_func_start sub_020C5DE0
-sub_020C5DE0: ; 0x020C5DE0
+	arm_func_start SND_GetChannelStatus
+SND_GetChannelStatus: ; 0x020C5DE0
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C5E08 ; =0x021CEB80
 	mov r1, #2
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, _020C5E08 ; =0x021CEB80
 	ldr r0, [r0, #0]
 	ldrh r0, [r0, #8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C5E08: .word 0x021CEB80
-	arm_func_end sub_020C5DE0
+	arm_func_end SND_GetChannelStatus
 
-	arm_func_start sub_020C5E0C
-sub_020C5E0C: ; 0x020C5E0C
+	arm_func_start SND_GetPlayerTickCounter
+SND_GetPlayerTickCounter: ; 0x020C5E0C
 	stmfd sp!, {r4, lr}
 	mov r1, #0x24
 	mul r4, r0, r1
@@ -48,7 +48,7 @@ sub_020C5E0C: ; 0x020C5E0C
 	ldr r0, [r0, #0]
 	add r0, r0, #0x40
 	add r0, r0, r4
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, _020C5E44 ; =0x021CEB80
 	ldr r0, [r0, #0]
 	add r0, r0, r4
@@ -56,25 +56,25 @@ sub_020C5E0C: ; 0x020C5E0C
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C5E44: .word 0x021CEB80
-	arm_func_end sub_020C5E0C
+	arm_func_end SND_GetPlayerTickCounter
 
-	arm_func_start sub_020C5E48
-sub_020C5E48: ; 0x020C5E48
+	arm_func_start SNDi_GetFinishedCommandTag
+SNDi_GetFinishedCommandTag: ; 0x020C5E48
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C5E6C ; =0x021CEB80
 	mov r1, #4
 	ldr r0, [r0, #0]
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, _020C5E6C ; =0x021CEB80
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C5E6C: .word 0x021CEB80
-	arm_func_end sub_020C5E48
+	arm_func_end SNDi_GetFinishedCommandTag
 
-	arm_func_start sub_020C5E70
-sub_020C5E70: ; 0x020C5E70
+	arm_func_start SNDi_InitSharedWork
+SNDi_InitSharedWork: ; 0x020C5E70
 	stmfd sp!, {r4, lr}
 	mov ip, #0
 	str ip, [r0, #4]
@@ -107,9 +107,9 @@ _020C5EC8:
 	cmp r3, #0x10
 	blt _020C5EC8
 	mov r1, #0x280
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020C5E70
+	arm_func_end SNDi_InitSharedWork
 
 	.bss
 

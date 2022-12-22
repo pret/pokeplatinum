@@ -96,7 +96,7 @@ ov4_02207B1C: ; 0x02207B1C
 	beq _02207B58
 	ldr r0, [r4, #0x68]
 	add r0, r0, #0x20
-	bl sub_020C21D4
+	bl OS_JoinThread
 	bl ov4_0220C03C
 	bl ov4_0220C078
 	bl ov4_0220BDDC
@@ -111,14 +111,14 @@ _02207B58:
 	ldreq r0, [r4, #0x68]
 	ldrne r0, [r4, #0x64]
 	bl ov4_02206068
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	mov r0, r4
 	bl ov4_02208254
 	mov r0, r4
 	bl ov4_0220823C
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldrsh r1, [r4, #0x70]
 	mov r0, #0
 	orr r1, r1, #0x20
@@ -172,7 +172,7 @@ _02207C30:
 	str r1, [r0, #0x104]
 	ldr r0, [r4, #0x64]
 	add r0, r0, #0x10c
-	bl sub_020C2268
+	bl OS_WakeupThread
 	ldr r0, [r4, #0x64]
 	bl ov4_02207CB4
 	b _02207C78
@@ -182,7 +182,7 @@ _02207C68:
 	ldr r0, [r4, #0x68]
 	bl ov4_02207CB4
 _02207C78:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	mov r0, r4
 	bl ov4_02208254
@@ -194,7 +194,7 @@ _02207C78:
 	ldr r1, [r1, #0x1c]
 	blx r1
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _02207CB0: .word 0x0221A134
@@ -206,14 +206,14 @@ ov4_02207CB4: ; 0x02207CB4
 	movs sb, r0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	add r0, sb, #0x20
-	bl sub_020C21D4
-	bl sub_020C3D98
+	bl OS_JoinThread
+	bl OS_DisableInterrupts
 	mov r8, r0
-	bl sub_020C25A4
+	bl OS_DisableScheduler
 	add r1, sp, #0
 	mov r0, sb
 	mov r2, #0
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	cmp r0, #0
 	beq _02207D40
 	mov r6, #0
@@ -229,7 +229,7 @@ _02207CFC:
 	beq _02207D20
 	mov r1, r7
 	mov r2, r6
-	bl sub_020C2770
+	bl OS_SendMessage
 _02207D20:
 	ldr r0, [sp]
 	bl ov4_02206034
@@ -237,21 +237,21 @@ _02207D28:
 	mov r0, sb
 	mov r1, r5
 	mov r2, r4
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	cmp r0, #0
 	bne _02207CFC
 _02207D40:
-	bl sub_020C25D8
-	bl sub_020C2320
+	bl OS_EnableScheduler
+	bl OS_RescheduleThread
 	mov r0, r8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	arm_func_end ov4_02207CB4
 
 	arm_func_start ov4_02207D54
 ov4_02207D54: ; 0x02207D54
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r4, _02207D8C ; =0x0221DC60
 	mov r5, r0
 	ldr r0, [r4, #0]
@@ -264,7 +264,7 @@ _02207D70:
 	bne _02207D70
 _02207D80:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02207D8C: .word 0x0221DC60

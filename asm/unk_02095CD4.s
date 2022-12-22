@@ -49,7 +49,7 @@ sub_02095CFC: ; 0x02095CFC
 	ldr r0, [r4, r0]
 	add r1, r6, #0
 	lsl r2, r2, #4
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [r4, #0x58]
 	add r0, r0, #1
 	str r0, [r4, #0x58]
@@ -235,7 +235,7 @@ sub_02095E28: ; 0x02095E28
 	add r0, r6, #0
 	add r1, r3, r1
 	sub r2, r2, #4
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, #4
 	str r0, [r4, #0x54]
 	mov r0, #0

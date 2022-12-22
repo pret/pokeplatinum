@@ -5,14 +5,14 @@
 	.text
 
 
-	arm_func_start sub_020E2178
-sub_020E2178: ; 0x020E2178
+	arm_func_start _u32_div_f
+_u32_div_f: ; 0x020E2178
 	cmp r1, #0
 	bxeq lr
-	arm_func_end sub_020E2178
+	arm_func_end _u32_div_f
 
-	arm_func_start sub_020E2180
-sub_020E2180: ; 0x020E2180
+	arm_func_start _u32_div_not_0_f
+_u32_div_not_0_f: ; 0x020E2180
 	cmp r0, r1
 	movlo r1, r0
 	movlo r0, #0
@@ -132,4 +132,4 @@ sub_020E2180: ; 0x020E2180
 	adcs r0, r0, r0
 	mov r1, r3
 	bx lr
-	arm_func_end sub_020E2180
+	arm_func_end _u32_div_not_0_f

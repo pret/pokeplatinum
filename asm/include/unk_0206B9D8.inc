@@ -49,5 +49,5 @@
 .public sub_0208C324
 .public sub_0208D720
 .public sub_0208E9C0
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8

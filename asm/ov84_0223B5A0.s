@@ -43,7 +43,7 @@ ov84_0223B5A0: ; 0x0223B5A0
 	ldr r2, _0223B760 ; =0x000004A4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	add r1, r4, #0
@@ -1682,7 +1682,7 @@ _0223C2E2:
 	mov r1, #3
 	ldrb r0, [r5, r0]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223C39C ; =0x00000482
 	strb r1, [r5, r0]
 	add r0, #0x10
@@ -2220,7 +2220,7 @@ ov84_0223C720: ; 0x0223C720
 	mov r0, #0x5a
 	sub r0, r0, r1
 	add r1, r2, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #6
 	ldr r0, _0223C74C ; =0x00000427
 	strb r1, [r4, r0]
@@ -6861,7 +6861,7 @@ _0223EBC6:
 	bl sub_0201D580
 	lsl r0, r0, #8
 	mov r1, #0xb6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _0223ED04 ; =0x0000049A
 	asr r3, r0, #8
 	ldrsh r2, [r5, r1]
@@ -6896,7 +6896,7 @@ _0223EC28:
 	bl sub_0201C660
 	ldr r0, _0223ED08 ; =0x000001F6
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r0, #0
 	cmp r4, #0
 	ble _0223EC8C
@@ -6906,12 +6906,12 @@ _0223EC28:
 	bge _0223EC66
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _0223ED0C ; =0x00000498
 	strh r0, [r5, r1]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223ED10 ; =0x00000494
 	str r1, [r5, r0]
 	b _0223ECD4
@@ -6920,7 +6920,7 @@ _0223EC66:
 	ldr r0, [r5, r0]
 	add r1, r6, #0
 	add r0, r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _0223ED0C ; =0x00000498
 	ldrsh r2, [r5, r1]
 	add r0, r2, r0
@@ -6929,7 +6929,7 @@ _0223EC66:
 	ldr r0, [r5, r0]
 	add r1, r6, #0
 	add r0, r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223ED10 ; =0x00000494
 	str r1, [r5, r0]
 	b _0223ECD4
@@ -6941,12 +6941,12 @@ _0223EC8C:
 	ble _0223ECB0
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _0223ED0C ; =0x00000498
 	strh r0, [r5, r1]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223ED10 ; =0x00000494
 	str r1, [r5, r0]
 	b _0223ECD4
@@ -6955,7 +6955,7 @@ _0223ECB0:
 	ldr r0, [r5, r0]
 	add r1, r6, #0
 	add r0, r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _0223ED0C ; =0x00000498
 	ldrsh r2, [r5, r1]
 	add r0, r2, r0
@@ -6964,7 +6964,7 @@ _0223ECB0:
 	ldr r0, [r5, r0]
 	add r1, r6, #0
 	add r0, r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223ED10 ; =0x00000494
 	str r1, [r5, r0]
 _0223ECD4:

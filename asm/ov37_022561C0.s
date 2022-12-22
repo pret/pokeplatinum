@@ -64,7 +64,7 @@ ov37_0225621C: ; 0x0225621C
 	mov r0, #0
 	add r1, sp, #4
 	add r6, r2, #0
-	bl sub_020CB29C
+	bl PM_GetBackLight
 	ldr r0, [sp, #4]
 	cmp r0, #1
 	bne _02256238

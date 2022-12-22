@@ -60,14 +60,14 @@ _020156DA:
 	add r1, r4, #0
 	add r1, #0xc
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, [sp]
 	ldr r0, [sp, #8]
 	mov r2, #0x20
 	add r0, r1, r0
 	add r1, r4, #0
 	add r1, #0x2c
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #4]
 	mov r1, #1
 	str r0, [r4, #0]

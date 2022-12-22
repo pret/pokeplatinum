@@ -1,3 +1,3 @@
-.public sub_020A7228
-.public sub_020A7238
-.public sub_020A727C
+.public NNSi_G2dUnpackNCLCmpInfo
+.public NNS_G2dUnpackNCL
+.public NNS_G2dFindBinaryBlock

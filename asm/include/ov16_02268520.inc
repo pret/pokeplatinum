@@ -14,7 +14,7 @@
 .public sub_0200D324
 .public sub_0200D3F4
 .public sub_02022974
-.public sub_020C4BB8
+.public MIi_CpuClearFast
 .public ov16_0223E010
 .public ov16_0223E018
 .public ov16_0223E064

@@ -1,7 +1,7 @@
 .public sub_0201E190
 .public sub_0201E198
-.public sub_020BCFD0
-.public sub_020E1F1C
+.public FX_Div
+.public _ull_mul
 .public ov5_021EEC68
 .public ov5_021EECB8
 .public ov5_021EECE8

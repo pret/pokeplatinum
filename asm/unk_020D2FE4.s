@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020D2FE4
-sub_020D2FE4: ; 0x020D2FE4
+	arm_func_start MATH_CountPopulation
+MATH_CountPopulation: ; 0x020D2FE4
 	ldr r1, _020D301C ; =0x55555555
 	ldr r2, _020D3020 ; =0x33333333
 	and r1, r1, r0, lsr #1
@@ -25,4 +25,4 @@ sub_020D2FE4: ; 0x020D2FE4
 _020D301C: .word 0x55555555
 _020D3020: .word 0x33333333
 _020D3024: .word 0x0F0F0F0F
-	arm_func_end sub_020D2FE4
+	arm_func_end MATH_CountPopulation

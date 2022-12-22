@@ -758,7 +758,7 @@ _0206800A:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	add r1, r4, #0
 	str r0, [r4, #8]

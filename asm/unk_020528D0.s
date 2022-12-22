@@ -53,7 +53,7 @@ _0205292A:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [r4, #0]
 	str r5, [r4, #4]

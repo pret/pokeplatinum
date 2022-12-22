@@ -22,8 +22,8 @@
 .public sub_02022974
 .public sub_02074470
 .public sub_02077D3C
-.public sub_020BDEC4
-.public sub_020C4CF4
+.public GXx_SetMasterBrightness_
+.public MI_CpuFill8
 .public ov17_0223F744
 .public ov17_0223F760
 .public ov17_0224F18C

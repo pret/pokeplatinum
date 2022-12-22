@@ -17,7 +17,7 @@ ov5_021F0EB0: ; 0x021F0EB0
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 	str r6, [r4, #0]
 	mov r0, #0
 	str r0, [r4, #0xc]
@@ -177,7 +177,7 @@ ov5_021F0FC8: ; 0x021F0FC8
 	add r4, r0, #0
 	ldr r0, [r4, #0x14]
 	ldr r1, [r4, #0x1c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x28]
 	ldr r1, [r4, #0x20]
 	ldr r0, [r4, #0x14]
@@ -194,7 +194,7 @@ ov5_021F0FE0: ; 0x021F0FE0
 	ldr r0, [r4, #0x20]
 	sub r0, r1, r0
 	ldr r1, [r4, #0x1c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x28]
 	ldr r0, [r4, #0x10]
 	str r0, [r4, #0x18]

@@ -60,7 +60,7 @@ sub_0204CE1C: ; 0x0204CE1C
 	add r4, r0, #0
 	bl sub_0201D2E8
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	cmp r0, #0xf

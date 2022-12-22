@@ -12,4 +12,4 @@
 .public sub_0201CED0
 .public sub_020241F0
 .public sub_02024200
-.public sub_020C4B18
+.public MIi_CpuCopy16

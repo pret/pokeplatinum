@@ -38,8 +38,8 @@
 .public sub_0207EA74
 .public sub_02082708
 .public sub_02082DA8
-.public sub_020BF55C
-.public sub_020C4CF4
+.public G2x_SetBlendAlpha_
+.public MI_CpuFill8
 .public ov118_021D0F70
 .public ov118_021D0F88
 .public ov118_021D0FB8

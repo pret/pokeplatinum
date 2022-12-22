@@ -281,7 +281,7 @@ _021E41CE:
 	str r0, [r4, #8]
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -1233,7 +1233,7 @@ _021E4908:
 	ldr r1, [sp, #0x18]
 	asr r3, r4, #0x1f
 	add r2, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r0, r0, r2
@@ -1243,7 +1243,7 @@ _021E4908:
 	lsr r0, r0, #0xc
 	orr r0, r1
 	ldr r1, [sp, #0x10]
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r1, r0, #0xc
 	ldr r0, [sp, #0xc]
 	ldr r2, [sp, #0x1c]
@@ -1302,7 +1302,7 @@ _021E4970:
 	orr r0, r1
 	mov r1, #0x7f
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r5, r0, #0xc
 _021E499A:
 	ldr r1, [r4, #0]

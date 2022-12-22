@@ -35,7 +35,7 @@
 .public sub_02023FCC
 .public sub_02024034
 .public sub_0202404C
-.public sub_020D5124
+.public memset
 .public ov22_02255248
 .public ov22_02255268
 .public ov22_0225528C

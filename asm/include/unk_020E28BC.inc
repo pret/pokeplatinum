@@ -1,2 +1,2 @@
-.public sub_020E28BC
-.public sub_020E28D0
+.public sys_writec
+.public sys_readc

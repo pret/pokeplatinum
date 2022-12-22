@@ -261,7 +261,7 @@ ov30_022565B0: ; 0x022565B0
 	ldr r5, [r4, #0]
 	mov r1, #0xc
 	ldr r0, [r5, #0]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r2, [r5, #4]
 	ldr r0, [r4, #0x4c]
 	lsr r3, r2, #1

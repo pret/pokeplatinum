@@ -43,9 +43,9 @@
 .public sub_02038A0C
 .public sub_02039734
 .public sub_020759F0
-.public sub_020C4BB8
-.public sub_020C4CF4
-.public sub_020CC16C
+.public MIi_CpuClearFast
+.public MI_CpuFill8
+.public RTC_ConvertDateToDay
 .public ov4_021D806C
 .public ov94_0223B7B8
 .public ov94_0223B7D8

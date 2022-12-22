@@ -128,7 +128,7 @@ ov101_021D5A70: ; 0x021D5A70
 	add r0, r1, r0
 	mov r1, #0xa
 	lsl r1, r1, #0x10
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 	ldr r0, [sp]
 	add r1, sp, #4
@@ -297,11 +297,11 @@ _021D5BCA:
 	bl sub_02021CAC
 	ldr r1, [r5, #8]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	ldr r1, [r5, #4]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	ldr r0, [r5, #0x10]
 	bl sub_02021E24
@@ -453,11 +453,11 @@ _021D5CFE:
 	bl sub_02021CAC
 	ldr r1, [r5, #8]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	ldr r1, [r5, #4]
 	add r0, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	ldr r0, [r5, #0x10]
 	bl sub_02021E24
@@ -3782,10 +3782,10 @@ ov101_021D7604: ; 0x021D7604
 _021D7640:
 	add r0, r7, #0
 	mov r1, #0x64
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r1, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	beq _021D767E
 	ldr r0, [r5, #8]
@@ -3815,7 +3815,7 @@ _021D767E:
 	bl sub_02021C50
 	add r0, r7, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, [r5, r4]
 	bl sub_02021D6C
 	ldr r0, [r5, r4]
@@ -3967,10 +3967,10 @@ _021D77A8:
 	add r1, r4, #0
 	add r0, r6, #0
 	mul r1, r7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, #0
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r0, [r5, #8]
 	bl sub_02021D6C
@@ -3978,7 +3978,7 @@ _021D77A8:
 	bl sub_02021DE0
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r0, #0
 	add r5, #0xc
 	cmp r4, #1
@@ -4166,10 +4166,10 @@ _021D78DA:
 	mov r1, #0xa
 	ldr r0, [r5, #4]
 	mul r1, r6
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r1, #0
 	add r1, r6, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r1, r0, #0
 	ldr r0, [r4, #0x1c]
 	bl sub_02021D6C
@@ -4348,10 +4348,10 @@ _021D7A60:
 	mov r1, #0xa
 	ldr r0, [sp, #0x20]
 	mul r1, r4
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r1, #0
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r1, r0, #0
 	ldr r0, [r7, #0x10]
 	bl sub_02021D6C
@@ -4367,7 +4367,7 @@ _021D7A60:
 	mov r1, #0xa
 	add r7, #0xc
 	add r6, r6, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	ldr r0, [r5, #4]
 	cmp r6, r0

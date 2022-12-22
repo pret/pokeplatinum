@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020B3DB8
-sub_020B3DB8: ; 0x020B3DB8
+	arm_func_start NNSi_G3dAnmObjInitNsBca
+NNSi_G3dAnmObjInitNsBca: ; 0x020B3DB8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -20,7 +20,7 @@ sub_020B3DB8: ; 0x020B3DB8
 	mov r0, #0
 	strb r2, [r5, #0x19]
 	mov r2, r2, lsl #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrh r0, [r4, #6]
 	add r3, r4, #0x14
 	mov r2, #0
@@ -41,10 +41,10 @@ _020B3E00:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020B3E30: .word 0x02100ED0
-	arm_func_end sub_020B3DB8
+	arm_func_end NNSi_G3dAnmObjInitNsBca
 
-	arm_func_start sub_020B3E34
-sub_020B3E34: ; 0x020B3E34
+	arm_func_start NNSi_G3dAnmCalcNsBca
+NNSi_G3dAnmCalcNsBca: ; 0x020B3E34
 	stmfd sp!, {r3, lr}
 	mov r3, r0
 	ldr r0, [r1, #8]
@@ -59,12 +59,12 @@ sub_020B3E34: ; 0x020B3E34
 _020B3E60:
 	mov r1, r2
 	mov r2, ip
-	bl sub_020B4118
+	bl getJntSRTAnmResult_
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020B3E34
+	arm_func_end NNSi_G3dAnmCalcNsBca
 
-	arm_func_start sub_020B3E70
-sub_020B3E70: ; 0x020B3E70
+	arm_func_start getMdlTrans_
+getMdlTrans_: ; 0x020B3E70
 	ldr r1, _020B3F04 ; =0x021C5CF0
 	ldr r2, [r1, #0]
 	ldr r1, [r2, #0]
@@ -109,10 +109,10 @@ _020B3EE8:
 	bx lr
 	; .align 2, 0
 _020B3F04: .word 0x021C5CF0
-	arm_func_end sub_020B3E70
+	arm_func_end getMdlTrans_
 
-	arm_func_start sub_020B3F08
-sub_020B3F08: ; 0x020B3F08
+	arm_func_start getMdlScale_
+getMdlScale_: ; 0x020B3F08
 	stmfd sp!, {r4, lr}
 	ldr r1, _020B3F94 ; =0x021C5CF0
 	ldr ip, [r1]
@@ -155,10 +155,10 @@ _020B3F88:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020B3F94: .word 0x021C5CF0
-	arm_func_end sub_020B3F08
+	arm_func_end getMdlScale_
 
-	arm_func_start sub_020B3F98
-sub_020B3F98: ; 0x020B3F98
+	arm_func_start getMdlRot_
+getMdlRot_: ; 0x020B3F98
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r1, _020B4104 ; =0x021C5CF0
 	mov r8, r0
@@ -201,7 +201,7 @@ _020B3FFC:
 	mov r4, r2, asr #4
 	ldrsh r7, [r1]
 	ldrsh r6, [r1, #2]
-	bl sub_020C4F30
+	bl MI_Zero36B
 	ldrh r0, [r5]
 	ldr r1, _020B4108 ; =0x020F9818
 	mov r3, #0x1000
@@ -262,10 +262,10 @@ _020B4108: .word 0x020F9818
 _020B410C: .word 0x020F9819
 _020B4110: .word 0x020F981A
 _020B4114: .word 0x020F981B
-	arm_func_end sub_020B3F98
+	arm_func_end getMdlRot_
 
-	arm_func_start sub_020B4118
-sub_020B4118: ; 0x020B4118
+	arm_func_start getJntSRTAnmResult_
+getJntSRTAnmResult_: ; 0x020B4118
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x30
 	mov sb, r0
@@ -302,12 +302,12 @@ _020B4170:
 	beq _020B41A8
 	mov r3, sb
 	add r0, r7, #0x4c
-	bl sub_020B462C
+	bl getTransDataEx_
 	b _020B41B4
 _020B41A8:
 	mov r3, sb
 	add r0, r7, #0x4c
-	bl sub_020B44CC
+	bl getTransData_
 _020B41B4:
 	add r5, r5, #8
 	b _020B41C4
@@ -323,12 +323,12 @@ _020B41C4:
 	beq _020B41EC
 	mov r3, sb
 	add r0, r7, #0x50
-	bl sub_020B462C
+	bl getTransDataEx_
 	b _020B41F8
 _020B41EC:
 	mov r3, sb
 	add r0, r7, #0x50
-	bl sub_020B44CC
+	bl getTransData_
 _020B41F8:
 	add r5, r5, #8
 	b _020B4208
@@ -344,12 +344,12 @@ _020B4208:
 	beq _020B4230
 	mov r3, sb
 	add r0, r7, #0x54
-	bl sub_020B462C
+	bl getTransDataEx_
 	b _020B423C
 _020B4230:
 	mov r3, sb
 	add r0, r7, #0x54
-	bl sub_020B44CC
+	bl getTransData_
 _020B423C:
 	add r5, r5, #8
 	b _020B4270
@@ -366,7 +366,7 @@ _020B4250:
 	b _020B4270
 _020B4268:
 	mov r0, r7
-	bl sub_020B3E70
+	bl getMdlTrans_
 _020B4270:
 	tst r4, #0xc0
 	bne _020B4334
@@ -378,12 +378,12 @@ _020B4270:
 	beq _020B42A0
 	mov r3, sb
 	add r0, r7, #0x28
-	bl sub_020B4F28
+	bl getRotDataEx_
 	b _020B42AC
 _020B42A0:
 	mov r3, sb
 	add r0, r7, #0x28
-	bl sub_020B4B10
+	bl getRotData_
 _020B42AC:
 	add r5, r5, #8
 	b _020B4354
@@ -394,7 +394,7 @@ _020B42B4:
 	add r0, r7, #0x28
 	add r1, sb, r1
 	add r2, sb, r2
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	cmp r0, #0
 	beq _020B432C
 	ldr ip, [r7, #0x3c]
@@ -430,7 +430,7 @@ _020B4334:
 	b _020B4354
 _020B434C:
 	mov r0, r7
-	bl sub_020B3F98
+	bl getMdlRot_
 _020B4354:
 	tst r4, #0x600
 	bne _020B4468
@@ -442,12 +442,12 @@ _020B4354:
 	beq _020B4384
 	mov r2, r5
 	mov r3, sb
-	bl sub_020B497C
+	bl getScaleDataEx_
 	b _020B4390
 _020B4384:
 	mov r2, r5
 	mov r3, sb
-	bl sub_020B4788
+	bl getScaleData_
 _020B4390:
 	ldr r1, [sp, #0x10]
 	ldr r0, [sp, #0x14]
@@ -468,12 +468,12 @@ _020B43B4:
 	beq _020B43DC
 	mov r3, sb
 	add r2, r5, #8
-	bl sub_020B497C
+	bl getScaleDataEx_
 	b _020B43E8
 _020B43DC:
 	mov r3, sb
 	add r2, r5, #8
-	bl sub_020B4788
+	bl getScaleData_
 _020B43E8:
 	ldr r1, [sp, #8]
 	ldr r0, [sp, #0xc]
@@ -494,12 +494,12 @@ _020B440C:
 	beq _020B4434
 	mov r3, sb
 	add r2, r5, #0x10
-	bl sub_020B497C
+	bl getScaleDataEx_
 	b _020B4440
 _020B4434:
 	mov r3, sb
 	add r2, r5, #0x10
-	bl sub_020B4788
+	bl getScaleData_
 _020B4440:
 	ldr r1, [sp]
 	ldr r0, [sp, #4]
@@ -521,7 +521,7 @@ _020B4468:
 	b _020B4490
 _020B4480:
 	mov r0, r7
-	bl sub_020B3F08
+	bl getMdlScale_
 	add sp, sp, #0x30
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020B4490:
@@ -541,10 +541,10 @@ _020B4490:
 	; .align 2, 0
 _020B44C4: .word 0x00000FFF
 _020B44C8: .word 0x021C5CF0
-	arm_func_end sub_020B4118
+	arm_func_end getJntSRTAnmResult_
 
-	arm_func_start sub_020B44CC
-sub_020B44CC: ; 0x020B44CC
+	arm_func_start getTransData_
+getTransData_: ; 0x020B44CC
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r4, [r2, #4]
 	ldr ip, [r2]
@@ -643,10 +643,10 @@ _020B4608:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020B4628: .word 0x1FFF0000
-	arm_func_end sub_020B44CC
+	arm_func_end getTransData_
 
-	arm_func_start sub_020B462C
-sub_020B462C: ; 0x020B462C
+	arm_func_start getTransDataEx_
+getTransDataEx_: ; 0x020B462C
 	stmfd sp!, {r3, r4, r5, lr}
 	ldrh r4, [r3, #4]
 	ldr ip, [r2, #4]
@@ -743,10 +743,10 @@ _020B4760:
 _020B477C: .word 0x00000FFF
 _020B4780: .word 0x1FFF0000
 _020B4784: .word 0x00003FFF
-	arm_func_end sub_020B462C
+	arm_func_end getTransDataEx_
 
-	arm_func_start sub_020B4788
-sub_020B4788: ; 0x020B4788
+	arm_func_start getScaleData_
+getScaleData_: ; 0x020B4788
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r4, [r2, #4]
 	ldr r5, [r2, #0]
@@ -883,10 +883,10 @@ _020B4948:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020B4978: .word 0x1FFF0000
-	arm_func_end sub_020B4788
+	arm_func_end getScaleData_
 
-	arm_func_start sub_020B497C
-sub_020B497C: ; 0x020B497C
+	arm_func_start getScaleDataEx_
+getScaleDataEx_: ; 0x020B497C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldrh r4, [r3, #4]
 	ldr r5, [r2, #4]
@@ -1000,10 +1000,10 @@ _020B4AD0:
 _020B4B04: .word 0x1FFF0000
 _020B4B08: .word 0x00003FFF
 _020B4B0C: .word 0x00000FFF
-	arm_func_end sub_020B497C
+	arm_func_end getScaleDataEx_
 
-	arm_func_start sub_020B4B10
-sub_020B4B10: ; 0x020B4B10
+	arm_func_start getRotData_
+getRotData_: ; 0x020B4B10
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x48
 	ldr sb, [r2]
@@ -1051,14 +1051,14 @@ _020B4B7C:
 	add r1, r4, r7
 	add r2, r4, r6
 	mov sl, #0
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	mov r1, sb, lsl #1
 	ldrh r3, [r8, r1]
 	orr sl, sl, r0
 	add r0, sp, #0x24
 	add r1, r4, r7
 	add r2, r4, r6
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	ldr r1, [r5, #0]
 	ldr r2, [sp, #0x24]
 	add r1, r1, r1, lsl #1
@@ -1092,10 +1092,10 @@ _020B4B7C:
 	mov r0, r5
 	mov r1, r5
 	str r2, [r5, #0x14]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add r0, r5, #0xc
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	cmp sl, #0
 	bne _020B4CD0
 	ldr r0, [r5, #0x18]
@@ -1115,7 +1115,7 @@ _020B4B7C:
 	add r0, r5, #0x18
 	mov r1, r0
 	str r2, [r5, #0x20]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add sp, sp, #0x48
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _020B4CD0:
@@ -1154,14 +1154,14 @@ _020B4D3C:
 	mov r0, r5
 	add r1, r4, r7
 	add r2, r4, r6
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	add r1, r8, sb, lsl #1
 	ldrh r3, [r1, #2]
 	orr r8, r0, #0
 	add r0, sp, #0
 	add r1, r4, r7
 	add r2, r4, r6
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	ldr r2, [r5, #0]
 	ldr r1, [sp]
 	orr r8, r8, r0
@@ -1189,10 +1189,10 @@ _020B4D3C:
 	ldr r2, [sp, #0x14]
 	add r2, r3, r2
 	str r2, [r5, #0x14]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add r0, r5, #0xc
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	cmp r8, #0
 	bne _020B4E38
 	ldr r2, [r5, #0x18]
@@ -1209,7 +1209,7 @@ _020B4D3C:
 	ldr r2, [sp, #0x20]
 	add r2, r3, r2
 	str r2, [r5, #0x20]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add sp, sp, #0x48
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _020B4E38:
@@ -1242,7 +1242,7 @@ _020B4E94:
 	mov r0, r5
 	add r1, r4, r7
 	add r2, r4, r6
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	cmp r0, #0
 	beq _020B4F10
 	ldr sb, [r5, #0x14]
@@ -1271,15 +1271,15 @@ _020B4E94:
 _020B4F10:
 	add r0, r5, #0x18
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add sp, sp, #0x48
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _020B4F24: .word 0x1FFF0000
-	arm_func_end sub_020B4B10
+	arm_func_end getRotData_
 
-	arm_func_start sub_020B4F28
-sub_020B4F28: ; 0x020B4F28
+	arm_func_start getRotDataEx_
+getRotDataEx_: ; 0x020B4F28
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x48
 	mov sb, r3
@@ -1311,7 +1311,7 @@ _020B4F7C:
 	mov r0, sl
 	add r1, sb, r4
 	add r2, sb, fp
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	cmp r0, #0
 	beq _020B5008
 	ldr r8, [sl, #0x14]
@@ -1340,7 +1340,7 @@ _020B4F7C:
 _020B5008:
 	add r0, sl, #0x18
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020B501C:
@@ -1386,14 +1386,14 @@ _020B509C:
 	add r0, sp, #0x24
 	add r1, sb, r4
 	add r2, sb, fp
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	mov r1, r5, lsl #1
 	ldrh r3, [r8, r1]
 	orr r5, r0, #0
 	add r0, sp, #0
 	add r1, sb, r4
 	add r2, sb, fp
-	bl sub_020B526C
+	bl getRotDataByIdx_
 	ldr r3, [sp, #0x24]
 	ldr r1, [sp]
 	mul r2, r3, r7
@@ -1439,10 +1439,10 @@ _020B509C:
 	mov r0, sl
 	mov r1, sl
 	str r2, [sl, #0x14]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add r0, sl, #0xc
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	cmp r5, #0
 	bne _020B5204
 	ldr r2, [sp, #0x3c]
@@ -1468,7 +1468,7 @@ _020B509C:
 	add r0, sl, #0x18
 	mov r1, r0
 	str r2, [sl, #0x20]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020B5204:
@@ -1499,10 +1499,10 @@ _020B5204:
 _020B5260: .word 0x1FFF0000
 _020B5264: .word 0x00003FFF
 _020B5268: .word 0x00000FFF
-	arm_func_end sub_020B4F28
+	arm_func_end getRotDataEx_
 
-	arm_func_start sub_020B526C
-sub_020B526C: ; 0x020B526C
+	arm_func_start getRotDataByIdx_
+getRotDataByIdx_: ; 0x020B526C
 	stmfd sp!, {r3, r4, r5, lr}
 	tst r3, #0x8000
 	beq _020B5324
@@ -1596,7 +1596,7 @@ _020B53C8: .word 0x020F9818
 _020B53CC: .word 0x020F9819
 _020B53D0: .word 0x020F981A
 _020B53D4: .word 0x020F981B
-	arm_func_end sub_020B526C
+	arm_func_end getRotDataByIdx_
 
 	.rodata
 

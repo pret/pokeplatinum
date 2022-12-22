@@ -10,36 +10,36 @@
 sub_0201FE94: ; 0x0201FE94
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020BEC9C
-	bl sub_020BECC4
-	bl sub_020BED48
-	bl sub_020BED70
-	bl sub_020BECB0
-	bl sub_020BECE8
-	bl sub_020BED5C
-	bl sub_020BED98
-	bl sub_020BED0C
-	bl sub_020BED20
+	bl GX_ResetBankForBG
+	bl GX_ResetBankForBGExtPltt
+	bl GX_ResetBankForSubBG
+	bl GX_ResetBankForSubBGExtPltt
+	bl GX_ResetBankForOBJ
+	bl GX_ResetBankForOBJExtPltt
+	bl GX_ResetBankForSubOBJ
+	bl GX_ResetBankForSubOBJExtPltt
+	bl GX_ResetBankForTex
+	bl GX_ResetBankForTexPltt
 	ldr r0, [r4, #0]
-	bl sub_020BE004
+	bl GX_SetBankForBG
 	ldr r0, [r4, #4]
-	bl sub_020BE3E4
+	bl GX_SetBankForBGExtPltt
 	ldr r0, [r4, #8]
-	bl sub_020BEA50
+	bl GX_SetBankForSubBG
 	ldr r0, [r4, #0xc]
-	bl sub_020BEB68
+	bl GX_SetBankForSubBGExtPltt
 	ldr r0, [r4, #0x10]
-	bl sub_020BE294
+	bl GX_SetBankForOBJ
 	ldr r0, [r4, #0x14]
-	bl sub_020BE4E4
+	bl GX_SetBankForOBJExtPltt
 	ldr r0, [r4, #0x18]
-	bl sub_020BEAF8
+	bl GX_SetBankForSubOBJ
 	ldr r0, [r4, #0x1c]
-	bl sub_020BEBE8
+	bl GX_SetBankForSubOBJExtPltt
 	ldr r0, [r4, #0x20]
-	bl sub_020BE590
+	bl GX_SetBankForTex
 	ldr r0, [r4, #0x24]
-	bl sub_020BE768
+	bl GX_SetBankForTexPltt
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_0201FE94
@@ -173,7 +173,7 @@ _0201FFCC: .word 0xFFFFE0FF
 	thumb_func_start sub_0201FFD0
 sub_0201FFD0: ; 0x0201FFD0
 	push {r3, lr}
-	bl sub_020BDDF8
+	bl GX_DispOn
 	ldr r2, _0201FFE4 ; =0x04001000
 	mov r0, #1
 	ldr r1, [r2, #0]

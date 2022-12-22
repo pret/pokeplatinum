@@ -22,9 +22,9 @@
 .public sub_0203A154
 .public sub_0203A288
 .public sub_02071CFC
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020E1F6C
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public _s32_div_f
 .public ov5_021DD6FC
 .public ov5_021DD718
 .public ov5_021DD744

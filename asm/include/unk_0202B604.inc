@@ -61,6 +61,6 @@
 .public sub_0203A274
 .public sub_0203A288
 .public sub_0203A2A8
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020E1F6C
+.public memcpy
+.public memset
+.public _s32_div_f

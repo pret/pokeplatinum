@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C3128
-sub_020C3128: ; 0x020C3128
+	arm_func_start DLAddFront
+DLAddFront: ; 0x020C3128
 	str r0, [r1, #4]
 	mov r2, #0
 	str r2, [r1, #0]
@@ -15,10 +15,10 @@ sub_020C3128: ; 0x020C3128
 	strne r1, [r0]
 	mov r0, r1
 	bx lr
-	arm_func_end sub_020C3128
+	arm_func_end DLAddFront
 
-	arm_func_start sub_020C3144
-sub_020C3144: ; 0x020C3144
+	arm_func_start DLExtract
+DLExtract: ; 0x020C3144
 	ldr r3, [r1, #4]
 	cmp r3, #0
 	ldrne r2, [r1]
@@ -29,10 +29,10 @@ sub_020C3144: ; 0x020C3144
 	ldrne r1, [r1, #4]
 	strne r1, [r2, #4]
 	bx lr
-	arm_func_end sub_020C3144
+	arm_func_end DLExtract
 
-	arm_func_start sub_020C316C
-sub_020C316C: ; 0x020C316C
+	arm_func_start DLInsert
+DLInsert: ; 0x020C316C
 	stmfd sp!, {r3, lr}
 	mov lr, r0
 	cmp r0, #0
@@ -79,21 +79,21 @@ _020C31D4:
 _020C320C:
 	mov r0, r1
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020C316C
+	arm_func_end DLInsert
 
-	arm_func_start sub_020C3214
-sub_020C3214: ; 0x020C3214
+	arm_func_start OS_AllocFromHeap
+OS_AllocFromHeap: ; 0x020C3214
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
 	mov r5, r1
 	mov r7, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C3318 ; =0x021CCEE0
 	mov r6, r0
 	ldr r1, [r1, r4, lsl #2]
 	cmp r1, #0
 	bne _020C3248
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020C3248:
@@ -119,7 +119,7 @@ _020C328C:
 	cmp r5, #0
 	bne _020C32A4
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020C32A4:
@@ -128,7 +128,7 @@ _020C32A4:
 	cmp r1, #0x40
 	bhs _020C32C4
 	mov r1, r5
-	bl sub_020C3144
+	bl DLExtract
 	str r0, [r4, #4]
 	b _020C32F8
 _020C32C4:
@@ -148,23 +148,23 @@ _020C32C4:
 _020C32F8:
 	ldr r0, [r4, #8]
 	mov r1, r5
-	bl sub_020C3128
+	bl DLAddFront
 	str r0, [r4, #8]
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r0, r5, #0x20
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C3318: .word 0x021CCEE0
-	arm_func_end sub_020C3214
+	arm_func_end OS_AllocFromHeap
 
-	arm_func_start sub_020C331C
-sub_020C331C: ; 0x020C331C
+	arm_func_start OS_FreeToHeap
+OS_FreeToHeap: ; 0x020C331C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C3380 ; =0x021CCEE0
 	mov r4, r0
 	ldr r0, [r1, r7, lsl #2]
@@ -176,44 +176,44 @@ sub_020C331C: ; 0x020C331C
 	sub r5, r5, #0x20
 	ldr r0, [r7, #8]
 	mov r1, r5
-	bl sub_020C3144
+	bl DLExtract
 	str r0, [r7, #8]
 	ldr r0, [r7, #4]
 	mov r1, r5
-	bl sub_020C316C
+	bl DLInsert
 	str r0, [r7, #4]
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C3380: .word 0x021CCEE0
-	arm_func_end sub_020C331C
+	arm_func_end OS_FreeToHeap
 
-	arm_func_start sub_020C3384
-sub_020C3384: ; 0x020C3384
+	arm_func_start OS_SetCurrentHeap
+OS_SetCurrentHeap: ; 0x020C3384
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
 	mov r5, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C33B0 ; =0x021CCEE0
 	ldr r1, [r1, r4, lsl #2]
 	ldr r4, [r1, #0]
 	str r5, [r1, #0]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C33B0: .word 0x021CCEE0
-	arm_func_end sub_020C3384
+	arm_func_end OS_SetCurrentHeap
 
-	arm_func_start sub_020C33B4
-sub_020C33B4: ; 0x020C33B4
+	arm_func_start OS_InitAlloc
+OS_InitAlloc: ; 0x020C33B4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r5, r1
 	mov r4, r2
 	mov r6, r3
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _020C3458 ; =0x021CCEE0
 	mov r1, #0xc
 	str r5, [r2, r7, lsl #2]
@@ -248,30 +248,30 @@ _020C3428:
 	bic r1, r1, #0x1f
 	str r1, [r5, #8]
 	str r2, [r5, #0xc]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, [r5, #8]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C3458: .word 0x021CCEE0
-	arm_func_end sub_020C33B4
+	arm_func_end OS_InitAlloc
 
-	arm_func_start sub_020C345C
-sub_020C345C: ; 0x020C345C
+	arm_func_start OS_ClearAlloc
+OS_ClearAlloc: ; 0x020C345C
 	ldr r1, _020C346C ; =0x021CCEE0
 	mov r2, #0
 	str r2, [r1, r0, lsl #2]
 	bx lr
 	; .align 2, 0
 _020C346C: .word 0x021CCEE0
-	arm_func_end sub_020C345C
+	arm_func_end OS_ClearAlloc
 
-	arm_func_start sub_020C3470
-sub_020C3470: ; 0x020C3470
+	arm_func_start OS_CreateHeap
+OS_CreateHeap: ; 0x020C3470
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r4, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _020C3504 ; =0x021CCEE0
 	add r1, r6, #0x1f
 	ldr r2, [r2, r4, lsl #2]
@@ -295,7 +295,7 @@ _020C34AC:
 	str r1, [r6, #8]
 	str r6, [r3, #4]
 	str r2, [r3, #8]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 _020C34E8:
@@ -304,12 +304,12 @@ _020C34E8:
 	add r3, r3, #0xc
 	blt _020C34AC
 _020C34F8:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C3504: .word 0x021CCEE0
-	arm_func_end sub_020C3470
+	arm_func_end OS_CreateHeap
 
 	.bss
 

@@ -1,6 +1,6 @@
-.public sub_020BCFD0
-.public sub_020BD024
-.public sub_020BD048
-.public sub_020BD080
-.public sub_020C4CA4
-.public sub_020E1D24
+.public FX_Div
+.public FX_GetDivResultFx64c
+.public FX_GetDivResult
+.public FX_InvAsync
+.public MI_Copy48B
+.public _ll_sdiv

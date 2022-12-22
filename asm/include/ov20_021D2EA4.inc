@@ -41,9 +41,9 @@
 .public sub_020237BC
 .public sub_02023D8C
 .public sub_02023E2C
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020C4B18
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public MIi_CpuCopy16
 .public ov20_021D1F84
 .public ov20_021D1F88
 .public ov20_021D1F9C

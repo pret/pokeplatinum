@@ -60,7 +60,7 @@ _021D842C:
 	bl ov4_021D7724
 	b _021D8494
 _021D843C:
-	bl sub_020C42A8
+	bl OS_Terminate
 	b _021D8494
 _021D8444:
 	ldr r1, _021D84BC ; =0xFFFF86D4
@@ -79,7 +79,7 @@ _021D8464:
 	bl ov4_021D7724
 	b _021D8494
 _021D8478:
-	bl sub_020C42A8
+	bl OS_Terminate
 	b _021D8494
 _021D8480:
 	ldr r1, _021D84C8 ; =0xFFFF86DF
@@ -87,7 +87,7 @@ _021D8480:
 	bl ov4_021D7724
 	b _021D8494
 _021D8490:
-	bl sub_020C42A8
+	bl OS_Terminate
 _021D8494:
 	ldr r1, _021D84B4 ; =0x0221A4E8
 	mov r0, r6
@@ -112,7 +112,7 @@ ov4_021D84CC: ; 0x021D84CC
 	ldr r0, _021D850C ; =0x0221A4E8
 	ldr r0, [r0, #0]
 	add r0, r0, #0x9c0
-	bl sub_020C21D4
+	bl OS_JoinThread
 	ldr r0, _021D850C ; =0x0221A4E8
 	ldr r0, [r0, #0]
 	ldr r4, [r0, #4]
@@ -143,10 +143,10 @@ _021D8528:
 	ldr r0, _021D86B0 ; =0x0221A4E8
 	ldr r5, [r0, #0]
 	add r0, r5, #0x50
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 	ldr r0, _021D86B4 ; =0x02217430
-	bl sub_020D8B60
+	bl strlen
 	add r0, r4, r0
 	cmp r0, #0xff
 	bls _021D8574
@@ -161,11 +161,11 @@ _021D8574:
 	add r0, sp, #0x1a0
 	add r3, r5, #0x50
 	mov r1, #0x100
-	bl sub_020C1AF0
+	bl OS_SNPrintf
 	ldr r0, _021D86B0 ; =0x0221A4E8
 	ldr r4, [r0, #0]
 	add r0, r4, #0x91
-	bl sub_020D8B60
+	bl strlen
 	mov r1, r0
 	add r2, sp, #0x10
 	add r0, r4, #0x91
@@ -237,7 +237,7 @@ _021D8684:
 	bl ov4_021D83D4
 _021D869C:
 	mov r0, r4
-	bl sub_020C24A4
+	bl OS_Sleep
 	b _021D8528
 _021D86A8:
 	.byte 0x2A, 0xDE, 0x8D, 0xE2, 0xF8, 0x80, 0xBD, 0xE8
@@ -270,7 +270,7 @@ ov4_021D86C8: ; 0x021D86C8
 	str r1, [r0, #0x48]
 	ldr r0, [r2, #0]
 	mov r2, #0xa80
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021D87D4 ; =0x0221A4E8
 	mov r1, r5
 	ldr r3, [r0, #0]
@@ -278,13 +278,13 @@ ov4_021D86C8: ; 0x021D86C8
 	str r6, [r3, #0]
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl sub_020D8C44
+	bl strncpy
 	ldr r0, _021D87D4 ; =0x0221A4E8
 	mov r1, r4
 	ldr r0, [r0, #0]
 	mov r2, #0x1f
 	add r0, r0, #0x28
-	bl sub_020D8C44
+	bl strncpy
 	ldr r1, _021D87D4 ; =0x0221A4E8
 	ldr r0, _021D87D8 ; =0x02217458
 	ldr r1, [r1, #0]
@@ -311,11 +311,11 @@ _021D878C:
 	add r3, r3, #0x9c0
 	mov r2, #0
 	str ip, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _021D87D4 ; =0x0221A4E8
 	ldr r0, [r0, #0]
 	add r0, r0, #0x9c0
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	mov r0, #1
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
@@ -395,7 +395,7 @@ ov4_021D8884: ; 0x021D8884
 	mul r2, r4, r0
 	mov r0, r6
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4

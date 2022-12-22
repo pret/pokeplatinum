@@ -13,7 +13,7 @@ ov18_0222B6A0: ; 0x0222B6A0
 	ldr r0, _0222B6F8 ; =0x02253250
 	mov r1, r4
 	mov r2, #0x3f
-	bl sub_020D8C44
+	bl strncpy
 	ldrb r0, [r4, #5]
 	cmp r0, #0x78
 	ldreq r0, _0222B6F8 ; =0x02253250
@@ -46,7 +46,7 @@ ov18_0222B700: ; 0x0222B700
 	bl ov18_02243738
 	ldr r1, [sp]
 	mov r4, r0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r2, [sp]
 	mov r0, r4
 	mov r1, #0

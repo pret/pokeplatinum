@@ -1,5 +1,5 @@
-.public sub_020C2C54
-.public sub_020D8C44
+.public DC_FlushRange
+.public strncpy
 .public ov18_0222AF0C
 .public ov18_0222B6A0
 .public ov18_0222B8F8

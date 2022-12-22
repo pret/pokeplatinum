@@ -6,41 +6,41 @@
 	.text
 
 
-	arm_func_start sub_020A6824
-sub_020A6824: ; 0x020A6824
+	arm_func_start NNS_GfdGetLnkTexVramManagerWorkSize
+NNS_GfdGetLnkTexVramManagerWorkSize: ; 0x020A6824
 	mov r0, r0, lsl #4
 	bx lr
-	arm_func_end sub_020A6824
+	arm_func_end NNS_GfdGetLnkTexVramManagerWorkSize
 
-	arm_func_start sub_020A682C
-sub_020A682C: ; 0x020A682C
+	arm_func_start NNS_GfdInitLnkTexVramManager
+NNS_GfdInitLnkTexVramManager: ; 0x020A682C
 	stmfd sp!, {r3, lr}
 	ldr ip, _020A6870 ; =0x021C3AD4
 	str r0, [ip, #0xc]
 	str r1, [ip, #0x10]
 	str r2, [ip, #0x14]
 	str r3, [ip, #0x18]
-	bl sub_020A6988
+	bl NNS_GfdResetLnkTexVramState
 	ldr r0, [sp, #8]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	ldr r3, _020A6874 ; =sub_020A6884
+	ldr r3, _020A6874 ; =NNS_GfdAllocLnkTexVram
 	ldr r1, _020A6878 ; =0x02100DEC
-	ldr r2, _020A687C ; =sub_020A6914
+	ldr r2, _020A687C ; =NNS_GfdFreeLnkTexVram
 	ldr r0, _020A6880 ; =0x02100DF0
 	str r3, [r1, #0]
 	str r2, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020A6870: .word 0x021C3AD4
-_020A6874: .word sub_020A6884
+_020A6874: .word NNS_GfdAllocLnkTexVram
 _020A6878: .word 0x02100DEC
-_020A687C: .word sub_020A6914
+_020A687C: .word NNS_GfdFreeLnkTexVram
 _020A6880: .word 0x02100DF0
-	arm_func_end sub_020A682C
+	arm_func_end NNS_GfdInitLnkTexVramManager
 
-	arm_func_start sub_020A6884
-sub_020A6884: ; 0x020A6884
+	arm_func_start NNS_GfdAllocLnkTexVram
+NNS_GfdAllocLnkTexVram: ; 0x020A6884
 	stmfd sp!, {r3, r4, r5, lr}
 	cmp r0, #0
 	moveq r5, #0x10
@@ -57,13 +57,13 @@ sub_020A6884: ; 0x020A6884
 	ldr r0, _020A6908 ; =0x021C3AD8
 	ldr r1, _020A690C ; =0x021C3ADC
 	mov r3, r5
-	bl sub_020A65BC
+	bl NNSi_GfdAllocLnkVram
 	b _020A68DC
 _020A68CC:
 	ldr r0, _020A6910 ; =0x021C3AD4
 	ldr r1, _020A690C ; =0x021C3ADC
 	mov r3, r5
-	bl sub_020A65BC
+	bl NNSi_GfdAllocLnkVram
 _020A68DC:
 	cmp r0, #0
 	moveq r0, #0
@@ -80,10 +80,10 @@ _020A6904: .word 0x0007FFF0
 _020A6908: .word 0x021C3AD8
 _020A690C: .word 0x021C3ADC
 _020A6910: .word 0x021C3AD4
-	arm_func_end sub_020A6884
+	arm_func_end NNS_GfdAllocLnkTexVram
 
-	arm_func_start sub_020A6914
-sub_020A6914: ; 0x020A6914
+	arm_func_start NNS_GfdFreeLnkTexVram
+NNS_GfdFreeLnkTexVram: ; 0x020A6914
 	stmfd sp!, {r3, lr}
 	ldr r1, _020A6978 ; =0x7FFF0000
 	mov r2, r0, lsl #0x10
@@ -98,12 +98,12 @@ sub_020A6914: ; 0x020A6914
 	beq _020A6954
 	ldr r0, _020A697C ; =0x021C3AD8
 	ldr r1, _020A6980 ; =0x021C3ADC
-	bl sub_020A6794
+	bl NNSi_GfdFreeLnkVram
 	b _020A6960
 _020A6954:
 	ldr r0, _020A6984 ; =0x021C3AD4
 	ldr r1, _020A6980 ; =0x021C3ADC
-	bl sub_020A6794
+	bl NNSi_GfdFreeLnkVram
 _020A6960:
 	cmp r0, #0
 	movne r0, #0
@@ -117,10 +117,10 @@ _020A6978: .word 0x7FFF0000
 _020A697C: .word 0x021C3AD8
 _020A6980: .word 0x021C3ADC
 _020A6984: .word 0x021C3AD4
-	arm_func_end sub_020A6914
+	arm_func_end NNS_GfdFreeLnkTexVram
 
-	arm_func_start sub_020A6988
-sub_020A6988: ; 0x020A6988
+	arm_func_start NNS_GfdResetLnkTexVramState
+NNS_GfdResetLnkTexVramState: ; 0x020A6988
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x30
 	ldr lr, _020A6B70 ; =0x020F9600
@@ -186,14 +186,14 @@ _020A6A68:
 	add r2, r2, #0xc
 	blo _020A6A34
 	ldr r0, _020A6B78 ; =0x021C3AD4
-	bl sub_020A6508
+	bl NNSi_GfdInitLnkVramMan
 	ldr r0, _020A6B7C ; =0x021C3AD8
-	bl sub_020A6508
+	bl NNSi_GfdInitLnkVramMan
 	ldr r0, _020A6B74 ; =0x021C3AD4
 	ldr r1, [r0, #0x18]
 	ldr r0, [r0, #0x14]
 	mov r1, r1, lsr #4
-	bl sub_020A6514
+	bl NNSi_GfdInitLnkVramBlockPool
 	ldr r3, [sp, #8]
 	ldr r1, _020A6B74 ; =0x021C3AD4
 	cmp r3, #0
@@ -202,7 +202,7 @@ _020A6A68:
 	ldr r0, _020A6B7C ; =0x021C3AD8
 	ldr r1, _020A6B80 ; =0x021C3ADC
 	mov r2, #0
-	bl sub_020A6560
+	bl NNSi_GfdAddNewFreeBlock
 _020A6AC0:
 	ldr r3, [sp, #4]
 	ldr r2, [sp, #8]
@@ -210,7 +210,7 @@ _020A6AC0:
 	beq _020A6ADC
 	ldr r0, _020A6B78 ; =0x021C3AD4
 	ldr r1, _020A6B80 ; =0x021C3ADC
-	bl sub_020A6560
+	bl NNSi_GfdAddNewFreeBlock
 _020A6ADC:
 	ldr r3, [sp, #0x20]
 	cmp r3, #0
@@ -218,7 +218,7 @@ _020A6ADC:
 	ldr r0, _020A6B7C ; =0x021C3AD8
 	ldr r1, _020A6B80 ; =0x021C3ADC
 	mov r2, #0x40000
-	bl sub_020A6560
+	bl NNSi_GfdAddNewFreeBlock
 _020A6AF8:
 	ldr r3, [sp, #0x1c]
 	ldr r2, [sp, #0x20]
@@ -227,7 +227,7 @@ _020A6AF8:
 	ldr r0, _020A6B78 ; =0x021C3AD4
 	ldr r1, _020A6B80 ; =0x021C3ADC
 	add r2, r2, #0x40000
-	bl sub_020A6560
+	bl NNSi_GfdAddNewFreeBlock
 _020A6B18:
 	ldr r3, [sp, #0x28]
 	cmp r3, #0
@@ -235,7 +235,7 @@ _020A6B18:
 	ldr r0, _020A6B78 ; =0x021C3AD4
 	ldr r1, _020A6B80 ; =0x021C3ADC
 	mov r2, #0x60000
-	bl sub_020A6560
+	bl NNSi_GfdAddNewFreeBlock
 _020A6B34:
 	ldr r3, [sp, #0x10]
 	cmp r3, #0
@@ -243,14 +243,14 @@ _020A6B34:
 	ldr r0, _020A6B78 ; =0x021C3AD4
 	ldr r1, _020A6B80 ; =0x021C3ADC
 	add r2, r4, #0x20000
-	bl sub_020A6560
+	bl NNSi_GfdAddNewFreeBlock
 _020A6B50:
 	ldr r0, _020A6B78 ; =0x021C3AD4
 	ldr r1, _020A6B80 ; =0x021C3ADC
-	bl sub_020A6710
+	bl NNSi_GfdMergeAllFreeBlocks
 	ldr r0, _020A6B7C ; =0x021C3AD8
 	ldr r1, _020A6B80 ; =0x021C3ADC
-	bl sub_020A6710
+	bl NNSi_GfdMergeAllFreeBlocks
 	add sp, sp, #0x30
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -259,7 +259,7 @@ _020A6B74: .word 0x021C3AD4
 _020A6B78: .word 0x021C3AD4
 _020A6B7C: .word 0x021C3AD8
 _020A6B80: .word 0x021C3ADC
-	arm_func_end sub_020A6988
+	arm_func_end NNS_GfdResetLnkTexVramState
 
 	.rodata
 

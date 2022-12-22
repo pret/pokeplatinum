@@ -21,9 +21,9 @@
 .public sub_02062B68
 .public sub_02063078
 .public sub_02063088
-.public sub_020B2D8C
-.public sub_020B3764
-.public sub_020E1F6C
+.public NNSi_G3dModifyPolygonAttrMask
+.public NNS_G3dMdlSetMdlAlphaAll
+.public _s32_div_f
 .public ov5_021DF74C
 .public ov5_021EC374
 .public ov5_021EC638

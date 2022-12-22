@@ -29,7 +29,7 @@ ov104_0223AF58: ; 0x0223AF58
 _0223AF7E:
 	bl sub_0201D2E8
 	mov r1, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	cmp r0, #8
@@ -112,7 +112,7 @@ _0223B018:
 	bl sub_0201D2E8
 	mov r1, #0x4b
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r1, #0x10
 	lsr r4, r0, #0x10
 	ldr r1, [sp, #8]
@@ -291,7 +291,7 @@ _0223B156:
 	lsr r5, r0, #0x10
 	bl sub_0201D2E8
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp, #0x10]
 	ldrh r0, [r0]
 	add r0, r0, r1
@@ -879,7 +879,7 @@ ov104_0223B5C0: ; 0x0223B5C0
 	mov r2, #0
 	bl sub_02074470
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	pop {r4, pc}
@@ -1012,21 +1012,21 @@ ov104_0223B6C4: ; 0x0223B6C4
 	cmp r0, #0
 	beq _0223B6DC
 	lsl r0, r0, #0xc
-	bl sub_020E17FC
+	bl _f_utof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223B6EA
 _0223B6DC:
 	lsl r0, r0, #0xc
-	bl sub_020E17FC
+	bl _f_utof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223B6EA:
-	bl sub_020E1740
-	bl sub_020BCFF0
+	bl _f_ftoi
+	bl FX_Sqrt
 	pop {r3, pc}
 	thumb_func_end ov104_0223B6C4
 

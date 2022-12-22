@@ -1,9 +1,9 @@
 .public sub_020A2A34
-.public sub_020C3880
-.public sub_020C42A8
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020CEB20
+.public OS_GetTick
+.public OS_Terminate
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public WM_GetNextTgid
 .public ov18_0221F874
 .public ov18_02223B2C
 .public ov18_0223E5D0

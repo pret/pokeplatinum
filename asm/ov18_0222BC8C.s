@@ -86,10 +86,10 @@ ov18_0222BD88: ; 0x0222BD88
 	mov r4, #0
 	ldrh r5, [r0]
 	strh r4, [r0]
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	cmp r0, #0x8000
 	beq _0222BDB0
-	bl sub_020CE814
+	bl WM_GetLinkLevel
 	mov r4, r0
 _0222BDB0:
 	ldr r2, _0222BE20 ; =0x04000208

@@ -35,7 +35,7 @@
 .public sub_0207D60C
 .public sub_0207D688
 .public sub_0207D990
-.public sub_020D5124
+.public memset
 .public ov5_021DD250
 .public ov5_021DD3A8
 .public ov5_021F7A3C

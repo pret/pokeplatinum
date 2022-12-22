@@ -1,5 +1,5 @@
-.public sub_020D50B8
-.public sub_020D8B7C
+.public memcpy
+.public strcpy
 .public ov61_0222CFD4
 .public ov61_0222D3E8
 .public ov61_0222D498

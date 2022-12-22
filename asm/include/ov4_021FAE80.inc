@@ -1,7 +1,7 @@
-.public sub_020D5190
-.public sub_020D74E8
-.public sub_020D8B60
-.public sub_020D8B7C
+.public memcmp
+.public snprintf
+.public strlen
+.public strcpy
 .public ov4_021E9A8C
 .public ov4_021E9B50
 .public ov4_021E9BBC

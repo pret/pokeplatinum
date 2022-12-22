@@ -254,14 +254,14 @@ ov37_02256588: ; 0x02256588
 	bl ov25_022558C4
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020CB144
+	bl PM_SetBackLight
 	b _022565C8
 _022565BA:
 	mov r1, #1
 	bl ov25_022558C4
 	mov r0, #1
 	mov r1, #0
-	bl sub_020CB144
+	bl PM_SetBackLight
 _022565C8:
 	add r0, r6, #0
 	bl ov37_022564C4

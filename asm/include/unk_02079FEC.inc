@@ -6,4 +6,4 @@
 .public sub_02074470
 .public sub_0207A008
 .public sub_0207A014
-.public sub_020D5124
+.public memset

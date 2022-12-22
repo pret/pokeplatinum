@@ -17,7 +17,7 @@ ov18_02245A44: ; 0x02245A44
 	mov r0, #0x200
 	mov r2, #0x800
 	str r1, [r3, #0]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r5, #0
 	ldr r7, _02245AD8 ; =0x022533E8
 	mov r6, r5
@@ -57,18 +57,18 @@ ov18_02245AE0: ; 0x02245AE0
 	ldr r0, _02245B24 ; =0x022533E8
 	mov r1, #0x800
 	ldr r0, [r0, #0]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02245B24 ; =0x022533E8
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x400
-	bl sub_020C0210
+	bl GX_LoadOAM
 	ldr r0, _02245B24 ; =0x022533E8
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x400
 	add r0, r0, #0x400
-	bl sub_020C0264
+	bl GXS_LoadOAM
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02245B24: .word 0x022533E8

@@ -164,7 +164,7 @@
 .public sub_02070588
 .public sub_020705A4
 .public sub_020705CC
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov5_021DDAA4
 .public ov5_021E15A8
 .public ov5_021E1F04

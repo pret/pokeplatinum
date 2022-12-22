@@ -9,8 +9,8 @@ _020C9770: .word 0x6ED9EBA1
 _020C9774: .word 0x8F1BBCDC
 _020C9778: .word 0xCA62C1D6
 
-	arm_func_start sub_020C977C
-sub_020C977C: ; 0x020C977C
+	arm_func_start DGTi_hash2_arm4_small
+DGTi_hash2_arm4_small: ; 0x020C977C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, ip, lr}
 	ldmia r0, {r3, sb, sl, fp, ip}
 	sub sp, sp, #0x84
@@ -177,4 +177,4 @@ _020C995C:
 	bgt _020C978C
 	add sp, sp, #0x84
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, ip, pc}
-	arm_func_end sub_020C977C
+	arm_func_end DGTi_hash2_arm4_small

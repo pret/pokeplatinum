@@ -16,7 +16,7 @@ sub_02002F38: ; 0x02002F38
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -100,13 +100,13 @@ sub_02002FBC: ; 0x02002FBC
 	lsl r4, r3, #1
 	add r1, r1, r4
 	add r2, r7, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r1, r5, r6
 	ldr r1, [r1, #4]
 	ldr r0, [sp]
 	add r1, r1, r4
 	add r2, r7, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end sub_02002FBC
@@ -270,7 +270,7 @@ _02003102:
 	lsl r0, r0, #1
 	add r0, r1, r0
 	ldr r1, [sp, #0x14]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	pop {r3, r4, r5, pc}
@@ -299,7 +299,7 @@ sub_02003120: ; 0x02003120
 	ldr r1, [r5, r6]
 	add r0, r0, r4
 	add r1, r1, r7
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #4]
 	add r1, r5, r6
 	ldr r0, [r5, r0]
@@ -307,7 +307,7 @@ sub_02003120: ; 0x02003120
 	ldr r2, [sp]
 	add r0, r0, r4
 	add r1, r1, r7
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -558,7 +558,7 @@ sub_0200330C: ; 0x0200330C
 	cmp r2, #0
 	bge _0200333C
 	add r0, r2, #0
-	bl sub_020D4070
+	bl abs
 	add r0, r0, #2
 	ldrh r1, [r5, #6]
 	mov r2, #0xf
@@ -1069,7 +1069,7 @@ _020036B8:
 _020036D8:
 	ldr r0, [r4, #4]
 	ldr r1, [r4, #8]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r5, #0xd
 	bls _020036E6
 _020036E4:
@@ -1100,109 +1100,109 @@ _0200370E:
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	b _0200380C
 _0200371A:
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	b _0200380C
 _02003726:
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	b _0200380C
 _02003732:
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	b _0200380C
 _0200373E:
-	bl sub_020C096C
+	bl GX_BeginLoadBGExtPltt
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	b _0200380C
 _02003752:
-	bl sub_020C096C
+	bl GX_BeginLoadBGExtPltt
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	add r1, r7, #0
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	b _0200380C
 _02003766:
-	bl sub_020C096C
+	bl GX_BeginLoadBGExtPltt
 	mov r1, #1
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	lsl r1, r1, #0xe
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	b _0200380C
 _0200377C:
-	bl sub_020C096C
+	bl GX_BeginLoadBGExtPltt
 	mov r1, #6
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	lsl r1, r1, #0xc
-	bl sub_020C0A0C
-	bl sub_020C0A7C
+	bl GX_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
 	b _0200380C
 _02003792:
-	bl sub_020C0BBC
+	bl GXS_BeginLoadBGExtPltt
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C0BD4
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	b _0200380C
 _020037A6:
-	bl sub_020C0BBC
+	bl GXS_BeginLoadBGExtPltt
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	add r1, r7, #0
-	bl sub_020C0BD4
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	b _0200380C
 _020037BA:
-	bl sub_020C0BBC
+	bl GXS_BeginLoadBGExtPltt
 	mov r1, #1
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	lsl r1, r1, #0xe
-	bl sub_020C0BD4
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	b _0200380C
 _020037D0:
-	bl sub_020C0BBC
+	bl GXS_BeginLoadBGExtPltt
 	mov r1, #6
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	lsl r1, r1, #0xc
-	bl sub_020C0BD4
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	b _0200380C
 _020037E6:
-	bl sub_020C0AC4
+	bl GX_BeginLoadOBJExtPltt
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C0B0C
-	bl sub_020C0B78
+	bl GX_LoadOBJExtPltt
+	bl GX_EndLoadOBJExtPltt
 	b _0200380C
 _020037FA:
-	bl sub_020C0C78
+	bl GXS_BeginLoadOBJExtPltt
 	ldr r0, [r4, #4]
 	ldr r2, [r4, #8]
 	mov r1, #0
-	bl sub_020C0C90
-	bl sub_020C0CF4
+	bl GXS_LoadOBJExtPltt
+	bl GXS_EndLoadOBJExtPltt
 _0200380C:
 	add r5, r5, #1
 	add r4, #0x14
@@ -1329,7 +1329,7 @@ _020038D6:
 	ldr r0, [sp]
 	sub r2, r2, r5
 	lsl r2, r2, #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _020038EE:
 	cmp r7, #0
 	beq _020038F6
@@ -1344,7 +1344,7 @@ _020038F6:
 	ldr r0, [sp]
 	sub r2, r2, r5
 	lsl r2, r2, #1
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _0200390A:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}

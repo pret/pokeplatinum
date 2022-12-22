@@ -17,7 +17,7 @@ ov107_02249604: ; 0x02249604
 	str r2, [sp, #0x18]
 	bl sub_0201DBEC
 	bl ov107_02249A3C
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80

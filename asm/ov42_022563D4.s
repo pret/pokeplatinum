@@ -325,7 +325,7 @@ _0225661E:
 	mov r0, #0x38
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	neg r1, r0
 	ldr r0, _022566A0 ; =0xFFFFE000
 	str r1, [r4, #0x40]

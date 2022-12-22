@@ -55,13 +55,13 @@ ov18_022425E8: ; 0x022425E8
 	strb r3, [r2, #0xa92]
 	ldr r0, [r0, #0]
 	strb r1, [r0, #0xacc]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r0, _022426D4 ; =0x022533A8
 	ldr r0, [r0, #0]
 	add r0, r0, #0x24c
 	add r0, r0, #0x400
 	bl sub_020A2A34
-	bl sub_020C3880
+	bl OS_GetTick
 	bl ov18_0223E5D0
 	ldr r1, _022426D4 ; =0x022533A8
 	ldr r1, [r1, #0]
@@ -146,7 +146,7 @@ ov18_022427B4: ; 0x022427B4
 	mov r1, #1
 	ldr r0, [r0, #0]
 	strb r1, [r0, #0xa90]
-	bl sub_020CEB20
+	bl WM_GetNextTgid
 	ldr r3, _02242830 ; =0x022533A8
 	mov r2, #0x40
 	ldr r1, [r3, #0]
@@ -155,7 +155,7 @@ ov18_022427B4: ; 0x022427B4
 	ldr r1, [r3, #0]
 	ldr r0, [r1, #0xaa4]
 	add r1, r1, #0xa50
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02242830 ; =0x022533A8
 	mov r2, #0
 	ldr r1, [r0, #0]
@@ -545,7 +545,7 @@ _02242D1C:
 	bl ov18_02242474
 	ldmia sp!, {r3, pc}
 _02242D24:
-	bl sub_020C42A8
+	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02242D2C: .word 0x022533A8
@@ -902,12 +902,12 @@ ov18_02243198: ; 0x02243198
 	ldr r0, [r0, #0]
 	mov r2, #0x100
 	add r0, r0, #0x100
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _022431D8 ; =0x022533A8
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x100
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _022431D8 ; =0x022533A8
 	ldr r0, [r0, #0]
 	str r0, [r0, #0xab0]
@@ -934,7 +934,7 @@ ov18_022431DC: ; 0x022431DC
 	ldr r1, [r3, #0]
 	ldr r1, [r1, #0xab0]
 	add r1, r1, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _02243250
 _02243224:
 	ldr r0, [r5, #0x204]
@@ -1003,7 +1003,7 @@ _022432EC:
 	mov r2, r6
 	add r1, r1, #0x100
 	mla r1, r7, r8, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sb]
 	add r0, r0, r7, lsl #2
 	str r5, [r0, #0x208]

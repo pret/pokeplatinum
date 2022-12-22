@@ -13,7 +13,7 @@ ov106_02243310: ; 0x02243310
 	add r5, r0, #0
 	str r1, [sp, #0x14]
 	bl ov106_022435C8
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80

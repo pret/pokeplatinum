@@ -16,7 +16,7 @@
 .public sub_02023790
 .public sub_020237BC
 .public sub_02025EF4
-.public sub_020D5124
+.public memset
 .public ov66_02231C60
 .public ov66_02231D38
 .public ov66_02231D58

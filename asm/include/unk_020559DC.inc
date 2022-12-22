@@ -37,7 +37,7 @@
 .public sub_020777B4
 .public sub_02077BD8
 .public sub_0207A268
-.public sub_020CC16C
-.public sub_020CC218
-.public sub_020CC3FC
-.public sub_020E1D24
+.public RTC_ConvertDateToDay
+.public RTC_ConvertDateTimeToSecond
+.public RTC_ConvertSecondToDateTime
+.public _ll_sdiv

@@ -1,2 +1,2 @@
-.public sub_020C5310
-.public sub_020C5330
+.public SND_LockChannel
+.public SND_UnlockChannel

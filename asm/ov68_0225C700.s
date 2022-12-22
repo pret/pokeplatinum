@@ -27,7 +27,7 @@ ov68_0225C700: ; 0x0225C700
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r5, #0]
 	add r0, r4, #0
 	mov r2, #0x7a
@@ -468,7 +468,7 @@ ov68_0225CAB4: ; 0x0225CAB4
 	sub sp, #0x14
 	add r5, r0, #0
 	add r6, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -2493,7 +2493,7 @@ _0225DA86:
 	str r1, [r6, #0x64]
 	mul r0, r1
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x24]
 	mov r0, #0
 	str r0, [sp, #0x1c]
@@ -2796,10 +2796,10 @@ _0225DCB4:
 	ldr r2, [r5, r2]
 	add r0, r6, #0
 	add r3, r1, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	ldr r2, [r5, #0xc]
 	ldr r3, [r5, #0x10]
-	bl sub_020E1ED4
+	bl _ull_div
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov68_0225DCA4
 

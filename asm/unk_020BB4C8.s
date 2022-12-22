@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020BB4C8
-sub_020BB4C8: ; 0x020BB4C8
+	arm_func_start MTX_Identity33_
+MTX_Identity33_: ; 0x020BB4C8
 	mov r2, #0x1000
 	str r2, [r0, #0x20]
 	mov r3, #0
@@ -17,10 +17,10 @@ sub_020BB4C8: ; 0x020BB4C8
 	stmia r0!, {r2, r3}
 	stmia r0!, {r1, r3}
 	bx lr
-	arm_func_end sub_020BB4C8
+	arm_func_end MTX_Identity33_
 
-	arm_func_start sub_020BB4EC
-sub_020BB4EC: ; 0x020BB4EC
+	arm_func_start MTX_ScaleApply33
+MTX_ScaleApply33: ; 0x020BB4EC
 	stmfd sp!, {r4, lr}
 	ldr r4, [r0, #0]
 	ldr ip, [sp, #8]
@@ -69,10 +69,10 @@ sub_020BB4EC: ; 0x020BB4EC
 	orr r2, r2, r0, lsl #20
 	str r2, [r1, #0x20]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020BB4EC
+	arm_func_end MTX_ScaleApply33
 
-	thumb_func_start sub_020BB5AC
-sub_020BB5AC: ; 0x020BB5AC
+	thumb_func_start MTX_RotX33_
+MTX_RotX33_: ; 0x020BB5AC
 	mov r3, #1
 	lsl r3, r3, #0xc
 	str r3, [r0, #0]
@@ -87,10 +87,10 @@ sub_020BB5AC: ; 0x020BB5AC
 	str r1, [r0, #0x1c]
 	str r2, [r0, #0x20]
 	bx lr
-	thumb_func_end sub_020BB5AC
+	thumb_func_end MTX_RotX33_
 
-	thumb_func_start sub_020BB5C8
-sub_020BB5C8: ; 0x020BB5C8
+	thumb_func_start MTX_RotY33_
+MTX_RotY33_: ; 0x020BB5C8
 	str r2, [r0, #0]
 	str r2, [r0, #0x20]
 	mov r3, #0
@@ -105,10 +105,10 @@ sub_020BB5C8: ; 0x020BB5C8
 	str r2, [r0, #8]
 	str r3, [r0, #0x10]
 	bx lr
-	thumb_func_end sub_020BB5C8
+	thumb_func_end MTX_RotY33_
 
-	thumb_func_start sub_020BB5E4
-sub_020BB5E4: ; 0x020BB5E4
+	thumb_func_start MTX_RotZ33_
+MTX_RotZ33_: ; 0x020BB5E4
 	stmia r0!, {r2}
 	mov r3, #0
 	stmia r0!, {r1, r3}
@@ -121,10 +121,10 @@ sub_020BB5E4: ; 0x020BB5E4
 	str r3, [r0, #8]
 	str r1, [r0, #0xc]
 	bx lr
-	thumb_func_end sub_020BB5E4
+	thumb_func_end MTX_RotZ33_
 
-	arm_func_start sub_020BB5FC
-sub_020BB5FC: ; 0x020BB5FC
+	arm_func_start MTX_Inverse33
+MTX_Inverse33: ; 0x020BB5FC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x50
 	mov sl, r0
@@ -184,7 +184,7 @@ sub_020BB5FC: ; 0x020BB5FC
 	addeq sp, sp, #0x50
 	subeq r0, r1, #1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	bl sub_020BD080
+	bl FX_InvAsync
 	ldr r1, [sl, #8]
 	ldr r2, [sl, #0x1c]
 	ldr fp, [sl, #0x10]
@@ -231,7 +231,7 @@ sub_020BB5FC: ; 0x020BB5FC
 	mov r0, r1, lsr #0xc
 	orr r0, r0, r3, lsl #20
 	str r0, [sp, #0x24]
-	bl sub_020BD048
+	bl FX_GetDivResult
 	smull r2, r1, r0, r5
 	mov r2, r2, lsr #0xc
 	orr r2, r2, r1, lsl #20
@@ -309,15 +309,15 @@ sub_020BB5FC: ; 0x020BB5FC
 	cmp sb, r0
 	bne _020BB8E0
 	ldr r1, [sp]
-	bl sub_020C4C88
+	bl MI_Copy36B
 _020BB8E0:
 	mov r0, #0
 	add sp, sp, #0x50
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020BB5FC
+	arm_func_end MTX_Inverse33
 
-	arm_func_start sub_020BB8EC
-sub_020BB8EC: ; 0x020BB8EC
+	arm_func_start MTX_Concat33
+MTX_Concat33: ; 0x020BB8EC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x40
 	mov ip, r2
@@ -454,10 +454,10 @@ sub_020BB8EC: ; 0x020BB8EC
 	str r0, [ip]
 	add sp, sp, #0x40
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020BB8EC
+	arm_func_end MTX_Concat33
 
-	arm_func_start sub_020BBB0C
-sub_020BBB0C: ; 0x020BBB0C
+	arm_func_start MTX_MultVec33
+MTX_MultVec33: ; 0x020BBB0C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r4, [r1, #0xc]
 	ldmia r0, {r3, ip}
@@ -489,4 +489,4 @@ sub_020BBB0C: ; 0x020BBB0C
 	orr r0, r0, lr, lsl #20
 	str r0, [r2, #8]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020BBB0C
+	arm_func_end MTX_MultVec33

@@ -1310,7 +1310,7 @@ ov19_021DF5D0: ; 0x021DF5D0
 	mov r3, #0
 	bl sub_02007130
 	add r0, sp, #0x48
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #2
@@ -1469,11 +1469,11 @@ _021DF76C:
 	add r0, r0, r6
 	str r0, [r4, #0x18]
 	add r0, sp, #0x34
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	ldr r2, [r4, #0x18]
 	add r0, sp, #0x34
 	mov r1, #2
-	bl sub_020A81A8
+	bl NNS_G2dSetImageLocation
 	ldr r0, _021DF7C8 ; =0x04001000
 	mov r2, #0
 	ldr r1, [r0, #0]
@@ -1599,19 +1599,19 @@ ov19_021DF834: ; 0x021DF834
 	add r0, r5, #0
 	add r0, #0xe8
 	add r1, sp, #4
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #4]
 	mov r1, #2
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #4]
 	add r1, r5, r7
 	mov r2, #2
 	ldr r0, [r0, #0x14]
 	ldr r1, [r1, #0x18]
 	lsl r2, r2, #8
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	add r0, r4, #0
 	add r1, r6, #4
 	bl sub_02021E90

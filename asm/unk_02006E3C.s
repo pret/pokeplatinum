@@ -305,7 +305,7 @@ _0200704C:
 	beq _02007060
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	add r0, r4, #0
 	bl sub_020181C4
 _02007060:
@@ -372,7 +372,7 @@ _020070CC:
 	beq _020070E0
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	add r0, r4, #0
 	bl sub_020181C4
 _020070E0:
@@ -645,7 +645,7 @@ _020072B4:
 	beq _020072C8
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	add r0, r4, #0
 	bl sub_020181C4
 _020072C8:
@@ -668,7 +668,7 @@ sub_020072D0: ; 0x020072D0
 	cmp r5, #0
 	beq _0200730C
 	add r1, sp, #8
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	beq _02007306
 	cmp r4, #0
@@ -706,7 +706,7 @@ sub_02007314: ; 0x02007314
 	cmp r6, #0
 	beq _02007370
 	add r1, sp, #8
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	cmp r0, #0
 	beq _0200736A
 	cmp r4, #0
@@ -755,7 +755,7 @@ sub_02007374: ; 0x02007374
 	cmp r5, #0
 	beq _020073B4
 	add r1, sp, #0
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	cmp r0, #0
 	beq _020073AE
 	cmp r4, #0
@@ -766,7 +766,7 @@ _02007394:
 	ldr r0, [sp]
 	add r1, r4, #0
 	ldr r0, [r0, #0x14]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	ldr r3, _020073B8 ; =0x020E4D28
 	lsl r6, r6, #2
@@ -797,7 +797,7 @@ sub_020073BC: ; 0x020073BC
 	add r1, r0, #0
 	beq _02007492
 	add r1, sp, #4
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #0
 	beq _0200748C
 	ldr r0, [sp, #4]
@@ -813,7 +813,7 @@ _020073EA:
 	ldr r0, [sp, #4]
 	add r1, r5, #0
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r4, #7
 	bhi _0200747C
 	add r0, r4, r4
@@ -832,7 +832,7 @@ _02007404: ; jump table
 	.short _0200742E - _02007404 - 2 ; case 6
 	.short _02007462 - _02007404 - 2 ; case 7
 _02007414:
-	bl sub_020C096C
+	bl GX_BeginLoadBGExtPltt
 	ldr r0, [sp, #4]
 	ldr r3, _02007498 ; =0x020E4D30
 	lsl r4, r4, #2
@@ -841,10 +841,10 @@ _02007414:
 	add r1, r6, #0
 	add r2, r5, #0
 	blx r3
-	bl sub_020C0A7C
+	bl GX_EndLoadBGExtPltt
 	b _0200748C
 _0200742E:
-	bl sub_020C0BBC
+	bl GXS_BeginLoadBGExtPltt
 	ldr r0, [sp, #4]
 	ldr r3, _02007498 ; =0x020E4D30
 	lsl r4, r4, #2
@@ -853,10 +853,10 @@ _0200742E:
 	add r1, r6, #0
 	add r2, r5, #0
 	blx r3
-	bl sub_020C0C38
+	bl GXS_EndLoadBGExtPltt
 	b _0200748C
 _02007448:
-	bl sub_020C0AC4
+	bl GX_BeginLoadOBJExtPltt
 	ldr r0, [sp, #4]
 	ldr r3, _02007498 ; =0x020E4D30
 	lsl r4, r4, #2
@@ -865,10 +865,10 @@ _02007448:
 	add r1, r6, #0
 	add r2, r5, #0
 	blx r3
-	bl sub_020C0B78
+	bl GX_EndLoadOBJExtPltt
 	b _0200748C
 _02007462:
-	bl sub_020C0C78
+	bl GXS_BeginLoadOBJExtPltt
 	ldr r0, [sp, #4]
 	ldr r3, _02007498 ; =0x020E4D30
 	lsl r4, r4, #2
@@ -877,7 +877,7 @@ _02007462:
 	add r1, r6, #0
 	add r2, r5, #0
 	blx r3
-	bl sub_020C0CF4
+	bl GXS_EndLoadOBJExtPltt
 	b _0200748C
 _0200747C:
 	ldr r0, [sp, #4]
@@ -909,11 +909,11 @@ sub_0200749C: ; 0x0200749C
 	cmp r5, #0
 	beq _020074E8
 	add r1, sp, #8
-	bl sub_020A71EC
+	bl NNS_G2dGetUnpackedPaletteCompressInfo
 	str r0, [sp, #4]
 	add r0, r5, #0
 	add r1, sp, #0xc
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #0
 	beq _020074E2
 	ldr r0, [sp, #4]
@@ -924,14 +924,14 @@ sub_0200749C: ; 0x0200749C
 	ldr r1, [sp, #8]
 	add r2, r7, #0
 	add r3, r6, #0
-	bl sub_020A8948
+	bl NNS_G2dLoadPaletteEx
 	b _020074E2
 _020074D6:
 	ldr r0, [sp, #0xc]
 	add r1, r7, #0
 	add r2, r6, #0
 	add r3, r4, #0
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 _020074E2:
 	add r0, r5, #0
 	bl sub_020181C4
@@ -952,7 +952,7 @@ sub_020074EC: ; 0x020074EC
 	cmp r5, #0
 	beq _0200752A
 	add r1, sp, #4
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	cmp r0, #0
 	beq _02007524
 	cmp r4, #0
@@ -991,7 +991,7 @@ sub_02007534: ; 0x02007534
 	cmp r6, #0
 	beq _02007590
 	add r1, sp, #0
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	cmp r0, #0
 	beq _0200758A
 	cmp r5, #0
@@ -1045,7 +1045,7 @@ sub_020075A0: ; 0x020075A0
 	push {r4, lr}
 	add r4, r0, #0
 	beq _020075B8
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _020075B8
 	add r0, r4, #0
@@ -1062,7 +1062,7 @@ sub_020075BC: ; 0x020075BC
 	push {r4, lr}
 	add r4, r0, #0
 	beq _020075D4
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	cmp r0, #0
 	bne _020075D4
 	add r0, r4, #0
@@ -1079,7 +1079,7 @@ sub_020075D8: ; 0x020075D8
 	push {r4, lr}
 	add r4, r0, #0
 	beq _020075F0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #0
 	bne _020075F0
 	add r0, r4, #0
@@ -1096,7 +1096,7 @@ sub_020075F4: ; 0x020075F4
 	push {r4, lr}
 	add r4, r0, #0
 	beq _0200760C
-	bl sub_020A6F38
+	bl NNS_G2dGetUnpackedCellBank
 	cmp r0, #0
 	bne _0200760C
 	add r0, r4, #0
@@ -1113,7 +1113,7 @@ sub_02007610: ; 0x02007610
 	push {r4, lr}
 	add r4, r0, #0
 	beq _02007628
-	bl sub_020A6D88
+	bl NNS_G2dGetUnpackedAnimBank
 	cmp r0, #0
 	bne _02007628
 	add r0, r4, #0

@@ -1,2 +1,2 @@
-.public sub_020E1F6C
-.public sub_020E2180
+.public _s32_div_f
+.public _u32_div_not_0_f

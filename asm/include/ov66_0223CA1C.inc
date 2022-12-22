@@ -1,10 +1,10 @@
-.public sub_020C4DB0
-.public sub_020CC218
-.public sub_020D3DA0
-.public sub_020D50D8
-.public sub_020D7350
+.public MI_CpuCopy8
+.public RTC_ConvertDateTimeToSecond
+.public abort
+.public memmove
+.public printf
 .public sub_020DFBDC
-.public sub_020E2178
+.public _u32_div_f
 .public sub_020E3FD4
 .public sub_020E4000
 .public ov4_021D77C4

@@ -8,10 +8,10 @@
 
 	arm_func_start sub_020E4144
 sub_020E4144: ; 0x020E4144
-	ldr ip, _020E414C ; =sub_020D3DA0
+	ldr ip, _020E414C ; =abort
 	bx ip
 	; .align 2, 0
-_020E414C: .word sub_020D3DA0
+_020E414C: .word abort
 	arm_func_end sub_020E4144
 
 	arm_func_start sub_020E4150
@@ -44,8 +44,8 @@ sub_020E4174: ; 0x020E4174
 _020E4188: .word 0x02101D0C
 	arm_func_end sub_020E4174
 
-	arm_func_start sub_020E418C
-sub_020E418C: ; 0x020E418C
+	arm_func_start __throw_catch_compare
+__throw_catch_compare: ; 0x020E418C
 	stmfd sp!, {r3, lr}
 	mov ip, #0
 	mov r3, r1
@@ -168,7 +168,7 @@ _020E4318:
 _020E4334:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020E418C
+	arm_func_end __throw_catch_compare
 
 	arm_func_start sub_020E433C
 sub_020E433C: ; 0x020E433C
@@ -289,8 +289,8 @@ sub_020E4488: ; 0x020E4488
 	bx r2
 	arm_func_end sub_020E4488
 
-	arm_func_start sub_020E44B8
-sub_020E44B8: ; 0x020E44B8
+	arm_func_start __throw
+__throw: ; 0x020E44B8
 	mov ip, sp
 	sub sp, sp, #0x70
 	str r4, [sp, #0x2c]
@@ -309,10 +309,10 @@ sub_020E44B8: ; 0x020E44B8
 	str r2, [sp, #0x8]
 	mov r0, sp
 	b sub_020E3D74
-	arm_func_end sub_020E44B8
+	arm_func_end __throw
 
-	arm_func_start sub_020E4500
-sub_020E4500: ; 0x020E4500
+	arm_func_start __rethrow
+__rethrow: ; 0x020E4500
 	mov ip, sp
 	sub sp, sp, #0x70
 	str r4, [sp, #0x2c]
@@ -332,7 +332,7 @@ sub_020E4500: ; 0x020E4500
 	str ip, [sp, #0x8]
 	mov r0, sp
 	b sub_020E3D74
-	arm_func_end sub_020E4500
+	arm_func_end __rethrow
 
 	.data
 

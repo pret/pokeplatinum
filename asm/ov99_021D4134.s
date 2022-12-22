@@ -192,19 +192,19 @@ _021D4288:
 	add r0, r1, #0
 	mul r0, r5
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x10]
 	str r0, [sp, #0x24]
 	add r0, r1, #0
 	mul r0, r5
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x18]
 	str r0, [sp, #0x20]
 	add r0, r1, #0
 	mul r0, r5
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x1c]
 	mov r0, #0
 	str r0, [sp, #0x14]
@@ -260,11 +260,11 @@ _021D42C8:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x54
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0xc]
 	add r0, r5, #0
 	ldr r1, [r1, #0x34]
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 _021D4336:
 	mov r7, #1
 	b _021D434C
@@ -379,8 +379,8 @@ _021D43F2:
 	add r6, r0, #0
 	ldr r0, [r1, #0xc]
 	ldr r1, [r1, #8]
-	bl sub_020C2C54
-	bl sub_020C096C
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
 	cmp r7, #3
 	bne _021D4426
 	ldr r0, [sp, #0x14]
@@ -389,7 +389,7 @@ _021D43F2:
 	ldr r0, [r0, #0xc]
 	lsl r1, r1, #0xc
 	lsl r2, r2, #0xc
-	bl sub_020C0A0C
+	bl GX_LoadBGExtPltt
 	b _021D4434
 _021D4426:
 	ldr r0, [sp, #0x14]
@@ -397,9 +397,9 @@ _021D4426:
 	lsl r1, r1, #0xe
 	ldr r0, [r0, #0xc]
 	lsr r2, r1, #1
-	bl sub_020C0A0C
+	bl GX_LoadBGExtPltt
 _021D4434:
-	bl sub_020C0A7C
+	bl GX_EndLoadBGExtPltt
 	add r0, r6, #0
 	bl sub_020181C4
 	mov r1, #0
@@ -519,7 +519,7 @@ _021D4504:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r1, _021D46BC ; =0x000010F4
 	ldr r0, [r5, r1]
 	add r1, #0x22
@@ -533,7 +533,7 @@ _021D4504:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r1, _021D46BC ; =0x000010F4
 	ldr r0, [r5, r1]
 	add r1, #0x22
@@ -547,7 +547,7 @@ _021D4504:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r1, _021D46BC ; =0x000010F4
 	ldr r0, [r5, r1]
 	add r1, #0x22
@@ -561,7 +561,7 @@ _021D4504:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	b _021D4608
 _021D4590:
 	ldr r0, [r5, r1]
@@ -577,7 +577,7 @@ _021D4590:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r1, _021D46BC ; =0x000010F4
 	ldr r0, [r5, r1]
 	add r1, #0x22
@@ -591,7 +591,7 @@ _021D4590:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r1, _021D46BC ; =0x000010F4
 	ldr r0, [r5, r1]
 	add r1, #0x22
@@ -605,7 +605,7 @@ _021D4590:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r1, _021D46BC ; =0x000010F4
 	ldr r0, [r5, r1]
 	add r1, #0x22
@@ -619,7 +619,7 @@ _021D4590:
 	ldr r1, [r4, #4]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 _021D4608:
 	ldr r0, _021D46C0 ; =0x00001116
 	ldrsh r1, [r5, r0]
@@ -628,7 +628,7 @@ _021D4608:
 	add r0, r0, #4
 	ldrsh r0, [r5, r0]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _021D464A
 	bl sub_0201D2E8
@@ -637,7 +637,7 @@ _021D4608:
 	beq _021D4642
 	bl sub_0201D2E8
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _021D46C4 ; =0x00001114
 	strh r1, [r5, r0]
 	add r1, r0, #6
@@ -689,7 +689,7 @@ _021D466C:
 	ble _021D46A4
 	bl sub_0201D2E8
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _021D46A4
 	mov r1, #1

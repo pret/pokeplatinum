@@ -28,7 +28,7 @@
 .public sub_02021FE0
 .public sub_02022974
 .public sub_020759F0
-.public sub_020D5124
+.public memset
 .public ov21_021D138C
 .public ov21_021D13EC
 .public ov21_021D13FC

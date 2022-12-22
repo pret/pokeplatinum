@@ -104,10 +104,10 @@
 .public sub_0209B988
 .public sub_0209B9B4
 .public sub_0209B9BC
-.public sub_020BF4AC
-.public sub_020C4CF4
-.public sub_020E1F6C
-.public sub_020E2178
+.public G2x_SetBGyAffine_
+.public MI_CpuFill8
+.public _s32_div_f
+.public _u32_div_f
 .public ov4_021D2388
 .public ov63_0222BF18
 .public ov63_0222D008

@@ -28,7 +28,7 @@ sub_02015F84: ; 0x02015F84
 	mov r1, #0
 	add r2, r6, #0
 	str r0, [r4, #0]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end sub_02015F84
@@ -80,7 +80,7 @@ _02016004:
 	add r0, r0, r4
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0]
 	mov r1, #1
 	add r0, r0, r4
@@ -458,7 +458,7 @@ _020162B6:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x54
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	str r0, [r4, #0]
 	mov r0, #0xc
@@ -939,7 +939,7 @@ sub_02016628: ; 0x02016628
 	bl sub_020163C8
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #4]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #0
 	ldrb r1, [r1]
 	lsl r1, r1, #2
@@ -961,7 +961,7 @@ sub_02016650: ; 0x02016650
 	bl sub_020163C8
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #4]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, sp, #0
 	ldrb r0, [r0]
 	lsl r0, r0, #2
@@ -2089,7 +2089,7 @@ sub_02016E64: ; 0x02016E64
 	add r0, r0, #1
 	mul r0, r1
 	ldr r1, [r4, #0x18]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x14]
 	add r0, r1, r0
 	lsl r0, r0, #0x10
@@ -2227,7 +2227,7 @@ sub_02016F60: ; 0x02016F60
 	ldr r0, [r4, #8]
 	mul r0, r1
 	ldr r1, [r4, #0xc]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0x24]
 	str r0, [r1, #0]
 	add r0, r4, #0

@@ -434,7 +434,7 @@ _0207948C:
 	mov r0, #0x1f
 	mul r0, r1
 	mov r1, #0xff
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -535,7 +535,7 @@ _0207955A:
 	mov r0, #0x1f
 	mul r0, r1
 	mov r1, #0xff
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -649,7 +649,7 @@ _02079642:
 	mov r0, #0x1f
 	mul r0, r1
 	mov r1, #0xff
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -758,7 +758,7 @@ _02079722:
 	mov r0, #0x1f
 	mul r0, r1
 	mov r1, #0xff
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	mov r0, #1
 	str r0, [sp]

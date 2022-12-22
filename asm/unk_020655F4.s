@@ -3752,7 +3752,7 @@ sub_02066F88: ; 0x02066F88
 	strb r0, [r6, #3]
 	ldrb r1, [r6]
 	lsl r0, r7, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r6, #0xe]
 	ldr r1, [sp]
 	add r0, r5, #0

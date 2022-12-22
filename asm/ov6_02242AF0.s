@@ -240,7 +240,7 @@ _02242C90:
 	ldr r1, [r5, #0x30]
 	bl ov5_021EF9E8
 	ldr r0, [r0, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _02242CD4
 	add r2, r0, #0

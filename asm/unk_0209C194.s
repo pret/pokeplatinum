@@ -17,7 +17,7 @@ sub_0209C194: ; 0x0209C194
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	add r2, r4, #0
 	add r2, #0x14
 	ldmia r5!, {r0, r1}
@@ -66,7 +66,7 @@ sub_0209C1EC: ; 0x0209C1EC
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x38
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0x2c]
 	ldr r0, [r5, #0xc]
 	str r0, [r4, #0x10]

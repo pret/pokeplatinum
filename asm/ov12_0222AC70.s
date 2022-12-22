@@ -2653,10 +2653,10 @@ _0222C234:
 	bl ov12_02225FA4
 	mov r0, #8
 	ldrsb r0, [r4, r0]
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	ldr r0, [sp, #0x28]
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	ldr r0, [r5, #0x1c]
 	ldr r2, [sp, #0x24]
@@ -2716,7 +2716,7 @@ _0222C2A6:
 	bl sub_0200D4C4
 	mov r0, #8
 	ldrsb r0, [r4, r0]
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r2, #0xfe
 	ldr r0, [r5, #0x1c]
@@ -2785,10 +2785,10 @@ _0222C342:
 	bl ov12_02225FA4
 	mov r0, #8
 	ldrsb r0, [r4, r0]
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	ldr r0, [sp, #0x20]
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	ldr r0, [r5, #0x1c]
 	ldr r2, [sp, #0x1c]
@@ -2921,7 +2921,7 @@ _0222C46C:
 	mov r7, #8
 _0222C474:
 	ldrsb r0, [r4, r7]
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r2, #0xfe
 	ldr r0, [r5, #0x1c]

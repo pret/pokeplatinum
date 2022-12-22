@@ -113,12 +113,12 @@ _02205648: .word 0x0221C75C
 
 	arm_func_start ov4_0220564C
 ov4_0220564C: ; 0x0220564C
-	ldr ip, _0220565C ; =sub_020C4C14
+	ldr ip, _0220565C ; =MIi_CpuCopyFast
 	mov r2, r1
 	ldr r1, _02205660 ; =0x0221C78C
 	bx ip
 	; .align 2, 0
-_0220565C: .word sub_020C4C14
+_0220565C: .word MIi_CpuCopyFast
 _02205660: .word 0x0221C78C
 	arm_func_end ov4_0220564C
 

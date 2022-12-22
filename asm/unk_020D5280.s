@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D5280
-sub_020D5280: ; 0x020D5280
+	arm_func_start parse_format_dup1
+parse_format_dup1: ; 0x020D5280
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x10
 	ldrsb r3, [r0, #1]
@@ -418,10 +418,10 @@ _020D57F0:
 	; .align 2, 0
 _020D5808: .word 0x020FE864
 _020D580C: .word 0x000001FD
-	arm_func_end sub_020D5280
+	arm_func_end parse_format_dup1
 
-	arm_func_start sub_020D5810
-sub_020D5810: ; 0x020D5810
+	arm_func_start long2str_dup1
+long2str_dup1: ; 0x020D5810
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10
@@ -498,11 +498,11 @@ _020D590C:
 _020D5914:
 	mov r0, sl
 	mov r1, r4
-	bl sub_020E2178
+	bl _u32_div_f
 	mov sb, r1
 	mov r0, sl
 	mov r1, r4
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp sb, #0xa
 	mov sl, r0
 	addlt sb, sb, #0x30
@@ -586,10 +586,10 @@ _020D5A44:
 	bx lr
 	; .align 2, 0
 _020D5A58: .word 0x000001FD
-	arm_func_end sub_020D5810
+	arm_func_end long2str_dup1
 
-	arm_func_start sub_020D5A5C
-sub_020D5A5C: ; 0x020D5A5C
+	arm_func_start longlong2str_dup1
+longlong2str_dup1: ; 0x020D5A5C
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x1c
@@ -692,13 +692,13 @@ _020D5BB4:
 	mov r1, sb
 	mov r2, r7
 	mov r3, r6
-	bl sub_020E1EE0
+	bl _ull_mod
 	mov r5, r0
 	mov r0, sl
 	mov r1, sb
 	mov r2, r7
 	mov r3, r6
-	bl sub_020E1ED4
+	bl _ull_div
 	mov sl, r0
 	cmp r5, #0xa
 	mov sb, r1
@@ -801,10 +801,10 @@ _020D5D40:
 	bx lr
 	; .align 2, 0
 _020D5D54: .word 0x000001FD
-	arm_func_end sub_020D5A5C
+	arm_func_end longlong2str_dup1
 
-	arm_func_start sub_020D5D58
-sub_020D5D58: ; 0x020D5D58
+	arm_func_start double2hex_dup1
+double2hex_dup1: ; 0x020D5D58
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x44
@@ -828,15 +828,15 @@ sub_020D5D58: ; 0x020D5D58
 	add r3, sp, #0xc
 	strb sl, [sp, #8]
 	strh sb, [sp, #0xa]
-	bl sub_020DF108
+	bl __num2dec
 	ldr r0, [sp, #0x68]
 	ldr r1, [sp, #0x6c]
-	bl sub_020DE084
+	bl fabs
 	mov r2, r0
 	mov r0, sl
 	mov r3, r1
 	mov r1, r0
-	bl sub_020E0F94
+	bl _d_feq
 	bne _020D5E24
 	ldr r3, _020D620C ; =0x021017D8
 	sub r0, r8, #6
@@ -1035,7 +1035,7 @@ _020D6070:
 	mov r1, r8
 	add r0, lr, r0
 	ldmia ip, {r2, r3}
-	bl sub_020D5810
+	bl long2str_dup1
 	cmp r6, #0x61
 	moveq r1, #0x70
 	movne r1, #0x50
@@ -1132,10 +1132,10 @@ _020D6224: .word 0x02101800
 _020D6228: .word 0x02101808
 _020D622C: .word 0x0210180C
 _020D6230: .word 0x000007FF
-	arm_func_end sub_020D5D58
+	arm_func_end double2hex_dup1
 
-	arm_func_start sub_020D6234
-sub_020D6234: ; 0x020D6234
+	arm_func_start round_decimal_dup1
+round_decimal_dup1: ; 0x020D6234
 	stmfd sp!, {r4, lr}
 	cmp r1, #0
 	bge _020D625C
@@ -1221,10 +1221,10 @@ _020D6348:
 	beq _020D6240
 	strb r1, [r0, #4]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D6234
+	arm_func_end round_decimal_dup1
 
-	arm_func_start sub_020D6358
-sub_020D6358: ; 0x020D6358
+	arm_func_start float2str_dup1
+float2str_dup1: ; 0x020D6358
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x2c
@@ -1250,7 +1250,7 @@ sub_020D6358: ; 0x020D6358
 	mov r2, r8
 	strb ip, [sp]
 	strh fp, [sp, #2]
-	bl sub_020DF108
+	bl __num2dec
 	ldrb r0, [sp, #8]
 	add r1, sp, #9
 	add r0, r1, r0
@@ -1287,7 +1287,7 @@ _020D642C:
 	mov r0, sl
 	mov r1, r8
 	mov r3, r2
-	bl sub_020E0EF8
+	bl _d_flt
 	bhs _020D64F0
 	cmp r6, #0
 	sub r0, sb, #5
@@ -1511,7 +1511,7 @@ _020D674C:
 	ble _020D6764
 	add r0, sp, #4
 	mov r1, r7
-	bl sub_020D6234
+	bl round_decimal_dup1
 _020D6764:
 	ldrsh r2, [sp, #6]
 	mvn r0, #3
@@ -1544,7 +1544,7 @@ _020D67C0:
 	cmp r0, r1
 	ble _020D67D8
 	add r0, sp, #4
-	bl sub_020D6234
+	bl round_decimal_dup1
 _020D67D8:
 	ldrsh lr, [sp, #6]
 	mov fp, #0x2b
@@ -1639,7 +1639,7 @@ _020D6908:
 	sub r1, r1, r7
 	add r0, sp, #4
 	sub r1, r2, r1
-	bl sub_020D6234
+	bl round_decimal_dup1
 	ldrsh r3, [sp, #6]
 	ldrb r2, [sp, #8]
 	sub r0, r2, r3
@@ -1752,10 +1752,10 @@ _020D6AAC: .word 0x02101800
 _020D6AB0: .word 0x02101808
 _020D6AB4: .word 0x0210180C
 _020D6AB8: .word 0x66666667
-	arm_func_end sub_020D6358
+	arm_func_end float2str_dup1
 
-	arm_func_start sub_020D6ABC
-sub_020D6ABC: ; 0x020D6ABC
+	arm_func_start __pformatter
+__pformatter: ; 0x020D6ABC
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x22c
@@ -1771,12 +1771,12 @@ sub_020D6ABC: ; 0x020D6ABC
 _020D6AEC:
 	mov r0, fp
 	mov r1, #0x25
-	bl sub_020D8E5C
+	bl strchr
 	str r0, [sp, #0xc]
 	cmp r0, #0
 	bne _020D6B40
 	mov r0, fp
-	bl sub_020D8B60
+	bl strlen
 	movs r2, r0
 	add sl, sl, r2
 	beq _020D72C4
@@ -1807,7 +1807,7 @@ _020D6B70:
 	ldr r0, [sp, #0xc]
 	add r1, sp, #0x25c
 	add r2, sp, #0x1c
-	bl sub_020D5280
+	bl parse_format_dup1
 	ldrb r1, [sp, #0x21]
 	mov fp, r0
 	cmp r1, #0x61
@@ -1941,7 +1941,7 @@ _020D6D14:
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x14]
 	add r2, sp, #0x22c
-	bl sub_020D5A5C
+	bl longlong2str_dup1
 	movs r7, r0
 	beq _020D7128
 	b _020D6D8C
@@ -1952,7 +1952,7 @@ _020D6D68:
 	add r1, sp, #0x22c
 	mov r0, r5
 	ldmia r4, {r2, r3}
-	bl sub_020D5810
+	bl long2str_dup1
 	movs r7, r0
 	beq _020D7128
 _020D6D8C:
@@ -2029,7 +2029,7 @@ _020D6E54:
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x14]
 	add r2, sp, #0x22c
-	bl sub_020D5A5C
+	bl longlong2str_dup1
 	movs r7, r0
 	beq _020D7128
 	b _020D6EC8
@@ -2040,7 +2040,7 @@ _020D6EA4:
 	add r1, sp, #0x22c
 	mov r0, r5
 	ldmia r4, {r2, r3}
-	bl sub_020D5810
+	bl long2str_dup1
 	movs r7, r0
 	beq _020D7128
 _020D6EC8:
@@ -2069,7 +2069,7 @@ _020D6EFC:
 	mov r0, r7
 	mov r1, r6
 	add r2, sp, #0x22c
-	bl sub_020D6358
+	bl float2str_dup1
 	movs r7, r0
 	beq _020D7128
 	add r0, sp, #0x200
@@ -2097,7 +2097,7 @@ _020D6F64:
 	mov r0, r7
 	mov r1, r6
 	add r2, sp, #0x22c
-	bl sub_020D5D58
+	bl double2hex_dup1
 	movs r7, r0
 	beq _020D7128
 	add r0, sp, #0x200
@@ -2116,7 +2116,7 @@ _020D6FA8:
 	add r0, sp, #0x2c
 	cmp r1, #0
 	ldreq r1, _020D72D8 ; =0x02101810
-	bl sub_020D5040
+	bl wcstombs
 	cmp r0, #0
 	blt _020D7128
 	add r7, sp, #0x2c
@@ -2148,13 +2148,13 @@ _020D702C:
 	mov r0, r7
 	mov r2, r6
 	mov r1, #0
-	bl sub_020D5138
+	bl memchr
 	cmp r0, #0
 	subne r6, r0, r7
 	b _020D7174
 _020D7058:
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	mov r6, r0
 	b _020D7174
 _020D7068:
@@ -2218,7 +2218,7 @@ _020D7114:
 	b _020D7174
 _020D7128:
 	ldr r0, [sp, #0xc]
-	bl sub_020D8B60
+	bl strlen
 	movs r4, r0
 	beq _020D7160
 	ldr r1, [sp, #0xc]
@@ -2338,25 +2338,25 @@ _020D72C4:
 	; .align 2, 0
 _020D72D8: .word 0x02101810
 _020D72DC: .word 0x02101814
-	arm_func_end sub_020D6ABC
+	arm_func_end __pformatter
 
-	arm_func_start sub_020D72E0
-sub_020D72E0: ; 0x020D72E0
+	arm_func_start __FileWrite
+__FileWrite: ; 0x020D72E0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r0, r1
 	mov r3, r5
 	mov r1, #1
 	mov r4, r2
-	bl sub_020D4658
+	bl __fwrite
 	cmp r4, r0
 	movne r5, #0
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020D72E0
+	arm_func_end __FileWrite
 
-	arm_func_start sub_020D730C
-sub_020D730C: ; 0x020D730C
+	arm_func_start __StringWrite
+__StringWrite: ; 0x020D730C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
 	ldr r3, [r4, #8]
@@ -2368,28 +2368,28 @@ sub_020D730C: ; 0x020D730C
 	subhi r5, r2, r3
 	mov r2, r5
 	add r0, r0, r3
-	bl sub_020D50B8
+	bl memcpy
 	ldr r1, [r4, #8]
 	mov r0, #1
 	add r1, r1, r5
 	str r1, [r4, #8]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020D730C
+	arm_func_end __StringWrite
 
-	arm_func_start sub_020D7350
-sub_020D7350: ; 0x020D7350
+	arm_func_start printf
+printf: ; 0x020D7350
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, lr}
 	ldr r0, _020D7450 ; =0x021014DC
 	mvn r1, #0
-	bl sub_020DAE20
+	bl fwide
 	cmp r0, #0
 	mvnge r0, #0
 	ldmgeia sp!, {r4, lr}
 	addge sp, sp, #0x10
 	bxge lr
 	ldr r0, _020D7454 ; =0x021D09B0
-	bl sub_020C2AF4
+	bl OS_TryLockMutex
 	cmp r0, #0
 	bne _020D73AC
 	ldr r0, _020D7458 ; =0x021CCC80
@@ -2416,7 +2416,7 @@ _020D73AC:
 	b _020D7404
 _020D73DC:
 	ldr r0, _020D7454 ; =0x021D09B0
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _020D7458 ; =0x021CCC80
 	ldr r1, _020D745C ; =0x021D0920
 	ldr r2, [r0, #4]
@@ -2429,10 +2429,10 @@ _020D7404:
 	add r0, sp, #8
 	bic r3, r0, #3
 	ldr r2, [sp, #8]
-	ldr r0, _020D7464 ; =sub_020D72E0
+	ldr r0, _020D7464 ; =__FileWrite
 	ldr r1, _020D7450 ; =0x021014DC
 	add r3, r3, #4
-	bl sub_020D6ABC
+	bl __pformatter
 	ldr r1, _020D7460 ; =0x021D0944
 	mov r4, r0
 	ldr r0, [r1, #0xc]
@@ -2440,7 +2440,7 @@ _020D7404:
 	str r0, [r1, #0xc]
 	bne _020D7440
 	ldr r0, _020D7454 ; =0x021D09B0
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 _020D7440:
 	mov r0, r4
 	ldmia sp!, {r4, lr}
@@ -2452,22 +2452,22 @@ _020D7454: .word 0x021D09B0
 _020D7458: .word 0x021CCC80
 _020D745C: .word 0x021D0920
 _020D7460: .word 0x021D0944
-_020D7464: .word sub_020D72E0
-	arm_func_end sub_020D7350
+_020D7464: .word __FileWrite
+	arm_func_end printf
 
-	arm_func_start sub_020D7468
-sub_020D7468: ; 0x020D7468
+	arm_func_start vsnprintf
+vsnprintf: ; 0x020D7468
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0xc
 	mov r5, r0
 	mov r4, r1
 	mov ip, #0
-	ldr r0, _020D74CC ; =sub_020D730C
+	ldr r0, _020D74CC ; =__StringWrite
 	add r1, sp, #0
 	str r5, [sp]
 	str r4, [sp, #4]
 	str ip, [sp, #8]
-	bl sub_020D6ABC
+	bl __pformatter
 	cmp r5, #0
 	addeq sp, sp, #0xc
 	ldmeqia sp!, {r4, r5, pc}
@@ -2483,36 +2483,36 @@ sub_020D7468: ; 0x020D7468
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
-_020D74CC: .word sub_020D730C
-	arm_func_end sub_020D7468
+_020D74CC: .word __StringWrite
+	arm_func_end vsnprintf
 
-	arm_func_start sub_020D74D0
-sub_020D74D0: ; 0x020D74D0
-	ldr ip, _020D74E4 ; =sub_020D7468
+	arm_func_start vsprintf
+vsprintf: ; 0x020D74D0
+	ldr ip, _020D74E4 ; =vsnprintf
 	mov r3, r2
 	mov r2, r1
 	mvn r1, #0
 	bx ip
 	; .align 2, 0
-_020D74E4: .word sub_020D7468
-	arm_func_end sub_020D74D0
+_020D74E4: .word vsnprintf
+	arm_func_end vsprintf
 
-	arm_func_start sub_020D74E8
-sub_020D74E8: ; 0x020D74E8
+	arm_func_start snprintf
+snprintf: ; 0x020D74E8
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, lr}
 	add r3, sp, #0x10
 	bic r3, r3, #3
 	ldr r2, [sp, #0x10]
 	add r3, r3, #4
-	bl sub_020D7468
+	bl vsnprintf
 	ldmia sp!, {r3, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end sub_020D74E8
+	arm_func_end snprintf
 
-	arm_func_start sub_020D7510
-sub_020D7510: ; 0x020D7510
+	arm_func_start sprintf
+sprintf: ; 0x020D7510
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, lr}
 	add r1, sp, #0xc
@@ -2520,11 +2520,11 @@ sub_020D7510: ; 0x020D7510
 	add r3, r1, #4
 	ldr r2, [sp, #0xc]
 	mvn r1, #0
-	bl sub_020D7468
+	bl vsnprintf
 	ldmia sp!, {r3, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end sub_020D7510
+	arm_func_end sprintf
 
 
 	.section .exception, 4

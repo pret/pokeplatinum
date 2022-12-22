@@ -1,4 +1,4 @@
-.public sub_020D90B0
+.public strstr
 .public ov4_021EA840
 .public ov4_021EA8A4
 .public ov4_021EAB6C

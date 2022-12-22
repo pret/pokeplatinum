@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C8550
-sub_020C8550: ; 0x020C8550
+	arm_func_start FSi_GetOverlayBinarySize
+FSi_GetOverlayBinarySize: ; 0x020C8550
 	ldr r1, [r0, #0x1c]
 	mov r2, r1, lsr #0x18
 	tst r2, #1
@@ -15,29 +15,29 @@ sub_020C8550: ; 0x020C8550
 	movne r0, r0, lsr #8
 	ldreq r0, [r0, #8]
 	bx lr
-	arm_func_end sub_020C8550
+	arm_func_end FSi_GetOverlayBinarySize
 
-	arm_func_start sub_020C856C
-sub_020C856C: ; 0x020C856C
+	arm_func_start FS_ClearOverlayImage
+FS_ClearOverlayImage: ; 0x020C856C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, [r0, #0xc]
 	ldmib r0, {r4, r5}
 	add r6, r5, r1
 	mov r0, r4
 	mov r1, r6
-	bl sub_020C2C90
+	bl IC_InvalidateRange
 	mov r0, r4
 	mov r1, r6
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	add r0, r4, r5
 	sub r2, r6, r5
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C856C
+	arm_func_end FS_ClearOverlayImage
 
-	arm_func_start sub_020C85A8
-sub_020C85A8: ; 0x020C85A8
+	arm_func_start FS_GetOverlayFileID
+FS_GetOverlayFileID: ; 0x020C85A8
 	sub sp, sp, #8
 	ldr r1, [r1, #0x18]
 	ldr r2, _020C85CC ; =0x021CEC34
@@ -49,10 +49,10 @@ sub_020C85A8: ; 0x020C85A8
 	bx lr
 	; .align 2, 0
 _020C85CC: .word 0x021CEC34
-	arm_func_end sub_020C85A8
+	arm_func_end FS_GetOverlayFileID
 
-	arm_func_start sub_020C85D0
-sub_020C85D0: ; 0x020C85D0
+	arm_func_start FSi_LoadOverlayInfoCore
+FSi_LoadOverlayInfoCore: ; 0x020C85D0
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x54
 	movs sb, r1
@@ -68,14 +68,14 @@ sub_020C85D0: ; 0x020C85D0
 	movls r0, #0
 	ldmlsia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	add r0, sp, #0xc
-	bl sub_020C7DA0
+	bl FS_InitFile
 	mvn ip, #0
 	add r0, sp, #0xc
 	mov r1, r8
 	add r2, r6, r5
 	add r3, r6, r7
 	str ip, [sp]
-	bl sub_020C7FC8
+	bl FS_OpenFileDirect
 	cmp r0, #0
 	addeq sp, sp, #0x54
 	moveq r0, #0
@@ -83,24 +83,24 @@ sub_020C85D0: ; 0x020C85D0
 	add r0, sp, #0xc
 	mov r1, r4
 	mov r2, #0x20
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0x20
 	add r0, sp, #0xc
 	beq _020C8668
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add sp, sp, #0x54
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 _020C8668:
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add r0, sp, #4
 	mov r1, r4
 	str sb, [r4, #0x20]
-	bl sub_020C85A8
+	bl FS_GetOverlayFileID
 	add r1, sp, #4
 	add r0, sp, #0xc
 	ldmia r1, {r1, r2}
-	bl sub_020C8010
+	bl FS_OpenFileFast
 	cmp r0, #0
 	addeq sp, sp, #0x54
 	moveq r0, #0
@@ -112,14 +112,14 @@ _020C8668:
 	ldr r1, [sp, #0x30]
 	sub r1, r2, r1
 	str r1, [r4, #0x28]
-	bl sub_020C80C8
+	bl FS_CloseFile
 	mov r0, #1
 	add sp, sp, #0x54
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020C85D0
+	arm_func_end FSi_LoadOverlayInfoCore
 
-	arm_func_start sub_020C86C8
-sub_020C86C8: ; 0x020C86C8
+	arm_func_start FS_LoadOverlayInfo
+FS_LoadOverlayInfo: ; 0x020C86C8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x60
 	movs r4, r1
@@ -138,17 +138,17 @@ sub_020C86C8: ; 0x020C86C8
 	mov r1, r5
 	add r0, ip, r3
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, sp, #0x18
 	str r4, [r5, #0x20]
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0x10
 	mov r1, r5
-	bl sub_020C85A8
+	bl FS_GetOverlayFileID
 	add r1, sp, #0x10
 	add r0, sp, #0x18
 	ldmia r1, {r1, r2}
-	bl sub_020C8010
+	bl FS_OpenFileFast
 	cmp r0, #0
 	addeq sp, sp, #0x60
 	moveq r0, #0
@@ -160,7 +160,7 @@ sub_020C86C8: ; 0x020C86C8
 	ldr r1, [sp, #0x3c]
 	sub r1, r2, r1
 	str r1, [r5, #0x28]
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add sp, sp, #0x60
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
@@ -177,7 +177,7 @@ _020C8778:
 	str r4, [sp, #8]
 	ldr r4, [ip, #0xc]
 	str r4, [sp, #0xc]
-	bl sub_020C85D0
+	bl FSi_LoadOverlayInfoCore
 	add sp, sp, #0x60
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -185,90 +185,90 @@ _020C87B4: .word 0x021CEC24
 _020C87B8: .word 0x021CEC2C
 _020C87BC: .word 0x027FFE50
 _020C87C0: .word 0x021CEC34
-	arm_func_end sub_020C86C8
+	arm_func_end FS_LoadOverlayInfo
 
-	arm_func_start sub_020C87C4
-sub_020C87C4: ; 0x020C87C4
+	arm_func_start FS_LoadOverlayImageAsync
+FS_LoadOverlayImageAsync: ; 0x020C87C4
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	mov r5, r1
 	mov r6, r0
 	mov r0, r5
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	mov r1, r6
-	bl sub_020C85A8
+	bl FS_GetOverlayFileID
 	add r1, sp, #0
 	mov r0, r5
 	ldmia r1, {r1, r2}
-	bl sub_020C8010
+	bl FS_OpenFileFast
 	cmp r0, #0
 	addeq sp, sp, #8
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r0, r6
-	bl sub_020C8550
+	bl FSi_GetOverlayBinarySize
 	mov r4, r0
 	mov r0, r6
-	bl sub_020C856C
+	bl FS_ClearOverlayImage
 	ldr r1, [r6, #4]
 	mov r0, r5
 	mov r2, r4
-	bl sub_020C81C4
+	bl FS_ReadFileAsync
 	cmp r4, r0
 	addeq sp, sp, #8
 	moveq r0, #1
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r0, r5
-	bl sub_020C80C8
+	bl FS_CloseFile
 	mov r0, #0
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C87C4
+	arm_func_end FS_LoadOverlayImageAsync
 
-	arm_func_start sub_020C8850
-sub_020C8850: ; 0x020C8850
+	arm_func_start FS_LoadOverlayImage
+FS_LoadOverlayImage: ; 0x020C8850
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x50
 	mov r5, r0
 	add r0, sp, #8
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	mov r1, r5
-	bl sub_020C85A8
+	bl FS_GetOverlayFileID
 	add r1, sp, #0
 	add r0, sp, #8
 	ldmia r1, {r1, r2}
-	bl sub_020C8010
+	bl FS_OpenFileFast
 	cmp r0, #0
 	addeq sp, sp, #0x50
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r0, r5
-	bl sub_020C8550
+	bl FSi_GetOverlayBinarySize
 	mov r4, r0
 	mov r0, r5
-	bl sub_020C856C
+	bl FS_ClearOverlayImage
 	ldr r1, [r5, #4]
 	add r0, sp, #8
 	mov r2, r4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r4, r0
 	add r0, sp, #8
 	beq _020C88D0
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add sp, sp, #0x50
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _020C88D0:
-	bl sub_020C80C8
+	bl FS_CloseFile
 	mov r0, #1
 	add sp, sp, #0x50
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020C8850
+	arm_func_end FS_LoadOverlayImage
 
-	arm_func_start sub_020C88E0
-sub_020C88E0: ; 0x020C88E0
+	arm_func_start FSi_CompareDigest
+FSi_CompareDigest: ; 0x020C88E0
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x58
 	mov r4, r0
@@ -277,11 +277,11 @@ sub_020C88E0: ; 0x020C88E0
 	add r0, sp, #0x44
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _020C8970 ; =0x02101168
 	add r1, sp, #4
 	ldmia r2, {r0, r2}
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r3, _020C8970 ; =0x02101168
 	mov r1, r6
 	ldr ip, [r3, #4]
@@ -289,7 +289,7 @@ sub_020C88E0: ; 0x020C88E0
 	add r0, sp, #0x44
 	add r3, sp, #4
 	str ip, [sp]
-	bl sub_020C951C
+	bl DGT_Hash2CalcHmac
 	add r3, sp, #0x44
 	mov r2, #0
 _020C893C:
@@ -309,13 +309,13 @@ _020C895C:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C8970: .word 0x02101168
-	arm_func_end sub_020C88E0
+	arm_func_end FSi_CompareDigest
 
-	arm_func_start sub_020C8974
-sub_020C8974: ; 0x020C8974
+	arm_func_start FS_StartOverlay
+FS_StartOverlay: ; 0x020C8974
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C8550
+	bl FSi_GetOverlayBinarySize
 	ldr r1, _020C8A58 ; =0x027FFC40
 	mov r4, r0
 	ldrh r0, [r1]
@@ -340,15 +340,15 @@ sub_020C8974: ; 0x020C8974
 	mla r0, r2, r0, r3
 	ldr r1, [r5, #4]
 	mov r2, r4
-	bl sub_020C88E0
+	bl FSi_CompareDigest
 _020C89E4:
 	cmp r0, #0
 	bne _020C8A04
 	ldr r0, [r5, #4]
 	mov r2, r4
 	mov r1, #0
-	bl sub_020C4CF4
-	bl sub_020C42A8
+	bl MI_CpuFill8
+	bl OS_Terminate
 	ldmia sp!, {r3, r4, r5, pc}
 _020C8A04:
 	ldr r0, [r5, #0x1c]
@@ -357,10 +357,10 @@ _020C8A04:
 	beq _020C8A20
 	ldr r0, [r5, #4]
 	add r0, r0, r4
-	bl sub_02000970
+	bl MIi_UncompressBackward
 _020C8A20:
 	ldmib r5, {r0, r1}
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r4, [r5, #0x10]
 	ldr r5, [r5, #0x14]
 	cmp r4, r5
@@ -380,10 +380,10 @@ _020C8A58: .word 0x027FFC40
 _020C8A5C: .word 0x02101D14
 _020C8A60: .word 0x02101D14
 _020C8A64: .word 0x66666667
-	arm_func_end sub_020C8974
+	arm_func_end FS_StartOverlay
 
-	arm_func_start sub_020C8A68
-sub_020C8A68: ; 0x020C8A68
+	arm_func_start FS_EndOverlay
+FS_EndOverlay: ; 0x020C8A68
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov fp, r0
 _020C8A70:
@@ -394,7 +394,7 @@ _020C8A70:
 	add r0, r1, r0
 	mov r5, r4
 	add r7, r6, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C8B54 ; =0x021D0D68
 	mov ip, r4
 	ldr lr, [r1]
@@ -436,7 +436,7 @@ _020C8B10:
 	cmp sb, #0
 	bne _020C8AAC
 _020C8B1C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r4, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020C8B28:
@@ -454,29 +454,29 @@ _020C8B40:
 _020C8B50:
 	.byte 0xF8, 0x8F, 0xBD, 0xE8
 _020C8B54: .word 0x021D0D68
-	arm_func_end sub_020C8A68
+	arm_func_end FS_EndOverlay
 
-	arm_func_start sub_020C8B58
-sub_020C8B58: ; 0x020C8B58
+	arm_func_start FS_UnloadOverlayImage
+FS_UnloadOverlayImage: ; 0x020C8B58
 	stmfd sp!, {r3, lr}
-	bl sub_020C8A68
+	bl FS_EndOverlay
 	mov r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020C8B58
+	arm_func_end FS_UnloadOverlayImage
 
-	arm_func_start sub_020C8B68
-sub_020C8B68: ; 0x020C8B68
+	arm_func_start FS_LoadOverlay
+FS_LoadOverlay: ; 0x020C8B68
 	stmdb sp!, {lr}
 	sub sp, sp, #0x2c
 	mov r3, r0
 	mov r2, r1
 	add r0, sp, #0
 	mov r1, r3
-	bl sub_020C86C8
+	bl FS_LoadOverlayInfo
 	cmp r0, #0
 	beq _020C8B9C
 	add r0, sp, #0
-	bl sub_020C8850
+	bl FS_LoadOverlayImage
 	cmp r0, #0
 	bne _020C8BA8
 _020C8B9C:
@@ -485,25 +485,25 @@ _020C8B9C:
 	ldmia sp!, {pc}
 _020C8BA8:
 	add r0, sp, #0
-	bl sub_020C8974
+	bl FS_StartOverlay
 	mov r0, #1
 	add sp, sp, #0x2c
 	ldmia sp!, {pc}
-	arm_func_end sub_020C8B68
+	arm_func_end FS_LoadOverlay
 
-	arm_func_start sub_020C8BBC
-sub_020C8BBC: ; 0x020C8BBC
+	arm_func_start FS_UnloadOverlay
+FS_UnloadOverlay: ; 0x020C8BBC
 	stmdb sp!, {lr}
 	sub sp, sp, #0x2c
 	mov r3, r0
 	mov r2, r1
 	add r0, sp, #0
 	mov r1, r3
-	bl sub_020C86C8
+	bl FS_LoadOverlayInfo
 	cmp r0, #0
 	beq _020C8BF0
 	add r0, sp, #0
-	bl sub_020C8B58
+	bl FS_UnloadOverlayImage
 	cmp r0, #0
 	bne _020C8BFC
 _020C8BF0:
@@ -514,7 +514,7 @@ _020C8BFC:
 	mov r0, #1
 	add sp, sp, #0x2c
 	ldmia sp!, {pc}
-	arm_func_end sub_020C8BBC
+	arm_func_end FS_UnloadOverlay
 
 	.rodata
 

@@ -138,11 +138,11 @@ ov21_021D5248: ; 0x021D5248
 	mul r4, r0
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r5, [sp]
 	add r4, r1, #0
 	str r6, [sp, #4]

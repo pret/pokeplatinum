@@ -25,7 +25,7 @@ _0221FC2E:
 	ldr r2, _0221FC9C ; =0x00002090
 	add r4, r0, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0]
 	ldr r0, [r5, #8]
 	bl ov16_0223DF00
@@ -2224,7 +2224,7 @@ ov13_02220D4C: ; 0x02220D4C
 	bl sub_02006CB8
 	add r1, sp, #0x10
 	add r6, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
 	add r1, #0xc
@@ -2238,7 +2238,7 @@ ov13_02220D4C: ; 0x02220D4C
 	bl sub_02006CB8
 	add r1, sp, #0x10
 	add r6, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
 	add r1, #0xc
@@ -2273,7 +2273,7 @@ ov13_02220D4C: ; 0x02220D4C
 	add r1, r2, r1
 	add r0, r5, r0
 	mov r2, #0x40
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, #1
 	str r0, [sp]
 	mov r0, #0x20
@@ -2352,7 +2352,7 @@ ov13_02220D4C: ; 0x02220D4C
 	add r1, r6, r1
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, #0x4d
 	lsl r0, r0, #2
 	add r1, r6, r0
@@ -3371,7 +3371,7 @@ _0222167E:
 	bl sub_020790C4
 	bl sub_02095734
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	asr r6, r0, #0x18
 	mov r4, #0
@@ -3468,7 +3468,7 @@ _02221746:
 	bl sub_02006AC0
 	add r1, sp, #0xc
 	add r7, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #0x20

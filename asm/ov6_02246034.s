@@ -89,7 +89,7 @@ _022460E6:
 	bl sub_0201D2E8
 	mov r1, #0x29
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	cmp r4, #0x64

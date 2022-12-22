@@ -18,15 +18,15 @@ sub_02024220: ; 0x02024220
 	bl sub_02018144
 	add r4, r0, #0
 	str r6, [r4, #0]
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	mov r1, #2
 	ldr r0, _020242C0 ; =0x04000540
 	cmp r7, #0
 	str r1, [r0, #0]
 	bne _0202426C
 	lsl r0, r5, #7
-	bl sub_020A6824
+	bl NNS_GfdGetLnkTexVramManagerWorkSize
 	add r6, r0, #0
 	ldr r0, [r4, #0]
 	add r1, r6, #0
@@ -38,20 +38,20 @@ sub_02024220: ; 0x02024220
 	lsl r0, r5, #0x11
 	mov r1, #0
 	add r3, r6, #0
-	bl sub_020A682C
+	bl NNS_GfdInitLnkTexVramManager
 	b _02024276
 _0202426C:
 	lsl r0, r5, #0x10
 	lsr r0, r0, #0x10
 	mov r1, #1
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 _02024276:
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	bne _020242A0
 	ldr r0, [sp, #0x20]
 	lsl r0, r0, #8
-	bl sub_020A6B84
+	bl NNS_GfdGetLnkPlttVramManagerWorkSize
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	add r1, r5, #0
@@ -62,14 +62,14 @@ _02024276:
 	lsl r0, r0, #0xd
 	add r2, r5, #0
 	mov r3, #1
-	bl sub_020A6B8C
+	bl NNS_GfdInitLnkPlttVramManager
 	b _020242AC
 _020242A0:
 	ldr r0, [sp, #0x20]
 	mov r1, #1
 	lsl r0, r0, #0x1d
 	lsr r0, r0, #0x10
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 _020242AC:
 	ldr r0, [sp, #0x24]
 	cmp r0, #0
@@ -137,13 +137,13 @@ sub_020242DC: ; 0x020242DC
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0202434C ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _02024350 ; =0xBFFF0000
 	ldr r0, _02024354 ; =0x04000580
 	str r1, [r0, #0]

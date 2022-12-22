@@ -1,9 +1,9 @@
-.public sub_020D407C
-.public sub_020D5124
-.public sub_020D8B7C
-.public sub_020D8D14
-.public sub_020D90B0
-.public sub_020DAE0C
+.public __msl_assertion_failed
+.public memset
+.public strcpy
+.public strcmp
+.public strstr
+.public atoi
 .public ov4_021D7880
 .public ov4_021D7894
 .public ov4_021D78B0

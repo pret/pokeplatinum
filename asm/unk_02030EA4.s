@@ -20,7 +20,7 @@ sub_02030EA8: ; 0x02030EA8
 	add r2, r0, #0
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, #0
 	mvn r0, r0
 	str r0, [r4, #0]

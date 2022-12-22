@@ -6,13 +6,13 @@
 	.text
 
 
-	arm_func_start sub_020C1328
-sub_020C1328: ; 0x020C1328
+	arm_func_start OS_IrqDummy
+OS_IrqDummy: ; 0x020C1328
 	bx lr
-	arm_func_end sub_020C1328
+	arm_func_end OS_IrqDummy
 
-	arm_func_start sub_020C132C
-sub_020C132C: ; 0x020C132C
+	arm_func_start OSi_IrqCallback
+OSi_IrqCallback: ; 0x020C132C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r1, #0xc
 	mul r5, r0, r1
@@ -41,7 +41,7 @@ _020C1370:
 	cmp r1, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r0, r4
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C13A0: .word 0x021CCBF8
@@ -49,79 +49,79 @@ _020C13A4: .word 0x0210114C
 _020C13A8: .word 0x021CCC00
 _020C13AC: .word 0x027E0000
 _020C13B0: .word 0x021CCBFC
-	arm_func_end sub_020C132C
+	arm_func_end OSi_IrqCallback
 
-	arm_func_start sub_020C13B4
-sub_020C13B4: ; 0x020C13B4
-	ldr ip, _020C13C0 ; =sub_020C132C
+	arm_func_start OSi_IrqDma0
+OSi_IrqDma0: ; 0x020C13B4
+	ldr ip, _020C13C0 ; =OSi_IrqCallback
 	mov r0, #0
 	bx ip
 	; .align 2, 0
-_020C13C0: .word sub_020C132C
-	arm_func_end sub_020C13B4
+_020C13C0: .word OSi_IrqCallback
+	arm_func_end OSi_IrqDma0
 
-	arm_func_start sub_020C13C4
-sub_020C13C4: ; 0x020C13C4
-	ldr ip, _020C13D0 ; =sub_020C132C
+	arm_func_start OSi_IrqDma1
+OSi_IrqDma1: ; 0x020C13C4
+	ldr ip, _020C13D0 ; =OSi_IrqCallback
 	mov r0, #1
 	bx ip
 	; .align 2, 0
-_020C13D0: .word sub_020C132C
-	arm_func_end sub_020C13C4
+_020C13D0: .word OSi_IrqCallback
+	arm_func_end OSi_IrqDma1
 
-	arm_func_start sub_020C13D4
-sub_020C13D4: ; 0x020C13D4
-	ldr ip, _020C13E0 ; =sub_020C132C
+	arm_func_start OSi_IrqDma2
+OSi_IrqDma2: ; 0x020C13D4
+	ldr ip, _020C13E0 ; =OSi_IrqCallback
 	mov r0, #2
 	bx ip
 	; .align 2, 0
-_020C13E0: .word sub_020C132C
-	arm_func_end sub_020C13D4
+_020C13E0: .word OSi_IrqCallback
+	arm_func_end OSi_IrqDma2
 
-	arm_func_start sub_020C13E4
-sub_020C13E4: ; 0x020C13E4
-	ldr ip, _020C13F0 ; =sub_020C132C
+	arm_func_start OSi_IrqDma3
+OSi_IrqDma3: ; 0x020C13E4
+	ldr ip, _020C13F0 ; =OSi_IrqCallback
 	mov r0, #3
 	bx ip
 	; .align 2, 0
-_020C13F0: .word sub_020C132C
-	arm_func_end sub_020C13E4
+_020C13F0: .word OSi_IrqCallback
+	arm_func_end OSi_IrqDma3
 
-	arm_func_start sub_020C13F4
-sub_020C13F4: ; 0x020C13F4
-	ldr ip, _020C1400 ; =sub_020C132C
+	arm_func_start OSi_IrqTimer0
+OSi_IrqTimer0: ; 0x020C13F4
+	ldr ip, _020C1400 ; =OSi_IrqCallback
 	mov r0, #4
 	bx ip
 	; .align 2, 0
-_020C1400: .word sub_020C132C
-	arm_func_end sub_020C13F4
+_020C1400: .word OSi_IrqCallback
+	arm_func_end OSi_IrqTimer0
 
-	arm_func_start sub_020C1404
-sub_020C1404: ; 0x020C1404
-	ldr ip, _020C1410 ; =sub_020C132C
+	arm_func_start OSi_IrqTimer1
+OSi_IrqTimer1: ; 0x020C1404
+	ldr ip, _020C1410 ; =OSi_IrqCallback
 	mov r0, #5
 	bx ip
 	; .align 2, 0
-_020C1410: .word sub_020C132C
-	arm_func_end sub_020C1404
+_020C1410: .word OSi_IrqCallback
+	arm_func_end OSi_IrqTimer1
 
-	arm_func_start sub_020C1414
-sub_020C1414: ; 0x020C1414
-	ldr ip, _020C1420 ; =sub_020C132C
+	arm_func_start OSi_IrqTimer2
+OSi_IrqTimer2: ; 0x020C1414
+	ldr ip, _020C1420 ; =OSi_IrqCallback
 	mov r0, #6
 	bx ip
 	; .align 2, 0
-_020C1420: .word sub_020C132C
-	arm_func_end sub_020C1414
+_020C1420: .word OSi_IrqCallback
+	arm_func_end OSi_IrqTimer2
 
-	arm_func_start sub_020C1424
-sub_020C1424: ; 0x020C1424
-	ldr ip, _020C1430 ; =sub_020C132C
+	arm_func_start OSi_IrqTimer3
+OSi_IrqTimer3: ; 0x020C1424
+	ldr ip, _020C1430 ; =OSi_IrqCallback
 	mov r0, #7
 	bx ip
 	; .align 2, 0
-_020C1430: .word sub_020C132C
-	arm_func_end sub_020C1424
+_020C1430: .word OSi_IrqCallback
+	arm_func_end OSi_IrqTimer3
 
 	.data
 

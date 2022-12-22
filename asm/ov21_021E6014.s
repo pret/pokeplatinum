@@ -1123,7 +1123,7 @@ ov21_021E688C: ; 0x021E688C
 	mov r0, #1
 	lsl r0, r0, #0x14
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [sp]
 	str r0, [sp, #4]
 	add r0, r4, #0
@@ -1142,7 +1142,7 @@ ov21_021E68B0: ; 0x021E68B0
 	mov r0, #1
 	lsl r0, r0, #0x14
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r2, r0, #0x1f
 	lsl r3, r2, #0x14
 	lsr r1, r0, #0xc

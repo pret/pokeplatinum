@@ -23,7 +23,7 @@ ov4_021F571C: ; 0x021F571C
 	ldr r1, _021F5814 ; =0x02219174
 	mov r0, r4
 	mov r2, #4
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	beq _021F5790
 	ldr r2, _021F5818 ; =0x0221917C

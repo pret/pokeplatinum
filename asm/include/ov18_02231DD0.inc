@@ -1,4 +1,4 @@
-.public sub_020C04EC
+.public GX_LoadBG2Scr
 .public ov18_0222B004
 .public ov18_0222B034
 .public ov18_0222B048

@@ -98,9 +98,9 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020BCFD0
-.public sub_020BCFF0
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public FX_Div
+.public FX_Sqrt
+.public memcpy
+.public memset
+.public _ull_mul
+.public _s32_div_f

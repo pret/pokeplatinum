@@ -48,7 +48,7 @@ _021D0D96:
 	ldr r2, _021D0EF4 ; =0x0000940C
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x27
 	bl sub_02018340
 	str r0, [r4, #0]
@@ -922,7 +922,7 @@ ov58_021D1554: ; 0x021D1554
 	sub sp, #0x14
 	add r5, r0, #0
 	add r7, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -1502,39 +1502,39 @@ ov58_021D1A10: ; 0x021D1A10
 	cmp r1, #0
 	ble _021D1A2E
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _021D1A3C
 _021D1A2E:
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _021D1A3C:
-	bl sub_020E1740
+	bl _f_ftoi
 	sub r5, #8
 	str r0, [sp]
 	cmp r5, #0
 	ble _021D1A5A
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _021D1A68
 _021D1A5A:
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _021D1A68:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #4]
 	mov r0, #0
 	str r0, [sp, #8]
@@ -1932,7 +1932,7 @@ _021D1D8E:
 	add r2, r1, #0
 	ldr r0, _021D1DB8 ; =0x04000050
 	sub r2, #0x24
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	add r0, r5, #0
 	bl ov58_021D1D40
 	add r0, r4, #0
@@ -2096,7 +2096,7 @@ _021D1EEE:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	add r0, sp, #0
 	strb r1, [r0, #2]
@@ -2236,7 +2236,7 @@ _021D2014:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #1
 	add r0, sp, #0
 	strb r1, [r0, #2]
@@ -3375,7 +3375,7 @@ _021D289E:
 	add r0, sp, #0
 	mov r1, #0x18
 	mov r2, #2
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, pc}
 	thumb_func_end ov58_021D2888
 

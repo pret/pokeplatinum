@@ -42,7 +42,7 @@ sub_0201E88C: ; 0x0201E88C
 	mov r2, #0x3c
 	str r1, [r0, #0]
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r1, _0201E94C ; =0x021C0760
 	ldr r2, [r5, #0]
 	ldr r0, [r1, #0]
@@ -889,11 +889,11 @@ sub_0201EED4: ; 0x0201EED4
 	add r1, #0x3c
 	strb r2, [r1]
 	str r2, [r0, #0x40]
-	ldr r3, _0201EEF4 ; =sub_020A818C
+	ldr r3, _0201EEF4 ; =NNS_G2dInitImageProxy
 	add r0, #0x10
 	bx r3
 	nop
-_0201EEF4: .word sub_020A818C
+_0201EEF4: .word NNS_G2dInitImageProxy
 	thumb_func_end sub_0201EED4
 
 	thumb_func_start sub_0201EEF8
@@ -1321,7 +1321,7 @@ sub_0201F1F4: ; 0x0201F1F4
 	push {r4, lr}
 	add r4, r0, #0
 	add r0, #0x10
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	ldr r1, [r4, #4]
 	cmp r1, #3
 	beq _0201F20C
@@ -1370,13 +1370,13 @@ _0201F248:
 	add r5, #0x10
 	add r2, r4, #0
 	add r3, r5, #0
-	bl sub_020A8450
+	bl NNS_G2dLoadImage2DMapping
 	pop {r3, r4, r5, pc}
 _0201F25A:
 	add r5, #0x10
 	add r2, r4, #0
 	add r3, r5, #0
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	pop {r3, r4, r5, pc}
 	nop
 _0201F268: .word 0x04001000
@@ -1387,7 +1387,7 @@ sub_0201F26C: ; 0x0201F26C
 	push {r4, lr}
 	add r4, r0, #0
 	add r0, #0x10
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	ldr r1, [r4, #4]
 	cmp r1, #3
 	beq _0201F284
@@ -1431,7 +1431,7 @@ _0201F2BC:
 	add r5, #0x10
 	add r2, r4, #0
 	add r3, r5, #0
-	bl sub_020A867C
+	bl NNS_G2dLoadImageVramTransfer
 	pop {r3, r4, r5, pc}
 	nop
 _0201F2CC: .word 0x04001000
@@ -1476,7 +1476,7 @@ _0201F308: .word 0x021C0760
 	thumb_func_start sub_0201F30C
 sub_0201F30C: ; 0x0201F30C
 	push {r3, lr}
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	cmp r0, #0x30
 	bgt _0201F33C
 	bge _0201F384
@@ -1577,7 +1577,7 @@ _0201F3B4:
 	ldr r0, [r0, #0]
 	str r1, [r0, #0x14]
 _0201F3BC:
-	bl sub_020BF01C
+	bl GX_GetBankForSubOBJ
 	cmp r0, #0
 	beq _0201F3D2
 	cmp r0, #8
@@ -1785,7 +1785,7 @@ sub_0201F524: ; 0x0201F524
 	add r0, r4, #0
 	mov r1, #0
 	lsr r2, r2, #3
-	bl sub_020D5124
+	bl memset
 _0201F53A:
 	pop {r4, pc}
 	thumb_func_end sub_0201F524
@@ -1971,7 +1971,7 @@ sub_0201F670: ; 0x0201F670
 	beq _0201F6AE
 	add r0, r4, #0
 	add r0, #0x10
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	ldr r1, _0201F6F0 ; =0x021C0760
 	ldr r2, [r1, #0]
 	ldr r1, [r2, #0x1c]
@@ -1997,7 +1997,7 @@ _0201F6AE:
 	beq _0201F6E8
 	add r0, r4, #0
 	add r0, #0x10
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	ldr r1, _0201F6F0 ; =0x021C0760
 	ldr r2, [r1, #0]
 	ldr r1, [r2, #0x20]
@@ -2073,7 +2073,7 @@ sub_0201F734: ; 0x0201F734
 	add r1, r4, #0
 	add r5, r0, #0
 	add r6, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	beq _0201F750
 	sub r5, r5, r1
@@ -2090,11 +2090,11 @@ sub_0201F754: ; 0x0201F754
 	asr r2, r0, #4
 	lsr r2, r2, #0x1b
 	add r2, r0, r2
-	ldr r3, _0201F760 ; =sub_020E1F6C
+	ldr r3, _0201F760 ; =_s32_div_f
 	asr r0, r2, #5
 	bx r3
 	; .align 2, 0
-_0201F760: .word sub_020E1F6C
+_0201F760: .word _s32_div_f
 	thumb_func_end sub_0201F754
 
 	thumb_func_start sub_0201F764

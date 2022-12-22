@@ -359,7 +359,7 @@ sub_0204BAAC: ; 0x0204BAAC
 	mov r2, #0
 	bl sub_02074470
 	add r6, r0, #0
-	bl sub_020C3880
+	bl OS_GetTick
 	bl sub_0201D30C
 	add r1, r0, #0
 	ldr r0, [sp, #0x18]

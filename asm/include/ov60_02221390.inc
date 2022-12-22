@@ -1,4 +1,4 @@
-.public sub_020D407C
+.public __msl_assertion_failed
 .public ov4_021D78B0
 .public ov4_021EA898
 .public ov4_021EA8AC

@@ -53,7 +53,7 @@ _021F1068:
 	str r0, [r5, #4]
 	mov r1, #0
 	add r2, r6, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]

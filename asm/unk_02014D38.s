@@ -272,7 +272,7 @@ _02014EFA:
 	beq _02014F3C
 	bl sub_0201D2E8
 	add r1, r5, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r3, [r4, #4]
 	mov r5, #0
 	mov r0, #1

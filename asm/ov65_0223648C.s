@@ -38,17 +38,17 @@ _022364AA:
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r0, #0x1c
 	mov r1, #1
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r0, #0x20
 	mov r1, #1
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x10
 	mov r1, #0x60
 	bl sub_0201DBEC
@@ -1073,7 +1073,7 @@ ov65_02236D50: ; 0x02236D50
 	sub sp, #0x24
 	add r7, r0, #0
 	add r6, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -1758,7 +1758,7 @@ ov65_022372B0: ; 0x022372B0
 	ldrsh r0, [r4, r0]
 	mov r1, #0x12
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _022372E8 ; =0x000001F6
 	strh r1, [r4, r0]
 	pop {r4, pc}
@@ -2506,7 +2506,7 @@ ov65_022377E8: ; 0x022377E8
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x30
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov65_022377E8
@@ -4793,7 +4793,7 @@ ov65_02238838: ; 0x02238838
 	add r0, #0x30
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov65_0223760C
 	add r0, r5, #0
@@ -4820,12 +4820,12 @@ ov65_02238838: ; 0x02238838
 	add r0, #0x1c
 	mov r1, #1
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r0, #0x20
 	mov r1, #1
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r1, r5, #0
 	mov r3, #0

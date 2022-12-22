@@ -55,10 +55,10 @@ ov18_0223BC38: ; 0x0223BC38
 	ldr r1, _0223BCC4 ; =0x020C07EC
 	bl ov18_0222B700
 	ldr r0, _0223BCC8 ; =0x0224A4B8
-	ldr r1, _0223BCCC ; =sub_020C00B4
+	ldr r1, _0223BCCC ; =GX_LoadBGPltt
 	bl ov18_0222B700
 	ldr r0, _0223BCD0 ; =0x0224A4D0
-	ldr r1, _0223BCD4 ; =sub_020C04EC
+	ldr r1, _0223BCD4 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _0223BCD8 ; =0x04001008
 	ldr r1, _0223BCDC ; =0x0400000A
@@ -88,9 +88,9 @@ ov18_0223BC38: ; 0x0223BC38
 _0223BCC0: .word 0x0224A4A0
 _0223BCC4: .word 0x020C07EC
 _0223BCC8: .word 0x0224A4B8
-_0223BCCC: .word sub_020C00B4
+_0223BCCC: .word GX_LoadBGPltt
 _0223BCD0: .word 0x0224A4D0
-_0223BCD4: .word sub_020C04EC
+_0223BCD4: .word GX_LoadBG2Scr
 _0223BCD8: .word 0x04001008
 _0223BCDC: .word 0x0400000A
 	arm_func_end ov18_0223BC38
@@ -104,7 +104,7 @@ ov18_0223BCE0: ; 0x0223BCE0
 	ldr r0, _0223BD70 ; =0x02249554
 	add r1, sp, #4
 	mov r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r1, sp, #0
 	mov r0, #0
 	bl ov18_0222F724
@@ -119,7 +119,7 @@ ov18_0223BCE0: ; 0x0223BCE0
 	bl ov4_021E5C34
 	cmp r0, #0
 	bne _0223BD3C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0223BD3C:
 	ldr r0, [sp]
 	cmp r0, #0
@@ -255,11 +255,11 @@ ov18_0223BE84: ; 0x0223BE84
 	bl sub_020A33F8
 	add r1, r4, #0xf0
 	mov r2, #0xe
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl sub_020A33F8
 	add r1, r4, #0x1f0
 	mov r2, #0xe
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl ov18_0222AE04
 	mov r0, #0
 	bl ov18_022448E0

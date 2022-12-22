@@ -1,8 +1,8 @@
-.public sub_020C4DB0
-.public sub_020C8C08
-.public sub_020C8C48
-.public sub_020C8D10
-.public sub_020D5190
+.public MI_CpuCopy8
+.public DGT_Hash1Reset
+.public DGT_Hash1SetSource
+.public DGT_Hash1GetDigest_R
+.public memcmp
 .public ov4_021E86D4
 .public ov4_021E87D8
 .public ov4_021E8824

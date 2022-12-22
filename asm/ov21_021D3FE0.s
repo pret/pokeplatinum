@@ -19,7 +19,7 @@ _021D3FF2:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x48
-	bl sub_020D5124
+	bl memset
 	mov r0, #5
 	str r0, [r4, #8]
 	str r5, [r4, #0x44]

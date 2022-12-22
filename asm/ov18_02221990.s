@@ -15,7 +15,7 @@ ov18_02221990: ; 0x02221990
 	mov r1, r6
 	mov r0, #0
 	mov r2, #0x4c0
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r0, #0
 	strb r0, [r6, #0x4b2]
 	ldr r0, [r5, #0xc]
@@ -39,7 +39,7 @@ ov18_02221990: ; 0x02221990
 	mov r0, #0
 	mov r2, #0x220
 	strb r3, [r6, #0x4b2]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 _02221A10:
 	ldr r0, [r5, #0x14]
 	cmp r4, #0
@@ -48,7 +48,7 @@ _02221A10:
 	mov r0, r4
 	add r1, r6, #0x220
 	mov r2, #0x16
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 _02221A30:
 	ldrb r0, [r5, #0x18]
 	strb r0, [r6, #0x236]
@@ -58,11 +58,11 @@ _02221A30:
 	ldr r0, [r5, #4]
 	add r1, r6, #0x238
 	mov r2, r2, lsr #0x10
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [r5, #8]
 	add r1, r6, #0x298
 	mov r2, #0xc0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r1, #1
 	strb r1, [r6, #0x358]
 	add r0, r6, #0x300
@@ -88,10 +88,10 @@ ov18_02221A80: ; 0x02221A80
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	add r0, sp, #0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	mov r1, r6
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	addeq sp, sp, #0x48
 	moveq r0, #0
@@ -102,16 +102,16 @@ ov18_02221A80: ; 0x02221A80
 	cmp r4, r0
 	add r0, sp, #0
 	beq _02221B00
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add sp, sp, #0x48
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 _02221B00:
 	mov r1, r5
 	mov r2, r4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	add r0, sp, #0
-	bl sub_020C80C8
+	bl FS_CloseFile
 	mov r0, #1
 	add sp, sp, #0x48
 	ldmia sp!, {r4, r5, r6, pc}
@@ -128,7 +128,7 @@ ov18_02221B20: ; 0x02221B20
 	ldr r2, _02221B8C ; =0x0000014A
 	mov r4, r3
 	mov r7, #1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #0
 	mov r1, #2
 _02221B50:
@@ -287,7 +287,7 @@ ov18_02221CD8: ; 0x02221CD8
 	mov r0, #0
 	mov r2, #0x70
 	str ip, [sp, #4]
-	bl sub_020D065C
+	bl WM_SetGameInfo
 	add sp, sp, #8
 	mov r0, #0
 	ldmia sp!, {r4, pc}
@@ -366,13 +366,13 @@ ov18_02221DCC: ; 0x02221DCC
 	add r1, r0, r1
 	mov r0, #0
 	strb r7, [r3, #0x4c]
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _02221E24:
 	ldr r0, _02221F20 ; =0x0224B280
 	ldr r1, _02221F24 ; =0x0224B2CE
 	ldrb r2, [r0, #0x4c]
 	ldr r0, [r0, #0x20]
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r2, _02221F20 ; =0x0224B280
 	ldr r0, _02221F28 ; =0x0224B2C8
 	ldrb r7, [r2, #0x27]
@@ -429,7 +429,7 @@ _02221EF4:
 	mov r0, #0
 	mov r2, #0x70
 	str r4, [sp, #4]
-	bl sub_020D065C
+	bl WM_SetGameInfo
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -525,7 +525,7 @@ _02222048:
 	ldr r1, _022221C0 ; =0x0224B2D0
 	mov r0, #0
 	mov r2, #0x58
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r5, _022221B8 ; =0x0224B280
 	mov sl, #0
 	ldr r1, [r5, #0x1c]
@@ -552,7 +552,7 @@ _0222209C:
 	mov r0, #0x16
 	mla r0, sb, r0, r2
 	mov r2, #0x16
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [r5, #0x1c]
 	add sl, sl, #1
 	add r0, r0, #0x400
@@ -602,7 +602,7 @@ _02222114:
 	mov r0, #0
 	mov r2, #0x70
 	str r4, [sp, #4]
-	bl sub_020D065C
+	bl WM_SetGameInfo
 	ldr r0, _022221B8 ; =0x0224B280
 	ldr r1, [r0, #0x10]
 	cmp r1, #1

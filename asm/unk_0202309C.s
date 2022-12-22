@@ -11,7 +11,7 @@ sub_0202309C: ; 0x0202309C
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl sub_020AA3F4
+	bl NNS_G2dInitRenderer
 	add r5, #0x80
 	str r4, [r5, #0]
 	pop {r3, r4, r5, pc}
@@ -24,7 +24,7 @@ sub_020230AC: ; 0x020230AC
 	add r4, r1, #0
 	add r6, r2, #0
 	add r7, r3, #0
-	bl sub_020AA4C0
+	bl NNS_G2dInitRenderSurface
 	add r2, r5, #0
 	ldmia r4!, {r0, r1}
 	stmia r2!, {r0, r1}
@@ -40,7 +40,7 @@ sub_020230AC: ; 0x020230AC
 	cmp r0, #0
 	beq _020230DC
 	add r1, r5, #0
-	bl sub_020AA4B0
+	bl NNS_G2dAddRendererTargetSurface
 _020230DC:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -124,14 +124,14 @@ _02023150:
 	ldr r2, [sp, #0x28]
 	ldr r3, [sp, #0x2c]
 	add r0, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r7, r1, #0
 	str r0, [sp, #0x30]
 	ldr r1, [sp, #0x24]
 	ldr r2, [sp, #0x1c]
 	ldr r3, [sp, #0x20]
 	add r0, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	add r3, r1, #0
 	mov r0, #2
@@ -161,14 +161,14 @@ _02023150:
 	str r0, [sp, #0x34]
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x34]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #0x38]
 	add r4, r1, #0
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x34]
 	ldr r2, [sp, #0x1c]
 	ldr r3, [sp, #0x20]
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	ldr r3, [sp, #0x38]
 	lsl r2, r2, #0xa
@@ -204,14 +204,14 @@ _02023150:
 	ldr r0, [sp, #0xc]
 	ldr r2, [sp, #0x48]
 	ldr r3, [sp, #0x4c]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #0x50]
 	add r5, r1, #0
 	ldr r0, [sp, #0xc]
 	ldr r1, [sp, #0x44]
 	ldr r2, [sp, #0x3c]
 	ldr r3, [sp, #0x40]
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	ldr r3, [sp, #0x50]
 	lsl r2, r2, #0xa
@@ -239,14 +239,14 @@ _02023150:
 	ldr r1, [sp, #0x54]
 	ldr r2, [sp, #0x48]
 	ldr r3, [sp, #0x4c]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #0x58]
 	str r1, [sp, #4]
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #0x54]
 	ldr r2, [sp, #0x3c]
 	ldr r3, [sp, #0x40]
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov ip, r0
 	add r2, r1, #0
 	mov r0, #2

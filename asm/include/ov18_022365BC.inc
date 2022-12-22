@@ -1,5 +1,5 @@
-.public sub_020C04EC
-.public sub_020DCDCC
+.public GX_LoadBG2Scr
+.public swprintf
 .public ov18_0222B004
 .public ov18_0222B034
 .public ov18_0222B048

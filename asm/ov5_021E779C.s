@@ -12,11 +12,11 @@ ov5_021E779C: ; 0x021E779C
 	add r6, r2, #0
 	add r5, r1, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 	add r0, r5, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r4, r1
 	bne _021E77BA
 	mov r0, #1
@@ -33,11 +33,11 @@ ov5_021E77C0: ; 0x021E77C0
 	add r6, r2, #0
 	add r5, r1, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r0, #0
 	add r0, r5, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r4, r0
 	bne _021E77DE
 	mov r0, #1
@@ -368,7 +368,7 @@ _021E7A18:
 	ldr r1, [r1, #0]
 	add r0, r7, #0
 	lsl r2, r2, #0xa
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r6, #1
 	lsl r0, r0, #0x18
 	lsr r6, r0, #0x18
@@ -1644,7 +1644,7 @@ _021E83FC:
 	bne _021E8452
 	sub r0, #0x10
 	ldr r0, [r2, r0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _021E843C
 	add r2, r0, #0
@@ -1939,7 +1939,7 @@ _021E863E:
 	str r0, [r1, r2]
 	ldr r1, [r3, r5]
 	sub r2, #0x60
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r6, r5
 	mov r1, #1
 	add r0, #0x80
@@ -2511,11 +2511,11 @@ ov5_021E8A98: ; 0x021E8A98
 	add r5, r1, #0
 	add r6, r0, #0
 	add r1, r7, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	add r0, r6, #0
 	add r1, r7, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #5
 	add r1, r0, #0
 	lsr r2, r4, #5
@@ -2543,11 +2543,11 @@ ov5_021E8ACC: ; 0x021E8ACC
 	add r5, r1, #0
 	add r6, r0, #0
 	add r1, r7, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	add r0, r6, #0
 	add r1, r7, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r0, r0, #5
 	add r1, r0, #0
 	lsr r2, r4, #5
@@ -2607,7 +2607,7 @@ _021E8B32: ; jump table
 _021E8B3C:
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, #1
 	cmp r0, r5
 	blt _021E8B4E
@@ -2627,7 +2627,7 @@ _021E8B52:
 _021E8B60:
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r0, r1, #1
 	bpl _021E8B70
 	add r0, r4, #0
@@ -3314,12 +3314,12 @@ ov5_021E901C: ; 0x021E901C
 	str r1, [sp, #4]
 	cmp r4, r2
 	beq _021E907E
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r6, r0, #0x10
 	ldr r1, [sp, #4]
 	add r0, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	add r0, r7, #0
@@ -3366,7 +3366,7 @@ ov5_021E9084: ; 0x021E9084
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r6, #0
 	bne _021E90B6
 	add r0, r4, #0
@@ -3593,8 +3593,8 @@ ov5_021E924C: ; 0x021E924C
 	push {r3, r4, r5, r6, r7, lr}
 	add r5, r0, #0
 	bl sub_02017ACC
-	bl sub_020A6988
-	bl sub_020A6CF0
+	bl NNS_GfdResetLnkTexVramState
+	bl NNS_GfdResetLnkPlttVramState
 	mov r4, #0
 	add r6, r5, #4
 	mov r7, #0x30
@@ -3748,7 +3748,7 @@ ov5_021E9354: ; 0x021E9354
 ov5_021E935C: ; 0x021E935C
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsr r2, r0, #0x1f
 	lsl r1, r0, #0x1b
 	sub r1, r1, r2
@@ -4267,7 +4267,7 @@ _021E96FA:
 _021E9700:
 	ldr r0, [r4, #0xc]
 	ldr r0, [r0, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	add r5, r0, #0
 	ldrb r0, [r5, #9]
 	cmp r0, #1
@@ -4303,7 +4303,7 @@ _021E973A:
 _021E9742:
 	ldr r0, [r4, #8]
 	add r1, r5, #0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	ldr r0, [r4, #0x18]
 	mov r1, #1
 	str r1, [r0, #0]
@@ -4377,14 +4377,14 @@ ov5_021E97AC: ; 0x021E97AC
 	bl sub_02022974
 _021E97D6:
 	ldr r0, [r4, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	ldrb r0, [r0, #9]
 	cmp r0, #1
 	beq _021E97E6
 	bl sub_02022974
 _021E97E6:
 	ldr r0, [r4, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _021E9810
 	add r2, r0, #0
@@ -4414,7 +4414,7 @@ _021E9812:
 _021E981A:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -4442,7 +4442,7 @@ ov5_021E9830: ; 0x021E9830
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	bl ov5_021EEBC0
 	str r0, [r4, #0]
@@ -4895,7 +4895,7 @@ ov5_021E9B70: ; 0x021E9B70
 	ldr r0, _021E9C04 ; =0x00000854
 	ldr r0, [r1, r0]
 	ldr r1, [sp, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r6, r4]
 	str r0, [sp, #8]
 	ldr r0, [sp, #4]
@@ -5086,7 +5086,7 @@ _021E9D20:
 	ldr r1, [r1, #0]
 	add r0, r6, #0
 	add r2, r7, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r4, r4, #1
 	add r5, r5, #4
 	cmp r4, #4
@@ -5985,7 +5985,7 @@ _021EA3E2:
 	bne _021EA438
 	sub r0, #0x10
 	ldr r0, [r2, r0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _021EA422
 	add r2, r0, #0
@@ -6273,7 +6273,7 @@ ov5_021EA5E0: ; 0x021EA5E0
 	str r0, [r1, r2]
 	ldr r1, [r4, r6]
 	sub r2, #0x60
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r1, [r4, r6]
 	ldr r0, _021EA674 ; =0x0000085C
 	ldr r0, [r1, r0]

@@ -125,7 +125,7 @@ _021F6494:
 	ldr r0, [sl, #0xc]
 	sub r2, r1, r5
 	add r1, r0, r5
-	bl sub_020D50D8
+	bl memmove
 	ldr r0, [sl]
 	sub r0, r0, r5
 	str r0, [sl]
@@ -193,19 +193,19 @@ _021F6578:
 	ldr r3, [r2, #0x24]
 	eor r3, r3, #1
 	str r3, [r2, #0x24]
-	bl sub_020D8C94
+	bl strcat
 	ldr r1, _021F662C ; =0x022193C8
 	add r0, sp, #0
-	bl sub_020D8C94
+	bl strcat
 	add r1, sp, #0
 	mov r0, r4
-	bl sub_020D90B0
+	bl strstr
 	movs r4, r0
 	addeq sp, sp, #0x100
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
 	add r0, sp, #0
-	bl sub_020D8B60
+	bl strlen
 	ldr r1, _021F6628 ; =0x0221AF80
 	ldr r2, _021F6630 ; =0x0221AFB0
 	ldr r1, [r1, #0x24]
@@ -330,12 +330,12 @@ ov4_021F6744: ; 0x021F6744
 	ldr r1, _021F67E4 ; =0x022193CC
 	mov r6, r0
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r5, r0
 	ldr r1, _021F67E8 ; =0x022193D4
 	mov r0, r6
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r4, r0
 	ldr r1, _021F67EC ; =0x022193D8
 	mov r0, r6
@@ -378,12 +378,12 @@ ov4_021F67F4: ; 0x021F67F4
 	ldr r1, _021F6874 ; =0x022193E0
 	mov r5, r0
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r4, r0
 	ldr r1, _021F6878 ; =0x022193D4
 	mov r0, r5
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r1, r0
 	mov r0, #3
 	mov r2, #0
@@ -419,22 +419,22 @@ ov4_021F6880: ; 0x021F6880
 	ldr r1, _021F6948 ; =0x022193E8
 	mov r4, r0
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r7, r0
 	ldr r1, _021F694C ; =0x022193D4
 	mov r0, r4
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r6, r0
 	ldr r1, _021F6950 ; =0x022193F0
 	mov r0, r4
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r5, r0
 	ldr r1, _021F6954 ; =0x022193F4
 	mov r0, r4
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r8, r0
 	mov r1, r6
 	mov r2, r5
@@ -448,11 +448,11 @@ ov4_021F6880: ; 0x021F6880
 	ldr r1, _021F6958 ; =0x022193F8
 	mov r0, r4
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r6, r0
 	ldr r1, _021F695C ; =0x02219400
 	mov r0, r4
-	bl sub_020D90B0
+	bl strstr
 	cmp r0, #0
 	ldreq r3, _021F6960 ; =0x022193C4
 	moveq r6, #0
@@ -480,22 +480,22 @@ ov4_021F6964: ; 0x021F6964
 	ldr r1, _021F69EC ; =0x02219408
 	mov r7, r0
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r6, r0
 	ldr r1, _021F69F0 ; =0x022193F0
 	mov r0, r7
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r5, r0
 	ldr r1, _021F69F4 ; =0x022193D4
 	mov r0, r7
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r4, r0
 	ldr r1, _021F69F8 ; =0x022193F4
 	mov r0, r7
 	bl ov4_021F6634
-	bl sub_020DAE0C
+	bl atoi
 	mov r1, r4
 	mov r4, r0
 	mov r2, r5
@@ -526,7 +526,7 @@ ov4_021F69FC: ; 0x021F69FC
 	mov r3, #0
 	mov r2, #8
 	strb r3, [r5, r4]
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _021F6A34
 	mov r0, r5
@@ -537,7 +537,7 @@ _021F6A34:
 	ldr r1, _021F6AD8 ; =0x0221941C
 	mov r0, r5
 	mov r2, #9
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _021F6A5C
 	mov r0, r5
@@ -548,7 +548,7 @@ _021F6A5C:
 	ldr r1, _021F6AD8 ; =0x0221941C
 	mov r0, r5
 	mov r2, #9
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _021F6A84
 	mov r0, r5
@@ -559,7 +559,7 @@ _021F6A84:
 	ldr r1, _021F6ADC ; =0x02219428
 	mov r0, r5
 	mov r2, #8
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _021F6AAC
 	mov r0, r5
@@ -570,7 +570,7 @@ _021F6AAC:
 	ldr r1, _021F6AE0 ; =0x02219434
 	mov r0, r5
 	mov r2, #8
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r0, r5
@@ -914,7 +914,7 @@ ov4_021F6EF8: ; 0x021F6EF8
 	ldr r1, _021F6F50 ; =0x02219440
 	add r0, sp, #4
 	mov r2, r6
-	bl sub_020D7510
+	bl sprintf
 	ldr ip, [sp, #0x58]
 	mov r0, r7
 	mov r2, r5
@@ -943,7 +943,7 @@ ov4_021F6F54: ; 0x021F6F54
 	ldr r1, _021F6FB0 ; =0x02219440
 	add r0, sp, #8
 	mov r2, r7
-	bl sub_020D7510
+	bl sprintf
 	ldr ip, [sp, #0x64]
 	mov r3, r5
 	mov r0, r8
@@ -971,7 +971,7 @@ ov4_021F6FB4: ; 0x021F6FB4
 	ldr r1, _021F700C ; =0x02219440
 	add r0, sp, #4
 	mov r2, r6
-	bl sub_020D7510
+	bl sprintf
 	ldr ip, [sp, #0x58]
 	mov r0, r7
 	mov r2, r5
@@ -999,7 +999,7 @@ ov4_021F7010: ; 0x021F7010
 	ldr r1, _021F7068 ; =0x02219448
 	add r0, sp, #4
 	mov r2, r6
-	bl sub_020D7510
+	bl sprintf
 	ldr ip, [sp, #0x58]
 	mov r0, r7
 	mov r2, r5
@@ -1028,7 +1028,7 @@ ov4_021F706C: ; 0x021F706C
 	ldr r1, _021F70C8 ; =0x02219448
 	add r0, sp, #8
 	mov r2, r7
-	bl sub_020D7510
+	bl sprintf
 	ldr ip, [sp, #0x64]
 	mov r3, r5
 	mov r0, r8
@@ -1056,7 +1056,7 @@ ov4_021F70CC: ; 0x021F70CC
 	ldr r1, _021F7124 ; =0x02219448
 	add r0, sp, #4
 	mov r2, r6
-	bl sub_020D7510
+	bl sprintf
 	ldr ip, [sp, #0x58]
 	mov r0, r7
 	mov r2, r5

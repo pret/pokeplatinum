@@ -1,4 +1,4 @@
-.public sub_020C4DB0
+.public MI_CpuCopy8
 .public ov4_021D773C
 .public ov4_021D7744
 .public ov4_021D775C

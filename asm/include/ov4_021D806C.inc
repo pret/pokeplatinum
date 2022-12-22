@@ -1,10 +1,10 @@
-.public sub_020C42A8
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020CBAE4
-.public sub_020CC218
-.public sub_020CC3FC
-.public sub_020D8B60
+.public OS_Terminate
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public RTC_GetDateTime
+.public RTC_ConvertDateTimeToSecond
+.public RTC_ConvertSecondToDateTime
+.public strlen
 .public ov4_021D3048
 .public ov4_021D3220
 .public ov4_021D32AC

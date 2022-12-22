@@ -6,26 +6,26 @@
 	.text
 
 
-	arm_func_start sub_020E0734
-sub_020E0734: ; 0x020E0734
+	arm_func_start _drsb
+_drsb: ; 0x020E0734
 	eor r1, r1, r3
 	eor r3, r1, r3
 	eor r1, r1, r3
 	eor r0, r0, r2
 	eor r2, r0, r2
 	eor r0, r0, r2
-	arm_func_end sub_020E0734
+	arm_func_end _drsb
 
-	arm_func_start sub_020E074C
-sub_020E074C: ; 0x020E074C
+	arm_func_start _dsub
+_dsub: ; 0x020E074C
 	stmfd sp!, {r4, lr}
 	eors ip, r1, r3
 	eormi r3, r3, #0x80000000
-	bmi sub_020DFC7C
-	arm_func_end sub_020E074C
+	bmi __dadd_start
+	arm_func_end _dsub
 
-	arm_func_start sub_020E075C
-sub_020E075C: ; 0x020E075C
+	arm_func_start __dsub_start
+__dsub_start: ; 0x020E075C
 	subs ip, r0, r2
 	sbcs lr, r1, r3
 	bhs _020E077C
@@ -286,4 +286,4 @@ _020E0AEC:
 	; .align 2, 0
 _020E0AFC:
 	.word 0x7FF00000
-	arm_func_end sub_020E075C
+	arm_func_end __dsub_start

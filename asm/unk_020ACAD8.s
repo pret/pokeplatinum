@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020ACAD8
-sub_020ACAD8: ; 0x020ACAD8
+	arm_func_start GetCharIndex1D
+GetCharIndex1D: ; 0x020ACAD8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov sl, #3
 	ldr r7, [sp, #0x20]
@@ -76,10 +76,10 @@ _020ACB84:
 _020ACBC8:
 	.byte 0xF0, 0x87, 0xBD, 0xE8
 _020ACBCC: .word 0x020F9774
-	arm_func_end sub_020ACAD8
+	arm_func_end GetCharIndex1D
 
-	arm_func_start sub_020ACBD0
-sub_020ACBD0: ; 0x020ACBD0
+	arm_func_start OBJSizeToShape
+OBJSizeToShape: ; 0x020ACBD0
 	ldrb r3, [r0, #1]
 	ldr r2, _020ACBE8 ; =0x020F9794
 	ldrb r1, [r0]
@@ -88,10 +88,10 @@ sub_020ACBD0: ; 0x020ACBD0
 	bx lr
 	; .align 2, 0
 _020ACBE8: .word 0x020F9794
-	arm_func_end sub_020ACBD0
+	arm_func_end OBJSizeToShape
 
-	arm_func_start sub_020ACBEC
-sub_020ACBEC: ; 0x020ACBEC
+	arm_func_start ClearChar
+ClearChar: ; 0x020ACBEC
 	stmfd sp!, {r3, r4, r5, lr}
 	cmp r3, #8
 	ldreq r4, [sp, #0x10]
@@ -102,7 +102,7 @@ sub_020ACBEC: ; 0x020ACBEC
 	ldr r2, [sp, #0x18]
 	mov r1, ip
 	mov r2, r2, lsl #3
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldmia sp!, {r3, r4, r5, pc}
 _020ACC1C:
 	ldr r4, [sp, #0x18]
@@ -176,10 +176,10 @@ _020ACCF4:
 	cmp r4, ip
 	blo _020ACCF4
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020ACBEC
+	arm_func_end ClearChar
 
-	arm_func_start sub_020ACD24
-sub_020ACD24: ; 0x020ACD24
+	arm_func_start LetterChar
+LetterChar: ; 0x020ACD24
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x28
 	ldr r5, [r0, #8]
@@ -246,7 +246,7 @@ _020ACDF8:
 	strb r0, [sp, #0x25]
 	mov r0, r5
 	add r1, r1, r2, ror #29
-	bl sub_020AE41C
+	bl NNSi_G2dBitReaderRead
 	ldr r6, [sp]
 	mov r0, r6
 	cmp r0, sl
@@ -254,7 +254,7 @@ _020ACDF8:
 _020ACE3C:
 	mov r0, r5
 	mov r1, r8
-	bl sub_020AE41C
+	bl NNSi_G2dBitReaderRead
 	cmp r0, #0
 	beq _020ACE60
 	add r0, r7, r0
@@ -296,7 +296,7 @@ _020ACEB0:
 	add r0, sp, #0x18
 	strb r2, [sp, #0x1c]
 	strb r2, [sp, #0x1d]
-	bl sub_020AE41C
+	bl NNSi_G2dBitReaderRead
 	ldr sb, [sp]
 	mov r0, sb
 	cmp r0, sl
@@ -304,7 +304,7 @@ _020ACEB0:
 _020ACEF0:
 	add r0, sp, #0x18
 	mov r1, r8
-	bl sub_020AE41C
+	bl NNSi_G2dBitReaderRead
 	cmp r0, #0
 	beq _020ACF34
 	add r1, r5, r0
@@ -334,10 +334,10 @@ _020ACF40:
 	blo _020ACEB0
 	add sp, sp, #0x28
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020ACD24
+	arm_func_end LetterChar
 
-	arm_func_start sub_020ACF64
-sub_020ACF64: ; 0x020ACF64
+	arm_func_start DrawGlyphLine
+DrawGlyphLine: ; 0x020ACF64
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x2c
 	ldr r4, [sp, #0x54]
@@ -430,7 +430,7 @@ _020AD0C0:
 	mov r0, r4
 	str r7, [sp, #4]
 	str r5, [sp, #0xc]
-	bl sub_020ACD24
+	bl LetterChar
 	sub r5, r5, #8
 	cmp r5, r6
 	add r7, r7, r8
@@ -443,10 +443,10 @@ _020AD0E0:
 	bgt _020AD0B0
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020ACF64
+	arm_func_end DrawGlyphLine
 
-	arm_func_start sub_020AD0FC
-sub_020AD0FC: ; 0x020AD0FC
+	arm_func_start DrawGlyph1D
+DrawGlyph1D: ; 0x020AD0FC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x4c
 	ldr r6, [sp, #0x74]
@@ -562,12 +562,12 @@ _020AD2A8:
 	mov r0, r6
 	mov r1, sl
 	str r7, [sp, #4]
-	bl sub_020ACAD8
+	bl GetCharIndex1D
 	mla r1, r0, sb, fp
 	add r0, sp, #0x24
 	str r4, [sp, #0x2c]
 	str r1, [sp, #0x24]
-	bl sub_020ACD24
+	bl LetterChar
 	sub r4, r4, #8
 	add r6, r6, #1
 	cmp r4, r5
@@ -582,10 +582,10 @@ _020AD2E8:
 	bgt _020AD28C
 	add sp, sp, #0x4c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020AD0FC
+	arm_func_end DrawGlyph1D
 
-	arm_func_start sub_020AD30C
-sub_020AD30C: ; 0x020AD30C
+	arm_func_start ClearContinuous
+ClearContinuous: ; 0x020AD30C
 	stmfd sp!, {r3, lr}
 	mov r3, r0
 	ldrb r2, [r3, #0xc]
@@ -604,12 +604,12 @@ sub_020AD30C: ; 0x020AD30C
 	mov r0, r1
 	mul r2, lr, r2
 	ldr r1, [r3, #0]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020AD30C
+	arm_func_end ClearContinuous
 
-	arm_func_start sub_020AD35C
-sub_020AD35C: ; 0x020AD35C
+	arm_func_start ClearLine
+ClearLine: ; 0x020AD35C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r0
 	ldrb r2, [r7, #0xc]
@@ -636,17 +636,17 @@ _020AD3B4:
 	mov r0, r6
 	mov r1, sb
 	mov r2, r4
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [r7, #8]
 	add r8, r8, #1
 	cmp r8, r0
 	add sb, sb, r5
 	blt _020AD3B4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020AD35C
+	arm_func_end ClearLine
 
-	arm_func_start sub_020AD3DC
-sub_020AD3DC: ; 0x020AD3DC
+	arm_func_start ClearAreaLine
+ClearAreaLine: ; 0x020AD3DC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x30
 	ldr r4, [sp, #0x58]
@@ -735,7 +735,7 @@ _020AD504:
 	mov r0, r7
 	mov r2, r8
 	stmia sp, {r5, sl, fp}
-	bl sub_020ACBEC
+	bl ClearChar
 	ldr r0, [sp, #0x14]
 	add r4, r4, #8
 	add r7, r7, r0
@@ -754,10 +754,10 @@ _020AD548:
 	blt _020AD4B8
 	add sp, sp, #0x30
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020AD3DC
+	arm_func_end ClearAreaLine
 
-	arm_func_start sub_020AD578
-sub_020AD578: ; 0x020AD578
+	arm_func_start ClearArea1D
+ClearArea1D: ; 0x020AD578
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x48
 	ldrb r4, [r0, #0xc]
@@ -856,7 +856,7 @@ _020AD6D4:
 	str r0, [sp, #4]
 	mov r0, r6
 	mov r1, r8
-	bl sub_020ACAD8
+	bl GetCharIndex1D
 	ldr r2, [sp, #0x3c]
 	cmp r4, sl
 	sublt r1, sl, r4
@@ -872,7 +872,7 @@ _020AD6D4:
 	ldr r2, [sp, #0x30]
 	mla r0, ip, r0, r2
 	mov r2, sb
-	bl sub_020ACBEC
+	bl ClearChar
 	add r4, r4, #8
 	add r6, r6, #1
 	cmp r4, r7
@@ -887,10 +887,10 @@ _020AD748:
 	blt _020AD688
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020AD578
+	arm_func_end ClearArea1D
 
-	arm_func_start sub_020AD76C
-sub_020AD76C: ; 0x020AD76C
+	arm_func_start InitCharCanvas
+InitCharCanvas: ; 0x020AD76C
 	str r2, [r0, #4]
 	ldr r2, [sp]
 	str r3, [r0, #8]
@@ -901,10 +901,10 @@ sub_020AD76C: ; 0x020AD76C
 	str r2, [r0, #0x14]
 	str r1, [r0, #0x10]
 	bx lr
-	arm_func_end sub_020AD76C
+	arm_func_end InitCharCanvas
 
-	arm_func_start sub_020AD794
-sub_020AD794: ; 0x020AD794
+	arm_func_start NNS_G2dCharCanvasDrawChar
+NNS_G2dCharCanvasDrawChar: ; 0x020AD794
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x10
 	mov r7, r1
@@ -913,7 +913,7 @@ sub_020AD794: ; 0x020AD794
 	mov r0, r7
 	mov r6, r2
 	mov r5, r3
-	bl sub_020AC890
+	bl NNS_G2dFontFindGlyphIndex
 	ldr r1, _020AD8B4 ; =0x0000FFFF
 	mov r4, r0
 	cmp r4, r1
@@ -921,7 +921,7 @@ sub_020AD794: ; 0x020AD794
 	ldreqh r4, [r0, #2]
 	mov r0, r7
 	mov r1, r4
-	bl sub_020AC8D8
+	bl NNS_G2dFontGetCharWidthsFromIndex
 	str r0, [sp, #8]
 	ldr r1, [r7, #0]
 	ldr r2, [r1, #8]
@@ -985,10 +985,10 @@ _020AD878:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020AD8B4: .word 0x0000FFFF
-	arm_func_end sub_020AD794
+	arm_func_end NNS_G2dCharCanvasDrawChar
 
-	arm_func_start sub_020AD8B8
-sub_020AD8B8: ; 0x020AD8B8
+	arm_func_start NNS_G2dCharCanvasInitForBG
+NNS_G2dCharCanvasInitForBG: ; 0x020AD8B8
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr lr, [sp, #0x10]
@@ -996,15 +996,15 @@ sub_020AD8B8: ; 0x020AD8B8
 	str lr, [sp]
 	str ip, [sp, #4]
 	str r2, [sp, #8]
-	bl sub_020AD76C
+	bl InitCharCanvas
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
 _020AD8E0: .word 0x020F975C
-	arm_func_end sub_020AD8B8
+	arm_func_end NNS_G2dCharCanvasInitForBG
 
-	arm_func_start sub_020AD8E4
-sub_020AD8E4: ; 0x020AD8E4
+	arm_func_start NNS_G2dCharCanvasInitForOBJ1D
+NNS_G2dCharCanvasInitForOBJ1D: ; 0x020AD8E4
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x10
 	cmp r2, #8
@@ -1034,16 +1034,16 @@ sub_020AD8E4: ; 0x020AD8E4
 	str ip, [sp, #4]
 	str r4, [sp, #0xc]
 	str r4, [sp, #8]
-	bl sub_020AD76C
+	bl InitCharCanvas
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020AD964: .word 0x020F9774
 _020AD968: .word 0x020F9768
-	arm_func_end sub_020AD8E4
+	arm_func_end NNS_G2dCharCanvasInitForOBJ1D
 
-	arm_func_start sub_020AD96C
-sub_020AD96C: ; 0x020AD96C
+	arm_func_start NNS_G2dMapScrToCharText
+NNS_G2dMapScrToCharText: ; 0x020AD96C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #8
 	ldr r5, [sp, #0x24]
@@ -1056,7 +1056,7 @@ sub_020AD96C: ; 0x020AD96C
 	mov r3, r5
 	add r0, r0, r4, lsl #1
 	stmia sp, {ip, lr}
-	bl sub_020ADA1C
+	bl NNS_G2dMapScrToChar256x16Pltt
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020AD9A8:
@@ -1092,10 +1092,10 @@ _020ADA08:
 	blt _020AD9C4
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020AD96C
+	arm_func_end NNS_G2dMapScrToCharText
 
-	arm_func_start sub_020ADA1C
-sub_020ADA1C: ; 0x020ADA1C
+	arm_func_start NNS_G2dMapScrToChar256x16Pltt
+NNS_G2dMapScrToChar256x16Pltt: ; 0x020ADA1C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r4, [sp, #0x1c]
 	ldr r8, [sp, #0x18]
@@ -1122,10 +1122,10 @@ _020ADA64:
 	add r0, r0, r3, lsl #1
 	blt _020ADA3C
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020ADA1C
+	arm_func_end NNS_G2dMapScrToChar256x16Pltt
 
-	arm_func_start sub_020ADA78
-sub_020ADA78: ; 0x020ADA78
+	arm_func_start NNSi_G2dCalcRequiredOBJ
+NNSi_G2dCalcRequiredOBJ: ; 0x020ADA78
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r3, r0, lsr #3
 	mov r5, r1, lsr #3
@@ -1149,10 +1149,10 @@ sub_020ADA78: ; 0x020ADA78
 	add r0, r4, lr, lsr #2
 	mla r0, r1, r0, ip
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020ADA78
+	arm_func_end NNSi_G2dCalcRequiredOBJ
 
-	arm_func_start sub_020ADAD4
-sub_020ADAD4: ; 0x020ADAD4
+	arm_func_start NNS_G2dArrangeOBJ1D
+NNS_G2dArrangeOBJ1D: ; 0x020ADAD4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x38
 	mov r7, r0
@@ -1197,7 +1197,7 @@ sub_020ADAD4: ; 0x020ADAD4
 	strne r1, [sp, #0x18]
 	mov r1, #0
 	str r1, [sp, #0x24]
-	bl sub_020ACBD0
+	bl OBJSizeToShape
 	ldr r1, [sp, #0x10]
 	ldr r2, [sp, #0x14]
 	mov sb, r1, asr fp
@@ -1277,7 +1277,7 @@ _020ADC54:
 	mov r0, r7
 	mov r1, r8
 	str r4, [sp, #0xc]
-	bl sub_020ADAD4
+	bl NNS_G2dArrangeOBJ1D
 	ldr r1, [sp, #0x18]
 	add r7, r7, r0, lsl #3
 	mul r2, r1, r8
@@ -1305,7 +1305,7 @@ _020ADCDC:
 	ldr r1, [sp, #0x2c]
 	mov r0, r7
 	mov r2, r8
-	bl sub_020ADAD4
+	bl NNS_G2dArrangeOBJ1D
 	ldr r2, [sp, #0x18]
 	ldr r1, [sp, #0x2c]
 	add r7, r7, r0, lsl #3
@@ -1339,7 +1339,7 @@ _020ADD48:
 	mov r0, r7
 	add r3, r3, r5, lsl #3
 	str r4, [sp, #0xc]
-	bl sub_020ADAD4
+	bl NNS_G2dArrangeOBJ1D
 	ldr r1, [sp, #0x24]
 	add r0, r1, r0
 	str r0, [sp, #0x24]
@@ -1351,7 +1351,7 @@ _020ADDB4:
 _020ADDC0: .word 0x020F9774
 _020ADDC4: .word 0xFE00FF00
 _020ADDC8: .word 0x3FFF3FFF
-	arm_func_end sub_020ADAD4
+	arm_func_end NNS_G2dArrangeOBJ1D
 
 	.rodata
 

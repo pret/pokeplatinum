@@ -3,7 +3,7 @@
 .public sub_02019060
 .public sub_0201FF0C
 .public sub_02022974
-.public sub_020BF55C
+.public G2x_SetBlendAlpha_
 .public ov104_0223C164
 .public ov104_0223C23C
 .public ov104_0223D9E4

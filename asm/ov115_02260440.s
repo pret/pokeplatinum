@@ -23,7 +23,7 @@ ov115_02260440: ; 0x02260440
 	mov r1, #0
 	mov r2, #0x88
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [sp]
 	add r1, r5, #0
 	add r1, #0x39
@@ -838,7 +838,7 @@ ov115_02260A90: ; 0x02260A90
 	cmp r0, #0
 	beq _02260AD6
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _02260AD6
 	add r0, r4, #0
@@ -883,7 +883,7 @@ ov115_02260ADC: ; 0x02260ADC
 	str r0, [r7, #0x4c]
 	ldr r0, [sp, #8]
 	mov r1, #0x18
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [r7, #0x48]
 	ldrb r0, [r7, #0x10]
 	mov r4, #0

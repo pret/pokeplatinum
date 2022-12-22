@@ -1,4 +1,4 @@
-.public sub_020BDF4C
-.public sub_020BEC68
-.public sub_020BEDC0
-.public sub_020C4150
+.public GX_VRAMCNT_SetLCDC_
+.public resetBankForX_
+.public disableBankForX_
+.public OSi_UnlockVram

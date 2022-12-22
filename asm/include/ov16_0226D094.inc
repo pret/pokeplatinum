@@ -23,8 +23,8 @@
 .public sub_02021D6C
 .public sub_02021E50
 .public sub_02022974
-.public sub_020BF55C
-.public sub_020C4CF4
+.public G2x_SetBlendAlpha_
+.public MI_CpuFill8
 .public ov16_0223F9F0
 .public ov16_0226D160
 .public ov16_0226D17C

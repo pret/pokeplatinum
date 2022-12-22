@@ -31,7 +31,7 @@
 .public sub_020362F4
 .public sub_0203909C
 .public sub_02039390
-.public sub_020A4788
-.public sub_020C3FA0
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public DWC_CreateExchangeToken
+.public OS_GetMacAddress
+.public MI_CpuFill8
+.public MI_CpuCopy8

@@ -6,22 +6,22 @@
 	.text
 
 
-	arm_func_start sub_020BF62C
-sub_020BF62C: ; 0x020BF62C
+	arm_func_start G3BS_LoadMtx44
+G3BS_LoadMtx44: ; 0x020BF62C
 	mov r3, r0
 	ldr r0, [r3, #0]
 	mov r2, #0x16
 	str r2, [r0, #0]
 	mov r0, r1
-	ldr ip, _020BF64C ; =sub_020C4CC8
+	ldr ip, _020BF64C ; =MI_Copy64B
 	ldr r1, [r3, #4]
 	bx ip
 	; .align 2, 0
-_020BF64C: .word sub_020C4CC8
-	arm_func_end sub_020BF62C
+_020BF64C: .word MI_Copy64B
+	arm_func_end G3BS_LoadMtx44
 
-	arm_func_start sub_020BF650
-sub_020BF650: ; 0x020BF650
+	arm_func_start G3B_PushMtx
+G3B_PushMtx: ; 0x020BF650
 	ldr r1, [r0, #0]
 	mov r2, #0x11
 	str r2, [r1, #0]
@@ -30,10 +30,10 @@ sub_020BF650: ; 0x020BF650
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF650
+	arm_func_end G3B_PushMtx
 
-	arm_func_start sub_020BF670
-sub_020BF670: ; 0x020BF670
+	arm_func_start G3B_PopMtx
+G3B_PopMtx: ; 0x020BF670
 	ldr r2, [r0, #0]
 	mov r3, #0x12
 	str r3, [r2, #0]
@@ -45,23 +45,23 @@ sub_020BF670: ; 0x020BF670
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF670
+	arm_func_end G3B_PopMtx
 
-	arm_func_start sub_020BF69C
-sub_020BF69C: ; 0x020BF69C
+	arm_func_start G3B_LoadMtx44
+G3B_LoadMtx44: ; 0x020BF69C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020BF62C
+	bl G3BS_LoadMtx44
 	ldr r0, [r4, #4]
 	add r0, r0, #0x40
 	str r0, [r4, #0]
 	add r0, r0, #4
 	str r0, [r4, #4]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020BF69C
+	arm_func_end G3B_LoadMtx44
 
-	arm_func_start sub_020BF6C0
-sub_020BF6C0: ; 0x020BF6C0
+	arm_func_start G3B_Color
+G3B_Color: ; 0x020BF6C0
 	ldr r2, [r0, #0]
 	mov r3, #0x20
 	str r3, [r2, #0]
@@ -73,10 +73,10 @@ sub_020BF6C0: ; 0x020BF6C0
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF6C0
+	arm_func_end G3B_Color
 
-	arm_func_start sub_020BF6EC
-sub_020BF6EC: ; 0x020BF6EC
+	arm_func_start G3B_Normal
+G3B_Normal: ; 0x020BF6EC
 	stmfd sp!, {r4, lr}
 	mov r4, #0x21
 	ldr lr, [r0]
@@ -97,10 +97,10 @@ sub_020BF6EC: ; 0x020BF6EC
 	add r1, r1, #4
 	str r1, [r0, #4]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020BF6EC
+	arm_func_end G3B_Normal
 
-	arm_func_start sub_020BF73C
-sub_020BF73C: ; 0x020BF73C
+	arm_func_start G3B_Vtx
+G3B_Vtx: ; 0x020BF73C
 	stmfd sp!, {r3, lr}
 	ldr ip, [r0]
 	mov r2, r2, lsl #0x10
@@ -122,10 +122,10 @@ sub_020BF73C: ; 0x020BF73C
 	add r1, r1, #4
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020BF73C
+	arm_func_end G3B_Vtx
 
-	arm_func_start sub_020BF790
-sub_020BF790: ; 0x020BF790
+	arm_func_start G3B_PolygonAttr
+G3B_PolygonAttr: ; 0x020BF790
 	orr r1, r1, r2, lsl #4
 	ldr r2, [r0, #0]
 	mov ip, #0x29
@@ -145,10 +145,10 @@ sub_020BF790: ; 0x020BF790
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF790
+	arm_func_end G3B_PolygonAttr
 
-	arm_func_start sub_020BF7DC
-sub_020BF7DC: ; 0x020BF7DC
+	arm_func_start G3B_MaterialColorDiffAmb
+G3B_MaterialColorDiffAmb: ; 0x020BF7DC
 	stmfd sp!, {r3, lr}
 	ldr ip, [r0]
 	mov lr, #0x30
@@ -166,10 +166,10 @@ sub_020BF7DC: ; 0x020BF7DC
 	add r1, r1, #4
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020BF7DC
+	arm_func_end G3B_MaterialColorDiffAmb
 
-	arm_func_start sub_020BF820
-sub_020BF820: ; 0x020BF820
+	arm_func_start G3B_MaterialColorSpecEmi
+G3B_MaterialColorSpecEmi: ; 0x020BF820
 	stmfd sp!, {r3, lr}
 	ldr ip, [r0]
 	mov lr, #0x31
@@ -187,10 +187,10 @@ sub_020BF820: ; 0x020BF820
 	add r1, r1, #4
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020BF820
+	arm_func_end G3B_MaterialColorSpecEmi
 
-	arm_func_start sub_020BF864
-sub_020BF864: ; 0x020BF864
+	arm_func_start G3B_LightVector
+G3B_LightVector: ; 0x020BF864
 	stmfd sp!, {r3, r4, r5, lr}
 	ldrsh lr, [sp, #0x10]
 	ldr ip, _020BF8BC ; =0x000003FF
@@ -215,10 +215,10 @@ sub_020BF864: ; 0x020BF864
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020BF8BC: .word 0x000003FF
-	arm_func_end sub_020BF864
+	arm_func_end G3B_LightVector
 
-	arm_func_start sub_020BF8C0
-sub_020BF8C0: ; 0x020BF8C0
+	arm_func_start G3B_LightColor
+G3B_LightColor: ; 0x020BF8C0
 	ldr r3, [r0, #0]
 	mov ip, #0x33
 	str ip, [r3]
@@ -231,10 +231,10 @@ sub_020BF8C0: ; 0x020BF8C0
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF8C0
+	arm_func_end G3B_LightColor
 
-	arm_func_start sub_020BF8F0
-sub_020BF8F0: ; 0x020BF8F0
+	arm_func_start G3B_Begin
+G3B_Begin: ; 0x020BF8F0
 	ldr r2, [r0, #0]
 	mov r3, #0x40
 	str r3, [r2, #0]
@@ -246,10 +246,10 @@ sub_020BF8F0: ; 0x020BF8F0
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF8F0
+	arm_func_end G3B_Begin
 
-	arm_func_start sub_020BF91C
-sub_020BF91C: ; 0x020BF91C
+	arm_func_start G3B_End
+G3B_End: ; 0x020BF91C
 	ldr r1, [r0, #0]
 	mov r2, #0x41
 	str r2, [r1, #0]
@@ -258,4 +258,4 @@ sub_020BF91C: ; 0x020BF91C
 	add r1, r1, #4
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020BF91C
+	arm_func_end G3B_End

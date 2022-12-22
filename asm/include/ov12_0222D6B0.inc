@@ -23,9 +23,9 @@
 .public sub_02019120
 .public sub_0201D2E8
 .public sub_02022974
-.public sub_020E0B00
-.public sub_020E1A9C
-.public sub_020E1F6C
+.public _f_add
+.public _f_sub
+.public _s32_div_f
 .public ov12_0221FDD4
 .public ov12_0221FDE4
 .public ov12_022201CC

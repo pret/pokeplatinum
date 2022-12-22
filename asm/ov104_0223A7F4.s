@@ -51,7 +51,7 @@ _0223A82E:
 _0223A83A:
 	bl sub_0201D2E8
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, r1
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -241,7 +241,7 @@ _0223A978:
 	bl sub_0201D2E8
 	ldr r1, [sp, #0x1c]
 	add r1, r1, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp, #0xa0]
 	ldrh r0, [r0, #0xc]
 	sub r0, r0, r1
@@ -254,7 +254,7 @@ _0223A9AC:
 	bl sub_0201D2E8
 	ldr r1, [sp, #0x1c]
 	add r1, r1, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp, #0xa0]
 	ldrh r0, [r0, #4]
 	sub r0, r0, r1

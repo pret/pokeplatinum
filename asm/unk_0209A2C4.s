@@ -22,7 +22,7 @@ sub_0209A2C4: ; 0x0209A2C4
 	mov r1, #0
 	mov r2, #0x40
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x58
 	str r0, [r4, #0]
 	mov r0, #0

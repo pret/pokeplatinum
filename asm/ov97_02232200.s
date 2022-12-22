@@ -146,7 +146,7 @@ ov97_022322DC: ; 0x022322DC
 	mov r1, #1
 	add r0, #0x60
 	strb r1, [r0]
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	add r1, r4, #0
 	add r1, #0x62
 	strh r0, [r1]
@@ -179,9 +179,9 @@ ov97_0223231C: ; 0x0223231C
 	push {r4, lr}
 	bl ov97_02233408
 	add r4, r0, #0
-	bl sub_020CE8A4
+	bl WM_GetDispersionBeaconPeriod
 	strh r0, [r4, #0x18]
-	bl sub_020CEB20
+	bl WM_GetNextTgid
 	strh r0, [r4, #0xc]
 	pop {r4, pc}
 	; .align 2, 0
@@ -197,7 +197,7 @@ ov97_02232334: ; 0x02232334
 	bl ov97_02233408
 	ldrh r0, [r0, #0x32]
 	strh r0, [r4, #4]
-	bl sub_020CE934
+	bl WM_GetDispersionScanPeriod
 	strh r0, [r4, #6]
 	mov r0, #0xff
 	strb r0, [r4, #8]
@@ -214,7 +214,7 @@ ov97_02232360: ; 0x02232360
 	push {r3, r4, r5, r6, r7, lr}
 	bl ov97_02233478
 	add r7, r0, #0
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	add r3, r0, #0
 	beq _022323AC
 	ldrh r2, [r7, #4]
@@ -324,7 +324,7 @@ ov97_02232424: ; 0x02232424
 	bl ov97_02233430
 	cmp r0, #0xc
 	bne _02232446
-	bl sub_020CDD28
+	bl WM_Finish
 	mov r0, #0xc
 	bl ov97_02233424
 	mov r0, #1
@@ -711,7 +711,7 @@ _02232722:
 _02232726:
 	add r0, r4, #0
 	mov r1, #0xc0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	bl ov97_02233508
 	bl ov97_02233808
 	ldrh r0, [r6, #0x36]
@@ -846,7 +846,7 @@ ov97_0223282C: ; 0x0223282C
 _0223284E:
 	add r0, r4, #0
 	mov r1, #0xc0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	bl ov97_02233508
 	bl ov97_02233808
 	ldrh r0, [r4, #0x3c]
@@ -1153,11 +1153,11 @@ ov97_02232AC8: ; 0x02232AC8
 	ldrh r1, [r6, #0x10]
 	ldr r0, [r6, #0xc]
 	ldr r5, [r4, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldrh r2, [r6, #0x10]
 	ldr r0, [r6, #0xc]
 	ldr r1, [r4, #0xc]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl ov97_02233560
 	ldr r1, [r5, #0]
 	lsl r1, r1, #0x18
@@ -1214,11 +1214,11 @@ ov97_02232B40: ; 0x02232B40
 	ldrh r1, [r6, #0x10]
 	ldr r0, [r6, #0xc]
 	ldr r5, [r4, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldrh r2, [r6, #0x10]
 	ldr r0, [r6, #0xc]
 	ldr r1, [r4, #0xc]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl ov97_02233560
 	ldr r1, [r5, #0]
 	lsl r1, r1, #0x18
@@ -1294,11 +1294,11 @@ _02232BF0:
 	ldrh r1, [r6, #0x10]
 	ldr r0, [r6, #0xc]
 	ldr r5, [r4, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldrh r2, [r6, #0x10]
 	ldr r0, [r6, #0xc]
 	ldr r1, [r4, #0xc]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl ov97_02233560
 	ldr r1, [r5, #0]
 	lsl r1, r1, #0x18
@@ -1343,7 +1343,7 @@ _02232C5E:
 	add r0, r1, r0
 	ldr r1, [r4, #4]
 	lsr r2, r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02232C70:
 	ldr r1, [r5, #8]
 	ldr r0, _02232C90 ; =0xFFFF00FF

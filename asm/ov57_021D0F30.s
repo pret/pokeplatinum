@@ -14,7 +14,7 @@ ov57_021D0F30: ; 0x021D0F30
 	cmp r0, #0
 	bne _021D0F42
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 _021D0F42:
 	pop {r3, pc}
 	thumb_func_end ov57_021D0F30

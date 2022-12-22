@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C6858
-sub_020C6858: ; 0x020C6858
+	arm_func_start FSi_StrNICmp
+FSi_StrNICmp: ; 0x020C6858
 	stmfd sp!, {r3, lr}
 	cmp r2, #0
 	mov lr, #0
@@ -30,10 +30,10 @@ _020C6868:
 _020C68A0:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020C6858
+	arm_func_end FSi_StrNICmp
 
-	arm_func_start sub_020C68A8
-sub_020C68A8: ; 0x020C68A8
+	arm_func_start FSi_ReadTable
+FSi_ReadTable: ; 0x020C68A8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r0
 	ldr r4, [r7, #0]
@@ -58,7 +58,7 @@ _020C68F0:
 	str r1, [r4, #0x1c]
 	b _020C6958
 _020C6900:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r4, #0x1c]
 	mov r5, r0
 	tst r1, #0x200
@@ -70,7 +70,7 @@ _020C6900:
 	mov sb, #1
 _020C6928:
 	add r0, r4, #0xc
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r0, [r4, #0x1c]
 	tst r0, #0x200
 	movne r0, sb
@@ -79,7 +79,7 @@ _020C6928:
 	bne _020C6928
 _020C6948:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, [r4, #0x24]
 	ldr r0, [r0, #0x14]
 _020C6958:
@@ -87,16 +87,16 @@ _020C6958:
 	add r1, r1, r6
 	str r1, [r7, #4]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020C68A8
+	arm_func_end FSi_ReadTable
 
-	arm_func_start sub_020C6968
-sub_020C6968: ; 0x020C6968
+	arm_func_start FSi_SeekDirDirect
+FSi_SeekDirDirect: ; 0x020C6968
 	ldr r3, [r0, #0xc]
 	mov r2, #0
 	orr r3, r3, #4
 	str r3, [r0, #0xc]
 	ldr r3, [r0, #8]
-	ldr ip, _020C6998 ; =sub_020C66C8
+	ldr ip, _020C6998 ; =FSi_TranslateCommand
 	str r3, [r0, #0x30]
 	str r2, [r0, #0x38]
 	strh r2, [r0, #0x36]
@@ -104,11 +104,11 @@ sub_020C6968: ; 0x020C6968
 	mov r1, #2
 	bx ip
 	; .align 2, 0
-_020C6998: .word sub_020C66C8
-	arm_func_end sub_020C6968
+_020C6998: .word FSi_TranslateCommand
+	arm_func_end FSi_SeekDirDirect
 
-	arm_func_start sub_020C699C
-sub_020C699C: ; 0x020C699C
+	arm_func_start FSi_ReadFileCommand
+FSi_ReadFileCommand: ; 0x020C699C
 	stmfd sp!, {r3, lr}
 	ldr r2, [r0, #0x2c]
 	ldr r3, [r0, #0x38]
@@ -120,10 +120,10 @@ sub_020C699C: ; 0x020C699C
 	mov r0, lr
 	blx ip
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020C699C
+	arm_func_end FSi_ReadFileCommand
 
-	arm_func_start sub_020C69C8
-sub_020C69C8: ; 0x020C69C8
+	arm_func_start FSi_WriteFileCommand
+FSi_WriteFileCommand: ; 0x020C69C8
 	stmfd sp!, {r3, lr}
 	ldr r2, [r0, #0x2c]
 	ldr r3, [r0, #0x38]
@@ -135,10 +135,10 @@ sub_020C69C8: ; 0x020C69C8
 	mov r0, lr
 	blx ip
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020C69C8
+	arm_func_end FSi_WriteFileCommand
 
-	arm_func_start sub_020C69F4
-sub_020C69F4: ; 0x020C69F4
+	arm_func_start FSi_SeekDirCommand
+FSi_SeekDirCommand: ; 0x020C69F4
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x10
 	mov r6, r0
@@ -152,7 +152,7 @@ sub_020C69F4: ; 0x020C69F4
 	add r1, sp, #8
 	mov r2, #8
 	str r3, [sp, #4]
-	bl sub_020C68A8
+	bl FSi_ReadTable
 	movs r3, r0
 	bne _020C6A7C
 	add ip, r6, #0x20
@@ -180,10 +180,10 @@ _020C6A7C:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C6A88: .word 0x00000FFF
-	arm_func_end sub_020C69F4
+	arm_func_end FSi_SeekDirCommand
 
-	arm_func_start sub_020C6A8C
-sub_020C6A8C: ; 0x020C6A8C
+	arm_func_start FSi_ReadDirCommand
+FSi_ReadDirCommand: ; 0x020C6A8C
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0xc
 	mov r5, r0
@@ -195,7 +195,7 @@ sub_020C6A8C: ; 0x020C6A8C
 	add r1, sp, #0
 	mov r2, #1
 	str r3, [sp, #8]
-	bl sub_020C68A8
+	bl FSi_ReadTable
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, pc}
@@ -215,7 +215,7 @@ sub_020C6A8C: ; 0x020C6A8C
 	bne _020C6B2C
 	add r0, sp, #4
 	add r1, r4, #0x14
-	bl sub_020C68A8
+	bl FSi_ReadTable
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, pc}
@@ -235,7 +235,7 @@ _020C6B38:
 	add r0, sp, #4
 	add r1, sp, #2
 	mov r2, #2
-	bl sub_020C68A8
+	bl FSi_ReadTable
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, pc}
@@ -264,17 +264,17 @@ _020C6BA4:
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _020C6BB4: .word 0x00000FFF
-	arm_func_end sub_020C6A8C
+	arm_func_end FSi_ReadDirCommand
 
-	arm_func_start sub_020C6BB8
-sub_020C6BB8: ; 0x020C6BB8
+	arm_func_start FSi_FindPathCommand
+FSi_FindPathCommand: ; 0x020C6BB8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x94
 	mov sb, r0
 	ldr r5, [sb, #0x3c]
 	mov r1, #2
 	ldr r6, [sb, #0x40]
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	ldrb r3, [r5]
 	cmp r3, #0
 	beq _020C6D70
@@ -320,7 +320,7 @@ _020C6BF4:
 	beq _020C6C80
 	ldr r1, [sb, #0x2c]
 	mov r0, sb
-	bl sub_020C6968
+	bl FSi_SeekDirDirect
 _020C6C80:
 	add r5, r5, #2
 	b _020C6D54
@@ -338,7 +338,7 @@ _020C6C88:
 _020C6CB0:
 	mov r0, sb
 	mov r1, r4
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	addne sp, sp, #0x94
 	movne r0, #1
@@ -351,7 +351,7 @@ _020C6CB0:
 	mov r0, r5
 	mov r1, sl
 	mov r2, r8
-	bl sub_020C6858
+	bl FSi_StrNICmp
 	cmp r0, #0
 	bne _020C6CB0
 	cmp r7, #0
@@ -363,7 +363,7 @@ _020C6CB0:
 	mov r0, sb
 	mov r1, #2
 	add r5, r5, r8
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	b _020C6D54
 _020C6D24:
 	cmp r6, #0
@@ -398,17 +398,17 @@ _020C6D70:
 	mov r0, #0
 	add sp, sp, #0x94
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end sub_020C6BB8
+	arm_func_end FSi_FindPathCommand
 
-	arm_func_start sub_020C6D9C
-sub_020C6D9C: ; 0x020C6D9C
+	arm_func_start FSi_GetPathCommand
+FSi_GetPathCommand: ; 0x020C6D9C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xe0
 	mov sl, r0
 	ldr r1, [sl, #8]
 	add r0, sp, #4
 	str r1, [sp]
-	bl sub_020C7DA0
+	bl FS_InitFile
 	ldr r0, [sl, #8]
 	str r0, [sp, #0xc]
 	ldr r0, [sl, #0xc]
@@ -433,7 +433,7 @@ sub_020C6D9C: ; 0x020C6D9C
 _020C6E0C:
 	mov r0, r5
 	mov r1, r7
-	bl sub_020C6968
+	bl FSi_SeekDirDirect
 	mov r2, #1
 	cmp r7, #0
 	mov r0, r5
@@ -441,7 +441,7 @@ _020C6E0C:
 	ldreq r8, [sp, #0x30]
 	str fp, [sp, #0x34]
 	str r2, [sp, #0x38]
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	bne _020C6E6C
 _020C6E40:
@@ -453,7 +453,7 @@ _020C6E40:
 	beq _020C6E6C
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	beq _020C6E40
 _020C6E6C:
@@ -493,20 +493,20 @@ _020C6ECC:
 	beq _020C6F74
 	add r0, sp, #4
 	mov r1, sb
-	bl sub_020C6968
+	bl FSi_SeekDirDirect
 	add r5, sp, #4
 	mov r4, #3
 	add fp, sp, #0x4c
 _020C6F00:
 	ldr r1, [sp, #0x30]
 	mov r0, r5
-	bl sub_020C6968
+	bl FSi_SeekDirDirect
 	mov r1, #1
 	str r1, [sp, #0x38]
 	mov r0, r5
 	mov r1, #3
 	str fp, [sp, #0x34]
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	bne _020C6F68
 _020C6F2C:
@@ -523,7 +523,7 @@ _020C6F2C:
 _020C6F54:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	beq _020C6F2C
 _020C6F68:
@@ -559,15 +559,15 @@ _020C6FD0:
 	ldr r0, [sp]
 	mov r1, r5
 	mov r2, r8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r1, r7, r8
 	ldr r0, _020C7144 ; =0x02101160
 	add r1, r5, r1
 	mov r2, #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, sp, #4
 	mov r1, sb
-	bl sub_020C6968
+	bl FSi_SeekDirDirect
 	cmp r6, #0x10000
 	beq _020C7080
 	add r3, sp, #0x4c
@@ -576,7 +576,7 @@ _020C6FD0:
 	mov r1, #3
 	str r3, [sp, #0x34]
 	str r2, [sp, #0x38]
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	bne _020C705C
 	add r8, sp, #4
@@ -589,7 +589,7 @@ _020C7034:
 	beq _020C705C
 	mov r0, r8
 	mov r1, r7
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	beq _020C7034
 _020C705C:
@@ -599,7 +599,7 @@ _020C705C:
 	add r0, sp, #0x60
 	mov r2, r6
 	sub r1, r1, r6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	sub r4, r4, r6
 	b _020C7090
 _020C7080:
@@ -618,7 +618,7 @@ _020C7090:
 _020C70AC:
 	ldr r1, [sp, #0x30]
 	mov r0, sl
-	bl sub_020C6968
+	bl FSi_SeekDirDirect
 	add r1, r5, r4
 	str r8, [sp, #0x34]
 	str r7, [sp, #0x38]
@@ -626,7 +626,7 @@ _020C70AC:
 	mov r0, sl
 	mov r1, #3
 	sub r4, r4, #1
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	bne _020C712C
 _020C70E0:
@@ -641,13 +641,13 @@ _020C70E0:
 	add r0, sp, #0x60
 	mov r2, sb
 	sub r1, r1, sb
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	sub r4, r4, sb
 	b _020C712C
 _020C7118:
 	mov r0, sl
 	mov r1, r6
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	cmp r0, #0
 	beq _020C70E0
 _020C712C:
@@ -660,10 +660,10 @@ _020C7138:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020C7144: .word 0x02101160
-	arm_func_end sub_020C6D9C
+	arm_func_end FSi_GetPathCommand
 
-	arm_func_start sub_020C7148
-sub_020C7148: ; 0x020C7148
+	arm_func_start FSi_OpenFileFastCommand
+FSi_OpenFileFastCommand: ; 0x020C7148
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x10
 	mov r5, r0
@@ -682,7 +682,7 @@ sub_020C7148: ; 0x020C7148
 	add r1, sp, #8
 	mov r2, #8
 	str r3, [sp, #4]
-	bl sub_020C68A8
+	bl FSi_ReadTable
 	cmp r0, #0
 	addne sp, sp, #0x10
 	ldmneia sp!, {r3, r4, r5, pc}
@@ -693,13 +693,13 @@ sub_020C7148: ; 0x020C7148
 	mov r1, #7
 	str r2, [r5, #0x34]
 	str r4, [r5, #0x38]
-	bl sub_020C66C8
+	bl FSi_TranslateCommand
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020C7148
+	arm_func_end FSi_OpenFileFastCommand
 
-	arm_func_start sub_020C71C8
-sub_020C71C8: ; 0x020C71C8
+	arm_func_start FSi_OpenFileDirectCommand
+FSi_OpenFileDirectCommand: ; 0x020C71C8
 	ldr r1, [r0, #0x30]
 	str r1, [r0, #0x24]
 	ldr r1, [r0, #0x30]
@@ -710,13 +710,13 @@ sub_020C71C8: ; 0x020C71C8
 	str r1, [r0, #0x20]
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020C71C8
+	arm_func_end FSi_OpenFileDirectCommand
 
-	arm_func_start sub_020C71F0
-sub_020C71F0: ; 0x020C71F0
+	arm_func_start FSi_CloseFileCommand
+FSi_CloseFileCommand: ; 0x020C71F0
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020C71F0
+	arm_func_end FSi_CloseFileCommand
 
 	.rodata
 

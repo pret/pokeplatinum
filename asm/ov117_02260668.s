@@ -35,14 +35,14 @@ ov117_02260668: ; 0x02260668
 	mov r1, #1
 	mov r2, #0x3f
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #3
 	str r0, [sp]
 	ldr r0, _02260960 ; =0x04001050
 	mov r1, #8
 	mov r2, #0x1f
 	mov r3, #0xd
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r1, _02260964 ; =0x00003850
 	add r0, r4, #0
 	mov r2, #0x6e
@@ -50,7 +50,7 @@ ov117_02260668: ; 0x02260668
 	ldr r2, _02260964 ; =0x00003850
 	add r5, r0, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r0, #0xa8
 	mov r1, #0x6e
@@ -913,13 +913,13 @@ ov117_02260E34: ; 0x02260E34
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _02260EAC ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _02260EB0 ; =0xBFFF0000
 	ldr r0, _02260EB4 ; =0x04000580
 	str r1, [r0, #0]
@@ -1046,7 +1046,7 @@ ov117_02260F7C: ; 0x02260F7C
 	str r0, [sp, #0x30]
 	add r0, sp, #4
 	add r4, r1, #0
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	ldr r1, _022610B0 ; =0x000015A8
 	add r0, r4, #0
 	add r1, r4, r1
@@ -1087,31 +1087,31 @@ ov117_02260F7C: ; 0x02260F7C
 	ldr r2, _022610C0 ; =0xFFFFF000
 	add r1, r0, #0
 	add r3, r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _022610C4 ; =0x0000739C
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _022610C8 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _022610C8 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	add r0, sp, #0x28
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _022610CC ; =0x021C5B48
 	add r0, sp, #4
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _022610D0 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, sp, #0x34
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
-	bl sub_020AF480
+	bl NNS_G3dGlbSetBaseScale
+	bl NNS_G3dGlbFlushP
 	add r1, r4, #0
 	add r1, #0xd4
 	ldr r1, [r1, #0]
@@ -1120,7 +1120,7 @@ ov117_02260F7C: ; 0x02260F7C
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldr r0, _022610D4 ; =0x000013B0
 	add r0, r4, r0
 	bl sub_02017294
@@ -1133,7 +1133,7 @@ ov117_02260F7C: ; 0x02260F7C
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	bl sub_020241B4
 	bl sub_0201469C
 	cmp r0, #0
@@ -1186,25 +1186,25 @@ _022610E8:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r4, _02261270 ; =0x02266944
 	add r3, sp, #0
 	add r2, r3, #0
@@ -3097,7 +3097,7 @@ ov117_02262044: ; 0x02262044
 	ldr r0, [sp]
 	lsl r7, r0, #2
 	ldr r0, [r6, r7]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, #0
 	ldr r1, _0226209C ; =0x00001C1C
 	mov r3, #0x4b
@@ -3140,7 +3140,7 @@ ov117_022620A0: ; 0x022620A0
 	add r5, r6, r0
 	ldr r0, [r5, r4]
 	mov r1, #0x3c
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _022620DC ; =0x00001C1C
 	add r2, r6, r0
 	mov r0, #0x4b
@@ -3223,7 +3223,7 @@ ov117_02262130: ; 0x02262130
 	ldr r0, _02262174 ; =0x00002F24
 	mov r1, #0x3c
 	ldr r0, [r5, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _02262178 ; =0x0000176C
 	add r2, r5, r0
 	mov r0, #0x14
@@ -3310,7 +3310,7 @@ ov117_022621D4: ; 0x022621D4
 	ldr r0, _022621F8 ; =0x00002F28
 	mov r1, #0x3c
 	ldr r0, [r4, r0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _022621FC ; =0x0000176C
 	add r2, r1, #0
 	add r3, r4, r0

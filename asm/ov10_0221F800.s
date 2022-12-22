@@ -19,7 +19,7 @@ ov10_0221F800: ; 0x0221F800
 	ldr r2, _0221F860 ; =0x00000BD4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0221F864 ; =0x00000B7F
 	str r5, [r4, #0]
 	mov r1, #0
@@ -153,7 +153,7 @@ _0221F90A:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add sp, #0x28
 	pop {r4, pc}
 	nop
@@ -1105,7 +1105,7 @@ _022200F0:
 	ldrsb r4, [r5, r0]
 	bl sub_0201D2E8
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsr r0, r4, #0x1f
 	add r0, r4, r0
 	asr r0, r0, #1
@@ -1116,7 +1116,7 @@ _022200F0:
 	ldrsb r4, [r5, r0]
 	bl sub_0201D2E8
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsr r0, r4, #0x1f
 	add r0, r4, r0
 	asr r0, r0, #1
@@ -2992,7 +2992,7 @@ ov10_02221004: ; 0x02221004
 	mov r1, #2
 	mov r2, #0x1c
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	nop
 _02221018: .word 0x04000050
@@ -4284,7 +4284,7 @@ ov10_02221A3C: ; 0x02221A3C
 	bl sub_02006CB8
 	add r1, sp, #0x10
 	add r6, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r2, [sp, #0x10]
 	mov r0, #3
 	ldr r1, [r2, #0xc]
@@ -4299,7 +4299,7 @@ ov10_02221A3C: ; 0x02221A3C
 	add r0, r5, r0
 	add r1, #0x60
 	mov r2, #0x60
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r6, #0
 	bl sub_020181C4
 	ldr r0, [r5, #0]
@@ -4469,11 +4469,11 @@ _02221BEA:
 	add r0, r0, r1
 	add r1, r6, r4
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r6, r4
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #1
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
@@ -4768,7 +4768,7 @@ ov10_02221E58: ; 0x02221E58
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x90
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r4, #0]
 	add r0, r4, #0
 	ldr r1, [r1, #4]

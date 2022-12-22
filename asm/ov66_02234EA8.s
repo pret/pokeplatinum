@@ -39,7 +39,7 @@ ov66_02234EA8: ; 0x02234EA8
 	mov r0, #0x18
 	mul r0, r1
 	ldr r1, _02234F28 ; =0x0000FFFF
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r0, #0
 	bge _02234EF6
 	add r0, #0x18
@@ -47,7 +47,7 @@ _02234EF6:
 	cmp r0, #0x18
 	blt _02234F02
 	mov r1, #0x18
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, #0
 _02234F02:
 	add r2, sp, #4
@@ -90,7 +90,7 @@ ov66_02234F2C: ; 0x02234F2C
 	add r6, r0, #0
 	ldr r0, [sp, #0x18]
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r5, r0
 	blt _02234F5E
 	bl sub_02022974

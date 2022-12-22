@@ -51,7 +51,7 @@ ov17_0223DAD0: ; 0x0223DAD0
 	ldr r2, _0223DD98 ; =0x00001C10
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x17
 	bl ov17_0223F140
 	str r0, [r5, #0x10]
@@ -282,7 +282,7 @@ ov17_0223DAD0: ; 0x0223DAD0
 	add r2, r1, #0
 	ldr r0, _0223DDC8 ; =0x04000050
 	sub r2, #0x3f
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, _0223DDCC ; =0x000006E5
 	bl sub_02005748
 	ldr r0, _0223DDD0 ; =ov17_0223E09C
@@ -369,7 +369,7 @@ _0223DE38:
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _0223DE7E
 _0223DE48:
 	cmp r0, #3
@@ -384,7 +384,7 @@ _0223DE48:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -424,7 +424,7 @@ _0223DE7E:
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -638,7 +638,7 @@ ov17_0223E09C: ; 0x0223E09C
 	ldr r1, _0223E178 ; =0x00001388
 	add r0, r0, r1
 	lsl r1, r1, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r7, _0223E17C ; =0x00001168
 	add r5, r0, #1
 	add r1, r7, #0
@@ -744,7 +744,7 @@ ov17_0223E18C: ; 0x0223E18C
 	ldr r0, [r5, #0]
 	add r1, r4, #0
 	lsl r2, r2, #8
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldrb r0, [r5, #0x10]
 	cmp r0, #1
 	bne _0223E1F4
@@ -850,25 +850,25 @@ _0223E260:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _0223E374 ; =0x02252FCC
 	add r3, sp, #0
 	add r2, r3, #0
@@ -1435,7 +1435,7 @@ ov17_0223E67C: ; 0x0223E67C
 	mov r2, #2
 	ldr r1, [r4, r1]
 	lsl r2, r2, #8
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add sp, #0x18
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1786,7 +1786,7 @@ _0223E9CA:
 	mul r3, r1
 	ldr r1, _0223EB80 ; =0x02253086
 	ldrh r1, [r1, r3]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _0223EB84 ; =0x00000B04
 	str r0, [r4, r1]
 	ldr r0, [sp]
@@ -1802,7 +1802,7 @@ _0223E9CA:
 	add r0, r0, r2
 	adc r1, r3
 	lsl r2, r2, #1
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r1, _0223EB8C ; =0x00000B08
 	str r0, [r4, r1]
 	ldr r2, [sp, #4]
@@ -1840,7 +1840,7 @@ _0223E9CA:
 	sub r0, r1, #4
 	ldr r0, [r4, r0]
 	mov r1, #0x30
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _0223EB98 ; =0x00000B14
 	mov r2, #0xc
 	str r0, [r4, r1]

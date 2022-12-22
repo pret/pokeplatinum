@@ -1,4 +1,4 @@
-.public sub_020A8AAC
-.public sub_020A8AC8
-.public sub_020A8AD0
-.public sub_020AB164
+.public NNSi_G2dInitializeVRamLocation
+.public NNSi_G2dSetVramLocation
+.public NNSi_G2dGetVramLocation
+.public NNSi_G2dGetCellTransferState

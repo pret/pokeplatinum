@@ -15,8 +15,8 @@
 .public sub_02032EE8
 .public sub_0203608C
 .public sub_02073700
-.public sub_020C4C14
-.public sub_020C4CF4
+.public MIi_CpuCopyFast
+.public MI_CpuFill8
 .public ov59_021D2A2C
 .public ov59_021D2A30
 .public ov59_021D2AC4

@@ -89,7 +89,7 @@ _02264820:
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r1, #0
 	mov r1, #4
 	add r5, r0, #0

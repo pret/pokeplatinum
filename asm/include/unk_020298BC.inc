@@ -41,10 +41,10 @@
 .public sub_02074470
 .public sub_02074B30
 .public sub_020765B8
-.public sub_020C4CF4
-.public sub_020D3230
-.public sub_020D3328
-.public sub_020D50B8
-.public sub_020D5124
+.public MI_CpuFill8
+.public MATHi_CRC32InitTableRev
+.public MATH_CalcCRC32
+.public memcpy
+.public memset
 .public ov22_022591E0
 .public ov22_02259250

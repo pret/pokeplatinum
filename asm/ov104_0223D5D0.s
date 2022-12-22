@@ -15,7 +15,7 @@ ov104_0223D5D0: ; 0x0223D5D0
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	strh r5, [r4, #0x20]
 	bl sub_02014000
 	add r0, r4, #0

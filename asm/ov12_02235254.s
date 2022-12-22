@@ -780,7 +780,7 @@ _0223579A:
 	mov r1, #0
 	add r3, r5, #0
 	str r4, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, r4, r5, pc}
 	nop
 _022357B8: .word 0x04000050
@@ -808,7 +808,7 @@ _022357D6:
 	mov r1, #0
 	add r2, r5, #0
 	add r3, r4, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, r4, r5, pc}
 	nop
 _022357E8: .word 0x04000050
@@ -849,7 +849,7 @@ _02235808:
 	add r2, r7, #0
 	add r3, r5, #0
 	str r4, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02235834: .word 0x04000050
@@ -1627,7 +1627,7 @@ _02235E72:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov12_02235E50

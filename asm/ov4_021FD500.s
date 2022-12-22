@@ -50,7 +50,7 @@ _021FD584:
 	and r0, r5, r0
 	bls _021FD5A4
 	mov r1, sb
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, r1
 _021FD5A4:
 	cmp r0, sb

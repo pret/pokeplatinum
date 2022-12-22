@@ -1,1 +1,1 @@
-.public sub_020AB470
+.public CalcSpriteParams_

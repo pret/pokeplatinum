@@ -23,7 +23,7 @@ ov5_021F8370: ; 0x021F8370
 	add r6, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	str r5, [r6, #0]
 	str r4, [r6, #4]
 	ldr r0, [r5, #4]

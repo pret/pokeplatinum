@@ -145,7 +145,7 @@ ov5_021EE8A8: ; 0x021EE8A8
 	mov r3, #0
 	sub r0, r5, r0
 	sbc r1, r3
-	bl sub_020E1ED4
+	bl _ull_div
 	add r2, r0, #0
 	add r0, r6, #0
 	ldr r6, _021EE91C ; =0x021FF508
@@ -156,10 +156,10 @@ ov5_021EE8A8: ; 0x021EE8A8
 	add r2, r4, r2
 	adc r5, r3
 	add r3, r5, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	pop {r4, r5, r6, pc}
 	nop
 _021EE914: .word 0x021FF50C
@@ -204,19 +204,19 @@ ov5_021EE920: ; 0x021EE920
 	lsl r0, r0, #2
 	mul r0, r6
 	mov r1, #0xfe
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r0, #5
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	add r5, r0, #0
 	mov r0, #0xfa
 	lsl r0, r0, #2
 	mul r0, r7
 	mov r1, #0xfe
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r0, #5
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r5, r0
 	bne _021EE9A2
 	add sp, #8
@@ -278,13 +278,13 @@ ov5_021EE9E8: ; 0x021EE9E8
 	mul r1, r0
 	add r0, r1, #0
 	mov r1, #0xfe
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r0, #5
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r1, #0xa
 	add r4, r0, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -296,7 +296,7 @@ ov5_021EE9E8: ; 0x021EE9E8
 	bl sub_0200B60C
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, #0
 	add r2, r1, #0
 	str r0, [sp]

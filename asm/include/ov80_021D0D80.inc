@@ -37,9 +37,9 @@
 .public sub_02039EF0
 .public sub_0208C210
 .public sub_0208C2F4
-.public sub_020A635C
-.public sub_020BF55C
-.public sub_020D5124
+.public NNS_GfdDoVramTransfer
+.public G2x_SetBlendAlpha_
+.public memset
 .public ov80_021D0E68
 .public ov80_021D0EA8
 .public ov80_021D0EC8

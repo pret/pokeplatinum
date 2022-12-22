@@ -34,7 +34,7 @@ ov63_0222CCE4: ; 0x0222CCE4
 	mov r2, #0x14
 	mov r1, #0
 	mul r2, r3
-	bl sub_020D5124
+	bl memset
 	mov r0, #2
 	strb r0, [r4, #0xa]
 	strb r6, [r4, #0xb]
@@ -72,7 +72,7 @@ ov63_0222CD2C: ; 0x0222CD2C
 	mov r2, #0x14
 	mov r1, #0
 	mul r2, r3
-	bl sub_020D5124
+	bl memset
 	mov r0, #2
 	strb r0, [r4, #0xa]
 	ldr r0, [sp, #0x24]

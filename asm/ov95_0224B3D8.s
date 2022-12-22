@@ -135,13 +135,13 @@ ov95_0224B4D4: ; 0x0224B4D4
 	push {r3, r4, lr}
 	sub sp, #4
 	add r4, r0, #0
-	bl sub_020BFAB8
+	bl G3X_Reset
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
-	bl sub_020B2628
-	bl sub_020A73C0
+	bl NNS_G3dGeBufferOP_N
+	bl NNS_G3dGeFlushBuffer
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r4, #0x10]
 	bl sub_02008A94
 	ldr r0, [r4, #0x10]
@@ -150,7 +150,7 @@ ov95_0224B4D4: ; 0x0224B4D4
 	str r2, [sp]
 	mov r0, #0x12
 	add r1, sp, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	ldr r0, [r4, #0x74]
 	cmp r0, #0
 	beq _0224B512
@@ -341,7 +341,7 @@ ov95_0224B520: ; 0x0224B520
 	mov r1, #1
 	mov r2, #4
 	mov r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0x10
 	str r0, [sp]
 	mov r1, #1
@@ -731,8 +731,8 @@ ov95_0224B9C0: ; 0x0224B9C0
 	push {r3, r4, r5, r6, lr}
 	sub sp, #4
 	add r5, r0, #0
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _0224BA68 ; =0x04000060
 	ldr r2, _0224BA6C ; =0xFFFFCFFD
 	ldrh r1, [r0]
@@ -759,7 +759,7 @@ ov95_0224B9C0: ; 0x0224B9C0
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0224BA74 ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -767,11 +767,11 @@ ov95_0224B9C0: ; 0x0224B9C0
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	ldr r3, _0224BA7C ; =0x02100DEC
 	mov r0, #1
 	mov r1, #0
@@ -872,9 +872,9 @@ ov95_0224BAE8: ; 0x0224BAE8
 	mov r3, #8
 	bl ov95_02247568
 	add r0, sp, #0x5c
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	add r0, sp, #0x38
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r2, #1
@@ -979,7 +979,7 @@ ov95_0224BBB0: ; 0x0224BBB0
 	ldr r0, [r4, #4]
 	sub r0, r1, r0
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0xc]
 	ldr r0, _0224BBF8 ; =ov95_0224BC30
 	str r7, [r4, #0x10]
@@ -990,7 +990,7 @@ ov95_0224BBB0: ; 0x0224BBB0
 	ldr r0, _0224BBFC ; =0x04000050
 	mov r1, #1
 	add r2, r6, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 _0224BBF6:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1045,14 +1045,14 @@ ov95_0224BC30: ; 0x0224BC30
 	ldr r0, _0224BC68 ; =0x04000050
 	mov r1, #1
 	asr r2, r2, #0xc
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	pop {r4, pc}
 _0224BC52:
 	ldr r2, [r4, #8]
 	ldr r0, _0224BC68 ; =0x04000050
 	mov r1, #1
 	asr r2, r2, #0xc
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, [r4, #0]
 	bl ov95_0224BC10
 	pop {r4, pc}
@@ -1180,7 +1180,7 @@ ov95_0224BD40: ; 0x0224BD40
 	ldrsh r0, [r5, r0]
 	sub r0, r1, r0
 	add r1, r4, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r5, #0x3c]
 	str r4, [r5, #0x40]
 _0224BD58:

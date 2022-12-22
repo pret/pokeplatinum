@@ -1998,7 +1998,7 @@ sub_0206530C: ; 0x0206530C
 	bl sub_020652EC
 	add r1, r0, #0
 	add r0, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #2
 	ldr r0, [r5, r0]
 	pop {r4, r5, r6, pc}
@@ -2018,7 +2018,7 @@ sub_02065330: ; 0x02065330
 	bl sub_020652EC
 	add r1, r0, #0
 	add r0, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #2
 	ldr r0, [r4, r0]
 	pop {r4, r5, r6, pc}

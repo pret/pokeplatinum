@@ -222,21 +222,21 @@ ov5_021D53A4: ; 0x021D53A4
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #2
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	mov r2, #1
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #0xa
-	bl sub_020B2CE4
+	bl NNSi_G3dModifyMatFlag
 	pop {r4, pc}
 	thumb_func_end ov5_021D53A4
 
@@ -328,7 +328,7 @@ _021D5462:
 	add r2, r4, #0
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	str r1, [sp, #0x1c]
 	ldr r1, [sp, #0xc]

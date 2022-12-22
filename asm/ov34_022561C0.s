@@ -386,7 +386,7 @@ _02256460:
 	mul r1, r0
 	add r0, r2, r1
 	lsl r0, r0, #0xc
-	bl sub_020BCFF0
+	bl FX_Sqrt
 	ldrb r1, [r5, #4]
 	lsl r2, r1, #2
 	ldr r1, _022564EC ; =0x02256A28

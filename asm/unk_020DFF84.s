@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020DFF84
-sub_020DFF84: ; 0x020DFF84
+	arm_func_start _d_dtof
+_d_dtof: ; 0x020DFF84
 	and r2, r1, #0x80000000
 	mov ip, r1, lsr #0x14
 	bics ip, ip, #0x800
@@ -41,17 +41,17 @@ _020DFFF4:
 	bx lr
 _020DFFFC:
 	orrs r3, r0, r1, lsl #12
-	bne sub_020E0074
-	arm_func_end sub_020DFF84
+	bne __f_underflow
+	arm_func_end _d_dtof
 
-	arm_func_start sub_020E0004
-sub_020E0004: ; 0x020E0004
+	arm_func_start __f_result_zero
+__f_result_zero: ; 0x020E0004
 	mov r0, r2
 	bx lr
 _020E000C:
 	cmn ip, #0x17
 	beq _020E0060
-	bmi sub_020E0074
+	bmi __f_underflow
 	mov r1, r1, lsl #0xb
 	orr r1, r1, #0x80000000
 	mov r3, r1, lsr #8
@@ -72,22 +72,22 @@ _020E000C:
 	bx lr
 _020E0060:
 	orr r0, r0, r1, lsl #12
-	arm_func_end sub_020E0004
+	arm_func_end __f_result_zero
 
-	arm_func_start sub_020E0064
-sub_020E0064: ; 0x020E0064
+	arm_func_start __f_very_tiny_result
+__f_very_tiny_result: ; 0x020E0064
 	movs r1, r0
 	mov r0, r2
 	addne r0, r0, #1
 	bx lr
-	arm_func_end sub_020E0064
+	arm_func_end __f_very_tiny_result
 
-	arm_func_start sub_020E0074
-sub_020E0074: ; 0x020E0074
+	arm_func_start __f_underflow
+__f_underflow: ; 0x020E0074
 	mov r0, r2
 	bx lr
 _020E007C:
 	mov r0, #-0x1000000
 	orr r0, r2, r0, lsr #1
 	bx lr
-	arm_func_end sub_020E0074
+	arm_func_end __f_underflow

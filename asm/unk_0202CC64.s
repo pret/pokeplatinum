@@ -22,7 +22,7 @@ sub_0202CC6C: ; 0x0202CC6C
 	mov r0, #0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r0, #0
 	str r0, [r4, #0]
 	pop {r4, pc}
@@ -154,9 +154,9 @@ sub_0202CD3C: ; 0x0202CD3C
 	add r0, r1, #0
 	add r1, r2, #0
 	mov r2, #0xfb
-	ldr r3, _0202CD4C ; =sub_020C4C14
+	ldr r3, _0202CD4C ; =MIi_CpuCopyFast
 	lsl r2, r2, #2
 	bx r3
 	nop
-_0202CD4C: .word sub_020C4C14
+_0202CD4C: .word MIi_CpuCopyFast
 	thumb_func_end sub_0202CD3C

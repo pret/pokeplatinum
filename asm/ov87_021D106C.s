@@ -22,7 +22,7 @@ ov87_021D106C: ; 0x021D106C
 	mov r0, #0x3d
 	bl sub_02018340
 	str r0, [r4, #0x10]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -526,7 +526,7 @@ ov87_021D139C: ; 0x021D139C
 	mov r1, #0
 	mov r2, #6
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0x10
 	mov r1, #1
 	bl sub_0201FF0C
@@ -996,7 +996,7 @@ ov87_021D1818: ; 0x021D1818
 	mov r0, #0
 	add r1, r4, r1
 	lsl r2, r2, #6
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r1, [sp, #8]
 	ldr r2, [sp, #4]
 	add r0, r4, #0
@@ -1082,19 +1082,19 @@ ov87_021D18A0: ; 0x021D18A0
 	add r7, r4, #0
 _021D18F8:
 	add r0, sp, #0x2c
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, sp, #0x18
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	ldr r0, [sp, #0x14]
 	add r1, r4, #0
 	mov r2, #1
 	add r3, sp, #0x2c
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	ldr r0, [sp, #0x10]
 	add r1, r7, #0
 	mov r2, #1
 	add r3, sp, #0x18
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 	ldr r0, [r6, #0]
 	lsl r0, r0, #0xc
 	str r0, [sp, #0x58]
@@ -1209,12 +1209,12 @@ _021D199C:
 	mov r1, #0x32
 	ldr r0, [sp, #0x24]
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r2, #0x32
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x18]
 	lsl r2, r2, #6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	mov r0, #0x20
 	str r0, [sp]
 	mov r0, #0x3d

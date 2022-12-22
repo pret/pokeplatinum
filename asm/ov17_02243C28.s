@@ -139,7 +139,7 @@ ov17_02243CF4: ; 0x02243CF4
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _02243D2C ; =0x00007530
@@ -255,7 +255,7 @@ ov17_02243DCC: ; 0x02243DCC
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _02243E24 ; =0x00007530
@@ -426,7 +426,7 @@ ov17_02243F10: ; 0x02243F10
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	ldrh r0, [r5]
 	add r2, r4, #0
@@ -659,7 +659,7 @@ ov17_022440E0: ; 0x022440E0
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	ldrh r0, [r5]
 	strh r0, [r4, #4]
@@ -835,7 +835,7 @@ ov17_02244240: ; 0x02244240
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	ldr r2, _022442A4 ; =0x00007530
@@ -1069,7 +1069,7 @@ ov17_022443F8: ; 0x022443F8
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -1324,11 +1324,11 @@ _022445EE:
 	add r0, sp, #0xc0
 	mov r1, #0
 	mov r2, #0x58
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, sp, #0x30
 	mov r1, #0
 	mov r2, #0x90
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r4, #0]
 	mov r2, #0
 	ldr r1, [r0, #0xc]
@@ -1770,7 +1770,7 @@ ov17_02244970: ; 0x02244970
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	ldrh r0, [r5]
 	mov r2, #0x64
@@ -2120,7 +2120,7 @@ ov17_02244C08: ; 0x02244C08
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -2283,7 +2283,7 @@ ov17_02244D38: ; 0x02244D38
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -2642,7 +2642,7 @@ ov17_02244FD4: ; 0x02244FD4
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -2836,7 +2836,7 @@ ov17_0224513C: ; 0x0224513C
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -3370,7 +3370,7 @@ ov17_02245528: ; 0x02245528
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -3565,7 +3565,7 @@ ov17_02245690: ; 0x02245690
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	add r3, r4, #0
@@ -3959,7 +3959,7 @@ ov17_02245974: ; 0x02245974
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r6]
 	add r3, r4, #0
@@ -4225,7 +4225,7 @@ ov17_02245B60: ; 0x02245B60
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	add r3, r4, #0
@@ -4356,7 +4356,7 @@ ov17_02245C60: ; 0x02245C60
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _02245C9C ; =0x00007530
@@ -4586,7 +4586,7 @@ ov17_02245E14: ; 0x02245E14
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp]
 	ldr r2, _02245E84 ; =0x00007530
 	str r0, [r4, #0]

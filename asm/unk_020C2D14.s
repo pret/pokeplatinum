@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C2D14
-sub_020C2D14: ; 0x020C2D14
+	arm_func_start OS_InitArena
+OS_InitArena: ; 0x020C2D14
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C2E14 ; =0x021CCED8
 	ldr r0, [r1, #0]
@@ -16,119 +16,119 @@ sub_020C2D14: ; 0x020C2D14
 	mov r2, #1
 	mov r0, #0
 	str r2, [r1, #0]
-	bl sub_020C2EAC
+	bl OS_GetInitArenaHi
 	mov r1, r0
 	mov r0, #0
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #0
-	bl sub_020C2F90
+	bl OS_GetInitArenaLo
 	mov r1, r0
 	mov r0, #0
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	mov r0, #2
 	mov r1, #0
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	mov r0, #2
 	mov r1, #0
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #3
-	bl sub_020C2EAC
-	mov r1, r0
-	mov r0, #3
-	bl sub_020C3038
-	mov r0, #3
-	bl sub_020C2F90
+	bl OS_GetInitArenaHi
 	mov r1, r0
 	mov r0, #3
-	bl sub_020C304C
+	bl OS_SetArenaHi
+	mov r0, #3
+	bl OS_GetInitArenaLo
+	mov r1, r0
+	mov r0, #3
+	bl OS_SetArenaLo
 	mov r0, #4
-	bl sub_020C2EAC
+	bl OS_GetInitArenaHi
 	mov r1, r0
 	mov r0, #4
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #4
-	bl sub_020C2F90
+	bl OS_GetInitArenaLo
 	mov r1, r0
 	mov r0, #4
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	mov r0, #5
-	bl sub_020C2EAC
+	bl OS_GetInitArenaHi
 	mov r1, r0
 	mov r0, #5
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #5
-	bl sub_020C2F90
+	bl OS_GetInitArenaLo
 	mov r1, r0
 	mov r0, #5
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	mov r0, #6
-	bl sub_020C2EAC
+	bl OS_GetInitArenaHi
 	mov r1, r0
 	mov r0, #6
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #6
-	bl sub_020C2F90
+	bl OS_GetInitArenaLo
 	mov r1, r0
 	mov r0, #6
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C2E14: .word 0x021CCED8
-	arm_func_end sub_020C2D14
+	arm_func_end OS_InitArena
 
-	arm_func_start sub_020C2E18
-sub_020C2E18: ; 0x020C2E18
+	arm_func_start OS_InitArenaEx
+OS_InitArenaEx: ; 0x020C2E18
 	stmfd sp!, {r3, lr}
 	mov r0, #2
-	bl sub_020C2EAC
+	bl OS_GetInitArenaHi
 	mov r1, r0
 	mov r0, #2
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, #2
-	bl sub_020C2F90
+	bl OS_GetInitArenaLo
 	mov r1, r0
 	mov r0, #2
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	ldr r0, _020C2E78 ; =0x021CCED8
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _020C2E64
-	bl sub_020C2730
+	bl OS_GetConsoleType
 	and r0, r0, #3
 	cmp r0, #1
 	ldmneia sp!, {r3, pc}
 _020C2E64:
 	ldr r0, _020C2E7C ; =0x0200002B
-	bl sub_020C3550
+	bl OS_SetProtectionRegion1
 	ldr r0, _020C2E80 ; =0x023E0021
-	bl sub_020C3558
+	bl OS_SetProtectionRegion2
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C2E78: .word 0x021CCED8
 _020C2E7C: .word 0x0200002B
 _020C2E80: .word 0x023E0021
-	arm_func_end sub_020C2E18
+	arm_func_end OS_InitArenaEx
 
-	arm_func_start sub_020C2E84
-sub_020C2E84: ; 0x020C2E84
+	arm_func_start OS_GetArenaHi
+OS_GetArenaHi: ; 0x020C2E84
 	mov r0, r0, lsl #2
 	add r0, r0, #0x2700000
 	add r0, r0, #0xff000
 	ldr r0, [r0, #0xdc4]
 	bx lr
-	arm_func_end sub_020C2E84
+	arm_func_end OS_GetArenaHi
 
-	arm_func_start sub_020C2E98
-sub_020C2E98: ; 0x020C2E98
+	arm_func_start OS_GetArenaLo
+OS_GetArenaLo: ; 0x020C2E98
 	mov r0, r0, lsl #2
 	add r0, r0, #0x2700000
 	add r0, r0, #0xff000
 	ldr r0, [r0, #0xda0]
 	bx lr
-	arm_func_end sub_020C2E98
+	arm_func_end OS_GetArenaLo
 
-	arm_func_start sub_020C2EAC
-sub_020C2EAC: ; 0x020C2EAC
+	arm_func_start OS_GetInitArenaHi
+OS_GetInitArenaHi: ; 0x020C2EAC
 	stmfd sp!, {r3, lr}
 	cmp r0, #6
 	addls pc, pc, r0, lsl #2
@@ -149,7 +149,7 @@ _020C2EE0:
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _020C2F00
-	bl sub_020C2730
+	bl OS_GetConsoleType
 	and r0, r0, #3
 	cmp r0, #1
 	bne _020C2F08
@@ -198,10 +198,10 @@ _020C2F80: .word 0x00000800
 _020C2F84: .word 0x027E0080
 _020C2F88: .word 0x027FF680
 _020C2F8C: .word 0x037F8000
-	arm_func_end sub_020C2EAC
+	arm_func_end OS_GetInitArenaHi
 
-	arm_func_start sub_020C2F90
-sub_020C2F90: ; 0x020C2F90
+	arm_func_start OS_GetInitArenaLo
+OS_GetInitArenaLo: ; 0x020C2F90
 	stmfd sp!, {r3, lr}
 	cmp r0, #6
 	addls pc, pc, r0, lsl #2
@@ -222,7 +222,7 @@ _020C2FC4:
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _020C2FE4
-	bl sub_020C2730
+	bl OS_GetConsoleType
 	and r0, r0, #3
 	cmp r0, #1
 	bne _020C2FEC
@@ -255,33 +255,33 @@ _020C3028: .word 0x01FF8680
 _020C302C: .word 0x027E0080
 _020C3030: .word 0x027FF000
 _020C3034: .word 0x037F8000
-	arm_func_end sub_020C2F90
+	arm_func_end OS_GetInitArenaLo
 
-	arm_func_start sub_020C3038
-sub_020C3038: ; 0x020C3038
+	arm_func_start OS_SetArenaHi
+OS_SetArenaHi: ; 0x020C3038
 	mov r0, r0, lsl #2
 	add r0, r0, #0x2700000
 	add r0, r0, #0xff000
 	str r1, [r0, #0xdc4]
 	bx lr
-	arm_func_end sub_020C3038
+	arm_func_end OS_SetArenaHi
 
-	arm_func_start sub_020C304C
-sub_020C304C: ; 0x020C304C
+	arm_func_start OS_SetArenaLo
+OS_SetArenaLo: ; 0x020C304C
 	mov r0, r0, lsl #2
 	add r0, r0, #0x2700000
 	add r0, r0, #0xff000
 	str r1, [r0, #0xda0]
 	bx lr
-	arm_func_end sub_020C304C
+	arm_func_end OS_SetArenaLo
 
-	arm_func_start sub_020C3060
-sub_020C3060: ; 0x020C3060
+	arm_func_start OS_AllocFromArenaLo
+OS_AllocFromArenaLo: ; 0x020C3060
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C2E98
+	bl OS_GetArenaLo
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -295,24 +295,24 @@ sub_020C3060: ; 0x020C3060
 	sub r1, r0, #1
 	mov r0, r7
 	and r5, r2, r1
-	bl sub_020C2E84
+	bl OS_GetArenaHi
 	cmp r5, r0
 	movhi r0, #0
 	ldmhiia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r7
 	mov r1, r5
-	bl sub_020C304C
+	bl OS_SetArenaLo
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020C3060
+	arm_func_end OS_AllocFromArenaLo
 
-	arm_func_start sub_020C30CC
-sub_020C30CC: ; 0x020C30CC
+	arm_func_start OS_AllocFromArenaHi
+OS_AllocFromArenaHi: ; 0x020C30CC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r4, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C2E84
+	bl OS_GetArenaHi
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -322,16 +322,16 @@ sub_020C30CC: ; 0x020C30CC
 	sub r1, r0, r6
 	mov r0, r4
 	and r5, r1, r2
-	bl sub_020C2E98
+	bl OS_GetArenaLo
 	cmp r5, r0
 	movlo r0, #0
 	ldmloia sp!, {r4, r5, r6, pc}
 	mov r0, r4
 	mov r1, r5
-	bl sub_020C3038
+	bl OS_SetArenaHi
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020C30CC
+	arm_func_end OS_AllocFromArenaHi
 
 	.bss
 

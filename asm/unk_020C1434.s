@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C1434
-sub_020C1434: ; 0x020C1434
+	arm_func_start OS_InitIrqTable
+OS_InitIrqTable: ; 0x020C1434
 	ldr r0, _020C1448 ; =0x027E0060
 	mov r1, #0
 	str r1, [r0, #4]
@@ -15,10 +15,10 @@ sub_020C1434: ; 0x020C1434
 	bx lr
 	; .align 2, 0
 _020C1448: .word 0x027E0060
-	arm_func_end sub_020C1434
+	arm_func_end OS_InitIrqTable
 
-	arm_func_start sub_020C144C
-sub_020C144C: ; 0x020C144C
+	arm_func_start OS_SetIrqFunction
+OS_SetIrqFunction: ; 0x020C144C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r8, #0
 	mov r2, #0xc
@@ -59,10 +59,10 @@ _020C14B8:
 	; .align 2, 0
 _020C14CC: .word 0x027E0000
 _020C14D0: .word 0x021CCBF8
-	arm_func_end sub_020C144C
+	arm_func_end OS_SetIrqFunction
 
-	arm_func_start sub_020C14D4
-sub_020C14D4: ; 0x020C14D4
+	arm_func_start OS_GetIrqFunction
+OS_GetIrqFunction: ; 0x020C14D4
 	ldr r2, _020C1558 ; =0x027E0000
 	mov r1, #0
 _020C14DC:
@@ -103,10 +103,10 @@ _020C153C:
 	; .align 2, 0
 _020C1558: .word 0x027E0000
 _020C155C: .word 0x021CCBF8
-	arm_func_end sub_020C14D4
+	arm_func_end OS_GetIrqFunction
 
-	arm_func_start sub_020C1560
-sub_020C1560: ; 0x020C1560
+	arm_func_start OSi_EnterDmaCallback
+OSi_EnterDmaCallback: ; 0x020C1560
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r3, #0xc
 	mul r6, r0, r3
@@ -117,7 +117,7 @@ sub_020C1560: ; 0x020C1560
 	ldr r3, _020C15A0 ; =0x021CCC00
 	str r1, [ip, r6]
 	str r2, [r3, r6]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	and r1, r0, r5, lsl r4
 	ldr r0, _020C15A4 ; =0x021CCBFC
 	str r1, [r0, r6]
@@ -126,10 +126,10 @@ sub_020C1560: ; 0x020C1560
 _020C159C: .word 0x021CCBF8
 _020C15A0: .word 0x021CCC00
 _020C15A4: .word 0x021CCBFC
-	arm_func_end sub_020C1560
+	arm_func_end OSi_EnterDmaCallback
 
-	arm_func_start sub_020C15A8
-sub_020C15A8: ; 0x020C15A8
+	arm_func_start OSi_EnterTimerCallback
+OSi_EnterTimerCallback: ; 0x020C15A8
 	stmfd sp!, {r4, lr}
 	mov r3, #0xc
 	mul r4, r0, r3
@@ -140,7 +140,7 @@ sub_020C15A8: ; 0x020C15A8
 	ldr r3, _020C15E8 ; =0x021CCC30
 	str r1, [ip, r4]
 	str r2, [r3, r4]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldr r0, _020C15EC ; =0x021CCC2C
 	mov r1, #1
 	str r1, [r0, r4]
@@ -149,10 +149,10 @@ sub_020C15A8: ; 0x020C15A8
 _020C15E4: .word 0x021CCC28
 _020C15E8: .word 0x021CCC30
 _020C15EC: .word 0x021CCC2C
-	arm_func_end sub_020C15A8
+	arm_func_end OSi_EnterTimerCallback
 
-	arm_func_start sub_020C15F0
-sub_020C15F0: ; 0x020C15F0
+	arm_func_start OS_SetIrqMask
+OS_SetIrqMask: ; 0x020C15F0
 	ldr r3, _020C1618 ; =0x04000208
 	mov r1, #0
 	ldrh r2, [r3]
@@ -165,10 +165,10 @@ sub_020C15F0: ; 0x020C15F0
 	bx lr
 	; .align 2, 0
 _020C1618: .word 0x04000208
-	arm_func_end sub_020C15F0
+	arm_func_end OS_SetIrqMask
 
-	arm_func_start sub_020C161C
-sub_020C161C: ; 0x020C161C
+	arm_func_start OS_EnableIrqMask
+OS_EnableIrqMask: ; 0x020C161C
 	ldr r3, _020C1648 ; =0x04000208
 	mov r1, #0
 	ldrh r2, [r3]
@@ -182,10 +182,10 @@ sub_020C161C: ; 0x020C161C
 	bx lr
 	; .align 2, 0
 _020C1648: .word 0x04000208
-	arm_func_end sub_020C161C
+	arm_func_end OS_EnableIrqMask
 
-	arm_func_start sub_020C164C
-sub_020C164C: ; 0x020C164C
+	arm_func_start OS_DisableIrqMask
+OS_DisableIrqMask: ; 0x020C164C
 	ldr ip, _020C1678 ; =0x04000208
 	mov r2, #0
 	ldrh r3, [ip]
@@ -199,10 +199,10 @@ sub_020C164C: ; 0x020C164C
 	bx lr
 	; .align 2, 0
 _020C1678: .word 0x04000208
-	arm_func_end sub_020C164C
+	arm_func_end OS_DisableIrqMask
 
-	arm_func_start sub_020C167C
-sub_020C167C: ; 0x020C167C
+	arm_func_start OS_ResetRequestIrqMask
+OS_ResetRequestIrqMask: ; 0x020C167C
 	ldr r3, _020C16A4 ; =0x04000208
 	mov r1, #0
 	ldrh r2, [r3]
@@ -215,10 +215,10 @@ sub_020C167C: ; 0x020C167C
 	bx lr
 	; .align 2, 0
 _020C16A4: .word 0x04000208
-	arm_func_end sub_020C167C
+	arm_func_end OS_ResetRequestIrqMask
 
-	arm_func_start sub_020C16A8
-sub_020C16A8: ; 0x020C16A8
+	arm_func_start OS_SetIrqStackChecker
+OS_SetIrqStackChecker: ; 0x020C16A8
 	ldr ip, _020C16CC ; =0x027E0000
 	ldr r3, _020C16D0 ; =0xFDDB597D
 	add r0, ip, #0x3000
@@ -233,4 +233,4 @@ _020C16CC: .word 0x027E0000
 _020C16D0: .word 0xFDDB597D
 _020C16D4: .word 0x7BF9DD5B
 _020C16D8: .word 0x00000800
-	arm_func_end sub_020C16A8
+	arm_func_end OS_SetIrqStackChecker

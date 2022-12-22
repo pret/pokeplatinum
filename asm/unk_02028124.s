@@ -78,11 +78,11 @@ sub_0202818C: ; 0x0202818C
 
 	thumb_func_start sub_020281A0
 sub_020281A0: ; 0x020281A0
-	ldr r3, _020281A8 ; =sub_020C4DB0
+	ldr r3, _020281A8 ; =MI_CpuCopy8
 	mov r2, #0x38
 	bx r3
 	nop
-_020281A8: .word sub_020C4DB0
+_020281A8: .word MI_CpuCopy8
 	thumb_func_end sub_020281A0
 
 	thumb_func_start sub_020281AC

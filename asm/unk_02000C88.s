@@ -6,8 +6,8 @@
 	.text
 
 
-	thumb_func_start sub_02000C88
-sub_02000C88: ; 0x02000C88
+	thumb_func_start NitroMain
+NitroMain: ; 0x02000C88
 	push {r3, r4, r5, r6, r7, lr}
 	bl sub_0201789C
 	bl sub_020179E4
@@ -16,7 +16,7 @@ sub_02000C88: ; 0x02000C88
 	bl sub_02017B70
 	ldr r0, _02000E18 ; =0x02101D20
 	mov r1, #0
-	bl sub_020CB29C
+	bl PM_GetBackLight
 	bl sub_0202419C
 	bl sub_0201378C
 	bl sub_02000E3C
@@ -141,7 +141,7 @@ _02000DA8:
 	bne _02000DD8
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	ldr r0, [r4, #0x2c]
 	add r0, r0, #1
 	str r0, [r4, #0x2c]
@@ -153,7 +153,7 @@ _02000DD8:
 	bl sub_0201CDD4
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	ldr r0, [r4, #0x2c]
 	add r0, r0, #1
 	str r0, [r4, #0x2c]
@@ -180,7 +180,7 @@ _02000E2C: .word 0x00000039
 _02000E30: .word 0x021D0F70
 _02000E34: .word 0x021BF67C
 _02000E38: .word 0x021BF6DC
-	thumb_func_end sub_02000C88
+	thumb_func_end NitroMain
 
 	thumb_func_start sub_02000E3C
 sub_02000E3C: ; 0x02000E3C
@@ -278,7 +278,7 @@ sub_02000EE4: ; 0x02000EE4
 	bl sub_020349EC
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	ldr r0, _02000F0C ; =0x021BF67C
 	ldr r1, [r0, #0x2c]
 	add r1, r1, #1
@@ -303,11 +303,11 @@ sub_02000F10: ; 0x02000F10
 	bl sub_02038AB8
 	cmp r0, #0
 	beq _02000F2A
-	bl sub_020CD050
+	bl CARD_TryWaitBackupAsync
 	cmp r0, #1
 	bne _02000F2A
 	add r0, r4, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 _02000F2A:
 	bl sub_02000EE4
 	pop {r4, pc}
@@ -485,7 +485,7 @@ sub_0200106C: ; 0x0200106C
 	cmp r0, #0
 	bne _020010E8
 	bl sub_0201E630
-	bl sub_020D09B8
+	bl CTRDG_IsPulledOut
 	cmp r0, #1
 	bne _02001098
 	ldr r0, _02001128 ; =0x02101D20
@@ -511,11 +511,11 @@ _020010A8:
 _020010B6:
 	mov r1, #0
 	add r2, r1, #0
-	bl sub_020CB324
-	bl sub_020CD9CC
+	bl PM_GoSleepMode
+	bl CARD_IsPulledOut
 	cmp r0, #0
 	beq _020010CC
-	bl sub_020CB218
+	bl PM_ForceToPowerOff
 	b _020010E0
 _020010CC:
 	ldrh r1, [r4]
@@ -535,26 +535,26 @@ _020010E0:
 _020010E8:
 	add r0, sp, #4
 	add r1, sp, #0
-	bl sub_020CB29C
+	bl PM_GetBackLight
 	ldr r0, [sp, #4]
 	cmp r0, #1
 	bne _0200111A
 	mov r0, #2
 	mov r1, #0
-	bl sub_020CB144
+	bl PM_SetBackLight
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 _02001102:
 	add r0, sp, #4
 	add r1, sp, #0
-	bl sub_020CB29C
+	bl PM_GetBackLight
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	bne _0200111A
 	ldr r1, _02001128 ; =0x02101D20
 	mov r0, #2
 	ldr r1, [r1, #0]
-	bl sub_020CB144
+	bl PM_SetBackLight
 _0200111A:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}

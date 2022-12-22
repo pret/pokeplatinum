@@ -16,7 +16,7 @@ sub_0207E060: ; 0x0207E060
 	mov r1, #0
 	mov r2, #0x24
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x1c
 	strb r0, [r4, #0x1b]
 	add r0, r5, #0

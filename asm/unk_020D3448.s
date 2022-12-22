@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D3448
-sub_020D3448: ; 0x020D3448
+	arm_func_start string_put_char
+string_put_char: ; 0x020D3448
 	ldr r2, [r0, #0]
 	cmp r2, #0
 	beq _020D3468
@@ -21,10 +21,10 @@ _020D3468:
 	add r1, r1, #1
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020D3448
+	arm_func_end string_put_char
 
-	arm_func_start sub_020D3478
-sub_020D3478: ; 0x020D3478
+	arm_func_start string_fill_char
+string_fill_char: ; 0x020D3478
 	stmfd sp!, {r3, lr}
 	cmp r2, #0
 	ldmleia sp!, {r3, pc}
@@ -48,10 +48,10 @@ _020D34B0:
 	add r1, r1, r2
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D3478
+	arm_func_end string_fill_char
 
-	arm_func_start sub_020D34CC
-sub_020D34CC: ; 0x020D34CC
+	arm_func_start string_put_string
+string_put_string: ; 0x020D34CC
 	stmfd sp!, {r4, lr}
 	cmp r2, #0
 	ldmleia sp!, {r4, pc}
@@ -76,10 +76,10 @@ _020D3508:
 	add r1, r1, r2
 	str r1, [r0, #4]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D34CC
+	arm_func_end string_put_string
 
-	arm_func_start sub_020D3524
-sub_020D3524: ; 0x020D3524
+	arm_func_start STD_TVSNPrintf
+STD_TVSNPrintf: ; 0x020D3524
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x30
 	mov sb, r2
@@ -99,20 +99,20 @@ _020D3550:
 	cmp r0, #0x3c
 	bhs _020D358C
 	add r0, sp, #0xc
-	bl sub_020D3448
+	bl string_put_char
 	ldrsb r1, [sb, #1]!
 	cmp r1, #0
 	beq _020D3D44
 	add r0, sp, #0xc
 	add sb, sb, #1
-	bl sub_020D3448
+	bl string_put_char
 	b _020D3D44
 _020D358C:
 	cmp r1, #0x25
 	beq _020D35A4
 	add r0, sp, #0xc
 	add sb, sb, #1
-	bl sub_020D3448
+	bl string_put_char
 	b _020D3D44
 _020D35A4:
 	mov r5, #0
@@ -288,11 +288,11 @@ _020D37C4:
 	mov r1, r4, lsl #0x18
 	add r0, sp, #0xc
 	mov r1, r1, asr #0x18
-	bl sub_020D3448
+	bl string_put_char
 	add r0, sp, #0xc
 	sub r2, sl, #1
 	mov r1, #0x20
-	bl sub_020D3478
+	bl string_fill_char
 	b _020D3830
 _020D3800:
 	tst r5, #0x10
@@ -302,11 +302,11 @@ _020D3800:
 	add r0, sp, #0xc
 	mov r1, r1, asr #0x18
 	sub r2, sl, #1
-	bl sub_020D3478
+	bl string_fill_char
 	mov r1, r4, lsl #0x18
 	add r0, sp, #0xc
 	mov r1, r1, asr #0x18
-	bl sub_020D3448
+	bl string_put_char
 _020D3830:
 	add sb, sb, #1
 	b _020D3D44
@@ -340,11 +340,11 @@ _020D3884:
 	add r0, sp, #0xc
 	mov r1, r7
 	mov r2, r4
-	bl sub_020D34CC
+	bl string_put_string
 	add r0, sp, #0xc
 	mov r2, sl
 	mov r1, #0x20
-	bl sub_020D3478
+	bl string_fill_char
 	b _020D38E4
 _020D38B4:
 	tst r5, #0x10
@@ -354,11 +354,11 @@ _020D38B4:
 	add r0, sp, #0xc
 	mov r2, sl
 	mov r1, r1, asr #0x18
-	bl sub_020D3478
+	bl string_fill_char
 	add r0, sp, #0xc
 	mov r1, r7
 	mov r2, r4
-	bl sub_020D34CC
+	bl string_put_string
 _020D38E4:
 	add sb, sb, #1
 	b _020D3D44
@@ -393,13 +393,13 @@ _020D3944:
 	bne _020D3960
 	add r0, sp, #0xc
 	add sb, sb, #1
-	bl sub_020D3448
+	bl string_put_char
 	b _020D3D44
 _020D3960:
 	mov r1, r2
 	add r0, sp, #0xc
 	sub r2, sb, r2
-	bl sub_020D34CC
+	bl string_put_string
 	b _020D3D44
 _020D3974:
 	orr r5, r5, #0x1000
@@ -570,7 +570,7 @@ _020D3BC0:
 	mov r0, r7
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	mov r2, #0xa
 	umull r3, r2, r0, r2
 	subs r2, r7, r3
@@ -634,7 +634,7 @@ _020D3C90:
 	add r0, sp, #0xc
 	mov r2, sl
 	mov r1, #0x20
-	bl sub_020D3478
+	bl string_fill_char
 _020D3CBC:
 	cmp r4, #0
 	ble _020D3CE8
@@ -645,14 +645,14 @@ _020D3CD0:
 	ldrsb r1, [r5, #-1]!
 	mov r0, r7
 	sub r4, r4, #1
-	bl sub_020D3448
+	bl string_put_char
 	cmp r4, #0
 	bgt _020D3CD0
 _020D3CE8:
 	add r0, sp, #0xc
 	mov r2, r6
 	mov r1, #0x30
-	bl sub_020D3478
+	bl string_fill_char
 	cmp r8, #0
 	ble _020D3D24
 	add r0, sp, #0x18
@@ -662,7 +662,7 @@ _020D3D0C:
 	ldrsb r1, [r5, #-1]!
 	mov r0, r4
 	sub r8, r8, #1
-	bl sub_020D3448
+	bl string_put_char
 	cmp r8, #0
 	bgt _020D3D0C
 _020D3D24:
@@ -672,7 +672,7 @@ _020D3D24:
 	add r0, sp, #0xc
 	mov r2, sl
 	mov r1, #0x20
-	bl sub_020D3478
+	bl string_fill_char
 _020D3D40:
 	add sb, sb, #1
 _020D3D44:
@@ -703,4 +703,4 @@ _020D3D88:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020D3D9C: .word 0xCCCCCCCD
-	arm_func_end sub_020D3524
+	arm_func_end STD_TVSNPrintf

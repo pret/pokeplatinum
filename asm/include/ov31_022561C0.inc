@@ -6,7 +6,7 @@
 .public sub_02056A10
 .public sub_02056A18
 .public sub_02056A2C
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov25_02254238
 .public ov25_0225424C
 .public ov25_02254260

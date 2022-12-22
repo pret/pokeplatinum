@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E1774
-sub_020E1774: ; 0x020E1774
+	arm_func_start _f_ftou
+_f_ftou: ; 0x020E1774
 	tst r0, #-0x80000000
 	bne _020E1798
 	mov r1, #0x9e
@@ -25,4 +25,4 @@ _020E1798:
 _020E17AC:
 	mvn r0, #0
 	bx lr
-	arm_func_end sub_020E1774
+	arm_func_end _f_ftou

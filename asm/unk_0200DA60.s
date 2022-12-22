@@ -923,27 +923,27 @@ _0200E184:
 	add r0, r5, r6
 	add r1, r4, r1
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r6, #0
 	ldr r1, [sp, #0x38]
 	add r0, #0x20
 	add r0, r5, r0
 	add r1, r4, r1
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r6, #0
 	ldr r1, [sp, #0x34]
 	add r0, #0x40
 	add r0, r5, r0
 	add r1, r4, r1
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	ldr r1, [sp, #0x38]
 	add r6, #0x60
 	add r0, r5, r6
 	add r1, r4, r1
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r7, #1
 	lsl r0, r0, #0x18
 	lsr r7, r0, #0x18
@@ -1013,7 +1013,7 @@ sub_0200E218: ; 0x0200E218
 	ldr r1, [r1, #0x14]
 	lsl r2, r2, #6
 	add r4, r0, #0
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, #9
 	mov r3, #0
 	lsl r0, r0, #6
@@ -1081,7 +1081,7 @@ sub_0200E2A4: ; 0x0200E2A4
 	bl sub_02006AC0
 	add r1, sp, #0x18
 	str r0, [sp, #0x14]
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	add r2, sp, #0x20
 	ldr r1, [sp, #0x18]
 	ldrb r2, [r2, #0x10]
@@ -1743,7 +1743,7 @@ sub_0200E7FC: ; 0x0200E7FC
 	add r0, r4, r0
 	add r1, r5, r1
 	mov r2, #0x80
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x28]
 	mov r1, #0x80
 	bl sub_02018144
@@ -1754,7 +1754,7 @@ sub_0200E7FC: ; 0x0200E7FC
 	str r1, [sp, #0x2c]
 	add r1, r5, r1
 	add r6, r0, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x24]
 	mov r2, #0x20
 	add r0, #0xb
@@ -1762,18 +1762,18 @@ sub_0200E7FC: ; 0x0200E7FC
 	add r0, r6, #0
 	add r0, #0x20
 	add r1, r5, r7
-	bl sub_020D50B8
+	bl memcpy
 	ldr r1, [sp, #0x2c]
 	add r0, r6, #0
 	add r0, #0x40
 	add r1, r5, r1
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r6, #0
 	add r0, #0x60
 	add r1, r5, r7
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	mov r5, #0
 	add r7, r4, #4
 _0200E87E:
@@ -1781,7 +1781,7 @@ _0200E87E:
 	add r0, r7, r0
 	add r1, r6, #0
 	mov r2, #0x80
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r5, #1
 	lsl r0, r0, #0x18
 	lsr r5, r0, #0x18
@@ -2592,17 +2592,17 @@ sub_0200EE98: ; 0x0200EE98
 	bl sub_0200A534
 	mov r1, #1
 	str r0, [sp, #4]
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	mov r1, #0x19
 	add r7, r0, #0
 	add r0, r4, #0
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r2, #0x19
 	add r0, r4, #0
 	add r1, r7, #0
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	add r0, r4, #0
 	bl sub_020181C4
 	ldr r2, _0200EF6C ; =0x00000162
@@ -2619,15 +2619,15 @@ sub_0200EE98: ; 0x0200EE98
 	ldr r1, [sp, #4]
 	bl sub_0200A72C
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r5, r0, #0
 	add r0, r4, #0
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #0x28

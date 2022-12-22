@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C5EEC
-sub_020C5EEC: ; 0x020C5EEC
+	arm_func_start SND_CalcChannelVolume
+SND_CalcChannelVolume: ; 0x020C5EEC
 	ldr r1, _020C5F54 ; =0xFFFFFD2D
 	cmp r0, r1
 	movlt r0, r1
@@ -38,7 +38,7 @@ _020C5F44:
 	; .align 2, 0
 _020C5F54: .word 0xFFFFFD2D
 _020C5F58: .word 0x020FE1B0
-	arm_func_end sub_020C5EEC
+	arm_func_end SND_CalcChannelVolume
 
 	.rodata
 

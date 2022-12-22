@@ -126,7 +126,7 @@ ov5_021F013C: ; 0x021F013C
 	ldr r0, _021F0180 ; =0x04000050
 	mov r1, #4
 	mov r2, #0x29
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #2
 	mov r1, #0
 	bl sub_02019060
@@ -162,7 +162,7 @@ ov5_021F0188: ; 0x021F0188
 	mov r1, #4
 	mov r2, #0x21
 	mov r3, #0xa
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
@@ -301,7 +301,7 @@ ov5_021F0260: ; 0x021F0260
 	mov r1, #0x11
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	str r0, [sp]
 	add r0, r5, #0
@@ -342,7 +342,7 @@ ov5_021F02C8: ; 0x021F02C8
 	ldr r0, [r4, #0xc]
 	mul r0, r1
 	ldr r1, [r4, #0x10]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]

@@ -166,7 +166,7 @@ ov17_02251E68: ; 0x02251E68
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x18
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _02251EA4 ; =0x00007530
@@ -399,7 +399,7 @@ ov17_0225201C: ; 0x0225201C
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x18
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _02252058 ; =0x00007530
@@ -681,7 +681,7 @@ ov17_02252224: ; 0x02252224
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp]
 	ldr r2, _02252284 ; =0x00007530
 	str r0, [r4, #0]
@@ -850,7 +850,7 @@ _02252368:
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	ldrh r0, [r5]
 	mov r2, #0xfa
@@ -1069,7 +1069,7 @@ ov17_02252528: ; 0x02252528
 	mov r1, #0
 	mov r2, #0x18
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp]
 	mov r2, #0
 	str r0, [r4, #0]
@@ -1204,7 +1204,7 @@ ov17_02252620: ; 0x02252620
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x18
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _02252664 ; =0x00007530
@@ -1405,7 +1405,7 @@ ov17_022527AC: ; 0x022527AC
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #0]
 	ldrh r0, [r6]
 	strh r0, [r4, #4]
@@ -1657,7 +1657,7 @@ ov17_02252984: ; 0x02252984
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0]
 	ldrh r0, [r5]
 	ldr r2, _022529C0 ; =0x00007530
@@ -1718,10 +1718,10 @@ _022529FE:
 	bl ov17_02251020
 	ldr r0, _02252A68 ; =0x0400006C
 	mov r1, #0x10
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	ldr r0, _02252A6C ; =0x0400106C
 	mov r1, #0x10
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	ldrb r0, [r4, #0x10]
 	add r0, r0, #1
 	strb r0, [r4, #0x10]

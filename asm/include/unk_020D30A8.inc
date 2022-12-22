@@ -1,4 +1,4 @@
-.public sub_020D30E8
-.public sub_020D31B0
-.public sub_020D31F0
-.public sub_020D3270
+.public MATHi_CRC8Update
+.public MATHi_CRC16Update
+.public MATHi_CRC16UpdateRev
+.public MATHi_CRC32UpdateRev

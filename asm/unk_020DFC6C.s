@@ -6,16 +6,16 @@
 	.text
 
 
-	arm_func_start sub_020DFC6C
-sub_020DFC6C: ; 0x020DFC6C
+	arm_func_start _d_add
+_d_add: ; 0x020DFC6C
 	stmfd sp!, {r4, lr}
 	eors ip, r1, r3
 	eormi r3, r3, #0x80000000
-	bmi sub_020E075C
-	arm_func_end sub_020DFC6C
+	bmi __dsub_start
+	arm_func_end _d_add
 
-	arm_func_start sub_020DFC7C
-sub_020DFC7C: ; 0x020DFC7C
+	arm_func_start __dadd_start
+__dadd_start: ; 0x020DFC7C
 	subs ip, r0, r2
 	sbcs lr, r1, r3
 	bhs _020DFC98
@@ -229,4 +229,4 @@ _020DFF60:
 	; .align 2, 0
 _020DFF80:
 	.word 0x7FF00000
-	arm_func_end sub_020DFC7C
+	arm_func_end __dadd_start

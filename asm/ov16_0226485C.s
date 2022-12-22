@@ -1425,7 +1425,7 @@ ov16_02265330: ; 0x02265330
 	add r1, sp, #0x28
 	mov r2, #0x2c
 	add r6, r3, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [sp, #4]
 	bl ov16_0223DF10
 	ldr r1, [sp, #0xc]
@@ -3161,7 +3161,7 @@ ov16_02266058: ; 0x02266058
 	mov r0, #0x64
 	mul r0, r1
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #4
 	strh r0, [r1, #2]
 	mov r0, #4
@@ -3203,7 +3203,7 @@ _022660BE:
 	mul r0, r1
 	add r1, r2, #4
 	ldr r1, [r6, r1]
-	bl sub_020E2178
+	bl _u32_div_f
 	add r1, sp, #4
 	strh r0, [r1, #2]
 _022660D0:
@@ -4853,7 +4853,7 @@ ov16_02266CF0: ; 0x02266CF0
 	add r1, r5, #0
 	mov r2, #8
 	add r6, r3, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [sp]
 	bl ov16_0223DF0C
 	add r4, r0, #0

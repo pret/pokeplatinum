@@ -29,7 +29,7 @@ ov59_021D2F94: ; 0x021D2F94
 	bl ov59_021D2A30
 	add r1, r4, #0
 	add r2, r5, #0
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov59_021D2F94
@@ -72,7 +72,7 @@ ov59_021D2FE0: ; 0x021D2FE0
 	bl sub_02029CA8
 	add r1, r4, #0
 	add r2, r5, #0
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -187,7 +187,7 @@ ov59_021D30B4: ; 0x021D30B4
 	add r4, r0, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r6, #0
 	mov r1, #0
 	add r2, r4, #0
@@ -231,7 +231,7 @@ _021D310C:
 	ldr r1, [sp, #4]
 	add r0, r7, #0
 	add r2, r4, #0
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	add r0, r7, #0
 	bl sub_020181C4
 	ldr r0, [sp, #4]

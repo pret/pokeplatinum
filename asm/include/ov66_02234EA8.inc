@@ -5,7 +5,7 @@
 .public sub_02022974
 .public sub_020996D4
 .public sub_02099764
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f
 .public ov66_0223144C
 .public ov66_02234F2C

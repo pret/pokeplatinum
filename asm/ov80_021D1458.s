@@ -18,7 +18,7 @@ ov80_021D1458: ; 0x021D1458
 	mov r1, #0
 	lsl r2, r2, #4
 	str r0, [r4, #0x34]
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	pop {r4, pc}
 	; .align 2, 0
@@ -158,7 +158,7 @@ ov80_021D1550: ; 0x021D1550
 	mov r2, #8
 	mov r3, #0x1c
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0
 	add sp, #0xc
 	pop {pc}
@@ -216,7 +216,7 @@ ov80_021D15C8: ; 0x021D15C8
 	mov r2, #8
 	mov r3, #0x1c
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0
 	add sp, #0xc
 	pop {pc}
@@ -2227,7 +2227,7 @@ ov80_021D259C: ; 0x021D259C
 	str r0, [sp, #8]
 	add r0, #0xa4
 	mov r2, #0x5c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	ldr r7, [sp, #8]
 	str r0, [sp, #4]
@@ -2365,7 +2365,7 @@ ov80_021D26AC: ; 0x021D26AC
 	add r1, r0, #1
 	strh r1, [r4, #8]
 	mov r1, #0x1a
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bgt _021D26FC
 	ldrb r0, [r4, #0xb]
@@ -2386,7 +2386,7 @@ ov80_021D26AC: ; 0x021D26AC
 	ldrb r2, [r4, #0xa]
 	sub r0, r1, #1
 	add r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r4, #0xa]
 	mov r0, #0x41
 	ldrh r1, [r4, #8]

@@ -16,23 +16,23 @@ sub_0202B604: ; 0x0202B604
 
 	thumb_func_start sub_0202B60C
 sub_0202B60C: ; 0x0202B60C
-	ldr r3, _0202B614 ; =sub_020D5124
+	ldr r3, _0202B614 ; =memset
 	mov r1, #0
 	mov r2, #0x70
 	bx r3
 	; .align 2, 0
-_0202B614: .word sub_020D5124
+_0202B614: .word memset
 	thumb_func_end sub_0202B60C
 
 	thumb_func_start sub_0202B618
 sub_0202B618: ; 0x0202B618
-	ldr r3, _0202B624 ; =sub_020D5124
+	ldr r3, _0202B624 ; =memset
 	mov r2, #0x46
 	mov r1, #0
 	lsl r2, r2, #4
 	bx r3
 	nop
-_0202B624: .word sub_020D5124
+_0202B624: .word memset
 	thumb_func_end sub_0202B618
 
 	thumb_func_start sub_0202B628
@@ -522,12 +522,12 @@ _0202B96C:
 	add r0, #0x1c
 	add r1, #0x46
 	mov r2, #0x2a
-	bl sub_020D50B8
+	bl memcpy
 	add r4, #0x46
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x2a
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -1302,7 +1302,7 @@ sub_0202BE4C: ; 0x0202BE4C
 	ldr r0, [sp]
 	bl sub_0202CC5C
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	beq _0202BE9A
@@ -1372,7 +1372,7 @@ sub_0202BECC: ; 0x0202BECC
 	ldr r0, [sp]
 	bl sub_0202CC5C
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	cmp r0, #1
@@ -1447,7 +1447,7 @@ sub_0202BF7C: ; 0x0202BF7C
 	mov r1, #0
 	mov r2, #0x3a
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -2076,7 +2076,7 @@ _0202C3DC:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x3a
-	bl sub_020D5124
+	bl memset
 	ldrb r0, [r6, #0x1c]
 	cmp r0, #0x1d
 	bhi _0202C464

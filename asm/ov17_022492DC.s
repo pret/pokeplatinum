@@ -15,7 +15,7 @@ ov17_022492DC: ; 0x022492DC
 	mov r1, #0
 	mov r2, #0xf4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	add r0, r4, #0
 	mvn r1, r1
@@ -224,7 +224,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r0, [r0, #0x14]
 	ldr r1, [r1, #0]
 	lsl r2, r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0x17
@@ -242,7 +242,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r0, [r0, #0x14]
 	ldr r1, [r1, #0]
 	lsl r2, r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0x17
@@ -260,7 +260,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r0, [r0, #0x14]
 	ldr r1, [r1, #0]
 	lsl r2, r2, #8
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0x17
@@ -278,7 +278,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r1, [r1, #0]
 	add r0, #0xc
 	lsl r2, r2, #0xa
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0x17
@@ -296,7 +296,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r1, [r1, #0]
 	add r0, #0xc
 	lsl r2, r2, #0xa
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0x17
@@ -314,7 +314,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r1, [r1, #0]
 	add r0, #0xc
 	lsl r2, r2, #0xa
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0x17
@@ -332,7 +332,7 @@ ov17_022493DC: ; 0x022493DC
 	ldr r1, [r1, #0]
 	add r0, #0xc
 	lsl r2, r2, #0xa
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r5, #0
 	bl sub_020181C4
 	mov r0, #0
@@ -1010,7 +1010,7 @@ ov17_02249AAC: ; 0x02249AAC
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	mvn r0, r0
 	cmp r5, r0
@@ -1126,7 +1126,7 @@ _02249B6E:
 	ldrh r2, [r5, #0x18]
 	add r1, r3, r1
 	lsl r2, r2, #5
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _02249BB2
 _02249B9C:
 	ldrh r1, [r5, #0x10]
@@ -1138,7 +1138,7 @@ _02249B9C:
 	ldrh r2, [r5, #0x18]
 	add r1, r3, r1
 	lsl r2, r2, #5
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _02249BB2:
 	mov r0, #1
 	lsl r0, r0, #0xa
@@ -1182,7 +1182,7 @@ _02249BDC:
 	add r1, r7, r1
 	asr r6, r1, #3
 	mov r1, #8
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	beq _02249C08
 	add r6, r6, #1
@@ -1373,7 +1373,7 @@ _02249D60:
 	add r0, #0x98
 	mov r1, #0
 	mov r2, #0x38
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _02249D7C ; =0x00000514
 	add r0, r5, #0
 	add r1, r4, #0
@@ -1397,7 +1397,7 @@ ov17_02249D80: ; 0x02249D80
 	add r4, #0x98
 	add r0, r4, #0
 	mov r2, #0x38
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _02249D9C:
 	pop {r4, pc}
 	; .align 2, 0

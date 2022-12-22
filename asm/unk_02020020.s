@@ -19,7 +19,7 @@ sub_02020020: ; 0x02020020
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -36,7 +36,7 @@ sub_02020020: ; 0x02020020
 	orr r0, r1
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -56,7 +56,7 @@ sub_02020020: ; 0x02020020
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	mov r3, #0
@@ -74,7 +74,7 @@ sub_02020020: ; 0x02020020
 	ldrsh r2, [r2, r3]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -94,7 +94,7 @@ sub_02020020: ; 0x02020020
 	ldrsh r0, [r0, r1]
 	asr r3, r2, #0x1f
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -109,7 +109,7 @@ sub_02020020: ; 0x02020020
 	add r5, #0x20
 	add r1, r5, #0
 	add r2, r0, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	pop {r3, r4, r5, pc}
 	nop
 _020200FC: .word 0x020F983C
@@ -128,7 +128,7 @@ sub_02020100: ; 0x02020100
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -145,7 +145,7 @@ sub_02020100: ; 0x02020100
 	orr r0, r1
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -166,7 +166,7 @@ sub_02020100: ; 0x02020100
 	asr r3, r2, #0x1f
 	ldrsh r0, [r0, r1]
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	mov r3, #0
@@ -184,7 +184,7 @@ sub_02020100: ; 0x02020100
 	ldrsh r2, [r2, r3]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -205,7 +205,7 @@ sub_02020100: ; 0x02020100
 	ldrsh r0, [r0, r1]
 	asr r3, r2, #0x1f
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -221,7 +221,7 @@ sub_02020100: ; 0x02020100
 	add r5, #0x14
 	add r1, r5, #0
 	add r2, r0, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _020201E0: .word 0x020F983C
@@ -342,7 +342,7 @@ _020202A6:
 	ldr r0, [r7, #4]
 	ldr r1, [r1, #0]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r7, #4]
 	ldr r1, [sp]
 	ldr r0, [r5, #0x64]
@@ -361,7 +361,7 @@ _020202A6:
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp]
 	str r1, [r0, #0]
 	ldr r0, [r5, #0x64]
@@ -547,7 +547,7 @@ sub_020203EC: ; 0x020203EC
 	beq _02020436
 	add r1, #0x48
 	add r2, sp, #0xc
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	ldr r0, _02020484 ; =0x021C0770
 	add r1, sp, #0xc
 	ldr r0, [r0, #0]
@@ -599,7 +599,7 @@ _02020436:
 	str r0, [r5, #0]
 	ldr r3, _02020494 ; =0x021C5AD8
 	add r0, r4, #0
-	bl sub_020BC36C
+	bl MTX_LookAt
 	ldr r1, _02020498 ; =0x021C5B0C
 	mov r0, #0xe8
 	ldr r2, [r1, #0x7c]
@@ -634,7 +634,7 @@ _020204AA:
 _020204B2:
 	add r1, #0x48
 	add r2, sp, #0x34
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	ldr r0, _02020664 ; =0x021C0770
 	add r1, sp, #0x34
 	ldr r0, [r0, #0]
@@ -696,7 +696,7 @@ _020204B2:
 	asr r7, r0, #0x1f
 	add r1, r7, #0
 	str r0, [sp, #4]
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	mov r3, #0
@@ -710,7 +710,7 @@ _020204B2:
 	ldr r2, [sp]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	mov r3, #0
@@ -734,7 +734,7 @@ _020204B2:
 	str r0, [sp, #0xc]
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #0xc]
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	add r3, r1, #0
@@ -760,7 +760,7 @@ _020204B2:
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #0xc]
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r3, #2
 	add r4, r7, #0
 	lsl r3, r3, #0xa
@@ -794,7 +794,7 @@ _020204B2:
 	add r0, sp, #0x1c
 	add r1, sp, #0x10
 	add r2, r6, #0
-	bl sub_020BC36C
+	bl MTX_LookAt
 	ldr r1, _0202067C ; =0x021C5B0C
 	mov r0, #0xe8
 	ldr r2, [r1, #0x7c]
@@ -831,7 +831,7 @@ _02020618:
 	add r0, r2, #0
 	ldr r3, _02020678 ; =0x021C5AD8
 	add r2, r4, #0
-	bl sub_020BC36C
+	bl MTX_LookAt
 	ldr r1, _0202067C ; =0x021C5B0C
 	mov r0, #0xe8
 	ldr r2, [r1, #0x7c]
@@ -1027,9 +1027,9 @@ sub_02020784: ; 0x02020784
 	str r0, [r2, #0]
 	add r0, r6, #0
 	add r2, sp, #0x30
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x30
-	bl sub_020BD384
+	bl VEC_Mag
 	str r0, [r4, #0x38]
 	mov r6, #0
 	add r0, sp, #0x24
@@ -1120,7 +1120,7 @@ sub_02020854: ; 0x02020854
 	ldr r1, [r5, #4]
 	ldr r2, [r5, #8]
 	ldr r3, [r5, #0xc]
-	bl sub_020BCC7C
+	bl MTX_PerspectiveW
 	ldr r1, _02020908 ; =0x021C5B0C
 	mov r0, #0x50
 	ldr r2, [r1, #0x7c]
@@ -1137,11 +1137,11 @@ _02020890:
 	ldr r4, [r5, #0x38]
 	ldr r0, [r5, #0]
 	ldr r1, [r5, #4]
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r1, r0, #0x1f
 	asr r3, r4, #0x1f
 	add r2, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1154,7 +1154,7 @@ _02020890:
 	asr r1, r4, #0x1f
 	add r0, r4, #0
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1174,7 +1174,7 @@ _02020890:
 	neg r2, r3
 	str r0, [sp, #0xc]
 	add r0, r4, #0
-	bl sub_020BCDC8
+	bl MTX_OrthoW
 	ldr r1, _02020908 ; =0x021C5B0C
 	mov r0, #0x50
 	ldr r2, [r1, #0x7c]
@@ -1271,12 +1271,12 @@ sub_02020990: ; 0x02020990
 	add r0, #0x14
 	add r1, r5, #0
 	add r2, r0, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	add r4, #0x20
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02020990
 

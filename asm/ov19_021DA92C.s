@@ -314,7 +314,7 @@ ov19_021DAB44: ; 0x021DAB44
 	add r4, r5, #0
 _021DAB7C:
 	add r0, sp, #0x44
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #1
@@ -367,7 +367,7 @@ _021DABDA:
 	cmp r0, #2
 	blo _021DAB7C
 	add r0, sp, #0x44
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	mov r0, #0xb9
 	str r3, [sp]

@@ -6,10 +6,10 @@
 	.text
 
 
-	arm_func_start sub_020C635C
-sub_020C635C: ; 0x020C635C
+	arm_func_start PXI_InitFifo
+PXI_InitFifo: ; 0x020C635C
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C6440 ; =0x021CEB84
 	mov r4, r0
 	ldrh r0, [r1]
@@ -31,12 +31,12 @@ _020C6394:
 	ldr r1, _020C6450 ; =0x04000184
 	mov r0, #0x40000
 	strh r2, [r1]
-	bl sub_020C167C
-	ldr r1, _020C6454 ; =sub_020C6554
+	bl OS_ResetRequestIrqMask
+	ldr r1, _020C6454 ; =PXIi_HandlerRecvFifoNotEmpty
 	mov r0, #0x40000
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #0x40000
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r5, #0
 	ldr r3, _020C6458 ; =0x04000180
 	mov r1, r5
@@ -69,7 +69,7 @@ _020C642C:
 	b _020C63DC
 _020C6434:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C6440: .word 0x021CEB84
@@ -77,16 +77,16 @@ _020C6444: .word 0x027FFC00
 _020C6448: .word 0x021CEB88
 _020C644C: .word 0x0000C408
 _020C6450: .word 0x04000184
-_020C6454: .word sub_020C6554
+_020C6454: .word PXIi_HandlerRecvFifoNotEmpty
 _020C6458: .word 0x04000180
-	arm_func_end sub_020C635C
+	arm_func_end PXI_InitFifo
 
-	arm_func_start sub_020C645C
-sub_020C645C: ; 0x020C645C
+	arm_func_start PXI_SetFifoRecvCallback
+PXI_SetFifoRecvCallback: ; 0x020C645C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
 	mov r5, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C64A0 ; =0x021CEB88
 	ldr r3, _020C64A4 ; =0x027FFC00
 	str r5, [r1, r4, lsl #2]
@@ -98,15 +98,15 @@ sub_020C645C: ; 0x020C645C
 	ldreq r2, [r3, #0x388]
 	andeq r1, r2, r1
 	str r1, [r3, #0x388]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C64A0: .word 0x021CEB88
 _020C64A4: .word 0x027FFC00
-	arm_func_end sub_020C645C
+	arm_func_end PXI_SetFifoRecvCallback
 
-	arm_func_start sub_020C64A8
-sub_020C64A8: ; 0x020C64A8
+	arm_func_start PXI_IsCallbackReady
+PXI_IsCallbackReady: ; 0x020C64A8
 	ldr r2, _020C64C8 ; =0x027FFC00
 	mov r3, #1
 	add r1, r2, r1, lsl #2
@@ -117,10 +117,10 @@ sub_020C64A8: ; 0x020C64A8
 	bx lr
 	; .align 2, 0
 _020C64C8: .word 0x027FFC00
-	arm_func_end sub_020C64A8
+	arm_func_end PXI_IsCallbackReady
 
-	arm_func_start sub_020C64CC
-sub_020C64CC: ; 0x020C64CC
+	arm_func_start PXI_SendWordByFifo
+PXI_SendWordByFifo: ; 0x020C64CC
 	stmfd sp!, {r3, lr}
 	ldr ip, [sp]
 	ldr r3, _020C6550 ; =0x04000184
@@ -142,26 +142,26 @@ sub_020C64CC: ; 0x020C64CC
 	strh r1, [r3]
 	ldmia sp!, {r3, pc}
 _020C651C:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _020C6550 ; =0x04000184
 	ldrh r1, [r2]
 	tst r1, #2
 	beq _020C653C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mvn r0, #1
 	ldmia sp!, {r3, pc}
 _020C653C:
 	ldr r1, [sp]
 	str r1, [r2, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C6550: .word 0x04000184
-	arm_func_end sub_020C64CC
+	arm_func_end PXI_SendWordByFifo
 
-	arm_func_start sub_020C6554
-sub_020C6554: ; 0x020C6554
+	arm_func_start PXIi_HandlerRecvFifoNotEmpty
+PXIi_HandlerRecvFifoNotEmpty: ; 0x020C6554
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #4
 	mvn r8, #3
@@ -181,17 +181,17 @@ _020C6578:
 	strh r0, [sb]
 	b _020C65C4
 _020C6598:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldrh r1, [sb]
 	tst r1, #0x100
 	beq _020C65B4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r1, r8
 	b _020C65C4
 _020C65B4:
 	ldr r6, [r7, #0]
 	str r6, [sp]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r1, r5
 _020C65C4:
 	cmp r1, r8
@@ -224,23 +224,23 @@ _020C6604:
 	strh r0, [sb]
 	b _020C6578
 _020C6634:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldrh r1, [sb]
 	tst r1, #2
 	beq _020C664C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _020C6578
 _020C664C:
 	mov r1, r6
 	str r1, [sb, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	b _020C6578
 _020C665C:
 	.byte 0x04, 0xD0, 0x8D, 0xE2
 	.byte 0xF8, 0x87, 0xBD, 0xE8
 _020C6664: .word 0x04000184
 _020C6668: .word 0x021CEB88
-	arm_func_end sub_020C6554
+	arm_func_end PXIi_HandlerRecvFifoNotEmpty
 
 	.bss
 

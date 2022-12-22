@@ -20,7 +20,7 @@ ov19_021DA270: ; 0x021DA270
 	bl sub_02006C24
 	str r0, [r5, #0x48]
 	add r0, sp, #0x1c
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	bl sub_02079FD0
 	add r1, r0, #0
 	mov r0, #0xa
@@ -41,10 +41,10 @@ ov19_021DA270: ; 0x021DA270
 	cmp r0, #0
 	beq _021DA308
 	add r0, sp, #0x1c
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	ldr r0, [sp, #0x10]
 	add r1, sp, #0x14
-	bl sub_020A71EC
+	bl NNS_G2dGetUnpackedPaletteCompressInfo
 	ldr r2, [sp, #0x18]
 	add r7, r0, #0
 	ldr r0, [r2, #0xc]
@@ -63,14 +63,14 @@ ov19_021DA270: ; 0x021DA270
 	ldr r1, [sp, #0x14]
 	mov r2, #0xc0
 	mov r3, #1
-	bl sub_020A8948
+	bl NNS_G2dLoadPaletteEx
 	b _021DA302
 _021DA2F6:
 	ldr r0, [sp, #0x18]
 	mov r1, #0xc0
 	mov r2, #1
 	add r3, sp, #0x1c
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 _021DA302:
 	ldr r0, [sp, #0x10]
 	bl sub_020181C4
@@ -189,7 +189,7 @@ ov19_021DA3CC: ; 0x021DA3CC
 _021DA3DC:
 	add r0, r5, #4
 	str r6, [r5, #0]
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, r4, #0
 	add r5, #0x34
 	sub r4, r4, #1
@@ -230,10 +230,10 @@ ov19_021DA418: ; 0x021DA418
 	mov r3, #0x34
 	mul r3, r2
 	add r2, r3, #0
-	ldr r3, _021DA424 ; =sub_020C4B68
+	ldr r3, _021DA424 ; =MIi_CpuCopy32
 	bx r3
 	nop
-_021DA424: .word sub_020C4B68
+_021DA424: .word MIi_CpuCopy32
 	thumb_func_end ov19_021DA418
 
 	thumb_func_start ov19_021DA428
@@ -300,7 +300,7 @@ ov19_021DA428: ; 0x021DA428
 	bl sub_02074570
 	strh r0, [r4, #0x2e]
 	add r0, r4, #4
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, r5, #0
 	add r0, #0x4c
 	str r0, [sp]
@@ -313,7 +313,7 @@ ov19_021DA428: ; 0x021DA428
 	add r0, r5, #0
 	add r0, #0x4c
 	add r1, sp, #0x1c
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	mov r2, #1
 	lsl r2, r2, #0x1a
 	ldr r1, [r2, #0]
@@ -329,7 +329,7 @@ ov19_021DA428: ; 0x021DA428
 	ldr r1, [sp, #0x60]
 	ldr r0, [sp, #0x1c]
 	lsl r1, r1, #5
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	add r0, r4, #4
 	str r0, [sp, #0x20]
 	ldr r0, [sp, #0x5c]
@@ -419,10 +419,10 @@ ov19_021DA548: ; 0x021DA548
 	bl sub_02074570
 	strh r0, [r4, #0x2e]
 	add r0, r4, #4
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	ldr r0, [sp, #0x58]
 	add r1, sp, #0x18
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	mov r2, #1
 	lsl r2, r2, #0x1a
 	ldr r1, [r2, #0]
@@ -438,7 +438,7 @@ ov19_021DA548: ; 0x021DA548
 	ldr r1, [sp, #0x6c]
 	ldr r0, [sp, #0x18]
 	lsl r1, r1, #5
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	add r0, r4, #4
 	str r0, [sp, #0x1c]
 	ldr r0, [sp, #0x68]
@@ -604,13 +604,13 @@ _021DA70A:
 	add r5, #0x4c
 	add r0, r5, #0
 	add r1, sp, #4
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #4]
 	mov r2, #2
 	ldr r0, [r0, #0x14]
 	add r1, r6, r7
 	lsl r2, r2, #8
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 _021DA73C:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
@@ -640,7 +640,7 @@ ov19_021DA754: ; 0x021DA754
 	cmp r0, #0
 	beq _021DA7B0
 	add r0, r4, #4
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, r5, #0
 	add r0, #0x4c
 	str r0, [sp]
@@ -653,7 +653,7 @@ ov19_021DA754: ; 0x021DA754
 	add r5, #0x4c
 	add r0, r5, #0
 	add r1, sp, #4
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	mov r2, #1
 	lsl r2, r2, #0x1a
 	ldr r1, [r2, #0]
@@ -668,7 +668,7 @@ ov19_021DA754: ; 0x021DA754
 	str r1, [r0, #0x10]
 	ldr r0, [sp, #4]
 	lsl r1, r6, #5
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	ldr r0, [r4, #0]
 	add r1, r4, #4
 	bl sub_02021F7C

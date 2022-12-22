@@ -122,7 +122,7 @@ _0226DEFC:
 	mov r1, #0
 	mov r2, #0x20
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp]
 	add r0, r7, #0
 	add r2, sp, #4
@@ -275,7 +275,7 @@ _0226E036:
 	bne _0226E08A
 	ldr r0, [r4, #0x10]
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D15C
@@ -283,7 +283,7 @@ _0226E036:
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r5, r1, #0
 	ldr r1, [r4, #8]
 	mov r2, #2

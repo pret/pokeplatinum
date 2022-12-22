@@ -16,15 +16,15 @@ ov18_02243440: ; 0x02243440
 	ldr r1, _022435D0 ; =0x022533AC
 	str r0, [r1, #0]
 	add r0, sp, #0xa0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	ldr r1, _022435D4 ; =0x0224B1E4
 	add r0, sp, #0xa0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	bne _0224347C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0224347C:
-	bl sub_020C1A00
+	bl OS_GetLockID
 	ldr r2, _022435D0 ; =0x022533AC
 	add r1, sp, #0x18
 	ldr r3, [r2, #0]
@@ -32,33 +32,33 @@ _0224347C:
 	strh r0, [r3, #0xe4]
 	add r0, sp, #0xa0
 	ldr r4, [sp, #0xc4]
-	bl sub_020C81D4
+	bl FS_ReadFile
 	add r0, sp, #0xa0
 	add r1, sp, #0x10
 	mov r2, #8
-	bl sub_020C81D4
+	bl FS_ReadFile
 	add r0, sp, #0xa0
-	bl sub_020C80C8
+	bl FS_CloseFile
 	ldr r0, _022435D0 ; =0x022533AC
 	ldr r0, [r0, #0]
 	add r0, r0, #0x88
-	bl sub_020C7734
+	bl FS_InitArchive
 	ldr r0, _022435D0 ; =0x022533AC
 	ldr r1, _022435D8 ; =0x02249718
 	ldr r0, [r0, #0]
 	mov r2, #3
 	add r0, r0, #0x88
-	bl sub_020C77A0
+	bl FS_RegisterArchiveName
 	cmp r0, #0
 	bne _022434EC
-	bl sub_020C42A8
+	bl OS_Terminate
 _022434EC:
 	ldr r0, _022435D0 ; =0x022533AC
 	ldr r1, _022435DC ; =ov18_0224367C
 	ldr r0, [r0, #0]
 	ldr r2, _022435E0 ; =0x00000602
 	add r0, r0, #0x88
-	bl sub_020C7CC4
+	bl FS_SetArchiveProc
 	ldr r0, [sp, #0x18]
 	ldr r1, _022435E4 ; =ov18_022436E0
 	str r0, [sp]
@@ -73,17 +73,17 @@ _022434EC:
 	ldr r3, [sp, #0x14]
 	mov r1, r4
 	add r0, r0, #0x88
-	bl sub_020C78D8
+	bl FS_LoadArchive
 	cmp r0, #0
 	bne _0224354C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0224354C:
 	ldr r0, _022435D0 ; =0x022533AC
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, r1
 	add r0, r0, #0x88
-	bl sub_020C7A08
+	bl FS_LoadArchiveTables
 	mov r1, #4
 	mov r4, r0
 	bl ov18_02245068
@@ -93,7 +93,7 @@ _0224354C:
 	str r0, [r3, #0]
 	ldr r0, [r1, #0]
 	ldr r1, [r0, #0], #0x88
-	bl sub_020C7A08
+	bl FS_LoadArchiveTables
 	ldr r1, _022435D0 ; =0x022533AC
 	mov r0, #0x20
 	ldr r1, [r1, #0]
@@ -106,9 +106,9 @@ _0224354C:
 	ldr r2, _022435D8 ; =0x02249718
 	str r0, [r3, #0x84]
 	add r0, sp, #0x20
-	bl sub_020C1AB0
+	bl OS_SPrintf
 	add r0, sp, #0x20
-	bl sub_020C8250
+	bl FS_ChangeDir
 	add sp, sp, #0xe8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -126,23 +126,23 @@ _022435EC: .word 0x0224B1FC
 ov18_022435F0: ; 0x022435F0
 	stmfd sp!, {r3, lr}
 	ldr r0, _02243670 ; =0x0224B204
-	bl sub_020C8250
+	bl FS_ChangeDir
 	ldr r0, _02243674 ; =0x022533AC
 	ldr r0, [r0, #0]
 	add r0, r0, #0x88
-	bl sub_020C7B2C
+	bl FS_UnloadArchiveTables
 	ldr r0, _02243674 ; =0x022533AC
 	ldr r0, [r0, #0]
 	add r0, r0, #0x88
-	bl sub_020C7948
+	bl FS_UnloadArchive
 	ldr r0, _02243674 ; =0x022533AC
 	ldr r0, [r0, #0]
 	add r0, r0, #0x88
-	bl sub_020C7854
+	bl FS_ReleaseArchiveName
 	ldr r0, _02243674 ; =0x022533AC
 	ldr r0, [r0, #0]
 	ldrh r0, [r0, #0xe4]
-	bl sub_020C1A68
+	bl OS_ReleaseLockID
 	ldr r0, _02243674 ; =0x022533AC
 	mov r2, #0
 	ldr r1, [r0, #0]
@@ -176,14 +176,14 @@ _0224369C:
 	ldr r0, _022436DC ; =0x022533AC
 	ldr r0, [r0, #0]
 	ldrh r0, [r0, #0xe4]
-	bl sub_020CC854
+	bl CARD_LockRom
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 _022436B4:
 	ldr r0, _022436DC ; =0x022533AC
 	ldr r0, [r0, #0]
 	ldrh r0, [r0, #0xe4]
-	bl sub_020CC870
+	bl CARD_UnlockRom
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 _022436CC:
@@ -209,7 +209,7 @@ ov18_022436E0: ; 0x022436E0
 	add r1, r2, r0
 	mov r2, lr
 	sub r0, ip, #2
-	bl sub_020CD600
+	bl CARDi_ReadRom
 	mov r0, #6
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
@@ -219,11 +219,11 @@ _0224371C: .word ov18_02243720
 
 	arm_func_start ov18_02243720
 ov18_02243720: ; 0x02243720
-	ldr ip, _0224372C ; =sub_020C7CE4
+	ldr ip, _0224372C ; =FS_NotifyArchiveAsyncEnd
 	mov r1, #0
 	bx ip
 	; .align 2, 0
-_0224372C: .word sub_020C7CE4
+_0224372C: .word FS_NotifyArchiveAsyncEnd
 	arm_func_end ov18_02243720
 
 	arm_func_start ov18_02243730
@@ -244,13 +244,13 @@ ov18_02243738: ; 0x02243738
 	mov r4, r2
 	bl ov18_022440BC
 	add r0, sp, #4
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #4
 	mov r1, r6
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	bne _0224377C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0224377C:
 	ldr r1, [sp, #0x2c]
 	ldr r0, [sp, #0x28]
@@ -271,9 +271,9 @@ _0224377C:
 	add r0, sp, #4
 	mov r2, r7
 	str r1, [sp]
-	bl sub_020C81D4
+	bl FS_ReadFile
 	add r0, sp, #4
-	bl sub_020C80C8
+	bl FS_CloseFile
 	cmp r6, #0
 	ldrgt r0, [sp]
 	addgt sp, sp, #0x4c
@@ -288,7 +288,7 @@ _0224377C:
 	mov r4, r0
 	ldr r0, [sp]
 	mov r1, r4
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	add r0, sp, #0
 	bl ov18_0224508C
 	mov r0, r4
@@ -323,10 +323,10 @@ ov18_02243860: ; 0x02243860
 	mov r6, r1
 	mov r7, r0
 	mov r5, r2
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 	mov r0, r6
-	bl sub_020D8B60
+	bl strlen
 	cmp r4, r5
 	cmpge r0, r5
 	movlt r0, #0
@@ -336,7 +336,7 @@ ov18_02243860: ; 0x02243860
 	mov r2, r5
 	add r0, r7, r3
 	add r1, r6, r1
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0

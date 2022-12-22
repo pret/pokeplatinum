@@ -592,7 +592,7 @@ ov65_0222E01C: ; 0x0222E01C
 	lsl r2, r2, #2
 	add r0, r0, r1
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x20]
 	mov r1, #4
 	add r2, sp, #0x2c
@@ -605,14 +605,14 @@ ov65_0222E01C: ; 0x0222E01C
 	ldr r0, [r0, #0xc]
 	add r1, r1, r2
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #0x2c]
 	ldr r2, _0222E204 ; =0x00000DEC
 	ldr r1, [sp, #4]
 	ldr r0, [r0, #0xc]
 	add r1, r1, r2
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	mov r0, #0
@@ -705,7 +705,7 @@ _0222E190:
 	add r0, r0, r1
 	mov r1, #0x2a
 	lsl r1, r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, _0222E208 ; =0x00000D68
 	ldr r0, [sp, #4]
 	mov r2, #1
@@ -767,7 +767,7 @@ ov65_0222E214: ; 0x0222E214
 	add r0, r1, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	mov r0, #0xca
 	lsl r0, r0, #2
 	ldrsh r0, [r4, r0]
@@ -777,7 +777,7 @@ ov65_0222E214: ; 0x0222E214
 	add r0, r1, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	ldr r0, _0222E2A4 ; =0x0000032A
 	ldrsb r1, [r4, r0]
 	cmp r1, #0
@@ -903,7 +903,7 @@ _0222E33A:
 	ldr r2, _0222E3F8 ; =0x00001094
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x20
 	mov r1, #0x36
 	bl sub_0201DBEC
@@ -2274,7 +2274,7 @@ ov65_0222EE18: ; 0x0222EE18
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	add r6, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -2602,7 +2602,7 @@ _0222F0BC:
 	bl ov65_0222EE98
 	ldr r0, [r5, #0]
 	bl sub_0202AD28
-	bl sub_020A450C
+	bl DWC_CheckHasProfile
 	cmp r0, #0
 	bne _0222F126
 	mov r0, #0
@@ -2640,7 +2640,7 @@ _0222F0BC:
 _0222F126:
 	ldr r0, [r5, #0]
 	bl sub_0202AD28
-	bl sub_020A453C
+	bl DWC_CheckValidConsole
 	cmp r0, #0
 	bne _0222F146
 	add r0, r5, #0
@@ -3780,22 +3780,22 @@ _0222FA16:
 	add r0, #0xc
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r0, #0x2c
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r0, #0x4c
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r0, #0xcc
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	bl ov65_0222EE98
 	mov r0, #0x16
@@ -4692,7 +4692,7 @@ ov65_02230164: ; 0x02230164
 	add r0, #0xc
 	add r1, #0x2c
 	mov r2, #0x20
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0223018A
 	b _0223028C
@@ -4808,7 +4808,7 @@ _02230258:
 	add r0, #0x2c
 	add r1, #0xc
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r5, #0
 	bl ov65_022336C4
 	ldr r0, [sp, #4]
@@ -10530,7 +10530,7 @@ ov65_02232FE0: ; 0x02232FE0
 	add r0, r5, r0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF74
@@ -10858,7 +10858,7 @@ _02233290:
 	ldr r0, _022332C0 ; =0x00000B8C
 	ldrsb r0, [r4, r0]
 	add r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, _022332C0 ; =0x00000B8C
 	strb r1, [r4, r0]
 	pop {r3, r4, r5, pc}

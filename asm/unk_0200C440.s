@@ -358,13 +358,13 @@ _0200C6A8:
 	add r0, r1, r0
 	add r1, r6, r5
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	b _0200C6D0
 _0200C6C6:
 	ldr r1, [sp]
 	add r0, r6, r5
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _0200C6D0:
 	add r4, r4, #2
 	ldrh r1, [r4, #8]

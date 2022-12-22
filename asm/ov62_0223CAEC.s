@@ -1304,7 +1304,7 @@ _0223D558:
 	add r0, r0, #1
 	str r0, [r4, #0xc]
 	ldr r1, [r4, #0x10]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0xc]
 	add r0, r5, #0
 	mov r1, #4
@@ -1317,7 +1317,7 @@ _0223D576:
 	add r0, r0, #1
 	str r0, [r4, #0x14]
 	ldr r1, [r4, #0x18]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0x14]
 	add r0, r5, #0
 	mov r1, #4
@@ -1343,7 +1343,7 @@ ov62_0223D5A4: ; 0x0223D5A4
 	ldr r2, _0223D634 ; =0x00000B38
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]
@@ -2460,7 +2460,7 @@ _0223DF2A:
 	ldr r0, [r4, r1]
 	sub r1, #0xc
 	add r1, r4, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 	nop
 _0223DF48: .word 0x0000071C
@@ -2497,13 +2497,13 @@ _0223DF6E:
 	ldr r0, [r4, r0]
 	ldr r2, _0223DFA0 ; =0x00000558
 	add r1, #0xe0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _0223DFA4 ; =0x00000718
 	mov r2, #0xd8
 	ldr r0, [r4, r1]
 	sub r1, #0xe0
 	add r1, r4, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 	; .align 2, 0
 _0223DF9C: .word 0x00000714

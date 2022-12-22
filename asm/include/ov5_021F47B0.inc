@@ -25,8 +25,8 @@
 .public sub_02073B84
 .public sub_02073BB4
 .public sub_02073BC8
-.public sub_020B37A4
-.public sub_020E1F6C
+.public NNS_G3dMdlSetMdlFogEnableFlagAll
+.public _s32_div_f
 .public ov5_021DF528
 .public ov5_021DF53C
 .public ov5_021DF554

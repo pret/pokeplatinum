@@ -22,37 +22,37 @@ _0201D16A:
 	ldr r0, _0201D1CC ; =0x020F983C
 	ldrsh r4, [r0, r1]
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0201D1D0 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	bls _0201D1AA
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0201D1D0 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _0201D1D0 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0201D1C6
 _0201D1AA:
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0201D1D0 ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _0201D1D0 ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0201D1C6:
-	bl sub_020E1740
+	bl _f_ftoi
 	pop {r4, pc}
 	; .align 2, 0
 _0201D1CC: .word 0x020F983C
@@ -77,37 +77,37 @@ _0201D1E2:
 	ldr r0, _0201D248 ; =0x020F983C
 	ldrsh r4, [r0, r1]
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0201D24C ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	mov r1, #0
-	bl sub_020E1108
+	bl _f_fgt
 	bls _0201D226
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0201D24C ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _0201D24C ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0201D242
 _0201D226:
 	add r0, r4, #0
-	bl sub_020E17B4
+	bl _f_itof
 	ldr r1, _0201D24C ; =0x45800000
-	bl sub_020E1304
+	bl _fdiv
 	add r1, r0, #0
 	ldr r0, _0201D24C ; =0x45800000
-	bl sub_020E18B0
+	bl _f_mul
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0201D242:
-	bl sub_020E1740
+	bl _f_ftoi
 	pop {r4, pc}
 	; .align 2, 0
 _0201D248: .word 0x020F983C
@@ -119,7 +119,7 @@ sub_0201D250: ; 0x0201D250
 	push {r3, lr}
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D15C
@@ -131,7 +131,7 @@ sub_0201D264: ; 0x0201D264
 	push {r3, lr}
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D1D4
@@ -152,7 +152,7 @@ _0201D286:
 	ldr r2, _0201D29C ; =0x0B60B60B
 	asr r1, r0, #0x1f
 	mov r3, #0xb6
-	bl sub_020E1F1C
+	bl _ull_mul
 	ldr r0, _0201D2A0 ; =0x00000800
 	adc r1, r0
 	lsl r0, r1, #4
@@ -168,7 +168,7 @@ sub_0201D2A4: ; 0x0201D2A4
 	push {r3, lr}
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x10
 	lsr r0, r0, #0x10
 	bl sub_0201D278
@@ -435,7 +435,7 @@ _0201D48A:
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 _0201D49E:
@@ -448,12 +448,12 @@ _0201D49E:
 	ldrsh r1, [r2, r1]
 	ldrsh r2, [r2, r3]
 	add r0, r5, #0
-	bl sub_020BB464
+	bl MTX_Rot22_
 	add r0, r5, #0
 	add r1, r5, #0
 	add r2, r4, #0
 	add r3, r6, #0
-	bl sub_020BB470
+	bl MTX_ScaleApply22
 	pop {r4, r5, r6, pc}
 	nop
 _0201D4C4: .word 0x0000FFFF
@@ -482,14 +482,14 @@ sub_0201D4CC: ; 0x0201D4CC
 	str r5, [sp, #0x2c]
 	str r4, [sp, #0x30]
 	str r6, [sp, #0x24]
-	bl sub_020E1F1C
+	bl _ull_mul
 	str r0, [sp, #4]
 	add r2, r4, #0
 	ldr r0, [sp, #0x20]
 	add r7, r1, #0
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	ldr r3, [sp, #4]
 	lsl r2, r2, #0xa
@@ -519,7 +519,7 @@ sub_0201D4CC: ; 0x0201D4CC
 	str r0, [sp, #0x34]
 	add r0, sp, #0x2c
 	add r1, sp, #0x14
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r1, #0
 	ldr r0, [sp]
 	str r1, [sp, #0x34]
@@ -531,10 +531,10 @@ sub_0201D4CC: ; 0x0201D4CC
 	str r5, [sp, #0x2c]
 	str r4, [sp, #0x30]
 	str r6, [sp, #0x24]
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x14
 	add r1, sp, #8
-	bl sub_020BD218
+	bl VEC_DotProduct
 	asr r0, r0, #0xc
 	bpl _0201D56E
 	neg r0, r0
@@ -559,7 +559,7 @@ sub_0201D580: ; 0x0201D580
 	ldr r2, _0201D5B0 ; =0x0000323D
 	asr r1, r0, #0x1f
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r5, r0, #0
 	ldr r0, _0201D5B4 ; =0x0000FFFF
 	mov r2, #2
@@ -572,7 +572,7 @@ sub_0201D580: ; 0x0201D580
 	lsr r2, r2, #0xc
 	orr r2, r1
 	asr r1, r2, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	pop {r3, r4, r5, pc}
 	nop
 _0201D5B0: .word 0x0000323D
@@ -658,12 +658,12 @@ sub_0201D628: ; 0x0201D628
 	add r2, r1, #0
 	ldr r0, _0201D638 ; =0x021BFB10
 	add r1, r3, #0
-	ldr r3, _0201D63C ; =sub_020D32FC
+	ldr r3, _0201D63C ; =MATH_CalcCRC16CCITT
 	ldr r0, [r0, #0]
 	bx r3
 	nop
 _0201D638: .word 0x021BFB10
-_0201D63C: .word sub_020D32FC
+_0201D63C: .word MATH_CalcCRC16CCITT
 	thumb_func_end sub_0201D628
 
 	thumb_func_start sub_0201D640
@@ -683,7 +683,7 @@ _0201D650:
 	ldr r1, _0201D668 ; =0x021BFB10
 	str r0, [r1, #0]
 	ldr r1, _0201D66C ; =0x00001021
-	bl sub_020D3120
+	bl MATHi_CRC16InitTable
 	pop {r4, pc}
 	nop
 _0201D668: .word 0x021BFB10

@@ -42,14 +42,14 @@ sub_02095EAC: ; 0x02095EAC
 	mov r2, #0x19
 	add r0, r5, #0
 	lsl r2, r2, #4
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	b _02095EEC
 _02095EE0:
 	add r2, r4, r2
 	add r1, r2, r1
 	add r0, r5, #0
 	sub r2, r3, #4
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 _02095EEC:
 	mov r1, #0xb5
 	ldr r0, _02095F38 ; =0x000043D0
@@ -58,7 +58,7 @@ _02095EEC:
 	ldr r1, [r4, r1]
 	add r0, r4, r0
 	lsl r2, r2, #6
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, #0xb2
 	lsl r0, r0, #2
 	add r0, r4, r0
@@ -162,7 +162,7 @@ sub_02095F9C: ; 0x02095F9C
 	mov r0, #0
 	add r1, r4, r1
 	lsl r2, r2, #6
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	bl sub_0203608C
 	cmp r0, #0
 	bne _02095FDA
@@ -229,7 +229,7 @@ _02096020:
 	cmp r1, r0
 	bne _0209604E
 	bl sub_020318EC
-	bl sub_020D2FE4
+	bl MATH_CountPopulation
 	mov r1, #0xc6
 	lsl r1, r1, #2
 	ldr r1, [r4, r1]
@@ -426,7 +426,7 @@ sub_0209617C: ; 0x0209617C
 	add r0, r1, r0
 	ldr r1, _020961C8 ; =0x00007C10
 	add r1, r5, r1
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	ldr r0, _020961C8 ; =0x00007C10
 	mov r2, #0
 	add r1, r2, #0

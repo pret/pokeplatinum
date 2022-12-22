@@ -23,4 +23,4 @@
 .public sub_02023790
 .public sub_020237E8
 .public sub_02023D8C
-.public sub_020C4B18
+.public MIi_CpuCopy16

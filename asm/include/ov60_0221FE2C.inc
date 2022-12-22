@@ -1,8 +1,8 @@
-.public sub_020D407C
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020D7510
-.public sub_020D8B60
+.public __msl_assertion_failed
+.public memcpy
+.public memset
+.public sprintf
+.public strlen
 .public ov4_021D7894
 .public ov4_021D78B0
 .public ov4_021EAA74

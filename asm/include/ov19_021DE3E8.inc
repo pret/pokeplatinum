@@ -14,9 +14,9 @@
 .public sub_02021E90
 .public sub_02021FD0
 .public sub_0207CE78
-.public sub_020A818C
-.public sub_020A8224
-.public sub_020E1F6C
+.public NNS_G2dInitImageProxy
+.public NNS_G2dLoadImage1DMapping
+.public _s32_div_f
 .public ov19_021D5E08
 .public ov19_021D5E10
 .public ov19_021D5E14

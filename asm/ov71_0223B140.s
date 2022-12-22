@@ -48,7 +48,7 @@ ov71_0223B140: ; 0x0223B140
 	ldr r2, _0223B364 ; =0x00003320
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	add r1, r4, #0
@@ -733,19 +733,19 @@ _0223B738:
 	mov r1, #2
 	ldr r0, [r0, #0xc]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0x20
 	ldr r5, [r0, #0xc]
 	mov r2, #0x60
 	add r0, r5, #0
 	add r0, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	mov r1, #0x1e
 	lsl r1, r1, #4
 	add r0, r5, r1
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	pop {r3, r4, r5, pc}
@@ -828,17 +828,17 @@ _0223B7F4:
 	ldr r0, [sp]
 	mov r1, #0x20
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4
@@ -861,11 +861,11 @@ ov71_0223B820: ; 0x0223B820
 	ldr r5, [r0, #0xc]
 	mov r1, #0x20
 	add r0, r5, r4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, r4
 	mov r1, #0x80
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r6, #0
 	bl sub_020181C4
 	add sp, #4
@@ -1011,13 +1011,13 @@ ov71_0223B968: ; 0x0223B968
 	mov r1, #2
 	ldr r0, [r0, #0xc]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x14]
 	mov r2, #2
 	ldr r0, [r0, #0xc]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r6, #0
 	bl sub_020181C4
 	add r0, r5, #0
@@ -1039,13 +1039,13 @@ ov71_0223B968: ; 0x0223B968
 	mov r1, #2
 	ldr r0, [r0, #0xc]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x10]
 	mov r2, #2
 	ldr r0, [r0, #0xc]
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, r6, #0
 	bl sub_020181C4
 	add r0, r5, #0
@@ -1092,7 +1092,7 @@ _0223BA2E:
 	ldr r0, [r5, r1]
 	add r1, r1, #4
 	add r1, r5, r1
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _0223BA42
 	bl sub_02022974
@@ -1160,7 +1160,7 @@ _0223BABA:
 	ldr r0, [r5, r1]
 	add r1, r1, #4
 	add r1, r5, r1
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _0223BACE
 	bl sub_02022974
@@ -1506,17 +1506,17 @@ _0223BD6A:
 _0223BD92:
 	ldr r0, _0223BDE0 ; =0x000030C8
 	ldr r0, [r4, r0]
-	bl sub_020BCFE0
+	bl FX_Inv
 	add r6, r0, #0
 	ldr r0, _0223BDEC ; =0x000030CC
 	ldr r0, [r4, r0]
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov r1, #0
 	str r6, [sp, #0x10]
 	str r1, [sp, #0x14]
 	str r1, [sp, #0x18]
 	str r0, [sp, #0x1c]
-	bl sub_020C3E14
+	bl OS_WaitVBlankIntr
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -1524,7 +1524,7 @@ _0223BD92:
 	add r1, sp, #0x10
 	mov r2, #0x80
 	mov r3, #0x60
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -1532,7 +1532,7 @@ _0223BD92:
 	add r1, sp, #0x10
 	mov r2, #0x80
 	mov r3, #0x60
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	add r0, r5, #0
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
@@ -1648,24 +1648,24 @@ _0223BEA8:
 _0223BEAE:
 	mov r0, #1
 	lsl r0, r0, #0xc
-	bl sub_020BCFE0
+	bl FX_Inv
 	add r5, r0, #0
 	ldr r0, _0223BEE8 ; =0x000030D0
 	ldr r0, [r4, r0]
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov r1, #0
 	str r5, [sp, #8]
 	str r1, [sp, #0xc]
 	str r1, [sp, #0x10]
 	str r0, [sp, #0x14]
-	bl sub_020C3E14
+	bl OS_WaitVBlankIntr
 	mov r3, #0
 	str r3, [sp]
 	ldr r0, _0223BEF4 ; =0x04000030
 	add r1, sp, #8
 	mov r2, #0x80
 	str r3, [sp, #4]
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	mov r0, #0
 	add sp, #0x18
 	pop {r3, r4, r5, pc}
@@ -2154,17 +2154,17 @@ ov71_0223C288: ; 0x0223C288
 	sub sp, #0x18
 	mov r0, #1
 	lsl r0, r0, #0xc
-	bl sub_020BCFE0
+	bl FX_Inv
 	add r4, r0, #0
 	mov r0, #1
 	lsl r0, r0, #0xc
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov r1, #0
 	str r4, [sp, #8]
 	str r1, [sp, #0xc]
 	str r1, [sp, #0x10]
 	str r0, [sp, #0x14]
-	bl sub_020C3E14
+	bl OS_WaitVBlankIntr
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -2172,7 +2172,7 @@ ov71_0223C288: ; 0x0223C288
 	add r1, sp, #8
 	mov r2, #0x80
 	mov r3, #0x60
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -2180,15 +2180,15 @@ ov71_0223C288: ; 0x0223C288
 	add r1, sp, #8
 	mov r2, #0x80
 	mov r3, #0x60
-	bl sub_020BF4AC
-	bl sub_020C3E14
+	bl G2x_SetBGyAffine_
+	bl OS_WaitVBlankIntr
 	mov r3, #0
 	str r3, [sp]
 	ldr r0, _0223C2F0 ; =0x04000030
 	add r1, sp, #8
 	mov r2, #0x80
 	str r3, [sp, #4]
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	add sp, #0x18
 	pop {r4, pc}
 	; .align 2, 0
@@ -2624,7 +2624,7 @@ _0223C5F0:
 	mov r1, #0x1e
 	ldrb r0, [r4, r0]
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223C604 ; =0x0000331E
 	strb r1, [r4, r0]
 _0223C600:

@@ -16,13 +16,13 @@ ov4_021D806C: ; 0x021D806C
 	cmp r2, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	bl sub_020CBAE4
+	bl RTC_GetDateTime
 	cmp r0, #0
 	movne r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r0, r5
 	mov r1, r4
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mvn r2, #0
 	cmp r1, r2
 	cmpeq r0, r2
@@ -57,7 +57,7 @@ _021D8114:
 _021D811C:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020CC3FC
+	bl RTC_ConvertSecondToDateTime
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -80,7 +80,7 @@ ov4_021D8144: ; 0x021D8144
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r0, r5
-	bl sub_020D8B60
+	bl strlen
 	cmp r0, #0
 	bne _021D8188
 	ldr r0, _021D81B4 ; =0x02217424
@@ -125,7 +125,7 @@ ov4_021D81DC: ; 0x021D81DC
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _021D81F4
-	bl sub_020C42A8
+	bl OS_Terminate
 _021D81F4:
 	ldr r1, _021D828C ; =0x00001E20
 	mov r0, #4
@@ -142,14 +142,14 @@ _021D81F4:
 _021D8224:
 	ldr r2, _021D828C ; =0x00001E20
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _021D8288 ; =0x0221A4E4
 	ldr r0, _021D8294 ; =0x0221742C
 	ldr r1, [r1, #0]
 	mov r2, #9
 	add r1, r1, #0x48
 	add r1, r1, #0x1c00
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _021D8288 ; =0x0221A4E4
 	ldr r3, _021D8298 ; =ov4_021D7780
 	ldr r0, [r1, #0]

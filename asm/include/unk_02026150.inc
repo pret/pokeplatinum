@@ -4,4 +4,4 @@
 .public sub_020245BC
 .public sub_0202604C
 .public sub_0202610C
-.public sub_020D5190
+.public memcmp

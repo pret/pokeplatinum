@@ -76,4 +76,4 @@
 .public sub_0206AD9C
 .public sub_0207A268
 .public sub_02097284
-.public sub_020C3EE4
+.public OS_ResetSystem

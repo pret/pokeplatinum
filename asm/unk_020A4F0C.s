@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A4F0C
-sub_020A4F0C: ; 0x020A4F0C
+	arm_func_start GetRegionOfMBlock
+GetRegionOfMBlock: ; 0x020A4F0C
 	ldrh r2, [r1, #2]
 	add r3, r1, #0x10
 	mov r2, r2, asr #8
@@ -19,10 +19,10 @@ sub_020A4F0C: ; 0x020A4F0C
 	add r1, r1, r3
 	str r1, [r0, #4]
 	bx lr
-	arm_func_end sub_020A4F0C
+	arm_func_end GetRegionOfMBlock
 
-	arm_func_start sub_020A4F38
-sub_020A4F38: ; 0x020A4F38
+	arm_func_start RemoveMBlock
+RemoveMBlock: ; 0x020A4F38
 	ldr r2, [r1, #8]
 	ldr r1, [r1, #0xc]
 	cmp r2, #0
@@ -33,10 +33,10 @@ sub_020A4F38: ; 0x020A4F38
 	streq r2, [r0, #4]
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020A4F38
+	arm_func_end RemoveMBlock
 
-	arm_func_start sub_020A4F60
-sub_020A4F60: ; 0x020A4F60
+	arm_func_start InsertMBlock
+InsertMBlock: ; 0x020A4F60
 	str r2, [r1, #8]
 	cmp r2, #0
 	ldrne r3, [r2, #0xc]
@@ -49,10 +49,10 @@ sub_020A4F60: ; 0x020A4F60
 	streq r1, [r0, #4]
 	mov r0, r1
 	bx lr
-	arm_func_end sub_020A4F60
+	arm_func_end InsertMBlock
 
-	arm_func_start sub_020A4F90
-sub_020A4F90: ; 0x020A4F90
+	arm_func_start InitMBlock
+InitMBlock: ; 0x020A4F90
 	ldr r3, [r0, #0]
 	mov r2, #0
 	strh r1, [r3]
@@ -64,10 +64,10 @@ sub_020A4F90: ; 0x020A4F90
 	mov r0, r3
 	str r2, [r3, #0xc]
 	bx lr
-	arm_func_end sub_020A4F90
+	arm_func_end InitMBlock
 
-	arm_func_start sub_020A4FBC
-sub_020A4FBC: ; 0x020A4FBC
+	arm_func_start InitExpHeap
+InitExpHeap: ; 0x020A4FBC
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0xc
 	mov r3, r1
@@ -75,7 +75,7 @@ sub_020A4FBC: ; 0x020A4FBC
 	str r2, [sp]
 	ldr r1, _020A5028 ; =0x45585048
 	add r2, r4, #0x38
-	bl sub_020A4E78
+	bl NNSi_FndInitHeapHead
 	mov r0, #0
 	strh r0, [r4, #0x34]
 	bic r0, r0, #1
@@ -86,7 +86,7 @@ sub_020A4FBC: ; 0x020A4FBC
 	ldr r2, [r4, #0x1c]
 	ldr r1, _020A502C ; =0x00004652
 	str r2, [sp, #8]
-	bl sub_020A4F90
+	bl InitMBlock
 	str r0, [r4, #0x24]
 	str r0, [r4, #0x28]
 	mov r1, #0
@@ -98,10 +98,10 @@ sub_020A4FBC: ; 0x020A4FBC
 	; .align 2, 0
 _020A5028: .word 0x45585048
 _020A502C: .word 0x00004652
-	arm_func_end sub_020A4FBC
+	arm_func_end InitExpHeap
 
-	arm_func_start sub_020A5030
-sub_020A5030: ; 0x020A5030
+	arm_func_start AllocUsedBlockFromFreeBlock
+AllocUsedBlockFromFreeBlock: ; 0x020A5030
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x18
 	mov r7, r0
@@ -109,7 +109,7 @@ sub_020A5030: ; 0x020A5030
 	mov r8, r1
 	mov r6, r2
 	mov r4, r3
-	bl sub_020A4F0C
+	bl GetRegionOfMBlock
 	ldr r3, [sp, #0x14]
 	sub r5, r6, #0x10
 	add r2, r4, r6
@@ -118,7 +118,7 @@ sub_020A5030: ; 0x020A5030
 	str r5, [sp, #0x14]
 	str r3, [sp, #0xc]
 	str r2, [sp, #8]
-	bl sub_020A4F38
+	bl RemoveMBlock
 	ldr r2, [sp, #0x10]
 	ldr r1, [sp, #0x14]
 	mov r4, r0
@@ -128,11 +128,11 @@ sub_020A5030: ; 0x020A5030
 	blo _020A50B0
 	ldr r1, _020A51A8 ; =0x00004652
 	add r0, sp, #0x10
-	bl sub_020A4F90
+	bl InitMBlock
 	mov r1, r0
 	mov r0, r7
 	mov r2, r4
-	bl sub_020A4F60
+	bl InsertMBlock
 	mov r4, r0
 _020A50B0:
 	ldr r1, [sp, #0xc]
@@ -143,11 +143,11 @@ _020A50B0:
 	blo _020A50E4
 	ldr r1, _020A51A8 ; =0x00004652
 	add r0, sp, #8
-	bl sub_020A4F90
+	bl InitMBlock
 	mov r1, r0
 	mov r0, r7
 	mov r2, r4
-	bl sub_020A4F60
+	bl InsertMBlock
 _020A50E4:
 	ldr r0, [r7, #-4]
 	ldr r1, [sp, #0x14]
@@ -157,14 +157,14 @@ _020A50E4:
 	sub r2, r2, r1
 	beq _020A5108
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 _020A5108:
 	ldr r2, [sp, #8]
 	ldr r1, _020A51AC ; =0x00005544
 	add r0, sp, #0
 	str r5, [sp]
 	str r2, [sp, #4]
-	bl sub_020A4F90
+	bl InitMBlock
 	mov r1, r0
 	ldrh r3, [r1, #2]
 	ldrh r2, [sp, #0x30]
@@ -195,17 +195,17 @@ _020A5108:
 	orr r2, r2, r3
 	strh r2, [r1, #2]
 	ldr r2, [r7, #0xc]
-	bl sub_020A4F60
+	bl InsertMBlock
 	mov r0, r6
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020A51A8: .word 0x00004652
 _020A51AC: .word 0x00005544
-	arm_func_end sub_020A5030
+	arm_func_end AllocUsedBlockFromFreeBlock
 
-	arm_func_start sub_020A51B0
-sub_020A51B0: ; 0x020A51B0
+	arm_func_start AllocFromHead_dup1
+AllocFromHead_dup1: ; 0x020A51B0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldrh r4, [r0, #0x36]
 	mov r3, r1
@@ -252,12 +252,12 @@ _020A5240:
 	mov r2, r4
 	add r0, r0, #0x24
 	str r5, [sp]
-	bl sub_020A5030
+	bl AllocUsedBlockFromFreeBlock
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020A51B0
+	arm_func_end AllocFromHead_dup1
 
-	arm_func_start sub_020A5264
-sub_020A5264: ; 0x020A5264
+	arm_func_start AllocFromTail_dup1
+AllocFromTail_dup1: ; 0x020A5264
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldrh r4, [r0, #0x36]
 	mov r3, r1
@@ -303,12 +303,12 @@ _020A52F0:
 	mov r2, r4
 	add r0, r0, #0x24
 	str r5, [sp]
-	bl sub_020A5030
+	bl AllocUsedBlockFromFreeBlock
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020A5264
+	arm_func_end AllocFromTail_dup1
 
-	arm_func_start sub_020A5314
-sub_020A5314: ; 0x020A5314
+	arm_func_start RecycleRegion
+RecycleRegion: ; 0x020A5314
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	mov r5, r1
@@ -334,7 +334,7 @@ _020A5348:
 	add r2, r2, r0
 	mov r0, r6
 	str r2, [sp, #4]
-	bl sub_020A4F38
+	bl RemoveMBlock
 	b _020A5388
 _020A537C:
 	ldr r1, [r1, #0xc]
@@ -352,7 +352,7 @@ _020A5388:
 	mov r0, r6
 	mov r1, r4
 	str r4, [sp]
-	bl sub_020A4F38
+	bl RemoveMBlock
 	mov r4, r0
 _020A53BC:
 	ldr r1, [sp, #4]
@@ -364,20 +364,20 @@ _020A53BC:
 	ldmloia sp!, {r4, r5, r6, pc}
 	ldr r1, _020A5400 ; =0x00004652
 	add r0, sp, #0
-	bl sub_020A4F90
+	bl InitMBlock
 	mov r1, r0
 	mov r0, r6
 	mov r2, r4
-	bl sub_020A4F60
+	bl InsertMBlock
 	mov r0, #1
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020A5400: .word 0x00004652
-	arm_func_end sub_020A5314
+	arm_func_end RecycleRegion
 
-	arm_func_start sub_020A5404
-sub_020A5404: ; 0x020A5404
+	arm_func_start NNS_FndCreateExpHeapEx
+NNS_FndCreateExpHeapEx: ; 0x020A5404
 	stmfd sp!, {r3, lr}
 	add r1, r1, r0
 	add r0, r0, #3
@@ -392,20 +392,20 @@ _020A542C:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 _020A5434:
-	bl sub_020A4FBC
+	bl InitExpHeap
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020A5404
+	arm_func_end NNS_FndCreateExpHeapEx
 
-	arm_func_start sub_020A543C
-sub_020A543C: ; 0x020A543C
-	ldr ip, _020A5444 ; =sub_020A4EF4
+	arm_func_start NNS_FndDestroyExpHeap
+NNS_FndDestroyExpHeap: ; 0x020A543C
+	ldr ip, _020A5444 ; =NNSi_FndFinalizeHeap
 	bx ip
 	; .align 2, 0
-_020A5444: .word sub_020A4EF4
-	arm_func_end sub_020A543C
+_020A5444: .word NNSi_FndFinalizeHeap
+	arm_func_end NNS_FndDestroyExpHeap
 
-	arm_func_start sub_020A5448
-sub_020A5448: ; 0x020A5448
+	arm_func_start NNS_FndAllocFromExpHeapEx
+NNS_FndAllocFromExpHeapEx: ; 0x020A5448
 	stmfd sp!, {r3, lr}
 	cmp r1, #0
 	moveq r1, #1
@@ -413,16 +413,16 @@ sub_020A5448: ; 0x020A5448
 	cmp r2, #0
 	bic r1, r1, #3
 	blt _020A546C
-	bl sub_020A51B0
+	bl AllocFromHead_dup1
 	ldmia sp!, {r3, pc}
 _020A546C:
 	rsb r2, r2, #0
-	bl sub_020A5264
+	bl AllocFromTail_dup1
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020A5448
+	arm_func_end NNS_FndAllocFromExpHeapEx
 
-	arm_func_start sub_020A5478
-sub_020A5478: ; 0x020A5478
+	arm_func_start NNS_FndResizeForMBlockExpHeap
+NNS_FndResizeForMBlockExpHeap: ; 0x020A5478
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x10
 	mov r4, r1
@@ -462,10 +462,10 @@ _020A54F0:
 _020A54FC:
 	add r0, sp, #8
 	mov r1, r6
-	bl sub_020A4F0C
+	bl GetRegionOfMBlock
 	mov r1, r6
 	add r0, r5, #0x24
-	bl sub_020A4F38
+	bl RemoveMBlock
 	ldr r2, [sp, #0xc]
 	add r3, sb, r4
 	ldr r6, [sp, #8]
@@ -484,11 +484,11 @@ _020A54FC:
 	blo _020A5570
 	ldr r1, _020A55D4 ; =0x00004652
 	add r0, sp, #8
-	bl sub_020A4F90
+	bl InitMBlock
 	mov r1, r0
 	mov r2, r7
 	add r0, r5, #0x24
-	bl sub_020A4F60
+	bl InsertMBlock
 _020A5570:
 	ldr r0, [r5, #0x20]
 	ldr r1, [sp, #8]
@@ -498,7 +498,7 @@ _020A5570:
 	beq _020A55C8
 	mov r1, r6
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	b _020A55C8
 _020A5598:
 	add r0, sb, r4
@@ -510,7 +510,7 @@ _020A5598:
 	add r1, sp, #0
 	add r0, r5, #0x24
 	str sb, [r8, #4]
-	bl sub_020A5314
+	bl RecycleRegion
 	cmp r0, #0
 	streq r7, [r8, #4]
 _020A55C8:
@@ -519,29 +519,29 @@ _020A55C8:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020A55D4: .word 0x00004652
-	arm_func_end sub_020A5478
+	arm_func_end NNS_FndResizeForMBlockExpHeap
 
-	arm_func_start sub_020A55D8
-sub_020A55D8: ; 0x020A55D8
+	arm_func_start NNS_FndFreeToExpHeap
+NNS_FndFreeToExpHeap: ; 0x020A55D8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	sub r4, r1, #0x10
 	mov r5, r0
 	add r0, sp, #0
 	mov r1, r4
-	bl sub_020A4F0C
+	bl GetRegionOfMBlock
 	mov r1, r4
 	add r0, r5, #0x2c
-	bl sub_020A4F38
+	bl RemoveMBlock
 	add r1, sp, #0
 	add r0, r5, #0x24
-	bl sub_020A5314
+	bl RecycleRegion
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020A55D8
+	arm_func_end NNS_FndFreeToExpHeap
 
-	arm_func_start sub_020A5614
-sub_020A5614: ; 0x020A5614
+	arm_func_start NNS_FndGetTotalFreeSizeForExpHeap
+NNS_FndGetTotalFreeSizeForExpHeap: ; 0x020A5614
 	ldr r2, [r0, #0x24]
 	mov r0, #0
 	cmp r2, #0
@@ -553,25 +553,25 @@ _020A5624:
 	cmp r2, #0
 	bne _020A5624
 	bx lr
-	arm_func_end sub_020A5614
+	arm_func_end NNS_FndGetTotalFreeSizeForExpHeap
 
-	arm_func_start sub_020A563C
-sub_020A563C: ; 0x020A563C
+	arm_func_start NNS_FndSetGroupIDForExpHeap
+NNS_FndSetGroupIDForExpHeap: ; 0x020A563C
 	ldrh r2, [r0, #0x34]
 	strh r1, [r0, #0x34]
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020A563C
+	arm_func_end NNS_FndSetGroupIDForExpHeap
 
-	arm_func_start sub_020A564C
-sub_020A564C: ; 0x020A564C
+	arm_func_start NNS_FndGetSizeForMBlockExpHeap
+NNS_FndGetSizeForMBlockExpHeap: ; 0x020A564C
 	ldr r0, [r0, #-0xc]
 	bx lr
-	arm_func_end sub_020A564C
+	arm_func_end NNS_FndGetSizeForMBlockExpHeap
 
-	arm_func_start sub_020A5654
-sub_020A5654: ; 0x020A5654
+	arm_func_start NNS_FndGetGroupIDForMBlockExpHeap
+NNS_FndGetGroupIDForMBlockExpHeap: ; 0x020A5654
 	ldrh r0, [r0, #-0xe]
 	and r0, r0, #0xff
 	bx lr
-	arm_func_end sub_020A5654
+	arm_func_end NNS_FndGetGroupIDForMBlockExpHeap

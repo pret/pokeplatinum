@@ -28,7 +28,7 @@ _02230DE0: .word ov18_02231038
 ov18_02230DE4: ; 0x02230DE4
 	stmfd sp!, {r3, lr}
 	ldr r0, _02230E54 ; =0x02249F98
-	ldr r1, _02230E58 ; =sub_020C04EC
+	ldr r1, _02230E58 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _02230E5C ; =0x04001008
 	ldr r1, _02230E60 ; =0x0400000A
@@ -56,7 +56,7 @@ ov18_02230DE4: ; 0x02230DE4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02230E54: .word 0x02249F98
-_02230E58: .word sub_020C04EC
+_02230E58: .word GX_LoadBG2Scr
 _02230E5C: .word 0x04001008
 _02230E60: .word 0x0400000A
 	arm_func_end ov18_02230DE4
@@ -70,7 +70,7 @@ ov18_02230E64: ; 0x02230E64
 	bl ov18_0224467C
 	mov fp, r0
 	add r0, sp, #0x14
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldrb r1, [sp, #0x15]
 	ldr r2, _02231028 ; =0x02249FAC
 	add r0, sp, #0x1a
@@ -85,7 +85,7 @@ ov18_02230E64: ; 0x02230E64
 	ldrb r3, [sp, #0x19]
 	str r3, [sp, #0x10]
 	ldrb r3, [sp, #0x14]
-	bl sub_020DCDCC
+	bl swprintf
 	mov r0, #0x1c
 	str r0, [sp]
 	mov r0, #2
@@ -110,7 +110,7 @@ ov18_02230E64: ; 0x02230E64
 	mov r0, r8
 	mov r1, sl
 	mov r2, #0xa
-	bl sub_020E1EE0
+	bl _ull_mod
 	mov r1, #0x3e8
 	umull r4, r1, r0, r1
 	mov r0, r8
@@ -118,7 +118,7 @@ ov18_02230E64: ; 0x02230E64
 	mov r3, #0
 	mov r2, #0xa
 	str r4, [sp, #0x50]
-	bl sub_020E1ED4
+	bl _ull_div
 	mov sb, #0
 	ldr r7, _0223102C ; =0x00002710
 	mov r8, r0
@@ -131,14 +131,14 @@ _02230F60:
 	mov r1, sl
 	mov r2, r7
 	mov r3, r6
-	bl sub_020E1EE0
+	bl _ull_mod
 	rsb r1, sb, #2
 	str r0, [r5, r1, lsl #2]
 	mov r0, r8
 	mov r1, sl
 	mov r2, r7
 	mov r3, r4
-	bl sub_020E1ED4
+	bl _ull_div
 	mov r8, r0
 	mov sl, r1
 	add sb, sb, #1
@@ -154,13 +154,13 @@ _02230F60:
 	add r0, sp, #0x1a
 	mov r1, #0x14
 	str r4, [sp, #8]
-	bl sub_020DCDCC
+	bl swprintf
 	b _02230FE4
 _02230FD4:
 	ldr r2, _02231034 ; =0x0224A010
 	add r0, sp, #0x1a
 	mov r1, #0x14
-	bl sub_020DCDCC
+	bl swprintf
 _02230FE4:
 	mov r0, #0x1c
 	str r0, [sp]

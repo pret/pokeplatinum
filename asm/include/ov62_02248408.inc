@@ -22,5 +22,5 @@
 .public sub_02074B30
 .public sub_0207A0F8
 .public sub_0207A0FC
-.public sub_020C4AF0
+.public MIi_CpuClear16
 .public ov62_0224856C

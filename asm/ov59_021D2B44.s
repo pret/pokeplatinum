@@ -84,7 +84,7 @@ _021D2BB2:
 	mov r0, #0
 	add r1, r5, #0
 	mov r2, #0x48
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r4, #0
 	bl sub_02025F20
 	str r0, [r5, #0]
@@ -456,7 +456,7 @@ ov59_021D2E60: ; 0x021D2E60
 	mov r2, #0x10
 	str r3, [sp, #8]
 	ldr r5, [sp, #0x40]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r4, #0
 	add r6, r4, #0
 	cmp r7, #0
@@ -474,7 +474,7 @@ _021D2E8A:
 _021D2E9A:
 	add r0, r4, #1
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r4, r1, #0
 _021D2EA4:
 	lsl r0, r4, #2

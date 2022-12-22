@@ -206,7 +206,7 @@ sub_02071F04: ; 0x02071F04
 	ldr r2, _02071F1C ; =0x0000066C
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	nop
@@ -512,7 +512,7 @@ _02072150:
 	ldr r0, [sp, #0x10]
 	add r1, r4, #0
 	lsl r2, r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _02072160: .word 0x000F423F

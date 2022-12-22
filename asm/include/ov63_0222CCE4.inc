@@ -2,7 +2,7 @@
 .public sub_020181C4
 .public sub_02021F48
 .public sub_02022974
-.public sub_020D5124
+.public memset
 .public ov63_0222AE60
 .public ov63_0222AF14
 .public ov63_0222AF94

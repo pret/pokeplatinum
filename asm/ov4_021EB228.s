@@ -528,7 +528,7 @@ ov4_021EB8D8: ; 0x021EB8D8
 	mov r0, r5
 	mov r1, #0
 	mov r2, #0x210
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 _021EB918:
@@ -567,7 +567,7 @@ _021EB978:
 	ldr r1, _021EBA0C ; =0x02217A0C
 	ldr r2, _021EBA10 ; =0x0221792C
 	ldr r3, _021EBA14 ; =0x000005CF
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EB998:
 	ldr r0, [r6, #0]
 	str r0, [r5, #0]
@@ -771,12 +771,12 @@ _021EBC3C:
 	bne _021EBC78
 	add r0, sp, #0x100
 	add r1, r4, #0x218
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _021EBC78
 	add r0, sp, #0
 	add r1, r4, #0x318
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	addeq sp, sp, #0x200
 	moveq r0, #0

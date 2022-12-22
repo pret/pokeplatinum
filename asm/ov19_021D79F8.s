@@ -260,12 +260,12 @@ ov19_021D7BC0: ; 0x021D7BC0
 	ldr r0, [sp, #8]
 	mov r1, #0x20
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #8]
 	lsl r1, r4, #5
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 _021D7BFE:
 	ldr r0, _021D7C50 ; =0x00005860
 	mov r6, #0
@@ -298,7 +298,7 @@ _021D7C06:
 	mov r1, #0x12
 	add r0, r7, r0
 	lsl r1, r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #4]
 	bl sub_020181C4
 _021D7C48:
@@ -331,7 +331,7 @@ ov19_021D7C58: ; 0x021D7C58
 	cmp r0, #0
 	beq _021D7CF0
 	add r1, sp, #0x14
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	beq _021D7CEA
 	mov r0, #0xa
@@ -412,7 +412,7 @@ ov19_021D7D00: ; 0x021D7D00
 	cmp r0, #0
 	beq _021D7D64
 	add r1, sp, #8
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _021D7D6C ; =0x00005984
 	mov r1, #3
 	ldr r0, [r5, r0]
@@ -468,7 +468,7 @@ ov19_021D7D70: ; 0x021D7D70
 	ldr r0, [r5, #8]
 	sub r0, r1, r0
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x10]
 	ldr r0, [r5, #0x14]
 	asr r1, r0, #0xc
@@ -1076,7 +1076,7 @@ _021D8224:
 	lsl r0, r0, #5
 	add r0, r1, r0
 	ldr r1, [r4, #0xc]
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	mov r0, #2
 	strh r0, [r4, #0xa]
 	pop {r3, r4, r5, pc}
@@ -1467,11 +1467,11 @@ _021D8500:
 	str r0, [sp, #0x24]
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [sp, #0x10]
 	add r0, r4, #0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov ip, r0
 	mov r0, #2
 	str r0, [sp]

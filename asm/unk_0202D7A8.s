@@ -21,7 +21,7 @@ sub_0202D7B0: ; 0x0202D7B0
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	bl sub_0201D35C
 	str r0, [r4, #0]
 	bl sub_0201D35C

@@ -51,7 +51,7 @@
 .public sub_0208E9E4
 .public sub_0208E9E8
 .public sub_0208E9EC
-.public sub_020E2178
+.public _u32_div_f
 .public ov13_0222453C
 .public ov13_02224588
 .public ov13_02224670

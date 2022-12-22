@@ -326,7 +326,7 @@ sub_0209C808: ; 0x0209C808
 	sub sp, sp, #4
 	mov sl, r0
 	mov fp, r1
-	bl sub_020C0F1C
+	bl GX_BeginLoadTexPltt
 	ldrh r0, [sl, #0x32]
 	mov sb, #0
 	cmp r0, #0
@@ -356,7 +356,7 @@ _0209C83C:
 	ldr r2, [r7, #0x10]
 	add r0, r1, r0
 	mov r1, r6
-	bl sub_020C0F50
+	bl GX_LoadTexPltt
 _0209C890:
 	str r6, [r8, #8]
 	ldrh r0, [sl, #0x32]
@@ -365,7 +365,7 @@ _0209C890:
 	cmp sb, r0
 	blt _0209C83C
 _0209C8A8:
-	bl sub_020C0FBC
+	bl GX_EndLoadTexPltt
 	mov r0, #1
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -378,7 +378,7 @@ sub_0209C8BC: ; 0x0209C8BC
 	sub sp, sp, #0xc
 	mov sl, r0
 	mov fp, r1
-	bl sub_020C0D34
+	bl GX_BeginLoadTex
 	ldrh r0, [sl, #0x32]
 	mov sb, #0
 	cmp r0, #0
@@ -415,7 +415,7 @@ _0209C928:
 	ldr r2, [r7, #8]
 	add r0, r0, #0x20
 	mov r1, r5
-	bl sub_020C0D90
+	bl GX_LoadTex
 	str r5, [r8, #4]
 _0209C960:
 	ldrh r0, [sl, #0x32]
@@ -424,7 +424,7 @@ _0209C960:
 	cmp sb, r0
 	blt _0209C8F4
 _0209C974:
-	bl sub_020C0ED0
+	bl GX_EndLoadTex
 	mov r0, #1
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -451,7 +451,7 @@ sub_0209C988: ; 0x0209C988
 	ldr r0, [sl, #0x28]
 	mov r1, #0
 	mov r2, r2, lsl #5
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrh r1, [sl, #0x30]
 	mov r0, #0
 	str r0, [sp]
@@ -621,7 +621,7 @@ _0209CC28:
 	ldr r0, [sl, #0x2c]
 	mul r2, r3, r1
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrh r0, [sl, #0x32]
 	mov r3, #0
 	cmp r0, #0
@@ -680,7 +680,7 @@ sub_0209CD00: ; 0x0209CD00
 	mov r5, r0
 	mov r1, #0
 	mov r2, #0x4c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	strh r7, [r5, #0x34]
 	strh r6, [r5, #0x36]
 	ldrh r0, [sp, #0x20]
@@ -730,7 +730,7 @@ sub_0209CD00: ; 0x0209CD00
 	mov r2, r4
 	mov sb, r0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r7, #0
 	mov sl, #0
 	ble _0209CE20
@@ -751,7 +751,7 @@ _0209CE20:
 	mov r2, r4
 	mov r1, #0
 	mov r8, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r6, #0
 	mov r7, #0
 	ble _0209CE6C

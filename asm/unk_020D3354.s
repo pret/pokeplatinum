@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D3354
-sub_020D3354: ; 0x020D3354
+	arm_func_start STD_CopyLString
+STD_CopyLString: ; 0x020D3354
 	stmfd sp!, {r4, lr}
 	sub ip, r2, #1
 	mov r4, r1
@@ -33,12 +33,12 @@ _020D3390:
 	strneb r2, [r0, lr]
 _020D33A8:
 	mov r0, r1
-	bl sub_020D33B4
+	bl STD_GetStringLength
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D3354
+	arm_func_end STD_CopyLString
 
-	arm_func_start sub_020D33B4
-sub_020D33B4: ; 0x020D33B4
+	arm_func_start STD_GetStringLength
+STD_GetStringLength: ; 0x020D33B4
 	ldrsb r1, [r0]
 	mov r2, #0
 	cmp r1, #0
@@ -51,10 +51,10 @@ _020D33C4:
 _020D33D4:
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020D33B4
+	arm_func_end STD_GetStringLength
 
-	arm_func_start sub_020D33DC
-sub_020D33DC: ; 0x020D33DC
+	arm_func_start STD_CompareString
+STD_CompareString: ; 0x020D33DC
 	b _020D33E8
 _020D33E0:
 	add r0, r0, #1
@@ -69,10 +69,10 @@ _020D33E8:
 _020D3400:
 	sub r0, r2, r3
 	bx lr
-	arm_func_end sub_020D33DC
+	arm_func_end STD_CompareString
 
-	arm_func_start sub_020D3408
-sub_020D3408: ; 0x020D3408
+	arm_func_start STD_CompareNString
+STD_CompareNString: ; 0x020D3408
 	stmfd sp!, {r3, lr}
 	cmp r2, #0
 	beq _020D3440
@@ -91,4 +91,4 @@ _020D3420:
 _020D3440:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D3408
+	arm_func_end STD_CompareNString

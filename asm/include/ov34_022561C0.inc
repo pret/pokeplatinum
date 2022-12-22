@@ -4,7 +4,7 @@
 .public sub_020181C4
 .public sub_020227C0
 .public sub_0203F478
-.public sub_020BCFF0
+.public FX_Sqrt
 .public ov25_02254238
 .public ov25_0225424C
 .public ov25_02254260

@@ -1,2 +1,2 @@
-.public sub_020CF9C4
-.public sub_020CFC18
+.public WM_StartDataSharing
+.public WM_EndDataSharing

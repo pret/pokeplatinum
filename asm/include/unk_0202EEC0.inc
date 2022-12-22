@@ -4,6 +4,6 @@
 .public sub_02073C2C
 .public sub_02074470
 .public sub_020774C8
-.public sub_020C3FA0
-.public sub_020C4040
-.public sub_020C4BB8
+.public OS_GetMacAddress
+.public OS_GetOwnerRtcOffset
+.public MIi_CpuClearFast

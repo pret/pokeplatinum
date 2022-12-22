@@ -462,11 +462,11 @@ sub_02047818: ; 0x02047818
 	bl sub_0203F150
 	add r5, r0, #0
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	add r0, r5, #0
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r2, r1, #0
 	ldr r0, [sp]
 	add r1, r7, #0

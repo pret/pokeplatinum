@@ -24,7 +24,7 @@ ov4_021E8BBC: ; 0x021E8BBC
 	ldr r0, [r1, #0]
 	mov r1, #0x400
 	add r0, r0, #0xf00
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh r0, [r6, #2]
 	cmp r0, #0
 	ldreqh r0, [r6, #8]
@@ -75,21 +75,21 @@ _021E8C6C:
 	ldr r3, [r3, #0xa8c]
 	add r1, r1, #0x1000
 	mla r1, r3, r2, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _021E8E94 ; =0x0221597C
 	add r1, sp, #0
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r6, r5, lsl #2
 	ldr r0, [r0, #0x10]
 	add r1, sp, #4
 	add r0, r0, #6
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, sp, #8
 	add r1, sp, #0
 	mov r2, #8
-	bl sub_020A490C
+	bl CRYPTO_RC4FastInit
 	ldr r0, _021E8E8C ; =0x0221AE40
 	mov r2, #0x70
 	ldr r3, [r0, #0]
@@ -101,7 +101,7 @@ _021E8C6C:
 	mul r3, r1, r2
 	add r1, r4, r3
 	add r3, r4, r3
-	bl sub_020A4A34
+	bl CRYPTO_RC4FastEncrypt
 	ldr r0, _021E8E8C ; =0x0221AE40
 	mov r1, #0x70
 	ldr ip, [r0]
@@ -116,14 +116,14 @@ _021E8C6C:
 	add r0, r0, #0x1a00
 	add r1, r1, #0x1800
 	add r2, r4, r7
-	bl sub_020D31F0
+	bl MATHi_CRC16UpdateRev
 	ldr r0, _021E8E8C ; =0x0221AE40
 	add r1, r4, r7
 	ldr r0, [r0, #0]
 	mov r2, #0x6e
 	add r0, r0, #0x96
 	add r0, r0, #0x1a00
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	ldr r1, _021E8E8C ; =0x0221AE40
 	mov r2, #0x70
 	ldr r4, [r1, #0]
@@ -140,7 +140,7 @@ _021E8C6C:
 	add r0, r0, #0x1000
 	add r0, r0, r3
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _021E8E40
 _021E8DA4:
 	add r0, r6, r5, lsl #2
@@ -231,7 +231,7 @@ ov4_021E8EA4: ; 0x021E8EA4
 	mov r2, r0
 	ldr r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _021E8F2C ; =0x0221AE40
 	mov r3, #0
 	ldr r0, [r2, #0]
@@ -244,12 +244,12 @@ ov4_021E8EA4: ; 0x021E8EA4
 	ldr r0, [r2, #0]
 	add r0, r0, #0x96
 	add r0, r0, #0x1a00
-	bl sub_020D316C
+	bl MATHi_CRC16InitTableRev
 	ldr r0, _021E8F2C ; =0x0221AE40
 	mov r1, r5
 	ldr r0, [r0, #0]
 	mov r2, r4
-	bl sub_020CECC8
+	bl WM_Initialize
 	cmp r0, #2
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -271,7 +271,7 @@ ov4_021E8F34: ; 0x021E8F34
 	add r1, r1, #0x1000
 	str ip, [r1, #0xa90]
 	str r3, [r2, #0]
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
@@ -294,12 +294,12 @@ ov4_021E8F74: ; 0x021E8F74
 	ldr r0, [r1, #0]
 	add r0, r0, #0x1300
 	strh r2, [r0, #4]
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	ldr r1, _021E9034 ; =0x0221AE40
 	ldr r1, [r1, #0]
 	add r1, r1, #0x1300
 	strh r0, [r1, #6]
-	bl sub_020CE934
+	bl WM_GetDispersionScanPeriod
 	ldr r3, _021E9034 ; =0x0221AE40
 	mov ip, #1
 	ldr r2, [r3, #0]
@@ -313,7 +313,7 @@ ov4_021E8F74: ; 0x021E8F74
 	ldr r0, [r3, #0]
 	add r0, r0, #0xa
 	add r0, r0, #0x1300
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _021E9034 ; =0x0221AE40
 	mov r3, #1
 	ldr r1, [r2, #0]
@@ -325,7 +325,7 @@ ov4_021E8F74: ; 0x021E8F74
 	str r3, [r1, #0xa90]
 	ldr r1, [r2, #0]
 	add r1, r1, #0x1300
-	bl sub_020CF08C
+	bl WM_StartScanEx
 	cmp r0, #2
 	moveq r0, #0
 	ldmia sp!, {r4, pc}
@@ -345,7 +345,7 @@ ov4_021E903C: ; 0x021E903C
 	ldr r1, [r1, #0]
 	add r1, r1, #0x1000
 	str r2, [r1, #0xa90]
-	bl sub_020CF1DC
+	bl WM_EndScan
 	cmp r0, #2
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
@@ -377,7 +377,7 @@ _021E90B8:
 	mov r0, r4
 	mov r1, #0
 	mov r2, #0x78
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	ldr r3, _021E910C ; =0x0221AE40
 	str r0, [r4, #0]
@@ -392,7 +392,7 @@ _021E90B8:
 	add r0, r0, #0x348
 	add r0, r0, #0x1000
 	mla r0, r5, r2, r0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -412,7 +412,7 @@ ov4_021E9110: ; 0x021E9110
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r1, #0
 	mov r2, #0x780
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	mov r1, r5
 	mov r4, r0

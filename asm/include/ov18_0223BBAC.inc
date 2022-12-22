@@ -1,9 +1,9 @@
 .public sub_020A33F8
-.public sub_020C00B4
-.public sub_020C04EC
-.public sub_020C42A8
-.public sub_020C4B68
-.public sub_020C4DB0
+.public GX_LoadBGPltt
+.public GX_LoadBG2Scr
+.public OS_Terminate
+.public MIi_CpuCopy32
+.public MI_CpuCopy8
 .public ov4_021E5C34
 .public ov4_021E5DDC
 .public ov4_021E5EAC

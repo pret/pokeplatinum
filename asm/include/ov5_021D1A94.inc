@@ -8,7 +8,7 @@
 .public sub_0201CE14
 .public sub_02022974
 .public sub_0203CD5C
-.public sub_020C4B4C
+.public MIi_CpuClear32
 .public ov5_021D1B24
 .public ov5_021D1B48
 .public ov5_021D1BEC

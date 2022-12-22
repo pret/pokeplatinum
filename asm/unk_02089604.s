@@ -350,7 +350,7 @@ sub_02089820: ; 0x02089820
 	bl sub_020394A8
 	add r1, sp, #0x14
 	add r4, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r0, #0x20
 	str r0, [sp]
 	mov r0, #0xbf
@@ -927,7 +927,7 @@ _02089CDE:
 	strh r1, [r4, r0]
 	ldrsh r0, [r4, r0]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _02089F08 ; =0x00000246
 	mov r6, #1
 	strh r1, [r4, r0]
@@ -951,7 +951,7 @@ _02089D16:
 	strh r0, [r4, r3]
 	ldrsh r0, [r4, r3]
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x91
 	lsl r0, r0, #2
 	strh r1, [r4, r0]
@@ -1614,14 +1614,14 @@ _0208A21A:
 	add r0, r5, #0
 	sub r0, #0x10
 	mov r1, #5
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, #0x91
 	lsl r0, r0, #2
 	strh r1, [r4, r0]
 	add r0, r5, #0
 	sub r0, #0x10
 	mov r1, #5
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _0208A324 ; =0x00000246
 	strh r0, [r4, r1]
 	ldr r0, _0208A31C ; =0x000005E5

@@ -16,12 +16,12 @@ ov24_02253CE0: ; 0x02253CE0
 	lsl r2, r0, #0xf
 	bl sub_02017FC8
 	mov r0, #0
-	bl sub_020BDEA8
+	bl GXS_SetGraphicsMode
 	mov r0, #0x80
-	bl sub_020BEA50
+	bl GX_SetBankForSubBG
 	mov r0, #1
 	lsl r0, r0, #8
-	bl sub_020BEAF8
+	bl GX_SetBankForSubOBJ
 	ldr r2, _02253D90 ; =0x04001000
 	ldr r0, _02253D94 ; =0xFFCFFFEF
 	ldr r1, [r2, #0]

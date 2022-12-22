@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D50B8
-sub_020D50B8: ; 0x020D50B8
+	arm_func_start memcpy
+memcpy: ; 0x020D50B8
 	mov ip, r0
 	cmp r2, #0
 	bxeq lr
@@ -17,10 +17,10 @@ _020D50C4:
 	strb r3, [ip], #1
 	bne _020D50C4
 	bx lr
-	arm_func_end sub_020D50B8
+	arm_func_end memcpy
 
-	arm_func_start sub_020D50D8
-sub_020D50D8: ; 0x020D50D8
+	arm_func_start memmove
+memmove: ; 0x020D50D8
 	cmp r1, r0
 	blo _020D5100
 	mov ip, r0
@@ -43,19 +43,19 @@ _020D5110:
 	strb r1, [ip, #-1]!
 	bne _020D5110
 	bx lr
-	arm_func_end sub_020D50D8
+	arm_func_end memmove
 
-	arm_func_start sub_020D5124
-sub_020D5124: ; 0x020D5124
+	arm_func_start memset
+memset: ; 0x020D5124
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020D51D0
+	bl __fill_mem
 	mov r0, r4
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D5124
+	arm_func_end memset
 
-	arm_func_start sub_020D5138
-sub_020D5138: ; 0x020D5138
+	arm_func_start memchr
+memchr: ; 0x020D5138
 	cmp r2, #0
 	and r3, r1, #0xff
 	beq _020D515C
@@ -69,10 +69,10 @@ _020D5144:
 _020D515C:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020D5138
+	arm_func_end memchr
 
-	arm_func_start sub_020D5164
-sub_020D5164: ; 0x020D5164
+	arm_func_start __memrchr
+__memrchr: ; 0x020D5164
 	cmp r2, #0
 	and r3, r1, #0xff
 	add r0, r0, r2
@@ -86,10 +86,10 @@ _020D5174:
 _020D5188:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020D5164
+	arm_func_end __memrchr
 
-	arm_func_start sub_020D5190
-sub_020D5190: ; 0x020D5190
+	arm_func_start memcmp
+memcmp: ; 0x020D5190
 	cmp r2, #0
 	beq _020D51C8
 _020D5198:
@@ -109,4 +109,4 @@ _020D51C0:
 _020D51C8:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020D5190
+	arm_func_end memcmp

@@ -25,7 +25,7 @@ ov97_02233814: ; 0x02233814
 	mov r1, #0
 	add r2, r6, #0
 	lsr r3, r3, #0x10
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	cmp r0, #2
 	beq _0223384A
 	bl ov97_022337FC
@@ -44,7 +44,7 @@ _02233850: .word ov97_022323CC
 ov97_02233854: ; 0x02233854
 	push {r3, lr}
 	ldr r0, _0223386C ; =ov97_022323E4
-	bl sub_020CEB94
+	bl WM_Enable
 	cmp r0, #2
 	beq _02233868
 	bl ov97_022337FC
@@ -61,11 +61,11 @@ _0223386C: .word ov97_022323E4
 ov97_02233870: ; 0x02233870
 	push {r3, lr}
 	ldr r0, _0223388C ; =ov97_02232424
-	bl sub_020CEC08
+	bl WM_Disable
 	cmp r0, #2
 	beq _02233888
 	bl ov97_022337FC
-	bl sub_020C42A8
+	bl OS_Terminate
 	mov r0, #0
 	pop {r3, pc}
 _02233888:
@@ -86,7 +86,7 @@ ov97_02233890: ; 0x02233890
 	mov r1, #3
 	mov r2, #0x11
 	lsr r3, r3, #0x10
-	bl sub_020D07C4
+	bl WM_MeasureChannel
 	cmp r0, #2
 	beq _022338B2
 	bl ov97_022337FC
@@ -115,7 +115,7 @@ ov97_022338BC: ; 0x022338BC
 	strh r0, [r5, #4]
 	ldr r0, _022338F4 ; =ov97_022324C4
 	add r1, r5, #0
-	bl sub_020CEDC8
+	bl WM_SetParentParameter
 	cmp r0, #2
 	beq _022338F0
 	bl ov97_022337FC
@@ -132,7 +132,7 @@ _022338F4: .word ov97_022324C4
 ov97_022338F8: ; 0x022338F8
 	push {r3, lr}
 	ldr r0, _02233910 ; =ov97_022324EC
-	bl sub_020CEF50
+	bl WM_StartParent
 	cmp r0, #2
 	beq _0223390C
 	bl ov97_022337FC
@@ -151,7 +151,7 @@ ov97_02233914: ; 0x02233914
 	bl ov97_02233478
 	add r1, r0, #0
 	ldr r0, _02233934 ; =ov97_022327B8
-	bl sub_020CEFA0
+	bl WM_StartScan
 	cmp r0, #2
 	beq _0223392E
 	bl ov97_022337FC
@@ -224,7 +224,7 @@ ov97_02233938: ; 0x02233938
 	bl ov97_02233478
 	add r1, r0, #0
 	ldr r0, _022339CC ; =ov97_022328D4
-	bl sub_020CEFA0
+	bl WM_StartScan
 	cmp r0, #2
 	beq _022339C2
 	bl ov97_022337FC
@@ -242,7 +242,7 @@ _022339CC: .word ov97_022328D4
 ov97_022339D0: ; 0x022339D0
 	push {r3, lr}
 	ldr r0, _022339E8 ; =ov97_02232944
-	bl sub_020CF1DC
+	bl WM_EndScan
 	cmp r0, #2
 	beq _022339E4
 	bl ov97_022337FC
@@ -268,7 +268,7 @@ ov97_022339EC: ; 0x022339EC
 	ldr r0, _02233A20 ; =ov97_02232998
 	add r2, r4, #0
 	mov r3, #1
-	bl sub_020CF21C
+	bl WM_StartConnectEx
 	cmp r0, #2
 	beq _02233A18
 	bl ov97_022337FC
@@ -290,7 +290,7 @@ ov97_02233A24: ; 0x02233A24
 	ldr r1, _02233A94 ; =ov97_02232C94
 	mov r0, #4
 	mov r2, #0
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 	cmp r0, #0
 	beq _02233A40
 	bl ov97_022337FC
@@ -325,7 +325,7 @@ _02233A50:
 	add r1, r6, #0
 	lsr r2, r2, #0x10
 	add r3, r7, #0
-	bl sub_020CF5E4
+	bl WM_StartMP
 	cmp r0, #2
 	beq _02233A8E
 	bl ov97_022337FC
@@ -345,7 +345,7 @@ _02233A98: .word ov97_02232A7C
 ov97_02233A9C: ; 0x02233A9C
 	push {r3, lr}
 	ldr r0, _02233AB4 ; =ov97_02232D18
-	bl sub_020CEC48
+	bl WM_PowerOn
 	cmp r0, #2
 	beq _02233AB0
 	bl ov97_022337FC
@@ -362,11 +362,11 @@ _02233AB4: .word ov97_02232D18
 ov97_02233AB8: ; 0x02233AB8
 	push {r3, lr}
 	ldr r0, _02233AD4 ; =ov97_02232D3C
-	bl sub_020CEC88
+	bl WM_PowerOff
 	cmp r0, #2
 	beq _02233AD0
 	bl ov97_022337FC
-	bl sub_020C42A8
+	bl OS_Terminate
 	mov r0, #0
 	pop {r3, pc}
 _02233AD0:
@@ -380,11 +380,11 @@ _02233AD4: .word ov97_02232D3C
 ov97_02233AD8: ; 0x02233AD8
 	push {r3, lr}
 	ldr r0, _02233AF4 ; =ov97_02232D60
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	beq _02233AF0
 	bl ov97_022337FC
-	bl sub_020C42A8
+	bl OS_Terminate
 	mov r0, #0
 	pop {r3, pc}
 _02233AF0:
@@ -398,11 +398,11 @@ _02233AF4: .word ov97_02232D60
 ov97_02233AF8: ; 0x02233AF8
 	push {r3, lr}
 	ldr r0, _02233B14 ; =ov97_02232DA4
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	beq _02233B10
 	bl ov97_022337FC
-	bl sub_020C42A8
+	bl OS_Terminate
 	mov r0, #0
 	pop {r3, pc}
 _02233B10:

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E0D24
-sub_020E0D24: ; 0x020E0D24
+	arm_func_start _d_fge
+_d_fge: ; 0x020E0D24
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
 	bhs _020E0D98
@@ -50,10 +50,10 @@ _020E0DAC:
 	cmp r2, #0
 	bhi _020E0D54
 	b _020E0D38
-	arm_func_end sub_020E0D24
+	arm_func_end _d_fge
 
-	arm_func_start sub_020E0DBC
-sub_020E0DBC: ; 0x020E0DBC
+	arm_func_start _d_fgt
+_d_fgt: ; 0x020E0DBC
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
 	bhs _020E0E30
@@ -97,10 +97,10 @@ _020E0E44:
 	cmp r2, #0
 	bhi _020E0DEC
 	b _020E0DD0
-	arm_func_end sub_020E0DBC
+	arm_func_end _d_fgt
 
-	arm_func_start sub_020E0E54
-sub_020E0E54: ; 0x020E0E54
+	arm_func_start _d_fle
+_d_fle: ; 0x020E0E54
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
 	bhs _020E0ED4
@@ -148,10 +148,10 @@ _020E0EE8:
 	cmp r2, #0
 	bhi _020E0E84
 	b _020E0E68
-	arm_func_end sub_020E0E54
+	arm_func_end _d_fle
 
-	arm_func_start sub_020E0EF8
-sub_020E0EF8: ; 0x020E0EF8
+	arm_func_start _d_flt
+_d_flt: ; 0x020E0EF8
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
 	bhs _020E0F70
@@ -197,10 +197,10 @@ _020E0F84:
 	cmp r2, #0
 	bhi _020E0F28
 	b _020E0F0C
-	arm_func_end sub_020E0EF8
+	arm_func_end _d_flt
 
-	arm_func_start sub_020E0F94
-sub_020E0F94: ; 0x020E0F94
+	arm_func_start _d_feq
+_d_feq: ; 0x020E0F94
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
 	bhs _020E0FFC
@@ -241,10 +241,10 @@ _020E1010:
 	cmp r2, #0
 	bhi _020E0FC4
 	b _020E0FA8
-	arm_func_end sub_020E0F94
+	arm_func_end _d_feq
 
-	arm_func_start sub_020E1020
-sub_020E1020: ; 0x020E1020
+	arm_func_start _d_fne
+_d_fne: ; 0x020E1020
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
 	bhs _020E1088
@@ -285,10 +285,10 @@ _020E109C:
 	cmp r2, #0
 	bhi _020E1050
 	b _020E1034
-	arm_func_end sub_020E1020
+	arm_func_end _d_fne
 
-	arm_func_start sub_020E10AC
-sub_020E10AC: ; 0x020E10AC
+	arm_func_start _f_fge
+_f_fge: ; 0x020E10AC
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
 	cmphs r3, r1, lsl #1
@@ -313,10 +313,10 @@ _020E10F4:
 	bic ip, ip, #0x20000000
 	msr cpsr_flg, ip
 	bx lr
-	arm_func_end sub_020E10AC
+	arm_func_end _f_fge
 
-	arm_func_start sub_020E1108
-sub_020E1108: ; 0x020E1108
+	arm_func_start _f_fgt
+_f_fgt: ; 0x020E1108
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
 	cmphs r3, r1, lsl #1
@@ -341,10 +341,10 @@ _020E1150:
 	bic ip, ip, #0x20000000
 	msr cpsr_flg, ip
 	bx lr
-	arm_func_end sub_020E1108
+	arm_func_end _f_fgt
 
-	arm_func_start sub_020E1164
-sub_020E1164: ; 0x020E1164
+	arm_func_start _f_fle
+_f_fle: ; 0x020E1164
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
 	cmphs r3, r1, lsl #1
@@ -372,10 +372,10 @@ _020E11B4:
 	orr ip, ip, #0x20000000
 	msr cpsr_flg, ip
 	bx lr
-	arm_func_end sub_020E1164
+	arm_func_end _f_fle
 
-	arm_func_start sub_020E11CC
-sub_020E11CC: ; 0x020E11CC
+	arm_func_start _f_flt
+_f_flt: ; 0x020E11CC
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
 	cmphs r3, r1, lsl #1
@@ -400,10 +400,10 @@ _020E1214:
 	orr ip, ip, #0x20000000
 	msr cpsr_flg, ip
 	bx lr
-	arm_func_end sub_020E11CC
+	arm_func_end _f_flt
 
-	arm_func_start sub_020E1228
-sub_020E1228: ; 0x020E1228
+	arm_func_start _f_feq
+_f_feq: ; 0x020E1228
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
 	blo _020E127C
@@ -432,10 +432,10 @@ _020E127C:
 	bic ip, ip, #0x40000000
 	msr cpsr_flg, ip
 	bx lr
-	arm_func_end sub_020E1228
+	arm_func_end _f_feq
 
-	arm_func_start sub_020E1290
-sub_020E1290: ; 0x020E1290
+	arm_func_start _f_fne
+_f_fne: ; 0x020E1290
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
 	blo _020E12E4
@@ -464,4 +464,4 @@ _020E12E4:
 	bic ip, ip, #0x40000000
 	msr cpsr_flg, ip
 	bx lr
-	arm_func_end sub_020E1290
+	arm_func_end _f_fne

@@ -19,7 +19,7 @@ ov7_0224BE9C: ; 0x0224BE9C
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0x18]
 	str r7, [r4, #0x14]
 	str r6, [r4, #8]
@@ -65,7 +65,7 @@ ov7_0224BEFC: ; 0x0224BEFC
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl sub_020181C4
 	pop {r4, pc}

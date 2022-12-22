@@ -38,7 +38,7 @@
 .public sub_02098888
 .public sub_020988A8
 .public sub_020989D0
-.public sub_020BCFD0
+.public FX_Div
 .public ov21_021D138C
 .public ov21_021D13EC
 .public ov21_021D13FC

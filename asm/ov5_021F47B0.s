@@ -54,7 +54,7 @@ _021F47E6:
 	blt _021F47E6
 	ldr r0, [r7, #0x10]
 	mov r1, #0
-	bl sub_020B37A4
+	bl NNS_G3dMdlSetMdlFogEnableFlagAll
 	mov r2, #0
 	str r2, [sp]
 	ldr r0, [r7, #0]
@@ -400,7 +400,7 @@ _021F4A98:
 _021F4AA6:
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r4]
 	pop {r4, pc}
 	; .align 2, 0
@@ -581,7 +581,7 @@ _021F4BF4:
 	str r7, [sp, #8]
 _021F4BFA:
 	ldr r1, _021F4CE0 ; =0x00001999
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	bpl _021F4C06
 	neg r7, r7
@@ -633,7 +633,7 @@ _021F4C06:
 	ldr r0, [r6, #0]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r6, #0]
 	mul r0, r7
 	add r0, r1, r0
@@ -643,7 +643,7 @@ _021F4C06:
 	ldr r0, [r6, #4]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r6, #4]
 	mul r0, r7
 	add r0, r1, r0
@@ -653,7 +653,7 @@ _021F4C06:
 	ldr r0, [r6, #8]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r6, #8]
 	mul r0, r7
 	add r0, r1, r0
@@ -664,7 +664,7 @@ _021F4C06:
 	ldr r0, [r4, #0]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #0]
 	mul r0, r7
 	add r0, r1, r0
@@ -673,7 +673,7 @@ _021F4C06:
 	ldr r0, [r4, #4]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #4]
 	mul r0, r7
 	add r0, r1, r0
@@ -682,7 +682,7 @@ _021F4C06:
 	ldr r0, [r4, #8]
 	sub r0, r1, r0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #8]
 	mul r0, r7
 	add r0, r1, r0

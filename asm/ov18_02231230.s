@@ -95,7 +95,7 @@ _02231338:
 	strb r2, [r3]
 	bl ov18_0222B700
 	ldr r0, _02231480 ; =0x0224A050
-	ldr r1, _02231484 ; =sub_020C04EC
+	ldr r1, _02231484 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	add r0, sp, #0x14
 	bl ov18_0222B6A0
@@ -125,7 +125,7 @@ _022313D8:
 	mov r0, r5
 	mov r1, r6
 	mov r2, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r7, r7, #1
 	cmp r7, #2
 	add r5, r5, #0x20
@@ -134,11 +134,11 @@ _022313D8:
 _022313FC:
 	mov r0, r8
 	mov r1, #0x200
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r0, r8
 	mov r1, #0
 	mov r2, #0x200
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	mov r0, r8
 	bl ov18_0224382C
 	ldr r2, _0223148C ; =0x04001008
@@ -167,7 +167,7 @@ _02231474: .word 0x0224915E
 _02231478: .word 0x0224A038
 _0223147C: .word 0x020C07EC
 _02231480: .word 0x0224A050
-_02231484: .word sub_020C04EC
+_02231484: .word GX_LoadBG2Scr
 _02231488: .word 0x022532E8
 _0223148C: .word 0x04001008
 _02231490: .word 0x0400000A
@@ -498,14 +498,14 @@ ov18_0223188C: ; 0x0223188C
 	ldr r0, _02231908 ; =0x022532E8
 	ldrb r0, [r0]
 	add r0, r0, #2
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r1, _02231908 ; =0x022532E8
 	b _022318C8
 _022318B4:
 	ldr r0, _02231908 ; =0x022532E8
 	ldrb r0, [r0]
 	add r0, r0, #1
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r1, _02231908 ; =0x022532E8
 _022318C8:
 	strb r0, [r1]

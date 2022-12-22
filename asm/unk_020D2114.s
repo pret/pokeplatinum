@@ -6,12 +6,12 @@
 	.text
 
 
-	arm_func_start sub_020D2114
-sub_020D2114: ; 0x020D2114
+	arm_func_start CTRDGi_EraseFlashChipCoreLE
+CTRDGi_EraseFlashChipCoreLE: ; 0x020D2114
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _020D21E0 ; =0x021D03AC
 	ldrh r0, [r0]
-	bl sub_020C18F4
+	bl OS_LockCartridge
 	ldr r0, _020D21E4 ; =0x04000204
 	ldr r1, _020D21E8 ; =0x02101488
 	ldrh r3, [r0]
@@ -56,7 +56,7 @@ sub_020D2114: ; 0x020D2114
 	orr r0, r0, r5
 	strh r0, [r3]
 	ldrh r0, [r1]
-	bl sub_020C1914
+	bl OS_UnlockCartridge
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -67,10 +67,10 @@ _020D21EC: .word 0x021D03C8
 _020D21F0: .word 0x0A005555
 _020D21F4: .word 0x0A002AAA
 _020D21F8: .word 0x021D03DC
-	arm_func_end sub_020D2114
+	arm_func_end CTRDGi_EraseFlashChipCoreLE
 
-	arm_func_start sub_020D21FC
-sub_020D21FC: ; 0x020D21FC
+	arm_func_start CTRDGi_EraseFlashSectorCoreLE
+CTRDGi_EraseFlashSectorCoreLE: ; 0x020D21FC
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x24
 	mov r5, r0
@@ -88,7 +88,7 @@ sub_020D21FC: ; 0x020D21FC
 	ldmhsia sp!, {r3, r4, r5, r6, pc}
 	ldr r0, _020D2314 ; =0x021D03AC
 	ldrh r0, [r0]
-	bl sub_020C18F4
+	bl OS_LockCartridge
 	ldr r0, _020D2318 ; =0x04000204
 	ldr r1, _020D231C ; =0x02101488
 	ldrh r3, [r0]
@@ -136,7 +136,7 @@ sub_020D21FC: ; 0x020D21FC
 	orr r0, r0, r5
 	strh r0, [r3]
 	ldrh r0, [r1]
-	bl sub_020C1914
+	bl OS_UnlockCartridge
 	mov r0, r4
 	add sp, sp, #0x24
 	ldmia sp!, {r3, r4, r5, r6, pc}
@@ -149,10 +149,10 @@ _020D2320: .word 0x021D03C8
 _020D2324: .word 0x0A005555
 _020D2328: .word 0x0A002AAA
 _020D232C: .word 0x021D03DC
-	arm_func_end sub_020D21FC
+	arm_func_end CTRDGi_EraseFlashSectorCoreLE
 
-	arm_func_start sub_020D2330
-sub_020D2330: ; 0x020D2330
+	arm_func_start CTRDGi_ProgramFlashByteLE
+CTRDGi_ProgramFlashByteLE: ; 0x020D2330
 	stmfd sp!, {r3, lr}
 	ldr ip, _020D2378 ; =0x0A005555
 	mov r3, #0xaa
@@ -175,10 +175,10 @@ sub_020D2330: ; 0x020D2330
 _020D2378: .word 0x0A005555
 _020D237C: .word 0x0A002AAA
 _020D2380: .word 0x021D03DC
-	arm_func_end sub_020D2330
+	arm_func_end CTRDGi_ProgramFlashByteLE
 
-	arm_func_start sub_020D2384
-sub_020D2384: ; 0x020D2384
+	arm_func_start CTRDGi_WriteFlashSectorCoreLE
+CTRDGi_WriteFlashSectorCoreLE: ; 0x020D2384
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x24
 	mov r5, r0
@@ -196,7 +196,7 @@ sub_020D2384: ; 0x020D2384
 	ldrhs r0, _020D2534 ; =0x000080FF
 	ldmhsia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	ldr r0, _020D2538 ; =0x02101488
-	ldr r6, _020D253C ; =sub_020D2554
+	ldr r6, _020D253C ; =CTRDGi_VerifyFlashCoreFF
 	ldr r0, [r0, #0]
 	mov sb, #0
 	ldrh r0, [r0, #8]
@@ -204,12 +204,12 @@ sub_020D2384: ; 0x020D2384
 	add r7, r0, #0xa000000
 _020D23E0:
 	mov r0, r8
-	bl sub_020D2634
+	bl CTRDGi_EraseFlashSectorLE
 	movs r4, r0
 	bne _020D2408
 	mov r0, r7
 	mov r1, r6
-	bl sub_020D2588
+	bl CTRDGi_VerifyFlashErase
 	mov r0, r0, lsl #0x10
 	movs r4, r0, lsr #0x10
 	beq _020D2428
@@ -231,7 +231,7 @@ _020D2428:
 	blo _020D245C
 _020D2440:
 	mov r0, r8
-	bl sub_020D2634
+	bl CTRDGi_EraseFlashSectorLE
 	add r0, sb, #1
 	mov r0, r0, lsl #0x10
 	cmp r6, r0, lsr #16
@@ -240,7 +240,7 @@ _020D2440:
 _020D245C:
 	ldr r0, _020D2540 ; =0x021D03AC
 	ldrh r0, [r0]
-	bl sub_020C18F4
+	bl OS_LockCartridge
 	ldr r1, _020D2544 ; =0x04000204
 	ldr r2, _020D2538 ; =0x02101488
 	ldrh r0, [r1]
@@ -266,7 +266,7 @@ _020D245C:
 _020D24C0:
 	mov r0, r5
 	mov r1, r7
-	bl sub_020D2330
+	bl CTRDGi_ProgramFlashByteLE
 	movs r4, r0
 	bne _020D24F4
 	ldrh r0, [r6]
@@ -290,23 +290,23 @@ _020D24F4:
 	orr r1, r1, r8
 	strh r1, [r2]
 	ldrh r0, [r0]
-	bl sub_020C1914
+	bl OS_UnlockCartridge
 	mov r0, r4
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020D2534: .word 0x000080FF
 _020D2538: .word 0x02101488
-_020D253C: .word sub_020D2554
+_020D253C: .word CTRDGi_VerifyFlashCoreFF
 _020D2540: .word 0x021D03AC
 _020D2544: .word 0x04000204
 _020D2548: .word 0x021D03A8
 _020D254C: .word 0x021D03C8
 _020D2550: .word 0x04000208
-	arm_func_end sub_020D2384
+	arm_func_end CTRDGi_WriteFlashSectorCoreLE
 
-	arm_func_start sub_020D2554
-sub_020D2554: ; 0x020D2554
+	arm_func_start CTRDGi_VerifyFlashCoreFF
+CTRDGi_VerifyFlashCoreFF: ; 0x020D2554
 	ldr r1, _020D2584 ; =0x02101488
 	ldr r1, [r1, #0]
 	ldr r2, [r1, #4]
@@ -323,16 +323,16 @@ _020D257C:
 	bx lr
 	; .align 2, 0
 _020D2584: .word 0x02101488
-	arm_func_end sub_020D2554
+	arm_func_end CTRDGi_VerifyFlashCoreFF
 
-	arm_func_start sub_020D2588
-sub_020D2588: ; 0x020D2588
+	arm_func_start CTRDGi_VerifyFlashErase
+CTRDGi_VerifyFlashErase: ; 0x020D2588
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _020D2604 ; =0x021D03AC
 	mov r5, r0
 	ldrh r0, [r2]
 	mov r4, r1
-	bl sub_020C18F4
+	bl OS_LockCartridge
 	ldr ip, _020D2608 ; =0x04000204
 	ldr r0, _020D260C ; =0x02101488
 	ldrh r3, [ip]
@@ -355,7 +355,7 @@ sub_020D2588: ; 0x020D2588
 	orr r1, r1, r6
 	strh r1, [r2]
 	ldrh r0, [r0]
-	bl sub_020C1914
+	bl OS_UnlockCartridge
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -363,90 +363,90 @@ _020D2604: .word 0x021D03AC
 _020D2608: .word 0x04000204
 _020D260C: .word 0x02101488
 _020D2610: .word 0x00008004
-	arm_func_end sub_020D2588
+	arm_func_end CTRDGi_VerifyFlashErase
 
-	arm_func_start sub_020D2614
-sub_020D2614: ; 0x020D2614
+	arm_func_start CTRDGi_EraseFlashChipLE
+CTRDGi_EraseFlashChipLE: ; 0x020D2614
 	stmdb sp!, {lr}
 	sub sp, sp, #0x24
 	add r0, sp, #0
-	bl sub_020D2114
+	bl CTRDGi_EraseFlashChipCoreLE
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	add sp, sp, #0x24
 	ldmia sp!, {pc}
-	arm_func_end sub_020D2614
+	arm_func_end CTRDGi_EraseFlashChipLE
 
-	arm_func_start sub_020D2634
-sub_020D2634: ; 0x020D2634
+	arm_func_start CTRDGi_EraseFlashSectorLE
+CTRDGi_EraseFlashSectorLE: ; 0x020D2634
 	stmdb sp!, {lr}
 	sub sp, sp, #0x24
 	strh r0, [sp, #0x20]
 	add r0, sp, #0
-	bl sub_020D21FC
+	bl CTRDGi_EraseFlashSectorCoreLE
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	add sp, sp, #0x24
 	ldmia sp!, {pc}
-	arm_func_end sub_020D2634
+	arm_func_end CTRDGi_EraseFlashSectorLE
 
-	arm_func_start sub_020D2658
-sub_020D2658: ; 0x020D2658
+	arm_func_start CTRDGi_WriteFlashSectorLE
+CTRDGi_WriteFlashSectorLE: ; 0x020D2658
 	stmdb sp!, {lr}
 	sub sp, sp, #0x24
 	strh r0, [sp, #0x20]
 	add r0, sp, #0
 	str r1, [sp, #0xc]
-	bl sub_020D2384
+	bl CTRDGi_WriteFlashSectorCoreLE
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	add sp, sp, #0x24
 	ldmia sp!, {pc}
-	arm_func_end sub_020D2658
+	arm_func_end CTRDGi_WriteFlashSectorLE
 
-	arm_func_start sub_020D2680
-sub_020D2680: ; 0x020D2680
+	arm_func_start CTRDGi_EraseFlashChipAsyncLE
+CTRDGi_EraseFlashChipAsyncLE: ; 0x020D2680
 	stmdb sp!, {lr}
 	sub sp, sp, #0x24
-	ldr r1, _020D26A0 ; =sub_020D2114
+	ldr r1, _020D26A0 ; =CTRDGi_EraseFlashChipCoreLE
 	mov r2, r0
 	add r0, sp, #0
-	bl sub_020D2F3C
+	bl CTRDGi_SetTask
 	add sp, sp, #0x24
 	ldmia sp!, {pc}
 	; .align 2, 0
-_020D26A0: .word sub_020D2114
-	arm_func_end sub_020D2680
+_020D26A0: .word CTRDGi_EraseFlashChipCoreLE
+	arm_func_end CTRDGi_EraseFlashChipAsyncLE
 
-	arm_func_start sub_020D26A4
-sub_020D26A4: ; 0x020D26A4
+	arm_func_start CTRDGi_EraseFlashSectorAsyncLE
+CTRDGi_EraseFlashSectorAsyncLE: ; 0x020D26A4
 	stmdb sp!, {lr}
 	sub sp, sp, #0x24
 	mov r2, r1
 	strh r0, [sp, #0x20]
-	ldr r1, _020D26C8 ; =sub_020D21FC
+	ldr r1, _020D26C8 ; =CTRDGi_EraseFlashSectorCoreLE
 	add r0, sp, #0
-	bl sub_020D2F3C
+	bl CTRDGi_SetTask
 	add sp, sp, #0x24
 	ldmia sp!, {pc}
 	; .align 2, 0
-_020D26C8: .word sub_020D21FC
-	arm_func_end sub_020D26A4
+_020D26C8: .word CTRDGi_EraseFlashSectorCoreLE
+	arm_func_end CTRDGi_EraseFlashSectorAsyncLE
 
-	arm_func_start sub_020D26CC
-sub_020D26CC: ; 0x020D26CC
+	arm_func_start CTRDGi_WriteFlashSectorAsyncLE
+CTRDGi_WriteFlashSectorAsyncLE: ; 0x020D26CC
 	stmdb sp!, {lr}
 	sub sp, sp, #0x24
 	str r1, [sp, #0xc]
 	strh r0, [sp, #0x20]
-	ldr r1, _020D26F0 ; =sub_020D2384
+	ldr r1, _020D26F0 ; =CTRDGi_WriteFlashSectorCoreLE
 	add r0, sp, #0
-	bl sub_020D2F3C
+	bl CTRDGi_SetTask
 	add sp, sp, #0x24
 	ldmia sp!, {pc}
 	; .align 2, 0
-_020D26F0: .word sub_020D2384
-	arm_func_end sub_020D26CC
+_020D26F0: .word CTRDGi_WriteFlashSectorCoreLE
+	arm_func_end CTRDGi_WriteFlashSectorAsyncLE
 
 	.rodata
 

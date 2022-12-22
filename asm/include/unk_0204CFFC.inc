@@ -26,5 +26,5 @@
 .public sub_0207A268
 .public sub_0207CFF0
 .public sub_020923C0
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov5_021E6CF0

@@ -14,12 +14,12 @@ sub_0202D05C: ; 0x0202D05C
 
 	thumb_func_start sub_0202D060
 sub_0202D060: ; 0x0202D060
-	ldr r3, _0202D068 ; =sub_020C4CF4
+	ldr r3, _0202D068 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x3c
 	bx r3
 	; .align 2, 0
-_0202D068: .word sub_020C4CF4
+_0202D068: .word MI_CpuFill8
 	thumb_func_end sub_0202D060
 
 	thumb_func_start sub_0202D06C
@@ -29,7 +29,7 @@ sub_0202D06C: ; 0x0202D06C
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	strb r0, [r4, #3]
 	pop {r4, pc}
@@ -59,12 +59,12 @@ sub_0202D080: ; 0x0202D080
 
 	thumb_func_start sub_0202D0AC
 sub_0202D0AC: ; 0x0202D0AC
-	ldr r3, _0202D0B4 ; =sub_020C4CF4
+	ldr r3, _0202D0B4 ; =MI_CpuFill8
 	mov r1, #0
 	ldr r2, _0202D0B8 ; =0x00000B3C
 	bx r3
 	; .align 2, 0
-_0202D0B4: .word sub_020C4CF4
+_0202D0B4: .word MI_CpuFill8
 _0202D0B8: .word 0x00000B3C
 	thumb_func_end sub_0202D0AC
 
@@ -112,14 +112,14 @@ _0202D0FC:
 	add r1, r2, #0
 	add r0, #8
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0
 	pop {r3, pc}
 _0202D10A:
 	add r1, r2, #0
 	add r0, #0x2c
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0
 	pop {r3, pc}
 _0202D118:
@@ -131,7 +131,7 @@ _0202D120:
 	add r1, r2, #0
 	add r0, #0xc
 	mov r2, #0x1c
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0
 	pop {r3, pc}
 _0202D12E:
@@ -203,14 +203,14 @@ _0202D194:
 	add r0, r2, #0
 	add r1, r3, #0
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 _0202D1A2:
 	add r3, #0x2c
 	add r0, r2, #0
 	add r1, r3, #0
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 _0202D1B0:
 	ldrb r4, [r3]
@@ -227,7 +227,7 @@ _0202D1C2:
 	add r0, r2, #0
 	add r1, r3, #0
 	mov r2, #0x1c
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 _0202D1D0:
 	ldr r0, [r2, #0]
@@ -430,14 +430,14 @@ sub_0202D2F0: ; 0x0202D2F0
 	add r0, r2, #0
 	add r1, r3, #0
 	mov r2, #0xa8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, pc}
 _0202D306:
 	add r3, #0x18
 	add r0, r2, #0
 	add r1, r3, #0
 	mov r2, #0xa8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, pc}
 	thumb_func_end sub_0202D2F0
 
@@ -449,13 +449,13 @@ sub_0202D314: ; 0x0202D314
 	add r1, r2, #0
 	add r0, #0xc0
 	mov r2, #0xa8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, pc}
 _0202D326:
 	add r1, r2, #0
 	add r0, #0x18
 	mov r2, #0xa8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end sub_0202D314
@@ -505,7 +505,7 @@ _0202D37E:
 	add r0, #0x1e
 	sub r0, r0, r1
 	mov r1, #0x1e
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 _0202D38C:
@@ -531,7 +531,7 @@ sub_0202D3A0: ; 0x0202D3A0
 	ldrh r0, [r0, #0x16]
 	mov r1, #0xfa
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	pop {r3, pc}
@@ -762,11 +762,11 @@ sub_0202D514: ; 0x0202D514
 	add r0, r4, #4
 	mov r1, #0
 	mov r2, #0xfa
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_0202D514
@@ -903,7 +903,7 @@ sub_0202D5F8: ; 0x0202D5F8
 	ldr r2, _0202D620 ; =0x0000063C
 	add r1, r5, r1
 	add r6, r3, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0202D624 ; =0x00000101
 	strb r4, [r5, r0]
 	sub r0, r0, #1
@@ -978,30 +978,30 @@ _0202D692:
 	add r0, #0xa8
 	add r1, #8
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _0202D6A0:
 	add r0, r5, r4
 	add r1, r6, #0
 	add r0, #0xca
 	add r1, #0x18
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r5, r4
 	add r1, r6, #0
 	add r0, #0xd2
 	add r1, #0x20
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r5, r4
 	add r6, #0x28
 	add r0, #0xda
 	add r1, r6, #0
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r5, r4
 	add r1, r7, #0
 	mov r2, #0xa8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0202D6D8: .word 0x00002710
@@ -1019,7 +1019,7 @@ sub_0202D6DC: ; 0x0202D6DC
 	add r1, r5, r1
 	lsl r2, r2, #2
 	add r6, r3, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _0202D704 ; =0x00000103
 	strb r4, [r5, r0]
 	sub r0, r0, #1
@@ -1060,7 +1060,7 @@ sub_0202D71C: ; 0x0202D71C
 	add r0, r5, r0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0202D71C

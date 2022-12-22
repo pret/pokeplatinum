@@ -496,7 +496,7 @@ sub_02056A18: ; 0x02056A18
 	beq _02056A2A
 	add r0, #0x2a
 	mov r2, #0x78
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02056A2A:
 	pop {r3, pc}
 	thumb_func_end sub_02056A18
@@ -509,7 +509,7 @@ sub_02056A2C: ; 0x02056A2C
 	add r1, r4, #0
 	add r1, #0x2a
 	mov r2, #0x78
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r1, [r4]
 	mov r0, #4
 	orr r0, r1

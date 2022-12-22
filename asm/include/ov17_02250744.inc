@@ -58,9 +58,9 @@
 .public sub_02095848
 .public sub_02095928
 .public sub_0209598C
-.public sub_020C4CF4
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public _ull_mul
+.public _s32_div_f
 .public ov17_0223F560
 .public ov17_0223F5E8
 .public ov17_0223F630

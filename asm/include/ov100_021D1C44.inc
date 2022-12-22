@@ -39,11 +39,11 @@
 .public sub_020241B4
 .public sub_020241BC
 .public sub_02025F30
-.public sub_020BF55C
-.public sub_020BF578
-.public sub_020BFD2C
-.public sub_020D5124
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public G2x_SetBlendBrightness_
+.public G3X_SetEdgeColorTable
+.public memset
+.public _s32_div_f
 .public ov100_021D1C44
 .public ov100_021D1C98
 .public ov100_021D2250

@@ -1,1 +1,1 @@
-.public sub_020BFAB8
+.public G3X_Reset

@@ -1,8 +1,8 @@
-.public sub_020D407C
-.public sub_020D8D14
-.public sub_020D8E28
-.public sub_020DAE0C
-.public sub_020E1F6C
+.public __msl_assertion_failed
+.public strcmp
+.public strncmp
+.public atoi
+.public _s32_div_f
 .public ov4_021D7880
 .public ov4_021D78B0
 .public ov4_021EA1FC

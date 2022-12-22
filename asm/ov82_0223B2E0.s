@@ -173,7 +173,7 @@ _0223B3EE:
 	add r2, r0, #0
 	ldr r1, [r4, #0x18]
 	add r0, r5, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [r4, #0x18]
 	bl sub_020181C4
 	mov r0, #0

@@ -95,9 +95,9 @@
 .public sub_020701DC
 .public sub_02070288
 .public sub_020702D0
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _s32_div_f
 .public ov5_021D3190
 .public ov5_021D32E8
 .public ov5_021D3374

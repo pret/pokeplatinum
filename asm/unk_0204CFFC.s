@@ -783,7 +783,7 @@ sub_0204D614: ; 0x0204D614
 	mov r0, #0x96
 	mul r0, r4
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 _0204D69A:

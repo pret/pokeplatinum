@@ -8,7 +8,7 @@
 .public sub_020183C4
 .public sub_02019044
 .public sub_02019448
-.public sub_020E2178
+.public _u32_div_f
 .public ov25_02254664
 .public ov25_02254674
 .public ov25_022546B8

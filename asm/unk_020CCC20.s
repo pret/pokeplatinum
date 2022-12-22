@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CCC20
-sub_020CCC20: ; 0x020CCC20
+	arm_func_start CARDi_RequestStreamCommandCore
+CARDi_RequestStreamCommandCore: ; 0x020CCC20
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sb, r0
 	ldr r7, [sb, #0x2c]
@@ -15,10 +15,10 @@ sub_020CCC20: ; 0x020CCC20
 	ldr r4, [sb, #0x34]
 	ldr sl, [sb, #0x30]
 	mov r5, #0x100
-	bl sub_02000B9C
+	bl OSi_ReferSymbol
 	cmp r7, #0xb
 	bne _020CCC54
-	bl sub_020CCEF8
+	bl CARD_GetBackupSectorSize
 	mov r5, r0
 	b _020CCC64
 _020CCC54:
@@ -57,7 +57,7 @@ _020CCCB4: ; jump table
 _020CCCC4:
 	mov r0, r6
 	mov r1, r8
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [sb, #0x1c]
 	ldr r0, [sb]
 	str r1, [r0, #0xc]
@@ -68,11 +68,11 @@ _020CCCE8:
 	ldr r0, [sb, #0x1c]
 	mov r1, r6
 	mov r2, r8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r6
 	mov r1, r8
-	bl sub_020C2C54
-	bl sub_020C2C78
+	bl DC_FlushRange
+	bl DC_WaitWriteBufferEmpty
 	ldr r0, [sb]
 	str r6, [r0, #0xc]
 	ldr r1, [sb, #0x20]
@@ -90,7 +90,7 @@ _020CCD38:
 	mov r0, sb
 	mov r1, r7
 	mov r2, sl
-	bl sub_020CD7F8
+	bl CARDi_Request
 	cmp r0, #0
 	beq _020CCDB4
 	cmp r4, #2
@@ -98,7 +98,7 @@ _020CCD38:
 	mov r0, sb
 	mov r1, fp
 	mov r2, #1
-	bl sub_020CD7F8
+	bl CARDi_Request
 	cmp r0, #0
 	beq _020CCDB4
 	b _020CCD8C
@@ -108,7 +108,7 @@ _020CCD74:
 	ldr r1, [sb, #0x20]
 	mov r0, r6
 	mov r2, r8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _020CCD8C:
 	ldr r0, [sb, #0x1c]
 	add r0, r0, r8
@@ -123,21 +123,21 @@ _020CCD8C:
 _020CCDB4:
 	ldr r6, [sb, #0x38]
 	ldr r5, [sb, #0x3c]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [sb, #0x114]
 	mov r4, r0
 	bic r0, r1, #0x4c
 	str r0, [sb, #0x114]
 	add r0, sb, #0x10c
-	bl sub_020C2268
+	bl OS_WakeupThread
 	ldr r0, [sb, #0x114]
 	tst r0, #0x10
 	beq _020CCDEC
 	add r0, sb, #0x44
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _020CCDEC:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r6, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	mov r0, r5
@@ -146,10 +146,10 @@ _020CCDEC:
 	; .align 2, 0
 _020CCE08: .word 0x02000BFC
 _020CCE0C: .word 0x021CEE20
-	arm_func_end sub_020CCC20
+	arm_func_end CARDi_RequestStreamCommandCore
 
-	arm_func_start sub_020CCE10
-sub_020CCE10: ; 0x020CCE10
+	arm_func_start CARDi_RequestStreamCommand
+CARDi_RequestStreamCommand: ; 0x020CCE10
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
 	ldr r4, _020CCEE8 ; =0x021CEE20
@@ -157,15 +157,15 @@ sub_020CCE10: ; 0x020CCE10
 	mov r8, r1
 	mov r7, r2
 	mov r6, r3
-	bl sub_02000B9C
-	bl sub_020C3D98
+	bl OSi_ReferSymbol
+	bl OS_DisableInterrupts
 	ldr r1, [r4, #0x114]
 	mov r5, r0
 	tst r1, #4
 	beq _020CCE58
 _020CCE44:
 	add r0, r4, #0x10c
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r0, [r4, #0x114]
 	tst r0, #4
 	bne _020CCE44
@@ -177,7 +177,7 @@ _020CCE58:
 	str r2, [r4, #0x114]
 	str r6, [r4, #0x38]
 	str r1, [r4, #0x3c]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r3, [sp, #0x28]
 	ldr r2, [sp, #0x2c]
 	ldr r1, [sp, #0x30]
@@ -190,8 +190,8 @@ _020CCE58:
 	str r1, [r4, #0x34]
 	cmp r0, #0
 	beq _020CCEB8
-	ldr r0, _020CCEF0 ; =sub_020CCC20
-	bl sub_020CC544
+	ldr r0, _020CCEF0 ; =CARDi_RequestStreamCommandCore
+	bl CARDi_SetTask
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _020CCEB8:
@@ -200,7 +200,7 @@ _020CCEB8:
 	ldr r2, [r0, #4]
 	mov r0, r4
 	str r2, [r1, #0x104]
-	bl sub_020CCC20
+	bl CARDi_RequestStreamCommandCore
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -210,40 +210,40 @@ _020CCEB8:
 	; .align 2, 0
 _020CCEE8: .word 0x021CEE20
 _020CCEEC: .word 0x02000BFC
-_020CCEF0: .word sub_020CCC20
+_020CCEF0: .word CARDi_RequestStreamCommandCore
 _020CCEF4: .word 0x021CCC80
-	arm_func_end sub_020CCE10
+	arm_func_end CARDi_RequestStreamCommand
 
-	arm_func_start sub_020CCEF8
-sub_020CCEF8: ; 0x020CCEF8
+	arm_func_start CARD_GetBackupSectorSize
+CARD_GetBackupSectorSize: ; 0x020CCEF8
 	ldr r0, _020CCF08 ; =0x021CEE20
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0x1c]
 	bx lr
 	; .align 2, 0
 _020CCF08: .word 0x021CEE20
-	arm_func_end sub_020CCEF8
+	arm_func_end CARD_GetBackupSectorSize
 
-	arm_func_start sub_020CCF0C
-sub_020CCF0C: ; 0x020CCF0C
+	arm_func_start CARD_IdentifyBackup
+CARD_IdentifyBackup: ; 0x020CCF0C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r0
 	ldr r0, _020CD038 ; =0x02000BFC
 	ldr r4, _020CD03C ; =0x021CEE20
-	bl sub_02000B9C
+	bl OSi_ReferSymbol
 	cmp r6, #0
 	bne _020CCF2C
-	bl sub_020C42A8
+	bl OS_Terminate
 _020CCF2C:
-	bl sub_020CC7B0
-	bl sub_020C3D98
+	bl CARD_CheckEnabled
+	bl OS_DisableInterrupts
 	ldr r1, [r4, #0x114]
 	mov r5, r0
 	tst r1, #4
 	beq _020CCF58
 _020CCF44:
 	add r0, r4, #0x10c
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r0, [r4, #0x114]
 	tst r0, #4
 	bne _020CCF44
@@ -255,9 +255,9 @@ _020CCF58:
 	str r2, [r4, #0x114]
 	str r1, [r4, #0x38]
 	str r1, [r4, #0x3c]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r6
-	bl sub_020CC8D8
+	bl CARDi_IdentifyBackupCore
 	ldr r0, _020CD040 ; =0x021CCC80
 	ldr r1, _020CD03C ; =0x021CEE20
 	ldr r2, [r0, #4]
@@ -265,7 +265,7 @@ _020CCF58:
 	str r2, [r1, #0x104]
 	mov r1, #2
 	mov r2, #1
-	bl sub_020CD7F8
+	bl CARDi_Request
 	ldr r0, [r4, #0]
 	mov r1, #0
 	str r1, [r0, #0xc]
@@ -277,24 +277,24 @@ _020CCF58:
 	mov r0, r4
 	str r2, [r1, #0x14]
 	mov r1, #6
-	bl sub_020CD7F8
+	bl CARDi_Request
 	ldr r7, [r4, #0x38]
 	ldr r6, [r4, #0x3c]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	ldr r1, [r4, #0x114]
 	add r0, r4, #0x10c
 	bic r1, r1, #0x4c
 	str r1, [r4, #0x114]
-	bl sub_020C2268
+	bl OS_WakeupThread
 	ldr r0, [r4, #0x114]
 	tst r0, #0x10
 	beq _020CD008
 	add r0, r4, #0x44
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _020CD008:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r7, #0
 	beq _020CD020
 	mov r0, r6
@@ -310,34 +310,34 @@ _020CD020:
 _020CD038: .word 0x02000BFC
 _020CD03C: .word 0x021CEE20
 _020CD040: .word 0x021CCC80
-	arm_func_end sub_020CCF0C
+	arm_func_end CARD_IdentifyBackup
 
-	arm_func_start sub_020CD044
-sub_020CD044: ; 0x020CD044
-	ldr ip, _020CD04C ; =sub_020CC7D8
+	arm_func_start CARD_WaitBackupAsync
+CARD_WaitBackupAsync: ; 0x020CD044
+	ldr ip, _020CD04C ; =CARDi_WaitAsync
 	bx ip
 	; .align 2, 0
-_020CD04C: .word sub_020CC7D8
-	arm_func_end sub_020CD044
+_020CD04C: .word CARDi_WaitAsync
+	arm_func_end CARD_WaitBackupAsync
 
-	arm_func_start sub_020CD050
-sub_020CD050: ; 0x020CD050
-	ldr ip, _020CD058 ; =sub_020CC824
+	arm_func_start CARD_TryWaitBackupAsync
+CARD_TryWaitBackupAsync: ; 0x020CD050
+	ldr ip, _020CD058 ; =CARDi_TryWaitAsync
 	bx ip
 	; .align 2, 0
-_020CD058: .word sub_020CC824
-	arm_func_end sub_020CD050
+_020CD058: .word CARDi_TryWaitAsync
+	arm_func_end CARD_TryWaitBackupAsync
 
-	arm_func_start sub_020CD05C
-sub_020CD05C: ; 0x020CD05C
+	arm_func_start CARD_CancelBackupAsync
+CARD_CancelBackupAsync: ; 0x020CD05C
 	stmfd sp!, {r3, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CD07C ; =0x021CEE20
 	ldr r2, [r1, #0x114]
 	orr r2, r2, #0x40
 	str r2, [r1, #0x114]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CD07C: .word 0x021CEE20
-	arm_func_end sub_020CD05C
+	arm_func_end CARD_CancelBackupAsync

@@ -4,8 +4,8 @@
 .public sub_0200D74C
 .public sub_02019184
 .public sub_0201D2B8
-.public sub_020E1A9C
-.public sub_020E1F1C
+.public _f_sub
+.public _ull_mul
 .public ov99_021D2CB0
 .public ov99_021D2CEC
 .public ov99_021D2D18

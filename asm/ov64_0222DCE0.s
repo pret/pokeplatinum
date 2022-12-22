@@ -25,7 +25,7 @@ ov64_0222DCE0: ; 0x0222DCE0
 	ldr r2, _0222DDA4 ; =0x000004D8
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	add r1, r0, #0
@@ -484,7 +484,7 @@ ov64_0222E09C: ; 0x0222E09C
 	bl sub_0202B370
 	add r5, r0, #0
 	bl sub_0202AD28
-	bl sub_020A471C
+	bl DWC_CreateFriendKey
 	str r0, [sp, #0x10]
 	str r1, [sp, #0xc]
 	mov r4, #0
@@ -512,7 +512,7 @@ _0222E0BC:
 	bl sub_0202AD28
 	add r1, r7, #0
 	add r2, r6, #0
-	bl sub_020A4118
+	bl DWC_CheckFriendKey
 	cmp r0, #0
 	bne _0222E0FE
 	add sp, #0x20
@@ -536,7 +536,7 @@ _0222E116:
 	bl sub_0202AED8
 	add r1, r7, #0
 	add r2, r6, #0
-	bl sub_020A474C
+	bl DWC_CreateFriendKeyToken
 	ldr r2, [sp, #4]
 	add r0, r5, #0
 	add r1, r4, #0
@@ -584,7 +584,7 @@ ov64_0222E164: ; 0x0222E164
 	add r0, #8
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r6, #0]
 	bl sub_0202B370
 	mov r5, #0
@@ -889,7 +889,7 @@ ov64_0222E3D8: ; 0x0222E3D8
 	sub sp, #0x3c
 	add r7, r1, #0
 	add r5, r0, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0x10
 	add r1, r7, #0
 	bl sub_0201DBEC
@@ -1408,7 +1408,7 @@ ov64_0222E7F8: ; 0x0222E7F8
 	add r0, r4, #0
 	add r1, r6, #0
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	add r2, r0, #0
 	mov r0, #2
 	str r0, [sp]
@@ -1423,10 +1423,10 @@ ov64_0222E7F8: ; 0x0222E7F8
 	add r0, r4, #0
 	add r1, r6, #0
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r2, _0222E87C ; =0x00002710
 	mov r3, #0
-	bl sub_020E1EE0
+	bl _ull_mod
 	mov r1, #2
 	add r2, r0, #0
 	str r1, [sp]
@@ -1441,7 +1441,7 @@ ov64_0222E7F8: ; 0x0222E7F8
 	add r0, r4, #0
 	add r1, r6, #0
 	mov r3, #0
-	bl sub_020E1EE0
+	bl _ull_mod
 	add r2, r0, #0
 	mov r0, #2
 	str r0, [sp]
@@ -3672,7 +3672,7 @@ _0222F99C:
 _0222F9D8:
 	lsl r0, r0, #8
 	mov r1, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r0, #0
 	add r0, r5, #0
 	add r0, #0xb2
@@ -3710,12 +3710,12 @@ _0222F9EE:
 	ldrsh r6, [r5, r0]
 	mov r1, #3
 	add r0, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	beq _0222FA56
 	add r0, r6, #0
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r1, r0, #2
 	ldr r0, _0222FA6C ; =0x02232440
 	ldr r6, [r0, r1]
@@ -3911,7 +3911,7 @@ ov64_0222FBA4: ; 0x0222FBA4
 	ldrb r1, [r6, r7]
 	ldr r0, [sp, #0x10]
 	bl sub_0202AED8
-	bl sub_020A4670
+	bl DWC_GetFriendKey
 	str r1, [sp, #0xc]
 	str r0, [sp, #0x14]
 	ldr r0, [sp, #0xc]
@@ -5392,7 +5392,7 @@ ov64_02230680: ; 0x02230680
 	ldr r0, [r0, #0]
 	bl sub_0202B370
 	bl sub_0202AD28
-	bl sub_020A471C
+	bl DWC_CreateFriendKey
 	str r1, [sp, #0x1c]
 	str r0, [sp, #0x24]
 	ldr r0, [sp, #0x1c]
@@ -6422,7 +6422,7 @@ _02230EEE:
 	beq _02230F1E
 _02230EF6:
 	add r0, r4, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r1, #0
 	add r1, r5, r4
 	ldrb r1, [r1, #0xc]
@@ -8682,7 +8682,7 @@ _02232148:
 	ldrsh r0, [r4, r0]
 	add r0, r0, r1
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r1, [r4]
 	pop {r4, pc}
 _02232160:

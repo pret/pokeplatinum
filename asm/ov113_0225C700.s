@@ -51,7 +51,7 @@ ov113_0225C700: ; 0x0225C700
 	ldr r2, _0225C9D0 ; =0x000019E4
 	mov r1, #0
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_02006840
 	str r0, [r5, #0]
@@ -953,25 +953,25 @@ _0225CF6C:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _0225D11C ; =0x022608D8
 	add r3, sp, #0
 	add r2, r3, #0
@@ -1274,12 +1274,12 @@ _0225D1FA:
 	add r1, r4, r1
 	lsl r2, r2, #0xa
 	add r5, r0, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r2, #2
 	mov r0, #0
 	add r1, r5, #0
 	lsl r2, r2, #0xa
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, [r4, #4]
 	bl sub_02025E44
 	bl sub_02027B50
@@ -2138,12 +2138,12 @@ _0225D952:
 	bl sub_0200723C
 	add r1, sp, #0xc
 	str r0, [sp, #8]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0xc]
 	mov r1, #1
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0xc]
 	ldr r4, [r0, #0x14]
 	add r0, r4, #0
@@ -2161,11 +2161,11 @@ _0225D98C:
 	bl sub_0200723C
 	add r1, sp, #0xc
 	str r0, [sp, #8]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0xc]
 	mov r1, #0x80
 	ldr r0, [r0, #0x14]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0xc]
 	ldr r4, [r0, #0x14]
 	str r4, [sp, #4]
@@ -2190,13 +2190,13 @@ _0225D9C6:
 	ldr r1, [r6, r7]
 	ldr r0, [sp, #4]
 	add r1, r5, r1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, [r6, r7]
 	add r5, #0x40
 	add r0, r4, #0
 	add r1, r5, r1
 	mov r2, #0x40
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #8]
 	bl sub_020181C4
 	mov r0, #1
@@ -2356,7 +2356,7 @@ ov113_0225DB08: ; 0x0225DB08
 	str r0, [sp, #0x2c]
 	str r0, [sp, #0x30]
 	add r0, sp, #4
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	bl sub_020241B4
 	add r0, r4, #0
 	add r0, #0xcc
@@ -2372,34 +2372,34 @@ ov113_0225DB08: ; 0x0225DB08
 	ldr r2, _0225DBB8 ; =0xFFFFF000
 	add r1, r0, #0
 	add r3, r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _0225DBBC ; =0x0000739C
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _0225DBC0 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _0225DBC0 ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	add r0, sp, #0x28
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _0225DBC4 ; =0x021C5B48
 	add r0, sp, #4
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _0225DBC8 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, sp, #0x34
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
+	bl NNS_G3dGlbSetBaseScale
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, r4, #0
 	add r0, #0xe8
 	bl sub_02017294
@@ -2411,7 +2411,7 @@ ov113_0225DB08: ; 0x0225DB08
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, #0x40
 	pop {r4, pc}
 	nop
@@ -2566,13 +2566,13 @@ ov113_0225DC88: ; 0x0225DC88
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0225DD00 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0225DD04 ; =0xBFFF0000
 	ldr r0, _0225DD08 ; =0x04000580
 	str r1, [r0, #0]
@@ -2612,7 +2612,7 @@ ov113_0225DD24: ; 0x0225DD24
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x96
 	strh r0, [r4, #2]
 	mov r0, #0x1f
@@ -2642,7 +2642,7 @@ ov113_0225DD4C: ; 0x0225DD4C
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x48
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_0207A268
 	str r0, [sp, #4]
@@ -2855,7 +2855,7 @@ _0225DEFA:
 	ldr r0, [sp, #0x20]
 	add r1, r1, r3
 	add r0, r0, r3
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r5, r5, #1
 _0225DF18:
 	ldrh r1, [r4, #2]
@@ -3106,7 +3106,7 @@ ov113_0225E0D4: ; 0x0225E0D4
 	add r0, #0x22
 	add r1, #0x22
 	mov r2, #0xc
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r4, #0x11
 	mov r0, #0
 	lsl r1, r4, #1
@@ -3302,7 +3302,7 @@ ov113_0225E264: ; 0x0225E264
 	add r1, r4, r1
 	asr r5, r1, #3
 	mov r1, #8
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	beq _0225E28C
 	add r5, r5, #1

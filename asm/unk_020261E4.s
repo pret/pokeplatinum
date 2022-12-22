@@ -21,7 +21,7 @@ sub_020261EC: ; 0x020261EC
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl sub_02073C54
 	add r0, r4, #0

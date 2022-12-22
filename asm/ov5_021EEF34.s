@@ -14,7 +14,7 @@ ov5_021EEF34: ; 0x021EEF34
 	mov r0, #0
 	mov r2, #0x18
 	add r4, r1, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r5, #0
 	mov r1, #4
 	add r2, sp, #0

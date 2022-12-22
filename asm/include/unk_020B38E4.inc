@@ -1,1 +1,1 @@
-.public sub_020B3D84
+.public NNSi_G3dGetTexPatAnmDataByIdx

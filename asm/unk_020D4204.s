@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D4204
-sub_020D4204: ; 0x020D4204
+	arm_func_start fread
+fread: ; 0x020D4204
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	ldr r4, _020D42FC ; =0x02101490
 	mov r7, r3
@@ -21,7 +21,7 @@ sub_020D4204: ; 0x020D4204
 	mov sb, r1
 	add r0, r5, r4
 	mov r8, r2
-	bl sub_020C2AF4
+	bl OS_TryLockMutex
 	cmp r0, #0
 	bne _020D4268
 	ldr r0, _020D4304 ; =0x021CCC80
@@ -48,7 +48,7 @@ _020D4268:
 	b _020D42C0
 _020D4298:
 	add r0, r5, r4
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _020D4304 ; =0x021CCC80
 	ldr r2, _020D4308 ; =0x021D0920
 	ldr r1, [r0, #4]
@@ -62,7 +62,7 @@ _020D42C0:
 	mov r1, sb
 	mov r2, r8
 	mov r3, r7
-	bl sub_020D4310
+	bl __fread
 	ldr r1, _020D430C ; =0x021D0944
 	mov r7, r0
 	ldr r0, [r1, r6, lsl #2]
@@ -70,7 +70,7 @@ _020D42C0:
 	str r0, [r1, r6, lsl #2]
 	bne _020D42F4
 	add r0, r5, r4
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 _020D42F4:
 	mov r0, r7
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
@@ -80,10 +80,10 @@ _020D4300: .word 0x021D0968
 _020D4304: .word 0x021CCC80
 _020D4308: .word 0x021D0920
 _020D430C: .word 0x021D0944
-	arm_func_end sub_020D4204
+	arm_func_end fread
 
-	arm_func_start sub_020D4310
-sub_020D4310: ; 0x020D4310
+	arm_func_start __fread
+__fread: ; 0x020D4310
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #4
 	mov r7, r3
@@ -92,12 +92,12 @@ sub_020D4310: ; 0x020D4310
 	mov r0, r7
 	mov r1, #0
 	mov r4, r2
-	bl sub_020DAE20
+	bl fwide
 	cmp r0, #0
 	bne _020D4348
 	mov r0, r7
 	mvn r1, #0
-	bl sub_020DAE20
+	bl fwide
 _020D4348:
 	muls r4, r8, r4
 	beq _020D436C
@@ -152,7 +152,7 @@ _020D43F8:
 	mov r0, r0, lsr #0x1e
 	tst r0, #1
 	beq _020D4430
-	bl sub_020D3F7C
+	bl __flush_line_buffered_output_files
 	cmp r0, #0
 	beq _020D4430
 	mov r0, #1
@@ -174,7 +174,7 @@ _020D4430:
 _020D4454:
 	mov r0, r7
 	mov r1, sl
-	bl sub_020DAE20
+	bl fwide
 	cmp r0, #1
 	ldr r0, [r7, #8]
 	bne _020D4488
@@ -230,7 +230,7 @@ _020D4510:
 	mov r0, r7
 	mov r1, sl
 	mov r2, sl
-	bl sub_020D40F0
+	bl __load_buffer
 	cmp r0, #0
 	beq _020D4564
 	cmp r0, #1
@@ -254,7 +254,7 @@ _020D4564:
 	ldr r1, [r7, #0x24]
 	ldr r2, [sp]
 	mov r0, sb
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp]
 	ldr r0, [r7, #0x24]
 	subs r4, r4, r2
@@ -280,7 +280,7 @@ _020D45B8:
 	mov r0, r7
 	mov r2, #1
 	str r4, [r7, #0x20]
-	bl sub_020D40F0
+	bl __load_buffer
 	cmp r0, #0
 	beq _020D4624
 	cmp r0, #1
@@ -303,19 +303,19 @@ _020D4624:
 	str r6, [r7, #0x1c]
 	str sl, [r7, #0x20]
 	add r5, r5, r1
-	bl sub_020D40C0
+	bl __prep_buffer
 	mov r0, #0
 	str r0, [r7, #0x28]
 _020D4644:
 	mov r0, r5
 	mov r1, r8
-	bl sub_020E2178
+	bl _u32_div_f
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end sub_020D4310
+	arm_func_end __fread
 
-	arm_func_start sub_020D4658
-sub_020D4658: ; 0x020D4658
+	arm_func_start __fwrite
+__fwrite: ; 0x020D4658
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	mov sb, r3
@@ -324,12 +324,12 @@ sub_020D4658: ; 0x020D4658
 	mov r0, sb
 	mov r1, #0
 	mov r4, r2
-	bl sub_020DAE20
+	bl fwide
 	cmp r0, #0
 	bne _020D4690
 	mov r0, sb
 	mvn r1, #0
-	bl sub_020DAE20
+	bl fwide
 _020D4690:
 	ldr r0, [sp]
 	muls r5, r0, r4
@@ -367,7 +367,7 @@ _020D46C4:
 	orr r1, r0, #1
 	mov r0, sb
 	str r1, [sb, #8]
-	bl sub_020D40C0
+	bl __prep_buffer
 _020D471C:
 	ldr r0, [sb, #8]
 	mov r0, r0, lsl #0x1d
@@ -411,7 +411,7 @@ _020D4780:
 	beq _020D47D0
 	mov r0, sl
 	mov r1, fp
-	bl sub_020D5164
+	bl __memrchr
 	movs r7, r0
 	addne r0, r7, #1
 	subne r0, r0, sl
@@ -422,7 +422,7 @@ _020D47D0:
 	beq _020D4810
 	ldr r0, [sb, #0x24]
 	mov r1, sl
-	bl sub_020D50B8
+	bl memcpy
 	ldr r2, [sp, #4]
 	ldr r0, [sb, #0x24]
 	add sl, sl, r2
@@ -446,7 +446,7 @@ _020D4810:
 _020D4834:
 	mov r0, sb
 	mov r1, #0
-	bl sub_020D417C
+	bl __flush_buffer
 	cmp r0, #0
 	beq _020D485C
 	mov r0, #1
@@ -473,7 +473,7 @@ _020D4870:
 	add r1, sp, #4
 	mov r0, sb
 	str r2, [sb, #0x24]
-	bl sub_020D417C
+	bl __flush_buffer
 	cmp r0, #0
 	ldreq r0, [sp, #4]
 	addeq r6, r6, r0
@@ -486,7 +486,7 @@ _020D48C4:
 	str r4, [sb, #0x1c]
 	mov r0, sb
 	str r7, [sb, #0x20]
-	bl sub_020D40C0
+	bl __prep_buffer
 	mov r0, #0
 	str r0, [sb, #0x28]
 _020D48DC:
@@ -498,7 +498,7 @@ _020D48DC:
 	movne r0, #0
 	strne r0, [sb, #0x28]
 	mov r0, r6
-	bl sub_020E2178
+	bl _u32_div_f
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020D4658
+	arm_func_end __fwrite

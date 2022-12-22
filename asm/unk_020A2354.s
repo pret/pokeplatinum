@@ -25,7 +25,7 @@ sub_020A2354: ; 0x020A2354
 	mov r2, r2, asr #8
 	str r2, [r0, #4]
 	str lr, [r0, #8]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0
@@ -56,7 +56,7 @@ sub_020A23B0: ; 0x020A23B0
 	str r2, [ip]
 	mov r2, r2, asr #8
 	str r2, [r0, #8]
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0

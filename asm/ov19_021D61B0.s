@@ -65,7 +65,7 @@ _021D61E0:
 	mov r1, #0x10
 	orr r1, r2
 	str r1, [r0, #0]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r2, #0x80
@@ -93,7 +93,7 @@ _021D61E0:
 	mov r0, #0x51
 	lsl r0, r0, #2
 	add r0, r4, r0
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	mov r0, #0xa
 	str r0, [sp]
 	mov r0, #0x51
@@ -322,9 +322,9 @@ ov19_021D6474: ; 0x021D6474
 	push {r4, lr}
 	add r4, r1, #0
 	bl ov19_021D797C
-	bl sub_020BFAB8
-	bl sub_020BFBE4
-	bl sub_020A73C0
+	bl G3X_Reset
+	bl G3X_ResetMtxStack
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	mov r0, #0x56
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
@@ -658,7 +658,7 @@ _021D6730:
 	mov r1, #0
 	mov r2, #0x3f
 	mov r3, #6
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	mov r1, #1
@@ -707,7 +707,7 @@ _021D6794:
 	mov r1, #0
 	mov r2, #0x3f
 	mov r3, #6
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #6
 	str r0, [sp]
 	mov r1, #1
@@ -2470,7 +2470,7 @@ ov19_021D74B4: ; 0x021D74B4
 	mov r0, #1
 	mov r1, #0
 	add r2, r0, #0
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	ldr r0, _021D75A4 ; =0x021DFE48
 	bl sub_02018368
 	mov r0, #0x57
@@ -2695,7 +2695,7 @@ _021D76CA:
 	mov r0, #0x10
 	mov r1, #1
 	bl sub_0201FF74
-	bl sub_020BDDF8
+	bl GX_DispOn
 	add sp, #0x10
 	pop {r4, r5, r6, pc}
 	nop
@@ -2710,8 +2710,8 @@ _021D76F8: .word 0x0000B22C
 	thumb_func_start ov19_021D76FC
 ov19_021D76FC: ; 0x021D76FC
 	push {r3, lr}
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF0C
@@ -2748,7 +2748,7 @@ ov19_021D76FC: ; 0x021D76FC
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D776C ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -2943,13 +2943,13 @@ ov19_021D785C: ; 0x021D785C
 	str r0, [sp, #0x18]
 	mov r0, #0xa
 	str r0, [sp, #0x1c]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	add r0, sp, #0
 	bl sub_02021B90
 	add r5, r0, #0
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r5, #0
 	beq _021D78A6
 	add r0, r5, #0
@@ -2970,13 +2970,13 @@ ov19_021D78AC: ; 0x021D78AC
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r6, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
 	bl sub_02021F58
 	add r0, r6, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov19_021D78AC
 

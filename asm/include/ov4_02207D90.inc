@@ -1,6 +1,6 @@
-.public sub_020C24A4
-.public sub_020C3D98
-.public sub_020C3DAC
+.public OS_Sleep
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
 .public ov4_02205F84
 .public ov4_02207A18
 .public ov4_02207A4C

@@ -1,8 +1,8 @@
-.public sub_020A4E78
-.public sub_020A4EF4
-.public sub_020A5660
-.public sub_020A56A8
-.public sub_020A5704
-.public sub_020A575C
-.public sub_020A5770
-.public sub_020C4B4C
+.public NNSi_FndInitHeapHead
+.public NNSi_FndFinalizeHeap
+.public InitFrameHeap
+.public AllocFromHead_dup2
+.public AllocFromTail_dup2
+.public FreeHead
+.public FreeTail
+.public MIi_CpuClear32

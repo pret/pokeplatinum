@@ -43,7 +43,7 @@ _02244480:
 	add r0, r2, r7, lsl #2
 	ldr r1, [r0, #0x674]
 	add r0, r2, r8
-	bl sub_020AC86C
+	bl NNS_G2dFontInitUTF16
 	add r7, r7, #1
 	cmp r7, #2
 	add r8, r8, #8
@@ -67,7 +67,7 @@ _022444D8:
 	add r0, r2, r8, lsl #2
 	ldr r1, [r0, #0x674]
 	add r0, r2, r7
-	bl sub_020AC86C
+	bl NNS_G2dFontInitUTF16
 	add r8, r8, #1
 	cmp r8, #2
 	add r7, r7, #8
@@ -129,7 +129,7 @@ ov18_02244574: ; 0x02244574
 	mov r0, r6
 	strh r1, [r4, #0x2c]
 	mov r1, r5
-	bl sub_020ADA78
+	bl NNSi_G2dCalcRequiredOBJ
 	ldr r1, [sp, #0x20]
 	cmp r7, #1
 	str r0, [r1, #0]
@@ -142,7 +142,7 @@ ov18_02244574: ; 0x02244574
 	mov r2, r6
 	mov r3, r5
 	add r1, ip, r7, lsl #7
-	bl sub_020AD8E4
+	bl NNS_G2dCharCanvasInitForOBJ1D
 	ldr r1, [r4, #0x14]
 	mov r0, r4
 	ldr r2, [r1, #4]
@@ -228,7 +228,7 @@ _02244714:
 	mov r0, r4
 	mov r2, r6
 	mov r3, r5
-	bl sub_020AD8B8
+	bl NNS_G2dCharCanvasInitForBG
 	ldr r0, _022447D8 ; =0x022533C0
 	mov r1, #1
 	ldr r0, [r0, #0]
@@ -239,10 +239,10 @@ _02244714:
 	str r1, [r4, #0x20]
 	str r1, [r4, #0x24]
 	bne _02244760
-	bl sub_020BF070
+	bl G2S_GetBG0ScrPtr
 	b _02244764
 _02244760:
-	bl sub_020BF03C
+	bl G2_GetBG0ScrPtr
 _02244764:
 	ldr r1, _022447EC ; =0x02249728
 	mov r2, r8, lsl #1
@@ -256,7 +256,7 @@ _02244764:
 	str r7, [sp, #8]
 	mov r5, #0xf
 	str r5, [sp, #0xc]
-	bl sub_020AD96C
+	bl NNS_G2dMapScrToCharText
 	mov r0, r4
 	mov r1, #0
 	bl ov18_02244B5C
@@ -298,24 +298,24 @@ ov18_022447F4: ; 0x022447F4
 	bne _02244848
 	ldr r0, [r1, #0x638]
 	mov r1, #0x6000
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02244878 ; =0x022533C0
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x6000
 	ldr r0, [r0, #0x638]
-	bl sub_020C066C
+	bl GX_LoadBG0Char
 	b _0224486C
 _02244848:
 	ldr r0, [r1, #0x668]
 	mov r1, #0x3000
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _02244878 ; =0x022533C0
 	mov r1, #0x3000
 	ldr r0, [r0, #0]
 	mov r2, r1
 	ldr r0, [r0, #0x668]
-	bl sub_020C06CC
+	bl GXS_LoadBG0Char
 _0224486C:
 	mov r0, #0
 	strb r0, [r4]
@@ -336,18 +336,18 @@ ov18_0224487C: ; 0x0224487C
 	add r0, r0, #0x610
 	cmp r4, r0
 	bne _022448BC
-	bl sub_020BF2D4
+	bl G2_GetBG0CharPtr
 	mov r1, r0
 	mov r0, #0
 	mov r2, #0x6000
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	b _022448D0
 _022448BC:
-	bl sub_020BF2D4
+	bl G2_GetBG0CharPtr
 	mov r1, r0
 	mov r0, #0
 	mov r2, #0x3000
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _022448D0:
 	add r0, r4, #0x28
 	bl ov18_0224508C
@@ -419,7 +419,7 @@ _02244984:
 	add r0, r0, #0x18
 	strb lr, [sp, #8]
 	strb ip, [sp, #9]
-	bl sub_020ADFE8
+	bl NNSi_G2dTextCanvasDrawText
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	arm_func_end ov18_02244904
@@ -437,7 +437,7 @@ ov18_022449B4: ; 0x022449B4
 	mov r3, r2
 	mov r2, r1
 	add r1, lr, ip, lsl #3
-	bl sub_020AD794
+	bl NNS_G2dCharCanvasDrawChar
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -464,14 +464,14 @@ _02244A24:
 	ldr r0, [r0, #0]
 	add r4, r0, r5, lsl #3
 	mov r0, r4
-	bl sub_020AC890
+	bl NNS_G2dFontFindGlyphIndex
 	mov r1, r0
 	ldr r0, _02244A98 ; =0x0000FFFF
 	cmp r1, r0
 	ldreq r0, [r4]
 	ldreqh r1, [r0, #2]
 	mov r0, r4
-	bl sub_020AC8D8
+	bl NNS_G2dFontGetCharWidthsFromIndex
 	ldrh r1, [r6]
 	mov r2, r0
 	mov r0, sl
@@ -546,7 +546,7 @@ _02244B1C:
 	add r0, r0, #0x18
 	strb lr, [sp, #0x10]
 	strb ip, [sp, #0x11]
-	bl sub_020AE10C
+	bl NNSi_G2dTextCanvasDrawTextRect
 	add sp, sp, #0x18
 	ldmia sp!, {r4, pc}
 	arm_func_end ov18_02244A9C
@@ -597,7 +597,7 @@ ov18_02244B70: ; 0x02244B70
 	str r1, [sp, #0xc]
 	ldrb r1, [r4, #0x2e]
 	ldrb r2, [r4, #0x2f]
-	bl sub_020ADAD4
+	bl NNS_G2dArrangeOBJ1D
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end ov18_02244B70

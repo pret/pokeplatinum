@@ -694,7 +694,7 @@ ov97_0223097C: ; 0x0223097C
 	lsl r1, r1, #2
 	ldr r1, [r2, r1]
 	add r0, sp, #8
-	bl sub_020CC27C
+	bl RTC_ConvertDayToDate
 	mov r0, #2
 	str r0, [sp]
 	mov r0, #1
@@ -1443,7 +1443,7 @@ ov97_02230F58: ; 0x02230F58
 	bl sub_02006FE8
 	add r1, sp, #4
 	add r7, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r0, _02230F94 ; =0x000029FC
 	ldr r2, [sp, #4]
 	lsl r1, r4, #0x18
@@ -1737,13 +1737,13 @@ _02231192:
 	mov r1, #2
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x18]
 	mov r2, #2
 	ldr r0, [r0, #0x14]
 	lsl r1, r7, #5
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	mov r1, #0
 	ldr r0, [sp, #8]
 	add r2, r1, #0
@@ -1791,7 +1791,7 @@ ov97_02231224: ; 0x02231224
 	ldr r2, _02231288 ; =0x00003D54
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x57
 	bl sub_02018340
 	ldr r1, _0223128C ; =0x000029FC
@@ -2054,7 +2054,7 @@ _02231418:
 	mov r1, #6
 	add r0, r2, #0
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r0, #3
 	lsl r0, r0, #0xa
 	ldr r0, [r4, r0]
@@ -2959,14 +2959,14 @@ ov97_02231BD8: ; 0x02231BD8
 	add r0, #0xe0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020D50B8
+	bl memcpy
 	mov r1, #0x41
 	add r0, r5, #0
 	lsl r1, r1, #2
 	add r0, #0x90
 	add r1, r4, r1
 	mov r2, #0x50
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _02231C40 ; =0x00000428
 	mov r1, #0
 	strb r1, [r5, r0]
@@ -3463,7 +3463,7 @@ ov97_02231FFC: ; 0x02231FFC
 	ldr r2, _02232048 ; =0x00003D54
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0223204C ; =0x000029FC
 	mov r1, #0x1e
 	str r6, [r4, r0]

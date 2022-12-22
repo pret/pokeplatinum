@@ -1,2 +1,2 @@
-.public sub_020C2C1C
-.public sub_020C2C54
+.public DC_InvalidateRange
+.public DC_FlushRange

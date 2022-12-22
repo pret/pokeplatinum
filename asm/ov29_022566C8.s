@@ -375,13 +375,13 @@ ov29_02256968: ; 0x02256968
 _022569B0:
 	add r0, r6, r5
 	add r1, r7, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r1, r4, #0
 	add r1, #0xc
 	add r0, r6, r5
 	lsl r1, r1, #5
 	add r2, r7, #0
-	bl sub_020C090C
+	bl GXS_LoadBG3Char
 	mov r0, #0xa
 	lsl r0, r0, #6
 	ldr r1, [sp]

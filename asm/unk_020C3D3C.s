@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C3D3C
-sub_020C3D3C: ; 0x020C3D3C
+	arm_func_start OS_InitVAlarm
+OS_InitVAlarm: ; 0x020C3D3C
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C3D80 ; =0x021CCFD0
 	ldrh r0, [r1]
@@ -19,7 +19,7 @@ sub_020C3D3C: ; 0x020C3D3C
 	str r2, [r1, #0xc]
 	mov r0, #4
 	str r2, [r1, #0x10]
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r0, _020C3D80 ; =0x021CCFD0
 	mov r1, #0
 	str r1, [r0, #8]
@@ -27,7 +27,7 @@ sub_020C3D3C: ; 0x020C3D3C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C3D80: .word 0x021CCFD0
-	arm_func_end sub_020C3D3C
+	arm_func_end OS_InitVAlarm
 
 	.bss
 

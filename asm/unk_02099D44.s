@@ -27,7 +27,7 @@ sub_02099D54: ; 0x02099D54
 	bhs _02099D6E
 	add r0, r1, #0
 	ldr r1, _02099D74 ; =0x021C0A34
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	ldr r0, _02099D78 ; =0x02100D9C
 	str r4, [r0, #0]
 	pop {r4, pc}
@@ -51,7 +51,7 @@ sub_02099D7C: ; 0x02099D7C
 	cmp r0, r3
 	bne _02099D9C
 	ldr r0, _02099DA4 ; =0x021C0A34
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r0, #1
 	pop {r3, pc}
 _02099D98:
@@ -74,7 +74,7 @@ sub_02099DA8: ; 0x02099DA8
 	bhs _02099DC2
 	add r0, r1, #0
 	ldr r1, _02099DC8 ; =0x021C0A34
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	ldr r0, _02099DCC ; =0x02100D9C
 	str r4, [r0, #0]
 	pop {r4, pc}
@@ -98,7 +98,7 @@ sub_02099DD0: ; 0x02099DD0
 	cmp r0, r3
 	bne _02099DF0
 	ldr r0, _02099DF8 ; =0x021C0A34
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, #1
 	pop {r3, pc}
 _02099DEC:

@@ -19,9 +19,9 @@
 .public sub_02054F94
 .public sub_0205EABC
 .public sub_0205EAC8
-.public sub_020BF55C
-.public sub_020D5124
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public memset
+.public _s32_div_f
 .public ov5_021D1B6C
 .public ov5_021D1BEC
 .public ov5_021D1C2C

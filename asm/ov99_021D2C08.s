@@ -193,7 +193,7 @@ _021D2D54:
 	str r1, [r4, #4]
 	asr r1, r0, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	add r7, r0, #0
 	add r6, r1, #0
@@ -223,11 +223,11 @@ _021D2D54:
 _021D2DAE:
 	ldr r1, [r5, #0x1c]
 	mov r0, #0
-	bl sub_020E1A9C
+	bl _f_sub
 	add r6, r0, #0
 	ldr r1, [r5, #0x1c]
 	mov r0, #0
-	bl sub_020E1A9C
+	bl _f_sub
 	add r2, r0, #0
 	ldr r0, [sp]
 	add r1, r6, #0

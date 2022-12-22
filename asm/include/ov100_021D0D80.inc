@@ -60,8 +60,8 @@
 .public sub_02024220
 .public sub_020242C4
 .public sub_02027B50
-.public sub_020C4B4C
-.public sub_020D5124
+.public MIi_CpuClear32
+.public memset
 .public ov100_021D0FA0
 .public ov100_021D1034
 .public ov100_021D111C

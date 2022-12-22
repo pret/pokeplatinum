@@ -8,5 +8,5 @@
 .public sub_02099570
 .public sub_02099580
 .public sub_02099590
-.public sub_020C3EE4
+.public OS_ResetSystem
 .public ov18_0221F800

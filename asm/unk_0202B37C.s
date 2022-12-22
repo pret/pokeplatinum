@@ -45,7 +45,7 @@ sub_0202B3A8: ; 0x0202B3A8
 	mov r0, #0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _0202B3D0 ; =0x0000FFFF
 	mov r1, #0
 	add r2, r4, #0

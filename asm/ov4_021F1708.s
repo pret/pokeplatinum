@@ -18,7 +18,7 @@ ov4_021F1708: ; 0x021F1708
 	ldr r1, _021F1A38 ; =0x0221891C
 	ldr r2, _021F1A3C ; =0x022188E0
 	mov r3, #0x22
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F1734:
 	ldr r0, [r7, #0]
 	cmp r0, #0
@@ -27,7 +27,7 @@ _021F1734:
 	ldr r1, _021F1A38 ; =0x0221891C
 	ldr r2, _021F1A3C ; =0x022188E0
 	mov r3, #0x23
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F1754:
 	cmp r6, #0
 	bne _021F1770
@@ -35,7 +35,7 @@ _021F1754:
 	ldr r1, _021F1A38 ; =0x0221891C
 	ldr r2, _021F1A3C ; =0x022188E0
 	mov r3, #0x24
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F1770:
 	ldr r1, [r6, #0xc]
 	ldr r0, [r6, #0x10]
@@ -67,7 +67,7 @@ _021F17AC:
 _021F17D4:
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r6, #0x1c]
 	ldr r0, _021F1A4C ; =0x00000201
 	str r1, [r5, #0]
@@ -138,7 +138,7 @@ _021F18B4:
 _021F18DC:
 	mov r1, #0
 	mov r2, #0x204
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r6, #0x1c]
 	add r1, sp, #8
 	str r0, [r4, #0]
@@ -224,7 +224,7 @@ _021F1A14:
 	ldr r1, _021F1A38 ; =0x0221891C
 	ldr r2, _021F1A3C ; =0x022188E0
 	mov r3, #0x6b
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F1A28:
 	mov r0, #0
 	add sp, sp, #0x10
@@ -310,7 +310,7 @@ ov4_021F1B0C: ; 0x021F1B0C
 	ldr r1, _021F1BA0 ; =0x0221891C
 	ldr r2, _021F1BA4 ; =0x022188CC
 	mov r3, #0xb6
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F1B4C:
 	ldr r0, [r5, #4]
 	mov r1, #2
@@ -451,7 +451,7 @@ _021F1CE0:
 	ldr r1, _021F1D18 ; =0x0221891C
 	ldr r2, _021F1D1C ; =0x022188F4
 	ldr r3, _021F1D20 ; =0x00000146
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F1D00:
 	cmp r4, #0
 	strne r4, [r5, #0x1c]

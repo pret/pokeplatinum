@@ -84,7 +84,7 @@ ov40_022564D4: ; 0x022564D4
 	mov r1, #0x54
 	bl sub_02006EC0
 	mov r1, #0x14
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, [sp, #0xc]
 	str r0, [sp, #0x14]
 	str r0, [r1, #0x78]

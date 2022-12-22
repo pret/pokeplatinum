@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020DF948
-sub_020DF948: ; 0x020DF948
+	arm_func_start stricmp
+stricmp: ; 0x020DF948
 	stmfd sp!, {r3, lr}
 	ldr r3, _020DF9AC ; =0x020FE764
 _020DF950:
@@ -38,12 +38,12 @@ _020DF984:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020DF9AC: .word 0x020FE764
-	arm_func_end sub_020DF948
+	arm_func_end stricmp
 
-	arm_func_start sub_020DF9B0
-sub_020DF9B0: ; 0x020DF9B0
-	ldr ip, _020DF9B8 ; =sub_020DF948
+	arm_func_start strcasecmp
+strcasecmp: ; 0x020DF9B0
+	ldr ip, _020DF9B8 ; =stricmp
 	bx ip
 	; .align 2, 0
-_020DF9B8: .word sub_020DF948
-	arm_func_end sub_020DF9B0
+_020DF9B8: .word stricmp
+	arm_func_end strcasecmp

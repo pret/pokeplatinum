@@ -64,10 +64,10 @@
 .public sub_0208C0BC
 .public sub_0208E9F0
 .public sub_02095734
-.public sub_020A7248
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020E1F6C
+.public NNS_G2dGetUnpackedScreenData
+.public memcpy
+.public memset
+.public _s32_div_f
 .public ov13_0221FCAC
 .public ov13_0221FE5C
 .public ov13_0221FF60

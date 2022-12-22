@@ -57,6 +57,6 @@
 .public sub_020656AC
 .public sub_0207136C
 .public sub_020714F0
-.public sub_020C4BB8
+.public MIi_CpuClearFast
 .public ov5_021F16D4
 .public ov5_021F6094

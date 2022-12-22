@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E16BC
-sub_020E16BC: ; 0x020E16BC
+	arm_func_start _f_ftod
+_f_ftod: ; 0x020E16BC
 	and r2, r0, #0x80000000
 	mov ip, r0, lsr #0x17
 	mov r3, r0, lsl #9
@@ -46,4 +46,4 @@ _020E1730:
 	bx lr
 	; .align 2, 0
 _020E173C: .word 0x7FF00000
-	arm_func_end sub_020E16BC
+	arm_func_end _f_ftod

@@ -585,7 +585,7 @@ sub_0200A760: ; 0x0200A760
 	mov r1, #0
 	bl sub_0200A72C
 	add r1, r4, #0
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1

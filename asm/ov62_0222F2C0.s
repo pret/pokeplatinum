@@ -52,7 +52,7 @@ ov62_0222F2C0: ; 0x0222F2C0
 	mov r0, #0x66
 	bl sub_0200762C
 	str r0, [r4, #0x64]
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	ldr r0, [r4, #0x28]
 	mov r1, #1
 	bl sub_02003858
@@ -117,7 +117,7 @@ ov62_0222F2C0: ; 0x0222F2C0
 	bl sub_020394A8
 	add r1, sp, #0x10
 	add r5, r0, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	mov r0, #0x20
 	str r0, [sp]
 	ldr r1, [sp, #0x10]
@@ -422,25 +422,25 @@ _0222F694:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0
 	ldr r2, _0222F7FC ; =0x022487B0
 	add r0, r4, #0
@@ -543,14 +543,14 @@ _0222F694:
 	mov r1, #4
 	mov r2, #0x12
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	ldr r0, _0222F820 ; =0x04001050
 	mov r1, #4
 	mov r2, #0x12
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #0x3c
 	pop {r4, r5, pc}
 	; .align 2, 0

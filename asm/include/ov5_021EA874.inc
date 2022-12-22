@@ -55,7 +55,7 @@
 .public sub_0205D994
 .public sub_0207D688
 .public sub_0207D990
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov5_021EA874
 .public ov5_021EA8F0
 .public ov5_021EA9BC

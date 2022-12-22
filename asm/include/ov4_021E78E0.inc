@@ -1,5 +1,5 @@
-.public sub_020C3880
-.public sub_020E1ED4
+.public OS_GetTick
+.public _ull_div
 .public ov4_021E62EC
 .public ov4_021E63A4
 .public ov4_021E63C0

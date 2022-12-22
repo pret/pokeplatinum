@@ -1,7 +1,7 @@
-.public sub_020C2C1C
-.public sub_020C2C38
-.public sub_020C4DB0
-.public sub_020CDD98
-.public sub_020CDE08
-.public sub_020CDF24
-.public sub_020CDF98
+.public DC_InvalidateRange
+.public DC_StoreRange
+.public MI_CpuCopy8
+.public WMi_SetCallbackTable
+.public WMi_SendCommand
+.public WMi_GetSystemWork
+.public WMi_CheckStateEx

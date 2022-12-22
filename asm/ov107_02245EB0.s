@@ -29,7 +29,7 @@ ov107_02245EB0: ; 0x02245EB0
 	mov r1, #0
 	lsl r2, r2, #2
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x64
 	bl sub_02018340
 	str r0, [r5, #0x4c]
@@ -2700,12 +2700,12 @@ ov107_022474F8: ; 0x022474F8
 	ldr r0, [sp]
 	mov r1, #0x80
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x80
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4
@@ -2764,12 +2764,12 @@ ov107_02247574: ; 0x02247574
 	ldr r0, [sp]
 	mov r1, #0x80
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x80
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4

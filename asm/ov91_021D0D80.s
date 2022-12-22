@@ -24,7 +24,7 @@ ov91_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	str r0, [r4, #0]
@@ -1786,7 +1786,7 @@ ov91_021D1BBC: ; 0x021D1BBC
 	bl sub_020790C4
 	bl sub_02095734
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	asr r6, r0, #0x18
 	mov r4, #0

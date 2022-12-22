@@ -2,9 +2,9 @@
 .public sub_02019184
 .public sub_020192EC
 .public sub_020192F8
-.public sub_020BF55C
-.public sub_020BF578
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public G2x_SetBlendBrightness_
+.public _s32_div_f
 .public ov20_021D2170
 .public ov20_021D4ED8
 .public ov20_021D4F74

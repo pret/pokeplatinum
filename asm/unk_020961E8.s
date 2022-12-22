@@ -128,7 +128,7 @@ _020962AE:
 	cmp r1, r0
 	bne _020962D6
 	bl sub_020318EC
-	bl sub_020D2FE4
+	bl MATH_CountPopulation
 	ldr r1, _02096358 ; =0x00004A48
 	ldr r2, [r4, r1]
 	cmp r2, r0

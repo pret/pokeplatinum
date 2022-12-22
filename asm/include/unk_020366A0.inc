@@ -173,10 +173,10 @@
 .public sub_02039794
 .public sub_020397B0
 .public sub_02039834
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020CE814
-.public sub_020E1F1C
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public WM_GetLinkLevel
+.public _ull_mul
 .public ov4_021D0D80
 .public ov4_021D0FEC
 .public ov4_021D1104

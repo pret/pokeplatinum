@@ -18,7 +18,7 @@ sub_020E40A0: ; 0x020E40A0
 	beq _020E40C0
 	ldr r0, [r0, #4]
 	ldr r1, [r1, #4]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _020E40C8
 _020E40C0:

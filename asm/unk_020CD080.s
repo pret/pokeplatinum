@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CD080
-sub_020CD080: ; 0x020CD080
+	arm_func_start CARDi_ReadFromCache
+CARDi_ReadFromCache: ; 0x020CD080
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r4, _020CD108 ; =0x021CEE20
 	mov r1, #0x200
@@ -27,7 +27,7 @@ sub_020CD080: ; 0x020CD080
 	ldr r1, [r4, #0x20]
 	mov r2, r5
 	add r0, r0, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r2, [r4, #0x1c]
 	ldr r1, [r4, #0x20]
 	ldr r0, [r4, #0x24]
@@ -45,10 +45,10 @@ _020CD0F4:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CD108: .word 0x021CEE20
-	arm_func_end sub_020CD080
+	arm_func_end CARDi_ReadFromCache
 
-	arm_func_start sub_020CD10C
-sub_020CD10C: ; 0x020CD10C
+	arm_func_start CARDi_SetRomOp
+CARDi_SetRomOp: ; 0x020CD10C
 	ldr r3, _020CD164 ; =0x040001A4
 _020CD110:
 	ldr r2, [r3, #0]
@@ -75,10 +75,10 @@ _020CD110:
 	; .align 2, 0
 _020CD164: .word 0x040001A4
 _020CD168: .word 0x040001A1
-	arm_func_end sub_020CD10C
+	arm_func_end CARDi_SetRomOp
 
-	arm_func_start sub_020CD16C
-sub_020CD16C: ; 0x020CD16C
+	arm_func_start CARDi_SetCardDma
+CARDi_SetCardDma: ; 0x020CD16C
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r4, _020CD1B0 ; =0x021CEE20
 	ldr r1, _020CD1B4 ; =0x04100010
@@ -86,12 +86,12 @@ sub_020CD16C: ; 0x020CD16C
 	ldr r2, [r4, #0x20]
 	mov r3, #0x200
 	ldr r5, _020CD1B8 ; =0x021CF460
-	bl sub_020C5048
+	bl MIi_CardDmaCopy32
 	ldr r1, [r4, #0x1c]
 	mov r0, r1, lsr #8
 	orr r0, r0, #0xb7000000
 	mov r1, r1, lsl #0x18
-	bl sub_020CD10C
+	bl CARDi_SetRomOp
 	ldr r1, [r5, #4]
 	ldr r0, _020CD1BC ; =0x040001A4
 	str r1, [r0, #0]
@@ -101,14 +101,14 @@ _020CD1B0: .word 0x021CEE20
 _020CD1B4: .word 0x04100010
 _020CD1B8: .word 0x021CF460
 _020CD1BC: .word 0x040001A4
-	arm_func_end sub_020CD16C
+	arm_func_end CARDi_SetCardDma
 
-	arm_func_start sub_020CD1C0
-sub_020CD1C0: ; 0x020CD1C0
+	arm_func_start CARDi_OnReadCard
+CARDi_OnReadCard: ; 0x020CD1C0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r0, _020CD28C ; =0x021CEE20
 	ldr r0, [r0, #0x28]
-	bl sub_020C45F4
+	bl MI_StopDma
 	ldr r3, _020CD28C ; =0x021CEE20
 	ldr r0, [r3, #0x24]
 	ldr r2, [r3, #0x1c]
@@ -124,46 +124,46 @@ sub_020CD1C0: ; 0x020CD1C0
 	cmp r0, #0
 	bne _020CD284
 	mov r0, #0x80000
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	mov r0, #0x80000
-	bl sub_020C167C
+	bl OS_ResetRequestIrqMask
 	ldr r4, _020CD28C ; =0x021CEE20
-	bl sub_020CD50C
-	bl sub_020CDA68
+	bl CARDi_ReadRomIDCore
+	bl CARDi_CheckPulledOutCore
 	ldr r0, [r4, #0]
 	mov r1, #0
 	str r1, [r0, #0]
 	ldr r5, [r4, #0x38]
 	ldr r6, [r4, #0x3c]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r4, #0x114]
 	mov r7, r0
 	bic r0, r1, #0x4c
 	str r0, [r4, #0x114]
 	add r0, r4, #0x10c
-	bl sub_020C2268
+	bl OS_WakeupThread
 	ldr r0, [r4, #0x114]
 	tst r0, #0x10
 	beq _020CD268
 	add r0, r4, #0x44
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _020CD268:
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r5, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r6
 	blx r5
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020CD284:
-	bl sub_020CD16C
+	bl CARDi_SetCardDma
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CD28C: .word 0x021CEE20
-	arm_func_end sub_020CD1C0
+	arm_func_end CARDi_OnReadCard
 
-	arm_func_start sub_020CD290
-sub_020CD290: ; 0x020CD290
+	arm_func_start CARDi_TryReadCardDma
+CARDi_TryReadCardDma: ; 0x020CD290
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r4, _020CD408 ; =0x021CEE20
 	mov r6, #0
@@ -181,7 +181,7 @@ sub_020CD290: ; 0x020CD290
 _020CD2C8:
 	cmp r1, #0
 	beq _020CD31C
-	bl sub_020C3508
+	bl OS_GetDTCMAddress
 	ldr r1, _020CD40C ; =0x01FF8000
 	add r3, sb, r5
 	cmp r3, r1
@@ -223,17 +223,17 @@ _020CD338:
 	cmp r6, #0
 	str r0, [fp, #4]
 	beq _020CD400
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r4, #0x118]
 	mov r7, r0
 	cmp r5, r1
 	bhs _020CD388
 	mov r0, sb
 	mov r1, r5
-	bl sub_020C2C90
+	bl IC_InvalidateRange
 	b _020CD38C
 _020CD388:
-	bl sub_020C2C84
+	bl IC_InvalidateAll
 _020CD38C:
 	ldr r0, [r4, #0x11c]
 	cmp r5, r0
@@ -243,30 +243,30 @@ _020CD38C:
 	sub sb, sb, sl
 	mov r0, sb
 	mov r1, #0x20
-	bl sub_020C2C38
+	bl DC_StoreRange
 	add r0, sb, r5
 	mov r1, #0x20
-	bl sub_020C2C38
+	bl DC_StoreRange
 	add r5, r5, #0x20
 _020CD3C0:
 	mov r0, sb
 	mov r1, r5
-	bl sub_020C2C1C
-	bl sub_020C2C78
+	bl DC_InvalidateRange
+	bl DC_WaitWriteBufferEmpty
 	b _020CD3D8
 _020CD3D4:
-	bl sub_020C2BE8
+	bl DC_FlushAll
 _020CD3D8:
-	ldr r1, _020CD418 ; =sub_020CD1C0
+	ldr r1, _020CD418 ; =CARDi_OnReadCard
 	mov r0, #0x80000
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #0x80000
-	bl sub_020C167C
+	bl OS_ResetRequestIrqMask
 	mov r0, #0x80000
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, r7
-	bl sub_020C3DAC
-	bl sub_020CD16C
+	bl OS_RestoreInterrupts
+	bl CARDi_SetCardDma
 _020CD400:
 	mov r0, r6
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -275,11 +275,11 @@ _020CD408: .word 0x021CEE20
 _020CD40C: .word 0x01FF8000
 _020CD410: .word 0x000001FF
 _020CD414: .word 0x02101480
-_020CD418: .word sub_020CD1C0
-	arm_func_end sub_020CD290
+_020CD418: .word CARDi_OnReadCard
+	arm_func_end CARDi_TryReadCardDma
 
-	arm_func_start sub_020CD41C
-sub_020CD41C: ; 0x020CD41C
+	arm_func_start CARDi_ReadCard
+CARDi_ReadCard: ; 0x020CD41C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r4, _020CD500 ; =0x021CEE20
 	mov r6, r0
@@ -303,7 +303,7 @@ _020CD460:
 	mov r0, r2, lsr #8
 	orr r0, r0, #0xb7000000
 	mov r1, r2, lsl #0x18
-	bl sub_020CD10C
+	bl CARDi_SetRomOp
 	mov ip, #0
 	ldr r0, [r6, #4]
 	ldr r2, _020CD504 ; =0x040001A4
@@ -339,7 +339,7 @@ _020CD4A8:
 	b _020CD428
 _020CD4EC:
 	mov r0, r6
-	bl sub_020CD080
+	bl CARDi_ReadFromCache
 	cmp r0, #0
 	bne _020CD428
 	ldmia sp!, {r4, r5, r6, pc}
@@ -347,14 +347,14 @@ _020CD4EC:
 _020CD500: .word 0x021CEE20
 _020CD504: .word 0x040001A4
 _020CD508: .word 0x04100010
-	arm_func_end sub_020CD41C
+	arm_func_end CARDi_ReadCard
 
-	arm_func_start sub_020CD50C
-sub_020CD50C: ; 0x020CD50C
+	arm_func_start CARDi_ReadRomIDCore
+CARDi_ReadRomIDCore: ; 0x020CD50C
 	stmfd sp!, {r3, lr}
 	mov r0, #-0x48000000
 	mov r1, #0
-	bl sub_020CD10C
+	bl CARDi_SetRomOp
 	ldr r1, _020CD55C ; =0x02101480
 	mov r0, #0x2000
 	ldr r1, [r1, #0]
@@ -376,14 +376,14 @@ _020CD544:
 _020CD55C: .word 0x02101480
 _020CD560: .word 0x040001A4
 _020CD564: .word 0x04100010
-	arm_func_end sub_020CD50C
+	arm_func_end CARDi_ReadRomIDCore
 
-	arm_func_start sub_020CD568
-sub_020CD568: ; 0x020CD568
+	arm_func_start CARDi_ReadRomSyncCore
+CARDi_ReadRomSyncCore: ; 0x020CD568
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r4, _020CD5F8 ; =0x021CF460
 	mov r0, r4
-	bl sub_020CD080
+	bl CARDi_ReadFromCache
 	cmp r0, #0
 	beq _020CD58C
 	ldr r1, [r4, #0]
@@ -391,28 +391,28 @@ sub_020CD568: ; 0x020CD568
 	blx r1
 _020CD58C:
 	ldr r4, _020CD5FC ; =0x021CEE20
-	bl sub_020CD50C
-	bl sub_020CDA68
+	bl CARDi_ReadRomIDCore
+	bl CARDi_CheckPulledOutCore
 	ldr r0, [r4, #0]
 	mov r1, #0
 	str r1, [r0, #0]
 	ldr r5, [r4, #0x38]
 	ldr r6, [r4, #0x3c]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r4, #0x114]
 	mov r7, r0
 	bic r0, r1, #0x4c
 	str r0, [r4, #0x114]
 	add r0, r4, #0x10c
-	bl sub_020C2268
+	bl OS_WakeupThread
 	ldr r0, [r4, #0x114]
 	tst r0, #0x10
 	beq _020CD5DC
 	add r0, r4, #0x44
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 _020CD5DC:
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r5, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r6
@@ -421,10 +421,10 @@ _020CD5DC:
 	; .align 2, 0
 _020CD5F8: .word 0x021CF460
 _020CD5FC: .word 0x021CEE20
-	arm_func_end sub_020CD568
+	arm_func_end CARDi_ReadRomSyncCore
 
-	arm_func_start sub_020CD600
-sub_020CD600: ; 0x020CD600
+	arm_func_start CARDi_ReadRom
+CARDi_ReadRom: ; 0x020CD600
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov sl, r0
 	mov sb, r1
@@ -432,13 +432,13 @@ sub_020CD600: ; 0x020CD600
 	mov r7, r3
 	ldr r4, _020CD6E4 ; =0x021CF460
 	ldr r5, _020CD6E8 ; =0x021CEE20
-	bl sub_020CC7B0
-	bl sub_020C3D98
+	bl CARD_CheckEnabled
+	bl OS_DisableInterrupts
 	mov r6, r0
 	b _020CD634
 _020CD62C:
 	add r0, r5, #0x10c
-	bl sub_020C2218
+	bl OS_SleepThread
 _020CD634:
 	ldr r0, [r5, #0x114]
 	tst r0, #4
@@ -451,7 +451,7 @@ _020CD634:
 	str r3, [r5, #0x114]
 	str r2, [r5, #0x38]
 	str r1, [r5, #0x3c]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CD6EC ; =0x021CF440
 	str sl, [r5, #0x28]
 	ldr r0, [r0, #0]
@@ -462,41 +462,41 @@ _020CD634:
 	cmp sl, #3
 	bhi _020CD690
 	mov r0, sl
-	bl sub_020C45F4
+	bl MI_StopDma
 _020CD690:
 	mov r0, r4
-	bl sub_020CD290
+	bl CARDi_TryReadCardDma
 	cmp r0, #0
 	beq _020CD6B4
 	ldr r0, [sp, #0x28]
 	cmp r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	bl sub_020CD75C
+	bl CARD_WaitRomAsync
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _020CD6B4:
 	ldr r0, [sp, #0x28]
 	cmp r0, #0
 	beq _020CD6CC
-	ldr r0, _020CD6F0 ; =sub_020CD568
-	bl sub_020CC544
+	ldr r0, _020CD6F0 ; =CARDi_ReadRomSyncCore
+	bl CARDi_SetTask
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _020CD6CC:
 	ldr r1, _020CD6F4 ; =0x021CCC80
 	mov r0, r5
 	ldr r1, [r1, #4]
 	str r1, [r5, #0x104]
-	bl sub_020CD568
+	bl CARDi_ReadRomSyncCore
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _020CD6E4: .word 0x021CF460
 _020CD6E8: .word 0x021CEE20
 _020CD6EC: .word 0x021CF440
-_020CD6F0: .word sub_020CD568
+_020CD6F0: .word CARDi_ReadRomSyncCore
 _020CD6F4: .word 0x021CCC80
-	arm_func_end sub_020CD600
+	arm_func_end CARDi_ReadRom
 
-	arm_func_start sub_020CD6F8
-sub_020CD6F8: ; 0x020CD6F8
+	arm_func_start CARD_Init
+CARD_Init: ; 0x020CD6F8
 	stmfd sp!, {r3, lr}
 	ldr ip, _020CD754 ; =0x021CEE20
 	ldr r0, [ip, #0x114]
@@ -514,32 +514,32 @@ sub_020CD6F8: ; 0x020CD6F8
 	str r2, [ip, #0x38]
 	str r2, [ip, #0x3c]
 	str r2, [r0, #0]
-	bl sub_020CC690
-	bl sub_020CD768
+	bl CARDi_InitCommon
+	bl CARDi_GetRomAccessor
 	ldr r1, _020CD758 ; =0x021CF440
 	str r0, [r1, #0x20]
-	bl sub_020CD94C
+	bl CARD_InitPulledOutCallback
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CD754: .word 0x021CEE20
 _020CD758: .word 0x021CF440
-	arm_func_end sub_020CD6F8
+	arm_func_end CARD_Init
 
-	arm_func_start sub_020CD75C
-sub_020CD75C: ; 0x020CD75C
-	ldr ip, _020CD764 ; =sub_020CC7D8
+	arm_func_start CARD_WaitRomAsync
+CARD_WaitRomAsync: ; 0x020CD75C
+	ldr ip, _020CD764 ; =CARDi_WaitAsync
 	bx ip
 	; .align 2, 0
-_020CD764: .word sub_020CC7D8
-	arm_func_end sub_020CD75C
+_020CD764: .word CARDi_WaitAsync
+	arm_func_end CARD_WaitRomAsync
 
-	arm_func_start sub_020CD768
-sub_020CD768: ; 0x020CD768
-	ldr r0, _020CD770 ; =sub_020CD41C
+	arm_func_start CARDi_GetRomAccessor
+CARDi_GetRomAccessor: ; 0x020CD768
+	ldr r0, _020CD770 ; =CARDi_ReadCard
 	bx lr
 	; .align 2, 0
-_020CD770: .word sub_020CD41C
-	arm_func_end sub_020CD768
+_020CD770: .word CARDi_ReadCard
+	arm_func_end CARDi_GetRomAccessor
 
 	.data
 

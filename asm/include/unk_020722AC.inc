@@ -135,8 +135,8 @@
 .public sub_0209772C
 .public sub_02097770
 .public sub_020977E4
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov5_021D42F0
 .public ov5_021D4D68
 .public ov6_02247078

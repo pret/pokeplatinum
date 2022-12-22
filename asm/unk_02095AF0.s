@@ -69,7 +69,7 @@ sub_02095B30: ; 0x02095B30
 	add r1, r4, r1
 	add r1, #0xf8
 	ldr r1, [r1, #0]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02095B58 ; =0x00000584
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -93,7 +93,7 @@ sub_02095B5C: ; 0x02095B5C
 	add r0, r7, #0
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0x20
 	add r1, r5, #0
 	add r2, r4, #1
@@ -137,7 +137,7 @@ _02095BBE:
 	ldr r1, [r1, #0]
 	add r0, r0, r5
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r7, r7, #1
 	add r4, r4, #4
 	add r5, r5, r6
@@ -181,7 +181,7 @@ _02095C14:
 	ldr r0, [r5, #0]
 	add r1, r1, r4
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r7, r7, #1
 	add r4, r4, r6
 	add r5, r5, #4
@@ -212,7 +212,7 @@ sub_02095C48: ; 0x02095C48
 	add r0, r2, #0
 	add r1, r3, r1
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 	nop
 _02095C5C: .word 0x000019A0

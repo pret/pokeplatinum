@@ -25,7 +25,7 @@ ov67_0225C700: ; 0x0225C700
 	mov r1, #0
 	lsl r2, r2, #0xa
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	bl sub_02006840
 	add r4, r0, #0
@@ -572,7 +572,7 @@ ov67_0225CB8C: ; 0x0225CB8C
 	mov r1, #0
 	lsl r2, r2, #0xa
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	ldr r0, [r0, #0]
@@ -1040,7 +1040,7 @@ _0225CE66:
 	add r0, #0xd4
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x2c]
 	mov r1, #4
 	add r2, sp, #0x38
@@ -1052,7 +1052,7 @@ _0225CE66:
 	ldr r0, [r0, #0xc]
 	add r1, #0xdc
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #0x38]
 	mov r2, #0x57
 	ldr r1, [sp, #0x10]
@@ -1060,7 +1060,7 @@ _0225CE66:
 	add r1, r1, r2
 	ldr r0, [r0, #0xc]
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	mov r0, #0
@@ -1156,7 +1156,7 @@ _0225D05E:
 	add r0, r0, r1
 	mov r1, #0x2a
 	lsl r1, r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x10]
 	mov r1, #1
 	add r0, #0xd8
@@ -1207,7 +1207,7 @@ ov67_0225D0C0: ; 0x0225D0C0
 	add r0, r1, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	mov r0, #0xca
 	lsl r0, r0, #2
 	ldrsh r0, [r4, r0]
@@ -1217,7 +1217,7 @@ ov67_0225D0C0: ; 0x0225D0C0
 	add r0, r1, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	ldr r0, _0225D150 ; =0x0000032A
 	ldrsb r1, [r4, r0]
 	cmp r1, #0

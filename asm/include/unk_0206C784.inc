@@ -33,7 +33,7 @@
 .public sub_0206CB8C
 .public sub_0206CBA0
 .public sub_0206CC64
-.public sub_020B3C0C
+.public NNS_G3dGetMdlSet
 .public ov5_021D41C8
 .public ov5_021D4250
 .public ov5_021D42B0

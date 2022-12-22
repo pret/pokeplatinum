@@ -19,7 +19,7 @@ ov104_0223E894: ; 0x0223E894
 	mov r1, #0
 	mov r2, #0x4c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0223E8D4 ; =ov104_0223E8D8
 	add r1, r4, #0
 	mov r2, #5
@@ -176,11 +176,11 @@ ov104_0223E9CC: ; 0x0223E9CC
 	cmp r0, #1
 	bne _0223E9DA
 	ldr r0, _0223E9E4 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	pop {r3, pc}
 _0223E9DA:
 	ldr r0, _0223E9E8 ; =0x0400106C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	pop {r3, pc}
 	nop
 _0223E9E4: .word 0x0400006C
@@ -244,7 +244,7 @@ ov104_0223EA38: ; 0x0223EA38
 	ldr r0, [r4, #0xc]
 	mul r0, r1
 	ldr r1, [r4, #0x10]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]
@@ -270,7 +270,7 @@ ov104_0223EA64: ; 0x0223EA64
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -449,7 +449,7 @@ ov104_0223EBA0: ; 0x0223EBA0
 	mov r1, #0
 	lsl r2, r2, #4
 	add r7, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r4, #0
 	add r5, r7, #0
 _0223EBBC:
@@ -988,7 +988,7 @@ _0223EE74:
 	add r0, r0, #2
 	ldrb r0, [r5, r0]
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0223EFF4
 	ldr r1, _0223F058 ; =0x00000187
@@ -1274,7 +1274,7 @@ ov104_0223F1B4: ; 0x0223F1B4
 	ldr r2, _0223F244 ; =0x00003024
 	str r0, [sp]
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	cmp r0, #0
 	bne _0223F1D8

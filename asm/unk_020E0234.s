@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E0234
-sub_020E0234: ; 0x020E0234
+	arm_func_start _d_mul
+_d_mul: ; 0x020E0234
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	eor lr, r1, r3
 	and lr, lr, #0x80000000
@@ -245,4 +245,4 @@ _020E0584:
 	bx lr
 	; .align 2, 0
 _020E0594: .word 0x7FF00000
-	arm_func_end sub_020E0234
+	arm_func_end _d_mul

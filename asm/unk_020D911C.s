@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D911C
-sub_020D911C: ; 0x020D911C
+	arm_func_start __strtold
+__strtold: ; 0x020D911C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xa8
 	ldr r4, [sp, #0xd0]
@@ -272,13 +272,13 @@ _020D9494:
 	ldr r1, _020DA10C ; =0x021015AC
 	mov r0, #0
 	ldr r1, [r1, #0]
-	bl sub_020E1A9C
-	bl sub_020E16BC
+	bl _f_sub
+	bl _f_ftod
 	b _020D94D0
 _020D94C4:
 	ldr r0, _020DA10C ; =0x021015AC
 	ldr r0, [r0, #0]
-	bl sub_020E16BC
+	bl _f_ftod
 _020D94D0:
 	ldr r2, [sp, #0x2c]
 	add r3, r2, r5
@@ -405,15 +405,15 @@ _020D9660:
 	ldr r1, [sp, #0x28]
 	cmp r1, #0
 	beq _020D9694
-	bl sub_020D3F38
+	bl nan
 	mov r2, r0
 	mov r0, #0
 	mov r3, r1
 	mov r1, r0
-	bl sub_020E074C
+	bl _dsub
 	b _020D9698
 _020D9694:
-	bl sub_020D3F38
+	bl nan
 _020D9698:
 	ldr r2, [sp, #0x2c]
 	add r2, r2, r5
@@ -1144,27 +1144,27 @@ _020DA048:
 	mov r0, #0
 	ldmia r1, {r2, r3}
 	mov r1, r0
-	bl sub_020E074C
+	bl _dsub
 	add sp, sp, #0xa8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020DA0A4:
 	ldr r1, [sp, #0x20]
 	add r0, sp, #0x80
 	strh r1, [sp, #0x82]
-	bl sub_020DF1B0
+	bl __dec2num
 	mov r4, r0
 	mov r6, r1
 	mov r0, #0
 	mov r1, r0
 	mov r2, r4
 	mov r3, r6
-	bl sub_020E1020
+	bl _d_fne
 	beq _020DA124
 	mov r0, r4
 	mov r1, r6
 	mov r2, #0
 	mov r3, #0x100000
-	bl sub_020E0EF8
+	bl _d_flt
 	bhs _020DA124
 	ldr r0, [sp, #0xd0]
 	mov r1, #1
@@ -1186,7 +1186,7 @@ _020DA124:
 	mov r0, r4
 	mov r1, r6
 	mvn r2, #0
-	bl sub_020E0DBC
+	bl _d_fgt
 	bls _020DA150
 	ldr r0, [sp, #0xd0]
 	mov r2, #1
@@ -1204,7 +1204,7 @@ _020DA150:
 	mov r1, r0
 	mov r2, r4
 	mov r3, r6
-	bl sub_020E074C
+	bl _dsub
 	mov r4, r0
 	mov r6, r1
 _020DA184:
@@ -1338,10 +1338,10 @@ _020DA33C:
 	ldmia r4, {r0, r1}
 	add sp, sp, #0xa8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020D911C
+	arm_func_end __strtold
 
-	arm_func_start sub_020DA368
-sub_020DA368: ; 0x020DA368
+	arm_func_start strtod
+strtod: ; 0x020DA368
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x14
 	mov r7, r0
@@ -1350,12 +1350,12 @@ sub_020DA368: ; 0x020DA368
 	str r0, [sp, #8]
 	add r4, sp, #0xc
 	str r7, [sp, #4]
-	ldr r1, _020DA43C ; =sub_020D8930
+	ldr r1, _020DA43C ; =__StringRead
 	add r2, sp, #4
 	add r3, sp, #0x10
 	sub r0, r0, #-0x7fffffff
 	str r4, [sp]
-	bl sub_020D911C
+	bl __strtold
 	mov r5, r1
 	mov r4, r0
 	cmp r6, #0
@@ -1364,7 +1364,7 @@ sub_020DA368: ; 0x020DA368
 	addne r0, r7, r0
 	strne r0, [r6]
 	mov r0, r4
-	bl sub_020DE084
+	bl fabs
 	ldr r2, [sp, #0xc]
 	mov r6, r0
 	mov r7, r1
@@ -1374,19 +1374,19 @@ sub_020DA368: ; 0x020DA368
 	mov r1, r0
 	mov r2, r4
 	mov r3, r5
-	bl sub_020E1020
+	bl _d_fne
 	beq _020DA42C
 	mov r0, r6
 	mov r1, r7
 	mov r2, #0
 	mov r3, #0x100000
-	bl sub_020E0EF8
+	bl _d_flt
 	blo _020DA420
 	ldr r3, _020DA440 ; =0x7FEFFFFF
 	mov r0, r6
 	mov r1, r7
 	mvn r2, #0
-	bl sub_020E0DBC
+	bl _d_fgt
 	bls _020DA42C
 _020DA420:
 	ldr r0, _020DA444 ; =0x021D0D40
@@ -1398,19 +1398,19 @@ _020DA42C:
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020DA43C: .word sub_020D8930
+_020DA43C: .word __StringRead
 _020DA440: .word 0x7FEFFFFF
 _020DA444: .word 0x021D0D40
-	arm_func_end sub_020DA368
+	arm_func_end strtod
 
-	arm_func_start sub_020DA448
-sub_020DA448: ; 0x020DA448
-	ldr ip, _020DA454 ; =sub_020DA368
+	arm_func_start atof
+atof: ; 0x020DA448
+	ldr ip, _020DA454 ; =strtod
 	mov r1, #0
 	bx ip
 	; .align 2, 0
-_020DA454: .word sub_020DA368
-	arm_func_end sub_020DA448
+_020DA454: .word strtod
+	arm_func_end atof
 
 
 	.section .exception, 4

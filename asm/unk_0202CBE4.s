@@ -38,21 +38,21 @@ _0202CC08:
 	bls _0202CC4A
 	add r0, r7, #0
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r4, r0
 	add r0, r7, #0
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r1, #0
 	cmp r4, #0x3b
 	bls _0202CC4A
 	add r0, r4, #0
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	add r6, r6, r0
 	add r0, r4, #0
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, _0202CC54 ; =0x000003E7
 	add r4, r1, #0
 	cmp r6, r0

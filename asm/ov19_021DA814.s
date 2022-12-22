@@ -57,7 +57,7 @@ ov19_021DA864: ; 0x021DA864
 	add r5, r0, #0
 	add r0, #0x18
 	add r4, r1, #0
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	mov r0, #0x9d
 	str r3, [sp]

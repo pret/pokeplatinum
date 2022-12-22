@@ -1,3 +1,3 @@
 .public sub_02022974
-.public sub_020C4B68
-.public sub_020C4C14
+.public MIi_CpuCopy32
+.public MIi_CpuCopyFast

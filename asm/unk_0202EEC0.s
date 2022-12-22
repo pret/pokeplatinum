@@ -21,7 +21,7 @@ sub_0202EEC8: ; 0x0202EEC8
 	ldr r2, _0202EF00 ; =0x00000688
 	mov r0, #0
 	add r1, r5, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r4, #0
 	mov r6, #0xac
 	add r7, r4, #0
@@ -52,7 +52,7 @@ sub_0202EF04: ; 0x0202EF04
 	ldr r2, _0202EF3C ; =0x00000588
 	mov r0, #0
 	add r1, r5, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r4, #0
 	mov r6, #0xac
 	add r7, r4, #0
@@ -164,14 +164,14 @@ sub_0202EFB8: ; 0x0202EFB8
 	str r0, [r3, r2]
 	add r0, r2, #4
 	str r1, [r3, r0]
-	bl sub_020C4040
+	bl OS_GetOwnerRtcOffset
 	ldr r2, _0202EFFC ; =0x00000678
 	str r0, [r5, r2]
 	add r0, r2, #4
 	add r2, #8
 	str r1, [r5, r0]
 	add r0, r5, r2
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	pop {r4, r5, r6, pc}
 	nop
 _0202EFF4: .word 0x00000588
@@ -266,7 +266,7 @@ sub_0202F088: ; 0x0202F088
 	sub sp, #8
 	add r4, r0, #0
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	mov r0, #0x1a
 	mov r3, #0
 	add r5, sp, #0
@@ -295,7 +295,7 @@ _0202F0AC:
 sub_0202F0BC: ; 0x0202F0BC
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020C4040
+	bl OS_GetOwnerRtcOffset
 	ldr r2, _0202F0DC ; =0x00000678
 	ldr r3, [r4, r2]
 	add r2, r2, #4

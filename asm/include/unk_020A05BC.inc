@@ -4,10 +4,10 @@
 .public sub_020A2304
 .public sub_020A2354
 .public sub_020A23B0
-.public sub_020BD218
-.public sub_020BD254
-.public sub_020BD31C
-.public sub_020BD3E4
-.public sub_020BD4FC
-.public sub_020E1F6C
-.public sub_020E2178
+.public VEC_DotProduct
+.public VEC_Fx16DotProduct
+.public VEC_Fx16CrossProduct
+.public VEC_Normalize
+.public VEC_Fx16Normalize
+.public _s32_div_f
+.public _u32_div_f

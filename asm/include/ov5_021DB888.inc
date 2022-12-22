@@ -42,8 +42,8 @@
 .public sub_0206B118
 .public sub_0207D688
 .public sub_0207D990
-.public sub_020D5124
-.public sub_020E1F6C
+.public memset
+.public _s32_div_f
 .public ov5_021DB8D8
 .public ov5_021DBA54
 .public ov5_021DBA58

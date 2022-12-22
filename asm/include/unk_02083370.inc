@@ -69,6 +69,6 @@
 .public sub_02084808
 .public sub_02084A18
 .public sub_02097788
-.public sub_020D50B8
-.public sub_020E1F6C
+.public memcpy
+.public _s32_div_f
 .public ov118_021D0DBC

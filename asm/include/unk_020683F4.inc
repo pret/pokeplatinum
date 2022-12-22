@@ -122,7 +122,7 @@
 .public sub_0207D60C
 .public sub_0207D990
 .public sub_02098AF0
-.public sub_020D5124
+.public memset
 .public ov5_021D1744
 .public ov5_021DFB54
 .public ov5_021DFB5C

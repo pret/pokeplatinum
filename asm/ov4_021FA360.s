@@ -13,7 +13,7 @@ ov4_021FA360: ; 0x021FA360
 	ldrh r0, [r2, #4]
 	ldr r2, [r2, #0]
 	mul r0, r2, r0
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, r1
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021FA360
@@ -91,7 +91,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
 	mov r1, #0
 	mov r2, #0x44
-	bl sub_020D5124
+	bl memset
 	mvn r0, #0
 	str r0, [r4, #0]
 	str r6, [r4, #0x3c]
@@ -264,7 +264,7 @@ ov4_021FA678: ; 0x021FA678
 	beq _021FA808
 	mov r1, #0
 	mov r2, #0xa0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	str r5, [r0, #0]
 	ldr r0, [sp]

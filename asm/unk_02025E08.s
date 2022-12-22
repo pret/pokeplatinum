@@ -19,7 +19,7 @@ sub_02025E0C: ; 0x02025E0C
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x2c
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r4, #0
 	bl sub_02027A1C
 	add r0, r4, #4

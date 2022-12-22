@@ -9,22 +9,22 @@
 	arm_func_start ov4_021EA840
 ov4_021EA840: ; 0x021EA840
 	stmfd sp!, {r3, lr}
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #1
 	beq _021EA864
 	ldr r0, _021EA884 ; =0x022178F4
 	ldr r1, _021EA888 ; =0x02217914
 	ldr r2, _021EA88C ; =0x022178E4
 	ldr r3, _021EA890 ; =0x00000109
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EA864:
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r1, r1, lsl #6
 	orr r1, r1, r0, lsr #26
 	ldr r2, _021EA894 ; =0x000082EA
 	mov r0, r0, lsl #6
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EA884: .word 0x022178F4
@@ -36,10 +36,10 @@ _021EA894: .word 0x000082EA
 
 	arm_func_start ov4_021EA898
 ov4_021EA898: ; 0x021EA898
-	ldr ip, _021EA8A0 ; =sub_020C24A4
+	ldr ip, _021EA8A0 ; =OS_Sleep
 	bx ip
 	; .align 2, 0
-_021EA8A0: .word sub_020C24A4
+_021EA8A0: .word OS_Sleep
 	arm_func_end ov4_021EA898
 
 	arm_func_start ov4_021EA8A4
@@ -58,13 +58,13 @@ ov4_021EA8AC: ; 0x021EA8AC
 	movs r5, r0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	bl ov4_021D7880
 	movs r4, r0
 	beq _021EA8D8
 	mov r1, r5
-	bl sub_020D8B7C
+	bl strcpy
 _021EA8D8:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
@@ -561,7 +561,7 @@ ov4_021EAEB4: ; 0x021EAEB4
 	mov r0, r3
 	ldr r2, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	sub r1, r0, #1
 	bl ov4_021EACC4
@@ -617,22 +617,22 @@ _021EAF44: .word 0x0221AF2C
 ov4_021EAF48: ; 0x021EAF48
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #1
 	beq _021EAF70
 	ldr r0, _021EAF98 ; =0x022178F4
 	ldr r1, _021EAF9C ; =0x02217914
 	ldr r2, _021EAFA0 ; =0x022178DC
 	ldr r3, _021EAFA4 ; =0x00000667
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021EAF70:
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r1, r1, lsl #6
 	orr r1, r1, r0, lsr #26
 	ldr r2, _021EAFA8 ; =0x01FF6210
 	mov r0, r0, lsl #6
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	cmp r4, #0
 	strne r0, [r4]
 	ldmia sp!, {r4, pc}
@@ -701,7 +701,7 @@ ov4_021EB034: ; 0x021EB034
 	ldmeqia sp!, {r3, r4, r5, pc}
 	bl ov4_021EAFF8
 	mov r1, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021EB034

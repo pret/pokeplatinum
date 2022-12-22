@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020A4A34
-sub_020A4A34: ; 0x020A4A34
+	arm_func_start CRYPTO_RC4FastEncrypt
+CRYPTO_RC4FastEncrypt: ; 0x020A4A34
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	ldr r7, [r0, #0]
 	ldr r6, [r0, #4]
@@ -130,4 +130,4 @@ _020A4BFC:
 	str r6, [r0, #-4]
 	str r7, [r0, #-8]
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020A4A34
+	arm_func_end CRYPTO_RC4FastEncrypt

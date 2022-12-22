@@ -18,7 +18,7 @@ sub_020E3EA8: ; 0x020E3EA8
 	ldr r2, _020E3EE4 ; =sub_020E3EE8
 	add r1, sp, #0
 	str r3, [sp]
-	bl sub_020E44B8
+	bl __throw
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020E3ED8: .word 0x02101BF8
@@ -42,7 +42,7 @@ sub_020E3EEC: ; 0x020E3EEC
 	moveq r6, #4
 _020E3F04:
 	mov r0, r6
-	bl sub_020D3F50
+	bl malloc
 	movs r5, r0
 	bne _020E3F2C
 	ldr r0, [r4, #0]
@@ -83,7 +83,7 @@ sub_020E3F94: ; 0x020E3F94
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl sub_020D3F68
+	bl free
 	ldmia sp!, {r3, pc}
 	arm_func_end sub_020E3F94
 

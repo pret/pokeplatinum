@@ -3,4 +3,4 @@
 .public sub_020790C4
 .public sub_02079104
 .public sub_02079160
-.public sub_020E1F6C
+.public _s32_div_f

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020A727C
-sub_020A727C: ; 0x020A727C
+	arm_func_start NNS_G2dFindBinaryBlock
+NNS_G2dFindBinaryBlock: ; 0x020A727C
 	ldrh r2, [r0, #0xc]
 	ldrh ip, [r0, #0xe]
 	mov r3, #0
@@ -27,10 +27,10 @@ _020A7294:
 _020A72BC:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020A727C
+	arm_func_end NNS_G2dFindBinaryBlock
 
-	arm_func_start sub_020A72C4
-sub_020A72C4: ; 0x020A72C4
+	arm_func_start NNSi_G2dUnpackUserExCellAttrBank
+NNSi_G2dUnpackUserExCellAttrBank: ; 0x020A72C4
 	ldr r1, [r0, #4]
 	mov ip, #0
 	add r1, r1, r0
@@ -50,4 +50,4 @@ _020A72E0:
 	cmp r2, r1, lsr #16
 	bhi _020A72E0
 	bx lr
-	arm_func_end sub_020A72C4
+	arm_func_end NNSi_G2dUnpackUserExCellAttrBank

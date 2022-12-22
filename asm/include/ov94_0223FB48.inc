@@ -66,10 +66,10 @@
 .public sub_0207A0F8
 .public sub_0207A0FC
 .public sub_0207D2D0
-.public sub_020A7164
-.public sub_020C02BC
-.public sub_020C2C54
-.public sub_020C4C14
+.public NNS_G2dGetUnpackedBGCharacterData
+.public GX_LoadOBJ
+.public DC_FlushRange
+.public MIi_CpuCopyFast
 .public ov94_0223C300
 .public ov94_0223C3C0
 .public ov94_0223C3F4

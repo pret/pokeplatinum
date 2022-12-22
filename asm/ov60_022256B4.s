@@ -51,7 +51,7 @@ _02225704:
 	mov r1, r8
 	mov r2, r7
 	mov r3, r6
-	bl sub_020E1ED4
+	bl _ull_div
 	umull r3, r2, r0, r7
 	mla r2, r0, r6, r2
 	add r0, r0, #0x30

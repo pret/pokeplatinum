@@ -51,7 +51,7 @@ ov17_0223B140: ; 0x0223B140
 	ldr r2, _0223B410 ; =0x00001658
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x15
 	bl ov17_0223F140
 	str r0, [r4, #8]
@@ -371,7 +371,7 @@ _0223B4A8:
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _0223B4EE
 _0223B4B8:
 	cmp r0, #3
@@ -386,7 +386,7 @@ _0223B4B8:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -429,7 +429,7 @@ _0223B4EE:
 	mov r1, #0
 	add r0, r4, r0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	mov r0, #1
@@ -650,25 +650,25 @@ _0223B738:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _0223B84C ; =0x02252D8C
 	add r3, sp, #0
 	add r2, r3, #0
@@ -1248,7 +1248,7 @@ ov17_0223BBA8: ; 0x0223BBA8
 	mov r2, #0x20
 	lsl r6, r0, #5
 	add r0, r4, r6
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, [r5, #0]
 	ldr r0, _0223BCD8 ; =0x00000123
 	mov r2, #0x20
@@ -1258,7 +1258,7 @@ ov17_0223BBA8: ; 0x0223BBA8
 	ldr r1, [sp, #0x10]
 	lsl r0, r0, #5
 	add r0, r4, r0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r2, [r5, #0]
 	ldr r1, _0223BCD8 ; =0x00000123
 	add r0, r7, #0
@@ -1268,11 +1268,11 @@ ov17_0223BBA8: ; 0x0223BBA8
 	mov r2, #0x20
 	lsl r1, r1, #5
 	add r1, r4, r1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [sp, #0x10]
 	add r1, r4, r6
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r2, [r5, #0]
 	ldr r1, _0223BCD8 ; =0x00000123
 	add r0, r7, #0
@@ -1283,12 +1283,12 @@ ov17_0223BBA8: ; 0x0223BBA8
 	ldr r1, [sp, #0x14]
 	add r1, r1, r2
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r1, [sp, #0x14]
 	ldr r0, [sp, #0x10]
 	add r1, r1, r6
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r7, #0
 	bl sub_020181C4
 	ldr r0, [sp, #0x10]

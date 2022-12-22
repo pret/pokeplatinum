@@ -47,7 +47,7 @@ sub_020DFBDC: ; 0x020DFBDC
 	mov r0, r4
 	str r1, [sp, #4]
 	add r5, sp, #8
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	rsb r0, r0, r0, lsl #1
 	bl sub_020E3FA8
@@ -61,13 +61,13 @@ sub_020DFBDC: ; 0x020DFBDC
 	bl sub_020DF9C0
 	ldr r0, [r5, #0]
 	mov r1, r4
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r3, _020DFC60 ; =0x02101B08
 	ldr r0, _020DFC64 ; =0x02101B3C
 	ldr r2, _020DFC68 ; =sub_020DFB48
 	mov r1, r6
 	str r3, [sp, #4]
-	bl sub_020E44B8
+	bl __throw
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0

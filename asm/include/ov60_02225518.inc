@@ -1,7 +1,7 @@
-.public sub_020C2770
-.public sub_020C29C0
-.public sub_020C29D8
-.public sub_020C2A5C
-.public sub_020C3FA0
+.public OS_SendMessage
+.public OS_InitMutex
+.public OS_LockMutex
+.public OS_UnlockMutex
+.public OS_GetMacAddress
 .public ov60_02223FC8
 .public ov60_022257A4

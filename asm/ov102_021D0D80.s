@@ -22,7 +22,7 @@ ov102_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0x44
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x54
 	str r0, [r4, #0]
 	add r0, r5, #0

@@ -29,7 +29,7 @@
 .public sub_02023FCC
 .public sub_02024034
 .public sub_0202404C
-.public sub_020D5124
+.public memset
 .public ov21_021D13B4
 .public ov21_021D13C8
 .public ov21_021D13EC

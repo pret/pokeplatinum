@@ -108,9 +108,9 @@
 .public sub_020641A8
 .public sub_02065838
 .public sub_0206AA20
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E1F1C
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _ull_mul
 .public ov5_021E1674
 .public ov5_021E1894
 .public ov5_021E18C4

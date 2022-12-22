@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C2614
-sub_020C2614: ; 0x020C2614
+	arm_func_start OS_InitContext
+OS_InitContext: ; 0x020C2614
 	add r1, r1, #4
 	str r1, [r0, #0x40]
 	str r2, [r0, #0x44]
@@ -47,13 +47,13 @@ _020C2654:
 	str r1, [r0, #0x34]
 	str r1, [r0, #0x3c]
 	bx lr
-	arm_func_end sub_020C2614
+	arm_func_end OS_InitContext
 
-	arm_func_start sub_020C2698
-sub_020C2698: ; 0x020C2698
+	arm_func_start OS_SaveContext
+OS_SaveContext: ; 0x020C2698
 	stmfd sp!, {r0, lr}
 	add r0, r0, #0x48
-	ldr r1, _020C26E0 ; =sub_020C99FC
+	ldr r1, _020C26E0 ; =CP_SaveContext
 	blx r1
 	ldmia sp!, {r0, lr}
 	add r1, r0, #0
@@ -70,14 +70,14 @@ sub_020C2698: ; 0x020C2698
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_020C26E0: .word sub_020C99FC
-	arm_func_end sub_020C2698
+_020C26E0: .word CP_SaveContext
+	arm_func_end OS_SaveContext
 
-	arm_func_start sub_020C26E4
-sub_020C26E4: ; 0x020C26E4
+	arm_func_start OS_LoadContext
+OS_LoadContext: ; 0x020C26E4
 	stmfd sp!, {r0, lr}
 	add r0, r0, #0x48
-	ldr r1, _020C2724 ; =sub_020C9A3C
+	ldr r1, _020C2724 ; =CPi_RestoreContext
 	blx r1
 	ldmia sp!, {r0, lr}
 	mrs r1, cpsr
@@ -92,5 +92,5 @@ sub_020C26E4: ; 0x020C26E4
 	mov r0, r0
 	subs pc, lr, #4
 	; .align 2, 0
-_020C2724: .word sub_020C9A3C
-	arm_func_end sub_020C26E4
+_020C2724: .word CPi_RestoreContext
+	arm_func_end OS_LoadContext

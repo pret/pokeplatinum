@@ -229,7 +229,7 @@ _02052E2A:
 	mov r0, #4
 	bl sub_0201807C
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	add sp, #0xc
 	mov r0, #1
 	pop {r4, r5, r6, r7, pc}

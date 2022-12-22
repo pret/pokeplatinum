@@ -57,7 +57,7 @@ ov22_02259804: ; 0x02259804
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x2c
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	thumb_func_end ov22_02259804
 
@@ -206,11 +206,11 @@ _0225991A:
 	str r0, [r4, #0x34]
 	ldr r0, [sp]
 	str r1, [r4, #0x38]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x3c]
 	ldr r0, [sp, #4]
 	ldr r1, [sp, #0x20]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x40]
 	ldr r0, [r6, #0]
 	ldr r1, [r6, #0x1c]
@@ -563,7 +563,7 @@ ov22_02259BD4: ; 0x02259BD4
 	add r5, r0, #0
 	ldr r0, [r1, #0x14]
 	ldr r1, [r1, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r3, [r4, #4]
 	ldr r0, [r4, #0x10]
 	str r0, [sp]
@@ -592,7 +592,7 @@ ov22_02259C10: ; 0x02259C10
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #0x10]
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	bne _02259C34
@@ -600,7 +600,7 @@ ov22_02259C10: ; 0x02259C10
 	ldr r1, [r4, #0xc]
 	ldr r0, [r0, #0xc]
 	ldr r2, [r4, #0x10]
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	b _02259C44
 _02259C34:
 	cmp r0, #4
@@ -609,7 +609,7 @@ _02259C34:
 	ldr r1, [r4, #0xc]
 	ldr r0, [r0, #0xc]
 	ldr r2, [r4, #0x10]
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 _02259C44:
 	add r0, r5, #0
 	bl sub_0200DA58

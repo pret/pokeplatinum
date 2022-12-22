@@ -60,4 +60,4 @@
 .public sub_02065838
 .public sub_020658DC
 .public sub_02067D58
-.public sub_020E1F6C
+.public _s32_div_f

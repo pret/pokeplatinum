@@ -205,9 +205,9 @@
 .public sub_02097750
 .public sub_02097770
 .public sub_02098AF0
-.public sub_020D50B8
-.public sub_020D5124
-.public sub_020E2178
+.public memcpy
+.public memset
+.public _u32_div_f
 .public ov5_021D1744
 .public ov5_021D3190
 .public ov5_021D32E8

@@ -197,11 +197,11 @@ ov4_0220854C: ; 0x0220854C
 	ldr r0, _022085F4 ; =0x0221DCEC
 	ldr r2, _022085F8 ; =0x00000101
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _022085F4 ; =0x0221DCEC
 	ldr r2, _022085F8 ; =0x00000101
 	mov r1, r5
-	bl sub_020D3354
+	bl STD_CopyLString
 	mov r3, r4, lsr #0x18
 	mov r2, r4, lsr #8
 	mov ip, r4, lsl #8
@@ -594,7 +594,7 @@ ov4_02208A74: ; 0x02208A74
 	mov r0, r1
 	add r1, sp, #0x10
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #0x10]
 	add r1, sp, #0xc
 	bl ov4_02208AF8
@@ -608,7 +608,7 @@ ov4_02208A74: ; 0x02208A74
 	ldrb r3, [sp, #0xc]
 	str r3, [sp, #8]
 	ldrb r3, [sp, #0xf]
-	bl sub_020C1AF0
+	bl OS_SNPrintf
 	mov r0, r4
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, pc}
@@ -670,7 +670,7 @@ _02208B80:
 	bge _02208BC0
 _02208BA4:
 	mov r0, #1
-	bl sub_020C24A4
+	bl OS_Sleep
 	ldr r0, _02208BC8 ; =0x0000020B
 	subs sb, sb, r0
 	mov r0, #0

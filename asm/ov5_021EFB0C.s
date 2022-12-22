@@ -154,7 +154,7 @@ _021EFBF2:
 	bl sub_0201D2E8
 	mov r1, #0x29
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
 	cmp r6, #0x64
@@ -258,7 +258,7 @@ ov5_021EFCF8: ; 0x021EFCF8
 	bl sub_0201D2E8
 	mov r1, #0x29
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	cmp r4, #0x64
@@ -313,7 +313,7 @@ ov5_021EFD58: ; 0x021EFD58
 	bl sub_0201D2E8
 	mov r1, #0x29
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
 	cmp r5, #0x64
@@ -378,7 +378,7 @@ ov5_021EFDC0: ; 0x021EFDC0
 	bl sub_0201D2E8
 	mov r1, #0x29
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
 	cmp r5, #0x64
@@ -611,22 +611,22 @@ ov5_021EFF4C: ; 0x021EFF4C
 	strb r0, [r1, #3]
 	ldrb r0, [r1]
 	mov r1, #0x15
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, sp, #0
 	strb r1, [r0]
 	ldrb r0, [r0, #1]
 	mov r1, #0x15
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, sp, #0
 	strb r1, [r0, #1]
 	ldrb r0, [r0, #2]
 	mov r1, #0x15
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, sp, #0
 	strb r1, [r0, #2]
 	ldrb r0, [r0, #3]
 	mov r1, #0x15
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, sp, #0
 	strb r1, [r0, #3]
 	mov r0, #0

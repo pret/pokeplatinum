@@ -128,10 +128,10 @@
 .public sub_02092464
 .public sub_02095888
 .public sub_020958B8
-.public sub_020C4B4C
-.public sub_020C4BB8
-.public sub_020E1F6C
-.public sub_020E2178
+.public MIi_CpuClear32
+.public MIi_CpuClearFast
+.public _s32_div_f
+.public _u32_div_f
 .public ov6_0224322C
 .public ov6_0224648C
 .public ov6_02246490

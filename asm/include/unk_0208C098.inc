@@ -1,4 +1,4 @@
-.public sub_0200007A
+.public SVC_Sqrt
 .public sub_02006D28
 .public sub_02006D84
 .public sub_0200F174
@@ -12,7 +12,7 @@
 .public sub_02019FE4
 .public sub_0208C0BC
 .public sub_0208C0D4
-.public sub_020A7118
-.public sub_020A71B0
-.public sub_020A7248
-.public sub_020E2178
+.public NNS_G2dGetUnpackedCharacterData
+.public NNS_G2dGetUnpackedPaletteData
+.public NNS_G2dGetUnpackedScreenData
+.public _u32_div_f

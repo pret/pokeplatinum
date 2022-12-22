@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020BD684
-sub_020BD684: ; 0x020BD684
+	arm_func_start FX_SinFx64c_internal
+FX_SinFx64c_internal: ; 0x020BD684
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov lr, #0
 	cmp r1, #1
@@ -67,10 +67,10 @@ _020BD75C: .word 0x03C2857C
 _020BD760: .word 0x07E54B84
 _020BD764: .word 0x14ABBCE6
 _020BD768: .word 0xC90FDAA2
-	arm_func_end sub_020BD684
+	arm_func_end FX_SinFx64c_internal
 
-	arm_func_start sub_020BD76C
-sub_020BD76C: ; 0x020BD76C
+	arm_func_start FX_CosFx64c_internal
+FX_CosFx64c_internal: ; 0x020BD76C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov ip, #0
 	cmp r1, #1
@@ -123,15 +123,15 @@ _020BD828: .word 0x02D1E41D
 _020BD82C: .word 0x054387AD
 _020BD830: .word 0x0D28D331
 _020BD834: .word 0x4EF4F327
-	arm_func_end sub_020BD76C
+	arm_func_end FX_CosFx64c_internal
 
-	arm_func_start sub_020BD838
-sub_020BD838: ; 0x020BD838
+	arm_func_start FX_SinFx64c
+FX_SinFx64c: ; 0x020BD838
 	stmfd sp!, {r4, lr}
 	cmp r0, #0
 	bge _020BD858
 	rsb r0, r0, #0
-	bl sub_020BD838
+	bl FX_SinFx64c
 	rsbs r0, r0, #0
 	rsc r1, r1, #0
 	ldmia sp!, {r4, pc}
@@ -157,10 +157,10 @@ _020BD89C:
 	add r2, r4, #1
 	tst r2, #2
 	beq _020BD8B0
-	bl sub_020BD76C
+	bl FX_CosFx64c_internal
 	b _020BD8B4
 _020BD8B0:
-	bl sub_020BD684
+	bl FX_SinFx64c_internal
 _020BD8B4:
 	and r2, r4, #7
 	cmp r2, #3
@@ -170,15 +170,15 @@ _020BD8B4:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BD8CC: .word 0x45F306DD
-	arm_func_end sub_020BD838
+	arm_func_end FX_SinFx64c
 
-	arm_func_start sub_020BD8D0
-sub_020BD8D0: ; 0x020BD8D0
+	arm_func_start FX_CosFx64c
+FX_CosFx64c: ; 0x020BD8D0
 	stmfd sp!, {r4, lr}
 	cmp r0, #0
 	bge _020BD8E8
 	rsb r0, r0, #0
-	bl sub_020BD8D0
+	bl FX_CosFx64c
 	ldmia sp!, {r4, pc}
 _020BD8E8:
 	ldr r1, _020BD960 ; =0x45F306DD
@@ -202,10 +202,10 @@ _020BD92C:
 	add r2, r4, #1
 	tst r2, #2
 	beq _020BD940
-	bl sub_020BD684
+	bl FX_SinFx64c_internal
 	b _020BD944
 _020BD940:
-	bl sub_020BD76C
+	bl FX_CosFx64c_internal
 _020BD944:
 	add r2, r4, #2
 	and r2, r2, #7
@@ -216,4 +216,4 @@ _020BD944:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BD960: .word 0x45F306DD
-	arm_func_end sub_020BD8D0
+	arm_func_end FX_CosFx64c

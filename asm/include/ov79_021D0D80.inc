@@ -69,7 +69,7 @@
 .public sub_0208C210
 .public sub_0209916C
 .public sub_02099370
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov79_021D0E1C
 .public ov79_021D0F7C
 .public ov79_021D0FB0

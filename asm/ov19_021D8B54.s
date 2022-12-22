@@ -104,7 +104,7 @@ ov19_021D8C1C: ; 0x021D8C1C
 	add r4, r0, #0
 	add r0, #0x24
 	add r5, r1, #0
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r2, #1
@@ -621,12 +621,12 @@ _021D9030:
 	mov r6, #6
 _021D9032:
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _021D906C ; =0x0000077C
 	str r0, [r5, r1]
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x1e
 	lsl r1, r1, #6
 	str r0, [r5, r1]
@@ -1311,7 +1311,7 @@ ov19_021D9554: ; 0x021D9554
 	ldr r2, [r4, #0x10]
 	ldr r0, [r4, #0xc]
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x1c]
 	mov r0, #0xf
 	lsl r0, r0, #0xc
@@ -2862,7 +2862,7 @@ ov19_021DA110: ; 0x021DA110
 	add r1, r6, #0
 	lsl r2, r2, #8
 	bl ov19_021DA754
-	bl sub_020C3E14
+	bl OS_WaitVBlankIntr
 	ldr r0, _021DA1EC ; =0x00000758
 	add r3, r5, #0
 	ldr r0, [r5, r0]
@@ -2905,7 +2905,7 @@ _021DA186:
 	add r1, r6, #0
 	lsl r2, r2, #8
 	bl ov19_021DA754
-	bl sub_020C3E14
+	bl OS_WaitVBlankIntr
 	ldr r0, _021DA1F4 ; =0x0000075C
 	add r3, r5, #0
 	ldr r0, [r5, r0]

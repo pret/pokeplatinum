@@ -48,7 +48,7 @@
 .public sub_0207CFC8
 .public sub_0207D268
 .public sub_0207D344
-.public sub_020A7164
+.public NNS_G2dGetUnpackedBGCharacterData
 .public ov84_0223BE5C
 .public ov84_0223D84C
 .public ov84_0223F2C0

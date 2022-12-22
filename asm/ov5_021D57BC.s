@@ -16,7 +16,7 @@ ov5_021D57BC: ; 0x021D57BC
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x38
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -89,7 +89,7 @@ _021D5824:
 	ldr r1, [r4, #4]
 	ldr r2, [r4, #8]
 	ldr r3, [r4, #0xc]
-	bl sub_020BFC74
+	bl G3X_SetFog
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov5_021D57FC
@@ -127,10 +127,10 @@ ov5_021D585C: ; 0x021D585C
 	add r1, r4, #0
 	add r1, #0x18
 	mov r2, #0x20
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r4, #0x18
 	add r0, r4, #0
-	bl sub_020BFD44
+	bl G3X_SetFogTable
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov5_021D585C

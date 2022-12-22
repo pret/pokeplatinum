@@ -11,31 +11,31 @@ ov4_02212CC8: ; 0x02212CC8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _02212DDC ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r2, #0]
 	cmp r1, #0
 	beq _02212CF8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _02212CF8:
 	cmp r6, #0
 	bne _02212D0C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _02212D0C:
 	tst r6, #0x1f
 	beq _02212D20
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _02212D20:
 	cmp r5, #0x2300
 	bhs _02212D34
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #6
 	ldmia sp!, {r4, r5, r6, pc}
 _02212D34:
@@ -64,23 +64,23 @@ _02212D34:
 	strh r0, [r1, #0xf8]
 	bl ov4_02213C2C
 	bl ov4_022152B4
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #0
 	bne _02212DA8
-	bl sub_020C3790
+	bl OS_InitTick
 _02212DA8:
-	bl sub_020C39FC
+	bl OS_IsAlarmAvailable
 	cmp r0, #0
 	bne _02212DB8
-	bl sub_020C39BC
+	bl OS_InitAlarm
 _02212DB8:
 	ldr r0, _02212DDC ; =0x0221F7AC
 	ldr r0, [r0, #0]
 	add r0, r0, #0x2cc
 	add r0, r0, #0x2000
-	bl sub_020C3A0C
+	bl OS_CreateAlarm
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -90,12 +90,12 @@ _02212DDC: .word 0x0221F7AC
 	arm_func_start ov4_02212DE0
 ov4_02212DE0: ; 0x02212DE0
 	stmfd sp!, {r3, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _02212E34 ; =0x0221F7AC
 	ldr r1, [r2, #0]
 	cmp r1, #0
 	bne _02212E04
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 _02212E04:
@@ -103,13 +103,13 @@ _02212E04:
 	ldr r1, [r1, #0x260]
 	cmp r1, #1
 	beq _02212E20
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 _02212E20:
 	mov r1, #0
 	str r1, [r2, #0]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -121,13 +121,13 @@ ov4_02212E38: ; 0x02212E38
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02213030 ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	bne _02212E68
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _02212E68:
@@ -146,15 +146,15 @@ _02212E8C:
 	bl ov4_02213974
 	b _02212EC0
 _02212E9C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
 _02212EA8:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 _02212EB4:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _02212EC0:
@@ -164,7 +164,7 @@ _02212EC0:
 	ldr r1, [r1, #0x26c]
 	mov r1, r1, lsl #0x10
 	mov r1, r1, lsr #0x10
-	bl sub_020CDB18
+	bl WM_Init
 	cmp r0, #6
 	addls pc, pc, r0, lsl #2
 	b _02212F2C
@@ -180,53 +180,53 @@ _02212F04:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, r5, r6, pc}
 _02212F1C:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #5
 	ldmia sp!, {r4, r5, r6, pc}
 _02212F2C:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, r5, r6, pc}
 _02212F44:
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	cmp r0, #0
 	bne _02212F84
-	bl sub_020CDD28
+	bl WM_Finish
 	cmp r0, #0
 	beq _02212F74
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, r5, r6, pc}
 _02212F74:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #5
 	ldmia sp!, {r4, r5, r6, pc}
 _02212F84:
 	ldr r0, _02213034 ; =ov4_02213F20
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	cmp r0, #0
 	beq _02212FAC
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, r5, r6, pc}
 _02212FAC:
 	ldr r0, _02213038 ; =ov4_02213F98
-	bl sub_020CEB94
+	bl WM_Enable
 	cmp r0, #2
 	beq _02212FD0
 	cmp r0, #3
@@ -247,19 +247,19 @@ _02212FF0:
 	mov r0, #0xc
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 _02213008:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, r5, r6, pc}
 _02213020:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -271,13 +271,13 @@ _02213038: .word ov4_02213F98
 	arm_func_start ov4_0221303C
 ov4_0221303C: ; 0x0221303C
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02213124 ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	bne _02213064
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 _02213064:
@@ -289,20 +289,20 @@ _02213064:
 	beq _022130A8
 	cmp r1, #4
 	bne _0221309C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r4, pc}
 _02213090:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 _0221309C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 _022130A8:
 	ldr r0, _02213128 ; =ov4_02213F98
-	bl sub_020CEC88
+	bl WM_PowerOff
 	cmp r0, #2
 	beq _022130CC
 	cmp r0, #3
@@ -321,19 +321,19 @@ _022130CC:
 	b _02213114
 _022130EC:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r4, pc}
 _022130FC:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, pc}
 _02213114:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -360,13 +360,13 @@ ov4_0221314C: ; 0x0221314C
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _022132BC ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	bne _02213180
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02213180:
@@ -385,7 +385,7 @@ _022131A4:
 	mov r2, r5
 	bl ov4_02213A94
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022131C4:
@@ -394,11 +394,11 @@ _022131C4:
 	mov r2, r5
 	bl ov4_02213A94
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022131E4:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022131F0:
@@ -412,7 +412,7 @@ _022131F0:
 	add r0, r0, #0x2000
 	ldrh r1, [r1, #0x8c]
 	ldr r0, [r0, #0x288]
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r2, _022132BC ; =0x0221F7AC
 	ldr r0, _022132C0 ; =ov4_02214254
 	ldr r1, [r2, #0]
@@ -423,7 +423,7 @@ _022131F0:
 	ldr r1, [r2, #0]
 	add r1, r1, #0x288
 	add r1, r1, #0x2000
-	bl sub_020CF08C
+	bl WM_StartScanEx
 	cmp r0, #2
 	beq _02213264
 	cmp r0, #3
@@ -442,19 +442,19 @@ _02213264:
 	b _022132AC
 _02213284:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02213294:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022132AC:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -465,13 +465,13 @@ _022132C0: .word ov4_02214254
 	arm_func_start ov4_022132C4
 ov4_022132C4: ; 0x022132C4
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02213364 ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	bne _022132EC
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 _022132EC:
@@ -494,20 +494,20 @@ _02213310:
 	strh r1, [r0, #0x80]
 	b _02213354
 _02213330:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r4, pc}
 _0221333C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 _02213348:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 _02213354:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -520,13 +520,13 @@ ov4_02213368: ; 0x02213368
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _02213560 ; =0x0221F7AC
 	mov r4, r0
 	ldr ip, [r2]
 	cmp ip, #0
 	bne _0221339C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _0221339C:
@@ -542,14 +542,14 @@ _0221339C:
 _022133C0:
 	cmp r7, #0
 	bne _022133D4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022133D4:
 	ldrh r3, [r7, #0x3c]
 	cmp r3, #0
 	beq _022133EC
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022133EC:
@@ -561,7 +561,7 @@ _022133EC:
 	cmplo r0, #4
 	blo _02213418
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02213418:
@@ -578,25 +578,25 @@ _02213418:
 	bne _02213454
 	add r0, r1, #0x2200
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	b _02213474
 _02213454:
 	add r0, r6, #2
 	add r1, r1, #0x2200
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _02213474
 _02213464:
 	add r0, ip, #0x2200
 	mov r1, #0
 	mov r2, #0x52
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _02213474:
 	ldr r1, _02213560 ; =0x0221F7AC
 	mov r0, r7
 	ldr r1, [r1, #0]
 	mov r2, #0xc0
 	add r1, r1, #0x2140
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _02213560 ; =0x0221F7AC
 	mov r0, r5
 	ldr r1, [r1, #0]
@@ -607,15 +607,15 @@ _02213474:
 	bl ov4_022138C8
 	b _022134D4
 _022134B0:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022134BC:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022134C8:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _022134D4:
@@ -624,7 +624,7 @@ _022134D4:
 	mov r3, r1
 	mov r2, #0x50
 	str r1, [sp]
-	bl sub_020D0764
+	bl WM_SetLifeTime
 	cmp r0, #2
 	beq _02213508
 	cmp r0, #3
@@ -643,19 +643,19 @@ _02213508:
 	b _02213550
 _02213528:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02213538:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02213550:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -667,13 +667,13 @@ _02213568: .word ov4_02213F98
 	arm_func_start ov4_0221356C
 ov4_0221356C: ; 0x0221356C
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02213680 ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	bne _02213594
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 _02213594:
@@ -685,15 +685,15 @@ _02213594:
 	beq _022135D8
 	cmp r2, #0xa
 	bne _022135CC
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r4, pc}
 _022135C0:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 _022135CC:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 _022135D8:
@@ -710,7 +710,7 @@ _022135D8:
 	b _02213670
 _02213604:
 	ldr r0, _02213684 ; =ov4_022149EC
-	bl sub_020CF958
+	bl WM_EndDCF
 	cmp r0, #2
 	beq _02213628
 	cmp r0, #3
@@ -729,19 +729,19 @@ _02213628:
 	b _02213670
 _02213648:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r4, pc}
 _02213658:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r4, pc}
 _02213670:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -752,13 +752,13 @@ _02213684: .word ov4_022149EC
 	arm_func_start ov4_02213688
 ov4_02213688: ; 0x02213688
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0221388C ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	bne _022136B0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 _022136B0:
@@ -783,11 +783,11 @@ _022136C4: ; jump table
 	b _02213750 ; case 12
 	b _022136FC ; case 13
 _022136FC:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, pc}
 _02213708:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _02213714:
@@ -799,12 +799,12 @@ _02213714:
 	mov r0, r4
 	add r1, r1, #0x2200
 	strh r2, [r1, #0x80]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, pc}
 _02213740:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 _02213750:
@@ -820,10 +820,10 @@ _02213750:
 	strh r1, [r0, #0x80]
 	b _0221387C
 _0221377C:
-	bl sub_020CE3F4
+	bl WMi_GetStatusAddress
 	mov r5, r0
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh r0, [r5]
 	cmp r0, #0
 	beq _022137AC
@@ -833,7 +833,7 @@ _0221377C:
 	beq _022137F0
 	b _022137FC
 _022137AC:
-	bl sub_020CDD28
+	bl WM_Finish
 	cmp r0, #0
 	bne _02213818
 	mov r0, #1
@@ -844,16 +844,16 @@ _022137AC:
 	mov r0, r4
 	add r1, r1, #0x2200
 	strh r2, [r1, #0x80]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _022137E4:
 	ldr r0, _02213890 ; =ov4_02213F98
-	bl sub_020CEC08
+	bl WM_Disable
 	b _02213818
 _022137F0:
 	ldr r0, _02213890 ; =ov4_02213F98
-	bl sub_020CEC88
+	bl WM_PowerOff
 	b _02213818
 _022137FC:
 	ldr r1, _0221388C ; =0x0221F7AC
@@ -862,7 +862,7 @@ _022137FC:
 	mov r2, #1
 	add r1, r1, #0x2000
 	strb r2, [r1, #0x26b]
-	bl sub_020CED50
+	bl WM_Reset
 _02213818:
 	cmp r0, #2
 	beq _02213834
@@ -882,19 +882,19 @@ _02213834:
 	b _0221387C
 _02213854:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #4
 	ldmia sp!, {r3, r4, r5, pc}
 _02213864:
 	mov r0, #0xb
 	bl ov4_02213D74
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #7
 	ldmia sp!, {r3, r4, r5, pc}
 _0221387C:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -906,14 +906,14 @@ _02213894: .word ov4_02214B08
 	arm_func_start ov4_02213898
 ov4_02213898: ; 0x02213898
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _022138C4 ; =0x0221F7AC
 	mov r4, #0
 	ldr r1, [r1, #0]
 	cmp r1, #0
 	addne r1, r1, #0x2000
 	ldrne r4, [r1, #0x260]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -924,7 +924,7 @@ _022138C4: .word 0x0221F7AC
 ov4_022138C8: ; 0x022138C8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0221395C ; =0x0221F7AC
 	mov r2, #0
 	ldr r3, [r1, #0]
@@ -932,7 +932,7 @@ ov4_022138C8: ; 0x022138C8
 	cmp r3, #0
 	ldr r4, [r1, #0x264]
 	bne _022138FC
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _022138FC:
@@ -958,7 +958,7 @@ _0221391C:
 	orr r2, r5, r1
 	add r1, r3, #0x2000
 	str r2, [r1, #0x264]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1039,7 +1039,7 @@ _02213A1C:
 	add r2, r0, #0x2000
 	ldr r0, [r2, #0x270]
 	ldr r2, [r2, #0x274]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _02213A68:
 	ldr r0, _02213A90 ; =0x0221F7AC
 	ldr r1, [r5, #0xc]
@@ -1086,7 +1086,7 @@ ov4_02213A94: ; 0x02213A94
 	ldrh r0, [r0, #0x68]
 	cmp r0, #0
 	bne _02213B08
-	bl sub_020CE934
+	bl WM_GetDispersionScanPeriod
 _02213B08:
 	ldr r2, _02213C20 ; =0x0221F7AC
 	ldr r1, [r2, #0]
@@ -1109,7 +1109,7 @@ _02213B08:
 	ldr r1, [r1, #0]
 	add r1, r1, #0x92
 	add r1, r1, #0x2200
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _02213B7C
 _02213B64:
 	ldr r1, _02213C20 ; =0x0221F7AC
@@ -1117,7 +1117,7 @@ _02213B64:
 	ldr r1, [r1, #0]
 	add r1, r1, #0x92
 	add r1, r1, #0x2200
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02213B7C:
 	cmp r4, #0
 	ldrne r0, _02213C28 ; =0x02215E50
@@ -1129,7 +1129,7 @@ _02213B7C:
 	ldr r1, [r1, #0]
 	add r1, r1, #0x29c
 	add r1, r1, #0x2000
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02213C20 ; =0x0221F7AC
 	mov r1, #0
 	ldr r0, [r0, #0]
@@ -1142,7 +1142,7 @@ _02213BC0:
 	ldr r1, [r1, #0]
 	add r1, r1, #0x29c
 	add r1, r1, #0x2000
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #0
 _02213BDC:
 	ldrb r0, [r4]
@@ -1278,7 +1278,7 @@ _02213D70: .word 0x0221F7AC
 ov4_02213D74: ; 0x02213D74
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02213E00 ; =0x0221F7AC
 	mov r4, r0
 	ldr r1, [r1, #0]
@@ -1290,7 +1290,7 @@ ov4_02213D74: ; 0x02213D74
 	beq _02213DB0
 	add r0, r1, #0x2cc
 	add r0, r0, #0x2000
-	bl sub_020C3BB4
+	bl OS_CancelAlarm
 _02213DB0:
 	ldr r0, _02213E00 ; =0x0221F7AC
 	ldr r0, [r0, #0]
@@ -1308,10 +1308,10 @@ _02213DB0:
 	add r0, r0, #0x2cc
 	ldr r3, _02213E08 ; =ov4_02213E80
 	add r0, r0, #0x2000
-	bl sub_020C3B48
+	bl OS_SetAlarm
 _02213DF4:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02213E00: .word 0x0221F7AC
@@ -1323,13 +1323,13 @@ _02213E08: .word ov4_02213E80
 ov4_02213E0C: ; 0x02213E0C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02213E74 ; =0x0221F7AC
 	mov r4, r0
 	ldr r0, [r1, #0]
 	add r0, r0, #0x2cc
 	add r0, r0, #0x2000
-	bl sub_020C3BB4
+	bl OS_CancelAlarm
 	ldr r0, _02213E74 ; =0x0221F7AC
 	ldr r1, [r0, #0]
 	add r0, r1, #0x2000
@@ -1342,10 +1342,10 @@ ov4_02213E0C: ; 0x02213E0C
 	ldr r3, _02213E7C ; =ov4_02213E80
 	add r0, r0, #0x2000
 	str r2, [sp]
-	bl sub_020C3B48
+	bl OS_SetAlarm
 _02213E64:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -1398,7 +1398,7 @@ ov4_02213EC4: ; 0x02213EC4
 	mov r2, #1
 	ldr r0, _02213F1C ; =ov4_02214B08
 	strb r2, [r1, #0x26b]
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	ldmeqia sp!, {r3, pc}
 	mov r0, #0xb
@@ -1494,11 +1494,11 @@ _0221400C:
 	b _02214138
 _02214018:
 	ldr r0, _02214230 ; =ov4_02213F98
-	bl sub_020CEC48
+	bl WM_PowerOn
 	mov r2, r0
 	b _02214138
 _02214028:
-	bl sub_020CDD28
+	bl WM_Finish
 	cmp r0, #0
 	beq _0221403C
 	cmp r0, #4
@@ -1532,13 +1532,13 @@ _0221407C:
 	ldmia sp!, {r3, pc}
 _0221409C:
 	ldr r0, _02214230 ; =ov4_02213F98
-	bl sub_020CEC08
+	bl WM_Disable
 	mov r2, r0
 	b _02214138
 _022140AC:
 	ldr r0, _02214230 ; =ov4_02213F98
 	mov r1, #0
-	bl sub_020D0714
+	bl WM_SetBeaconIndication
 	mov r2, r0
 	b _02214138
 _022140C0:
@@ -1549,7 +1549,7 @@ _022140C0:
 	ldrb r1, [r2, #0x250]
 	ldrb r2, [r2, #0x251]
 	add r3, r3, #0x2200
-	bl sub_020D05E0
+	bl WM_SetWEPKeyEx
 	mov r2, r0
 	b _02214138
 _022140E8:
@@ -1571,7 +1571,7 @@ _022140E8:
 	moveq r3, #0
 	mov r2, #0
 	str ip, [sp]
-	bl sub_020CF21C
+	bl WM_StartConnectEx
 	mov r2, r0
 _02214138:
 	cmp r2, #2
@@ -1705,7 +1705,7 @@ _022142E8:
 	add r0, r0, #0x2000
 	ldrh r1, [r1, #0x8c]
 	ldr r0, [r0, #0x288]
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh r0, [r5, #0xe]
 	mov r4, #0
 	cmp r0, #0
@@ -1748,7 +1748,7 @@ _02214374:
 	add r0, r0, #0x2000
 	ldr r6, [r0, #0x284]
 	mov r0, r6
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	bne _022143E0
 	ldr r4, _02214520 ; =0x00000728
@@ -1777,7 +1777,7 @@ _022143E0:
 	add r0, r0, #0x2000
 	ldrh r1, [r1, #0x8c]
 	ldr r0, [r0, #0x288]
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r2, _02214510 ; =0x0221F7AC
 	ldr r0, _02214524 ; =ov4_02214254
 	ldr r1, [r2, #0]
@@ -1788,12 +1788,12 @@ _022143E0:
 	ldr r1, [r2, #0]
 	add r1, r1, #0x288
 	add r1, r1, #0x2000
-	bl sub_020CF08C
+	bl WM_StartScanEx
 	mov r4, r0
 	b _0221447C
 _02214460:
 	ldr r0, _02214528 ; =ov4_02214538
-	bl sub_020CF1DC
+	bl WM_EndScan
 	mov r4, r0
 	b _0221447C
 _02214470:
@@ -1995,7 +1995,7 @@ _022146E0:
 	ldr r0, _02214800 ; =ov4_022148DC
 	add r1, r1, #0x1500
 	mov r2, #0x620
-	bl sub_020CF7EC
+	bl WM_StartDCF
 	cmp r0, #2
 	ldmeqia sp!, {r4, pc}
 	cmp r0, #3
@@ -2175,7 +2175,7 @@ _02214960:
 	bl ov4_022157E4
 	ldr r0, [r4, #8]
 	mov r1, #0x620
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #8]
 	bl ov4_022152F4
 	ldmia sp!, {r4, pc}
@@ -2235,7 +2235,7 @@ _02214A14:
 _02214A3C:
 	ldr r0, _02214AFC ; =ov4_02214814
 	mov r1, #0
-	bl sub_020CF2E8
+	bl WM_Disconnect
 	cmp r0, #2
 	ldmeqia sp!, {r3, pc}
 	cmp r0, #3
@@ -2377,7 +2377,7 @@ _02214BD4:
 	add r1, lr, #0x2140
 	mov r2, #0
 	str ip, [sp]
-	bl sub_020CF21C
+	bl WM_StartConnectEx
 	cmp r0, #2
 	addeq sp, sp, #4
 	ldmeqia sp!, {r3, r4, pc}
@@ -2446,7 +2446,7 @@ _02214D18:
 	ldmia sp!, {r3, r4, pc}
 _02214D44:
 	ldr r0, _02214E28 ; =ov4_02213F98
-	bl sub_020CEC88
+	bl WM_PowerOff
 	cmp r0, #2
 	addeq sp, sp, #4
 	ldmeqia sp!, {r3, r4, pc}

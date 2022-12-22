@@ -72,4 +72,4 @@
 .public sub_0207D990
 .public sub_02092444
 .public sub_0209304C
-.public sub_020C3880
+.public OS_GetTick

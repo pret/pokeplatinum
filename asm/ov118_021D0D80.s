@@ -21,7 +21,7 @@ _021D0D90:
 	str r0, [r4, r1]
 	ldr r0, [r4, r1]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021D0DB8 ; =0x00000B29
 	ldrb r1, [r4, r0]
 	add r0, #0x13
@@ -272,7 +272,7 @@ ov118_021D0F88: ; 0x021D0F88
 	mov r2, #0x3f
 	mov r3, #0x1f
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #4
 	pop {r3, r4, pc}
 	nop

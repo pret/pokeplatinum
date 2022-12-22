@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E402C
-sub_020E402C: ; 0x020E402C
+	arm_func_start __call_static_initializers
+__call_static_initializers: ; 0x020E402C
 	stmfd sp!, {r4, lr}
 	ldr r4, _020E4054 ; =0x020FECCC
 	b _020E4040
@@ -21,10 +21,10 @@ _020E4040:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020E4054: .word 0x020FECCC
-	arm_func_end sub_020E402C
+	arm_func_end __call_static_initializers
 
-	arm_func_start sub_020E4058
-sub_020E4058: ; 0x020E4058
+	arm_func_start __destroy_global_chain
+__destroy_global_chain: ; 0x020E4058
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r4, _020E4098 ; =0x021D0D68
 	ldr r2, [r4, #0]
@@ -44,7 +44,7 @@ _020E4070:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020E4098: .word 0x021D0D68
-	arm_func_end sub_020E4058
+	arm_func_end __destroy_global_chain
 
 	.bss
 

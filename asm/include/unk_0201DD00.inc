@@ -14,5 +14,5 @@
 .public sub_0201DF84
 .public sub_0201E140
 .public sub_0202414C
-.public sub_020B38E4
-.public sub_020E2178
+.public NNS_G3dGetResDataByName
+.public _u32_div_f

@@ -138,6 +138,6 @@
 .public sub_0207D60C
 .public sub_0207D730
 .public sub_0208D720
-.public sub_020C4AF0
-.public sub_020C4B4C
-.public sub_020C4BB8
+.public MIi_CpuClear16
+.public MIi_CpuClear32
+.public MIi_CpuClearFast

@@ -16,7 +16,7 @@ sub_02017728: ; 0x02017728
 	orr r0, r2
 	str r0, [r3, r1]
 	mov r0, #3
-	bl sub_020C458C
+	bl MI_WaitDma
 	ldr r0, _02017758 ; =0x021BF67C
 	ldr r0, [r0, #0x1c]
 	bl sub_0201CDD4
@@ -39,25 +39,25 @@ sub_0201775C: ; 0x0201775C
 	ldr r2, [r3, r1]
 	orr r0, r2
 	str r0, [r3, r1]
-	ldr r3, _02017778 ; =sub_020C458C
+	ldr r3, _02017778 ; =MI_WaitDma
 	mov r0, #3
 	bx r3
 	nop
 _02017770: .word 0x027E0000
 _02017774: .word 0x00003FF8
-_02017778: .word sub_020C458C
+_02017778: .word MI_WaitDma
 	thumb_func_end sub_0201775C
 
 	thumb_func_start sub_0201777C
 sub_0201777C: ; 0x0201777C
 	push {r3, lr}
 	mov r0, #1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r1, _02017794 ; =sub_0201775C
 	mov r0, #1
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #1
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	pop {r3, pc}
 	; .align 2, 0
 _02017794: .word sub_0201775C
@@ -144,19 +144,19 @@ sub_02017808: ; 0x02017808
 	bne _02017826
 	ldr r0, [r2, #8]
 	mov r0, #2
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	mov r0, #0
-	bl sub_020BDD54
+	bl GX_HBlankIntr
 	b _0201783C
 _02017826:
 	ldr r0, [r2, #8]
 	ldr r1, _0201784C ; =sub_020177F4
 	mov r0, #2
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #2
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, #1
-	bl sub_020BDD54
+	bl GX_HBlankIntr
 _0201783C:
 	ldr r1, _02017848 ; =0x04000208
 	ldrh r0, [r1]
@@ -173,11 +173,11 @@ sub_02017850: ; 0x02017850
 	push {r3, lr}
 	sub sp, #0x30
 	add r0, sp, #0x10
-	bl sub_020C41D8
+	bl OS_GetLowEntropyData
 	add r0, sp, #0
 	add r1, sp, #0x10
 	mov r2, #0x20
-	bl sub_020D3028
+	bl MATH_CalcMD5
 	mov r3, #0
 	add r1, r3, #0
 	add r2, sp, #0
@@ -213,8 +213,8 @@ _02017898: .word 0x020E5674
 	thumb_func_start sub_0201789C
 sub_0201789C: ; 0x0201789C
 	push {r3, r4, r5, lr}
-	bl sub_020C2CCC
-	bl sub_020BDBC8
+	bl OS_Init
+	bl FX_Init
 	ldr r2, _020179C0 ; =0x04000304
 	ldr r0, _020179C4 ; =0xFFFFFDF1
 	ldrh r1, [r2]
@@ -222,15 +222,15 @@ sub_0201789C: ; 0x0201789C
 	ldr r0, _020179C8 ; =0x0000020E
 	orr r0, r1
 	strh r0, [r2]
-	bl sub_020BDC08
-	bl sub_020C3790
+	bl GX_Init
+	bl OS_InitTick
 	bl sub_02017850
 	mov r0, #0xa0
 	bl sub_0201CD80
 	add r1, r0, #0
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	add r1, r0, #0
 	mov r0, #0xa0
 	bl sub_0201CD88
@@ -241,7 +241,7 @@ sub_0201789C: ; 0x0201789C
 	add r1, r0, #0
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	add r1, r0, #0
 	mov r0, #0x20
 	bl sub_0201CD88
@@ -252,7 +252,7 @@ sub_0201789C: ; 0x0201789C
 	add r1, r0, #0
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	add r1, r0, #0
 	mov r0, #0x20
 	bl sub_0201CD88
@@ -263,13 +263,13 @@ sub_0201789C: ; 0x0201789C
 	add r1, r0, #0
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	add r1, r0, #0
 	mov r0, #4
 	bl sub_0201CD88
 	ldr r1, _020179CC ; =0x021BF67C
 	str r0, [r1, #0x24]
-	bl sub_020BDDBC
+	bl GX_DispOff
 	ldr r2, _020179D0 ; =0x04001000
 	ldr r0, _020179D4 ; =0xFFFEFFFF
 	ldr r1, [r2, #0]
@@ -282,35 +282,35 @@ sub_0201789C: ; 0x0201789C
 	strh r0, [r2]
 	ldr r1, _020179D8 ; =sub_02017728
 	mov r0, #1
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #1
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, #1
 	lsl r0, r0, #0x12
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldr r1, _020179DC ; =0x04000208
 	ldrh r0, [r1]
 	mov r0, #1
 	strh r0, [r1]
-	bl sub_020BDD88
+	bl GX_VBlankIntr
 	mov r0, #1
-	bl sub_020C7D68
+	bl FS_Init
 	bl sub_02024358
 	mov r0, #0
 	add r1, r0, #0
-	bl sub_020C8530
+	bl FS_TryLoadTable
 	add r4, r0, #0
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	add r5, r0, #0
 	bne _02017990
 	bl sub_02022974
 _02017990:
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020C8530
+	bl FS_TryLoadTable
 	ldr r0, _020179CC ; =0x021BF67C
 	mov r1, #0
 	str r1, [r0, #0]
@@ -325,7 +325,7 @@ _02017990:
 	mov r1, #9
 	lsl r0, r0, #8
 	lsl r1, r1, #0xa
-	bl sub_020CC8C4
+	bl CARD_SetCacheFlushThreshold
 	mov r0, #0
 	bl sub_0201D640
 	pop {r3, r4, r5, pc}
@@ -345,36 +345,36 @@ _020179E0: .word 0x021BF6DC
 sub_020179E4: ; 0x020179E4
 	push {r3, lr}
 	ldr r0, _02017A34 ; =0x000001FF
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	mov r1, #0x1a
 	mov r2, #0x29
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0xe
-	bl sub_020C4BB8
-	bl sub_020BEF60
+	bl MIi_CpuClearFast
+	bl GX_DisableBankForLCDC
 	mov r1, #7
 	mov r2, #1
 	mov r0, #0xc0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0xa
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r2, #1
 	ldr r1, _02017A38 ; =0x07000400
 	mov r0, #0xc0
 	lsl r2, r2, #0xa
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r1, #5
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0xa
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r2, #1
 	ldr r1, _02017A3C ; =0x05000400
 	mov r0, #0
 	lsl r2, r2, #0xa
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	pop {r3, pc}
 	; .align 2, 0
 _02017A34: .word 0x000001FF
@@ -389,10 +389,10 @@ sub_02017A40: ; 0x02017A40
 	add r6, r0, #0
 	add r4, r1, #0
 	add r0, sp, #0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	add r1, r4, #0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	beq _02017A8C
 	ldr r1, [sp, #0x28]
@@ -406,7 +406,7 @@ sub_02017A40: ; 0x02017A40
 	add r0, sp, #0
 	add r1, r4, #0
 	add r2, r5, #0
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r5, r0
 	beq _02017A84
 	add r0, r6, #0
@@ -415,7 +415,7 @@ sub_02017A40: ; 0x02017A40
 	mov r4, #0
 _02017A84:
 	add r0, sp, #0
-	bl sub_020C80C8
+	bl FS_CloseFile
 	b _02017A8E
 _02017A8C:
 	mov r4, #0
@@ -432,10 +432,10 @@ sub_02017A94: ; 0x02017A94
 	add r5, r0, #0
 	add r0, sp, #0
 	add r4, r1, #0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	add r1, r5, #0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	beq _02017AC6
 	ldr r1, [sp, #0x28]
@@ -445,10 +445,10 @@ sub_02017A94: ; 0x02017A94
 	cmp r1, #0
 	beq _02017AC0
 	add r0, sp, #0
-	bl sub_020C81D4
+	bl FS_ReadFile
 _02017AC0:
 	add r0, sp, #0
-	bl sub_020C80C8
+	bl FS_CloseFile
 _02017AC6:
 	add sp, #0x48
 	pop {r3, r4, r5, pc}
@@ -504,13 +504,13 @@ sub_02017AF4: ; 0x02017AF4
 	strh r2, [r0, #0x22]
 	ldr r0, _02017B5C ; =0x021BF6DC
 	strb r2, [r0, #4]
-	bl sub_020C9CF8
+	bl TP_Init
 	add r0, sp, #0
-	bl sub_020C9D70
+	bl TP_GetUserInfo
 	cmp r0, #1
 	add r0, sp, #0
 	bne _02017B3A
-	bl sub_020C9E04
+	bl TP_SetCalibrateParam
 	add sp, #8
 	pop {r3, pc}
 _02017B3A:
@@ -523,7 +523,7 @@ _02017B3A:
 	ldr r1, _02017B6C ; =0x00001208
 	strh r1, [r0, #6]
 	add r0, sp, #0
-	bl sub_020C9E04
+	bl TP_SetCalibrateParam
 	add sp, #8
 	pop {r3, pc}
 	; .align 2, 0
@@ -637,19 +637,19 @@ _02017C00:
 	bne _02017C2C
 	add r4, sp, #8
 _02017C1C:
-	bl sub_020C9F2C
+	bl TP_RequestSamplingAsync
 	add r0, r4, #0
-	bl sub_020C9FC0
+	bl TP_WaitRawResult
 	cmp r0, #0
 	bne _02017C1C
 	b _02017C32
 _02017C2C:
 	add r0, sp, #8
-	bl sub_020CA1A8
+	bl TP_GetLatestRawPointInAuto
 _02017C32:
 	add r0, sp, #0
 	add r1, sp, #8
-	bl sub_020CA4E8
+	bl TP_GetCalibratedPoint
 	add r1, sp, #0
 	ldrh r3, [r1, #6]
 	cmp r3, #0

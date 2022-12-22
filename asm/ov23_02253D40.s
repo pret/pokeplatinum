@@ -29,7 +29,7 @@ ov23_02253D48: ; 0x02253D48
 	mov r1, #0
 	mov r2, #0x48
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x20]
 	cmp r0, #0
 	bne _02253D70

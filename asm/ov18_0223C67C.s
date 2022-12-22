@@ -38,10 +38,10 @@ ov18_0223C6CC: ; 0x0223C6CC
 	ldr r1, _0223C758 ; =0x020C07EC
 	bl ov18_0222B700
 	ldr r0, _0223C75C ; =0x0224A538
-	ldr r1, _0223C760 ; =sub_020C00B4
+	ldr r1, _0223C760 ; =GX_LoadBGPltt
 	bl ov18_0222B700
 	ldr r0, _0223C764 ; =0x0224A550
-	ldr r1, _0223C768 ; =sub_020C04EC
+	ldr r1, _0223C768 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _0223C76C ; =0x04001008
 	ldr r1, _0223C770 ; =0x0400000A
@@ -71,9 +71,9 @@ ov18_0223C6CC: ; 0x0223C6CC
 _0223C754: .word 0x0224A520
 _0223C758: .word 0x020C07EC
 _0223C75C: .word 0x0224A538
-_0223C760: .word sub_020C00B4
+_0223C760: .word GX_LoadBGPltt
 _0223C764: .word 0x0224A550
-_0223C768: .word sub_020C04EC
+_0223C768: .word GX_LoadBG2Scr
 _0223C76C: .word 0x04001008
 _0223C770: .word 0x0400000A
 	arm_func_end ov18_0223C6CC
@@ -324,16 +324,16 @@ ov18_0223CA28: ; 0x0223CA28
 	mov r0, #2
 	bl ov18_0222B740
 	add r0, sp, #0x16
-	bl sub_020C3FBC
+	bl OS_GetOwnerInfo
 	add r1, sp, #0
 	mov r0, #0
 	mov r2, #0x16
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldrh r2, [sp, #0x30]
 	add r0, sp, #0x1a
 	add r1, sp, #0
 	mov r2, r2, lsl #1
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, sp, #0
 	mov r1, #0x28
 	bl ov18_0222B83C
@@ -360,10 +360,10 @@ ov18_0223CABC: ; 0x0223CABC
 	ldr r1, _0223CB48 ; =0x020C07EC
 	bl ov18_0222B700
 	ldr r0, _0223CB4C ; =0x0224A57C
-	ldr r1, _0223CB50 ; =sub_020C00B4
+	ldr r1, _0223CB50 ; =GX_LoadBGPltt
 	bl ov18_0222B700
 	ldr r0, _0223CB54 ; =0x0224A594
-	ldr r1, _0223CB58 ; =sub_020C04EC
+	ldr r1, _0223CB58 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _0223CB5C ; =0x04001008
 	ldr r1, _0223CB60 ; =0x0400000A
@@ -393,9 +393,9 @@ ov18_0223CABC: ; 0x0223CABC
 _0223CB44: .word 0x0224A564
 _0223CB48: .word 0x020C07EC
 _0223CB4C: .word 0x0224A57C
-_0223CB50: .word sub_020C00B4
+_0223CB50: .word GX_LoadBGPltt
 _0223CB54: .word 0x0224A594
-_0223CB58: .word sub_020C04EC
+_0223CB58: .word GX_LoadBG2Scr
 _0223CB5C: .word 0x04001008
 _0223CB60: .word 0x0400000A
 	arm_func_end ov18_0223CABC

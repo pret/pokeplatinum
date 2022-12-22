@@ -38,7 +38,7 @@ ov4_022052BC: ; 0x022052BC
 	ldmeqia sp!, {r3, pc}
 	ldr r0, _022052D8 ; =0x0221A114
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022052D8: .word 0x0221A114

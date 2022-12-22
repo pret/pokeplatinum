@@ -114,7 +114,7 @@ ov95_0224AC64: ; 0x0224AC64
 	ldr r0, [r4, #0x24]
 	add r1, #0x28
 	bl ov95_02247990
-	bl sub_020BFAB8
+	bl G3X_Reset
 	ldr r0, [r4, #0x20]
 	bl ov95_02247770
 	mov r0, #0
@@ -355,7 +355,7 @@ ov95_0224AE1C: ; 0x0224AE1C
 	mov r1, #6
 	mov r3, #1
 	bl sub_020183C4
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r5, r0, #0
 	ldr r0, [r4, #0xc]
 	ldr r2, _0224B044 ; =0x0224C1D8
@@ -368,7 +368,7 @@ ov95_0224AE1C: ; 0x0224AE1C
 	mov r3, #2
 	bl sub_020183C4
 	add r0, r5, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -517,24 +517,24 @@ ov95_0224AE1C: ; 0x0224AE1C
 	mov r0, #0
 	add r1, r5, #0
 	mov r2, #0x60
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r5, #0
 	mov r1, #0x60
-	bl sub_020C2C54
-	bl sub_020C096C
-	bl sub_020C0BBC
+	bl DC_FlushRange
+	bl GX_BeginLoadBGExtPltt
+	bl GXS_BeginLoadBGExtPltt
 	mov r1, #6
 	add r0, r5, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0A0C
+	bl GX_LoadBGExtPltt
 	mov r1, #6
 	add r0, r5, #0
 	lsl r1, r1, #0xc
 	mov r2, #0x60
-	bl sub_020C0BD4
-	bl sub_020C0A7C
-	bl sub_020C0C38
+	bl GXS_LoadBGExtPltt
+	bl GX_EndLoadBGExtPltt
+	bl GXS_EndLoadBGExtPltt
 	add r0, r5, #0
 	bl sub_020181C4
 _0224AFF2:
@@ -606,8 +606,8 @@ ov95_0224B084: ; 0x0224B084
 	push {r4, lr}
 	sub sp, #0x10
 	add r4, r0, #0
-	bl sub_020B28CC
-	bl sub_020BFB4C
+	bl NNS_G3dInit
+	bl G3X_InitMtxStack
 	ldr r0, _0224B168 ; =0x04000060
 	ldr r1, _0224B16C ; =0xFFFFCFFD
 	ldrh r2, [r0]
@@ -636,13 +636,13 @@ ov95_0224B084: ; 0x0224B084
 	orr r1, r2
 	strh r1, [r0]
 	ldr r0, _0224B174 ; =0x0224C1AC
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	mov r1, #0
 	ldr r0, _0224B178 ; =0x000043FF
 	ldr r2, _0224B17C ; =0x00007FFF
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0224B180 ; =0x04000540
 	mov r0, #2
 	str r0, [r1, #0]
@@ -650,11 +650,11 @@ ov95_0224B084: ; 0x0224B084
 	str r0, [r1, #0x40]
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020A5A94
+	bl NNS_GfdInitFrmTexVramManager
 	mov r0, #1
 	lsl r0, r0, #0xe
 	mov r1, #1
-	bl sub_020A5D88
+	bl NNS_GfdInitFrmPlttVramManager
 	mov r0, #1
 	add r1, r0, #0
 	bl sub_0201FF0C
@@ -949,7 +949,7 @@ ov95_0224B324: ; 0x0224B324
 	ldr r0, [r4, #4]
 	sub r0, r1, r0
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #8]
 	ldr r0, [sp]
 	str r7, [r4, #0x10]

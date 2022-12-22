@@ -13,7 +13,7 @@ sub_0201C970: ; 0x0201C970
 	add r4, r2, #0
 	bl sub_02017A40
 	str r0, [r5, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	cmp r0, #0
 	beq _0201C99A
 	bl sub_0201CA5C
@@ -21,12 +21,12 @@ sub_0201C970: ; 0x0201C970
 	bne _0201C99A
 	ldr r0, [r5, #0]
 	ldr r1, [r0, #8]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r5, #0]
-	bl sub_020B28F4
+	bl NNS_G3dResDefaultSetup
 _0201C99A:
 	ldr r0, [r5, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _0201C9C4
 	add r2, r0, #0
@@ -61,7 +61,7 @@ sub_0201C9CC: ; 0x0201C9CC
 	add r5, r1, #0
 	add r4, r0, #0
 	ldr r0, [r5, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	cmp r0, #0
 	beq _0201C9F2
 	bl sub_0201CA5C
@@ -69,12 +69,12 @@ sub_0201C9CC: ; 0x0201C9CC
 	bne _0201C9F2
 	ldr r0, [r5, #0]
 	ldr r1, [r0, #8]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r5, #0]
-	bl sub_020B28F4
+	bl NNS_G3dResDefaultSetup
 _0201C9F2:
 	ldr r0, [r5, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _0201CA1C
 	add r2, r0, #0
@@ -113,7 +113,7 @@ sub_0201CA24: ; 0x0201CA24
 	bl sub_0201C970
 	ldr r1, [r4, #0]
 	add r0, r5, #0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0201CA24
 
@@ -131,7 +131,7 @@ sub_0201CA3C: ; 0x0201CA3C
 _0201CA52:
 	ldr r1, [r4, #0]
 	add r0, r5, #0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0201CA3C
 
@@ -160,20 +160,20 @@ sub_0201CA74: ; 0x0201CA74
 	add r0, r1, #0
 	add r4, r2, #0
 	add r6, r3, #0
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _0201CAA8 ; =0x021C5B48
 	add r0, r4, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _0201CAAC ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, r6, #0
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
-	bl sub_020AF480
+	bl NNS_G3dGlbSetBaseScale
+	bl NNS_G3dGlbFlushP
 	add r0, r5, #0
-	bl sub_020AFEFC
+	bl NNS_G3dDraw
 	pop {r4, r5, r6, pc}
 	nop
 _0201CAA8: .word 0x021C5B48
@@ -187,24 +187,24 @@ sub_0201CAB0: ; 0x0201CAB0
 	add r0, r1, #0
 	add r4, r2, #0
 	add r6, r3, #0
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _0201CAEC ; =0x021C5B48
 	add r0, r4, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _0201CAF0 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	str r2, [r1, #0x7c]
 	add r0, r6, #0
-	bl sub_020AF4EC
-	bl sub_020AF480
+	bl NNS_G3dGlbSetBaseScale
+	bl NNS_G3dGlbFlushP
 	mov r1, #0
 	ldr r0, [r5, #4]
 	add r2, r1, #0
 	mov r3, #1
-	bl sub_020B2384
-	bl sub_020B2628
+	bl NNS_G3dDraw1Mat1Shp
+	bl NNS_G3dGeFlushBuffer
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _0201CAEC: .word 0x021C5B48
@@ -274,13 +274,13 @@ sub_0201CB1C: ; 0x0201CB1C
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0201CB94 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0201CB98 ; =0xBFFF0000
 	ldr r0, _0201CB9C ; =0x04000580
 	str r1, [r0, #0]
@@ -309,11 +309,11 @@ _0201CBAC: .word sub_020242C4
 sub_0201CBB0: ; 0x0201CBB0
 	push {r4, lr}
 	add r4, r1, #0
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r4, #0
 	beq _0201CBC6
 	add r1, r4, #0
-	bl sub_020AF1E8
+	bl NNS_G3dBindMdlSet
 	mov r0, #1
 	pop {r4, pc}
 _0201CBC6:
@@ -340,13 +340,13 @@ _0201CBDA:
 	str r1, [sp]
 	cmp r5, #0
 	beq _0201CCD8
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	add r6, r0, #0
 	add r0, r5, #0
-	bl sub_020AE8D8
+	bl NNS_G3dTex4x4GetRequiredSize
 	add r4, r0, #0
 	add r0, r5, #0
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	str r0, [sp, #0xc]
 	cmp r6, #0
 	beq _0201CC1A
@@ -447,19 +447,19 @@ _0201CCAE:
 	add r0, r5, #0
 	add r1, r7, #0
 	add r2, r6, #0
-	bl sub_020AE8EC
+	bl NNS_G3dTexSetTexKey
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020AEA18
+	bl NNS_G3dPlttSetPlttKey
 	ldr r1, [r5, #4]
 	add r0, r5, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	mov r1, #1
-	bl sub_020AE900
+	bl NNS_G3dTexLoad
 	add r0, r5, #0
 	mov r1, #1
-	bl sub_020AEA20
+	bl NNS_G3dPlttLoad
 _0201CCD8:
 	mov r0, #1
 	add sp, #0x10

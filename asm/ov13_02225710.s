@@ -653,7 +653,7 @@ ov13_02225C4C: ; 0x02225C4C
 	mul r5, r0
 	add r0, r4, #0
 	lsl r2, r5, #1
-	bl sub_020D50B8
+	bl memcpy
 	cmp r7, #5
 	bgt _02225C9A
 	cmp r7, #0

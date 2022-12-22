@@ -42,7 +42,7 @@ _021D4C4C:
 	ldr r0, [r4, #0xc]
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #8]
 	str r0, [r4, #0x10]
 	ldr r0, [r5, #0]

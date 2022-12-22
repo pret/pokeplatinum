@@ -14,4 +14,4 @@
 .public sub_0202CF70
 .public sub_0202CFB8
 .public sub_0202CFEC
-.public sub_020C4B4C
+.public MIi_CpuClear32

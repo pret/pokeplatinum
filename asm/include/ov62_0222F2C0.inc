@@ -75,10 +75,10 @@
 .public sub_0208B9E0
 .public sub_0208BA84
 .public sub_0208C06C
-.public sub_020A71B0
-.public sub_020A73C0
-.public sub_020BF55C
-.public sub_020C4B4C
+.public NNS_G2dGetUnpackedPaletteData
+.public NNS_G2dSetupSoftwareSpriteCamera
+.public G2x_SetBlendAlpha_
+.public MIi_CpuClear32
 .public ov62_0222F670
 .public ov62_0222F824
 .public ov62_0222F848

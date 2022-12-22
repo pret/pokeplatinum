@@ -50,7 +50,7 @@ ov18_0222F8FC: ; 0x0222F8FC
 	bl ov18_02242834
 	cmp r0, #0
 	bne _0222F9A8
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222F9A8:
 	mov r0, #0
 	ldr r1, _0222F9E4 ; =ov18_0222FA9C
@@ -231,7 +231,7 @@ _0222FBA8:
 	bl ov18_02242C78
 	add r1, r4, #0x1c000
 	mov r2, #0x16
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, _0222FD34 ; =0x022532D0
 	ldr r0, [r0, #0]
 	add r0, r0, #0x1e000

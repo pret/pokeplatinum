@@ -9,8 +9,8 @@
 .public sub_02037B58
 .public sub_020388F4
 .public sub_0209617C
-.public sub_020C4BB8
-.public sub_020C4C14
-.public sub_020D2FE4
+.public MIi_CpuClearFast
+.public MIi_CpuCopyFast
+.public MATH_CountPopulation
 .public ov58_021D2434
 .public ov58_021D2A4C

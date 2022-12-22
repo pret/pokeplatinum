@@ -582,7 +582,7 @@ _0225688A:
 _0225688E:
 	ldr r0, [sp]
 	add r1, r6, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r0, #0
 	ldr r0, [sp, #4]
 	cmp r0, #1
@@ -612,7 +612,7 @@ _022568BC:
 	mov r1, #0xa
 	add r5, r5, #4
 	add r4, r4, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r0, #0
 	cmp r4, #3
 	blt _0225688E

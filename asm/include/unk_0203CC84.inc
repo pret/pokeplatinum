@@ -46,7 +46,7 @@
 .public sub_0209ACDC
 .public sub_0209C370
 .public sub_0209C388
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov5_021D1CAC
 .public ov5_021D1DA4
 .public ov5_021D213C

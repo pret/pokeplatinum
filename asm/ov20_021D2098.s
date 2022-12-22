@@ -24,7 +24,7 @@ ov20_021D2098: ; 0x021D2098
 	bl sub_020177A4
 	str r5, [r4, #0x18]
 	str r6, [r4, #0x1c]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80
@@ -357,7 +357,7 @@ ov20_021D2260: ; 0x021D2260
 	mov r0, #0x10
 	mov r1, #1
 	bl sub_0201FF74
-	bl sub_020BDDF8
+	bl GX_DispOn
 	add r0, r5, #0
 	bl sub_02006CA8
 	add r0, r4, #0
@@ -379,19 +379,19 @@ ov20_021D2370: ; 0x021D2370
 	lsl r0, r0, #2
 	add r0, r4, r0
 	add r5, r1, #0
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	mov r0, #0x6b
 	lsl r0, r0, #2
 	add r0, r4, r0
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	mov r0, #0x15
 	lsl r0, r0, #4
 	add r0, r4, r0
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r0, #0x5d
 	lsl r0, r0, #2
 	add r0, r4, r0
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r2, #1
@@ -563,7 +563,7 @@ ov20_021D24EC: ; 0x021D24EC
 	mov r0, #1
 	mov r1, #0
 	add r2, r0, #0
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	ldr r0, _021D2554 ; =0x021D5238
 	bl sub_0201FE94
 	ldr r0, _021D2558 ; =0x021D519C
@@ -1781,13 +1781,13 @@ ov20_021D2E50: ; 0x021D2E50
 	str r0, [sp, #0x18]
 	mov r0, #0x23
 	str r0, [sp, #0x1c]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	add r0, sp, #0
 	bl sub_02021B90
 	add r5, r0, #0
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r5, #0
 	beq _021D2E9C
 	add r0, r5, #0

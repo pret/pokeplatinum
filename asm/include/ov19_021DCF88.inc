@@ -32,10 +32,10 @@
 .public sub_02023790
 .public sub_020237BC
 .public sub_02079AF4
-.public sub_020A818C
-.public sub_020A81D0
-.public sub_020BF55C
-.public sub_020E1F6C
+.public NNS_G2dInitImageProxy
+.public NNS_G2dInitImagePaletteProxy
+.public G2x_SetBlendAlpha_
+.public _s32_div_f
 .public ov19_021D5E08
 .public ov19_021D5EB0
 .public ov19_021D5EB8

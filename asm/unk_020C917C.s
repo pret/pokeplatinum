@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C917C
-sub_020C917C: ; 0x020C917C
+	arm_func_start DGT_Hash2Reset
+DGT_Hash2Reset: ; 0x020C917C
 	ldr r1, _020C91B8 ; =0x67452301
 	ldr r2, _020C91BC ; =0xEFCDAB89
 	str r1, [r0, #0]
@@ -29,10 +29,10 @@ _020C91BC: .word 0xEFCDAB89
 _020C91C0: .word 0x98BADCFE
 _020C91C4: .word 0x10325476
 _020C91C8: .word 0xC3D2E1F0
-	arm_func_end sub_020C917C
+	arm_func_end DGT_Hash2Reset
 
-	arm_func_start sub_020C91CC
-sub_020C91CC: ; 0x020C91CC
+	arm_func_start DGT_Hash2SetSource
+DGT_Hash2SetSource: ; 0x020C91CC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	movs r8, r2
@@ -59,7 +59,7 @@ sub_020C91CC: ; 0x020C91CC
 	mov r0, sb
 	mov r2, r4
 	add r1, r6, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _020C931C ; =0x02101338
 	mov r0, sl
 	ldr r3, [r1, #0]
@@ -75,7 +75,7 @@ _020C9264:
 	mov r0, sb
 	mov r2, r8
 	add r1, r6, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sl, #0x1c]
 	add r0, r0, r8
 	str r0, [sl, #0x1c]
@@ -103,7 +103,7 @@ _020C92C8:
 	mov r0, sb
 	mov r1, r6
 	mov r2, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r3, [r4, #0]
 	mov r0, sl
 	mov r1, r6
@@ -120,14 +120,14 @@ _020C92FC:
 	mov r0, sb
 	mov r1, r6
 	mov r2, r8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020C931C: .word 0x02101338
-	arm_func_end sub_020C91CC
+	arm_func_end DGT_Hash2SetSource
 
-	arm_func_start sub_020C9320
-sub_020C9320: ; 0x020C9320
+	arm_func_start DGT_Hash2GetDigest
+DGT_Hash2GetDigest: ; 0x020C9320
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r0, [sp, #0x10]
@@ -257,16 +257,16 @@ _020C93E0:
 	add r1, sp, #0x10
 	mov r2, #4
 	str r0, [r3, #0x1c]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldmia sp!, {r4, r5, r6, lr}
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
 _020C9518: .word 0x02101338
-	arm_func_end sub_020C9320
+	arm_func_end DGT_Hash2GetDigest
 
-	arm_func_start sub_020C951C
-sub_020C951C: ; 0x020C951C
+	arm_func_start DGT_Hash2CalcHmac
+DGT_Hash2CalcHmac: ; 0x020C951C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0xa0
 	ldr lr, _020C95A0 ; =0x020FE4E8
@@ -283,11 +283,11 @@ sub_020C951C: ; 0x020C951C
 	add lr, sp, #0x38
 	add ip, sp, #0x24
 	str lr, [sp, #0x10]
-	ldr lr, _020C95A4 ; =sub_020C917C
+	ldr lr, _020C95A4 ; =DGT_Hash2Reset
 	str ip, [sp, #0x14]
-	ldr ip, _020C95A8 ; =sub_020C91CC
+	ldr ip, _020C95A8 ; =DGT_Hash2SetSource
 	str lr, [sp, #0x18]
-	ldr lr, _020C95AC ; =sub_020C9320
+	ldr lr, _020C95AC ; =DGT_Hash2GetDigest
 	str ip, [sp, #0x1c]
 	ldr ip, [sp, #0xb8]
 	str lr, [sp, #0x20]
@@ -297,15 +297,15 @@ sub_020C951C: ; 0x020C951C
 	mov r1, r7
 	mov r2, r6
 	str r4, [sp, #4]
-	bl sub_020C95B0
+	bl HmacCalc
 	add sp, sp, #0xa0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C95A0: .word 0x020FE4E8
-_020C95A4: .word sub_020C917C
-_020C95A8: .word sub_020C91CC
-_020C95AC: .word sub_020C9320
-	arm_func_end sub_020C951C
+_020C95A4: .word DGT_Hash2Reset
+_020C95A8: .word DGT_Hash2SetSource
+_020C95AC: .word DGT_Hash2GetDigest
+	arm_func_end DGT_Hash2CalcHmac
 
 	.rodata
 

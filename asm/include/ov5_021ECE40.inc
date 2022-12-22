@@ -69,9 +69,9 @@
 .public sub_020677F4
 .public sub_02067800
 .public sub_0207136C
-.public sub_020B37A4
-.public sub_020B3C1C
-.public sub_020D5124
+.public NNS_G3dMdlSetMdlFogEnableFlagAll
+.public NNS_G3dGetTex
+.public memset
 .public ov5_021D53A4
 .public ov5_021DF578
 .public ov5_021EB1A0

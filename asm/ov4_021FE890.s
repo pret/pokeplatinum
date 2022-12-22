@@ -285,7 +285,7 @@ _021FEC40:
 	ldrb r0, [sb, r6]
 	ldr r7, [r4, r0, lsl #2]
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	add r0, r5, r0
 	add r0, r0, #1
 	cmp r0, #0x100
@@ -293,7 +293,7 @@ _021FEC40:
 	ldr r1, _021FED0C ; =0x02219FA8
 	mov r2, r7
 	add r0, fp, r5
-	bl sub_020D7510
+	bl sprintf
 	add r5, r5, r0
 	ldrb r1, [sb, r6]
 	mov r0, sl

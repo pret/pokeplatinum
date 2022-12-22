@@ -421,7 +421,7 @@ ov4_021FDCFC: ; 0x021FDCFC
 	mov r5, r0
 	ldr r1, _021FDD90 ; =0x02219F4C
 	mov r0, r7
-	bl sub_020D90B0
+	bl strstr
 	cmp r0, #0
 	movne r6, #1
 	moveq r6, #0

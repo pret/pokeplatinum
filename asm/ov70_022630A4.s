@@ -318,7 +318,7 @@ _022632BC:
 	ldrsh r0, [r0, r1]
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -3966,24 +3966,24 @@ _02265166:
 	cmp r0, #0
 	ble _022651BE
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _022651CC
 _022651BE:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _022651CC:
-	bl sub_020E1740
+	bl _f_ftoi
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -3994,7 +3994,7 @@ _022651CC:
 	orr r0, r1
 	mov r1, #6
 	lsl r1, r1, #0xe
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [sp, #0x14]
 	mov r0, #8
 	ldrsh r2, [r5, r0]
@@ -4007,24 +4007,24 @@ _022651CC:
 	cmp r0, #0
 	ble _0226521A
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _02265228
 _0226521A:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _02265228:
-	bl sub_020E1740
+	bl _f_ftoi
 	asr r1, r0, #0x1f
 	asr r3, r6, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -4035,7 +4035,7 @@ _02265228:
 	orr r0, r1
 	mov r1, #5
 	lsl r1, r1, #0xe
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [sp, #0x18]
 	b _02265256
 _02265252:
@@ -4045,7 +4045,7 @@ _02265256:
 	add r0, sp, #0x10
 	add r1, sp, #0x28
 	add r2, r0, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	ldr r1, [sp, #0x10]
 	ldr r2, [sp, #0x14]
 	ldr r3, [sp, #0x18]
@@ -4056,7 +4056,7 @@ _02265256:
 	ldr r0, _022652B4 ; =0x00007FFF
 	mul r0, r1
 	mov r1, #0x18
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	asr r0, r0, #4
@@ -4133,7 +4133,7 @@ _022652DA:
 	ldrsh r0, [r0, r1]
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -4880,24 +4880,24 @@ _0226594C:
 	cmp r0, #0
 	ble _0226597E
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0226598C
 _0226597E:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0226598C:
-	bl sub_020E1740
+	bl _f_ftoi
 	asr r1, r0, #0x1f
 	asr r3, r7, #0x1f
 	add r2, r7, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -4908,7 +4908,7 @@ _0226598C:
 	orr r0, r1
 	mov r1, #6
 	lsl r1, r1, #0xe
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [sp, #0x20]
 	ldr r1, [r4, #0xc]
 	add r0, r0, r1

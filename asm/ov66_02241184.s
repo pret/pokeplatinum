@@ -95,7 +95,7 @@ _022412A8:
 	addeq r0, r1, #1
 	ldrne r0, [r1, #8]
 	add r1, sp, #0x20
-	bl sub_020DACAC
+	bl strtoul
 	str r0, [r4, #0]
 	ldr r1, [sp, #0x6c]
 	mov r2, #0x10
@@ -105,7 +105,7 @@ _022412A8:
 	addeq r0, r1, #0xd
 	ldrne r0, [r1, #0x14]
 	add r1, sp, #0x20
-	bl sub_020DACAC
+	bl strtoul
 	str r0, [r4, #4]
 	ldr r1, [sp, #0x6c]
 	ldr r5, _0224153C ; =0x022590E4
@@ -165,7 +165,7 @@ _022412A8:
 	addeq r0, r1, #0x31
 	ldrne r0, [r1, #0x38]
 	add r1, sp, #0x20
-	bl sub_020DAD44
+	bl strtol
 	str r0, [r4, #0x10]
 	add r0, sp, #0x6c
 	bl ov66_0223B578
@@ -514,7 +514,7 @@ _022418BC:
 	ldr r2, _02241940 ; =0x00000191
 	add r0, sp, #0x30
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r3, _02241940 ; =0x00000191
 	add r2, sp, #0x30
 	mov r0, r6
@@ -632,7 +632,7 @@ ov66_02241A10: ; 0x02241A10
 	mov r0, r4
 	mov r6, r1
 	mov r5, r2
-	bl sub_020D8B60
+	bl strlen
 	add r0, r4, r0
 	ldrb ip, [sp, #8]
 	str r0, [sp]
@@ -703,7 +703,7 @@ ov66_02241A94: ; 0x02241A94
 	ldrb r1, [r4]
 	mov r2, r5
 	add r0, r3, r0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #0xc]
 	mov r1, #0
 	add r0, r0, r5
@@ -720,11 +720,11 @@ ov66_02241A94: ; 0x02241A94
 	add r0, r0, r2
 	mov r1, r5
 	mov r2, r4
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, r5
 	mov r1, #0
 	mov r2, r4
-	bl sub_020D5124
+	bl memset
 	ldr r1, [sp, #0xc]
 	mov r0, #0
 	add r1, r1, r4

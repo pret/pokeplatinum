@@ -177,7 +177,7 @@ ov60_0221F944: ; 0x0221F944
 	push {r3, r4, r5, lr}
 	mov r1, #3
 	add r5, r0, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _0221F956
 	mov r4, #1
@@ -187,7 +187,7 @@ _0221F956:
 _0221F958:
 	add r0, r5, #0
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r0, r4
 	lsl r0, r0, #2
 	pop {r3, r4, r5, pc}

@@ -32,7 +32,7 @@ _02220CA8:
 	ldr r1, _02220D84 ; =0x022291A0
 	ldr r2, _02220D88 ; =0x02229124
 	mov r3, #0x33
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02220CCC:
 	ldr r0, _02220D7C ; =0x02229E2C
 	ldr r6, [r0, #0xc]
@@ -109,7 +109,7 @@ _02220DB4:
 	mov r2, #0x184
 	ldr r4, [r0, r5, lsl #2]
 	mov r0, r4
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	str r0, [r4, #0]
 	ldr r0, _02220F20 ; =0x02229E2C
@@ -210,7 +210,7 @@ ov60_02220F24: ; 0x02220F24
 	ldr r1, _022210F0 ; =0x022291A0
 	ldr r2, _022210F4 ; =0x02229134
 	mov r3, #0xb3
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02220F44:
 	ldr r0, [r4, #4]
 	cmp r0, #0
@@ -219,7 +219,7 @@ _02220F44:
 	ldr r1, _022210F0 ; =0x022291A0
 	ldr r2, _022210F4 ; =0x02229134
 	mov r3, #0xb4
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02220F64:
 	ldr r0, _022210FC ; =0x02229E2C
 	ldr r1, [r4, #4]
@@ -230,7 +230,7 @@ _02220F64:
 	ldr r1, _022210F0 ; =0x022291A0
 	ldr r2, _022210F4 ; =0x02229134
 	mov r3, #0xb5
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02220F8C:
 	ldr r0, [r4, #0]
 	cmp r0, #0
@@ -239,7 +239,7 @@ _02220F8C:
 	ldr r1, _022210F0 ; =0x022291A0
 	ldr r2, _022210F4 ; =0x02229134
 	mov r3, #0xb6
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02220FAC:
 	cmp r4, #0
 	moveq r0, #0
@@ -345,7 +345,7 @@ ov60_02221108: ; 0x02221108
 	ldr r1, _02221198 ; =0x022291A0
 	ldr r2, _0222119C ; =0x02229160
 	ldr r3, _022211A0 ; =0x00000101
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02221128:
 	ldr r0, _022211A4 ; =0x02229E2C
 	ldr r0, [r0, #0xc]
@@ -355,7 +355,7 @@ _02221128:
 	ldr r1, _02221198 ; =0x022291A0
 	ldr r2, _0222119C ; =0x02229160
 	ldr r3, _022211AC ; =0x00000102
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _0222114C:
 	bl ov60_0222084C
 	cmp r4, #0
@@ -429,7 +429,7 @@ ov60_02221214: ; 0x02221214
 	ldr r1, _02221304 ; =0x022291A0
 	ldr r2, _02221308 ; =0x02229148
 	ldr r3, _0222130C ; =0x00000132
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02221234:
 	ldr r0, [r4, #0x108]
 	cmp r0, #0
@@ -438,7 +438,7 @@ _02221234:
 	ldr r1, _02221304 ; =0x022291A0
 	ldr r2, _02221308 ; =0x02229148
 	ldr r3, _02221314 ; =0x00000133
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _02221254:
 	mov r0, #0
 	str r0, [r4, #0x10]

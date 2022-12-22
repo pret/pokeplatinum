@@ -10,12 +10,12 @@
 ov18_0221F84C: ; 0x0221F84C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0221F870 ; =0x02250D2C
 	ldr r1, [r1, #0]
 	add r1, r1, #0x1000
 	str r4, [r1, #0x4e4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0221F870: .word 0x02250D2C
@@ -25,7 +25,7 @@ _0221F870: .word 0x02250D2C
 ov18_0221F874: ; 0x0221F874
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0221F8F4 ; =0x02250D2C
 	mov r4, r0
 	ldr r0, [r1, #0]
@@ -43,9 +43,9 @@ ov18_0221F874: ; 0x0221F874
 	mla r0, r1, r2, r0
 	add r1, r3, #0x72
 	add r1, r1, #0x1700
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _0221F8F4 ; =0x02250D2C
 	ldr r0, [r0, #0]
 	add r0, r0, #0x72
@@ -53,7 +53,7 @@ ov18_0221F874: ; 0x0221F874
 	ldmia sp!, {r3, r4, r5, pc}
 _0221F8E4:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -92,7 +92,7 @@ ov18_0221F94C: ; 0x0221F94C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r1
 	mov r7, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r6, r0
 	cmp r4, #3
 	addls pc, pc, r4, lsl #2
@@ -120,7 +120,7 @@ _0221F9A0:
 	b _0221F9BC
 _0221F9AC:
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _0221F9BC:
@@ -144,12 +144,12 @@ _0221F9BC:
 	add r1, r0, #0x1700
 	mov r0, r6
 	strh r4, [r1, #0x54]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _0221FA18:
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -268,7 +268,7 @@ _0221FB54:
 	sub r0, r2, #1
 	add r0, r3, r0, lsl #2
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0221FF38 ; =0x02250D2C
 	ldrh r1, [r4, #0x10]
 	ldr r0, [r0, #0]
@@ -277,7 +277,7 @@ _0221FB54:
 	sub r1, r1, #1
 	mla r0, r1, r2, r0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrh r0, [r4, #0x10]
 	bl ov18_02224400
 	ldrh r1, [r4, #0x10]
@@ -505,7 +505,7 @@ _0221FEF0:
 	mov r2, #0x7d00
 	add r3, r1, #0x1000
 	ldr r4, [r3, #0x4e4]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r1, _0221FF38 ; =0x02250D2C
 	mov r0, #0
 	str r0, [r1, #0]
@@ -566,7 +566,7 @@ _0221FFCC:
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	add r1, sp, #0
 	mov r2, #0x1d
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r2, _02220418 ; =0x02250D2C
 	sub r0, r6, #1
 	ldr r1, [r2, #0]
@@ -584,7 +584,7 @@ _0221FFCC:
 	add r1, r1, #0x1340
 	mla r1, r0, r2, r1
 	add r0, sp, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02220418 ; =0x02250D2C
 	sub r2, r6, #1
 	ldr r3, [r0, #0]
@@ -883,7 +883,7 @@ _0222043C:
 _02220480:
 	mov r0, r4
 	mov r1, r6
-	bl sub_020CE710
+	bl WM_ReadMPData
 	cmp r0, #0
 	ldrneh r1, [r0]
 	cmpne r1, r5
@@ -935,7 +935,7 @@ ov18_02220510: ; 0x02220510
 	mov r1, r5
 	mov r2, #0x10
 	mvn r4, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _0222069C ; =0x02250D2C
 	mov r0, #1
 	ldr r1, [r1, #0]
@@ -1025,7 +1025,7 @@ _02220630:
 	add r0, r0, #0x388
 	add r0, r0, #0x1400
 	mla r0, r4, r3, r0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02220680:
 	ldr r0, _0222069C ; =0x02250D2C
 	mov r1, r5
@@ -1048,11 +1048,11 @@ ov18_022206A8: ; 0x022206A8
 	ldr r4, [r0, #0x10]
 	ldr r1, [r5, #0x14]
 	add r0, r5, #0x10
-	bl sub_020C7760
+	bl FS_FindArchive
 	movs r6, r0
 	add r0, sp, #4
 	ldreq r6, [r5, #0x18]
-	bl sub_020C7DA0
+	bl FS_InitFile
 	ldr r2, [r4, #0]
 	mvn r0, #0
 	str r0, [sp]
@@ -1060,19 +1060,19 @@ ov18_022206A8: ; 0x022206A8
 	add r0, sp, #4
 	mov r1, r6
 	add r3, r2, r3
-	bl sub_020C7FC8
+	bl FS_OpenFileDirect
 	cmp r0, #0
 	beq _02220724
 	ldr r1, [r4, #8]
 	ldr r2, [r4, #4]
 	add r0, sp, #4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	ldr r1, [r4, #4]
 	cmp r1, r0
 	moveq r0, #2
 	streq r0, [r4, #0xc]
 	add r0, sp, #4
-	bl sub_020C80C8
+	bl FS_CloseFile
 _02220724:
 	ldr r0, [r4, #0xc]
 	cmp r0, #2
@@ -1227,7 +1227,7 @@ _0222094C:
 	blt _02220920
 	cmp r7, #0
 	bne _02220968
-	bl sub_020C42A8
+	bl OS_Terminate
 _02220968:
 	mov r0, #2
 	str r0, [r5, #0]
@@ -1273,7 +1273,7 @@ ov18_022209E8: ; 0x022209E8
 	add r1, sp, #0
 	mov r0, #0
 	mov r2, #0xa
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r3, #1
 	ldr r0, _02220B60 ; =0x02250D2C
 	mov r4, r3

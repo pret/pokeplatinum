@@ -182,7 +182,7 @@ sub_020022A4: ; 0x020022A4
 _020022B6:
 	add r0, r7, #0
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	add r0, r4, #0
@@ -230,7 +230,7 @@ _020022FE:
 _02002308:
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	bne _020022B6
 _02002314:

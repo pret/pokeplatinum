@@ -347,7 +347,7 @@ _02071472:
 	add r0, r4, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0207145C
@@ -369,7 +369,7 @@ sub_02071490: ; 0x02071490
 	mov r1, #0
 	mov r2, #0xe8
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r1, _020714D0 ; =sub_020715F4
 	add r0, r4, #0
 	bl sub_02071518
@@ -560,7 +560,7 @@ sub_0207159C: ; 0x0207159C
 	bl sub_02071598
 	mov r1, #0
 	add r2, r4, #0
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_0207159C

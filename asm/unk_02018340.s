@@ -17,7 +17,7 @@ sub_02018340: ; 0x02018340
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0]
 	mov r0, #0
 	strh r0, [r4, #4]
@@ -39,9 +39,9 @@ sub_02018368: ; 0x02018368
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #4]
 	ldr r2, [r4, #0xc]
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	ldr r0, [r4, #8]
-	bl sub_020BDEA8
+	bl GXS_SetGraphicsMode
 	mov r2, #1
 	lsl r2, r2, #0x1a
 	ldr r1, [r2, #0]
@@ -68,12 +68,12 @@ sub_020183A0: ; 0x020183A0
 	ldr r0, [r2, #0]
 	ldr r1, [r2, #4]
 	ldr r2, [r2, #0xc]
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	bl sub_0201FF00
 	pop {r3, pc}
 _020183B8:
 	ldr r0, [r2, #8]
-	bl sub_020BDEA8
+	bl GXS_SetGraphicsMode
 	bl sub_0201FF68
 	pop {r3, pc}
 	thumb_func_end sub_020183A0
@@ -668,7 +668,7 @@ _02018800:
 	ldr r1, [r6, r5]
 	ldr r2, [r4, #8]
 	mov r0, #0
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, [sp]
 	ldr r2, [r4, #8]
 	add r1, r0, r5
@@ -2245,7 +2245,7 @@ _02019374:
 	ldr r0, [r4, #0x18]
 	str r0, [sp, #4]
 	ldr r0, _020193D4 ; =0x04000020
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	add sp, #8
 	pop {r3, r4, r5, pc}
 _0201938C:
@@ -2257,7 +2257,7 @@ _0201938C:
 	ldr r0, [r4, #0x18]
 	str r0, [sp, #4]
 	ldr r0, _020193D8 ; =0x04000030
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	add sp, #8
 	pop {r3, r4, r5, pc}
 _020193A4:
@@ -2269,7 +2269,7 @@ _020193A4:
 	ldr r0, [r4, #0x18]
 	str r0, [sp, #4]
 	ldr r0, _020193DC ; =0x04001020
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	add sp, #8
 	pop {r3, r4, r5, pc}
 _020193BC:
@@ -2281,7 +2281,7 @@ _020193BC:
 	ldr r0, [r4, #0x18]
 	str r0, [sp, #4]
 	ldr r0, _020193E0 ; =0x04001030
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 _020193D0:
 	add sp, #8
 	pop {r3, r4, r5, pc}
@@ -2321,7 +2321,7 @@ sub_02019410: ; 0x02019410
 	push {r3, r4, r5, lr}
 	cmp r2, #0
 	bne _0201941C
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	pop {r3, r4, r5, pc}
 _0201941C:
 	mov r4, #3
@@ -2340,10 +2340,10 @@ _0201941C:
 	ror r5, r3
 	add r3, r4, r5
 	bne _02019442
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	pop {r3, r4, r5, pc}
 _02019442:
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02019410
 
@@ -2434,7 +2434,7 @@ sub_020194E0: ; 0x020194E0
 	add r0, r4, #0
 	add r1, r6, #0
 	add r5, r2, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r7, #7
 	bhi _02019570
 	add r0, r7, r7
@@ -2456,49 +2456,49 @@ _02019512:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C036C
+	bl GX_LoadBG0Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _0201951E:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C042C
+	bl GX_LoadBG1Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _0201952A:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C04EC
+	bl GX_LoadBG2Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _02019536:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C05AC
+	bl GX_LoadBG3Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _02019542:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C03CC
+	bl GXS_LoadBG0Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _0201954E:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C048C
+	bl GXS_LoadBG1Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _0201955A:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C054C
+	bl GXS_LoadBG2Scr
 	pop {r3, r4, r5, r6, r7, pc}
 _02019566:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C060C
+	bl GXS_LoadBG3Scr
 _02019570:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2587,7 +2587,7 @@ sub_020195FC: ; 0x020195FC
 	add r0, r4, #0
 	add r1, r6, #0
 	add r5, r2, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r7, #7
 	bhi _0201968C
 	add r0, r7, r7
@@ -2609,49 +2609,49 @@ _0201962E:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C066C
+	bl GX_LoadBG0Char
 	pop {r3, r4, r5, r6, r7, pc}
 _0201963A:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C072C
+	bl GX_LoadBG1Char
 	pop {r3, r4, r5, r6, r7, pc}
 _02019646:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C07EC
+	bl GX_LoadBG2Char
 	pop {r3, r4, r5, r6, r7, pc}
 _02019652:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C08AC
+	bl GX_LoadBG3Char
 	pop {r3, r4, r5, r6, r7, pc}
 _0201965E:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C06CC
+	bl GXS_LoadBG0Char
 	pop {r3, r4, r5, r6, r7, pc}
 _0201966A:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C078C
+	bl GXS_LoadBG1Char
 	pop {r3, r4, r5, r6, r7, pc}
 _02019676:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C084C
+	bl GXS_LoadBG2Char
 	pop {r3, r4, r5, r6, r7, pc}
 _02019682:
 	add r0, r4, #0
 	add r1, r5, #0
 	add r2, r6, #0
-	bl sub_020C090C
+	bl GXS_LoadBG3Char
 _0201968C:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2669,7 +2669,7 @@ sub_02019690: ; 0x02019690
 	add r4, r0, #0
 	mov r1, #0
 	add r2, r5, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	add r1, r4, #0
 	add r2, r7, #0
@@ -2722,7 +2722,7 @@ _02019704:
 	ldr r1, [sp, #4]
 	ldr r2, [sp]
 	add r0, r5, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	lsl r0, r7, #0x18
 	ldrb r2, [r4, r6]
 	ldr r3, [sp, #0x20]
@@ -2746,19 +2746,19 @@ sub_0201972C: ; 0x0201972C
 	add r0, r5, #0
 	add r1, r4, #0
 	add r7, r3, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	cmp r6, #4
 	bhs _0201974E
 	add r0, r5, #0
 	add r1, r7, #0
 	add r2, r4, #0
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	pop {r3, r4, r5, r6, r7, pc}
 _0201974E:
 	add r0, r5, #0
 	add r1, r7, #0
 	add r2, r4, #0
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end sub_0201972C
@@ -3804,7 +3804,7 @@ sub_02019EBC: ; 0x02019EBC
 	beq _02019EDE
 	ldr r2, [r2, #0xc]
 	mov r0, #0
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r5, #0
 	add r1, r4, #0
 	bl sub_02019448
@@ -3825,7 +3825,7 @@ sub_02019EE0: ; 0x02019EE0
 	beq _02019F02
 	add r0, r2, #0
 	ldr r2, [r3, #0xc]
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r5, #0
 	add r1, r4, #0
 	bl sub_02019448
@@ -3846,7 +3846,7 @@ sub_02019F04: ; 0x02019F04
 	beq _02019F26
 	add r0, r2, #0
 	ldr r2, [r3, #0xc]
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r5, #0
 	add r1, r4, #0
 	bl sub_0201C3C0
@@ -3875,28 +3875,28 @@ _02019F3A: ; jump table
 	.short _02019F6E - _02019F3A - 2 ; case 6
 	.short _02019F74 - _02019F3A - 2 ; case 7
 _02019F4A:
-	bl sub_020BF2D4
+	bl G2_GetBG0CharPtr
 	pop {r3, pc}
 _02019F50:
-	bl sub_020BF328
+	bl G2_GetBG1CharPtr
 	pop {r3, pc}
 _02019F56:
-	bl sub_020BF37C
+	bl G2_GetBG2CharPtr
 	pop {r3, pc}
 _02019F5C:
-	bl sub_020BF40C
+	bl G2_GetBG3CharPtr
 	pop {r3, pc}
 _02019F62:
-	bl sub_020BF308
+	bl G2S_GetBG0CharPtr
 	pop {r3, pc}
 _02019F68:
-	bl sub_020BF35C
+	bl G2S_GetBG1CharPtr
 	pop {r3, pc}
 _02019F6E:
-	bl sub_020BF3CC
+	bl G2S_GetBG2CharPtr
 	pop {r3, pc}
 _02019F74:
-	bl sub_020BF464
+	bl G2S_GetBG3CharPtr
 	pop {r3, pc}
 _02019F7A:
 	mov r0, #0
@@ -5186,7 +5186,7 @@ sub_0201A870: ; 0x0201A870
 	lsl r1, r1, #0x18
 	ldr r2, [sp, #4]
 	lsr r1, r1, #0x18
-	bl sub_020D5124
+	bl memset
 	cmp r7, #0
 	beq _0201A8CC
 	str r5, [r4, #0]
@@ -5941,7 +5941,7 @@ _0201ADC0:
 	ldrb r4, [r4, #7]
 	mul r2, r4
 	mul r2, r3
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0201ADA4
 
@@ -9081,7 +9081,7 @@ _0201C442:
 	ldr r2, [r2, #0]
 	ldr r3, [r3, #0]
 	add r1, sp, #0x38
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 _0201C476:
 	ldrh r1, [r4, #4]
 	mov r0, #8
@@ -9137,7 +9137,7 @@ _0201C4A6:
 	ldr r2, [r2, #0]
 	ldr r3, [r3, #0]
 	add r1, sp, #0x28
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 _0201C4E6:
 	ldrh r1, [r4, #4]
 	mov r0, #0x10
@@ -9227,7 +9227,7 @@ _0201C55C:
 	ldr r2, [r4, r2]
 	ldr r3, [r4, r3]
 	add r1, sp, #0x18
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 _0201C596:
 	ldrh r0, [r4, #4]
 	mov r3, #0x80
@@ -9282,7 +9282,7 @@ _0201C5CA:
 	ldr r2, [r4, r2]
 	ldr r3, [r4, r3]
 	add r1, sp, #8
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 _0201C604:
 	add sp, #0x48
 	pop {r4, pc}
@@ -9633,7 +9633,7 @@ _0201C85E:
 	ldr r1, [sp, #0x18]
 	add r1, r1, r2
 	mov r2, #0x40
-	bl sub_020D50B8
+	bl memcpy
 	ldrh r1, [r4, r6]
 	add r0, r7, #0
 	asr r2, r1, #0xa
@@ -9724,7 +9724,7 @@ _0201C90A:
 	add r0, r7, #0
 	add r1, r4, #0
 	mov r2, #0x40
-	bl sub_020D50B8
+	bl memcpy
 _0201C92E:
 	ldr r0, [sp]
 	mov r1, #2
@@ -9754,7 +9754,7 @@ _0201C946:
 	add r0, r7, #0
 	add r1, r4, #0
 	mov r2, #0x40
-	bl sub_020D50B8
+	bl memcpy
 _0201C966:
 	add r0, r4, #0
 	bl sub_020181C4

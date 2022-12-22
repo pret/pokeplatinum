@@ -62,7 +62,7 @@ ov17_02246F24: ; 0x02246F24
 	add r0, r1, #0
 	mov r1, #0
 	mov r2, #0x32
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	lsl r0, r7, #2
 	ldr r5, [sp]
 	mov r4, #0

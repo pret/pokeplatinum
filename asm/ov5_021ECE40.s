@@ -2248,7 +2248,7 @@ ov5_021EDDDC: ; 0x021EDDDC
 	add r0, r5, #0
 	bl sub_020213F4
 	add r1, r4, #0
-	bl sub_020B37A4
+	bl NNS_G3dMdlSetMdlFogEnableFlagAll
 	add r0, r5, #0
 	bl sub_020213F4
 	bl ov5_021D53A4
@@ -3002,7 +3002,7 @@ _021EE34E:
 	ldr r2, [sp, #8]
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	strh r6, [r4]
 	strh r0, [r4, #2]
@@ -3140,7 +3140,7 @@ ov5_021EE454: ; 0x021EE454
 	mov r1, #0
 	mov r2, #0x60
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #8]
 	str r0, [r5, #0]
 	add r0, r7, #0
@@ -3216,7 +3216,7 @@ _021EE512:
 	mov r2, #0
 	bl ov5_021EDCF4
 	str r0, [r5, #0x10]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	add r4, r0, #0
 	add r0, r6, #0
 	bl ov5_021EDD44

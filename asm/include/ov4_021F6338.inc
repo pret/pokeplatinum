@@ -1,10 +1,10 @@
-.public sub_020D50D8
-.public sub_020D7510
-.public sub_020D8B60
-.public sub_020D8C94
-.public sub_020D8E28
-.public sub_020D90B0
-.public sub_020DAE0C
+.public memmove
+.public sprintf
+.public strlen
+.public strcat
+.public strncmp
+.public strstr
+.public atoi
 .public ov4_021D7894
 .public ov4_021D78B0
 .public ov4_021E9B50

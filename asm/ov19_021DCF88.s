@@ -351,7 +351,7 @@ ov19_021DD224: ; 0x021DD224
 	add r4, r1, #0
 	bl ov19_021DD2BC
 	add r0, sp, #0x14
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #2
@@ -467,7 +467,7 @@ ov19_021DD2BC: ; 0x021DD2BC
 	str r0, [r1, #0]
 	add r0, r5, #0
 	add r0, #0x18
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	mov r0, #0xa
 	str r0, [sp]
 	add r5, #0x18
@@ -610,7 +610,7 @@ _021DD412:
 	ldr r6, [r1, r2]
 	ldrh r1, [r4, #0xc]
 	sub r0, r6, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x14]
 	asr r0, r6, #0xc
 	str r0, [r4, #0x18]
@@ -702,7 +702,7 @@ _021DD4C0:
 	mov r1, #4
 	mov r2, #8
 	mov r3, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, [r4, #4]
 	add r0, r0, #1
 	str r0, [r4, #4]
@@ -787,7 +787,7 @@ _021DD568:
 	mov r1, #4
 	mov r2, #8
 	mov r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0xf
 	strh r0, [r4, #0xe]
 	ldr r0, [r4, #4]
@@ -854,7 +854,7 @@ _021DD5EE:
 	mov r1, #4
 	mov r2, #8
 	mov r3, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, [r4, #4]
 	add r0, r0, #1
 	str r0, [r4, #4]
@@ -1205,7 +1205,7 @@ _021DD872:
 	str r0, [sp, #0x10]
 _021DD882:
 	add r0, sp, #0x14
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, sp, #0x14
 	str r0, [sp]
 	add r0, r7, #0
@@ -1408,7 +1408,7 @@ ov19_021DD9DC: ; 0x021DD9DC
 	bl ov19_021D5EC8
 	str r0, [sp, #0x14]
 	add r0, sp, #0x18
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #2
@@ -1720,7 +1720,7 @@ _021DDC28:
 	ldr r0, [r5, #8]
 	sub r0, r1, r0
 	ldr r1, [sp, #0x1c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x10]
 	mov r2, #0
 	add r0, r4, #0
@@ -1778,7 +1778,7 @@ _021DDC94:
 	str r2, [r4, #0x20]
 	ldr r0, [r4, #0x1c]
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x24]
 	pop {r4, pc}
 	; .align 2, 0
@@ -2691,7 +2691,7 @@ ov19_021DE330: ; 0x021DE330
 	mov r1, #1
 	mov r2, #0x3f
 	mov r3, #0xe
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #4
 	mov r1, #1
 	bl sub_02019120

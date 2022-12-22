@@ -24,7 +24,7 @@ ov111_021D0D80: ; 0x021D0D80
 	ldr r2, _021D0E2C ; =0x00009A04
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x73
 	bl sub_02018340
 	str r0, [r4, #0x58]
@@ -2640,12 +2640,12 @@ ov111_021D22D0: ; 0x021D22D0
 	ldr r0, [sp]
 	mov r1, #0xa0
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0xa0
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4
@@ -2667,13 +2667,13 @@ ov111_021D2304: ; 0x021D2304
 	mov r1, #0x12
 	ldr r0, [r0, #0xc]
 	lsl r1, r1, #4
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r2, #5
 	ldr r0, [r0, #0xc]
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4
@@ -3180,7 +3180,7 @@ ov111_021D26EC: ; 0x021D26EC
 _021D26F8:
 	bl sub_0201D2E8
 	mov r1, #9
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r1, #0x18
 	lsr r0, r0, #0x18
 	add r1, r5, r0
@@ -3214,7 +3214,7 @@ ov111_021D271C: ; 0x021D271C
 _021D2738:
 	bl sub_0201D2E8
 	mov r1, #9
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0x36
 	add r2, r5, r1
 	lsl r0, r0, #4
@@ -3343,7 +3343,7 @@ _021D2808:
 _021D2818:
 	bl sub_0201D2E8
 	add r1, r7, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	strh r1, [r4]
 	mov r1, #0
 	cmp r5, #0
@@ -4274,11 +4274,11 @@ ov111_021D2EB4: ; 0x021D2EB4
 	add r1, r1, #4
 	ldr r0, [r0, r1]
 	ldr r1, [r2, #0x14]
-	ldr r3, _021D2EC8 ; =sub_020D50B8
+	ldr r3, _021D2EC8 ; =memcpy
 	ldr r2, [r2, #0x10]
 	bx r3
 	nop
-_021D2EC8: .word sub_020D50B8
+_021D2EC8: .word memcpy
 	thumb_func_end ov111_021D2EB4
 
 	thumb_func_start ov111_021D2ECC

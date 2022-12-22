@@ -41,7 +41,7 @@ _0223D16E:
 	mov r1, #4
 	add r0, r7, r0
 	add r2, r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0223D1D8 ; =0x0000142C
 	ldr r0, [r7, r0]
 	cmp r0, #1
@@ -127,7 +127,7 @@ ov83_0223D21C: ; 0x0223D21C
 	add r1, r2, #0
 	add r0, r4, r0
 	add r2, r5, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223D254 ; =0x000014AC
 	mov r1, #0xa
 	add r3, r4, r0
@@ -168,7 +168,7 @@ ov83_0223D258: ; 0x0223D258
 	ldr r1, [sp, #4]
 	ldr r2, [sp]
 	add r0, r7, r4
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223D2DC ; =0x00001554
 	mov r2, #1
 	add r1, r5, r6
@@ -256,7 +256,7 @@ _0223D31E:
 	ldr r2, [sp]
 	add r0, r0, r5
 	mov r1, ip
-	bl sub_020D50B8
+	bl memcpy
 	cmp r6, #1
 	bne _0223D33C
 	ldr r0, [sp, #4]
@@ -307,7 +307,7 @@ _0223D380:
 	mov r2, ip
 	add r0, r5, r0
 	add r0, r0, r4
-	bl sub_020D50B8
+	bl memcpy
 	cmp r6, #1
 	bne _0223D39A
 	strb r6, [r7, r4]
@@ -337,7 +337,7 @@ ov83_0223D3A8: ; 0x0223D3A8
 	add r0, r1, r0
 	add r1, r2, #0
 	add r2, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223D3D4 ; =0x000015F8
 	lsl r1, r4, #1
 	add r2, r5, r0
@@ -358,7 +358,7 @@ ov83_0223D3D8: ; 0x0223D3D8
 	add r1, r2, #0
 	add r0, r4, r0
 	add r2, r5, #0
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r4, #0
 	mov r1, #0xa
 	bl ov83_0223B774
@@ -375,7 +375,7 @@ ov83_0223D3F8: ; 0x0223D3F8
 	ldr r0, [r3, r0]
 	add r1, r2, #0
 	add r2, r4, #0
-	bl sub_020D50B8
+	bl memcpy
 	pop {r4, pc}
 	nop
 _0223D40C: .word 0x00001530
@@ -390,7 +390,7 @@ ov83_0223D410: ; 0x0223D410
 	add r1, r2, #0
 	add r0, r4, r0
 	add r2, r5, #0
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r4, #0
 	mov r1, #0xc
 	bl ov83_0223B774
@@ -416,7 +416,7 @@ ov83_0223D430: ; 0x0223D430
 	add r0, r4, r0
 	add r0, r0, r5
 	add r2, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223D4A4 ; =0x0000155C
 	add r1, r4, r5
 	mov r2, #1

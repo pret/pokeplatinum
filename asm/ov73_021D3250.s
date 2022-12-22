@@ -22,7 +22,7 @@ ov73_021D3250: ; 0x021D3250
 	mov r1, #0
 	mov r2, #0x28
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x53
 	str r0, [r4, #0]
 	mov r0, #0
@@ -105,7 +105,7 @@ _021D32AE:
 	add r0, r7, #0
 	add r1, r6, #0
 	lsl r2, r2, #8
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	mov r0, #0x3c
 	str r0, [r4, #0x24]
 	mov r0, #1
@@ -425,7 +425,7 @@ _021D3438:
 	mov r1, #2
 	mov r3, #4
 	str r2, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #0xb8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

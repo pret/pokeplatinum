@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CC8D8
-sub_020CC8D8: ; 0x020CC8D8
+	arm_func_start CARDi_IdentifyBackupCore
+CARDi_IdentifyBackupCore: ; 0x020CC8D8
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r1, _020CCC00 ; =0x021CEE20
 	mov r5, r0
@@ -15,7 +15,7 @@ sub_020CC8D8: ; 0x020CC8D8
 	mov r1, #0
 	add r0, r4, #0x18
 	mov r2, #0x48
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _020CCC04 ; =0x0000203F
 	str r5, [r4, #4]
 	str r0, [r4, #0x58]
@@ -235,4 +235,4 @@ _020CCC10: .word 0x000059D8
 _020CCC14: .word 0x000C3500
 _020CCC18: .word 0x000109A0
 _020CCC1C: .word 0x00027100
-	arm_func_end sub_020CC8D8
+	arm_func_end CARDi_IdentifyBackupCore

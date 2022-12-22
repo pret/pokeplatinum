@@ -1,6 +1,6 @@
 .public sub_02017240
 .public sub_02017248
-.public sub_020E0B00
-.public sub_020E1740
-.public sub_020E17B4
-.public sub_020E1A9C
+.public _f_add
+.public _f_ftoi
+.public _f_itof
+.public _f_sub

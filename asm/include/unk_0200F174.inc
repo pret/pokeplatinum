@@ -33,7 +33,7 @@
 .public sub_02018184
 .public sub_020181C4
 .public sub_02022974
-.public sub_020BDEC4
-.public sub_020C00B4
-.public sub_020C0108
-.public sub_020D5124
+.public GXx_SetMasterBrightness_
+.public GX_LoadBGPltt
+.public GXS_LoadBGPltt
+.public memset

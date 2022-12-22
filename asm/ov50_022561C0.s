@@ -146,12 +146,12 @@ ov50_022562AC: ; 0x022562AC
 	mov r1, #0x19
 	add r0, r5, #0
 	lsl r1, r1, #4
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _022562EC
 	add r0, r5, #0
 	mov r1, #0x64
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	beq _022562F0
 	mov r0, #3
@@ -164,7 +164,7 @@ _022562F0:
 	ldr r0, [r4, #8]
 	mov r1, #7
 	sub r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r2, #7
 	ldr r3, [r4, #0xc]
 	sub r0, r2, r1
@@ -173,7 +173,7 @@ _022562F0:
 	blo _02256310
 	add r0, r7, #0
 	add r1, r2, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r1, #0
 _02256310:
 	ldr r0, [r6, #4]

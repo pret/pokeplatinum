@@ -73,6 +73,6 @@
 .public sub_020632D4
 .public sub_02063340
 .public sub_020642F8
-.public sub_020D5124
+.public memset
 .public ov5_021F261C
 .public ov5_021F6218

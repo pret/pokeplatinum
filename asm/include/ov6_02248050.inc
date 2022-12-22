@@ -27,7 +27,7 @@
 .public sub_02063020
 .public sub_02063040
 .public sub_02063050
-.public sub_020D5124
+.public memset
 .public ov5_021D1B6C
 .public ov5_021D1BEC
 .public ov5_021D1C2C

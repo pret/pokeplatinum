@@ -1962,7 +1962,7 @@ ov97_0222BD70: ; 0x0222BD70
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x51
 	bl sub_02018340
 	str r0, [r4, #0]
@@ -2032,7 +2032,7 @@ ov97_0222BE24: ; 0x0222BE24
 	ldr r0, [r4, #0x18]
 	add r0, r0, #1
 	str r0, [r4, #0x18]
-	bl sub_020D0A04
+	bl CTRDG_IsExisting
 	add r0, r4, #0
 	bl ov97_0222B07C
 	cmp r0, #1
@@ -2174,7 +2174,7 @@ _0222BF3A:
 	str r0, [r4, #0x58]
 	cmp r0, #5
 	bne _0222BF8C
-	bl sub_020D09B8
+	bl CTRDG_IsPulledOut
 	cmp r0, #1
 	bne _0222BF8C
 	mov r0, #0x49

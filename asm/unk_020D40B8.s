@@ -6,18 +6,18 @@
 	.text
 
 
-	arm_func_start sub_020D40B8
-sub_020D40B8: ; 0x020D40B8
+	arm_func_start __convert_from_newlines
+__convert_from_newlines: ; 0x020D40B8
 	bx lr
-	arm_func_end sub_020D40B8
+	arm_func_end __convert_from_newlines
 
-	arm_func_start sub_020D40BC
-sub_020D40BC: ; 0x020D40BC
+	arm_func_start __convert_to_newlines
+__convert_to_newlines: ; 0x020D40BC
 	bx lr
-	arm_func_end sub_020D40BC
+	arm_func_end __convert_to_newlines
 
-	arm_func_start sub_020D40C0
-sub_020D40C0: ; 0x020D40C0
+	arm_func_start __prep_buffer
+__prep_buffer: ; 0x020D40C0
 	ldr r1, [r0, #0x1c]
 	str r1, [r0, #0x24]
 	ldr r3, [r0, #0x20]
@@ -30,15 +30,15 @@ sub_020D40C0: ; 0x020D40C0
 	ldr r1, [r0, #0x18]
 	str r1, [r0, #0x34]
 	bx lr
-	arm_func_end sub_020D40C0
+	arm_func_end __prep_buffer
 
-	arm_func_start sub_020D40F0
-sub_020D40F0: ; 0x020D40F0
+	arm_func_start __load_buffer
+__load_buffer: ; 0x020D40F0
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r2
 	mov r4, r0
 	mov r6, r1
-	bl sub_020D40C0
+	bl __prep_buffer
 	cmp r5, #1
 	ldreq r0, [r4, #0x20]
 	add r2, r4, #0x28
@@ -66,14 +66,14 @@ sub_020D40F0: ; 0x020D40F0
 	bne _020D4174
 	ldr r0, [r4, #0x1c]
 	add r1, r4, #0x28
-	bl sub_020D40BC
+	bl __convert_to_newlines
 _020D4174:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020D40F0
+	arm_func_end __load_buffer
 
-	arm_func_start sub_020D417C
-sub_020D417C: ; 0x020D417C
+	arm_func_start __flush_buffer
+__flush_buffer: ; 0x020D417C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r2, [r5, #0x24]
@@ -88,7 +88,7 @@ sub_020D417C: ; 0x020D417C
 	bne _020D41B8
 	ldr r0, [r5, #0x1c]
 	add r1, r5, #0x28
-	bl sub_020D40B8
+	bl __convert_from_newlines
 _020D41B8:
 	ldr r0, [r5, #0]
 	ldr r1, [r5, #0x1c]
@@ -107,7 +107,7 @@ _020D41B8:
 	str r0, [r5, #0x18]
 _020D41F4:
 	mov r0, r5
-	bl sub_020D40C0
+	bl __prep_buffer
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020D417C
+	arm_func_end __flush_buffer

@@ -3,5 +3,5 @@
 .public sub_02027A1C
 .public sub_02027AA4
 .public sub_02027B30
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8

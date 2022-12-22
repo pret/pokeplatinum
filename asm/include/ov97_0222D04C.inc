@@ -18,8 +18,8 @@
 .public sub_0203699C
 .public sub_02036BE8
 .public sub_02036C1C
-.public sub_020C4CF4
-.public sub_020D50B8
+.public MI_CpuFill8
+.public memcpy
 .public ov97_0222D04C
 .public ov97_0222D0A4
 .public ov97_0222D0B4

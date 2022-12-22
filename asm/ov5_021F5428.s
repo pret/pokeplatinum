@@ -202,7 +202,7 @@ _021F5566:
 	lsl r0, r0, #0xc
 	sub r0, r1, r0
 	str r0, [sp, #0x5c]
-	bl sub_020AF5E0
+	bl NNS_G3dGlbGetInvV
 	mov r2, #0
 	add r5, r0, #0
 	add r0, sp, #0x24
@@ -211,11 +211,11 @@ _021F5566:
 	bl sub_0201E2E0
 	add r0, r5, #0
 	add r1, sp, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	add r0, sp, #0x24
 	add r1, sp, #0
 	add r2, r0, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	ldr r0, [r4, #0x38]
 	add r1, sp, #0x54
 	add r0, #0x20

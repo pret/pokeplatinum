@@ -20,7 +20,7 @@ ov6_022489E4: ; 0x022489E4
 	lsl r1, r6, #8
 	add r1, r2, r1
 	add r2, r5, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r2, _02248A5C ; =0x00000584
 	ldrb r0, [r4, r2]
 	add r0, r0, #1
@@ -145,7 +145,7 @@ ov6_02248AC8: ; 0x02248AC8
 	add r0, r5, #0
 	lsl r1, r1, #2
 	ldr r1, [r4, r1]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02248AEC ; =0x00000584
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -169,7 +169,7 @@ ov6_02248AF0: ; 0x02248AF0
 	add r0, r7, #0
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0x1b
 	add r1, r5, #0
 	add r2, r4, #1
@@ -204,7 +204,7 @@ _02248B44:
 	ldr r1, [r4, #0]
 	add r0, r0, r5
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r7, r7, #1
 	add r4, r4, #4
 	add r5, r5, r6
@@ -242,7 +242,7 @@ _02248B8C:
 	ldr r0, [r5, #0]
 	add r1, r1, r4
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r7, r7, #1
 	add r4, r4, r6
 	add r5, r5, #4
@@ -278,7 +278,7 @@ ov6_02248BC0: ; 0x02248BC0
 	add r5, #0x10
 	mul r3, r2
 	add r1, r5, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02248BE4 ; =0x00000584
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -300,7 +300,7 @@ ov6_02248BE8: ; 0x02248BE8
 	add r0, r6, #0
 	add r1, r4, #0
 	mov r2, #0x30
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	add r0, #0x30
 	strb r5, [r0]
@@ -336,7 +336,7 @@ _02248C36:
 	add r0, r6, r0
 	add r1, r5, #0
 	add r2, r7, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r4, r4, #1
 	add r5, #8
 	cmp r4, #3
@@ -372,7 +372,7 @@ _02248C7C:
 	add r0, r5, #0
 	add r1, r6, r1
 	add r2, r7, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r4, r4, #1
 	add r5, #8
 	cmp r4, #3
@@ -439,7 +439,7 @@ ov6_02248CE8: ; 0x02248CE8
 	add r0, sp, #0
 	add r1, r4, #4
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	strb r5, [r4]
 	mov r0, #0x10
 	strb r0, [r4, #1]
@@ -478,7 +478,7 @@ ov6_02248D38: ; 0x02248D38
 	mov r1, #0x57
 	lsl r1, r1, #2
 	ldr r1, [r3, r1]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02248D60 ; =0x00000584
 	ldrb r1, [r4, r0]
 	add r1, r1, #1
@@ -503,7 +503,7 @@ ov6_02248D64: ; 0x02248D64
 	add r0, r6, #0
 	add r1, r4, #0
 	add r2, r5, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02248D84:
 	mov r0, #0x24
 	add r1, r4, #0
@@ -564,7 +564,7 @@ ov6_02248DD8: ; 0x02248DD8
 	add r0, r6, #0
 	add r1, r4, #0
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0x25
 	add r1, r4, #0
 	mov r2, #7

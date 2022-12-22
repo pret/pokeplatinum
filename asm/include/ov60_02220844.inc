@@ -1,4 +1,4 @@
-.public sub_020D50D8
+.public memmove
 .public ov4_021EA840
 .public ov4_021EAE04
 .public ov4_021EAE48

@@ -33,7 +33,7 @@ _0222BE44:
 	ldr r0, [r4, #0]
 	mov r1, #0
 	mul r2, r3
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -518,14 +518,14 @@ ov63_0222C0FC: ; 0x0222C0FC
 	ldrsh r0, [r1, r0]
 	add r1, r6, #0
 	mul r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #0
 	strh r0, [r1, #0xc]
 	mov r0, #0xe
 	ldrsh r0, [r1, r0]
 	add r1, r6, #0
 	mul r0, r4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, sp, #0
 	b _0222C17E
 _0222C17A:

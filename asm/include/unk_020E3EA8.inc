@@ -1,8 +1,8 @@
-.public sub_020D3F50
-.public sub_020D3F68
+.public malloc
+.public free
 .public sub_020E3EA8
 .public sub_020E3EE8
 .public sub_020E3EEC
 .public sub_020E3F50
 .public sub_020E3F94
-.public sub_020E44B8
+.public __throw

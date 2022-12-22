@@ -1,5 +1,5 @@
-.public sub_020C1F34
-.public sub_020C22D0
+.public OS_CreateThread
+.public OS_WakeupThreadDirect
 .public ov60_0222590C
 .public ov60_02225E1C
 .public ov60_02225E34

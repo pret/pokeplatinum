@@ -413,7 +413,7 @@ sub_020152C0: ; 0x020152C0
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	mov r1, #0x1f
 	add r0, #0x3e
@@ -427,22 +427,22 @@ _020152DC: .word 0x00007FFF
 
 	thumb_func_start sub_020152E0
 sub_020152E0: ; 0x020152E0
-	ldr r3, _020152E8 ; =sub_020A818C
+	ldr r3, _020152E8 ; =NNS_G2dInitImageProxy
 	mov r1, #0
 	stmia r0!, {r1}
 	bx r3
 	; .align 2, 0
-_020152E8: .word sub_020A818C
+_020152E8: .word NNS_G2dInitImageProxy
 	thumb_func_end sub_020152E0
 
 	thumb_func_start sub_020152EC
 sub_020152EC: ; 0x020152EC
-	ldr r3, _020152F4 ; =sub_020A81D0
+	ldr r3, _020152F4 ; =NNS_G2dInitImagePaletteProxy
 	mov r1, #0
 	stmia r0!, {r1}
 	bx r3
 	; .align 2, 0
-_020152F4: .word sub_020A81D0
+_020152F4: .word NNS_G2dInitImagePaletteProxy
 	thumb_func_end sub_020152EC
 
 	thumb_func_start sub_020152F8
@@ -651,7 +651,7 @@ sub_02015434: ; 0x02015434
 	add r3, r2, #0
 	lsr r1, r1, #0xd
 	mov r2, #0
-	bl sub_020A8450
+	bl NNS_G2dLoadImage2DMapping
 	pop {r3, pc}
 	thumb_func_end sub_02015434
 
@@ -669,7 +669,7 @@ sub_02015444: ; 0x02015444
 	str r2, [r5, #8]
 	lsr r1, r1, #0xd
 	mov r2, #0
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 	str r4, [r5, #8]
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -787,7 +787,7 @@ _02015502:
 	lsl r2, r2, #1
 	ldrsh r0, [r1, r0]
 	ldrsh r1, [r1, r2]
-	bl sub_020C0078
+	bl G3_RotZ
 	ldr r2, [r5, #0x10]
 	ldr r0, [r5, #0xc]
 	ldr r1, _020155A0 ; =0x0400046C
@@ -819,7 +819,7 @@ _02015502:
 	str r4, [sp, #0x10]
 	ldrsh r3, [r5, r3]
 	add r1, r0, #0
-	bl sub_020A7488
+	bl NNS_G2dDrawSpriteFast
 	ldr r0, _020155A4 ; =0x04000448
 	mov r1, #1
 	str r1, [r0, #0]
@@ -907,14 +907,14 @@ _020155DC:
 	ldr r0, [r5, #4]
 	mov r1, #0
 	add r0, r0, #4
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	add r1, r0, #0
 	add r0, r7, #0
 	bl sub_020152A4
 	ldr r0, [r5, #8]
 	mov r1, #0
 	add r0, r0, #4
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r1, r0, #0
 	add r0, r7, #0
 	bl sub_020152A8

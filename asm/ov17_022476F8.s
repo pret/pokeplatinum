@@ -123,7 +123,7 @@ ov17_022477B8: ; 0x022477B8
 	mov r1, #0
 	mov r2, #0x18
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0x28]
 	ldr r1, [r5, #0x2c]
 	ldr r2, _0224782C ; =0x022543F8

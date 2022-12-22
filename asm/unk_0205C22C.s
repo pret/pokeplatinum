@@ -17,7 +17,7 @@ sub_0205C22C: ; 0x0205C22C
 	ldr r2, _0205C298 ; =0x000004E8
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x4e
 	str r5, [r4, #0]
 	mov r1, #1

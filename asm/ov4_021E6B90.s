@@ -44,7 +44,7 @@ ov4_021E6BD4: ; 0x021E6BD4
 	add r0, r1, #0xc00
 	mov r1, #0
 	mov r2, #0x52
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r2, r5, #0xb8
 	ldrb r1, [r5, #0xd0d]
 	mov r0, r5
@@ -179,7 +179,7 @@ _021E6DDC:
 	bne _021E6E00
 	mov r0, #0
 	strb r0, [r7, #0xd15]
-	bl sub_020C3880
+	bl OS_GetTick
 	str r0, [r7, #0xcb0]
 	str r1, [r7, #0xcb4]
 	mov r0, #0xa
@@ -241,7 +241,7 @@ _021E6EAC:
 	bne _021E6F04
 	mov r1, r8
 	add r0, r4, #0xc
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _021E6F04
 	cmp r6, #0
@@ -359,7 +359,7 @@ _021E7020:
 	mov r3, r2, lsr #0x1e
 	mov r2, #0x10
 	strb r3, [r4]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _021E70B4
 _021E7044:
 	add r0, r0, #0x100
@@ -371,7 +371,7 @@ _021E704C:
 	add r1, r4, #2
 	mov r2, #5
 	strb r3, [r4]
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _021E70B4
 _021E7068:
 	mov r1, #2

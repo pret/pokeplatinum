@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C4F48
-sub_020C4F48: ; 0x020C4F48
+	arm_func_start MI_UncompressLZ8
+MI_UncompressLZ8: ; 0x020C4F48
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	ldr r5, [r0, #0], #4
 	mov r2, r5, lsr #8
@@ -86,4 +86,4 @@ _020C5038:
 _020C5040:
 	ldmia sp!, {r4, r5, r6, r7, lr}
 	bx lr
-	arm_func_end sub_020C4F48
+	arm_func_end MI_UncompressLZ8

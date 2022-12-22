@@ -2,8 +2,8 @@
 .public sub_020383E8
 .public sub_0203881C
 .public sub_020996F4
-.public sub_020B2CE4
-.public sub_020B3C0C
-.public sub_020CC3FC
-.public sub_020E1F6C
+.public NNSi_G3dModifyMatFlag
+.public NNS_G3dGetMdlSet
+.public RTC_ConvertSecondToDateTime
+.public _s32_div_f
 .public ov4_021D1F3C

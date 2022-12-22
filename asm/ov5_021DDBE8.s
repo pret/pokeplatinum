@@ -67,7 +67,7 @@ ov5_021DDC44: ; 0x021DDC44
 	mov r1, #0
 	mov r2, #0x4c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _021DDC84 ; =ov5_021DDC88
 	add r1, r4, #0
 	mov r2, #5
@@ -244,7 +244,7 @@ ov5_021DDD90: ; 0x021DDD90
 	ldr r0, [r4, #0xc]
 	mul r0, r1
 	ldr r1, [r4, #0x10]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]
@@ -283,7 +283,7 @@ ov5_021DDDCC: ; 0x021DDDCC
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -294,7 +294,7 @@ ov5_021DDDCC: ; 0x021DDDCC
 	orr r0, r1
 	ldr r1, [r4, #0x10]
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	ldr r1, [r4, #4]
 	add r0, r0, r1
 	str r0, [r4, #0]
@@ -325,7 +325,7 @@ ov5_021DDE14: ; 0x021DDE14
 	str r3, [sp]
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	sub r0, r7, r6
 	mov r7, #2
@@ -350,7 +350,7 @@ ov5_021DDE14: ; 0x021DDE14
 	add r1, r4, #0
 	mul r1, r4
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	str r6, [r5, #0]
 	ldr r1, [sp]
 	str r6, [r5, #4]
@@ -372,7 +372,7 @@ ov5_021DDE74: ; 0x021DDE74
 	lsl r2, r6, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -387,7 +387,7 @@ ov5_021DDE74: ; 0x021DDE74
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -397,7 +397,7 @@ ov5_021DDE74: ; 0x021DDE74
 	lsr r0, r0, #0xc
 	orr r0, r1
 	lsl r1, r2, #2
-	bl sub_020BCFD0
+	bl FX_Div
 	ldr r1, [r5, #4]
 	add r0, r4, r0
 	add r0, r1, r0
@@ -423,11 +423,11 @@ ov5_021DDEDC: ; 0x021DDEDC
 	cmp r0, #1
 	bne _021DDEEA
 	ldr r0, _021DDEF4 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	pop {r3, pc}
 _021DDEEA:
 	ldr r0, _021DDEF8 ; =0x0400106C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	pop {r3, pc}
 	nop
 _021DDEF4: .word 0x0400006C
@@ -480,7 +480,7 @@ ov5_021DDF38: ; 0x021DDF38
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _021DDF6C ; =0x04000048
 	mov r1, #0x3f
 	ldrh r2, [r0]
@@ -756,7 +756,7 @@ ov5_021DE14C: ; 0x021DE14C
 	add r4, r1, #0
 	ldrh r0, [r0]
 	ldr r1, [r4, #0x18]
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r1, #1
 	tst r0, r1
 	ldr r0, [r4, #0]
@@ -824,7 +824,7 @@ ov5_021DE1CC: ; 0x021DE1CC
 	mov r1, #0
 	mov r2, #0x48
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _021DE210 ; =0x04000048
 	mov r5, #0x3f
 	ldrh r2, [r0]
@@ -1438,14 +1438,14 @@ ov5_021DE67C: ; 0x021DE67C
 	add r6, r0, #0
 	add r0, r5, #0
 	add r1, r4, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r6, #0
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r1, r0, #0
 	add r0, r5, #0
 	add r2, r4, #0
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov5_021DE67C
 
@@ -1457,7 +1457,7 @@ ov5_021DE6A4: ; 0x021DE6A4
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -1579,7 +1579,7 @@ ov5_021DE784: ; 0x021DE784
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -1784,7 +1784,7 @@ ov5_021DE8F8: ; 0x021DE8F8
 	mov r1, #0
 	mov r2, #0xcc
 	add r7, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r4, #0
 	add r5, r7, #0
 _021DE912:
@@ -2080,7 +2080,7 @@ ov5_021DEB04: ; 0x021DEB04
 	ldrsh r0, [r2, r0]
 	ldrsh r1, [r2, r1]
 	add r7, r3, #0
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [sp, #0x14]
 	asr r0, r4, #4
 	lsl r1, r0, #1
@@ -2090,7 +2090,7 @@ ov5_021DEB04: ; 0x021DEB04
 	lsl r1, r1, #1
 	ldrsh r0, [r2, r0]
 	ldrsh r1, [r2, r1]
-	bl sub_020BCFD0
+	bl FX_Div
 	str r0, [sp, #0xc]
 	ldr r0, [sp, #0x14]
 	mov r5, #0
@@ -2108,7 +2108,7 @@ _021DEB48:
 	ldr r1, [sp, #0x18]
 	add r2, r6, #0
 	add r3, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r0, r0, r2
@@ -2123,7 +2123,7 @@ _021DEB48:
 	ldr r1, [sp, #0x10]
 	add r2, r6, #0
 	add r3, r4, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	lsl r2, r2, #0xa
 	add r2, r0, r2
@@ -2189,7 +2189,7 @@ ov5_021DEBEC: ; 0x021DEBEC
 	mov r1, #0
 	mov r2, #0x24
 	add r7, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r4, #0
 	add r5, r7, #0
 _021DEC04:
@@ -2240,14 +2240,14 @@ _021DEC4A:
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	ldrh r1, [r4, #2]
 	ldr r0, _021DECB4 ; =0x0000FFFF
 	mul r0, r1
 	mov r1, #0x5a
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	ldr r0, [sp, #0x10]
 	lsl r2, r7, #0x10
@@ -2327,7 +2327,7 @@ ov5_021DECEC: ; 0x021DECEC
 	mov r1, #0
 	mov r2, #0xe8
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	thumb_func_end ov5_021DECEC
@@ -2386,15 +2386,15 @@ _021DED3C:
 _021DED62:
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, [sp, #0x18]
 	mul r0, r1
 	add r1, r5, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r6, r0, #0
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r1, #1
 	tst r0, r1
 	bne _021DED8A
@@ -2670,7 +2670,7 @@ ov5_021DEF74: ; 0x021DEF74
 	add r4, r0, #0
 	ldr r0, _021DEF88 ; =0x0400006C
 	ldr r1, [r1, #0]
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	add r0, r4, #0
 	bl sub_0200DA58
 	pop {r4, pc}
@@ -2729,12 +2729,12 @@ _021DEFC0:
 	mov r0, #8
 	mov r1, #0
 	bl sub_0201FF0C
-	bl sub_020BEC9C
+	bl GX_ResetBankForBG
 	mov r2, #2
 	ldr r1, _021DF024 ; =0x06840000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _021DF028 ; =0xC0320C04
 	ldr r2, _021DF02C ; =0x04000064
 	ldr r1, _021DF020 ; =0x02202120
@@ -3101,14 +3101,14 @@ ov5_021DF28C: ; 0x021DF28C
 	ldr r0, [r3, #0]
 	str r0, [r2, #0]
 	add r0, sp, #0
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	add r0, sp, #0x30
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	add r0, sp, #0x24
-	bl sub_020AF4EC
+	bl NNS_G3dGlbSetBaseScale
 	ldr r1, _021DF304 ; =0x021C5B48
 	add r0, sp, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _021DF308 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
@@ -3179,14 +3179,14 @@ _021DF318:
 	mov r1, #1
 	bl sub_0201FF0C
 	add r0, sp, #0x24
-	bl sub_020BB44C
+	bl MTX_Identity22_
 	mov r2, #0
 	str r2, [sp]
 	ldr r0, _021DF3CC ; =0x04000030
 	add r1, sp, #0x24
 	add r3, r2, #0
 	str r2, [sp, #4]
-	bl sub_020BF4AC
+	bl G2x_SetBGyAffine_
 	ldr r5, _021DF3D0 ; =0x021F99D8
 	add r3, sp, #8
 	ldmia r5!, {r0, r1}

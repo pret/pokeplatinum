@@ -34,7 +34,7 @@
 .public sub_02023790
 .public sub_020237BC
 .public sub_02039814
-.public sub_020C144C
-.public sub_020C161C
-.public sub_020C164C
-.public sub_020C458C
+.public OS_SetIrqFunction
+.public OS_EnableIrqMask
+.public OS_DisableIrqMask
+.public MI_WaitDma

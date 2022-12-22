@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020AF760
-sub_020AF760: ; 0x020AF760
+	arm_func_start NNSi_G3dAnmBlendMat
+NNSi_G3dAnmBlendMat: ; 0x020AF760
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r0
 	movs r5, r1
@@ -37,10 +37,10 @@ _020AF7BC:
 	cmp r5, #0
 	bne _020AF77C
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020AF760
+	arm_func_end NNSi_G3dAnmBlendMat
 
-	arm_func_start sub_020AF7CC
-sub_020AF7CC: ; 0x020AF7CC
+	arm_func_start blendScaleVec_
+blendScaleVec_: ; 0x020AF7CC
 	cmp r3, #0
 	beq _020AF7FC
 	ldr r1, [r0, #0]
@@ -70,10 +70,10 @@ _020AF7FC:
 	add r1, r3, r1, asr #12
 	str r1, [r0, #8]
 	bx lr
-	arm_func_end sub_020AF7CC
+	arm_func_end blendScaleVec_
 
-	arm_func_start sub_020AF83C
-sub_020AF83C: ; 0x020AF83C
+	arm_func_start NNSi_G3dAnmBlendJnt
+NNSi_G3dAnmBlendJnt: ; 0x020AF83C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x70
 	movs sb, r1
@@ -161,7 +161,7 @@ _020AF970:
 	mov r1, sl
 	mov r0, #0
 	mov r2, #0x58
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mvn r0, #0
 	str r0, [sl]
 	add fp, sp, #0x40
@@ -190,18 +190,18 @@ _020AF990:
 	mov r0, fp
 	add r1, sp, #0xc
 	mov r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, sp, #0x58
 	add r1, sp, #0
 	mov r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 _020AFA00:
 	cmp r5, #0x1000
 	ldreq r7, [sb, #4]
 	beq _020AFA1C
 	ldr r0, [sb, #4]
 	mov r1, r5
-	bl sub_020BCFD0
+	bl FX_Div
 	mov r7, r0
 _020AFA1C:
 	ldr r3, [sp, #0x18]
@@ -209,19 +209,19 @@ _020AFA1C:
 	add r1, sp, #0x1c
 	mov r2, r7
 	and r3, r3, #1
-	bl sub_020AF7CC
+	bl blendScaleVec_
 	ldr r3, [sp, #0x18]
 	add r0, sl, #0x10
 	add r1, sp, #0x28
 	mov r2, r7
 	and r3, r3, #8
-	bl sub_020AF7CC
+	bl blendScaleVec_
 	ldr r3, [sp, #0x18]
 	add r0, sl, #0x1c
 	add r1, sp, #0x34
 	mov r2, r7
 	and r3, r3, #0x10
-	bl sub_020AF7CC
+	bl blendScaleVec_
 	ldr r0, [sp, #0x18]
 	tst r0, #4
 	bne _020AFAC4
@@ -301,7 +301,7 @@ _020AFB74:
 	add r0, sl, #0x28
 	add r1, sl, #0x34
 	add r2, sl, #0x40
-	bl sub_020BD298
+	bl VEC_CrossProduct
 	ldr r0, [sl, #0x28]
 	cmp r0, #0
 	ldreq r0, [sl, #0x2c]
@@ -312,12 +312,12 @@ _020AFB74:
 	add r0, sp, #0xc
 	add r1, sl, #0x28
 	mov r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	b _020AFBD0
 _020AFBC4:
 	add r0, sl, #0x28
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 _020AFBD0:
 	ldr r0, [sl, #0x40]
 	cmp r0, #0
@@ -329,24 +329,24 @@ _020AFBD0:
 	add r0, sp, #0
 	add r1, sl, #0x40
 	mov r2, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	b _020AFC0C
 _020AFC00:
 	add r0, sl, #0x40
 	mov r1, r0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 _020AFC0C:
 	add r0, sl, #0x40
 	add r1, sl, #0x28
 	add r2, sl, #0x34
-	bl sub_020BD298
+	bl VEC_CrossProduct
 	mov r0, #1
 	add sp, sp, #0x70
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020AF83C
+	arm_func_end NNSi_G3dAnmBlendJnt
 
-	arm_func_start sub_020AFC28
-sub_020AFC28: ; 0x020AFC28
+	arm_func_start NNSi_G3dAnmBlendVis
+NNSi_G3dAnmBlendVis: ; 0x020AFC28
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #4
 	mov r7, r0
@@ -383,7 +383,7 @@ _020AFC9C:
 	bne _020AFC4C
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020AFC28
+	arm_func_end NNSi_G3dAnmBlendVis
 
 	.data
 

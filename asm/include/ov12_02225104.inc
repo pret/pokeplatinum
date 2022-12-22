@@ -11,7 +11,7 @@
 .public sub_02014988
 .public sub_020149BC
 .public sub_020149D4
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov12_0222325C
 .public ov12_02224FC4
 .public ov12_02225104

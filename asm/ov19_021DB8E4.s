@@ -41,7 +41,7 @@ ov19_021DB8E4: ; 0x021DB8E4
 	ldr r0, [r0, #0xc]
 	add r1, #0xe4
 	mov r2, #0x40
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	ldr r0, [sp, #0x34]
@@ -56,7 +56,7 @@ ov19_021DB8E4: ; 0x021DB8E4
 	ldr r0, [r0, #0xc]
 	add r1, r5, r1
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r0, r4, #0
 	bl sub_020181C4
 	add r0, r5, #0
@@ -87,20 +87,20 @@ _021DB96C:
 	mov r1, #3
 	add r0, #0xe4
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r0, #0xe1
 	lsl r0, r0, #2
 	mov r1, #0x1a
 	add r0, r5, r0
 	lsl r1, r1, #4
 	mov r2, #0x60
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	add r0, r5, #0
 	mov r1, #0x1a
 	add r0, #0xe4
 	lsl r1, r1, #4
 	mov r2, #0x60
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	mov r0, #0xa
 	str r0, [sp]
 	add r3, r5, #0
@@ -523,7 +523,7 @@ _021DBCD4:
 	ldr r2, [sp, #0x14]
 	ldr r3, [sp, #0x48]
 	lsl r1, r1, #5
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 _021DBCE8:
@@ -531,7 +531,7 @@ _021DBCE8:
 	ldr r1, [r0, #0x18]
 	ldr r0, [r1, #0x14]
 	ldr r1, [r1, #0x10]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x14]
 	cmp r0, #1
 	beq _021DBD02
@@ -546,7 +546,7 @@ _021DBD02:
 	lsl r1, r1, #5
 	ldr r0, [r2, #0x14]
 	ldr r2, [r2, #0x10]
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 _021DBD16:
@@ -556,7 +556,7 @@ _021DBD16:
 	lsl r1, r1, #5
 	ldr r0, [r2, #0x14]
 	ldr r2, [r2, #0x10]
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
 	nop
@@ -614,12 +614,12 @@ ov19_021DBD68: ; 0x021DBD68
 	ldr r0, [r0, #0x14]
 	add r1, r3, r1
 	add r2, #0x1c
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r1, #0xf9
 	lsl r1, r1, #2
 	add r0, r5, r1
 	add r1, #0x1c
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, _021DBD98 ; =0x00004BE4
 	mov r2, #1
 	add r1, r5, r4
@@ -651,12 +651,12 @@ ov19_021DBD9C: ; 0x021DBD9C
 	add r0, r1, r0
 	lsl r1, r6, #5
 	add r2, #0x1c
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	add sp, #0x28
 	pop {r4, r5, r6, pc}
 _021DBDCC:
 	add r0, sp, #4
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, sp, #4
 	str r0, [sp]
 	add r0, r5, #0
@@ -704,7 +704,7 @@ ov19_021DBDF4: ; 0x021DBDF4
 	mov r5, #0x20
 _021DBE34:
 	add r0, sp, #0x1c
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	add r0, sp, #0x1c
 	str r0, [sp]
 	ldr r2, [sp, #8]
@@ -735,20 +735,20 @@ _021DBE6E:
 	cmp r5, #0
 	ble _021DBE8C
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _021DBE9A
 _021DBE8C:
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _021DBE9A:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x10]
 	mov r0, #0x16
 	lsl r0, r0, #0xe
@@ -1123,7 +1123,7 @@ _021DC14A:
 	add r0, r3, r1
 	mov r1, #0x1a
 	lsl r1, r1, #4
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	add r0, r5, #0
 	bl ov19_021DBF18
 	ldrb r0, [r4, #4]
@@ -1147,7 +1147,7 @@ _021DC17A:
 	add r0, r3, r1
 	mov r1, #0x1a
 	lsl r1, r1, #4
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	ldrb r0, [r4, #5]
 	cmp r0, #0
 	bne _021DC1C6
@@ -1352,7 +1352,7 @@ ov19_021DC29C: ; 0x021DC29C
 	ldr r0, [r4, #8]
 	sub r0, r1, r0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x10]
 	mov r0, #6
 	strh r0, [r4, #0x14]
@@ -1475,7 +1475,7 @@ ov19_021DC3F4: ; 0x021DC3F4
 	ldr r0, [r4, #8]
 	sub r0, r1, r0
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x10]
 	mov r0, #6
 	strh r0, [r4, #0x14]
@@ -1611,7 +1611,7 @@ ov19_021DC4F8: ; 0x021DC4F8
 	add r0, sp, #0x30
 	bl ov19_021D783C
 	add r0, sp, #0xc
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
 	mov r1, #1
@@ -1636,7 +1636,7 @@ ov19_021DC4F8: ; 0x021DC4F8
 	mov r1, #0xbe
 	ldr r0, [sp, #8]
 	lsl r1, r1, #8
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
 	mov r1, #2

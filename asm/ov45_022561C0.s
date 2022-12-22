@@ -141,7 +141,7 @@ ov45_022562C0: ; 0x022562C0
 	cmp r0, #0x18
 	blo _022562DA
 	mov r1, #0x18
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp]
 _022562DA:
 	ldr r0, [sp, #4]
@@ -149,7 +149,7 @@ _022562DA:
 	blo _022562EA
 	ldr r0, [sp]
 	mov r1, #0x3c
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp]
 _022562EA:
 	ldr r0, [sp]

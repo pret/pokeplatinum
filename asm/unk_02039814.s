@@ -14,13 +14,13 @@ sub_02039814: ; 0x02039814
 	ldr r2, [r3, r1]
 	orr r0, r2
 	str r0, [r3, r1]
-	ldr r3, _02039830 ; =sub_020C458C
+	ldr r3, _02039830 ; =MI_WaitDma
 	mov r0, #3
 	bx r3
 	nop
 _02039828: .word 0x027E0000
 _0203982C: .word 0x00003FF8
-_02039830: .word sub_020C458C
+_02039830: .word MI_WaitDma
 	thumb_func_end sub_02039814
 
 	thumb_func_start sub_02039834
@@ -73,12 +73,12 @@ _02039874:
 	mov r1, #0
 	bl sub_0200F344
 	mov r0, #1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r1, _02039A24 ; =sub_02039814
 	mov r0, #1
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #1
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, #0
 	add r1, r0, #0
 	bl sub_02017798

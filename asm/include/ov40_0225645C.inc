@@ -11,7 +11,7 @@
 .public sub_020759CC
 .public sub_02079D8C
 .public sub_02079EDC
-.public sub_020E2178
+.public _u32_div_f
 .public ov25_02254424
 .public ov25_02254664
 .public ov25_02254674

@@ -46,13 +46,13 @@ ov105_02245CD0: ; 0x02245CD0
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _02245D44 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _02245D48 ; =0xBFFF0000
 	ldr r0, _02245D4C ; =0x04000580
 	str r1, [r0, #0]
@@ -80,8 +80,8 @@ ov105_02245D50: ; 0x02245D50
 	mov r0, #2
 	str r0, [r2, #0]
 	str r3, [r1, #0]
-	bl sub_020AF480
-	bl sub_020A73C0
+	bl NNS_G3dGlbFlushP
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	add r0, r4, #0
 	bl sub_02007768
 	ldr r0, _02245D84 ; =0x04000540

@@ -57,7 +57,7 @@ _02207330:
 	bne _0220736C
 _0220734C:
 	add r0, r4, #0xe0
-	bl sub_020C2AF4
+	bl OS_TryLockMutex
 	cmp r0, #0
 	addeq sp, sp, #8
 	mvneq r0, #5
@@ -66,7 +66,7 @@ _0220734C:
 	b _02207378
 _0220736C:
 	add r0, r4, #0xe0
-	bl sub_020C29D8
+	bl OS_LockMutex
 	mov ip, #1
 _02207378:
 	ldr r1, [sp, #0x20]
@@ -79,7 +79,7 @@ _02207378:
 	bl ov4_022073B0
 	mov r5, r0
 	add r0, r4, #0xe0
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	mov r0, r5
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -170,7 +170,7 @@ ov4_022074B4: ; 0x022074B4
 	mov r7, r3
 	ldr r4, [sl, #0x68]
 	movgt r8, sb
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [sp, #0x28]
 	mov fp, r0
 	and r6, r1, #1
@@ -191,11 +191,11 @@ _02207510:
 	moveq r5, #0
 	beq _02207528
 	add r0, r4, #0x104
-	bl sub_020C2218
+	bl OS_SleepThread
 	b _022074E4
 _02207528:
 	mov r0, fp
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	arm_func_end ov4_022074B4
@@ -260,12 +260,12 @@ _022075E4:
 	ldr r1, [r5, #0x18]
 	mov r2, r7
 	add r0, r6, r0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02207610:
 	ldr r1, [r5, #0x10]
 	ldr r2, [r5, #0x14]
 	mov r0, r6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0x100
 	ldrh r6, [r0]
 	strh r7, [r5, #0x20]
@@ -400,7 +400,7 @@ _022077E4:
 	add r1, r6, #0x100
 	add r0, r6, #0x104
 	strh r2, [r1, #2]
-	bl sub_020C2268
+	bl OS_WakeupThread
 	mov r0, r7
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	arm_func_end ov4_022076D0
@@ -412,7 +412,7 @@ ov4_02207800: ; 0x02207800
 	mov r4, r0
 	ldr r0, [r1, #4]
 	ldr r5, [r0, #0xa4]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	cmp r5, #0
 	beq _02207864
 	ldrh r3, [r5, #0x2e]
@@ -438,12 +438,12 @@ _02207864:
 	ldr r1, [r1, #0x24]
 	mov r5, r1, lsl #1
 _02207870:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r5, #0
 	ble _02207894
 	mov r0, r4
 	mov r1, r5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r0, #0
 	mulgt r0, r5, r0
 	ldmgtia sp!, {r3, r4, r5, pc}
@@ -475,7 +475,7 @@ _022078D4:
 	ldr r0, [r6, #0x10]
 	mov r1, r7
 	mov r2, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r6, #0x10]
 	add r0, r0, r4
 	str r0, [r6, #0x10]
@@ -488,7 +488,7 @@ _02207904:
 	ldr r0, [r6, #0x18]
 	mov r2, r5
 	add r1, r7, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r6, #0x18]
 	add r0, r0, r5
 	str r0, [r6, #0x18]

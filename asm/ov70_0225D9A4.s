@@ -32,7 +32,7 @@ ov70_0225D9A4: ; 0x0225D9A4
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r0, #0xc
 	str r0, [r4, #0x38]
@@ -1732,7 +1732,7 @@ _0225E536:
 	mov r3, #0x40
 	str r6, [sp, #4]
 	bl sub_02006E84
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -1937,18 +1937,18 @@ ov70_0225E754: ; 0x0225E754
 	orr r1, r2
 	strh r1, [r0]
 	ldr r0, _0225E870 ; =0x0226D5EC
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	mov r0, #0
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r1, #0
 	ldr r0, _0225E874 ; =0x00006B5A
 	ldr r2, _0225E878 ; =0x00007FFF
 	mov r3, #0x3f
 	str r1, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0225E87C ; =0xBFFF0000
 	ldr r0, _0225E880 ; =0x04000580
 	ldr r2, _0225E884 ; =0xFFFFF224
@@ -1956,7 +1956,7 @@ ov70_0225E754: ; 0x0225E754
 	ldr r1, _0225E888 ; =0xFFFFF805
 	mov r0, #0
 	mov r3, #0x6e
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	mov r1, #0
 	add r0, sp, #4
 	strh r1, [r0]
@@ -1966,7 +1966,7 @@ ov70_0225E754: ; 0x0225E754
 	strh r1, [r0, #4]
 	add r0, sp, #4
 	add r1, r0, #0
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 	add r4, sp, #4
 	mov r1, #0
 	mov r2, #2
@@ -1975,7 +1975,7 @@ ov70_0225E754: ; 0x0225E754
 	ldrsh r2, [r4, r2]
 	ldrsh r3, [r4, r3]
 	mov r0, #1
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	mov r1, #0
 	add r0, r4, #0
 	strh r1, [r0]
@@ -1985,17 +1985,17 @@ ov70_0225E754: ; 0x0225E754
 	strh r1, [r0, #4]
 	add r0, sp, #4
 	add r1, r0, #0
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 	mov r0, #2
 	mov r1, #0
 	mov r3, #4
 	ldrsh r1, [r4, r1]
 	ldrsh r2, [r4, r0]
 	ldrsh r3, [r4, r3]
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _0225E878 ; =0x00007FFF
 	mov r0, #2
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	mov r1, #0
 	add r0, r4, #0
 	strh r1, [r0]
@@ -2005,7 +2005,7 @@ ov70_0225E754: ; 0x0225E754
 	strh r1, [r0, #4]
 	add r0, sp, #4
 	add r1, r0, #0
-	bl sub_020BD4FC
+	bl VEC_Fx16Normalize
 	mov r1, #0
 	mov r2, #2
 	mov r3, #4
@@ -2013,10 +2013,10 @@ ov70_0225E754: ; 0x0225E754
 	ldrsh r2, [r4, r2]
 	ldrsh r3, [r4, r3]
 	mov r0, #3
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _0225E878 ; =0x00007FFF
 	mov r0, #3
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	add sp, #0xc
 	pop {r3, r4, pc}
 	nop
@@ -4922,7 +4922,7 @@ _0225FDB8:
 	bl sub_02006FE8
 	add r1, sp, #0x30
 	str r0, [sp, #0x2c]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0x20]
 	mov r1, #6
 	ldrh r0, [r0]
@@ -5072,11 +5072,11 @@ _0225FF06:
 _0225FF10:
 	ldr r0, [sp, #0x90]
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	add r7, r0, #0
 	ldr r0, [sp, #0x90]
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [sp, #0x30]
 	lsl r0, r7, #1
 	str r0, [sp, #0x34]
@@ -5398,38 +5398,38 @@ _0226011A:
 	cmp r0, #0
 	beq _022601D4
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _022601E2
 _022601D4:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _022601E2:
-	bl sub_020E1740
+	bl _f_ftoi
 	str r0, [sp, #0x40]
 	cmp r7, #0
 	beq _022601FE
 	lsl r0, r7, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0226020C
 _022601FE:
 	lsl r0, r7, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0226020C:
-	bl sub_020E1740
+	bl _f_ftoi
 	mov r1, #1
 	lsl r1, r1, #0x14
 	add r0, r0, r1
@@ -5952,20 +5952,20 @@ _0226057E:
 	cmp r0, #0
 	ble _02260608
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _02260616
 _02260608:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _02260616:
-	bl sub_020E1740
+	bl _f_ftoi
 	ldr r1, [sp, #0x80]
 	add r0, r1, r0
 	str r0, [sp, #0x80]
@@ -5974,20 +5974,20 @@ _02260616:
 	cmp r0, #0
 	ble _0226063A
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _02260648
 _0226063A:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _02260648:
-	bl sub_020E1740
+	bl _f_ftoi
 	ldr r1, [sp, #0x84]
 	add r0, r1, r0
 	str r0, [sp, #0x84]

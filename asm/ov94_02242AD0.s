@@ -1963,7 +1963,7 @@ ov94_02243990: ; 0x02243990
 	str r0, [r4, #0x2c]
 	bl sub_0201D2E8
 	ldr r1, _022439C8 ; =0x00000445
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
 	cmp r5, #0x3c

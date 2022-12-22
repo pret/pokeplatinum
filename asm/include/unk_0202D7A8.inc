@@ -3,4 +3,4 @@
 .public sub_020245BC
 .public sub_0202D834
 .public sub_0202D84C
-.public sub_020D5124
+.public memset

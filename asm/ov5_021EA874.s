@@ -824,7 +824,7 @@ ov5_021EAEE0: ; 0x021EAEE0
 	mov r1, #0
 	mov r2, #0x94
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #4
 	bl sub_0200B358
 	str r0, [r4, #0x38]

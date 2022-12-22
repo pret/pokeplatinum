@@ -392,7 +392,7 @@ ov6_0223E3D8: ; 0x0223E3D8
 	str r0, [r5, #8]
 	add r0, r4, #0
 	lsl r1, r1, #0xe
-	bl sub_020BCFD0
+	bl FX_Div
 	sub r1, r4, r0
 	ldr r0, [r5, #0]
 	bl ov6_0223FFFC
@@ -569,7 +569,7 @@ ov6_0223E548: ; 0x0223E548
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x78
-	bl sub_020D5124
+	bl memset
 	mov r0, #4
 	add r1, r5, #0
 	bl ov6_02240104
@@ -1392,7 +1392,7 @@ ov6_0223EB4C: ; 0x0223EB4C
 	mov r1, #0xc
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223EBCC ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	mov r0, #0
 	str r0, [r4, #0]
 	pop {r3, r4, r5, pc}
@@ -2407,7 +2407,7 @@ _0223F38C:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223F5B8 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 _0223F3E6:
 	add r1, r4, #0
 	add r3, r4, #0
@@ -2436,7 +2436,7 @@ _0223F40C:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223F5B8 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223F6D4
 _0223F422:
 	add r1, #0xfc
@@ -2460,7 +2460,7 @@ _0223F43E:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223F5B8 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223F6D4
 _0223F454:
 	add r1, r4, #0
@@ -2507,7 +2507,7 @@ _0223F496:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223F5B8 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223F6D4
 _0223F4AC:
 	add r1, #0xfc
@@ -2589,7 +2589,7 @@ _0223F514:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223F5B8 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 _0223F554:
 	add r0, r4, #0
 	add r0, #0xd0
@@ -2649,20 +2649,20 @@ _0223F5C8:
 	cmp r0, #0
 	ble _0223F5E0
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223F5EE
 _0223F5E0:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223F5EE:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r1, r4, #0
 	add r1, #0xd4
 	str r0, [r1, #0]
@@ -2673,20 +2673,20 @@ _0223F5EE:
 	cmp r0, #0
 	ble _0223F616
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223F624
 _0223F616:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223F624:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r1, r4, #0
 	add r1, #0xd8
 	str r0, [r1, #0]
@@ -3336,7 +3336,7 @@ _0223FB36:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223FCB0 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223FC74
 _0223FB4C:
 	ldr r1, [r3, #0x24]
@@ -3355,20 +3355,20 @@ _0223FB4C:
 	cmp r0, #0
 	ble _0223FB7E
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0223FB8C
 _0223FB7E:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0223FB8C:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r1, r0, #0
 	add r0, r4, #0
 	mov r2, #0x63
@@ -3414,7 +3414,7 @@ _0223FBCA:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223FCB0 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223FC74
 _0223FBF2:
 	mov r0, #0
@@ -3429,7 +3429,7 @@ _0223FBF8:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223FCB0 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223FC74
 _0223FC0E:
 	ldr r0, [r4, #0x10]
@@ -3479,7 +3479,7 @@ _0223FC5A:
 	strh r0, [r4, #0xc]
 	ldrsh r1, [r4, r1]
 	ldr r0, _0223FCB0 ; =0x0400006C
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	b _0223FC74
 _0223FC70:
 	mov r0, #6
@@ -3498,7 +3498,7 @@ _0223FC74:
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r4, #0x24
 	add r0, r4, #0
 	bl sub_02017294
@@ -3506,7 +3506,7 @@ _0223FC74:
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _0223FCA8:
 	add sp, #0x28
 	pop {r3, r4, r5, pc}
@@ -3603,7 +3603,7 @@ _0223FD2C:
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -3613,7 +3613,7 @@ _0223FD2C:
 	lsr r0, r0, #0xc
 	orr r0, r1
 	lsl r1, r4, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	ldr r1, [r5, #4]
 	add r0, r0, r1
 	str r0, [r5, #0]
@@ -3755,7 +3755,7 @@ ov6_0223FDE4: ; 0x0223FDE4
 	mov r1, #0
 	mov r2, #0x4c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_020203AC
 	str r0, [r4, #0]
@@ -4075,7 +4075,7 @@ _0224001E:
 	str r4, [r5, #0x14]
 	ldr r0, _02240054 ; =0x0400006C
 	ldr r1, [r5, #0]
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	mov r2, #1
 	ldr r0, _02240058 ; =ov6_02240064
 	add r1, r5, #0
@@ -4099,12 +4099,12 @@ ov6_02240060: ; 0x02240060
 
 	thumb_func_start ov6_02240064
 ov6_02240064: ; 0x02240064
-	ldr r3, _0224006C ; =sub_020BDEC4
+	ldr r3, _0224006C ; =GXx_SetMasterBrightness_
 	ldr r0, _02240070 ; =0x0400006C
 	ldr r1, [r1, #0]
 	bx r3
 	; .align 2, 0
-_0224006C: .word sub_020BDEC4
+_0224006C: .word GXx_SetMasterBrightness_
 _02240070: .word 0x0400006C
 	thumb_func_end ov6_02240064
 
@@ -4120,7 +4120,7 @@ ov6_02240074: ; 0x02240074
 	mov r1, #0
 	lsl r2, r2, #6
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x4b
 	str r5, [r4, #0]
 	mov r1, #5
@@ -4170,7 +4170,7 @@ ov6_022400C4: ; 0x022400C4
 	str r1, [r0, #0]
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r4, #0x40
 	add r0, r4, #0
 	bl ov6_0223FDBC
@@ -4178,7 +4178,7 @@ ov6_022400C4: ; 0x022400C4
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 _022400FC:
 	add sp, #4
 	pop {r3, r4, pc}
@@ -4199,7 +4199,7 @@ ov6_02240104: ; 0x02240104
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	str r6, [r4, #4]
 	mov r0, #0
 	str r0, [r4, #0]
@@ -4262,7 +4262,7 @@ ov6_02240104: ; 0x02240104
 	ldr r3, [r4, #0x34]
 	mov r1, #4
 	mov r2, #1
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add r0, r4, #0
 	add sp, #0x10
 	pop {r4, r5, r6, pc}
@@ -4917,7 +4917,7 @@ ov6_0224060C: ; 0x0224060C
 	add r6, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	mov r1, #0x62
 	add r2, r5, #0
@@ -5158,7 +5158,7 @@ ov6_022407B8: ; 0x022407B8
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x90
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #4
 	add r1, r5, #0
 	bl ov6_0223FDAC
@@ -5172,12 +5172,12 @@ ov6_022407B8: ; 0x022407B8
 
 	thumb_func_start ov6_022407DC
 ov6_022407DC: ; 0x022407DC
-	ldr r3, _022407E4 ; =sub_020D5124
+	ldr r3, _022407E4 ; =memset
 	mov r1, #0
 	mov r2, #0x90
 	bx r3
 	; .align 2, 0
-_022407E4: .word sub_020D5124
+_022407E4: .word memset
 	thumb_func_end ov6_022407DC
 
 	thumb_func_start ov6_022407E8
@@ -5312,7 +5312,7 @@ ov6_022408C8: ; 0x022408C8
 	add r7, r0, #0
 	mov r1, #0
 	mov r2, #0xd4
-	bl sub_020D5124
+	bl memset
 	add r0, r7, #0
 	add r0, #0xc4
 	add r1, r6, #0
@@ -5705,7 +5705,7 @@ ov6_02240B9C: ; 0x02240B9C
 	mov r1, #0
 	mov r2, #0xec
 	add r6, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x62
 	add r1, r7, #0
 	bl sub_02006C24

@@ -84,13 +84,13 @@ ov17_0223F15C: ; 0x0223F15C
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0223F1D4 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0223F1D8 ; =0xBFFF0000
 	ldr r0, _0223F1DC ; =0x04000580
 	str r1, [r0, #0]
@@ -132,7 +132,7 @@ ov17_0223F1E8: ; 0x0223F1E8
 	add r1, r7, r1
 	asr r6, r1, #3
 	mov r1, #8
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	beq _0223F218
 	add r6, r6, #1
@@ -541,7 +541,7 @@ _0223F51A:
 	add r0, r1, #0
 	mul r0, r6
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #0x4a
 	ldr r2, [sp, #4]
 	lsl r1, r1, #2
@@ -799,7 +799,7 @@ ov17_0223F70C: ; 0x0223F70C
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #4]
 	str r6, [r4, #0xc]
 	ldr r0, [sp, #0x18]

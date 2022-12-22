@@ -6,30 +6,30 @@
 	.text
 
 
-	arm_func_start sub_020CE478
-sub_020CE478: ; 0x020CE478
+	arm_func_start WM_SetIndCallback
+WM_SetIndCallback: ; 0x020CE478
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
-	bl sub_020CDF34
+	bl WMi_CheckInitialized
 	movs r4, r0
 	beq _020CE4A4
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 _020CE4A4:
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	str r6, [r0, #0xc8]
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020CE478
+	arm_func_end WM_SetIndCallback
 
-	arm_func_start sub_020CE4BC
-sub_020CE4BC: ; 0x020CE4BC
+	arm_func_start WM_SetPortCallback
+WM_SetPortCallback: ; 0x020CE4BC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x44
 	movs r5, r1
@@ -39,7 +39,7 @@ sub_020CE4BC: ; 0x020CE4BC
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x44
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r3, #0
 	ldr r1, _020CE590 ; =0x0000FFFF
 	mov r7, #0x82
@@ -55,48 +55,48 @@ sub_020CE4BC: ; 0x020CE4BC
 	strh r1, [sp, #0x1a]
 	str r4, [sp, #0x1c]
 	strh r3, [sp, #0x12]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 _020CE524:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r8, r0
-	bl sub_020CDF34
+	bl WMi_CheckInitialized
 	movs r7, r0
 	beq _020CE54C
 	mov r0, r8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add sp, sp, #0x44
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 _020CE54C:
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	add r0, r0, r6, lsl #2
 	str r5, [r0, #0xcc]
 	str r4, [r0, #0x10c]
 	cmp r5, #0
 	beq _020CE57C
-	bl sub_020CE448
+	bl WM_GetConnectedAIDs
 	strh r0, [sp, #0x22]
-	bl sub_020CE418
+	bl WM_GetAID
 	strh r0, [sp, #0x20]
 	add r0, sp, #0
 	blx r5
 _020CE57C:
 	mov r0, r8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	add sp, sp, #0x44
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020CE590: .word 0x0000FFFF
-	arm_func_end sub_020CE4BC
+	arm_func_end WM_SetPortCallback
 
-	arm_func_start sub_020CE594
-sub_020CE594: ; 0x020CE594
+	arm_func_start WM_ReadStatus
+WM_ReadStatus: ; 0x020CE594
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	mov r4, r0
-	bl sub_020CDF34
+	bl WMi_CheckInitialized
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	cmp r5, #0
@@ -104,31 +104,31 @@ sub_020CE594: ; 0x020CE594
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r0, [r4, #4]
 	mov r1, #0x7d0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #4]
 	mov r1, r5
 	mov r2, #0x7d0
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020CE594
+	arm_func_end WM_ReadStatus
 
-	arm_func_start sub_020CE5E0
-sub_020CE5E0: ; 0x020CE5E0
+	arm_func_start WM_GetMPSendBufferSize
+WM_GetMPSendBufferSize: ; 0x020CE5E0
 	stmfd sp!, {r4, lr}
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	mov r4, r0
 	mov r0, #2
 	mov r1, #7
 	mov r2, #8
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	movne r0, #0
 	ldmneia sp!, {r4, pc}
 	ldr r0, [r4, #4]
 	mov r1, #4
 	add r0, r0, #0xc
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [r4, #4]
 	ldr r0, [r1, #0xc]
 	cmp r0, #1
@@ -136,30 +136,30 @@ sub_020CE5E0: ; 0x020CE5E0
 	ldmeqia sp!, {r4, pc}
 	add r0, r1, #0x3c
 	mov r1, #4
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #4]
 	ldrh r0, [r0, #0x3c]
 	add r0, r0, #0x1f
 	bic r0, r0, #0x1f
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020CE5E0
+	arm_func_end WM_GetMPSendBufferSize
 
-	arm_func_start sub_020CE64C
-sub_020CE64C: ; 0x020CE64C
+	arm_func_start WM_GetMPReceiveBufferSize
+WM_GetMPReceiveBufferSize: ; 0x020CE64C
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	mov r4, r0
 	mov r0, #2
 	mov r1, #7
 	mov r2, #8
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	movne r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	ldr r0, [r4, #4]
 	mov r1, #4
 	add r0, r0, #0xc
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [r4, #4]
 	ldr r0, [r1, #0xc]
 	cmp r0, #1
@@ -167,7 +167,7 @@ sub_020CE64C: ; 0x020CE64C
 	ldmeqia sp!, {r3, r4, r5, pc}
 	add r0, r1, #0x188
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [r4, #4]
 	add r0, r1, #0x100
 	ldrh r0, [r0, #0x88]
@@ -176,7 +176,7 @@ sub_020CE64C: ; 0x020CE64C
 	add r0, r1, #0x3e
 	mov r1, #2
 	movne r5, #0
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #4]
 	cmp r5, #1
 	ldrh r5, [r0, #0x3e]
@@ -186,7 +186,7 @@ sub_020CE64C: ; 0x020CE64C
 	ldmneia sp!, {r3, r4, r5, pc}
 	add r0, r0, #0xf8
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #4]
 	add r1, r5, #0xc
 	ldrh r0, [r0, #0xf8]
@@ -195,17 +195,17 @@ sub_020CE64C: ; 0x020CE64C
 	bic r0, r0, #0x1f
 	mov r0, r0, lsl #1
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020CE64C
+	arm_func_end WM_GetMPReceiveBufferSize
 
-	arm_func_start sub_020CE710
-sub_020CE710: ; 0x020CE710
+	arm_func_start WM_ReadMPData
+WM_ReadMPData: ; 0x020CE710
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x3c
 	mov r5, r0
 	mov r4, r1
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	mov r6, r0
-	bl sub_020CDF34
+	bl WMi_CheckInitialized
 	cmp r0, #0
 	addne sp, sp, #0x3c
 	movne r0, #0
@@ -223,7 +223,7 @@ _020CE758:
 	mov r1, #2
 	add r0, r0, #0x82
 	add r0, r0, #0x100
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r6, #4]
 	mov r1, #1
 	add r0, r0, #0x100
@@ -259,12 +259,12 @@ _020CE7B0:
 	mov r0, #0
 	add sp, sp, #0x3c
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end sub_020CE710
+	arm_func_end WM_ReadMPData
 
-	arm_func_start sub_020CE7F4
-sub_020CE7F4: ; 0x020CE7F4
+	arm_func_start WM_GetAllowedChannel
+WM_GetAllowedChannel: ; 0x020CE7F4
 	stmfd sp!, {r3, lr}
-	bl sub_020CDF34
+	bl WMi_CheckInitialized
 	cmp r0, #0
 	movne r0, #0x8000
 	ldreq r0, _020CE810 ; =0x027FFCFA
@@ -272,20 +272,20 @@ sub_020CE7F4: ; 0x020CE7F4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CE810: .word 0x027FFCFA
-	arm_func_end sub_020CE7F4
+	arm_func_end WM_GetAllowedChannel
 
-	arm_func_start sub_020CE814
-sub_020CE814: ; 0x020CE814
+	arm_func_start WM_GetLinkLevel
+WM_GetLinkLevel: ; 0x020CE814
 	stmfd sp!, {r4, lr}
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	mov r4, r0
-	bl sub_020CDF34
+	bl WMi_CheckInitialized
 	cmp r0, #0
 	movne r0, #0
 	ldmneia sp!, {r4, pc}
 	ldr r0, [r4, #4]
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [r4, #4]
 	ldrh r0, [r1]
 	cmp r0, #9
@@ -298,7 +298,7 @@ _020CE85C:
 	add r0, r1, #0x82
 	add r0, r0, #0x100
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, [r4, #4]
 	add r0, r1, #0x100
 	ldrh r0, [r0, #0x82]
@@ -308,21 +308,21 @@ _020CE85C:
 _020CE884:
 	add r0, r1, #0xbc
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #4]
 	ldrh r0, [r0, #0xbc]
 	ldmia sp!, {r4, pc}
 _020CE89C:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020CE814
+	arm_func_end WM_GetLinkLevel
 
-	arm_func_start sub_020CE8A4
-sub_020CE8A4: ; 0x020CE8A4
+	arm_func_start WM_GetDispersionBeaconPeriod
+WM_GetDispersionBeaconPeriod: ; 0x020CE8A4
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	mov r2, #0
 	add r3, sp, #0
 	mov r1, r2
@@ -357,14 +357,14 @@ _020CE8C0:
 	; .align 2, 0
 _020CE92C: .word 0x027FFC3C
 _020CE930: .word 0x66666667
-	arm_func_end sub_020CE8A4
+	arm_func_end WM_GetDispersionBeaconPeriod
 
-	arm_func_start sub_020CE934
-sub_020CE934: ; 0x020CE934
+	arm_func_start WM_GetDispersionScanPeriod
+WM_GetDispersionScanPeriod: ; 0x020CE934
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	mov r1, #0
 	add r3, sp, #0
 	mov r2, r1
@@ -400,10 +400,10 @@ _020CE950:
 	; .align 2, 0
 _020CE9C0: .word 0x027FFC3C
 _020CE9C4: .word 0x66666667
-	arm_func_end sub_020CE934
+	arm_func_end WM_GetDispersionScanPeriod
 
-	arm_func_start sub_020CE9C8
-sub_020CE9C8: ; 0x020CE9C8
+	arm_func_start WM_GetOtherElements
+WM_GetOtherElements: ; 0x020CE9C8
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x84
 	ldrh r2, [r1, #0x3c]
@@ -499,19 +499,19 @@ _020CEB00:
 	str r0, [lr]
 	add sp, sp, #0x84
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end sub_020CE9C8
+	arm_func_end WM_GetOtherElements
 
-	arm_func_start sub_020CEB20
-sub_020CEB20: ; 0x020CEB20
+	arm_func_start WM_GetNextTgid
+WM_GetNextTgid: ; 0x020CEB20
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr r0, _020CEB90 ; =0x02101484
 	ldr r0, [r0, #0]
 	cmp r0, #0x10000
 	bne _020CEB68
-	bl sub_020CB8A8
+	bl RTC_Init
 	add r0, sp, #0
-	bl sub_020CBA30
+	bl RTC_GetTime
 	cmp r0, #0
 	bne _020CEB68
 	ldr r2, [sp, #8]
@@ -534,7 +534,7 @@ _020CEB68:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _020CEB90: .word 0x02101484
-	arm_func_end sub_020CEB20
+	arm_func_end WM_GetNextTgid
 
 	.data
 

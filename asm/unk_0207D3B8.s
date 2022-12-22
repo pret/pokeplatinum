@@ -29,23 +29,23 @@ _0207D3D4: .word 0x00000774
 
 	thumb_func_start sub_0207D3D8
 sub_0207D3D8: ; 0x0207D3D8
-	ldr r3, _0207D3E4 ; =sub_020C4AF0
+	ldr r3, _0207D3E4 ; =MIi_CpuClear16
 	add r1, r0, #0
 	mov r0, #0
 	ldr r2, _0207D3E8 ; =0x00000774
 	bx r3
 	nop
-_0207D3E4: .word sub_020C4AF0
+_0207D3E4: .word MIi_CpuClear16
 _0207D3E8: .word 0x00000774
 	thumb_func_end sub_0207D3D8
 
 	thumb_func_start sub_0207D3EC
 sub_0207D3EC: ; 0x0207D3EC
-	ldr r3, _0207D3F4 ; =sub_020C4DB0
+	ldr r3, _0207D3F4 ; =MI_CpuCopy8
 	ldr r2, _0207D3F8 ; =0x00000774
 	bx r3
 	nop
-_0207D3F4: .word sub_020C4DB0
+_0207D3F4: .word MI_CpuCopy8
 _0207D3F8: .word 0x00000774
 	thumb_func_end sub_0207D3EC
 
@@ -892,7 +892,7 @@ sub_0207D99C: ; 0x0207D99C
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x24
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r4, #0
 	pop {r4, pc}
 	thumb_func_end sub_0207D99C

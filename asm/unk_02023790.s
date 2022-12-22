@@ -111,7 +111,7 @@ _0202383E:
 	add r0, #8
 	add r1, #8
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldrh r0, [r4, #2]
 	strh r0, [r5, #2]
 	pop {r3, r4, r5, pc}
@@ -225,7 +225,7 @@ _02023910:
 _0202391C:
 	add r0, r6, #0
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	add r0, r4, #0
@@ -295,7 +295,7 @@ _02023988:
 _02023996:
 	add r0, r4, #0
 	mov r1, #0xa
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	bne _0202391C
 _020239A2:
@@ -377,14 +377,14 @@ _02023A34:
 	ldr r1, [sp, #4]
 	ldr r3, [sp, #0xc]
 	add r2, r6, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	add r4, r0, #0
 	add r7, r1, #0
 	ldr r1, [sp, #0xc]
 	add r0, r6, #0
 	add r2, r4, #0
 	add r3, r7, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	ldr r2, [sp]
 	sub r0, r2, r0
 	str r0, [sp]
@@ -476,7 +476,7 @@ _02023AEA:
 	add r0, r6, #0
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	str r1, [sp, #0xc]
 	add r6, r0, #0
 	ldr r0, [sp, #0xc]
@@ -565,7 +565,7 @@ _02023B98:
 	add r1, r2, #0
 	add r2, r7, #0
 	add r3, r5, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r1, #0
 	ldr r1, [sp, #8]
 	add r0, r1, r0
@@ -577,7 +577,7 @@ _02023B98:
 	add r1, r5, #0
 	mov r2, #0xa
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r7, r0, #0
 	ldr r0, [sp, #4]
 	add r5, r1, #0
@@ -859,7 +859,7 @@ _02023DA8:
 	add r0, #8
 	add r1, r7, #0
 	add r2, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	mov r2, #0
 	cmp r4, #0
 	bls _02023DD4
@@ -914,7 +914,7 @@ _02023E0C:
 	add r0, r6, #0
 	add r1, r5, #0
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	pop {r4, r5, r6, pc}
 _02023E22:
 	bl sub_02022974
@@ -983,7 +983,7 @@ _02023E7A:
 	add r2, r2, #1
 	add r1, #8
 	lsl r2, r2, #1
-	bl sub_020D50B8
+	bl memcpy
 	ldrh r1, [r5, #2]
 	ldrh r0, [r4, #2]
 	add r0, r1, r0

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A730C
-sub_020A730C: ; 0x020A730C
+	arm_func_start DrawOneQuad_
+DrawOneQuad_: ; 0x020A730C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov ip, r3, lsl #8
 	mov r0, r0, lsl #8
@@ -54,10 +54,10 @@ sub_020A730C: ; 0x020A730C
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A73BC: .word 0x04000500
-	arm_func_end sub_020A730C
+	arm_func_end DrawOneQuad_
 
-	arm_func_start sub_020A73C0
-sub_020A73C0: ; 0x020A73C0
+	arm_func_start NNS_G2dSetupSoftwareSpriteCamera
+NNS_G2dSetupSoftwareSpriteCamera: ; 0x020A73C0
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x38
 	ldr r2, _020A7470 ; =0xBFFF0000
@@ -75,7 +75,7 @@ sub_020A73C0: ; 0x020A73C0
 	mov r1, #0xc0000
 	mov r3, #0x100000
 	str r0, [sp, #0x10]
-	bl sub_020BFF50
+	bl G3i_OrthoW_
 	ldr r1, _020A7478 ; =0x0400044C
 	mov r5, #0
 	ldr r0, _020A747C ; =0x020F9640
@@ -96,7 +96,7 @@ sub_020A73C0: ; 0x020A73C0
 	mov r1, lr
 	mov r3, #1
 	str r5, [sp]
-	bl sub_020BFFB4
+	bl G3i_LookAt_
 	ldr r0, _020A7484 ; =0x04000440
 	mov r1, #1
 	str r1, [r0, #0]
@@ -109,10 +109,10 @@ _020A7478: .word 0x0400044C
 _020A747C: .word 0x020F9640
 _020A7480: .word 0x020F964C
 _020A7484: .word 0x04000440
-	arm_func_end sub_020A73C0
+	arm_func_end NNS_G2dSetupSoftwareSpriteCamera
 
-	arm_func_start sub_020A7488
-sub_020A7488: ; 0x020A7488
+	arm_func_start NNS_G2dDrawSpriteFast
+NNS_G2dDrawSpriteFast: ; 0x020A7488
 	stmfd sp!, {r4, lr}
 	ldr lr, _020A74EC ; =0x04000470
 	mov r0, r0, lsl #0xc
@@ -136,11 +136,11 @@ sub_020A7488: ; 0x020A7488
 	mov r2, r2, lsl #0xc
 	mov r3, r3, lsl #0xc
 	str ip, [lr]
-	bl sub_020A730C
+	bl DrawOneQuad_
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A74EC: .word 0x04000470
-	arm_func_end sub_020A7488
+	arm_func_end NNS_G2dDrawSpriteFast
 
 	.rodata
 

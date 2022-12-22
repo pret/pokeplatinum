@@ -1,9 +1,9 @@
-.public sub_020C2204
-.public sub_020C249C
-.public sub_020C42A8
-.public sub_020C4CF4
-.public sub_020D8D14
-.public sub_020DAE0C
+.public OS_IsThreadTerminated
+.public OS_GetThreadPriority
+.public OS_Terminate
+.public MI_CpuFill8
+.public strcmp
+.public atoi
 .public ov4_021D3E5C
 .public ov4_021D4134
 .public ov4_021D4478

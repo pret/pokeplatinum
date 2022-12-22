@@ -36,7 +36,7 @@ _02017EA0:
 	mov r0, #0
 	add r1, r3, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 _02017EAA:
 	ldr r1, [sp, #4]
 	lsl r7, r6, #1
@@ -48,7 +48,7 @@ _02017EAA:
 	mov r0, #0
 	add r1, r6, r1
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	ldr r1, _02017F9C ; =0x021BFAF0
 	str r0, [r1, #0]
 	ldr r1, [sp, #4]
@@ -89,19 +89,19 @@ _02017F08:
 	ldr r1, [r5, #0]
 	mov r0, #0
 	mov r2, #4
-	bl sub_020C3060
+	bl OS_AllocFromArenaLo
 	b _02017F1E
 _02017F14:
 	ldr r1, [r5, #0]
 	mov r0, #2
 	mov r2, #4
-	bl sub_020C30CC
+	bl OS_AllocFromArenaHi
 _02017F1E:
 	cmp r0, #0
 	beq _02017F3A
 	ldr r1, [r5, #0]
 	mov r2, #0
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	ldr r1, _02017F9C ; =0x021BFAF0
 	ldr r2, [r1, #0]
 	ldr r1, [sp]
@@ -223,7 +223,7 @@ sub_02017FE0: ; 0x02017FE0
 	add r5, r1, #0
 	str r2, [sp]
 	add r7, r3, #0
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _02017FF8
 	bl sub_02022974
@@ -243,7 +243,7 @@ _02017FF8:
 	ldr r1, [sp]
 	add r0, r6, #0
 	add r2, r7, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	str r0, [sp, #4]
 	cmp r0, #0
 	beq _02018062
@@ -254,7 +254,7 @@ _02017FF8:
 	ldr r1, [sp]
 	mov r2, #0
 	lsl r4, r7, #2
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	ldr r1, _02018078 ; =0x021BFAF0
 	ldr r2, [r1, #0]
 	str r0, [r2, r4]
@@ -298,7 +298,7 @@ _02018078: .word 0x021BFAF0
 sub_0201807C: ; 0x0201807C
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _0201808C
 	bl sub_02022974
@@ -311,7 +311,7 @@ _0201808C:
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	beq _020180EA
-	bl sub_020A543C
+	bl NNS_FndDestroyExpHeap
 	ldr r1, _020180EC ; =0x021BFAF0
 	ldr r0, [r1, #0x10]
 	ldrb r0, [r0, r4]
@@ -324,7 +324,7 @@ _0201808C:
 	beq _020180BE
 	cmp r1, #0
 	beq _020180BE
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	b _020180C2
 _020180BE:
 	bl sub_02022974
@@ -366,16 +366,16 @@ sub_020180F0: ; 0x020180F0
 	bne _02018102
 	bl sub_02022974
 _02018102:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, #0x10
 	str r0, [sp]
 	add r0, r5, #0
 	add r1, r4, #0
 	add r2, r7, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	add r4, r0, #0
 	ldr r0, [sp]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r4, #0
 	beq _02018130
 	ldr r1, [r4, #0xc]
@@ -518,14 +518,14 @@ _0201820A:
 	ldrh r0, [r1, r5]
 	sub r0, r0, #1
 	strh r0, [r1, r5]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	sub r6, #0x10
 	add r4, r0, #0
 	add r0, r7, #0
 	add r1, r6, #0
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	pop {r3, r4, r5, r6, r7, pc}
 _0201822C:
 	bl sub_02022974
@@ -539,7 +539,7 @@ sub_02018238: ; 0x02018238
 	push {r4, r5, r6, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _0201824A
 	bl sub_02022974
@@ -568,7 +568,7 @@ _02018274:
 	sub r4, #0x10
 	add r0, r6, #0
 	add r1, r4, #0
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	ldr r0, _020182A0 ; =0x021BFAF0
 	lsl r4, r5, #1
 	ldr r0, [r0, #0xc]
@@ -602,7 +602,7 @@ sub_020182A4: ; 0x020182A4
 	ldrb r0, [r1, r0]
 	lsl r0, r0, #2
 	ldr r0, [r2, r0]
-	bl sub_020A5614
+	bl NNS_FndGetTotalFreeSizeForExpHeap
 	pop {r3, pc}
 _020182BE:
 	bl sub_02022974
@@ -624,7 +624,7 @@ sub_020182CC: ; 0x020182CC
 	ldrb r1, [r4, r1]
 	lsl r1, r1, #2
 	ldr r1, [r3, r1]
-	bl sub_020A5A14
+	bl NNS_FndInitAllocatorForExpHeap
 	pop {r4, pc}
 _020182E6:
 	bl sub_02022974
@@ -638,14 +638,14 @@ sub_020182F0: ; 0x020182F0
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
 	add r4, r1, #0
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _02018302
 	bl sub_02022974
 _02018302:
 	add r0, r5, #0
 	sub r0, #0x10
-	bl sub_020A564C
+	bl NNS_FndGetSizeForMBlockExpHeap
 	add r4, #0x10
 	cmp r0, r4
 	blo _02018330
@@ -662,7 +662,7 @@ _02018302:
 	lsl r0, r0, #2
 	ldr r0, [r1, r0]
 	add r1, r5, #0
-	bl sub_020A5478
+	bl NNS_FndResizeForMBlockExpHeap
 	pop {r3, r4, r5, pc}
 _02018330:
 	bl sub_02022974

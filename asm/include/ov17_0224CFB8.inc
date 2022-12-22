@@ -18,9 +18,9 @@
 .public sub_020360D0
 .public sub_020765B8
 .public sub_02094EDC
-.public sub_020C4CF4
-.public sub_020E1F6C
-.public sub_020E2178
+.public MI_CpuFill8
+.public _s32_div_f
+.public _u32_div_f
 .public ov17_0223F0BC
 .public ov17_02249640
 .public ov17_02249760

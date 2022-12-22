@@ -1,7 +1,7 @@
 .public sub_02032EE8
 .public sub_02035E18
-.public sub_020D50B8
-.public sub_020D5124
+.public memcpy
+.public memset
 .public ov83_0223B774
 .public ov83_0223B77C
 .public ov83_0223D144

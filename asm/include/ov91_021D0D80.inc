@@ -119,8 +119,8 @@
 .public sub_0208D720
 .public sub_02095734
 .public sub_0209577C
-.public sub_020D5124
-.public sub_020E1F6C
+.public memset
+.public _s32_div_f
 .public ov91_021D0ED8
 .public ov91_021D0F6C
 .public ov91_021D0F9C

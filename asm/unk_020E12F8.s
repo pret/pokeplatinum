@@ -5,15 +5,15 @@
 	.text
 
 
-	arm_func_start sub_020E12F8
-sub_020E12F8: ; 0x020E12F8
+	arm_func_start _frdiv
+_frdiv: ; 0x020E12F8
 	eor r0, r0, r1
 	eor r1, r0, r1
 	eor r0, r0, r1
-	arm_func_end sub_020E12F8
+	arm_func_end _frdiv
 
-	arm_func_start sub_020E1304
-sub_020E1304: ; 0x020E1304
+	arm_func_start _fdiv
+_fdiv: ; 0x020E1304
 	stmdb sp!, {lr}
 	mov ip, #0xff
 	ands r3, ip, r0, lsr #23
@@ -226,4 +226,4 @@ _020E16B0:
 	mov r0, lr
 	ldmia sp!, {lr}
 	bx lr
-	arm_func_end sub_020E1304
+	arm_func_end _fdiv

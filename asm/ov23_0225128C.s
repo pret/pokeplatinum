@@ -532,7 +532,7 @@ _02251682:
 	bl ov23_02253D40
 	add r1, sp, #0x20
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #0x18]
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
@@ -652,7 +652,7 @@ _0225177A:
 	bl ov23_02253D40
 	add r1, sp, #0x20
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #0x14]
 	add r1, sp, #0x20
 	add r0, r0, #1
@@ -1512,7 +1512,7 @@ _02251E9E:
 	mov r1, #0
 	mov r2, #0xc
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [r5, #0]
 	str r0, [r5, #4]
@@ -1629,7 +1629,7 @@ ov23_02251F94: ; 0x02251F94
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #0xc]
 	bl ov23_022421BC
 	ldr r1, _02252024 ; =0x0000027F
@@ -1781,7 +1781,7 @@ ov23_022520E8: ; 0x022520E8
 	mov r1, #0
 	mov r2, #0x14
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [r4, #0]
 	ldr r0, _02252150 ; =ov23_02252038

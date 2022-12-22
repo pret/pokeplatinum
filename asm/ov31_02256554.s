@@ -175,7 +175,7 @@ _0225666C:
 	ldr r1, [sp, #0x14]
 	add r1, r2, r1
 	mov r2, #0x20
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [sp, #0x14]
 	ldr r1, [sp, #0x10]
 	add r0, #0x20

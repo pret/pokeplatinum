@@ -1,1 +1,1 @@
-.public sub_020DF948
+.public stricmp

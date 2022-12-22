@@ -10,7 +10,7 @@
 ov4_022038F4: ; 0x022038F4
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r3, _02203924 ; =0x0221C6C4
 	mov ip, #0
 	ldr r1, _02203928 ; =0x0221C6B8
@@ -18,7 +18,7 @@ ov4_022038F4: ; 0x022038F4
 	str ip, [r3, r4, lsl #2]
 	str ip, [r2, r4, lsl #2]
 	str ip, [r1, r4, lsl #2]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02203924: .word 0x0221C6C4
@@ -30,7 +30,7 @@ _0220392C: .word 0x0221C6AC
 ov4_02203930: ; 0x02203930
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r7, _02203994 ; =0x0221C6AC
 	mov r4, r0
 	ldr r0, [r7, r5, lsl #2]
@@ -53,7 +53,7 @@ _02203974:
 	mov r0, r4
 	str r3, [r2, r5, lsl #2]
 	str r3, [r1, r5, lsl #2]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02203994: .word 0x0221C6AC
@@ -64,7 +64,7 @@ _0220399C: .word 0x0221C6B8
 	arm_func_start ov4_022039A0
 ov4_022039A0: ; 0x022039A0
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r6, #0
 	mov r5, r0
 	mov sl, r6
@@ -94,7 +94,7 @@ _02203A00:
 	cmp r6, #3
 	blt _022039C8
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _02203A14: .word 0x0221C6AC
@@ -112,7 +112,7 @@ ov4_02203A20: ; 0x02203A20
 	cmp r4, #3
 	mvnhs r0, #0
 	ldmhsia sp!, {r3, r4, r5, pc}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr ip, _02203B14 ; =0x0221C6AC
 	ldr r1, [ip, r4, lsl #2]
 	cmp r1, #0
@@ -166,7 +166,7 @@ _02203AF4:
 	ldr r1, [r2, r4, lsl #2]
 	add r1, r1, #1
 	str r1, [r2, r4, lsl #2]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _02203B1C ; =0x0221C6B8
 	ldr r0, [r0, r4, lsl #2]
 	ldmia sp!, {r3, r4, r5, pc}
@@ -180,17 +180,17 @@ _02203B1C: .word 0x0221C6B8
 ov4_02203B20: ; 0x02203B20
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02203B58 ; =0x0221C6AC
 	ldr r1, [r1, r4, lsl #2]
 	cmp r1, #0
 	beq _02203B4C
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _02203B58 ; =0x0221C6AC
 	ldr r0, [r0, r4, lsl #2]
 	ldmia sp!, {r4, pc}
 _02203B4C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -201,7 +201,7 @@ _02203B58: .word 0x0221C6AC
 ov4_02203B5C: ; 0x02203B5C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr ip, _02203BB8 ; =0x0221C6AC
 	ldr r1, [ip, r4, lsl #2]
 	cmp r1, #0
@@ -219,7 +219,7 @@ ov4_02203B5C: ; 0x02203B5C
 	moveq r2, #0
 	streq r2, [r1, r4, lsl #2]
 _02203BA8:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _02203BBC ; =0x0221C6B8
 	ldr r0, [r0, r4, lsl #2]
 	ldmia sp!, {r4, pc}

@@ -32,7 +32,7 @@ ov18_0223D910: ; 0x0223D910
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
 _0223D924:
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	cmp r0, #0x8000
 	bne _0223D924
 	ldr r0, _0223D940 ; =0x02253380
@@ -51,12 +51,12 @@ ov18_0223D944: ; 0x0223D944
 	ldr r1, [r1, #0]
 	mov r2, #0x348
 	add r1, r1, #0x1300
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _0223DA04 ; =0x02253380
 	ldr r1, _0223DA08 ; =ov18_0223DB3C
 	ldr r0, [r0, #0]
 	mov r2, #3
-	bl sub_020CECC8
+	bl WM_Initialize
 	cmp r0, #2
 	movne r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
@@ -65,7 +65,7 @@ _0223D984:
 	ldr r0, [r4, #0]
 	add r0, r0, #0x28c
 	add r0, r0, #0x1400
-	bl sub_020CE594
+	bl WM_ReadStatus
 	ldr ip, [r4]
 	add r0, ip, #0x1600
 	ldrh r0, [r0, #0x8c]
@@ -85,7 +85,7 @@ _0223D9B8:
 	str r0, [lr]
 	add r0, ip, #0x1000
 	str r1, [r0, #0x648]
-	bl sub_020CE934
+	bl WM_GetDispersionScanPeriod
 	ldr r1, _0223DA04 ; =0x02253380
 	ldr r1, [r1, #0]
 	add r1, r1, #0x1600
@@ -109,7 +109,7 @@ ov18_0223DA10: ; 0x0223DA10
 	ldr r1, [r1, #0]
 	add r1, r1, #0x248
 	add r1, r1, #0x1400
-	bl sub_020CF08C
+	bl WM_StartScanEx
 	cmp r0, #2
 	moveq r0, #1
 	movne r0, #0
@@ -130,7 +130,7 @@ ov18_0223DA44: ; 0x0223DA44
 	ldr r0, [r1, #0]
 	add r0, r0, #0x28c
 	add r0, r0, #0x1400
-	bl sub_020CE594
+	bl WM_ReadStatus
 	ldr r0, _0223DAD8 ; =0x02253380
 	ldr r0, [r0, #0]
 	add r0, r0, #0x1600
@@ -138,7 +138,7 @@ ov18_0223DA44: ; 0x0223DA44
 	cmp r0, #2
 	beq _0223DAC0
 	ldr r0, _0223DADC ; =ov18_0223DB3C
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	movne r0, #0
 	ldmneia sp!, {r4, pc}
@@ -147,7 +147,7 @@ _0223DA9C:
 	ldr r0, [r4, #0]
 	add r0, r0, #0x28c
 	add r0, r0, #0x1400
-	bl sub_020CE594
+	bl WM_ReadStatus
 	ldr r0, [r4, #0]
 	add r0, r0, #0x1600
 	ldrh r0, [r0, #0x8c]
@@ -155,7 +155,7 @@ _0223DA9C:
 	bne _0223DA9C
 _0223DAC0:
 	ldr r0, _0223DADC ; =ov18_0223DB3C
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	movne r0, #0
 	moveq r0, #1
@@ -180,7 +180,7 @@ _0223DB04:
 	mov r1, r5
 	mov r2, r4
 	add r0, r8, #0x20
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	add r7, r7, #1
 	addne r6, r6, #1
@@ -220,7 +220,7 @@ _0223DB8C:
 	bl ov18_0223DA10
 	ldmia sp!, {r3, pc}
 _0223DB94:
-	bl sub_020C42A8
+	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0223DB9C: .word 0x02253380
@@ -237,7 +237,7 @@ ov18_0223DBA0: ; 0x0223DBA0
 	add r0, r2, #0xf00
 	add r2, r2, #0x1300
 	str r2, [sp]
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh r0, [fp, #0xe]
 	mov sl, #0
 	cmp r0, #0
@@ -259,7 +259,7 @@ _0223DC08:
 	mov r2, r6
 	add r0, r4, #4
 	add r1, r7, #0x20
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _0223DC30
 	add r5, r5, #1
@@ -277,7 +277,7 @@ _0223DC48:
 	mov r1, r7
 	mov r2, r6
 	add r0, r8, #0x20
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _0223DC70
 	add r5, r5, #1
@@ -295,11 +295,11 @@ _0223DC7C:
 	add r0, r4, #4
 	add r1, sb, #0x20
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, sb
 	add r0, r4, #0xc
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, fp, sl, lsl #1
 	ldrh r0, [r0, #0x50]
 	strh r0, [sb, #0x26]
@@ -312,7 +312,7 @@ _0223DC7C:
 	add r0, sp, #4
 	mov r1, r4
 	strb r2, [sb, #0x28]
-	bl sub_020CE9C8
+	bl WM_GetOtherElements
 	ldrb r8, [sp, #4]
 	mov r7, #0
 	cmp r8, #0
@@ -335,7 +335,7 @@ _0223DCF8:
 	ldr r0, [r1, #8]
 	mov r1, r5
 	mov r2, r4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #2
 	streqb r0, [sb, #0x28]

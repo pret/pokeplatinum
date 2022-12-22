@@ -1,9 +1,9 @@
-.public sub_020C2C54
-.public sub_020CDB18
-.public sub_020CDD28
-.public sub_020CE478
-.public sub_020CE814
-.public sub_020CEB20
+.public DC_FlushRange
+.public WM_Init
+.public WM_Finish
+.public WM_SetIndCallback
+.public WM_GetLinkLevel
+.public WM_GetNextTgid
 .public ov97_022323B0
 .public ov97_02232DC8
 .public ov97_02232DE8

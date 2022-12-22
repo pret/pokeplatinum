@@ -77,9 +77,9 @@
 .public sub_02037D84
 .public sub_02037DA0
 .public sub_0209A8E0
-.public sub_020D09B8
-.public sub_020D0A04
-.public sub_020D5124
+.public CTRDG_IsPulledOut
+.public CTRDG_IsExisting
+.public memset
 .public ov97_0222AE60
 .public ov97_0222AE64
 .public ov97_0222AF1C

@@ -20,7 +20,7 @@ ov70_02261E10: ; 0x02261E10
 	ldr r2, _0226217C ; =0x00000614
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x61
 	str r7, [r4, #0]
 	lsl r0, r0, #4
@@ -1334,20 +1334,20 @@ _022627F2:
 	lsl r1, r0, #2
 	beq _02262810
 	lsl r0, r0, #0xe
-	bl sub_020E17FC
+	bl _f_utof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0226281E
 _02262810:
 	lsl r0, r0, #0xe
-	bl sub_020E17FC
+	bl _f_utof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0226281E:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r3, r0, #0
 	ldr r0, [r5, #4]
 	add r1, r7, #0
@@ -1359,7 +1359,7 @@ _02262830:
 	mov r1, #0x1c
 	ldr r0, [r5, r0]
 	add r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, _022628C4 ; =0x0000060C
 	str r1, [r5, r0]
 	ldr r0, [r5, r0]
@@ -1368,20 +1368,20 @@ _02262830:
 	lsl r0, r4, #2
 	beq _0226285C
 	lsl r0, r4, #0xe
-	bl sub_020E17FC
+	bl _f_utof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _0226286A
 _0226285C:
 	lsl r0, r4, #0xe
-	bl sub_020E17FC
+	bl _f_utof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _0226286A:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r3, r0, #0
 	ldr r0, [r5, #4]
 	add r1, r7, #0
@@ -1783,7 +1783,7 @@ ov70_02262B2C: ; 0x02262B2C
 	lsl r0, r0, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1794,7 +1794,7 @@ ov70_02262B2C: ; 0x02262B2C
 	orr r0, r1
 	mov r1, #0xa
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	add r2, r0, #0
 	ldr r1, [r4, #8]
 	ldr r0, [r4, #0]
@@ -1805,7 +1805,7 @@ ov70_02262B2C: ; 0x02262B2C
 	mov r0, #0x1f
 	mul r0, r1
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r2, #0x1f
 	sub r1, r2, r0
 	lsl r1, r1, #0x18
@@ -1818,7 +1818,7 @@ ov70_02262B2C: ; 0x02262B2C
 	mov r3, #0
 	lsl r0, r0, #0xc
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -1829,7 +1829,7 @@ ov70_02262B2C: ; 0x02262B2C
 	orr r0, r1
 	mov r1, #0xa
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	mov r3, #1
 	add r5, r0, #0
 	lsl r3, r3, #0xc

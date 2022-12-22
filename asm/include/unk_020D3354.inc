@@ -1,1 +1,1 @@
-.public sub_020D33B4
+.public STD_GetStringLength

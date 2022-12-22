@@ -53,7 +53,7 @@ _02242994:
 	bl ov6_022477B8
 	bl sub_0201D2E8
 	ldr r1, _02242A0C ; =0x00001556
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
 	cmp r4, #0xc
@@ -87,7 +87,7 @@ ov6_02242A10: ; 0x02242A10
 _02242A2E:
 	bl sub_0201D2E8
 	ldr r1, _02242A88 ; =0x0000071D
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
 	cmp r6, #0x24

@@ -17,7 +17,7 @@ ov66_0223177C: ; 0x0223177C
 	add r4, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #8
 	bl ov66_02231D38
@@ -1048,7 +1048,7 @@ ov66_02231E94: ; 0x02231E94
 	mov r1, #0
 	lsl r2, r2, #2
 	str r0, [sp]
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [sp, #8]
 	ldr r0, [sp]
@@ -1111,7 +1111,7 @@ _02231EF8:
 	ldr r0, [sp]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov66_02231EEC
 

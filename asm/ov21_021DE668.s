@@ -90,7 +90,7 @@ _021DE6FA:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl ov21_021D138C
 	str r0, [r4, #0]
@@ -267,7 +267,7 @@ _021DE828:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0x74
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]

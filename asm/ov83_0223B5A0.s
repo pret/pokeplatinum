@@ -34,7 +34,7 @@ ov83_0223B5B0: ; 0x0223B5B0
 	ldr r2, _0223B64C ; =0x00001604
 	add r5, r0, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0x18]
 	mov r1, #0x38
 	str r1, [r5, #0]
@@ -217,7 +217,7 @@ _0223B73A:
 	ldr r2, _0223B770 ; =0x00001604
 	add r0, r6, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	bl sub_02006830
 	mov r0, #0
@@ -659,7 +659,7 @@ _0223BABA:
 	add r7, r0, #0
 	add r0, r7, #1
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r5, r0, #0
 	mov r0, #0xd6
 	lsl r0, r0, #2

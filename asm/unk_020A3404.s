@@ -6,14 +6,14 @@
 	.text
 
 
-	arm_func_start sub_020A3404
-sub_020A3404: ; 0x020A3404
+	arm_func_start DWC_BM_Init
+DWC_BM_Init: ; 0x020A3404
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x10
 	mov r8, r0
 	mov r1, #0
 	mov r2, #0x700
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, r8
 	bl sub_020A29F0
 	cmp r0, #0
@@ -22,7 +22,7 @@ sub_020A3404: ; 0x020A3404
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	ldr r1, _020A36FC ; =0x0000A001
 	add r0, r8, #0x500
-	bl sub_020D316C
+	bl MATHi_CRC16InitTableRev
 	mov r0, r8
 	bl sub_020A2A34
 	cmp r0, #0
@@ -32,7 +32,7 @@ sub_020A3404: ; 0x020A3404
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r6, r8
 	mov r7, r8
 	mov r5, #0
@@ -43,7 +43,7 @@ _020A3480:
 	mov r1, r6
 	mov r2, r4
 	add r0, r8, #0x500
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	add r1, r8, r5, lsl #8
 	ldrh r1, [r1, #0xfe]
 	cmp r0, r1
@@ -61,7 +61,7 @@ _020A34B0:
 	add r0, r8, #0x500
 	add r1, r8, #0x300
 	mov r2, #0xfe
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	add r1, r8, #0x300
 	ldrh r1, [r1, #0xfe]
 	cmp r0, r1
@@ -141,7 +141,7 @@ _020A35E0:
 	add r0, r8, #0x1f0
 	add r1, r8, #0xf0
 	mov r2, #0xe
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r0, [r8, #0x1ef]
 	strb r0, [r8, #0xef]
 	b _020A3640
@@ -155,7 +155,7 @@ _020A3610:
 	add r0, r8, #0xf0
 	add r1, r8, #0x1f0
 	mov r2, #0xe
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r0, [r8, #0xef]
 	strb r0, [r8, #0x1ef]
 _020A3640:
@@ -174,7 +174,7 @@ _020A3660:
 	add r1, r8, #0x300
 	mov r0, #0
 	mov r2, #0x100
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _020A367C:
 	mov r4, #0
 	mov r5, r4
@@ -215,7 +215,7 @@ _020A36FC: .word 0x0000A001
 _020A3700: .word 0xFFFFD8F0
 _020A3704: .word 0xFFFFD8ED
 _020A3708: .word 0xFFFFD8EE
-	arm_func_end sub_020A3404
+	arm_func_end DWC_BM_Init
 
 	arm_func_start sub_020A370C
 sub_020A370C: ; 0x020A370C
@@ -240,7 +240,7 @@ sub_020A370C: ; 0x020A370C
 	ldr r1, _020A3808 ; =0x020F9534
 	add r0, r4, #0xc0
 	mov r2, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _020A37BC
 	add r0, r4, #0xc4
@@ -267,7 +267,7 @@ _020A37BC:
 	ldr r1, _020A3808 ; =0x020F9534
 	add r0, r4, #0xc8
 	mov r2, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _020A37FC
 	add r0, r4, #0xc8
@@ -296,7 +296,7 @@ sub_020A380C: ; 0x020A380C
 	mov r1, r7
 	mov r0, #0
 	mov r2, #0x400
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r2, #0
 	mov r1, #0xff
 _020A3830:
@@ -316,7 +316,7 @@ _020A3860:
 	mov r0, r5
 	mov r2, r4
 	add r1, r7, #0xf0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r6, r6, #1
 	cmp r6, #2
 	add r7, r7, #0x100
@@ -334,7 +334,7 @@ sub_020A388C: ; 0x020A388C
 	add r1, r5, r4, lsl #8
 	mov r0, #0
 	mov r2, #0x100
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r5, r4, lsl #8
 	mov r1, #0xff
 	strb r1, [r0, #0xe7]

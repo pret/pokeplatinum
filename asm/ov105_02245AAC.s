@@ -12,7 +12,7 @@ ov105_02245AAC: ; 0x02245AAC
 	sub sp, #0x14
 	add r7, r0, #0
 	bl ov105_02245C98
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80

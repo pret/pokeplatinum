@@ -135,7 +135,7 @@ ov113_0226072C: ; 0x0226072C
 	add r4, r0, #0
 	add r0, r1, #0
 	mov r1, #9
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r2, r1, #2
 	ldr r0, _02260744 ; =0x02260D6C
 	lsl r1, r4, #1

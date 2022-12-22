@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A5A4C
-sub_020A5A4C: ; 0x020A5A4C
+	arm_func_start NNSi_GfdSetTexNrmSearchArray
+NNSi_GfdSetTexNrmSearchArray: ; 0x020A5A4C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r5, _020A5A8C ; =0x02100E18
 	mov ip, #0x18
@@ -27,10 +27,10 @@ sub_020A5A4C: ; 0x020A5A4C
 	; .align 2, 0
 _020A5A8C: .word 0x02100E18
 _020A5A90: .word 0x02100DFC
-	arm_func_end sub_020A5A4C
+	arm_func_end NNSi_GfdSetTexNrmSearchArray
 
-	arm_func_start sub_020A5A94
-sub_020A5A94: ; 0x020A5A94
+	arm_func_start NNS_GfdInitFrmTexVramManager
+NNS_GfdInitFrmTexVramManager: ; 0x020A5A94
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -42,36 +42,36 @@ sub_020A5A94: ; 0x020A5A94
 	mov r2, #2
 	mov r3, #0
 	str ip, [sp]
-	bl sub_020A5A4C
+	bl NNSi_GfdSetTexNrmSearchArray
 	b _020A5AD8
 _020A5AC8:
 	mov r2, #0
 	mov r3, #2
 	str ip, [sp]
-	bl sub_020A5A4C
+	bl NNSi_GfdSetTexNrmSearchArray
 _020A5AD8:
 	ldr r0, _020A5B08 ; =0x021C3AB0
 	strh r5, [r0]
-	bl sub_020A5B1C
+	bl NNS_GfdResetFrmTexVramState
 	cmp r4, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	ldr r3, _020A5B0C ; =sub_020A5B90
+	ldr r3, _020A5B0C ; =NNS_GfdAllocFrmTexVram
 	ldr r1, _020A5B10 ; =0x02100DEC
-	ldr r2, _020A5B14 ; =sub_020A5D00
+	ldr r2, _020A5B14 ; =NNS_GfdFreeFrmTexVram
 	ldr r0, _020A5B18 ; =0x02100DF0
 	str r3, [r1, #0]
 	str r2, [r0, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020A5B08: .word 0x021C3AB0
-_020A5B0C: .word sub_020A5B90
+_020A5B0C: .word NNS_GfdAllocFrmTexVram
 _020A5B10: .word 0x02100DEC
-_020A5B14: .word sub_020A5D00
+_020A5B14: .word NNS_GfdFreeFrmTexVram
 _020A5B18: .word 0x02100DF0
-	arm_func_end sub_020A5A94
+	arm_func_end NNS_GfdInitFrmTexVramManager
 
-	arm_func_start sub_020A5B1C
-sub_020A5B1C: ; 0x020A5B1C
+	arm_func_start NNS_GfdResetFrmTexVramState
+NNS_GfdResetFrmTexVramState: ; 0x020A5B1C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r0, _020A5B88 ; =0x021C3AB0
 	mov r5, #0
@@ -103,10 +103,10 @@ _020A5B50:
 	; .align 2, 0
 _020A5B88: .word 0x021C3AB0
 _020A5B8C: .word 0x02100E18
-	arm_func_end sub_020A5B1C
+	arm_func_end NNS_GfdResetFrmTexVramState
 
-	arm_func_start sub_020A5B90
-sub_020A5B90: ; 0x020A5B90
+	arm_func_start NNS_GfdAllocFrmTexVram
+NNS_GfdAllocFrmTexVram: ; 0x020A5B90
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	cmp r0, #0
 	moveq r3, #0x10
@@ -210,16 +210,16 @@ _020A5CF0: .word 0x02100E48
 _020A5CF4: .word 0x02100E30
 _020A5CF8: .word 0x02100DFC
 _020A5CFC: .word 0x02100E04
-	arm_func_end sub_020A5B90
+	arm_func_end NNS_GfdAllocFrmTexVram
 
-	arm_func_start sub_020A5D00
-sub_020A5D00: ; 0x020A5D00
+	arm_func_start NNS_GfdFreeFrmTexVram
+NNS_GfdFreeFrmTexVram: ; 0x020A5D00
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020A5D00
+	arm_func_end NNS_GfdFreeFrmTexVram
 
-	arm_func_start sub_020A5D08
-sub_020A5D08: ; 0x020A5D08
+	arm_func_start NNS_GfdGetFrmTexVramState
+NNS_GfdGetFrmTexVramState: ; 0x020A5D08
 	stmfd sp!, {r3, lr}
 	mov r3, #0
 	ldr ip, _020A5D44 ; =0x02100E18
@@ -238,10 +238,10 @@ _020A5D18:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020A5D44: .word 0x02100E18
-	arm_func_end sub_020A5D08
+	arm_func_end NNS_GfdGetFrmTexVramState
 
-	arm_func_start sub_020A5D48
-sub_020A5D48: ; 0x020A5D48
+	arm_func_start NNS_GfdSetFrmTexVramState
+NNS_GfdSetFrmTexVramState: ; 0x020A5D48
 	stmfd sp!, {r3, lr}
 	mov r3, #0
 	ldr lr, _020A5D84 ; =0x02100E18
@@ -260,7 +260,7 @@ _020A5D58:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020A5D84: .word 0x02100E18
-	arm_func_end sub_020A5D48
+	arm_func_end NNS_GfdSetFrmTexVramState
 
 	.data
 

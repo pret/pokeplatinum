@@ -14,7 +14,7 @@ sub_0209C370: ; 0x0209C370
 	mov r1, #0
 	mov r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0

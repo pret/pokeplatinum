@@ -53,7 +53,7 @@ ov18_02243ECC: ; 0x02243ECC
 	mov r0, #0
 	mov r2, #8
 	add sb, r6, r3
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	cmp r4, #0
 	mov sl, #0
 	addle sp, sp, #8
@@ -65,11 +65,11 @@ _02243F20:
 	mov r0, sb
 	mov r1, r8
 	mov r2, r7
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	mov r0, r8
 	mov r1, r5
 	mov r2, r6
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add sl, sl, #1
 	cmp sl, r4
 	add sb, sb, #6

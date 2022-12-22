@@ -45,7 +45,7 @@
 .public sub_02023790
 .public sub_020237BC
 .public sub_02025E38
-.public sub_020D5124
+.public memset
 .public ov102_021D0F80
 .public ov102_021D0F8C
 .public ov102_021D10F8

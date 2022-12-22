@@ -1,10 +1,10 @@
-.public sub_020C1F34
-.public sub_020C22D0
-.public sub_020C2748
-.public sub_020C29C0
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C4CF4
+.public OS_CreateThread
+.public OS_WakeupThreadDirect
+.public OS_InitMessageQueue
+.public OS_InitMutex
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
+.public MI_CpuFill8
 .public ov4_02205FF4
 .public ov4_0220615C
 .public ov4_02206174

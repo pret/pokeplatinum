@@ -154,7 +154,7 @@ ov4_021FB044: ; 0x021FB044
 	stmfd sp!, {r3, lr}
 	ldr r1, _021FB064 ; =0x022197A8
 	mov r2, #6
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -311,9 +311,9 @@ ov4_021FB154: ; 0x021FB154
 	strb r3, [sp, #0x16]
 	strb r2, [sp, #0x17]
 	strb r2, [sp, #0x18]
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r0, _021FB390 ; =0x0221AEEC
-	bl sub_020D8B60
+	bl strlen
 	ldrb r1, [r5, #0xe]
 	add r4, r0, #0x16
 	cmp r1, #0
@@ -498,7 +498,7 @@ ov4_021FB4F4: ; 0x021FB4F4
 	ldr r3, _021FB530 ; =0x0221AEEC
 	add r0, sp, #4
 	mov r1, #0x80
-	bl sub_020D74E8
+	bl snprintf
 	add r0, sp, #4
 _021FB520:
 	bl ov4_021FB4BC

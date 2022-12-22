@@ -20,7 +20,7 @@ sub_0202E2D4: ; 0x0202E2D4
 	ldr r2, _0202E2E8 ; =0x00000BC8
 	add r1, r0, #0
 	mov r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x1b
 	bl sub_02025C84
 	pop {r3, pc}
@@ -36,18 +36,18 @@ sub_0202E2EC: ; 0x0202E2EC
 	mov r0, #0
 	add r1, #0xc
 	mov r2, #0xc0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r1, r4, #0
 	mov r0, #0
 	add r1, #0xcc
 	mov r2, #0xc0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r1, #0x63
 	lsl r1, r1, #2
 	mov r0, #0
 	add r1, r4, r1
 	mov r2, #0xc0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r4, #0
 	bl sub_0202E35C
 	mov r0, #0x1b
@@ -68,7 +68,7 @@ sub_0202E324: ; 0x0202E324
 _0202E334:
 	add r0, r2, #0
 	mov r1, #0xf
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, #0xf
 	sub r1, r0, r1
 	str r1, [r4, #4]
@@ -222,7 +222,7 @@ sub_0202E3F4: ; 0x0202E3F4
 	add r0, r6, #0
 	add r1, r5, #0
 	mov r2, #0x28
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, #0x1b
 	bl sub_02025C84
 	add sp, #0x10
@@ -631,7 +631,7 @@ sub_0202E6B0: ; 0x0202E6B0
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [sp]
 	add r0, sp, #8

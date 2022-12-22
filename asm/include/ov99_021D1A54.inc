@@ -47,11 +47,11 @@
 .public sub_0201FFE8
 .public sub_02022974
 .public sub_020237BC
-.public sub_020B2CE4
-.public sub_020C2C54
-.public sub_020C4B18
-.public sub_020C4B68
-.public sub_020C4CF4
+.public NNSi_G3dModifyMatFlag
+.public DC_FlushRange
+.public MIi_CpuCopy16
+.public MIi_CpuCopy32
+.public MI_CpuFill8
 .public ov99_021D12F0
 .public ov99_021D1A54
 .public ov99_021D1B98

@@ -302,7 +302,7 @@ _0224697C:
 	movs r0, r0, lsr #0x1f
 	addeq r0, r1, #0xd
 	ldrne r0, [r1, #0x14]
-	bl sub_020DAE0C
+	bl atoi
 	movs r4, r0
 	add r0, sp, #0xc
 	bne _022469B4
@@ -1429,8 +1429,8 @@ ov66_0224786C: ; 0x0224786C
 	ldr r5, [sp, #0x30]
 	bne _022478A4
 	ldr r0, _02247990 ; =0x022592AC
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _022478A4:
 	mov r1, #0
 	mov r0, #0x44
@@ -1777,8 +1777,8 @@ ov66_02247D40: ; 0x02247D40
 	cmp r4, r0
 	bne _02247D74
 	ldr r0, _02247E14 ; =0x022592AC
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _02247D74:
 	mov r1, #0
 	mov r0, #0x10
@@ -1932,8 +1932,8 @@ ov66_02247F48: ; 0x02247F48
 	cmp r4, r0
 	bne _02247F7C
 	ldr r0, _02248028 ; =0x022592AC
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _02247F7C:
 	mov r1, #0
 	mov r0, #0x1c

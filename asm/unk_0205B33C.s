@@ -80,7 +80,7 @@ _0205B3AE:
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [r4, #0x10]
 	mov r0, #0x28
@@ -1594,7 +1594,7 @@ sub_0205BEA8: ; 0x0205BEA8
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r4, #0xd
 	bhi _0205BF32
 	add r0, r4, r4

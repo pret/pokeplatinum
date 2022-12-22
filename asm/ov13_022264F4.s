@@ -19,7 +19,7 @@ ov13_022264F4: ; 0x022264F4
 	ldr r2, _02226588 ; =0x0000115C
 	add r4, r0, #0
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0]
 	ldr r0, [r5, #0]
 	bl ov16_0223DF00
@@ -1392,7 +1392,7 @@ ov13_02226FC4: ; 0x02226FC4
 	bl sub_02006CB8
 	add r1, sp, #0x10
 	add r6, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
 	add r1, #0xc

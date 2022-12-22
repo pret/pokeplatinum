@@ -20,21 +20,21 @@ sub_02026030: ; 0x02026030
 
 	thumb_func_start sub_02026034
 sub_02026034: ; 0x02026034
-	ldr r3, _0202603C ; =sub_020C4DB0
+	ldr r3, _0202603C ; =MI_CpuCopy8
 	mov r2, #0x20
 	bx r3
 	nop
-_0202603C: .word sub_020C4DB0
+_0202603C: .word MI_CpuCopy8
 	thumb_func_end sub_02026034
 
 	thumb_func_start sub_02026040
 sub_02026040: ; 0x02026040
-	ldr r3, _02026048 ; =sub_020D5124
+	ldr r3, _02026048 ; =memset
 	mov r1, #0
 	mov r2, #0x20
 	bx r3
 	; .align 2, 0
-_02026048: .word sub_020D5124
+_02026048: .word memset
 	thumb_func_end sub_02026040
 
 	thumb_func_start sub_0202604C

@@ -359,7 +359,7 @@ sub_020502E0: ; 0x020502E0
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	strb r6, [r4, #4]
 	str r5, [r4, #0xc]
 	ldr r0, [r7, #0x10]
@@ -439,7 +439,7 @@ sub_0205037C: ; 0x0205037C
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x40
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [r6, #0xc]
 	bl sub_0207A268
 	str r0, [r4, #0]
@@ -558,7 +558,7 @@ _02050474:
 	add r0, #0x2c
 	add r1, r5, #6
 	mov r2, #3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	add r0, #0x22
 	ldrb r0, [r0]
@@ -584,7 +584,7 @@ sub_02050498: ; 0x02050498
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	bl sub_02025E44
 	str r0, [r4, #4]

@@ -9,5 +9,5 @@
 .public sub_02025E8C
 .public sub_02025EF4
 .public sub_02025FD0
-.public sub_020C4DB0
-.public sub_020D5124
+.public MI_CpuCopy8
+.public memset

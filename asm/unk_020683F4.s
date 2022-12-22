@@ -308,7 +308,7 @@ sub_02068630: ; 0x02068630
 	mov r1, #0
 	mov r2, #0x40
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0xc]
 	bl sub_0207A268
 	str r0, [r4, #0]
@@ -824,7 +824,7 @@ sub_02068A34: ; 0x02068A34
 	mov r1, #0
 	mov r2, #0x40
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0xc]
 	bl sub_0207A268
 	str r0, [r4, #0]
@@ -1210,7 +1210,7 @@ sub_02068CF0: ; 0x02068CF0
 	ldr r2, [sp]
 	mov r1, #0
 	add r7, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x72
 	ldr r1, _02068D44 ; =0x021F0489
 	lsl r0, r0, #2
@@ -1596,7 +1596,7 @@ sub_02068FEC: ; 0x02068FEC
 	mov r1, #0
 	mov r2, #0x40
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0xc]
 	bl sub_0207A268
 	str r0, [r4, #0]
@@ -1931,7 +1931,7 @@ _02069290:
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x2c
-	bl sub_020D5124
+	bl memset
 	str r5, [r4, #0]
 	ldr r0, [sp]
 	add r1, r4, #4

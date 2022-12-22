@@ -28,11 +28,11 @@
 .public sub_02021D6C
 .public sub_020759F0
 .public sub_02075FB4
-.public sub_020A81B0
-.public sub_020A81FC
-.public sub_020C0160
-.public sub_020C02BC
-.public sub_020C2C54
+.public NNS_G2dGetImageLocation
+.public NNS_G2dGetImagePaletteLocation
+.public GX_LoadOBJPltt
+.public GX_LoadOBJ
+.public DC_FlushRange
 .public ov6_02242860
 .public ov6_02242880
 .public ov6_022428F8

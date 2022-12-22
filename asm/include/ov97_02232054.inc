@@ -8,4 +8,4 @@
 .public sub_0202DCE0
 .public sub_0202DD08
 .public sub_0202DE2C
-.public sub_020C3EE4
+.public OS_ResetSystem

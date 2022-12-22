@@ -6,18 +6,18 @@
 	.text
 
 
-	arm_func_start sub_020D130C
-sub_020D130C: ; 0x020D130C
+	arm_func_start CTRDG_IdentifyAgbBackup
+CTRDG_IdentifyAgbBackup: ; 0x020D130C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	cmp r7, #1
 	mov r0, #1
 	bhi _020D145C
-	bl sub_020C1A00
+	bl OS_GetLockID
 	ldr r1, _020D1478 ; =0x021D03AC
 	strh r0, [r1]
 	ldrh r0, [r1]
-	bl sub_020C18F4
+	bl OS_LockCartridge
 	ldr r4, _020D147C ; =0x04000204
 	ldr r1, _020D1480 ; =0x020FE53C
 	ldrh r3, [r4]
@@ -28,7 +28,7 @@ sub_020D130C: ; 0x020D130C
 	orr r2, r2, #3
 	strh r2, [r4]
 	str r1, [r0, #0]
-	bl sub_020D14E8
+	bl CTRDGi_ReadFlashID
 	ldr r2, _020D147C ; =0x04000204
 	mov r4, r0
 	ldrh r1, [r2]
@@ -41,7 +41,7 @@ sub_020D130C: ; 0x020D130C
 	strh r1, [r2]
 	ldrh r0, [r0]
 	ldreq r5, _020D148C ; =0x020FE540
-	bl sub_020C1914
+	bl OS_UnlockCartridge
 	ldr r3, [r5, #0]
 	mov r0, #1
 	ldrh r1, [r3, #0x38]
@@ -97,7 +97,7 @@ _020D13CC:
 _020D145C:
 	cmp r7, #2
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
-	bl sub_020C1A00
+	bl OS_GetLockID
 	ldr r1, _020D14B0 ; =0x021D03E0
 	strh r0, [r1]
 	mov r0, #0
@@ -118,7 +118,7 @@ _020D14A4: .word 0x021D03C0
 _020D14A8: .word 0x021D03DC
 _020D14AC: .word 0x02101488
 _020D14B0: .word 0x021D03E0
-	arm_func_end sub_020D130C
+	arm_func_end CTRDG_IdentifyAgbBackup
 
 	.rodata
 

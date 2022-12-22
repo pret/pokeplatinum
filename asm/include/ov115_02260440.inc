@@ -23,9 +23,9 @@
 .public sub_02036540
 .public sub_020388F4
 .public sub_02039734
-.public sub_020D5124
-.public sub_020E1F6C
-.public sub_020E2178
+.public memset
+.public _s32_div_f
+.public _u32_div_f
 .public ov4_021D1E74
 .public ov4_021D1F18
 .public ov114_0225C700

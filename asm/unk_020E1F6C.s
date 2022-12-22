@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020E1F6C
-sub_020E1F6C: ; 0x020E1F6C
+	arm_func_start _s32_div_f
+_s32_div_f: ; 0x020E1F6C
 	eor ip, r0, r1
 	and ip, ip, #0x80000000
 	cmp r0, #0
@@ -139,4 +139,4 @@ _020E2164:
 	ands r3, ip, #1
 	rsbne r1, r1, #0
 	bx lr
-	arm_func_end sub_020E1F6C
+	arm_func_end _s32_div_f

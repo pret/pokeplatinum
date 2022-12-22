@@ -22,7 +22,7 @@ sub_0202CD58: ; 0x0202CD58
 	mov r0, #0
 	add r1, r4, #0
 	lsl r2, r2, #2
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r1, _0202CD80 ; =0x027FFC3C
 	ldr r0, [r1, #0]
 	ldr r1, [r1, #0]

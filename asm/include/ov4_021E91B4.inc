@@ -1,7 +1,7 @@
-.public sub_020C3880
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E1ED4
+.public OS_GetTick
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _ull_div
 .public ov4_021D7780
 .public ov4_021D77C4
 .public ov4_021E8E98

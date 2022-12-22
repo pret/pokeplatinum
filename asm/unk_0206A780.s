@@ -27,7 +27,7 @@ sub_0206A780: ; 0x0206A780
 	add r7, r0, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r7, #0
 	add r1, sp, #0x10
 	mov r2, #2

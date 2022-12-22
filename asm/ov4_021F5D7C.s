@@ -22,7 +22,7 @@ ov4_021F5D7C: ; 0x021F5D7C
 	ldr r1, _021F5E10 ; =0x02219330
 	ldr r2, _021F5E14 ; =0x02219310
 	mov r3, #0x78
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F5DB8:
 	mov r0, r6
 	bl ov4_021EA8AC
@@ -95,7 +95,7 @@ _021F5E94:
 	mov r3, r0
 	ldmia r5, {r0, r1}
 	ldmia r3, {r2, r3}
-	bl sub_020DFC6C
+	bl _d_add
 	bl ov4_021F61F0
 	mov r1, r0
 	mov r0, r4
@@ -137,7 +137,7 @@ _021F5F20:
 	ldr r1, [r0, #4]
 	mov r0, ip
 	ldmia r5, {r2, r3}
-	bl sub_020E074C
+	bl _dsub
 	bl ov4_021F61F0
 	mov r1, r0
 	mov r0, r4
@@ -175,7 +175,7 @@ _021F5FA4:
 	mov r3, r0
 	ldmia r5, {r0, r1}
 	ldmia r3, {r2, r3}
-	bl sub_020E0234
+	bl _d_mul
 	bl ov4_021F61F0
 	mov r1, r0
 	mov r0, r4
@@ -200,7 +200,7 @@ ov4_021F5FDC: ; 0x021F5FDC
 	bl ov4_021F62B8
 	ldr r0, [r0, #0]
 	ldr r1, [r5, #0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	bl ov4_021F61D8
 	mov r1, r0
 	mov r0, r4
@@ -214,7 +214,7 @@ _021F6024:
 	ldr r1, [r0, #4]
 	mov r0, ip
 	ldmia r5, {r2, r3}
-	bl sub_020E2374
+	bl _d_div
 	bl ov4_021F61F0
 	mov r1, r0
 	mov r0, r4
@@ -240,24 +240,24 @@ ov4_021F6060: ; 0x021F6060
 	ldr r1, _021F60FC ; =0x02219330
 	ldr r2, _021F6100 ; =0x0221931C
 	mov r3, #0xd1
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F6098:
 	mov r0, r6
 	bl ov4_021F62B8
 	mov r5, r0
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	add r0, r4, r0
 	add r0, r0, #1
 	bl ov4_021D7880
 	mov r4, r0
 	mov r1, r5
-	bl sub_020D8B7C
+	bl strcpy
 	mov r0, r4
 	mov r1, r7
-	bl sub_020D8C94
+	bl strcat
 	mov r0, r6
 	mov r1, r4
 	bl ov4_021F623C
@@ -290,7 +290,7 @@ ov4_021F6104: ; 0x021F6104
 	ldr r2, [r7, #0]
 	ldr r0, [r0, #0]
 	mla r0, r1, r0, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	bl ov4_021F61D8
 	mov r1, r0
 	mov r0, r4
@@ -305,22 +305,22 @@ _021F615C:
 	add r6, r1, #1
 	mov r0, r6
 	str r6, [r4, #8]
-	bl sub_020E01B8
+	bl _d_itod
 	ldmia r5, {r2, r3}
-	bl sub_020E0234
+	bl _d_mul
 	mov r2, r0
 	mov r3, r1
 	ldmia r7, {r0, r1}
-	bl sub_020DFC6C
+	bl _d_add
 	mov r5, r0
 	mov r0, r6
 	mov r6, r1
-	bl sub_020E01B8
+	bl _d_itod
 	mov r2, r0
 	mov r3, r1
 	mov r0, r5
 	mov r1, r6
-	bl sub_020E2374
+	bl _d_div
 	bl ov4_021F61F0
 	mov r1, r0
 	mov r0, r4
@@ -437,7 +437,7 @@ ov4_021F62D8: ; 0x021F62D8
 	ldr r1, _021F632C ; =0x02219330
 	ldr r2, _021F6330 ; =0x02219308
 	ldr r3, _021F6334 ; =0x00000153
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F630C:
 	str r4, [sp]
 	ldr r0, [r5, #0]

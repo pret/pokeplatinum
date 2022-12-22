@@ -21,9 +21,9 @@
 .public sub_02023FCC
 .public sub_02024034
 .public sub_0202404C
-.public sub_020D5124
-.public sub_020E1F1C
-.public sub_020E1F6C
+.public memset
+.public _ull_mul
+.public _s32_div_f
 .public ov21_021D13EC
 .public ov21_021D13FC
 .public ov21_021D1410

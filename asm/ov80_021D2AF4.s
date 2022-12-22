@@ -43,7 +43,7 @@ ov80_021D2AF4: ; 0x021D2AF4
 	mov r2, #0x1c
 	mov r1, #0
 	mul r2, r3
-	bl sub_020D5124
+	bl memset
 	ldrh r0, [r7]
 	mov r6, #0
 	ldr r5, _021D2C10 ; =0x021D31D8
@@ -101,20 +101,20 @@ _021D2BAE:
 	cmp r0, #0
 	beq _021D2BC6
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _021D2BD4
 _021D2BC6:
 	lsl r0, r0, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _021D2BD4:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r1, r0, #0
 	ldr r0, [r4, #0x18]
 	bl sub_02021E2C
@@ -351,10 +351,10 @@ ov80_021D2D70: ; 0x021D2D70
 	add r5, r0, #0
 	add r0, sp, #4
 	add r4, r1, #0
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #4
 	add r1, r5, #0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	bne _021D2D94
 	bl sub_02022974
@@ -365,7 +365,7 @@ _021D2D94:
 	add r0, sp, #4
 	add r1, sp, #0
 	mov r2, #4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D2DA6
 	bl sub_02022974
@@ -393,7 +393,7 @@ _021D2DA6:
 	mov r2, #0x18
 	mov r1, #0
 	mul r2, r3
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	mov r4, #0
 	str r0, [r6, #0]
@@ -406,7 +406,7 @@ _021D2DE8:
 	add r7, r0, r5
 	add r0, sp, #4
 	add r1, r7, #0
-	bl sub_020C81D4
+	bl FS_ReadFile
 	strh r4, [r7, #0x16]
 	ldr r0, [r6, #0]
 	add r4, r4, #1
@@ -415,7 +415,7 @@ _021D2DE8:
 	blt _021D2DE8
 _021D2E02:
 	add r0, sp, #4
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add r0, r6, #0
 	add sp, #0x4c
 	pop {r4, r5, r6, r7, pc}

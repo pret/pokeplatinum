@@ -106,10 +106,10 @@
 .public sub_02075FB4
 .public sub_0208712C
 .public sub_0208716C
-.public sub_020BF55C
-.public sub_020C4B68
-.public sub_020D5124
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public MIi_CpuCopy32
+.public memset
+.public _s32_div_f
 .public ov73_021D0FF0
 .public ov73_021D0FFC
 .public ov73_021D1058

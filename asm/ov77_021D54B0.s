@@ -122,7 +122,7 @@ ov77_021D5564: ; 0x021D5564
 	orr r0, r1
 	str r0, [r3, #0]
 	bl ov77_021D54B0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80

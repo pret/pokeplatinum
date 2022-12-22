@@ -96,9 +96,9 @@
 .public sub_02079FDC
 .public sub_02079FE8
 .public sub_02098140
-.public sub_020A73C0
-.public sub_020BFC74
-.public sub_020BFD58
+.public NNS_G2dSetupSoftwareSpriteCamera
+.public G3X_SetFog
+.public G3X_SetClearColor
 .public ov12_02225BC8
 .public ov12_02225C14
 .public ov12_02225C50

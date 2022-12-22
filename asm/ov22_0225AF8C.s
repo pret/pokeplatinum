@@ -281,7 +281,7 @@ ov22_0225B158: ; 0x0225B158
 	add r6, r1, #0
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	add r0, r5, #0
 	mov r5, #2
@@ -337,7 +337,7 @@ ov22_0225B1BC: ; 0x0225B1BC
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x8e
 	ldr r1, [r5, #0x68]
 	lsl r0, r0, #2
@@ -407,7 +407,7 @@ ov22_0225B258: ; 0x0225B258
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x8e
 	ldr r1, [r5, #0x68]
 	lsl r0, r0, #2
@@ -877,7 +877,7 @@ _0225B5C2:
 	add r1, r1, r5
 	add r0, r7, #0
 	add r1, r1, #4
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #4]
 	ldr r1, [r0, #0]
 	ldr r0, [r4, #0]
@@ -911,7 +911,7 @@ _0225B620:
 	ldr r1, [r4, #8]
 	add r0, r5, #0
 	add r1, r1, #4
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	ldr r0, [sp, #4]
 	ldr r1, [r0, #0]
 	ldr r0, [r4, #8]

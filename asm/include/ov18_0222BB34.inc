@@ -1,6 +1,6 @@
-.public sub_020C042C
-.public sub_020C2C54
-.public sub_020C4C14
+.public GX_LoadBG1Scr
+.public DC_FlushRange
+.public MIi_CpuCopyFast
 .public ov18_0222B6A0
 .public ov18_0222B700
 .public ov18_0222BBC0

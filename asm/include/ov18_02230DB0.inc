@@ -1,9 +1,9 @@
 .public sub_020A283C
-.public sub_020C04EC
-.public sub_020C3FA0
-.public sub_020DCDCC
-.public sub_020E1ED4
-.public sub_020E1EE0
+.public GX_LoadBG2Scr
+.public OS_GetMacAddress
+.public swprintf
+.public _ull_div
+.public _ull_mod
 .public ov18_0222B004
 .public ov18_0222B034
 .public ov18_0222B048

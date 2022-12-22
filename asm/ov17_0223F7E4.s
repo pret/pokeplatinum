@@ -17,7 +17,7 @@ ov17_0223F7E4: ; 0x0223F7E4
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0
 	mov r0, #0x2e
 	mvn r1, r1
@@ -142,7 +142,7 @@ _0223F8BE:
 	ldr r0, [sp, #0x10]
 	add r2, r7, #0
 	add r0, #0xc
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r6, #0
 	bl sub_020181C4
 	add r5, r5, #1
@@ -181,7 +181,7 @@ _0223F90A:
 	add r1, r4, r1
 	ldr r1, [r1, #0x34]
 	add r2, r7, #0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r5, r5, #1
 _0223F948:
 	cmp r5, #2
@@ -481,7 +481,7 @@ _0223FB88:
 	add r0, r5, r0
 	mov r1, #0
 	mov r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xc5
 	lsl r0, r0, #2
 	ldr r0, [r5, r0]
@@ -879,7 +879,7 @@ _0223FE8E:
 	neg r0, r0
 _0223FEA8:
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x1c]
 	cmp r0, #6
 	ble _0223FEB8
@@ -1712,7 +1712,7 @@ _022404DC:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _022404F8 ; =0x00000514
 	add r0, r5, #0
 	add r1, r4, #0
@@ -1737,7 +1737,7 @@ ov17_022404FC: ; 0x022404FC
 	add r0, r4, r0
 	mov r2, #0x20
 	str r1, [r4, #0x10]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _0224051A:
 	pop {r4, pc}
 	thumb_func_end ov17_022404FC
@@ -2243,7 +2243,7 @@ _022408F0:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r2, _0224090C ; =0x00000528
 	add r0, r5, #0
 	add r1, r4, #0
@@ -2268,7 +2268,7 @@ ov17_02240910: ; 0x02240910
 	add r0, r4, r0
 	mov r2, #0xc
 	str r1, [r4, #0x14]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _0224092E:
 	pop {r4, pc}
 	thumb_func_end ov17_02240910
@@ -2700,7 +2700,7 @@ ov17_02240C60: ; 0x02240C60
 	add r1, r4, r1
 	asr r5, r1, #3
 	mov r1, #8
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	beq _02240C88
 	add r5, r5, #1
@@ -2878,7 +2878,7 @@ _02240DC6:
 	ldr r0, _02240E64 ; =0x0225323C
 	add r1, sp, #0x18
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r1, #2
 	add r0, r6, #0
 	add r2, r1, #0
@@ -3060,7 +3060,7 @@ _02240F18:
 	ldr r0, _02240FC0 ; =0x02253240
 	add r1, sp, #8
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	mov r1, #3
 	mov r2, #2

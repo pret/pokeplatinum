@@ -23,5 +23,5 @@
 .public sub_02021AA0
 .public sub_02021CC8
 .public sub_02021D6C
-.public sub_020A7944
+.public NNS_G2dInitOamManagerModule
 .public ov105_02245C98

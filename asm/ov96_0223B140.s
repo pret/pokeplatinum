@@ -487,7 +487,7 @@ ov96_0223B4B0: ; 0x0223B4B0
 	ldr r0, _0223B514 ; =0x0223DDF4
 	add r1, r4, #0
 	mov r2, #0xe4
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223B518 ; =0x0223DEC0
 	sub r1, r5, #1
 	strb r1, [r0, #0x18]
@@ -573,11 +573,11 @@ ov96_0223B574: ; 0x0223B574
 	add r5, r0, #0
 	add r0, #0x1c
 	add r4, r1, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _0223B5C0 ; =0x0223DDF4
 	add r1, r5, #0
 	mov r2, #0x64
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0223B5C4 ; =0x0223DEE0
 	str r4, [r0, #8]
 	bl ov60_0221FC84

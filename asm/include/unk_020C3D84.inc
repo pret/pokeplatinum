@@ -1,2 +1,2 @@
-.public sub_02000522
-.public sub_020C12B4
+.public SVC_WaitByLoop
+.public OS_WaitIrq

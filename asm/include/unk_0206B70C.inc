@@ -17,10 +17,10 @@
 .public sub_0206AF3C
 .public sub_0206B1F0
 .public sub_0206B878
-.public sub_020C4CF4
-.public sub_020C7DA0
-.public sub_020C8080
-.public sub_020C80C8
-.public sub_020C81D4
-.public sub_020D5124
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public FS_InitFile
+.public FS_OpenFile
+.public FS_CloseFile
+.public FS_ReadFile
+.public memset
+.public _s32_div_f

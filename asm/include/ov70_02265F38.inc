@@ -22,7 +22,7 @@
 .public sub_020388AC
 .public sub_020388F4
 .public sub_02038B40
-.public sub_020E1F6C
+.public _s32_div_f
 .public ov66_0222E0C4
 .public ov66_0222E190
 .public ov66_0222E200

@@ -21,7 +21,7 @@ ov104_022361B4: ; 0x022361B4
 	ldr r2, _02236508 ; =0x00000A28
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0223650C ; =0x02241AC8
 	ldr r4, [r0, #0]
 	add r0, r5, #0
@@ -170,7 +170,7 @@ _02236320:
 	mov r1, #7
 	ldr r5, [r0, #0]
 	ldrh r0, [r5, #0x14]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r5, #0x16]
 	mov r0, #0
 	str r0, [r5, #0x18]
@@ -261,7 +261,7 @@ _022363AA:
 	strh r0, [r6, #0x14]
 	ldrh r0, [r6, #0x14]
 	mov r1, #7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r5, #0
 	strh r0, [r6, #0x16]
 	ldr r7, _0223650C ; =0x02241AC8
@@ -723,7 +723,7 @@ _022367C6:
 	ldr r2, _022367D8 ; =0x00000A28
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_020181C4
 _022367D6:

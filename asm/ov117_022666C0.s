@@ -17,7 +17,7 @@ ov117_022666C0: ; 0x022666C0
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	pop {r4, pc}
 _022666E0:
@@ -36,7 +36,7 @@ ov117_022666E8: ; 0x022666E8
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #1
 	str r0, [sp]
 	add r2, sp, #4
@@ -78,7 +78,7 @@ ov117_02266730: ; 0x02266730
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #2
 	str r0, [sp]
 	add r0, sp, #0
@@ -124,7 +124,7 @@ ov117_02266784: ; 0x02266784
 	mov r1, #0
 	mov r2, #0x14
 	add r6, r3, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #3
 	str r0, [sp]
 	add r0, sp, #0
@@ -180,7 +180,7 @@ ov117_022667F4: ; 0x022667F4
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #4
 	str r0, [sp]
 	mov r1, #2
@@ -217,7 +217,7 @@ ov117_02266834: ; 0x02266834
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #5
 	str r0, [sp]
 	mov r1, #3
@@ -259,7 +259,7 @@ ov117_0226687C: ; 0x0226687C
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #6
 	str r0, [sp]
 	add r0, sp, #0
@@ -293,7 +293,7 @@ ov117_022668B8: ; 0x022668B8
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #7
 	str r0, [sp]
 	mov r1, #6

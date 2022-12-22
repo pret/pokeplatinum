@@ -197,7 +197,7 @@ sub_020322BC: ; 0x020322BC
 	add r0, r1, #0
 	mov r1, #0xa
 	ldrsh r1, [r2, r1]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, #0
 	pop {r3, pc}
 	; .align 2, 0

@@ -58,8 +58,8 @@
 .public sub_020774C8
 .public sub_02077ACC
 .public sub_02077ADC
-.public sub_020C4BB8
-.public sub_020C4C14
+.public MIi_CpuClearFast
+.public MIi_CpuCopyFast
 .public ov94_0223C3C0
 .public ov94_0223C3F4
 .public ov94_0223C4B4

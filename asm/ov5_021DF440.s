@@ -18,7 +18,7 @@ ov5_021DF440: ; 0x021DF440
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020D5124
+	bl memset
 	str r7, [r4, #0]
 	str r5, [r4, #4]
 	str r6, [r4, #0x10]
@@ -162,7 +162,7 @@ ov5_021DF53C: ; 0x021DF53C
 	add r1, r4, #0
 	add r2, r5, #0
 	add r6, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov5_021DF53C
@@ -622,7 +622,7 @@ _021DF828:
 	add r0, r4, #0
 	bl sub_020213F4
 	mov r1, #1
-	bl sub_020B37A4
+	bl NNS_G3dMdlSetMdlFogEnableFlagAll
 	add r0, r4, #0
 	bl sub_020213F4
 	bl ov5_021D53A4
@@ -802,7 +802,7 @@ _021DF972:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	add r2, r4, #0
 	str r0, [r4, #0]

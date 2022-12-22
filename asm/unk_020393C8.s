@@ -143,7 +143,7 @@ sub_020394A8: ; 0x020394A8
 	mov r1, #0x96
 	ldr r0, [sp]
 	lsl r1, r1, #2
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	pop {r3, pc}
 	nop
@@ -169,24 +169,24 @@ sub_020394D0: ; 0x020394D0
 	mov r1, #0x96
 	ldr r0, [sp, #4]
 	lsl r1, r1, #2
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #4]
 	add r1, sp, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r5, #1
 	bne _02039514
 	ldr r0, [sp]
 	add r1, r4, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	b _02039520
 _02039514:
 	ldr r0, [sp]
 	add r1, r4, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 _02039520:
 	ldr r0, [sp, #4]
 	bl sub_020181C4
@@ -223,10 +223,10 @@ _0203955C:
 	mov r1, #0x96
 	ldr r0, [sp, #4]
 	lsl r1, r1, #2
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #4]
 	add r1, sp, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r5, #1
 	bne _02039584
 	mov r0, #1
@@ -235,7 +235,7 @@ _0203955C:
 	ldr r0, _02039600 ; =0x00300010
 	add r4, r1, #0
 	and r4, r0
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	b _02039592
 _02039584:
 	ldr r0, _02039604 ; =0x04001000
@@ -243,7 +243,7 @@ _02039584:
 	ldr r0, _02039600 ; =0x00300010
 	add r4, r1, #0
 	and r4, r0
-	bl sub_020BF01C
+	bl GX_GetBankForSubOBJ
 _02039592:
 	cmp r4, #0x10
 	beq _0203959E
@@ -291,14 +291,14 @@ _020395D0:
 	mov r2, #2
 	ldr r0, [r0, #0x14]
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	b _020395EE
 _020395E2:
 	ldr r0, [sp]
 	mov r2, #2
 	ldr r0, [r0, #0x14]
 	lsl r2, r2, #8
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 _020395EE:
 	ldr r0, [sp, #4]
 	bl sub_020181C4
@@ -363,7 +363,7 @@ _02039652:
 	ldr r0, _0203970C ; =0x00300010
 	add r7, r1, #0
 	and r7, r0
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	b _02039678
 _0203966A:
 	ldr r0, _02039710 ; =0x04001000
@@ -371,7 +371,7 @@ _0203966A:
 	ldr r0, _0203970C ; =0x00300010
 	add r7, r1, #0
 	and r7, r0
-	bl sub_020BF01C
+	bl GX_GetBankForSubOBJ
 _02039678:
 	cmp r7, #0x10
 	beq _02039684

@@ -8,24 +8,24 @@
 
 	arm_func_start ov4_02210EEC
 ov4_02210EEC: ; 0x02210EEC
-	ldr ip, _02210F00 ; =sub_020C4DB0
+	ldr ip, _02210F00 ; =MI_CpuCopy8
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3
 	bx ip
 	; .align 2, 0
-_02210F00: .word sub_020C4DB0
+_02210F00: .word MI_CpuCopy8
 	arm_func_end ov4_02210EEC
 
 	arm_func_start ov4_02210F04
 ov4_02210F04: ; 0x02210F04
-	ldr ip, _02210F18 ; =sub_020C4DB0
+	ldr ip, _02210F18 ; =MI_CpuCopy8
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3
 	bx ip
 	; .align 2, 0
-_02210F18: .word sub_020C4DB0
+_02210F18: .word MI_CpuCopy8
 	arm_func_end ov4_02210F04
 
 	arm_func_start ov4_02210F1C
@@ -306,7 +306,7 @@ ov4_02211338: ; 0x02211338
 	mov r1, #0
 	mov r2, #0x58
 	mov r4, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _02211370 ; =0x67452301
 	ldr r0, _02211374 ; =0xEFCDAB89
 	str r1, [r4, #0]
@@ -348,7 +348,7 @@ ov4_02211380: ; 0x02211380
 	mov r0, r7
 	mov r2, r5
 	add r1, r1, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r8
 	add r1, r8, #0x18
 	mov r4, #0
@@ -372,7 +372,7 @@ _02211420:
 	add r0, r7, r5
 	add r1, r1, r4
 	sub r2, r6, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end ov4_02211380
 

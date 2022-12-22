@@ -26,7 +26,7 @@ ov90_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldrh r0, [r5, #4]
 	strh r0, [r4, #8]
 	ldrh r0, [r5, #6]
@@ -349,7 +349,7 @@ ov90_021D1034: ; 0x021D1034
 	push {r4, lr}
 	add r4, r0, #0
 	bl ov90_021D1BA4
-	bl sub_020A635C
+	bl NNS_GfdDoVramTransfer
 	ldr r0, [r4, #0x10]
 	bl sub_0201C2B8
 	ldr r3, _021D1054 ; =0x027E0000
@@ -487,7 +487,7 @@ _021D1134:
 	ldrb r0, [r5, #0xc]
 	mov r1, #3
 	add r0, r0, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r5, #0xc]
 	ldrb r0, [r5, #0xb]
 	mov r4, #1
@@ -503,7 +503,7 @@ _021D1156:
 	ldrb r0, [r5, #0xc]
 	mov r1, #3
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r5, #0xc]
 	ldrb r0, [r5, #0xb]
 	mov r4, #1
@@ -1274,7 +1274,7 @@ _021D176C:
 	strb r0, [r4, #7]
 	add r0, r5, #0
 	add r0, #0x18
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, [r7, #0]
 	mov r0, #8
 	bl sub_02023790

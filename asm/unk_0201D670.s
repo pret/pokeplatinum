@@ -705,7 +705,7 @@ sub_0201DB50: ; 0x0201DB50
 	ldr r0, [r0, #0x14]
 	add r1, r5, #0
 	lsl r2, r2, #8
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, r4, #0
 	bl sub_020181C4
 	add r0, r5, #0

@@ -1,6 +1,6 @@
-.public sub_020C144C
-.public sub_020C161C
-.public sub_020C167C
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C6554
+.public OS_SetIrqFunction
+.public OS_EnableIrqMask
+.public OS_ResetRequestIrqMask
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
+.public PXIi_HandlerRecvFifoNotEmpty

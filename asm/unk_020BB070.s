@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020BB070
-sub_020BB070: ; 0x020BB070
+	arm_func_start NNSi_SndArcStrmMain
+NNSi_SndArcStrmMain: ; 0x020BB070
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r7, _020BB178 ; =0x021CC5CC
 	ldr r4, _020BB17C ; =0x020FDAB0
@@ -21,7 +21,7 @@ _020BB080:
 	cmp r0, #0
 	bne _020BB0A8
 	mov r0, r7
-	bl sub_020BB1AC
+	bl ForceStopStrm_dup2
 	b _020BB164
 _020BB0A8:
 	mov r0, r1, lsl #0x1d
@@ -30,7 +30,7 @@ _020BB0A8:
 	cmpne r0, #0
 	beq _020BB0D4
 	mov r0, r7
-	bl sub_020B8BD4
+	bl NNS_SndStrmStart
 	ldr r0, [r7, #0x110]
 	orr r0, r0, #2
 	bic r0, r0, #4
@@ -41,12 +41,12 @@ _020BB0D4:
 	movs r0, r0, asr #0x1f
 	beq _020BB164
 	add r0, r7, #0xe8
-	bl sub_020BB41C
+	bl NNSi_SndFaderUpdate
 	ldr r1, [r7, #0x154]
 	add r0, r7, #0xe8
 	mov r1, r1, lsl #1
 	ldrsh r6, [r4, r1]
-	bl sub_020BB3E8
+	bl NNSi_SndFaderGet
 	mov r0, r0, asr #8
 	ldr r1, [r7, #0x158]
 	mov r0, r0, lsl #1
@@ -60,7 +60,7 @@ _020BB0D4:
 	beq _020BB13C
 	mov r0, r7
 	mov r1, r6
-	bl sub_020B8C44
+	bl NNS_SndStrmSetVolume
 	str r6, [r7, #0x15c]
 _020BB13C:
 	ldr r0, [r7, #0x110]
@@ -68,11 +68,11 @@ _020BB13C:
 	movs r0, r0, asr #0x1f
 	beq _020BB164
 	add r0, r7, #0xe8
-	bl sub_020BB434
+	bl NNSi_SndFaderIsFinished
 	cmp r0, #0
 	beq _020BB164
 	mov r0, r7
-	bl sub_020BB1AC
+	bl ForceStopStrm_dup2
 _020BB164:
 	add r5, r5, #1
 	cmp r5, #4
@@ -82,10 +82,10 @@ _020BB164:
 	; .align 2, 0
 _020BB178: .word 0x021CC5CC
 _020BB17C: .word 0x020FDAB0
-	arm_func_end sub_020BB070
+	arm_func_end NNSi_SndArcStrmMain
 
-	arm_func_start sub_020BB180
-sub_020BB180: ; 0x020BB180
+	arm_func_start FreePlayer
+FreePlayer: ; 0x020BB180
 	ldr r2, [r0, #0x14c]
 	cmp r2, #0
 	movne r1, #0
@@ -97,28 +97,28 @@ sub_020BB180: ; 0x020BB180
 	bic r1, r1, #2
 	str r1, [r0, #0x110]
 	bx lr
-	arm_func_end sub_020BB180
+	arm_func_end FreePlayer
 
-	arm_func_start sub_020BB1AC
-sub_020BB1AC: ; 0x020BB1AC
+	arm_func_start ForceStopStrm_dup2
+ForceStopStrm_dup2: ; 0x020BB1AC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, _020BB23C ; =0x021CC5A8
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _020BB240 ; =0x021CBF30
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _020BB1D8
 	add r0, r0, #0xc8
 	add r0, r0, #0x400
-	bl sub_020C29D8
+	bl OS_LockMutex
 _020BB1D8:
 	ldr r0, [r4, #0x110]
 	mov r0, r0, lsl #0x1e
 	movs r0, r0, asr #0x1f
 	beq _020BB1F0
 	mov r0, r4
-	bl sub_020B8C28
+	bl NNS_SndStrmStop
 _020BB1F0:
 	ldr r0, [r4, #0x110]
 	mov r0, r0, lsl #0x1f
@@ -129,55 +129,55 @@ _020BB1F0:
 	blx r1
 _020BB20C:
 	mov r0, r4
-	bl sub_020BB244
+	bl ShutdownPlayer_dup2
 	ldr r0, _020BB23C ; =0x021CC5A8
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	ldr r0, _020BB240 ; =0x021CBF30
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	add r0, r0, #0xc8
 	add r0, r0, #0x400
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BB23C: .word 0x021CC5A8
 _020BB240: .word 0x021CBF30
-	arm_func_end sub_020BB1AC
+	arm_func_end ForceStopStrm_dup2
 
-	arm_func_start sub_020BB244
-sub_020BB244: ; 0x020BB244
+	arm_func_start ShutdownPlayer_dup2
+ShutdownPlayer_dup2: ; 0x020BB244
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r1, [r4, #0x110]
 	mov r1, r1, lsl #0x1f
 	movs r1, r1, asr #0x1f
 	ldmeqia sp!, {r4, pc}
-	bl sub_020BB2A8
+	bl FreeChannel
 	ldr r1, [r4, #0x168]
 	mov r0, r4
 	blx r1
 	ldr r0, _020BB2A0 ; =0x021CC5C0
 	mov r1, r4
-	bl sub_020BB2CC
+	bl RemoveCommandByPlayer
 	ldr r0, _020BB2A4 ; =0x021CBF30
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _020BB294
 	mov r1, r4
 	add r0, r0, #0x4e0
-	bl sub_020BB2CC
+	bl RemoveCommandByPlayer
 _020BB294:
 	mov r0, r4
-	bl sub_020BB180
+	bl FreePlayer
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BB2A0: .word 0x021CC5C0
 _020BB2A4: .word 0x021CBF30
-	arm_func_end sub_020BB244
+	arm_func_end ShutdownPlayer_dup2
 
-	arm_func_start sub_020BB2A8
-sub_020BB2A8: ; 0x020BB2A8
+	arm_func_start FreeChannel
+FreeChannel: ; 0x020BB2A8
 	stmfd sp!, {r3, lr}
 	ldr r1, [r0, #0x120]
 	cmp r1, #0
@@ -185,60 +185,60 @@ sub_020BB2A8: ; 0x020BB2A8
 	subs r1, r1, #1
 	str r1, [r0, #0x120]
 	ldmneia sp!, {r3, pc}
-	bl sub_020B8A0C
+	bl NNS_SndStrmFreeChannel
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020BB2A8
+	arm_func_end FreeChannel
 
-	arm_func_start sub_020BB2CC
-sub_020BB2CC: ; 0x020BB2CC
+	arm_func_start RemoveCommandByPlayer
+RemoveCommandByPlayer: ; 0x020BB2CC
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r8, r0
 	mov r7, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	mov r0, r8
 	mov r1, #0
-	bl sub_020A4DBC
+	bl NNS_FndGetNextListObject
 	movs r5, r0
 	beq _020BB330
 _020BB2F4:
 	mov r0, r8
 	mov r1, r5
-	bl sub_020A4DBC
+	bl NNS_FndGetNextListObject
 	ldr r1, [r5, #8]
 	mov r6, r0
 	cmp r1, r7
 	bne _020BB324
 	mov r0, r8
 	mov r1, r5
-	bl sub_020A4D5C
+	bl NNS_FndRemoveListObject
 	mov r0, r5
-	bl sub_020BB33C
+	bl FreeCommandBuffer
 _020BB324:
 	mov r5, r6
 	cmp r6, #0
 	bne _020BB2F4
 _020BB330:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020BB2CC
+	arm_func_end RemoveCommandByPlayer
 
-	arm_func_start sub_020BB33C
-sub_020BB33C: ; 0x020BB33C
+	arm_func_start FreeCommandBuffer
+FreeCommandBuffer: ; 0x020BB33C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	ldr r0, _020BB364 ; =0x021CBF3C
 	mov r1, r5
-	bl sub_020A4C54
+	bl NNS_FndAppendListObject
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020BB364: .word 0x021CBF3C
-	arm_func_end sub_020BB33C
+	arm_func_end FreeCommandBuffer
 
 	.bss
 

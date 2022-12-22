@@ -20,7 +20,7 @@ ov22_022589E0: ; 0x022589E0
 	str r0, [r5, #0]
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r5, #0]
 	ldr r0, [sp, #0x18]
 	str r4, [r1, #4]
@@ -353,14 +353,14 @@ _02258C6A:
 	ldr r2, [sp, #0x14]
 	mov r1, #0x6c
 	sub r1, r1, r2
-	bl sub_020E2178
+	bl _u32_div_f
 	add r1, #0xa
 	str r1, [sp, #0xc]
 	bl sub_0201D35C
 	ldr r2, [sp, #0x10]
 	mov r1, #0x7d
 	sub r1, r1, r2
-	bl sub_020E2178
+	bl _u32_div_f
 	add r1, #0x12
 	str r1, [sp, #8]
 	b _02258CE0
@@ -740,13 +740,13 @@ ov22_02258F4C: ; 0x02258F4C
 	ldr r0, [sp, #8]
 	sub r0, r1, r0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #8]
 	ldr r1, [r4, #0x14]
 	ldr r0, [sp, #4]
 	sub r0, r1, r0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0xc]
 	mov r0, #0
 	str r0, [r5, #0x30]

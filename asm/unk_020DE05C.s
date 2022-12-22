@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020DE05C
-sub_020DE05C: ; 0x020DE05C
+	arm_func_start copysign
+copysign: ; 0x020DE05C
 	stmfd sp!, {r0, r1, r2, r3}
 	ldr r1, [sp, #4]
 	ldr r0, [sp, #0xc]
@@ -17,4 +17,4 @@ sub_020DE05C: ; 0x020DE05C
 	str r1, [sp, #4]
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end sub_020DE05C
+	arm_func_end copysign

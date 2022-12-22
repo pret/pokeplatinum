@@ -62,24 +62,24 @@ ov18_02244064: ; 0x02244064
 	mov r5, r0
 	mov r0, #1
 	mov r4, r1
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldrb r2, [r5, #3]
 	mov r6, r0
 	ldrh r1, [r5]
 	add r0, r2, #1
-	bl sub_020BD140
+	bl FX_ModS32
 	ldrb r1, [r5, #2]
 	mov r7, r0
 	cmp r7, r1
 	bne _022440A0
-	bl sub_020C42A8
+	bl OS_Terminate
 _022440A0:
 	ldrb r1, [r5, #3]
 	mov r0, r6
 	add r1, r5, r1, lsl #2
 	str r4, [r1, #4]
 	strb r7, [r5, #3]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov18_02244064
 
@@ -89,7 +89,7 @@ ov18_022440BC: ; 0x022440BC
 	mov r6, r0
 	mov r0, #1
 	mov r4, #0
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldrb r2, [r6, #3]
 	ldrb r1, [r6, #2]
 	mov r5, r0
@@ -98,14 +98,14 @@ ov18_022440BC: ; 0x022440BC
 	ldrh r1, [r6]
 	add r0, r2, r1
 	sub r0, r0, #1
-	bl sub_020BD140
+	bl FX_ModS32
 	and r1, r0, #0xff
 	strb r0, [r6, #3]
 	add r0, r6, r1, lsl #2
 	ldr r4, [r0, #4]
 _02244104:
 	mov r0, r5
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 	arm_func_end ov18_022440BC

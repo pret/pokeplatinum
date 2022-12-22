@@ -16,7 +16,7 @@ ov5_021D5878: ; 0x021D5878
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x48
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -56,7 +56,7 @@ _021D58B6:
 	ldrsh r2, [r5, r2]
 	ldrsh r3, [r5, r3]
 	add r0, r4, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 _021D58D0:
 	add r1, r4, #4
 	mov r0, #1
@@ -65,7 +65,7 @@ _021D58D0:
 	beq _021D58E2
 	ldrh r1, [r6, #0x18]
 	add r0, r4, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 _021D58E2:
 	add r4, r4, #1
 	add r5, r5, #6
@@ -82,7 +82,7 @@ _021D58E2:
 	ldrh r0, [r0, #0x20]
 	ldrh r1, [r1, #0x22]
 	ldr r2, [r2, #0x28]
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 _021D5904:
 	mov r0, #3
 	lsl r0, r0, #0xa
@@ -94,7 +94,7 @@ _021D5904:
 	ldrh r0, [r0, #0x24]
 	ldrh r1, [r1, #0x26]
 	ldr r2, [r2, #0x2c]
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 _021D591C:
 	mov r0, #1
 	lsl r0, r0, #0xc
@@ -114,7 +114,7 @@ _021D591C:
 	ldr r0, [r0, #0x30]
 	ldr r2, [r2, #0x38]
 	ldr r3, [r3, #0x3c]
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 _021D5944:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
@@ -132,7 +132,7 @@ ov5_021D5948: ; 0x021D5948
 	beq _021D5960
 	ldrh r1, [r5, #0x20]
 	add r0, r6, #0
-	bl sub_020B3564
+	bl NNS_G3dMdlSetMdlDiffAll
 _021D5960:
 	mov r0, #2
 	lsl r0, r0, #8
@@ -140,7 +140,7 @@ _021D5960:
 	beq _021D5970
 	ldrh r1, [r5, #0x22]
 	add r0, r6, #0
-	bl sub_020B35A4
+	bl NNS_G3dMdlSetMdlAmbAll
 _021D5970:
 	mov r0, #1
 	lsl r0, r0, #0xa
@@ -148,7 +148,7 @@ _021D5970:
 	beq _021D5980
 	ldrh r1, [r5, #0x24]
 	add r0, r6, #0
-	bl sub_020B35E4
+	bl NNS_G3dMdlSetMdlSpecAll
 _021D5980:
 	mov r0, #2
 	lsl r0, r0, #0xa
@@ -156,7 +156,7 @@ _021D5980:
 	beq _021D5990
 	ldrh r1, [r5, #0x26]
 	add r0, r6, #0
-	bl sub_020B3624
+	bl NNS_G3dMdlSetMdlEmiAll
 _021D5990:
 	mov r0, #1
 	lsl r0, r0, #0xc
@@ -164,7 +164,7 @@ _021D5990:
 	beq _021D59A0
 	ldr r1, [r5, #0x30]
 	add r0, r6, #0
-	bl sub_020B3664
+	bl NNS_G3dMdlSetMdlLightEnableFlagAll
 _021D59A0:
 	mov r0, #2
 	lsl r0, r0, #0xc
@@ -172,7 +172,7 @@ _021D59A0:
 	beq _021D59B0
 	ldr r1, [r5, #0x34]
 	add r0, r6, #0
-	bl sub_020B36A4
+	bl NNS_G3dMdlSetMdlPolygonModeAll
 _021D59B0:
 	mov r0, #1
 	lsl r0, r0, #0xe
@@ -180,7 +180,7 @@ _021D59B0:
 	beq _021D59C0
 	ldr r1, [r5, #0x38]
 	add r0, r6, #0
-	bl sub_020B36E4
+	bl NNS_G3dMdlSetMdlCullModeAll
 _021D59C0:
 	mov r0, #2
 	lsl r0, r0, #0xe
@@ -188,7 +188,7 @@ _021D59C0:
 	beq _021D59D0
 	ldr r1, [r5, #0x3c]
 	add r0, r6, #0
-	bl sub_020B3724
+	bl NNS_G3dMdlSetMdlPolygonIDAll
 _021D59D0:
 	mov r0, #1
 	lsl r0, r0, #0x10
@@ -196,7 +196,7 @@ _021D59D0:
 	beq _021D59E0
 	ldr r1, [r5, #0x40]
 	add r0, r6, #0
-	bl sub_020B3764
+	bl NNS_G3dMdlSetMdlAlphaAll
 _021D59E0:
 	mov r1, #2
 	lsl r1, r1, #0x10
@@ -207,7 +207,7 @@ _021D59E0:
 	lsr r1, r1, #2
 	add r0, r6, #0
 	and r1, r2
-	bl sub_020B37A4
+	bl NNS_G3dMdlSetMdlFogEnableFlagAll
 _021D59F6:
 	mov r1, #1
 	lsl r1, r1, #0x12
@@ -218,7 +218,7 @@ _021D59F6:
 	lsr r1, r1, #4
 	add r0, r6, #0
 	and r1, r2
-	bl sub_020B37E4
+	bl NNS_G3dMdlSetMdlDepthTestCondAll
 _021D5A0C:
 	mov r1, #2
 	lsl r1, r1, #0x12
@@ -229,7 +229,7 @@ _021D5A0C:
 	lsr r1, r1, #6
 	add r0, r6, #0
 	and r1, r2
-	bl sub_020B3824
+	bl NNS_G3dMdlSetMdl1DotAll
 _021D5A22:
 	mov r1, #1
 	lsl r1, r1, #0x14
@@ -240,7 +240,7 @@ _021D5A22:
 	lsr r1, r1, #8
 	add r0, r6, #0
 	and r1, r2
-	bl sub_020B3864
+	bl NNS_G3dMdlSetMdlFarClipAll
 _021D5A38:
 	mov r1, #2
 	lsl r1, r1, #0x14
@@ -251,7 +251,7 @@ _021D5A38:
 	lsr r1, r1, #0xa
 	add r0, r6, #0
 	and r1, r2
-	bl sub_020B38A4
+	bl NNS_G3dMdlSetMdlXLDepthUpdateAll
 _021D5A4E:
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov5_021D5948
@@ -275,7 +275,7 @@ ov5_021D5A50: ; 0x021D5A50
 	ldrsh r1, [r5, r4]
 	ldrsh r2, [r2, r4]
 	ldrsh r3, [r3, r4]
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov5_021D5A50
 
@@ -288,7 +288,7 @@ ov5_021D5A78: ; 0x021D5A78
 	strh r2, [r4, r3]
 	add r0, r1, #0
 	ldrh r1, [r4, r3]
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	pop {r4, pc}
 	thumb_func_end ov5_021D5A78
 

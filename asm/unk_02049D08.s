@@ -129,7 +129,7 @@ sub_02049DB4: ; 0x02049DB4
 	mov r1, #0
 	mov r2, #0x10
 	str r3, [sp, #4]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [sp, #0x1c]
 	ldr r0, [sp, #4]
@@ -369,11 +369,11 @@ _02049F76:
 
 	thumb_func_start sub_02049F8C
 sub_02049F8C: ; 0x02049F8C
-	ldr r3, _02049F94 ; =sub_020C3EE4
+	ldr r3, _02049F94 ; =OS_ResetSystem
 	mov r0, #0
 	bx r3
 	nop
-_02049F94: .word sub_020C3EE4
+_02049F94: .word OS_ResetSystem
 	thumb_func_end sub_02049F8C
 
 	thumb_func_start sub_02049F98
@@ -600,7 +600,7 @@ sub_0204A124: ; 0x0204A124
 	ldr r2, _0204A31C ; =0x000008DC
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xb
 	str r0, [r4, #4]
 	add r0, r6, #0
@@ -808,7 +808,7 @@ _0204A2F8:
 	bne _0204A316
 	ldrh r0, [r4, #0x1a]
 	mov r1, #7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r2, r0, #0
 	lsl r2, r2, #0x10
 	ldr r0, [r4, #0x74]
@@ -841,7 +841,7 @@ _0204A33E:
 	ldr r2, _0204A354 ; =0x000008DC
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_020181C4
 _0204A34E:
@@ -1327,7 +1327,7 @@ _0204A68A:
 	cmp r1, r6
 	bne _0204A6DA
 	mov r1, #7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _0204A6DA
 _0204A6D0:
@@ -2048,7 +2048,7 @@ _0204AC3E:
 	str r0, [r5, #8]
 	ldr r0, [r5, #8]
 	ldr r1, _0204AC50 ; =0x0000FFFF
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	pop {r4, r5, r6, pc}
@@ -2300,7 +2300,7 @@ sub_0204AE20: ; 0x0204AE20
 	mov r1, #0
 	mov r2, #0xa8
 	str r0, [sp, #4]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_0207A268
 	ldr r5, [sp, #4]
@@ -2326,7 +2326,7 @@ _0204AE48:
 	ldr r0, [sp, #4]
 	mov r1, #0
 	mov r2, #0xa8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #4]
 	bl sub_020181C4
 	add sp, #8
@@ -2389,7 +2389,7 @@ _0204AED0:
 	bl sub_0206BFF0
 	ldr r1, _0204AEE4 ; =0x0000FFFF
 	str r0, [r4, #8]
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
 	pop {r4, pc}

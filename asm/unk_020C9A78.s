@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C9A78
-sub_020C9A78: ; 0x020C9A78
+	arm_func_start TPi_TpCallback
+TPi_TpCallback: ; 0x020C9A78
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	mov r0, r1, lsl #0x10
@@ -175,16 +175,16 @@ _020C9C9C:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020C9CE4:
-	bl sub_020C42A8
+	bl OS_Terminate
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C9CF0: .word 0x021CEC90
 _020C9CF4: .word 0x027FFFAA
-	arm_func_end sub_020C9A78
+	arm_func_end TPi_TpCallback
 
-	arm_func_start sub_020C9CF8
-sub_020C9CF8: ; 0x020C9CF8
+	arm_func_start TP_Init
+TP_Init: ; 0x020C9CF8
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _020C9D68 ; =0x021CEC90
 	ldrh r1, [r0]
@@ -192,7 +192,7 @@ sub_020C9CF8: ; 0x020C9CF8
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r1, #1
 	strh r1, [r0]
-	bl sub_020C6350
+	bl PXI_Init
 	ldr r0, _020C9D68 ; =0x021CEC90
 	mov r1, #0
 	strh r1, [r0, #0x10]
@@ -207,20 +207,20 @@ sub_020C9CF8: ; 0x020C9CF8
 _020C9D44:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	beq _020C9D44
-	ldr r1, _020C9D6C ; =sub_020C9A78
+	ldr r1, _020C9D6C ; =TPi_TpCallback
 	mov r0, #6
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C9D68: .word 0x021CEC90
-_020C9D6C: .word sub_020C9A78
-	arm_func_end sub_020C9CF8
+_020C9D6C: .word TPi_TpCallback
+	arm_func_end TP_Init
 
-	arm_func_start sub_020C9D70
-sub_020C9D70: ; 0x020C9D70
+	arm_func_start TP_GetUserInfo
+TP_GetUserInfo: ; 0x020C9D70
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x14
 	ldr ip, _020C9E00 ; =0x027FFC80
@@ -243,7 +243,7 @@ sub_020C9D70: ; 0x020C9D70
 	str r6, [sp, #0xc]
 	mov r0, r4
 	str ip, [sp, #0x10]
-	bl sub_020CA2FC
+	bl TP_CalcCalibrateParam
 	cmp r0, #0
 	beq _020C9DF4
 _020C9DD4:
@@ -261,10 +261,10 @@ _020C9DF4:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _020C9E00: .word 0x027FFC80
-	arm_func_end sub_020C9D70
+	arm_func_end TP_GetUserInfo
 
-	arm_func_start sub_020C9E04
-sub_020C9E04: ; 0x020C9E04
+	arm_func_start TP_SetCalibrateParam
+TP_SetCalibrateParam: ; 0x020C9E04
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _020C9E20
@@ -273,7 +273,7 @@ sub_020C9E04: ; 0x020C9E04
 	strh r1, [r0, #0x34]
 	ldmia sp!, {r4, pc}
 _020C9E20:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldrsh r2, [r4, #4]
 	cmp r2, #0
 	beq _020C9E84
@@ -338,7 +338,7 @@ _020C9EF8:
 	str r2, [r1, #0x2c]
 	str r2, [r1, #0x30]
 _020C9F0C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020C9F20 ; =0x021CEC90
 	mov r1, #1
 	strh r1, [r0, #0x34]
@@ -347,24 +347,24 @@ _020C9F0C:
 _020C9F20: .word 0x021CEC90
 _020C9F24: .word 0x04000280
 _020C9F28: .word 0x040002A0
-	arm_func_end sub_020C9E04
+	arm_func_end TP_SetCalibrateParam
 
-	arm_func_start sub_020C9F2C
-sub_020C9F2C: ; 0x020C9F2C
+	arm_func_start TP_RequestSamplingAsync
+TP_RequestSamplingAsync: ; 0x020C9F2C
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	mov r0, #6
 	mov r1, #0x3000000
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movge r0, #1
 	movlt r0, #0
 	cmp r0, #0
 	bne _020C9F94
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020C9FBC ; =0x021CEC90
 	ldrh r1, [r0, #0x38]
 	orr r1, r1, #1
@@ -386,18 +386,18 @@ _020C9F94:
 	ldrh r2, [r1, #0x38]
 	bic r2, r2, #1
 	strh r2, [r1, #0x38]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C9FBC: .word 0x021CEC90
-	arm_func_end sub_020C9F2C
+	arm_func_end TP_RequestSamplingAsync
 
-	arm_func_start sub_020C9FC0
-sub_020C9FC0: ; 0x020C9FC0
+	arm_func_start TP_WaitRawResult
+TP_WaitRawResult: ; 0x020C9FC0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r0, #1
-	bl sub_020CA60C
+	bl TP_WaitBusy
 	ldr r1, _020CA00C ; =0x021CEC90
 	ldrh r0, [r1, #0x38]
 	tst r0, #1
@@ -415,10 +415,10 @@ sub_020C9FC0: ; 0x020C9FC0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020CA00C: .word 0x021CEC90
-	arm_func_end sub_020C9FC0
+	arm_func_end TP_WaitRawResult
 
-	arm_func_start sub_020CA010
-sub_020CA010: ; 0x020CA010
+	arm_func_start TP_RequestAutoSamplingStartAsync
+TP_RequestAutoSamplingStartAsync: ; 0x020CA010
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr ip, _020CA10C ; =0x021CEC90
 	mov lr, #0
@@ -439,14 +439,14 @@ _020CA040:
 	cmp lr, r3
 	blo _020CA040
 _020CA058:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	and r1, r5, #0xff
 	orr r1, r1, #0x100
 	mov r5, r0
 	orr r1, r1, #0x2000000
 	mov r0, #6
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	blt _020CA0A4
@@ -454,7 +454,7 @@ _020CA058:
 	orr r1, r1, #0x1000000
 	mov r0, #6
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	movge r0, #1
@@ -462,7 +462,7 @@ _020CA0A4:
 	tst r0, #0xff
 	bne _020CA0E4
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CA10C ; =0x021CEC90
 	ldrh r1, [r0, #0x38]
 	orr r1, r1, #2
@@ -484,28 +484,28 @@ _020CA0E4:
 	ldrh r2, [r1, #0x38]
 	bic r2, r2, #2
 	strh r2, [r1, #0x38]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CA10C: .word 0x021CEC90
-	arm_func_end sub_020CA010
+	arm_func_end TP_RequestAutoSamplingStartAsync
 
-	arm_func_start sub_020CA110
-sub_020CA110: ; 0x020CA110
+	arm_func_start TP_RequestAutoSamplingStopAsync
+TP_RequestAutoSamplingStopAsync: ; 0x020CA110
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
 	ldr r1, _020CA1A0 ; =0x03000200
 	mov r0, #6
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movge r0, #1
 	movlt r0, #0
 	cmp r0, #0
 	bne _020CA178
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CA1A4 ; =0x021CEC90
 	ldrh r1, [r0, #0x38]
 	orr r1, r1, #4
@@ -527,15 +527,15 @@ _020CA178:
 	ldrh r2, [r1, #0x38]
 	bic r2, r2, #4
 	strh r2, [r1, #0x38]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020CA1A0: .word 0x03000200
 _020CA1A4: .word 0x021CEC90
-	arm_func_end sub_020CA110
+	arm_func_end TP_RequestAutoSamplingStopAsync
 
-	arm_func_start sub_020CA1A8
-sub_020CA1A8: ; 0x020CA1A8
+	arm_func_start TP_GetLatestRawPointInAuto
+TP_GetLatestRawPointInAuto: ; 0x020CA1A8
 	stmfd sp!, {r4, lr}
 	ldr ip, _020CA2E8 ; =0x021CEC90
 	mov r1, #3
@@ -624,19 +624,19 @@ _020CA2C4:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020CA2E8: .word 0x021CEC90
-	arm_func_end sub_020CA1A8
+	arm_func_end TP_GetLatestRawPointInAuto
 
-	arm_func_start sub_020CA2EC
-sub_020CA2EC: ; 0x020CA2EC
+	arm_func_start TP_GetLatestIndexInAuto
+TP_GetLatestIndexInAuto: ; 0x020CA2EC
 	ldr r0, _020CA2F8 ; =0x021CEC90
 	ldrh r0, [r0, #0x10]
 	bx lr
 	; .align 2, 0
 _020CA2F8: .word 0x021CEC90
-	arm_func_end sub_020CA2EC
+	arm_func_end TP_GetLatestIndexInAuto
 
-	arm_func_start sub_020CA2FC
-sub_020CA2FC: ; 0x020CA2FC
+	arm_func_start TP_CalcCalibrateParam
+TP_CalcCalibrateParam: ; 0x020CA2FC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sb, r1
 	mov r8, r2
@@ -665,7 +665,7 @@ sub_020CA2FC: ; 0x020CA2FC
 	cmpne r8, r3
 	moveq r0, #1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldrh lr, [sp, #0x2c]
 	ldrh ip, [sp, #0x34]
 	ldr r3, _020CA4E0 ; =0x04000280
@@ -706,7 +706,7 @@ _020CA3B8:
 	cmp r2, r1
 	bge _020CA414
 _020CA408:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020CA414:
@@ -725,7 +725,7 @@ _020CA414:
 	cmp r2, r1
 	bge _020CA458
 _020CA44C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020CA458:
@@ -738,7 +738,7 @@ _020CA464:
 	bne _020CA464
 	ldr r1, _020CA4E4 ; =0x040002A0
 	ldr r7, [r1, #0]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r7, #0x8000
 	bge _020CA494
 	mov r1, #0x8000
@@ -771,10 +771,10 @@ _020CA4D4:
 	; .align 2, 0
 _020CA4E0: .word 0x04000280
 _020CA4E4: .word 0x040002A0
-	arm_func_end sub_020CA2FC
+	arm_func_end TP_CalcCalibrateParam
 
-	arm_func_start sub_020CA4E8
-sub_020CA4E8: ; 0x020CA4E8
+	arm_func_start TP_GetCalibratedPoint
+TP_GetCalibratedPoint: ; 0x020CA4E8
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _020CA604 ; =0x021CEC90
 	ldrh r2, [r2, #0x34]
@@ -852,10 +852,10 @@ _020CA5A8:
 	; .align 2, 0
 _020CA604: .word 0x021CEC90
 _020CA608: .word 0x021CECAC
-	arm_func_end sub_020CA4E8
+	arm_func_end TP_GetCalibratedPoint
 
-	arm_func_start sub_020CA60C
-sub_020CA60C: ; 0x020CA60C
+	arm_func_start TP_WaitBusy
+TP_WaitBusy: ; 0x020CA60C
 	ldr r1, _020CA620 ; =0x021CEC90
 _020CA610:
 	ldrh r2, [r1, #0x3a]
@@ -864,17 +864,17 @@ _020CA610:
 	bx lr
 	; .align 2, 0
 _020CA620: .word 0x021CEC90
-	arm_func_end sub_020CA60C
+	arm_func_end TP_WaitBusy
 
-	arm_func_start sub_020CA624
-sub_020CA624: ; 0x020CA624
+	arm_func_start TP_CheckError
+TP_CheckError: ; 0x020CA624
 	ldr r1, _020CA634 ; =0x021CEC90
 	ldrh r1, [r1, #0x38]
 	and r0, r1, r0
 	bx lr
 	; .align 2, 0
 _020CA634: .word 0x021CEC90
-	arm_func_end sub_020CA624
+	arm_func_end TP_CheckError
 
 	.bss
 

@@ -30,8 +30,8 @@
 .public sub_0201FAB4
 .public sub_02021F9C
 .public sub_02022974
-.public sub_020E17B4
-.public sub_020E18B0
+.public _f_itof
+.public _f_mul
 .public ov12_0221FDD4
 .public ov12_0221FDE4
 .public ov12_022201CC

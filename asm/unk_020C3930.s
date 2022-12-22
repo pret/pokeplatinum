@@ -6,11 +6,11 @@
 	.text
 
 
-	arm_func_start sub_020C3930
-sub_020C3930: ; 0x020C3930
+	arm_func_start OSi_SetTimer
+OSi_SetTimer: ; 0x020C3930
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r3, _020C39AC ; =0x04000106
 	mov r2, #0
 	strh r2, [r3]
@@ -18,9 +18,9 @@ sub_020C3930: ; 0x020C3930
 	ldr r3, [r4, #0x10]
 	subs r5, ip, r0
 	sbc r4, r3, r1
-	ldr r1, _020C39B0 ; =sub_020C3C3C
+	ldr r1, _020C39B0 ; =OSi_AlarmHandler
 	mov r0, #1
-	bl sub_020C15A8
+	bl OSi_EnterTimerCallback
 	subs r0, r5, #0
 	mov r3, #0
 	sbcs r0, r4, #0
@@ -38,17 +38,17 @@ _020C3990:
 	strh r3, [r2]
 	mov r0, #0x10
 	strh r1, [r2, #2]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C39AC: .word 0x04000106
-_020C39B0: .word sub_020C3C3C
+_020C39B0: .word OSi_AlarmHandler
 _020C39B4: .word 0x0000FFFE
 _020C39B8: .word 0x04000104
-	arm_func_end sub_020C3930
+	arm_func_end OSi_SetTimer
 
-	arm_func_start sub_020C39BC
-sub_020C39BC: ; 0x020C39BC
+	arm_func_start OS_InitAlarm
+OS_InitAlarm: ; 0x020C39BC
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C39F8 ; =0x021CCFC4
 	ldrh r0, [r1]
@@ -56,37 +56,37 @@ sub_020C39BC: ; 0x020C39BC
 	ldmneia sp!, {r3, pc}
 	mov r0, #1
 	strh r0, [r1]
-	bl sub_020C3774
+	bl OSi_SetTimerReserved
 	ldr r1, _020C39F8 ; =0x021CCFC4
 	mov r2, #0
 	str r2, [r1, #4]
 	mov r0, #0x10
 	str r2, [r1, #8]
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C39F8: .word 0x021CCFC4
-	arm_func_end sub_020C39BC
+	arm_func_end OS_InitAlarm
 
-	arm_func_start sub_020C39FC
-sub_020C39FC: ; 0x020C39FC
+	arm_func_start OS_IsAlarmAvailable
+OS_IsAlarmAvailable: ; 0x020C39FC
 	ldr r0, _020C3A08 ; =0x021CCFC4
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
 _020C3A08: .word 0x021CCFC4
-	arm_func_end sub_020C39FC
+	arm_func_end OS_IsAlarmAvailable
 
-	arm_func_start sub_020C3A0C
-sub_020C3A0C: ; 0x020C3A0C
+	arm_func_start OS_CreateAlarm
+OS_CreateAlarm: ; 0x020C3A0C
 	mov r1, #0
 	str r1, [r0, #0]
 	str r1, [r0, #8]
 	bx lr
-	arm_func_end sub_020C3A0C
+	arm_func_end OS_CreateAlarm
 
-	arm_func_start sub_020C3A1C
-sub_020C3A1C: ; 0x020C3A1C
+	arm_func_start OSi_InsertAlarm
+OSi_InsertAlarm: ; 0x020C3A1C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r8, r0
 	ldr r0, [r8, #0x20]
@@ -96,7 +96,7 @@ sub_020C3A1C: ; 0x020C3A1C
 	mov r6, r2
 	cmpeq r3, #0
 	beq _020C3A90
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r6, [r8, #0x28]
 	ldr r7, [r8, #0x24]
 	cmp r6, r1
@@ -108,7 +108,7 @@ sub_020C3A1C: ; 0x020C3A1C
 	mov r2, r5
 	mov r3, r4
 	sbc r1, r1, r6
-	bl sub_020E1ED4
+	bl _ull_div
 	adds r2, r0, #1
 	adc r0, r1, #0
 	umull r3, r1, r5, r2
@@ -144,7 +144,7 @@ _020C3AB0:
 	ldr r1, _020C3B44 ; =0x021CCFC4
 	mov r0, r8
 	str r8, [r1, #4]
-	bl sub_020C3930
+	bl OSi_SetTimer
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020C3B00:
 	ldr r5, [r5, #0x18]
@@ -163,14 +163,14 @@ _020C3B0C:
 	str r8, [r1, #8]
 	mov r0, r8
 	str r8, [r1, #4]
-	bl sub_020C3930
+	bl OSi_SetTimer
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C3B44: .word 0x021CCFC4
-	arm_func_end sub_020C3A1C
+	arm_func_end OSi_InsertAlarm
 
-	arm_func_start sub_020C3B48
-sub_020C3B48: ; 0x020C3B48
+	arm_func_start OS_SetAlarm
+OS_SetAlarm: ; 0x020C3B48
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r6, r0
 	mov r5, r1
@@ -181,9 +181,9 @@ sub_020C3B48: ; 0x020C3B48
 	cmp r0, #0
 	beq _020C3B70
 _020C3B6C:
-	bl sub_020C42A8
+	bl OS_Terminate
 _020C3B70:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r1, #0
 	str r1, [r6, #0x1c]
 	str r1, [r6, #0x20]
@@ -191,27 +191,27 @@ _020C3B70:
 	ldr r1, [sp, #0x18]
 	mov r7, r0
 	str r1, [r6, #4]
-	bl sub_020C3880
+	bl OS_GetTick
 	adds r3, r5, r0
 	adc r2, r4, r1
 	mov r0, r6
 	mov r1, r3
-	bl sub_020C3A1C
+	bl OSi_InsertAlarm
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020C3B48
+	arm_func_end OS_SetAlarm
 
-	arm_func_start sub_020C3BB4
-sub_020C3BB4: ; 0x020C3BB4
+	arm_func_start OS_CancelAlarm
+OS_CancelAlarm: ; 0x020C3BB4
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r5, #0]
 	mov r4, r0
 	cmp r1, #0
 	bne _020C3BD8
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 _020C3BD8:
 	ldr r0, [r5, #0x18]
@@ -231,41 +231,41 @@ _020C3BF8:
 	cmp r0, #0
 	str r0, [r1, #4]
 	beq _020C3C1C
-	bl sub_020C3930
+	bl OSi_SetTimer
 _020C3C1C:
 	mov r1, #0
 	str r1, [r5, #0]
 	str r1, [r5, #0x1c]
 	mov r0, r4
 	str r1, [r5, #0x20]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C3C38: .word 0x021CCFC4
-	arm_func_end sub_020C3BB4
+	arm_func_end OS_CancelAlarm
 
-	arm_func_start sub_020C3C3C
-sub_020C3C3C: ; 0x020C3C3C
+	arm_func_start OSi_AlarmHandler
+OSi_AlarmHandler: ; 0x020C3C3C
 	stmfd sp!, {r0, lr}
-	bl sub_020C3C4C
+	bl OSi_ArrangeTimer
 	ldmia sp!, {r0, lr}
 	bx lr
-	arm_func_end sub_020C3C3C
+	arm_func_end OSi_AlarmHandler
 
-	arm_func_start sub_020C3C4C
-sub_020C3C4C: ; 0x020C3C4C
+	arm_func_start OSi_ArrangeTimer
+OSi_ArrangeTimer: ; 0x020C3C4C
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r1, _020C3D30 ; =0x04000106
 	mov r2, #0
 	mov r0, #0x10
 	strh r2, [r1]
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	ldr r0, _020C3D34 ; =0x027E0000
 	add r0, r0, #0x3000
 	ldr r1, [r0, #0xff8]
 	orr r1, r1, #0x10
 	str r1, [r0, #0xff8]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _020C3D38 ; =0x021CCFC4
 	ldr r4, [r2, #4]
 	cmp r4, #0
@@ -276,7 +276,7 @@ sub_020C3C4C: ; 0x020C3C4C
 	cmpeq r0, ip
 	bhs _020C3CAC
 	mov r0, r4
-	bl sub_020C3930
+	bl OSi_SetTimer
 	ldmia sp!, {r3, r4, r5, pc}
 _020C3CAC:
 	ldr r1, [r4, #0x18]
@@ -306,19 +306,19 @@ _020C3CF0:
 	mov r0, r4
 	mov r2, r1
 	str r5, [r4, #0]
-	bl sub_020C3A1C
+	bl OSi_InsertAlarm
 _020C3D18:
 	ldr r0, _020C3D38 ; =0x021CCFC4
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	bl sub_020C3930
+	bl OSi_SetTimer
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C3D30: .word 0x04000106
 _020C3D34: .word 0x027E0000
 _020C3D38: .word 0x021CCFC4
-	arm_func_end sub_020C3C4C
+	arm_func_end OSi_ArrangeTimer
 
 	.bss
 

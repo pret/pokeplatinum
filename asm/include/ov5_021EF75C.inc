@@ -10,10 +10,10 @@
 .public sub_0201CBB0
 .public sub_0201CBCC
 .public sub_02022974
-.public sub_020B3C0C
-.public sub_020B3C1C
-.public sub_020BFD2C
-.public sub_020D7510
+.public NNS_G3dGetMdlSet
+.public NNS_G3dGetTex
+.public G3X_SetEdgeColorTable
+.public sprintf
 .public ov5_021D3A50
 .public ov5_021D3F84
 .public ov5_021D56BC

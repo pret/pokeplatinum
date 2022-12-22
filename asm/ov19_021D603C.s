@@ -182,13 +182,13 @@ ov19_021D6164: ; 0x021D6164
 	ldr r0, [r3, #0x10]
 	sub r0, r2, r0
 	ldr r2, [r3, #0xc]
-	ldr r3, _021D6178 ; =sub_020BDA20
+	ldr r3, _021D6178 ; =FX_Atan2Idx
 	sub r1, r1, r2
 	lsl r0, r0, #0xc
 	lsl r1, r1, #0xc
 	bx r3
 	nop
-_021D6178: .word sub_020BDA20
+_021D6178: .word FX_Atan2Idx
 	thumb_func_end ov19_021D6164
 
 	thumb_func_start ov19_021D617C

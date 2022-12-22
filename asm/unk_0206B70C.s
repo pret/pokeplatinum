@@ -26,7 +26,7 @@ sub_0206B70C: ; 0x0206B70C
 	add r0, r5, #0
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp]
 	ldr r0, [r0, #0x3c]
 	bl sub_0205EABC
@@ -100,7 +100,7 @@ _0206B7B2:
 	ldr r0, [r0, #0]
 	mov r1, #6
 	add r0, r0, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r6, #0
 	add r4, r5, #0
 _0206B7DE:
@@ -122,7 +122,7 @@ _0206B7FA:
 	strh r0, [r4, #0x28]
 	add r0, r1, #5
 	mov r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r6, #1
 	add r4, #0xc
 	cmp r6, #5
@@ -189,10 +189,10 @@ sub_0206B878: ; 0x0206B878
 	bl sub_020507E4
 	str r0, [sp]
 	add r0, sp, #0x28
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0x28
 	add r1, r4, #0
-	bl sub_020C8080
+	bl FS_OpenFile
 	cmp r0, #0
 	bne _0206B8A4
 	bl sub_02022974
@@ -202,7 +202,7 @@ _0206B8A4:
 	add r0, sp, #0x28
 	add r1, sp, #0x24
 	mov r2, #4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	cmp r0, #0
 	bge _0206B8B6
 	bl sub_02022974
@@ -213,7 +213,7 @@ _0206B8B6:
 	mov r1, #0
 	mov r2, #4
 	add r6, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0x24]
 	ldr r0, _0206B9D4 ; =0x0000013A
 	mov r4, #0
@@ -242,7 +242,7 @@ _0206B8F8:
 	add r0, sp, #0x28
 	add r1, r6, #0
 	mov r2, #4
-	bl sub_020C81D4
+	bl FS_ReadFile
 	ldrb r0, [r6]
 	cmp r0, #1
 	beq _0206B90E
@@ -343,7 +343,7 @@ _0206B9BA:
 	blt _0206B8F8
 _0206B9C2:
 	add r0, sp, #0x28
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add r0, r6, #0
 	bl sub_020181C4
 	add sp, #0x70

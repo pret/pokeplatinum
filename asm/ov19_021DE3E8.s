@@ -107,12 +107,12 @@ ov19_021DE450: ; 0x021DE450
 	add r5, r6, #0
 _021DE4AA:
 	add r0, sp, #0x10
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	ldr r0, [sp, #0xc]
 	ldr r1, [r4, #0]
 	mov r2, #1
 	add r3, sp, #0x10
-	bl sub_020A8224
+	bl NNS_G2dLoadImage1DMapping
 	mov r0, #0
 	str r0, [sp]
 	mov r0, #1
@@ -621,13 +621,13 @@ ov19_021DE858: ; 0x021DE858
 	ldr r0, [r4, #8]
 	sub r0, r1, r0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x20]
 	ldr r1, [r4, #0x18]
 	ldr r0, [r4, #0xc]
 	sub r0, r1, r0
 	add r1, r6, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x24]
 	ldr r0, [sp, #0x18]
 	mov r2, #0

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020E18B0
-sub_020E18B0: ; 0x020E18B0
+	arm_func_start _f_mul
+_f_mul: ; 0x020E18B0
 	eor r2, r0, r1
 	and r2, r2, #0x80000000
 	mov ip, #0xff
@@ -44,27 +44,27 @@ _020E192C:
 	cmp r3, #0
 	beq _020E1980
 	movs r0, r0, lsl #1
-	bne sub_020E1A54
+	bne __f_result_x_NaN
 	mov ip, r1, lsr #0x17
 	mov r1, r1, lsl #9
 	ands ip, ip, #0xff
 	beq _020E1960
 	cmp ip, #0xff
-	blt sub_020E1A48
+	blt __f_result_INF
 	cmp r1, #0
-	beq sub_020E1A48
-	b sub_020E1A54
+	beq __f_result_INF
+	b __f_result_x_NaN
 _020E1960:
 	cmp r1, #0
-	beq sub_020E1A5C
-	b sub_020E1A48
+	beq __f_result_invalid
+	b __f_result_INF
 _020E196C:
 	cmp ip, #0
 	beq _020E19DC
 _020E1974:
 	movs r1, r1, lsl #1
-	bne sub_020E1A54
-	b sub_020E1A48
+	bne __f_result_x_NaN
+	b __f_result_INF
 _020E1980:
 	movs r0, r0, lsl #1
 	beq _020E19B8
@@ -88,8 +88,8 @@ _020E19B8:
 	cmp ip, #0xff
 	blt _020E1A88
 	cmp r1, #0
-	beq sub_020E1A5C
-	b sub_020E1A54
+	beq __f_result_invalid
+	b __f_result_x_NaN
 _020E19DC:
 	movs r1, r1, lsl #1
 	beq _020E1A88
@@ -120,23 +120,23 @@ _020E19F8:
 _020E1A40:
 	mov r0, r0, lsl #1
 	b _020E1A70
-	arm_func_end sub_020E18B0
+	arm_func_end _f_mul
 
-	arm_func_start sub_020E1A48
-sub_020E1A48: ; 0x020E1A48
+	arm_func_start __f_result_INF
+__f_result_INF: ; 0x020E1A48
 	mov r0, #-0x1000000
 	orr r0, r2, r0, lsr #1
 	bx lr
-	arm_func_end sub_020E1A48
+	arm_func_end __f_result_INF
 
-	arm_func_start sub_020E1A54
-sub_020E1A54: ; 0x020E1A54
+	arm_func_start __f_result_x_NaN
+__f_result_x_NaN: ; 0x020E1A54
 	mvn r0, #0x80000000
 	bx lr
-	arm_func_end sub_020E1A54
+	arm_func_end __f_result_x_NaN
 
-	arm_func_start sub_020E1A5C
-sub_020E1A5C: ; 0x020E1A5C
+	arm_func_start __f_result_invalid
+__f_result_invalid: ; 0x020E1A5C
 	mvn r0, #0x80000000
 	bx lr
 _020E1A64:
@@ -154,4 +154,4 @@ _020E1A80:
 _020E1A88:
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020E1A5C
+	arm_func_end __f_result_invalid

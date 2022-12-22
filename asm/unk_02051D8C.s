@@ -19,7 +19,7 @@ sub_02051D8C: ; 0x02051D8C
 	mov r1, #0
 	lsl r2, r2, #2
 	add r7, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0x63
 	str r4, [r7, #0]
 	mov r0, #0
@@ -35,7 +35,7 @@ _02051DBC:
 	add r1, r4, #0
 	mov r2, #0x34
 	str r0, [r6, #0x18]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, [sp]
 	add r6, r6, #4
 	add r0, r0, #1
@@ -196,7 +196,7 @@ _02051F0C:
 	add r0, r7, r0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r7, #0
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}

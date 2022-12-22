@@ -1,4 +1,4 @@
-.public sub_020BD140
+.public FX_ModS32
 .public ov18_0222C220
 .public ov18_0222C2B4
 .public ov18_0222C348

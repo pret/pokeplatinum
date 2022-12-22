@@ -22,9 +22,9 @@ sub_02022844: ; 0x02022844
 	strh r0, [r1]
 	ldr r1, _02022874 ; =sub_02022878
 	mov r0, #0x40
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #0x40
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	pop {r3, pc}
 	; .align 2, 0
 _0202286C: .word 0x021C077C
@@ -59,7 +59,7 @@ _0202289C:
 	ldr r2, [r3, r1]
 	orr r2, r0
 	str r2, [r3, r1]
-	ldr r3, _020228C0 ; =sub_020C144C
+	ldr r3, _020228C0 ; =OS_SetIrqFunction
 	ldr r1, _020228C4 ; =sub_02022878
 	bx r3
 	nop
@@ -67,7 +67,7 @@ _020228B0: .word 0x021C077C
 _020228B4: .word 0x0400010E
 _020228B8: .word 0x027E0000
 _020228BC: .word 0x00003FF8
-_020228C0: .word sub_020C144C
+_020228C0: .word OS_SetIrqFunction
 _020228C4: .word sub_02022878
 	thumb_func_end sub_02022878
 
@@ -75,7 +75,7 @@ _020228C4: .word sub_02022878
 sub_020228C8: ; 0x020228C8
 	push {r4, r5, lr}
 	sub sp, #0xc
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _0202292C ; =0x0400010C
 	add r3, sp, #0
 	ldrh r1, [r1]
@@ -107,7 +107,7 @@ sub_020228C8: ; 0x020228C8
 	str r2, [sp, #4]
 	str r3, [sp, #8]
 _0202290C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r2, [sp, #4]
 	ldr r1, [sp, #8]
 	lsr r0, r2, #0x10
@@ -146,7 +146,7 @@ sub_02022944: ; 0x02022944
 	ldr r2, _02022958 ; =0x000082EA
 	lsl r0, r0, #6
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	pop {r3, pc}
 	; .align 2, 0
 _02022958: .word 0x000082EA
@@ -161,7 +161,7 @@ sub_0202295C: ; 0x0202295C
 	ldr r2, _02022970 ; =0x01FF6210
 	lsl r0, r0, #6
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	pop {r3, pc}
 	; .align 2, 0
 _02022970: .word 0x01FF6210

@@ -143,7 +143,7 @@ ov4_022069B8: ; 0x022069B8
 	mov r6, #0
 	ldr r5, [r4, #0x64]
 	add r0, r5, #0xe0
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldrh r0, [r7, #0x10]
 	ldrh r1, [r7, #0x12]
 	ldr r2, [r7, #0x14]
@@ -158,7 +158,7 @@ ov4_022069B8: ; 0x022069B8
 	mov r6, r0
 _02206A04:
 	add r0, r5, #0xe0
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	cmp r6, #0
 	beq _02206A28
 	ldrsh r1, [r4, #0x70]

@@ -1,5 +1,5 @@
-.public sub_020C3FA0
-.public sub_020D50B8
+.public OS_GetMacAddress
+.public memcpy
 .public ov4_021D76E8
 .public ov4_02213898
 .public ov60_0221FC84

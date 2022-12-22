@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D4F34
-sub_020D4F34: ; 0x020D4F34
+	arm_func_start mbtowc
+mbtowc: ; 0x020D4F34
 	stmfd sp!, {r3, lr}
 	ldr r3, _020D4F4C ; =0x021016D0
 	ldr r3, [r3, #8]
@@ -16,10 +16,10 @@ sub_020D4F34: ; 0x020D4F34
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020D4F4C: .word 0x021016D0
-	arm_func_end sub_020D4F34
+	arm_func_end mbtowc
 
-	arm_func_start sub_020D4F50
-sub_020D4F50: ; 0x020D4F50
+	arm_func_start __mbtowc_noconv
+__mbtowc_noconv: ; 0x020D4F50
 	cmp r1, #0
 	moveq r0, #0
 	bxeq lr
@@ -34,19 +34,19 @@ sub_020D4F50: ; 0x020D4F50
 	moveq r0, #0
 	movne r0, #1
 	bx lr
-	arm_func_end sub_020D4F50
+	arm_func_end __mbtowc_noconv
 
-	arm_func_start sub_020D4F88
-sub_020D4F88: ; 0x020D4F88
+	arm_func_start __wctomb_noconv
+__wctomb_noconv: ; 0x020D4F88
 	cmp r0, #0
 	moveq r0, #0
 	strneb r1, [r0]
 	movne r0, #1
 	bx lr
-	arm_func_end sub_020D4F88
+	arm_func_end __wctomb_noconv
 
-	arm_func_start sub_020D4F9C
-sub_020D4F9C: ; 0x020D4F9C
+	arm_func_start wctomb
+wctomb: ; 0x020D4F9C
 	stmfd sp!, {r3, lr}
 	ldr r2, _020D4FB4 ; =0x021016D0
 	ldr r2, [r2, #8]
@@ -55,16 +55,16 @@ sub_020D4F9C: ; 0x020D4F9C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020D4FB4: .word 0x021016D0
-	arm_func_end sub_020D4F9C
+	arm_func_end wctomb
 
-	arm_func_start sub_020D4FB8
-sub_020D4FB8: ; 0x020D4FB8
+	arm_func_start mbstowcs
+mbstowcs: ; 0x020D4FB8
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r1
 	mov r8, r0
 	mov r0, r7
 	mov r6, r2
-	bl sub_020D8B60
+	bl strlen
 	mov r5, r0
 	cmp r8, #0
 	mov r4, #0
@@ -78,7 +78,7 @@ _020D4FE8:
 	mov r0, r8
 	mov r1, r7
 	mov r2, r5
-	bl sub_020D4F34
+	bl mbtowc
 	cmp r0, #0
 	add r8, r8, #2
 	addgt r7, r7, r0
@@ -97,10 +97,10 @@ _020D502C:
 _020D5038:
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020D4FB8
+	arm_func_end mbstowcs
 
-	arm_func_start sub_020D5040
-sub_020D5040: ; 0x020D5040
+	arm_func_start wcstombs
+wcstombs: ; 0x020D5040
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	movs r4, r0
 	mov sb, r1
@@ -118,7 +118,7 @@ _020D5064:
 	beq _020D50B0
 	mov r0, r6
 	add sb, sb, #2
-	bl sub_020D4F9C
+	bl wctomb
 	mov r5, r0
 	add r0, r7, r5
 	cmp r0, r8
@@ -126,11 +126,11 @@ _020D5064:
 	mov r1, r6
 	mov r2, r5
 	add r0, r4, r7
-	bl sub_020D8C44
+	bl strncpy
 	add r7, r7, r5
 	cmp r7, r8
 	bls _020D5064
 _020D50B0:
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020D5040
+	arm_func_end wcstombs

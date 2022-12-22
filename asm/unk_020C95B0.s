@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C95B0
-sub_020C95B0: ; 0x020C95B0
+	arm_func_start HmacCalc
+HmacCalc: ; 0x020C95B0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0xc0
 	ldr r5, [sp, #0xe0]
@@ -127,4 +127,4 @@ _020C971C:
 	add sp, sp, #0xc0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-	arm_func_end sub_020C95B0
+	arm_func_end HmacCalc

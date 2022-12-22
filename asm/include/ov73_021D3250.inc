@@ -46,9 +46,9 @@
 .public sub_020237BC
 .public sub_02023C5C
 .public sub_020241F0
-.public sub_020BF55C
-.public sub_020C00B4
-.public sub_020D5124
+.public G2x_SetBlendAlpha_
+.public GX_LoadBGPltt
+.public memset
 .public ov73_021D3420
 .public ov73_021D342C
 .public ov73_021D35F4

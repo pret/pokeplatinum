@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020DE0A4
-sub_020DE0A4: ; 0x020DE0A4
+	arm_func_start frexp
+frexp: ; 0x020DE0A4
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, lr}
 	ldr r1, [sp, #0xc]
@@ -33,7 +33,7 @@ _020DE0EC:
 	ldr r0, [sp, #8]
 	ldr r1, [sp, #0xc]
 	ldr r3, _020DE154 ; =0x43500000
-	bl sub_020E0234
+	bl _d_mul
 	mvn r2, #0x35
 	str r0, [sp, #8]
 	str r1, [sp, #0xc]
@@ -59,4 +59,4 @@ _020DE150: .word 0x7FF00000
 _020DE154: .word 0x43500000
 _020DE158: .word 0x800FFFFF
 _020DE15C: .word 0xFFFFFC02
-	arm_func_end sub_020DE0A4
+	arm_func_end frexp

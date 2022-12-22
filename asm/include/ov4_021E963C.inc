@@ -1,8 +1,8 @@
-.public sub_020D50B8
-.public sub_020D5190
-.public sub_020D7510
-.public sub_020D8B60
-.public sub_020D8B7C
+.public memcpy
+.public memcmp
+.public sprintf
+.public strlen
+.public strcpy
 .public ov4_021E963C
 .public ov4_021E96B0
 .public ov4_021E97F8

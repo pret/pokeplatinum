@@ -65,8 +65,8 @@
 .public sub_0206A8A0
 .public sub_0206A8C4
 .public sub_0206AA30
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov23_022412F0
 .public ov23_02241364
 .public ov23_02241E6C

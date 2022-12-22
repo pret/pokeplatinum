@@ -21,8 +21,8 @@
 .public sub_0209B980
 .public sub_0209B988
 .public sub_0209BA80
-.public sub_020C3EE4
-.public sub_020C4CF4
+.public OS_ResetSystem
+.public MI_CpuFill8
 .public ov104_0222E278
 .public ov104_0222E330
 .public ov104_0222E924

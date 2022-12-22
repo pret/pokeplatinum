@@ -17,8 +17,8 @@
 .public sub_02022974
 .public sub_02099DA8
 .public sub_02099DD0
-.public sub_020C090C
-.public sub_020C2C54
+.public GXS_LoadBG3Char
+.public DC_FlushRange
 .public ov25_02254424
 .public ov25_02254664
 .public ov25_02254674

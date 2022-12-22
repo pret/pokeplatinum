@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A9778
-sub_020A9778: ; 0x020A9778
+	arm_func_start NNSi_G2dIdentity
+NNSi_G2dIdentity: ; 0x020A9778
 	stmfd sp!, {r4, lr}
 	ldr r0, _020A9800 ; =0x021C4AC8
 	ldr ip, [r0, #0xc]
@@ -51,10 +51,10 @@ _020A9808: .word 0x021C4C6C
 _020A980C: .word 0x021C4C58
 _020A9810: .word 0x021C4F58
 _020A9814: .word 0x021C4AD8
-	arm_func_end sub_020A9778
+	arm_func_end NNSi_G2dIdentity
 
-	arm_func_start sub_020A9818
-sub_020A9818: ; 0x020A9818
+	arm_func_start NNSi_G2dMCMStoreCurrentMtxToMtxCache
+NNSi_G2dMCMStoreCurrentMtxToMtxCache: ; 0x020A9818
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _020A993C ; =0x021C4AC8
 	ldr r1, _020A9940 ; =0x021C4B58
@@ -80,7 +80,7 @@ sub_020A9818: ; 0x020A9818
 	add r0, r0, r5, lsl #5
 	add r1, r0, #0x10
 	mvn r0, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _020A993C ; =0x021C4AC8
 	ldr r1, [r0, #4]
 	ldr ip, [r0, #0xc]
@@ -139,10 +139,10 @@ _020A994C: .word 0x021C4C68
 _020A9950: .word 0x02100EA4
 _020A9954: .word 0x021C4C6C
 _020A9958: .word 0x02100EAC
-	arm_func_end sub_020A9818
+	arm_func_end NNSi_G2dMCMStoreCurrentMtxToMtxCache
 
-	arm_func_start sub_020A995C
-sub_020A995C: ; 0x020A995C
+	arm_func_start RndCoreCBFuncBeforeCell_
+RndCoreCBFuncBeforeCell_: ; 0x020A995C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _020A9A58 ; =0x021C4AC8
 	mov r6, r0
@@ -216,10 +216,10 @@ _020A9A60: .word 0x021C4C68
 _020A9A64: .word 0x02100EA4
 _020A9A68: .word 0x021C4C6C
 _020A9A6C: .word 0x02100EAC
-	arm_func_end sub_020A995C
+	arm_func_end RndCoreCBFuncBeforeCell_
 
-	arm_func_start sub_020A9A70
-sub_020A9A70: ; 0x020A9A70
+	arm_func_start RndCoreCBFuncAfterCell_
+RndCoreCBFuncAfterCell_: ; 0x020A9A70
 	stmfd sp!, {r4, lr}
 	ldr r3, _020A9ADC ; =0x021C4AC8
 	mov r2, r1
@@ -255,10 +255,10 @@ _020A9AE4: .word 0x021C4C68
 _020A9AE8: .word 0x02100EA4
 _020A9AEC: .word 0x021C4C6C
 _020A9AF0: .word 0x02100EAC
-	arm_func_end sub_020A9A70
+	arm_func_end RndCoreCBFuncAfterCell_
 
-	arm_func_start sub_020A9AF4
-sub_020A9AF4: ; 0x020A9AF4
+	arm_func_start RndCoreCBFuncBeforeOBJ_
+RndCoreCBFuncBeforeOBJ_: ; 0x020A9AF4
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	ldr r3, _020A9CC8 ; =0x021C4AC8
@@ -266,14 +266,14 @@ sub_020A9AF4: ; 0x020A9AF4
 	ldr r0, [r3, #8]
 	mov r5, r1
 	mov r4, r2
-	bl sub_020AB02C
+	bl NNS_G2dGetRendererPaletteTbl
 	cmp r0, #0
 	beq _020A9B44
 	ldrh r1, [r6, #0x3c]
 	and r1, r1, #0xf000
 	mov r1, r1, lsl #4
 	mov r1, r1, lsr #0x10
-	bl sub_020A8180
+	bl NNS_G2dGetPaletteTableValue
 	ldr r1, [r6, #0x3c]
 	mov r0, r0, lsl #0x1c
 	bic r1, r1, #0xf000
@@ -390,10 +390,10 @@ _020A9CD0: .word 0x021C4C68
 _020A9CD4: .word 0x02100EA4
 _020A9CD8: .word 0x021C4C6C
 _020A9CDC: .word 0x02100EAC
-	arm_func_end sub_020A9AF4
+	arm_func_end RndCoreCBFuncBeforeOBJ_
 
-	arm_func_start sub_020A9CE0
-sub_020A9CE0: ; 0x020A9CE0
+	arm_func_start RndCoreCBFuncAfterOBJ_
+RndCoreCBFuncAfterOBJ_: ; 0x020A9CE0
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr lr, _020A9D5C ; =0x021C4AC8
 	mov ip, r1
@@ -433,10 +433,10 @@ _020A9D64: .word 0x021C4C68
 _020A9D68: .word 0x02100EA4
 _020A9D6C: .word 0x021C4C6C
 _020A9D70: .word 0x02100EAC
-	arm_func_end sub_020A9CE0
+	arm_func_end RndCoreCBFuncAfterOBJ_
 
-	arm_func_start sub_020A9D74
-sub_020A9D74: ; 0x020A9D74
+	arm_func_start DrawCellImpl_
+DrawCellImpl_: ; 0x020A9D74
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r7, _020AA190 ; =0x021C4AC8
 	mov r4, r0
@@ -473,7 +473,7 @@ _020A9DCC:
 	ldr r1, [r1, r0, lsl #2]
 	cmp r1, #0
 	bne _020A9E58
-	bl sub_020A9818
+	bl NNSi_G2dMCMStoreCurrentMtxToMtxCache
 	ldr r0, _020AA190 ; =0x021C4AC8
 	ldr r2, _020AA1A4 ; =0x021C4B58
 	ldr r0, [r0, #0xc]
@@ -488,7 +488,7 @@ _020A9DCC:
 	str r1, [r0, r2, lsl #2]
 	b _020A9E58
 _020A9E34:
-	bl sub_020A9818
+	bl NNSi_G2dMCMStoreCurrentMtxToMtxCache
 	ldr r0, _020AA190 ; =0x021C4AC8
 	ldr r1, _020AA1A4 ; =0x021C4B58
 	ldr r0, [r0, #0xc]
@@ -516,7 +516,7 @@ _020A9E58:
 	ldr r0, _020AA1B8 ; =0x02100EAC
 	str r3, [r2, #0x1c]
 _020A9E9C:
-	bl sub_020AC41C
+	bl NNS_G2dSetRndCoreCurrentMtx2D
 	ldr r1, _020AA194 ; =0x02100EA4
 	mvn r0, #0
 	ldr r1, [r1, #4]
@@ -526,17 +526,17 @@ _020A9E9C:
 	cmp r0, #0
 	mov r0, r4
 	beq _020A9ECC
-	bl sub_020AC6BC
+	bl NNS_G2dRndCoreDrawCellVramTransfer
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A9ECC:
-	bl sub_020AC608
+	bl NNS_G2dRndCoreDrawCell
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A9ED4:
 	ldr r2, [r7, #0xc]
 	ldr r1, _020AA1BC ; =0x021C4AD8
 	mov r0, fp
 	ldr r1, [r1, r2, lsl #2]
-	bl sub_020AC434
+	bl NNS_G2dSetRndCore3DSoftSpriteZvalue
 	mov r0, r7
 	ldr r1, [r0, #4]
 	cmp r1, #0
@@ -555,7 +555,7 @@ _020A9ED4:
 	ldr r0, _020AA1B8 ; =0x02100EAC
 	str r2, [r1, #0x1c]
 _020A9F2C:
-	bl sub_020AC3B4
+	bl NNS_G2dSetRndCoreCurrentMtx3D
 	ldr r1, _020AA194 ; =0x02100EA4
 	mvn r0, #0
 	ldr r1, [r1, #4]
@@ -565,10 +565,10 @@ _020A9F2C:
 	cmp r0, #0
 	mov r0, r4
 	beq _020A9F5C
-	bl sub_020AC6BC
+	bl NNS_G2dRndCoreDrawCellVramTransfer
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A9F5C:
-	bl sub_020AC608
+	bl NNS_G2dRndCoreDrawCell
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020A9F64:
 	cmp sb, #0
@@ -587,13 +587,13 @@ _020A9F78:
 	beq _020AA0E4
 	str sb, [sl, #0x74]
 	mov r0, sl
-	bl sub_020AC43C
+	bl NNS_G2dSetRndCoreSurface
 	ldr r1, [sb, #0x28]
 	ldr r2, [sb, #0x2c]
 	mov r0, sl
-	bl sub_020AC3A0
+	bl NNS_G2dSetRndCoreOamRegisterFunc
 	mov r0, sl
-	bl sub_020AC498
+	bl NNS_G2dRndCoreBeginRendering
 	ldr r0, [r7, #4]
 	mov r1, #0
 	cmp r0, #0
@@ -618,7 +618,7 @@ _020A9FE4:
 	ldr r1, [r0, #4]
 	cmp r1, #0
 	bne _020AA06C
-	bl sub_020A9818
+	bl NNSi_G2dMCMStoreCurrentMtxToMtxCache
 	ldr r0, _020AA19C ; =0x021C55C8
 	ldr r2, [r7, #0xc]
 	ldrh r1, [r0, #0x90]
@@ -633,7 +633,7 @@ _020A9FE4:
 	str r1, [r2, #4]
 	b _020AA06C
 _020AA04C:
-	bl sub_020A9818
+	bl NNSi_G2dMCMStoreCurrentMtxToMtxCache
 	ldr r0, [r7, #0xc]
 	mov r0, r0, lsl #0x10
 	mov r1, r0, lsr #0xd
@@ -657,7 +657,7 @@ _020AA06C:
 	ldr r2, [sl, #0x14]
 	str r2, [r6, #0x1c]
 _020AA0A4:
-	bl sub_020AC41C
+	bl NNS_G2dSetRndCoreCurrentMtx2D
 	ldr r1, [r6, #4]
 	cmp r1, r5
 	movne r0, #1
@@ -665,27 +665,27 @@ _020AA0A4:
 	cmp r0, #0
 	mov r0, r4
 	beq _020AA0CC
-	bl sub_020AC6BC
+	bl NNS_G2dRndCoreDrawCellVramTransfer
 	b _020AA0D0
 _020AA0CC:
-	bl sub_020AC608
+	bl NNS_G2dRndCoreDrawCell
 _020AA0D0:
 	ldr r1, [r7, #8]
 	mov r0, #0
 	str r0, [r1, #0x74]
-	bl sub_020AC5A4
+	bl NNS_G2dRndCoreEndRendering
 	b _020AA180
 _020AA0E4:
 	mov r0, sl
 	str sb, [sl, #0x74]
-	bl sub_020AC43C
+	bl NNS_G2dSetRndCoreSurface
 	mov r0, sl
-	bl sub_020AC498
+	bl NNS_G2dRndCoreBeginRendering
 	ldr r2, [r7, #0xc]
 	ldr r1, _020AA1BC ; =0x021C4AD8
 	mov r0, fp
 	ldr r1, [r1, r2, lsl #2]
-	bl sub_020AC434
+	bl NNS_G2dSetRndCore3DSoftSpriteZvalue
 	ldr r0, [r7, #4]
 	cmp r0, #0
 	ldreq r1, [r7, #0xc]
@@ -701,7 +701,7 @@ _020AA0E4:
 	ldr r1, [r3, #0x14]
 	str r1, [r6, #0x1c]
 _020AA144:
-	bl sub_020AC3B4
+	bl NNS_G2dSetRndCoreCurrentMtx3D
 	ldr r1, [r6, #4]
 	cmp r1, r5
 	movne r0, #1
@@ -709,15 +709,15 @@ _020AA144:
 	cmp r0, #0
 	mov r0, r4
 	beq _020AA16C
-	bl sub_020AC6BC
+	bl NNS_G2dRndCoreDrawCellVramTransfer
 	b _020AA170
 _020AA16C:
-	bl sub_020AC608
+	bl NNS_G2dRndCoreDrawCell
 _020AA170:
 	ldr r1, [r7, #8]
 	mov r0, #0
 	str r0, [r1, #0x74]
-	bl sub_020AC5A4
+	bl NNS_G2dRndCoreEndRendering
 _020AA180:
 	ldr sb, [sb, #0x30]
 	cmp sb, #0
@@ -737,10 +737,10 @@ _020AA1B4: .word 0x021C4C6C
 _020AA1B8: .word 0x02100EAC
 _020AA1BC: .word 0x021C4AD8
 _020AA1C0: .word 0x021C5658
-	arm_func_end sub_020A9D74
+	arm_func_end DrawCellImpl_
 
-	arm_func_start sub_020AA1C4
-sub_020AA1C4: ; 0x020AA1C4
+	arm_func_start DrawCellAnimationImpl_
+DrawCellAnimationImpl_: ; 0x020AA1C4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r0
 	ldrh r0, [r5, #0x4e]
@@ -757,17 +757,17 @@ sub_020AA1C4: ; 0x020AA1C4
 	ldr r1, _020AA314 ; =0x02100EA4
 	mov r0, r4
 	str r2, [r1, #4]
-	bl sub_020A9D74
+	bl DrawCellImpl_
 	ldr r0, _020AA314 ; =0x02100EA4
 	mvn r1, #0
 	str r1, [r0, #4]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020AA218:
 	mov r0, r4
-	bl sub_020A9D74
+	bl DrawCellImpl_
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020AA224:
-	bl sub_020AAA48
+	bl NNS_G2dPushMtx
 	ldrh r0, [r5, #0x4e]
 	tst r0, #8
 	beq _020AA274
@@ -775,18 +775,18 @@ _020AA224:
 	ldrsh r7, [r5, #0x4a]
 	ldr r0, [r0, #8]
 	ldrsh r6, [r5, #0x48]
-	bl sub_020AC444
+	bl NNS_G2dIsRndCoreFlipH
 	cmp r0, #0
 	ldr r0, _020AA318 ; =0x021C4AC8
 	rsbne r6, r6, #0
 	ldr r0, [r0, #8]
-	bl sub_020AC458
+	bl NNS_G2dIsRndCoreFlipV
 	cmp r0, #0
 	rsbne r7, r7, #0
 	mov r0, r6, lsl #0xc
 	mov r1, r7, lsl #0xc
 	mov r2, #0
-	bl sub_020AACBC
+	bl NNS_G2dTranslate
 _020AA274:
 	ldrh r0, [r5, #0x4e]
 	tst r0, #4
@@ -800,7 +800,7 @@ _020AA274:
 	mov r1, r0, lsl #1
 	ldrsh r0, [r2, r3]
 	ldrsh r1, [r2, r1]
-	bl sub_020AAF0C
+	bl NNS_G2dRotZ
 _020AA2A8:
 	ldrh r0, [r5, #0x4e]
 	tst r0, #2
@@ -808,7 +808,7 @@ _020AA2A8:
 	ldr r0, [r5, #0x40]
 	ldr r1, [r5, #0x44]
 	mov r2, #0x1000
-	bl sub_020AADB8
+	bl NNS_G2dScale
 _020AA2C4:
 	ldr r2, [r5, #0x38]
 	mvn r0, #0
@@ -820,33 +820,33 @@ _020AA2C4:
 	ldr r1, _020AA314 ; =0x02100EA4
 	mov r0, r4
 	str r2, [r1, #4]
-	bl sub_020A9D74
+	bl DrawCellImpl_
 	ldr r0, _020AA314 ; =0x02100EA4
 	mvn r1, #0
 	str r1, [r0, #4]
 	b _020AA308
 _020AA300:
 	mov r0, r4
-	bl sub_020A9D74
+	bl DrawCellImpl_
 _020AA308:
 	mov r0, #1
-	bl sub_020AAC6C
+	bl NNS_G2dPopMtx
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020AA314: .word 0x02100EA4
 _020AA318: .word 0x021C4AC8
 _020AA31C: .word 0x020F983C
-	arm_func_end sub_020AA1C4
+	arm_func_end DrawCellAnimationImpl_
 
-	arm_func_start sub_020AA320
-sub_020AA320: ; 0x020AA320
+	arm_func_start DrawNode_
+DrawNode_: ; 0x020AA320
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r0
 	ldr r0, [r5, #8]
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	ldr r4, [r5, #0]
-	bl sub_020AAA48
+	bl NNS_G2dPushMtx
 	ldrh r0, [r5, #0x1e]
 	tst r0, #8
 	beq _020AA388
@@ -854,18 +854,18 @@ sub_020AA320: ; 0x020AA320
 	ldrsh r7, [r5, #0x1a]
 	ldr r0, [r0, #8]
 	ldrsh r6, [r5, #0x18]
-	bl sub_020AC444
+	bl NNS_G2dIsRndCoreFlipH
 	cmp r0, #0
 	ldr r0, _020AA3EC ; =0x021C4AC8
 	rsbne r6, r6, #0
 	ldr r0, [r0, #8]
-	bl sub_020AC458
+	bl NNS_G2dIsRndCoreFlipV
 	cmp r0, #0
 	rsbne r7, r7, #0
 	mov r0, r6, lsl #0xc
 	mov r1, r7, lsl #0xc
 	mov r2, #0
-	bl sub_020AACBC
+	bl NNS_G2dTranslate
 _020AA388:
 	ldrh r0, [r5, #0x1e]
 	tst r0, #4
@@ -879,7 +879,7 @@ _020AA388:
 	mov r1, r0, lsl #1
 	ldrsh r0, [r2, r3]
 	ldrsh r1, [r2, r1]
-	bl sub_020AAF0C
+	bl NNS_G2dRotZ
 _020AA3BC:
 	ldrh r0, [r5, #0x1e]
 	tst r0, #2
@@ -887,23 +887,23 @@ _020AA3BC:
 	ldr r0, [r5, #0x10]
 	ldr r1, [r5, #0x14]
 	mov r2, #0x1000
-	bl sub_020AADB8
+	bl NNS_G2dScale
 _020AA3D8:
 	mov r0, r4
-	bl sub_020AA1C4
+	bl DrawCellAnimationImpl_
 	mov r0, #1
-	bl sub_020AAC6C
+	bl NNS_G2dPopMtx
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020AA3EC: .word 0x021C4AC8
 _020AA3F0: .word 0x020F983C
-	arm_func_end sub_020AA320
+	arm_func_end DrawNode_
 
-	arm_func_start sub_020AA3F4
-sub_020AA3F4: ; 0x020AA3F4
+	arm_func_start NNS_G2dInitRenderer
+NNS_G2dInitRenderer: ; 0x020AA3F4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
-	bl sub_020AC354
+	bl NNS_G2dInitRndCore
 	mov r6, #0
 	str r6, [r4, #0x70]
 	str r6, [r4, #0x74]
@@ -928,7 +928,7 @@ _020AA450:
 	mov r0, r5
 	mov r2, r4
 	add r1, r7, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r6, r6, #1
 	cmp r6, #0x20
 	add r7, r7, #0x20
@@ -939,7 +939,7 @@ _020AA450:
 	ldr r1, _020AA4AC ; =0x021C4B58
 	mov r2, #0x100
 	strh r0, [r3, #2]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _020AA49C ; =0x021C4AC8
 	mov r1, #0
 	str r1, [r0, #4]
@@ -950,46 +950,46 @@ _020AA4A0: .word 0x0000FFFE
 _020AA4A4: .word 0x02100EA4
 _020AA4A8: .word 0x021C5258
 _020AA4AC: .word 0x021C4B58
-	arm_func_end sub_020AA3F4
+	arm_func_end NNS_G2dInitRenderer
 
-	arm_func_start sub_020AA4B0
-sub_020AA4B0: ; 0x020AA4B0
+	arm_func_start NNS_G2dAddRendererTargetSurface
+NNS_G2dAddRendererTargetSurface: ; 0x020AA4B0
 	ldr r2, [r0, #0x70]
 	str r2, [r1, #0x30]
 	str r1, [r0, #0x70]
 	bx lr
-	arm_func_end sub_020AA4B0
+	arm_func_end NNS_G2dAddRendererTargetSurface
 
-	arm_func_start sub_020AA4C0
-sub_020AA4C0: ; 0x020AA4C0
+	arm_func_start NNS_G2dInitRenderSurface
+NNS_G2dInitRenderSurface: ; 0x020AA4C0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r1, r4
 	mov r0, #0
 	mov r2, #0x48
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	mov r0, #1
 	str r0, [r4, #0x10]
 	mov r0, #3
-	ldr r1, _020AA50C ; =sub_020A995C
+	ldr r1, _020AA50C ; =RndCoreCBFuncBeforeCell_
 	str r0, [r4, #0x14]
-	ldr r0, _020AA510 ; =sub_020A9A70
+	ldr r0, _020AA510 ; =RndCoreCBFuncAfterCell_
 	str r1, [r4, #0x18]
-	ldr r1, _020AA514 ; =sub_020A9AF4
+	ldr r1, _020AA514 ; =RndCoreCBFuncBeforeOBJ_
 	str r0, [r4, #0x1c]
-	ldr r0, _020AA518 ; =sub_020A9CE0
+	ldr r0, _020AA518 ; =RndCoreCBFuncAfterOBJ_
 	str r1, [r4, #0x20]
 	str r0, [r4, #0x24]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020AA50C: .word sub_020A995C
-_020AA510: .word sub_020A9A70
-_020AA514: .word sub_020A9AF4
-_020AA518: .word sub_020A9CE0
-	arm_func_end sub_020AA4C0
+_020AA50C: .word RndCoreCBFuncBeforeCell_
+_020AA510: .word RndCoreCBFuncAfterCell_
+_020AA514: .word RndCoreCBFuncBeforeOBJ_
+_020AA518: .word RndCoreCBFuncAfterOBJ_
+	arm_func_end NNS_G2dInitRenderSurface
 
-	arm_func_start sub_020AA51C
-sub_020AA51C: ; 0x020AA51C
+	arm_func_start NNS_G2dBeginRendering
+NNS_G2dBeginRendering: ; 0x020AA51C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r5, _020AA5AC ; =0x021C4AC8
 	mov r4, #0
@@ -1008,7 +1008,7 @@ _020AA554:
 	mov r0, r7
 	mov r2, r6
 	add r1, r8, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldrh r0, [r5]
 	add r4, r4, #1
 	add r8, r8, #0x20
@@ -1021,12 +1021,12 @@ _020AA578:
 	ldr r1, _020AA5BC ; =0x021C4B58
 	mov r2, #0x100
 	strh r0, [r3, #2]
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _020AA5C0 ; =0x04000444
 	mov r1, #0
 	str r1, [r0, #0]
 	str r1, [r0, #0x10]
-	bl sub_020A9778
+	bl NNSi_G2dIdentity
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020AA5AC: .word 0x021C4AC8
@@ -1035,10 +1035,10 @@ _020AA5B4: .word 0x02100EA4
 _020AA5B8: .word 0x021C5258
 _020AA5BC: .word 0x021C4B58
 _020AA5C0: .word 0x04000444
-	arm_func_end sub_020AA51C
+	arm_func_end NNS_G2dBeginRendering
 
-	arm_func_start sub_020AA5C4
-sub_020AA5C4: ; 0x020AA5C4
+	arm_func_start NNS_G2dEndRendering
+NNS_G2dEndRendering: ; 0x020AA5C4
 	stmfd sp!, {r3, lr}
 	ldr r1, _020AA628 ; =0x04000448
 	mov r2, #1
@@ -1055,7 +1055,7 @@ sub_020AA5C4: ; 0x020AA5C4
 	beq _020AA608
 	mov r0, #0
 	str r0, [r3, #0x74]
-	bl sub_020AC5A4
+	bl NNS_G2dRndCoreEndRendering
 _020AA608:
 	ldr r0, _020AA62C ; =0x021C4AC8
 	mov r1, #0
@@ -1069,10 +1069,10 @@ _020AA618:
 	; .align 2, 0
 _020AA628: .word 0x04000448
 _020AA62C: .word 0x021C4AC8
-	arm_func_end sub_020AA5C4
+	arm_func_end NNS_G2dEndRendering
 
-	arm_func_start sub_020AA630
-sub_020AA630: ; 0x020AA630
+	arm_func_start NNS_G2dDrawCellAnimation
+NNS_G2dDrawCellAnimation: ; 0x020AA630
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r1, _020AA694 ; =0x021C4AC8
 	mov r5, r0
@@ -1080,31 +1080,31 @@ sub_020AA630: ; 0x020AA630
 	ldr r1, [r1, #0x80]
 	cmp r1, #0
 	beq _020AA68C
-	bl sub_020AB70C
+	bl NNSi_G2dGetOamSoftEmuAutoZOffsetStep
 	mov r4, r0
 	mov r0, #1
-	bl sub_020AB6D8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 	ldr r0, _020AA694 ; =0x021C4AC8
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x80]
-	bl sub_020AB6FC
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetStep
 	mov r0, r5
-	bl sub_020AA1C4
+	bl DrawCellAnimationImpl_
 	mov r0, #0
-	bl sub_020AB6D8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 	mov r0, r4
-	bl sub_020AB6FC
-	bl sub_020AB6E8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetStep
+	bl NNSi_G2dResetOamSoftEmuAutoZOffset
 	ldmia sp!, {r3, r4, r5, pc}
 _020AA68C:
-	bl sub_020AA1C4
+	bl DrawCellAnimationImpl_
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020AA694: .word 0x021C4AC8
-	arm_func_end sub_020AA630
+	arm_func_end NNS_G2dDrawCellAnimation
 
-	arm_func_start sub_020AA698
-sub_020AA698: ; 0x020AA698
+	arm_func_start NNS_G2dDrawMultiCell
+NNS_G2dDrawMultiCell: ; 0x020AA698
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov r5, r0
 	ldr r0, [r5, #8]
@@ -1136,14 +1136,14 @@ _020AA6EC:
 	ldr r0, [r0, #0x80]
 	cmp r0, #0
 	beq _020AA7E4
-	bl sub_020AB70C
+	bl NNSi_G2dGetOamSoftEmuAutoZOffsetStep
 	str r0, [sp]
 	mov r0, #1
-	bl sub_020AB6D8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 	mov r0, r6
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x80]
-	bl sub_020AB6FC
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetStep
 	ldr r2, [r5, #0]
 	ldrh r0, [r2]
 	cmp r0, #0
@@ -1158,26 +1158,26 @@ _020AA740:
 	mov r0, r0, lsl #8
 	mov sb, r0, lsr #0x10
 	strh sb, [fp, #0x90]
-	bl sub_020AAA48
+	bl NNS_G2dPushMtx
 	ldrsh r4, [r7, #4]
 	ldr r0, [r6, #8]
 	ldrsh r7, [r7, #2]
-	bl sub_020AC444
+	bl NNS_G2dIsRndCoreFlipH
 	cmp r0, #0
 	ldr r0, [r6, #8]
 	rsbne r7, r7, #0
-	bl sub_020AC458
+	bl NNS_G2dIsRndCoreFlipV
 	cmp r0, #0
 	rsbne r4, r4, #0
 	mov r2, #0
 	mov r0, r7, lsl #0xc
 	mov r1, r4, lsl #0xc
-	bl sub_020AACBC
+	bl NNS_G2dTranslate
 	mov r0, #0x5c
 	mla r0, sb, r0, r8
-	bl sub_020AA1C4
+	bl DrawCellAnimationImpl_
 	mov r0, #1
-	bl sub_020AAC6C
+	bl NNS_G2dPopMtx
 	ldr r2, [r5, #0]
 	add r0, sl, #1
 	mov r0, r0, lsl #0x10
@@ -1187,10 +1187,10 @@ _020AA740:
 	bhi _020AA740
 _020AA7CC:
 	mov r0, #0
-	bl sub_020AB6D8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 	ldr r0, [sp]
-	bl sub_020AB6FC
-	bl sub_020AB6E8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetStep
+	bl NNSi_G2dResetOamSoftEmuAutoZOffset
 	b _020AA884
 _020AA7E4:
 	ldr r2, [r5, #0]
@@ -1207,26 +1207,26 @@ _020AA7F8:
 	mov r0, r0, lsl #8
 	mov sb, r0, lsr #0x10
 	strh sb, [fp, #0x90]
-	bl sub_020AAA48
+	bl NNS_G2dPushMtx
 	ldrsh r4, [r7, #4]
 	ldr r0, [r6, #8]
 	ldrsh r7, [r7, #2]
-	bl sub_020AC444
+	bl NNS_G2dIsRndCoreFlipH
 	cmp r0, #0
 	ldr r0, [r6, #8]
 	rsbne r7, r7, #0
-	bl sub_020AC458
+	bl NNS_G2dIsRndCoreFlipV
 	cmp r0, #0
 	rsbne r4, r4, #0
 	mov r2, #0
 	mov r0, r7, lsl #0xc
 	mov r1, r4, lsl #0xc
-	bl sub_020AACBC
+	bl NNS_G2dTranslate
 	mov r0, #0x5c
 	mla r0, sb, r0, r8
-	bl sub_020AA1C4
+	bl DrawCellAnimationImpl_
 	mov r0, #1
-	bl sub_020AAC6C
+	bl NNS_G2dPopMtx
 	ldr r2, [r5, #0]
 	add r0, sl, #1
 	mov r0, r0, lsl #0x10
@@ -1246,14 +1246,14 @@ _020AA894:
 	ldr r0, [r0, #0x80]
 	cmp r0, #0
 	beq _020AA920
-	bl sub_020AB70C
+	bl NNSi_G2dGetOamSoftEmuAutoZOffsetStep
 	mov r6, r0
 	mov r0, #1
-	bl sub_020AB6D8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 	ldr r0, _020AA964 ; =0x021C4AC8
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x80]
-	bl sub_020AB6FC
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetStep
 	ldr r0, [r5, #0]
 	mov r7, #0
 	ldrh r0, [r0]
@@ -1262,7 +1262,7 @@ _020AA894:
 	mov r8, #0x28
 _020AA8E4:
 	mla r0, r7, r8, r4
-	bl sub_020AA320
+	bl DrawNode_
 	ldr r1, [r5, #0]
 	add r0, r7, #1
 	mov r0, r0, lsl #0x10
@@ -1272,10 +1272,10 @@ _020AA8E4:
 	bhi _020AA8E4
 _020AA908:
 	mov r0, #0
-	bl sub_020AB6D8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 	mov r0, r6
-	bl sub_020AB6FC
-	bl sub_020AB6E8
+	bl NNSi_G2dSetOamSoftEmuAutoZOffsetStep
+	bl NNSi_G2dResetOamSoftEmuAutoZOffset
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _020AA920:
 	ldr r0, [r5, #0]
@@ -1286,7 +1286,7 @@ _020AA920:
 	mov r7, #0x28
 _020AA938:
 	mla r0, r6, r7, r4
-	bl sub_020AA320
+	bl DrawNode_
 	ldr r1, [r5, #0]
 	add r0, r6, #1
 	mov r0, r0, lsl #0x10
@@ -1299,20 +1299,20 @@ _020AA938:
 _020AA960: .word 0x021C5658
 _020AA964: .word 0x021C4AC8
 _020AA968: .word 0x021C55C8
-	arm_func_end sub_020AA698
+	arm_func_end NNS_G2dDrawMultiCell
 
-	arm_func_start sub_020AA96C
-sub_020AA96C: ; 0x020AA96C
+	arm_func_start NNS_G2dDrawMultiCellAnimation
+NNS_G2dDrawMultiCellAnimation: ; 0x020AA96C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r4, r0
 	ldrh r0, [r4, #0x5a]
 	cmp r0, #0
 	bne _020AA98C
 	add r0, r4, #0x34
-	bl sub_020AA698
+	bl NNS_G2dDrawMultiCell
 	ldmia sp!, {r4, r5, r6, pc}
 _020AA98C:
-	bl sub_020AAA48
+	bl NNS_G2dPushMtx
 	ldrh r0, [r4, #0x5a]
 	tst r0, #8
 	beq _020AA9DC
@@ -1320,18 +1320,18 @@ _020AA98C:
 	ldrsh r6, [r4, #0x56]
 	ldr r0, [r0, #8]
 	ldrsh r5, [r4, #0x54]
-	bl sub_020AC444
+	bl NNS_G2dIsRndCoreFlipH
 	cmp r0, #0
 	ldr r0, _020AAA40 ; =0x021C4AC8
 	rsbne r5, r5, #0
 	ldr r0, [r0, #8]
-	bl sub_020AC458
+	bl NNS_G2dIsRndCoreFlipV
 	cmp r0, #0
 	rsbne r6, r6, #0
 	mov r0, r5, lsl #0xc
 	mov r1, r6, lsl #0xc
 	mov r2, #0
-	bl sub_020AACBC
+	bl NNS_G2dTranslate
 _020AA9DC:
 	ldrh r0, [r4, #0x5a]
 	tst r0, #4
@@ -1345,7 +1345,7 @@ _020AA9DC:
 	mov r1, r0, lsl #1
 	ldrsh r0, [r2, r3]
 	ldrsh r1, [r2, r1]
-	bl sub_020AAF0C
+	bl NNS_G2dRotZ
 _020AAA10:
 	ldrh r0, [r4, #0x5a]
 	tst r0, #2
@@ -1353,20 +1353,20 @@ _020AAA10:
 	ldr r0, [r4, #0x4c]
 	ldr r1, [r4, #0x50]
 	mov r2, #0x1000
-	bl sub_020AADB8
+	bl NNS_G2dScale
 _020AAA2C:
 	add r0, r4, #0x34
-	bl sub_020AA698
+	bl NNS_G2dDrawMultiCell
 	mov r0, #1
-	bl sub_020AAC6C
+	bl NNS_G2dPopMtx
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020AAA40: .word 0x021C4AC8
 _020AAA44: .word 0x020F983C
-	arm_func_end sub_020AA96C
+	arm_func_end NNS_G2dDrawMultiCellAnimation
 
-	arm_func_start sub_020AAA48
-sub_020AAA48: ; 0x020AAA48
+	arm_func_start NNS_G2dPushMtx
+NNS_G2dPushMtx: ; 0x020AAA48
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	ldr r0, _020AAC4C ; =0x021C4AC8
 	ldr r1, [r0, #8]
@@ -1511,10 +1511,10 @@ _020AAC5C: .word 0x021C4C58
 _020AAC60: .word 0x021C4F58
 _020AAC64: .word 0x021C4B58
 _020AAC68: .word 0x021C4B5C
-	arm_func_end sub_020AAA48
+	arm_func_end NNS_G2dPushMtx
 
-	arm_func_start sub_020AAC6C
-sub_020AAC6C: ; 0x020AAC6C
+	arm_func_start NNS_G2dPopMtx
+NNS_G2dPopMtx: ; 0x020AAC6C
 	ldr r0, _020AACB0 ; =0x021C4AC8
 	ldr r0, [r0, #0xc]
 	cmp r0, #0
@@ -1536,10 +1536,10 @@ sub_020AAC6C: ; 0x020AAC6C
 _020AACB0: .word 0x021C4AC8
 _020AACB4: .word 0x02100EA4
 _020AACB8: .word 0x0000FFFE
-	arm_func_end sub_020AAC6C
+	arm_func_end NNS_G2dPopMtx
 
-	arm_func_start sub_020AACBC
-sub_020AACBC: ; 0x020AACBC
+	arm_func_start NNS_G2dTranslate
+NNS_G2dTranslate: ; 0x020AACBC
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x18
 	ldr r3, _020AADA0 ; =0x021C4AC8
@@ -1580,7 +1580,7 @@ _020AAD1C:
 	add r0, sp, #0
 	add r1, r2, r3
 	add r2, r2, r3
-	bl sub_020AB040
+	bl NNSi_G2dMtxConcat32
 	ldr r1, _020AADA0 ; =0x021C4AC8
 	mov r0, #0x18
 	ldr r1, [r1, #0xc]
@@ -1589,7 +1589,7 @@ _020AAD1C:
 	add r1, r2, r3
 	add r0, sp, #0
 	add r2, r2, r3
-	bl sub_020AB040
+	bl NNSi_G2dMtxConcat32
 	ldr r0, _020AADA0 ; =0x021C4AC8
 	ldr r2, _020AADA8 ; =0x021C4AD8
 	ldr r1, [r0, #0xc]
@@ -1605,10 +1605,10 @@ _020AADA8: .word 0x021C4AD8
 _020AADAC: .word 0x021C4C6C
 _020AADB0: .word 0x021C4C58
 _020AADB4: .word 0x021C4F58
-	arm_func_end sub_020AACBC
+	arm_func_end NNS_G2dTranslate
 
-	arm_func_start sub_020AADB8
-sub_020AADB8: ; 0x020AADB8
+	arm_func_start NNS_G2dScale
+NNS_G2dScale: ; 0x020AADB8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	ldr r2, _020AAEF4 ; =0x021C4AC8
@@ -1628,15 +1628,15 @@ sub_020AADB8: ; 0x020AADB8
 	str r4, [sp, #0xc]
 	str lr, [sp, #0x10]
 	str lr, [sp, #0x14]
-	bl sub_020AB040
+	bl NNSi_G2dMtxConcat32
 	mov r0, r5
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov r1, #0
 	str r0, [sp]
 	mov r0, r4
 	str r1, [sp, #4]
 	str r1, [sp, #8]
-	bl sub_020BCFE0
+	bl FX_Inv
 	mov ip, #0
 	ldr r1, _020AAEF4 ; =0x021C4AC8
 	str r0, [sp, #0xc]
@@ -1649,7 +1649,7 @@ sub_020AADB8: ; 0x020AADB8
 	add r2, r2, r3
 	str ip, [sp, #0x10]
 	str ip, [sp, #0x14]
-	bl sub_020AB040
+	bl NNSi_G2dMtxConcat32
 	ldr r0, _020AAEF4 ; =0x021C4AC8
 	ldr r0, [r0, #4]
 	cmp r0, #0
@@ -1701,10 +1701,10 @@ _020AAEFC: .word 0x021C4F58
 _020AAF00: .word 0x02100EA4
 _020AAF04: .word 0x0000FFFE
 _020AAF08: .word 0x021C4B58
-	arm_func_end sub_020AADB8
+	arm_func_end NNS_G2dScale
 
-	arm_func_start sub_020AAF0C
-sub_020AAF0C: ; 0x020AAF0C
+	arm_func_start NNS_G2dRotZ
+NNS_G2dRotZ: ; 0x020AAF0C
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x18
 	ldr r2, _020AB014 ; =0x021C4AC8
@@ -1723,7 +1723,7 @@ sub_020AAF0C: ; 0x020AAF0C
 	str r3, [sp, #8]
 	str lr, [sp, #0x10]
 	str lr, [sp, #0x14]
-	bl sub_020AB040
+	bl NNSi_G2dMtxConcat32
 	ldr r1, _020AB014 ; =0x021C4AC8
 	mov r0, #0x18
 	ldr r1, [r1, #0xc]
@@ -1732,7 +1732,7 @@ sub_020AAF0C: ; 0x020AAF0C
 	add r1, r2, r3
 	add r0, sp, #0
 	add r2, r2, r3
-	bl sub_020AB040
+	bl NNSi_G2dMtxConcat32
 	ldr r0, _020AB014 ; =0x021C4AC8
 	ldr r0, [r0, #4]
 	cmp r0, #0
@@ -1784,21 +1784,21 @@ _020AB01C: .word 0x021C4F58
 _020AB020: .word 0x02100EA4
 _020AB024: .word 0x0000FFFE
 _020AB028: .word 0x021C4B58
-	arm_func_end sub_020AAF0C
+	arm_func_end NNS_G2dRotZ
 
-	arm_func_start sub_020AB02C
-sub_020AB02C: ; 0x020AB02C
+	arm_func_start NNS_G2dGetRendererPaletteTbl
+NNS_G2dGetRendererPaletteTbl: ; 0x020AB02C
 	ldr r0, [r0, #0x78]
 	bx lr
-	arm_func_end sub_020AB02C
+	arm_func_end NNS_G2dGetRendererPaletteTbl
 
-	arm_func_start sub_020AB034
-sub_020AB034: ; 0x020AB034
-	ldr ip, _020AB03C ; =sub_020AC394
+	arm_func_start NNS_G2dSetRendererImageProxy
+NNS_G2dSetRendererImageProxy: ; 0x020AB034
+	ldr ip, _020AB03C ; =NNS_G2dSetRndCoreImageProxy
 	bx ip
 	; .align 2, 0
-_020AB03C: .word sub_020AC394
-	arm_func_end sub_020AB034
+_020AB03C: .word NNS_G2dSetRndCoreImageProxy
+	arm_func_end NNS_G2dSetRendererImageProxy
 
 	.data
 

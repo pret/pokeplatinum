@@ -458,7 +458,7 @@ _0222722C:
 	bl ov4_02214F5C
 	add r1, r5, #0
 	mov r2, #0xc0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r4, r4, #1
 	add r5, #0xc0
 	cmp r4, r6
@@ -478,7 +478,7 @@ ov18_02227254: ; 0x02227254
 	add r5, r0, #0
 	add r4, r1, #0
 	add r6, r2, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r7, r0, #0
 	ldr r1, _02227330 ; =0x02251CC0
 	ldr r0, [sp]
@@ -503,7 +503,7 @@ _02227288:
 	ldr r0, _02227334 ; =0x02251CE8
 	mov r1, #0xff
 	mov r2, #6
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _02227338 ; =0x02215E48
 	ldr r0, _02227330 ; =0x02251CC0
 	str r1, [r0, #0x10]
@@ -547,7 +547,7 @@ _022272D6:
 	ldr r0, _0222733C ; =0x02251CF0
 	mov r1, #0xff
 	mov r2, #0x20
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _02227340 ; =0x02215E50
 	ldr r0, _02227330 ; =0x02251CC0
 	str r1, [r0, #0x14]
@@ -566,7 +566,7 @@ _022272E6:
 	mov r1, #6
 	str r1, [r0, #0x18]
 	add r0, r7, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _0222730C:
@@ -577,12 +577,12 @@ _0222730C:
 	mov r1, #6
 	str r1, [r0, #0x18]
 	add r0, r7, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _02227324:
 	add r0, r7, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -596,7 +596,7 @@ _02227340: .word 0x02215E50
 	thumb_func_start ov18_02227344
 ov18_02227344: ; 0x02227344
 	push {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	ldr r0, _0222737C ; =0x02251CC0
 	ldr r0, [r0, #0x18]
@@ -612,12 +612,12 @@ ov18_02227344: ; 0x02227344
 	mov r1, #4
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r4, pc}
 _02227372:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -627,7 +627,7 @@ _0222737C: .word 0x02251CC0
 	thumb_func_start ov18_02227380
 ov18_02227380: ; 0x02227380
 	push {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	ldr r0, _022273B4 ; =0x02251CC0
 	ldr r0, [r0, #0x18]
@@ -640,12 +640,12 @@ ov18_02227380: ; 0x02227380
 	mov r1, #4
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r4, pc}
 _022273A8:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r4, pc}
 	nop
@@ -655,7 +655,7 @@ _022273B4: .word 0x02251CC0
 	thumb_func_start ov18_022273B8
 ov18_022273B8: ; 0x022273B8
 	push {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	ldr r0, _0222740C ; =0x02251CC0
 	ldr r0, [r0, #0x18]
@@ -665,7 +665,7 @@ ov18_022273B8: ; 0x022273B8
 	cmp r0, #3
 	beq _022273DA
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r4, pc}
 _022273DA:
@@ -673,7 +673,7 @@ _022273DA:
 	mov r1, #2
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r4, pc}
 _022273EA:
@@ -684,12 +684,12 @@ _022273EA:
 	mov r1, #2
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r4, pc}
 _02227402:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r4, pc}
 	; .align 2, 0
@@ -702,7 +702,7 @@ ov18_02227410: ; 0x02227410
 	add r7, r0, #0
 	add r5, r1, #0
 	add r6, r2, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02227490 ; =0x02251CC0
 	add r4, r0, #0
 	str r6, [r1, #0xc]
@@ -711,19 +711,19 @@ ov18_02227410: ; 0x02227410
 	ldr r1, [r1, #0x24]
 	add r0, r5, #0
 	mov r2, #0x50
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	b _0222743C
 _02227432:
 	ldr r0, [r1, #0x24]
 	mov r1, #0
 	mov r2, #0x50
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _0222743C:
 	ldr r1, _02227490 ; =0x02251CC0
 	add r0, r7, #0
 	ldr r1, [r1, #0x20]
 	mov r2, #0xc0
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	bl ov18_022271A8
 	cmp r0, #1
 	bne _02227460
@@ -731,7 +731,7 @@ _0222743C:
 	mov r1, #8
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _02227460:
@@ -749,12 +749,12 @@ _02227460:
 	mov r1, #8
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _02227486:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -767,7 +767,7 @@ ov18_02227494: ; 0x02227494
 	add r5, r1, #0
 	add r7, r0, #0
 	str r2, [sp]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	add r0, r5, #0
 	ldr r2, _02227540 ; =0x02251CC0
@@ -811,7 +811,7 @@ ov18_02227494: ; 0x02227494
 	cmp r0, #0
 	beq _02227500
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _02227500:
@@ -829,7 +829,7 @@ _02227506:
 	cmp r0, #3
 	beq _02227524
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _02227524:
@@ -837,12 +837,12 @@ _02227524:
 	mov r1, #4
 	str r1, [r0, #0x18]
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _02227534:
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop

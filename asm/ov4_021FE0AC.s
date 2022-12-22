@@ -17,12 +17,12 @@ _021FE0B8: .word ov4_021FE6F4
 
 	arm_func_start ov4_021FE0BC
 ov4_021FE0BC: ; 0x021FE0BC
-	ldr ip, _021FE0CC ; =sub_020DF9B0
+	ldr ip, _021FE0CC ; =strcasecmp
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	bx ip
 	; .align 2, 0
-_021FE0CC: .word sub_020DF9B0
+_021FE0CC: .word strcasecmp
 	arm_func_end ov4_021FE0BC
 
 	arm_func_start ov4_021FE0D0
@@ -127,7 +127,7 @@ ov4_021FE1E8: ; 0x021FE1E8
 	mov r5, r0
 	ldr r1, _021FE21C ; =0x02219F7C
 	add r0, sp, #0
-	bl sub_020D7510
+	bl sprintf
 	add r2, sp, #0
 	mov r0, r5
 	mov r1, r4
@@ -150,7 +150,7 @@ ov4_021FE220: ; 0x021FE220
 	ldr r1, _021FE284 ; =0x02219F88
 	ldr r2, _021FE288 ; =0x02219F64
 	mov r3, #0x97
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021FE24C:
 	cmp r6, #0
 	addeq sp, sp, #8
@@ -179,7 +179,7 @@ ov4_021FE28C: ; 0x021FE28C
 	ldr r1, _021FE314 ; =0x02219F94
 	mov r0, r5
 	mov r4, r2
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	mov r0, r6
 	bne _021FE2BC
@@ -211,7 +211,7 @@ _021FE304:
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 _021FE30C:
-	bl sub_020DAE0C
+	bl atoi
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021FE314: .word 0x02219F94
@@ -227,7 +227,7 @@ ov4_021FE31C: ; 0x021FE31C
 	bl ov4_021FE220
 	cmp r0, #0
 	beq _021FE344
-	bl sub_020DA448
+	bl atof
 	mov r5, r0
 	mov r4, r1
 _021FE344:
@@ -317,7 +317,7 @@ ov4_021FE3D8: ; 0x021FE3D8
 _021FE400:
 	ldr r1, [r4, r5, lsl #2]
 	mov r0, r6
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	addeq sp, sp, #8
 	moveq r0, #0
@@ -504,7 +504,7 @@ _021FE664:
 	add r0, sp, #0xa
 	mov r2, r8
 	mov r3, r6
-	bl sub_020D7510
+	bl sprintf
 	mov r0, fp
 	add r1, sp, #0xa
 	mov r2, sl
@@ -512,7 +512,7 @@ _021FE664:
 	mov r0, r8
 	add sl, sl, r4
 	sub sb, sb, r4
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	add r7, r7, #1
 	add r8, r8, r0
@@ -557,7 +557,7 @@ _021FE724:
 	bne _021FE710
 _021FE734:
 	mov r0, ip
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r0, r1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -589,12 +589,12 @@ _021FE77C: .word ov4_021FE6F4
 
 	arm_func_start ov4_021FE780
 ov4_021FE780: ; 0x021FE780
-	ldr ip, _021FE790 ; =sub_020DF9B0
+	ldr ip, _021FE790 ; =strcasecmp
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	bx ip
 	; .align 2, 0
-_021FE790: .word sub_020DF9B0
+_021FE790: .word strcasecmp
 	arm_func_end ov4_021FE780
 
 	arm_func_start ov4_021FE794

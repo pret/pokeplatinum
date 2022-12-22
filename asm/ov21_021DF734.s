@@ -266,7 +266,7 @@ _021DF8E8:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0xd0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #8]
 	ldr r1, [r7, #0xc]
 	add r0, #0xc8

@@ -8,10 +8,10 @@
 
 	arm_func_start ov60_022270D8
 ov60_022270D8: ; 0x022270D8
-	ldr ip, _022270E0 ; =sub_020D33DC
+	ldr ip, _022270E0 ; =STD_CompareString
 	bx ip
 	; .align 2, 0
-_022270E0: .word sub_020D33DC
+_022270E0: .word STD_CompareString
 	arm_func_end ov60_022270D8
 
 	arm_func_start ov60_022270E4
@@ -51,29 +51,29 @@ _02227144:
 
 	arm_func_start ov60_0222714C
 ov60_0222714C: ; 0x0222714C
-	ldr ip, _02227154 ; =sub_020D33B4
+	ldr ip, _02227154 ; =STD_GetStringLength
 	bx ip
 	; .align 2, 0
-_02227154: .word sub_020D33B4
+_02227154: .word STD_GetStringLength
 	arm_func_end ov60_0222714C
 
 	arm_func_start ov60_02227158
 ov60_02227158: ; 0x02227158
-	ldr ip, _02227168 ; =sub_020C4CF4
+	ldr ip, _02227168 ; =MI_CpuFill8
 	mov r2, r1
 	mov r1, #0
 	bx ip
 	; .align 2, 0
-_02227168: .word sub_020C4CF4
+_02227168: .word MI_CpuFill8
 	arm_func_end ov60_02227158
 
 	arm_func_start ov60_0222716C
 ov60_0222716C: ; 0x0222716C
-	ldr ip, _02227180 ; =sub_020C4DB0
+	ldr ip, _02227180 ; =MI_CpuCopy8
 	mov r3, r0
 	mov r0, r1
 	mov r1, r3
 	bx ip
 	; .align 2, 0
-_02227180: .word sub_020C4DB0
+_02227180: .word MI_CpuCopy8
 	arm_func_end ov60_0222716C

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CA638
-sub_020CA638: ; 0x020CA638
+	arm_func_start MIC_Init
+MIC_Init: ; 0x020CA638
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _020CA69C ; =0x021CECCC
 	ldrh r1, [r0]
@@ -18,30 +18,30 @@ sub_020CA638: ; 0x020CA638
 	mov r1, #0
 	str r1, [r0, #4]
 	str r1, [r0, #8]
-	bl sub_020C6350
+	bl PXI_Init
 	mov r5, #9
 	mov r4, #1
 _020CA66C:
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C64A8
+	bl PXI_IsCallbackReady
 	cmp r0, #0
 	beq _020CA66C
 	ldr r2, _020CA6A0 ; =0x027FFF90
 	mov r3, #0
-	ldr r1, _020CA6A4 ; =sub_020CA968
+	ldr r1, _020CA6A4 ; =MicCommonCallback
 	mov r0, #9
 	str r3, [r2, #0]
-	bl sub_020C645C
+	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CA69C: .word 0x021CECCC
 _020CA6A0: .word 0x027FFF90
-_020CA6A4: .word sub_020CA968
-	arm_func_end sub_020CA638
+_020CA6A4: .word MicCommonCallback
+	arm_func_end MIC_Init
 
-	arm_func_start sub_020CA6A8
-sub_020CA6A8: ; 0x020CA6A8
+	arm_func_start MIC_DoSamplingAsync
+MIC_DoSamplingAsync: ; 0x020CA6A8
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r1
 	cmp r0, #6
@@ -73,34 +73,34 @@ _020CA700:
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020CA708:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CA75C ; =0x021CECCC
 	ldr r2, [r1, #4]
 	cmp r2, #0
 	beq _020CA728
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020CA728:
 	mov r2, #1
 	str r2, [r1, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r1, _020CA75C ; =0x021CECCC
 	mov r0, r4
 	str r6, [r1, #8]
 	str r5, [r1, #0xc]
 	str r7, [r1, #0x1c]
-	bl sub_020CAA90
+	bl MicDoSampling
 	cmp r0, #0
 	movne r0, #0
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CA75C: .word 0x021CECCC
-	arm_func_end sub_020CA6A8
+	arm_func_end MIC_DoSamplingAsync
 
-	arm_func_start sub_020CA760
-sub_020CA760: ; 0x020CA760
+	arm_func_start MIC_StartAutoSamplingAsync
+MIC_StartAutoSamplingAsync: ; 0x020CA760
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	ldr r0, [r7, #4]
@@ -159,18 +159,18 @@ _020CA80C:
 	andne r0, r0, #0xff
 	andeq r0, r1, #0xff
 	and r4, r0, #0xff
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CA888 ; =0x021CECCC
 	ldr r2, [r1, #4]
 	cmp r2, #0
 	beq _020CA844
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _020CA844:
 	mov r2, #1
 	str r2, [r1, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CA888 ; =0x021CECCC
 	mov r3, r4
 	str r6, [r0, #8]
@@ -180,95 +180,95 @@ _020CA844:
 	ldr r1, [r7, #0x18]
 	str r1, [r0, #0x18]
 	ldmib r7, {r0, r1, r2}
-	bl sub_020CAAB8
+	bl MicStartAutoSampling
 	cmp r0, #0
 	movne r0, #0
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CA888: .word 0x021CECCC
-	arm_func_end sub_020CA760
+	arm_func_end MIC_StartAutoSamplingAsync
 
-	arm_func_start sub_020CA88C
-sub_020CA88C: ; 0x020CA88C
+	arm_func_start MIC_StartAutoSampling
+MIC_StartAutoSampling: ; 0x020CA88C
 	stmfd sp!, {r3, lr}
-	ldr r1, _020CA8BC ; =sub_020CABE4
+	ldr r1, _020CA8BC ; =MicGetResultCallback
 	mov r2, #0
-	bl sub_020CA760
+	bl MIC_StartAutoSamplingAsync
 	ldr r1, _020CA8C0 ; =0x021CECCC
 	cmp r0, #0
 	str r0, [r1, #0x10]
 	bne _020CA8B0
-	bl sub_020CABF4
+	bl MicWaitBusy
 _020CA8B0:
 	ldr r0, _020CA8C0 ; =0x021CECCC
 	ldr r0, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CA8BC: .word sub_020CABE4
+_020CA8BC: .word MicGetResultCallback
 _020CA8C0: .word 0x021CECCC
-	arm_func_end sub_020CA88C
+	arm_func_end MIC_StartAutoSampling
 
-	arm_func_start sub_020CA8C4
-sub_020CA8C4: ; 0x020CA8C4
+	arm_func_start MIC_StopAutoSamplingAsync
+MIC_StopAutoSamplingAsync: ; 0x020CA8C4
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020CA91C ; =0x021CECCC
 	ldr r2, [r1, #4]
 	cmp r2, #0
 	beq _020CA8F0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 _020CA8F0:
 	mov r2, #1
 	str r2, [r1, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r0, _020CA91C ; =0x021CECCC
 	str r5, [r0, #8]
 	str r4, [r0, #0xc]
-	bl sub_020CABBC
+	bl MicStopAutoSampling
 	cmp r0, #0
 	movne r0, #0
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CA91C: .word 0x021CECCC
-	arm_func_end sub_020CA8C4
+	arm_func_end MIC_StopAutoSamplingAsync
 
-	arm_func_start sub_020CA920
-sub_020CA920: ; 0x020CA920
+	arm_func_start MIC_StopAutoSampling
+MIC_StopAutoSampling: ; 0x020CA920
 	stmfd sp!, {r3, lr}
-	ldr r0, _020CA950 ; =sub_020CABE4
+	ldr r0, _020CA950 ; =MicGetResultCallback
 	mov r1, #0
-	bl sub_020CA8C4
+	bl MIC_StopAutoSamplingAsync
 	ldr r1, _020CA954 ; =0x021CECCC
 	cmp r0, #0
 	str r0, [r1, #0x10]
 	bne _020CA944
-	bl sub_020CABF4
+	bl MicWaitBusy
 _020CA944:
 	ldr r0, _020CA954 ; =0x021CECCC
 	ldr r0, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CA950: .word sub_020CABE4
+_020CA950: .word MicGetResultCallback
 _020CA954: .word 0x021CECCC
-	arm_func_end sub_020CA920
+	arm_func_end MIC_StopAutoSampling
 
-	arm_func_start sub_020CA958
-sub_020CA958: ; 0x020CA958
+	arm_func_start MIC_GetLastSamplingAddress
+MIC_GetLastSamplingAddress: ; 0x020CA958
 	ldr r0, _020CA964 ; =0x027FFF90
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
 _020CA964: .word 0x027FFF90
-	arm_func_end sub_020CA958
+	arm_func_end MIC_GetLastSamplingAddress
 
-	arm_func_start sub_020CA968
-sub_020CA968: ; 0x020CA968
+	arm_func_start MicCommonCallback
+MicCommonCallback: ; 0x020CA968
 	stmfd sp!, {r4, lr}
 	mov r4, r1
 	cmp r2, #0
@@ -355,24 +355,24 @@ _020CAA50:
 	; .align 2, 0
 _020CAA88: .word 0x021CECCC
 _020CAA8C: .word 0x027FFF94
-	arm_func_end sub_020CA968
+	arm_func_end MicCommonCallback
 
-	arm_func_start sub_020CAA90
-sub_020CAA90: ; 0x020CAA90
+	arm_func_start MicDoSampling
+MicDoSampling: ; 0x020CAA90
 	stmfd sp!, {r3, lr}
 	orr r1, r0, #0x4000
 	orr r1, r1, #0x3000000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movge r0, #1
 	movlt r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020CAA90
+	arm_func_end MicDoSampling
 
-	arm_func_start sub_020CAAB8
-sub_020CAAB8: ; 0x020CAAB8
+	arm_func_start MicStartAutoSampling
+MicStartAutoSampling: ; 0x020CAAB8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	orr r1, r3, #0x4100
@@ -381,7 +381,7 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r1, #0x2000000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r4, r5, r6, pc}
@@ -389,7 +389,7 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r0, #0x10000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r4, r5, r6, pc}
@@ -398,7 +398,7 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r0, #0x20000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r4, r5, r6, pc}
@@ -406,7 +406,7 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r0, #0x30000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r4, r5, r6, pc}
@@ -415,7 +415,7 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r0, #0x40000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r4, r5, r6, pc}
@@ -423,7 +423,7 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r0, #0x50000
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r4, r5, r6, pc}
@@ -432,41 +432,41 @@ sub_020CAAB8: ; 0x020CAAB8
 	orr r1, r1, r0, lsr #16
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movge r0, #1
 	movlt r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020CABB8: .word 0x01060000
-	arm_func_end sub_020CAAB8
+	arm_func_end MicStartAutoSampling
 
-	arm_func_start sub_020CABBC
-sub_020CABBC: ; 0x020CABBC
+	arm_func_start MicStopAutoSampling
+MicStopAutoSampling: ; 0x020CABBC
 	stmfd sp!, {r3, lr}
 	ldr r1, _020CABE0 ; =0x03004200
 	mov r0, #9
 	mov r2, #0
-	bl sub_020C64CC
+	bl PXI_SendWordByFifo
 	cmp r0, #0
 	movge r0, #1
 	movlt r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CABE0: .word 0x03004200
-	arm_func_end sub_020CABBC
+	arm_func_end MicStopAutoSampling
 
-	arm_func_start sub_020CABE4
-sub_020CABE4: ; 0x020CABE4
+	arm_func_start MicGetResultCallback
+MicGetResultCallback: ; 0x020CABE4
 	ldr r1, _020CABF0 ; =0x021CECCC
 	str r0, [r1, #0x10]
 	bx lr
 	; .align 2, 0
 _020CABF0: .word 0x021CECCC
-	arm_func_end sub_020CABE4
+	arm_func_end MicGetResultCallback
 
-	arm_func_start sub_020CABF4
-sub_020CABF4: ; 0x020CABF4
+	arm_func_start MicWaitBusy
+MicWaitBusy: ; 0x020CABF4
 	ldr ip, _020CAC08 ; =0x021CECD0
 _020CABF8:
 	ldr r0, [ip]
@@ -475,7 +475,7 @@ _020CABF8:
 	bx lr
 	; .align 2, 0
 _020CAC08: .word 0x021CECD0
-	arm_func_end sub_020CABF4
+	arm_func_end MicWaitBusy
 
 	.bss
 

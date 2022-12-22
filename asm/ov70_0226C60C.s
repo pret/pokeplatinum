@@ -329,10 +329,10 @@ _0226C89E:
 
 	thumb_func_start ov70_0226C8A8
 ov70_0226C8A8: ; 0x0226C8A8
-	ldr r3, _0226C8B0 ; =sub_020AF558
+	ldr r3, _0226C8B0 ; =NNS_G3dGlbLightColor
 	mov r0, #2
 	mov r1, #0
 	bx r3
 	; .align 2, 0
-_0226C8B0: .word sub_020AF558
+_0226C8B0: .word NNS_G3dGlbLightColor
 	thumb_func_end ov70_0226C8A8

@@ -49,7 +49,7 @@ ov97_022376C4: ; 0x022376C4
 	mov r1, #0
 	add r2, r4, #0
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	add r1, r0, #0
 	bl sub_0200F344
@@ -220,7 +220,7 @@ ov97_02237808: ; 0x02237808
 	mov r2, #0x54
 	add r5, r0, #0
 	add r7, r3, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	str r0, [r5, #4]
 	str r0, [r5, #8]
@@ -549,7 +549,7 @@ ov97_02237A74: ; 0x02237A74
 	push {r4, r5, r6, r7, lr}
 	sub sp, #0x14
 	ldr r6, _02237ADC ; =0x0223F550
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -1193,21 +1193,21 @@ ov97_02237EF8: ; 0x02237EF8
 	mov r1, #0x32
 	ldr r0, [sp, #0x40]
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x20]
 	bl sub_02021F98
 	mov r1, #2
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	mov r2, #0x32
 	add r1, r0, #0
 	lsl r2, r2, #6
 	ldr r0, [sp, #0x40]
 	add r1, r1, r2
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	ldr r0, [sp, #0x20]
 	bl sub_02021F9C
 	mov r1, #2
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r3, r0, #0
 	mov r0, #0x20
 	str r0, [sp]
@@ -1504,7 +1504,7 @@ ov97_02238194: ; 0x02238194
 	bl sub_02006FE8
 	add r1, sp, #0x14
 	str r0, [sp, #0x10]
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	ldr r2, [sp, #0x14]
 	mov r3, #6
 	add r0, r5, #0
@@ -1610,16 +1610,16 @@ ov97_0223829C: ; 0x0223829C
 	bl sub_02018144
 	ldr r1, _0223831C ; =0x0000A001
 	add r4, r0, #0
-	bl sub_020D316C
+	bl MATHi_CRC16InitTableRev
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #0x50
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	add r6, r0, #0
 	add r0, r4, #0
 	bl sub_020181C4
 	add r0, sp, #4
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	add r0, sp, #4
 	ldrh r1, [r0, #2]
 	mov r2, #0
@@ -1643,7 +1643,7 @@ _022382DE:
 	add r1, sp, #4
 	mov r2, #8
 	add r4, r0, #0
-	bl sub_020A49A4
+	bl CRYPTO_RC4Init
 	add r5, #0x50
 	mov r2, #0xd6
 	add r0, r4, #0
@@ -1673,11 +1673,11 @@ ov97_02238324: ; 0x02238324
 	bl sub_02018144
 	ldr r1, _022383BC ; =0x0000A001
 	add r4, r0, #0
-	bl sub_020D316C
+	bl MATHi_CRC16InitTableRev
 	add r0, r4, #0
 	add r1, r5, #0
 	mov r2, #0x50
-	bl sub_020D32D4
+	bl MATH_CalcCRC16
 	add r6, r0, #0
 	add r0, r4, #0
 	bl sub_020181C4
@@ -1718,7 +1718,7 @@ _0223837E:
 	add r1, sp, #4
 	mov r2, #8
 	add r4, r0, #0
-	bl sub_020A49A4
+	bl CRYPTO_RC4Init
 	add r5, #0x50
 	mov r2, #0xd6
 	add r0, r4, #0
@@ -1760,10 +1760,10 @@ ov97_022383DC: ; 0x022383DC
 	and r0, r1
 	asr r0, r0, #0xf
 	bne _022383F8
-	bl sub_020D08C0
+	bl CTRDG_IsAgbCartridge
 	cmp r0, #0
 	bne _022383F8
-	bl sub_020D12E4
+	bl CTRDG_TerminateForPulledOut
 _022383F8:
 	pop {r3, pc}
 	nop
@@ -1781,10 +1781,10 @@ ov97_02238400: ; 0x02238400
 	strh r0, [r1]
 	lsr r0, r1, #0xd
 	ldr r1, _02238438 ; =ov97_022383DC
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #2
 	lsl r0, r0, #0xc
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldr r1, _02238434 ; =0x04000208
 	ldrh r0, [r1]
 	mov r0, #1
@@ -1793,7 +1793,7 @@ ov97_02238400: ; 0x02238400
 _02238428:
 	mov r0, #2
 	lsl r0, r0, #0xc
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	pop {r3, pc}
 	nop
 _02238434: .word 0x04000208
@@ -1815,10 +1815,10 @@ ov97_02238440: ; 0x02238440
 	strh r0, [r1]
 	lsr r0, r1, #0xd
 	ldr r1, _02238468 ; =ov97_0223843C
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #2
 	lsl r0, r0, #0xc
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldr r1, _02238464 ; =0x04000208
 	ldrh r0, [r1]
 	mov r0, #1

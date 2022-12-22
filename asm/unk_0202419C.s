@@ -23,10 +23,10 @@ _020241B0: .word 0x021C0788
 
 	thumb_func_start sub_020241B4
 sub_020241B4: ; 0x020241B4
-	ldr r3, _020241B8 ; =sub_020BFAB8
+	ldr r3, _020241B8 ; =G3X_Reset
 	bx r3
 	; .align 2, 0
-_020241B8: .word sub_020BFAB8
+_020241B8: .word G3X_Reset
 	thumb_func_end sub_020241B4
 
 	thumb_func_start sub_020241BC

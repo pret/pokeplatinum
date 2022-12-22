@@ -5,15 +5,15 @@
 	.text
 
 
-	arm_func_start sub_020E01B8
-sub_020E01B8: ; 0x020E01B8
+	arm_func_start _d_itod
+_d_itod: ; 0x020E01B8
 	ands r2, r0, #0x80000000
 	rsbmi r0, r0, #0
 	cmp r0, #0
-	arm_func_end sub_020E01B8
+	arm_func_end _d_itod
 
-	arm_func_start sub_020E01C4
-sub_020E01C4: ; 0x020E01C4
+	arm_func_start __d_itod_common
+__d_itod_common: ; 0x020E01C4
 	mov r1, #0
 	bxeq lr
 	mov r3, #0x400
@@ -27,15 +27,15 @@ sub_020E01C4: ; 0x020E01C4
 	orr r1, r2, r1, lsr #12
 	orr r1, r1, r3, lsl #20
 	bx lr
-	arm_func_end sub_020E01C4
+	arm_func_end __d_itod_common
 
-	arm_func_start sub_020E01F8
-sub_020E01F8: ; 0x020E01F8
+	arm_func_start _d_utod
+_d_utod: ; 0x020E01F8
 	cmp r0, #0
-	arm_func_end sub_020E01F8
+	arm_func_end _d_utod
 
-	arm_func_start sub_020E01FC
-sub_020E01FC: ; 0x020E01FC
+	arm_func_start __d_utod_common
+__d_utod_common: ; 0x020E01FC
 	mov r1, #0
 	bxeq lr
 	mov r3, #0x400
@@ -51,4 +51,4 @@ _020E021C:
 	mov r1, r1, lsr #0xc
 	orr r1, r1, r3, lsl #20
 	bx lr
-	arm_func_end sub_020E01FC
+	arm_func_end __d_utod_common

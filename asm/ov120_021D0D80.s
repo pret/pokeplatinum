@@ -19,7 +19,7 @@ ov120_021D0D80: ; 0x021D0D80
 	mov r1, #0
 	mov r2, #0x28
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x78
 	str r0, [r4, #0]
 	mov r0, #0
@@ -392,7 +392,7 @@ _021D0F30:
 	mov r1, #2
 	mov r3, #4
 	str r2, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #0xb8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

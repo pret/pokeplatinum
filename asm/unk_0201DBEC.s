@@ -40,7 +40,7 @@ _0201DC12:
 	ldr r1, [r1, #0]
 	ldr r0, [r1, #8]
 	ldr r1, [r1, #0]
-	bl sub_020A6338
+	bl NNS_GfdInitVramTransferManager
 	pop {r3, r4, r5, pc}
 	nop
 _0201DC38: .word 0x021C0700
@@ -101,7 +101,7 @@ _0201DC9A:
 	add r1, r4, #0
 	add r2, r6, #0
 	add r3, r7, #0
-	bl sub_020A63BC
+	bl NNS_GfdRegisterNewVramTransferTask
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0201DCA8: .word 0x021C0700
@@ -114,7 +114,7 @@ sub_0201DCAC: ; 0x0201DCAC
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _0201DCC2
-	bl sub_020A635C
+	bl NNS_GfdDoVramTransfer
 	ldr r0, _0201DCC4 ; =0x021C0700
 	mov r1, #0
 	ldr r0, [r0, #0]
@@ -136,7 +136,7 @@ sub_0201DCC8: ; 0x0201DCC8
 	ldr r2, _0201DCE4 ; =sub_0201DCF8
 	add r1, r4, #0
 	add r5, r0, #0
-	bl sub_020AB220
+	bl NNS_G2dInitCellTransferStateManager
 	add r0, r5, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -145,10 +145,10 @@ _0201DCE4: .word sub_0201DCF8
 
 	thumb_func_start sub_0201DCE8
 sub_0201DCE8: ; 0x0201DCE8
-	ldr r3, _0201DCEC ; =sub_020AB284
+	ldr r3, _0201DCEC ; =NNS_G2dUpdateCellTransferStateManager
 	bx r3
 	; .align 2, 0
-_0201DCEC: .word sub_020AB284
+_0201DCEC: .word NNS_G2dUpdateCellTransferStateManager
 	thumb_func_end sub_0201DCE8
 
 	thumb_func_start sub_0201DCF0

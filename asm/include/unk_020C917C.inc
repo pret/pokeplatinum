@@ -1,6 +1,6 @@
-.public sub_020C4B4C
-.public sub_020C4DB0
-.public sub_020C917C
-.public sub_020C91CC
-.public sub_020C9320
-.public sub_020C95B0
+.public MIi_CpuClear32
+.public MI_CpuCopy8
+.public DGT_Hash2Reset
+.public DGT_Hash2SetSource
+.public DGT_Hash2GetDigest
+.public HmacCalc

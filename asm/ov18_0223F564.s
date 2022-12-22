@@ -18,7 +18,7 @@ ov18_0223F564: ; 0x0223F564
 	add r1, r0, #0x1000
 	str r0, [r2, #0]
 	str r4, [r1, #0x370]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r4, _0223F6D0 ; =0x02253394
 	mov r2, #3
 	ldr r3, [r4, #0]
@@ -27,14 +27,14 @@ ov18_0223F564: ; 0x0223F564
 	str r1, [r3, #0xb8c]
 	ldr r0, [r4, #0]
 	ldr r1, _0223F6D4 ; =ov18_0223F818
-	bl sub_020CECC8
+	bl WM_Initialize
 	cmp r0, #2
 	bne _0223F6B8
 _0223F5BC:
 	ldr r0, [r4, #0]
 	add r0, r0, #0x3b8
 	add r0, r0, #0x1000
-	bl sub_020CE594
+	bl WM_ReadStatus
 	ldr ip, [r4]
 	add r0, ip, #0x1300
 	ldrh r0, [r0, #0xb8]
@@ -54,20 +54,20 @@ _0223F5F0:
 	str r0, [lr]
 	add r0, ip, #0x1000
 	str r1, [r0, #0x374]
-	bl sub_020CE934
+	bl WM_GetDispersionScanPeriod
 	ldr r1, _0223F6D0 ; =0x02253394
 	ldr r1, [r1, #0]
 	add r1, r1, #0x1300
 	strh r0, [r1, #0x7c]
 	add r0, sp, #0
-	bl sub_020C3FBC
+	bl OS_GetOwnerInfo
 	ldr r1, _0223F6D0 ; =0x02253394
 	ldr r0, _0223F6DC ; =0x02249604
 	ldr r1, [r1, #0]
 	mov r2, #8
 	add r1, r1, #0x388
 	add r1, r1, #0x1000
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r2, _0223F6D0 ; =0x02253394
 	mov r3, #1
 	ldr r1, [r2, #0]
@@ -79,7 +79,7 @@ _0223F5F0:
 	add r1, r1, #0x394
 	add r1, r1, #0x1000
 	mov r2, r2, lsl #1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	bl ov18_0223F6E8
 	cmp r0, #0
 	beq _0223F6B8
@@ -119,7 +119,7 @@ ov18_0223F6E8: ; 0x0223F6E8
 	ldr r1, [r1, #0]
 	add r1, r1, #0x374
 	add r1, r1, #0x1000
-	bl sub_020CF08C
+	bl WM_StartScanEx
 	cmp r0, #2
 	moveq r0, #1
 	movne r0, #0
@@ -140,7 +140,7 @@ ov18_0223F71C: ; 0x0223F71C
 	ldr r0, [r1, #0]
 	add r0, r0, #0x3b8
 	add r0, r0, #0x1000
-	bl sub_020CE594
+	bl WM_ReadStatus
 	ldr r0, _0223F7F4 ; =0x02253394
 	ldr r0, [r0, #0]
 	add r0, r0, #0x1300
@@ -148,7 +148,7 @@ ov18_0223F71C: ; 0x0223F71C
 	cmp r0, #2
 	beq _0223F798
 	ldr r0, _0223F7F8 ; =ov18_0223F818
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	movne r0, #0
 	ldmneia sp!, {r4, pc}
@@ -157,7 +157,7 @@ _0223F774:
 	ldr r0, [r4, #0]
 	add r0, r0, #0x3b8
 	add r0, r0, #0x1000
-	bl sub_020CE594
+	bl WM_ReadStatus
 	ldr r0, [r4, #0]
 	add r0, r0, #0x1300
 	ldrh r0, [r0, #0xb8]
@@ -165,7 +165,7 @@ _0223F774:
 	bne _0223F774
 _0223F798:
 	ldr r0, _0223F7F8 ; =ov18_0223F818
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	movne r0, #0
 	ldmneia sp!, {r4, pc}
@@ -246,7 +246,7 @@ _0223F894:
 	bl ov18_0223F6E8
 	ldmia sp!, {r3, pc}
 _0223F89C:
-	bl sub_020C42A8
+	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0223F8A4: .word 0x02253394
@@ -265,11 +265,11 @@ _0223F8C0:
 	ldr r6, [r0, #0x10]
 	mov r1, #0xc0
 	mov r0, r6
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r1, _0223F9F4 ; =0x02249604
 	add r0, r6, #0xc
 	mov r2, #8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0223F9E0
 	ldr r0, _0223F9F8 ; =0x02253394
@@ -281,7 +281,7 @@ _0223F900:
 	mov r1, r8
 	mov r2, r4
 	add r0, r6, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0223F958
 	rsb r0, r5, r5, lsl #3
@@ -313,7 +313,7 @@ _0223F978:
 	mov r0, r8
 	mov r1, r5
 	mov r2, r4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0223F9D0
 	rsb r4, sl, sl, lsl #3
@@ -321,7 +321,7 @@ _0223F978:
 	add r0, r6, #4
 	add r1, r1, r4
 	mov r2, #6
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r0, [r6, #0x15]
 	tst r0, #1
 	ldr r0, _0223F9F8 ; =0x02253394
@@ -367,7 +367,7 @@ ov18_0223FA00: ; 0x0223FA00
 _0223FA34:
 	add r0, r2, #0xf00
 	mov r1, #0x400
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh fp, [sl, #0xe]
 	mov r6, #0
 	cmp fp, #0
@@ -381,7 +381,7 @@ _0223FA5C:
 	ldr r1, _0223FB08 ; =0x02249604
 	mov r2, #8
 	add r0, r5, #0xc
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0223FAF4
 	ldrb r0, [r5, #0x15]
@@ -393,7 +393,7 @@ _0223FA90:
 	mov r1, r8
 	mov r2, r4
 	add r0, r5, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _0223FAE4
 	rsb r0, r7, r7, lsl #3
@@ -430,7 +430,7 @@ _0223FB08: .word 0x02249604
 ov18_0223FB0C: ; 0x0223FB0C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	str r0, [sp]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _0223FC3C ; =0x02253394
 	ldr r3, _0223FC40 ; =0x0017F898
 	ldr sl, [r2]
@@ -453,7 +453,7 @@ _0223FB60:
 	mov r0, r8
 	mov r1, r4
 	mov r2, fp
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	beq _0223FB8C
 	add r0, sb, #0x1000

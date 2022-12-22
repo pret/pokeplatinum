@@ -1,10 +1,10 @@
-.public sub_020D407C
-.public sub_020D7510
-.public sub_020D8B60
-.public sub_020D8E28
-.public sub_020DA448
-.public sub_020DAE0C
-.public sub_020DFF84
+.public __msl_assertion_failed
+.public sprintf
+.public strlen
+.public strncmp
+.public atof
+.public atoi
+.public _d_dtof
 .public ov4_021D7880
 .public ov4_021D78B0
 .public ov4_021EA8AC

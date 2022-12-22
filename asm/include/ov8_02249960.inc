@@ -98,9 +98,9 @@
 .public sub_0207136C
 .public sub_020715D4
 .public sub_020715E4
-.public sub_020D5124
-.public sub_020E1F6C
-.public sub_020E2178
+.public memset
+.public _s32_div_f
+.public _u32_div_f
 .public ov5_021D3DA0
 .public ov5_021D3DE4
 .public ov5_021D3E40

@@ -31,8 +31,8 @@
 .public sub_0201FF00
 .public sub_0201FF68
 .public sub_0201FFD0
-.public sub_020BF55C
-.public sub_020D5124
+.public G2x_SetBlendAlpha_
+.public memset
 .public ov120_021D0F18
 .public ov120_021D0F24
 .public ov120_021D10D4

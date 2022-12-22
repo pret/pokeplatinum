@@ -30,7 +30,7 @@ _02239B6C: .word ov18_02239BF0
 ov18_02239B70: ; 0x02239B70
 	stmfd sp!, {r3, lr}
 	ldr r0, _02239BE0 ; =0x0224A350
-	ldr r1, _02239BE4 ; =sub_020C04EC
+	ldr r1, _02239BE4 ; =GX_LoadBG2Scr
 	bl ov18_0222B700
 	ldr r3, _02239BE8 ; =0x04001008
 	ldr r1, _02239BEC ; =0x0400000A
@@ -58,7 +58,7 @@ ov18_02239B70: ; 0x02239B70
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02239BE0: .word 0x0224A350
-_02239BE4: .word sub_020C04EC
+_02239BE4: .word GX_LoadBG2Scr
 _02239BE8: .word 0x04001008
 _02239BEC: .word 0x0400000A
 	arm_func_end ov18_02239B70

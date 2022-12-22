@@ -1133,7 +1133,7 @@ ov16_0225D4A8: ; 0x0225D4A8
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x65
 	str r7, [r4, #0xc]
 	lsl r0, r0, #2
@@ -1228,7 +1228,7 @@ ov16_0225D570: ; 0x0225D570
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x65
 	str r6, [r4, #0xc]
 	lsl r0, r0, #2
@@ -1268,7 +1268,7 @@ ov16_0225D5B8: ; 0x0225D5B8
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #0x3c
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r2, #0
 	strb r2, [r4, #0xa]
 	strb r2, [r4, #0xb]
@@ -1896,7 +1896,7 @@ _0225DA86:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #1
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0xc]
 	add r0, r4, #0
 	ldrb r1, [r5]
@@ -1965,7 +1965,7 @@ _0225DB12:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #1
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r7, [r4, #0xc]
 	add r0, r4, #0
 	ldrb r1, [r5]
@@ -2602,7 +2602,7 @@ ov16_0225E008: ; 0x0225E008
 	mov r0, #0
 	add r1, r4, #0
 	mov r2, #1
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x65
 	str r7, [r4, #0xc]
 	lsl r0, r0, #2
@@ -7914,12 +7914,12 @@ ov16_02260B04: ; 0x02260B04
 	add r0, r2, #0
 	ldr r2, _02260B80 ; =0x0226F195
 	ldrb r1, [r2, r1]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r5, r0, #0
 	ldr r0, [r4, #0]
 	bl ov16_0223F4BC
 	mov r1, #0xff
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, r5
 	ldr r0, [r4, #0]
 	bgt _02260B5C
@@ -8265,7 +8265,7 @@ _02260E0E:
 	ldr r0, [r6, #0]
 	bl ov16_0223F4BC
 	add r1, r7, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r1, r1, #2
 	add r0, sp, #0x10
 	ldr r4, [r0, r1]
@@ -8840,7 +8840,7 @@ _02261298:
 	str r0, [r4, #4]
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 	ldr r1, [r4, #0]
 	ldr r0, [r4, #4]
 	str r1, [r0, #0]
@@ -9788,7 +9788,7 @@ _02261A1C:
 	mov r1, #0
 	mov r2, #1
 	add r5, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r4, #0]
 	add r1, r6, #0
 	bl ov16_0223E1F8
@@ -12669,7 +12669,7 @@ _02263144:
 	bl ov16_0223F204
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [r4, #0]
 	bl ov16_0223DF0C
 	cmp r0, #0x4a
@@ -12682,7 +12682,7 @@ _02263144:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _022631E8
 _02263186:
 	ldr r0, [r4, #0]
@@ -12697,7 +12697,7 @@ _02263186:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _022631E8
 _022631AA:
 	ldr r0, [r4, #0]
@@ -12713,7 +12713,7 @@ _022631AA:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _022631E8
 _022631D0:
 	add r0, r7, #0
@@ -12724,7 +12724,7 @@ _022631D0:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 _022631E8:
 	mov r0, #0x10
 	str r0, [sp]
@@ -12824,7 +12824,7 @@ _022632A6:
 	bl ov16_0223F204
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [r4, #0]
 	bl ov16_0223DF0C
 	cmp r0, #0x4a
@@ -12837,7 +12837,7 @@ _022632A6:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _02263344
 _022632E2:
 	ldr r0, [r4, #0]
@@ -12852,7 +12852,7 @@ _022632E2:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xe0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _02263344
 _02263306:
 	ldr r0, [r4, #0]
@@ -12868,7 +12868,7 @@ _02263306:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0xa0
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _02263344
 _0226332C:
 	add r0, r7, #0
@@ -12879,7 +12879,7 @@ _0226332C:
 	bl ov16_0223F210
 	add r1, r5, #0
 	mov r2, #0x80
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 _02263344:
 	mov r3, #0
 	str r3, [sp]
@@ -13895,13 +13895,13 @@ ov16_02263B0C: ; 0x02263B0C
 
 	thumb_func_start ov16_02263B10
 ov16_02263B10: ; 0x02263B10
-	ldr r3, _02263B1C ; =sub_020C4CF4
+	ldr r3, _02263B1C ; =MI_CpuFill8
 	add r0, #0x80
 	mov r1, #0
 	mov r2, #8
 	bx r3
 	nop
-_02263B1C: .word sub_020C4CF4
+_02263B1C: .word MI_CpuFill8
 	thumb_func_end ov16_02263B10
 
 	thumb_func_start ov16_02263B20

@@ -24,13 +24,13 @@ sub_02073700: ; 0x02073700
 	add r0, r7, #0
 	mov r1, #0
 	mov r2, #0xe4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	bl sub_02025EF0
 	add r1, r7, #0
 	add r1, #0xa8
 	mov r2, #0x10
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r4, #0
 	bl sub_02025F20
 	add r1, r7, #0
@@ -97,7 +97,7 @@ _020737BC:
 	ldr r1, [sp, #8]
 	mov r2, #8
 	add r1, r1, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r4, r4, #1
 	add r5, #8
 	cmp r4, #3
@@ -108,7 +108,7 @@ _020737BC:
 	add r1, r7, #0
 	add r1, #0xc0
 	mov r2, #8
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp]
 	cmp r0, #0
 	bne _02073816

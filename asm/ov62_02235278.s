@@ -302,7 +302,7 @@ _022354B6:
 	ldrsh r0, [r4, r0]
 	sub r0, r1, r0
 	ldrb r1, [r4, #0x1c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #8]
 	mov r0, #6
 	ldrsh r1, [r4, r0]
@@ -310,7 +310,7 @@ _022354B6:
 	ldrsh r0, [r4, r0]
 	sub r0, r1, r0
 	ldrb r1, [r4, #0x1c]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strh r0, [r4, #0xa]
 	ldrb r0, [r4, #0x1d]
 	add r0, r0, #1
@@ -418,7 +418,7 @@ _02235598:
 	str r0, [sp, #4]
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0x86
 	ldr r0, [sp, #4]
 	lsl r1, r1, #4
@@ -445,7 +445,7 @@ _022355D0:
 	mov r1, #0
 	mov r2, #0x34
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02235838 ; =0x000005FC
 	add r1, r5, #0
 	ldr r0, [r6, r0]
@@ -574,7 +574,7 @@ _022356CC:
 	mov r1, #0
 	mov r2, #0x34
 	add r5, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02235844 ; =0x00000534
 	add r1, r5, #0
 	ldr r0, [r6, r0]
@@ -780,7 +780,7 @@ _0223586C:
 	str r0, [sp, #8]
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0x86
 	ldr r0, [sp, #8]
 	lsl r1, r1, #4
@@ -799,7 +799,7 @@ _02235894:
 	mov r1, #0
 	mov r2, #0x34
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02235A6C ; =0x00000534
 	add r1, r4, #0
 	ldr r0, [r7, r0]
@@ -897,7 +897,7 @@ _02235958:
 	mov r1, #0
 	mov r2, #0x34
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, _02235A7C ; =0x000005FC
 	add r1, r4, #0
 	ldr r0, [r6, r0]
@@ -1316,7 +1316,7 @@ _02235C94:
 	add r0, #0x5c
 	ldrb r0, [r0]
 	mov r1, #7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, #0
 	add r0, #0x5c
 	strb r1, [r0]

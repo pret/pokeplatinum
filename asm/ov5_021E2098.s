@@ -30,7 +30,7 @@ _021E20B4:
 	str r6, [r4, #0x34]
 	mov r0, #0
 	str r0, [r4, #0x30]
-	bl sub_020BF00C
+	bl GX_GetBankForLCDC
 	str r0, [r4, #0]
 	add r0, r4, #4
 	bl ov5_021E2218
@@ -52,10 +52,10 @@ ov5_021E20E8: ; 0x021E20E8
 	add r0, r1, #0
 	add r1, r2, #0
 	add r2, r3, #0
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #4]
 	cmp r0, #0xa
@@ -79,32 +79,32 @@ _021E211E:
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E215E
 _021E212E:
 	mov r2, #2
 	ldr r1, _021E216C ; =0x06820000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E215E
 _021E213C:
 	mov r2, #2
 	ldr r1, _021E2170 ; =0x06840000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E215E
 _021E214A:
 	mov r2, #2
 	ldr r1, _021E2174 ; =0x06860000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E215E
 _021E2158:
 	mov r0, #0
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 _021E215E:
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0x34]
@@ -178,28 +178,28 @@ _021E21D6:
 	b _021E21FC
 _021E21DC:
 	mov r0, #1
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021E2202
 _021E21E4:
 	mov r0, #2
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021E2202
 _021E21EC:
 	mov r0, #4
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021E2202
 _021E21F4:
 	mov r0, #8
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 	b _021E2202
 _021E21FC:
 	mov r0, #0
-	bl sub_020BEA30
+	bl GX_SetBankForLCDC
 _021E2202:
 	ldr r0, [r4, #4]
 	ldr r1, [r4, #8]
 	ldr r2, [r4, #0xc]
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	mov r0, #1
 	str r0, [r4, #0x30]
 	add r0, r5, #0
@@ -233,28 +233,28 @@ _021E223A:
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E2272
 _021E224A:
 	mov r2, #2
 	ldr r1, _021E22A0 ; =0x06820000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E2272
 _021E2258:
 	mov r2, #2
 	ldr r1, _021E22A4 ; =0x06840000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	b _021E2272
 _021E2266:
 	mov r2, #2
 	ldr r1, _021E22A8 ; =0x06860000
 	mov r0, #0
 	lsl r2, r2, #0x10
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 _021E2272:
 	ldr r5, [r4, #0x10]
 	ldr r1, [r4, #0x1c]

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C99FC
-sub_020C99FC: ; 0x020C99FC
+	arm_func_start CP_SaveContext
+CP_SaveContext: ; 0x020C99FC
 	ldr r1, _020C9A38 ; =0x04000290
 	stmdb sp!, {r4}
 	ldmia r1, {r2, r3, r4, ip}
@@ -24,10 +24,10 @@ sub_020C99FC: ; 0x020C99FC
 	bx lr
 	; .align 2, 0
 _020C9A38: .word 0x04000290
-	arm_func_end sub_020C99FC
+	arm_func_end CP_SaveContext
 
-	arm_func_start sub_020C9A3C
-sub_020C9A3C: ; 0x020C9A3C
+	arm_func_start CPi_RestoreContext
+CPi_RestoreContext: ; 0x020C9A3C
 	stmdb sp!, {r4}
 	ldr r1, _020C9A74 ; =0x04000290
 	ldmia r0, {r2, r3, r4, ip}
@@ -44,4 +44,4 @@ sub_020C9A3C: ; 0x020C9A3C
 	bx lr
 	; .align 2, 0
 _020C9A74: .word 0x04000290
-	arm_func_end sub_020C9A3C
+	arm_func_end CPi_RestoreContext

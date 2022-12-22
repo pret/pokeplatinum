@@ -143,7 +143,7 @@ ov99_021D3CF8: ; 0x021D3CF8
 	ldrsb r3, [r3, r4]
 	ldr r0, _021D3D4C ; =0x04000050
 	mov r2, #0x28
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #3
 	mov r1, #1
 	bl sub_02019120
@@ -158,7 +158,7 @@ _021D3D2C:
 	ldrsb r3, [r3, r4]
 	ldr r0, _021D3D4C ; =0x04000050
 	mov r2, #0x24
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #2
 	mov r1, #1
 	bl sub_02019120

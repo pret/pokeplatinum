@@ -39,11 +39,11 @@
 .public sub_02079D40
 .public sub_02079EDC
 .public sub_02079FD0
-.public sub_020A7118
-.public sub_020A818C
-.public sub_020A81A8
-.public sub_020C0314
-.public sub_020C2C54
+.public NNS_G2dGetUnpackedCharacterData
+.public NNS_G2dInitImageProxy
+.public NNS_G2dSetImageLocation
+.public GXS_LoadOBJ
+.public DC_FlushRange
 .public ov19_021D5E08
 .public ov19_021D5E34
 .public ov19_021D5F9C

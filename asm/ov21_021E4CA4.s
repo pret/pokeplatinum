@@ -183,7 +183,7 @@ ov21_021E4DC0: ; 0x021E4DC0
 	mov r1, #0
 	mov r2, #0x70
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r2, [r5, #4]
 	add r0, r4, #0
 	add r1, r6, #0
@@ -304,7 +304,7 @@ _021E4EBC:
 	str r0, [r4, #8]
 	mov r1, #0
 	mov r2, #0x74
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -1803,7 +1803,7 @@ _021E5A6A:
 	b _021E5A8A
 _021E5A82:
 	mov r1, #0x58
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 _021E5A8A:
 	ldr r0, [r5, #0x5c]
@@ -1970,7 +1970,7 @@ _021E5B84:
 	add r0, #0x4c
 	ldrh r0, [r0]
 	mov r1, #0xb6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r3, r0, #0
 	ldr r0, [r4, #0]
 	lsl r3, r3, #0x10
@@ -2005,7 +2005,7 @@ ov21_021E5BE4: ; 0x021E5BE4
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -2016,7 +2016,7 @@ ov21_021E5BE4: ; 0x021E5BE4
 	orr r0, r1
 	mov r1, #9
 	lsl r1, r1, #0x10
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r0, r0, #0xc
 	str r0, [r4, #0x44]
 	pop {r4, pc}
@@ -2033,7 +2033,7 @@ ov21_021E5C18: ; 0x021E5C18
 	asr r1, r0, #0x1f
 	lsl r2, r2, #0xc
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -2044,7 +2044,7 @@ ov21_021E5C18: ; 0x021E5C18
 	orr r0, r1
 	mov r1, #0x12
 	lsl r1, r1, #0xe
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r0, r0, #0xc
 	str r0, [r4, #0x40]
 	pop {r4, pc}

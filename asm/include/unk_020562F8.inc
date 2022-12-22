@@ -29,5 +29,5 @@
 .public sub_0205DB58
 .public sub_02073C74
 .public sub_02074470
-.public sub_020C4BB8
-.public sub_020E1F6C
+.public MIi_CpuClearFast
+.public _s32_div_f

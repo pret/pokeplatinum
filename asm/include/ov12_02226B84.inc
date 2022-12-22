@@ -38,9 +38,9 @@
 .public sub_0201FAB4
 .public sub_02021F9C
 .public sub_02022974
-.public sub_020BF55C
-.public sub_020E1A9C
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public _f_sub
+.public _s32_div_f
 .public ov12_0221FDD4
 .public ov12_0221FDE4
 .public ov12_022201E8

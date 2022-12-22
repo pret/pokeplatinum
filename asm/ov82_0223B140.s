@@ -45,7 +45,7 @@ ov82_0223B164: ; 0x0223B164
 	mov r1, #0
 	mov r2, #0x28
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x37
 	str r0, [r4, #0]
 	str r5, [r4, #0x10]
@@ -173,7 +173,7 @@ _0223B26C:
 	add r0, r6, #0
 	mov r1, #0
 	mov r2, #0x28
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r7, #0
 	bl sub_02006830
 	ldr r0, [r4, #0x20]

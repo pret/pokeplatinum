@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C1B24
-sub_020C1B24: ; 0x020C1B24
+	arm_func_start OSi_GetUnusedThreadId
+OSi_GetUnusedThreadId: ; 0x020C1B24
 	ldr r1, _020C1B38 ; =0x021CCC5C
 	ldr r0, [r1, #0x20]
 	add r0, r0, #1
@@ -15,10 +15,10 @@ sub_020C1B24: ; 0x020C1B24
 	bx lr
 	; .align 2, 0
 _020C1B38: .word 0x021CCC5C
-	arm_func_end sub_020C1B24
+	arm_func_end OSi_GetUnusedThreadId
 
-	arm_func_start sub_020C1B3C
-sub_020C1B3C: ; 0x020C1B3C
+	arm_func_start OSi_InsertLinkToQueue
+OSi_InsertLinkToQueue: ; 0x020C1B3C
 	ldr ip, [r0]
 	b _020C1B50
 _020C1B44:
@@ -53,10 +53,10 @@ _020C1B94:
 	str ip, [r1, #0x80]
 	str r1, [ip, #0x7c]
 	bx lr
-	arm_func_end sub_020C1B3C
+	arm_func_end OSi_InsertLinkToQueue
 
-	arm_func_start sub_020C1BB4
-sub_020C1BB4: ; 0x020C1BB4
+	arm_func_start OSi_RemoveLinkFromQueue
+OSi_RemoveLinkFromQueue: ; 0x020C1BB4
 	ldr r2, [r0, #0]
 	cmp r2, #0
 	beq _020C1BE0
@@ -71,10 +71,10 @@ sub_020C1BB4: ; 0x020C1BB4
 _020C1BE0:
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020C1BB4
+	arm_func_end OSi_RemoveLinkFromQueue
 
-	arm_func_start sub_020C1BE8
-sub_020C1BE8: ; 0x020C1BE8
+	arm_func_start OSi_RemoveSpecifiedLinkFromQueue
+OSi_RemoveSpecifiedLinkFromQueue: ; 0x020C1BE8
 	ldr ip, [r0]
 	mov r2, ip
 	cmp ip, #0
@@ -99,10 +99,10 @@ _020C1C28:
 _020C1C34:
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020C1BE8
+	arm_func_end OSi_RemoveSpecifiedLinkFromQueue
 
-	arm_func_start sub_020C1C3C
-sub_020C1C3C: ; 0x020C1C3C
+	arm_func_start OSi_RemoveMutexLinkFromQueue
+OSi_RemoveMutexLinkFromQueue: ; 0x020C1C3C
 	ldr r2, [r0, #0]
 	cmp r2, #0
 	beq _020C1C64
@@ -116,10 +116,10 @@ sub_020C1C3C: ; 0x020C1C3C
 _020C1C64:
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020C1C3C
+	arm_func_end OSi_RemoveMutexLinkFromQueue
 
-	arm_func_start sub_020C1C6C
-sub_020C1C6C: ; 0x020C1C6C
+	arm_func_start OSi_InsertThreadToList
+OSi_InsertThreadToList: ; 0x020C1C6C
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C1CC8 ; =0x021CCC5C
 	mov ip, #0
@@ -148,10 +148,10 @@ _020C1CA4:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C1CC8: .word 0x021CCC5C
-	arm_func_end sub_020C1C6C
+	arm_func_end OSi_InsertThreadToList
 
-	arm_func_start sub_020C1CCC
-sub_020C1CCC: ; 0x020C1CCC
+	arm_func_start OSi_RemoveThreadFromList
+OSi_RemoveThreadFromList: ; 0x020C1CCC
 	ldr r1, _020C1D10 ; =0x021CCC5C
 	mov r2, #0
 	ldr r1, [r1, #0x2c]
@@ -173,10 +173,10 @@ _020C1CE4:
 	bx lr
 	; .align 2, 0
 _020C1D10: .word 0x021CCC5C
-	arm_func_end sub_020C1CCC
+	arm_func_end OSi_RemoveThreadFromList
 
-	arm_func_start sub_020C1D14
-sub_020C1D14: ; 0x020C1D14
+	arm_func_start OSi_RescheduleThread
+OSi_RescheduleThread: ; 0x020C1D14
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r0, _020C1DD4 ; =0x021CCC5C
 	ldr r1, [r0, #4]
@@ -186,7 +186,7 @@ sub_020C1D14: ; 0x020C1D14
 	ldr r4, _020C1DD8 ; =0x021CCC80
 	cmp r0, #0
 	bne _020C1D44
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _020C1D50
 _020C1D44:
@@ -197,7 +197,7 @@ _020C1D50:
 	ldr r0, _020C1DD4 ; =0x021CCC5C
 	ldr r0, [r0, #8]
 	ldr r6, [r0, #0]
-	bl sub_020C22F8
+	bl OS_SelectThread
 	mov r5, r0
 	cmp r6, r5
 	cmpne r5, #0
@@ -206,7 +206,7 @@ _020C1D50:
 	cmp r0, #2
 	beq _020C1D8C
 	mov r0, r6
-	bl sub_020C2698
+	bl OS_SaveContext
 	cmp r0, #0
 	ldmneia sp!, {r4, r5, r6, pc}
 _020C1D8C:
@@ -228,15 +228,15 @@ _020C1DC0:
 	ldr r1, _020C1DD4 ; =0x021CCC5C
 	mov r0, r5
 	str r5, [r1, #0x28]
-	bl sub_020C26E4
+	bl OS_LoadContext
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C1DD4: .word 0x021CCC5C
 _020C1DD8: .word 0x021CCC80
-	arm_func_end sub_020C1D14
+	arm_func_end OSi_RescheduleThread
 
-	arm_func_start sub_020C1DDC
-sub_020C1DDC: ; 0x020C1DDC
+	arm_func_start OS_InitThread
+OS_InitThread: ; 0x020C1DDC
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr r0, _020C1EEC ; =0x021CCC5C
@@ -289,16 +289,16 @@ _020C1E50:
 	ldr r2, _020C1F14 ; =0x027FFFA0
 	strh r0, [r1, #0x26]
 	str r3, [r2, #0]
-	bl sub_020C256C
+	bl OS_SetSwitchThreadCallback
 	mov r2, #0xc8
 	str r2, [sp]
 	mov ip, #0x1f
 	ldr r0, _020C1F18 ; =0x021CCC90
-	ldr r1, _020C1F1C ; =sub_020C2594
+	ldr r1, _020C1F1C ; =OSi_IdleThreadProc
 	ldr r3, _020C1F20 ; =0x021CCED8
 	mov r2, #0
 	str ip, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _020C1EEC ; =0x021CCC5C
 	mov r1, #0x20
 	str r1, [r0, #0xa4]
@@ -319,29 +319,29 @@ _020C1F0C: .word 0x7BF9DD5B
 _020C1F10: .word 0x021CCC80
 _020C1F14: .word 0x027FFFA0
 _020C1F18: .word 0x021CCC90
-_020C1F1C: .word sub_020C2594
+_020C1F1C: .word OSi_IdleThreadProc
 _020C1F20: .word 0x021CCED8
-	arm_func_end sub_020C1DDC
+	arm_func_end OS_InitThread
 
-	arm_func_start sub_020C1F24
-sub_020C1F24: ; 0x020C1F24
+	arm_func_start OS_IsThreadAvailable
+OS_IsThreadAvailable: ; 0x020C1F24
 	ldr r0, _020C1F30 ; =0x021CCC68
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
 _020C1F30: .word 0x021CCC68
-	arm_func_end sub_020C1F24
+	arm_func_end OS_IsThreadAvailable
 
-	arm_func_start sub_020C1F34
-sub_020C1F34: ; 0x020C1F34
+	arm_func_start OS_CreateThread
+OS_CreateThread: ; 0x020C1F34
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r8, r0
 	mov r5, r1
 	mov r7, r2
 	mov r6, r3
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
-	bl sub_020C1B24
+	bl OSi_GetUnusedThreadId
 	ldr r2, [sp, #0x1c]
 	mov r1, #0
 	str r2, [r8, #0x70]
@@ -349,7 +349,7 @@ sub_020C1F34: ; 0x020C1F34
 	str r1, [r8, #0x64]
 	mov r0, r8
 	str r1, [r8, #0x74]
-	bl sub_020C1C6C
+	bl OSi_InsertThreadToList
 	ldr r0, [sp, #0x18]
 	mov r1, r5
 	str r6, [r8, #0x94]
@@ -367,54 +367,54 @@ sub_020C1F34: ; 0x020C1F34
 	str ip, [r8, #0xa0]
 	mov r0, r8
 	str ip, [r8, #0x9c]
-	bl sub_020C2614
-	ldr r2, _020C202C ; =sub_020C2030
+	bl OS_InitContext
+	ldr r2, _020C202C ; =OS_ExitThread
 	str r7, [r8, #4]
 	str r2, [r8, #0x3c]
 	ldr r2, [sp, #0x18]
 	add r1, r5, #4
 	mov r0, #0
 	sub r2, r2, #8
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0
 	str r1, [r8, #0x84]
 	str r1, [r8, #0x88]
 	mov r0, r8
 	str r1, [r8, #0x8c]
-	bl sub_020C260C
+	bl OS_SetThreadDestructor
 	mov r0, #0
 	str r0, [r8, #0x78]
 	str r0, [r8, #0x80]
 	add r1, r8, #0xa4
 	mov r2, #0xc
 	str r0, [r8, #0x7c]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0
 	mov r0, r4
 	str r1, [r8, #0xb0]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C2024: .word 0xFDDB597D
 _020C2028: .word 0x7BF9DD5B
-_020C202C: .word sub_020C2030
-	arm_func_end sub_020C1F34
+_020C202C: .word OS_ExitThread
+	arm_func_end OS_CreateThread
 
-	arm_func_start sub_020C2030
-sub_020C2030: ; 0x020C2030
+	arm_func_start OS_ExitThread
+OS_ExitThread: ; 0x020C2030
 	stmfd sp!, {r3, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r0, _020C204C ; =0x021CCC5C
 	mov r1, #0
 	ldr r0, [r0, #0x28]
-	bl sub_020C2050
+	bl OSi_ExitThread_ArgSpecified
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C204C: .word 0x021CCC5C
-	arm_func_end sub_020C2030
+	arm_func_end OS_ExitThread
 
-	arm_func_start sub_020C2050
-sub_020C2050: ; 0x020C2050
+	arm_func_start OSi_ExitThread_ArgSpecified
+OSi_ExitThread_ArgSpecified: ; 0x020C2050
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r2, _020C20A4 ; =0x021CCC5C
 	mov r5, r0
@@ -422,8 +422,8 @@ sub_020C2050: ; 0x020C2050
 	mov r4, r1
 	cmp r2, #0
 	beq _020C2098
-	ldr r1, _020C20A8 ; =sub_020C20AC
-	bl sub_020C2614
+	ldr r1, _020C20A8 ; =OSi_ExitThread
+	bl OS_InitContext
 	str r4, [r5, #4]
 	ldr r1, [r5, #0]
 	mov r0, r5
@@ -431,19 +431,19 @@ sub_020C2050: ; 0x020C2050
 	str r1, [r5, #0]
 	mov r1, #1
 	str r1, [r5, #0x64]
-	bl sub_020C26E4
+	bl OS_LoadContext
 	ldmia sp!, {r3, r4, r5, pc}
 _020C2098:
 	mov r0, r4
-	bl sub_020C20AC
+	bl OSi_ExitThread
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C20A4: .word 0x021CCC5C
-_020C20A8: .word sub_020C20AC
-	arm_func_end sub_020C2050
+_020C20A8: .word OSi_ExitThread
+	arm_func_end OSi_ExitThread_ArgSpecified
 
-	arm_func_start sub_020C20AC
-sub_020C20AC: ; 0x020C20AC
+	arm_func_start OSi_ExitThread
+OSi_ExitThread: ; 0x020C20AC
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C20E0 ; =0x021CCC5C
 	ldr r1, [r1, #8]
@@ -454,122 +454,122 @@ sub_020C20AC: ; 0x020C20AC
 	mov r1, #0
 	str r1, [r3, #0xb4]
 	blx r2
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 _020C20D8:
-	bl sub_020C20E4
+	bl OSi_ExitThread_Destroy
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C20E0: .word 0x021CCC5C
-	arm_func_end sub_020C20AC
+	arm_func_end OSi_ExitThread
 
-	arm_func_start sub_020C20E4
-sub_020C20E4: ; 0x020C20E4
+	arm_func_start OSi_ExitThread_Destroy
+OSi_ExitThread_Destroy: ; 0x020C20E4
 	stmfd sp!, {r4, lr}
 	ldr r0, _020C213C ; =0x021CCC5C
 	ldr r0, [r0, #8]
 	ldr r4, [r0, #0]
-	bl sub_020C25A4
+	bl OS_DisableScheduler
 	mov r0, r4
-	bl sub_020C2AB8
+	bl OSi_UnlockAllMutex
 	ldr r0, [r4, #0x78]
 	cmp r0, #0
 	beq _020C2114
 	mov r1, r4
-	bl sub_020C1BE8
+	bl OSi_RemoveSpecifiedLinkFromQueue
 _020C2114:
 	mov r0, r4
-	bl sub_020C1CCC
+	bl OSi_RemoveThreadFromList
 	mov r1, #2
 	add r0, r4, #0x9c
 	str r1, [r4, #0x64]
-	bl sub_020C2268
-	bl sub_020C25D8
-	bl sub_020C2320
-	bl sub_020C42A8
+	bl OS_WakeupThread
+	bl OS_EnableScheduler
+	bl OS_RescheduleThread
+	bl OS_Terminate
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C213C: .word 0x021CCC5C
-	arm_func_end sub_020C20E4
+	arm_func_end OSi_ExitThread_Destroy
 
-	arm_func_start sub_020C2140
-sub_020C2140: ; 0x020C2140
+	arm_func_start OS_DestroyThread
+OS_DestroyThread: ; 0x020C2140
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C21B8 ; =0x021CCC5C
 	mov r4, r0
 	ldr r0, [r1, #0x28]
 	cmp r0, r5
 	bne _020C2164
-	bl sub_020C20E4
+	bl OSi_ExitThread_Destroy
 _020C2164:
-	bl sub_020C25A4
+	bl OS_DisableScheduler
 	mov r0, r5
-	bl sub_020C2AB8
+	bl OSi_UnlockAllMutex
 	mov r0, r5
-	bl sub_020C21BC
+	bl OSi_CancelThreadAlarmForSleep
 	ldr r0, [r5, #0x78]
 	cmp r0, #0
 	beq _020C218C
 	mov r1, r5
-	bl sub_020C1BE8
+	bl OSi_RemoveSpecifiedLinkFromQueue
 _020C218C:
 	mov r0, r5
-	bl sub_020C1CCC
+	bl OSi_RemoveThreadFromList
 	mov r1, #2
 	add r0, r5, #0x9c
 	str r1, [r5, #0x64]
-	bl sub_020C2268
-	bl sub_020C25D8
+	bl OS_WakeupThread
+	bl OS_EnableScheduler
 	mov r0, r4
-	bl sub_020C3DAC
-	bl sub_020C2320
+	bl OS_RestoreInterrupts
+	bl OS_RescheduleThread
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C21B8: .word 0x021CCC5C
-	arm_func_end sub_020C2140
+	arm_func_end OS_DestroyThread
 
-	arm_func_start sub_020C21BC
-sub_020C21BC: ; 0x020C21BC
+	arm_func_start OSi_CancelThreadAlarmForSleep
+OSi_CancelThreadAlarmForSleep: ; 0x020C21BC
 	stmfd sp!, {r3, lr}
 	ldr r0, [r0, #0xb0]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl sub_020C3BB4
+	bl OS_CancelAlarm
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020C21BC
+	arm_func_end OSi_CancelThreadAlarmForSleep
 
-	arm_func_start sub_020C21D4
-sub_020C21D4: ; 0x020C21D4
+	arm_func_start OS_JoinThread
+OS_JoinThread: ; 0x020C21D4
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r5, #0x64]
 	mov r4, r0
 	cmp r1, #2
 	beq _020C21F8
 	add r0, r5, #0x9c
-	bl sub_020C2218
+	bl OS_SleepThread
 _020C21F8:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020C21D4
+	arm_func_end OS_JoinThread
 
-	arm_func_start sub_020C2204
-sub_020C2204: ; 0x020C2204
+	arm_func_start OS_IsThreadTerminated
+OS_IsThreadTerminated: ; 0x020C2204
 	ldr r0, [r0, #0x64]
 	cmp r0, #2
 	moveq r0, #1
 	movne r0, #0
 	bx lr
-	arm_func_end sub_020C2204
+	arm_func_end OS_IsThreadTerminated
 
-	arm_func_start sub_020C2218
-sub_020C2218: ; 0x020C2218
+	arm_func_start OS_SleepThread
+OS_SleepThread: ; 0x020C2218
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C2264 ; =0x021CCC5C
 	mov r4, r0
 	ldr r0, [r1, #8]
@@ -579,23 +579,23 @@ sub_020C2218: ; 0x020C2218
 	mov r0, r6
 	mov r1, r5
 	str r6, [r5, #0x78]
-	bl sub_020C1B3C
+	bl OSi_InsertLinkToQueue
 _020C224C:
 	mov r0, #0
 	str r0, [r5, #0x64]
-	bl sub_020C1D14
+	bl OSi_RescheduleThread
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C2264: .word 0x021CCC5C
-	arm_func_end sub_020C2218
+	arm_func_end OS_SleepThread
 
-	arm_func_start sub_020C2268
-sub_020C2268: ; 0x020C2268
+	arm_func_start OS_WakeupThread
+OS_WakeupThread: ; 0x020C2268
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, [r7, #0]
 	mov r6, r0
 	cmp r1, #0
@@ -605,7 +605,7 @@ sub_020C2268: ; 0x020C2268
 	mov r4, #0
 _020C2290:
 	mov r0, r7
-	bl sub_020C1BB4
+	bl OSi_RemoveLinkFromQueue
 	str r5, [r0, #0x64]
 	str r4, [r0, #0x78]
 	str r4, [r0, #0x80]
@@ -617,29 +617,29 @@ _020C22B4:
 	mov r0, #0
 	str r0, [r7, #4]
 	str r0, [r7, #0]
-	bl sub_020C1D14
+	bl OSi_RescheduleThread
 _020C22C4:
 	mov r0, r6
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020C2268
+	arm_func_end OS_WakeupThread
 
-	arm_func_start sub_020C22D0
-sub_020C22D0: ; 0x020C22D0
+	arm_func_start OS_WakeupThreadDirect
+OS_WakeupThreadDirect: ; 0x020C22D0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r1, #1
 	mov r4, r0
 	str r1, [r5, #0x64]
-	bl sub_020C1D14
+	bl OSi_RescheduleThread
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020C22D0
+	arm_func_end OS_WakeupThreadDirect
 
-	arm_func_start sub_020C22F8
-sub_020C22F8: ; 0x020C22F8
+	arm_func_start OS_SelectThread
+OS_SelectThread: ; 0x020C22F8
 	ldr r0, _020C231C ; =0x021CCC5C
 	ldr r0, [r0, #0x2c]
 	b _020C2308
@@ -653,28 +653,28 @@ _020C2308:
 	bx lr
 	; .align 2, 0
 _020C231C: .word 0x021CCC5C
-	arm_func_end sub_020C22F8
+	arm_func_end OS_SelectThread
 
-	arm_func_start sub_020C2320
-sub_020C2320: ; 0x020C2320
+	arm_func_start OS_RescheduleThread
+OS_RescheduleThread: ; 0x020C2320
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r0
-	bl sub_020C1D14
+	bl OSi_RescheduleThread
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020C2320
+	arm_func_end OS_RescheduleThread
 
-	arm_func_start sub_020C233C
-sub_020C233C: ; 0x020C233C
+	arm_func_start OS_YieldThread
+OS_YieldThread: ; 0x020C233C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r0, _020C23F0 ; =0x021CCC5C
 	mov r4, #0
 	mov r5, r4
 	mov r6, r4
 	ldr r8, [r0, #0x28]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C23F0 ; =0x021CCC5C
 	mov r7, r0
 	ldr r1, [r1, #0x2c]
@@ -700,7 +700,7 @@ _020C239C:
 	bne _020C23B8
 _020C23AC:
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020C23B8:
 	cmp r4, #0
@@ -714,23 +714,23 @@ _020C23D4:
 	ldr r0, [r5, #0x68]
 	str r0, [r8, #0x68]
 	str r8, [r5, #0x68]
-	bl sub_020C1D14
+	bl OSi_RescheduleThread
 	mov r0, r7
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C23F0: .word 0x021CCC5C
-	arm_func_end sub_020C233C
+	arm_func_end OS_YieldThread
 
-	arm_func_start sub_020C23F4
-sub_020C23F4: ; 0x020C23F4
+	arm_func_start OS_SetThreadPriority
+OS_SetThreadPriority: ; 0x020C23F4
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r2, _020C2494 ; =0x021CCC5C
 	mov r7, r0
 	mov r6, r1
 	ldr r8, [r2, #0x2c]
 	mov r4, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r5, r0
 	b _020C2420
 _020C2418:
@@ -745,7 +745,7 @@ _020C2420:
 	cmpne r8, r0
 	bne _020C244C
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _020C244C:
@@ -762,36 +762,36 @@ _020C244C:
 _020C2474:
 	mov r0, r7
 	str r6, [r7, #0x70]
-	bl sub_020C1C6C
-	bl sub_020C1D14
+	bl OSi_InsertThreadToList
+	bl OSi_RescheduleThread
 _020C2484:
 	mov r0, r5
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C2494: .word 0x021CCC5C
 _020C2498: .word 0x021CCC90
-	arm_func_end sub_020C23F4
+	arm_func_end OS_SetThreadPriority
 
-	arm_func_start sub_020C249C
-sub_020C249C: ; 0x020C249C
+	arm_func_start OS_GetThreadPriority
+OS_GetThreadPriority: ; 0x020C249C
 	ldr r0, [r0, #0x70]
 	bx lr
-	arm_func_end sub_020C249C
+	arm_func_end OS_GetThreadPriority
 
-	arm_func_start sub_020C24A4
-sub_020C24A4: ; 0x020C24A4
+	arm_func_start OS_Sleep
+OS_Sleep: ; 0x020C24A4
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x34
 	mov r4, r0
 	add r0, sp, #8
-	bl sub_020C3A0C
+	bl OS_CreateAlarm
 	ldr r0, _020C2540 ; =0x021CCC5C
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0]
 	str r0, [sp, #4]
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C2544 ; =0x000082EA
 	mov r2, #0
 	umull r5, r3, r4, r1
@@ -806,70 +806,70 @@ sub_020C24A4: ; 0x020C24A4
 	str r2, [sp]
 	mov r2, r3, lsr #6
 	orr r1, r1, r3, lsl #26
-	ldr r3, _020C2548 ; =sub_020C254C
-	bl sub_020C3B48
+	ldr r3, _020C2548 ; =OSi_SleepAlarmCallback
+	bl OS_SetAlarm
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	beq _020C2530
 	mov r5, #0
 _020C251C:
 	mov r0, r5
-	bl sub_020C2218
+	bl OS_SleepThread
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	bne _020C251C
 _020C2530:
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add sp, sp, #0x34
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _020C2540: .word 0x021CCC5C
 _020C2544: .word 0x000082EA
-_020C2548: .word sub_020C254C
-	arm_func_end sub_020C24A4
+_020C2548: .word OSi_SleepAlarmCallback
+	arm_func_end OS_Sleep
 
-	arm_func_start sub_020C254C
-sub_020C254C: ; 0x020C254C
+	arm_func_start OSi_SleepAlarmCallback
+OSi_SleepAlarmCallback: ; 0x020C254C
 	ldr r2, [r0, #0]
 	mov r1, #0
 	str r1, [r0, #0]
-	ldr ip, _020C2568 ; =sub_020C22D0
+	ldr ip, _020C2568 ; =OS_WakeupThreadDirect
 	mov r0, r2
 	str r1, [r2, #0xb0]
 	bx ip
 	; .align 2, 0
-_020C2568: .word sub_020C22D0
-	arm_func_end sub_020C254C
+_020C2568: .word OS_WakeupThreadDirect
+	arm_func_end OSi_SleepAlarmCallback
 
-	arm_func_start sub_020C256C
-sub_020C256C: ; 0x020C256C
+	arm_func_start OS_SetSwitchThreadCallback
+OS_SetSwitchThreadCallback: ; 0x020C256C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C2590 ; =0x021CCC5C
 	ldr r4, [r1, #0x30]
 	str r5, [r1, #0x30]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C2590: .word 0x021CCC5C
-	arm_func_end sub_020C256C
+	arm_func_end OS_SetSwitchThreadCallback
 
-	arm_func_start sub_020C2594
-sub_020C2594: ; 0x020C2594
+	arm_func_start OSi_IdleThreadProc
+OSi_IdleThreadProc: ; 0x020C2594
 	stmfd sp!, {r3, lr}
-	bl sub_020C3D84
+	bl OS_EnableInterrupts
 _020C259C:
-	bl sub_020C42B8
+	bl OS_Halt
 	b _020C259C
-	arm_func_end sub_020C2594
+	arm_func_end OSi_IdleThreadProc
 
-	arm_func_start sub_020C25A4
-sub_020C25A4: ; 0x020C25A4
+	arm_func_start OS_DisableScheduler
+OS_DisableScheduler: ; 0x020C25A4
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r2, _020C25D4 ; =0x021CCC5C
 	mvn r1, #0
 	ldr r3, [r2, #4]
@@ -877,17 +877,17 @@ sub_020C25A4: ; 0x020C25A4
 	addlo r1, r3, #1
 	movlo r4, r3
 	strlo r1, [r2, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C25D4: .word 0x021CCC5C
-	arm_func_end sub_020C25A4
+	arm_func_end OS_DisableScheduler
 
-	arm_func_start sub_020C25D8
-sub_020C25D8: ; 0x020C25D8
+	arm_func_start OS_EnableScheduler
+OS_EnableScheduler: ; 0x020C25D8
 	stmfd sp!, {r4, lr}
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _020C2608 ; =0x021CCC5C
 	mov r4, #0
 	ldr r3, [r1, #4]
@@ -895,18 +895,18 @@ sub_020C25D8: ; 0x020C25D8
 	subne r2, r3, #1
 	movne r4, r3
 	strne r2, [r1, #4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C2608: .word 0x021CCC5C
-	arm_func_end sub_020C25D8
+	arm_func_end OS_EnableScheduler
 
-	arm_func_start sub_020C260C
-sub_020C260C: ; 0x020C260C
+	arm_func_start OS_SetThreadDestructor
+OS_SetThreadDestructor: ; 0x020C260C
 	str r1, [r0, #0xb4]
 	bx lr
-	arm_func_end sub_020C260C
+	arm_func_end OS_SetThreadDestructor
 
 	.bss
 

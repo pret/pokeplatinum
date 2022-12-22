@@ -18,7 +18,7 @@ ov108_02243030: ; 0x02243030
 	str r3, [sp, #0x1c]
 	bl sub_0201DBEC
 	bl ov108_022431FC
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80

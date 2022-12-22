@@ -119,7 +119,7 @@ ov4_021D7814: ; 0x021D7814
 	mov r0, r7
 	mov r1, r4
 	mov r2, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, r8
 	mov r1, r7
 	mov r2, r6

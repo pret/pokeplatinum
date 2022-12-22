@@ -2031,7 +2031,7 @@ _02236CCE:
 	mov r1, #0x5a
 	mul r0, r4
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r0, [r5, #0x30]
 	bl sub_0200D7C0
@@ -2423,7 +2423,7 @@ _02236F46:
 	bne _0223709C
 	bl sub_0201D2E8
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #0xa
 	ldr r0, [r4, #0x30]
 	lsl r1, r1, #0xd
@@ -2772,7 +2772,7 @@ _02237206:
 	bne _0223735C
 	bl sub_0201D2E8
 	mov r1, #0x14
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #0xa
 	ldr r0, [r4, #0x30]
 	lsl r1, r1, #0xd
@@ -3407,7 +3407,7 @@ ov12_02237728: ; 0x02237728
 	mov r1, #0
 	mov r2, #0xe0
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r4, #0
 	bne _02237746
 	bl sub_02022974

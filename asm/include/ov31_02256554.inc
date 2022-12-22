@@ -5,7 +5,7 @@
 .public sub_02019448
 .public sub_0201958C
 .public sub_02019FE4
-.public sub_020C4BB8
+.public MIi_CpuClearFast
 .public ov25_02254674
 .public ov25_022546B8
 .public ov25_02255090

@@ -141,7 +141,7 @@ _0221FCF8:
 	mov r2, #0x6f
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	mov r1, #0x47
 	str r5, [r4, #0]
 	mov r0, #0
@@ -201,7 +201,7 @@ _0221FD7C:
 _0221FD80:
 	mov r1, #0
 	sub r2, #0x9c
-	bl sub_020D5124
+	bl memset
 	mov r1, #0
 	str r1, [r4, #0xc]
 	str r1, [r4, #0x18]
@@ -1035,7 +1035,7 @@ ov12_02220314: ; 0x02220314
 _0222032C:
 	mov r1, #0
 	mov r2, #0x3c
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	add r0, #0x90
 	ldrh r0, [r0]
@@ -1237,7 +1237,7 @@ ov12_02220474: ; 0x02220474
 	mov r1, #0
 	mov r2, #0x3f
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	nop
 _02220488: .word 0x04000050
@@ -3257,7 +3257,7 @@ _022212EE:
 	mov r2, #0x19
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #2
 	mov r1, #0
 	bl sub_02019120
@@ -3401,7 +3401,7 @@ ov12_02221424: ; 0x02221424
 	mov r2, #0x19
 	mov r1, #0
 	lsl r2, r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	mov r1, #4
 	bl ov12_02221238
@@ -4411,7 +4411,7 @@ ov12_02221BBC: ; 0x02221BBC
 _02221BD4:
 	mov r1, #0
 	mov r2, #0x4c
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	str r0, [r4, #0]
 	strb r0, [r4, #5]
@@ -4542,7 +4542,7 @@ _02221CCC:
 	str r0, [sp]
 	ldrb r3, [r5, #0xa]
 	ldr r0, _02221D48 ; =0x04000050
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add r0, r5, #0
 	bl ov12_02221B64
 	ldrb r0, [r5, #5]
@@ -4653,7 +4653,7 @@ _02221D82:
 	str r0, [sp]
 	ldrb r3, [r4, #9]
 	ldr r0, _02221F3C ; =0x04000050
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add r0, r4, #0
 	bl ov12_02221B64
 	ldrb r0, [r4, #5]
@@ -6289,7 +6289,7 @@ ov12_022229D8: ; 0x022229D8
 	mov r1, #0
 	mov r2, #0x3c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	strb r0, [r4]
 	ldr r0, [r5, #0x18]
@@ -6365,7 +6365,7 @@ ov12_02222A78: ; 0x02222A78
 	mov r1, #0
 	mov r2, #0x3c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #2
 	strb r0, [r4]
 	ldr r0, [r5, #0x18]
@@ -6424,7 +6424,7 @@ ov12_02222AF0: ; 0x02222AF0
 	mov r1, #0
 	mov r2, #0x3c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	strb r0, [r4]
 	ldr r0, [r5, #0x18]
@@ -6501,7 +6501,7 @@ ov12_02222B94: ; 0x02222B94
 	mov r1, #0
 	mov r2, #0x3c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #4
 	strb r0, [r4]
 	ldr r0, [r5, #0x18]
@@ -6551,7 +6551,7 @@ ov12_02222BF8: ; 0x02222BF8
 	mov r1, #0
 	mov r2, #0x3c
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #5
 	strb r0, [r4]
 	ldr r0, [r5, #0x18]
@@ -6663,7 +6663,7 @@ ov12_02222CAC: ; 0x02222CAC
 	mov r1, #1
 	mov r2, #2
 	lsr r3, r3, #0x10
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	nop
 _02222CD8: .word 0x04001050
@@ -7408,7 +7408,7 @@ ov12_02223234: ; 0x02223234
 	cmp r0, r1
 	bge _02223246
 	add r0, r2, #0
-	bl sub_020D4070
+	bl abs
 	lsl r0, r0, #0x18
 	asr r0, r0, #0x18
 	pop {r3, pc}
@@ -7416,7 +7416,7 @@ _02223246:
 	cmp r0, r1
 	ble _02223258
 	add r0, r2, #0
-	bl sub_020D4070
+	bl abs
 	neg r0, r0
 	lsl r0, r0, #0x18
 	asr r0, r0, #0x18

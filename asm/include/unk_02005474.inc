@@ -66,10 +66,10 @@
 .public sub_020181C4
 .public sub_0201CED0
 .public sub_02022974
-.public sub_020B7FC8
-.public sub_020B8034
-.public sub_020B808C
-.public sub_020B80E8
-.public sub_020B81B4
-.public sub_020BAD78
-.public sub_020BADC0
+.public NNS_SndPlayerStopSeq
+.public NNS_SndPlayerStopSeqBySeqNo
+.public NNS_SndPlayerStopSeqAll
+.public NNS_SndHandleReleaseSeq
+.public NNS_SndPlayerSetTrackPan
+.public NNS_SndArcPlayerStartSeq
+.public NNS_SndArcPlayerStartSeqEx

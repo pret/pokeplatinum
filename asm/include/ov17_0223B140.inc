@@ -96,9 +96,9 @@
 .public sub_0209590C
 .public sub_020959F4
 .public sub_02095A24
-.public sub_020C4B18
-.public sub_020C4B4C
-.public sub_020C4CF4
+.public MIi_CpuCopy16
+.public MIi_CpuClear32
+.public MI_CpuFill8
 .public ov11_0221F8F0
 .public ov12_0221FCDC
 .public ov12_0221FDC0

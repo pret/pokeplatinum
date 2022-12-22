@@ -35,7 +35,7 @@ _0222F258:
 	bl ov18_02246254
 	bl ov18_02245820
 	bl ov18_022460BC
-	bl sub_020C3E14
+	bl OS_WaitVBlankIntr
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq _0222F258
@@ -103,29 +103,29 @@ ov18_0222F334: ; 0x0222F334
 	mov r0, #0
 	ldrh r1, [r2]
 	strh r0, [r2]
-	bl sub_020BDDBC
+	bl GX_DispOff
 	ldr r1, _0222F3F4 ; =0x04001000
 	ldr r0, [r1, #0]
 	bic r0, r0, #0x10000
 	str r0, [r1, #0]
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #0
 	bne _0222F36C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222F36C:
-	bl sub_020C39FC
+	bl OS_IsAlarmAvailable
 	cmp r0, #0
 	bne _0222F37C
-	bl sub_020C42A8
+	bl OS_Terminate
 _0222F37C:
 	mov r0, #0
-	bl sub_020BDD88
-	bl sub_020BDBC8
+	bl GX_VBlankIntr
+	bl FX_Init
 	mvn r0, #0
-	bl sub_020C7D68
-	bl sub_020C9CF8
-	bl sub_020CB8A8
-	bl sub_020BDDBC
+	bl FS_Init
+	bl TP_Init
+	bl RTC_Init
+	bl GX_DispOff
 	ldr r1, _0222F3F4 ; =0x04001000
 	ldr r0, [r1, #0]
 	bic r0, r0, #0x10000
@@ -143,7 +143,7 @@ _0222F37C:
 	mov r1, #0x20
 	bl ov18_02245068
 	str r0, [sp]
-	bl sub_020A3404
+	bl DWC_BM_Init
 	add r0, sp, #0
 	bl ov18_0224508C
 	ldmia sp!, {r3, pc}
@@ -157,15 +157,15 @@ _0222F3F8: .word 0x022532AC
 ov18_0222F3FC: ; 0x0222F3FC
 	stmfd sp!, {r4, lr}
 	mov r0, #0
-	bl sub_020BDD88
+	bl GX_VBlankIntr
 	mov r0, #1
-	bl sub_020BE004
+	bl GX_SetBankForBG
 	mov r0, #2
-	bl sub_020BE294
+	bl GX_SetBankForOBJ
 	mov r1, #0
 	mov r2, r1
 	mov r0, #1
-	bl sub_020BDE40
+	bl GX_SetGraphicsMode
 	mov r3, #0x4000000
 	ldr r1, [r3, #0]
 	add r0, r3, #0x6c
@@ -175,7 +175,7 @@ ov18_0222F3FC: ; 0x0222F3FC
 	mov r1, #0
 	bic r2, r2, #0xe000
 	str r2, [r3, #0]
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	mov r3, #0x4000000
 	ldr r2, [r3, #0]
 	ldr r0, _0222F660 ; =0xFFCFFFEF
@@ -205,13 +205,13 @@ ov18_0222F3FC: ; 0x0222F3FC
 	str lr, [r3, #0x14]
 	str lr, [r3, #0x18]
 	str lr, [r3, #0x1c]
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	mov r0, #0x80
-	bl sub_020BEA50
+	bl GX_SetBankForSubBG
 	mov r0, #0x100
-	bl sub_020BEAF8
+	bl GX_SetBankForSubOBJ
 	mov r0, #0
-	bl sub_020BDEA8
+	bl GXS_SetGraphicsMode
 	ldr r1, _0222F668 ; =0x04001000
 	ldr r0, [r1, #0]
 	bic r0, r0, #0x1f00
@@ -221,7 +221,7 @@ ov18_0222F3FC: ; 0x0222F3FC
 	str r0, [r1, #0]
 	add r0, r1, #0x6c
 	mov r1, #0
-	bl sub_020BDEC4
+	bl GXx_SetMasterBrightness_
 	ldr r3, _0222F668 ; =0x04001000
 	ldr r0, _0222F660 ; =0xFFCFFFEF
 	ldr r1, [r3, #0]
@@ -248,7 +248,7 @@ ov18_0222F3FC: ; 0x0222F3FC
 	str ip, [r3, #0x14]
 	str ip, [r3, #0x18]
 	str ip, [r3, #0x1c]
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r2, _0222F66C ; =0x04000008
 	ldr r3, _0222F670 ; =0x0400100A
 	ldrh r0, [r2]
@@ -300,13 +300,13 @@ ov18_0222F3FC: ; 0x0222F3FC
 	bl ov18_02245A44
 	bl ov18_02245BD8
 	bl ov18_022438B8
-	bl sub_020BDDF8
+	bl GX_DispOn
 	ldr r2, _0222F668 ; =0x04001000
 	mov r0, #1
 	ldr r1, [r2, #0]
 	orr r1, r1, #0x10000
 	str r1, [r2, #0]
-	bl sub_020BDD88
+	bl GX_VBlankIntr
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0222F660: .word 0xFFCFFFEF
@@ -319,7 +319,7 @@ _0222F670: .word 0x0400100A
 	arm_func_start ov18_0222F674
 ov18_0222F674: ; 0x0222F674
 	stmfd sp!, {r3, lr}
-	bl sub_020BDDBC
+	bl GX_DispOff
 	ldr r1, _0222F6C0 ; =0x04001000
 	ldr r0, [r1, #0]
 	bic r0, r0, #0x10000

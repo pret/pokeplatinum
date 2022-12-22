@@ -15,9 +15,9 @@
 .public sub_0209BEBC
 .public sub_0209C16C
 .public sub_0209C188
-.public sub_020D2FE4
-.public sub_020D50B8
-.public sub_020D5124
+.public MATH_CountPopulation
+.public memcpy
+.public memset
 .public ov109_021D3A68
 .public ov109_021D3A70
 .public ov109_021D3B24

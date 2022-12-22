@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C3790
-sub_020C3790: ; 0x020C3790
+	arm_func_start OS_InitTick
+OS_InitTick: ; 0x020C3790
 	stmfd sp!, {r3, lr}
 	ldr r1, _020C37FC ; =0x021CCFB4
 	ldrh r0, [r1]
@@ -16,21 +16,21 @@ sub_020C3790: ; 0x020C3790
 	mov r2, #1
 	mov r0, #0
 	strh r2, [r1]
-	bl sub_020C3774
+	bl OSi_SetTimerReserved
 	ldr r0, _020C37FC ; =0x021CCFB4
 	mov r2, #0
 	str r2, [r0, #8]
 	ldr r3, _020C3800 ; =0x04000102
 	str r2, [r0, #0xc]
 	strh r2, [r3]
-	ldr r1, _020C3804 ; =sub_020C3818
+	ldr r1, _020C3804 ; =OSi_CountUpTick
 	strh r2, [r3, #-2]
 	mov r2, #0xc1
 	mov r0, #8
 	strh r2, [r3]
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #8
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	ldr r0, _020C37FC ; =0x021CCFB4
 	mov r1, #0
 	str r1, [r0, #4]
@@ -38,20 +38,20 @@ sub_020C3790: ; 0x020C3790
 	; .align 2, 0
 _020C37FC: .word 0x021CCFB4
 _020C3800: .word 0x04000102
-_020C3804: .word sub_020C3818
-	arm_func_end sub_020C3790
+_020C3804: .word OSi_CountUpTick
+	arm_func_end OS_InitTick
 
-	arm_func_start sub_020C3808
-sub_020C3808: ; 0x020C3808
+	arm_func_start OS_IsTickAvailable
+OS_IsTickAvailable: ; 0x020C3808
 	ldr r0, _020C3814 ; =0x021CCFB4
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
 _020C3814: .word 0x021CCFB4
-	arm_func_end sub_020C3808
+	arm_func_end OS_IsTickAvailable
 
-	arm_func_start sub_020C3818
-sub_020C3818: ; 0x020C3818
+	arm_func_start OSi_CountUpTick
+OSi_CountUpTick: ; 0x020C3818
 	ldr r0, _020C3870 ; =0x021CCFB4
 	mov r3, #0
 	ldr r2, [r0, #8]
@@ -70,23 +70,23 @@ sub_020C3818: ; 0x020C3818
 	strh r1, [r2]
 	str r3, [r0, #4]
 _020C385C:
-	ldr ip, _020C3878 ; =sub_020C15A8
+	ldr ip, _020C3878 ; =OSi_EnterTimerCallback
 	mov r0, #0
-	ldr r1, _020C387C ; =sub_020C3818
+	ldr r1, _020C387C ; =OSi_CountUpTick
 	mov r2, r0
 	bx ip
 	; .align 2, 0
 _020C3870: .word 0x021CCFB4
 _020C3874: .word 0x04000102
-_020C3878: .word sub_020C15A8
-_020C387C: .word sub_020C3818
-	arm_func_end sub_020C3818
+_020C3878: .word OSi_EnterTimerCallback
+_020C387C: .word OSi_CountUpTick
+	arm_func_end OSi_CountUpTick
 
-	arm_func_start sub_020C3880
-sub_020C3880: ; 0x020C3880
+	arm_func_start OS_GetTick
+OS_GetTick: ; 0x020C3880
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr lr, _020C3914 ; =0x04000100
 	ldr r2, _020C3918 ; =0x0000FFFF
 	ldrh ip, [lr]
@@ -112,7 +112,7 @@ sub_020C3880: ; 0x020C3880
 	str r2, [sp, #4]
 	str r1, [sp, #8]
 _020C38EC:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r2, [sp, #4]
 	ldr r1, [sp, #8]
 	ldrh r0, [sp]
@@ -126,16 +126,16 @@ _020C38EC:
 _020C3914: .word 0x04000100
 _020C3918: .word 0x0000FFFF
 _020C391C: .word 0x021CCFB4
-	arm_func_end sub_020C3880
+	arm_func_end OS_GetTick
 
-	arm_func_start sub_020C3920
-sub_020C3920: ; 0x020C3920
+	arm_func_start OS_GetTickLo
+OS_GetTickLo: ; 0x020C3920
 	ldr r0, _020C392C ; =0x04000100
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
 _020C392C: .word 0x04000100
-	arm_func_end sub_020C3920
+	arm_func_end OS_GetTickLo
 
 	.bss
 

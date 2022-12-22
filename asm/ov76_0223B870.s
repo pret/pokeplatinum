@@ -835,13 +835,13 @@ ov76_0223BE8C: ; 0x0223BE8C
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0223BF04 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0223BF08 ; =0xBFFF0000
 	ldr r0, _0223BF0C ; =0x04000580
 	str r1, [r0, #0]
@@ -896,7 +896,7 @@ ov76_0223BF50: ; 0x0223BF50
 	cmp r0, #0
 	ble _0223BF66
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 _0223BF66:
 	bl sub_020146C0
 	mov r0, #1

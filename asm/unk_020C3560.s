@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020C3560
-sub_020C3560: ; 0x020C3560
+	arm_func_start OS_InitException
+OS_InitException: ; 0x020C3560
 	ldr r0, _020C35C0 ; =0x027FFD9C
 	ldr r1, [r0, #0]
 	cmp r1, #0x2600000
@@ -25,7 +25,7 @@ _020C358C:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _020C35B0
-	ldr r2, _020C35C8 ; =sub_020C35D0
+	ldr r2, _020C35C8 ; =OSi_ExceptionHandler
 	ldr r1, _020C35C0 ; =0x027FFD9C
 	ldr r0, _020C35CC ; =0x027E3000
 	str r2, [r1, #0]
@@ -38,12 +38,12 @@ _020C35B0:
 	; .align 2, 0
 _020C35C0: .word 0x027FFD9C
 _020C35C4: .word 0x021CCF04
-_020C35C8: .word sub_020C35D0
+_020C35C8: .word OSi_ExceptionHandler
 _020C35CC: .word 0x027E3000
-	arm_func_end sub_020C3560
+	arm_func_end OS_InitException
 
-	arm_func_start sub_020C35D0
-sub_020C35D0: ; 0x020C35D0
+	arm_func_start OSi_ExceptionHandler
+OSi_ExceptionHandler: ; 0x020C35D0
 	ldr ip, _020C364C ; =0x021CCF04
 	ldr ip, [ip]
 	cmp ip, #0
@@ -57,7 +57,7 @@ _020C35E8:
 _020C35F0:
 	bx ip
 _020C35F4:
-	ldr ip, _020C3650 ; =sub_02000000
+	ldr ip, _020C3650 ; =SecureAreaStart
 	stmdb ip!, {r0, r1, r2, r3, sp, lr}
 	and r0, sp, #1
 	mov sp, ip
@@ -65,12 +65,12 @@ _020C35F4:
 	and r1, r1, #0x1f
 	teq r1, #0x17
 	bne _020C361C
-	bl sub_020C3654
+	bl OSi_GetAndDisplayContext
 	b _020C3628
 _020C361C:
 	teq r1, #0x1b
 	bne _020C3628
-	bl sub_020C3654
+	bl OSi_GetAndDisplayContext
 _020C3628:
 	ldr ip, _020C364C ; =0x021CCF04
 	ldr ip, [ip]
@@ -84,19 +84,19 @@ _020C3640:
 	.byte 0x0F, 0x50, 0xBD, 0xE8, 0x0C, 0xD0, 0xA0, 0xE1, 0x1E, 0xFF, 0x2F, 0xE1
 _020C364C: .word 0x021CCF04
 _020C3650: .word 0x02000000
-	arm_func_end sub_020C35D0
+	arm_func_end OSi_ExceptionHandler
 
-	arm_func_start sub_020C3654
-sub_020C3654: ; 0x020C3654
+	arm_func_start OSi_GetAndDisplayContext
+OSi_GetAndDisplayContext: ; 0x020C3654
 	stmfd sp!, {r0, lr}
-	bl sub_020C3668
-	bl sub_020C36F8
+	bl OSi_SetExContext
+	bl OSi_DisplayExContext
 	ldmia sp!, {r0, lr}
 	bx lr
-	arm_func_end sub_020C3654
+	arm_func_end OSi_GetAndDisplayContext
 
-	arm_func_start sub_020C3668
-sub_020C3668: ; 0x020C3668
+	arm_func_start OSi_SetExContext
+OSi_SetExContext: ; 0x020C3668
 	ldr r1, _020C36F4 ; =0x021CCF30
 	mrs r2, cpsr
 	str r2, [r1, #0x74]
@@ -134,10 +134,10 @@ sub_020C3668: ; 0x020C3668
 	bx lr
 	; .align 2, 0
 _020C36F4: .word 0x021CCF30
-	arm_func_end sub_020C3668
+	arm_func_end OSi_SetExContext
 
-	arm_func_start sub_020C36F8
-sub_020C36F8: ; 0x020C36F8
+	arm_func_start OSi_DisplayExContext
+OSi_DisplayExContext: ; 0x020C36F8
 	stmfd sp!, {r3, lr}
 	ldr r0, _020C375C ; =0x021CCF04
 	ldr r0, [r0, #8]
@@ -150,7 +150,7 @@ sub_020C36F8: ; 0x020C36F8
 	mov r1, sp
 	mov sp, r0
 	stmfd sp!, {r1, r2}
-	bl sub_020C351C
+	bl OS_EnableProtectionUnit
 	ldr r0, _020C3764 ; =0x021CCF30
 	ldr r1, _020C3768 ; =0x021CCF08
 	ldr r1, [r1, #0]
@@ -167,7 +167,7 @@ _020C3764: .word 0x021CCF30
 _020C3768: .word 0x021CCF08
 _020C376C: .word 0x021CCF0C
 _020C3770: .word 0x020C3748
-	arm_func_end sub_020C36F8
+	arm_func_end OSi_DisplayExContext
 
 	.bss
 

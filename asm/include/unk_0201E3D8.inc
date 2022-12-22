@@ -8,10 +8,10 @@
 .public sub_0201E784
 .public sub_0201E7FC
 .public sub_02022974
-.public sub_020CA010
-.public sub_020CA110
-.public sub_020CA2EC
-.public sub_020CA4E8
-.public sub_020CA60C
-.public sub_020CA624
-.public sub_020E2178
+.public TP_RequestAutoSamplingStartAsync
+.public TP_RequestAutoSamplingStopAsync
+.public TP_GetLatestIndexInAuto
+.public TP_GetCalibratedPoint
+.public TP_WaitBusy
+.public TP_CheckError
+.public _u32_div_f

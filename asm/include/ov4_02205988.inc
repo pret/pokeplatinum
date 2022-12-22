@@ -1,6 +1,6 @@
-.public sub_02000B9C
-.public sub_020C3880
-.public sub_020C4CF4
+.public OSi_ReferSymbol
+.public OS_GetTick
+.public MI_CpuFill8
 .public ov4_02202698
 .public ov4_02202794
 .public ov4_0220313C

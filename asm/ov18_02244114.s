@@ -17,11 +17,11 @@ ov18_02244114: ; 0x02244114
 	str r0, [r2, #0]
 	ldr r0, _02244154 ; =0x04000050
 	mov r2, #0x10
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, _02244158 ; =0x04001050
 	mov r1, #0x3f
 	mov r2, #0x10
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02244150: .word 0x022533BC
@@ -85,12 +85,12 @@ ov18_02244194: ; 0x02244194
 	bne _02244214
 	ldrsb r2, [r0, r5]
 	ldr r0, _02244260 ; =0x04001050
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	b _02244220
 _02244214:
 	ldrsb r2, [r0, r5]
 	ldr r0, _02244264 ; =0x04000050
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 _02244220:
 	ldr r1, _02244268 ; =ov18_0224426C
 	mov r2, r6
@@ -143,7 +143,7 @@ ov18_0224426C: ; 0x0224426C
 	strb ip, [sp, #1]
 	strb r3, [sp, #2]
 	strb r2, [sp, #3]
-	bl sub_020BD104
+	bl FX_DivS32
 	ldrb r3, [r4, #8]
 	add r2, sp, #4
 	mov r1, r0
@@ -157,11 +157,11 @@ ov18_0224426C: ; 0x0224426C
 	cmp r4, r0
 	bne _02244318
 	ldr r0, _0224438C ; =0x04001050
-	bl sub_020BF5E8
+	bl G2x_ChangeBlendBrightness_
 	b _02244320
 _02244318:
 	ldr r0, _02244390 ; =0x04000050
-	bl sub_020BF5E8
+	bl G2x_ChangeBlendBrightness_
 _02244320:
 	ldrsh r1, [r4, #4]
 	ldrh r0, [r4, #6]
@@ -176,12 +176,12 @@ _02244320:
 	bne _0224435C
 	ldrsb r1, [r1, r2]
 	ldr r0, _0224438C ; =0x04001050
-	bl sub_020BF5E8
+	bl G2x_ChangeBlendBrightness_
 	b _02244368
 _0224435C:
 	ldrsb r1, [r1, r2]
 	ldr r0, _02244390 ; =0x04000050
-	bl sub_020BF5E8
+	bl G2x_ChangeBlendBrightness_
 _02244368:
 	mov r2, #0
 	mov r1, r5

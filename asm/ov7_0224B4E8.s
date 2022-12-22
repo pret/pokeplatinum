@@ -671,26 +671,26 @@ _0224BA3A:
 	blt _0224BA54
 	mul r0, r2
 	mov r1, #0xfe
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r0, #5
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r0, #0
 	b _0224BA68
 _0224BA54:
 	neg r1, r2
 	mul r0, r1
 	mov r1, #0xfe
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r0, #5
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	neg r6, r0
 _0224BA68:
 	add r0, r6, #0
 	mov r1, #0xc
-	bl sub_020E1F6C
-	bl sub_020D4070
+	bl _s32_div_f
+	bl abs
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -702,9 +702,9 @@ _0224BA68:
 	bl sub_0200B60C
 	add r0, r6, #0
 	mov r1, #0xc
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r1, #0
-	bl sub_020D4070
+	bl abs
 	add r2, r0, #0
 	mov r0, #2
 	str r0, [sp]
@@ -731,7 +731,7 @@ _0224BAB8:
 	ldr r0, _0224BB98 ; =0x0000C350
 	add r0, r1, r0
 	ldr r1, _0224BB9C ; =0x000186A0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r6, r0, #0
 	b _0224BAE2
 _0224BAD0:
@@ -741,11 +741,11 @@ _0224BAD0:
 	ldr r0, _0224BB98 ; =0x0000C350
 	ldr r1, _0224BB9C ; =0x000186A0
 	add r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	neg r6, r0
 _0224BAE2:
 	add r0, r6, #0
-	bl sub_020D4070
+	bl abs
 	add r2, r0, #0
 	mov r0, #0
 	str r0, [sp]
@@ -1144,7 +1144,7 @@ ov7_0224BE10: ; 0x0224BE10
 	mov r1, #0
 	mov r2, #0x84
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	str r0, [r4, #0x7c]
 	str r5, [r4, #0x10]

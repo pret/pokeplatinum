@@ -17,7 +17,7 @@ ov104_0223D860: ; 0x0223D860
 	add r0, #0x26
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r0, #0x26
 	mov r2, #0
@@ -57,7 +57,7 @@ ov104_0223D898: ; 0x0223D898
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x10
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _0223D8BE:
 	pop {r4, pc}
 	; .align 2, 0

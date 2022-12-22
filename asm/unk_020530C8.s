@@ -1900,7 +1900,7 @@ sub_02053F58: ; 0x02053F58
 	mov r1, #0
 	mov r2, #0x1c
 	add r7, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [r5, #0x3c]
 	bl sub_0205EA78
 	mov r1, #0
@@ -2728,7 +2728,7 @@ sub_020545EC: ; 0x020545EC
 	add r6, r0, #0
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r2, r6, #0
 	ldmia r4!, {r0, r1}
 	add r2, #8
@@ -2869,7 +2869,7 @@ sub_02054708: ; 0x02054708
 	mov r1, #0
 	mov r2, #0x1c
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r7, #0
 	add r1, r5, #0
 	bl sub_020534EC

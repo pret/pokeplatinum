@@ -17,7 +17,7 @@ sub_0209BA18: ; 0x0209BA18
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x2c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	ldr r0, [r5, #0xc]
 	bl sub_02025E44

@@ -15,7 +15,7 @@ ov4_021E85F4: ; 0x021E85F4
 	ldr r1, _021E8628 ; =0x0221768C
 	add r0, sp, #0
 	mov r2, #8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -49,14 +49,14 @@ ov4_021E8654: ; 0x021E8654
 	ldr r1, _021E869C ; =0x0221768C
 	add r0, sp, #0
 	mov r2, #8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, pc}
 	add r0, sp, #8
 	mov r1, r4
 	mov r2, #0xa
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add sp, sp, #0x18
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -68,7 +68,7 @@ ov4_021E86A0: ; 0x021E86A0
 	stmfd sp!, {r3, lr}
 	ldr r1, _021E86C0 ; =0x02217698
 	mov r2, #8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -169,18 +169,18 @@ ov4_021E87D8: ; 0x021E87D8
 	mov r5, r0
 	add r0, sp, #0x14
 	mov r4, r1
-	bl sub_020C8C08
+	bl DGT_Hash1Reset
 	add r0, sp, #0x14
 	mov r1, r5
 	mov r2, #0x18
-	bl sub_020C8C48
+	bl DGT_Hash1SetSource
 	add r0, sp, #0
 	add r1, sp, #0x14
-	bl sub_020C8D10
+	bl DGT_Hash1GetDigest_R
 	add r0, sp, #3
 	mov r1, r4
 	mov r2, #0xd
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add sp, sp, #0x6c
 	ldmia sp!, {r4, r5, pc}
 	arm_func_end ov4_021E87D8
@@ -233,7 +233,7 @@ _021E88A4:
 	add r1, sp, #0
 	mov r0, r4
 	mov r2, #0xd
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r3, _021E89C8 ; =0x0221595C
 	add r2, sp, #0
 	mov ip, #0

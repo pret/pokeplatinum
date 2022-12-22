@@ -43,6 +43,6 @@
 .public sub_0208AFCC
 .public sub_0208B064
 .public sub_0208B1C4
-.public sub_020A71B0
-.public sub_020E1F6C
-.public sub_020E2178
+.public NNS_G2dGetUnpackedPaletteData
+.public _s32_div_f
+.public _u32_div_f

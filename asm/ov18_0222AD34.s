@@ -91,14 +91,14 @@ ov18_0222AE40: ; 0x0222AE40
 	ldr r0, [r0, #0]
 	ldrb r0, [r0, #9]
 	add r0, r0, #1
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r2, _0222AF00 ; =0x02253244
 	mov r1, #5
 	ldr r3, [r2, #0]
 	strb r0, [r3, #9]
 	ldr r0, [r2, #0]
 	ldrb r0, [r0, #9]
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r2, _0222AF00 ; =0x02253244
 	add r1, r0, #0x47
 	ldr r2, [r2, #0]

@@ -8,8 +8,8 @@
 .public sub_0203608C
 .public sub_0203626C
 .public sub_0203895C
-.public sub_020D50B8
-.public sub_020D5124
+.public memcpy
+.public memset
 .public ov4_021D1404
 .public ov83_0223D584
 .public ov83_0223D5CC

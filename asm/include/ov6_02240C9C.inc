@@ -70,8 +70,8 @@
 .public sub_0207A048
 .public sub_0207A0FC
 .public sub_0207A268
-.public sub_020E1F6C
-.public sub_020E2178
+.public _s32_div_f
+.public _u32_div_f
 .public ov5_021EFFE4
 .public ov5_021F0040
 .public ov6_02240C9C

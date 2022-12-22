@@ -16,7 +16,7 @@ ov6_02247A0C: ; 0x02247A0C
 	mov r1, #0
 	mov r2, #8
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, _02247A30 ; =ov6_02247A34
 	add r0, r5, #0
 	add r2, r4, #0
@@ -90,7 +90,7 @@ ov6_02247A90: ; 0x02247A90
 	mov r1, #0
 	mov r2, #0x18
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0
 	mov r1, #0x1a
 	mov r2, #0xd0

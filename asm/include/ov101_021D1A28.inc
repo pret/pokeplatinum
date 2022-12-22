@@ -13,9 +13,9 @@
 .public sub_0207136C
 .public sub_02071598
 .public sub_020715BC
-.public sub_020A71B0
-.public sub_020E1F6C
-.public sub_020E2178
+.public NNS_G2dGetUnpackedPaletteData
+.public _s32_div_f
+.public _u32_div_f
 .public ov101_021D148C
 .public ov101_021D14E4
 .public ov101_021D1894

@@ -6,29 +6,29 @@
 	.text
 
 
-	arm_func_start sub_020CF3D0
-sub_020CF3D0: ; 0x020CF3D0
+	arm_func_start WMi_StartMP
+WMi_StartMP: ; 0x020CF3D0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x40
 	mov r8, r0
 	mov r7, r1
 	mov r6, r2
 	mov r5, r3
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	ldr r4, [r0, #4]
 	mov r0, #2
 	mov r1, #7
 	mov r2, #8
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	addne sp, sp, #0x40
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	add r0, r4, #0x188
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	add r0, r4, #0xc6
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	add r0, r4, #0x100
 	ldrh r0, [r0, #0x88]
 	cmp r0, #0
@@ -39,7 +39,7 @@ sub_020CF3D0: ; 0x020CF3D0
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	add r0, r4, #0xc
 	mov r1, #4
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #0xc]
 	cmp r0, #1
 	addeq sp, sp, #0x40
@@ -56,16 +56,16 @@ sub_020CF3D0: ; 0x020CF3D0
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	add r0, r4, #0x9c
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldrh r0, [r4, #0x9c]
 	cmp r0, #0
 	bne _020CF4C8
-	bl sub_020CE64C
+	bl WM_GetMPReceiveBufferSize
 	cmp r6, r0
 	addlt sp, sp, #0x40
 	movlt r0, #6
 	ldmltia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	bl sub_020CE5E0
+	bl WM_GetMPSendBufferSize
 	cmp sb, r0
 	addlt sp, sp, #0x40
 	movlt r0, #6
@@ -73,11 +73,11 @@ sub_020CF3D0: ; 0x020CF3D0
 _020CF4C8:
 	mov r1, r8
 	mov r0, #0xe
-	bl sub_020CDD98
+	bl WMi_SetCallbackTable
 	add r1, sp, #0
 	mov r0, #0
 	mov r2, #0x40
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r4, r6, lsr #1
 	ldrh r3, [sp, #0x60]
 	mov r6, #0xe
@@ -89,22 +89,22 @@ _020CF4C8:
 	str r4, [sp, #8]
 	str r5, [sp, #0xc]
 	str r3, [sp, #0x10]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, [sp, #0x64]
 	add r1, sp, #0x30
 	mov r2, #0x10
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	add r0, sp, #0
 	mov r1, #0x40
-	bl sub_020CDEB4
+	bl WMi_SendCommandDirect
 	cmp r0, #0
 	moveq r0, #2
 	add sp, sp, #0x40
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020CF3D0
+	arm_func_end WMi_StartMP
 
-	arm_func_start sub_020CF540
-sub_020CF540: ; 0x020CF540
+	arm_func_start WM_StartMPEx
+WM_StartMPEx: ; 0x020CF540
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x18
 	mov r7, r1
@@ -115,7 +115,7 @@ sub_020CF540: ; 0x020CF540
 	mov r2, #0x10
 	mov r5, r3
 	ldr r4, [sp, #0x34]
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r1, [sp, #0x48]
 	ldrh ip, [sp, #0x38]
 	ldr r0, [sp, #0x44]
@@ -142,15 +142,15 @@ sub_020CF540: ; 0x020CF540
 	mov r2, r6
 	mov r3, r5
 	str r4, [sp, #4]
-	bl sub_020CF3D0
+	bl WMi_StartMP
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020CF5E0: .word 0x00001E03
-	arm_func_end sub_020CF540
+	arm_func_end WM_StartMPEx
 
-	arm_func_start sub_020CF5E4
-sub_020CF5E4: ; 0x020CF5E4
+	arm_func_start WM_StartMP
+WM_StartMP: ; 0x020CF5E4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x18
 	mov r6, r1
@@ -160,7 +160,7 @@ sub_020CF5E4: ; 0x020CF5E4
 	mov r0, #0
 	mov r2, #0x10
 	mov r4, r3
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldrh ip, [sp, #0x34]
 	mov r0, #3
 	str r0, [sp, #8]
@@ -174,13 +174,13 @@ sub_020CF5E4: ; 0x020CF5E4
 	add ip, sp, #8
 	str lr, [sp]
 	str ip, [sp, #4]
-	bl sub_020CF3D0
+	bl WMi_StartMP
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020CF5E4
+	arm_func_end WM_StartMP
 
-	arm_func_start sub_020CF64C
-sub_020CF64C: ; 0x020CF64C
+	arm_func_start WM_SetMPDataToPortEx
+WM_SetMPDataToPortEx: ; 0x020CF64C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x14
 	mov sb, r0
@@ -188,18 +188,18 @@ sub_020CF64C: ; 0x020CF64C
 	mov r7, r2
 	mov r6, r3
 	mov r4, #1
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	ldr r5, [r0, #4]
 	mov r0, #2
 	mov r1, #9
 	mov r2, #0xa
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	addne sp, sp, #0x14
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	add r0, r5, #0x188
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	add r0, r5, #0x100
 	ldrh r0, [r0, #0x88]
 	cmp r0, #0
@@ -207,12 +207,12 @@ sub_020CF64C: ; 0x020CF64C
 	add r0, r5, #0x82
 	add r0, r0, #0x100
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	add r2, r5, #0x100
 	add r0, r5, #0x86
 	mov r1, #2
 	ldrh r4, [r2, #0x82]
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 _020CF6CC:
 	cmp r7, #0
 	addeq sp, sp, #0x14
@@ -224,7 +224,7 @@ _020CF6CC:
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	add r0, r5, #0x7c
 	mov r1, #2
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r5, #0x7c]
 	cmp r7, r0
 	addeq sp, sp, #0x14
@@ -240,7 +240,7 @@ _020CF6CC:
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	mov r0, r7
 	mov r1, r6
-	bl sub_020C2C38
+	bl DC_StoreRange
 	ldrh r2, [sp, #0x30]
 	ldrh r1, [sp, #0x34]
 	ldrh r0, [sp, #0x38]
@@ -253,29 +253,29 @@ _020CF6CC:
 	mov r0, #0xf
 	mov r1, #7
 	str r8, [sp, #0x10]
-	bl sub_020CDE08
+	bl WMi_SendCommand
 	cmp r0, #0
 	moveq r0, #2
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020CF64C
+	arm_func_end WM_SetMPDataToPortEx
 
-	arm_func_start sub_020CF77C
-sub_020CF77C: ; 0x020CF77C
+	arm_func_start WM_EndMP
+WM_EndMP: ; 0x020CF77C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	mov r4, r0
 	mov r0, #2
 	mov r1, #9
 	mov r2, #0xa
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	ldr r0, [r4, #4]
 	mov r1, #4
 	add r0, r0, #0xc
-	bl sub_020C2C1C
+	bl DC_InvalidateRange
 	ldr r0, [r4, #4]
 	ldr r0, [r0, #0xc]
 	cmp r0, #0
@@ -283,11 +283,11 @@ sub_020CF77C: ; 0x020CF77C
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r1, r5
 	mov r0, #0x10
-	bl sub_020CDD98
+	bl WMi_SetCallbackTable
 	mov r0, #0x10
 	mov r1, #0
-	bl sub_020CDE08
+	bl WMi_SendCommand
 	cmp r0, #0
 	moveq r0, #2
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020CF77C
+	arm_func_end WM_EndMP

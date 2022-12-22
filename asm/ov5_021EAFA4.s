@@ -33,7 +33,7 @@ ov5_021EAFA4: ; 0x021EAFA4
 	ldrh r2, [r4]
 	lsr r0, r0, #0x18
 	mul r0, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	b _021EAFF8
 _021EAFDE:
 	sub r6, #0x60
@@ -42,7 +42,7 @@ _021EAFDE:
 	lsr r0, r0, #0x18
 	mul r0, r1
 	mov r1, #0x60
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r1, r0, #0x10
 	mov r0, #0
@@ -91,11 +91,11 @@ _021EB034:
 	ldrsh r1, [r2, r1]
 	ldrsh r2, [r2, r3]
 	add r0, sp, #0x24
-	bl sub_020BBC30
+	bl MTX_RotX43_
 	add r0, sp, #0xc
 	add r1, sp, #0x24
 	add r2, sp, #0x18
-	bl sub_020BC2CC
+	bl MTX_MultVec43
 	asr r0, r5, #4
 	lsl r2, r0, #1
 	lsl r1, r2, #1
@@ -105,28 +105,28 @@ _021EB034:
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #0x24
-	bl sub_020BBC50
+	bl MTX_RotY43_
 	add r0, sp, #0x18
 	add r1, sp, #0x24
 	add r2, r0, #0
-	bl sub_020BC2CC
+	bl MTX_MultVec43
 	add r0, sp, #0x18
 	add r1, r4, #0
 	add r1, #0x20
 	add r2, r0, #0
-	bl sub_020BC2CC
+	bl MTX_MultVec43
 	add r0, r4, #0
 	add r0, #0x10
 	add r1, sp, #0x18
-	bl sub_020BD218
+	bl VEC_DotProduct
 	add r1, r0, #0
 	ldr r0, [r4, #0x1c]
-	bl sub_020BCFD0
+	bl FX_Div
 	neg r0, r0
 	add r1, sp, #0x18
 	add r2, r4, #4
 	add r3, sp, #0
-	bl sub_020BD628
+	bl VEC_MultAdd
 	ldr r1, [sp, #0x60]
 	ldr r0, [sp]
 	add r2, sp, #0x54
@@ -181,11 +181,11 @@ ov5_021EB0E0: ; 0x021EB0E0
 	lsl r1, r1, #1
 	ldrsh r0, [r2, r0]
 	ldrsh r1, [r2, r1]
-	bl sub_020BCFD0
+	bl FX_Div
 	lsl r0, r0, #2
 	mov r1, #3
-	bl sub_020E1F6C
-	bl sub_020BD964
+	bl _s32_div_f
+	bl FX_AtanIdx
 	ldr r3, _021EB180 ; =0x021FAF34
 	strh r0, [r5, #2]
 	ldmia r3!, {r0, r1}
@@ -202,7 +202,7 @@ ov5_021EB0E0: ; 0x021EB0E0
 	add r0, sp, #0x14
 	add r1, sp, #8
 	add r2, r5, #4
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r3, sp, #0x20
 	add r2, r5, #0
 	ldmia r3!, {r0, r1}
@@ -212,7 +212,7 @@ ov5_021EB0E0: ; 0x021EB0E0
 	add r1, r5, #4
 	str r0, [r2, #0]
 	add r0, sp, #0x20
-	bl sub_020BD218
+	bl VEC_DotProduct
 	str r0, [r5, #0x1c]
 	add r0, sp, #0
 	ldrh r0, [r0]
@@ -226,7 +226,7 @@ ov5_021EB0E0: ; 0x021EB0E0
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, #0x20
-	bl sub_020BBC30
+	bl MTX_RotX43_
 	str r4, [r5, #0x50]
 	add sp, #0x2c
 	pop {r4, r5, pc}

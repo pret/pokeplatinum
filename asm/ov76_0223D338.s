@@ -83,14 +83,14 @@ ov76_0223D3A0: ; 0x0223D3A0
 	mov r1, #0
 	mov r2, #6
 	mov r3, #0xb
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	ldr r0, _0223D3C8 ; =0x04001050
 	mov r1, #0
 	mov r2, #0xe
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	; .align 2, 0
 _0223D3C4: .word 0x04000050
@@ -355,7 +355,7 @@ ov76_0223D574: ; 0x0223D574
 	mov r1, #0xc
 	add r0, r0, #1
 	str r0, [r4, #0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 	b _0223D5F8
 _0223D592:
@@ -385,7 +385,7 @@ _0223D5AA:
 	sub r0, r1, #4
 	mov r1, #0xc
 	str r0, [r4, #0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 	b _0223D5F8
 _0223D5CA:
@@ -405,7 +405,7 @@ _0223D5CE:
 	add r0, r1, #4
 	mov r1, #0xc
 	str r0, [r4, #0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 	b _0223D5F8
 _0223D5F0:
@@ -1014,7 +1014,7 @@ _0223DACE:
 	ldr r0, [r4, r1]
 	add r1, r1, #4
 	ldr r1, [r4, r1]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _0223DC88 ; =0x00000418
 	str r1, [r4, r0]
 	add r0, r4, #0
@@ -3037,25 +3037,25 @@ _0223EB74:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _0223ECA0 ; =0x0223EDF4
 	add r3, sp, #0
 	add r2, r3, #0

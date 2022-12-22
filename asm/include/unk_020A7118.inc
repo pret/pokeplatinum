@@ -1,3 +1,3 @@
-.public sub_020A7154
-.public sub_020A71A0
-.public sub_020A727C
+.public NNS_G2dUnpackNCG
+.public NNS_G2dUnpackBGNCG
+.public NNS_G2dFindBinaryBlock

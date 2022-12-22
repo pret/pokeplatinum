@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C4AF0
-sub_020C4AF0: ; 0x020C4AF0
+	arm_func_start MIi_CpuClear16
+MIi_CpuClear16: ; 0x020C4AF0
 	mov r3, #0
 _020C4AF4:
 	cmp r3, r2
@@ -22,10 +22,10 @@ _020C4B0C:
 _020C4B10:
 	blt _020C4AF4
 	bx lr
-	arm_func_end sub_020C4AF0
+	arm_func_end MIi_CpuClear16
 
-	arm_func_start sub_020C4B18
-sub_020C4B18: ; 0x020C4B18
+	arm_func_start MIi_CpuCopy16
+MIi_CpuCopy16: ; 0x020C4B18
 	mov ip, #0
 _020C4B1C:
 	cmp ip, r2
@@ -46,10 +46,10 @@ _020C4B40:
 _020C4B44:
 	blt _020C4B1C
 	bx lr
-	arm_func_end sub_020C4B18
+	arm_func_end MIi_CpuCopy16
 
-	arm_func_start sub_020C4B4C
-sub_020C4B4C: ; 0x020C4B4C
+	arm_func_start MIi_CpuClear32
+MIi_CpuClear32: ; 0x020C4B4C
 	add ip, r1, r2
 _020C4B50:
 	cmp r1, ip
@@ -60,10 +60,10 @@ _020C4B5C:
 _020C4B60:
 	blt _020C4B50
 	bx lr
-	arm_func_end sub_020C4B4C
+	arm_func_end MIi_CpuClear32
 
-	arm_func_start sub_020C4B68
-sub_020C4B68: ; 0x020C4B68
+	arm_func_start MIi_CpuCopy32
+MIi_CpuCopy32: ; 0x020C4B68
 	add ip, r1, r2
 _020C4B6C:
 	cmp r1, ip
@@ -79,10 +79,10 @@ _020C4B84:
 _020C4B88:
 	blt _020C4B6C
 	bx lr
-	arm_func_end sub_020C4B68
+	arm_func_end MIi_CpuCopy32
 
-	arm_func_start sub_020C4B90
-sub_020C4B90: ; 0x020C4B90
+	arm_func_start MIi_CpuSend32
+MIi_CpuSend32: ; 0x020C4B90
 	add ip, r0, r2
 _020C4B94:
 	cmp r0, ip
@@ -98,10 +98,10 @@ _020C4BAC:
 _020C4BB0:
 	blt _020C4B94
 	bx lr
-	arm_func_end sub_020C4B90
+	arm_func_end MIi_CpuSend32
 
-	arm_func_start sub_020C4BB8
-sub_020C4BB8: ; 0x020C4BB8
+	arm_func_start MIi_CpuClearFast
+MIi_CpuClearFast: ; 0x020C4BB8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb}
 	add sb, r1, r2
 	mov ip, r2, lsr #5
@@ -131,10 +131,10 @@ _020C4C08:
 	blt _020C4BF8
 	ldmia sp!, {r4, r5, r6, r7, r8, sb}
 	bx lr
-	arm_func_end sub_020C4BB8
+	arm_func_end MIi_CpuClearFast
 
-	arm_func_start sub_020C4C14
-sub_020C4C14: ; 0x020C4C14
+	arm_func_start MIi_CpuCopyFast
+MIi_CpuCopyFast: ; 0x020C4C14
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl}
 	add sl, r1, r2
 	mov ip, r2, lsr #5
@@ -167,10 +167,10 @@ _020C4C60:
 	blt _020C4C44
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl}
 	bx lr
-	arm_func_end sub_020C4C14
+	arm_func_end MIi_CpuCopyFast
 
-	arm_func_start sub_020C4C6C
-sub_020C4C6C: ; 0x020C4C6C
+	arm_func_start MI_Copy32B
+MI_Copy32B: ; 0x020C4C6C
 	ldmia r0!, {r2, r3, ip}
 	stmia r1!, {r2, r3, ip}
 	ldmia r0!, {r2, r3, ip}
@@ -178,10 +178,10 @@ sub_020C4C6C: ; 0x020C4C6C
 	ldmia r0!, {r2, r3}
 	stmia r1!, {r2, r3}
 	bx lr
-	arm_func_end sub_020C4C6C
+	arm_func_end MI_Copy32B
 
-	arm_func_start sub_020C4C88
-sub_020C4C88: ; 0x020C4C88
+	arm_func_start MI_Copy36B
+MI_Copy36B: ; 0x020C4C88
 	ldmia r0!, {r2, r3, ip}
 	stmia r1!, {r2, r3, ip}
 	ldmia r0!, {r2, r3, ip}
@@ -189,10 +189,10 @@ sub_020C4C88: ; 0x020C4C88
 	ldmia r0!, {r2, r3, ip}
 	stmia r1!, {r2, r3, ip}
 	bx lr
-	arm_func_end sub_020C4C88
+	arm_func_end MI_Copy36B
 
-	arm_func_start sub_020C4CA4
-sub_020C4CA4: ; 0x020C4CA4
+	arm_func_start MI_Copy48B
+MI_Copy48B: ; 0x020C4CA4
 	ldmia r0!, {r2, r3, ip}
 	stmia r1!, {r2, r3, ip}
 	ldmia r0!, {r2, r3, ip}
@@ -202,10 +202,10 @@ sub_020C4CA4: ; 0x020C4CA4
 	ldmia r0!, {r2, r3, ip}
 	stmia r1!, {r2, r3, ip}
 	bx lr
-	arm_func_end sub_020C4CA4
+	arm_func_end MI_Copy48B
 
-	arm_func_start sub_020C4CC8
-sub_020C4CC8: ; 0x020C4CC8
+	arm_func_start MI_Copy64B
+MI_Copy64B: ; 0x020C4CC8
 	ldmia r0!, {r2, r3, ip}
 	stmia r1!, {r2, r3, ip}
 	ldmia r0!, {r2, r3, ip}
@@ -217,10 +217,10 @@ sub_020C4CC8: ; 0x020C4CC8
 	ldmia r0, {r0, r2, r3, ip}
 	stmia r1!, {r0, r2, r3, ip}
 	bx lr
-	arm_func_end sub_020C4CC8
+	arm_func_end MI_Copy64B
 
-	arm_func_start sub_020C4CF4
-sub_020C4CF4: ; 0x020C4CF4
+	arm_func_start MI_CpuFill8
+MI_CpuFill8: ; 0x020C4CF4
 	cmp r2, #0
 	beq _020C4D00
 	b _020C4D04
@@ -280,10 +280,10 @@ _020C4D98:
 	orr r1, r1, r3
 	strh r1, [r0]
 	bx lr
-	arm_func_end sub_020C4CF4
+	arm_func_end MI_CpuFill8
 
-	arm_func_start sub_020C4DB0
-sub_020C4DB0: ; 0x020C4DB0
+	arm_func_start MI_CpuCopy8
+MI_CpuCopy8: ; 0x020C4DB0
 	cmp r2, #0
 	beq _020C4DBC
 	b _020C4DC0
@@ -407,10 +407,10 @@ _020C4F14:
 	orr r0, r2, r0
 	strh r0, [r1]
 	bx lr
-	arm_func_end sub_020C4DB0
+	arm_func_end MI_CpuCopy8
 
-	thumb_func_start sub_020C4F30
-sub_020C4F30: ; 0x020C4F30
+	thumb_func_start MI_Zero36B
+MI_Zero36B: ; 0x020C4F30
 	mov r1, #0
 	mov r2, #0
 	mov r3, #0
@@ -419,4 +419,4 @@ sub_020C4F30: ; 0x020C4F30
 	stmia r0!, {r1, r2, r3}
 	bx lr
 	; .align 2, 0
-	thumb_func_end sub_020C4F30
+	thumb_func_end MI_Zero36B

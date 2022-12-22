@@ -274,12 +274,12 @@ ov20_021D30A4: ; 0x021D30A4
 	ldr r0, [r0, #0xc]
 	add r1, #0x70
 	lsl r2, r2, #6
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r4, #0x70
 	mov r1, #5
 	add r0, r4, #0
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	bl sub_020181C4
 	add sp, #0xc
@@ -303,14 +303,14 @@ ov20_021D30F8: ; 0x021D30F8
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	pop {r4, pc}
 _021D311E:
 	add r4, #0x70
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	pop {r4, pc}
 	thumb_func_end ov20_021D30F8
 

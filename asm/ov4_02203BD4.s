@@ -14,7 +14,7 @@ ov4_02203BD4: ; 0x02203BD4
 	mov r1, #0
 	mov r2, #0x28
 	mov r6, r0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02203C5C ; =0x000134DF
 	mov r1, #0
 	str r0, [r6, #4]
@@ -283,7 +283,7 @@ _02203F64:
 	str r1, [r6, #0x46c]
 	adc r0, r0, #0
 	str r0, [r6, #0x470]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr ip, [r6, #0x46c]
 	ldr r2, _02204148 ; =0x00008B18
 	ldr lr, [r6, #0x470]

@@ -71,7 +71,7 @@ _0205570C:
 	ldr r0, [r4, #0]
 	mov r1, #6
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 _0205573C:
 	pop {r4, pc}
@@ -115,7 +115,7 @@ _02055758:
 	ldr r0, [r4, #0]
 	mov r1, #6
 	add r0, r0, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0]
 _0205578A:
 	pop {r4, pc}

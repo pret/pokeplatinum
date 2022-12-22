@@ -38,7 +38,7 @@ _0222BD1C:
 	mov r1, #0
 	mul r2, r3
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov63_0222BCE8
@@ -84,7 +84,7 @@ _0222BD5E:
 	add r1, r5, #0
 	mul r2, r3
 	lsl r2, r2, #2
-	bl sub_020D50B8
+	bl memcpy
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov63_0222BD50
 

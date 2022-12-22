@@ -1,8 +1,8 @@
-.public sub_020AF624
-.public sub_020B275C
-.public sub_020BB4C8
-.public sub_020BBB88
-.public sub_020BBBFC
-.public sub_020BBC6C
-.public sub_020BBFF8
-.public sub_020BC474
+.public calcSrtCameraMtx_
+.public NNS_G3dGeBufferOP_N
+.public MTX_Identity33_
+.public MTX_Identity43_
+.public MTX_ScaleApply43
+.public MTX_Inverse43
+.public MTX_Concat43
+.public MTX_Identity44_

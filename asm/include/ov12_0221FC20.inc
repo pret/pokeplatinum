@@ -63,10 +63,10 @@
 .public sub_02021F9C
 .public sub_02022974
 .public sub_02077D3C
-.public sub_020BF55C
-.public sub_020C4CF4
-.public sub_020D4070
-.public sub_020D5124
+.public G2x_SetBlendAlpha_
+.public MI_CpuFill8
+.public abs
+.public memset
 .public ov12_0221FC20
 .public ov12_0221FC44
 .public ov12_0221FC68

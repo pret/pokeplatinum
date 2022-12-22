@@ -16,7 +16,7 @@ ov104_0223C164: ; 0x0223C164
 	mov r1, #0
 	mov r2, #8
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	bl ov104_0223C188
 	str r0, [r4, #4]
@@ -35,7 +35,7 @@ ov104_0223C188: ; 0x0223C188
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r5, [r4, #4]
 	mov r0, #0
 	strh r0, [r4, #8]

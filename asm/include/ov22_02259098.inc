@@ -10,7 +10,7 @@
 .public sub_02074470
 .public sub_02075F00
 .public sub_020765B8
-.public sub_020A7118
+.public NNS_G2dGetUnpackedCharacterData
 .public ov22_02255340
 .public ov22_02255420
 .public ov22_022590D4

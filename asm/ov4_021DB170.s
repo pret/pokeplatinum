@@ -45,7 +45,7 @@ ov4_021DB188: ; 0x021DB188
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0xa
-	bl sub_020DACAC
+	bl strtoul
 	strb r0, [r6]
 _021DB1F8:
 	cmp r4, #0
@@ -62,7 +62,7 @@ _021DB1F8:
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0xa
-	bl sub_020DACAC
+	bl strtoul
 	strb r0, [r4]
 	b _021DB254
 _021DB23C:
@@ -77,7 +77,7 @@ _021DB254:
 	beq _021DB268
 	add r1, sp, #0x10c
 	mov r0, r5
-	bl sub_020D8B7C
+	bl strcpy
 _021DB268:
 	ldr r0, [sp, #8]
 	add sp, sp, #0x214
@@ -123,7 +123,7 @@ ov4_021DB2C0: ; 0x021DB2C0
 	streq r1, [r5]
 	ldmeqia sp!, {r4, r5, r6, pc}
 	add r0, sp, #0
-	bl sub_020D8B60
+	bl strlen
 	mov r2, #0
 	mov r1, r0
 	add r0, sp, #0
@@ -138,7 +138,7 @@ ov4_021DB2C0: ; 0x021DB2C0
 	moveq r0, r4
 	ldmeqia sp!, {r4, r5, r6, pc}
 	add r0, sp, #0
-	bl sub_020D8B60
+	bl strlen
 	mov r1, r0
 	add r0, sp, #0
 	mov r2, r6
@@ -491,7 +491,7 @@ ov4_021DB7B4: ; 0x021DB7B4
 	mov r5, r0
 	ldr r0, [r4, #8]
 	ldr r1, _021DB808 ; =0x02217490
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	addne sp, sp, #8
 	movne r0, #0
@@ -562,7 +562,7 @@ ov4_021DB894: ; 0x021DB894
 	bl ov4_021DA87C
 	mov r1, #0xc
 	mla r1, r5, r1, r4
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	cmp r0, #0
 	mvnne r1, #0
 	cmpne r0, r1
@@ -613,7 +613,7 @@ ov4_021DB940: ; 0x021DB940
 	ldmeqia sp!, {r3, pc}
 	mov r0, #0
 	str r0, [r1, #8]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _021DB974 ; =0x0221A698
 	ldr r2, [r2, #8]
 	str r0, [r2, #0xc]
@@ -733,7 +733,7 @@ ov4_021DBAC4: ; 0x021DBAC4
 	ldr r0, _021DBB48 ; =0x0221A698
 	mov r4, #0
 	ldr r5, [r0, #8]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r3, [r5, #0xc]
 	ldr r2, [r5, #0x10]
 	subs r3, r0, r3
@@ -743,7 +743,7 @@ ov4_021DBAC4: ; 0x021DBAC4
 	orr r1, r1, r3, lsr #26
 	mov r0, r3, lsl #6
 	mov r3, r4
-	bl sub_020E1ED4
+	bl _ull_div
 	cmp r1, #0
 	cmpeq r0, #0x12c
 	blo _021DBB40
@@ -755,7 +755,7 @@ ov4_021DBAC4: ; 0x021DBAC4
 	ldr r0, [r0, #4]
 	bl ov4_021EB274
 	mov r4, r0
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _021DBB48 ; =0x0221A698
 	ldr r2, [r2, #8]
 	str r0, [r2, #0xc]
@@ -825,14 +825,14 @@ _021DBBF0:
 	mov r0, #0xc
 	mul r5, r4, r0
 	add r0, r7, r5
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	cmp r0, #0
 	bne _021DBC50
 	ldr r1, [sp, #0x38]
 	add r0, r7, r5
-	bl sub_020A47DC
+	bl DWC_SetGsProfileId
 	add r0, r7, r5
-	bl sub_020A40A8
+	bl DWCi_SetBuddyFriendData
 	ldr r0, _021DBDE4 ; =0x0221A698
 	mov r1, #1
 	ldr r0, [r0, #8]
@@ -907,7 +907,7 @@ _021DBD2C:
 	ldr r1, [sl, #8]
 	ldrb r2, [r1, #0x1c]
 	mla r1, r2, r8, r7
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	cmp r0, sb
 	bne _021DBDBC
 	bl ov4_021DA87C
@@ -917,7 +917,7 @@ _021DBD2C:
 	add r2, sp, #0x20
 	ldrb r3, [r3, #0x1c]
 	mla r1, r3, r1, r7
-	bl sub_020A4810
+	bl DWC_LoginIdToUserName
 	ldr r0, _021DBDE4 ; =0x0221A698
 	mov r1, #0
 	ldr r4, [r0, #8]
@@ -986,7 +986,7 @@ ov4_021DBE24: ; 0x021DBE24
 	mov r2, #0xc
 	mla r0, r5, r2, r0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _021DBE78 ; =0x0221A698
 	ldr r0, [r0, #8]
 	ldr r3, [r0, #0x3c]
@@ -1019,12 +1019,12 @@ _021DBE98:
 	bne _021DBF10
 	mov r0, #0xc
 	mla r0, r6, r0, r7
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	cmp r0, #0
 	beq _021DBEEC
 	mov r0, #0xc
 	mla r0, r4, r0, r7
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	cmp r0, #0
 	bne _021DBEEC
 	mov r0, r7
@@ -1087,23 +1087,23 @@ _021DBF88:
 	cmp r4, r0
 	bne _021DBFFC
 	mov r0, r7
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #2
 	bne _021DBFC4
 	mov r0, sb
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #3
 	bne _021DBFC4
 	mov r0, r8
 	mov r1, r4
-	bl sub_020A47DC
+	bl DWC_SetGsProfileId
 _021DBFC4:
 	mov r0, sb
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	cmp r0, #0
 	beq _021DBFDC
 	mov r0, r8
-	bl sub_020A40A8
+	bl DWCi_SetBuddyFriendData
 _021DBFDC:
 	mov r0, fp
 	mov r1, r6
@@ -1170,7 +1170,7 @@ _021DC094:
 _021DC09C:
 	bl ov4_021DA87C
 	mov r1, r5
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	mov r5, r0
 	cmp r5, #0
 	ble _021DC0D8
@@ -1265,7 +1265,7 @@ ov4_021DC194: ; 0x021DC194
 	ldr r0, [r1, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, r6
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #0
 	beq _021DC364
 	ldr r7, _021DC3CC ; =0x0221A698
@@ -1332,12 +1332,12 @@ _021DC2B4:
 	ldr r1, [r1, #0]
 	ldr r0, [r0, #0x18]
 	add r0, r0, r6
-	bl sub_020A47DC
+	bl DWC_SetGsProfileId
 	ldr r0, _021DC3CC ; =0x0221A698
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, r6
-	bl sub_020A40A8
+	bl DWCi_SetBuddyFriendData
 	mov r0, r8
 	bl ov4_021DBA28
 	ldr r0, _021DC3CC ; =0x0221A698
@@ -1388,7 +1388,7 @@ _021DC37C:
 	ldr r1, [r1, #0x18]
 	mov r0, #0xc
 	mla r0, r8, r0, r1
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021DC3A8:
@@ -1427,7 +1427,7 @@ ov4_021DC3D0: ; 0x021DC3D0
 _021DC414:
 	ldr r0, [r1, #0x18]
 	add r0, r0, r7
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #1
 	bne _021DC47C
 	bl ov4_021DA87C
@@ -1435,10 +1435,10 @@ _021DC414:
 	mov r2, fp
 	ldr r1, [r1, #0x18]
 	add r1, r1, r7
-	bl sub_020A4810
+	bl DWC_LoginIdToUserName
 	mov r0, fp
 	add r1, sb, #0x8e
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _021DC534
 	ldr r1, [sb, #4]
@@ -1448,20 +1448,20 @@ _021DC414:
 	ldr r1, [sb, #4]
 	ldr r0, [r0, #0x18]
 	add r0, r0, r7
-	bl sub_020A47DC
+	bl DWC_SetGsProfileId
 	mov r6, #1
 	b _021DC534
 _021DC47C:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, r7
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #3
 	beq _021DC4AC
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, r7
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #2
 	bne _021DC534
 _021DC4AC:
@@ -1480,19 +1480,19 @@ _021DC4AC:
 	and r3, r1, #0xff
 	ldr r2, _021DC57C ; =0x022174CC
 	mov r1, #5
-	bl sub_020C1AF0
+	bl OS_SNPrintf
 	ldr r8, [sb, #4]
 	bl ov4_021DA87C
 	ldr r1, [r4, #8]
 	ldr r1, [r1, #0x18]
 	add r1, r1, r7
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	cmp r8, r0
 	bne _021DC534
 	add r0, sp, #0xc
 	add r1, sb, #0x97
 	mov r2, #4
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _021DC534
 	mov r0, sl
@@ -1547,7 +1547,7 @@ ov4_021DC580: ; 0x021DC580
 _021DC5C8:
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #1
 	bne _021DC634
 	bl ov4_021DA87C
@@ -1555,34 +1555,34 @@ _021DC5C8:
 	mov r2, r5
 	ldr r1, [r1, #0x18]
 	add r1, r1, sb
-	bl sub_020A4810
+	bl DWC_LoginIdToUserName
 	mov r0, r5
 	add r1, sl, #0x8e
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _021DC6C8
 	ldr r0, [r4, #8]
 	ldr r1, [sl, #4]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A47DC
+	bl DWC_SetGsProfileId
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A40A8
+	bl DWCi_SetBuddyFriendData
 	mov r7, fp
 	b _021DC6C8
 _021DC634:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #3
 	beq _021DC664
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A4060
+	bl DWC_GetFriendDataType
 	cmp r0, #2
 	bne _021DC6C8
 _021DC664:
@@ -1590,14 +1590,14 @@ _021DC664:
 	ldr r1, [r4, #8]
 	ldr r1, [r1, #0x18]
 	add r1, r1, sb
-	bl sub_020A4698
+	bl DWC_GetGsProfileId
 	ldr r1, [sl, #4]
 	cmp r1, r0
 	bne _021DC6C8
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A4028
+	bl DWC_IsBuddyFriendData
 	cmp r0, #1
 	moveq r8, #1
 	beq _021DC6C8
@@ -1605,11 +1605,11 @@ _021DC664:
 	ldr r1, [sl, #4]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A47DC
+	bl DWC_SetGsProfileId
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0x18]
 	add r0, r0, sb
-	bl sub_020A40A8
+	bl DWCi_SetBuddyFriendData
 	mov r7, #1
 _021DC6C8:
 	ldr r0, [r4, #8]

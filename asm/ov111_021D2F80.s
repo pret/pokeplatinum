@@ -15,7 +15,7 @@ ov111_021D2F80: ; 0x021D2F80
 	mov r1, #0x73
 	bl sub_0201DBEC
 	bl ov111_021D3378
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x80

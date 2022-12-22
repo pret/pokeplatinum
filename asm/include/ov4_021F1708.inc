@@ -1,5 +1,5 @@
-.public sub_020D407C
-.public sub_020D5124
+.public __msl_assertion_failed
+.public memset
 .public ov4_021D7880
 .public ov4_021D78B0
 .public ov4_021EACF0

@@ -1141,13 +1141,13 @@ _02083C92:
 	ldr r1, [sp, #0x14]
 	add r0, r0, r5
 	add r1, r1, r7
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x1c]
 	ldr r1, [sp, #0x10]
 	add r0, r0, r5
 	add r1, r1, r7
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #4]
 	mov r2, #0x20
 	add r0, r0, r4
@@ -1159,13 +1159,13 @@ _02083C92:
 	ldr r1, [sp, #0x14]
 	add r0, r0, r5
 	add r1, r1, r7
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x24]
 	ldr r1, [sp, #0x10]
 	add r0, r0, r5
 	add r1, r1, r7
 	mov r2, #0x20
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r4, #1
 	lsl r0, r0, #0x10
 	lsr r4, r0, #0x10
@@ -2885,7 +2885,7 @@ sub_02084A18: ; 0x02084A18
 	ldr r0, _02084B10 ; =0x0000070C
 	ldrh r0, [r1, r0]
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, _02084B14 ; =0x00000B2C
 	strh r0, [r4, r1]
 	sub r0, r1, #3

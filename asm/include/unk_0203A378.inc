@@ -13,5 +13,5 @@
 .public sub_0203A614
 .public sub_0203A64C
 .public sub_02062068
-.public sub_020C4BB8
-.public sub_020D5124
+.public MIi_CpuClearFast
+.public memset

@@ -6,14 +6,14 @@
 	.text
 
 
-	arm_func_start sub_020C41D8
-sub_020C41D8: ; 0x020C41D8
+	arm_func_start OS_GetLowEntropyData
+OS_GetLowEntropyData: ; 0x020C41D8
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, _020C4298 ; =0x04000006
 	mov r5, r0
 	ldrh r6, [r1]
 	ldr r4, _020C429C ; =0x027FFC00
-	bl sub_020C3920
+	bl OS_GetTickLo
 	orr r0, r0, r6, lsl #16
 	str r0, [r5, #0]
 	ldr r1, _020C42A0 ; =0x021CCFBC
@@ -61,4 +61,4 @@ _020C4298: .word 0x04000006
 _020C429C: .word 0x027FFC00
 _020C42A0: .word 0x021CCFBC
 _020C42A4: .word 0x04000600
-	arm_func_end sub_020C41D8
+	arm_func_end OS_GetLowEntropyData

@@ -19,7 +19,7 @@ ov70_02262DA8: ; 0x02262DA8
 	mov r1, #0
 	lsl r2, r2, #2
 	add r7, r0, #0
-	bl sub_020D5124
+	bl memset
 	str r6, [r7, #0]
 	add r5, r7, #0
 	str r4, [r7, #4]
@@ -109,7 +109,7 @@ _02262E4C:
 	mov r1, #0
 	add r2, r4, #0
 	str r0, [r5, #8]
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #8]
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -301,7 +301,7 @@ _02262F88:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	thumb_func_end ov70_02262F70
 

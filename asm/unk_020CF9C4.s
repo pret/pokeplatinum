@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020CF9C4
-sub_020CF9C4: ; 0x020CF9C4
+	arm_func_start WM_StartDataSharing
+WM_StartDataSharing: ; 0x020CF9C4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	mov sl, r0
@@ -18,7 +18,7 @@ sub_020CF9C4: ; 0x020CF9C4
 	mov r2, #0xa
 	mov r5, r3
 	mov r8, #1
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -34,16 +34,16 @@ sub_020CF9C4: ; 0x020CF9C4
 	addeq sp, sp, #0xc
 	moveq r0, #6
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	bl sub_020CE418
+	bl WM_GetAID
 	movs r4, r0
 	bne _020CFA40
-	bl sub_020CE448
+	bl WM_GetConnectedAIDs
 	mov r8, r0
 _020CFA40:
 	mov r1, sl
 	mov r0, #0
 	mov r2, #0x820
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, sl, #0x800
 	mov r2, #0
 	strh r2, [r0, #8]
@@ -62,7 +62,7 @@ _020CFA40:
 	strh r2, [r1, #0x18]
 	mov r0, r0, lsr #0x10
 	strh r0, [r1, #0xe]
-	bl sub_020D2FE4
+	bl MATH_CountPopulation
 	add r3, sl, #0x800
 	mul r1, r5, r0
 	strh r0, [r3, #0x12]
@@ -92,15 +92,15 @@ _020CFAEC:
 	strh r1, [sl, r0]
 	cmp r2, #4
 	blt _020CFAEC
-	ldr r1, _020CFC08 ; =sub_020D0080
+	ldr r1, _020CFC08 ; =WmDataSharingReceiveCallback_Parent
 	mov r0, r7
 	mov r2, sl
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 	mov r7, sl
 	mov sb, #0
 	add r4, sl, #0x800
 	mov r6, #1
-	ldr fp, _020CFC0C ; =sub_020CFFA8
+	ldr fp, _020CFC0C ; =WmDataSharingSetDataCallback
 	ldr r5, _020CFC10 ; =0x0000FFFF
 	b _020CFBC8
 _020CFB34:
@@ -119,7 +119,7 @@ _020CFB34:
 	ldrh r3, [r4, #0x16]
 	stmib sp, {r3, r6}
 	ldrh r3, [r4, #0x14]
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	cmp r0, #7
 	bne _020CFB9C
 	add r0, sl, sb, lsl #1
@@ -152,25 +152,25 @@ _020CFBC8:
 	blt _020CFB34
 	b _020CFBFC
 _020CFBE4:
-	ldr r1, _020CFC14 ; =sub_020D01AC
+	ldr r1, _020CFC14 ; =WmDataSharingReceiveCallback_Child
 	mov r4, #3
 	mov r0, r7
 	mov r2, sl
 	strh r4, [r3, #0xa]
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 _020CFBFC:
 	mov r0, #0
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020CFC08: .word sub_020D0080
-_020CFC0C: .word sub_020CFFA8
+_020CFC08: .word WmDataSharingReceiveCallback_Parent
+_020CFC0C: .word WmDataSharingSetDataCallback
 _020CFC10: .word 0x0000FFFF
-_020CFC14: .word sub_020D01AC
-	arm_func_end sub_020CF9C4
+_020CFC14: .word WmDataSharingReceiveCallback_Child
+	arm_func_end WM_StartDataSharing
 
-	arm_func_start sub_020CFC18
-sub_020CFC18: ; 0x020CFC18
+	arm_func_start WM_EndDataSharing
+WM_EndDataSharing: ; 0x020CFC18
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	moveq r0, #6
@@ -183,16 +183,16 @@ sub_020CFC18: ; 0x020CFC18
 	ldrh r0, [r0, #0x16]
 	mov r1, #0
 	mov r2, r1
-	bl sub_020CE4BC
+	bl WM_SetPortCallback
 	add r1, r4, #0x800
 	mov r0, #0
 	strh r0, [r1, #0xe]
 	strh r0, [r1, #0x1c]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020CFC18
+	arm_func_end WM_EndDataSharing
 
-	arm_func_start sub_020CFC60
-sub_020CFC60: ; 0x020CFC60
+	arm_func_start WM_StepDataSharing
+WM_StepDataSharing: ; 0x020CFC60
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	mov sl, r0
@@ -201,7 +201,7 @@ sub_020CFC60: ; 0x020CFC60
 	mov r0, #2
 	mov r1, #9
 	mov r2, #0xa
-	bl sub_020CDF98
+	bl WMi_CheckStateEx
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -217,10 +217,10 @@ sub_020CFC60: ; 0x020CFC60
 	addeq sp, sp, #0xc
 	moveq r0, #6
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	bl sub_020CE418
+	bl WM_GetAID
 	movs r5, r0
 	bne _020CFCD4
-	bl sub_020CE448
+	bl WM_GetConnectedAIDs
 	mov r4, r0
 _020CFCD4:
 	add r0, sl, #0x800
@@ -246,7 +246,7 @@ _020CFCD4:
 	strh r2, [ip, #0x1c]
 	ldrh r3, [ip, #0xe]
 	ldrh r1, [ip, #8]
-	ldr r0, _020CFFA0 ; =sub_020CFFA8
+	ldr r0, _020CFFA0 ; =WmDataSharingSetDataCallback
 	and r3, r3, r4
 	mov r3, r3, lsl #0x10
 	mov r3, r3, lsr #0x10
@@ -259,7 +259,7 @@ _020CFCD4:
 	ldrh r3, [ip, #0x14]
 	mov r1, sl
 	add r2, sl, r6, lsl #9
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	cmp r0, #7
 	bne _020CFD98
 	add r0, sl, r6, lsl #1
@@ -296,7 +296,7 @@ _020CFDBC:
 	strh r3, [sl, r5]
 	ldrh r0, [r0, #0xc]
 	add r0, sl, r0, lsl #9
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r1, sl, #0x800
 	ldrh r0, [r1, #0xc]
 	mov r5, #1
@@ -325,20 +325,20 @@ _020CFE50:
 _020CFE54:
 	mov r0, sl
 	mov r1, #0
-	bl sub_020D036C
+	bl WmDataSharingSendDataSet
 	cmp r5, #0
 	beq _020CFF94
 	mov r0, sl
 	mov r2, sb
 	mov r1, #0
-	bl sub_020D02A0
+	bl WmDataSharingReceiveData
 	add r0, sl, #0x800
 	ldrh r0, [r0, #0x18]
 	cmp r0, #0
 	bne _020CFF94
 	mov r0, sl
 	mov r1, fp
-	bl sub_020D036C
+	bl WmDataSharingSendDataSet
 	b _020CFF94
 _020CFE98:
 	cmp r0, #4
@@ -360,7 +360,7 @@ _020CFE98:
 	mov r1, r8
 	add r0, sl, r2
 	mov r2, #0x200
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r2, sl, #0x800
 	ldrh r1, [r2, #0xc]
 	mov r0, #1
@@ -382,11 +382,11 @@ _020CFF18:
 	mov r0, sb
 	add r6, sl, r1, lsl #9
 	add r1, r6, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r3, sl, #0x800
 	ldrh r1, [r3, #0xe]
 	mov r4, #1
-	ldr r0, _020CFFA0 ; =sub_020CFFA8
+	ldr r0, _020CFFA0 ; =WmDataSharingSetDataCallback
 	str r1, [sp]
 	ldrh r5, [r3, #0x16]
 	mov r1, sl
@@ -394,7 +394,7 @@ _020CFF18:
 	str r5, [sp, #4]
 	str r4, [sp, #8]
 	ldrh r3, [r3, #0x10]
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	add r1, sl, #0x800
 	ldrh r2, [r1, #0xa]
 	cmp r0, #2
@@ -410,22 +410,22 @@ _020CFF94:
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020CFFA0: .word sub_020CFFA8
+_020CFFA0: .word WmDataSharingSetDataCallback
 _020CFFA4: .word 0x0000FFFF
-	arm_func_end sub_020CFC60
+	arm_func_end WM_StepDataSharing
 
-	arm_func_start sub_020CFFA8
-sub_020CFFA8: ; 0x020CFFA8
+	arm_func_start WmDataSharingSetDataCallback
+WmDataSharingSetDataCallback: ; 0x020CFFA8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl sub_020CDF24
+	bl WMi_GetSystemWork
 	ldrh r2, [r5, #0xa]
-	ldr r1, _020D0078 ; =sub_020D0080
+	ldr r1, _020D0078 ; =WmDataSharingReceiveCallback_Parent
 	add r0, r0, r2, lsl #2
 	ldr r2, [r0, #0xcc]
 	ldr r4, [r0, #0x10c]
 	cmp r2, r1
-	ldrne r0, _020D007C ; =sub_020D01AC
+	ldrne r0, _020D007C ; =WmDataSharingReceiveCallback_Child
 	cmpne r2, r0
 	ldmneia sp!, {r3, r4, r5, pc}
 	cmp r4, #0
@@ -433,7 +433,7 @@ sub_020CFFA8: ; 0x020CFFA8
 	ldr r0, [r5, #0x20]
 	cmp r4, r0
 	ldmneia sp!, {r3, r4, r5, pc}
-	bl sub_020CE418
+	bl WM_GetAID
 	ldrh r1, [r5, #2]
 	cmp r1, #0
 	bne _020D0034
@@ -472,12 +472,12 @@ _020D0068:
 	strh r1, [r0, #0x1c]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D0078: .word sub_020D0080
-_020D007C: .word sub_020D01AC
-	arm_func_end sub_020CFFA8
+_020D0078: .word WmDataSharingReceiveCallback_Parent
+_020D007C: .word WmDataSharingReceiveCallback_Child
+	arm_func_end WmDataSharingSetDataCallback
 
-	arm_func_start sub_020D0080
-sub_020D0080: ; 0x020D0080
+	arm_func_start WmDataSharingReceiveCallback_Parent
+WmDataSharingReceiveCallback_Parent: ; 0x020D0080
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r4, [r0, #0x1c]
 	cmp r4, #0
@@ -510,20 +510,20 @@ _020D00EC:
 	ldrh r1, [r0, #0x12]
 	ldr r2, [r0, #0xc]
 	mov r0, r4
-	bl sub_020D02A0
+	bl WmDataSharingReceiveData
 	mov r0, r4
 	mov r1, #0
-	bl sub_020D036C
+	bl WmDataSharingSendDataSet
 	ldmia sp!, {r4, r5, r6, pc}
 _020D010C:
 	mov r0, r4
 	mov r1, #0
-	bl sub_020D036C
+	bl WmDataSharingSendDataSet
 	ldmia sp!, {r4, r5, r6, pc}
 _020D011C:
 	ldrh r5, [r0, #0x12]
 	mov r6, #1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r1, r4, #0x800
 	ldrh lr, [r1, #8]
 	mvn ip, r6, lsl r5
@@ -542,27 +542,27 @@ _020D011C:
 	and r1, r1, ip
 	strh r1, [r4, r2]
 _020D016C:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	mov r1, #0
-	bl sub_020D036C
+	bl WmDataSharingSendDataSet
 	add r0, r4, #0x800
 	ldrh r0, [r0, #0x18]
 	cmp r0, #1
 	ldmneia sp!, {r4, r5, r6, pc}
 	mov r0, r4
 	mov r1, #0
-	bl sub_020D036C
+	bl WmDataSharingSendDataSet
 	ldmia sp!, {r4, r5, r6, pc}
 _020D019C:
 	add r0, r4, #0x800
 	mov r1, #5
 	strh r1, [r0, #0x1c]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020D0080
+	arm_func_end WmDataSharingReceiveCallback_Parent
 
-	arm_func_start sub_020D01AC
-sub_020D01AC: ; 0x020D01AC
+	arm_func_start WmDataSharingReceiveCallback_Child
+WmDataSharingReceiveCallback_Child: ; 0x020D01AC
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r8, r0
 	ldr r4, [r8, #0x1c]
@@ -592,7 +592,7 @@ _020D020C:
 	ldr r7, [r8, #0xc]
 	ldrh r5, [r8, #0x10]
 	ldrh r6, [r7]
-	bl sub_020CE418
+	bl WM_GetAID
 	add r1, r4, #0x800
 	ldrh r1, [r1, #0x14]
 	cmp r5, r1
@@ -610,7 +610,7 @@ _020D0234:
 	mov r0, r7
 	mov r2, r5
 	add r1, r4, r1, lsl #9
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	add r1, r4, #0x800
 	ldrh r0, [r1, #8]
 	ldrh r2, [r8, #0x1a]
@@ -628,10 +628,10 @@ _020D0290:
 	mov r1, #5
 	strh r1, [r0, #0x1c]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020D01AC
+	arm_func_end WmDataSharingReceiveCallback_Child
 
-	arm_func_start sub_020D02A0
-sub_020D02A0: ; 0x020D02A0
+	arm_func_start WmDataSharingReceiveData
+WmDataSharingReceiveData: ; 0x020D02A0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r0
 	mov r3, r1
@@ -661,20 +661,20 @@ _020D0304:
 	add r2, r6, r4, lsl #9
 	mov r0, r6
 	add r2, r2, #4
-	bl sub_020D0514
+	bl WmGetSharedDataAddress
 	mov r1, r0
 	add r0, r6, #0x800
 	cmp r5, #0
 	ldrh r2, [r0, #0x10]
 	beq _020D0334
 	mov r0, r5
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	b _020D033C
 _020D0334:
 	mov r0, #0
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 _020D033C:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	mov r4, r4, lsl #9
 	ldrh r3, [r6, r4]
 	mvn r1, r7, lsr #16
@@ -684,17 +684,17 @@ _020D033C:
 	ldrh r1, [r2, r4]
 	orr r1, r1, r7, lsr #16
 	strh r1, [r2, r4]
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020D02A0
+	arm_func_end WmDataSharingReceiveData
 
-	arm_func_start sub_020D036C
-sub_020D036C: ; 0x020D036C
+	arm_func_start WmDataSharingSendDataSet
+WmDataSharingSendDataSet: ; 0x020D036C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0xc
 	mov sl, r0
 	mov sb, r1
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r1, sl, #0x800
 	ldrh r1, [r1, #8]
 	mov r4, r0
@@ -702,7 +702,7 @@ sub_020D036C: ; 0x020D036C
 	ldrh r1, [sl, r1]
 	cmp r1, #0
 	bne _020D04AC
-	bl sub_020CE448
+	bl WM_GetConnectedAIDs
 	add r1, sl, #0x800
 	ldrh r6, [r1, #8]
 	ldrh r1, [r1, #0x18]
@@ -716,7 +716,7 @@ sub_020D036C: ; 0x020D036C
 	add r1, sl, r8, lsl #9
 	mov r0, #0
 	mov r2, #0x200
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, sl, #0x800
 	ldrh r3, [r0, #0xe]
 	orr r2, r7, #1
@@ -732,11 +732,11 @@ sub_020D036C: ; 0x020D036C
 	biceq r0, r0, #1
 	streqh r0, [sl, r1]
 	mov r0, r4
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r3, sl, #0x800
 	ldrh r1, [r3, #0xe]
 	mov r4, #1
-	ldr r0, _020D04B8 ; =sub_020CFFA8
+	ldr r0, _020D04B8 ; =WmDataSharingSetDataCallback
 	and r1, r1, r7
 	mov r1, r1, lsl #0x10
 	mov r1, r1, lsr #0x10
@@ -747,7 +747,7 @@ sub_020D036C: ; 0x020D036C
 	str r5, [sp, #4]
 	str r4, [sp, #8]
 	ldrh r3, [r3, #0x14]
-	bl sub_020CF64C
+	bl WM_SetMPDataToPortEx
 	cmp r0, #7
 	bne _020D0488
 	add r0, sl, r6, lsl #1
@@ -772,16 +772,16 @@ _020D0488:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 _020D04AC:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020D04B8: .word sub_020CFFA8
+_020D04B8: .word WmDataSharingSetDataCallback
 _020D04BC: .word 0x0000FFFF
-	arm_func_end sub_020D036C
+	arm_func_end WmDataSharingSendDataSet
 
-	arm_func_start sub_020D04C0
-sub_020D04C0: ; 0x020D04C0
+	arm_func_start WM_GetSharedDataAddress
+WM_GetSharedDataAddress: ; 0x020D04C0
 	stmfd sp!, {r3, lr}
 	mov lr, r1
 	mov r3, r2
@@ -801,12 +801,12 @@ sub_020D04C0: ; 0x020D04C0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
 	add r2, lr, #4
-	bl sub_020D0514
+	bl WmGetSharedDataAddress
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D04C0
+	arm_func_end WM_GetSharedDataAddress
 
-	arm_func_start sub_020D0514
-sub_020D0514: ; 0x020D0514
+	arm_func_start WmGetSharedDataAddress
+WmGetSharedDataAddress: ; 0x020D0514
 	stmfd sp!, {r3, r4, r5, lr}
 	mov ip, #1
 	mov r3, ip, lsl r3
@@ -814,9 +814,9 @@ sub_020D0514: ; 0x020D0514
 	mov r5, r0
 	and r0, r1, r3
 	mov r4, r2
-	bl sub_020D2FE4
+	bl MATH_CountPopulation
 	add r1, r5, #0x800
 	ldrh r1, [r1, #0x10]
 	mla r0, r1, r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020D0514
+	arm_func_end WmGetSharedDataAddress

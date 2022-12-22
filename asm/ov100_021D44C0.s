@@ -99,20 +99,20 @@ ov100_021D4510: ; 0x021D4510
 	cmp r1, #0
 	ble _021D4580
 	lsl r0, r0, #0xe
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _021D458E
 _021D4580:
 	lsl r0, r0, #0xe
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _021D458E:
-	bl sub_020E1740
+	bl _f_ftoi
 	add r3, r0, #0
 _021D4594:
 	add r4, #0x88

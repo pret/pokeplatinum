@@ -42,7 +42,7 @@ ov110_021D0D80: ; 0x021D0D80
 	add r5, r0, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	str r4, [r5, #0]
 	mov r0, #0x72
 	bl sub_02018340
@@ -657,12 +657,12 @@ ov110_021D128C: ; 0x021D128C
 	ldr r0, [sp]
 	mov r1, #0x40
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x40
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #4

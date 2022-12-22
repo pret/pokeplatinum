@@ -435,7 +435,7 @@ ov84_0223F390: ; 0x0223F390
 	bl sub_02006CB8
 	add r1, r5, #0
 	add r4, r0, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov84_0223F390
@@ -1188,7 +1188,7 @@ ov84_0223F994: ; 0x0223F994
 	bl sub_02006CB8
 	add r1, r5, #0
 	add r4, r0, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov84_0223F994

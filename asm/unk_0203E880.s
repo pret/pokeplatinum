@@ -232,7 +232,7 @@ _0203EA3A:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0xdc
-	bl sub_020D5124
+	bl memset
 	ldr r0, _0203EA4C ; =0x0003643F
 	str r0, [r4, #0]
 	add r0, r4, #0
@@ -1255,7 +1255,7 @@ sub_0203F1C4: ; 0x0203F1C4
 	bl sub_020508B8
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_0203F1C4
@@ -1477,7 +1477,7 @@ _0203F368:
 	beq _0203F3B4
 	bl sub_0201D2E8
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r1, r1, #0x18
 	lsr r2, r1, #0x17
 	ldr r1, _0203F3C4 ; =0x02100AD4
@@ -1490,7 +1490,7 @@ _0203F368:
 	bl sub_0203F1B0
 	bl sub_0201D2E8
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r1, r1, #0x18
 	lsr r2, r1, #0x17
 	ldr r1, _0203F3C4 ; =0x02100AD4
@@ -1710,14 +1710,14 @@ _0203F510:
 	sub r1, r0, r1
 	mov r0, #7
 	sub r0, r0, r1
-	bl sub_020D4070
+	bl abs
 	strh r0, [r5]
 	ldr r1, [r4, #8]
 	ldr r0, [sp, #0x14]
 	sub r1, r0, r1
 	mov r0, #7
 	sub r0, r0, r1
-	bl sub_020D4070
+	bl abs
 	strh r0, [r5, #2]
 	add r5, r5, #6
 	add r6, r6, #1

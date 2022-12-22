@@ -132,9 +132,9 @@
 .public sub_02098164
 .public sub_020981D0
 .public sub_020981F4
-.public sub_020C4B4C
-.public sub_020D5124
-.public sub_020E2178
+.public MIi_CpuClear32
+.public memset
+.public _u32_div_f
 .public ov5_021D1744
 .public ov5_021D2F14
 .public ov5_021D30A8

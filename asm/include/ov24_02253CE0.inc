@@ -7,6 +7,6 @@
 .public sub_0201807C
 .public sub_020183C4
 .public sub_02019044
-.public sub_020BDEA8
-.public sub_020BEA50
-.public sub_020BEAF8
+.public GXS_SetGraphicsMode
+.public GX_SetBankForSubBG
+.public GX_SetBankForSubOBJ

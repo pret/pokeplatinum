@@ -148,7 +148,7 @@ ov21_021D5890: ; 0x021D5890
 	beq _021D58B8
 	ldr r0, [sp, #8]
 	mov r1, #0x24
-	bl sub_020E2178
+	bl _u32_div_f
 	str r0, [r4, #0]
 _021D58B8:
 	add r0, r5, #0

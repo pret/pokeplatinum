@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020BB368
-sub_020BB368: ; 0x020BB368
+	arm_func_start NNSi_SndSeqArcGetSeqInfo
+NNSi_SndSeqArcGetSeqInfo: ; 0x020BB368
 	cmp r1, #0
 	movlt r0, #0
 	bxlt lr
@@ -23,4 +23,4 @@ sub_020BB368: ; 0x020BB368
 	add r0, ip, r3
 	moveq r0, #0
 	bx lr
-	arm_func_end sub_020BB368
+	arm_func_end NNSi_SndSeqArcGetSeqInfo

@@ -6,44 +6,44 @@
 	.text
 
 
-	arm_func_start sub_020A6D4C
-sub_020A6D4C: ; 0x020A6D4C
+	arm_func_start GetUnpackedAnimBankImpl_
+GetUnpackedAnimBankImpl_: ; 0x020A6D4C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r1
 	ldr r1, _020A6D84 ; =0x41424E4B
-	bl sub_020A727C
+	bl NNS_G2dFindBinaryBlock
 	movs r4, r0
 	moveq r0, #0
 	streq r0, [r5]
 	ldmeqia sp!, {r3, r4, r5, pc}
 	add r0, r4, #8
-	bl sub_020A6DA0
+	bl NNS_G2dUnpackNAN
 	add r0, r4, #8
 	str r0, [r5, #0]
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020A6D84: .word 0x41424E4B
-	arm_func_end sub_020A6D4C
+	arm_func_end GetUnpackedAnimBankImpl_
 
-	arm_func_start sub_020A6D88
-sub_020A6D88: ; 0x020A6D88
-	ldr ip, _020A6D90 ; =sub_020A6D4C
+	arm_func_start NNS_G2dGetUnpackedAnimBank
+NNS_G2dGetUnpackedAnimBank: ; 0x020A6D88
+	ldr ip, _020A6D90 ; =GetUnpackedAnimBankImpl_
 	bx ip
 	; .align 2, 0
-_020A6D90: .word sub_020A6D4C
-	arm_func_end sub_020A6D88
+_020A6D90: .word GetUnpackedAnimBankImpl_
+	arm_func_end NNS_G2dGetUnpackedAnimBank
 
-	arm_func_start sub_020A6D94
-sub_020A6D94: ; 0x020A6D94
-	ldr ip, _020A6D9C ; =sub_020A6D4C
+	arm_func_start NNS_G2dGetUnpackedMCAnimBank
+NNS_G2dGetUnpackedMCAnimBank: ; 0x020A6D94
+	ldr ip, _020A6D9C ; =GetUnpackedAnimBankImpl_
 	bx ip
 	; .align 2, 0
-_020A6D9C: .word sub_020A6D4C
-	arm_func_end sub_020A6D94
+_020A6D9C: .word GetUnpackedAnimBankImpl_
+	arm_func_end NNS_G2dGetUnpackedMCAnimBank
 
-	arm_func_start sub_020A6DA0
-sub_020A6DA0: ; 0x020A6DA0
+	arm_func_start NNS_G2dUnpackNAN
+NNS_G2dUnpackNAN: ; 0x020A6DA0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldr r1, [r0, #4]
 	mov ip, #0
@@ -135,14 +135,14 @@ _020A6ED8:
 	cmp r0, r1
 	blo _020A6E80
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end sub_020A6DA0
+	arm_func_end NNS_G2dUnpackNAN
 
-	arm_func_start sub_020A6EF0
-sub_020A6EF0: ; 0x020A6EF0
+	arm_func_start NNS_G2dGetAnimSequenceByIdx
+NNS_G2dGetAnimSequenceByIdx: ; 0x020A6EF0
 	ldrh r2, [r0]
 	cmp r2, r1
 	ldrhi r0, [r0, #4]
 	addhi r0, r0, r1, lsl #4
 	movls r0, #0
 	bx lr
-	arm_func_end sub_020A6EF0
+	arm_func_end NNS_G2dGetAnimSequenceByIdx

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A6424
-sub_020A6424: ; 0x020A6424
+	arm_func_start TryToMergeBlockRegion_
+TryToMergeBlockRegion_: ; 0x020A6424
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r3, [r0, #0]
 	mov lr, #0
@@ -69,17 +69,17 @@ _020A64F4:
 _020A6500:
 	mov r0, lr
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end sub_020A6424
+	arm_func_end TryToMergeBlockRegion_
 
-	arm_func_start sub_020A6508
-sub_020A6508: ; 0x020A6508
+	arm_func_start NNSi_GfdInitLnkVramMan
+NNSi_GfdInitLnkVramMan: ; 0x020A6508
 	mov r1, #0
 	str r1, [r0, #0]
 	bx lr
-	arm_func_end sub_020A6508
+	arm_func_end NNSi_GfdInitLnkVramMan
 
-	arm_func_start sub_020A6514
-sub_020A6514: ; 0x020A6514
+	arm_func_start NNSi_GfdInitLnkVramBlockPool
+NNSi_GfdInitLnkVramBlockPool: ; 0x020A6514
 	stmfd sp!, {r4, lr}
 	subs lr, r1, #1
 	mov r2, #0
@@ -101,10 +101,10 @@ _020A654C:
 	add r1, r0, r1, lsl #4
 	str r2, [r1, #-4]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020A6514
+	arm_func_end NNSi_GfdInitLnkVramBlockPool
 
-	arm_func_start sub_020A6560
-sub_020A6560: ; 0x020A6560
+	arm_func_start NNSi_GfdAddNewFreeBlock
+NNSi_GfdAddNewFreeBlock: ; 0x020A6560
 	stmfd sp!, {r3, lr}
 	ldr lr, [r1]
 	cmp lr, #0
@@ -129,19 +129,19 @@ sub_020A6560: ; 0x020A6560
 _020A65B4:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020A6560
+	arm_func_end NNSi_GfdAddNewFreeBlock
 
-	arm_func_start sub_020A65BC
-sub_020A65BC: ; 0x020A65BC
+	arm_func_start NNSi_GfdAllocLnkVram
+NNSi_GfdAllocLnkVram: ; 0x020A65BC
 	stmfd sp!, {r3, lr}
 	mov ip, #0
 	str ip, [sp]
-	bl sub_020A65D0
+	bl NNSi_GfdAllocLnkVramAligned
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020A65BC
+	arm_func_end NNSi_GfdAllocLnkVram
 
-	arm_func_start sub_020A65D0
-sub_020A65D0: ; 0x020A65D0
+	arm_func_start NNSi_GfdAllocLnkVramAligned
+NNSi_GfdAllocLnkVramAligned: ; 0x020A65D0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r7, [r0, #0]
 	ldr sb, [sp, #0x28]
@@ -228,10 +228,10 @@ _020A6704:
 	mov r0, #0
 	str r0, [r2, #0]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end sub_020A65D0
+	arm_func_end NNSi_GfdAllocLnkVramAligned
 
-	arm_func_start sub_020A6710
-sub_020A6710: ; 0x020A6710
+	arm_func_start NNSi_GfdMergeAllFreeBlocks
+NNSi_GfdMergeAllFreeBlocks: ; 0x020A6710
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	mov r7, r0
@@ -251,7 +251,7 @@ _020A6734:
 	add r3, r3, r2
 	mov r2, r4
 	str r3, [sp, #4]
-	bl sub_020A6424
+	bl TryToMergeBlockRegion_
 	cmp r0, #0
 	ldreq r5, [r5, #0xc]
 	beq _020A6784
@@ -267,10 +267,10 @@ _020A6784:
 	bne _020A6734
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020A6710
+	arm_func_end NNSi_GfdMergeAllFreeBlocks
 
-	arm_func_start sub_020A6794
-sub_020A6794: ; 0x020A6794
+	arm_func_start NNSi_GfdFreeLnkVram
+NNSi_GfdFreeLnkVram: ; 0x020A6794
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	add r3, r2, r3
@@ -279,7 +279,7 @@ sub_020A6794: ; 0x020A6794
 	mov r5, r1
 	str r3, [sp, #4]
 	mov r4, r0
-	bl sub_020A6424
+	bl TryToMergeBlockRegion_
 	ldr r3, [r5, #0]
 	cmp r3, #0
 	ldrne r0, [r3, #0xc]
@@ -307,4 +307,4 @@ sub_020A6794: ; 0x020A6794
 	mov r0, #1
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020A6794
+	arm_func_end NNSi_GfdFreeLnkVram

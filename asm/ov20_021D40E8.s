@@ -263,7 +263,7 @@ ov20_021D42E4: ; 0x021D42E4
 	mov r1, #4
 	mov r2, #0x3f
 	mov r3, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #2
 	mov r1, #1
 	bl sub_02019120

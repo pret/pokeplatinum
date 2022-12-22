@@ -44,7 +44,7 @@ ov61_0222AE88: ; 0x0222AE88
 	add r0, r7, #0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [sp, #0x28]
 	mov r0, #0x3c
 	bl sub_02023790
@@ -178,21 +178,21 @@ ov61_0222AFA4: ; 0x0222AFA4
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x80
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	add r1, r4, #0
 	mov r2, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov61_0222AFA4
 
 	thumb_func_start ov61_0222AFC0
 ov61_0222AFC0: ; 0x0222AFC0
-	ldr r3, _0222AFC8 ; =sub_020C4DB0
+	ldr r3, _0222AFC8 ; =MI_CpuCopy8
 	mov r2, #0x80
 	bx r3
 	nop
-_0222AFC8: .word sub_020C4DB0
+_0222AFC8: .word MI_CpuCopy8
 	thumb_func_end ov61_0222AFC0
 
 	thumb_func_start ov61_0222AFCC
@@ -203,7 +203,7 @@ ov61_0222AFCC: ; 0x0222AFCC
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #8
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrb r0, [r5, #0x19]
 	mov r1, #1
 	strb r0, [r4]

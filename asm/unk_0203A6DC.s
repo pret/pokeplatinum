@@ -22,14 +22,14 @@ sub_0203A6E0: ; 0x0203A6E0
 
 	thumb_func_start sub_0203A6E8
 sub_0203A6E8: ; 0x0203A6E8
-	ldr r3, _0203A6F4 ; =sub_020C4B4C
+	ldr r3, _0203A6F4 ; =MIi_CpuClear32
 	mov r2, #5
 	add r1, r0, #0
 	mov r0, #0
 	lsl r2, r2, #0xa
 	bx r3
 	; .align 2, 0
-_0203A6F4: .word sub_020C4B4C
+_0203A6F4: .word MIi_CpuClear32
 	thumb_func_end sub_0203A6E8
 
 	thumb_func_start sub_0203A6F8
@@ -38,7 +38,7 @@ sub_0203A6F8: ; 0x0203A6F8
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0xa0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	add r0, #0x6c
 	bl sub_020556C4

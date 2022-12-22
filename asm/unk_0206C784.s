@@ -569,7 +569,7 @@ _0206CBBA:
 	add r0, r4, #0
 	bl ov5_021EF9E8
 	ldr r0, [r0, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _0206CC04
 	add r2, r0, #0

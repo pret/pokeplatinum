@@ -1,6 +1,6 @@
-.public sub_020D3DA0
-.public sub_020D7350
-.public sub_020DAE0C
+.public abort
+.public printf
+.public atoi
 .public ov4_021D77C4
 .public ov4_021EA840
 .public ov66_02236A38

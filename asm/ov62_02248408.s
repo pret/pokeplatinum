@@ -130,7 +130,7 @@ _022484EA:
 	mov r0, #0
 	add r1, r5, #0
 	mov r2, #0x80
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	add r0, r7, #0
 	mov r1, #0x75
 	add r2, r5, #0

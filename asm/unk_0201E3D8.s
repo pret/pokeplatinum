@@ -178,11 +178,11 @@ _0201E4FC:
 	mov r4, #4
 	add r6, r4, #0
 _0201E500:
-	bl sub_020CA110
+	bl TP_RequestAutoSamplingStopAsync
 	add r0, r4, #0
-	bl sub_020CA60C
+	bl TP_WaitBusy
 	add r0, r6, #0
-	bl sub_020CA624
+	bl TP_CheckError
 	cmp r0, #0
 	beq _0201E516
 	add r5, r5, #1
@@ -249,7 +249,7 @@ _0201E57A:
 	ldrh r0, [r0, #0x18]
 	cmp r0, #0
 	beq _0201E5B4
-	bl sub_020CA2EC
+	bl TP_GetLatestIndexInAuto
 	add r5, r0, #0
 	ldr r0, _0201E5BC ; =0x021C0710
 	mov r1, #9
@@ -294,7 +294,7 @@ sub_0201E5C0: ; 0x0201E5C0
 _0201E5D2:
 	add r0, sp, #4
 	add r1, r5, #0
-	bl sub_020CA4E8
+	bl TP_GetCalibratedPoint
 	ldrh r0, [r6]
 	add r7, r7, #1
 	add r5, #8
@@ -380,11 +380,11 @@ _0201E664:
 	add r1, r4, #0
 	add r2, r7, #0
 	mov r3, #9
-	bl sub_020CA010
+	bl TP_RequestAutoSamplingStartAsync
 	mov r0, #2
-	bl sub_020CA60C
+	bl TP_WaitBusy
 	mov r0, #2
-	bl sub_020CA624
+	bl TP_CheckError
 	cmp r0, #0
 	beq _0201E682
 	add r5, r5, #1
@@ -515,7 +515,7 @@ _0201E738:
 	ldr r2, [sp]
 	cmp r2, #1
 	bne _0201E762
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0x54]
 	b _0201E76A
 _0201E762:
@@ -583,7 +583,7 @@ _0201E7A8:
 	blo _0201E7E4
 	cmp r7, #4
 	bne _0201E7DE
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0x54]
 	b _0201E7E4
 _0201E7DE:

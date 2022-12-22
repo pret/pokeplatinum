@@ -189,7 +189,7 @@ ov18_02231D9C: ; 0x02231D9C
 	cmp r0, #0
 	ldmneia sp!, {r3, pc}
 	mov r0, #0x1000000
-	bl sub_020C3E08
-	bl sub_020CB218
+	bl OS_SpinWait
+	bl PM_ForceToPowerOff
 	ldmia sp!, {r3, pc}
 	arm_func_end ov18_02231D9C

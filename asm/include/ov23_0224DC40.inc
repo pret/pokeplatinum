@@ -45,9 +45,9 @@
 .public sub_02059624
 .public sub_0206B3EC
 .public sub_0206B3FC
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E2178
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _u32_div_f
 .public ov23_0224219C
 .public ov23_022421DC
 .public ov23_02243204

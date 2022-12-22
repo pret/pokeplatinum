@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D4908
-sub_020D4908: ; 0x020D4908
+	arm_func_start fclose
+fclose: ; 0x020D4908
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mvneq r0, #0
@@ -17,7 +17,7 @@ sub_020D4908: ; 0x020D4908
 	movs r1, r1, lsr #0x1d
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	bl sub_020D497C
+	bl fflush
 	mov r4, r0
 	ldr r0, [r5, #0]
 	ldr r1, [r5, #0x44]
@@ -37,14 +37,14 @@ sub_020D4908: ; 0x020D4908
 	movne r2, #1
 	rsb r0, r2, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020D4908
+	arm_func_end fclose
 
-	arm_func_start sub_020D497C
-sub_020D497C: ; 0x020D497C
+	arm_func_start fflush
+fflush: ; 0x020D497C
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _020D4990
-	bl sub_020D4008
+	bl __flush_all
 	ldmia sp!, {r4, pc}
 _020D4990:
 	ldrb r0, [r4, #0xd]
@@ -88,7 +88,7 @@ _020D49B4:
 _020D4A20:
 	mov r0, r4
 	mov r1, #0
-	bl sub_020D417C
+	bl __flush_buffer
 	cmp r0, #0
 	mov r0, #0
 	beq _020D4A4C
@@ -104,4 +104,4 @@ _020D4A4C:
 	str r0, [r4, #0x18]
 	str r0, [r4, #0x28]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D497C
+	arm_func_end fflush

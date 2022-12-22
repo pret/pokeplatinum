@@ -10,7 +10,7 @@
 ov6_02243218: ; 0x02243218
 	push {r3, lr}
 	mov r1, #0x16
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, _02243228 ; =0x02249090
 	lsl r1, r1, #2
 	ldr r0, [r0, r1]
@@ -26,7 +26,7 @@ ov6_0224322C: ; 0x0224322C
 	add r5, r1, #0
 	mov r1, #0x16
 	add r4, r2, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, _02243254 ; =0x02249090
 	lsl r1, r1, #2
 	ldr r6, [r0, r1]

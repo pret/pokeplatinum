@@ -67,7 +67,7 @@ sub_02055C8C: ; 0x02055C8C
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x64
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	str r6, [r4, #0]
 	add r0, r6, #0
 	bl sub_02027BF4
@@ -172,7 +172,7 @@ sub_02055D54: ; 0x02055D54
 	ldr r0, [r3, #0]
 	str r0, [r2, #0]
 	add r0, sp, #0
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	ldr r0, [r5, #4]
 	add r1, r4, #0
 	ldr r0, [r0, #0x18]

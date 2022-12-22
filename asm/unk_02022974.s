@@ -12,7 +12,7 @@ sub_02022974: ; 0x02022974
 	bl sub_02036780
 	cmp r0, #0
 	beq _0202298A
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	beq _0202298A
 	bl sub_0209B49C

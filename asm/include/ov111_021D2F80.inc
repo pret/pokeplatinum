@@ -30,7 +30,7 @@
 .public sub_02021CE4
 .public sub_02021D6C
 .public sub_02022974
-.public sub_020A7944
+.public NNS_G2dInitOamManagerModule
 .public ov111_021D304C
 .public ov111_021D30D8
 .public ov111_021D3168

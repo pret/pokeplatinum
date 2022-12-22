@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020D4A64
-sub_020D4A64: ; 0x020D4A64
+	arm_func_start _ftell
+_ftell: ; 0x020D4A64
 	ldr r1, [r0, #4]
 	mov r1, r1, lsl #0x16
 	mov r1, r1, lsr #0x1d
@@ -42,10 +42,10 @@ _020D4AA4:
 	bx lr
 	; .align 2, 0
 _020D4ADC: .word 0x021D0D40
-	arm_func_end sub_020D4A64
+	arm_func_end _ftell
 
-	arm_func_start sub_020D4AE0
-sub_020D4AE0: ; 0x020D4AE0
+	arm_func_start ftell
+ftell: ; 0x020D4AE0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r1, _020D4BE0 ; =0x02101490
 	mov r7, r0
@@ -65,7 +65,7 @@ _020D4B18:
 	mul r4, r6, r0
 	ldr r5, _020D4BEC ; =0x021D0968
 	add r0, r5, r4
-	bl sub_020C2AF4
+	bl OS_TryLockMutex
 	cmp r0, #0
 	bne _020D4B58
 	ldr r0, _020D4BF0 ; =0x021CCC80
@@ -92,7 +92,7 @@ _020D4B58:
 	b _020D4BB0
 _020D4B88:
 	add r0, r5, r4
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _020D4BF0 ; =0x021CCC80
 	ldr r2, _020D4BF4 ; =0x021D0920
 	ldr r1, [r0, #4]
@@ -103,7 +103,7 @@ _020D4B88:
 	str r1, [r0, r6, lsl #2]
 _020D4BB0:
 	mov r0, r7
-	bl sub_020D4A64
+	bl _ftell
 	ldr r1, _020D4BF8 ; =0x021D0944
 	mov r7, r0
 	ldr r0, [r1, r6, lsl #2]
@@ -111,7 +111,7 @@ _020D4BB0:
 	str r0, [r1, r6, lsl #2]
 	bne _020D4BD8
 	add r0, r5, r4
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 _020D4BD8:
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -123,10 +123,10 @@ _020D4BEC: .word 0x021D0968
 _020D4BF0: .word 0x021CCC80
 _020D4BF4: .word 0x021D0920
 _020D4BF8: .word 0x021D0944
-	arm_func_end sub_020D4AE0
+	arm_func_end ftell
 
-	arm_func_start sub_020D4BFC
-sub_020D4BFC: ; 0x020D4BFC
+	arm_func_start _fseek
+_fseek: ; 0x020D4BFC
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
@@ -153,7 +153,7 @@ _020D4C48:
 	cmp r1, #1
 	bne _020D4C98
 	mov r1, #0
-	bl sub_020D417C
+	bl __flush_buffer
 	cmp r0, #0
 	beq _020D4C98
 	mov r0, #1
@@ -172,7 +172,7 @@ _020D4C98:
 	bne _020D4CB8
 	mov r0, r5
 	mov r4, #0
-	bl sub_020D4A64
+	bl _ftell
 	ldr r1, [sp, #0x14]
 	add r0, r1, r0
 	str r0, [sp, #0x14]
@@ -259,10 +259,10 @@ _020D4DD0:
 	bx lr
 	; .align 2, 0
 _020D4DE0: .word 0x021D0D40
-	arm_func_end sub_020D4BFC
+	arm_func_end _fseek
 
-	arm_func_start sub_020D4DE4
-sub_020D4DE4: ; 0x020D4DE4
+	arm_func_start fseek
+fseek: ; 0x020D4DE4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldr r3, _020D4EF4 ; =0x02101490
 	mov sb, r0
@@ -284,7 +284,7 @@ _020D4E24:
 	mul r4, r6, r0
 	ldr r5, _020D4F00 ; =0x021D0968
 	add r0, r5, r4
-	bl sub_020C2AF4
+	bl OS_TryLockMutex
 	cmp r0, #0
 	bne _020D4E64
 	ldr r0, _020D4F04 ; =0x021CCC80
@@ -311,7 +311,7 @@ _020D4E64:
 	b _020D4EBC
 _020D4E94:
 	add r0, r5, r4
-	bl sub_020C29D8
+	bl OS_LockMutex
 	ldr r0, _020D4F04 ; =0x021CCC80
 	ldr r2, _020D4F08 ; =0x021D0920
 	ldr r1, [r0, #4]
@@ -324,7 +324,7 @@ _020D4EBC:
 	mov r0, sb
 	mov r1, r8
 	mov r2, r7
-	bl sub_020D4BFC
+	bl _fseek
 	ldr r1, _020D4F0C ; =0x021D0944
 	mov r7, r0
 	ldr r0, [r1, r6, lsl #2]
@@ -332,7 +332,7 @@ _020D4EBC:
 	str r0, [r1, r6, lsl #2]
 	bne _020D4EEC
 	add r0, r5, r4
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 _020D4EEC:
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -344,17 +344,17 @@ _020D4F00: .word 0x021D0968
 _020D4F04: .word 0x021CCC80
 _020D4F08: .word 0x021D0920
 _020D4F0C: .word 0x021D0944
-	arm_func_end sub_020D4DE4
+	arm_func_end fseek
 
-	arm_func_start sub_020D4F10
-sub_020D4F10: ; 0x020D4F10
+	arm_func_start rewind
+rewind: ; 0x020D4F10
 	stmfd sp!, {r4, lr}
 	mov r1, #0
 	mov r4, r0
 	mov r2, r1
 	strb r1, [r4, #0xd]
-	bl sub_020D4DE4
+	bl fseek
 	mov r0, #0
 	strb r0, [r4, #0xd]
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D4F10
+	arm_func_end rewind

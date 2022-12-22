@@ -5,5 +5,5 @@
 .public sub_02025F8C
 .public sub_02025FCC
 .public sub_02025FD8
-.public sub_020D5124
+.public memset
 .public ov4_021D222C

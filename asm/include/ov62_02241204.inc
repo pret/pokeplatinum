@@ -70,11 +70,11 @@
 .public sub_0208BA08
 .public sub_0208BA84
 .public sub_0208BE68
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D5124
-.public sub_020E1ED4
-.public sub_020E1EE0
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public memset
+.public _ull_div
+.public _ull_mod
 .public ov61_0222AFC0
 .public ov61_0222B338
 .public ov61_0222B394

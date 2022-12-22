@@ -25,7 +25,7 @@ sub_0208C0A4: ; 0x0208C0A4
 	mul r0, r1
 	add r0, r2, r0
 	lsl r0, r0, #4
-	bl sub_0200007A
+	bl SVC_Sqrt
 	lsr r0, r0, #2
 	pop {r3, pc}
 	; .align 2, 0
@@ -36,7 +36,7 @@ sub_0208C0BC: ; 0x0208C0BC
 	push {r4, lr}
 	add r4, r0, #0
 	mul r0, r2
-	bl sub_020E2178
+	bl _u32_div_f
 	lsl r0, r0, #0x18
 	lsr r0, r0, #0x18
 	bne _0208C0D2
@@ -60,7 +60,7 @@ sub_0208C0D4: ; 0x0208C0D4
 	pop {r4, pc}
 _0208C0E6:
 	mov r1, #5
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r4, r0
 	bls _0208C0F4
 	mov r0, #2
@@ -267,7 +267,7 @@ sub_0208C210: ; 0x0208C210
 _0208C24E:
 	add r0, r7, #0
 	add r1, sp, #0x14
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	cmp r4, #0
 	bne _0208C262
 	ldr r0, [sp, #0x14]
@@ -289,7 +289,7 @@ _0208C262:
 _0208C27A:
 	add r0, r7, #0
 	add r1, sp, #0x10
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	cmp r4, #0
 	bne _0208C28E
 	ldr r0, [sp, #0x10]
@@ -325,7 +325,7 @@ _0208C2AC:
 _0208C2C4:
 	add r0, r7, #0
 	add r1, sp, #0xc
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r4, #0
 	bne _0208C2D8
 	ldr r0, [sp, #0xc]
@@ -366,7 +366,7 @@ sub_0208C2F4: ; 0x0208C2F4
 	bl sub_02006D28
 	add r0, r4, #0
 	add r1, r7, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	add r0, r4, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0

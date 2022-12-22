@@ -71,7 +71,7 @@
 .public sub_0207D60C
 .public sub_0207D730
 .public sub_0207D990
-.public sub_020D5124
+.public memset
 .public ov7_0224C338
 .public ov7_0224C35C
 .public ov7_0224C3B8

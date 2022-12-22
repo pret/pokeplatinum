@@ -13,7 +13,7 @@ sub_020562F8: ; 0x020562F8
 	add r4, r0, #0
 	mov r0, #0
 	mov r2, #0x4c
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r1, _02056320 ; =0x021C07FC
 	add r0, r4, #0
 	bl sub_0205642C
@@ -271,7 +271,7 @@ sub_020564D0: ; 0x020564D0
 	add r4, r0, #0
 	bl sub_0201D2E8
 	ldr r1, _020564F0 ; =0x0000199A
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	lsr r5, r0, #0x10
 	cmp r5, #0xa
@@ -403,13 +403,13 @@ _020565B0:
 	lsl r1, r1, #0x10
 	ldr r0, _02056620 ; =0x0000FFFF
 	lsr r1, r1, #0x10
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	add r1, r1, #1
 	lsl r1, r1, #0x10
 	add r0, r4, #0
 	lsr r1, r1, #0x10
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x10
 	add r6, #0x14
 	lsr r4, r0, #0x10

@@ -27,8 +27,8 @@
 .public sub_0208B9E0
 .public sub_0208BA30
 .public sub_0208BA54
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public _s32_div_f
 .public ov62_0222FB44
 .public ov62_0222FB60
 .public ov62_0222FF7C

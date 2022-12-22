@@ -79,9 +79,9 @@
 .public sub_020789F4
 .public sub_02097F30
 .public sub_02098164
-.public sub_020BF55C
-.public sub_020C4B4C
-.public sub_020E1F6C
+.public G2x_SetBlendAlpha_
+.public MIi_CpuClear32
+.public _s32_div_f
 .public ov12_02236004
 .public ov12_02236320
 .public ov12_02236374

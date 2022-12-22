@@ -30,14 +30,14 @@ _021FAC28:
 	ldr r1, _021FACA0 ; =0x02219764
 	mov r0, r4
 	mov r3, r5
-	bl sub_020D7510
+	bl sprintf
 	b _021FAC90
 _021FAC58:
 	bl ov4_022089F4
 	mov r2, r0
 	ldr r1, _021FACA4 ; =0x0221976C
 	mov r0, r4
-	bl sub_020D7510
+	bl sprintf
 	b _021FAC90
 _021FAC70:
 	cmp r5, #0
@@ -47,7 +47,7 @@ _021FAC70:
 	ldr r1, _021FACA8 ; =0x02219770
 	mov r0, r4
 	mov r2, r5
-	bl sub_020D7510
+	bl sprintf
 _021FAC90:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
@@ -72,7 +72,7 @@ ov4_021FACAC: ; 0x021FACAC
 	moveq r5, r4
 	beq _021FAE00
 	mov r1, #0x3a
-	bl sub_020D8E5C
+	bl strchr
 	movs r5, r0
 	moveq r5, #0
 	beq _021FADBC
@@ -87,12 +87,12 @@ ov4_021FACAC: ; 0x021FACAC
 	ldr r1, _021FAE20 ; =0x02219794
 	ldr r2, _021FAE24 ; =0x02219750
 	mov r3, #0x81
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021FAD18:
 	add r0, sp, #0
 	mov r1, r8
 	mov r2, sb
-	bl sub_020D50B8
+	bl memcpy
 	add r8, sp, #0
 	mov r0, #0
 	strb r0, [r8, sb]
@@ -125,7 +125,7 @@ _021FAD70:
 	bne _021FAD4C
 _021FAD8C:
 	add r0, r5, #1
-	bl sub_020DAE0C
+	bl atoi
 	cmp r0, #0
 	blt _021FADA8
 	ldr r1, _021FAE2C ; =0x0000FFFF
@@ -190,7 +190,7 @@ _021FAE58:
 	cmp r1, r0
 	ldmneia sp!, {r4, pc}
 	mov r0, r2
-	bl sub_020D8B60
+	bl strlen
 	add r0, r0, #1
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}

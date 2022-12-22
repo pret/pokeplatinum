@@ -18,11 +18,11 @@ sub_02030CEC: ; 0x02030CEC
 	add r4, r0, #0
 	mov r1, #0
 	mov r2, #0x40
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x33
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	str r0, [r4, #0x34]
 	mov r0, #0x23
@@ -64,7 +64,7 @@ sub_02030D38: ; 0x02030D38
 	mov r1, #0x23
 	bl sub_020245BC
 	add r1, r4, #0
-	bl sub_020D8B7C
+	bl strcpy
 	mov r0, #0x23
 	bl sub_02025C84
 	pop {r4, pc}
@@ -170,7 +170,7 @@ sub_02030DD0: ; 0x02030DD0
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x64
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0xc
 	strb r0, [r4]
 	mov r0, #2
@@ -195,7 +195,7 @@ sub_02030DD0: ; 0x02030DD0
 	add r0, r4, #0
 	ldr r1, [sp]
 	add r0, #0x24
-	bl sub_020D8B7C
+	bl strcpy
 	add r0, r5, #0
 	mov r1, #0
 	bl sub_02030D98
@@ -214,7 +214,7 @@ sub_02030E48: ; 0x02030E48
 	bl sub_0201D2E8
 	mov r1, #0xfa
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r5, #0
 	add r4, r1, #0
 	add r0, #0x60

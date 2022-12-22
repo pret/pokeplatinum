@@ -3901,7 +3901,7 @@ _02268F3A:
 _02268F48:
 	bl sub_0201D35C
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r5, #0
 	add r6, r1, #0
 	bl ov70_0225E064

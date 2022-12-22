@@ -164,7 +164,7 @@ ov4_02206790: ; 0x02206790
 	ldr r4, [r6, #4]
 	ldr r5, [r4, #0x64]
 	add r0, r5, #0xe0
-	bl sub_020C29D8
+	bl OS_LockMutex
 	mov r1, #0
 	ldrh r0, [r6, #0x10]
 	mov r2, r1
@@ -184,7 +184,7 @@ ov4_02206790: ; 0x02206790
 	add r0, r5, #0xe0
 	orr r1, r1, #4
 	strh r1, [r4, #0x70]
-	bl sub_020C2A5C
+	bl OS_UnlockMutex
 	mov r0, #0
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}

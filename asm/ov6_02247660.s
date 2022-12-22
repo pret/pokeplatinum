@@ -106,7 +106,7 @@ _02247720:
 	add r0, sp, #0x3c
 	ldr r0, [r0, r4]
 	ldr r1, [sp, #0x10]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, [sp, #0x10]
 	add r2, r0, #0
 	mul r2, r5

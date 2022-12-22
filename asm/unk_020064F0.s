@@ -17,7 +17,7 @@ sub_020064F0: ; 0x020064F0
 _020064FE:
 	ldr r1, [r4, #0]
 	mov r0, #0
-	bl sub_020C8BBC
+	bl FS_UnloadOverlay
 	cmp r0, #1
 	beq _0200650E
 	bl sub_02022974
@@ -61,7 +61,7 @@ sub_02006544: ; 0x02006544
 	add r2, r0, #0
 	add r0, sp, #0
 	mov r1, #0
-	bl sub_020C86C8
+	bl FS_LoadOverlayInfo
 	cmp r0, #1
 	beq _0200655A
 	bl sub_02022974
@@ -145,7 +145,7 @@ _020065E0:
 	bhi _020065F0
 	mov r0, #0
 	mvn r0, r0
-	bl sub_020C84E0
+	bl FS_SetDefaultDMA
 	str r0, [sp]
 _020065F0:
 	cmp r4, #0
@@ -181,7 +181,7 @@ _0200662A:
 	cmp r6, #1
 	bhi _02006634
 	ldr r0, [sp]
-	bl sub_020C84E0
+	bl FS_SetDefaultDMA
 _02006634:
 	cmp r4, #0
 	bne _02006640
@@ -293,7 +293,7 @@ sub_020066E4: ; 0x020066E4
 	add r0, sp, #0
 	mov r1, #0
 	add r2, r3, #0
-	bl sub_020C86C8
+	bl FS_LoadOverlayInfo
 	cmp r0, #0
 	bne _02006706
 	bl sub_02022974
@@ -316,10 +316,10 @@ _02006706:
 
 	thumb_func_start sub_0200671C
 sub_0200671C: ; 0x0200671C
-	ldr r3, _02006720 ; =sub_020C8B68
+	ldr r3, _02006720 ; =FS_LoadOverlay
 	bx r3
 	; .align 2, 0
-_02006720: .word sub_020C8B68
+_02006720: .word FS_LoadOverlay
 	thumb_func_end sub_0200671C
 
 	thumb_func_start sub_02006724
@@ -330,7 +330,7 @@ sub_02006724: ; 0x02006724
 	add r2, r1, #0
 	add r0, sp, #0
 	add r1, r3, #0
-	bl sub_020C86C8
+	bl FS_LoadOverlayInfo
 	cmp r0, #0
 	bne _0200673E
 	add sp, #0x2c
@@ -338,7 +338,7 @@ sub_02006724: ; 0x02006724
 	pop {pc}
 _0200673E:
 	add r0, sp, #0
-	bl sub_020C8850
+	bl FS_LoadOverlayImage
 	cmp r0, #0
 	bne _0200674E
 	add sp, #0x2c
@@ -346,7 +346,7 @@ _0200673E:
 	pop {pc}
 _0200674E:
 	add r0, sp, #0
-	bl sub_020C8974
+	bl FS_StartOverlay
 	mov r0, #1
 	add sp, #0x2c
 	pop {pc}
@@ -361,7 +361,7 @@ sub_0200675C: ; 0x0200675C
 	add r2, r1, #0
 	add r0, sp, #0
 	add r1, r3, #0
-	bl sub_020C86C8
+	bl FS_LoadOverlayInfo
 	cmp r0, #0
 	bne _02006776
 	add sp, #0x74
@@ -369,16 +369,16 @@ sub_0200675C: ; 0x0200675C
 	pop {pc}
 _02006776:
 	add r0, sp, #0x2c
-	bl sub_020C7DA0
+	bl FS_InitFile
 	add r0, sp, #0
 	add r1, sp, #0x2c
-	bl sub_020C87C4
+	bl FS_LoadOverlayImageAsync
 	add r0, sp, #0x2c
-	bl sub_020C8104
+	bl FS_WaitAsync
 	add r0, sp, #0x2c
-	bl sub_020C80C8
+	bl FS_CloseFile
 	add r0, sp, #0
-	bl sub_020C8974
+	bl FS_StartOverlay
 	mov r0, #1
 	add sp, #0x74
 	pop {pc}

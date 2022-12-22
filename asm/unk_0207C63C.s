@@ -36,14 +36,14 @@ sub_0207C664: ; 0x0207C664
 	mov r1, #0
 	mov r2, #0xe
 	mov r3, #0xb
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #8
 	str r0, [sp]
 	ldr r0, _0207C68C ; =0x04001050
 	mov r1, #0
 	mov r2, #0xe
 	mov r3, #7
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	; .align 2, 0
 _0207C688: .word 0x04000050
@@ -109,13 +109,13 @@ sub_0207C6AC: ; 0x0207C6AC
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _0207C724 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _0207C728 ; =0xBFFF0000
 	ldr r0, _0207C72C ; =0x04000580
 	str r1, [r0, #0]
@@ -170,7 +170,7 @@ sub_0207C770: ; 0x0207C770
 	cmp r0, #0
 	ble _0207C786
 	bl sub_020241B4
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 _0207C786:
 	bl sub_020146C0
 	mov r0, #1

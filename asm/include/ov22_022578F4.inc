@@ -4,7 +4,7 @@
 .public sub_02022734
 .public sub_02022830
 .public sub_02022974
-.public sub_020D5124
+.public memset
 .public ov22_02254E20
 .public ov22_02254F6C
 .public ov22_02254F78

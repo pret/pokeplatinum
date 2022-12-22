@@ -56,8 +56,8 @@
 .public sub_0208BA08
 .public sub_0208BA84
 .public sub_0208BE68
-.public sub_020C4DB0
-.public sub_020D5124
+.public MI_CpuCopy8
+.public memset
 .public ov61_0222AFC0
 .public ov61_0222B3EC
 .public ov61_0222B44C

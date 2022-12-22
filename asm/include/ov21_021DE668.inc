@@ -39,7 +39,7 @@
 .public sub_020759CC
 .public sub_020989C4
 .public sub_020989D0
-.public sub_020D5124
+.public memset
 .public ov21_021D138C
 .public ov21_021D13EC
 .public ov21_021D13FC

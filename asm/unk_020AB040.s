@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020AB040
-sub_020AB040: ; 0x020AB040
+	arm_func_start NNSi_G2dMtxConcat32
+NNSi_G2dMtxConcat32: ; 0x020AB040
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x18
 	ldr r4, [r0, #4]
@@ -80,4 +80,4 @@ sub_020AB040: ; 0x020AB040
 	stmia ip, {r0, r1}
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end sub_020AB040
+	arm_func_end NNSi_G2dMtxConcat32

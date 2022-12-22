@@ -84,7 +84,7 @@ ov18_02241520: ; 0x02241520
 	ldr r1, _0224155C ; =0x022533A0
 	ldr r0, _02241560 ; =ov18_02241564
 	ldr r1, [r1, #4]
-	bl sub_020CEDC8
+	bl WM_SetParentParameter
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -148,7 +148,7 @@ ov18_022415D0: ; 0x022415D0
 	ldr r2, [r2, #4]
 	ldr r0, _02241630 ; =ov18_02241634
 	add r2, r2, #0x13c0
-	bl sub_020D056C
+	bl WM_SetWEPKey
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -192,7 +192,7 @@ ov18_0224166C: ; 0x0224166C
 	movls r0, #1
 	ldmlsia sp!, {r3, pc}
 	ldr r0, _022416CC ; =ov18_022416D0
-	bl sub_020CEF50
+	bl WM_StartParent
 	cmp r0, #2
 	beq _022416A8
 	bl ov18_02241500
@@ -264,7 +264,7 @@ _0224175C:
 	bne _022417A4
 	ldrh r1, [r4, #0x10]
 	mov r0, #0
-	bl sub_020CF2E8
+	bl WM_Disconnect
 	cmp r0, #2
 	ldmeqia sp!, {r3, r4, r5, pc}
 	bl ov18_02241500
@@ -347,7 +347,7 @@ ov18_02241840: ; 0x02241840
 	mov r2, r3, lsl #0x10
 	mov r2, r2, lsr #0x10
 	add r3, lr, #0xf80
-	bl sub_020CF5E4
+	bl WM_StartMP
 	cmp r0, #2
 	addeq sp, sp, #8
 	moveq r0, #1
@@ -420,7 +420,7 @@ _02241980:
 	mov r2, #7
 	mov r3, #0x44
 	str ip, [sp]
-	bl sub_020CF9C4
+	bl WM_StartDataSharing
 	cmp r0, #0
 	beq _022419C0
 	bl ov18_02241500
@@ -459,7 +459,7 @@ ov18_02241A04: ; 0x02241A04
 	mov r1, #0xd
 	ldr r0, [r0, #4]
 	add r0, r0, #0x1e00
-	bl sub_020D0544
+	bl WM_StartKeySharing
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -476,7 +476,7 @@ ov18_02241A40: ; 0x02241A40
 	ldr r0, _02241A6C ; =0x022533A0
 	ldr r0, [r0, #4]
 	add r0, r0, #0x1e00
-	bl sub_020D0560
+	bl WM_EndKeySharing
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -493,7 +493,7 @@ ov18_02241A70: ; 0x02241A70
 	mov r0, #3
 	bl ov18_02241484
 	ldr r0, _02241A9C ; =ov18_02241AA0
-	bl sub_020CF77C
+	bl WM_EndMP
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -536,7 +536,7 @@ _02241AF0: .word 0x0224B094
 ov18_02241AF4: ; 0x02241AF4
 	stmfd sp!, {r3, lr}
 	ldr r0, _02241B18 ; =ov18_02241B1C
-	bl sub_020CEF60
+	bl WM_EndParent
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -575,7 +575,7 @@ ov18_02241B40: ; 0x02241B40
 	ldr r0, _02241B8C ; =0x022533A0
 	ldr r0, [r0, #4]
 	add r0, r0, #0x1e00
-	bl sub_020D0560
+	bl WM_EndKeySharing
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -592,7 +592,7 @@ ov18_02241B90: ; 0x02241B90
 	mov r0, #3
 	bl ov18_02241484
 	ldr r0, _02241BBC ; =ov18_02241BC0
-	bl sub_020CF77C
+	bl WM_EndMP
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -628,7 +628,7 @@ ov18_02241BF4: ; 0x02241BF4
 	bl ov18_02241484
 	ldr r0, _02241C28 ; =ov18_02241C2C
 	mov r1, #0
-	bl sub_020CF2E8
+	bl WM_Disconnect
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -660,7 +660,7 @@ ov18_02241C50: ; 0x02241C50
 	mov r0, #3
 	bl ov18_02241484
 	ldr r0, _02241C7C ; =ov18_02241C80
-	bl sub_020CED50
+	bl WM_Reset
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -739,7 +739,7 @@ ov18_02241D18: ; 0x02241D18
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	add r0, sp, #0
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r2, _02241DE4 ; =0x027FFC3C
 	ldrh r0, [sp]
 	ldr r3, [r2, #0]
@@ -798,7 +798,7 @@ _02241DEC: .word 0x00010DCD
 ov18_02241DF0: ; 0x02241DF0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl sub_020CE7F4
+	bl WM_GetAllowedChannel
 	cmp r0, #0x8000
 	bne _02241E1C
 	mov r0, #3
@@ -914,7 +914,7 @@ ov18_02241F64: ; 0x02241F64
 	mov r1, #3
 	mov r2, #0x11
 	str ip, [sp]
-	bl sub_020D07C4
+	bl WM_MeasureChannel
 	ldmia sp!, {r3, pc}
 	arm_func_end ov18_02241F64
 
@@ -926,7 +926,7 @@ ov18_02241F84: ; 0x02241F84
 	ldr r0, [r0, #0x40]
 	cmp r0, #7
 	beq _02241FA0
-	bl sub_020C42A8
+	bl OS_Terminate
 _02241FA0:
 	mov r0, #1
 	bl ov18_02241484
@@ -1066,7 +1066,7 @@ ov18_0224215C: ; 0x0224215C
 	ldmneia sp!, {r3, pc}
 	mov r0, #9
 	bl ov18_02241484
-	bl sub_020C42A8
+	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	arm_func_end ov18_0224215C
 
@@ -1080,7 +1080,7 @@ ov18_0224217C: ; 0x0224217C
 	ldr r0, [r0, #4]
 	mov r2, #2
 	add r0, r0, #0x80
-	bl sub_020CECC8
+	bl WM_Initialize
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}
@@ -1106,7 +1106,7 @@ ov18_022421C8: ; 0x022421C8
 	ldmia sp!, {r3, pc}
 _022421E8:
 	ldr r0, _02242214 ; =ov18_0224215C
-	bl sub_020CE478
+	bl WM_SetIndCallback
 	cmp r0, #0
 	beq _02242208
 	bl ov18_02241500
@@ -1132,7 +1132,7 @@ ov18_02242218: ; 0x02242218
 	mov r4, r2
 	cmp r0, #1
 	beq _02242244
-	bl sub_020C42A8
+	bl OS_Terminate
 	movs r0, #0
 _02242244:
 	ldr r1, _02242380 ; =0x022533A0
@@ -1175,7 +1175,7 @@ _022422B4:
 	strh r5, [r1, #0xc]
 	ldr r0, [r0, #4]
 	strh r4, [r0, #0x32]
-	bl sub_020CE8A4
+	bl WM_GetDispersionBeaconPeriod
 	ldr r1, _02242380 ; =0x022533A0
 	mov r2, #0xd0
 	ldr r3, [r1, #4]
@@ -1238,7 +1238,7 @@ _022423A0: .word 0x022533A0
 	arm_func_start ov18_022423A4
 ov18_022423A4: ; 0x022423A4
 	ldr r1, _022423C4 ; =0x022533A0
-	ldr ip, _022423C8 ; =sub_020D04C0
+	ldr ip, _022423C8 ; =WM_GetSharedDataAddress
 	ldr r1, [r1, #4]
 	mov r2, r0
 	add r0, r1, #0x3e0
@@ -1247,7 +1247,7 @@ ov18_022423A4: ; 0x022423A4
 	bx ip
 	; .align 2, 0
 _022423C4: .word 0x022533A0
-_022423C8: .word sub_020D04C0
+_022423C8: .word WM_GetSharedDataAddress
 	arm_func_end ov18_022423A4
 
 	arm_func_start ov18_022423CC
@@ -1259,7 +1259,7 @@ ov18_022423CC: ; 0x022423CC
 	add r0, r2, #0x3e0
 	add r0, r0, #0x1000
 	add r2, r2, #0x1c00
-	bl sub_020CFC60
+	bl WM_StepDataSharing
 	mov r4, r0
 	cmp r4, #7
 	bne _0224241C
@@ -1399,12 +1399,12 @@ ov18_02242598: ; 0x02242598
 	ldr r0, [r0, #0x40]
 	cmp r0, #1
 	beq _022425B4
-	bl sub_020C42A8
+	bl OS_Terminate
 _022425B4:
 	mov r0, #3
 	bl ov18_02241484
 	ldr r0, _022425E4 ; =ov18_02241CB4
-	bl sub_020CED88
+	bl WM_End
 	cmp r0, #2
 	moveq r0, #1
 	ldmeqia sp!, {r3, pc}

@@ -26,7 +26,7 @@ ov4_02207F58: ; 0x02207F58
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x64
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0x368
 	add r2, r0, #0x800
 	ldr r3, _02208000 ; =0x00000B68
@@ -59,7 +59,7 @@ _02208004: .word 0x00000466
 ov4_02208008: ; 0x02208008
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r1, _02208050 ; =0x0221DE50
 	mov r5, r0
 	ldmia r1, {r6, r7}
@@ -72,7 +72,7 @@ ov4_02208008: ; 0x02208008
 	mov r4, r0
 	mov r0, r5
 	stmia r1, {r6, r7}
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -109,11 +109,11 @@ ov4_02208088: ; 0x02208088
 	and r0, r0, #3
 	cmp r0, #1
 	bne _022080D8
-	bl sub_020C3DFC
+	bl OS_GetProcMode
 	cmp r0, #0x12
 	beq _022080D8
 	mov r0, #0xa
-	bl sub_020C24A4
+	bl OS_Sleep
 	b _022080D8
 _022080C8:
 	ldr r0, _022080EC ; =0x0221DBF4

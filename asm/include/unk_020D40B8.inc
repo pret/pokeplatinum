@@ -1,3 +1,3 @@
-.public sub_020D40B8
-.public sub_020D40BC
-.public sub_020D40C0
+.public __convert_from_newlines
+.public __convert_to_newlines
+.public __prep_buffer

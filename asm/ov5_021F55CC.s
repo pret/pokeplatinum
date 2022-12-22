@@ -187,7 +187,7 @@ _021F570A:
 	bne _021F570A
 	ldr r0, [r6, #0]
 	str r0, [r3, #0]
-	bl sub_020AF5E0
+	bl NNS_G3dGlbGetInvV
 	mov r2, #0
 	add r6, r0, #0
 	add r0, sp, #0x24
@@ -196,11 +196,11 @@ _021F570A:
 	bl sub_0201E2E0
 	add r0, r6, #0
 	add r1, sp, #0
-	bl sub_020C4C88
+	bl MI_Copy36B
 	add r0, sp, #0x24
 	add r1, sp, #0
 	add r2, r0, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r5, #0
 	add r1, sp, #0x54
 	bl sub_020715E4

@@ -50,9 +50,9 @@
 .public sub_0207A2A8
 .public sub_0207A2C0
 .public sub_0207A594
-.public sub_020C4CF4
-.public sub_020D4070
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public abs
+.public _s32_div_f
 .public ov7_0224B4E8
 .public ov7_0224B558
 .public ov7_0224B57C

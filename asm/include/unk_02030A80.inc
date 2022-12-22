@@ -22,5 +22,5 @@
 .public sub_0205CA14
 .public sub_020761E8
 .public sub_020996F4
-.public sub_020C3FBC
-.public sub_020C4CF4
+.public OS_GetOwnerInfo
+.public MI_CpuFill8

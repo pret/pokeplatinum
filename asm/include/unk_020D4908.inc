@@ -1,3 +1,3 @@
-.public sub_020D4008
-.public sub_020D417C
-.public sub_020D497C
+.public __flush_all
+.public __flush_buffer
+.public fflush

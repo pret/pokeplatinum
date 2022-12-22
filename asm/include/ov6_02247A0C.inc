@@ -29,7 +29,7 @@
 .public sub_02050944
 .public sub_02050A60
 .public sub_02050A64
-.public sub_020C4CF4
+.public MI_CpuFill8
 .public ov6_02247A34
 .public ov6_02247A90
 .public ov6_02247CC8

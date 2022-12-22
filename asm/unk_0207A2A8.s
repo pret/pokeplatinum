@@ -421,7 +421,7 @@ sub_0207A594: ; 0x0207A594
 	add r0, sp, #0x30
 	mov r1, #0
 	mov r2, #0xc
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, [sp, #0x20]
 	mov r7, #0
 	cmp r0, #0

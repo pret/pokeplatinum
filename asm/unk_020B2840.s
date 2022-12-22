@@ -6,13 +6,13 @@
 	.text
 
 
-	arm_func_start sub_020B2840
-sub_020B2840: ; 0x020B2840
+	arm_func_start NNS_G3dGetCurrentMtx
+NNS_G3dGetCurrentMtx: ; 0x020B2840
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x40
 	mov r6, r0
 	mov r5, r1
-	bl sub_020B2628
+	bl NNS_G3dGeFlushBuffer
 	ldr r0, _020B28C4 ; =0x04000440
 	mov r1, #0
 	str r1, [r0, #0]
@@ -23,18 +23,18 @@ sub_020B2840: ; 0x020B2840
 	add r4, sp, #0
 _020B2874:
 	mov r0, r4
-	bl sub_020BFCCC
+	bl G3X_GetClipMtx
 	cmp r0, #0
 	bne _020B2874
 	add r0, sp, #0
 	mov r1, r6
-	bl sub_020BC4A0
+	bl MTX_Copy44To43_
 _020B2890:
 	cmp r5, #0
 	beq _020B28A8
 _020B2898:
 	mov r0, r5
-	bl sub_020BFCFC
+	bl G3X_GetVectorMtx
 	cmp r0, #0
 	bne _020B2898
 _020B28A8:
@@ -48,13 +48,13 @@ _020B28A8:
 	; .align 2, 0
 _020B28C4: .word 0x04000440
 _020B28C8: .word 0x04000448
-	arm_func_end sub_020B2840
+	arm_func_end NNS_G3dGetCurrentMtx
 
-	arm_func_start sub_020B28CC
-sub_020B28CC: ; 0x020B28CC
+	arm_func_start NNS_G3dInit
+NNS_G3dInit: ; 0x020B28CC
 	stmfd sp!, {r3, lr}
-	bl sub_020BF9AC
-	bl sub_020AF32C
+	bl G3X_Init
+	bl NNS_G3dGlbInit
 	ldr r1, _020B28F0 ; =0x04000600
 	ldr r0, [r1, #0]
 	bic r0, r0, #0xc0000000
@@ -63,10 +63,10 @@ sub_020B28CC: ; 0x020B28CC
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020B28F0: .word 0x04000600
-	arm_func_end sub_020B28CC
+	arm_func_end NNS_G3dInit
 
-	arm_func_start sub_020B28F4
-sub_020B28F4: ; 0x020B28F4
+	arm_func_start NNS_G3dResDefaultSetup
+NNS_G3dResDefaultSetup: ; 0x020B28F4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	ldr r2, [sl]
@@ -105,16 +105,16 @@ _020B296C:
 	mov r0, sl
 	mov r6, r5
 	mov r7, r5
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	movs r4, r0
 	beq _020B2AD0
-	bl sub_020AE8C4
+	bl NNS_G3dTexGetRequiredSize
 	mov sb, r0
 	mov r0, r4
-	bl sub_020AE8D8
+	bl NNS_G3dTex4x4GetRequiredSize
 	mov r8, r0
 	mov r0, r4
-	bl sub_020AEA04
+	bl NNS_G3dPlttGetRequiredSize
 	str r0, [sp]
 	cmp sb, #0
 	beq _020B29D4
@@ -190,27 +190,27 @@ _020B2A9C:
 	mov r0, r4
 	mov r1, fp
 	mov r2, r8
-	bl sub_020AE8EC
+	bl NNS_G3dTexSetTexKey
 	mov r0, r4
 	mov r1, sb
-	bl sub_020AEA18
+	bl NNS_G3dPlttSetPlttKey
 	mov r0, r4
 	mov r1, #1
-	bl sub_020AE900
+	bl NNS_G3dTexLoad
 	mov r0, r4
 	mov r1, #1
-	bl sub_020AEA20
+	bl NNS_G3dPlttLoad
 _020B2AD0:
 	ldr r1, [sl]
 	ldr r0, _020B2B18 ; =0x30444D42
 	cmp r1, r0
 	bne _020B2AF8
 	mov r0, sl
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r4, #0
 	beq _020B2AF8
 	mov r1, r4
-	bl sub_020AF1E8
+	bl NNS_G3dBindMdlSet
 _020B2AF8:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -228,10 +228,10 @@ _020B2B1C: .word 0x02100DEC
 _020B2B20: .word 0x02100DF4
 _020B2B24: .word 0x02100DF8
 _020B2B28: .word 0x02100DF0
-	arm_func_end sub_020B28F4
+	arm_func_end NNS_G3dResDefaultSetup
 
-	arm_func_start sub_020B2B2C
-sub_020B2B2C: ; 0x020B2B2C
+	arm_func_start NNS_G3dWorldPosToScrPos
+NNS_G3dWorldPosToScrPos: ; 0x020B2B2C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x1c
 	mov r5, r1
@@ -239,7 +239,7 @@ sub_020B2B2C: ; 0x020B2B2C
 	ldr r6, _020B2CAC ; =0x021C5A94
 	ldr r1, _020B2CB0 ; =0x021C5AD8
 	add r2, sp, #0x10
-	bl sub_020BC2CC
+	bl MTX_MultVec43
 	ldr r1, [sp, #0x14]
 	ldr r0, [r6, #0x1c]
 	ldr r2, [sp, #0x10]
@@ -253,7 +253,7 @@ sub_020B2B2C: ; 0x020B2B2C
 	mov r1, r8, lsr #0xc
 	orr r1, r1, r7, lsl #20
 	add r0, r1, r0
-	bl sub_020BD080
+	bl FX_InvAsync
 	ldr r2, [sp, #0x14]
 	ldr r1, [r6, #0x10]
 	ldr r0, [r6, #0x14]
@@ -277,7 +277,7 @@ sub_020B2B2C: ; 0x020B2B2C
 	ldr r2, [r6, #0x34]
 	orr r0, r0, ip, lsl #20
 	add r8, r0, r2
-	bl sub_020BD024
+	bl FX_GetDivResultFx64c
 	umull lr, ip, r0, r7
 	mov r2, r7, asr #0x1f
 	mla ip, r0, r2, ip
@@ -310,7 +310,7 @@ _020B2C4C:
 	add r1, sp, #8
 	add r2, sp, #4
 	add r3, sp, #0
-	bl sub_020AF6EC
+	bl NNS_G3dGlbGetViewPort
 	ldr r2, [sp, #0xc]
 	ldr r0, [sp, #4]
 	ldr ip, [sp]
@@ -333,4 +333,4 @@ _020B2C4C:
 	; .align 2, 0
 _020B2CAC: .word 0x021C5A94
 _020B2CB0: .word 0x021C5AD8
-	arm_func_end sub_020B2B2C
+	arm_func_end NNS_G3dWorldPosToScrPos

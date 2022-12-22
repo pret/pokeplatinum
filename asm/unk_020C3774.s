@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020C3774
-sub_020C3774: ; 0x020C3774
+	arm_func_start OSi_SetTimerReserved
+OSi_SetTimerReserved: ; 0x020C3774
 	ldr r1, _020C378C ; =0x021CCFB0
 	mov r2, #1
 	ldrh r3, [r1]
@@ -15,7 +15,7 @@ sub_020C3774: ; 0x020C3774
 	bx lr
 	; .align 2, 0
 _020C378C: .word 0x021CCFB0
-	arm_func_end sub_020C3774
+	arm_func_end OSi_SetTimerReserved
 
 	.bss
 

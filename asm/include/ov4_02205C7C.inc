@@ -1,5 +1,5 @@
-.public sub_02000B9C
-.public sub_020C4CF4
+.public OSi_ReferSymbol
+.public MI_CpuFill8
 .public ov4_02205CB8
 .public ov4_02205CF8
 .public ov4_02205E54

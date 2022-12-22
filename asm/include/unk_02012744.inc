@@ -38,10 +38,10 @@
 .public sub_02021FC8
 .public sub_02021FE0
 .public sub_02022974
-.public sub_020A818C
-.public sub_020A81B0
-.public sub_020C02BC
-.public sub_020C0314
-.public sub_020C2C54
-.public sub_020D50B8
-.public sub_020D5124
+.public NNS_G2dInitImageProxy
+.public NNS_G2dGetImageLocation
+.public GX_LoadOBJ
+.public GXS_LoadOBJ
+.public DC_FlushRange
+.public memcpy
+.public memset

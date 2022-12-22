@@ -24,7 +24,7 @@ ov25_02254560: ; 0x02254560
 	lsl r0, r0, #2
 	str r7, [r4, r0]
 	ldr r0, [r4, r0]
-	bl sub_020A7FFC
+	bl NNS_G2dResetOamManagerBuffer
 	mov r0, #0x72
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
@@ -168,11 +168,11 @@ ov25_02254684: ; 0x02254684
 	lsl r2, r2, #8
 	ldr r0, [r0, #0xc]
 	add r1, r5, r2
-	bl sub_020C4B68
+	bl MIi_CpuCopy32
 	mov r1, #2
 	lsl r1, r1, #8
 	add r0, r5, r1
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r4, #0
 	bl sub_020181C4
 _022546B6:
@@ -198,11 +198,11 @@ ov25_022546B8: ; 0x022546B8
 	add r0, r5, r4
 	lsl r1, r6, #5
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r5, r4
 	add r1, r7, #0
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov25_022546B8
 
@@ -225,11 +225,11 @@ ov25_022546F0: ; 0x022546F0
 	add r0, r4, r5
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C0108
+	bl GXS_LoadBGPltt
 	add r0, r4, r5
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov25_022546F0
 
@@ -251,7 +251,7 @@ ov25_02254728: ; 0x02254728
 	add r0, r1, r0
 	add r1, r5, #0
 	mov r2, #0x20
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov25_02254728
 
@@ -387,12 +387,12 @@ ov25_02254820: ; 0x02254820
 	bl ov25_0225523C
 	add r4, r0, #0
 	mov r0, #0
-	bl sub_020BDEA8
+	bl GXS_SetGraphicsMode
 	mov r0, #0x80
-	bl sub_020BEA50
+	bl GX_SetBankForSubBG
 	mov r0, #1
 	lsl r0, r0, #8
-	bl sub_020BEAF8
+	bl GX_SetBankForSubOBJ
 	ldr r2, _0225492C ; =0x04001000
 	ldr r0, _02254930 ; =0xFFCFFFEF
 	ldr r1, [r2, #0]
@@ -1219,13 +1219,13 @@ ov25_02254E84: ; 0x02254E84
 	sub r0, r1, #2
 	add r0, r5, r0
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r0, #1
 	lsl r0, r0, #0xa
 	add r0, r5, r0
 	lsl r1, r4, #5
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	pop {r3, r4, r5, pc}
 	nop
 _02254EE4: .word 0x00000402
@@ -1333,7 +1333,7 @@ _02254F9C:
 	mov r1, #2
 	mov r2, #0x1c
 	mov r3, #0x1a
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0x7e
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
@@ -1415,7 +1415,7 @@ ov25_02255004: ; 0x02255004
 	add r2, r1, #0
 	mov r3, #0x1f
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add r0, r5, #0
 	bl ov25_0225480C
 	add sp, #0x10

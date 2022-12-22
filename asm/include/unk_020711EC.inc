@@ -44,4 +44,4 @@
 .public sub_02071600
 .public sub_02071604
 .public sub_02071608
-.public sub_020D5124
+.public memset

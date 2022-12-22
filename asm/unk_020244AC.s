@@ -17,7 +17,7 @@ sub_020244AC: ; 0x020244AC
 	ldr r2, _02024590 ; =0x000202CC
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _02024594 ; =0x021C0794
 	str r4, [r0, #0]
 	bl sub_02025A3C
@@ -39,7 +39,7 @@ sub_020244AC: ; 0x020244AC
 	mov r0, #0
 	add r1, r4, r1
 	mov r2, #8
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r4, #0
 	bl sub_02024ABC
 	add r5, r0, #0
@@ -228,7 +228,7 @@ _02024626:
 	mvn r0, r0
 	add r1, r6, #0
 	lsl r2, r2, #0xc
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r4, #0
 	mov r7, #1
 	add r5, r4, #0
@@ -1729,10 +1729,10 @@ _020250F2:
 	add r0, r0, #4
 	cmp r3, #2
 	blt _020250F2
-	bl sub_020CD050
+	bl CARD_TryWaitBackupAsync
 	cmp r0, #0
 	bne _0202510C
-	bl sub_020CD05C
+	bl CARD_CancelBackupAsync
 _0202510C:
 	ldr r0, [r4, #0x24]
 	cmp r0, #0
@@ -1740,11 +1740,11 @@ _0202510C:
 	ldr r0, [r4, #0x10]
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC89C
+	bl CARD_UnlockBackup
 	ldr r0, [r4, #0x10]
 	lsl r0, r0, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020C1A68
+	bl OS_ReleaseLockID
 	mov r0, #0
 	str r0, [r4, #0x24]
 _0202512A:
@@ -1795,7 +1795,7 @@ sub_0202516C: ; 0x0202516C
 	add r0, sp, #0
 	mov r1, #0xff
 	mov r2, #0x14
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r4, #0
 	add r1, r5, #0
 	bl sub_02024888
@@ -2001,7 +2001,7 @@ sub_020252EC: ; 0x020252EC
 	add r1, r6, #0
 	lsl r2, r2, #0x10
 	ldr r4, _02025338 ; =0x020E5894
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, _0202533C ; =0x020E5830
 	mov r7, #0
 	ldr r0, [r0, #0]
@@ -2015,7 +2015,7 @@ _0202530E:
 	ldr r1, [sp, #4]
 	mov r0, #0
 	add r1, r6, r1
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r0, [sp, #4]
 	ldr r1, [r4, #0xc]
 	add r0, r6, r0
@@ -2066,7 +2066,7 @@ _02025374:
 	add r2, r0, #0
 	add r0, r4, #0
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r1, [r5, #0xc]
 	add r0, r4, #0
 	blx r1
@@ -2678,7 +2678,7 @@ _02025820:
 	add r0, r5, #0
 	add r1, sp, #0x2c
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [r4, #4]
 	ldr r2, [sp, #0x18]
 	add r0, #0x40
@@ -2696,7 +2696,7 @@ _02025820:
 	add r0, r5, #0
 	add r1, sp, #0x28
 	mov r2, #4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #8]
 	mov r1, #1
 	str r1, [r0, #0]
@@ -2913,7 +2913,7 @@ sub_02025A18: ; 0x02025A18
 	thumb_func_start sub_02025A3C
 sub_02025A3C: ; 0x02025A3C
 	push {r3, r4, r5, lr}
-	bl sub_020C1A00
+	bl OS_GetLockID
 	add r4, r0, #0
 	mov r0, #2
 	mvn r0, r0
@@ -2923,16 +2923,16 @@ sub_02025A3C: ; 0x02025A3C
 _02025A50:
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC88C
+	bl CARD_LockBackup
 	ldr r0, _02025A94 ; =0x00001302
-	bl sub_020CCF0C
+	bl CARD_IdentifyBackup
 	cmp r0, #0
 	beq _02025A66
 	ldr r5, _02025A94 ; =0x00001302
 	b _02025A76
 _02025A66:
 	ldr r0, _02025A98 ; =0x00001202
-	bl sub_020CCF0C
+	bl CARD_IdentifyBackup
 	cmp r0, #0
 	beq _02025A74
 	ldr r5, _02025A98 ; =0x00001202
@@ -2942,10 +2942,10 @@ _02025A74:
 _02025A76:
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC89C
+	bl CARD_UnlockBackup
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020C1A68
+	bl OS_ReleaseLockID
 	cmp r5, #0
 	beq _02025A8E
 	mov r0, #1
@@ -2986,7 +2986,7 @@ sub_02025AC0: ; 0x02025AC0
 	add r5, r0, #0
 	add r6, r1, #0
 	add r7, r2, #0
-	bl sub_020C1A00
+	bl OS_GetLockID
 	add r4, r0, #0
 	mov r0, #2
 	mvn r0, r0
@@ -2996,7 +2996,7 @@ sub_02025AC0: ; 0x02025AC0
 _02025ADC:
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC88C
+	bl CARD_LockBackup
 	mov r3, #0
 	str r3, [sp]
 	mov r1, #1
@@ -3008,15 +3008,15 @@ _02025ADC:
 	add r1, r6, #0
 	add r2, r7, #0
 	str r3, [sp, #0x10]
-	bl sub_020CCE10
-	bl sub_020CD044
+	bl CARDi_RequestStreamCommand
+	bl CARD_WaitBackupAsync
 	add r5, r0, #0
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC89C
+	bl CARD_UnlockBackup
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020C1A68
+	bl OS_ReleaseLockID
 	cmp r5, #0
 	bne _02025B26
 	ldr r0, _02025B2C ; =0x021C0794
@@ -3049,7 +3049,7 @@ sub_02025B3C: ; 0x02025B3C
 	add r5, r0, #0
 	add r6, r1, #0
 	add r7, r2, #0
-	bl sub_020C1A00
+	bl OS_GetLockID
 	add r4, r0, #0
 	mov r0, #2
 	mvn r0, r0
@@ -3059,7 +3059,7 @@ sub_02025B3C: ; 0x02025B3C
 _02025B58:
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC88C
+	bl CARD_LockBackup
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -3071,7 +3071,7 @@ _02025B58:
 	mov r2, #4
 	add r3, r0, #0
 	str r0, [sp, #0x10]
-	bl sub_020CCE10
+	bl CARDi_RequestStreamCommand
 	cmp r0, #0
 	bne _02025B86
 	add r0, r4, #0
@@ -3094,7 +3094,7 @@ _02025B86:
 	add r0, r6, #0
 	add r1, r5, #0
 	add r2, r7, #0
-	bl sub_020CCE10
+	bl CARDi_RequestStreamCommand
 	add r0, r4, #0
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
@@ -3119,11 +3119,11 @@ sub_02025BB8: ; 0x02025BB8
 _02025BCE:
 	lsl r0, r5, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020CC89C
+	bl CARD_UnlockBackup
 	lsl r0, r5, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020C1A68
-	bl sub_020CC840
+	bl OS_ReleaseLockID
+	bl CARD_GetResultCode
 	cmp r0, #0
 	beq _02025BF0
 	cmp r0, #4
@@ -3165,10 +3165,10 @@ sub_02025C1C: ; 0x02025C1C
 	lsl r0, r5, #0x10
 	lsr r0, r0, #0x10
 	add r4, r1, #0
-	bl sub_020CC89C
+	bl CARD_UnlockBackup
 	lsl r0, r5, #0x10
 	lsr r0, r0, #0x10
-	bl sub_020C1A68
+	bl OS_ReleaseLockID
 	ldr r0, _02025C44 ; =0x021C0794
 	ldr r0, [r0, #0]
 	bl sub_020181C4

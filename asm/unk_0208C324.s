@@ -65,7 +65,7 @@ sub_0208C330: ; 0x0208C330
 	ldr r2, _0208C480 ; =0x000006B4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r5, #0
 	bl sub_02006840
 	mov r1, #0x93
@@ -623,7 +623,7 @@ sub_0208C86C: ; 0x0208C86C
 	mov r1, #1
 	mov r2, #0x1e
 	mov r3, #0x17
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	; .align 2, 0
 _0208C880: .word 0x04000050
@@ -2794,7 +2794,7 @@ _0208D976:
 	bl sub_02006AC0
 	add r1, sp, #0xc
 	add r4, r0, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	mov r3, #0
 	str r3, [sp]
 	mov r0, #0x20
@@ -4222,7 +4222,7 @@ sub_0208E498: ; 0x0208E498
 	bl sub_020790C4
 	bl sub_02095734
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r0, r0, #0x18
 	asr r6, r0, #0x18
 	mov r4, #0

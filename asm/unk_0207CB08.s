@@ -14,7 +14,7 @@ sub_0207CB08: ; 0x0207CB08
 	mov r1, #0
 	mov r2, #0x78
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	pop {r4, pc}
 	; .align 2, 0

@@ -23,7 +23,7 @@ sub_0201F834: ; 0x0201F834
 	mov r2, #0x28
 	str r1, [r0, #0]
 	mov r0, #0
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r0, _0201F88C ; =0x021C0764
 	mov r1, #0x30
 	ldr r0, [r0, #0]
@@ -388,9 +388,9 @@ _0201FACC:
 _0201FACE:
 	cmp r4, #0
 	beq _0201FADE
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	add r1, r4, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	pop {r4, pc}
 _0201FADE:
 	mov r0, #0
@@ -441,13 +441,13 @@ sub_0201FB20: ; 0x0201FB20
 	mov r1, #0
 	mov r2, #0x30
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0
 	mvn r0, r0
 	str r0, [r4, #0xc]
 	add r4, #0x10
 	add r0, r4, #0
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	pop {r4, pc}
 	thumb_func_end sub_0201FB20
 
@@ -640,7 +640,7 @@ _0201FC88: .word 0x021C0764
 	thumb_func_start sub_0201FC8C
 sub_0201FC8C: ; 0x0201FC8C
 	push {r3, lr}
-	bl sub_020BEFFC
+	bl GX_GetBankForOBJExtPltt
 	cmp r0, #0x20
 	beq _0201FC9A
 	cmp r0, #0x40
@@ -658,7 +658,7 @@ _0201FCA6:
 	ldr r0, [r0, #0]
 	str r1, [r0, #0x1c]
 _0201FCAE:
-	bl sub_020BF02C
+	bl GX_GetBankForSubOBJExtPltt
 	mov r1, #1
 	lsl r1, r1, #8
 	cmp r0, r1
@@ -695,7 +695,7 @@ sub_0201FCE4: ; 0x0201FCE4
 	push {r4, lr}
 	add r4, r0, #0
 	add r0, #0x10
-	bl sub_020A81D0
+	bl NNS_G2dInitImagePaletteProxy
 	ldr r0, [r4, #4]
 	mov r2, #1
 	tst r0, r2
@@ -704,7 +704,7 @@ sub_0201FCE4: ; 0x0201FCE4
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #0x24]
 	add r3, #0x10
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 _0201FD02:
 	ldr r0, [r4, #4]
 	mov r2, #2
@@ -714,7 +714,7 @@ _0201FD02:
 	ldr r1, [r4, #0x28]
 	add r4, #0x10
 	add r3, r4, #0
-	bl sub_020A8850
+	bl NNS_G2dLoadPalette
 _0201FD16:
 	pop {r4, pc}
 	thumb_func_end sub_0201FCE4

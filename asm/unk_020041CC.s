@@ -1043,7 +1043,7 @@ _02004A2C:
 	add r0, r4, #0
 	bl sub_020040CC
 	add r1, r5, #0
-	bl sub_020B80CC
+	bl NNS_SndPlayerPause
 	strb r5, [r6]
 _02004A3A:
 	pop {r4, r5, r6, pc}
@@ -1071,7 +1071,7 @@ sub_02004A54: ; 0x02004A54
 	bl sub_020040CC
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020B8148
+	bl NNS_SndPlayerMoveVolume
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02004A54
 
@@ -1088,7 +1088,7 @@ _02004A70:
 _02004A76:
 	bl sub_020040CC
 	add r1, r4, #0
-	bl sub_020B8134
+	bl NNS_SndPlayerSetInitialVolume
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_02004A68
@@ -1112,7 +1112,7 @@ sub_02004A84: ; 0x02004A84
 sub_02004AA0: ; 0x02004AA0
 	push {r3, r4, r5, lr}
 	add r5, r1, #0
-	bl sub_020B9B0C
+	bl NNS_SndArcGetSeqParam
 	cmp r5, #1
 	beq _02004AB0
 	cmp r5, #8
@@ -1130,7 +1130,7 @@ _02004ABA:
 	bne _02004AD2
 	add r0, r4, #0
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	add r0, r5, #0
 	bl sub_02004A68
@@ -1160,7 +1160,7 @@ sub_02004AE8: ; 0x02004AE8
 	add r1, r5, #0
 	add r3, r2, #0
 	str r4, [sp]
-	bl sub_020BADC0
+	bl NNS_SndArcPlayerStartSeqEx
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end sub_02004AE8
@@ -1173,7 +1173,7 @@ sub_02004B04: ; 0x02004B04
 	bl sub_02022974
 _02004B0E:
 	add r0, r4, #0
-	bl sub_020B8108
+	bl NNS_SndPlayerCountPlayingSeqByPlayerNo
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_02004B04
@@ -1186,7 +1186,7 @@ sub_02004B18: ; 0x02004B18
 	mov r0, #0xff
 	pop {r3, pc}
 _02004B22:
-	bl sub_020B9B0C
+	bl NNS_SndArcGetSeqParam
 	cmp r0, #0
 	bne _02004B2E
 	mov r0, #0xff
@@ -1199,24 +1199,24 @@ _02004B2E:
 
 	thumb_func_start sub_02004B34
 sub_02004B34: ; 0x02004B34
-	ldr r3, _02004B38 ; =sub_020B8244
+	ldr r3, _02004B38 ; =NNS_SndPlayerGetSeqNo
 	bx r3
 	; .align 2, 0
-_02004B38: .word sub_020B8244
+_02004B38: .word NNS_SndPlayerGetSeqNo
 	thumb_func_end sub_02004B34
 
 	thumb_func_start sub_02004B3C
 sub_02004B3C: ; 0x02004B3C
 	push {r3, lr}
 	bl sub_02004B48
-	bl sub_020B9BEC
+	bl NNS_SndArcGetBankInfo
 	pop {r3, pc}
 	thumb_func_end sub_02004B3C
 
 	thumb_func_start sub_02004B48
 sub_02004B48: ; 0x02004B48
 	push {r3, lr}
-	bl sub_020B9B0C
+	bl NNS_SndArcGetSeqParam
 	cmp r0, #0
 	bne _02004B56
 	mov r0, #0
@@ -1229,24 +1229,24 @@ _02004B56:
 
 	thumb_func_start sub_02004B5C
 sub_02004B5C: ; 0x02004B5C
-	ldr r3, _02004B60 ; =sub_020CA88C
+	ldr r3, _02004B60 ; =MIC_StartAutoSampling
 	bx r3
 	; .align 2, 0
-_02004B60: .word sub_020CA88C
+_02004B60: .word MIC_StartAutoSampling
 	thumb_func_end sub_02004B5C
 
 	thumb_func_start sub_02004B64
 sub_02004B64: ; 0x02004B64
 	push {r3, lr}
 	bl sub_02003D54
-	bl sub_020CA920
+	bl MIC_StopAutoSampling
 	pop {r3, pc}
 	thumb_func_end sub_02004B64
 
 	thumb_func_start sub_02004B70
 sub_02004B70: ; 0x02004B70
 	push {r3, lr}
-	bl sub_020CA6A8
+	bl MIC_DoSamplingAsync
 	pop {r3, pc}
 	thumb_func_end sub_02004B70
 
@@ -1318,7 +1318,7 @@ _02004BF0:
 	bl sub_02003D5C
 	add r4, r0, #0
 	add r0, r5, #0
-	bl sub_020B7C00
+	bl NNS_SndWaveOutAllocChannel
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _02004C12
@@ -1339,7 +1339,7 @@ _02004C1E:
 	bl sub_02003D5C
 	add r6, r0, #0
 	add r0, r5, #0
-	bl sub_020B7C00
+	bl NNS_SndWaveOutAllocChannel
 	str r0, [r6, #0]
 	cmp r0, #0
 	bne _02004C3C
@@ -1383,7 +1383,7 @@ _02004C72:
 	add r0, r5, #0
 	bl sub_02004B78
 	ldr r0, [r0, #0]
-	bl sub_020B7C44
+	bl NNS_SndWaveOutFreeChannel
 	mov r0, #0
 	strb r0, [r6]
 	pop {r4, r5, r6, pc}
@@ -1397,7 +1397,7 @@ _02004C94:
 	add r0, r5, #0
 	bl sub_02004B78
 	ldr r0, [r0, #0]
-	bl sub_020B7C44
+	bl NNS_SndWaveOutFreeChannel
 	mov r0, #0
 	strb r0, [r4]
 	pop {r4, r5, r6, pc}
@@ -1430,7 +1430,7 @@ sub_02004CB4: ; 0x02004CB4
 	ldr r2, [r3, #8]
 	ldr r0, [r0, #0]
 	ldr r3, [r3, #0xc]
-	bl sub_020B7C5C
+	bl NNS_SndWaveOutStart
 	add r5, r0, #0
 	bne _02004CEC
 	add r0, r4, #0
@@ -1447,7 +1447,7 @@ sub_02004CF4: ; 0x02004CF4
 	push {r3, lr}
 	bl sub_02004B78
 	ldr r0, [r0, #0]
-	bl sub_020B7D7C
+	bl NNS_SndWaveOutStop
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end sub_02004CF4
@@ -1457,7 +1457,7 @@ sub_02004D04: ; 0x02004D04
 	push {r3, lr}
 	bl sub_02004B78
 	ldr r0, [r0, #0]
-	bl sub_020B7E88
+	bl NNS_SndWaveOutIsPlaying
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end sub_02004D04
@@ -1473,7 +1473,7 @@ _02004D1E:
 	bl sub_02004B78
 	ldr r0, [r0, #0]
 	add r1, r4, #0
-	bl sub_020B7E64
+	bl NNS_SndWaveOutSetPan
 	pop {r4, pc}
 	thumb_func_end sub_02004D14
 
@@ -1484,7 +1484,7 @@ sub_02004D2C: ; 0x02004D2C
 	bl sub_02004B78
 	ldr r0, [r0, #0]
 	add r1, r4, #0
-	bl sub_020B7DE0
+	bl NNS_SndWaveOutSetSpeed
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_02004D2C
@@ -1502,17 +1502,17 @@ sub_02004D40: ; 0x02004D40
 	add r4, r0, #0
 	add r0, r5, #0
 	mov r1, #5
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, r0, #0
 	ldr r0, [r4, #0]
-	bl sub_020B7DB8
+	bl NNS_SndWaveOutSetVolume
 	pop {r3, r4, r5, pc}
 _02004D68:
 	add r0, r4, #0
 	bl sub_02004B78
 	ldr r0, [r0, #0]
 	add r1, r5, #0
-	bl sub_020B7DB8
+	bl NNS_SndWaveOutSetVolume
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02004D40
 
@@ -1535,7 +1535,7 @@ sub_02004D78: ; 0x02004D78
 	bl sub_02022974
 _02004D9C:
 	add r0, r6, #0
-	bl sub_020B9C50
+	bl NNS_SndArcGetWaveArcInfo
 	add r7, r0, #0
 	bne _02004DB0
 	bl sub_02022974
@@ -1546,7 +1546,7 @@ _02004DB0:
 	ldr r0, [r7, #0]
 	lsl r0, r0, #8
 	lsr r0, r0, #8
-	bl sub_020B9D7C
+	bl NNS_SndArcGetFileSize
 	add r6, r0, #0
 	bne _02004DC8
 	bl sub_02022974
@@ -1569,14 +1569,14 @@ _02004DC8:
 _02004DE4:
 	mov r1, #0
 	add r2, r6, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r7, #0]
 	ldr r1, [r4, #0]
 	lsl r0, r0, #8
 	lsr r0, r0, #8
 	add r2, r6, #0
 	mov r3, #0
-	bl sub_020B9DA4
+	bl NNS_SndArcReadFile
 	mov r1, #0
 	mvn r1, r1
 	cmp r0, r1
@@ -1681,10 +1681,10 @@ _02004EBE:
 
 	thumb_func_start sub_02004EC0
 sub_02004EC0: ; 0x02004EC0
-	ldr r3, _02004EC4 ; =sub_020B90EC
+	ldr r3, _02004EC4 ; =NNS_SndCaptureIsActive
 	bx r3
 	; .align 2, 0
-_02004EC4: .word sub_020B90EC
+_02004EC4: .word NNS_SndCaptureIsActive
 	thumb_func_end sub_02004EC0
 
 	thumb_func_start sub_02004EC8
@@ -1701,25 +1701,25 @@ sub_02004EC8: ; 0x02004EC8
 	mov r2, #0
 	lsl r3, r3, #6
 	str r4, [sp]
-	bl sub_020B8ED0
+	bl NNS_SndCaptureStartReverb
 	add sp, #4
 	pop {r3, r4, pc}
 	thumb_func_end sub_02004EC8
 
 	thumb_func_start sub_02004EEC
 sub_02004EEC: ; 0x02004EEC
-	ldr r3, _02004EF0 ; =sub_020B8FBC
+	ldr r3, _02004EF0 ; =NNS_SndCaptureStopReverb
 	bx r3
 	; .align 2, 0
-_02004EF0: .word sub_020B8FBC
+_02004EF0: .word NNS_SndCaptureStopReverb
 	thumb_func_end sub_02004EEC
 
 	thumb_func_start sub_02004EF4
 sub_02004EF4: ; 0x02004EF4
-	ldr r3, _02004EF8 ; =sub_020B8F78
+	ldr r3, _02004EF8 ; =NNS_SndCaptureSetReverbVolume
 	bx r3
 	; .align 2, 0
-_02004EF8: .word sub_020B8F78
+_02004EF8: .word NNS_SndCaptureSetReverbVolume
 	thumb_func_end sub_02004EF4
 
 	thumb_func_start sub_02004EFC
@@ -1731,7 +1731,7 @@ sub_02004EFC: ; 0x02004EFC
 	bl sub_02003D5C
 	mov r1, #0
 	mov r2, #0x1c
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #3
 	bl sub_02003D5C
 	add r4, r0, #0
@@ -1746,7 +1746,7 @@ sub_02004EFC: ; 0x02004EFC
 	ldr r3, _02004F40 ; =0x000055F0
 	add r0, r4, #0
 	mov r2, #0
-	bl sub_020B9014
+	bl NNS_SndCaptureStartEffect
 	add sp, #0xc
 	pop {r3, r4, pc}
 	nop
@@ -1756,10 +1756,10 @@ _02004F40: .word 0x000055F0
 
 	thumb_func_start sub_02004F44
 sub_02004F44: ; 0x02004F44
-	ldr r3, _02004F48 ; =sub_020B90C0
+	ldr r3, _02004F48 ; =NNS_SndCaptureStopEffect
 	bx r3
 	; .align 2, 0
-_02004F48: .word sub_020B90C0
+_02004F48: .word NNS_SndCaptureStopEffect
 	thumb_func_end sub_02004F44
 
 	thumb_func_start sub_02004F4C
@@ -1789,7 +1789,7 @@ sub_02004F68: ; 0x02004F68
 	bl sub_020040CC
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020B8194
+	bl NNS_SndPlayerSetTrackPitch
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02004F68
 
@@ -1814,7 +1814,7 @@ sub_02004F94: ; 0x02004F94
 	bl sub_020040CC
 	add r1, r5, #0
 	add r2, r4, #0
-	bl sub_020B81B4
+	bl NNS_SndPlayerSetTrackPan
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02004F94
 
@@ -1824,7 +1824,7 @@ sub_02004FA8: ; 0x02004FA8
 	add r4, r1, #0
 	bl sub_020040CC
 	add r1, r4, #0
-	bl sub_020B81D4
+	bl NNS_SndPlayerSetTempoRatio
 	pop {r4, pc}
 	thumb_func_end sub_02004FA8
 
@@ -1832,7 +1832,7 @@ sub_02004FA8: ; 0x02004FA8
 sub_02004FB8: ; 0x02004FB8
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_020B7A60
+	bl NNS_SndSetMonoFlag
 	ldr r0, _02004FC8 ; =0x021BEB80
 	str r4, [r0, #0]
 	pop {r4, pc}
@@ -1884,10 +1884,10 @@ _02005002:
 
 	thumb_func_start sub_0200500C
 sub_0200500C: ; 0x0200500C
-	ldr r3, _02005010 ; =sub_020B7A54
+	ldr r3, _02005010 ; =NNS_SndSetMasterVolume
 	bx r3
 	; .align 2, 0
-_02005010: .word sub_020B7A54
+_02005010: .word NNS_SndSetMasterVolume
 	thumb_func_end sub_0200500C
 
 	thumb_func_start sub_02005014
@@ -2069,7 +2069,7 @@ sub_02005130: ; 0x02005130
 _02005150:
 	mov r0, #1
 _02005152:
-	bl sub_020B9C50
+	bl NNS_SndArcGetWaveArcInfo
 	cmp r0, #0
 	bne _02005162
 	bl sub_02022974
@@ -2079,7 +2079,7 @@ _02005162:
 	ldr r0, [r0, #0]
 	lsl r0, r0, #8
 	lsr r0, r0, #8
-	bl sub_020B9E6C
+	bl NNS_SndArcGetFileAddress
 	cmp r0, #0
 	bne _02005178
 	bl sub_02022974
@@ -2087,7 +2087,7 @@ _02005162:
 	pop {r3, r4, r5, pc}
 _02005178:
 	mov r1, #0
-	bl sub_020C6314
+	bl SND_GetWaveDataAddress
 	str r0, [r4, #0]
 	pop {r3, r4, r5, pc}
 	nop
@@ -2106,11 +2106,11 @@ sub_02005188: ; 0x02005188
 	add r0, r6, #0
 	lsl r1, r1, #8
 	ldr r5, [r5, #8]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	lsl r1, r0, #1
 	bpl _020051B0
 	mov r0, #0x20
-	bl sub_020E1F6C
+	bl _s32_div_f
 	neg r0, r0
 	b _020051BA
 _020051B0:
@@ -2133,7 +2133,7 @@ _020051C2:
 sub_020051C4: ; 0x020051C4
 	push {r3, lr}
 	bl sub_020040CC
-	bl sub_020B826C
+	bl NNS_SndPlayerGetTick
 	pop {r3, pc}
 	thumb_func_end sub_020051C4
 
@@ -2358,7 +2358,7 @@ _02005338:
 	blt _02005338
 _02005346:
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp, #8]
 	strh r0, [r1]
 	mov r0, #0
@@ -2375,7 +2375,7 @@ _0200535A:
 	cmp r2, r1
 	blt _0200535A
 _02005368:
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r1, [sp, #4]
 	sub r4, r4, #1
 	strh r0, [r1]
@@ -2412,10 +2412,10 @@ _02005390:
 _020053AA:
 	ldr r1, [sp]
 	add r0, r5, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r1, [sp]
 	add r0, r6, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 _020053BA:
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
@@ -2424,12 +2424,12 @@ _020053BA:
 
 	thumb_func_start sub_020053C0
 sub_020053C0: ; 0x020053C0
-	ldr r3, _020053C8 ; =sub_020B7F1C
+	ldr r3, _020053C8 ; =NNS_SndPlayerSetAllocatableChannel
 	add r1, r0, #0
 	mov r0, #7
 	bx r3
 	; .align 2, 0
-_020053C8: .word sub_020B7F1C
+_020053C8: .word NNS_SndPlayerSetAllocatableChannel
 	thumb_func_end sub_020053C0
 
 	thumb_func_start sub_020053CC
@@ -2493,10 +2493,10 @@ _02005448: .word 0x0000047E
 
 	thumb_func_start sub_0200544C
 sub_0200544C: ; 0x0200544C
-	ldr r3, _02005450 ; =sub_020B7EE4
+	ldr r3, _02005450 ; =NNS_SndPlayerSetPlayerVolume
 	bx r3
 	; .align 2, 0
-_02005450: .word sub_020B7EE4
+_02005450: .word NNS_SndPlayerSetPlayerVolume
 	thumb_func_end sub_0200544C
 
 	thumb_func_start sub_02005454

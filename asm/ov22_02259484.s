@@ -23,7 +23,7 @@ _0225949E:
 	ldr r0, [r5, #0]
 	mov r1, #0
 	add r2, r4, #0
-	bl sub_020D5124
+	bl memset
 	str r6, [r5, #4]
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov22_02259484

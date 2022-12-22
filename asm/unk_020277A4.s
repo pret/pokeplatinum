@@ -21,7 +21,7 @@ sub_020277AC: ; 0x020277AC
 	ldr r2, _0202781C ; =0x0000078C
 	mov r0, #0
 	add r1, r4, #0
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	add r0, r4, #0
 	bl sub_02027B70
 	mov r0, #7
@@ -32,12 +32,12 @@ sub_020277AC: ; 0x020277AC
 	ldr r0, _02027824 ; =0x0000FFFF
 	add r1, r4, r1
 	mov r2, #8
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r1, _02027828 ; =0x00000734
 	ldr r0, _02027824 ; =0x0000FFFF
 	add r1, r4, r1
 	mov r2, #0xb
-	bl sub_020C4AF0
+	bl MIi_CpuClear16
 	ldr r0, _0202782C ; =0x00000754
 	mov r1, #4
 	add r0, r4, r0

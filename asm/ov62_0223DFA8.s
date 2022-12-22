@@ -491,7 +491,7 @@ _0223E380:
 	add r1, r4, r2
 	ldr r0, [r5, r0]
 	ldr r2, _0223E41C ; =0x00001D4C
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _0223E3B8:
 	mov r0, #0x6f
 	lsl r0, r0, #4
@@ -2180,7 +2180,7 @@ ov62_0223F19C: ; 0x0223F19C
 	ldr r2, _0223F214 ; =0x0000217C
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]
@@ -5279,7 +5279,7 @@ ov62_02240B94: ; 0x02240B94
 	ldr r0, [r2, r0]
 	mov r2, #0x64
 	add r0, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, r4, r5, pc}
 	nop
 _02240BEC: .word 0x000004D4

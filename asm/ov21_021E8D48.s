@@ -19,7 +19,7 @@ ov21_021E8D48: ; 0x021E8D48
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #0x10]
 	mov r1, #5
 	mov r2, #0
@@ -180,7 +180,7 @@ ov21_021E8E0C: ; 0x021E8E0C
 	add r2, r1, #0
 	ldr r0, _021E9008 ; =0x04000050
 	sub r2, #0x4f
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r0, [r5, #0]
 	ldr r1, [r4, #0xc]
 	bl ov21_021E91B0
@@ -1743,7 +1743,7 @@ _021E9ACE:
 	add r0, r5, #0
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov21_021E9AC8
@@ -1757,12 +1757,12 @@ ov21_021E9AE8: ; 0x021E9AE8
 	ldr r0, [r5, r4]
 	mov r1, #0x20
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r5, r4]
 	mov r1, #0
 	ldr r0, [r0, #0xc]
 	mov r2, #0x20
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov21_021E9AE8
 

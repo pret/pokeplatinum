@@ -8,9 +8,9 @@
 .public sub_0207395C
 .public sub_02073B70
 .public sub_02073C1C
-.public sub_020AF5E0
-.public sub_020BB8EC
-.public sub_020C4C88
+.public NNS_G3dGlbGetInvV
+.public MTX_Concat33
+.public MI_Copy36B
 .public ov5_021DF53C
 .public ov5_021DF554
 .public ov5_021DF55C

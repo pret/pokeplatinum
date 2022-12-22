@@ -15,10 +15,10 @@
 .public sub_020A2238
 .public sub_020A22B8
 .public sub_020A2304
-.public sub_020C0D34
-.public sub_020C0D90
-.public sub_020C0ED0
-.public sub_020C0F1C
-.public sub_020C0F50
-.public sub_020C0FBC
-.public sub_020C4CF4
+.public GX_BeginLoadTex
+.public GX_LoadTex
+.public GX_EndLoadTex
+.public GX_BeginLoadTexPltt
+.public GX_LoadTexPltt
+.public GX_EndLoadTexPltt
+.public MI_CpuFill8

@@ -49,7 +49,7 @@ ov81_021D0D80: ; 0x021D0D80
 	ldr r2, _021D0E68 ; =0x00001068
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x2a
 	bl sub_02018340
 	str r0, [r4, #0]
@@ -419,7 +419,7 @@ _021D10EE:
 	mov r2, #2
 	add r1, #0x5c
 	lsl r2, r2, #0xa
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	ldr r0, [r5, #0]
 	add r5, #0x5c
 	mov r3, #2
@@ -854,7 +854,7 @@ ov81_021D1434: ; 0x021D1434
 	ldr r2, _021D144C ; =0x0000085C
 	add r1, r4, r2
 	sub r2, #0x5c
-	bl sub_020C4B18
+	bl MIi_CpuCopy16
 	pop {r4, pc}
 	; .align 2, 0
 _021D144C: .word 0x0000085C

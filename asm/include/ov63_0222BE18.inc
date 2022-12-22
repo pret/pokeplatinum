@@ -1,8 +1,8 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_02022974
-.public sub_020D5124
-.public sub_020E1F6C
+.public memset
+.public _s32_div_f
 .public ov63_0222BEB0
 .public ov63_0222BF18
 .public ov63_0222BF50

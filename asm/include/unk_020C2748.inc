@@ -1,5 +1,5 @@
-.public sub_020C2218
-.public sub_020C2268
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020E1F6C
+.public OS_SleepThread
+.public OS_WakeupThread
+.public OS_DisableInterrupts
+.public OS_RestoreInterrupts
+.public _s32_div_f

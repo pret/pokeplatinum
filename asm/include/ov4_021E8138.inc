@@ -1,6 +1,6 @@
-.public sub_020C3880
-.public sub_020C4DB0
-.public sub_020E1ED4
+.public OS_GetTick
+.public MI_CpuCopy8
+.public _ull_div
 .public ov4_021D5818
 .public ov4_021D58F8
 .public ov4_021D59F0

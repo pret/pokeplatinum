@@ -96,9 +96,9 @@
 .public sub_0208D720
 .public sub_0208E9C0
 .public sub_0209BA80
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020D5124
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public memset
 .public ov104_0222E5D0
 .public ov104_0223B5A4
 .public ov104_0223B5B0

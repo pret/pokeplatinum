@@ -25,16 +25,16 @@ sub_0206F314: ; 0x0206F314
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x50
 	str r0, [r4, #0]
 	ldr r0, [sp]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r1, [r4, #0x16]
 	ldr r0, [sp]
 	mov r1, #3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	strb r0, [r4, #0x17]
 	ldrb r0, [r4, #0x16]
 	bl sub_0202E840
@@ -148,7 +148,7 @@ _0206F426:
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	bl sub_0201807C
 	mov r0, #0xc
@@ -656,7 +656,7 @@ sub_0206F7F8: ; 0x0206F7F8
 	mov r2, #0x3c
 	mov r1, #0
 	mul r2, r3
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldrb r1, [r4, #0x16]
 	ldr r2, [r4, #0]
 	add r0, r5, #0
@@ -1428,7 +1428,7 @@ _0206FE2C:
 	ldr r0, _0206FEFC ; =0x020F02B0
 	add r1, #0xa0
 	mov r2, #0x20
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r1, r5, #0
 	add r0, r5, #0
 	add r1, #0xd4

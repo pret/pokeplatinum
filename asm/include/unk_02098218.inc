@@ -51,7 +51,7 @@
 .public sub_0208716C
 .public sub_0209304C
 .public sub_0209843C
-.public sub_020D5124
+.public memset
 .public ov5_021E771C
 .public ov119_021D0D80
 .public ov119_021D0DA8

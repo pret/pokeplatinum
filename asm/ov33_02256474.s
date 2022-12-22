@@ -300,18 +300,18 @@ _022566A4:
 	bl sub_02006CB8
 	add r1, sp, #0x2c
 	str r0, [sp, #0x20]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0x2c]
 	mov r1, #1
 	ldr r0, [r0, #0x14]
 	lsl r1, r1, #0xa
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x2c]
 	mov r2, #1
 	ldr r0, [r0, #0x14]
 	ldr r1, [sp, #0x14]
 	lsl r2, r2, #0xa
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	ldr r0, [sp, #0x20]
 	bl sub_020181C4
 	ldrh r0, [r6]
@@ -455,7 +455,7 @@ ov33_022567D4: ; 0x022567D4
 	str r0, [r5, #8]
 	add r0, r5, #0
 	add r1, r5, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r1, [r5, #0]
 	asr r0, r1, #3
 	lsr r0, r0, #0x1c
@@ -1166,18 +1166,18 @@ ov33_02256CDC: ; 0x02256CDC
 	add r5, r0, #0
 	add r0, r6, #0
 	add r4, r1, #0
-	bl sub_020BD384
+	bl VEC_Mag
 	cmp r0, r5
 	ble _02256D1A
 	add r1, r0, #0
 	mul r1, r4
 	add r0, r1, #0
 	mov r1, #0x64
-	bl sub_020E2178
+	bl _u32_div_f
 	add r4, r0, #0
 	add r0, r6, #0
 	add r1, sp, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r0, #0
 	str r0, [r6, #0]
 	str r0, [r6, #4]
@@ -1186,7 +1186,7 @@ ov33_02256CDC: ; 0x02256CDC
 	add r1, sp, #0
 	add r2, r6, #0
 	add r3, r6, #0
-	bl sub_020BD628
+	bl VEC_MultAdd
 _02256D1A:
 	add sp, #0xc
 	pop {r3, r4, r5, r6, pc}
@@ -1398,10 +1398,10 @@ _02256E96:
 	add r0, sp, #4
 	add r1, r7, r1
 	add r2, r0, #0
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #4
 	add r1, r0, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r0, #0xc
 	add r7, r4, #0
 	mul r7, r0
@@ -1412,7 +1412,7 @@ _02256E96:
 	ldrb r0, [r0, r2]
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #4]
 	ldrb r2, [r6, r7]
 	ldr r0, _02256F30 ; =0x02257814
@@ -1420,7 +1420,7 @@ _02256E96:
 	ldrb r0, [r0, r2]
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, [sp, #4]
 	str r0, [sp, #8]
 	asr r1, r2, #3
@@ -1506,10 +1506,10 @@ ov33_02256F34: ; 0x02256F34
 	add r1, sp, #4
 	add r0, r7, r0
 	add r2, r1, #0
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #4
 	add r1, r0, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r0, #0xc
 	add r7, r6, #0
 	mul r7, r0
@@ -1520,7 +1520,7 @@ ov33_02256F34: ; 0x02256F34
 	ldrb r0, [r0, r2]
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #4]
 	ldrb r2, [r4, r7]
 	ldr r0, _0225700C ; =0x02257810
@@ -1528,7 +1528,7 @@ ov33_02256F34: ; 0x02256F34
 	ldrb r0, [r0, r2]
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r2, [sp, #4]
 	str r0, [sp, #8]
 	asr r1, r2, #3
@@ -1608,16 +1608,16 @@ ov33_02257010: ; 0x02257010
 	add r0, sp, #0
 	add r1, r6, r4
 	add r2, r0, #0
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0
-	bl sub_020BD384
+	bl VEC_Mag
 	mov r1, #6
 	lsl r1, r1, #8
 	cmp r0, r1
 	ble _02257084
 	add r0, sp, #0
 	add r1, r0, #0
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -1850,7 +1850,7 @@ _02257226:
 	add r0, #0x14
 	add r1, #0x20
 	add r2, #0xa4
-	bl sub_020BD17C
+	bl VEC_Add
 	add r1, r5, #0
 	add r2, r5, #0
 	add r1, #0xa4
@@ -1922,7 +1922,7 @@ _022572D0:
 	add r1, r6, #0
 	add r2, r7, #0
 	add r3, r5, #0
-	bl sub_020BD628
+	bl VEC_MultAdd
 	ldr r0, [sp, #0x24]
 	add r5, #0xc
 	add r0, r0, #1
@@ -1957,7 +1957,7 @@ _02257302:
 	mov r0, #0xa
 	lsl r0, r0, #0xc
 	add r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r1, r4, r0
 	cmp r1, r4
 	bge _0225732E
@@ -1978,7 +1978,7 @@ _0225732E:
 	mov r0, #0xd9
 	lsl r0, r0, #0xc
 	sub r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r1, r4, r0
 	cmp r1, r4
 	bge _02257358
@@ -2000,7 +2000,7 @@ _02257358:
 	mov r0, #0x16
 	lsl r0, r0, #0xc
 	add r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r1, r4, r0
 	cmp r1, r4
 	bge _02257384
@@ -2021,7 +2021,7 @@ _02257384:
 	mov r0, #0xb7
 	lsl r0, r0, #0xc
 	sub r0, r7, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r1, r4, r0
 	cmp r1, r4
 	bge _022573AE
@@ -2068,9 +2068,9 @@ _022573EE:
 	ldr r1, [sp, #0x1c]
 	add r0, r7, #0
 	add r2, sp, #0x68
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x68
-	bl sub_020BD384
+	bl VEC_Mag
 	mov r1, #2
 	lsl r1, r1, #0x10
 	str r0, [sp, #0x40]
@@ -2078,21 +2078,21 @@ _022573EE:
 	bge _02257444
 	add r0, sp, #0x68
 	add r1, sp, #0x5c
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r1, [sp, #0x18]
 	add r0, r6, #0
 	add r2, sp, #0x50
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x50
 	add r1, sp, #0x5c
-	bl sub_020BD218
+	bl VEC_DotProduct
 	add r2, r0, #0
 	mov r1, #2
 	ldr r0, [sp, #0x40]
 	lsl r1, r1, #0x10
 	sub r0, r1, r0
 	neg r1, r2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	sub r0, r4, r0
 	cmp r0, r4
 	bge _02257444
@@ -2147,7 +2147,7 @@ _0225748C:
 	add r1, r5, #0
 	add r2, r6, #0
 	add r3, r7, #0
-	bl sub_020BD628
+	bl VEC_MultAdd
 	ldr r0, [sp, #8]
 	add r7, #0x38
 	add r0, r0, #1
@@ -2220,15 +2220,15 @@ _0225750E:
 	add r0, r1, r7
 	add r1, r1, r6
 	add r2, sp, #0x68
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x68
 	add r1, sp, #0x5c
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r0, [sp, #0x5c]
 	ldr r2, _02257630 ; =0x0000019A
 	asr r1, r0, #0x1f
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	mov r3, #0
@@ -2242,7 +2242,7 @@ _0225750E:
 	ldr r0, [sp, #0x60]
 	ldr r2, _02257630 ; =0x0000019A
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	add r2, r0, #0
 	mov r0, #2
 	mov r3, #0
@@ -2316,15 +2316,15 @@ _022575CA:
 	add r0, r1, r6
 	add r1, r1, r7
 	add r2, sp, #0x68
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x68
 	add r1, sp, #0x5c
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	ldr r0, [sp, #0x5c]
 	ldr r2, _02257630 ; =0x0000019A
 	asr r1, r0, #0x1f
 	mov r3, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -2337,7 +2337,7 @@ _022575CA:
 	ldr r0, [sp, #0x60]
 	ldr r2, _02257630 ; =0x0000019A
 	asr r1, r0, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -2392,12 +2392,12 @@ _0225766C:
 	add r0, r1, r6
 	add r1, r1, r7
 	add r2, sp, #0x68
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x68
-	bl sub_020BD384
+	bl VEC_Mag
 	add r0, sp, #0x68
 	add r1, sp, #0x5c
-	bl sub_020BD3E4
+	bl VEC_Normalize
 	mov r1, #0x4f
 	ldr r0, [sp]
 	lsl r1, r1, #2
@@ -2407,10 +2407,10 @@ _0225766C:
 	add r0, r0, r6
 	add r1, r1, r7
 	add r2, sp, #0x50
-	bl sub_020BD1B0
+	bl VEC_Subtract
 	add r0, sp, #0x50
 	add r1, sp, #0x5c
-	bl sub_020BD218
+	bl VEC_DotProduct
 	mov r5, #0x4f
 	ldr r2, [sp, #0x4c]
 	str r0, [sp, #0x44]
@@ -2421,7 +2421,7 @@ _0225766C:
 	add r1, sp, #0x5c
 	add r2, r2, r6
 	add r3, r3, r6
-	bl sub_020BD628
+	bl VEC_MultAdd
 	ldr r3, [sp]
 	ldr r2, [sp, #0x4c]
 	add r3, r3, r5
@@ -2429,7 +2429,7 @@ _0225766C:
 	add r1, sp, #0x5c
 	add r2, r2, r7
 	add r3, r3, r7
-	bl sub_020BD628
+	bl VEC_MultAdd
 	ldr r0, [sp]
 	add r1, r5, #0
 	ldr r3, [sp]
@@ -2547,7 +2547,7 @@ _022577A6:
 	ldr r2, [sp, #0x48]
 	add r0, r6, #0
 	add r1, r7, #0
-	bl sub_020BD17C
+	bl VEC_Add
 	ldr r1, [sp]
 	ldr r2, [sp]
 	mov r0, #0x4d

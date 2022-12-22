@@ -6,7 +6,7 @@
 .public sub_0202B088
 .public sub_0202B13C
 .public sub_02039034
-.public sub_020A4498
-.public sub_020C4BB8
-.public sub_020C4C14
-.public sub_020C4DB0
+.public DWC_IsValidFriendData
+.public MIi_CpuClearFast
+.public MIi_CpuCopyFast
+.public MI_CpuCopy8

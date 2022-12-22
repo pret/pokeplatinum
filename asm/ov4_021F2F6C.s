@@ -10,7 +10,7 @@
 ov4_021F2F6C: ; 0x021F2F6C
 	stmfd sp!, {r3, lr}
 	ldr r0, [r0, #0]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r0, r1
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021F2F6C
@@ -103,7 +103,7 @@ ov4_021F3064: ; 0x021F3064
 	ldr r1, _021F31B4 ; =0x02218CBC
 	mov r0, r6
 	mov r2, #5
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	beq _021F30D8
 	ldr r2, _021F31B8 ; =0x02218CC4
@@ -138,7 +138,7 @@ _021F30D8:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F3120:
 	add r0, sp, #0x10
-	bl sub_020DAE0C
+	bl atoi
 	ldr r2, [r4, #0xc]
 	ldr r1, [r4, #0x10]
 	mov r6, r0
@@ -196,7 +196,7 @@ ov4_021F31C4: ; 0x021F31C4
 	ldr r1, _021F329C ; =0x02218D18
 	ldr r2, _021F32A0 ; =0x02218CA8
 	ldr r3, _021F32A4 ; =0x000002B5
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F31F4:
 	cmp r5, #0
 	addle sp, sp, #0x20
@@ -302,12 +302,12 @@ ov4_021F332C: ; 0x021F332C
 	beq _021F3384
 	ldr r0, [r5, #0]
 	ldr r1, [r4, #0]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _021F3384
 	ldr r0, [r5, #4]
 	ldr r1, [r4, #8]
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _021F3384
 	ldr r1, [r5, #8]

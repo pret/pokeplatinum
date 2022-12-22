@@ -60,7 +60,7 @@ _020127A4:
 	str r1, [r0, #0x64]
 	ldr r0, [r0, #0x60]
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #8]
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
@@ -677,7 +677,7 @@ sub_02012BE0: ; 0x02012BE0
 	mov r1, #0
 	add r2, r6, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [sp, #4]
 	ldr r3, [sp, #0xc]
 	add r1, r4, #0
@@ -686,26 +686,26 @@ sub_02012BE0: ; 0x02012BE0
 	bl sub_02012F98
 	add r0, r4, #0
 	add r1, r6, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #8]
 	bl sub_02021F98
 	ldr r1, [sp, #0xc]
 	cmp r1, #1
 	bne _02012C46
 	mov r1, #1
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	add r1, r0, #0
 	add r0, r4, #0
 	add r2, r6, #0
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	b _02012C56
 _02012C46:
 	mov r1, #2
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	add r1, r0, #0
 	add r0, r4, #0
 	add r2, r6, #0
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 _02012C56:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -762,7 +762,7 @@ _02012CA0:
 	ldr r1, [r6, #0xc]
 	add r1, r1, r2
 	ldr r2, [sp, #8]
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp]
 	add r4, r4, #1
 	add r5, r5, r7
@@ -1039,7 +1039,7 @@ _02012E92:
 	beq _02012ED2
 _02012EA8:
 	add r0, r5, #0
-	bl sub_020A818C
+	bl NNS_G2dInitImageProxy
 	str r7, [sp]
 	ldr r0, [sp, #0x30]
 	str r6, [sp, #4]
@@ -1102,7 +1102,7 @@ _02012F06:
 	bl sub_02012C60
 	add r0, r7, #0
 	add r1, r4, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp, #0x30]
 	cmp r0, #1
 	bne _02012F48
@@ -1110,7 +1110,7 @@ _02012F06:
 	add r0, r7, #0
 	add r1, r6, #0
 	add r2, r4, #0
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	mov r0, #1
 	str r6, [r5, #4]
 	lsl r0, r0, #0x1a
@@ -1121,7 +1121,7 @@ _02012F48:
 	add r0, r7, #0
 	add r1, r6, #0
 	add r2, r4, #0
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	ldr r0, _02012F8C ; =0x04001000
 	str r6, [r5, #8]
 	ldr r1, [r0, #0]

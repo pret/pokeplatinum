@@ -57,11 +57,11 @@ _021D735C:
 	add r0, sp, #4
 	mov r1, #0
 	mov r2, #3
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, sl
 	add r1, sp, #4
 	mov r2, sb
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldrb r0, [sp, #4]
 	ldr r1, [r5, #0]
 	cmp r6, #2

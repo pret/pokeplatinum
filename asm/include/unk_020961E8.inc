@@ -9,7 +9,7 @@
 .public sub_02037B58
 .public sub_020388F4
 .public sub_020963C0
-.public sub_020D2FE4
+.public MATH_CountPopulation
 .public ov59_021D1D40
 .public ov59_021D2204
 .public ov59_021D22EC

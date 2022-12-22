@@ -93,7 +93,7 @@ _021EF7DA:
 	str r0, [r5, r1]
 	sub r0, r1, #4
 	ldr r0, [r5, r0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	ldr r1, _021EF9C4 ; =0x00000C0C
 	str r0, [r5, r1]
 	ldrh r0, [r7, #8]
@@ -101,7 +101,7 @@ _021EF7DA:
 	beq _021EF822
 	sub r0, r1, #4
 	ldr r0, [r5, r0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	mov r1, #0xc1
 	lsl r1, r1, #4
 	str r0, [r5, r1]
@@ -188,7 +188,7 @@ _021EF8B6:
 	cmp r6, r0
 	bge _021EF902
 	ldr r0, [r4, #4]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	cmp r0, #0
 	beq _021EF8F2
 	add r1, r0, #0
@@ -246,7 +246,7 @@ _021EF928:
 	mov r2, #4
 	bl sub_02006CB8
 	str r0, [r5, #4]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	add r4, r0, #0
 	beq _021EF95E
 	bl sub_0201CBCC
@@ -275,18 +275,18 @@ _021EF95E:
 	cmp r0, #0
 	bne _021EF984
 	ldr r0, _021EF9DC ; =0x021FF588
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 	b _021EF98A
 _021EF984:
 	ldr r0, _021EF9E0 ; =0x021FF598
-	bl sub_020BFD2C
+	bl G3X_SetEdgeColorTable
 _021EF98A:
 	bl ov5_021D56BC
 	ldr r1, _021EF9D0 ; =0x00000C14
 	str r0, [r5, r1]
 	ldr r1, _021EF9E4 ; =0x022020DC
 	add r0, sp, #0x10
-	bl sub_020D7510
+	bl sprintf
 	ldr r1, _021EF9D0 ; =0x00000C14
 	add r0, sp, #0x10
 	ldr r1, [r5, r1]

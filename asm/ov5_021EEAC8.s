@@ -16,7 +16,7 @@ ov5_021EEAC8: ; 0x021EEAC8
 	mov r1, #0
 	mov r2, #0x24
 	add r6, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	strh r0, [r6]
 	cmp r7, #0
@@ -141,12 +141,12 @@ ov5_021EEB9C: ; 0x021EEB9C
 	ldr r0, [r0, #4]
 	mov r1, #0
 	add r2, r6, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, r4
 	ldr r0, [r0, #0x14]
 	mov r1, #0
 	add r2, r7, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov5_021EEB9C
 
@@ -160,7 +160,7 @@ ov5_021EEBC0: ; 0x021EEBC0
 	str r0, [sp]
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020D5124
+	bl memset
 	mov r1, #2
 	ldr r0, [sp]
 	cmp r6, #0
@@ -179,7 +179,7 @@ _021EEBEA:
 	mov r1, #0
 	add r2, r7, #0
 	str r0, [r5, #4]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r6, #1
 	bne _021EEC16
 	mov r1, #9
@@ -190,7 +190,7 @@ _021EEBEA:
 	mov r1, #0
 	lsl r2, r2, #0xc
 	str r0, [r5, #0x14]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 _021EEC16:
 	add r4, r4, #1
 	add r5, r5, #4

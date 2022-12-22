@@ -2,9 +2,9 @@
 
 	.text
 
-	.extern sub_020E28B8
-	.extern sub_020E402C
-	.extern sub_02000C88
+	.extern _fp_init
+	.extern __call_static_initializers
+	.extern NitroMain
 
 	arm_func_start _start
 _start: ; 0x02000800
@@ -14,7 +14,7 @@ _02000808:
 	ldrh r0, [ip, #6]
 	cmp r0, #0
 	bne _02000808
-	bl sub_02000AB0
+	bl init_cp15
 	mov r0, #0x13
 	msr cpsr_c, r0
 	ldr r0, _02000930 ; =0x027E0000
@@ -40,19 +40,19 @@ _02000854:
 	mov r0, #0
 	ldr r1, _02000930 ; =0x027E0000
 	mov r2, #0x4000
-	bl sub_02000954
+	bl INITi_CpuClear32
 	mov r0, #0
 	ldr r1, _02000938 ; =0x05000000
 	mov r2, #0x400
-	bl sub_02000954
+	bl INITi_CpuClear32
 	mov r0, #0x200
 	ldr r1, _0200093C ; =0x07000000
 	mov r2, #0x400
-	bl sub_02000954
+	bl INITi_CpuClear32
 	ldr r1, _02000940 ; =_start_ModuleParams
 	ldr r0, [r1, #0x14]
-	bl sub_02000970
-	bl sub_02000A1C
+	bl MIi_UncompressBackward
+	bl do_autoload
 	ldr r0, _02000940 ; =_start_ModuleParams
 	ldr r1, [r0, #0xc]
 	ldr r2, [r0, #0x10]
@@ -81,10 +81,10 @@ _020008D4:
 	add r1, r1, #0x3c
 	ldr r0, _02000948 ; =0x01FF8000
 	str r0, [r1, #0]
-	bl sub_020E28B8
-	bl sub_02000B98
-	bl sub_020E402C
-	ldr r1, _0200094C ; =sub_02000C88
+	bl _fp_init
+	bl NitroStartUp
+	bl __call_static_initializers
+	ldr r1, _0200094C ; =NitroMain
 	ldr lr, _02000950 ; =0xFFFF0000
 	tst sp, #4
 	bne _02000928
@@ -101,12 +101,12 @@ _0200093C: .word 0x07000000
 _02000940: .word _start_ModuleParams
 _02000944: .word 0x027FFF9C
 _02000948: .word 0x01FF8000
-_0200094C: .word sub_02000C88
+_0200094C: .word NitroMain
 _02000950: .word 0xFFFF0000
 	arm_func_end _start
 
-	arm_func_start sub_02000954
-sub_02000954: ; 0x02000954
+	arm_func_start INITi_CpuClear32
+INITi_CpuClear32: ; 0x02000954
 	add ip, r1, r2
 _02000958:
 	cmp r1, ip
@@ -117,10 +117,10 @@ _02000964:
 _02000968:
 	blt _02000958
 	bx lr
-	arm_func_end sub_02000954
+	arm_func_end INITi_CpuClear32
 
-	arm_func_start sub_02000970
-sub_02000970: ; 0x02000970
+	arm_func_start MIi_UncompressBackward
+MIi_UncompressBackward: ; 0x02000970
 	cmp r0, #0
 	beq _02000A18
 	stmfd sp!, {r4, r5, r6, r7}
@@ -172,10 +172,10 @@ _020009FC:
 	ldmia sp!, {r4, r5, r6, r7}
 _02000A18:
 	bx lr
-	arm_func_end sub_02000970
+	arm_func_end MIi_UncompressBackward
 
-	arm_func_start sub_02000A1C
-sub_02000A1C: ; 0x02000A1C
+	arm_func_start do_autoload
+do_autoload: ; 0x02000A1C
 	ldr r0, _02000AA8 ; =_start_ModuleParams
 	ldr r1, [r0, #0]
 	ldr r2, [r0, #4]
@@ -224,15 +224,15 @@ _02000AA4:
 	b _start_AutoloadDoneCallback
 	; .align 2, 0
 _02000AA8: .word _start_ModuleParams
-	arm_func_end sub_02000A1C
+	arm_func_end do_autoload
 
 	arm_func_start _start_AutoloadDoneCallback
 _start_AutoloadDoneCallback:
 	bx lr
 	arm_func_end _start_AutoloadDoneCallback
 
-	arm_func_start sub_02000AB0
-sub_02000AB0: ; 0x02000AB0
+	arm_func_start init_cp15
+init_cp15: ; 0x02000AB0
 	mrc p15, 0, r0, c1, c0, 0
 	ldr r1, _02000B68 ; =0x000F9005
 	bic r0, r0, r1
@@ -292,17 +292,17 @@ _02000B88: .word 0x027FF017
 _02000B8C: .word 0x05100011
 _02000B90: .word 0x15111011
 _02000B94: .word 0x0005707D
-	arm_func_end sub_02000AB0
+	arm_func_end init_cp15
 
-	arm_func_start sub_02000B98
-sub_02000B98: ; 0x02000B98
+	arm_func_start NitroStartUp
+NitroStartUp: ; 0x02000B98
 	bx lr
-	arm_func_end sub_02000B98
+	arm_func_end NitroStartUp
 
-	arm_func_start sub_02000B9C
-sub_02000B9C: ; 0x02000B9C
+	arm_func_start OSi_ReferSymbol
+OSi_ReferSymbol: ; 0x02000B9C
 	bx lr
-	arm_func_end sub_02000B9C
+	arm_func_end OSi_ReferSymbol
 
 	.rodata
 	.public _start_ModuleParams

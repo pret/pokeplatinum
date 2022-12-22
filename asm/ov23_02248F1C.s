@@ -351,13 +351,13 @@ _022491D6:
 	bl sub_0201D2E8
 	mov r1, #0x7d
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #0x32
 	str r1, [r4, #0]
 	bl sub_0201D2E8
 	mov r1, #0x7d
 	lsl r1, r1, #2
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r1, #0x32
 	str r1, [r4, #4]
 	add r7, r7, #1
@@ -477,7 +477,7 @@ _022492D6:
 	mul r0, r1
 	mov r1, #7
 	lsl r1, r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x3c
 	lsl r0, r0, #0xc
 	str r0, [sp]
@@ -485,7 +485,7 @@ _022492D6:
 	mov r1, #0x1a
 	lsl r0, r0, #7
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #9
 	lsl r1, r0, #0xc
 	mov r0, #3
@@ -571,7 +571,7 @@ _0224938A:
 	mul r0, r1
 	mov r1, #7
 	lsl r1, r1, #6
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #0x3c
 	lsl r0, r0, #0xc
 	str r0, [sp]
@@ -579,7 +579,7 @@ _0224938A:
 	mov r1, #0x1a
 	lsl r0, r0, #7
 	lsl r1, r1, #4
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, #9
 	lsl r1, r0, #0xc
 	mov r0, #3

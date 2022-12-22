@@ -1,5 +1,5 @@
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020E1F6C
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public _s32_div_f
 .public ov18_022245E4
 .public ov18_02224670

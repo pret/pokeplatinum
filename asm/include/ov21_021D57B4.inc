@@ -3,6 +3,6 @@
 .public sub_02021C50
 .public sub_02021D6C
 .public sub_02022974
-.public sub_020E2178
+.public _u32_div_f
 .public ov21_021D58C0
 .public ov21_021D59D8

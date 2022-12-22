@@ -18,7 +18,7 @@ ov5_021EF4BC: ; 0x021EF4BC
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r2, #0x63
 	mov r0, #0
 	add r1, r4, #0
@@ -99,13 +99,13 @@ _021EF526:
 	add r0, #0xc
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020D5124
+	bl memset
 	mov r2, #0x63
 	lsl r2, r2, #2
 	add r0, r4, r2
 	mov r1, #0
 	sub r2, #0xc
-	bl sub_020D5124
+	bl memset
 	mov r0, #1
 	str r0, [r4, #0]
 	mov r0, #0
@@ -189,7 +189,7 @@ _021EF624:
 	add r0, r4, #0
 	bl ov5_021EF710
 	mov r0, #0
-	bl sub_020BFEAC
+	bl G3X_SetHOffset
 _021EF630:
 	pop {r4, pc}
 	; .align 2, 0
@@ -218,7 +218,7 @@ _021EF650:
 	beq _021EF662
 	lsl r1, r3, #1
 	ldrh r0, [r0, r1]
-	bl sub_020BFEAC
+	bl G3X_SetHOffset
 _021EF662:
 	pop {r4, pc}
 	; .align 2, 0
@@ -234,7 +234,7 @@ ov5_021EF66C: ; 0x021EF66C
 	add r0, r1, r0
 	add r1, r2, #0
 	mov r4, #1
-	bl sub_020E1F6C
+	bl _s32_div_f
 	neg r1, r0
 	lsl r1, r1, #0x10
 	lsr r1, r1, #0x10
@@ -245,7 +245,7 @@ ov5_021EF66C: ; 0x021EF66C
 _021EF68A:
 	add r0, r6, #0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0
 	bne _021EF69A
 	mov r0, #1
@@ -269,13 +269,13 @@ _021EF6A6:
 	thumb_func_start ov5_021EF6B0
 ov5_021EF6B0: ; 0x021EF6B0
 	mov r2, #0xc6
-	ldr r3, _021EF6BC ; =sub_020BFEAC
+	ldr r3, _021EF6BC ; =G3X_SetHOffset
 	mov r0, #0
 	lsl r2, r2, #2
 	str r0, [r1, r2]
 	bx r3
 	; .align 2, 0
-_021EF6BC: .word sub_020BFEAC
+_021EF6BC: .word G3X_SetHOffset
 	thumb_func_end ov5_021EF6B0
 
 	thumb_func_start ov5_021EF6C0

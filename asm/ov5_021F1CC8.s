@@ -495,11 +495,11 @@ ov5_021F2014: ; 0x021F2014
 	ldr r0, [r0, #0xc]
 	mov r1, #1
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	ldr r0, [r4, #0x14]
 	ldr r1, [r4, #0xc]
 	ldr r0, [r0, #0xc]
-	bl sub_020B3764
+	bl NNS_G3dMdlSetMdlAlphaAll
 	ldr r0, [r4, #0x18]
 	add r1, sp, #0
 	bl sub_02073BB4

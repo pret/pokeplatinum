@@ -1748,7 +1748,7 @@ _02097202:
 	mov r0, #0x96
 	mul r0, r1
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [sp, #0x18]
 _02097230:
 	add r0, r5, #0

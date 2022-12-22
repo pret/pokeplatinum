@@ -19,7 +19,7 @@ ov70_02260B44: ; 0x02260B44
 	ldr r2, _02260BB4 ; =0x000004A4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0xb4
 	mul r0, r5
 	str r0, [sp, #4]
@@ -42,13 +42,13 @@ ov70_02260B44: ; 0x02260B44
 	ldr r0, [r4, r0]
 	ldr r2, [sp, #4]
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x12
 	lsl r0, r0, #4
 	ldr r0, [r4, r0]
 	mov r1, #0
 	add r2, r7, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x49
 	lsl r0, r0, #2
 	strb r5, [r4, r0]
@@ -922,7 +922,7 @@ _022611D6:
 	add r1, r4, #0
 	add r1, #0xcc
 	ldrb r1, [r1]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, [sp, #8]
 	strb r1, [r0, r5]
 	b _02261208
@@ -934,7 +934,7 @@ _022611F0:
 	add r1, r4, #0
 	add r1, #0xcc
 	ldrb r1, [r1]
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r0, [sp, #8]
 	strb r1, [r0, r5]
 _02261208:
@@ -1186,7 +1186,7 @@ _022613AA:
 	lsl r0, r0, #2
 	ldr r0, [r1, r0]
 	add r1, r6, #0
-	bl sub_020B3664
+	bl NNS_G3dMdlSetMdlLightEnableFlagAll
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov70_02261398
@@ -1267,7 +1267,7 @@ ov70_02261420: ; 0x02261420
 	add r4, r0, #0
 	bl ov70_0225C730
 	ldr r0, [r4, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r4, #4]
 	cmp r0, #0
 	beq _02261454
@@ -1294,7 +1294,7 @@ _02261454:
 _02261456:
 	str r0, [r4, #8]
 	ldr r0, [r4, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r4, #0xc]
 	ldr r0, [r4, #0]
 	ldr r1, [r4, #0xc]
@@ -1326,7 +1326,7 @@ ov70_02261474: ; 0x02261474
 	str r0, [r5, #0]
 	pop {r3, r4, r5, pc}
 _0226148E:
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r5, #0]
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1786,7 +1786,7 @@ _022617AA:
 	mov r2, #0
 	bl sub_0200723C
 	str r0, [r4, #0]
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r4, #4]
 	cmp r0, #0
 	beq _022617EA
@@ -1813,7 +1813,7 @@ _022617EA:
 _022617EC:
 	str r0, [r4, #8]
 	ldr r0, [r5, #0x20]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r4, #0xc]
 	add r7, r7, #1
 	add r6, r6, #4
@@ -1878,7 +1878,7 @@ _02261862:
 	beq _02261874
 	ldr r0, [r5, #0x40]
 	add r1, r4, #0
-	bl sub_020AE5CC
+	bl NNS_G3dAnmObjDisableID
 _02261874:
 	mov r0, #0x16
 	lsl r0, r0, #4
@@ -1969,11 +1969,11 @@ _02261910:
 	mov r5, #0
 _02261914:
 	ldr r0, [r4, #0x20]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	add r1, sp, #0x10
 	add r2, sp, #0xc
 	add r6, r0, #0
-	bl sub_020AE9B8
+	bl NNS_G3dTexReleaseTexKey
 	ldr r0, [sp, #0x10]
 	ldr r1, [r7, #0]
 	blx r1
@@ -1981,7 +1981,7 @@ _02261914:
 	ldr r1, [r7, #0]
 	blx r1
 	add r0, r6, #0
-	bl sub_020AEA70
+	bl NNS_G3dPlttReleasePlttKey
 	ldr r1, _02261964 ; =0x02100DF8
 	ldr r1, [r1, #0]
 	blx r1
@@ -2120,7 +2120,7 @@ _02261A28:
 	lsl r0, r0, #2
 	add r0, r1, r0
 	ldr r0, [r0, #0x20]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	ldrb r1, [r5, #2]
 	lsl r2, r1, #4
 	ldr r1, [sp]
@@ -2132,7 +2132,7 @@ _02261A28:
 	add r1, r0, r1
 	ldr r0, [r1, #4]
 	ldr r1, [r1, #0xc]
-	bl sub_020AF1E8
+	bl NNS_G3dBindMdlSet
 	cmp r0, #0
 	bne _02261A62
 	bl sub_02022974
@@ -2203,7 +2203,7 @@ _02261AD2:
 	ldr r0, [sp]
 	add r0, r0, r1
 	ldr r0, [r0, #4]
-	bl sub_020AF298
+	bl NNS_G3dReleaseMdlSet
 _02261AEA:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
@@ -2392,7 +2392,7 @@ ov70_02261C04: ; 0x02261C04
 	add r0, r5, r0
 	ldrb r1, [r1]
 	ldr r0, [r0, #8]
-	bl sub_020B3764
+	bl NNS_G3dMdlSetMdlAlphaAll
 _02261C3C:
 	add r0, r4, #4
 	bl sub_02017294
@@ -2407,7 +2407,7 @@ _02261C3C:
 	lsl r0, r0, #4
 	add r0, r5, r0
 	ldr r0, [r0, #8]
-	bl sub_020B3764
+	bl NNS_G3dMdlSetMdlAlphaAll
 _02261C5C:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -2573,7 +2573,7 @@ _02261D84:
 	add r1, r4, #0
 	add r1, #0xcc
 	ldrb r1, [r1]
-	bl sub_020E2178
+	bl _u32_div_f
 	add r0, r4, r5
 	add r0, #0xcd
 	strb r1, [r0]

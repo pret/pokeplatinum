@@ -193,7 +193,7 @@ _02233AA4:
 	ldrb r0, [r1, #0x53]
 	ldrh r1, [r1, #0x40]
 	mul r0, r2, r0
-	bl sub_020BD104
+	bl FX_DivS32
 _02233AC8:
 	str r0, [sp]
 	mov r0, r4
@@ -596,7 +596,7 @@ _02233FF0:
 	ldrh r2, [r1, #0x40]
 	ldrb r1, [r1, #0x53]
 	mul r0, r2, r0
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _022341E4 ; =0x02253318
 	strh r0, [r1, #2]
 	bl ov18_02234588
@@ -617,7 +617,7 @@ _02234044:
 	ldrh r2, [r1, #0x40]
 	ldrb r1, [r1, #0x53]
 	mul r0, r2, r0
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _022341E4 ; =0x02253318
 	strh r0, [r1, #2]
 	mov r0, #0x13
@@ -626,7 +626,7 @@ _02234044:
 	ldr r0, _022341E4 ; =0x02253318
 	mov r1, #0x1c
 	ldrh r0, [r0, #2]
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #0
 	bne _022340A8
 	bl ov18_02234AA0
@@ -759,7 +759,7 @@ _02234234:
 _02234260:
 	ldrh r0, [r0, #2]
 	mov r1, #0x1c
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r2, _022342F0 ; =0x02253318
 	mov r1, #0x2a
 	ldrb lr, [r2]
@@ -994,7 +994,7 @@ ov18_02234588: ; 0x02234588
 	ldr r0, _0223462C ; =0x02253318
 	mov r1, #0x1c
 	ldrh r0, [r0, #2]
-	bl sub_020BD104
+	bl FX_DivS32
 	ldr r1, _0223462C ; =0x02253318
 	mov r7, r0
 	ldr r0, [r1, #4]
@@ -1067,7 +1067,7 @@ ov18_02234630: ; 0x02234630
 	mov r1, #0
 	mov r2, #0x22
 	addle r5, r5, #6
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	cmp r4, #0x10
 	movle ip, r4
 	movgt ip, #0x10
@@ -1105,7 +1105,7 @@ _022346E0:
 	add r0, sp, #0xc
 	mov r1, #0
 	mov r2, #0x22
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	sub r3, r4, #0x10
 	cmp r3, #0
 	mov r7, #0
@@ -1188,7 +1188,7 @@ ov18_02234834: ; 0x02234834
 	ldr r0, _022348E8 ; =0x02253318
 	mov r1, #0x1c
 	ldrh r0, [r0, #2]
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r1, _022348E8 ; =0x02253318
 	rsb r0, r0, #0x36
 	ldr r1, [r1, #4]
@@ -1251,7 +1251,7 @@ ov18_022348F0: ; 0x022348F0
 	ldr r0, _022349A8 ; =0x02253318
 	mov r1, #0x1c
 	ldrh r0, [r0, #2]
-	bl sub_020BD140
+	bl FX_ModS32
 	mov r5, r0
 	cmp r5, #0x18
 	bne _0223493C
@@ -1275,7 +1275,7 @@ _02234958:
 	ldrb r0, [r1, #0x53]
 	ldrh r1, [r1, #0x40]
 	mul r0, r2, r0
-	bl sub_020BD104
+	bl FX_DivS32
 	bl ov18_0223D354
 	bl ov18_0223D360
 	bl ov18_02234AA0
@@ -1302,7 +1302,7 @@ ov18_022349AC: ; 0x022349AC
 	add r2, r2, #4
 	strh r2, [r0, #2]
 	ldrh r0, [r0, #2]
-	bl sub_020BD140
+	bl FX_ModS32
 	cmp r0, #4
 	blt _022349E8
 	bl ov18_02234834
@@ -1319,7 +1319,7 @@ _022349E8:
 	ldrb r0, [r1, #0x53]
 	ldrh r1, [r1, #0x40]
 	mul r0, r2, r0
-	bl sub_020BD104
+	bl FX_DivS32
 	bl ov18_0223D354
 	bl ov18_0223D360
 	bl ov18_02234AA0
@@ -1344,7 +1344,7 @@ ov18_02234A44: ; 0x02234A44
 	ldmeqia sp!, {r3, pc}
 	ldrh r0, [r0, #2]
 	mov r1, #0x1c
-	bl sub_020BD140
+	bl FX_ModS32
 	ldr r1, _02234A98 ; =0x01FF0000
 	sub r0, r0, #0x32
 	ldr r2, _02234A9C ; =0x04000010

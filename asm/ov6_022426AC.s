@@ -281,28 +281,28 @@ ov6_02242880: ; 0x02242880
 	add r7, r0, #0
 	add r0, r5, #0
 	mov r1, #1
-	bl sub_020A81B0
+	bl NNS_G2dGetImageLocation
 	str r0, [sp]
 	add r0, r7, #0
 	mov r1, #1
-	bl sub_020A81FC
+	bl NNS_G2dGetImagePaletteLocation
 	mov r1, #0x32
 	add r5, r0, #0
 	add r0, r4, #0
 	lsl r1, r1, #6
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r2, #0x32
 	ldr r1, [sp]
 	add r0, r4, #0
 	lsl r2, r2, #6
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	add r0, r6, #0
 	mov r1, #0x20
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r6, #0
 	add r1, r5, #0
 	mov r2, #0x20
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 	thumb_func_end ov6_02242880

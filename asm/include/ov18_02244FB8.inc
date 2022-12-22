@@ -1,9 +1,9 @@
-.public sub_020A5404
-.public sub_020A543C
-.public sub_020A5448
-.public sub_020A55D8
-.public sub_020C161C
-.public sub_020C164C
-.public sub_020C42A8
-.public sub_020C4CF4
+.public NNS_FndCreateExpHeapEx
+.public NNS_FndDestroyExpHeap
+.public NNS_FndAllocFromExpHeapEx
+.public NNS_FndFreeToExpHeap
+.public OS_EnableIrqMask
+.public OS_DisableIrqMask
+.public OS_Terminate
+.public MI_CpuFill8
 .public ov18_0224501C

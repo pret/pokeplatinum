@@ -344,39 +344,39 @@ ov94_022441A0: ; 0x022441A0
 	cmp r1, #0
 	ble _022441BE
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _022441CC
 _022441BE:
 	lsl r0, r1, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _022441CC:
-	bl sub_020E1740
+	bl _f_ftoi
 	sub r5, #8
 	str r0, [sp]
 	cmp r5, #0
 	ble _022441EA
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	add r1, r0, #0
 	mov r0, #0x3f
 	lsl r0, r0, #0x18
-	bl sub_020E0B00
+	bl _f_add
 	b _022441F8
 _022441EA:
 	lsl r0, r5, #0xc
-	bl sub_020E17B4
+	bl _f_itof
 	mov r1, #0x3f
 	lsl r1, r1, #0x18
-	bl sub_020E1A9C
+	bl _f_sub
 _022441F8:
-	bl sub_020E1740
+	bl _f_ftoi
 	mov r1, #1
 	lsl r1, r1, #0x14
 	add r0, r0, r1
@@ -567,7 +567,7 @@ ov94_0224432C: ; 0x0224432C
 	mov r1, #2
 	ldr r0, [r4, r0]
 	lsl r1, r1, #0xe
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add sp, #4
 	pop {r3, r4, pc}
 	nop
@@ -597,13 +597,13 @@ ov94_02244378: ; 0x02244378
 	mov r2, #2
 	ldr r6, [r6, #0xc]
 	lsl r2, r2, #8
-	bl sub_020C0314
+	bl GXS_LoadOBJ
 	lsl r0, r4, #5
 	add r1, r5, #2
 	add r0, r6, r0
 	lsl r1, r1, #5
 	mov r2, #0x20
-	bl sub_020C01B8
+	bl GXS_LoadOBJPltt
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _022443B4: .word 0x02246314

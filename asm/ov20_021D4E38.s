@@ -39,7 +39,7 @@ _021D4E5E:
 	lsl r1, r1, #0xc
 	str r1, [r4, #0xc]
 	ldr r1, [sp, #0xc]
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x14]
 	ldr r0, [sp, #0xc]
 	strh r0, [r4, #0x18]
@@ -141,7 +141,7 @@ ov20_021D4F1C: ; 0x021D4F1C
 	str r1, [r4, #0x14]
 	str r3, [r4, #8]
 	sub r0, r0, r3
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x10]
 	ldr r0, [sp, #8]
 	mov r2, #0
@@ -210,7 +210,7 @@ _021D4F9A:
 	str r0, [sp]
 	ldr r0, _021D4FAC ; =0x04000050
 	ldmia r2!, {r1, r2}
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	nop
 _021D4FAC: .word 0x04000050
@@ -224,7 +224,7 @@ ov20_021D4FB0: ; 0x021D4FB0
 	add r4, r1, #0
 	add r6, r2, #0
 	add r7, r3, #0
-	bl sub_020BF578
+	bl G2x_SetBlendBrightness_
 	ldr r1, [sp, #0x18]
 	str r4, [r5, #0]
 	str r1, [r5, #0x14]
@@ -234,7 +234,7 @@ ov20_021D4FB0: ; 0x021D4FB0
 	str r2, [r5, #0xc]
 	ldr r0, [r5, #8]
 	sub r0, r2, r0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r5, #0x10]
 	mov r2, #0
 	ldr r0, _021D4FEC ; =ov20_021D5018
@@ -291,11 +291,11 @@ _021D5030:
 	ldr r0, [r1, #0xc]
 	asr r2, r0, #0xc
 _021D5034:
-	ldr r3, _021D503C ; =sub_020BF578
+	ldr r3, _021D503C ; =G2x_SetBlendBrightness_
 	ldr r0, _021D5040 ; =0x04000050
 	ldr r1, [r1, #0]
 	bx r3
 	; .align 2, 0
-_021D503C: .word sub_020BF578
+_021D503C: .word G2x_SetBlendBrightness_
 _021D5040: .word 0x04000050
 	thumb_func_end ov20_021D5018

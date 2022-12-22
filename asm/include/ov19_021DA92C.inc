@@ -43,7 +43,7 @@
 .public sub_0207C924
 .public sub_0207C92C
 .public sub_0207C944
-.public sub_020A818C
+.public NNS_G2dInitImageProxy
 .public ov19_021D5E08
 .public ov19_021D5E4C
 .public ov19_021D5E70

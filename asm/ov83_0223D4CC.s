@@ -125,7 +125,7 @@ ov83_0223D584: ; 0x0223D584
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r1, #0x1a
 	lsl r1, r1, #4
 	str r5, [r4, r1]
@@ -181,7 +181,7 @@ _0223D5D8:
 	add r0, r6, #0
 	mov r1, #0
 	mov r2, #0x34
-	bl sub_020D5124
+	bl memset
 _0223D60E:
 	ldr r0, [sp]
 	add r6, #0x34
@@ -262,7 +262,7 @@ _0223D68A:
 	ldr r1, [sp]
 	add r0, #8
 	add r2, r5, #0
-	bl sub_020D50B8
+	bl memcpy
 _0223D69E:
 	str r5, [r4, #0x30]
 	mov r0, #1

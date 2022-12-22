@@ -188,7 +188,7 @@ _02249AC4:
 	mov r2, #0x9c
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02249B90 ; =0x0224F5A0
 	mov r2, #0
 	ldr r1, [r0, #0]

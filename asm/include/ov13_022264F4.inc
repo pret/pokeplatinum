@@ -57,8 +57,8 @@
 .public sub_0207D9F0
 .public sub_0207DA1C
 .public sub_0207DA24
-.public sub_020A7248
-.public sub_020D5124
+.public NNS_G2dGetUnpackedScreenData
+.public memset
 .public ov13_02226590
 .public ov13_0222668C
 .public ov13_02226760

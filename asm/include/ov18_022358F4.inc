@@ -1,10 +1,10 @@
 .public sub_020A2CAC
-.public sub_020C00B4
-.public sub_020C04EC
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D5190
-.public sub_020DAE0C
+.public GX_LoadBGPltt
+.public GX_LoadBG2Scr
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public memcmp
+.public atoi
 .public ov18_0222B594
 .public ov18_0222B668
 .public ov18_0222B700

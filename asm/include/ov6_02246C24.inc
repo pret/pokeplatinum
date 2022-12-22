@@ -10,7 +10,7 @@
 .public sub_02050A64
 .public sub_020552B4
 .public sub_020553A4
-.public sub_020B3C0C
+.public NNS_G3dGetMdlSet
 .public ov5_021D41C8
 .public ov5_021D4220
 .public ov5_021D4250

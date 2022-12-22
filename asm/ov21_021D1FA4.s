@@ -166,7 +166,7 @@ ov21_021D2098: ; 0x021D2098
 	add r0, r4, #0
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	thumb_func_end ov21_021D2098
 
@@ -178,7 +178,7 @@ ov21_021D2124: ; 0x021D2124
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	bl sub_020219F8
-	bl sub_020A73C0
+	bl NNS_G2dSetupSoftwareSpriteCamera
 	mov r0, #0x55
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
@@ -631,7 +631,7 @@ ov21_021D2424: ; 0x021D2424
 	ldr r1, [r5, #4]
 	ldr r2, [r5, #8]
 	add r3, r4, #0
-	bl sub_020BF5A0
+	bl G2x_SetBlendBrightnessExt_
 	b _021D246C
 _021D245A:
 	mov r1, #0
@@ -641,7 +641,7 @@ _021D245A:
 	ldr r1, [r5, #4]
 	ldr r2, [r5, #8]
 	add r3, r4, #0
-	bl sub_020BF5A0
+	bl G2x_SetBlendBrightnessExt_
 _021D246C:
 	ldr r0, [r5, #0x20]
 	add r0, r0, #1
@@ -666,7 +666,7 @@ ov21_021D2484: ; 0x021D2484
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -677,7 +677,7 @@ ov21_021D2484: ; 0x021D2484
 	orr r0, r1
 	ldr r1, [r4, #0x1c]
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r1, r0, #0xc
 	ldr r0, [r4, #0x14]
 	add r0, r1, r0
@@ -694,7 +694,7 @@ ov21_021D24B8: ; 0x021D24B8
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -705,7 +705,7 @@ ov21_021D24B8: ; 0x021D24B8
 	orr r0, r1
 	ldr r1, [r4, #0x1c]
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r1, r0, #0xc
 	ldr r0, [r4, #0xc]
 	add r0, r1, r0
@@ -941,7 +941,7 @@ ov21_021D2664: ; 0x021D2664
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -952,7 +952,7 @@ ov21_021D2664: ; 0x021D2664
 	orr r0, r1
 	ldr r1, [r5, #0x1c]
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	add r4, r0, #0
 	ldr r0, [r5, #0x14]
 	ldr r2, [r5, #0x18]
@@ -960,7 +960,7 @@ ov21_021D2664: ; 0x021D2664
 	lsl r2, r2, #0xc
 	asr r1, r0, #0x1f
 	asr r3, r2, #0x1f
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	mov r3, #0
 	lsl r2, r2, #0xa
@@ -971,7 +971,7 @@ ov21_021D2664: ; 0x021D2664
 	orr r0, r1
 	ldr r1, [r5, #0x1c]
 	lsl r1, r1, #0xc
-	bl sub_020BCFD0
+	bl FX_Div
 	ldr r1, [r5, #8]
 	asr r2, r4, #0xc
 	add r1, r2, r1
@@ -1024,7 +1024,7 @@ ov21_021D26E8: ; 0x021D26E8
 	beq _021D271E
 	add r0, r4, #0
 	add r1, r5, #0
-	bl sub_020C4F48
+	bl MI_UncompressLZ8
 	add r0, r4, #0
 	bl sub_020181C4
 _021D271E:
@@ -1047,7 +1047,7 @@ ov21_021D2724: ; 0x021D2724
 	add r7, r0, #0
 	beq _021D2766
 	add r1, sp, #4
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	beq _021D2760
 	cmp r4, #0
@@ -1085,7 +1085,7 @@ ov21_021D276C: ; 0x021D276C
 	add r7, r0, #0
 	beq _021D27B2
 	add r1, sp, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #0
 	beq _021D27AC
 	cmp r4, #0
@@ -1096,7 +1096,7 @@ _021D2792:
 	ldr r0, [sp]
 	add r1, r4, #0
 	ldr r0, [r0, #0xc]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [sp]
 	add r2, r4, #0
 	ldr r3, _021D27B4 ; =0x021E9CA4
@@ -1123,7 +1123,7 @@ ov21_021D27B8: ; 0x021D27B8
 	add r4, r0, #0
 	beq _021D27DA
 	add r1, r5, #0
-	bl sub_020A7248
+	bl NNS_G2dGetUnpackedScreenData
 	cmp r0, #0
 	bne _021D27DA
 	add r0, r4, #0
@@ -1145,7 +1145,7 @@ ov21_021D27E0: ; 0x021D27E0
 	add r4, r0, #0
 	beq _021D2802
 	add r1, r5, #0
-	bl sub_020A71B0
+	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #0
 	bne _021D2802
 	add r0, r4, #0
@@ -1167,7 +1167,7 @@ ov21_021D2808: ; 0x021D2808
 	add r4, r0, #0
 	beq _021D282A
 	add r1, r5, #0
-	bl sub_020A7164
+	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _021D282A
 	add r0, r4, #0
@@ -2241,7 +2241,7 @@ _021D309C:
 	lsr r0, r5, #0xc
 	orr r0, r2
 	lsl r1, r1, #6
-	bl sub_020BCFD0
+	bl FX_Div
 	asr r3, r0, #0xc
 	ldr r0, [r4, #0x2c]
 	add r0, r0, r3

@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020B5EA4
-sub_020B5EA4: ; 0x020B5EA4
+	arm_func_start NNSi_G3dAnmObjInitNsBva
+NNSi_G3dAnmObjInitNsBva: ; 0x020B5EA4
 	ldr r3, _020B5EEC ; =0x02100ECC
 	mov ip, #0
 	ldr r3, [r3, #0]
@@ -28,10 +28,10 @@ _020B5ECC:
 	bx lr
 	; .align 2, 0
 _020B5EEC: .word 0x02100ECC
-	arm_func_end sub_020B5EA4
+	arm_func_end NNSi_G3dAnmObjInitNsBva
 
-	arm_func_start sub_020B5EF0
-sub_020B5EF0: ; 0x020B5EF0
+	arm_func_start NNSi_G3dAnmCalcNsBva
+NNSi_G3dAnmCalcNsBva: ; 0x020B5EF0
 	stmfd sp!, {r3, lr}
 	ldr lr, [r1, #8]
 	ldr r3, [r1, #0]
@@ -46,4 +46,4 @@ sub_020B5EF0: ; 0x020B5EF0
 	and r1, r1, r3, lsl r2
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020B5EF0
+	arm_func_end NNSi_G3dAnmCalcNsBva

@@ -956,7 +956,7 @@ _021F7EF8:
 	mov r2, #0xa
 	mov r1, #0
 	lsl r2, r2, #6
-	bl sub_020D5124
+	bl memset
 	str r5, [sp]
 	add r0, sp, #0x20
 	ldrb r0, [r0, #0x10]

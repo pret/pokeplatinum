@@ -10,7 +10,7 @@
 ov60_02225E1C: ; 0x02225E1C
 	stmfd sp!, {r3, lr}
 	ldr r0, _02225E30 ; =0x0222A8F8
-	bl sub_020C29C0
+	bl OS_InitMutex
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -24,21 +24,21 @@ ov60_02225E34: ; 0x02225E34
 
 	arm_func_start ov60_02225E38
 ov60_02225E38: ; 0x02225E38
-	ldr ip, _02225E44 ; =sub_020C29D8
+	ldr ip, _02225E44 ; =OS_LockMutex
 	ldr r0, _02225E48 ; =0x0222A8F8
 	bx ip
 	; .align 2, 0
-_02225E44: .word sub_020C29D8
+_02225E44: .word OS_LockMutex
 _02225E48: .word 0x0222A8F8
 	arm_func_end ov60_02225E38
 
 	arm_func_start ov60_02225E4C
 ov60_02225E4C: ; 0x02225E4C
-	ldr ip, _02225E58 ; =sub_020C2A5C
+	ldr ip, _02225E58 ; =OS_UnlockMutex
 	ldr r0, _02225E5C ; =0x0222A8F8
 	bx ip
 	; .align 2, 0
-_02225E58: .word sub_020C2A5C
+_02225E58: .word OS_UnlockMutex
 _02225E5C: .word 0x0222A8F8
 	arm_func_end ov60_02225E4C
 
@@ -48,7 +48,7 @@ ov60_02225E60: ; 0x02225E60
 	sub sp, sp, #8
 	mov r5, r0
 	mov r4, r1
-	bl sub_020C1F24
+	bl OS_IsThreadAvailable
 	cmp r0, #0
 	addeq sp, sp, #8
 	moveq r0, #0
@@ -56,7 +56,7 @@ ov60_02225E60: ; 0x02225E60
 	ldr r0, _02225EC8 ; =0x0222A910
 	ldr r1, _02225ECC ; =0x0222A8F4
 	mov r2, #1
-	bl sub_020C2748
+	bl OS_InitMessageQueue
 	mov r0, #0x2000
 	str r0, [sp]
 	ldr r0, _02225ED0 ; =0x0222A930
@@ -64,9 +64,9 @@ ov60_02225E60: ; 0x02225E60
 	add r3, r4, #0x2000
 	mov r2, #0
 	str r5, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _02225ED0 ; =0x0222A930
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	mov r0, #1
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
@@ -85,7 +85,7 @@ ov60_02225ED8: ; 0x02225ED8
 	str r1, [r0, #0]
 	bl ov60_02225F1C
 	ldr r0, _02225EFC ; =0x0222A930
-	bl sub_020C21D4
+	bl OS_JoinThread
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02225EF8: .word 0x0222A024
@@ -98,7 +98,7 @@ ov60_02225F00: ; 0x02225F00
 	ldr r0, _02225F18 ; =0x0222A910
 	add r1, sp, #0
 	mov r2, #1
-	bl sub_020C2804
+	bl OS_ReceiveMessage
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02225F18: .word 0x0222A910
@@ -106,13 +106,13 @@ _02225F18: .word 0x0222A910
 
 	arm_func_start ov60_02225F1C
 ov60_02225F1C: ; 0x02225F1C
-	ldr ip, _02225F30 ; =sub_020C2770
+	ldr ip, _02225F30 ; =OS_SendMessage
 	mov r1, #0
 	ldr r0, _02225F34 ; =0x0222A910
 	mov r2, r1
 	bx ip
 	; .align 2, 0
-_02225F30: .word sub_020C2770
+_02225F30: .word OS_SendMessage
 _02225F34: .word 0x0222A910
 	arm_func_end ov60_02225F1C
 

@@ -187,7 +187,7 @@ _021D95FE:
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x9c
-	bl sub_020D5124
+	bl memset
 	add r0, r4, #0
 	ldr r1, _021D9648 ; =0x0000FFFF
 	str r4, [r5, #8]
@@ -427,7 +427,7 @@ _021D97C6:
 	str r0, [r4, #8]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #0]
 	add r0, r0, #1
 	str r0, [r4, #0]
@@ -7191,7 +7191,7 @@ _021DC842:
 	ldr r0, _021DC8AC ; =0x04001050
 	mov r1, #0
 	mov r2, #4
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #0x13
 	lsl r0, r0, #4
 	ldr r1, [r4, r0]

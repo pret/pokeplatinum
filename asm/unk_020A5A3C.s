@@ -5,17 +5,17 @@
 	.text
 
 
-	arm_func_start sub_020A5A3C
-sub_020A5A3C: ; 0x020A5A3C
+	arm_func_start AllocPlttVram_
+AllocPlttVram_: ; 0x020A5A3C
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020A5A3C
+	arm_func_end AllocPlttVram_
 
-	arm_func_start sub_020A5A44
-sub_020A5A44: ; 0x020A5A44
+	arm_func_start FreePlttVram_
+FreePlttVram_: ; 0x020A5A44
 	mvn r0, #0
 	bx lr
-	arm_func_end sub_020A5A44
+	arm_func_end FreePlttVram_
 
 	.data
 

@@ -1,5 +1,5 @@
-.public sub_020C42A8
-.public sub_020C4B18
+.public OS_Terminate
+.public MIi_CpuCopy16
 .public ov18_0222F7A4
 .public ov18_0222F8B8
 .public ov18_0222FA08

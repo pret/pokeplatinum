@@ -323,7 +323,7 @@ ov23_0224F500: ; 0x0224F500
 	add r6, r2, #0
 	bl sub_02021E24
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	add r2, r0, #0
 	lsl r1, r2, #1
 	add r1, r2, r1
@@ -371,7 +371,7 @@ ov23_0224F560: ; 0x0224F560
 	add r4, r0, #0
 	bl sub_02021E24
 	mov r1, #3
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #1
 	bne _0224F586
 	add r0, r4, #0
@@ -397,7 +397,7 @@ ov23_0224F588: ; 0x0224F588
 	mov r2, #8
 	str r0, [r1, #0]
 	mov r1, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0224F5B4 ; =0x022577B8
 	mov r2, #0
 	ldr r1, [r0, #0]
@@ -664,7 +664,7 @@ ov23_0224F758: ; 0x0224F758
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x7f
 	str r6, [r4, #0xc]
 	lsl r0, r0, #2
@@ -2953,7 +2953,7 @@ ov23_02250A50: ; 0x02250A50
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x7f
 	str r6, [r4, #0xc]
 	lsl r0, r0, #2
@@ -3855,7 +3855,7 @@ ov23_022511B0: ; 0x022511B0
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x7f
 	lsl r0, r0, #2
 	str r6, [r4, #0xc]

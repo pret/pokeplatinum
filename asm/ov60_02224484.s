@@ -128,7 +128,7 @@ ov60_02224610: ; 0x02224610
 	mov r3, #2
 	mov r1, #0x21
 	str r3, [sp]
-	bl sub_020C1AF0
+	bl OS_SNPrintf
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0222462C: .word 0x02229C08

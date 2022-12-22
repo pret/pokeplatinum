@@ -25,11 +25,11 @@ ov66_02234FD4: ; 0x02234FD4
 	mov r6, r1
 	mov r5, r2
 	mov r4, r3
-	bl sub_020A44C8
+	bl DWC_CheckUserData
 	cmp r0, #0
 	beq _02235010
 	mov r0, r8
-	bl sub_020A450C
+	bl DWC_CheckHasProfile
 	cmp r0, #0
 	bne _0223501C
 _02235010:
@@ -143,7 +143,7 @@ _0223514C:
 	bl ov4_021D806C
 	add r0, sp, #0x14
 	add r1, sp, #8
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str r0, [r4, #0x100]
 	str r1, [r4, #0x104]
 	mov r0, #1
@@ -357,7 +357,7 @@ ov66_02235428: ; 0x02235428
 	ldr r2, [sp, #0x10]
 	mov r0, r5
 	mov r1, r4
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02235494:
 	cmp r4, #0
 	beq _022354DC
@@ -620,7 +620,7 @@ _0223582C:
 	bl ov4_021D806C
 	add r0, sp, #0x28
 	add r1, sp, #0x38
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	ldr r2, [r5, #0x140]
 	add r7, r5, #0x138
 	mov r6, r0
@@ -794,7 +794,7 @@ _02235A50:
 	mov r2, #0x10
 	str r6, [sp, #0x20]
 	str r6, [sp, #0x24]
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, r6
 	movne r0, #0
@@ -1141,7 +1141,7 @@ _02235ED4:
 	add r0, r4, #0xfc
 	mov r2, #0x10
 	str ip, [sp, #0x10]
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -1209,7 +1209,7 @@ _02236038:
 	bl ov4_021D806C
 	add r0, sp, #0xc
 	add r1, sp, #0
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	stmia r5, {r0, r1}
 	ldr r2, [r4, #0x14c]
 	ldr r1, [r4, #0x150]
@@ -1640,7 +1640,7 @@ _02236524:
 	mov r1, r0
 	mov r0, r4
 	mov r2, r8
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _02236610
 _0223660C:
@@ -1698,7 +1698,7 @@ _022366B4:
 	ldr r0, [r7, #0]
 	mov r1, r6
 	sub r2, r5, r6
-	bl sub_020D50D8
+	bl memmove
 	str r4, [r7, #4]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov66_02236674
@@ -1851,7 +1851,7 @@ _02236860:
 	addeq r1, sp, #0x89
 	ldrne r1, [sp, #0x90]
 	add r0, r4, #0xa4
-	bl sub_020D8C44
+	bl strncpy
 	mov r2, #1
 _022368EC:
 	cmp r2, #0
@@ -1869,7 +1869,7 @@ _02236908:
 	addeq r1, sp, #0x89
 	ldrne r1, [sp, #0x90]
 	add r0, r5, #0x30
-	bl sub_020D8C44
+	bl strncpy
 	ldr r2, _022369EC ; =0x0225B6C4
 	add r0, sp, #0x6c
 	add r1, sp, #0x60
@@ -1877,7 +1877,7 @@ _02236908:
 	bl ov4_021D806C
 	add r0, sp, #0x6c
 	add r1, sp, #0x60
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r2, #0
 	subs r0, r0, #5
 	str r0, [sp, #0x10]
@@ -1965,7 +1965,7 @@ ov66_02236A38: ; 0x02236A38
 	ldr r2, [sp, #0x20]
 	mov r1, r4
 	add r3, r3, #4
-	bl sub_020C1B18
+	bl OS_VSNPrintf
 	add r0, sp, #0
 	bl ov66_02236AB0
 	mov r1, r0
@@ -2262,7 +2262,7 @@ _02236E00:
 	ldrb r1, [r0, #0x39]
 	add r0, sp, #0x24
 	strb r1, [sp, #0x23]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldrh r8, [sp, #0x20]
 	ldrb r7, [sp, #0x22]
 	ldrb r6, [sp, #0x23]
@@ -2736,7 +2736,7 @@ ov66_022374B4: ; 0x022374B4
 	ldrb r1, [r0, #0x39]
 	add r0, sp, #0x24
 	strb r1, [sp, #0x23]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, [r4, #0]
 	add r3, sp, #0x38
 	str r0, [sp, #0x30]
@@ -3078,7 +3078,7 @@ _022379EC:
 	cmp r1, #3
 	blo _022379EC
 	mov r0, r7
-	bl sub_020D8B60
+	bl strlen
 	ldr r1, [r4, #0]
 	mov r6, r0
 	mov r0, r1, lsl #0x1f
@@ -3156,7 +3156,7 @@ ov66_02237ADC: ; 0x02237ADC
 	add r3, r4, #4
 	str r0, [sp, #4]
 	str r0, [sp, #0xc]
-	bl sub_020C1B18
+	bl OS_VSNPrintf
 	ldr r3, [sp, #8]
 	add r5, r0, #1
 	cmp r5, r3
@@ -3183,7 +3183,7 @@ _02237B60:
 	ldr r2, [sp, #0x24]
 	mov r1, r5
 	add r3, r4, #4
-	bl sub_020C1B18
+	bl OS_VSNPrintf
 	ldr r1, [sp, #4]
 	add r0, sp, #4
 	add r1, r1, r5
@@ -3436,7 +3436,7 @@ ov66_02237EF8: ; 0x02237EF8
 	mov r5, r1
 	strb r2, [sp, #4]
 	mov r6, r0
-	bl sub_020D8B60
+	bl strlen
 	ldr r3, [r5, #4]
 	mov r4, r0
 	cmp r4, r3
@@ -3464,7 +3464,7 @@ _02237F64:
 	moveq r0, #1
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r0, r6
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 	mov r0, r5
 	bl ov66_02235B8C
@@ -3551,7 +3551,7 @@ ov66_02238070: ; 0x02238070
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	ldr r1, _0223844C ; =0x02258FC4
 	mov r0, r4
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _02238248
 	ldr r0, _02238450 ; =0x0225B6C4
@@ -3619,7 +3619,7 @@ ov66_02238070: ; 0x02238070
 	mov r2, r7
 	mov r1, r0
 	mov r0, fp
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	bne _022381C0
 _022381BC:
@@ -3665,7 +3665,7 @@ _0223823C:
 _02238248:
 	ldr r1, _02238454 ; =0x02258FD4
 	mov r0, r4
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _0223838C
 	ldr r0, _02238450 ; =0x0225B6C4
@@ -3700,7 +3700,7 @@ _02238248:
 	mov r2, #0x10
 	str r6, [sp, #0x40]
 	str r3, [sp, #0x44]
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -3749,7 +3749,7 @@ _02238380:
 _0223838C:
 	ldr r1, _02238458 ; =0x02258FE4
 	mov r0, r4
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _022383E8
 	cmp r8, #8
@@ -3773,7 +3773,7 @@ _0223838C:
 _022383E8:
 	ldr r1, _0223845C ; =0x02258FF4
 	mov r0, r4
-	bl sub_020D8D14
+	bl strcmp
 	cmp r0, #0
 	bne _02238440
 	ldr r0, _02238450 ; =0x0225B6C4
@@ -4260,7 +4260,7 @@ _02238A48:
 	ldrb r1, [r0, #0x39]
 	add r0, sp, #0x2c
 	strb r1, [sp, #0x2b]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _02238C6C ; =0x02258E58
 	ldr r1, _02238C68 ; =0x0225B6C4
 	ldr r5, [r0, #0x10]
@@ -4476,7 +4476,7 @@ _02238D40:
 	ldrb r1, [r0, #0x39]
 	add r0, sp, #0x2c
 	strb r1, [sp, #0x2b]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldrh r1, [sp, #0x28]
 	ldrb r0, [sp, #0x2a]
 	ldrb sb, [sp, #0x2b]
@@ -4702,7 +4702,7 @@ _02239098:
 	ldrb r1, [r0, #0x39]
 	add r0, sp, #0x2c
 	strb r1, [sp, #0x2b]
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, _022392F4 ; =0x02258E58
 	ldr r1, _022392F0 ; =0x0225B6C4
 	ldr r5, [r0, #8]
@@ -4937,7 +4937,7 @@ ov66_02239408: ; 0x02239408
 	bl ov4_021D806C
 	add r0, sp, #0x288
 	add r1, sp, #0x27c
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	ldr r4, [sp, #0x298]
 	str r0, [sp, #0x29c]
 	str r1, [sp, #0x2a0]
@@ -4956,7 +4956,7 @@ ov66_02239408: ; 0x02239408
 	mov r1, r5
 	add r0, r4, #0xfc
 	mov r2, #0x10
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -4986,7 +4986,7 @@ _022394F0:
 	bl ov4_021D806C
 	add r0, sp, #0x258
 	add r1, sp, #0x24c
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r2, #0
 	subs r0, r0, #3
 	str r0, [sp, #0x1fc]
@@ -5030,7 +5030,7 @@ _022394F0:
 	bl ov4_021D806C
 	add r0, sp, #0x1ec
 	add r1, sp, #0x1e0
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	ldr r6, _02239998 ; =ov66_02238678
 	mov r7, #0
 	subs r5, r0, #4
@@ -5074,7 +5074,7 @@ _022394F0:
 	bl ov4_021D806C
 	add r0, sp, #0x180
 	add r1, sp, #0x174
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r2, #4
 	str r2, [sp, #0x12c]
 	mov r2, r7
@@ -5120,7 +5120,7 @@ _022394F0:
 	bl ov4_021D806C
 	add r0, sp, #0x114
 	add r1, sp, #0x108
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r2, #3
 	str r2, [sp, #0xc0]
 	mov r2, #0
@@ -5166,7 +5166,7 @@ _022394F0:
 	bl ov4_021D806C
 	add r0, sp, #0xa8
 	add r1, sp, #0x9c
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	mov r2, #0
 	subs r0, r0, #4
 	str r0, [sp, #0x4c]
@@ -5347,7 +5347,7 @@ _02239A24:
 	mov r1, r5
 	add r0, r4, #0xfc
 	mov r2, #0x10
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -5497,7 +5497,7 @@ _02239C5C:
 	mov r2, #0x10
 	str ip, [sp, #0x18]
 	str r3, [sp, #0x1c]
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -5642,7 +5642,7 @@ _02239E5C:
 	mov r2, #0x10
 	str ip, [sp, #0x18]
 	str r3, [sp, #0x1c]
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -6289,7 +6289,7 @@ _0223A794:
 	bl ov4_021D806C
 	add r0, sp, #0x18
 	add r1, sp, #0x28
-	bl sub_020CC218
+	bl RTC_ConvertDateTimeToSecond
 	str r0, [r4, #0x14c]
 	str r1, [r4, #0x150]
 	add r2, r4, #0x14c
@@ -6482,7 +6482,7 @@ ov66_0223A9FC: ; 0x0223A9FC
 	ldr r2, [r4, #0xc]
 	ldr r0, [r4, #0x10]
 	add r0, r2, r0
-	bl sub_020E2178
+	bl _u32_div_f
 	mov r2, r1
 _0223AA3C:
 	ldr r8, [r4, #8]
@@ -6636,8 +6636,8 @@ ov66_0223ABF4: ; 0x0223ABF4
 	ldr r5, [sp, #0x30]
 	bne _0223AC2C
 	ldr r0, _0223ACFC ; =0x02259004
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0223AC2C:
 	mov r1, #0
 	mov r0, #0x28
@@ -7431,7 +7431,7 @@ ov66_0223B6C0: ; 0x0223B6C0
 	ldr r0, [r4, #4]
 	mov r2, r5
 	add r0, r3, r0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r4, #4]
 	add r0, r0, r5
 	str r0, [r4, #4]
@@ -7567,7 +7567,7 @@ _0223B8B4:
 	mov r2, r4
 	add r0, r0, r1
 	mov r1, #0
-	bl sub_020D5124
+	bl memset
 	ldr r0, [r5, #4]
 	add r0, r0, r4
 	str r0, [r5, #4]
@@ -7709,7 +7709,7 @@ _0223BA84:
 	cmp r1, #3
 	blo _0223BA84
 	mov r0, r5
-	bl sub_020D8B60
+	bl strlen
 	mov r4, r0
 	mov r0, r6
 	mov r1, r4
@@ -7755,8 +7755,8 @@ ov66_0223BB10: ; 0x0223BB10
 	cmp r8, r1
 	bls _0223BB34
 	ldr r0, _0223BC58 ; =0x02259020
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0223BB34:
 	ldr r0, [sb]
 	mov r0, r0, lsl #0x1f
@@ -7807,7 +7807,7 @@ _0223BBD8:
 	mov r0, r5
 	mov r1, sl
 	mov r2, r4
-	bl sub_020D50D8
+	bl memmove
 	mov r0, #0
 	cmp r7, #0
 	strb r0, [r5, r4]
@@ -7921,8 +7921,8 @@ _0223BD54:
 	cmp r0, r5
 	bls _0223BD6C
 	ldr r0, _0223BDC0 ; =0x02259044
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0223BD6C:
 	ldr r2, [sp, #0x28]
 	ldr r0, [sp, #0x2c]
@@ -8050,7 +8050,7 @@ ov66_0223BEEC: ; 0x0223BEEC
 	mov r4, r1
 	mov r5, r0
 	mov r0, r4
-	bl sub_020D8B60
+	bl strlen
 	ldr r1, [r5, #0]
 	mov r1, r1, lsl #0x1f
 	movs r1, r1, lsr #0x1f
@@ -8089,8 +8089,8 @@ _0223BF74:
 	cmp r6, r7
 	bls _0223BF88
 	ldr r0, _0223C014 ; =0x02259060
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0223BF88:
 	ldr r0, [sp, #0x28]
 	sub r1, r7, r6
@@ -8107,7 +8107,7 @@ _0223BF88:
 	ldr r2, [r0, #0]
 	mov r1, r5
 	add r0, r4, r6
-	bl sub_020D5190
+	bl memcmp
 	cmp r0, #0
 	addne sp, sp, #8
 	ldmneia sp!, {r3, r4, r5, r6, r7, lr}
@@ -8166,8 +8166,8 @@ _0223C088:
 	cmp r5, r8
 	bls _0223C09C
 	ldr r0, _0223C2E8 ; =0x02259044
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0223C09C:
 	ldr r0, [sp, #0x58]
 	sub r1, r8, r5
@@ -8185,8 +8185,8 @@ _0223C09C:
 	cmpls sl, r0
 	bls _0223C0E4
 	ldr r0, _0223C2EC ; =0x0225907C
-	bl sub_020D7350
-	bl sub_020D3DA0
+	bl printf
+	bl abort
 _0223C0E4:
 	ldr r0, [sp, #0x10]
 	add sl, sb, sl
@@ -8216,14 +8216,14 @@ _0223C130:
 	beq _0223C150
 	mov r1, r7
 	mov r2, r5
-	bl sub_020D50B8
+	bl memcpy
 _0223C150:
 	ldr r0, [sp, #8]
 	sub r2, r4, fp
 	add r0, r0, r5
 	mov r1, fp
 	str r0, [sp, #4]
-	bl sub_020D50D8
+	bl memmove
 	ldr r0, [sp, #0xc]
 	cmp r0, #0
 	beq _0223C190
@@ -8233,7 +8233,7 @@ _0223C150:
 	add r3, r7, r5
 	add r0, r0, sb
 	add r1, r3, r1
-	bl sub_020D50B8
+	bl memcpy
 _0223C190:
 	ldr r1, _0223C2F0 ; =0x02258E58
 	ldr r0, [sp]
@@ -8301,12 +8301,12 @@ _0223C264:
 	mov r2, r0
 	add r0, r3, sb
 	add r1, r3, r1
-	bl sub_020D50D8
+	bl memmove
 _0223C288:
 	mov r1, fp
 	mov r2, sb
 	add r0, r7, r5
-	bl sub_020D50D8
+	bl memmove
 	ldr r0, [sp]
 	ldr r1, _0223C2F0 ; =0x02258E58
 	cmp r0, #0
@@ -8358,7 +8358,7 @@ ov66_0223C2F4: ; 0x0223C2F4
 	mov r1, r5
 	add r0, r2, r0
 	sub r2, r4, r5
-	bl sub_020D50D8
+	bl memmove
 	ldr r1, [r6, #4]
 	sub r0, r4, r5
 	add r0, r1, r0
@@ -8692,7 +8692,7 @@ ov66_0223C734: ; 0x0223C734
 	add r0, r3, r0
 	str r5, [sp, #0x18]
 	strb r1, [sp, #2]
-	bl sub_020D5124
+	bl memset
 	ldr r1, [sp, #0xc]
 	ldr r0, [sp, #0x18]
 	add r1, r1, r4
@@ -8709,11 +8709,11 @@ ov66_0223C734: ; 0x0223C734
 	add r0, r0, r2
 	mov r1, r5
 	mov r2, r4
-	bl sub_020D50B8
+	bl memcpy
 	mov r0, r5
 	mov r1, #0
 	mov r2, r4
-	bl sub_020D5124
+	bl memset
 	ldr r1, [sp, #0xc]
 	mov r0, #0
 	add r1, r1, r4

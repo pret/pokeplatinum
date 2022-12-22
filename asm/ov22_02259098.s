@@ -111,7 +111,7 @@ ov22_022590D4: ; 0x022590D4
 	bl sub_02006FE8
 	add r1, sp, #0x14
 	str r0, [sp, #0x10]
-	bl sub_020A7118
+	bl NNS_G2dGetUnpackedCharacterData
 	ldr r0, [sp, #0x14]
 	ldrh r1, [r4]
 	ldr r0, [r0, #0x14]

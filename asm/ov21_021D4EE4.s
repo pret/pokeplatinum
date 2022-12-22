@@ -335,7 +335,7 @@ _021D50EC:
 _021D50EE:
 	add r0, r1, #0
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	mov r4, #0
 	cmp r5, #0
@@ -365,7 +365,7 @@ _021D511C:
 _021D511E:
 	add r0, r1, #0
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r0, #0
 	mov r4, #0
 	cmp r5, #0
@@ -400,11 +400,11 @@ _021D5154:
 	bne _021D5170
 	add r0, r5, #0
 	add r1, r2, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r1, [r4, #0xc]
 	ldr r1, [r4, #4]
 	add r0, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	str r0, [r4, #0x10]
 	pop {r4, r5, r6, pc}
 _021D5170:

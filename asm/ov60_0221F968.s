@@ -125,19 +125,19 @@ _0221FA1C:
 	add r0, #1
 	add r1, r6, #0
 	add r2, r4, #0
-	bl sub_020D8CC4
+	bl strncat
 	add r0, sp, #0x14
 	add r0, #1
-	bl sub_020D8B60
+	bl strlen
 	add r1, sp, #0x14
 	add r2, r0, #0
 	add r0, r5, #0
 	add r1, #1
-	bl sub_020D3068
+	bl MATH_CalcSHA1
 	ldr r0, _0221FC58 ; =0x02228E40
 	ldr r1, _0221FC64 ; =0x02228E8C
 	ldr r0, [r0, #0x24]
-	bl sub_020D8C94
+	bl strcat
 	mov r2, #0
 	ldr r4, _0221FC58 ; =0x02228E40
 	add r3, r2, #0
@@ -166,7 +166,7 @@ _0221FA5C:
 	strb r2, [r1]
 	ldr r0, [r0, #0x24]
 	ldr r1, _0221FC68 ; =0x02228E94
-	bl sub_020D8C94
+	bl strcat
 	ldr r3, _0221FC58 ; =0x02228E40
 	ldr r0, [r3, #0x30]
 	str r0, [sp]
@@ -203,7 +203,7 @@ _0221FAC6:
 	bne _0221FB70
 	ldr r1, _0221FC6C ; =0x02228E9C
 	mov r2, #0x16
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _0221FAE4
 	ldr r0, _0221FC58 ; =0x02228E40
@@ -217,7 +217,7 @@ _0221FAE4:
 	ldr r1, _0221FC70 ; =0x02228EB4
 	add r0, r6, #0
 	mov r2, #0x16
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _0221FB00
 	ldr r0, _0221FC58 ; =0x02228E40
@@ -231,7 +231,7 @@ _0221FB00:
 	ldr r1, _0221FC74 ; =0x02228ECC
 	add r0, r6, #0
 	mov r2, #0x16
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _0221FB1C
 	ldr r0, _0221FC58 ; =0x02228E40
@@ -245,7 +245,7 @@ _0221FB1C:
 	ldr r1, _0221FC78 ; =0x02228EE4
 	add r0, r6, #0
 	mov r2, #0x16
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _0221FB38
 	ldr r0, _0221FC58 ; =0x02228E40
@@ -259,7 +259,7 @@ _0221FB38:
 	ldr r1, _0221FC7C ; =0x02228EFC
 	add r0, r6, #0
 	mov r2, #0x16
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _0221FB54
 	ldr r0, _0221FC58 ; =0x02228E40
@@ -273,7 +273,7 @@ _0221FB54:
 	ldr r1, _0221FC80 ; =0x02228F14
 	add r0, r6, #0
 	mov r2, #0x16
-	bl sub_020D8E28
+	bl strncmp
 	cmp r0, #0
 	bne _0221FB70
 	ldr r0, _0221FC58 ; =0x02228E40
@@ -291,14 +291,14 @@ _0221FB70:
 	bgt _0221FB8A
 	add r1, r6, #0
 	add r2, r4, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0221FC58 ; =0x02228E40
 	mov r1, #7
 	str r1, [r0, #0]
 	b _0221FB9A
 _0221FB8A:
 	add r1, r6, #0
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0221FC58 ; =0x02228E40
 	mov r1, #1
 	str r1, [r0, #0]
@@ -473,7 +473,7 @@ _0221FCBC:
 	str r2, [r1, #0x1c]
 	ldr r2, [sp, #0x1c]
 	str r2, [r1, #0x20]
-	bl sub_020D8B60
+	bl strlen
 	add r6, r0, #0
 	add r0, r4, #0
 	bl ov60_0221F944
@@ -492,20 +492,20 @@ _0221FCF0:
 	ldr r1, _0221FD3C ; =0x02228F2C
 	add r2, r7, #0
 	add r3, r5, #0
-	bl sub_020D7510
+	bl sprintf
 	ldr r0, _0221FD38 ; =0x02228E40
 	ldr r6, [r0, #0x24]
 	add r0, r6, #0
-	bl sub_020D8B60
+	bl strlen
 	add r5, r0, #0
 	ldr r0, _0221FD40 ; =0x02228E8C
-	bl sub_020D8B60
+	bl strlen
 	add r1, r6, r5
 	add r1, r1, r0
 	ldr r0, _0221FD38 ; =0x02228E40
 	str r1, [r0, #0x28]
 	ldr r0, _0221FD44 ; =0x02228E94
-	bl sub_020D8B60
+	bl strlen
 	ldr r1, _0221FD38 ; =0x02228E40
 	ldr r2, [r1, #0x28]
 	add r2, #0x28

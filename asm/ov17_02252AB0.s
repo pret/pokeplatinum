@@ -117,7 +117,7 @@ _02252B5A:
 	mov r1, #0
 	mov r2, #0x18
 	str r0, [sp]
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r5, [sp]
 	mov r4, #0
 _02252B92:

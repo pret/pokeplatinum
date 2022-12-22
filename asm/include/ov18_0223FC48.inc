@@ -1,5 +1,5 @@
-.public sub_020BF578
-.public sub_020BF5E8
+.public G2x_SetBlendBrightness_
+.public G2x_ChangeBlendBrightness_
 .public ov18_0222B8F8
 .public ov18_0222F8D0
 .public ov18_0223FFE8

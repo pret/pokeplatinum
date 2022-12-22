@@ -29,21 +29,21 @@ ov61_0222D4AC: ; 0x0222D4AC
 
 	arm_func_start ov61_0222D4C8
 ov61_0222D4C8: ; 0x0222D4C8
-	ldr ip, _0222D4D4 ; =sub_020C29D8
+	ldr ip, _0222D4D4 ; =OS_LockMutex
 	ldr r0, _0222D4D8 ; =0x0222EA98
 	bx ip
 	; .align 2, 0
-_0222D4D4: .word sub_020C29D8
+_0222D4D4: .word OS_LockMutex
 _0222D4D8: .word 0x0222EA98
 	arm_func_end ov61_0222D4C8
 
 	arm_func_start ov61_0222D4DC
 ov61_0222D4DC: ; 0x0222D4DC
-	ldr ip, _0222D4E8 ; =sub_020C2A5C
+	ldr ip, _0222D4E8 ; =OS_UnlockMutex
 	ldr r0, _0222D4EC ; =0x0222EA98
 	bx ip
 	; .align 2, 0
-_0222D4E8: .word sub_020C2A5C
+_0222D4E8: .word OS_UnlockMutex
 _0222D4EC: .word 0x0222EA98
 	arm_func_end ov61_0222D4DC
 
@@ -51,7 +51,7 @@ _0222D4EC: .word 0x0222EA98
 ov61_0222D4F0: ; 0x0222D4F0
 	stmfd sp!, {r3, lr}
 	ldr r0, _0222D504 ; =0x0222EA98
-	bl sub_020C29C0
+	bl OS_InitMutex
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -67,10 +67,10 @@ ov61_0222D508: ; 0x0222D508
 	arm_func_start ov61_0222D510
 ov61_0222D510: ; 0x0222D510
 	stmfd sp!, {r3, lr}
-	bl sub_020C3808
+	bl OS_IsTickAvailable
 	cmp r0, #0
 	bne _0222D524
-	bl sub_020C3790
+	bl OS_InitTick
 _0222D524:
 	ldr r0, _0222D538 ; =0x0222E764
 	mov r1, #0x10
@@ -107,9 +107,9 @@ ov61_0222D54C: ; 0x0222D54C
 	ldr r3, _0222D59C ; =0x0222F2B0
 	mov r2, #0
 	str ip, [sp, #4]
-	bl sub_020C1F34
+	bl OS_CreateThread
 	ldr r0, _0222D594 ; =0x0222E9D8
-	bl sub_020C22D0
+	bl OS_WakeupThreadDirect
 	mov r0, #1
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
@@ -187,7 +187,7 @@ ov61_0222D638: ; 0x0222D638
 	bl ov4_022089F4
 	mov r1, r0
 	mov r0, r4
-	bl sub_020D8B7C
+	bl strcpy
 	b _0222D698
 _0222D684:
 	mov r0, #0
@@ -195,7 +195,7 @@ _0222D684:
 _0222D68C:
 	mov r0, r4
 	mov r1, r5
-	bl sub_020D8B7C
+	bl strcpy
 _0222D698:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
@@ -301,10 +301,10 @@ ov61_0222D7B0: ; 0x0222D7B0
 	strh r1, [sp, #2]
 	ldr r0, [r0, #0x264]
 	str r0, [sp, #4]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _0222D8F4 ; =0x0007FD88
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r5, _0222D8F4 ; =0x0007FD88
 	ldr sb, _0222D8F0 ; =0x0222E764
 	mov r7, r0
@@ -323,10 +323,10 @@ _0222D820:
 	ldr r0, [sb, #0x244]
 	cmp r0, #0
 	beq _0222D8A4
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, r5
 	mov r3, r4
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r1, [sb, #0x244]
 	subs r0, r0, r7
 	cmp r0, r1
@@ -378,10 +378,10 @@ _0222D8F4: .word 0x0007FD88
 ov61_0222D8F8: ; 0x0222D8F8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sb, #0
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _0222DA04 ; =0x0007FD88
 	mov r3, sb
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r7, _0222DA04 ; =0x0007FD88
 	ldr r5, _0222DA08 ; =0x0222E764
 	mov sl, r0
@@ -417,10 +417,10 @@ _0222D984:
 	ldr r0, [r5, #0x248]
 	cmp r0, #0
 	beq _0222D9C4
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, r7
 	mov r3, r6
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r1, [r5, #0x248]
 	subs r0, r0, sl
 	cmp r0, r1
@@ -460,10 +460,10 @@ ov61_0222DA0C: ; 0x0222DA0C
 	mov sl, #0
 	sub r0, sl, #1
 	str r0, [sp]
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _0222DB84 ; =0x0007FD88
 	mov r3, sl
-	bl sub_020E1ED4
+	bl _ull_div
 	mvn r4, #0
 	ldr fp, _0222DB84 ; =0x0007FD88
 	ldr r6, _0222DB88 ; =0x0222E764
@@ -525,10 +525,10 @@ _0222DB04:
 	ldr r0, [r6, #0x24c]
 	cmp r0, #0
 	beq _0222DB44
-	bl sub_020C3880
+	bl OS_GetTick
 	mov r2, fp
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	ldr r1, [r6, #0x24c]
 	subs r0, r0, sb
 	cmp r0, r1
@@ -564,10 +564,10 @@ _0222DB88: .word 0x0222E764
 
 	arm_func_start ov61_0222DB8C
 ov61_0222DB8C: ; 0x0222DB8C
-	ldr ip, _0222DB94 ; =sub_020C24A4
+	ldr ip, _0222DB94 ; =OS_Sleep
 	bx ip
 	; .align 2, 0
-_0222DB94: .word sub_020C24A4
+_0222DB94: .word OS_Sleep
 	arm_func_end ov61_0222DB8C
 
 	arm_func_start ov61_0222DB98

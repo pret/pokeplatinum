@@ -11,9 +11,9 @@ ov18_0221F800: ; 0x0221F800
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	bl sub_02033478
-	bl sub_020C3790
-	bl sub_020C39BC
-	bl sub_020C3D98
+	bl OS_InitTick
+	bl OS_InitAlarm
+	bl OS_DisableInterrupts
 	add r5, r0, #0
 	mov r0, #2
 	bl ov4_021D792C
@@ -28,7 +28,7 @@ ov18_0221F800: ; 0x0221F800
 	add r0, r4, #0
 	bl sub_020181C4
 	add r0, r5, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	ldr r1, _0221F848 ; =0x04000208
 	ldrh r0, [r1]
 	mov r0, #1

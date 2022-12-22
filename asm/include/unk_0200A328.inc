@@ -27,4 +27,4 @@
 .public sub_0201FA58
 .public sub_0201FA80
 .public sub_02022974
-.public sub_020A81FC
+.public NNS_G2dGetImagePaletteLocation

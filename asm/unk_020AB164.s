@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020AB164
-sub_020AB164: ; 0x020AB164
+	arm_func_start NNSi_G2dGetCellTransferState
+NNSi_G2dGetCellTransferState: ; 0x020AB164
 	ldr r2, _020AB178 ; =0x021C5A60
 	mov r1, #0x30
 	ldr r2, [r2, #8]
@@ -15,10 +15,10 @@ sub_020AB164: ; 0x020AB164
 	bx lr
 	; .align 2, 0
 _020AB178: .word 0x021C5A60
-	arm_func_end sub_020AB164
+	arm_func_end NNSi_G2dGetCellTransferState
 
-	arm_func_start sub_020AB17C
-sub_020AB17C: ; 0x020AB17C
+	arm_func_start NNSi_G2dInitCellTransferState
+NNSi_G2dInitCellTransferState: ; 0x020AB17C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr ip, _020AB21C ; =0x021C5A60
 	mov r4, #0x30
@@ -28,14 +28,14 @@ sub_020AB17C: ; 0x020AB17C
 	mov r0, r4
 	mov r6, r2
 	mov r5, r3
-	bl sub_020A8AAC
+	bl NNSi_G2dInitializeVRamLocation
 	mvn r0, #0
 	cmp r7, r0
 	beq _020AB1C0
 	mov r0, r4
 	mov r2, r7
 	mov r1, #0
-	bl sub_020A8AC8
+	bl NNSi_G2dSetVramLocation
 _020AB1C0:
 	mvn r0, #0
 	cmp r6, r0
@@ -43,7 +43,7 @@ _020AB1C0:
 	mov r0, r4
 	mov r2, r6
 	mov r1, #1
-	bl sub_020A8AC8
+	bl NNSi_G2dSetVramLocation
 _020AB1DC:
 	mvn r0, #0
 	cmp r5, r0
@@ -51,7 +51,7 @@ _020AB1DC:
 	mov r0, r4
 	mov r2, r5
 	mov r1, #2
-	bl sub_020A8AC8
+	bl NNSi_G2dSetVramLocation
 _020AB1F8:
 	ldr r1, [sp, #0x18]
 	ldr r0, [sp, #0x1c]
@@ -64,10 +64,10 @@ _020AB1F8:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020AB21C: .word 0x021C5A60
-	arm_func_end sub_020AB17C
+	arm_func_end NNSi_G2dInitCellTransferState
 
-	arm_func_start sub_020AB220
-sub_020AB220: ; 0x020AB220
+	arm_func_start NNS_G2dInitCellTransferStateManager
+NNS_G2dInitCellTransferStateManager: ; 0x020AB220
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r3, _020AB280 ; =0x021C5A60
 	movs r6, r1
@@ -78,7 +78,7 @@ sub_020AB220: ; 0x020AB220
 	mov r4, r5
 _020AB240:
 	mov r0, r7
-	bl sub_020A8AAC
+	bl NNSi_G2dInitializeVRamLocation
 	str r4, [r7, #0xc]
 	str r4, [r7, #0x10]
 	str r4, [r7, #0x14]
@@ -95,10 +95,10 @@ _020AB240:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020AB280: .word 0x021C5A60
-	arm_func_end sub_020AB220
+	arm_func_end NNS_G2dInitCellTransferStateManager
 
-	arm_func_start sub_020AB284
-sub_020AB284: ; 0x020AB284
+	arm_func_start NNS_G2dUpdateCellTransferStateManager
+NNS_G2dUpdateCellTransferStateManager: ; 0x020AB284
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	ldr r1, _020AB3A0 ; =0x021C5A60
@@ -141,7 +141,7 @@ _020AB300:
 	mov r0, r8
 	mov r1, r7
 	ldrne sl, [r8, #0x10]
-	bl sub_020A8AD0
+	bl NNSi_G2dGetVramLocation
 	ldr r2, [r8, #0x28]
 	mov r1, r0
 	mov r0, sb
@@ -179,23 +179,23 @@ _020AB36C:
 	; .align 2, 0
 _020AB3A0: .word 0x021C5A60
 _020AB3A4: .word 0x020F9688
-	arm_func_end sub_020AB284
+	arm_func_end NNS_G2dUpdateCellTransferStateManager
 
-	arm_func_start sub_020AB3A8
-sub_020AB3A8: ; 0x020AB3A8
+	arm_func_start NNS_G2dSetCellTransferStateRequested
+NNS_G2dSetCellTransferStateRequested: ; 0x020AB3A8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r1
 	mov r4, r2
-	bl sub_020AB164
+	bl NNSi_G2dGetCellTransferState
 	mvn r1, #0
 	str r1, [r0, #0x24]
 	str r5, [r0, #0x28]
 	str r4, [r0, #0x2c]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end sub_020AB3A8
+	arm_func_end NNS_G2dSetCellTransferStateRequested
 
-	arm_func_start sub_020AB3CC
-sub_020AB3CC: ; 0x020AB3CC
+	arm_func_start NNS_G2dGetNewCellTransferStateHandle
+NNS_G2dGetNewCellTransferStateHandle: ; 0x020AB3CC
 	ldr r1, _020AB420 ; =0x021C5A60
 	mov r0, #0
 	ldr r3, [r1, #4]
@@ -222,17 +222,17 @@ _020AB418:
 	bx lr
 	; .align 2, 0
 _020AB420: .word 0x021C5A60
-	arm_func_end sub_020AB3CC
+	arm_func_end NNS_G2dGetNewCellTransferStateHandle
 
-	arm_func_start sub_020AB424
-sub_020AB424: ; 0x020AB424
+	arm_func_start NNS_G2dFreeCellTransferStateHandle
+NNS_G2dFreeCellTransferStateHandle: ; 0x020AB424
 	stmfd sp!, {r4, lr}
 	ldr r2, _020AB46C ; =0x021C5A60
 	mov r1, #0x30
 	ldr r2, [r2, #8]
 	mla r4, r0, r1, r2
 	mov r0, r4
-	bl sub_020A8AAC
+	bl NNSi_G2dInitializeVRamLocation
 	mov r0, #0
 	str r0, [r4, #0xc]
 	str r0, [r4, #0x10]
@@ -246,7 +246,7 @@ sub_020AB424: ; 0x020AB424
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020AB46C: .word 0x021C5A60
-	arm_func_end sub_020AB424
+	arm_func_end NNS_G2dFreeCellTransferStateHandle
 
 	.rodata
 

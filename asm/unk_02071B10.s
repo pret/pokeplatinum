@@ -189,7 +189,7 @@ sub_02071C5C: ; 0x02071C5C
 	bl sub_02027F6C
 	mov r1, #0
 	mov r2, #0x20
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	thumb_func_end sub_02071C5C
 

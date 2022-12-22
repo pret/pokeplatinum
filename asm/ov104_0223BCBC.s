@@ -52,7 +52,7 @@ _0223BCF8:
 _0223BD04:
 	bl sub_0201D2E8
 	add r1, r5, #0
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r0, r4, r1
 	pop {r3, r4, r5, pc}
 	nop

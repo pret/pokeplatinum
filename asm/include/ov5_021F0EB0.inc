@@ -5,8 +5,8 @@
 .public sub_0201CED0
 .public sub_02020A50
 .public sub_02020A90
-.public sub_020D5124
-.public sub_020E1F6C
+.public memset
+.public _s32_div_f
 .public ov5_021F0F2C
 .public ov5_021F0FB8
 .public ov5_021F0FC8

@@ -1,9 +1,9 @@
-.public sub_020C3880
-.public sub_020C4CF4
-.public sub_020C4DB0
-.public sub_020D5190
-.public sub_020D8C44
-.public sub_020E1ED4
+.public OS_GetTick
+.public MI_CpuFill8
+.public MI_CpuCopy8
+.public memcmp
+.public strncpy
+.public _ull_div
 .public ov4_021D7708
 .public ov4_021D7724
 .public ov4_021D9968

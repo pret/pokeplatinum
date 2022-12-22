@@ -2864,7 +2864,7 @@ _022428A4:
 	sub r2, #0x14
 	ldr r2, [r4, r2]
 	lsl r2, r2, #4
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02242928 ; =0x000004C8
 	mov r5, #0
 	ldr r0, [r4, r0]
@@ -5019,7 +5019,7 @@ _02243A70:
 	ldr r0, [r5, r0]
 	ldr r2, _02243B18 ; =0x00001D4C
 	add r1, r4, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02243AA8:
 	mov r0, #0x6f
 	lsl r0, r0, #4
@@ -5389,7 +5389,7 @@ ov62_02243DC8: ; 0x02243DC8
 	mov r1, #0
 	lsl r2, r2, #4
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x86
 	lsl r0, r0, #4
 	str r4, [r5, r0]
@@ -6073,7 +6073,7 @@ _0224434A:
 	ldr r0, [r5, r0]
 	ldr r2, _022443E8 ; =0x00001D4C
 	add r1, r4, r1
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _0224437E:
 	ldr r0, _022443CC ; =0x000006F4
 	mov r1, #0
@@ -6157,7 +6157,7 @@ ov62_022443EC: ; 0x022443EC
 	ldr r0, [r4, r0]
 	mov r2, #0x64
 	add r0, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r4, pc}
 	nop
 _02244438: .word 0x000004BC
@@ -6205,7 +6205,7 @@ ov62_0224443C: ; 0x0224443C
 	ldr r0, [r2, r0]
 	mov r2, #0x64
 	add r0, #0x80
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _02244498: .word 0x000004D4
@@ -10682,7 +10682,7 @@ ov62_022469A0: ; 0x022469A0
 	add r0, r7, #0
 	add r1, r4, #0
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	str r0, [sp, #0x24]
 	add r4, r1, #0
 	ldr r0, [r5, #0x48]
@@ -10697,7 +10697,7 @@ ov62_022469A0: ; 0x022469A0
 	ldr r2, _02246AF0 ; =0x000186A0
 	add r0, r7, #0
 	mov r3, #0
-	bl sub_020E1EE0
+	bl _ull_mod
 	add r1, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -10709,7 +10709,7 @@ ov62_022469A0: ; 0x022469A0
 	ldr r2, _02246AF0 ; =0x000186A0
 	add r1, r4, #0
 	mov r3, #0
-	bl sub_020E1EE0
+	bl _ull_mod
 	add r1, r0, #0
 	mov r0, #1
 	str r0, [sp]
@@ -10721,7 +10721,7 @@ ov62_022469A0: ; 0x022469A0
 	ldr r2, _02246AF0 ; =0x000186A0
 	add r1, r4, #0
 	mov r3, #0
-	bl sub_020E1ED4
+	bl _ull_div
 	add r1, r0, #0
 	mov r0, #1
 	str r0, [sp]

@@ -112,8 +112,8 @@
 .public sub_02095AF0
 .public sub_02095B5C
 .public sub_02095BEC
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov6_02248A64
 .public ov6_02248AF0
 .public ov6_02248B70

@@ -22,7 +22,7 @@ sub_02099DFC: ; 0x02099DFC
 	mov r1, #0
 	mov r2, #0x38
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x58
 	str r0, [r4, #0]
 	mov r0, #0
@@ -173,7 +173,7 @@ sub_02099F54: ; 0x02099F54
 	add r0, r4, #0
 	bl sub_0201807C
 	mov r0, #0
-	bl sub_020C3EE4
+	bl OS_ResetSystem
 	mov r0, #1
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02099F54

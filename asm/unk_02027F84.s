@@ -34,7 +34,7 @@ _02027FA2:
 	add r0, r5, #0
 	add r1, r7, #0
 	mov r2, #0x88
-	bl sub_020D5124
+	bl memset
 	strh r6, [r5]
 	add r4, r4, #1
 	add r5, #0x88
@@ -204,7 +204,7 @@ _020280C4:
 	ldr r0, [sp]
 	ldr r1, [sp, #0x10]
 	lsl r2, r2, #6
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, [sp, #0x10]
 	bl sub_020181C4
 	add sp, #0x2c

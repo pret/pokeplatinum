@@ -1,5 +1,5 @@
-.public sub_020CE7F4
-.public sub_020CE814
+.public WM_GetAllowedChannel
+.public WM_GetLinkLevel
 .public ov18_0222BD88
 .public ov18_02243ECC
 .public ov18_02243F60

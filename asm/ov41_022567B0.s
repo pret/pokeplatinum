@@ -413,7 +413,7 @@ ov41_02256A8C: ; 0x02256A8C
 	mov r2, #0x20
 	add r1, r1, r5
 	lsl r1, r1, #5
-	bl sub_020C090C
+	bl GXS_LoadBG3Char
 	add r0, r6, #0
 	bl ov41_022568C8
 	add sp, #8

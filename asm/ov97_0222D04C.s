@@ -24,7 +24,7 @@ ov97_0222D04C: ; 0x0222D04C
 	str r0, [r1, #0]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _0222D09C ; =0x0223F1A4
 	mov r1, #0x32
 	ldr r0, [r0, #0]
@@ -307,7 +307,7 @@ _0222D256:
 	add r5, #0x8c
 	add r0, r5, #0
 	mov r2, #0x50
-	bl sub_020D50B8
+	bl memcpy
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
 _0222D276:

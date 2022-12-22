@@ -22,7 +22,7 @@ ov4_02207D90: ; 0x02207D90
 	mov r5, #0x64
 _02207DC0:
 	mov r0, r5
-	bl sub_020C24A4
+	bl OS_Sleep
 	bl ov4_02207EDC
 	cmp r0, r4
 	beq _02207DC0
@@ -62,7 +62,7 @@ ov4_02207E34: ; 0x02207E34
 	ldr r4, _02207ED0 ; =0x0221DBFC
 	ldr r5, _02207ED4 ; =0x0221DC5C
 _02207E40:
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	ldr r6, [r5, #0]
 	cmp r6, #0
 	beq _02207E74
@@ -78,7 +78,7 @@ _02207E68:
 	cmp r6, #0
 	bne _02207E54
 _02207E74:
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	cmp r6, #0
 	beq _02207E8C
 	mov r0, r6

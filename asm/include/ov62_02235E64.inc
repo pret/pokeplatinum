@@ -33,7 +33,7 @@
 .public sub_0202F298
 .public sub_0202FE98
 .public sub_0208BA84
-.public sub_020D5124
+.public memset
 .public ov62_0222FB44
 .public ov62_0222FB60
 .public ov62_02230098

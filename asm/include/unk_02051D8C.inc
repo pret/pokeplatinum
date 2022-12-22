@@ -93,5 +93,5 @@
 .public sub_0207D570
 .public sub_0207D990
 .public sub_0208C324
-.public sub_020C4B4C
-.public sub_020C4CF4
+.public MIi_CpuClear32
+.public MI_CpuFill8

@@ -7,6 +7,6 @@
 .public sub_020507E4
 .public sub_0206A954
 .public sub_0206AF3C
-.public sub_020C4CF4
-.public sub_020E2178
+.public MI_CpuFill8
+.public _u32_div_f
 .public ov6_02246AF8

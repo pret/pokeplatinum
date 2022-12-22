@@ -1,8 +1,8 @@
-.public sub_020C144C
-.public sub_020C14D4
-.public sub_020C15F0
-.public sub_020C161C
-.public sub_020C167C
-.public sub_020C3D84
+.public OS_SetIrqFunction
+.public OS_GetIrqFunction
+.public OS_SetIrqMask
+.public OS_EnableIrqMask
+.public OS_ResetRequestIrqMask
+.public OS_EnableInterrupts
 .public ov18_0224594C
 .public ov18_02246254

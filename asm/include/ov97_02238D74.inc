@@ -12,7 +12,7 @@
 .public sub_02099560
 .public sub_020995B4
 .public sub_020995C4
-.public sub_020E2178
+.public _u32_div_f
 .public ov4_021D1F3C
 .public ov4_021D75F4
 .public ov4_021D76E8

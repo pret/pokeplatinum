@@ -47,7 +47,7 @@ _0223B6B4:
 	ldr r2, _0223B7CC ; =0x000012C4
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x44
 	bl sub_02018340
 	str r0, [r4, #4]
@@ -112,7 +112,7 @@ _0223B6B4:
 	mov r1, #2
 	lsl r1, r1, #0x10
 	mov r2, #0
-	bl sub_020A5404
+	bl NNS_FndCreateExpHeapEx
 	str r0, [r4, #0x28]
 	ldr r1, _0223B7F4 ; =0x00000497
 	mov r0, #0xb
@@ -391,7 +391,7 @@ ov96_0223B9D0: ; 0x0223B9D0
 	mov r1, #0x44
 	bl sub_02006C24
 	str r0, [sp, #0x14]
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -660,16 +660,16 @@ ov96_0223BC04: ; 0x0223BC04
 	push {r4, r5, r6, lr}
 	add r5, r1, #0
 	add r4, r2, #0
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r6, r0, #0
 	ldr r0, _0223BC28 ; =0x0223DEEC
 	add r1, r5, #0
 	ldr r0, [r0, #4]
 	add r2, r4, #0
-	bl sub_020A5448
+	bl NNS_FndAllocFromExpHeapEx
 	add r4, r0, #0
 	add r0, r6, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -681,14 +681,14 @@ ov96_0223BC2C: ; 0x0223BC2C
 	push {r3, r4, r5, lr}
 	add r5, r1, #0
 	beq _0223BC48
-	bl sub_020C3D98
+	bl OS_DisableInterrupts
 	add r4, r0, #0
 	ldr r0, _0223BC4C ; =0x0223DEEC
 	add r1, r5, #0
 	ldr r0, [r0, #4]
-	bl sub_020A55D8
+	bl NNS_FndFreeToExpHeap
 	add r0, r4, #0
-	bl sub_020C3DAC
+	bl OS_RestoreInterrupts
 _0223BC48:
 	pop {r3, r4, r5, pc}
 	nop

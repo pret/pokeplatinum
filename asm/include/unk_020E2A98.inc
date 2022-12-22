@@ -1,8 +1,8 @@
-.public sub_020D3DA0
-.public sub_020D3F50
-.public sub_020D3F68
-.public sub_020D8D14
-.public sub_020E2178
+.public abort
+.public malloc
+.public free
+.public strcmp
+.public _u32_div_f
 .public sub_020E2980
 .public sub_020E2A0C
 .public sub_020E2A98
@@ -24,10 +24,10 @@
 .public sub_020E4100
 .public sub_020E415C
 .public sub_020E4174
-.public sub_020E418C
+.public __throw_catch_compare
 .public sub_020E433C
 .public sub_020E4398
 .public sub_020E4438
 .public sub_020E4458
 .public sub_020E4488
-.public sub_020E44B8
+.public __throw

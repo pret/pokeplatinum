@@ -1,9 +1,9 @@
 .public sub_020A283C
-.public sub_020BD140
-.public sub_020C00B4
-.public sub_020C04EC
-.public sub_020C2C54
-.public sub_020C4DB0
+.public FX_ModS32
+.public GX_LoadBGPltt
+.public GX_LoadBG2Scr
+.public DC_FlushRange
+.public MI_CpuCopy8
 .public ov18_0222B004
 .public ov18_0222B034
 .public ov18_0222B048

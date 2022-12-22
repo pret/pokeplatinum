@@ -31,7 +31,7 @@
 .public sub_02021DE0
 .public sub_020237E8
 .public sub_0209933C
-.public sub_020C4DB0
+.public MI_CpuCopy8
 .public ov79_021D183C
 .public ov79_021D1850
 .public ov79_021D18B4

@@ -39,7 +39,7 @@
 .public sub_0206D340
 .public sub_0207136C
 .public sub_0207A0FC
-.public sub_020D5124
+.public memset
 .public ov5_021DFB54
 .public ov5_021DFB5C
 .public ov5_021F09B4

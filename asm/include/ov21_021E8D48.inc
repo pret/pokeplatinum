@@ -70,10 +70,10 @@
 .public sub_020759F0
 .public sub_02075EF4
 .public sub_02098988
-.public sub_020BF578
-.public sub_020C00B4
-.public sub_020C2C54
-.public sub_020D5124
+.public G2x_SetBlendBrightness_
+.public GX_LoadBGPltt
+.public DC_FlushRange
+.public memset
 .public ov21_021D170C
 .public ov21_021D172C
 .public ov21_021D1858

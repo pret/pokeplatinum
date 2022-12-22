@@ -43,11 +43,11 @@
 .public sub_02024220
 .public sub_020242C4
 .public sub_02074470
-.public sub_020BD140
-.public sub_020BFC74
-.public sub_020BFD58
-.public sub_020C4CF4
-.public sub_020E1F6C
+.public FX_ModS32
+.public G3X_SetFog
+.public G3X_SetClearColor
+.public MI_CpuFill8
+.public _s32_div_f
 .public ov17_0223F118
 .public ov17_0223F15C
 .public ov17_0223F6E8

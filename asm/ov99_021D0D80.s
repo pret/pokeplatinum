@@ -50,7 +50,7 @@ ov99_021D0D80: ; 0x021D0D80
 	ldr r2, _021D0FE4 ; =0x0000111C
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	add r0, r5, #0
 	bl sub_02006840
 	str r0, [r4, #0]
@@ -380,7 +380,7 @@ _021D10D2:
 	add r0, r4, r0
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r0, #0x11
 	mov r1, #2
 	lsl r0, r0, #8
@@ -698,25 +698,25 @@ _021D1394:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _021D1570 ; =0x021D4708
 	add r3, sp, #0
 	add r2, r3, #0
@@ -918,25 +918,25 @@ _021D1594:
 	mov r0, #0
 	lsl r1, r1, #0x18
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x62
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x19
 	mov r2, #1
 	mov r0, #0
 	lsl r1, r1, #0x16
 	lsl r2, r2, #0x12
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	mov r1, #0x66
 	mov r2, #2
 	mov r0, #0
 	lsl r1, r1, #0x14
 	lsl r2, r2, #0x10
-	bl sub_020C4B4C
+	bl MIi_CpuClear32
 	ldr r5, _021D16D8 ; =0x021D46F8
 	add r3, sp, #0x1c
 	add r2, r3, #0
@@ -1099,7 +1099,7 @@ ov99_021D1720: ; 0x021D1720
 	str r0, [sp, #0x2c]
 	str r0, [sp, #0x30]
 	add r0, sp, #4
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	bl sub_020241B4
 	ldr r0, [r6, #0x28]
 	bl sub_020203D4
@@ -1121,121 +1121,121 @@ _021D1766:
 	ldr r2, _021D18C0 ; =0xFFFFF1F0
 	ldr r3, _021D18C4 ; =0xFFFFFE2E
 	mov r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	mov r0, #2
 	mov r1, #0
 	add r2, r1, #0
 	lsl r3, r0, #0xb
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D18C8 ; =0x0000199C
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	mov r0, #2
 	mov r1, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D18CC ; =0x00003DEF
 	ldr r1, _021D18D0 ; =0x0000318B
 	mov r2, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D18D4 ; =0x00004631
 	ldr r1, _021D18D8 ; =0x00001D08
 	mov r2, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	b _021D1848
 _021D17A4:
 	ldr r1, _021D18DC ; =0xFFFFF805
 	ldr r2, _021D18E0 ; =0xFFFFF224
 	mov r0, #0
 	mov r3, #0x6e
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	mov r0, #2
 	mov r1, #0
 	add r2, r1, #0
 	lsl r3, r0, #0xb
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D18E4 ; =0x000052D6
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	mov r0, #2
 	mov r1, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D18CC ; =0x00003DEF
 	ldr r1, _021D18E8 ; =0x00002D69
 	mov r2, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D18EC ; =0x00004210
 	ldr r1, _021D18F0 ; =0x000039CE
 	mov r2, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	b _021D1848
 _021D17E2:
 	ldr r1, _021D18BC ; =0x00000769
 	ldr r2, _021D18C0 ; =0xFFFFF1F0
 	ldr r3, _021D18C4 ; =0xFFFFFE2E
 	mov r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	mov r0, #2
 	mov r1, #0
 	add r2, r1, #0
 	lsl r3, r0, #0xb
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D18F4 ; =0x0000416B
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	mov r0, #2
 	mov r1, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D18F8 ; =0x000041CE
 	ldr r1, _021D18FC ; =0x0000294A
 	mov r2, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D18F8 ; =0x000041CE
 	ldr r1, _021D1900 ; =0x00002D08
 	mov r2, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 	b _021D1848
 _021D1820:
 	mov r0, #0
 	ldr r2, _021D1904 ; =0xFFFFF000
 	add r1, r0, #0
 	add r3, r0, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1908 ; =0x0000739C
 	mov r0, #0
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	ldr r0, _021D190C ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF56C
+	bl NNS_G3dGlbMaterialColorDiffAmb
 	ldr r0, _021D190C ; =0x00007FFF
 	mov r2, #0
 	add r1, r0, #0
-	bl sub_020AF590
+	bl NNS_G3dGlbMaterialColorSpecEmi
 _021D1848:
 	mov r1, #0
 	ldr r2, _021D1904 ; =0xFFFFF000
 	mov r0, #3
 	add r3, r1, #0
-	bl sub_020AF51C
+	bl NNS_G3dGlbLightVector
 	ldr r1, _021D1908 ; =0x0000739C
 	mov r0, #3
-	bl sub_020AF558
+	bl NNS_G3dGlbLightColor
 	add r0, sp, #0x28
-	bl sub_020AF4BC
+	bl NNS_G3dGlbSetBaseTrans
 	ldr r1, _021D1910 ; =0x021C5B48
 	add r0, sp, #4
-	bl sub_020C4C88
+	bl MI_Copy36B
 	ldr r1, _021D1914 ; =0x021C5B0C
 	mov r0, #0xa4
 	ldr r2, [r1, #0x7c]
 	bic r2, r0
 	add r0, sp, #0x34
 	str r2, [r1, #0x7c]
-	bl sub_020AF4EC
+	bl NNS_G3dGlbSetBaseScale
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	mov r7, #0
 	add r6, #0x6c
 _021D1888:
@@ -1258,7 +1258,7 @@ _021D188C:
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, #0x40
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -1417,13 +1417,13 @@ ov99_021D19C8: ; 0x021D19C8
 	add r1, r0, #0
 	add r2, r0, #0
 	add r3, r0, #0
-	bl sub_020BFC74
+	bl G3X_SetFog
 	mov r0, #0
 	ldr r2, _021D1A40 ; =0x00007FFF
 	add r1, r0, #0
 	mov r3, #0x3f
 	str r0, [sp]
-	bl sub_020BFD58
+	bl G3X_SetClearColor
 	ldr r1, _021D1A44 ; =0xBFFF0000
 	ldr r0, _021D1A48 ; =0x04000580
 	str r1, [r0, #0]

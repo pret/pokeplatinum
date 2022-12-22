@@ -164,7 +164,7 @@ _02039BBC:
 	bne _02039BE0
 	mov r0, #1
 	add r1, r0, #0
-	bl sub_020C12B4
+	bl OS_WaitIrq
 	b _02039BBC
 _02039BE0:
 	add r0, sp, #0x14

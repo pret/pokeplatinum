@@ -6,8 +6,8 @@
 .public sub_020183C4
 .public sub_02019044
 .public sub_02019448
-.public sub_020C01B8
-.public sub_020C2C54
+.public GXS_LoadOBJPltt
+.public DC_FlushRange
 .public ov25_02254664
 .public ov25_02254674
 .public ov25_022546B8

@@ -16,7 +16,7 @@
 .public sub_02097320
 .public sub_0209733C
 .public sub_02097390
-.public sub_020D50B8
+.public memcpy
 .public ov82_0223B140
 .public ov82_0223B380
 .public ov82_0223B3DC

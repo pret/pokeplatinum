@@ -10,10 +10,10 @@
 .public sub_0201C3C0
 .public sub_0201C63C
 .public sub_02022974
-.public sub_020E0B00
-.public sub_020E1740
-.public sub_020E17B4
-.public sub_020E1A9C
+.public _f_add
+.public _f_ftoi
+.public _f_itof
+.public _f_sub
 .public ov63_0222D1B0
 .public ov63_0222D1B8
 .public ov63_0222D31C

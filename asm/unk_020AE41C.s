@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020AE41C
-sub_020AE41C: ; 0x020AE41C
+	arm_func_start NNSi_G2dBitReaderRead
+NNSi_G2dBitReaderRead: ; 0x020AE41C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldrsb r3, [r0, #4]
 	ldrb r4, [r0, #5]
@@ -26,11 +26,11 @@ sub_020AE41C: ; 0x020AE41C
 	mov r2, #8
 	strb r3, [r0, #5]
 	strb r2, [r0, #4]
-	bl sub_020AE41C
+	bl NNSi_G2dBitReaderRead
 	orr r2, r0, r4, lsl r6
 _020AE46C:
 	rsb r0, r5, #8
 	mov r1, #0xff
 	and r0, r2, r1, asr r0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end sub_020AE41C
+	arm_func_end NNSi_G2dBitReaderRead

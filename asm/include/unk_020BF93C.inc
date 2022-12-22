@@ -1,3 +1,3 @@
-.public sub_020C1274
-.public sub_020C1298
-.public sub_020C4C88
+.public GX_SendFifo48B
+.public GX_SendFifo64B
+.public MI_Copy36B

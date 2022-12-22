@@ -226,7 +226,7 @@ ov97_02233518: ; 0x02233518
 	mov r1, #0
 	lsl r2, r2, #2
 	add r4, r0, #0
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r1, #0x46
 	lsl r1, r1, #2
 	add r0, r1, #0
@@ -371,13 +371,13 @@ ov97_022335EC: ; 0x022335EC
 	ldr r1, _02233610 ; =0x00002710
 	add r6, r0, #0
 	add r4, r2, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0]
 	ldr r1, _02233610 ; =0x00002710
 	add r0, r6, #0
-	bl sub_020E2178
+	bl _u32_div_f
 	ldr r1, _02233610 ; =0x00002710
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r4, #0]
 	pop {r4, r5, r6, pc}
 	nop
@@ -395,7 +395,7 @@ ov97_02233618: ; 0x02233618
 	push {r4, lr}
 	ldr r0, _0223362C ; =0x04000006
 	ldrh r4, [r0]
-	bl sub_020C3880
+	bl OS_GetTick
 	add r1, r0, r4
 	mov r0, #1
 	bic r1, r0
@@ -538,7 +538,7 @@ ov97_02233674: ; 0x02233674
 	mov r0, #0
 	add r1, r7, #0
 	add r2, r6, #0
-	bl sub_02000160
+	bl SVC_GetCRC16
 	ldr r1, [r5, #8]
 	lsl r0, r0, #0x10
 	lsl r1, r1, #0x10
@@ -567,7 +567,7 @@ ov97_02233674: ; 0x02233674
 	lsr r1, r1, #0x18
 	add r1, r5, r1
 	add r2, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _02233772:
 	add r0, r5, #0
 	bl ov97_02233810
@@ -631,7 +631,7 @@ ov97_022337D8: ; 0x022337D8
 	lsr r1, r1, #0x18
 	add r1, r4, r1
 	lsr r2, r2, #8
-	bl sub_02000160
+	bl SVC_GetCRC16
 	ldr r1, [r4, #8]
 	lsr r1, r1, #0x10
 	cmp r1, r0

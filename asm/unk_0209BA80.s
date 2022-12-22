@@ -91,7 +91,7 @@ sub_0209BB08: ; 0x0209BB08
 	add r1, r4, r1
 	add r0, #0x3e
 	mov r2, #0x1c
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _0209BB30 ; =0x0000083E
 	mov r0, #0x3f
 	add r1, r4, r1
@@ -128,7 +128,7 @@ sub_0209BB34: ; 0x0209BB34
 	add r0, r6, #0
 	add r1, r4, #0
 	mov r2, #0x1c
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 _0209BB60:
 	pop {r4, r5, r6, pc}
 	nop

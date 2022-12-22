@@ -1,8 +1,8 @@
 .public sub_02022974
 .public sub_0203597C
-.public sub_020C4B68
-.public sub_020C4CF4
-.public sub_020C4DB0
+.public MIi_CpuCopy32
+.public MI_CpuFill8
+.public MI_CpuCopy8
 .public ov17_0224F1B4
 .public ov17_0224F1E0
 .public ov17_0224F2DC

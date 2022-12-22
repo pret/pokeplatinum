@@ -252,7 +252,7 @@ ov104_0222EC20: ; 0x0222EC20
 	mov r1, #1
 	mov r2, #0x3c
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	mov r0, #4
 	mov r1, #0
 	bl sub_0201FF0C
@@ -293,7 +293,7 @@ ov104_0222EC74: ; 0x0222EC74
 	mov r1, #1
 	mov r2, #0x3c
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	nop
 _0222EC88: .word 0x04000050
@@ -345,7 +345,7 @@ ov104_0222ECAC: ; 0x0222ECAC
 	mov r1, #1
 	mov r2, #0x3c
 	str r3, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	pop {r3, pc}
 	nop
 _0222ECE0: .word 0x04000050

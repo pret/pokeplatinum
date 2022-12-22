@@ -54,7 +54,7 @@ _0223D7B6:
 	ldr r2, _0223D908 ; =0x00005CB0
 	mov r1, #0
 	add r4, r0, #0
-	bl sub_020D5124
+	bl memset
 	mov r0, #0x27
 	bl sub_02018340
 	str r0, [r4, #0]
@@ -514,7 +514,7 @@ _0223DBA8:
 	add r1, r1, #4
 	mov r0, #0
 	add r1, r7, r1
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _0223DC24: .word 0x0000433D
@@ -727,7 +727,7 @@ ov72_0223DDD8: ; 0x0223DDD8
 	sub sp, #0x14
 	add r5, r0, #0
 	add r7, r1, #0
-	bl sub_020A7944
+	bl NNS_G2dInitOamManagerModule
 	mov r0, #0
 	str r0, [sp]
 	mov r1, #0x7e
@@ -1141,7 +1141,7 @@ ov72_0223E0A0: ; 0x0223E0A0
 	bl ov72_0223E060
 	mov r1, #2
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r4, #0
 	ldr r0, _0223E254 ; =0x00005B9C
 	str r4, [sp, #0x18]
@@ -1161,12 +1161,12 @@ _0223E156:
 	mov r1, #1
 	add r0, r6, #0
 	lsl r1, r1, #8
-	bl sub_020C2C54
+	bl DC_FlushRange
 	mov r2, #1
 	add r0, r6, #0
 	add r1, r7, #0
 	lsl r2, r2, #8
-	bl sub_020C02BC
+	bl GX_LoadOBJ
 	mov r0, #1
 	lsl r0, r0, #8
 	add r7, r7, r0
@@ -2178,7 +2178,7 @@ _0223E8E6:
 	add r0, sp, #0
 	mov r1, #0x18
 	mov r2, #2
-	bl sub_020C0160
+	bl GX_LoadOBJPltt
 	pop {r3, pc}
 	thumb_func_end ov72_0223E8D0
 

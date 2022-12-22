@@ -80,7 +80,7 @@ ov18_02245C98: ; 0x02245C98
 	mov r8, r1, asr #2
 	mov r0, #1
 	strh r8, [r6, #0xa]
-	bl sub_020C164C
+	bl OS_DisableIrqMask
 	mov r7, r0
 	cmp sl, #0
 	mov r0, #0x1a0
@@ -118,7 +118,7 @@ _02245D54:
 	add r0, r0, #0x18c
 	cmp r5, r0
 	bne _02245DF4
-	bl sub_020C42A8
+	bl OS_Terminate
 	b _02245DF4
 _02245D74:
 	ldr r1, _02245E0C ; =0x022533EC
@@ -155,12 +155,12 @@ _02245DD8:
 	add r0, r0, #0x180
 	cmp r5, r0
 	bne _02245DF4
-	bl sub_020C42A8
+	bl OS_Terminate
 _02245DF4:
 	ldrh r1, [r6, #8]
 	mov r0, r7
 	str r1, [r4, #0]
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, r6
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0

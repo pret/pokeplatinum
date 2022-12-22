@@ -26,7 +26,7 @@ _021DB8AA:
 	mov r2, #0x12
 	mov r1, #0
 	lsl r2, r2, #4
-	bl sub_020D5124
+	bl memset
 	str r7, [r4, #4]
 	ldr r0, [r7, #0xc]
 	bl sub_020507E4
@@ -187,7 +187,7 @@ _021DB9F2:
 	sub r5, r1, r0
 	add r0, r5, #0
 	mov r1, #0xa
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r0, #0
 	bne _021DBA0C
 	mov r3, #1
@@ -195,7 +195,7 @@ _021DB9F2:
 _021DBA0C:
 	add r0, r5, #0
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r0, #0
 	bne _021DBA1C
 	mov r3, #2
@@ -614,7 +614,7 @@ _021DBCFE:
 _021DBD1E:
 	bl sub_0201D2E8
 	mov r1, #0x64
-	bl sub_020E1F6C
+	bl _s32_div_f
 	cmp r1, #0x32
 	bge _021DBD6E
 	ldr r0, [r4, #0x10]

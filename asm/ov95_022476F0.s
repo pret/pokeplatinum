@@ -82,7 +82,7 @@ ov95_02247770: ; 0x02247770
 	add r5, r0, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	bl sub_020203EC
 	ldr r0, [r5, #0x1c]
 	mov r6, #0
@@ -107,7 +107,7 @@ _022477A6:
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -119,7 +119,7 @@ ov95_022477B8: ; 0x022477B8
 	sub sp, #0x50
 	add r4, r0, #0
 	add r0, sp, #0x2c
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	add r0, r4, #0
 	add r0, #0x80
 	ldrh r0, [r0]
@@ -132,11 +132,11 @@ ov95_022477B8: ; 0x022477B8
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #8
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r1, sp, #0x2c
 	add r0, sp, #8
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x82
 	ldrh r0, [r0]
@@ -149,11 +149,11 @@ ov95_022477B8: ; 0x022477B8
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #8
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	add r1, sp, #0x2c
 	add r0, sp, #8
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x84
 	ldrh r0, [r0]
@@ -166,11 +166,11 @@ ov95_022477B8: ; 0x022477B8
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #8
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r1, sp, #0x2c
 	add r0, sp, #8
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x88
 	ldr r0, [r0, #0]
@@ -182,7 +182,7 @@ ov95_022477B8: ; 0x022477B8
 	add r2, r0, #0
 	add r3, r0, #0
 	str r0, [sp, #4]
-	bl sub_020AF5B4
+	bl NNS_G3dGlbPolygonAttr
 _02247850:
 	add r1, r4, #0
 	add r0, r4, #4
@@ -267,11 +267,11 @@ ov95_022478B4: ; 0x022478B4
 	bl sub_02006B58
 	add r1, r0, #0
 	ldr r0, [r4, r6]
-	bl sub_020C2C54
+	bl DC_FlushRange
 	ldr r0, [r4, r6]
 	cmp r0, #0
 	beq _02247950
-	bl sub_020B3C0C
+	bl NNS_G3dGetMdlSet
 	str r0, [r5, #0x58]
 	cmp r0, #0
 	beq _02247918
@@ -298,7 +298,7 @@ _02247918:
 _0224791A:
 	str r0, [r5, #0x5c]
 	ldr r0, [r5, #0]
-	bl sub_020B3C1C
+	bl NNS_G3dGetTex
 	str r0, [r5, #0x60]
 	bl sub_0201CBCC
 	ldr r0, [r5, #0]
@@ -306,7 +306,7 @@ _0224791A:
 	bl sub_0201CBB0
 	ldr r1, [r5, #0x5c]
 	add r0, r5, #4
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	ldr r0, [sp, #0x20]
 	mov r1, #0x1f
 	str r0, [r5, #0x68]
@@ -400,13 +400,13 @@ ov95_022479AC: ; 0x022479AC
 	mov r2, #0x1f
 	mov r1, #0
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	pop {r3, pc}
 _022479C6:
 	mov r2, #0x1f
 	mov r1, #1
 	lsl r2, r2, #0x10
-	bl sub_020B2D8C
+	bl NNSi_G3dModifyPolygonAttrMask
 	pop {r3, pc}
 	; .align 2, 0
 	thumb_func_end ov95_022479AC
@@ -425,7 +425,7 @@ ov95_022479DC: ; 0x022479DC
 	sub sp, #0x4c
 	add r4, r0, #0
 	add r0, sp, #0x28
-	bl sub_020BB4C8
+	bl MTX_Identity33_
 	add r0, r4, #0
 	add r0, #0x80
 	ldrh r0, [r0]
@@ -438,11 +438,11 @@ ov95_022479DC: ; 0x022479DC
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #4
-	bl sub_020BB5AC
+	bl MTX_RotX33_
 	add r1, sp, #0x28
 	add r0, sp, #4
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x82
 	ldrh r0, [r0]
@@ -455,11 +455,11 @@ ov95_022479DC: ; 0x022479DC
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #4
-	bl sub_020BB5C8
+	bl MTX_RotY33_
 	add r1, sp, #0x28
 	add r0, sp, #4
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	add r0, r4, #0
 	add r0, #0x84
 	ldrh r0, [r0]
@@ -472,15 +472,15 @@ ov95_022479DC: ; 0x022479DC
 	ldrsh r1, [r3, r1]
 	ldrsh r2, [r3, r2]
 	add r0, sp, #4
-	bl sub_020BB5E4
+	bl MTX_RotZ33_
 	add r1, sp, #0x28
 	add r0, sp, #4
 	add r2, r1, #0
-	bl sub_020BB8EC
+	bl MTX_Concat33
 	mov r1, #0
 	mov r0, #0x11
 	add r2, r1, #0
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	bl sub_020203EC
 	add r1, r4, #0
 	ldr r0, [r4, #0x5c]
@@ -494,7 +494,7 @@ ov95_022479DC: ; 0x022479DC
 	mov r0, #0x12
 	add r1, sp, #0
 	str r2, [sp]
-	bl sub_020B275C
+	bl NNS_G3dGeBufferOP_N
 	add r0, r4, #0
 	add sp, #0x4c
 	pop {r3, r4, pc}

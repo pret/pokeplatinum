@@ -62,11 +62,11 @@ ov4_021F71C4: ; 0x021F71C4
 	ldr r1, _021F72D4 ; =0x02219490
 	ldr r2, _021F72D8 ; =0x02219450
 	mov r3, #0x2b
-	bl sub_020D407C
+	bl __msl_assertion_failed
 _021F71E4:
 	bl ov4_021EA840
-	bl sub_020D76D4
-	bl sub_020D76A0
+	bl srand
+	bl rand
 	ldr r5, _021F72DC ; =0x2C0B02C1
 	mov r1, r0, lsr #0x1f
 	smull r2, r4, r5, r0
@@ -98,7 +98,7 @@ _021F7228:
 	eor r0, r0, r3
 	eor r0, r0, r2
 	eor r8, r0, r1
-	bl sub_020D76A0
+	bl rand
 	smull r2, r3, r5, r0
 	mov r1, r0, lsr #0x1f
 	add r3, r1, r3, asr #4
@@ -140,7 +140,7 @@ ov4_021F72E0: ; 0x021F72E0
 	mov r5, r0
 	ldr r0, _021F73E0 ; =0x02219464
 	mov r4, r1
-	bl sub_020D8B60
+	bl strlen
 	mov r7, r0
 	mov r0, r4
 	bl ov4_021F7128
@@ -152,7 +152,7 @@ _021F730C:
 	cmpne sl, #0
 	cmpne sl, #0xd
 	bne _021F7344
-	bl sub_020D76A0
+	bl rand
 	ldr r1, _021F73E4 ; =0x2C0B02C1
 	mov r2, r0, lsr #0x1f
 	smull r3, r6, r1, r0
@@ -171,11 +171,11 @@ _021F7344:
 	ldrnesb r6, [r0, #-1]
 	mov r1, r7
 	add r0, sl, sb
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mul r0, r6, r8
 	mov r6, r1
 	mov r1, r7
-	bl sub_020E1F6C
+	bl _s32_div_f
 	ldr r0, _021F73E0 ; =0x02219464
 	ldrsb r3, [r0, r6]
 	ldrsb r2, [r0, r1]
@@ -185,7 +185,7 @@ _021F7344:
 	add r0, r1, r0, ror #27
 	ldrb r0, [r4, r0]
 	eor r0, r0, r2
-	bl sub_020D4070
+	bl abs
 	ldr r1, _021F73E4 ; =0x2C0B02C1
 	smull r2, r3, r1, r0
 	mov r1, r0, lsr #0x1f

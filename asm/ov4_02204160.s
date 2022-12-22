@@ -285,15 +285,15 @@ _022044D8:
 	ldr r3, [r4, #4]
 	mov r1, #0
 	mul r2, r3, r2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _022045A8 ; =0x0221C70C
 	mov r1, #0
 	mov r2, #0x18
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _022045AC ; =0x0221C6F4
 	mov r1, #0
 	mov r2, #0x18
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r3, [r4, #4]
 	mov ip, #0
 	subs r0, r3, #1
@@ -323,7 +323,7 @@ _02204558:
 	str r4, [r1, #4]
 	ldr r0, _022045B0 ; =0x0221DBD8
 	str r4, [r1, #0]
-	ldr r3, _022045B4 ; =sub_020C3880
+	ldr r3, _022045B4 ; =OS_GetTick
 	str r4, [r0, #0x14]
 	ldr r2, _022045B8 ; =0x5D588B65
 	str r3, [r1, #0x18]
@@ -337,7 +337,7 @@ _022045A4: .word 0x0221C6D0
 _022045A8: .word 0x0221C70C
 _022045AC: .word 0x0221C6F4
 _022045B0: .word 0x0221DBD8
-_022045B4: .word sub_020C3880
+_022045B4: .word OS_GetTick
 _022045B8: .word 0x5D588B65
 _022045BC: .word 0x00269EC3
 	arm_func_end ov4_022044AC
@@ -356,7 +356,7 @@ _022045D4: .word 0x0221C6D0
 	arm_func_start ov4_022045D8
 ov4_022045D8: ; 0x022045D8
 	stmfd sp!, {r3, r4, r5, lr}
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _02204674 ; =0x0221DBD8
 	ldr r3, [r2, #0x10]
 	cmp r3, #2
@@ -1089,7 +1089,7 @@ _02204F40:
 	bne _02204F68
 	mov r0, #1
 	bl ov4_022048DC
-	bl sub_020C3880
+	bl OS_GetTick
 	ldr r2, _02204F88 ; =0x0221C6D0
 	str r0, [r2, #8]
 	str r1, [r2, #0xc]

@@ -14,23 +14,23 @@ ov18_0224589C: ; 0x0224589C
 	ldr r2, [r0, #0]
 	ldr r0, _02245904 ; =0x00040018
 	str r2, [r1, #4]
-	bl sub_020C15F0
+	bl OS_SetIrqMask
 	mov r0, #1
-	bl sub_020C161C
+	bl OS_EnableIrqMask
 	mov r0, #1
-	bl sub_020C14D4
+	bl OS_GetIrqFunction
 	ldr r2, _02245900 ; =0x022533E0
 	ldr r1, _02245908 ; =ov18_0224594C
 	str r0, [r2, #0]
 	mov r0, #1
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	mov r0, #1
-	bl sub_020C167C
+	bl OS_ResetRequestIrqMask
 	ldr r2, _0224590C ; =0x04000208
 	mov r0, #1
 	ldrh r1, [r2]
 	strh r0, [r2]
-	bl sub_020C3D84
+	bl OS_EnableInterrupts
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022458FC: .word 0x04000210
@@ -49,11 +49,11 @@ ov18_02245910: ; 0x02245910
 	ldr r0, _02245948 ; =0x022533E0
 	strh r1, [r2]
 	ldr r0, [r0, #4]
-	bl sub_020C15F0
+	bl OS_SetIrqMask
 	ldr r1, _02245948 ; =0x022533E0
 	mov r0, #1
 	ldr r1, [r1, #0]
-	bl sub_020C144C
+	bl OS_SetIrqFunction
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02245944: .word 0x04000208

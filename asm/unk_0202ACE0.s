@@ -22,7 +22,7 @@ sub_0202ACE8: ; 0x0202ACE8
 	mov r0, #0
 	add r1, r7, #0
 	lsl r2, r2, #6
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x1d
 	lsl r0, r0, #4
 	add r1, r0, #0
@@ -400,7 +400,7 @@ _0202AF86:
 	add r5, #0x40
 	mul r0, r4
 	add r0, r5, r0
-	bl sub_020A4498
+	bl DWC_IsValidFriendData
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_0202AF78
 
@@ -486,7 +486,7 @@ _0202B00E:
 	mov r2, #0x38
 	add r0, r0, r1
 	add r1, r6, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0xc
 	add r1, r7, #0
 	mul r1, r0
@@ -494,7 +494,7 @@ _0202B00E:
 	mov r2, #0xc
 	add r0, r0, r1
 	add r1, r4, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r5, r5, #1
 	add r6, #0x38
 	add r4, #0xc
@@ -509,7 +509,7 @@ _0202B03E:
 	mov r0, #0
 	add r1, r2, r1
 	mov r2, #0x38
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r2, [sp]
 	mov r1, #0x5d
 	add r2, #0x40
@@ -517,7 +517,7 @@ _0202B03E:
 	add r1, r2, r1
 	mov r0, #0
 	mov r2, #0xc
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r2, _0202B080 ; =0x00000898
 	ldr r3, _0202B084 ; =0x0000FFFF
 	ldr r0, [sp]
@@ -553,7 +553,7 @@ sub_0202B088: ; 0x0202B088
 	str r1, [sp]
 	add r0, r4, r5
 	add r1, r4, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, [sp, #4]
 	add r6, r7, #0
 	mov r3, #0xc
@@ -567,16 +567,16 @@ sub_0202B088: ; 0x0202B088
 	mul r2, r3
 	add r1, r6, r2
 	add r2, r3, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	mov r0, #0
 	add r1, r4, r5
 	mov r2, #0x38
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	ldr r1, [sp, #8]
 	mov r0, #0
 	add r1, r6, r1
 	mov r2, #0xc
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x1d
 	ldr r1, _0202B0F4 ; =0x0000FFFF
 	add r2, r7, r5
@@ -913,11 +913,11 @@ _0202B32E:
 	add r0, r6, r4
 	add r1, r6, r1
 	mov r2, #0x10
-	bl sub_020C4C14
+	bl MIi_CpuCopyFast
 	mov r0, #0
 	add r1, r6, r4
 	mov r2, #0x38
-	bl sub_020C4BB8
+	bl MIi_CpuClearFast
 	mov r0, #0x1d
 	ldr r1, _0202B36C ; =0x0000FFFF
 	add r2, r5, r4

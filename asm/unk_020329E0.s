@@ -27,7 +27,7 @@ sub_020329E0: ; 0x020329E0
 	str r0, [r1, #0]
 	mov r1, #0
 	lsl r2, r2, #2
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r6, #0
 	ldr r7, _02032A6C ; =0x021C07B4
 	add r4, r6, #0
@@ -171,7 +171,7 @@ _02032AFC:
 	ldr r0, [r0, #0]
 	add r0, #0x68
 	add r0, r0, r5
-	bl sub_020C3FA0
+	bl OS_GetMacAddress
 	ldr r0, [sp]
 	mov r1, #1
 	mov r2, #0
@@ -181,7 +181,7 @@ _02032AFC:
 	ldr r1, [r1, #0]
 	add r1, #0x58
 	add r1, r1, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r0, r6, #0
 	bl sub_0202C8C0
 	ldr r1, _02032BBC ; =0x021C07B4
@@ -216,14 +216,14 @@ _02032AFC:
 	ldr r1, [r1, #0]
 	add r1, #0x4c
 	add r1, r1, r5
-	bl sub_020A4788
+	bl DWC_CreateExchangeToken
 	ldr r0, _02032BBC ; =0x021C07B4
 	mov r1, #0
 	ldr r0, [r0, #0]
 	mov r2, #0x20
 	add r0, #0xc
 	add r0, r0, r5
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	ldr r0, _02032BBC ; =0x021C07B4
 	ldr r1, [r0, #0]
 	ldr r0, [r1, #4]
@@ -303,7 +303,7 @@ sub_02032BEC: ; 0x02032BEC
 	add r3, r1, #0
 	mul r3, r2
 	add r1, r5, r3
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	add r4, #0x62
 	ldr r1, _02032C78 ; =0x021C07B4
 	ldrb r3, [r4]
@@ -367,7 +367,7 @@ sub_02032C80: ; 0x02032C80
 	add r1, #0xc
 	add r1, r1, r4
 	add r2, r3, #0
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r0, _02032CE0 ; =0x021C07B4
 	add r1, r5, #0
 	ldr r0, [r0, #0]
@@ -452,7 +452,7 @@ _02032D16:
 	ldr r0, [r1, r0]
 	add r6, #0x2c
 	add r1, r6, r5
-	bl sub_020C4DB0
+	bl MI_CpuCopy8
 	ldr r1, _02032D7C ; =0x021C07B4
 	mov r0, #4
 	ldr r1, [r1, #0]

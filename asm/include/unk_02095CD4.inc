@@ -5,7 +5,7 @@
 .public sub_0203632C
 .public sub_02079FEC
 .public sub_02095CE8
-.public sub_020C4C14
-.public sub_020D50B8
+.public MIi_CpuCopyFast
+.public memcpy
 .public ov88_0223D058
 .public ov88_0223D098

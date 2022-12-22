@@ -171,7 +171,7 @@ sub_020094F0: ; 0x020094F0
 	add r0, r4, #0
 	mov r1, #0
 	mov r2, #0x24
-	bl sub_020D5124
+	bl memset
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_020094F0
@@ -381,10 +381,10 @@ sub_0200966C: ; 0x0200966C
 	beq _020096C0
 	b _020096EC
 _02009682:
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	cmp r0, #0x40
 	beq _02009692
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	cmp r0, #0x20
 	bne _020096A2
 _02009692:
@@ -411,10 +411,10 @@ _020096B2:
 	bl sub_0201E9C0
 	pop {r4, pc}
 _020096C0:
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	cmp r0, #0x30
 	beq _020096D0
-	bl sub_020BEFEC
+	bl GX_GetBankForOBJ
 	cmp r0, #0x50
 	bne _020096DE
 _020096D0:

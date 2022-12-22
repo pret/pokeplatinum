@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start sub_020D8B60
-sub_020D8B60: ; 0x020D8B60
+	arm_func_start strlen
+strlen: ; 0x020D8B60
 	mvn r2, #0
 _020D8B64:
 	ldrsb r1, [r0], #1
@@ -15,10 +15,10 @@ _020D8B64:
 	bne _020D8B64
 	mov r0, r2
 	bx lr
-	arm_func_end sub_020D8B60
+	arm_func_end strlen
 
-	arm_func_start sub_020D8B7C
-sub_020D8B7C: ; 0x020D8B7C
+	arm_func_start strcpy
+strcpy: ; 0x020D8B7C
 	stmfd sp!, {r3, r4, r5, lr}
 	and r4, r1, #3
 	and r3, r0, #3
@@ -76,10 +76,10 @@ _020D8C28:
 	; .align 2, 0
 _020D8C3C: .word 0xFEFEFEFF
 _020D8C40: .word 0x80808080
-	arm_func_end sub_020D8B7C
+	arm_func_end strcpy
 
-	arm_func_start sub_020D8C44
-sub_020D8C44: ; 0x020D8C44
+	arm_func_start strncpy
+strncpy: ; 0x020D8C44
 	stmfd sp!, {r3, lr}
 	mov lr, r0
 	cmp r2, #0
@@ -103,10 +103,10 @@ _020D8C88:
 	subs r2, r2, #1
 	bne _020D8C54
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D8C44
+	arm_func_end strncpy
 
-	arm_func_start sub_020D8C94
-sub_020D8C94: ; 0x020D8C94
+	arm_func_start strcat
+strcat: ; 0x020D8C94
 	mov r3, r0
 _020D8C98:
 	ldrsb r2, [r3], #1
@@ -121,10 +121,10 @@ _020D8CA8:
 	cmp r2, #0
 	bne _020D8CA8
 	bx lr
-	arm_func_end sub_020D8C94
+	arm_func_end strcat
 
-	arm_func_start sub_020D8CC4
-sub_020D8CC4: ; 0x020D8CC4
+	arm_func_start strncat
+strncat: ; 0x020D8CC4
 	stmfd sp!, {r3, lr}
 	mov ip, r0
 _020D8CCC:
@@ -148,10 +148,10 @@ _020D8D08:
 	mov r1, #0
 	strb r1, [ip]
 	ldmia sp!, {r3, pc}
-	arm_func_end sub_020D8CC4
+	arm_func_end strncat
 
-	arm_func_start sub_020D8D14
-sub_020D8D14: ; 0x020D8D14
+	arm_func_start strcmp
+strcmp: ; 0x020D8D14
 	stmfd sp!, {r4, lr}
 	ldrb r2, [r0]
 	ldrb r3, [r1]
@@ -230,10 +230,10 @@ _020D8DFC:
 	; .align 2, 0
 _020D8E20: .word 0xFEFEFEFF
 _020D8E24: .word 0x80808080
-	arm_func_end sub_020D8D14
+	arm_func_end strcmp
 
-	arm_func_start sub_020D8E28
-sub_020D8E28: ; 0x020D8E28
+	arm_func_start strncmp
+strncmp: ; 0x020D8E28
 	cmp r2, #0
 	beq _020D8E54
 _020D8E30:
@@ -249,10 +249,10 @@ _020D8E30:
 _020D8E54:
 	mov r0, #0
 	bx lr
-	arm_func_end sub_020D8E28
+	arm_func_end strncmp
 
-	arm_func_start sub_020D8E5C
-sub_020D8E5C: ; 0x020D8E5C
+	arm_func_start strchr
+strchr: ; 0x020D8E5C
 	ldrsb r2, [r0], #1
 	mov r1, r1, lsl #0x18
 	mov r1, r1, asr #0x18
@@ -270,10 +270,10 @@ _020D8E88:
 	movne r0, #0
 	subeq r0, r0, #1
 	bx lr
-	arm_func_end sub_020D8E5C
+	arm_func_end strchr
 
-	arm_func_start sub_020D8E98
-sub_020D8E98: ; 0x020D8E98
+	arm_func_start strcspn
+strcspn: ; 0x020D8E98
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x20
 	add ip, sp, #0
@@ -327,10 +327,10 @@ _020D8F48:
 	sub r0, r0, #1
 	add sp, sp, #0x20
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D8E98
+	arm_func_end strcspn
 
-	arm_func_start sub_020D8F58
-sub_020D8F58: ; 0x020D8F58
+	arm_func_start strtok
+strtok: ; 0x020D8F58
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x20
 	add ip, sp, #0
@@ -427,10 +427,10 @@ _020D9094:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020D90AC: .word 0x02101820
-	arm_func_end sub_020D8F58
+	arm_func_end strtok
 
-	arm_func_start sub_020D90B0
-sub_020D90B0: ; 0x020D90B0
+	arm_func_start strstr
+strstr: ; 0x020D90B0
 	stmfd sp!, {r4, lr}
 	cmp r1, #0
 	ldrneb r2, [r1]
@@ -463,7 +463,7 @@ _020D9108:
 _020D9114:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
-	arm_func_end sub_020D90B0
+	arm_func_end strstr
 
 	.data
 

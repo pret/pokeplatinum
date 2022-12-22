@@ -19,7 +19,7 @@
 .public sub_02021D6C
 .public sub_02023790
 .public sub_020237BC
-.public sub_020BF55C
+.public G2x_SetBlendAlpha_
 .public ov20_021D1FE4
 .public ov20_021D2008
 .public ov20_021D204C

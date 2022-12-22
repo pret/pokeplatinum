@@ -32,9 +32,9 @@
 .public sub_02023FCC
 .public sub_02024034
 .public sub_0202404C
-.public sub_020C4CF4
-.public sub_020E1F1C
-.public sub_020E2178
+.public MI_CpuFill8
+.public _ull_mul
+.public _u32_div_f
 .public ov62_02246B70
 .public ov62_02246BF4
 .public ov62_02246D60

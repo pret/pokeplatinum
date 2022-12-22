@@ -64,7 +64,7 @@ _0222CF80:
 	bl ov61_0222D4F0
 	ldr r0, _0222CFCC ; =0x0222E8A4
 	mov r1, r6
-	bl sub_020D8B7C
+	bl strcpy
 	ldr r1, _0222CFD0 ; =0x0222E964
 	mov r2, #0
 	ldr r0, _0222CFC8 ; =0x0222E764
@@ -357,7 +357,7 @@ _0222D34C:
 	mov r1, r6
 	add r0, lr, #0x140
 	sub r2, r2, #0x140
-	bl sub_020D50B8
+	bl memcpy
 	ldr r0, _0222D3E4 ; =0x0222E764
 	ldr r2, [r0, #0x258]
 	ldr r1, [r0, #0x254]

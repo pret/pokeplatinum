@@ -179,7 +179,7 @@ ov31_022562EC: ; 0x022562EC
 	add r0, r0, r1
 	mov r1, #0
 	mov r2, #0x78
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	mov r5, #0
 	mov ip, r5
 _02256308:

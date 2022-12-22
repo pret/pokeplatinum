@@ -40,7 +40,7 @@ _021D343C:
 	add r0, r4, r0
 	mov r1, #0
 	mov r2, #0x54
-	bl sub_020C4CF4
+	bl MI_CpuFill8
 	lsr r2, r5, #0x1f
 	lsl r1, r5, #0x1d
 	sub r1, r1, r2
@@ -66,7 +66,7 @@ _021D346A:
 	mul r0, r5
 	ldr r1, [r1, #0x34]
 	add r0, r4, r0
-	bl sub_020AE608
+	bl NNS_G3dRenderObjInit
 	add r5, r5, #1
 _021D347C:
 	cmp r5, #0x10
@@ -104,7 +104,7 @@ _021D34B4:
 	mov r2, #0x3f
 	mov r3, #0x1f
 	str r1, [sp]
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, [sp, #4]
 	ldr r0, [r0, #0]
 	add r1, r0, #1
@@ -293,7 +293,7 @@ _021D3620:
 	str r1, [r4, #4]
 	asr r1, r0, #0x1f
 	add r2, r6, #0
-	bl sub_020E1F1C
+	bl _ull_mul
 	mov r2, #2
 	add r7, r0, #0
 	add r6, r1, #0
@@ -467,7 +467,7 @@ _021D374C:
 	ldrsb r3, [r4, r3]
 	ldr r0, _021D37D4 ; =0x04001050
 	mov r1, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	ldr r0, _021D37D8 ; =0x0000011E
 	mov r2, #0x3f
 	ldrsb r0, [r4, r0]
@@ -477,7 +477,7 @@ _021D374C:
 	ldrsb r3, [r4, r3]
 	ldr r0, _021D37DC ; =0x04000050
 	mov r1, #0
-	bl sub_020BF55C
+	bl G2x_SetBlendAlpha_
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	nop

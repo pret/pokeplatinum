@@ -92,8 +92,8 @@
 .public sub_0206A8C4
 .public sub_0207D570
 .public sub_0207D990
-.public sub_020C4CF4
-.public sub_020E2178
+.public MI_CpuFill8
+.public _u32_div_f
 .public ov5_021D3190
 .public ov5_021D32E8
 .public ov5_021D3374

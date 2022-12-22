@@ -152,7 +152,7 @@ ov70_0226C9B4: ; 0x0226C9B4
 	add r7, r0, #0
 	add r0, r1, #0
 	mov r1, #0xe
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	bne _0226CA2E
 	ldr r5, _0226CA30 ; =0x0226E74C
@@ -226,7 +226,7 @@ ov70_0226CA38: ; 0x0226CA38
 	add r5, r0, #0
 	add r0, r1, #0
 	mov r1, #6
-	bl sub_020E2178
+	bl _u32_div_f
 	cmp r1, #0
 	bne _0226CAC8
 	ldr r0, [r5, #0xc]
@@ -289,7 +289,7 @@ _0226CABC:
 	ldr r0, [r5, #0xc]
 	mov r1, #7
 	add r0, r0, #1
-	bl sub_020E2178
+	bl _u32_div_f
 	str r1, [r5, #0xc]
 _0226CAC8:
 	add sp, #0xc

@@ -7,7 +7,7 @@
 .public sub_0203E880
 .public sub_020507E4
 .public sub_0206AF6C
-.public sub_020D5124
+.public memset
 .public ov5_021E18CC
 .public ov5_021E19CC
 .public ov5_021F8480

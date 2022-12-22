@@ -13,11 +13,11 @@ ov5_021DD6FC: ; 0x021DD6FC
 	add r5, r0, #0
 	add r4, r2, #0
 	add r1, r6, #0
-	bl sub_020C2C54
+	bl DC_FlushRange
 	add r0, r5, #0
 	lsl r1, r4, #5
 	add r2, r6, #0
-	bl sub_020C00B4
+	bl GX_LoadBGPltt
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 	thumb_func_end ov5_021DD6FC
@@ -167,11 +167,11 @@ _021DD7FA:
 _021DD828:
 	add r0, r4, #0
 	mov r1, #0x11
-	bl sub_020E1F6C
+	bl _s32_div_f
 	add r7, r1, #0
 	add r0, r4, #0
 	mov r1, #0x11
-	bl sub_020E1F6C
+	bl _s32_div_f
 	mov r1, #8
 	str r1, [sp]
 	str r1, [sp, #4]
