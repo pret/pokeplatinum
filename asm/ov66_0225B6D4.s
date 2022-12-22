@@ -1,5 +1,4 @@
 	.include "macros/function.inc"
-	.include "include/ov66_0225B6D4.inc"
 
 	
 	.bss

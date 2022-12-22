@@ -1,5 +1,4 @@
 	.include "macros/function.inc"
-	.include "include/ov12_022384F0.inc"
 
 	
 

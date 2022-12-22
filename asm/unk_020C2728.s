@@ -1,5 +1,4 @@
 	.include "macros/function.inc"
-	.include "include/unk_020C2728.inc"
 
 	
 
