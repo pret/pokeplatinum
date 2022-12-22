@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 
 # This script was written by PikalaxALT and is licensed under GPL 3.0.
 # Modification and redistribution of this script is encouraged.
