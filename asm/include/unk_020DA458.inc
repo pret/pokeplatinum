@@ -1,9 +1,5 @@
-.public sub_020E2178
-.public sub_020E2178
-.public sub_020E1ED4
-.public sub_020E1ED4
-.public sub_020DA458
 .public sub_020D8930
 .public sub_020DA458
-.public sub_020D8930
 .public sub_020DAD44
+.public sub_020E1ED4
+.public sub_020E2178

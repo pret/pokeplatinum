@@ -1,9 +1,9 @@
+.public sub_02018144
+.public sub_020181C4
 .public sub_02033478
 .public sub_020C3790
 .public sub_020C39BC
 .public sub_020C3D98
-.public ov4_021D792C
-.public sub_02018144
-.public ov18_0222F20C
-.public sub_020181C4
 .public sub_020C3DAC
+.public ov4_021D792C
+.public ov18_0222F20C

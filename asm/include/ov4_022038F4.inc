@@ -1,15 +1,3 @@
 .public sub_020C3D98
 .public sub_020C3DAC
-.public sub_020C3D98
 .public ov4_0220523C
-.public sub_020C3DAC
-.public sub_020C3D98
-.public ov4_0220523C
-.public sub_020C3DAC
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C3D98
-.public sub_020C3DAC
-.public sub_020C3DAC
-.public sub_020C3D98
-.public sub_020C3DAC

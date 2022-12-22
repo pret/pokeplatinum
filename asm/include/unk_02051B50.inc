@@ -1,11 +1,9 @@
-.public sub_02051C20
-.public sub_02051CD0
-.public sub_02022974
-.public ov5_021DEEC8
 .public sub_02022974
 .public sub_02051B50
 .public sub_02051BBC
-.public sub_02051B50
 .public sub_02051BE8
+.public sub_02051C20
+.public sub_02051CD0
 .public sub_02054A40
 .public sub_02074470
+.public ov5_021DEEC8

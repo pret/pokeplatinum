@@ -1,9 +1,8 @@
-.public ov4_022082CC
-.public ov4_02208C4C
+.public sub_020C29D8
+.public sub_020C2A5C
 .public ov4_02205FF4
 .public ov4_0220613C
+.public ov4_022082CC
+.public ov4_02208C4C
 .public ov4_02208C88
-.public sub_020C29D8
 .public ov4_02210DC0
-.public ov4_02210DC0
-.public sub_020C2A5C

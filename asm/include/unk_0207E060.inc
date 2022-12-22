@@ -1,9 +1,9 @@
 .public sub_02018144
-.public sub_020D5124
+.public sub_020181C4
+.public sub_02022974
 .public sub_02025F30
 .public sub_02025F8C
 .public sub_02025FCC
 .public sub_02025FD8
+.public sub_020D5124
 .public ov4_021D222C
-.public sub_02022974
-.public sub_020181C4

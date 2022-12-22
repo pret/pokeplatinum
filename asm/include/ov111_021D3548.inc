@@ -1,9 +1,8 @@
-.public sub_0201A8D4
-.public sub_0201ADA4
-.public sub_0201A8FC
 .public sub_0200DAA4
 .public sub_0200DC48
-.public sub_0201C290
 .public sub_0200DD0C
-.public sub_0201ADA4
 .public sub_0200E060
+.public sub_0201A8D4
+.public sub_0201A8FC
+.public sub_0201ADA4
+.public sub_0201C290

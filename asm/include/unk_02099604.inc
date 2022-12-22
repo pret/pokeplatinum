@@ -1,13 +1,10 @@
 .public sub_02018144
-.public sub_020C4CF4
-.public sub_0202AB28
 .public sub_02025E38
-.public sub_0207D990
 .public sub_02025E44
+.public sub_0202AB28
 .public sub_0203CD84
 .public sub_0203D174
+.public sub_0207D990
 .public sub_02099604
 .public sub_0209964C
-.public sub_0203D174
-.public sub_02099604
-.public sub_0209964C
+.public sub_020C4CF4

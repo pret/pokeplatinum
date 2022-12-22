@@ -1,10 +1,10 @@
-.public sub_0201FF0C
-.public sub_020BFC74
-.public sub_020BFD58
-.public sub_020241B4
-.public sub_020AF480
-.public sub_020A73C0
 .public sub_02007768
-.public sub_02075EF4
 .public sub_02007C34
 .public sub_02007DEC
+.public sub_0201FF0C
+.public sub_020241B4
+.public sub_02075EF4
+.public sub_020A73C0
+.public sub_020AF480
+.public sub_020BFC74
+.public sub_020BFD58

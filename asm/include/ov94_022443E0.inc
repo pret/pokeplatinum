@@ -1,10 +1,10 @@
-.public ov94_022411DC
-.public sub_0208C324
+.public sub_020067E8
+.public sub_02006814
+.public sub_02006844
 .public sub_0202D79C
+.public sub_0208C324
 .public sub_0208D720
 .public sub_0208E9C0
-.public sub_020067E8
-.public sub_02006844
-.public sub_02006814
 .public ov94_0223C4C0
 .public ov94_0223C4C8
+.public ov94_022411DC

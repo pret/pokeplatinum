@@ -1,5 +1,4 @@
 .public sub_02018144
-.public sub_020C4B4C
 .public sub_02018238
 .public sub_020AF51C
 .public sub_020AF558
@@ -20,13 +19,5 @@
 .public sub_020B3824
 .public sub_020B3864
 .public sub_020B38A4
-.public sub_020AF51C
-.public sub_020AF558
-.public ov5_021D58A8
-.public ov5_021D58A8
-.public ov5_021D58A8
-.public ov5_021D58A8
-.public ov5_021D58A8
-.public ov5_021D58A8
-.public ov5_021D58A8
+.public sub_020C4B4C
 .public ov5_021D58A8

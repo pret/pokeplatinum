@@ -1,10 +1,10 @@
-.public sub_0205A080
-.public ov23_02242E28
-.public ov23_02242E40
 .public sub_020293B0
-.public sub_020573FC
-.public sub_0205740C
 .public sub_020293FC
 .public sub_0202942C
-.public ov5_021EFAE8
+.public sub_020573FC
+.public sub_0205740C
+.public sub_0205A080
 .public ov5_021E19CC
+.public ov5_021EFAE8
+.public ov23_02242E28
+.public ov23_02242E40

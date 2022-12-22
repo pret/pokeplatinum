@@ -1,11 +1,9 @@
-.public sub_020C4AF0
+.public sub_020B38E4
 .public sub_020B3AA4
-.public sub_020B38E4
-.public sub_020BCFD0
-.public sub_020BCFD0
-.public sub_020B38E4
-.public sub_020B3D10
 .public sub_020B3CB8
-.public sub_020B5CF0
 .public sub_020B3CE4
+.public sub_020B3D10
+.public sub_020B5CF0
 .public sub_020B5DC8
+.public sub_020BCFD0
+.public sub_020C4AF0

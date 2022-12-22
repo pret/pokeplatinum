@@ -1,10 +1,8 @@
-.public sub_020C7D90
+.public sub_020C3EE4
 .public sub_020C42A8
-.public sub_020CD6F8
-.public sub_020C4DB0
 .public sub_020C4DB0
 .public sub_020C7760
-.public sub_020C42A8
+.public sub_020C7D90
 .public sub_020C7DA0
 .public sub_020C8080
-.public sub_020C3EE4
+.public sub_020CD6F8
