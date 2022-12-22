@@ -27,7 +27,7 @@ sub_02095B04: ; 0x02095B04
 	add r4, r1, #0
 	cmp r2, r0
 	blt _02095B16
-	bl sub_02022974
+	bl GF_AssertFail
 _02095B16:
 	ldr r0, _02095B20 ; =0x00000985
 	add r1, r4, r0
@@ -125,7 +125,7 @@ sub_02095B9C: ; 0x02095B9C
 	lsl r0, r0, #0xa
 	cmp r1, r0
 	blt _02095BB8
-	bl sub_02022974
+	bl GF_AssertFail
 _02095BB8:
 	mov r7, #0
 	ldr r4, [sp, #4]
@@ -169,7 +169,7 @@ sub_02095BEC: ; 0x02095BEC
 	str r0, [sp]
 	cmp r0, r1
 	blt _02095C0A
-	bl sub_02022974
+	bl GF_AssertFail
 _02095C0A:
 	ldr r0, _02095C44 ; =0x00000585
 	mov r7, #0

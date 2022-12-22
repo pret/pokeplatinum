@@ -7,7 +7,7 @@
 .public sub_0200DA58
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public ov12_022201CC
 .public ov12_02220204
 .public ov12_02220220

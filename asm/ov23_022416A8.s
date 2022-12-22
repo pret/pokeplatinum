@@ -309,7 +309,7 @@ ov23_022418C0: ; 0x022418C0
 	add r4, r0, #0
 	cmp r4, #0x64
 	blt _022418EA
-	bl sub_02022974
+	bl GF_AssertFail
 _022418EA:
 	mov r5, #0x63
 	cmp r4, #0x63
@@ -767,7 +767,7 @@ _02241C66:
 	mvn r0, r0
 	cmp r1, r0
 	bne _02241C72
-	bl sub_02022974
+	bl GF_AssertFail
 _02241C72:
 	cmp r4, #0x63
 	bge _02241C92
@@ -817,7 +817,7 @@ ov23_02241CAC: ; 0x02241CAC
 	bl ov23_02241960
 	add r5, r0, #0
 	bne _02241CD8
-	bl sub_02022974
+	bl GF_AssertFail
 _02241CD8:
 	add r0, r4, #0
 	add r1, r5, #0
@@ -1045,7 +1045,7 @@ ov23_02241E6C: ; 0x02241E6C
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	beq _02241E7E
-	bl sub_02022974
+	bl GF_AssertFail
 _02241E7E:
 	ldr r0, _02241EC4 ; =0x02257744
 	ldr r1, [r0, #0]
@@ -1054,7 +1054,7 @@ _02241E7E:
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	beq _02241E90
-	bl sub_02022974
+	bl GF_AssertFail
 _02241E90:
 	mov r0, #0xb
 	mov r1, #4

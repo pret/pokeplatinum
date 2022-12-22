@@ -34,7 +34,7 @@ _0202EEDC:
 	bl sub_02074470
 	cmp r0, #0
 	beq _0202EEF4
-	bl sub_02022974
+	bl GF_AssertFail
 _0202EEF4:
 	add r4, r4, #1
 	add r5, #0xec
@@ -65,7 +65,7 @@ _0202EF18:
 	bl sub_02074470
 	cmp r0, #0
 	beq _0202EF30
-	bl sub_02022974
+	bl GF_AssertFail
 _0202EF30:
 	add r4, r4, #1
 	add r5, #0xec
@@ -187,7 +187,7 @@ sub_0202F000: ; 0x0202F000
 	add r4, r2, #0
 	cmp r5, #6
 	blt _0202F010
-	bl sub_02022974
+	bl GF_AssertFail
 _0202F010:
 	mov r0, #0xec
 	mul r0, r5

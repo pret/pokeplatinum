@@ -54,7 +54,7 @@
 .public sub_0201FF0C
 .public sub_0201FF68
 .public sub_0201FF74
-.public sub_02022974
+.public GF_AssertFail
 .public GX_SetGraphicsMode
 .public GXS_SetGraphicsMode
 .public G2_GetBG0CharPtr

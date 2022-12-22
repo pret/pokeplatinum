@@ -455,7 +455,7 @@ _0223C0A4:
 	ldr r0, [sp, #0x24]
 	cmp r0, #0x15
 	blt _0223C0AE
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C0AE:
 	ldr r0, [sp, #0x30]
 	mov r7, #1

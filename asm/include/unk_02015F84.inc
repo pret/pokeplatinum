@@ -29,6 +29,6 @@
 .public sub_02016D04
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public MI_CpuFill8
 .public _s32_div_f

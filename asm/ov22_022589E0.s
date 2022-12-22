@@ -213,7 +213,7 @@ ov22_02258B78: ; 0x02258B78
 	ldr r0, [r0, #4]
 	cmp r0, #1
 	beq _02258B8E
-	bl sub_02022974
+	bl GF_AssertFail
 _02258B8E:
 	ldr r0, [r4, #0x10]
 	mov r2, #0x1c
@@ -574,7 +574,7 @@ ov22_02258E5C: ; 0x02258E5C
 	ldr r0, [r0, #4]
 	cmp r0, #1
 	beq _02258E70
-	bl sub_02022974
+	bl GF_AssertFail
 _02258E70:
 	ldr r0, [r4, #0x10]
 	ldr r5, [r0, #0]

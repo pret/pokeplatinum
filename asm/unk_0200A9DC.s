@@ -101,7 +101,7 @@ sub_0200AA78: ; 0x0200AA78
 	add r7, r3, #0
 	cmp r0, #0
 	beq _0200AA8C
-	bl sub_02022974
+	bl GF_AssertFail
 _0200AA8C:
 	ldr r1, [sp, #0x18]
 	mov r0, #1

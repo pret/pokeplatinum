@@ -36,7 +36,7 @@ ov25_022550B0: ; 0x022550B0
 	ldr r0, _022550EC ; =0x12345678
 	cmp r1, r0
 	beq _022550C2
-	bl sub_02022974
+	bl GF_AssertFail
 _022550C2:
 	ldr r6, [r5, #0]
 	mov r2, #0
@@ -74,7 +74,7 @@ ov25_022550F0: ; 0x022550F0
 	ldr r0, _0225512C ; =0x12345678
 	cmp r1, r0
 	beq _02255102
-	bl sub_02022974
+	bl GF_AssertFail
 _02255102:
 	ldr r3, [r5, #0]
 	mov r2, #0
@@ -97,7 +97,7 @@ _0225511E:
 	cmp r2, r3
 	blo _0225510C
 _02255126:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225512C: .word 0x12345678
@@ -230,7 +230,7 @@ _02255202:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 _0225520C:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _0225521C
 _02255212:
 	add r3, #0xc
@@ -239,7 +239,7 @@ _02255212:
 	cmp r2, r1
 	bne _02255196
 _0225521C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02255220:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}

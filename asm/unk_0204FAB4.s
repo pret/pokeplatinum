@@ -123,7 +123,7 @@ _0204FB98:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _0204FBA4:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	strh r0, [r6]
 _0204FBAC:

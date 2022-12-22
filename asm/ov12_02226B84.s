@@ -1324,7 +1324,7 @@ _022275D6:
 	str r0, [r4, #0x28]
 	b _022275F4
 _022275F0:
-	bl sub_02022974
+	bl GF_AssertFail
 _022275F4:
 	ldr r0, [r4, #0x28]
 	mov r1, #0
@@ -1650,7 +1650,7 @@ _02227868:
 	lsl r4, r4, #8
 	b _02227872
 _0222786E:
-	bl sub_02022974
+	bl GF_AssertFail
 _02227872:
 	add r0, r5, #0
 	mov r1, #1
@@ -1988,7 +1988,7 @@ _02227AE8:
 	str r0, [r6, #4]
 	b _02227AF8
 _02227AF4:
-	bl sub_02022974
+	bl GF_AssertFail
 _02227AF8:
 	ldr r0, [r6, #4]
 	cmp r0, #0
@@ -3148,7 +3148,7 @@ _0222841A:
 	add r6, r0, #0
 	b _0222843A
 _02228436:
-	bl sub_02022974
+	bl GF_AssertFail
 _0222843A:
 	cmp r6, #0xff
 	bne _02228446
@@ -3351,7 +3351,7 @@ _022285B6:
 	add r6, r0, #0
 	b _022285D6
 _022285D2:
-	bl sub_02022974
+	bl GF_AssertFail
 _022285D6:
 	cmp r6, #0xff
 	bne _022285E2
@@ -4232,7 +4232,7 @@ _02228D10:
 	add r6, r0, #0
 	b _02228D30
 _02228D2C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02228D30:
 	cmp r6, #0xff
 	bne _02228D3C
@@ -4488,7 +4488,7 @@ _02228F2A:
 	str r0, [sp, #8]
 	b _02228F40
 _02228F3C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02228F40:
 	add r2, r5, #0
 	ldr r1, [sp, #8]
@@ -4610,7 +4610,7 @@ _02229028:
 	str r0, [sp, #8]
 	b _0222903E
 _0222903A:
-	bl sub_02022974
+	bl GF_AssertFail
 _0222903E:
 	add r2, r4, #0
 	ldr r1, [sp, #8]
@@ -4739,7 +4739,7 @@ _0222912A:
 	add r6, r0, #0
 	b _02229140
 _0222913C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02229140:
 	add r0, r5, #0
 	add r1, r6, #0
@@ -5020,7 +5020,7 @@ _02229372:
 	add r7, r0, #0
 	b _02229388
 _02229384:
-	bl sub_02022974
+	bl GF_AssertFail
 _02229388:
 	add r0, r5, #0
 	mov r1, #1
@@ -5156,7 +5156,7 @@ _02229494:
 	add r4, r0, #0
 	b _022294A8
 _022294A4:
-	bl sub_02022974
+	bl GF_AssertFail
 _022294A8:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
@@ -5860,7 +5860,7 @@ _02229A3E:
 	ldr r0, [r4, #0x38]
 	cmp r0, #0
 	bne _02229A48
-	bl sub_02022974
+	bl GF_AssertFail
 _02229A48:
 	pop {r3, r4, r5, pc}
 	nop
@@ -6212,7 +6212,7 @@ _02229D0E:
 	ldr r0, [r4, #0x38]
 	cmp r0, #0
 	bne _02229D1A
-	bl sub_02022974
+	bl GF_AssertFail
 _02229D1A:
 	ldr r1, [r4, #0x14]
 	add r0, r5, #0

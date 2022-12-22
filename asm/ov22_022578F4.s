@@ -239,7 +239,7 @@ ov22_02257A80: ; 0x02257A80
 	sub r0, r0, #1
 	str r0, [r4, #0x24]
 	bpl _02257A96
-	bl sub_02022974
+	bl GF_AssertFail
 _02257A96:
 	pop {r4, pc}
 	thumb_func_end ov22_02257A80

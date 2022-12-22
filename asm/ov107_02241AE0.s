@@ -6274,7 +6274,7 @@ _02244DBE:
 	add r2, r2, #2
 	cmp r3, #0x20
 	blo _02244DB0
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	nop
@@ -7324,7 +7324,7 @@ _02245578:
 	bl ov107_02245454
 	b _0224558E
 _0224558A:
-	bl sub_02022974
+	bl GF_AssertFail
 _0224558E:
 	ldr r0, _0224559C ; =0x000005EC
 	bl sub_02005748

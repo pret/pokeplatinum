@@ -75,7 +75,7 @@ sub_02051BBC: ; 0x02051BBC
 	add r4, r1, #0
 	cmp r5, #0x23
 	blo _02051BCA
-	bl sub_02022974
+	bl GF_AssertFail
 _02051BCA:
 	ldr r0, _02051BE0 ; =0x020EC208
 	lsl r1, r5, #2
@@ -98,7 +98,7 @@ sub_02051BE8: ; 0x02051BE8
 	add r4, r0, #0
 	cmp r4, #0x23
 	blo _02051BF4
-	bl sub_02022974
+	bl GF_AssertFail
 _02051BF4:
 	ldr r0, _02051BFC ; =0x020EC20A
 	lsl r1, r4, #2

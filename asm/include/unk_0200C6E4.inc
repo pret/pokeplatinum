@@ -135,7 +135,7 @@
 .public sub_02021FD0
 .public sub_02021FE0
 .public sub_020220F4
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dInitOamManagerModule
 .public _f_add
 .public _fdiv

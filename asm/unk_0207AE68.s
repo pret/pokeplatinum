@@ -765,7 +765,7 @@ _0207B4A8:
 	lsl r1, r1, #0xe
 	cmp r0, r1
 	bhi _0207B4F0
-	bl sub_02022974
+	bl GF_AssertFail
 _0207B4F0:
 	ldr r0, _0207B598 ; =0x000005F9
 	bl sub_02005748

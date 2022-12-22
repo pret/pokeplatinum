@@ -43,7 +43,7 @@ ov23_0224993C: ; 0x0224993C
 	add r5, r0, #0
 	cmp r4, #8
 	blt _0224994A
-	bl sub_02022974
+	bl GF_AssertFail
 _0224994A:
 	mov r0, #0xc
 	add r5, #0x18

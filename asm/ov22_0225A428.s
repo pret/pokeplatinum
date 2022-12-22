@@ -279,7 +279,7 @@ ov22_0225A628: ; 0x0225A628
 	add r7, r3, #0
 	tst r0, r1
 	bne _0225A644
-	bl sub_02022974
+	bl GF_AssertFail
 _0225A644:
 	mov r0, #0
 	str r0, [sp]
@@ -310,7 +310,7 @@ ov22_0225A660: ; 0x0225A660
 	add r7, r3, #0
 	tst r0, r1
 	bne _0225A67C
-	bl sub_02022974
+	bl GF_AssertFail
 _0225A67C:
 	mov r0, #0
 	str r0, [sp]
@@ -593,7 +593,7 @@ ov22_0225A860: ; 0x0225A860
 	bl sub_0200B144
 	add r5, r0, #0
 	bne _0225A878
-	bl sub_02022974
+	bl GF_AssertFail
 _0225A878:
 	add r0, r5, #0
 	add r1, r4, #0
@@ -635,7 +635,7 @@ ov22_0225A8B4: ; 0x0225A8B4
 	str r3, [sp, #0x10]
 	cmp r0, #0
 	beq _0225A8CC
-	bl sub_02022974
+	bl GF_AssertFail
 _0225A8CC:
 	mov r0, #0
 	add r1, r5, #0
@@ -644,7 +644,7 @@ _0225A8CC:
 	bl sub_0200B144
 	add r5, r0, #0
 	bne _0225A8E0
-	bl sub_02022974
+	bl GF_AssertFail
 _0225A8E0:
 	ldr r1, [sp, #0x10]
 	add r0, r5, #0
@@ -1179,7 +1179,7 @@ _0225ACFA:
 	str r0, [sp, #4]
 	cmp r0, #0xa
 	ble _0225AD0C
-	bl sub_02022974
+	bl GF_AssertFail
 _0225AD0C:
 	ldr r0, [r5, #0x10]
 	ldr r1, [sp, #4]

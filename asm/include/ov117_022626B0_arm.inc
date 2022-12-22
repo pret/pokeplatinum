@@ -16,7 +16,7 @@
 .public sub_0200D364
 .public sub_0200D3F4
 .public sub_0200D500
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dGeBufferOP_N
 .public FX_Atan2Idx
 .public _ll_sdiv

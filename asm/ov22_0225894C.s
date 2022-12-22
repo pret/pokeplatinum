@@ -59,7 +59,7 @@ ov22_0225899C: ; 0x0225899C
 	add r4, r0, #0
 	cmp r5, #0x64
 	blo _022589AA
-	bl sub_02022974
+	bl GF_AssertFail
 _022589AA:
 	lsl r0, r5, #2
 	ldr r0, [r4, r0]

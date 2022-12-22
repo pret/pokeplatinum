@@ -531,7 +531,7 @@ _0223B9B4:
 	add r0, r0, #1
 	pop {r3, r4, r5, pc}
 _0223B9D2:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B9D6:
 	ldr r0, [r5, #0xc]
 	pop {r3, r4, r5, pc}
@@ -1175,7 +1175,7 @@ _0223BF20:
 	add r0, r0, #1
 	pop {r4, r5, r6, r7, pc}
 _0223BF28:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BF2C:
 	ldr r0, [r4, #0xc]
 	add sp, #0x14
@@ -1536,7 +1536,7 @@ _0223C1F2:
 	add r0, r0, #1
 	pop {r3, r4, r5, r6, pc}
 _0223C21C:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C220:
 	ldr r0, [r4, #0xc]
 	add sp, #0xc
@@ -2315,7 +2315,7 @@ ov83_0223C87C: ; 0x0223C87C
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	bne _0223C88E
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C88E:
 	ldr r0, _0223C8AC ; =0x00001530
 	ldr r0, [r4, r0]

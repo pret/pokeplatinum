@@ -1,6 +1,6 @@
 .public sub_02018144
 .public sub_02018238
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0203272C
 .public sub_0203895C
 .public NNS_SndInit

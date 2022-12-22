@@ -112,7 +112,7 @@ _0226668E:
 	ldrb r0, [r0]
 	cmp r2, r0
 	blt _0226669C
-	bl sub_02022974
+	bl GF_AssertFail
 _0226669C:
 	ldr r0, [r4, #8]
 	add r0, r0, #1

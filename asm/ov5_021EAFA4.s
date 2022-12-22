@@ -243,7 +243,7 @@ ov5_021EB184: ; 0x021EB184
 	cmp r0, #0
 	beq _021EB19E
 	bne _021EB194
-	bl sub_02022974
+	bl GF_AssertFail
 _021EB194:
 	ldr r0, [r4, #0]
 	bl sub_020181C4

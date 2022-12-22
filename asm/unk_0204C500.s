@@ -40,7 +40,7 @@ _0204C536:
 	bl sub_02056328
 	b _0204C54E
 _0204C54A:
-	bl sub_02022974
+	bl GF_AssertFail
 _0204C54E:
 	mov r0, #0
 	pop {r3, r4, r5, pc}
@@ -133,7 +133,7 @@ _0204C5E0:
 	bl sub_02079868
 	cmp r0, #0
 	bne _0204C610
-	bl sub_02022974
+	bl GF_AssertFail
 _0204C610:
 	add r0, r6, #0
 	add r0, #0x80

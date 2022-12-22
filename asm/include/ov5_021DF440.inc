@@ -12,7 +12,7 @@
 .public sub_02020CCC
 .public sub_0202119C
 .public sub_020213F4
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02022BD8
 .public sub_02022C1C
 .public sub_02022C9C

@@ -16,7 +16,7 @@ ov63_0222D77C: ; 0x0222D77C
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0222D792
-	bl sub_02022974
+	bl GF_AssertFail
 _0222D792:
 	add r1, r5, #1
 	str r1, [r4, #4]
@@ -127,7 +127,7 @@ ov63_0222D848: ; 0x0222D848
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0222D85E
-	bl sub_02022974
+	bl GF_AssertFail
 _0222D85E:
 	add r1, r5, #1
 	str r1, [r4, #4]

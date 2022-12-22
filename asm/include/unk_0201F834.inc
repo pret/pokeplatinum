@@ -23,7 +23,7 @@
 .public sub_0201FDE0
 .public sub_0201FE1C
 .public sub_0201FE68
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dInitImagePaletteProxy
 .public NNS_G2dGetImagePaletteLocation
 .public NNS_G2dLoadPalette

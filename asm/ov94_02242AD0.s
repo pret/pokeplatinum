@@ -466,7 +466,7 @@ _02242E66:
 	str r0, [r4, #0x2c]
 	b _02242E84
 _02242E80:
-	bl sub_02022974
+	bl GF_AssertFail
 _02242E84:
 	add r0, r4, #0
 	bl ov94_0223C5D8
@@ -1968,7 +1968,7 @@ ov94_02243990: ; 0x02243990
 	lsr r5, r0, #0x10
 	cmp r5, #0x3c
 	blo _022439BC
-	bl sub_02022974
+	bl GF_AssertFail
 _022439BC:
 	mov r0, #0x42
 	add r1, r5, #2

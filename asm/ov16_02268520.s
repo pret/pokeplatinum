@@ -231,7 +231,7 @@ ov16_022686CC: ; 0x022686CC
 	strb r7, [r5, #9]
 	cmp r7, #0x18
 	blt _022686F2
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	strb r0, [r5, #9]
 _022686F2:

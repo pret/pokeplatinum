@@ -129,7 +129,7 @@ ov5_021EF314: ; 0x021EF314
 	str r3, [sp]
 	cmp r3, #0
 	bne _021EF326
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF326:
 	ldr r0, [r5, #0]
 	mov r4, #0
@@ -170,7 +170,7 @@ ov5_021EF35C: ; 0x021EF35C
 	ldr r0, [r4, #0]
 	cmp r5, r0
 	blt _021EF36C
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF36C:
 	mov r0, #0x18
 	add r6, r5, #0
@@ -180,7 +180,7 @@ _021EF36C:
 	ldr r0, [r0, #0x14]
 	cmp r0, #0
 	bne _021EF380
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF380:
 	ldr r0, [r4, #4]
 	add r0, r0, r6
@@ -197,7 +197,7 @@ ov5_021EF388: ; 0x021EF388
 	add r4, r1, #0
 	cmp r5, r0
 	blt _021EF39A
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF39A:
 	mov r0, #0x18
 	ldr r1, [r6, #4]

@@ -7,7 +7,7 @@
 .public sub_0201E6CC
 .public sub_0201E784
 .public sub_0201E7FC
-.public sub_02022974
+.public GF_AssertFail
 .public TP_RequestAutoSamplingStartAsync
 .public TP_RequestAutoSamplingStopAsync
 .public TP_GetLatestIndexInAuto

@@ -216,7 +216,7 @@ _022485AE:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _022485BA
-	bl sub_02022974
+	bl GF_AssertFail
 _022485BA:
 	cmp r5, #1
 	bne _022485E2
@@ -277,7 +277,7 @@ ov62_02248624: ; 0x02248624
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _02248632
-	bl sub_02022974
+	bl GF_AssertFail
 _02248632:
 	ldr r0, _0224864C ; =0x021C07A4
 	ldr r1, _02248650 ; =0x00001D4C
@@ -314,7 +314,7 @@ _0224866C:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _02248678
-	bl sub_02022974
+	bl GF_AssertFail
 _02248678:
 	ldr r0, _022486A0 ; =0x021C07A4
 	ldr r1, [r0, #0]
@@ -350,7 +350,7 @@ ov62_022486A4: ; 0x022486A4
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _022486B6
-	bl sub_02022974
+	bl GF_AssertFail
 _022486B6:
 	ldr r1, _0224871C ; =0x021C07A4
 	mov r2, #1

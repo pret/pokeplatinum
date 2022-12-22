@@ -1889,7 +1889,7 @@ _021D1CD2:
 	strb r0, [r5, r1]
 	b _021D1CF0
 _021D1CEC:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1CF0:
 	mov r0, #0x32
 	mov r1, #0
@@ -2751,7 +2751,7 @@ _021D237A:
 	str r4, [r5, r0]
 	pop {r3, r4, r5, r6, pc}
 _021D2384:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 _021D238C:
@@ -3255,7 +3255,7 @@ _021D2728:
 	ldr r0, [r6, r0]
 	cmp r0, #0
 	bne _021D2736
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2736:
 	mov r0, #0xd9
 	lsl r0, r0, #2

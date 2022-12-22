@@ -2320,7 +2320,7 @@ _0223E9FE:
 	lsl r0, r0, #0xa
 	cmp r7, r0
 	blt _0223EA0A
-	bl sub_02022974
+	bl GF_AssertFail
 _0223EA0A:
 	mov r0, #6
 	add r6, r6, #1

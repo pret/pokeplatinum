@@ -152,7 +152,7 @@ ov104_02232088: ; 0x02232088
 	ldrb r0, [r0]
 	cmp r0, #1
 	beq _02232098
-	bl sub_02022974
+	bl GF_AssertFail
 _02232098:
 	add r0, r4, #0
 	add r0, #0x64
@@ -1667,7 +1667,7 @@ _02232BFC:
 	bl ov63_0222D008
 	b _02232C0C
 _02232C08:
-	bl sub_02022974
+	bl GF_AssertFail
 _02232C0C:
 	ldr r0, [r5, #0xc]
 	add sp, #8
@@ -1959,7 +1959,7 @@ _02232E5E:
 	ldr r0, [r5, r4]
 	cmp r0, #0
 	beq _02232E76
-	bl sub_02022974
+	bl GF_AssertFail
 _02232E76:
 	str r6, [r5, r4]
 	add sp, #0x7c
@@ -2078,7 +2078,7 @@ ov104_02232F4C: ; 0x02232F4C
 	str r3, [sp, #0xc]
 	cmp r4, #8
 	blt _02232F60
-	bl sub_02022974
+	bl GF_AssertFail
 _02232F60:
 	add r0, r7, #0
 	bl sub_02079D80

@@ -118,7 +118,7 @@ ov70_0226C984: ; 0x0226C984
 	add r6, r2, #0
 	cmp r4, #6
 	blo _0226C994
-	bl sub_02022974
+	bl GF_AssertFail
 _0226C994:
 	cmp r4, #6
 	bhs _0226C9A4
@@ -195,7 +195,7 @@ _0226C9F4:
 	add r6, r0, #0
 	cmp r6, #1
 	beq _0226CA1C
-	bl sub_02022974
+	bl GF_AssertFail
 	b _0226CA1C
 _0226CA16:
 	mov r6, #0
@@ -254,7 +254,7 @@ _0226CA6C:
 	bl ov70_02262754
 	cmp r0, #1
 	beq _0226CA82
-	bl sub_02022974
+	bl GF_AssertFail
 _0226CA82:
 	ldr r0, [sp, #8]
 	add r4, r4, #1
@@ -279,7 +279,7 @@ _0226CA9E:
 	bl ov70_02262754
 	cmp r0, #1
 	beq _0226CAB4
-	bl sub_02022974
+	bl GF_AssertFail
 _0226CAB4:
 	ldr r0, [sp, #8]
 	add r4, r4, #1
@@ -342,7 +342,7 @@ ov70_0226CB1C: ; 0x0226CB1C
 	add r6, r2, #0
 	cmp r4, #6
 	blo _0226CB2C
-	bl sub_02022974
+	bl GF_AssertFail
 _0226CB2C:
 	cmp r4, #6
 	bhs _0226CB4C
@@ -492,7 +492,7 @@ _0226CC10:
 	str r0, [r1, #0]
 	pop {r3, pc}
 _0226CC1A:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, pc}
 	; .align 2, 0
 _0226CC20: .word 0x0226E6CC

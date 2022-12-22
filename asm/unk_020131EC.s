@@ -49,7 +49,7 @@ sub_0201322C: ; 0x0201322C
 	bl sub_02006AC0
 	add r4, r0, #0
 	bne _0201323C
-	bl sub_02022974
+	bl GF_AssertFail
 _0201323C:
 	add r0, r4, #0
 	add r1, r5, #0
@@ -57,11 +57,11 @@ _0201323C:
 	add r6, r0, #0
 	cmp r5, #0
 	bne _0201324E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201324E:
 	cmp r6, #0
 	bne _02013256
-	bl sub_02022974
+	bl GF_AssertFail
 _02013256:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -81,7 +81,7 @@ sub_02013260: ; 0x02013260
 	add r5, r3, #0
 	cmp r0, r6
 	bge _02013278
-	bl sub_02022974
+	bl GF_AssertFail
 _02013278:
 	ldr r0, [sp, #0xc]
 	ldrh r1, [r4]
@@ -89,7 +89,7 @@ _02013278:
 	str r0, [sp, #0x14]
 	cmp r1, r0
 	bge _02013288
-	bl sub_02022974
+	bl GF_AssertFail
 _02013288:
 	ldr r0, [r4, #0x14]
 	str r0, [sp, #0x20]
@@ -284,14 +284,14 @@ sub_020133D4: ; 0x020133D4
 	str r0, [sp, #0x20]
 	cmp r0, #0
 	bne _020133F2
-	bl sub_02022974
+	bl GF_AssertFail
 _020133F2:
 	ldr r0, [sp, #0x20]
 	add r1, sp, #0x2c
 	bl NNS_G2dGetUnpackedCharacterData
 	cmp r0, #0
 	bne _02013402
-	bl sub_02022974
+	bl GF_AssertFail
 _02013402:
 	ldr r1, [sp, #0x4c]
 	ldr r0, [sp, #8]
@@ -300,7 +300,7 @@ _02013402:
 	ldrh r0, [r0, #2]
 	cmp r0, r6
 	bge _02013414
-	bl sub_02022974
+	bl GF_AssertFail
 _02013414:
 	ldr r1, [sp, #0x50]
 	ldr r0, [sp, #0x48]
@@ -311,7 +311,7 @@ _02013414:
 	ldr r0, [sp, #0x10]
 	cmp r1, r0
 	bge _0201342A
-	bl sub_02022974
+	bl GF_AssertFail
 _0201342A:
 	ldr r0, [sp, #0x2c]
 	add r1, r4, #0
@@ -640,7 +640,7 @@ sub_02013660: ; 0x02013660
 	bl NNS_G2dGetUnpackedPaletteData
 	cmp r0, #1
 	beq _0201368C
-	bl sub_02022974
+	bl GF_AssertFail
 _0201368C:
 	ldr r0, [sp]
 	add r1, r4, #0

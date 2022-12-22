@@ -167,7 +167,7 @@ _02054CE0:
 _02054CEA:
 	cmp r4, #0x10
 	blo _02054CF2
-	bl sub_02022974
+	bl GF_AssertFail
 _02054CF2:
 	lsl r0, r4, #1
 	strh r5, [r6, r0]

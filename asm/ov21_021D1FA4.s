@@ -399,7 +399,7 @@ ov21_021D22A8: ; 0x021D22A8
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	bne _021D22BA
-	bl sub_02022974
+	bl GF_AssertFail
 _021D22BA:
 	mov r0, #0x6d
 	lsl r0, r0, #2
@@ -417,7 +417,7 @@ ov21_021D22C4: ; 0x021D22C4
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	bne _021D22D6
-	bl sub_02022974
+	bl GF_AssertFail
 _021D22D6:
 	mov r0, #0x6e
 	lsl r0, r0, #2
@@ -489,7 +489,7 @@ ov21_021D2344: ; 0x021D2344
 	add r4, r0, #0
 	cmp r5, #3
 	ble _021D2352
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2352:
 	lsl r0, r5, #2
 	add r1, r4, r0

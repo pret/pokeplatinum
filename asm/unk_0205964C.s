@@ -1140,7 +1140,7 @@ sub_02059EBC: ; 0x02059EBC
 	add r4, r0, #0
 	cmp r4, #4
 	blt _02059EC8
-	bl sub_02022974
+	bl GF_AssertFail
 _02059EC8:
 	ldr r0, _02059ED4 ; =0x021C084C
 	ldr r1, [r0, #0]

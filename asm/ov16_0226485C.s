@@ -4060,7 +4060,7 @@ ov16_022666E0: ; 0x022666E0
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	blo _02266724
-	bl sub_02022974
+	bl GF_AssertFail
 _02266724:
 	mov r0, #0x20
 	str r0, [sp]
@@ -4272,7 +4272,7 @@ _02266884:
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	blo _022668B4
-	bl sub_02022974
+	bl GF_AssertFail
 _022668B4:
 	mov r0, #0x20
 	str r0, [sp]
@@ -4318,7 +4318,7 @@ ov16_022668D0: ; 0x022668D0
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	blo _02266912
-	bl sub_02022974
+	bl GF_AssertFail
 _02266912:
 	mov r0, #0x20
 	str r0, [sp]
@@ -4512,7 +4512,7 @@ ov16_02266A38: ; 0x02266A38
 	ldrh r0, [r1, #2]
 	cmp r0, #0x1c
 	bls _02266A86
-	bl sub_02022974
+	bl GF_AssertFail
 _02266A86:
 	mov r0, #0x24
 	str r0, [sp]

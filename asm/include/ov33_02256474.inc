@@ -13,7 +13,7 @@
 .public sub_02019CB8
 .public sub_0201D15C
 .public sub_0201D35C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020759CC
 .public sub_02079EDC
 .public NNS_G2dGetUnpackedCharacterData

@@ -416,7 +416,7 @@ _02027DEA: ; jump table
 	.short _02027E02 - _02027DEA - 2 ; case 4
 	.short _02027E1A - _02027DEA - 2 ; case 5
 _02027DF6:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 _02027DFC:
 	add r0, r2, #1

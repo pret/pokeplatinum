@@ -170,7 +170,7 @@ _0223D972:
 	strh r0, [r4, #0xa]
 	b _0223D986
 _0223D97C:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #8
 	mov r0, #1
 	pop {r4, r5, r6, pc}

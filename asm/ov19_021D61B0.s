@@ -471,7 +471,7 @@ _021D65A2:
 	str r0, [r1, #8]
 	pop {r3, r4, r5, r6, r7, pc}
 _021D65E0:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _021D65E6:
 	add r4, r4, #1
@@ -480,7 +480,7 @@ _021D65E6:
 	blo _021D65A2
 	pop {r3, r4, r5, r6, r7, pc}
 _021D65F0:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _021D65F8: .word 0x021DFF9C
@@ -3129,7 +3129,7 @@ ov19_021D79B8: ; 0x021D79B8
 	add r6, r2, #0
 	cmp r0, #0x20
 	blo _021D79CC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D79CC:
 	ldr r2, _021D79E8 ; =0x021E05EC
 	mov r1, #0xc

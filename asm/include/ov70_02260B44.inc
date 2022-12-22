@@ -22,7 +22,7 @@
 .public sub_020182CC
 .public sub_0201CBB0
 .public sub_0201D35C
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dAnmObjDisableID
 .public NNS_G3dTexReleaseTexKey
 .public NNS_G3dPlttReleasePlttKey

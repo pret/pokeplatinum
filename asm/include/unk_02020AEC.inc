@@ -47,7 +47,7 @@
 .public sub_0202187C
 .public sub_0202189C
 .public sub_020218B4
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202414C
 .public NNS_G3dRenderObjInit
 .public NNS_G3dTexGetRequiredSize

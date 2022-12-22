@@ -519,7 +519,7 @@ _022448D2:
 	add r0, r0, r1
 	pop {r3, pc}
 _022448DE:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

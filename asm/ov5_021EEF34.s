@@ -98,7 +98,7 @@ ov5_021EEF98: ; 0x021EEF98
 	lsl r0, r0, #0xc
 	cmp r1, r0
 	ble _021EEFF4
-	bl sub_02022974
+	bl GF_AssertFail
 _021EEFF4:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

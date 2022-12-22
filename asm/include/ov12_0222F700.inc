@@ -38,7 +38,7 @@
 .public sub_02019EBC
 .public sub_0201CED4
 .public sub_02021FD0
-.public sub_02022974
+.public GF_AssertFail
 .public G2x_SetBlendAlpha_
 .public MIi_CpuClear32
 .public memset

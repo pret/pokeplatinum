@@ -18,7 +18,7 @@ ov104_0223D768: ; 0x0223D768
 	str r3, [sp, #0x18]
 	cmp r0, #4
 	blo _0223D780
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D780:
 	add r1, sp, #0x20
 	ldrh r2, [r1, #0x10]
@@ -78,7 +78,7 @@ ov104_0223D7EC: ; 0x0223D7EC
 	add r5, r0, #0
 	cmp r4, #4
 	blo _0223D7FA
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D7FA:
 	mov r0, #0x34
 	ldr r1, _0223D824 ; =0x022417D8
@@ -109,7 +109,7 @@ ov104_0223D828: ; 0x0223D828
 	add r6, r1, #0
 	cmp r4, #4
 	blo _0223D838
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D838:
 	mov r2, #0x34
 	ldr r3, _0223D854 ; =0x022417D8

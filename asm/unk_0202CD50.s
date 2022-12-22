@@ -112,7 +112,7 @@ _0202CDEC:
 	ldrh r0, [r1, r0]
 	pop {r3, pc}
 _0202CDFE:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
@@ -140,7 +140,7 @@ _0202CE18:
 	strh r2, [r1, r0]
 	b _0202CE30
 _0202CE2C:
-	bl sub_02022974
+	bl GF_AssertFail
 _0202CE30:
 	add r0, r5, #0
 	add r1, r4, #0
@@ -176,7 +176,7 @@ _0202CE62:
 	ldr r0, _0202CE80 ; =0x0000270F
 	pop {r3, pc}
 _0202CE66:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	nop
@@ -381,7 +381,7 @@ sub_0202CFEC: ; 0x0202CFEC
 	add r5, r0, #0
 	cmp r6, #0x33
 	blt _0202CFFA
-	bl sub_02022974
+	bl GF_AssertFail
 _0202CFFA:
 	add r0, r5, #0
 	mov r1, #1

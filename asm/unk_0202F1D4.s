@@ -65,7 +65,7 @@ sub_0202F22C: ; 0x0202F22C
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202F23A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202F23A:
 	ldr r0, _0202F24C ; =0x021C07A4
 	ldr r0, [r0, #0]
@@ -100,7 +100,7 @@ sub_0202F264: ; 0x0202F264
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202F272
-	bl sub_02022974
+	bl GF_AssertFail
 _0202F272:
 	ldr r0, _0202F278 ; =0x021C07A4
 	ldr r0, [r0, #0]
@@ -116,7 +116,7 @@ sub_0202F27C: ; 0x0202F27C
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202F28A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202F28A:
 	ldr r0, _0202F294 ; =0x021C07A4
 	ldr r0, [r0, #0]
@@ -944,7 +944,7 @@ sub_0202F884: ; 0x0202F884
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202F896
-	bl sub_02022974
+	bl GF_AssertFail
 _0202F896:
 	ldr r0, _0202F8A8 ; =0x021C07A4
 	ldr r1, [r0, #0]
@@ -1600,7 +1600,7 @@ sub_0202FD88: ; 0x0202FD88
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202FD98
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FD98:
 	add r0, r4, #0
 	mov r1, #0x64
@@ -1626,7 +1626,7 @@ sub_0202FDB8: ; 0x0202FDB8
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202FDC8
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FDC8:
 	add r0, r4, #0
 	mov r1, #0x80
@@ -1651,7 +1651,7 @@ sub_0202FDE8: ; 0x0202FDE8
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202FDF6
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FDF6:
 	ldr r0, _0202FE00 ; =0x021C07A4
 	ldr r0, [r0, #0]
@@ -1668,7 +1668,7 @@ sub_0202FE04: ; 0x0202FE04
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0202FE12
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FE12:
 	ldr r0, _0202FE1C ; =0x021C07A4
 	ldr r0, [r0, #0]
@@ -1689,7 +1689,7 @@ sub_0202FE20: ; 0x0202FE20
 	add r4, r3, #0
 	cmp r0, #0
 	bne _0202FE36
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FE36:
 	ldr r1, _0202FE88 ; =0x021C07A4
 	add r0, r6, #0
@@ -1757,7 +1757,7 @@ _0202FEAE: ; jump table
 _0202FEBA:
 	cmp r5, #0xc
 	blt _0202FEC2
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FEC2:
 	lsl r0, r5, #1
 	ldrh r0, [r4, r0]
@@ -1773,7 +1773,7 @@ _0202FED2:
 _0202FED6:
 	cmp r5, #0xc
 	blt _0202FEDE
-	bl sub_02022974
+	bl GF_AssertFail
 _0202FEDE:
 	add r0, r4, r5
 	ldrb r0, [r0, #0x18]
@@ -1811,7 +1811,7 @@ _0202FF10:
 	mov r1, #0
 	pop {r3, r4, r5, pc}
 _0202FF18:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	add r1, r0, #0
 	pop {r3, r4, r5, pc}

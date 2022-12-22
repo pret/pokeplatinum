@@ -262,7 +262,7 @@ _0226C83C:
 	sub r0, r0, #1
 	pop {r3, pc}
 _0226C840:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	thumb_func_end ov70_0226C81C
@@ -294,7 +294,7 @@ _0226C870:
 	sub r0, r0, #7
 	pop {r3, pc}
 _0226C874:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	thumb_func_end ov70_0226C848
@@ -321,7 +321,7 @@ _0226C89A:
 	sub r0, #0xb
 	pop {r3, pc}
 _0226C89E:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

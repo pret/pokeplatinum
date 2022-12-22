@@ -71,7 +71,7 @@ _02249A32:
 _02249A3A:
 	cmp r0, #0xa
 	blo _02249A42
-	bl sub_02022974
+	bl GF_AssertFail
 _02249A42:
 	add r4, r4, #1
 	add r7, r7, #2
@@ -161,7 +161,7 @@ _02249AE0:
 	cmp r0, #0
 	bne _02249AEC
 	bne _02249AFA
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02249AFA
 _02249AEC:
 	add r4, r4, #1

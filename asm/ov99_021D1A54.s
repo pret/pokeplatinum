@@ -234,7 +234,7 @@ _021D1BD4:
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _021D1C38
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1C38:
 	ldr r0, [r5, #0]
 	ldr r0, [r0, #0]

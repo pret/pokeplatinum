@@ -195,7 +195,7 @@ sub_0206B878: ; 0x0206B878
 	bl FS_OpenFile
 	cmp r0, #0
 	bne _0206B8A4
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x70
 	pop {r3, r4, r5, r6, r7, pc}
 _0206B8A4:
@@ -205,7 +205,7 @@ _0206B8A4:
 	bl FS_ReadFile
 	cmp r0, #0
 	bge _0206B8B6
-	bl sub_02022974
+	bl GF_AssertFail
 _0206B8B6:
 	mov r0, #0xb
 	mov r1, #4

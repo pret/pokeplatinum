@@ -1299,7 +1299,7 @@ _02266A44:
 	mov r4, #2
 	b _02266A54
 _02266A4A:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #8
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
@@ -1580,7 +1580,7 @@ ov70_02266C68: ; 0x02266C68
 	add r6, r2, #0
 	cmp r4, #2
 	blo _02266C7A
-	bl sub_02022974
+	bl GF_AssertFail
 _02266C7A:
 	mov r0, #0
 	strb r0, [r5]
@@ -1697,7 +1697,7 @@ _02266D32:
 	mov r6, #2
 	b _02266D3C
 _02266D36:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r6, #2
 _02266D3C:
 	add r0, r6, #0

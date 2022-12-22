@@ -974,11 +974,11 @@ sub_0208716C: ; 0x0208716C
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	bne _0208717A
-	bl sub_02022974
+	bl GF_AssertFail
 _0208717A:
 	cmp r4, #0
 	bne _02087182
-	bl sub_02022974
+	bl GF_AssertFail
 _02087182:
 	ldr r0, [r4, #0x18]
 	bl sub_020237BC

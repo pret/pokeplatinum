@@ -641,11 +641,11 @@ ov63_0222D688: ; 0x0222D688
 	add r4, r1, #0
 	cmp r5, #0x40
 	bls _0222D696
-	bl sub_02022974
+	bl GF_AssertFail
 _0222D696:
 	cmp r4, #0x40
 	bls _0222D69E
-	bl sub_02022974
+	bl GF_AssertFail
 _0222D69E:
 	cmp r5, #0x20
 	bhi _0222D6AE
@@ -775,8 +775,8 @@ _0222D76C:
 	add r0, r0, r2
 	pop {r4, r5, r6, pc}
 _0222D770:
-	bl sub_02022974
-	bl sub_02022974
+	bl GF_AssertFail
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov63_0222D6BC

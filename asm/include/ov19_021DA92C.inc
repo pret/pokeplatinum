@@ -34,7 +34,7 @@
 .public sub_02021D28
 .public sub_02021D34
 .public sub_02021E90
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020237BC
 .public sub_02075F0C
 .public sub_02075FB4

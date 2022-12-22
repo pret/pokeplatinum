@@ -5,7 +5,7 @@
 .public sub_020181C4
 .public sub_020182F0
 .public sub_0201CBCC
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dGeFlushBuffer
 .public NNS_G3dGeBufferOP_N
 .public NNS_G3dGetTex

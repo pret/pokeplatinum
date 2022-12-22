@@ -18,7 +18,7 @@
 .public sub_02013720
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dGetUnpackedCharacterData
 .public NNS_G2dGetUnpackedPaletteData
 .public MIi_CpuCopy16

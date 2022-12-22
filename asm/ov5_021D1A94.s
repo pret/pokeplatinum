@@ -155,12 +155,12 @@ _021D1B7C:
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	bne _021D1BAA
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1BAA:
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	bne _021D1BB4
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1BB4:
 	ldrh r1, [r6, #4]
 	cmp r1, #0
@@ -185,7 +185,7 @@ _021D1BD4:
 	cmp r1, r2
 	blt _021D1B7C
 _021D1BDC:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

@@ -976,7 +976,7 @@ _022557BA:
 	ldr r0, [r5, #8]
 	cmp r1, r0
 	blt _022557C6
-	bl sub_02022974
+	bl GF_AssertFail
 _022557C6:
 	ldr r0, [r4, #4]
 	cmp r0, #0
@@ -1031,7 +1031,7 @@ _0225581A:
 	ldr r0, [r5, #0x14]
 	cmp r1, r0
 	blt _02255826
-	bl sub_02022974
+	bl GF_AssertFail
 _02255826:
 	ldr r0, [r4, #4]
 	cmp r0, #0
@@ -1377,7 +1377,7 @@ _02255AD8:
 	str r0, [sp, #4]
 	cmp r0, #0
 	bne _02255AF6
-	bl sub_02022974
+	bl GF_AssertFail
 _02255AF6:
 	ldr r1, [sp, #4]
 	add r0, r6, #0
@@ -1484,7 +1484,7 @@ _02255B5E:
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	bne _02255BD4
-	bl sub_02022974
+	bl GF_AssertFail
 _02255BD4:
 	ldr r1, [r5, #0]
 	ldr r0, [r4, #8]

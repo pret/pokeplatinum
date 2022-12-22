@@ -488,7 +488,7 @@ sub_020173CC: ; 0x020173CC
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _020173DA
-	bl sub_02022974
+	bl GF_AssertFail
 _020173DA:
 	ldr r0, [r4, #0]
 	bl NNS_G3dGetMdlSet

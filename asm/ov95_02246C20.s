@@ -1435,7 +1435,7 @@ ov95_022476C8: ; 0x022476C8
 	ldr r0, [r0, #0]
 	cmp r0, #0x20
 	blt _022476D8
-	bl sub_02022974
+	bl GF_AssertFail
 _022476D8:
 	ldr r0, _022476E8 ; =0x0224C2E0
 	ldr r2, [r0, #0]

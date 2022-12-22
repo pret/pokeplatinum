@@ -557,7 +557,7 @@ _0222E148:
 	add r4, r4, #1
 	cmp r4, #0x20
 	blt _0222E0BC
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
@@ -1013,7 +1013,7 @@ _0222E44E:
 	bl sub_0200A3DC
 	cmp r0, #0
 	bne _0222E4F8
-	bl sub_02022974
+	bl GF_AssertFail
 _0222E4F8:
 	mov r0, #0x76
 	lsl r0, r0, #2
@@ -1021,7 +1021,7 @@ _0222E4F8:
 	bl sub_0200A640
 	cmp r0, #0
 	bne _0222E50A
-	bl sub_02022974
+	bl GF_AssertFail
 _0222E50A:
 	mov r0, #0x75
 	lsl r0, r0, #2

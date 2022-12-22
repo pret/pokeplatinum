@@ -34,7 +34,7 @@ sub_02027F6C: ; 0x02027F6C
 	ldr r0, [r4, #0]
 	cmp r0, r1
 	beq _02027F7A
-	bl sub_02022974
+	bl GF_AssertFail
 _02027F7A:
 	add r0, r4, #4
 	pop {r4, pc}

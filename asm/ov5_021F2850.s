@@ -44,7 +44,7 @@ ov5_021F287C: ; 0x021F287C
 	sub r1, r1, #1
 	str r1, [r0, #0]
 	bpl _021F288A
-	bl sub_02022974
+	bl GF_AssertFail
 _021F288A:
 	pop {r3, pc}
 	thumb_func_end ov5_021F287C

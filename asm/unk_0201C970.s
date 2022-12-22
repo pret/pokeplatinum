@@ -127,7 +127,7 @@ sub_0201CA3C: ; 0x0201CA3C
 	bl sub_0201C9CC
 	cmp r4, #0
 	bne _0201CA52
-	bl sub_02022974
+	bl GF_AssertFail
 _0201CA52:
 	ldr r1, [r4, #0]
 	add r0, r5, #0
@@ -408,7 +408,7 @@ _0201CC5A:
 	blx r1
 	cmp r0, #0
 	beq _0201CC70
-	bl sub_02022974
+	bl GF_AssertFail
 _0201CC70:
 	add sp, #0x10
 	mov r0, #0
@@ -423,7 +423,7 @@ _0201CC76:
 	blx r1
 	cmp r0, #0
 	beq _0201CC8C
-	bl sub_02022974
+	bl GF_AssertFail
 _0201CC8C:
 	add sp, #0x10
 	mov r0, #0
@@ -438,7 +438,7 @@ _0201CC92:
 	blx r1
 	cmp r0, #0
 	beq _0201CCA8
-	bl sub_02022974
+	bl GF_AssertFail
 _0201CCA8:
 	add sp, #0x10
 	mov r0, #0

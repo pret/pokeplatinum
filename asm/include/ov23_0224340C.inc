@@ -55,7 +55,7 @@
 .public sub_02021E80
 .public sub_02021F58
 .public sub_02021FE0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02028EF8
 .public sub_02028F40
 .public sub_02028F5C

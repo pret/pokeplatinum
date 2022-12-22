@@ -62,7 +62,7 @@ sub_0202AD2C: ; 0x0202AD2C
 	add r7, r2, #0
 	cmp r4, #0x20
 	blt _0202AD3C
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AD3C:
 	cmp r7, #0xc
 	bhi _0202AE0C
@@ -204,7 +204,7 @@ sub_0202AE2C: ; 0x0202AE2C
 	add r6, r3, #0
 	cmp r4, #0x20
 	blt _0202AE3E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AE3E:
 	cmp r7, #9
 	bhi _0202AEC4
@@ -234,13 +234,13 @@ _0202AE62:
 	str r6, [r1, r0]
 	pop {r3, r4, r5, r6, r7, pc}
 _0202AE70:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _0202AE76:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _0202AE7C:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _0202AE82:
 	mov r0, #0x38
@@ -279,7 +279,7 @@ _0202AEB4:
 	strb r6, [r1, r0]
 	pop {r3, r4, r5, r6, r7, pc}
 _0202AEC0:
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AEC4:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -296,7 +296,7 @@ sub_0202AED8: ; 0x0202AED8
 	add r5, r0, #0
 	cmp r4, #0x20
 	blt _0202AEE6
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AEE6:
 	mov r0, #0xc
 	add r5, #0x40
@@ -312,7 +312,7 @@ sub_0202AEF0: ; 0x0202AEF0
 	add r5, r0, #0
 	cmp r4, #0x20
 	blt _0202AEFE
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AEFE:
 	mov r0, #0x1d
 	lsl r0, r0, #4
@@ -331,7 +331,7 @@ sub_0202AF0C: ; 0x0202AF0C
 	add r6, r2, #0
 	cmp r4, #0x20
 	blt _0202AF1C
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AF1C:
 	mov r1, #0x1d
 	lsl r1, r1, #4
@@ -353,7 +353,7 @@ sub_0202AF34: ; 0x0202AF34
 	add r5, r0, #0
 	cmp r4, #0x20
 	blt _0202AF42
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AF42:
 	mov r0, #7
 	lsl r0, r0, #6
@@ -372,7 +372,7 @@ sub_0202AF50: ; 0x0202AF50
 	add r6, r2, #0
 	cmp r4, #0x20
 	blt _0202AF60
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AF60:
 	mov r1, #7
 	lsl r1, r1, #6
@@ -394,7 +394,7 @@ sub_0202AF78: ; 0x0202AF78
 	add r5, r0, #0
 	cmp r4, #0x20
 	blt _0202AF86
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AF86:
 	mov r0, #0xc
 	add r5, #0x40
@@ -454,7 +454,7 @@ sub_0202AFD4: ; 0x0202AFD4
 	str r0, [sp]
 	cmp r5, #0x20
 	blt _0202AFE4
-	bl sub_02022974
+	bl GF_AssertFail
 _0202AFE4:
 	cmp r5, #0x1f
 	bge _0202B03E

@@ -13,14 +13,14 @@ sub_020064F0: ; 0x020064F0
 	ldr r0, [r4, #4]
 	cmp r0, #1
 	beq _020064FE
-	bl sub_02022974
+	bl GF_AssertFail
 _020064FE:
 	ldr r1, [r4, #0]
 	mov r0, #0
 	bl FS_UnloadOverlay
 	cmp r0, #1
 	beq _0200650E
-	bl sub_02022974
+	bl GF_AssertFail
 _0200650E:
 	mov r0, #0
 	str r0, [r4, #4]
@@ -64,7 +64,7 @@ sub_02006544: ; 0x02006544
 	bl FS_LoadOverlayInfo
 	cmp r0, #1
 	beq _0200655A
-	bl sub_02022974
+	bl GF_AssertFail
 _0200655A:
 	mov r0, #2
 	ldr r2, [sp, #4]
@@ -136,7 +136,7 @@ _020065CC:
 _020065D4:
 	cmp r6, #8
 	blt _020065E0
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _020065E0:
@@ -174,7 +174,7 @@ _02006616:
 	add r4, r0, #0
 	b _0200662A
 _02006622:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _0200662A:
@@ -185,7 +185,7 @@ _0200662A:
 _02006634:
 	cmp r4, #0
 	bne _02006640
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 _02006640:
@@ -245,7 +245,7 @@ _0200669C:
 	cmp r3, r0
 	blo _020066B0
 _020066A6:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x10
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -296,7 +296,7 @@ sub_020066E4: ; 0x020066E4
 	bl FS_LoadOverlayInfo
 	cmp r0, #0
 	bne _02006706
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x2c
 	mov r0, #0
 	pop {r4, r5, pc}

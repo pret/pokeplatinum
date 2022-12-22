@@ -808,11 +808,11 @@ ov17_0223B884: ; 0x0223B884
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0223B8AC
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B8AC:
 	cmp r5, #0
 	bne _0223B8B4
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B8B4:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}
@@ -828,7 +828,7 @@ ov17_0223B8C4: ; 0x0223B8C4
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _0223B8D2
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B8D2:
 	ldr r1, _0223B8F4 ; =0x00000172
 	mov r0, #0

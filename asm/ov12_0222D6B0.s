@@ -168,7 +168,7 @@ ov12_0222D7C0: ; 0x0222D7C0
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0222D7DE
-	bl sub_02022974
+	bl GF_AssertFail
 _0222D7DE:
 	mov r0, #0
 	strb r0, [r4, #4]
@@ -624,7 +624,7 @@ ov12_0222DB60: ; 0x0222DB60
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0222DB7E
-	bl sub_02022974
+	bl GF_AssertFail
 _0222DB7E:
 	mov r0, #0
 	strb r0, [r4, #7]
@@ -1092,7 +1092,7 @@ ov12_0222DEFC: ; 0x0222DEFC
 	bl sub_02018144
 	add r6, r0, #0
 	bne _0222DF1A
-	bl sub_02022974
+	bl GF_AssertFail
 _0222DF1A:
 	mov r0, #0
 	strb r0, [r6, #1]

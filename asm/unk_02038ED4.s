@@ -59,11 +59,11 @@ _02038F28:
 	add r5, r0, #0
 	cmp r5, #2
 	bne _02038F36
-	bl sub_02022974
+	bl GF_AssertFail
 _02038F36:
 	cmp r5, #3
 	bne _02038F3E
-	bl sub_02022974
+	bl GF_AssertFail
 _02038F3E:
 	cmp r5, #1
 	bne _02038F88
@@ -85,11 +85,11 @@ _02038F5E:
 	add r5, r0, #0
 	cmp r5, #3
 	bne _02038F6C
-	bl sub_02022974
+	bl GF_AssertFail
 _02038F6C:
 	cmp r5, #1
 	bne _02038F74
-	bl sub_02022974
+	bl GF_AssertFail
 _02038F74:
 	cmp r5, #2
 	bne _02038F88

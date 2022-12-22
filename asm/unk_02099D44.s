@@ -32,7 +32,7 @@ sub_02099D54: ; 0x02099D54
 	str r4, [r0, #0]
 	pop {r4, pc}
 _02099D6E:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 	; .align 2, 0
 _02099D74: .word 0x021C0A34
@@ -55,7 +55,7 @@ sub_02099D7C: ; 0x02099D7C
 	mov r0, #1
 	pop {r3, pc}
 _02099D98:
-	bl sub_02022974
+	bl GF_AssertFail
 _02099D9C:
 	mov r0, #0
 	pop {r3, pc}
@@ -79,7 +79,7 @@ sub_02099DA8: ; 0x02099DA8
 	str r4, [r0, #0]
 	pop {r4, pc}
 _02099DC2:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 	; .align 2, 0
 _02099DC8: .word 0x021C0A34
@@ -102,7 +102,7 @@ sub_02099DD0: ; 0x02099DD0
 	mov r0, #1
 	pop {r3, pc}
 _02099DEC:
-	bl sub_02022974
+	bl GF_AssertFail
 _02099DF0:
 	mov r0, #0
 	pop {r3, pc}

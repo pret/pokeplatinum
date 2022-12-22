@@ -3171,7 +3171,7 @@ ov113_0225E15C: ; 0x0225E15C
 	ldr r4, [sp, #0x9c]
 	cmp r0, #0
 	beq _0225E174
-	bl sub_02022974
+	bl GF_AssertFail
 _0225E174:
 	ldr r0, [r6, #8]
 	ldr r1, [sp, #0x1c]
@@ -3400,7 +3400,7 @@ _0225E32A:
 	ldr r0, [r5, r0]
 	cmp r0, r1
 	bge _0225E33E
-	bl sub_02022974
+	bl GF_AssertFail
 	ldr r0, _0225E360 ; =0x000019D4
 	ldr r1, [r5, r0]
 	add r0, r0, #4

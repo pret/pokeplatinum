@@ -17,7 +17,7 @@
 .public sub_0201DCAC
 .public sub_0201FF0C
 .public sub_02021E74
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202440C
 .public sub_02027AC0
 .public sub_02027B50

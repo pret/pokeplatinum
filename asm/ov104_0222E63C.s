@@ -123,7 +123,7 @@ ov104_0222E710: ; 0x0222E710
 	ldrsb r0, [r4, r0]
 	cmp r0, #0
 	beq _0222E720
-	bl sub_02022974
+	bl GF_AssertFail
 _0222E720:
 	ldr r0, [r4, #0x44]
 	bl sub_0200B3F0
@@ -229,7 +229,7 @@ _0222E7EC:
 	add r4, r4, #4
 	cmp r3, #8
 	blt _0222E7D2
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, pc}
 	thumb_func_end ov104_0222E7CC

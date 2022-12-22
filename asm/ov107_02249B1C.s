@@ -68,7 +68,7 @@ ov107_02249B8C: ; 0x02249B8C
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02249B9A
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, pc}
 _02249B9A:

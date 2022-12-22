@@ -74,7 +74,7 @@ sub_0209972C: ; 0x0209972C
 	add r4, r0, #0
 	cmp r4, #0x13
 	blo _02099738
-	bl sub_02022974
+	bl GF_AssertFail
 _02099738:
 	mov r0, #0xc
 	add r1, r4, #0
@@ -92,7 +92,7 @@ sub_02099748: ; 0x02099748
 	add r4, r0, #0
 	cmp r4, #0x13
 	blo _02099754
-	bl sub_02022974
+	bl GF_AssertFail
 _02099754:
 	mov r0, #0xc
 	add r1, r4, #0
@@ -110,7 +110,7 @@ sub_02099764: ; 0x02099764
 	add r4, r0, #0
 	cmp r4, #0x13
 	blo _02099770
-	bl sub_02022974
+	bl GF_AssertFail
 _02099770:
 	mov r0, #0xc
 	add r1, r4, #0
@@ -128,7 +128,7 @@ sub_02099780: ; 0x02099780
 	add r4, r0, #0
 	cmp r4, #0x13
 	blo _0209978C
-	bl sub_02022974
+	bl GF_AssertFail
 _0209978C:
 	mov r0, #0xc
 	add r1, r4, #0
@@ -146,7 +146,7 @@ sub_0209979C: ; 0x0209979C
 	add r4, r0, #0
 	cmp r4, #0x13
 	blo _020997A8
-	bl sub_02022974
+	bl GF_AssertFail
 _020997A8:
 	mov r0, #0xc
 	add r1, r4, #0

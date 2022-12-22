@@ -26,5 +26,5 @@
 .public sub_0201F9F0
 .public sub_0201FA58
 .public sub_0201FA80
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dGetImagePaletteLocation

@@ -4,7 +4,7 @@
 .public sub_02018238
 .public sub_0201E0B8
 .public sub_0201E0FC
-.public sub_02022974
+.public GF_AssertFail
 .public NNSi_G3dModifyMatFlag
 .public MI_CpuFill8
 .public ov5_021D52F4

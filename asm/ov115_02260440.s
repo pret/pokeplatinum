@@ -190,7 +190,7 @@ _02260576:
 	str r0, [r4, #0x74]
 	cmp r0, #1
 	bhi _022605BE
-	bl sub_02022974
+	bl GF_AssertFail
 _022605BE:
 	bl sub_0203608C
 	add r1, r4, #0
@@ -270,7 +270,7 @@ _0226064E:
 	strb r1, [r0, #9]
 	b _0226065E
 _0226065A:
-	bl sub_02022974
+	bl GF_AssertFail
 _0226065E:
 	ldr r0, [r4, #0x34]
 	add r1, sp, #0x14
@@ -856,7 +856,7 @@ ov115_02260A90: ; 0x02260A90
 	bl ov115_02260BA0
 	cmp r0, #0
 	bne _02260AD0
-	bl sub_02022974
+	bl GF_AssertFail
 _02260AD0:
 	mov r0, #0
 	add r4, #0x80

@@ -12,7 +12,7 @@
 .public sub_02019184
 .public sub_0201D2E8
 .public sub_02021F98
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dRenderObjInit
 .public GX_BeginLoadBGExtPltt
 .public GX_LoadBGExtPltt

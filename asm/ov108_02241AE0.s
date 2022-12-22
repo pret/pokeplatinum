@@ -2405,7 +2405,7 @@ _02242D14:
 	lsr r0, r0, #0x1f
 	b _02242D28
 _02242D1E:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #1
 	b _02242D28
 _02242D26:
@@ -2604,7 +2604,7 @@ _02242E70:
 _02242E8C:
 	cmp r7, #0x32
 	blt _02242EA0
-	bl sub_02022974
+	bl GF_AssertFail
 	ldr r0, [sp, #4]
 	mov r1, #0
 	add r0, r6, r0
@@ -2687,7 +2687,7 @@ _02242F10:
 _02242F26:
 	cmp r0, #4
 	blo _02242F30
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 _02242F30:
 	pop {r3, r4, r5, pc}

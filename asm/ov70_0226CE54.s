@@ -225,11 +225,11 @@ ov70_0226CFFC: ; 0x0226CFFC
 	add r4, r2, #0
 	cmp r5, #9
 	blo _0226D00C
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D00C:
 	cmp r4, #3
 	blt _0226D014
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D014:
 	lsl r0, r5, #1
 	add r0, r5, r0
@@ -564,7 +564,7 @@ ov70_0226D2A0: ; 0x0226D2A0
 	add r7, r3, #0
 	cmp r4, #2
 	blo _0226D2B2
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D2B2:
 	ldrh r0, [r5]
 	cmp r0, #1

@@ -1,4 +1,4 @@
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202D830
 .public sub_0202D834
 .public sub_0206978C

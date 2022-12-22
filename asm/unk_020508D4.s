@@ -41,7 +41,7 @@ sub_02050904: ; 0x02050904
 	add r6, r2, #0
 	cmp r0, #0
 	beq _02050916
-	bl sub_02022974
+	bl GF_AssertFail
 _02050916:
 	add r0, r5, #0
 	add r1, r4, #0

@@ -184,7 +184,7 @@ _021F1DFA:
 _021F1E0E:
 	cmp r4, #0
 	bne _021F1E16
-	bl sub_02022974
+	bl GF_AssertFail
 _021F1E16:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
@@ -247,7 +247,7 @@ _021F1E6A:
 _021F1E7C:
 	cmp r4, #0
 	bne _021F1E84
-	bl sub_02022974
+	bl GF_AssertFail
 _021F1E84:
 	add r0, r4, #0
 	pop {r4, pc}

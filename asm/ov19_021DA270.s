@@ -344,7 +344,7 @@ ov19_021DA428: ; 0x021DA428
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _021DA51E
-	bl sub_02022974
+	bl GF_AssertFail
 _021DA51E:
 	ldrh r1, [r4, #0x2c]
 	ldr r0, [r4, #0]
@@ -453,7 +453,7 @@ ov19_021DA548: ; 0x021DA548
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _021DA610
-	bl sub_02022974
+	bl GF_AssertFail
 _021DA610:
 	ldrh r1, [r4, #0x2c]
 	ldr r0, [r4, #0]

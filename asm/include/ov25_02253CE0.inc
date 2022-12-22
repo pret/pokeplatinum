@@ -13,7 +13,7 @@
 .public sub_0201E530
 .public sub_020227A4
 .public sub_020227C0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02025E38
 .public sub_02025F30
 .public sub_0203D158

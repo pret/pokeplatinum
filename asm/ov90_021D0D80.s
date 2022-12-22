@@ -558,7 +558,7 @@ _021D11C8:
 	bl ov90_021D1A48
 	b _021D11DC
 _021D11D0:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _021D11DC
 _021D11D6:
 	add r0, r5, #0

@@ -258,7 +258,7 @@ ov5_021E132C: ; 0x021E132C
 	bl sub_02018184
 	add r4, r0, #0
 	bne _021E1340
-	bl sub_02022974
+	bl GF_AssertFail
 _021E1340:
 	add r0, r4, #0
 	mov r1, #0

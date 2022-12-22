@@ -2,7 +2,7 @@
 .public sub_020181C4
 .public sub_0201DC68
 .public sub_0201DCF8
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_GfdInitVramTransferManager
 .public NNS_GfdDoVramTransfer
 .public NNS_GfdRegisterNewVramTransferTask

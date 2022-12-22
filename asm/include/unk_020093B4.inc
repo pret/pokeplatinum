@@ -15,7 +15,7 @@
 .public sub_0201E9C0
 .public sub_0201F890
 .public sub_020218BC
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202309C
 .public sub_020230E0
 .public GX_GetBankForOBJ

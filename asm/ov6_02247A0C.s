@@ -374,7 +374,7 @@ _02247D22:
 	sub r0, r4, r0
 	pop {r4, r5, r6, pc}
 _02247D26:
-	bl sub_02022974
+	bl GF_AssertFail
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

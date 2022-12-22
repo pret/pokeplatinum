@@ -3,7 +3,7 @@
 .public sub_020180F0
 .public sub_02018134
 .public sub_0201833C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02036780
 .public sub_0209B49C
 .public NNS_FndCreateExpHeapEx

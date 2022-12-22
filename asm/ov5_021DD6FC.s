@@ -472,7 +472,7 @@ _021DDA64:
 	strb r5, [r4]
 	pop {r3, r4, r5, pc}
 _021DDA6E:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _021DDA74: .word ov5_021DD8A4

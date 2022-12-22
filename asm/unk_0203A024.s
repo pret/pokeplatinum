@@ -12,7 +12,7 @@ sub_0203A024: ; 0x0203A024
 	ldr r1, _0203A034 ; =0x00000251
 	cmp r0, r1
 	blo _0203A032
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #3
 _0203A032:
 	pop {r3, pc}

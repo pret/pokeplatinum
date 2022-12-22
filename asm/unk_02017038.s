@@ -48,7 +48,7 @@ sub_02017070: ; 0x02017070
 	add r4, r1, #0
 	cmp r5, #3
 	blt _0201707E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201707E:
 	ldr r0, _02017088 ; =0x020E565C
 	lsl r1, r5, #1

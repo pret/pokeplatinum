@@ -434,7 +434,7 @@ sub_02015008: ; 0x02015008
 	add r4, r1, #0
 	cmp r5, #0
 	bne _02015016
-	bl sub_02022974
+	bl GF_AssertFail
 _02015016:
 	ldr r0, [r5, #0]
 	cmp r0, r4
@@ -459,7 +459,7 @@ sub_02015030: ; 0x02015030
 	add r4, r1, #0
 	cmp r5, #0
 	bne _0201503E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201503E:
 	ldr r3, [r5, #0]
 	mov r1, #0

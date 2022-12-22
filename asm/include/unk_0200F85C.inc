@@ -97,7 +97,7 @@
 .public sub_02012698
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public FX_Div
 .public FX_Sqrt
 .public memcpy

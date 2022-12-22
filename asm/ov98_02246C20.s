@@ -656,7 +656,7 @@ ov98_022470B8: ; 0x022470B8
 	ldr r0, [sp]
 	cmp r0, #0
 	bne _022470E0
-	bl sub_02022974
+	bl GF_AssertFail
 _022470E0:
 	add r0, r4, #0
 	bl sub_02089438
@@ -716,7 +716,7 @@ ov98_02247134: ; 0x02247134
 	ldr r0, [sp]
 	cmp r0, #0
 	bne _02247154
-	bl sub_02022974
+	bl GF_AssertFail
 _02247154:
 	add r0, r4, #0
 	bl sub_02089438

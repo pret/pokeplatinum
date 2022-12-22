@@ -15,7 +15,7 @@ ov12_02237EFC: ; 0x02237EFC
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02237F14
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 _02237F14:
@@ -70,7 +70,7 @@ _02237F60:
 _02237F68:
 	cmp r4, #0
 	bne _02237F70
-	bl sub_02022974
+	bl GF_AssertFail
 _02237F70:
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
@@ -135,7 +135,7 @@ ov12_02237FC8: ; 0x02237FC8
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02237FE0
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 _02237FE0:
@@ -253,7 +253,7 @@ _02238094:
 	sub r0, r5, #5
 	cmp r0, #0x16
 	blo _022380AC
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x58
 	mov r0, #0
 	pop {r3, r4, r5, pc}

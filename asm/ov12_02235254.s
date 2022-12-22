@@ -118,7 +118,7 @@ _02235300:
 	add r4, r4, #1
 	cmp r4, #4
 	blt _022352BC
-	bl sub_02022974
+	bl GF_AssertFail
 	add r0, r5, #0
 _0223530C:
 	pop {r4, r5, r6, pc}
@@ -162,7 +162,7 @@ _02235342:
 	mov r0, #4
 	pop {r3, pc}
 _02235346:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
@@ -272,7 +272,7 @@ _02235402:
 	mov r5, #7
 	b _0223540A
 _02235406:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223540A:
 	mov r0, #0x12
 	lsl r0, r0, #4
@@ -1614,7 +1614,7 @@ ov12_02235E50: ; 0x02235E50
 	add r5, r1, #0
 	cmp r4, #0
 	bne _02235E5E
-	bl sub_02022974
+	bl GF_AssertFail
 _02235E5E:
 	add r0, r4, #0
 	bl ov12_0221FDE4
@@ -1622,7 +1622,7 @@ _02235E5E:
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02235E72
-	bl sub_02022974
+	bl GF_AssertFail
 _02235E72:
 	add r0, r4, #0
 	mov r1, #0
@@ -1637,7 +1637,7 @@ ov12_02235E80: ; 0x02235E80
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02235E8A
-	bl sub_02022974
+	bl GF_AssertFail
 _02235E8A:
 	add r0, r4, #0
 	bl sub_020181C4

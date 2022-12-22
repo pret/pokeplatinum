@@ -19,7 +19,7 @@
 .public sub_02020680
 .public sub_02020784
 .public sub_02020854
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0209C400
 .public sub_0209C444
 .public sub_0209C4D8

@@ -70,7 +70,7 @@ ov104_0223A118: ; 0x0223A118
 	ldrb r0, [r0, #0x10]
 	cmp r0, #4
 	bls _0223A144
-	bl sub_02022974
+	bl GF_AssertFail
 _0223A144:
 	add r0, sp, #0x88
 	ldrb r6, [r0, #0x10]
@@ -934,13 +934,13 @@ _0223A7B6:
 	bl sub_02032EE8
 	add r5, r0, #0
 	bne _0223A7C4
-	bl sub_02022974
+	bl GF_AssertFail
 _0223A7C4:
 	mov r0, #1
 	bl sub_02032EE8
 	add r4, r0, #0
 	bne _0223A7D2
-	bl sub_02022974
+	bl GF_AssertFail
 _0223A7D2:
 	add r0, r5, #0
 	bl sub_02025FCC

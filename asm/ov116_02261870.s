@@ -824,7 +824,7 @@ _02261EF2:
 	add r3, #8
 	cmp r2, #4
 	blt _02261EE0
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	add sp, #0x20
 	pop {r4, r5, r6, pc}
@@ -1120,7 +1120,7 @@ _02262114:
 	bl sub_0200710C
 	b _02262134
 _02262130:
-	bl sub_02022974
+	bl GF_AssertFail
 _02262134:
 	ldr r0, [r5, #4]
 	mov r6, #0

@@ -991,7 +991,7 @@ ov19_021DCD18: ; 0x021DCD18
 	add r5, r0, #0
 	cmp r4, #6
 	blo _021DCD26
-	bl sub_02022974
+	bl GF_AssertFail
 _021DCD26:
 	mov r0, #0x34
 	add r5, #0x3c

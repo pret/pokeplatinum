@@ -58,7 +58,7 @@ sub_02071B6C: ; 0x02071B6C
 	add r7, r0, #0
 	cmp r5, #3
 	blo _02071B7A
-	bl sub_02022974
+	bl GF_AssertFail
 _02071B7A:
 	add r0, r7, #0
 	bl sub_0203D174
@@ -94,7 +94,7 @@ _02071BB6:
 	mov r6, #0x19
 	b _02071BC2
 _02071BBE:
-	bl sub_02022974
+	bl GF_AssertFail
 _02071BC2:
 	ldr r0, [r7, #0x1c]
 	ldr r0, [r0, #0xc]
@@ -201,7 +201,7 @@ sub_02071C80: ; 0x02071C80
 	add r6, r2, #0
 	cmp r4, #1
 	bls _02071C90
-	bl sub_02022974
+	bl GF_AssertFail
 _02071C90:
 	mov r0, #0
 	mvn r0, r0

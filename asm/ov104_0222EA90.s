@@ -117,7 +117,7 @@ _0222EB40:
 	ldrb r0, [r0, r1]
 	pop {r3, pc}
 _0222EB4A:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	nop

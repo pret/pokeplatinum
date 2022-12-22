@@ -374,7 +374,7 @@ _022566A4:
 	bl ov25_02255938
 	b _02256760
 _0225675C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02256760:
 	ldrh r0, [r4, #8]
 	ldrh r1, [r4, #0xc]

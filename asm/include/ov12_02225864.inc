@@ -27,7 +27,7 @@
 .public sub_020181C4
 .public sub_0201FAB4
 .public sub_02021F9C
-.public sub_02022974
+.public GF_AssertFail
 .public FX_Div
 .public FX_Sqrt
 .public FX_Atan2Idx

@@ -1271,7 +1271,7 @@ ov101_021D630C: ; 0x021D630C
 	ldr r4, [r6, #0x38]
 	cmp r5, #5
 	blt _021D631C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D631C:
 	mov r1, #2
 	mov r2, #0x45
@@ -1316,7 +1316,7 @@ _021D631C:
 	bl sub_0200DA04
 	cmp r0, #0
 	bne _021D6380
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6380:
 	ldr r0, _021D63A0 ; =ov101_021D63E8
 	ldr r2, _021D639C ; =0x00000101
@@ -1324,7 +1324,7 @@ _021D6380:
 	bl sub_0200DA3C
 	cmp r0, #0
 	bne _021D6392
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6392:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1698,7 +1698,7 @@ ov101_021D65F4: ; 0x021D65F4
 	bl sub_0200DA04
 	cmp r0, #0
 	bne _021D665C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D665C:
 	ldr r0, _021D6678 ; =ov101_021D65CC
 	ldr r2, _021D6674 ; =0x00000101
@@ -1706,7 +1706,7 @@ _021D665C:
 	bl sub_0200DA3C
 	cmp r0, #0
 	bne _021D666E
-	bl sub_02022974
+	bl GF_AssertFail
 _021D666E:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -1812,7 +1812,7 @@ ov101_021D66D0: ; 0x021D66D0
 	bl sub_0200DA04
 	cmp r0, #0
 	bne _021D6740
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6740:
 	ldr r0, _021D6760 ; =ov101_021D66A8
 	ldr r2, _021D675C ; =0x00000101
@@ -1820,7 +1820,7 @@ _021D6740:
 	bl sub_0200DA3C
 	cmp r0, #0
 	bne _021D6752
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6752:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2653,7 +2653,7 @@ ov101_021D6D68: ; 0x021D6D68
 	bl sub_0200DA04
 	cmp r0, #0
 	bne _021D6DD0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6DD0:
 	ldr r0, _021D6DEC ; =ov101_021D6D3C
 	ldr r2, _021D6DE8 ; =0x00000101
@@ -2661,7 +2661,7 @@ _021D6DD0:
 	bl sub_0200DA3C
 	cmp r0, #0
 	bne _021D6DE2
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6DE2:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -4466,7 +4466,7 @@ _021D7B60:
 	ldr r0, [r4, #0x1c]
 	cmp r0, #5
 	blt _021D7B6A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D7B6A:
 	add r0, r4, #0
 	bl ov101_021D7D94
@@ -4840,7 +4840,7 @@ _021D7E16:
 	bl sub_0200DA04
 	cmp r0, #0
 	bne _021D7E28
-	bl sub_02022974
+	bl GF_AssertFail
 _021D7E28:
 	ldr r0, _021D7E44 ; =ov101_021D7D6C
 	ldr r2, _021D7E40 ; =0x00000101
@@ -4848,7 +4848,7 @@ _021D7E28:
 	bl sub_0200DA3C
 	cmp r0, #0
 	bne _021D7E3A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D7E3A:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

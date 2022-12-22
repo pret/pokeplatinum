@@ -50,7 +50,7 @@ sub_020068C8: ; 0x020068C8
 	ldrh r0, [r0]
 	cmp r0, r5
 	bgt _0200692E
-	bl sub_02022974
+	bl GF_AssertFail
 _0200692E:
 	ldr r0, [sp, #0x14]
 	mov r2, #0
@@ -96,7 +96,7 @@ _0200698A:
 	str r0, [sp, #0x14]
 	cmp r0, #0
 	bne _02006994
-	bl sub_02022974
+	bl GF_AssertFail
 _02006994:
 	ldr r1, [sp]
 	ldr r2, [sp, #0x14]
@@ -152,7 +152,7 @@ sub_020069A8: ; 0x020069A8
 	ldrh r0, [r0]
 	cmp r0, r5
 	bgt _02006A0E
-	bl sub_02022974
+	bl GF_AssertFail
 _02006A0E:
 	ldr r0, [sp, #0x14]
 	mov r2, #0
@@ -198,7 +198,7 @@ _02006A6A:
 	str r0, [sp, #0x14]
 	cmp r0, #0
 	bne _02006A74
-	bl sub_02022974
+	bl GF_AssertFail
 _02006A74:
 	ldr r0, [sp, #0x7c]
 	cmp r0, #0
@@ -371,7 +371,7 @@ sub_02006B58: ; 0x02006B58
 	ldrh r0, [r0]
 	cmp r0, r5
 	bgt _02006BBE
-	bl sub_02022974
+	bl GF_AssertFail
 _02006BBE:
 	ldr r0, [sp, #0xc]
 	mov r2, #0
@@ -410,7 +410,7 @@ _02006BBE:
 	sub r0, r1, r0
 	str r0, [sp, #0xc]
 	bne _02006C18
-	bl sub_02022974
+	bl GF_AssertFail
 _02006C18:
 	ldr r0, [sp, #0xc]
 	add sp, #0x58
@@ -501,7 +501,7 @@ sub_02006CB8: ; 0x02006CB8
 	add r6, r2, #0
 	cmp r0, r4
 	bhi _02006CCE
-	bl sub_02022974
+	bl GF_AssertFail
 _02006CCE:
 	ldr r2, [r5, #0x48]
 	lsl r1, r4, #3
@@ -556,7 +556,7 @@ sub_02006D28: ; 0x02006D28
 	add r6, r2, #0
 	cmp r0, r4
 	bhi _02006D3E
-	bl sub_02022974
+	bl GF_AssertFail
 _02006D3E:
 	ldr r2, [r5, #0x48]
 	lsl r1, r4, #3
@@ -600,7 +600,7 @@ sub_02006D84: ; 0x02006D84
 	add r4, r1, #0
 	cmp r0, r4
 	bhi _02006D98
-	bl sub_02022974
+	bl GF_AssertFail
 _02006D98:
 	ldr r2, [r5, #0x48]
 	lsl r1, r4, #3
@@ -636,7 +636,7 @@ sub_02006DC8: ; 0x02006DC8
 	add r7, r3, #0
 	cmp r0, r4
 	bhi _02006DDE
-	bl sub_02022974
+	bl GF_AssertFail
 _02006DDE:
 	ldr r2, [r5, #0x48]
 	lsl r1, r4, #3

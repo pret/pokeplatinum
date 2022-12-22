@@ -35,7 +35,7 @@
 .public sub_02021E90
 .public sub_02021EC4
 .public sub_02021EE8
-.public sub_02022974
+.public GF_AssertFail
 .public _f_add
 .public _f_ftoi
 .public _f_itof

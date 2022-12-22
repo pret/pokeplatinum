@@ -80,7 +80,7 @@
 .public sub_0201FF68
 .public sub_0201FF74
 .public sub_0201FFD0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020241BC
 .public sub_02024220
 .public sub_020242C4

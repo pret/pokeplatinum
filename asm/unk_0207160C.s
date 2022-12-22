@@ -69,7 +69,7 @@ _02071672:
 	bl sub_02055324
 	cmp r0, #0
 	bne _02071694
-	bl sub_02022974
+	bl GF_AssertFail
 _02071694:
 	ldr r1, [sp, #0x14]
 	add r0, sp, #0x18
@@ -281,7 +281,7 @@ _020717FE:
 	str r1, [r0, #8]
 	pop {r3, r4, r5, pc}
 _02071808:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	nop
 _02071810: .word 0x00000123
@@ -442,7 +442,7 @@ _02071932:
 	bl sub_02055324
 	cmp r0, #0
 	bne _02071954
-	bl sub_02022974
+	bl GF_AssertFail
 _02071954:
 	ldr r1, [sp, #0xc]
 	add r0, sp, #0x10
@@ -567,7 +567,7 @@ _02071A32:
 	bl sub_02055324
 	cmp r0, #0
 	bne _02071A54
-	bl sub_02022974
+	bl GF_AssertFail
 _02071A54:
 	ldr r1, [sp, #0xc]
 	add r0, sp, #0x10

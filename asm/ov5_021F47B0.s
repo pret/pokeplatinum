@@ -415,7 +415,7 @@ ov5_021F4AB4: ; 0x021F4AB4
 	str r2, [sp, #0x10]
 	add r0, r1, #0
 	bne _021F4AC6
-	bl sub_02022974
+	bl GF_AssertFail
 _021F4AC6:
 	ldr r0, [sp, #8]
 	bl sub_02063020
@@ -464,7 +464,7 @@ _021F4AF6:
 	bl sub_0206326C
 	add r4, r0, #0
 	bne _021F4B3A
-	bl sub_02022974
+	bl GF_AssertFail
 _021F4B3A:
 	ldr r1, [sp, #0x10]
 	add r0, r4, #0
@@ -710,7 +710,7 @@ ov5_021F4CEC: ; 0x021F4CEC
 	str r0, [r1, #8]
 	cmp r4, #8
 	blt _021F4D0A
-	bl sub_02022974
+	bl GF_AssertFail
 _021F4D0A:
 	add r0, r6, #0
 	add r1, r7, #0

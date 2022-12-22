@@ -118,7 +118,7 @@ ov5_021F1188: ; 0x021F1188
 	add r4, r0, #0
 	cmp r5, #0
 	bne _021F119E
-	bl sub_02022974
+	bl GF_AssertFail
 _021F119E:
 	mov r1, #0x6c
 	mov r2, #0
@@ -157,7 +157,7 @@ ov5_021F11C0: ; 0x021F11C0
 	bl ov5_021F1174
 	cmp r0, #0
 	bne _021F11EC
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _021F11EC:
 	add r1, r4, #0
@@ -180,7 +180,7 @@ ov5_021F11FC: ; 0x021F11FC
 	bl ov5_021F1174
 	add r4, r0, #0
 	bne _021F1214
-	bl sub_02022974
+	bl GF_AssertFail
 _021F1214:
 	add r4, #0x18
 	add r0, r4, #0

@@ -52,14 +52,14 @@ sub_0201D6B0: ; 0x0201D6B0
 	add r5, r0, #0
 	cmp r5, #8
 	blo _0201D6BC
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D6BC:
 	ldr r6, _0201D6F4 ; =0x021C04E0
 	lsl r4, r5, #2
 	ldr r0, [r6, r4]
 	cmp r0, #0
 	bne _0201D6CA
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D6CA:
 	cmp r5, #8
 	bhs _0201D6F0

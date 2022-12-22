@@ -84,7 +84,7 @@
 .public sub_02021DE0
 .public sub_02021E80
 .public sub_02021FD0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02098FFC
 .public sub_0209903C
 .public sub_02099160

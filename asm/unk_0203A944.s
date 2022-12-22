@@ -26,7 +26,7 @@ sub_0203A944: ; 0x0203A944
 	cmp r5, r0
 	blt _0203A970
 _0203A96C:
-	bl sub_02022974
+	bl GF_AssertFail
 _0203A970:
 	ldr r0, [r6, #8]
 	cmp r0, #2

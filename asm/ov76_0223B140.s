@@ -568,7 +568,7 @@ ov76_0223B52C: ; 0x0223B52C
 	ldr r1, [r2, r1]
 	cmp r1, #1
 	bne _0223B558
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x34
 	mov r0, #0
 	pop {r4, r5, r6, r7, pc}
@@ -708,7 +708,7 @@ _0223B666:
 	str r0, [r4, #0]
 	b _0223B672
 _0223B66E:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B672:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}

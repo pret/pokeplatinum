@@ -11,7 +11,7 @@
 .public sub_0200D7C0
 .public sub_0200D810
 .public sub_0201D2B8
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dRenderObjInit
 .public G2x_SetBlendAlpha_
 .public MI_CpuFill8

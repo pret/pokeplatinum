@@ -2004,7 +2004,7 @@ ov58_021D1DFC: ; 0x021D1DFC
 	bl ov58_021D2CEC
 	cmp r0, #0
 	bne _021D1E38
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1E38:
 	add r0, r5, #0
 	mov r1, #6
@@ -2395,7 +2395,7 @@ ov58_021D2130: ; 0x021D2130
 	bl ov58_021D2CEC
 	cmp r0, #0
 	bne _021D216C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D216C:
 	add r0, r5, #0
 	mov r1, #0xe
@@ -3893,7 +3893,7 @@ _021D2C44:
 _021D2C90:
 	cmp r0, #0
 	bne _021D2C98
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2C98:
 	mov r0, #1
 	pop {r3, r4, r5, pc}

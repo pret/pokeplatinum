@@ -39,7 +39,7 @@
 .public sub_0201ED94
 .public sub_0201EE28
 .public sub_0201FF0C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02024220
 .public sub_020242C4
 .public sub_02074470

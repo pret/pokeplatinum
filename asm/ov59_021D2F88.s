@@ -226,7 +226,7 @@ _021D30F0:
 	add r7, r0, #0
 	cmp r6, r4
 	bhi _021D310C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D310C:
 	ldr r1, [sp, #4]
 	add r0, r7, #0
@@ -329,7 +329,7 @@ _021D31BE:
 	str r0, [sp, #0x18]
 	cmp r1, r0
 	bhi _021D31D2
-	bl sub_02022974
+	bl GF_AssertFail
 _021D31D2:
 	mov r6, #0
 	ldr r4, [sp, #4]

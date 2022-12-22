@@ -153,10 +153,10 @@ _0223D012:
 	lsl r0, r0, #4
 	ldr r0, [r5, r0]
 	bl sub_020181C4
-	bl sub_02022974
+	bl GF_AssertFail
 	b _0223D050
 _0223D04C:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D050:
 	add r0, r4, #1
 	lsl r0, r0, #0x18
@@ -446,11 +446,11 @@ ov71_0223D298: ; 0x0223D298
 	add r6, r2, #0
 	cmp r4, #8
 	blo _0223D2AA
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D2AA:
 	cmp r6, #3
 	bls _0223D2B2
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D2B2:
 	lsl r7, r4, #2
 	mov r0, #0x57

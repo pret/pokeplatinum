@@ -70,7 +70,7 @@ ov21_021E84FC: ; 0x021E84FC
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021E850E
-	bl sub_02022974
+	bl GF_AssertFail
 _021E850E:
 	add r2, r4, #0
 	mov r1, #0x10
@@ -106,7 +106,7 @@ ov21_021E8544: ; 0x021E8544
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021E8556
-	bl sub_02022974
+	bl GF_AssertFail
 _021E8556:
 	mov r0, #0
 	strb r0, [r4]
@@ -131,7 +131,7 @@ ov21_021E8570: ; 0x021E8570
 	push {r4, lr}
 	add r4, r0, #0
 	bne _021E857A
-	bl sub_02022974
+	bl GF_AssertFail
 _021E857A:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -144,7 +144,7 @@ ov21_021E8584: ; 0x021E8584
 	push {r4, lr}
 	add r4, r0, #0
 	bne _021E858E
-	bl sub_02022974
+	bl GF_AssertFail
 _021E858E:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -935,7 +935,7 @@ ov21_021E8B40: ; 0x021E8B40
 	ldr r4, [r1, #0]
 	cmp r0, #0
 	bne _021E8B54
-	bl sub_02022974
+	bl GF_AssertFail
 _021E8B54:
 	mov r0, #0x51
 	lsl r0, r0, #2
@@ -1091,7 +1091,7 @@ _021E8C68:
 	bl sub_0201DC68
 	cmp r0, #0
 	bne _021E8C90
-	bl sub_02022974
+	bl GF_AssertFail
 _021E8C90:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}

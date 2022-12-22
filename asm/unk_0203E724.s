@@ -118,7 +118,7 @@ _0203E7BA:
 	ldr r0, [r4, #0x60]
 	cmp r1, r0
 	blo _0203E7D2
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	strb r0, [r4, #1]
 	pop {r4, pc}

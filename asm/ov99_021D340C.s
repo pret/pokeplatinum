@@ -422,11 +422,11 @@ ov99_021D372C: ; 0x021D372C
 	add r6, r2, #0
 	cmp r0, #0
 	beq _021D3744
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3744:
 	cmp r6, #3
 	blo _021D374C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D374C:
 	mov r0, #0x47
 	mov r1, #1

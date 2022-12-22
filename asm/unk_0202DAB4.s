@@ -243,7 +243,7 @@ sub_0202DC48: ; 0x0202DC48
 	add r4, r0, #0
 	cmp r5, #8
 	blt _0202DC56
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DC56:
 	lsl r0, r5, #6
 	add r0, r5, r0
@@ -272,7 +272,7 @@ sub_0202DC7C: ; 0x0202DC7C
 	add r5, r0, #0
 	cmp r4, #3
 	blt _0202DC8A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DC8A:
 	mov r0, #0xd6
 	lsl r0, r0, #2
@@ -303,7 +303,7 @@ sub_0202DCB8: ; 0x0202DCB8
 	add r5, r0, #0
 	cmp r4, #3
 	blt _0202DCC6
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DCC6:
 	mov r0, #0xd6
 	lsl r0, r0, #2
@@ -376,7 +376,7 @@ sub_0202DD30: ; 0x0202DD30
 	add r5, r0, #0
 	cmp r4, #8
 	blt _0202DD3E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DD3E:
 	lsl r0, r4, #6
 	add r0, r4, r0
@@ -402,7 +402,7 @@ sub_0202DD5C: ; 0x0202DD5C
 	add r5, r0, #0
 	cmp r4, #3
 	blt _0202DD6A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DD6A:
 	mov r0, #0xd6
 	lsl r0, r0, #2
@@ -525,7 +525,7 @@ sub_0202DE2C: ; 0x0202DE2C
 	lsl r0, r0, #0xa
 	cmp r4, r0
 	blt _0202DE3E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DE3E:
 	mov r0, #1
 	mov r1, #7
@@ -554,7 +554,7 @@ sub_0202DE5C: ; 0x0202DE5C
 	lsl r0, r0, #0xa
 	cmp r4, r0
 	blt _0202DE6E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DE6E:
 	asr r0, r4, #2
 	lsr r0, r0, #0x1d
@@ -588,7 +588,7 @@ sub_0202DE8C: ; 0x0202DE8C
 	lsl r0, r1, #0xb
 	cmp r4, r0
 	blt _0202DEAC
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DEAC:
 	asr r0, r4, #2
 	lsr r0, r0, #0x1d

@@ -950,7 +950,7 @@ ov21_021E94B0: ; 0x021E94B0
 	str r0, [r5, #0]
 	cmp r0, #0
 	bne _021E94F2
-	bl sub_02022974
+	bl GF_AssertFail
 _021E94F2:
 	add sp, #0x44
 	pop {r3, r4, r5, r6, pc}
@@ -997,7 +997,7 @@ ov21_021E9504: ; 0x021E9504
 	str r0, [r5, #0]
 	cmp r0, #0
 	bne _021E9546
-	bl sub_02022974
+	bl GF_AssertFail
 _021E9546:
 	ldr r0, [r5, #0]
 	mov r1, #0x11
@@ -1425,7 +1425,7 @@ _021E9874:
 	bl sub_020059D0
 	cmp r0, #0
 	bne _021E9896
-	bl sub_02022974
+	bl GF_AssertFail
 _021E9896:
 	mov r0, #0x6e
 	lsl r0, r0, #2

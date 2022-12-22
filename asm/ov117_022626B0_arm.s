@@ -293,50 +293,50 @@ ov117_02263168: ; 0x02263168
 	ldr r0, _0226326C ; =0x00007FFF
 	cmp r4, r0
 	ble _022631C8
-	bl sub_02022974
+	bl GF_AssertFail
 _022631C8:
 	mov r0, #0x8000
 	rsb r0, r0, #0
 	cmp r4, r0
 	bge _022631DC
-	bl sub_02022974
+	bl GF_AssertFail
 _022631DC:
 	ldr r0, _0226326C ; =0x00007FFF
 	cmp r5, r0
 	ble _022631EC
-	bl sub_02022974
+	bl GF_AssertFail
 _022631EC:
 	mov r0, #0x8000
 	rsb r0, r0, #0
 	cmp r5, r0
 	bge _02263200
-	bl sub_02022974
+	bl GF_AssertFail
 _02263200:
 	ldr r0, _0226326C ; =0x00007FFF
 	sub r1, r4, #0x800
 	cmp r1, r0
 	ble _02263214
-	bl sub_02022974
+	bl GF_AssertFail
 _02263214:
 	mov r0, #0x8000
 	sub r1, r4, #0x800
 	rsb r0, r0, #0
 	cmp r1, r0
 	bge _0226322C
-	bl sub_02022974
+	bl GF_AssertFail
 _0226322C:
 	ldr r0, _0226326C ; =0x00007FFF
 	add r1, r5, #0x800
 	cmp r1, r0
 	ble _02263240
-	bl sub_02022974
+	bl GF_AssertFail
 _02263240:
 	mov r0, #0x8000
 	add r1, r5, #0x800
 	rsb r0, r0, #0
 	cmp r1, r0
 	bge _02263258
-	bl sub_02022974
+	bl GF_AssertFail
 _02263258:
 	sub r0, r4, #0x800
 	strh r0, [r7]

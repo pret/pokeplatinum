@@ -36,7 +36,7 @@ sub_0207E060: ; 0x0207E060
 	bl ov4_021D222C
 	cmp r0, #1
 	beq _0207E0AA
-	bl sub_02022974
+	bl GF_AssertFail
 _0207E0AA:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}

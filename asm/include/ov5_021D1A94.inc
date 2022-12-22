@@ -6,7 +6,7 @@
 .public sub_0201CD88
 .public sub_0201CDD4
 .public sub_0201CE14
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0203CD5C
 .public MIi_CpuClear32
 .public ov5_021D1B24

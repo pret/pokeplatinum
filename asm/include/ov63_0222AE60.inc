@@ -31,7 +31,7 @@
 .public sub_02021E80
 .public sub_02021F58
 .public sub_02021F74
-.public sub_02022974
+.public GF_AssertFail
 .public memset
 .public ov63_0222AFF8
 .public ov63_0222B078

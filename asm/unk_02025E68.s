@@ -76,7 +76,7 @@ sub_02025EC0: ; 0x02025EC0
 	bl sub_020021F0
 	cmp r0, #8
 	blt _02025ED4
-	bl sub_02022974
+	bl GF_AssertFail
 _02025ED4:
 	add r0, r5, #0
 	add r1, r4, #0

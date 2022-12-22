@@ -15,7 +15,7 @@ sub_02023FCC: ; 0x02023FCC
 	str r3, [sp]
 	cmp r7, #0
 	bne _02023FDE
-	bl sub_02022974
+	bl GF_AssertFail
 _02023FDE:
 	ldr r0, [sp, #0x18]
 	mov r1, #0x14
@@ -70,7 +70,7 @@ sub_02024034: ; 0x02024034
 	push {r4, lr}
 	add r4, r0, #0
 	bne _0202403E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202403E:
 	ldr r0, [r4, #0x10]
 	bl sub_020181C4

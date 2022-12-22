@@ -24,12 +24,12 @@ _02246B88:
 	ldr r0, [sp, #4]
 	cmp r0, #0
 	bne _02246B98
-	bl sub_02022974
+	bl GF_AssertFail
 _02246B98:
 	ldr r0, [sp, #4]
 	cmp r0, #0xc
 	bls _02246BA2
-	bl sub_02022974
+	bl GF_AssertFail
 _02246BA2:
 	ldr r0, [sp, #4]
 	ldr r3, _02246BEC ; =0x0224954C

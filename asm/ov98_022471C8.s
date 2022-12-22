@@ -759,7 +759,7 @@ _0224787C:
 	ldr r0, [sp, #0x24]
 	cmp r0, #0x15
 	blt _02247886
-	bl sub_02022974
+	bl GF_AssertFail
 _02247886:
 	ldr r0, [sp, #0x34]
 	mov r7, #1
@@ -3884,7 +3884,7 @@ _022490C4:
 	str r0, [r4, #8]
 	b _02249150
 _022490CE:
-	bl sub_02022974
+	bl GF_AssertFail
 	bl sub_02038A0C
 	b _02249150
 _022490D8:

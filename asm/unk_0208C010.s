@@ -12,7 +12,7 @@ sub_0208C010: ; 0x0208C010
 	cmp r0, #7
 	blt _0208C022
 	blt _0208C01C
-	bl sub_02022974
+	bl GF_AssertFail
 _0208C01C:
 	ldr r0, _0208C02C ; =0x020F3EF0
 	ldr r0, [r0, #0x64]

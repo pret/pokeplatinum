@@ -686,7 +686,7 @@ _022348C4:
 	add r3, r3, #4
 	cmp r2, #0x14
 	blt _022348B6
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
@@ -830,7 +830,7 @@ _022349A4:
 	cmp r6, r0
 	blo _0223498E
 _022349AE:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

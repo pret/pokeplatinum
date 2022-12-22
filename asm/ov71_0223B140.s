@@ -1086,7 +1086,7 @@ _0223BA14:
 	ldr r0, [r5, r1]
 	cmp r0, #0
 	bne _0223BA2E
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BA2E:
 	ldr r1, _0223BBCC ; =0x000030B8
 	ldr r0, [r5, r1]
@@ -1095,7 +1095,7 @@ _0223BA2E:
 	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _0223BA42
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BA42:
 	mov r0, #0
 	mvn r0, r0
@@ -1154,7 +1154,7 @@ _0223BA9A:
 	ldr r0, [r5, r1]
 	cmp r0, #0
 	bne _0223BABA
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BABA:
 	ldr r1, _0223BBCC ; =0x000030B8
 	ldr r0, [r5, r1]
@@ -1163,7 +1163,7 @@ _0223BABA:
 	bl NNS_G2dGetUnpackedBGCharacterData
 	cmp r0, #0
 	bne _0223BACE
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BACE:
 	ldr r3, _0223BBD0 ; =0x000032FC
 	mov r0, #0x19
@@ -2086,7 +2086,7 @@ ov71_0223C1AC: ; 0x0223C1AC
 	add r6, r0, #0
 	cmp r7, r6
 	bls _0223C20C
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C20C:
 	cmp r7, r6
 	bhs _0223C278
@@ -2378,7 +2378,7 @@ _0223C432:
 	mov r0, #4
 	pop {r3, pc}
 _0223C43A:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

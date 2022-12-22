@@ -2095,7 +2095,7 @@ ov97_02231488: ; 0x02231488
 	ldr r0, [r4, r0]
 	cmp r0, #3
 	blt _0223149A
-	bl sub_02022974
+	bl GF_AssertFail
 _0223149A:
 	mov r0, #0x1f
 	bl sub_02025C48

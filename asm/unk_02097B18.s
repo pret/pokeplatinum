@@ -445,7 +445,7 @@ sub_02097F00: ; 0x02097F00
 	ldr r0, [r4, #0]
 	cmp r0, r1
 	bge _02097F10
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r1, #0
 _02097F10:
 	lsl r0, r1, #2
@@ -576,7 +576,7 @@ _02097FDC:
 	beq _02097FEE
 	cmp r0, #1
 	beq _02097FF4
-	bl sub_02022974
+	bl GF_AssertFail
 _02097FEE:
 	mov r0, #5
 	str r0, [r6, #0x14]
@@ -740,7 +740,7 @@ sub_02098140: ; 0x02098140
 	ldr r0, _0209815C ; =0x0000032A
 	cmp r4, r0
 	blo _0209814E
-	bl sub_02022974
+	bl GF_AssertFail
 _0209814E:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -760,7 +760,7 @@ sub_02098164: ; 0x02098164
 	ldr r0, _02098180 ; =0x0000032A
 	cmp r4, r0
 	blo _02098172
-	bl sub_02022974
+	bl GF_AssertFail
 _02098172:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -780,7 +780,7 @@ sub_02098188: ; 0x02098188
 	ldr r0, _020981A4 ; =0x0000032A
 	cmp r4, r0
 	blo _02098196
-	bl sub_02022974
+	bl GF_AssertFail
 _02098196:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -800,7 +800,7 @@ sub_020981AC: ; 0x020981AC
 	ldr r0, _020981C8 ; =0x0000032A
 	cmp r4, r0
 	blo _020981BA
-	bl sub_02022974
+	bl GF_AssertFail
 _020981BA:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -820,7 +820,7 @@ sub_020981D0: ; 0x020981D0
 	ldr r0, _020981EC ; =0x0000032A
 	cmp r4, r0
 	blo _020981DE
-	bl sub_02022974
+	bl GF_AssertFail
 _020981DE:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -840,7 +840,7 @@ sub_020981F4: ; 0x020981F4
 	ldr r0, _02098210 ; =0x0000032A
 	cmp r4, r0
 	blo _02098202
-	bl sub_02022974
+	bl GF_AssertFail
 _02098202:
 	mov r0, #0xa
 	add r1, r4, #0

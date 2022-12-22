@@ -3,7 +3,7 @@
 .public sub_02013880
 .public sub_02013960
 .public sub_02013974
-.public sub_02022974
+.public GF_AssertFail
 .public RTC_Init
 .public RTC_GetDateTimeAsync
 .public RTC_ConvertDateTimeToSecond

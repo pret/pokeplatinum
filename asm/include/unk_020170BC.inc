@@ -9,7 +9,7 @@
 .public sub_0201CA74
 .public sub_0201CBB0
 .public sub_0201CBCC
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dAnmObjInit
 .public NNS_G3dRenderObjInit
 .public NNS_G3dRenderObjAddAnmObj

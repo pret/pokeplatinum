@@ -93,7 +93,7 @@ _02000D3A:
 	bl sub_02000EC4
 	b _02000D5E
 _02000D5A:
-	bl sub_02022974
+	bl GF_AssertFail
 _02000D5E:
 	ldr r0, _02000E34 ; =0x021BF67C
 	mov r1, #1
@@ -262,7 +262,7 @@ sub_02000EC4: ; 0x02000EC4
 	ldr r0, [r0, #0x14]
 	cmp r0, #0
 	beq _02000ED6
-	bl sub_02022974
+	bl GF_AssertFail
 _02000ED6:
 	ldr r0, _02000EE0 ; =0x02101D20
 	str r5, [r0, #0x10]

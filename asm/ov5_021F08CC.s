@@ -627,7 +627,7 @@ ov5_021F0D1C: ; 0x021F0D1C
 	bl sub_02018184
 	add r4, r0, #0
 	bne _021F0D30
-	bl sub_02022974
+	bl GF_AssertFail
 _021F0D30:
 	add r0, r4, #0
 	mov r1, #0
@@ -796,7 +796,7 @@ ov5_021F0E58: ; 0x021F0E58
 	beq _021F0E6E
 	cmp r0, #2
 	beq _021F0E72
-	bl sub_02022974
+	bl GF_AssertFail
 _021F0E6A:
 	ldr r0, _021F0E78 ; =0x000001BD
 	pop {r3, pc}

@@ -119,7 +119,7 @@ _0205CA32:
 	ldr r0, [r0, r1]
 	pop {r4, pc}
 _0205CA3C:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 _0205CA42:
 	pop {r4, pc}

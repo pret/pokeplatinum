@@ -621,7 +621,7 @@ ov6_02247590: ; 0x02247590
 	bl sub_02018184
 	add r4, r0, #0
 	bne _022475A0
-	bl sub_02022974
+	bl GF_AssertFail
 _022475A0:
 	add r0, r4, #0
 	mov r1, #0

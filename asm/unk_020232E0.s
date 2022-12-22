@@ -100,7 +100,7 @@ _02023388:
 	ldr r0, [r5, #0x60]
 	cmp r0, #0
 	bne _02023392
-	bl sub_02022974
+	bl GF_AssertFail
 _02023392:
 	ldr r0, [sp, #0x18]
 	ldr r1, [r5, #0x64]
@@ -127,7 +127,7 @@ _020233B0:
 	cmp r0, #2
 	bls _020233C8
 _020233C4:
-	bl sub_02022974
+	bl GF_AssertFail
 _020233C8:
 	add r0, r5, #0
 	add r0, #0x6a

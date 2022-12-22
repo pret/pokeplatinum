@@ -321,7 +321,7 @@ _021DFBE6:
 	strb r0, [r4]
 	pop {r4, r5, r6, pc}
 _021DFBFE:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 	thumb_func_end ov19_021DFB94
 

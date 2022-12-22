@@ -560,7 +560,7 @@ ov99_021D1270: ; 0x021D1270
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	bne _021D1280
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1280:
 	ldr r0, _021D12EC ; =0x0000110C
 	ldr r0, [r4, r0]
@@ -633,7 +633,7 @@ ov99_021D1314: ; 0x021D1314
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	beq _021D1324
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1324:
 	ldr r0, [r4, #8]
 	mov r1, #1

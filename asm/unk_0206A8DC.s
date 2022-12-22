@@ -56,7 +56,7 @@ _0206A918:
 	bl sub_0206A8EC
 	pop {r3, pc}
 _0206A922:
-	bl sub_02022974
+	bl GF_AssertFail
 _0206A926:
 	mov r0, #0
 	pop {r3, pc}
@@ -942,7 +942,7 @@ sub_0206AF3C: ; 0x0206AF3C
 	add r6, r1, #0
 	cmp r4, #0x45
 	blo _0206AF4C
-	bl sub_02022974
+	bl GF_AssertFail
 _0206AF4C:
 	mov r2, #0x9b
 	lsl r2, r2, #4
@@ -971,7 +971,7 @@ sub_0206AF6C: ; 0x0206AF6C
 	add r6, r1, #0
 	cmp r4, #0x14
 	blt _0206AF7C
-	bl sub_02022974
+	bl GF_AssertFail
 _0206AF7C:
 	ldr r2, _0206AF8C ; =0x00000997
 	add r0, r5, #0

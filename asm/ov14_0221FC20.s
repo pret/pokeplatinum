@@ -1897,7 +1897,7 @@ _02220A84:
 	str r0, [r4, r1]
 	pop {r3, r4, r5, pc}
 _02220AA4:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	nop
 _02220AAC: .word 0x000003CF
@@ -5448,7 +5448,7 @@ _02222606:
 	str r0, [r1, #0]
 	pop {r4, r5, r6, pc}
 _02222624:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 	nop
 _0222262C: .word 0x000003CF
@@ -5652,11 +5652,11 @@ ov14_022227A4: ; 0x022227A4
 	add r6, r0, #0
 	cmp r4, #1
 	bne _022227C8
-	bl sub_02022974
+	bl GF_AssertFail
 _022227C8:
 	cmp r4, #0
 	bne _022227D0
-	bl sub_02022974
+	bl GF_AssertFail
 _022227D0:
 	lsl r1, r4, #0x18
 	add r0, r5, #0
@@ -5691,11 +5691,11 @@ ov14_022227F4: ; 0x022227F4
 	add r6, r0, #0
 	cmp r4, #1
 	bne _02222818
-	bl sub_02022974
+	bl GF_AssertFail
 _02222818:
 	cmp r4, #0
 	bne _02222820
-	bl sub_02022974
+	bl GF_AssertFail
 _02222820:
 	lsl r1, r4, #0x18
 	add r0, r5, #0
@@ -6259,7 +6259,7 @@ ov14_02222C28: ; 0x02222C28
 	ldrb r0, [r4, r0]
 	cmp r0, #8
 	bls _02222C58
-	bl sub_02022974
+	bl GF_AssertFail
 _02222C58:
 	pop {r3, r4, r5, pc}
 	nop

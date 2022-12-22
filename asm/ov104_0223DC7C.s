@@ -769,7 +769,7 @@ ov104_0223E29C: ; 0x0223E29C
 	ldr r4, [sp, #0xa8]
 	cmp r0, #0
 	beq _0223E2B6
-	bl sub_02022974
+	bl GF_AssertFail
 _0223E2B6:
 	ldr r0, [r7, #0x10]
 	cmp r4, #0

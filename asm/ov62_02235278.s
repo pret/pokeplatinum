@@ -83,7 +83,7 @@ _02235304: .word 0x02248BEC
 ov62_02235308: ; 0x02235308
 	push {r4, lr}
 	add r4, r0, #0
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #1
 	str r0, [r4, #0x44]
 	add r0, r4, #0

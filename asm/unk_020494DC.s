@@ -407,7 +407,7 @@ _020497E0:
 	bl MI_CpuFill8
 	b _020497F6
 _020497EE:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	strh r0, [r4]
 _020497F6:

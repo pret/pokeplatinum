@@ -1715,7 +1715,7 @@ _021D2A08:
 	mov r0, #2
 	b _021D2A1A
 _021D2A10:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x20
 	mov r0, #0
 	pop {r3, r4, r5, pc}
@@ -1743,7 +1743,7 @@ _021D2A34:
 	beq _021D2A56
 	cmp r0, #3
 	beq _021D2A56
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x20
 	mov r0, #0
 	pop {r3, r4, r5, pc}
@@ -2173,7 +2173,7 @@ _021D2D60:
 	ldr r0, _021D2DC8 ; =0x00000FFF
 	cmp r1, r0
 	beq _021D2D76
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2D76:
 	ldr r0, [r4, #0xc]
 	bl sub_0203A790

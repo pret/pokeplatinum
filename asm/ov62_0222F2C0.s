@@ -641,7 +641,7 @@ ov62_0222F848: ; 0x0222F848
 	bl sub_0200C7C0
 	cmp r0, #0
 	bne _0222F8B2
-	bl sub_02022974
+	bl GF_AssertFail
 _0222F8B2:
 	ldr r0, [r4, #0x18]
 	ldr r1, [r4, #0x1c]
@@ -649,7 +649,7 @@ _0222F8B2:
 	bl sub_0200CB30
 	cmp r0, #0
 	bne _0222F8C4
-	bl sub_02022974
+	bl GF_AssertFail
 _0222F8C4:
 	ldr r0, [r4, #0x18]
 	bl sub_0200C738
@@ -1643,7 +1643,7 @@ _02230072:
 	beq _0223007C
 	mov r1, #0
 	str r1, [r4, r0]
-	bl sub_02022974
+	bl GF_AssertFail
 _0223007C:
 	ldr r0, _02230090 ; =0x000006D8
 	ldr r0, [r4, r0]

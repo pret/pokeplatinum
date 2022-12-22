@@ -1,6 +1,6 @@
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dGlbLightColor
 .public ov66_0222E084
 .public ov66_0222E120

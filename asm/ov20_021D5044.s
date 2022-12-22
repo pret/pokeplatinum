@@ -19,7 +19,7 @@ ov20_021D5048: ; 0x021D5048
 	add r5, r1, #0
 	cmp r4, #0x1b
 	blo _021D5056
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5056:
 	mov r1, #0xa
 	ldr r2, _021D5068 ; =0x021D5320
@@ -41,7 +41,7 @@ ov20_021D506C: ; 0x021D506C
 	add r6, r2, #0
 	cmp r5, #0x1b
 	blo _021D507C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D507C:
 	mov r0, #0xa
 	add r1, r5, #0
@@ -64,7 +64,7 @@ ov20_021D5098: ; 0x021D5098
 	add r4, r0, #0
 	cmp r4, #0x1b
 	blo _021D50A4
-	bl sub_02022974
+	bl GF_AssertFail
 _021D50A4:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -82,7 +82,7 @@ ov20_021D50B4: ; 0x021D50B4
 	add r4, r0, #0
 	cmp r4, #0x1b
 	blo _021D50C0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D50C0:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -100,7 +100,7 @@ ov20_021D50D0: ; 0x021D50D0
 	add r4, r0, #0
 	cmp r4, #0x1b
 	blo _021D50DC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D50DC:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -118,7 +118,7 @@ ov20_021D50EC: ; 0x021D50EC
 	add r4, r0, #0
 	cmp r4, #0x1b
 	blo _021D50F8
-	bl sub_02022974
+	bl GF_AssertFail
 _021D50F8:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -136,7 +136,7 @@ ov20_021D5108: ; 0x021D5108
 	add r4, r0, #0
 	cmp r4, #0x1b
 	blo _021D5114
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5114:
 	mov r0, #0xa
 	add r1, r4, #0
@@ -154,7 +154,7 @@ ov20_021D5124: ; 0x021D5124
 	add r4, r0, #0
 	cmp r4, #0x1b
 	blo _021D5130
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5130:
 	mov r0, #0xa
 	add r1, r4, #0

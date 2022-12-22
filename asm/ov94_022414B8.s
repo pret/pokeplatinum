@@ -2546,13 +2546,13 @@ ov94_02242934: ; 0x02242934
 	ldr r6, _02242968 ; =0x0224610C
 	cmp r4, #0xc
 	blt _02242954
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02242954
 _0224294A:
 	ldr r6, _0224296C ; =0x022460AC
 	cmp r4, #0xb
 	blo _02242954
-	bl sub_02022974
+	bl GF_AssertFail
 _02242954:
 	lsl r0, r4, #3
 	add r1, r6, r0

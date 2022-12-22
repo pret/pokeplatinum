@@ -522,7 +522,7 @@ _0223F50E:
 	mov r6, #0x69
 	b _0223F51A
 _0223F512:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 _0223F51A:
@@ -823,7 +823,7 @@ ov17_0223F744: ; 0x0223F744
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _0223F752
-	bl sub_02022974
+	bl GF_AssertFail
 _0223F752:
 	ldr r0, [r4, #0]
 	bl sub_0200DA58

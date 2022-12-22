@@ -23,7 +23,7 @@ ov101_021D7E48: ; 0x021D7E48
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021D7E6C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D7E6C:
 	ldr r0, [sp]
 	add r1, r4, #0
@@ -393,7 +393,7 @@ _021D813C:
 	cmp r1, r5
 	blo _021D8102
 _021D8144:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov101_021D80E4
@@ -424,7 +424,7 @@ _021D8170:
 	cmp r4, r2
 	blo _021D815E
 _021D8178:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov101_021D814C
@@ -455,7 +455,7 @@ _021D81A4:
 	cmp r4, r2
 	blo _021D8192
 _021D81AC:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov101_021D8180
@@ -514,7 +514,7 @@ _021D8210:
 	cmp r1, r5
 	blo _021D81D2
 _021D8218:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	thumb_func_end ov101_021D81B4
@@ -545,7 +545,7 @@ _021D8244:
 	cmp r4, r2
 	blo _021D8232
 _021D824C:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov101_021D8220
@@ -576,7 +576,7 @@ _021D8278:
 	cmp r4, r2
 	blo _021D8266
 _021D8280:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov101_021D8254
@@ -633,7 +633,7 @@ _021D82E0:
 	cmp r1, r5
 	blo _021D82A6
 _021D82E8:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov101_021D8288
@@ -690,7 +690,7 @@ _021D8348:
 	cmp r1, r5
 	blo _021D830E
 _021D8350:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov101_021D82F0
@@ -947,7 +947,7 @@ _021D8510:
 	str r0, [r4, #4]
 	cmp r0, #0
 	bne _021D853E
-	bl sub_02022974
+	bl GF_AssertFail
 _021D853E:
 	add sp, #0x70
 	pop {r3, r4, r5, r6, r7, pc}

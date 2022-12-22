@@ -210,7 +210,7 @@ ov12_02226B1C: ; 0x02226B1C
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02226B3A
-	bl sub_02022974
+	bl GF_AssertFail
 _02226B3A:
 	mov r0, #0
 	strb r0, [r4]

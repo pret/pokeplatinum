@@ -3,7 +3,7 @@
 .public sub_020181C4
 .public sub_0201833C
 .public sub_0201D2E8
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02025E38
 .public sub_02025F20
 .public sub_02027474

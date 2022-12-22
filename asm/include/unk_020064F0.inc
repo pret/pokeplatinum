@@ -6,7 +6,7 @@
 .public sub_0200671C
 .public sub_02006724
 .public sub_0200675C
-.public sub_02022974
+.public GF_AssertFail
 .public FS_InitFile
 .public FS_CloseFile
 .public FS_WaitAsync

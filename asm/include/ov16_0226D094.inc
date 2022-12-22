@@ -22,7 +22,7 @@
 .public sub_020181C4
 .public sub_02021D6C
 .public sub_02021E50
-.public sub_02022974
+.public GF_AssertFail
 .public G2x_SetBlendAlpha_
 .public MI_CpuFill8
 .public ov16_0223F9F0

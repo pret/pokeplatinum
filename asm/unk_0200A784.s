@@ -58,7 +58,7 @@ sub_0200A7C8: ; 0x0200A7C8
 	add r7, r3, #0
 	cmp r0, #0
 	beq _0200A7E0
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A7E0:
 	ldr r0, [sp, #0x30]
 	mov r1, #0x3c
@@ -67,7 +67,7 @@ _0200A7E0:
 	cmp r0, #0
 	str r0, [r1, #0]
 	bne _0200A7F4
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A7F4:
 	ldr r1, _0200A854 ; =0x021BF430
 	lsl r3, r6, #0x10
@@ -88,7 +88,7 @@ _0200A7F4:
 	bl NNS_G2dGetNewOamManagerInstance
 	cmp r0, #0
 	bne _0200A820
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A820:
 	ldr r0, [sp, #0x2c]
 	ldr r1, [sp, #0x20]
@@ -111,7 +111,7 @@ _0200A820:
 	bl NNS_G2dGetNewOamManagerInstance
 	cmp r0, #0
 	bne _0200A850
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A850:
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
@@ -144,7 +144,7 @@ sub_0200A878: ; 0x0200A878
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0200A886
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A886:
 	ldr r0, _0200A8AC ; =0x021BF430
 	ldr r0, [r0, #0]
@@ -177,7 +177,7 @@ sub_0200A8B0: ; 0x0200A8B0
 	add r4, r3, #0
 	cmp r0, #0
 	bne _0200A8C8
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A8C8:
 	cmp r5, #1
 	bne _0200A8E4
@@ -221,7 +221,7 @@ sub_0200A914: ; 0x0200A914
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0200A924
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A924:
 	cmp r4, #0
 	bne _0200A92E
@@ -264,7 +264,7 @@ sub_0200A94C: ; 0x0200A94C
 	bl NNS_G2dEntryOamManagerOamWithAffineIdx
 	add r4, r0, #0
 	bne _0200A964
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A964:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -284,7 +284,7 @@ sub_0200A96C: ; 0x0200A96C
 	bl NNS_G2dEntryOamManagerOamWithAffineIdx
 	add r4, r0, #0
 	bne _0200A986
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A986:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -303,7 +303,7 @@ sub_0200A990: ; 0x0200A990
 	ldr r0, _0200A9B0 ; =0x0000FFFE
 	cmp r4, r0
 	bne _0200A9A8
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A9A8:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -324,7 +324,7 @@ sub_0200A9B4: ; 0x0200A9B4
 	ldr r0, _0200A9D8 ; =0x0000FFFE
 	cmp r4, r0
 	bne _0200A9CE
-	bl sub_02022974
+	bl GF_AssertFail
 _0200A9CE:
 	add r0, r4, #0
 	pop {r4, pc}

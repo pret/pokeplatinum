@@ -437,7 +437,7 @@ _02244CEE:
 	ldr r0, [sp, #0x24]
 	cmp r0, #0x15
 	blt _02244CF8
-	bl sub_02022974
+	bl GF_AssertFail
 _02244CF8:
 	ldr r0, [sp, #0x30]
 	mov r7, #1

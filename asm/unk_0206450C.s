@@ -510,7 +510,7 @@ _02064880:
 	str r0, [r4, #0xc]
 	pop {r3, r4, r5, r6, r7, pc}
 _02064894:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #8
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end sub_020647A0
@@ -830,7 +830,7 @@ _02064AB2:
 	mvn r0, r0
 	cmp r1, r0
 	bne _02064AC2
-	bl sub_02022974
+	bl GF_AssertFail
 _02064AC2:
 	add r4, r4, #1
 	lsl r0, r4, #2
@@ -993,7 +993,7 @@ _02064BCE:
 	mvn r0, r0
 	cmp r1, r0
 	bne _02064BDE
-	bl sub_02022974
+	bl GF_AssertFail
 _02064BDE:
 	add r4, r4, #1
 	lsl r0, r4, #2
@@ -1980,7 +1980,7 @@ _020652F6:
 _02065300:
 	cmp r4, #0
 	bne _02065308
-	bl sub_02022974
+	bl GF_AssertFail
 _02065308:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -2040,7 +2040,7 @@ _02065366:
 	ldr r2, [r1, #0]
 	cmp r2, #0x27
 	bne _0206535E
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	nop
@@ -2336,7 +2336,7 @@ _02065582:
 _02065592:
 	cmp r4, #4
 	blt _0206559A
-	bl sub_02022974
+	bl GF_AssertFail
 _0206559A:
 	add r0, r4, #1
 	lsr r2, r0, #0x1f

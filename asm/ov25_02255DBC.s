@@ -15,11 +15,11 @@ ov25_02255DBC: ; 0x02255DBC
 	add r7, r3, #0
 	cmp r5, #0x1e
 	blo _02255DCE
-	bl sub_02022974
+	bl GF_AssertFail
 _02255DCE:
 	cmp r4, #0x21
 	blo _02255DD6
-	bl sub_02022974
+	bl GF_AssertFail
 _02255DD6:
 	cmp r5, #0x1e
 	blo _02255DDC
@@ -51,7 +51,7 @@ ov25_02255DFC: ; 0x02255DFC
 	add r6, r2, #0
 	cmp r5, #4
 	blo _02255E0C
-	bl sub_02022974
+	bl GF_AssertFail
 _02255E0C:
 	ldr r0, _02255E1C ; =0x02256090
 	lsl r1, r5, #3

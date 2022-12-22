@@ -53,11 +53,11 @@ ov62_02246B4C: ; 0x02246B4C
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	bne _02246B5A
-	bl sub_02022974
+	bl GF_AssertFail
 _02246B5A:
 	cmp r4, #0
 	bne _02246B62
-	bl sub_02022974
+	bl GF_AssertFail
 _02246B62:
 	ldr r0, [r4, #0x18]
 	bl sub_020237BC

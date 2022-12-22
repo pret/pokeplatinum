@@ -99,7 +99,7 @@ _0222B02C:
 	blx ov61_0222DCDC
 	cmp r0, #1
 	beq _0222B0D4
-	bl sub_02022974
+	bl GF_AssertFail
 _0222B0D4:
 	mov r1, #0xf1
 	mov r0, #1
@@ -443,7 +443,7 @@ _0222B34A:
 	ldr r0, _0222B388 ; =0x00001D4C
 	cmp r1, r0
 	beq _0222B35A
-	bl sub_02022974
+	bl GF_AssertFail
 _0222B35A:
 	bl sub_0202F27C
 	mov r1, #0x19
@@ -1095,7 +1095,7 @@ _0222B820:
 	add r4, r0, #0
 	b _0222B83C
 _0222B838:
-	bl sub_02022974
+	bl GF_AssertFail
 _0222B83C:
 	cmp r4, #1
 	bne _0222B84A
@@ -1283,7 +1283,7 @@ ov61_0222B960: ; 0x0222B960
 	ldrh r0, [r4]
 	cmp r1, r0
 	beq _0222B980
-	bl sub_02022974
+	bl GF_AssertFail
 _0222B980:
 	mov r0, #1
 	mov r1, #0

@@ -36,7 +36,7 @@ ov6_022430E8: ; 0x022430E8
 	add r5, r0, #0
 	cmp r4, #3
 	blo _022430F8
-	bl sub_02022974
+	bl GF_AssertFail
 _022430F8:
 	ldr r0, [r5, #0xc]
 	bl sub_0202D834
@@ -59,7 +59,7 @@ ov6_02243114: ; 0x02243114
 	add r5, r0, #0
 	cmp r4, #3
 	blo _02243124
-	bl sub_02022974
+	bl GF_AssertFail
 _02243124:
 	ldr r0, [r5, #0xc]
 	bl sub_0202D834

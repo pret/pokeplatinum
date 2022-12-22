@@ -35,7 +35,7 @@ ov113_02260620: ; 0x02260620
 	beq _02260706
 	cmp r5, #8
 	blo _02260664
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 _02260664:
@@ -119,7 +119,7 @@ ov113_02260714: ; 0x02260714
 	push {r3, lr}
 	cmp r1, #8
 	blo _02260720
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, pc}
 _02260720:
 	lsl r1, r1, #4

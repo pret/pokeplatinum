@@ -9,4 +9,4 @@
 .public sub_0200D0A0
 .public sub_0200D0F4
 .public sub_0200D324
-.public sub_02022974
+.public GF_AssertFail

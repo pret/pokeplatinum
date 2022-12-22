@@ -33,7 +33,7 @@
 .public sub_02022518
 .public sub_02022550
 .public sub_0202256C
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dGetUnpackedAnimBank
 .public NNS_G2dGetAnimSequenceByIdx
 .public NNS_G2dGetAnimCtrlCurrentFrame

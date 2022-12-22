@@ -477,7 +477,7 @@ _021D1CAA:
 	str r0, [r4, #0x60]
 	b _021D1E22
 _021D1CF8:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _021D1E22
 _021D1CFE:
 	bl sub_0200598C

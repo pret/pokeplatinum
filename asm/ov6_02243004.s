@@ -100,7 +100,7 @@ _022430AC:
 	str r0, [r1, #0]
 	b _022430BC
 _022430B8:
-	bl sub_02022974
+	bl GF_AssertFail
 _022430BC:
 	mov r0, #0
 	pop {r3, pc}

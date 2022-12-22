@@ -26,7 +26,7 @@
 .public sub_02021D6C
 .public sub_02021E80
 .public sub_02021FE0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020759F0
 .public memset
 .public ov21_021D138C

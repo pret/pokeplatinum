@@ -1,7 +1,7 @@
 .public sub_02005748
 .public sub_020057D4
 .public sub_0201D35C
-.public sub_02022974
+.public GF_AssertFail
 .public FX_Div
 .public VEC_Add
 .public _f_add

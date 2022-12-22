@@ -8,7 +8,7 @@
 .public sub_02020250
 .public sub_02020854
 .public sub_02020990
-.public sub_02022974
+.public GF_AssertFail
 .public MTX_LookAt
 .public MTX_PerspectiveW
 .public MTX_OrthoW

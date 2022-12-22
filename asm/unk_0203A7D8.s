@@ -14,7 +14,7 @@ sub_0203A7D8: ; 0x0203A7D8
 	cmp r0, #0x14
 	bls _0203A7E8
 _0203A7E2:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #1
 _0203A7E8:
 	sub r0, r0, #1

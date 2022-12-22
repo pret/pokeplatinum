@@ -45,7 +45,7 @@
 .public sub_0201D7E0
 .public sub_0201FF0C
 .public sub_0201FFE8
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020237BC
 .public NNSi_G3dModifyMatFlag
 .public DC_FlushRange

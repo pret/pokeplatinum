@@ -674,7 +674,7 @@ sub_0201D640: ; 0x0201D640
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _0201D650
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D650:
 	mov r1, #2
 	add r0, r4, #0

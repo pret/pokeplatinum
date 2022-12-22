@@ -58,7 +58,7 @@ _02242994:
 	lsr r4, r0, #0x10
 	cmp r4, #0xc
 	blo _02242A00
-	bl sub_02022974
+	bl GF_AssertFail
 _02242A00:
 	lsl r1, r4, #2
 	add r0, sp, #4
@@ -92,7 +92,7 @@ _02242A2E:
 	lsr r6, r0, #0x10
 	cmp r6, #0x24
 	blo _02242A44
-	bl sub_02022974
+	bl GF_AssertFail
 _02242A44:
 	lsl r0, r6, #0x18
 	lsr r2, r0, #0x16

@@ -1480,7 +1480,7 @@ ov101_021D1998: ; 0x021D1998
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021D19AC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D19AC:
 	add r0, r4, #0
 	mov r1, #0
@@ -1538,7 +1538,7 @@ _021D1A08:
 	add r5, r0, #0
 	cmp r5, #0
 	bne _021D1A12
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1A12:
 	ldr r0, _021D1A24 ; =0x00000438
 	add r1, r6, #0

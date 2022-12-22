@@ -184,7 +184,7 @@ ov41_022568DC: ; 0x022568DC
 	bl sub_0201833C
 	cmp r0, #0
 	bne _022568F0
-	bl sub_02022974
+	bl GF_AssertFail
 _022568F0:
 	add r0, r5, #0
 	bl ov25_0225523C
@@ -203,7 +203,7 @@ _022568F0:
 	bl sub_0201833C
 	cmp r0, #0
 	bne _0225691E
-	bl sub_02022974
+	bl GF_AssertFail
 _0225691E:
 	mov r0, #0
 	str r0, [sp]
@@ -237,7 +237,7 @@ _0225691E:
 	bl sub_0201833C
 	cmp r0, #0
 	bne _0225696A
-	bl sub_02022974
+	bl GF_AssertFail
 _0225696A:
 	add r0, r4, #0
 	lsr r1, r6, #5
@@ -264,7 +264,7 @@ _0225696A:
 	bl sub_0201833C
 	cmp r0, #0
 	bne _022569A8
-	bl sub_02022974
+	bl GF_AssertFail
 _022569A8:
 	add sp, #0x14
 	pop {r3, r4, r5, r6, pc}

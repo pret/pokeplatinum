@@ -880,7 +880,7 @@ ov71_0223CDE8: ; 0x0223CDE8
 	ldr r0, [r5, #0x18]
 	cmp r0, #0
 	bne _0223CDFA
-	bl sub_02022974
+	bl GF_AssertFail
 _0223CDFA:
 	ldr r0, [r5, #0x18]
 	bl sub_0202CC58

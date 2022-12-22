@@ -5,7 +5,7 @@
 .public sub_02014790
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public G2x_SetBlendAlpha_
 .public memset
 .public ov12_0221FDD4

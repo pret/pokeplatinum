@@ -10,7 +10,7 @@
 .public sub_02021E80
 .public sub_02021F24
 .public sub_02021FD0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02079FC4
 .public ov104_0222E1D8
 .public ov104_0222E204

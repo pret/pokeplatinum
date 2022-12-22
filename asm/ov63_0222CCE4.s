@@ -553,7 +553,7 @@ _0222D0B0:
 	cmp r6, r0
 	blt _0222D09A
 _0222D0BA:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

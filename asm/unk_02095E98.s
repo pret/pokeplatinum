@@ -373,7 +373,7 @@ sub_0209612C: ; 0x0209612C
 	bl sub_0203608C
 	cmp r0, #0
 	beq _0209613E
-	bl sub_02022974
+	bl GF_AssertFail
 _0209613E:
 	bl sub_0203608C
 	cmp r0, #0

@@ -120,7 +120,7 @@ ov16_0226D17C: ; 0x0226D17C
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq _0226D18A
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D18A:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -214,7 +214,7 @@ ov16_0226D220: ; 0x0226D220
 	add r7, r2, #0
 	cmp r6, #0
 	bne _0226D230
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D230:
 	add r0, r6, #0
 	add r1, r4, #0
@@ -300,7 +300,7 @@ ov16_0226D2A0: ; 0x0226D2A0
 _0226D2BA:
 	cmp r1, #0
 	bne _0226D2C2
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D2C2:
 	add r0, r5, #0
 	mov r1, #0
@@ -463,7 +463,7 @@ ov16_0226D3F8: ; 0x0226D3F8
 	cmp r0, #0
 	beq _0226D40E
 _0226D40A:
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D40E:
 	mov r0, #0
 	strb r0, [r5, #0x1a]
@@ -639,7 +639,7 @@ ov16_0226D540: ; 0x0226D540
 _0226D55C:
 	cmp r1, #0
 	bne _0226D564
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D564:
 	add r0, r5, #0
 	mov r1, #0
@@ -1153,7 +1153,7 @@ ov16_0226D938: ; 0x0226D938
 	cmp r0, #0
 	beq _0226D952
 _0226D94E:
-	bl sub_02022974
+	bl GF_AssertFail
 _0226D952:
 	add r0, r5, #0
 	mov r1, #0

@@ -17,7 +17,7 @@ ov77_021D6C70: ; 0x021D6C70
 	bl sub_020145B4
 	cmp r4, #0
 	bne _021D6C88
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6C88:
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0xd
@@ -35,7 +35,7 @@ ov77_021D6C94: ; 0x021D6C94
 	blx r3
 	add r4, r0, #0
 	bne _021D6CA6
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6CA6:
 	add r0, r4, #0
 	bl sub_020145F4
@@ -61,7 +61,7 @@ ov77_021D6CBC: ; 0x021D6CBC
 	cmp r0, #0
 	bne _021D6CCC
 _021D6CC8:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6CCC:
 	ldr r0, [r4, #0x18]
 	pop {r4, pc}
@@ -78,7 +78,7 @@ ov77_021D6CD0: ; 0x021D6CD0
 	cmp r0, #0
 	bne _021D6CE4
 _021D6CE0:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D6CE4:
 	ldr r0, [r5, #0x18]
 	mov r1, #1

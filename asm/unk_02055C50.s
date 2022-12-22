@@ -541,7 +541,7 @@ _0205603E:
 	add r4, r4, #1
 	b _0205604A
 _02056046:
-	bl sub_02022974
+	bl GF_AssertFail
 _0205604A:
 	add r0, r7, #0
 	add r1, r6, #0
@@ -617,7 +617,7 @@ _020560C8:
 	add r4, r4, #1
 	b _020560D4
 _020560D0:
-	bl sub_02022974
+	bl GF_AssertFail
 _020560D4:
 	ldr r0, [r5, #0x38]
 	add r1, r7, #0

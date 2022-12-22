@@ -4042,7 +4042,7 @@ _022317FC:
 	add sp, #8
 	pop {r3, pc}
 _02231814:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #8
 	pop {r3, pc}
 	thumb_func_end ov12_02231760
@@ -4311,7 +4311,7 @@ _02231A14:
 	add sp, #8
 	pop {r3, pc}
 _02231A2E:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #8
 	pop {r3, pc}
 	; .align 2, 0

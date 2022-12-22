@@ -368,7 +368,7 @@ ov17_0224EBE0: ; 0x0224EBE0
 	add r4, r0, #0
 	cmp r5, #4
 	blo _0224EBEE
-	bl sub_02022974
+	bl GF_AssertFail
 _0224EBEE:
 	ldr r0, _0224EC20 ; =0x02254A80
 	cmp r4, #3
@@ -413,7 +413,7 @@ ov17_0224EC24: ; 0x0224EC24
 	ldr r4, [sp, #0x18]
 	cmp r0, #4
 	blo _0224EC3A
-	bl sub_02022974
+	bl GF_AssertFail
 _0224EC3A:
 	mov r0, #0
 	mvn r0, r0

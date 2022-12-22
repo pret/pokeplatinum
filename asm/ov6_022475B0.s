@@ -48,7 +48,7 @@ _022475F2:
 	lsr r5, r0, #0x10
 	cmp r5, #0x10
 	blo _02247602
-	bl sub_02022974
+	bl GF_AssertFail
 _02247602:
 	lsl r0, r5, #2
 	ldr r0, [r4, r0]
@@ -80,7 +80,7 @@ ov6_02247624: ; 0x02247624
 	ldr r0, _0224765C ; =0x0000FFFF
 	cmp r1, r0
 	bne _02247640
-	bl sub_02022974
+	bl GF_AssertFail
 _02247640:
 	mov r0, #0x6a
 	mov r1, #8

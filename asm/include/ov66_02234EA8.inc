@@ -2,7 +2,7 @@
 .public sub_02006CA8
 .public sub_02007250
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020996D4
 .public sub_02099764
 .public _s32_div_f

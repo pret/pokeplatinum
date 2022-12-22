@@ -32,7 +32,7 @@
 .public sub_020177BC
 .public sub_02018184
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public GXx_SetMasterBrightness_
 .public GX_LoadBGPltt
 .public GXS_LoadBGPltt

@@ -1545,7 +1545,7 @@ _02252E5C:
 	add r5, r5, #6
 	cmp r3, #0x14
 	blt _02252E42
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

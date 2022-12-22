@@ -145,7 +145,7 @@ _0206C8A2:
 	strb r0, [r4]
 	b _0206C8BA
 _0206C8A8:
-	bl sub_02022974
+	bl GF_AssertFail
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #0x28
@@ -482,7 +482,7 @@ _0206CB2E:
 	str r0, [r4, #0x24]
 	b _0206CB4A
 _0206CB40:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0xc
 	mov r0, #1
 	pop {r3, r4, pc}
@@ -600,7 +600,7 @@ _0206CC06:
 	bl sub_020552B4
 	cmp r0, #0
 	bne _0206CC1A
-	bl sub_02022974
+	bl GF_AssertFail
 _0206CC1A:
 	ldr r0, [sp, #0x20]
 	bl ov5_021E18BC
@@ -625,7 +625,7 @@ _0206CC1A:
 	bl ov5_021D41C8
 	b _0206CC50
 _0206CC4C:
-	bl sub_02022974
+	bl GF_AssertFail
 _0206CC50:
 	add r0, r6, #1
 	lsl r0, r0, #0x18
@@ -676,7 +676,7 @@ _0206CC8C:
 	str r1, [r0, #8]
 	pop {r3, pc}
 _0206CCA8:
-	bl sub_02022974
+	bl GF_AssertFail
 _0206CCAC:
 	pop {r3, pc}
 	; .align 2, 0

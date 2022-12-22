@@ -1,6 +1,6 @@
 .public sub_020021D0
 .public sub_02018184
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202440C
 .public sub_02025C84
 .public sub_02025E38

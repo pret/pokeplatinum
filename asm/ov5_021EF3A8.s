@@ -46,7 +46,7 @@ ov5_021EF3DC: ; 0x021EF3DC
 	bl sub_020177BC
 	cmp r0, #1
 	beq _021EF3F0
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF3F0:
 	mov r0, #1
 	str r0, [r4, #0]
@@ -64,7 +64,7 @@ ov5_021EF3FC: ; 0x021EF3FC
 	bl sub_020177BC
 	cmp r0, #1
 	beq _021EF410
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF410:
 	mov r0, #0
 	str r0, [r4, #0]
@@ -80,7 +80,7 @@ ov5_021EF418: ; 0x021EF418
 	bl ov5_021EF49C
 	add r4, r0, #0
 	bne _021EF42A
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF42A:
 	cmp r4, #0
 	beq _021EF436

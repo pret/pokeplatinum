@@ -70,7 +70,7 @@ ov21_021DDDA4: ; 0x021DDDA4
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021DDDB6
-	bl sub_02022974
+	bl GF_AssertFail
 _021DDDB6:
 	mov r0, #0
 	strb r0, [r4]
@@ -108,7 +108,7 @@ ov21_021DDDF0: ; 0x021DDDF0
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021DDE02
-	bl sub_02022974
+	bl GF_AssertFail
 _021DDE02:
 	mov r0, #0
 	strb r0, [r4]
@@ -133,7 +133,7 @@ ov21_021DDE1C: ; 0x021DDE1C
 	push {r4, lr}
 	add r4, r0, #0
 	bne _021DDE26
-	bl sub_02022974
+	bl GF_AssertFail
 _021DDE26:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -146,7 +146,7 @@ ov21_021DDE30: ; 0x021DDE30
 	push {r4, lr}
 	add r4, r0, #0
 	bne _021DDE3A
-	bl sub_02022974
+	bl GF_AssertFail
 _021DDE3A:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -176,7 +176,7 @@ ov21_021DDE4C: ; 0x021DDE4C
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021DDE62
-	bl sub_02022974
+	bl GF_AssertFail
 _021DDE62:
 	add r0, r4, #0
 	mov r1, #0
@@ -1154,7 +1154,7 @@ _021DE588:
 	bl sub_0201DC68
 	cmp r0, #0
 	bne _021DE5A2
-	bl sub_02022974
+	bl GF_AssertFail
 _021DE5A2:
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov21_021DE4D4

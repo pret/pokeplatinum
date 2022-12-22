@@ -69,7 +69,7 @@ ov59_021D2A78: ; 0x021D2A78
 	cmp r5, #5
 	ble _021D2A8A
 _021D2A86:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2A8A:
 	add r2, r5, #1
 	cmp r2, #5

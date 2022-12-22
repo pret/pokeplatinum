@@ -30,7 +30,7 @@ sub_02055820: ; 0x02055820
 	bl sub_0203CD4C
 	cmp r0, #0
 	bne _02055838
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 _02055838:
 	add r0, r4, #0
@@ -68,7 +68,7 @@ sub_02055868: ; 0x02055868
 	bl sub_0203CD4C
 	cmp r0, #0
 	beq _02055880
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 _02055880:
 	add r0, r4, #0
@@ -105,7 +105,7 @@ sub_020558AC: ; 0x020558AC
 	bl sub_0203CD4C
 	cmp r0, #0
 	bne _020558C6
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0xc
 	pop {r3, r4, pc}
 _020558C6:
@@ -139,7 +139,7 @@ sub_020558F0: ; 0x020558F0
 	bl sub_0203CD4C
 	cmp r0, #0
 	bne _0205590A
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0xc
 	pop {r3, r4, pc}
 _0205590A:

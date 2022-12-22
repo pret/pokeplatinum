@@ -15,7 +15,7 @@
 .public sub_0201FF74
 .public sub_02022734
 .public sub_02022798
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0208B8B8
 .public sub_0208B9E0
 .public MI_CpuFill8

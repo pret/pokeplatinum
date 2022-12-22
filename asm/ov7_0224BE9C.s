@@ -731,7 +731,7 @@ ov7_0224C468: ; 0x0224C468
 	add r6, r2, #0
 	cmp r0, #0
 	beq _0224C47C
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C47C:
 	ldr r0, [r5, #4]
 	mov r1, #0xf
@@ -1848,7 +1848,7 @@ ov7_0224CCF4: ; 0x0224CCF4
 	bl sub_0207D60C
 	cmp r0, #1
 	beq _0224CD24
-	bl sub_02022974
+	bl GF_AssertFail
 _0224CD24:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

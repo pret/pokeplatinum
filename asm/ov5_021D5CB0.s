@@ -15,7 +15,7 @@ ov5_021D5CB0: ; 0x021D5CB0
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021D5CC4
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5CC4:
 	mov r1, #0
 	add r2, r4, #0

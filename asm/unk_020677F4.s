@@ -330,7 +330,7 @@ _02067A44:
 	ldr r0, [r2, #8]
 	pop {r3, pc}
 _02067A48:
-	bl sub_02022974
+	bl GF_AssertFail
 	ldr r0, _02067A50 ; =0x0000FFFF
 	pop {r3, pc}
 	; .align 2, 0
@@ -347,7 +347,7 @@ sub_02067A58: ; 0x02067A58
 	bl sub_020677F4
 	cmp r0, #0
 	bne _02067A6E
-	bl sub_02022974
+	bl GF_AssertFail
 _02067A6E:
 	add r0, r5, #0
 	bl sub_02062D4C

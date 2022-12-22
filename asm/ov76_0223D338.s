@@ -828,7 +828,7 @@ _0223D976:
 	bl sub_0200D3CC
 	pop {r3, pc}
 _0223D97E:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, pc}
 	thumb_func_end ov76_0223D94C
 
@@ -1202,7 +1202,7 @@ _0223DC50:
 	bl sub_02005748
 	pop {r4, r5, r6, pc}
 _0223DC80:
-	bl sub_02022974
+	bl GF_AssertFail
 _0223DC84:
 	pop {r4, r5, r6, pc}
 	nop

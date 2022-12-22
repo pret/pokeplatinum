@@ -22,7 +22,7 @@
 .public sub_0201A954
 .public sub_0201ACF4
 .public sub_0201D35C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02025F30
 .public sub_02028810
 .public sub_0202952C

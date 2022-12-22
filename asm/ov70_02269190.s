@@ -124,7 +124,7 @@ ov70_02269268: ; 0x02269268
 	add r6, r2, #0
 	cmp r4, #0x14
 	blo _02269278
-	bl sub_02022974
+	bl GF_AssertFail
 _02269278:
 	ldr r0, [r5, #4]
 	add r1, r4, #0
@@ -766,7 +766,7 @@ ov70_02269738: ; 0x02269738
 	add r6, r2, #0
 	cmp r7, #0x1b
 	blo _0226974A
-	bl sub_02022974
+	bl GF_AssertFail
 _0226974A:
 	add r0, r5, #0
 	add r1, r4, #0
@@ -810,7 +810,7 @@ ov70_0226978C: ; 0x0226978C
 	ldrb r0, [r4]
 	cmp r0, #0x1b
 	blo _022697A6
-	bl sub_02022974
+	bl GF_AssertFail
 _022697A6:
 	ldrb r2, [r4]
 	add r0, r5, #0
@@ -845,7 +845,7 @@ _022697DC:
 	ldrb r0, [r4]
 	cmp r0, #0x1b
 	blo _022697E6
-	bl sub_02022974
+	bl GF_AssertFail
 _022697E6:
 	add r0, r5, #0
 	add r1, r4, #0
@@ -905,7 +905,7 @@ ov70_02269828: ; 0x02269828
 	add r6, r3, #0
 	cmp r4, #0x12
 	blo _0226983C
-	bl sub_02022974
+	bl GF_AssertFail
 _0226983C:
 	ldr r0, _02269870 ; =0x0000087C
 	add r7, r5, r0
@@ -914,7 +914,7 @@ _0226983C:
 	ldr r0, [r7, r0]
 	cmp r0, #0
 	beq _0226984E
-	bl sub_02022974
+	bl GF_AssertFail
 _0226984E:
 	ldr r0, [sp, #4]
 	ldr r2, _02269874 ; =0x00010550
@@ -950,7 +950,7 @@ ov70_02269878: ; 0x02269878
 	ldr r0, [r1, r0]
 	cmp r0, #0
 	bne _02269894
-	bl sub_02022974
+	bl GF_AssertFail
 _02269894:
 	mov r0, #0x78
 	add r6, r5, #0
@@ -989,7 +989,7 @@ _02269894:
 	bl NNS_G3dForceBindMdlTex
 	cmp r0, #0
 	bne _022698E8
-	bl sub_02022974
+	bl GF_AssertFail
 _022698E8:
 	ldr r0, [sp, #0xc]
 	ldr r1, [sp, #0xc]
@@ -1000,7 +1000,7 @@ _022698E8:
 	bl NNS_G3dForceBindMdlPltt
 	cmp r0, #0
 	bne _02269900
-	bl sub_02022974
+	bl GF_AssertFail
 _02269900:
 	ldr r0, [sp, #4]
 	lsl r1, r5, #3
@@ -2760,7 +2760,7 @@ ov70_0226A6C8: ; 0x0226A6C8
 	ldrb r0, [r0, #2]
 	cmp r0, #0x11
 	bne _0226A6DE
-	bl sub_02022974
+	bl GF_AssertFail
 _0226A6DE:
 	ldr r0, _0226A814 ; =0x00000954
 	ldr r1, [r5, r0]
@@ -5501,13 +5501,13 @@ _0226BCDC:
 	ldrb r7, [r6, #2]
 	cmp r7, #4
 	blo _0226BCFE
-	bl sub_02022974
+	bl GF_AssertFail
 _0226BCFE:
 	ldrb r0, [r6, #3]
 	str r0, [sp, #4]
 	cmp r0, #4
 	bls _0226BD0A
-	bl sub_02022974
+	bl GF_AssertFail
 _0226BD0A:
 	mov r0, #0xec
 	mul r0, r7
@@ -5569,7 +5569,7 @@ ov70_0226BD64: ; 0x0226BD64
 	add r7, r3, #0
 	cmp r0, #3
 	blo _0226BD78
-	bl sub_02022974
+	bl GF_AssertFail
 _0226BD78:
 	add r0, r5, #0
 	add r0, #0xd8

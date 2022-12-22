@@ -12,7 +12,7 @@ ov17_0224F080: ; 0x0224F080
 	add r4, r0, #0
 	cmp r4, #5
 	blo _0224F08C
-	bl sub_02022974
+	bl GF_AssertFail
 _0224F08C:
 	ldr r0, _0224F094 ; =0x02254A90
 	lsl r1, r4, #2
@@ -40,7 +40,7 @@ ov17_0224F0A0: ; 0x0224F0A0
 	add r4, r0, #0
 	cmp r4, #5
 	blo _0224F0AC
-	bl sub_02022974
+	bl GF_AssertFail
 _0224F0AC:
 	ldr r0, _0224F0B4 ; =0x02254A88
 	ldrb r0, [r0, r4]

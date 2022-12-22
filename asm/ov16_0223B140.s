@@ -722,7 +722,7 @@ ov16_0223B748: ; 0x0223B748
 	ldrb r0, [r5, r0]
 	cmp r0, r4
 	bne _0223B75A
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B75A:
 	ldr r0, _0223B784 ; =0x00002445
 	cmp r4, #0
@@ -2203,7 +2203,7 @@ _0223C310:
 	ldr r0, [r0, r1]
 	cmp r0, #0
 	bne _0223C46E
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C46E:
 	ldr r5, [sp, #4]
 	mov r0, #0
@@ -3428,11 +3428,11 @@ ov16_0223CE28: ; 0x0223CE28
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0223CE50
-	bl sub_02022974
+	bl GF_AssertFail
 _0223CE50:
 	cmp r5, #0
 	bne _0223CE58
-	bl sub_02022974
+	bl GF_AssertFail
 _0223CE58:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}

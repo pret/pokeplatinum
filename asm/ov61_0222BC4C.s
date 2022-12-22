@@ -155,7 +155,7 @@ ov61_0222BD18: ; 0x0222BD18
 	cmp r4, r5
 	ble _0222BD30
 	add r4, r5, #0
-	bl sub_02022974
+	bl GF_AssertFail
 _0222BD30:
 	add r3, r7, #4
 	mov r2, #0
@@ -333,7 +333,7 @@ ov61_0222BE20: ; 0x0222BE20
 	cmp r1, r0
 	ble _0222BE40
 	str r0, [sp, #0xc]
-	bl sub_02022974
+	bl GF_AssertFail
 _0222BE40:
 	ldr r0, [sp, #0xc]
 	add r5, r4, #4

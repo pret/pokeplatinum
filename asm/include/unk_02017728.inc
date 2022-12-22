@@ -13,7 +13,7 @@
 .public sub_0201CD88
 .public sub_0201CDD4
 .public sub_0201D640
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02024358
 .public FX_Init
 .public GX_Init

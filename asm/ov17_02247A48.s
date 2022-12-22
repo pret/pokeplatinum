@@ -1749,7 +1749,7 @@ _02248756:
 	ldr r0, [r0, #0x24]
 	cmp r0, #0
 	bne _02248762
-	bl sub_02022974
+	bl GF_AssertFail
 _02248762:
 	ldr r0, [r4, #0]
 	mov r1, #0
@@ -2352,7 +2352,7 @@ _02248C04:
 	ldr r0, [r0, #0x24]
 	cmp r0, #0
 	bne _02248C10
-	bl sub_02022974
+	bl GF_AssertFail
 _02248C10:
 	ldrb r0, [r4, #0xf]
 	add r0, r0, #1

@@ -22,7 +22,7 @@
 .public sub_020181C4
 .public sub_02019120
 .public sub_0201D2E8
-.public sub_02022974
+.public GF_AssertFail
 .public _f_add
 .public _f_sub
 .public _s32_div_f

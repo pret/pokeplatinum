@@ -18,7 +18,7 @@
 .public sub_02005684
 .public sub_020059D0
 .public sub_02006224
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_SndInit
 .public NNS_SndMain
 .public NNS_SndPlayerStopSeqByPlayerNo

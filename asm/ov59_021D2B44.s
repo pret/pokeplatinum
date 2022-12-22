@@ -156,7 +156,7 @@ ov59_021D2C28: ; 0x021D2C28
 	bl ov59_021D2B44
 	cmp r4, r0
 	beq _021D2C50
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2C50:
 	mov r0, #1
 	mov r2, #0x63
@@ -192,7 +192,7 @@ ov59_021D2C70: ; 0x021D2C70
 	bl ov59_021D2B4C
 	cmp r4, r0
 	beq _021D2C98
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2C98:
 	mov r0, #1
 	add r6, #0xc
@@ -226,7 +226,7 @@ ov59_021D2CB4: ; 0x021D2CB4
 	bl ov59_021D2B54
 	cmp r4, r0
 	beq _021D2CDC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2CDC:
 	mov r0, #1
 	str r0, [sp]
@@ -260,7 +260,7 @@ ov59_021D2CF8: ; 0x021D2CF8
 	bl ov59_021D2B44
 	cmp r4, r0
 	beq _021D2D20
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2D20:
 	mov r0, #0
 	mov r2, #0x63
@@ -294,7 +294,7 @@ ov59_021D2D3C: ; 0x021D2D3C
 	bl ov59_021D2B4C
 	cmp r4, r0
 	beq _021D2D64
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2D64:
 	mov r0, #0
 	str r0, [sp]
@@ -328,7 +328,7 @@ ov59_021D2D80: ; 0x021D2D80
 	bl ov59_021D2B54
 	cmp r4, r0
 	beq _021D2DA8
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2DA8:
 	mov r0, #0
 	str r0, [sp]

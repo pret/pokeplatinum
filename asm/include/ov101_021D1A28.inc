@@ -8,7 +8,7 @@
 .public sub_02019E2C
 .public sub_0201C3C0
 .public sub_0201D2E8
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02071330
 .public sub_0207136C
 .public sub_02071598

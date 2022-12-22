@@ -609,7 +609,7 @@ ov97_02237AEC: ; 0x02237AEC
 	ldr r0, [r0, #0x34]
 	cmp r0, #0
 	bne _02237AFC
-	bl sub_02022974
+	bl GF_AssertFail
 _02237AFC:
 	add r4, #0x34
 	add r0, r4, #0

@@ -14,7 +14,7 @@ ov6_02246184: ; 0x02246184
 	add r5, r0, #0
 	cmp r6, #4
 	blo _02246194
-	bl sub_02022974
+	bl GF_AssertFail
 _02246194:
 	add r0, r5, #0
 	mov r1, #0x14
@@ -331,7 +331,7 @@ ov6_0224630C: ; 0x0224630C
 	bl sub_02075E0C
 	cmp r0, #0
 	beq _02246440
-	bl sub_02022974
+	bl GF_AssertFail
 _02246440:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}

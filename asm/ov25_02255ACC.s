@@ -16,7 +16,7 @@ ov25_02255ACC: ; 0x02255ACC
 	str r3, [sp, #4]
 	ldr r5, [sp, #0x20]
 	bne _02255AE0
-	bl sub_02022974
+	bl GF_AssertFail
 _02255AE0:
 	add r0, r5, #0
 	mov r1, #0x18
@@ -66,7 +66,7 @@ ov25_02255B34: ; 0x02255B34
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02255B3E
-	bl sub_02022974
+	bl GF_AssertFail
 _02255B3E:
 	ldr r0, [r4, #8]
 	ldr r1, [r4, #0x14]

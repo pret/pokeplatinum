@@ -403,7 +403,7 @@ sub_02020304: ; 0x02020304
 	add r0, r7, #1
 	cmp r0, r5
 	ble _02020322
-	bl sub_02022974
+	bl GF_AssertFail
 _02020322:
 	ldr r0, [sp]
 	mov r1, #0x24

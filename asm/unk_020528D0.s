@@ -48,7 +48,7 @@ sub_02052914: ; 0x02052914
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0205292A
-	bl sub_02022974
+	bl GF_AssertFail
 _0205292A:
 	add r0, r4, #0
 	mov r1, #0

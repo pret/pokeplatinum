@@ -42,7 +42,7 @@ _020321B0:
 _020321C0:
 	cmp r7, #0
 	bne _020321C8
-	bl sub_02022974
+	bl GF_AssertFail
 _020321C8:
 	add r0, r5, #0
 	add r1, r4, #0

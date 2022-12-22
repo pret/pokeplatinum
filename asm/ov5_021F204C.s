@@ -261,7 +261,7 @@ ov5_021F220C: ; 0x021F220C
 	sub r1, r1, #1
 	str r1, [r0, #0]
 	bpl _021F221A
-	bl sub_02022974
+	bl GF_AssertFail
 _021F221A:
 	pop {r3, pc}
 	thumb_func_end ov5_021F220C

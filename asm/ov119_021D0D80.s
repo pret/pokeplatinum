@@ -147,11 +147,11 @@ ov119_021D0E78: ; 0x021D0E78
 	add r5, r0, #0
 	cmp r4, #0
 	bne _021D0EA0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D0EA0:
 	cmp r5, #0
 	bne _021D0EA8
-	bl sub_02022974
+	bl GF_AssertFail
 _021D0EA8:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}
@@ -911,7 +911,7 @@ ov119_021D14AC: ; 0x021D14AC
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021D14C0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D14C0:
 	ldr r0, [r5, #0]
 	ldr r2, [r5, #4]
@@ -1347,7 +1347,7 @@ ov119_021D17B8: ; 0x021D17B8
 	bl sub_0200C7C0
 	cmp r0, #0
 	bne _021D1822
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1822:
 	ldr r0, [r4, #0x50]
 	ldr r1, [r4, #0x4c]
@@ -1355,7 +1355,7 @@ _021D1822:
 	bl sub_0200CB30
 	cmp r0, #0
 	bne _021D1834
-	bl sub_02022974
+	bl GF_AssertFail
 _021D1834:
 	add sp, #0x4c
 	pop {r3, r4, r5, r6, pc}

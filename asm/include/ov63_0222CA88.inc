@@ -1,4 +1,4 @@
-.public sub_02022974
+.public GF_AssertFail
 .public ov63_0222BDAC
 .public ov63_0222BF80
 .public ov63_0222BF90

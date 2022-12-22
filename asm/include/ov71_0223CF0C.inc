@@ -26,7 +26,7 @@
 .public sub_02021CC8
 .public sub_02021D6C
 .public sub_02021F9C
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dGetUnpackedPaletteData
 .public NNS_G2dInitOamManagerModule
 .public NNS_G2dGetImagePaletteLocation

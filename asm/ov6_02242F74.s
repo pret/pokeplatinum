@@ -87,7 +87,7 @@ _02242FF8:
 	mov r4, #5
 	b _02243000
 _02242FFC:
-	bl sub_02022974
+	bl GF_AssertFail
 _02243000:
 	add r0, r4, #0
 	pop {r4, pc}

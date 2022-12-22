@@ -1,6 +1,6 @@
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public memset
 .public ov21_021D12EC
 .public ov21_021D1300

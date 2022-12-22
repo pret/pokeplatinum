@@ -382,7 +382,7 @@ _0225649C:
 	bl sub_020067D0
 	pop {r3, r4, r5, r6, r7, pc}
 _022564DE:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end ov56_02256468
 

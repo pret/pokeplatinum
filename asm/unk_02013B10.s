@@ -38,7 +38,7 @@ sub_02013B40: ; 0x02013B40
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02013B4A
-	bl sub_02022974
+	bl GF_AssertFail
 _02013B4A:
 	add r0, r4, #0
 	bl sub_020181C4
@@ -51,7 +51,7 @@ sub_02013B54: ; 0x02013B54
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02013B5E
-	bl sub_02022974
+	bl GF_AssertFail
 _02013B5E:
 	ldrb r0, [r4, #8]
 	lsl r0, r0, #2
@@ -65,7 +65,7 @@ sub_02013B68: ; 0x02013B68
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02013B72
-	bl sub_02022974
+	bl GF_AssertFail
 _02013B72:
 	ldrb r1, [r4, #8]
 	mov r0, #1
@@ -83,7 +83,7 @@ sub_02013B80: ; 0x02013B80
 	add r4, r1, #0
 	cmp r5, #0
 	bne _02013B8E
-	bl sub_02022974
+	bl GF_AssertFail
 _02013B8E:
 	strb r4, [r5, #9]
 	pop {r3, r4, r5, pc}
@@ -172,13 +172,13 @@ sub_02013C10: ; 0x02013C10
 	add r7, r3, #0
 	cmp r5, #0
 	bne _02013C22
-	bl sub_02022974
+	bl GF_AssertFail
 _02013C22:
 	ldr r0, _02013C90 ; =0x00000604
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _02013C2E
-	bl sub_02022974
+	bl GF_AssertFail
 _02013C2E:
 	ldr r0, _02013C94 ; =0x0000078C
 	mov r2, #0
@@ -242,13 +242,13 @@ sub_02013CA4: ; 0x02013CA4
 	add r7, r3, #0
 	cmp r5, #0
 	bne _02013CB6
-	bl sub_02022974
+	bl GF_AssertFail
 _02013CB6:
 	ldr r0, _02013D24 ; =0x00000604
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _02013CC2
-	bl sub_02022974
+	bl GF_AssertFail
 _02013CC2:
 	ldr r0, _02013D28 ; =0x0000078C
 	mov r2, #0
@@ -308,7 +308,7 @@ sub_02013D38: ; 0x02013D38
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02013D42
-	bl sub_02022974
+	bl GF_AssertFail
 _02013D42:
 	ldr r0, _02013D6C ; =0x00000604
 	ldr r0, [r4, r0]
@@ -652,7 +652,7 @@ sub_02013FD0: ; 0x02013FD0
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	bne _02013FDA
-	bl sub_02022974
+	bl GF_AssertFail
 _02013FDA:
 	mov r0, #6
 	lsl r0, r0, #8

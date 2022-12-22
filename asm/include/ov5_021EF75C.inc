@@ -9,7 +9,7 @@
 .public sub_020182F0
 .public sub_0201CBB0
 .public sub_0201CBCC
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dGetMdlSet
 .public NNS_G3dGetTex
 .public G3X_SetEdgeColorTable

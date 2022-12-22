@@ -4,6 +4,6 @@
 .public sub_02022760
 .public sub_0202278C
 .public sub_02022798
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02024028
 .public sub_02024144

@@ -175,7 +175,7 @@ _02056C70:
 	mov r4, #6
 	b _02056CE6
 _02056C7E:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02056CE6
 _02056C84:
 	ldr r0, [sp, #8]
@@ -196,7 +196,7 @@ _02056C9C:
 	mov r4, #6
 	b _02056CE6
 _02056CAA:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02056CE6
 _02056CB0:
 	ldr r0, [sp, #8]
@@ -218,10 +218,10 @@ _02056CD2:
 	bl sub_0203A274
 	cmp r0, #0
 	bne _02056CE6
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02056CE6
 _02056CE2:
-	bl sub_02022974
+	bl GF_AssertFail
 _02056CE6:
 	ldr r1, _02056CF8 ; =sub_02056CFC
 	add r0, r7, #0
@@ -550,7 +550,7 @@ _02056F62:
 	bl sub_02065638
 	b _02056F72
 _02056F6E:
-	bl sub_02022974
+	bl GF_AssertFail
 _02056F72:
 	ldr r0, [r4, #4]
 	add r0, r0, #1
@@ -926,7 +926,7 @@ _02057266:
 	bl sub_02065638
 	b _02057278
 _02057274:
-	bl sub_02022974
+	bl GF_AssertFail
 _02057278:
 	ldr r0, [r4, #4]
 	add r0, r0, #1

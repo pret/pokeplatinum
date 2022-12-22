@@ -4,7 +4,7 @@
 .public sub_0201CA5C
 .public sub_0201CB1C
 .public sub_0201FF0C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02024220
 .public sub_020242C4
 .public NNS_G3dRenderObjInit

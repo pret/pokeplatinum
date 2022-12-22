@@ -166,7 +166,7 @@ sub_0202610C: ; 0x0202610C
 	add r4, r0, #0
 	cmp r5, #1
 	blt _0202611A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202611A:
 	add r0, r4, #0
 	mov r1, #0xd

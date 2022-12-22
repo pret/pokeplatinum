@@ -49,7 +49,7 @@ _0224809C:
 	add r5, r5, #1
 	b _022480A4
 _022480A0:
-	bl sub_02022974
+	bl GF_AssertFail
 _022480A4:
 	mov r3, #2
 	lsl r1, r5, #0x10
@@ -106,7 +106,7 @@ _02248104:
 	add r5, r5, #1
 	b _0224810C
 _02248108:
-	bl sub_02022974
+	bl GF_AssertFail
 _0224810C:
 	mov r3, #2
 	lsl r1, r5, #0x10
@@ -822,7 +822,7 @@ ov6_02248610: ; 0x02248610
 	add r5, r3, #0
 	cmp r0, #0
 	beq _02248628
-	bl sub_02022974
+	bl GF_AssertFail
 _02248628:
 	add r0, r6, #0
 	add r1, sp, #0
@@ -1050,7 +1050,7 @@ _022487D0:
 	add r1, #0xcc
 	cmp r2, #0x10
 	blt _022487A4
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end ov6_02248798

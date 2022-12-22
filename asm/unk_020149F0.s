@@ -35,7 +35,7 @@ sub_02014A20: ; 0x02014A20
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02014A2A
-	bl sub_02022974
+	bl GF_AssertFail
 _02014A2A:
 	cmp r4, #0
 	beq _02014A3E
@@ -57,7 +57,7 @@ sub_02014A40: ; 0x02014A40
 	add r4, r1, #0
 	cmp r5, #0
 	bne _02014A4E
-	bl sub_02022974
+	bl GF_AssertFail
 _02014A4E:
 	cmp r5, #0
 	beq _02014A54

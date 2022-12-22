@@ -49,7 +49,7 @@
 .public sub_02020A50
 .public sub_02020AAC
 .public sub_02020ACC
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0203D170
 .public sub_02050944
 .public sub_02050A60

@@ -328,7 +328,7 @@ _02054F50:
 	str r1, [r0, #0]
 	pop {r3, pc}
 _02054F5A:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, pc}
 	; .align 2, 0
 _02054F60: .word 0x020EC3D0
@@ -441,7 +441,7 @@ _02055008:
 	blt _0205501C
 	cmp r4, #0
 	bne _0205501E
-	bl sub_02022974
+	bl GF_AssertFail
 	b _0205501E
 _0205501C:
 	mov r4, #0
@@ -582,7 +582,7 @@ sub_020550F4: ; 0x020550F4
 	cmp r7, #0
 	bge _0205511C
 _02055118:
-	bl sub_02022974
+	bl GF_AssertFail
 _0205511C:
 	lsl r0, r6, #0x10
 	str r0, [r5, #0]

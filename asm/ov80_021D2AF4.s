@@ -357,7 +357,7 @@ ov80_021D2D70: ; 0x021D2D70
 	bl FS_OpenFile
 	cmp r0, #0
 	bne _021D2D94
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x4c
 	mov r0, #0
 	pop {r4, r5, r6, r7, pc}
@@ -368,7 +368,7 @@ _021D2D94:
 	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D2DA6
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2DA6:
 	add r0, r4, #0
 	mov r1, #8

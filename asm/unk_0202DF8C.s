@@ -35,14 +35,14 @@ sub_0202DFA8: ; 0x0202DFA8
 	str r2, [sp, #8]
 	cmp r0, #0
 	bne _0202DFBA
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DFBA:
 	ldr r1, _0202E138 ; =0x00002AA8
 	ldr r0, [sp]
 	ldr r0, [r0, r1]
 	cmp r0, #0x1e
 	blo _0202DFC8
-	bl sub_02022974
+	bl GF_AssertFail
 _0202DFC8:
 	ldr r1, _0202E13C ; =0x00002AAC
 	ldr r0, [sp]
@@ -227,13 +227,13 @@ sub_0202E148: ; 0x0202E148
 	push {r4, lr}
 	add r4, r0, #0
 	bne _0202E152
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E152:
 	ldr r0, _0202E16C ; =0x00002AA8
 	ldr r0, [r4, r0]
 	cmp r0, #0x1e
 	blo _0202E15E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E15E:
 	ldr r0, _0202E170 ; =0x00002AAC
 	ldr r0, [r4, r0]
@@ -254,17 +254,17 @@ sub_0202E174: ; 0x0202E174
 	add r4, r1, #0
 	cmp r5, #0
 	bne _0202E182
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E182:
 	ldr r0, _0202E1A0 ; =0x00002AA8
 	ldr r0, [r5, r0]
 	cmp r0, #0x1e
 	blo _0202E18E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E18E:
 	cmp r4, #0x1e
 	blt _0202E196
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E196:
 	ldr r0, _0202E1A4 ; =0x00002AAC
 	ldr r0, [r5, r0]
@@ -282,17 +282,17 @@ sub_0202E1A8: ; 0x0202E1A8
 	add r4, r1, #0
 	cmp r5, #0
 	bne _0202E1B6
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E1B6:
 	ldr r0, _0202E1F0 ; =0x00002AA8
 	ldr r0, [r5, r0]
 	cmp r0, #0x1e
 	blo _0202E1C2
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E1C2:
 	cmp r4, #0x1e
 	blt _0202E1CA
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E1CA:
 	ldr r0, _0202E1F0 ; =0x00002AA8
 	ldr r0, [r5, r0]
@@ -329,17 +329,17 @@ sub_0202E1F4: ; 0x0202E1F4
 	add r4, r3, #0
 	cmp r5, #0
 	bne _0202E206
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E206:
 	ldr r0, _0202E270 ; =0x00002AA8
 	ldr r0, [r5, r0]
 	cmp r0, #0x1e
 	blo _0202E212
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E212:
 	cmp r6, #0x1e
 	blt _0202E21A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E21A:
 	ldr r0, _0202E270 ; =0x00002AA8
 	ldr r0, [r5, r0]
@@ -395,17 +395,17 @@ sub_0202E274: ; 0x0202E274
 	add r4, r2, #0
 	cmp r5, #0
 	bne _0202E284
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E284:
 	ldr r0, _0202E2C8 ; =0x00002AA8
 	ldr r0, [r5, r0]
 	cmp r0, #0x1e
 	blo _0202E290
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E290:
 	cmp r6, #0x1e
 	blt _0202E298
-	bl sub_02022974
+	bl GF_AssertFail
 _0202E298:
 	ldr r0, _0202E2C8 ; =0x00002AA8
 	ldr r0, [r5, r0]

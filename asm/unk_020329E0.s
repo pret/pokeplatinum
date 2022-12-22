@@ -1052,7 +1052,7 @@ _02033146:
 	ldr r0, [sp, #8]
 	cmp r0, #0
 	bge _02033150
-	bl sub_02022974
+	bl GF_AssertFail
 _02033150:
 	ldr r0, _020331AC ; =0x021C07B4
 	mov r2, #0xdb

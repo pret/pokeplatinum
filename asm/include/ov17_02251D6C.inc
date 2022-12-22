@@ -19,7 +19,7 @@
 .public sub_0201A954
 .public sub_0201ADA4
 .public sub_0201C3C0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02074470
 .public sub_02077D3C
 .public GXx_SetMasterBrightness_

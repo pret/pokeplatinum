@@ -121,7 +121,7 @@ ov23_02253DFC: ; 0x02253DFC
 	str r0, [r5, #0x24]
 	cmp r0, #0
 	bne _02253E28
-	bl sub_02022974
+	bl GF_AssertFail
 _02253E28:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

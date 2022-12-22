@@ -83,7 +83,7 @@ ov6_0224663C: ; 0x0224663C
 	cmp r4, #0xa
 	blo _02246696
 _02246692:
-	bl sub_02022974
+	bl GF_AssertFail
 _02246696:
 	add r0, r4, #0
 	add sp, #0xc
@@ -107,7 +107,7 @@ ov6_0224669C: ; 0x0224669C
 	ldrb r0, [r0]
 	cmp r0, #6
 	blo _022466C0
-	bl sub_02022974
+	bl GF_AssertFail
 _022466C0:
 	add r0, sp, #4
 	ldrb r0, [r0]
@@ -484,7 +484,7 @@ ov6_02246958: ; 0x02246958
 	add r4, r0, #0
 	cmp r4, #9
 	bls _02246968
-	bl sub_02022974
+	bl GF_AssertFail
 _02246968:
 	ldr r2, _02246974 ; =0x02249470
 	sub r1, r4, #1
@@ -521,7 +521,7 @@ _0224699E: ; jump table
 	.short _022469D6 - _0224699E - 2 ; case 2
 	.short _022469DA - _0224699E - 2 ; case 3
 _022469A6:
-	bl sub_02022974
+	bl GF_AssertFail
 _022469AA:
 	bl sub_02013960
 	cmp r0, #0

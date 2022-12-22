@@ -66,7 +66,7 @@ _0226E1AA: ; jump table
 _0226E1B4:
 	cmp r5, #0
 	bne _0226E1BC
-	bl sub_02022974
+	bl GF_AssertFail
 _0226E1BC:
 	mov r0, #7
 	mov r1, #5

@@ -745,7 +745,7 @@ sub_0204B470: ; 0x0204B470
 	ldrb r0, [r0, #0x10]
 	cmp r0, #4
 	bls _0204B49C
-	bl sub_02022974
+	bl GF_AssertFail
 _0204B49C:
 	add r0, sp, #0x80
 	ldrb r6, [r0, #0x10]

@@ -306,7 +306,7 @@ sub_0201789C: ; 0x0201789C
 	bl OS_AllocFromArenaLo
 	add r5, r0, #0
 	bne _02017990
-	bl sub_02022974
+	bl GF_AssertFail
 _02017990:
 	add r0, r5, #0
 	add r1, r4, #0
@@ -915,7 +915,7 @@ sub_02017E00: ; 0x02017E00
 	ldr r0, [r0, #0x70]
 	cmp r0, #0
 	beq _02017E10
-	bl sub_02022974
+	bl GF_AssertFail
 _02017E10:
 	add r0, r4, #0
 	mov r1, #4
@@ -937,7 +937,7 @@ sub_02017E2C: ; 0x02017E2C
 	ldr r0, [r0, #0x70]
 	cmp r0, #0
 	bne _02017E3A
-	bl sub_02022974
+	bl GF_AssertFail
 _02017E3A:
 	ldr r0, _02017E50 ; =0x021BF67C
 	mov r2, #0

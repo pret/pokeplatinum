@@ -16,19 +16,19 @@ ov63_0222CA88: ; 0x0222CA88
 	add r6, r3, #0
 	cmp r7, #0
 	bne _0222CA9C
-	bl sub_02022974
+	bl GF_AssertFail
 _0222CA9C:
 	cmp r5, #0
 	bne _0222CAA4
-	bl sub_02022974
+	bl GF_AssertFail
 _0222CAA4:
 	cmp r4, #0
 	bne _0222CAAC
-	bl sub_02022974
+	bl GF_AssertFail
 _0222CAAC:
 	cmp r6, #0
 	bne _0222CAB4
-	bl sub_02022974
+	bl GF_AssertFail
 _0222CAB4:
 	ldrb r1, [r4, #3]
 	add r0, r5, #0
@@ -36,7 +36,7 @@ _0222CAB4:
 	str r0, [sp, #4]
 	cmp r0, #0
 	bne _0222CAC6
-	bl sub_02022974
+	bl GF_AssertFail
 _0222CAC6:
 	str r6, [sp]
 	add r3, r4, #0
@@ -207,7 +207,7 @@ _0222CBF4:
 	thumb_func_start ov63_0222CBF8
 ov63_0222CBF8: ; 0x0222CBF8
 	push {r3, lr}
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

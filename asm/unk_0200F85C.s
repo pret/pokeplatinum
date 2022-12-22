@@ -1367,7 +1367,7 @@ _02010274:
 	mov r7, #0xf
 	mvn r7, r7
 	mov r6, #0
-	bl sub_02022974
+	bl GF_AssertFail
 	b _020102A0
 _02010280:
 	cmp r1, r0
@@ -1386,7 +1386,7 @@ _02010296:
 	mov r7, #0
 	add r6, r7, #0
 	sub r6, #0x10
-	bl sub_02022974
+	bl GF_AssertFail
 _020102A0:
 	ldr r0, [r5, #0x10]
 	add r1, r7, #0
@@ -1499,7 +1499,7 @@ sub_0201035C: ; 0x0201035C
 	push {r4, r5, r6, lr}
 	add r4, r0, #0
 	bne _02010366
-	bl sub_02022974
+	bl GF_AssertFail
 _02010366:
 	ldr r0, _02010578 ; =0x04000006
 	ldrh r0, [r0]
@@ -1864,7 +1864,7 @@ sub_02010604: ; 0x02010604
 	add r4, r1, #0
 	cmp r0, r4
 	bgt _02010614
-	bl sub_02022974
+	bl GF_AssertFail
 _02010614:
 	ldr r0, _02010620 ; =0x00000604
 	ldr r1, [r5, #0]
@@ -2116,7 +2116,7 @@ sub_020107D8: ; 0x020107D8
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	bne _020107E2
-	bl sub_02022974
+	bl GF_AssertFail
 _020107E2:
 	ldr r0, _02010AD0 ; =0x04000006
 	ldrh r0, [r0]
@@ -3179,7 +3179,7 @@ _02010FB2:
 	mov r6, #1
 	b _02010FBA
 _02010FB6:
-	bl sub_02022974
+	bl GF_AssertFail
 _02010FBA:
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
@@ -3556,7 +3556,7 @@ _0201128A:
 	mov r6, #1
 	b _02011292
 _0201128E:
-	bl sub_02022974
+	bl GF_AssertFail
 _02011292:
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
@@ -4013,7 +4013,7 @@ sub_020115B8: ; 0x020115B8
 	str r0, [sp, #4]
 	cmp r0, #0xc0
 	blt _02011624
-	bl sub_02022974
+	bl GF_AssertFail
 _02011624:
 	ldr r2, [sp, #4]
 	add r0, r4, #0
@@ -4152,7 +4152,7 @@ _0201172C:
 	mov r6, #1
 	b _02011734
 _02011730:
-	bl sub_02022974
+	bl GF_AssertFail
 _02011734:
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
@@ -4177,7 +4177,7 @@ sub_02011738: ; 0x02011738
 	str r0, [r6, #0xc]
 	cmp r0, #0
 	bne _02011760
-	bl sub_02022974
+	bl GF_AssertFail
 _02011760:
 	ldrh r0, [r5, #8]
 	str r0, [r6, #0x10]
@@ -4523,7 +4523,7 @@ _020119F4:
 	mov r6, #1
 	b _020119FC
 _020119F8:
-	bl sub_02022974
+	bl GF_AssertFail
 _020119FC:
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
@@ -4943,7 +4943,7 @@ _02011D28:
 	mov r6, #1
 	b _02011D30
 _02011D2C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02011D30:
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
@@ -5296,7 +5296,7 @@ _02011FDC:
 	mov r6, #1
 	b _02011FE4
 _02011FE0:
-	bl sub_02022974
+	bl GF_AssertFail
 _02011FE4:
 	add r0, r6, #0
 	pop {r4, r5, r6, pc}
@@ -5662,7 +5662,7 @@ _0201227E:
 	mov r4, #1
 	b _02012286
 _02012282:
-	bl sub_02022974
+	bl GF_AssertFail
 _02012286:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}

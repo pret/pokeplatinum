@@ -580,7 +580,7 @@ sub_0204A110: ; 0x0204A110
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	beq _0204A11E
-	bl sub_02022974
+	bl GF_AssertFail
 _0204A11E:
 	mov r0, #0
 	str r0, [r4, #0]
@@ -836,7 +836,7 @@ sub_0204A32C: ; 0x0204A32C
 	ldr r0, _0204A350 ; =0x12345678
 	cmp r1, r0
 	beq _0204A33E
-	bl sub_02022974
+	bl GF_AssertFail
 _0204A33E:
 	ldr r2, _0204A354 ; =0x000008DC
 	add r0, r4, #0

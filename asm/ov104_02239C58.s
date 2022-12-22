@@ -214,7 +214,7 @@ _02239DC2:
 	strb r1, [r0]
 	b _02239DD8
 _02239DD4:
-	bl sub_02022974
+	bl GF_AssertFail
 _02239DD8:
 	add r0, r5, #0
 	add r0, #0xa8
@@ -383,7 +383,7 @@ _02239EDA:
 	strb r1, [r0]
 	b _02239F20
 _02239F1C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02239F20:
 	mov r3, #0
 	str r3, [sp]

@@ -606,7 +606,7 @@ sub_0202D414: ; 0x0202D414
 	mov r3, #1
 	cmp r1, #0x10
 	blo _0202D424
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, pc}
 _0202D424:

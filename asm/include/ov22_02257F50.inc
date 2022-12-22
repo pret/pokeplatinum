@@ -6,7 +6,7 @@
 .public sub_0201D35C
 .public sub_02022734
 .public sub_02022830
-.public sub_02022974
+.public GF_AssertFail
 .public memset
 .public _s32_div_f
 .public _u32_div_f

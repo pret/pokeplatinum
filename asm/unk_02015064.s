@@ -15,7 +15,7 @@ sub_02015064: ; 0x02015064
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02015078
-	bl sub_02022974
+	bl GF_AssertFail
 _02015078:
 	ldr r0, [r5, #0]
 	ldr r1, [r5, #0xc]
@@ -45,22 +45,22 @@ sub_020150A8: ; 0x020150A8
 	push {r4, lr}
 	add r4, r0, #0
 	bne _020150B2
-	bl sub_02022974
+	bl GF_AssertFail
 _020150B2:
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _020150BC
-	bl sub_02022974
+	bl GF_AssertFail
 _020150BC:
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	bne _020150C6
-	bl sub_02022974
+	bl GF_AssertFail
 _020150C6:
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
 	bne _020150D0
-	bl sub_02022974
+	bl GF_AssertFail
 _020150D0:
 	ldr r0, [r4, #0]
 	bl sub_020181C4
@@ -116,20 +116,20 @@ sub_02015128: ; 0x02015128
 	bl sub_020153B4
 	add r4, r0, #0
 	bne _0201513A
-	bl sub_02022974
+	bl GF_AssertFail
 _0201513A:
 	ldr r0, [r5, #4]
 	ldr r0, [r0, #8]
 	cmp r0, #0
 	beq _02015146
-	bl sub_02022974
+	bl GF_AssertFail
 _02015146:
 	ldr r0, [r5, #4]
 	bl sub_0201540C
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _02015156
-	bl sub_02022974
+	bl GF_AssertFail
 _02015156:
 	ldr r0, [r5, #4]
 	ldr r1, [r4, #0]
@@ -188,14 +188,14 @@ sub_020151A4: ; 0x020151A4
 	bl sub_020153E0
 	add r4, r0, #0
 	bne _020151B6
-	bl sub_02022974
+	bl GF_AssertFail
 _020151B6:
 	ldr r0, [r5, #8]
 	bl sub_02015420
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _020151C6
-	bl sub_02022974
+	bl GF_AssertFail
 _020151C6:
 	ldr r0, [r5, #4]
 	ldr r1, [r4, #0]
@@ -254,7 +254,7 @@ sub_02015214: ; 0x02015214
 	bl sub_02015388
 	add r4, r0, #0
 	bne _02015226
-	bl sub_02022974
+	bl GF_AssertFail
 _02015226:
 	add r0, r4, #0
 	add r1, r5, #0
@@ -281,7 +281,7 @@ sub_02015240: ; 0x02015240
 	add r4, r1, #0
 	cmp r5, #0
 	bne _0201524E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201524E:
 	str r4, [r5, #0x20]
 	pop {r3, r4, r5, pc}
@@ -454,7 +454,7 @@ sub_020152F8: ; 0x020152F8
 	bl sub_02018144
 	add r7, r0, #0
 	bne _0201530C
-	bl sub_02022974
+	bl GF_AssertFail
 _0201530C:
 	mov r4, #0
 	cmp r6, #0
@@ -483,7 +483,7 @@ sub_02015328: ; 0x02015328
 	bl sub_02018144
 	add r7, r0, #0
 	bne _0201533E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201533E:
 	mov r4, #0
 	cmp r6, #0
@@ -511,7 +511,7 @@ sub_02015358: ; 0x02015358
 	bl sub_02018144
 	add r7, r0, #0
 	bne _0201536E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201536E:
 	mov r4, #0
 	cmp r6, #0

@@ -254,7 +254,7 @@ _02054A66:
 	cmp r4, r5
 	blt _02054A50
 _02054A6C:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	thumb_func_end sub_02054A40

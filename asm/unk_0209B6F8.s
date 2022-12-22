@@ -28,7 +28,7 @@ sub_0209B6F8: ; 0x0209B6F8
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _0209B730
-	bl sub_02022974
+	bl GF_AssertFail
 _0209B730:
 	ldr r2, [r4, #0]
 	add r0, r4, #0
@@ -360,7 +360,7 @@ sub_0209B988: ; 0x0209B988
 	add r6, r3, #0
 	cmp r0, #0
 	beq _0209B99C
-	bl sub_02022974
+	bl GF_AssertFail
 _0209B99C:
 	add r0, r7, #0
 	add r1, r4, #0

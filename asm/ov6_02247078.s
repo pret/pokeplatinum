@@ -53,7 +53,7 @@ ov6_02247078: ; 0x02247078
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
 _022470DA:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x30
 	pop {r3, r4, r5, r6, r7, pc}
 	nop

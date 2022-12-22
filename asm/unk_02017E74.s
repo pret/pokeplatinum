@@ -111,7 +111,7 @@ _02017F1E:
 	strb r7, [r0, r7]
 	b _02017F3E
 _02017F3A:
-	bl sub_02022974
+	bl GF_AssertFail
 _02017F3E:
 	ldr r0, [sp]
 	add r7, r7, #1
@@ -226,7 +226,7 @@ sub_02017FE0: ; 0x02017FE0
 	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _02017FF8
-	bl sub_02022974
+	bl GF_AssertFail
 _02017FF8:
 	ldr r1, _02018078 ; =0x021BFAF0
 	ldr r0, [r1, #0x10]
@@ -273,19 +273,19 @@ _02017FF8:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _02018056:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02018072
 _0201805C:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02018072
 _02018062:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02018072
 _02018068:
-	bl sub_02022974
+	bl GF_AssertFail
 	b _02018072
 _0201806E:
-	bl sub_02022974
+	bl GF_AssertFail
 _02018072:
 	mov r0, #0
 	add sp, #8
@@ -301,7 +301,7 @@ sub_0201807C: ; 0x0201807C
 	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _0201808C
-	bl sub_02022974
+	bl GF_AssertFail
 _0201808C:
 	ldr r0, _020180EC ; =0x021BFAF0
 	ldr r1, [r0, #0]
@@ -327,7 +327,7 @@ _0201808C:
 	bl NNS_FndFreeToExpHeap
 	b _020180C2
 _020180BE:
-	bl sub_02022974
+	bl GF_AssertFail
 _020180C2:
 	ldr r1, _020180EC ; =0x021BFAF0
 	mov r0, #0
@@ -364,7 +364,7 @@ sub_020180F0: ; 0x020180F0
 	add r6, r3, #0
 	cmp r5, #0
 	bne _02018102
-	bl sub_02022974
+	bl GF_AssertFail
 _02018102:
 	bl OS_DisableInterrupts
 	add r4, #0x10
@@ -495,7 +495,7 @@ sub_020181C4: ; 0x020181C4
 	ldr r7, [r1, r0]
 	cmp r7, #0
 	bne _020181EA
-	bl sub_02022974
+	bl GF_AssertFail
 _020181EA:
 	ldr r0, _02018234 ; =0x021BFAF0
 	lsl r5, r4, #1
@@ -511,7 +511,7 @@ _020181FC:
 	ldrh r0, [r0, r5]
 	cmp r0, #0
 	bne _0201820A
-	bl sub_02022974
+	bl GF_AssertFail
 _0201820A:
 	ldr r0, _02018234 ; =0x021BFAF0
 	ldr r1, [r0, #0xc]
@@ -528,7 +528,7 @@ _0201820A:
 	bl OS_RestoreInterrupts
 	pop {r3, r4, r5, r6, r7, pc}
 _0201822C:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
 _02018234: .word 0x021BFAF0
@@ -542,7 +542,7 @@ sub_02018238: ; 0x02018238
 	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _0201824A
-	bl sub_02022974
+	bl GF_AssertFail
 _0201824A:
 	ldr r0, _020182A0 ; =0x021BFAF0
 	ldrh r1, [r0, #0x14]
@@ -555,7 +555,7 @@ _0201824A:
 	ldr r6, [r1, r0]
 	cmp r6, #0
 	bne _02018264
-	bl sub_02022974
+	bl GF_AssertFail
 _02018264:
 	sub r0, r4, #4
 	ldr r0, [r0, #0]
@@ -563,7 +563,7 @@ _02018264:
 	lsr r0, r0, #0x18
 	cmp r0, r5
 	beq _02018274
-	bl sub_02022974
+	bl GF_AssertFail
 _02018274:
 	sub r4, #0x10
 	add r0, r6, #0
@@ -575,7 +575,7 @@ _02018274:
 	ldrh r0, [r0, r4]
 	cmp r0, #0
 	bne _0201828E
-	bl sub_02022974
+	bl GF_AssertFail
 _0201828E:
 	ldr r0, _020182A0 ; =0x021BFAF0
 	ldr r1, [r0, #0xc]
@@ -584,7 +584,7 @@ _0201828E:
 	strh r0, [r1, r4]
 	pop {r4, r5, r6, pc}
 _0201829A:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _020182A0: .word 0x021BFAF0
@@ -605,7 +605,7 @@ sub_020182A4: ; 0x020182A4
 	bl NNS_FndGetTotalFreeSizeForExpHeap
 	pop {r3, pc}
 _020182BE:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	nop
@@ -627,7 +627,7 @@ sub_020182CC: ; 0x020182CC
 	bl NNS_FndInitAllocatorForExpHeap
 	pop {r4, pc}
 _020182E6:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 	; .align 2, 0
 _020182EC: .word 0x021BFAF0
@@ -641,7 +641,7 @@ sub_020182F0: ; 0x020182F0
 	bl OS_GetProcMode
 	cmp r0, #0x12
 	bne _02018302
-	bl sub_02022974
+	bl GF_AssertFail
 _02018302:
 	add r0, r5, #0
 	sub r0, #0x10
@@ -665,7 +665,7 @@ _02018302:
 	bl NNS_FndResizeForMBlockExpHeap
 	pop {r3, r4, r5, pc}
 _02018330:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	nop
 _02018338: .word 0x021BFAF0

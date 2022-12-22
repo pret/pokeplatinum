@@ -56,7 +56,7 @@
 .public sub_0201ACCC
 .public sub_0201ADA4
 .public sub_0201D724
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02025FCC
 .public sub_02073C74
 .public sub_02074470

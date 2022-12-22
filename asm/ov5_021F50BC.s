@@ -147,7 +147,7 @@ ov5_021F51A4: ; 0x021F51A4
 	bl sub_02062764
 	cmp r0, #0
 	bne _021F51C0
-	bl sub_02022974
+	bl GF_AssertFail
 _021F51C0:
 	ldr r0, [r4, #0]
 	cmp r0, #0

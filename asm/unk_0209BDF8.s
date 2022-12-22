@@ -16,7 +16,7 @@ sub_0209BDF8: ; 0x0209BDF8
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0209BE0E
-	bl sub_02022974
+	bl GF_AssertFail
 _0209BE0E:
 	add r0, r4, #0
 	mov r1, #0
@@ -87,12 +87,12 @@ sub_0209BE84: ; 0x0209BE84
 	str r2, [sp]
 	cmp r5, #0x12
 	blo _0209BE96
-	bl sub_02022974
+	bl GF_AssertFail
 _0209BE96:
 	add r0, r6, #4
 	cmp r0, #0x18
 	bls _0209BEA0
-	bl sub_02022974
+	bl GF_AssertFail
 _0209BEA0:
 	add r4, r7, #4
 	ldr r1, [sp]
@@ -128,7 +128,7 @@ sub_0209BED0: ; 0x0209BED0
 	ldr r4, [r2, #0]
 	cmp r4, #0x12
 	blo _0209BEDE
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 _0209BEDE:
 	lsl r5, r4, #2

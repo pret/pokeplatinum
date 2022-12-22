@@ -57,7 +57,7 @@ _0224A13E:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _0224A14E
-	bl sub_02022974
+	bl GF_AssertFail
 _0224A14E:
 	add r4, r4, #1
 _0224A150:
@@ -612,7 +612,7 @@ _0224A558:
 	add r2, r2, #4
 	cmp r0, #0x44
 	blt _0224A542
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	add sp, #0x34
 	pop {r4, r5, r6, r7, pc}
@@ -2722,7 +2722,7 @@ _0224B572:
 	mvn r4, r4
 	cmp r0, r4
 	bne _0224B580
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 _0224B580:
 	strb r3, [r1, r0]
@@ -2970,7 +2970,7 @@ _0224B71C:
 	add r6, r0, #0
 	b _0224B74E
 _0224B74A:
-	bl sub_02022974
+	bl GF_AssertFail
 _0224B74E:
 	cmp r6, #1
 	bne _0224B792
@@ -3667,7 +3667,7 @@ ov17_0224BC68: ; 0x0224BC68
 	str r2, [sp]
 	cmp r0, #0
 	beq _0224BC86
-	bl sub_02022974
+	bl GF_AssertFail
 _0224BC86:
 	ldr r0, _0224BCF0 ; =0x00001088
 	mov r2, #0x28
@@ -3854,7 +3854,7 @@ _0224BDD2:
 	strb r0, [r2, r3]
 	pop {r3, r4, r5, pc}
 _0224BDE4:
-	bl sub_02022974
+	bl GF_AssertFail
 _0224BDE8:
 	pop {r3, r4, r5, pc}
 	nop
@@ -4249,7 +4249,7 @@ ov17_0224C0C0: ; 0x0224C0C0
 	beq _0224C0D6
 	cmp r5, #0
 	bne _0224C0D6
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C0D6:
 	cmp r6, #6
 	bls _0224C0DC
@@ -4422,7 +4422,7 @@ _0224C1C2:
 	add sp, #8
 	pop {r4, r5, r6, pc}
 _0224C23C:
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C240:
 	add sp, #8
 	pop {r4, r5, r6, pc}
@@ -4501,7 +4501,7 @@ ov17_0224C2CC: ; 0x0224C2CC
 	add r6, r2, #0
 	cmp r4, #8
 	blo _0224C2DE
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C2DE:
 	lsl r3, r4, #2
 	ldr r2, _0224C2F8 ; =0x0225470C
@@ -4597,7 +4597,7 @@ ov17_0224C384: ; 0x0224C384
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _0224C396
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C396:
 	mov r0, #0x17
 	mov r1, #0x10
@@ -4875,7 +4875,7 @@ ov17_0224C5A0: ; 0x0224C5A0
 	add r7, r2, #0
 	cmp r4, #8
 	blo _0224C5B2
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C5B2:
 	ldr r0, _0224C634 ; =0x00001C0D
 	ldrb r0, [r5, r0]
@@ -5410,7 +5410,7 @@ ov17_0224C9A4: ; 0x0224C9A4
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	beq _0224C9B6
-	bl sub_02022974
+	bl GF_AssertFail
 _0224C9B6:
 	mov r0, #0x81
 	lsl r0, r0, #2
@@ -5455,7 +5455,7 @@ ov17_0224C9F0: ; 0x0224C9F0
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	bne _0224CA04
-	bl sub_02022974
+	bl GF_AssertFail
 _0224CA04:
 	cmp r5, #0
 	bne _0224CA0C

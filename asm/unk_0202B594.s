@@ -22,7 +22,7 @@ sub_0202B59C: ; 0x0202B59C
 	add r4, r1, #0
 	cmp r4, r0
 	bls _0202B5AC
-	bl sub_02022974
+	bl GF_AssertFail
 _0202B5AC:
 	strh r4, [r5]
 	pop {r3, r4, r5, pc}

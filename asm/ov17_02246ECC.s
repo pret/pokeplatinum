@@ -570,13 +570,13 @@ _022472C4:
 	ldrh r0, [r0]
 	cmp r0, #0
 	bne _022472E8
-	bl sub_02022974
+	bl GF_AssertFail
 _022472E8:
 	ldr r0, [sp, #0x58]
 	ldrb r0, [r0]
 	cmp r0, #3
 	blo _022472F4
-	bl sub_02022974
+	bl GF_AssertFail
 _022472F4:
 	add sp, #0x44
 	pop {r4, r5, r6, r7, pc}

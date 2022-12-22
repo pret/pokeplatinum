@@ -285,7 +285,7 @@ _020324B2:
 	ldr r0, _02032524 ; =0x0000FFFE
 	cmp r7, r0
 	blt _020324BC
-	bl sub_02022974
+	bl GF_AssertFail
 _020324BC:
 	ldr r0, [sp]
 	bl sub_02032868

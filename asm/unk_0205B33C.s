@@ -11,7 +11,7 @@ sub_0205B33C: ; 0x0205B33C
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	bne _0205B346
-	bl sub_02022974
+	bl GF_AssertFail
 _0205B346:
 	ldr r0, [r4, #0x7c]
 	cmp r0, #0
@@ -1107,7 +1107,7 @@ sub_0205BAE8: ; 0x0205BAE8
 	mvn r0, r0
 	cmp r4, r0
 	bne _0205BB0A
-	bl sub_02022974
+	bl GF_AssertFail
 	b _0205BB0A
 _0205BB08:
 	add r5, r4, #0
@@ -1510,7 +1510,7 @@ _0205BDFC:
 	ldr r0, [r0, r1]
 	pop {r4, r5, r6, pc}
 _0205BE04:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0x28
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
@@ -1536,7 +1536,7 @@ sub_0205BE38: ; 0x0205BE38
 	bl sub_02032EE8
 	add r4, r0, #0
 	bne _0205BE4E
-	bl sub_02022974
+	bl GF_AssertFail
 _0205BE4E:
 	add r0, r4, #0
 	bl sub_02025FCC

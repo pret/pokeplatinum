@@ -32,7 +32,7 @@
 .public sub_020213F4
 .public sub_02021430
 .public sub_02021444
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202298C
 .public sub_020229D8
 .public sub_02022A1C

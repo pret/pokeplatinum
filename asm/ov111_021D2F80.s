@@ -538,7 +538,7 @@ ov111_021D33B0: ; 0x021D33B0
 	add r5, r0, #0
 	cmp r4, #8
 	blt _021D33C0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D33C0:
 	mov r0, #0x13
 	lsl r0, r0, #4

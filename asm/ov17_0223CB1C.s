@@ -927,11 +927,11 @@ ov17_0223D350: ; 0x0223D350
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0223D378
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D378:
 	cmp r5, #0
 	bne _0223D380
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D380:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}
@@ -947,7 +947,7 @@ ov17_0223D390: ; 0x0223D390
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _0223D39E
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D39E:
 	mov r3, #0
 	mov r0, #3

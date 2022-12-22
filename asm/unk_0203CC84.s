@@ -82,13 +82,13 @@ sub_0203CD00: ; 0x0203CD00
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _0203CD10
-	bl sub_02022974
+	bl GF_AssertFail
 _0203CD10:
 	ldr r0, [r4, #0]
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _0203CD1C
-	bl sub_02022974
+	bl GF_AssertFail
 _0203CD1C:
 	ldr r0, _0203CD3C ; =0x00000005
 	mov r1, #2
@@ -170,7 +170,7 @@ sub_0203CD84: ; 0x0203CD84
 	add r6, r2, #0
 	cmp r0, #0
 	beq _0203CD98
-	bl sub_02022974
+	bl GF_AssertFail
 _0203CD98:
 	add r0, r5, #0
 	bl sub_0203CD44

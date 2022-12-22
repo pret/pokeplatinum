@@ -111,7 +111,7 @@ sub_0201CD88: ; 0x0201CD88
 	add r5, r0, #0
 	add r4, r1, #0
 	bne _0201CD94
-	bl sub_02022974
+	bl GF_AssertFail
 _0201CD94:
 	add r1, r4, #0
 	add r1, #0x34

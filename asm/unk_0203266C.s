@@ -23,7 +23,7 @@ _02032678:
 	bne _02032678
 	cmp r4, #0x25
 	blo _0203268C
-	bl sub_02022974
+	bl GF_AssertFail
 _0203268C:
 	add r0, sp, #0
 	ldrb r0, [r0, r4]
@@ -50,7 +50,7 @@ _020326A4:
 	bne _020326A4
 	cmp r4, #0x25
 	blo _020326B8
-	bl sub_02022974
+	bl GF_AssertFail
 _020326B8:
 	add r0, sp, #0
 	ldrb r0, [r0, r4]

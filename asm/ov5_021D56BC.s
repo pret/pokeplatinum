@@ -14,7 +14,7 @@ ov5_021D56BC: ; 0x021D56BC
 	bl sub_02018144
 	add r4, r0, #0
 	bne _021D56CE
-	bl sub_02022974
+	bl GF_AssertFail
 _021D56CE:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -41,7 +41,7 @@ ov5_021D56D4: ; 0x021D56D4
 	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5702
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5702:
 	add r0, sp, #4
 	add r1, sp, #0
@@ -49,7 +49,7 @@ _021D5702:
 	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5714
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5714:
 	add r0, sp, #0
 	ldrh r1, [r0, #2]
@@ -62,7 +62,7 @@ _021D5714:
 	str r0, [r5, #0]
 	cmp r0, #0
 	bne _021D5730
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5730:
 	mov r0, #4
 	add r1, r4, #0
@@ -70,7 +70,7 @@ _021D5730:
 	str r0, [r5, #4]
 	cmp r0, #0
 	bne _021D5742
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5742:
 	ldr r1, [r5, #0]
 	add r0, sp, #4
@@ -78,7 +78,7 @@ _021D5742:
 	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5754
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5754:
 	ldr r1, [r5, #4]
 	add r0, sp, #4
@@ -86,14 +86,14 @@ _021D5754:
 	bl FS_ReadFile
 	cmp r0, #0
 	bge _021D5766
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5766:
 	add r0, sp, #4
 	bl FS_CloseFile
 	add sp, #0x4c
 	pop {r3, r4, r5, r6, pc}
 _021D5770:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x4c
 	pop {r3, r4, r5, r6, pc}
 	thumb_func_end ov5_021D56D4

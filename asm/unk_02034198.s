@@ -174,7 +174,7 @@ _020342F0:
 	mov r4, #1
 	cmp r0, #0
 	bne _020342FC
-	bl sub_02022974
+	bl GF_AssertFail
 _020342FC:
 	ldr r2, _02034350 ; =0x021C07C4
 	ldr r1, _02034364 ; =0x00000694
@@ -2280,7 +2280,7 @@ sub_02035394: ; 0x02035394
 	strb r1, [r0, #1]
 	pop {r3, pc}
 _020353A4:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, pc}
 	nop
 _020353AC: .word 0x02100A1C
@@ -2297,7 +2297,7 @@ sub_020353B0: ; 0x020353B0
 	strb r1, [r0]
 	pop {r3, pc}
 _020353C0:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, pc}
 	nop
 _020353C8: .word 0x02100A1C
@@ -3173,7 +3173,7 @@ sub_02035A3C: ; 0x02035A3C
 	bl sub_0203608C
 	cmp r0, #0
 	beq _02035A58
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #8
 	mov r0, #0
 	pop {r4, r5, r6, pc}

@@ -14,7 +14,7 @@
 .public sub_0201ACCC
 .public sub_0201ADA4
 .public sub_0201AE78
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02099DA8
 .public sub_02099DD0
 .public GXS_LoadBG3Char

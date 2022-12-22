@@ -31,7 +31,7 @@ ov6_02246F00: ; 0x02246F00
 	bl sub_02050944
 	pop {r4, r5, r6, pc}
 _02246F32:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _02246F38: .word 0x000001F2
@@ -101,7 +101,7 @@ _02246FA6:
 	bl sub_020552B4
 	cmp r0, #0
 	bne _02246FBA
-	bl sub_02022974
+	bl GF_AssertFail
 _02246FBA:
 	ldr r0, [sp, #0x18]
 	bl ov5_021E18BC
@@ -137,7 +137,7 @@ _02246FEE:
 _02246FFC:
 	cmp r1, #0
 	bne _02247004
-	bl sub_02022974
+	bl GF_AssertFail
 _02247004:
 	ldrb r2, [r4, #1]
 	ldr r0, [r6, #0x54]

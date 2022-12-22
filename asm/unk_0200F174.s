@@ -17,18 +17,18 @@ sub_0200F174: ; 0x0200F174
 	add r6, r3, #0
 	cmp r0, #0
 	bne _0200F18A
-	bl sub_02022974
+	bl GF_AssertFail
 _0200F18A:
 	ldr r0, [sp, #0x34]
 	cmp r0, #0
 	bne _0200F194
-	bl sub_02022974
+	bl GF_AssertFail
 _0200F194:
 	ldr r0, _0200F250 ; =0x021BF5B4
 	ldrh r0, [r0, #0xc]
 	cmp r0, #0
 	beq _0200F1A0
-	bl sub_02022974
+	bl GF_AssertFail
 _0200F1A0:
 	ldr r0, _0200F254 ; =0x021BF474
 	bl sub_0200F814
@@ -667,14 +667,14 @@ sub_0200F634: ; 0x0200F634
 	str r1, [sp]
 	cmp r0, #0
 	beq _0200F656
-	bl sub_02022974
+	bl GF_AssertFail
 _0200F656:
 	add r6, r5, #0
 	add r6, #8
 	ldr r0, [r6, r4]
 	cmp r0, #0
 	bne _0200F664
-	bl sub_02022974
+	bl GF_AssertFail
 _0200F664:
 	ldr r0, [r5, #0x10]
 	cmp r0, #0
@@ -692,7 +692,7 @@ _0200F67E:
 	ldr r0, [sp, #4]
 	cmp r0, #1
 	beq _0200F688
-	bl sub_02022974
+	bl GF_AssertFail
 _0200F688:
 	ldr r0, [sp]
 	cmp r7, #0

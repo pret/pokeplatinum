@@ -785,7 +785,7 @@ _021F0610:
 	bl ov6_022411C8
 	cmp r0, #0
 	bne _021F066C
-	bl sub_02022974
+	bl GF_AssertFail
 	b _021F066C
 _021F0622:
 	mov r0, #0xe
@@ -823,7 +823,7 @@ _021F0664:
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 _021F0668:
-	bl sub_02022974
+	bl GF_AssertFail
 _021F066C:
 	mov r0, #0
 	pop {r4, r5, r6, pc}

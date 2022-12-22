@@ -414,7 +414,7 @@ sub_0205C51C: ; 0x0205C51C
 	str r1, [sp, #4]
 	cmp r0, #0
 	bne _0205C52E
-	bl sub_02022974
+	bl GF_AssertFail
 _0205C52E:
 	ldr r0, [sp]
 	ldr r0, [r0, #8]
@@ -434,7 +434,7 @@ _0205C54A:
 	bl sub_0206251C
 	add r5, r0, #0
 	bne _0205C55A
-	bl sub_02022974
+	bl GF_AssertFail
 _0205C55A:
 	ldrb r0, [r4, #0xd]
 	cmp r0, #4
@@ -775,7 +775,7 @@ _0205C7F0:
 	bl sub_0206251C
 	add r4, r0, #0
 	bne _0205C800
-	bl sub_02022974
+	bl GF_AssertFail
 _0205C800:
 	add r0, r4, #0
 	mov r1, #1
@@ -802,7 +802,7 @@ sub_0205C820: ; 0x0205C820
 	bl sub_0206251C
 	add r4, r0, #0
 	bne _0205C834
-	bl sub_02022974
+	bl GF_AssertFail
 _0205C834:
 	add r0, r4, #0
 	bl sub_020655F4
@@ -826,7 +826,7 @@ _0205C852:
 	bl sub_0206251C
 	add r4, r0, #0
 	bne _0205C868
-	bl sub_02022974
+	bl GF_AssertFail
 _0205C868:
 	ldrb r1, [r5, #8]
 	add r0, r4, #0

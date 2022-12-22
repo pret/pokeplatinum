@@ -147,7 +147,7 @@ ov5_021F536C: ; 0x021F536C
 	bl sub_02062764
 	cmp r0, #0
 	bne _021F5388
-	bl sub_02022974
+	bl GF_AssertFail
 _021F5388:
 	add r0, r5, #0
 	add r1, sp, #0

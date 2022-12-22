@@ -59,7 +59,7 @@ sub_0204EDEC: ; 0x0204EDEC
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _0204EE18
-	bl sub_02022974
+	bl GF_AssertFail
 _0204EE18:
 	ldr r0, [r4, #0]
 	bl sub_0203D750
@@ -275,7 +275,7 @@ sub_0204EFA4: ; 0x0204EFA4
 	ldr r4, [r0, #0]
 	cmp r4, #0
 	bne _0204EFCE
-	bl sub_02022974
+	bl GF_AssertFail
 _0204EFCE:
 	ldrb r0, [r4, #0x16]
 	cmp r0, #0
@@ -311,7 +311,7 @@ sub_0204EFE8: ; 0x0204EFE8
 	ldr r4, [r0, #0]
 	cmp r4, #0
 	bne _0204F012
-	bl sub_02022974
+	bl GF_AssertFail
 _0204F012:
 	ldrb r0, [r4, #0x16]
 	cmp r0, #0

@@ -18,7 +18,7 @@ ov22_02259484: ; 0x02259484
 	str r0, [r5, #0]
 	cmp r0, #0
 	bne _0225949E
-	bl sub_02022974
+	bl GF_AssertFail
 _0225949E:
 	ldr r0, [r5, #0]
 	mov r1, #0
@@ -50,12 +50,12 @@ ov22_022594C0: ; 0x022594C0
 	add r7, r2, #0
 	cmp r0, #0
 	bne _022594D2
-	bl sub_02022974
+	bl GF_AssertFail
 _022594D2:
 	ldr r0, [r5, #4]
 	cmp r0, #0
 	bne _022594DC
-	bl sub_02022974
+	bl GF_AssertFail
 _022594DC:
 	ldr r2, [r5, #4]
 	mov r4, #0
@@ -73,7 +73,7 @@ _022594E6:
 _022594F4:
 	cmp r2, r4
 	bgt _022594FC
-	bl sub_02022974
+	bl GF_AssertFail
 _022594FC:
 	ldr r0, [r5, #0]
 	lsl r1, r4, #4

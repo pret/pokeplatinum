@@ -49,7 +49,7 @@ ov5_021F5A40: ; 0x021F5A40
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	bge _021F5A54
-	bl sub_02022974
+	bl GF_AssertFail
 _021F5A54:
 	pop {r3, pc}
 	; .align 2, 0
@@ -75,7 +75,7 @@ ov5_021F5A64: ; 0x021F5A64
 	ldrsh r0, [r0, r1]
 	cmp r0, #0
 	bge _021F5A78
-	bl sub_02022974
+	bl GF_AssertFail
 _021F5A78:
 	pop {r3, pc}
 	; .align 2, 0
@@ -631,7 +631,7 @@ ov5_021F5E58: ; 0x021F5E58
 	bl sub_02062764
 	cmp r0, #0
 	bne _021F5E74
-	bl sub_02022974
+	bl GF_AssertFail
 _021F5E74:
 	add r0, r6, #0
 	add r1, sp, #0
@@ -737,7 +737,7 @@ ov5_021F5F24: ; 0x021F5F24
 	bl sub_02062764
 	cmp r0, #0
 	bne _021F5F40
-	bl sub_02022974
+	bl GF_AssertFail
 _021F5F40:
 	add r0, r6, #0
 	add r1, sp, #0

@@ -9,7 +9,7 @@
 .public sub_02019CB8
 .public sub_0201C3C0
 .public sub_0201C63C
-.public sub_02022974
+.public GF_AssertFail
 .public _f_add
 .public _f_ftoi
 .public _f_itof

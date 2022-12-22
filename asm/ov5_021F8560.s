@@ -235,7 +235,7 @@ _021F86FA:
 	sub r0, r0, #5
 	cmp r1, r0
 	bne _021F8718
-	bl sub_02022974
+	bl GF_AssertFail
 _021F8718:
 	ldr r1, [r5, #0x2c]
 	ldr r0, [r5, #0x30]
@@ -429,7 +429,7 @@ ov5_021F8878: ; 0x021F8878
 	add r4, r2, #0
 	cmp r5, #6
 	blo _021F8888
-	bl sub_02022974
+	bl GF_AssertFail
 _021F8888:
 	ldr r0, _021F88A4 ; =0x02201C58
 	lsl r1, r5, #5

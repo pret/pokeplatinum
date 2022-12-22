@@ -93,7 +93,7 @@ ov66_02234F2C: ; 0x02234F2C
 	bl _u32_div_f
 	cmp r5, r0
 	blt _02234F5E
-	bl sub_02022974
+	bl GF_AssertFail
 _02234F5E:
 	mov r0, #6
 	add r1, r5, #0
@@ -134,7 +134,7 @@ _02234F74:
 	ldrsh r0, [r1, r0]
 	b _02234FB8
 _02234FB0:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #2
 	ldrsh r0, [r5, r0]
 _02234FB8:

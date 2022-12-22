@@ -12,11 +12,11 @@ ov5_021D5BC0: ; 0x021D5BC0
 	ldr r4, [r0, #0x18]
 	cmp r4, #0
 	bne _021D5BCC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5BCC:
 	cmp r4, #5
 	blt _021D5BD4
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5BD4:
 	sub r0, r4, #1
 	pop {r4, pc}

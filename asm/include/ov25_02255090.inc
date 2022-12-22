@@ -7,7 +7,7 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_020198C0
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02079FD0
 .public NNS_G2dGetUnpackedCharacterData
 .public GXS_LoadOBJPltt

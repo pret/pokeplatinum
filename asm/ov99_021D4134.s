@@ -62,7 +62,7 @@ _021D4190:
 	ldrsh r0, [r5, r0]
 	cmp r0, #0x10
 	ble _021D419C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D419C:
 	mov r4, #0
 	ldrsh r0, [r5, r4]
@@ -336,7 +336,7 @@ ov99_021D439C: ; 0x021D439C
 _021D43B4:
 	cmp r6, #0xa
 	blo _021D43BC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D43BC:
 	ldr r0, [r5, #0]
 	ldr r0, [r0, #0]
@@ -354,7 +354,7 @@ _021D43CC:
 _021D43D4:
 	cmp r6, #0xa
 	blo _021D43DC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D43DC:
 	ldr r0, [r5, #0]
 	ldr r0, [r0, #0]

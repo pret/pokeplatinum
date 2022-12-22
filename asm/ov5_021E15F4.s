@@ -89,7 +89,7 @@ ov5_021E1674: ; 0x021E1674
 	add r4, r1, #0
 	cmp r5, #0x20
 	blt _021E1684
-	bl sub_02022974
+	bl GF_AssertFail
 _021E1684:
 	add r6, sp, #0
 	mov r3, #0
@@ -445,7 +445,7 @@ ov5_021E18E0: ; 0x021E18E0
 	add r5, r0, #0
 	cmp r4, #0x20
 	blt _021E18EE
-	bl sub_02022974
+	bl GF_AssertFail
 _021E18EE:
 	mov r0, #0x8c
 	mul r0, r4
@@ -453,7 +453,7 @@ _021E18EE:
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	bne _021E18FE
-	bl sub_02022974
+	bl GF_AssertFail
 _021E18FE:
 	add r0, r4, #0
 	pop {r3, r4, r5, pc}
@@ -641,7 +641,7 @@ _021E1A54:
 	lsr r4, r1, #0x18
 	cmp r4, #0x20
 	blo _021E19E4
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0x20
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}

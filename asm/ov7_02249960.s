@@ -179,7 +179,7 @@ ov7_02249AB4: ; 0x02249AB4
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _02249AC4
-	bl sub_02022974
+	bl GF_AssertFail
 _02249AC4:
 	mov r0, #4
 	mov r1, #0x9c
@@ -1533,7 +1533,7 @@ _0224A5DA:
 	ldrb r0, [r0]
 	cmp r0, #0x21
 	blo _0224A5F6
-	bl sub_02022974
+	bl GF_AssertFail
 _0224A5F6:
 	ldr r0, _0224A648 ; =0x0224F5A0
 	ldr r0, [r0, #0]

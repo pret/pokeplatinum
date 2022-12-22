@@ -2307,7 +2307,7 @@ _02243142:
 	add r2, #8
 	cmp r6, #0x14
 	blt _02243120
-	bl sub_02022974
+	bl GF_AssertFail
 _0224314E:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2516,7 +2516,7 @@ _022432AA:
 	ldr r0, [r1, r0]
 	cmp r0, #0x64
 	ble _022432C8
-	bl sub_02022974
+	bl GF_AssertFail
 _022432C8:
 	mov r0, #0
 	pop {r3, r4, r5, pc}

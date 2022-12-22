@@ -1032,11 +1032,11 @@ ov17_0224FDDC: ; 0x0224FDDC
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0224FE04
-	bl sub_02022974
+	bl GF_AssertFail
 _0224FE04:
 	cmp r5, #0
 	bne _0224FE0C
-	bl sub_02022974
+	bl GF_AssertFail
 _0224FE0C:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}
@@ -1052,7 +1052,7 @@ ov17_0224FE1C: ; 0x0224FE1C
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	bne _0224FE2A
-	bl sub_02022974
+	bl GF_AssertFail
 _0224FE2A:
 	mov r1, #0xf3
 	mov r5, #0
@@ -1196,7 +1196,7 @@ _0224FEEE:
 _0224FEFC:
 	cmp r5, #4
 	bne _0224FF04
-	bl sub_02022974
+	bl GF_AssertFail
 _0224FF04:
 	ldr r0, _0224FFD4 ; =0x00000438
 	ldr r1, _0224FFD8 ; =0x00000439

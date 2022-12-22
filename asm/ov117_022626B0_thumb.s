@@ -647,7 +647,7 @@ ov117_02262B98: ; 0x02262B98
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	beq _02262BD0
-	bl sub_02022974
+	bl GF_AssertFail
 _02262BD0:
 	mov r0, #0x6e
 	add r1, r4, #0
@@ -687,7 +687,7 @@ _02262BD0:
 	ldr r0, [r0, #0x14]
 	cmp r0, #0
 	bne _02262C2A
-	bl sub_02022974
+	bl GF_AssertFail
 _02262C2A:
 	ldr r2, [r5, #4]
 	ldr r0, [r5, #0]

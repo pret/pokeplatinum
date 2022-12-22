@@ -4027,7 +4027,7 @@ _0223D1C6:
 	lsl r0, r0, #0xa
 	cmp r1, r0
 	blo _0223D1EC
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D1EC:
 	mov r0, #1
 	str r0, [r7, #4]

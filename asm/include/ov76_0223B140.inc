@@ -15,7 +15,7 @@
 .public sub_0200D5DC
 .public sub_0200D810
 .public sub_020227A4
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202CA40
 .public sub_02098140
 .public ov12_02237E54

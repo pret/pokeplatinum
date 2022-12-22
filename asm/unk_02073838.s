@@ -121,7 +121,7 @@ sub_020738EC: ; 0x020738EC
 	bl sub_0200DA04
 	cmp r0, #0
 	bne _02073900
-	bl sub_02022974
+	bl GF_AssertFail
 _02073900:
 	pop {r3, pc}
 	nop
@@ -306,7 +306,7 @@ sub_02073A14: ; 0x02073A14
 	str r0, [r5, #0x10]
 	cmp r0, #0
 	bne _02073A3A
-	bl sub_02022974
+	bl GF_AssertFail
 _02073A3A:
 	pop {r3, r4, r5, pc}
 	thumb_func_end sub_02073A14
@@ -469,7 +469,7 @@ sub_02073B28: ; 0x02073B28
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
 	bne _02073B36
-	bl sub_02022974
+	bl GF_AssertFail
 _02073B36:
 	ldr r0, [r4, #0x10]
 	ldr r0, [r0, #8]

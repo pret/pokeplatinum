@@ -727,7 +727,7 @@ _021DBE34:
 	str r0, [r4, #0x48]
 	cmp r0, #0
 	bne _021DBE6E
-	bl sub_02022974
+	bl GF_AssertFail
 _021DBE6E:
 	ldr r0, [r4, #0x48]
 	mov r1, #0

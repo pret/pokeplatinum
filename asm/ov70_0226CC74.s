@@ -209,7 +209,7 @@ _0226CE32:
 	bl ov70_02262E88
 	b _0226CE4A
 _0226CE46:
-	bl sub_02022974
+	bl GF_AssertFail
 _0226CE4A:
 	mov r0, #0
 	add sp, #0x10

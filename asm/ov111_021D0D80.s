@@ -4260,7 +4260,7 @@ ov111_021D2E8C: ; 0x021D2E8C
 	cmp r0, #0
 	bne _021D2EB0
 	bne _021D2EB0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2EB0:
 	pop {r4, pc}
 	; .align 2, 0

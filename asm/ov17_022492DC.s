@@ -576,7 +576,7 @@ ov17_02249760: ; 0x02249760
 	sub r0, #0x97
 	cmp r1, r0
 	bne _02249772
-	bl sub_02022974
+	bl GF_AssertFail
 _02249772:
 	mov r0, #0x96
 	ldrsb r1, [r5, r0]
@@ -594,7 +594,7 @@ _0224978A:
 	ldr r0, [r4, #0x18]
 	cmp r0, #0
 	bne _02249794
-	bl sub_02022974
+	bl GF_AssertFail
 _02249794:
 	ldr r0, [r4, #0x14]
 	bl sub_02022664
@@ -1164,7 +1164,7 @@ ov17_02249BC4: ; 0x02249BC4
 	ldr r4, [sp, #0x9c]
 	cmp r0, #0
 	beq _02249BDC
-	bl sub_02022974
+	bl GF_AssertFail
 _02249BDC:
 	ldr r0, [sp, #0x18]
 	mov r2, #0
@@ -1367,7 +1367,7 @@ ov17_02249D50: ; 0x02249D50
 	ldr r0, [r4, #0xc]
 	cmp r0, #0
 	beq _02249D60
-	bl sub_02022974
+	bl GF_AssertFail
 _02249D60:
 	add r0, r4, #0
 	add r0, #0x98

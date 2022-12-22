@@ -7,7 +7,7 @@
 .public sub_0201DEAC
 .public sub_0201DF50
 .public sub_0201DFE4
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dGetTex
 .public sprintf
 .public ov5_021D5D30

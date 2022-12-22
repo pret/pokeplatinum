@@ -21,7 +21,7 @@ ov17_022476F8: ; 0x022476F8
 	ldr r0, [r0, #0x48]
 	cmp r0, #0
 	beq _02247732
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _02247718:
 	bl sub_02007DC8
@@ -253,7 +253,7 @@ ov17_022478D0: ; 0x022478D0
 	add r4, r1, #0
 	cmp r0, #0
 	beq _022478E2
-	bl sub_02022974
+	bl GF_AssertFail
 _022478E2:
 	mov r1, #0x30
 	ldr r2, [r5, #0]
@@ -307,7 +307,7 @@ ov17_0224792C: ; 0x0224792C
 	beq _02247942
 	cmp r6, #0
 	bne _02247942
-	bl sub_02022974
+	bl GF_AssertFail
 _02247942:
 	cmp r4, #0
 	beq _0224798C
@@ -342,7 +342,7 @@ _02247942:
 	add sp, #8
 	pop {r4, r5, r6, pc}
 _02247988:
-	bl sub_02022974
+	bl GF_AssertFail
 _0224798C:
 	add sp, #8
 	pop {r4, r5, r6, pc}
@@ -414,7 +414,7 @@ ov17_02247A08: ; 0x02247A08
 	add r4, r2, #0
 	cmp r5, #0xf
 	blo _02247A1A
-	bl sub_02022974
+	bl GF_AssertFail
 _02247A1A:
 	str r4, [sp]
 	ldr r2, _02247A34 ; =0x0225442C

@@ -158,7 +158,7 @@ _02242BFE:
 	str r0, [r5, #0x10]
 	b _02242C12
 _02242C0E:
-	bl sub_02022974
+	bl GF_AssertFail
 _02242C12:
 	ldr r0, [sp]
 	str r0, [r5, #8]

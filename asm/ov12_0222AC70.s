@@ -274,7 +274,7 @@ ov12_0222AE68: ; 0x0222AE68
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0222AE86
-	bl sub_02022974
+	bl GF_AssertFail
 _0222AE86:
 	mov r0, #0
 	strb r0, [r4, #4]

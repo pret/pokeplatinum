@@ -37,7 +37,7 @@
 .public sub_02021F98
 .public sub_02021FC8
 .public sub_02021FE0
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dInitImageProxy
 .public NNS_G2dGetImageLocation
 .public GX_LoadOBJ

@@ -65,7 +65,7 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_0201CED0
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_SndPlayerStopSeq
 .public NNS_SndPlayerStopSeqBySeqNo
 .public NNS_SndPlayerStopSeqAll

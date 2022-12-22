@@ -164,7 +164,7 @@ _02239266:
 	strh r0, [r4]
 	b _02239270
 _0223926C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02239270:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
@@ -353,7 +353,7 @@ ov104_0223939C: ; 0x0223939C
 	bl ov104_0223A734
 	b _022393DA
 _022393D6:
-	bl sub_02022974
+	bl GF_AssertFail
 _022393DA:
 	bl sub_0203608C
 	ldr r1, _022393FC ; =0x0000083E
@@ -457,7 +457,7 @@ _02239480:
 	strh r0, [r4]
 	b _022394A0
 _0223949C:
-	bl sub_02022974
+	bl GF_AssertFail
 _022394A0:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}

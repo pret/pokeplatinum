@@ -54,7 +54,7 @@
 .public sub_0201D7E0
 .public sub_0201ED94
 .public sub_0201EE28
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020237BC
 .public sub_0203608C
 .public FX_Inv

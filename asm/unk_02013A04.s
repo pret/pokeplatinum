@@ -119,7 +119,7 @@ sub_02013AAC: ; 0x02013AAC
 _02013AB8:
 	cmp r3, r2
 	bne _02013AC4
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, pc}
 _02013AC4:

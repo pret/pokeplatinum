@@ -201,7 +201,7 @@ _021D3BDA:
 	ldr r0, _021D3C74 ; =0x000003EE
 	cmp r6, r0
 	blo _021D3BE4
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3BE4:
 	ldr r0, [sp, #0x24]
 	lsl r3, r7, #0x18
@@ -280,7 +280,7 @@ ov20_021D3C78: ; 0x021D3C78
 	str r2, [sp, #0x14]
 	cmp r0, r1
 	blo _021D3C90
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3C90:
 	mov r0, #0xa
 	str r0, [sp]
@@ -396,7 +396,7 @@ _021D3D7C:
 	lsl r0, r0, #4
 	cmp r5, r0
 	blo _021D3D88
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3D88:
 	ldrh r0, [r4, #2]
 	add r1, r6, #0

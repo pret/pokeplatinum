@@ -578,11 +578,11 @@ ov23_02253A00: ; 0x02253A00
 	cmp r5, #0x20
 	ldr r4, [r0, r1]
 	bge _02253A18
-	bl sub_02022974
+	bl GF_AssertFail
 _02253A18:
 	cmp r5, #0x2d
 	ble _02253A20
-	bl sub_02022974
+	bl GF_AssertFail
 _02253A20:
 	bl sub_020594FC
 	bl ov23_022421BC

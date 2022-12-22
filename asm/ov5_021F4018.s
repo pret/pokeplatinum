@@ -194,7 +194,7 @@ ov5_021F416C: ; 0x021F416C
 	bl ov5_021DF4E4
 	cmp r0, #1
 	beq _021F4184
-	bl sub_02022974
+	bl GF_AssertFail
 _021F4184:
 	ldr r0, [sp, #4]
 	mov r1, #0x1e

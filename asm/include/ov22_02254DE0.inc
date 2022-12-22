@@ -9,7 +9,7 @@
 .public sub_020181C4
 .public sub_02022734
 .public sub_02022830
-.public sub_02022974
+.public GF_AssertFail
 .public memset
 .public ov22_02254E44
 .public ov22_02254F00

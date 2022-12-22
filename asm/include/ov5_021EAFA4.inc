@@ -4,7 +4,7 @@
 .public sub_02020A94
 .public sub_02020AAC
 .public sub_02020ABC
-.public sub_02022974
+.public GF_AssertFail
 .public MTX_RotX43_
 .public MTX_RotY43_
 .public MTX_MultVec43

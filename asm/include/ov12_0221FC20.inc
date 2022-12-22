@@ -61,7 +61,7 @@
 .public sub_0201FAB4
 .public sub_02021F98
 .public sub_02021F9C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02077D3C
 .public G2x_SetBlendAlpha_
 .public MI_CpuFill8

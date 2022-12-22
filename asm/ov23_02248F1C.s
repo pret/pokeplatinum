@@ -1127,7 +1127,7 @@ _022497E8:
 _022497F6:
 	cmp r4, #2
 	blt _022497FE
-	bl sub_02022974
+	bl GF_AssertFail
 _022497FE:
 	cmp r4, #0
 	bne _02249810

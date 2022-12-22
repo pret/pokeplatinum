@@ -2132,7 +2132,7 @@ ov116_022616CC: ; 0x022616CC
 	bl sub_0200C7C0
 	cmp r0, #0
 	bne _02261736
-	bl sub_02022974
+	bl GF_AssertFail
 _02261736:
 	ldr r0, [r4, #0x50]
 	ldr r1, [r4, #0x54]
@@ -2140,7 +2140,7 @@ _02261736:
 	bl sub_0200CB30
 	cmp r0, #0
 	bne _02261748
-	bl sub_02022974
+	bl GF_AssertFail
 _02261748:
 	ldr r0, [r4, #0x50]
 	bl sub_0200C738

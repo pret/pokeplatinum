@@ -808,7 +808,7 @@ ov62_0223D124: ; 0x0223D124
 	cmp r5, #0x57
 	blt _0223D134
 	mov r5, #0
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D134:
 	ldr r6, _0223D158 ; =0x022497E8
 	lsl r5, r5, #2
@@ -816,7 +816,7 @@ _0223D134:
 	ldr r0, _0223D15C ; =0x0000FFFF
 	cmp r1, r0
 	bne _0223D144
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D144:
 	mov r0, #0x83
 	lsl r0, r0, #4
@@ -2350,7 +2350,7 @@ _0223DE5A:
 	thumb_func_start ov62_0223DE60
 ov62_0223DE60: ; 0x0223DE60
 	push {r3, lr}
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

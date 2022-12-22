@@ -18,6 +18,6 @@
 .public sub_0201DB48
 .public sub_0201DB50
 .public sub_0201DBD8
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02023E2C
 .public MIi_CpuCopy32

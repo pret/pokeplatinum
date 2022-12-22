@@ -60,7 +60,7 @@ sub_0208A3F4: ; 0x0208A3F4
 	bl sub_0200C7C0
 	cmp r0, #0
 	bne _0208A468
-	bl sub_02022974
+	bl GF_AssertFail
 _0208A468:
 	mov r1, #0x2f
 	lsl r1, r1, #4
@@ -71,7 +71,7 @@ _0208A468:
 	bl sub_0200CB30
 	cmp r0, #0
 	bne _0208A480
-	bl sub_02022974
+	bl GF_AssertFail
 _0208A480:
 	add sp, #0x4c
 	pop {r4, r5, r6, r7, pc}

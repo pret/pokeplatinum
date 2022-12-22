@@ -136,7 +136,7 @@ _0223A8C6:
 _0223A8D4:
 	cmp r2, r4
 	blt _0223A8DE
-	bl sub_02022974
+	bl GF_AssertFail
 	sub r2, r4, #1
 _0223A8DE:
 	ldr r0, _0223A8EC ; =0x02241AB8
@@ -187,7 +187,7 @@ ov104_0223A918: ; 0x0223A918
 	str r3, [sp, #8]
 	cmp r0, #6
 	ble _0223A936
-	bl sub_02022974
+	bl GF_AssertFail
 _0223A936:
 	ldr r0, [sp, #0xa0]
 	mov r4, #0

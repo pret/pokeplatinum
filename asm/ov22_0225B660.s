@@ -593,7 +593,7 @@ ov22_0225BB00: ; 0x0225BB00
 	str r0, [sp, #0x10]
 	cmp r0, #0
 	bne _0225BB1C
-	bl sub_02022974
+	bl GF_AssertFail
 _0225BB1C:
 	mov r0, #0xd
 	bl sub_0200B358
@@ -771,7 +771,7 @@ ov22_0225BC18: ; 0x0225BC18
 	str r0, [sp, #0x10]
 	cmp r0, #0
 	bne _0225BCC4
-	bl sub_02022974
+	bl GF_AssertFail
 _0225BCC4:
 	ldr r0, [sp, #0x10]
 	mov r1, #0x2b

@@ -7,7 +7,7 @@
 .public sub_0201D318
 .public sub_0201D5D4
 .public sub_0201D608
-.public sub_02022974
+.public GF_AssertFail
 .public MTX_Rot22_
 .public MTX_ScaleApply22
 .public VEC_Subtract

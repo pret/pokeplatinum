@@ -234,7 +234,7 @@ _0223D656:
 _0223D65E:
 	cmp r4, #0
 	bne _0223D666
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D666:
 	mov r0, #0x1a
 	lsl r0, r0, #4
@@ -248,11 +248,11 @@ _0223D666:
 	blx r0
 	cmp r0, r5
 	beq _0223D682
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D682:
 	cmp r5, #0x26
 	blt _0223D68A
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D68A:
 	sub r7, #0x16
 	str r7, [r4, #4]

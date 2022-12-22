@@ -170,7 +170,7 @@ _021F78FA:
 _021F7902:
 	cmp r1, #0x26
 	bne _021F7912
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	add sp, #0xc
 	strh r0, [r5]
@@ -284,7 +284,7 @@ _021F79E0:
 _021F79E8:
 	cmp r1, #0x26
 	bne _021F79F0
-	bl sub_02022974
+	bl GF_AssertFail
 _021F79F0:
 	ldr r2, [sp, #4]
 	add r0, r4, #0
@@ -345,7 +345,7 @@ _021F7A5E:
 	add r3, #0xc
 	cmp r2, #0x26
 	blo _021F7A52
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	nop

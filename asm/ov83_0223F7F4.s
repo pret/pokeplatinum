@@ -387,7 +387,7 @@ ov83_0223FA90: ; 0x0223FA90
 	add r4, r0, #0
 	cmp r5, #3
 	blt _0223FA9E
-	bl sub_02022974
+	bl GF_AssertFail
 _0223FA9E:
 	str r5, [r4, #0]
 	mov r0, #0

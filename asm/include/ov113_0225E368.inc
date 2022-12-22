@@ -28,7 +28,7 @@
 .public sub_02020ABC
 .public sub_02020ACC
 .public sub_02020ADC
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02075BFC
 .public NNS_G2dGetUnpackedCharacterData
 .public NNS_G3dTexGetRequiredSize

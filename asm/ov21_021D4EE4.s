@@ -83,7 +83,7 @@ _021D4F50:
 	cmp r4, r0
 	blt _021D4F5E
 _021D4F5A:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D4F5E:
 	str r4, [r5, #0xc]
 	pop {r3, r4, r5, pc}
@@ -94,7 +94,7 @@ _021D4F62:
 	cmp r4, r0
 	blt _021D4F70
 _021D4F6C:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D4F70:
 	str r4, [r5, #0x10]
 	pop {r3, r4, r5, pc}
@@ -239,7 +239,7 @@ ov21_021D5040: ; 0x021D5040
 	beq _021D5056
 	cmp r4, #1
 	beq _021D5056
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5056:
 	ldr r0, [r5, #0xc]
 	mov r1, #0x1c
@@ -286,7 +286,7 @@ ov21_021D5090: ; 0x021D5090
 	beq _021D50A6
 	cmp r4, #1
 	beq _021D50A6
-	bl sub_02022974
+	bl GF_AssertFail
 _021D50A6:
 	ldr r0, [r5, #0x10]
 	mov r1, #0x1c

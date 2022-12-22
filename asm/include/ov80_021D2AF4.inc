@@ -7,7 +7,7 @@
 .public sub_02021CAC
 .public sub_02021E2C
 .public sub_02021E90
-.public sub_02022974
+.public GF_AssertFail
 .public FS_InitFile
 .public FS_OpenFile
 .public FS_CloseFile

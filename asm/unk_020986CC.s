@@ -31,7 +31,7 @@ sub_020986E8: ; 0x020986E8
 	add r4, r0, #0
 	cmp r4, #6
 	blt _020986F4
-	bl sub_02022974
+	bl GF_AssertFail
 _020986F4:
 	ldr r0, _020986FC ; =0x020F681C
 	ldrb r0, [r0, r4]

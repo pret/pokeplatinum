@@ -13,7 +13,7 @@ ov5_021D521C: ; 0x021D521C
 	add r5, r0, #0
 	cmp r6, #4
 	blo _021D522A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D522A:
 	mov r0, #4
 	mov r1, #0x14
@@ -60,7 +60,7 @@ ov5_021D5278: ; 0x021D5278
 	push {r4, lr}
 	add r4, r0, #0
 	bne _021D5282
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5282:
 	ldr r0, [r4, #0]
 	add r0, r0, #4
@@ -78,7 +78,7 @@ ov5_021D5298: ; 0x021D5298
 	push {r3, r4, r5, lr}
 	add r4, r0, #0
 	bne _021D52A2
-	bl sub_02022974
+	bl GF_AssertFail
 _021D52A2:
 	bl sub_020138C8
 	lsr r1, r0, #0x1f

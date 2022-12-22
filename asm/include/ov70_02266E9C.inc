@@ -1,6 +1,6 @@
 .public sub_02005748
 .public sub_0201D35C
-.public sub_02022974
+.public GF_AssertFail
 .public _u32_div_f
 .public ov63_0222C0AC
 .public ov66_0222E12C

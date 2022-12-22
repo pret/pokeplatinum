@@ -122,7 +122,7 @@ _0203053C:
 	strh r3, [r0, #0x2a]
 	pop {r4, pc}
 _02030546:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 	thumb_func_end sub_020304CC
 
@@ -182,7 +182,7 @@ _0203059C:
 	ldrh r0, [r0, #0x2a]
 	pop {r3, pc}
 _020305A4:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	thumb_func_end sub_0203054C
@@ -235,7 +235,7 @@ _020305E6:
 	strb r1, [r0]
 	pop {r4, pc}
 _020305F8:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 	; .align 2, 0
 	thumb_func_end sub_020305CC
@@ -252,7 +252,7 @@ sub_02030600: ; 0x02030600
 	and r0, r1
 	pop {r3, pc}
 _02030612:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

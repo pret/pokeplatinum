@@ -199,7 +199,7 @@ sub_0207136C: ; 0x0207136C
 	push {r4, lr}
 	add r4, r0, #0
 	bne _02071376
-	bl sub_02022974
+	bl GF_AssertFail
 _02071376:
 	add r0, r4, #0
 	bl sub_020714F0
@@ -283,7 +283,7 @@ sub_02071400: ; 0x02071400
 	bl sub_0200D9E8
 	add r4, r0, #0
 	bne _02071416
-	bl sub_02022974
+	bl GF_AssertFail
 _02071416:
 	add r0, r4, #0
 	pop {r4, pc}
@@ -307,7 +307,7 @@ sub_0207142C: ; 0x0207142C
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0207143C
-	bl sub_02022974
+	bl GF_AssertFail
 _0207143C:
 	add r2, r4, #0
 	mov r1, #0x10
@@ -342,7 +342,7 @@ sub_0207145C: ; 0x0207145C
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02071472
-	bl sub_02022974
+	bl GF_AssertFail
 _02071472:
 	add r0, r4, #0
 	mov r1, #0

@@ -572,7 +572,7 @@ ov104_02238264: ; 0x02238264
 	push {r3, lr}
 	cmp r1, #6
 	blo _02238272
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 _02238272:
@@ -2290,7 +2290,7 @@ _02238F62:
 	add r6, r0, #3
 	cmp r6, #0x64
 	bls _02238F80
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r6, #0x64
 _02238F80:
 	add r0, r5, #0

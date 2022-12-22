@@ -49,7 +49,7 @@ ov22_02254E20: ; 0x02254E20
 	bl ov22_02254FE0
 	add r4, r0, #0
 	bne _02254E32
-	bl sub_02022974
+	bl GF_AssertFail
 _02254E32:
 	ldr r0, [r5, #0x18]
 	str r0, [r4, #0]

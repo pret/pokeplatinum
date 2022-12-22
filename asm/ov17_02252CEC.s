@@ -48,21 +48,21 @@ _02252D26:
 	add r4, r1, r0
 	b _02252D3A
 _02252D34:
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, r6, r7, pc}
 _02252D3A:
 	mov r0, #2
 	lsl r0, r0, #8
 	cmp r6, r0
 	ble _02252D46
-	bl sub_02022974
+	bl GF_AssertFail
 _02252D46:
 	ldr r0, _02252D78 ; =0x00000A11
 	add r7, r4, r0
 	ldrb r0, [r7, r5]
 	cmp r0, #0
 	beq _02252D54
-	bl sub_02022974
+	bl GF_AssertFail
 _02252D54:
 	mov r1, #0x21
 	lsl r1, r1, #4

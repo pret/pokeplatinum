@@ -105,7 +105,7 @@ _021D0E3E:
 	blx r1
 	pop {r4, pc}
 _021D0E4A:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #1
 	pop {r4, pc}
 	nop
@@ -3504,7 +3504,7 @@ _021D29D4:
 	str r0, [r5, #0]
 	pop {r3, r4, r5, pc}
 _021D2A16:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #1
 	str r0, [r5, #0]
 	pop {r3, r4, r5, pc}
@@ -7778,7 +7778,7 @@ ov19_021D4BE0: ; 0x021D4BE0
 	ldr r0, [r5, r0]
 	cmp r0, #0
 	bne _021D4C88
-	bl sub_02022974
+	bl GF_AssertFail
 _021D4C88:
 	mov r0, #0x69
 	lsl r0, r0, #2
@@ -8608,7 +8608,7 @@ _021D5276:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 _021D5286:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0

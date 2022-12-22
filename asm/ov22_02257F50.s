@@ -243,7 +243,7 @@ _022580E6:
 	str r1, [sp, #0x44]
 	b _022580F8
 _022580F4:
-	bl sub_02022974
+	bl GF_AssertFail
 _022580F8:
 	ldr r0, [sp, #0xc]
 	ldr r1, [r5, #0x48]
@@ -256,12 +256,12 @@ _022580F8:
 	ldr r1, [r2, r1]
 	str r1, [sp, #0x34]
 	bne _02258112
-	bl sub_02022974
+	bl GF_AssertFail
 _02258112:
 	ldr r0, [sp, #0x34]
 	cmp r0, #0
 	bne _0225811C
-	bl sub_02022974
+	bl GF_AssertFail
 _0225811C:
 	ldr r2, [r5, #4]
 	add r0, r6, #0
@@ -691,7 +691,7 @@ ov22_02258414: ; 0x02258414
 	push {r4, lr}
 	add r4, r0, #0
 	bne _0225841E
-	bl sub_02022974
+	bl GF_AssertFail
 _0225841E:
 	ldr r0, [r4, #0]
 	pop {r4, pc}
@@ -706,7 +706,7 @@ ov22_02258424: ; 0x02258424
 	add r4, r1, #0
 	cmp r5, #0
 	bne _02258434
-	bl sub_02022974
+	bl GF_AssertFail
 _02258434:
 	mov r0, #0xc
 	mul r0, r4
@@ -1068,7 +1068,7 @@ ov22_0225864C: ; 0x0225864C
 	str r0, [r4, #0x28]
 	cmp r0, #0
 	bne _022586AC
-	bl sub_02022974
+	bl GF_AssertFail
 _022586AC:
 	ldr r3, [r4, #0x2c]
 	mov r2, #0xc
@@ -1258,7 +1258,7 @@ _022587E8:
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 _0225881C:
-	bl sub_02022974
+	bl GF_AssertFail
 _02258820:
 	ldr r0, [r4, #0x28]
 	ldr r1, [r4, #0x2c]

@@ -136,7 +136,7 @@ sub_020159FC: ; 0x020159FC
 	lsr r0, r0, #0x1c
 	cmp r0, #1
 	beq _02015A10
-	bl sub_02022974
+	bl GF_AssertFail
 _02015A10:
 	add r0, r4, #0
 	add r0, #0x9a

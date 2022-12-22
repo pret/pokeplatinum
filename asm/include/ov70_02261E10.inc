@@ -1,7 +1,7 @@
 .public sub_02005748
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public FX_Div
 .public memset
 .public _f_add

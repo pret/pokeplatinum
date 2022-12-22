@@ -82,7 +82,7 @@ _02032814:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _02032820
-	bl sub_02022974
+	bl GF_AssertFail
 _02032820:
 	ldr r0, _02032864 ; =0x021C07B0
 	ldr r1, [r0, #0]
@@ -142,7 +142,7 @@ _0203287E:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0203288A
-	bl sub_02022974
+	bl GF_AssertFail
 _0203288A:
 	ldr r0, _020328CC ; =0x021C07B0
 	ldr r1, [r0, #0]
@@ -156,7 +156,7 @@ _0203289A:
 	add r0, #0x16
 	cmp r5, r0
 	ble _020328AE
-	bl sub_02022974
+	bl GF_AssertFail
 	bl sub_020363BC
 	mov r0, #0
 	pop {r3, r4, r5, pc}

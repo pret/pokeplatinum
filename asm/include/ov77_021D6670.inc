@@ -31,7 +31,7 @@
 .public sub_02021CAC
 .public sub_02021CC8
 .public sub_02021D28
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dInitOamManagerModule
 .public memset
 .public _s32_div_f

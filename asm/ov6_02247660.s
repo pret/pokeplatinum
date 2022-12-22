@@ -16,7 +16,7 @@ ov6_02247660: ; 0x02247660
 	lsr r4, r0, #0x10
 	cmp r4, #2
 	blo _02247676
-	bl sub_02022974
+	bl GF_AssertFail
 _02247676:
 	cmp r4, #0
 	bne _02247680
@@ -89,7 +89,7 @@ _022476EA:
 	str r0, [sp, #0x10]
 	cmp r0, r1
 	blt _0224770C
-	bl sub_02022974
+	bl GF_AssertFail
 _0224770C:
 	lsr r2, r4, #0x1f
 	lsl r1, r4, #0x1e

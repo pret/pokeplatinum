@@ -57,7 +57,7 @@ ov6_02247D30: ; 0x02247D30
 	add sp, #0x20
 	pop {r4, r5, r6, pc}
 _02247D9C:
-	bl sub_02022974
+	bl GF_AssertFail
 	add sp, #0x20
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

@@ -12,7 +12,7 @@ sub_0207C908: ; 0x0207C908
 	add r4, r0, #0
 	cmp r4, #0x17
 	blo _0207C914
-	bl sub_02022974
+	bl GF_AssertFail
 _0207C914:
 	ldr r0, _0207C91C ; =0x020F0AF0
 	lsl r1, r4, #2
@@ -46,7 +46,7 @@ sub_0207C92C: ; 0x0207C92C
 	add r4, r0, #0
 	cmp r4, #0x17
 	blo _0207C938
-	bl sub_02022974
+	bl GF_AssertFail
 _0207C938:
 	ldr r0, _0207C940 ; =0x020F0B4C
 	ldrb r0, [r0, r4]
@@ -249,7 +249,7 @@ sub_0207CA90: ; 0x0207CA90
 	add r4, r0, #0
 	cmp r4, #3
 	blo _0207CA9C
-	bl sub_02022974
+	bl GF_AssertFail
 _0207CA9C:
 	ldr r0, _0207CAA4 ; =0x020F0AE4
 	lsl r1, r4, #2
@@ -265,7 +265,7 @@ sub_0207CAA8: ; 0x0207CAA8
 	add r4, r0, #0
 	cmp r4, #3
 	blo _0207CAB4
-	bl sub_02022974
+	bl GF_AssertFail
 _0207CAB4:
 	ldr r0, _0207CABC ; =0x020F0AE0
 	ldrb r0, [r0, r4]

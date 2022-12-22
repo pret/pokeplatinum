@@ -126,7 +126,7 @@ ov21_021D56BC: ; 0x021D56BC
 	bne _021D56E8
 	cmp r4, #1
 	blt _021D56E0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D56E0:
 	add r0, r5, r4
 	str r0, [sp, #4]
@@ -143,7 +143,7 @@ _021D56E8:
 	stmia r2!, {r0, r1}
 	cmp r4, #1
 	blt _021D5700
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5700:
 	ldr r0, [sp, #4]
 	lsl r1, r0, #2
@@ -209,13 +209,13 @@ ov21_021D5764: ; 0x021D5764
 	str r0, [r5, #0]
 	cmp r0, #6
 	blt _021D577E
-	bl sub_02022974
+	bl GF_AssertFail
 _021D577E:
 	str r7, [r4, #0]
 	ldr r5, [r5, #0]
 	cmp r5, #6
 	blt _021D578A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D578A:
 	cmp r5, #1
 	bne _021D5790
@@ -235,7 +235,7 @@ _021D57A2:
 _021D57A4:
 	cmp r0, #0
 	bne _021D57AC
-	bl sub_02022974
+	bl GF_AssertFail
 _021D57AC:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop

@@ -42,7 +42,7 @@
 .public sub_02021CC8
 .public sub_02021CE4
 .public sub_02021F58
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dSetupSoftwareSpriteCamera
 .public NNS_G2dInitOamManagerModule
 .public NNS_G2dInitImagePaletteProxy

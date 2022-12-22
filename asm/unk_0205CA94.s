@@ -1180,7 +1180,7 @@ sub_0205D344: ; 0x0205D344
 	bl sub_02021AA0
 	add r4, r0, #0
 	bne _0205D3A0
-	bl sub_02022974
+	bl GF_AssertFail
 _0205D3A0:
 	add r0, r4, #0
 	add sp, #0x30

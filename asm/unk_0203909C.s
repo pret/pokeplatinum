@@ -196,7 +196,7 @@ _02039200:
 	str r0, [r6, #0]
 	cmp r0, #3
 	bne _02039226
-	bl sub_02022974
+	bl GF_AssertFail
 _02039226:
 	ldr r0, [r6, #0]
 	cmp r0, #0

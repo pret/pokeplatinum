@@ -42,7 +42,7 @@
 .public sub_0201F7BC
 .public sub_0201F80C
 .public sub_0201F818
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dInitImageProxy
 .public NNS_G2dGetImageLocation
 .public NNS_G2dLoadImage1DMapping

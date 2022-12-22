@@ -5,7 +5,7 @@
 .public sub_02018184
 .public sub_020181C4
 .public sub_0201CED0
-.public sub_02022974
+.public GF_AssertFail
 .public MIi_CpuClear32
 .public ov5_021EEF34
 .public ov5_021EEF98

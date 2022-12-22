@@ -390,11 +390,11 @@ sub_02089438: ; 0x02089438
 	ldr r0, [r4, #0x1c]
 	cmp r0, #0
 	bne _02089446
-	bl sub_02022974
+	bl GF_AssertFail
 _02089446:
 	cmp r4, #0
 	bne _0208944E
-	bl sub_02022974
+	bl GF_AssertFail
 _0208944E:
 	ldr r0, [r4, #0x1c]
 	bl sub_020237BC

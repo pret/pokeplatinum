@@ -60,7 +60,7 @@
 .public sub_02021D2C
 .public sub_02021D6C
 .public sub_02021F58
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0205D8CC
 .public sub_0205EB3C
 .public sub_02062D64

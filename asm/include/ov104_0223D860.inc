@@ -1,4 +1,4 @@
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0209B974
 .public sub_0209B9D0
 .public MI_CpuFill8

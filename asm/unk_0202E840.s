@@ -109,7 +109,7 @@ sub_0202E8D4: ; 0x0202E8D4
 	cmp r2, #6
 	blo _0202E8E2
 	blo _0202E91A
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 _0202E8E2:
 	mov r3, #0x90

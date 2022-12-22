@@ -93,7 +93,7 @@ _020306C2:
 	mvn r3, r3
 	cmp r2, r3
 	bne _020306D2
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 _020306D2:
@@ -126,7 +126,7 @@ _020306F6:
 	blt _02030734
 	cmp r4, #0xff
 	bne _02030706
-	bl sub_02022974
+	bl GF_AssertFail
 _02030706:
 	cmp r4, #0x10
 	blt _0203070E
@@ -156,7 +156,7 @@ _02030726:
 _02030734:
 	cmp r4, #0xff
 	beq _0203073C
-	bl sub_02022974
+	bl GF_AssertFail
 _0203073C:
 	lsl r0, r5, #1
 	strh r7, [r6, r0]
@@ -164,7 +164,7 @@ _0203073C:
 _02030742:
 	cmp r4, #0xff
 	bne _0203074A
-	bl sub_02022974
+	bl GF_AssertFail
 _0203074A:
 	lsl r0, r4, #6
 	sub r5, #0x70
@@ -210,7 +210,7 @@ sub_02030788: ; 0x02030788
 	add r6, r0, #0
 	cmp r5, #0xff
 	bne _02030796
-	bl sub_02022974
+	bl GF_AssertFail
 _02030796:
 	cmp r5, #0x1f
 	bge _020307DC

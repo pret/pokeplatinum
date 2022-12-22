@@ -875,11 +875,11 @@ ov76_0223BF10: ; 0x0223BF10
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0223BF38
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BF38:
 	cmp r5, #0
 	bne _0223BF40
-	bl sub_02022974
+	bl GF_AssertFail
 _0223BF40:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}
@@ -1497,7 +1497,7 @@ ov76_0223C398: ; 0x0223C398
 	bl sub_0200C7C0
 	cmp r0, #0
 	bne _0223C402
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C402:
 	ldr r0, [r4, #8]
 	ldr r1, [r4, #0xc]
@@ -1505,7 +1505,7 @@ _0223C402:
 	bl sub_0200CB30
 	cmp r0, #0
 	bne _0223C414
-	bl sub_02022974
+	bl GF_AssertFail
 _0223C414:
 	add sp, #0x4c
 	pop {r3, r4, r5, r6, pc}

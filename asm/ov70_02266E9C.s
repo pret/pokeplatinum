@@ -3262,7 +3262,7 @@ _02268A9A:
 	mov r0, #2
 	pop {r3, pc}
 _02268AA0:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #1
 	add sp, #8
 	pop {r3, pc}
@@ -3363,7 +3363,7 @@ ov70_02268B50: ; 0x02268B50
 	add r4, r1, #0
 	cmp r6, r0
 	bne _02268B64
-	bl sub_02022974
+	bl GF_AssertFail
 _02268B64:
 	strb r6, [r5, #3]
 	add r0, r4, #0
@@ -4144,7 +4144,7 @@ ov70_0226911C: ; 0x0226911C
 	add r6, r3, #0
 	cmp r0, #0
 	beq _02269130
-	bl sub_02022974
+	bl GF_AssertFail
 _02269130:
 	mov r0, #1
 	strh r0, [r5]

@@ -18,7 +18,7 @@ ov5_021ECC20: ; 0x021ECC20
 	bl sub_0206284C
 	cmp r0, #0
 	beq _021ECC3A
-	bl sub_02022974
+	bl GF_AssertFail
 _021ECC3A:
 	add r0, r5, #0
 	bl ov5_021ECCA4
@@ -54,7 +54,7 @@ ov5_021ECC78: ; 0x021ECC78
 	bl sub_02062CA8
 	cmp r0, #1
 	beq _021ECC88
-	bl sub_02022974
+	bl GF_AssertFail
 _021ECC88:
 	add r0, r4, #0
 	bl sub_0206285C
@@ -144,7 +144,7 @@ _021ECD20:
 	ldr r2, [r3, #0]
 	cmp r2, r1
 	bne _021ECD16
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

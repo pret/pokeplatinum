@@ -424,7 +424,7 @@ ov5_021E2064: ; 0x021E2064
 	push {r4, lr}
 	add r4, r0, #0
 	bne _021E2070
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, pc}
 _021E2070:
 	ldr r0, [r4, #0x1c]

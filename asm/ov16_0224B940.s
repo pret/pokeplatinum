@@ -8334,7 +8334,7 @@ _0224F91E:
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	blt _0224F940
-	bl sub_02022974
+	bl GF_AssertFail
 _0224F940:
 	ldr r1, [r4, #0x64]
 	add r0, r7, #0

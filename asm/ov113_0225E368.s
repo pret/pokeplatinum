@@ -499,7 +499,7 @@ ov113_0225E6B8: ; 0x0225E6B8
 	ldrh r0, [r4, #2]
 	cmp r0, r2
 	bls _0225E706
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0x84
 	strh r0, [r4, #2]
 _0225E706:
@@ -572,7 +572,7 @@ ov113_0225E774: ; 0x0225E774
 	str r0, [r5, #0]
 	cmp r0, #0
 	bne _0225E798
-	bl sub_02022974
+	bl GF_AssertFail
 _0225E798:
 	ldr r0, [r5, #0]
 	bl NNS_G3dGetMdlSet
@@ -1291,7 +1291,7 @@ ov113_0225ECA0: ; 0x0225ECA0
 	add r7, r0, #0
 	cmp r7, #3
 	blo _0225ECBC
-	bl sub_02022974
+	bl GF_AssertFail
 _0225ECBC:
 	add r0, r4, #0
 	add r1, sp, #0x14
@@ -1450,7 +1450,7 @@ _0225EDF6:
 	add r2, r2, #4
 	cmp r0, #0x80
 	blt _0225EDD4
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0225EE04: .word 0x0000053C
@@ -1524,7 +1524,7 @@ ov113_0225EE78: ; 0x0225EE78
 	ldrb r0, [r5, r4]
 	sub r0, r0, #1
 	bpl _0225EE90
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 _0225EE90:
 	strb r0, [r5, r4]

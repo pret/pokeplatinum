@@ -37,7 +37,7 @@
 .public sub_02021D34
 .public sub_02021D6C
 .public sub_02021FE0
-.public sub_02022974
+.public GF_AssertFail
 .public FX_Div
 .public memset
 .public _ull_mul

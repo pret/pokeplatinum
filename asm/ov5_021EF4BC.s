@@ -62,7 +62,7 @@ ov5_021EF518: ; 0x021EF518
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	beq _021EF526
-	bl sub_02022974
+	bl GF_AssertFail
 _021EF526:
 	mov r0, #0x31
 	lsl r0, r0, #4

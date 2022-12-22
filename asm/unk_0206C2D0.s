@@ -43,7 +43,7 @@ _0206C2F6:
 _0206C318:
 	cmp r1, #0xc8
 	blt _0206C320
-	bl sub_02022974
+	bl GF_AssertFail
 _0206C320:
 	mov r1, #0
 _0206C322:

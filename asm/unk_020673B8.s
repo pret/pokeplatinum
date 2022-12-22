@@ -515,7 +515,7 @@ _02067726:
 _02067736:
 	cmp r5, #4
 	blt _0206773E
-	bl sub_02022974
+	bl GF_AssertFail
 _0206773E:
 	add r0, r5, #1
 	lsr r2, r0, #0x1f

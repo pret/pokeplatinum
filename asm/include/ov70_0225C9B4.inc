@@ -3,7 +3,7 @@
 .public sub_020181C4
 .public sub_0201D15C
 .public sub_0201D35C
-.public sub_02022974
+.public GF_AssertFail
 .public FX_Div
 .public memset
 .public _f_add

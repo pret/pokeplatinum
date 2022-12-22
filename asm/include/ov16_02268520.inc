@@ -13,7 +13,7 @@
 .public sub_0200D0F4
 .public sub_0200D324
 .public sub_0200D3F4
-.public sub_02022974
+.public GF_AssertFail
 .public MIi_CpuClearFast
 .public ov16_0223E010
 .public ov16_0223E018

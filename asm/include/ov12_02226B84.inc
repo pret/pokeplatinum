@@ -37,7 +37,7 @@
 .public sub_0201D2E8
 .public sub_0201FAB4
 .public sub_02021F9C
-.public sub_02022974
+.public GF_AssertFail
 .public G2x_SetBlendAlpha_
 .public _f_sub
 .public _s32_div_f

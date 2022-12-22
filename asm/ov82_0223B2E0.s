@@ -207,7 +207,7 @@ _0223B446:
 	mov r0, #5
 	pop {r3, r4, r5, pc}
 _0223B44A:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0x95
 	str r0, [r4, #8]
 _0223B452:
@@ -221,7 +221,7 @@ _0223B452:
 	bl sub_0207D60C
 	cmp r0, #0
 	bne _0223B46C
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B46C:
 	mov r0, #4
 	pop {r3, r4, r5, pc}

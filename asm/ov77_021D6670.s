@@ -168,7 +168,7 @@ ov77_021D6794: ; 0x021D6794
 	add r4, r1, #0
 	cmp r4, r0
 	blt _021D67A4
-	bl sub_02022974
+	bl GF_AssertFail
 _021D67A4:
 	mov r0, #0xc
 	ldr r1, [r5, #4]
@@ -606,7 +606,7 @@ _021D6AFA:
 	lsr r4, r1, #0x18
 	cmp r4, #0xa
 	blo _021D6AE2
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, pc}
 	thumb_func_end ov77_021D6ADC

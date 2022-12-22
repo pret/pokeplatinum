@@ -9,7 +9,7 @@
 .public sub_020181C4
 .public sub_02022014
 .public sub_0202204C
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020230AC
 .public sub_020230F0
 .public NNS_G2dGetNewOamManagerInstance

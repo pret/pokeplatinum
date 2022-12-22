@@ -17,7 +17,7 @@ sub_020366A0: ; 0x020366A0
 	bne _0203672C
 	cmp r5, #0
 	bne _020366B6
-	bl sub_02022974
+	bl GF_AssertFail
 _020366B6:
 	bl sub_02033478
 	mov r0, #0xf
@@ -3797,7 +3797,7 @@ sub_020382F8: ; 0x020382F8
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _02038306
-	bl sub_02022974
+	bl GF_AssertFail
 _02038306:
 	ldr r0, _02038310 ; =0x021C07D4
 	ldr r0, [r0, #0]
@@ -4483,12 +4483,12 @@ sub_0203883C: ; 0x0203883C
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0203884C
-	bl sub_02022974
+	bl GF_AssertFail
 _0203884C:
 	bl sub_020382C0
 	cmp r0, #1
 	beq _02038858
-	bl sub_02022974
+	bl GF_AssertFail
 _02038858:
 	add r0, r4, #0
 	bl ov66_02233184

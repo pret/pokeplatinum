@@ -19,7 +19,7 @@ ov5_021D5B40: ; 0x021D5B40
 	add r4, r1, r0
 	cmp r2, #0x11
 	blo _021D5B5A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D5B5A:
 	mov r0, #4
 	bl sub_020203AC

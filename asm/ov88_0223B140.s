@@ -1023,7 +1023,7 @@ _0223B9DA:
 	lsr r5, r0, #0x10
 	cmp r5, #0x3c
 	blo _0223B9FA
-	bl sub_02022974
+	bl GF_AssertFail
 _0223B9FA:
 	bl sub_0203608C
 	mov r1, #0x1f
@@ -3621,7 +3621,7 @@ ov88_0223CF68: ; 0x0223CF68
 	add r4, r2, #0
 	cmp r5, #0xd
 	blt _0223CF7A
-	bl sub_02022974
+	bl GF_AssertFail
 _0223CF7A:
 	ldr r1, _0223CFE0 ; =0x0223EF9C
 	lsl r0, r5, #3

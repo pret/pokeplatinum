@@ -134,7 +134,7 @@ _0223B7CE:
 	mov r0, #4
 	pop {r3, pc}
 _0223B7D2:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #3
 	pop {r3, pc}
 	; .align 2, 0
@@ -168,7 +168,7 @@ _0223B802:
 	mov r0, #4
 	pop {r3, pc}
 _0223B806:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #3
 	pop {r3, pc}
 	; .align 2, 0

@@ -67,7 +67,7 @@ _021D325E:
 	bl ov21_021D3684
 	cmp r0, #0
 	bne _021D327C
-	bl sub_02022974
+	bl GF_AssertFail
 _021D327C:
 	ldr r1, [r4, #0x1c]
 	add r0, r5, #0
@@ -177,7 +177,7 @@ ov21_021D335C: ; 0x021D335C
 	add r5, r0, #0
 	cmp r4, #0x1c
 	blt _021D336A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D336A:
 	ldr r0, [r5, #0]
 	add r1, r4, #0
@@ -192,7 +192,7 @@ ov21_021D3374: ; 0x021D3374
 	add r5, r0, #0
 	cmp r4, #2
 	blt _021D3382
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3382:
 	ldr r0, [r5, #0]
 	add r1, r4, #0
@@ -207,7 +207,7 @@ ov21_021D338C: ; 0x021D338C
 	add r5, r0, #0
 	cmp r4, #2
 	blt _021D339A
-	bl sub_02022974
+	bl GF_AssertFail
 _021D339A:
 	ldr r0, [r5, #0]
 	add r1, r4, #0
@@ -222,7 +222,7 @@ ov21_021D33A4: ; 0x021D33A4
 	add r5, r0, #0
 	cmp r4, #3
 	blt _021D33B2
-	bl sub_02022974
+	bl GF_AssertFail
 _021D33B2:
 	ldr r0, [r5, #0]
 	add r1, r4, #0
@@ -237,7 +237,7 @@ ov21_021D33BC: ; 0x021D33BC
 	add r5, r0, #0
 	cmp r4, #3
 	blt _021D33CA
-	bl sub_02022974
+	bl GF_AssertFail
 _021D33CA:
 	ldr r0, [r5, #0]
 	add r1, r4, #0
@@ -367,7 +367,7 @@ ov21_021D3464: ; 0x021D3464
 	bl sub_02018184
 	add r6, r0, #0
 	bne _021D3482
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3482:
 	ldr r2, _021D367C ; =0x000003DA
 	add r0, r6, #0
@@ -380,7 +380,7 @@ _021D3482:
 	bl sub_02018184
 	add r4, r0, #0
 	bne _021D34A0
-	bl sub_02022974
+	bl GF_AssertFail
 _021D34A0:
 	ldr r2, _021D367C ; =0x000003DA
 	add r0, r4, #0
@@ -1379,7 +1379,7 @@ ov21_021D3B64: ; 0x021D3B64
 	add r4, r2, #0
 	cmp r5, #0x2f
 	blt _021D3B76
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3B76:
 	bl sub_020989B8
 	mov r2, #0
@@ -1458,7 +1458,7 @@ _021D3BFA:
 	add r6, r0, #0
 	b _021D3C0A
 _021D3C06:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3C0A:
 	cmp r6, #0
 	beq _021D3C32
@@ -1577,7 +1577,7 @@ _021D3CDE:
 	add r4, r0, #0
 	b _021D3CEE
 _021D3CEA:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3CEE:
 	cmp r4, #0
 	beq _021D3D16
@@ -1752,7 +1752,7 @@ _021D3E32:
 	add r4, r0, #0
 	b _021D3E42
 _021D3E3E:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3E42:
 	cmp r4, #0
 	beq _021D3E6A
@@ -1906,7 +1906,7 @@ _021D3F5C:
 	add r4, r0, #0
 	b _021D3F6C
 _021D3F68:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D3F6C:
 	cmp r4, #0
 	beq _021D3F94

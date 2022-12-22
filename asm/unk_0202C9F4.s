@@ -51,7 +51,7 @@ sub_0202CA28: ; 0x0202CA28
 	add r5, r0, #0
 	cmp r4, #0xc
 	blt _0202CA36
-	bl sub_02022974
+	bl GF_AssertFail
 _0202CA36:
 	mov r0, #0x18
 	mul r0, r4
@@ -68,7 +68,7 @@ sub_0202CA40: ; 0x0202CA40
 	add r4, r1, #0
 	cmp r6, #0xc
 	blt _0202CA50
-	bl sub_02022974
+	bl GF_AssertFail
 _0202CA50:
 	add r0, r5, #0
 	add r1, r6, #0
@@ -87,7 +87,7 @@ sub_0202CA64: ; 0x0202CA64
 	add r5, r0, #0
 	cmp r4, #8
 	blt _0202CA72
-	bl sub_02022974
+	bl GF_AssertFail
 _0202CA72:
 	lsl r0, r4, #1
 	add r0, r4, r0

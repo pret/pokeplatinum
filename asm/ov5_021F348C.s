@@ -276,7 +276,7 @@ _021F3686:
 	ldr r0, [r0, #0]
 	cmp r0, #1
 	beq _021F36B0
-	bl sub_02022974
+	bl GF_AssertFail
 _021F36B0:
 	mov r0, #0xc
 	mul r0, r4

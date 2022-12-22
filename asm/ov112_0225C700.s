@@ -1436,7 +1436,7 @@ _0225D1C6:
 	bl sub_0201DC68
 	cmp r0, #0
 	bne _0225D1E2
-	bl sub_02022974
+	bl GF_AssertFail
 _0225D1E2:
 	add r4, r4, #1
 	add r5, r5, #4
@@ -1789,7 +1789,7 @@ ov112_0225D460: ; 0x0225D460
 	lsl r0, r0, #4
 	cmp r1, r0
 	bls _0225D49C
-	bl sub_02022974
+	bl GF_AssertFail
 _0225D49C:
 	add r0, r5, #0
 	add r0, #0xc
@@ -2122,11 +2122,11 @@ ov112_0225D718: ; 0x0225D718
 	add r5, r0, #0
 	cmp r4, #4
 	blo _0225D726
-	bl sub_02022974
+	bl GF_AssertFail
 _0225D726:
 	cmp r4, #0
 	bne _0225D72E
-	bl sub_02022974
+	bl GF_AssertFail
 _0225D72E:
 	mov r0, #0xc
 	add r5, #0x40

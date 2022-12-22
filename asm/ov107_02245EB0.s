@@ -6675,7 +6675,7 @@ ov107_022493CC: ; 0x022493CC
 	mov r6, #2
 	b _022493EA
 _022493E6:
-	bl sub_02022974
+	bl GF_AssertFail
 _022493EA:
 	ldrb r7, [r5, #0x15]
 	add r1, r4, #0

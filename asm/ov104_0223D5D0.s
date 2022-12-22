@@ -56,7 +56,7 @@ ov104_0223D614: ; 0x0223D614
 	str r3, [sp, #8]
 	cmp r0, #0
 	beq _0223D62A
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D62A:
 	ldrh r0, [r5, #0x20]
 	mov r1, #0x12
@@ -109,7 +109,7 @@ ov104_0223D68C: ; 0x0223D68C
 	ldr r0, [r5, r4]
 	cmp r0, #0
 	bne _0223D69C
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D69C:
 	ldr r0, [r5, r4]
 	bl ov104_0223D708
@@ -147,7 +147,7 @@ ov104_0223D6D0: ; 0x0223D6D0
 	ldr r0, [r5, r4]
 	cmp r0, #0
 	bne _0223D6E0
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D6E0:
 	ldr r0, [r5, r4]
 	pop {r3, r4, r5, pc}
@@ -198,7 +198,7 @@ ov104_0223D720: ; 0x0223D720
 	blx r3
 	add r4, r0, #0
 	bne _0223D732
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D732:
 	add r0, r4, #0
 	bl sub_020145B4
@@ -218,7 +218,7 @@ ov104_0223D744: ; 0x0223D744
 	blx r3
 	add r4, r0, #0
 	bne _0223D756
-	bl sub_02022974
+	bl GF_AssertFail
 _0223D756:
 	add r0, r4, #0
 	bl sub_020145F4

@@ -94,7 +94,7 @@ _022460E6:
 	lsr r4, r0, #0x10
 	cmp r4, #0x64
 	blo _022460FE
-	bl sub_02022974
+	bl GF_AssertFail
 _022460FE:
 	cmp r4, #0x1e
 	bhs _0224610C

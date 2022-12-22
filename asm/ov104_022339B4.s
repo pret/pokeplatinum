@@ -928,7 +928,7 @@ ov104_02234130: ; 0x02234130
 	push {r3, lr}
 	cmp r1, #6
 	blo _0223413E
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 _0223413E:

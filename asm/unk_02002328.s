@@ -135,7 +135,7 @@ _020023F4:
 	lsl r0, r0, #8
 	cmp r5, r0
 	bne _02002418
-	bl sub_02022974
+	bl GF_AssertFail
 _02002418:
 	ldr r0, _020025CC ; =0x0000F0FD
 	cmp r5, r0

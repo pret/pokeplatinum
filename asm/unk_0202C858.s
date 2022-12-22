@@ -50,11 +50,11 @@ sub_0202C88C: ; 0x0202C88C
 	add r4, r2, #0
 	cmp r5, r0
 	blt _0202C8A0
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C8A0:
 	cmp r4, #0x40
 	blt _0202C8A8
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C8A8:
 	strb r5, [r6, #5]
 	add r0, r6, #0
@@ -90,11 +90,11 @@ sub_0202C8C8: ; 0x0202C8C8
 	add r4, r2, #0
 	cmp r5, r0
 	blt _0202C8DC
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C8DC:
 	cmp r4, #0x40
 	blt _0202C8E4
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C8E4:
 	cmp r5, #0
 	bne _0202C8EC
@@ -134,17 +134,17 @@ sub_0202C918: ; 0x0202C918
 	str r3, [sp]
 	cmp r3, #4
 	blt _0202C92A
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C92A:
 	mov r0, #1
 	lsl r0, r0, #8
 	cmp r5, r0
 	blt _0202C936
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C936:
 	cmp r4, #0x40
 	blt _0202C93E
-	bl sub_02022974
+	bl GF_AssertFail
 _0202C93E:
 	cmp r5, #0
 	beq _0202C98C

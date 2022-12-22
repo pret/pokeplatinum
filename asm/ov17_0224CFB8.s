@@ -1794,7 +1794,7 @@ _0224DD4E:
 	mov r0, #4
 	pop {r3, pc}
 _0224DD52:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
@@ -1830,7 +1830,7 @@ _0224DD84:
 	mov r0, #3
 	pop {r3, pc}
 _0224DD88:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	thumb_func_end ov17_0224DD5C

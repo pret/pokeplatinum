@@ -20,7 +20,7 @@
 .public sub_0200DA58
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020241F0
 .public sub_02024200
 .public sub_02024210

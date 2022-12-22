@@ -9,7 +9,7 @@
 .public sub_02013B94
 .public sub_02018144
 .public sub_020181C4
-.public sub_02022974
+.public GF_AssertFail
 .public G3X_SetHOffset
 .public memset
 .public _s32_div_f

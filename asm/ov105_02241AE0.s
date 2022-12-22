@@ -7575,10 +7575,10 @@ _022457B4: .word 0x0000035B
 
 	thumb_func_start ov105_022457B8
 ov105_022457B8: ; 0x022457B8
-	ldr r3, _022457BC ; =sub_02022974
+	ldr r3, _022457BC ; =GF_AssertFail
 	bx r3
 	; .align 2, 0
-_022457BC: .word sub_02022974
+_022457BC: .word GF_AssertFail
 	thumb_func_end ov105_022457B8
 
 	thumb_func_start ov105_022457C0
@@ -7900,7 +7900,7 @@ _02245A12:
 	mov r3, #0x28
 	b _02245A20
 _02245A18:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r2, #0
 	add r3, r2, #0
 _02245A20:

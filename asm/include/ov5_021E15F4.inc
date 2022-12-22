@@ -5,7 +5,7 @@
 .public sub_0201CA74
 .public sub_0201CED8
 .public sub_0201E268
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dRenderObjInit
 .public NNS_G3dGlbFlushP
 .public NNS_G3dGlbSetBaseTrans

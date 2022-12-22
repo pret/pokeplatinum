@@ -7,7 +7,7 @@
 .public sub_02018144
 .public sub_020181C4
 .public sub_020182CC
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G3dAnmObjInit
 .public NNS_G3dRenderObjAddAnmObj
 .public NNS_G3dRenderObjRemoveAnmObj

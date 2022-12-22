@@ -353,7 +353,7 @@ _021DAB7C:
 	str r0, [r4, #0x3c]
 	cmp r0, #0
 	bne _021DABDA
-	bl sub_02022974
+	bl GF_AssertFail
 _021DABDA:
 	ldr r0, [r4, #0x3c]
 	mov r1, #0
@@ -439,7 +439,7 @@ _021DAC74:
 	str r0, [r5, #0x4c]
 	pop {r3, r4, r5, pc}
 _021DAC86:
-	bl sub_02022974
+	bl GF_AssertFail
 _021DAC8A:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0

@@ -678,7 +678,7 @@ _021D55F4:
 	mov r4, #0x2f
 	b _021D55FC
 _021D55F8:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D55FC:
 	add r0, r4, #0
 	pop {r4, pc}

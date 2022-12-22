@@ -217,7 +217,7 @@ _0204B7E8:
 	bl sub_020562D8
 	b _0204B7F6
 _0204B7F2:
-	bl sub_02022974
+	bl GF_AssertFail
 _0204B7F6:
 	mov r0, #1
 	pop {r4, pc}

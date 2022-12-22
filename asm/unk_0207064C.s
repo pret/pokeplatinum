@@ -81,7 +81,7 @@ _020706BC:
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
 	bne _020706E4
-	bl sub_02022974
+	bl GF_AssertFail
 _020706E4:
 	add r0, r6, #0
 	add r1, sp, #8

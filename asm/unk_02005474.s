@@ -51,7 +51,7 @@ _020054BE:
 	add r4, r0, #0
 	b _020054D8
 _020054D0:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 _020054D8:
@@ -142,7 +142,7 @@ sub_02005588: ; 0x02005588
 	add r5, r1, #0
 	cmp r0, #4
 	beq _02005598
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 _02005598:
@@ -150,7 +150,7 @@ _02005598:
 	bl sub_02004B18
 	cmp r0, #7
 	beq _020055AA
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 _020055AA:
@@ -1232,7 +1232,7 @@ sub_02005E64: ; 0x02005E64
 	bl sub_02018144
 	add r4, r0, #0
 	bne _02005E88
-	bl sub_02022974
+	bl GF_AssertFail
 	pop {r4, r5, r6, pc}
 _02005E88:
 	mov r2, #0

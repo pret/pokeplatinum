@@ -50,7 +50,7 @@ _0224F1D0:
 	add r4, r4, #1
 	cmp r4, #0x20
 	blt _0224F1BC
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
@@ -87,7 +87,7 @@ ov17_0224F1F8: ; 0x0224F1F8
 	str r3, [sp]
 	cmp r4, r0
 	bls _0224F216
-	bl sub_02022974
+	bl GF_AssertFail
 _0224F216:
 	add r0, r5, #0
 	mov r2, #2
@@ -143,7 +143,7 @@ ov17_0224F26C: ; 0x0224F26C
 	str r3, [sp]
 	cmp r7, r0
 	bls _0224F288
-	bl sub_02022974
+	bl GF_AssertFail
 _0224F288:
 	add r0, r5, #0
 	mov r2, #2
@@ -236,7 +236,7 @@ _0224F322:
 	ldrh r0, [r5, #4]
 	cmp r4, r0
 	blt _0224F32C
-	bl sub_02022974
+	bl GF_AssertFail
 _0224F32C:
 	add r0, r5, #0
 	add r1, r6, #0

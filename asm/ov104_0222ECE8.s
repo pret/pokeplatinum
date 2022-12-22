@@ -296,7 +296,7 @@ ov104_0222EED8: ; 0x0222EED8
 	add r4, r1, #0
 	cmp r2, r0
 	ble _0222EEEA
-	bl sub_02022974
+	bl GF_AssertFail
 _0222EEEA:
 	ldr r0, _0222EEF4 ; =0x00000984
 	add r1, r4, r0
@@ -1605,7 +1605,7 @@ ov104_0222F84C: ; 0x0222F84C
 	add r4, r1, #0
 	cmp r2, r0
 	ble _0222F85E
-	bl sub_02022974
+	bl GF_AssertFail
 _0222F85E:
 	mov r0, #0x61
 	lsl r0, r0, #4
@@ -2087,7 +2087,7 @@ ov104_0222FBC4: ; 0x0222FBC4
 	add r4, r1, #0
 	cmp r2, r0
 	ble _0222FBD6
-	bl sub_02022974
+	bl GF_AssertFail
 _0222FBD6:
 	ldr r0, _0222FBE0 ; =0x00000674
 	add r1, r4, r0

@@ -775,7 +775,7 @@ _021D2DD8:
 	mvn r0, r0
 	cmp r1, r0
 	bne _021D2E02
-	bl sub_02022974
+	bl GF_AssertFail
 _021D2E02:
 	ldr r0, _021D2E54 ; =0x0221A404
 	ldr r1, _021D2E78 ; =0x000019E8

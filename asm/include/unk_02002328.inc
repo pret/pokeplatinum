@@ -23,4 +23,4 @@
 .public sub_0201D134
 .public sub_0201D9FC
 .public sub_0201DB8C
-.public sub_02022974
+.public GF_AssertFail

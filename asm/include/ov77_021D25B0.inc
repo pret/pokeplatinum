@@ -77,7 +77,7 @@
 .public sub_02020990
 .public sub_020209F8
 .public sub_02020A88
-.public sub_02022974
+.public GF_AssertFail
 .public sub_020241B4
 .public sub_020241BC
 .public sub_02024220

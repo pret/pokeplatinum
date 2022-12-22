@@ -59,7 +59,7 @@
 .public sub_02021CAC
 .public sub_02021D28
 .public sub_02021E50
-.public sub_02022974
+.public GF_AssertFail
 .public sub_0202309C
 .public NNS_G2dGetUnpackedCharacterData
 .public NNS_G2dGetUnpackedPaletteData

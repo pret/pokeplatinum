@@ -129,7 +129,7 @@ _0205087C:
 	lsl r0, r0, #2
 	cmp r4, r0
 	blt _02050892
-	bl sub_02022974
+	bl GF_AssertFail
 _02050892:
 	mov r0, #9
 	lsl r0, r0, #6
@@ -144,7 +144,7 @@ _0205089C:
 	asr r4, r0, #3
 	cmp r4, #8
 	blt _020508AE
-	bl sub_02022974
+	bl GF_AssertFail
 _020508AE:
 	ldr r0, _020508B4 ; =0x021C07F4
 	add r0, r0, r4
@@ -164,7 +164,7 @@ sub_020508B8: ; 0x020508B8
 	lsl r0, r0, #4
 	cmp r4, r0
 	blt _020508CE
-	bl sub_02022974
+	bl GF_AssertFail
 _020508CE:
 	lsl r0, r4, #1
 	add r0, r5, r0

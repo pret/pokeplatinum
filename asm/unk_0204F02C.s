@@ -9,7 +9,7 @@
 	thumb_func_start sub_0204F02C
 sub_0204F02C: ; 0x0204F02C
 	push {r3, lr}
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
@@ -18,7 +18,7 @@ sub_0204F02C: ; 0x0204F02C
 	thumb_func_start sub_0204F038
 sub_0204F038: ; 0x0204F038
 	push {r3, lr}
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0

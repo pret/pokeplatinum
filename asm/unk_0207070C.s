@@ -215,7 +215,7 @@ sub_02070890: ; 0x02070890
 	ldr r0, _020708A8 ; =0x19740205
 	cmp r1, r0
 	beq _020708A0
-	bl sub_02022974
+	bl GF_AssertFail
 _020708A0:
 	add r0, r4, #0
 	bl sub_020181C4

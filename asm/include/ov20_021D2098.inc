@@ -32,7 +32,7 @@
 .public sub_02021B90
 .public sub_02021CC8
 .public sub_02021CE4
-.public sub_02022974
+.public GF_AssertFail
 .public NNS_G2dInitOamManagerModule
 .public NNS_G2dInitImageProxy
 .public NNS_G2dInitImagePaletteProxy

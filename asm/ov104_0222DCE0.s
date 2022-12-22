@@ -936,7 +936,7 @@ ov104_0222E3E4: ; 0x0222E3E4
 	str r0, [sp, #0x90]
 	cmp r0, #6
 	ble _0222E3FC
-	bl sub_02022974
+	bl GF_AssertFail
 _0222E3FC:
 	ldr r0, [sp, #0x90]
 	mov r4, #0

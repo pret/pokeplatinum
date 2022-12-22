@@ -1,4 +1,4 @@
-.public sub_02022974
+.public GF_AssertFail
 .public sub_02094EA0
 .public MI_CpuFill8
 .public _s32_div_f

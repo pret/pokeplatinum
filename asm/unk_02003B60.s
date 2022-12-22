@@ -542,7 +542,7 @@ _02003F28:
 	add r0, r0, r1
 	pop {r4, pc}
 _02003F2E:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #0
 	pop {r4, pc}
 	nop
@@ -616,7 +616,7 @@ sub_02004014: ; 0x02004014
 	mvn r0, r0
 	cmp r4, r0
 	bne _02004032
-	bl sub_02022974
+	bl GF_AssertFail
 _02004032:
 	cmp r5, #0
 	beq _02004038
@@ -718,7 +718,7 @@ sub_020040CC: ; 0x020040CC
 	add r4, r0, #0
 	cmp r5, #9
 	blt _020040E0
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r5, #0
 _020040E0:
 	ldr r0, _020040EC ; =0x000BBC98
@@ -775,7 +775,7 @@ _0200412E:
 	mov r0, #7
 	pop {r3, pc}
 _02004132:
-	bl sub_02022974
+	bl GF_AssertFail
 	mov r0, #3
 	pop {r3, pc}
 	; .align 2, 0

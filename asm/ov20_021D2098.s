@@ -182,7 +182,7 @@ _021D21E4:
 	blt _021D21C8
 	pop {r4, r5, r6, pc}
 _021D21EE:
-	bl sub_02022974
+	bl GF_AssertFail
 _021D21F2:
 	pop {r4, r5, r6, pc}
 	; .align 2, 0

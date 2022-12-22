@@ -14,7 +14,7 @@ sub_0201D0C8: ; 0x0201D0C8
 	ldr r0, _0201D0EC ; =0x0000FFFE
 	cmp r1, r0
 	beq _0201D0D8
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D0D8:
 	ldrh r1, [r4]
 	ldr r0, _0201D0EC ; =0x0000FFFE
@@ -39,7 +39,7 @@ sub_0201D0F0: ; 0x0201D0F0
 	ldr r0, _0201D104 ; =0x0000FFFE
 	cmp r1, r0
 	beq _0201D100
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D100:
 	ldrh r0, [r4, #2]
 	pop {r4, pc}
@@ -83,12 +83,12 @@ sub_0201D134: ; 0x0201D134
 	ldr r0, _0201D158 ; =0x0000FFFE
 	cmp r1, r0
 	beq _0201D146
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D146:
 	ldrh r0, [r5, #4]
 	cmp r4, r0
 	blo _0201D150
-	bl sub_02022974
+	bl GF_AssertFail
 _0201D150:
 	lsl r0, r4, #1
 	add r0, r5, r0

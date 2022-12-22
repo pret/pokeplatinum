@@ -149,11 +149,11 @@ sub_0207C730: ; 0x0207C730
 	add r5, r0, #0
 	cmp r4, #0
 	bne _0207C758
-	bl sub_02022974
+	bl GF_AssertFail
 _0207C758:
 	cmp r5, #0
 	bne _0207C760
-	bl sub_02022974
+	bl GF_AssertFail
 _0207C760:
 	bl sub_02014000
 	pop {r3, r4, r5, pc}
@@ -325,7 +325,7 @@ sub_0207C894: ; 0x0207C894
 	bl sub_02018144
 	add r4, r0, #0
 	bne _0207C8A8
-	bl sub_02022974
+	bl GF_AssertFail
 _0207C8A8:
 	ldr r0, [r5, #0]
 	ldr r2, [r5, #4]
