@@ -673,7 +673,7 @@ Overlay overlay0
 Overlay overlay1
 {
 	After	main
-	Object asm/ov1_021D0D80.o
+	Object asm/overlay001/ov1_021D0D80.o
 }
 
 Overlay overlay2
@@ -691,342 +691,342 @@ Overlay overlay3
 Overlay overlay4
 {
 	After	main
-	Object asm/ov4_021D0D80.o
-	Object asm/ov4_021D2808.o
-	Object asm/ov4_021D3038.o
-	Object asm/ov4_021D3E5C.o
-	Object asm/ov4_021D4478.o
-	Object asm/ov4_021D5818.o
-	Object asm/ov4_021D6A88.o
-	Object asm/ov4_021D6CA4.o
-	Object asm/ov4_021D72E0.o
-	Object asm/ov4_021D75D4.o
-	Object asm/ov4_021D773C.o
-	Object asm/ov4_02216670.o
-	Object asm/ov4_02216AB8.o
-	Object asm/ov4_02216BA0.o
-	Object asm/ov4_02216CC0.o
-	Object asm/ov4_02216DD8.o
-	Object asm/ov4_02217270.o
-	Object asm/ov4_021D78C8.o
-	Object asm/ov4_021D806C.o
-	Object asm/ov4_021D83A4.o
-	Object asm/ov4_021D8948.o
-	Object asm/ov4_021D8C08.o
-	Object asm/ov4_021DA6C8.o
-	Object asm/ov4_021DB170.o
-	Object asm/ov4_021DC734.o
-	Object asm/ov4_021E4A58.o
-	Object asm/ov4_021E558C.o
-	Object asm/ov4_021E5C34.o
-	Object asm/ov4_021E6588.o
-	Object asm/ov4_021E6B04.o
-	Object asm/ov4_021E6B90.o
-	Object asm/ov4_021E70C8.o
-	Object asm/ov4_021E7210.o
-	Object asm/ov4_021E73FC.o
-	Object asm/ov4_021E7804.o
-	Object asm/ov4_021E78E0.o
-	Object asm/ov4_021E80B0.o
-	Object asm/ov4_021E8138.o
-	Object asm/ov4_021E85F4.o
-	Object asm/ov4_021E8BA8.o
-	Object asm/ov4_021E91B4.o
-	Object asm/ov4_021E963C.o
-	Object asm/ov4_021E99EC.o
-	Object asm/ov4_021EA1FC.o
-	Object asm/ov4_021EA7B4.o
-	Object asm/ov4_021EA840.o
-	Object asm/ov4_021EB228.o
-	Object asm/ov4_021EBDCC.o
-	Object asm/ov4_021EC564.o
-	Object asm/ov4_021ED420.o
-	Object asm/ov4_021EDE68.o
-	Object asm/ov4_021EE2E0.o
-	Object asm/ov4_021EF924.o
-	Object asm/ov4_021F1708.o
-	Object asm/ov4_021F1D24.o
-	Object asm/ov4_021F2F6C.o
-	Object asm/ov4_021F34C8.o
-	Object asm/ov4_021F55F4.o
-	Object asm/ov4_021F571C.o
-	Object asm/ov4_021F5820.o
-	Object asm/ov4_021F5D7C.o
-	Object asm/ov4_021F6338.o
-	Object asm/ov4_021F7128.o
-	Object asm/ov4_021F741C.o
-	Object asm/ov4_021F763C.o
-	Object asm/ov4_021F7F54.o
-	Object asm/ov4_021F8470.o
-	Object asm/ov4_021F87F0.o
-	Object asm/ov4_021FA360.o
-	Object asm/ov4_021FABFC.o
-	Object asm/ov4_021FAE80.o
-	Object asm/ov4_021FBD94.o
-	Object asm/ov4_021FD4E0.o
-	Object asm/ov4_021FD500.o
-	Object asm/ov4_021FD7CC.o
-	Object asm/ov4_021FE0AC.o
-	Object asm/ov4_021FE890.o
-	Object asm/ov4_021FEEC8.o
-	Object asm/ov4_02201504.o
-	Object asm/ov4_02202698.o
-	Object asm/ov4_02203504.o
-	Object asm/ov4_02203798.o
-	Object asm/ov4_022038F4.o
-	Object asm/ov4_02203BD4.o
-	Object asm/ov4_02204160.o
-	Object asm/ov4_02205128.o
-	Object asm/ov4_02205270.o
-	Object asm/ov4_022054E4.o
-	Object asm/ov4_022058A0.o
-	Object asm/ov4_02205988.o
-	Object asm/ov4_02205C7C.o
-	Object asm/ov4_02205EF0.o
-	Object asm/ov4_02206224.o
-	Object asm/ov4_0220657C.o
-	Object asm/ov4_02206808.o
-	Object asm/ov4_0221A13C.o
-	Object asm/ov4_02206A3C.o
-	Object asm/ov4_0220729C.o
-	Object asm/ov4_0220793C.o
-	Object asm/ov4_02207A18.o
-	Object asm/ov4_02207D90.o
-	Object asm/ov4_02207F58.o
-	Object asm/ov4_022080F0.o
-	Object asm/ov4_02208208.o
-	Object asm/ov4_02208214.o
-	Object asm/ov4_02208324.o
-	Object asm/ov4_02208BCC.o
-	Object asm/ov4_02208CEC.o
-	Object asm/ov4_0220DA10.o
-	Object asm/ov4_02210EEC.o
-	Object asm/ov4_022114A0.o
-	Object asm/ov4_02211D9C.o
-	Object asm/ov4_02211E7C.o
-	Object asm/ov4_02212CC8.o
-	Object asm/ov4_02214E34.o
-	Object asm/ov4_022152B4.o
-	Object asm/ov4_022156C0.o
-	Object asm/ov4_02215844.o
+	Object asm/overlay004/ov4_021D0D80.o
+	Object asm/overlay004/ov4_021D2808.o
+	Object asm/overlay004/ov4_021D3038.o
+	Object asm/overlay004/ov4_021D3E5C.o
+	Object asm/overlay004/ov4_021D4478.o
+	Object asm/overlay004/ov4_021D5818.o
+	Object asm/overlay004/ov4_021D6A88.o
+	Object asm/overlay004/ov4_021D6CA4.o
+	Object asm/overlay004/ov4_021D72E0.o
+	Object asm/overlay004/ov4_021D75D4.o
+	Object asm/overlay004/ov4_021D773C.o
+	Object asm/overlay004/ov4_02216670.o
+	Object asm/overlay004/ov4_02216AB8.o
+	Object asm/overlay004/ov4_02216BA0.o
+	Object asm/overlay004/ov4_02216CC0.o
+	Object asm/overlay004/ov4_02216DD8.o
+	Object asm/overlay004/ov4_02217270.o
+	Object asm/overlay004/ov4_021D78C8.o
+	Object asm/overlay004/ov4_021D806C.o
+	Object asm/overlay004/ov4_021D83A4.o
+	Object asm/overlay004/ov4_021D8948.o
+	Object asm/overlay004/ov4_021D8C08.o
+	Object asm/overlay004/ov4_021DA6C8.o
+	Object asm/overlay004/ov4_021DB170.o
+	Object asm/overlay004/ov4_021DC734.o
+	Object asm/overlay004/ov4_021E4A58.o
+	Object asm/overlay004/ov4_021E558C.o
+	Object asm/overlay004/ov4_021E5C34.o
+	Object asm/overlay004/ov4_021E6588.o
+	Object asm/overlay004/ov4_021E6B04.o
+	Object asm/overlay004/ov4_021E6B90.o
+	Object asm/overlay004/ov4_021E70C8.o
+	Object asm/overlay004/ov4_021E7210.o
+	Object asm/overlay004/ov4_021E73FC.o
+	Object asm/overlay004/ov4_021E7804.o
+	Object asm/overlay004/ov4_021E78E0.o
+	Object asm/overlay004/ov4_021E80B0.o
+	Object asm/overlay004/ov4_021E8138.o
+	Object asm/overlay004/ov4_021E85F4.o
+	Object asm/overlay004/ov4_021E8BA8.o
+	Object asm/overlay004/ov4_021E91B4.o
+	Object asm/overlay004/ov4_021E963C.o
+	Object asm/overlay004/ov4_021E99EC.o
+	Object asm/overlay004/ov4_021EA1FC.o
+	Object asm/overlay004/ov4_021EA7B4.o
+	Object asm/overlay004/ov4_021EA840.o
+	Object asm/overlay004/ov4_021EB228.o
+	Object asm/overlay004/ov4_021EBDCC.o
+	Object asm/overlay004/ov4_021EC564.o
+	Object asm/overlay004/ov4_021ED420.o
+	Object asm/overlay004/ov4_021EDE68.o
+	Object asm/overlay004/ov4_021EE2E0.o
+	Object asm/overlay004/ov4_021EF924.o
+	Object asm/overlay004/ov4_021F1708.o
+	Object asm/overlay004/ov4_021F1D24.o
+	Object asm/overlay004/ov4_021F2F6C.o
+	Object asm/overlay004/ov4_021F34C8.o
+	Object asm/overlay004/ov4_021F55F4.o
+	Object asm/overlay004/ov4_021F571C.o
+	Object asm/overlay004/ov4_021F5820.o
+	Object asm/overlay004/ov4_021F5D7C.o
+	Object asm/overlay004/ov4_021F6338.o
+	Object asm/overlay004/ov4_021F7128.o
+	Object asm/overlay004/ov4_021F741C.o
+	Object asm/overlay004/ov4_021F763C.o
+	Object asm/overlay004/ov4_021F7F54.o
+	Object asm/overlay004/ov4_021F8470.o
+	Object asm/overlay004/ov4_021F87F0.o
+	Object asm/overlay004/ov4_021FA360.o
+	Object asm/overlay004/ov4_021FABFC.o
+	Object asm/overlay004/ov4_021FAE80.o
+	Object asm/overlay004/ov4_021FBD94.o
+	Object asm/overlay004/ov4_021FD4E0.o
+	Object asm/overlay004/ov4_021FD500.o
+	Object asm/overlay004/ov4_021FD7CC.o
+	Object asm/overlay004/ov4_021FE0AC.o
+	Object asm/overlay004/ov4_021FE890.o
+	Object asm/overlay004/ov4_021FEEC8.o
+	Object asm/overlay004/ov4_02201504.o
+	Object asm/overlay004/ov4_02202698.o
+	Object asm/overlay004/ov4_02203504.o
+	Object asm/overlay004/ov4_02203798.o
+	Object asm/overlay004/ov4_022038F4.o
+	Object asm/overlay004/ov4_02203BD4.o
+	Object asm/overlay004/ov4_02204160.o
+	Object asm/overlay004/ov4_02205128.o
+	Object asm/overlay004/ov4_02205270.o
+	Object asm/overlay004/ov4_022054E4.o
+	Object asm/overlay004/ov4_022058A0.o
+	Object asm/overlay004/ov4_02205988.o
+	Object asm/overlay004/ov4_02205C7C.o
+	Object asm/overlay004/ov4_02205EF0.o
+	Object asm/overlay004/ov4_02206224.o
+	Object asm/overlay004/ov4_0220657C.o
+	Object asm/overlay004/ov4_02206808.o
+	Object asm/overlay004/ov4_0221A13C.o
+	Object asm/overlay004/ov4_02206A3C.o
+	Object asm/overlay004/ov4_0220729C.o
+	Object asm/overlay004/ov4_0220793C.o
+	Object asm/overlay004/ov4_02207A18.o
+	Object asm/overlay004/ov4_02207D90.o
+	Object asm/overlay004/ov4_02207F58.o
+	Object asm/overlay004/ov4_022080F0.o
+	Object asm/overlay004/ov4_02208208.o
+	Object asm/overlay004/ov4_02208214.o
+	Object asm/overlay004/ov4_02208324.o
+	Object asm/overlay004/ov4_02208BCC.o
+	Object asm/overlay004/ov4_02208CEC.o
+	Object asm/overlay004/ov4_0220DA10.o
+	Object asm/overlay004/ov4_02210EEC.o
+	Object asm/overlay004/ov4_022114A0.o
+	Object asm/overlay004/ov4_02211D9C.o
+	Object asm/overlay004/ov4_02211E7C.o
+	Object asm/overlay004/ov4_02212CC8.o
+	Object asm/overlay004/ov4_02214E34.o
+	Object asm/overlay004/ov4_022152B4.o
+	Object asm/overlay004/ov4_022156C0.o
+	Object asm/overlay004/ov4_02215844.o
 }
 
 Overlay overlay5
 {
 	After	main
-	Object asm/ov5_021D0D80.o
-	Object asm/ov5_021D1A94.o
-	Object asm/ov5_021D1C30.o
-	Object asm/ov5_021D2F14.o
-	Object asm/ov5_021D37AC.o
-	Object asm/ov5_021D431C.o
-	Object asm/ov5_021D521C.o
-	Object asm/ov5_021D56BC.o
-	Object asm/ov5_021D57BC.o
-	Object asm/ov5_021D5878.o
-	Object asm/ov5_021D5B40.o
-	Object asm/ov5_021D5BC0.o
-	Object asm/ov5_021D5CB0.o
-	Object asm/ov5_021D5EB8.o
-	Object asm/ov5_021DB888.o
-	Object asm/ov5_021DC018.o
-	Object asm/ov5_021DD42C.o
-	Object asm/ov5_021DD6FC.o
-	Object asm/ov5_021DDAE4.o
-	Object asm/ov5_021DDBE8.o
-	Object asm/ov5_021DF440.o
-	Object asm/ov5_021DFB54.o
-	Object asm/ov5_021E1154.o
-	Object asm/ov5_021E135C.o
-	Object asm/ov5_021E15F4.o
-	Object asm/ov5_021E1B08.o
-	Object asm/ov5_021E1D20.o
-	Object asm/ov5_021E2098.o
-	Object asm/ov5_021E22B0.o
-	Object asm/ov5_021E2338.o
-	Object asm/ov5_021E622C.o
-	Object asm/ov5_021E779C.o
-	Object asm/ov5_021EA714.o
-	Object asm/ov5_021EA874.o
-	Object asm/ov5_021EAFA4.o
-	Object asm/ov5_021FAF40.o
-	Object asm/ov5_021EB1A0.o
-	Object asm/ov5_021ECA70.o
-	Object asm/ov5_021ECC20.o
-	Object asm/ov5_021ECE40.o
-	Object asm/ov5_021EE75C.o
-	Object asm/ov5_021EE7D4.o
-	Object asm/ov5_021EEAC8.o
-	Object asm/ov5_021EEC68.o
-	Object asm/ov5_021EEF34.o
-	Object asm/ov5_021EF250.o
-	Object asm/ov5_021EF3A8.o
-	Object asm/ov5_021EF4BC.o
-	Object asm/ov5_021EF75C.o
-	Object asm/ov5_021EFB0C.o
-	Object asm/ov5_021F007C.o
-	Object asm/ov5_021FF6B8.o
-	Object asm/ov5_021F067C.o
-	Object asm/ov5_021F0824.o
-	Object asm/ov5_021F08CC.o
-	Object asm/ov5_021F0E84.o
-	Object asm/ov5_021F0EB0.o
-	Object asm/ov5_021F101C.o
-	Object asm/ov5_021F10E8.o
-	Object asm/ov5_021F134C.o
-	Object asm/ov5_021F17B8.o
-	Object asm/ov5_021F1CC8.o
-	Object asm/ov5_021F204C.o
-	Object asm/ov5_021F23D0.o
-	Object asm/ov5_021F25C0.o
-	Object asm/ov5_021F2850.o
-	Object asm/ov5_021F2A7C.o
-	Object asm/ov5_021F2BD0.o
-	Object asm/ov5_021F2D20.o
-	Object asm/ov5_021F3284.o
-	Object asm/ov5_021F348C.o
-	Object asm/ov5_021F37A8.o
-	Object asm/ov5_021F3A50.o
-	Object asm/ov5_021F3D00.o
-	Object asm/ov5_021F3E74.o
-	Object asm/ov5_021F4018.o
-	Object asm/ov5_021F428C.o
-	Object asm/ov5_021F47B0.o
-	Object asm/ov5_021F4DAC.o
-	Object asm/ov5_021F4E08.o
-	Object asm/ov5_021F5060.o
-	Object asm/ov5_021F50BC.o
-	Object asm/ov5_021F5284.o
-	Object asm/ov5_021F5428.o
-	Object asm/ov5_021F55CC.o
-	Object asm/ov5_021F575C.o
-	Object asm/ov5_021F5894.o
-	Object asm/ov5_021F5A10.o
-	Object asm/ov5_021F600C.o
-	Object asm/ov5_021F61BC.o
-	Object asm/ov5_021F6454.o
-	Object asm/ov5_021F77A8.o
-	Object asm/ov5_021F8370.o
-	Object asm/ov5_021F8560.o
+	Object asm/overlay005/ov5_021D0D80.o
+	Object asm/overlay005/ov5_021D1A94.o
+	Object asm/overlay005/ov5_021D1C30.o
+	Object asm/overlay005/ov5_021D2F14.o
+	Object asm/overlay005/ov5_021D37AC.o
+	Object asm/overlay005/ov5_021D431C.o
+	Object asm/overlay005/ov5_021D521C.o
+	Object asm/overlay005/ov5_021D56BC.o
+	Object asm/overlay005/ov5_021D57BC.o
+	Object asm/overlay005/ov5_021D5878.o
+	Object asm/overlay005/ov5_021D5B40.o
+	Object asm/overlay005/ov5_021D5BC0.o
+	Object asm/overlay005/ov5_021D5CB0.o
+	Object asm/overlay005/ov5_021D5EB8.o
+	Object asm/overlay005/ov5_021DB888.o
+	Object asm/overlay005/ov5_021DC018.o
+	Object asm/overlay005/ov5_021DD42C.o
+	Object asm/overlay005/ov5_021DD6FC.o
+	Object asm/overlay005/ov5_021DDAE4.o
+	Object asm/overlay005/ov5_021DDBE8.o
+	Object asm/overlay005/ov5_021DF440.o
+	Object asm/overlay005/ov5_021DFB54.o
+	Object asm/overlay005/ov5_021E1154.o
+	Object asm/overlay005/ov5_021E135C.o
+	Object asm/overlay005/ov5_021E15F4.o
+	Object asm/overlay005/ov5_021E1B08.o
+	Object asm/overlay005/ov5_021E1D20.o
+	Object asm/overlay005/ov5_021E2098.o
+	Object asm/overlay005/ov5_021E22B0.o
+	Object asm/overlay005/ov5_021E2338.o
+	Object asm/overlay005/ov5_021E622C.o
+	Object asm/overlay005/ov5_021E779C.o
+	Object asm/overlay005/ov5_021EA714.o
+	Object asm/overlay005/ov5_021EA874.o
+	Object asm/overlay005/ov5_021EAFA4.o
+	Object asm/overlay005/ov5_021FAF40.o
+	Object asm/overlay005/ov5_021EB1A0.o
+	Object asm/overlay005/ov5_021ECA70.o
+	Object asm/overlay005/ov5_021ECC20.o
+	Object asm/overlay005/ov5_021ECE40.o
+	Object asm/overlay005/ov5_021EE75C.o
+	Object asm/overlay005/ov5_021EE7D4.o
+	Object asm/overlay005/ov5_021EEAC8.o
+	Object asm/overlay005/ov5_021EEC68.o
+	Object asm/overlay005/ov5_021EEF34.o
+	Object asm/overlay005/ov5_021EF250.o
+	Object asm/overlay005/ov5_021EF3A8.o
+	Object asm/overlay005/ov5_021EF4BC.o
+	Object asm/overlay005/ov5_021EF75C.o
+	Object asm/overlay005/ov5_021EFB0C.o
+	Object asm/overlay005/ov5_021F007C.o
+	Object asm/overlay005/ov5_021FF6B8.o
+	Object asm/overlay005/ov5_021F067C.o
+	Object asm/overlay005/ov5_021F0824.o
+	Object asm/overlay005/ov5_021F08CC.o
+	Object asm/overlay005/ov5_021F0E84.o
+	Object asm/overlay005/ov5_021F0EB0.o
+	Object asm/overlay005/ov5_021F101C.o
+	Object asm/overlay005/ov5_021F10E8.o
+	Object asm/overlay005/ov5_021F134C.o
+	Object asm/overlay005/ov5_021F17B8.o
+	Object asm/overlay005/ov5_021F1CC8.o
+	Object asm/overlay005/ov5_021F204C.o
+	Object asm/overlay005/ov5_021F23D0.o
+	Object asm/overlay005/ov5_021F25C0.o
+	Object asm/overlay005/ov5_021F2850.o
+	Object asm/overlay005/ov5_021F2A7C.o
+	Object asm/overlay005/ov5_021F2BD0.o
+	Object asm/overlay005/ov5_021F2D20.o
+	Object asm/overlay005/ov5_021F3284.o
+	Object asm/overlay005/ov5_021F348C.o
+	Object asm/overlay005/ov5_021F37A8.o
+	Object asm/overlay005/ov5_021F3A50.o
+	Object asm/overlay005/ov5_021F3D00.o
+	Object asm/overlay005/ov5_021F3E74.o
+	Object asm/overlay005/ov5_021F4018.o
+	Object asm/overlay005/ov5_021F428C.o
+	Object asm/overlay005/ov5_021F47B0.o
+	Object asm/overlay005/ov5_021F4DAC.o
+	Object asm/overlay005/ov5_021F4E08.o
+	Object asm/overlay005/ov5_021F5060.o
+	Object asm/overlay005/ov5_021F50BC.o
+	Object asm/overlay005/ov5_021F5284.o
+	Object asm/overlay005/ov5_021F5428.o
+	Object asm/overlay005/ov5_021F55CC.o
+	Object asm/overlay005/ov5_021F575C.o
+	Object asm/overlay005/ov5_021F5894.o
+	Object asm/overlay005/ov5_021F5A10.o
+	Object asm/overlay005/ov5_021F600C.o
+	Object asm/overlay005/ov5_021F61BC.o
+	Object asm/overlay005/ov5_021F6454.o
+	Object asm/overlay005/ov5_021F77A8.o
+	Object asm/overlay005/ov5_021F8370.o
+	Object asm/overlay005/ov5_021F8560.o
 }
 
 Overlay overlay6
 {
 	After	overlay5
-	Object asm/ov6_0223E140.o
-	Object asm/ov6_02240C9C.o
-	Object asm/ov6_022426AC.o
-	Object asm/ov6_02242984.o
-	Object asm/ov6_02242AF0.o
-	Object asm/ov6_02242F74.o
-	Object asm/ov6_02243004.o
-	Object asm/ov6_022430C4.o
-	Object asm/ov6_02243218.o
-	Object asm/ov6_02243258.o
-	Object asm/ov6_02246034.o
-	Object asm/ov6_02246184.o
-	Object asm/ov6_02246444.o
-	Object asm/ov6_022465FC.o
-	Object asm/ov6_02246A30.o
-	Object asm/ov6_02246B74.o
-	Object asm/ov6_02246BF4.o
-	Object asm/ov6_02246C24.o
-	Object asm/ov6_02246F00.o
-	Object asm/ov6_02247078.o
-	Object asm/ov6_02247100.o
-	Object asm/ov6_022475B0.o
-	Object asm/ov6_02247660.o
-	Object asm/ov6_022477B8.o
-	Object asm/ov6_02247830.o
-	Object asm/ov6_02247A0C.o
-	Object asm/ov6_02247D30.o
-	Object asm/ov6_02247F5C.o
-	Object asm/ov6_02248050.o
-	Object asm/ov6_02248948.o
-	Object asm/ov6_022489E4.o
+	Object asm/overlay006/ov6_0223E140.o
+	Object asm/overlay006/ov6_02240C9C.o
+	Object asm/overlay006/ov6_022426AC.o
+	Object asm/overlay006/ov6_02242984.o
+	Object asm/overlay006/ov6_02242AF0.o
+	Object asm/overlay006/ov6_02242F74.o
+	Object asm/overlay006/ov6_02243004.o
+	Object asm/overlay006/ov6_022430C4.o
+	Object asm/overlay006/ov6_02243218.o
+	Object asm/overlay006/ov6_02243258.o
+	Object asm/overlay006/ov6_02246034.o
+	Object asm/overlay006/ov6_02246184.o
+	Object asm/overlay006/ov6_02246444.o
+	Object asm/overlay006/ov6_022465FC.o
+	Object asm/overlay006/ov6_02246A30.o
+	Object asm/overlay006/ov6_02246B74.o
+	Object asm/overlay006/ov6_02246BF4.o
+	Object asm/overlay006/ov6_02246C24.o
+	Object asm/overlay006/ov6_02246F00.o
+	Object asm/overlay006/ov6_02247078.o
+	Object asm/overlay006/ov6_02247100.o
+	Object asm/overlay006/ov6_022475B0.o
+	Object asm/overlay006/ov6_02247660.o
+	Object asm/overlay006/ov6_022477B8.o
+	Object asm/overlay006/ov6_02247830.o
+	Object asm/overlay006/ov6_02247A0C.o
+	Object asm/overlay006/ov6_02247D30.o
+	Object asm/overlay006/ov6_02247F5C.o
+	Object asm/overlay006/ov6_02248050.o
+	Object asm/overlay006/ov6_02248948.o
+	Object asm/overlay006/ov6_022489E4.o
 }
 
 Overlay overlay7
 {
 	After overlay6
-	Object asm/ov7_02249960.o
-	Object asm/ov7_0224B4E8.o
-	Object asm/ov7_0224BE9C.o
-	Object asm/ov7_0224CD28.o
+	Object asm/overlay007/ov7_02249960.o
+	Object asm/overlay007/ov7_0224B4E8.o
+	Object asm/overlay007/ov7_0224BE9C.o
+	Object asm/overlay007/ov7_0224CD28.o
 }
 
 Overlay overlay8
 {
 	After overlay6
-	Object asm/ov8_02249960.o
+	Object asm/overlay008/ov8_02249960.o
 }
 
 Overlay overlay9
 {
 	After overlay6
-	Object asm/ov9_02249960.o
+	Object asm/overlay009/ov9_02249960.o
 }
 
 Overlay overlay10
 {
 	After overlay4
-	Object asm/ov10_0221F800.o
+	Object asm/overlay010/ov10_0221F800.o
 }
 
 Overlay overlay11
 {
 	After overlay4
-	Object asm/ov11_0221F800.o
-	Object asm/ov11_0221F840.o
+	Object asm/overlay011/ov11_0221F800.o
+	Object asm/overlay011/ov11_0221F840.o
 }
 
 Overlay overlay12
 {
 	After overlay11
-	Object asm/ov12_0221FC20.o
-	Object asm/ov12_022237EC.o
-	Object asm/ov12_0222389C.o
-	Object asm/ov12_0222421C.o
-	Object asm/ov12_02225104.o
-	Object asm/ov12_02225640.o
-	Object asm/ov12_02225864.o
-	Object asm/ov12_02226998.o
-	Object asm/ov12_022269C0.o
-	Object asm/ov12_02226B84.o
-	Object asm/ov12_0222AC70.o
-	Object asm/ov12_0222D6B0.o
-	Object asm/ov12_0222E784.o
-	Object asm/ov12_0222E91C.o
-	Object asm/ov12_0222F700.o
-	Object asm/ov12_022346A4.o
-	Object asm/ov12_02234E44.o
-	Object asm/ov12_02235254.o
-	Object asm/ov12_02235E94.o
-	Object asm/ov12_02237E54.o
-	Object asm/ov12_02237EFC.o
-	Object asm/ov12_022380BC.o
-	Object asm/ov12_022384F0.o
+	Object asm/overlay012/ov12_0221FC20.o
+	Object asm/overlay012/ov12_022237EC.o
+	Object asm/overlay012/ov12_0222389C.o
+	Object asm/overlay012/ov12_0222421C.o
+	Object asm/overlay012/ov12_02225104.o
+	Object asm/overlay012/ov12_02225640.o
+	Object asm/overlay012/ov12_02225864.o
+	Object asm/overlay012/ov12_02226998.o
+	Object asm/overlay012/ov12_022269C0.o
+	Object asm/overlay012/ov12_02226B84.o
+	Object asm/overlay012/ov12_0222AC70.o
+	Object asm/overlay012/ov12_0222D6B0.o
+	Object asm/overlay012/ov12_0222E784.o
+	Object asm/overlay012/ov12_0222E91C.o
+	Object asm/overlay012/ov12_0222F700.o
+	Object asm/overlay012/ov12_022346A4.o
+	Object asm/overlay012/ov12_02234E44.o
+	Object asm/overlay012/ov12_02235254.o
+	Object asm/overlay012/ov12_02235E94.o
+	Object asm/overlay012/ov12_02237E54.o
+	Object asm/overlay012/ov12_02237EFC.o
+	Object asm/overlay012/ov12_022380BC.o
+	Object asm/overlay012/ov12_022384F0.o
 }
 
 Overlay overlay13
 {
 	After overlay11
-	Object asm/ov13_0221FC20.o
-	Object asm/ov13_02221A88.o
-	Object asm/ov13_02224500.o
-	Object asm/ov13_02225710.o
-	Object asm/ov13_022264F4.o
-	Object asm/ov13_02227288.o
-	Object asm/ov13_02227A4C.o
-	Object asm/ov13_02227BDC.o
-	Object asm/ov13_02228128.o
-	Object asm/ov13_02228A38.o
+	Object asm/overlay013/ov13_0221FC20.o
+	Object asm/overlay013/ov13_02221A88.o
+	Object asm/overlay013/ov13_02224500.o
+	Object asm/overlay013/ov13_02225710.o
+	Object asm/overlay013/ov13_022264F4.o
+	Object asm/overlay013/ov13_02227288.o
+	Object asm/overlay013/ov13_02227A4C.o
+	Object asm/overlay013/ov13_02227BDC.o
+	Object asm/overlay013/ov13_02228128.o
+	Object asm/overlay013/ov13_02228A38.o
 }
 
 Overlay overlay14
 {
 	After overlay11
-	Object asm/ov14_0221FC20.o
+	Object asm/overlay014/ov14_0221FC20.o
 }
 
 Overlay overlay15
@@ -1038,826 +1038,826 @@ Overlay overlay15
 Overlay overlay16
 {
 	After overlay12
-	Object asm/ov16_0223B140.o
-	Object asm/ov16_0223DF00.o
-	Object asm/ov16_022405FC.o
-	Object asm/ov16_0224B940.o
-	Object asm/ov16_0225177C.o
-	Object asm/ov16_0225BFFC.o
-	Object asm/ov16_0225CBB8.o
-	Object asm/ov16_02264798.o
-	Object asm/ov16_0226485C.o
-	Object asm/ov16_02266F1C.o
-	Object asm/ov16_02268520.o
-	Object asm/ov16_0226871C.o
-	Object asm/ov16_0226D094.o
-	Object asm/ov16_0226DB7C.o
-	Object asm/ov16_0226DE44.o
-	Object asm/ov16_0226E148.o
+	Object asm/overlay016/ov16_0223B140.o
+	Object asm/overlay016/ov16_0223DF00.o
+	Object asm/overlay016/ov16_022405FC.o
+	Object asm/overlay016/ov16_0224B940.o
+	Object asm/overlay016/ov16_0225177C.o
+	Object asm/overlay016/ov16_0225BFFC.o
+	Object asm/overlay016/ov16_0225CBB8.o
+	Object asm/overlay016/ov16_02264798.o
+	Object asm/overlay016/ov16_0226485C.o
+	Object asm/overlay016/ov16_02266F1C.o
+	Object asm/overlay016/ov16_02268520.o
+	Object asm/overlay016/ov16_0226871C.o
+	Object asm/overlay016/ov16_0226D094.o
+	Object asm/overlay016/ov16_0226DB7C.o
+	Object asm/overlay016/ov16_0226DE44.o
+	Object asm/overlay016/ov16_0226E148.o
 }
 
 Overlay overlay17
 {
 	After overlay12
-	Object asm/ov17_0223B140.o
-	Object asm/ov17_0223CB1C.o
-	Object asm/ov17_0223DAD0.o
-	Object asm/ov17_0223F118.o
-	Object asm/ov17_0223F7E4.o
-	Object asm/ov17_02241270.o
-	Object asm/ov17_022413D8.o
-	Object asm/ov17_02243AC4.o
-	Object asm/ov17_02243C28.o
-	Object asm/ov17_02245F14.o
-	Object asm/ov17_02246ECC.o
-	Object asm/ov17_022476F8.o
-	Object asm/ov17_02247A48.o
-	Object asm/ov17_022492DC.o
-	Object asm/ov17_0224A0FC.o
-	Object asm/ov17_0224CFB8.o
-	Object asm/ov17_0224E930.o
-	Object asm/ov17_0224F080.o
-	Object asm/ov17_0224F18C.o
-	Object asm/ov17_0224F4D4.o
-	Object asm/ov17_02250744.o
-	Object asm/ov17_02251D6C.o
-	Object asm/ov17_02252A70.o
-	Object asm/ov17_02252AB0.o
-	Object asm/ov17_02252CEC.o
+	Object asm/overlay017/ov17_0223B140.o
+	Object asm/overlay017/ov17_0223CB1C.o
+	Object asm/overlay017/ov17_0223DAD0.o
+	Object asm/overlay017/ov17_0223F118.o
+	Object asm/overlay017/ov17_0223F7E4.o
+	Object asm/overlay017/ov17_02241270.o
+	Object asm/overlay017/ov17_022413D8.o
+	Object asm/overlay017/ov17_02243AC4.o
+	Object asm/overlay017/ov17_02243C28.o
+	Object asm/overlay017/ov17_02245F14.o
+	Object asm/overlay017/ov17_02246ECC.o
+	Object asm/overlay017/ov17_022476F8.o
+	Object asm/overlay017/ov17_02247A48.o
+	Object asm/overlay017/ov17_022492DC.o
+	Object asm/overlay017/ov17_0224A0FC.o
+	Object asm/overlay017/ov17_0224CFB8.o
+	Object asm/overlay017/ov17_0224E930.o
+	Object asm/overlay017/ov17_0224F080.o
+	Object asm/overlay017/ov17_0224F18C.o
+	Object asm/overlay017/ov17_0224F4D4.o
+	Object asm/overlay017/ov17_02250744.o
+	Object asm/overlay017/ov17_02251D6C.o
+	Object asm/overlay017/ov17_02252A70.o
+	Object asm/overlay017/ov17_02252AB0.o
+	Object asm/overlay017/ov17_02252CEC.o
 }
 
 Overlay overlay18
 {
 	After overlay4
-	Object asm/ov18_0221F800.o
-	Object asm/ov18_0221F84C.o
-	Object asm/ov18_02220C28.o
-	Object asm/ov18_0222190C.o
-	Object asm/ov18_02221990.o
-	Object asm/ov18_022221CC.o
-	Object asm/ov18_02223F10.o
-	Object asm/ov18_02224024.o
-	Object asm/ov18_022243B0.o
-	Object asm/ov18_022246C4.o
-	Object asm/ov18_02226910.o
-	Object asm/ov18_02226EF0.o
-	Object asm/ov18_0222754C.o
-	Object asm/ov18_0222AD34.o
-	Object asm/ov18_0222AF0C.o
-	Object asm/ov18_0222B580.o
-	Object asm/ov18_0222B6A0.o
-	Object asm/ov18_0222B910.o
-	Object asm/ov18_0222BB34.o
-	Object asm/ov18_0222BC8C.o
-	Object asm/ov18_0222BE30.o
-	Object asm/ov18_0222DADC.o
-	Object asm/ov18_0222F030.o
-	Object asm/ov18_0222F20C.o
-	Object asm/ov18_0222F7E4.o
-	Object asm/ov18_0222F8FC.o
-	Object asm/ov18_0222FD3C.o
-	Object asm/ov18_0222FEE8.o
-	Object asm/ov18_0222FF98.o
-	Object asm/ov18_02230228.o
-	Object asm/ov18_022307A0.o
-	Object asm/ov18_02230B84.o
-	Object asm/ov18_02230DB0.o
-	Object asm/ov18_02231230.o
-	Object asm/ov18_02231948.o
-	Object asm/ov18_02231BC0.o
-	Object asm/ov18_02231DD0.o
-	Object asm/ov18_02232348.o
-	Object asm/ov18_02232530.o
-	Object asm/ov18_02232898.o
-	Object asm/ov18_02232C70.o
-	Object asm/ov18_02233068.o
-	Object asm/ov18_02233624.o
-	Object asm/ov18_02233818.o
-	Object asm/ov18_02234DB4.o
-	Object asm/ov18_022358F4.o
-	Object asm/ov18_022365BC.o
-	Object asm/ov18_02236BE0.o
-	Object asm/ov18_022390AC.o
-	Object asm/ov18_022392CC.o
-	Object asm/ov18_02239B34.o
-	Object asm/ov18_02239D3C.o
-	Object asm/ov18_0223A1D0.o
-	Object asm/ov18_0223A6B4.o
-	Object asm/ov18_0223B3F4.o
-	Object asm/ov18_0223BBAC.o
-	Object asm/ov18_0223BFA8.o
-	Object asm/ov18_0223C21C.o
-	Object asm/ov18_0223C470.o
-	Object asm/ov18_0223C67C.o
-	Object asm/ov18_0223D004.o
-	Object asm/ov18_0223D218.o
-	Object asm/ov18_0223D8DC.o
-	Object asm/ov18_0223DD74.o
-	Object asm/ov18_0223E8D8.o
-	Object asm/ov18_0223EA28.o
-	Object asm/ov18_0223F564.o
-	Object asm/ov18_0223FC48.o
-	Object asm/ov18_022407B0.o
-	Object asm/ov18_02241448.o
-	Object asm/ov18_022425E8.o
-	Object asm/ov18_02243440.o
-	Object asm/ov18_022438B8.o
-	Object asm/ov18_02243E74.o
-	Object asm/ov18_02243FD4.o
-	Object asm/ov18_02244114.o
-	Object asm/ov18_02244424.o
-	Object asm/ov18_02244C2C.o
-	Object asm/ov18_02244C84.o
-	Object asm/ov18_02244FB8.o
-	Object asm/ov18_0224510C.o
-	Object asm/ov18_0224589C.o
-	Object asm/ov18_02245974.o
-	Object asm/ov18_02245A44.o
-	Object asm/ov18_02245BD8.o
-	Object asm/ov18_02245E50.o
-	Object asm/ov18_02245E7C.o
-	Object asm/ov18_022460F8.o
+	Object asm/overlay018/ov18_0221F800.o
+	Object asm/overlay018/ov18_0221F84C.o
+	Object asm/overlay018/ov18_02220C28.o
+	Object asm/overlay018/ov18_0222190C.o
+	Object asm/overlay018/ov18_02221990.o
+	Object asm/overlay018/ov18_022221CC.o
+	Object asm/overlay018/ov18_02223F10.o
+	Object asm/overlay018/ov18_02224024.o
+	Object asm/overlay018/ov18_022243B0.o
+	Object asm/overlay018/ov18_022246C4.o
+	Object asm/overlay018/ov18_02226910.o
+	Object asm/overlay018/ov18_02226EF0.o
+	Object asm/overlay018/ov18_0222754C.o
+	Object asm/overlay018/ov18_0222AD34.o
+	Object asm/overlay018/ov18_0222AF0C.o
+	Object asm/overlay018/ov18_0222B580.o
+	Object asm/overlay018/ov18_0222B6A0.o
+	Object asm/overlay018/ov18_0222B910.o
+	Object asm/overlay018/ov18_0222BB34.o
+	Object asm/overlay018/ov18_0222BC8C.o
+	Object asm/overlay018/ov18_0222BE30.o
+	Object asm/overlay018/ov18_0222DADC.o
+	Object asm/overlay018/ov18_0222F030.o
+	Object asm/overlay018/ov18_0222F20C.o
+	Object asm/overlay018/ov18_0222F7E4.o
+	Object asm/overlay018/ov18_0222F8FC.o
+	Object asm/overlay018/ov18_0222FD3C.o
+	Object asm/overlay018/ov18_0222FEE8.o
+	Object asm/overlay018/ov18_0222FF98.o
+	Object asm/overlay018/ov18_02230228.o
+	Object asm/overlay018/ov18_022307A0.o
+	Object asm/overlay018/ov18_02230B84.o
+	Object asm/overlay018/ov18_02230DB0.o
+	Object asm/overlay018/ov18_02231230.o
+	Object asm/overlay018/ov18_02231948.o
+	Object asm/overlay018/ov18_02231BC0.o
+	Object asm/overlay018/ov18_02231DD0.o
+	Object asm/overlay018/ov18_02232348.o
+	Object asm/overlay018/ov18_02232530.o
+	Object asm/overlay018/ov18_02232898.o
+	Object asm/overlay018/ov18_02232C70.o
+	Object asm/overlay018/ov18_02233068.o
+	Object asm/overlay018/ov18_02233624.o
+	Object asm/overlay018/ov18_02233818.o
+	Object asm/overlay018/ov18_02234DB4.o
+	Object asm/overlay018/ov18_022358F4.o
+	Object asm/overlay018/ov18_022365BC.o
+	Object asm/overlay018/ov18_02236BE0.o
+	Object asm/overlay018/ov18_022390AC.o
+	Object asm/overlay018/ov18_022392CC.o
+	Object asm/overlay018/ov18_02239B34.o
+	Object asm/overlay018/ov18_02239D3C.o
+	Object asm/overlay018/ov18_0223A1D0.o
+	Object asm/overlay018/ov18_0223A6B4.o
+	Object asm/overlay018/ov18_0223B3F4.o
+	Object asm/overlay018/ov18_0223BBAC.o
+	Object asm/overlay018/ov18_0223BFA8.o
+	Object asm/overlay018/ov18_0223C21C.o
+	Object asm/overlay018/ov18_0223C470.o
+	Object asm/overlay018/ov18_0223C67C.o
+	Object asm/overlay018/ov18_0223D004.o
+	Object asm/overlay018/ov18_0223D218.o
+	Object asm/overlay018/ov18_0223D8DC.o
+	Object asm/overlay018/ov18_0223DD74.o
+	Object asm/overlay018/ov18_0223E8D8.o
+	Object asm/overlay018/ov18_0223EA28.o
+	Object asm/overlay018/ov18_0223F564.o
+	Object asm/overlay018/ov18_0223FC48.o
+	Object asm/overlay018/ov18_022407B0.o
+	Object asm/overlay018/ov18_02241448.o
+	Object asm/overlay018/ov18_022425E8.o
+	Object asm/overlay018/ov18_02243440.o
+	Object asm/overlay018/ov18_022438B8.o
+	Object asm/overlay018/ov18_02243E74.o
+	Object asm/overlay018/ov18_02243FD4.o
+	Object asm/overlay018/ov18_02244114.o
+	Object asm/overlay018/ov18_02244424.o
+	Object asm/overlay018/ov18_02244C2C.o
+	Object asm/overlay018/ov18_02244C84.o
+	Object asm/overlay018/ov18_02244FB8.o
+	Object asm/overlay018/ov18_0224510C.o
+	Object asm/overlay018/ov18_0224589C.o
+	Object asm/overlay018/ov18_02245974.o
+	Object asm/overlay018/ov18_02245A44.o
+	Object asm/overlay018/ov18_02245BD8.o
+	Object asm/overlay018/ov18_02245E50.o
+	Object asm/overlay018/ov18_02245E7C.o
+	Object asm/overlay018/ov18_022460F8.o
 }
 
 Overlay overlay19
 {
 	After main
-	Object asm/ov19_021D0D80.o
-	Object asm/ov19_021D603C.o
-	Object asm/ov19_021D61B0.o
-	Object asm/ov19_021D79F8.o
-	Object asm/ov19_021D8B54.o
-	Object asm/ov19_021DA270.o
-	Object asm/ov19_021DA814.o
-	Object asm/ov19_021DA92C.o
-	Object asm/ov19_021DB2FC.o
-	Object asm/ov19_021DB8E4.o
-	Object asm/ov19_021DC5F0.o
-	Object asm/ov19_021DCF88.o
-	Object asm/ov19_021DE3E8.o
-	Object asm/ov19_021DEC04.o
-	Object asm/ov19_021DF964.o
+	Object asm/overlay019/ov19_021D0D80.o
+	Object asm/overlay019/ov19_021D603C.o
+	Object asm/overlay019/ov19_021D61B0.o
+	Object asm/overlay019/ov19_021D79F8.o
+	Object asm/overlay019/ov19_021D8B54.o
+	Object asm/overlay019/ov19_021DA270.o
+	Object asm/overlay019/ov19_021DA814.o
+	Object asm/overlay019/ov19_021DA92C.o
+	Object asm/overlay019/ov19_021DB2FC.o
+	Object asm/overlay019/ov19_021DB8E4.o
+	Object asm/overlay019/ov19_021DC5F0.o
+	Object asm/overlay019/ov19_021DCF88.o
+	Object asm/overlay019/ov19_021DE3E8.o
+	Object asm/overlay019/ov19_021DEC04.o
+	Object asm/overlay019/ov19_021DF964.o
 }
 
 Overlay overlay20
 {
 	After main
-	Object asm/ov20_021D0D80.o
-	Object asm/ov20_021D2098.o
-	Object asm/ov20_021D2EA4.o
-	Object asm/ov20_021D3864.o
-	Object asm/ov20_021D3A54.o
-	Object asm/ov20_021D40E8.o
-	Object asm/ov20_021D4728.o
-	Object asm/ov20_021D4E38.o
-	Object asm/ov20_021D5044.o
+	Object asm/overlay020/ov20_021D0D80.o
+	Object asm/overlay020/ov20_021D2098.o
+	Object asm/overlay020/ov20_021D2EA4.o
+	Object asm/overlay020/ov20_021D3864.o
+	Object asm/overlay020/ov20_021D3A54.o
+	Object asm/overlay020/ov20_021D40E8.o
+	Object asm/overlay020/ov20_021D4728.o
+	Object asm/overlay020/ov20_021D4E38.o
+	Object asm/overlay020/ov20_021D5044.o
 }
 
 Overlay overlay21
 {
 	After main
-	Object asm/ov21_021D0D80.o
-	Object asm/ov21_021D1F90.o
-	Object asm/ov21_021D1FA4.o
-	Object asm/ov21_021D3208.o
-	Object asm/ov21_021D3FE0.o
-	Object asm/ov21_021D423C.o
-	Object asm/ov21_021D4340.o
-	Object asm/ov21_021D4C0C.o
-	Object asm/ov21_021D4EE4.o
-	Object asm/ov21_021D517C.o
-	Object asm/ov21_021D5600.o
-	Object asm/ov21_021D57B4.o
-	Object asm/ov21_021D5AEC.o
-	Object asm/ov21_021D76B0.o
-	Object asm/ov21_021D85B0.o
-	Object asm/ov21_021D94BC.o
-	Object asm/ov21_021DC9BC.o
-	Object asm/ov21_021DDD2C.o
-	Object asm/ov21_021DE668.o
-	Object asm/ov21_021DF734.o
-	Object asm/ov21_021E0C68.o
-	Object asm/ov21_021E1924.o
-	Object asm/ov21_021E29DC.o
-	Object asm/ov21_021E3FFC.o
-	Object asm/ov21_021E4CA4.o
-	Object asm/ov21_021E6014.o
-	Object asm/ov21_021E68F4.o
-	Object asm/ov21_021E737C.o
-	Object asm/ov21_021E8484.o
-	Object asm/ov21_021E8D48.o
+	Object asm/overlay021/ov21_021D0D80.o
+	Object asm/overlay021/ov21_021D1F90.o
+	Object asm/overlay021/ov21_021D1FA4.o
+	Object asm/overlay021/ov21_021D3208.o
+	Object asm/overlay021/ov21_021D3FE0.o
+	Object asm/overlay021/ov21_021D423C.o
+	Object asm/overlay021/ov21_021D4340.o
+	Object asm/overlay021/ov21_021D4C0C.o
+	Object asm/overlay021/ov21_021D4EE4.o
+	Object asm/overlay021/ov21_021D517C.o
+	Object asm/overlay021/ov21_021D5600.o
+	Object asm/overlay021/ov21_021D57B4.o
+	Object asm/overlay021/ov21_021D5AEC.o
+	Object asm/overlay021/ov21_021D76B0.o
+	Object asm/overlay021/ov21_021D85B0.o
+	Object asm/overlay021/ov21_021D94BC.o
+	Object asm/overlay021/ov21_021DC9BC.o
+	Object asm/overlay021/ov21_021DDD2C.o
+	Object asm/overlay021/ov21_021DE668.o
+	Object asm/overlay021/ov21_021DF734.o
+	Object asm/overlay021/ov21_021E0C68.o
+	Object asm/overlay021/ov21_021E1924.o
+	Object asm/overlay021/ov21_021E29DC.o
+	Object asm/overlay021/ov21_021E3FFC.o
+	Object asm/overlay021/ov21_021E4CA4.o
+	Object asm/overlay021/ov21_021E6014.o
+	Object asm/overlay021/ov21_021E68F4.o
+	Object asm/overlay021/ov21_021E737C.o
+	Object asm/overlay021/ov21_021E8484.o
+	Object asm/overlay021/ov21_021E8D48.o
 }
 
 Overlay overlay22
 {
 	After overlay17
-	Object asm/ov22_02254DE0.o
-	Object asm/ov22_02255094.o
-	Object asm/ov22_02255D44.o
-	Object asm/ov22_022578F4.o
-	Object asm/ov22_02257F50.o
-	Object asm/ov22_022588F0.o
-	Object asm/ov22_0225894C.o
-	Object asm/ov22_022589E0.o
-	Object asm/ov22_02259098.o
-	Object asm/ov22_02259484.o
-	Object asm/ov22_02259560.o
-	Object asm/ov22_022597BC.o
-	Object asm/ov22_02259C58.o
-	Object asm/ov22_0225A428.o
-	Object asm/ov22_0225AF44.o
-	Object asm/ov22_0225AF8C.o
-	Object asm/ov22_0225B660.o
+	Object asm/overlay022/ov22_02254DE0.o
+	Object asm/overlay022/ov22_02255094.o
+	Object asm/overlay022/ov22_02255D44.o
+	Object asm/overlay022/ov22_022578F4.o
+	Object asm/overlay022/ov22_02257F50.o
+	Object asm/overlay022/ov22_022588F0.o
+	Object asm/overlay022/ov22_0225894C.o
+	Object asm/overlay022/ov22_022589E0.o
+	Object asm/overlay022/ov22_02259098.o
+	Object asm/overlay022/ov22_02259484.o
+	Object asm/overlay022/ov22_02259560.o
+	Object asm/overlay022/ov22_022597BC.o
+	Object asm/overlay022/ov22_02259C58.o
+	Object asm/overlay022/ov22_0225A428.o
+	Object asm/overlay022/ov22_0225AF44.o
+	Object asm/overlay022/ov22_0225AF8C.o
+	Object asm/overlay022/ov22_0225B660.o
 }
 
 Overlay overlay23
 {
 	After overlay5
-	Object asm/ov23_0223E140.o
-	Object asm/ov23_022416A8.o
-	Object asm/ov23_02241F74.o
-	Object asm/ov23_0224340C.o
-	Object asm/ov23_02248C08.o
-	Object asm/ov23_02248F1C.o
-	Object asm/ov23_02249918.o
-	Object asm/ov23_022499E4.o
-	Object asm/ov23_0224A1D0.o
-	Object asm/ov23_0224B05C.o
-	Object asm/ov23_0224DC40.o
-	Object asm/ov23_0224F294.o
-	Object asm/ov23_0225128C.o
-	Object asm/ov23_022521F0.o
-	Object asm/ov23_02253598.o
-	Object asm/ov23_02253D40.o
-	Object asm/ov23_0225426C.o
-	Object asm/ov23_0225429C.o
-	Object asm/ov23_022542CC.o
-	Object asm/ov23_02254A14.o
+	Object asm/overlay023/ov23_0223E140.o
+	Object asm/overlay023/ov23_022416A8.o
+	Object asm/overlay023/ov23_02241F74.o
+	Object asm/overlay023/ov23_0224340C.o
+	Object asm/overlay023/ov23_02248C08.o
+	Object asm/overlay023/ov23_02248F1C.o
+	Object asm/overlay023/ov23_02249918.o
+	Object asm/overlay023/ov23_022499E4.o
+	Object asm/overlay023/ov23_0224A1D0.o
+	Object asm/overlay023/ov23_0224B05C.o
+	Object asm/overlay023/ov23_0224DC40.o
+	Object asm/overlay023/ov23_0224F294.o
+	Object asm/overlay023/ov23_0225128C.o
+	Object asm/overlay023/ov23_022521F0.o
+	Object asm/overlay023/ov23_02253598.o
+	Object asm/overlay023/ov23_02253D40.o
+	Object asm/overlay023/ov23_0225426C.o
+	Object asm/overlay023/ov23_0225429C.o
+	Object asm/overlay023/ov23_022542CC.o
+	Object asm/overlay023/ov23_02254A14.o
 }
 
 Overlay overlay24
 {
 	After overlay9
-	Object asm/ov24_02253CE0.o
+	Object asm/overlay024/ov24_02253CE0.o
 }
 
 Overlay overlay25
 {
 	After overlay9
-	Object asm/ov25_02253CE0.o
-	Object asm/ov25_02254560.o
-	Object asm/ov25_02255090.o
-	Object asm/ov25_02255540.o
-	Object asm/ov25_02255ACC.o
-	Object asm/ov25_02255DBC.o
+	Object asm/overlay025/ov25_02253CE0.o
+	Object asm/overlay025/ov25_02254560.o
+	Object asm/overlay025/ov25_02255090.o
+	Object asm/overlay025/ov25_02255540.o
+	Object asm/overlay025/ov25_02255ACC.o
+	Object asm/overlay025/ov25_02255DBC.o
 }
 
 Overlay overlay26
 {
 	After overlay25
-	Object asm/ov26_022561C0.o
-	Object asm/ov26_02256404.o
+	Object asm/overlay026/ov26_022561C0.o
+	Object asm/overlay026/ov26_02256404.o
 }
 
 Overlay overlay27
 {
 	After overlay25
-	Object asm/ov27_022561C0.o
-	Object asm/ov27_0225680C.o
+	Object asm/overlay027/ov27_022561C0.o
+	Object asm/overlay027/ov27_0225680C.o
 }
 
 Overlay overlay28
 {
 	After overlay25
-	Object asm/ov28_022561C0.o
-	Object asm/ov28_0225697C.o
-	Object asm/ov28_02256E9C.o
+	Object asm/overlay028/ov28_022561C0.o
+	Object asm/overlay028/ov28_0225697C.o
+	Object asm/overlay028/ov28_02256E9C.o
 }
 
 Overlay overlay29
 {
 	After overlay25
-	Object asm/ov29_022561C0.o
-	Object asm/ov29_022566C8.o
+	Object asm/overlay029/ov29_022561C0.o
+	Object asm/overlay029/ov29_022566C8.o
 }
 
 Overlay overlay30
 {
 	After overlay25
-	Object asm/ov30_022561C0.o
-	Object asm/ov30_022563EC.o
+	Object asm/overlay030/ov30_022561C0.o
+	Object asm/overlay030/ov30_022563EC.o
 }
 
 Overlay overlay31
 {
 	After overlay25
-	Object asm/ov31_022561C0.o
-	Object asm/ov31_02256554.o
+	Object asm/overlay031/ov31_022561C0.o
+	Object asm/overlay031/ov31_02256554.o
 }
 
 Overlay overlay32
 {
 	After overlay25
-	Object asm/ov32_022561C0.o
-	Object asm/ov32_02256470.o
+	Object asm/overlay032/ov32_022561C0.o
+	Object asm/overlay032/ov32_02256470.o
 }
 
 Overlay overlay33
 {
 	After overlay25
-	Object asm/ov33_022561C0.o
-	Object asm/ov33_02256474.o
+	Object asm/overlay033/ov33_022561C0.o
+	Object asm/overlay033/ov33_02256474.o
 }
 
 Overlay overlay34
 {
 	After overlay25
-	Object asm/ov34_022561C0.o
-	Object asm/ov34_02256540.o
+	Object asm/overlay034/ov34_022561C0.o
+	Object asm/overlay034/ov34_02256540.o
 }
 
 Overlay overlay35
 {
 	After overlay25
-	Object asm/ov35_022561C0.o
-	Object asm/ov35_02256410.o
+	Object asm/overlay035/ov35_022561C0.o
+	Object asm/overlay035/ov35_02256410.o
 }
 
 Overlay overlay36
 {
 	After overlay25
-	Object asm/ov36_022561C0.o
-	Object asm/ov36_02256404.o
+	Object asm/overlay036/ov36_022561C0.o
+	Object asm/overlay036/ov36_02256404.o
 }
 
 Overlay overlay37
 {
 	After overlay25
-	Object asm/ov37_022561C0.o
-	Object asm/ov37_022563D4.o
+	Object asm/overlay037/ov37_022561C0.o
+	Object asm/overlay037/ov37_022563D4.o
 }
 
 Overlay overlay38
 {
 	After overlay25
-	Object asm/ov38_022561C0.o
-	Object asm/ov38_0225632C.o
+	Object asm/overlay038/ov38_022561C0.o
+	Object asm/overlay038/ov38_0225632C.o
 }
 
 Overlay overlay39
 {
 	After overlay25
-	Object asm/ov39_022561C0.o
-	Object asm/ov39_022563DC.o
+	Object asm/overlay039/ov39_022561C0.o
+	Object asm/overlay039/ov39_022563DC.o
 }
 
 Overlay overlay40
 {
 	After overlay25
-	Object asm/ov40_022561C0.o
-	Object asm/ov40_0225645C.o
+	Object asm/overlay040/ov40_022561C0.o
+	Object asm/overlay040/ov40_0225645C.o
 }
 
 Overlay overlay41
 {
 	After overlay25
-	Object asm/ov41_022561C0.o
-	Object asm/ov41_022567B0.o
+	Object asm/overlay041/ov41_022561C0.o
+	Object asm/overlay041/ov41_022567B0.o
 }
 
 Overlay overlay42
 {
 	After overlay25
-	Object asm/ov42_022561C0.o
-	Object asm/ov42_022563D4.o
+	Object asm/overlay042/ov42_022561C0.o
+	Object asm/overlay042/ov42_022563D4.o
 }
 
 Overlay overlay43
 {
 	After overlay25
-	Object asm/ov43_022561C0.o
-	Object asm/ov43_02256544.o
+	Object asm/overlay043/ov43_022561C0.o
+	Object asm/overlay043/ov43_02256544.o
 }
 
 Overlay overlay44
 {
 	After overlay25
-	Object asm/ov44_022561C0.o
-	Object asm/ov44_022565BC.o
+	Object asm/overlay044/ov44_022561C0.o
+	Object asm/overlay044/ov44_022565BC.o
 }
 
 Overlay overlay45
 {
 	After overlay25
-	Object asm/ov45_022561C0.o
-	Object asm/ov45_022566EC.o
+	Object asm/overlay045/ov45_022561C0.o
+	Object asm/overlay045/ov45_022566EC.o
 }
 
 Overlay overlay46
 {
 	After overlay25
-	Object asm/ov46_022561C0.o
-	Object asm/ov46_02256BCC.o
+	Object asm/overlay046/ov46_022561C0.o
+	Object asm/overlay046/ov46_02256BCC.o
 }
 
 Overlay overlay47
 {
 	After overlay25
-	Object asm/ov47_022561C0.o
-	Object asm/ov47_02256634.o
+	Object asm/overlay047/ov47_022561C0.o
+	Object asm/overlay047/ov47_02256634.o
 }
 
 Overlay overlay48
 {
 	After overlay25
-	Object asm/ov48_022561C0.o
-	Object asm/ov48_0225650C.o
+	Object asm/overlay048/ov48_022561C0.o
+	Object asm/overlay048/ov48_0225650C.o
 }
 
 Overlay overlay49
 {
 	After overlay25
-	Object asm/ov49_022561C0.o
-	Object asm/ov49_022563D4.o
+	Object asm/overlay049/ov49_022561C0.o
+	Object asm/overlay049/ov49_022563D4.o
 }
 
 Overlay overlay50
 {
 	After overlay25
-	Object asm/ov50_022561C0.o
-	Object asm/ov50_02256510.o
+	Object asm/overlay050/ov50_022561C0.o
+	Object asm/overlay050/ov50_02256510.o
 }
 
 Overlay overlay51
 {
 	After overlay25
-	Object asm/ov51_022561C0.o
-	Object asm/ov51_0225632C.o
+	Object asm/overlay051/ov51_022561C0.o
+	Object asm/overlay051/ov51_0225632C.o
 }
 
 Overlay overlay52
 {
 	After overlay25
-	Object asm/ov52_022561C0.o
-	Object asm/ov52_02256694.o
+	Object asm/overlay052/ov52_022561C0.o
+	Object asm/overlay052/ov52_02256694.o
 }
 
 Overlay overlay53
 {
 	After overlay25
-	Object asm/ov53_022561C0.o
-	Object asm/ov53_02256420.o
+	Object asm/overlay053/ov53_022561C0.o
+	Object asm/overlay053/ov53_02256420.o
 }
 
 Overlay overlay54
 {
 	After overlay25
-	Object asm/ov54_022561C0.o
-	Object asm/ov54_0225642C.o
+	Object asm/overlay054/ov54_022561C0.o
+	Object asm/overlay054/ov54_0225642C.o
 }
 
 Overlay overlay55
 {
 	After overlay25
-	Object asm/ov55_022561C0.o
-	Object asm/ov55_0225632C.o
+	Object asm/overlay055/ov55_022561C0.o
+	Object asm/overlay055/ov55_0225632C.o
 }
 
 Overlay overlay56
 {
 	After overlay25
-	Object asm/ov56_022561C0.o
+	Object asm/overlay056/ov56_022561C0.o
 }
 
 Overlay overlay57
 {
 	After main
-	Object asm/ov57_021D0D80.o
-	Object asm/ov57_021D0F30.o
+	Object asm/overlay057/ov57_021D0D80.o
+	Object asm/overlay057/ov57_021D0F30.o
 }
 
 Overlay overlay58
 {
 	After main
-	Object asm/ov58_021D0D80.o
+	Object asm/overlay058/ov58_021D0D80.o
 }
 
 Overlay overlay59
 {
 	After main
-	Object asm/ov59_021D0D80.o
-	Object asm/ov59_021D2A2C.o
-	Object asm/ov59_021D2B44.o
-	Object asm/ov59_021D2F88.o
+	Object asm/overlay059/ov59_021D0D80.o
+	Object asm/overlay059/ov59_021D2A2C.o
+	Object asm/overlay059/ov59_021D2B44.o
+	Object asm/overlay059/ov59_021D2F88.o
 }
 
 Overlay overlay60
 {
 	After overlay4
-	Object asm/ov60_0221F800.o
-	Object asm/ov60_0221F968.o
-	Object asm/ov60_0221FE2C.o
-	Object asm/ov60_022206D4.o
-	Object asm/ov60_02220844.o
-	Object asm/ov60_02220C70.o
-	Object asm/ov60_02221390.o
-	Object asm/ov60_02221900.o
-	Object asm/ov60_022227F8.o
-	Object asm/ov60_02229B20.o
-	Object asm/ov60_02223D7C.o
-	Object asm/ov60_02223F00.o
-	Object asm/ov60_022241E8.o
-	Object asm/ov60_02224448.o
-	Object asm/ov60_02224484.o
-	Object asm/ov60_02224630.o
-	Object asm/ov60_02225214.o
-	Object asm/ov60_02225268.o
-	Object asm/ov60_02225294.o
-	Object asm/ov60_02225518.o
-	Object asm/ov60_02225670.o
-	Object asm/ov60_022256B4.o
-	Object asm/ov60_022257FC.o
-	Object asm/ov60_02225948.o
-	Object asm/ov60_02225C2C.o
-	Object asm/ov60_02225E1C.o
-	Object asm/ov60_02225F38.o
-	Object asm/ov60_022263B8.o
-	Object asm/ov60_02226B6C.o
-	Object asm/ov60_02226C04.o
-	Object asm/ov60_02226EB0.o
-	Object asm/ov60_022270D8.o
-	Object asm/ov60_02227184.o
-	Object asm/ov60_022287A0.o
+	Object asm/overlay060/ov60_0221F800.o
+	Object asm/overlay060/ov60_0221F968.o
+	Object asm/overlay060/ov60_0221FE2C.o
+	Object asm/overlay060/ov60_022206D4.o
+	Object asm/overlay060/ov60_02220844.o
+	Object asm/overlay060/ov60_02220C70.o
+	Object asm/overlay060/ov60_02221390.o
+	Object asm/overlay060/ov60_02221900.o
+	Object asm/overlay060/ov60_022227F8.o
+	Object asm/overlay060/ov60_02229B20.o
+	Object asm/overlay060/ov60_02223D7C.o
+	Object asm/overlay060/ov60_02223F00.o
+	Object asm/overlay060/ov60_022241E8.o
+	Object asm/overlay060/ov60_02224448.o
+	Object asm/overlay060/ov60_02224484.o
+	Object asm/overlay060/ov60_02224630.o
+	Object asm/overlay060/ov60_02225214.o
+	Object asm/overlay060/ov60_02225268.o
+	Object asm/overlay060/ov60_02225294.o
+	Object asm/overlay060/ov60_02225518.o
+	Object asm/overlay060/ov60_02225670.o
+	Object asm/overlay060/ov60_022256B4.o
+	Object asm/overlay060/ov60_022257FC.o
+	Object asm/overlay060/ov60_02225948.o
+	Object asm/overlay060/ov60_02225C2C.o
+	Object asm/overlay060/ov60_02225E1C.o
+	Object asm/overlay060/ov60_02225F38.o
+	Object asm/overlay060/ov60_022263B8.o
+	Object asm/overlay060/ov60_02226B6C.o
+	Object asm/overlay060/ov60_02226C04.o
+	Object asm/overlay060/ov60_02226EB0.o
+	Object asm/overlay060/ov60_022270D8.o
+	Object asm/overlay060/ov60_02227184.o
+	Object asm/overlay060/ov60_022287A0.o
 }
 
 Overlay overlay61
 {
 	After overlay60
-	Object asm/ov61_0222AE60.o
-	Object asm/ov61_0222B008.o
-	Object asm/ov61_0222BC4C.o
-	Object asm/ov61_0222BF44.o
-	Object asm/ov61_0222CEDC.o
-	Object asm/ov61_0222D498.o
-	Object asm/ov61_0222DCDC.o
-	Object asm/ov61_0222E0B8.o
-	Object asm/ov61_0222E478.o
+	Object asm/overlay061/ov61_0222AE60.o
+	Object asm/overlay061/ov61_0222B008.o
+	Object asm/overlay061/ov61_0222BC4C.o
+	Object asm/overlay061/ov61_0222BF44.o
+	Object asm/overlay061/ov61_0222CEDC.o
+	Object asm/overlay061/ov61_0222D498.o
+	Object asm/overlay061/ov61_0222DCDC.o
+	Object asm/overlay061/ov61_0222E0B8.o
+	Object asm/overlay061/ov61_0222E478.o
 }
 
 Overlay overlay62
 {
 	After overlay61
-	Object asm/ov62_0222F2C0.o
-	Object asm/ov62_022300D8.o
-	Object asm/ov62_02231690.o
-	Object asm/ov62_02234A10.o
-	Object asm/ov62_02235278.o
-	Object asm/ov62_02235E64.o
-	Object asm/ov62_02236CBC.o
-	Object asm/ov62_02237D24.o
-	Object asm/ov62_02239D60.o
-	Object asm/ov62_0223CAEC.o
-	Object asm/ov62_0223DFA8.o
-	Object asm/ov62_0224112C.o
-	Object asm/ov62_02241204.o
-	Object asm/ov62_02246B00.o
-	Object asm/ov62_02247D74.o
-	Object asm/ov62_02248408.o
+	Object asm/overlay062/ov62_0222F2C0.o
+	Object asm/overlay062/ov62_022300D8.o
+	Object asm/overlay062/ov62_02231690.o
+	Object asm/overlay062/ov62_02234A10.o
+	Object asm/overlay062/ov62_02235278.o
+	Object asm/overlay062/ov62_02235E64.o
+	Object asm/overlay062/ov62_02236CBC.o
+	Object asm/overlay062/ov62_02237D24.o
+	Object asm/overlay062/ov62_02239D60.o
+	Object asm/overlay062/ov62_0223CAEC.o
+	Object asm/overlay062/ov62_0223DFA8.o
+	Object asm/overlay062/ov62_0224112C.o
+	Object asm/overlay062/ov62_02241204.o
+	Object asm/overlay062/ov62_02246B00.o
+	Object asm/overlay062/ov62_02247D74.o
+	Object asm/overlay062/ov62_02248408.o
 }
 
 Overlay overlay63
 {
 	After overlay60
-	Object asm/ov63_0222AE60.o
-	Object asm/ov63_0222BCE8.o
-	Object asm/ov63_0222BE18.o
-	Object asm/ov63_0222CA88.o
-	Object asm/ov63_0222CCE4.o
-	Object asm/ov63_0222D160.o
-	Object asm/ov63_0222D1C0.o
-	Object asm/ov63_0222D77C.o
+	Object asm/overlay063/ov63_0222AE60.o
+	Object asm/overlay063/ov63_0222BCE8.o
+	Object asm/overlay063/ov63_0222BE18.o
+	Object asm/overlay063/ov63_0222CA88.o
+	Object asm/overlay063/ov63_0222CCE4.o
+	Object asm/overlay063/ov63_0222D160.o
+	Object asm/overlay063/ov63_0222D1C0.o
+	Object asm/overlay063/ov63_0222D77C.o
 }
 
 Overlay overlay64
 {
 	After overlay63
-	Object asm/ov64_0222DCE0.o
+	Object asm/overlay064/ov64_0222DCE0.o
 }
 
 Overlay overlay65
 {
 	After overlay63
-	Object asm/ov65_0222DCE0.o
-	Object asm/ov65_02235060.o
-	Object asm/ov65_02236474.o
-	Object asm/ov65_0223648C.o
+	Object asm/overlay065/ov65_0222DCE0.o
+	Object asm/overlay065/ov65_02235060.o
+	Object asm/overlay065/ov65_02236474.o
+	Object asm/overlay065/ov65_0223648C.o
 }
 
 Overlay overlay66
 {
 	After overlay63
-	Object asm/ov66_0222DCE0.o
-	Object asm/ov66_0222DDF0.o
-	Object asm/ov66_02230C44.o
-	Object asm/ov66_02231428.o
-	Object asm/ov66_0223177C.o
-	Object asm/ov66_022324F0.o
-	Object asm/ov66_022343A8.o
-	Object asm/ov66_02234EA8.o
-	Object asm/ov66_02234FC4.o
-	Object asm/ov66_0223CA1C.o
-	Object asm/ov66_02241184.o
-	Object asm/ov66_02241BD8.o
-	Object asm/ov66_02242C08.o
-	Object asm/ov66_02246290.o
-	Object asm/ov66_022462DC.o
-	Object asm/ov66_0224640C.o
-	Object asm/ov66_02246588.o
-	Object asm/ov66_022483C4.o
-	Object asm/ov66_0224B414.o
-	Object asm/ov66_0224D450.o
-	Object asm/ov66_0224D5A8.o
-	Object asm/ov66_022534B8.o
-	Object asm/ov66_02255ADC.o
-	Object asm/ov66_02257C4C.o
-	Object asm/ov66_0225B6D4.o
+	Object asm/overlay066/ov66_0222DCE0.o
+	Object asm/overlay066/ov66_0222DDF0.o
+	Object asm/overlay066/ov66_02230C44.o
+	Object asm/overlay066/ov66_02231428.o
+	Object asm/overlay066/ov66_0223177C.o
+	Object asm/overlay066/ov66_022324F0.o
+	Object asm/overlay066/ov66_022343A8.o
+	Object asm/overlay066/ov66_02234EA8.o
+	Object asm/overlay066/ov66_02234FC4.o
+	Object asm/overlay066/ov66_0223CA1C.o
+	Object asm/overlay066/ov66_02241184.o
+	Object asm/overlay066/ov66_02241BD8.o
+	Object asm/overlay066/ov66_02242C08.o
+	Object asm/overlay066/ov66_02246290.o
+	Object asm/overlay066/ov66_022462DC.o
+	Object asm/overlay066/ov66_0224640C.o
+	Object asm/overlay066/ov66_02246588.o
+	Object asm/overlay066/ov66_022483C4.o
+	Object asm/overlay066/ov66_0224B414.o
+	Object asm/overlay066/ov66_0224D450.o
+	Object asm/overlay066/ov66_0224D5A8.o
+	Object asm/overlay066/ov66_022534B8.o
+	Object asm/overlay066/ov66_02255ADC.o
+	Object asm/overlay066/ov66_02257C4C.o
+	Object asm/overlay066/ov66_0225B6D4.o
 }
 
 Overlay overlay67
 {
 	After overlay66
-	Object asm/ov67_0225C700.o
+	Object asm/overlay067/ov67_0225C700.o
 }
 
 Overlay overlay68
 {
 	After overlay66
-	Object asm/ov68_0225C700.o
+	Object asm/overlay068/ov68_0225C700.o
 }
 
 Overlay overlay69
 {
 	After overlay66
-	Object asm/ov69_0225C700.o
+	Object asm/overlay069/ov69_0225C700.o
 }
 
 Overlay overlay70
 {
 	After overlay66
-	Object asm/ov70_0225C700.o
-	Object asm/ov70_0225C858.o
-	Object asm/ov70_0225C9B4.o
-	Object asm/ov70_0225D9A4.o
-	Object asm/ov70_02260A70.o
-	Object asm/ov70_02260B44.o
-	Object asm/ov70_02261E10.o
-	Object asm/ov70_02262DA8.o
-	Object asm/ov70_022630A4.o
-	Object asm/ov70_02265F38.o
-	Object asm/ov70_02266E9C.o
-	Object asm/ov70_02269190.o
-	Object asm/ov70_0226C338.o
-	Object asm/ov70_0226C60C.o
-	Object asm/ov70_0226C8B4.o
-	Object asm/ov70_0226CC74.o
-	Object asm/ov70_0226CE54.o
+	Object asm/overlay070/ov70_0225C700.o
+	Object asm/overlay070/ov70_0225C858.o
+	Object asm/overlay070/ov70_0225C9B4.o
+	Object asm/overlay070/ov70_0225D9A4.o
+	Object asm/overlay070/ov70_02260A70.o
+	Object asm/overlay070/ov70_02260B44.o
+	Object asm/overlay070/ov70_02261E10.o
+	Object asm/overlay070/ov70_02262DA8.o
+	Object asm/overlay070/ov70_022630A4.o
+	Object asm/overlay070/ov70_02265F38.o
+	Object asm/overlay070/ov70_02266E9C.o
+	Object asm/overlay070/ov70_02269190.o
+	Object asm/overlay070/ov70_0226C338.o
+	Object asm/overlay070/ov70_0226C60C.o
+	Object asm/overlay070/ov70_0226C8B4.o
+	Object asm/overlay070/ov70_0226CC74.o
+	Object asm/overlay070/ov70_0226CE54.o
 }
 
 Overlay overlay71
 {
 	After overlay12
-	Object asm/ov71_0223B140.o
-	Object asm/ov71_0223C69C.o
-	Object asm/ov71_0223CF0C.o
-	Object asm/ov71_0223D324.o
+	Object asm/overlay071/ov71_0223B140.o
+	Object asm/overlay071/ov71_0223C69C.o
+	Object asm/overlay071/ov71_0223CF0C.o
+	Object asm/overlay071/ov71_0223D324.o
 }
 
 Overlay overlay72
 {
 	After overlay71
-	Object asm/ov72_0223D7A0.o
+	Object asm/overlay072/ov72_0223D7A0.o
 }
 
 Overlay overlay73
 {
 	After main
-	Object asm/ov73_021D0D80.o
-	Object asm/ov73_021D3250.o
+	Object asm/overlay073/ov73_021D0D80.o
+	Object asm/overlay073/ov73_021D3250.o
 }
 
 Overlay overlay74
 {
 	After main
-	Object asm/ov74_021D0D80.o
+	Object asm/overlay074/ov74_021D0D80.o
 }
 
 Overlay overlay75
 {
 	After main
-	Object asm/ov75_021D0D80.o
+	Object asm/overlay075/ov75_021D0D80.o
 }
 
 Overlay overlay76
 {
 	After overlay12
-	Object asm/ov76_0223B140.o
-	Object asm/ov76_0223B870.o
-	Object asm/ov76_0223D338.o
+	Object asm/overlay076/ov76_0223B140.o
+	Object asm/overlay076/ov76_0223B870.o
+	Object asm/overlay076/ov76_0223D338.o
 }
 
 Overlay overlay77
 {
 	After main
-	Object asm/ov77_021D0D80.o
-	Object asm/ov77_021D25B0.o
-	Object asm/ov77_021D54B0.o
-	Object asm/ov77_021D6670.o
-	Object asm/ov77_021D6C70.o
+	Object asm/overlay077/ov77_021D0D80.o
+	Object asm/overlay077/ov77_021D25B0.o
+	Object asm/overlay077/ov77_021D54B0.o
+	Object asm/overlay077/ov77_021D6670.o
+	Object asm/overlay077/ov77_021D6C70.o
 }
 
 Overlay overlay78
 {
 	After main
-	Object asm/ov78_021D0D80.o
+	Object asm/overlay078/ov78_021D0D80.o
 }
 
 Overlay overlay79
 {
 	After main
-	Object asm/ov79_021D0D80.o
-	Object asm/ov79_021D183C.o
-	Object asm/ov79_021D20F4.o
-	Object asm/ov79_021D2268.o
-	Object asm/ov79_021D3768.o
+	Object asm/overlay079/ov79_021D0D80.o
+	Object asm/overlay079/ov79_021D183C.o
+	Object asm/overlay079/ov79_021D20F4.o
+	Object asm/overlay079/ov79_021D2268.o
+	Object asm/overlay079/ov79_021D3768.o
 }
 
 Overlay overlay80
 {
 	After main
-	Object asm/ov80_021D0D80.o
-	Object asm/ov80_021D1458.o
-	Object asm/ov80_021D2A08.o
-	Object asm/ov80_021D2AF4.o
+	Object asm/overlay080/ov80_021D0D80.o
+	Object asm/overlay080/ov80_021D1458.o
+	Object asm/overlay080/ov80_021D2A08.o
+	Object asm/overlay080/ov80_021D2AF4.o
 }
 
 Overlay overlay81
 {
 	After main
-	Object asm/ov81_021D0D80.o
-	Object asm/ov81_021D1610.o
+	Object asm/overlay081/ov81_021D0D80.o
+	Object asm/overlay081/ov81_021D1610.o
 }
 
 Overlay overlay82
 {
 	After overlay12
-	Object asm/ov82_0223B140.o
-	Object asm/ov82_0223B2E0.o
+	Object asm/overlay082/ov82_0223B140.o
+	Object asm/overlay082/ov82_0223B2E0.o
 }
 
 Overlay overlay83
 {
 	After overlay82
-	Object asm/ov83_0223B5A0.o
-	Object asm/ov83_0223C958.o
-	Object asm/ov83_0223D144.o
-	Object asm/ov83_0223D150.o
-	Object asm/ov83_0223D4CC.o
-	Object asm/ov83_0223D6A8.o
-	Object asm/ov83_0223F7F4.o
+	Object asm/overlay083/ov83_0223B5A0.o
+	Object asm/overlay083/ov83_0223C958.o
+	Object asm/overlay083/ov83_0223D144.o
+	Object asm/overlay083/ov83_0223D150.o
+	Object asm/overlay083/ov83_0223D4CC.o
+	Object asm/overlay083/ov83_0223D6A8.o
+	Object asm/overlay083/ov83_0223F7F4.o
 }
 
 Overlay overlay84
 {
 	After overlay82
-	Object asm/ov84_0223B5A0.o
-	Object asm/ov84_0223F040.o
-	Object asm/ov84_022403F4.o
+	Object asm/overlay084/ov84_0223B5A0.o
+	Object asm/overlay084/ov84_0223F040.o
+	Object asm/overlay084/ov84_022403F4.o
 }
 
 Overlay overlay85
 {
 	After overlay84
-	Object asm/ov85_02241440.o
+	Object asm/overlay085/ov85_02241440.o
 }
 
 Overlay overlay86
 {
 	After overlay12
-	Object asm/ov86_0223B140.o
+	Object asm/overlay086/ov86_0223B140.o
 }
 
 Overlay overlay87
 {
 	After main
-	Object asm/ov87_021D0D80.o
-	Object asm/ov87_021D106C.o
+	Object asm/overlay087/ov87_021D0D80.o
+	Object asm/overlay087/ov87_021D106C.o
 }
 
 Overlay overlay88
 {
 	After overlay12
-	Object asm/ov88_0223B140.o
-	Object asm/ov88_0223E9C4.o
+	Object asm/overlay088/ov88_0223B140.o
+	Object asm/overlay088/ov88_0223E9C4.o
 }
 
 Overlay overlay89
@@ -1869,145 +1869,145 @@ Overlay overlay89
 Overlay overlay90
 {
 	After main
-	Object asm/ov90_021D0D80.o
+	Object asm/overlay090/ov90_021D0D80.o
 }
 
 Overlay overlay91
 {
 	After main
-	Object asm/ov91_021D0D80.o
+	Object asm/overlay091/ov91_021D0D80.o
 }
 
 Overlay overlay92
 {
 	After main
-	Object asm/ov92_021D0D80.o
+	Object asm/overlay092/ov92_021D0D80.o
 }
 
 Overlay overlay93
 {
 	After main
-	Object asm/ov93_021D0D80.o
-	Object asm/ov93_021D111C.o
+	Object asm/overlay093/ov93_021D0D80.o
+	Object asm/overlay093/ov93_021D111C.o
 }
 
 Overlay overlay94
 {
 	After overlay12
-	Object asm/ov94_0223B140.o
-	Object asm/ov94_0223BCB0.o
-	Object asm/ov94_0223C610.o
-	Object asm/ov94_0223D0C4.o
-	Object asm/ov94_0223DC04.o
-	Object asm/ov94_0223E46C.o
-	Object asm/ov94_0223FB48.o
-	Object asm/ov94_022414B8.o
-	Object asm/ov94_02242AD0.o
-	Object asm/ov94_02243EF8.o
-	Object asm/ov94_022443E0.o
-	Object asm/ov94_022444C8.o
-	Object asm/ov94_02244950.o
+	Object asm/overlay094/ov94_0223B140.o
+	Object asm/overlay094/ov94_0223BCB0.o
+	Object asm/overlay094/ov94_0223C610.o
+	Object asm/overlay094/ov94_0223D0C4.o
+	Object asm/overlay094/ov94_0223DC04.o
+	Object asm/overlay094/ov94_0223E46C.o
+	Object asm/overlay094/ov94_0223FB48.o
+	Object asm/overlay094/ov94_022414B8.o
+	Object asm/overlay094/ov94_02242AD0.o
+	Object asm/overlay094/ov94_02243EF8.o
+	Object asm/overlay094/ov94_022443E0.o
+	Object asm/overlay094/ov94_022444C8.o
+	Object asm/overlay094/ov94_02244950.o
 }
 
 Overlay overlay95
 {
 	After overlay94
-	Object asm/ov95_02246C20.o
-	Object asm/ov95_022476F0.o
-	Object asm/ov95_02247B6C.o
-	Object asm/ov95_02248590.o
-	Object asm/ov95_02249740.o
-	Object asm/ov95_02249F90.o
-	Object asm/ov95_0224A390.o
-	Object asm/ov95_0224ABC0.o
-	Object asm/ov95_0224B3D8.o
+	Object asm/overlay095/ov95_02246C20.o
+	Object asm/overlay095/ov95_022476F0.o
+	Object asm/overlay095/ov95_02247B6C.o
+	Object asm/overlay095/ov95_02248590.o
+	Object asm/overlay095/ov95_02249740.o
+	Object asm/overlay095/ov95_02249F90.o
+	Object asm/overlay095/ov95_0224A390.o
+	Object asm/overlay095/ov95_0224ABC0.o
+	Object asm/overlay095/ov95_0224B3D8.o
 }
 
 Overlay overlay96
 {
 	After overlay12
-	Object asm/ov96_0223B140.o
-	Object asm/ov96_0223B6A0.o
-	Object asm/ov96_0223BCE0.o
+	Object asm/overlay096/ov96_0223B140.o
+	Object asm/overlay096/ov96_0223B6A0.o
+	Object asm/overlay096/ov96_0223BCE0.o
 }
 
 Overlay overlay97
 {
 	After overlay60
-	Object asm/ov97_0222AE60.o
-	Object asm/ov97_0222C174.o
-	Object asm/ov97_0222D04C.o
-	Object asm/ov97_0222D2F8.o
-	Object asm/ov97_0222D30C.o
-	Object asm/ov97_02230410.o
-	Object asm/ov97_02232054.o
-	Object asm/ov97_02232200.o
-	Object asm/ov97_02232DC8.o
-	Object asm/ov97_02233408.o
-	Object asm/ov97_022337FC.o
-	Object asm/ov97_02233814.o
-	Object asm/ov97_02233B18.o
-	Object asm/ov97_02235D18.o
-	Object asm/ov97_0223635C.o
-	Object asm/ov97_02236380.o
-	Object asm/ov97_02237520.o
-	Object asm/ov97_02237694.o
-	Object asm/ov97_02238534.o
-	Object asm/ov97_02238D74.o
-	Object asm/ov97_022392E4.o
-	Object asm/ov97_02239420.o
+	Object asm/overlay097/ov97_0222AE60.o
+	Object asm/overlay097/ov97_0222C174.o
+	Object asm/overlay097/ov97_0222D04C.o
+	Object asm/overlay097/ov97_0222D2F8.o
+	Object asm/overlay097/ov97_0222D30C.o
+	Object asm/overlay097/ov97_02230410.o
+	Object asm/overlay097/ov97_02232054.o
+	Object asm/overlay097/ov97_02232200.o
+	Object asm/overlay097/ov97_02232DC8.o
+	Object asm/overlay097/ov97_02233408.o
+	Object asm/overlay097/ov97_022337FC.o
+	Object asm/overlay097/ov97_02233814.o
+	Object asm/overlay097/ov97_02233B18.o
+	Object asm/overlay097/ov97_02235D18.o
+	Object asm/overlay097/ov97_0223635C.o
+	Object asm/overlay097/ov97_02236380.o
+	Object asm/overlay097/ov97_02237520.o
+	Object asm/overlay097/ov97_02237694.o
+	Object asm/overlay097/ov97_02238534.o
+	Object asm/overlay097/ov97_02238D74.o
+	Object asm/overlay097/ov97_022392E4.o
+	Object asm/overlay097/ov97_02239420.o
 }
 
 Overlay overlay98
 {
 	After overlay94
-	Object asm/ov98_02246C20.o
-	Object asm/ov98_022471C8.o
-	Object asm/ov98_022499C8.o
+	Object asm/overlay098/ov98_02246C20.o
+	Object asm/overlay098/ov98_022471C8.o
+	Object asm/overlay098/ov98_022499C8.o
 }
 
 Overlay overlay99
 {
 	After main
-	Object asm/ov99_021D0D80.o
-	Object asm/ov99_021D1A54.o
-	Object asm/ov99_021D2C08.o
-	Object asm/ov99_021D2E28.o
-	Object asm/ov99_021D340C.o
-	Object asm/ov99_021D3A40.o
-	Object asm/ov99_021D3C18.o
-	Object asm/ov99_021D3DE0.o
-	Object asm/ov99_021D3E78.o
-	Object asm/ov99_021D4134.o
+	Object asm/overlay099/ov99_021D0D80.o
+	Object asm/overlay099/ov99_021D1A54.o
+	Object asm/overlay099/ov99_021D2C08.o
+	Object asm/overlay099/ov99_021D2E28.o
+	Object asm/overlay099/ov99_021D340C.o
+	Object asm/overlay099/ov99_021D3A40.o
+	Object asm/overlay099/ov99_021D3C18.o
+	Object asm/overlay099/ov99_021D3DE0.o
+	Object asm/overlay099/ov99_021D3E78.o
+	Object asm/overlay099/ov99_021D4134.o
 }
 
 Overlay overlay100
 {
 	After main
-	Object asm/ov100_021D0D80.o
-	Object asm/ov100_021D13E4.o
-	Object asm/ov100_021D1C44.o
-	Object asm/ov100_021D2F0C.o
-	Object asm/ov100_021D400C.o
-	Object asm/ov100_021D44C0.o
-	Object asm/ov100_021D46C8.o
-	Object asm/ov100_021D4E04.o
+	Object asm/overlay100/ov100_021D0D80.o
+	Object asm/overlay100/ov100_021D13E4.o
+	Object asm/overlay100/ov100_021D1C44.o
+	Object asm/overlay100/ov100_021D2F0C.o
+	Object asm/overlay100/ov100_021D400C.o
+	Object asm/overlay100/ov100_021D44C0.o
+	Object asm/overlay100/ov100_021D46C8.o
+	Object asm/overlay100/ov100_021D4E04.o
 }
 
 Overlay overlay101
 {
 	After main
-	Object asm/ov101_021D0D80.o
-	Object asm/ov101_021D1A28.o
-	Object asm/ov101_021D59AC.o
-	Object asm/ov101_021D7E48.o
-	Object asm/ov101_021D94D8.o
+	Object asm/overlay101/ov101_021D0D80.o
+	Object asm/overlay101/ov101_021D1A28.o
+	Object asm/overlay101/ov101_021D59AC.o
+	Object asm/overlay101/ov101_021D7E48.o
+	Object asm/overlay101/ov101_021D94D8.o
 }
 
 Overlay overlay102
 {
 	After main
-	Object asm/ov102_021D0D80.o
+	Object asm/overlay102/ov102_021D0D80.o
 }
 
 Overlay overlay103
@@ -2019,184 +2019,184 @@ Overlay overlay103
 Overlay overlay104
 {
 	After overlay63
-	Object asm/ov104_0222DCE0.o
-	Object asm/ov104_0222E63C.o
-	Object asm/ov104_0222E930.o
-	Object asm/ov104_0222EA90.o
-	Object asm/ov104_0222ECE8.o
-	Object asm/ov104_0222FBE4.o
-	Object asm/ov104_02231F74.o
-	Object asm/ov104_022332B4.o
-	Object asm/ov104_022339B4.o
-	Object asm/ov104_02234838.o
-	Object asm/ov104_02234DB4.o
-	Object asm/ov104_022358E8.o
-	Object asm/ov104_022361B4.o
-	Object asm/ov104_02237378.o
-	Object asm/ov104_02237DD8.o
-	Object asm/ov104_02239080.o
-	Object asm/ov104_02239130.o
-	Object asm/ov104_022394A4.o
-	Object asm/ov104_022395F0.o
-	Object asm/ov104_02239C58.o
-	Object asm/ov104_0223A0C4.o
-	Object asm/ov104_0223A7F4.o
-	Object asm/ov104_0223AF58.o
-	Object asm/ov104_0223B6F4.o
-	Object asm/ov104_0223BCBC.o
-	Object asm/ov104_0223C164.o
-	Object asm/ov104_0223C2D4.o
-	Object asm/ov104_0223D5D0.o
-	Object asm/ov104_0223D768.o
-	Object asm/ov104_0223D860.o
-	Object asm/ov104_0223D9E4.o
-	Object asm/ov104_0223DC7C.o
-	Object asm/ov104_0223E894.o
+	Object asm/overlay104/ov104_0222DCE0.o
+	Object asm/overlay104/ov104_0222E63C.o
+	Object asm/overlay104/ov104_0222E930.o
+	Object asm/overlay104/ov104_0222EA90.o
+	Object asm/overlay104/ov104_0222ECE8.o
+	Object asm/overlay104/ov104_0222FBE4.o
+	Object asm/overlay104/ov104_02231F74.o
+	Object asm/overlay104/ov104_022332B4.o
+	Object asm/overlay104/ov104_022339B4.o
+	Object asm/overlay104/ov104_02234838.o
+	Object asm/overlay104/ov104_02234DB4.o
+	Object asm/overlay104/ov104_022358E8.o
+	Object asm/overlay104/ov104_022361B4.o
+	Object asm/overlay104/ov104_02237378.o
+	Object asm/overlay104/ov104_02237DD8.o
+	Object asm/overlay104/ov104_02239080.o
+	Object asm/overlay104/ov104_02239130.o
+	Object asm/overlay104/ov104_022394A4.o
+	Object asm/overlay104/ov104_022395F0.o
+	Object asm/overlay104/ov104_02239C58.o
+	Object asm/overlay104/ov104_0223A0C4.o
+	Object asm/overlay104/ov104_0223A7F4.o
+	Object asm/overlay104/ov104_0223AF58.o
+	Object asm/overlay104/ov104_0223B6F4.o
+	Object asm/overlay104/ov104_0223BCBC.o
+	Object asm/overlay104/ov104_0223C164.o
+	Object asm/overlay104/ov104_0223C2D4.o
+	Object asm/overlay104/ov104_0223D5D0.o
+	Object asm/overlay104/ov104_0223D768.o
+	Object asm/overlay104/ov104_0223D860.o
+	Object asm/overlay104/ov104_0223D9E4.o
+	Object asm/overlay104/ov104_0223DC7C.o
+	Object asm/overlay104/ov104_0223E894.o
 }
 
 Overlay overlay105
 {
 	After overlay104
-	Object asm/ov105_02241AE0.o
-	Object asm/ov105_02245AAC.o
-	Object asm/ov105_02245CD0.o
-	Object asm/ov105_02245DC4.o
-	Object asm/ov105_02245E54.o
-	Object asm/ov105_02245FB8.o
-	Object asm/ov105_02246214.o
+	Object asm/overlay105/ov105_02241AE0.o
+	Object asm/overlay105/ov105_02245AAC.o
+	Object asm/overlay105/ov105_02245CD0.o
+	Object asm/overlay105/ov105_02245DC4.o
+	Object asm/overlay105/ov105_02245E54.o
+	Object asm/overlay105/ov105_02245FB8.o
+	Object asm/overlay105/ov105_02246214.o
 }
 
 Overlay overlay106
 {
 	After overlay104
-	Object asm/ov106_02241AE0.o
-	Object asm/ov106_02243310.o
-	Object asm/ov106_022435FC.o
-	Object asm/ov106_022436E0.o
+	Object asm/overlay106/ov106_02241AE0.o
+	Object asm/overlay106/ov106_02243310.o
+	Object asm/overlay106/ov106_022435FC.o
+	Object asm/overlay106/ov106_022436E0.o
 }
 
 Overlay overlay107
 {
 	After overlay104
-	Object asm/ov107_02241AE0.o
-	Object asm/ov107_02245EB0.o
-	Object asm/ov107_02249604.o
-	Object asm/ov107_02249B1C.o
-	Object asm/ov107_02249C98.o
-	Object asm/ov107_02249D14.o
+	Object asm/overlay107/ov107_02241AE0.o
+	Object asm/overlay107/ov107_02245EB0.o
+	Object asm/overlay107/ov107_02249604.o
+	Object asm/overlay107/ov107_02249B1C.o
+	Object asm/overlay107/ov107_02249C98.o
+	Object asm/overlay107/ov107_02249D14.o
 }
 
 Overlay overlay108
 {
 	After overlay104
-	Object asm/ov108_02241AE0.o
-	Object asm/ov108_02243030.o
-	Object asm/ov108_0224351C.o
-	Object asm/ov108_02243630.o
+	Object asm/overlay108/ov108_02241AE0.o
+	Object asm/overlay108/ov108_02243030.o
+	Object asm/overlay108/ov108_0224351C.o
+	Object asm/overlay108/ov108_02243630.o
 }
 
 Overlay overlay109
 {
 	After main
-	Object asm/ov109_021D0D80.o
-	Object asm/ov109_021D3D50.o
+	Object asm/overlay109/ov109_021D0D80.o
+	Object asm/overlay109/ov109_021D3D50.o
 }
 
 Overlay overlay110
 {
 	After main
-	Object asm/ov110_021D0D80.o
-	Object asm/ov110_021D2124.o
+	Object asm/overlay110/ov110_021D0D80.o
+	Object asm/overlay110/ov110_021D2124.o
 }
 
 Overlay overlay111
 {
 	After main
-	Object asm/ov111_021D0D80.o
-	Object asm/ov111_021D2F80.o
-	Object asm/ov111_021D33F4.o
-	Object asm/ov111_021D3548.o
+	Object asm/overlay111/ov111_021D0D80.o
+	Object asm/overlay111/ov111_021D2F80.o
+	Object asm/overlay111/ov111_021D33F4.o
+	Object asm/overlay111/ov111_021D3548.o
 }
 
 Overlay overlay112
 {
 	After overlay66
-	Object asm/ov112_0225C700.o
+	Object asm/overlay112/ov112_0225C700.o
 }
 
 Overlay overlay113
 {
 	After overlay66
-	Object asm/ov113_0225C700.o
-	Object asm/ov113_0225E368.o
-	Object asm/ov113_02260620.o
-	Object asm/ov113_022607D8.o
+	Object asm/overlay113/ov113_0225C700.o
+	Object asm/overlay113/ov113_0225E368.o
+	Object asm/overlay113/ov113_02260620.o
+	Object asm/overlay113/ov113_022607D8.o
 }
 
 Overlay overlay114
 {
 	After overlay66
-	Object asm/ov114_0225C700.o
-	Object asm/ov114_02260038.o
-	Object asm/ov114_02260044.o
+	Object asm/overlay114/ov114_0225C700.o
+	Object asm/overlay114/ov114_02260038.o
+	Object asm/overlay114/ov114_02260044.o
 }
 
 Overlay overlay115
 {
 	After overlay114
-	Object asm/ov115_02260440.o
-	Object asm/ov115_02260BBC.o
-	Object asm/ov115_02260CEC.o
-	Object asm/ov115_02265A18.o
-	Object asm/ov115_02265A24.o
+	Object asm/overlay115/ov115_02260440.o
+	Object asm/overlay115/ov115_02260BBC.o
+	Object asm/overlay115/ov115_02260CEC.o
+	Object asm/overlay115/ov115_02265A18.o
+	Object asm/overlay115/ov115_02265A24.o
 }
 
 Overlay overlay116
 {
 	After overlay114
-	Object asm/ov116_02260440.o
-	Object asm/ov116_022604C4.o
-	Object asm/ov116_02261870.o
-	Object asm/ov116_02262A44.o
-	Object asm/ov116_02262A8C.o
-	Object asm/ov116_0226432C.o
-	Object asm/ov116_02266FEC.o
+	Object asm/overlay116/ov116_02260440.o
+	Object asm/overlay116/ov116_022604C4.o
+	Object asm/overlay116/ov116_02261870.o
+	Object asm/overlay116/ov116_02262A44.o
+	Object asm/overlay116/ov116_02262A8C.o
+	Object asm/overlay116/ov116_0226432C.o
+	Object asm/overlay116/ov116_02266FEC.o
 }
 
 Overlay overlay117
 {
 	After overlay114
-	Object asm/ov117_02260440.o
-	Object asm/ov117_02260668.o
-	Object asm/ov117_022626B0_thumb.o
-	Object asm/ov117_022626B0_arm.o
-	Object asm/ov117_02263AF0.o
-	Object asm/ov117_022665FC.o
-	Object asm/ov117_022666C0.o
+	Object asm/overlay117/ov117_02260440.o
+	Object asm/overlay117/ov117_02260668.o
+	Object asm/overlay117/ov117_022626B0_thumb.o
+	Object asm/overlay117/ov117_022626B0_arm.o
+	Object asm/overlay117/ov117_02263AF0.o
+	Object asm/overlay117/ov117_022665FC.o
+	Object asm/overlay117/ov117_022666C0.o
 }
 
 Overlay overlay118
 {
 	After main
-	Object asm/ov118_021D0D80.o
+	Object asm/overlay118/ov118_021D0D80.o
 }
 
 Overlay overlay119
 {
 	After main
-	Object asm/ov119_021D0D80.o
-	Object asm/ov119_021D191C.o
+	Object asm/overlay119/ov119_021D0D80.o
+	Object asm/overlay119/ov119_021D191C.o
 }
 
 Overlay overlay120
 {
 	After main
-	Object asm/ov120_021D0D80.o
+	Object asm/overlay120/ov120_021D0D80.o
 }
 
 Overlay overlay121
 {
 	After main
-	Object asm/ov121_021D0D80.o
+	Object asm/overlay121/ov121_021D0D80.o
 }
 
