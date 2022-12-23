@@ -94,7 +94,7 @@ static inline void inline_ov61_0222C3B0_sub_1 (UnkStruct_ov61_0222C3B0 * param0)
                 v3 = (16 << 8);
                 v5 = 1;
             }
-        } while (1);
+        } while (TRUE);
     }
     DC_FlushRange(param0->unk_88, (((16 << 8) / 0x300 + 2) * (4 - 1)) * 16 * sizeof(u16));
 }

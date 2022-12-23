@@ -9,7 +9,7 @@ Static main
 {
 	Address 0x02000000
 	StackSize 0 2048
-	Object asm/unk_02000C88.o
+	Object src/main.o
 	Object asm/unk_0200112C.o
 	Object asm/unk_020E4C40.o
 	Object asm/unk_02001AF4.o
