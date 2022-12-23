@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_FUNCPTR_0203E724_H
+#define POKEPLATINUM_FUNCPTR_0203E724_H
+
+#include "struct_decls/struct_0203E724_decl.h"
+
+typedef BOOL (* UnkFuncPtr_0203E724)(UnkStruct_0203E724 *);
+
+#endif // POKEPLATINUM_FUNCPTR_0203E724_H

@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_STRUCT_OV99_021D2CB0_SUB1_H
+#define POKEPLATINUM_STRUCT_OV99_021D2CB0_SUB1_H
+
+#include "overlay099/struct_ov99_021D5434.h"
+
+typedef struct {
+    UnkStruct_ov99_021D5434 unk_00[2];
+} UnkStruct_ov99_021D2CB0_sub1;
+
+#endif // POKEPLATINUM_STRUCT_OV99_021D2CB0_SUB1_H

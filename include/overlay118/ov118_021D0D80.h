@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_OV118_021D0D80_H
+#define POKEPLATINUM_OV118_021D0D80_H
+
+#include "struct_defs/struct_0207F248.h"
+
+void ov118_021D0D80(UnkStruct_0207F248 * param0);
+int ov118_021D0DBC(UnkStruct_0207F248 * param0);
+
+#endif // POKEPLATINUM_OV118_021D0D80_H

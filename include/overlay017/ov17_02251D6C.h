@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_OV17_02251D6C_H
+#define POKEPLATINUM_OV17_02251D6C_H
+
+#include "overlay017/struct_ov17_0224FCA0.h"
+
+void ov17_02251D6C(UnkStruct_ov17_0224FCA0 * param0);
+
+#endif // POKEPLATINUM_OV17_02251D6C_H

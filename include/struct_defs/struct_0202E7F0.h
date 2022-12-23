@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_STRUCT_0202E7F0_H
+#define POKEPLATINUM_STRUCT_0202E7F0_H
+
+typedef struct {
+    u8 unk_00;
+    u8 unk_01;
+} UnkStruct_0202E7F0;
+
+#endif // POKEPLATINUM_STRUCT_0202E7F0_H

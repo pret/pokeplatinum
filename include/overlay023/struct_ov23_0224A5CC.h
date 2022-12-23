@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_STRUCT_OV23_0224A5CC_H
+#define POKEPLATINUM_STRUCT_OV23_0224A5CC_H
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+} UnkStruct_ov23_0224A5CC;
+
+#endif // POKEPLATINUM_STRUCT_OV23_0224A5CC_H

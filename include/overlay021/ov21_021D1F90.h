@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_OV21_021D1F90_H
+#define POKEPLATINUM_OV21_021D1F90_H
+
+int ov21_021D1F90(void);
+int ov21_021D1F94(int param0);
+int ov21_021D1F98(void);
+int ov21_021D1F9C(void);
+int ov21_021D1FA0(void);
+
+#endif // POKEPLATINUM_OV21_021D1F90_H

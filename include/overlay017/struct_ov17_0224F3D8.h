@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_STRUCT_OV17_0224F3D8_H
+#define POKEPLATINUM_STRUCT_OV17_0224F3D8_H
+
+typedef struct {
+    void * unk_00[4];
+} UnkStruct_ov17_0224F3D8;
+
+#endif // POKEPLATINUM_STRUCT_OV17_0224F3D8_H

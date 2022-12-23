@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_STRUCT_OV113_0225CA04_H
+#define POKEPLATINUM_STRUCT_OV113_0225CA04_H
+
+#include "overlay113/struct_ov113_02260818.h"
+
+typedef struct {
+    UnkStruct_ov113_02260818 unk_00;
+} UnkStruct_ov113_0225CA04;
+
+#endif // POKEPLATINUM_STRUCT_OV113_0225CA04_H

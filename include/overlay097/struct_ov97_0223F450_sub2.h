@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_STRUCT_OV97_0223F450_SUB2_H
+#define POKEPLATINUM_STRUCT_OV97_0223F450_SUB2_H
+
+typedef struct {
+    u32 unk_00_0 : 1;
+    u32 unk_00_1 : 1;
+    u32 unk_00_2 : 30;
+} UnkStruct_ov97_0223F450_sub2;
+
+#endif // POKEPLATINUM_STRUCT_OV97_0223F450_SUB2_H

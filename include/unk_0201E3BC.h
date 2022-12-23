@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_UNK_0201E3BC_H
+#define POKEPLATINUM_UNK_0201E3BC_H
+
+u32 sub_0201E3BC(s32 param0, s32 param1, s32 param2, s32 param3);
+
+#endif // POKEPLATINUM_UNK_0201E3BC_H

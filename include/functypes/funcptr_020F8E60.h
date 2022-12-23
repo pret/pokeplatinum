@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_FUNCPTR_020F8E60_H
+#define POKEPLATINUM_FUNCPTR_020F8E60_H
+
+typedef void (* UnkFuncPtr_020F8E60)(int, int, void *, void *);
+
+#endif // POKEPLATINUM_FUNCPTR_020F8E60_H

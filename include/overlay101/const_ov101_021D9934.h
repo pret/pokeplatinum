@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_CONST_OV101_021D9934_H
+#define POKEPLATINUM_CONST_OV101_021D9934_H
+
+#include "overlay101/struct_ov101_021D9934.h"
+
+#include "enums.h"
+
+extern const UnkStruct_ov101_021D9934 Unk_ov101_021D9934[6][UnkEnum_ov101_021D9934_06];
+
+#endif // POKEPLATINUM_CONST_OV101_021D9934_H

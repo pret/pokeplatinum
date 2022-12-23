@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_DATA_021BF67C_H
+#define POKEPLATINUM_DATA_021BF67C_H
+
+#include "struct_defs/struct_021BF67C.h"
+
+extern UnkStruct_021BF67C Unk_021BF67C;
+
+#endif // POKEPLATINUM_DATA_021BF67C_H

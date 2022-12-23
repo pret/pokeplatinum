@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_STRUCT_OV94_0223BA88_SUB2_H
+#define POKEPLATINUM_STRUCT_OV94_0223BA88_SUB2_H
+
+typedef struct {
+    s16 unk_00;
+    s8 unk_02;
+    s8 unk_03;
+} UnkStruct_ov94_0223BA88_sub2;
+
+#endif // POKEPLATINUM_STRUCT_OV94_0223BA88_SUB2_H

@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_STRUCT_0204C4D0_SUB5_H
+#define POKEPLATINUM_STRUCT_0204C4D0_SUB5_H
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+} UnkStruct_0204C4D0_sub5;
+
+#endif // POKEPLATINUM_STRUCT_0204C4D0_SUB5_H

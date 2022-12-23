@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_OV100_021D1C44_H
+#define POKEPLATINUM_OV100_021D1C44_H
+
+#include "overlay100/struct_ov100_021D4DD8.h"
+
+void * ov100_021D2340(UnkStruct_ov100_021D4DD8 * param0);
+BOOL ov100_021D2428(void * param0);
+BOOL ov100_021D2C8C(void * param0);
+
+#endif // POKEPLATINUM_OV100_021D1C44_H

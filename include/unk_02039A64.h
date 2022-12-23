@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_UNK_02039A64_H
+#define POKEPLATINUM_UNK_02039A64_H
+
+void sub_02039A64(int param0, int param1);
+
+#endif // POKEPLATINUM_UNK_02039A64_H

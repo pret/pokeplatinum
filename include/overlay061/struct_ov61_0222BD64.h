@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_STRUCT_OV61_0222BD64_H
+#define POKEPLATINUM_STRUCT_OV61_0222BD64_H
+
+#include "overlay062/struct_ov62_0223DF10.h"
+
+typedef struct {
+    UnkStruct_ov62_0223DF10 unk_00;
+} UnkStruct_ov61_0222BD64;
+
+#endif // POKEPLATINUM_STRUCT_OV61_0222BD64_H

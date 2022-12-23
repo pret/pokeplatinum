@@ -1,0 +1,14 @@
+#ifndef POKEPLATINUM_UNK_02099550_H
+#define POKEPLATINUM_UNK_02099550_H
+
+#include "struct_decls/struct_021C0794_decl.h"
+
+void sub_02099550(void);
+void sub_02099560(void);
+void sub_02099570(void);
+void sub_02099580(void);
+void sub_02099590(UnkStruct_021C0794 * param0, int param1);
+void sub_020995B4(void);
+void sub_020995C4(void);
+
+#endif // POKEPLATINUM_UNK_02099550_H

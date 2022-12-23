@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_STRUCT_OV5_021EEC68_H
+#define POKEPLATINUM_STRUCT_OV5_021EEC68_H
+
+typedef struct UnkStruct_ov5_021EEC68_t {
+    fx32 unk_00;
+    fx32 unk_04;
+} UnkStruct_ov5_021EEC68;
+
+#endif // POKEPLATINUM_STRUCT_OV5_021EEC68_H

@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_CONST_OV76_0223EF3C_H
+#define POKEPLATINUM_CONST_OV76_0223EF3C_H
+
+#include "overlay076/struct_ov76_0223BF74.h"
+
+extern const UnkStruct_ov76_0223BF74 Unk_ov76_0223EF3C[5];
+
+#endif // POKEPLATINUM_CONST_OV76_0223EF3C_H

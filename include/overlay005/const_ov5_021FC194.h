@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_CONST_OV5_021FC194_H
+#define POKEPLATINUM_CONST_OV5_021FC194_H
+
+#include "overlay005/struct_ov5_021ECD10.h"
+
+extern const UnkStruct_ov5_021ECD10 Unk_ov5_021FC194[];
+
+#endif // POKEPLATINUM_CONST_OV5_021FC194_H

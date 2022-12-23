@@ -1,0 +1,10 @@
+#ifndef POKEPLATINUM_STRUCT_OV39_022563DC_1_H
+#define POKEPLATINUM_STRUCT_OV39_022563DC_1_H
+
+typedef struct {
+    u32 unk_00;
+    BOOL unk_04[6];
+    u16 unk_1C;
+} UnkStruct_ov39_022563DC_1;
+
+#endif // POKEPLATINUM_STRUCT_OV39_022563DC_1_H

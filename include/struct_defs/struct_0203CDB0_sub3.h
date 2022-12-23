@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_STRUCT_0203CDB0_SUB3_H
+#define POKEPLATINUM_STRUCT_0203CDB0_SUB3_H
+
+typedef struct {
+    u16 unk_00;
+    u16 unk_02;
+} UnkStruct_0203CDB0_sub3;
+
+#endif // POKEPLATINUM_STRUCT_0203CDB0_SUB3_H

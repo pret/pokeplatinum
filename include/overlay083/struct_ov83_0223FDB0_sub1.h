@@ -1,0 +1,11 @@
+#ifndef POKEPLATINUM_STRUCT_OV83_0223FDB0_SUB1_H
+#define POKEPLATINUM_STRUCT_OV83_0223FDB0_SUB1_H
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+    BOOL unk_08;
+    BOOL unk_0C;
+} UnkStruct_ov83_0223FDB0_sub1;
+
+#endif // POKEPLATINUM_STRUCT_OV83_0223FDB0_SUB1_H

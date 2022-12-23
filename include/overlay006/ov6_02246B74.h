@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_OV6_02246B74_H
+#define POKEPLATINUM_OV6_02246B74_H
+
+int ov6_02246B74(const int param0, const BOOL param1);
+
+#endif // POKEPLATINUM_OV6_02246B74_H
