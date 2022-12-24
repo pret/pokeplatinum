@@ -13,7 +13,9 @@ _frsb: ; 0x020E1A90
 	eor r0, r0, r1
 	arm_func_end _frsb
 
+	arm_func_start _fsub
 	arm_func_start _f_sub
+_fsub:
 _f_sub: ; 0x020E1A9C
 	eors r2, r0, r1
 	eormi r1, r1, #0x80000000

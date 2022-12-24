@@ -6,7 +6,9 @@
 	.text
 
 
+	arm_func_start _fadd
 	arm_func_start _f_add
+_fadd:
 _f_add: ; 0x020E0B00
 	eors r2, r0, r1
 	eormi r1, r1, #0x80000000

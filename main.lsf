@@ -1526,7 +1526,7 @@ Overlay overlay55
 Overlay overlay56
 {
 	After overlay25
-	Object asm/overlay056/ov56_022561C0.o
+	Object src/overlay056/ov56_022561C0.o
 }
 
 Overlay overlay57

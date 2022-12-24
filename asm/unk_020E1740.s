@@ -5,7 +5,9 @@
 	.text
 
 
+	arm_func_start _ffix
 	arm_func_start _f_ftoi
+_ffix:
 _f_ftoi: ; 0x020E1740
 	bic r1, r0, #0x80000000
 	mov r2, #0x9e

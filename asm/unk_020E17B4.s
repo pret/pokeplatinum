@@ -5,7 +5,9 @@
 	.text
 
 
+	arm_func_start _fflt
 	arm_func_start _f_itof
+_fflt:
 _f_itof: ; 0x020E17B4
 	ands r2, r0, #0x80000000
 	rsbmi r0, r0, #0
