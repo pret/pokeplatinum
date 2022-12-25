@@ -1,1 +1,0 @@
-.public FX_Sqrt
