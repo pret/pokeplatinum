@@ -151,6 +151,14 @@ static inline void GXS_DispOn(void) {
     reg_GXS_DB_DISPCNT |= REG_GXS_DB_DISPCNT_MODE_MASK;
 }
 
+static inline void GX_SetMasterBrightness(int brightness) {
+    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, brightness);
+}
+
+static inline void GXS_SetMasterBrightness(int brightness) {
+    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, brightness);
+}
+
 static inline void GX_SetDispSelect(GXDispSelect sel) {
     reg_GX_POWCNT = (reg_GX_POWCNT & ~REG_GX_POWCNT_DSEL_MASK) | (sel << REG_GX_POWCNT_DSEL_SHIFT);
 }
