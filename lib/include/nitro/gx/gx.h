@@ -90,6 +90,14 @@ typedef enum {
     GX_PLANEMASK_OBJ = 0x10
 } GXPlaneMask;
 
+typedef enum
+{
+    GX_WNDMASK_NONE = 0x00,
+    GX_WNDMASK_W0 = 0x01,
+    GX_WNDMASK_W1 = 0x02,
+    GX_WNDMASK_OW = 0x04
+} GXWndMask;
+
 void GX_SetGraphicsMode(GXDispMode dispMode, GXBGMode bgMode, GXBG0As bg0_2d3d);
 void GXS_SetGraphicsMode(GXBGMode bgMode);
 
@@ -161,6 +169,10 @@ static inline void GX_SetVisibleWnd(int window) {
 
 static inline void GXS_SetVisibleWnd(int window) {
     reg_GXS_DB_DISPCNT = (u32)((reg_GXS_DB_DISPCNT & ~(REG_GXS_DB_DISPCNT_W0_MASK | REG_GXS_DB_DISPCNT_W1_MASK | REG_GXS_DB_DISPCNT_OW_MASK)) | (window << REG_GXS_DB_DISPCNT_W0_SHIFT));
+}
+
+static inline void GXS_SetOBJVRamModeChar(GXOBJVRamModeChar mode) {
+    reg_GXS_DB_DISPCNT = (u32)(reg_GXS_DB_DISPCNT & ~(REG_GXS_DB_DISPCNT_EXOBJ_CH_MASK | REG_GXS_DB_DISPCNT_OBJMAP_CH_MASK) | mode);
 }
 
 #endif //NITRO_GX_GX_H_

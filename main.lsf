@@ -1298,7 +1298,7 @@ Overlay overlay23
 Overlay overlay24
 {
 	After overlay9
-	Object asm/overlay024/ov24_02253CE0.o
+	Object src/overlay024/ov24_02253CE0.o
 }
 
 Overlay overlay25
