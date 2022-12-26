@@ -1,9 +1,0 @@
-.public GF_AssertFail
-.public sub_020245BC
-.public sub_0202C9F4
-.public sub_0202CA10
-.public sub_0202CA28
-.public sub_0202CAB0
-.public sub_0202CBC8
-.public MI_CpuFill8
-.public MI_CpuCopy8
