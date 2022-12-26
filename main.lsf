@@ -123,19 +123,19 @@ Static main
 	Object src/unk_0202CBE4.o
 	Object src/unk_0202CC64.o
 	Object src/unk_0202CD50.o
-	Object asm/unk_0202D05C.o
-	Object asm/unk_0202D778.o
-	Object asm/unk_0202D7A8.o
-	Object asm/unk_0202DA40.o
-	Object asm/unk_0202DAB4.o
-	Object asm/unk_0202DF8C.o
-	Object asm/unk_0202E2CC.o
-	Object asm/unk_0202E840.o
-	Object asm/unk_0202EEC0.o
-	Object asm/unk_0202F108.o
+	Object src/unk_0202D05C.o
+	Object src/unk_0202D778.o
+	Object src/unk_0202D7A8.o
+	Object src/unk_0202DA40.o
+	Object src/unk_0202DAB4.o
+	Object src/unk_0202DF8C.o
+	Object src/unk_0202E2CC.o
+	Object src/unk_0202E840.o
+	Object src/unk_0202EEC0.o
+	Object src/unk_0202F108.o
 	Object asm/unk_0202F180.o
-	Object asm/unk_0202F1D4.o
-	Object asm/unk_0202FF4C.o
+	Object src/unk_0202F1D4.o
+	Object src/unk_0202FF4C.o
 	Object asm/unk_02030108.o
 	Object asm/unk_020302D0.o
 	Object asm/unk_02030494.o
@@ -163,17 +163,17 @@ Static main
 	Object asm/unk_02039A58.o
 	Object asm/unk_02039A64.o
 	Object asm/unk_02039C80.o
-	Object asm/unk_0203A024.o
+	Object src/unk_0203A024.o
 	Object asm/unk_0203A378.o
-	Object asm/unk_0203A6DC.o
-	Object asm/unk_0203A7D8.o
-	Object asm/unk_0203A944.o
+	Object src/unk_0203A6DC.o
+	Object src/unk_0203A7D8.o
+	Object src/unk_0203A944.o
 	Object asm/unk_0203A9C8.o
-	Object asm/unk_0203C954.o
+	Object src/unk_0203C954.o
 	Object asm/unk_0203CC84.o
-	Object asm/unk_0203D178.o
+	Object src/unk_0203D178.o
 	Object asm/unk_0203D1B8.o
-	Object asm/unk_0203E724.o
+	Object src/unk_0203E724.o
 	Object asm/unk_0203E880.o
 	Object asm/unk_0203F6C4.o
 	Object asm/unk_02046AD4.o
