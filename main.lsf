@@ -115,7 +115,7 @@ Static main
 	Object src/unk_0202A910.o
 	Object asm/unk_0202ACE0.o
 	Object src/unk_0202B37C.o
-	Object asm/unk_0202B594.o
+	Object src/unk_0202B594.o
 	Object asm/unk_0202B604.o
 	Object asm/unk_0202C7FC.o
 	Object asm/unk_0202C858.o
