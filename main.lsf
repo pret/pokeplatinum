@@ -122,7 +122,7 @@ Static main
 	Object src/unk_0202C9F4.o
 	Object src/unk_0202CBE4.o
 	Object src/unk_0202CC64.o
-	Object asm/unk_0202CD50.o
+	Object src/unk_0202CD50.o
 	Object asm/unk_0202D05C.o
 	Object asm/unk_0202D778.o
 	Object asm/unk_0202D7A8.o

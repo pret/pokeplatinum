@@ -73,6 +73,11 @@ static inline OSIrqMask OS_GetIrqMask(void) {
     return reg_OS_IE;
 }
 
+static inline vu32 OS_GetVBlankCount(void) {
+    return *(vu32 *)HW_VBLANK_COUNT_BUF;
+}
+
+
 void OS_InitIrqTable(void);
 void OS_SetIrqFunction(OSIrqMask intrBit, OSIrqFunction function);
 void OSi_EnterTimerCallback(u32 timerNo, void (*callback) (void *), void *arg);
