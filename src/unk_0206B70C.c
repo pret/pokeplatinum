@@ -1,0 +1,210 @@
+#include <nitro.h>
+#include <string.h>
+
+#include "inlines.h"
+
+#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/struct_0203A790_decl.h"
+#include "struct_decls/struct_020507E4_decl.h"
+
+#include "struct_defs/struct_0203CDB0.h"
+#include "struct_defs/struct_0203D8AC.h"
+#include "struct_defs/struct_02049FA8.h"
+#include "struct_defs/struct_020556C4.h"
+#include "struct_defs/union_0206B878.h"
+
+#include "unk_02017E74.h"
+#include "unk_02025E08.h"
+#include "unk_02025E68.h"
+#include "unk_02039C80.h"
+#include "unk_0203A024.h"
+#include "unk_0203A6DC.h"
+#include "unk_0203CC84.h"
+#include "unk_0203E880.h"
+#include "unk_020507CC.h"
+#include "unk_0205E7D0.h"
+#include "unk_0206AFE0.h"
+#include "unk_0206B70C.h"
+
+
+typedef struct {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+} UnkStruct_0206B878;
+
+static void sub_0206B878(UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, const char * param2);
+
+static const int Unk_020EFA98[10][4] = {
+	{ 0x23D, 0x15, 0x120, 0xA },
+	{ 0x23E, 0x0, 0x100, 0x23 },
+	{ 0x23F, 0xF, 0xE0, 0x0 },
+	{ 0x240, 0x2F, 0xC0, 0x15 },
+	{ 0x241, 0x39, 0xA0, 0x22 },
+	{ 0x243, 0x39, 0x80, 0x22 },
+	{ 0x244, 0x38, 0x72, 0x26 },
+	{ 0x245, 0x4A, 0x40, 0x20 },
+	{ 0x246, 0x0, 0x0, 0x0 },
+	{ 0x247, 0x46, 0x40, 0x1E }
+};
+
+static const u8 Unk_020EFA84[20] = {
+    0x0,
+    0x1,
+    0x2,
+    0x3,
+    0x4,
+    0x5,
+    0x6,
+    0x7,
+    0x8,
+    0x9,
+    0xA,
+    0xB,
+    0xC,
+    0xD,
+    0xE,
+    0xF,
+    0x11,
+    0x43,
+    0x10,
+    0x44
+};
+
+void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int param2)
+{
+    UnkStruct_02025E6C * v0;
+    int v1 = 0, v2 = 0, v3 = 0;
+    int v4, v5, v6;
+    UnkStruct_020556C4 * v7;
+    UnkStruct_020507E4 * v8 = sub_020507E4(param0->unk_0C);
+    UnkStruct_0203A790 * v9 = sub_0203A790(param0->unk_0C);
+    UnkStruct_02049FA8 * v10 = sub_0203A72C(v9);
+
+    memset(param1, 0, sizeof(UnkStruct_0203D8AC));
+
+    v4 = sub_0205EABC(param0->unk_3C);
+    v5 = sub_0205EAC8(param0->unk_3C);
+
+    {
+        int v11 = 10 - 1;
+        UnkStruct_02049FA8 * v12 = sub_0203A720(v9);
+
+        v6 = v12->unk_00;
+
+        while (v11 >= 0) {
+            if (v6 == Unk_020EFA98[v11][0]) {
+                v4 -= Unk_020EFA98[v11][1];
+                v5 -= Unk_020EFA98[v11][3];
+                break;
+            }
+
+            v11--;
+        }
+    }
+
+    v6 = sub_02039E30(param0->unk_2C, v4 / 32, v5 / 32);
+
+    if (sub_0203A24C(v6)) {
+        param1->unk_00 = v4;
+        param1->unk_04 = v5;
+    } else {
+        param1->unk_00 = v10->unk_08;
+        param1->unk_04 = v10->unk_0C;
+    }
+
+    v0 = sub_02025E38(sub_0203D174(param0));
+    param1->unk_0C = sub_02025F30(v0);
+    v7 = sub_0203A76C(sub_0203A790(param0->unk_0C));
+    v2 = (v7->unk_00 - 2 + 6) % 6;
+
+    for (v1 = 0; v1 < 5; v1++) {
+        param1->unk_20[v1].unk_00 = v7->unk_06[v2].unk_00;
+        param1->unk_20[v1].unk_04 = v7->unk_06[v2].unk_01;
+        param1->unk_20[v1].unk_0A = v7->unk_06[v2].unk_03;
+
+        if (v7->unk_06[v2].unk_02 > 3) {
+            param1->unk_20[v1].unk_08 = 3 + 1;
+        } else {
+            param1->unk_20[v1].unk_08 = v7->unk_06[v2].unk_02;
+        }
+
+        v2 = (v2 - 1 + 6) % 6;
+
+        if (param1->unk_20[v1].unk_0A) {
+            v3++;
+        }
+    }
+
+    for (v1 = 0; v1 < 4; v1++) {
+        if (sub_0206B1F0(v8, v1)) {
+            param1->unk_13C |= (0x1 << v1);
+        }
+    }
+
+    for (v1 = 0; v1 < 20; v1++) {
+        param1->unk_124[v1] = inline_0208BE68(v8, Unk_020EFA84[v1]);
+    }
+
+    sub_0206B878(param0, param1, "data/tmap_flags.dat");
+
+    param1->unk_139 = param2;
+}
+
+static void sub_0206B878 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, const char * param2)
+{
+    FSFile v0;
+    int v1, v2;
+    int v3;
+    UnkStruct_0206B878 * v4;
+    UnkUnion_0206B878 * v5;
+    UnkStruct_020507E4 * v6 = sub_020507E4(param0->unk_0C);
+
+    FS_InitFile(&v0);
+
+    if (!FS_OpenFile(&v0, param2)) {
+        GF_ASSERT(0);
+        return;
+    }
+
+    v1 = FS_ReadFile(&v0, &v3, 4);
+    GF_ASSERT(v1 >= 0);
+
+    v4 = sub_02018184(11, sizeof(UnkStruct_0206B878));
+    MI_CpuClear8(v4, sizeof(UnkStruct_0206B878));
+
+    param1->unk_13A = v3;
+
+    for (v2 = 0; v2 < v3; v2++) {
+        v5 = &(param1->unk_5C[v2]);
+        v1 = FS_ReadFile(&v0, v4, sizeof(UnkStruct_0206B878));
+
+        switch (v4->unk_00) {
+        case 1:
+            v5->val1_2 = inline_0208BE68(v6, v4->unk_01);
+            v5->val1_0 = 1;
+            break;
+        case 2:
+            v5->val1_2 = sub_0203F188(param0, v4->unk_01);
+            v5->val1_0 = 1;
+            break;
+        }
+
+        switch (v4->unk_02) {
+        case 1:
+            v5->val1_6 = inline_0208BE68(v6, v4->unk_03);
+            v5->val1_4 = 1;
+            break;
+        case 2:
+            v5->val1_6 = sub_0203F188(param0, v4->unk_03);
+            v5->val1_4 = 1;
+            break;
+        }
+    }
+
+    (void)FS_CloseFile(&v0);
+    sub_020181C4(v4);
+
+    return;
+}

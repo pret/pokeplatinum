@@ -1,0 +1,106 @@
+#include <nitro.h>
+#include <string.h>
+
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_02039E30_decl.h"
+
+#include "struct_defs/struct_0203CDB0.h"
+
+#include "unk_020068C8.h"
+#include "unk_02017E74.h"
+#include "unk_02039C80.h"
+#include "unk_02054BD0.h"
+
+typedef struct UnkStruct_02054C18_t {
+    u8 unk_00[225];
+    u16 unk_E2[16384];
+} UnkStruct_02054C18;
+
+static void sub_02054C18(UnkStruct_02039E30 * param0, UnkStruct_02054C18 * param1, const u8 param2);
+static const u8 sub_02054CC4(const u16 param0, u16 * param1, u8 * param2);
+
+void sub_02054BD0 (UnkStruct_0203CDB0 * param0, const u8 param1)
+{
+    int v0;
+    void * v1;
+
+    if (param0->unk_58 == NULL) {
+        param0->unk_58 = sub_02018144(11, sizeof(UnkStruct_02054C18));
+
+        sub_02054C18(param0->unk_2C, param0->unk_58, param1);
+    }
+}
+
+void sub_02054BF8 (UnkStruct_0203CDB0 * param0)
+{
+    if (param0->unk_58 != NULL) {
+        sub_020181C4(param0->unk_58);
+        param0->unk_58 = NULL;
+    }
+}
+
+u16 const * sub_02054C0C (const u32 param0, const UnkStruct_02054C18 * param1)
+{
+    u16 const * v0;
+    u8 v1;
+
+    v1 = param1->unk_00[param0];
+    v0 = (u16 const *)&(param1->unk_E2[(32 * 32) * v1]);
+
+    return v0;
+}
+
+static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * param1, const u8 param2)
+{
+    u8 v0;
+    u16 v1;
+    u8 v2;
+    u16 v3;
+    int v4, v5;
+    int v6, v7;
+    u16 v8[16];
+    void * v9;
+    UnkStruct_02006C24 * v10;
+
+    v0 = 0;
+    v7 = sub_02039E10(param0);
+    v6 = sub_02039E20(param0);
+
+    for (v5 = 0; v5 < v6; v5++) {
+        for (v4 = 0; v4 < v7; v4++) {
+            v3 = v5 * v7 + v4;
+            v1 = sub_02039DEC(v3, param0);
+            v2 = sub_02054CC4(v1, v8, &v0);
+            param1->unk_00[v3] = v2;
+        }
+    }
+
+    v10 = sub_02006C24(67, 11);
+
+    for (v4 = 0; v4 < param2; v4++) {
+        v1 = v8[v4];
+        v9 = &(param1->unk_E2[(32 * 32) * v4]);
+
+        sub_02006DC8(v10, v1, 0x10, 0x800, v9);
+    }
+
+    sub_02006CA8(v10);
+}
+
+static const u8 sub_02054CC4 (const u16 param0, u16 * param1, u8 * param2)
+{
+    u8 v0;
+
+    for (v0 = 0; v0 < (*param2); v0++) {
+        if (param1[v0] == param0) {
+            return v0;
+        }
+    }
+
+    GF_ASSERT(v0 < 16);
+
+    param1[v0] = param0;
+    (*param2)++;
+
+    return v0;
+}
