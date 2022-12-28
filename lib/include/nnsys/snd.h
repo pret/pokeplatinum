@@ -9,5 +9,6 @@
 #include <nnsys/snd/sndarc_player.h>
 #include <nnsys/snd/main.h>
 #include <nnsys/snd/waveout.h>
+#include <nnsys/snd/output_effect.h>
 
 #endif //NNSYS_SND_H_

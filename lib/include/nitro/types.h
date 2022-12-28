@@ -51,6 +51,10 @@ typedef int BOOL;
 #endif // __cplusplus
 #endif
 
+#ifndef ATTRIBUTE_ALIGN
+#define ATTRIBUTE_ALIGN(num) __attribute__ ((aligned(num)))
+#endif
+
 #define SDK_FORCE_EXPORT __declspec(force_export)
 #endif //SDK_ASM
 #endif //NITRO_TYPES_H_

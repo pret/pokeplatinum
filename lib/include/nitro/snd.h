@@ -6,5 +6,6 @@
 #include <nitro/snd/common/channel.h>
 #include <nitro/snd/common/data.h>
 #include <nitro/snd/common/work.h>
+#include <nitro/snd/common/bank.h>
 
 #endif //NITRO_SND_H_

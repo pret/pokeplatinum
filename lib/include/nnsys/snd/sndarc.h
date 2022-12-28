@@ -1,24 +1,28 @@
 #ifndef NNSYS_SND_SNDARC_H_
 #define NNSYS_SND_SNDARC_H_
 
-typedef struct NNSSndArcFileInfo
-{
+#define NNS_SND_ARC_BANK_TO_WAVEARC_NUM 4
+
+typedef struct NNSSndArcBankInfo {
+    u32 fileId;
+    u16 waveArcNo[NNS_SND_ARC_BANK_TO_WAVEARC_NUM];
+} NNSSndArcBankInfo;
+
+typedef struct NNSSndArcFileInfo {
     u32 offset;
     u32 size;
-    void* mem;
+    void * mem;
     u32 reserved;
 } NNSSndArcFileInfo;
 
-typedef struct NNSSndArcFat
-{
+typedef struct NNSSndArcFat {
     struct SNDBinaryBlockHeader blockHeader;
 
     u32 count;
     NNSSndArcFileInfo files[0];
 } NNSSndArcFat;
 
-typedef struct NNSSndArcInfo
-{
+typedef struct NNSSndArcInfo {
     struct SNDBinaryBlockHeader blockHeader;
 
     u32 seqOffset;
@@ -31,8 +35,7 @@ typedef struct NNSSndArcInfo
     u32 strmOffset;
 } NNSSndArcInfo;
 
-typedef struct NNSSndArcSymbol
-{
+typedef struct NNSSndArcSymbol {
     struct SNDBinaryBlockHeader blockHeader;
 
     u32 seqOffset;
@@ -45,8 +48,7 @@ typedef struct NNSSndArcSymbol
     u32 strmOffset;
 } NNSSndArcSymbol;
 
-typedef struct NNSSndArcHeader
-{
+typedef struct NNSSndArcHeader {
     struct SNDBinaryFileHeader fileHeader;
     u32 symbolDataOffset;
     u32 symbolDataSize;
@@ -58,22 +60,21 @@ typedef struct NNSSndArcHeader
     u32 fileImageSize;
 } NNSSndArcHeader;
 
-typedef struct NNSSndArc
-{
+typedef struct NNSSndArc {
     NNSSndArcHeader header;
     BOOL file_open;
 #ifndef NNS_FROM_TOOL
     FSFile file;
     FSFileID fileId;
 #endif // NNS_FROM_TOOL
-    struct NNSSndArcFat* fat;
-    struct NNSSndArcSymbol* symbol;
-    struct NNSSndArcInfo* info;
+    struct NNSSndArcFat * fat;
+    struct NNSSndArcSymbol * symbol;
+    struct NNSSndArcInfo * info;
     s32 loadBlockSize;
 } NNSSndArc;
 
-void NNS_SndArcInit(NNSSndArc *arc, const char *filePath, NNSSndHeapHandle heap, BOOL symbolLoadFlag);
+void NNS_SndArcInit(NNSSndArc * arc, const char * filePath, NNSSndHeapHandle heap, BOOL symbolLoadFlag);
 
-const NNSSndSeqParam* NNS_SndArcGetSeqParam(int seqNo);
+const NNSSndSeqParam * NNS_SndArcGetSeqParam(int seqNo);
 
 #endif //NNSYS_SND_SNDARC_H_
