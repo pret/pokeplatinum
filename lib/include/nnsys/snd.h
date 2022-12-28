@@ -10,5 +10,6 @@
 #include <nnsys/snd/main.h>
 #include <nnsys/snd/waveout.h>
 #include <nnsys/snd/output_effect.h>
+#include <nnsys/snd/capture.h>
 
 #endif //NNSYS_SND_H_

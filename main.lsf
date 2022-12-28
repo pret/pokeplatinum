@@ -18,7 +18,7 @@ Static main
 	Object src/unk_02002B7C.o
 	Object src/unk_02002F38.o
 	Object src/unk_02003B60.o
-	Object asm/unk_020041CC.o
+	Object src/unk_020041CC.o
 	Object asm/unk_02005474.o
 	Object asm/unk_02006224.o
 	Object src/unk_020064F0.o

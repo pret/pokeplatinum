@@ -1,0 +1,9 @@
+#ifndef NNS_SND_CAPTURE_H_
+#define NNS_SND_CAPTURE_H_
+
+typedef enum {
+    NNS_SND_CAPTURE_FORMAT_PCM16,
+    NNS_SND_CAPTURE_FORMAT_PCM8
+} NNSSndCaptureFormat;
+
+#endif //NNS_SND_CAPTURE_H_
