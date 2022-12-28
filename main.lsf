@@ -32,7 +32,7 @@ Static main
 	Object asm/unk_0200A328.o
 	Object asm/unk_0200A784.o
 	Object asm/unk_0200A9DC.o
-	Object asm/unk_0200AC5C.o
+	Object src/unk_0200AC5C.o
 	Object src/unk_0200B29C.o
 	Object src/unk_0200B358.o
 	Object src/unk_0200C440.o
