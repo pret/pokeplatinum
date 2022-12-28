@@ -52,13 +52,13 @@ typedef enum {
 typedef enum {
     GX_OBJVRAMMODE_CHAR_2D = (0 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (0 << REG_GX_DISPCNT_EXOBJ_SHIFT),
     GX_OBJVRAMMODE_CHAR_1D_32K =
-    (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (0 << REG_GX_DISPCNT_EXOBJ_SHIFT),
+        (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (0 << REG_GX_DISPCNT_EXOBJ_SHIFT),
     GX_OBJVRAMMODE_CHAR_1D_64K =
-    (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (1 << REG_GX_DISPCNT_EXOBJ_SHIFT),
+        (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (1 << REG_GX_DISPCNT_EXOBJ_SHIFT),
     GX_OBJVRAMMODE_CHAR_1D_128K =
-    (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (2 << REG_GX_DISPCNT_EXOBJ_SHIFT),
+        (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (2 << REG_GX_DISPCNT_EXOBJ_SHIFT),
     GX_OBJVRAMMODE_CHAR_1D_256K =
-    (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (3 << REG_GX_DISPCNT_EXOBJ_SHIFT)
+        (1 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (3 << REG_GX_DISPCNT_EXOBJ_SHIFT)
 } GXOBJVRamModeChar;
 
 typedef enum {
@@ -90,8 +90,7 @@ typedef enum {
     GX_PLANEMASK_OBJ = 0x10
 } GXPlaneMask;
 
-typedef enum
-{
+typedef enum {
     GX_WNDMASK_NONE = 0x00,
     GX_WNDMASK_W0 = 0x01,
     GX_WNDMASK_W1 = 0x02,
@@ -101,16 +100,19 @@ typedef enum
 void GX_SetGraphicsMode(GXDispMode dispMode, GXBGMode bgMode, GXBG0As bg0_2d3d);
 void GXS_SetGraphicsMode(GXBGMode bgMode);
 
-static inline s32 GX_GetVCount() {
+static inline s32 GX_GetVCount ()
+{
     return reg_GX_VCOUNT;
 }
 
-static inline s32 GX_GetVCountEqVal(void) {
+static inline s32 GX_GetVCountEqVal (void)
+{
     u16 val = reg_GX_DISPSTAT;
     return ((val >> 8) & 0x00ff) | ((val << 1) & 0x0100);
 }
 
-static inline void GX_VCountEqIntr(BOOL enable) {
+static inline void GX_VCountEqIntr (BOOL enable)
+{
     if (enable) {
         reg_GX_DISPSTAT |= REG_GX_DISPSTAT_VQI_MASK;
     } else {
@@ -118,17 +120,19 @@ static inline void GX_VCountEqIntr(BOOL enable) {
     }
 }
 
-static inline void GX_SetVCountEqVal(s32 val) {
+static inline void GX_SetVCountEqVal (s32 val)
+{
     reg_GX_DISPSTAT = (u16)(reg_GX_DISPSTAT & (REG_GX_DISPSTAT_VBLK_MASK | REG_GX_DISPSTAT_HBLK_MASK | REG_GX_DISPSTAT_LYC_MASK | REG_GX_DISPSTAT_VBI_MASK | REG_GX_DISPSTAT_HBI_MASK | REG_GX_DISPSTAT_VQI_MASK) | ((val & 0xFF) << 8) | ((val & 0x100) >> 1));
 }
 
-static inline void GX_SetBGScrOffset(GXBGScrOffset offset)
+static inline void GX_SetBGScrOffset (GXBGScrOffset offset)
 {
     reg_GX_DISPCNT = (u32)((reg_GX_DISPCNT & ~REG_GX_DISPCNT_BGSCREENOFFSET_MASK) |
                            (offset << REG_GX_DISPCNT_BGSCREENOFFSET_SHIFT));
 }
 
-static inline void GX_SetBGCharOffset(GXBGCharOffset offset) {
+static inline void GX_SetBGCharOffset (GXBGCharOffset offset)
+{
     reg_GX_DISPCNT = (u32)((reg_GX_DISPCNT & ~REG_GX_DISPCNT_BGCHAROFFSET_MASK) |
                            (offset << REG_GX_DISPCNT_BGCHAROFFSET_SHIFT));
 }
@@ -139,48 +143,69 @@ void GX_Init(void);
 void GX_DispOff(void);
 void GX_DispOn(void);
 
-static inline void GX_SetPower(GXPower gxbit_power) {
+static inline void GX_SetPower (GXPower gxbit_power)
+{
     reg_GX_POWCNT = (reg_GX_POWCNT & ~GX_POWER_ALL) | gxbit_power;
 }
 
-static inline void GXS_DispOff(void) {
+static inline void GXS_DispOff (void)
+{
     reg_GXS_DB_DISPCNT &= ~REG_GXS_DB_DISPCNT_MODE_MASK;
 }
 
-static inline void GXS_DispOn(void) {
+static inline void GXS_DispOn (void)
+{
     reg_GXS_DB_DISPCNT |= REG_GXS_DB_DISPCNT_MODE_MASK;
 }
 
-static inline void GX_SetMasterBrightness(int brightness) {
+static inline void GX_SetMasterBrightness (int brightness)
+{
     GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, brightness);
 }
 
-static inline void GXS_SetMasterBrightness(int brightness) {
+static inline void GXS_SetMasterBrightness (int brightness)
+{
     GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, brightness);
 }
 
-static inline void GX_SetDispSelect(GXDispSelect sel) {
+static inline void GX_SetDispSelect (GXDispSelect sel)
+{
     reg_GX_POWCNT = (reg_GX_POWCNT & ~REG_GX_POWCNT_DSEL_MASK) | (sel << REG_GX_POWCNT_DSEL_SHIFT);
 }
 
-static inline void GX_SetVisiblePlane(int plane) {
+static inline void GX_SetVisiblePlane (int plane)
+{
     reg_GX_DISPCNT = (u32)((reg_GX_DISPCNT & ~REG_GX_DISPCNT_DISPLAY_MASK) | (plane << REG_GX_DISPCNT_DISPLAY_SHIFT));
 }
 
-static inline void GXS_SetVisiblePlane(int plane) {
+static inline void GXS_SetVisiblePlane (int plane)
+{
     reg_GXS_DB_DISPCNT = (u32)((reg_GXS_DB_DISPCNT & ~REG_GXS_DB_DISPCNT_DISPLAY_MASK) | (plane << REG_GXS_DB_DISPCNT_DISPLAY_SHIFT));
 }
 
-static inline void GX_SetVisibleWnd(int window) {
+static inline void GX_SetVisibleWnd (int window)
+{
     reg_GX_DISPCNT = (u32)((reg_GX_DISPCNT & ~(REG_GX_DISPCNT_W0_MASK | REG_GX_DISPCNT_W1_MASK | REG_GX_DISPCNT_OW_MASK)) | (window << REG_GX_DISPCNT_W0_SHIFT));
 }
 
-static inline void GXS_SetVisibleWnd(int window) {
+static inline void GXS_SetVisibleWnd (int window)
+{
     reg_GXS_DB_DISPCNT = (u32)((reg_GXS_DB_DISPCNT & ~(REG_GXS_DB_DISPCNT_W0_MASK | REG_GXS_DB_DISPCNT_W1_MASK | REG_GXS_DB_DISPCNT_OW_MASK)) | (window << REG_GXS_DB_DISPCNT_W0_SHIFT));
 }
 
-static inline void GXS_SetOBJVRamModeChar(GXOBJVRamModeChar mode) {
+static inline void GXS_SetOBJVRamModeChar (GXOBJVRamModeChar mode)
+{
     reg_GXS_DB_DISPCNT = (u32)(reg_GXS_DB_DISPCNT & ~(REG_GXS_DB_DISPCNT_EXOBJ_CH_MASK | REG_GXS_DB_DISPCNT_OBJMAP_CH_MASK) | mode);
+}
+
+static inline GXOBJVRamModeChar GX_GetOBJVRamModeChar (void)
+{
+    return (GXOBJVRamModeChar)(reg_GX_DISPCNT & (REG_GX_DISPCNT_EXOBJ_CH_MASK | REG_GX_DISPCNT_OBJMAP_CH_MASK));
+}
+
+static inline GXOBJVRamModeChar GXS_GetOBJVRamModeChar (void)
+{
+    return (GXOBJVRamModeChar)(reg_GXS_DB_DISPCNT & (REG_GXS_DB_DISPCNT_EXOBJ_CH_MASK | REG_GXS_DB_DISPCNT_OBJMAP_CH_MASK));
 }
 
 #endif //NITRO_GX_GX_H_
