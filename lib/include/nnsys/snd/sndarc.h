@@ -1,9 +1,9 @@
 #ifndef NNSYS_SND_SNDARC_H_
 #define NNSYS_SND_SNDARC_H_
 
-#define NNS_SND_ARC_LOAD_SEQ    (1 << 0)
-#define NNS_SND_ARC_LOAD_BANK   (1 << 1)
-#define NNS_SND_ARC_LOAD_WAVE   (1 << 2)
+#define NNS_SND_ARC_LOAD_SEQ (1 << 0)
+#define NNS_SND_ARC_LOAD_BANK (1 << 1)
+#define NNS_SND_ARC_LOAD_WAVE (1 << 2)
 
 #define NNS_SND_ARC_BANK_TO_WAVEARC_NUM 4
 

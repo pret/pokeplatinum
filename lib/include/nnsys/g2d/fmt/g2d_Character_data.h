@@ -17,20 +17,20 @@ typedef struct NNSG2dCharacterData {
     GXOBJVRamModeChar mapingType;
     u32 characterFmt;
     u32 szByte;
-    void* pRawData;
+    void * pRawData;
 } NNSG2dCharacterData;
 
 typedef struct NNSG2dPaletteCompressInfo {
     u16 numPalette;
     u16 pad16;
-    void* pPlttIdxTbl;
+    void * pPlttIdxTbl;
 } NNSG2dPaletteCompressInfo;
 
 typedef struct NNSG2dPaletteData {
     GXTexFmt fmt;
     BOOL bExtendedPlt;
     u32 szByte;
-    void* pRawData;
+    void * pRawData;
 } NNSG2dPaletteData;
 
 #endif //NNSYS_G2D_FMT_G2D_CHARACTER_DATA_H_

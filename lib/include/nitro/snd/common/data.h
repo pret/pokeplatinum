@@ -1,5 +1,11 @@
-#ifndef NITRO_SND_DATA_H_
-#define NITRO_SND_DATA_H_
+#ifndef NITRO_SND_COMMON_DATA_H_
+#define NITRO_SND_COMMON_DATA_H_
+
+#include <nitro/types.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct SNDBinaryFileHeader {
     char signature[4];
@@ -15,4 +21,8 @@ typedef struct SNDBinaryBlockHeader {
     u32 size;
 } SNDBinaryBlockHeader;
 
-#endif //NITRO_SND_DATA_H_
+#ifdef __cplusplus
+}
+#endif
+
+#endif

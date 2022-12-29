@@ -2,17 +2,15 @@
 #define NNSYS_FND_LIST_H_
 
 typedef struct {
-    void *prevObject;
-    void *nextObject;
-
+    void * prevObject;
+    void * nextObject;
 } NNSFndLink;
 
 typedef struct {
-    void *headObject;
-    void *tailObject;
+    void * headObject;
+    void * tailObject;
     u16 numObjects;
     u16 offset;
-
 } NNSFndList;
 
 #endif //NNSYS_FND_LIST_H_

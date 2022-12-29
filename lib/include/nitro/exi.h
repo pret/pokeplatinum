@@ -1,8 +1,18 @@
-#ifndef GUARD_EXI_H
-#define GUARD_EXI_H
+#ifndef NITRO_EXI_H_
+#define NITRO_EXI_H_
 
-#ifdef SDK_ARM7
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef SDK_ARM9
+
+#else
 #include <nitro/exi/ARM7/genPort.h>
-#endif //SDK_ARM7
+#endif
 
-#endif //GUARD_EXI_H
+#ifdef __cplusplus
+}
+#endif
+
+#endif

@@ -1,7 +1,19 @@
-#ifndef NITRO_SWAP_H_
-#define NITRO_SWAP_H_
+#ifndef NITRO_MI_SWAP_H_
+#define NITRO_MI_SWAP_H_
 
-u32 MI_SwapWord(u32 setData, vu32 *destp);
-u8 MI_SwapByte(u32 setData, vu8 *destp);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#endif //NITRO_SWAP_H_
+#include <nitro/misc.h>
+#include <nitro/types.h>
+
+u32 MI_SwapWord(u32 setData, volatile u32 * destp);
+
+u8 MI_SwapByte(u32 setData, volatile u8 * destp);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

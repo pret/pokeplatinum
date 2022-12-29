@@ -50,11 +50,11 @@ typedef struct {
 
 extern NNSG3dGlb NNS_G3dGlb;
 
-void NNS_G3dGlbSetBaseTrans(const VecFx32 *pTrans);
+void NNS_G3dGlbSetBaseTrans(const VecFx32 * pTrans);
 
-void NNS_G3dGlbSetBaseScale(const VecFx32 *pScale);
+void NNS_G3dGlbSetBaseScale(const VecFx32 * pScale);
 void NNS_G3dGlbFlushP(void);
-void NNS_G3dDraw(NNSG3dRenderObj *pRenderObj);
+void NNS_G3dDraw(NNSG3dRenderObj * pRenderObj);
 void NNS_G3dGlbLightVector(GXLightId lightID, fx16 x, fx16 y, fx16 z);
 void NNS_G3dGlbLightColor(GXLightId lightID, GXRgb rgb);
 void NNS_G3dGlbMaterialColorDiffAmb(GXRgb diffuse, GXRgb ambient, BOOL IsSetVtxColor);

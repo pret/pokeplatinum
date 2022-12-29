@@ -1,4 +1,9 @@
 #include <nitro/section.h>
-#ifdef SDK_ARM7
+
+#if defined(SDK_CW) || defined(__MWERKS__)
 #pragma section WRAM begin
-#endif //SDK_ARM7
+#elif defined(SDK_ADS)
+TO BE DEFINED
+#elif defined(SDK_GCC)
+TO BE DEFINED
+#endif

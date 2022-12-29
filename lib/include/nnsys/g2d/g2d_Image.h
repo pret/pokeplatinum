@@ -7,8 +7,8 @@
 extern "C" {
 #endif
 
-#define NNS_G2dInitializeImageProxy         NNS_G2dInitImageProxy
-#define NNS_G2dInitializeImagePaletteProxy  NNS_G2dInitImagePaletteProxy
+#define NNS_G2dInitializeImageProxy NNS_G2dInitImageProxy
+#define NNS_G2dInitializeImagePaletteProxy NNS_G2dInitImagePaletteProxy
 
 typedef enum NNS_G2D_VRAM_TYPE {
     NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -23,8 +23,8 @@ typedef enum NNS_G2D_VRAM_TYPE {
                       (val) == NNS_G2D_VRAM_TYPE_2DSUB,   \
                       "Invalid NNS_G2D_VRAM_TYPE type")   \
 
-#define NNS_G2D_VRAM_ADDR_NOT_INITIALIZED       0xFFFFFFFF
-#define NNS_G2D_VRAM_ADDR_NONE                  NNS_G2D_VRAM_ADDR_NOT_INITIALIZED
+#define NNS_G2D_VRAM_ADDR_NOT_INITIALIZED 0xFFFFFFFF
+#define NNS_G2D_VRAM_ADDR_NONE NNS_G2D_VRAM_ADDR_NOT_INITIALIZED
 
 typedef struct NNSG2dImageAttr {
     GXTexSizeS sizeS;
@@ -52,7 +52,7 @@ typedef struct NNSG2dImagePaletteProxy {
 
 void NNS_G2dInitImageProxy(NNSG2dImageProxy * pImg);
 void NNS_G2dSetImageLocation(NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type, u32 addr);
-u32  NNS_G2dGetImageLocation(const NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type);
+u32 NNS_G2dGetImageLocation(const NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type);
 BOOL NNS_G2dIsImageReadyToUse(const NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type);
 void NNS_G2dLoadImage1DMapping
 (
@@ -98,7 +98,7 @@ BOOL NNS_G2dIsImagePaletteReadyToUse(const NNSG2dImagePaletteProxy * pImg, NNS_G
 static BOOL NNS_G2dIsPaletteImageFmt(const NNSG2dImageAttr * imgAttr);
 void NNSi_G2dInitializeVRamLocation(NNSG2dVRamLocation * pVramLocation);
 void NNSi_G2dSetVramLocation(NNSG2dVRamLocation * pVramLocation, NNS_G2D_VRAM_TYPE type, u32 addr);
-u32  NNSi_G2dGetVramLocation(const NNSG2dVRamLocation * pVramLocation, NNS_G2D_VRAM_TYPE type);
+u32 NNSi_G2dGetVramLocation(const NNSG2dVRamLocation * pVramLocation, NNS_G2D_VRAM_TYPE type);
 BOOL NNSi_G2dIsVramLocationReadyToUse(const NNSG2dVRamLocation * pVramLocation, NNS_G2D_VRAM_TYPE type);
 
 void NNSi_G2dDoImageLoadingToVram

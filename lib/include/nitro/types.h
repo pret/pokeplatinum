@@ -1,17 +1,40 @@
 #ifndef NITRO_TYPES_H_
 #define NITRO_TYPES_H_
 
-#ifndef SDK_ASM
+#ifdef __MWERKS__
+#pragma enumsalwaysint on
+#endif
+
+#define SDK_LITTLE_ENDIAN
+#define SDK_IS_LITTLE_ENDIAN 1
+#define SDK_IS_BIG_ENDIAN 0
+
+#ifdef SDK_ASM
+#else
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef unsigned char u8;
 typedef unsigned short int u16;
 typedef unsigned long u32;
+
+#ifdef SDK_HAS_NO_LONG_LONG_INT_
+typedef unsigned __int64 u64;
+#else
+typedef unsigned long long int u64;
+#endif
 
 typedef signed char s8;
 typedef signed short int s16;
 typedef signed long s32;
 
-typedef unsigned long long int u64;
+#ifdef SDK_HAS_NO_LONG_LONG_INT_
+typedef signed __int64 s64;
+#else
 typedef signed long long int s64;
+#endif
 
 typedef volatile u8 vu8;
 typedef volatile u16 vu16;
@@ -36,25 +59,53 @@ typedef vu16 REGType16v;
 typedef vu32 REGType32v;
 typedef vu64 REGType64v;
 
+#ifndef SDK_BOOL_ALREADY_DEFINED_
+#ifndef BOOL
 typedef int BOOL;
 #endif
-
-#define TRUE 1
-#define FALSE 0
-
-#ifndef SDK_ASM
-#ifndef NULL
-#ifdef  __cplusplus
-#define NULL 0
-#else  // __cplusplus
-#define NULL ((void *)0)
-#endif // __cplusplus
 #endif
 
+#ifndef TRUE
+
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef NULL
+#ifdef __cplusplus
+#define NULL 0
+#else
+#define NULL ((void *)0)
+#endif
+#endif
+
+#if defined(SDK_CW) || defined(__MWERKS__)
 #ifndef ATTRIBUTE_ALIGN
 #define ATTRIBUTE_ALIGN(num) __attribute__ ((aligned(num)))
 #endif
+#endif
 
+#if defined(SDK_CW) || defined(__MWERKS__)
+#define SDK_WEAK_SYMBOL __declspec(weak)
+#elif defined(SDK_PRODG)
+#define SDK_WEAK_SYMBOL
+#endif
+
+#ifdef SDK_CW_FORCE_EXPORT_SUPPORT
 #define SDK_FORCE_EXPORT __declspec(force_export)
-#endif //SDK_ASM
-#endif //NITRO_TYPES_H_
+#else
+#define SDK_FORCE_EXPORT
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+#endif
+
+#define SDK_INLINE static inline
+#define SDK_DECL_INLINE static
+
+#endif

@@ -4,6 +4,6 @@
 struct NNSSndHandle;
 
 BOOL NNS_SndArcPlayerSetup(NNSSndHeapHandle heap);
-BOOL NNS_SndArcPlayerStartSeqEx(struct NNSSndHandle* handle, int playerNo, int bankNo, int playerPrio, int seqNo);
+BOOL NNS_SndArcPlayerStartSeqEx(struct NNSSndHandle * handle, int playerNo, int bankNo, int playerPrio, int seqNo);
 
 #endif //NNSYS_SND_SNDARC_PLAYER_H_

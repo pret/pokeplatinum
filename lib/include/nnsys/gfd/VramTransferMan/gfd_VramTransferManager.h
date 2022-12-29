@@ -46,13 +46,13 @@ typedef enum NNS_GFD_DST_TYPE {
 
 typedef struct NNSGfdVramTransferTask {
     NNS_GFD_DST_TYPE type;
-    void* pSrc;
+    void * pSrc;
     u32 dstAddr;
     u32 szByte;
 } NNSGfdVramTransferTask;
 
-void NNS_GfdInitVramTransferManager (NNSGfdVramTransferTask* pTaskArray, u32 lengthOfArray);
-BOOL NNS_GfdRegisterNewVramTransferTask (NNS_GFD_DST_TYPE type, u32 dstAddr, void* pSrc, u32 szByte);
+void NNS_GfdInitVramTransferManager(NNSGfdVramTransferTask * pTaskArray, u32 lengthOfArray);
+BOOL NNS_GfdRegisterNewVramTransferTask(NNS_GFD_DST_TYPE type, u32 dstAddr, void * pSrc, u32 szByte);
 void NNS_GfdDoVramTransfer(void);
 
 #endif //NNSYS_GFD_VRAMTRANSFERMAN_GFD_VRAMTRANSFERMANAGER_H_

@@ -5,8 +5,8 @@
 
 typedef struct NNSFndAllocator NNSFndAllocator;
 
-typedef void *(*NNSFndFuncAllocatorAlloc)(NNSFndAllocator *pAllocator, u32 size);
-typedef void (*NNSFndFuncAllocatorFree)(NNSFndAllocator *pAllocator,void *memBlock);
+typedef void *(* NNSFndFuncAllocatorAlloc)(NNSFndAllocator * pAllocator, u32 size);
+typedef void (* NNSFndFuncAllocatorFree)(NNSFndAllocator * pAllocator, void * memBlock);
 
 typedef struct NNSFndAllocatorFunc NNSFndAllocatorFunc;
 
@@ -17,11 +17,11 @@ struct NNSFndAllocatorFunc {
 
 struct NNSFndAllocator {
     NNSFndAllocatorFunc const * pFunc;
-    void *pHeap;
+    void * pHeap;
     u32 heapParam1;
     u32 heapParam2;
 };
 
-void NNS_FndInitAllocatorForExpHeap(NNSFndAllocator *pAllocator, NNSFndHeapHandle heap, int alignment);
+void NNS_FndInitAllocatorForExpHeap(NNSFndAllocator * pAllocator, NNSFndHeapHandle heap, int alignment);
 
 #endif //NNSYS_FND_ALLOCATOR_H_

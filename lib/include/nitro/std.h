@@ -2,5 +2,14 @@
 #define NITRO_STD_H_
 
 #include <nitro/std/string.h>
+#include <nitro/std/unicode.h>
 
-#endif //NITRO_STD_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

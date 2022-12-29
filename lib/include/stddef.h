@@ -4,7 +4,7 @@
 #include <size_t.h>
 
 _MSL_BEGIN_NAMESPACE_STD
-_MSL_BEGIN_EXTERN_C
+    _MSL_BEGIN_EXTERN_C
 
 #define offsetof(type, field) ((size_t)&((type *)0)->field)
 

@@ -2,11 +2,13 @@
 #define NITRO_CTRDG_H_
 
 #include <nitro/ctrdg/common/ctrdg_common.h>
+#include <nitro/ctrdg/ARM9/ctrdg_backup.h>
+#include <nitro/ctrdg/ARM9/ctrdg_flash.h>
+#include <nitro/ctrdg/ARM9/ctrdg_sram.h>
+#include <nitro/ctrdg/ARM9/ctrdg_task.h>
 
 #ifdef SDK_ARM7
-#include <nitro/ctrdg/ARM7/vibrate.h>
-#endif //SDK_ARM7
+#include <nitro/ctrdg/ARM7/ctrdg_sp.h>
+#endif
 
-void CTRDG_Init(void);
-
-#endif //NITRO_CTRDG_H_
+#endif

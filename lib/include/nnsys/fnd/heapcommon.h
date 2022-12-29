@@ -5,19 +5,18 @@
 
 typedef struct NNSiFndHeapHead NNSiFndHeapHead;
 
-struct NNSiFndHeapHead
-{
+struct NNSiFndHeapHead {
     u32 signature;
 
     NNSFndLink link;
     NNSFndList childList;
 
-    void *heapStart;
-    void *heapEnd;
+    void * heapStart;
+    void * heapEnd;
 
     u32 attribute;
 };
 
-typedef NNSiFndHeapHead* NNSFndHeapHandle;
+typedef NNSiFndHeapHead * NNSFndHeapHandle;
 
 #endif //NNSYS_FND_HEAPCOMMON_H_

@@ -74,8 +74,7 @@ typedef struct NNSG3dResDict_ {
     NNSG3dResDictTreeNode node[1];
 } NNSG3dResDict;
 
-
-#define NNS_G3D_RESNAME_SIZE    (16)
+#define NNS_G3D_RESNAME_SIZE (16)
 #define NNS_G3D_RESNAME_VALSIZE (NNS_G3D_RESNAME_SIZE / sizeof(u32))
 typedef union NNSG3dResName_ {
     char name[NNS_G3D_RESNAME_SIZE];
@@ -88,10 +87,10 @@ typedef struct NNSG3dResNodeInfo_ {
 
 typedef struct NNSG3dResTex_ {
     NNSG3dResDataBlockHeader header;
-    NNSG3dResTexInfo         texInfo;
-    NNSG3dResTex4x4Info      tex4x4Info;
-    NNSG3dResPlttInfo        plttInfo;
-    NNSG3dResDict            dict;
+    NNSG3dResTexInfo texInfo;
+    NNSG3dResTex4x4Info tex4x4Info;
+    NNSG3dResPlttInfo plttInfo;
+    NNSG3dResDict dict;
 } NNSG3dResTex;
 
 typedef struct NNSG3dResMdl_ {
@@ -107,7 +106,7 @@ typedef struct NNSG3dResMdl_ {
 typedef struct NNSG3dResFileHeader_ {
     union {
         char signature[4];
-        u32  sigVal;
+        u32 sigVal;
     };
     u16 byteOrder;
     u16 version;

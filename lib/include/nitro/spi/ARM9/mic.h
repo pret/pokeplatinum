@@ -1,7 +1,12 @@
 #ifndef NITRO_SPI_ARM9_MIC_H_
 #define NITRO_SPI_ARM9_MIC_H_
 
-#include <nitro/os/common/armArch.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <nitro/spi/common/type.h>
+#include <nitro/pxi.h>
 
 typedef enum MICResult {
     MIC_RESULT_SUCCESS = 0,
@@ -33,18 +38,40 @@ typedef enum MICSamplingRate {
     MIC_SAMPLING_RATE_LIMIT = 1024
 } MICSamplingRate;
 
-typedef void (*MICCallback)(MICResult result, void *arg);
+typedef void (* MICCallback) (MICResult result, void * arg);
 
 typedef struct MICAutoParam {
     MICSamplingType type;
-    void *buffer;
+    void * buffer;
     u32 size;
     u32 rate;
     BOOL loop_enable;
     MICCallback full_callback;
-    void *full_arg;
+    void * full_arg;
 } MICAutoParam;
 
 void MIC_Init(void);
 
-#endif //NITRO_SPI_ARM9_MIC_H_
+MICResult MIC_DoSamplingAsync(MICSamplingType type, void * buf, MICCallback callback, void * arg);
+
+MICResult MIC_StartAutoSamplingAsync(const MICAutoParam * param, MICCallback callback, void * arg);
+
+MICResult MIC_StopAutoSamplingAsync(MICCallback callback, void * arg);
+
+MICResult MIC_AdjustAutoSamplingAsync(u32 rate, MICCallback callback, void * arg);
+
+void * MIC_GetLastSamplingAddress(void);
+
+MICResult MIC_DoSampling(MICSamplingType type, void * buf);
+
+MICResult MIC_StartAutoSampling(const MICAutoParam * param);
+
+MICResult MIC_StopAutoSampling(void);
+
+MICResult MIC_AdjustAutoSampling(u32 rate);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

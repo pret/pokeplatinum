@@ -7,17 +7,17 @@
 extern "C" {
 #endif
 
-#define NNS_G2dInitializeOamManager         NNS_G2dInitOamManagerModule
-#define NNS_G2dEntryNewOam                  NNS_G2dEntryOamManagerOam
-#define NNS_G2dEntryNewOamWithAffineIdx     NNS_G2dEntryOamManagerOamWithAffineIdx
-#define NNS_G2dEntryNewOamAffine            NNS_G2dEntryOamManagerAffine
-#define NNS_G2dEntryOamAffine               NNS_G2dSetOamManagerAffine
-#define NNS_G2dApplyToHW                    NNS_G2dApplyOamManagerToHW
-#define NNS_G2dApplyToHWSoftEmu             NNS_G2dApplyOamManagerToHWSprite
-#define NNS_G2dResetBuffer                  NNS_G2dResetOamManagerBuffer
-#define NNS_G2dApplyToHWAndReset            NNS_G2dApplyAndResetOamManagerBuffer
-#define NNS_G2dGetOamAttrCapacity           NNS_G2dGetOamManagerOamCapacity
-#define NNS_G2dGetOamAffineCapacity         NNS_G2dGetOamManagerAffineCapacity
+#define NNS_G2dInitializeOamManager NNS_G2dInitOamManagerModule
+#define NNS_G2dEntryNewOam NNS_G2dEntryOamManagerOam
+#define NNS_G2dEntryNewOamWithAffineIdx NNS_G2dEntryOamManagerOamWithAffineIdx
+#define NNS_G2dEntryNewOamAffine NNS_G2dEntryOamManagerAffine
+#define NNS_G2dEntryOamAffine NNS_G2dSetOamManagerAffine
+#define NNS_G2dApplyToHW NNS_G2dApplyOamManagerToHW
+#define NNS_G2dApplyToHWSoftEmu NNS_G2dApplyOamManagerToHWSprite
+#define NNS_G2dResetBuffer NNS_G2dResetOamManagerBuffer
+#define NNS_G2dApplyToHWAndReset NNS_G2dApplyAndResetOamManagerBuffer
+#define NNS_G2dGetOamAttrCapacity NNS_G2dGetOamManagerOamCapacity
+#define NNS_G2dGetOamAffineCapacity NNS_G2dGetOamManagerAffineCapacity
 
 typedef enum NNSG2dOamType {
     NNS_G2D_OAMTYPE_MAIN = 0,
@@ -25,7 +25,7 @@ typedef enum NNSG2dOamType {
     NNS_G2D_OAMTYPE_SOFTWAREEMULATION,
     NNS_G2D_OAMTYPE_INVALID,
     NNS_G2D_OAMTYPE_MAX
-}NNSG2dOamType;
+} NNSG2dOamType;
 
 #define ASSERT_OAMTYPE(x)                                      \
     NNS_G2D_ASSERT((x) == NNS_G2D_OAMTYPE_INVALID || \
@@ -64,13 +64,13 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode(NNSG2dOamManagerInstance 
 BOOL NNS_G2dEntryOamManagerOam(NNSG2dOamManagerInstance * pMan, const GXOamAttr * pOam, u16 num);
 BOOL NNS_G2dEntryOamManagerOamWithAffineIdx(NNSG2dOamManagerInstance * pMan, const GXOamAttr * pOam, u16 affineIdx);
 void NNS_G2dSetOamManagerAffine(NNSG2dOamType type, const MtxFx22 * mtx, u16 idx);
-u16  NNS_G2dEntryOamManagerAffine(NNSG2dOamManagerInstance * pMan, const MtxFx22 * mtx);
+u16 NNS_G2dEntryOamManagerAffine(NNSG2dOamManagerInstance * pMan, const MtxFx22 * mtx);
 void NNS_G2dApplyOamManagerToHW(NNSG2dOamManagerInstance * pMan);
 void NNS_G2dApplyOamManagerToHWSprite(NNSG2dOamManagerInstance * pMan, const NNSG2dImageAttr * pTexImageAttr, u32 texBaseAddr, u32 pltBaseAddr);
 void NNS_G2dResetOamManagerBuffer(NNSG2dOamManagerInstance * pMan);
 void NNS_G2dApplyAndResetOamManagerBuffer(NNSG2dOamManagerInstance * pMan);
-u16  NNS_G2dGetOamManagerOamCapacity(NNSG2dOamManagerInstance * pMan);
-u16  NNS_G2dGetOamManagerAffineCapacity(NNSG2dOamManagerInstance * pMan);
+u16 NNS_G2dGetOamManagerOamCapacity(NNSG2dOamManagerInstance * pMan);
+u16 NNS_G2dGetOamManagerAffineCapacity(NNSG2dOamManagerInstance * pMan);
 GXOamAttr * NNS_G2dGetOamBuffer(NNSG2dOamType type);
 
 static inline void NNS_G2dSetOamManagerSpriteZoffsetStep (NNSG2dOamManagerInstance * pMan, fx32 zStep)

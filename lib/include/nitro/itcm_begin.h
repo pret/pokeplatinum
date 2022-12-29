@@ -1,4 +1,9 @@
 #include <nitro/section.h>
-#ifdef SDK_ARM9
+
+#if defined(SDK_CW) || defined(__MWERKS__)
 #pragma section ITCM begin
+#elif defined(SDK_ADS)
+TO BE DEFINED
+#elif defined(SDK_GCC)
+TO BE DEFINED
 #endif
