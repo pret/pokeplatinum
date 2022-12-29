@@ -191,7 +191,7 @@ _020BDBC4: .word 0x020FD83C
 	.rodata
 
 
-	.global Unk_020FD83C
-Unk_020FD83C: ; 0x020FD83C
+	.global FX_AtanIdxTable_
+FX_AtanIdxTable_: ; 0x020FD83C
 	.incbin "incbin/arm9_rodata.bin", 0x18BFC, 0x102
 
