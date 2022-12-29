@@ -1,5 +1,12 @@
-#ifndef NNSYS_GFD_VRAMTRANSFERMAN_GFD_VRAMTRANSFERMANAGER_H_
-#define NNSYS_GFD_VRAMTRANSFERMAN_GFD_VRAMTRANSFERMANAGER_H_
+#ifndef NNS_GFD_VRAM_TRANSFER_MANAGER_H_
+#define NNS_GFD_VRAM_TRANSFER_MANAGER_H_
+
+#include <nitro.h>
+#include <nnsys/gfd/gfd_common.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef enum NNS_GFD_DST_TYPE {
     NNS_GFD_DST_3D_TEX_VRAM = 0,
@@ -51,8 +58,72 @@ typedef struct NNSGfdVramTransferTask {
     u32 szByte;
 } NNSGfdVramTransferTask;
 
-void NNS_GfdInitVramTransferManager(NNSGfdVramTransferTask * pTaskArray, u32 lengthOfArray);
-BOOL NNS_GfdRegisterNewVramTransferTask(NNS_GFD_DST_TYPE type, u32 dstAddr, void * pSrc, u32 szByte);
-void NNS_GfdDoVramTransfer(void);
+typedef struct NNSGfdVramTransferTaskQueue {
+    NNSGfdVramTransferTask * pTaskArray;
+    u32 lengthOfArray;
 
-#endif //NNSYS_GFD_VRAMTRANSFERMAN_GFD_VRAMTRANSFERMANAGER_H_
+    u16 idxFront;
+    u16 idxRear;
+    u16 numTasks;
+    u16 pad16_;
+    u32 totalSize;
+} NNSGfdVramTransferTaskQueue;
+
+typedef struct NNSGfdVramTransferManager {
+    NNSGfdVramTransferTaskQueue taskQueue;
+} NNSGfdVramTransferManager;
+
+BOOL
+NNSi_GfdPushVramTransferTaskQueue
+(
+    NNSGfdVramTransferTaskQueue * pQueue
+);
+
+NNSGfdVramTransferTask *
+NNSi_GfdGetFrontVramTransferTaskQueue
+(
+    NNSGfdVramTransferTaskQueue * pQueue
+);
+
+NNSGfdVramTransferTask *
+NNSi_GfdGetEndVramTransferTaskQueue
+(
+    NNSGfdVramTransferTaskQueue * pQueue
+);
+
+BOOL
+NNSi_GfdPopVramTransferTaskQueue
+(
+    NNSGfdVramTransferTaskQueue * pQueue
+);
+
+void
+NNS_GfdInitVramTransferManager
+(
+    NNSGfdVramTransferTask * pTaskArray,
+    u32 lengthOfArray
+);
+
+void
+NNS_GfdClearVramTransferManagerTask( );
+
+void
+NNS_GfdDoVramTransfer(void);
+
+BOOL
+NNS_GfdRegisterNewVramTransferTask
+(
+    NNS_GFD_DST_TYPE type,
+    u32 dstAddr,
+    void * pSrc,
+    u32 szByte
+);
+
+u32
+NNS_GfdGetVramTransferTaskTotalSize(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

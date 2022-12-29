@@ -2,6 +2,12 @@
 #define NNS_G2D_OAM_H_
 
 #include <nitro.h>
+#include <nnsys/g2d/fmt/g2d_Vec_data.h>
+#include <nnsys/g2d/g2d_OAM_Types.h>
+#include <nnsys/g2d/fmt/g2d_Oam_data.h>
+#include <nnsys/g2d/fmt/g2d_Character_data.h>
+
+#include <nnsys/g2d/g2d_Image.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,8 +53,10 @@ typedef struct NNSG2dOAMManageArea {
 
 typedef struct NNSG2dOamManagerInstance {
     NNSG2dOamType type;
+
     NNSG2dOAMManageArea managedAttrArea;
     NNSG2dOAMManageArea managedAffineArea;
+
     u16 GUID;
     u16 pad16_;
     BOOL bFastTransferEnable;
@@ -56,25 +64,82 @@ typedef struct NNSG2dOamManagerInstance {
 } NNSG2dOamManagerInstance;
 
 void * NNSi_G2dGetOamManagerInternalBufferForDebug(NNSG2dOamType type);
+
 void NNS_G2dInitOamManagerModule();
+
 BOOL NNS_G2dGetNewManagerInstance(NNSG2dOamManagerInstance * pMan, u16 from, u16 to, NNSG2dOamType type);
 BOOL NNS_G2dInitManagerInstanceAffine(NNSG2dOamManagerInstance * pMan, u16 from, u16 to);
-BOOL NNS_G2dGetNewOamManagerInstance(NNSG2dOamManagerInstance * pMan, u16 fromOBJ, u16 numOBJ, u16 fromAffine, u16 numAffine, NNSG2dOamType type);
-BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode(NNSG2dOamManagerInstance * pMan, u16 fromOBJ, u16 numOBJ, NNSG2dOamType type);
-BOOL NNS_G2dEntryOamManagerOam(NNSG2dOamManagerInstance * pMan, const GXOamAttr * pOam, u16 num);
-BOOL NNS_G2dEntryOamManagerOamWithAffineIdx(NNSG2dOamManagerInstance * pMan, const GXOamAttr * pOam, u16 affineIdx);
-void NNS_G2dSetOamManagerAffine(NNSG2dOamType type, const MtxFx22 * mtx, u16 idx);
+
+BOOL NNS_G2dGetNewOamManagerInstance
+(
+    NNSG2dOamManagerInstance * pMan,
+    u16 fromOBJ,
+    u16 numOBJ,
+    u16 fromAffine,
+    u16 numAffine,
+    NNSG2dOamType type
+);
+
+BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
+(
+    NNSG2dOamManagerInstance * pMan,
+    u16 fromOBJ,
+    u16 numOBJ,
+    NNSG2dOamType type
+);
+
+BOOL NNS_G2dEntryOamManagerOam
+(
+    NNSG2dOamManagerInstance * pMan,
+    const GXOamAttr * pOam,
+    u16 num
+);
+
+BOOL NNS_G2dEntryOamManagerOamWithAffineIdx
+(
+    NNSG2dOamManagerInstance * pMan,
+    const GXOamAttr * pOam,
+    u16 affineIdx
+);
+
+void NNS_G2dSetOamManagerAffine
+(
+    NNSG2dOamType type,
+    const MtxFx22 * mtx,
+    u16 idx
+);
+
 u16 NNS_G2dEntryOamManagerAffine(NNSG2dOamManagerInstance * pMan, const MtxFx22 * mtx);
+
 void NNS_G2dApplyOamManagerToHW(NNSG2dOamManagerInstance * pMan);
-void NNS_G2dApplyOamManagerToHWSprite(NNSG2dOamManagerInstance * pMan, const NNSG2dImageAttr * pTexImageAttr, u32 texBaseAddr, u32 pltBaseAddr);
+
+void NNS_G2dApplyOamManagerToHWSprite
+(
+    NNSG2dOamManagerInstance * pMan,
+    const NNSG2dImageAttr * pTexImageAttr,
+    u32 texBaseAddr,
+    u32 pltBaseAddr
+);
+
 void NNS_G2dResetOamManagerBuffer(NNSG2dOamManagerInstance * pMan);
+
 void NNS_G2dApplyAndResetOamManagerBuffer(NNSG2dOamManagerInstance * pMan);
 u16 NNS_G2dGetOamManagerOamCapacity(NNSG2dOamManagerInstance * pMan);
 u16 NNS_G2dGetOamManagerAffineCapacity(NNSG2dOamManagerInstance * pMan);
+
 GXOamAttr * NNS_G2dGetOamBuffer(NNSG2dOamType type);
 
-static inline void NNS_G2dSetOamManagerSpriteZoffsetStep (NNSG2dOamManagerInstance * pMan, fx32 zStep)
+NNS_G2D_INLINE void NNS_G2dSetOamManagerSpriteZoffsetStep
+(
+    NNSG2dOamManagerInstance * pMan,
+    fx32 zStep
+)
 {
+    NNS_G2D_NULL_ASSERT(pMan);
+    NNS_G2D_WARNING(zStep <= 0, "AutoZOffsetStep should be smaller than zero.");
+    NNS_G2D_WARNING(pMan->type == NNS_G2D_OAMTYPE_SOFTWAREEMULATION,
+                    "This function works only for the manager initialized as NNS_G2D_OAMTYPE_SOFTWAREEMULATION type ");
+
     pMan->spriteZoffsetStep = zStep;
 }
 

@@ -2,6 +2,8 @@
 #define NNS_G2D_IMAGE_H_
 
 #include <nitro.h>
+#include <nnsys/g2d/g2d_config.h>
+#include <nnsys/g2d/fmt/g2d_Character_data.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,8 +31,10 @@ typedef enum NNS_G2D_VRAM_TYPE {
 typedef struct NNSG2dImageAttr {
     GXTexSizeS sizeS;
     GXTexSizeT sizeT;
+
     GXTexFmt fmt;
     BOOL bExtendedPlt;
+
     GXTexPlttColor0 plttUse;
     GXOBJVRamModeChar mappingType;
 } NNSG2dImageAttr;
@@ -46,14 +50,19 @@ typedef struct NNSG2dImageProxy {
 
 typedef struct NNSG2dImagePaletteProxy {
     GXTexFmt fmt;
+
     BOOL bExtendedPlt;
+
     NNSG2dVRamLocation vramLocation;
 } NNSG2dImagePaletteProxy;
 
 void NNS_G2dInitImageProxy(NNSG2dImageProxy * pImg);
+
 void NNS_G2dSetImageLocation(NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type, u32 addr);
+
 u32 NNS_G2dGetImageLocation(const NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type);
 BOOL NNS_G2dIsImageReadyToUse(const NNSG2dImageProxy * pImg, NNS_G2D_VRAM_TYPE type);
+
 void NNS_G2dLoadImage1DMapping
 (
     const NNSG2dCharacterData * pSrcData,
@@ -61,6 +70,7 @@ void NNS_G2dLoadImage1DMapping
     NNS_G2D_VRAM_TYPE type,
     NNSG2dImageProxy * pImgProxy
 );
+
 void NNS_G2dLoadImage2DMapping
 (
     const NNSG2dCharacterData * pSrcData,
@@ -68,6 +78,7 @@ void NNS_G2dLoadImage2DMapping
     NNS_G2D_VRAM_TYPE type,
     NNSG2dImageProxy * pImgProxy
 );
+
 void NNS_G2dLoadImageVramTransfer
 (
     const NNSG2dCharacterData * pSrcData,
@@ -75,6 +86,7 @@ void NNS_G2dLoadImageVramTransfer
     NNS_G2D_VRAM_TYPE type,
     NNSG2dImageProxy * pImgProxy
 );
+
 void NNS_G2dLoadPalette
 (
     const NNSG2dPaletteData * pSrcData,
@@ -82,6 +94,7 @@ void NNS_G2dLoadPalette
     NNS_G2D_VRAM_TYPE type,
     NNSG2dImagePaletteProxy * pPltProxy
 );
+
 void NNS_G2dLoadPaletteEx
 (
     const NNSG2dPaletteData * pSrcData,
@@ -96,6 +109,7 @@ void NNS_G2dSetImagePaletteLocation(NNSG2dImagePaletteProxy * pImg, NNS_G2D_VRAM
 u32 NNS_G2dGetImagePaletteLocation(const NNSG2dImagePaletteProxy * pImg, NNS_G2D_VRAM_TYPE type);
 BOOL NNS_G2dIsImagePaletteReadyToUse(const NNSG2dImagePaletteProxy * pImg, NNS_G2D_VRAM_TYPE type);
 static BOOL NNS_G2dIsPaletteImageFmt(const NNSG2dImageAttr * imgAttr);
+
 void NNSi_G2dInitializeVRamLocation(NNSG2dVRamLocation * pVramLocation);
 void NNSi_G2dSetVramLocation(NNSG2dVRamLocation * pVramLocation, NNS_G2D_VRAM_TYPE type, u32 addr);
 u32 NNSi_G2dGetVramLocation(const NNSG2dVRamLocation * pVramLocation, NNS_G2D_VRAM_TYPE type);
@@ -138,7 +152,7 @@ void NNSi_G2dSetupPaletteProxyPrams
     NNSG2dImagePaletteProxy * pPltProxy
 );
 
-inline BOOL NNS_G2dIsPaletteImageFmt (const NNSG2dImageAttr * imgAttr)
+NNS_G2D_INLINE BOOL NNS_G2dIsPaletteImageFmt (const NNSG2dImageAttr * imgAttr)
 {
     NNS_G2D_NULL_ASSERT(imgAttr);
     return (imgAttr->fmt == GX_TEXFMT_PLTT4 ||
@@ -146,7 +160,7 @@ inline BOOL NNS_G2dIsPaletteImageFmt (const NNSG2dImageAttr * imgAttr)
             imgAttr->fmt == GX_TEXFMT_PLTT256) ? TRUE : FALSE;
 }
 
-inline void NNS_G2dSetImageExtPaletteFlag (NNSG2dImageProxy * pImgProxy, BOOL bUseExtPlt)
+NNS_G2D_INLINE void NNS_G2dSetImageExtPaletteFlag (NNSG2dImageProxy * pImgProxy, BOOL bUseExtPlt)
 {
     NNS_G2D_NULL_ASSERT(pImgProxy);
     pImgProxy->attr.bExtendedPlt = bUseExtPlt;
