@@ -20,11 +20,11 @@ FreePlttVram_: ; 0x020A5A44
 	.data
 
 
-	.global Unk_02100DF4
-Unk_02100DF4: ; 0x02100DF4
+	.global NNS_GfdDefaultFuncAllocPlttVram
+NNS_GfdDefaultFuncAllocPlttVram: ; 0x02100DF4
 	.incbin "incbin/arm9_data.bin", 0x2114, 0x2118 - 0x2114
 
-	.global Unk_02100DF8
-Unk_02100DF8: ; 0x02100DF8
+	.global NNS_GfdDefaultFuncFreePlttVram
+NNS_GfdDefaultFuncFreePlttVram: ; 0x02100DF8
 	.incbin "incbin/arm9_data.bin", 0x2118, 0x4
 

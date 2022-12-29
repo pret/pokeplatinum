@@ -5,8 +5,9 @@
 
 	.text
 
-
+	arm_func_start _fmul
 	arm_func_start _f_mul
+_fmul:
 _f_mul: ; 0x020E18B0
 	eor r2, r0, r1
 	and r2, r2, #0x80000000

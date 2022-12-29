@@ -4,8 +4,9 @@
 
 	.text
 
-
+	arm_func_start _ffixu
 	arm_func_start _f_ftou
+_ffixu:
 _f_ftou: ; 0x020E1774
 	tst r0, #-0x80000000
 	bne _020E1798

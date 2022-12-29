@@ -33,7 +33,9 @@ __f_itof_common: ; 0x020E17C0
 	bx lr
 	arm_func_end __f_itof_common
 
+	arm_func_start _ffltu
 	arm_func_start _f_utof
+_ffltu:
 _f_utof: ; 0x020E17FC
 	cmp r0, #0
 	arm_func_end _f_utof

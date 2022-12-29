@@ -315,7 +315,9 @@ _020E10F4:
 	bx lr
 	arm_func_end _f_fge
 
+	arm_func_start _fgr
 	arm_func_start _f_fgt
+_fgr:
 _f_fgt: ; 0x020E1108
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
@@ -374,7 +376,9 @@ _020E11B4:
 	bx lr
 	arm_func_end _f_fle
 
+	arm_func_start _fls
 	arm_func_start _f_flt
+_fls:
 _f_flt: ; 0x020E11CC
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
@@ -402,7 +406,9 @@ _020E1214:
 	bx lr
 	arm_func_end _f_flt
 
+	arm_func_start _feq
 	arm_func_start _f_feq
+_feq:
 _f_feq: ; 0x020E1228
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1

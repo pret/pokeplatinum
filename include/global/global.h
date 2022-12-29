@@ -2,7 +2,7 @@
 #define POKEPLATINUM_GLOBAL_H
 
 #include <nitro.h>
-#include <nitro/code16.h>
+#pragma thumb on
 #include <nnsys.h>
 
 #include <string.h>

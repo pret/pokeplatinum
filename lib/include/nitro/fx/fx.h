@@ -203,6 +203,7 @@ SDK_INLINE fx32 FX32_CAST (s64 res)
 }
 
 fx32 FX_MulFunc(fx32 v1, fx32 v2);
+
 SDK_DECL_INLINE fx32 FX_MulInline(fx32 v1, fx32 v2);
 
 SDK_INLINE fx32 FX_MulInline (fx32 v1, fx32 v2)
