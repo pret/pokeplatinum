@@ -949,10 +949,10 @@ Overlay overlay6
 Overlay overlay7
 {
 	After overlay6
-	Object asm/overlay007/ov7_02249960.o
-	Object asm/overlay007/ov7_0224B4E8.o
-	Object asm/overlay007/ov7_0224BE9C.o
-	Object asm/overlay007/ov7_0224CD28.o
+	Object src/overlay007/ov7_02249960.o
+	Object src/overlay007/ov7_0224B4E8.o
+	Object src/overlay007/ov7_0224BE9C.o
+	Object src/overlay007/ov7_0224CD28.o
 }
 
 Overlay overlay8
