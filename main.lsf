@@ -1011,16 +1011,16 @@ Overlay overlay12
 Overlay overlay13
 {
 	After overlay11
-	Object asm/overlay013/ov13_0221FC20.o
-	Object asm/overlay013/ov13_02221A88.o
-	Object asm/overlay013/ov13_02224500.o
-	Object asm/overlay013/ov13_02225710.o
-	Object asm/overlay013/ov13_022264F4.o
-	Object asm/overlay013/ov13_02227288.o
-	Object asm/overlay013/ov13_02227A4C.o
-	Object asm/overlay013/ov13_02227BDC.o
-	Object asm/overlay013/ov13_02228128.o
-	Object asm/overlay013/ov13_02228A38.o
+	Object src/overlay013/ov13_0221FC20.o
+	Object src/overlay013/ov13_02221A88.o
+	Object src/overlay013/ov13_02224500.o
+	Object src/overlay013/ov13_02225710.o
+	Object src/overlay013/ov13_022264F4.o
+	Object src/overlay013/ov13_02227288.o
+	Object src/overlay013/ov13_02227A4C.o
+	Object src/overlay013/ov13_02227BDC.o
+	Object src/overlay013/ov13_02228128.o
+	Object src/overlay013/ov13_02228A38.o
 }
 
 Overlay overlay14
