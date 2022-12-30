@@ -14,6 +14,7 @@
 #include "global/assert.h"
 
 #define NELEMS(a) (sizeof(a) / sizeof(*(a)))
+#define XtOffset(pointer_type, field) ((unsigned int)&(((pointer_type)NULL)->field))
 
 typedef struct {
     int x;

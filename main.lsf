@@ -1038,22 +1038,22 @@ Overlay overlay15
 Overlay overlay16
 {
 	After overlay12
-	Object asm/overlay016/ov16_0223B140.o
-	Object asm/overlay016/ov16_0223DF00.o
-	Object asm/overlay016/ov16_022405FC.o
-	Object asm/overlay016/ov16_0224B940.o
-	Object asm/overlay016/ov16_0225177C.o
-	Object asm/overlay016/ov16_0225BFFC.o
+	Object src/overlay016/ov16_0223B140.o
+	Object src/overlay016/ov16_0223DF00.o
+	Object src/overlay016/ov16_022405FC.o
+	Object src/overlay016/ov16_0224B940.o
+	Object src/overlay016/ov16_0225177C.o
+	Object src/overlay016/ov16_0225BFFC.o
 	Object asm/overlay016/ov16_0225CBB8.o
-	Object asm/overlay016/ov16_02264798.o
-	Object asm/overlay016/ov16_0226485C.o
+	Object src/overlay016/ov16_02264798.o
+	Object src/overlay016/ov16_0226485C.o
 	Object asm/overlay016/ov16_02266F1C.o
-	Object asm/overlay016/ov16_02268520.o
+	Object src/overlay016/ov16_02268520.o
 	Object asm/overlay016/ov16_0226871C.o
 	Object asm/overlay016/ov16_0226D094.o
-	Object asm/overlay016/ov16_0226DB7C.o
-	Object asm/overlay016/ov16_0226DE44.o
-	Object asm/overlay016/ov16_0226E148.o
+	Object src/overlay016/ov16_0226DB7C.o
+	Object src/overlay016/ov16_0226DE44.o
+	Object src/overlay016/ov16_0226E148.o
 }
 
 Overlay overlay17
