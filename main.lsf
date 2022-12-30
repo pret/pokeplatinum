@@ -970,7 +970,7 @@ Overlay overlay9
 Overlay overlay10
 {
 	After overlay4
-	Object asm/overlay010/ov10_0221F800.o
+	Object src/overlay010/ov10_0221F800.o
 }
 
 Overlay overlay11
