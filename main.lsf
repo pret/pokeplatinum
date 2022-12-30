@@ -964,7 +964,7 @@ Overlay overlay8
 Overlay overlay9
 {
 	After overlay6
-	Object asm/overlay009/ov9_02249960.o
+	Object src/overlay009/ov9_02249960.o
 }
 
 Overlay overlay10
