@@ -912,38 +912,38 @@ Overlay overlay5
 
 Overlay overlay6
 {
-	After	overlay5
+	After overlay5
 	Object asm/overlay006/ov6_0223E140.o
-	Object asm/overlay006/ov6_02240C9C.o
-	Object asm/overlay006/ov6_022426AC.o
-	Object asm/overlay006/ov6_02242984.o
-	Object asm/overlay006/ov6_02242AF0.o
-	Object asm/overlay006/ov6_02242F74.o
-	Object asm/overlay006/ov6_02243004.o
-	Object asm/overlay006/ov6_022430C4.o
-	Object asm/overlay006/ov6_02243218.o
-	Object asm/overlay006/ov6_02243258.o
-	Object asm/overlay006/ov6_02246034.o
-	Object asm/overlay006/ov6_02246184.o
-	Object asm/overlay006/ov6_02246444.o
-	Object asm/overlay006/ov6_022465FC.o
-	Object asm/overlay006/ov6_02246A30.o
-	Object asm/overlay006/ov6_02246B74.o
-	Object asm/overlay006/ov6_02246BF4.o
-	Object asm/overlay006/ov6_02246C24.o
-	Object asm/overlay006/ov6_02246F00.o
-	Object asm/overlay006/ov6_02247078.o
-	Object asm/overlay006/ov6_02247100.o
-	Object asm/overlay006/ov6_022475B0.o
-	Object asm/overlay006/ov6_02247660.o
-	Object asm/overlay006/ov6_022477B8.o
-	Object asm/overlay006/ov6_02247830.o
-	Object asm/overlay006/ov6_02247A0C.o
-	Object asm/overlay006/ov6_02247D30.o
-	Object asm/overlay006/ov6_02247F5C.o
-	Object asm/overlay006/ov6_02248050.o
-	Object asm/overlay006/ov6_02248948.o
-	Object asm/overlay006/ov6_022489E4.o
+	Object src/overlay006/ov6_02240C9C.o
+	Object src/overlay006/ov6_022426AC.o
+	Object src/overlay006/ov6_02242984.o
+	Object src/overlay006/ov6_02242AF0.o
+	Object src/overlay006/ov6_02242F74.o
+	Object src/overlay006/ov6_02243004.o
+	Object src/overlay006/ov6_022430C4.o
+	Object src/overlay006/ov6_02243218.o
+	Object src/overlay006/ov6_02243258.o
+	Object src/overlay006/ov6_02246034.o
+	Object src/overlay006/ov6_02246184.o
+	Object src/overlay006/ov6_02246444.o
+	Object src/overlay006/ov6_022465FC.o
+	Object src/overlay006/ov6_02246A30.o
+	Object src/overlay006/ov6_02246B74.o
+	Object src/overlay006/ov6_02246BF4.o
+	Object src/overlay006/ov6_02246C24.o
+	Object src/overlay006/ov6_02246F00.o
+	Object src/overlay006/ov6_02247078.o
+	Object src/overlay006/ov6_02247100.o
+	Object src/overlay006/ov6_022475B0.o
+	Object src/overlay006/ov6_02247660.o
+	Object src/overlay006/ov6_022477B8.o
+	Object src/overlay006/ov6_02247830.o
+	Object src/overlay006/ov6_02247A0C.o
+	Object src/overlay006/ov6_02247D30.o
+	Object src/overlay006/ov6_02247F5C.o
+	Object src/overlay006/ov6_02248050.o
+	Object src/overlay006/ov6_02248948.o
+	Object src/overlay006/ov6_022489E4.o
 }
 
 Overlay overlay7
