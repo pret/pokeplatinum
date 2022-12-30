@@ -1,8 +1,0 @@
-.public sub_02018144
-.public sub_020181C4
-.public GF_AssertFail
-.public sub_02035AC4
-.public sub_02035D78
-.public sub_0203608C
-.public sub_020360D0
-.public sub_020363BC

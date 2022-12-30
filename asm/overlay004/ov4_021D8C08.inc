@@ -7,11 +7,11 @@
 .public strncpy
 .public strchr
 .public strtoul
-.public ov4_021D76E8
+.public DWC_ClearError
 .public ov4_021D7708
 .public ov4_021D7724
 .public ov4_021D7BFC
-.public ov4_021D8018
+.public DWC_UpdateConnection
 .public ov4_021D89C0
 .public ov4_021D8ABC
 .public ov4_021D8BDC

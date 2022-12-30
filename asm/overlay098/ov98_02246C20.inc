@@ -46,9 +46,9 @@
 .public OS_RestoreInterrupts
 .public MI_CpuFill8
 .public _ull_mod
-.public ov4_021D776C
-.public ov4_021D7EAC
-.public ov4_021D8018
+.public DWC_SetMemFunc
+.public DWC_GetLinkLevel
+.public DWC_UpdateConnection
 .public ov94_0223B15C
 .public ov98_02246E08
 .public ov98_02246E54

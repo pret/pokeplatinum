@@ -403,7 +403,7 @@ _0223552C:
 	mov r0, #1
 	b _02235690
 _02235534:
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	ldr r0, [r7, #4]
 	subs r0, r0, #1
 	str r0, [r7, #4]
@@ -477,7 +477,7 @@ _02235608:
 	mov r0, #1
 	b _02235690
 _02235648:
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	ldr r5, [r7, #0x38]
 	bl ov66_022585F4
 	mov r0, #0

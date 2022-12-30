@@ -70,9 +70,9 @@ ov98_02246C98: ; 0x02246C98
 	ldr r0, [r4, #0x7c]
 	cmp r0, #1
 	bne _02246CBC
-	bl ov4_021D8018
+	bl DWC_UpdateConnection
 	bl ov94_0223B15C
-	bl ov4_021D7EAC
+	bl DWC_GetLinkLevel
 	mov r1, #3
 	sub r0, r1, r0
 	bl sub_020397B0
@@ -107,7 +107,7 @@ _02246CE4:
 	str r1, [r0, #0]
 	ldr r0, _02246DA8 ; =ov98_02246EAC
 	ldr r1, _02246DAC ; =ov98_02246ED4
-	bl ov4_021D776C
+	bl DWC_SetMemFunc
 	mov r0, #1
 	str r0, [r4, #0x7c]
 	mov r0, #2

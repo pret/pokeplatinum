@@ -144,7 +144,9 @@ _020E1EC0:
 	bx lr
 	arm_func_end _ll_sdiv
 
+	arm_func_start _ll_udiv
 	arm_func_start _ull_div
+_ll_udiv:
 _ull_div: ; 0x020E1ED4
 	stmfd sp!, {r4, r5, r6, r7, fp, ip, lr}
 	mov r4, #0

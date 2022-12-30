@@ -459,13 +459,13 @@ _021D7EA0:
 _021D7EA8: .word 0x0221A4DC
 	arm_func_end ov4_021D7E80
 
-	arm_func_start ov4_021D7EAC
-ov4_021D7EAC: ; 0x021D7EAC
+	arm_func_start DWC_GetLinkLevel
+DWC_GetLinkLevel: ; 0x021D7EAC
 	ldr ip, _021D7EB4 ; =ov4_022156EC
 	bx ip
 	; .align 2, 0
 _021D7EB4: .word ov4_022156EC
-	arm_func_end ov4_021D7EAC
+	arm_func_end DWC_GetLinkLevel
 
 	arm_func_start ov4_021D7EB8
 ov4_021D7EB8: ; 0x021D7EB8
@@ -567,8 +567,8 @@ _021D800C:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	arm_func_end ov4_021D7EB8
 
-	arm_func_start ov4_021D8018
-ov4_021D8018: ; 0x021D8018
+	arm_func_start DWC_UpdateConnection
+DWC_UpdateConnection: ; 0x021D8018
 	stmfd sp!, {r3, lr}
 	bl ov4_021D7AE4
 	bl ov4_021D7E80
@@ -594,7 +594,7 @@ _021D8060:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D8068: .word 0xFFFF2D10
-	arm_func_end ov4_021D8018
+	arm_func_end DWC_UpdateConnection
 
 	.data
 

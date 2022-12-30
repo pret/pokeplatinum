@@ -622,7 +622,7 @@ _0222DC40:
 	bne _0222DC6C
 	add r0, sp, #0
 	add r1, sp, #4
-	bl ov4_021D75F4
+	bl DWC_GetLastErrorEx
 	ldr r0, _0222DCD0 ; =0x0222E764
 	mov r1, #0xe
 	str r1, [r0, #0x250]

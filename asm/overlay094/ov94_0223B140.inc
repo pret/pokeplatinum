@@ -1,7 +1,7 @@
 .public OS_GetMacAddress
 .public memcpy
 .public _u32_div_f
-.public ov4_021D76E8
+.public DWC_ClearError
 .public ov4_02213898
 .public ov60_0221FC84
 .public ov60_0221FCA8

@@ -1022,13 +1022,13 @@ _0224517E: ; jump table
 _02245190:
 	add r0, sp, #8
 	add r1, sp, #4
-	bl ov4_021D75F4
+	bl DWC_GetLastErrorEx
 	str r0, [r4, #0x40]
 	ldr r0, [sp, #8]
 	str r0, [r4, #0x44]
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x48]
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	bl ov4_021D7DB0
 	add r0, r4, #0
 	bl ov94_0223C5F4
@@ -1097,11 +1097,11 @@ _02245218:
 	bl ov94_0223C5F4
 	add r0, sp, #4
 	add r1, sp, #0
-	bl ov4_021D75F4
+	bl DWC_GetLastErrorEx
 	str r0, [r4, #0x40]
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x44]
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	bl ov4_021D7DB0
 	mov r0, #0x17
 	str r0, [r4, #0x2c]

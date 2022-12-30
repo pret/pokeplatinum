@@ -68,9 +68,9 @@
 .public OS_DisableInterrupts
 .public OS_RestoreInterrupts
 .public memset
-.public ov4_021D776C
-.public ov4_021D7EAC
-.public ov4_021D8018
+.public DWC_SetMemFunc
+.public DWC_GetLinkLevel
+.public DWC_UpdateConnection
 .public ov96_0223B15C
 .public ov96_0223B940
 .public ov96_0223B960

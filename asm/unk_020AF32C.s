@@ -354,7 +354,7 @@ _020AF75C: .word 0x021C5A8C
 	.bss
 
 
-	.global Unk_021C5A8C
-Unk_021C5A8C: ; 0x021C5A8C
+	.global NNS_G3dGlb
+NNS_G3dGlb: ; 0x021C5A8C
 	.space 0x264
 

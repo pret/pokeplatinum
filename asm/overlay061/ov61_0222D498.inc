@@ -9,7 +9,7 @@
 .public OS_GetTick
 .public strcpy
 .public _ull_div
-.public ov4_021D75F4
+.public DWC_GetLastErrorEx
 .public ov4_021D7780
 .public ov4_021D77C4
 .public ov4_021D8144

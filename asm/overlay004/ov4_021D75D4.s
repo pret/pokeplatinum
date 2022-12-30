@@ -18,8 +18,8 @@ ov4_021D75D4: ; 0x021D75D4
 _021D75F0: .word 0x0221A4CC
 	arm_func_end ov4_021D75D4
 
-	arm_func_start ov4_021D75F4
-ov4_021D75F4: ; 0x021D75F4
+	arm_func_start DWC_GetLastErrorEx
+DWC_GetLastErrorEx: ; 0x021D75F4
 	cmp r0, #0
 	ldrne r2, _021D76E4 ; =0x0221A4CC
 	ldrne r2, [r2, #4]
@@ -93,10 +93,10 @@ _021D76D8:
 	bx lr
 	; .align 2, 0
 _021D76E4: .word 0x0221A4CC
-	arm_func_end ov4_021D75F4
+	arm_func_end DWC_GetLastErrorEx
 
-	arm_func_start ov4_021D76E8
-ov4_021D76E8: ; 0x021D76E8
+	arm_func_start DWC_ClearError
+DWC_ClearError: ; 0x021D76E8
 	ldr r0, _021D7704 ; =0x0221A4CC
 	ldr r1, [r0, #0]
 	cmp r1, #9
@@ -106,7 +106,7 @@ ov4_021D76E8: ; 0x021D76E8
 	bx lr
 	; .align 2, 0
 _021D7704: .word 0x0221A4CC
-	arm_func_end ov4_021D76E8
+	arm_func_end DWC_ClearError
 
 	arm_func_start ov4_021D7708
 ov4_021D7708: ; 0x021D7708

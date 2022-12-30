@@ -201,7 +201,7 @@
 .public ov4_021D72E0
 .public ov4_021D7468
 .public ov4_021D75D4
-.public ov4_021D76E8
+.public DWC_ClearError
 .public ov4_021D7708
 .public ov4_021D7724
 .public ov4_021D773C
@@ -222,7 +222,7 @@
 .public ov4_021D7BFC
 .public ov4_021D7DB0
 .public ov4_021D7E80
-.public ov4_021D8018
+.public DWC_UpdateConnection
 .public ov4_021D8144
 .public ov4_021D81B8
 .public ov4_021D83A4

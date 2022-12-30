@@ -1045,7 +1045,7 @@ _0223C568:
 	ldr r2, [sp, #4]
 	add r0, r1, #4
 	str r2, [r4, r0]
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	bl ov4_021D7DB0
 	add r0, r4, #0
 	bl ov96_0223D99C
@@ -1117,14 +1117,14 @@ _0223C5F8:
 	bl ov96_0223D99C
 	add r0, sp, #4
 	add r1, sp, #0
-	bl ov4_021D75F4
+	bl DWC_GetLastErrorEx
 	mov r1, #0xf1
 	lsl r1, r1, #4
 	str r0, [r4, r1]
 	ldr r2, [sp, #4]
 	add r0, r1, #4
 	str r2, [r4, r0]
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	bl ov4_021D7DB0
 	mov r0, #0x37
 	str r0, [r4, #0x1c]

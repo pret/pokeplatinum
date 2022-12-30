@@ -172,7 +172,7 @@ ov94_0223BE2C: ; 0x0223BE2C
 	add r5, r1, #0
 	bl sub_0200682C
 	add r4, r0, #0
-	bl ov4_021D8018
+	bl DWC_UpdateConnection
 	bl ov94_0223B15C
 	ldr r1, [r5, #0]
 	cmp r1, #5
@@ -199,7 +199,7 @@ _0223BE5C:
 	str r1, [r0, #0]
 	ldr r0, _0223BF3C ; =ov94_0223C468
 	ldr r1, _0223BF40 ; =ov94_0223C490
-	bl ov4_021D776C
+	bl DWC_SetMemFunc
 	mov r0, #1
 	str r0, [r5, #0]
 	b _0223BF1C
@@ -970,7 +970,7 @@ _0223C4B0: .word 0x02246C04
 	thumb_func_start ov94_0223C4B4
 ov94_0223C4B4: ; 0x0223C4B4
 	push {r3, lr}
-	bl ov4_021D7EAC
+	bl DWC_GetLinkLevel
 	mov r1, #3
 	sub r0, r1, r0
 	pop {r3, pc}

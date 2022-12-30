@@ -164,7 +164,7 @@ sub_0208924C: ; 0x0208924C
 	ldr r0, [r4, r0]
 	cmp r0, #0
 	beq _02089270
-	bl ov4_021D7EAC
+	bl DWC_GetLinkLevel
 	mov r1, #3
 	sub r0, r1, r0
 	bl sub_020397B0

@@ -289,7 +289,7 @@ _021D0FA0:
 	mov r1, #0
 	str r1, [r0, #0]
 _021D0FD2:
-	blx ov4_021D76E8
+	blx DWC_ClearError
 	pop {r3, pc}
 	; .align 2, 0
 _021D0FD8: .word 0x0221A400
@@ -324,7 +324,7 @@ _021D1008: ; jump table
 _021D1012:
 	ldr r0, _021D10E8 ; =ov4_021D1AA0
 	ldr r1, _021D10EC ; =ov4_021D1B04
-	blx ov4_021D776C
+	blx DWC_SetMemFunc
 	ldr r0, _021D10E0 ; =0x0221A400
 	mov r2, #1
 	ldr r1, [r0, #0]
@@ -983,7 +983,7 @@ _021D150A:
 	ldr r1, [r0, #0]
 	ldr r0, _021D1584 ; =0x00001078
 	str r2, [r1, r0]
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r1, _021D1580 ; =0x0221A400
 	add r2, r4, #4
 	ldr r1, [r1, #0]
@@ -1073,7 +1073,7 @@ _021D15BA:
 	ldr r1, [r0, #0]
 	ldr r0, _021D1644 ; =0x00001078
 	str r2, [r1, r0]
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r1, _021D1640 ; =0x0221A400
 	lsl r0, r0, #0x10
 	lsr r6, r0, #0x10
@@ -1335,7 +1335,7 @@ _021D17F0:
 	blx ov4_021D9968
 	cmp r5, r0
 	beq _021D1816
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	add r1, r4, #0
 	lsl r1, r5
 	tst r0, r1
@@ -1780,7 +1780,7 @@ ov4_021D1B5C: ; 0x021D1B5C
 	add r0, sp, #4
 	add r1, sp, #0
 	mov r4, #0
-	blx ov4_021D75F4
+	blx DWC_GetLastErrorEx
 	add r5, r0, #0
 	beq _021D1C2E
 	ldr r4, [sp, #4]
@@ -1811,10 +1811,10 @@ _021D1B8E: ; jump table
 	.short _021D1BAA - _021D1B8E - 2 ; case 6
 	.short _021D1C10 - _021D1B8E - 2 ; case 7
 _021D1B9E:
-	blx ov4_021D76E8
+	blx DWC_ClearError
 	b _021D1C2E
 _021D1BA4:
-	blx ov4_021D76E8
+	blx DWC_ClearError
 	b _021D1C2E
 _021D1BAA:
 	ldr r0, _021D1C50 ; =0x0221A400
@@ -1859,7 +1859,7 @@ _021D1BF0:
 	beq _021D1BFC
 	blx ov4_021D7DB0
 _021D1BFC:
-	blx ov4_021D76E8
+	blx DWC_ClearError
 _021D1C00:
 	ldr r0, _021D1C50 ; =0x0221A400
 	ldr r2, [r0, #0]
@@ -1966,7 +1966,7 @@ ov4_021D1CAC: ; 0x021D1CAC
 	bl ov4_021D1C5C
 	cmp r0, #0
 	beq _021D1D06
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r1, _021D1D14 ; =0x0000FFFE
 	tst r0, r1
 	beq _021D1D06
@@ -1982,7 +1982,7 @@ ov4_021D1CAC: ; 0x021D1CAC
 	mov r0, #2
 	orr r0, r1
 	str r0, [r2, #0]
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r1, _021D1D0C ; =0x0221A400
 	mov r2, #4
 	ldr r1, [r1, #0]
@@ -2039,7 +2039,7 @@ _021D1D58:
 	bl ov4_021D2B28
 	ldr r0, _021D1E18 ; =0x0221A400
 	ldr r4, [r0, #0]
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	mov r1, #0x42
 	lsl r1, r1, #6
 	ldr r2, [r4, r1]
@@ -2054,7 +2054,7 @@ _021D1D58:
 	ldr r0, [r4, r1]
 	cmp r0, #0
 	beq _021D1DA4
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	add r4, r0, #0
 	blx ov4_021D9968
 	add r1, r0, #0
@@ -2062,7 +2062,7 @@ _021D1D58:
 	bl ov4_021D2FCC
 	cmp r0, #0
 	beq _021D1DA4
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r1, _021D1E18 ; =0x0221A400
 	ldr r2, [r1, #0]
 	mov r1, #0x42
@@ -2945,7 +2945,7 @@ _021D23EA:
 	cmp r4, #0
 	beq _021D2432
 _021D23FA:
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r1, _021D246C ; =0x0221A400
 	ldr r2, [r1, #0]
 	ldr r1, _021D247C ; =0x000010D8
@@ -2953,7 +2953,7 @@ _021D23FA:
 	mvn r1, r1
 	and r0, r1
 	str r0, [sp]
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	add r4, r0, #0
 	ldr r0, [sp]
 	cmp r0, #0
@@ -2975,7 +2975,7 @@ _021D2432:
 	ldr r1, [r0, #0]
 	ldr r0, _021D2484 ; =0x00001094
 	str r5, [r1, r0]
-	blx ov4_021D99D4
+	blx DWC_GetAIDBitmap
 	ldr r2, _021D246C ; =0x0221A400
 	ldr r1, _021D247C ; =0x000010D8
 	ldr r3, [r2, #0]

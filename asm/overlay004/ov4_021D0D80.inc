@@ -83,9 +83,9 @@
 .public ov4_021D2FA4
 .public ov4_021D2FB8
 .public ov4_021D2FCC
-.public ov4_021D75F4
-.public ov4_021D76E8
-.public ov4_021D776C
+.public DWC_GetLastErrorEx
+.public DWC_ClearError
+.public DWC_SetMemFunc
 .public ov4_021D78C8
 .public ov4_021D792C
 .public ov4_021D797C
@@ -106,7 +106,7 @@
 .public ov4_021D985C
 .public ov4_021D9920
 .public ov4_021D9968
-.public ov4_021D99D4
+.public DWC_GetAIDBitmap
 .public ov4_021D9A08
 .public ov4_021DB2A4
 .public ov4_021DB350

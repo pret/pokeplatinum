@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start sub_020A1E30
-sub_020A1E30: ; 0x020A1E30
+	arm_func_start SPL_020A1E30
+SPL_020A1E30: ; 0x020A1E30
 	stmfd sp!, {r4, lr}
 	ldr lr, [r1, #8]
 	ldr r2, [r0, #0]
@@ -45,10 +45,10 @@ sub_020A1E30: ; 0x020A1E30
 	str r0, [r1, #0x10]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end sub_020A1E30
+	arm_func_end SPL_020A1E30
 
-	arm_func_start sub_020A1EC4
-sub_020A1EC4: ; 0x020A1EC4
+	arm_func_start SPL_020A1EC4
+SPL_020A1EC4: ; 0x020A1EC4
 	ldr r3, [r3, #0x74]
 	ldr r2, [r0, #0]
 	cmp r3, #-0x80000000
@@ -124,10 +124,10 @@ _020A1F94:
 	rsb r0, r2, #0
 	str r0, [r1, #0x18]
 	bx lr
-	arm_func_end sub_020A1EC4
+	arm_func_end SPL_020A1EC4
 
-	arm_func_start sub_020A1FE0
-sub_020A1FE0: ; 0x020A1FE0
+	arm_func_start SPL_020A1FE0
+SPL_020A1FE0: ; 0x020A1FE0
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x28
 	ldrh r2, [r0, #2]
@@ -187,10 +187,10 @@ _020A2098:
 	bx lr
 	; .align 2, 0
 _020A20B4: .word 0x020F983C
-	arm_func_end sub_020A1FE0
+	arm_func_end SPL_020A1FE0
 
-	arm_func_start sub_020A20B8
-sub_020A20B8: ; 0x020A20B8
+	arm_func_start SPL_020A20B8
+SPL_020A20B8: ; 0x020A20B8
 	stmfd sp!, {r4, lr}
 	ldr ip, [r0]
 	ldr r4, [r1, #8]
@@ -224,10 +224,10 @@ sub_020A20B8: ; 0x020A20B8
 	str r0, [r2, #8]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end sub_020A20B8
+	arm_func_end SPL_020A20B8
 
-	arm_func_start sub_020A213C
-sub_020A213C: ; 0x020A213C
+	arm_func_start SPL_020A213C
+SPL_020A213C: ; 0x020A213C
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	mov r5, r0
@@ -279,10 +279,10 @@ sub_020A213C: ; 0x020A213C
 _020A21F8: .word 0x021C3A38
 _020A21FC: .word 0x5EEDF715
 _020A2200: .word 0x1B0CB173
-	arm_func_end sub_020A213C
+	arm_func_end SPL_020A213C
 
-	arm_func_start sub_020A2204
-sub_020A2204: ; 0x020A2204
+	arm_func_start SPL_020A2204
+SPL_020A2204: ; 0x020A2204
 	ldrsh r1, [r0]
 	ldr r3, [r2, #0]
 	add r1, r3, r1
@@ -296,4 +296,4 @@ sub_020A2204: ; 0x020A2204
 	add r0, r1, r0
 	str r0, [r2, #8]
 	bx lr
-	arm_func_end sub_020A2204
+	arm_func_end SPL_020A2204

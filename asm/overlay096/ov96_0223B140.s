@@ -725,7 +725,7 @@ _0223B684:
 	mov r4, #5
 	mvn r4, r4
 _0223B698:
-	bl ov4_021D76E8
+	bl DWC_ClearError
 _0223B69C:
 	add r0, r4, #0
 	pop {r4, pc}

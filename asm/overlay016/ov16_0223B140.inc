@@ -177,7 +177,7 @@
 .public MIi_CpuClear32
 .public MIi_CpuClearFast
 .public WM_GetLinkLevel
-.public ov4_021D7EAC
+.public DWC_GetLinkLevel
 .public ov11_0221F800
 .public ov11_0221F8F0
 .public ov12_0221FCDC

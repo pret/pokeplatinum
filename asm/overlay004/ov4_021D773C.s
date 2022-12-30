@@ -31,15 +31,15 @@ ov4_021D775C: ; 0x021D775C
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021D775C
 
-	arm_func_start ov4_021D776C
-ov4_021D776C: ; 0x021D776C
+	arm_func_start DWC_SetMemFunc
+DWC_SetMemFunc: ; 0x021D776C
 	ldr r2, _021D777C ; =0x0221A4D4
 	str r0, [r2, #4]
 	str r1, [r2, #0]
 	bx lr
 	; .align 2, 0
 _021D777C: .word 0x0221A4D4
-	arm_func_end ov4_021D776C
+	arm_func_end DWC_SetMemFunc
 
 	arm_func_start ov4_021D7780
 ov4_021D7780: ; 0x021D7780

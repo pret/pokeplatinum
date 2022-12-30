@@ -5475,7 +5475,7 @@ ov16_0223DECC: ; 0x0223DECC
 	bl sub_020389B8
 	cmp r0, #0
 	beq _0223DEE8
-	bl ov4_021D7EAC
+	bl DWC_GetLinkLevel
 	mov r1, #3
 	sub r0, r1, r0
 	bl sub_020397B0

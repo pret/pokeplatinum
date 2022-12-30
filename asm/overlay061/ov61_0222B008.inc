@@ -23,7 +23,7 @@
 .public MI_CpuFill8
 .public MI_CpuCopy8
 .public ov4_021D1F3C
-.public ov4_021D76E8
+.public DWC_ClearError
 .public ov4_021D7DB0
 .public ov61_0222AE60
 .public ov61_0222AE88

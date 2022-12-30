@@ -44,7 +44,7 @@ ov97_02238DA4: ; 0x02238DA4
 	add r4, r0, #0
 	add r0, sp, #0
 	add r1, sp, #4
-	bl ov4_021D75F4
+	bl DWC_GetLastErrorEx
 	ldr r0, [sp]
 	ldr r1, [sp, #4]
 	neg r0, r0
@@ -245,7 +245,7 @@ _02238F20:
 	beq _02239004
 	ldr r0, _022391B4 ; =ov97_02238D74
 	ldr r1, _022391B8 ; =ov97_02238D94
-	bl ov4_021D776C
+	bl DWC_SetMemFunc
 	ldr r0, [r4, #4]
 	bl sub_020384C0
 	ldr r0, _022391BC ; =0x00001002
@@ -620,7 +620,7 @@ _0223924E:
 	ldr r0, _022392D4 ; =0x0000267C
 	mov r1, #0
 	str r1, [r4, r0]
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	bl ov97_02238E94
 	mov r0, #4
 	pop {r3, r4, r5, pc}

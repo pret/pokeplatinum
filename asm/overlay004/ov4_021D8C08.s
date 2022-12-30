@@ -15,7 +15,7 @@ ov4_021D8C08: ; 0x021D8C08
 	mov r5, r2
 	mov r4, r3
 	str r0, [ip]
-	bl ov4_021D76E8
+	bl DWC_ClearError
 	ldr r0, _021D8E6C ; =0x0221A504
 	mov r2, #0
 	ldr r1, [r0, #0]
@@ -276,7 +276,7 @@ _021D8FF0: .word 0x0221A504
 	arm_func_start ov4_021D8FF4
 ov4_021D8FF4: ; 0x021D8FF4
 	stmfd sp!, {r3, lr}
-	bl ov4_021D8018
+	bl DWC_UpdateConnection
 	cmp r0, #0
 	beq _021D9008
 	bl ov4_021D9CD4
@@ -1012,8 +1012,8 @@ _021D99C8:
 _021D99D0: .word 0x0221A504
 	arm_func_end ov4_021D9984
 
-	arm_func_start ov4_021D99D4
-ov4_021D99D4: ; 0x021D99D4
+	arm_func_start DWC_GetAIDBitmap
+DWC_GetAIDBitmap: ; 0x021D99D4
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D9A04 ; =0x0221A504
 	ldr r0, [r0, #0]
@@ -1028,7 +1028,7 @@ ov4_021D99D4: ; 0x021D99D4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D9A04: .word 0x0221A504
-	arm_func_end ov4_021D99D4
+	arm_func_end DWC_GetAIDBitmap
 
 	arm_func_start ov4_021D9A08
 ov4_021D9A08: ; 0x021D9A08

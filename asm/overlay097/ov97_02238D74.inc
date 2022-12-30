@@ -14,9 +14,9 @@
 .public sub_020995C4
 .public _u32_div_f
 .public ov4_021D1F3C
-.public ov4_021D75F4
-.public ov4_021D76E8
-.public ov4_021D776C
+.public DWC_GetLastErrorEx
+.public DWC_ClearError
+.public DWC_SetMemFunc
 .public ov4_021D78C8
 .public ov4_021D792C
 .public ov4_021D797C

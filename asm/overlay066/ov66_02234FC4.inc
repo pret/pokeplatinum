@@ -15,7 +15,7 @@
 .public strcmp
 .public sub_020DFBDC
 .public _u32_div_f
-.public ov4_021D76E8
+.public DWC_ClearError
 .public ov4_021D7780
 .public ov4_021D77C4
 .public ov4_021D806C

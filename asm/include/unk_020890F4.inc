@@ -53,4 +53,4 @@
 .public G2x_SetBlendAlpha_
 .public MIi_CpuClear32
 .public memset
-.public ov4_021D7EAC
+.public DWC_GetLinkLevel
