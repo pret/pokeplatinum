@@ -667,7 +667,7 @@ Autoload DTCM
 Overlay overlay0
 {
 	After main
-	Object asm/overlay000/overlay0.o
+	Object src/overlay000/ov0_dummy.o
 }
 
 Overlay overlay1
@@ -678,14 +678,14 @@ Overlay overlay1
 
 Overlay overlay2
 {
-	After	overlay1
-	Object asm/overlay002/overlay2.o
+	After overlay1
+	Object src/overlay002/ov2_dummy.o
 }
 
 Overlay overlay3
 {
-	After	ITCM
-	Object asm/overlay003/overlay3.o
+	After ITCM
+	Object src/overlay003/ov3_dummy.o
 }
 
 Overlay overlay4
@@ -1032,7 +1032,7 @@ Overlay overlay14
 Overlay overlay15
 {
 	After main
-	Object asm/overlay015/overlay15.o
+	Object src/overlay015/ov15_dummy.o
 }
 
 Overlay overlay16
@@ -1863,7 +1863,7 @@ Overlay overlay88
 Overlay overlay89
 {
 	After main
-	Object asm/overlay089/overlay89.o
+	Object src/overlay089/ov89_dummy.o
 }
 
 Overlay overlay90
@@ -2013,7 +2013,7 @@ Overlay overlay102
 Overlay overlay103
 {
 	After overlay63
-	Object asm/overlay103/overlay103.o
+	Object src/overlay103/ov103_dummy.o
 }
 
 Overlay overlay104
