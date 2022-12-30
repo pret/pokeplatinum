@@ -21,8 +21,8 @@ ov4_021DC734: ; 0x021DC734
 _021DC758: .word 0x0221A6A8
 	arm_func_end ov4_021DC734
 
-	arm_func_start ov4_021DC75C
-ov4_021DC75C: ; 0x021DC75C
+	arm_func_start DWC_CancelMatching
+DWC_CancelMatching: ; 0x021DC75C
 	stmfd sp!, {r3, lr}
 	bl ov4_021DC77C
 	cmp r0, #0
@@ -31,7 +31,7 @@ ov4_021DC75C: ; 0x021DC75C
 	bl ov4_021E2080
 	mov r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021DC75C
+	arm_func_end DWC_CancelMatching
 
 	arm_func_start ov4_021DC77C
 ov4_021DC77C: ; 0x021DC77C
@@ -58,8 +58,8 @@ _021DC7C0:
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021DC77C
 
-	arm_func_start ov4_021DC7C8
-ov4_021DC7C8: ; 0x021DC7C8
+	arm_func_start DWC_StopSCMatchingAsync
+DWC_StopSCMatchingAsync: ; 0x021DC7C8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -109,10 +109,10 @@ _021DC858:
 _021DC874:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021DC7C8
+	arm_func_end DWC_StopSCMatchingAsync
 
-	arm_func_start ov4_021DC87C
-ov4_021DC87C: ; 0x021DC87C
+	arm_func_start DWC_AddMatchKeyString
+DWC_AddMatchKeyString: ; 0x021DC87C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r6, r1
 	mov r5, r2
@@ -194,10 +194,10 @@ _021DC99C: .word 0x0221A6C9
 _021DC9A0: .word 0x0221A6CA
 _021DC9A4: .word 0xFFFEC77F
 _021DC9A8: .word 0x0221A6D0
-	arm_func_end ov4_021DC87C
+	arm_func_end DWC_AddMatchKeyString
 
-	arm_func_start ov4_021DC9AC
-ov4_021DC9AC: ; 0x021DC9AC
+	arm_func_start DWC_SetMatchingOption
+DWC_SetMatchingOption: ; 0x021DC9AC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -287,7 +287,7 @@ _021DCAEC:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021DCAF4: .word 0x0221A6A8
-	arm_func_end ov4_021DC9AC
+	arm_func_end DWC_SetMatchingOption
 
 	arm_func_start ov4_021DCAF8
 ov4_021DCAF8: ; 0x021DCAF8

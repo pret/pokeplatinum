@@ -130,7 +130,7 @@ ov98_022471C8: ; 0x022471C8
 	beq _0224731A
 	b _02247330
 _022472EE:
-	bl ov4_021D7A8C
+	bl DWC_CheckInet
 	cmp r0, #0
 	bne _02247314
 	ldr r0, [r5, #0]
@@ -2929,7 +2929,7 @@ ov98_0224897C: ; 0x0224897C
 	push {r4, lr}
 	add r4, r0, #0
 	bl sub_0203859C
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	bl sub_02039794
 	mov r0, #4
 	bl sub_02017B8C
@@ -3029,10 +3029,10 @@ _02248A3C:
 	add r0, #0x14
 	mov r2, #1
 	mov r3, #0x14
-	bl ov4_021D78C8
+	bl DWC_InitInetEx
 	mov r0, #2
-	bl ov4_021D792C
-	bl ov4_021D797C
+	bl DWC_SetAuthServer
+	bl DWC_ConnectInetAsync
 	mov r0, #0xd
 	str r0, [r4, #8]
 _02248A5E:
@@ -3048,11 +3048,11 @@ ov98_02248A68: ; 0x02248A68
 	push {r4, lr}
 	sub sp, #0x48
 	add r4, r0, #0
-	bl ov4_021D7AE4
-	bl ov4_021D7A8C
+	bl DWC_ProcessInet
+	bl DWC_CheckInet
 	cmp r0, #0
 	beq _02248B0E
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	cmp r0, #8
 	bhi _02248AEE
 	add r0, r0, r0
@@ -3081,7 +3081,7 @@ _02248AA0:
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x1c]
 	bl DWC_ClearError
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	bl sub_02039794
 	bl sub_0203859C
 	mov r0, #4
@@ -3171,7 +3171,7 @@ _02248B50:
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x18]
 	bl DWC_ClearError
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	bl sub_02039794
 	bl sub_0203859C
 	mov r0, #4
@@ -3221,7 +3221,7 @@ _02248BC8:
 	str r0, [r4, #8]
 	b _02248BDA
 _02248BCC:
-	bl ov4_021D8E8C
+	bl DWC_ShutdownFriendsMatch
 	mov r0, #0x1b
 	str r0, [r4, #8]
 	b _02248BDA
@@ -4233,7 +4233,7 @@ _02249356:
 	str r0, [r4, #0]
 	b _0224940A
 _02249374:
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	bl sub_02039794
 	bl sub_0203859C
 	mov r0, #4
@@ -4601,7 +4601,7 @@ _02249604:
 	cmp r0, #0
 	bne _0224969E
 	bl sub_0203859C
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	bl sub_02039794
 	mov r0, #4
 	bl sub_02017B8C

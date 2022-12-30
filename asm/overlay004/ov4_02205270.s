@@ -31,8 +31,8 @@ _022052B4: .word 0x0221C72C
 _022052B8: .word 0x0221A114
 	arm_func_end ov4_02205270
 
-	arm_func_start ov4_022052BC
-ov4_022052BC: ; 0x022052BC
+	arm_func_start VCT_GetVADInfo
+VCT_GetVADInfo: ; 0x022052BC
 	stmfd sp!, {r3, lr}
 	movs r1, r0
 	ldmeqia sp!, {r3, pc}
@@ -42,7 +42,7 @@ ov4_022052BC: ; 0x022052BC
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022052D8: .word 0x0221A114
-	arm_func_end ov4_022052BC
+	arm_func_end VCT_GetVADInfo
 
 	arm_func_start ov4_022052DC
 ov4_022052DC: ; 0x022052DC

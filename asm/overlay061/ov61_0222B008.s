@@ -165,7 +165,7 @@ ov61_0222B14C: ; 0x0222B14C
 	push {r4, lr}
 	add r4, r0, #0
 	bl DWC_ClearError
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	bl sub_0203848C
 	mov r0, #0xf2
 	mov r1, #0

@@ -86,8 +86,8 @@ ov4_02202794: ; 0x02202794
 _022027A4: .word 0x0221B780
 	arm_func_end ov4_02202794
 
-	arm_func_start ov4_022027A8
-ov4_022027A8: ; 0x022027A8
+	arm_func_start VCT_StartStreaming
+VCT_StartStreaming: ; 0x022027A8
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	moveq r0, #0
@@ -173,10 +173,10 @@ _022028CC:
 _022028D4: .word 0x0221B780
 _022028D8: .word 0x0221B7AC
 _022028DC: .word 0x0221B7B8
-	arm_func_end ov4_022027A8
+	arm_func_end VCT_StartStreaming
 
-	arm_func_start ov4_022028E0
-ov4_022028E0: ; 0x022028E0
+	arm_func_start VCT_StopStreaming
+VCT_StopStreaming: ; 0x022028E0
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr ip, _02202988 ; =0x0221B7AC
 	mov r5, r0
@@ -226,10 +226,10 @@ _0220295C:
 _02202988: .word 0x0221B7AC
 _0220298C: .word 0x0221B7B8
 _02202990: .word 0x0221B780
-	arm_func_end ov4_022028E0
+	arm_func_end VCT_StopStreaming
 
-	arm_func_start ov4_02202994
-ov4_02202994: ; 0x02202994
+	arm_func_start VCT_SendAudio
+VCT_SendAudio: ; 0x02202994
 	stmfd sp!, {r4, lr}
 	ldr r3, _02202A94 ; =0x0221B780
 	mov r2, r1
@@ -305,7 +305,7 @@ _02202A94: .word 0x0221B780
 _02202A98: .word 0x0221B7AC
 _02202A9C: .word 0x0221BDC0
 _02202AA0: .word 0x5F564354
-	arm_func_end ov4_02202994
+	arm_func_end VCT_SendAudio
 
 	arm_func_start ov4_02202AA4
 ov4_02202AA4: ; 0x02202AA4
@@ -471,8 +471,8 @@ _02202CE8: .word 0x0221B7B8
 _02202CEC: .word 0x00008B4C
 	arm_func_end ov4_02202AA4
 
-	arm_func_start ov4_02202CF0
-ov4_02202CF0: ; 0x02202CF0
+	arm_func_start VCT_ReceiveAudio
+VCT_ReceiveAudio: ; 0x02202CF0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	movs r5, r2
 	mov r7, r0
@@ -553,10 +553,10 @@ _02202DFC:
 	; .align 2, 0
 _02202E04: .word 0x0221B780
 _02202E08: .word 0x0221B974
-	arm_func_end ov4_02202CF0
+	arm_func_end VCT_ReceiveAudio
 
-	arm_func_start ov4_02202E0C
-ov4_02202E0C: ; 0x02202E0C
+	arm_func_start VCT_SetCodec
+VCT_SetCodec: ; 0x02202E0C
 	cmp r0, #5
 	movge r0, #0
 	bxge lr
@@ -588,10 +588,10 @@ _02202E70: .word 0x0221DBD8
 _02202E74: .word 0x02215D09
 _02202E78: .word 0x02215D08
 _02202E7C: .word 0x0221B780
-	arm_func_end ov4_02202E0C
+	arm_func_end VCT_SetCodec
 
-	arm_func_start ov4_02202E80
-ov4_02202E80: ; 0x02202E80
+	arm_func_start VCT_EnableVAD
+VCT_EnableVAD: ; 0x02202E80
 	stmfd sp!, {r4, lr}
 	ldr r1, _02202EA8 ; =0x0221A0E8
 	mov r4, r0
@@ -605,16 +605,16 @@ ov4_02202E80: ; 0x02202E80
 	; .align 2, 0
 _02202EA8: .word 0x0221A0E8
 _02202EAC: .word 0x0221B780
-	arm_func_end ov4_02202E80
+	arm_func_end VCT_EnableVAD
 
-	arm_func_start ov4_02202EB0
-ov4_02202EB0: ; 0x02202EB0
+	arm_func_start VCT_EnableEchoCancel
+VCT_EnableEchoCancel: ; 0x02202EB0
 	ldr r1, _02202EBC ; =0x0221B780
 	str r0, [r1, #0x18]
 	bx lr
 	; .align 2, 0
 _02202EBC: .word 0x0221B780
-	arm_func_end ov4_02202EB0
+	arm_func_end VCT_EnableEchoCancel
 
 	arm_func_start ov4_02202EC0
 ov4_02202EC0: ; 0x02202EC0

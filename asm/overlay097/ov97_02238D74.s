@@ -82,7 +82,7 @@ _02238DF4: .word 0x0000100F
 ov97_02238DF8: ; 0x02238DF8
 	push {lr}
 	sub sp, #0x3c
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	cmp r0, #4
 	beq _02238E0C
 	cmp r0, #7
@@ -257,10 +257,10 @@ _02238F3C:
 	add r0, r4, r0
 	mov r2, #1
 	mov r3, #0x14
-	bl ov4_021D78C8
+	bl DWC_InitInetEx
 	mov r0, #2
-	bl ov4_021D792C
-	bl ov4_021D797C
+	bl DWC_SetAuthServer
+	bl DWC_ConnectInetAsync
 	bl sub_02039734
 	ldr r0, _022391C4 ; =0x00001003
 	mov r1, #0
@@ -269,8 +269,8 @@ _02238F3C:
 	str r1, [r4, r0]
 	b _022392C4
 _02238F64:
-	bl ov4_021D7AE4
-	bl ov4_021D7A8C
+	bl DWC_ProcessInet
+	bl DWC_CheckInet
 	cmp r0, #0
 	beq _02238F9C
 	add r0, r4, #0
@@ -333,7 +333,7 @@ _02238FDA:
 	add r0, r4, #0
 	bl ov97_02238DA4
 	str r0, [r5, #0]
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	b _02238FFA
 _02238FEC:
 	cmp r0, #5
@@ -607,7 +607,7 @@ _0223923E:
 	str r0, [r5, #0]
 	b _022392C4
 _02239244:
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	ldr r0, _022392C8 ; =0x00001010
 	str r0, [r5, #0]
 	b _022392C4

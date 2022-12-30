@@ -6,9 +6,9 @@
 .public _ull_div
 .public ov4_021D7708
 .public ov4_021D7724
-.public ov4_021D9968
+.public DWC_GetMyAID
 .public ov4_021D9984
-.public ov4_021D9A08
+.public DWC_IsValidAID
 .public ov4_021D9B24
 .public ov4_021D9B88
 .public ov4_021D9C8C

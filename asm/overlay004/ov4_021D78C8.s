@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021D78C8
-ov4_021D78C8: ; 0x021D78C8
+	arm_func_start DWC_InitInetEx
+DWC_InitInetEx: ; 0x021D78C8
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r2, _021D7928 ; =0x0221A4DC
 	mov r4, r0
@@ -34,10 +34,10 @@ ov4_021D78C8: ; 0x021D78C8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021D7928: .word 0x0221A4DC
-	arm_func_end ov4_021D78C8
+	arm_func_end DWC_InitInetEx
 
-	arm_func_start ov4_021D792C
-ov4_021D792C: ; 0x021D792C
+	arm_func_start DWC_SetAuthServer
+DWC_SetAuthServer: ; 0x021D792C
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	beq _021D794C
@@ -62,10 +62,10 @@ _021D7964:
 _021D7970: .word 0x022173B8
 _021D7974: .word 0x022173E0
 _021D7978: .word 0x02217404
-	arm_func_end ov4_021D792C
+	arm_func_end DWC_SetAuthServer
 
-	arm_func_start ov4_021D797C
-ov4_021D797C: ; 0x021D797C
+	arm_func_start DWC_ConnectInetAsync
+DWC_ConnectInetAsync: ; 0x021D797C
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr r0, _021D7A20 ; =0x0221A4DC
@@ -113,7 +113,7 @@ _021D7A20: .word 0x0221A4DC
 _021D7A24: .word ov4_021D7780
 _021D7A28: .word ov4_021D77C4
 _021D7A2C: .word 0xFFFF3BE9
-	arm_func_end ov4_021D797C
+	arm_func_end DWC_ConnectInetAsync
 
 	arm_func_start ov4_021D7A30
 ov4_021D7A30: ; 0x021D7A30
@@ -122,13 +122,13 @@ ov4_021D7A30: ; 0x021D7A30
 	mov r6, r1
 	mov r5, r2
 	mov r4, r3
-	bl ov4_021D797C
+	bl DWC_ConnectInetAsync
 	ldr r0, _021D7A88 ; =0x0221A4DC
 	ldr r1, [r0, #4]
 	cmp r1, #0
 	movne r0, #1
 	strneb r0, [r1, #0xc]
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	cmp r0, #2
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	ldr ip, [sp, #0x18]
@@ -143,8 +143,8 @@ ov4_021D7A30: ; 0x021D7A30
 _021D7A88: .word 0x0221A4DC
 	arm_func_end ov4_021D7A30
 
-	arm_func_start ov4_021D7A8C
-ov4_021D7A8C: ; 0x021D7A8C
+	arm_func_start DWC_CheckInet
+DWC_CheckInet: ; 0x021D7A8C
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D7AE0 ; =0x0221A4DC
 	ldr r1, [r0, #4]
@@ -156,7 +156,7 @@ ov4_021D7A8C: ; 0x021D7A8C
 	beq _021D7AD8
 	mov r0, #3
 	strh r0, [r1, #4]
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	ldr r0, _021D7AE0 ; =0x0221A4DC
 	ldr r0, [r0, #4]
 	ldrb r0, [r0, #0xc]
@@ -169,10 +169,10 @@ _021D7AD8:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D7AE0: .word 0x0221A4DC
-	arm_func_end ov4_021D7A8C
+	arm_func_end DWC_CheckInet
 
-	arm_func_start ov4_021D7AE4
-ov4_021D7AE4: ; 0x021D7AE4
+	arm_func_start DWC_ProcessInet
+DWC_ProcessInet: ; 0x021D7AE4
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D7BF8 ; =0x0221A4DC
 	ldr r1, [r0, #4]
@@ -251,10 +251,10 @@ _021D7BB8:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D7BF8: .word 0x0221A4DC
-	arm_func_end ov4_021D7AE4
+	arm_func_end DWC_ProcessInet
 
-	arm_func_start ov4_021D7BFC
-ov4_021D7BFC: ; 0x021D7BFC
+	arm_func_start DWC_GetInetStatus
+DWC_GetInetStatus: ; 0x021D7BFC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r0, _021D7DA8 ; =0x0221A4DC
 	ldr r1, [r0, #4]
@@ -278,7 +278,7 @@ _021D7C40:
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021D7C48:
-	bl ov4_021D7AE4
+	bl DWC_ProcessInet
 	ldr r1, _021D7DA8 ; =0x0221A4DC
 	mov r0, #5
 	ldr r1, [r1, #0]
@@ -337,13 +337,13 @@ _021D7CFC:
 	ldr r1, _021D7DA8 ; =0x0221A4DC
 	mov r6, r0
 	str r4, [r1, #0]
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	mov r2, r6, lsl #0x10
 	mov r3, r2, lsr #0x10
 	mov r0, r5
 	mov r1, r7
 	mov r2, #1
-	bl ov4_021D78C8
+	bl DWC_InitInetEx
 	ldr r0, _021D7DA8 ; =0x0221A4DC
 	ldr r0, [r0, #4]
 	add r0, r0, #0x14
@@ -375,10 +375,10 @@ _021D7DA0:
 	; .align 2, 0
 _021D7DA8: .word 0x0221A4DC
 _021D7DAC: .word 0xFFFF3BE9
-	arm_func_end ov4_021D7BFC
+	arm_func_end DWC_GetInetStatus
 
-	arm_func_start ov4_021D7DB0
-ov4_021D7DB0: ; 0x021D7DB0
+	arm_func_start DWC_CleanupInet
+DWC_CleanupInet: ; 0x021D7DB0
 	stmfd sp!, {r4, lr}
 	ldr r0, _021D7E0C ; =0x0221A4DC
 	ldr r1, [r0, #4]
@@ -406,7 +406,7 @@ _021D7DFC:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021D7E0C: .word 0x0221A4DC
-	arm_func_end ov4_021D7DB0
+	arm_func_end DWC_CleanupInet
 
 	arm_func_start ov4_021D7E10
 ov4_021D7E10: ; 0x021D7E10
@@ -477,7 +477,7 @@ ov4_021D7EB8: ; 0x021D7EB8
 	bl MI_CpuFill8
 	mov r0, #0xff
 	str r0, [r4, #4]
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	cmp r0, #4
 	addne sp, sp, #0xc
 	movne r0, #0
@@ -570,7 +570,7 @@ _021D800C:
 	arm_func_start DWC_UpdateConnection
 DWC_UpdateConnection: ; 0x021D8018
 	stmfd sp!, {r3, lr}
-	bl ov4_021D7AE4
+	bl DWC_ProcessInet
 	bl ov4_021D7E80
 	cmp r0, #0
 	beq _021D8060

@@ -10,13 +10,13 @@
 .public DWC_ClearError
 .public ov4_021D7708
 .public ov4_021D7724
-.public ov4_021D7BFC
+.public DWC_GetInetStatus
 .public DWC_UpdateConnection
 .public ov4_021D89C0
 .public ov4_021D8ABC
 .public ov4_021D8BDC
 .public ov4_021D97F4
-.public ov4_021D9968
+.public DWC_GetMyAID
 .public ov4_021D9984
 .public ov4_021D9B24
 .public ov4_021D9B98

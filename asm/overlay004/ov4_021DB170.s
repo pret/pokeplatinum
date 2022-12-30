@@ -98,8 +98,8 @@ _021DB29C: .word 0x02217488
 _021DB2A0: .word 0x0221748C
 	arm_func_end ov4_021DB188
 
-	arm_func_start ov4_021DB2A4
-ov4_021DB2A4: ; 0x021DB2A4
+	arm_func_start DWC_GetFriendStatusData
+DWC_GetFriendStatusData: ; 0x021DB2A4
 	stmfd sp!, {r3, lr}
 	mov r3, r1
 	mov r1, #0
@@ -107,7 +107,7 @@ ov4_021DB2A4: ; 0x021DB2A4
 	mov r2, r1
 	bl ov4_021DB2C0
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021DB2A4
+	arm_func_end DWC_GetFriendStatusData
 
 	arm_func_start ov4_021DB2C0
 ov4_021DB2C0: ; 0x021DB2C0
@@ -149,8 +149,8 @@ ov4_021DB2C0: ; 0x021DB2C0
 	ldmia sp!, {r4, r5, r6, pc}
 	arm_func_end ov4_021DB2C0
 
-	arm_func_start ov4_021DB350
-ov4_021DB350: ; 0x021DB350
+	arm_func_start DWC_SetOwnStatusData
+DWC_SetOwnStatusData: ; 0x021DB350
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x100
 	ldr r2, _021DB3D8 ; =0x0221A698
@@ -189,10 +189,10 @@ _021DB388:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021DB3D8: .word 0x0221A698
-	arm_func_end ov4_021DB350
+	arm_func_end DWC_SetOwnStatusData
 
-	arm_func_start ov4_021DB3DC
-ov4_021DB3DC: ; 0x021DB3DC
+	arm_func_start DWC_SetBuddyFriendCallback
+DWC_SetBuddyFriendCallback: ; 0x021DB3DC
 	ldr r2, _021DB404 ; =0x0221A698
 	ldr r3, [r2, #8]
 	cmp r3, #0
@@ -205,7 +205,7 @@ ov4_021DB3DC: ; 0x021DB3DC
 	bx lr
 	; .align 2, 0
 _021DB404: .word 0x0221A698
-	arm_func_end ov4_021DB3DC
+	arm_func_end DWC_SetBuddyFriendCallback
 
 	arm_func_start ov4_021DB408
 ov4_021DB408: ; 0x021DB408

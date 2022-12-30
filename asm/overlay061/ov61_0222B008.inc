@@ -24,7 +24,7 @@
 .public MI_CpuCopy8
 .public ov4_021D1F3C
 .public DWC_ClearError
-.public ov4_021D7DB0
+.public DWC_CleanupInet
 .public ov61_0222AE60
 .public ov61_0222AE88
 .public ov61_0222AF88

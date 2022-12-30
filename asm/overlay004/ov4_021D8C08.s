@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021D8C08
-ov4_021D8C08: ; 0x021D8C08
+	arm_func_start DWC_InitFriendsMatch
+DWC_InitFriendsMatch: ; 0x021D8C08
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x10
 	ldr ip, _021D8E6C ; =0x0221A504
@@ -172,10 +172,10 @@ _021D8E7C: .word ov4_021DA680
 _021D8E80: .word 0x0221B1B0
 _021D8E84: .word 0x0221B2B0
 _021D8E88: .word ov4_021D9F4C
-	arm_func_end ov4_021D8C08
+	arm_func_end DWC_InitFriendsMatch
 
-	arm_func_start ov4_021D8E8C
-ov4_021D8E8C: ; 0x021D8E8C
+	arm_func_start DWC_ShutdownFriendsMatch
+DWC_ShutdownFriendsMatch: ; 0x021D8E8C
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D8FF0 ; =0x0221A504
 	ldr r0, [r0, #0]
@@ -271,10 +271,10 @@ _021D8FE0:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D8FF0: .word 0x0221A504
-	arm_func_end ov4_021D8E8C
+	arm_func_end DWC_ShutdownFriendsMatch
 
-	arm_func_start ov4_021D8FF4
-ov4_021D8FF4: ; 0x021D8FF4
+	arm_func_start DWC_ProcessFriendsMatch
+DWC_ProcessFriendsMatch: ; 0x021D8FF4
 	stmfd sp!, {r3, lr}
 	bl DWC_UpdateConnection
 	cmp r0, #0
@@ -437,10 +437,10 @@ _021D9234: .word ov4_021DB768
 _021D9238: .word ov4_021DB810
 _021D923C: .word 0xFFFFB172
 _021D9240: .word 0xFFFFB17B
-	arm_func_end ov4_021D8FF4
+	arm_func_end DWC_ProcessFriendsMatch
 
-	arm_func_start ov4_021D9244
-ov4_021D9244: ; 0x021D9244
+	arm_func_start DWC_LoginAsync
+DWC_LoginAsync: ; 0x021D9244
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r4, r0
 	mov r6, r2
@@ -493,7 +493,7 @@ _021D92F0:
 	ldr r0, [r0, #0]
 	add r0, r0, r5, lsl #1
 	strh r1, [r0, #0x2e]
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	cmp r0, #4
 	beq _021D9324
 	ldr r1, _021D9348 ; =0xFFFF1596
@@ -513,10 +513,10 @@ _021D9324:
 	; .align 2, 0
 _021D9344: .word 0x0221A504
 _021D9348: .word 0xFFFF1596
-	arm_func_end ov4_021D9244
+	arm_func_end DWC_LoginAsync
 
-	arm_func_start ov4_021D934C
-ov4_021D934C: ; 0x021D934C
+	arm_func_start DWC_UpdateServersAsync
+DWC_UpdateServersAsync: ; 0x021D934C
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x10
 	mov r6, r1
@@ -562,10 +562,10 @@ _021D9394:
 	; .align 2, 0
 _021D93EC: .word 0x0221A504
 _021D93F0: .word ov4_021D9FAC
-	arm_func_end ov4_021D934C
+	arm_func_end DWC_UpdateServersAsync
 
-	arm_func_start ov4_021D93F4
-ov4_021D93F4: ; 0x021D93F4
+	arm_func_start DWC_ConnectToAnybodyAsync
+DWC_ConnectToAnybodyAsync: ; 0x021D93F4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	mov r7, r0
@@ -609,10 +609,10 @@ _021D9438:
 	; .align 2, 0
 _021D948C: .word 0x0221A504
 _021D9490: .word ov4_021D9FF4
-	arm_func_end ov4_021D93F4
+	arm_func_end DWC_ConnectToAnybodyAsync
 
-	arm_func_start ov4_021D9494
-ov4_021D9494: ; 0x021D9494
+	arm_func_start DWC_SetupGameServer
+DWC_SetupGameServer: ; 0x021D9494
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
@@ -654,10 +654,10 @@ _021D94D0:
 	; .align 2, 0
 _021D9524: .word 0x0221A504
 _021D9528: .word ov4_021D9FF4
-	arm_func_end ov4_021D9494
+	arm_func_end DWC_SetupGameServer
 
-	arm_func_start ov4_021D952C
-ov4_021D952C: ; 0x021D952C
+	arm_func_start DWC_ConnectToGameServerAsync
+DWC_ConnectToGameServerAsync: ; 0x021D952C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x220
 	mvn ip, #0
@@ -791,10 +791,10 @@ _021D9714: .word 0x0221746C
 _021D9718: .word 0x02217470
 _021D971C: .word ov4_021D9FF4
 _021D9720: .word 0x02217474
-	arm_func_end ov4_021D952C
+	arm_func_end DWC_ConnectToGameServerAsync
 
-	arm_func_start ov4_021D9724
-ov4_021D9724: ; 0x021D9724
+	arm_func_start DWC_SetConnectionClosedCallback
+DWC_SetConnectionClosedCallback: ; 0x021D9724
 	ldr r2, _021D974C ; =0x0221A504
 	ldr r3, [r2, #0]
 	cmp r3, #0
@@ -807,10 +807,10 @@ ov4_021D9724: ; 0x021D9724
 	bx lr
 	; .align 2, 0
 _021D974C: .word 0x0221A504
-	arm_func_end ov4_021D9724
+	arm_func_end DWC_SetConnectionClosedCallback
 
-	arm_func_start ov4_021D9750
-ov4_021D9750: ; 0x021D9750
+	arm_func_start DWC_CloseAllConnectionsHard
+DWC_CloseAllConnectionsHard: ; 0x021D9750
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D97EC ; =0x0221A504
 	ldr r0, [r0, #0]
@@ -856,7 +856,7 @@ _021D97C0:
 	; .align 2, 0
 _021D97EC: .word 0x0221A504
 _021D97F0: .word 0x02217474
-	arm_func_end ov4_021D9750
+	arm_func_end DWC_CloseAllConnectionsHard
 
 	arm_func_start ov4_021D97F4
 ov4_021D97F4: ; 0x021D97F4
@@ -891,8 +891,8 @@ _021D9838:
 _021D9858: .word 0x0221A504
 	arm_func_end ov4_021D97F4
 
-	arm_func_start ov4_021D985C
-ov4_021D985C: ; 0x021D985C
+	arm_func_start DWC_CloseConnectionHardBitmap
+DWC_CloseConnectionHardBitmap: ; 0x021D985C
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, _021D991C ; =0x0221A504
 	mov r6, r0
@@ -919,7 +919,7 @@ _021D98AC:
 	ldr r0, [r6, #0]
 	tst r0, r4, lsl r5
 	beq _021D98F8
-	bl ov4_021D9968
+	bl DWC_GetMyAID
 	cmp r5, r0
 	bne _021D98D8
 	mvn r0, r4, lsl r5
@@ -948,10 +948,10 @@ _021D98F8:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021D991C: .word 0x0221A504
-	arm_func_end ov4_021D985C
+	arm_func_end DWC_CloseConnectionHardBitmap
 
-	arm_func_start ov4_021D9920
-ov4_021D9920: ; 0x021D9920
+	arm_func_start DWC_GetNumConnectionHost
+DWC_GetNumConnectionHost: ; 0x021D9920
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D9964 ; =0x0221A504
 	ldr r1, [r0, #0]
@@ -972,10 +972,10 @@ _021D9958:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D9964: .word 0x0221A504
-	arm_func_end ov4_021D9920
+	arm_func_end DWC_GetNumConnectionHost
 
-	arm_func_start ov4_021D9968
-ov4_021D9968: ; 0x021D9968
+	arm_func_start DWC_GetMyAID
+DWC_GetMyAID: ; 0x021D9968
 	ldr r0, _021D9980 ; =0x0221A504
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -984,7 +984,7 @@ ov4_021D9968: ; 0x021D9968
 	bx lr
 	; .align 2, 0
 _021D9980: .word 0x0221A504
-	arm_func_end ov4_021D9968
+	arm_func_end DWC_GetMyAID
 
 	arm_func_start ov4_021D9984
 ov4_021D9984: ; 0x021D9984
@@ -1030,8 +1030,8 @@ DWC_GetAIDBitmap: ; 0x021D99D4
 _021D9A04: .word 0x0221A504
 	arm_func_end DWC_GetAIDBitmap
 
-	arm_func_start ov4_021D9A08
-ov4_021D9A08: ; 0x021D9A08
+	arm_func_start DWC_IsValidAID
+DWC_IsValidAID: ; 0x021D9A08
 	stmfd sp!, {r3, lr}
 	ldr r1, _021D9A3C ; =0x0221A504
 	ldr r1, [r1, #0]
@@ -1047,7 +1047,7 @@ ov4_021D9A08: ; 0x021D9A08
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D9A3C: .word 0x0221A504
-	arm_func_end ov4_021D9A08
+	arm_func_end DWC_IsValidAID
 
 	arm_func_start ov4_021D9A40
 ov4_021D9A40: ; 0x021D9A40

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_02205988
-ov4_02205988: ; 0x02205988
+	arm_func_start VCT_Init
+VCT_Init: ; 0x02205988
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, _02205AB4 ; =0x02000C14
@@ -89,10 +89,10 @@ _02205A8C:
 _02205AB4: .word 0x02000C14
 _02205AB8: .word 0x0221DBCC
 _02205ABC: .word 0x0221DBD8
-	arm_func_end ov4_02205988
+	arm_func_end VCT_Init
 
-	arm_func_start ov4_02205AC0
-ov4_02205AC0: ; 0x02205AC0
+	arm_func_start VCT_Cleanup
+VCT_Cleanup: ; 0x02205AC0
 	stmfd sp!, {r3, lr}
 	bl ov4_02202794
 	bl ov4_022045C0
@@ -104,10 +104,10 @@ ov4_02205AC0: ; 0x02205AC0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02205AE4: .word 0x0221DBCC
-	arm_func_end ov4_02205AC0
+	arm_func_end VCT_Cleanup
 
-	arm_func_start ov4_02205AE8
-ov4_02205AE8: ; 0x02205AE8
+	arm_func_start VCT_Main
+VCT_Main: ; 0x02205AE8
 	stmfd sp!, {r3, lr}
 	ldr r0, _02205B28 ; =0x0221DBCC
 	ldr r1, [r0, #8]
@@ -127,10 +127,10 @@ _02205B14:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02205B28: .word 0x0221DBCC
-	arm_func_end ov4_02205AE8
+	arm_func_end VCT_Main
 
-	arm_func_start ov4_02205B2C
-ov4_02205B2C: ; 0x02205B2C
+	arm_func_start VCT_HandleData
+VCT_HandleData: ; 0x02205B2C
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	add r3, sp, #0
@@ -164,7 +164,7 @@ _02205B90:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02205B9C: .word 0x0221DBCC
-	arm_func_end ov4_02205B2C
+	arm_func_end VCT_HandleData
 
 	arm_func_start ov4_02205BA0
 ov4_02205BA0: ; 0x02205BA0

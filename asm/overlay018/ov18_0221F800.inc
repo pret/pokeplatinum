@@ -5,5 +5,5 @@
 .public OS_InitAlarm
 .public OS_DisableInterrupts
 .public OS_RestoreInterrupts
-.public ov4_021D792C
+.public DWC_SetAuthServer
 .public ov18_0222F20C

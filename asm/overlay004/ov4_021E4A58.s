@@ -6,14 +6,14 @@
 	.text
 
 
-	arm_func_start ov4_021E4A58
-ov4_021E4A58: ; 0x021E4A58
+	arm_func_start DWC_IsSendableReliable
+DWC_IsSendableReliable: ; 0x021E4A58
 	ldr ip, _021E4A64 ; =ov4_021E4A68
 	mov r1, #1
 	bx ip
 	; .align 2, 0
 _021E4A64: .word ov4_021E4A68
-	arm_func_end ov4_021E4A58
+	arm_func_end DWC_IsSendableReliable
 
 	arm_func_start ov4_021E4A68
 ov4_021E4A68: ; 0x021E4A68
@@ -26,7 +26,7 @@ ov4_021E4A68: ; 0x021E4A68
 	cmp r5, #1
 	bne _021E4A98
 	mov r0, r4
-	bl ov4_021D9A08
+	bl DWC_IsValidAID
 	cmp r0, #0
 	beq _021E4AA8
 _021E4A98:
@@ -144,8 +144,8 @@ _021E4C18:
 _021E4C24: .word 0x0221AE20
 	arm_func_end ov4_021E4B08
 
-	arm_func_start ov4_021E4C28
-ov4_021E4C28: ; 0x021E4C28
+	arm_func_start DWC_SendReliableBitmap
+DWC_SendReliableBitmap: ; 0x021E4C28
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r7, #1
 	mov r6, r0
@@ -159,7 +159,7 @@ _021E4C44:
 	moveq sl, r7
 	tst r6, sl
 	beq _021E4C80
-	bl ov4_021D9968
+	bl DWC_GetMyAID
 	cmp sb, r0
 	beq _021E4C80
 	mov r0, sb
@@ -176,7 +176,7 @@ _021E4C80:
 	blo _021E4C44
 	mov r0, r6
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end ov4_021E4C28
+	arm_func_end DWC_SendReliableBitmap
 
 	arm_func_start ov4_021E4C98
 ov4_021E4C98: ; 0x021E4C98
@@ -189,7 +189,7 @@ ov4_021E4C98: ; 0x021E4C98
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, pc}
 	mov r0, r5
-	bl ov4_021D9A08
+	bl DWC_IsValidAID
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -220,8 +220,8 @@ _021E4D1C:
 _021E4D24: .word 0x0221AE20
 	arm_func_end ov4_021E4C98
 
-	arm_func_start ov4_021E4D28
-ov4_021E4D28: ; 0x021E4D28
+	arm_func_start DWC_SetRecvBuffer
+DWC_SetRecvBuffer: ; 0x021E4D28
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
@@ -241,10 +241,10 @@ ov4_021E4D28: ; 0x021E4D28
 	str r1, [r4, #0x10]
 	str r1, [r4, #0x18]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021E4D28
+	arm_func_end DWC_SetRecvBuffer
 
-	arm_func_start ov4_021E4D74
-ov4_021E4D74: ; 0x021E4D74
+	arm_func_start DWC_SetUserSendCallback
+DWC_SetUserSendCallback: ; 0x021E4D74
 	ldr r1, _021E4D90 ; =0x0221AE20
 	ldr r1, [r1, #0]
 	cmp r1, #0
@@ -254,10 +254,10 @@ ov4_021E4D74: ; 0x021E4D74
 	bx lr
 	; .align 2, 0
 _021E4D90: .word 0x0221AE20
-	arm_func_end ov4_021E4D74
+	arm_func_end DWC_SetUserSendCallback
 
-	arm_func_start ov4_021E4D94
-ov4_021E4D94: ; 0x021E4D94
+	arm_func_start DWC_SetUserRecvCallback
+DWC_SetUserRecvCallback: ; 0x021E4D94
 	ldr r1, _021E4DB0 ; =0x0221AE20
 	ldr r1, [r1, #0]
 	cmp r1, #0
@@ -267,10 +267,10 @@ ov4_021E4D94: ; 0x021E4D94
 	bx lr
 	; .align 2, 0
 _021E4DB0: .word 0x0221AE20
-	arm_func_end ov4_021E4D94
+	arm_func_end DWC_SetUserRecvCallback
 
-	arm_func_start ov4_021E4DB4
-ov4_021E4DB4: ; 0x021E4DB4
+	arm_func_start DWC_SetUserRecvTimeoutCallback
+DWC_SetUserRecvTimeoutCallback: ; 0x021E4DB4
 	ldr r1, _021E4DD0 ; =0x0221AE20
 	ldr r1, [r1, #0]
 	cmp r1, #0
@@ -280,7 +280,7 @@ ov4_021E4DB4: ; 0x021E4DB4
 	bx lr
 	; .align 2, 0
 _021E4DD0: .word 0x0221AE20
-	arm_func_end ov4_021E4DB4
+	arm_func_end DWC_SetUserRecvTimeoutCallback
 
 	arm_func_start ov4_021E4DD4
 ov4_021E4DD4: ; 0x021E4DD4
@@ -332,8 +332,8 @@ _021E4E58:
 	bx lr
 	arm_func_end ov4_021E4E40
 
-	arm_func_start ov4_021E4E60
-ov4_021E4E60: ; 0x021E4E60
+	arm_func_start DWC_SetRecvTimeoutTime
+DWC_SetRecvTimeoutTime: ; 0x021E4E60
 	stmfd sp!, {r4, lr}
 	ldr r2, _021E4EA8 ; =0x0221AE20
 	ldr r3, [r2, #0]
@@ -354,7 +354,7 @@ ov4_021E4E60: ; 0x021E4E60
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021E4EA8: .word 0x0221AE20
-	arm_func_end ov4_021E4E60
+	arm_func_end DWC_SetRecvTimeoutTime
 
 	arm_func_start ov4_021E4EAC
 ov4_021E4EAC: ; 0x021E4EAC
@@ -437,7 +437,7 @@ _021E4F98:
 	ldr r0, [sp]
 	ldrb sb, [r0, r8]
 	mov r0, sb
-	bl ov4_021D9A08
+	bl DWC_IsValidAID
 	cmp r0, #0
 	beq _021E502C
 	mov r0, sb
@@ -472,7 +472,7 @@ _021E4F98:
 	str r5, [r6, #0x24]
 	str sl, [r6, #0x28]
 _021E502C:
-	bl ov4_021D9968
+	bl DWC_GetMyAID
 	cmp sb, r0
 	beq _021E50E0
 	mov r0, sb

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_02204160
-ov4_02204160: ; 0x02204160
+	arm_func_start VCT_CreateSession
+VCT_CreateSession: ; 0x02204160
 	stmfd sp!, {r3, lr}
 	ldr r1, _02204184 ; =0x0221DBD8
 	ldr r1, [r1, #0x10]
@@ -19,10 +19,10 @@ ov4_02204160: ; 0x02204160
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02204184: .word 0x0221DBD8
-	arm_func_end ov4_02204160
+	arm_func_end VCT_CreateSession
 
-	arm_func_start ov4_02204188
-ov4_02204188: ; 0x02204188
+	arm_func_start VCT_DeleteSession
+VCT_DeleteSession: ; 0x02204188
 	stmfd sp!, {r3, lr}
 	ldr r2, _02204238 ; =0x0221C6D0
 	mov ip, #0
@@ -76,7 +76,7 @@ _02204230:
 _02204238: .word 0x0221C6D0
 _0220423C: .word 0x0221DBD8
 _02204240: .word 0x0221C70C
-	arm_func_end ov4_02204188
+	arm_func_end VCT_DeleteSession
 
 	arm_func_start ov4_02204244
 ov4_02204244: ; 0x02204244
@@ -130,8 +130,8 @@ _022042E8:
 _022042F0: .word 0x0221DBD8
 	arm_func_end ov4_02204244
 
-	arm_func_start ov4_022042F4
-ov4_022042F4: ; 0x022042F4
+	arm_func_start VCT_Request
+VCT_Request: ; 0x022042F4
 	stmfd sp!, {r3, lr}
 	ldr r2, _02204314 ; =0x0221DBD8
 	ldr r2, [r2, #0x10]
@@ -142,7 +142,7 @@ ov4_022042F4: ; 0x022042F4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02204314: .word 0x0221DBD8
-	arm_func_end ov4_022042F4
+	arm_func_end VCT_Request
 
 	arm_func_start ov4_02204318
 ov4_02204318: ; 0x02204318
@@ -199,8 +199,8 @@ _022043B0:
 _022043CC: .word 0x0221DBD8
 	arm_func_end ov4_02204318
 
-	arm_func_start ov4_022043D0
-ov4_022043D0: ; 0x022043D0
+	arm_func_start VCT_Response
+VCT_Response: ; 0x022043D0
 	stmfd sp!, {r3, lr}
 	ldr r2, _022043F0 ; =0x0221DBD8
 	ldr r2, [r2, #0x10]
@@ -211,10 +211,10 @@ ov4_022043D0: ; 0x022043D0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022043F0: .word 0x0221DBD8
-	arm_func_end ov4_022043D0
+	arm_func_end VCT_Response
 
-	arm_func_start ov4_022043F4
-ov4_022043F4: ; 0x022043F4
+	arm_func_start VCT_AddConferenceClient
+VCT_AddConferenceClient: ; 0x022043F4
 	stmfd sp!, {r4, lr}
 	ldr r2, _022044A4 ; =0x0221DBD8
 	mov r4, r0
@@ -236,7 +236,7 @@ ov4_022043F4: ; 0x022043F4
 	movne r0, #0
 	ldmneia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_02204160
+	bl VCT_CreateSession
 	movs r2, r0
 	mvneq r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -262,7 +262,7 @@ ov4_022043F4: ; 0x022043F4
 	; .align 2, 0
 _022044A4: .word 0x0221DBD8
 _022044A8: .word 0x0221C6D0
-	arm_func_end ov4_022043F4
+	arm_func_end VCT_AddConferenceClient
 
 	arm_func_start ov4_022044AC
 ov4_022044AC: ; 0x022044AC
@@ -977,7 +977,7 @@ _02204DAC:
 	cmp r0, #1
 	bhi _02204DD4
 	mov r0, r7
-	bl ov4_02204188
+	bl VCT_DeleteSession
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _02204DD4:

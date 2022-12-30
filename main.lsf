@@ -690,9 +690,9 @@ Overlay overlay3
 
 Overlay overlay4
 {
-	After	main
-	Object asm/overlay004/ov4_021D0D80.o
-	Object asm/overlay004/ov4_021D2808.o
+	After main
+	Object src/overlay004/ov4_021D0D80.o
+	Object src/overlay004/ov4_021D2808.o
 	Object asm/overlay004/ov4_021D3038.o
 	Object asm/overlay004/ov4_021D3E5C.o
 	Object asm/overlay004/ov4_021D4478.o

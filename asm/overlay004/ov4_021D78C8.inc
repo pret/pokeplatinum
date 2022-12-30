@@ -8,12 +8,12 @@
 .public ov4_021D7724
 .public ov4_021D7780
 .public ov4_021D77C4
-.public ov4_021D78C8
-.public ov4_021D797C
+.public DWC_InitInetEx
+.public DWC_ConnectInetAsync
 .public ov4_021D7A30
-.public ov4_021D7AE4
-.public ov4_021D7BFC
-.public ov4_021D7DB0
+.public DWC_ProcessInet
+.public DWC_GetInetStatus
+.public DWC_CleanupInet
 .public ov4_021D7E80
 .public ov4_021E5C34
 .public ov4_021E5DDC

@@ -1,8 +1,8 @@
 .public OS_GetTick
 .public MI_CpuFill8
 .public ov4_021E4AE8
-.public ov4_02204160
-.public ov4_02204188
+.public VCT_CreateSession
+.public VCT_DeleteSession
 .public ov4_02204244
 .public ov4_02204318
 .public ov4_02204700

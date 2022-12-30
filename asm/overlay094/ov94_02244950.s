@@ -45,7 +45,7 @@ ov94_02244950: ; 0x02244950
 	bl sub_02038438
 	add r0, r4, #0
 	bl ov94_02245934
-	bl ov4_021D7A8C
+	bl DWC_CheckInet
 	cmp r0, #0
 	bne _022449EA
 	ldr r0, [r4, #0]
@@ -873,7 +873,7 @@ ov94_0224505C: ; 0x0224505C
 	sub r1, r1, #1
 	cmp r0, r1
 	bne _0224509A
-	bl ov4_021D7A8C
+	bl DWC_CheckInet
 	cmp r0, #0
 	bne _02245086
 	mov r0, #0
@@ -890,10 +890,10 @@ _02245086:
 	str r0, [r4, #0x2c]
 	b _022450B8
 _0224509A:
-	bl ov4_021D7A8C
+	bl DWC_CheckInet
 	cmp r0, #0
 	beq _022450A6
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 _022450A6:
 	bl sub_0203848C
 	mov r1, #0
@@ -938,7 +938,7 @@ ov94_022450EC: ; 0x022450EC
 	push {r4, lr}
 	add r4, r0, #0
 	bl sub_0203848C
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	mov r1, #0
 	add r0, r4, #0
 	add r2, r1, #0
@@ -982,10 +982,10 @@ ov94_02245138: ; 0x02245138
 	mov r1, #2
 	mov r2, #1
 	mov r3, #0x14
-	bl ov4_021D78C8
+	bl DWC_InitInetEx
 	mov r0, #2
-	bl ov4_021D792C
-	bl ov4_021D797C
+	bl DWC_SetAuthServer
+	bl DWC_ConnectInetAsync
 	mov r0, #3
 	str r0, [r4, #0x2c]
 	pop {r4, pc}
@@ -996,11 +996,11 @@ ov94_02245158: ; 0x02245158
 	push {r4, lr}
 	sub sp, #0x48
 	add r4, r0, #0
-	bl ov4_021D7AE4
-	bl ov4_021D7A8C
+	bl DWC_ProcessInet
+	bl DWC_CheckInet
 	cmp r0, #0
 	beq _022451D6
-	bl ov4_021D7BFC
+	bl DWC_GetInetStatus
 	cmp r0, #8
 	bhi _022451B6
 	add r0, r0, r0
@@ -1029,7 +1029,7 @@ _02245190:
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x48]
 	bl DWC_ClearError
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	add r0, r4, #0
 	bl ov94_0223C5F4
 	mov r0, #0x17
@@ -1102,7 +1102,7 @@ _02245218:
 	ldr r0, [sp, #4]
 	str r0, [r4, #0x44]
 	bl DWC_ClearError
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	mov r0, #0x17
 	str r0, [r4, #0x2c]
 	ldr r1, [sp]
@@ -1135,7 +1135,7 @@ _02245268:
 	str r0, [r4, #0x2c]
 	b _0224527A
 _0224526C:
-	bl ov4_021D8E8C
+	bl DWC_ShutdownFriendsMatch
 	mov r0, #0x17
 	str r0, [r4, #0x2c]
 	b _0224527A
@@ -1773,7 +1773,7 @@ _0224570C:
 	cmp r0, #0
 	bne _02245784
 	bl sub_0203848C
-	bl ov4_021D7DB0
+	bl DWC_CleanupInet
 	mov r0, #0x52
 	lsl r0, r0, #6
 	ldrsh r1, [r4, r0]

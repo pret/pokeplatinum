@@ -16,7 +16,7 @@ ov18_0221F800: ; 0x0221F800
 	bl OS_DisableInterrupts
 	add r5, r0, #0
 	mov r0, #2
-	bl ov4_021D792C
+	bl DWC_SetAuthServer
 	mov r1, #1
 	add r0, r4, #0
 	lsl r1, r1, #0x12
