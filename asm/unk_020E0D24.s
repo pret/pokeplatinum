@@ -99,7 +99,9 @@ _020E0E44:
 	b _020E0DD0
 	arm_func_end _d_fgt
 
+	arm_func_start _dleq
 	arm_func_start _d_fle
+_dleq:
 _d_fle: ; 0x020E0E54
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1

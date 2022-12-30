@@ -87,7 +87,6 @@
 .public MI_CpuFill8
 .public memset
 .public _s32_div_f
-.public ov12_0221FC20
 .public ov12_0221FCDC
 .public ov12_0221FDF4
 .public ov12_0221FE30
@@ -99,7 +98,6 @@
 .public ov12_02223770
 .public ov12_022237A4
 .public ov12_022237D8
-.public ov12_022264F4
 .public ov12_02236004
 .public ov12_02236320
 .public ov12_02236374
@@ -126,6 +124,8 @@
 .public ov12_0223802C
 .public ov12_022382BC
 .public ov12_02238390
+.public ov13_0221FC20
+.public ov13_022264F4
 .public ov14_0221FCF4
 .public ov14_022243BC
 .public ov16_0223B384

@@ -8886,7 +8886,7 @@ _02261298:
 	ldr r0, [r4, #4]
 	str r1, [r0, #0x18]
 	ldr r0, [r4, #4]
-	bl ov12_022264F4
+	bl ov13_022264F4
 	add sp, #0x1fc
 	mov r0, #3
 	add sp, #0x14
@@ -8898,7 +8898,7 @@ _02261324:
 	add r0, #0x25
 	strb r1, [r0]
 	ldr r0, [r4, #4]
-	bl ov12_022264F4
+	bl ov13_022264F4
 	ldrb r0, [r4, #0xe]
 	add r0, r0, #1
 	strb r0, [r4, #0xe]
@@ -9107,7 +9107,7 @@ _022614BE:
 	str r1, [r0, #0x1c]
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
-	bl ov12_0221FC20
+	bl ov13_0221FC20
 	ldrb r0, [r4, #0xe]
 	add sp, #0x1fc
 	add sp, #0x14
@@ -10679,7 +10679,7 @@ _02262180:
 	strb r1, [r0, #0x15]
 _02262186:
 	ldr r0, [r4, #4]
-	bl ov12_0221FC20
+	bl ov13_0221FC20
 	ldrb r0, [r4, #0xa]
 	add sp, #0x24
 	add r0, r0, #1
@@ -13010,7 +13010,7 @@ _022633F0:
 	add r1, #0x32
 	strb r0, [r1]
 	ldr r0, [r4, #4]
-	bl ov12_0221FC20
+	bl ov13_0221FC20
 	ldrb r0, [r4, #0xa]
 	add sp, #0xc
 	add r0, r0, #1
