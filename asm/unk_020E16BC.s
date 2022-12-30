@@ -4,8 +4,9 @@
 
 	.text
 
-
+	arm_func_start _f2d
 	arm_func_start _f_ftod
+_f2d:
 _f_ftod: ; 0x020E16BC
 	and r2, r0, #0x80000000
 	mov ip, r0, lsr #0x17

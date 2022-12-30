@@ -4,8 +4,9 @@
 
 	.text
 
-
+	arm_func_start _dflt
 	arm_func_start _d_itod
+_dflt:
 _d_itod: ; 0x020E01B8
 	ands r2, r0, #0x80000000
 	rsbmi r0, r0, #0

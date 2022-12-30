@@ -1,9 +1,0 @@
-.public sub_02020304
-.public sub_02020390
-.public sub_020203AC
-.public sub_020203B8
-.public sub_020203D4
-.public sub_020203E0
-.public sub_020206BC
-.public sub_020206D0
-.public GF_AssertFail

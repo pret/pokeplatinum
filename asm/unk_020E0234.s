@@ -4,8 +4,9 @@
 
 	.text
 
-
+	arm_func_start _dmul
 	arm_func_start _d_mul
+_dmul:
 _d_mul: ; 0x020E0234
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	eor lr, r1, r3

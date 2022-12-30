@@ -5,8 +5,9 @@
 
 	.text
 
-
+	arm_func_start _dadd
 	arm_func_start _d_add
+_dadd:
 _d_add: ; 0x020DFC6C
 	stmfd sp!, {r4, lr}
 	eors ip, r1, r3

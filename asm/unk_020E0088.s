@@ -4,8 +4,9 @@
 
 	.text
 
-
+	arm_func_start _dfix
 	arm_func_start _d_dtoi
+_dfix:
 _d_dtoi: ; 0x020E0088
 	bic r3, r1, #0x80000000
 	ldr r2, _020E00D0 ; =0x0000041E

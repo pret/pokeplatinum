@@ -4,8 +4,11 @@
 
 	.text
 
-
+	arm_func_start _f_qtof
+	arm_func_start _d2f
 	arm_func_start _d_dtof
+_f_qtof:
+_d2f:
 _d_dtof: ; 0x020DFF84
 	and r2, r1, #0x80000000
 	mov ip, r1, lsr #0x14
