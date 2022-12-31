@@ -1726,10 +1726,10 @@ Overlay overlay70
 Overlay overlay71
 {
 	After overlay12
-	Object asm/overlay071/ov71_0223B140.o
-	Object asm/overlay071/ov71_0223C69C.o
-	Object asm/overlay071/ov71_0223CF0C.o
-	Object asm/overlay071/ov71_0223D324.o
+	Object src/overlay071/ov71_0223B140.o
+	Object src/overlay071/ov71_0223C69C.o
+	Object src/overlay071/ov71_0223CF0C.o
+	Object src/overlay071/ov71_0223D324.o
 }
 
 Overlay overlay72
