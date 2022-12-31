@@ -1304,12 +1304,12 @@ Overlay overlay24
 Overlay overlay25
 {
 	After overlay9
-	Object asm/overlay025/ov25_02253CE0.o
-	Object asm/overlay025/ov25_02254560.o
-	Object asm/overlay025/ov25_02255090.o
-	Object asm/overlay025/ov25_02255540.o
-	Object asm/overlay025/ov25_02255ACC.o
-	Object asm/overlay025/ov25_02255DBC.o
+	Object src/overlay025/ov25_02253CE0.o
+	Object src/overlay025/ov25_02254560.o
+	Object src/overlay025/ov25_02255090.o
+	Object src/overlay025/ov25_02255540.o
+	Object src/overlay025/ov25_02255ACC.o
+	Object src/overlay025/ov25_02255DBC.o
 }
 
 Overlay overlay26
