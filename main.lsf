@@ -1182,21 +1182,21 @@ Overlay overlay18
 Overlay overlay19
 {
 	After main
-	Object asm/overlay019/ov19_021D0D80.o
-	Object asm/overlay019/ov19_021D603C.o
-	Object asm/overlay019/ov19_021D61B0.o
-	Object asm/overlay019/ov19_021D79F8.o
-	Object asm/overlay019/ov19_021D8B54.o
-	Object asm/overlay019/ov19_021DA270.o
-	Object asm/overlay019/ov19_021DA814.o
-	Object asm/overlay019/ov19_021DA92C.o
-	Object asm/overlay019/ov19_021DB2FC.o
-	Object asm/overlay019/ov19_021DB8E4.o
-	Object asm/overlay019/ov19_021DC5F0.o
-	Object asm/overlay019/ov19_021DCF88.o
-	Object asm/overlay019/ov19_021DE3E8.o
-	Object asm/overlay019/ov19_021DEC04.o
-	Object asm/overlay019/ov19_021DF964.o
+	Object src/overlay019/ov19_021D0D80.o
+	Object src/overlay019/ov19_021D603C.o
+	Object src/overlay019/ov19_021D61B0.o
+	Object src/overlay019/ov19_021D79F8.o
+	Object src/overlay019/ov19_021D8B54.o
+	Object src/overlay019/ov19_021DA270.o
+	Object src/overlay019/ov19_021DA814.o
+	Object src/overlay019/ov19_021DA92C.o
+	Object src/overlay019/ov19_021DB2FC.o
+	Object src/overlay019/ov19_021DB8E4.o
+	Object src/overlay019/ov19_021DC5F0.o
+	Object src/overlay019/ov19_021DCF88.o
+	Object src/overlay019/ov19_021DE3E8.o
+	Object src/overlay019/ov19_021DEC04.o
+	Object src/overlay019/ov19_021DF964.o
 }
 
 Overlay overlay20

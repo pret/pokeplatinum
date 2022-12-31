@@ -1,0 +1,301 @@
+#include "enums.h"
+
+#include <nitro.h>
+#include <string.h>
+
+#include "data_021BF67C.h"
+
+#include "struct_decls/struct_020797DC_decl.h"
+
+#include "overlay019/struct_ov19_021D4DF0.h"
+#include "overlay019/struct_ov19_021D5BAC.h"
+#include "overlay019/struct_ov19_021DF964.h"
+
+#include "unk_02005474.h"
+#include "unk_020797C8.h"
+#include "overlay019/ov19_021D0D80.h"
+#include "overlay019/ov19_021DF964.h"
+
+static void ov19_021DFCF8(UnkStruct_ov19_021DF964 * param0);
+static void ov19_021DFD08(UnkStruct_ov19_021DF964 * param0, UnkEnum_021DFB94 param1);
+
+void ov19_021DF964 (UnkStruct_ov19_021D4DF0 * param0, u32 param1)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+
+    ov19_021DFCF8(v0);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_54);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_55);
+
+    v0->unk_20 = param1;
+    v0->unk_23 = 0;
+}
+
+void ov19_021DF990 (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+
+    ov19_021DFCF8(v0);
+    v0->unk_23 = 1;
+
+    switch (ov19_021D5E08(param0)) {
+    case 2:
+    default:
+        if (ov19_021D5E38(param0) == 2) {
+            ov19_021DFD08(v0, ov19_021D5E34(param0) ? UnkEnum_021DFB94_36 : UnkEnum_021DFB94_35);
+        } else {
+            ov19_021DFD08(v0, UnkEnum_021DFB94_34);
+        }
+
+        ov19_021DFD08(v0, UnkEnum_021DFB94_37);
+
+        {
+            const UnkStruct_ov19_021D5BAC * v1 = ov19_021D5E70(param0);
+
+            if (v1->unk_0F == 0) {
+                ov19_021DFD08(v0, UnkEnum_021DFB94_40);
+            }
+        }
+
+        ov19_021DFD08(v0, (ov19_021D5E10(param0) == 0) ? UnkEnum_021DFB94_38 : UnkEnum_021DFB94_39);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_41);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_42);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_43);
+        break;
+    case 0:
+        ov19_021DFD08(v0, UnkEnum_021DFB94_39);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_37);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_41);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_42);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_43);
+        break;
+    case 1:
+        ov19_021DFD08(v0, UnkEnum_021DFB94_38);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_37);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_41);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_42);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_43);
+        break;
+    case 4:
+        ov19_021DFD08(v0, (ov19_021D5F9C(param0) == 0) ? UnkEnum_021DFB94_52 : UnkEnum_021DFB94_53);
+        ov19_021DFD08(v0, (ov19_021D5E10(param0) == 0) ? UnkEnum_021DFB94_38 : UnkEnum_021DFB94_39);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_41);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_43);
+    }
+}
+
+void ov19_021DFAD0 (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0;
+    u32 v1, v2;
+
+    v0 = &(param0->unk_74);
+    v1 = ov19_021D5F7C(param0);
+    v2 = ov19_021D5E74(param0);
+
+    ov19_021DFCF8(v0);
+    v0->unk_23 = 1;
+
+    if (v1 != 0) {
+        if (v2 != 0) {
+            ov19_021DFD08(v0, UnkEnum_021DFB94_49);
+        } else {
+            ov19_021DFD08(v0, UnkEnum_021DFB94_46);
+        }
+
+        ov19_021DFD08(v0, UnkEnum_021DFB94_50);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_48);
+    } else {
+        if (v2 != 0) {
+            ov19_021DFD08(v0, UnkEnum_021DFB94_47);
+            ov19_021DFD08(v0, UnkEnum_021DFB94_50);
+            ov19_021DFD08(v0, UnkEnum_021DFB94_48);
+        } else {
+            ov19_021DFD08(v0, UnkEnum_021DFB94_46);
+        }
+    }
+
+    ov19_021DFD08(v0, UnkEnum_021DFB94_51);
+}
+
+void ov19_021DFB50 (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    const UnkStruct_020797DC * v1 = ov19_021D5E90(param0);
+
+    ov19_021DFCF8(v0);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_00);
+
+    if (ov19_021D5E08(param0) != 4) {
+        ov19_021DFD08(v0, UnkEnum_021DFB94_01);
+        ov19_021DFD08(v0, UnkEnum_021DFB94_02);
+    }
+
+    ov19_021DFD08(v0, UnkEnum_021DFB94_03);
+
+    v0->unk_23 = 2;
+}
+
+void ov19_021DFB94 (UnkStruct_ov19_021D4DF0 * param0, UnkEnum_021DFB94 param1)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    const UnkStruct_020797DC * v1 = ov19_021D5E90(param0);
+    u32 v2;
+
+    ov19_021DFCF8(v0);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_04);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_05);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_06);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_07);
+
+    v2 = sub_02079D20(v1);
+
+    if (v2 > 0) {
+        ov19_021DFD08(v0, UnkEnum_021DFB94_08);
+    }
+
+    if (v2 > 4) {
+        ov19_021DFD08(v0, UnkEnum_021DFB94_09);
+    }
+
+    v0->unk_23 = 3;
+
+    if ((param1 >= UnkEnum_021DFB94_04) && (param1 <= UnkEnum_021DFB94_09)) {
+        v0->unk_20 = param1 - UnkEnum_021DFB94_04;
+    } else {
+        GF_ASSERT(0);
+    }
+}
+
+void ov19_021DFC04 (UnkStruct_ov19_021D4DF0 * param0, UnkEnum_021DFB94 param1)
+{
+    static const u16 v0[][4] = {
+        {UnkEnum_021DFB94_10, UnkEnum_021DFB94_11, UnkEnum_021DFB94_12, UnkEnum_021DFB94_13},
+        {UnkEnum_021DFB94_14, UnkEnum_021DFB94_15, UnkEnum_021DFB94_16, UnkEnum_021DFB94_17},
+        {UnkEnum_021DFB94_18, UnkEnum_021DFB94_19, UnkEnum_021DFB94_20, UnkEnum_021DFB94_21},
+        {UnkEnum_021DFB94_22, UnkEnum_021DFB94_23, UnkEnum_021DFB94_24, UnkEnum_021DFB94_25},
+    };
+    UnkStruct_ov19_021DF964 * v1 = &(param0->unk_74);
+    const UnkStruct_020797DC * v2 = ov19_021D5E90(param0);
+    int v3;
+
+    ov19_021DFCF8(v1);
+
+    if ((param1 >= UnkEnum_021DFB94_04) && (param1 <= UnkEnum_021DFB94_07)) {
+        param1 -= UnkEnum_021DFB94_04;
+
+        for (v3 = 0; v3 < 4; v3++) {
+            ov19_021DFD08(v1, v0[param1][v3]);
+        }
+    } else {
+        int v4 = 0;
+        int v5 = 0;
+
+        if (param1 == UnkEnum_021DFB94_09) {
+            v4 = 4;
+        }
+
+        for (v3 = 0; v3 < 8; v3++) {
+            if (sub_02079CFC(v2, v3)) {
+                if (v4) {
+                    v4--;
+                } else {
+                    ov19_021DFD08(v1, UnkEnum_021DFB94_26 + v3);
+
+                    if (++v5 >= 4) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    v1->unk_23 = 3;
+}
+
+void ov19_021DFC80 (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+
+    ov19_021DFCF8(v0);
+
+    v0->unk_23 = 4;
+    v0->unk_22 = param0->unk_4C.unk_0B;
+
+    ov19_021DFD08(v0, UnkEnum_021DFB94_56);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_57);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_58);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_59);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_60);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_61);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_44);
+    ov19_021DFD08(v0, UnkEnum_021DFB94_45);
+}
+
+void ov19_021DFCE4 (UnkStruct_ov19_021D4DF0 * param0, u32 param1)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    v0->unk_22 ^= (1 << param1);
+}
+
+static void ov19_021DFCF8 (UnkStruct_ov19_021DF964 * param0)
+{
+    param0->unk_21 = 0;
+    param0->unk_20 = 0;
+}
+
+static void ov19_021DFD08 (UnkStruct_ov19_021DF964 * param0, UnkEnum_021DFB94 param1)
+{
+    if (param0->unk_21 < 8) {
+        param0->unk_00[param0->unk_21++] = param1;
+    }
+}
+
+int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+
+    if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+        if (v0->unk_20) {
+            v0->unk_20--;
+            return -2;
+        } else if (v0->unk_21 >= 3) {
+            v0->unk_20 = v0->unk_21 - 1;
+            return -2;
+        }
+    }
+
+    if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+        if (v0->unk_20 < (v0->unk_21 - 1)) {
+            v0->unk_20++;
+            return -2;
+        } else if (v0->unk_21 >= 3) {
+            v0->unk_20 = 0;
+            return -2;
+        }
+    }
+
+    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+        sub_02005748(1501);
+        return -1;
+    }
+
+    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+        sub_02005748(1501);
+        return v0->unk_00[v0->unk_20];
+    }
+
+    return -3;
+}
+
+UnkEnum_021DFB94 ov19_021DFDDC (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    return v0->unk_00[v0->unk_20];
+}
+
+UnkEnum_021DFB94 ov19_021DFDEC (UnkStruct_ov19_021D4DF0 * param0)
+{
+    UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
+    return v0->unk_00[0];
+}
