@@ -1421,71 +1421,71 @@ Overlay overlay40
 Overlay overlay41
 {
 	After overlay25
-	Object asm/overlay041/ov41_022561C0.o
-	Object asm/overlay041/ov41_022567B0.o
+	Object src/overlay041/ov41_022561C0.o
+	Object src/overlay041/ov41_022567B0.o
 }
 
 Overlay overlay42
 {
 	After overlay25
-	Object asm/overlay042/ov42_022561C0.o
-	Object asm/overlay042/ov42_022563D4.o
+	Object src/overlay042/ov42_022561C0.o
+	Object src/overlay042/ov42_022563D4.o
 }
 
 Overlay overlay43
 {
 	After overlay25
-	Object asm/overlay043/ov43_022561C0.o
-	Object asm/overlay043/ov43_02256544.o
+	Object src/overlay043/ov43_022561C0.o
+	Object src/overlay043/ov43_02256544.o
 }
 
 Overlay overlay44
 {
 	After overlay25
-	Object asm/overlay044/ov44_022561C0.o
-	Object asm/overlay044/ov44_022565BC.o
+	Object src/overlay044/ov44_022561C0.o
+	Object src/overlay044/ov44_022565BC.o
 }
 
 Overlay overlay45
 {
 	After overlay25
-	Object asm/overlay045/ov45_022561C0.o
-	Object asm/overlay045/ov45_022566EC.o
+	Object src/overlay045/ov45_022561C0.o
+	Object src/overlay045/ov45_022566EC.o
 }
 
 Overlay overlay46
 {
 	After overlay25
-	Object asm/overlay046/ov46_022561C0.o
-	Object asm/overlay046/ov46_02256BCC.o
+	Object src/overlay046/ov46_022561C0.o
+	Object src/overlay046/ov46_02256BCC.o
 }
 
 Overlay overlay47
 {
 	After overlay25
-	Object asm/overlay047/ov47_022561C0.o
-	Object asm/overlay047/ov47_02256634.o
+	Object src/overlay047/ov47_022561C0.o
+	Object src/overlay047/ov47_02256634.o
 }
 
 Overlay overlay48
 {
 	After overlay25
-	Object asm/overlay048/ov48_022561C0.o
-	Object asm/overlay048/ov48_0225650C.o
+	Object src/overlay048/ov48_022561C0.o
+	Object src/overlay048/ov48_0225650C.o
 }
 
 Overlay overlay49
 {
 	After overlay25
-	Object asm/overlay049/ov49_022561C0.o
-	Object asm/overlay049/ov49_022563D4.o
+	Object src/overlay049/ov49_022561C0.o
+	Object src/overlay049/ov49_022563D4.o
 }
 
 Overlay overlay50
 {
 	After overlay25
-	Object asm/overlay050/ov50_022561C0.o
-	Object asm/overlay050/ov50_02256510.o
+	Object src/overlay050/ov50_022561C0.o
+	Object src/overlay050/ov50_02256510.o
 }
 
 Overlay overlay51
