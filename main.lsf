@@ -1202,15 +1202,15 @@ Overlay overlay19
 Overlay overlay20
 {
 	After main
-	Object asm/overlay020/ov20_021D0D80.o
-	Object asm/overlay020/ov20_021D2098.o
-	Object asm/overlay020/ov20_021D2EA4.o
-	Object asm/overlay020/ov20_021D3864.o
-	Object asm/overlay020/ov20_021D3A54.o
-	Object asm/overlay020/ov20_021D40E8.o
-	Object asm/overlay020/ov20_021D4728.o
-	Object asm/overlay020/ov20_021D4E38.o
-	Object asm/overlay020/ov20_021D5044.o
+	Object src/overlay020/ov20_021D0D80.o
+	Object src/overlay020/ov20_021D2098.o
+	Object src/overlay020/ov20_021D2EA4.o
+	Object src/overlay020/ov20_021D3864.o
+	Object src/overlay020/ov20_021D3A54.o
+	Object src/overlay020/ov20_021D40E8.o
+	Object src/overlay020/ov20_021D4728.o
+	Object src/overlay020/ov20_021D4E38.o
+	Object src/overlay020/ov20_021D5044.o
 }
 
 Overlay overlay21
