@@ -43,6 +43,12 @@ NATIVE_TOOLS := \
 
 TOOLDIRS := $(foreach tool,$(NATIVE_TOOLS),$(dir $(tool)))
 
+PRECOMPILE_SRC := include/global/global.pch
+PRECOMPILE_OBJ := $(BUILD_DIR)/include/global.mch
+PRECOMPILE_OBJ_BASENAME := global.mch
+PRECOMPILE_OBJ_DIR := $(dir $(PRECOMPILE_OBJ))
+PRECOMPILE_DEPFILE := $(BUILD_DIR)/include/global.d
+
 # Directories
 NITROSDK_SRC_SUBDIRS      := os
 
@@ -94,9 +100,10 @@ MWASFLAGS          = $(DEFINES) -proc $(PROC_S) -gccinc -i . -i ./include -i ./a
 MWLDFLAGS         := -w off -proc $(PROC) -nopic -nopid -interworking -map closure,unused -symtab sort -m _start -msgstyle gcc -nodead
 ARFLAGS           := rcS
 
-$(C_OBJS):   MWCFLAGS  +=          -include global/global.h
+#$(C_OBJS):   MWCFLAGS  +=          -include global/thumb.h -prefix $(PRECOMPILE_OBJ)
 
-MW_COMPILE = $(WINE) $(MWCC) $(MWCFLAGS)
+MW_COMPILE = $(WINE) $(MWCC) $(MWCFLAGS) -i $(PRECOMPILE_OBJ_DIR) -include global/thumb.h -prefix $(PRECOMPILE_OBJ_BASENAME)
+MW_COMPILE_HEADER = $(WINE) $(MWCC) $(MWCFLAGS)
 MW_ASSEMBLE = $(WINE) $(MWAS) $(MWASFLAGS)
 
 export MWCIncludes := lib/include
@@ -109,7 +116,7 @@ OVERLAYS          :=
 endif
 
 # Make sure build directories exist before compiling anything
-DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS))
+DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS) $(PRECOMPILE_OBJ_DIR))
 
 .SECONDARY:
 .SECONDEXPANSION:
@@ -125,30 +132,45 @@ $(MWAS):
 all: tools
 
 ifeq ($(NODEP),)
-ifneq ($(WINPATH),)
-PROJECT_ROOT_NT := $(shell $(WINPATH) -w $(PROJECT_ROOT) | $(SED) 's/\\/\//g')
-define fixdep
-$(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g; s#$(PROJECT_ROOT_NT)#$(PROJECT_ROOT)#g' $(1)
-touch -r $(1:%.d=%.o) $(1)
-endef
-else
-define fixdep
-$(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g' $(1)
-touch -r $(1:%.d=%.o) $(1)
-endef
-endif
-DEPFLAGS := -gccdep -MD
-DEPFILES := $(ALL_OBJS:%.o=%.d)
-MW_COMPILE += $(DEPFLAGS)
-$(GLOBAL_ASM_OBJS): BUILD_C := $(ASM_PROCESSOR) "$(MW_COMPILE)" "$(MW_ASSEMBLE)"
-BUILD_C ?= $(MW_COMPILE) -c -o
+  ifneq ($(WINPATH),)
+    PROJECT_ROOT_NT := $(shell $(WINPATH) -w $(PROJECT_ROOT) | $(SED) 's/\\/\//g')
+    define fixdep
+      $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g; s#$(PROJECT_ROOT_NT)#$(PROJECT_ROOT)#g' $(1)
+      touch -r $(1:%.d=%.o) $(1)
+    endef
+    define fixdep_precompile
+      $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g; s#$(PROJECT_ROOT_NT)#$(PROJECT_ROOT)#g' $(1)
+      touch -r $(1:%.d=%.mch) $(1)
+    endef
+  else
+    define fixdep
+      $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g' $(1)
+      touch -r $(1:%.d=%.o) $(1)
+    endef
+    define fixdep_precompile
+      $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g' $(1)
+      touch -r $(1:%.d=%.mch) $(1)
+    endef
+  endif
+  DEPFLAGS := -gccdep -MD
+  DEPFILES := $(ALL_OBJS:%.o=%.d)
+  MW_COMPILE += $(DEPFLAGS)
+  MW_COMPILE_HEADER += $(DEPFLAGS)
+  $(GLOBAL_ASM_OBJS): BUILD_C := $(ASM_PROCESSOR) "$(MW_COMPILE)" "$(MW_ASSEMBLE)"
+  BUILD_C ?= $(MW_COMPILE) -c -o
 
+# STILL IN NODEP=FALSE
+$(PRECOMPILE_DEPFILE):
 $(DEPFILES):
 
 $(BUILD_DIR)/lib/NitroSDK/%.o: MWCCVER := 2.0/sp2p3
 
-$(BUILD_DIR)/%.o: %.c
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
+$(PRECOMPILE_OBJ): $(PRECOMPILE_SRC)
+	$(MW_COMPILE_HEADER) $(PRECOMPILE_SRC) -precompile $(PRECOMPILE_OBJ)
+	@$(call fixdep_precompile,$(PRECOMPILE_DEPFILE))
+
+$(BUILD_DIR)/%.o: %.c $(PRECOMPILE_OBJ)
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(PRECOMPILE_OBJ)
 	$(BUILD_C) $@ $<
 	@$(call fixdep,$(BUILD_DIR)/$*.d)
 
@@ -158,6 +180,9 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@$(call fixdep,$(BUILD_DIR)/$*.d)
 
 include $(wildcard $(DEPFILES))
+-include $(PRECOMPILE_DEPFILE)
+
+# END NODEP=FALSE
 else
 $(GLOBAL_ASM_OBJS): BUILD_C := $(ASM_PROCESSOR) "$(MW_COMPILE)" "$(MW_ASSEMBLE)"
 BUILD_C ?= $(MW_COMPILE) -c -o
