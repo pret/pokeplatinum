@@ -1,9 +1,0 @@
-.public sub_02018144
-.public sub_020181C4
-.public GF_AssertFail
-.public _s32_div_f
-.public ov21_021D5040
-.public ov21_021D5090
-.public ov21_021D50E0
-.public ov21_021D5110
-.public ov21_021D5140

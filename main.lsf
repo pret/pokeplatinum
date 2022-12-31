@@ -1216,36 +1216,36 @@ Overlay overlay20
 Overlay overlay21
 {
 	After main
-	Object asm/overlay021/ov21_021D0D80.o
-	Object asm/overlay021/ov21_021D1F90.o
-	Object asm/overlay021/ov21_021D1FA4.o
-	Object asm/overlay021/ov21_021D3208.o
-	Object asm/overlay021/ov21_021D3FE0.o
-	Object asm/overlay021/ov21_021D423C.o
-	Object asm/overlay021/ov21_021D4340.o
-	Object asm/overlay021/ov21_021D4C0C.o
-	Object asm/overlay021/ov21_021D4EE4.o
-	Object asm/overlay021/ov21_021D517C.o
-	Object asm/overlay021/ov21_021D5600.o
-	Object asm/overlay021/ov21_021D57B4.o
-	Object asm/overlay021/ov21_021D5AEC.o
-	Object asm/overlay021/ov21_021D76B0.o
-	Object asm/overlay021/ov21_021D85B0.o
-	Object asm/overlay021/ov21_021D94BC.o
-	Object asm/overlay021/ov21_021DC9BC.o
-	Object asm/overlay021/ov21_021DDD2C.o
-	Object asm/overlay021/ov21_021DE668.o
-	Object asm/overlay021/ov21_021DF734.o
-	Object asm/overlay021/ov21_021E0C68.o
-	Object asm/overlay021/ov21_021E1924.o
-	Object asm/overlay021/ov21_021E29DC.o
-	Object asm/overlay021/ov21_021E3FFC.o
-	Object asm/overlay021/ov21_021E4CA4.o
-	Object asm/overlay021/ov21_021E6014.o
-	Object asm/overlay021/ov21_021E68F4.o
-	Object asm/overlay021/ov21_021E737C.o
-	Object asm/overlay021/ov21_021E8484.o
-	Object asm/overlay021/ov21_021E8D48.o
+	Object src/overlay021/ov21_021D0D80.o
+	Object src/overlay021/ov21_021D1F90.o
+	Object src/overlay021/ov21_021D1FA4.o
+	Object src/overlay021/ov21_021D3208.o
+	Object src/overlay021/ov21_021D3FE0.o
+	Object src/overlay021/ov21_021D423C.o
+	Object src/overlay021/ov21_021D4340.o
+	Object src/overlay021/ov21_021D4C0C.o
+	Object src/overlay021/ov21_021D4EE4.o
+	Object src/overlay021/ov21_021D517C.o
+	Object src/overlay021/ov21_021D5600.o
+	Object src/overlay021/ov21_021D57B4.o
+	Object src/overlay021/ov21_021D5AEC.o
+	Object src/overlay021/ov21_021D76B0.o
+	Object src/overlay021/ov21_021D85B0.o
+	Object src/overlay021/ov21_021D94BC.o
+	Object src/overlay021/ov21_021DC9BC.o
+	Object src/overlay021/ov21_021DDD2C.o
+	Object src/overlay021/ov21_021DE668.o
+	Object src/overlay021/ov21_021DF734.o
+	Object src/overlay021/ov21_021E0C68.o
+	Object src/overlay021/ov21_021E1924.o
+	Object src/overlay021/ov21_021E29DC.o
+	Object src/overlay021/ov21_021E3FFC.o
+	Object src/overlay021/ov21_021E4CA4.o
+	Object src/overlay021/ov21_021E6014.o
+	Object src/overlay021/ov21_021E68F4.o
+	Object src/overlay021/ov21_021E737C.o
+	Object src/overlay021/ov21_021E8484.o
+	Object src/overlay021/ov21_021E8D48.o
 }
 
 Overlay overlay22
