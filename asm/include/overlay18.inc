@@ -6,4 +6,4 @@
 .public OS_DisableInterrupts
 .public OS_RestoreInterrupts
 .public DWC_SetAuthServer
-.public ov18_0222F20C
+.public DWC_StartUtility

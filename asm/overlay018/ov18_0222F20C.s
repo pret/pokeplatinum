@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov18_0222F20C
-ov18_0222F20C: ; 0x0222F20C
+	arm_func_start DWC_StartUtility
+DWC_StartUtility: ; 0x0222F20C
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r3, _0222F290 ; =0x022532AC
 	str r0, [r3, #4]
@@ -45,7 +45,7 @@ _0222F258:
 	; .align 2, 0
 _0222F290: .word 0x022532AC
 _0222F294: .word ov18_0222FF98
-	arm_func_end ov18_0222F20C
+	arm_func_end DWC_StartUtility
 
 	arm_func_start ov18_0222F298
 ov18_0222F298: ; 0x0222F298

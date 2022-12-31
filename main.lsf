@@ -1089,7 +1089,7 @@ Overlay overlay17
 Overlay overlay18
 {
 	After overlay4
-	Object asm/overlay018/ov18_0221F800.o
+	Object src/overlay018/ov18_0221F800.o
 	Object asm/overlay018/ov18_0221F84C.o
 	Object asm/overlay018/ov18_02220C28.o
 	Object asm/overlay018/ov18_0222190C.o
