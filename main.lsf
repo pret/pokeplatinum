@@ -1748,7 +1748,7 @@ Overlay overlay73
 Overlay overlay74
 {
 	After main
-	Object asm/overlay074/ov74_021D0D80.o
+	Object src/overlay074/ov74_021D0D80.o
 }
 
 Overlay overlay75
