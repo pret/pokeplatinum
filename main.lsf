@@ -1607,22 +1607,22 @@ Overlay overlay61
 Overlay overlay62
 {
 	After overlay61
-	Object asm/overlay062/ov62_0222F2C0.o
-	Object asm/overlay062/ov62_022300D8.o
-	Object asm/overlay062/ov62_02231690.o
-	Object asm/overlay062/ov62_02234A10.o
-	Object asm/overlay062/ov62_02235278.o
-	Object asm/overlay062/ov62_02235E64.o
-	Object asm/overlay062/ov62_02236CBC.o
-	Object asm/overlay062/ov62_02237D24.o
-	Object asm/overlay062/ov62_02239D60.o
-	Object asm/overlay062/ov62_0223CAEC.o
-	Object asm/overlay062/ov62_0223DFA8.o
-	Object asm/overlay062/ov62_0224112C.o
-	Object asm/overlay062/ov62_02241204.o
-	Object asm/overlay062/ov62_02246B00.o
-	Object asm/overlay062/ov62_02247D74.o
-	Object asm/overlay062/ov62_02248408.o
+	Object src/overlay062/ov62_0222F2C0.o
+	Object src/overlay062/ov62_022300D8.o
+	Object src/overlay062/ov62_02231690.o
+	Object src/overlay062/ov62_02234A10.o
+	Object src/overlay062/ov62_02235278.o
+	Object src/overlay062/ov62_02235E64.o
+	Object src/overlay062/ov62_02236CBC.o
+	Object src/overlay062/ov62_02237D24.o
+	Object src/overlay062/ov62_02239D60.o
+	Object src/overlay062/ov62_0223CAEC.o
+	Object src/overlay062/ov62_0223DFA8.o
+	Object src/overlay062/ov62_0224112C.o
+	Object src/overlay062/ov62_02241204.o
+	Object src/overlay062/ov62_02246B00.o
+	Object src/overlay062/ov62_02247D74.o
+	Object src/overlay062/ov62_02248408.o
 }
 
 Overlay overlay63
