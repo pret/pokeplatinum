@@ -1704,23 +1704,23 @@ Overlay overlay69
 Overlay overlay70
 {
 	After overlay66
-	Object asm/overlay070/ov70_0225C700.o
-	Object asm/overlay070/ov70_0225C858.o
-	Object asm/overlay070/ov70_0225C9B4.o
-	Object asm/overlay070/ov70_0225D9A4.o
-	Object asm/overlay070/ov70_02260A70.o
-	Object asm/overlay070/ov70_02260B44.o
-	Object asm/overlay070/ov70_02261E10.o
-	Object asm/overlay070/ov70_02262DA8.o
-	Object asm/overlay070/ov70_022630A4.o
-	Object asm/overlay070/ov70_02265F38.o
-	Object asm/overlay070/ov70_02266E9C.o
-	Object asm/overlay070/ov70_02269190.o
-	Object asm/overlay070/ov70_0226C338.o
-	Object asm/overlay070/ov70_0226C60C.o
-	Object asm/overlay070/ov70_0226C8B4.o
-	Object asm/overlay070/ov70_0226CC74.o
-	Object asm/overlay070/ov70_0226CE54.o
+	Object src/overlay070/ov70_0225C700.o
+	Object src/overlay070/ov70_0225C858.o
+	Object src/overlay070/ov70_0225C9B4.o
+	Object src/overlay070/ov70_0225D9A4.o
+	Object src/overlay070/ov70_02260A70.o
+	Object src/overlay070/ov70_02260B44.o
+	Object src/overlay070/ov70_02261E10.o
+	Object src/overlay070/ov70_02262DA8.o
+	Object src/overlay070/ov70_022630A4.o
+	Object src/overlay070/ov70_02265F38.o
+	Object src/overlay070/ov70_02266E9C.o
+	Object src/overlay070/ov70_02269190.o
+	Object src/overlay070/ov70_0226C338.o
+	Object src/overlay070/ov70_0226C60C.o
+	Object src/overlay070/ov70_0226C8B4.o
+	Object src/overlay070/ov70_0226CC74.o
+	Object src/overlay070/ov70_0226CE54.o
 }
 
 Overlay overlay71
