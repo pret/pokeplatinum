@@ -1386,36 +1386,36 @@ Overlay overlay35
 Overlay overlay36
 {
 	After overlay25
-	Object asm/overlay036/ov36_022561C0.o
-	Object asm/overlay036/ov36_02256404.o
+	Object src/overlay036/ov36_022561C0.o
+	Object src/overlay036/ov36_02256404.o
 }
 
 Overlay overlay37
 {
 	After overlay25
-	Object asm/overlay037/ov37_022561C0.o
-	Object asm/overlay037/ov37_022563D4.o
+	Object src/overlay037/ov37_022561C0.o
+	Object src/overlay037/ov37_022563D4.o
 }
 
 Overlay overlay38
 {
 	After overlay25
-	Object asm/overlay038/ov38_022561C0.o
-	Object asm/overlay038/ov38_0225632C.o
+	Object src/overlay038/ov38_022561C0.o
+	Object src/overlay038/ov38_0225632C.o
 }
 
 Overlay overlay39
 {
 	After overlay25
-	Object asm/overlay039/ov39_022561C0.o
-	Object asm/overlay039/ov39_022563DC.o
+	Object src/overlay039/ov39_022561C0.o
+	Object src/overlay039/ov39_022563DC.o
 }
 
 Overlay overlay40
 {
 	After overlay25
-	Object asm/overlay040/ov40_022561C0.o
-	Object asm/overlay040/ov40_0225645C.o
+	Object src/overlay040/ov40_022561C0.o
+	Object src/overlay040/ov40_0225645C.o
 }
 
 Overlay overlay41
