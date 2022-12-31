@@ -1686,19 +1686,19 @@ Overlay overlay66
 Overlay overlay67
 {
 	After overlay66
-	Object asm/overlay067/ov67_0225C700.o
+	Object src/overlay067/ov67_0225C700.o
 }
 
 Overlay overlay68
 {
 	After overlay66
-	Object asm/overlay068/ov68_0225C700.o
+	Object src/overlay068/ov68_0225C700.o
 }
 
 Overlay overlay69
 {
 	After overlay66
-	Object asm/overlay069/ov69_0225C700.o
+	Object src/overlay069/ov69_0225C700.o
 }
 
 Overlay overlay70
