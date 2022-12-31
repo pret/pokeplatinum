@@ -1875,20 +1875,20 @@ Overlay overlay90
 Overlay overlay91
 {
 	After main
-	Object asm/overlay091/ov91_021D0D80.o
+	Object src/overlay091/ov91_021D0D80.o
 }
 
 Overlay overlay92
 {
 	After main
-	Object asm/overlay092/ov92_021D0D80.o
+	Object src/overlay092/ov92_021D0D80.o
 }
 
 Overlay overlay93
 {
 	After main
-	Object asm/overlay093/ov93_021D0D80.o
-	Object asm/overlay093/ov93_021D111C.o
+	Object src/overlay093/ov93_021D0D80.o
+	Object src/overlay093/ov93_021D111C.o
 }
 
 Overlay overlay94
