@@ -1803,61 +1803,61 @@ Overlay overlay80
 Overlay overlay81
 {
 	After main
-	Object asm/overlay081/ov81_021D0D80.o
-	Object asm/overlay081/ov81_021D1610.o
+	Object src/overlay081/ov81_021D0D80.o
+	Object src/overlay081/ov81_021D1610.o
 }
 
 Overlay overlay82
 {
 	After overlay12
-	Object asm/overlay082/ov82_0223B140.o
-	Object asm/overlay082/ov82_0223B2E0.o
+	Object src/overlay082/ov82_0223B140.o
+	Object src/overlay082/ov82_0223B2E0.o
 }
 
 Overlay overlay83
 {
 	After overlay82
-	Object asm/overlay083/ov83_0223B5A0.o
-	Object asm/overlay083/ov83_0223C958.o
-	Object asm/overlay083/ov83_0223D144.o
-	Object asm/overlay083/ov83_0223D150.o
-	Object asm/overlay083/ov83_0223D4CC.o
-	Object asm/overlay083/ov83_0223D6A8.o
-	Object asm/overlay083/ov83_0223F7F4.o
+	Object src/overlay083/ov83_0223B5A0.o
+	Object src/overlay083/ov83_0223C958.o
+	Object src/overlay083/ov83_0223D144.o
+	Object src/overlay083/ov83_0223D150.o
+	Object src/overlay083/ov83_0223D4CC.o
+	Object src/overlay083/ov83_0223D6A8.o
+	Object src/overlay083/ov83_0223F7F4.o
 }
 
 Overlay overlay84
 {
 	After overlay82
-	Object asm/overlay084/ov84_0223B5A0.o
-	Object asm/overlay084/ov84_0223F040.o
-	Object asm/overlay084/ov84_022403F4.o
+	Object src/overlay084/ov84_0223B5A0.o
+	Object src/overlay084/ov84_0223F040.o
+	Object src/overlay084/ov84_022403F4.o
 }
 
 Overlay overlay85
 {
 	After overlay84
-	Object asm/overlay085/ov85_02241440.o
+	Object src/overlay085/ov85_02241440.o
 }
 
 Overlay overlay86
 {
 	After overlay12
-	Object asm/overlay086/ov86_0223B140.o
+	Object src/overlay086/ov86_0223B140.o
 }
 
 Overlay overlay87
 {
 	After main
-	Object asm/overlay087/ov87_021D0D80.o
-	Object asm/overlay087/ov87_021D106C.o
+	Object src/overlay087/ov87_021D0D80.o
+	Object src/overlay087/ov87_021D106C.o
 }
 
 Overlay overlay88
 {
 	After overlay12
-	Object asm/overlay088/ov88_0223B140.o
-	Object asm/overlay088/ov88_0223E9C4.o
+	Object src/overlay088/ov88_0223B140.o
+	Object src/overlay088/ov88_0223E9C4.o
 }
 
 Overlay overlay89
@@ -1869,7 +1869,7 @@ Overlay overlay89
 Overlay overlay90
 {
 	After main
-	Object asm/overlay090/ov90_021D0D80.o
+	Object src/overlay090/ov90_021D0D80.o
 }
 
 Overlay overlay91
