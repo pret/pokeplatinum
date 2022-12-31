@@ -1,0 +1,467 @@
+#include <nitro.h>
+#include <string.h>
+#include <nitro/sinit.h>
+
+#include "struct_decls/struct_02002F38_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_0200C6E4_decl.h"
+#include "struct_decls/struct_0200C704_decl.h"
+#include "struct_decls/struct_02012744_decl.h"
+#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/struct_02018340_decl.h"
+#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
+
+#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/struct_020127E8.h"
+#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/struct_0205AA50.h"
+#include "struct_defs/struct_0207C690.h"
+#include "struct_defs/struct_02095C48.h"
+#include "overlay017/struct_ov17_0223F2E4.h"
+#include "overlay017/struct_ov17_0223F6E8.h"
+#include "overlay017/struct_ov17_0223F744.h"
+#include "overlay104/struct_ov104_0223F9E0.h"
+
+#include "unk_02002B7C.h"
+#include "unk_02005474.h"
+#include "unk_020064F0.h"
+#include "unk_0200A9DC.h"
+#include "unk_0200AC5C.h"
+#include "unk_0200C6E4.h"
+#include "unk_0200D9E8.h"
+#include "unk_02012744.h"
+#include "unk_02017E74.h"
+#include "unk_02018340.h"
+#include "unk_0201D670.h"
+#include "unk_0201E86C.h"
+#include "unk_0201FE94.h"
+#include "unk_02024220.h"
+#include "unk_02073C2C.h"
+#include "overlay017/ov17_0223F118.h"
+#include "overlay017/ov17_02252A70.h"
+
+FS_EXTERN_OVERLAY(overlay11);
+FS_EXTERN_OVERLAY(overlay12);
+FS_EXTERN_OVERLAY(overlay22);
+
+static void ov17_0223F6E8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0223F15C(void);
+static void ov17_0223F774(UnkStruct_0201CD38 * param0, void * param1);
+
+static const UnkStruct_ov104_0223F9E0 Unk_ov17_022531FC = {
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    NNS_G2D_VRAM_TYPE_2DMAIN,
+    {0x0, 0x0, 0x0, 0x0, 0xFFFFFFFF, 0xFFFFFFFF},
+    0x3,
+    0x0
+};
+
+static const struct {
+    s16 unk_00;
+    s16 unk_02;
+    s16 unk_04;
+    u8 unk_06;
+} Unk_ov17_022531CC[] = {
+    {0xD, 0xAC, 0xFFFFFFFFFFFFFE80, 0x1},
+    {0x25, 0xA4, 0x300, 0x1},
+    {0x40, 0xB0, 0xFFFFFFFFFFFFFF80, 0x0},
+    {0xC0, 0xB0, 0x80, 0x0},
+    {0xDB, 0xA4, 0xFFFFFFFFFFFFFD00, 0x1},
+    {0xF3, 0xAC, 0x180, 0x1}
+};
+
+static void NitroStaticInit (void)
+{
+    sub_02006590(FS_OVERLAY_ID(overlay11), 2);
+    sub_02006590(FS_OVERLAY_ID(overlay12), 2);
+    sub_02006590(FS_OVERLAY_ID(overlay22), 2);
+}
+
+UnkStruct_0207C690 * ov17_0223F140 (int param0)
+{
+    UnkStruct_0207C690 * v0;
+
+    v0 = sub_02024220(param0, 0, 2, 0, 2, ov17_0223F15C);
+    return v0;
+}
+
+static void ov17_0223F15C (void)
+{
+    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+
+    G2_SetBG0Priority(1);
+    G3X_SetShading(GX_SHADING_TOON);
+    G3X_AntiAlias(1);
+    G3X_AlphaTest(0, 0);
+    G3X_AlphaBlend(1);
+    G3X_EdgeMarking(0);
+    G3X_SetFog(0, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
+    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, 0);
+    G3_ViewPort(0, 0, 255, 191);
+}
+
+void ov17_0223F1E0 (UnkStruct_0207C690 * param0)
+{
+    sub_020242C4(param0);
+}
+
+void ov17_0223F1E8 (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C704 * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const UnkStruct_02023790 * param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+{
+    UnkStruct_020127E8 v0;
+    UnkStruct_0205AA50 v1;
+    UnkStruct_0201EE28 v2;
+    int v3;
+    UnkStruct_02012CE0 * v4;
+    int v5, v6;
+    int v7 = 0;
+
+    {
+        v5 = sub_02002D7C(param6, param5, v7);
+        v6 = v5 / 8;
+
+        if (FX_ModS32(v5, 8) != 0) {
+            v6++;
+        }
+    }
+
+    {
+        sub_0201A7A0(&v1);
+        sub_0201A870(param1, &v1, v6, 16 / 8, 0, 0);
+        sub_0201D7E0(&v1, param6, param5, 0, 0, 0xff, param7, v7, 0, NULL);
+    }
+
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, param0);
+    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+
+    if (param12 == 1) {
+        param10 -= v5 / 2;
+    }
+
+    param11 += 0 - 8;
+
+    v0.unk_00 = param3;
+    v0.unk_04 = &v1;
+    v0.unk_08 = sub_0200D9B0(param2);
+    v0.unk_0C = sub_0200D04C(param2, param9);
+    v0.unk_10 = NULL;
+    v0.unk_14 = v2.unk_04;
+    v0.unk_18 = param10;
+    v0.unk_1C = param11;
+    v0.unk_20 = param13;
+    v0.unk_24 = param14;
+    v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.unk_2C = param0;
+
+    v4 = sub_020127E8(&v0);
+
+    if (param8 != 0) {
+        sub_02012A90(v4, param8);
+    }
+
+    sub_020128C4(v4, param10, param11);
+    sub_0201A8FC(&v1);
+
+    param4->unk_00 = v4;
+    param4->unk_04 = v2;
+    param4->unk_10 = v5;
+}
+
+void ov17_0223F2E4 (UnkStruct_ov17_0223F2E4 * param0)
+{
+    sub_02012870(param0->unk_00);
+    sub_0201EE28(&param0->unk_04);
+}
+
+void ov17_0223F2F8 (UnkStruct_ov17_0223F2E4 * param0, int param1, int param2, int param3)
+{
+    if (param3 == 1) {
+        param1 -= param0->unk_10 / 2;
+    }
+
+    param2 += 0 - 8;
+    sub_020128C4(param0->unk_00, param1, param2);
+}
+
+UnkStruct_02023790 * ov17_0223F310 (u32 param0, u32 param1)
+{
+    UnkStruct_0200B144 * v0;
+    UnkStruct_02023790 * v1;
+
+    v0 = sub_0200B144(1, 26, 207, param1);
+    v1 = sub_0200B1EC(v0, param0);
+
+    sub_0200B190(v0);
+    return v1;
+}
+
+void ov17_0223F334 (UnkStruct_02095C48 * param0, int param1)
+{
+    u8 * v0;
+    int v1;
+
+    v0 = ov17_02252A9C(param1, param0->unk_00.unk_112);
+
+    for (v1 = 0; v1 < 4; v1++) {
+        param0->unk_00.unk_118[v1].unk_02 = ov17_02252A70(param0->unk_00.unk_E8[v1], v0);
+    }
+
+    sub_020181C4(v0);
+}
+
+void ov17_0223F374 (UnkStruct_02095C48 * param0)
+{
+    int v0, v1, v2, v3, v4;
+    u32 v5;
+    s32 v6, v7;
+
+    for (v0 = 0; v0 < 4; v0++) {
+        v5 = sub_02074470(param0->unk_00.unk_00[v0], 6, NULL);
+        v6 = 100;
+
+        switch (param0->unk_00.unk_10F) {
+        case 0:
+            v1 = sub_02074470(param0->unk_00.unk_00[v0], 19, NULL);
+            v2 = sub_02074470(param0->unk_00.unk_00[v0], 23, NULL);
+            v3 = sub_02074470(param0->unk_00.unk_00[v0], 20, NULL);
+
+            switch (v5) {
+            case 260:
+                v6 = 110;
+                break;
+            case 261:
+            case 264:
+                v6 = 105;
+                break;
+            }
+            break;
+        case 1:
+            v1 = sub_02074470(param0->unk_00.unk_00[v0], 20, NULL);
+            v2 = sub_02074470(param0->unk_00.unk_00[v0], 19, NULL);
+            v3 = sub_02074470(param0->unk_00.unk_00[v0], 21, NULL);
+
+            switch (v5) {
+            case 261:
+                v6 = 110;
+                break;
+            case 260:
+            case 262:
+                v6 = 105;
+                break;
+            }
+            break;
+        case 2:
+            v1 = sub_02074470(param0->unk_00.unk_00[v0], 21, NULL);
+            v2 = sub_02074470(param0->unk_00.unk_00[v0], 20, NULL);
+            v3 = sub_02074470(param0->unk_00.unk_00[v0], 22, NULL);
+
+            switch (v5) {
+            case 262:
+                v6 = 110;
+                break;
+            case 261:
+            case 263:
+                v6 = 105;
+                break;
+            }
+            break;
+        case 3:
+            v1 = sub_02074470(param0->unk_00.unk_00[v0], 22, NULL);
+            v2 = sub_02074470(param0->unk_00.unk_00[v0], 21, NULL);
+            v3 = sub_02074470(param0->unk_00.unk_00[v0], 23, NULL);
+
+            switch (v5) {
+            case 263:
+                v6 = 110;
+                break;
+            case 262:
+            case 264:
+                v6 = 105;
+                break;
+            }
+            break;
+        case 4:
+            v1 = sub_02074470(param0->unk_00.unk_00[v0], 23, NULL);
+            v2 = sub_02074470(param0->unk_00.unk_00[v0], 22, NULL);
+            v3 = sub_02074470(param0->unk_00.unk_00[v0], 19, NULL);
+
+            switch (v5) {
+            case 264:
+                v6 = 110;
+                break;
+            case 263:
+            case 260:
+                v6 = 105;
+                break;
+            }
+
+            break;
+        default:
+            GF_ASSERT(FALSE);
+            return;
+        }
+
+        v4 = sub_02074470(param0->unk_00.unk_00[v0], 24, NULL);
+        v7 = v1 + ((v2 + v3 + v4) / 2);
+        v7 = v7 * v6 / 100;
+
+        param0->unk_00.unk_118[v0].unk_00 = v7;
+    }
+}
+
+void ov17_0223F560 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2, int param3, int param4, int param5, int param6)
+{
+    if (param3 != -1) {
+        sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+    }
+
+    if (param4 != -1) {
+        sub_0200CD7C(param2, 2, param0, param1, 46, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
+    }
+
+    if (param5 != -1) {
+        sub_0200CE0C(param0, param1, 46, 74, 1, param5);
+    }
+
+    if (param6 != -1) {
+        sub_0200CE3C(param0, param1, 46, 75, 1, param6);
+    }
+}
+
+void ov17_0223F5E8 (UnkStruct_0200C704 * param0, int param1, int param2, int param3, int param4)
+{
+    if (param1 != -1) {
+        sub_0200D070(param0, param1);
+    }
+
+    if (param2 != -1) {
+        sub_0200D080(param0, param2);
+    }
+
+    if (param3 != -1) {
+        sub_0200D090(param0, param3);
+    }
+
+    if (param4 != -1) {
+        sub_0200D0A0(param0, param4);
+    }
+}
+
+void ov17_0223F630 (UnkStruct_ov17_0223F6E8 * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+{
+    int v0;
+    UnkStruct_ov104_0223F9E0 v1;
+
+    GF_ASSERT(NELEMS(Unk_ov17_022531CC) == 6);
+
+    v1 = Unk_ov17_022531FC;
+
+    v1.unk_14[0] = param3;
+    v1.unk_14[1] = param4;
+    v1.unk_14[2] = param5;
+    v1.unk_14[3] = param6;
+    v1.unk_0C = param7;
+    v1.unk_08 = param8;
+    v1.unk_2C = param9;
+
+    for (v0 = 0; v0 < 6; v0++) {
+        param0->unk_00[v0] = sub_0200CE6C(param1, param2, &v1);
+
+        sub_0200D4C4(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
+        sub_0200D364(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
+        sub_0200D6A4(param0->unk_00[v0], 1);
+        sub_0200D324(param0->unk_00[v0]->unk_00);
+    }
+
+    param0->unk_18 = sub_0200D9E8(ov17_0223F6E8, param0, param10);
+}
+
+void ov17_0223F6C4 (UnkStruct_ov17_0223F6E8 * param0)
+{
+    int v0;
+
+    for (v0 = 0; v0 < 6; v0++) {
+        sub_0200D0F4(param0->unk_00[v0]);
+    }
+
+    sub_0200DA58(param0->unk_18);
+    param0->unk_18 = NULL;
+}
+
+static void ov17_0223F6E8 (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov17_0223F6E8 * v0 = param1;
+    int v1;
+
+    for (v1 = 0; v1 < 6; v1++) {
+        sub_0200D7C0(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
+    }
+}
+
+UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, UnkStruct_02002F38 * param1, const u16 * param2, int param3, int param4, u32 param5)
+{
+    UnkStruct_ov17_0223F744 * v0;
+
+    v0 = sub_02018144(param0, sizeof(UnkStruct_ov17_0223F744));
+    MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
+
+    v0->unk_04 = param1;
+    v0->unk_0C = param2;
+    v0->unk_10 = param3;
+    v0->unk_12 = param4;
+    v0->unk_00 = sub_0200D9E8(ov17_0223F774, v0, param5);
+
+    return v0;
+}
+
+void ov17_0223F744 (UnkStruct_ov17_0223F744 * param0)
+{
+    GF_ASSERT(param0->unk_00 != NULL);
+
+    sub_0200DA58(param0->unk_00);
+    sub_020181C4(param0);
+}
+
+BOOL ov17_0223F760 (void)
+{
+    if (sub_0200AC1C(1) == 1) {
+        return 1;
+    }
+
+    return 0;
+}
+
+static void ov17_0223F774 (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov17_0223F744 * v0 = param1;
+
+    if (sub_0200AC1C(1) == 0) {
+        return;
+    }
+
+    v0->unk_08++;
+
+    if (v0->unk_08 > v0->unk_0C[v0->unk_11]) {
+        sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        sub_02005748(1528);
+
+        v0->unk_08 = 0;
+        v0->unk_11++;
+
+        if (v0->unk_11 >= v0->unk_10) {
+            if (v0->unk_12 == 0) {
+                ov17_0223F744(v0);
+                return;
+            } else if (v0->unk_12 != 0xff) {
+                v0->unk_12--;
+            }
+
+            v0->unk_11 = 0;
+        }
+    }
+}
