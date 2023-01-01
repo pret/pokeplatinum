@@ -2178,25 +2178,25 @@ Overlay overlay117
 Overlay overlay118
 {
 	After main
-	Object asm/overlay118/ov118_021D0D80.o
+	Object src/overlay118/ov118_021D0D80.o
 }
 
 Overlay overlay119
 {
 	After main
-	Object asm/overlay119/ov119_021D0D80.o
-	Object asm/overlay119/ov119_021D191C.o
+	Object src/overlay119/ov119_021D0D80.o
+	Object src/overlay119/ov119_021D191C.o
 }
 
 Overlay overlay120
 {
 	After main
-	Object asm/overlay120/ov120_021D0D80.o
+	Object src/overlay120/ov120_021D0D80.o
 }
 
 Overlay overlay121
 {
 	After main
-	Object asm/overlay121/ov121_021D0D80.o
+	Object src/overlay121/ov121_021D0D80.o
 }
 
