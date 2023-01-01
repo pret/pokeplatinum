@@ -289,7 +289,9 @@ _020E109C:
 	b _020E1034
 	arm_func_end _d_fne
 
+	arm_func_start _fgeq
 	arm_func_start _f_fge
+_fgeq:
 _f_fge: ; 0x020E10AC
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1
@@ -347,7 +349,9 @@ _020E1150:
 	bx lr
 	arm_func_end _f_fgt
 
+	arm_func_start _fleq
 	arm_func_start _f_fle
+_fleq:
 _f_fle: ; 0x020E1164
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1

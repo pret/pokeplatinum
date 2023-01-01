@@ -1969,16 +1969,16 @@ Overlay overlay98
 Overlay overlay99
 {
 	After main
-	Object asm/overlay099/ov99_021D0D80.o
-	Object asm/overlay099/ov99_021D1A54.o
-	Object asm/overlay099/ov99_021D2C08.o
-	Object asm/overlay099/ov99_021D2E28.o
-	Object asm/overlay099/ov99_021D340C.o
-	Object asm/overlay099/ov99_021D3A40.o
-	Object asm/overlay099/ov99_021D3C18.o
-	Object asm/overlay099/ov99_021D3DE0.o
-	Object asm/overlay099/ov99_021D3E78.o
-	Object asm/overlay099/ov99_021D4134.o
+	Object src/overlay099/ov99_021D0D80.o
+	Object src/overlay099/ov99_021D1A54.o
+	Object src/overlay099/ov99_021D2C08.o
+	Object src/overlay099/ov99_021D2E28.o
+	Object src/overlay099/ov99_021D340C.o
+	Object src/overlay099/ov99_021D3A40.o
+	Object src/overlay099/ov99_021D3C18.o
+	Object src/overlay099/ov99_021D3DE0.o
+	Object src/overlay099/ov99_021D3E78.o
+	Object src/overlay099/ov99_021D4134.o
 }
 
 Overlay overlay100
