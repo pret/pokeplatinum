@@ -5,8 +5,9 @@
 
 	.text
 
-
+	arm_func_start _ll_sto_f
 	arm_func_start _f_lltof
+_ll_sto_f:
 _f_lltof: ; 0x020E1844
 	ands r2, r1, #0x80000000
 	beq _020E1854

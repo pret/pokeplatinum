@@ -4,8 +4,9 @@
 
 	.text
 
-
+	arm_func_start _dgeq
 	arm_func_start _d_fge
+_dgeq:
 _d_fge: ; 0x020E0D24
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1

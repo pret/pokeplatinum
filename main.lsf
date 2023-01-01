@@ -2154,13 +2154,13 @@ Overlay overlay115
 Overlay overlay116
 {
 	After overlay114
-	Object asm/overlay116/ov116_02260440.o
-	Object asm/overlay116/ov116_022604C4.o
+	Object src/overlay116/ov116_02260440.o
+	Object src/overlay116/ov116_022604C4.o
 	Object asm/overlay116/ov116_02261870.o
-	Object asm/overlay116/ov116_02262A44.o
+	Object src/overlay116/ov116_02262A44.o
 	Object asm/overlay116/ov116_02262A8C.o
-	Object asm/overlay116/ov116_0226432C.o
-	Object asm/overlay116/ov116_02266FEC.o
+	Object src/overlay116/ov116_0226432C.o
+	Object src/overlay116/ov116_02266FEC.o
 }
 
 Overlay overlay117
