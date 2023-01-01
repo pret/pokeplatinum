@@ -1650,7 +1650,7 @@ _022382DE:
 	add r1, r5, #0
 	lsl r2, r2, #2
 	add r3, r7, #0
-	blx ov97_02239420
+	blx CRYPTO_RC4Encrypt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #0xc
@@ -1725,7 +1725,7 @@ _0223837E:
 	add r1, r5, #0
 	lsl r2, r2, #2
 	add r3, r7, #0
-	blx ov97_02239420
+	blx CRYPTO_RC4Encrypt
 	add r0, r4, #0
 	bl sub_020181C4
 	add sp, #0xc

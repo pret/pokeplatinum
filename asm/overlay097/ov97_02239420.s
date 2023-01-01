@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov97_02239420
-ov97_02239420: ; 0x02239420
+	arm_func_start CRYPTO_RC4Encrypt
+CRYPTO_RC4Encrypt: ; 0x02239420
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	ldrb r7, [r0]
 	ldrb r6, [r0, #1]
@@ -40,10 +40,10 @@ _02239480:
 	strb r7, [r0, #-4]
 	strb r6, [r0, #-3]
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov97_02239420
+	arm_func_end CRYPTO_RC4Encrypt
 
-	arm_func_start ov97_02239498
-ov97_02239498: ; 0x02239498
+	arm_func_start CRYPTO_VerifySignature
+CRYPTO_VerifySignature: ; 0x02239498
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x14
 	mov ip, r0
@@ -61,7 +61,7 @@ ov97_02239498: ; 0x02239498
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_02239498
+	arm_func_end CRYPTO_VerifySignature
 
 	arm_func_start ov97_022394DC
 ov97_022394DC: ; 0x022394DC
@@ -4728,8 +4728,8 @@ _0223D594:
 _0223D5C4: .word 0x0223DEE8
 	arm_func_end ov97_0223D568
 
-	arm_func_start ov97_0223D5C8
-ov97_0223D5C8: ; 0x0223D5C8
+	arm_func_start CRYPTO_SetAllocator
+CRYPTO_SetAllocator: ; 0x0223D5C8
 	ldr r3, _0223D5DC ; =0x02240AF4
 	ldr r2, _0223D5E0 ; =0x02240AF8
 	str r0, [r3, #0]
@@ -4738,7 +4738,7 @@ ov97_0223D5C8: ; 0x0223D5C8
 	; .align 2, 0
 _0223D5DC: .word 0x02240AF4
 _0223D5E0: .word 0x02240AF8
-	arm_func_end ov97_0223D5C8
+	arm_func_end CRYPTO_SetAllocator
 
 	arm_func_start ov97_0223D5E4
 ov97_0223D5E4: ; 0x0223D5E4

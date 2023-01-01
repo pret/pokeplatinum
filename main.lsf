@@ -1936,25 +1936,25 @@ Overlay overlay97
 	After overlay60
 	Object asm/overlay097/ov97_0222AE60.o
 	Object asm/overlay097/ov97_0222C174.o
-	Object asm/overlay097/ov97_0222D04C.o
-	Object asm/overlay097/ov97_0222D2F8.o
+	Object src/overlay097/ov97_0222D04C.o
+	Object src/overlay097/ov97_0222D2F8.o
 	Object asm/overlay097/ov97_0222D30C.o
-	Object asm/overlay097/ov97_02230410.o
-	Object asm/overlay097/ov97_02232054.o
-	Object asm/overlay097/ov97_02232200.o
-	Object asm/overlay097/ov97_02232DC8.o
-	Object asm/overlay097/ov97_02233408.o
-	Object asm/overlay097/ov97_022337FC.o
-	Object asm/overlay097/ov97_02233814.o
-	Object asm/overlay097/ov97_02233B18.o
-	Object asm/overlay097/ov97_02235D18.o
-	Object asm/overlay097/ov97_0223635C.o
-	Object asm/overlay097/ov97_02236380.o
-	Object asm/overlay097/ov97_02237520.o
+	Object src/overlay097/ov97_02230410.o
+	Object src/overlay097/ov97_02232054.o
+	Object src/overlay097/ov97_02232200.o
+	Object src/overlay097/ov97_02232DC8.o
+	Object src/overlay097/ov97_02233408.o
+	Object src/overlay097/ov97_022337FC.o
+	Object src/overlay097/ov97_02233814.o
+	Object src/overlay097/ov97_02233B18.o
+	Object src/overlay097/ov97_02235D18.o
+	Object src/overlay097/ov97_0223635C.o
+	Object src/overlay097/ov97_02236380.o
+	Object src/overlay097/ov97_02237520.o
 	Object asm/overlay097/ov97_02237694.o
-	Object asm/overlay097/ov97_02238534.o
+	Object src/overlay097/ov97_02238534.o
 	Object asm/overlay097/ov97_02238D74.o
-	Object asm/overlay097/ov97_022392E4.o
+	Object src/overlay097/ov97_022392E4.o
 	Object asm/overlay097/ov97_02239420.o
 }
 
