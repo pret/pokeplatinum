@@ -25,9 +25,9 @@
 .public DWC_GetInetStatus
 .public DWC_CleanupInet
 .public ov4_021D7E10
-.public ov4_021D7EB8
-.public ov4_021D81DC
-.public ov4_021D82A0
+.public DWC_GetApInfo
+.public DWC_NASLoginAsync
+.public DWC_NASLoginProcess
 .public ov4_021D8398
 .public ov4_021D86C8
 .public ov4_021D87E0

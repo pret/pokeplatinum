@@ -467,8 +467,8 @@ DWC_GetLinkLevel: ; 0x021D7EAC
 _021D7EB4: .word ov4_022156EC
 	arm_func_end DWC_GetLinkLevel
 
-	arm_func_start ov4_021D7EB8
-ov4_021D7EB8: ; 0x021D7EB8
+	arm_func_start DWC_GetApInfo
+DWC_GetApInfo: ; 0x021D7EB8
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	mov r1, #0
@@ -565,7 +565,7 @@ _021D800C:
 	mov r0, #1
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021D7EB8
+	arm_func_end DWC_GetApInfo
 
 	arm_func_start DWC_UpdateConnection
 DWC_UpdateConnection: ; 0x021D8018

@@ -200,7 +200,7 @@
 .public ov4_021D70C4
 .public ov4_021D72E0
 .public ov4_021D7468
-.public ov4_021D75D4
+.public DWC_GetLastError
 .public DWC_ClearError
 .public ov4_021D7708
 .public ov4_021D7724

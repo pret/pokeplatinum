@@ -73,7 +73,7 @@
 .public MIi_CpuClearFast
 .public MI_CpuFill8
 .public ov4_021D1F3C
-.public ov4_021D75D4
+.public DWC_GetLastError
 .public DWC_GetLastErrorEx
 .public DWC_ClearError
 .public DWC_InitInetEx
@@ -83,12 +83,12 @@
 .public DWC_ProcessInet
 .public DWC_GetInetStatus
 .public DWC_CleanupInet
-.public ov4_021D7EB8
+.public DWC_GetApInfo
 .public ov4_021D806C
-.public ov4_021D81DC
-.public ov4_021D82A0
+.public DWC_NASLoginAsync
+.public DWC_NASLoginProcess
 .public DWC_ShutdownFriendsMatch
-.public ov4_021E55B0
+.public DWC_ShutdownGHTTP
 .public ov96_0223B140
 .public ov96_0223B3D4
 .public ov96_0223B3F4

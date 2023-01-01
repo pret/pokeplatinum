@@ -20,8 +20,8 @@ ov4_021E558C: ; 0x021E558C
 _021E55AC: .word 0x0221AE24
 	arm_func_end ov4_021E558C
 
-	arm_func_start ov4_021E55B0
-ov4_021E55B0: ; 0x021E55B0
+	arm_func_start DWC_ShutdownGHTTP
+DWC_ShutdownGHTTP: ; 0x021E55B0
 	stmfd sp!, {r3, lr}
 	ldr r0, _021E55EC ; =0x0221AE24
 	ldr r0, [r0, #4]
@@ -40,7 +40,7 @@ _021E55E4:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E55EC: .word 0x0221AE24
-	arm_func_end ov4_021E55B0
+	arm_func_end DWC_ShutdownGHTTP
 
 	arm_func_start ov4_021E55F0
 ov4_021E55F0: ; 0x021E55F0

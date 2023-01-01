@@ -1038,7 +1038,7 @@ _0223C556: ; jump table
 	.short _0223C58E - _0223C556 - 2 ; case 8
 _0223C568:
 	add r0, sp, #4
-	bl ov4_021D75D4
+	bl DWC_GetLastError
 	mov r1, #0xf1
 	lsl r1, r1, #4
 	str r0, [r4, r1]
@@ -1054,7 +1054,7 @@ _0223C568:
 	b _0223C5B0
 _0223C58E:
 	add r0, sp, #0
-	bl ov4_021D75D4
+	bl DWC_GetLastError
 	add r0, r4, #0
 	bl ov96_0223D99C
 	mov r1, #0x35
@@ -1065,7 +1065,7 @@ _0223C58E:
 	b _0223C5B0
 _0223C5A6:
 	add r0, sp, #8
-	bl ov4_021D7EB8
+	bl DWC_GetApInfo
 	mov r0, #4
 	str r0, [r4, #0x1c]
 _0223C5B0:
@@ -1080,7 +1080,7 @@ _0223C5B8: .word 0x00000F1C
 ov96_0223C5BC: ; 0x0223C5BC
 	push {r4, lr}
 	add r4, r0, #0
-	bl ov4_021D81DC
+	bl DWC_NASLoginAsync
 	mov r0, #5
 	str r0, [r4, #0x1c]
 	mov r0, #3
@@ -1092,7 +1092,7 @@ ov96_0223C5CC: ; 0x0223C5CC
 	push {r4, lr}
 	sub sp, #8
 	add r4, r0, #0
-	bl ov4_021D82A0
+	bl DWC_NASLoginProcess
 	cmp r0, #5
 	bhi _0223C672
 	add r0, r0, r0
@@ -1150,7 +1150,7 @@ _0223C640:
 	str r0, [r4, #0x1c]
 	b _0223C660
 _0223C644:
-	bl ov4_021E55B0
+	bl DWC_ShutdownGHTTP
 	mov r0, #0x37
 	str r0, [r4, #0x1c]
 	b _0223C660

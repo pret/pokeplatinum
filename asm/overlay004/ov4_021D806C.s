@@ -118,8 +118,8 @@ _021D81D4:
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021D81B8
 
-	arm_func_start ov4_021D81DC
-ov4_021D81DC: ; 0x021D81DC
+	arm_func_start DWC_NASLoginAsync
+DWC_NASLoginAsync: ; 0x021D81DC
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D8288 ; =0x0221A4E4
 	ldr r0, [r0, #0]
@@ -172,10 +172,10 @@ _021D8290: .word 0xFFFFB17C
 _021D8294: .word 0x0221742C
 _021D8298: .word ov4_021D7780
 _021D829C: .word ov4_021D77C4
-	arm_func_end ov4_021D81DC
+	arm_func_end DWC_NASLoginAsync
 
-	arm_func_start ov4_021D82A0
-ov4_021D82A0: ; 0x021D82A0
+	arm_func_start DWC_NASLoginProcess
+DWC_NASLoginProcess: ; 0x021D82A0
 	stmdb sp!, {lr}
 	sub sp, sp, #0x1c4
 	ldr r0, _021D8390 ; =0x0221A4E4
@@ -243,7 +243,7 @@ _021D834C:
 	; .align 2, 0
 _021D8390: .word 0x0221A4E4
 _021D8394: .word 0x00001E20
-	arm_func_end ov4_021D82A0
+	arm_func_end DWC_NASLoginProcess
 
 	arm_func_start ov4_021D8398
 ov4_021D8398: ; 0x021D8398

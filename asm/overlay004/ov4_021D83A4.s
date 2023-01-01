@@ -215,7 +215,7 @@ _021D8644:
 	cmp r0, #4
 	bne _021D8684
 	add r0, sp, #0xc
-	bl ov4_021D75D4
+	bl DWC_GetLastError
 	ldr r1, [sp, #0xc]
 	mov r0, #0xe
 	bl ov4_021D7724

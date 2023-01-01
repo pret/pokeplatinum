@@ -739,7 +739,7 @@ _02258620:
 	str r1, [r0, #0x64]
 	str r1, [r0, #0x60]
 _02258644:
-	bl ov4_021E55B0
+	bl DWC_ShutdownGHTTP
 	ldr r0, _02258660 ; =0x0225B52C
 	mov r1, #2
 	str r1, [r0, #0]

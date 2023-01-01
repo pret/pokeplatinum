@@ -40,7 +40,7 @@
 .public ov4_021D7880
 .public ov4_021D7894
 .public ov4_021D78B0
-.public ov4_021D7EB8
+.public DWC_GetApInfo
 .public ov4_021E9A8C
 .public ov4_021E9B50
 .public ov4_021E9BBC

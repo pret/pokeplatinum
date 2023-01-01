@@ -1463,7 +1463,7 @@ _0222CAE0:
 	b _0222CB26
 _0222CB06:
 	add r0, sp, #0
-	bl ov4_021D75D4
+	bl DWC_GetLastError
 	add r0, r4, #0
 	bl ov61_0222C86C
 	mov r0, #0xa
@@ -1473,7 +1473,7 @@ _0222CB06:
 	b _0222CB26
 _0222CB1C:
 	add r0, sp, #0xc
-	bl ov4_021D7EB8
+	bl DWC_GetApInfo
 	mov r0, #3
 	str r0, [r4, #8]
 _0222CB26:
@@ -1486,7 +1486,7 @@ _0222CB26:
 ov61_0222CB2C: ; 0x0222CB2C
 	push {r4, lr}
 	add r4, r0, #0
-	bl ov4_021D81DC
+	bl DWC_NASLoginAsync
 	mov r0, #4
 	str r0, [r4, #8]
 	mov r0, #0
@@ -1498,7 +1498,7 @@ ov61_0222CB3C: ; 0x0222CB3C
 	push {r4, lr}
 	sub sp, #8
 	add r4, r0, #0
-	bl ov4_021D82A0
+	bl DWC_NASLoginProcess
 	cmp r0, #5
 	bhi _0222CBE0
 	add r0, r0, r0
@@ -1555,7 +1555,7 @@ _0222CBAE:
 	str r0, [r4, #8]
 	b _0222CBCE
 _0222CBB2:
-	bl ov4_021E55B0
+	bl DWC_ShutdownGHTTP
 	mov r0, #6
 	str r0, [r4, #8]
 	b _0222CBCE

@@ -13,7 +13,7 @@
 .public ov4_021D77C4
 .public ov4_021D78B0
 .public ov4_021E558C
-.public ov4_021E55B0
+.public DWC_ShutdownGHTTP
 .public ov4_021E55F0
 .public ov4_021E5960
 .public ov4_021EB0F0

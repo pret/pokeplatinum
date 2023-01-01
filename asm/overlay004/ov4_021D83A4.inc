@@ -8,7 +8,7 @@
 .public strlen
 .public strncpy
 .public ov4_021D72E0
-.public ov4_021D75D4
+.public DWC_GetLastError
 .public ov4_021D7708
 .public ov4_021D7724
 .public ov4_021D7790

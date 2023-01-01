@@ -91,7 +91,7 @@ ov97_02238DF8: ; 0x02238DF8
 	b _02238E18
 _02238E0C:
 	add r0, sp, #0
-	bl ov4_021D7EB8
+	bl DWC_GetApInfo
 	add sp, #0x3c
 	mov r0, #1
 	pop {pc}
@@ -306,7 +306,7 @@ _02238F9C:
 	str r1, [r4, r0]
 	b _022392C4
 _02238FAE:
-	bl ov4_021D81DC
+	bl DWC_NASLoginAsync
 	cmp r0, #0
 	bne _02238FC0
 	add r0, r4, #0
@@ -318,7 +318,7 @@ _02238FC0:
 	str r0, [r5, #0]
 	b _022392C4
 _02238FC6:
-	bl ov4_021D82A0
+	bl DWC_NASLoginProcess
 	cmp r0, #3
 	bne _02238FDA
 	ldr r0, _022391E0 ; =0x00001006

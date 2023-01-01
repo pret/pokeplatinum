@@ -26,7 +26,7 @@ _0222449C:
 	ldrb r1, [ip]
 	ldr r0, _02224578 ; =0x02229EFC
 	strb r1, [r3]
-	bl ov4_021D7EB8
+	bl DWC_GetApInfo
 	cmp r0, #0
 	beq _02224568
 	ldr r0, _0222457C ; =0x02229EFC

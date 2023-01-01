@@ -626,7 +626,7 @@ ov60_0221FDEC: ; 0x0221FDEC
 	mov r1, #0
 	str r1, [r0, #0x24]
 _0221FE04:
-	bl ov4_021E55B0
+	bl DWC_ShutdownGHTTP
 	ldr r0, _0221FE10 ; =0x02228E40
 	mov r1, #1
 	str r1, [r0, #0]

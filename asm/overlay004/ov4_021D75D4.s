@@ -5,8 +5,8 @@
 	.text
 
 
-	arm_func_start ov4_021D75D4
-ov4_021D75D4: ; 0x021D75D4
+	arm_func_start DWC_GetLastError
+DWC_GetLastError: ; 0x021D75D4
 	cmp r0, #0
 	ldrne r1, _021D75F0 ; =0x0221A4CC
 	ldrne r1, [r1, #4]
@@ -16,7 +16,7 @@ ov4_021D75D4: ; 0x021D75D4
 	bx lr
 	; .align 2, 0
 _021D75F0: .word 0x0221A4CC
-	arm_func_end ov4_021D75D4
+	arm_func_end DWC_GetLastError
 
 	arm_func_start DWC_GetLastErrorEx
 DWC_GetLastErrorEx: ; 0x021D75F4
