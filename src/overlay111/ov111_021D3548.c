@@ -1,0 +1,76 @@
+#include <nitro.h>
+#include <string.h>
+
+#include "struct_decls/struct_02018340_decl.h"
+
+#include "struct_defs/struct_0205AA50.h"
+#include "overlay061/struct_ov61_0222C884.h"
+
+#include "unk_0200DA60.h"
+#include "unk_02018340.h"
+#include "overlay111/ov111_021D3548.h"
+
+static const UnkStruct_ov61_0222C884 Unk_ov111_021D38B8[] = {
+    {0x2, 0x2, 0x1, 0x1B, 0x4, 0xC, 0x1},
+    {0x4, 0x18, 0xD, 0x7, 0x4, 0xD, 0x6D},
+    {0x4, 0x11, 0x3, 0xB, 0x5, 0xD, 0x89},
+    {0x4, 0x11, 0x8, 0xB, 0x5, 0xD, 0xC0},
+    {0x4, 0x11, 0xE, 0xB, 0x5, 0xD, 0xF7},
+    {0x4, 0x11, 0x13, 0xB, 0x5, 0xD, 0x12E},
+    {0x4, 0xA, 0x3, 0x5, 0x3, 0xD, 0x165},
+    {0x4, 0xA, 0x8, 0x5, 0x3, 0xD, 0x174},
+    {0x4, 0xA, 0xE, 0x5, 0x3, 0xD, 0x183},
+    {0x4, 0xA, 0x13, 0x5, 0x3, 0xD, 0x192},
+    {0x2, 0xA, 0x9, 0xC, 0x4, 0xD, 0x1A1},
+    {0x2, 0xA, 0x9, 0xC, 0x4, 0xD, 0x1A1},
+    {0x2, 0xA, 0x9, 0xC, 0x4, 0xD, 0x1A1},
+    {0x2, 0xA, 0x15, 0xD, 0x3, 0xD, 0x1D1},
+    {0x2, 0xD, 0x15, 0xD, 0x3, 0xD, 0x1D1},
+    {0x4, 0x2, 0x13, 0x1B, 0x4, 0xC, 0x1}
+};
+
+void ov111_021D3548(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
+void ov111_021D3578(UnkStruct_0205AA50 * param0);
+void ov111_021D3594(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
+void ov111_021D35C0(UnkStruct_0205AA50 * param0, int param1);
+
+void ov111_021D3548 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1)
+{
+    u8 v0;
+    const UnkStruct_ov61_0222C884 * v1 = Unk_ov111_021D38B8;
+
+    for (v0 = 0; v0 < 16; v0++) {
+        sub_0201A8D4(param0, &param1[v0], &v1[v0]);
+        sub_0201ADA4(&param1[v0], 0);
+    }
+
+    return;
+}
+
+void ov111_021D3578 (UnkStruct_0205AA50 * param0)
+{
+    u16 v0;
+
+    for (v0 = 0; v0 < 16; v0++) {
+        sub_0201A8FC(&param0[v0]);
+    }
+
+    return;
+}
+
+void ov111_021D3594 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1)
+{
+    sub_0200DAA4(param0, 2, (1024 - 9), 11, 0, 115);
+    sub_0200DC48(param1, 1, (1024 - 9), 11);
+
+    return;
+}
+
+void ov111_021D35C0 (UnkStruct_0205AA50 * param0, int param1)
+{
+    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), ((1024 - 9) - ((18 + 12))), 10, param1, 115);
+    sub_0201ADA4(param0, 15);
+    sub_0200E060(param0, 0, ((1024 - 9) - ((18 + 12))), 10);
+
+    return;
+}

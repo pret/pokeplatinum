@@ -2112,43 +2112,43 @@ Overlay overlay110
 Overlay overlay111
 {
 	After main
-	Object asm/overlay111/ov111_021D0D80.o
-	Object asm/overlay111/ov111_021D2F80.o
-	Object asm/overlay111/ov111_021D33F4.o
-	Object asm/overlay111/ov111_021D3548.o
+	Object src/overlay111/ov111_021D0D80.o
+	Object src/overlay111/ov111_021D2F80.o
+	Object src/overlay111/ov111_021D33F4.o
+	Object src/overlay111/ov111_021D3548.o
 }
 
 Overlay overlay112
 {
 	After overlay66
-	Object asm/overlay112/ov112_0225C700.o
+	Object src/overlay112/ov112_0225C700.o
 }
 
 Overlay overlay113
 {
 	After overlay66
-	Object asm/overlay113/ov113_0225C700.o
-	Object asm/overlay113/ov113_0225E368.o
-	Object asm/overlay113/ov113_02260620.o
-	Object asm/overlay113/ov113_022607D8.o
+	Object src/overlay113/ov113_0225C700.o
+	Object src/overlay113/ov113_0225E368.o
+	Object src/overlay113/ov113_02260620.o
+	Object src/overlay113/ov113_022607D8.o
 }
 
 Overlay overlay114
 {
 	After overlay66
-	Object asm/overlay114/ov114_0225C700.o
-	Object asm/overlay114/ov114_02260038.o
-	Object asm/overlay114/ov114_02260044.o
+	Object src/overlay114/ov114_0225C700.o
+	Object src/overlay114/ov114_02260038.o
+	Object src/overlay114/ov114_02260044.o
 }
 
 Overlay overlay115
 {
 	After overlay114
-	Object asm/overlay115/ov115_02260440.o
-	Object asm/overlay115/ov115_02260BBC.o
-	Object asm/overlay115/ov115_02260CEC.o
-	Object asm/overlay115/ov115_02265A18.o
-	Object asm/overlay115/ov115_02265A24.o
+	Object src/overlay115/ov115_02260440.o
+	Object src/overlay115/ov115_02260BBC.o
+	Object src/overlay115/ov115_02260CEC.o
+	Object src/overlay115/ov115_02265A18.o
+	Object src/overlay115/ov115_02265A24.o
 }
 
 Overlay overlay116
