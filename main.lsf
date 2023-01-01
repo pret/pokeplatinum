@@ -1997,17 +1997,17 @@ Overlay overlay100
 Overlay overlay101
 {
 	After main
-	Object asm/overlay101/ov101_021D0D80.o
-	Object asm/overlay101/ov101_021D1A28.o
-	Object asm/overlay101/ov101_021D59AC.o
-	Object asm/overlay101/ov101_021D7E48.o
-	Object asm/overlay101/ov101_021D94D8.o
+	Object src/overlay101/ov101_021D0D80.o
+	Object src/overlay101/ov101_021D1A28.o
+	Object src/overlay101/ov101_021D59AC.o
+	Object src/overlay101/ov101_021D7E48.o
+	Object src/overlay101/ov101_021D94D8.o
 }
 
 Overlay overlay102
 {
 	After main
-	Object asm/overlay102/ov102_021D0D80.o
+	Object src/overlay102/ov102_021D0D80.o
 }
 
 Overlay overlay103
