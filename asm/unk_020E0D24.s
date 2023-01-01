@@ -152,7 +152,9 @@ _020E0EE8:
 	b _020E0E68
 	arm_func_end _d_fle
 
+	arm_func_start _dls
 	arm_func_start _d_flt
+_dls:
 _d_flt: ; 0x020E0EF8
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
@@ -245,7 +247,9 @@ _020E1010:
 	b _020E0FA8
 	arm_func_end _d_feq
 
+	arm_func_start _dneq
 	arm_func_start _d_fne
+_dneq:
 _d_fne: ; 0x020E1020
 	mov ip, #0x200000
 	cmn ip, r1, lsl #1
@@ -446,7 +450,9 @@ _020E127C:
 	bx lr
 	arm_func_end _f_feq
 
+	arm_func_start _fneq
 	arm_func_start _f_fne
+_fneq:
 _f_fne: ; 0x020E1290
 	mov r3, #-0x1000000
 	cmp r3, r0, lsl #1

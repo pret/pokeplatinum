@@ -30,7 +30,9 @@ __d_itod_common: ; 0x020E01C4
 	bx lr
 	arm_func_end __d_itod_common
 
+	arm_func_start _dfltu
 	arm_func_start _d_utod
+_dfltu:
 _d_utod: ; 0x020E01F8
 	cmp r0, #0
 	arm_func_end _d_utod

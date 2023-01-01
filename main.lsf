@@ -2019,39 +2019,39 @@ Overlay overlay103
 Overlay overlay104
 {
 	After overlay63
-	Object asm/overlay104/ov104_0222DCE0.o
-	Object asm/overlay104/ov104_0222E63C.o
-	Object asm/overlay104/ov104_0222E930.o
-	Object asm/overlay104/ov104_0222EA90.o
-	Object asm/overlay104/ov104_0222ECE8.o
-	Object asm/overlay104/ov104_0222FBE4.o
-	Object asm/overlay104/ov104_02231F74.o
-	Object asm/overlay104/ov104_022332B4.o
-	Object asm/overlay104/ov104_022339B4.o
-	Object asm/overlay104/ov104_02234838.o
-	Object asm/overlay104/ov104_02234DB4.o
-	Object asm/overlay104/ov104_022358E8.o
-	Object asm/overlay104/ov104_022361B4.o
-	Object asm/overlay104/ov104_02237378.o
-	Object asm/overlay104/ov104_02237DD8.o
-	Object asm/overlay104/ov104_02239080.o
-	Object asm/overlay104/ov104_02239130.o
-	Object asm/overlay104/ov104_022394A4.o
-	Object asm/overlay104/ov104_022395F0.o
-	Object asm/overlay104/ov104_02239C58.o
-	Object asm/overlay104/ov104_0223A0C4.o
-	Object asm/overlay104/ov104_0223A7F4.o
-	Object asm/overlay104/ov104_0223AF58.o
-	Object asm/overlay104/ov104_0223B6F4.o
+	Object src/overlay104/ov104_0222DCE0.o
+	Object src/overlay104/ov104_0222E63C.o
+	Object src/overlay104/ov104_0222E930.o
+	Object src/overlay104/ov104_0222EA90.o
+	Object src/overlay104/ov104_0222ECE8.o
+	Object src/overlay104/ov104_0222FBE4.o
+	Object src/overlay104/ov104_02231F74.o
+	Object src/overlay104/ov104_022332B4.o
+	Object src/overlay104/ov104_022339B4.o
+	Object src/overlay104/ov104_02234838.o
+	Object src/overlay104/ov104_02234DB4.o
+	Object src/overlay104/ov104_022358E8.o
+	Object src/overlay104/ov104_022361B4.o
+	Object src/overlay104/ov104_02237378.o
+	Object src/overlay104/ov104_02237DD8.o
+	Object src/overlay104/ov104_02239080.o
+	Object src/overlay104/ov104_02239130.o
+	Object src/overlay104/ov104_022394A4.o
+	Object src/overlay104/ov104_022395F0.o
+	Object src/overlay104/ov104_02239C58.o
+	Object src/overlay104/ov104_0223A0C4.o
+	Object src/overlay104/ov104_0223A7F4.o
+	Object src/overlay104/ov104_0223AF58.o
+	Object src/overlay104/ov104_0223B6F4.o
 	Object asm/overlay104/ov104_0223BCBC.o
-	Object asm/overlay104/ov104_0223C164.o
-	Object asm/overlay104/ov104_0223C2D4.o
-	Object asm/overlay104/ov104_0223D5D0.o
-	Object asm/overlay104/ov104_0223D768.o
-	Object asm/overlay104/ov104_0223D860.o
-	Object asm/overlay104/ov104_0223D9E4.o
-	Object asm/overlay104/ov104_0223DC7C.o
-	Object asm/overlay104/ov104_0223E894.o
+	Object src/overlay104/ov104_0223C164.o
+	Object src/overlay104/ov104_0223C2D4.o
+	Object src/overlay104/ov104_0223D5D0.o
+	Object src/overlay104/ov104_0223D768.o
+	Object src/overlay104/ov104_0223D860.o
+	Object src/overlay104/ov104_0223D9E4.o
+	Object src/overlay104/ov104_0223DC7C.o
+	Object src/overlay104/ov104_0223E894.o
 }
 
 Overlay overlay105

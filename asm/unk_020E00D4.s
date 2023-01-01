@@ -5,7 +5,9 @@
 	.text
 
 
+	arm_func_start _dfixu
 	arm_func_start _d_dtou
+_dfixu:
 _d_dtou: ; 0x020E00D4
 	tst r1, #-0x80000000
 	bne _020E010C

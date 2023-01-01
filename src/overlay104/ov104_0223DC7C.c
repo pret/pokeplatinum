@@ -1,0 +1,778 @@
+#include <nitro.h>
+#include <string.h>
+
+#include "struct_decls/struct_02002F38_decl.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_0200C6E4_decl.h"
+#include "struct_decls/struct_0200C704_decl.h"
+#include "struct_decls/struct_02012744_decl.h"
+#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/struct_02018340_decl.h"
+#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
+
+#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/struct_020127E8.h"
+#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/struct_0205AA50.h"
+#include "overlay104/struct_ov104_0223F9E0.h"
+
+#include "unk_02002B7C.h"
+#include "unk_02002F38.h"
+#include "unk_0200679C.h"
+#include "unk_020068C8.h"
+#include "unk_02006E3C.h"
+#include "unk_0200A9DC.h"
+#include "unk_0200AC5C.h"
+#include "unk_0200C6E4.h"
+#include "unk_0200D9E8.h"
+#include "unk_0200F174.h"
+#include "unk_02012744.h"
+#include "unk_02017E74.h"
+#include "unk_02018340.h"
+#include "unk_0201CCF0.h"
+#include "unk_0201D670.h"
+#include "unk_0201E86C.h"
+#include "unk_020218BC.h"
+#include "unk_02023790.h"
+
+typedef struct {
+    UnkStruct_0205AA50 unk_00;
+    u16 unk_10;
+    u16 unk_12;
+} UnkStruct_ov104_0223E29C;
+
+typedef struct {
+    UnkStruct_02012CE0 * unk_00;
+    UnkStruct_0201EE28 unk_04;
+    u16 unk_10;
+} UnkStruct_ov104_0223E3B8;
+
+typedef struct {
+    s32 unk_00;
+    s32 unk_04;
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+    u8 unk_0C;
+    u8 unk_0D;
+    u8 unk_0E;
+    u8 unk_0F;
+    u8 unk_10;
+    u8 unk_11;
+} UnkStruct_ov104_0223E6F0;
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+} UnkStruct_ov104_0223E804;
+
+typedef struct {
+    int unk_00;
+    int unk_04;
+    int unk_08;
+    void * unk_0C;
+    UnkStruct_02018340 * unk_10;
+    UnkStruct_0200C6E4 * unk_14;
+    UnkStruct_0200C704 * unk_18;
+    UnkStruct_02002F38 * unk_1C;
+    u16 * unk_20;
+    UnkStruct_02006C24 * unk_24;
+    s16 unk_28;
+    s16 unk_2A;
+    u8 unk_2C;
+    UnkStruct_02012744 * unk_30;
+    UnkStruct_0201CD38 * unk_34;
+    int unk_38;
+    int unk_3C;
+    u16 unk_40[128];
+    UnkStruct_0201CD38 * unk_140;
+    UnkStruct_ov104_0223E6F0 unk_144;
+    UnkStruct_ov104_0223E804 unk_158;
+    int unk_160;
+    u32 unk_164;
+} UnkStruct_ov104_0223DD30;
+
+typedef struct {
+    fx32 unk_00;
+    fx32 unk_04;
+    fx32 unk_08;
+    int unk_0C;
+    int unk_10;
+} UnkStruct_ov5_021DDDBC;
+
+typedef struct {
+    s16 unk_00;
+    s16 unk_02;
+    UnkStruct_0200D0F4 * unk_04[4];
+    UnkStruct_ov5_021DDDBC unk_14[4];
+} UnkStruct_ov104_0223E48C;
+
+typedef struct {
+    UnkStruct_ov5_021DDDBC unk_00;
+    UnkStruct_ov104_0223E48C unk_14;
+    s32 unk_78;
+    UnkStruct_ov104_0223E3B8 unk_7C;
+    UnkStruct_0200D0F4 * unk_90;
+} UnkStruct_ov104_0223DDE4;
+
+typedef struct {
+    u32 unk_00;
+    u8 unk_04;
+    u8 unk_05;
+    u8 unk_06;
+    u8 unk_07;
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+} UnkStruct_ov104_0224191C;
+
+void ov104_0223DC7C(int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, UnkStruct_02002F38 * param4, u16 * param5, s16 param6, s16 param7);
+static void ov104_0223DD30(UnkStruct_ov104_0223DD30 * param0, UnkStruct_0201CD38 * param1);
+static void ov104_0223DD5C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov104_0223DDB4(UnkStruct_0201CD38 * param0, void * param1);
+static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 * param0, u32 param1, const UnkStruct_ov104_0224191C * param2);
+static void ov104_0223E29C(UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E3B8 * param1, const UnkStruct_02023790 * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C * param10);
+static void ov104_0223E3B8(UnkStruct_ov104_0223E3B8 * param0);
+static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E48C * param1, fx32 param2, fx32 param3, u32 param4);
+static void ov104_0223E48C(UnkStruct_ov104_0223E48C * param0);
+static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C * param0);
+static void ov104_0223E534(UnkStruct_ov5_021DDDBC * param0, fx32 param1, fx32 param2, int param3);
+static BOOL ov104_0223E544(UnkStruct_ov5_021DDDBC * param0);
+static VecFx32 ov104_0223E58C(fx32 param0, fx32 param1, fx32 param2);
+static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 * param0, const UnkStruct_ov104_0224191C * param1);
+static void ov104_0223E6BC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 * param0, int param1);
+static void ov104_0223E740(UnkStruct_0201CD38 * param0, void * param1);
+static void ov104_0223E7A4(UnkStruct_0201CD38 * param0, void * param1);
+static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223DDE4 * param1, UnkStruct_ov104_0223E804 * param2);
+static void ov104_0223E3CC(const UnkStruct_02023790 * param0, int param1, int * param2, int * param3);
+
+static const UnkStruct_ov104_0224191C Unk_ov104_0224191C[] = {
+    {0x33A, 0x7D, 0x7E, 0x7F, 0x80, 0x8F, 0x8E, 0x8D, 0x0},
+    {0x387, 0x71, 0x72, 0x73, 0x74, 0x86, 0x85, 0x84, 0x0},
+    {0x387, 0x71, 0x72, 0x73, 0x74, 0x86, 0x85, 0x84, 0x0},
+    {0x389, 0x6D, 0x6E, 0x6F, 0x70, 0x83, 0x82, 0x81, 0x0},
+    {0x386, 0x79, 0x7A, 0x7B, 0x7C, 0x8C, 0x8B, 0x8A, 0x0},
+    {0x388, 0x75, 0x76, 0x77, 0x78, 0x89, 0x88, 0x87, 0x0}
+};
+
+static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418B4 = {
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0xC,
+    0x0,
+    NNS_G2D_VRAM_TYPE_2DMAIN,
+    {0x7DA, 0x7D2, 0x7D2, 0x7D2, 0xffffffff, 0xffffffff},
+    0x0,
+    0x0
+};
+
+static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418E8 = {
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0xA,
+    0x0,
+    NNS_G2D_VRAM_TYPE_2DMAIN,
+    {0x7DB, 0x7D3, 0x7D3, 0x7D3, 0xffffffff, 0xffffffff},
+    0x0,
+    0x0
+};
+
+void ov104_0223DC7C (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, UnkStruct_02002F38 * param4, u16 * param5, s16 param6, s16 param7)
+{
+    UnkStruct_0201CD38 * v0;
+    UnkStruct_ov104_0223DD30 * v1;
+
+    v0 = sub_0200679C(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
+    v1 = sub_0201CED0(v0);
+
+    v1->unk_10 = param1;
+    v1->unk_14 = param2;
+    v1->unk_18 = param3;
+    v1->unk_1C = param4;
+    v1->unk_20 = param5;
+    v1->unk_28 = param6;
+    v1->unk_2A = param7;
+    v1->unk_24 = sub_02006C24(112, 94);
+
+    if (v1->unk_20 != NULL) {
+        *(v1->unk_20) = 0;
+    }
+
+    v1->unk_2C = param0 - 1;
+
+    MI_CpuClear32(sub_02019F28(1), 0x8000);
+
+    sub_0201C63C(param1, 1, 0, 0);
+    sub_0201C63C(param1, 1, 3, 0);
+
+    ov104_0223E5A8(v1, &Unk_ov104_0224191C[v1->unk_2C]);
+
+    v1->unk_34 = sub_0200DA3C(ov104_0223DD5C, v1, 1);
+}
+
+static void ov104_0223DD30 (UnkStruct_ov104_0223DD30 * param0, UnkStruct_0201CD38 * param1)
+{
+    sub_0200DA58(param0->unk_140);
+    sub_0200DA58(param0->unk_34);
+    sub_02006CA8(param0->unk_24);
+    sub_02018238(94, param0->unk_0C);
+    sub_020067D0(param1);
+}
+
+static void ov104_0223DD5C (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov104_0223DD30 * v0 = param1;
+
+    G2_SetWnd0Position(v0->unk_144.unk_0A, v0->unk_144.unk_0B, v0->unk_144.unk_0C, v0->unk_144.unk_0D);
+    G2_SetWnd1Position(v0->unk_144.unk_0E, v0->unk_144.unk_0F, v0->unk_144.unk_10, v0->unk_144.unk_11);
+}
+
+static void ov104_0223DDB4 (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov104_0223DD30 * v0 = param1;
+    BOOL v1;
+
+    v1 = ov104_0223DDE4(v0, 94, &Unk_ov104_0224191C[v0->unk_2C]);
+
+    if (v1 == 1) {
+        ov104_0223DD30(v0, param0);
+    }
+}
+
+static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const UnkStruct_ov104_0224191C * param2)
+{
+    UnkStruct_ov104_0223DDE4 * v0 = param0->unk_0C;
+    BOOL v1;
+    const VecFx32 * v2;
+    VecFx32 v3;
+    VecFx32 v4;
+    int v5;
+    int v6, v7 = 0;
+    UnkStruct_02023790 * v8;
+
+    switch (param0->unk_00) {
+    case 0:
+        param0->unk_0C = sub_02018144(param1, sizeof(UnkStruct_ov104_0223DDE4));
+        memset(param0->unk_0C, 0, sizeof(UnkStruct_ov104_0223DDE4));
+
+        v0 = param0->unk_0C;
+        v7 = sub_0200CDC4(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2004);
+
+        param0->unk_164 |= 1 << v7;
+        param0->unk_30 = sub_02012744(4, 94);
+
+        {
+            UnkStruct_0200B144 * v9;
+            UnkStruct_02023790 * v10;
+
+            v9 = sub_0200B144(1, 26, 618, param1);
+            v10 = sub_0200B1EC(v9, param2->unk_00);
+
+            ov104_0223E29C(param0, &v0->unk_7C, v10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
+
+            sub_020129D0(v0->unk_7C.unk_00, 0);
+            sub_020237BC(v10);
+            sub_0200B190(v9);
+        }
+
+        {
+            param0->unk_160 = sub_0200CDC4(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_04, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2002);
+            param0->unk_164 |= 1 << param0->unk_160;
+
+            sub_0200CC3C(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_05, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2010);
+            sub_0200CE24(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_06, 0, 2002);
+            sub_0200CE54(param0->unk_14, param0->unk_18, param0->unk_24, param2->unk_07, 0, 2002);
+            sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 14, (GX_RGB(0, 0, 0)));
+
+            v7 = sub_0200CDC4(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 51, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2003);
+            param0->unk_164 |= 1 << v7;
+
+            sub_0200CC3C(param0->unk_14, param0->unk_18, param0->unk_24, 144, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2011);
+            sub_0200CE24(param0->unk_14, param0->unk_18, param0->unk_24, 145, 0, 2003);
+            sub_0200CE54(param0->unk_14, param0->unk_18, param0->unk_24, 146, 0, 2003);
+        }
+
+        v0->unk_90 = sub_0200CE6C(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
+
+        sub_0200D3F4(v0->unk_90, 0);
+        sub_0200D324(v0->unk_90->unk_00);
+        ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), param1);
+        param0->unk_00++;
+        break;
+    case 1:
+        sub_0200F174(0, 0, 0, 0x7fff, 3, 1, param1);
+        param0->unk_00++;
+        break;
+    case 2:
+        if (sub_0200F2AC()) {
+            param0->unk_00++;
+        }
+        break;
+    case 3:
+        sub_0200F174(3, 1, 1, 0x7fff, 3, 1, param1);
+        param0->unk_00++;
+        break;
+    case 4:
+        if (sub_0200F2AC()) {
+            param0->unk_00++;
+        }
+        break;
+    case 5:
+        ov104_0223E6F0(param0, 0);
+        param0->unk_00++;
+        break;
+    case 6:
+        if (param0->unk_144.unk_08 == 1) {
+            param0->unk_00++;
+            v0->unk_78 = 10;
+        }
+        break;
+    case 7:
+        v0->unk_78--;
+
+        if (v0->unk_78 >= 0) {
+            break;
+        }
+
+        v1 = ov104_0223E4A4(&v0->unk_14);
+
+        if (v1 == 1) {
+            param0->unk_00++;
+        }
+        break;
+    case 8:
+        param0->unk_00++;
+        break;
+    case 9:
+        v1 = ov104_0223E804(param0, v0, &param0->unk_158);
+
+        if (v1 == 1) {
+            param0->unk_00++;
+        }
+        break;
+    case 10:
+        v0->unk_78 = 10;
+        param0->unk_00++;
+        break;
+    case 11:
+        v0->unk_78--;
+
+        if (v0->unk_78 >= 0) {
+            break;
+        }
+
+        sub_0200F174(3, 0, 0, 0x7fff, 3, 1, param1);
+        param0->unk_00++;
+        break;
+    case 12:
+        if (sub_0200F2AC()) {
+            sub_02003A2C(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
+            sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
+            sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 1);
+            sub_020129D0(v0->unk_7C.unk_00, 1);
+            param0->unk_00++;
+        }
+        break;
+    case 13:
+        sub_0200F174(3, 1, 1, 0x7fff, 3, 1, param1);
+        param0->unk_00++;
+        break;
+    case 14:
+        if (sub_0200F2AC()) {
+            v0->unk_78 = 26;
+            param0->unk_00++;
+        }
+        break;
+    case 15:
+        v0->unk_78--;
+
+        if (v0->unk_78 < 0) {
+            param0->unk_00++;
+        }
+        break;
+    case 16:
+        sub_0200F174(3, 0, 0, 0x7fff, 15, 1, 94);
+        param0->unk_00++;
+        break;
+    case 17:
+        if (sub_0200F2AC()) {
+            param0->unk_00++;
+        }
+        break;
+    case 18:
+        sub_0200F344(1, 0x7fff);
+
+        if (param0->unk_20 != NULL) {
+            *(param0->unk_20) = 1;
+        }
+
+        ov104_0223E3B8(&v0->unk_7C);
+
+        sub_020127BC(param0->unk_30);
+        sub_0200D0F4(v0->unk_90);
+
+        ov104_0223E48C(&v0->unk_14);
+        return 1;
+    }
+
+    return 0;
+}
+
+static void ov104_0223E29C (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E3B8 * param1, const UnkStruct_02023790 * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C * param10)
+{
+    UnkStruct_020127E8 v0;
+    UnkStruct_0205AA50 v1;
+    UnkStruct_0201EE28 v2;
+    int v3;
+    UnkStruct_02012CE0 * v4;
+    UnkStruct_02018340 * v5;
+    UnkStruct_0200C704 * v6;
+    int v7, v8;
+
+    GF_ASSERT(param1->unk_00 == NULL);
+
+    v5 = param0->unk_10;
+    v6 = param0->unk_18;
+
+    if (param10 == NULL) {
+        ov104_0223E3CC(param2, param3, &v7, &v8);
+    } else {
+        v7 = param10->unk_12;
+        v8 = param10->unk_10;
+    }
+
+    if (param10 == NULL) {
+        sub_0201A7A0(&v1);
+        sub_0201A870(v5, &v1, v8, 16 / 8, 0, 0);
+        sub_0201D7E0(&v1, param3, param2, 0, 0, 0xff, param4, 0, 0, NULL);
+    } else {
+        v1 = param10->unk_00;
+    }
+
+    v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 94);
+    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+
+    if (param9 == 1) {
+        param7 -= v7 / 2;
+    }
+
+    param8 -= 8;
+
+    v0.unk_00 = param0->unk_30;
+    v0.unk_04 = &v1;
+    v0.unk_08 = sub_0200D9B0(v6);
+    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_10 = NULL;
+    v0.unk_14 = v2.unk_04;
+    v0.unk_18 = param7;
+    v0.unk_1C = param8;
+    v0.unk_20 = 0;
+    v0.unk_24 = 11;
+    v0.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
+    v0.unk_2C = 94;
+
+    v4 = sub_020127E8(&v0);
+
+    sub_02012AC0(v4, param5);
+    sub_020128C4(v4, param7, param8);
+
+    if (param10 == NULL) {
+        sub_0201A8FC(&v1);
+    }
+
+    param1->unk_00 = v4;
+    param1->unk_04 = v2;
+    param1->unk_10 = v7;
+}
+
+static void ov104_0223E3B8 (UnkStruct_ov104_0223E3B8 * param0)
+{
+    sub_02012870(param0->unk_00);
+    sub_0201EE28(&param0->unk_04);
+}
+
+static void ov104_0223E3CC (const UnkStruct_02023790 * param0, int param1, int * param2, int * param3)
+{
+    int v0, v1;
+
+    v0 = sub_02002D7C(param1, param0, 0);
+    v1 = v0 / 8;
+
+    if (FX_ModS32(v0, 8) != 0) {
+        v1++;
+    }
+
+    *param2 = v0;
+    *param3 = v1;
+}
+
+static void ov104_0223E3FC (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E48C * param1, fx32 param2, fx32 param3, u32 param4)
+{
+    int v0;
+    UnkStruct_ov104_0223F9E0 v1 = Unk_ov104_022418E8;
+
+    v1.unk_00 = param2 >> FX32_SHIFT;
+    v1.unk_02 = param3 >> FX32_SHIFT;
+
+    param1->unk_00 = 0;
+    param1->unk_02 = 0;
+
+    for (v0 = 0; v0 < 4; v0++) {
+        param1->unk_04[v0] = sub_0200CE6C(param0->unk_14, param0->unk_18, &v1);
+        sub_0200D3F4(param1->unk_04[v0], 0);
+
+        if (v0 != 3) {
+            sub_02021CF8(param1->unk_04[v0]->unk_00, 2);
+            sub_02021D6C(param1->unk_04[v0]->unk_00, 1);
+            ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
+        } else {
+            ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
+        }
+    }
+}
+
+static void ov104_0223E48C (UnkStruct_ov104_0223E48C * param0)
+{
+    int v0;
+
+    for (v0 = 0; v0 < 4; v0++) {
+        sub_0200D0F4(param0->unk_04[v0]);
+    }
+}
+
+static BOOL ov104_0223E4A4 (UnkStruct_ov104_0223E48C * param0)
+{
+    int v0;
+    BOOL v1;
+    BOOL v2 = 1;
+    VecFx32 v3;
+
+    if (param0->unk_02 < 4) {
+        v2 = 0;
+        param0->unk_00--;
+
+        if (param0->unk_00 <= 0) {
+            param0->unk_00 = 3;
+            param0->unk_02++;
+        }
+    }
+
+    for (v0 = 0; v0 < param0->unk_02; v0++) {
+        v1 = ov104_0223E544(&param0->unk_14[v0]);
+        v3 = ov104_0223E58C(param0->unk_14[v0].unk_00, param0->unk_14[v0].unk_00, param0->unk_14[v0].unk_00);
+
+        sub_02021C70(param0->unk_04[v0]->unk_00, &v3);
+        sub_02021CAC(param0->unk_04[v0]->unk_00, 1);
+
+        if (v1 == 0) {
+            v2 = 0;
+        }
+    }
+
+    return v2;
+}
+
+static void ov104_0223E534 (UnkStruct_ov5_021DDDBC * param0, fx32 param1, fx32 param2, int param3)
+{
+    param0->unk_00 = param1;
+    param0->unk_04 = param1;
+    param0->unk_08 = param2 - param1;
+    param0->unk_10 = param3;
+    param0->unk_0C = 0;
+}
+
+static BOOL ov104_0223E544 (UnkStruct_ov5_021DDDBC * param0)
+{
+    fx32 v0;
+
+    v0 = FX_Mul(param0->unk_08, param0->unk_0C << FX32_SHIFT);
+    v0 = FX_Div(v0, param0->unk_10 << FX32_SHIFT);
+
+    param0->unk_00 = v0 + param0->unk_04;
+
+    if ((param0->unk_0C + 1) <= param0->unk_10) {
+        param0->unk_0C++;
+        return 0;
+    }
+
+    param0->unk_0C = param0->unk_10;
+    return 1;
+}
+
+static VecFx32 ov104_0223E58C (fx32 param0, fx32 param1, fx32 param2)
+{
+    VecFx32 v0;
+
+    v0.x = param0;
+    v0.y = param1;
+    v0.z = param2;
+
+    return v0;
+}
+
+static void ov104_0223E5A8 (UnkStruct_ov104_0223DD30 * param0, const UnkStruct_ov104_0224191C * param1)
+{
+    GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
+    G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
+    G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
+    G2_SetWndOutsidePlane((GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ) ^ GX_WND_PLANEMASK_BG1, 1);
+    G2_SetWnd0Position(0, 0, 0, 0);
+    G2_SetWnd1Position(0, 0, 0, 0);
+
+    sub_02003050(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
+    sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
+    sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
+    sub_02019E2C(param0->unk_10, 1, 0, 0, 32, 32, 12);
+    sub_0201C3C0(param0->unk_10, 1);
+
+    {
+        void * v0;
+        NNSG2dPaletteData * v1;
+
+        v0 = sub_02006F88(112, param1->unk_08, &v1, 94);
+
+        MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
+        sub_020181C4(v0);
+    }
+
+    param0->unk_140 = sub_0200D9E8(ov104_0223E6BC, param0, 1100);
+}
+
+static void ov104_0223E6BC (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov104_0223DD30 * v0 = param1;
+
+    v0->unk_38++;
+
+    if (v0->unk_38 < 0) {
+        return;
+    }
+
+    v0->unk_38 = 0;
+    v0->unk_3C++;
+
+    if (v0->unk_3C >= 8) {
+        v0->unk_3C = 0;
+    }
+
+    sub_02002FBC(v0->unk_1C, &v0->unk_40[v0->unk_3C * 16], 0, 12 * 16, 0x20);
+}
+
+static void ov104_0223E6F0 (UnkStruct_ov104_0223DD30 * param0, int param1)
+{
+    UnkStruct_ov104_0223E6F0 * v0;
+
+    v0 = &param0->unk_144;
+    MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223E6F0));
+
+    if (param1 == 0) {
+        v0->unk_00 = (10 * 8) << 8;
+        v0->unk_04 = (10 * 8) << 8;
+
+        sub_0200D9E8(ov104_0223E740, v0, 1000);
+    } else {
+        v0->unk_00 = ((10 * 8) - (8 * 8 + 4) / 2) << 8;
+        v0->unk_04 = ((10 * 8) + (8 * 8 + 4) / 2) << 8;
+
+        sub_0200D9E8(ov104_0223E7A4, v0, 1000);
+    }
+}
+
+static void ov104_0223E740 (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov104_0223E6F0 * v0 = param1;
+
+    switch (v0->unk_09) {
+    case 0:
+        v0->unk_00 -= 0x800;
+        v0->unk_04 += 0x800;
+
+        if (v0->unk_00 <= ((10 * 8) << 8) - (((8 * 8 + 4) / 2) << 8)) {
+            v0->unk_00 = ((10 * 8) - (8 * 8 + 4) / 2) << 8;
+            v0->unk_04 = ((10 * 8) + (8 * 8 + 4) / 2) << 8;
+            v0->unk_09++;
+        }
+
+        v0->unk_0A = 0;
+        v0->unk_0B = v0->unk_00 >> 8;
+        v0->unk_0C = 255;
+        v0->unk_0D = v0->unk_04 >> 8;
+        v0->unk_0E = 1;
+        v0->unk_0F = v0->unk_00 >> 8;
+        v0->unk_10 = 0;
+        v0->unk_11 = v0->unk_04 >> 8;
+        break;
+    default:
+        v0->unk_08 = 1;
+        sub_0200DA58(param0);
+        return;
+    }
+}
+
+static void ov104_0223E7A4 (UnkStruct_0201CD38 * param0, void * param1)
+{
+    UnkStruct_ov104_0223E6F0 * v0 = param1;
+
+    switch (v0->unk_09) {
+    case 0:
+        v0->unk_00 += 0x800;
+        v0->unk_04 -= 0x800;
+
+        if (v0->unk_00 >= ((10 * 8) << 8)) {
+            v0->unk_00 = (10 * 8) << 8;
+            v0->unk_04 = (10 * 8) << 8;
+            v0->unk_09++;
+        }
+
+        v0->unk_0A = 0;
+        v0->unk_0B = v0->unk_00 >> 8;
+        v0->unk_0C = 255;
+        v0->unk_0D = v0->unk_04 >> 8;
+        v0->unk_0E = 1;
+        v0->unk_0F = v0->unk_00 >> 8;
+        v0->unk_10 = 0;
+        v0->unk_11 = v0->unk_04 >> 8;
+        break;
+    default:
+        v0->unk_08 = 1;
+        sub_0200DA58(param0);
+        return;
+    }
+}
+
+static BOOL ov104_0223E804 (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223DDE4 * param1, UnkStruct_ov104_0223E804 * param2)
+{
+    int v0 = 0;
+
+    switch (param2->unk_04) {
+    case 0:
+        sub_0200D500(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
+        sub_0200D3F4(param1->unk_90, 1);
+        param2->unk_00 = 256 << 8;
+        param2->unk_04++;
+        break;
+    case 1:
+        param2->unk_00 -= 3840;
+
+        if (param2->unk_00 <= (208 << 8)) {
+            param2->unk_00 = 208 << 8;
+            param2->unk_04++;
+        }
+
+        sub_0200D500(param1->unk_90, param2->unk_00 >> 8, 80 + param0->unk_2A, (512 * FX32_ONE));
+        break;
+    default:
+        return 1;
+    }
+
+    return 0;
+}
