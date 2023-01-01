@@ -1912,15 +1912,15 @@ Overlay overlay94
 Overlay overlay95
 {
 	After overlay94
-	Object asm/overlay095/ov95_02246C20.o
-	Object asm/overlay095/ov95_022476F0.o
-	Object asm/overlay095/ov95_02247B6C.o
-	Object asm/overlay095/ov95_02248590.o
-	Object asm/overlay095/ov95_02249740.o
-	Object asm/overlay095/ov95_02249F90.o
-	Object asm/overlay095/ov95_0224A390.o
-	Object asm/overlay095/ov95_0224ABC0.o
-	Object asm/overlay095/ov95_0224B3D8.o
+	Object src/overlay095/ov95_02246C20.o
+	Object src/overlay095/ov95_022476F0.o
+	Object src/overlay095/ov95_02247B6C.o
+	Object src/overlay095/ov95_02248590.o
+	Object src/overlay095/ov95_02249740.o
+	Object src/overlay095/ov95_02249F90.o
+	Object src/overlay095/ov95_0224A390.o
+	Object src/overlay095/ov95_0224ABC0.o
+	Object src/overlay095/ov95_0224B3D8.o
 }
 
 Overlay overlay96
