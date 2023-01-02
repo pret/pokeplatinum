@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020AB96C.inc"
 
+	.extern Unk_021C5A88
 	
 
 	.text
@@ -186,7 +187,7 @@ _020ABC10: .word 0x01FF0000
 _020ABC14: .word 0xC000C000
 _020ABC18: .word 0x020F9670
 _020ABC1C: .word 0x020F9658
-_020ABC20: .word 0x021C5A88
+_020ABC20: .word Unk_021C5A88
 _020ABC24: .word 0xC1FFFCFF
 _020ABC28: .word 0xFE00FF00
 	arm_func_end DoAffineTransforme_
@@ -464,7 +465,7 @@ _020AC00C:
 	add sp, sp, #0x40
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020AC02C: .word 0x021C5A88
+_020AC02C: .word Unk_021C5A88
 _020AC030: .word 0x020F972C
 _020AC034: .word 0x0000FFFE
 _020AC038: .word 0xC000C000
@@ -622,7 +623,7 @@ _020AC20C:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020AC27C: .word 0x021C5A88
+_020AC27C: .word Unk_021C5A88
 _020AC280: .word 0xC000C000
 _020AC284: .word 0x020F9670
 _020AC288: .word 0x020F9658
@@ -684,7 +685,7 @@ _020AC334:
 	bhi _020AC2B8
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020AC350: .word 0x021C5A88
+_020AC350: .word Unk_021C5A88
 	arm_func_end DrawCellToSurface3D_
 
 	arm_func_start NNS_G2dInitRndCore
@@ -755,7 +756,7 @@ NNS_G2dSetRndCoreCurrentMtx3D: ; 0x020AC3B4
 	str r0, [ip, #0x6c]
 	bx lr
 	; .align 2, 0
-_020AC418: .word 0x021C5A88
+_020AC418: .word Unk_021C5A88
 	arm_func_end NNS_G2dSetRndCoreCurrentMtx3D
 
 	arm_func_start NNS_G2dSetRndCoreCurrentMtx2D
@@ -766,7 +767,7 @@ NNS_G2dSetRndCoreCurrentMtx2D: ; 0x020AC41C
 	str r1, [r2, #0x28]
 	bx lr
 	; .align 2, 0
-_020AC430: .word 0x021C5A88
+_020AC430: .word Unk_021C5A88
 	arm_func_end NNS_G2dSetRndCoreCurrentMtx2D
 
 	arm_func_start NNS_G2dSetRndCore3DSoftSpriteZvalue
@@ -886,7 +887,7 @@ _020AC58C:
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020AC59C: .word 0x021C5A88
+_020AC59C: .word Unk_021C5A88
 _020AC5A0: .word 0x04000440
 	arm_func_end NNS_G2dRndCoreBeginRendering
 
@@ -918,7 +919,7 @@ _020AC5F0:
 	str r1, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020AC600: .word 0x021C5A88
+_020AC600: .word Unk_021C5A88
 _020AC604: .word 0x04000440
 	arm_func_end NNS_G2dRndCoreEndRendering
 
@@ -974,7 +975,7 @@ _020AC698:
 	blx r2
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020AC6B8: .word 0x021C5A88
+_020AC6B8: .word Unk_021C5A88
 	arm_func_end NNS_G2dRndCoreDrawCell
 
 	arm_func_start NNS_G2dRndCoreDrawCellVramTransfer
@@ -1043,7 +1044,7 @@ _020AC780:
 	blx r2
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020AC7A0: .word 0x021C5A88
+_020AC7A0: .word Unk_021C5A88
 	arm_func_end NNS_G2dRndCoreDrawCellVramTransfer
 
 	.rodata

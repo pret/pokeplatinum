@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020BB070.inc"
 
+	.extern Unk_021CBF30
+	.extern Unk_021CBF3C
+	.extern Unk_021CC5CC
 	
 
 	.text
@@ -80,7 +83,7 @@ _020BB164:
 	blt _020BB080
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020BB178: .word 0x021CC5CC
+_020BB178: .word Unk_021CC5CC
 _020BB17C: .word 0x020FDAB0
 	arm_func_end NNSi_SndArcStrmMain
 
@@ -142,7 +145,7 @@ _020BB20C:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BB23C: .word 0x021CC5A8
-_020BB240: .word 0x021CBF30
+_020BB240: .word Unk_021CBF30
 	arm_func_end ForceStopStrm_dup2
 
 	arm_func_start ShutdownPlayer_dup2
@@ -173,7 +176,7 @@ _020BB294:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020BB2A0: .word 0x021CC5C0
-_020BB2A4: .word 0x021CBF30
+_020BB2A4: .word Unk_021CBF30
 	arm_func_end ShutdownPlayer_dup2
 
 	arm_func_start FreeChannel
@@ -237,7 +240,7 @@ FreeCommandBuffer: ; 0x020BB33C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020BB364: .word 0x021CBF3C
+_020BB364: .word Unk_021CBF3C
 	arm_func_end FreeCommandBuffer
 
 	.bss

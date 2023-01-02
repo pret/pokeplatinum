@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020BA240.inc"
 
+	.extern Unk_021CBEF4
 	
 
 	.text
@@ -601,8 +602,8 @@ _020BA9F8:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020BAA00: .word 0x021CBEF4
-_020BAA04: .word 0x021CBEF4
+_020BAA00: .word Unk_021CBEF4
+_020BAA04: .word Unk_021CBEF4
 _020BAA08: .word WaveArcTableDisposeCallback
 	arm_func_end LoadWaveArcTable
 

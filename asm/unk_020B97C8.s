@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B97C8.inc"
 
+	.extern Unk_021CBEF0
 	
 
 	.text
@@ -40,7 +41,7 @@ NNS_SndArcInit: ; 0x020B97C8
 	strne r6, [r0]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020B9844: .word 0x021CBEF0
+_020B9844: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcInit
 
 	arm_func_start NNS_SndArcSetup
@@ -220,7 +221,7 @@ _020B9ACC:
 	str r5, [r0, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B9AE0: .word 0x021CBEF0
+_020B9AE0: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcInitOnMemory
 
 	arm_func_start NNS_SndArcSetCurrent
@@ -231,7 +232,7 @@ NNS_SndArcSetCurrent: ; 0x020B9AE4
 	mov r0, r2
 	bx lr
 	; .align 2, 0
-_020B9AF8: .word 0x021CBEF0
+_020B9AF8: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcSetCurrent
 
 	arm_func_start NNS_SndArcGetCurrent
@@ -240,7 +241,7 @@ NNS_SndArcGetCurrent: ; 0x020B9AFC
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020B9B08: .word 0x021CBEF0
+_020B9B08: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetCurrent
 
 	arm_func_start NNS_SndArcGetSeqParam
@@ -280,7 +281,7 @@ NNS_SndArcGetSeqInfo: ; 0x020B9B24
 	addne r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020B9B84: .word 0x021CBEF0
+_020B9B84: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetSeqInfo
 
 	arm_func_start NNS_SndArcGetSeqArcInfo
@@ -310,7 +311,7 @@ NNS_SndArcGetSeqArcInfo: ; 0x020B9B88
 	addne r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020B9BE8: .word 0x021CBEF0
+_020B9BE8: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetSeqArcInfo
 
 	arm_func_start NNS_SndArcGetBankInfo
@@ -340,7 +341,7 @@ NNS_SndArcGetBankInfo: ; 0x020B9BEC
 	addne r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020B9C4C: .word 0x021CBEF0
+_020B9C4C: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetBankInfo
 
 	arm_func_start NNS_SndArcGetWaveArcInfo
@@ -370,7 +371,7 @@ NNS_SndArcGetWaveArcInfo: ; 0x020B9C50
 	addne r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020B9CB0: .word 0x021CBEF0
+_020B9CB0: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetWaveArcInfo
 
 	arm_func_start NNS_SndArcGetPlayerInfo
@@ -400,7 +401,7 @@ NNS_SndArcGetPlayerInfo: ; 0x020B9CB4
 	addne r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020B9D14: .word 0x021CBEF0
+_020B9D14: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetPlayerInfo
 
 	arm_func_start NNS_SndArcGetGroupInfo
@@ -430,7 +431,7 @@ NNS_SndArcGetGroupInfo: ; 0x020B9D18
 	addne r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020B9D78: .word 0x021CBEF0
+_020B9D78: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetGroupInfo
 
 	arm_func_start NNS_SndArcGetFileSize
@@ -445,7 +446,7 @@ NNS_SndArcGetFileSize: ; 0x020B9D7C
 	ldrlo r0, [r0, #0x10]
 	bx lr
 	; .align 2, 0
-_020B9DA0: .word 0x021CBEF0
+_020B9DA0: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetFileSize
 
 	arm_func_start NNS_SndArcReadFile
@@ -502,7 +503,7 @@ _020B9E60:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020B9E68: .word 0x021CBEF0
+_020B9E68: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcReadFile
 
 	arm_func_start NNS_SndArcGetFileAddress
@@ -517,7 +518,7 @@ NNS_SndArcGetFileAddress: ; 0x020B9E6C
 	ldrlo r0, [r0, #0x14]
 	bx lr
 	; .align 2, 0
-_020B9E90: .word 0x021CBEF0
+_020B9E90: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcGetFileAddress
 
 	arm_func_start NNS_SndArcSetFileAddress
@@ -529,7 +530,7 @@ NNS_SndArcSetFileAddress: ; 0x020B9E94
 	str r1, [r0, #0x14]
 	bx lr
 	; .align 2, 0
-_020B9EAC: .word 0x021CBEF0
+_020B9EAC: .word Unk_021CBEF0
 	arm_func_end NNS_SndArcSetFileAddress
 
 	arm_func_start InfoDisposeCallback

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B7C00.inc"
 
+	.extern Unk_021CAE0C
 	
 
 	.text
@@ -25,7 +26,7 @@ NNS_SndWaveOutAllocChannel: ; 0x020B7C00
 	str r1, [r0, #8]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B7C40: .word 0x021CAE0C
+_020B7C40: .word Unk_021CAE0C
 	arm_func_end NNS_SndWaveOutAllocChannel
 
 	arm_func_start NNS_SndWaveOutFreeChannel

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B5FE4.inc"
 
+	.extern Unk_021C5CF0
 	
 
 	.text
@@ -151,7 +152,7 @@ _020B61D8:
 	str r0, [ip]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020B61E8: .word 0x021C5CF0
+_020B61E8: .word Unk_021C5CF0
 _020B61EC: .word 0x021C6B00
 _020B61F0: .word 0x021C6B04
 _020B61F4: .word 0x021C6B08

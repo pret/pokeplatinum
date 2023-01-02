@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020BDC08.inc"
 
+	.extern Unk_021CCB9C
 	
 
 	.text
@@ -90,7 +91,7 @@ _020BDCFC:
 	; .align 2, 0
 _020BDD30: .word 0x04000304
 _020BDD34: .word 0xFFFFFDF1
-_020BDD38: .word 0x021CCB9C
+_020BDD38: .word Unk_021CCB9C
 _020BDD3C: .word 0x04000004
 _020BDD40: .word 0x02101144
 _020BDD44: .word 0x0400006C
@@ -152,7 +153,7 @@ GX_DispOff: ; 0x020BDDBC
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BDDF0: .word 0x02101144
-_020BDDF4: .word 0x021CCB9C
+_020BDDF4: .word Unk_021CCB9C
 	arm_func_end GX_DispOff
 
 	arm_func_start GX_DispOn
@@ -174,7 +175,7 @@ GX_DispOn: ; 0x020BDDF8
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_020BDE38: .word 0x021CCB9C
+_020BDE38: .word Unk_021CCB9C
 _020BDE3C: .word 0x02101144
 	arm_func_end GX_DispOn
 
@@ -205,7 +206,7 @@ GX_SetGraphicsMode: ; 0x020BDE40
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020BDE9C: .word 0x02101144
-_020BDEA0: .word 0x021CCB9C
+_020BDEA0: .word Unk_021CCB9C
 _020BDEA4: .word 0xFFF0FFF0
 	arm_func_end GX_SetGraphicsMode
 

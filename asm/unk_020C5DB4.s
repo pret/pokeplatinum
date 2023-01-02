@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C5DB4.inc"
 
+	.extern Unk_021CEB80
 	
 
 	.text
@@ -19,7 +20,7 @@ SND_GetPlayerStatus: ; 0x020C5DB4
 	ldr r0, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C5DDC: .word 0x021CEB80
+_020C5DDC: .word Unk_021CEB80
 	arm_func_end SND_GetPlayerStatus
 
 	arm_func_start SND_GetChannelStatus
@@ -35,7 +36,7 @@ SND_GetChannelStatus: ; 0x020C5DE0
 	ldrh r0, [r0, #8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C5E08: .word 0x021CEB80
+_020C5E08: .word Unk_021CEB80
 	arm_func_end SND_GetChannelStatus
 
 	arm_func_start SND_GetPlayerTickCounter
@@ -55,7 +56,7 @@ SND_GetPlayerTickCounter: ; 0x020C5E0C
 	ldr r0, [r0, #0x40]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5E44: .word 0x021CEB80
+_020C5E44: .word Unk_021CEB80
 	arm_func_end SND_GetPlayerTickCounter
 
 	arm_func_start SNDi_GetFinishedCommandTag
@@ -70,7 +71,7 @@ SNDi_GetFinishedCommandTag: ; 0x020C5E48
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C5E6C: .word 0x021CEB80
+_020C5E6C: .word Unk_021CEB80
 	arm_func_end SNDi_GetFinishedCommandTag
 
 	arm_func_start SNDi_InitSharedWork

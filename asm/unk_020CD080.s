@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CD080.inc"
 
+	.extern Unk_021CF440
+	.extern Unk_021CF460
 	.extern Unk_021CEE20
 	.extern Unk_021CCC80
 	
@@ -101,7 +103,7 @@ CARDi_SetCardDma: ; 0x020CD16C
 	; .align 2, 0
 _020CD1B0: .word Unk_021CEE20
 _020CD1B4: .word 0x04100010
-_020CD1B8: .word 0x021CF460
+_020CD1B8: .word Unk_021CF460
 _020CD1BC: .word 0x040001A4
 	arm_func_end CARDi_SetCardDma
 
@@ -421,7 +423,7 @@ _020CD5DC:
 	blx r5
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CD5F8: .word 0x021CF460
+_020CD5F8: .word Unk_021CF460
 _020CD5FC: .word Unk_021CEE20
 	arm_func_end CARDi_ReadRomSyncCore
 
@@ -490,9 +492,9 @@ _020CD6CC:
 	bl CARDi_ReadRomSyncCore
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020CD6E4: .word 0x021CF460
+_020CD6E4: .word Unk_021CF460
 _020CD6E8: .word Unk_021CEE20
-_020CD6EC: .word 0x021CF440
+_020CD6EC: .word Unk_021CF440
 _020CD6F0: .word CARDi_ReadRomSyncCore
 _020CD6F4: .word Unk_021CCC80
 	arm_func_end CARDi_ReadRom
@@ -524,7 +526,7 @@ CARD_Init: ; 0x020CD6F8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CD754: .word Unk_021CEE20
-_020CD758: .word 0x021CF440
+_020CD758: .word Unk_021CF440
 	arm_func_end CARD_Init
 
 	arm_func_start CARD_WaitRomAsync

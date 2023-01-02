@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B799C.inc"
 
+	.extern Unk_021C8A00
+	.extern Unk_021C8A10
+	.extern Unk_021C8A1C
 	
 
 	.text
@@ -38,11 +41,11 @@ NNS_SndInit: ; 0x020B799C
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020B7A10: .word 0x021C8A00
+_020B7A10: .word Unk_021C8A00
 _020B7A14: .word BeginSleep_dup1
 _020B7A18: .word EndSleep_dup1
-_020B7A1C: .word 0x021C8A10
-_020B7A20: .word 0x021C8A1C
+_020B7A1C: .word Unk_021C8A10
+_020B7A20: .word Unk_021C8A1C
 	arm_func_end NNS_SndInit
 
 	arm_func_start NNS_SndMain

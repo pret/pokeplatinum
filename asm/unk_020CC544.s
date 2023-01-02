@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CC544.inc"
 
+	.extern Unk_021CF440
 	.extern Unk_021CEDA0
 	.extern Unk_021CEDC0
 	.extern Unk_021CEE20
@@ -185,7 +186,7 @@ _020CC788: .word Unk_021CEDC0
 _020CC78C: .word 0x027FFC40
 _020CC790: .word 0x027FFE00
 _020CC794: .word CARDi_TaskThread
-_020CC798: .word 0x021CF440
+_020CC798: .word Unk_021CF440
 _020CC79C: .word CARDi_OnFifoRecv
 	arm_func_end CARDi_InitCommon
 

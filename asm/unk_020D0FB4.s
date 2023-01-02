@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D0FB4.inc"
 
+	.extern Unk_021D0200
+	.extern Unk_021D01C4
+	.extern Unk_021D01E0
 	
 
 	.text
@@ -50,7 +53,7 @@ _020D0FEC:
 	bl CTRDG_Enable
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D1054: .word 0x021D01E0
+_020D1054: .word Unk_021D01E0
 _020D1058: .word CTRDGi_CallbackForInitModuleInfo
 _020D105C: .word CTRDGi_PulledOutCallback
 _020D1060: .word 0x021D02C0
@@ -180,12 +183,12 @@ _020D1208:
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D1230: .word 0x021D01E0
+_020D1230: .word Unk_021D01E0
 _020D1234: .word 0x04000300
 _020D1238: .word 0x04000208
-_020D123C: .word 0x021D01C4
+_020D123C: .word Unk_021D01C4
 _020D1240: .word 0x04000204
-_020D1244: .word 0x021D0200
+_020D1244: .word Unk_021D0200
 _020D1248: .word 0x08000080
 _020D124C: .word 0x027FFF9B
 _020D1250: .word 0x027FFC30
@@ -207,7 +210,7 @@ _020D127C:
 	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D1284: .word 0x021D01C4
+_020D1284: .word Unk_021D01C4
 	arm_func_end CTRDGi_CallbackForInitModuleInfo
 
 	arm_func_start CTRDGi_PulledOutCallback
@@ -238,7 +241,7 @@ _020D12D8:
 	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D12E0: .word 0x021D01E0
+_020D12E0: .word Unk_021D01E0
 	arm_func_end CTRDGi_PulledOutCallback
 
 	arm_func_start CTRDG_TerminateForPulledOut
@@ -257,7 +260,7 @@ CTRDGi_CallbackForSetPhi: ; 0x020D12F8
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020D1308: .word 0x021D01E0
+_020D1308: .word Unk_021D01E0
 	arm_func_end CTRDGi_CallbackForSetPhi
 
 	.bss

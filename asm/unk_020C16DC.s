@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C16DC.inc"
 
+	.extern Unk_021CCC58
 	
 
 	.text
@@ -58,7 +59,7 @@ _020C1734:
 	bl OS_LockByWord
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C1798: .word 0x021CCC58
+_020C1798: .word Unk_021CCC58
 _020C179C: .word 0x027FFFF0
 _020C17A0: .word 0x027FFFB0
 _020C17A4: .word 0x04000204

@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B8ED0.inc"
 
+	.extern Unk_021CB8F4
+	.extern Unk_021CB8FC
+	.extern Unk_021CB93C
+	.extern Unk_021CB990
 	
 
 	.text
@@ -50,7 +54,7 @@ NNS_SndCaptureStartReverb: ; 0x020B8ED0
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B8F74: .word 0x021CB8F4
+_020B8F74: .word Unk_021CB8F4
 	arm_func_end NNS_SndCaptureStartReverb
 
 	arm_func_start NNS_SndCaptureSetReverbVolume
@@ -71,8 +75,8 @@ NNS_SndCaptureSetReverbVolume: ; 0x020B8F78
 	bl NNSi_SndFaderSet
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020B8FB4: .word 0x021CB8F4
-_020B8FB8: .word 0x021CB93C
+_020B8FB4: .word Unk_021CB8F4
+_020B8FB8: .word Unk_021CB93C
 	arm_func_end NNS_SndCaptureSetReverbVolume
 
 	arm_func_start NNS_SndCaptureStopReverb
@@ -99,8 +103,8 @@ _020B8FF4:
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B900C: .word 0x021CB8F4
-_020B9010: .word 0x021CB93C
+_020B900C: .word Unk_021CB8F4
+_020B9010: .word Unk_021CB93C
 	arm_func_end NNS_SndCaptureStopReverb
 
 	arm_func_start NNS_SndCaptureStartEffect
@@ -148,7 +152,7 @@ NNS_SndCaptureStartEffect: ; 0x020B9014
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B90BC: .word 0x021CB8F4
+_020B90BC: .word Unk_021CB8F4
 	arm_func_end NNS_SndCaptureStartEffect
 
 	arm_func_start NNS_SndCaptureStopEffect
@@ -164,7 +168,7 @@ NNS_SndCaptureStopEffect: ; 0x020B90C0
 	bl NNSi_SndCaptureStop
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020B90E8: .word 0x021CB8F4
+_020B90E8: .word Unk_021CB8F4
 	arm_func_end NNS_SndCaptureStopEffect
 
 	arm_func_start NNS_SndCaptureIsActive
@@ -173,7 +177,7 @@ NNS_SndCaptureIsActive: ; 0x020B90EC
 	ldr r0, [r0, #0x48]
 	bx lr
 	; .align 2, 0
-_020B90F8: .word 0x021CB8F4
+_020B90F8: .word Unk_021CB8F4
 	arm_func_end NNS_SndCaptureIsActive
 
 	arm_func_start NNSi_SndCaptureInit
@@ -184,7 +188,7 @@ NNSi_SndCaptureInit: ; 0x020B90FC
 	str r1, [r0, #0x48]
 	bx lr
 	; .align 2, 0
-_020B9110: .word 0x021CB8F4
+_020B9110: .word Unk_021CB8F4
 	arm_func_end NNSi_SndCaptureInit
 
 	arm_func_start NNSi_SndCaptureMain
@@ -223,8 +227,8 @@ _020B9164:
 	str r5, [r4, #0x50]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B9194: .word 0x021CB8F4
-_020B9198: .word 0x021CB93C
+_020B9194: .word Unk_021CB8F4
+_020B9198: .word Unk_021CB93C
 	arm_func_end NNSi_SndCaptureMain
 
 	arm_func_start NNSi_SndCaptureStart
@@ -454,7 +458,7 @@ _020B9438:
 	add sp, sp, #0x40
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020B94FC: .word 0x021CB93C
+_020B94FC: .word Unk_021CB93C
 _020B9500: .word 0x00FFB0FF
 _020B9504: .word AlarmCallback_dup2
 	arm_func_end NNSi_SndCaptureStart
@@ -525,9 +529,9 @@ _020B95E0:
 	str r0, [r4, #0]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B95EC: .word 0x021CB8F4
-_020B95F0: .word 0x021CB93C
-_020B95F4: .word 0x021CB8FC
+_020B95EC: .word Unk_021CB8F4
+_020B95F0: .word Unk_021CB93C
+_020B95F4: .word Unk_021CB8FC
 	arm_func_end NNSi_SndCaptureStop
 
 	arm_func_start NNSi_SndCaptureBeginSleep
@@ -555,8 +559,8 @@ NNSi_SndCaptureBeginSleep: ; 0x020B95F8
 	bl SND_WaitForCommandProc
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B9650: .word 0x021CB8F4
-_020B9654: .word 0x021CB93C
+_020B9650: .word Unk_021CB8F4
+_020B9654: .word Unk_021CB93C
 	arm_func_end NNSi_SndCaptureBeginSleep
 
 	arm_func_start NNSi_SndCaptureEndSleep
@@ -593,8 +597,8 @@ NNSi_SndCaptureEndSleep: ; 0x020B9658
 	bl SND_StartTimer
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B96D4: .word 0x021CB8F4
-_020B96D8: .word 0x021CB93C
+_020B96D4: .word Unk_021CB8F4
+_020B96D8: .word Unk_021CB93C
 	arm_func_end NNSi_SndCaptureEndSleep
 
 	arm_func_start AlarmCallback_dup2
@@ -658,9 +662,9 @@ _020B979C:
 	strge r0, [r7, #0x1c]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B97BC: .word 0x021CB8F4
-_020B97C0: .word 0x021CB990
-_020B97C4: .word 0x021CB8FC
+_020B97BC: .word Unk_021CB8F4
+_020B97C0: .word Unk_021CB990
+_020B97C4: .word Unk_021CB8FC
 	arm_func_end AlarmCallback_dup2
 
 	.bss

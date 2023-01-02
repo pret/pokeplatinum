@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C55E0.inc"
 
+	.extern Unk_021CD064
+	.extern Unk_021CD0A0
+	.extern Unk_021CD320
+	.extern Unk_021CEB80
 	.extern Unk_021CD040
 	
 
@@ -59,12 +63,12 @@ _020C5618:
 	bl SND_FlushCommand
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C569C: .word 0x021CD320
+_020C569C: .word Unk_021CD320
 _020C56A0: .word Unk_021CD040
 _020C56A4: .word 0x021CE040
 _020C56A8: .word 0x021CEB08
-_020C56AC: .word 0x021CD0A0
-_020C56B0: .word 0x021CEB80
+_020C56AC: .word Unk_021CD0A0
+_020C56B0: .word Unk_021CEB80
 	arm_func_end SND_CommandInit
 
 	arm_func_start SND_RecvCommandReply
@@ -142,7 +146,7 @@ _020C5778:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C57BC: .word Unk_021CD040
-_020C57C0: .word 0x021CD064
+_020C57C0: .word Unk_021CD064
 	arm_func_end SND_RecvCommandReply
 
 	arm_func_start SND_AllocCommand
@@ -327,8 +331,8 @@ _020C5A2C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020C5A34: .word Unk_021CD040
-_020C5A38: .word 0x021CD320
-_020C5A3C: .word 0x021CD064
+_020C5A38: .word Unk_021CD320
+_020C5A3C: .word Unk_021CD064
 	arm_func_end SND_FlushCommand
 
 	arm_func_start SND_WaitForCommandProc

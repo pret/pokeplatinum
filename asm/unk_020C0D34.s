@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C0D34.inc"
 
+	.extern Unk_021CCBD8
 	
 
 	.text
@@ -31,7 +32,7 @@ GX_BeginLoadTex: ; 0x020C0D34
 _020C0D80: .word 0x020FD950
 _020C0D84: .word 0x020FD952
 _020C0D88: .word 0x020FD954
-_020C0D8C: .word 0x021CCBD8
+_020C0D8C: .word Unk_021CCBD8
 	arm_func_end GX_BeginLoadTex
 
 	arm_func_start GX_LoadTex
@@ -120,7 +121,7 @@ _020C0EB0:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C0EC8: .word 0x021CCBD8
+_020C0EC8: .word Unk_021CCBD8
 _020C0ECC: .word 0x02101148
 	arm_func_end GX_LoadTex
 
@@ -146,7 +147,7 @@ _020C0EEC:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C0F14: .word 0x02101148
-_020C0F18: .word 0x021CCBD8
+_020C0F18: .word Unk_021CCBD8
 	arm_func_end GX_EndLoadTex
 
 	arm_func_start GX_BeginLoadTexPltt
@@ -163,7 +164,7 @@ GX_BeginLoadTexPltt: ; 0x020C0F1C
 	str r0, [r1, #8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0F48: .word 0x021CCBD8
+_020C0F48: .word Unk_021CCBD8
 _020C0F4C: .word 0x020FD940
 	arm_func_end GX_BeginLoadTexPltt
 
@@ -197,7 +198,7 @@ _020C0FA4:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C0FB4: .word 0x02101148
-_020C0FB8: .word 0x021CCBD8
+_020C0FB8: .word Unk_021CCBD8
 	arm_func_end GX_LoadTexPltt
 
 	arm_func_start GX_EndLoadTexPltt
@@ -220,7 +221,7 @@ _020C0FD8:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C0FF8: .word 0x02101148
-_020C0FFC: .word 0x021CCBD8
+_020C0FFC: .word Unk_021CCBD8
 	arm_func_end GX_EndLoadTexPltt
 
 	arm_func_start GX_BeginLoadClearImage
@@ -263,7 +264,7 @@ _020C1074:
 	str r0, [r1, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C1080: .word 0x021CCBD8
+_020C1080: .word Unk_021CCBD8
 _020C1084: .word 0x06840000
 _020C1088: .word 0x067E0000
 _020C108C: .word 0x06820000
@@ -298,7 +299,7 @@ _020C10DC:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C10F0: .word 0x02101148
-_020C10F4: .word 0x021CCBD8
+_020C10F4: .word Unk_021CCBD8
 	arm_func_end GX_LoadClearImageColor
 
 	arm_func_start GX_LoadClearImageDepth
@@ -331,7 +332,7 @@ _020C1148:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C115C: .word 0x02101148
-_020C1160: .word 0x021CCBD8
+_020C1160: .word Unk_021CCBD8
 	arm_func_end GX_LoadClearImageDepth
 
 	arm_func_start GX_EndLoadClearImage
@@ -354,7 +355,7 @@ _020C1180:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C11A0: .word 0x02101148
-_020C11A4: .word 0x021CCBD8
+_020C11A4: .word Unk_021CCBD8
 	arm_func_end GX_EndLoadClearImage
 
 	.rodata

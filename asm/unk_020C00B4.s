@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C00B4.inc"
 
+	.extern Unk_021CCBBC
 	
 
 	.text
@@ -752,7 +753,7 @@ _020C09E4:
 	str r1, [r0, #0xc]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C09FC: .word 0x021CCBBC
+_020C09FC: .word Unk_021CCBBC
 _020C0A00: .word 0x06880000
 _020C0A04: .word 0x06894000
 _020C0A08: .word 0x06890000
@@ -788,7 +789,7 @@ _020C0A64:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C0A74: .word 0x021CCBBC
+_020C0A74: .word Unk_021CCBBC
 _020C0A78: .word 0x02101148
 	arm_func_end GX_LoadBGExtPltt
 
@@ -813,7 +814,7 @@ _020C0A98:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C0ABC: .word 0x02101148
-_020C0AC0: .word 0x021CCBBC
+_020C0AC0: .word Unk_021CCBBC
 	arm_func_end GX_EndLoadBGExtPltt
 
 	arm_func_start GX_BeginLoadOBJExtPltt
@@ -835,7 +836,7 @@ _020C0AF4:
 	str r0, [r1, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0B00: .word 0x021CCBBC
+_020C0B00: .word Unk_021CCBBC
 _020C0B04: .word 0x06894000
 _020C0B08: .word 0x06890000
 	arm_func_end GX_BeginLoadOBJExtPltt
@@ -870,7 +871,7 @@ _020C0B60:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C0B70: .word 0x02101148
-_020C0B74: .word 0x021CCBBC
+_020C0B74: .word Unk_021CCBBC
 	arm_func_end GX_LoadOBJExtPltt
 
 	arm_func_start GX_EndLoadOBJExtPltt
@@ -893,7 +894,7 @@ _020C0B94:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C0BB4: .word 0x02101148
-_020C0BB8: .word 0x021CCBBC
+_020C0BB8: .word Unk_021CCBBC
 	arm_func_end GX_EndLoadOBJExtPltt
 
 	arm_func_start GXS_BeginLoadBGExtPltt
@@ -904,7 +905,7 @@ GXS_BeginLoadBGExtPltt: ; 0x020C0BBC
 	str r0, [r1, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0BD0: .word 0x021CCBBC
+_020C0BD0: .word Unk_021CCBBC
 	arm_func_end GXS_BeginLoadBGExtPltt
 
 	arm_func_start GXS_LoadBGExtPltt
@@ -957,7 +958,7 @@ _020C0C54:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C0C70: .word 0x02101148
-_020C0C74: .word 0x021CCBBC
+_020C0C74: .word Unk_021CCBBC
 	arm_func_end GXS_EndLoadBGExtPltt
 
 	arm_func_start GXS_BeginLoadOBJExtPltt
@@ -968,7 +969,7 @@ GXS_BeginLoadOBJExtPltt: ; 0x020C0C78
 	str r0, [r1, #0x18]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0C8C: .word 0x021CCBBC
+_020C0C8C: .word Unk_021CCBBC
 	arm_func_end GXS_BeginLoadOBJExtPltt
 
 	arm_func_start GXS_LoadOBJExtPltt
@@ -1021,7 +1022,7 @@ _020C0D10:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C0D2C: .word 0x02101148
-_020C0D30: .word 0x021CCBBC
+_020C0D30: .word Unk_021CCBBC
 	arm_func_end GXS_EndLoadOBJExtPltt
 
 	.bss

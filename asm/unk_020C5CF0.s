@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 
 	
+	.extern Unk_021CEB20
 
 	.text
 
@@ -20,7 +21,7 @@ _020C5CFC:
 	blt _020C5CFC
 	bx lr
 	; .align 2, 0
-_020C5D1C: .word 0x021CEB20
+_020C5D1C: .word Unk_021CEB20
 	arm_func_end SND_AlarmInit
 
 	arm_func_start SNDi_IncAlarmId
@@ -33,7 +34,7 @@ SNDi_IncAlarmId: ; 0x020C5D20
 	strb r0, [r1, #8]
 	bx lr
 	; .align 2, 0
-_020C5D3C: .word 0x021CEB20
+_020C5D3C: .word Unk_021CEB20
 	arm_func_end SNDi_IncAlarmId
 
 	arm_func_start SNDi_SetAlarmHandler
@@ -50,7 +51,7 @@ SNDi_SetAlarmHandler: ; 0x020C5D40
 	and r0, r0, #0xff
 	bx lr
 	; .align 2, 0
-_020C5D6C: .word 0x021CEB20
+_020C5D6C: .word Unk_021CEB20
 	arm_func_end SNDi_SetAlarmHandler
 
 	arm_func_start SNDi_CallAlarmHandler
@@ -72,7 +73,7 @@ SNDi_CallAlarmHandler: ; 0x020C5D70
 	blx r1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C5DB0: .word 0x021CEB20
+_020C5DB0: .word Unk_021CEB20
 	arm_func_end SNDi_CallAlarmHandler
 
 	.bss

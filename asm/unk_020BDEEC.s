@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 
 	
+	.extern Unk_021CCBA0
 
 	.text
 
@@ -30,7 +31,7 @@ GX_InitGXState: ; 0x020BDEEC
 	strh r2, [r1, #8]
 	bx lr
 	; .align 2, 0
-_020BDF44: .word 0x021CCBA0
+_020BDF44: .word Unk_021CCBA0
 _020BDF48: .word 0x04000240
 	arm_func_end GX_InitGXState
 

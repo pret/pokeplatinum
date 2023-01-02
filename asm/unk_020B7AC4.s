@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B7AC4.inc"
 
+	.extern Unk_021CAE00
 	
 
 	.text
@@ -26,7 +27,7 @@ NNS_SndLockChannel: ; 0x020B7AC4
 	str r2, [r1, #8]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B7B08: .word 0x021CAE00
+_020B7B08: .word Unk_021CAE00
 	arm_func_end NNS_SndLockChannel
 
 	arm_func_start NNS_SndUnlockChannel
@@ -43,7 +44,7 @@ NNS_SndUnlockChannel: ; 0x020B7B0C
 	str r1, [r0, #8]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B7B38: .word 0x021CAE00
+_020B7B38: .word Unk_021CAE00
 	arm_func_end NNS_SndUnlockChannel
 
 	arm_func_start NNS_SndLockCapture
@@ -57,7 +58,7 @@ NNS_SndLockCapture: ; 0x020B7B3C
 	moveq r0, #1
 	bx lr
 	; .align 2, 0
-_020B7B5C: .word 0x021CAE00
+_020B7B5C: .word Unk_021CAE00
 	arm_func_end NNS_SndLockCapture
 
 	arm_func_start NNS_SndUnlockCapture
@@ -69,7 +70,7 @@ NNS_SndUnlockCapture: ; 0x020B7B60
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_020B7B78: .word 0x021CAE00
+_020B7B78: .word Unk_021CAE00
 	arm_func_end NNS_SndUnlockCapture
 
 	arm_func_start NNS_SndAllocAlarm
@@ -94,7 +95,7 @@ _020B7BA8:
 	mvn r0, #0
 	bx lr
 	; .align 2, 0
-_020B7BC0: .word 0x021CAE00
+_020B7BC0: .word Unk_021CAE00
 	arm_func_end NNS_SndAllocAlarm
 
 	arm_func_start NNS_SndFreeAlarm
@@ -107,7 +108,7 @@ NNS_SndFreeAlarm: ; 0x020B7BC4
 	str r0, [r1, #4]
 	bx lr
 	; .align 2, 0
-_020B7BE0: .word 0x021CAE00
+_020B7BE0: .word Unk_021CAE00
 	arm_func_end NNS_SndFreeAlarm
 
 	arm_func_start NNSi_SndInitResourceMgr
@@ -119,7 +120,7 @@ NNSi_SndInitResourceMgr: ; 0x020B7BE4
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020B7BFC: .word 0x021CAE00
+_020B7BFC: .word Unk_021CAE00
 	arm_func_end NNSi_SndInitResourceMgr
 
 	.bss

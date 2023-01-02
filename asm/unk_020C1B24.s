@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C1B24.inc"
 
+	.extern Unk_021CCC5C
+	.extern Unk_021CCC68
 	.extern Unk_021CCC80
 	.extern Unk_021CCC90
 	.extern Unk_021CCD50
@@ -18,7 +20,7 @@ OSi_GetUnusedThreadId: ; 0x020C1B24
 	str r0, [r1, #0x20]
 	bx lr
 	; .align 2, 0
-_020C1B38: .word 0x021CCC5C
+_020C1B38: .word Unk_021CCC5C
 	arm_func_end OSi_GetUnusedThreadId
 
 	arm_func_start OSi_InsertLinkToQueue
@@ -151,7 +153,7 @@ _020C1CA4:
 	str r0, [r1, #0x2c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C1CC8: .word 0x021CCC5C
+_020C1CC8: .word Unk_021CCC5C
 	arm_func_end OSi_InsertThreadToList
 
 	arm_func_start OSi_RemoveThreadFromList
@@ -176,7 +178,7 @@ _020C1CE4:
 	str r1, [r0, #0x2c]
 	bx lr
 	; .align 2, 0
-_020C1D10: .word 0x021CCC5C
+_020C1D10: .word Unk_021CCC5C
 	arm_func_end OSi_RemoveThreadFromList
 
 	arm_func_start OSi_RescheduleThread
@@ -235,7 +237,7 @@ _020C1DC0:
 	bl OS_LoadContext
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C1DD4: .word 0x021CCC5C
+_020C1DD4: .word Unk_021CCC5C
 _020C1DD8: .word Unk_021CCC80
 	arm_func_end OSi_RescheduleThread
 
@@ -311,7 +313,7 @@ _020C1E50:
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C1EEC: .word 0x021CCC5C
+_020C1EEC: .word Unk_021CCC5C
 _020C1EF0: .word 0x021CCC84
 _020C1EF4: .word 0x00000000
 _020C1EF8: .word Unk_021CCD50
@@ -333,7 +335,7 @@ OS_IsThreadAvailable: ; 0x020C1F24
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020C1F30: .word 0x021CCC68
+_020C1F30: .word Unk_021CCC68
 	arm_func_end OS_IsThreadAvailable
 
 	arm_func_start OS_CreateThread
@@ -414,7 +416,7 @@ OS_ExitThread: ; 0x020C2030
 	bl OSi_ExitThread_ArgSpecified
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C204C: .word 0x021CCC5C
+_020C204C: .word Unk_021CCC5C
 	arm_func_end OS_ExitThread
 
 	arm_func_start OSi_ExitThread_ArgSpecified
@@ -442,7 +444,7 @@ _020C2098:
 	bl OSi_ExitThread
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C20A4: .word 0x021CCC5C
+_020C20A4: .word Unk_021CCC5C
 _020C20A8: .word OSi_ExitThread
 	arm_func_end OSi_ExitThread_ArgSpecified
 
@@ -463,7 +465,7 @@ _020C20D8:
 	bl OSi_ExitThread_Destroy
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C20E0: .word 0x021CCC5C
+_020C20E0: .word Unk_021CCC5C
 	arm_func_end OSi_ExitThread
 
 	arm_func_start OSi_ExitThread_Destroy
@@ -492,7 +494,7 @@ _020C2114:
 	bl OS_Terminate
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C213C: .word 0x021CCC5C
+_020C213C: .word Unk_021CCC5C
 	arm_func_end OSi_ExitThread_Destroy
 
 	arm_func_start OS_DestroyThread
@@ -530,7 +532,7 @@ _020C218C:
 	bl OS_RescheduleThread
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C21B8: .word 0x021CCC5C
+_020C21B8: .word Unk_021CCC5C
 	arm_func_end OS_DestroyThread
 
 	arm_func_start OSi_CancelThreadAlarmForSleep
@@ -592,7 +594,7 @@ _020C224C:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C2264: .word 0x021CCC5C
+_020C2264: .word Unk_021CCC5C
 	arm_func_end OS_SleepThread
 
 	arm_func_start OS_WakeupThread
@@ -656,7 +658,7 @@ _020C2308:
 	bne _020C2304
 	bx lr
 	; .align 2, 0
-_020C231C: .word 0x021CCC5C
+_020C231C: .word Unk_021CCC5C
 	arm_func_end OS_SelectThread
 
 	arm_func_start OS_RescheduleThread
@@ -723,7 +725,7 @@ _020C23D4:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C23F0: .word 0x021CCC5C
+_020C23F0: .word Unk_021CCC5C
 	arm_func_end OS_YieldThread
 
 	arm_func_start OS_SetThreadPriority
@@ -774,7 +776,7 @@ _020C2484:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C2494: .word 0x021CCC5C
+_020C2494: .word Unk_021CCC5C
 _020C2498: .word Unk_021CCC90
 	arm_func_end OS_SetThreadPriority
 
@@ -828,7 +830,7 @@ _020C2530:
 	add sp, sp, #0x34
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
-_020C2540: .word 0x021CCC5C
+_020C2540: .word Unk_021CCC5C
 _020C2544: .word 0x000082EA
 _020C2548: .word OSi_SleepAlarmCallback
 	arm_func_end OS_Sleep
@@ -858,7 +860,7 @@ OS_SetSwitchThreadCallback: ; 0x020C256C
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C2590: .word 0x021CCC5C
+_020C2590: .word Unk_021CCC5C
 	arm_func_end OS_SetSwitchThreadCallback
 
 	arm_func_start OSi_IdleThreadProc
@@ -885,7 +887,7 @@ OS_DisableScheduler: ; 0x020C25A4
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C25D4: .word 0x021CCC5C
+_020C25D4: .word Unk_021CCC5C
 	arm_func_end OS_DisableScheduler
 
 	arm_func_start OS_EnableScheduler
@@ -903,7 +905,7 @@ OS_EnableScheduler: ; 0x020C25D8
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C2608: .word 0x021CCC5C
+_020C2608: .word Unk_021CCC5C
 	arm_func_end OS_EnableScheduler
 
 	arm_func_start OS_SetThreadDestructor

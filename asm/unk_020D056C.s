@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D056C.inc"
 
+	.extern Unk_021D0140
 	
 
 	.text
@@ -124,7 +125,7 @@ WM_SetGameInfo: ; 0x020D065C
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D0710: .word 0x021D0140
+_020D0710: .word Unk_021D0140
 	arm_func_end WM_SetGameInfo
 
 	arm_func_start WM_SetBeaconIndication

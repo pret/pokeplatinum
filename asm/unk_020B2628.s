@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B2628.inc"
 
+	.extern Unk_021C89F4
+	.extern Unk_021C89F8
 	
 
 	.text
@@ -31,7 +33,7 @@ _020B2640:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020B267C: .word 0x021C89F4
+_020B267C: .word Unk_021C89F4
 _020B2680: .word 0x04000400
 	arm_func_end NNS_G3dGeFlushBuffer
 
@@ -44,7 +46,7 @@ _020B2688:
 	bne _020B2688
 	bx lr
 	; .align 2, 0
-_020B2698: .word 0x021C89F4
+_020B2698: .word Unk_021C89F4
 	arm_func_end NNS_G3dGeWaitSendDL
 
 	arm_func_start simpleUnlock_
@@ -102,8 +104,8 @@ _020B2728:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020B274C: .word 0x02101148
-_020B2750: .word 0x021C89F4
-_020B2754: .word 0x021C89F8
+_020B2750: .word Unk_021C89F4
+_020B2754: .word Unk_021C89F8
 _020B2758: .word simpleUnlock_
 	arm_func_end NNS_G3dGeSendDL
 
@@ -169,7 +171,7 @@ _020B2820:
 	bl MIi_CpuSend32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020B2838: .word 0x021C89F4
+_020B2838: .word Unk_021C89F4
 _020B283C: .word 0x04000400
 	arm_func_end NNS_G3dGeBufferOP_N
 

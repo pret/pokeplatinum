@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CD94C.inc"
 
+	.extern Unk_021CF680
 	
 
 	.text
@@ -19,7 +20,7 @@ CARD_InitPulledOutCallback: ; 0x020CD94C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CD970: .word CARDi_PulledOutCallback
-_020CD974: .word 0x021CF680
+_020CD974: .word Unk_021CF680
 	arm_func_end CARD_InitPulledOutCallback
 
 	arm_func_start CARDi_PulledOutCallback
@@ -47,7 +48,7 @@ _020CD9C0:
 	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CD9C8: .word 0x021CF680
+_020CD9C8: .word Unk_021CF680
 	arm_func_end CARDi_PulledOutCallback
 
 	arm_func_start CARD_IsPulledOut
@@ -56,7 +57,7 @@ CARD_IsPulledOut: ; 0x020CD9CC
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020CD9D8: .word 0x021CF680
+_020CD9D8: .word Unk_021CF680
 	arm_func_end CARD_IsPulledOut
 
 	arm_func_start CARD_TerminateForPulledOut

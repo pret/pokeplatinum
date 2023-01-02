@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D0888.inc"
 
+	.extern Unk_021D01C0
+	.extern Unk_021D01C4
 	
 
 	.text
@@ -20,9 +22,9 @@ CTRDGi_InitCommon: ; 0x020D0888
 	strh r0, [r1, #6]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D08B4: .word 0x021D01C4
+_020D08B4: .word Unk_021D01C4
 _020D08B8: .word 0x05000001
-_020D08BC: .word 0x021D01C0
+_020D08BC: .word Unk_021D01C0
 	arm_func_end CTRDGi_InitCommon
 
 	arm_func_start CTRDG_IsAgbCartridge
@@ -219,7 +221,7 @@ _020D0AE0:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020D0B04: .word 0x027FFC30
-_020D0B08: .word 0x021D01C0
+_020D0B08: .word Unk_021D01C0
 _020D0B0C: .word 0x0801FFFE
 	arm_func_end CTRDG_IsExisting
 
@@ -480,7 +482,7 @@ _020D0E1C:
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D0E3C: .word 0x021D01C0
+_020D0E3C: .word Unk_021D01C0
 	arm_func_end CTRDGi_CopyCommon
 
 	arm_func_start CTRDG_Read32
@@ -560,7 +562,7 @@ _020D0F14:
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D0F34: .word 0x021D01C0
+_020D0F34: .word Unk_021D01C0
 	arm_func_end CTRDGi_AccessCommon
 
 	arm_func_start CTRDG_IsEnabled
@@ -569,7 +571,7 @@ CTRDG_IsEnabled: ; 0x020D0F38
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020D0F44: .word 0x021D01C0
+_020D0F44: .word Unk_021D01C0
 	arm_func_end CTRDG_IsEnabled
 
 	arm_func_start CTRDG_Enable
@@ -593,7 +595,7 @@ _020D0F80:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D0F8C: .word 0x021D01C0
+_020D0F8C: .word Unk_021D01C0
 	arm_func_end CTRDG_Enable
 
 	arm_func_start CTRDG_CheckEnabled

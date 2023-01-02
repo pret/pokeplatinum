@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020BDF4C.inc"
 
+	.extern Unk_021CCB9E
+	.extern Unk_021CCBA0
 	
 
 	.text
@@ -243,7 +245,7 @@ _020BE264:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE274: .word 0x021CCBA0
+_020BE274: .word Unk_021CCBA0
 _020BE278: .word 0x04000243
 _020BE27C: .word 0x04000242
 _020BE280: .word 0x04000241
@@ -349,7 +351,7 @@ _020BE3BC:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE3CC: .word 0x021CCBA0
+_020BE3CC: .word Unk_021CCBA0
 _020BE3D0: .word 0x04000246
 _020BE3D4: .word 0x04000241
 _020BE3D8: .word 0x04000240
@@ -430,7 +432,7 @@ _020BE4C8:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE4D8: .word 0x021CCBA0
+_020BE4D8: .word Unk_021CCBA0
 _020BE4DC: .word 0x04000246
 _020BE4E0: .word 0x04000245
 	arm_func_end GX_SetBankForBGExtPltt
@@ -482,7 +484,7 @@ _020BE574:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE584: .word 0x021CCBA0
+_020BE584: .word Unk_021CCBA0
 _020BE588: .word 0x04000245
 _020BE58C: .word 0x04000246
 	arm_func_end GX_SetBankForOBJExtPltt
@@ -619,7 +621,7 @@ _020BE73C:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE74C: .word 0x021CCBA0
+_020BE74C: .word Unk_021CCBA0
 _020BE750: .word 0x04000060
 _020BE754: .word 0x0000CFFE
 _020BE758: .word 0x04000242
@@ -695,7 +697,7 @@ _020BE830:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE840: .word 0x021CCBA0
+_020BE840: .word Unk_021CCBA0
 _020BE844: .word 0x04000246
 _020BE848: .word 0x04000245
 _020BE84C: .word 0x04000244
@@ -784,7 +786,7 @@ _020BE95C:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BE96C: .word 0x021CCBA0
+_020BE96C: .word Unk_021CCBA0
 _020BE970: .word 0x04000240
 _020BE974: .word 0x04000241
 _020BE978: .word 0x04000060
@@ -839,7 +841,7 @@ _020BEA14:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BEA24: .word 0x021CCBA0
+_020BEA24: .word Unk_021CCBA0
 _020BEA28: .word 0x04000243
 _020BEA2C: .word 0x04000242
 	arm_func_end GX_SetBankForARM7
@@ -853,7 +855,7 @@ GX_SetBankForLCDC: ; 0x020BEA30
 	strh r2, [r1]
 	bx ip
 	; .align 2, 0
-_020BEA48: .word 0x021CCBA0
+_020BEA48: .word Unk_021CCBA0
 _020BEA4C: .word GX_VRAMCNT_SetLCDC_
 	arm_func_end GX_SetBankForLCDC
 
@@ -903,7 +905,7 @@ _020BEAD8:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BEAE8: .word 0x021CCBA0
+_020BEAE8: .word Unk_021CCBA0
 _020BEAEC: .word 0x04000242
 _020BEAF0: .word 0x04000249
 _020BEAF4: .word 0x04000248
@@ -939,7 +941,7 @@ _020BEB4C:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BEB5C: .word 0x021CCBA0
+_020BEB5C: .word Unk_021CCBA0
 _020BEB60: .word 0x04000249
 _020BEB64: .word 0x04000243
 	arm_func_end GX_SetBankForSubOBJ
@@ -978,7 +980,7 @@ _020BEBCC:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BEBDC: .word 0x021CCBA0
+_020BEBDC: .word Unk_021CCBA0
 _020BEBE0: .word 0x04001000
 _020BEBE4: .word 0x04000248
 	arm_func_end GX_SetBankForSubBGExtPltt
@@ -1017,7 +1019,7 @@ _020BEC4C:
 	bl GX_VRAMCNT_SetLCDC_
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BEC5C: .word 0x021CCBA0
+_020BEC5C: .word Unk_021CCBA0
 _020BEC60: .word 0x04001000
 _020BEC64: .word 0x04000249
 	arm_func_end GX_SetBankForSubOBJExtPltt
@@ -1037,7 +1039,7 @@ resetBankForX_: ; 0x020BEC68
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020BEC98: .word 0x021CCBA0
+_020BEC98: .word Unk_021CCBA0
 	arm_func_end resetBankForX_
 
 	arm_func_start GX_ResetBankForBG
@@ -1226,7 +1228,7 @@ _020BEE8C: .word 0x04000245
 _020BEE90: .word 0x04000246
 _020BEE94: .word 0x04000248
 _020BEE98: .word 0x04000249
-_020BEE9C: .word 0x021CCB9E
+_020BEE9C: .word Unk_021CCB9E
 	arm_func_end disableBankForX_
 
 	arm_func_start GX_DisableBankForBG
@@ -1324,7 +1326,7 @@ GX_DisableBankForLCDC: ; 0x020BEF60
 	bx ip
 	; .align 2, 0
 _020BEF6C: .word disableBankForX_
-_020BEF70: .word 0x021CCBA0
+_020BEF70: .word Unk_021CCBA0
 	arm_func_end GX_DisableBankForLCDC
 
 	arm_func_start GX_DisableBankForSubBG
@@ -1383,7 +1385,7 @@ GX_GetBankForOBJ: ; 0x020BEFEC
 	ldrh r0, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020BEFF8: .word 0x021CCBA0
+_020BEFF8: .word Unk_021CCBA0
 	arm_func_end GX_GetBankForOBJ
 
 	arm_func_start GX_GetBankForOBJExtPltt
@@ -1392,7 +1394,7 @@ GX_GetBankForOBJExtPltt: ; 0x020BEFFC
 	ldrh r0, [r0, #0x10]
 	bx lr
 	; .align 2, 0
-_020BF008: .word 0x021CCBA0
+_020BF008: .word Unk_021CCBA0
 	arm_func_end GX_GetBankForOBJExtPltt
 
 	arm_func_start GX_GetBankForLCDC
@@ -1401,7 +1403,7 @@ GX_GetBankForLCDC: ; 0x020BF00C
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
-_020BF018: .word 0x021CCBA0
+_020BF018: .word Unk_021CCBA0
 	arm_func_end GX_GetBankForLCDC
 
 	arm_func_start GX_GetBankForSubOBJ
@@ -1410,7 +1412,7 @@ GX_GetBankForSubOBJ: ; 0x020BF01C
 	ldrh r0, [r0, #0x14]
 	bx lr
 	; .align 2, 0
-_020BF028: .word 0x021CCBA0
+_020BF028: .word Unk_021CCBA0
 	arm_func_end GX_GetBankForSubOBJ
 
 	arm_func_start GX_GetBankForSubOBJExtPltt
@@ -1419,5 +1421,5 @@ GX_GetBankForSubOBJExtPltt: ; 0x020BF02C
 	ldrh r0, [r0, #0x18]
 	bx lr
 	; .align 2, 0
-_020BF038: .word 0x021CCBA0
+_020BF038: .word Unk_021CCBA0
 	arm_func_end GX_GetBankForSubOBJExtPltt

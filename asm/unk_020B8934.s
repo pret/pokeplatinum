@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B8934.inc"
 
+	.extern Unk_021CB824
+	.extern Unk_021CB828
+	.extern Unk_021CB834
+	.extern Unk_021CB874
 	
 
 	.text
@@ -36,8 +40,8 @@ _020B8964:
 	str r0, [r4, #0x24]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B899C: .word 0x021CB824
-_020B89A0: .word 0x021CB828
+_020B899C: .word Unk_021CB824
+_020B89A0: .word Unk_021CB828
 _020B89A4: .word BeginSleep_dup2
 _020B89A8: .word EndSleep_dup2
 	arm_func_end NNS_SndStrmInit
@@ -193,9 +197,9 @@ _020B8B3C:
 	add sp, sp, #0x1c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020B8BC8: .word 0x021CB874
+_020B8BC8: .word Unk_021CB874
 _020B8BCC: .word AlarmCallback_dup1
-_020B8BD0: .word 0x021CB828
+_020B8BD0: .word Unk_021CB828
 	arm_func_end NNS_SndStrmSetup
 
 	arm_func_start NNS_SndStrmStart
@@ -264,7 +268,7 @@ _020B8C68:
 	blt _020B8C68
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020B8CAC: .word 0x021CB874
+_020B8CAC: .word Unk_021CB874
 	arm_func_end NNS_SndStrmSetVolume
 
 	arm_func_start ForceStopStrm_dup1
@@ -315,7 +319,7 @@ ShutdownStrm: ; 0x020B8D24
 	str r0, [r4, #0x24]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B8D50: .word 0x021CB828
+_020B8D50: .word Unk_021CB828
 	arm_func_end ShutdownStrm
 
 	arm_func_start AlarmCallback_dup1
@@ -374,8 +378,8 @@ _020B8DC8:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B8E0C: .word 0x021CB874
-_020B8E10: .word 0x021CB834
+_020B8E0C: .word Unk_021CB874
+_020B8E10: .word Unk_021CB834
 	arm_func_end StrmCallback
 
 	arm_func_start BeginSleep_dup2

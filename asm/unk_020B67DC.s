@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B67DC.inc"
 
+	.extern Unk_021C5CF0
 	
 
 	.text
@@ -225,7 +226,7 @@ _020B6A2C:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020B6B08: .word 0x021C5CF0
+_020B6B08: .word Unk_021C5CF0
 _020B6B0C: .word 0x021C6AF4
 _020B6B10: .word 0x021C6AF8
 _020B6B14: .word 0x021C6AFC

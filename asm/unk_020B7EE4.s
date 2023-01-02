@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B7EE4.inc"
 
+	.extern Unk_021CAF4C
+	.extern Unk_021CAF58
+	.extern Unk_021CAF64
+	.extern Unk_021CB3A4
 	
 
 	.text
@@ -80,7 +84,7 @@ NNS_SndPlayerCreateHeap: ; 0x020B7F34
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _020B7FC0: .word PlayerHeapDisposeCallback
-_020B7FC4: .word 0x021CB3A4
+_020B7FC4: .word Unk_021CB3A4
 	arm_func_end NNS_SndPlayerCreateHeap
 
 	arm_func_start NNS_SndPlayerStopSeq
@@ -118,8 +122,8 @@ _020B8018:
 	blt _020B7FF4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B802C: .word 0x021CB3A4
-_020B8030: .word 0x021CAF64
+_020B802C: .word Unk_021CB3A4
+_020B8030: .word Unk_021CAF64
 	arm_func_end NNS_SndPlayerStopSeqByPlayerNo
 
 	arm_func_start NNS_SndPlayerStopSeqBySeqNo
@@ -148,7 +152,7 @@ _020B8074:
 	blt _020B8048
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B8088: .word 0x021CAF64
+_020B8088: .word Unk_021CAF64
 	arm_func_end NNS_SndPlayerStopSeqBySeqNo
 
 	arm_func_start NNS_SndPlayerStopSeqAll
@@ -171,7 +175,7 @@ _020B80B4:
 	blt _020B809C
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020B80C8: .word 0x021CAF64
+_020B80C8: .word Unk_021CAF64
 	arm_func_end NNS_SndPlayerStopSeqAll
 
 	arm_func_start NNS_SndPlayerPause
@@ -399,10 +403,10 @@ _020B830C:
 	blt _020B830C
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020B8344: .word 0x021CAF58
-_020B8348: .word 0x021CAF4C
-_020B834C: .word 0x021CAF64
-_020B8350: .word 0x021CB3A4
+_020B8344: .word Unk_021CAF58
+_020B8348: .word Unk_021CAF4C
+_020B834C: .word Unk_021CAF64
+_020B8350: .word Unk_021CB3A4
 	arm_func_end NNSi_SndPlayerInit
 
 	arm_func_start NNSi_SndPlayerMain
@@ -501,7 +505,7 @@ _020B849C:
 	bne _020B8380
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020B84AC: .word 0x021CAF58
+_020B84AC: .word Unk_021CAF58
 _020B84B0: .word 0x020FDAB0
 _020B84B4: .word 0x00007FFF
 	arm_func_end NNSi_SndPlayerMain
@@ -548,7 +552,7 @@ _020B851C:
 	str r5, [r4, #0]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B854C: .word 0x021CB3A4
+_020B854C: .word Unk_021CB3A4
 	arm_func_end NNSi_SndPlayerAllocSeqPlayer
 
 	arm_func_start NNSi_SndPlayerFreeSeqPlayer
@@ -646,7 +650,7 @@ NNSi_SndPlayerAllocHeap: ; 0x020B8620
 	ldr r0, [r4, #8]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020B8670: .word 0x021CB3A4
+_020B8670: .word Unk_021CB3A4
 	arm_func_end NNSi_SndPlayerAllocHeap
 
 	arm_func_start InitPlayer
@@ -722,7 +726,7 @@ _020B874C:
 	bl NNS_FndInsertListObject
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B875C: .word 0x021CAF58
+_020B875C: .word Unk_021CAF58
 	arm_func_end InsertPrioList
 
 	arm_func_start ForceStopSeq
@@ -773,8 +777,8 @@ _020B87D8:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B87F8: .word 0x021CAF4C
-_020B87FC: .word 0x021CAF58
+_020B87F8: .word Unk_021CAF4C
+_020B87FC: .word Unk_021CAF58
 	arm_func_end AllocSeqPlayer
 
 	arm_func_start ShutdownPlayer_dup1
@@ -812,8 +816,8 @@ _020B8858:
 	strb r0, [r4, #0x2c]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B887C: .word 0x021CAF58
-_020B8880: .word 0x021CAF4C
+_020B887C: .word Unk_021CAF58
+_020B8880: .word Unk_021CAF4C
 	arm_func_end ShutdownPlayer_dup1
 
 	arm_func_start PlayerHeapDisposeCallback
@@ -838,7 +842,7 @@ PlayerHeapDisposeCallback: ; 0x020B8884
 	bl NNS_FndRemoveListObject
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B88D0: .word 0x021CB3A4
+_020B88D0: .word Unk_021CB3A4
 	arm_func_end PlayerHeapDisposeCallback
 
 	arm_func_start SetPlayerPriority
@@ -869,7 +873,7 @@ _020B8924:
 	bl InsertPrioList
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020B8930: .word 0x021CAF58
+_020B8930: .word Unk_021CAF58
 	arm_func_end SetPlayerPriority
 
 	.bss

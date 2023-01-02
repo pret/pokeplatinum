@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020AFCB0.inc"
 
+	.extern Unk_021C5CF0
+	.extern Unk_021C5CF4
 	
 
 	.text
@@ -236,7 +238,7 @@ _020AFFB0:
 	add sp, sp, #0x188
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020AFFD4: .word 0x021C5CF0
+_020AFFD4: .word Unk_021C5CF0
 	arm_func_end NNS_G3dDraw
 
 	arm_func_start NNSi_G3dFuncSbc_NOP
@@ -744,7 +746,7 @@ _020B06B8:
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020B06E4: .word 0x021C5CF4
+_020B06E4: .word Unk_021C5CF4
 _020B06E8: .word 0x021C5A8C
 _020B06EC: .word 0x020F97D4
 _020B06F0: .word 0x00293130
