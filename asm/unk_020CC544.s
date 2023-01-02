@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CC544.inc"
 
+	.extern Unk_021CEDA0
+	.extern Unk_021CEDC0
+	.extern Unk_021CEE20
 	
 
 	.text
@@ -23,7 +26,7 @@ CARDi_SetTask: ; 0x020CC544
 	bl OS_WakeupThreadDirect
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CC57C: .word 0x021CEE20
+_020CC57C: .word Unk_021CEE20
 	arm_func_end CARDi_SetTask
 
 	arm_func_start CARDi_LockResource
@@ -65,7 +68,7 @@ _020CC5DC:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020CC600: .word 0x021CEE20
+_020CC600: .word Unk_021CEE20
 	arm_func_end CARDi_LockResource
 
 	arm_func_start CARDi_UnlockResource
@@ -109,7 +112,7 @@ _020CC674:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CC68C: .word 0x021CEE20
+_020CC68C: .word Unk_021CEE20
 	arm_func_end CARDi_UnlockResource
 
 	arm_func_start CARDi_InitCommon
@@ -177,8 +180,8 @@ _020CC704:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020CC784: .word 0x021CEE20
-_020CC788: .word 0x021CEDC0
+_020CC784: .word Unk_021CEE20
+_020CC788: .word Unk_021CEDC0
 _020CC78C: .word 0x027FFC40
 _020CC790: .word 0x027FFE00
 _020CC794: .word CARDi_TaskThread
@@ -192,7 +195,7 @@ CARD_IsEnabled: ; 0x020CC7A0
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020CC7AC: .word 0x021CEDA0
+_020CC7AC: .word Unk_021CEDA0
 	arm_func_end CARD_IsEnabled
 
 	arm_func_start CARD_CheckEnabled
@@ -211,7 +214,7 @@ CARD_Enable: ; 0x020CC7C8
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_020CC7D4: .word 0x021CEDA0
+_020CC7D4: .word Unk_021CEDA0
 	arm_func_end CARD_Enable
 
 	arm_func_start CARDi_WaitAsync
@@ -237,7 +240,7 @@ _020CC7F4:
 	movne r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CC820: .word 0x021CEE20
+_020CC820: .word Unk_021CEE20
 	arm_func_end CARDi_WaitAsync
 
 	arm_func_start CARDi_TryWaitAsync
@@ -249,7 +252,7 @@ CARDi_TryWaitAsync: ; 0x020CC824
 	movne r0, #0
 	bx lr
 	; .align 2, 0
-_020CC83C: .word 0x021CEE20
+_020CC83C: .word Unk_021CEE20
 	arm_func_end CARDi_TryWaitAsync
 
 	arm_func_start CARD_GetResultCode
@@ -259,7 +262,7 @@ CARD_GetResultCode: ; 0x020CC840
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020CC850: .word 0x021CEE20
+_020CC850: .word Unk_021CEE20
 	arm_func_end CARD_GetResultCode
 
 	arm_func_start CARD_LockRom
@@ -315,7 +318,7 @@ CARD_SetCacheFlushThreshold: ; 0x020CC8C4
 	str r1, [r2, #0x19c]
 	bx lr
 	; .align 2, 0
-_020CC8D4: .word 0x021CEDA0
+_020CC8D4: .word Unk_021CEDA0
 	arm_func_end CARD_SetCacheFlushThreshold
 
 	.bss

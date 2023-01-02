@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C3560.inc"
 
+	.extern Unk_021CCF04
+	.extern Unk_021CCF08
+	.extern Unk_021CCF0C
+	.extern Unk_021CCF30
 	
 
 	.text
@@ -37,7 +41,7 @@ _020C35B0:
 	bx lr
 	; .align 2, 0
 _020C35C0: .word 0x027FFD9C
-_020C35C4: .word 0x021CCF04
+_020C35C4: .word Unk_021CCF04
 _020C35C8: .word OSi_ExceptionHandler
 _020C35CC: .word 0x027E3000
 	arm_func_end OS_InitException
@@ -82,7 +86,7 @@ _020C3638:
 	b _020C3638
 _020C3640:
 	.byte 0x0F, 0x50, 0xBD, 0xE8, 0x0C, 0xD0, 0xA0, 0xE1, 0x1E, 0xFF, 0x2F, 0xE1
-_020C364C: .word 0x021CCF04
+_020C364C: .word Unk_021CCF04
 _020C3650: .word 0x02000000
 	arm_func_end OSi_ExceptionHandler
 
@@ -133,7 +137,7 @@ OSi_SetExContext: ; 0x020C3668
 	msr cpsr_fsxc, r0
 	bx lr
 	; .align 2, 0
-_020C36F4: .word 0x021CCF30
+_020C36F4: .word Unk_021CCF30
 	arm_func_end OSi_SetExContext
 
 	arm_func_start OSi_DisplayExContext
@@ -161,11 +165,11 @@ OSi_DisplayExContext: ; 0x020C36F8
 _020C3748:
 	.byte 0x77, 0xFF, 0xFF, 0xEB, 0x06, 0x00, 0xBD, 0xE8
 	.byte 0x01, 0xD0, 0xA0, 0xE1, 0x02, 0xF0, 0x2F, 0xE1, 0x08, 0x80, 0xBD, 0xE8
-_020C375C: .word 0x021CCF04
+_020C375C: .word Unk_021CCF04
 _020C3760: .word 0x0000009F
-_020C3764: .word 0x021CCF30
-_020C3768: .word 0x021CCF08
-_020C376C: .word 0x021CCF0C
+_020C3764: .word Unk_021CCF30
+_020C3768: .word Unk_021CCF08
+_020C376C: .word Unk_021CCF0C
 _020C3770: .word 0x020C3748
 	arm_func_end OSi_DisplayExContext
 

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CCC20.inc"
 
+	.extern Unk_021CEE20
 	.extern Unk_021CCC80
 	
 
@@ -146,7 +147,7 @@ _020CCDEC:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020CCE08: .word 0x02000BFC
-_020CCE0C: .word 0x021CEE20
+_020CCE0C: .word Unk_021CEE20
 	arm_func_end CARDi_RequestStreamCommandCore
 
 	arm_func_start CARDi_RequestStreamCommand
@@ -209,7 +210,7 @@ _020CCEB8:
 	movne r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020CCEE8: .word 0x021CEE20
+_020CCEE8: .word Unk_021CEE20
 _020CCEEC: .word 0x02000BFC
 _020CCEF0: .word CARDi_RequestStreamCommandCore
 _020CCEF4: .word Unk_021CCC80
@@ -222,7 +223,7 @@ CARD_GetBackupSectorSize: ; 0x020CCEF8
 	ldr r0, [r0, #0x1c]
 	bx lr
 	; .align 2, 0
-_020CCF08: .word 0x021CEE20
+_020CCF08: .word Unk_021CEE20
 	arm_func_end CARD_GetBackupSectorSize
 
 	arm_func_start CARD_IdentifyBackup
@@ -309,7 +310,7 @@ _020CD020:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CD038: .word 0x02000BFC
-_020CD03C: .word 0x021CEE20
+_020CD03C: .word Unk_021CEE20
 _020CD040: .word Unk_021CCC80
 	arm_func_end CARD_IdentifyBackup
 
@@ -340,5 +341,5 @@ CARD_CancelBackupAsync: ; 0x020CD05C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CD07C: .word 0x021CEE20
+_020CD07C: .word Unk_021CEE20
 	arm_func_end CARD_CancelBackupAsync

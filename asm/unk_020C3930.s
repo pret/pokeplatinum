@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C3930.inc"
 
+	.extern Unk_021CCFC4
 	
 
 	.text
@@ -65,7 +66,7 @@ OS_InitAlarm: ; 0x020C39BC
 	bl OS_DisableIrqMask
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C39F8: .word 0x021CCFC4
+_020C39F8: .word Unk_021CCFC4
 	arm_func_end OS_InitAlarm
 
 	arm_func_start OS_IsAlarmAvailable
@@ -74,7 +75,7 @@ OS_IsAlarmAvailable: ; 0x020C39FC
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
-_020C3A08: .word 0x021CCFC4
+_020C3A08: .word Unk_021CCFC4
 	arm_func_end OS_IsAlarmAvailable
 
 	arm_func_start OS_CreateAlarm
@@ -166,7 +167,7 @@ _020C3B0C:
 	bl OSi_SetTimer
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C3B44: .word 0x021CCFC4
+_020C3B44: .word Unk_021CCFC4
 	arm_func_end OSi_InsertAlarm
 
 	arm_func_start OS_SetAlarm
@@ -241,7 +242,7 @@ _020C3C1C:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C3C38: .word 0x021CCFC4
+_020C3C38: .word Unk_021CCFC4
 	arm_func_end OS_CancelAlarm
 
 	arm_func_start OSi_AlarmHandler
@@ -317,7 +318,7 @@ _020C3D18:
 	; .align 2, 0
 _020C3D30: .word 0x04000106
 _020C3D34: .word 0x027E0000
-_020C3D38: .word 0x021CCFC4
+_020C3D38: .word Unk_021CCFC4
 	arm_func_end OSi_ArrangeTimer
 
 	.bss

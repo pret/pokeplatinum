@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 
 	
+	.extern Unk_021CCFB0
 
 	.text
 
@@ -14,7 +15,7 @@ OSi_SetTimerReserved: ; 0x020C3774
 	strh r0, [r1]
 	bx lr
 	; .align 2, 0
-_020C378C: .word 0x021CCFB0
+_020C378C: .word Unk_021CCFB0
 	arm_func_end OSi_SetTimerReserved
 
 	.bss

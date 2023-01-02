@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CB8A8.inc"
 
+	.extern Unk_021CED58
+	.extern Unk_021CED64
 	
 
 	.text
@@ -35,7 +37,7 @@ _020CB8E8:
 	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CB90C: .word 0x021CED58
+_020CB90C: .word Unk_021CED58
 _020CB910: .word RtcCommonCallback
 	arm_func_end RTC_Init
 
@@ -70,7 +72,7 @@ _020CB944:
 	moveq r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CB980: .word 0x021CED58
+_020CB980: .word Unk_021CED58
 	arm_func_end RTC_GetDateAsync
 
 	arm_func_start RTC_GetDate
@@ -90,7 +92,7 @@ _020CB9A8:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CB9B4: .word RtcGetResultCallback
-_020CB9B8: .word 0x021CED58
+_020CB9B8: .word Unk_021CED58
 	arm_func_end RTC_GetDate
 
 	arm_func_start RTC_GetTimeAsync
@@ -125,7 +127,7 @@ _020CB9EC:
 	moveq r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CBA2C: .word 0x021CED58
+_020CBA2C: .word Unk_021CED58
 	arm_func_end RTC_GetTimeAsync
 
 	arm_func_start RTC_GetTime
@@ -145,7 +147,7 @@ _020CBA54:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CBA60: .word RtcGetResultCallback
-_020CBA64: .word 0x021CED58
+_020CBA64: .word Unk_021CED58
 	arm_func_end RTC_GetTime
 
 	arm_func_start RTC_GetDateTimeAsync
@@ -182,7 +184,7 @@ _020CBA9C:
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CBAE0: .word 0x021CED58
+_020CBAE0: .word Unk_021CED58
 	arm_func_end RTC_GetDateTimeAsync
 
 	arm_func_start RTC_GetDateTime
@@ -202,7 +204,7 @@ _020CBB08:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CBB14: .word RtcGetResultCallback
-_020CBB18: .word 0x021CED58
+_020CBB18: .word Unk_021CED58
 	arm_func_end RTC_GetDateTime
 
 	arm_func_start RtcCommonCallback
@@ -568,7 +570,7 @@ _020CC014:
 	blx r2
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CC05C: .word 0x021CED58
+_020CC05C: .word Unk_021CED58
 _020CC060: .word 0x027FFDE8
 _020CC064: .word 0x027FFDEC
 _020CC068: .word 0x027FFDEA
@@ -614,7 +616,7 @@ RtcGetResultCallback: ; 0x020CC0DC
 	str r0, [r1, #0x2c]
 	bx lr
 	; .align 2, 0
-_020CC0E8: .word 0x021CED58
+_020CC0E8: .word Unk_021CED58
 	arm_func_end RtcGetResultCallback
 
 	arm_func_start RtcWaitBusy
@@ -626,7 +628,7 @@ _020CC0F0:
 	beq _020CC0F0
 	bx lr
 	; .align 2, 0
-_020CC100: .word 0x021CED64
+_020CC100: .word Unk_021CED64
 	arm_func_end RtcWaitBusy
 
 	.bss

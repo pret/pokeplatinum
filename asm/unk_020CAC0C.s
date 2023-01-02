@@ -1,6 +1,11 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CAC0C.inc"
 
+	.extern Unk_021CECF8
+	.extern Unk_021CED04
+	.extern Unk_021CED08
+	.extern Unk_021CED18
+	.extern Unk_021CED30
 	
 
 	.text
@@ -47,7 +52,7 @@ _020CAC70:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020CAC80: .word 0x021CECEC
-_020CAC84: .word 0x021CED08
+_020CAC84: .word Unk_021CED08
 	arm_func_end PMi_WaitBusy
 
 	arm_func_start PMi_DummyCallback
@@ -120,8 +125,8 @@ _020CAD30:
 	; .align 2, 0
 _020CAD60: .word 0x021CECEC
 _020CAD64: .word PMi_CommonCallback
-_020CAD68: .word 0x021CED30
-_020CAD6C: .word 0x021CED18
+_020CAD68: .word Unk_021CED30
+_020CAD6C: .word Unk_021CED18
 _020CAD70: .word 0x027FFC3C
 	arm_func_end PM_Init
 
@@ -181,7 +186,7 @@ _020CAE28:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CAE30: .word 0x021CED34
-_020CAE34: .word 0x021CED30
+_020CAE34: .word Unk_021CED30
 _020CAE38: .word 0x021CECEC
 	arm_func_end PMi_CommonCallback
 
@@ -285,7 +290,7 @@ PMi_ReadRegisterAsync: ; 0x020CAF30
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CAF90: .word 0x021CECEC
-_020CAF94: .word 0x021CED30
+_020CAF94: .word Unk_021CED30
 _020CAF98: .word 0x021CED34
 	arm_func_end PMi_ReadRegisterAsync
 
@@ -1012,7 +1017,7 @@ PM_PrependPreSleepCallback: ; 0x020CB848
 	bx ip
 	; .align 2, 0
 _020CB858: .word PMi_PrependList
-_020CB85C: .word 0x021CECF8
+_020CB85C: .word Unk_021CECF8
 	arm_func_end PM_PrependPreSleepCallback
 
 	arm_func_start PM_AppendPostSleepCallback
@@ -1023,7 +1028,7 @@ PM_AppendPostSleepCallback: ; 0x020CB860
 	bx ip
 	; .align 2, 0
 _020CB870: .word PMi_AppendList
-_020CB874: .word 0x021CED04
+_020CB874: .word Unk_021CED04
 	arm_func_end PM_AppendPostSleepCallback
 
 	arm_func_start PM_DeletePreSleepCallback
@@ -1034,7 +1039,7 @@ PM_DeletePreSleepCallback: ; 0x020CB878
 	bx ip
 	; .align 2, 0
 _020CB888: .word PMi_DeleteList
-_020CB88C: .word 0x021CECF8
+_020CB88C: .word Unk_021CECF8
 	arm_func_end PM_DeletePreSleepCallback
 
 	arm_func_start PM_DeletePostSleepCallback
@@ -1045,7 +1050,7 @@ PM_DeletePostSleepCallback: ; 0x020CB890
 	bx ip
 	; .align 2, 0
 _020CB8A0: .word PMi_DeleteList
-_020CB8A4: .word 0x021CED04
+_020CB8A4: .word Unk_021CED04
 	arm_func_end PM_DeletePostSleepCallback
 
 	.bss
@@ -1053,7 +1058,7 @@ _020CB8A4: .word 0x021CED04
 
 	.global Unk_021CECEC
 Unk_021CECEC: ; 0x021CECEC
-	.space 0x2
+	.space 0x4
 
 	.global Unk_021CECF0
 Unk_021CECF0: ; 0x021CECF0

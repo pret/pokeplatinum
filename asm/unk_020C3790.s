@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C3790.inc"
 
+	.extern Unk_021CCFB4
 	
 
 	.text
@@ -36,7 +37,7 @@ OS_InitTick: ; 0x020C3790
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C37FC: .word 0x021CCFB4
+_020C37FC: .word Unk_021CCFB4
 _020C3800: .word 0x04000102
 _020C3804: .word OSi_CountUpTick
 	arm_func_end OS_InitTick
@@ -47,7 +48,7 @@ OS_IsTickAvailable: ; 0x020C3808
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
-_020C3814: .word 0x021CCFB4
+_020C3814: .word Unk_021CCFB4
 	arm_func_end OS_IsTickAvailable
 
 	arm_func_start OSi_CountUpTick
@@ -76,7 +77,7 @@ _020C385C:
 	mov r2, r0
 	bx ip
 	; .align 2, 0
-_020C3870: .word 0x021CCFB4
+_020C3870: .word Unk_021CCFB4
 _020C3874: .word 0x04000102
 _020C3878: .word OSi_EnterTimerCallback
 _020C387C: .word OSi_CountUpTick
@@ -125,7 +126,7 @@ _020C38EC:
 	; .align 2, 0
 _020C3914: .word 0x04000100
 _020C3918: .word 0x0000FFFF
-_020C391C: .word 0x021CCFB4
+_020C391C: .word Unk_021CCFB4
 	arm_func_end OS_GetTick
 
 	arm_func_start OS_GetTickLo
