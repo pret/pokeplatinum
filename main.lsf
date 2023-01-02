@@ -1329,9 +1329,9 @@ Overlay overlay27
 Overlay overlay28
 {
 	After overlay25
-	Object asm/overlay028/ov28_022561C0.o
-	Object asm/overlay028/ov28_0225697C.o
-	Object asm/overlay028/ov28_02256E9C.o
+	Object src/overlay028/ov28_022561C0.o
+	Object src/overlay028/ov28_0225697C.o
+	Object src/overlay028/ov28_02256E9C.o
 }
 
 Overlay overlay29
