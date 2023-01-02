@@ -1593,10 +1593,10 @@ Overlay overlay60
 Overlay overlay61
 {
 	After overlay60
-	Object asm/overlay061/ov61_0222AE60.o
-	Object asm/overlay061/ov61_0222B008.o
-	Object asm/overlay061/ov61_0222BC4C.o
-	Object asm/overlay061/ov61_0222BF44.o
+	Object src/overlay061/ov61_0222AE60.o
+	Object src/overlay061/ov61_0222B008.o
+	Object src/overlay061/ov61_0222BC4C.o
+	Object src/overlay061/ov61_0222BF44.o
 	Object asm/overlay061/ov61_0222CEDC.o
 	Object asm/overlay061/ov61_0222D498.o
 	Object asm/overlay061/ov61_0222DCDC.o
