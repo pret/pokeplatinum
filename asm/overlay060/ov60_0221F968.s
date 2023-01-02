@@ -440,7 +440,7 @@ ov60_0221FC84: ; 0x0221FC84
 	sub r1, r1, #3
 	str r1, [r0, #4]
 	mov r0, #0
-	bl ov4_021E558C
+	bl DWC_InitGHTTP
 	cmp r0, #0
 	bne _0221FCA0
 	ldr r0, _0221FCA4 ; =0x02228E40
@@ -481,7 +481,7 @@ _0221FCBC:
 	add r6, #0x45
 	mov r0, #0xa
 	add r1, r6, r1
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r1, _0221FD38 ; =0x02228E40
 	cmp r0, #0
 	str r0, [r1, #0x24]
@@ -553,7 +553,7 @@ _0221FD6E:
 	ldr r0, [r1, #0x24]
 	ldr r1, _0221FDE4 ; =ov60_0221F9D0
 	ldr r2, _0221FDE8 ; =0x02228E40
-	bl ov4_021E56F4
+	bl DWC_GetGHTTPData
 	ldr r1, _0221FDE0 ; =0x02228E40
 	str r0, [r1, #4]
 	bl ov60_0221F968
@@ -569,7 +569,7 @@ _0221FD8E:
 	str r1, [r0, #0]
 	b _0221FDD8
 _0221FD94:
-	bl ov4_021E55F0
+	bl DWC_ProcessGHTTP
 	cmp r0, #0
 	bne _0221FDD8
 	ldr r0, _0221FDE0 ; =0x02228E40
@@ -580,7 +580,7 @@ _0221FDA4:
 	ldr r0, [r1, #0x24]
 	ldr r1, _0221FDE4 ; =ov60_0221F9D0
 	ldr r2, _0221FDE8 ; =0x02228E40
-	bl ov4_021E56F4
+	bl DWC_GetGHTTPData
 	ldr r1, _0221FDE0 ; =0x02228E40
 	str r0, [r1, #4]
 	bl ov60_0221F968
@@ -596,7 +596,7 @@ _0221FDC4:
 	str r1, [r0, #0]
 	b _0221FDD8
 _0221FDCA:
-	bl ov4_021E55F0
+	bl DWC_ProcessGHTTP
 	cmp r0, #0
 	bne _0221FDD8
 	ldr r0, _0221FDE0 ; =0x02228E40
@@ -621,7 +621,7 @@ ov60_0221FDEC: ; 0x0221FDEC
 	beq _0221FE04
 	mov r0, #0xa
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _0221FE10 ; =0x02228E40
 	mov r1, #0
 	str r1, [r0, #0x24]

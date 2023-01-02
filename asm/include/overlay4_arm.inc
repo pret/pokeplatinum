@@ -207,9 +207,9 @@
 .public ov4_021D773C
 .public ov4_021D7744
 .public ov4_021D775C
-.public ov4_021D7780
+.public DWC_Alloc
 .public ov4_021D7790
-.public ov4_021D77C4
+.public DWC_Free
 .public ov4_021D7800
 .public ov4_021D7814
 .public ov4_021D7880
@@ -625,7 +625,7 @@
 .public ov4_021EB018
 .public ov4_021EB034
 .public ov4_021EB058
-.public ov4_021EB0F0
+.public B64Encode
 .public ov4_021EB228
 .public ov4_021EB258
 .public ov4_021EB274

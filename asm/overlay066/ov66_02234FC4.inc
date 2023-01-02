@@ -16,8 +16,8 @@
 .public sub_020DFBDC
 .public _u32_div_f
 .public DWC_ClearError
-.public ov4_021D7780
-.public ov4_021D77C4
+.public DWC_Alloc
+.public DWC_Free
 .public DWC_GetDateTime
 .public ov4_021DB408
 .public ov4_021DB414

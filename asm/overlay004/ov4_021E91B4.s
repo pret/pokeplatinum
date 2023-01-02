@@ -13,12 +13,12 @@ ov4_021E91B4: ; 0x021E91B4
 	bl ov4_021E8E98
 	mov r1, r0
 	mov r0, #1
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r2, _021E9210 ; =0x0221AE44
 	mov r1, #0x790
 	str r0, [r2, #4]
 	mov r0, #1
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r3, _021E9210 ; =0x0221AE44
 	mov r1, #0
 	mov r2, #0x790
@@ -268,7 +268,7 @@ ov4_021E9548: ; 0x021E9548
 	beq _021E9574
 	mov r0, #1
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021E95A0 ; =0x0221AE44
 	mov r1, #0
 	str r1, [r0, #4]
@@ -279,7 +279,7 @@ _021E9574:
 	ldmeqia sp!, {r3, pc}
 	mov r0, #1
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021E95A0 ; =0x0221AE44
 	mov r1, #0
 	str r1, [r0, #0]

@@ -2,8 +2,8 @@
 .public ov4_021D773C
 .public ov4_021D7744
 .public ov4_021D775C
-.public ov4_021D7780
+.public DWC_Alloc
 .public ov4_021D7790
-.public ov4_021D77C4
+.public DWC_Free
 .public ov4_021D7800
 .public ov4_021D7814

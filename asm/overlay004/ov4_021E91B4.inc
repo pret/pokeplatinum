@@ -2,8 +2,8 @@
 .public MI_CpuFill8
 .public MI_CpuCopy8
 .public _ull_div
-.public ov4_021D7780
-.public ov4_021D77C4
+.public DWC_Alloc
+.public DWC_Free
 .public ov4_021E8E98
 .public ov4_021E8EA4
 .public ov4_021E8F34

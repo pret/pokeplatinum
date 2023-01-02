@@ -752,8 +752,8 @@ _021EB0A4:
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021EB058
 
-	arm_func_start ov4_021EB0F0
-ov4_021EB0F0: ; 0x021EB0F0
+	arm_func_start B64Encode
+B64Encode: ; 0x021EB0F0
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r7, r1
 	mov r6, r2
@@ -842,7 +842,7 @@ _021EB218: .word 0x02215980
 _021EB21C: .word 0x02215984
 _021EB220: .word 0x02215988
 _021EB224: .word 0x55555556
-	arm_func_end ov4_021EB0F0
+	arm_func_end B64Encode
 
 	.rodata
 

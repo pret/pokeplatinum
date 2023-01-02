@@ -109,7 +109,7 @@ _02246548:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _02246570:
 	ldr r0, [r5, #0]
 	sub r0, r0, #1

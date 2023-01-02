@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021E558C
-ov4_021E558C: ; 0x021E558C
+	arm_func_start DWC_InitGHTTP
+DWC_InitGHTTP: ; 0x021E558C
 	stmfd sp!, {r3, lr}
 	bl ov60_022215B4
 	ldr r1, _021E55AC ; =0x0221AE24
@@ -18,7 +18,7 @@ ov4_021E558C: ; 0x021E558C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E55AC: .word 0x0221AE24
-	arm_func_end ov4_021E558C
+	arm_func_end DWC_InitGHTTP
 
 	arm_func_start DWC_ShutdownGHTTP
 DWC_ShutdownGHTTP: ; 0x021E55B0
@@ -42,8 +42,8 @@ _021E55E4:
 _021E55EC: .word 0x0221AE24
 	arm_func_end DWC_ShutdownGHTTP
 
-	arm_func_start ov4_021E55F0
-ov4_021E55F0: ; 0x021E55F0
+	arm_func_start DWC_ProcessGHTTP
+DWC_ProcessGHTTP: ; 0x021E55F0
 	stmfd sp!, {r3, lr}
 	bl ov4_021D7708
 	cmp r0, #0
@@ -52,7 +52,7 @@ ov4_021E55F0: ; 0x021E55F0
 	bl ov60_022218EC
 	mov r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021E55F0
+	arm_func_end DWC_ProcessGHTTP
 
 	arm_func_start ov4_021E5610
 ov4_021E5610: ; 0x021E5610
@@ -91,7 +91,7 @@ _021E5678:
 	beq _021E5694
 	mov r0, #4
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 _021E5694:
 	mov r0, r4
 	bl ov4_021E5B40
@@ -123,8 +123,8 @@ ov4_021E56AC: ; 0x021E56AC
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021E56AC
 
-	arm_func_start ov4_021E56F4
-ov4_021E56F4: ; 0x021E56F4
+	arm_func_start DWC_GetGHTTPData
+DWC_GetGHTTPData: ; 0x021E56F4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r4, r0
@@ -178,7 +178,7 @@ _021E57A8:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021E57B8: .word ov4_021E5610
-	arm_func_end ov4_021E56F4
+	arm_func_end DWC_GetGHTTPData
 
 	arm_func_start ov4_021E57BC
 ov4_021E57BC: ; 0x021E57BC
@@ -220,7 +220,7 @@ _021E5840:
 	ble _021E5890
 	mov r1, r4
 	mov r0, #4
-	bl ov4_021D7780
+	bl DWC_Alloc
 	movs r6, r0
 	bne _021E588C
 	mvn r0, #4
@@ -283,7 +283,7 @@ _021E5900:
 	beq _021E5940
 	mov r0, #4
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 _021E5940:
 	mov r0, r7
 	bl ov4_021E5B40
@@ -428,7 +428,7 @@ ov4_021E5AE4: ; 0x021E5AE4
 	mov r4, r0
 	mov r0, #4
 	mov r1, #0x1c
-	bl ov4_021D7780
+	bl DWC_Alloc
 	movs ip, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -462,7 +462,7 @@ ov4_021E5B40: ; 0x021E5B40
 	mov r0, #4
 	mov r2, #0
 	ldr r4, [r1, #0x18]
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021E5BC0 ; =0x0221AE24
 	str r4, [r0, #0]
 	ldmia sp!, {r4, pc}
@@ -480,7 +480,7 @@ _021E5B84:
 	mov r2, #0
 	str r3, [r1, #0x18]
 	mov r1, ip
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldmia sp!, {r4, pc}
 _021E5BB0:
 	ldr r2, [r2, #0x18]
@@ -510,12 +510,12 @@ _021E5BE8:
 	beq _021E5C08
 	mov r0, r7
 	mov r2, r6
-	bl ov4_021D77C4
+	bl DWC_Free
 _021E5C08:
 	mov r0, r5
 	mov r1, sb
 	mov r2, r4
-	bl ov4_021D77C4
+	bl DWC_Free
 	cmp r8, #0
 	bne _021E5BE8
 _021E5C20:

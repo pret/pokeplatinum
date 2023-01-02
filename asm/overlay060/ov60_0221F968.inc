@@ -5,12 +5,12 @@
 .public strcat
 .public strncat
 .public strncmp
-.public ov4_021D7780
-.public ov4_021D77C4
-.public ov4_021E558C
+.public DWC_Alloc
+.public DWC_Free
+.public DWC_InitGHTTP
 .public DWC_ShutdownGHTTP
-.public ov4_021E55F0
-.public ov4_021E56F4
+.public DWC_ProcessGHTTP
+.public DWC_GetGHTTPData
 .public ov60_0221F838
 .public ov60_0221F944
 .public ov60_0221F968

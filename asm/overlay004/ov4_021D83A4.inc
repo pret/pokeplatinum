@@ -12,7 +12,7 @@
 .public ov4_021D7708
 .public ov4_021D7724
 .public ov4_021D7790
-.public ov4_021D77C4
+.public DWC_Free
 .public ov4_021D8144
 .public ov4_021D81B8
 .public ov4_021D83A4

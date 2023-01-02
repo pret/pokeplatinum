@@ -6,8 +6,8 @@
 .public MI_CpuCopy8
 .public ov4_021D3038
 .public ov4_021D7724
-.public ov4_021D7780
-.public ov4_021D77C4
+.public DWC_Alloc
+.public DWC_Free
 .public DWC_InitInetEx
 .public DWC_ConnectInetAsync
 .public ov4_021D7A30

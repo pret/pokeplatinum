@@ -8,12 +8,12 @@
 
 	arm_func_start ov61_0222D498
 ov61_0222D498: ; 0x0222D498
-	ldr ip, _0222D4A8 ; =ov4_021D7780
+	ldr ip, _0222D4A8 ; =DWC_Alloc
 	mov r1, r0
 	mov r0, #0
 	bx ip
 	; .align 2, 0
-_0222D4A8: .word ov4_021D7780
+_0222D4A8: .word DWC_Alloc
 	arm_func_end ov61_0222D498
 
 	arm_func_start ov61_0222D4AC
@@ -23,7 +23,7 @@ ov61_0222D4AC: ; 0x0222D4AC
 	ldmeqia sp!, {r3, pc}
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldmia sp!, {r3, pc}
 	arm_func_end ov61_0222D4AC
 

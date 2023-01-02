@@ -155,7 +155,7 @@ _02257DF0:
 	bl ov66_02257C4C
 	add r1, r0, #0x29
 	mov r0, #7
-	bl ov4_021D7780
+	bl DWC_Alloc
 	movs r7, r0
 	addeq sp, sp, #0x50
 	moveq r0, #0
@@ -176,7 +176,7 @@ _02257E5C:
 	mov r2, r4
 	add r1, r7, #0x14
 	mov r3, #2
-	bl ov4_021EB0F0
+	bl B64Encode
 	mov r0, r4
 	bl ov66_02257C4C
 	add r1, r7, #0x14
@@ -202,7 +202,7 @@ _02257EA8:
 	mov r1, r7
 	mov r0, #7
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	mov r2, #0
 	add r3, sp, #0x11
 	mov r7, r2
@@ -431,7 +431,7 @@ ov66_022581F0: ; 0x022581F0
 	mov r0, #7
 	mov r8, r3
 	mov r6, #0
-	bl ov4_021D7780
+	bl DWC_Alloc
 	movs r5, r0
 	moveq r0, #2
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
@@ -499,11 +499,11 @@ _022582D0:
 	add r2, r7, #4
 	mov r3, #2
 	strb r6, [r5, #3]
-	bl ov4_021EB0F0
+	bl B64Encode
 	mov r1, r5
 	mov r0, #7
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	add r0, r7, #4
 	bl ov66_02257C4C
 	mov r1, #0
@@ -602,7 +602,7 @@ _022583D0:
 	add r1, sp, #0x11
 	bl ov66_02257CD8
 	mov r0, #0
-	bl ov4_021E558C
+	bl DWC_InitGHTTP
 	ldr r0, _022584A4 ; =0x0225B52C
 	mov r2, #3
 	mov r1, #1
@@ -677,7 +677,7 @@ _02258534:
 	bl ov66_022584B8
 	b _022585D8
 _02258574:
-	bl ov4_021E55F0
+	bl DWC_ProcessGHTTP
 	cmp r0, #0
 	bne _022585D8
 	bl ov66_022584B8
@@ -700,7 +700,7 @@ _02258588:
 	bl ov66_022584B8
 	b _022585D8
 _022585C8:
-	bl ov4_021E55F0
+	bl DWC_ProcessGHTTP
 	cmp r0, #0
 	bne _022585D8
 	bl ov66_022584B8
@@ -724,7 +724,7 @@ ov66_022585F4: ; 0x022585F4
 	beq _02258620
 	mov r0, #7
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _02258660 ; =0x0225B52C
 	mov r1, #0
 	str r1, [r0, #0x54]
@@ -780,7 +780,7 @@ ov66_0225867C: ; 0x0225867C
 	beq _022586D0
 	mov r0, #7
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	mov r0, r4
 	mov r1, #0
 	str r1, [r0, #0x54]
@@ -823,7 +823,7 @@ _022586D0:
 	add r0, r6, r0
 	add r1, r7, r0
 	mov r0, #7
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r1, _022588A4 ; =0x0225B52C
 	cmp r0, #0
 	str r0, [r1, #0x54]
@@ -869,7 +869,7 @@ _022586D0:
 	ldr r1, [r1, #0x54]
 	mov r0, #7
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	mov r0, r4
 	mov r1, #0
 	str r1, [r0, #0x54]

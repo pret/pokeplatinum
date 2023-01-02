@@ -31,7 +31,7 @@ ov66_02246308: ; 0x02246308
 	beq _02246334
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _0224635C ; =0x0225B6E8
 	mov r1, #0
 	str r1, [r0, #4]
@@ -62,14 +62,14 @@ ov66_02246368: ; 0x02246368
 	beq _02246398
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _022463CC ; =0x0225B6E8
 	mov r1, #0
 	str r1, [r0, #4]
 _02246398:
 	mov r0, #0
 	mov r1, #0x400
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r1, _022463CC ; =0x0225B6E8
 	cmp r0, #0
 	str r0, [r1, #4]
@@ -95,7 +95,7 @@ ov66_022463D8: ; 0x022463D8
 	ldmeqia sp!, {r3, pc}
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _02246408 ; =0x0225B6E8
 	mov r1, #0
 	str r1, [r0, #4]

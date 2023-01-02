@@ -19,13 +19,13 @@ _021D83B8: .word ov4_021D7790
 
 	arm_func_start ov4_021D83BC
 ov4_021D83BC: ; 0x021D83BC
-	ldr ip, _021D83D0 ; =ov4_021D77C4
+	ldr ip, _021D83D0 ; =DWC_Free
 	mov r1, r0
 	mov r0, #6
 	mov r2, #0
 	bx ip
 	; .align 2, 0
-_021D83D0: .word ov4_021D77C4
+_021D83D0: .word DWC_Free
 	arm_func_end ov4_021D83BC
 
 	arm_func_start ov4_021D83D4

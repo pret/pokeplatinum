@@ -73,8 +73,8 @@ ov4_021D8144: ; 0x021D8144
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
-	ldr r0, _021D81AC ; =ov4_021D7780
-	ldr r1, _021D81B0 ; =ov4_021D77C4
+	ldr r0, _021D81AC ; =DWC_Alloc
+	ldr r1, _021D81B0 ; =DWC_Free
 	bl ov4_021D6CA4
 	cmp r0, #0
 	moveq r0, #0
@@ -99,8 +99,8 @@ _021D8194:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021D81AC: .word ov4_021D7780
-_021D81B0: .word ov4_021D77C4
+_021D81AC: .word DWC_Alloc
+_021D81B0: .word DWC_Free
 _021D81B4: .word 0x02217424
 	arm_func_end ov4_021D8144
 
@@ -129,7 +129,7 @@ DWC_NASLoginAsync: ; 0x021D81DC
 _021D81F4:
 	ldr r1, _021D828C ; =0x00001E20
 	mov r0, #4
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r1, _021D8288 ; =0x0221A4E4
 	cmp r0, #0
 	str r0, [r1, #0]
@@ -151,9 +151,9 @@ _021D8224:
 	add r1, r1, #0x1c00
 	bl MI_CpuCopy8
 	ldr r1, _021D8288 ; =0x0221A4E4
-	ldr r3, _021D8298 ; =ov4_021D7780
+	ldr r3, _021D8298 ; =DWC_Alloc
 	ldr r0, [r1, #0]
-	ldr r2, _021D829C ; =ov4_021D77C4
+	ldr r2, _021D829C ; =DWC_Free
 	add r0, r0, #0x1000
 	str r3, [r0, #0xc54]
 	ldr r0, [r1, #0]
@@ -170,8 +170,8 @@ _021D8288: .word 0x0221A4E4
 _021D828C: .word 0x00001E20
 _021D8290: .word 0xFFFFB17C
 _021D8294: .word 0x0221742C
-_021D8298: .word ov4_021D7780
-_021D829C: .word ov4_021D77C4
+_021D8298: .word DWC_Alloc
+_021D829C: .word DWC_Free
 	arm_func_end DWC_NASLoginAsync
 
 	arm_func_start DWC_NASLoginProcess
@@ -202,7 +202,7 @@ _021D82EC:
 	ldr r2, _021D8394 ; =0x00001E20
 	ldr r1, [r0, #0]
 	mov r0, #4
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021D8390 ; =0x0221A4E4
 	mov r1, #0
 	str r1, [r0, #0]
@@ -215,7 +215,7 @@ _021D831C:
 	ldr r2, _021D8394 ; =0x00001E20
 	ldr r1, [r0, #0]
 	mov r0, #4
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021D8390 ; =0x0221A4E4
 	mov r1, #0
 	str r1, [r0, #0]
@@ -230,7 +230,7 @@ _021D834C:
 	ldr r2, _021D8394 ; =0x00001E20
 	ldr r1, [r0, #0]
 	mov r0, #4
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r1, [sp]
 	ldr r2, _021D8390 ; =0x0221A4E4
 	mov r3, #0

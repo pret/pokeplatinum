@@ -18,9 +18,9 @@
 .public ov4_021D3380
 .public ov4_021D7708
 .public ov4_021D7724
-.public ov4_021D7780
+.public DWC_Alloc
 .public ov4_021D7790
-.public ov4_021D77C4
+.public DWC_Free
 .public ov4_021D8BDC
 .public ov4_021D9A5C
 .public ov4_021DA898

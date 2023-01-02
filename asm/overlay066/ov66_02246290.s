@@ -16,7 +16,7 @@ ov66_02246290: ; 0x02246290
 _022462A4:
 	mov r0, r5
 	mov r1, r6
-	bl ov4_021D7780
+	bl DWC_Alloc
 	cmp r0, #0
 	ldmneia sp!, {r4, r5, r6, pc}
 	ldr r0, [r4, #0]

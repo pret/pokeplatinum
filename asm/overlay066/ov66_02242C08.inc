@@ -6,7 +6,7 @@
 .public strlen
 .public strncpy
 .public atoi
-.public ov4_021D77C4
+.public DWC_Free
 .public DWC_GetDateTime
 .public ov66_022364B0
 .public ov66_022369FC

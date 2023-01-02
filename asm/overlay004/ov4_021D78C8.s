@@ -81,9 +81,9 @@ DWC_ConnectInetAsync: ; 0x021D797C
 	mov r2, #0xc
 	bl MI_CpuFill8
 	ldr r0, _021D7A20 ; =0x0221A4DC
-	ldr r3, _021D7A24 ; =ov4_021D7780
+	ldr r3, _021D7A24 ; =DWC_Alloc
 	ldr lr, [r0, #4]
-	ldr r2, _021D7A28 ; =ov4_021D77C4
+	ldr r2, _021D7A28 ; =DWC_Free
 	ldrh ip, [lr, #8]
 	add r0, sp, #0
 	mov r1, #2
@@ -110,8 +110,8 @@ _021D7A0C:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _021D7A20: .word 0x0221A4DC
-_021D7A24: .word ov4_021D7780
-_021D7A28: .word ov4_021D77C4
+_021D7A24: .word DWC_Alloc
+_021D7A28: .word DWC_Free
 _021D7A2C: .word 0xFFFF3BE9
 	arm_func_end DWC_ConnectInetAsync
 

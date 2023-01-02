@@ -10,8 +10,8 @@
 .public strcpy
 .public _ull_div
 .public DWC_GetLastErrorEx
-.public ov4_021D7780
-.public ov4_021D77C4
+.public DWC_Alloc
+.public DWC_Free
 .public ov4_021D8144
 .public ov4_021D81B8
 .public ov4_021EAF1C

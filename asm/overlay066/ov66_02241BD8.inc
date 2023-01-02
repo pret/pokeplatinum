@@ -5,7 +5,7 @@
 .public memcmp
 .public printf
 .public sub_020DFBDC
-.public ov4_021D77C4
+.public DWC_Free
 .public DWC_GetDateTime
 .public ov66_02234FC4
 .public ov66_02235B8C

@@ -722,7 +722,7 @@ _021EED18:
 	mov r2, r7
 	mov r3, #1
 	strb r4, [r0, r6]
-	bl ov4_021EB0F0
+	bl B64Encode
 	ldr r2, _021EEF00 ; =0x02218448
 	mov r0, sl
 	add r1, r5, #0x1f4
@@ -819,7 +819,7 @@ _021EEE94:
 	mov r2, r6
 	mov r3, #1
 	strb r4, [r0, r8]
-	bl ov4_021EB0F0
+	bl B64Encode
 	ldr r2, _021EEF24 ; =0x02218474
 	mov r0, sl
 	add r1, r5, #0x1f4

@@ -187,7 +187,7 @@ ov4_021DA8E8: ; 0x021DA8E8
 	ldr r1, [r1, #4]
 	mov r2, r0
 	ldr r1, [r1, #0x24]
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021DA940 ; =0x0221A68C
 	mov r1, #0
 	ldr r0, [r0, #4]
@@ -490,8 +490,8 @@ _021DACE0:
 	add r1, r1, #0x51
 	add r1, r1, #0x200
 	bl strcpy
-	ldr r4, _021DAD8C ; =ov4_021D7780
-	ldr r3, _021DAD90 ; =ov4_021D77C4
+	ldr r4, _021DAD8C ; =DWC_Alloc
+	ldr r3, _021DAD90 ; =DWC_Free
 	ldr r1, _021DAD94 ; =0x00001C14
 	mov r0, #0
 	mov r2, #4
@@ -517,8 +517,8 @@ _021DAD7C: .word 0x0221A68C
 _021DAD80: .word 0x6C078965
 _021DAD84: .word 0x5D588B65
 _021DAD88: .word 0x00269EC3
-_021DAD8C: .word ov4_021D7780
-_021DAD90: .word ov4_021D77C4
+_021DAD8C: .word DWC_Alloc
+_021DAD90: .word DWC_Free
 _021DAD94: .word 0x00001C14
 	arm_func_end ov4_021DABCC
 
@@ -549,7 +549,7 @@ ov4_021DAD98: ; 0x021DAD98
 	ldr r1, [r1, #4]
 	mov r2, r0
 	ldr r1, [r1, #0x24]
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021DAF88 ; =0x0221A68C
 	mov r2, #0
 	ldr r1, [r0, #4]
@@ -607,7 +607,7 @@ _021DAE68:
 	ldr r1, [r1, #4]
 	mov r2, r0
 	ldr r1, [r1, #0x24]
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021DAF88 ; =0x0221A68C
 	mov r2, #0
 	ldr r1, [r0, #4]
@@ -640,10 +640,10 @@ _021DAF04:
 	add r1, r1, #0x51
 	add r1, r1, #0x200
 	bl strcpy
-	ldr r2, _021DAF98 ; =ov4_021D7780
+	ldr r2, _021DAF98 ; =DWC_Alloc
 	ldr r0, _021DAF88 ; =0x0221A68C
 	str r2, [sp, #0x40]
-	ldr r2, _021DAF9C ; =ov4_021D77C4
+	ldr r2, _021DAF9C ; =DWC_Free
 	ldr r1, [r0, #4]
 	str r2, [sp, #0x44]
 	ldr r1, [r1, #0x24]
@@ -656,8 +656,8 @@ _021DAF88: .word 0x0221A68C
 _021DAF8C: .word ov4_021DA9E0
 _021DAF90: .word 0x000082EA
 _021DAF94: .word 0x00002710
-_021DAF98: .word ov4_021D7780
-_021DAF9C: .word ov4_021D77C4
+_021DAF98: .word DWC_Alloc
+_021DAF9C: .word DWC_Free
 	arm_func_end ov4_021DAD98
 
 	arm_func_start ov4_021DAFA0

@@ -160,14 +160,14 @@ _021DC8F0:
 	cmp r1, #0
 	beq _021DC934
 	mov r0, #4
-	bl ov4_021D77C4
+	bl DWC_Free
 _021DC934:
 	mov r0, r6
 	ldr r8, _021DC998 ; =0x0221A6CC
 	bl strlen
 	add r1, r0, #1
 	mov r0, #4
-	bl ov4_021D7780
+	bl DWC_Alloc
 	str r0, [r8, r4]
 	cmp r0, #0
 	bne _021DC96C
@@ -233,7 +233,7 @@ _021DCA18:
 	bne _021DCA48
 	mov r0, #4
 	mov r1, #0x20
-	bl ov4_021D7780
+	bl DWC_Alloc
 	ldr r1, _021DCAF4 ; =0x0221A6A8
 	cmp r0, #0
 	str r0, [r1, #0]
@@ -515,7 +515,7 @@ ov4_021DCE10: ; 0x021DCE10
 	beq _021DCE50
 	mov r0, #4
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	mov r0, r4
 	mov r1, #0
 	str r1, [r0, #8]
@@ -534,7 +534,7 @@ _021DCE50:
 	sub r4, r1, r0
 	mov r1, r4
 	mov r0, #4
-	bl ov4_021D7780
+	bl DWC_Alloc
 	movs r1, r0
 	ldr r0, _021DCFE8 ; =0x0221A6A8
 	str r1, [r0, #8]
@@ -2649,7 +2649,7 @@ ov4_021DEC64: ; 0x021DEC64
 	beq _021DEC98
 	mov r0, #4
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021DECD8 ; =0x0221A6A8
 	mov r1, #0
 	str r1, [r0, #8]
@@ -2661,7 +2661,7 @@ _021DEC98:
 	beq _021DECC4
 	mov r0, #4
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021DECD8 ; =0x0221A6A8
 	mov r1, #0
 	str r1, [r0, #0]
@@ -3002,7 +3002,7 @@ _021DF184:
 	beq _021DF1B8
 	mov r0, #4
 	mov r2, #0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldr r0, _021DF1CC ; =0x0221A6A8
 	mov r1, #0
 	str r1, [r0, #8]
@@ -7420,7 +7420,7 @@ _021E2FC4:
 	beq _021E2FDC
 	mov r0, r5
 	mov r2, r4
-	bl ov4_021D77C4
+	bl DWC_Free
 _021E2FDC:
 	add r6, r6, #1
 	cmp r6, #0x9a

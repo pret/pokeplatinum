@@ -1,7 +1,7 @@
 .public abort
 .public printf
 .public atoi
-.public ov4_021D77C4
+.public DWC_Free
 .public ov4_021EA840
 .public ov66_02236A38
 .public ov66_02237908

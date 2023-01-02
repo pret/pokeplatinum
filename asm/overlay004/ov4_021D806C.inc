@@ -15,5 +15,5 @@
 .public ov4_021D6D88
 .public ov4_021D6FF0
 .public ov4_021D7724
-.public ov4_021D7780
-.public ov4_021D77C4
+.public DWC_Alloc
+.public DWC_Free

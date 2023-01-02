@@ -1554,7 +1554,7 @@ Overlay overlay59
 Overlay overlay60
 {
 	After overlay4
-	Object asm/overlay060/ov60_0221F800.o
+	Object src/overlay060/ov60_0221F800.o
 	Object asm/overlay060/ov60_0221F968.o
 	Object asm/overlay060/ov60_0221FE2C.o
 	Object asm/overlay060/ov60_022206D4.o

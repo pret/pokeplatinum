@@ -22,7 +22,7 @@
 .public ov4_021EAF38
 .public ov4_021EB018
 .public ov4_021EB034
-.public ov4_021EB0F0
+.public B64Encode
 .public ov4_021EBF70
 .public ov4_021EC3B0
 .public ov4_021ED5C4

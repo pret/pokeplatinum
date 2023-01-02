@@ -228,7 +228,7 @@ _0223524C:
 	mov r0, #0
 	mov r1, r5
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _022352F0:
 	ldr r0, _02235344 ; =0x0225B6C4
 	mov r1, #0
@@ -351,7 +351,7 @@ PPW_LobbyProcess: ; 0x02235428
 	mov r5, r0
 	ldr r1, [sp, #0x10]
 	mov r0, #0
-	bl ov4_021D7780
+	bl DWC_Alloc
 	movs r4, r0
 	beq _02235494
 	ldr r2, [sp, #0x10]
@@ -398,7 +398,7 @@ _02235514:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223552C:
 	mov r0, #1
 	b _02235690
@@ -587,7 +587,7 @@ _0223574C:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _022357DC:
 	ldr r0, _02235B3C ; =0x0225B6C4
 	mov r1, #0
@@ -851,7 +851,7 @@ ov66_02235B4C: ; 0x02235B4C
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _02235B84:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
@@ -6441,7 +6441,7 @@ ov66_0223A984: ; 0x0223A984
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223A9C0:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
@@ -6460,7 +6460,7 @@ ov66_0223A9CC: ; 0x0223A9CC
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223A9F4:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
@@ -6500,7 +6500,7 @@ _0223AA60:
 	beq _0223AA78
 	mov r0, r5
 	mov r2, r5
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223AA78:
 	add r7, r7, #4
 	cmp r7, sb
@@ -6596,7 +6596,7 @@ _0223AB84:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223ABAC:
 	ldr r0, [r5, #0]
 	sub r0, r0, #1
@@ -6688,7 +6688,7 @@ _0223AC94:
 	beq _0223ACF0
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223ACF0:
 	mov r0, r4
 	add sp, sp, #0x14
@@ -6718,7 +6718,7 @@ _0223AD30:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov66_0223AD00
 
@@ -7331,7 +7331,7 @@ ov66_0223B578: ; 0x0223B578
 	beq _0223B5C4
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223B5C4:
 	mov r0, r4
 	add sp, sp, #4
@@ -7356,7 +7356,7 @@ ov66_0223B5D0: ; 0x0223B5D0
 	cmp r1, #0
 	beq _0223B614
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223B614:
 	mov r0, r4
 	add sp, sp, #4
@@ -7381,7 +7381,7 @@ ov66_0223B620: ; 0x0223B620
 	cmp r1, #0
 	beq _0223B664
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223B664:
 	mov r0, r4
 	add sp, sp, #4
@@ -7406,7 +7406,7 @@ ov66_0223B670: ; 0x0223B670
 	cmp r1, #0
 	beq _0223B6B4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223B6B4:
 	mov r0, r4
 	add sp, sp, #4
@@ -7466,7 +7466,7 @@ ov66_0223B734: ; 0x0223B734
 	beq _0223B77C
 	beq _0223B770
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223B770:
 	mov r0, #0
 	str r0, [r5, #0]
@@ -7597,7 +7597,7 @@ ov66_0223B8E8: ; 0x0223B8E8
 	cmp r1, #0
 	beq _0223B92C
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223B92C:
 	mov r0, r4
 	add sp, sp, #4
@@ -7740,7 +7740,7 @@ ov66_0223BADC: ; 0x0223BADC
 	beq _0223BB08
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223BB08:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
@@ -7815,7 +7815,7 @@ _0223BBD8:
 	beq _0223BC08
 	mov r1, sl
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223BC08:
 	ldr r1, [sb]
 	and r0, r6, #1
@@ -8247,7 +8247,7 @@ _0223C190:
 	mov r0, #0
 	mov r1, r7
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	b _0223C1D8
 _0223C1C8:
 	ldr r0, [r6, #0]
@@ -8442,7 +8442,7 @@ ov66_0223C41C: ; 0x0223C41C
 	cmp r1, #0
 	beq _0223C460
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223C460:
 	mov r0, r4
 	add sp, sp, #4
@@ -8470,7 +8470,7 @@ _0223C49C:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov66_0223C46C
 
@@ -8807,7 +8807,7 @@ ov66_0223C900: ; 0x0223C900
 	cmp r1, #0
 	beq _0223C944
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223C944:
 	mov r0, r4
 	add sp, sp, #4
@@ -8854,7 +8854,7 @@ ov66_0223C988: ; 0x0223C988
 	beq _0223C9D4
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _0223C9D4:
 	mov r0, r4
 	add sp, sp, #4

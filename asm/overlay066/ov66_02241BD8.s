@@ -769,7 +769,7 @@ _02242620:
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _02242648:
 	ldr r0, [r5, #0]
 	sub r0, r0, #1
@@ -831,7 +831,7 @@ _02242694:
 	beq _02242728
 	mov r0, #0
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _02242728:
 	mov r0, r4
 	add sp, sp, #0x14
@@ -969,7 +969,7 @@ ov66_022428BC: ; 0x022428BC
 	cmp r1, #0
 	beq _02242900
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _02242900:
 	mov r0, r4
 	add sp, sp, #4
@@ -1193,7 +1193,7 @@ ov66_02242BB8: ; 0x02242BB8
 	cmp r1, #0
 	beq _02242BFC
 	mov r2, r0
-	bl ov4_021D77C4
+	bl DWC_Free
 _02242BFC:
 	mov r0, r4
 	add sp, sp, #4

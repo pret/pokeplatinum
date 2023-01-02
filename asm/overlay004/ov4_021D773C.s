@@ -41,14 +41,14 @@ DWC_SetMemFunc: ; 0x021D776C
 _021D777C: .word 0x0221A4D4
 	arm_func_end DWC_SetMemFunc
 
-	arm_func_start ov4_021D7780
-ov4_021D7780: ; 0x021D7780
+	arm_func_start DWC_Alloc
+DWC_Alloc: ; 0x021D7780
 	ldr ip, _021D778C ; =ov4_021D7790
 	mov r2, #0x20
 	bx ip
 	; .align 2, 0
 _021D778C: .word ov4_021D7790
-	arm_func_end ov4_021D7780
+	arm_func_end DWC_Alloc
 
 	arm_func_start ov4_021D7790
 ov4_021D7790: ; 0x021D7790
@@ -68,8 +68,8 @@ ov4_021D7790: ; 0x021D7790
 _021D77C0: .word 0x0221A4D4
 	arm_func_end ov4_021D7790
 
-	arm_func_start ov4_021D77C4
-ov4_021D77C4: ; 0x021D77C4
+	arm_func_start DWC_Free
+DWC_Free: ; 0x021D77C4
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	cmp r1, #0
@@ -86,7 +86,7 @@ ov4_021D77C4: ; 0x021D77C4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021D77FC: .word 0x0221A4D4
-	arm_func_end ov4_021D77C4
+	arm_func_end DWC_Free
 
 	arm_func_start ov4_021D7800
 ov4_021D7800: ; 0x021D7800
@@ -123,7 +123,7 @@ ov4_021D7814: ; 0x021D7814
 	mov r0, r8
 	mov r1, r7
 	mov r2, r6
-	bl ov4_021D77C4
+	bl DWC_Free
 _021D7878:
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -131,12 +131,12 @@ _021D7878:
 
 	arm_func_start ov4_021D7880
 ov4_021D7880: ; 0x021D7880
-	ldr ip, _021D7890 ; =ov4_021D7780
+	ldr ip, _021D7890 ; =DWC_Alloc
 	mov r1, r0
 	mov r0, #5
 	bx ip
 	; .align 2, 0
-_021D7890: .word ov4_021D7780
+_021D7890: .word DWC_Alloc
 	arm_func_end ov4_021D7880
 
 	arm_func_start ov4_021D7894
@@ -153,13 +153,13 @@ _021D78AC: .word ov4_021D7800
 
 	arm_func_start ov4_021D78B0
 ov4_021D78B0: ; 0x021D78B0
-	ldr ip, _021D78C4 ; =ov4_021D77C4
+	ldr ip, _021D78C4 ; =DWC_Free
 	mov r1, r0
 	mov r0, #5
 	mov r2, #0
 	bx ip
 	; .align 2, 0
-_021D78C4: .word ov4_021D77C4
+_021D78C4: .word DWC_Free
 	arm_func_end ov4_021D78B0
 
 	.bss
