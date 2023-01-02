@@ -1656,14 +1656,14 @@ Overlay overlay65
 Overlay overlay66
 {
 	After overlay63
-	Object asm/overlay066/ov66_0222DCE0.o
-	Object asm/overlay066/ov66_0222DDF0.o
-	Object asm/overlay066/ov66_02230C44.o
-	Object asm/overlay066/ov66_02231428.o
-	Object asm/overlay066/ov66_0223177C.o
-	Object asm/overlay066/ov66_022324F0.o
-	Object asm/overlay066/ov66_022343A8.o
-	Object asm/overlay066/ov66_02234EA8.o
+	Object src/overlay066/ov66_0222DCE0.o
+	Object src/overlay066/ov66_0222DDF0.o
+	Object src/overlay066/ov66_02230C44.o
+	Object src/overlay066/ov66_02231428.o
+	Object src/overlay066/ov66_0223177C.o
+	Object src/overlay066/ov66_022324F0.o
+	Object src/overlay066/ov66_022343A8.o
+	Object src/overlay066/ov66_02234EA8.o
 	Object asm/overlay066/ov66_02234FC4.o
 	Object asm/overlay066/ov66_0223CA1C.o
 	Object asm/overlay066/ov66_02241184.o

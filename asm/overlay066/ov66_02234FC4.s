@@ -15,8 +15,8 @@ ov66_02234FC4: ; 0x02234FC4
 _02234FD0: .word 0x0225B6C4
 	arm_func_end ov66_02234FC4
 
-	arm_func_start ov66_02234FD4
-ov66_02234FD4: ; 0x02234FD4
+	arm_func_start PPW_LobbyInitializeAsync
+PPW_LobbyInitializeAsync: ; 0x02234FD4
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x10
 	ldr r8, [sp, #0x28]
@@ -52,7 +52,7 @@ _0223501C:
 	bl ov66_02235058
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end ov66_02234FD4
+	arm_func_end PPW_LobbyInitializeAsync
 
 	arm_func_start ov66_02235058
 ov66_02235058: ; 0x02235058
@@ -289,8 +289,8 @@ ov66_02235374: ; 0x02235374
 _022353A0: .word 0x02258EA0
 	arm_func_end ov66_02235374
 
-	arm_func_start ov66_022353A4
-ov66_022353A4: ; 0x022353A4
+	arm_func_start PPW_LobbyShutdownAsync
+PPW_LobbyShutdownAsync: ; 0x022353A4
 	stmfd sp!, {r3, lr}
 	ldr r0, _02235424 ; =0x0225B6C4
 	ldr r1, [r0, #0]
@@ -327,10 +327,10 @@ _02235410:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02235424: .word 0x0225B6C4
-	arm_func_end ov66_022353A4
+	arm_func_end PPW_LobbyShutdownAsync
 
-	arm_func_start ov66_02235428
-ov66_02235428: ; 0x02235428
+	arm_func_start PPW_LobbyProcess
+PPW_LobbyProcess: ; 0x02235428
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x6c
 	ldr r0, _02235B34 ; =0x0225B6D4
@@ -552,7 +552,7 @@ _02235734: ; jump table
 	b _0223582C ; case 4
 	b _02235810 ; case 5
 _0223574C:
-	bl ov66_022353A4
+	bl PPW_LobbyShutdownAsync
 	ldr r0, _02235B3C ; =0x0225B6C4
 	ldr r4, [r0, #0]
 	cmp r4, #0
@@ -834,7 +834,7 @@ _02235B3C: .word 0x0225B6C4
 _02235B40: .word 0x02258EA0
 _02235B44: .word 0x02258FB0
 _02235B48: .word ov66_0223A250
-	arm_func_end ov66_02235428
+	arm_func_end PPW_LobbyProcess
 
 	arm_func_start ov66_02235B4C
 ov66_02235B4C: ; 0x02235B4C
@@ -866,8 +866,8 @@ ov66_02235B8C: ; 0x02235B8C
 	bx lr
 	arm_func_end ov66_02235B8C
 
-	arm_func_start ov66_02235BA0
-ov66_02235BA0: ; 0x02235BA0
+	arm_func_start PPW_LobbyJoinSubChannelAsync
+PPW_LobbyJoinSubChannelAsync: ; 0x02235BA0
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x54
 	ldr r1, _02235D9C ; =0x0225B6C4
@@ -1018,7 +1018,7 @@ _02235DB4: .word 0x02258C4C
 _02235DB8: .word 0x02258C0C
 _02235DBC: .word 0x02258C2C
 _02235DC0: .word ov66_022399A8
-	arm_func_end ov66_02235BA0
+	arm_func_end PPW_LobbyJoinSubChannelAsync
 
 	arm_func_start ov66_02235DC4
 ov66_02235DC4: ; 0x02235DC4
@@ -1029,8 +1029,8 @@ ov66_02235DC4: ; 0x02235DC4
 _02235DD0: .word ov66_0223B938
 	arm_func_end ov66_02235DC4
 
-	arm_func_start ov66_02235DD4
-ov66_02235DD4: ; 0x02235DD4
+	arm_func_start PPW_LobbyLeaveSubChannel
+PPW_LobbyLeaveSubChannel: ; 0x02235DD4
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x40
 	ldr r0, _02235FC4 ; =0x0225B6C4
@@ -1165,7 +1165,7 @@ _02235FB0:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02235FC4: .word 0x0225B6C4
-	arm_func_end ov66_02235DD4
+	arm_func_end PPW_LobbyLeaveSubChannel
 
 	arm_func_start ov66_02235FC8
 ov66_02235FC8: ; 0x02235FC8
@@ -1176,8 +1176,8 @@ ov66_02235FC8: ; 0x02235FC8
 _02235FD4: .word ov66_0223B938
 	arm_func_end ov66_02235FC8
 
-	arm_func_start ov66_02235FD8
-ov66_02235FD8: ; 0x02235FD8
+	arm_func_start PPW_LobbyGetTimeInfo
+PPW_LobbyGetTimeInfo: ; 0x02235FD8
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x1c
 	ldr r1, _02236080 ; =0x0225B6C4
@@ -1224,10 +1224,10 @@ _02236038:
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _02236080: .word 0x0225B6C4
-	arm_func_end ov66_02235FD8
+	arm_func_end PPW_LobbyGetTimeInfo
 
-	arm_func_start ov66_02236084
-ov66_02236084: ; 0x02236084
+	arm_func_start PPW_LobbyGetSchedule
+PPW_LobbyGetSchedule: ; 0x02236084
 	stmfd sp!, {r3, lr}
 	ldr r2, _022360F0 ; =0x0225B6C4
 	ldr r3, [r2, #0]
@@ -1259,10 +1259,10 @@ _022360D4:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022360F0: .word 0x0225B6C4
-	arm_func_end ov66_02236084
+	arm_func_end PPW_LobbyGetSchedule
 
-	arm_func_start ov66_022360F4
-ov66_022360F4: ; 0x022360F4
+	arm_func_start PPW_LobbyGetSubChannelState
+PPW_LobbyGetSubChannelState: ; 0x022360F4
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0xc
 	ldr r0, _022361B4 ; =0x0225B6C4
@@ -1315,10 +1315,10 @@ _02236150:
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _022361B4: .word 0x0225B6C4
-	arm_func_end ov66_022360F4
+	arm_func_end PPW_LobbyGetSubChannelState
 
-	arm_func_start ov66_022361B8
-ov66_022361B8: ; 0x022361B8
+	arm_func_start PPW_LobbySetChannelData
+PPW_LobbySetChannelData: ; 0x022361B8
 	stmfd sp!, {r3, lr}
 	ldr ip, _02236214 ; =0x0225B6C4
 	ldr lr, [ip]
@@ -1346,10 +1346,10 @@ _02236204:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02236214: .word 0x0225B6C4
-	arm_func_end ov66_022361B8
+	arm_func_end PPW_LobbySetChannelData
 
-	arm_func_start ov66_02236218
-ov66_02236218: ; 0x02236218
+	arm_func_start PPW_LobbyGetChannelDataAsync
+PPW_LobbyGetChannelDataAsync: ; 0x02236218
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x14
 	ldr r4, _0223633C ; =0x0225B6C4
@@ -1432,7 +1432,7 @@ _02236318:
 _0223633C: .word 0x0225B6C4
 _02236340: .word 0x02258FB4
 _02236344: .word ov66_0223A21C
-	arm_func_end ov66_02236218
+	arm_func_end PPW_LobbyGetChannelDataAsync
 
 	arm_func_start ov66_02236348
 ov66_02236348: ; 0x02236348
@@ -1457,8 +1457,8 @@ _02236374:
 	ldmia sp!, {r3, r4, pc}
 	arm_func_end ov66_02236348
 
-	arm_func_start ov66_02236390
-ov66_02236390: ; 0x02236390
+	arm_func_start PPW_LobbySendChannelBinaryMessage
+PPW_LobbySendChannelBinaryMessage: ; 0x02236390
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr ip, _02236410 ; =0x0225B6C4
@@ -1495,10 +1495,10 @@ _022363EC:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _02236410: .word 0x0225B6C4
-	arm_func_end ov66_02236390
+	arm_func_end PPW_LobbySendChannelBinaryMessage
 
-	arm_func_start ov66_02236414
-ov66_02236414: ; 0x02236414
+	arm_func_start PPW_LobbySendPlayerBinaryMessage
+PPW_LobbySendPlayerBinaryMessage: ; 0x02236414
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr ip, _02236490 ; =0x0225B6C4
@@ -1534,10 +1534,10 @@ _02236470:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _02236490: .word 0x0225B6C4
-	arm_func_end ov66_02236414
+	arm_func_end PPW_LobbySendPlayerBinaryMessage
 
-	arm_func_start ov66_02236494
-ov66_02236494: ; 0x02236494
+	arm_func_start PPW_LobbyGetMyUserId
+PPW_LobbyGetMyUserId: ; 0x02236494
 	ldr r0, _022364AC ; =0x0225B6C4
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -1546,7 +1546,7 @@ ov66_02236494: ; 0x02236494
 	bx lr
 	; .align 2, 0
 _022364AC: .word 0x0225B6C4
-	arm_func_end ov66_02236494
+	arm_func_end PPW_LobbyGetMyUserId
 
 	arm_func_start ov66_022364B0
 ov66_022364B0: ; 0x022364B0
@@ -1557,8 +1557,8 @@ ov66_022364B0: ; 0x022364B0
 	bx lr
 	arm_func_end ov66_022364B0
 
-	arm_func_start ov66_022364C4
-ov66_022364C4: ; 0x022364C4
+	arm_func_start PPW_LobbyUpdateMyProfile
+PPW_LobbyUpdateMyProfile: ; 0x022364C4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x3c
 	ldr r3, _02236670 ; =0x0225B6C4
@@ -1674,7 +1674,7 @@ _0223664C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _02236670: .word 0x0225B6C4
-	arm_func_end ov66_022364C4
+	arm_func_end PPW_LobbyUpdateMyProfile
 
 	arm_func_start ov66_02236674
 ov66_02236674: ; 0x02236674
@@ -1751,8 +1751,8 @@ _0223675C:
 	bx lr
 	arm_func_end ov66_022366CC
 
-	arm_func_start ov66_02236770
-ov66_02236770: ; 0x02236770
+	arm_func_start PPW_LobbyStartRecruit
+PPW_LobbyStartRecruit: ; 0x02236770
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x94
 	ldr r1, _022369EC ; =0x0225B6C4
@@ -1924,7 +1924,7 @@ _022369EC: .word 0x0225B6C4
 _022369F0: .word 0x10624DD3
 _022369F4: .word 0x02258E88
 _022369F8: .word ov66_02238728
-	arm_func_end ov66_02236770
+	arm_func_end PPW_LobbyStartRecruit
 
 	arm_func_start ov66_022369FC
 ov66_022369FC: ; 0x022369FC
@@ -1988,8 +1988,8 @@ ov66_02236AB0: ; 0x02236AB0
 	bx lr
 	arm_func_end ov66_02236AB0
 
-	arm_func_start ov66_02236AC4
-ov66_02236AC4: ; 0x02236AC4
+	arm_func_start PPW_LobbyUpdateRecruitInfo
+PPW_LobbyUpdateRecruitInfo: ; 0x02236AC4
 	stmfd sp!, {r4, lr}
 	ldr r1, _02236BB4 ; =0x0225B6C4
 	ldr r2, [r1, #0]
@@ -2057,10 +2057,10 @@ _02236BA4:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02236BB4: .word 0x0225B6C4
-	arm_func_end ov66_02236AC4
+	arm_func_end PPW_LobbyUpdateRecruitInfo
 
-	arm_func_start ov66_02236BB8
-ov66_02236BB8: ; 0x02236BB8
+	arm_func_start PPW_LobbyStopRecruit
+PPW_LobbyStopRecruit: ; 0x02236BB8
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x10
 	ldr r0, _02236C9C ; =0x0225B6C4
@@ -2122,7 +2122,7 @@ _02236C14:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02236C9C: .word 0x0225B6C4
-	arm_func_end ov66_02236BB8
+	arm_func_end PPW_LobbyStopRecruit
 
 	arm_func_start ov66_02236CA0
 ov66_02236CA0: ; 0x02236CA0
@@ -2193,8 +2193,8 @@ _02236D6C:
 	bx lr
 	arm_func_end ov66_02236D44
 
-	arm_func_start ov66_02236D74
-ov66_02236D74: ; 0x02236D74
+	arm_func_start PPW_LobbySubmitQuestionnaire
+PPW_LobbySubmitQuestionnaire: ; 0x02236D74
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x334
 	ldr r1, _022370E8 ; =0x0225B6C4
@@ -2433,10 +2433,10 @@ _022370EC: .word 0x02258E58
 _022370F0: .word 0x0225B6D4
 _022370F4: .word 0x02258EC0
 _022370F8: .word ov66_022393C0
-	arm_func_end ov66_02236D74
+	arm_func_end PPW_LobbySubmitQuestionnaire
 
-	arm_func_start ov66_022370FC
-ov66_022370FC: ; 0x022370FC
+	arm_func_start PPW_LobbyGetLastError
+PPW_LobbyGetLastError: ; 0x022370FC
 	ldr r0, _02237114 ; =0x0225B6C4
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -2445,10 +2445,10 @@ ov66_022370FC: ; 0x022370FC
 	bx lr
 	; .align 2, 0
 _02237114: .word 0x0225B6C4
-	arm_func_end ov66_022370FC
+	arm_func_end PPW_LobbyGetLastError
 
-	arm_func_start ov66_02237118
-ov66_02237118: ; 0x02237118
+	arm_func_start PPW_LobbyToErrorCode
+PPW_LobbyToErrorCode: ; 0x02237118
 	stmfd sp!, {r3, lr}
 	cmp r0, #4
 	addge r0, r0, #0x17c
@@ -2456,7 +2456,7 @@ ov66_02237118: ; 0x02237118
 	ldmgeia sp!, {r3, pc}
 	bl ov66_0224497C
 	ldmia sp!, {r3, pc}
-	arm_func_end ov66_02237118
+	arm_func_end PPW_LobbyToErrorCode
 
 	arm_func_start ov66_02237134
 ov66_02237134: ; 0x02237134
@@ -4226,7 +4226,7 @@ _022389F0:
 	ldr r0, [sp, #0x20]
 	ldr r1, [sp, #0x1c]
 	mov r2, #0
-	bl ov66_022364C4
+	bl PPW_LobbyUpdateMyProfile
 _02238A08:
 	ldr r0, _02238C68 ; =0x0225B6C4
 	ldr r1, [sp, #0x20]

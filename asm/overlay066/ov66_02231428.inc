@@ -1,9 +1,0 @@
-.public GF_AssertFail
-.public sub_020383E8
-.public sub_0203881C
-.public sub_020996F4
-.public NNSi_G3dModifyMatFlag
-.public NNS_G3dGetMdlSet
-.public RTC_ConvertSecondToDateTime
-.public _s32_div_f
-.public ov4_021D1F3C

@@ -23,12 +23,12 @@
 .public ov4_021DB414
 .public ov4_021EA840
 .public ov66_02235058
-.public ov66_022353A4
+.public PPW_LobbyShutdownAsync
 .public ov66_02235B8C
 .public ov66_02235DC4
 .public ov66_02235FC8
 .public ov66_02236348
-.public ov66_022364C4
+.public PPW_LobbyUpdateMyProfile
 .public ov66_02236674
 .public ov66_022366CC
 .public ov66_022369FC
