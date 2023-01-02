@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C3D3C.inc"
 
+	.extern Unk_021CCFD0
 	
 
 	.text
@@ -26,7 +27,7 @@ OS_InitVAlarm: ; 0x020C3D3C
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C3D80: .word 0x021CCFD0
+_020C3D80: .word Unk_021CCFD0
 	arm_func_end OS_InitVAlarm
 
 	.bss

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C3E30.inc"
 
+	.extern Unk_021CCFE4
 	
 
 	.text
@@ -29,7 +30,7 @@ _020C3E58:
 	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C3E7C: .word 0x021CCFE4
+_020C3E7C: .word Unk_021CCFE4
 _020C3E80: .word OSi_CommonCallback
 	arm_func_end OS_InitReset
 
@@ -49,7 +50,7 @@ _020C3EAC:
 	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C3EB4: .word 0x021CCFE4
+_020C3EB4: .word Unk_021CCFE4
 	arm_func_end OSi_CommonCallback
 
 	arm_func_start OSi_SendToPxi

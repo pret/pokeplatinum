@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C4808.inc"
 
+	.extern Unk_021CD000
 	
 
 	.text
@@ -71,7 +72,7 @@ _020C4840:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C48F4: .word 0x021CD000
+_020C48F4: .word Unk_021CD000
 _020C48F8: .word 0x04000600
 _020C48FC: .word MIi_FIFOCallback
 	arm_func_end MI_SendGXCommandAsync
@@ -119,7 +120,7 @@ _020C4978:
 	bl OS_ResetRequestIrqMask
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C499C: .word 0x021CD000
+_020C499C: .word Unk_021CD000
 _020C49A0: .word MIi_DMACallback
 _020C49A4: .word 0x04000400
 _020C49A8: .word 0x84400000
@@ -151,7 +152,7 @@ MIi_DMACallback: ; 0x020C49AC
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C4A04: .word 0x04000600
-_020C4A08: .word 0x021CD000
+_020C4A08: .word Unk_021CD000
 	arm_func_end MIi_DMACallback
 
 	arm_func_start MI_SendGXCommandAsyncFast
@@ -202,7 +203,7 @@ _020C4A38:
 	bl MIi_DmaSetParams
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C4AB8: .word 0x021CD000
+_020C4AB8: .word Unk_021CD000
 _020C4ABC: .word MIi_DMAFastCallback
 _020C4AC0: .word 0x04000400
 	arm_func_end MI_SendGXCommandAsyncFast
@@ -220,7 +221,7 @@ MIi_DMAFastCallback: ; 0x020C4AC4
 	blx r1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C4AEC: .word 0x021CD000
+_020C4AEC: .word Unk_021CD000
 	arm_func_end MIi_DMAFastCallback
 
 	.bss

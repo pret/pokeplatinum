@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C5580.inc"
 
+	.extern Unk_021CD020
+	.extern Unk_021CD024
 	
 
 	.text
@@ -21,8 +23,8 @@ SND_Init: ; 0x020C5580
 	bl SND_AlarmInit
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C55B0: .word 0x021CD020
-_020C55B4: .word 0x021CD024
+_020C55B0: .word Unk_021CD020
+_020C55B4: .word Unk_021CD024
 	arm_func_end SND_Init
 
 	arm_func_start SNDi_LockMutex
@@ -32,7 +34,7 @@ SNDi_LockMutex: ; 0x020C55B8
 	bx ip
 	; .align 2, 0
 _020C55C4: .word OS_LockMutex
-_020C55C8: .word 0x021CD024
+_020C55C8: .word Unk_021CD024
 	arm_func_end SNDi_LockMutex
 
 	arm_func_start SNDi_UnlockMutex
@@ -42,7 +44,7 @@ SNDi_UnlockMutex: ; 0x020C55CC
 	bx ip
 	; .align 2, 0
 _020C55D8: .word OS_UnlockMutex
-_020C55DC: .word 0x021CD024
+_020C55DC: .word Unk_021CD024
 	arm_func_end SNDi_UnlockMutex
 
 	.bss

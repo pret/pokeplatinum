@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C4054.inc"
 
+	.extern Unk_021CCFE8
+	.extern Unk_021CCFEC
 	
 
 	.text
@@ -27,8 +29,8 @@ _020C4070:
 	blt _020C4070
 	bx lr
 	; .align 2, 0
-_020C4088: .word 0x021CCFE8
-_020C408C: .word 0x021CCFEC
+_020C4088: .word Unk_021CCFE8
+_020C408C: .word Unk_021CCFEC
 	arm_func_end OSi_InitVramExclusive
 
 	arm_func_start OSi_TryLockVram
@@ -83,8 +85,8 @@ _020C4134:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020C4144: .word 0x021CCFE8
-_020C4148: .word 0x021CCFEC
+_020C4144: .word Unk_021CCFE8
+_020C4148: .word Unk_021CCFEC
 _020C414C: .word 0x000001FF
 	arm_func_end OSi_TryLockVram
 
@@ -124,9 +126,9 @@ _020C41C0:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020C41CC: .word 0x021CCFE8
+_020C41CC: .word Unk_021CCFE8
 _020C41D0: .word 0x000001FF
-_020C41D4: .word 0x021CCFEC
+_020C41D4: .word Unk_021CCFEC
 	arm_func_end OSi_UnlockVram
 
 	.bss

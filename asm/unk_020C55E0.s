@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C55E0.inc"
 
+	.extern Unk_021CD040
 	
 
 	.text
@@ -59,7 +60,7 @@ _020C5618:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C569C: .word 0x021CD320
-_020C56A0: .word 0x021CD040
+_020C56A0: .word Unk_021CD040
 _020C56A4: .word 0x021CE040
 _020C56A8: .word 0x021CEB08
 _020C56AC: .word 0x021CD0A0
@@ -140,7 +141,7 @@ _020C5778:
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C57BC: .word 0x021CD040
+_020C57BC: .word Unk_021CD040
 _020C57C0: .word 0x021CD064
 	arm_func_end SND_RecvCommandReply
 
@@ -202,7 +203,7 @@ SND_PushCommand: ; 0x020C584C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5880: .word 0x021CD040
+_020C5880: .word Unk_021CD040
 	arm_func_end SND_PushCommand
 
 	arm_func_start SND_FlushCommand
@@ -325,7 +326,7 @@ _020C5A2C:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020C5A34: .word 0x021CD040
+_020C5A34: .word Unk_021CD040
 _020C5A38: .word 0x021CD320
 _020C5A3C: .word 0x021CD064
 	arm_func_end SND_FlushCommand
@@ -376,7 +377,7 @@ SND_GetCurrentCommandTag: ; 0x020C5AAC
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5AD4: .word 0x021CD040
+_020C5AD4: .word Unk_021CD040
 	arm_func_end SND_GetCurrentCommandTag
 
 	arm_func_start SND_IsFinishedCommandTag
@@ -403,7 +404,7 @@ _020C5B18:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5B24: .word 0x021CD040
+_020C5B24: .word Unk_021CD040
 	arm_func_end SND_IsFinishedCommandTag
 
 	arm_func_start SND_CountFreeCommand
@@ -425,7 +426,7 @@ _020C5B54:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5B60: .word 0x021CD040
+_020C5B60: .word Unk_021CD040
 	arm_func_end SND_CountFreeCommand
 
 	arm_func_start SND_CountReservedCommand
@@ -447,7 +448,7 @@ _020C5B90:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5B9C: .word 0x021CD040
+_020C5B9C: .word Unk_021CD040
 	arm_func_end SND_CountReservedCommand
 
 	arm_func_start SND_CountWaitingCommand
@@ -540,7 +541,7 @@ _020C5C8C:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C5CAC: .word 0x021CD040
+_020C5CAC: .word Unk_021CD040
 	arm_func_end AllocCommand
 
 	arm_func_start IsCommandAvailable

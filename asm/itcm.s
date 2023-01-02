@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/itcm.inc"
 
+	.extern Unk_021CCFE4
 	.section .itcm,4,1,4
 
 	arm_func_start OS_IrqHandler
@@ -169,7 +170,7 @@ _01FF81EC:
 	bl OSi_DoBoot
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_01FF8210: .word 0x021CCFE4
+_01FF8210: .word Unk_021CCFE4
 _01FF8214: .word 0x04000208
 	arm_func_end OSi_DoResetSystem
 
