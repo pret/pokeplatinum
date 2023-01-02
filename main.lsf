@@ -1768,11 +1768,11 @@ Overlay overlay76
 Overlay overlay77
 {
 	After main
-	Object asm/overlay077/ov77_021D0D80.o
-	Object asm/overlay077/ov77_021D25B0.o
+	Object src/overlay077/ov77_021D0D80.o
+	Object src/overlay077/ov77_021D25B0.o
 	Object asm/overlay077/ov77_021D54B0.o
-	Object asm/overlay077/ov77_021D6670.o
-	Object asm/overlay077/ov77_021D6C70.o
+	Object src/overlay077/ov77_021D6670.o
+	Object src/overlay077/ov77_021D6C70.o
 }
 
 Overlay overlay78
