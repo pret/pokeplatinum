@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D4A64.inc"
 
+	.extern Unk_021CCC80
 	
 
 	.text
@@ -120,7 +121,7 @@ _020D4BE0: .word 0x02101490
 _020D4BE4: .word 0x021014DC
 _020D4BE8: .word 0x02101528
 _020D4BEC: .word 0x021D0968
-_020D4BF0: .word 0x021CCC80
+_020D4BF0: .word Unk_021CCC80
 _020D4BF4: .word 0x021D0920
 _020D4BF8: .word 0x021D0944
 	arm_func_end ftell
@@ -341,7 +342,7 @@ _020D4EF4: .word 0x02101490
 _020D4EF8: .word 0x021014DC
 _020D4EFC: .word 0x02101528
 _020D4F00: .word 0x021D0968
-_020D4F04: .word 0x021CCC80
+_020D4F04: .word Unk_021CCC80
 _020D4F08: .word 0x021D0920
 _020D4F0C: .word 0x021D0944
 	arm_func_end fseek

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/itcm.inc"
 
+	.extern Unk_021CCC80
 	.extern Unk_021CCFE4
 	.section .itcm,4,1,4
 
@@ -150,7 +151,7 @@ _01FF8150:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _01FF81D4: .word 0x027E0060
-_01FF81D8: .word 0x021CCC80
+_01FF81D8: .word Unk_021CCC80
 _01FF81DC: .word 0x020C99FC
 _01FF81E0: .word 0x020C9A3C
 	arm_func_end OS_IrqHandler_ThreadSwitch

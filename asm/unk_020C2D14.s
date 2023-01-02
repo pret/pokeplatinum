@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C2D14.inc"
 
+	.extern Unk_021CCED8
 	
 
 	.text
@@ -73,7 +74,7 @@ OS_InitArena: ; 0x020C2D14
 	bl OS_SetArenaLo
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C2E14: .word 0x021CCED8
+_020C2E14: .word Unk_021CCED8
 	arm_func_end OS_InitArena
 
 	arm_func_start OS_InitArenaEx
@@ -104,7 +105,7 @@ _020C2E64:
 	bl OS_SetProtectionRegion2
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C2E78: .word 0x021CCED8
+_020C2E78: .word Unk_021CCED8
 _020C2E7C: .word 0x0200002B
 _020C2E80: .word 0x023E0021
 	arm_func_end OS_InitArenaEx
@@ -191,7 +192,7 @@ _020C2F68:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C2F70: .word 0x023E0000
-_020C2F74: .word 0x021CCED8
+_020C2F74: .word Unk_021CCED8
 _020C2F78: .word 0x027E0000
 _020C2F7C: .word 0x00000000
 _020C2F80: .word 0x00000800
@@ -249,7 +250,7 @@ _020C3014:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020C301C: .word 0x02270BC0
-_020C3020: .word 0x021CCED8
+_020C3020: .word Unk_021CCED8
 _020C3024: .word 0x023E0000
 _020C3028: .word 0x01FF8680
 _020C302C: .word 0x027E0080

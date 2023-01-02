@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CD080.inc"
 
+	.extern Unk_021CCC80
 	
 
 	.text
@@ -492,7 +493,7 @@ _020CD6E4: .word 0x021CF460
 _020CD6E8: .word 0x021CEE20
 _020CD6EC: .word 0x021CF440
 _020CD6F0: .word CARDi_ReadRomSyncCore
-_020CD6F4: .word 0x021CCC80
+_020CD6F4: .word Unk_021CCC80
 	arm_func_end CARDi_ReadRom
 
 	arm_func_start CARD_Init

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CCC20.inc"
 
+	.extern Unk_021CCC80
 	
 
 	.text
@@ -211,7 +212,7 @@ _020CCEB8:
 _020CCEE8: .word 0x021CEE20
 _020CCEEC: .word 0x02000BFC
 _020CCEF0: .word CARDi_RequestStreamCommandCore
-_020CCEF4: .word 0x021CCC80
+_020CCEF4: .word Unk_021CCC80
 	arm_func_end CARDi_RequestStreamCommand
 
 	arm_func_start CARD_GetBackupSectorSize
@@ -309,7 +310,7 @@ _020CD020:
 	; .align 2, 0
 _020CD038: .word 0x02000BFC
 _020CD03C: .word 0x021CEE20
-_020CD040: .word 0x021CCC80
+_020CD040: .word Unk_021CCC80
 	arm_func_end CARD_IdentifyBackup
 
 	arm_func_start CARD_WaitBackupAsync

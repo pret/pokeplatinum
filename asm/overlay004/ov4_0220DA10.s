@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_0220DA10.inc"
 
+	.extern Unk_021CCC80
 	
 
 	.text
@@ -259,7 +260,7 @@ ov4_0220DCF0: ; 0x0220DCF0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0220DD34: .word 0x0221A1BC
-_0220DD38: .word 0x021CCC80
+_0220DD38: .word Unk_021CCC80
 	arm_func_end ov4_0220DCF0
 
 	arm_func_start ov4_0220DD3C
@@ -273,7 +274,7 @@ ov4_0220DD3C: ; 0x0220DD3C
 	bl OS_SetThreadPriority
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0220DD5C: .word 0x021CCC80
+_0220DD5C: .word Unk_021CCC80
 	arm_func_end ov4_0220DD3C
 
 	arm_func_start ov4_0220DD60
@@ -288,7 +289,7 @@ ov4_0220DD60: ; 0x0220DD60
 	strne r1, [r2, #0x818]
 	bx lr
 	; .align 2, 0
-_0220DD84: .word 0x021CCC80
+_0220DD84: .word Unk_021CCC80
 	arm_func_end ov4_0220DD60
 
 	arm_func_start ov4_0220DD88
@@ -3789,7 +3790,7 @@ ov4_02210DC0: ; 0x02210DC0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02210DE8: .word 0x02000C70
-_02210DEC: .word 0x021CCC80
+_02210DEC: .word Unk_021CCC80
 	arm_func_end ov4_02210DC0
 
 	arm_func_start ov4_02210DF0
@@ -3854,7 +3855,7 @@ _02210EB4:
 	; .align 2, 0
 _02210EC4: .word 0x0221F628
 _02210EC8: .word 0x000003BD
-_02210ECC: .word 0x021CCC80
+_02210ECC: .word Unk_021CCC80
 	arm_func_end ov4_02210DF0
 
 	arm_func_start ov4_02210ED0

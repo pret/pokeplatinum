@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C1B24.inc"
 
+	.extern Unk_021CCC80
+	.extern Unk_021CCC90
+	.extern Unk_021CCD50
+	.extern Unk_021CCED8
 	
 
 	.text
@@ -232,7 +236,7 @@ _020C1DC0:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C1DD4: .word 0x021CCC5C
-_020C1DD8: .word 0x021CCC80
+_020C1DD8: .word Unk_021CCC80
 	arm_func_end OSi_RescheduleThread
 
 	arm_func_start OS_InitThread
@@ -310,17 +314,17 @@ _020C1E50:
 _020C1EEC: .word 0x021CCC5C
 _020C1EF0: .word 0x021CCC84
 _020C1EF4: .word 0x00000000
-_020C1EF8: .word 0x021CCD50
+_020C1EF8: .word Unk_021CCD50
 _020C1EFC: .word 0x027E0080
 _020C1F00: .word 0x027E0000
 _020C1F04: .word 0x00000800
 _020C1F08: .word 0xFDDB597D
 _020C1F0C: .word 0x7BF9DD5B
-_020C1F10: .word 0x021CCC80
+_020C1F10: .word Unk_021CCC80
 _020C1F14: .word 0x027FFFA0
-_020C1F18: .word 0x021CCC90
+_020C1F18: .word Unk_021CCC90
 _020C1F1C: .word OSi_IdleThreadProc
-_020C1F20: .word 0x021CCED8
+_020C1F20: .word Unk_021CCED8
 	arm_func_end OS_InitThread
 
 	arm_func_start OS_IsThreadAvailable
@@ -771,7 +775,7 @@ _020C2484:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020C2494: .word 0x021CCC5C
-_020C2498: .word 0x021CCC90
+_020C2498: .word Unk_021CCC90
 	arm_func_end OS_SetThreadPriority
 
 	arm_func_start OS_GetThreadPriority

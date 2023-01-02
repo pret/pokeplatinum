@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_021D6CA4.inc"
 
+	.extern Unk_021CCC80
 	
 
 	.text
@@ -238,7 +239,7 @@ _021D6FDC: .word 0xFFFFA1DC
 _021D6FE0: .word 0x022165D0
 _021D6FE4: .word 0x022165D8
 _021D6FE8: .word 0x022165E0
-_021D6FEC: .word 0x021CCC80
+_021D6FEC: .word Unk_021CCC80
 	arm_func_end ov4_021D6D88
 
 	arm_func_start ov4_021D6FF0

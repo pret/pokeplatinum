@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C3128.inc"
 
+	.extern Unk_021CCEE0
 	
 
 	.text
@@ -155,7 +156,7 @@ _020C32F8:
 	add r0, r5, #0x20
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C3318: .word 0x021CCEE0
+_020C3318: .word Unk_021CCEE0
 	arm_func_end OS_AllocFromHeap
 
 	arm_func_start OS_FreeToHeap
@@ -186,7 +187,7 @@ OS_FreeToHeap: ; 0x020C331C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C3380: .word 0x021CCEE0
+_020C3380: .word Unk_021CCEE0
 	arm_func_end OS_FreeToHeap
 
 	arm_func_start OS_SetCurrentHeap
@@ -203,7 +204,7 @@ OS_SetCurrentHeap: ; 0x020C3384
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C33B0: .word 0x021CCEE0
+_020C33B0: .word Unk_021CCEE0
 	arm_func_end OS_SetCurrentHeap
 
 	arm_func_start OS_InitAlloc
@@ -252,7 +253,7 @@ _020C3428:
 	ldr r0, [r5, #8]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C3458: .word 0x021CCEE0
+_020C3458: .word Unk_021CCEE0
 	arm_func_end OS_InitAlloc
 
 	arm_func_start OS_ClearAlloc
@@ -262,7 +263,7 @@ OS_ClearAlloc: ; 0x020C345C
 	str r2, [r1, r0, lsl #2]
 	bx lr
 	; .align 2, 0
-_020C346C: .word 0x021CCEE0
+_020C346C: .word Unk_021CCEE0
 	arm_func_end OS_ClearAlloc
 
 	arm_func_start OS_CreateHeap
@@ -308,7 +309,7 @@ _020C34F8:
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C3504: .word 0x021CCEE0
+_020C3504: .word Unk_021CCEE0
 	arm_func_end OS_CreateHeap
 
 	.bss

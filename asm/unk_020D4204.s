@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D4204.inc"
 
+	.extern Unk_021CCC80
 	
 
 	.text
@@ -77,7 +78,7 @@ _020D42F4:
 	; .align 2, 0
 _020D42FC: .word 0x02101490
 _020D4300: .word 0x021D0968
-_020D4304: .word 0x021CCC80
+_020D4304: .word Unk_021CCC80
 _020D4308: .word 0x021D0920
 _020D430C: .word 0x021D0944
 	arm_func_end fread
