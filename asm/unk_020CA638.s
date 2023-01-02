@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CA638.inc"
 
+	.extern Unk_021CECCC
+	.extern Unk_021CECD0
 	
 
 	.text
@@ -35,7 +37,7 @@ _020CA66C:
 	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CA69C: .word 0x021CECCC
+_020CA69C: .word Unk_021CECCC
 _020CA6A0: .word 0x027FFF90
 _020CA6A4: .word MicCommonCallback
 	arm_func_end MIC_Init
@@ -96,7 +98,7 @@ _020CA728:
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CA75C: .word 0x021CECCC
+_020CA75C: .word Unk_021CECCC
 	arm_func_end MIC_DoSamplingAsync
 
 	arm_func_start MIC_StartAutoSamplingAsync
@@ -186,7 +188,7 @@ _020CA844:
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CA888: .word 0x021CECCC
+_020CA888: .word Unk_021CECCC
 	arm_func_end MIC_StartAutoSamplingAsync
 
 	arm_func_start MIC_StartAutoSampling
@@ -206,7 +208,7 @@ _020CA8B0:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CA8BC: .word MicGetResultCallback
-_020CA8C0: .word 0x021CECCC
+_020CA8C0: .word Unk_021CECCC
 	arm_func_end MIC_StartAutoSampling
 
 	arm_func_start MIC_StopAutoSamplingAsync
@@ -235,7 +237,7 @@ _020CA8F0:
 	moveq r0, #3
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CA91C: .word 0x021CECCC
+_020CA91C: .word Unk_021CECCC
 	arm_func_end MIC_StopAutoSamplingAsync
 
 	arm_func_start MIC_StopAutoSampling
@@ -255,7 +257,7 @@ _020CA944:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020CA950: .word MicGetResultCallback
-_020CA954: .word 0x021CECCC
+_020CA954: .word Unk_021CECCC
 	arm_func_end MIC_StopAutoSampling
 
 	arm_func_start MIC_GetLastSamplingAddress
@@ -353,7 +355,7 @@ _020CAA50:
 	blx r3
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020CAA88: .word 0x021CECCC
+_020CAA88: .word Unk_021CECCC
 _020CAA8C: .word 0x027FFF94
 	arm_func_end MicCommonCallback
 
@@ -462,7 +464,7 @@ MicGetResultCallback: ; 0x020CABE4
 	str r0, [r1, #0x10]
 	bx lr
 	; .align 2, 0
-_020CABF0: .word 0x021CECCC
+_020CABF0: .word Unk_021CECCC
 	arm_func_end MicGetResultCallback
 
 	arm_func_start MicWaitBusy
@@ -474,7 +476,7 @@ _020CABF8:
 	beq _020CABF8
 	bx lr
 	; .align 2, 0
-_020CAC08: .word 0x021CECD0
+_020CAC08: .word Unk_021CECD0
 	arm_func_end MicWaitBusy
 
 	.bss

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C82A8.inc"
 
+	.extern Unk_021CEC34
 	
 
 	.text
@@ -173,7 +174,7 @@ _020C8450:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020C84B8: .word 0x021CEC1C
-_020C84BC: .word 0x021CEC34
+_020C84BC: .word Unk_021CEC34
 _020C84C0: .word 0x02101164
 _020C84C4: .word 0x027FFC40
 _020C84C8: .word FSi_EmptyArchiveProc
@@ -207,7 +208,7 @@ _020C8518:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C8528: .word 0x021CEC1C
-_020C852C: .word 0x021CEC34
+_020C852C: .word Unk_021CEC34
 	arm_func_end FS_SetDefaultDMA
 
 	arm_func_start FS_TryLoadTable
@@ -220,7 +221,7 @@ FS_TryLoadTable: ; 0x020C8530
 	bx ip
 	; .align 2, 0
 _020C8548: .word FS_LoadArchiveTables
-_020C854C: .word 0x021CEC34
+_020C854C: .word Unk_021CEC34
 	arm_func_end FS_TryLoadTable
 
 	.data

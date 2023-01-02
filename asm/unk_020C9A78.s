@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C9A78.inc"
 
+	.extern Unk_021CEC90
 	
 
 	.text
@@ -179,7 +180,7 @@ _020C9CE4:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C9CF0: .word 0x021CEC90
+_020C9CF0: .word Unk_021CEC90
 _020C9CF4: .word 0x027FFFAA
 	arm_func_end TPi_TpCallback
 
@@ -215,7 +216,7 @@ _020C9D44:
 	bl PXI_SetFifoRecvCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C9D68: .word 0x021CEC90
+_020C9D68: .word Unk_021CEC90
 _020C9D6C: .word TPi_TpCallback
 	arm_func_end TP_Init
 
@@ -344,7 +345,7 @@ _020C9F0C:
 	strh r1, [r0, #0x34]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C9F20: .word 0x021CEC90
+_020C9F20: .word Unk_021CEC90
 _020C9F24: .word 0x04000280
 _020C9F28: .word 0x040002A0
 	arm_func_end TP_SetCalibrateParam
@@ -389,7 +390,7 @@ _020C9F94:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C9FBC: .word 0x021CEC90
+_020C9FBC: .word Unk_021CEC90
 	arm_func_end TP_RequestSamplingAsync
 
 	arm_func_start TP_WaitRawResult
@@ -414,7 +415,7 @@ TP_WaitRawResult: ; 0x020C9FC0
 	strh r1, [r4, #6]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020CA00C: .word 0x021CEC90
+_020CA00C: .word Unk_021CEC90
 	arm_func_end TP_WaitRawResult
 
 	arm_func_start TP_RequestAutoSamplingStartAsync
@@ -487,7 +488,7 @@ _020CA0E4:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CA10C: .word 0x021CEC90
+_020CA10C: .word Unk_021CEC90
 	arm_func_end TP_RequestAutoSamplingStartAsync
 
 	arm_func_start TP_RequestAutoSamplingStopAsync
@@ -531,7 +532,7 @@ _020CA178:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020CA1A0: .word 0x03000200
-_020CA1A4: .word 0x021CEC90
+_020CA1A4: .word Unk_021CEC90
 	arm_func_end TP_RequestAutoSamplingStopAsync
 
 	arm_func_start TP_GetLatestRawPointInAuto
@@ -623,7 +624,7 @@ _020CA2C4:
 	strh r1, [r0, #4]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020CA2E8: .word 0x021CEC90
+_020CA2E8: .word Unk_021CEC90
 	arm_func_end TP_GetLatestRawPointInAuto
 
 	arm_func_start TP_GetLatestIndexInAuto
@@ -632,7 +633,7 @@ TP_GetLatestIndexInAuto: ; 0x020CA2EC
 	ldrh r0, [r0, #0x10]
 	bx lr
 	; .align 2, 0
-_020CA2F8: .word 0x021CEC90
+_020CA2F8: .word Unk_021CEC90
 	arm_func_end TP_GetLatestIndexInAuto
 
 	arm_func_start TP_CalcCalibrateParam
@@ -850,7 +851,7 @@ _020CA5A8:
 	strgth r1, [r0, #2]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CA604: .word 0x021CEC90
+_020CA604: .word Unk_021CEC90
 _020CA608: .word 0x021CECAC
 	arm_func_end TP_GetCalibratedPoint
 
@@ -863,7 +864,7 @@ _020CA610:
 	bne _020CA610
 	bx lr
 	; .align 2, 0
-_020CA620: .word 0x021CEC90
+_020CA620: .word Unk_021CEC90
 	arm_func_end TP_WaitBusy
 
 	arm_func_start TP_CheckError
@@ -873,7 +874,7 @@ TP_CheckError: ; 0x020CA624
 	and r0, r1, r0
 	bx lr
 	; .align 2, 0
-_020CA634: .word 0x021CEC90
+_020CA634: .word Unk_021CEC90
 	arm_func_end TP_CheckError
 
 	.bss

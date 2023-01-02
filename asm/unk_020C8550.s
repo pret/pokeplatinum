@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C8550.inc"
 
+	.extern Unk_021CEC24
+	.extern Unk_021CEC2C
+	.extern Unk_021CEC34
 	
 
 	.text
@@ -48,7 +51,7 @@ FS_GetOverlayFileID: ; 0x020C85A8
 	add sp, sp, #8
 	bx lr
 	; .align 2, 0
-_020C85CC: .word 0x021CEC34
+_020C85CC: .word Unk_021CEC34
 	arm_func_end FS_GetOverlayFileID
 
 	arm_func_start FSi_LoadOverlayInfoCore
@@ -181,10 +184,10 @@ _020C8778:
 	add sp, sp, #0x60
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C87B4: .word 0x021CEC24
-_020C87B8: .word 0x021CEC2C
+_020C87B4: .word Unk_021CEC24
+_020C87B8: .word Unk_021CEC2C
 _020C87BC: .word 0x027FFE50
-_020C87C0: .word 0x021CEC34
+_020C87C0: .word Unk_021CEC34
 	arm_func_end FS_LoadOverlayInfo
 
 	arm_func_start FS_LoadOverlayImageAsync

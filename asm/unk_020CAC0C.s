@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CAC0C.inc"
 
+	.extern Unk_021CECEC
 	.extern Unk_021CECF8
 	.extern Unk_021CED04
 	.extern Unk_021CED08
@@ -29,7 +30,7 @@ _020CAC30:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CAC44: .word 0x021CECEC
+_020CAC44: .word Unk_021CECEC
 	arm_func_end PMi_Lock
 
 	arm_func_start PMi_WaitBusy
@@ -51,7 +52,7 @@ _020CAC70:
 	bne _020CAC60
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020CAC80: .word 0x021CECEC
+_020CAC80: .word Unk_021CECEC
 _020CAC84: .word Unk_021CED08
 	arm_func_end PMi_WaitBusy
 
@@ -79,7 +80,7 @@ PMi_CallCallbackAndUnlock: ; 0x020CAC90
 	blx ip
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CACCC: .word 0x021CECEC
+_020CACCC: .word Unk_021CECEC
 	arm_func_end PMi_CallCallbackAndUnlock
 
 	arm_func_start PM_Init
@@ -123,7 +124,7 @@ _020CAD30:
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CAD60: .word 0x021CECEC
+_020CAD60: .word Unk_021CECEC
 _020CAD64: .word PMi_CommonCallback
 _020CAD68: .word Unk_021CED30
 _020CAD6C: .word Unk_021CED18
@@ -187,7 +188,7 @@ _020CAE28:
 	; .align 2, 0
 _020CAE30: .word 0x021CED34
 _020CAE34: .word Unk_021CED30
-_020CAE38: .word 0x021CECEC
+_020CAE38: .word Unk_021CECEC
 	arm_func_end PMi_CommonCallback
 
 	arm_func_start PMi_SendSleepStart
@@ -228,7 +229,7 @@ _020CAE70:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CAEC4: .word 0x021CECEC
+_020CAEC4: .word Unk_021CECEC
 _020CAEC8: .word 0x03006000
 _020CAECC: .word 0x01010000
 	arm_func_end PMi_SendSleepStart
@@ -258,7 +259,7 @@ PM_SendUtilityCommandAsync: ; 0x020CAED0
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CAF28: .word 0x021CECEC
+_020CAF28: .word Unk_021CECEC
 _020CAF2C: .word 0x01010000
 	arm_func_end PM_SendUtilityCommandAsync
 
@@ -289,7 +290,7 @@ PMi_ReadRegisterAsync: ; 0x020CAF30
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CAF90: .word 0x021CECEC
+_020CAF90: .word Unk_021CECEC
 _020CAF94: .word Unk_021CED30
 _020CAF98: .word 0x021CED34
 	arm_func_end PMi_ReadRegisterAsync
@@ -334,7 +335,7 @@ PMi_WriteRegisterAsync: ; 0x020CAFC4
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CB01C: .word 0x021CECEC
+_020CB01C: .word Unk_021CECEC
 _020CB020: .word 0x01010000
 	arm_func_end PMi_WriteRegisterAsync
 
@@ -527,7 +528,7 @@ PM_SetAmp: ; 0x020CB240
 	str r0, [r1, #0x14]
 	bx ip
 	; .align 2, 0
-_020CB250: .word 0x021CECEC
+_020CB250: .word Unk_021CECEC
 _020CB254: .word PMi_SetAmp
 	arm_func_end PM_SetAmp
 
@@ -752,7 +753,7 @@ _020CB534:
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020CB548: .word 0x021CECEC
+_020CB548: .word Unk_021CECEC
 _020CB54C: .word 0x04000208
 _020CB550: .word 0x003FFFFF
 _020CB554: .word 0x027FFC40
@@ -830,7 +831,7 @@ _020CB648:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020CB650: .word 0x027FFC3C
-_020CB654: .word 0x021CECEC
+_020CB654: .word Unk_021CECEC
 _020CB658: .word 0x04000304
 	arm_func_end PMi_SetLCDPower
 
@@ -879,7 +880,7 @@ PMi_SendLEDPatternCommandAsync: ; 0x020CB698
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CB6DC: .word 0x021CECEC
+_020CB6DC: .word Unk_021CECEC
 	arm_func_end PMi_SendLEDPatternCommandAsync
 
 	arm_func_start PMi_SendLEDPatternCommand
@@ -916,7 +917,7 @@ PM_GetLEDPatternAsync: ; 0x020CB708
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CB748: .word 0x021CECEC
+_020CB748: .word Unk_021CECEC
 _020CB74C: .word 0x03006700
 	arm_func_end PM_GetLEDPatternAsync
 
