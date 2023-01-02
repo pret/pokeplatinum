@@ -2017,7 +2017,7 @@ _022447C4:
 	add r0, sp, #0xc
 	add r1, sp, #0x1c
 	ldr r5, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0xc
 	add r1, sp, #0x1c
 	bl RTC_ConvertDateTimeToSecond
@@ -2386,7 +2386,7 @@ _02244B3C:
 	add r0, sp, #0x88
 	add r1, sp, #0x7c
 	ldr r5, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x88
 	add r1, sp, #0x7c
 	bl RTC_ConvertDateTimeToSecond

@@ -238,7 +238,7 @@ _021D7BB8:
 	ldrh r0, [r1, #6]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl ov4_02213898
+	bl WCM_GetPhase
 	cmp r0, #9
 	ldmeqia sp!, {r3, pc}
 	ldr r0, _021D7BF8 ; =0x0221A4DC

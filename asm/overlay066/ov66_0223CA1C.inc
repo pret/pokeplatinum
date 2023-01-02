@@ -8,7 +8,7 @@
 .public sub_020E3FD4
 .public sub_020E4000
 .public ov4_021D77C4
-.public ov4_021D806C
+.public DWC_GetDateTime
 .public ov66_02234FC4
 .public ov66_02235B8C
 .public ov66_02235FC8

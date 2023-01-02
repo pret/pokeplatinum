@@ -27,7 +27,7 @@
 .public ov4_021E9548
 .public ov4_0220DCD0
 .public ov4_0220DCE0
-.public ov4_02213898
+.public WCM_GetPhase
 .public ov4_02215398
 .public ov4_022153DC
 .public ov4_022156EC

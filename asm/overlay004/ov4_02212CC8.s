@@ -903,8 +903,8 @@ _02213890: .word ov4_02213F98
 _02213894: .word ov4_02214B08
 	arm_func_end ov4_02213688
 
-	arm_func_start ov4_02213898
-ov4_02213898: ; 0x02213898
+	arm_func_start WCM_GetPhase
+WCM_GetPhase: ; 0x02213898
 	stmfd sp!, {r4, lr}
 	bl OS_DisableInterrupts
 	ldr r1, _022138C4 ; =0x0221F7AC
@@ -918,7 +918,7 @@ ov4_02213898: ; 0x02213898
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _022138C4: .word 0x0221F7AC
-	arm_func_end ov4_02213898
+	arm_func_end WCM_GetPhase
 
 	arm_func_start ov4_022138C8
 ov4_022138C8: ; 0x022138C8

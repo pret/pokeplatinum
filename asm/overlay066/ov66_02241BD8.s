@@ -61,7 +61,7 @@ ov66_02241C44: ; 0x02241C44
 	add r0, sp, #0x24
 	add r1, sp, #0x18
 	str r2, [r4, #0x10]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x24
 	add r1, sp, #0x18
 	bl RTC_ConvertDateTimeToSecond
@@ -344,7 +344,7 @@ ov66_02242008: ; 0x02242008
 	str r7, [r8, #8]
 	str r7, [r8, #0xc]
 	add r7, sp, #0x98
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x78
 	add r1, sp, #0x6c
 	bl RTC_ConvertDateTimeToSecond
@@ -441,7 +441,7 @@ _02242170:
 	str r2, [sp, #0x8c]
 	str r2, [sp, #0x90]
 	str r2, [sp, #0x94]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x5c
 	add r1, sp, #0x50
 	bl RTC_ConvertDateTimeToSecond

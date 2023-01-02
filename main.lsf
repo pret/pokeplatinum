@@ -1894,19 +1894,19 @@ Overlay overlay93
 Overlay overlay94
 {
 	After overlay12
-	Object asm/overlay094/ov94_0223B140.o
-	Object asm/overlay094/ov94_0223BCB0.o
-	Object asm/overlay094/ov94_0223C610.o
-	Object asm/overlay094/ov94_0223D0C4.o
-	Object asm/overlay094/ov94_0223DC04.o
-	Object asm/overlay094/ov94_0223E46C.o
-	Object asm/overlay094/ov94_0223FB48.o
-	Object asm/overlay094/ov94_022414B8.o
-	Object asm/overlay094/ov94_02242AD0.o
-	Object asm/overlay094/ov94_02243EF8.o
-	Object asm/overlay094/ov94_022443E0.o
-	Object asm/overlay094/ov94_022444C8.o
-	Object asm/overlay094/ov94_02244950.o
+	Object src/overlay094/ov94_0223B140.o
+	Object src/overlay094/ov94_0223BCB0.o
+	Object src/overlay094/ov94_0223C610.o
+	Object src/overlay094/ov94_0223D0C4.o
+	Object src/overlay094/ov94_0223DC04.o
+	Object src/overlay094/ov94_0223E46C.o
+	Object src/overlay094/ov94_0223FB48.o
+	Object src/overlay094/ov94_022414B8.o
+	Object src/overlay094/ov94_02242AD0.o
+	Object src/overlay094/ov94_02243EF8.o
+	Object src/overlay094/ov94_022443E0.o
+	Object src/overlay094/ov94_022444C8.o
+	Object src/overlay094/ov94_02244950.o
 }
 
 Overlay overlay95

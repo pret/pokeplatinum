@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021D806C
-ov4_021D806C: ; 0x021D806C
+	arm_func_start DWC_GetDateTime
+DWC_GetDateTime: ; 0x021D806C
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r2, _021D8130 ; =0x0221A4B4
 	mov r5, r0
@@ -66,7 +66,7 @@ _021D8134: .word 0x0221A4B8
 _021D8138: .word 0xBC191380
 _021D813C: .word 0x0221A4C0
 _021D8140: .word 0xBC19137F
-	arm_func_end ov4_021D806C
+	arm_func_end DWC_GetDateTime
 
 	arm_func_start ov4_021D8144
 ov4_021D8144: ; 0x021D8144

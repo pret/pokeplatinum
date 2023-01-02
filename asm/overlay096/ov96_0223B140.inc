@@ -1,7 +1,7 @@
 .public OS_GetMacAddress
 .public memcpy
 .public DWC_ClearError
-.public ov4_02213898
+.public WCM_GetPhase
 .public ov60_0221FC84
 .public ov60_0221FCA8
 .public ov60_0221FD48

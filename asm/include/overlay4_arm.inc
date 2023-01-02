@@ -1495,7 +1495,7 @@
 .public ov4_02213368
 .public ov4_0221356C
 .public ov4_02213688
-.public ov4_02213898
+.public WCM_GetPhase
 .public ov4_022138C8
 .public ov4_02213964
 .public ov4_02213974

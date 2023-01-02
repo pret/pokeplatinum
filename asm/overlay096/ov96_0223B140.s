@@ -719,7 +719,7 @@ _0223B684:
 	mvn r0, r0
 	cmp r4, r0
 	beq _0223B69C
-	bl ov4_02213898
+	bl WCM_GetPhase
 	cmp r0, #9
 	beq _0223B698
 	mov r4, #5

@@ -15,4 +15,4 @@
 .public ov4_021E862C
 .public ov4_021E86C4
 .public ov4_02213368
-.public ov4_02213898
+.public WCM_GetPhase

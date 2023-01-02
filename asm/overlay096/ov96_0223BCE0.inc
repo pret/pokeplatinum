@@ -84,7 +84,7 @@
 .public DWC_GetInetStatus
 .public DWC_CleanupInet
 .public DWC_GetApInfo
-.public ov4_021D806C
+.public DWC_GetDateTime
 .public DWC_NASLoginAsync
 .public DWC_NASLoginProcess
 .public DWC_ShutdownFriendsMatch

@@ -103,7 +103,7 @@ _021E6CB8:
 ov4_021E6CCC: ; 0x021E6CCC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
-	bl ov4_02213898
+	bl WCM_GetPhase
 	ldrb r2, [r7, #0xd13]
 	mov r1, #0xc0
 	cmp r0, #3

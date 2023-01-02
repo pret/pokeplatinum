@@ -140,7 +140,7 @@ _0223514C:
 	str r2, [r4, #0x104]
 	add r0, sp, #0x14
 	str r2, [r4, #0x108]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x14
 	add r1, sp, #8
 	bl RTC_ConvertDateTimeToSecond
@@ -617,7 +617,7 @@ _0223582C:
 	add r0, sp, #0x28
 	add r1, sp, #0x38
 	ldr r5, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x28
 	add r1, sp, #0x38
 	bl RTC_ConvertDateTimeToSecond
@@ -1206,7 +1206,7 @@ _02236014:
 _02236038:
 	add r0, sp, #0xc
 	add r1, sp, #0
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0xc
 	add r1, sp, #0
 	bl RTC_ConvertDateTimeToSecond
@@ -1874,7 +1874,7 @@ _02236908:
 	add r0, sp, #0x6c
 	add r1, sp, #0x60
 	ldr r4, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x6c
 	add r1, sp, #0x60
 	bl RTC_ConvertDateTimeToSecond
@@ -4934,7 +4934,7 @@ ov66_02239408: ; 0x02239408
 	str r4, [sp, #0x29c]
 	str r4, [sp, #0x2a0]
 	str r4, [sp, #0x2a4]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x288
 	add r1, sp, #0x27c
 	bl RTC_ConvertDateTimeToSecond
@@ -4983,7 +4983,7 @@ _022394F0:
 	add r0, sp, #0x258
 	add r1, sp, #0x24c
 	ldr r4, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x258
 	add r1, sp, #0x24c
 	bl RTC_ConvertDateTimeToSecond
@@ -5027,7 +5027,7 @@ _022394F0:
 	add r0, sp, #0x1ec
 	ldr r4, [r1, #0]
 	add r1, sp, #0x1e0
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x1ec
 	add r1, sp, #0x1e0
 	bl RTC_ConvertDateTimeToSecond
@@ -5071,7 +5071,7 @@ _022394F0:
 	add r0, sp, #0x180
 	ldr r4, [r1, #0]
 	add r1, sp, #0x174
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x180
 	add r1, sp, #0x174
 	bl RTC_ConvertDateTimeToSecond
@@ -5117,7 +5117,7 @@ _022394F0:
 	add r0, sp, #0x114
 	add r1, sp, #0x108
 	ldr r4, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x114
 	add r1, sp, #0x108
 	bl RTC_ConvertDateTimeToSecond
@@ -5163,7 +5163,7 @@ _022394F0:
 	add r0, sp, #0xa8
 	add r1, sp, #0x9c
 	ldr r4, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0xa8
 	add r1, sp, #0x9c
 	bl RTC_ConvertDateTimeToSecond
@@ -6286,7 +6286,7 @@ _0223A794:
 	add r0, sp, #0x18
 	add r1, sp, #0x28
 	ldr r4, [r2, #0]
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x18
 	add r1, sp, #0x28
 	bl RTC_ConvertDateTimeToSecond

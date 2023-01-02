@@ -7,7 +7,7 @@
 .public strncpy
 .public atoi
 .public ov4_021D77C4
-.public ov4_021D806C
+.public DWC_GetDateTime
 .public ov66_022364B0
 .public ov66_022369FC
 .public ov66_02236CA0

@@ -51,7 +51,7 @@ _021E7148:
 	arm_func_start ov4_021E7150
 ov4_021E7150: ; 0x021E7150
 	stmfd sp!, {r3, lr}
-	bl ov4_02213898
+	bl WCM_GetPhase
 	cmp r0, #0xc
 	addls pc, pc, r0, lsl #2
 	b _021E71D8

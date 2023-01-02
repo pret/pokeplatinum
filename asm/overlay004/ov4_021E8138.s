@@ -14,7 +14,7 @@ ov4_021E8138: ; 0x021E8138
 	mov r0, #0x10
 	bl ov4_021E62EC
 	mov r5, r0
-	bl ov4_02213898
+	bl WCM_GetPhase
 	cmp r0, #9
 	bne _021E81DC
 	sub r0, r4, #0xa

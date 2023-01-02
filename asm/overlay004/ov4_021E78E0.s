@@ -14,7 +14,7 @@ ov4_021E78E0: ; 0x021E78E0
 	mov r4, r0
 	bl ov4_021E63A4
 	mov r5, r0
-	bl ov4_02213898
+	bl WCM_GetPhase
 	cmp r5, #2
 	cmpeq r0, #3
 	bne _021E7918

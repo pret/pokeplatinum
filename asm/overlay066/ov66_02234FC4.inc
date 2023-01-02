@@ -18,7 +18,7 @@
 .public DWC_ClearError
 .public ov4_021D7780
 .public ov4_021D77C4
-.public ov4_021D806C
+.public DWC_GetDateTime
 .public ov4_021DB408
 .public ov4_021DB414
 .public ov4_021EA840

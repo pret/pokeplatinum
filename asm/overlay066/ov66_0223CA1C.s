@@ -2651,7 +2651,7 @@ _0223EEE8:
 	mov r5, r5, lsl #0x19
 	add r1, sp, #0x24
 	add r7, r6, r5, lsr #22
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0x14
 	add r1, sp, #0x24
 	bl RTC_ConvertDateTimeToSecond
@@ -2752,7 +2752,7 @@ _0223F040:
 	ldmneia sp!, {r3, r4, pc}
 	add r0, sp, #0
 	add r1, sp, #0x10
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0
 	add r1, sp, #0x10
 	bl RTC_ConvertDateTimeToSecond
@@ -2783,7 +2783,7 @@ ov66_0223F0D0: ; 0x0223F0D0
 	bne _0223F144
 	add r0, sp, #0
 	add r1, sp, #0x10
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r0, sp, #0
 	add r1, sp, #0x10
 	bl RTC_ConvertDateTimeToSecond

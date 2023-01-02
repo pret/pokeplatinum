@@ -1789,7 +1789,7 @@ _0223CB00:
 	beq _0223CB4C
 	add r0, sp, #0
 	add r1, sp, #0x10
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r1, r4, #0
 	add r2, r4, #0
 	add r1, #0x94
@@ -1997,7 +1997,7 @@ _0223CC8A:
 	bl ov96_0223BBFC
 	add r0, sp, #0
 	add r1, sp, #0x10
-	bl ov4_021D806C
+	bl DWC_GetDateTime
 	add r1, r4, #0
 	ldr r0, [r4, #0]
 	add r1, #0x94

@@ -13,7 +13,7 @@ ov4_021E7804: ; 0x021E7804
 	bl ov4_021E62EC
 	mov r4, r0
 	mov r5, #9
-	bl ov4_02213898
+	bl WCM_GetPhase
 	cmp r0, #0xc
 	addls pc, pc, r0, lsl #2
 	b _021E78D8

@@ -10,7 +10,7 @@
 ov4_021E80B0: ; 0x021E80B0
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x10
-	bl ov4_02213898
+	bl WCM_GetPhase
 	mov r4, r0
 	mov r0, #0x10
 	bl ov4_021E62EC
