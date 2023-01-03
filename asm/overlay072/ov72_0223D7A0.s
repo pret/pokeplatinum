@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay072/ov72_0223D7A0.inc"
 
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -309,7 +309,7 @@ ov72_0223DA48: ; 0x0223DA48
 	str r0, [r3, r1]
 	pop {r4, pc}
 	; .align 2, 0
-_0223DA68: .word 0x027E0000
+_0223DA68: .word OS_IRQTable
 _0223DA6C: .word 0x00003FF8
 	thumb_func_end ov72_0223DA48
 

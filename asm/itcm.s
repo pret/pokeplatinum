@@ -3,6 +3,9 @@
 
 	.extern Unk_021CCC80
 	.extern Unk_021CCFE4
+	.extern OS_IRQTable
+	.extern OSi_IrqThreadQueue
+
 	.section .itcm,4,1,4
 
 	arm_func_start OS_IrqHandler
@@ -37,7 +40,7 @@ _01FF8038:
 	ldr lr, _01FF8064 ; =OS_IrqHandler_ThreadSwitch
 	bx r0
 	; .align 2, 0
-_01FF8060: .word 0x027E0000
+_01FF8060: .word OS_IRQTable
 _01FF8064: .word OS_IrqHandler_ThreadSwitch
 	arm_func_end OS_IrqHandler
 
@@ -150,7 +153,7 @@ _01FF8150:
 	stmda sp!, {r0, r1, r2, r3, ip, lr}
 	ldmia sp!, {pc}
 	; .align 2, 0
-_01FF81D4: .word 0x027E0060
+_01FF81D4: .word OSi_IrqThreadQueue
 _01FF81D8: .word Unk_021CCC80
 _01FF81DC: .word 0x020C99FC
 _01FF81E0: .word 0x020C9A3C
@@ -223,7 +226,7 @@ _01FF8290:
 	mov fp, #0
 	bx ip
 	; .align 2, 0
-_01FF82C4: .word 0x027E0000
+_01FF82C4: .word OS_IRQTable
 _01FF82C8: .word 0x04000180
 _01FF82CC: .word 0x027FFD9C
 _01FF82D0: .word 0x027FFD80

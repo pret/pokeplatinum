@@ -1,7 +1,22 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D130C.inc"
 
-	
+	.extern Unk_021D03AC
+	.extern Unk_021D03B0
+	.extern Unk_021D03B4
+	.extern Unk_021D03B8
+	.extern Unk_021D03BC
+	.extern Unk_021D03C0
+	.extern Unk_021D03C4
+	.extern Unk_021D03DC
+	.extern Unk_021D03E0
+	.extern Unk_020FE664
+	.extern Unk_020FE564
+	.extern Unk_020FE728
+	.extern Unk_020FE628
+	.extern Unk_020FE6A8
+	.extern Unk_020FE5E4
+	.extern Unk_020FE6E4
 
 	.text
 
@@ -103,21 +118,21 @@ _020D145C:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D1478: .word 0x021D03AC
+_020D1478: .word Unk_021D03AC
 _020D147C: .word 0x04000204
 _020D1480: .word 0x020FE53C
 _020D1484: .word 0x0210148C
-_020D1488: .word 0x020FE54C
-_020D148C: .word 0x020FE540
-_020D1490: .word 0x021D03B0
-_020D1494: .word 0x021D03C4
-_020D1498: .word 0x021D03BC
-_020D149C: .word 0x021D03B4
-_020D14A0: .word 0x021D03B8
-_020D14A4: .word 0x021D03C0
-_020D14A8: .word 0x021D03DC
+_020D1488: .word Unk_020FE54C
+_020D148C: .word Unk_020FE540
+_020D1490: .word Unk_021D03B0
+_020D1494: .word Unk_021D03C4
+_020D1498: .word Unk_021D03BC
+_020D149C: .word Unk_021D03B4
+_020D14A0: .word Unk_021D03B8
+_020D14A4: .word Unk_021D03C0
+_020D14A8: .word Unk_021D03DC
 _020D14AC: .word 0x02101488
-_020D14B0: .word 0x021D03E0
+_020D14B0: .word Unk_021D03E0
 	arm_func_end CTRDG_IdentifyAgbBackup
 
 	.rodata
@@ -129,9 +144,14 @@ Unk_020FE53C: ; 0x020FE53C
 
 	.global Unk_020FE540
 Unk_020FE540: ; 0x020FE540
-	.incbin "incbin/arm9_rodata.bin", 0x19900, 0x1990C - 0x19900
+	.word Unk_020FE6A8
+	.word Unk_020FE5E4
+	.word Unk_020FE6E4
 
 	.global Unk_020FE54C
 Unk_020FE54C: ; 0x020FE54C
-	.incbin "incbin/arm9_rodata.bin", 0x1990C, 0x10
+	.word Unk_020FE664
+	.word Unk_020FE564
+	.word Unk_020FE728
+	.word Unk_020FE628
 

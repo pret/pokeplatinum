@@ -7,7 +7,7 @@
 	.extern Unk_021CCC90
 	.extern Unk_021CCD50
 	.extern Unk_021CCED8
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -318,7 +318,7 @@ _020C1EF0: .word 0x021CCC84
 _020C1EF4: .word 0x00000000
 _020C1EF8: .word Unk_021CCD50
 _020C1EFC: .word 0x027E0080
-_020C1F00: .word 0x027E0000
+_020C1F00: .word OS_IRQTable
 _020C1F04: .word 0x00000800
 _020C1F08: .word 0xFDDB597D
 _020C1F0C: .word 0x7BF9DD5B

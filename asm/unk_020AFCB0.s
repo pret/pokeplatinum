@@ -3,7 +3,9 @@
 
 	.extern Unk_021C5CF0
 	.extern Unk_021C5CF4
-	
+	.extern Unk_02100F3C
+	.extern Unk_02100F48
+
 
 	.text
 
@@ -137,8 +139,8 @@ _020AFE70:
 	str r0, [r4, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020AFE88: .word 0x02100F48
-_020AFE8C: .word 0x02100F3C
+_020AFE88: .word Unk_02100F48
+_020AFE8C: .word Unk_02100F3C
 _020AFE90: .word 0x02100F54
 	arm_func_end G3dDrawInternal_
 

@@ -2,7 +2,7 @@
 	.include "include/unk_020C3930.inc"
 
 	.extern Unk_021CCFC4
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -317,7 +317,7 @@ _020C3D18:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C3D30: .word 0x04000106
-_020C3D34: .word 0x027E0000
+_020C3D34: .word OS_IRQTable
 _020C3D38: .word Unk_021CCFC4
 	arm_func_end OSi_ArrangeTimer
 

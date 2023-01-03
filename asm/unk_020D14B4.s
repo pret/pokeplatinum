@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D14B4.inc"
 
-	
+	.extern Unk_021D03AC
 
 	.text
 
@@ -94,7 +94,7 @@ _020D15D8:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020D15E0: .word 0x04000208
-_020D15E4: .word 0x021D03AC
+_020D15E4: .word Unk_021D03AC
 _020D15E8: .word 0x0A005555
 _020D15EC: .word 0x0A002AAA
 _020D15F0: .word 0x0A000001
@@ -120,7 +120,7 @@ StartFlashTimer: ; 0x020D15F4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020D1634: .word 0x02101488
-_020D1638: .word 0x021D03AC
+_020D1638: .word Unk_021D03AC
 	arm_func_end StartFlashTimer
 
 	arm_func_start CheckFlashTimer
@@ -147,7 +147,7 @@ CheckFlashTimer: ; 0x020D163C
 	strlsh r0, [r2, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D1690: .word 0x021D03AC
+_020D1690: .word Unk_021D03AC
 _020D1694: .word 0x000082EA
 	arm_func_end CheckFlashTimer
 
@@ -195,7 +195,7 @@ _020D1710:
 	mov r0, r6
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020D1724: .word 0x021D03AC
+_020D1724: .word Unk_021D03AC
 _020D1728: .word 0x02101488
 _020D172C: .word 0x0A005555
 	arm_func_end CTRDGi_PollingSR512kCOMMON
@@ -249,7 +249,7 @@ _020D17C8:
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020D17DC: .word 0x021D03AC
+_020D17DC: .word Unk_021D03AC
 _020D17E0: .word 0x0A005555
 	arm_func_end CTRDGi_PollingSR1MCOMMON
 
@@ -317,7 +317,7 @@ _020D18A0:
 	add sp, sp, #0x24
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020D18CC: .word 0x021D03AC
+_020D18CC: .word Unk_021D03AC
 _020D18D0: .word 0x04000204
 _020D18D4: .word 0x02101488
 	arm_func_end CTRDGi_ReadAgbFlashCore
@@ -397,7 +397,7 @@ _020D198C:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D19DC: .word 0x021D03AC
+_020D19DC: .word Unk_021D03AC
 _020D19E0: .word 0x04000204
 _020D19E4: .word 0x02101488
 	arm_func_end CTRDGi_VerifyAgbFlashCore
@@ -463,7 +463,7 @@ CTRDG_WriteAgbFlashSector: ; 0x020D1A94
 	blx r2
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D1AA8: .word 0x021D03AC
+_020D1AA8: .word Unk_021D03AC
 	arm_func_end CTRDG_WriteAgbFlashSector
 
 	arm_func_start CTRDG_VerifyAgbFlash

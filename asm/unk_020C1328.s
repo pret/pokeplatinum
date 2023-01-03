@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C1328.inc"
 
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -47,7 +47,7 @@ _020C1370:
 _020C13A0: .word 0x021CCBF8
 _020C13A4: .word 0x0210114C
 _020C13A8: .word 0x021CCC00
-_020C13AC: .word 0x027E0000
+_020C13AC: .word OS_IRQTable
 _020C13B0: .word 0x021CCBFC
 	arm_func_end OSi_IrqCallback
 

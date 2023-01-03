@@ -1,7 +1,11 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D1B00.inc"
 
-	
+	.extern Unk_021D03A8
+	.extern Unk_021D03AC
+	.extern Unk_021D03C8
+	.extern Unk_021D03DC
+	.extern CTRDGi_PollingSR512kCOMMON
 
 	.text
 
@@ -60,13 +64,13 @@ CTRDGi_EraseFlashChipCoreAT: ; 0x020D1B00
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D1BCC: .word 0x021D03AC
+_020D1BCC: .word Unk_021D03AC
 _020D1BD0: .word 0x04000204
 _020D1BD4: .word 0x02101488
-_020D1BD8: .word 0x021D03C8
+_020D1BD8: .word Unk_021D03C8
 _020D1BDC: .word 0x0A005555
 _020D1BE0: .word 0x0A002AAA
-_020D1BE4: .word 0x021D03DC
+_020D1BE4: .word Unk_021D03DC
 	arm_func_end CTRDGi_EraseFlashChipCoreAT
 
 	arm_func_start CTRDGi_EraseFlashSectorCoreAT
@@ -141,13 +145,13 @@ _020D1CC8:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
-_020D1CF4: .word 0x021D03AC
+_020D1CF4: .word Unk_021D03AC
 _020D1CF8: .word 0x04000204
 _020D1CFC: .word 0x02101488
 _020D1D00: .word 0x0A005555
 _020D1D04: .word 0x0A002AAA
 _020D1D08: .word 0x04000208
-_020D1D0C: .word 0x021D03DC
+_020D1D0C: .word Unk_021D03DC
 	arm_func_end CTRDGi_EraseFlashSectorCoreAT
 
 	arm_func_start CTRDGi_EraseFlash4KBCoreAT
@@ -268,13 +272,13 @@ _020D1E54:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
-_020D1EB8: .word 0x021D03AC
+_020D1EB8: .word Unk_021D03AC
 _020D1EBC: .word 0x04000204
 _020D1EC0: .word 0x02101488
 _020D1EC4: .word 0x0A005555
 _020D1EC8: .word 0x0A002AAA
 _020D1ECC: .word 0x04000208
-_020D1ED0: .word 0x021D03DC
+_020D1ED0: .word Unk_021D03DC
 	arm_func_end CTRDGi_WriteFlashSectorCoreAT
 
 	arm_func_start CTRDGi_WriteFlash4KBCoreAT
@@ -331,7 +335,7 @@ _020D1F54:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020D1F90: .word 0x000080FF
-_020D1F94: .word 0x021D03A8
+_020D1F94: .word Unk_021D03A8
 	arm_func_end CTRDGi_WriteFlash4KBCoreAT
 
 	arm_func_start CTRDGi_EraseFlashChipAT
@@ -483,9 +487,37 @@ Unk_020FE55C: ; 0x020FE55C
 
 	.global Unk_020FE564
 Unk_020FE564: ; 0x020FE564
-	.incbin "incbin/arm9_rodata.bin", 0x19924, 0x19960 - 0x19924
+	.word CTRDGi_WriteFlash4KBAT
+    .word CTRDGi_EraseFlashChipAT
+    .word CTRDGi_EraseFlash4KBAT
+    .word CTRDGi_WriteFlash4KBAsyncAT
+    .word CTRDGi_EraseFlashChipAsyncAT
+    .word CTRDGi_EraseFlash4KBAsyncAT
+    .word CTRDGi_PollingSR512kCOMMON
+	.word Unk_020FE55C
+	.word 0x10000
+	.word 0x1000
+	.short 0xC, 0x10
+	.word 0x0
+	.word 0x3, 0x3
+	.short 0x1F
+	.short 0x3D
 
 	.global Unk_020FE5A0
 Unk_020FE5A0: ; 0x020FE5A0
-	.incbin "incbin/arm9_rodata.bin", 0x19960, 0x3C
+	.word CTRDGi_WriteFlashSectorAT
+    .word CTRDGi_EraseFlashChipAT
+    .word CTRDGi_EraseFlashSectorAT
+    .word CTRDGi_WriteFlashSectorAsyncAT
+    .word CTRDGi_EraseFlashChipAsyncAT
+    .word CTRDGi_EraseFlashSectorAsyncAT
+    .word CTRDGi_PollingSR512kCOMMON
+	.word Unk_020FE55C
+	.word 0x10000
+    .word 0x80, 
+	.short 0x7, 0x200
+	.word 0x0
+    .word 0x3, 0x3
+    .short 0x1f,
+    .short 0x3d,
 

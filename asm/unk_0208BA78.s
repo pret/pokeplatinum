@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_0208BA78.inc"
 
-	
+	.extern Unk_020F3050
+	.extern Unk_020F3060
 
 	.text
 
@@ -304,8 +305,8 @@ _0208BC80:
 	mov r0, #0
 	pop {r4, pc}
 	; .align 2, 0
-_0208BC84: .word 0x020F3050
-_0208BC88: .word 0x020F3060
+_0208BC84: .word Unk_020F3050
+_0208BC88: .word Unk_020F3060
 	thumb_func_end sub_0208BC3C
 
 	thumb_func_start sub_0208BC8C

@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D911C.inc"
 
-	
+	.extern Unk_021D0D40
+	.extern Unk_021015AC
 
 	.text
 
@@ -1175,7 +1176,7 @@ _020DA0FC: .word 0x020FE991
 _020DA100: .word 0x020FE98C
 _020DA104: .word 0x020FE864
 _020DA108: .word 0x020FE7E4
-_020DA10C: .word 0x021015AC
+_020DA10C: .word Unk_021015AC
 _020DA110: .word 0x00007FFF
 _020DA114: .word 0x00000E2C
 _020DA118: .word 0x0000018E
@@ -1400,7 +1401,7 @@ _020DA42C:
 	; .align 2, 0
 _020DA43C: .word __StringRead
 _020DA440: .word 0x7FEFFFFF
-_020DA444: .word 0x021D0D40
+_020DA444: .word Unk_021D0D40
 	arm_func_end strtod
 
 	arm_func_start atof

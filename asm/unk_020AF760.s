@@ -1,6 +1,11 @@
 	.include "macros/function.inc"
 	.include "include/unk_020AF760.inc"
 
+	.extern NNSi_G3dAnmObjInitNsBma
+	.extern NNSi_G3dAnmObjInitNsBtp
+	.extern NNSi_G3dAnmObjInitNsBta
+	.extern NNSi_G3dAnmObjInitNsBva
+	.extern NNSi_G3dAnmObjInitNsBca
 	
 
 	.text
@@ -414,17 +419,27 @@ Unk_02100EDC: ; 0x02100EDC
 
 	.global Unk_02100EE0
 Unk_02100EE0: ; 0x02100EE0
-	.incbin "incbin/arm9_data.bin", 0x2200, 0x2204 - 0x2200
+	.word NNSi_G3dAnmBlendVis
 
 	.global Unk_02100EE4
 Unk_02100EE4: ; 0x02100EE4
-	.incbin "incbin/arm9_data.bin", 0x2204, 0x2208 - 0x2204
+	.word NNSi_G3dAnmBlendJnt
 
 	.global Unk_02100EE8
 Unk_02100EE8: ; 0x02100EE8
-	.incbin "incbin/arm9_data.bin", 0x2208, 0x220C - 0x2208
+	.word NNSi_G3dAnmBlendMat
 
 	.global Unk_02100EEC
 Unk_02100EEC: ; 0x02100EEC
-	.incbin "incbin/arm9_data.bin", 0x220C, 0x50
+	.short 0x4D, 0x4D41
+	.word NNSi_G3dAnmObjInitNsBma
+	.short 0x4D, 0x5450
+	.word NNSi_G3dAnmObjInitNsBtp
+	.short 0x4D, 0x5441
+	.word NNSi_G3dAnmObjInitNsBta
+	.short 0x56, 0x5641
+	.word NNSi_G3dAnmObjInitNsBva
+	.short 0x4A, 0x4341
+	.word NNSi_G3dAnmObjInitNsBca
+	.space 0x28
 

@@ -1,7 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D2114.inc"
 
-	
+	.extern Unk_021D03A8
+	.extern Unk_021D03AC
+	.extern Unk_021D03C8
+	.extern Unk_021D03DC
 
 	.text
 
@@ -60,13 +63,13 @@ CTRDGi_EraseFlashChipCoreLE: ; 0x020D2114
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D21E0: .word 0x021D03AC
+_020D21E0: .word Unk_021D03AC
 _020D21E4: .word 0x04000204
 _020D21E8: .word 0x02101488
-_020D21EC: .word 0x021D03C8
+_020D21EC: .word Unk_021D03C8
 _020D21F0: .word 0x0A005555
 _020D21F4: .word 0x0A002AAA
-_020D21F8: .word 0x021D03DC
+_020D21F8: .word Unk_021D03DC
 	arm_func_end CTRDGi_EraseFlashChipCoreLE
 
 	arm_func_start CTRDGi_EraseFlashSectorCoreLE
@@ -142,13 +145,13 @@ CTRDGi_EraseFlashSectorCoreLE: ; 0x020D21FC
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _020D2310: .word 0x000080FF
-_020D2314: .word 0x021D03AC
+_020D2314: .word Unk_021D03AC
 _020D2318: .word 0x04000204
 _020D231C: .word 0x02101488
-_020D2320: .word 0x021D03C8
+_020D2320: .word Unk_021D03C8
 _020D2324: .word 0x0A005555
 _020D2328: .word 0x0A002AAA
-_020D232C: .word 0x021D03DC
+_020D232C: .word Unk_021D03DC
 	arm_func_end CTRDGi_EraseFlashSectorCoreLE
 
 	arm_func_start CTRDGi_ProgramFlashByteLE
@@ -174,7 +177,7 @@ CTRDGi_ProgramFlashByteLE: ; 0x020D2330
 	; .align 2, 0
 _020D2378: .word 0x0A005555
 _020D237C: .word 0x0A002AAA
-_020D2380: .word 0x021D03DC
+_020D2380: .word Unk_021D03DC
 	arm_func_end CTRDGi_ProgramFlashByteLE
 
 	arm_func_start CTRDGi_WriteFlashSectorCoreLE
@@ -298,10 +301,10 @@ _020D24F4:
 _020D2534: .word 0x000080FF
 _020D2538: .word 0x02101488
 _020D253C: .word CTRDGi_VerifyFlashCoreFF
-_020D2540: .word 0x021D03AC
+_020D2540: .word Unk_021D03AC
 _020D2544: .word 0x04000204
-_020D2548: .word 0x021D03A8
-_020D254C: .word 0x021D03C8
+_020D2548: .word Unk_021D03A8
+_020D254C: .word Unk_021D03C8
 _020D2550: .word 0x04000208
 	arm_func_end CTRDGi_WriteFlashSectorCoreLE
 
@@ -359,7 +362,7 @@ CTRDGi_VerifyFlashErase: ; 0x020D2588
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020D2604: .word 0x021D03AC
+_020D2604: .word Unk_021D03AC
 _020D2608: .word 0x04000204
 _020D260C: .word 0x02101488
 _020D2610: .word 0x00008004

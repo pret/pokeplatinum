@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay075/ov75_021D0D80.inc"
 
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -756,7 +756,7 @@ _021D1338:
 	str r0, [r3, r1]
 	pop {r4, pc}
 	; .align 2, 0
-_021D1350: .word 0x027E0000
+_021D1350: .word OS_IRQTable
 _021D1354: .word 0x00003FF8
 	thumb_func_end ov75_021D131C
 

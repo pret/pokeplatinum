@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C12B4.inc"
 
-	
+	.extern OS_IRQTable
+	.extern OSi_IrqThreadQueue
 
 	.text
 
@@ -38,6 +39,6 @@ _020C1308:
 	beq _020C1308
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C1320: .word 0x027E0000
-_020C1324: .word 0x027E0060
+_020C1320: .word OS_IRQTable
+_020C1324: .word OSi_IrqThreadQueue
 	arm_func_end OS_WaitIrq

@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020890F4.inc"
 
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -582,7 +582,7 @@ sub_020895CC: ; 0x020895CC
 	str r0, [r3, r1]
 	pop {r4, pc}
 	nop
-_020895FC: .word 0x027E0000
+_020895FC: .word OS_IRQTable
 _02089600: .word 0x00003FF8
 	thumb_func_end sub_020895CC
 

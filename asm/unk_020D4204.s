@@ -2,7 +2,9 @@
 	.include "include/unk_020D4204.inc"
 
 	.extern Unk_021CCC80
-	
+	.extern Unk_021D0920
+	.extern Unk_021D0944
+	.extern Unk_021D0968
 
 	.text
 
@@ -77,10 +79,10 @@ _020D42F4:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _020D42FC: .word 0x02101490
-_020D4300: .word 0x021D0968
+_020D4300: .word Unk_021D0968
 _020D4304: .word Unk_021CCC80
-_020D4308: .word 0x021D0920
-_020D430C: .word 0x021D0944
+_020D4308: .word Unk_021D0920
+_020D430C: .word Unk_021D0944
 	arm_func_end fread
 
 	arm_func_start __fread

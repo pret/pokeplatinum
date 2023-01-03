@@ -4,7 +4,9 @@
 	.extern Unk_021D0810
 	.extern Unk_021D0820
 	.extern Unk_021CCC80
-	
+	.extern Unk_021D0920
+	.extern Unk_021D0944
+	.extern Unk_021D0968
 
 	.text
 
@@ -126,10 +128,10 @@ _020D3F10:
 	bl _ExitProcess
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D3F20: .word 0x021D0968
+_020D3F20: .word Unk_021D0968
 _020D3F24: .word Unk_021CCC80
-_020D3F28: .word 0x021D0920
-_020D3F2C: .word 0x021D0944
+_020D3F28: .word Unk_021D0920
+_020D3F2C: .word Unk_021D0944
 _020D3F30: .word Unk_021D0810
 _020D3F34: .word Unk_021D0820
 	arm_func_end __exit

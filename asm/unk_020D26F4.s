@@ -1,7 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D26F4.inc"
 
-	
+	.extern Unk_021D03A8
+	.extern Unk_021D03AC
+	.extern Unk_021D03C8
+	.extern Unk_021D03DC
 
 	.text
 
@@ -60,13 +63,13 @@ CTRDGi_EraseFlashChipCoreMX: ; 0x020D26F4
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D27C0: .word 0x021D03AC
+_020D27C0: .word Unk_021D03AC
 _020D27C4: .word 0x04000204
 _020D27C8: .word 0x02101488
-_020D27CC: .word 0x021D03C8
+_020D27CC: .word Unk_021D03C8
 _020D27D0: .word 0x0A005555
 _020D27D4: .word 0x0A002AAA
-_020D27D8: .word 0x021D03DC
+_020D27D8: .word Unk_021D03DC
 	arm_func_end CTRDGi_EraseFlashChipCoreMX
 
 	arm_func_start CTRDGi_EraseFlashSectorCoreMX
@@ -166,12 +169,12 @@ _020D2914:
 	; .align 2, 0
 _020D2944: .word 0x02101488
 _020D2948: .word 0x000080FF
-_020D294C: .word 0x021D03AC
+_020D294C: .word Unk_021D03AC
 _020D2950: .word 0x04000204
 _020D2954: .word 0x0A005555
-_020D2958: .word 0x021D03C8
+_020D2958: .word Unk_021D03C8
 _020D295C: .word 0x0A002AAA
-_020D2960: .word 0x021D03DC
+_020D2960: .word Unk_021D03DC
 	arm_func_end CTRDGi_EraseFlashSectorCoreMX
 
 	arm_func_start CTRDGi_ProgramFlashByteMX
@@ -197,7 +200,7 @@ CTRDGi_ProgramFlashByteMX: ; 0x020D2964
 	; .align 2, 0
 _020D29AC: .word 0x0A005555
 _020D29B0: .word 0x0A002AAA
-_020D29B4: .word 0x021D03DC
+_020D29B4: .word Unk_021D03DC
 	arm_func_end CTRDGi_ProgramFlashByteMX
 
 	arm_func_start CTRDGi_WriteFlashSectorCoreMX
@@ -294,11 +297,11 @@ _020D2AD4:
 	; .align 2, 0
 _020D2B14: .word 0x02101488
 _020D2B18: .word 0x000080FF
-_020D2B1C: .word 0x021D03AC
+_020D2B1C: .word Unk_021D03AC
 _020D2B20: .word 0x04000204
-_020D2B24: .word 0x021D03A8
+_020D2B24: .word Unk_021D03A8
 _020D2B28: .word 0x04000208
-_020D2B2C: .word 0x021D03C8
+_020D2B2C: .word Unk_021D03C8
 	arm_func_end CTRDGi_WriteFlashSectorCoreMX
 
 	arm_func_start CTRDGi_EraseFlashChipMX
@@ -462,9 +465,9 @@ _020D2D00:
 	; .align 2, 0
 _020D2D2C: .word 0x02101488
 _020D2D30: .word 0x000080FF
-_020D2D34: .word 0x021D03AC
+_020D2D34: .word Unk_021D03AC
 _020D2D38: .word 0x04000204
-_020D2D3C: .word 0x021D03A8
+_020D2D3C: .word Unk_021D03A8
 	arm_func_end CTRDGi_WriteFlashSectorCoreMX5
 
 	arm_func_start CTRDGi_WriteFlashSectorMX5

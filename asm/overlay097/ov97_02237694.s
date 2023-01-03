@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay097/ov97_02237694.inc"
 
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -1087,7 +1087,7 @@ _02237E84:
 _02237E94: .word 0x022403D0
 _02237E98: .word 0x0223F550
 _02237E9C: .word 0x00000EA4
-_02237EA0: .word 0x027E0000
+_02237EA0: .word OS_IRQTable
 _02237EA4: .word 0x00003FF8
 	thumb_func_end ov97_02237E58
 

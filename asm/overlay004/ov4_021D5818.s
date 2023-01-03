@@ -2,7 +2,7 @@
 	.include "overlay004/ov4_021D5818.inc"
 
 	.extern Unk_021CCC80
-	
+	.extern Unk_021D0D40
 
 	.text
 
@@ -1258,7 +1258,7 @@ _021D69C4: .word 0x0221635C
 _021D69C8: .word 0x0221A450
 _021D69CC: .word Unk_021CCC80
 _021D69D0: .word 0x02216470
-_021D69D4: .word 0x021D0D40
+_021D69D4: .word Unk_021D0D40
 _021D69D8: .word 0x0000012E
 _021D69DC: .word 0x02215EA0
 _021D69E0: .word 0x00004E20

@@ -723,7 +723,15 @@ FSi_CloseFileCommand: ; 0x020C71F0
 
 	.global Unk_020FE484
 Unk_020FE484: ; 0x020FE484
-	.incbin "incbin/arm9_rodata.bin", 0x19844, 0x24
+	.word FSi_ReadFileCommand
+	.word FSi_WriteFileCommand
+	.word FSi_SeekDirCommand
+	.word FSi_ReadDirCommand
+	.word FSi_FindPathCommand
+	.word FSi_GetPathCommand
+	.word FSi_OpenFileFastCommand
+	.word FSi_OpenFileDirectCommand
+	.word FSi_CloseFileCommand
 
 
 

@@ -1,7 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020AE490.inc"
 
-	
+	.extern Unk_02100EE8
+	.extern Unk_02100EE4
+	.extern Unk_02100EE0
+	.extern Unk_02100EEC
 
 	.text
 
@@ -80,7 +83,7 @@ _020AE574:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020AE584: .word 0x02100EC8
-_020AE588: .word 0x02100EEC
+_020AE588: .word Unk_02100EEC
 _020AE58C: .word 0x02100EF0
 	arm_func_end NNS_G3dAnmObjInit
 
@@ -143,9 +146,9 @@ NNS_G3dRenderObjInit: ; 0x020AE608
 	str r4, [r5, #4]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020AE650: .word 0x02100EE8
-_020AE654: .word 0x02100EE4
-_020AE658: .word 0x02100EE0
+_020AE650: .word Unk_02100EE8
+_020AE654: .word Unk_02100EE4
+_020AE658: .word Unk_02100EE0
 	arm_func_end NNS_G3dRenderObjInit
 
 	arm_func_start addLink_

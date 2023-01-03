@@ -2,7 +2,10 @@
 	.include "include/unk_020D4A64.inc"
 
 	.extern Unk_021CCC80
-	
+	.extern Unk_021D0920
+	.extern Unk_021D0944
+	.extern Unk_021D0968
+	.extern Unk_021D0D40
 
 	.text
 
@@ -42,7 +45,7 @@ _020D4AA4:
 	subhs r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020D4ADC: .word 0x021D0D40
+_020D4ADC: .word Unk_021D0D40
 	arm_func_end _ftell
 
 	arm_func_start ftell
@@ -120,10 +123,10 @@ _020D4BD8:
 _020D4BE0: .word 0x02101490
 _020D4BE4: .word 0x021014DC
 _020D4BE8: .word 0x02101528
-_020D4BEC: .word 0x021D0968
+_020D4BEC: .word Unk_021D0968
 _020D4BF0: .word Unk_021CCC80
-_020D4BF4: .word 0x021D0920
-_020D4BF8: .word 0x021D0944
+_020D4BF4: .word Unk_021D0920
+_020D4BF8: .word Unk_021D0944
 	arm_func_end ftell
 
 	arm_func_start _fseek
@@ -259,7 +262,7 @@ _020D4DD0:
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
-_020D4DE0: .word 0x021D0D40
+_020D4DE0: .word Unk_021D0D40
 	arm_func_end _fseek
 
 	arm_func_start fseek
@@ -341,10 +344,10 @@ _020D4EEC:
 _020D4EF4: .word 0x02101490
 _020D4EF8: .word 0x021014DC
 _020D4EFC: .word 0x02101528
-_020D4F00: .word 0x021D0968
+_020D4F00: .word Unk_021D0968
 _020D4F04: .word Unk_021CCC80
-_020D4F08: .word 0x021D0920
-_020D4F0C: .word 0x021D0944
+_020D4F08: .word Unk_021D0920
+_020D4F0C: .word Unk_021D0944
 	arm_func_end fseek
 
 	arm_func_start rewind

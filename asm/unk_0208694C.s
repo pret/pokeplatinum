@@ -2,7 +2,7 @@
 	.include "include/unk_0208694C.inc"
 
 	.extern Unk_021C0A30
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -1001,7 +1001,7 @@ sub_02087190: ; 0x02087190
 	str r0, [r3, r1]
 	pop {r3, pc}
 	; .align 2, 0
-_020871A8: .word 0x027E0000
+_020871A8: .word OS_IRQTable
 _020871AC: .word 0x00003FF8
 	thumb_func_end sub_02087190
 

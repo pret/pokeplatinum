@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020DF948.inc"
 
-	
+	.extern Unk_020FE764
 
 	.text
 
@@ -37,7 +37,7 @@ _020DF984:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020DF9AC: .word 0x020FE764
+_020DF9AC: .word Unk_020FE764
 	arm_func_end stricmp
 
 	arm_func_start strcasecmp

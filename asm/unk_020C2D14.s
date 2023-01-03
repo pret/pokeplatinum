@@ -2,7 +2,7 @@
 	.include "include/unk_020C2D14.inc"
 
 	.extern Unk_021CCED8
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -193,7 +193,7 @@ _020C2F68:
 	; .align 2, 0
 _020C2F70: .word 0x023E0000
 _020C2F74: .word Unk_021CCED8
-_020C2F78: .word 0x027E0000
+_020C2F78: .word OS_IRQTable
 _020C2F7C: .word 0x00000000
 _020C2F80: .word 0x00000800
 _020C2F84: .word 0x027E0080

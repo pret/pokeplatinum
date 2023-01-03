@@ -5,6 +5,7 @@
 	.extern _fp_init
 	.extern __call_static_initializers
 	.extern NitroMain
+	.extern OS_IRQTable
 
 	arm_func_start _start
 _start: ; 0x02000800
@@ -94,7 +95,7 @@ _02000928:
 _0200092C:
 	bx r1
 	; .align 2, 0
-_02000930: .word 0x027E0000
+_02000930: .word OS_IRQTable
 _02000934: .word 0x00000800
 _02000938: .word 0x05000000
 _0200093C: .word 0x07000000
@@ -285,7 +286,7 @@ _02000B6C: .word 0x04000033
 _02000B70: .word 0x0200002D
 _02000B74: .word 0x027E0021
 _02000B78: .word 0x08000035
-_02000B7C: .word 0x027E0000
+_02000B7C: .word OS_IRQTable
 _02000B80: .word 0x0100002F
 _02000B84: .word 0xFFFF001D
 _02000B88: .word 0x027FF017

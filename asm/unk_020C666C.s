@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C666C.inc"
 
-	
+	.extern Unk_020FE484
 
 	.text
 
@@ -146,5 +146,5 @@ _020C684C:
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C6854: .word 0x020FE484
+_020C6854: .word Unk_020FE484
 	arm_func_end FSi_TranslateCommand

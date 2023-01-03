@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay018/ov18_0224589C.inc"
 
-	
+	.extern OS_IRQTable
 
 	.text
 
@@ -72,7 +72,7 @@ ov18_0224594C: ; 0x0224594C
 	str r1, [r0, #0xff8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02245970: .word 0x027E0000
+_02245970: .word OS_IRQTable
 	arm_func_end ov18_0224594C
 
 	.bss

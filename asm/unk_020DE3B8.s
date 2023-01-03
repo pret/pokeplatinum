@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020DE3B8.inc"
 
-	
+	.extern Unk_021015AC
 
 	.text
 
@@ -1467,7 +1467,7 @@ _020DF7A4:
 	; .align 2, 0
 _020DF7B4: .word 0x3FF00000
 _020DF7B8: .word 0xBFF00000
-_020DF7BC: .word 0x021015AC
+_020DF7BC: .word Unk_021015AC
 _020DF7C0: .word 0x7FF00000
 _020DF7C4: .word 0x021019A0
 _020DF7C8: .word 0x0210188C

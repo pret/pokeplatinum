@@ -1,6 +1,6 @@
 	.include "macros/function.inc"
 
-	
+
 
 	.rodata
 

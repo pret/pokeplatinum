@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020DA458.inc"
 
-	
+	.extern Unk_021D0D40
 
 	.text
 
@@ -541,7 +541,7 @@ _020DAD28:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020DAD3C: .word __StringRead
-_020DAD40: .word 0x021D0D40
+_020DAD40: .word Unk_021D0D40
 	arm_func_end strtoul
 
 	arm_func_start strtol
@@ -599,7 +599,7 @@ _020DADF4:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020DAE04: .word __StringRead
-_020DAE08: .word 0x021D0D40
+_020DAE08: .word Unk_021D0D40
 	arm_func_end strtol
 
 	arm_func_start atoi

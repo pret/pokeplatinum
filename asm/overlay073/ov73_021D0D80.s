@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay073/ov73_021D0D80.inc"
 
-	
+	.extern Unk_ov57_021D0F80
 
 	.text
 
@@ -282,7 +282,7 @@ ov73_021D0F7C: ; 0x021D0F7C
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
 _021D0FE8: .word 0x00000039
-_021D0FEC: .word 0x021D0F80
+_021D0FEC: .word Unk_ov57_021D0F80
 	thumb_func_end ov73_021D0F7C
 
 	thumb_func_start ov73_021D0FF0

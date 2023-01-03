@@ -1,7 +1,16 @@
 	.include "macros/function.inc"
 	.include "overlay097/ov97_0222AE60.inc"
 
-	
+	.extern OS_IRQTable
+	.extern Unk_ov57_021D0F70
+	.extern Unk_ov57_021D0F90
+	.extern Unk_ov97_0223D71C
+	.extern Unk_ov97_0223D864
+	.extern Unk_ov97_0223D6BC
+	.extern Unk_020F6DF0
+	.extern Unk_ov98_02249BAC
+	.extern Unk_ov77_021D742C
+
 
 	.text
 
@@ -1940,7 +1949,7 @@ ov97_0222BD48: ; 0x0222BD48
 	str r0, [r3, r1]
 	pop {r4, pc}
 	; .align 2, 0
-_0222BD68: .word 0x027E0000
+_0222BD68: .word OS_IRQTable
 _0222BD6C: .word 0x00003FF8
 	thumb_func_end ov97_0222BD48
 
@@ -2395,18 +2404,18 @@ _0222C11A:
 	pop {r3, pc}
 	; .align 2, 0
 _0222C11C: .word 0x00000039
-_0222C120: .word 0x021D0F70
-_0222C124: .word 0x021D0F90
+_0222C120: .word Unk_ov57_021D0F70
+_0222C124: .word Unk_ov57_021D0F90
 _0222C128: .word 0x00000061
-_0222C12C: .word 0x0223D71C
-_0222C130: .word 0x0223D864
-_0222C134: .word 0x0223D6BC
+_0222C12C: .word Unk_ov97_0223D71C
+_0222C130: .word Unk_ov97_0223D864
+_0222C134: .word Unk_ov97_0223D6BC
 _0222C138: .word 0x0223E094
-_0222C13C: .word 0x020F6DF0
+_0222C13C: .word Unk_020F6DF0
 _0222C140: .word 0x00000062
-_0222C144: .word 0x02249BAC
+_0222C144: .word Unk_ov98_02249BAC
 _0222C148: .word 0x0000004D
-_0222C14C: .word 0x021D742C
+_0222C14C: .word Unk_ov77_021D742C
 	thumb_func_end ov97_0222C094
 
 	thumb_func_start ov97_0222C150
@@ -2431,7 +2440,10 @@ ov97_0222C150: ; 0x0222C150
 
 	.global Unk_ov97_0223D674
 Unk_ov97_0223D674: ; 0x0223D674
-	.incbin "incbin/overlay97_rodata.bin", 0x0, 0x10 - 0x0
+	.word ov97_0222BD70,
+    .word ov97_0222BE24,
+    .word ov97_0222C150,
+    .word 0xFFFFFFFF
 
 	.global Unk_ov97_0223D684
 Unk_ov97_0223D684: ; 0x0223D684

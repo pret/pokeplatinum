@@ -3,7 +3,8 @@
 
 	.extern Unk_021D0D44
 	.extern Unk_021CCC80
-	
+	.extern Unk_021D0920
+	.extern Unk_021D0944
 
 	.text
 
@@ -93,8 +94,8 @@ _020D8B3C:
 	; .align 2, 0
 _020D8B4C: .word 0x021D0A10
 _020D8B50: .word Unk_021CCC80
-_020D8B54: .word 0x021D0920
-_020D8B58: .word 0x021D0944
+_020D8B54: .word Unk_021D0920
+_020D8B58: .word Unk_021D0944
 _020D8B5C: .word Unk_021D0D44
 	arm_func_end raise
 

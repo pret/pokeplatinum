@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C1434.inc"
 
-	
+	.extern OS_IRQTable
+	.extern OSi_IrqThreadQueue
 
 	.text
 
@@ -14,7 +15,7 @@ OS_InitIrqTable: ; 0x020C1434
 	str r1, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020C1448: .word 0x027E0060
+_020C1448: .word OSi_IrqThreadQueue
 	arm_func_end OS_InitIrqTable
 
 	arm_func_start OS_SetIrqFunction
@@ -57,7 +58,7 @@ _020C14B8:
 	blt _020C1470
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020C14CC: .word 0x027E0000
+_020C14CC: .word OS_IRQTable
 _020C14D0: .word 0x021CCBF8
 	arm_func_end OS_SetIrqFunction
 
@@ -101,7 +102,7 @@ _020C153C:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_020C1558: .word 0x027E0000
+_020C1558: .word OS_IRQTable
 _020C155C: .word 0x021CCBF8
 	arm_func_end OS_GetIrqFunction
 
@@ -229,7 +230,7 @@ OS_SetIrqStackChecker: ; 0x020C16A8
 	str r2, [r0, -r1]
 	bx lr
 	; .align 2, 0
-_020C16CC: .word 0x027E0000
+_020C16CC: .word OS_IRQTable
 _020C16D0: .word 0xFDDB597D
 _020C16D4: .word 0x7BF9DD5B
 _020C16D8: .word 0x00000800
