@@ -558,6 +558,7 @@ Static main
 	Object asm/unk_020D0FB4.o
 	Object asm/unk_020D130C.o
 	Object asm/unk_020D14B4.o
+	Object asm/unk_021D03E0.o
 	Object asm/unk_020D1B00.o
 	Object asm/unk_020FE5DC.o
 	Object asm/unk_020D2114.o
@@ -569,9 +570,11 @@ Static main
 	Object asm/unk_020D3354.o
 	Object asm/unk_020D3448.o
 	Object asm/unk_020D3DA0.o
+	Object asm/unk_021D0920.o
 	Object asm/unk_020D3F38.o
 	Object asm/unk_020D3F50.o
 	Object asm/unk_020D3F7C.o
+	Object asm/unk_021D0D40.o
 	Object asm/unk_020D4070.o
 	Object asm/unk_020D407C.o
 	Object asm/unk_020D40B8.o
@@ -583,9 +586,6 @@ Static main
 	Object asm/unk_020D51D0.o
 	Object asm/unk_021015AC.o
 	Object asm/unk_021015BC.o
-	Object asm/unk_021D03E0.o
-	Object asm/unk_021D0920.o
-	Object asm/unk_021D0D40.o
 	Object asm/unk_020D5280.o
 	Object asm/unk_020D753C.o
 	Object asm/unk_020D76A0.o
