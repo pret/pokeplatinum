@@ -31,7 +31,7 @@ NNS_GfdInitLnkPlttVramManager: ; 0x020A6B8C
 	str r2, [r0, #0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A6BCC: .word 0x021C3AF0
+_020A6BCC: .word Unk_021C3AF0
 _020A6BD0: .word NNS_GfdAllocLnkPlttVram
 _020A6BD4: .word 0x02100DF4
 _020A6BD8: .word NNS_GfdFreeLnkPlttVram
@@ -92,7 +92,7 @@ _020A6C74:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A6CA0: .word 0x0007FFF8
-_020A6CA4: .word 0x021C3AF0
+_020A6CA4: .word Unk_021C3AF0
 _020A6CA8: .word 0x021C3AF4
 	arm_func_end NNS_GfdAllocLnkPlttVram
 
@@ -114,7 +114,7 @@ NNS_GfdFreeLnkPlttVram: ; 0x020A6CAC
 	movne r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A6CE8: .word 0x021C3AF0
+_020A6CE8: .word Unk_021C3AF0
 _020A6CEC: .word 0x021C3AF4
 	arm_func_end NNS_GfdFreeLnkPlttVram
 
@@ -141,8 +141,8 @@ NNS_GfdResetLnkPlttVramState: ; 0x020A6CF0
 	bl NNSi_GfdMergeAllFreeBlocks
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A6D40: .word 0x021C3AF0
-_020A6D44: .word 0x021C3AF0
+_020A6D40: .word Unk_021C3AF0
+_020A6D44: .word Unk_021C3AF0
 _020A6D48: .word 0x021C3AF4
 	arm_func_end NNS_GfdResetLnkPlttVramState
 

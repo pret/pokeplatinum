@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_02030EE0.inc"
 
+	.extern Unk_021C07A8
 	
 
 	.text
@@ -14,7 +15,7 @@ sub_02030EE0: ; 0x02030EE0
 	str r0, [r2, r1]
 	bx lr
 	nop
-_02030EEC: .word 0x021C07A8
+_02030EEC: .word Unk_021C07A8
 _02030EF0: .word 0x00001310
 	thumb_func_end sub_02030EE0
 
@@ -32,7 +33,7 @@ sub_02030EF4: ; 0x02030EF4
 _02030F06:
 	bx lr
 	; .align 2, 0
-_02030F08: .word 0x021C07A8
+_02030F08: .word Unk_021C07A8
 _02030F0C: .word 0x00001310
 	thumb_func_end sub_02030EF4
 
@@ -56,7 +57,7 @@ _02030F34:
 	mov r0, #1
 	pop {r3, pc}
 	; .align 2, 0
-_02030F38: .word 0x021C07A8
+_02030F38: .word Unk_021C07A8
 _02030F3C: .word sub_02030F40
 	thumb_func_end sub_02030F10
 
@@ -126,7 +127,7 @@ _02030FAC:
 	strh r0, [r2, r1]
 	pop {r4, pc}
 	; .align 2, 0
-_02030FC0: .word 0x021C07A8
+_02030FC0: .word Unk_021C07A8
 _02030FC4: .word 0x00001310
 _02030FC8: .word sub_02030FD0
 _02030FCC: .word 0x0000132C
@@ -256,7 +257,7 @@ _020310B2:
 _020310C0:
 	pop {r4, r5, r6, pc}
 	nop
-_020310C4: .word 0x021C07A8
+_020310C4: .word Unk_021C07A8
 _020310C8: .word 0x00001345
 _020310CC: .word 0x00001343
 _020310D0: .word 0x00001334
@@ -311,7 +312,7 @@ _02031130:
 	add sp, #8
 	pop {r4, pc}
 	nop
-_02031138: .word 0x021C07A8
+_02031138: .word Unk_021C07A8
 _0203113C: .word 0x00001310
 _02031140: .word 0x00001304
 _02031144: .word 0x00001020
@@ -364,7 +365,7 @@ _02031196:
 _0203119C:
 	pop {r3, pc}
 	nop
-_020311A0: .word 0x021C07A8
+_020311A0: .word Unk_021C07A8
 _020311A4: .word 0x00001314
 	thumb_func_end sub_0203114C
 
@@ -507,7 +508,7 @@ _020312A6:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_020312AC: .word 0x021C07A8
+_020312AC: .word Unk_021C07A8
 _020312B0: .word 0x00001308
 _020312B4: .word 0x00001256
 	thumb_func_end sub_02031220
@@ -563,7 +564,7 @@ _02031318:
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
-_0203131C: .word 0x021C07A8
+_0203131C: .word Unk_021C07A8
 	thumb_func_end sub_020312B8
 
 	thumb_func_start sub_02031320
@@ -656,7 +657,7 @@ _020313CE:
 	mov r0, #1
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_020313D4: .word 0x021C07A8
+_020313D4: .word Unk_021C07A8
 _020313D8: .word 0x0000130C
 _020313DC: .word 0x000012E4
 _020313E0: .word 0x000012E6
@@ -762,7 +763,7 @@ _0203149E:
 _020314AC:
 	pop {r4, pc}
 	nop
-_020314B0: .word 0x021C07A8
+_020314B0: .word Unk_021C07A8
 _020314B4: .word 0x00001310
 _020314B8: .word 0x00001320
 _020314BC: .word 0x0000130E
@@ -785,7 +786,7 @@ _020314D2:
 	mov r0, #1
 	pop {r3, pc}
 	; .align 2, 0
-_020314DC: .word 0x021C07A8
+_020314DC: .word Unk_021C07A8
 _020314E0: .word 0x00001310
 	thumb_func_end sub_020314C0
 
@@ -831,7 +832,7 @@ _0203150E:
 _0203152E:
 	pop {r3, pc}
 	; .align 2, 0
-_02031530: .word 0x021C07A8
+_02031530: .word Unk_021C07A8
 _02031534: .word 0x0000130E
 	thumb_func_end sub_02031500
 
@@ -881,7 +882,7 @@ _0203158E:
 	add sp, #0x24
 	pop {pc}
 	; .align 2, 0
-_02031594: .word 0x021C07A8
+_02031594: .word Unk_021C07A8
 _02031598: .word 0x00001310
 _0203159C: .word 0x02100A18
 _020315A0: .word sub_020315A8
@@ -976,7 +977,7 @@ _02031650:
 _0203165A:
 	pop {r4, pc}
 	; .align 2, 0
-_0203165C: .word 0x021C07A8
+_0203165C: .word Unk_021C07A8
 _02031660: .word 0x00001335
 _02031664: .word 0x0000132C
 	thumb_func_end sub_020315A8
@@ -1015,7 +1016,7 @@ _020316A2:
 	add sp, #8
 	pop {r4, pc}
 	; .align 2, 0
-_020316A8: .word 0x021C07A8
+_020316A8: .word Unk_021C07A8
 _020316AC: .word 0x00001304
 _020316B0: .word 0x00001020
 _020316B4: .word sub_020316B8
@@ -1071,7 +1072,7 @@ _0203170A:
 _02031710:
 	pop {r3, pc}
 	nop
-_02031714: .word 0x021C07A8
+_02031714: .word Unk_021C07A8
 _02031718: .word 0x00001314
 	thumb_func_end sub_020316B8
 
@@ -1225,7 +1226,7 @@ _0203182A:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02031830: .word 0x021C07A8
+_02031830: .word Unk_021C07A8
 _02031834: .word 0x00001304
 _02031838: .word 0x0000FFFF
 _0203183C: .word sub_02031840
@@ -1294,7 +1295,7 @@ _02031898:
 _020318A4:
 	pop {r3, pc}
 	nop
-_020318A8: .word 0x021C07A8
+_020318A8: .word Unk_021C07A8
 _020318AC: .word 0x00001318
 	thumb_func_end sub_02031868
 
@@ -1323,7 +1324,7 @@ sub_020318D0: ; 0x020318D0
 	str r0, [r1, #8]
 	bx lr
 	; .align 2, 0
-_020318D8: .word 0x021C07A8
+_020318D8: .word Unk_021C07A8
 	thumb_func_end sub_020318D0
 
 	thumb_func_start sub_020318DC
@@ -1335,7 +1336,7 @@ sub_020318DC: ; 0x020318DC
 	strh r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020318E8: .word 0x021C07A8
+_020318E8: .word Unk_021C07A8
 	thumb_func_end sub_020318DC
 
 	thumb_func_start sub_020318EC
@@ -1346,7 +1347,7 @@ sub_020318EC: ; 0x020318EC
 	ldrh r0, [r1, r0]
 	bx lr
 	nop
-_020318F8: .word 0x021C07A8
+_020318F8: .word Unk_021C07A8
 _020318FC: .word 0x0000132E
 	thumb_func_end sub_020318EC
 
@@ -1376,7 +1377,7 @@ _02031918:
 	pop {r3, r4}
 	bx lr
 	nop
-_0203192C: .word 0x021C07A8
+_0203192C: .word Unk_021C07A8
 _02031930: .word 0x0000132E
 	thumb_func_end sub_02031900
 
@@ -1388,7 +1389,7 @@ sub_02031934: ; 0x02031934
 	ldr r0, [r1, r0]
 	bx lr
 	nop
-_02031940: .word 0x021C07A8
+_02031940: .word Unk_021C07A8
 _02031944: .word 0x00001310
 	thumb_func_end sub_02031934
 
@@ -1400,7 +1401,7 @@ sub_02031948: ; 0x02031948
 	ldr r0, [r1, r0]
 	bx lr
 	nop
-_02031954: .word 0x021C07A8
+_02031954: .word Unk_021C07A8
 _02031958: .word 0x00001330
 	thumb_func_end sub_02031948
 
@@ -1469,7 +1470,7 @@ _020319DC:
 	pop {r3, r4, r5, pc}
 	nop
 _020319E4: .word 0x027FFC3C
-_020319E8: .word 0x021C07A8
+_020319E8: .word Unk_021C07A8
 _020319EC: .word 0x00001338
 _020319F0: .word 0x00010DCD
 _020319F4: .word 0x00003039
@@ -1596,7 +1597,7 @@ _02031ADA:
 _02031AE4:
 	pop {r3, r4, r5, pc}
 	nop
-_02031AE8: .word 0x021C07A8
+_02031AE8: .word Unk_021C07A8
 _02031AEC: .word 0x0000133E
 	thumb_func_end sub_02031A74
 
@@ -1632,7 +1633,7 @@ sub_02031B04: ; 0x02031B04
 	ldrh r0, [r0, r1]
 	pop {r3, pc}
 	; .align 2, 0
-_02031B28: .word 0x021C07A8
+_02031B28: .word Unk_021C07A8
 _02031B2C: .word 0x0000133C
 	thumb_func_end sub_02031B04
 
@@ -1710,7 +1711,7 @@ _02031BAE:
 	pop {r4, r5, r6, r7}
 	bx lr
 	nop
-_02031BB4: .word 0x021C07A8
+_02031BB4: .word Unk_021C07A8
 _02031BB8: .word 0x00001338
 _02031BBC: .word 0x00010DCD
 _02031BC0: .word 0x00003039
@@ -1785,7 +1786,7 @@ _02031C42:
 	mov r0, #1
 	pop {r4, r5, r6, pc}
 	nop
-_02031C48: .word 0x021C07A8
+_02031C48: .word Unk_021C07A8
 _02031C4C: .word 0x00001308
 	thumb_func_end sub_02031BC4
 
@@ -1847,7 +1848,7 @@ _02031CB0:
 	mov r0, #1
 	pop {r4, pc}
 	; .align 2, 0
-_02031CB4: .word 0x021C07A8
+_02031CB4: .word Unk_021C07A8
 _02031CB8: .word sub_02031CBC
 	thumb_func_end sub_02031C70
 
@@ -1993,7 +1994,7 @@ _02031DC2:
 	nop
 _02031DC8: .word sub_02031D00
 _02031DCC: .word 0x0000FFFF
-_02031DD0: .word 0x021C07A8
+_02031DD0: .word Unk_021C07A8
 _02031DD4: .word 0x00001308
 	thumb_func_end sub_02031D04
 
@@ -2060,7 +2061,7 @@ _02031E50:
 	nop
 _02031E58: .word sub_02031D00
 _02031E5C: .word 0x0000FFFF
-_02031E60: .word 0x021C07A8
+_02031E60: .word Unk_021C07A8
 _02031E64: .word 0x00001308
 _02031E68: .word 0x00001220
 	thumb_func_end sub_02031DD8
@@ -2086,7 +2087,7 @@ _02031E8C:
 _02031E8E:
 	pop {r3, pc}
 	; .align 2, 0
-_02031E90: .word 0x021C07A8
+_02031E90: .word Unk_021C07A8
 _02031E94: .word 0x00001318
 _02031E98: .word sub_02031868
 	thumb_func_end sub_02031E6C
@@ -2137,7 +2138,7 @@ _02031EDC:
 _02031EEA:
 	pop {r3, pc}
 	; .align 2, 0
-_02031EEC: .word 0x021C07A8
+_02031EEC: .word Unk_021C07A8
 _02031EF0: .word 0x00001310
 	thumb_func_end sub_02031ECC
 
@@ -2196,7 +2197,7 @@ _02031F52:
 _02031F5E:
 	pop {r3, pc}
 	; .align 2, 0
-_02031F60: .word 0x021C07A8
+_02031F60: .word Unk_021C07A8
 _02031F64: .word 0x00001310
 _02031F68: .word 0x00001314
 	thumb_func_end sub_02031EF4
@@ -2229,7 +2230,7 @@ sub_02031F90: ; 0x02031F90
 	ldrh r0, [r1, r0]
 	bx lr
 	nop
-_02031F9C: .word 0x021C07A8
+_02031F9C: .word Unk_021C07A8
 _02031FA0: .word 0x0000132C
 	thumb_func_end sub_02031F90
 
@@ -2244,7 +2245,7 @@ sub_02031FA4: ; 0x02031FA4
 _02031FB0:
 	bx lr
 	nop
-_02031FB4: .word 0x021C07A8
+_02031FB4: .word Unk_021C07A8
 _02031FB8: .word 0x00001334
 	thumb_func_end sub_02031FA4
 
@@ -2262,7 +2263,7 @@ _02031FCC:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_02031FD0: .word 0x021C07A8
+_02031FD0: .word Unk_021C07A8
 _02031FD4: .word 0x00001310
 	thumb_func_end sub_02031FBC
 
@@ -2280,7 +2281,7 @@ _02031FE8:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_02031FEC: .word 0x021C07A8
+_02031FEC: .word Unk_021C07A8
 _02031FF0: .word 0x00001310
 	thumb_func_end sub_02031FD8
 
@@ -2298,7 +2299,7 @@ _02032004:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_02032008: .word 0x021C07A8
+_02032008: .word Unk_021C07A8
 _0203200C: .word 0x00001310
 	thumb_func_end sub_02031FF4
 
@@ -2321,7 +2322,7 @@ _02032028:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_0203202C: .word 0x021C07A8
+_0203202C: .word Unk_021C07A8
 _02032030: .word 0x00001310
 	thumb_func_end sub_02032010
 
@@ -2353,7 +2354,7 @@ _02032062:
 	add sp, #8
 	pop {r4, r5, r6, pc}
 	nop
-_02032068: .word 0x021C07A8
+_02032068: .word Unk_021C07A8
 _0203206C: .word 0x00001310
 	thumb_func_end sub_02032034
 
@@ -2370,7 +2371,7 @@ sub_02032070: ; 0x02032070
 _02032080:
 	bx lr
 	nop
-_02032084: .word 0x021C07A8
+_02032084: .word Unk_021C07A8
 _02032088: .word 0x00001344
 	thumb_func_end sub_02032070
 
@@ -2398,7 +2399,7 @@ _020320B2:
 	mov r0, #0
 	pop {r4, pc}
 	nop
-_020320B8: .word 0x021C07A8
+_020320B8: .word Unk_021C07A8
 _020320BC: .word 0x00001344
 _020320C0: .word sub_02032070
 	thumb_func_end sub_0203208C
@@ -2422,7 +2423,7 @@ _020320DC:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_020320E0: .word 0x021C07A8
+_020320E0: .word Unk_021C07A8
 _020320E4: .word 0x00001345
 	thumb_func_end sub_020320C4
 
@@ -2435,7 +2436,7 @@ sub_020320E8: ; 0x020320E8
 	strb r2, [r1, r0]
 	bx lr
 	; .align 2, 0
-_020320F4: .word 0x021C07A8
+_020320F4: .word Unk_021C07A8
 _020320F8: .word 0x00001345
 	thumb_func_end sub_020320E8
 
@@ -2447,7 +2448,7 @@ sub_020320FC: ; 0x020320FC
 	str r0, [r2, r1]
 	bx lr
 	nop
-_02032108: .word 0x021C07A8
+_02032108: .word Unk_021C07A8
 _0203210C: .word 0x00001320
 	thumb_func_end sub_020320FC
 
@@ -2459,7 +2460,7 @@ sub_02032110: ; 0x02032110
 	str r0, [r2, r1]
 	bx lr
 	nop
-_0203211C: .word 0x021C07A8
+_0203211C: .word Unk_021C07A8
 _02032120: .word 0x00001324
 	thumb_func_end sub_02032110
 
@@ -2471,7 +2472,7 @@ sub_02032124: ; 0x02032124
 	str r0, [r2, r1]
 	bx lr
 	nop
-_02032130: .word 0x021C07A8
+_02032130: .word Unk_021C07A8
 _02032134: .word 0x00001328
 	thumb_func_end sub_02032124
 
@@ -2483,7 +2484,7 @@ sub_02032138: ; 0x02032138
 	strb r0, [r2, r1]
 	bx lr
 	nop
-_02032144: .word 0x021C07A8
+_02032144: .word Unk_021C07A8
 _02032148: .word 0x00001342
 	thumb_func_end sub_02032138
 
@@ -2495,7 +2496,7 @@ sub_0203214C: ; 0x0203214C
 	ldrb r0, [r1, r0]
 	bx lr
 	nop
-_02032158: .word 0x021C07A8
+_02032158: .word Unk_021C07A8
 _0203215C: .word 0x00001342
 	thumb_func_end sub_0203214C
 
@@ -2507,7 +2508,7 @@ sub_02032160: ; 0x02032160
 	strb r0, [r2, r1]
 	bx lr
 	nop
-_0203216C: .word 0x021C07A8
+_0203216C: .word Unk_021C07A8
 _02032170: .word 0x00001343
 	thumb_func_end sub_02032160
 
@@ -2519,7 +2520,7 @@ sub_02032174: ; 0x02032174
 	strb r0, [r2, r1]
 	bx lr
 	nop
-_02032180: .word 0x021C07A8
+_02032180: .word Unk_021C07A8
 _02032184: .word 0x00001335
 	thumb_func_end sub_02032174
 

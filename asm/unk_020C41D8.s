@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C41D8.inc"
 
-	
+	.extern Unk_021CCFBC
 
 	.text
 
@@ -59,6 +59,6 @@ OS_GetLowEntropyData: ; 0x020C41D8
 	; .align 2, 0
 _020C4298: .word 0x04000006
 _020C429C: .word 0x027FFC00
-_020C42A0: .word 0x021CCFBC
+_020C42A0: .word Unk_021CCFBC
 _020C42A4: .word 0x04000600
 	arm_func_end OS_GetLowEntropyData

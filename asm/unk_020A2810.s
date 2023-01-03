@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A2810.inc"
 
+	.extern Unk_021C3A48
+	.extern Unk_021C3A54
+	.extern Unk_021C3A80
 	
 
 	.text
@@ -19,7 +22,7 @@ sub_020A2810: ; 0x020A2810
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A2838: .word 0x021C3A48
+_020A2838: .word Unk_021C3A48
 	arm_func_end sub_020A2810
 
 	arm_func_start sub_020A283C
@@ -73,7 +76,7 @@ sub_020A283C: ; 0x020A283C
 	bl MI_CpuCopy8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A28FC: .word 0x021C3A54
+_020A28FC: .word Unk_021C3A54
 _020A2900: .word 0x000007FF
 _020A2904: .word 0x021C3A59
 _020A2908: .word 0x021C3A5E
@@ -139,9 +142,9 @@ _020A2994:
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020A29E4: .word 0x021C3A48
+_020A29E4: .word Unk_021C3A48
 _020A29E8: .word 0x0000A001
-_020A29EC: .word 0x021C3A54
+_020A29EC: .word Unk_021C3A54
 	arm_func_end sub_020A2914
 
 	arm_func_start sub_020A29F0
@@ -163,7 +166,7 @@ sub_020A29F0: ; 0x020A29F0
 	str r2, [r1, #8]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A2A30: .word 0x021C3A48
+_020A2A30: .word Unk_021C3A48
 	arm_func_end sub_020A29F0
 
 	arm_func_start sub_020A2A34
@@ -179,7 +182,7 @@ sub_020A2A34: ; 0x020A2A34
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A2A5C: .word 0x021C3A48
+_020A2A5C: .word Unk_021C3A48
 	arm_func_end sub_020A2A34
 
 	arm_func_start sub_020A2A60
@@ -221,7 +224,7 @@ _020A2ABC:
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020A2AE4: .word 0x021C3A48
+_020A2AE4: .word Unk_021C3A48
 	arm_func_end sub_020A2A60
 
 	arm_func_start sub_020A2AE8
@@ -265,7 +268,7 @@ _020A2B24:
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_020A2B78: .word 0x021C3A48
+_020A2B78: .word Unk_021C3A48
 	arm_func_end sub_020A2AE8
 
 	arm_func_start sub_020A2B7C
@@ -276,7 +279,7 @@ sub_020A2B7C: ; 0x020A2B7C
 	bx ip
 	; .align 2, 0
 _020A2B8C: .word MI_CpuCopy8
-_020A2B90: .word 0x021C3A54
+_020A2B90: .word Unk_021C3A54
 	arm_func_end sub_020A2B7C
 
 	arm_func_start sub_020A2B94
@@ -685,11 +688,11 @@ _020A3120:
 	add sp, sp, #0x3c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020A312C: .word 0x021C3A80
+_020A312C: .word Unk_021C3A80
 _020A3130: .word 0x01020000
 _020A3134: .word 0x02002200
 _020A3138: .word 0x03002100
-_020A313C: .word 0x021C3A48
+_020A313C: .word Unk_021C3A48
 _020A3140: .word 0x000082EA
 	arm_func_end sub_020A2CD8
 
@@ -847,7 +850,7 @@ sub_020A3308: ; 0x020A3308
 	ldrh r0, [r0]
 	bx lr
 	; .align 2, 0
-_020A3334: .word 0x021C3A48
+_020A3334: .word Unk_021C3A48
 	arm_func_end sub_020A3308
 
 	arm_func_start sub_020A3338
@@ -898,7 +901,7 @@ sub_020A3338: ; 0x020A3338
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A33EC: .word 0x021C3A54
+_020A33EC: .word Unk_021C3A54
 _020A33F0: .word 0x021C3A5A
 _020A33F4: .word 0x021C3A60
 	arm_func_end sub_020A3338
@@ -908,7 +911,7 @@ sub_020A33F8: ; 0x020A33F8
 	ldr r0, _020A3400 ; =0x021C3A54
 	bx lr
 	; .align 2, 0
-_020A3400: .word 0x021C3A54
+_020A3400: .word Unk_021C3A54
 	arm_func_end sub_020A33F8
 
 	.rodata

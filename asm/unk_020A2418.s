@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A2418.inc"
 
+	.extern Unk_021C3A3C
 	
 
 	.text
@@ -162,7 +163,7 @@ _020A2630:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020A2640: .word 0x021C3A3C
+_020A2640: .word Unk_021C3A3C
 _020A2644: .word 0x04000242
 _020A2648: .word 0x04000243
 _020A264C: .word WvrReceiveCallback
@@ -229,7 +230,7 @@ _020A2718:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020A2728: .word 0x021C3A3C
+_020A2728: .word Unk_021C3A3C
 _020A272C: .word WvrReceiveCallback
 _020A2730: .word WvrDummyAsyncCallback
 	arm_func_end WVR_TerminateAsync
@@ -294,7 +295,7 @@ _020A27E0:
 	blx r4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020A2808: .word 0x021C3A3C
+_020A2808: .word Unk_021C3A3C
 	arm_func_end WvrReceiveCallback
 
 	arm_func_start WvrDummyAsyncCallback

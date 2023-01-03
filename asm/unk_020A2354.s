@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A2354.inc"
 
-	
+	.extern Unk_021C3A38
+	.extern Unk_021C3A38
 
 	.text
 
@@ -29,7 +30,7 @@ sub_020A2354: ; 0x020A2354
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0
-_020A23A4: .word 0x021C3A38
+_020A23A4: .word Unk_021C3A38
 _020A23A8: .word 0x5EEDF715
 _020A23AC: .word 0x1B0CB173
 	arm_func_end sub_020A2354
@@ -60,7 +61,7 @@ sub_020A23B0: ; 0x020A23B0
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0
-_020A240C: .word 0x021C3A38
+_020A240C: .word Unk_021C3A38
 _020A2410: .word 0x5EEDF715
 _020A2414: .word 0x1B0CB173
 	arm_func_end sub_020A23B0

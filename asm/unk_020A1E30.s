@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A1E30.inc"
 
-	
+	.extern Unk_021C3A38
+	.extern Unk_021C3A38
 
 	.text
 
@@ -276,7 +277,7 @@ SPL_020A213C: ; 0x020A213C
 	ldmia sp!, {r4, r5, lr}
 	bx lr
 	; .align 2, 0
-_020A21F8: .word 0x021C3A38
+_020A21F8: .word Unk_021C3A38
 _020A21FC: .word 0x5EEDF715
 _020A2200: .word 0x1B0CB173
 	arm_func_end SPL_020A213C

@@ -32,7 +32,7 @@ NNS_GfdInitLnkTexVramManager: ; 0x020A682C
 	str r2, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A6870: .word 0x021C3AD4
+_020A6870: .word Unk_021C3AD4
 _020A6874: .word NNS_GfdAllocLnkTexVram
 _020A6878: .word 0x02100DEC
 _020A687C: .word NNS_GfdFreeLnkTexVram
@@ -79,7 +79,7 @@ _020A68DC:
 _020A6904: .word 0x0007FFF0
 _020A6908: .word 0x021C3AD8
 _020A690C: .word 0x021C3ADC
-_020A6910: .word 0x021C3AD4
+_020A6910: .word Unk_021C3AD4
 	arm_func_end NNS_GfdAllocLnkTexVram
 
 	arm_func_start NNS_GfdFreeLnkTexVram
@@ -116,7 +116,7 @@ _020A6970:
 _020A6978: .word 0x7FFF0000
 _020A697C: .word 0x021C3AD8
 _020A6980: .word 0x021C3ADC
-_020A6984: .word 0x021C3AD4
+_020A6984: .word Unk_021C3AD4
 	arm_func_end NNS_GfdFreeLnkTexVram
 
 	arm_func_start NNS_GfdResetLnkTexVramState
@@ -255,8 +255,8 @@ _020A6B50:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A6B70: .word 0x020F9600
-_020A6B74: .word 0x021C3AD4
-_020A6B78: .word 0x021C3AD4
+_020A6B74: .word Unk_021C3AD4
+_020A6B78: .word Unk_021C3AD4
 _020A6B7C: .word 0x021C3AD8
 _020A6B80: .word 0x021C3ADC
 	arm_func_end NNS_GfdResetLnkTexVramState

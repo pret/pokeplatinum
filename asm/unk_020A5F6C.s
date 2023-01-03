@@ -467,9 +467,9 @@ NNS_GfdInitVramTransferManager: ; 0x020A6338
 	str r1, [r2, #4]
 	bx ip
 	; .align 2, 0
-_020A6350: .word 0x021C3AC0
+_020A6350: .word Unk_021C3AC0
 _020A6354: .word ResetTaskQueue_
-_020A6358: .word 0x021C3AC0
+_020A6358: .word Unk_021C3AC0
 	arm_func_end NNS_GfdInitVramTransferManager
 
 	arm_func_start NNS_GfdDoVramTransfer
@@ -499,7 +499,7 @@ _020A6380:
 	bne _020A6380
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020A63B8: .word 0x021C3AC0
+_020A63B8: .word Unk_021C3AC0
 	arm_func_end NNS_GfdDoVramTransfer
 
 	arm_func_start NNS_GfdRegisterNewVramTransferTask
@@ -530,7 +530,7 @@ NNS_GfdRegisterNewVramTransferTask: ; 0x020A63BC
 	str r1, [r5, #0x10]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020A6420: .word 0x021C3AC0
+_020A6420: .word Unk_021C3AC0
 	arm_func_end NNS_GfdRegisterNewVramTransferTask
 
 	.rodata

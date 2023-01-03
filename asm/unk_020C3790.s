@@ -143,7 +143,7 @@ _020C392C: .word 0x04000100
 
 	.global Unk_021CCFB4
 Unk_021CCFB4: ; 0x021CCFB4
-	.space 0x2
+	.space 0x4
 
 	.global Unk_021CCFB8
 Unk_021CCFB8: ; 0x021CCFB8

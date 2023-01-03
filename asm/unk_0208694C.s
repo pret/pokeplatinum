@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_0208694C.inc"
 
+	.extern Unk_021C0A30
 	
 
 	.text
@@ -209,7 +210,7 @@ _02086B18: .word sub_02087190
 _02086B1C: .word 0x000004C4
 _02086B20: .word 0x021BF6DC
 _02086B24: .word 0x000004B8
-_02086B28: .word 0x021C0A30
+_02086B28: .word Unk_021C0A30
 _02086B2C: .word 0x000005C4
 	thumb_func_end sub_0208694C
 

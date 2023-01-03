@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A4DE8.inc"
 
+	.extern Unk_021C3AA0
+	.extern Unk_021C3AA4
 	
 
 	.text
@@ -51,7 +53,7 @@ FindListContainHeap: ; 0x020A4E50
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A4E74: .word 0x021C3AA4
+_020A4E74: .word Unk_021C3AA4
 	arm_func_end FindListContainHeap
 
 	arm_func_start NNSi_FndInitHeapHead
@@ -87,8 +89,8 @@ _020A4ED8:
 	bl NNS_FndAppendListObject
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A4EEC: .word 0x021C3AA0
-_020A4EF0: .word 0x021C3AA4
+_020A4EEC: .word Unk_021C3AA0
+_020A4EF0: .word Unk_021C3AA4
 	arm_func_end NNSi_FndInitHeapHead
 
 	arm_func_start NNSi_FndFinalizeHeap
