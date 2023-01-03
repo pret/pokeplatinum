@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020AB470.inc"
 
+	.extern Unk_021C5A6C
 	
 
 	.text
@@ -166,7 +167,7 @@ _020AB6BC: .word 0x040004A8
 _020AB6C0: .word 0x020F96A4
 _020AB6C4: .word 0x020F96C4
 _020AB6C8: .word 0x020F96F4
-_020AB6CC: .word 0x021C5A6C
+_020AB6CC: .word Unk_021C5A6C
 _020AB6D0: .word 0x020F969C
 _020AB6D4: .word 0x040004AC
 	arm_func_end CalcSpriteParams_
@@ -177,7 +178,7 @@ NNSi_G2dSetOamSoftEmuAutoZOffsetFlag: ; 0x020AB6D8
 	str r0, [r1, #8]
 	bx lr
 	; .align 2, 0
-_020AB6E4: .word 0x021C5A6C
+_020AB6E4: .word Unk_021C5A6C
 	arm_func_end NNSi_G2dSetOamSoftEmuAutoZOffsetFlag
 
 	arm_func_start NNSi_G2dResetOamSoftEmuAutoZOffset
@@ -187,7 +188,7 @@ NNSi_G2dResetOamSoftEmuAutoZOffset: ; 0x020AB6E8
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020AB6F8: .word 0x021C5A6C
+_020AB6F8: .word Unk_021C5A6C
 	arm_func_end NNSi_G2dResetOamSoftEmuAutoZOffset
 
 	arm_func_start NNSi_G2dSetOamSoftEmuAutoZOffsetStep
@@ -356,7 +357,7 @@ _020AB810:
 	; .align 2, 0
 _020AB950: .word 0xC000C000
 _020AB954: .word 0x020F9670
-_020AB958: .word 0x021C5A6C
+_020AB958: .word Unk_021C5A6C
 _020AB95C: .word 0x020F9658
 _020AB960: .word 0x04000470
 _020AB964: .word 0x0400046C

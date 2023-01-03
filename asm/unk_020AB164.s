@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020AB164.inc"
 
+	.extern Unk_021C5A60
 	
 
 	.text
@@ -14,7 +15,7 @@ NNSi_G2dGetCellTransferState: ; 0x020AB164
 	mla r0, r1, r0, r2
 	bx lr
 	; .align 2, 0
-_020AB178: .word 0x021C5A60
+_020AB178: .word Unk_021C5A60
 	arm_func_end NNSi_G2dGetCellTransferState
 
 	arm_func_start NNSi_G2dInitCellTransferState
@@ -63,7 +64,7 @@ _020AB1F8:
 	str r0, [r4, #0x18]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020AB21C: .word 0x021C5A60
+_020AB21C: .word Unk_021C5A60
 	arm_func_end NNSi_G2dInitCellTransferState
 
 	arm_func_start NNS_G2dInitCellTransferStateManager
@@ -94,7 +95,7 @@ _020AB240:
 	blo _020AB240
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020AB280: .word 0x021C5A60
+_020AB280: .word Unk_021C5A60
 	arm_func_end NNS_G2dInitCellTransferStateManager
 
 	arm_func_start NNS_G2dUpdateCellTransferStateManager
@@ -177,7 +178,7 @@ _020AB36C:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020AB3A0: .word 0x021C5A60
+_020AB3A0: .word Unk_021C5A60
 _020AB3A4: .word 0x020F9688
 	arm_func_end NNS_G2dUpdateCellTransferStateManager
 
@@ -221,7 +222,7 @@ _020AB418:
 	mvn r0, #0
 	bx lr
 	; .align 2, 0
-_020AB420: .word 0x021C5A60
+_020AB420: .word Unk_021C5A60
 	arm_func_end NNS_G2dGetNewCellTransferStateHandle
 
 	arm_func_start NNS_G2dFreeCellTransferStateHandle
@@ -245,7 +246,7 @@ NNS_G2dFreeCellTransferStateHandle: ; 0x020AB424
 	str r0, [r4, #0x2c]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020AB46C: .word 0x021C5A60
+_020AB46C: .word Unk_021C5A60
 	arm_func_end NNS_G2dFreeCellTransferStateHandle
 
 	.rodata

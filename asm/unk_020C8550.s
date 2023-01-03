@@ -4,6 +4,7 @@
 	.extern Unk_021CEC24
 	.extern Unk_021CEC2C
 	.extern Unk_021CEC34
+	.extern Unk_021D0D68
 	
 
 	.text
@@ -456,7 +457,7 @@ _020C8B40:
 	b _020C8A70
 _020C8B50:
 	.byte 0xF8, 0x8F, 0xBD, 0xE8
-_020C8B54: .word 0x021D0D68
+_020C8B54: .word Unk_021D0D68
 	arm_func_end FS_EndOverlay
 
 	arm_func_start FS_UnloadOverlayImage

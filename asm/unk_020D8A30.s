@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D8A30.inc"
 
+	.extern Unk_021D0D44
 	.extern Unk_021CCC80
 	
 
@@ -94,7 +95,7 @@ _020D8B4C: .word 0x021D0A10
 _020D8B50: .word Unk_021CCC80
 _020D8B54: .word 0x021D0920
 _020D8B58: .word 0x021D0944
-_020D8B5C: .word 0x021D0D44
+_020D8B5C: .word Unk_021D0D44
 	arm_func_end raise
 
 	.bss

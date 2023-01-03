@@ -1,7 +1,6 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C635C.inc"
 
-	
 
 	.text
 
@@ -72,9 +71,9 @@ _020C6434:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C6440: .word 0x021CEB84
+_020C6440: .word Unk_021CEB84
 _020C6444: .word 0x027FFC00
-_020C6448: .word 0x021CEB88
+_020C6448: .word Unk_021CEB88
 _020C644C: .word 0x0000C408
 _020C6450: .word 0x04000184
 _020C6454: .word PXIi_HandlerRecvFifoNotEmpty
@@ -101,7 +100,7 @@ PXI_SetFifoRecvCallback: ; 0x020C645C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C64A0: .word 0x021CEB88
+_020C64A0: .word Unk_021CEB88
 _020C64A4: .word 0x027FFC00
 	arm_func_end PXI_SetFifoRecvCallback
 
@@ -239,7 +238,7 @@ _020C665C:
 	.byte 0x04, 0xD0, 0x8D, 0xE2
 	.byte 0xF8, 0x87, 0xBD, 0xE8
 _020C6664: .word 0x04000184
-_020C6668: .word 0x021CEB88
+_020C6668: .word Unk_021CEB88
 	arm_func_end PXIi_HandlerRecvFifoNotEmpty
 
 	.bss
@@ -247,7 +246,7 @@ _020C6668: .word 0x021CEB88
 
 	.global Unk_021CEB84
 Unk_021CEB84: ; 0x021CEB84
-	.space 0x2
+	.space 0x4
 
 	.global Unk_021CEB88
 Unk_021CEB88: ; 0x021CEB88

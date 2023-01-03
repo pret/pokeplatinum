@@ -1,6 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C7D68.inc"
 
+	.extern Unk_021CEC0C
+	.extern Unk_021CEC18
 	
 
 	.text
@@ -18,7 +20,7 @@ FS_Init: ; 0x020C7D68
 	bl FSi_InitRom
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C7D8C: .word 0x021CEC18
+_020C7D8C: .word Unk_021CEC18
 	arm_func_end FS_Init
 
 	arm_func_start FS_IsAvailable
@@ -27,7 +29,7 @@ FS_IsAvailable: ; 0x020C7D90
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020C7D9C: .word 0x021CEC18
+_020C7D9C: .word Unk_021CEC18
 	arm_func_end FS_IsAvailable
 
 	arm_func_start FS_InitFile
@@ -132,7 +134,7 @@ _020C7EF4:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C7F08: .word 0x021CEC0C
+_020C7F08: .word Unk_021CEC0C
 	arm_func_end FSi_FindPath
 
 	arm_func_start FSi_ReadFileCore
@@ -422,7 +424,7 @@ FS_ChangeDir: ; 0x020C8250
 	add sp, sp, #0x54
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_020C82A4: .word 0x021CEC0C
+_020C82A4: .word Unk_021CEC0C
 	arm_func_end FS_ChangeDir
 
 	.bss

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D0FB4.inc"
 
+	.extern Unk_021D02C0
 	.extern Unk_021D0200
 	.extern Unk_021D01C4
 	.extern Unk_021D01E0
@@ -56,7 +57,7 @@ _020D0FEC:
 _020D1054: .word Unk_021D01E0
 _020D1058: .word CTRDGi_CallbackForInitModuleInfo
 _020D105C: .word CTRDGi_PulledOutCallback
-_020D1060: .word 0x021D02C0
+_020D1060: .word Unk_021D02C0
 _020D1064: .word CTRDGi_CallbackForSetPhi
 	arm_func_end CTRDG_Init
 

@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020E3EA8.inc"
 
+	.extern Unk_021D0D64
 	
 
 	.text
@@ -59,7 +60,7 @@ _020E3F2C:
 _020E3F38:
 	.byte 0x00, 0x00, 0x8B, 0xE2, 0xBB, 0xFE, 0xFF, 0xEB
 	.byte 0xFE, 0xFF, 0xFF, 0xEA, 0x18, 0xD0, 0x8B, 0xE2, 0x78, 0x88, 0xBD, 0xE8
-_020E3F4C: .word 0x021D0D64
+_020E3F4C: .word Unk_021D0D64
 	arm_func_end sub_020E3EEC
 
 	arm_func_start sub_020E3F50
@@ -197,7 +198,7 @@ Unk_02101C4C: ; 0x02101C4C
 
 	.global Unk_021D0D60
 Unk_021D0D60: ; 0x021D0D60
-	.space 0x1
+	.space 0x4
 
 	.global Unk_021D0D64
 Unk_021D0D64: ; 0x021D0D64

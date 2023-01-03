@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay066/ov66_0223CA1C.inc"
 
+	.extern Unk_021D0D60
 	
 
 	.text
@@ -2263,7 +2264,7 @@ _0223E9B4:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _0223E9E4: .word 0x02259098
-_0223E9E8: .word 0x021D0D60
+_0223E9E8: .word Unk_021D0D60
 	arm_func_end ov66_0223E988
 
 	arm_func_start ov66_0223E9EC

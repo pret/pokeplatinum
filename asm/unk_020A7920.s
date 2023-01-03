@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A7920.inc"
 
+	.extern Unk_021C3B04
 	
 
 	.text
@@ -70,7 +71,7 @@ _020A79DC: .word 0x021C3C08
 _020A79E0: .word 0x021C4148
 _020A79E4: .word 0x021C4688
 _020A79E8: .word 0x0000FFFF
-_020A79EC: .word 0x021C3B08
+_020A79EC: .word Unk_021C3B08
 _020A79F0: .word 0x021C4048
 _020A79F4: .word 0x021C4588
 _020A79F8: .word 0x021C4008
@@ -184,9 +185,9 @@ _020A7B5C:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020A7B74: .word 0x021C3B08
+_020A7B74: .word Unk_021C3B08
 _020A7B78: .word 0x0000FFFF
-_020A7B7C: .word 0x021C3B04
+_020A7B7C: .word Unk_021C3B04
 	arm_func_end NNS_G2dGetNewOamManagerInstance
 
 	arm_func_start NNS_G2dEntryOamManagerOam
@@ -248,7 +249,7 @@ _020A7C44:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020A7C4C: .word 0x021C3B08
+_020A7C4C: .word Unk_021C3B08
 	arm_func_end NNS_G2dEntryOamManagerOam
 
 	arm_func_start NNS_G2dEntryOamManagerOamWithAffineIdx
@@ -313,7 +314,7 @@ _020A7D24:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A7D2C: .word 0x021C3B08
+_020A7D2C: .word Unk_021C3B08
 _020A7D30: .word 0x0000FFFE
 	arm_func_end NNS_G2dEntryOamManagerOamWithAffineIdx
 
@@ -370,7 +371,7 @@ _020A7D78:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _020A7DF0: .word 0x0000FFFE
-_020A7DF4: .word 0x021C3B08
+_020A7DF4: .word Unk_021C3B08
 	arm_func_end NNS_G2dEntryOamManagerAffine
 
 	arm_func_start NNS_G2dApplyOamManagerToHW
@@ -510,7 +511,7 @@ _020A7F8C:
 	bhi _020A7F8C
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020A7FF4: .word 0x021C3B08
+_020A7FF4: .word Unk_021C3B08
 _020A7FF8: .word 0x02100E90
 	arm_func_end NNS_G2dApplyOamManagerToHW
 
@@ -595,7 +596,7 @@ _020A8108:
 	strh r0, [r5, #0xe]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020A811C: .word 0x021C3B08
+_020A811C: .word Unk_021C3B08
 _020A8120: .word 0x02101148
 	arm_func_end NNS_G2dResetOamManagerBuffer
 
@@ -658,7 +659,7 @@ Unk_02100E90: ; 0x02100E90
 
 	.global Unk_021C3B04
 Unk_021C3B04: ; 0x021C3B04
-	.space 0x2
+	.space 0x4
 
 	.global Unk_021C3B08
 Unk_021C3B08: ; 0x021C3B08

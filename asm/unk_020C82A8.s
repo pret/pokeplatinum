@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C82A8.inc"
 
+	.extern Unk_021CEC1C
 	.extern Unk_021CEC34
 	
 
@@ -40,7 +41,7 @@ FSi_ReadRomCallback: ; 0x020C82CC
 	ldmia sp!, {pc}
 	; .align 2, 0
 _020C830C: .word FSi_OnRomReadDone
-_020C8310: .word 0x021CEC1C
+_020C8310: .word Unk_021CEC1C
 	arm_func_end FSi_ReadRomCallback
 
 	arm_func_start FSi_WriteDummyCallback
@@ -82,7 +83,7 @@ _020C837C:
 	mov r0, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C8384: .word 0x021CEC1C
+_020C8384: .word Unk_021CEC1C
 	arm_func_end FSi_RomArchiveProc
 
 	arm_func_start FSi_ReadDummyCallback
@@ -173,7 +174,7 @@ _020C8450:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C84B8: .word 0x021CEC1C
+_020C84B8: .word Unk_021CEC1C
 _020C84BC: .word Unk_021CEC34
 _020C84C0: .word 0x02101164
 _020C84C4: .word 0x027FFC40
@@ -207,7 +208,7 @@ _020C8518:
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C8528: .word 0x021CEC1C
+_020C8528: .word Unk_021CEC1C
 _020C852C: .word Unk_021CEC34
 	arm_func_end FS_SetDefaultDMA
 

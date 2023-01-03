@@ -43,7 +43,7 @@ _020E4070:
 	bne _020E4070
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020E4098: .word 0x021D0D68
+_020E4098: .word Unk_021D0D68
 	arm_func_end __destroy_global_chain
 
 	.bss

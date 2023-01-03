@@ -1,6 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D2D90.inc"
 
+	.extern Unk_021D03E8
+	.extern Unk_021D03EC
+	.extern Unk_021D0810
 	
 
 	.text
@@ -41,10 +44,10 @@ _020D2DFC:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020D2E0C: .word 0x021D03E8
-_020D2E10: .word 0x021D03EC
+_020D2E0C: .word Unk_021D03E8
+_020D2E10: .word Unk_021D03EC
 _020D2E14: .word CTRDGi_TaskThread
-_020D2E18: .word 0x021D0810
+_020D2E18: .word Unk_021D0810
 	arm_func_end CTRDGi_InitTaskThread
 
 	arm_func_start CTRDGi_IsTaskAvailable
@@ -56,7 +59,7 @@ CTRDGi_IsTaskAvailable: ; 0x020D2E1C
 	moveq r0, #0
 	bx lr
 	; .align 2, 0
-_020D2E34: .word 0x021D03E8
+_020D2E34: .word Unk_021D03E8
 	arm_func_end CTRDGi_IsTaskAvailable
 
 	arm_func_start CTRDGi_InitTaskInfo
@@ -137,7 +140,7 @@ _020D2F2C:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020D2F38: .word 0x021D03E8
+_020D2F38: .word Unk_021D03E8
 	arm_func_end CTRDGi_TaskThread
 
 	arm_func_start CTRDGi_SetTask
@@ -185,8 +188,8 @@ _020D2F78:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D2FDC: .word 0x021D03E8
-_020D2FE0: .word 0x021D03EC
+_020D2FDC: .word Unk_021D03E8
+_020D2FE0: .word Unk_021D03EC
 	arm_func_end CTRDGi_SetTask
 
 	.bss

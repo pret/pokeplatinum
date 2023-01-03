@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A5D88.inc"
 
+	.extern Unk_021C3AB4
 	
 
 	.text
@@ -23,7 +24,7 @@ NNS_GfdInitFrmPlttVramManager: ; 0x020A5D88
 	str r2, [r0, #0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A5DC0: .word 0x021C3AB4
+_020A5DC0: .word Unk_021C3AB4
 _020A5DC4: .word NNS_GfdAllocFrmPlttVram
 _020A5DC8: .word 0x02100DF4
 _020A5DCC: .word NNS_GfdFreeFrmPlttVram
@@ -118,7 +119,7 @@ _020A5EE8:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _020A5F08: .word 0x0007FFF8
-_020A5F0C: .word 0x021C3AB4
+_020A5F0C: .word Unk_021C3AB4
 	arm_func_end NNS_GfdAllocFrmPlttVram
 
 	arm_func_start NNS_GfdFreeFrmPlttVram
@@ -136,7 +137,7 @@ NNS_GfdGetFrmPlttVramState: ; 0x020A5F18
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020A5F30: .word 0x021C3AB4
+_020A5F30: .word Unk_021C3AB4
 	arm_func_end NNS_GfdGetFrmPlttVramState
 
 	arm_func_start NNS_GfdSetFrmPlttVramState
@@ -148,7 +149,7 @@ NNS_GfdSetFrmPlttVramState: ; 0x020A5F34
 	str r0, [r1, #4]
 	bx lr
 	; .align 2, 0
-_020A5F4C: .word 0x021C3AB4
+_020A5F4C: .word Unk_021C3AB4
 	arm_func_end NNS_GfdSetFrmPlttVramState
 
 	arm_func_start NNS_GfdResetFrmPlttVramState
@@ -160,7 +161,7 @@ NNS_GfdResetFrmPlttVramState: ; 0x020A5F50
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_020A5F68: .word 0x021C3AB4
+_020A5F68: .word Unk_021C3AB4
 	arm_func_end NNS_GfdResetFrmPlttVramState
 
 	.bss

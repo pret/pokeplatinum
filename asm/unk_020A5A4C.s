@@ -1,8 +1,6 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A5A4C.inc"
 
-	
-
 	.text
 
 
@@ -63,7 +61,7 @@ _020A5AD8:
 	str r2, [r0, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020A5B08: .word 0x021C3AB0
+_020A5B08: .word Unk_021C3AB0
 _020A5B0C: .word NNS_GfdAllocFrmTexVram
 _020A5B10: .word 0x02100DEC
 _020A5B14: .word NNS_GfdFreeFrmTexVram
@@ -101,7 +99,7 @@ _020A5B50:
 	blt _020A5B50
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020A5B88: .word 0x021C3AB0
+_020A5B88: .word Unk_021C3AB0
 _020A5B8C: .word 0x02100E18
 	arm_func_end NNS_GfdResetFrmTexVramState
 

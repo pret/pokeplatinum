@@ -1,6 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020C71F8.inc"
 
+	.extern Unk_021CEC08
 	
 
 	.text
@@ -429,7 +430,7 @@ _020C7780:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C779C: .word 0x021CEC08
+_020C779C: .word Unk_021CEC08
 	arm_func_end FS_FindArchive
 
 	arm_func_start FS_RegisterArchiveName
@@ -484,7 +485,7 @@ _020C7840:
 	mov r0, r8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C7850: .word 0x021CEC08
+_020C7850: .word Unk_021CEC08
 	arm_func_end FS_RegisterArchiveName
 
 	arm_func_start FS_ReleaseArchiveName
@@ -523,7 +524,7 @@ _020C78CC:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C78D4: .word 0x021CEC08
+_020C78D4: .word Unk_021CEC08
 	arm_func_end FS_ReleaseArchiveName
 
 	arm_func_start FS_LoadArchive
