@@ -335,11 +335,11 @@ ov4_021EABBC: ; 0x021EABBC
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EAC30: .word 0x02217920
-_021EAC34: .word 0x0221AF2C
-_021EAC38: .word 0x0221AF2C
-_021EAC3C: .word 0x0221AF58
-_021EAC40: .word 0x0221AF44
-_021EAC44: .word 0x0221AF34
+_021EAC34: .word Unk_ov4_0221AF2C
+_021EAC38: .word Unk_ov4_0221AF2C
+_021EAC3C: .word Unk_ov4_0221AF58
+_021EAC40: .word Unk_ov4_0221AF44
+_021EAC44: .word Unk_ov4_0221AF34
 	arm_func_end ov4_021EABBC
 
 	arm_func_start ov4_021EAC48
@@ -386,7 +386,7 @@ ov4_021EACC4: ; 0x021EACC4
 	movlt r0, r1
 	bx lr
 	; .align 2, 0
-_021EACD8: .word 0x0221AF2C
+_021EACD8: .word Unk_ov4_0221AF2C
 	arm_func_end ov4_021EACC4
 
 	arm_func_start ov4_021EACDC
@@ -610,7 +610,7 @@ ov4_021EAF38: ; 0x021EAF38
 	ldr r0, [r0, #4]
 	bx lr
 	; .align 2, 0
-_021EAF44: .word 0x0221AF2C
+_021EAF44: .word Unk_ov4_0221AF2C
 	arm_func_end ov4_021EAF38
 
 	arm_func_start ov4_021EAF48

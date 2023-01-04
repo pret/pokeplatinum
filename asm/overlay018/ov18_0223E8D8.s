@@ -42,7 +42,7 @@ ov18_0223E8D8: ; 0x0223E8D8
 	str r0, [r1, #0x9c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223E95C: .word 0x02253388
+_0223E95C: .word Unk_ov18_02253388
 _0223E960: .word 0x0224A5B8
 _0223E964: .word ov18_0223EA1C
 	arm_func_end ov18_0223E8D8
@@ -59,8 +59,8 @@ ov18_0223E968: ; 0x0223E968
 	bl ov18_0224508C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223E98C: .word 0x02253388
-_0223E990: .word 0x02253388
+_0223E98C: .word Unk_ov18_02253388
+_0223E990: .word Unk_ov18_02253388
 	arm_func_end ov18_0223E968
 
 	arm_func_start ov18_0223E994
@@ -73,7 +73,7 @@ ov18_0223E994: ; 0x0223E994
 	add r0, r0, #0x94
 	bx ip
 	; .align 2, 0
-_0223E9B0: .word 0x02253388
+_0223E9B0: .word Unk_ov18_02253388
 _0223E9B4: .word NNS_SndArcPlayerStartSeqArc
 	arm_func_end ov18_0223E994
 
@@ -86,7 +86,7 @@ ov18_0223E9B8: ; 0x0223E9B8
 	add r0, r0, #0x94
 	bx ip
 	; .align 2, 0
-_0223E9D0: .word 0x02253388
+_0223E9D0: .word Unk_ov18_02253388
 _0223E9D4: .word NNS_SndPlayerSetVolume
 	arm_func_end ov18_0223E9B8
 
@@ -100,7 +100,7 @@ ov18_0223E9D8: ; 0x0223E9D8
 	add r0, r3, #0x94
 	bx ip
 	; .align 2, 0
-_0223E9F4: .word 0x02253388
+_0223E9F4: .word Unk_ov18_02253388
 _0223E9F8: .word NNS_SndPlayerSetTrackPitch
 	arm_func_end ov18_0223E9D8
 
@@ -113,7 +113,7 @@ ov18_0223E9FC: ; 0x0223E9FC
 	add r0, r0, #0x94
 	bx ip
 	; .align 2, 0
-_0223EA14: .word 0x02253388
+_0223EA14: .word Unk_ov18_02253388
 _0223EA18: .word NNS_SndPlayerStopSeq
 	arm_func_end ov18_0223E9FC
 

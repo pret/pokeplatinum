@@ -3,6 +3,8 @@
 
 	.extern OS_IRQTable
 	.extern OSi_IrqThreadQueue
+	.extern Unk_021CCBF8
+
 
 	.text
 
@@ -59,7 +61,7 @@ _020C14B8:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020C14CC: .word OS_IRQTable
-_020C14D0: .word 0x021CCBF8
+_020C14D0: .word Unk_021CCBF8
 	arm_func_end OS_SetIrqFunction
 
 	arm_func_start OS_GetIrqFunction
@@ -103,7 +105,7 @@ _020C153C:
 	bx lr
 	; .align 2, 0
 _020C1558: .word OS_IRQTable
-_020C155C: .word 0x021CCBF8
+_020C155C: .word Unk_021CCBF8
 	arm_func_end OS_GetIrqFunction
 
 	arm_func_start OSi_EnterDmaCallback
@@ -124,7 +126,7 @@ OSi_EnterDmaCallback: ; 0x020C1560
 	str r1, [r0, r6]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C159C: .word 0x021CCBF8
+_020C159C: .word Unk_021CCBF8
 _020C15A0: .word 0x021CCC00
 _020C15A4: .word 0x021CCBFC
 	arm_func_end OSi_EnterDmaCallback

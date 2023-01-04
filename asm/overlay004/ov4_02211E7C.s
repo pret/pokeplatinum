@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_02211E7C.inc"
 
-	
+	.extern Unk_ov4_0221DE04
+	.extern Unk_ov4_0221DE30
 
 	.text
 
@@ -712,8 +713,8 @@ _02212788:
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_022127A0: .word 0x0221DE04
-_022127A4: .word 0x0221DE30
+_022127A0: .word Unk_ov4_0221DE04
+_022127A4: .word Unk_ov4_0221DE30
 	arm_func_end ov4_02212614
 
 	arm_func_start ov4_022127A8
@@ -1022,8 +1023,8 @@ _02212BE4:
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02212C20: .word 0x0221DE04
-_02212C24: .word 0x0221DE30
+_02212C20: .word Unk_ov4_0221DE04
+_02212C24: .word Unk_ov4_0221DE30
 	arm_func_end ov4_02212A1C
 
 	arm_func_start ov4_02212C28

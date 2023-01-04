@@ -23,7 +23,7 @@ ov4_022152B4: ; 0x022152B4
 	bl OS_InitMutex
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022152EC: .word 0x0221F7B0
+_022152EC: .word Unk_ov4_0221F7B0
 _022152F0: .word 0x0221F7BC
 	arm_func_end ov4_022152B4
 
@@ -42,7 +42,7 @@ ov4_022152F4: ; 0x022152F4
 	blx ip
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02215324: .word 0x0221F7B0
+_02215324: .word Unk_ov4_0221F7B0
 	arm_func_end ov4_022152F4
 
 	arm_func_start ov4_02215328
@@ -139,7 +139,7 @@ ov4_0221543C: ; 0x0221543C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02215458: .word 0x0221F7B0
+_02215458: .word Unk_ov4_0221F7B0
 	arm_func_end ov4_0221543C
 
 	arm_func_start ov4_0221545C
@@ -251,7 +251,7 @@ _022155BC:
 _022155D4: .word 0x0221F7BC
 _022155D8: .word ov4_022155E4
 _022155DC: .word 0x0221F7B4
-_022155E0: .word 0x0221F7B0
+_022155E0: .word Unk_ov4_0221F7B0
 	arm_func_end ov4_0221545C
 
 	arm_func_start ov4_022155E4
@@ -272,7 +272,7 @@ _02215610:
 	bl OS_WakeupThread
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0221561C: .word 0x0221F7B0
+_0221561C: .word Unk_ov4_0221F7B0
 _02215620: .word 0x0221F7B4
 	arm_func_end ov4_022155E4
 

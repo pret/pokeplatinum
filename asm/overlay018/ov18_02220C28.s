@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay018/ov18_02220C28.inc"
 
-	
+	.extern Unk_ov18_02250D2C
 
 	.text
 
@@ -559,9 +559,9 @@ _022213E0:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_0222141C: .word 0x02250D2C
+_0222141C: .word Unk_ov18_02250D2C
 _02221420: .word 0x000005D4
-_02221424: .word 0x0224B264
+_02221424: .word Unk_ov18_0224B264
 	arm_func_end ov18_02221198
 
 	arm_func_start ov18_02221428
@@ -763,7 +763,7 @@ _02221660:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_022216DC: .word 0x02250D2C
+_022216DC: .word Unk_ov18_02250D2C
 	arm_func_end ov18_02221614
 
 	arm_func_start ov18_022216E0
@@ -815,7 +815,7 @@ _02221718:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02221790: .word 0x02250D2C
+_02221790: .word Unk_ov18_02250D2C
 	arm_func_end ov18_022216E0
 
 	arm_func_start ov18_02221794

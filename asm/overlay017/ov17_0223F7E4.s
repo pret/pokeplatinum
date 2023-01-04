@@ -1,7 +1,17 @@
 	.include "macros/function.inc"
 	.include "overlay017/ov17_0223F7E4.inc"
 
-	
+	.extern Unk_ov18_02253248
+	.extern Unk_ov18_02253250
+	.extern Unk_ov18_02253298
+	.extern Unk_ov18_022532E4
+	.extern Unk_ov18_022532FC
+	.extern Unk_ov18_02253314
+	.extern Unk_ov18_02253334
+	.extern Unk_ov18_02253354
+	.extern Unk_ov18_02253388
+	.extern Unk_ov18_022533C8
+	.extern Unk_ov18_022532BC
 
 	.text
 
@@ -192,7 +202,7 @@ _0223F948:
 	add sp, #0x14
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0223F958: .word 0x02253250
+_0223F958: .word Unk_ov18_02253250
 _0223F95C: .word 0x02253238
 	thumb_func_end ov17_0223F88C
 
@@ -942,8 +952,8 @@ _0223FF20: .word 0x00010708
 _0223FF24: .word 0x02253278
 _0223FF28: .word 0x000080F0
 _0223FF2C: .word 0x00010200
-_0223FF30: .word 0x02253314
-_0223FF34: .word 0x02253334
+_0223FF30: .word Unk_ov18_02253314
+_0223FF34: .word Unk_ov18_02253334
 	thumb_func_end ov17_0223FCAC
 
 	thumb_func_start ov17_0223FF38
@@ -1114,8 +1124,8 @@ _02240046:
 	nop
 _02240080: .word 0x00000123
 _02240084: .word 0x000002E1
-_02240088: .word 0x022532E4
-_0224008C: .word 0x02253388
+_02240088: .word Unk_ov18_022532E4
+_0224008C: .word Unk_ov18_02253388
 _02240090: .word ov17_02240658
 	thumb_func_end ov17_0223FFF4
 
@@ -1205,8 +1215,8 @@ _02240122:
 	nop
 _02240128: .word 0x0000011E
 _0224012C: .word ov17_0224051C
-_02240130: .word 0x022532FC
-_02240134: .word 0x022533C8
+_02240130: .word Unk_ov18_022532FC
+_02240134: .word Unk_ov18_022533C8
 	thumb_func_end ov17_02240094
 
 	thumb_func_start ov17_02240138
@@ -1516,9 +1526,9 @@ _02240374:
 	add sp, #0x3c
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0224037C: .word 0x02253354
+_0224037C: .word Unk_ov18_02253354
 _02240380: .word 0x000080F6
-_02240384: .word 0x02253298
+_02240384: .word Unk_ov18_02253298
 	thumb_func_end ov17_022402E8
 
 	thumb_func_start ov17_02240388
@@ -1670,8 +1680,8 @@ _02240464:
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0224049C: .word 0x022532BC
-_022404A0: .word 0x02253248
+_0224049C: .word Unk_ov18_022532BC
+_022404A0: .word Unk_ov18_02253248
 _022404A4: .word 0x02253408
 	thumb_func_end ov17_02240424
 

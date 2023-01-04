@@ -36,7 +36,7 @@ _0222BB84:
 	bl ov18_0222B700
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222BB98: .word 0x02253294
+_0222BB98: .word Unk_ov18_02253294
 _0222BB9C: .word 0x020C072C
 _0222BBA0: .word 0x02249B34
 _0222BBA4: .word 0x02249AE4
@@ -50,7 +50,7 @@ ov18_0222BBAC: ; 0x0222BBAC
 	bx ip
 	; .align 2, 0
 _0222BBB8: .word ov18_0224508C
-_0222BBBC: .word 0x02253294
+_0222BBBC: .word Unk_ov18_02253294
 	arm_func_end ov18_0222BBAC
 
 	arm_func_start ov18_0222BBC0
@@ -77,7 +77,7 @@ ov18_0222BBC0: ; 0x0222BBC0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0222BC10: .word 0x02249AE4
-_0222BC14: .word 0x02253294
+_0222BC14: .word Unk_ov18_02253294
 _0222BC18: .word ov18_0222BC4C
 	arm_func_end ov18_0222BBC0
 
@@ -119,7 +119,7 @@ ov18_0222BC4C: ; 0x0222BC4C
 	bl ov18_022463AC
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0222BC88: .word 0x02253294
+_0222BC88: .word Unk_ov18_02253294
 	arm_func_end ov18_0222BC4C
 
 	.data

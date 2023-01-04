@@ -82,8 +82,8 @@ _022157A0:
 	and r0, r0, #0xff
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022157A8: .word 0x0221F7DC
-_022157AC: .word 0x0221F7E0
+_022157A8: .word Unk_ov4_0221F7DC
+_022157AC: .word Unk_ov4_0221F7E0
 	arm_func_end ov4_02215730
 
 	arm_func_start ov4_022157B0
@@ -129,8 +129,8 @@ ov4_022157E4: ; 0x022157E4
 	strb r0, [r2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0221583C: .word 0x0221F7DC
-_02215840: .word 0x0221F7E0
+_0221583C: .word Unk_ov4_0221F7DC
+_02215840: .word Unk_ov4_0221F7E0
 	arm_func_end ov4_022157E4
 
 	.bss

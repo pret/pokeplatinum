@@ -122,7 +122,7 @@ _022241A4:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_022241B4: .word 0x02250D60
+_022241B4: .word Unk_ov18_02250D60
 _022241B8: .word ov18_02224024
 	arm_func_end ov18_0222413C
 
@@ -135,7 +135,7 @@ ov18_022241BC: ; 0x022241BC
 	moveq r0, #0
 	bx lr
 	; .align 2, 0
-_022241D4: .word 0x02250D60
+_022241D4: .word Unk_ov18_02250D60
 	arm_func_end ov18_022241BC
 
 	arm_func_start ov18_022241D8
@@ -260,7 +260,7 @@ _02224358:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_02224364: .word 0x02250D60
+_02224364: .word Unk_ov18_02250D60
 	arm_func_end ov18_02224204
 
 	arm_func_start ov18_02224368
@@ -284,7 +284,7 @@ _022243A0:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_022243AC: .word 0x02250D60
+_022243AC: .word Unk_ov18_02250D60
 	arm_func_end ov18_02224368
 
 	.bss

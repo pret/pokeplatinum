@@ -52,8 +52,8 @@ _021FAC90:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021FAC98: .word 0x0221B3B4
-_021FAC9C: .word 0x0221B3B8
+_021FAC98: .word Unk_ov4_0221B3B4
+_021FAC9C: .word Unk_ov4_0221B3B8
 _021FACA0: .word 0x02219764
 _021FACA4: .word 0x0221976C
 _021FACA8: .word 0x02219770

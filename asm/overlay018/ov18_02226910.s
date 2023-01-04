@@ -123,7 +123,7 @@ ov18_022269D0: ; 0x022269D0
 	bx r3
 	nop
 _022269DC: .word OS_SendMessage
-_022269E0: .word 0x02251B80
+_022269E0: .word Unk_ov18_02251B80
 	thumb_func_end ov18_022269D0
 
 	thumb_func_start ov18_022269E4
@@ -135,7 +135,7 @@ ov18_022269E4: ; 0x022269E4
 	bx r3
 	nop
 _022269F0: .word OS_SendMessage
-_022269F4: .word 0x02251B80
+_022269F4: .word Unk_ov18_02251B80
 	thumb_func_end ov18_022269E4
 
 	thumb_func_start ov18_022269F8
@@ -233,9 +233,9 @@ _02226A98:
 	mvn r0, r0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02226AA8: .word 0x02251B80
-_02226AAC: .word 0x02251B70
-_02226AB0: .word 0x02251B60
+_02226AA8: .word Unk_ov18_02251B80
+_02226AAC: .word Unk_ov18_02251B70
+_02226AB0: .word Unk_ov18_02251B60
 _02226AB4: .word 0x00005890
 _02226AB8: .word ov18_022269D0
 	thumb_func_end ov18_022269F8
@@ -317,8 +317,8 @@ _02226B32:
 	add r0, r5, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02226B4C: .word 0x02251B60
-_02226B50: .word 0x02251B80
+_02226B4C: .word Unk_ov18_02251B60
+_02226B50: .word Unk_ov18_02251B80
 	thumb_func_end ov18_02226ABC
 
 	thumb_func_start ov18_02226B54
@@ -352,7 +352,7 @@ _02226B84:
 	add r0, r5, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02226B88: .word 0x02251B80
+_02226B88: .word Unk_ov18_02251B80
 	thumb_func_end ov18_02226B54
 
 	thumb_func_start ov18_02226B8C
@@ -542,11 +542,11 @@ _02226CE0:
 	add sp, #0x44
 	pop {r4, r5, r6, r7, pc}
 	nop
-_02226CF0: .word 0x02251B60
+_02226CF0: .word Unk_ov18_02251B60
 _02226CF4: .word 0x0030BFFE
 _02226CF8: .word 0x003FEC42
 _02226CFC: .word ov18_022269E4
-_02226D00: .word 0x02251B80
+_02226D00: .word Unk_ov18_02251B80
 	thumb_func_end ov18_02226B8C
 
 	thumb_func_start ov18_02226D04
@@ -779,13 +779,13 @@ _02226EAA:
 	add sp, #0x40
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02226EB8: .word 0x02251C60
+_02226EB8: .word Unk_ov18_02251C60
 _02226EBC: .word 0x0030BFFE
 _02226EC0: .word 0x003FEC42
 _02226EC4: .word ov18_022269E4
-_02226EC8: .word 0x02251B80
-_02226ECC: .word 0x02251BA0
-_02226ED0: .word 0x02251BA0
+_02226EC8: .word Unk_ov18_02251B80
+_02226ECC: .word Unk_ov18_02251BA0
+_02226ED0: .word Unk_ov18_02251BA0
 	thumb_func_end ov18_02226D04
 
 	thumb_func_start ov18_02226ED4
@@ -808,7 +808,7 @@ _02226EE8:
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
-_02226EEC: .word 0x02251B60
+_02226EEC: .word Unk_ov18_02251B60
 	thumb_func_end ov18_02226EDC
 
 	.data

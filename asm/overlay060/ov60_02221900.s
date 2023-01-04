@@ -212,7 +212,7 @@ _02221BA4:
 	add r0, sl, r0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02221BB4: .word 0x02229E40
+_02221BB4: .word Unk_ov60_02229E40
 _02221BB8: .word 0x02229520
 _02221BBC: .word 0x02229548
 _02221BC0: .word 0x02229444

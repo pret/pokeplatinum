@@ -52,7 +52,7 @@ ov18_02231230: ; 0x02231230
 	bl ov18_0222F6C4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_022312DC: .word 0x022532E8
+_022312DC: .word Unk_ov18_022532E8
 _022312E0: .word 0xFE00FF00
 _022312E4: .word 0x0224918E
 _022312E8: .word 0x02249192
@@ -168,7 +168,7 @@ _02231478: .word 0x0224A038
 _0223147C: .word 0x020C07EC
 _02231480: .word 0x0224A050
 _02231484: .word GX_LoadBG2Scr
-_02231488: .word 0x022532E8
+_02231488: .word Unk_ov18_022532E8
 _0223148C: .word 0x04001008
 _02231490: .word 0x0400000A
 	arm_func_end ov18_022312F8
@@ -311,7 +311,7 @@ _02231640: .word 0x0224918E
 _02231644: .word 0x02249192
 _02231648: .word 0x02249190
 _0223164C: .word 0x02249194
-_02231650: .word 0x022532E8
+_02231650: .word Unk_ov18_022532E8
 	arm_func_end ov18_02231560
 
 	arm_func_start ov18_02231654
@@ -365,7 +365,7 @@ _022316E4:
 	add sp, sp, #0x14
 	ldmia sp!, {pc}
 	; .align 2, 0
-_022316F4: .word 0x022532E8
+_022316F4: .word Unk_ov18_022532E8
 _022316F8: .word ov18_022316FC
 	arm_func_end ov18_02231658
 
@@ -409,7 +409,7 @@ _02231744:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02231778: .word 0x022532E8
+_02231778: .word Unk_ov18_022532E8
 _0223177C: .word ov18_02231780
 	arm_func_end ov18_0223171C
 
@@ -482,7 +482,7 @@ _02231860:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02231878: .word 0x022532E8
+_02231878: .word Unk_ov18_022532E8
 _0223187C: .word ov18_02230228
 _02231880: .word ov18_02230DB0
 _02231884: .word ov18_022307A0
@@ -525,7 +525,7 @@ _022318C8:
 	bl ov18_0222BA04
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02231908: .word 0x022532E8
+_02231908: .word Unk_ov18_022532E8
 _0223190C: .word 0x0224918E
 _02231910: .word 0x02249192
 _02231914: .word 0x02249190
@@ -543,7 +543,7 @@ ov18_0223191C: ; 0x0223191C
 	mov r2, r1
 	bx ip
 	; .align 2, 0
-_0223193C: .word 0x022532E8
+_0223193C: .word Unk_ov18_022532E8
 _02231940: .word 0x02249140
 _02231944: .word ov18_0223D154
 	arm_func_end ov18_0223191C
@@ -595,11 +595,11 @@ Unk_ov18_0224A050: ; 0x0224A050
 
 	.global Unk_ov18_022532E8
 Unk_ov18_022532E8: ; 0x022532E8
-	.space 0x4
+	.space 0x1
 
 	.global Unk_ov18_022532E9
 Unk_ov18_022532E9: ; 0x022532E9
-	.space 0x4
+	.space 0x3
 
 	.global Unk_ov18_022532EC
 Unk_ov18_022532EC: ; 0x022532EC

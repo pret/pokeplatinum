@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_02208324.inc"
 
-	
+	.extern Unk_ov4_0221A13C
+	.extern Unk_ov4_0221A154
 
 	.text
 
@@ -19,8 +20,8 @@ _0220833C:
 	bl ov4_02206224
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02208348: .word 0x0221A154
-_0220834C: .word 0x0221A13C
+_02208348: .word Unk_ov4_0221A154
+_0220834C: .word Unk_ov4_0221A13C
 	arm_func_end ov4_02208324
 
 	arm_func_start ov4_02208350
@@ -231,12 +232,12 @@ ov4_0220854C: ; 0x0220854C
 	str r2, [r1, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_022085F4: .word 0x0221DCEC
+_022085F4: .word Unk_ov4_0221DCEC
 _022085F8: .word 0x00000101
 _022085FC: .word 0x0221DC64
-_02208600: .word 0x0221DC7C
+_02208600: .word Unk_ov4_0221DC7C
 _02208604: .word 0x0221DC64
-_02208608: .word 0x0221DC84
+_02208608: .word Unk_ov4_0221DC84
 	arm_func_end ov4_0220854C
 
 	arm_func_start ov4_0220860C
@@ -526,7 +527,7 @@ ov4_02208874: ; 0x02208874
 _022089D8: .word ov4_0220881C
 _022089DC: .word 0x0221DC64
 _022089E0: .word ov4_02208848
-_022089E4: .word 0x0221DCA4
+_022089E4: .word Unk_ov4_0221DCA4
 	arm_func_end ov4_02208874
 
 	arm_func_start ov4_022089E8
@@ -551,7 +552,7 @@ ov4_022089F4: ; 0x022089F4
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
-_02208A20: .word 0x0221DCDC
+_02208A20: .word Unk_ov4_0221DCDC
 	arm_func_end ov4_022089F4
 
 	arm_func_start ov4_02208A24

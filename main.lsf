@@ -1666,6 +1666,7 @@ Overlay overlay66
 	Object src/overlay066/ov66_02234EA8.o
 	Object asm/overlay066/ov66_02234FC4.o
 	Object asm/overlay066/ov66_0223CA1C.o
+	Object asm/overlay066/ov66_0225B6D4.o
 	Object asm/overlay066/ov66_02241184.o
 	Object asm/overlay066/ov66_02241BD8.o
 	Object asm/overlay066/ov66_02242C08.o
@@ -1680,7 +1681,6 @@ Overlay overlay66
 	Object asm/overlay066/ov66_022534B8.o
 	Object asm/overlay066/ov66_02255ADC.o
 	Object asm/overlay066/ov66_02257C4C.o
-	Object asm/overlay066/ov66_0225B6D4.o
 }
 
 Overlay overlay67

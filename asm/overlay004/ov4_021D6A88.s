@@ -146,7 +146,7 @@ _021D6C88:
 _021D6C94: .word 0x02216570
 _021D6C98: .word Unk_021D0D40
 _021D6C9C: .word 0x02216540
-_021D6CA0: .word 0x0221A4B4
+_021D6CA0: .word Unk_ov4_0221A4B4
 	arm_func_end ov4_021D6A88
 
 	.data

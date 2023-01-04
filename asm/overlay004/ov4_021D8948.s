@@ -187,8 +187,8 @@ _021D8B80:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D8BC8: .word 0x0221A4EC
-_021D8BCC: .word 0x0221A4EC
+_021D8BC8: .word Unk_ov4_0221A4EC
+_021D8BCC: .word Unk_ov4_0221A4EC
 _021D8BD0: .word 0x6C078965
 _021D8BD4: .word 0x5D588B65
 _021D8BD8: .word 0x00269EC3

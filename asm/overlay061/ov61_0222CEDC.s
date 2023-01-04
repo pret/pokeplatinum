@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay061/ov61_0222CEDC.inc"
 
-	
+	.extern Unk_ov61_0222E764
 
 	.text
 
@@ -33,7 +33,7 @@ _0222CEFC:
 	bl ov61_0222D53C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222CF38: .word 0x0222E764
+_0222CF38: .word Unk_ov61_0222E764
 _0222CF3C: .word 0x0222E964
 	arm_func_end ov61_0222CEDC
 
@@ -76,7 +76,7 @@ _0222CF80:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_0222CFC8: .word 0x0222E764
+_0222CFC8: .word Unk_ov61_0222E764
 _0222CFCC: .word 0x0222E8A4
 _0222CFD0: .word 0x0222E964
 	arm_func_end ov61_0222CF40
@@ -111,7 +111,7 @@ _0222CFFC:
 	str r2, [r0, #0x250]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222D03C: .word 0x0222E764
+_0222D03C: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222CFD4
 
 	arm_func_start ov61_0222D040
@@ -249,7 +249,7 @@ _0222D1F0:
 	bl ov61_0222D4DC
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_0222D1F8: .word 0x0222E764
+_0222D1F8: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222D040
 
 	arm_func_start ov61_0222D1FC
@@ -385,7 +385,7 @@ _0222D3D8:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0222D3E4: .word 0x0222E764
+_0222D3E4: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222D1FC
 
 	arm_func_start ov61_0222D3E8
@@ -394,7 +394,7 @@ ov61_0222D3E8: ; 0x0222D3E8
 	ldr r0, [r0, #0x13c]
 	bx lr
 	; .align 2, 0
-_0222D3F4: .word 0x0222E764
+_0222D3F4: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222D3E8
 
 	arm_func_start ov61_0222D3F8
@@ -414,7 +414,7 @@ _0222D418:
 	add r0, r0, #4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222D42C: .word 0x0222E764
+_0222D42C: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222D3F8
 
 	arm_func_start ov61_0222D430
@@ -433,7 +433,7 @@ _0222D450:
 	ldr r0, [r0, #0x25c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222D460: .word 0x0222E764
+_0222D460: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222D430
 
 	arm_func_start ov61_0222D464
@@ -452,5 +452,5 @@ _0222D484:
 	ldr r0, [r0, #0x250]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222D494: .word 0x0222E764
+_0222D494: .word Unk_ov61_0222E764
 	arm_func_end ov61_0222D464

@@ -20,7 +20,7 @@ ov18_02243E74: ; 0x02243E74
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_02243EA0: .word 0x022533B4
+_02243EA0: .word Unk_ov18_022533B4
 	arm_func_end ov18_02243E74
 
 	arm_func_start ov18_02243EA4
@@ -35,7 +35,7 @@ ov18_02243EA4: ; 0x02243EA4
 	str r1, [r0, r4, lsl #2]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02243EC8: .word 0x022533B4
+_02243EC8: .word Unk_ov18_022533B4
 	arm_func_end ov18_02243EA4
 
 	arm_func_start ov18_02243ECC
@@ -78,7 +78,7 @@ _02243F20:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_02243F5C: .word 0x022533B4
+_02243F5C: .word Unk_ov18_022533B4
 	arm_func_end ov18_02243ECC
 
 	arm_func_start ov18_02243F60
@@ -116,7 +116,7 @@ ov18_02243F8C: ; 0x02243F8C
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02243FD0: .word 0x022533B4
+_02243FD0: .word Unk_ov18_022533B4
 	arm_func_end ov18_02243F8C
 
 	.bss

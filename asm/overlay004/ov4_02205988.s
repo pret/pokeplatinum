@@ -87,8 +87,8 @@ _02205A8C:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02205AB4: .word 0x02000C14
-_02205AB8: .word 0x0221DBCC
-_02205ABC: .word 0x0221DBD8
+_02205AB8: .word Unk_ov4_0221DBCC
+_02205ABC: .word Unk_ov4_0221DBD8
 	arm_func_end VCT_Init
 
 	arm_func_start VCT_Cleanup
@@ -103,7 +103,7 @@ VCT_Cleanup: ; 0x02205AC0
 	str r1, [r0, #8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02205AE4: .word 0x0221DBCC
+_02205AE4: .word Unk_ov4_0221DBCC
 	arm_func_end VCT_Cleanup
 
 	arm_func_start VCT_Main
@@ -126,7 +126,7 @@ _02205B14:
 	bl ov4_02203328
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02205B28: .word 0x0221DBCC
+_02205B28: .word Unk_ov4_0221DBCC
 	arm_func_end VCT_Main
 
 	arm_func_start VCT_HandleData
@@ -163,7 +163,7 @@ _02205B90:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02205B9C: .word 0x0221DBCC
+_02205B9C: .word Unk_ov4_0221DBCC
 	arm_func_end VCT_HandleData
 
 	arm_func_start ov4_02205BA0
@@ -225,7 +225,7 @@ _02205C6C:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02205C74: .word 0x5F564354
-_02205C78: .word 0x0221DBCC
+_02205C78: .word Unk_ov4_0221DBCC
 	arm_func_end ov4_02205BA0
 
 	.bss

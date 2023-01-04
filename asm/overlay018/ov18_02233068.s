@@ -44,7 +44,7 @@ ov18_02233088: ; 0x02233088
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022330E0: .word 0x0225330C
+_022330E0: .word Unk_ov18_0225330C
 _022330E4: .word ov18_02233190
 	arm_func_end ov18_02233088
 
@@ -160,7 +160,7 @@ ov18_02233220: ; 0x02233220
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0223325C: .word ov18_02233540
-_02233260: .word 0x0225330C
+_02233260: .word Unk_ov18_0225330C
 _02233264: .word ov18_02233268
 	arm_func_end ov18_02233220
 
@@ -219,7 +219,7 @@ _022332CC:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02233330: .word 0x0225330C
+_02233330: .word Unk_ov18_0225330C
 _02233334: .word ov18_022335A8
 _02233338: .word ov18_0223355C
 	arm_func_end ov18_02233268
@@ -268,7 +268,7 @@ ov18_02233378: ; 0x02233378
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022333BC: .word 0x0225330C
+_022333BC: .word Unk_ov18_0225330C
 _022333C0: .word ov18_022335F4
 	arm_func_end ov18_02233378
 
@@ -289,7 +289,7 @@ _022333E4:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022333F8: .word 0x0225330C
+_022333F8: .word Unk_ov18_0225330C
 _022333FC: .word ov18_02233400
 	arm_func_end ov18_022333C4
 
@@ -320,7 +320,7 @@ _0223343C:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223345C: .word 0x0225330C
+_0223345C: .word Unk_ov18_0225330C
 _02233460: .word ov18_02233464
 	arm_func_end ov18_02233400
 
@@ -382,7 +382,7 @@ _0223351C:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02233534: .word 0x0225330C
+_02233534: .word Unk_ov18_0225330C
 _02233538: .word ov18_0223B3F4
 _0223353C: .word ov18_02233624
 	arm_func_end ov18_02233464
@@ -446,7 +446,7 @@ ov18_022335A8: ; 0x022335A8
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022335E8: .word 0x0225330C
+_022335E8: .word Unk_ov18_0225330C
 _022335EC: .word 0x00000438
 _022335F0: .word ov18_022333C4
 	arm_func_end ov18_022335A8
@@ -464,7 +464,7 @@ ov18_022335F4: ; 0x022335F4
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223361C: .word 0x0225330C
+_0223361C: .word Unk_ov18_0225330C
 _02233620: .word ov18_022333C4
 	arm_func_end ov18_022335F4
 
@@ -490,11 +490,11 @@ Unk_ov18_0224A110: ; 0x0224A110
 
 	.global Unk_ov18_0225330C
 Unk_ov18_0225330C: ; 0x0225330C
-	.space 0x4
+	.space 0x2
 
 	.global Unk_ov18_0225330E
 Unk_ov18_0225330E: ; 0x0225330E
-	.space 0x4
+	.space 0x2
 
 	.global Unk_ov18_02253310
 Unk_ov18_02253310: ; 0x02253310

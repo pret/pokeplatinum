@@ -26,8 +26,8 @@ _0220527C:
 	str r2, [r1, #8]
 	bx lr
 	; .align 2, 0
-_022052B0: .word 0x0221C738
-_022052B4: .word 0x0221C72C
+_022052B0: .word Unk_ov4_0221C738
+_022052B4: .word Unk_ov4_0221C72C
 _022052B8: .word 0x0221A114
 	arm_func_end ov4_02205270
 
@@ -175,10 +175,10 @@ _022054A0:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _022054A8: .word 0x0221A114
-_022054AC: .word 0x0221C738
+_022054AC: .word Unk_ov4_0221C738
 _022054B0: .word 0x040002B0
 _022054B4: .word 0x040002B4
-_022054B8: .word 0x0221C72C
+_022054B8: .word Unk_ov4_0221C72C
 	arm_func_end ov4_022052DC
 
 	arm_func_start ov4_022054BC

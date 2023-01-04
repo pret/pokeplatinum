@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_021E8138.inc"
 
-	
+	.extern Unk_ov4_0221DBF0
 
 	.text
 
@@ -112,7 +112,7 @@ ov4_021E8234: ; 0x021E8234
 	mov r0, #0x11
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021E8294: .word 0x0221DBF0
+_021E8294: .word Unk_ov4_0221DBF0
 	arm_func_end ov4_021E8234
 
 	arm_func_start ov4_021E8298

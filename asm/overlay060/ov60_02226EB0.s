@@ -23,7 +23,7 @@ ov60_02226EBC: ; 0x02226EBC
 	bl ov4_0220FE28
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02226ED8: .word 0x0222A9F0
+_02226ED8: .word Unk_ov60_0222A9F0
 	arm_func_end ov60_02226EBC
 
 	arm_func_start ov60_02226EDC

@@ -103,12 +103,12 @@ _0223F6B8:
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _0223F6CC: .word 0x00001BA0
-_0223F6D0: .word 0x02253394
+_0223F6D0: .word Unk_ov18_02253394
 _0223F6D4: .word ov18_0223F818
 _0223F6D8: .word 0x02249610
 _0223F6DC: .word 0x02249604
 _0223F6E0: .word ov18_0223FB0C
-_0223F6E4: .word 0x02253394
+_0223F6E4: .word Unk_ov18_02253394
 	arm_func_end ov18_0223F564
 
 	arm_func_start ov18_0223F6E8
@@ -125,7 +125,7 @@ ov18_0223F6E8: ; 0x0223F6E8
 	movne r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223F714: .word 0x02253394
+_0223F714: .word Unk_ov18_02253394
 _0223F718: .word ov18_0223F818
 	arm_func_end ov18_0223F6E8
 
@@ -190,9 +190,9 @@ _0223F7D8:
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0223F7F4: .word 0x02253394
+_0223F7F4: .word Unk_ov18_02253394
 _0223F7F8: .word ov18_0223F818
-_0223F7FC: .word 0x02253394
+_0223F7FC: .word Unk_ov18_02253394
 	arm_func_end ov18_0223F71C
 
 	arm_func_start ov18_0223F800
@@ -203,7 +203,7 @@ ov18_0223F800: ; 0x0223F800
 	str r0, [r1, #0x370]
 	bx lr
 	; .align 2, 0
-_0223F814: .word 0x02253394
+_0223F814: .word Unk_ov18_02253394
 	arm_func_end ov18_0223F800
 
 	arm_func_start ov18_0223F818
@@ -249,7 +249,7 @@ _0223F89C:
 	bl OS_Terminate
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223F8A4: .word 0x02253394
+_0223F8A4: .word Unk_ov18_02253394
 	arm_func_end ov18_0223F818
 
 	arm_func_start ov18_0223F8A8
@@ -345,7 +345,7 @@ _0223F9E0:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0223F9F4: .word 0x02249604
-_0223F9F8: .word 0x02253394
+_0223F9F8: .word Unk_ov18_02253394
 _0223F9FC: .word 0x022495FC
 	arm_func_end ov18_0223F8A8
 
@@ -422,7 +422,7 @@ _0223FAF4:
 	blt _0223FA5C
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_0223FB04: .word 0x02253394
+_0223FB04: .word Unk_ov18_02253394
 _0223FB08: .word 0x02249604
 	arm_func_end ov18_0223FA00
 
@@ -510,7 +510,7 @@ _0223FC0C:
 	bl ov18_022463AC
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_0223FC3C: .word 0x02253394
+_0223FC3C: .word Unk_ov18_02253394
 _0223FC40: .word 0x0017F898
 _0223FC44: .word 0x022495FC
 	arm_func_end ov18_0223FB0C

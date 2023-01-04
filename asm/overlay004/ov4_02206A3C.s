@@ -624,7 +624,7 @@ _0220725C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _02207294: .word 0x0221A134
-_02207298: .word 0x0221DC54
+_02207298: .word Unk_ov4_0221DC54
 	arm_func_end ov4_02207188
 
 	.bss

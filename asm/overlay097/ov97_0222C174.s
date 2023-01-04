@@ -112,9 +112,9 @@ _0222C220:
 	strh r1, [r0, #0x1a]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0222C248: .word 0x0223F180
-_0222C24C: .word 0x0223F190
-_0222C250: .word 0x0223F180
+_0222C248: .word Unk_ov97_0223F180
+_0222C24C: .word Unk_ov97_0223F190
+_0222C250: .word Unk_ov97_0223F180
 	thumb_func_end ov97_0222C210
 
 	thumb_func_start ov97_0222C254
@@ -1786,7 +1786,10 @@ _0222D048: .word 0x021BF67C
 
 	.global Unk_ov97_0223D6BC
 Unk_ov97_0223D6BC: ; 0x0223D6BC
-	.incbin "incbin/overlay97_rodata.bin", 0x48, 0x58 - 0x48
+	.word ov97_0222C6F8
+	.word ov97_0222C78C
+	.word ov97_0222C948
+	.word 0xFFFFFFFF
 
 	.global Unk_ov97_0223D6CC
 Unk_ov97_0223D6CC: ; 0x0223D6CC

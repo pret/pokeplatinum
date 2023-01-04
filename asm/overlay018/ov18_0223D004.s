@@ -31,7 +31,7 @@ ov18_0223D004: ; 0x0223D004
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0223D058: .word 0x00000608
-_0223D05C: .word 0x02253370
+_0223D05C: .word Unk_ov18_02253370
 _0223D060: .word ov18_0223D100
 	arm_func_end ov18_0223D004
 
@@ -47,8 +47,8 @@ ov18_0223D064: ; 0x0223D064
 	bl ov18_0224508C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223D088: .word 0x02253370
-_0223D08C: .word 0x02253370
+_0223D088: .word Unk_ov18_02253370
+_0223D08C: .word Unk_ov18_02253370
 	arm_func_end ov18_0223D064
 
 	arm_func_start ov18_0223D090
@@ -59,7 +59,7 @@ ov18_0223D090: ; 0x0223D090
 	strb r1, [r0, #0x604]
 	bx lr
 	; .align 2, 0
-_0223D0A4: .word 0x02253370
+_0223D0A4: .word Unk_ov18_02253370
 	arm_func_end ov18_0223D090
 
 	arm_func_start ov18_0223D0A8
@@ -87,7 +87,7 @@ _0223D0D4:
 	blt _0223D0D4
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_0223D0FC: .word 0x02253370
+_0223D0FC: .word Unk_ov18_02253370
 	arm_func_end ov18_0223D0A8
 
 	arm_func_start ov18_0223D100
@@ -113,7 +113,7 @@ ov18_0223D100: ; 0x0223D100
 	strb r1, [r0, #0x604]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223D150: .word 0x02253370
+_0223D150: .word Unk_ov18_02253370
 	arm_func_end ov18_0223D100
 
 	arm_func_start ov18_0223D154
@@ -132,7 +132,7 @@ ov18_0223D154: ; 0x0223D154
 	bl ov18_02246304
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223D188: .word 0x02253370
+_0223D188: .word Unk_ov18_02253370
 _0223D18C: .word ov18_0223D190
 	arm_func_end ov18_0223D154
 
@@ -149,7 +149,7 @@ ov18_0223D190: ; 0x0223D190
 	bl ov18_022463AC
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0223D1B8: .word 0x02253370
+_0223D1B8: .word Unk_ov18_02253370
 	arm_func_end ov18_0223D190
 
 	arm_func_start ov18_0223D1BC
@@ -163,7 +163,7 @@ ov18_0223D1BC: ; 0x0223D1BC
 	mov r3, #0x78
 	bx ip
 	; .align 2, 0
-_0223D1DC: .word 0x02253370
+_0223D1DC: .word Unk_ov18_02253370
 _0223D1E0: .word ov18_02246304
 _0223D1E4: .word ov18_0223D1E8
 	arm_func_end ov18_0223D1BC
@@ -182,7 +182,7 @@ ov18_0223D1E8: ; 0x0223D1E8
 	bl ov18_022463AC
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0223D214: .word 0x02253370
+_0223D214: .word Unk_ov18_02253370
 	arm_func_end ov18_0223D1E8
 
 	.bss

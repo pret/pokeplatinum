@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 
-	
+	.public __sinit__
+	.public __exception_table_start__
+	.public __exception_table_end__
+	.type __sinit__, @function
+
 
 	.text
 
@@ -20,7 +24,7 @@ _020E4040:
 	bne _020E4038
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020E4054: .word 0x020FECCC
+_020E4054: .word  __sinit__
 	arm_func_end __call_static_initializers
 
 	arm_func_start __destroy_global_chain

@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay060/ov60_02224448.inc"
 
-	
+	.extern Unk_ov60_02229E74
 
 	.text
 
@@ -24,5 +24,5 @@ _02224474:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02224480: .word 0x02229E74
+_02224480: .word Unk_ov60_02229E74
 	arm_func_end ov60_02224448

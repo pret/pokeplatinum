@@ -74,7 +74,7 @@ ov97_02238DA4: ; 0x02238DA4
 	pop {r4, pc}
 	; .align 2, 0
 _02238DEC: .word 0x0000266C
-_02238DF0: .word 0x02240400
+_02238DF0: .word Unk_ov97_02240400
 _02238DF4: .word 0x0000100F
 	thumb_func_end ov97_02238DA4
 
@@ -116,7 +116,7 @@ ov97_02238E20: ; 0x02238E20
 	pop {r3, r4}
 	bx lr
 	nop
-_02238E38: .word 0x02240400
+_02238E38: .word Unk_ov97_02240400
 _02238E3C: .word 0x00001650
 _02238E40: .word 0x00001012
 	thumb_func_end ov97_02238E20
@@ -142,7 +142,7 @@ ov97_02238E44: ; 0x02238E44
 _02238E66:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
-_02238E68: .word 0x02240400
+_02238E68: .word Unk_ov97_02240400
 _02238E6C: .word 0x00001650
 _02238E70: .word 0x00001013
 _02238E74: .word ov97_02238E88
@@ -156,7 +156,7 @@ ov97_02238E78: ; 0x02238E78
 	str r1, [r0, #0xc]
 	bx lr
 	nop
-_02238E84: .word 0x02240400
+_02238E84: .word Unk_ov97_02240400
 	thumb_func_end ov97_02238E78
 
 	thumb_func_start ov97_02238E88
@@ -166,7 +166,7 @@ ov97_02238E88: ; 0x02238E88
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_02238E90: .word 0x02240400
+_02238E90: .word Unk_ov97_02240400
 	thumb_func_end ov97_02238E88
 
 	thumb_func_start ov97_02238E94
@@ -567,7 +567,7 @@ _022391BC: .word 0x00001002
 _022391C0: .word 0x000015E8
 _022391C4: .word 0x00001003
 _022391C8: .word 0x00002678
-_022391CC: .word 0x02240400
+_022391CC: .word Unk_ov97_02240400
 _022391D0: .word 0x0000100D
 _022391D4: .word 0x00001004
 _022391D8: .word 0x021BF67C
@@ -681,7 +681,7 @@ _022392C8: .word 0x00001010
 _022392CC: .word 0x00001011
 _022392D0: .word 0x021BF67C
 _022392D4: .word 0x0000267C
-_022392D8: .word 0x02240400
+_022392D8: .word Unk_ov97_02240400
 _022392DC: .word 0x00001650
 _022392E0: .word 0x00002678
 	thumb_func_end ov97_02238EAC

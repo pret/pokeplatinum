@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020DAECC.inc"
 
-	
+	.extern Unk_020FEA9C
 
 	.text
 
@@ -405,7 +405,7 @@ _020DB420:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020DB438: .word 0x020FEA9C
+_020DB438: .word Unk_020FEA9C
 _020DB43C: .word 0x000001FD
 _020DB440: .word 0x0000FFFF
 	arm_func_end parse_format_dup3
@@ -1579,7 +1579,7 @@ _020DC434:
 	bx lr
 	; .align 2, 0
 _020DC470: .word 0x000001FD
-_020DC474: .word 0x020FEA9C
+_020DC474: .word Unk_020FEA9C
 _020DC478: .word 0x02101834
 _020DC47C: .word 0x02101840
 _020DC480: .word 0x0210184C

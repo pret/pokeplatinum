@@ -10,7 +10,11 @@ Unk_ov60_02229B20: ; 0x02229B20
 
 	.global Unk_ov60_02229B24
 Unk_ov60_02229B24: ; 0x02229B24
-	.incbin "incbin/overlay60_data.bin", 0xCE4, 0xCF8 - 0xCE4
+	.word Unk_ov60_02229B38
+	.word 0x80
+	.word Unk_ov60_02229B88
+	.word 0x3
+	.word Unk_ov60_02229B20
 
 	.global Unk_ov60_02229B38
 Unk_ov60_02229B38: ; 0x02229B38

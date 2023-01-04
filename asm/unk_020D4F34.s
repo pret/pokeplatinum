@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020D4F34.inc"
 
-	
+	.extern Unk_021016D0
 
 	.text
 
@@ -15,7 +15,7 @@ mbtowc: ; 0x020D4F34
 	blx r3
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D4F4C: .word 0x021016D0
+_020D4F4C: .word Unk_021016D0
 	arm_func_end mbtowc
 
 	arm_func_start __mbtowc_noconv
@@ -54,7 +54,7 @@ wctomb: ; 0x020D4F9C
 	blx r2
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D4FB4: .word 0x021016D0
+_020D4FB4: .word Unk_021016D0
 	arm_func_end wctomb
 
 	arm_func_start mbstowcs

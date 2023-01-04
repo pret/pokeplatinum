@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay018/ov18_0222FEE8.inc"
 
-	
+	.extern Unk_ov18_022532D8
 
 	.text
 
@@ -57,5 +57,5 @@ ov18_0222FF24: ; 0x0222FF24
 	bl ov18_0222F790
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222FF94: .word 0x022532D8
+_0222FF94: .word Unk_ov18_022532D8
 	arm_func_end ov18_0222FF24

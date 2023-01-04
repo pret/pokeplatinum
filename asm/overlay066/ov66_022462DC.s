@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay066/ov66_022462DC.inc"
 
-	
+	.extern Unk_ov66_0225B6E4
 
 	.text
 
@@ -18,8 +18,8 @@ ov66_022462DC: ; 0x022462DC
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02246300: .word 0x0225B6E8
-_02246304: .word 0x0225B6E4
+_02246300: .word Unk_ov66_0225B6E8
+_02246304: .word Unk_ov66_0225B6E4
 	arm_func_end ov66_022462DC
 
 	arm_func_start ov66_02246308
@@ -47,9 +47,9 @@ _02246334:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0224635C: .word 0x0225B6E8
+_0224635C: .word Unk_ov66_0225B6E8
 _02246360: .word ov66_022462DC
-_02246364: .word 0x0225B6E4
+_02246364: .word Unk_ov66_0225B6E4
 	arm_func_end ov66_02246308
 
 	arm_func_start ov66_02246368
@@ -81,9 +81,9 @@ _02246398:
 	str r2, [r1, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022463CC: .word 0x0225B6E8
+_022463CC: .word Unk_ov66_0225B6E8
 _022463D0: .word ov66_02246308
-_022463D4: .word 0x0225B6E4
+_022463D4: .word Unk_ov66_0225B6E4
 	arm_func_end ov66_02246368
 
 	arm_func_start ov66_022463D8
@@ -101,7 +101,7 @@ ov66_022463D8: ; 0x022463D8
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02246408: .word 0x0225B6E8
+_02246408: .word Unk_ov66_0225B6E8
 	arm_func_end ov66_022463D8
 	.bss
 

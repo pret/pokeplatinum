@@ -32,7 +32,7 @@ ov66_02257C84: ; 0x02257C84
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_02257C94: .word 0x0225C6F8
+_02257C94: .word Unk_ov66_0225C6F8
 	arm_func_end ov66_02257C84
 
 	arm_func_start ov66_02257C98
@@ -53,7 +53,7 @@ ov66_02257C98: ; 0x02257C98
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02257CD0: .word 0x0225B52C
-_02257CD4: .word 0x0225C6F8
+_02257CD4: .word Unk_ov66_0225C6F8
 	arm_func_end ov66_02257C98
 
 	arm_func_start ov66_02257CD8

@@ -2290,8 +2290,8 @@ ov66_022553F0: ; 0x022553F0
 	str r4, [ip]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02255440: .word 0x0225B6F4
-_02255444: .word 0x0225B6F0
+_02255440: .word Unk_ov66_0225B6F4
+_02255444: .word Unk_ov66_0225B6F0
 _02255448: .word 0x0225AF9C
 _0225544C: .word 0x10624DD3
 	arm_func_end ov66_022553F0

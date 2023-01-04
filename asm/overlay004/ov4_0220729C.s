@@ -2,7 +2,7 @@
 	.include "overlay004/ov4_0220729C.inc"
 
 	.extern Unk_021CCC80
-	
+	.extern Unk_ov4_0221DC00
 
 	.text
 
@@ -453,7 +453,7 @@ _02207894:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0220789C: .word Unk_021CCC80
-_022078A0: .word 0x0221DC00
+_022078A0: .word Unk_ov4_0221DC00
 	arm_func_end ov4_02207800
 
 	arm_func_start ov4_022078A4

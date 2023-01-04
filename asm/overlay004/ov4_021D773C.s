@@ -38,7 +38,7 @@ DWC_SetMemFunc: ; 0x021D776C
 	str r1, [r2, #0]
 	bx lr
 	; .align 2, 0
-_021D777C: .word 0x0221A4D4
+_021D777C: .word Unk_ov4_0221A4D4
 	arm_func_end DWC_SetMemFunc
 
 	arm_func_start DWC_Alloc
@@ -65,7 +65,7 @@ ov4_021D7790: ; 0x021D7790
 	bl ov4_021D7744
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D77C0: .word 0x0221A4D4
+_021D77C0: .word Unk_ov4_0221A4D4
 	arm_func_end ov4_021D7790
 
 	arm_func_start DWC_Free
@@ -85,7 +85,7 @@ DWC_Free: ; 0x021D77C4
 	blx r3
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D77FC: .word 0x0221A4D4
+_021D77FC: .word Unk_ov4_0221A4D4
 	arm_func_end DWC_Free
 
 	arm_func_start ov4_021D7800

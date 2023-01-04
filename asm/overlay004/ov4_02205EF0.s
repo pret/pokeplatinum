@@ -46,8 +46,8 @@ _02205F68:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _02205F78: .word 0x0221A134
-_02205F7C: .word 0x0221DC34
-_02205F80: .word 0x0221DC30
+_02205F7C: .word Unk_ov4_0221DC34
+_02205F80: .word Unk_ov4_0221DC30
 	arm_func_end ov4_02205EF0
 
 	arm_func_start ov4_02205F84
@@ -69,7 +69,7 @@ ov4_02205F84: ; 0x02205F84
 	str r0, [r1, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02205FC4: .word 0x0221DC30
+_02205FC4: .word Unk_ov4_0221DC30
 _02205FC8: .word 0x0221A134
 	arm_func_end ov4_02205F84
 
@@ -85,7 +85,7 @@ ov4_02205FCC: ; 0x02205FCC
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02205FF0: .word 0x0221DC34
+_02205FF0: .word Unk_ov4_0221DC34
 	arm_func_end ov4_02205FCC
 
 	arm_func_start ov4_02205FF4
@@ -118,7 +118,7 @@ ov4_02206034: ; 0x02206034
 	bl OS_SendMessage
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02206050: .word 0x0221DC34
+_02206050: .word Unk_ov4_0221DC34
 	arm_func_end ov4_02206034
 
 	arm_func_start ov4_02206054

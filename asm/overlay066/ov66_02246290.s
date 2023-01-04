@@ -29,7 +29,7 @@ _022462D0:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_022462D8: .word 0x0225B6E4
+_022462D8: .word Unk_ov66_0225B6E4
 	arm_func_end ov66_02246290
 	.bss
 

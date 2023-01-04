@@ -3,6 +3,8 @@
 
 	.extern Unk_021D0D40
 	.extern Unk_021015AC
+	.extern Unk_021015B4
+
 
 	.text
 
@@ -1180,7 +1182,7 @@ _020DA10C: .word Unk_021015AC
 _020DA110: .word 0x00007FFF
 _020DA114: .word 0x00000E2C
 _020DA118: .word 0x0000018E
-_020DA11C: .word 0x021015B4
+_020DA11C: .word Unk_021015B4
 _020DA120: .word 0x7FEFFFFF
 _020DA124:
 	ldr r3, _020DA120 ; =0x7FEFFFFF

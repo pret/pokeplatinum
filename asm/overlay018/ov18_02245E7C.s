@@ -53,7 +53,7 @@ ov18_02245E7C: ; 0x02245E7C
 	bl ov18_02246038
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02245F2C: .word 0x022533F0
+_02245F2C: .word Unk_ov18_022533F0
 	arm_func_end ov18_02245E7C
 
 	arm_func_start ov18_02245F30
@@ -122,7 +122,7 @@ ov18_02245F30: ; 0x02245F30
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0224602C: .word 0x022533F0
+_0224602C: .word Unk_ov18_022533F0
 _02246030: .word 0x04000050
 _02246034: .word 0x04001014
 	arm_func_end ov18_02245F30

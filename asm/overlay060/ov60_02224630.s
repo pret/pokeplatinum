@@ -1,7 +1,23 @@
 	.include "macros/function.inc"
 	.include "overlay060/ov60_02224630.inc"
 
-	
+
+	.extern Unk_ov60_02229E54
+	.extern Unk_ov60_02229E58
+	.extern Unk_ov60_02229E5C
+	.extern Unk_ov60_02229E60
+	.extern Unk_ov60_02229E68
+	.extern Unk_ov60_02229E6C
+	.extern Unk_ov60_02229E70
+	.extern Unk_ov60_02229E74
+	.extern Unk_ov60_02229E78
+	.extern Unk_ov60_02229E84
+	.extern Unk_ov60_02229E90
+	.extern Unk_ov60_02229EA4
+	.extern Unk_ov60_02229EBC
+	.extern Unk_ov60_02229ED8
+	.extern Unk_ov60_02229B24
+
 
 	.text
 
@@ -237,9 +253,9 @@ _0222492C:
 _02224948: .word 0x02229C24
 _0222494C: .word 0x0000012E
 _02224950: .word 0x02229C34
-_02224954: .word 0x02229E70
-_02224958: .word 0x02229E74
-_0222495C: .word 0x02229E6C
+_02224954: .word Unk_ov60_02229E70
+_02224958: .word Unk_ov60_02229E74
+_0222495C: .word Unk_ov60_02229E6C
 	arm_func_end ov60_02224630
 
 	arm_func_start ov60_02224960
@@ -255,7 +271,7 @@ ov60_02224960: ; 0x02224960
 	blx r1
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02224988: .word 0x02229E70
+_02224988: .word Unk_ov60_02229E70
 	arm_func_end ov60_02224960
 
 	arm_func_start ov60_0222498C
@@ -444,35 +460,35 @@ _02224C20:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_02224C44: .word 0x02229F38
-_02224C48: .word 0x02229F44
-_02224C4C: .word 0x02229E6C
-_02224C50: .word 0x02229E5C
-_02224C54: .word 0x02229E68
-_02224C58: .word 0x02229E70
+_02224C44: .word Unk_ov60_02229F38
+_02224C48: .word Unk_ov60_02229F44
+_02224C4C: .word Unk_ov60_02229E6C
+_02224C50: .word Unk_ov60_02229E5C
+_02224C54: .word Unk_ov60_02229E68
+_02224C58: .word Unk_ov60_02229E70
 _02224C5C: .word ov60_02224630
-_02224C60: .word 0x02229E60
-_02224C64: .word 0x02229C20
+_02224C60: .word Unk_ov60_02229E60
+_02224C64: .word Unk_ov60_02229C20
 _02224C68: .word 0x02229C40
-_02224C6C: .word 0x02229ED8
+_02224C6C: .word Unk_ov60_02229ED8
 _02224C70: .word 0x02229C4C
-_02224C74: .word 0x02229E84
+_02224C74: .word Unk_ov60_02229E84
 _02224C78: .word 0x02229C54
 _02224C7C: .word 0x02229C60
-_02224C80: .word 0x02229EBC
-_02224C84: .word 0x02229E58
+_02224C80: .word Unk_ov60_02229EBC
+_02224C84: .word Unk_ov60_02229E58
 _02224C88: .word 0x02229C68
 _02224C8C: .word 0x02229C70
 _02224C90: .word 0x02229C78
-_02224C94: .word 0x02229E90
+_02224C94: .word Unk_ov60_02229E90
 _02224C98: .word 0x02229C80
-_02224C9C: .word 0x02229E78
+_02224C9C: .word Unk_ov60_02229E78
 _02224CA0: .word 0x02229C88
 _02224CA4: .word 0x02229C90
 _02224CA8: .word 0x02229C98
-_02224CAC: .word 0x02229E54
+_02224CAC: .word Unk_ov60_02229E54
 _02224CB0: .word 0x02229CA0
-_02224CB4: .word 0x02229EA4
+_02224CB4: .word Unk_ov60_02229EA4
 	arm_func_end ov60_0222498C
 
 	arm_func_start ov60_02224CB8
@@ -500,8 +516,8 @@ ov60_02224CB8: ; 0x02224CB8
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02224D10: .word 0x02229E74
-_02224D14: .word 0x02229E6C
+_02224D10: .word Unk_ov60_02229E74
+_02224D14: .word Unk_ov60_02229E6C
 	arm_func_end ov60_02224CB8
 
 	arm_func_start ov60_02224D18
@@ -535,7 +551,7 @@ ov60_02224D18: ; 0x02224D18
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _02224D84: .word 0x02228CD8
-_02224D88: .word 0x02229F5C
+_02224D88: .word Unk_ov60_02229F5C
 	arm_func_end ov60_02224D18
 
 	arm_func_start ov60_02224D8C
@@ -716,9 +732,9 @@ _02224FE0:
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_02225034: .word 0x02229E5C
-_02225038: .word 0x02229E6C
-_0222503C: .word 0x02229E70
+_02225034: .word Unk_ov60_02229E5C
+_02225038: .word Unk_ov60_02229E6C
+_0222503C: .word Unk_ov60_02229E70
 _02225040: .word 0x02228CCC
 _02225044: .word 0x02229CA8
 _02225048: .word 0x02229CB0
@@ -840,10 +856,10 @@ _022251C0:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_022251F4: .word 0x02229E6C
-_022251F8: .word 0x02229E5C
+_022251F4: .word Unk_ov60_02229E6C
+_022251F8: .word Unk_ov60_02229E5C
 _022251FC: .word 0x02228CE4
-_02225200: .word 0x02229E70
+_02225200: .word Unk_ov60_02229E70
 _02225204: .word 0x02229CB4
 	arm_func_end ov60_0222504C
 
@@ -877,7 +893,7 @@ Unk_ov60_02228CE4: ; 0x02228CE4
 
 	.global Unk_ov60_02229C20
 Unk_ov60_02229C20: ; 0x02229C20
-	.incbin "incbin/overlay60_data.bin", 0xDE0, 0xDE4 - 0xDE0
+	.word Unk_ov60_02229B24
 
 	.global Unk_ov60_02229C24
 Unk_ov60_02229C24: ; 0x02229C24
@@ -954,11 +970,11 @@ Unk_ov60_02229CB4: ; 0x02229CB4
 
 	.global Unk_ov60_02229F38
 Unk_ov60_02229F38: ; 0x02229F38
-	.space 0x9
+	.space 0xC
 
 	.global Unk_ov60_02229F44
 Unk_ov60_02229F44: ; 0x02229F44
-	.space 0x15
+	.space 0x18
 
 	.global Unk_ov60_02229F5C
 Unk_ov60_02229F5C: ; 0x02229F5C

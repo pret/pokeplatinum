@@ -61,7 +61,7 @@ _022051BC:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _022051E4: .word 0xE525982B
-_022051E8: .word 0x0221C724
+_022051E8: .word Unk_ov4_0221C724
 _022051EC: .word 0x00000478
 	arm_func_end ov4_02205128
 
@@ -73,7 +73,7 @@ ov4_022051F0: ; 0x022051F0
 	str r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_02205204: .word 0x0221C724
+_02205204: .word Unk_ov4_0221C724
 	arm_func_end ov4_022051F0
 
 	arm_func_start ov4_02205208
@@ -91,7 +91,7 @@ ov4_02205208: ; 0x02205208
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02205238: .word 0x0221C724
+_02205238: .word Unk_ov4_0221C724
 	arm_func_end ov4_02205208
 
 	arm_func_start ov4_0220523C
@@ -109,7 +109,7 @@ ov4_0220523C: ; 0x0220523C
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0220526C: .word 0x0221C724
+_0220526C: .word Unk_ov4_0221C724
 	arm_func_end ov4_0220523C
 
 	.bss

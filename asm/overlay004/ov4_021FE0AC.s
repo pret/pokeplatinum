@@ -59,7 +59,7 @@ _021FE124:
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FE134: .word 0x0221B750
+_021FE134: .word Unk_ov4_0221B750
 _021FE138: .word ov4_021FE0BC
 _021FE13C: .word ov4_021FE0D0
 _021FE140: .word ov4_021FE0AC
@@ -83,7 +83,7 @@ ov4_021FE144: ; 0x021FE144
 	str r1, [r0, #8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FE180: .word 0x0221B750
+_021FE180: .word Unk_ov4_0221B750
 	arm_func_end ov4_021FE144
 
 	arm_func_start ov4_021FE184
@@ -361,7 +361,7 @@ _021FE45C:
 	str r2, [r1, #0]
 	bx lr
 	; .align 2, 0
-_021FE498: .word 0x0221B750
+_021FE498: .word Unk_ov4_0221B750
 	arm_func_end ov4_021FE438
 
 	arm_func_start ov4_021FE49C
@@ -692,7 +692,7 @@ ov4_021FE874: ; 0x021FE874
 	movne r0, #0
 	bx lr
 	; .align 2, 0
-_021FE88C: .word 0x0221B750
+_021FE88C: .word Unk_ov4_0221B750
 	arm_func_end ov4_021FE874
 
 	.rodata

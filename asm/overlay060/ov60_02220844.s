@@ -339,7 +339,7 @@ Unk_ov60_02229120: ; 0x02229120
 
 	.global Unk_ov60_02229E24
 Unk_ov60_02229E24: ; 0x02229E24
-	.space 0x2
+	.space 0x4
 
 	.global Unk_ov60_02229E28
 Unk_ov60_02229E28: ; 0x02229E28

@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_02202698.inc"
 
-	
+	.extern Unk_ov4_0221DBD8
 
 	.text
 
@@ -68,12 +68,12 @@ _02202764:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_0220277C: .word 0x0221B780
+_0220277C: .word Unk_ov4_0221B780
 _02202780: .word 0x0221A0E8
-_02202784: .word 0x0221DBD8
+_02202784: .word Unk_ov4_0221DBD8
 _02202788: .word 0x02215D08
-_0220278C: .word 0x0221B7AC
-_02202790: .word 0x0221B7B8
+_0220278C: .word Unk_ov4_0221B7AC
+_02202790: .word Unk_ov4_0221B7B8
 	arm_func_end ov4_02202698
 
 	arm_func_start ov4_02202794
@@ -83,7 +83,7 @@ ov4_02202794: ; 0x02202794
 	str r1, [r0, #0x20]
 	bx lr
 	; .align 2, 0
-_022027A4: .word 0x0221B780
+_022027A4: .word Unk_ov4_0221B780
 	arm_func_end ov4_02202794
 
 	arm_func_start VCT_StartStreaming
@@ -170,9 +170,9 @@ _022028CC:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_022028D4: .word 0x0221B780
-_022028D8: .word 0x0221B7AC
-_022028DC: .word 0x0221B7B8
+_022028D4: .word Unk_ov4_0221B780
+_022028D8: .word Unk_ov4_0221B7AC
+_022028DC: .word Unk_ov4_0221B7B8
 	arm_func_end VCT_StartStreaming
 
 	arm_func_start VCT_StopStreaming
@@ -223,9 +223,9 @@ _0220295C:
 	str r1, [r0, #4]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02202988: .word 0x0221B7AC
-_0220298C: .word 0x0221B7B8
-_02202990: .word 0x0221B780
+_02202988: .word Unk_ov4_0221B7AC
+_0220298C: .word Unk_ov4_0221B7B8
+_02202990: .word Unk_ov4_0221B780
 	arm_func_end VCT_StopStreaming
 
 	arm_func_start VCT_SendAudio
@@ -301,9 +301,9 @@ _02202A4C:
 	str r2, [r1, #0xf04]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02202A94: .word 0x0221B780
-_02202A98: .word 0x0221B7AC
-_02202A9C: .word 0x0221BDC0
+_02202A94: .word Unk_ov4_0221B780
+_02202A98: .word Unk_ov4_0221B7AC
+_02202A9C: .word Unk_ov4_0221BDC0
 _02202AA0: .word 0x5F564354
 	arm_func_end VCT_SendAudio
 
@@ -467,7 +467,7 @@ _02202CDC:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02202CE8: .word 0x0221B7B8
+_02202CE8: .word Unk_ov4_0221B7B8
 _02202CEC: .word 0x00008B4C
 	arm_func_end ov4_02202AA4
 
@@ -551,8 +551,8 @@ _02202DFC:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_02202E04: .word 0x0221B780
-_02202E08: .word 0x0221B974
+_02202E04: .word Unk_ov4_0221B780
+_02202E08: .word Unk_ov4_0221B974
 	arm_func_end VCT_ReceiveAudio
 
 	arm_func_start VCT_SetCodec
@@ -584,10 +584,10 @@ _02202E34:
 	mov r0, #1
 	bx lr
 	; .align 2, 0
-_02202E70: .word 0x0221DBD8
+_02202E70: .word Unk_ov4_0221DBD8
 _02202E74: .word 0x02215D09
 _02202E78: .word 0x02215D08
-_02202E7C: .word 0x0221B780
+_02202E7C: .word Unk_ov4_0221B780
 	arm_func_end VCT_SetCodec
 
 	arm_func_start VCT_EnableVAD
@@ -604,7 +604,7 @@ VCT_EnableVAD: ; 0x02202E80
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02202EA8: .word 0x0221A0E8
-_02202EAC: .word 0x0221B780
+_02202EAC: .word Unk_ov4_0221B780
 	arm_func_end VCT_EnableVAD
 
 	arm_func_start VCT_EnableEchoCancel
@@ -613,7 +613,7 @@ VCT_EnableEchoCancel: ; 0x02202EB0
 	str r0, [r1, #0x18]
 	bx lr
 	; .align 2, 0
-_02202EBC: .word 0x0221B780
+_02202EBC: .word Unk_ov4_0221B780
 	arm_func_end VCT_EnableEchoCancel
 
 	arm_func_start ov4_02202EC0
@@ -782,13 +782,13 @@ _022030D0:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_02203120: .word 0x0221B780
-_02203124: .word 0x0221BDC0
+_02203120: .word Unk_ov4_0221B780
+_02203124: .word Unk_ov4_0221BDC0
 _02203128: .word 0x040002B0
 _0220312C: .word 0x040002B4
 _02203130: .word 0x0221A0E8
-_02203134: .word 0x0221B790
-_02203138: .word 0x0221DBD8
+_02203134: .word Unk_ov4_0221B790
+_02203138: .word Unk_ov4_0221DBD8
 	arm_func_end ov4_02202EC0
 
 	arm_func_start ov4_0220313C
@@ -920,8 +920,8 @@ _0220330C:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02203318: .word 0x0221B780
-_0220331C: .word 0x0221B7B8
+_02203318: .word Unk_ov4_0221B780
+_0220331C: .word Unk_ov4_0221B7B8
 _02203320: .word 0x02215D09
 _02203324: .word 0x02215D08
 	arm_func_end ov4_0220313C
@@ -1061,8 +1061,8 @@ _022034F0:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_022034F8: .word 0x0221B780
-_022034FC: .word 0x0221DBD8
+_022034F8: .word Unk_ov4_0221B780
+_022034FC: .word Unk_ov4_0221DBD8
 _02203500: .word 0x02215D12
 	arm_func_end ov4_022033F8
 

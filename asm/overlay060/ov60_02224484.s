@@ -76,8 +76,8 @@ _02224568:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02224574: .word 0x02228CBC
-_02224578: .word 0x02229EFC
-_0222457C: .word 0x02229EFC
+_02224578: .word Unk_ov60_02229EFC
+_0222457C: .word Unk_ov60_02229EFC
 _02224580: .word 0x02229F04
 	arm_func_end ov60_02224484
 

@@ -22,7 +22,7 @@ ov18_02233624: ; 0x02233624
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02233658: .word 0x02253314
+_02233658: .word Unk_ov18_02253314
 _0223365C: .word ov18_022336CC
 	arm_func_end ov18_02233624
 
@@ -170,7 +170,7 @@ ov18_022337E4: ; 0x022337E4
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02233810: .word 0x02253314
+_02233810: .word Unk_ov18_02253314
 _02233814: .word ov18_02233738
 	arm_func_end ov18_022337E4
 

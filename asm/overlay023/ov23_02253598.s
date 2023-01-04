@@ -30,7 +30,7 @@ ov23_02253598: ; 0x02253598
 	bl sub_020361BC
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
-_022535C8: .word 0x022577BC
+_022535C8: .word Unk_ov23_022577BC
 	thumb_func_end ov23_02253598
 
 	thumb_func_start ov23_022535CC
@@ -48,7 +48,7 @@ ov23_022535CC: ; 0x022535CC
 	str r1, [r0, #0]
 	pop {r3, pc}
 	; .align 2, 0
-_022535E8: .word 0x022577BC
+_022535E8: .word Unk_ov23_022577BC
 	thumb_func_end ov23_022535CC
 
 	thumb_func_start ov23_022535EC
@@ -64,7 +64,7 @@ ov23_022535EC: ; 0x022535EC
 _022535FE:
 	pop {r3, pc}
 	; .align 2, 0
-_02253600: .word 0x022577BC
+_02253600: .word Unk_ov23_022577BC
 	thumb_func_end ov23_022535EC
 
 	thumb_func_start ov23_02253604
@@ -315,7 +315,7 @@ _022537FE:
 	str r2, [r0, #0]
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
-_02253818: .word 0x022577BC
+_02253818: .word Unk_ov23_022577BC
 	thumb_func_end ov23_022537D4
 
 	thumb_func_start ov23_0225381C
@@ -420,7 +420,7 @@ _022538B4:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _022538EC: .word 0x000003D9
-_022538F0: .word 0x022577BC
+_022538F0: .word Unk_ov23_022577BC
 _022538F4: .word 0x000005FD
 _022538F8: .word ov23_0225381C
 	thumb_func_end ov23_02253834
@@ -469,7 +469,7 @@ _02253932:
 	bl sub_020181C4
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02253960: .word 0x022577BC
+_02253960: .word Unk_ov23_022577BC
 _02253964: .word 0x000F423F
 	thumb_func_end ov23_022538FC
 
@@ -493,7 +493,7 @@ _02253982:
 	bl sub_020294D4
 	pop {r3, pc}
 	nop
-_02253990: .word 0x022577BC
+_02253990: .word Unk_ov23_022577BC
 _02253994: .word 0x000F423F
 	thumb_func_end ov23_02253968
 
@@ -532,7 +532,7 @@ ov23_022539A8: ; 0x022539A8
 _022539D0:
 	pop {r3, r4, r5, pc}
 	nop
-_022539D4: .word 0x022577BC
+_022539D4: .word Unk_ov23_022577BC
 	thumb_func_end ov23_022539A8
 
 	thumb_func_start ov23_022539D8
@@ -543,7 +543,7 @@ ov23_022539D8: ; 0x022539D8
 	ldrb r0, [r0]
 	bx lr
 	nop
-_022539E4: .word 0x022577BC
+_022539E4: .word Unk_ov23_022577BC
 	thumb_func_end ov23_022539D8
 
 	thumb_func_start ov23_022539E8
@@ -555,7 +555,7 @@ ov23_022539E8: ; 0x022539E8
 	strb r1, [r0]
 	bx lr
 	; .align 2, 0
-_022539F4: .word 0x022577BC
+_022539F4: .word Unk_ov23_022577BC
 	thumb_func_end ov23_022539E8
 
 	thumb_func_start ov23_022539F8
@@ -908,7 +908,7 @@ ov23_02253C64: ; 0x02253C64
 	nop
 _02253D00: .word 0x000003D9
 _02253D04: .word 0x0000027F
-_02253D08: .word 0x022577BC
+_02253D08: .word Unk_ov23_022577BC
 _02253D0C: .word 0x000005FD
 	thumb_func_end ov23_02253C64
 

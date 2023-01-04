@@ -1,7 +1,9 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_021D806C.inc"
 
-	
+	.extern Unk_ov4_0221A4B4
+	.extern Unk_ov4_0221A4B8
+	.extern Unk_ov4_0221A4C0
 
 	.text
 
@@ -61,10 +63,10 @@ _021D811C:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021D8130: .word 0x0221A4B4
-_021D8134: .word 0x0221A4B8
+_021D8130: .word Unk_ov4_0221A4B4
+_021D8134: .word Unk_ov4_0221A4B8
 _021D8138: .word 0xBC191380
-_021D813C: .word 0x0221A4C0
+_021D813C: .word Unk_ov4_0221A4C0
 _021D8140: .word 0xBC19137F
 	arm_func_end DWC_GetDateTime
 
@@ -166,7 +168,7 @@ _021D8224:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D8288: .word 0x0221A4E4
+_021D8288: .word Unk_ov4_0221A4E4
 _021D828C: .word 0x00001E20
 _021D8290: .word 0xFFFFB17C
 _021D8294: .word 0x0221742C
@@ -241,7 +243,7 @@ _021D834C:
 	add sp, sp, #0x1c4
 	ldmia sp!, {pc}
 	; .align 2, 0
-_021D8390: .word 0x0221A4E4
+_021D8390: .word Unk_ov4_0221A4E4
 _021D8394: .word 0x00001E20
 	arm_func_end DWC_NASLoginProcess
 

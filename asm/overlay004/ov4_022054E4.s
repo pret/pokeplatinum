@@ -66,7 +66,7 @@ _022055A4:
 	ldr r0, [r0, #0]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_022055BC: .word 0x0221C748
+_022055BC: .word Unk_ov4_0221C748
 _022055C0: .word 0x00000E9F
 _022055C4: .word 0x00000D3E
 _022055C8: .word 0x04000280
@@ -103,12 +103,12 @@ _02205614:
 	blt _02205614
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02205634: .word 0x0221C748
+_02205634: .word Unk_ov4_0221C748
 _02205638: .word 0x0000019D
 _0220563C: .word 0x0221A124
-_02205640: .word 0x0221CBCC
-_02205644: .word 0x0221C774
-_02205648: .word 0x0221C75C
+_02205640: .word Unk_ov4_0221CBCC
+_02205644: .word Unk_ov4_0221C774
+_02205648: .word Unk_ov4_0221C75C
 	arm_func_end ov4_022055D0
 
 	arm_func_start ov4_0220564C
@@ -119,7 +119,7 @@ ov4_0220564C: ; 0x0220564C
 	bx ip
 	; .align 2, 0
 _0220565C: .word MIi_CpuCopyFast
-_02205660: .word 0x0221C78C
+_02205660: .word Unk_ov4_0221C78C
 	arm_func_end ov4_0220564C
 
 	arm_func_start ov4_02205664
@@ -262,8 +262,8 @@ _02205844:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _02205868: .word 0x3FFF8000
-_0220586C: .word 0x0221C748
-_02205870: .word 0x0221CBCC
+_0220586C: .word Unk_ov4_0221C748
+_02205870: .word Unk_ov4_0221CBCC
 _02205874: .word 0x04000280
 _02205878: .word 0x040002A0
 _0220587C: .word 0x040002B4
@@ -279,7 +279,7 @@ ov4_02205880: ; 0x02205880
 	bl ov4_02205664
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0220589C: .word 0x0221C78C
+_0220589C: .word Unk_ov4_0221C78C
 	arm_func_end ov4_02205880
 
 	.data
@@ -296,7 +296,7 @@ Unk_ov4_0221A124: ; 0x0221A124
 
 	.global Unk_ov4_0221C748
 Unk_ov4_0221C748: ; 0x0221C748
-	.space 0x2
+	.space 0x4
 
 	.global Unk_ov4_0221C74C
 Unk_ov4_0221C74C: ; 0x0221C74C

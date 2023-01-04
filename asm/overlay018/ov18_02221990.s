@@ -189,7 +189,7 @@ _02221BEC:
 	str r1, [r0, #0x4bc]
 	bx lr
 	; .align 2, 0
-_02221BF8: .word 0x0224B280
+_02221BF8: .word Unk_ov18_0224B280
 	arm_func_end ov18_02221BB8
 
 	arm_func_start ov18_02221BFC
@@ -204,7 +204,7 @@ ov18_02221BFC: ; 0x02221BFC
 	str r2, [r0, #0x14]
 	bx ip
 	; .align 2, 0
-_02221C20: .word 0x0224B280
+_02221C20: .word Unk_ov18_0224B280
 _02221C24: .word ov18_02221C28
 	arm_func_end ov18_02221BFC
 
@@ -219,7 +219,7 @@ ov18_02221C28: ; 0x02221C28
 	strb r1, [r0, #0x29]
 	bx lr
 	; .align 2, 0
-_02221C48: .word 0x0224B280
+_02221C48: .word Unk_ov18_0224B280
 	arm_func_end ov18_02221C28
 
 	arm_func_start ov18_02221C4C
@@ -266,7 +266,7 @@ _02221CC0:
 	bl ov18_02221F60
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02221CD4: .word 0x0224B280
+_02221CD4: .word Unk_ov18_0224B280
 	arm_func_end ov18_02221C4C
 
 	arm_func_start ov18_02221CD8
@@ -311,8 +311,8 @@ _02221D28:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02221D70: .word 0x0224B280
-_02221D74: .word 0x0224B2C0
+_02221D70: .word Unk_ov18_0224B280
+_02221D74: .word Unk_ov18_0224B2C0
 	arm_func_end ov18_02221CD8
 
 	arm_func_start ov18_02221D78
@@ -340,7 +340,7 @@ _02221DB8:
 	strb r1, [r0, #0x24]
 	bx lr
 	; .align 2, 0
-_02221DC8: .word 0x0224B280
+_02221DC8: .word Unk_ov18_0224B280
 	arm_func_end ov18_02221D78
 
 	arm_func_start ov18_02221DCC
@@ -433,10 +433,10 @@ _02221EF4:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02221F20: .word 0x0224B280
+_02221F20: .word Unk_ov18_0224B280
 _02221F24: .word 0x0224B2CE
 _02221F28: .word 0x0224B2C8
-_02221F2C: .word 0x0224B2C0
+_02221F2C: .word Unk_ov18_0224B2C0
 	arm_func_end ov18_02221DCC
 
 	arm_func_start ov18_02221F30
@@ -453,7 +453,7 @@ ov18_02221F30: ; 0x02221F30
 	strb r2, [r1, #0x24]
 	bx lr
 	; .align 2, 0
-_02221F5C: .word 0x0224B280
+_02221F5C: .word Unk_ov18_0224B280
 	arm_func_end ov18_02221F30
 
 	arm_func_start ov18_02221F60
@@ -618,11 +618,11 @@ _02222114:
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_022221B8: .word 0x0224B280
+_022221B8: .word Unk_ov18_0224B280
 _022221BC: .word 0x0224B328
 _022221C0: .word 0x0224B2D0
 _022221C4: .word 0x0224B2C8
-_022221C8: .word 0x0224B2C0
+_022221C8: .word Unk_ov18_0224B2C0
 	arm_func_end ov18_02221F60
 
 	.bss

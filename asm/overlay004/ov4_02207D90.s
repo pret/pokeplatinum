@@ -1,7 +1,12 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_02207D90.inc"
 
-	
+	.extern Unk_ov4_0221DC60
+	.extern Unk_ov4_0221DE40
+	.extern Unk_ov4_0221DC5C
+	.extern Unk_ov4_0221DC00
+	.extern Unk_ov4_0221DBFC
+	.extern Unk_ov4_0221DBF4
 
 	.text
 
@@ -50,10 +55,10 @@ _02207E1C:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02207E24: .word 0x0221DBF4
-_02207E28: .word 0x0221DE40
+_02207E24: .word Unk_ov4_0221DBF4
+_02207E28: .word Unk_ov4_0221DE40
 _02207E2C: .word 0x0221A134
-_02207E30: .word 0x0221DC00
+_02207E30: .word Unk_ov4_0221DC00
 	arm_func_end ov4_02207D90
 
 	arm_func_start ov4_02207E34
@@ -105,9 +110,9 @@ _02207EC8:
 	mvn r0, #0x19
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02207ED0: .word 0x0221DBFC
-_02207ED4: .word 0x0221DC5C
-_02207ED8: .word 0x0221DC60
+_02207ED0: .word Unk_ov4_0221DBFC
+_02207ED4: .word Unk_ov4_0221DC5C
+_02207ED8: .word Unk_ov4_0221DC60
 	arm_func_end ov4_02207E34
 
 	arm_func_start ov4_02207EDC
@@ -146,5 +151,5 @@ _02207F4C:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02207F54: .word 0x0221DBFC
+_02207F54: .word Unk_ov4_0221DBFC
 	arm_func_end ov4_02207EDC

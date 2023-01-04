@@ -2,6 +2,10 @@
 	.include "include/unk_020D3F7C.inc"
 
 	
+	.extern __read_console
+	.extern __write_console
+	.extern __close_console
+
 
 	.text
 
@@ -46,7 +50,7 @@ _020D3FF4:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020D4004: .word 0x02101490
+_020D4004: .word Unk_02101490
 	arm_func_end __flush_line_buffered_output_files
 
 	arm_func_start __flush_all
@@ -80,7 +84,7 @@ _020D405C:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020D406C: .word 0x02101490
+_020D406C: .word Unk_02101490
 	arm_func_end __flush_all
 
 	.data
@@ -88,8 +92,31 @@ _020D406C: .word 0x02101490
 
 	.global Unk_02101490
 Unk_02101490: ; 0x02101490
-	.incbin "incbin/arm9_data.bin", 0x27B0, 0xE4
-
+	.incbin "incbin/arm9_data.bin", 0x27B0, 0x1C
+	.word Unk_021D0C40
+	.incbin "incbin/arm9_data.bin", 0x27B0+0x20, 0x4
+	.word Unk_021D0C40
+	.incbin "incbin/arm9_data.bin", 0x27B0+0x28, 0x14
+	.word __read_console
+	.word __write_console
+	.word __close_console
+	.incbin "incbin/arm9_data.bin", 0x27B0+0x48, 0x20
+	.word Unk_021D0B40
+	.incbin "incbin/arm9_data.bin", 0x27B0+0x6C, 0x4
+	.word Unk_021D0B40
+	.incbin "incbin/arm9_data.bin", 0x27B0+0x74, 0x14
+	.word __read_console
+	.word __write_console
+	.word __close_console
+	.incbin "incbin/arm9_data.bin", 0x27B0+0x94, 0x20
+	.word Unk_021D0A40
+	.incbin "incbin/arm9_data.bin", 0x27B0+0xB8, 0x4
+	.word Unk_021D0A40
+	.incbin "incbin/arm9_data.bin", 0x27B0+0xC0, 0x14
+	.word __read_console
+	.word __write_console
+	.word __close_console
+	.word 0x0
 
 
 	.bss

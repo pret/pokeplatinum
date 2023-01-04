@@ -2,6 +2,10 @@
 	.include "overlay096/ov96_0223B6A0.inc"
 
 	.extern OS_IRQTable
+	.extern ov96_0223BCE0
+	.extern ov96_0223BDBC
+	.extern ov96_0223BDEC
+
 
 	.text
 
@@ -138,7 +142,7 @@ _0223B7BE:
 _0223B7C4: .word 0xFFFFE0FF
 _0223B7C8: .word 0x04001000
 _0223B7CC: .word 0x000012C4
-_0223B7D0: .word 0x0223DEEC
+_0223B7D0: .word Unk_ov96_0223DEEC
 _0223B7D4: .word 0x0223DA88
 _0223B7D8: .word 0x0000029E
 _0223B7DC: .word 0x00000BD4
@@ -245,10 +249,10 @@ _0223B8AC:
 	mov r0, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
-_0223B8B0: .word 0x0223DEEC
+_0223B8B0: .word Unk_ov96_0223DEEC
 _0223B8B4: .word ov96_0223BC04
 _0223B8B8: .word ov96_0223BC2C
-_0223B8BC: .word 0x0223DCD4
+_0223B8BC: .word Unk_ov96_0223DCD4
 _0223B8C0: .word 0x0223DCD8
 _0223B8C4: .word 0x0223DCDC
 _0223B8C8: .word 0x00000BF8
@@ -673,7 +677,7 @@ ov96_0223BC04: ; 0x0223BC04
 	add r0, r4, #0
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
-_0223BC28: .word 0x0223DEEC
+_0223BC28: .word Unk_ov96_0223DEEC
 	thumb_func_end ov96_0223BC04
 
 	thumb_func_start ov96_0223BC2C
@@ -692,7 +696,7 @@ ov96_0223BC2C: ; 0x0223BC2C
 _0223BC48:
 	pop {r3, r4, r5, pc}
 	nop
-_0223BC4C: .word 0x0223DEEC
+_0223BC4C: .word Unk_ov96_0223DEEC
 	thumb_func_end ov96_0223BC2C
 
 	thumb_func_start ov96_0223BC50
@@ -796,7 +800,9 @@ Unk_ov96_0223DAA8: ; 0x0223DAA8
 
 	.global Unk_ov96_0223DCD4
 Unk_ov96_0223DCD4: ; 0x0223DCD4
-	.incbin "incbin/overlay96_data.bin", 0x174, 0xC
+	.word ov96_0223BCE0
+	.word ov96_0223BDBC
+	.word ov96_0223BDEC
 
 
 	.bss

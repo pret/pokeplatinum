@@ -23,11 +23,19 @@ Unk_021015CC: ; 0x021015CC
 
 	.global Unk_021015D4
 Unk_021015D4: ; 0x021015D4
-	.incbin "incbin/arm9_data.bin", 0x28F4, 0x2904 - 0x28F4
+	.incbin "incbin/arm9_data.bin", 0x28F4, 0x2900 - 0x28F4
+	.word Unk_02101604
 
 	.global Unk_021015E4
 Unk_021015E4: ; 0x021015E4
-	.incbin "incbin/arm9_data.bin", 0x2904, 0x2924 - 0x2904
+	.word Unk_021015C4
+	.word Unk_021016E8
+	.word Unk_021016DC
+	.word Unk_021016C4
+	.word Unk_021015C0
+	.word Unk_021016F8
+	.word Unk_02101750
+	.word Unk_021015BC
 
 	.global Unk_02101604
 Unk_02101604: ; 0x02101604
@@ -39,7 +47,9 @@ Unk_021016C4: ; 0x021016C4
 
 	.global Unk_021016D0
 Unk_021016D0: ; 0x021016D0
-	.incbin "incbin/arm9_data.bin", 0x29F0, 0x29FC - 0x29F0
+	.word Unk_021015E4
+	.word Unk_021015D4
+	.word Unk_021015CC
 
 	.global Unk_021016DC
 Unk_021016DC: ; 0x021016DC

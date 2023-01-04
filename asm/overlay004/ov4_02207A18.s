@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_02207A18.inc"
 
-	
+	.extern Unk_ov4_0221DC60
 
 	.text
 
@@ -267,5 +267,5 @@ _02207D80:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02207D8C: .word 0x0221DC60
+_02207D8C: .word Unk_ov4_0221DC60
 	arm_func_end ov4_02207D54

@@ -2,6 +2,7 @@
 	.include "overlay004/ov4_021FE890.inc"
 
 	
+	.extern Unk_ov4_0221AE50
 
 	.text
 
@@ -235,7 +236,7 @@ _021FEB24:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FEBAC: .word 0x0221AE50
+_021FEBAC: .word Unk_ov4_0221AE50
 _021FEBB0: .word 0x00000638
 _021FEBB4: .word ov4_021FE890
 _021FEBB8: .word ov4_021FEA48

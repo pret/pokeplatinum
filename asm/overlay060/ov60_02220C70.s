@@ -84,7 +84,7 @@ _02220D6C:
 	str r5, [r1, #0xc]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_02220D7C: .word 0x02229E2C
+_02220D7C: .word Unk_ov60_02229E2C
 _02220D80: .word 0x02229178
 _02220D84: .word 0x022291A0
 _02220D88: .word 0x02229124
@@ -198,7 +198,7 @@ _02220F04:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02220F20: .word 0x02229E2C
+_02220F20: .word Unk_ov60_02229E2C
 	arm_func_end ov60_02220D8C
 
 	arm_func_start ov60_02220F24
@@ -331,7 +331,7 @@ _022210EC: .word 0x022291B4
 _022210F0: .word 0x022291A0
 _022210F4: .word 0x02229134
 _022210F8: .word 0x022291C0
-_022210FC: .word 0x02229E2C
+_022210FC: .word Unk_ov60_02229E2C
 _02221100: .word 0x022291DC
 _02221104: .word 0x02229204
 	arm_func_end ov60_02220F24
@@ -382,7 +382,7 @@ _02221194: .word 0x02229218
 _02221198: .word 0x022291A0
 _0222119C: .word 0x02229160
 _022211A0: .word 0x00000101
-_022211A4: .word 0x02229E2C
+_022211A4: .word Unk_ov60_02229E2C
 _022211A8: .word 0x02229228
 _022211AC: .word 0x00000102
 	arm_func_end ov60_02221108
@@ -417,7 +417,7 @@ _02221208:
 	bl ov60_02220850
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02221210: .word 0x02229E2C
+_02221210: .word Unk_ov60_02229E2C
 	arm_func_end ov60_022211B0
 
 	arm_func_start ov60_02221214
@@ -525,7 +525,7 @@ _02221364:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02221388: .word 0x02229E2C
+_02221388: .word Unk_ov60_02229E2C
 _0222138C: .word ov60_02220F24
 	arm_func_end ov60_02221318
 

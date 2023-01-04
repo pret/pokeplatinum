@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_021D8C08.inc"
 
-	
+	.extern Unk_ov4_0221B1B0
+	.extern Unk_ov4_0221B2B0
 
 	.text
 
@@ -164,13 +165,13 @@ _021D8E48:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D8E6C: .word 0x0221A504
+_021D8E6C: .word Unk_ov4_0221A504
 _021D8E70: .word ov4_021DE094
 _021D8E74: .word ov4_021DA30C
 _021D8E78: .word ov4_021DA318
 _021D8E7C: .word ov4_021DA680
-_021D8E80: .word 0x0221B1B0
-_021D8E84: .word 0x0221B2B0
+_021D8E80: .word Unk_ov4_0221B1B0
+_021D8E84: .word Unk_ov4_0221B2B0
 _021D8E88: .word ov4_021D9F4C
 	arm_func_end DWC_InitFriendsMatch
 
@@ -270,7 +271,7 @@ _021D8FE0:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D8FF0: .word 0x0221A504
+_021D8FF0: .word Unk_ov4_0221A504
 	arm_func_end DWC_ShutdownFriendsMatch
 
 	arm_func_start DWC_ProcessFriendsMatch
@@ -430,7 +431,7 @@ _021D9214:
 	strb r1, [r0, #0x38c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D9228: .word 0x0221A504
+_021D9228: .word Unk_ov4_0221A504
 _021D922C: .word ov4_021DA16C
 _021D9230: .word ov4_021DA1A4
 _021D9234: .word ov4_021DB768
@@ -511,7 +512,7 @@ _021D9324:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D9344: .word 0x0221A504
+_021D9344: .word Unk_ov4_0221A504
 _021D9348: .word 0xFFFF1596
 	arm_func_end DWC_LoginAsync
 
@@ -560,7 +561,7 @@ _021D9394:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D93EC: .word 0x0221A504
+_021D93EC: .word Unk_ov4_0221A504
 _021D93F0: .word ov4_021D9FAC
 	arm_func_end DWC_UpdateServersAsync
 
@@ -607,7 +608,7 @@ _021D9438:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021D948C: .word 0x0221A504
+_021D948C: .word Unk_ov4_0221A504
 _021D9490: .word ov4_021D9FF4
 	arm_func_end DWC_ConnectToAnybodyAsync
 
@@ -652,7 +653,7 @@ _021D94D0:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021D9524: .word 0x0221A504
+_021D9524: .word Unk_ov4_0221A504
 _021D9528: .word ov4_021D9FF4
 	arm_func_end DWC_SetupGameServer
 
@@ -786,7 +787,7 @@ _021D9704:
 	add sp, sp, #0x220
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021D9710: .word 0x0221A504
+_021D9710: .word Unk_ov4_0221A504
 _021D9714: .word 0x0221746C
 _021D9718: .word 0x02217470
 _021D971C: .word ov4_021D9FF4
@@ -806,7 +807,7 @@ DWC_SetConnectionClosedCallback: ; 0x021D9724
 	str r1, [r2, #0x94]
 	bx lr
 	; .align 2, 0
-_021D974C: .word 0x0221A504
+_021D974C: .word Unk_ov4_0221A504
 	arm_func_end DWC_SetConnectionClosedCallback
 
 	arm_func_start DWC_CloseAllConnectionsHard
@@ -854,7 +855,7 @@ _021D97C0:
 	strb r0, [r1, #0x2d]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D97EC: .word 0x0221A504
+_021D97EC: .word Unk_ov4_0221A504
 _021D97F0: .word 0x02217474
 	arm_func_end DWC_CloseAllConnectionsHard
 
@@ -888,7 +889,7 @@ _021D9838:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D9858: .word 0x0221A504
+_021D9858: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D97F4
 
 	arm_func_start DWC_CloseConnectionHardBitmap
@@ -947,7 +948,7 @@ _021D98F8:
 	mvneq r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D991C: .word 0x0221A504
+_021D991C: .word Unk_ov4_0221A504
 	arm_func_end DWC_CloseConnectionHardBitmap
 
 	arm_func_start DWC_GetNumConnectionHost
@@ -971,7 +972,7 @@ _021D9958:
 	add r0, r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D9964: .word 0x0221A504
+_021D9964: .word Unk_ov4_0221A504
 	arm_func_end DWC_GetNumConnectionHost
 
 	arm_func_start DWC_GetMyAID
@@ -983,7 +984,7 @@ DWC_GetMyAID: ; 0x021D9968
 	moveq r0, #0
 	bx lr
 	; .align 2, 0
-_021D9980: .word 0x0221A504
+_021D9980: .word Unk_ov4_0221A504
 	arm_func_end DWC_GetMyAID
 
 	arm_func_start ov4_021D9984
@@ -1009,7 +1010,7 @@ _021D99C8:
 	bl ov4_021DEABC
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D99D0: .word 0x0221A504
+_021D99D0: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9984
 
 	arm_func_start DWC_GetAIDBitmap
@@ -1027,7 +1028,7 @@ DWC_GetAIDBitmap: ; 0x021D99D4
 	bl ov4_021D9D58
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D9A04: .word 0x0221A504
+_021D9A04: .word Unk_ov4_0221A504
 	arm_func_end DWC_GetAIDBitmap
 
 	arm_func_start DWC_IsValidAID
@@ -1046,7 +1047,7 @@ DWC_IsValidAID: ; 0x021D9A08
 	bl ov4_021D9C8C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D9A3C: .word 0x0221A504
+_021D9A3C: .word Unk_ov4_0221A504
 	arm_func_end DWC_IsValidAID
 
 	arm_func_start ov4_021D9A40
@@ -1058,7 +1059,7 @@ ov4_021D9A40: ; 0x021D9A40
 	moveq r0, #0
 	bx lr
 	; .align 2, 0
-_021D9A58: .word 0x0221A504
+_021D9A58: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9A40
 
 	arm_func_start ov4_021D9A5C
@@ -1110,7 +1111,7 @@ ov4_021D9A5C: ; 0x021D9A5C
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_021D9B14: .word 0x0221A504
+_021D9B14: .word Unk_ov4_0221A504
 _021D9B18: .word ov4_021DA68C
 _021D9B1C: .word ov4_021DDE4C
 _021D9B20: .word ov4_021DDD58
@@ -1144,8 +1145,8 @@ _021D9B6C:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D9B80: .word 0x0221A504
-_021D9B84: .word 0x0221A50C
+_021D9B80: .word Unk_ov4_0221A504
+_021D9B84: .word Unk_ov4_0221A50C
 	arm_func_end ov4_021D9B24
 
 	arm_func_start ov4_021D9B88
@@ -1178,7 +1179,7 @@ _021D9BB0:
 	mvn r0, #0
 	bx lr
 	; .align 2, 0
-_021D9BD0: .word 0x0221A50C
+_021D9BD0: .word Unk_ov4_0221A50C
 	arm_func_end ov4_021D9BA8
 
 	arm_func_start ov4_021D9BD4
@@ -1194,8 +1195,8 @@ ov4_021D9BD4: ; 0x021D9BD4
 	bl MIi_CpuClear32
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D9BFC: .word 0x0221A50C
-_021D9C00: .word 0x0221A58C
+_021D9BFC: .word Unk_ov4_0221A50C
+_021D9C00: .word Unk_ov4_0221A58C
 	arm_func_end ov4_021D9BD4
 
 	arm_func_start ov4_021D9C04
@@ -1204,7 +1205,7 @@ ov4_021D9C04: ; 0x021D9C04
 	add r0, r1, r0, lsl #2
 	bx lr
 	; .align 2, 0
-_021D9C10: .word 0x0221A50C
+_021D9C10: .word Unk_ov4_0221A50C
 	arm_func_end ov4_021D9C04
 
 	arm_func_start ov4_021D9C14
@@ -1237,7 +1238,7 @@ _021D9C4C:
 	bl ov4_021D9C04
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D9C78: .word 0x0221A504
+_021D9C78: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9C14
 
 	arm_func_start ov4_021D9C7C
@@ -1246,7 +1247,7 @@ ov4_021D9C7C: ; 0x021D9C7C
 	add r0, r1, r0, lsl #3
 	bx lr
 	; .align 2, 0
-_021D9C88: .word 0x0221A58C
+_021D9C88: .word Unk_ov4_0221A58C
 	arm_func_end ov4_021D9C7C
 
 	arm_func_start ov4_021D9C8C
@@ -1271,7 +1272,7 @@ _021D9CBC:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D9CD0: .word 0x0221A50C
+_021D9CD0: .word Unk_ov4_0221A50C
 	arm_func_end ov4_021D9C8C
 
 	arm_func_start ov4_021D9CD4
@@ -1289,7 +1290,7 @@ ov4_021D9CD8: ; 0x021D9CD8
 	str r0, [r1, #0x24]
 	bx lr
 	; .align 2, 0
-_021D9CF4: .word 0x0221A504
+_021D9CF4: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9CD8
 
 	arm_func_start ov4_021D9CF8
@@ -1423,7 +1424,7 @@ _021D9E80:
 	mov r0, r6
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D9E94: .word 0x0221A504
+_021D9E94: .word Unk_ov4_0221A504
 _021D9E98: .word 0xFFFF11B8
 _021D9E9C: .word 0xFFFEC398
 _021D9EA0: .word 0xFFFEEAA8
@@ -1513,7 +1514,7 @@ _021D9F80:
 	blx r3
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021D9FA8: .word 0x0221A504
+_021D9FA8: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9F4C
 
 	arm_func_start ov4_021D9FAC
@@ -1537,7 +1538,7 @@ _021D9FD0:
 	blx r3
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021D9FF0: .word 0x0221A504
+_021D9FF0: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9FAC
 
 	arm_func_start ov4_021D9FF4
@@ -1642,7 +1643,7 @@ _021DA130:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021DA168: .word 0x0221A504
+_021DA168: .word Unk_ov4_0221A504
 	arm_func_end ov4_021D9FF4
 
 	arm_func_start ov4_021DA16C
@@ -1757,7 +1758,7 @@ _021DA2DC:
 	; .align 2, 0
 _021DA300: .word 0x02217478
 _021DA304: .word 0x02217480
-_021DA308: .word 0x0221A504
+_021DA308: .word Unk_ov4_0221A504
 	arm_func_end ov4_021DA1A4
 
 	arm_func_start ov4_021DA30C
@@ -2001,8 +2002,8 @@ _021DA620:
 	; .align 2, 0
 _021DA668: .word 0xFFFFE250
 _021DA66C: .word 0xFFFFE24F
-_021DA670: .word 0x0221A504
-_021DA674: .word 0x0221A50C
+_021DA670: .word Unk_ov4_0221A504
+_021DA674: .word Unk_ov4_0221A50C
 _021DA678: .word 0xFFFEC780
 _021DA67C: .word 0x02217474
 	arm_func_end ov4_021DA318
@@ -2031,7 +2032,7 @@ ov4_021DA68C: ; 0x021DA68C
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021DA6C0: .word 0x0221A504
+_021DA6C0: .word Unk_ov4_0221A504
 _021DA6C4: .word 0xFFFE8515
 	arm_func_end ov4_021DA68C
 

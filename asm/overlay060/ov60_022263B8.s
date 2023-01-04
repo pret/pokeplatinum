@@ -1,7 +1,11 @@
 	.include "macros/function.inc"
 	.include "overlay060/ov60_022263B8.inc"
 
-	
+	.extern Unk_ov60_0222A014
+	.extern Unk_ov60_0222A018
+	.extern Unk_ov60_0222A01C
+	.extern Unk_ov60_0222A020
+
 
 	.text
 
@@ -383,13 +387,13 @@ _022268F8:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02226900: .word 0x0222A014
-_02226904: .word 0x0222A018
+_02226900: .word Unk_ov60_0222A014
+_02226904: .word Unk_ov60_0222A018
 _02226908: .word 0x02229CD0
 _0222690C: .word 0x02229CD8
 _02226910: .word 0x0000FFFF
 _02226914: .word 0x02228D74
-_02226918: .word 0x0222A01C
+_02226918: .word Unk_ov60_0222A01C
 	arm_func_end ov60_022263B8
 
 	arm_func_start ov60_0222691C
@@ -404,7 +408,7 @@ ov60_0222691C: ; 0x0222691C
 	bl ov60_02226998
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02226940: .word 0x0222A01C
+_02226940: .word Unk_ov60_0222A01C
 	arm_func_end ov60_0222691C
 
 	arm_func_start ov60_02226944
@@ -433,7 +437,7 @@ _02226988:
 	bne _02226958
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02226994: .word 0x0222A01C
+_02226994: .word Unk_ov60_0222A01C
 	arm_func_end ov60_02226944
 
 	arm_func_start ov60_02226998
@@ -470,7 +474,7 @@ _022269E4:
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02226A0C: .word 0x0222A01C
+_02226A0C: .word Unk_ov60_0222A01C
 	arm_func_end ov60_02226998
 
 	arm_func_start ov60_02226A10
@@ -513,7 +517,7 @@ _02226A8C:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02226A98: .word 0x0222A014
+_02226A98: .word Unk_ov60_0222A014
 	arm_func_end ov60_02226A10
 
 	arm_func_start ov60_02226A9C

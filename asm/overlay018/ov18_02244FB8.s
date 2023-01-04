@@ -24,7 +24,7 @@ ov18_02244FB8: ; 0x02244FB8
 	bl OS_Terminate
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02244FF4: .word 0x022533C4
+_02244FF4: .word Unk_ov18_022533C4
 	arm_func_end ov18_02244FB8
 
 	arm_func_start ov18_02244FF8
@@ -38,7 +38,7 @@ ov18_02244FF8: ; 0x02244FF8
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02245018: .word 0x022533C4
+_02245018: .word Unk_ov18_022533C4
 	arm_func_end ov18_02244FF8
 
 	arm_func_start ov18_0224501C
@@ -63,7 +63,7 @@ _02245054:
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02245064: .word 0x022533C4
+_02245064: .word Unk_ov18_022533C4
 	arm_func_end ov18_0224501C
 
 	arm_func_start ov18_02245068
@@ -98,7 +98,7 @@ ov18_0224508C: ; 0x0224508C
 	str r0, [r5, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_022450CC: .word 0x022533C4
+_022450CC: .word Unk_ov18_022533C4
 	arm_func_end ov18_0224508C
 
 	arm_func_start ov18_022450D0
@@ -118,7 +118,7 @@ ov18_022450D0: ; 0x022450D0
 	bl OS_EnableIrqMask
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02245108: .word 0x022533C4
+_02245108: .word Unk_ov18_022533C4
 	arm_func_end ov18_022450D0
 
 	.bss

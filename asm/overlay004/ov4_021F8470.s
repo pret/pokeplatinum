@@ -242,7 +242,7 @@ ov4_021F8710: ; 0x021F8710
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021F874C: .word 0x0221B3B0
+_021F874C: .word Unk_ov4_0221B3B0
 _021F8750: .word ov4_021F8700
 	arm_func_end ov4_021F8710
 

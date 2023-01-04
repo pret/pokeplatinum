@@ -2,6 +2,8 @@
 	.include "overlay060/ov60_02225E1C.inc"
 
 	
+	.extern Unk_ov60_0222A024
+
 
 	.text
 
@@ -14,7 +16,7 @@ ov60_02225E1C: ; 0x02225E1C
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02225E30: .word 0x0222A8F8
+_02225E30: .word Unk_ov60_0222A8F8
 	arm_func_end ov60_02225E1C
 
 	arm_func_start ov60_02225E34
@@ -29,7 +31,7 @@ ov60_02225E38: ; 0x02225E38
 	bx ip
 	; .align 2, 0
 _02225E44: .word OS_LockMutex
-_02225E48: .word 0x0222A8F8
+_02225E48: .word Unk_ov60_0222A8F8
 	arm_func_end ov60_02225E38
 
 	arm_func_start ov60_02225E4C
@@ -39,7 +41,7 @@ ov60_02225E4C: ; 0x02225E4C
 	bx ip
 	; .align 2, 0
 _02225E58: .word OS_UnlockMutex
-_02225E5C: .word 0x0222A8F8
+_02225E5C: .word Unk_ov60_0222A8F8
 	arm_func_end ov60_02225E4C
 
 	arm_func_start ov60_02225E60
@@ -71,9 +73,9 @@ ov60_02225E60: ; 0x02225E60
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02225EC8: .word 0x0222A910
-_02225ECC: .word 0x0222A8F4
-_02225ED0: .word 0x0222A930
+_02225EC8: .word Unk_ov60_0222A910
+_02225ECC: .word Unk_ov60_0222A8F4
+_02225ED0: .word Unk_ov60_0222A930
 _02225ED4: .word ov60_022274A0
 	arm_func_end ov60_02225E60
 
@@ -88,8 +90,8 @@ ov60_02225ED8: ; 0x02225ED8
 	bl OS_JoinThread
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02225EF8: .word 0x0222A024
-_02225EFC: .word 0x0222A930
+_02225EF8: .word Unk_ov60_0222A024
+_02225EFC: .word Unk_ov60_0222A930
 	arm_func_end ov60_02225ED8
 
 	arm_func_start ov60_02225F00
@@ -101,7 +103,7 @@ ov60_02225F00: ; 0x02225F00
 	bl OS_ReceiveMessage
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02225F18: .word 0x0222A910
+_02225F18: .word Unk_ov60_0222A910
 	arm_func_end ov60_02225F00
 
 	arm_func_start ov60_02225F1C
@@ -113,7 +115,7 @@ ov60_02225F1C: ; 0x02225F1C
 	bx ip
 	; .align 2, 0
 _02225F30: .word OS_SendMessage
-_02225F34: .word 0x0222A910
+_02225F34: .word Unk_ov60_0222A910
 	arm_func_end ov60_02225F1C
 
 	.bss

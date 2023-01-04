@@ -15,7 +15,7 @@ DWC_GetLastError: ; 0x021D75D4
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_021D75F0: .word 0x0221A4CC
+_021D75F0: .word Unk_ov4_0221A4CC
 	arm_func_end DWC_GetLastError
 
 	arm_func_start DWC_GetLastErrorEx
@@ -92,7 +92,7 @@ _021D76D8:
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_021D76E4: .word 0x0221A4CC
+_021D76E4: .word Unk_ov4_0221A4CC
 	arm_func_end DWC_GetLastErrorEx
 
 	arm_func_start DWC_ClearError
@@ -105,7 +105,7 @@ DWC_ClearError: ; 0x021D76E8
 	strne r1, [r0, #4]
 	bx lr
 	; .align 2, 0
-_021D7704: .word 0x0221A4CC
+_021D7704: .word Unk_ov4_0221A4CC
 	arm_func_end DWC_ClearError
 
 	arm_func_start ov4_021D7708
@@ -117,7 +117,7 @@ ov4_021D7708: ; 0x021D7708
 	moveq r0, #0
 	bx lr
 	; .align 2, 0
-_021D7720: .word 0x0221A4CC
+_021D7720: .word Unk_ov4_0221A4CC
 	arm_func_end ov4_021D7708
 
 	arm_func_start ov4_021D7724
@@ -128,7 +128,7 @@ ov4_021D7724: ; 0x021D7724
 	stmneia r2, {r0, r1}
 	bx lr
 	; .align 2, 0
-_021D7738: .word 0x0221A4CC
+_021D7738: .word Unk_ov4_0221A4CC
 	arm_func_end ov4_021D7724
 
 	.bss

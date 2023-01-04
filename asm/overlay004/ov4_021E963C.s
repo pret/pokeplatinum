@@ -1,8 +1,6 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_021E963C.inc"
 
-	
-
 	.text
 
 
@@ -61,7 +59,7 @@ ov4_021E96B0: ; 0x021E96B0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E96F4: .word 0x0221AE58
-_021E96F8: .word 0x0221AE50
+_021E96F8: .word Unk_ov4_0221AE50
 _021E96FC: .word 0x0221AE60
 	arm_func_end ov4_021E96B0
 
@@ -125,8 +123,8 @@ _021E9748:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021E97DC: .word 0x0221AEEC
-_021E97E0: .word 0x0221AE50
-_021E97E4: .word 0x0221AEAC
+_021E97E0: .word Unk_ov4_0221AE50
+_021E97E4: .word Unk_ov4_0221AEAC
 _021E97E8: .word 0x022176A4
 _021E97EC: .word 0x00006CFC
 _021E97F0: .word 0x0221AE58
@@ -180,7 +178,7 @@ ov4_021E97F8: ; 0x021E97F8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021E98A4: .word 0x0221AE5C
-_021E98A8: .word 0x0221AE50
+_021E98A8: .word Unk_ov4_0221AE50
 _021E98AC: .word 0x022176C8
 	arm_func_end ov4_021E97F8
 
@@ -270,7 +268,7 @@ _021E99DC:
 	add sp, sp, #0x58
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021E99E8: .word 0x0221AE50
+_021E99E8: .word Unk_ov4_0221AE50
 	arm_func_end ov4_021E98B0
 
 	.data

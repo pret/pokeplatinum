@@ -21,9 +21,9 @@ ov4_022038F4: ; 0x022038F4
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02203924: .word 0x0221C6C4
-_02203928: .word 0x0221C6B8
-_0220392C: .word 0x0221C6AC
+_02203924: .word Unk_ov4_0221C6C4
+_02203928: .word Unk_ov4_0221C6B8
+_0220392C: .word Unk_ov4_0221C6AC
 	arm_func_end ov4_022038F4
 
 	arm_func_start ov4_02203930
@@ -56,9 +56,9 @@ _02203974:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02203994: .word 0x0221C6AC
-_02203998: .word 0x0221C6C4
-_0220399C: .word 0x0221C6B8
+_02203994: .word Unk_ov4_0221C6AC
+_02203998: .word Unk_ov4_0221C6C4
+_0220399C: .word Unk_ov4_0221C6B8
 	arm_func_end ov4_02203930
 
 	arm_func_start ov4_022039A0
@@ -97,9 +97,9 @@ _02203A00:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_02203A14: .word 0x0221C6AC
-_02203A18: .word 0x0221C6C4
-_02203A1C: .word 0x0221C6B8
+_02203A14: .word Unk_ov4_0221C6AC
+_02203A18: .word Unk_ov4_0221C6C4
+_02203A1C: .word Unk_ov4_0221C6B8
 	arm_func_end ov4_022039A0
 
 	arm_func_start ov4_02203A20
@@ -171,9 +171,9 @@ _02203AF4:
 	ldr r0, [r0, r4, lsl #2]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02203B14: .word 0x0221C6AC
-_02203B18: .word 0x0221C6C4
-_02203B1C: .word 0x0221C6B8
+_02203B14: .word Unk_ov4_0221C6AC
+_02203B18: .word Unk_ov4_0221C6C4
+_02203B1C: .word Unk_ov4_0221C6B8
 	arm_func_end ov4_02203A20
 
 	arm_func_start ov4_02203B20
@@ -194,7 +194,7 @@ _02203B4C:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02203B58: .word 0x0221C6AC
+_02203B58: .word Unk_ov4_0221C6AC
 	arm_func_end ov4_02203B20
 
 	arm_func_start ov4_02203B5C
@@ -224,9 +224,9 @@ _02203BA8:
 	ldr r0, [r0, r4, lsl #2]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02203BB8: .word 0x0221C6AC
-_02203BBC: .word 0x0221C6B8
-_02203BC0: .word 0x0221C6C4
+_02203BB8: .word Unk_ov4_0221C6AC
+_02203BBC: .word Unk_ov4_0221C6B8
+_02203BC0: .word Unk_ov4_0221C6C4
 	arm_func_end ov4_02203B5C
 
 	arm_func_start ov4_02203BC4
@@ -235,7 +235,7 @@ ov4_02203BC4: ; 0x02203BC4
 	ldr r0, [r1, r0, lsl #2]
 	bx lr
 	; .align 2, 0
-_02203BD0: .word 0x0221C6B8
+_02203BD0: .word Unk_ov4_0221C6B8
 	arm_func_end ov4_02203BC4
 
 	.bss

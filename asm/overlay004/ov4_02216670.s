@@ -11,7 +11,11 @@ Unk_ov4_02216670: ; 0x02216670
 
 	.global Unk_ov4_02216674
 Unk_ov4_02216674: ; 0x02216674
-	.incbin "incbin/overlay4_data.bin", 0x7F4, 0x808 - 0x7F4
+	.word Unk_ov4_02216688
+	.short 0x100, 0x0
+	.word Unk_ov4_022166BC
+	.short 0x3, 0x0
+	.word Unk_ov4_02216670
 
 	.global Unk_ov4_02216688
 Unk_ov4_02216688: ; 0x02216688

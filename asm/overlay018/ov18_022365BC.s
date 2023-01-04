@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay018/ov18_022365BC.inc"
 
-	
+	.extern Unk_ov18_022532D8
 
 	.text
 
@@ -265,14 +265,14 @@ _022368B4:
 	add sp, sp, #0x24
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_02236988: .word 0x02253328
+_02236988: .word Unk_ov18_02253328
 _0223698C: .word 0xFFFFB17D
 _02236990: .word 0xFFFFA629
 _02236994: .word 0xFFFF3CB1
 _02236998: .word 0xFFFF3866
 _0223699C: .word 0xFFFF34DD
 _022369A0: .word 0x022492A8
-_022369A4: .word 0x022532D8
+_022369A4: .word Unk_ov18_022532D8
 _022369A8: .word 0x0224A24C
 _022369AC: .word 0x022492BA
 _022369B0: .word 0x022492B8
@@ -467,7 +467,7 @@ ov18_02236BD0: ; 0x02236BD0
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_02236BDC: .word 0x02253328
+_02236BDC: .word Unk_ov18_02253328
 	arm_func_end ov18_02236BD0
 
 	.rodata

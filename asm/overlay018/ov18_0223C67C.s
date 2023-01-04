@@ -27,7 +27,7 @@ ov18_0223C67C: ; 0x0223C67C
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223C6C4: .word 0x02253368
+_0223C6C4: .word Unk_ov18_02253368
 _0223C6C8: .word ov18_0223C774
 	arm_func_end ov18_0223C67C
 
@@ -196,7 +196,7 @@ _0223C8B8:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223C8C4: .word 0x02253368
+_0223C8C4: .word Unk_ov18_02253368
 _0223C8C8: .word ov18_0223C8CC
 	arm_func_end ov18_0223C87C
 
@@ -240,7 +240,7 @@ _0223C928:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223C948: .word 0x02253368
+_0223C948: .word Unk_ov18_02253368
 _0223C94C: .word ov18_0223C950
 	arm_func_end ov18_0223C8EC
 
@@ -293,7 +293,7 @@ _0223C9EC:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223C9FC: .word 0x02253368
+_0223C9FC: .word Unk_ov18_02253368
 _0223CA00: .word ov18_0223A6B4
 _0223CA04: .word ov18_0223CA28
 	arm_func_end ov18_0223C950
@@ -348,7 +348,7 @@ ov18_0223CA28: ; 0x0223CA28
 	add sp, sp, #0x6c
 	ldmia sp!, {pc}
 	; .align 2, 0
-_0223CAB0: .word 0x0225336C
+_0223CAB0: .word Unk_ov18_0225336C
 _0223CAB4: .word ov18_0223CE08
 _0223CAB8: .word ov18_0223CB64
 	arm_func_end ov18_0223CA28
@@ -502,7 +502,7 @@ ov18_0223CC3C: ; 0x0223CC3C
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CC80: .word 0x0225336C
+_0223CC80: .word Unk_ov18_0225336C
 _0223CC84: .word ov18_0223CC88
 	arm_func_end ov18_0223CC3C
 
@@ -548,7 +548,7 @@ _0223CCEC:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CD0C: .word 0x0225336C
+_0223CD0C: .word Unk_ov18_0225336C
 _0223CD10: .word ov18_0223CD14
 	arm_func_end ov18_0223CCA8
 
@@ -616,7 +616,7 @@ _0223CDE0:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CDF8: .word 0x0225336C
+_0223CDF8: .word Unk_ov18_0225336C
 _0223CDFC: .word ov18_0223A6B4
 _0223CE00: .word ov18_0223C67C
 _0223CE04: .word ov18_0223C470
@@ -685,7 +685,7 @@ _0223CEC4:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CEE4: .word 0x0225336C
+_0223CEE4: .word Unk_ov18_0225336C
 _0223CEE8: .word ov18_0223CEF4
 _0223CEEC: .word ov18_0223CC88
 _0223CEF0: .word ov18_0223CF40
@@ -746,7 +746,7 @@ _0223CF84:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CF94: .word 0x0225336C
+_0223CF94: .word Unk_ov18_0225336C
 _0223CF98: .word ov18_0223CF9C
 	arm_func_end ov18_0223CF40
 
@@ -776,7 +776,7 @@ _0223CFC8:
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CFF4: .word 0x0225336C
+_0223CFF4: .word Unk_ov18_0225336C
 _0223CFF8: .word ov18_0223CC88
 _0223CFFC: .word ov18_0223CE08
 _0223D000: .word ov18_0223CBEC

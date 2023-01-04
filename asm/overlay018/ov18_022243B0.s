@@ -20,7 +20,7 @@ ov18_022243B0: ; 0x022243B0
 	str r2, [r1, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022243DC: .word 0x02250D64
+_022243DC: .word Unk_ov18_02250D64
 	arm_func_end ov18_022243B0
 
 	arm_func_start ov18_022243E0
@@ -32,7 +32,7 @@ ov18_022243E0: ; 0x022243E0
 	str r0, [r3, #4]
 	bx ip
 	; .align 2, 0
-_022243F8: .word 0x02250D64
+_022243F8: .word Unk_ov18_02250D64
 _022243FC: .word MI_CpuFill8
 	arm_func_end ov18_022243E0
 
@@ -55,7 +55,7 @@ ov18_02224400: ; 0x02224400
 	str r1, [r0, #0x1e0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02224440: .word 0x02250D64
+_02224440: .word Unk_ov18_02250D64
 	arm_func_end ov18_02224400
 
 	arm_func_start ov18_02224444
@@ -178,7 +178,7 @@ _022245D8:
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_022245E0: .word 0x02250D64
+_022245E0: .word Unk_ov18_02250D64
 	arm_func_end ov18_022244C8
 
 	arm_func_start ov18_022245E4
@@ -218,7 +218,7 @@ ov18_022245E4: ; 0x022245E4
 	add r0, r0, r4, lsl #5
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_0222466C: .word 0x02250D64
+_0222466C: .word Unk_ov18_02250D64
 	arm_func_end ov18_022245E4
 
 	arm_func_start ov18_02224670
@@ -246,7 +246,7 @@ _022246B8:
 	mov r0, #1
 	bx lr
 	; .align 2, 0
-_022246C0: .word 0x02250D64
+_022246C0: .word Unk_ov18_02250D64
 	arm_func_end ov18_02224670
 
 	.bss

@@ -60,7 +60,7 @@ ov4_021D5818: ; 0x021D5818
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021D58E0: .word 0x0221A438
+_021D58E0: .word Unk_ov4_0221A438
 _021D58E4: .word 0x02216384
 _021D58E8: .word 0x000011F4
 _021D58EC: .word 0xFFFE7961
@@ -131,7 +131,7 @@ _021D59B8:
 	str r1, [r0, #0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D59DC: .word 0x0221A438
+_021D59DC: .word Unk_ov4_0221A438
 _021D59E0: .word 0x022163A8
 _021D59E4: .word 0x022163B8
 _021D59E8: .word 0x022163D4
@@ -168,7 +168,7 @@ _021D5A3C:
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D5A54: .word 0x0221A438
+_021D5A54: .word Unk_ov4_0221A438
 	arm_func_end ov4_021D59F0
 
 	arm_func_start ov4_021D5A58
@@ -189,7 +189,7 @@ ov4_021D5A58: ; 0x021D5A58
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D5A94: .word 0x0221A438
+_021D5A94: .word Unk_ov4_0221A438
 	arm_func_end ov4_021D5A58
 
 	arm_func_start ov4_021D5A98
@@ -200,7 +200,7 @@ ov4_021D5A98: ; 0x021D5A98
 	ldr r0, [r0, #4]
 	bx lr
 	; .align 2, 0
-_021D5AAC: .word 0x0221A438
+_021D5AAC: .word Unk_ov4_0221A438
 	arm_func_end ov4_021D5A98
 
 	arm_func_start ov4_021D5AB0
@@ -239,7 +239,7 @@ _021D5AE8:
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D5B30: .word 0x0221A438
+_021D5B30: .word Unk_ov4_0221A438
 _021D5B34: .word ov4_021D5B38
 	arm_func_end ov4_021D5AB0
 
@@ -1252,10 +1252,10 @@ _021D6998:
 	add sp, sp, #0x29c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021D69BC: .word 0x0221A438
+_021D69BC: .word Unk_ov4_0221A438
 _021D69C0: .word 0x00009C40
 _021D69C4: .word 0x0221635C
-_021D69C8: .word 0x0221A450
+_021D69C8: .word Unk_ov4_0221A450
 _021D69CC: .word Unk_021CCC80
 _021D69D0: .word 0x02216470
 _021D69D4: .word Unk_021D0D40
@@ -1268,7 +1268,7 @@ _021D69EC: .word 0x022164A4
 _021D69F0: .word 0x022164AC
 _021D69F4: .word 0x022163D4
 _021D69F8: .word 0x02216408
-_021D69FC: .word 0x0221A46C
+_021D69FC: .word Unk_ov4_0221A46C
 _021D6A00: .word 0xFFFFA4FA
 _021D6A04: .word 0x022164BC
 _021D6A08: .word 0x022164C4
@@ -1307,7 +1307,7 @@ ov4_021D6A44: ; 0x021D6A44
 	bl OS_UnlockMutex
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D6A84: .word 0x0221A438
+_021D6A84: .word Unk_ov4_0221A438
 	arm_func_end ov4_021D6A44
 
 	.data

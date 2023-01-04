@@ -136,7 +136,7 @@ _02236D6C:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_02236DC4: .word 0x0225332C
+_02236DC4: .word Unk_ov18_0225332C
 _02236DC8: .word 0x022493B0
 _02236DCC: .word 0xE1FC780F
 _02236DD0: .word ov18_02238924
@@ -280,7 +280,7 @@ _02236FD4: .word 0x020C07EC
 _02236FD8: .word GX_LoadBGPltt
 _02236FDC: .word 0x0224A298
 _02236FE0: .word 0x020C05AC
-_02236FE4: .word 0x0225332C
+_02236FE4: .word Unk_ov18_0225332C
 _02236FE8: .word 0x04001008
 _02236FEC: .word 0x0400000A
 	arm_func_end ov18_02236DDC
@@ -302,7 +302,7 @@ ov18_02236FF0: ; 0x02236FF0
 	strb r1, [r0, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02237028: .word 0x0225332C
+_02237028: .word Unk_ov18_0225332C
 	arm_func_end ov18_02236FF0
 
 	arm_func_start ov18_0223702C
@@ -529,7 +529,7 @@ _02237318:
 	bl ov18_02238B60
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02237334: .word 0x0225332C
+_02237334: .word Unk_ov18_0225332C
 _02237338: .word ov18_02237848
 _0223733C: .word ov18_02238880
 _02237340: .word ov18_022387B8
@@ -681,7 +681,7 @@ _02237524:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_02237538: .word 0x0225332C
+_02237538: .word Unk_ov18_0225332C
 _0223753C: .word ov18_0223903C
 _02237540: .word 0x022493D0
 _02237544: .word ov18_02237848
@@ -718,7 +718,7 @@ _02237598:
 	bl ov18_02237BA8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_022375B0: .word 0x0225332C
+_022375B0: .word Unk_ov18_0225332C
 	arm_func_end ov18_02237548
 
 	arm_func_start ov18_022375B4
@@ -737,7 +737,7 @@ ov18_022375B4: ; 0x022375B4
 	bl ov18_02237BA8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_022375E8: .word 0x0225332C
+_022375E8: .word Unk_ov18_0225332C
 	arm_func_end ov18_022375B4
 
 	arm_func_start ov18_022375EC
@@ -901,7 +901,7 @@ _02237824:
 	strb r1, [r0, #0x46]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02237838: .word 0x0225332C
+_02237838: .word Unk_ov18_0225332C
 _0223783C: .word 0x094F2095
 _02237840: .word ov18_022387B8
 _02237844: .word ov18_02238880
@@ -1139,7 +1139,7 @@ _02237B70:
 	bl ov18_0224508C
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02237B7C: .word 0x0225332C
+_02237B7C: .word Unk_ov18_0225332C
 _02237B80: .word 0x0224A2AC
 _02237B84: .word 0x020C0160
 _02237B88: .word 0x04000010
@@ -1149,7 +1149,7 @@ _02237B94: .word ov18_0223BBAC
 _02237B98: .word ov18_022390AC
 _02237B9C: .word ov18_0223A6B4
 _02237BA0: .word ov18_0223B3F4
-_02237BA4: .word 0x02253334
+_02237BA4: .word Unk_ov18_02253334
 	arm_func_end ov18_022378B4
 
 	arm_func_start ov18_02237BA8
@@ -1203,7 +1203,7 @@ _02237C28:
 	bl ov18_022382CC
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02237C60: .word 0x0225332C
+_02237C60: .word Unk_ov18_0225332C
 _02237C64: .word 0x02249312
 	arm_func_end ov18_02237BA8
 
@@ -1425,7 +1425,7 @@ _02237F40:
 	bl ov18_02237FEC
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02237F54: .word 0x0225332C
+_02237F54: .word Unk_ov18_0225332C
 	arm_func_end ov18_02237E04
 
 	arm_func_start ov18_02237F58
@@ -1542,7 +1542,7 @@ _022380C8:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_022380E4: .word 0x0225332C
+_022380E4: .word Unk_ov18_0225332C
 _022380E8: .word 0x02249302
 _022380EC: .word 0xFE00FF00
 	arm_func_end ov18_02237FEC
@@ -1638,7 +1638,7 @@ _02238200:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _0223823C: .word 0x0000E01D
-_02238240: .word 0x0225332C
+_02238240: .word Unk_ov18_0225332C
 	arm_func_end ov18_022380F0
 
 	arm_func_start ov18_02238244
@@ -1677,7 +1677,7 @@ ov18_02238244: ; 0x02238244
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _022382C4: .word 0x0224A2C4
-_022382C8: .word 0x0225332C
+_022382C8: .word Unk_ov18_0225332C
 	arm_func_end ov18_02238244
 
 	arm_func_start ov18_022382CC
@@ -1818,7 +1818,7 @@ _022384B8:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_022384D0: .word 0x0225332C
+_022384D0: .word Unk_ov18_0225332C
 _022384D4: .word 0xFE00FF00
 _022384D8: .word 0x01FF0000
 	arm_func_end ov18_022382CC
@@ -1988,7 +1988,7 @@ _02238708:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _0223873C: .word 0x02249734
-_02238740: .word 0x0225332C
+_02238740: .word Unk_ov18_0225332C
 _02238744: .word 0x022492D8
 _02238748: .word 0x022493B8
 _0223874C: .word 0x02249366
@@ -2014,7 +2014,7 @@ _0223876C:
 	mvn r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02238790: .word 0x0225332C
+_02238790: .word Unk_ov18_0225332C
 	arm_func_end ov18_02238750
 
 	arm_func_start ov18_02238794
@@ -2028,7 +2028,7 @@ ov18_02238794: ; 0x02238794
 	add r0, r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_022387B4: .word 0x0225332C
+_022387B4: .word Unk_ov18_0225332C
 	arm_func_end ov18_02238794
 
 	arm_func_start ov18_022387B8
@@ -2084,7 +2084,7 @@ _02238820:
 	bl ov18_022463AC
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02238878: .word 0x0225332C
+_02238878: .word Unk_ov18_0225332C
 _0223887C: .word 0xE1FC780F
 	arm_func_end ov18_022387B8
 
@@ -2131,7 +2131,7 @@ _022388BC:
 	bl ov18_022463AC
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0223891C: .word 0x0225332C
+_0223891C: .word Unk_ov18_0225332C
 _02238920: .word 0xE1FC780F
 	arm_func_end ov18_02238880
 
@@ -2167,7 +2167,7 @@ ov18_02238924: ; 0x02238924
 	strb r1, [r0, #0x44]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02238998: .word 0x0225332C
+_02238998: .word Unk_ov18_0225332C
 _0223899C: .word 0x022493C4
 _022389A0: .word 0x01FF0000
 _022389A4: .word 0x04000010
@@ -2228,7 +2228,7 @@ _02238A20:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02238A6C: .word 0x022492F4
-_02238A70: .word 0x0225332C
+_02238A70: .word Unk_ov18_0225332C
 _02238A74: .word 0x0224937E
 _02238A78: .word 0x02249382
 _02238A7C: .word 0x02249380
@@ -2284,7 +2284,7 @@ _02238B20:
 	bl ov18_022389A8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02238B28: .word 0x0225332C
+_02238B28: .word Unk_ov18_0225332C
 _02238B2C: .word 0x022493B8
 	arm_func_end ov18_02238A80
 
@@ -2301,7 +2301,7 @@ ov18_02238B30: ; 0x02238B30
 	bl ov18_022389A8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02238B58: .word 0x0225332C
+_02238B58: .word Unk_ov18_0225332C
 _02238B5C: .word 0x022493D0
 	arm_func_end ov18_02238B30
 
@@ -2512,7 +2512,7 @@ _02238E24:
 	bl ov18_02238A80
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02238E44: .word 0x0225332C
+_02238E44: .word Unk_ov18_0225332C
 _02238E48: .word ov18_022387B8
 _02238E4C: .word ov18_02238880
 	arm_func_end ov18_02238B60
@@ -2530,7 +2530,7 @@ ov18_02238E50: ; 0x02238E50
 	mov r2, r1
 	bx ip
 	; .align 2, 0
-_02238E78: .word 0x0225332C
+_02238E78: .word Unk_ov18_0225332C
 _02238E7C: .word 0x022492D4
 _02238E80: .word ov18_0223D154
 	arm_func_end ov18_02238E50
@@ -2560,7 +2560,7 @@ _02238EC4:
 	blt _02238E90
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02238ED4: .word 0x0225332C
+_02238ED4: .word Unk_ov18_0225332C
 	arm_func_end ov18_02238E84
 
 	arm_func_start ov18_02238ED8
@@ -2617,7 +2617,7 @@ _02238F78:
 	bx lr
 	; .align 2, 0
 _02238F94: .word 0x022492D8
-_02238F98: .word 0x0225332C
+_02238F98: .word Unk_ov18_0225332C
 	arm_func_end ov18_02238ED8
 
 	arm_func_start ov18_02238F9C
@@ -2683,7 +2683,7 @@ ov18_0223903C: ; 0x0223903C
 	bl ov18_0222F6C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02239074: .word 0x0225332C
+_02239074: .word Unk_ov18_0225332C
 _02239078: .word ov18_0223907C
 	arm_func_end ov18_0223903C
 
@@ -2706,7 +2706,7 @@ ov18_0223909C: ; 0x0223909C
 	strb r0, [r1, #1]
 	bx lr
 	; .align 2, 0
-_022390A8: .word 0x0225332C
+_022390A8: .word Unk_ov18_0225332C
 	arm_func_end ov18_0223909C
 
 	.rodata
@@ -2816,15 +2816,15 @@ Unk_ov18_0224A2C4: ; 0x0224A2C4
 
 	.global Unk_ov18_0225332C
 Unk_ov18_0225332C: ; 0x0225332C
-	.space 0x4
+	.space 0x1
 
 	.global Unk_ov18_0225332D
 Unk_ov18_0225332D: ; 0x0225332D
-	.space 0x4
+	.space 0x1
 
 	.global Unk_ov18_0225332E
 Unk_ov18_0225332E: ; 0x0225332E
-	.space 0x4
+	.space 0x2
 
 	.global Unk_ov18_02253330
 Unk_ov18_02253330: ; 0x02253330

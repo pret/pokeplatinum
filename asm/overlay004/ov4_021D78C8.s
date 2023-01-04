@@ -33,7 +33,7 @@ DWC_InitInetEx: ; 0x021D78C8
 	bl ov4_0220DCE0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021D7928: .word 0x0221A4DC
+_021D7928: .word Unk_ov4_0221A4DC
 	arm_func_end DWC_InitInetEx
 
 	arm_func_start DWC_SetAuthServer
@@ -109,7 +109,7 @@ _021D7A0C:
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
-_021D7A20: .word 0x0221A4DC
+_021D7A20: .word Unk_ov4_0221A4DC
 _021D7A24: .word DWC_Alloc
 _021D7A28: .word DWC_Free
 _021D7A2C: .word 0xFFFF3BE9
@@ -140,7 +140,7 @@ ov4_021D7A30: ; 0x021D7A30
 	bl ov4_021E5FDC
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021D7A88: .word 0x0221A4DC
+_021D7A88: .word Unk_ov4_0221A4DC
 	arm_func_end ov4_021D7A30
 
 	arm_func_start DWC_CheckInet
@@ -168,7 +168,7 @@ _021D7AD8:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D7AE0: .word 0x0221A4DC
+_021D7AE0: .word Unk_ov4_0221A4DC
 	arm_func_end DWC_CheckInet
 
 	arm_func_start DWC_ProcessInet
@@ -250,7 +250,7 @@ _021D7BB8:
 	strh r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D7BF8: .word 0x0221A4DC
+_021D7BF8: .word Unk_ov4_0221A4DC
 	arm_func_end DWC_ProcessInet
 
 	arm_func_start DWC_GetInetStatus
@@ -373,7 +373,7 @@ _021D7DA0:
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021D7DA8: .word 0x0221A4DC
+_021D7DA8: .word Unk_ov4_0221A4DC
 _021D7DAC: .word 0xFFFF3BE9
 	arm_func_end DWC_GetInetStatus
 
@@ -405,7 +405,7 @@ _021D7DFC:
 	str r1, [r0, #4]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021D7E0C: .word 0x0221A4DC
+_021D7E0C: .word Unk_ov4_0221A4DC
 	arm_func_end DWC_CleanupInet
 
 	arm_func_start ov4_021D7E10
@@ -439,7 +439,7 @@ _021D7E50:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D7E7C: .word 0x0221A4DC
+_021D7E7C: .word Unk_ov4_0221A4DC
 	arm_func_end ov4_021D7E10
 
 	arm_func_start ov4_021D7E80
@@ -456,7 +456,7 @@ _021D7EA0:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_021D7EA8: .word 0x0221A4DC
+_021D7EA8: .word Unk_ov4_0221A4DC
 	arm_func_end ov4_021D7E80
 
 	arm_func_start DWC_GetLinkLevel

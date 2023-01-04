@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "overlay004/ov4_021FAE80.inc"
 
-	
+	.extern Unk_ov4_0221AE50
 
 	.text
 
@@ -36,7 +36,7 @@ _021FAEDC:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FAEE4: .word 0x0221B3E4
+_021FAEE4: .word Unk_ov4_0221B3E4
 	arm_func_end ov4_021FAE80
 
 	arm_func_start ov4_021FAEE8
@@ -96,7 +96,7 @@ _021FAF74:
 	add sp, sp, #0x40
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FAFA8: .word 0x0221B3E4
+_021FAFA8: .word Unk_ov4_0221B3E4
 _021FAFAC: .word ov4_021FAEE8
 	arm_func_end ov4_021FAF18
 
@@ -130,7 +130,7 @@ _021FAFFC:
 	blt _021FAFD4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FB014: .word 0x0221B3E4
+_021FB014: .word Unk_ov4_0221B3E4
 	arm_func_end ov4_021FAFB0
 
 	arm_func_start ov4_021FB018
@@ -146,7 +146,7 @@ ov4_021FB018: ; 0x021FB018
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB040: .word 0x0221B3E4
+_021FB040: .word Unk_ov4_0221B3E4
 	arm_func_end ov4_021FB018
 
 	arm_func_start ov4_021FB044
@@ -388,7 +388,7 @@ _021FB370:
 	; .align 2, 0
 _021FB38C: .word 0x022197A8
 _021FB390: .word 0x0221AEEC
-_021FB394: .word 0x0221B3E4
+_021FB394: .word Unk_ov4_0221B3E4
 _021FB398: .word 0x00006CFD
 	arm_func_end ov4_021FB154
 
@@ -541,7 +541,7 @@ _021FB580:
 	movne r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB5A0: .word 0x0221B3E4
+_021FB5A0: .word Unk_ov4_0221B3E4
 _021FB5A4: .word 0x022197B8
 _021FB5A8: .word 0x022197D4
 	arm_func_end ov4_021FB534
@@ -599,7 +599,7 @@ _021FB664:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FB670: .word 0x0221AE50
+_021FB670: .word Unk_ov4_0221AE50
 	arm_func_end ov4_021FB5AC
 
 	arm_func_start ov4_021FB674
@@ -755,7 +755,7 @@ _021FB84C:
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021FB898: .word 0x0221B3F8
+_021FB898: .word Unk_ov4_0221B3F8
 	arm_func_end ov4_021FB6AC
 
 	arm_func_start ov4_021FB89C
@@ -778,7 +778,7 @@ _021FB8C0:
 	bpl _021FB8C0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021FB8DC: .word 0x0221B3E4
+_021FB8DC: .word Unk_ov4_0221B3E4
 	arm_func_end ov4_021FB89C
 
 	arm_func_start ov4_021FB8E0

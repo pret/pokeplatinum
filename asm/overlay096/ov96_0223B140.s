@@ -20,7 +20,7 @@ ov96_0223B140: ; 0x0223B140
 	pop {r3, r4}
 	bx lr
 	nop
-_0223B158: .word 0x0223DDE0
+_0223B158: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B140
 
 	thumb_func_start ov96_0223B15C
@@ -354,7 +354,7 @@ _0223B3B8:
 _0223B3C4:
 	pop {r3, pc}
 	nop
-_0223B3C8: .word 0x0223DDE0
+_0223B3C8: .word Unk_ov96_0223DDE0
 _0223B3CC: .word 0x0223DEE0
 _0223B3D0: .word 0x00000A38
 	thumb_func_end ov96_0223B15C
@@ -379,7 +379,7 @@ _0223B3EC:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_0223B3F0: .word 0x0223DDE0
+_0223B3F0: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B3D4
 
 	thumb_func_start ov96_0223B3F4
@@ -388,7 +388,7 @@ ov96_0223B3F4: ; 0x0223B3F4
 	ldr r0, [r0, #4]
 	bx lr
 	nop
-_0223B3FC: .word 0x0223DDE0
+_0223B3FC: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B3F4
 
 	thumb_func_start ov96_0223B400
@@ -424,7 +424,7 @@ _0223B42E:
 	add sp, #4
 	pop {r3, r4, pc}
 	; .align 2, 0
-_0223B440: .word 0x0223DDE0
+_0223B440: .word Unk_ov96_0223DDE0
 _0223B444: .word 0x0223DB60
 _0223B448: .word 0x0223DDF4
 _0223B44C: .word 0x0223DEE3
@@ -470,7 +470,7 @@ _0223B48A:
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _0223B49C: .word 0x0223DEE0
-_0223B4A0: .word 0x0223DDE0
+_0223B4A0: .word Unk_ov96_0223DDE0
 _0223B4A4: .word 0x00000A38
 _0223B4A8: .word 0x0223DDF4
 _0223B4AC: .word 0x0223DBAC
@@ -532,7 +532,7 @@ _0223B51C: .word 0x0223DEDB
 _0223B520: .word 0x0223DDEC
 _0223B524: .word 0x0223DBF8
 _0223B528: .word 0x0223DEE3
-_0223B52C: .word 0x0223DDE0
+_0223B52C: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B4B0
 
 	thumb_func_start ov96_0223B530
@@ -564,7 +564,7 @@ _0223B552:
 _0223B564: .word 0x0223DC44
 _0223B568: .word 0x0223DDF4
 _0223B56C: .word 0x0223DEE3
-_0223B570: .word 0x0223DDE0
+_0223B570: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B530
 
 	thumb_func_start ov96_0223B574
@@ -607,7 +607,7 @@ _0223B5B0:
 _0223B5C0: .word 0x0223DDF4
 _0223B5C4: .word 0x0223DEE0
 _0223B5C8: .word 0x0223DC8C
-_0223B5CC: .word 0x0223DDE0
+_0223B5CC: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B574
 
 	thumb_func_start ov96_0223B5D0
@@ -639,7 +639,7 @@ _0223B5FC:
 	add sp, #8
 	pop {r3, r4, r5, pc}
 	nop
-_0223B604: .word 0x0223DDE0
+_0223B604: .word Unk_ov96_0223DDE0
 	thumb_func_end ov96_0223B5D0
 
 	thumb_func_start ov96_0223B608

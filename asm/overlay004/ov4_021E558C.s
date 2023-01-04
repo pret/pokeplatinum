@@ -17,7 +17,7 @@ DWC_InitGHTTP: ; 0x021E558C
 	str r2, [r1, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021E55AC: .word 0x0221AE24
+_021E55AC: .word Unk_ov4_0221AE24
 	arm_func_end DWC_InitGHTTP
 
 	arm_func_start DWC_ShutdownGHTTP
@@ -39,7 +39,7 @@ _021E55E4:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021E55EC: .word 0x0221AE24
+_021E55EC: .word Unk_ov4_0221AE24
 	arm_func_end DWC_ShutdownGHTTP
 
 	arm_func_start DWC_ProcessGHTTP
@@ -447,7 +447,7 @@ ov4_021E5AE4: ; 0x021E5AE4
 	strne ip, [r1]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021E5B3C: .word 0x0221AE24
+_021E5B3C: .word Unk_ov4_0221AE24
 	arm_func_end ov4_021E5AE4
 
 	arm_func_start ov4_021E5B40
@@ -488,7 +488,7 @@ _021E5BB0:
 	bne _021E5B84
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021E5BC0: .word 0x0221AE24
+_021E5BC0: .word Unk_ov4_0221AE24
 	arm_func_end ov4_021E5B40
 
 	arm_func_start ov4_021E5BC4
@@ -524,7 +524,7 @@ _021E5C20:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_021E5C30: .word 0x0221AE24
+_021E5C30: .word Unk_ov4_0221AE24
 	arm_func_end ov4_021E5BC4
 
 	.bss

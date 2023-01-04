@@ -51,7 +51,7 @@ ov18_0222BC8C: ; 0x0222BC8C
 	str r0, [r1, #4]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_0222BD34: .word 0x02253298
+_0222BD34: .word Unk_ov18_02253298
 _0222BD38: .word 0x02248D20
 _0222BD3C: .word 0xFE00FF00
 _0222BD40: .word ov18_0222BD88
@@ -75,8 +75,8 @@ ov18_0222BD44: ; 0x0222BD44
 	bl ov18_0224508C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222BD80: .word 0x02253298
-_0222BD84: .word 0x02253298
+_0222BD80: .word Unk_ov18_02253298
+_0222BD84: .word Unk_ov18_02253298
 	arm_func_end ov18_0222BD44
 
 	arm_func_start ov18_0222BD88
@@ -122,7 +122,7 @@ _0222BDB0:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0222BE20: .word 0x04000208
-_0222BE24: .word 0x02253298
+_0222BE24: .word Unk_ov18_02253298
 _0222BE28: .word 0x02248D20
 _0222BE2C: .word 0xFE00FF00
 	arm_func_end ov18_0222BD88
