@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A6B84.inc"
 
-	
+	.extern NNS_GfdDefaultFuncAllocPlttVram
+	.extern NNS_GfdDefaultFuncFreePlttVram
 
 	.text
 
@@ -33,9 +34,9 @@ NNS_GfdInitLnkPlttVramManager: ; 0x020A6B8C
 	; .align 2, 0
 _020A6BCC: .word Unk_021C3AF0
 _020A6BD0: .word NNS_GfdAllocLnkPlttVram
-_020A6BD4: .word 0x02100DF4
+_020A6BD4: .word NNS_GfdDefaultFuncAllocPlttVram
 _020A6BD8: .word NNS_GfdFreeLnkPlttVram
-_020A6BDC: .word 0x02100DF8
+_020A6BDC: .word NNS_GfdDefaultFuncFreePlttVram
 	arm_func_end NNS_GfdInitLnkPlttVramManager
 
 	arm_func_start NNS_GfdAllocLnkPlttVram

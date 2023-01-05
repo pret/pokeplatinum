@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_0209C400.inc"
 
-	
+	.extern NNS_GfdDefaultFuncAllocTexVram
+	.extern NNS_GfdDefaultFuncAllocPlttVram
 
 	.text
 
@@ -791,7 +792,7 @@ sub_0209CE90: ; 0x0209CE90
 	ldmia sp!, {lr}
 	bx lr
 	; .align 2, 0
-_0209CEC0: .word 0x02100DF4
+_0209CEC0: .word NNS_GfdDefaultFuncAllocPlttVram
 _0209CEC4: .word 0x0000FFFF
 	arm_func_end sub_0209CE90
 
@@ -810,6 +811,6 @@ sub_0209CEC8: ; 0x0209CEC8
 	ldmia sp!, {lr}
 	bx lr
 	; .align 2, 0
-_0209CEF8: .word 0x02100DEC
+_0209CEF8: .word NNS_GfdDefaultFuncAllocTexVram
 _0209CEFC: .word 0x0000FFFF
 	arm_func_end sub_0209CEC8

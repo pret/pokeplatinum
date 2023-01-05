@@ -521,7 +521,7 @@ _0208EE52:
 	nop
 _0208EE90: .word 0x00000263
 _0208EE94: .word 0x00000414
-_0208EE98: .word 0x020F411C
+_0208EE98: .word Unk_020F411C
 	thumb_func_end sub_0208EE3C
 
 	thumb_func_start sub_0208EE9C

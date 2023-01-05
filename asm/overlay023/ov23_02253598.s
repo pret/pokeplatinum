@@ -1,6 +1,21 @@
 	.include "macros/function.inc"
 	.include "overlay023/ov23_02253598.inc"
 
+
+	.extern sub_020294B8
+    .extern sub_020294EC
+    .extern sub_02029524
+    .extern sub_020295B8
+    .extern sub_020295F0
+    .extern sub_0202963C
+    .extern sub_020296CC
+    .extern sub_02029704
+    .extern sub_0202973C
+    .extern sub_02029774
+    .extern sub_020297AC
+    .extern sub_020297E4
+    .extern sub_0202981C
+    .extern sub_020295B8
 	
 
 	.text
@@ -279,7 +294,7 @@ _02253768:
 	add sp, #0x20
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_022537D0: .word 0x022576EC
+_022537D0: .word Unk_ov23_022576EC
 	thumb_func_end ov23_0225360C
 
 	thumb_func_start ov23_022537D4
@@ -613,7 +628,7 @@ _02253A20:
 	bl ov23_02253F40
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02253A70: .word 0x022576EC
+_02253A70: .word Unk_ov23_022576EC
 _02253A74: .word ov23_022539F8
 	thumb_func_end ov23_02253A00
 
@@ -941,7 +956,20 @@ _02253D36:
 
 	.global Unk_ov23_022576EC
 Unk_ov23_022576EC: ; 0x022576EC
-	.incbin "incbin/overlay23_data.bin", 0xB0C, 0x38
+	.word sub_020294B8
+    .word sub_020294EC
+    .word sub_02029524
+    .word sub_020295B8
+    .word sub_020295F0
+    .word sub_0202963C
+    .word sub_020296CC
+    .word sub_02029704
+    .word sub_0202973C
+    .word sub_02029774
+    .word sub_020297AC
+    .word sub_020297E4
+    .word sub_0202981C
+    .word sub_020295B8
 
 
 	.bss

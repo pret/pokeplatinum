@@ -2,7 +2,8 @@
 	.include "include/unk_020A5D88.inc"
 
 	.extern Unk_021C3AB4
-	
+	.extern NNS_GfdDefaultFuncAllocPlttVram
+	.extern NNS_GfdDefaultFuncFreePlttVram
 
 	.text
 
@@ -26,9 +27,9 @@ NNS_GfdInitFrmPlttVramManager: ; 0x020A5D88
 	; .align 2, 0
 _020A5DC0: .word Unk_021C3AB4
 _020A5DC4: .word NNS_GfdAllocFrmPlttVram
-_020A5DC8: .word 0x02100DF4
+_020A5DC8: .word NNS_GfdDefaultFuncAllocPlttVram
 _020A5DCC: .word NNS_GfdFreeFrmPlttVram
-_020A5DD0: .word 0x02100DF8
+_020A5DD0: .word NNS_GfdDefaultFuncFreePlttVram
 	arm_func_end NNS_GfdInitFrmPlttVramManager
 
 	arm_func_start NNS_GfdAllocFrmPlttVram

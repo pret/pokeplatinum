@@ -1035,15 +1035,15 @@ _020DBC78:
 	bx lr
 	; .align 2, 0
 _020DBD00: .word 0x000001FD
-_020DBD04: .word 0x02101828
-_020DBD08: .word 0x02101834
-_020DBD0C: .word 0x02101840
-_020DBD10: .word 0x0210184C
-_020DBD14: .word 0x02101854
-_020DBD18: .word 0x0210185C
-_020DBD1C: .word 0x02101868
-_020DBD20: .word 0x02101874
-_020DBD24: .word 0x0210187C
+_020DBD04: .word Unk_02101828
+_020DBD08: .word Unk_02101834
+_020DBD0C: .word Unk_02101840
+_020DBD10: .word Unk_0210184C
+_020DBD14: .word Unk_02101854
+_020DBD18: .word Unk_0210185C
+_020DBD1C: .word Unk_02101868
+_020DBD20: .word Unk_02101874
+_020DBD24: .word Unk_0210187C
 _020DBD28: .word 0x000007FF
 	arm_func_end double2hex_dup2
 
@@ -1580,14 +1580,14 @@ _020DC434:
 	; .align 2, 0
 _020DC470: .word 0x000001FD
 _020DC474: .word Unk_020FEA9C
-_020DC478: .word 0x02101834
-_020DC47C: .word 0x02101840
-_020DC480: .word 0x0210184C
-_020DC484: .word 0x02101854
-_020DC488: .word 0x0210185C
-_020DC48C: .word 0x02101868
-_020DC490: .word 0x02101874
-_020DC494: .word 0x0210187C
+_020DC478: .word Unk_02101834
+_020DC47C: .word Unk_02101840
+_020DC480: .word Unk_0210184C
+_020DC484: .word Unk_02101854
+_020DC488: .word Unk_0210185C
+_020DC48C: .word Unk_02101868
+_020DC490: .word Unk_02101874
+_020DC494: .word Unk_0210187C
 _020DC498: .word 0x66666667
 	arm_func_end float2str_dup2
 
@@ -2227,8 +2227,8 @@ _020DCD6C:
 	bx lr
 	; .align 2, 0
 _020DCD80: .word 0x0000FFFF
-_020DCD84: .word 0x02101884
-_020DCD88: .word 0x02101888
+_020DCD84: .word Unk_02101884
+_020DCD88: .word Unk_02101888
 	arm_func_end __wpformatter
 
 	arm_func_start __wStringWrite
@@ -2308,7 +2308,7 @@ Unk_020E4570: ; 0x020E4570
 	.incbin "incbin/arm9_exception.bin", 0x18, 0x8
 
 	.global Unk_020E4578
-Unk_Unk_020E4578: ; Unk_020E4578
+Unk_020E4578: ; 0x020E4578
 	.incbin "incbin/arm9_exception.bin", 0x20, 0x8
 
 

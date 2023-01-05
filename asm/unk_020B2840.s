@@ -1,7 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020B2840.inc"
 
-	
+	.extern NNS_GfdDefaultFuncAllocTexVram
+	.extern NNS_GfdDefaultFuncFreeTexVram
+	.extern NNS_GfdDefaultFuncAllocPlttVram
+	.extern NNS_GfdDefaultFuncFreePlttVram
 
 	.text
 
@@ -224,10 +227,10 @@ _020B2B08:
 _020B2B10: .word 0x30415642
 _020B2B14: .word 0x30505442
 _020B2B18: .word 0x30444D42
-_020B2B1C: .word 0x02100DEC
-_020B2B20: .word 0x02100DF4
-_020B2B24: .word 0x02100DF8
-_020B2B28: .word 0x02100DF0
+_020B2B1C: .word NNS_GfdDefaultFuncAllocTexVram
+_020B2B20: .word NNS_GfdDefaultFuncAllocPlttVram
+_020B2B24: .word NNS_GfdDefaultFuncFreePlttVram
+_020B2B28: .word NNS_GfdDefaultFuncFreeTexVram
 	arm_func_end NNS_G3dResDefaultSetup
 
 	arm_func_start NNS_G3dWorldPosToScrPos

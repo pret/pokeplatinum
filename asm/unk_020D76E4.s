@@ -370,7 +370,7 @@ _020D7BAC:
 	add sp, sp, #0x28
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D7BD4: .word 0x020FE964
+_020D7BD4: .word Unk_020FE964
 _020D7BD8: .word 0x020FE864
 	arm_func_end parse_format_dup2
 

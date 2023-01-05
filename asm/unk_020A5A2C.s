@@ -22,9 +22,9 @@ FreeTexVram_: ; 0x020A5A34
 
 	.global NNS_GfdDefaultFuncAllocTexVram
 NNS_GfdDefaultFuncAllocTexVram: ; 0x02100DEC
-	.incbin "incbin/arm9_data.bin", 0x210C, 0x2110 - 0x210C
+	.word AllocTexVram_
 
 	.global NNS_GfdDefaultFuncFreeTexVram
 NNS_GfdDefaultFuncFreeTexVram: ; 0x02100DF0
-	.incbin "incbin/arm9_data.bin", 0x2110, 0x4
+	.word FreeTexVram_
 

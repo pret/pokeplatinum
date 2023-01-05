@@ -1,6 +1,10 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A5A4C.inc"
 
+
+	.extern NNS_GfdDefaultFuncAllocTexVram
+	.extern NNS_GfdDefaultFuncFreeTexVram
+
 	.text
 
 
@@ -63,9 +67,9 @@ _020A5AD8:
 	; .align 2, 0
 _020A5B08: .word Unk_021C3AB0
 _020A5B0C: .word NNS_GfdAllocFrmTexVram
-_020A5B10: .word 0x02100DEC
+_020A5B10: .word NNS_GfdDefaultFuncAllocTexVram
 _020A5B14: .word NNS_GfdFreeFrmTexVram
-_020A5B18: .word 0x02100DF0
+_020A5B18: .word NNS_GfdDefaultFuncFreeTexVram
 	arm_func_end NNS_GfdInitFrmTexVramManager
 
 	arm_func_start NNS_GfdResetFrmTexVramState

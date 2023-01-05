@@ -550,5 +550,16 @@ Unk_020E5522: ; 0x020E5522
 
 	.global Unk_020E5538
 Unk_020E5538: ; 0x020E5538
-	.incbin "incbin/arm9_rodata.bin", 0x8F8, 0x60
+	.word Unk_020E54D8, 0x2
+	.word Unk_020E54CC, 0x2
+	.word Unk_020E54F4, 0x2
+	.word Unk_020E54F8, 0x4
+	.word Unk_020E54EC, 0x2
+	.word Unk_020E54E8, 0x2
+	.word Unk_020E54D4, 0x2
+	.word Unk_020E54D0, 0x2
+	.word Unk_020E54DC, 0x2
+	.word Unk_020E54F0, 0x2
+	.word Unk_020E54E4, 0x2
+	.word Unk_020E54E0, 0x2
 

@@ -5,6 +5,7 @@
 	.extern Unk_021D03AC
 	.extern Unk_021D03C8
 	.extern Unk_021D03DC
+	.extern CTRDGi_PollingSR512kCOMMON
 
 	.text
 
@@ -460,9 +461,25 @@ Unk_020FE620: ; 0x020FE620
 
 	.global Unk_020FE628
 Unk_020FE628: ; 0x020FE628
-	.incbin "incbin/arm9_rodata.bin", 0x199E8, 0x19A24 - 0x199E8
+	.word CTRDGi_WriteFlashSectorLE
+    .word CTRDGi_EraseFlashChipLE
+    .word CTRDGi_EraseFlashSectorLE
+    .word CTRDGi_WriteFlashSectorAsyncLE
+    .word CTRDGi_EraseFlashChipAsyncLE
+    .word CTRDGi_EraseFlashSectorAsyncLE
+    .word CTRDGi_PollingSR512kCOMMON
+    .word Unk_020FE620
+	.incbin "incbin/arm9_rodata.bin", 0x199E8+0x20, 0x19A24 - 0x19A08
 
 	.global Unk_020FE664
 Unk_020FE664: ; 0x020FE664
-	.incbin "incbin/arm9_rodata.bin", 0x19A24, 0x3C
+	.word CTRDGi_WriteFlashSectorLE
+    .word CTRDGi_EraseFlashChipLE
+    .word CTRDGi_EraseFlashSectorLE
+    .word CTRDGi_WriteFlashSectorAsyncLE
+    .word CTRDGi_EraseFlashChipAsyncLE
+    .word CTRDGi_EraseFlashSectorAsyncLE
+    .word CTRDGi_PollingSR512kCOMMON
+	.word Unk_020FE620
+	.incbin "incbin/arm9_rodata.bin", 0x19A24+0x20, 0x1C
 

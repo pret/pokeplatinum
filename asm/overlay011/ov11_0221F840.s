@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "overlay011/ov11_0221F840.inc"
 
-	
+	.extern NNS_GfdDefaultFuncAllocTexVram
+	.extern NNS_GfdDefaultFuncAllocPlttVram
 
 	.text
 
@@ -125,7 +126,7 @@ ov11_0221F914: ; 0x0221F914
 	lsr r0, r0, #0xd
 	pop {r4, pc}
 	nop
-_0221F92C: .word 0x02100DEC
+_0221F92C: .word NNS_GfdDefaultFuncAllocTexVram
 	thumb_func_end ov11_0221F914
 
 	thumb_func_start ov11_0221F930
@@ -141,5 +142,5 @@ ov11_0221F930: ; 0x0221F930
 	lsr r0, r0, #0xd
 	pop {r4, pc}
 	nop
-_0221F948: .word 0x02100DF4
+_0221F948: .word NNS_GfdDefaultFuncAllocPlttVram
 	thumb_func_end ov11_0221F930
