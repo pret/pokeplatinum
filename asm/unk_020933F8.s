@@ -1,7 +1,22 @@
 	.include "macros/function.inc"
 	.include "include/unk_020933F8.inc"
 
-	
+	.extern ov17_0224F4D4
+	.extern ov17_0224F754
+	.extern ov17_0224F86C
+	.extern ov17_0223CB1C
+	.extern ov17_0223CDDC
+	.extern ov17_0223CF8C
+	.extern ov22_02256174
+	.extern ov22_022562EC
+	.extern ov22_02256600
+	.extern ov17_0223B140
+	.extern ov17_0223B444
+	.extern ov17_0223B580
+	.extern ov17_0223DAD0
+	.extern ov17_0223DDD4
+	.extern ov17_0223DF0C
+
 
 	.text
 
@@ -252,12 +267,12 @@ _020935C8:
 	; .align 2, 0
 _020935CC: .word 0x00000171
 _020935D0: .word 0x000019B8
-_020935D4: .word 0x020F55FC
-_020935D8: .word 0x020F55EC
+_020935D4: .word Unk_020F55FC
+_020935D8: .word Unk_020F55EC
 _020935DC: .word 0x00000121
-_020935E0: .word 0x020F561C
-_020935E4: .word 0x020F560C
-_020935E8: .word 0x020F55DC
+_020935E0: .word Unk_020F561C
+_020935E4: .word Unk_020F560C
+_020935E8: .word Unk_020F55DC
 	thumb_func_end sub_02093448
 
 	thumb_func_start sub_020935EC
@@ -505,10 +520,10 @@ _020937A0:
 	nop
 _020937A8: .word 0x00000121
 _020937AC: .word 0x000019B8
-_020937B0: .word 0x020F55FC
-_020937B4: .word 0x020F55EC
-_020937B8: .word 0x020F561C
-_020937BC: .word 0x020F560C
+_020937B0: .word Unk_020F55FC
+_020937B4: .word Unk_020F55EC
+_020937B8: .word Unk_020F561C
+_020937BC: .word Unk_020F560C
 _020937C0: .word 0x0000012E
 	thumb_func_end sub_020935EC
 
@@ -3653,21 +3668,36 @@ Unk_020F55D0: ; 0x020F55D0
 
 	.global Unk_020F55DC
 Unk_020F55DC: ; 0x020F55DC
-	.incbin "incbin/arm9_rodata.bin", 0x1099C, 0x109AC - 0x1099C
+	.word ov17_0224F4D4
+    .word ov17_0224F754
+    .word ov17_0224F86C
+    .word 0x11
 
 	.global Unk_020F55EC
 Unk_020F55EC: ; 0x020F55EC
-	.incbin "incbin/arm9_rodata.bin", 0x109AC, 0x109BC - 0x109AC
+	.word ov17_0223CB1C
+    .word ov17_0223CDDC
+    .word ov17_0223CF8C
+    .word 0x11
 
 	.global Unk_020F55FC
 Unk_020F55FC: ; 0x020F55FC
-	.incbin "incbin/arm9_rodata.bin", 0x109BC, 0x109CC - 0x109BC
+	.word ov22_02256174
+    .word ov22_022562EC
+    .word ov22_02256600
+    .word 0x16
 
 	.global Unk_020F560C
 Unk_020F560C: ; 0x020F560C
-	.incbin "incbin/arm9_rodata.bin", 0x109CC, 0x109DC - 0x109CC
+	.word ov17_0223B140
+    .word ov17_0223B444
+    .word ov17_0223B580
+	.word 0x11
 
 	.global Unk_020F561C
 Unk_020F561C: ; 0x020F561C
-	.incbin "incbin/arm9_rodata.bin", 0x109DC, 0x10
+	.word ov17_0223DAD0
+    .word ov17_0223DDD4
+    .word ov17_0223DF0C
+    .word 0x11
 

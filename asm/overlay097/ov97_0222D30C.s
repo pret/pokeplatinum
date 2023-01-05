@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "overlay097/ov97_0222D30C.inc"
 
-	
+	.extern ov97_022383C4
+	.extern Unk_ov97_0223D7AC
 
 	.text
 
@@ -576,7 +577,7 @@ _0222D73A:
 	add sp, #0x14
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_0222D758: .word 0x0223E5A8
+_0222D758: .word Unk_ov97_0223E5A8
 	thumb_func_end ov97_0222D6F8
 
 	thumb_func_start ov97_0222D75C
@@ -666,7 +667,7 @@ _0222D7EA:
 	pop {r3, r4, r5, r6, pc}
 	nop
 _0222D80C: .word 0x000015D4
-_0222D810: .word 0x0223E598
+_0222D810: .word Unk_ov97_0223E598
 	thumb_func_end ov97_0222D798
 
 	thumb_func_start ov97_0222D814
@@ -721,7 +722,7 @@ _0222D85A:
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _0222D87C: .word 0x000015D4
-_0222D880: .word 0x0223E568
+_0222D880: .word Unk_ov97_0223E568
 	thumb_func_end ov97_0222D814
 
 	thumb_func_start ov97_0222D884
@@ -776,7 +777,7 @@ _0222D8CA:
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _0222D8EC: .word 0x000015D4
-_0222D8F0: .word 0x0223E578
+_0222D8F0: .word Unk_ov97_0223E578
 	thumb_func_end ov97_0222D884
 
 	thumb_func_start ov97_0222D8F4
@@ -821,7 +822,7 @@ _0222D928:
 	add sp, #0x14
 	pop {r4, r5, pc}
 	; .align 2, 0
-_0222D948: .word 0x0223E588
+_0222D948: .word Unk_ov97_0223E588
 	thumb_func_end ov97_0222D8F4
 
 	thumb_func_start ov97_0222D94C
@@ -1044,7 +1045,7 @@ _0222DADE:
 	pop {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _0222DB00: .word 0x000005C8
-_0222DB04: .word 0x0223E5F0
+_0222DB04: .word Unk_ov97_0223E5F0
 	thumb_func_end ov97_0222DA84
 
 	thumb_func_start ov97_0222DB08
@@ -1398,7 +1399,7 @@ _0222DDC4:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0222DDC8: .word 0x000001A5
-_0222DDCC: .word 0x0223E5D0
+_0222DDCC: .word Unk_ov97_0223E5D0
 	thumb_func_end ov97_0222DD1C
 
 	thumb_func_start ov97_0222DDD0
@@ -1481,7 +1482,7 @@ _0222DE52:
 	add sp, #0x40
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0222DE74: .word 0x0223E568
+_0222DE74: .word Unk_ov97_0223E568
 	thumb_func_end ov97_0222DDD0
 
 	thumb_func_start ov97_0222DE78
@@ -5808,7 +5809,7 @@ _02230206:
 _02230210: .word 0x0000004D
 _02230214: .word 0x021D742C
 _02230218: .word 0x00000061
-_0223021C: .word 0x0223D7AC
+_0223021C: .word Unk_ov97_0223D7AC
 _02230220: .word 0x000015D4
 	thumb_func_end ov97_022301BC
 
@@ -6080,7 +6081,10 @@ _0223040C: .word 0x021BF67C
 
 	.global Unk_ov97_0223D71C
 Unk_ov97_0223D71C: ; 0x0223D71C
-	.incbin "incbin/overlay97_rodata.bin", 0xA8, 0xB8 - 0xA8
+	.word ov97_0222E2DC
+    .word ov97_0222F75C
+    .word ov97_022301BC
+    .word 0xFFFFFFFF
 
 	.global Unk_ov97_0223D72C
 Unk_ov97_0223D72C: ; 0x0223D72C
@@ -6100,35 +6104,58 @@ Unk_ov97_0223D758: ; 0x0223D758
 
 	.global Unk_ov97_0223E568
 Unk_ov97_0223E568: ; 0x0223E568
-	.incbin "incbin/overlay97_data.bin", 0x628, 0x638 - 0x628
+	.word 0x12, ov97_0222DA18
+    .word 0x13, ov97_0222D75C
 
 	.global Unk_ov97_0223E578
 Unk_ov97_0223E578: ; 0x0223E578
-	.incbin "incbin/overlay97_data.bin", 0x638, 0x648 - 0x638
+	.word 0x12, ov97_0222D984
+    .word 0x13, ov97_0222D75C
 
 	.global Unk_ov97_0223E588
 Unk_ov97_0223E588: ; 0x0223E588
-	.incbin "incbin/overlay97_data.bin", 0x648, 0x658 - 0x648
+	.word 0x12, ov97_0222D9BC
+    .word 0x13, ov97_0222D9F0
 
 	.global Unk_ov97_0223E598
 Unk_ov97_0223E598: ; 0x0223E598
-	.incbin "incbin/overlay97_data.bin", 0x658, 0x668 - 0x658
+	.word 0x12, ov97_0222D474
+    .word 0x13, ov97_0222D75C
 
 	.global Unk_ov97_0223E5A8
 Unk_ov97_0223E5A8: ; 0x0223E5A8
-	.incbin "incbin/overlay97_data.bin", 0x668, 0x678 - 0x668
+	.word 0x12, ov97_0222D4D8
+    .word 0x13, ov97_0222D94C
 
 	.global Unk_ov97_0223E5B8
 Unk_ov97_0223E5B8: ; 0x0223E5B8
-	.incbin "incbin/overlay97_data.bin", 0x678, 0x690 - 0x678
+	.word 0xC, ov97_0222DA84
+    .word 0xD, ov97_0222DB08
+    .word 0xE, ov97_0222DB40
 
 	.global Unk_ov97_0223E5D0
 Unk_ov97_0223E5D0: ; 0x0223E5D0
-	.incbin "incbin/overlay97_data.bin", 0x690, 0x6B0 - 0x690
+	.word 0x0
+	.word ov97_022383C4
+	.word 0x0
+	.word 0x0
+	.short 0x0
+	.short 0x3
+	.byte 0x0
+	.byte 0xC
+	.byte 0x0
+	.byte 0x10
+	.short 0x2F
+	.short 0x80
+	.word 0x0
+
 
 	.global Unk_ov97_0223E5F0
 Unk_ov97_0223E5F0: ; 0x0223E5F0
-	.incbin "incbin/overlay97_data.bin", 0x6B0, 0x20
+	.word 0xF, ov97_0222D798
+    .word 0x14, ov97_0222D884
+    .word 0x10, ov97_0222D814
+    .word 0x11, ov97_0222DA64
 
 
 	.bss

@@ -13,6 +13,7 @@
 	.extern Unk_ov18_022533C8
 	.extern Unk_ov18_022532BC
 
+
 	.text
 
 
@@ -403,7 +404,7 @@ _0223FADA:
 	add sp, #0x18
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0223FAE8: .word 0x02253558
+_0223FAE8: .word Unk_ov17_02253558
 _0223FAEC: .word 0x0000FFFF
 _0223FAF0: .word ov17_022411E4
 _0223FAF4: .word ov17_02241220
@@ -512,7 +513,7 @@ _0223FBB6:
 	ldr r0, [sp]
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0223FBBC: .word 0x02253558
+_0223FBBC: .word Unk_ov17_02253558
 	thumb_func_end ov17_0223FAF8
 
 	thumb_func_start ov17_0223FBC0
@@ -2778,7 +2779,7 @@ _02240CEE:
 	blx r2
 	pop {r4, r5, r6, pc}
 	; .align 2, 0
-_02240CF4: .word 0x02253558
+_02240CF4: .word Unk_ov17_02253558
 _02240CF8: .word 0x021BF67C
 _02240CFC: .word 0x00000CF3
 _02240D00: .word 0x000005DC
@@ -2964,7 +2965,7 @@ _02240E54:
 	add sp, #0x1c
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02240E5C: .word 0x02253558
+_02240E5C: .word Unk_ov17_02253558
 _02240E60: .word 0x00000123
 _02240E64: .word 0x0225323C
 	thumb_func_end ov17_02240D04
@@ -3153,7 +3154,7 @@ _02240FB2:
 	add sp, #0x10
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02240FBC: .word 0x02253558
+_02240FBC: .word Unk_ov17_02253558
 _02240FC0: .word 0x02253240
 	thumb_func_end ov17_02240EA4
 
@@ -3536,7 +3537,7 @@ _02241258:
 	bl sub_0200DA58
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02241268: .word 0x02253558
+_02241268: .word Unk_ov17_02253558
 _0224126C: .word 0x0000FFFF
 	thumb_func_end ov17_02241220
 
@@ -3645,5 +3646,47 @@ Unk_ov17_022534B8: ; 0x022534B8
 
 	.global Unk_ov17_02253558
 Unk_ov17_02253558: ; 0x02253558
-	.incbin "incbin/overlay17_rodata.bin", 0x7CC, 0xC0
-
+	.short 0x9
+	.short 0x0
+	.short 0x1, 0xFFFF, 0x0, 0xFFFF
+	.short 0x2, 0x1, 0x3, 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word ov17_0223FBD4
+	.word 0x0
+	.short 0xB
+	.short 0x1
+	.short 0xFFFF, 0xFFFF, 0x4, 0xFFFF
+	.short 0x2, 0x1, 0x3, 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.short 0xB
+	.short 0x1
+	.short 0x2, 0xFFFF, 0x4, 0xFFFF
+	.short 0x2, 0x1, 0x3, 0x0
+	.word Unk_ov17_022532D0
+	.word Unk_ov17_02253288
+	.word Unk_ov17_02253230
+	.word ov17_02240D04
+	.word ov17_02240E68
+	.word ov17_0223FCAC
+	.word ov17_0223FFF4
+	.short 0xB
+	.short 0x1
+	.short 0x3, 0xFFFF, 0x4, 0xFFFF
+	.short 0x2, 0x1, 0x3, 0x0
+	.word Unk_ov17_022532A8
+	.word Unk_ov17_02253268
+	.word Unk_ov17_02253234
+	.word ov17_02240EA4
+	.word ov17_02240FC4
+	.word ov17_0223FF38
+	.word ov17_02240094

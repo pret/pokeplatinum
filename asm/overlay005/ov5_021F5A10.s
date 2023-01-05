@@ -853,15 +853,27 @@ Unk_ov5_02200B7C: ; 0x02200B7C
 
 	.global Unk_ov5_02200B84
 Unk_ov5_02200B84: ; 0x02200B84
-	.incbin "incbin/overlay5_rodata.bin", 0x8270, 0x8284 - 0x8270
+	.incbin "incbin/overlay5_rodata.bin", 0x8270, 0x4
+	.word ov5_021F5DE4
+    .word ov5_021F5D38
+    .word ov5_021F5E58
+    .word ov5_021F5D54
 
 	.global Unk_ov5_02200B98
 Unk_ov5_02200B98: ; 0x02200B98
-	.incbin "incbin/overlay5_rodata.bin", 0x8284, 0x8298 - 0x8284
+	.incbin "incbin/overlay5_rodata.bin", 0x8284, 0x4
+	.word ov5_021F5C70
+    .word ov5_021F5D38
+    .word ov5_021F5CD4
+    .word ov5_021F5D54
 
 	.global Unk_ov5_02200BAC
 Unk_ov5_02200BAC: ; 0x02200BAC
-	.incbin "incbin/overlay5_rodata.bin", 0x8298, 0x82AC - 0x8298
+	.incbin "incbin/overlay5_rodata.bin", 0x8298, 0x4
+	.word ov5_021F5EE0
+    .word ov5_021F5D38
+    .word ov5_021F5F24
+    .word ov5_021F5D54
 
 	.global Unk_ov5_02200BC0
 Unk_ov5_02200BC0: ; 0x02200BC0

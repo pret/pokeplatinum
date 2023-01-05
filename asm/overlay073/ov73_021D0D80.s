@@ -2,6 +2,9 @@
 	.include "overlay073/ov73_021D0D80.inc"
 
 	.extern Unk_ov57_021D0F80
+	.extern ov73_021D3250
+    .extern ov73_021D3280
+    .extern ov73_021D3404
 
 	.text
 
@@ -4571,7 +4574,7 @@ _021D3240:
 	pop {r4, r5, r6, pc}
 	nop
 _021D3248: .word 0x020F2DAC
-_021D324C: .word 0x021D3820
+_021D324C: .word Unk_ov73_021D3820
 	thumb_func_end ov73_021D2318
 
 	.rodata
@@ -4615,7 +4618,10 @@ Unk_ov73_021D3810: ; 0x021D3810
 
 	.global Unk_ov73_021D3820
 Unk_ov73_021D3820: ; 0x021D3820
-	.incbin "incbin/overlay73_rodata.bin", 0x5C, 0x6C - 0x5C
+	.word ov73_021D3250
+    .word ov73_021D3280
+    .word ov73_021D3404
+    .word 0xFFFFFFFF
 
 	.global Unk_ov73_021D3830
 Unk_ov73_021D3830: ; 0x021D3830

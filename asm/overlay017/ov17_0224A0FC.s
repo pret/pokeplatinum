@@ -5647,7 +5647,7 @@ _0224CB46:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0224CB70: .word 0x00000B1B
-_0224CB74: .word 0x022546C4
+_0224CB74: .word Unk_ov17_022546C4
 _0224CB78: .word 0xFFFFEB80
 _0224CB7C: .word 0xFFFFBADC
 	thumb_func_end ov17_0224CB00
@@ -6208,7 +6208,8 @@ Unk_ov17_022546C0: ; 0x022546C0
 
 	.global Unk_ov17_022546C4
 Unk_ov17_022546C4: ; 0x022546C4
-	.incbin "incbin/overlay17_rodata.bin", 0x1938, 0x1940 - 0x1938
+	.word Unk_ov17_02254938
+    .word Unk_ov17_022548D4
 
 	.global Unk_ov17_022546CC
 Unk_ov17_022546CC: ; 0x022546CC

@@ -34,7 +34,7 @@ ov17_02247A48: ; 0x02247A48
 	add sp, #0xc
 	pop {r3, r4, pc}
 	; .align 2, 0
-_02247A7C: .word 0x02254488
+_02247A7C: .word Unk_ov17_02254488
 _02247A80: .word 0x00000123
 _02247A84: .word 0x000004FC
 	thumb_func_end ov17_02247A48
@@ -3260,5 +3260,21 @@ Unk_ov17_02254470: ; 0x02254470
 
 	.global Unk_ov17_02254488
 Unk_ov17_02254488: ; 0x02254488
-	.incbin "incbin/overlay17_rodata.bin", 0x16FC, 0xCC
+	.word ov17_02247A88, ov17_02247A9C, ov17_02247AAC
+	.word ov17_02247AB0, ov17_02247AC4, 0x0
+	.word ov17_02247AEC, ov17_02247B00, 0x0
+	.word ov17_02247D68, ov17_02247D7C, 0x0
+	.word ov17_02247E78, ov17_02247E8C, 0x0
+	.word ov17_02247E78, ov17_02247EDC, 0x0
+	.word ov17_02247E78, ov17_02247F2C, 0x0
+	.word ov17_02248138, ov17_0224814C, 0x0
+	.word ov17_02248258, ov17_0224826C, 0x0
+	.word ov17_0224840C, ov17_02248420, 0x0
+	.word ov17_022485E8, ov17_022485FC, 0x0
+	.word ov17_022486E4, ov17_022486F8, 0x0
+	.word ov17_022487E8, ov17_022487FC, 0x0
+	.word ov17_02248D28, ov17_02248D3C, 0x0
+	.word ov17_02248E58, ov17_02248E6C, 0x0
+	.word ov17_02248FBC, ov17_02248FD0, 0x0
+	.word ov17_0224924C, ov17_02249260, 0x0
 

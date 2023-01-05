@@ -1,7 +1,39 @@
 	.include "macros/function.inc"
 	.include "overlay005/ov5_021DDBE8.inc"
 
-	
+
+	.extern ov5_021E24A8
+    .extern ov5_021E2338
+    .extern ov5_021E261C
+    .extern ov5_021E2748
+    .extern ov5_021E2944
+    .extern ov5_021E2A4C
+    .extern ov5_021E2B54
+    .extern ov5_021E2EB0
+    .extern ov5_021E31A4
+    .extern ov5_021E3560
+    .extern ov5_021E3AD0
+    .extern ov5_021E3D8C
+    .extern ov5_021E5760
+    .extern ov5_021E5784
+    .extern ov5_021E57A8
+    .extern ov5_021E57CC
+    .extern ov5_021E57F0
+    .extern ov5_021E5814
+    .extern ov5_021E5838
+    .extern ov5_021E585C
+    .extern ov5_021E6178
+    .extern ov5_021E619C
+    .extern ov5_021E61C0
+    .extern ov5_021E61E4
+    .extern ov5_021E6208
+    .extern ov5_021E4E14
+    .extern ov5_021E4F7C
+    .extern ov5_021E4738
+    .extern ov5_021E4B3C
+    .extern ov5_021E4260
+    .extern ov5_021E44C0
+
 
 	.text
 
@@ -36,7 +68,7 @@ _021DDC1C:
 	str r0, [r4, #0x18]
 	pop {r4, r5, r6, pc}
 	nop
-_021DDC24: .word 0x021F9A74
+_021DDC24: .word Unk_ov5_021F9A74
 	thumb_func_end ov5_021DDBE8
 
 	thumb_func_start ov5_021DDC28
@@ -2751,7 +2783,7 @@ _021DEFC0:
 	bl sub_0200D9E8
 	pop {r4, pc}
 	; .align 2, 0
-_021DF020: .word 0x02202120
+_021DF020: .word Unk_ov5_02202120
 _021DF024: .word 0x06840000
 _021DF028: .word 0xC0320C04
 _021DF02C: .word 0x04000064
@@ -2774,7 +2806,7 @@ _021DF046:
 	strb r1, [r0, #3]
 	pop {r3, pc}
 	; .align 2, 0
-_021DF050: .word 0x02202120
+_021DF050: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF038
 
 	thumb_func_start ov5_021DF054
@@ -2791,7 +2823,7 @@ _021DF062:
 	ldrb r0, [r0, #2]
 	pop {r3, pc}
 	nop
-_021DF06C: .word 0x02202120
+_021DF06C: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF054
 
 	thumb_func_start ov5_021DF070
@@ -2805,7 +2837,7 @@ ov5_021DF070: ; 0x021DF070
 _021DF07E:
 	pop {r3, pc}
 	; .align 2, 0
-_021DF080: .word 0x02202120
+_021DF080: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF070
 
 	thumb_func_start ov5_021DF084
@@ -2840,7 +2872,7 @@ _021DF092:
 	str r1, [r0, #0]
 	pop {r3, pc}
 	; .align 2, 0
-_021DF0C8: .word 0x02202120
+_021DF0C8: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF084
 
 	thumb_func_start ov5_021DF0CC
@@ -2920,7 +2952,7 @@ _021DF128:
 	add sp, #8
 	pop {r3, r4, r5, pc}
 	nop
-_021DF170: .word 0x02202120
+_021DF170: .word Unk_ov5_02202120
 _021DF174: .word ov5_021DF3E8
 _021DF178: .word ov5_021DF414
 	thumb_func_end ov5_021DF0CC
@@ -2966,7 +2998,7 @@ _021DF1C2:
 	add sp, #0xc
 	pop {r4, r5, r6, r7, pc}
 	nop
-_021DF1C8: .word 0x02202120
+_021DF1C8: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF17C
 
 	thumb_func_start ov5_021DF1CC
@@ -2999,7 +3031,7 @@ _021DF1FE:
 	mov r0, #0
 	pop {r3, pc}
 	nop
-_021DF204: .word 0x02202120
+_021DF204: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF1CC
 
 	thumb_func_start ov5_021DF208
@@ -3017,7 +3049,7 @@ _021DF21C:
 	mov r0, #0
 	pop {r3, pc}
 	; .align 2, 0
-_021DF220: .word 0x02202120
+_021DF220: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF208
 
 	thumb_func_start ov5_021DF224
@@ -3045,7 +3077,7 @@ _021DF232:
 	str r2, [r0, #0xc]
 	pop {r3, pc}
 	; .align 2, 0
-_021DF254: .word 0x02202120
+_021DF254: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF224
 
 	thumb_func_start ov5_021DF258
@@ -3258,7 +3290,7 @@ _021DF402:
 	str r1, [r2, #0x10]
 	pop {r3, r4, r5, pc}
 	nop
-_021DF410: .word 0x02202120
+_021DF410: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF3E8
 
 	thumb_func_start ov5_021DF414
@@ -3283,7 +3315,7 @@ _021DF42E:
 	str r1, [r2, #0x14]
 	pop {r3, r4, r5, pc}
 	nop
-_021DF43C: .word 0x02202120
+_021DF43C: .word Unk_ov5_02202120
 	thumb_func_end ov5_021DF414
 
 	.rodata
@@ -3331,7 +3363,37 @@ Unk_ov5_021F9A4C: ; 0x021F9A4C
 
 	.global Unk_ov5_021F9A74
 Unk_ov5_021F9A74: ; 0x021F9A74
-	.incbin "incbin/overlay5_rodata.bin", 0x1160, 0x7C
+	.word ov5_021E24A8
+    .word ov5_021E2338
+    .word ov5_021E261C
+    .word ov5_021E2748
+    .word ov5_021E2944
+    .word ov5_021E2A4C
+    .word ov5_021E2B54
+    .word ov5_021E2EB0
+    .word ov5_021E31A4
+    .word ov5_021E3560
+    .word ov5_021E3AD0
+    .word ov5_021E3D8C
+    .word ov5_021E5760
+    .word ov5_021E5784
+    .word ov5_021E57A8
+    .word ov5_021E57CC
+    .word ov5_021E57F0
+    .word ov5_021E5814
+    .word ov5_021E5838
+    .word ov5_021E585C
+    .word ov5_021E6178
+    .word ov5_021E619C
+    .word ov5_021E61C0
+    .word ov5_021E61E4
+    .word ov5_021E6208
+    .word ov5_021E4E14
+    .word ov5_021E4F7C
+    .word ov5_021E4738
+    .word ov5_021E4B3C
+    .word ov5_021E4260
+    .word ov5_021E44C0
 
 
 	.bss

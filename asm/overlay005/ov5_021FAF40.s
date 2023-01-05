@@ -1,9 +1,118 @@
 	.include "macros/function.inc"
 
 	
+		.extern ov5_021EBA0C
+    .extern ov5_021EC3F0
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern sub_02067870
+    .extern sub_02067890
+    .extern sub_02067950
+    .extern sub_02067968
+    .extern sub_02067998
+	.extern ov5_021EBA0C
+    .extern ov5_021EBF50
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021ECA70
+    .extern ov5_021ECA90
+    .extern ov5_021ECABC
+    .extern ov5_021ECAC4
+    .extern ov5_021ECAF0
+	.extern ov5_021EBA0C
+    .extern ov5_021EC454
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021EC824
+    .extern ov5_021EC8EC
+    .extern ov5_021EC858
+    .extern ov5_021EC86C
+    .extern ov5_021EC898
+	.extern ov5_021EB2EC
+    .extern ov5_021EB398
+    .extern ov5_021EB314
+    .extern ov5_021EB328
+    .extern ov5_021EB354
+	.extern ov5_021EBA0C
+    .extern ov5_021EC4BC
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021EC734
+    .extern ov5_021EC75C
+    .extern ov5_021EC760
+    .extern ov5_021EC778
+    .extern ov5_021EC790
+	.extern ov5_021EBA0C
+    .extern ov5_021EC15C
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021EC938
+    .extern ov5_021EC9E8
+    .extern ov5_021EC95C
+    .extern ov5_021EC970
+    .extern ov5_021EC9A0
+	.extern ov5_021EB2EC
+    .extern ov5_021EB438
+    .extern ov5_021EB314
+    .extern ov5_021EB328
+    .extern ov5_021EB354
+	.extern ov5_021EC7B8
+    .extern ov5_021EC75C
+    .extern ov5_021EC760
+    .extern ov5_021EC778
+    .extern ov5_021EC7D0
+	.extern ov5_021EB7F8
+    .extern ov5_021EB8B8
+    .extern ov5_021EB834
+    .extern ov5_021EB848
+    .extern ov5_021EB874
+	.extern ov5_021EB2EC
+    .extern ov5_021EB944
+    .extern ov5_021EB314
+    .extern ov5_021EB328
+    .extern ov5_021EB354
+	.extern ov5_021EB2EC
+    .extern ov5_021EB720
+    .extern ov5_021EB314
+    .extern ov5_021EB328
+    .extern ov5_021EB354
+	.extern ov5_021EB2EC
+    .extern ov5_021EB40C
+    .extern ov5_021EB314
+    .extern ov5_021EB328
+    .extern ov5_021EB354
+	.extern ov5_021ECB34
+    .extern ov5_021ECB58
+    .extern ov5_021ECB78
+    .extern ov5_021ECAC4
+    .extern ov5_021ECAF0
+	.extern ov5_021EBA0C
+    .extern ov5_021EC5C0
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021EBA0C
+    .extern ov5_021EC554
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021EBA0C
+    .extern ov5_021EBAD0
+    .extern ov5_021EBA34
+    .extern ov5_021EBA60
+    .extern ov5_021EBA8C
+	.extern ov5_021ECE18
+    .extern ov5_021ECE30
+    .extern ov5_021ECE34
+    .extern ov5_021ECE38
+    .extern ov5_021ECE3C
 
 	.rodata
-
 
 	.global Unk_ov5_021FAF40
 Unk_ov5_021FAF40: ; 0x021FAF40
@@ -19,87 +128,171 @@ Unk_ov5_021FAF50: ; 0x021FAF50
 
 	.global Unk_ov5_021FAF60
 Unk_ov5_021FAF60: ; 0x021FAF60
-	.incbin "incbin/overlay5_rodata.bin", 0x264C, 0x2660 - 0x264C
+	.word ov5_021EBA0C
+    .word ov5_021EC3F0
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FAF74
 Unk_ov5_021FAF74: ; 0x021FAF74
-	.incbin "incbin/overlay5_rodata.bin", 0x2660, 0x2674 - 0x2660
+	.word sub_02067870
+    .word sub_02067890
+    .word sub_02067950
+    .word sub_02067968
+    .word sub_02067998
 
 	.global Unk_ov5_021FAF88
 Unk_ov5_021FAF88: ; 0x021FAF88
-	.incbin "incbin/overlay5_rodata.bin", 0x2674, 0x2688 - 0x2674
+	.word ov5_021EBA0C
+    .word ov5_021EBF50
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FAF9C
 Unk_ov5_021FAF9C: ; 0x021FAF9C
-	.incbin "incbin/overlay5_rodata.bin", 0x2688, 0x269C - 0x2688
+	.word ov5_021ECA70
+    .word ov5_021ECA90
+    .word ov5_021ECABC
+    .word ov5_021ECAC4
+    .word ov5_021ECAF0
 
 	.global Unk_ov5_021FAFB0
 Unk_ov5_021FAFB0: ; 0x021FAFB0
-	.incbin "incbin/overlay5_rodata.bin", 0x269C, 0x26B0 - 0x269C
+	.word ov5_021EBA0C
+    .word ov5_021EC454
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FAFC4
 Unk_ov5_021FAFC4: ; 0x021FAFC4
-	.incbin "incbin/overlay5_rodata.bin", 0x26B0, 0x26C4 - 0x26B0
+	.word ov5_021EC824
+    .word ov5_021EC8EC
+    .word ov5_021EC858
+    .word ov5_021EC86C
+    .word ov5_021EC898
 
 	.global Unk_ov5_021FAFD8
 Unk_ov5_021FAFD8: ; 0x021FAFD8
-	.incbin "incbin/overlay5_rodata.bin", 0x26C4, 0x26D8 - 0x26C4
+	.word ov5_021EB2EC
+    .word ov5_021EB398
+    .word ov5_021EB314
+    .word ov5_021EB328
+    .word ov5_021EB354
 
 	.global Unk_ov5_021FAFEC
 Unk_ov5_021FAFEC: ; 0x021FAFEC
-	.incbin "incbin/overlay5_rodata.bin", 0x26D8, 0x26EC - 0x26D8
+	.word ov5_021EBA0C
+    .word ov5_021EC4BC
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FB000
 Unk_ov5_021FB000: ; 0x021FB000
-	.incbin "incbin/overlay5_rodata.bin", 0x26EC, 0x2700 - 0x26EC
+	.word ov5_021EC734
+    .word ov5_021EC75C
+    .word ov5_021EC760
+    .word ov5_021EC778
+    .word ov5_021EC790
 
 	.global Unk_ov5_021FB014
 Unk_ov5_021FB014: ; 0x021FB014
-	.incbin "incbin/overlay5_rodata.bin", 0x2700, 0x2714 - 0x2700
+	.word ov5_021EBA0C
+    .word ov5_021EC15C
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FB028
 Unk_ov5_021FB028: ; 0x021FB028
-	.incbin "incbin/overlay5_rodata.bin", 0x2714, 0x2728 - 0x2714
+	.word ov5_021EC938
+    .word ov5_021EC9E8
+    .word ov5_021EC95C
+    .word ov5_021EC970
+    .word ov5_021EC9A0
 
 	.global Unk_ov5_021FB03C
 Unk_ov5_021FB03C: ; 0x021FB03C
-	.incbin "incbin/overlay5_rodata.bin", 0x2728, 0x273C - 0x2728
+	.word ov5_021EB2EC
+    .word ov5_021EB438
+    .word ov5_021EB314
+    .word ov5_021EB328
+    .word ov5_021EB354
 
 	.global Unk_ov5_021FB050
 Unk_ov5_021FB050: ; 0x021FB050
-	.incbin "incbin/overlay5_rodata.bin", 0x273C, 0x2750 - 0x273C
+	.word ov5_021EC7B8
+    .word ov5_021EC75C
+    .word ov5_021EC760
+    .word ov5_021EC778
+    .word ov5_021EC7D0
 
 	.global Unk_ov5_021FB064
 Unk_ov5_021FB064: ; 0x021FB064
-	.incbin "incbin/overlay5_rodata.bin", 0x2750, 0x2764 - 0x2750
+	.word ov5_021EB7F8
+    .word ov5_021EB8B8
+    .word ov5_021EB834
+    .word ov5_021EB848
+    .word ov5_021EB874
 
 	.global Unk_ov5_021FB078
 Unk_ov5_021FB078: ; 0x021FB078
-	.incbin "incbin/overlay5_rodata.bin", 0x2764, 0x2778 - 0x2764
+	.word ov5_021EB2EC
+    .word ov5_021EB944
+    .word ov5_021EB314
+    .word ov5_021EB328
+    .word ov5_021EB354
 
 	.global Unk_ov5_021FB08C
 Unk_ov5_021FB08C: ; 0x021FB08C
-	.incbin "incbin/overlay5_rodata.bin", 0x2778, 0x278C - 0x2778
+	.word ov5_021EB2EC
+    .word ov5_021EB720
+    .word ov5_021EB314
+    .word ov5_021EB328
+    .word ov5_021EB354
 
 	.global Unk_ov5_021FB0A0
 Unk_ov5_021FB0A0: ; 0x021FB0A0
-	.incbin "incbin/overlay5_rodata.bin", 0x278C, 0x27A0 - 0x278C
+	.word ov5_021EB2EC
+    .word ov5_021EB40C
+    .word ov5_021EB314
+    .word ov5_021EB328
+    .word ov5_021EB354
 
 	.global Unk_ov5_021FB0B4
 Unk_ov5_021FB0B4: ; 0x021FB0B4
-	.incbin "incbin/overlay5_rodata.bin", 0x27A0, 0x27B4 - 0x27A0
+	.word ov5_021ECB34
+    .word ov5_021ECB58
+    .word ov5_021ECB78
+    .word ov5_021ECAC4
+    .word ov5_021ECAF0
 
 	.global Unk_ov5_021FB0C8
 Unk_ov5_021FB0C8: ; 0x021FB0C8
-	.incbin "incbin/overlay5_rodata.bin", 0x27B4, 0x27C8 - 0x27B4
+	.word ov5_021EBA0C
+    .word ov5_021EC5C0
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FB0DC
 Unk_ov5_021FB0DC: ; 0x021FB0DC
-	.incbin "incbin/overlay5_rodata.bin", 0x27C8, 0x27DC - 0x27C8
+	.word ov5_021EBA0C
+    .word ov5_021EC554
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FB0F0
 Unk_ov5_021FB0F0: ; 0x021FB0F0
-	.incbin "incbin/overlay5_rodata.bin", 0x27DC, 0x27F0 - 0x27DC
+	.word ov5_021EBA0C
+    .word ov5_021EBAD0
+    .word ov5_021EBA34
+    .word ov5_021EBA60
+    .word ov5_021EBA8C
 
 	.global Unk_ov5_021FB104
 Unk_ov5_021FB104: ; 0x021FB104
@@ -179,7 +372,11 @@ Unk_ov5_021FB3EC: ; 0x021FB3EC
 
 	.global Unk_ov5_021FB470
 Unk_ov5_021FB470: ; 0x021FB470
-	.incbin "incbin/overlay5_rodata.bin", 0x2B5C, 0x2B70 - 0x2B5C
+	.word ov5_021ECE18
+    .word ov5_021ECE30
+    .word ov5_021ECE34
+    .word ov5_021ECE38
+    .word ov5_021ECE3C
 
 	.global Unk_ov5_021FB484
 Unk_ov5_021FB484: ; 0x021FB484
