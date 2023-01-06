@@ -94,7 +94,7 @@ Static main
 	Object src/unk_0202419C.o
 	Object src/unk_020241F0.o
 	Object src/unk_02024220.o
-	Object asm/unk_02024358.o
+	Object src/unk_02024358.o
 	Object src/unk_0202440C.o
 	Object src/unk_020244AC.o
 	Object src/unk_02025CB0.o
