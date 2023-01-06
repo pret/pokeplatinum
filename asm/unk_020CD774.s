@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CD774.inc"
 
-	.extern Unk_021CEE20
+	.extern cardi_common
 	
 
 	.text
@@ -22,7 +22,7 @@ CARDi_OnFifoRecv: ; 0x020CD774
 	bl OS_WakeupThreadDirect
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CD7A4: .word Unk_021CEE20
+_020CD7A4: .word cardi_common
 	arm_func_end CARDi_OnFifoRecv
 
 	arm_func_start CARDi_TaskThread
@@ -50,7 +50,7 @@ _020CD7DC:
 	blx r1
 	b _020CD7B4
 	; .align 2, 0
-_020CD7F4: .word Unk_021CEE20
+_020CD7F4: .word cardi_common
 	arm_func_end CARDi_TaskThread
 
 	arm_func_start CARDi_Request

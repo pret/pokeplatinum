@@ -75,7 +75,7 @@ endif
 #	$(WINE) $(MAKEBNR) $< $@
 
 # TODO: move to NitroSDK makefile
-FX_CONST_H := $(WORK_DIR)/lib/include/nitro/fx/fx_const.h
+FX_CONST_H := $(WORK_DIR)/lib/NitroSDK/include/nitro/fx/fx_const.h
 PROJECT_CLEAN_TARGETS += $(FX_CONST_H)
 $(FX_CONST_H): $(TOOLSDIR)/gen_fx_consts/fx_const.csv
 	$(MKFXCONST) $@

@@ -540,7 +540,7 @@ Static main
 	Object asm/unk_020CB8A8.o
 	Object asm/unk_020CC104.o
 	Object asm/unk_020CC16C.o
-	Object asm/unk_020CC544.o
+	Object lib/NitroSDK/src/card/card_common.o
 	Object asm/unk_020CC8D8.o
 	Object asm/unk_020CCC20.o
 	Object asm/unk_020CD080.o
@@ -715,7 +715,7 @@ Overlay overlay4
 	Object asm/overlay004/ov4_021D8C08.o
 	Object asm/overlay004/ov4_021DA6C8.o
 	Object asm/overlay004/ov4_021DB170.o
-	Object asm/overlay004/ov4_021DC734.o
+	Object lib/NitroDWC/asm/base/dwc_match.o
 	Object asm/overlay004/ov4_021E4A58.o
 	Object asm/overlay004/ov4_021E558C.o
 	Object asm/overlay004/ov4_021E5C34.o

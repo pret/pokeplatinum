@@ -3,7 +3,7 @@
 
 	.extern Unk_021CF440
 	.extern Unk_021CF460
-	.extern Unk_021CEE20
+	.extern cardi_common
 	.extern Unk_021CCC80
 	
 
@@ -48,7 +48,7 @@ _020CD0F4:
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CD108: .word Unk_021CEE20
+_020CD108: .word cardi_common
 	arm_func_end CARDi_ReadFromCache
 
 	arm_func_start CARDi_SetRomOp
@@ -101,7 +101,7 @@ CARDi_SetCardDma: ; 0x020CD16C
 	str r1, [r0, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CD1B0: .word Unk_021CEE20
+_020CD1B0: .word cardi_common
 _020CD1B4: .word 0x04100010
 _020CD1B8: .word Unk_021CF460
 _020CD1BC: .word 0x040001A4
@@ -163,7 +163,7 @@ _020CD284:
 	bl CARDi_SetCardDma
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020CD28C: .word Unk_021CEE20
+_020CD28C: .word cardi_common
 	arm_func_end CARDi_OnReadCard
 
 	arm_func_start CARDi_TryReadCardDma
@@ -275,7 +275,7 @@ _020CD400:
 	mov r0, r6
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020CD408: .word Unk_021CEE20
+_020CD408: .word cardi_common
 _020CD40C: .word 0x01FF8000
 _020CD410: .word 0x000001FF
 _020CD414: .word 0x02101480
@@ -348,7 +348,7 @@ _020CD4EC:
 	bne _020CD428
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020CD500: .word Unk_021CEE20
+_020CD500: .word cardi_common
 _020CD504: .word 0x040001A4
 _020CD508: .word 0x04100010
 	arm_func_end CARDi_ReadCard
@@ -424,7 +424,7 @@ _020CD5DC:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020CD5F8: .word Unk_021CF460
-_020CD5FC: .word Unk_021CEE20
+_020CD5FC: .word cardi_common
 	arm_func_end CARDi_ReadRomSyncCore
 
 	arm_func_start CARDi_ReadRom
@@ -493,7 +493,7 @@ _020CD6CC:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _020CD6E4: .word Unk_021CF460
-_020CD6E8: .word Unk_021CEE20
+_020CD6E8: .word cardi_common
 _020CD6EC: .word Unk_021CF440
 _020CD6F0: .word CARDi_ReadRomSyncCore
 _020CD6F4: .word Unk_021CCC80
@@ -525,7 +525,7 @@ CARD_Init: ; 0x020CD6F8
 	bl CARD_InitPulledOutCallback
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CD754: .word Unk_021CEE20
+_020CD754: .word cardi_common
 _020CD758: .word Unk_021CF440
 	arm_func_end CARD_Init
 

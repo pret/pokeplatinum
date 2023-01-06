@@ -44,18 +44,24 @@ NATIVE_TOOLS := \
 TOOLDIRS := $(foreach tool,$(NATIVE_TOOLS),$(dir $(tool)))
 
 PRECOMPILE_SRC := include/global/global.pch
-PRECOMPILE_OBJ := $(BUILD_DIR)/include/global.mch
+PRECOMPILE_OBJ := $(BUILD_DIR)/precompile/global.mch
 PRECOMPILE_OBJ_BASENAME := global.mch
 PRECOMPILE_OBJ_DIR := $(dir $(PRECOMPILE_OBJ))
-PRECOMPILE_DEPFILE := $(BUILD_DIR)/include/global.d
+PRECOMPILE_DEPFILE := $(BUILD_DIR)/precompile/global.d
+
+NITRO_PRECOMPILE_SRC := lib/NitroSDK/include/nitro.pch
+NITRO_PRECOMPILE_OBJ := $(BUILD_DIR)/precompile/nitro.mch
+NITRO_PRECOMPILE_OBJ_BASENAME := nitro.mch
+NITRO_PRECOMPILE_OBJ_DIR := $(dir $(PRECOMPILE_OBJ))
+NITRO_PRECOMPILE_DEPFILE := $(BUILD_DIR)/precompile/nitro.d
 
 # Directories
-NITROSDK_SRC_SUBDIRS      := os
 
-LIB_SUBDIRS               := cw NitroSDK NitroSystem NitroDWC NitroWiFi libCPS libVCT
+LIB_SUBDIRS               := NitroSDK NitroSystem NitroDWC NitroWiFi libVCT
+
 SRC_SUBDIR                := src
 ASM_SUBDIR                := asm
-LIB_SRC_SUBDIR            := lib/src $(LIB_SUBDIRS:%=lib/%/src) $(NITROSDK_SRC_SUBDIRS:%=lib/NitroSDK/src/%)
+LIB_SRC_SUBDIR            := lib/src $(LIB_SUBDIRS:%=lib/%/src)
 LIB_ASM_SUBDIR            := lib/asm $(LIB_SUBDIRS:%=lib/%/asm)
 ALL_SUBDIRS               := $(SRC_SUBDIR) $(ASM_SUBDIR) $(LIB_SRC_SUBDIR) $(LIB_ASM_SUBDIR)
 
@@ -69,8 +75,8 @@ ASM_SRCS                  := $(foreach dname,$(ASM_SUBDIR),$(wildcard $(dname)/*
 
 # asm processor should only be necessary for libcrypto
 GLOBAL_ASM_SRCS           := 
-LIB_C_SRCS                := $(foreach dname,$(LIB_SRC_SUBDIR),$(wildcard $(dname)/*.c))
-LIB_ASM_SRCS              := $(foreach dname,$(LIB_ASM_SUBDIR),$(wildcard $(dname)/*.s))
+LIB_C_SRCS                := $(foreach dname,$(LIB_SRC_SUBDIR),$(wildcard $(dname)/*.c $(dname)/*/*.c))
+LIB_ASM_SRCS              := $(foreach dname,$(LIB_ASM_SUBDIR),$(wildcard $(dname)/*.s $(dname)/*/*.s))
 ALL_SRCS                  := $(C_SRCS) $(ASM_SRCS) $(LIB_C_SRCS) $(LIB_ASM_SRCS)
 
 C_OBJS                    = $(C_SRCS:%.c=$(BUILD_DIR)/%.o)
@@ -95,15 +101,26 @@ XMAP              := $(NEF).xMAP
 
 EXCCFLAGS         := -Cpp_exceptions off
 
-MWCFLAGS           = $(DEFINES) $(OPTFLAGS) -enum int -lang c99 $(EXCCFLAGS) -gccext,on -proc $(PROC) -msgstyle gcc -gccinc -i ./include -i ./include/library -i $(WORK_DIR)/files -I$(WORK_DIR)/lib/include -I$(WORK_DIR)/lib/include/dwc -ipa file -interworking -inline on,noauto -char signed
+MWCFLAGS           = $(DEFINES) $(OPTFLAGS) -enum int -lang c99 $(EXCCFLAGS) -gccext,on -proc $(PROC) -msgstyle gcc -gccinc -ipa file -interworking -inline on,noauto -char signed
 MWASFLAGS          = $(DEFINES) -proc $(PROC_S) -gccinc -i . -i ./include -i ./asm -i $(WORK_DIR)/files -I$(WORK_DIR)/lib/include -DSDK_ASM
 MWLDFLAGS         := -w off -proc $(PROC) -nopic -nopid -interworking -map closure,unused -symtab sort -m _start -msgstyle gcc -nodead
 ARFLAGS           := rcS
 
+# The foreach iterates through all library folders defined in LIB_SUBDIRS
+# and generates the relevant includes
+# e.g. -I$(WORK_DIR)/lib/NitroSDK/include -I$(WORK_DIR)/lib/NitroSystem/include
+LIBRARY_INCLUDE_FLAGS := -I$(WORK_DIR)/lib/include $(foreach dname,$(LIB_SUBDIRS),-I$(WORK_DIR)/lib/$(dname)/include)
+
+SRC_INCLUDE_FLAGS := -i ./include -i ./include/library -i $(WORK_DIR)/files $(LIBRARY_INCLUDE_FLAGS)
+SDK_INCLUDE_FLAGS := $(LIBRARY_INCLUDE_FLAGS)
+
 #$(C_OBJS):   MWCFLAGS  +=          -include global/thumb.h -prefix $(PRECOMPILE_OBJ)
 
-MW_COMPILE = $(WINE) $(MWCC) $(MWCFLAGS) -i $(PRECOMPILE_OBJ_DIR) -include global/thumb.h -prefix $(PRECOMPILE_OBJ_BASENAME)
-MW_COMPILE_HEADER = $(WINE) $(MWCC) $(MWCFLAGS)
+MW_COMPILE_SRC = $(WINE) $(MWCC) $(MWCFLAGS) $(SRC_INCLUDE_FLAGS) -i $(PRECOMPILE_OBJ_DIR) -include global/thumb.h -prefix $(PRECOMPILE_OBJ_BASENAME)
+MW_COMPILE_SRC_PRECOMPILE = $(WINE) $(MWCC) $(MWCFLAGS) $(SRC_INCLUDE_FLAGS)
+MW_COMPILE_LIB = $(WINE) $(MWCC) $(MWCFLAGS) $(SDK_INCLUDE_FLAGS) -i $(NITRO_PRECOMPILE_OBJ_DIR) -prefix $(NITRO_PRECOMPILE_OBJ_BASENAME)
+MW_COMPILE_LIB_PRECOMPILE = $(WINE) $(MWCC) $(MWCFLAGS) $(SDK_INCLUDE_FLAGS)
+
 MW_ASSEMBLE = $(WINE) $(MWAS) $(MWASFLAGS)
 
 export MWCIncludes := lib/include
@@ -154,41 +171,56 @@ ifeq ($(NODEP),)
   endif
   DEPFLAGS := -gccdep -MD
   DEPFILES := $(ALL_OBJS:%.o=%.d)
-  MW_COMPILE += $(DEPFLAGS)
-  MW_COMPILE_HEADER += $(DEPFLAGS)
-  $(GLOBAL_ASM_OBJS): BUILD_C := $(ASM_PROCESSOR) "$(MW_COMPILE)" "$(MW_ASSEMBLE)"
-  BUILD_C ?= $(MW_COMPILE) -c -o
+  MW_COMPILE_SRC += $(DEPFLAGS)
+  MW_COMPILE_SRC_PRECOMPILE += $(DEPFLAGS)
+  MW_COMPILE_LIB += $(DEPFLAGS)
+  MW_COMPILE_LIB_PRECOMPILE += $(DEPFLAGS)
+  $(GLOBAL_ASM_OBJS): BUILD_C_SRC := $(ASM_PROCESSOR) "$(MW_COMPILE_SRC)" "$(MW_ASSEMBLE)"
+  BUILD_C_SRC ?= $(MW_COMPILE_SRC) -c -o
+  BUILD_C_LIB := $(MW_COMPILE_LIB) -c -o
 
 # STILL IN NODEP=FALSE
 $(PRECOMPILE_DEPFILE):
 $(DEPFILES):
 
-$(BUILD_DIR)/lib/NitroSDK/%.o: MWCCVER := 2.0/sp2p3
+# TODO: figure out exact compiler versions for each SDK component
+$(BUILD_DIR)/lib/NitroSDK/%.o: MWCCVER := 2.0/sp2
 
 $(PRECOMPILE_OBJ): $(PRECOMPILE_SRC)
-	$(MW_COMPILE_HEADER) $(PRECOMPILE_SRC) -precompile $(PRECOMPILE_OBJ)
+	$(MW_COMPILE_SRC_PRECOMPILE) $(PRECOMPILE_SRC) -precompile $(PRECOMPILE_OBJ)
 	@$(call fixdep_precompile,$(PRECOMPILE_DEPFILE))
 
-$(BUILD_DIR)/%.o: %.c $(PRECOMPILE_OBJ)
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(PRECOMPILE_OBJ)
-	$(BUILD_C) $@ $<
-	@$(call fixdep,$(BUILD_DIR)/$*.d)
+$(BUILD_DIR)/src/%.o: src/%.c $(PRECOMPILE_OBJ)
+$(BUILD_DIR)/src/%.o: src/%.c $(BUILD_DIR)/src/%.d $(PRECOMPILE_OBJ)
+	$(BUILD_C_SRC) $@ $<
+	@$(call fixdep,$(BUILD_DIR)/src/$*.d)
+
+$(NITRO_PRECOMPILE_OBJ): $(NITRO_PRECOMPILE_SRC)
+	$(MW_COMPILE_LIB_PRECOMPILE) $(NITRO_PRECOMPILE_SRC) -precompile $(NITRO_PRECOMPILE_OBJ)
+	@$(call fixdep_precompile,$(NITRO_PRECOMPILE_DEPFILE))
+
+$(BUILD_DIR)/lib/%.o: lib/%.c $(NITRO_PRECOMPILE_OBJ)
+$(BUILD_DIR)/lib/%.o: lib/%.c $(BUILD_DIR)/lib/%.d $(NITRO_PRECOMPILE_OBJ)
+	$(MW_COMPILE_LIB) -I$(dir $<) -c -o $@ $<
+	@$(call fixdep,$(BUILD_DIR)/lib/$*.d)
 
 $(BUILD_DIR)/%.o: %.s
 $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
-	$(WINE) $(MWAS) $(MWASFLAGS) $(DEPFLAGS) -o $@ $<
+	$(WINE) $(MWAS) $(MWASFLAGS) -I$(dir $<) $(DEPFLAGS) -o $@ $<
 	@$(call fixdep,$(BUILD_DIR)/$*.d)
 
 include $(wildcard $(DEPFILES))
 -include $(PRECOMPILE_DEPFILE)
+-include $(NITRO_PRECOMPILE_DEPFILE)
 
 # END NODEP=FALSE
 else
-$(GLOBAL_ASM_OBJS): BUILD_C := $(ASM_PROCESSOR) "$(MW_COMPILE)" "$(MW_ASSEMBLE)"
-BUILD_C ?= $(MW_COMPILE) -c -o
+$(error NODEP not fully implemented)
+$(GLOBAL_ASM_OBJS): BUILD_C_SRC := $(ASM_PROCESSOR) "$(MW_COMPILE_SRC)" "$(MW_ASSEMBLE)"
+BUILD_C_SRC ?= $(MW_COMPILE_SRC) -c -o
 
 $(BUILD_DIR)/%.o: %.c
-	$(BUILD_C) $@ $<
+	$(BUILD_C_SRC) $@ $<
 
 $(BUILD_DIR)/%.o: %.s
 	$(WINE) $(MWAS) $(MWASFLAGS) -o $@ $<

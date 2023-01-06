@@ -1,7 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021DC734.inc"
-
-	
+	.include "include/dwc_match.inc"
 
 	.text
 

@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020CC8D8.inc"
 
-	.extern Unk_021CEE20
+	.extern cardi_common
 	
 
 	.text
@@ -228,7 +228,7 @@ _020CCBE0:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020CCC00: .word Unk_021CEE20
+_020CCC00: .word cardi_common
 _020CCC04: .word 0x0000203F
 _020CCC08: .word 0x00001388
 _020CCC0C: .word 0x0000EA60
