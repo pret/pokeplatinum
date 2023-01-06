@@ -990,7 +990,7 @@ Overlay overlay12
 	Object src/overlay012/ov12_02225104.o
 	Object src/overlay012/ov12_02225640.o
 	Object src/overlay012/ov12_02225864.o
-	Object asm/overlay012/ov12_02226998.o
+	Object src/overlay012/ov12_02226998.o
 	Object src/overlay012/ov12_022269C0.o
 	Object src/overlay012/ov12_02226B84.o
 	Object src/overlay012/ov12_0222AC70.o
@@ -1000,7 +1000,7 @@ Overlay overlay12
 	Object src/overlay012/ov12_0222F700.o
 	Object src/overlay012/ov12_022346A4.o
 	Object src/overlay012/ov12_02234E44.o
-	Object asm/overlay012/ov12_02235254.o
+	Object src/overlay012/ov12_02235254.o
 	Object src/overlay012/ov12_02235E94.o
 	Object src/overlay012/ov12_02237E54.o
 	Object src/overlay012/ov12_02237EFC.o
