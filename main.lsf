@@ -1064,15 +1064,15 @@ Overlay overlay17
 	Object src/overlay017/ov17_0223CB1C.o
 	Object src/overlay017/ov17_0223DAD0.o
 	Object src/overlay017/ov17_0223F118.o
-	Object asm/overlay017/ov17_0223F7E4.o
+	Object src/overlay017/ov17_0223F7E4.o
 	Object src/overlay017/ov17_02241270.o
-	Object asm/overlay017/ov17_022413D8.o
+	Object src/overlay017/ov17_022413D8.o
 	Object src/overlay017/ov17_02243AC4.o
 	Object src/overlay017/ov17_02243C28.o
 	Object src/overlay017/ov17_02245F14.o
 	Object src/overlay017/ov17_02246ECC.o
-	Object asm/overlay017/ov17_022476F8.o
-	Object asm/overlay017/ov17_02247A48.o
+	Object src/overlay017/ov17_022476F8.o
+	Object src/overlay017/ov17_02247A48.o
 	Object src/overlay017/ov17_022492DC.o
 	Object src/overlay017/ov17_0224A0FC.o
 	Object src/overlay017/ov17_0224CFB8.o
@@ -1080,7 +1080,7 @@ Overlay overlay17
 	Object src/overlay017/ov17_0224F080.o
 	Object src/overlay017/ov17_0224F18C.o
 	Object src/overlay017/ov17_0224F4D4.o
-	Object asm/overlay017/ov17_02250744.o
+	Object src/overlay017/ov17_02250744.o
 	Object src/overlay017/ov17_02251D6C.o
 	Object src/overlay017/ov17_02252A70.o
 	Object src/overlay017/ov17_02252AB0.o
