@@ -144,7 +144,7 @@ Static main
 	Object src/unk_02030A80.o
 	Object src/unk_02030CE8.o
 	Object src/unk_02030EA4.o
-	Object asm/unk_02030EE0.o
+	Object src/unk_02030EE0.o
 	Object src/unk_02032188.o
 	Object src/unk_020322D8.o
 	Object src/unk_0203266C.o
@@ -1935,8 +1935,8 @@ Overlay overlay96
 Overlay overlay97
 {
 	After overlay60
-	Object asm/overlay097/ov97_0222AE60.o
-	Object asm/overlay097/ov97_0222C174.o
+	Object src/overlay097/ov97_0222AE60.o
+	Object src/overlay097/ov97_0222C174.o
 	Object src/overlay097/ov97_0222D04C.o
 	Object src/overlay097/ov97_0222D2F8.o
 	Object src/overlay097/ov97_0222D30C.o
@@ -1952,9 +1952,9 @@ Overlay overlay97
 	Object src/overlay097/ov97_0223635C.o
 	Object src/overlay097/ov97_02236380.o
 	Object src/overlay097/ov97_02237520.o
-	Object asm/overlay097/ov97_02237694.o
+	Object src/overlay097/ov97_02237694.o
 	Object src/overlay097/ov97_02238534.o
-	Object asm/overlay097/ov97_02238D74.o
+	Object src/overlay097/ov97_02238D74.o
 	Object src/overlay097/ov97_022392E4.o
 	Object asm/overlay097/ov97_02239420.o
 }
@@ -2044,7 +2044,7 @@ Overlay overlay104
 	Object src/overlay104/ov104_0223A7F4.o
 	Object src/overlay104/ov104_0223AF58.o
 	Object src/overlay104/ov104_0223B6F4.o
-	Object asm/overlay104/ov104_0223BCBC.o
+	Object src/overlay104/ov104_0223BCBC.o
 	Object src/overlay104/ov104_0223C164.o
 	Object src/overlay104/ov104_0223C2D4.o
 	Object src/overlay104/ov104_0223D5D0.o
@@ -2170,7 +2170,7 @@ Overlay overlay117
 	Object src/overlay117/ov117_02260440.o
 	Object src/overlay117/ov117_02260668.o
 	Object src/overlay117/ov117_022626B0.o
-	Object asm/overlay117/ov117_02263AF0.o
+	Object src/overlay117/ov117_02263AF0.o
 	Object src/overlay117/ov117_02266498.o
 	Object src/overlay117/ov117_022665FC.o
 	Object src/overlay117/ov117_022666C0.o
