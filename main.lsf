@@ -1938,7 +1938,7 @@ Overlay overlay97
 	Object asm/overlay097/ov97_0222C174.o
 	Object src/overlay097/ov97_0222D04C.o
 	Object src/overlay097/ov97_0222D2F8.o
-	Object asm/overlay097/ov97_0222D30C.o
+	Object src/overlay097/ov97_0222D30C.o
 	Object src/overlay097/ov97_02230410.o
 	Object src/overlay097/ov97_02232054.o
 	Object src/overlay097/ov97_02232200.o
