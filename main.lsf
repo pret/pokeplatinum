@@ -309,7 +309,7 @@ Static main
 	Object src/unk_02089604.o
 	Object src/unk_0208A3F4.o
 	Object src/unk_0208B284.o
-	Object asm/unk_0208BA78.o
+	Object src/unk_0208BA78.o
 	Object src/unk_0208BEBC.o
 	Object src/unk_0208C010.o
 	Object src/unk_0208C098.o
