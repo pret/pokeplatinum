@@ -3868,8 +3868,8 @@ _02088872:
 	pop {r4, r5, r6, r7}
 	bx lr
 	; .align 2, 0
-_02088890: .word 0x02100C40
-_02088894: .word 0x02100C54
+_02088890: .word Unk_02100C40
+_02088894: .word Unk_02100C54
 	thumb_func_end sub_02088844
 
 	thumb_func_start sub_02088898
@@ -4725,7 +4725,7 @@ _02088F08:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02088F38: .word 0x020F24E0
-_02088F3C: .word 0x02100C54
+_02088F3C: .word Unk_02100C54
 	thumb_func_end sub_02088E58
 
 	thumb_func_start sub_02088F40

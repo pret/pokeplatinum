@@ -65,7 +65,9 @@ Unk_02101AC4: ; 0x02101AC4
 
 	.global Unk_02101AD0
 Unk_02101AD0: ; 0x02101AD0
-	.incbin "incbin/arm9_data.bin", 0x2DF0, 0x2DFC - 0x2DF0
+	.word 0x02101CA8
+	.word Unk_02101AEC
+	.word Unk_02101AC4
 
 	.global Unk_02101ADC
 Unk_02101ADC: ; 0x02101ADC
@@ -77,9 +79,17 @@ Unk_02101AEC: ; 0x02101AEC
 
 	.global Unk_02101B00
 Unk_02101B00: ; 0x02101B00
-	.incbin "incbin/arm9_data.bin", 0x2E20, 0x2E34 - 0x2E20
+	.word 0x0
+	.word Unk_02101AD0
+	.word sub_020DFB48
+	.word sub_020DFB60
+	.word sub_020DFB08
 
 	.global Unk_02101B14
 Unk_02101B14: ; 0x02101B14
-	.incbin "incbin/arm9_data.bin", 0x2E34, 0x14
+	.word 0x0
+	.word Unk_02101AC4
+	.word sub_020DFB10
+	.word sub_020DFB28
+	.word sub_020DFB08
 

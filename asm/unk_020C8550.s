@@ -534,7 +534,7 @@ Unk_020FE4A8: ; 0x020FE4A8
 
 	.global Unk_02101168
 Unk_02101168: ; 0x02101168
-	.incbin "incbin/arm9_data.bin", 0x2488, 0x248C - 0x2488
+	.word Unk_020FE4A8
 
 	.global Unk_0210116C
 Unk_0210116C: ; 0x0210116C

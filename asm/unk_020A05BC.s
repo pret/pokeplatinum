@@ -1352,7 +1352,7 @@ _020A1844:
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
 	; .align 2, 0
-_020A19EC: .word 0x02100DB0
+_020A19EC: .word Unk_02100DB0
 	arm_func_end sub_020A1768
 
 	.data

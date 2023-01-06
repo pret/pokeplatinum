@@ -528,7 +528,7 @@ sub_0208BE5C: ; 0x0208BE5C
 	ldr r0, [r0, r1]
 	bx lr
 	; .align 2, 0
-_0208BE64: .word 0x02100CF0
+_0208BE64: .word Unk_02100CF0
 	thumb_func_end sub_0208BE5C
 
 	thumb_func_start sub_0208BE68
