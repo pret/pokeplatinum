@@ -1074,7 +1074,7 @@ Overlay overlay17
 	Object asm/overlay017/ov17_022476F8.o
 	Object asm/overlay017/ov17_02247A48.o
 	Object src/overlay017/ov17_022492DC.o
-	Object asm/overlay017/ov17_0224A0FC.o
+	Object src/overlay017/ov17_0224A0FC.o
 	Object src/overlay017/ov17_0224CFB8.o
 	Object src/overlay017/ov17_0224E930.o
 	Object src/overlay017/ov17_0224F080.o
