@@ -75,8 +75,8 @@ ASM_SRCS                  := $(foreach dname,$(ASM_SUBDIR),$(wildcard $(dname)/*
 
 # asm processor should only be necessary for libcrypto
 GLOBAL_ASM_SRCS           := 
-LIB_C_SRCS                := $(foreach dname,$(LIB_SRC_SUBDIR),$(wildcard $(dname)/*.c $(dname)/*/*.c))
-LIB_ASM_SRCS              := $(foreach dname,$(LIB_ASM_SUBDIR),$(wildcard $(dname)/*.s $(dname)/*/*.s))
+LIB_C_SRCS                := $(foreach dname,$(LIB_SRC_SUBDIR),$(wildcard $(dname)/*.c $(dname)/*/*.c $(dname)/*/*/*.c))
+LIB_ASM_SRCS              := $(foreach dname,$(LIB_ASM_SUBDIR),$(wildcard $(dname)/*.s $(dname)/*/*.s $(dname)/*/*/*.s))
 ALL_SRCS                  := $(C_SRCS) $(ASM_SRCS) $(LIB_C_SRCS) $(LIB_ASM_SRCS)
 
 C_OBJS                    = $(C_SRCS:%.c=$(BUILD_DIR)/%.o)
