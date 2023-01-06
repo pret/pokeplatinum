@@ -164,7 +164,7 @@ _022477FC:
 	bl sub_02005748
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0224782C: .word 0x022543F8
+_0224782C: .word Unk_ov17_022543F8
 _02247830: .word 0x000004F9
 _02247834: .word 0x0000C350
 _02247838: .word ov17_02247840
@@ -428,7 +428,7 @@ _02247A1A:
 	add sp, #4
 	pop {r3, r4, r5, r6, pc}
 	nop
-_02247A34: .word 0x0225442C
+_02247A34: .word Unk_ov17_0225442C
 _02247A38: .word 0x0225442E
 	thumb_func_end ov17_02247A08
 

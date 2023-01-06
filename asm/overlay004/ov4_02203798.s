@@ -54,7 +54,7 @@ _02203828:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0220383C: .word 0x00001FDF
-_02203840: .word 0x0221A0EC
+_02203840: .word Unk_ov4_0221A0EC
 	arm_func_end ov4_02203798
 
 	arm_func_start ov4_02203844

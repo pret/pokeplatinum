@@ -74,7 +74,7 @@ ov18_02232CDC: ; 0x02232CDC
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02232D4C: .word 0x0224A0CC
+_02232D4C: .word Unk_ov18_0224A0CC
 _02232D50: .word GX_LoadBG2Scr
 _02232D54: .word 0x04001008
 _02232D58: .word 0x0400000A

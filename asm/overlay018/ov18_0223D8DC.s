@@ -98,7 +98,7 @@ _0223D9B8:
 	; .align 2, 0
 _0223DA04: .word Unk_ov18_02253380
 _0223DA08: .word ov18_0223DB3C
-_0223DA0C: .word 0x02249580
+_0223DA0C: .word Unk_ov18_02249580
 	arm_func_end ov18_0223D944
 
 	arm_func_start ov18_0223DA10
@@ -191,7 +191,7 @@ _0223DB04:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _0223DB34: .word Unk_ov18_02253380
-_0223DB38: .word 0x02249578
+_0223DB38: .word Unk_ov18_02249578
 	arm_func_end ov18_0223DAE0
 
 	arm_func_start ov18_0223DB3C
@@ -353,8 +353,8 @@ _0223DD50:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0223DD68: .word Unk_ov18_02253380
-_0223DD6C: .word 0x02249578
-_0223DD70: .word 0x02249574
+_0223DD6C: .word Unk_ov18_02249578
+_0223DD70: .word Unk_ov18_02249574
 	arm_func_end ov18_0223DBA0
 
 	.rodata

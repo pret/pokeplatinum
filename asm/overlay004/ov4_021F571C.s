@@ -74,9 +74,9 @@ _021F57FC:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021F5814: .word 0x02219174
-_021F5818: .word 0x0221917C
-_021F581C: .word 0x022191AC
+_021F5814: .word Unk_ov4_02219174
+_021F5818: .word Unk_ov4_0221917C
+_021F581C: .word Unk_ov4_022191AC
 	arm_func_end ov4_021F571C
 
 	.data

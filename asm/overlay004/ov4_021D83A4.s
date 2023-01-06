@@ -242,8 +242,8 @@ _021D869C:
 _021D86A8:
 	.byte 0x2A, 0xDE, 0x8D, 0xE2, 0xF8, 0x80, 0xBD, 0xE8
 _021D86B0: .word Unk_ov4_0221A4E8
-_021D86B4: .word 0x02217430
-_021D86B8: .word 0x02217444
+_021D86B4: .word Unk_ov4_02217430
+_021D86B8: .word Unk_ov4_02217444
 _021D86BC: .word ov4_021D83D4
 _021D86C0: .word ov4_021D83A4
 _021D86C4: .word ov4_021D83BC
@@ -321,7 +321,7 @@ _021D878C:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021D87D4: .word Unk_ov4_0221A4E8
-_021D87D8: .word 0x02217458
+_021D87D8: .word Unk_ov4_02217458
 _021D87DC: .word ov4_021D8510
 	arm_func_end ov4_021D86C8
 

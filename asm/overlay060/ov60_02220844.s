@@ -252,7 +252,7 @@ _02220B6C:
 	movle r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02220B8C: .word 0x0222911C
+_02220B8C: .word Unk_ov60_0222911C
 	arm_func_end ov60_0222097C
 
 	arm_func_start ov60_02220B90

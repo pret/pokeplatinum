@@ -22,7 +22,7 @@ ov4_021D8948: ; 0x021D8948
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_021D897C: .word 0x02217460
+_021D897C: .word Unk_ov4_02217460
 	arm_func_end ov4_021D8948
 
 	arm_func_start ov4_021D8980

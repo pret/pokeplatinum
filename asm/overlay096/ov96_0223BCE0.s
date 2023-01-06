@@ -128,7 +128,7 @@ ov96_0223BDBC: ; 0x0223BDBC
 _0223BDE6:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
-_0223BDE8: .word 0x0223DCE0
+_0223BDE8: .word Unk_ov96_0223DCE0
 	thumb_func_end ov96_0223BDBC
 
 	thumb_func_start ov96_0223BDEC
@@ -265,10 +265,10 @@ ov96_0223BE38: ; 0x0223BE38
 	add sp, #0x70
 	pop {r3, r4, r5, pc}
 	nop
-_0223BF0C: .word 0x0223DB08
-_0223BF10: .word 0x0223DAEC
-_0223BF14: .word 0x0223DB24
-_0223BF18: .word 0x0223DAD0
+_0223BF0C: .word Unk_ov96_0223DB08
+_0223BF10: .word Unk_ov96_0223DAEC
+_0223BF14: .word Unk_ov96_0223DB24
+_0223BF18: .word Unk_ov96_0223DAD0
 	thumb_func_end ov96_0223BE38
 
 	thumb_func_start ov96_0223BF1C

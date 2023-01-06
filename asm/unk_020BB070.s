@@ -4,7 +4,7 @@
 	.extern Unk_021CBF30
 	.extern Unk_021CBF3C
 	.extern Unk_021CC5CC
-	
+	.extern Unk_020FDAB0
 
 	.text
 
@@ -84,7 +84,7 @@ _020BB164:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020BB178: .word Unk_021CC5CC
-_020BB17C: .word 0x020FDAB0
+_020BB17C: .word Unk_020FDAB0
 	arm_func_end NNSi_SndArcStrmMain
 
 	arm_func_start FreePlayer

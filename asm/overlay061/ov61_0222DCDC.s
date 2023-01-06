@@ -15,7 +15,7 @@ ov61_0222DCDC: ; 0x0222DCDC
 	bx ip
 	; .align 2, 0
 _0222DCF0: .word ov61_0222CF40
-_0222DCF4: .word 0x0222E63C
+_0222DCF4: .word Unk_ov61_0222E63C
 _0222DCF8: .word 0x00003070
 	arm_func_end ov61_0222DCDC
 
@@ -71,7 +71,7 @@ _0222DD4C:
 	add sp, sp, #0xe0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_0222DD84: .word 0x0222E658
+_0222DD84: .word Unk_ov61_0222E658
 _0222DD88: .word 0x00004E20
 	arm_func_end ov61_0222DD30
 
@@ -124,7 +124,7 @@ _0222DDEC:
 	add sp, sp, #0x220
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_0222DE2C: .word 0x0222E658
+_0222DE2C: .word Unk_ov61_0222E658
 _0222DE30: .word 0x00005208
 	arm_func_end ov61_0222DDCC
 

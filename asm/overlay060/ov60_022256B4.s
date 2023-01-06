@@ -82,7 +82,7 @@ _0222577C:
 	; .align 2, 0
 _02225798: .word 0x01634578
 _0222579C: .word 0x5D8A0000
-_022257A0: .word 0x02228CF4
+_022257A0: .word Unk_ov60_02228CF4
 	arm_func_end ov60_022256CC
 
 	arm_func_start ov60_022257A4

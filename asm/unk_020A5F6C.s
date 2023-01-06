@@ -391,7 +391,7 @@ DoTransfer_: ; 0x020A6258
 	blx r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020A6284: .word 0x020F9570
+_020A6284: .word Unk_020F9570
 	arm_func_end DoTransfer_
 
 	arm_func_start ResetTaskQueue_

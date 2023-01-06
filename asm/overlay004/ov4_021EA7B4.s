@@ -25,7 +25,7 @@ _021EA7CC:
 	blo _021EA7CC
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021EA7F0: .word 0x022178D0
+_021EA7F0: .word Unk_ov4_022178D0
 	arm_func_end ov4_021EA7B4
 
 	arm_func_start ov4_021EA7F4

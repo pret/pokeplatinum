@@ -614,7 +614,7 @@ ov4_02208A74: ; 0x02208A74
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_02208AF4: .word 0x0221A184
+_02208AF4: .word Unk_ov4_0221A184
 	arm_func_end ov4_02208A74
 
 	arm_func_start ov4_02208AF8

@@ -18,7 +18,7 @@ rand: ; 0x020D76A0
 	and r0, r1, r0, lsr #16
 	bx lr
 	; .align 2, 0
-_020D76C8: .word 0x02101818
+_020D76C8: .word Unk_02101818
 _020D76CC: .word 0x41C64E6D
 _020D76D0: .word 0x00007FFF
 	arm_func_end rand
@@ -29,7 +29,7 @@ srand: ; 0x020D76D4
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_020D76E0: .word 0x02101818
+_020D76E0: .word Unk_02101818
 	arm_func_end srand
 
 	.data

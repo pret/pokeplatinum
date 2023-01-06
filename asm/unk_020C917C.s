@@ -123,7 +123,7 @@ _020C92FC:
 	bl MI_CpuCopy8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020C931C: .word 0x02101338
+_020C931C: .word Unk_02101338
 	arm_func_end DGT_Hash2SetSource
 
 	arm_func_start DGT_Hash2GetDigest
@@ -262,7 +262,7 @@ _020C93E0:
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
-_020C9518: .word 0x02101338
+_020C9518: .word Unk_02101338
 	arm_func_end DGT_Hash2GetDigest
 
 	arm_func_start DGT_Hash2CalcHmac
@@ -301,7 +301,7 @@ DGT_Hash2CalcHmac: ; 0x020C951C
 	add sp, sp, #0xa0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020C95A0: .word 0x020FE4E8
+_020C95A0: .word Unk_020FE4E8
 _020C95A4: .word DGT_Hash2Reset
 _020C95A8: .word DGT_Hash2SetSource
 _020C95AC: .word DGT_Hash2GetDigest

@@ -30,7 +30,7 @@ sub_020E415C: ; 0x020E415C
 	blx r0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020E4170: .word 0x02101D0C
+_020E4170: .word Unk_02101D0C
 	arm_func_end sub_020E415C
 
 	arm_func_start sub_020E4174
@@ -41,7 +41,7 @@ sub_020E4174: ; 0x020E4174
 	blx r0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020E4188: .word 0x02101D0C
+_020E4188: .word Unk_02101D0C
 	arm_func_end sub_020E4174
 
 	arm_func_start __throw_catch_compare

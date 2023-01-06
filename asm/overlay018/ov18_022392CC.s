@@ -70,7 +70,7 @@ ov18_02239328: ; 0x02239328
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02239398: .word 0x0224A328
+_02239398: .word Unk_ov18_0224A328
 _0223939C: .word GX_LoadBG2Scr
 _022393A0: .word 0x04001008
 _022393A4: .word 0x0400000A
@@ -417,7 +417,7 @@ ov18_02239740: ; 0x02239740
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022397B0: .word 0x0224A33C
+_022397B0: .word Unk_ov18_0224A33C
 _022397B4: .word GX_LoadBG2Scr
 _022397B8: .word 0x04001008
 _022397BC: .word 0x0400000A

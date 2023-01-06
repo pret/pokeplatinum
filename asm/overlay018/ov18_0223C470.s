@@ -58,7 +58,7 @@ ov18_0223C4B0: ; 0x0223C4B0
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223C520: .word 0x0224A50C
+_0223C520: .word Unk_ov18_0224A50C
 _0223C524: .word GX_LoadBG2Scr
 _0223C528: .word 0x04001008
 _0223C52C: .word 0x0400000A

@@ -658,7 +658,7 @@ _0222DCB8:
 _0222DCC8:
 	.byte 0x5F, 0xDF, 0x8D, 0xE2, 0x30, 0x80, 0xBD, 0xE8
 _0222DCD0: .word Unk_ov61_0222E764
-_0222DCD4: .word 0x0222E638
+_0222DCD4: .word Unk_ov61_0222E638
 _0222DCD8: .word 0x0222E76A
 	arm_func_end ov61_0222DB98
 	.data

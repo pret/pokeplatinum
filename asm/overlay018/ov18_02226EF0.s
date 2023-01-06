@@ -3,6 +3,8 @@
 
 	
 
+	.extern Unk_ov4_02215E48
+	.extern Unk_ov4_02215E50
 	.text
 
 
@@ -588,9 +590,9 @@ _02227324:
 	nop
 _02227330: .word Unk_ov18_02251CC0
 _02227334: .word Unk_ov18_02251CE8
-_02227338: .word 0x02215E48
+_02227338: .word Unk_ov4_02215E48
 _0222733C: .word Unk_ov18_02251CF0
-_02227340: .word 0x02215E50
+_02227340: .word Unk_ov4_02215E50
 	thumb_func_end ov18_02227254
 
 	thumb_func_start ov18_02227344

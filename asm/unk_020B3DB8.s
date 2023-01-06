@@ -259,7 +259,7 @@ _020B40F4:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020B4104: .word Unk_021C5CF0
-_020B4108: .word 0x020F9818
+_020B4108: .word Unk_020F9818
 _020B410C: .word 0x020F9819
 _020B4110: .word 0x020F981A
 _020B4114: .word 0x020F981B
@@ -1593,7 +1593,7 @@ _020B5324:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020B53C4: .word 0x00007FFF
-_020B53C8: .word 0x020F9818
+_020B53C8: .word Unk_020F9818
 _020B53CC: .word 0x020F9819
 _020B53D0: .word 0x020F981A
 _020B53D4: .word 0x020F981B

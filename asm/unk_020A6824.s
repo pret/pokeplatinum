@@ -255,7 +255,7 @@ _020A6B50:
 	add sp, sp, #0x30
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020A6B70: .word 0x020F9600
+_020A6B70: .word Unk_020F9600
 _020A6B74: .word Unk_021C3AD4
 _020A6B78: .word Unk_021C3AD4
 _020A6B7C: .word 0x021C3AD8

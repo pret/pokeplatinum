@@ -1,7 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A8B98.inc"
 
-	
+	.extern Unk_020F9658
+	.extern Unk_020F9670
 
 	.text
 
@@ -387,8 +388,8 @@ _020A90E0:
 	; .align 2, 0
 _020A90EC: .word 0x01FF0000
 _020A90F0: .word 0xC000C000
-_020A90F4: .word 0x020F9670
-_020A90F8: .word 0x020F9658
+_020A90F4: .word Unk_020F9670
+_020A90F8: .word Unk_020F9658
 _020A90FC: .word 0xC1FFFCFF
 _020A9100: .word 0xFE00FF00
 	arm_func_end NNS_G2dMakeCellToOams

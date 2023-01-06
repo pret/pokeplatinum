@@ -39,9 +39,9 @@ _022206F4:
 	streq r0, [r5, #0xd8]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02220748: .word 0x022290FC
-_0222074C: .word 0x02229108
-_02220750: .word 0x022290E0
+_02220748: .word Unk_ov60_022290FC
+_0222074C: .word Unk_ov60_02229108
+_02220750: .word Unk_ov60_022290E0
 	arm_func_end ov60_022206D4
 
 	arm_func_start ov60_02220754
@@ -76,9 +76,9 @@ _02220780:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_022207C4: .word 0x022290FC
-_022207C8: .word 0x02229108
-_022207CC: .word 0x022290C8
+_022207C4: .word Unk_ov60_022290FC
+_022207C8: .word Unk_ov60_02229108
+_022207CC: .word Unk_ov60_022290C8
 	arm_func_end ov60_02220754
 
 	arm_func_start ov60_022207D0
@@ -111,9 +111,9 @@ _022207F4:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02220838: .word 0x022290FC
-_0222083C: .word 0x02229108
-_02220840: .word 0x022290B4
+_02220838: .word Unk_ov60_022290FC
+_0222083C: .word Unk_ov60_02229108
+_02220840: .word Unk_ov60_022290B4
 	arm_func_end ov60_022207D0
 
 	.data

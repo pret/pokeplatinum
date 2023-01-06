@@ -51,11 +51,11 @@ ov18_022390CC: ; 0x022390CC
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02239140: .word 0x0224A2E4
+_02239140: .word Unk_ov18_0224A2E4
 _02239144: .word 0x020C07EC
-_02239148: .word 0x0224A2FC
+_02239148: .word Unk_ov18_0224A2FC
 _0223914C: .word GX_LoadBGPltt
-_02239150: .word 0x0224A314
+_02239150: .word Unk_ov18_0224A314
 _02239154: .word GX_LoadBG2Scr
 _02239158: .word 0x04001008
 _0223915C: .word 0x0400000A

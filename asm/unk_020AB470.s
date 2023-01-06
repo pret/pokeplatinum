@@ -2,7 +2,8 @@
 	.include "include/unk_020AB470.inc"
 
 	.extern Unk_021C5A6C
-	
+	.extern Unk_020F9658
+	.extern Unk_020F9670
 
 	.text
 
@@ -161,14 +162,14 @@ _020AB688:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020AB6B0: .word 0xC000C000
-_020AB6B4: .word 0x020F9670
-_020AB6B8: .word 0x020F9658
+_020AB6B4: .word Unk_020F9670
+_020AB6B8: .word Unk_020F9658
 _020AB6BC: .word 0x040004A8
-_020AB6C0: .word 0x020F96A4
-_020AB6C4: .word 0x020F96C4
-_020AB6C8: .word 0x020F96F4
+_020AB6C0: .word Unk_020F96A4
+_020AB6C4: .word Unk_020F96C4
+_020AB6C8: .word Unk_020F96F4
 _020AB6CC: .word Unk_021C5A6C
-_020AB6D0: .word 0x020F969C
+_020AB6D0: .word Unk_020F969C
 _020AB6D4: .word 0x040004AC
 	arm_func_end CalcSpriteParams_
 
@@ -197,7 +198,7 @@ NNSi_G2dSetOamSoftEmuAutoZOffsetStep: ; 0x020AB6FC
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
-_020AB708: .word 0x02100EC4
+_020AB708: .word Unk_02100EC4
 	arm_func_end NNSi_G2dSetOamSoftEmuAutoZOffsetStep
 
 	arm_func_start NNSi_G2dGetOamSoftEmuAutoZOffsetStep
@@ -206,7 +207,7 @@ NNSi_G2dGetOamSoftEmuAutoZOffsetStep: ; 0x020AB70C
 	ldr r0, [r0, #0]
 	bx lr
 	; .align 2, 0
-_020AB718: .word 0x02100EC4
+_020AB718: .word Unk_02100EC4
 	arm_func_end NNSi_G2dGetOamSoftEmuAutoZOffsetStep
 
 	arm_func_start NNS_G2dDrawOneOam3DDirectWithPosFast
@@ -356,12 +357,12 @@ _020AB810:
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020AB950: .word 0xC000C000
-_020AB954: .word 0x020F9670
+_020AB954: .word Unk_020F9670
 _020AB958: .word Unk_021C5A6C
-_020AB95C: .word 0x020F9658
+_020AB95C: .word Unk_020F9658
 _020AB960: .word 0x04000470
 _020AB964: .word 0x0400046C
-_020AB968: .word 0x02100EC4
+_020AB968: .word Unk_02100EC4
 	arm_func_end NNS_G2dDrawOneOam3DDirectWithPosFast
 
 	.rodata

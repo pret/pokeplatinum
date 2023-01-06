@@ -54,9 +54,9 @@ _021FAC90:
 	; .align 2, 0
 _021FAC98: .word Unk_ov4_0221B3B4
 _021FAC9C: .word Unk_ov4_0221B3B8
-_021FACA0: .word 0x02219764
-_021FACA4: .word 0x0221976C
-_021FACA8: .word 0x02219770
+_021FACA0: .word Unk_ov4_02219764
+_021FACA4: .word Unk_ov4_0221976C
+_021FACA8: .word Unk_ov4_02219770
 	arm_func_end ov4_021FABFC
 
 	arm_func_start ov4_021FACAC
@@ -165,9 +165,9 @@ _021FAE00:
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_021FAE1C: .word 0x02219774
-_021FAE20: .word 0x02219794
-_021FAE24: .word 0x02219750
+_021FAE1C: .word Unk_ov4_02219774
+_021FAE20: .word Unk_ov4_02219794
+_021FAE24: .word Unk_ov4_02219750
 _021FAE28: .word 0x020FE864
 _021FAE2C: .word 0x0000FFFF
 	arm_func_end ov4_021FACAC
@@ -195,7 +195,7 @@ _021FAE58:
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021FAE7C: .word 0x022197A4
+_021FAE7C: .word Unk_ov4_022197A4
 	arm_func_end ov4_021FAE30
 
 	.data

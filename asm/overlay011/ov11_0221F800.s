@@ -20,8 +20,8 @@ _0221F810:
 	ldr r0, _0221F818 ; =0x0221F96C
 	bx lr
 	; .align 2, 0
-_0221F814: .word 0x0221FBD0
-_0221F818: .word 0x0221F96C
+_0221F814: .word Unk_ov11_0221FBD0
+_0221F818: .word Unk_ov11_0221F96C
 	thumb_func_end ov11_0221F800
 
 	thumb_func_start ov11_0221F81C

@@ -388,7 +388,7 @@ ov75_021D1040: ; 0x021D1040
 	add sp, #4
 	pop {r3, r4, pc}
 	nop
-_021D1060: .word 0x021D1CFC
+_021D1060: .word Unk_ov75_021D1CFC
 	thumb_func_end ov75_021D1040
 
 	thumb_func_start ov75_021D1064
@@ -726,7 +726,7 @@ _021D1308: .word 0x04001000
 _021D130C: .word ov75_021D131C
 _021D1310: .word 0x04000050
 _021D1314: .word 0x0000FFFF
-_021D1318: .word 0x021D1D14
+_021D1318: .word Unk_ov75_021D1D14
 	thumb_func_end ov75_021D1184
 
 	thumb_func_start ov75_021D131C
@@ -919,7 +919,7 @@ _021D146A:
 	add sp, #0x28
 	pop {r4, pc}
 	; .align 2, 0
-_021D147C: .word 0x021D1D70
+_021D147C: .word Unk_ov75_021D1D70
 	thumb_func_end ov75_021D1460
 
 	thumb_func_start ov75_021D1480
@@ -1018,8 +1018,8 @@ _021D14AC:
 	add sp, #0x9c
 	pop {r4, r5, pc}
 	; .align 2, 0
-_021D155C: .word 0x021D1D04
-_021D1560: .word 0x021D1D98
+_021D155C: .word Unk_ov75_021D1D04
+_021D1560: .word Unk_ov75_021D1D98
 	thumb_func_end ov75_021D1480
 
 	thumb_func_start ov75_021D1564
@@ -1883,9 +1883,9 @@ _021D1CA4:
 	add sp, #0x94
 	pop {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021D1CA8: .word 0x021D1D50
-_021D1CAC: .word 0x021D1D24
-_021D1CB0: .word 0x021D1D38
+_021D1CA8: .word Unk_ov75_021D1D50
+_021D1CAC: .word Unk_ov75_021D1D24
+_021D1CB0: .word Unk_ov75_021D1D38
 _021D1CB4: .word 0x0000FFFF
 	thumb_func_end ov75_021D1ADC
 

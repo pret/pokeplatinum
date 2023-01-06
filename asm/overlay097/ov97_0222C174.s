@@ -30,7 +30,7 @@ _0222C18C:
 	pop {r3, r4}
 	bx lr
 	nop
-_0222C19C: .word 0x0223E0B0
+_0222C19C: .word Unk_ov97_0223E0B0
 _0222C1A0: .word 0x00000123
 	thumb_func_end ov97_0222C174
 
@@ -1613,13 +1613,13 @@ _0222CECC:
 	bl ov97_022333BC
 	b _0222D036
 	nop
-_0222CEE0: .word 0x0223E0A4
+_0222CEE0: .word Unk_ov97_0223E0A4
 _0222CEE4: .word 0x000034D8
 _0222CEE8: .word 0x00000708
 _0222CEEC: .word 0x00003170
 _0222CEF0: .word 0x000005DC
 _0222CEF4: .word 0x021BF67C
-_0222CEF8: .word 0x0223E53C
+_0222CEF8: .word Unk_ov97_0223E53C
 _0222CEFC:
 	mov r0, #0x16
 	lsl r0, r0, #4

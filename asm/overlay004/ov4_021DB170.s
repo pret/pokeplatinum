@@ -94,8 +94,8 @@ _021DB278:
 	add sp, sp, #0x214
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_021DB29C: .word 0x02217488
-_021DB2A0: .word 0x0221748C
+_021DB29C: .word Unk_ov4_02217488
+_021DB2A0: .word Unk_ov4_0221748C
 	arm_func_end ov4_021DB188
 
 	arm_func_start DWC_GetFriendStatusData
@@ -507,7 +507,7 @@ ov4_021DB7B4: ; 0x021DB7B4
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021DB808: .word 0x02217490
+_021DB808: .word Unk_ov4_02217490
 _021DB80C: .word ov4_021DC580
 	arm_func_end ov4_021DB7B4
 
@@ -1147,7 +1147,7 @@ ov4_021DC030: ; 0x021DC030
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021DC05C: .word Unk_ov4_0221A698
-_021DC060: .word 0x022174C8
+_021DC060: .word Unk_ov4_022174C8
 	arm_func_end ov4_021DC030
 
 	arm_func_start ov4_021DC064
@@ -1521,7 +1521,7 @@ _021DC564:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021DC578: .word Unk_ov4_0221A698
-_021DC57C: .word 0x022174CC
+_021DC57C: .word Unk_ov4_022174CC
 	arm_func_end ov4_021DC3D0
 
 	arm_func_start ov4_021DC580

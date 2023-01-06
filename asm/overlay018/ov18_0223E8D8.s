@@ -43,7 +43,7 @@ ov18_0223E8D8: ; 0x0223E8D8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0223E95C: .word Unk_ov18_02253388
-_0223E960: .word 0x0224A5B8
+_0223E960: .word Unk_ov18_0224A5B8
 _0223E964: .word ov18_0223EA1C
 	arm_func_end ov18_0223E8D8
 

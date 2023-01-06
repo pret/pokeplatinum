@@ -106,8 +106,8 @@ NNS_G2dSetupSoftwareSpriteCamera: ; 0x020A73C0
 _020A7470: .word 0xBFFF0000
 _020A7474: .word 0x04000580
 _020A7478: .word 0x0400044C
-_020A747C: .word 0x020F9640
-_020A7480: .word 0x020F964C
+_020A747C: .word Unk_020F9640
+_020A7480: .word Unk_020F964C
 _020A7484: .word 0x04000440
 	arm_func_end NNS_G2dSetupSoftwareSpriteCamera
 

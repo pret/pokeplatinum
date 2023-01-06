@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020A3404.inc"
 
-	
+	.extern Unk_020F9534
 
 	.text
 
@@ -285,7 +285,7 @@ _020A37FC:
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_020A3808: .word 0x020F9534
+_020A3808: .word Unk_020F9534
 	arm_func_end sub_020A370C
 
 	arm_func_start sub_020A380C

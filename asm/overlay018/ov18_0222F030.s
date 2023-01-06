@@ -75,7 +75,7 @@ _0222F09C:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _0222F130: .word Unk_ov18_022532A4
-_0222F134: .word 0x022490FC
+_0222F134: .word Unk_ov18_022490FC
 _0222F138: .word ov18_0222F1F0
 _0222F13C: .word ov18_0222F200
 	arm_func_end ov18_0222F030

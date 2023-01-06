@@ -111,7 +111,7 @@ _021D7450:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021D7460: .word 0xAAAAAAAB
-_021D7464: .word 0x02216628
+_021D7464: .word Unk_ov4_02216628
 	arm_func_end ov4_021D72E0
 
 	arm_func_start ov4_021D7468

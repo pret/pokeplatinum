@@ -19,7 +19,7 @@ OS_GetConsoleType: ; 0x020C2730
 	bx lr
 	; .align 2, 0
 _020C2740: .word 0x82000001
-_020C2744: .word 0x0210115C
+_020C2744: .word Unk_0210115C
 	arm_func_end OS_GetConsoleType
 
 	.data

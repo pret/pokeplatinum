@@ -85,11 +85,11 @@ ov18_022330E8: ; 0x022330E8
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02233170: .word 0x0224A0E0
+_02233170: .word Unk_ov18_0224A0E0
 _02233174: .word 0x020C07EC
-_02233178: .word 0x0224A0F8
+_02233178: .word Unk_ov18_0224A0F8
 _0223317C: .word GX_LoadBGPltt
-_02233180: .word 0x0224A110
+_02233180: .word Unk_ov18_0224A110
 _02233184: .word GX_LoadBG2Scr
 _02233188: .word 0x04001008
 _0223318C: .word 0x0400000A

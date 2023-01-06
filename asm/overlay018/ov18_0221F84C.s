@@ -1036,7 +1036,7 @@ _02220680:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0222069C: .word Unk_ov18_02250D2C
-_022206A0: .word 0x02249760
+_022206A0: .word Unk_ov18_02249760
 _022206A4: .word 0x000005D4
 	arm_func_end ov18_02220510
 

@@ -354,9 +354,9 @@ _0226D310:
 	bl sub_02005748
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_0226D338: .word 0x02270A3C
-_0226D33C: .word 0x02270A2C
-_0226D340: .word 0x02270A24
+_0226D338: .word Unk_ov16_02270A3C
+_0226D33C: .word Unk_ov16_02270A2C
+_0226D340: .word Unk_ov16_02270A24
 _0226D344: .word ov16_0226D34C
 _0226D348: .word 0x00000711
 	thumb_func_end ov16_0226D2A0
@@ -447,8 +447,8 @@ _0226D3E2:
 	add sp, #4
 	pop {r3, r4, pc}
 	nop
-_0226D3F0: .word 0x02270A2C
-_0226D3F4: .word 0x02270A24
+_0226D3F0: .word Unk_ov16_02270A2C
+_0226D3F4: .word Unk_ov16_02270A24
 	thumb_func_end ov16_0226D34C
 
 	thumb_func_start ov16_0226D3F8
@@ -615,8 +615,8 @@ _0226D51E:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 _0226D530: .word 0x04000050
-_0226D534: .word 0x02270A2C
-_0226D538: .word 0x02270A24
+_0226D534: .word Unk_ov16_02270A2C
+_0226D538: .word Unk_ov16_02270A24
 _0226D53C: .word 0x04000052
 	thumb_func_end ov16_0226D434
 
@@ -744,9 +744,9 @@ _0226D626:
 	str r0, [r5, #4]
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0226D634: .word 0x02270A70
-_0226D638: .word 0x02270A34
-_0226D63C: .word 0x02270A1C
+_0226D634: .word Unk_ov16_02270A70
+_0226D638: .word Unk_ov16_02270A34
+_0226D63C: .word Unk_ov16_02270A1C
 _0226D640: .word 0x00000713
 _0226D644: .word 0x00000712
 _0226D648: .word 0x000001F5
@@ -1017,8 +1017,8 @@ _0226D836:
 _0226D84A:
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
-_0226D84C: .word 0x02270A34
-_0226D850: .word 0x02270A1C
+_0226D84C: .word Unk_ov16_02270A34
+_0226D850: .word Unk_ov16_02270A1C
 	thumb_func_end ov16_0226D654
 
 	thumb_func_start ov16_0226D854
@@ -1135,8 +1135,8 @@ _0226D922:
 	add sp, #4
 	pop {r3, r4, pc}
 	nop
-_0226D930: .word 0x02270A34
-_0226D934: .word 0x02270A1C
+_0226D930: .word Unk_ov16_02270A34
+_0226D934: .word Unk_ov16_02270A1C
 	thumb_func_end ov16_0226D854
 
 	thumb_func_start ov16_0226D938
@@ -1328,8 +1328,8 @@ _0226DA8A:
 	str r0, [r4, #4]
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
-_0226DAA0: .word 0x02270A34
-_0226DAA4: .word 0x02270A1C
+_0226DAA0: .word Unk_ov16_02270A34
+_0226DAA4: .word Unk_ov16_02270A1C
 _0226DAA8: .word 0xFFFFF000
 	thumb_func_end ov16_0226D99C
 

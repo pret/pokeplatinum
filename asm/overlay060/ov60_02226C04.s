@@ -191,7 +191,7 @@ _02226E24:
 	; .align 2, 0
 _02226E80: .word Unk_ov60_0222A01C
 _02226E84: .word Unk_ov60_0222A018
-_02226E88: .word 0x02229CE4
+_02226E88: .word Unk_ov60_02229CE4
 	arm_func_end ov60_02226D88
 
 	arm_func_start ov60_02226E8C

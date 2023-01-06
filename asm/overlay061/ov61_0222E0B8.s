@@ -32,7 +32,7 @@ _0222E0F0:
 	blt _0222E0D0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_0222E10C: .word 0x0222E65C
+_0222E10C: .word Unk_ov61_0222E65C
 	arm_func_end ov61_0222E0B8
 
 	arm_func_start ov61_0222E110
@@ -61,7 +61,7 @@ _0222E148:
 	blt _0222E128
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_0222E164: .word 0x0222E65C
+_0222E164: .word Unk_ov61_0222E65C
 	arm_func_end ov61_0222E110
 
 	arm_func_start ov61_0222E168
@@ -299,7 +299,7 @@ _0222E44C:
 	add sp, sp, #0x30
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0222E458: .word 0x0222E580
+_0222E458: .word Unk_ov61_0222E580
 _0222E45C: .word 0x00005209
 _0222E460: .word 0x00004E20
 _0222E464: .word 0x000055F0

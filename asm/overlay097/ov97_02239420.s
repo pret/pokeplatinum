@@ -1968,7 +1968,7 @@ _0223AFA0:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
 	; .align 2, 0
-_0223AFD0: .word 0x0223F158
+_0223AFD0: .word Unk_ov97_0223F158
 	arm_func_end ov97_0223ADFC
 
 	arm_func_start ov97_0223AFD4
@@ -2072,7 +2072,7 @@ _0223B124:
 	bx lr
 	; .align 2, 0
 _0223B138: .word 0x00010001
-_0223B13C: .word 0x0223DEC4
+_0223B13C: .word Unk_ov97_0223DEC4
 _0223B140: .word 0x0223DEDC
 _0223B144: .word 0x0223DED0
 	arm_func_end ov97_0223AFD4

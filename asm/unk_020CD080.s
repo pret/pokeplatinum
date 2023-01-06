@@ -278,7 +278,7 @@ _020CD400:
 _020CD408: .word cardi_common
 _020CD40C: .word 0x01FF8000
 _020CD410: .word 0x000001FF
-_020CD414: .word 0x02101480
+_020CD414: .word Unk_02101480
 _020CD418: .word CARDi_OnReadCard
 	arm_func_end CARDi_TryReadCardDma
 
@@ -377,7 +377,7 @@ _020CD544:
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020CD55C: .word 0x02101480
+_020CD55C: .word Unk_02101480
 _020CD560: .word 0x040001A4
 _020CD564: .word 0x04100010
 	arm_func_end CARDi_ReadRomIDCore

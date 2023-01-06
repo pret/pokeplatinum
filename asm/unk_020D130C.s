@@ -17,6 +17,8 @@
 	.extern Unk_020FE6A8
 	.extern Unk_020FE5E4
 	.extern Unk_020FE6E4
+	.extern Unk_02101488
+	.extern Unk_0210148C
 
 	.text
 
@@ -121,7 +123,7 @@ _020D145C:
 _020D1478: .word Unk_021D03AC
 _020D147C: .word 0x04000204
 _020D1480: .word 0x020FE53C
-_020D1484: .word 0x0210148C
+_020D1484: .word Unk_0210148C
 _020D1488: .word Unk_020FE54C
 _020D148C: .word Unk_020FE540
 _020D1490: .word Unk_021D03B0
@@ -131,7 +133,7 @@ _020D149C: .word Unk_021D03B4
 _020D14A0: .word Unk_021D03B8
 _020D14A4: .word Unk_021D03C0
 _020D14A8: .word Unk_021D03DC
-_020D14AC: .word 0x02101488
+_020D14AC: .word Unk_02101488
 _020D14B0: .word Unk_021D03E0
 	arm_func_end CTRDG_IdentifyAgbBackup
 

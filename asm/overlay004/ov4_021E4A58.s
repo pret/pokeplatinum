@@ -296,7 +296,7 @@ ov4_021E4DD4: ; 0x021E4DD4
 	str r4, [r6, #0]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021E4E00: .word 0x02217608
+_021E4E00: .word Unk_ov4_02217608
 	arm_func_end ov4_021E4DD4
 
 	arm_func_start ov4_021E4E04
@@ -316,7 +316,7 @@ ov4_021E4E04: ; 0x021E4E04
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021E4E3C: .word 0x02217608
+_021E4E3C: .word Unk_ov4_02217608
 	arm_func_end ov4_021E4E04
 
 	arm_func_start ov4_021E4E40

@@ -105,7 +105,7 @@ _0220694C:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_0220695C: .word 0x0221A138
+_0220695C: .word Unk_ov4_0221A138
 	arm_func_end ov4_02206878
 
 	arm_func_start ov4_02206960

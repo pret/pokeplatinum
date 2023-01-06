@@ -37,7 +37,7 @@ _020C5F44:
 	bx lr
 	; .align 2, 0
 _020C5F54: .word 0xFFFFFD2D
-_020C5F58: .word 0x020FE1B0
+_020C5F58: .word Unk_020FE1B0
 	arm_func_end SND_CalcChannelVolume
 
 	.rodata

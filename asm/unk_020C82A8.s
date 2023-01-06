@@ -176,7 +176,7 @@ _020C8450:
 	; .align 2, 0
 _020C84B8: .word Unk_021CEC1C
 _020C84BC: .word Unk_021CEC34
-_020C84C0: .word 0x02101164
+_020C84C0: .word Unk_02101164
 _020C84C4: .word 0x027FFC40
 _020C84C8: .word FSi_EmptyArchiveProc
 _020C84CC: .word FSi_ReadDummyCallback

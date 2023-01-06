@@ -69,9 +69,9 @@ _02202764:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _0220277C: .word Unk_ov4_0221B780
-_02202780: .word 0x0221A0E8
+_02202780: .word Unk_ov4_0221A0E8
 _02202784: .word Unk_ov4_0221DBD8
-_02202788: .word 0x02215D08
+_02202788: .word Unk_ov4_02215D08
 _0220278C: .word Unk_ov4_0221B7AC
 _02202790: .word Unk_ov4_0221B7B8
 	arm_func_end ov4_02202698
@@ -586,7 +586,7 @@ _02202E34:
 	; .align 2, 0
 _02202E70: .word Unk_ov4_0221DBD8
 _02202E74: .word 0x02215D09
-_02202E78: .word 0x02215D08
+_02202E78: .word Unk_ov4_02215D08
 _02202E7C: .word Unk_ov4_0221B780
 	arm_func_end VCT_SetCodec
 
@@ -603,7 +603,7 @@ VCT_EnableVAD: ; 0x02202E80
 	streq r1, [r0, #8]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02202EA8: .word 0x0221A0E8
+_02202EA8: .word Unk_ov4_0221A0E8
 _02202EAC: .word Unk_ov4_0221B780
 	arm_func_end VCT_EnableVAD
 
@@ -786,7 +786,7 @@ _02203120: .word Unk_ov4_0221B780
 _02203124: .word Unk_ov4_0221BDC0
 _02203128: .word 0x040002B0
 _0220312C: .word 0x040002B4
-_02203130: .word 0x0221A0E8
+_02203130: .word Unk_ov4_0221A0E8
 _02203134: .word Unk_ov4_0221B790
 _02203138: .word Unk_ov4_0221DBD8
 	arm_func_end ov4_02202EC0
@@ -923,7 +923,7 @@ _0220330C:
 _02203318: .word Unk_ov4_0221B780
 _0220331C: .word Unk_ov4_0221B7B8
 _02203320: .word 0x02215D09
-_02203324: .word 0x02215D08
+_02203324: .word Unk_ov4_02215D08
 	arm_func_end ov4_0220313C
 
 	arm_func_start ov4_02203328
@@ -1063,7 +1063,7 @@ _022034F0:
 	; .align 2, 0
 _022034F8: .word Unk_ov4_0221B780
 _022034FC: .word Unk_ov4_0221DBD8
-_02203500: .word 0x02215D12
+_02203500: .word Unk_ov4_02215D12
 	arm_func_end ov4_022033F8
 
 	.rodata

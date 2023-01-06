@@ -627,7 +627,7 @@ _02242440:
 	add sp, sp, #0x20
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0224245C: .word 0x02259100
+_0224245C: .word Unk_ov66_02259100
 	arm_func_end ov66_022423B0
 
 	arm_func_start ov66_02242460
@@ -742,7 +742,7 @@ _022425D4:
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_022425EC: .word 0x02259100
+_022425EC: .word Unk_ov66_02259100
 	arm_func_end ov66_02242550
 
 	arm_func_start ov66_022425F0
@@ -837,7 +837,7 @@ _02242728:
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_02242734: .word 0x0225910C
+_02242734: .word Unk_ov66_0225910C
 	arm_func_end ov66_02242660
 
 	arm_func_start ov66_02242738

@@ -453,7 +453,7 @@ _020B7974:
 	; .align 2, 0
 _020B7990: .word 0x00101610
 _020B7994: .word 0x00101810
-_020B7998: .word 0x02101124
+_020B7998: .word Unk_02101124
 	arm_func_end NNSi_G3dSendTexSRTXsi
 
 	.data

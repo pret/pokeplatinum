@@ -4,6 +4,7 @@
 	.extern Unk_ov4_0221DBFC
 
 
+	.extern Unk_ov4_0221A134
 	.text
 
 
@@ -95,7 +96,7 @@ _02206328:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02206338: .word 0x0221A134
+_02206338: .word Unk_ov4_0221A134
 	arm_func_end ov4_022062D4
 
 	arm_func_start ov4_0220633C

@@ -3,7 +3,7 @@
 
 	.extern Unk_021C89F4
 	.extern Unk_021C89F8
-	
+	.extern Unk_02101148
 
 	.text
 
@@ -103,7 +103,7 @@ _020B2728:
 	bl MI_SendGXCommandAsync
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B274C: .word 0x02101148
+_020B274C: .word Unk_02101148
 _020B2750: .word Unk_021C89F4
 _020B2754: .word Unk_021C89F8
 _020B2758: .word simpleUnlock_

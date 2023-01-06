@@ -312,7 +312,7 @@ _020C895C:
 	add sp, sp, #0x58
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C8970: .word 0x02101168
+_020C8970: .word Unk_02101168
 	arm_func_end FSi_CompareDigest
 
 	arm_func_start FS_StartOverlay

@@ -281,7 +281,7 @@ _020A4220:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A422C: .word 0x66666667
-_020A4230: .word 0x02100DB8
+_020A4230: .word Unk_02100DB8
 	arm_func_end DWCi_Acc_U64ToString32
 
 	arm_func_start DWCi_Acc_LoginIdToUserName
@@ -322,7 +322,7 @@ DWCi_Acc_LoginIdToUserName: ; 0x020A4234
 	add sp, sp, #0x40
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020A42C0: .word 0x02100DDC
+_020A42C0: .word Unk_02100DDC
 	arm_func_end DWCi_Acc_LoginIdToUserName
 
 	arm_func_start DWCi_Acc_CreateUserData

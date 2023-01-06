@@ -3,6 +3,7 @@
 
 	
 
+	.extern Unk_ov4_0221A134
 	.text
 
 
@@ -45,7 +46,7 @@ _02205F68:
 	str r6, [r1, #0]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02205F78: .word 0x0221A134
+_02205F78: .word Unk_ov4_0221A134
 _02205F7C: .word Unk_ov4_0221DC34
 _02205F80: .word Unk_ov4_0221DC30
 	arm_func_end ov4_02205EF0
@@ -70,7 +71,7 @@ ov4_02205F84: ; 0x02205F84
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02205FC4: .word Unk_ov4_0221DC30
-_02205FC8: .word 0x0221A134
+_02205FC8: .word Unk_ov4_0221A134
 	arm_func_end ov4_02205F84
 
 	arm_func_start ov4_02205FCC

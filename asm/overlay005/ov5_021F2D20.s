@@ -125,10 +125,10 @@ ov5_021F2D4C: ; 0x021F2D4C
 	add sp, #0xc
 	pop {r3, r4, pc}
 	; .align 2, 0
-_021F2E1C: .word 0x02200540
-_021F2E20: .word 0x02200558
-_021F2E24: .word 0x02200528
-_021F2E28: .word 0x02200570
+_021F2E1C: .word Unk_ov5_02200540
+_021F2E20: .word Unk_ov5_02200558
+_021F2E24: .word Unk_ov5_02200528
+_021F2E28: .word Unk_ov5_02200570
 	thumb_func_end ov5_021F2D4C
 
 	thumb_func_start ov5_021F2E2C
@@ -224,7 +224,7 @@ ov5_021F2EA4: ; 0x021F2EA4
 	add sp, #0x30
 	pop {r4, r5, r6, pc}
 	nop
-_021F2F08: .word 0x022004EC
+_021F2F08: .word Unk_ov5_022004EC
 	thumb_func_end ov5_021F2EA4
 
 	thumb_func_start ov5_021F2F0C
@@ -568,7 +568,7 @@ ov5_021F3154: ; 0x021F3154
 	add sp, #0x28
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_021F31A4: .word 0x02200514
+_021F31A4: .word Unk_ov5_02200514
 	thumb_func_end ov5_021F3154
 
 	thumb_func_start ov5_021F31A8

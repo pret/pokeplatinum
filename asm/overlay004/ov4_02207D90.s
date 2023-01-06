@@ -8,6 +8,7 @@
 	.extern Unk_ov4_0221DBFC
 	.extern Unk_ov4_0221DBF4
 
+	.extern Unk_ov4_0221A134
 	.text
 
 
@@ -57,7 +58,7 @@ _02207E1C:
 	; .align 2, 0
 _02207E24: .word Unk_ov4_0221DBF4
 _02207E28: .word Unk_ov4_0221DE40
-_02207E2C: .word 0x0221A134
+_02207E2C: .word Unk_ov4_0221A134
 _02207E30: .word Unk_ov4_0221DC00
 	arm_func_end ov4_02207D90
 

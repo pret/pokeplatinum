@@ -571,7 +571,7 @@ _020B67B4:
 	; .align 2, 0
 _020B67D0: .word 0x00101610
 _020B67D4: .word 0x00101810
-_020B67D8: .word 0x021010E4
+_020B67D8: .word Unk_021010E4
 	arm_func_end NNSi_G3dSendTexSRTMaya
 
 	.data

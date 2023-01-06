@@ -426,7 +426,7 @@ _020D9094:
 	add sp, sp, #0x20
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020D90AC: .word 0x02101820
+_020D90AC: .word Unk_02101820
 	arm_func_end strtok
 
 	arm_func_start strstr

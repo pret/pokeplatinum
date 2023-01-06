@@ -103,7 +103,7 @@ _021D8194:
 	; .align 2, 0
 _021D81AC: .word DWC_Alloc
 _021D81B0: .word DWC_Free
-_021D81B4: .word 0x02217424
+_021D81B4: .word Unk_ov4_02217424
 	arm_func_end ov4_021D8144
 
 	arm_func_start ov4_021D81B8
@@ -171,7 +171,7 @@ _021D8224:
 _021D8288: .word Unk_ov4_0221A4E4
 _021D828C: .word 0x00001E20
 _021D8290: .word 0xFFFFB17C
-_021D8294: .word 0x0221742C
+_021D8294: .word Unk_ov4_0221742C
 _021D8298: .word DWC_Alloc
 _021D829C: .word DWC_Free
 	arm_func_end DWC_NASLoginAsync

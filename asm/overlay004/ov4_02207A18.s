@@ -3,6 +3,7 @@
 
 	.extern Unk_ov4_0221DC60
 
+	.extern Unk_ov4_0221A134
 	.text
 
 
@@ -197,7 +198,7 @@ _02207C78:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_02207CB0: .word 0x0221A134
+_02207CB0: .word Unk_ov4_0221A134
 	arm_func_end ov4_02207BB4
 
 	arm_func_start ov4_02207CB4

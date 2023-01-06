@@ -533,7 +533,7 @@ _020CEB68:
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
-_020CEB90: .word 0x02101484
+_020CEB90: .word Unk_02101484
 	arm_func_end WM_GetNextTgid
 
 	.data

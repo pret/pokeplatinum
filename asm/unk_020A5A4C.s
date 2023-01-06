@@ -27,8 +27,8 @@ NNSi_GfdSetTexNrmSearchArray: ; 0x020A5A4C
 	str r1, [r0, #0x18]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020A5A8C: .word 0x02100E18
-_020A5A90: .word 0x02100DFC
+_020A5A8C: .word Unk_02100E18
+_020A5A90: .word Unk_02100DFC
 	arm_func_end NNSi_GfdSetTexNrmSearchArray
 
 	arm_func_start NNS_GfdInitFrmTexVramManager
@@ -104,7 +104,7 @@ _020A5B50:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A5B88: .word Unk_021C3AB0
-_020A5B8C: .word 0x02100E18
+_020A5B8C: .word Unk_02100E18
 	arm_func_end NNS_GfdResetFrmTexVramState
 
 	arm_func_start NNS_GfdAllocFrmTexVram
@@ -210,8 +210,8 @@ _020A5CC8:
 _020A5CEC: .word 0x0007FFF0
 _020A5CF0: .word 0x02100E48
 _020A5CF4: .word 0x02100E30
-_020A5CF8: .word 0x02100DFC
-_020A5CFC: .word 0x02100E04
+_020A5CF8: .word Unk_02100DFC
+_020A5CFC: .word Unk_02100E04
 	arm_func_end NNS_GfdAllocFrmTexVram
 
 	arm_func_start NNS_GfdFreeFrmTexVram
@@ -239,7 +239,7 @@ _020A5D18:
 	blt _020A5D18
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A5D44: .word 0x02100E18
+_020A5D44: .word Unk_02100E18
 	arm_func_end NNS_GfdGetFrmTexVramState
 
 	arm_func_start NNS_GfdSetFrmTexVramState
@@ -261,7 +261,7 @@ _020A5D58:
 	blt _020A5D58
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020A5D84: .word 0x02100E18
+_020A5D84: .word Unk_02100E18
 	arm_func_end NNS_GfdSetFrmTexVramState
 
 	.data

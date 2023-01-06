@@ -75,7 +75,7 @@ _020ACB84:
 	b _020ACAF8
 _020ACBC8:
 	.byte 0xF0, 0x87, 0xBD, 0xE8
-_020ACBCC: .word 0x020F9774
+_020ACBCC: .word Unk_020F9774
 	arm_func_end GetCharIndex1D
 
 	arm_func_start OBJSizeToShape
@@ -87,7 +87,7 @@ OBJSizeToShape: ; 0x020ACBD0
 	ldr r0, [r0, r1, lsl #2]
 	bx lr
 	; .align 2, 0
-_020ACBE8: .word 0x020F9794
+_020ACBE8: .word Unk_020F9794
 	arm_func_end OBJSizeToShape
 
 	arm_func_start ClearChar
@@ -1000,7 +1000,7 @@ NNS_G2dCharCanvasInitForBG: ; 0x020AD8B8
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
-_020AD8E0: .word 0x020F975C
+_020AD8E0: .word Unk_020F975C
 	arm_func_end NNS_G2dCharCanvasInitForBG
 
 	arm_func_start NNS_G2dCharCanvasInitForOBJ1D
@@ -1038,8 +1038,8 @@ NNS_G2dCharCanvasInitForOBJ1D: ; 0x020AD8E4
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020AD964: .word 0x020F9774
-_020AD968: .word 0x020F9768
+_020AD964: .word Unk_020F9774
+_020AD968: .word Unk_020F9768
 	arm_func_end NNS_G2dCharCanvasInitForOBJ1D
 
 	arm_func_start NNS_G2dMapScrToCharText
@@ -1348,7 +1348,7 @@ _020ADDB4:
 	add sp, sp, #0x38
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020ADDC0: .word 0x020F9774
+_020ADDC0: .word Unk_020F9774
 _020ADDC4: .word 0xFE00FF00
 _020ADDC8: .word 0x3FFF3FFF
 	arm_func_end NNS_G2dArrangeOBJ1D

@@ -22,9 +22,9 @@ sub_020E3EA8: ; 0x020E3EA8
 	bl __throw
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020E3ED8: .word 0x02101BF8
+_020E3ED8: .word Unk_02101BF8
 _020E3EDC: .word 0x02101C40
-_020E3EE0: .word 0x02101C4C
+_020E3EE0: .word Unk_02101C4C
 _020E3EE4: .word sub_020E3EE8
 	arm_func_end sub_020E3EA8
 
@@ -136,7 +136,7 @@ sub_020E4020: ; 0x020E4020
 	ldr r0, _020E4028 ; =0x02101BFC
 	bx lr
 	; .align 2, 0
-_020E4028: .word 0x02101BFC
+_020E4028: .word Unk_02101BFC
 	arm_func_end sub_020E4020
 
 

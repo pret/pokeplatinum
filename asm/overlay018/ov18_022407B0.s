@@ -812,8 +812,8 @@ ov18_0224124C: ; 0x0224124C
 	bx lr
 	; .align 2, 0
 _02241298: .word Unk_ov18_0225339C
-_0224129C: .word 0x0224A6B8
-_022412A0: .word 0x0224A6B8
+_0224129C: .word Unk_ov18_0224A6B8
+_022412A0: .word Unk_ov18_0224A6B8
 	arm_func_end ov18_0224124C
 
 	arm_func_start ov18_022412A4

@@ -68,11 +68,11 @@ ov18_0223C6CC: ; 0x0223C6CC
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223C754: .word 0x0224A520
+_0223C754: .word Unk_ov18_0224A520
 _0223C758: .word 0x020C07EC
-_0223C75C: .word 0x0224A538
+_0223C75C: .word Unk_ov18_0224A538
 _0223C760: .word GX_LoadBGPltt
-_0223C764: .word 0x0224A550
+_0223C764: .word Unk_ov18_0224A550
 _0223C768: .word GX_LoadBG2Scr
 _0223C76C: .word 0x04001008
 _0223C770: .word 0x0400000A
@@ -390,11 +390,11 @@ ov18_0223CABC: ; 0x0223CABC
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0223CB44: .word 0x0224A564
+_0223CB44: .word Unk_ov18_0224A564
 _0223CB48: .word 0x020C07EC
-_0223CB4C: .word 0x0224A57C
+_0223CB4C: .word Unk_ov18_0224A57C
 _0223CB50: .word GX_LoadBGPltt
-_0223CB54: .word 0x0224A594
+_0223CB54: .word Unk_ov18_0224A594
 _0223CB58: .word GX_LoadBG2Scr
 _0223CB5C: .word 0x04001008
 _0223CB60: .word 0x0400000A

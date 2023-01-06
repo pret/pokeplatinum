@@ -281,7 +281,7 @@ _021E849C:
 	str r0, [r4, #0x20]
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021E84C0: .word 0x022158E8
+_021E84C0: .word Unk_ov4_022158E8
 	arm_func_end ov4_021E8404
 
 	arm_func_start ov4_021E84C4
@@ -379,7 +379,9 @@ ov4_021E856C: ; 0x021E856C
 
 	.global Unk_ov4_022158E8
 Unk_ov4_022158E8: ; 0x022158E8
-	.incbin "incbin/overlay4_rodata.bin", 0x80, 0x58
+	.incbin "incbin/overlay4_rodata.bin", 0x80, 0x48
+	.word Unk_ov4_02217618
+	.incbin "incbin/overlay4_rodata.bin", 0xCC, 0xC
 
 
 

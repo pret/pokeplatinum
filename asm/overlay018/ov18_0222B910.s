@@ -79,7 +79,7 @@ _0222B984:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_0222B9FC: .word 0x02248D14
+_0222B9FC: .word Unk_ov18_02248D14
 _0222BA00: .word Unk_ov18_02253290
 	arm_func_end ov18_0222B948
 

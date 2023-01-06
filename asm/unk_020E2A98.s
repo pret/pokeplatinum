@@ -1430,7 +1430,7 @@ sub_020E3E9C: ; 0x020E3E9C
 	ldr r0, _020E3EA4 ; =0x02101B80
 	bx lr
 	; .align 2, 0
-_020E3EA4: .word 0x02101B80
+_020E3EA4: .word Unk_02101B80
 	arm_func_end sub_020E3E9C
 
 

@@ -606,7 +606,7 @@ ov4_02211D04: ; 0x02211D04
 	bl ov4_022114E4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_02211D68: .word 0x0221A3A4
+_02211D68: .word Unk_ov4_0221A3A4
 	arm_func_end ov4_02211D04
 
 	arm_func_start ov4_02211D6C

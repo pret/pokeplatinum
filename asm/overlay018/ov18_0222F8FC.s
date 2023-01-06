@@ -66,7 +66,7 @@ _0222F9A8:
 	; .align 2, 0
 _0222F9D4: .word 0x0001E2A4
 _0222F9D8: .word Unk_ov18_022532D0
-_0222F9DC: .word 0x02249D6C
+_0222F9DC: .word Unk_ov18_02249D6C
 _0222F9E0: .word Unk_ov18_022532D8
 _0222F9E4: .word ov18_0222FA9C
 	arm_func_end ov18_0222F8FC

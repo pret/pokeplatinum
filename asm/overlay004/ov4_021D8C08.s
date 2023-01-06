@@ -788,10 +788,10 @@ _021D9704:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021D9710: .word Unk_ov4_0221A504
-_021D9714: .word 0x0221746C
-_021D9718: .word 0x02217470
+_021D9714: .word Unk_ov4_0221746C
+_021D9718: .word Unk_ov4_02217470
 _021D971C: .word ov4_021D9FF4
-_021D9720: .word 0x02217474
+_021D9720: .word Unk_ov4_02217474
 	arm_func_end DWC_ConnectToGameServerAsync
 
 	arm_func_start DWC_SetConnectionClosedCallback
@@ -856,7 +856,7 @@ _021D97C0:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D97EC: .word Unk_ov4_0221A504
-_021D97F0: .word 0x02217474
+_021D97F0: .word Unk_ov4_02217474
 	arm_func_end DWC_CloseAllConnectionsHard
 
 	arm_func_start ov4_021D97F4
@@ -1756,8 +1756,8 @@ _021DA2DC:
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021DA300: .word 0x02217478
-_021DA304: .word 0x02217480
+_021DA300: .word Unk_ov4_02217478
+_021DA304: .word Unk_ov4_02217480
 _021DA308: .word Unk_ov4_0221A504
 	arm_func_end ov4_021DA1A4
 
@@ -2005,7 +2005,7 @@ _021DA66C: .word 0xFFFFE24F
 _021DA670: .word Unk_ov4_0221A504
 _021DA674: .word Unk_ov4_0221A50C
 _021DA678: .word 0xFFFEC780
-_021DA67C: .word 0x02217474
+_021DA67C: .word Unk_ov4_02217474
 	arm_func_end ov4_021DA318
 
 	arm_func_start ov4_021DA680

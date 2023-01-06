@@ -83,15 +83,20 @@ sub_020E4128: ; 0x020E4128
 
 	.global Unk_02101C70
 Unk_02101C70: ; 0x02101C70
-	.incbin "incbin/arm9_data.bin", 0x2F90, 0x2F98 - 0x2F90
+	.word Unk_02101CB0+8
+	.word Unk_02101C90
 
 	.global Unk_02101C78
 Unk_02101C78: ; 0x02101C78
-	.incbin "incbin/arm9_data.bin", 0x2F98, 0x2FA4 - 0x2F98
+	.word Unk_02101CA0+8
+	.word Unk_02101CE4
+	.word Unk_02101C84
 
 	.global Unk_02101C84
 Unk_02101C84: ; 0x02101C84
-	.incbin "incbin/arm9_data.bin", 0x2FA4, 0x2FB0 - 0x2FA4
+	.word Unk_02101CA0+8
+	.word Unk_02101CC0
+	.word Unk_02101C70
 
 	.global Unk_02101C90
 Unk_02101C90: ; 0x02101C90
@@ -99,11 +104,17 @@ Unk_02101C90: ; 0x02101C90
 
 	.global Unk_02101CA0
 Unk_02101CA0: ; 0x02101CA0
-	.incbin "incbin/arm9_data.bin", 0x2FC0, 0x2FD0 - 0x2FC0
+	.word 0x0
+	.word Unk_02101C78
+	.word sub_020E4114
+	.word sub_020E4128
 
 	.global Unk_02101CB0
 Unk_02101CB0: ; 0x02101CB0
-	.incbin "incbin/arm9_data.bin", 0x2FD0, 0x2FE0 - 0x2FD0
+	.word 0x0
+	.word Unk_02101C84
+	.word sub_020E40D0
+	.word sub_020E40E4
 
 	.global Unk_02101CC0
 Unk_02101CC0: ; 0x02101CC0

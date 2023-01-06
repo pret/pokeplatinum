@@ -59,9 +59,9 @@ _021D7964:
 	bl ov4_021D3038
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021D7970: .word 0x022173B8
-_021D7974: .word 0x022173E0
-_021D7978: .word 0x02217404
+_021D7970: .word Unk_ov4_022173B8
+_021D7974: .word Unk_ov4_022173E0
+_021D7978: .word Unk_ov4_02217404
 	arm_func_end DWC_SetAuthServer
 
 	arm_func_start DWC_ConnectInetAsync

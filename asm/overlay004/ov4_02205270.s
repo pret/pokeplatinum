@@ -28,7 +28,7 @@ _0220527C:
 	; .align 2, 0
 _022052B0: .word Unk_ov4_0221C738
 _022052B4: .word Unk_ov4_0221C72C
-_022052B8: .word 0x0221A114
+_022052B8: .word Unk_ov4_0221A114
 	arm_func_end ov4_02205270
 
 	arm_func_start VCT_GetVADInfo
@@ -41,7 +41,7 @@ VCT_GetVADInfo: ; 0x022052BC
 	bl MI_CpuCopy8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022052D8: .word 0x0221A114
+_022052D8: .word Unk_ov4_0221A114
 	arm_func_end VCT_GetVADInfo
 
 	arm_func_start ov4_022052DC
@@ -174,7 +174,7 @@ _022054A0:
 	mov r0, lr
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_022054A8: .word 0x0221A114
+_022054A8: .word Unk_ov4_0221A114
 _022054AC: .word Unk_ov4_0221C738
 _022054B0: .word 0x040002B0
 _022054B4: .word 0x040002B4
@@ -192,7 +192,7 @@ ov4_022054BC: ; 0x022054BC
 	str r0, [r1, #0xc]
 	bx ip
 	; .align 2, 0
-_022054DC: .word 0x0221A114
+_022054DC: .word Unk_ov4_0221A114
 _022054E0: .word ov4_02205270
 	arm_func_end ov4_022054BC
 

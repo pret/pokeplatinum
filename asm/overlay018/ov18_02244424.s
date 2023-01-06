@@ -75,8 +75,8 @@ _022444D8:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _0224451C: .word Unk_ov18_022533C0
-_02244520: .word 0x0224B210
-_02244524: .word 0x0224B218
+_02244520: .word Unk_ov18_0224B210
+_02244524: .word Unk_ov18_0224B218
 	arm_func_end ov18_02244424
 
 	arm_func_start ov18_02244528
@@ -276,10 +276,10 @@ _02244764:
 	; .align 2, 0
 _022447D8: .word Unk_ov18_022533C0
 _022447DC: .word 0x0224972E
-_022447E0: .word 0x0224972C
+_022447E0: .word Unk_ov18_0224972C
 _022447E4: .word 0x04001008
 _022447E8: .word 0x04000008
-_022447EC: .word 0x02249728
+_022447EC: .word Unk_ov18_02249728
 _022447F0: .word ov18_022447F4
 	arm_func_end ov18_0224467C
 

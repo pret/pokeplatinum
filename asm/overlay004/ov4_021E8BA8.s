@@ -206,7 +206,7 @@ _021E8E50:
 	; .align 2, 0
 _021E8E8C: .word Unk_ov4_0221AE40
 _021E8E90: .word 0x00000857
-_021E8E94: .word 0x0221597C
+_021E8E94: .word Unk_ov4_0221597C
 	arm_func_end ov4_021E8BBC
 
 	arm_func_start ov4_021E8E98

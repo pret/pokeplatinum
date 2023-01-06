@@ -31,7 +31,7 @@ _020AFCBC:
 	beq _020AFCBC
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020AFCF4: .word 0x02101064
+_020AFCF4: .word Unk_02101064
 	arm_func_end G3dDrawInternal_Loop_
 
 	arm_func_start G3dDrawInternal_
@@ -750,7 +750,7 @@ _020B06B8:
 	; .align 2, 0
 _020B06E4: .word Unk_021C5CF4
 _020B06E8: .word 0x021C5A8C
-_020B06EC: .word 0x020F97D4
+_020B06EC: .word Unk_020F97D4
 _020B06F0: .word 0x00293130
 _020B06F4: .word 0x00002B2A
 	arm_func_end NNSi_G3dFuncSbc_MAT_InternalDefault
@@ -807,7 +807,7 @@ _020B0794:
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B07A4: .word 0x02100F74
+_020B07A4: .word Unk_02100F74
 	arm_func_end NNSi_G3dFuncSbc_MAT
 
 	arm_func_start NNSi_G3dFuncSbc_SHP_InternalDefault
@@ -918,7 +918,7 @@ _020B0908:
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B0918: .word 0x02100F84
+_020B0918: .word Unk_02100F84
 	arm_func_end NNSi_G3dFuncSbc_SHP
 
 	arm_func_start NNSi_G3dFuncSbc_NODEDESC
@@ -1226,7 +1226,7 @@ _020B0D58:
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020B0D6C: .word 0x020F97F4
+_020B0D6C: .word Unk_020F97F4
 _020B0D70: .word 0x020F97F5
 _020B0D74: .word 0x020F97F6
 _020B0D78: .word 0x020F97F7
@@ -1440,7 +1440,7 @@ _020B1070: .word 0x00171012
 _020B1074: .word 0x02100FD8
 _020B1078: .word 0x00001B19
 _020B107C: .word 0x02100FE0
-_020B1080: .word 0x02100FD4
+_020B1080: .word Unk_02100FD4
 	arm_func_end NNSi_G3dFuncSbc_BB
 
 	arm_func_start NNSi_G3dFuncSbc_BBY
@@ -1676,7 +1676,7 @@ _020B13D4: .word 0x021C5AD8
 _020B13D8: .word 0x00171012
 _020B13DC: .word 0x02101020
 _020B13E0: .word 0x00001B19
-_020B13E4: .word 0x0210101C
+_020B13E4: .word Unk_0210101C
 	arm_func_end NNSi_G3dFuncSbc_BBY
 
 	arm_func_start NNSi_G3dFuncSbc_NODEMIX
@@ -2484,7 +2484,7 @@ _020B1FAC:
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020B1FC0: .word 0x02100F64
+_020B1FC0: .word Unk_02100F64
 _020B1FC4: .word 0x02100F70
 _020B1FC8: .word 0x021C5A8C
 _020B1FCC: .word 0x021C5AD8
@@ -2740,9 +2740,9 @@ _020B2350:
 	add sp, sp, #0x80
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B2364: .word 0x02100F64
+_020B2364: .word Unk_02100F64
 _020B2368: .word 0x02100F68
-_020B236C: .word 0x02100F94
+_020B236C: .word Unk_02100F94
 _020B2370: .word 0x021C5A8C
 _020B2374: .word 0x021C5B6C
 _020B2378: .word 0x021C5B48

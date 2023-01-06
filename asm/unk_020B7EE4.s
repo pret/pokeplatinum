@@ -5,7 +5,7 @@
 	.extern Unk_021CAF58
 	.extern Unk_021CAF64
 	.extern Unk_021CB3A4
-	
+	.extern Unk_020FDAB0
 
 	.text
 
@@ -506,7 +506,7 @@ _020B849C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020B84AC: .word Unk_021CAF58
-_020B84B0: .word 0x020FDAB0
+_020B84B0: .word Unk_020FDAB0
 _020B84B4: .word 0x00007FFF
 	arm_func_end NNSi_SndPlayerMain
 

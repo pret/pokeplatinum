@@ -75,7 +75,7 @@ sub_020DFA58: ; 0x020DFA58
 	moveq r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020DFA7C: .word 0x021019D8
+_020DFA7C: .word Unk_021019D8
 	arm_func_end sub_020DFA58
 
 	arm_func_start sub_020DFA80

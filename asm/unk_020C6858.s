@@ -659,7 +659,7 @@ _020C7138:
 	add sp, sp, #0xe0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020C7144: .word 0x02101160
+_020C7144: .word Unk_02101160
 	arm_func_end FSi_GetPathCommand
 
 	arm_func_start FSi_OpenFileFastCommand

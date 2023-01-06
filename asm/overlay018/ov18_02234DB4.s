@@ -86,7 +86,7 @@ _02234E74:
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
-_02234EDC: .word 0x02249230
+_02234EDC: .word Unk_ov18_02249230
 _02234EE0: .word Unk_ov18_02253320
 _02234EE4: .word ov18_02234FA4
 	arm_func_end ov18_02234DB4
@@ -131,13 +131,13 @@ ov18_02234EE8: ; 0x02234EE8
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02234F7C: .word 0x0224A150
+_02234F7C: .word Unk_ov18_0224A150
 _02234F80: .word 0x020C0160
-_02234F84: .word 0x0224A164
+_02234F84: .word Unk_ov18_0224A164
 _02234F88: .word 0x020C07EC
-_02234F8C: .word 0x0224A17C
+_02234F8C: .word Unk_ov18_0224A17C
 _02234F90: .word GX_LoadBGPltt
-_02234F94: .word 0x0224A194
+_02234F94: .word Unk_ov18_0224A194
 _02234F98: .word GX_LoadBG2Scr
 _02234F9C: .word 0x04001008
 _02234FA0: .word 0x0400000A
@@ -443,7 +443,7 @@ _02235338:
 	add sp, sp, #0x10
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02235378: .word 0x02249230
+_02235378: .word Unk_ov18_02249230
 _0223537C: .word Unk_ov18_02253320
 _02235380: .word ov18_0223538C
 _02235384: .word ov18_02235884
@@ -515,7 +515,7 @@ _02235464:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02235474: .word Unk_ov18_02253320
-_02235478: .word 0x0224A1A8
+_02235478: .word Unk_ov18_0224A1A8
 _0223547C: .word 0x020C0160
 _02235480: .word ov18_02236BE0
 _02235484: .word ov18_02233818
@@ -587,7 +587,7 @@ _022354FC:
 	; .align 2, 0
 _02235578: .word Unk_ov18_02253320
 _0223557C: .word 0x0000E01D
-_02235580: .word 0x0224924C
+_02235580: .word Unk_ov18_0224924C
 	arm_func_end ov18_02235490
 
 	arm_func_start ov18_02235584
@@ -616,8 +616,8 @@ ov18_02235584: ; 0x02235584
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022355DC: .word Unk_ov18_02253320
-_022355E0: .word 0x02249248
-_022355E4: .word 0x0224924C
+_022355E0: .word Unk_ov18_02249248
+_022355E4: .word Unk_ov18_0224924C
 _022355E8: .word 0xFE00FF00
 	arm_func_end ov18_02235584
 
@@ -695,7 +695,7 @@ _022356AC:
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
-_022356E4: .word 0x02249230
+_022356E4: .word Unk_ov18_02249230
 _022356E8: .word Unk_ov18_02253320
 _022356EC: .word 0xC1FFFCFF
 _022356F0: .word ov18_02234FF8

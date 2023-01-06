@@ -23,7 +23,7 @@ __msl_assertion_failed: ; 0x020D407C
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_020D40B4: .word 0x02101574
+_020D40B4: .word Unk_02101574
 	arm_func_end __msl_assertion_failed
 
 	.data

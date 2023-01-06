@@ -6,6 +6,8 @@
 	.extern Unk_021D03C8
 	.extern Unk_021D03DC
 	.extern CTRDGi_PollingSR512kCOMMON
+	.extern Unk_02101488
+
 
 	.text
 
@@ -66,7 +68,7 @@ CTRDGi_EraseFlashChipCoreLE: ; 0x020D2114
 	; .align 2, 0
 _020D21E0: .word Unk_021D03AC
 _020D21E4: .word 0x04000204
-_020D21E8: .word 0x02101488
+_020D21E8: .word Unk_02101488
 _020D21EC: .word Unk_021D03C8
 _020D21F0: .word 0x0A005555
 _020D21F4: .word 0x0A002AAA
@@ -148,7 +150,7 @@ CTRDGi_EraseFlashSectorCoreLE: ; 0x020D21FC
 _020D2310: .word 0x000080FF
 _020D2314: .word Unk_021D03AC
 _020D2318: .word 0x04000204
-_020D231C: .word 0x02101488
+_020D231C: .word Unk_02101488
 _020D2320: .word Unk_021D03C8
 _020D2324: .word 0x0A005555
 _020D2328: .word 0x0A002AAA
@@ -300,7 +302,7 @@ _020D24F4:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _020D2534: .word 0x000080FF
-_020D2538: .word 0x02101488
+_020D2538: .word Unk_02101488
 _020D253C: .word CTRDGi_VerifyFlashCoreFF
 _020D2540: .word Unk_021D03AC
 _020D2544: .word 0x04000204
@@ -326,7 +328,7 @@ _020D257C:
 	mov r0, r2
 	bx lr
 	; .align 2, 0
-_020D2584: .word 0x02101488
+_020D2584: .word Unk_02101488
 	arm_func_end CTRDGi_VerifyFlashCoreFF
 
 	arm_func_start CTRDGi_VerifyFlashErase
@@ -365,7 +367,7 @@ CTRDGi_VerifyFlashErase: ; 0x020D2588
 	; .align 2, 0
 _020D2604: .word Unk_021D03AC
 _020D2608: .word 0x04000204
-_020D260C: .word 0x02101488
+_020D260C: .word Unk_02101488
 _020D2610: .word 0x00008004
 	arm_func_end CTRDGi_VerifyFlashErase
 

@@ -134,7 +134,7 @@ _020C8D90:
 	bl MI_CpuFill8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C8DC4: .word 0x02101170
+_020C8DC4: .word Unk_02101170
 	arm_func_end DGT_Hash1GetDigest_R
 
 	arm_func_start ProcessBlock
@@ -379,8 +379,8 @@ _020C906C:
 	str r1, [r0, #0xc]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020C9174: .word 0x02101234
-_020C9178: .word 0x02101174
+_020C9174: .word Unk_02101234
+_020C9178: .word Unk_02101174
 	arm_func_end ProcessBlock
 
 	.data

@@ -111,7 +111,7 @@ NNS_FndInitAllocatorForExpHeap: ; 0x020A5A14
 	stmib r0, {r1, r2, r3}
 	bx lr
 	; .align 2, 0
-_020A5A28: .word 0x020F9560
+_020A5A28: .word Unk_020F9560
 	arm_func_end NNS_FndInitAllocatorForExpHeap
 
 	.rodata
@@ -119,17 +119,21 @@ _020A5A28: .word 0x020F9560
 
 	.global Unk_020F9550
 Unk_020F9550: ; 0x020F9550
-	.incbin "incbin/arm9_rodata.bin", 0x14910, 0x14918 - 0x14910
+	.word AllocatorAllocForUnitHeap
+    .word AllocatorFreeForUnitHeap
 
 	.global Unk_020F9558
 Unk_020F9558: ; 0x020F9558
-	.incbin "incbin/arm9_rodata.bin", 0x14918, 0x14920 - 0x14918
+	.word AllocatorAllocForFrmHeap
+    .word AllocatorFreeForFrmHeap
 
 	.global Unk_020F9560
 Unk_020F9560: ; 0x020F9560
-	.incbin "incbin/arm9_rodata.bin", 0x14920, 0x14928 - 0x14920
+	.word AllocatorAllocForExpHeap
+    .word AllocatorFreeForExpHeap
 
 	.global Unk_020F9568
 Unk_020F9568: ; 0x020F9568
-	.incbin "incbin/arm9_rodata.bin", 0x14928, 0x8
+	.word AllocatorAllocForSDKHeap
+    .word AllocatorFreeForSDKHeap
 

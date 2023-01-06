@@ -108,8 +108,8 @@ _020A39F0:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020A3A30: .word 0x0000FFFF
-_020A3A34: .word 0x020F9540
-_020A3A38: .word 0x020F9538
+_020A3A34: .word Unk_020F9540
+_020A3A38: .word Unk_020F9538
 	arm_func_end sub_020A38B8
 
 	arm_func_start sub_020A3A3C

@@ -259,7 +259,7 @@ _02228AAC:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02228AD0: .word 0x02228E00
+_02228AD0: .word Unk_ov60_02228E00
 	arm_func_end ov60_02228A18
 
 	arm_func_start ov60_02228AD4

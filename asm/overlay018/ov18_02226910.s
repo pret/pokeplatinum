@@ -79,7 +79,7 @@ _02226990:
 	str r0, [r4, #0x50]
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
-_02226998: .word 0x02249808
+_02226998: .word Unk_ov18_02249808
 	thumb_func_end ov18_02226910
 
 	thumb_func_start ov18_0222699C

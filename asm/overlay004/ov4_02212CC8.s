@@ -1166,8 +1166,8 @@ _02213C08:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02213C20: .word Unk_ov4_0221F7AC
-_02213C24: .word 0x02215E48
-_02213C28: .word 0x02215E50
+_02213C24: .word Unk_ov4_02215E48
+_02213C28: .word Unk_ov4_02215E50
 	arm_func_end ov4_02213A94
 
 	arm_func_start ov4_02213C2C

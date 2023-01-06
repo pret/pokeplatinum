@@ -186,7 +186,7 @@ _02225508:
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02225514: .word 0x02229CC0
+_02225514: .word Unk_ov60_02229CC0
 	arm_func_end ov60_02225294
 
 	.data

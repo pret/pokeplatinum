@@ -4,6 +4,7 @@
 	
 	.extern Unk_ov4_0221AE50
 
+	.extern Unk_ov4_02219B38
 	.text
 
 
@@ -337,8 +338,8 @@ _021FECDC:
 	add sp, sp, #0x108
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021FED08: .word 0x02219B38
-_021FED0C: .word 0x02219FA8
+_021FED08: .word Unk_ov4_02219B38
+_021FED0C: .word Unk_ov4_02219FA8
 	arm_func_end ov4_021FEBE0
 
 	arm_func_start ov4_021FED10

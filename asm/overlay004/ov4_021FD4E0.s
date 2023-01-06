@@ -13,7 +13,7 @@ ov4_021FD4E0: ; 0x021FD4E0
 	str r1, [r2, r0, lsl #2]
 	bx lr
 	; .align 2, 0
-_021FD4FC: .word 0x02219B38
+_021FD4FC: .word Unk_ov4_02219B38
 	arm_func_end ov4_021FD4E0
 
 	.data

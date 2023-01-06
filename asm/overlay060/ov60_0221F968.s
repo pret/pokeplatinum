@@ -67,7 +67,7 @@ _0221F9C2:
 	str r1, [r0, #8]
 	bx lr
 	nop
-_0221F9CC: .word 0x02228E40
+_0221F9CC: .word Unk_ov60_02228E40
 	thumb_func_end ov60_0221F968
 
 	thumb_func_start ov60_0221F9D0
@@ -418,17 +418,17 @@ _0221FC52:
 	add sp, #0x4c
 	pop {r4, r5, r6, r7, pc}
 	nop
-_0221FC58: .word 0x02228E40
-_0221FC5C: .word 0x02228C4C
-_0221FC60: .word 0x02228E74
-_0221FC64: .word 0x02228E8C
-_0221FC68: .word 0x02228E94
-_0221FC6C: .word 0x02228E9C
-_0221FC70: .word 0x02228EB4
-_0221FC74: .word 0x02228ECC
-_0221FC78: .word 0x02228EE4
-_0221FC7C: .word 0x02228EFC
-_0221FC80: .word 0x02228F14
+_0221FC58: .word Unk_ov60_02228E40
+_0221FC5C: .word Unk_ov60_02228C4C
+_0221FC60: .word Unk_ov60_02228E74
+_0221FC64: .word Unk_ov60_02228E8C
+_0221FC68: .word Unk_ov60_02228E94
+_0221FC6C: .word Unk_ov60_02228E9C
+_0221FC70: .word Unk_ov60_02228EB4
+_0221FC74: .word Unk_ov60_02228ECC
+_0221FC78: .word Unk_ov60_02228EE4
+_0221FC7C: .word Unk_ov60_02228EFC
+_0221FC80: .word Unk_ov60_02228F14
 	thumb_func_end ov60_0221F9D0
 
 	thumb_func_start ov60_0221FC84
@@ -449,7 +449,7 @@ ov60_0221FC84: ; 0x0221FC84
 _0221FCA0:
 	pop {r3, pc}
 	nop
-_0221FCA4: .word 0x02228E40
+_0221FCA4: .word Unk_ov60_02228E40
 	thumb_func_end ov60_0221FC84
 
 	thumb_func_start ov60_0221FCA8
@@ -521,10 +521,10 @@ _0221FCF0:
 	mov r0, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_0221FD38: .word 0x02228E40
-_0221FD3C: .word 0x02228F2C
-_0221FD40: .word 0x02228E8C
-_0221FD44: .word 0x02228E94
+_0221FD38: .word Unk_ov60_02228E40
+_0221FD3C: .word Unk_ov60_02228F2C
+_0221FD40: .word Unk_ov60_02228E8C
+_0221FD44: .word Unk_ov60_02228E94
 	thumb_func_end ov60_0221FCA8
 
 	thumb_func_start ov60_0221FD48
@@ -607,9 +607,9 @@ _0221FDD8:
 	ldr r0, [r0, #0]
 	pop {r3, pc}
 	nop
-_0221FDE0: .word 0x02228E40
+_0221FDE0: .word Unk_ov60_02228E40
 _0221FDE4: .word ov60_0221F9D0
-_0221FDE8: .word 0x02228E40
+_0221FDE8: .word Unk_ov60_02228E40
 	thumb_func_end ov60_0221FD48
 
 	thumb_func_start ov60_0221FDEC
@@ -632,7 +632,7 @@ _0221FE04:
 	str r1, [r0, #0]
 	pop {r3, pc}
 	; .align 2, 0
-_0221FE10: .word 0x02228E40
+_0221FE10: .word Unk_ov60_02228E40
 	thumb_func_end ov60_0221FDEC
 
 	thumb_func_start ov60_0221FE14
@@ -641,7 +641,7 @@ ov60_0221FE14: ; 0x0221FE14
 	ldr r0, [r0, #8]
 	bx lr
 	nop
-_0221FE1C: .word 0x02228E40
+_0221FE1C: .word Unk_ov60_02228E40
 	thumb_func_end ov60_0221FE14
 
 	thumb_func_start ov60_0221FE20
@@ -650,7 +650,7 @@ ov60_0221FE20: ; 0x0221FE20
 	ldr r0, [r0, #0xc]
 	bx lr
 	nop
-_0221FE28: .word 0x02228E40
+_0221FE28: .word Unk_ov60_02228E40
 	thumb_func_end ov60_0221FE20
 
 	.rodata

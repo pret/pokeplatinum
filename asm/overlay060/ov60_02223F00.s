@@ -145,7 +145,7 @@ _022240AC:
 	strb r1, [sb]
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_022240BC: .word 0x02228C78
+_022240BC: .word Unk_ov60_02228C78
 	arm_func_end ov60_02223FC8
 
 	arm_func_start ov60_022240C0

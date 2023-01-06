@@ -55,7 +55,7 @@ ov18_02230DE4: ; 0x02230DE4
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02230E54: .word 0x02249F98
+_02230E54: .word Unk_ov18_02249F98
 _02230E58: .word GX_LoadBG2Scr
 _02230E5C: .word 0x04001008
 _02230E60: .word 0x0400000A
@@ -180,10 +180,10 @@ _02230FE4:
 	add sp, sp, #0x68
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02231028: .word 0x02249FAC
+_02231028: .word Unk_ov18_02249FAC
 _0223102C: .word 0x00002710
-_02231030: .word 0x02249FE8
-_02231034: .word 0x0224A010
+_02231030: .word Unk_ov18_02249FE8
+_02231034: .word Unk_ov18_0224A010
 	arm_func_end ov18_02230E64
 
 	arm_func_start ov18_02231038

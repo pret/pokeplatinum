@@ -346,8 +346,8 @@ _02221100:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0222110C: .word 0x027FFE00
-_02221110: .word 0x02249768
-_02221114: .word 0x02249764
+_02221110: .word Unk_ov18_02249768
+_02221114: .word Unk_ov18_02249764
 _02221118: .word 0x02000AAC
 _0222111C: .word 0xE12FFF1E
 	arm_func_end ov18_02220CA8
@@ -596,7 +596,7 @@ _0222145C:
 	bl MI_CpuCopy8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_02221498: .word 0x02246434
+_02221498: .word Unk_ov18_02246434
 	arm_func_end ov18_02221428
 
 	arm_func_start ov18_0222149C
@@ -867,7 +867,7 @@ _02221830:
 	mov r0, #0
 	bx lr
 	; .align 2, 0
-_02221838: .word 0x02246434
+_02221838: .word Unk_ov18_02246434
 _0222183C: .word 0x027FFE00
 	arm_func_end ov18_02221794
 
@@ -929,7 +929,7 @@ _022218F8:
 	mov r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02221900: .word 0x02246434
+_02221900: .word Unk_ov18_02246434
 _02221904: .word 0x023FE800
 _02221908: .word 0x037F8000
 	arm_func_end ov18_02221840

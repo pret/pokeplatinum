@@ -3,6 +3,7 @@
 
 	.extern Unk_ov4_0221AE50
 
+	.extern Unk_ov4_02219B38
 	.text
 
 
@@ -229,8 +230,8 @@ _021FDA8C:
 	add sp, sp, #0x110
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021FDAB4: .word 0x02219F30
-_021FDAB8: .word 0x02219F40
+_021FDAB4: .word Unk_ov4_02219F30
+_021FDAB8: .word Unk_ov4_02219F40
 	arm_func_end ov4_021FD8DC
 
 	arm_func_start ov4_021FDABC
@@ -410,7 +411,7 @@ _021FDCB4:
 	blx r4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021FDCF8: .word 0x02219B38
+_021FDCF8: .word Unk_ov4_02219B38
 	arm_func_end ov4_021FDBFC
 
 	arm_func_start ov4_021FDCFC
@@ -453,7 +454,7 @@ ov4_021FDCFC: ; 0x021FDCFC
 	blx ip
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021FDD90: .word 0x02219F4C
+_021FDD90: .word Unk_ov4_02219F4C
 	arm_func_end ov4_021FDCFC
 
 	arm_func_start ov4_021FDD94

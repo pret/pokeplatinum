@@ -164,7 +164,7 @@ _020CC360:
 _020CC36C: .word 0x00008EAC
 _020CC370: .word 0x92492493
 _020CC374: .word 0x0000016D
-_020CC378: .word 0x02101450
+_020CC378: .word Unk_02101450
 	arm_func_end RTC_ConvertDayToDate
 
 	arm_func_start RTCi_ConvertSecondToTime

@@ -94,7 +94,7 @@ ov18_02232968: ; 0x02232968
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022329D8: .word 0x0224A0B8
+_022329D8: .word Unk_ov18_0224A0B8
 _022329DC: .word GX_LoadBG2Scr
 _022329E0: .word 0x04001008
 _022329E4: .word 0x0400000A

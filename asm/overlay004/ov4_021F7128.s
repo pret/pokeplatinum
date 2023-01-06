@@ -128,9 +128,9 @@ _021F72BC:
 	mov r0, sl
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021F72D0: .word 0x02219488
-_021F72D4: .word 0x02219490
-_021F72D8: .word 0x02219450
+_021F72D0: .word Unk_ov4_02219488
+_021F72D4: .word Unk_ov4_02219490
+_021F72D8: .word Unk_ov4_02219450
 _021F72DC: .word 0x2C0B02C1
 	arm_func_end ov4_021F71C4
 
@@ -204,7 +204,7 @@ _021F73C0:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021F73E0: .word 0x02219464
+_021F73E0: .word Unk_ov4_02219464
 _021F73E4: .word 0x2C0B02C1
 	arm_func_end ov4_021F72E0
 

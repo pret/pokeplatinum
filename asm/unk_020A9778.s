@@ -135,9 +135,9 @@ _020A9940: .word Unk_021C4B58
 _020A9944: .word Unk_021C5258
 _020A9948: .word Unk_021C4F58
 _020A994C: .word 0x021C4C68
-_020A9950: .word 0x02100EA4
+_020A9950: .word Unk_02100EA4
 _020A9954: .word 0x021C4C6C
-_020A9958: .word 0x02100EAC
+_020A9958: .word Unk_02100EAC
 	arm_func_end NNSi_G2dMCMStoreCurrentMtxToMtxCache
 
 	arm_func_start RndCoreCBFuncBeforeCell_
@@ -212,9 +212,9 @@ _020A9A3C:
 _020A9A58: .word Unk_021C4AC8
 _020A9A5C: .word Unk_021C4C58
 _020A9A60: .word 0x021C4C68
-_020A9A64: .word 0x02100EA4
+_020A9A64: .word Unk_02100EA4
 _020A9A68: .word 0x021C4C6C
-_020A9A6C: .word 0x02100EAC
+_020A9A6C: .word Unk_02100EAC
 	arm_func_end RndCoreCBFuncBeforeCell_
 
 	arm_func_start RndCoreCBFuncAfterCell_
@@ -251,9 +251,9 @@ _020A9AD0:
 _020A9ADC: .word Unk_021C4AC8
 _020A9AE0: .word Unk_021C4C58
 _020A9AE4: .word 0x021C4C68
-_020A9AE8: .word 0x02100EA4
+_020A9AE8: .word Unk_02100EA4
 _020A9AEC: .word 0x021C4C6C
-_020A9AF0: .word 0x02100EAC
+_020A9AF0: .word Unk_02100EAC
 	arm_func_end RndCoreCBFuncAfterCell_
 
 	arm_func_start RndCoreCBFuncBeforeOBJ_
@@ -386,9 +386,9 @@ _020A9CAC:
 _020A9CC8: .word Unk_021C4AC8
 _020A9CCC: .word Unk_021C4C58
 _020A9CD0: .word 0x021C4C68
-_020A9CD4: .word 0x02100EA4
+_020A9CD4: .word Unk_02100EA4
 _020A9CD8: .word 0x021C4C6C
-_020A9CDC: .word 0x02100EAC
+_020A9CDC: .word Unk_02100EAC
 	arm_func_end RndCoreCBFuncBeforeOBJ_
 
 	arm_func_start RndCoreCBFuncAfterOBJ_
@@ -429,9 +429,9 @@ _020A9D48:
 _020A9D5C: .word Unk_021C4AC8
 _020A9D60: .word Unk_021C4C58
 _020A9D64: .word 0x021C4C68
-_020A9D68: .word 0x02100EA4
+_020A9D68: .word Unk_02100EA4
 _020A9D6C: .word 0x021C4C6C
-_020A9D70: .word 0x02100EAC
+_020A9D70: .word Unk_02100EAC
 	arm_func_end RndCoreCBFuncAfterOBJ_
 
 	arm_func_start DrawCellImpl_
@@ -724,7 +724,7 @@ _020AA180:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020AA190: .word Unk_021C4AC8
-_020AA194: .word 0x02100EA4
+_020AA194: .word Unk_02100EA4
 _020AA198: .word 0x0000FFFE
 _020AA19C: .word 0x021C55C8
 _020AA1A0: .word 0x021C565C
@@ -733,7 +733,7 @@ _020AA1A8: .word Unk_021C5258
 _020AA1AC: .word Unk_021C4C58
 _020AA1B0: .word 0x021C4C68
 _020AA1B4: .word 0x021C4C6C
-_020AA1B8: .word 0x02100EAC
+_020AA1B8: .word Unk_02100EAC
 _020AA1BC: .word Unk_021C4AD8
 _020AA1C0: .word Unk_021C5658
 	arm_func_end DrawCellImpl_
@@ -832,7 +832,7 @@ _020AA308:
 	bl NNS_G2dPopMtx
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020AA314: .word 0x02100EA4
+_020AA314: .word Unk_02100EA4
 _020AA318: .word Unk_021C4AC8
 _020AA31C: .word 0x020F983C
 	arm_func_end DrawCellAnimationImpl_
@@ -946,7 +946,7 @@ _020AA450:
 	; .align 2, 0
 _020AA49C: .word Unk_021C4AC8
 _020AA4A0: .word 0x0000FFFE
-_020AA4A4: .word 0x02100EA4
+_020AA4A4: .word Unk_02100EA4
 _020AA4A8: .word Unk_021C5258
 _020AA4AC: .word Unk_021C4B58
 	arm_func_end NNS_G2dInitRenderer
@@ -1030,7 +1030,7 @@ _020AA578:
 	; .align 2, 0
 _020AA5AC: .word Unk_021C4AC8
 _020AA5B0: .word 0x0000FFFE
-_020AA5B4: .word 0x02100EA4
+_020AA5B4: .word Unk_02100EA4
 _020AA5B8: .word Unk_021C5258
 _020AA5BC: .word Unk_021C4B58
 _020AA5C0: .word 0x04000444
@@ -1533,7 +1533,7 @@ NNS_G2dPopMtx: ; 0x020AAC6C
 	bx lr
 	; .align 2, 0
 _020AACB0: .word Unk_021C4AC8
-_020AACB4: .word 0x02100EA4
+_020AACB4: .word Unk_02100EA4
 _020AACB8: .word 0x0000FFFE
 	arm_func_end NNS_G2dPopMtx
 
@@ -1697,7 +1697,7 @@ _020AAEEC:
 _020AAEF4: .word Unk_021C4AC8
 _020AAEF8: .word Unk_021C4C58
 _020AAEFC: .word Unk_021C4F58
-_020AAF00: .word 0x02100EA4
+_020AAF00: .word Unk_02100EA4
 _020AAF04: .word 0x0000FFFE
 _020AAF08: .word Unk_021C4B58
 	arm_func_end NNS_G2dScale
@@ -1780,7 +1780,7 @@ _020AB00C:
 _020AB014: .word Unk_021C4AC8
 _020AB018: .word Unk_021C4C58
 _020AB01C: .word Unk_021C4F58
-_020AB020: .word 0x02100EA4
+_020AB020: .word Unk_02100EA4
 _020AB024: .word 0x0000FFFE
 _020AB028: .word Unk_021C4B58
 	arm_func_end NNS_G2dRotZ

@@ -2,7 +2,8 @@
 	.include "include/unk_020AB96C.inc"
 
 	.extern Unk_021C5A88
-	
+	.extern Unk_020F9658
+	.extern Unk_020F9670
 
 	.text
 
@@ -185,8 +186,8 @@ _020ABBC0:
 	; .align 2, 0
 _020ABC10: .word 0x01FF0000
 _020ABC14: .word 0xC000C000
-_020ABC18: .word 0x020F9670
-_020ABC1C: .word 0x020F9658
+_020ABC18: .word Unk_020F9670
+_020ABC1C: .word Unk_020F9658
 _020ABC20: .word Unk_021C5A88
 _020ABC24: .word 0xC1FFFCFF
 _020ABC28: .word 0xFE00FF00
@@ -466,12 +467,12 @@ _020AC00C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020AC02C: .word Unk_021C5A88
-_020AC030: .word 0x020F972C
+_020AC030: .word Unk_020F972C
 _020AC034: .word 0x0000FFFE
 _020AC038: .word 0xC000C000
-_020AC03C: .word 0x020F9670
+_020AC03C: .word Unk_020F9670
 _020AC040: .word 0xFE00FFFF
-_020AC044: .word 0x020F9658
+_020AC044: .word Unk_020F9658
 	arm_func_end DrawCellToSurface2D_
 
 	arm_func_start DrawOamToSurface3D_
@@ -625,8 +626,8 @@ _020AC20C:
 	; .align 2, 0
 _020AC27C: .word Unk_021C5A88
 _020AC280: .word 0xC000C000
-_020AC284: .word 0x020F9670
-_020AC288: .word 0x020F9658
+_020AC284: .word Unk_020F9670
+_020AC288: .word Unk_020F9658
 	arm_func_end DrawOamToSurface3D_
 
 	arm_func_start DrawCellToSurface3D_

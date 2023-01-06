@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_020BF9AC.inc"
 
-	
+	.extern Unk_02101148
 
 	.text
 
@@ -356,7 +356,7 @@ _020BFDF8:
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BFE10: .word 0x02101148
+_020BFE10: .word Unk_02101148
 _020BFE14: .word 0x04000330
 _020BFE18: .word 0x04000360
 _020BFE1C: .word 0x040004D0

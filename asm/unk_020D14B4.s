@@ -119,7 +119,7 @@ StartFlashTimer: ; 0x020D15F4
 	str r1, [r2, #0x2c]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020D1634: .word 0x02101488
+_020D1634: .word Unk_02101488
 _020D1638: .word Unk_021D03AC
 	arm_func_end StartFlashTimer
 
@@ -196,7 +196,7 @@ _020D1710:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _020D1724: .word Unk_021D03AC
-_020D1728: .word 0x02101488
+_020D1728: .word Unk_02101488
 _020D172C: .word 0x0A005555
 	arm_func_end CTRDGi_PollingSR512kCOMMON
 
@@ -319,7 +319,7 @@ _020D18A0:
 	; .align 2, 0
 _020D18CC: .word Unk_021D03AC
 _020D18D0: .word 0x04000204
-_020D18D4: .word 0x02101488
+_020D18D4: .word Unk_02101488
 	arm_func_end CTRDGi_ReadAgbFlashCore
 
 	arm_func_start CTRDGi_VerifyFlashSectorCore
@@ -399,7 +399,7 @@ _020D198C:
 	; .align 2, 0
 _020D19DC: .word Unk_021D03AC
 _020D19E0: .word 0x04000204
-_020D19E4: .word 0x02101488
+_020D19E4: .word Unk_02101488
 	arm_func_end CTRDGi_VerifyAgbFlashCore
 
 	arm_func_start CTRDGi_WriteAndVerifyAgbFlashSectorCore

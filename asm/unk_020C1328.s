@@ -46,7 +46,7 @@ _020C1370:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C13A0: .word Unk_021CCBF8
-_020C13A4: .word 0x0210114C
+_020C13A4: .word Unk_0210114C
 _020C13A8: .word 0x021CCC00
 _020C13AC: .word OS_IRQTable
 _020C13B0: .word 0x021CCBFC

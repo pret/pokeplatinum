@@ -71,10 +71,10 @@ sub_020DFBDC: ; 0x020DFBDC
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020DFC58: .word 0x02101B28
+_020DFC58: .word Unk_02101B28
 _020DFC5C: .word 0x02101B1C
 _020DFC60: .word 0x02101B08
-_020DFC64: .word 0x02101B3C
+_020DFC64: .word Unk_02101B3C
 _020DFC68: .word sub_020DFB48
 	arm_func_end sub_020DFBDC
 

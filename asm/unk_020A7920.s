@@ -2,7 +2,7 @@
 	.include "include/unk_020A7920.inc"
 
 	.extern Unk_021C3B04
-	
+	.extern Unk_02101148
 
 	.text
 
@@ -512,7 +512,7 @@ _020A7F8C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020A7FF4: .word Unk_021C3B08
-_020A7FF8: .word 0x02100E90
+_020A7FF8: .word Unk_02100E90
 	arm_func_end NNS_G2dApplyOamManagerToHW
 
 	arm_func_start NNS_G2dResetOamManagerBuffer
@@ -597,7 +597,7 @@ _020A8108:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020A811C: .word Unk_021C3B08
-_020A8120: .word 0x02101148
+_020A8120: .word Unk_02101148
 	arm_func_end NNS_G2dResetOamManagerBuffer
 
 	arm_func_start NNS_G2dApplyAndResetOamManagerBuffer

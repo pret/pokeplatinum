@@ -443,7 +443,7 @@ _020B730C:
 	; .align 2, 0
 _020B7328: .word 0x00101610
 _020B732C: .word 0x00101810
-_020B7330: .word 0x02101104
+_020B7330: .word Unk_02101104
 	arm_func_end NNSi_G3dSendTexSRT3dsMax
 
 	.data

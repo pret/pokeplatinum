@@ -337,7 +337,7 @@ _021DAAFC:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021DAB08: .word Unk_ov4_0221A68C
-_021DAB0C: .word 0x02217484
+_021DAB0C: .word Unk_ov4_02217484
 _021DAB10: .word 0xFFFF15A0
 _021DAB14: .word ov4_021DAFA0
 	arm_func_end ov4_021DA9E0

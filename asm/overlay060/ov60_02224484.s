@@ -75,7 +75,7 @@ _02224568:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02224574: .word 0x02228CBC
+_02224574: .word Unk_ov60_02228CBC
 _02224578: .word Unk_ov60_02229EFC
 _0222457C: .word Unk_ov60_02229EFC
 _02224580: .word 0x02229F04
@@ -131,7 +131,7 @@ ov60_02224610: ; 0x02224610
 	bl OS_SNPrintf
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_0222462C: .word 0x02229C08
+_0222462C: .word Unk_ov60_02229C08
 	arm_func_end ov60_02224610
 
 	.rodata

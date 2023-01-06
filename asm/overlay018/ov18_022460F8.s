@@ -78,7 +78,7 @@ _0224612C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _02246204: .word Unk_ov18_02253424
-_02246208: .word 0x0224973C
+_02246208: .word Unk_ov18_0224973C
 	arm_func_end ov18_022460F8
 
 	arm_func_start ov18_0224620C

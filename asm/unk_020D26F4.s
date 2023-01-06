@@ -6,6 +6,8 @@
 	.extern Unk_021D03C8
 	.extern Unk_021D03DC
 	.extern CTRDGi_PollingSR1MCOMMON
+	.extern Unk_02101488
+
 
 	.text
 
@@ -66,7 +68,7 @@ CTRDGi_EraseFlashChipCoreMX: ; 0x020D26F4
 	; .align 2, 0
 _020D27C0: .word Unk_021D03AC
 _020D27C4: .word 0x04000204
-_020D27C8: .word 0x02101488
+_020D27C8: .word Unk_02101488
 _020D27CC: .word Unk_021D03C8
 _020D27D0: .word 0x0A005555
 _020D27D4: .word 0x0A002AAA
@@ -168,7 +170,7 @@ _020D2914:
 	add sp, sp, #0x28
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_020D2944: .word 0x02101488
+_020D2944: .word Unk_02101488
 _020D2948: .word 0x000080FF
 _020D294C: .word Unk_021D03AC
 _020D2950: .word 0x04000204
@@ -296,7 +298,7 @@ _020D2AD4:
 	add sp, sp, #0x24
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020D2B14: .word 0x02101488
+_020D2B14: .word Unk_02101488
 _020D2B18: .word 0x000080FF
 _020D2B1C: .word Unk_021D03AC
 _020D2B20: .word 0x04000204
@@ -464,7 +466,7 @@ _020D2D00:
 	add sp, sp, #0x24
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020D2D2C: .word 0x02101488
+_020D2D2C: .word Unk_02101488
 _020D2D30: .word 0x000080FF
 _020D2D34: .word Unk_021D03AC
 _020D2D38: .word 0x04000204

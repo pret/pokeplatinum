@@ -2,7 +2,7 @@
 	.include "include/unk_020C00B4.inc"
 
 	.extern Unk_021CCBBC
-	
+	.extern Unk_02101148
 
 	.text
 
@@ -31,7 +31,7 @@ _020C00F0:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C0104: .word 0x02101148
+_020C0104: .word Unk_02101148
 	arm_func_end GX_LoadBGPltt
 
 	arm_func_start GXS_LoadBGPltt
@@ -59,7 +59,7 @@ _020C0144:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C015C: .word 0x02101148
+_020C015C: .word Unk_02101148
 	arm_func_end GXS_LoadBGPltt
 
 	arm_func_start GX_LoadOBJPltt
@@ -87,7 +87,7 @@ _020C019C:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C01B4: .word 0x02101148
+_020C01B4: .word Unk_02101148
 	arm_func_end GX_LoadOBJPltt
 
 	arm_func_start GXS_LoadOBJPltt
@@ -115,7 +115,7 @@ _020C01F4:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C020C: .word 0x02101148
+_020C020C: .word Unk_02101148
 	arm_func_end GXS_LoadOBJPltt
 
 	arm_func_start GX_LoadOAM
@@ -142,7 +142,7 @@ _020C024C:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C0260: .word 0x02101148
+_020C0260: .word Unk_02101148
 	arm_func_end GX_LoadOAM
 
 	arm_func_start GXS_LoadOAM
@@ -170,7 +170,7 @@ _020C02A0:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C02B8: .word 0x02101148
+_020C02B8: .word Unk_02101148
 	arm_func_end GXS_LoadOAM
 
 	arm_func_start GX_LoadOBJ
@@ -198,7 +198,7 @@ _020C02FC:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C0310: .word 0x02101148
+_020C0310: .word Unk_02101148
 	arm_func_end GX_LoadOBJ
 
 	arm_func_start GXS_LoadOBJ
@@ -226,7 +226,7 @@ _020C0354:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C0368: .word 0x02101148
+_020C0368: .word Unk_02101148
 	arm_func_end GXS_LoadOBJ
 
 	arm_func_start GX_LoadBG0Scr
@@ -256,7 +256,7 @@ _020C03B4:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C03C8: .word 0x02101148
+_020C03C8: .word Unk_02101148
 	arm_func_end GX_LoadBG0Scr
 
 	arm_func_start GXS_LoadBG0Scr
@@ -286,7 +286,7 @@ _020C0414:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0428: .word 0x02101148
+_020C0428: .word Unk_02101148
 	arm_func_end GXS_LoadBG0Scr
 
 	arm_func_start GX_LoadBG1Scr
@@ -316,7 +316,7 @@ _020C0474:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0488: .word 0x02101148
+_020C0488: .word Unk_02101148
 	arm_func_end GX_LoadBG1Scr
 
 	arm_func_start GXS_LoadBG1Scr
@@ -346,7 +346,7 @@ _020C04D4:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C04E8: .word 0x02101148
+_020C04E8: .word Unk_02101148
 	arm_func_end GXS_LoadBG1Scr
 
 	arm_func_start GX_LoadBG2Scr
@@ -376,7 +376,7 @@ _020C0534:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0548: .word 0x02101148
+_020C0548: .word Unk_02101148
 	arm_func_end GX_LoadBG2Scr
 
 	arm_func_start GXS_LoadBG2Scr
@@ -406,7 +406,7 @@ _020C0594:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C05A8: .word 0x02101148
+_020C05A8: .word Unk_02101148
 	arm_func_end GXS_LoadBG2Scr
 
 	arm_func_start GX_LoadBG3Scr
@@ -436,7 +436,7 @@ _020C05F4:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0608: .word 0x02101148
+_020C0608: .word Unk_02101148
 	arm_func_end GX_LoadBG3Scr
 
 	arm_func_start GXS_LoadBG3Scr
@@ -466,7 +466,7 @@ _020C0654:
 	bl MIi_CpuCopy16
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0668: .word 0x02101148
+_020C0668: .word Unk_02101148
 	arm_func_end GXS_LoadBG3Scr
 
 	arm_func_start GX_LoadBG0Char
@@ -496,7 +496,7 @@ _020C06B4:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C06C8: .word 0x02101148
+_020C06C8: .word Unk_02101148
 	arm_func_end GX_LoadBG0Char
 
 	arm_func_start GXS_LoadBG0Char
@@ -526,7 +526,7 @@ _020C0714:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0728: .word 0x02101148
+_020C0728: .word Unk_02101148
 	arm_func_end GXS_LoadBG0Char
 
 	arm_func_start GX_LoadBG1Char
@@ -556,7 +556,7 @@ _020C0774:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0788: .word 0x02101148
+_020C0788: .word Unk_02101148
 	arm_func_end GX_LoadBG1Char
 
 	arm_func_start GXS_LoadBG1Char
@@ -586,7 +586,7 @@ _020C07D4:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C07E8: .word 0x02101148
+_020C07E8: .word Unk_02101148
 	arm_func_end GXS_LoadBG1Char
 
 	arm_func_start GX_LoadBG2Char
@@ -616,7 +616,7 @@ _020C0834:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0848: .word 0x02101148
+_020C0848: .word Unk_02101148
 	arm_func_end GX_LoadBG2Char
 
 	arm_func_start GXS_LoadBG2Char
@@ -646,7 +646,7 @@ _020C0894:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C08A8: .word 0x02101148
+_020C08A8: .word Unk_02101148
 	arm_func_end GXS_LoadBG2Char
 
 	arm_func_start GX_LoadBG3Char
@@ -676,7 +676,7 @@ _020C08F4:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0908: .word 0x02101148
+_020C0908: .word Unk_02101148
 	arm_func_end GX_LoadBG3Char
 
 	arm_func_start GXS_LoadBG3Char
@@ -706,7 +706,7 @@ _020C0954:
 	bl MIi_CpuCopy32
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0968: .word 0x02101148
+_020C0968: .word Unk_02101148
 	arm_func_end GXS_LoadBG3Char
 
 	arm_func_start GX_BeginLoadBGExtPltt
@@ -790,7 +790,7 @@ _020C0A64:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _020C0A74: .word Unk_021CCBBC
-_020C0A78: .word 0x02101148
+_020C0A78: .word Unk_02101148
 	arm_func_end GX_LoadBGExtPltt
 
 	arm_func_start GX_EndLoadBGExtPltt
@@ -813,7 +813,7 @@ _020C0A98:
 	str r1, [r0, #0xc]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0ABC: .word 0x02101148
+_020C0ABC: .word Unk_02101148
 _020C0AC0: .word Unk_021CCBBC
 	arm_func_end GX_EndLoadBGExtPltt
 
@@ -870,7 +870,7 @@ _020C0B60:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0B70: .word 0x02101148
+_020C0B70: .word Unk_02101148
 _020C0B74: .word Unk_021CCBBC
 	arm_func_end GX_LoadOBJExtPltt
 
@@ -893,7 +893,7 @@ _020C0B94:
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0BB4: .word 0x02101148
+_020C0BB4: .word Unk_02101148
 _020C0BB8: .word Unk_021CCBBC
 	arm_func_end GX_EndLoadOBJExtPltt
 
@@ -936,7 +936,7 @@ _020C0C20:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C0C34: .word 0x02101148
+_020C0C34: .word Unk_02101148
 	arm_func_end GXS_LoadBGExtPltt
 
 	arm_func_start GXS_EndLoadBGExtPltt
@@ -957,7 +957,7 @@ _020C0C54:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0C70: .word 0x02101148
+_020C0C70: .word Unk_02101148
 _020C0C74: .word Unk_021CCBBC
 	arm_func_end GXS_EndLoadBGExtPltt
 
@@ -1000,7 +1000,7 @@ _020C0CDC:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C0CF0: .word 0x02101148
+_020C0CF0: .word Unk_02101148
 	arm_func_end GXS_LoadOBJExtPltt
 
 	arm_func_start GXS_EndLoadOBJExtPltt
@@ -1021,7 +1021,7 @@ _020C0D10:
 	str r1, [r0, #0x18]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0D2C: .word 0x02101148
+_020C0D2C: .word Unk_02101148
 _020C0D30: .word Unk_021CCBBC
 	arm_func_end GXS_EndLoadOBJExtPltt
 

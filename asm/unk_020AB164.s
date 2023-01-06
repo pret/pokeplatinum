@@ -179,7 +179,7 @@ _020AB36C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020AB3A0: .word Unk_021C5A60
-_020AB3A4: .word 0x020F9688
+_020AB3A4: .word Unk_020F9688
 	arm_func_end NNS_G2dUpdateCellTransferStateManager
 
 	arm_func_start NNS_G2dSetCellTransferStateRequested

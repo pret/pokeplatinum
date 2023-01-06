@@ -57,7 +57,7 @@ ov18_02239B70: ; 0x02239B70
 	strh r0, [r1, #2]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02239BE0: .word 0x0224A350
+_02239BE0: .word Unk_ov18_0224A350
 _02239BE4: .word GX_LoadBG2Scr
 _02239BE8: .word 0x04001008
 _02239BEC: .word 0x0400000A

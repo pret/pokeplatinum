@@ -296,8 +296,8 @@ _02211204:
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_02211330: .word 0x0221A224
-_02211334: .word 0x0221A2A4
+_02211330: .word Unk_ov4_0221A224
+_02211334: .word Unk_ov4_0221A2A4
 	arm_func_end ov4_02210F1C
 
 	arm_func_start ov4_02211338
@@ -404,7 +404,7 @@ ov4_02211438: ; 0x02211438
 	bl ov4_02210EEC
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_0221149C: .word 0x0221A264
+_0221149C: .word Unk_ov4_0221A264
 	arm_func_end ov4_02211438
 
 	.data

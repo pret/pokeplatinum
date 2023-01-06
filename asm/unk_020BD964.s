@@ -58,7 +58,7 @@ _020BD9F0:
 	mov r0, r0, lsr #0x10
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020BDA1C: .word 0x020FD83C
+_020BDA1C: .word FX_AtanIdxTable_
 	arm_func_end FX_AtanIdx
 
 	arm_func_start FX_Atan2Idx
@@ -185,7 +185,7 @@ _020BDBA0:
 	mov r0, r0, lsr #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020BDBC4: .word 0x020FD83C
+_020BDBC4: .word FX_AtanIdxTable_
 	arm_func_end FX_Atan2Idx
 
 	.rodata

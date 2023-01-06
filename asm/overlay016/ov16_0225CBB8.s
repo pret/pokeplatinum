@@ -3,6 +3,7 @@
 
 	
 
+	.extern Unk_ov12_0223B0DC
 	.text
 
 
@@ -1116,7 +1117,7 @@ _0225D43E:
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _0225D494: .word 0x00000195
-_0225D498: .word 0x0223B0DC
+_0225D498: .word Unk_ov12_0223B0DC
 _0225D49C: .word 0x0223B0DE
 _0225D4A0: .word 0x0223B0A0
 _0225D4A4: .word ov16_02260384
