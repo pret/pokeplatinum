@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/DWC_GetFriendStatus.inc"
+	.include "overlay004/ov4_021DB170.inc"
 
 	
 

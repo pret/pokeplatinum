@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/DWC_Svl_Init.inc"
+	.include "overlay004/ov4_021D6CA4.inc"
 
 	.extern Unk_021CCC80
 	.extern Unk_021D0D40

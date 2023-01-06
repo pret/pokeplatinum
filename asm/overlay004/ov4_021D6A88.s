@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/DWC_Auth_SetNasTimeDiff.inc"
+	.include "overlay004/ov4_021D6A88.inc"
 
 	.extern Unk_021D0D40
 

@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/DWC_GetDateTime.inc"
+	.include "overlay004/ov4_021D806C.inc"
 
 	.extern Unk_ov4_0221A4B4
 	.extern Unk_ov4_0221A4B8

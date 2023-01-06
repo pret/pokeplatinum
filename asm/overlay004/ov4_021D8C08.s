@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/DWC_InitFriendsMatch.inc"
+	.include "overlay004/ov4_021D8C08.inc"
 
 	.extern Unk_ov4_0221B1B0
 	.extern Unk_ov4_0221B2B0
