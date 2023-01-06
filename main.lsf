@@ -1926,9 +1926,9 @@ Overlay overlay95
 Overlay overlay96
 {
 	After overlay12
-	Object asm/overlay096/ov96_0223B140.o
-	Object asm/overlay096/ov96_0223B6A0.o
-	Object asm/overlay096/ov96_0223BCE0.o
+	Object src/overlay096/ov96_0223B140.o
+	Object src/overlay096/ov96_0223B6A0.o
+	Object src/overlay096/ov96_0223BCE0.o
 }
 
 Overlay overlay97
