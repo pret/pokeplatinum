@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D8C08.inc"
+	.include "overlay004/DWC_InitFriendsMatch.inc"
 
 	.extern Unk_ov4_0221B1B0
 	.extern Unk_ov4_0221B2B0
@@ -725,7 +725,7 @@ _021D95CC:
 	add r2, sp, #0x18
 	mov r3, #0x2f
 	strb r6, [sp, #8]
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #0xa
@@ -735,7 +735,7 @@ _021D95CC:
 	add r1, sp, #8
 	add r2, sp, #0x18
 	mov r3, #0x2f
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	add r0, sp, #8
 	mov r1, #0
 	mov r2, #0xa
@@ -859,8 +859,8 @@ _021D97EC: .word Unk_ov4_0221A504
 _021D97F0: .word Unk_ov4_02217474
 	arm_func_end DWC_CloseAllConnectionsHard
 
-	arm_func_start ov4_021D97F4
-ov4_021D97F4: ; 0x021D97F4
+	arm_func_start DWC_CloseConnectionHard
+DWC_CloseConnectionHard: ; 0x021D97F4
 	stmfd sp!, {r4, lr}
 	ldr r1, _021D9858 ; =0x0221A504
 	mov r4, r0
@@ -890,7 +890,7 @@ _021D9838:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021D9858: .word Unk_ov4_0221A504
-	arm_func_end ov4_021D97F4
+	arm_func_end DWC_CloseConnectionHard
 
 	arm_func_start DWC_CloseConnectionHardBitmap
 DWC_CloseConnectionHardBitmap: ; 0x021D985C
@@ -930,7 +930,7 @@ _021D98AC:
 	b _021D98F8
 _021D98D8:
 	mov r0, r5
-	bl ov4_021D97F4
+	bl DWC_CloseConnectionHard
 	cmp r0, #0
 	beq _021D98F8
 	mvn r0, r4, lsl r5
@@ -987,8 +987,8 @@ DWC_GetMyAID: ; 0x021D9968
 _021D9980: .word Unk_ov4_0221A504
 	arm_func_end DWC_GetMyAID
 
-	arm_func_start ov4_021D9984
-ov4_021D9984: ; 0x021D9984
+	arm_func_start DWC_GetAIDList
+DWC_GetAIDList: ; 0x021D9984
 	stmfd sp!, {r3, lr}
 	ldr r2, _021D99D0 ; =0x0221A504
 	ldr r1, [r2, #0]
@@ -1011,7 +1011,7 @@ _021D99C8:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D99D0: .word Unk_ov4_0221A504
-	arm_func_end ov4_021D9984
+	arm_func_end DWC_GetAIDList
 
 	arm_func_start DWC_GetAIDBitmap
 DWC_GetAIDBitmap: ; 0x021D99D4
@@ -1022,7 +1022,7 @@ DWC_GetAIDBitmap: ; 0x021D99D4
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
 	add r0, sp, #0
-	bl ov4_021D9984
+	bl DWC_GetAIDList
 	mov r1, r0
 	ldr r0, [sp]
 	bl ov4_021D9D58
@@ -1050,8 +1050,8 @@ DWC_IsValidAID: ; 0x021D9A08
 _021D9A3C: .word Unk_ov4_0221A504
 	arm_func_end DWC_IsValidAID
 
-	arm_func_start ov4_021D9A40
-ov4_021D9A40: ; 0x021D9A40
+	arm_func_start DWC_GetState
+DWC_GetState: ; 0x021D9A40
 	ldr r0, _021D9A58 ; =0x0221A504
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -1060,7 +1060,7 @@ ov4_021D9A40: ; 0x021D9A40
 	bx lr
 	; .align 2, 0
 _021D9A58: .word Unk_ov4_0221A504
-	arm_func_end ov4_021D9A40
+	arm_func_end DWC_GetState
 
 	arm_func_start ov4_021D9A5C
 ov4_021D9A5C: ; 0x021D9A5C

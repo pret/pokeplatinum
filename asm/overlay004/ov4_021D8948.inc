@@ -5,4 +5,4 @@
 .public strncpy
 .public strncmp
 .public strchr
-.public ov4_021D8948
+.public DWC_SetCommonKeyValueString

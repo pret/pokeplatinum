@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021E558C.inc"
+	.include "overlay004/DWC_InitGHTTP.inc"
 
 	
 
@@ -297,8 +297,8 @@ _021E5958: .word ov4_021E56AC
 _021E595C: .word ov4_021E5610
 	arm_func_end ov4_021E57BC
 
-	arm_func_start ov4_021E5960
-ov4_021E5960: ; 0x021E5960
+	arm_func_start DWC_GetGHTTPDataEx
+DWC_GetGHTTPDataEx: ; 0x021E5960
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr lr, [sp, #0x10]
@@ -309,7 +309,7 @@ ov4_021E5960: ; 0x021E5960
 	bl ov4_021E57BC
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
-	arm_func_end ov4_021E5960
+	arm_func_end DWC_GetGHTTPDataEx
 
 	arm_func_start ov4_021E5988
 ov4_021E5988: ; 0x021E5988

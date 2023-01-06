@@ -4,10 +4,10 @@
 .public OS_Terminate
 .public MIi_CpuCopy32
 .public MI_CpuCopy8
-.public ov4_021E5C34
-.public ov4_021E5DDC
-.public ov4_021E5EAC
-.public ov4_021E5FA0
+.public DWC_AC_Create
+.public DWC_AC_Process
+.public DWC_AC_GetStatus
+.public DWC_AC_Destroy
 .public ov4_021E60F8
 .public ov18_0222AD34
 .public ov18_0222AE04

@@ -667,7 +667,7 @@ _02258534:
 	ldr r0, [r0, #0x54]
 	ldr r3, _022585F0 ; =ov66_02257F84
 	mov r2, r1
-	bl ov4_021E5960
+	bl DWC_GetGHTTPDataEx
 	ldr r1, _022585E8 ; =0x0225B52C
 	cmp r0, #0
 	str r0, [r1, #8]
@@ -690,7 +690,7 @@ _02258588:
 	ldr r0, [r0, #0x54]
 	ldr r3, _022585F0 ; =ov66_02257F84
 	mov r2, r1
-	bl ov4_021E5960
+	bl DWC_GetGHTTPDataEx
 	ldr r1, _022585E8 ; =0x0225B52C
 	cmp r0, #0
 	str r0, [r1, #8]

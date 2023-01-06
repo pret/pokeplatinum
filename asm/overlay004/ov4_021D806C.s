@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D806C.inc"
+	.include "overlay004/DWC_GetDateTime.inc"
 
 	.extern Unk_ov4_0221A4B4
 	.extern Unk_ov4_0221A4B8
@@ -70,14 +70,14 @@ _021D813C: .word Unk_ov4_0221A4C0
 _021D8140: .word 0xBC19137F
 	arm_func_end DWC_GetDateTime
 
-	arm_func_start ov4_021D8144
-ov4_021D8144: ; 0x021D8144
+	arm_func_start DWC_SVLGetTokenAsync
+DWC_SVLGetTokenAsync: ; 0x021D8144
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
 	ldr r0, _021D81AC ; =DWC_Alloc
 	ldr r1, _021D81B0 ; =DWC_Free
-	bl ov4_021D6CA4
+	bl DWC_Svl_Init
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -87,38 +87,38 @@ ov4_021D8144: ; 0x021D8144
 	bne _021D8188
 	ldr r0, _021D81B4 ; =0x02217424
 	mov r1, r4
-	bl ov4_021D6D88
+	bl DWC_Svl_GetTokenAsync
 	b _021D8194
 _021D8188:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021D6D88
+	bl DWC_Svl_GetTokenAsync
 _021D8194:
 	cmp r0, #0
 	movne r0, #1
 	ldmneia sp!, {r3, r4, r5, pc}
-	bl ov4_021D6D3C
+	bl DWC_Svl_Cleanup
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021D81AC: .word DWC_Alloc
 _021D81B0: .word DWC_Free
 _021D81B4: .word Unk_ov4_02217424
-	arm_func_end ov4_021D8144
+	arm_func_end DWC_SVLGetTokenAsync
 
-	arm_func_start ov4_021D81B8
-ov4_021D81B8: ; 0x021D81B8
+	arm_func_start DWC_SVLProcess
+DWC_SVLProcess: ; 0x021D81B8
 	stmfd sp!, {r4, lr}
-	bl ov4_021D6FF0
+	bl DWC_Svl_Process
 	mov r4, r0
 	sub r0, r4, #3
 	cmp r0, #2
 	bhi _021D81D4
-	bl ov4_021D6D3C
+	bl DWC_Svl_Cleanup
 _021D81D4:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021D81B8
+	arm_func_end DWC_SVLProcess
 
 	arm_func_start DWC_NASLoginAsync
 DWC_NASLoginAsync: ; 0x021D81DC
@@ -164,7 +164,7 @@ _021D8224:
 	ldr r1, [r1, #0]
 	add r0, r1, #0x14
 	add r0, r0, #0x1c00
-	bl ov4_021D3048
+	bl DWC_Auth_Create
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -186,7 +186,7 @@ DWC_NASLoginProcess: ; 0x021D82A0
 	addeq sp, sp, #0x1c4
 	moveq r0, #0
 	ldmeqia sp!, {pc}
-	bl ov4_021D3334
+	bl DWC_Auth_GetError
 	cmp r0, #0
 	beq _021D82E0
 	cmp r0, #0x14
@@ -199,7 +199,7 @@ _021D82E0:
 	mov r0, #2
 	ldmia sp!, {pc}
 _021D82EC:
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	ldr r0, _021D8390 ; =0x0221A4E4
 	ldr r2, _021D8394 ; =0x00001E20
 	ldr r1, [r0, #0]
@@ -212,7 +212,7 @@ _021D82EC:
 	mov r0, #3
 	ldmia sp!, {pc}
 _021D831C:
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	ldr r0, _021D8390 ; =0x0221A4E4
 	ldr r2, _021D8394 ; =0x00001E20
 	ldr r1, [r0, #0]
@@ -226,8 +226,8 @@ _021D831C:
 	ldmia sp!, {pc}
 _021D834C:
 	add r0, sp, #0
-	bl ov4_021D3380
-	bl ov4_021D32AC
+	bl DWC_Auth_GetResult
+	bl DWC_Auth_Destroy
 	ldr r0, _021D8390 ; =0x0221A4E4
 	ldr r2, _021D8394 ; =0x00001E20
 	ldr r1, [r0, #0]
@@ -247,13 +247,13 @@ _021D8390: .word Unk_ov4_0221A4E4
 _021D8394: .word 0x00001E20
 	arm_func_end DWC_NASLoginProcess
 
-	arm_func_start ov4_021D8398
-ov4_021D8398: ; 0x021D8398
-	ldr ip, _021D83A0 ; =ov4_021D3220
+	arm_func_start DWC_NASLoginAbort
+DWC_NASLoginAbort: ; 0x021D8398
+	ldr ip, _021D83A0 ; =DWC_Auth_Abort
 	bx ip
 	; .align 2, 0
-_021D83A0: .word ov4_021D3220
-	arm_func_end ov4_021D8398
+_021D83A0: .word DWC_Auth_Abort
+	arm_func_end DWC_NASLoginAbort
 
 	.data
 

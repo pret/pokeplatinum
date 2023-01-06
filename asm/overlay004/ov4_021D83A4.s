@@ -8,13 +8,13 @@
 
 	arm_func_start ov4_021D83A4
 ov4_021D83A4: ; 0x021D83A4
-	ldr ip, _021D83B8 ; =ov4_021D7790
+	ldr ip, _021D83B8 ; =DWC_AllocEx
 	mov r2, r1
 	mov r1, r0
 	mov r0, #6
 	bx ip
 	; .align 2, 0
-_021D83B8: .word ov4_021D7790
+_021D83B8: .word DWC_AllocEx
 	arm_func_end ov4_021D83A4
 
 	arm_func_start ov4_021D83BC
@@ -137,7 +137,7 @@ ov4_021D8510: ; 0x021D8510
 	mvn r5, #0
 	mov r4, #0x64
 _021D8528:
-	bl ov4_021D81B8
+	bl DWC_SVLProcess
 	cmp r0, #3
 	bne _021D8644
 	ldr r0, _021D86B0 ; =0x0221A4E8
@@ -170,7 +170,7 @@ _021D8574:
 	add r2, sp, #0x10
 	add r0, r4, #0x91
 	mov r3, #0x190
-	bl ov4_021D72E0
+	bl DWC_Auth_Base64Encode
 	cmp r0, #0
 	bge _021D85CC
 	mov r1, #8
@@ -249,8 +249,8 @@ _021D86C0: .word ov4_021D83A4
 _021D86C4: .word ov4_021D83BC
 	arm_func_end ov4_021D8510
 
-	arm_func_start ov4_021D86C8
-ov4_021D86C8: ; 0x021D86C8
+	arm_func_start DWC_NdInitAsync
+DWC_NdInitAsync: ; 0x021D86C8
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	mov r6, r0
@@ -289,7 +289,7 @@ ov4_021D86C8: ; 0x021D86C8
 	ldr r0, _021D87D8 ; =0x02217458
 	ldr r1, [r1, #0]
 	add r1, r1, #0x4c
-	bl ov4_021D8144
+	bl DWC_SVLGetTokenAsync
 	cmp r0, #0
 	bne _021D878C
 	ldr r0, _021D87D4 ; =0x0221A4E8
@@ -323,10 +323,10 @@ _021D878C:
 _021D87D4: .word Unk_ov4_0221A4E8
 _021D87D8: .word Unk_ov4_02217458
 _021D87DC: .word ov4_021D8510
-	arm_func_end ov4_021D86C8
+	arm_func_end DWC_NdInitAsync
 
-	arm_func_start ov4_021D87E0
-ov4_021D87E0: ; 0x021D87E0
+	arm_func_start DWC_NdCleanupAsync
+DWC_NdCleanupAsync: ; 0x021D87E0
 	stmfd sp!, {r3, lr}
 	ldr r1, _021D8824 ; =0x0221A4E8
 	ldr r2, [r1, #0]
@@ -349,10 +349,10 @@ _021D881C:
 	; .align 2, 0
 _021D8824: .word Unk_ov4_0221A4E8
 _021D8828: .word ov4_021D84CC
-	arm_func_end ov4_021D87E0
+	arm_func_end DWC_NdCleanupAsync
 
-	arm_func_start ov4_021D882C
-ov4_021D882C: ; 0x021D882C
+	arm_func_start DWC_NdSetAttr
+DWC_NdSetAttr: ; 0x021D882C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -366,10 +366,10 @@ ov4_021D882C: ; 0x021D882C
 	mov r2, r4
 	bl ov60_02223E90
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021D882C
+	arm_func_end DWC_NdSetAttr
 
-	arm_func_start ov4_021D8860
-ov4_021D8860: ; 0x021D8860
+	arm_func_start DWC_NdGetFileListNumAsync
+DWC_NdGetFileListNumAsync: ; 0x021D8860
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	bl ov4_021D7708
@@ -379,10 +379,10 @@ ov4_021D8860: ; 0x021D8860
 	mov r0, r4
 	bl ov60_02224D18
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021D8860
+	arm_func_end DWC_NdGetFileListNumAsync
 
-	arm_func_start ov4_021D8884
-ov4_021D8884: ; 0x021D8884
+	arm_func_start DWC_NdGetFileListAsync
+DWC_NdGetFileListAsync: ; 0x021D8884
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -401,10 +401,10 @@ ov4_021D8884: ; 0x021D8884
 	mov r2, r4
 	bl ov60_02224D8C
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021D8884
+	arm_func_end DWC_NdGetFileListAsync
 
-	arm_func_start ov4_021D88CC
-ov4_021D88CC: ; 0x021D88CC
+	arm_func_start DWC_NdGetFileAsync
+DWC_NdGetFileAsync: ; 0x021D88CC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -418,10 +418,10 @@ ov4_021D88CC: ; 0x021D88CC
 	mov r2, r4
 	bl ov60_0222504C
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021D88CC
+	arm_func_end DWC_NdGetFileAsync
 
-	arm_func_start ov4_021D8900
-ov4_021D8900: ; 0x021D8900
+	arm_func_start DWC_NdCancelAsync
+DWC_NdCancelAsync: ; 0x021D8900
 	stmfd sp!, {r3, lr}
 	bl ov4_021D7708
 	cmp r0, #0
@@ -429,10 +429,10 @@ ov4_021D8900: ; 0x021D8900
 	ldmneia sp!, {r3, pc}
 	bl ov60_02224448
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021D8900
+	arm_func_end DWC_NdCancelAsync
 
-	arm_func_start ov4_021D891C
-ov4_021D891C: ; 0x021D891C
+	arm_func_start DWC_NdGetProgress
+DWC_NdGetProgress: ; 0x021D891C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -444,7 +444,7 @@ ov4_021D891C: ; 0x021D891C
 	mov r1, r4
 	bl ov60_02225208
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021D891C
+	arm_func_end DWC_NdGetProgress
 
 	.data
 

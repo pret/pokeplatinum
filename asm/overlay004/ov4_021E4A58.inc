@@ -7,14 +7,14 @@
 .public ov4_021D7708
 .public ov4_021D7724
 .public DWC_GetMyAID
-.public ov4_021D9984
+.public DWC_GetAIDList
 .public DWC_IsValidAID
 .public ov4_021D9B24
 .public ov4_021D9B88
 .public ov4_021D9C8C
 .public ov4_021DE4B4
 .public ov4_021E4A68
-.public ov4_021E4AE8
+.public DWC_SendReliable
 .public ov4_021E4B08
 .public ov4_021E4DD4
 .public ov4_021E4E04

@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D5818.inc"
+	.include "overlay004/DWC_Netcheck_Create.inc"
 
 	.extern Unk_021CCC80
 	.extern Unk_021D0D40
@@ -8,8 +8,8 @@
 	.text
 
 
-	arm_func_start ov4_021D5818
-ov4_021D5818: ; 0x021D5818
+	arm_func_start DWC_Netcheck_Create
+DWC_Netcheck_Create: ; 0x021D5818
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r1, _021D58E0 ; =0x0221A438
 	mov r5, r0
@@ -67,10 +67,10 @@ _021D58E8: .word 0x000011F4
 _021D58EC: .word 0xFFFE7961
 _021D58F0: .word Unk_ov4_02216398
 _021D58F4: .word 0x00001C14
-	arm_func_end ov4_021D5818
+	arm_func_end DWC_Netcheck_Create
 
-	arm_func_start ov4_021D58F8
-ov4_021D58F8: ; 0x021D58F8
+	arm_func_start DWC_Netcheck_Destroy
+DWC_Netcheck_Destroy: ; 0x021D58F8
 	stmfd sp!, {r4, lr}
 	ldr r0, _021D59DC ; =0x0221A438
 	ldr r1, [r0, #0]
@@ -79,7 +79,7 @@ ov4_021D58F8: ; 0x021D58F8
 	cmp r0, #0
 	ldr r4, [r1, #0x10c]
 	beq _021D593C
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D59DC ; =0x0221A438
 	ldr r0, _021D59E0 ; =0x022163A8
 	ldr r1, [r1, #0x14]
@@ -89,7 +89,7 @@ ov4_021D58F8: ; 0x021D58F8
 	mov r1, #0
 	str r1, [r0, #0x14]
 _021D593C:
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	ldr r0, _021D59DC ; =0x0221A438
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -137,10 +137,10 @@ _021D59E0: .word Unk_ov4_022163A8
 _021D59E4: .word Unk_ov4_022163B8
 _021D59E8: .word Unk_ov4_022163D4
 _021D59EC: .word Unk_ov4_022163F4
-	arm_func_end ov4_021D58F8
+	arm_func_end DWC_Netcheck_Destroy
 
-	arm_func_start ov4_021D59F0
-ov4_021D59F0: ; 0x021D59F0
+	arm_func_start DWC_Netcheck_Abort
+DWC_Netcheck_Abort: ; 0x021D59F0
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D5A54 ; =0x0221A438
 	ldr r1, [r0, #0]
@@ -149,9 +149,9 @@ ov4_021D59F0: ; 0x021D59F0
 	ldr r0, [r0, #0x14]
 	cmp r0, #0
 	beq _021D5A14
-	bl ov4_021D46E8
+	bl DWC_Http_Abort
 _021D5A14:
-	bl ov4_021D3220
+	bl DWC_Auth_Abort
 	ldr r0, _021D5A54 ; =0x0221A438
 	ldr r1, [r0, #0]
 	add r0, r1, #0x1000
@@ -170,10 +170,10 @@ _021D5A3C:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D5A54: .word Unk_ov4_0221A438
-	arm_func_end ov4_021D59F0
+	arm_func_end DWC_Netcheck_Abort
 
-	arm_func_start ov4_021D5A58
-ov4_021D5A58: ; 0x021D5A58
+	arm_func_start DWC_Netcheck_GetError
+DWC_Netcheck_GetError: ; 0x021D5A58
 	stmfd sp!, {r4, lr}
 	ldr r0, _021D5A94 ; =0x0221A438
 	ldr r0, [r0, #0]
@@ -191,10 +191,10 @@ ov4_021D5A58: ; 0x021D5A58
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021D5A94: .word Unk_ov4_0221A438
-	arm_func_end ov4_021D5A58
+	arm_func_end DWC_Netcheck_GetError
 
-	arm_func_start ov4_021D5A98
-ov4_021D5A98: ; 0x021D5A98
+	arm_func_start DWC_Netcheck_GetReturnCode
+DWC_Netcheck_GetReturnCode: ; 0x021D5A98
 	ldr r0, _021D5AAC ; =0x0221A438
 	ldr r0, [r0, #0]
 	add r0, r0, #0x1000
@@ -202,7 +202,7 @@ ov4_021D5A98: ; 0x021D5A98
 	bx lr
 	; .align 2, 0
 _021D5AAC: .word Unk_ov4_0221A438
-	arm_func_end ov4_021D5A98
+	arm_func_end DWC_Netcheck_GetReturnCode
 
 	arm_func_start ov4_021D5AB0
 ov4_021D5AB0: ; 0x021D5AB0
@@ -288,23 +288,23 @@ _021D5B98:
 	ldr r0, [sp, #0x1c]
 	str r0, [r2, #4]
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4478
+	bl DWC_Http_Create
 	cmp r0, #0
 	beq _021D5C00
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
 _021D5C00:
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4594
+	bl DWC_Http_FinishHeader
 	cmp r0, #0
 	beq _021D5C28
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
@@ -314,7 +314,7 @@ _021D5C28:
 	bl OS_GetThreadPriority
 	sub r1, r0, #1
 	ldr r0, [r5, #0x14]
-	bl ov4_021D462C
+	bl DWC_Http_StartThread
 	ldr r1, [r5, #0x14]
 	add r0, r1, #0x1000
 	ldr r0, [r0, #0xba4]
@@ -341,25 +341,25 @@ _021D5C80:
 _021D5C94:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #3
 	bl ov4_021D6A44
 	b _021D6968
 _021D5CAC:
 	mov r1, #0
-	bl ov4_021D5404
+	bl DWC_Http_ParseResult
 	cmp r0, #1
 	beq _021D5CD4
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #2
 	bl ov4_021D6A44
 	b _021D6968
 _021D5CD4:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D69D0 ; =0x02216470
-	bl ov4_021D56A4
+	bl DWC_Http_GetResult
 	bl atoi
 	mov r6, r0
 	ldr r0, _021D69D4 ; =0x021D0D40
@@ -394,7 +394,7 @@ _021D5D30:
 	mvn r2, #5
 	str r2, [r0, #4]
 	ldr r0, [r1, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r0, _021D69DC ; =0x02215EA0
 	ldr r2, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0]
@@ -416,31 +416,31 @@ _021D5D30:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r1, _021D69C8 ; =0x0221A450
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4478
+	bl DWC_Http_Create
 	cmp r0, #0
 	beq _021D5DD8
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
 _021D5DD8:
 	add r0, sp, #0x44
-	bl ov4_021D3E5C
+	bl DWC_Auth_GetCalInfoFromNVRAM
 	cmp r0, #0
 	beq _021D5E04
 	ldr r0, _021D69BC ; =0x0221A438
 	add r1, sp, #0x44
 	ldr r0, [r0, #0x14]
 	mov r2, #1
-	bl ov4_021D4134
+	bl DWC_Auth_SetCalInfoToHttp
 	cmp r0, #0
 	bne _021D5E1C
 _021D5E04:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #8
 	bl ov4_021D6A44
 	b _021D6968
@@ -450,7 +450,7 @@ _021D5E1C:
 	ldr r0, [r0, #0x14]
 	ldr r2, _021D69EC ; =0x022164A4
 	mov r3, #7
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	bne _021D5E74
 	ldr r0, _021D69BC ; =0x0221A438
@@ -464,13 +464,13 @@ _021D5E1C:
 	ldr r0, [r1, #0x14]
 	ldr r1, _021D69F0 ; =0x022164AC
 	mov r2, r4
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	beq _021D5E8C
 _021D5E74:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #8
 	bl ov4_021D6A44
 	b _021D6968
@@ -488,12 +488,12 @@ _021D5E8C:
 	add r0, r0, #0x1000
 	str r2, [r0, #0x118]
 	ldr r0, [r1, #0x14]
-	bl ov4_021D4594
+	bl DWC_Http_FinishHeader
 	cmp r0, #0
 	beq _021D5EE4
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
@@ -504,7 +504,7 @@ _021D5EE4:
 	ldr r2, _021D69BC ; =0x0221A438
 	sub r1, r0, #1
 	ldr r0, [r2, #0x14]
-	bl ov4_021D462C
+	bl DWC_Http_StartThread
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r1, [r0, #0x14]
 	add r0, r1, #0x1000
@@ -532,12 +532,12 @@ _021D5F48:
 _021D5F58:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #3
 	bl ov4_021D6A44
 	b _021D6968
 _021D5F70:
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #7
 	bl ov4_021D6A44
 	b _021D6968
@@ -548,7 +548,7 @@ _021D5F80:
 	str r1, [sp, #0x14]
 	cmp r1, #0
 	bne _021D5FA8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #2
 	bl ov4_021D6A44
 	b _021D6968
@@ -569,7 +569,7 @@ _021D5FA8:
 	bne _021D5FF8
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #4
 	bl ov4_021D6A44
 	b _021D6968
@@ -585,13 +585,13 @@ _021D5FF8:
 _021D6018:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #0xa
 	bl ov4_021D6A44
 	b _021D6968
 _021D6030:
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	add r0, sp, #0x30
 	bl sub_020A283C
 	ldr r2, [sp, #0x30]
@@ -615,18 +615,18 @@ _021D6030:
 	ldr r1, [r1, #0x10c]
 	str r1, [r5, #0x78]
 	ldr r1, [r5, #0x14]
-	bl ov4_021D3048
+	bl DWC_Auth_Create
 	cmp r0, #0
 	beq _021D60AC
 	mov r0, #5
 	bl ov4_021D6A44
 	b _021D6968
 _021D60AC:
-	bl ov4_021D3304
-	bl ov4_021D3334
+	bl DWC_Auth_Join
+	bl DWC_Auth_GetError
 	cmp r0, #0x15
 	beq _021D615C
-	bl ov4_021D3334
+	bl DWC_Auth_GetError
 	cmp r0, #9
 	bne _021D60E0
 	ldr r0, _021D69BC ; =0x0221A438
@@ -637,7 +637,7 @@ _021D60AC:
 	b _021D614C
 _021D60E0:
 	add r0, sp, #0xd8
-	bl ov4_021D3380
+	bl DWC_Auth_GetResult
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0xc]
 	cmp r0, #1
@@ -646,7 +646,7 @@ _021D60E0:
 	ldr r0, _021D6A00 ; =0xFFFFA4FA
 	cmp r1, r0
 	beq _021D6114
-	bl ov4_021D3334
+	bl DWC_Auth_GetError
 	cmp r0, #0xb
 	bne _021D6138
 _021D6114:
@@ -655,7 +655,7 @@ _021D6114:
 	ldr r0, [r0, #0]
 	add r0, r0, #0x1000
 	str r1, [r0, #4]
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	mov r0, #0xb
 	bl ov4_021D6A44
 	b _021D6968
@@ -666,12 +666,12 @@ _021D6138:
 	add r0, r0, #0x1000
 	str r1, [r0, #4]
 _021D614C:
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	mov r0, #6
 	bl ov4_021D6A44
 	b _021D6968
 _021D615C:
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 _021D6160:
 	cmp r6, #0xc8
 	bne _021D6188
@@ -706,30 +706,30 @@ _021D6188:
 	strne r0, [r5, #0x2c]
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D69C8 ; =0x0221A450
-	bl ov4_021D4478
+	bl DWC_Http_Create
 	cmp r0, #0
 	beq _021D6204
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
 _021D6204:
 	add r0, sp, #0x44
-	bl ov4_021D3E5C
+	bl DWC_Auth_GetCalInfoFromNVRAM
 	cmp r0, #0
 	beq _021D622C
 	ldr r0, [r5, #0x14]
 	add r1, sp, #0x44
 	mov r2, #1
-	bl ov4_021D4134
+	bl DWC_Auth_SetCalInfoToHttp
 	cmp r0, #0
 	bne _021D6244
 _021D622C:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #8
 	bl ov4_021D6A44
 	b _021D6968
@@ -738,7 +738,7 @@ _021D6244:
 	ldr r1, _021D69E8 ; =0x0221649C
 	ldr r2, _021D6A04 ; =0x022164BC
 	mov r3, #5
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	bne _021D6290
 	ldr r0, [r5, #0]
@@ -750,13 +750,13 @@ _021D6244:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D6A08 ; =0x022164C4
 	mov r2, r6
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	beq _021D62A8
 _021D6290:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #8
 	bl ov4_021D6A44
 	b _021D6968
@@ -772,12 +772,12 @@ _021D62A8:
 	mov r0, #0
 	str r0, [r1, #0x114]
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4594
+	bl DWC_Http_FinishHeader
 	cmp r0, #0
 	beq _021D62F8
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
@@ -787,7 +787,7 @@ _021D62F8:
 	bl OS_GetThreadPriority
 	sub r1, r0, #1
 	ldr r0, [r5, #0x14]
-	bl ov4_021D462C
+	bl DWC_Http_StartThread
 	ldr r1, [r5, #0x14]
 	add r0, r1, #0x1000
 	ldr r0, [r0, #0xba4]
@@ -808,7 +808,7 @@ _021D6330:
 	beq _021D63C0
 	b _021D63A8
 _021D6358:
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r1, [r0, #0xc]
 	cmp r1, #1
@@ -833,25 +833,25 @@ _021D6394:
 _021D63A8:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #3
 	bl ov4_021D6A44
 	b _021D6968
 _021D63C0:
 	mov r1, #0
-	bl ov4_021D5404
+	bl DWC_Http_ParseResult
 	cmp r0, #1
 	beq _021D63E8
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #2
 	bl ov4_021D6A44
 	b _021D6968
 _021D63E8:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D69D0 ; =0x02216470
-	bl ov4_021D56A4
+	bl DWC_Http_GetResult
 	bl atoi
 	mov r6, r0
 	ldr r0, _021D69D4 ; =0x021D0D40
@@ -860,7 +860,7 @@ _021D63E8:
 	bne _021D6424
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #2
 	bl ov4_021D6A44
 	b _021D6968
@@ -869,7 +869,7 @@ _021D6424:
 	beq _021D6478
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D69BC ; =0x0221A438
 	ldr r0, [r1, #0xc]
 	cmp r0, #1
@@ -892,12 +892,12 @@ _021D6478:
 	ldr r1, _021D6A10 ; =0x022164CC
 	add r2, sp, #0x2c
 	mov r3, #4
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	cmp r0, #0
 	bgt _021D64AC
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -910,7 +910,7 @@ _021D64AC:
 	bne _021D64DC
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -932,7 +932,7 @@ _021D650C:
 	blt _021D652C
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #6
 	bl ov4_021D6A44
 	b _021D6968
@@ -941,13 +941,13 @@ _021D652C:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D6A14 ; =0x022164D8
 	mov r3, r2
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	str r0, [sp, #0x10]
 	cmp r0, #0
 	bgt _021D6564
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -956,13 +956,13 @@ _021D6564:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D6A18 ; =0x022164DC
 	mov r3, r2
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	str r0, [sp, #0xc]
 	cmp r0, #0
 	bgt _021D659C
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -971,7 +971,7 @@ _021D659C:
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D6A1C ; =0x022164E4
 	mov r3, r2
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	ldr r1, [sp, #0x10]
 	mov r6, r0
 	ldr r0, _021D6A20 ; =0x02216424
@@ -981,7 +981,7 @@ _021D659C:
 	bne _021D65E4
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #4
 	bl ov4_021D6A44
 	b _021D6968
@@ -994,7 +994,7 @@ _021D65E4:
 	bne _021D6614
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #4
 	bl ov4_021D6A44
 	b _021D6968
@@ -1008,7 +1008,7 @@ _021D6614:
 	bne _021D6648
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #4
 	bl ov4_021D6A44
 	b _021D6968
@@ -1018,12 +1018,12 @@ _021D6648:
 	add r3, r0, #1
 	ldr r0, [r5, #0x14]
 	mov r2, sb
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	cmp r0, #0
 	bge _021D6680
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -1035,12 +1035,12 @@ _021D6680:
 	strb r1, [sb, r0]
 	ldr r0, [r5, #0x14]
 	ldr r1, _021D6A18 ; =0x022164DC
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	cmp r0, #0
 	bge _021D66C0
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -1055,12 +1055,12 @@ _021D66C0:
 	ldr r1, _021D6A1C ; =0x022164E4
 	add r3, r6, #1
 	mov r2, sl
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	cmp r0, #0
 	bge _021D670C
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -1075,7 +1075,7 @@ _021D670C:
 	bne _021D6744
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #9
 	bl ov4_021D6A44
 	b _021D6968
@@ -1088,7 +1088,7 @@ _021D6744:
 	strgt r0, [sp, #8]
 _021D675C:
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r0, [r5, #0]
 	ldr r1, _021D69C8 ; =0x0221A450
 	add r2, r0, #0x1000
@@ -1104,35 +1104,35 @@ _021D675C:
 	str r8, [r5, #0x28]
 	str r0, [r5, #0x30]
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4478
+	bl DWC_Http_Create
 	cmp r0, #0
 	beq _021D67C4
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
 _021D67C4:
 	ldr r0, [r5, #0x14]
 	mov r1, fp
-	bl ov4_021D4F88
+	bl DWC_Http_Add_Body
 	cmp r0, #0
 	beq _021D67F0
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #8
 	bl ov4_021D6A44
 	b _021D6968
 _021D67F0:
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4594
+	bl DWC_Http_FinishHeader
 	cmp r0, #0
 	beq _021D6818
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #1
 	bl ov4_021D6A44
 	b _021D6968
@@ -1142,7 +1142,7 @@ _021D6818:
 	bl OS_GetThreadPriority
 	sub r1, r0, #1
 	ldr r0, [r5, #0x14]
-	bl ov4_021D462C
+	bl DWC_Http_StartThread
 	ldr r1, [r5, #0x14]
 	add r0, r1, #0x1000
 	ldr r0, [r0, #0xba4]
@@ -1169,18 +1169,18 @@ _021D6870:
 _021D6884:
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #3
 	bl ov4_021D6A44
 	b _021D6968
 _021D689C:
 	mov r1, #1
-	bl ov4_021D5404
+	bl DWC_Http_ParseResult
 	cmp r0, #1
 	beq _021D68C4
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #2
 	bl ov4_021D6A44
 	b _021D6968
@@ -1190,7 +1190,7 @@ _021D68C4:
 	ldr r6, [r1, #0xa08]
 	cmp r6, #0
 	bne _021D68E8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #2
 	bl ov4_021D6A44
 	b _021D6968
@@ -1211,7 +1211,7 @@ _021D68E8:
 	bne _021D6938
 	ldr r0, _021D69BC ; =0x0221A438
 	ldr r0, [r0, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #4
 	bl ov4_021D6A44
 	b _021D6968
@@ -1224,7 +1224,7 @@ _021D6938:
 	add r2, r2, #1
 	bl strncpy
 	ldr r0, [r5, #0x14]
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r0, [sp, #8]
 	bl OS_Sleep
 	b _021D5B98

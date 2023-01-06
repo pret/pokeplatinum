@@ -7,7 +7,7 @@
 .public MI_CpuFill8
 .public MI_CpuCopy8
 .public strncmp
-.public ov4_021E6040
+.public DWC_AC_SetSpecifyAp
 .public ov4_021E6124
 .public ov4_021E6164
 .public ov4_021E61C8

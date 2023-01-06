@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021E5C34.inc"
+	.include "overlay004/DWC_AC_Create.inc"
 
 	
 
 	.text
 
 
-	arm_func_start ov4_021E5C34
-ov4_021E5C34: ; 0x021E5C34
+	arm_func_start DWC_AC_Create
+DWC_AC_Create: ; 0x021E5C34
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r2, [r4, #0]
@@ -117,10 +117,10 @@ _021E5DCC:
 	; .align 2, 0
 _021E5DD4: .word Unk_ov4_0221AE2C
 _021E5DD8: .word 0x00000D18
-	arm_func_end ov4_021E5C34
+	arm_func_end DWC_AC_Create
 
-	arm_func_start ov4_021E5DDC
-ov4_021E5DDC: ; 0x021E5DDC
+	arm_func_start DWC_AC_Process
+DWC_AC_Process: ; 0x021E5DDC
 	stmfd sp!, {r3, r4, r5, lr}
 	bl ov4_021E63A4
 	mov r5, r0
@@ -180,10 +180,10 @@ _021E5E94:
 	bl ov4_021E64B0
 	mvn r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021E5DDC
+	arm_func_end DWC_AC_Process
 
-	arm_func_start ov4_021E5EAC
-ov4_021E5EAC: ; 0x021E5EAC
+	arm_func_start DWC_AC_GetStatus
+DWC_AC_GetStatus: ; 0x021E5EAC
 	stmfd sp!, {r3, lr}
 	bl ov4_021E63A4
 	cmp r0, #1
@@ -211,10 +211,10 @@ ov4_021E5EAC: ; 0x021E5EAC
 	ldmeqia sp!, {r3, pc}
 	bl ov4_021E7234
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021E5EAC
+	arm_func_end DWC_AC_GetStatus
 
-	arm_func_start ov4_021E5F18
-ov4_021E5F18: ; 0x021E5F18
+	arm_func_start DWC_AC_GetApType
+DWC_AC_GetApType: ; 0x021E5F18
 	stmfd sp!, {r4, lr}
 	mov r4, #0xff
 	bl ov4_021E63A4
@@ -229,10 +229,10 @@ _021E5F3C:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021E5F44: .word Unk_ov4_0221AE2C
-	arm_func_end ov4_021E5F18
+	arm_func_end DWC_AC_GetApType
 
-	arm_func_start ov4_021E5F48
-ov4_021E5F48: ; 0x021E5F48
+	arm_func_start DWC_AC_GetApSpotInfo
+DWC_AC_GetApSpotInfo: ; 0x021E5F48
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, #0
@@ -257,10 +257,10 @@ _021E5F94:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021E5F9C: .word Unk_ov4_0221AE2C
-	arm_func_end ov4_021E5F48
+	arm_func_end DWC_AC_GetApSpotInfo
 
-	arm_func_start ov4_021E5FA0
-ov4_021E5FA0: ; 0x021E5FA0
+	arm_func_start DWC_AC_Destroy
+DWC_AC_Destroy: ; 0x021E5FA0
 	stmfd sp!, {r3, lr}
 	bl ov4_021E63A4
 	strb r0, [sp]
@@ -277,10 +277,10 @@ _021E5FC4:
 	bl ov4_021E6344
 	mov r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021E5FA0
+	arm_func_end DWC_AC_Destroy
 
-	arm_func_start ov4_021E5FDC
-ov4_021E5FDC: ; 0x021E5FDC
+	arm_func_start DWC_AC_SetSpecifyApEx
+DWC_AC_SetSpecifyApEx: ; 0x021E5FDC
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r8, r0
 	mov r5, r3
@@ -306,12 +306,12 @@ _021E6024:
 	mov r1, r7
 	mov r2, r6
 	strb r3, [r4, #0x22]
-	bl ov4_021E6040
+	bl DWC_AC_SetSpecifyAp
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end ov4_021E5FDC
+	arm_func_end DWC_AC_SetSpecifyApEx
 
-	arm_func_start ov4_021E6040
-ov4_021E6040: ; 0x021E6040
+	arm_func_start DWC_AC_SetSpecifyAp
+DWC_AC_SetSpecifyAp: ; 0x021E6040
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r0, #0x10
@@ -362,7 +362,7 @@ _021E60D0:
 	orr r0, r1, r0
 	strb r0, [r4, #0xe6]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021E6040
+	arm_func_end DWC_AC_SetSpecifyAp
 
 	arm_func_start ov4_021E60F8
 ov4_021E60F8: ; 0x021E60F8

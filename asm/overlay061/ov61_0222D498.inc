@@ -12,8 +12,8 @@
 .public DWC_GetLastErrorEx
 .public DWC_Alloc
 .public DWC_Free
-.public ov4_021D8144
-.public ov4_021D81B8
+.public DWC_SVLGetTokenAsync
+.public DWC_SVLProcess
 .public ov4_021EAF1C
 .public ov4_02208324
 .public ov4_0220837C

@@ -180,10 +180,10 @@
 .public swprintf
 .public _ull_div
 .public _ull_mod
-.public ov4_021E5C34
-.public ov4_021E5DDC
-.public ov4_021E5EAC
-.public ov4_021E5FA0
+.public DWC_AC_Create
+.public DWC_AC_Process
+.public DWC_AC_GetStatus
+.public DWC_AC_Destroy
 .public ov4_021E60F8
 .public ov18_0221F84C
 .public ov18_0221F874

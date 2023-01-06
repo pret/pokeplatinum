@@ -180,8 +180,8 @@ ov4_021DA8E8: ; 0x021DA8E8
 	ldr r0, [r0, #0x24]
 	cmp r0, #0
 	beq _021DA930
-	bl ov4_021D3220
-	bl ov4_021D32AC
+	bl DWC_Auth_Abort
+	bl DWC_Auth_Destroy
 	ldr r1, _021DA940 ; =0x0221A68C
 	mov r0, #0
 	ldr r1, [r1, #4]
@@ -497,7 +497,7 @@ _021DACE0:
 	mov r2, #4
 	str r4, [sp, #0x40]
 	str r3, [sp, #0x44]
-	bl ov4_021D7790
+	bl DWC_AllocEx
 	ldr r1, _021DAD7C ; =0x0221A68C
 	mov r4, r0
 	ldr r0, [r1, #4]
@@ -509,7 +509,7 @@ _021DACE0:
 	str r1, [r2, #0x2c]
 	mov r1, r4
 	add r0, sp, #0
-	bl ov4_021D3048
+	bl DWC_Auth_Create
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -526,11 +526,11 @@ _021DAD94: .word 0x00001C14
 ov4_021DAD98: ; 0x021DAD98
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x3d0
-	bl ov4_021D3334
+	bl DWC_Auth_GetError
 	cmp r0, #0x15
 	bne _021DAE68
 	add r0, sp, #0x20c
-	bl ov4_021D3380
+	bl DWC_Auth_GetResult
 	ldr r0, _021DAF88 ; =0x0221A68C
 	add r1, sp, #0x200
 	ldr r0, [r0, #4]
@@ -543,7 +543,7 @@ ov4_021DAD98: ; 0x021DAD98
 	add r1, r1, #0x83
 	add r0, r0, #0x148
 	bl strcpy
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	ldr r1, _021DAF88 ; =0x0221A68C
 	mov r0, #0
 	ldr r1, [r1, #4]
@@ -578,7 +578,7 @@ _021DAE44:
 	add sp, sp, #0x3d0
 	ldmia sp!, {r3, pc}
 _021DAE68:
-	bl ov4_021D3334
+	bl DWC_Auth_GetError
 	cmp r0, #0
 	addeq sp, sp, #0x3d0
 	ldmeqia sp!, {r3, pc}
@@ -600,8 +600,8 @@ _021DAE68:
 	cmpeq r0, r2
 	bls _021DAF04
 	add r0, sp, #0x48
-	bl ov4_021D3380
-	bl ov4_021D32AC
+	bl DWC_Auth_GetResult
+	bl DWC_Auth_Destroy
 	ldr r1, _021DAF88 ; =0x0221A68C
 	mov r0, #0
 	ldr r1, [r1, #4]
@@ -618,7 +618,7 @@ _021DAE68:
 	add sp, sp, #0x3d0
 	ldmia sp!, {r3, pc}
 _021DAF04:
-	bl ov4_021D32AC
+	bl DWC_Auth_Destroy
 	add r0, sp, #0
 	mov r1, #0
 	mov r2, #0x48
@@ -648,7 +648,7 @@ _021DAF04:
 	str r2, [sp, #0x44]
 	ldr r1, [r1, #0x24]
 	add r0, sp, #0
-	bl ov4_021D3048
+	bl DWC_Auth_Create
 	add sp, sp, #0x3d0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0

@@ -12,10 +12,10 @@
 .public RTC_GetDateTime
 .public strlen
 .public wcslen
-.public ov4_021D3E84
-.public ov4_021D4DA0
-.public ov4_021D4E7C
-.public ov4_021E5F18
-.public ov4_021E5F48
+.public DWC_Auth_GetCalInfoFromWiFiInfo
+.public DWC_Http_Add_HeaderItem
+.public DWC_Http_Add_PostBase64Item
+.public DWC_AC_GetApType
+.public DWC_AC_GetApSpotInfo
 .public ov4_02215398
 .public ov4_022153DC

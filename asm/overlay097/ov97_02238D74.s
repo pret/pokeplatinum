@@ -134,7 +134,7 @@ ov97_02238E44: ; 0x02238E44
 	ldr r0, _02238E70 ; =0x00001013
 	str r0, [r4, #0]
 	ldr r0, _02238E74 ; =ov97_02238E88
-	bl ov4_021D87E0
+	bl DWC_NdCleanupAsync
 	cmp r0, #0
 	bne _02238E66
 	ldr r0, [sp, #0x10]
@@ -352,13 +352,13 @@ _02238FFA:
 _02239004:
 	b _022392C4
 _02239006:
-	bl ov4_021D8398
+	bl DWC_NASLoginAbort
 	b _022392C4
 _0223900C:
 	ldr r0, _022391E8 ; =ov97_02238E78
 	ldr r1, _022391EC ; =0x0223F138
 	ldr r2, _022391F0 ; =0x0223F140
-	bl ov4_021D86C8
+	bl DWC_NdInitAsync
 	cmp r0, #0
 	bne _02239024
 	add r0, r4, #0
@@ -387,7 +387,7 @@ _02239048:
 	ldr r0, _022391F8 ; =0x0223F154
 	add r1, r0, #0
 	add r2, r0, #0
-	bl ov4_021D882C
+	bl DWC_NdSetAttr
 	cmp r0, #0
 	bne _02239060
 	add r0, r4, #0
@@ -401,7 +401,7 @@ _02239060:
 _02239066:
 	ldr r0, _02239200 ; =0x00001654
 	add r0, r4, r0
-	bl ov4_021D8860
+	bl DWC_NdGetFileListNumAsync
 	cmp r0, #0
 	bne _0223907C
 	add r0, r4, #0
@@ -430,7 +430,7 @@ _022390A0:
 	ldr r0, _02239208 ; =0x02240414
 	mov r1, #0
 	mov r2, #0xa
-	bl ov4_021D8884
+	bl DWC_NdGetFileListAsync
 	cmp r0, #0
 	bne _022390B8
 	add r0, r4, #0
@@ -448,7 +448,7 @@ _022390C4:
 	ldr r0, _02239208 ; =0x02240414
 	add r1, r4, r1
 	add r2, r3, #0
-	bl ov4_021D88CC
+	bl DWC_NdGetFileAsync
 	cmp r0, #0
 	bne _022390DE
 	add r0, r4, #0
@@ -484,7 +484,7 @@ _0223910C:
 	add r0, r4, r1
 	add r1, r1, #4
 	add r1, r4, r1
-	bl ov4_021D891C
+	bl DWC_NdGetProgress
 	cmp r0, #1
 	bne _0223919E
 	ldr r1, _0223921C ; =0x0000265C
@@ -521,7 +521,7 @@ _02239150:
 	bl ov97_02238E44
 	b _022392C4
 _02239160:
-	bl ov4_021D8900
+	bl DWC_NdCancelAsync
 	cmp r0, #0
 	bne _0223916E
 	ldr r0, _022391D0 ; =0x0000100D
@@ -536,7 +536,7 @@ _0223916E:
 	ldr r0, [r0, #8]
 	pop {r3, r4, r5, pc}
 _0223917E:
-	bl ov4_021D7E10
+	bl DWC_CleanupInetAsync
 	cmp r0, #1
 	bne _0223919E
 	ldr r0, _022391AC ; =0x0000267C

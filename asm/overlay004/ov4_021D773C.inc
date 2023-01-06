@@ -3,7 +3,7 @@
 .public ov4_021D7744
 .public ov4_021D775C
 .public DWC_Alloc
-.public ov4_021D7790
+.public DWC_AllocEx
 .public DWC_Free
-.public ov4_021D7800
-.public ov4_021D7814
+.public DWC_Realloc
+.public DWC_ReallocEx

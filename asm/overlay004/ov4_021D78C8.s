@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D78C8.inc"
+	.include "overlay004/DWC_InitInetEx.inc"
 
 	
 
@@ -48,15 +48,15 @@ DWC_SetAuthServer: ; 0x021D792C
 	ldmia sp!, {r3, pc}
 _021D794C:
 	ldr r0, _021D7970 ; =0x022173B8
-	bl ov4_021D3038
+	bl DWC_Auth_SetCustomNas
 	ldmia sp!, {r3, pc}
 _021D7958:
 	ldr r0, _021D7974 ; =0x022173E0
-	bl ov4_021D3038
+	bl DWC_Auth_SetCustomNas
 	ldmia sp!, {r3, pc}
 _021D7964:
 	ldr r0, _021D7978 ; =0x02217404
-	bl ov4_021D3038
+	bl DWC_Auth_SetCustomNas
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D7970: .word Unk_ov4_022173B8
@@ -93,7 +93,7 @@ DWC_ConnectInetAsync: ; 0x021D797C
 	str r3, [sp]
 	str r2, [sp, #4]
 	strh r1, [lr, #4]
-	bl ov4_021E5C34
+	bl DWC_AC_Create
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {pc}
@@ -115,8 +115,8 @@ _021D7A28: .word DWC_Free
 _021D7A2C: .word 0xFFFF3BE9
 	arm_func_end DWC_ConnectInetAsync
 
-	arm_func_start ov4_021D7A30
-ov4_021D7A30: ; 0x021D7A30
+	arm_func_start DWC_DebugConnectInetExAsync
+DWC_DebugConnectInetExAsync: ; 0x021D7A30
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
@@ -137,11 +137,11 @@ ov4_021D7A30: ; 0x021D7A30
 	mov r2, r5
 	mov r3, r4
 	str ip, [sp]
-	bl ov4_021E5FDC
+	bl DWC_AC_SetSpecifyApEx
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021D7A88: .word Unk_ov4_0221A4DC
-	arm_func_end ov4_021D7A30
+	arm_func_end DWC_DebugConnectInetExAsync
 
 	arm_func_start DWC_CheckInet
 DWC_CheckInet: ; 0x021D7A8C
@@ -191,13 +191,13 @@ _021D7B08: ; jump table
 _021D7B1C:
 	mov r0, #0
 	str r0, [r1, #0]
-	bl ov4_021E9214
+	bl DWC_AC_ProcessGetWDSInfo
 	ldr r1, _021D7BF8 ; =0x0221A4DC
 	ldr r1, [r1, #4]
 	str r0, [r1, #0x10]
 	ldmia sp!, {r3, pc}
 _021D7B38:
-	bl ov4_021E9548
+	bl DWC_AC_CleanupGetWDSInfo
 	ldr r0, _021D7BF8 ; =0x0221A4DC
 	mov r1, #8
 	ldr r3, [r0, #4]
@@ -206,14 +206,14 @@ _021D7B38:
 	add r0, r3, #0x14
 	add r1, r3, #0x34
 	add r3, r3, #0x58
-	bl ov4_021D7A30
+	bl DWC_DebugConnectInetExAsync
 	ldr r0, _021D7BF8 ; =0x0221A4DC
 	mov r1, #0
 	ldr r0, [r0, #4]
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 _021D7B74:
-	bl ov4_021E9548
+	bl DWC_AC_CleanupGetWDSInfo
 	ldr r0, _021D7BF8 ; =0x0221A4DC
 	mvn r3, #0
 	ldr r2, [r0, #4]
@@ -227,7 +227,7 @@ _021D7B98:
 	ldrh r0, [r1, #4]
 	cmp r0, #2
 	bne _021D7BB8
-	bl ov4_021E5DDC
+	bl DWC_AC_Process
 	ldr r1, _021D7BF8 ; =0x0221A4DC
 	ldr r1, [r1, #4]
 	str r0, [r1, #0]
@@ -298,7 +298,7 @@ _021D7C84:
 	ldrh r0, [r1, #4]
 	cmp r0, #1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
-	bl ov4_021E5EAC
+	bl DWC_AC_GetStatus
 	mov r4, r0
 	cmp r4, #5
 	bne _021D7CC8
@@ -347,7 +347,7 @@ _021D7CFC:
 	ldr r0, _021D7DA8 ; =0x0221A4DC
 	ldr r0, [r0, #4]
 	add r0, r0, #0x14
-	bl ov4_021E91B4
+	bl DWC_AC_StartupGetWDSInfo
 	ldr r0, _021D7DA8 ; =0x0221A4DC
 	mov r3, #1
 	ldr r1, [r0, #4]
@@ -389,14 +389,14 @@ DWC_CleanupInet: ; 0x021D7DB0
 	moveq r1, #0
 	streq r1, [r0, #4]
 	ldmeqia sp!, {r4, pc}
-	bl ov4_021E5FA0
+	bl DWC_AC_Destroy
 	cmp r0, #0
 	bne _021D7DFC
 	mov r4, #0xa
 _021D7DE8:
 	mov r0, r4
 	bl OS_Sleep
-	bl ov4_021E5FA0
+	bl DWC_AC_Destroy
 	cmp r0, #0
 	beq _021D7DE8
 _021D7DFC:
@@ -408,8 +408,8 @@ _021D7DFC:
 _021D7E0C: .word Unk_ov4_0221A4DC
 	arm_func_end DWC_CleanupInet
 
-	arm_func_start ov4_021D7E10
-ov4_021D7E10: ; 0x021D7E10
+	arm_func_start DWC_CleanupInetAsync
+DWC_CleanupInetAsync: ; 0x021D7E10
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D7E7C ; =0x0221A4DC
 	ldr r2, [r0, #4]
@@ -429,7 +429,7 @@ ov4_021D7E10: ; 0x021D7E10
 _021D7E50:
 	mov r0, #5
 	strh r0, [r2, #4]
-	bl ov4_021E5FA0
+	bl DWC_AC_Destroy
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
@@ -440,7 +440,7 @@ _021D7E50:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021D7E7C: .word Unk_ov4_0221A4DC
-	arm_func_end ov4_021D7E10
+	arm_func_end DWC_CleanupInetAsync
 
 	arm_func_start ov4_021D7E80
 ov4_021D7E80: ; 0x021D7E80
@@ -482,7 +482,7 @@ DWC_GetApInfo: ; 0x021D7EB8
 	addne sp, sp, #0xc
 	movne r0, #0
 	ldmneia sp!, {r3, r4, r5, r6, pc}
-	bl ov4_021E5F18
+	bl DWC_AC_GetApType
 	str r0, [r4, #0]
 	cmp r0, #0xff
 	beq _021D7F04
@@ -539,7 +539,7 @@ _021D7FB0:
 	mov r0, r6
 	bl OS_RestoreInterrupts
 	add r0, sp, #2
-	bl ov4_021E5F48
+	bl DWC_AC_GetApSpotInfo
 	cmp r0, #0
 	beq _021D8004
 	ldrb r1, [sp, #2]
@@ -574,7 +574,7 @@ DWC_UpdateConnection: ; 0x021D8018
 	bl ov4_021D7E80
 	cmp r0, #0
 	beq _021D8060
-	bl ov4_021E5F18
+	bl DWC_AC_GetApType
 	mov r2, r0
 	cmp r2, #0xff
 	beq _021D8044

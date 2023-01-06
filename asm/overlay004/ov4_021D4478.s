@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D4478.inc"
+	.include "overlay004/DWC_Http_Create.inc"
 
 	.extern Unk_ov4_0221DE40
 	.extern Unk_ov4_02216F08
@@ -18,8 +18,8 @@
 	.text
 
 
-	arm_func_start ov4_021D4478
-ov4_021D4478: ; 0x021D4478
+	arm_func_start DWC_Http_Create
+DWC_Http_Create: ; 0x021D4478
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	ldr r2, _021D4580 ; =0x00001C14
@@ -94,16 +94,16 @@ _021D4584: .word 0x02216100
 _021D4588: .word 0x00000B68
 _021D458C: .word 0x02216118
 _021D4590: .word 0x000005EA
-	arm_func_end ov4_021D4478
+	arm_func_end DWC_Http_Create
 
-	arm_func_start ov4_021D4594
-ov4_021D4594: ; 0x021D4594
+	arm_func_start DWC_Http_FinishHeader
+DWC_Http_FinishHeader: ; 0x021D4594
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	ldr r1, _021D4618 ; =0x02216130
 	ldr r2, _021D461C ; =0x0221613C
 	mov r4, r0
-	bl ov4_021D4DA0
+	bl DWC_Http_Add_HeaderItem
 	cmp r0, #0
 	addne sp, sp, #8
 	movne r0, #1
@@ -123,7 +123,7 @@ ov4_021D4594: ; 0x021D4594
 	ldr r1, _021D4628 ; =0x02216150
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021D4DA0
+	bl DWC_Http_Add_HeaderItem
 	cmp r0, #0
 	addne sp, sp, #8
 	movne r0, #1
@@ -138,10 +138,10 @@ _021D461C: .word 0x0221613C
 _021D4620: .word 0x02216144
 _021D4624: .word 0x0221614C
 _021D4628: .word 0x02216150
-	arm_func_end ov4_021D4594
+	arm_func_end DWC_Http_FinishHeader
 
-	arm_func_start ov4_021D462C
-ov4_021D462C: ; 0x021D462C
+	arm_func_start DWC_Http_StartThread
+DWC_Http_StartThread: ; 0x021D462C
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	mov r5, r0
@@ -191,10 +191,10 @@ _021D46A8:
 	; .align 2, 0
 _021D46E0: .word Unk_ov4_0221A434
 _021D46E4: .word ov4_021D4910
-	arm_func_end ov4_021D462C
+	arm_func_end DWC_Http_StartThread
 
-	arm_func_start ov4_021D46E8
-ov4_021D46E8: ; 0x021D46E8
+	arm_func_start DWC_Http_Abort
+DWC_Http_Abort: ; 0x021D46E8
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x1000
@@ -218,7 +218,7 @@ ov4_021D46E8: ; 0x021D46E8
 	add r0, r0, #0x1800
 	bl OS_JoinThread
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021D46E8
+	arm_func_end DWC_Http_Abort
 
 	arm_func_start ov4_021D4744
 ov4_021D4744: ; 0x021D4744
@@ -573,8 +573,8 @@ _021D4C24: .word Unk_ov4_0221DE40
 _021D4C28: .word 0x000082EA
 	arm_func_end ov4_021D4910
 
-	arm_func_start ov4_021D4C2C
-ov4_021D4C2C: ; 0x021D4C2C
+	arm_func_start DWC_Http_Destroy
+DWC_Http_Destroy: ; 0x021D4C2C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	add r1, r5, #0x1000
@@ -623,7 +623,7 @@ _021D4CC0:
 _021D4CD4: .word 0x02216178
 _021D4CD8: .word 0x02216190
 _021D4CDC: .word 0x00001C14
-	arm_func_end ov4_021D4C2C
+	arm_func_end DWC_Http_Destroy
 
 	arm_func_start ov4_021D4CE0
 ov4_021D4CE0: ; 0x021D4CE0
@@ -678,8 +678,8 @@ _021D4D98: .word 0x022161A8
 _021D4D9C: .word 0x022161FC
 	arm_func_end ov4_021D4CE0
 
-	arm_func_start ov4_021D4DA0
-ov4_021D4DA0: ; 0x021D4DA0
+	arm_func_start DWC_Http_Add_HeaderItem
+DWC_Http_Add_HeaderItem: ; 0x021D4DA0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r8, r0
 	mov r6, r2
@@ -737,10 +737,10 @@ _021D4E18:
 	; .align 2, 0
 _021D4E74: .word 0x0221621C
 _021D4E78: .word 0x02216144
-	arm_func_end ov4_021D4DA0
+	arm_func_end DWC_Http_Add_HeaderItem
 
-	arm_func_start ov4_021D4E7C
-ov4_021D4E7C: ; 0x021D4E7C
+	arm_func_start DWC_Http_Add_PostBase64Item
+DWC_Http_Add_PostBase64Item: ; 0x021D4E7C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	add r0, sl, #0x1000
@@ -761,7 +761,7 @@ ov4_021D4E7C: ; 0x021D4E7C
 	mov r1, fp
 	mov r3, r2
 	str r5, [r4, #0x9f4]
-	bl ov4_021D72E0
+	bl DWC_Auth_Base64Encode
 	mov r5, r0
 	mov r0, r7
 	bl strlen
@@ -797,7 +797,7 @@ _021D4F2C:
 	sub r3, r0, r2
 	mov r0, r8
 	sub r3, r3, #1
-	bl ov4_021D72E0
+	bl DWC_Auth_Base64Encode
 	cmp r0, #0
 	movlt r0, #1
 	ldmltia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -810,10 +810,10 @@ _021D4F2C:
 	; .align 2, 0
 _021D4F80: .word 0x02216228
 _021D4F84: .word 0x0221622C
-	arm_func_end ov4_021D4E7C
+	arm_func_end DWC_Http_Add_PostBase64Item
 
-	arm_func_start ov4_021D4F88
-ov4_021D4F88: ; 0x021D4F88
+	arm_func_start DWC_Http_Add_Body
+DWC_Http_Add_Body: ; 0x021D4F88
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r6, r1
@@ -850,7 +850,7 @@ _021D4FE0:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021D500C: .word 0x02216234
-	arm_func_end ov4_021D4F88
+	arm_func_end DWC_Http_Add_Body
 
 	arm_func_start ov4_021D5010
 ov4_021D5010: ; 0x021D5010
@@ -1141,8 +1141,8 @@ _021D53FC: .word 0x022162CC
 _021D5400: .word 0x022162E8
 	arm_func_end ov4_021D52B0
 
-	arm_func_start ov4_021D5404
-ov4_021D5404: ; 0x021D5404
+	arm_func_start DWC_Http_ParseResult
+DWC_Http_ParseResult: ; 0x021D5404
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10
 	mov r4, r0
@@ -1322,10 +1322,10 @@ _021D5694: .word 0x02216174
 _021D5698: .word 0x02216318
 _021D569C: .word 0x0221631C
 _021D56A0: .word 0x02216320
-	arm_func_end ov4_021D5404
+	arm_func_end DWC_Http_ParseResult
 
-	arm_func_start ov4_021D56A4
-ov4_021D56A4: ; 0x021D56A4
+	arm_func_start DWC_Http_GetResult
+DWC_Http_GetResult: ; 0x021D56A4
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -1351,14 +1351,14 @@ _021D56E8:
 _021D56F4:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021D56A4
+	arm_func_end DWC_Http_GetResult
 
-	arm_func_start ov4_021D56FC
-ov4_021D56FC: ; 0x021D56FC
+	arm_func_start DWC_Http_GetBase64DecodedResult
+DWC_Http_GetBase64DecodedResult: ; 0x021D56FC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r2
 	mov r5, r3
-	bl ov4_021D56A4
+	bl DWC_Http_GetResult
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -1367,7 +1367,7 @@ ov4_021D56FC: ; 0x021D56FC
 	mov r0, r4
 	mov r2, r6
 	mov r3, r5
-	bl ov4_021D7468
+	bl DWC_Auth_Base64Decode
 	mvn r1, #0
 	cmp r0, r1
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -1376,14 +1376,14 @@ ov4_021D56FC: ; 0x021D56FC
 	mov r1, #0
 	strb r1, [r6, r0]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021D56FC
+	arm_func_end DWC_Http_GetBase64DecodedResult
 
-	arm_func_start ov4_021D5750
-ov4_021D5750: ; 0x021D5750
+	arm_func_start DWC_Http_GetRawResult
+DWC_Http_GetRawResult: ; 0x021D5750
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r2
 	mov r5, r3
-	bl ov4_021D56A4
+	bl DWC_Http_GetResult
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -1396,7 +1396,7 @@ ov4_021D5750: ; 0x021D5750
 	bl strcpy
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021D5750
+	arm_func_end DWC_Http_GetRawResult
 
 	arm_func_start ov4_021D5790
 ov4_021D5790: ; 0x021D5790

@@ -4,7 +4,7 @@
 .public strlen
 .public strtoul
 .public strtol
-.public ov4_021DB408
+.public DWC_Base64Encode
 .public ov66_022366CC
 .public ov66_02236A38
 .public ov66_02237EF8

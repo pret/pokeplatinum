@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D8948.inc"
+	.include "overlay004/DWC_SetCommonKeyValueString.inc"
 
 	
 
 	.text
 
 
-	arm_func_start ov4_021D8948
-ov4_021D8948: ; 0x021D8948
+	arm_func_start DWC_SetCommonKeyValueString
+DWC_SetCommonKeyValueString: ; 0x021D8948
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0xc
 	stmia sp, {r0, r3}
@@ -23,10 +23,10 @@ ov4_021D8948: ; 0x021D8948
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _021D897C: .word Unk_ov4_02217460
-	arm_func_end ov4_021D8948
+	arm_func_end DWC_SetCommonKeyValueString
 
-	arm_func_start ov4_021D8980
-ov4_021D8980: ; 0x021D8980
+	arm_func_start DWC_AddCommonKeyValueString
+DWC_AddCommonKeyValueString: ; 0x021D8980
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r2
 	mov r7, r0
@@ -39,14 +39,14 @@ ov4_021D8980: ; 0x021D8980
 	mov r0, r7
 	mov r1, r6
 	mov r3, r4
-	bl ov4_021D8948
+	bl DWC_SetCommonKeyValueString
 	mov r0, r5
 	bl strlen
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021D8980
+	arm_func_end DWC_AddCommonKeyValueString
 
-	arm_func_start ov4_021D89C0
-ov4_021D89C0: ; 0x021D89C0
+	arm_func_start DWC_GetCommonValueString
+DWC_GetCommonValueString: ; 0x021D89C0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r4, r1
 	mov r7, r0
@@ -114,7 +114,7 @@ _021D8A9C:
 	mov r0, r6
 	strb r1, [r4, r6]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021D89C0
+	arm_func_end DWC_GetCommonValueString
 
 	arm_func_start ov4_021D8ABC
 ov4_021D8ABC: ; 0x021D8ABC

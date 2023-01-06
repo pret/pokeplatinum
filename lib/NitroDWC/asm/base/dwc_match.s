@@ -22,7 +22,7 @@ _021DC758: .word Unk_ov4_0221A6A8
 	arm_func_start DWC_CancelMatching
 DWC_CancelMatching: ; 0x021DC75C
 	stmfd sp!, {r3, lr}
-	bl ov4_021DC77C
+	bl DWC_IsValidCancelMatching
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
@@ -31,8 +31,8 @@ DWC_CancelMatching: ; 0x021DC75C
 	ldmia sp!, {r3, pc}
 	arm_func_end DWC_CancelMatching
 
-	arm_func_start ov4_021DC77C
-ov4_021DC77C: ; 0x021DC77C
+	arm_func_start DWC_IsValidCancelMatching
+DWC_IsValidCancelMatching: ; 0x021DC77C
 	stmfd sp!, {r3, lr}
 	bl ov4_021D7708
 	cmp r0, #0
@@ -41,7 +41,7 @@ ov4_021DC77C: ; 0x021DC77C
 	bl ov4_021E4A34
 	cmp r0, #0
 	beq _021DC7B8
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	bne _021DC7B8
 	bl ov4_021E4A34
@@ -54,7 +54,7 @@ _021DC7B8:
 _021DC7C0:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021DC77C
+	arm_func_end DWC_IsValidCancelMatching
 
 	arm_func_start DWC_StopSCMatchingAsync
 DWC_StopSCMatchingAsync: ; 0x021DC7C8
@@ -71,10 +71,10 @@ DWC_StopSCMatchingAsync: ; 0x021DC7C8
 	ldrb r0, [r0, #0x15]
 	cmp r0, #2
 	bne _021DC814
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	beq _021DC81C
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #6
 	beq _021DC81C
 _021DC814:
@@ -1280,7 +1280,7 @@ _021DD90C:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021DD96C:
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	bne _021DDA64
 	bl OS_GetTick
@@ -2197,7 +2197,7 @@ ov4_021DE66C: ; 0x021DE66C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	movne r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
@@ -2600,7 +2600,7 @@ ov4_021DEB94: ; 0x021DEB94
 	add r1, sp, #0x20
 	add r2, sp, #0
 	mov r3, #0x2f
-	bl ov4_021D8948
+	bl DWC_SetCommonKeyValueString
 	bl ov4_021E4A34
 	ldrb r2, [r0, #0xd]
 	add r0, sp, #0x20
@@ -2612,7 +2612,7 @@ ov4_021DEB94: ; 0x021DEB94
 	add r1, sp, #0x20
 	add r2, sp, #0
 	mov r3, #0x2f
-	bl ov4_021D8980
+	bl DWC_AddCommonKeyValueString
 	ldr r2, _021DEC54 ; =0x022174E4
 	add r0, sp, #0x20
 	mov r1, #0xc
@@ -2622,7 +2622,7 @@ ov4_021DEB94: ; 0x021DEB94
 	add r1, sp, #0x20
 	add r2, sp, #0
 	mov r3, #0x2f
-	bl ov4_021D8980
+	bl DWC_AddCommonKeyValueString
 	mov r0, #6
 	add r1, sp, #0
 	mov r2, #0
@@ -3771,7 +3771,7 @@ _021DFC58:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _021DFC64:
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	bne _021DFC94
 	bl ov4_021E4A34
@@ -4581,7 +4581,7 @@ _021E083C:
 	bl ov4_021E31C4
 	cmp r0, #0xff
 	beq _021E0854
-	bl ov4_021D97F4
+	bl DWC_CloseConnectionHard
 _021E0854:
 	add r7, r7, #1
 	cmp r7, r5
@@ -5411,19 +5411,19 @@ _021E13A4:
 	add r1, sp, #0xc
 	add r2, sp, #0x20
 	mov r3, #0x2f
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	mov sl, r0
 	ldr r0, _021E14A4 ; =0x022174E8
 	add r1, sp, #8
 	add r2, sp, #0x20
 	mov r3, #0x2f
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	mov sb, r0
 	ldr r0, _021E14A8 ; =0x022174EC
 	add r1, sp, #0
 	add r2, sp, #0x20
 	mov r3, #0x2f
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	cmp sl, #0
 	cmpgt sb, #0
 	cmpgt r0, #0
@@ -6793,7 +6793,7 @@ _021E2730:
 	bl ov4_021E31C4
 	cmp r0, #0xff
 	beq _021E2748
-	bl ov4_021D97F4
+	bl DWC_CloseConnectionHard
 _021E2748:
 	add r6, r6, #1
 	cmp r6, r7
@@ -6926,7 +6926,7 @@ _021E2900:
 	cmp r5, #0
 	cmpeq r4, r0
 	bls _021E2ABC
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	bne _021E2948
 	bl ov4_021E4A34
@@ -7093,7 +7093,7 @@ ov4_021E2B4C: ; 0x021E2B4C
 	mov r6, r0
 	mov r5, r1
 	mov r4, r2
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #6
 	movne r0, #1
 	ldmneia sp!, {r4, r5, r6, pc}
@@ -8089,7 +8089,7 @@ _021E38BC:
 	mov r5, #6
 	sub r4, r5, #0x1a
 _021E38C4:
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #2
 	beq _021E38E4
 	cmp r0, #4
@@ -9014,10 +9014,10 @@ ov4_021E44CC: ; 0x021E44CC
 	mov sl, r0
 	mov sb, r1
 	mov r8, #0
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #5
 	beq _021E4520
-	bl ov4_021D9A40
+	bl DWC_GetState
 	cmp r0, #6
 	addne sp, sp, #0x9c
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}

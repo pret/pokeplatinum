@@ -1,24 +1,24 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021DB170.inc"
+	.include "overlay004/DWC_GetFriendStatus.inc"
 
 	
 
 	.text
 
 
-	arm_func_start ov4_021DB170
-ov4_021DB170: ; 0x021DB170
-	ldr ip, _021DB184 ; =ov4_021DB188
+	arm_func_start DWC_GetFriendStatus
+DWC_GetFriendStatus: ; 0x021DB170
+	ldr ip, _021DB184 ; =DWC_GetFriendStatusSC
 	mov r3, r1
 	mov r1, #0
 	mov r2, r1
 	bx ip
 	; .align 2, 0
-_021DB184: .word ov4_021DB188
-	arm_func_end ov4_021DB170
+_021DB184: .word DWC_GetFriendStatusSC
+	arm_func_end DWC_GetFriendStatus
 
-	arm_func_start ov4_021DB188
-ov4_021DB188: ; 0x021DB188
+	arm_func_start DWC_GetFriendStatusSC
+DWC_GetFriendStatusSC: ; 0x021DB188
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x214
 	mov r6, r1
@@ -37,7 +37,7 @@ ov4_021DB188: ; 0x021DB188
 	add r1, sp, #0
 	add r2, sp, #0xc
 	mov r3, #0x2f
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	cmp r0, #0
 	movle r0, #0
 	strleb r0, [r6]
@@ -54,7 +54,7 @@ _021DB1F8:
 	add r1, sp, #0
 	add r2, sp, #0xc
 	mov r3, #0x2f
-	bl ov4_021D89C0
+	bl DWC_GetCommonValueString
 	cmp r0, #0
 	movle r0, #0
 	strleb r0, [r4]
@@ -96,7 +96,7 @@ _021DB278:
 	; .align 2, 0
 _021DB29C: .word Unk_ov4_02217488
 _021DB2A0: .word Unk_ov4_0221748C
-	arm_func_end ov4_021DB188
+	arm_func_end DWC_GetFriendStatusSC
 
 	arm_func_start DWC_GetFriendStatusData
 DWC_GetFriendStatusData: ; 0x021DB2A4
@@ -105,18 +105,18 @@ DWC_GetFriendStatusData: ; 0x021DB2A4
 	mov r1, #0
 	str r2, [sp]
 	mov r2, r1
-	bl ov4_021DB2C0
+	bl DWC_GetFriendStatusDataSC
 	ldmia sp!, {r3, pc}
 	arm_func_end DWC_GetFriendStatusData
 
-	arm_func_start ov4_021DB2C0
-ov4_021DB2C0: ; 0x021DB2C0
+	arm_func_start DWC_GetFriendStatusDataSC
+DWC_GetFriendStatusDataSC: ; 0x021DB2C0
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x100
 	mov r6, r3
 	add r3, sp, #0
 	ldr r5, [sp, #0x110]
-	bl ov4_021DB188
+	bl DWC_GetFriendStatusSC
 	movs r4, r0
 	mvneq r1, #0
 	addeq sp, sp, #0x100
@@ -128,7 +128,7 @@ ov4_021DB2C0: ; 0x021DB2C0
 	mov r1, r0
 	add r0, sp, #0
 	mov r3, r2
-	bl ov4_021D7468
+	bl DWC_Auth_Base64Decode
 	str r0, [r5, #0]
 	cmp r6, #0
 	ldrne r5, [r5]
@@ -143,11 +143,11 @@ ov4_021DB2C0: ; 0x021DB2C0
 	add r0, sp, #0
 	mov r2, r6
 	mov r3, r5
-	bl ov4_021D7468
+	bl DWC_Auth_Base64Decode
 	mov r0, r4
 	add sp, sp, #0x100
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021DB2C0
+	arm_func_end DWC_GetFriendStatusDataSC
 
 	arm_func_start DWC_SetOwnStatusData
 DWC_SetOwnStatusData: ; 0x021DB350
@@ -171,7 +171,7 @@ _021DB388:
 	mov r0, r5
 	mov r1, r4
 	mov r3, #0xff
-	bl ov4_021D72E0
+	bl DWC_Auth_Base64Encode
 	mvn r3, #0
 	cmp r0, r3
 	addeq sp, sp, #0x100
@@ -207,21 +207,21 @@ DWC_SetBuddyFriendCallback: ; 0x021DB3DC
 _021DB404: .word Unk_ov4_0221A698
 	arm_func_end DWC_SetBuddyFriendCallback
 
-	arm_func_start ov4_021DB408
-ov4_021DB408: ; 0x021DB408
-	ldr ip, _021DB410 ; =ov4_021D72E0
+	arm_func_start DWC_Base64Encode
+DWC_Base64Encode: ; 0x021DB408
+	ldr ip, _021DB410 ; =DWC_Auth_Base64Encode
 	bx ip
 	; .align 2, 0
-_021DB410: .word ov4_021D72E0
-	arm_func_end ov4_021DB408
+_021DB410: .word DWC_Auth_Base64Encode
+	arm_func_end DWC_Base64Encode
 
-	arm_func_start ov4_021DB414
-ov4_021DB414: ; 0x021DB414
-	ldr ip, _021DB41C ; =ov4_021D7468
+	arm_func_start DWC_Base64Decode
+DWC_Base64Decode: ; 0x021DB414
+	ldr ip, _021DB41C ; =DWC_Auth_Base64Decode
 	bx ip
 	; .align 2, 0
-_021DB41C: .word ov4_021D7468
-	arm_func_end ov4_021DB414
+_021DB41C: .word DWC_Auth_Base64Decode
+	arm_func_end DWC_Base64Decode
 
 	arm_func_start ov4_021DB420
 ov4_021DB420: ; 0x021DB420
@@ -702,7 +702,7 @@ _021DBA58:
 	mov r0, #0xc
 	mla r0, r4, r0, r1
 	add r1, sp, #0x108
-	bl ov4_021DB170
+	bl DWC_GetFriendStatus
 	ldr r2, _021DBAAC ; =0x0221A698
 	mov r1, r0
 	ldr r0, [r2, #8]

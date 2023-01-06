@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D3E5C.inc"
+	.include "overlay004/DWC_Auth_GetCalInfoFromNVRAM.inc"
 
 	
 
 	.text
 
 
-	arm_func_start ov4_021D3E5C
-ov4_021D3E5C: ; 0x021D3E5C
+	arm_func_start DWC_Auth_GetCalInfoFromNVRAM
+DWC_Auth_GetCalInfoFromNVRAM: ; 0x021D3E5C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x14
 	mov r4, r0
@@ -15,13 +15,13 @@ ov4_021D3E5C: ; 0x021D3E5C
 	bl sub_020A283C
 	add r1, sp, #0
 	mov r0, r4
-	bl ov4_021D3E84
+	bl DWC_Auth_GetCalInfoFromWiFiInfo
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021D3E5C
+	arm_func_end DWC_Auth_GetCalInfoFromNVRAM
 
-	arm_func_start ov4_021D3E84
-ov4_021D3E84: ; 0x021D3E84
+	arm_func_start DWC_Auth_GetCalInfoFromWiFiInfo
+DWC_Auth_GetCalInfoFromWiFiInfo: ; 0x021D3E84
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x8c
 	mov r6, r1
@@ -159,7 +159,7 @@ _021D406C:
 	cmp sb, #6
 	add r8, r8, #2
 	blt _021D406C
-	bl ov4_021E5F18
+	bl DWC_AC_GetApType
 	mov r3, r0
 	cmp r3, #0xff
 	beq _021D40A4
@@ -190,7 +190,7 @@ _021D40E8:
 	mov r2, #0x20
 	bl MI_CpuCopy8
 	add r0, r4, #0x72
-	bl ov4_021E5F48
+	bl DWC_AC_GetApSpotInfo
 	mov r0, r6
 	bl OS_RestoreInterrupts
 	mov r0, #1
@@ -205,10 +205,10 @@ _021D4124: .word Unk_ov4_02215FE0
 _021D4128: .word Unk_ov4_02215FE8
 _021D412C: .word Unk_ov4_02215FF4
 _021D4130: .word Unk_ov4_02216010
-	arm_func_end ov4_021D3E84
+	arm_func_end DWC_Auth_GetCalInfoFromWiFiInfo
 
-	arm_func_start ov4_021D4134
-ov4_021D4134: ; 0x021D4134
+	arm_func_start DWC_Auth_SetCalInfoToHttp
+DWC_Auth_SetCalInfoToHttp: ; 0x021D4134
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x28
 	mov r4, r2
@@ -226,7 +226,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4434 ; =0x0221602C
 	mov r0, r6
 	add r2, sp, #4
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -237,7 +237,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4438 ; =0x02216034
 	mov r0, r6
 	mov r2, r5
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -248,7 +248,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D443C ; =0x0221603C
 	mov r0, r6
 	add r2, r5, #0xe
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -259,7 +259,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4440 ; =0x02216044
 	mov r0, r6
 	add r2, r5, #0x41
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -270,7 +270,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4444 ; =0x0221604C
 	mov r0, r6
 	add r2, r5, #0x6f
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -281,7 +281,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4448 ; =0x02216054
 	mov r0, r6
 	add r2, r5, #0x15
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -292,7 +292,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D444C ; =0x0221605C
 	mov r0, r6
 	add r2, r5, #0x1a
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -303,7 +303,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4450 ; =0x02216064
 	mov r0, r6
 	add r2, r5, #0x1d
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -314,7 +314,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4454 ; =0x0221606C
 	mov r0, r6
 	add r2, r5, #0x1f
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -325,7 +325,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4458 ; =0x02216074
 	mov r0, r6
 	add r2, r5, #0x2c
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -336,7 +336,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D445C ; =0x0221607C
 	mov r0, r6
 	add r2, r5, #0x2f
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -347,7 +347,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4460 ; =0x02216084
 	mov r0, r6
 	add r2, r5, #0x34
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -359,7 +359,7 @@ ov4_021D4134: ; 0x021D4134
 	mov r0, r6
 	add r2, r5, #0x7e
 	mov r3, r3, lsl #1
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -372,7 +372,7 @@ ov4_021D4134: ; 0x021D4134
 	ldr r1, _021D4468 ; =0x02216094
 	mov r0, r6
 	add r2, r5, #0x4e
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -387,7 +387,7 @@ _021D43D4:
 	ldr r1, _021D4470 ; =0x022160B4
 	add r2, sp, #4
 	mov r0, r6
-	bl ov4_021D4DA0
+	bl DWC_Http_Add_HeaderItem
 	cmp r0, #0
 	addne sp, sp, #0x28
 	movne r0, #0
@@ -395,7 +395,7 @@ _021D43D4:
 	ldr r1, _021D4474 ; =0x022160C0
 	mov r0, r6
 	add r2, r5, #0x15
-	bl ov4_021D4DA0
+	bl DWC_Http_Add_HeaderItem
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -420,7 +420,7 @@ _021D4468: .word Unk_ov4_02216094
 _021D446C: .word Unk_ov4_0221609C
 _021D4470: .word Unk_ov4_022160B4
 _021D4474: .word Unk_ov4_022160C0
-	arm_func_end ov4_021D4134
+	arm_func_end DWC_Auth_SetCalInfoToHttp
 
 	.data
 

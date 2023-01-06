@@ -19,8 +19,8 @@
 .public DWC_Alloc
 .public DWC_Free
 .public DWC_GetDateTime
-.public ov4_021DB408
-.public ov4_021DB414
+.public DWC_Base64Encode
+.public DWC_Base64Decode
 .public ov4_021EA840
 .public ov66_02235058
 .public PPW_LobbyShutdownAsync

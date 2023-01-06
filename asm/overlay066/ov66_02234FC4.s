@@ -2667,7 +2667,7 @@ _022373C8:
 	ldr r1, [sp, #0x30]
 	ldr r3, [sp, #8]
 	mov r0, r4
-	bl ov4_021DB408
+	bl DWC_Base64Encode
 	ldr r1, [sp, #4]
 	mov r2, #0
 	strb r2, [r1, r0]
@@ -3473,7 +3473,7 @@ _02237F64:
 	ldr r3, [r5, #4]
 	mov r0, r6
 	mov r1, r4
-	bl ov4_021DB414
+	bl DWC_Base64Decode
 	mov r4, r0
 	mvn r0, #0
 	cmp r4, r0

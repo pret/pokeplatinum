@@ -116,7 +116,7 @@ ov18_0223BCE0: ; 0x0223BCE0
 	addne r0, r0, #1
 	strneb r0, [sp, #0xe]
 	add r0, sp, #4
-	bl ov4_021E5C34
+	bl DWC_AC_Create
 	cmp r0, #0
 	bne _0223BD3C
 	bl OS_Terminate
@@ -249,7 +249,7 @@ ov18_0223BE84: ; 0x0223BE84
 	stmfd sp!, {r4, lr}
 	bl ov18_0223E5D0
 	mov r4, r0
-	bl ov4_021E5FA0
+	bl DWC_AC_Destroy
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	bl sub_020A33F8
@@ -291,7 +291,7 @@ _0223BF14: .word ov18_0223BFA8
 ov18_0223BF18: ; 0x0223BF18
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl ov4_021E5DDC
+	bl DWC_AC_Process
 	movs r4, r0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	bl ov18_0222BD44
@@ -305,7 +305,7 @@ ov18_0223BF18: ; 0x0223BF18
 	bl ov18_0223E994
 	b _0223BF64
 _0223BF54:
-	bl ov4_021E5EAC
+	bl DWC_AC_GetStatus
 	bl ov18_02236BD0
 	mov r0, #0x12
 	bl ov18_0223E994

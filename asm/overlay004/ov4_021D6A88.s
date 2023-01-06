@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D6A88.inc"
+	.include "overlay004/DWC_Auth_SetNasTimeDiff.inc"
 
 	.extern Unk_021D0D40
 
 	.text
 
 
-	arm_func_start ov4_021D6A88
-ov4_021D6A88: ; 0x021D6A88
+	arm_func_start DWC_Auth_SetNasTimeDiff
+DWC_Auth_SetNasTimeDiff: ; 0x021D6A88
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x3c
 	mov r6, r0
@@ -147,7 +147,7 @@ _021D6C94: .word Unk_ov4_02216570
 _021D6C98: .word Unk_021D0D40
 _021D6C9C: .word Unk_ov4_02216540
 _021D6CA0: .word Unk_ov4_0221A4B4
-	arm_func_end ov4_021D6A88
+	arm_func_end DWC_Auth_SetNasTimeDiff
 
 	.data
 

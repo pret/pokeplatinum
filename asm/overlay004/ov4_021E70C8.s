@@ -31,8 +31,8 @@ _021E70F8:
 _021E7114:
 	cmp r0, #0xe
 	bne _021E7130
-	bl ov4_021D59F0
-	bl ov4_021D58F8
+	bl DWC_Netcheck_Abort
+	bl DWC_Netcheck_Destroy
 	mov r0, #0xc
 	strb r0, [r4]
 	b _021E7148

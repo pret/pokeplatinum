@@ -1,11 +1,11 @@
 .public OS_GetTick
 .public MI_CpuCopy8
 .public _ull_div
-.public ov4_021D5818
-.public ov4_021D58F8
-.public ov4_021D59F0
-.public ov4_021D5A58
-.public ov4_021D5A98
+.public DWC_Netcheck_Create
+.public DWC_Netcheck_Destroy
+.public DWC_Netcheck_Abort
+.public DWC_Netcheck_GetError
+.public DWC_Netcheck_GetReturnCode
 .public ov4_021E62EC
 .public ov4_021E63A4
 .public ov4_021E63C0

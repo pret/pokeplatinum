@@ -15,7 +15,7 @@
 .public DWC_InitGHTTP
 .public DWC_ShutdownGHTTP
 .public DWC_ProcessGHTTP
-.public ov4_021E5960
+.public DWC_GetGHTTPDataEx
 .public B64Encode
 .public ov66_02257C4C
 .public ov66_02257C84

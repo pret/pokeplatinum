@@ -582,7 +582,7 @@ ov61_0222DB98: ; 0x0222DB98
 	ldmeqia sp!, {r4, r5, pc}
 	ldr r0, _0222DCD4 ; =0x0222E638
 	add r1, sp, #8
-	bl ov4_021D8144
+	bl DWC_SVLGetTokenAsync
 	cmp r0, #0
 	bne _0222DBE4
 	ldr r0, _0222DCD0 ; =0x0222E764
@@ -595,7 +595,7 @@ _0222DBE4:
 	ldr r4, _0222DCD0 ; =0x0222E764
 	mov r5, #1
 _0222DBEC:
-	bl ov4_021D81B8
+	bl DWC_SVLProcess
 	cmp r0, #3
 	bne _0222DC40
 	ldr r4, _0222DCD8 ; =0x0222E76A

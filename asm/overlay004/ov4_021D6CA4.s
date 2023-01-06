@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D6CA4.inc"
+	.include "overlay004/DWC_Svl_Init.inc"
 
 	.extern Unk_021CCC80
 	.extern Unk_021D0D40
@@ -8,8 +8,8 @@
 	.text
 
 
-	arm_func_start ov4_021D6CA4
-ov4_021D6CA4: ; 0x021D6CA4
+	arm_func_start DWC_Svl_Init
+DWC_Svl_Init: ; 0x021D6CA4
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r2, _021D6D2C ; =0x0221A4C8
 	mov r5, r0
@@ -51,17 +51,17 @@ _021D6D2C: .word Unk_ov4_0221A4C8
 _021D6D30: .word 0xFFFFA1DC
 _021D6D34: .word Unk_ov4_02216590
 _021D6D38: .word 0x00001C20
-	arm_func_end ov4_021D6CA4
+	arm_func_end DWC_Svl_Init
 
-	arm_func_start ov4_021D6D3C
-ov4_021D6D3C: ; 0x021D6D3C
+	arm_func_start DWC_Svl_Cleanup
+DWC_Svl_Cleanup: ; 0x021D6D3C
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D6D80 ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
 	add r0, r0, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D6D80 ; =0x0221A4C8
 	ldr r0, _021D6D84 ; =0x022165A0
 	ldr r1, [r1, #0]
@@ -75,10 +75,10 @@ ov4_021D6D3C: ; 0x021D6D3C
 	; .align 2, 0
 _021D6D80: .word Unk_ov4_0221A4C8
 _021D6D84: .word Unk_ov4_022165A0
-	arm_func_end ov4_021D6D3C
+	arm_func_end DWC_Svl_Cleanup
 
-	arm_func_start ov4_021D6D88
-ov4_021D6D88: ; 0x021D6D88
+	arm_func_start DWC_Svl_GetTokenAsync
+DWC_Svl_GetTokenAsync: ; 0x021D6D88
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0xb0
 	ldr r2, _021D6FCC ; =0x0221A4C8
@@ -126,7 +126,7 @@ _021D6DE0:
 	add r1, sp, #0
 	add r0, r4, #8
 	str r2, [sp, #0x18]
-	bl ov4_021D4478
+	bl DWC_Http_Create
 	cmp r0, #0
 	beq _021D6E64
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
@@ -137,7 +137,7 @@ _021D6DE0:
 	ldmia sp!, {r3, r4, r5, pc}
 _021D6E64:
 	add r0, sp, #0x1c
-	bl ov4_021D3E5C
+	bl DWC_Auth_GetCalInfoFromNVRAM
 	cmp r0, #0
 	beq _021D6E94
 	ldr r0, _021D6FCC ; =0x0221A4C8
@@ -145,14 +145,14 @@ _021D6E64:
 	ldr r0, [r0, #0]
 	mov r2, #0
 	add r0, r0, #8
-	bl ov4_021D4134
+	bl DWC_Auth_SetCalInfoToHttp
 	cmp r0, #0
 	bne _021D6EBC
 _021D6E94:
 	ldr r0, _021D6FCC ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
 	bl ov4_021D7724
@@ -166,7 +166,7 @@ _021D6EBC:
 	ldr r2, _021D6FE4 ; =0x022165D8
 	add r0, r0, #8
 	mov r3, #6
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	bne _021D6F04
 	ldr r0, _021D6FCC ; =0x0221A4C8
@@ -175,14 +175,14 @@ _021D6EBC:
 	mov r2, r5
 	add r0, r0, #8
 	mov r3, #4
-	bl ov4_021D4E7C
+	bl DWC_Http_Add_PostBase64Item
 	cmp r0, #0
 	beq _021D6F2C
 _021D6F04:
 	ldr r0, _021D6FCC ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
 	bl ov4_021D7724
@@ -193,13 +193,13 @@ _021D6F2C:
 	ldr r0, _021D6FCC ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl ov4_021D4594
+	bl DWC_Http_FinishHeader
 	cmp r0, #0
 	beq _021D6F6C
 	ldr r0, _021D6FCC ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
 	bl ov4_021D7724
@@ -214,7 +214,7 @@ _021D6F6C:
 	ldr r2, [r1, #0]
 	sub r1, r0, #1
 	add r0, r2, #8
-	bl ov4_021D462C
+	bl DWC_Http_StartThread
 	ldr r0, _021D6FCC ; =0x0221A4C8
 	ldr r1, [r0, #0]
 	add r0, r1, #0x1000
@@ -224,7 +224,7 @@ _021D6F6C:
 	movne r0, #1
 	ldmneia sp!, {r3, r4, r5, pc}
 	add r0, r1, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
 	bl ov4_021D7724
@@ -241,10 +241,10 @@ _021D6FE0: .word Unk_ov4_022165D0
 _021D6FE4: .word Unk_ov4_022165D8
 _021D6FE8: .word Unk_ov4_022165E0
 _021D6FEC: .word Unk_021CCC80
-	arm_func_end ov4_021D6D88
+	arm_func_end DWC_Svl_GetTokenAsync
 
-	arm_func_start ov4_021D6FF0
-ov4_021D6FF0: ; 0x021D6FF0
+	arm_func_start DWC_Svl_Process
+DWC_Svl_Process: ; 0x021D6FF0
 	stmfd sp!, {r3, lr}
 	ldr r0, _021D70BC ; =0x0221A4C8
 	ldr r1, [r0, #0]
@@ -274,24 +274,24 @@ ov4_021D6FF0: ; 0x021D6FF0
 	ldr r0, _021D70BC ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #4
 	ldmia sp!, {r3, pc}
 _021D7070:
 	ldr r0, _021D70BC ; =0x0221A4C8
 	ldr r0, [r0, #0]
 	add r0, r0, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #3
 	ldmia sp!, {r3, pc}
 _021D7088:
 	add r0, r1, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	mov r0, #5
 	ldmia sp!, {r3, pc}
 _021D7098:
 	add r0, r1, #8
-	bl ov4_021D4C2C
+	bl DWC_Http_Destroy
 	ldr r1, _021D70C0 ; =0xFFFFA1DB
 	mov r0, #0x11
 	bl ov4_021D7724
@@ -303,7 +303,7 @@ _021D70B4:
 	; .align 2, 0
 _021D70BC: .word Unk_ov4_0221A4C8
 _021D70C0: .word 0xFFFFA1DB
-	arm_func_end ov4_021D6FF0
+	arm_func_end DWC_Svl_Process
 
 	arm_func_start ov4_021D70C4
 ov4_021D70C4: ; 0x021D70C4
@@ -313,7 +313,7 @@ ov4_021D70C4: ; 0x021D70C4
 	mov r1, #0
 	ldr r4, [r0, #0]
 	add r0, r4, #8
-	bl ov4_021D5404
+	bl DWC_Http_ParseResult
 	cmp r0, #0
 	bne _021D7100
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
@@ -325,14 +325,14 @@ ov4_021D70C4: ; 0x021D70C4
 _021D7100:
 	ldr r1, _021D72BC ; =0x022165E4
 	add r0, r4, #8
-	bl ov4_021D56A4
+	bl DWC_Http_GetResult
 	cmp r0, #0
 	beq _021D7118
-	bl ov4_021D6A88
+	bl DWC_Auth_SetNasTimeDiff
 _021D7118:
 	ldr r1, _021D72C0 ; =0x022165EC
 	add r0, r4, #8
-	bl ov4_021D56A4
+	bl DWC_Http_GetResult
 	cmp r0, #0
 	bne _021D7144
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
@@ -369,7 +369,7 @@ _021D7198:
 	add r2, sp, #0
 	add r0, r4, #8
 	mov r3, #4
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	cmp r0, #0
 	bgt _021D71CC
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
@@ -411,7 +411,7 @@ _021D7224:
 	ldr r2, [r2, #0xc1c]
 	mov r3, #0x40
 	add r2, r2, #4
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	ldr r0, _021D72B4 ; =0x0221A4C8
 	ldr r1, _021D72D8 ; =0x0221660C
 	ldr r2, [r0, #0]
@@ -420,12 +420,12 @@ _021D7224:
 	ldr r2, [r2, #0xc1c]
 	mov r3, #0x12c
 	add r2, r2, #0x45
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	ldr r1, _021D72DC ; =0x0221661C
 	add r2, sp, #0
 	add r0, r4, #8
 	mov r3, #1
-	bl ov4_021D56FC
+	bl DWC_Http_GetBase64DecodedResult
 	ldrsb r0, [sp]
 	cmp r0, #0x59
 	ldreq r0, _021D72B4 ; =0x0221A4C8

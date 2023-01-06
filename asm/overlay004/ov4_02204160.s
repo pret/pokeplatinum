@@ -556,7 +556,7 @@ _02204848:
 	mov r1, sl
 	mov r2, fp
 	strb sb, [sl, #9]
-	bl ov4_021E4AE8
+	bl DWC_SendReliable
 	cmp r0, #0
 	addne r8, r8, #1
 _02204884:
@@ -645,7 +645,7 @@ ov4_02204964: ; 0x02204964
 _02204984:
 	ldrb r0, [r0, #4]
 	mov r2, #0x10
-	bl ov4_021E4AE8
+	bl DWC_SendReliable
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}

@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021D72E0.inc"
+	.include "overlay004/DWC_Auth_Base64Encode.inc"
 
 	
 
 	.text
 
 
-	arm_func_start ov4_021D72E0
-ov4_021D72E0: ; 0x021D72E0
+	arm_func_start DWC_Auth_Base64Encode
+DWC_Auth_Base64Encode: ; 0x021D72E0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	ldr r4, _021D7460 ; =0xAAAAAAAB
@@ -112,10 +112,10 @@ _021D7450:
 	; .align 2, 0
 _021D7460: .word 0xAAAAAAAB
 _021D7464: .word Unk_ov4_02216628
-	arm_func_end ov4_021D72E0
+	arm_func_end DWC_Auth_Base64Encode
 
-	arm_func_start ov4_021D7468
-ov4_021D7468: ; 0x021D7468
+	arm_func_start DWC_Auth_Base64Decode
+DWC_Auth_Base64Decode: ; 0x021D7468
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	tst r1, #3
 	mvnne r0, #0
@@ -216,7 +216,7 @@ _021D7550:
 _021D75CC:
 	mov r0, r3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021D7468
+	arm_func_end DWC_Auth_Base64Decode
 
 	.data
 

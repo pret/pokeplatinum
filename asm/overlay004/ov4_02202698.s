@@ -1040,7 +1040,7 @@ _02203484:
 	ldr r1, [r6, #0xf08]
 	ldr r2, [r6, #0xc]
 	and r0, r0, #0xff
-	bl ov4_021E4C98
+	bl DWC_SendUnreliable
 	ldr r0, [r6, #0xf0c]
 	cmp r0, #0
 	bne _022034E4

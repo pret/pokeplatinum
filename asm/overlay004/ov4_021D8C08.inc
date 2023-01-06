@@ -12,12 +12,12 @@
 .public ov4_021D7724
 .public DWC_GetInetStatus
 .public DWC_UpdateConnection
-.public ov4_021D89C0
+.public DWC_GetCommonValueString
 .public ov4_021D8ABC
 .public ov4_021D8BDC
-.public ov4_021D97F4
+.public DWC_CloseConnectionHard
 .public DWC_GetMyAID
-.public ov4_021D9984
+.public DWC_GetAIDList
 .public ov4_021D9B24
 .public ov4_021D9B98
 .public ov4_021D9BD4

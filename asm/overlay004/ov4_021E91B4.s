@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021E91B4.inc"
+	.include "overlay004/DWC_AC_StartupGetWDSInfo.inc"
 
 	
 
 	.text
 
 
-	arm_func_start ov4_021E91B4
-ov4_021E91B4: ; 0x021E91B4
+	arm_func_start DWC_AC_StartupGetWDSInfo
+DWC_AC_StartupGetWDSInfo: ; 0x021E91B4
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	bl ov4_021E8E98
@@ -33,10 +33,10 @@ ov4_021E91B4: ; 0x021E91B4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021E9210: .word Unk_ov4_0221AE44
-	arm_func_end ov4_021E91B4
+	arm_func_end DWC_AC_StartupGetWDSInfo
 
-	arm_func_start ov4_021E9214
-ov4_021E9214: ; 0x021E9214
+	arm_func_start DWC_AC_ProcessGetWDSInfo
+DWC_AC_ProcessGetWDSInfo: ; 0x021E9214
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r3, _021E9528 ; =0x0221AE44
 	ldr r0, [r3, #4]
@@ -257,10 +257,10 @@ _021E9538: .word 0x00000BB8
 _021E953C: .word ov4_021E9600
 _021E9540: .word ov4_021E9614
 _021E9544: .word ov4_021E9628
-	arm_func_end ov4_021E9214
+	arm_func_end DWC_AC_ProcessGetWDSInfo
 
-	arm_func_start ov4_021E9548
-ov4_021E9548: ; 0x021E9548
+	arm_func_start DWC_AC_CleanupGetWDSInfo
+DWC_AC_CleanupGetWDSInfo: ; 0x021E9548
 	stmfd sp!, {r3, lr}
 	ldr r0, _021E95A0 ; =0x0221AE44
 	ldr r1, [r0, #4]
@@ -286,7 +286,7 @@ _021E9574:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E95A0: .word Unk_ov4_0221AE44
-	arm_func_end ov4_021E9548
+	arm_func_end DWC_AC_CleanupGetWDSInfo
 
 	arm_func_start ov4_021E95A4
 ov4_021E95A4: ; 0x021E95A4

@@ -72,8 +72,8 @@ _021E8204:
 	mov r4, r0
 	b _021E822C
 _021E8210:
-	bl ov4_021D59F0
-	bl ov4_021D58F8
+	bl DWC_Netcheck_Abort
+	bl DWC_Netcheck_Destroy
 _021E8218:
 	ldrb r0, [r5, #0xd13]
 	mov r1, #2
@@ -162,7 +162,7 @@ ov4_021E8328: ; 0x021E8328
 	stmfd sp!, {r3, lr}
 	mov r0, #8
 	bl ov4_021E62EC
-	bl ov4_021D5818
+	bl DWC_Netcheck_Create
 	cmp r0, #0
 	moveq r0, #0xe
 	ldmeqia sp!, {r3, pc}
@@ -179,7 +179,7 @@ ov4_021E8354: ; 0x021E8354
 	mov r0, #1
 	bl ov4_021E62EC
 	mov r4, r0
-	bl ov4_021D5A58
+	bl DWC_Netcheck_GetError
 	movs r5, r0
 	beq _021E83B8
 	ldrb r0, [r6, #0xd0d]
@@ -187,10 +187,10 @@ ov4_021E8354: ; 0x021E8354
 	ldrb r1, [r4, #0x15]
 	cmp r1, r0
 	bne _021E8390
-	bl ov4_021D5A98
+	bl DWC_Netcheck_GetReturnCode
 	str r0, [r4, #0x10]
 _021E8390:
-	bl ov4_021D58F8
+	bl DWC_Netcheck_Destroy
 	cmp r5, #0xb
 	moveq r0, #0xf
 	ldmeqia sp!, {r4, r5, r6, pc}

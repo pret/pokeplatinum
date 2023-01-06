@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay004/ov4_021E4A58.inc"
+	.include "overlay004/DWC_IsSendableReliable.inc"
 
 	
 
@@ -54,8 +54,8 @@ _021E4AB0:
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021E4A68
 
-	arm_func_start ov4_021E4AE8
-ov4_021E4AE8: ; 0x021E4AE8
+	arm_func_start DWC_SendReliable
+DWC_SendReliable: ; 0x021E4AE8
 	stmfd sp!, {r3, lr}
 	mov ip, r1
 	mov r3, r2
@@ -64,7 +64,7 @@ ov4_021E4AE8: ; 0x021E4AE8
 	mov r0, #1
 	bl ov4_021E4B08
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021E4AE8
+	arm_func_end DWC_SendReliable
 
 	arm_func_start ov4_021E4B08
 ov4_021E4B08: ; 0x021E4B08
@@ -165,7 +165,7 @@ _021E4C44:
 	mov r0, sb
 	mov r1, r5
 	mov r2, r4
-	bl ov4_021E4AE8
+	bl DWC_SendReliable
 	cmp r0, #0
 	mvneq r0, sl
 	andeq r6, r6, r0
@@ -178,8 +178,8 @@ _021E4C80:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	arm_func_end DWC_SendReliableBitmap
 
-	arm_func_start ov4_021E4C98
-ov4_021E4C98: ; 0x021E4C98
+	arm_func_start DWC_SendUnreliable
+DWC_SendUnreliable: ; 0x021E4C98
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	mov r6, r1
@@ -218,7 +218,7 @@ _021E4D1C:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021E4D24: .word Unk_ov4_0221AE20
-	arm_func_end ov4_021E4C98
+	arm_func_end DWC_SendUnreliable
 
 	arm_func_start DWC_SetRecvBuffer
 DWC_SetRecvBuffer: ; 0x021E4D28
@@ -426,7 +426,7 @@ ov4_021E4F64: ; 0x021E4F64
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sp, #0
-	bl ov4_021D9984
+	bl DWC_GetAIDList
 	mov r7, r0
 	mov r8, #0
 	cmp r7, #0

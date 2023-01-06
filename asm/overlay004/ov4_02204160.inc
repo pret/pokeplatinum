@@ -1,6 +1,6 @@
 .public OS_GetTick
 .public MI_CpuFill8
-.public ov4_021E4AE8
+.public DWC_SendReliable
 .public VCT_CreateSession
 .public VCT_DeleteSession
 .public ov4_02204244

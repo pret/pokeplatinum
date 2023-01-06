@@ -519,7 +519,7 @@ _022418BC:
 	add r2, sp, #0x30
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021DB408
+	bl DWC_Base64Encode
 	mvn r1, #0
 	cmp r0, r1
 	addeq sp, sp, #0x1c4

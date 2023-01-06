@@ -1,5 +1,5 @@
-.public ov4_021D58F8
-.public ov4_021D59F0
+.public DWC_Netcheck_Destroy
+.public DWC_Netcheck_Abort
 .public ov4_021E63C0
 .public ov4_021E7150
 .public ov4_021E71E0

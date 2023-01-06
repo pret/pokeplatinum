@@ -20,12 +20,12 @@
 .public ov4_021D7724
 .public DWC_Alloc
 .public DWC_Free
-.public ov4_021D8948
-.public ov4_021D8980
-.public ov4_021D89C0
+.public DWC_SetCommonKeyValueString
+.public DWC_AddCommonKeyValueString
+.public DWC_GetCommonValueString
 .public ov4_021D8ABC
-.public ov4_021D97F4
-.public ov4_021D9A40
+.public DWC_CloseConnectionHard
+.public DWC_GetState
 .public ov4_021D9BA8
 .public ov4_021D9C04
 .public ov4_021D9C14
@@ -37,7 +37,7 @@
 .public ov4_021DB8DC
 .public ov4_021DB978
 .public ov4_021DC734
-.public ov4_021DC77C
+.public DWC_IsValidCancelMatching
 .public ov4_021DCC74
 .public ov4_021DD20C
 .public ov4_021DE39C
