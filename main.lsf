@@ -976,8 +976,8 @@ Overlay overlay10
 Overlay overlay11
 {
 	After overlay4
-	Object asm/overlay011/ov11_0221F800.o
-	Object asm/overlay011/ov11_0221F840.o
+	Object src/overlay011/ov11_0221F800.o
+	Object src/overlay011/ov11_0221F840.o
 }
 
 Overlay overlay12
