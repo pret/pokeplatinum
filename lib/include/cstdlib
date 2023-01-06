@@ -1,0 +1,14 @@
+// this file HAS to be exactly named cstdlib
+// certain files don't match if the abs prototype
+// is not defined in a file called "cstdlib" or files
+// included by cstdlib
+// These files will not match if:
+// - the file is not named cstdlib, even if the abs prototype is there
+// - the file is named cstdlib, but the abs prototype is defined outside of cstdlib
+
+#ifndef MSL_CSTDLIB_NO_EXT_H
+#define MSL_CSTDLIB_NO_EXT_H
+
+#include <cstdlib.h>
+
+#endif // MSL_CSTDLIB_NO_EXT_H

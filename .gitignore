@@ -92,3 +92,5 @@ asm_old/
 uncrustify.cfg
 compare.sh
 diff/
+
+sdk/
