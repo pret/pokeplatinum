@@ -50,7 +50,7 @@ Static main
 	Object src/unk_02014000.o
 	Object src/unk_020149F0.o
 	Object src/unk_02014A84.o
-	Object asm/unk_02014D38.o
+	Object src/unk_02014D38.o
 	Object src/unk_02015064.o
 	Object src/unk_0201567C.o
 	Object src/unk_020158A8.o
