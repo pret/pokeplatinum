@@ -1287,7 +1287,7 @@ Overlay overlay23
 	Object src/overlay023/ov23_0224F294.o
 	Object src/overlay023/ov23_0225128C.o
 	Object src/overlay023/ov23_022521F0.o
-	Object asm/overlay023/ov23_02253598.o
+	Object src/overlay023/ov23_02253598.o
 	Object src/overlay023/ov23_02253D40.o
 	Object src/overlay023/ov23_0225426C.o
 	Object src/overlay023/ov23_0225429C.o
