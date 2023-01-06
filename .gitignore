@@ -90,3 +90,5 @@ asm_old/
 !sub/*.sbin
 
 uncrustify.cfg
+compare.sh
+diff/

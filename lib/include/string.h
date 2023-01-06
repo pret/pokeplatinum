@@ -13,12 +13,12 @@ void * memcpy(void * dest, const void * src, size_t size);
 void * memchr(const void * arr, int value, size_t size);
 int memcmp(const void * a, const void * b, size_t size);
 char * strcpy(char * dest, const char * src);
-unsigned strlen(const char * str);
+size_t strlen(const char * str);
 char * strncpy(char * dest, const char * src, size_t n);
 int strcmp(const char * a, const char * b);
 char * strcat(char * dest, const char * src);
 char * strncat(char * dest, const char * src, size_t n);
-unsigned strspn(const char * a, const char * b);
+size_t strspn(const char * a, const char * b);
 char * strtok(char * str, const char * sep);
 char * strstr(const char * haystack, const char * needle);
 

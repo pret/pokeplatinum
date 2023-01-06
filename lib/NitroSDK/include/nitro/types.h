@@ -74,6 +74,7 @@ typedef int BOOL;
 #define FALSE 0
 #endif
 
+// already defined in an MSL header
 #ifndef NULL
 #ifdef __cplusplus
 #define NULL 0

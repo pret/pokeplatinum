@@ -3,6 +3,7 @@
 
 #pragma warn_padding off
 //#include <stdio.h>
+#include <null.h>
 #include <size_t.h>
 #pragma warn_padding reset
 #include <stdarg.h>

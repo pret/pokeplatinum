@@ -320,7 +320,7 @@ Static main
 	Object src/unk_020920C0.o
 	Object src/unk_020923C0.o
 	Object src/unk_02092494.o
-	Object asm/unk_020933F8.o
+	Object src/unk_020933F8.o
 	Object src/unk_02094EDC.o
 	Object src/unk_02095AF0.o
 	Object src/unk_02095CD4.o
@@ -1026,7 +1026,8 @@ Overlay overlay13
 Overlay overlay14
 {
 	After overlay11
-	Object asm/overlay014/ov14_0221FC20.o
+	Object src/overlay014/ov14_0221FC20.o
+	Object asm/overlay014/ov14_022248A4.o
 }
 
 Overlay overlay15
@@ -1050,7 +1051,7 @@ Overlay overlay16
 	Object asm/overlay016/ov16_02266F1C.o
 	Object src/overlay016/ov16_02268520.o
 	Object asm/overlay016/ov16_0226871C.o
-	Object asm/overlay016/ov16_0226D094.o
+	Object src/overlay016/ov16_0226D094.o
 	Object src/overlay016/ov16_0226DB7C.o
 	Object src/overlay016/ov16_0226DE44.o
 	Object src/overlay016/ov16_0226E148.o
@@ -1555,7 +1556,7 @@ Overlay overlay60
 {
 	After overlay4
 	Object src/overlay060/ov60_0221F800.o
-	Object asm/overlay060/ov60_0221F968.o
+	Object src/overlay060/ov60_0221F968.o
 	Object asm/overlay060/ov60_0221FE2C.o
 	Object asm/overlay060/ov60_022206D4.o
 	Object asm/overlay060/ov60_02220844.o
