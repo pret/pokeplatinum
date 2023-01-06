@@ -1991,7 +1991,7 @@ Overlay overlay100
 	Object src/overlay100/ov100_021D400C.o
 	Object src/overlay100/ov100_021D44C0.o
 	Object src/overlay100/ov100_021D46C8.o
-	Object asm/overlay100/ov100_021D4E04.o
+	Object src/overlay100/ov100_021D4E04.o
 }
 
 Overlay overlay101
@@ -2156,9 +2156,9 @@ Overlay overlay116
 	After overlay114
 	Object src/overlay116/ov116_02260440.o
 	Object src/overlay116/ov116_022604C4.o
-	Object asm/overlay116/ov116_02261870.o
+	Object src/overlay116/ov116_02261870.o
 	Object src/overlay116/ov116_02262A44.o
-	Object asm/overlay116/ov116_02262A8C.o
+	Object src/overlay116/ov116_02262A8C.o
 	Object src/overlay116/ov116_0226432C.o
 	Object src/overlay116/ov116_02266FEC.o
 }
