@@ -1045,12 +1045,12 @@ Overlay overlay16
 	Object src/overlay016/ov16_0224B940.o
 	Object src/overlay016/ov16_0225177C.o
 	Object src/overlay016/ov16_0225BFFC.o
-	Object asm/overlay016/ov16_0225CBB8.o
+	Object src/overlay016/ov16_0225CBB8.o
 	Object src/overlay016/ov16_02264798.o
 	Object src/overlay016/ov16_0226485C.o
-	Object asm/overlay016/ov16_02266F1C.o
+	Object src/overlay016/ov16_02266F1C.o
 	Object src/overlay016/ov16_02268520.o
-	Object asm/overlay016/ov16_0226871C.o
+	Object src/overlay016/ov16_0226871C.o
 	Object src/overlay016/ov16_0226D094.o
 	Object src/overlay016/ov16_0226DB7C.o
 	Object src/overlay016/ov16_0226DE44.o
@@ -1736,7 +1736,7 @@ Overlay overlay71
 Overlay overlay72
 {
 	After overlay71
-	Object asm/overlay072/ov72_0223D7A0.o
+	Object src/overlay072/ov72_0223D7A0.o
 }
 
 Overlay overlay73
