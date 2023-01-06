@@ -913,7 +913,7 @@ Overlay overlay5
 Overlay overlay6
 {
 	After overlay5
-	Object asm/overlay006/ov6_0223E140.o
+	Object src/overlay006/ov6_0223E140.o
 	Object src/overlay006/ov6_02240C9C.o
 	Object src/overlay006/ov6_022426AC.o
 	Object src/overlay006/ov6_02242984.o
