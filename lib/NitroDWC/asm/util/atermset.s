@@ -7374,39 +7374,48 @@ Unk_ov18_0224648C: ; 0x0224648C
 
 	.global Unk_ov18_0224688C
 Unk_ov18_0224688C: ; 0x0224688C
-	.incbin "incbin/overlay18_rodata.bin", 0x458, 0x858 - 0x458
+	.incbin "incbin/overlay18_rodata.bin", 0x458, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x458+0x274, 0x18c
 
 	.global Unk_ov18_02246C8C
 Unk_ov18_02246C8C: ; 0x02246C8C
-	.incbin "incbin/overlay18_rodata.bin", 0x858, 0xC58 - 0x858
+	.incbin "incbin/overlay18_rodata.bin", 0x858, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x858+0x274, 0x18c
 
 	.global Unk_ov18_0224708C
 Unk_ov18_0224708C: ; 0x0224708C
-	.incbin "incbin/overlay18_rodata.bin", 0xC58, 0x1058 - 0xC58
+	.incbin "incbin/overlay18_rodata.bin", 0xC58, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0xC58+0x274, 0x18c
 
 	.global Unk_ov18_0224748C
 Unk_ov18_0224748C: ; 0x0224748C
-	.incbin "incbin/overlay18_rodata.bin", 0x1058, 0x1458 - 0x1058
+	.incbin "incbin/overlay18_rodata.bin", 0x1058, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x1058+0x274, 0x18c
 
 	.global Unk_ov18_0224788C
 Unk_ov18_0224788C: ; 0x0224788C
-	.incbin "incbin/overlay18_rodata.bin", 0x1458, 0x1858 - 0x1458
+	.incbin "incbin/overlay18_rodata.bin", 0x1458, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x1458+0x274, 0x18c
 
 	.global Unk_ov18_02247C8C
 Unk_ov18_02247C8C: ; 0x02247C8C
-	.incbin "incbin/overlay18_rodata.bin", 0x1858, 0x1C58 - 0x1858
+	.incbin "incbin/overlay18_rodata.bin", 0x1858, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x1858+0x274, 0x18c
 
 	.global Unk_ov18_0224808C
 Unk_ov18_0224808C: ; 0x0224808C
-	.incbin "incbin/overlay18_rodata.bin", 0x1C58, 0x2058 - 0x1C58
+	.incbin "incbin/overlay18_rodata.bin", 0x1C58, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x1C58+0x274, 0x18c
 
 	.global Unk_ov18_0224848C
 Unk_ov18_0224848C: ; 0x0224848C
-	.incbin "incbin/overlay18_rodata.bin", 0x2058, 0x2458 - 0x2058
+	.incbin "incbin/overlay18_rodata.bin", 0x2058, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x2058+0x274, 0x18c
 
 	.global Unk_ov18_0224888C
 Unk_ov18_0224888C: ; 0x0224888C
-	.incbin "incbin/overlay18_rodata.bin", 0x2458, 0x400
+	.incbin "incbin/overlay18_rodata.bin", 0x2458, 0x274
+	.incbin "incbin/overlay18_rodata.bin", 0x2458+0x274, 0x18c
 
 
 
