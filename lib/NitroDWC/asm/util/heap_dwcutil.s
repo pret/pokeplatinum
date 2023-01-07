@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "include/heap.inc"
+	.include "include/heap_dwcutil.inc"
 
 	
 

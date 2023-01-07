@@ -726,7 +726,7 @@ Overlay overlay4
 	Object lib/NitroDWC/asm/ac/error.o
 	Object lib/NitroDWC/asm/ac/makelist.o
 	Object lib/NitroDWC/asm/ac/retry.o
-	Object lib/NitroDWC/asm/ac/search.o
+	Object lib/NitroDWC/asm/ac/search_dwcac.o
 	Object lib/NitroDWC/asm/ac/start.o
 	Object lib/NitroDWC/asm/ac/test.o
 	Object lib/NitroDWC/asm/ac/shop_usb.o
@@ -774,7 +774,7 @@ Overlay overlay4
 	Object lib/libVCT/asm/decoder.o
 	Object lib/libVCT/asm/g711.o
 	Object lib/libVCT/asm/queue.o
-	Object lib/libVCT/asm/stream.o
+	Object lib/libVCT/asm/stream_vct.o
 	Object lib/libVCT/asm/ssp.o
 	Object lib/libVCT/asm/udp_buffer.o
 	Object lib/libVCT/asm/vad.o
@@ -807,7 +807,7 @@ Overlay overlay4
 	Object lib/NitroWiFi/asm/wcm/system.o
 	Object lib/NitroWiFi/asm/wcm/aplist.o
 	Object lib/NitroWiFi/asm/wcm/cpsif.o
-	Object lib/NitroWiFi/asm/wcm/util.o
+	Object lib/NitroWiFi/asm/wcm/util_wcm.o
 	Object lib/NitroWiFi/asm/stubs/md5/dummy_md5.o
 }
 
@@ -1113,7 +1113,7 @@ Overlay overlay18
 	Object lib/NitroDWC/asm/util/keyboard.o
 	Object lib/NitroDWC/asm/util/keyboard10.o
 	Object lib/NitroDWC/asm/util/libaoss.o
-	Object lib/NitroDWC/asm/util/main.o
+	Object lib/NitroDWC/asm/util/main_dwcutil.o
 	Object lib/NitroDWC/asm/util/message.o
 	Object lib/NitroDWC/asm/util/move.o
 	Object lib/NitroDWC/asm/util/rakuraku.o
@@ -1152,7 +1152,7 @@ Overlay overlay18
 	Object lib/NitroDWC/asm/util/scenesetusbready.o
 	Object lib/NitroDWC/asm/util/screen.o
 	Object lib/NitroDWC/asm/util/scrollbar.o
-	Object lib/NitroDWC/asm/util/search.o
+	Object lib/NitroDWC/asm/util/search_dwcutil.o
 	Object lib/NitroDWC/asm/util/setting.o
 	Object lib/NitroDWC/asm/util/sound.o
 	Object lib/NitroDWC/asm/util/step.o
@@ -1169,10 +1169,10 @@ Overlay overlay18
 	Object lib/NitroDWC/asm/util/font.o
 	Object lib/NitroDWC/asm/util/foundation.o
 	Object lib/NitroDWC/asm/util/graphics.o
-	Object lib/NitroDWC/asm/util/heap.o
+	Object lib/NitroDWC/asm/util/heap_dwcutil.o
 	Object lib/NitroDWC/asm/util/input.o
 	Object lib/NitroDWC/asm/util/interrupt.o
-	Object lib/NitroDWC/asm/util/list.o
+	Object lib/NitroDWC/asm/util/list_dwcutil.o
 	Object lib/NitroDWC/asm/util/obj.o
 	Object lib/NitroDWC/asm/util/objvram.o
 	Object lib/NitroDWC/asm/util/str.o
