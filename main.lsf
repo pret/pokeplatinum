@@ -702,12 +702,12 @@ Overlay overlay4
 	Object lib/NitroDWC/asm/auth/util_base64.o
 	Object lib/NitroDWC/asm/base/dwc_error.o
 	Object lib/NitroDWC/asm/base/dwc_memfunc.o
-	Object lib/NitroDWC/asm/auth/dwc_ca_cybertru.o
+	Object lib/NitroDWC/asm/auth/dwc_ca_cybertrust.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_nas_self.o
-	Object lib/NitroDWC/asm/auth/dwc_ca_thawte_p.o
-	Object lib/NitroDWC/asm/auth/dwc_ca_thawte_s.o
+	Object lib/NitroDWC/asm/auth/dwc_ca_thawte_premiumserver.o
+	Object lib/NitroDWC/asm/auth/dwc_ca_thawte_server.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_verisign.o
-	Object lib/NitroDWC/asm/auth/dwc_ca_globalsi.o
+	Object lib/NitroDWC/asm/auth/dwc_ca_globalsign.o
 	Object lib/NitroDWC/asm/base/dwc_connectinet.o
 	Object lib/NitroDWC/asm/base/dwc_nasfunc.o
 	Object lib/NitroDWC/asm/base/dwc_nd.o
@@ -784,7 +784,7 @@ Overlay overlay4
 	Object lib/NitroWiFi/asm/soc/socl_startup.o
 	Object lib/NitroWiFi/asm/soc/socl_command.o
 	Object lib/NitroWiFi/asm/soc/socl_create.o
-	Object lib/NitroWiFi/asm/soc/socl_listen_acc.o
+	Object lib/NitroWiFi/asm/soc/socl_listen_accept.o
 	Object lib/NitroWiFi/asm/soc/socl_bind.o
 	Object lib/NitroWiFi/asm/soc/socl_const.o
 	Object lib/NitroWiFi/asm/soc/socl_read.o
@@ -1564,18 +1564,18 @@ Overlay overlay60
 	Object lib/gamespy/asm/ghttp/ghttpmain.o
 	Object lib/gamespy/asm/ghttp/ghttppost.o
 	Object lib/gamespy/asm/ghttp/ghttpprocess.o
-	Object lib/NitroDWC/asm/nd/dwci_nd_ca.o
+	Object lib/NitroDWC/asm/nd/dwci_nd_ca_nasself.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_attr.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_base64.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_bgnend.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_cancel.o
-	Object lib/NitroDWC/asm/nd/dwci_nd_dwc_nit.o
+	Object lib/NitroDWC/asm/nd/dwci_nd_dwc_nitro.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_fileapi.o
-	Object lib/NitroDWC/asm/nd/dwci_nd_filecou.o
+	Object lib/NitroDWC/asm/nd/dwci_nd_filecount.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_fileget.o
-	Object lib/NitroDWC/asm/nd/dwci_nd_filelis.o
-	Object lib/NitroDWC/asm/nd/dwci_nd_os_nitr.o
-	Object lib/NitroDWC/asm/nd/dwci_nd_stdlib_.o
+	Object lib/NitroDWC/asm/nd/dwci_nd_filelist.o
+	Object lib/NitroDWC/asm/nd/dwci_nd_os_nitro.o
+	Object lib/NitroDWC/asm/nd/dwci_nd_stdlib_nitro.o
 	Object lib/NitroDWC/asm/nd/dwci_nd_string.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_bgnend.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_control.o
@@ -1583,10 +1583,10 @@ Overlay overlay60
 	Object lib/NitroDWC/asm/nhttp/nhttp_os_nitro.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_recvbuf.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_request.o
-	Object lib/NitroDWC/asm/nhttp/nhttp_resolve_n.o
+	Object lib/NitroDWC/asm/nhttp/nhttp_resolve_nitro.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_response.o
-	Object lib/NitroDWC/asm/nhttp/nhttp_socket_ni.o
-	Object lib/NitroDWC/asm/nhttp/nhttp_stdlib_ni.o
+	Object lib/NitroDWC/asm/nhttp/nhttp_socket_nitro.o
+	Object lib/NitroDWC/asm/nhttp/nhttp_stdlib_nitro.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_thread.o
 	Object lib/NitroDWC/asm/nhttp/nhttp_token.o
 }
@@ -1671,10 +1671,10 @@ Overlay overlay66
 	Object lib/NitroDWC/asm/ppwlobby/ppw_parser.o
 	Object lib/NitroDWC/asm/ppwlobby/ppw_profile.o
 	Object lib/NitroDWC/asm/ppwlobby/dwci_lobby.o
-	Object lib/NitroDWC/asm/lobby/dwci_lobbybase.o
-	Object lib/NitroDWC/asm/lobby/dwci_lobbynewha.o
-	Object lib/NitroDWC/asm/lobby/dwci_lobbycallb.o
-	Object lib/NitroDWC/asm/lobby/dwci_lobbydata.o
+	Object lib/NitroDWC/asm/ilobby/dwci_lobbybase.o
+	Object lib/NitroDWC/asm/ilobby/dwci_lobbynewhandler.o
+	Object lib/NitroDWC/asm/ilobby/dwci_lobbycallback.o
+	Object lib/NitroDWC/asm/ilobby/dwci_lobbydata.o
 	Object lib/gamespy/asm/chat/chatcallbacks.o
 	Object lib/gamespy/asm/chat/chatchannel.o
 	Object lib/gamespy/asm/chat/chatcrypt.o
