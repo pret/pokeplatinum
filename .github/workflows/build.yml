@@ -52,7 +52,7 @@ jobs:
         env:
           GAME_LANGUAGE: ENGLISH
           GAME_REVISION: 0
-        run: make -j2
+        run: make
 
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
