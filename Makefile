@@ -1,3 +1,10 @@
+
+infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
+
+ifeq (,$(filter-out all,$(MAKECMDGOALS)))
+$(call infoshell, $(MAKE) -f make_tools.mk)
+endif
+
 MWCCVER        := 2.0/sp2p2
 PROC           := arm946e
 PROC_S         := arm5te

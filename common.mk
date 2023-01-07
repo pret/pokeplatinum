@@ -140,15 +140,12 @@ DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS) $(PRECOMPILE_OBJ_DIR))
 .SECONDARY:
 .SECONDEXPANSION:
 .DELETE_ON_ERROR:
-.PHONY: all tidy clean tools clean-tools $(TOOLDIRS)
+.PHONY: all tidy clean clean-tools
 .PRECIOUS: $(SBIN)
-.NOTPARALLEL:
 
 .PHONY: $(MWAS)
 $(MWAS):
 	$(ASPATCH) -q $@
-
-all: tools
 
 ifeq ($(NODEP),)
   ifneq ($(WINPATH),)
@@ -227,13 +224,6 @@ $(BUILD_DIR)/%.o: %.c
 $(BUILD_DIR)/%.o: %.s
 	$(WINE) $(MWAS) $(MWASFLAGS) -o $@ $<
 endif
-
-$(NATIVE_TOOLS): tools
-
-tools: $(TOOLDIRS) $(MWAS)
-
-$(TOOLDIRS):
-	@$(MAKE) -C $@
 
 clean-tools:
 	$(foreach tool,$(TOOLDIRS),$(MAKE) -C $(tool) clean;)
