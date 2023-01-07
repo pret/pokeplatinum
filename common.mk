@@ -57,7 +57,7 @@ NITRO_PRECOMPILE_DEPFILE := $(BUILD_DIR)/precompile/nitro.d
 
 # Directories
 
-LIB_SUBDIRS               := NitroSDK NitroSystem NitroDWC NitroWiFi libVCT
+LIB_SUBDIRS               := NitroSDK NitroSystem NitroDWC NitroWiFi libVCT gamespy
 
 SRC_SUBDIR                := src
 ASM_SUBDIR                := asm
