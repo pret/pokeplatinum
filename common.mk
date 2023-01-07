@@ -144,6 +144,8 @@ DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS) $(PRECOMPILE_OBJ_DIR))
 .PRECIOUS: $(SBIN)
 .NOTPARALLEL:
 
+all: $(MWAS)
+
 .PHONY: $(MWAS)
 $(MWAS):
 	$(ASPATCH) -q $@
