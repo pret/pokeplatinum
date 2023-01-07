@@ -142,6 +142,7 @@ DUMMY := $(shell mkdir -p $(ALL_BUILDDIRS) $(PRECOMPILE_OBJ_DIR))
 .DELETE_ON_ERROR:
 .PHONY: all tidy clean clean-tools
 .PRECIOUS: $(SBIN)
+.NOTPARALLEL:
 
 .PHONY: $(MWAS)
 $(MWAS):
