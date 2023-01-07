@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_0223CA1C.inc"
+	.include "include/ppw_innerinfo.inc"
 
 	.extern Unk_021D0D60
 	

@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_0224D450.inc"
+	.include "include/chatcrypt.inc"
 
 	
 

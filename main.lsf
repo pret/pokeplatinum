@@ -1665,23 +1665,23 @@ Overlay overlay66
 	Object src/overlay066/ov66_022324F0.o
 	Object src/overlay066/ov66_022343A8.o
 	Object src/overlay066/ov66_02234EA8.o
-	Object asm/overlay066/ov66_02234FC4.o
-	Object asm/overlay066/ov66_0223CA1C.o
-	Object asm/overlay066/ov66_0225B6D4.o
-	Object asm/overlay066/ov66_02241184.o
-	Object asm/overlay066/ov66_02241BD8.o
-	Object asm/overlay066/ov66_02242C08.o
-	Object asm/overlay066/ov66_02246290.o
-	Object asm/overlay066/ov66_022462DC.o
-	Object asm/overlay066/ov66_0224640C.o
-	Object asm/overlay066/ov66_02246588.o
-	Object asm/overlay066/ov66_022483C4.o
-	Object asm/overlay066/ov66_0224B414.o
-	Object asm/overlay066/ov66_0224D450.o
-	Object asm/overlay066/ov66_0224D5A8.o
-	Object asm/overlay066/ov66_022534B8.o
-	Object asm/overlay066/ov66_02255ADC.o
-	Object asm/overlay066/ov66_02257C4C.o
+	Object lib/NitroDWC/asm/ppwlobby/ppw_lobby.o
+	Object lib/NitroDWC/asm/ppwlobby/ppw_innerinfo.o
+	Object lib/NitroDWC/asm/ppwlobby/dwci_encsession.o
+	Object lib/NitroDWC/asm/ppwlobby/ppw_parser.o
+	Object lib/NitroDWC/asm/ppwlobby/ppw_profile.o
+	Object lib/NitroDWC/asm/ppwlobby/dwci_lobby.o
+	Object lib/NitroDWC/asm/lobby/dwci_lobbybase.o
+	Object lib/NitroDWC/asm/lobby/dwci_lobbynewha.o
+	Object lib/NitroDWC/asm/lobby/dwci_lobbycallb.o
+	Object lib/NitroDWC/asm/lobby/dwci_lobbydata.o
+	Object lib/gamespy/asm/chat/chatcallbacks.o
+	Object lib/gamespy/asm/chat/chatchannel.o
+	Object lib/gamespy/asm/chat/chatcrypt.o
+	Object lib/gamespy/asm/chat/chathandlers.o
+	Object lib/gamespy/asm/chat/chatmain.o
+	Object lib/gamespy/asm/chat/chatsocket.o
+	Object lib/NitroDWC/asm/enc/dwc_encsession.o
 }
 
 Overlay overlay67

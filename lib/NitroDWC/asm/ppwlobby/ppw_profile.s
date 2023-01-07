@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_02241BD8.inc"
+	.include "include/ppw_profile.inc"
 
 	
 

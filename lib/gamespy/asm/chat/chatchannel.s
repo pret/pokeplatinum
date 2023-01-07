@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_0224B414.inc"
+	.include "include/chatchannel.inc"
 
 	.extern Unk_020FE764
 

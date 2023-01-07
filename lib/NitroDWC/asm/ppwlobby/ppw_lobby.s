@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_02234FC4.inc"
+	.include "include/ppw_lobby.inc"
 
 	.extern Unk_ov66_0225B6D4
 

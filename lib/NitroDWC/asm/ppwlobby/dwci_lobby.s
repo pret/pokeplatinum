@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_02242C08.inc"
+	.include "include/dwci_lobby.inc"
 
 	
 

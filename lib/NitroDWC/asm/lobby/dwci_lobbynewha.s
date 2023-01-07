@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay066/ov66_022462DC.inc"
+	.include "include/dwci_lobbynewha.inc"
 
 	.extern Unk_ov66_0225B6E4
 
