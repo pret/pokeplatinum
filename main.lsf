@@ -384,7 +384,7 @@ Static main
 	Object lib/NitroSystem/asm/fnd/expheap.o
 	Object lib/NitroSystem/asm/fnd/frameheap.o
 	Object lib/NitroSystem/asm/fnd/unitheap.o
-	Object lib/NitroSystem/asm/fnd/allocator.o
+	Object lib/NitroSystem/src/fnd/allocator.o
 	Object lib/NitroSystem/asm/gfd/gfd_texvramman.o
 	Object lib/NitroSystem/asm/gfd/gfd_plttvramman.o
 	Object lib/NitroSystem/asm/gfd/gfd_frametexvramman.o
