@@ -465,19 +465,19 @@ Static main
 	Object lib/NitroSDK/src/fx/fx_sincos.o
 	Object lib/NitroSDK/src/fx/fx_atanidx.o
 	Object lib/NitroSDK/src/fx/fx.o
-	Object lib/NitroSDK/asm/gx/gx.o
-	Object lib/NitroSDK/asm/gx/gxstate.o
-	Object lib/NitroSDK/asm/gx/gx_vramcnt.o
-	Object lib/NitroSDK/asm/gx/gx_bgcnt.o
-	Object lib/NitroSDK/asm/gx/g2.o
-	Object lib/NitroSDK/asm/gx/g3b.o
-	Object lib/NitroSDK/asm/gx/g3imm.o
-	Object lib/NitroSDK/asm/gx/g3x.o
-	Object lib/NitroSDK/asm/gx/g3_util.o
-	Object lib/NitroSDK/asm/gx/gx_load2d.o
-	Object lib/NitroSDK/asm/gx/gx_load3d.o
-	Object lib/NitroSDK/asm/gx/libgx.o
-	Object lib/NitroSDK/asm/gx/gxasm.o
+	Object lib/NitroSDK/src/gx/gx.o
+	Object lib/NitroSDK/src/gx/gxstate.o
+	Object lib/NitroSDK/src/gx/gx_vramcnt.o
+	Object lib/NitroSDK/src/gx/gx_bgcnt.o
+	Object lib/NitroSDK/src/gx/g2.o
+	Object lib/NitroSDK/src/gx/g3b.o
+	Object lib/NitroSDK/src/gx/g3imm.o
+	Object lib/NitroSDK/src/gx/g3x.o
+	Object lib/NitroSDK/src/gx/g3_util.o
+	Object lib/NitroSDK/src/gx/gx_load2d.o
+	Object lib/NitroSDK/src/gx/gx_load3d.o
+	Object lib/NitroSDK/src/gx/g3.o
+	Object lib/NitroSDK/src/gx/gxasm.o
 	Object lib/NitroSDK/asm/os/os_irqhandler.o
 	Object lib/NitroSDK/asm/os/os_irqtable.o
 	Object lib/NitroSDK/asm/os/os_interrupt.o
