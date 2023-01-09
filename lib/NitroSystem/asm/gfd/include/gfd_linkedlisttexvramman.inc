@@ -1,9 +1,0 @@
-.public NNSi_GfdInitLnkVramMan
-.public NNSi_GfdInitLnkVramBlockPool
-.public NNSi_GfdAddNewFreeBlock
-.public NNSi_GfdAllocLnkVram
-.public NNSi_GfdMergeAllFreeBlocks
-.public NNSi_GfdFreeLnkVram
-.public NNS_GfdAllocLnkTexVram
-.public NNS_GfdFreeLnkTexVram
-.public NNS_GfdResetLnkTexVramState

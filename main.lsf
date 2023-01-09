@@ -385,14 +385,14 @@ Static main
 	Object lib/NitroSystem/src/fnd/frameheap.o
 	Object lib/NitroSystem/src/fnd/unitheap.o
 	Object lib/NitroSystem/src/fnd/allocator.o
-	Object lib/NitroSystem/asm/gfd/gfd_texvramman.o
-	Object lib/NitroSystem/asm/gfd/gfd_plttvramman.o
-	Object lib/NitroSystem/asm/gfd/gfd_frametexvramman.o
-	Object lib/NitroSystem/asm/gfd/gfd_frameplttvramman.o
-	Object lib/NitroSystem/asm/gfd/gfd_vramtransfermanager.o
-	Object lib/NitroSystem/asm/gfd/gfdi_linkedlistvramman.o
-	Object lib/NitroSystem/asm/gfd/gfd_linkedlisttexvramman.o
-	Object lib/NitroSystem/asm/gfd/gfd_linkedlistplttvramman.o
+	Object lib/NitroSystem/src/gfd/gfd_TexVramMan.o
+	Object lib/NitroSystem/src/gfd/gfd_PlttVramMan.o
+	Object lib/NitroSystem/src/gfd/gfd_FrameTexVramMan.o
+	Object lib/NitroSystem/src/gfd/gfd_FramePlttVramMan.o
+	Object lib/NitroSystem/src/gfd/gfd_VramTransferManager.o
+	Object lib/NitroSystem/src/gfd/gfdi_LinkedListVramMan_Common.o
+	Object lib/NitroSystem/src/gfd/gfd_LinkedListTexVramMan.o
+	Object lib/NitroSystem/src/gfd/gfd_LinkedListPlttVramMan.o
 	Object lib/NitroSystem/asm/g2d/g2d_nan_load.o
 	Object lib/NitroSystem/asm/g2d/g2d_nob_load.o
 	Object lib/NitroSystem/asm/g2d/g2d_nmc_load.o

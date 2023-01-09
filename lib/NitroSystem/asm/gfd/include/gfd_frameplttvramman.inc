@@ -1,3 +1,0 @@
-.public NNS_GfdAllocFrmPlttVram
-.public NNS_GfdFreeFrmPlttVram
-.public NNS_GfdResetFrmPlttVramState

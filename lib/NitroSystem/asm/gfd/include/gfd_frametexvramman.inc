@@ -1,4 +1,0 @@
-.public NNSi_GfdSetTexNrmSearchArray
-.public NNS_GfdResetFrmTexVramState
-.public NNS_GfdAllocFrmTexVram
-.public NNS_GfdFreeFrmTexVram
