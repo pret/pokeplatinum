@@ -534,7 +534,7 @@ Static main
 	Object lib/NitroSDK/asm/dgt/hash2.o
 	Object lib/NitroSDK/asm/dgt/hmac.o
 	Object lib/NitroSDK/asm/dgt/sha1s-arm4cw.o
-	Object lib/NitroSDK/asm/cp/cp_context.o
+	Object lib/NitroSDK/src/cp/cp_context.o
 	Object lib/NitroSDK/asm/spi/tp.o
 	Object lib/NitroSDK/asm/spi/mic.o
 	Object lib/NitroSDK/asm/spi/pm.o
@@ -555,16 +555,17 @@ Static main
 	Object lib/NitroSDK/asm/wm/wm_ds.o
 	Object lib/NitroSDK/asm/wm/wm_ks.o
 	Object lib/NitroSDK/asm/wm/wm_etc.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_proc.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_backup.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_flash_common.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_sram.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_flash_at2.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_flash_le2.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_flash_le3.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_flash_mx2.o
-	Object lib/NitroSDK/asm/ctrdg/ctrdg_task.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_proc.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_backup.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_common.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_sram.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_AT29LV512.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_LE26FV10N1TS-10.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_LE39FW512.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_MX29L010.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_MX29L512.o
+	Object lib/NitroSDK/src/ctrdg/ctrdg_task.o
 	Object lib/NitroSDK/asm/math/math.o
 	Object lib/NitroSDK/asm/math/dgt.o
 	Object lib/NitroSDK/asm/math/crc.o
