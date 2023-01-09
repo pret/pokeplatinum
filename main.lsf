@@ -379,11 +379,11 @@ Static main
 	Object lib/NitroDWC/asm/base/dwc_account.o
 	Object asm/unk_020A490C.o
 	Object asm/unk_020A4A34.o
-	Object lib/NitroSystem/asm/fnd/list_nnsfnd.o
-	Object lib/NitroSystem/asm/fnd/heapcommon.o
-	Object lib/NitroSystem/asm/fnd/expheap.o
-	Object lib/NitroSystem/asm/fnd/frameheap.o
-	Object lib/NitroSystem/asm/fnd/unitheap.o
+	Object lib/NitroSystem/src/fnd/list_nnsfnd.o
+	Object lib/NitroSystem/src/fnd/heapcommon.o
+	Object lib/NitroSystem/src/fnd/expheap.o
+	Object lib/NitroSystem/src/fnd/frameheap.o
+	Object lib/NitroSystem/src/fnd/unitheap.o
 	Object lib/NitroSystem/src/fnd/allocator.o
 	Object lib/NitroSystem/asm/gfd/gfd_texvramman.o
 	Object lib/NitroSystem/asm/gfd/gfd_plttvramman.o
