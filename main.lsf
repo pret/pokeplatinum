@@ -455,16 +455,16 @@ Static main
 	Object lib/NitroSystem/src/snd/sndarc_stream.o
 	Object lib/NitroSystem/src/snd/seqdata.o
 	Object lib/NitroSystem/src/snd/fader.o
-	Object lib/NitroSDK/asm/fx/fx_mtx22.o
-	Object lib/NitroSDK/asm/fx/fx_mtx33.o
-	Object lib/NitroSDK/asm/fx/fx_mtx43.o
-	Object lib/NitroSDK/asm/fx/fx_mtx44.o
-	Object lib/NitroSDK/asm/fx/fx_cp.o
-	Object lib/NitroSDK/asm/fx/fx_vec.o
-	Object lib/NitroSDK/asm/fx/fx_trig.o
-	Object lib/NitroSDK/asm/fx/fx_sincos.o
-	Object lib/NitroSDK/asm/fx/fx_atanidx.o
-	Object lib/NitroSDK/asm/fx/fx.o
+	Object lib/NitroSDK/src/fx/fx_mtx22.o
+	Object lib/NitroSDK/src/fx/fx_mtx33.o
+	Object lib/NitroSDK/src/fx/fx_mtx43.o
+	Object lib/NitroSDK/src/fx/fx_mtx44.o
+	Object lib/NitroSDK/src/fx/fx_cp.o
+	Object lib/NitroSDK/src/fx/fx_vec.o
+	Object lib/NitroSDK/src/fx/fx_trig.o
+	Object lib/NitroSDK/src/fx/fx_sincos.o
+	Object lib/NitroSDK/src/fx/fx_atanidx.o
+	Object lib/NitroSDK/src/fx/fx.o
 	Object lib/NitroSDK/asm/gx/gx.o
 	Object lib/NitroSDK/asm/gx/gxstate.o
 	Object lib/NitroSDK/asm/gx/gx_vramcnt.o
