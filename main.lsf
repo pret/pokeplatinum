@@ -441,19 +441,19 @@ Static main
 	Object lib/NitroSystem/asm/g3d/si3d.o
 	Object lib/NitroSystem/asm/g3d/3dsmax.o
 	Object lib/NitroSystem/asm/g3d/xsi.o
-	Object lib/NitroSystem/asm/snd/main_nnssnd.o
-	Object lib/NitroSystem/asm/snd/resource_mgr.o
-	Object lib/NitroSystem/asm/snd/waveout.o
-	Object lib/NitroSystem/asm/snd/player.o
-	Object lib/NitroSystem/asm/snd/stream_nnssnd.o
-	Object lib/NitroSystem/asm/snd/capture.o
-	Object lib/NitroSystem/asm/snd/sndarc.o
-	Object lib/NitroSystem/asm/snd/heap_nnssnd.o
-	Object lib/NitroSystem/asm/snd/sndarc_loader.o
-	Object lib/NitroSystem/asm/snd/sndarc_player.o
-	Object lib/NitroSystem/asm/snd/sndarc_stream.o
-	Object lib/NitroSystem/asm/snd/seqdata.o
-	Object lib/NitroSystem/asm/snd/fader.o
+	Object lib/NitroSystem/src/snd/main_nnssnd.o
+	Object lib/NitroSystem/src/snd/resource_mgr.o
+	Object lib/NitroSystem/src/snd/waveout.o
+	Object lib/NitroSystem/src/snd/player.o
+	Object lib/NitroSystem/src/snd/stream_nnssnd.o
+	Object lib/NitroSystem/src/snd/capture.o
+	Object lib/NitroSystem/src/snd/sndarc.o
+	Object lib/NitroSystem/src/snd/heap_nnssnd.o
+	Object lib/NitroSystem/src/snd/sndarc_loader.o
+	Object lib/NitroSystem/src/snd/sndarc_player.o
+	Object lib/NitroSystem/src/snd/sndarc_stream.o
+	Object lib/NitroSystem/src/snd/seqdata.o
+	Object lib/NitroSystem/src/snd/fader.o
 	Object lib/NitroSDK/asm/fx/fx_mtx22.o
 	Object lib/NitroSDK/asm/fx/fx_mtx33.o
 	Object lib/NitroSDK/asm/fx/fx_mtx43.o

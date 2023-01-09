@@ -47,8 +47,8 @@ _020C5F58: .word Unk_020FE1B0
 Unk_020FD9B0: ; 0x020FD9B0
 	.incbin "incbin/arm9_rodata.bin", 0x18D70, 0x18E70 - 0x18D70
 
-	.global Unk_020FDAB0
-Unk_020FDAB0: ; 0x020FDAB0
+	.global SNDi_DecibelTable
+SNDi_DecibelTable: ; 0x020FDAB0
 	.incbin "incbin/arm9_rodata.bin", 0x18E70, 0x18F70 - 0x18E70
 
 	.global Unk_020FDBB0
