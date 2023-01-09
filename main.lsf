@@ -524,12 +524,12 @@ Static main
 	Object lib/NitroSDK/asm/snd/snd_bank.o
 	Object lib/NitroSDK/asm/pxi/pxi_init.o
 	Object lib/NitroSDK/asm/pxi/pxi_fifo.o
-	Object lib/NitroSDK/asm/fs/fs_command.o
-	Object lib/NitroSDK/asm/fs/fs_command_default.o
-	Object lib/NitroSDK/asm/fs/fs_archive.o
-	Object lib/NitroSDK/asm/fs/fs_file.o
-	Object lib/NitroSDK/asm/fs/fs_rom.o
-	Object lib/NitroSDK/asm/fs/fs_overlay.o
+	Object lib/NitroSDK/src/fs/fs_command.o
+	Object lib/NitroSDK/src/fs/fs_command_default.o
+	Object lib/NitroSDK/src/fs/fs_archive.o
+	Object lib/NitroSDK/src/fs/fs_file.o
+	Object lib/NitroSDK/src/fs/fs_rom.o
+	Object lib/NitroSDK/src/fs/fs_overlay.o
 	Object lib/NitroSDK/asm/dgt/hash1.o
 	Object lib/NitroSDK/asm/dgt/hash2.o
 	Object lib/NitroSDK/asm/dgt/hmac.o

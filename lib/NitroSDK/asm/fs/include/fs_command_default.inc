@@ -1,9 +1,0 @@
-.public OS_SleepThread
-.public OS_DisableInterrupts
-.public OS_RestoreInterrupts
-.public MI_CpuCopy8
-.public FSi_TranslateCommand
-.public FSi_StrNICmp
-.public FSi_ReadTable
-.public FSi_SeekDirDirect
-.public FS_InitFile
