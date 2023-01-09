@@ -1093,14 +1093,14 @@ Overlay overlay18
 {
 	After overlay4
 	Object src/overlay018/ov18_0221F800.o
-	Object lib/NitroSDK/asm/mb/mb_parent.o
-	Object lib/NitroSDK/asm/mb/mb_fileinfo.o
-	Object lib/NitroSDK/asm/mb/mb_common.o
-	Object lib/NitroSDK/asm/mb/mb_gameinfo.o
-	Object lib/NitroSDK/asm/mb/mb_wm_base.o
-	Object lib/NitroSDK/asm/mb/mb_cache.o
-	Object lib/NitroSDK/asm/mb/mb_task.o
-	Object lib/NitroSDK/asm/mb/mb_block.o
+	Object lib/NitroSDK/src/mb/mb_parent.o
+	Object lib/NitroSDK/src/mb/mb_fileinfo.o
+	Object lib/NitroSDK/src/mb/mb_common.o
+	Object lib/NitroSDK/src/mb/mb_gameinfo.o
+	Object lib/NitroSDK/src/mb/mb_wm_base.o
+	Object lib/NitroSDK/src/mb/mb_cache.o
+	Object lib/NitroSDK/src/mb/mb_task.o
+	Object lib/NitroSDK/src/mb/mb_block.o
 	Object lib/NitroDWC/asm/util/aoss.o
 	Object lib/NitroDWC/asm/util/aosslink.o
 	Object lib/NitroDWC/asm/util/apc.o

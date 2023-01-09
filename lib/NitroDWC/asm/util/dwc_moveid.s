@@ -104,7 +104,7 @@ _02242720:
 	movlo r0, #0
 	ldmloia sp!, {r3, pc}
 _0224274C:
-	bl ov18_02223B2C
+	bl MB_EndToIdle
 	ldr r0, _022427B0 ; =0x022533A8
 	mov r3, #0x10
 	ldr r1, [r0, #0]
@@ -319,7 +319,7 @@ _02242A00:
 	bl ov18_0224312C
 	ldmia sp!, {r3, pc}
 _02242A1C:
-	bl ov18_02223B2C
+	bl MB_EndToIdle
 	ldr r0, _02242C2C ; =0x022533A8
 	mov r3, #0
 	ldr r2, [r0, #0]
@@ -491,11 +491,11 @@ _02242C74: .word Unk_ov18_022533A8
 
 	arm_func_start ov18_02242C78
 ov18_02242C78: ; 0x02242C78
-	ldr ip, _02242C84 ; =ov18_0221F874
+	ldr ip, _02242C84 ; =MB_CommGetChildUser
 	mov r0, #1
 	bx ip
 	; .align 2, 0
-_02242C84: .word ov18_0221F874
+_02242C84: .word MB_CommGetChildUser
 	arm_func_end ov18_02242C78
 
 	arm_func_start ov18_02242C88

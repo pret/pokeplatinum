@@ -47,7 +47,7 @@
 .public WM_SetLifeTime
 .public _s32_div_f
 .public _u32_div_f
-.public ov18_0221F84C
+.public MB_CommSetParentStateCallback
 .public ov18_0221FA2C
 .public ov18_0221FA78
 .public ov18_0221FAA0

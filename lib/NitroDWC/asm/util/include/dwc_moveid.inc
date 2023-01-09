@@ -4,8 +4,8 @@
 .public MI_CpuFill8
 .public MI_CpuCopy8
 .public WM_GetNextTgid
-.public ov18_0221F874
-.public ov18_02223B2C
+.public MB_CommGetChildUser
+.public MB_EndToIdle
 .public ov18_0223E5D0
 .public ov18_022407B0
 .public ov18_022407F0

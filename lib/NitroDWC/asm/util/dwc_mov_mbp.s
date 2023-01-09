@@ -87,16 +87,16 @@ _02240878:
 	add r0, r0, #0x1b000
 	ldr r0, [r0, #0x140]
 	mov r3, r4
-	bl ov18_0222348C
+	bl MB_Init
 	cmp r0, #0
 	beq _022408E4
 	bl OS_Terminate
 _022408E4:
 	mov r0, #0x100
 	mov r1, #1
-	bl ov18_022236E0
+	bl MB_SetParentCommParam
 	ldr r0, _0224090C ; =ov18_02240F00
-	bl ov18_0221F84C
+	bl MB_CommSetParentStateCallback
 	mov r0, #1
 	bl ov18_02241224
 	add sp, sp, #0x7c
@@ -114,7 +114,7 @@ ov18_02240910: ; 0x02240910
 	mov r0, #2
 	bl ov18_02241224
 	mov r0, r4
-	bl ov18_02223A30
+	bl MB_StartParentFromIdle
 	cmp r0, #0
 	beq _02240940
 	mov r0, #7
@@ -151,7 +151,7 @@ ov18_02240958: ; 0x02240958
 	add r4, sp, #0
 _022409A0:
 	mov r0, r4
-	bl ov18_02220C28
+	bl MB_GetSegmentLength
 	cmp r0, #0
 	beq _02240A0C
 	ldr r1, _02240A28 ; =0x0225339C
@@ -166,7 +166,7 @@ _022409A0:
 	beq _02240A0C
 	mov r0, r4
 	mov r2, #0x10000
-	bl ov18_02220CA8
+	bl MB_ReadSegment
 	cmp r0, #0
 	beq _02240A0C
 	ldr r1, _02240A28 ; =0x0225339C
@@ -174,7 +174,7 @@ _022409A0:
 	ldr r1, [r1, #0]
 	add r1, r1, #0x1b000
 	ldr r1, [r1, #0x144]
-	bl ov18_02221198
+	bl MB_RegisterFile
 	cmp r0, #0
 	movne r5, #1
 _02240A0C:
@@ -195,7 +195,7 @@ ov18_02240A2C: ; 0x02240A2C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r1, #1
 	mov r4, r0
-	bl ov18_0221F94C
+	bl MB_CommResponseRequest
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r0, #1
@@ -229,7 +229,7 @@ ov18_02240A2C: ; 0x02240A2C
 	strh r1, [r2, #0xc]
 	bl OS_RestoreInterrupts
 	mov r0, r4
-	bl ov18_02223B68
+	bl MB_DisconnectChild
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02240AC8: .word Unk_ov18_0225339C
@@ -240,7 +240,7 @@ ov18_02240ACC: ; 0x02240ACC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r1, #0
 	mov r4, r0
-	bl ov18_0221F94C
+	bl MB_CommResponseRequest
 	cmp r0, #0
 	bne _02240B68
 	mov r0, #1
@@ -274,7 +274,7 @@ ov18_02240ACC: ; 0x02240ACC
 	strh r1, [r2, #0xc]
 	bl OS_RestoreInterrupts
 	mov r0, r4
-	bl ov18_02223B68
+	bl MB_DisconnectChild
 	ldmia sp!, {r3, r4, r5, pc}
 _02240B68:
 	bl OS_DisableInterrupts
@@ -300,7 +300,7 @@ ov18_02240BA4: ; 0x02240BA4
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r1, #2
 	mov r4, r0
-	bl ov18_0221F94C
+	bl MB_CommResponseRequest
 	cmp r0, #0
 	bne _02240C40
 	mov r0, #1
@@ -334,7 +334,7 @@ ov18_02240BA4: ; 0x02240BA4
 	strh r1, [r2, #0xc]
 	bl OS_RestoreInterrupts
 	mov r0, r4
-	bl ov18_02223B68
+	bl MB_DisconnectChild
 	ldmia sp!, {r3, r4, r5, pc}
 _02240C40:
 	bl OS_DisableInterrupts
@@ -403,7 +403,7 @@ _02240C94:
 	strh r1, [r2, #0xc]
 	bl OS_RestoreInterrupts
 	mov r0, r5
-	bl ov18_02223B68
+	bl MB_DisconnectChild
 	b _02240D40
 _02240D38:
 	mov r0, r5
@@ -436,7 +436,7 @@ _02240D80:
 	tst r0, r5, lsl r6
 	beq _02240DA4
 	mov r0, r6
-	bl ov18_0221F8F8
+	bl MB_CommIsBootable
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -467,7 +467,7 @@ _02240DDC:
 	beq _02240E84
 	mov r0, r7
 	mov r1, r5
-	bl ov18_0221F94C
+	bl MB_CommResponseRequest
 	cmp r0, #0
 	orrne r0, r8, r6, lsl r7
 	movne r0, r0, lsl #0x10
@@ -502,7 +502,7 @@ _02240DDC:
 	strh r1, [r2, #0xc]
 	bl OS_RestoreInterrupts
 	mov r0, r7
-	bl ov18_02223B68
+	bl MB_DisconnectChild
 _02240E84:
 	add r0, r7, #1
 	mov r0, r0, lsl #0x10
@@ -527,7 +527,7 @@ ov18_02240EBC: ; 0x02240EBC
 	stmfd sp!, {r3, lr}
 	mov r0, #6
 	bl ov18_02241224
-	bl ov18_02223B2C
+	bl MB_EndToIdle
 	ldmia sp!, {r3, pc}
 	arm_func_end ov18_02240EBC
 
@@ -542,7 +542,7 @@ ov18_02240ED0: ; 0x02240ED0
 	ldreqh r0, [r2, #0xc]
 	cmpeq r1, r0
 	ldmneia sp!, {r3, pc}
-	bl ov18_02223B2C
+	bl MB_EndToIdle
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02240EFC: .word Unk_ov18_0225339C
@@ -660,7 +660,7 @@ _02241080:
 	strh r1, [r3, #4]
 	bl ov18_02240A2C
 	mov r0, r5
-	bl ov18_0221F874
+	bl MB_CommGetChildUser
 	cmp r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	ldr r1, _02241220 ; =0x0225339C
