@@ -566,9 +566,9 @@ Static main
 	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_MX29L010.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg_flash_MX29L512.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg_task.o
-	Object lib/NitroSDK/asm/math/math.o
-	Object lib/NitroSDK/asm/math/dgt.o
-	Object lib/NitroSDK/asm/math/crc.o
+	Object lib/NitroSDK/src/math/math.o
+	Object lib/NitroSDK/src/math/dgt.o
+	Object lib/NitroSDK/src/math/crc.o
 	Object lib/NitroSDK/asm/std/std_string.o
 	Object lib/NitroSDK/asm/std/std_sprintf.o
 	Object lib/msl/asm/abort_exit_arm.o
