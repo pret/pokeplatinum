@@ -1,3 +1,0 @@
-.public GetUnpackedAnimBankImpl_
-.public NNS_G2dUnpackNAN
-.public NNS_G2dFindBinaryBlock

@@ -8,6 +8,7 @@ Makefile text eol=lf
 *.sha1 text eol=lf
 *.json text eol=lf
 *.cpp text eol=lf
+*.hpp text eol=lf
 .gitattributes text eol=lf
 .gitignore text eol=lf
 *.md text eol=lf

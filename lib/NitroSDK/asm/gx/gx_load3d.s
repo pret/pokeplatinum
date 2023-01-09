@@ -2,7 +2,7 @@
 	.include "include/gx_load3d.inc"
 
 	.extern Unk_021CCBD8
-	.extern Unk_02101148
+	.extern GXi_DmaId
 
 	.text
 
@@ -122,7 +122,7 @@ _020C0EB0:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _020C0EC8: .word Unk_021CCBD8
-_020C0ECC: .word Unk_02101148
+_020C0ECC: .word GXi_DmaId
 	arm_func_end GX_LoadTex
 
 	arm_func_start GX_EndLoadTex
@@ -146,7 +146,7 @@ _020C0EEC:
 	str r1, [r0, #0x14]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0F14: .word Unk_02101148
+_020C0F14: .word GXi_DmaId
 _020C0F18: .word Unk_021CCBD8
 	arm_func_end GX_EndLoadTex
 
@@ -197,7 +197,7 @@ _020C0FA4:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C0FB4: .word Unk_02101148
+_020C0FB4: .word GXi_DmaId
 _020C0FB8: .word Unk_021CCBD8
 	arm_func_end GX_LoadTexPltt
 
@@ -220,7 +220,7 @@ _020C0FD8:
 	str r1, [r0, #8]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C0FF8: .word Unk_02101148
+_020C0FF8: .word GXi_DmaId
 _020C0FFC: .word Unk_021CCBD8
 	arm_func_end GX_EndLoadTexPltt
 
@@ -298,7 +298,7 @@ _020C10DC:
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020C10F0: .word Unk_02101148
+_020C10F0: .word GXi_DmaId
 _020C10F4: .word Unk_021CCBD8
 	arm_func_end GX_LoadClearImageColor
 
@@ -331,7 +331,7 @@ _020C1148:
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C115C: .word Unk_02101148
+_020C115C: .word GXi_DmaId
 _020C1160: .word Unk_021CCBD8
 	arm_func_end GX_LoadClearImageDepth
 
@@ -354,7 +354,7 @@ _020C1180:
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_020C11A0: .word Unk_02101148
+_020C11A0: .word GXi_DmaId
 _020C11A4: .word Unk_021CCBD8
 	arm_func_end GX_EndLoadClearImage
 

@@ -243,8 +243,8 @@ GXx_SetMasterBrightness_: ; 0x020BDEC4
 Unk_02101144: ; 0x02101144
 	.incbin "incbin/arm9_data.bin", 0x2464, 0x2468 - 0x2464
 
-	.global Unk_02101148
-Unk_02101148: ; 0x02101148
+	.global GXi_DmaId
+GXi_DmaId: ; 0x02101148
 	.incbin "incbin/arm9_data.bin", 0x2468, 0x4
 
 

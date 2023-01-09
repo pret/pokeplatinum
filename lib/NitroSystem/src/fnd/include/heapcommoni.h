@@ -12,78 +12,69 @@ typedef s32 NNSiIntPtr;
 typedef u32 NNSiUIntPtr;
 
 #define NNSi_FndRoundUp(value, alignment) \
-    (((value) + (alignment - 1)) & ~(alignment - 1))
+        (((value) + (alignment - 1)) & ~(alignment - 1))
 
 #define NNSi_FndRoundUpPtr(ptr, alignment) \
-    ((void *)NNSi_FndRoundUp(NNSiGetUIntPtr(ptr), alignment))
+        ((void *)NNSi_FndRoundUp(NNSiGetUIntPtr(ptr), alignment))
 
 #define NNSi_FndRoundDown(value, alignment) \
-    ((value) & ~(alignment - 1))
+        ((value) & ~(alignment - 1))
 
 #define NNSi_FndRoundDownPtr(ptr, alignment) \
-    ((void *)NNSi_FndRoundDown(NNSiGetUIntPtr(ptr), alignment))
+        ((void *)NNSi_FndRoundDown(NNSiGetUIntPtr(ptr), alignment))
 
 #define NNSi_FndGetBitValue(data, st, bits) \
-    (((data) >> (st)) & ((1 << (bits)) - 1))
+        (((data) >> (st)) & ((1 << (bits)) - 1))
 
 #define NNSi_FndSetBitValue(data, st, bits, val)                        \
-    do                                                          \
-    {                                                           \
-        u32 maskBits = (u32)((1 << (bits)) - 1);                   \
-        u32 newVal = (val) & maskBits;     \
-        (void)(maskBits <<= st);                                 \
-        (data) &= ~maskBits;         \
-        (data) |= newVal << (st);                                 \
-    } while (FALSE);
+        do                                                          \
+        {                                                           \
+            u32 maskBits = (u32)((1 << (bits)) - 1);                   \
+            u32 newVal = (val)&maskBits;     \
+            (void)(maskBits <<= st);                                 \
+            (data) &= ~maskBits;         \
+            (data) |= newVal << (st);                                 \
+        } while (FALSE);
 
-NNS_FND_INLINE NNSiUIntPtr NNSiGetUIntPtr (const void * ptr)
-{
+NNS_FND_INLINE NNSiUIntPtr NNSiGetUIntPtr (const void * ptr) {
     return (NNSiUIntPtr)ptr;
 }
 
-NNS_FND_INLINE u32 GetOffsetFromPtr (const void * start, const void * end)
-{
+NNS_FND_INLINE u32 GetOffsetFromPtr (const void * start, const void * end) {
     return NNSiGetUIntPtr(end) - NNSiGetUIntPtr(start);
 }
 
-NNS_FND_INLINE void * AddU32ToPtr (void * ptr, u32 val)
-{
+NNS_FND_INLINE void * AddU32ToPtr (void * ptr, u32 val) {
     return (void *)(NNSiGetUIntPtr(ptr) + val);
 }
 
-NNS_FND_INLINE const void * AddU32ToCPtr (const void * ptr, u32 val)
-{
+NNS_FND_INLINE const void * AddU32ToCPtr (const void * ptr, u32 val) {
     return (const void *)(NNSiGetUIntPtr(ptr) + val);
 }
 
-NNS_FND_INLINE void * SubU32ToPtr (void * ptr, u32 val)
-{
+NNS_FND_INLINE void * SubU32ToPtr (void * ptr, u32 val) {
     return (void *)(NNSiGetUIntPtr(ptr) - val);
 }
 
-NNS_FND_INLINE const void * SubU32ToCPtr (const void * ptr, u32 val)
-{
+NNS_FND_INLINE const void * SubU32ToCPtr (const void * ptr, u32 val) {
     return (const void *)(NNSiGetUIntPtr(ptr) - val);
 }
 
-NNS_FND_INLINE int ComparePtr (const void * a, const void * b)
-{
+NNS_FND_INLINE int ComparePtr (const void * a, const void * b) {
     const u8 * wa = a;
     const u8 * wb = b;
 
     return wa - wb;
 }
 
-NNS_FND_INLINE u16 GetOptForHeap (const NNSiFndHeapHead * pHeapHd)
-{
+NNS_FND_INLINE u16 GetOptForHeap (const NNSiFndHeapHead * pHeapHd) {
     return (u16)NNSi_FndGetBitValue(pHeapHd->attribute, 0, 8);
 }
 
 NNS_FND_INLINE void SetOptForHeap (
     NNSiFndHeapHead * pHeapHd,
     u16 optFlag
-)
-{
+) {
     NNSi_FndSetBitValue(pHeapHd->attribute, 0, 8, optFlag);
 }
 
@@ -91,8 +82,7 @@ NNS_FND_INLINE void FillAllocMemory (
     NNSiFndHeapHead * pHeapHd,
     void * address,
     u32 size
-)
-{
+) {
     if (GetOptForHeap(pHeapHd) & NNS_FND_HEAP_OPT_0_CLEAR) {
         MI_CpuFill32(address, 0, size);
     } else {
@@ -111,8 +101,7 @@ NNS_FND_INLINE void FillFreeMemory (
     NNSiFndHeapHead * pHeapHd,
     void * address,
     u32 size
-)
-{
+) {
     if (GetOptForHeap(pHeapHd) & NNS_FND_HEAP_OPT_DEBUG_FILL) {
         MI_CpuFill32(address, NNS_FndGetFillValForHeap(NNS_FND_HEAP_FILL_FREE), size);
     }
@@ -126,8 +115,7 @@ NNS_FND_INLINE void FillNoUseMemory (
     NNSiFndHeapHead * pHeapHd,
     void * address,
     u32 size
-)
-{
+) {
     if (GetOptForHeap(pHeapHd) & NNS_FND_HEAP_OPT_DEBUG_FILL) {
         MI_CpuFill32(address, NNS_FndGetFillValForHeap(NNS_FND_HEAP_FILL_NOUSE), size);
     }

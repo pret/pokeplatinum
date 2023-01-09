@@ -1,4 +1,0 @@
-.public NNSi_G2dInitializeVRamLocation
-.public NNSi_G2dSetVramLocation
-.public NNSi_G2dGetVramLocation
-.public NNSi_G2dGetCellTransferState

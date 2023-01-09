@@ -1,6 +1,0 @@
-.public GetGlyphIndex
-.public NNS_G2dFontFindGlyphIndex
-.public NNS_G2dFontGetCharWidthsFromIndex
-.public NNSi_G2dFontGetStringWidth
-.public NNSi_G2dGetUnpackedFont
-.public NNSi_G2dSplitCharUTF16

@@ -1,6 +1,0 @@
-.public GetPtrOamArrayHead_
-.public UnPackExtendedData_
-.public NNS_G2dGetCellDataByIdx
-.public NNS_G2dUnpackNCE
-.public NNS_G2dFindBinaryBlock
-.public NNSi_G2dUnpackUserExCellAttrBank

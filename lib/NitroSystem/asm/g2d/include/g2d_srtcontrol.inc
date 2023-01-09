@@ -1,2 +1,0 @@
-.public NNSi_G2dSrtcSetInitialValue
-.public MIi_CpuClear16

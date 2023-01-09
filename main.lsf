@@ -393,33 +393,33 @@ Static main
 	Object lib/NitroSystem/src/gfd/gfdi_LinkedListVramMan_Common.o
 	Object lib/NitroSystem/src/gfd/gfd_LinkedListTexVramMan.o
 	Object lib/NitroSystem/src/gfd/gfd_LinkedListPlttVramMan.o
-	Object lib/NitroSystem/asm/g2d/g2d_nan_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_nob_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_nmc_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_ncg_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_ncl_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_nsc_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_load.o
-	Object lib/NitroSystem/asm/g2d/g2d_softsprite.o
-	Object lib/NitroSystem/asm/g2d/g2d_animation.o
-	Object lib/NitroSystem/asm/g2d/g2d_oam.o
-	Object lib/NitroSystem/asm/g2d/g2d_palettetable.o
-	Object lib/NitroSystem/asm/g2d/g2d_image.o
-	Object lib/NitroSystem/asm/g2d/g2d_srtcontrol.o
-	Object lib/NitroSystem/asm/g2d/g2d_node.o
-	Object lib/NitroSystem/asm/g2d/g2d_cellanimation.o
-	Object lib/NitroSystem/asm/g2d/g2d_multicellanimation.o
-	Object lib/NitroSystem/asm/g2d/g2d_renderer.o
-	Object lib/NitroSystem/asm/g2d/g2di_mtx32.o
-	Object lib/NitroSystem/asm/g2d/g2d_celltransfermanager.o
-	Object lib/NitroSystem/asm/g2d/g2d_oamsoftwarespritedraw.o
-	Object lib/NitroSystem/asm/g2d/g2d_renderercore.o
-	Object lib/NitroSystem/asm/g2d/g2d_font.o
-	Object lib/NitroSystem/asm/g2d/g2d_charcanvas.o
-	Object lib/NitroSystem/asm/g2d/g2d_textcanvas.o
-	Object lib/NitroSystem/asm/g2d/g2d_nft_load.o
-	Object lib/NitroSystem/asm/g2d/g2di_bitreader.o
-	Object lib/NitroSystem/asm/g2d/g2di_splitchar.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NAN_load.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NOB_load.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NMC_load.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NCG_load.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NCL_load.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NSC_load.o
+	Object lib/NitroSystem/src/g2d/load/g2d_Load.o
+	Object lib/NitroSystem/src/g2d/g2d_Softsprite.o
+	Object lib/NitroSystem/src/g2d/g2d_Animation.o
+	Object lib/NitroSystem/src/g2d/g2d_OAM.o
+	Object lib/NitroSystem/src/g2d/g2d_PaletteTable.o
+	Object lib/NitroSystem/src/g2d/g2d_Image.o
+	Object lib/NitroSystem/src/g2d/g2d_SRTcontrol.o
+	Object lib/NitroSystem/src/g2d/g2d_Node.o
+	Object lib/NitroSystem/src/g2d/g2d_CellAnimation.o
+	Object lib/NitroSystem/src/g2d/g2d_MultiCellanimation.o
+	Object lib/NitroSystem/src/g2d/g2d_Renderer.o
+	Object lib/NitroSystem/src/g2d/internal/g2di_Mtx32.o
+	Object lib/NitroSystem/src/g2d/g2d_celltransfermanager.o
+	Object lib/NitroSystem/src/g2d/g2d_oamsoftwarespritedraw.o
+	Object lib/NitroSystem/src/g2d/g2d_renderercore.o
+	Object lib/NitroSystem/src/g2d/g2d_font.o
+	Object lib/NitroSystem/src/g2d/g2d_charcanvas.o
+	Object lib/NitroSystem/src/g2d/g2d_textcanvas.o
+	Object lib/NitroSystem/src/g2d/load/g2d_NFT_load.o
+	Object lib/NitroSystem/src/g2d/internal/g2di_BitReader.o
+	Object lib/NitroSystem/src/g2d/internal/g2di_SplitChar.o
 	Object lib/NitroSystem/asm/g3d/kernel.o
 	Object lib/NitroSystem/asm/g3d/glbstate.o
 	Object lib/NitroSystem/asm/g3d/anm.o

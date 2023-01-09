@@ -1,3 +1,0 @@
-.public NNSi_G2dUnpackNCLCmpInfo
-.public NNS_G2dUnpackNCL
-.public NNS_G2dFindBinaryBlock

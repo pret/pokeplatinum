@@ -1,6 +1,0 @@
-.public NNSi_G2dFontGetStringWidth
-.public NNSi_G2dFontGetTextHeight
-.public NNSi_G2dFontGetTextRect
-.public NNS_G2dCharCanvasDrawChar
-.public NNSi_G2dTextCanvasDrawString
-.public NNSi_G2dTextCanvasDrawTextAlign
