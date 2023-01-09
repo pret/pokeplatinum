@@ -1,9 +1,0 @@
-.public NNS_G3dGetResDataByName
-.public NNS_G3dGetResDictIdxByName
-.public NNSi_G3dGetTexPatAnmTexNameByIdx
-.public NNSi_G3dGetTexPatAnmPlttNameByIdx
-.public NNSi_G3dGetTexPatAnmFV
-.public SetTexParamaters_
-.public SetPlttParamaters_
-.public FX_Div
-.public MIi_CpuClear16

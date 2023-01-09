@@ -1,3 +1,0 @@
-.public NNS_FndAllocFromAllocator
-.public NNS_FndFreeToAllocator
-.public NNS_G3dAnmObjCalcSizeRequired

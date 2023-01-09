@@ -1,8 +1,8 @@
 	.include "macros/function.inc"
 	.include "include/nsbca.inc"
 
-	.extern Unk_021C5CF0
-	
+	.extern NNS_G3dRS
+	.extern NNS_G3dFuncAnmJntNsBcaDefault
 
 	.text
 
@@ -41,7 +41,7 @@ _020B3E00:
 	blo _020B3E00
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020B3E30: .word 0x02100ED0
+_020B3E30: .word NNS_G3dFuncAnmJntNsBcaDefault
 	arm_func_end NNSi_G3dAnmObjInitNsBca
 
 	arm_func_start NNSi_G3dAnmCalcNsBca
@@ -109,7 +109,7 @@ _020B3EE8:
 	str r1, [r0, #0x54]
 	bx lr
 	; .align 2, 0
-_020B3F04: .word Unk_021C5CF0
+_020B3F04: .word NNS_G3dRS
 	arm_func_end getMdlTrans_
 
 	arm_func_start getMdlScale_
@@ -155,7 +155,7 @@ _020B3F88:
 	blx ip
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_020B3F94: .word Unk_021C5CF0
+_020B3F94: .word NNS_G3dRS
 	arm_func_end getMdlScale_
 
 	arm_func_start getMdlRot_
@@ -258,7 +258,7 @@ _020B40F4:
 	str r0, [r8]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_020B4104: .word Unk_021C5CF0
+_020B4104: .word NNS_G3dRS
 _020B4108: .word Unk_020F9818
 _020B410C: .word 0x020F9819
 _020B4110: .word 0x020F981A
@@ -541,7 +541,7 @@ _020B4490:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _020B44C4: .word 0x00000FFF
-_020B44C8: .word Unk_021C5CF0
+_020B44C8: .word NNS_G3dRS
 	arm_func_end getJntSRTAnmResult_
 
 	arm_func_start getTransData_

@@ -420,27 +420,28 @@ Static main
 	Object lib/NitroSystem/src/g2d/load/g2d_NFT_load.o
 	Object lib/NitroSystem/src/g2d/internal/g2di_BitReader.o
 	Object lib/NitroSystem/src/g2d/internal/g2di_SplitChar.o
-	Object lib/NitroSystem/asm/g3d/kernel.o
-	Object lib/NitroSystem/asm/g3d/glbstate.o
-	Object lib/NitroSystem/asm/g3d/anm.o
-	Object lib/NitroSystem/asm/g3d/cgtool.o
-	Object lib/NitroSystem/asm/g3d/sbc.o
-	Object lib/NitroSystem/asm/g3d/1mat1shp.o
-	Object lib/NitroSystem/asm/g3d/gecom.o
-	Object lib/NitroSystem/asm/g3d/util_nnsg3d.o
-	Object lib/NitroSystem/asm/g3d/mem_nnsg3d.o
-	Object lib/NitroSystem/asm/g3d/model.o
-	Object lib/NitroSystem/asm/g3d/res_struct_accessor.o
+	Object lib/NitroSystem/src/g3d/kernel.o
+	Object lib/NitroSystem/src/g3d/glbstate.o
+	Object lib/NitroSystem/src/g3d/anm.o
+	Object lib/NitroSystem/src/g3d/cgtool.o
+	Object lib/NitroSystem/src/g3d/sbc.o
+	Object lib/NitroSystem/src/g3d/1mat1shp.o
+	Object lib/NitroSystem/src/g3d/gecom.o
+	Object lib/NitroSystem/src/g3d/util_nnsg3d.o
+	Object lib/NitroSystem/src/g3d/mem_nnsg3d.o
+	Object lib/NitroSystem/src/g3d/model.o
+	Object lib/NitroSystem/src/g3d/binres/res_struct_accessor.o
+	Object lib/NitroSystem/src/g3d/binres/res_struct_accessor_anm.o
 	Object lib/NitroSystem/asm/g3d/nsbca.o
-	Object lib/NitroSystem/asm/g3d/nsbma.o
-	Object lib/NitroSystem/asm/g3d/nsbta.o
-	Object lib/NitroSystem/asm/g3d/nsbtp.o
-	Object lib/NitroSystem/asm/g3d/nsbva.o
-	Object lib/NitroSystem/asm/g3d/basic.o
-	Object lib/NitroSystem/asm/g3d/maya.o
-	Object lib/NitroSystem/asm/g3d/si3d.o
-	Object lib/NitroSystem/asm/g3d/3dsmax.o
-	Object lib/NitroSystem/asm/g3d/xsi.o
+	Object lib/NitroSystem/src/g3d/anm/nsbma.o
+	Object lib/NitroSystem/src/g3d/anm/nsbta.o
+	Object lib/NitroSystem/src/g3d/anm/nsbtp.o
+	Object lib/NitroSystem/src/g3d/anm/nsbva.o
+	Object lib/NitroSystem/src/g3d/cgtool/basic.o
+	Object lib/NitroSystem/src/g3d/cgtool/maya.o
+	Object lib/NitroSystem/src/g3d/cgtool/si3d.o
+	Object lib/NitroSystem/src/g3d/cgtool/3dsmax.o
+	Object lib/NitroSystem/src/g3d/cgtool/xsi.o
 	Object lib/NitroSystem/src/snd/main_nnssnd.o
 	Object lib/NitroSystem/src/snd/resource_mgr.o
 	Object lib/NitroSystem/src/snd/waveout.o
