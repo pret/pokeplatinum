@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/dwc_auth.inc"
 
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	.extern Unk_021D0D40
 	.extern Unk_ov4_0221A43C
 
@@ -372,7 +372,7 @@ _021D350C: .word Unk_ov4_02215F04
 _021D3510: .word Unk_ov4_0221A414
 _021D3514: .word Unk_ov4_02215EA0
 _021D3518: .word Unk_ov4_0221A420
-_021D351C: .word Unk_021CCC80
+_021D351C: .word OSi_ThreadInfo
 	arm_func_end ov4_021D3410
 
 	arm_func_start ov4_021D3520

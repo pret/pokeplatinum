@@ -26,7 +26,7 @@ ov4_02205C7C: ; 0x02205C7C
 	bl ov4_02205CB8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02205CB0: .word 0x02000C30
+_02205CB0: .word Unk_02000C30
 _02205CB4: .word Unk_ov4_0221A134
 	arm_func_end ov4_02205C7C
 
@@ -199,6 +199,14 @@ ov4_02205ED8: ; 0x02205ED8
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_02205ED8
+
+
+	.section .version, 4,1,2
+
+	.global Unk_02000C30
+Unk_02000C30: ; 0x02000C30
+	.asciz "[SDK+NINTENDO:WiFi2.1.30003.0709200229]" 
+
 
 	.data
 

@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/os_mutex.inc"
 
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	
 
 	.text
@@ -56,7 +56,7 @@ _020C2A4C:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020C2A58: .word Unk_021CCC80
+_020C2A58: .word OSi_ThreadInfo
 	arm_func_end OS_LockMutex
 
 	arm_func_start OS_UnlockMutex
@@ -85,7 +85,7 @@ _020C2AA8:
 	bl OS_RestoreInterrupts
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_020C2AB4: .word Unk_021CCC80
+_020C2AB4: .word OSi_ThreadInfo
 	arm_func_end OS_UnlockMutex
 
 	arm_func_start OSi_UnlockAllMutex
@@ -141,7 +141,7 @@ _020C2B54:
 	mov r0, r6
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020C2B64: .word Unk_021CCC80
+_020C2B64: .word OSi_ThreadInfo
 	arm_func_end OS_TryLockMutex
 
 	arm_func_start OSi_EnqueueTail

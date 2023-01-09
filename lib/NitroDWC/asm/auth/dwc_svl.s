@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/dwc_svl.inc"
 
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	.extern Unk_021D0D40
 
 	.extern Unk_ov4_02215EA0
@@ -240,7 +240,7 @@ _021D6FDC: .word 0xFFFFA1DC
 _021D6FE0: .word Unk_ov4_022165D0
 _021D6FE4: .word Unk_ov4_022165D8
 _021D6FE8: .word Unk_ov4_022165E0
-_021D6FEC: .word Unk_021CCC80
+_021D6FEC: .word OSi_ThreadInfo
 	arm_func_end DWC_Svl_GetTokenAsync
 
 	arm_func_start DWC_Svl_Process

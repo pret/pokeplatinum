@@ -86,7 +86,7 @@ _02205A8C:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02205AB4: .word 0x02000C14
+_02205AB4: .word Unk_02000C14
 _02205AB8: .word Unk_ov4_0221DBCC
 _02205ABC: .word Unk_ov4_0221DBD8
 	arm_func_end VCT_Init
@@ -227,6 +227,14 @@ _02205C6C:
 _02205C74: .word 0x5F564354
 _02205C78: .word Unk_ov4_0221DBCC
 	arm_func_end ov4_02205BA0
+
+
+	.section .version, 4,1,2
+
+	.global Unk_02000C14
+Unk_02000C14: ; 0x02000C14
+	.asciz "[SDK+Abiosso:libVCT 1.3.1]" 
+
 
 	.bss
 

@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/file_pos.inc"
 
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	.extern Unk_021D0920
 	.extern Unk_021D0944
 	.extern Unk_021D0968
@@ -126,7 +126,7 @@ _020D4BE0: .word Unk_02101490
 _020D4BE4: .word 0x021014DC
 _020D4BE8: .word 0x02101528
 _020D4BEC: .word Unk_021D0968
-_020D4BF0: .word Unk_021CCC80
+_020D4BF0: .word OSi_ThreadInfo
 _020D4BF4: .word Unk_021D0920
 _020D4BF8: .word Unk_021D0944
 	arm_func_end ftell
@@ -347,7 +347,7 @@ _020D4EF4: .word Unk_02101490
 _020D4EF8: .word 0x021014DC
 _020D4EFC: .word 0x02101528
 _020D4F00: .word Unk_021D0968
-_020D4F04: .word Unk_021CCC80
+_020D4F04: .word OSi_ThreadInfo
 _020D4F08: .word Unk_021D0920
 _020D4F0C: .word Unk_021D0944
 	arm_func_end fseek

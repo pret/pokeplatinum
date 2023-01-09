@@ -542,10 +542,10 @@ Static main
 	Object lib/NitroSDK/asm/rtc/internal.o
 	Object lib/NitroSDK/asm/rtc/convert.o
 	Object lib/NitroSDK/src/card/card_common.o
-	Object lib/NitroSDK/asm/card/card_spi.o
-	Object lib/NitroSDK/asm/card/card_backup.o
-	Object lib/NitroSDK/asm/card/card_rom.o
-	Object lib/NitroSDK/asm/card/card_request.o
+	Object lib/NitroSDK/src/card/card_spi.o
+	Object lib/NitroSDK/src/card/card_backup.o
+	Object lib/NitroSDK/src/card/card_rom.o
+	Object lib/NitroSDK/src/card/card_request.o
 	Object lib/NitroSDK/asm/card/card_pullout.o
 	Object lib/NitroSDK/asm/wm/wm_system.o
 	Object lib/NitroSDK/asm/wm/wm_sync.o

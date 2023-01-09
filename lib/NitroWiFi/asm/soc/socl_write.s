@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/socl_write.inc"
 
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	.extern Unk_ov4_0221DC00
 
 	.text
@@ -452,7 +452,7 @@ _02207894:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_0220789C: .word Unk_021CCC80
+_0220789C: .word OSi_ThreadInfo
 _022078A0: .word Unk_ov4_0221DC00
 	arm_func_end ov4_02207800
 

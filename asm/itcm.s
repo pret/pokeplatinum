@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/itcm.inc"
 
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	.extern Unk_021CCFE4
 	.extern OS_IRQTable
 	.extern OSi_IrqThreadQueue
@@ -154,7 +154,7 @@ _01FF8150:
 	ldmia sp!, {pc}
 	; .align 2, 0
 _01FF81D4: .word OSi_IrqThreadQueue
-_01FF81D8: .word Unk_021CCC80
+_01FF81D8: .word OSi_ThreadInfo
 _01FF81DC: .word 0x020C99FC
 _01FF81E0: .word 0x020C9A3C
 	arm_func_end OS_IrqHandler_ThreadSwitch

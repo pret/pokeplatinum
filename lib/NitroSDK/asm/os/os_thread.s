@@ -3,7 +3,7 @@
 
 	.extern Unk_021CCC5C
 	.extern Unk_021CCC68
-	.extern Unk_021CCC80
+	.extern OSi_ThreadInfo
 	.extern Unk_021CCC90
 	.extern Unk_021CCD50
 	.extern Unk_021CCED8
@@ -238,7 +238,7 @@ _020C1DC0:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _020C1DD4: .word Unk_021CCC5C
-_020C1DD8: .word Unk_021CCC80
+_020C1DD8: .word OSi_ThreadInfo
 	arm_func_end OSi_RescheduleThread
 
 	arm_func_start OS_InitThread
@@ -322,7 +322,7 @@ _020C1F00: .word OS_IRQTable
 _020C1F04: .word 0x00000800
 _020C1F08: .word 0xFDDB597D
 _020C1F0C: .word 0x7BF9DD5B
-_020C1F10: .word Unk_021CCC80
+_020C1F10: .word OSi_ThreadInfo
 _020C1F14: .word 0x027FFFA0
 _020C1F18: .word Unk_021CCC90
 _020C1F1C: .word OSi_IdleThreadProc
@@ -953,8 +953,8 @@ Unk_021CCC78: ; 0x021CCC78
 Unk_021CCC7C: ; 0x021CCC7C
 	.space 0x4
 
-	.global Unk_021CCC80
-Unk_021CCC80: ; 0x021CCC80
+	.global OSi_ThreadInfo
+OSi_ThreadInfo: ; 0x021CCC80
 	.space 0x10
 
 	.global Unk_021CCC90

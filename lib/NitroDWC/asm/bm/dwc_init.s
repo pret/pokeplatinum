@@ -35,5 +35,11 @@ _020A3F40:
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_020A3F50: .word 0x02000BC4
+_020A3F50: .word Unk_02000BC4
 	arm_func_end DWC_Init
+
+	.section .version, 4,1,2
+
+	.global Unk_02000BC4
+Unk_02000BC4: ; 0x02000BC4
+	.asciz "[SDK+NINTENDO:DWC2.2.30008.080630.1906_DWC_2_2_PLUS8]"
