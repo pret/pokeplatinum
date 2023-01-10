@@ -245,7 +245,7 @@ $(RESPONSE): $(LSF) $(RESPONSE_TEMPLATE)
 	$(WINE) $(MAKELCF) $(MAKELCF_FLAGS) $< $(RESPONSE_TEMPLATE_NT) $@
 
 # Locate crt0.o
-CRT0_OBJ := lib/NitroSDK/asm/init/crt0.o
+CRT0_OBJ := lib/NitroSDK/src/init/crt0.o
 
 $(NEF): $(LCF) $(RESPONSE) $(ALL_OBJS)
 	cd $(BUILD_DIR) && LM_LICENSE_FILE=$(BACK_REL)/$(LM_LICENSE_FILE) $(WINE) $(MWLD) $(MWLDFLAGS) $(LIBS) -o $(BACK_REL)/$(NEF) $(LCF:$(BUILD_DIR)/%=%) @$(RESPONSE:$(BUILD_DIR)/%=%) $(CRT0_OBJ)
