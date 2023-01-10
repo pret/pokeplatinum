@@ -371,7 +371,7 @@ Static main
 	Object asm/unk_020A1E30.o
 	Object asm/unk_020A2238.o
 	Object asm/unk_020A2354.o
-	Object lib/NitroSDK/asm/wvr/wvr.o
+	Object lib/NitroSDK/src/wvr/wvr.o
 	Object lib/NitroDWC/asm/bm/dwc_backup.o
 	Object lib/NitroDWC/asm/bm/dwc_bm_init.o
 	Object lib/NitroDWC/asm/bm/util_wifiidtool.o
@@ -548,13 +548,13 @@ Static main
 	Object lib/NitroSDK/src/card/card_request.o
 	Object lib/NitroSDK/asm/card/card_pullout.o
 	Object lib/NitroSDK/asm/wm/wm_system.o
-	Object lib/NitroSDK/asm/wm/wm_sync.o
-	Object lib/NitroSDK/asm/wm/wm_standard.o
-	Object lib/NitroSDK/asm/wm/wm_mp.o
-	Object lib/NitroSDK/asm/wm/wm_dcf.o
-	Object lib/NitroSDK/asm/wm/wm_ds.o
-	Object lib/NitroSDK/asm/wm/wm_ks.o
-	Object lib/NitroSDK/asm/wm/wm_etc.o
+	Object lib/NitroSDK/src/wm/wm_sync.o
+	Object lib/NitroSDK/src/wm/wm_standard.o
+	Object lib/NitroSDK/src/wm/wm_mp.o
+	Object lib/NitroSDK/src/wm/wm_dcf.o
+	Object lib/NitroSDK/src/wm/wm_ds.o
+	Object lib/NitroSDK/src/wm/wm_ks.o
+	Object lib/NitroSDK/src/wm/wm_etc.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg_proc.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg_backup.o
