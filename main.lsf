@@ -506,15 +506,15 @@ Static main
 	Object lib/NitroSDK/asm/os/os_vramexclusive.o
 	Object lib/NitroSDK/asm/os/os_entropy.o
 	Object lib/NitroSDK/asm/os/os_terminate_proc.o
-	Object lib/NitroSDK/asm/mi/mi_wram.o
-	Object lib/NitroSDK/asm/mi/mi_dma.o
-	Object lib/NitroSDK/asm/mi/mi_dma_hblank.o
-	Object lib/NitroSDK/asm/mi/mi_dma_gxcommand.o
-	Object lib/NitroSDK/asm/mi/mi_memory.o
-	Object lib/NitroSDK/asm/mi/mi_swap.o
-	Object lib/NitroSDK/asm/mi/mi_uncompress.o
-	Object lib/NitroSDK/asm/mi/mi_dma_card.o
-	Object lib/NitroSDK/asm/mi/mi_init.o
+	Object lib/NitroSDK/src/mi/mi_wram.o
+	Object lib/NitroSDK/src/mi/mi_dma.o
+	Object lib/NitroSDK/src/mi/mi_dma_hblank.o
+	Object lib/NitroSDK/src/mi/mi_dma_gxcommand.o
+	Object lib/NitroSDK/src/mi/mi_memory.o
+	Object lib/NitroSDK/src/mi/mi_swap.o
+	Object lib/NitroSDK/src/mi/mi_uncompress.o
+	Object lib/NitroSDK/src/mi/mi_dma_card.o
+	Object lib/NitroSDK/src/mi/mi_init.o
 	Object lib/NitroSDK/asm/snd/snd_interface.o
 	Object lib/NitroSDK/asm/snd/snd_main.o
 	Object lib/NitroSDK/asm/snd/snd_command.o
@@ -657,6 +657,8 @@ Autoload ITCM
 {
 	Address 0x01FF8000
 	Object asm/itcm.o (.itcm)
+	Object lib/NitroSDK/src/mi/mi_dma.o (.itcm)
+	Object lib/NitroSDK/src/mi/mi_dma_gxcommand.o (.itcm)
 }
 
 Autoload DTCM
