@@ -522,8 +522,8 @@ Static main
 	Object lib/NitroSDK/asm/snd/snd_work.o
 	Object lib/NitroSDK/asm/snd/snd_util.o
 	Object lib/NitroSDK/asm/snd/snd_bank.o
-	Object lib/NitroSDK/asm/pxi/pxi_init.o
-	Object lib/NitroSDK/asm/pxi/pxi_fifo.o
+	Object lib/NitroSDK/src/pxi/pxi_init.o
+	Object lib/NitroSDK/src/pxi/pxi_fifo.o
 	Object lib/NitroSDK/src/fs/fs_command.o
 	Object lib/NitroSDK/src/fs/fs_command_default.o
 	Object lib/NitroSDK/src/fs/fs_archive.o
@@ -535,12 +535,12 @@ Static main
 	Object lib/NitroSDK/asm/dgt/hmac.o
 	Object lib/NitroSDK/asm/dgt/sha1s-arm4cw.o
 	Object lib/NitroSDK/src/cp/cp_context.o
-	Object lib/NitroSDK/asm/spi/tp.o
-	Object lib/NitroSDK/asm/spi/mic.o
-	Object lib/NitroSDK/asm/spi/pm.o
-	Object lib/NitroSDK/asm/rtc/external.o
-	Object lib/NitroSDK/asm/rtc/internal.o
-	Object lib/NitroSDK/asm/rtc/convert.o
+	Object lib/NitroSDK/src/spi/tp.o
+	Object lib/NitroSDK/src/spi/mic.o
+	Object lib/NitroSDK/src/spi/pm.o
+	Object lib/NitroSDK/src/rtc/external.o
+	Object lib/NitroSDK/src/rtc/internal.o
+	Object lib/NitroSDK/src/rtc/convert.o
 	Object lib/NitroSDK/src/card/card_common.o
 	Object lib/NitroSDK/src/card/card_spi.o
 	Object lib/NitroSDK/src/card/card_backup.o
