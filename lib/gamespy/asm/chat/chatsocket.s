@@ -437,7 +437,7 @@ _0225607C:
 	cmp r0, r1
 	bne _022560CC
 	mov r0, r5
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	addeq sp, sp, #8
 	moveq r0, #0

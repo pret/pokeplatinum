@@ -1,4 +1,4 @@
-.public ov4_02208B18
+.public SOC_Poll
 .public ov60_02225A60
 .public ov60_02225E08
 .public ov60_02225E38

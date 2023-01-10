@@ -28,6 +28,6 @@
 .public ov4_0220DCD0
 .public ov4_0220DCE0
 .public WCM_GetPhase
-.public ov4_02215398
+.public WCM_GetApMacAddress
 .public ov4_022153DC
 .public ov4_022156EC

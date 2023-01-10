@@ -478,7 +478,7 @@ ov4_021FB4BC: ; 0x021FB4BC
 	cmp r0, r1
 	ldmneia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	moveq r0, #0
 	ldrne r0, [r0, #0xc]

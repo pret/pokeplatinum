@@ -17,5 +17,5 @@
 .public DWC_Http_Add_PostBase64Item
 .public DWC_AC_GetApType
 .public DWC_AC_GetApSpotInfo
-.public ov4_02215398
+.public WCM_GetApMacAddress
 .public ov4_022153DC

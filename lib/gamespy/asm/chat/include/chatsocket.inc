@@ -19,7 +19,7 @@
 .public ov4_021EAE04
 .public ov4_021EAE48
 .public ov4_021EAF1C
-.public ov4_0220854C
+.public SOC_GetHostByName
 .public ov66_0224D4D8
 .public ov66_02255ADC
 .public ov66_02255B3C

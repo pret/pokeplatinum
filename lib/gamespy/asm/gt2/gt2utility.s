@@ -25,7 +25,7 @@ _021FAC28:
 	str r0, [sp]
 	cmp r5, #0
 	beq _021FAC58
-	bl ov4_022089F4
+	bl SOC_InetNtoA
 	mov r2, r0
 	ldr r1, _021FACA0 ; =0x02219764
 	mov r0, r4
@@ -33,7 +33,7 @@ _021FAC28:
 	bl sprintf
 	b _021FAC90
 _021FAC58:
-	bl ov4_022089F4
+	bl SOC_InetNtoA
 	mov r2, r0
 	ldr r1, _021FACA4 ; =0x0221976C
 	mov r0, r4
@@ -148,7 +148,7 @@ _021FADBC:
 	cmp r4, r0
 	bne _021FAE00
 	mov r0, r8
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	addeq sp, sp, #0x104
 	moveq r0, #0

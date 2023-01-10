@@ -172,4 +172,4 @@
 .public ov4_021FEEA0
 .public ov4_021FEEB0
 .public ov4_021FEEC0
-.public ov4_022086A0
+.public SOC_GetHostID

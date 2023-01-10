@@ -40,5 +40,5 @@
 .public ov4_021FCF60
 .public ov4_021FD274
 .public ov4_021FD2D4
-.public ov4_0220854C
-.public ov4_022089F4
+.public SOC_GetHostByName
+.public SOC_InetNtoA

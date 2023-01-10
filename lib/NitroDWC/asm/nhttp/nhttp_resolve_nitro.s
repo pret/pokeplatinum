@@ -22,12 +22,12 @@ ov60_02226B6C: ; 0x02226B6C
 	moveq r7, #7
 	add r1, sp, #0
 	add r0, r6, r7
-	bl ov4_02208A24
+	bl SOC_InetAtoN
 	cmp r0, #0
 	ldrne r0, [sp]
 	bne _02226BF4
 	add r0, r6, r7
-	bl ov4_02207F58
+	bl SOCL_Resolve
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}

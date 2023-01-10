@@ -51,4 +51,4 @@
 .public ov4_021F5A80
 .public ov4_021F5D44
 .public ov4_021F5D68
-.public ov4_0220854C
+.public SOC_GetHostByName

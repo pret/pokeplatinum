@@ -1,9 +1,0 @@
-.public OS_Sleep
-.public OS_DisableInterrupts
-.public OS_RestoreInterrupts
-.public OS_GetProcMode
-.public MI_CpuFill8
-.public ov4_02208088
-.public ov4_0220BCF0
-.public ov4_0220BD04
-.public ov4_0220D8D8

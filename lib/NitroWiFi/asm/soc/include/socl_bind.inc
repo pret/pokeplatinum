@@ -1,9 +1,0 @@
-.public OS_LockMutex
-.public OS_UnlockMutex
-.public ov4_02205FF4
-.public ov4_0220613C
-.public ov4_02206960
-.public ov4_022069B8
-.public ov4_022082CC
-.public ov4_0220BD48
-.public ov4_0220BF5C

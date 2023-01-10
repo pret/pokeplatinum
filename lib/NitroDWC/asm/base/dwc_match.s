@@ -3238,7 +3238,7 @@ ov4_021DF434: ; 0x021DF434
 	mov r5, r6
 	b _021DF578
 _021DF4F0:
-	bl ov4_022086A0
+	bl SOC_GetHostID
 	mov r0, r0, lsl #0x10
 	mov r2, r0, lsr #0x10
 	mov r0, r2, lsl #0x10
@@ -3288,7 +3288,7 @@ _021DF578:
 	str r8, [r0, #0x19c]
 	b _021DF630
 _021DF5A4:
-	bl ov4_022086A0
+	bl SOC_GetHostID
 	str r0, [sp, #8]
 	bl ov4_021E4A34
 	ldr r0, [r0, #4]

@@ -333,7 +333,7 @@ _022275A8:
 	mov r1, #1
 	mov r3, #0
 	str r6, [sp, #0x28]
-	bl ov4_02208B18
+	bl SOC_Poll
 	cmp r0, #0
 	movle r0, #0
 	strle r0, [sp, #8]

@@ -78,8 +78,8 @@ _02215390: .word 0x0221F7BC
 _02215394: .word ov4_02215624
 	arm_func_end ov4_02215328
 
-	arm_func_start ov4_02215398
-ov4_02215398: ; 0x02215398
+	arm_func_start WCM_GetApMacAddress
+WCM_GetApMacAddress: ; 0x02215398
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, #0
 	bl ov4_02213964
@@ -98,7 +98,7 @@ _022153D0:
 	bl OS_RestoreInterrupts
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_02215398
+	arm_func_end WCM_GetApMacAddress
 
 	arm_func_start ov4_022153DC
 ov4_022153DC: ; 0x022153DC
@@ -129,8 +129,8 @@ _02215428:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov4_022153DC
 
-	arm_func_start ov4_0221543C
-ov4_0221543C: ; 0x0221543C
+	arm_func_start WCM_SetRecvDCFCallback
+WCM_SetRecvDCFCallback: ; 0x0221543C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	bl OS_DisableInterrupts
@@ -140,7 +140,7 @@ ov4_0221543C: ; 0x0221543C
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02215458: .word Unk_ov4_0221F7B0
-	arm_func_end ov4_0221543C
+	arm_func_end WCM_SetRecvDCFCallback
 
 	arm_func_start ov4_0221545C
 ov4_0221545C: ; 0x0221545C

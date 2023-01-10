@@ -5,5 +5,5 @@
 .public strchr
 .public atoi
 .public ov4_021EAF1C
-.public ov4_0220854C
-.public ov4_022089F4
+.public SOC_GetHostByName
+.public SOC_InetNtoA

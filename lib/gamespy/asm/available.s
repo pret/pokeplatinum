@@ -25,7 +25,7 @@ ov4_021E963C: ; 0x021E963C
 	cmp r0, r1
 	bne _021E96A8
 	mov r0, r5
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}

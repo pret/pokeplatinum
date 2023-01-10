@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/aoss.inc"
 
-	.extern Unk_ov4_0221DE40
+	.extern CPSMyIp
 	.extern Unk_ov18_02251B60
 	.extern Unk_ov18_02251B6C
 
@@ -4137,7 +4137,7 @@ ov18_022266A8: ; 0x022266A8
 	ldr r1, _022266F4 ; =0x02249794
 	str r0, [r1, #0x20]
 	ldr r0, _022266F8 ; =0x0224979C
-	bl ov4_02208874
+	bl SOC_Startup
 	cmp r0, #0
 	bge _022266DA
 	mov r0, #0
@@ -4161,13 +4161,13 @@ _022266F0:
 	; .align 2, 0
 _022266F4: .word Unk_ov18_02249794
 _022266F8: .word Unk_ov18_0224979C
-_022266FC: .word Unk_ov4_0221DE40
+_022266FC: .word CPSMyIp
 	thumb_func_end ov18_022266A8
 
 	thumb_func_start ov18_02226700
 ov18_02226700: ; 0x02226700
 	push {r3, lr}
-	bl ov4_022089E8
+	bl SOC_Cleanup
 	cmp r0, #0
 	bge _02226710
 	mov r0, #0
@@ -4239,7 +4239,7 @@ ov18_02226760: ; 0x02226760
 	ldr r4, [sp, #0x10]
 	strb r5, [r4]
 	str r4, [sp]
-	bl ov4_022083FC
+	bl SOC_RecvFrom
 	pop {r3, r4, r5, pc}
 	; .align 2, 0
 	thumb_func_end ov18_02226760
@@ -4279,7 +4279,7 @@ ov18_02226774: ; 0x02226774
 	add r0, sp, #0
 	mov r1, #1
 	add r3, r4, #0
-	bl ov4_02208B18
+	bl SOC_Poll
 	add sp, #8
 	pop {r4, r5, r6, pc}
 	nop
@@ -4293,7 +4293,7 @@ ov18_022267C8: ; 0x022267C8
 	ldr r4, [sp, #0x10]
 	strb r5, [r4]
 	str r4, [sp]
-	bl ov4_022084B0
+	bl SOC_SendTo
 	pop {r3, r4, r5, pc}
 	thumb_func_end ov18_022267C8
 
@@ -4308,7 +4308,7 @@ ov18_022267DC: ; 0x022267DC
 	ldr r3, _022267E0 ; =ov18_02208324
 	bx r3
 	; .align 2, 0
-_022267E0: .word ov4_02208324
+_022267E0: .word SOC_Socket
 	thumb_func_end ov18_022267DC
 
 	thumb_func_start ov18_022267E4
@@ -4317,7 +4317,7 @@ ov18_022267E4: ; 0x022267E4
 	strb r2, [r1]
 	bx r3
 	nop
-_022267EC: .word ov4_02208350
+_022267EC: .word SOC_Bind
 	thumb_func_end ov18_022267E4
 
 	thumb_func_start ov18_022267F0
@@ -4325,7 +4325,7 @@ ov18_022267F0: ; 0x022267F0
 	ldr r3, _022267F4 ; =ov18_02208540
 	bx r3
 	; .align 2, 0
-_022267F4: .word ov4_02208540
+_022267F4: .word SOC_Close
 	thumb_func_end ov18_022267F0
 
 	thumb_func_start ov18_022267F8

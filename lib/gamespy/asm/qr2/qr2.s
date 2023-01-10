@@ -509,7 +509,7 @@ _021FC3F0:
 	cmp r0, #0
 	beq _021FC438
 	mov r0, r7
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1605,7 +1605,7 @@ _021FD324:
 	mov r1, r7
 	bl ov4_021FC2D4
 	ldr r0, [r5, r8, lsl #2]
-	bl ov4_022089F4
+	bl SOC_InetNtoA
 	mov r1, r0
 	mov r0, r6
 	bl ov4_021FC2D4

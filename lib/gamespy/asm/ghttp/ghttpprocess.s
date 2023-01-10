@@ -164,7 +164,7 @@ _02222A08:
 	cmp r0, r1
 	bne _02222A54
 	mov r0, r5
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	bne _02222A44
 	mov r0, #1

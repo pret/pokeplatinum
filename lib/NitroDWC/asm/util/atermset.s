@@ -1274,7 +1274,7 @@ _02227E9A:
 	mov r1, #1
 	str r1, [r0, #0x20]
 	ldr r0, _02227ED8 ; =0x0224984C
-	bl ov4_02208874
+	bl SOC_Startup
 	cmp r0, #0
 	bge _02227EBC
 	mov r5, #1
@@ -1345,7 +1345,7 @@ _02227F28:
 	beq _02227F38
 	mov r1, #0
 	str r1, [r0, #0x24]
-	bl ov4_022089E8
+	bl SOC_Cleanup
 _02227F38:
 	pop {r3, r4, r5, r6, r7, pc}
 	nop
@@ -1931,7 +1931,7 @@ ov18_022283A0: ; 0x022283A0
 	str r1, [sp]
 	add r1, r3, #0
 	mov r3, #0
-	bl ov4_022084B0
+	bl SOC_SendTo
 	cmp r0, #0
 	bge _022283B6
 	mov r0, #3
@@ -1956,9 +1956,9 @@ ov18_022283B8: ; 0x022283B8
 	ldr r1, _022283F0 ; =0x000001E6
 	add r4, r2, #0
 	strh r1, [r0, #6]
-	bl ov4_02208088
+	bl SOCL_GetHostID
 	add r1, sp, #4
-	bl ov4_02208AF8
+	bl SOC_U32to4U8
 	add r0, r5, #0
 	add r1, sp, #8
 	add r2, sp, #4
@@ -3301,7 +3301,7 @@ _02228D9A:
 	mov r0, #2
 	add r1, r0, #0
 	mov r2, #0
-	bl ov4_02208324
+	bl SOC_Socket
 	add r4, r0, #0
 	bpl _02228DB2
 	mov r0, #1
@@ -3323,7 +3323,7 @@ _02228DB2:
 	strh r3, [r2, #0x16]
 	str r1, [sp, #0x28]
 	add r1, r5, #0
-	bl ov4_02208350
+	bl SOC_Bind
 	str r0, [sp, #8]
 	cmp r0, #0
 	bge _02228DE0
@@ -3344,7 +3344,7 @@ _02228DE8:
 	cmp r0, r1
 	blo _02228E04
 	add r0, r4, #0
-	bl ov4_02208540
+	bl SOC_Close
 	mov r0, #2
 	mvn r0, r0
 	str r0, [sp, #8]
@@ -3364,7 +3364,7 @@ _02228E04:
 	add r0, r4, #0
 	lsl r2, r2, #0xa
 	mov r3, #4
-	bl ov4_022083FC
+	bl SOC_RecvFrom
 	cmp r0, #0
 	ble _02228F02
 	ldr r0, _02229070 ; =0x02252A44
@@ -3407,7 +3407,7 @@ _02228E74:
 	cmp r0, r1
 	blo _02228E90
 	add r0, r4, #0
-	bl ov4_02208540
+	bl SOC_Close
 	mov r0, #3
 	mvn r0, r0
 	str r0, [sp, #8]
@@ -3421,7 +3421,7 @@ _02228E90:
 	add r0, r4, #0
 	lsl r2, r2, #0xa
 	mov r3, #4
-	bl ov4_022083FC
+	bl SOC_RecvFrom
 	cmp r0, #0
 	ble _02228F04
 	ldr r0, _02229070 ; =0x02252A44
@@ -3534,7 +3534,7 @@ _02228F7A:
 	add r0, r4, #0
 	lsl r2, r2, #0xa
 	mov r3, #4
-	bl ov4_022083FC
+	bl SOC_RecvFrom
 	cmp r0, #0
 	ble _02228FD0
 	ldr r0, _02229070 ; =0x02252A44
@@ -3583,7 +3583,7 @@ _02228FD0:
 	cmp r0, #0xa
 	blt _02228FFA
 	add r0, r4, #0
-	bl ov4_02208540
+	bl SOC_Close
 	mov r0, #1
 	mvn r0, r0
 	str r0, [sp, #8]
@@ -3687,7 +3687,7 @@ _022290D8:
 	cmp r4, #0
 	beq _022290E2
 	add r0, r4, #0
-	bl ov4_02208540
+	bl SOC_Close
 _022290E2:
 	ldr r0, _022290F8 ; =0x02251D10
 	ldr r0, [r0, #0x10]

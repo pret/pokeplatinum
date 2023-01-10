@@ -107,4 +107,4 @@
 .public ov4_022010CC
 .public ov4_022011B4
 .public ov4_02201394
-.public ov4_0220854C
+.public SOC_GetHostByName

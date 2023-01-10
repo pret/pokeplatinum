@@ -102,13 +102,13 @@ ov4_021EA924: ; 0x021EA924
 	mov r1, #3
 	mov r2, #0
 	mov r5, r0
-	bl ov4_022087CC
+	bl SOC_Fcntl
 	cmp r4, #0
 	bicne r2, r0, #4
 	orreq r2, r0, #4
 	mov r0, r5
 	mov r1, #4
-	bl ov4_022087CC
+	bl SOC_Fcntl
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -225,7 +225,7 @@ ov4_021EAA74: ; 0x021EAA74
 	add r0, sp, #0
 	mov r1, #1
 	strh r2, [sp, #6]
-	bl ov4_02208B18
+	bl SOC_Poll
 	cmp r0, #0
 	addlt sp, sp, #8
 	mvnlt r0, #0
@@ -317,9 +317,9 @@ ov4_021EABBC: ; 0x021EABBC
 	strh r2, [r0, #0x12]
 	str r1, [r0, #0x14]
 	str r2, [r0, #0x18]
-	bl ov4_02208088
+	bl SOCL_GetHostID
 	ldr r1, _021EAC40 ; =0x0221AF44
-	bl ov4_02208AF8
+	bl SOC_U32to4U8
 	ldr r1, _021EAC34 ; =0x0221AF2C
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
@@ -392,7 +392,7 @@ _021EACD8: .word Unk_ov4_0221AF2C
 	arm_func_start ov4_021EACDC
 ov4_021EACDC: ; 0x021EACDC
 	stmfd sp!, {r3, lr}
-	bl ov4_02208324
+	bl SOC_Socket
 	mvn r1, #0
 	bl ov4_021EACC4
 	ldmia sp!, {r3, pc}
@@ -401,7 +401,7 @@ ov4_021EACDC: ; 0x021EACDC
 	arm_func_start ov4_021EACF0
 ov4_021EACF0: ; 0x021EACF0
 	stmfd sp!, {r3, lr}
-	bl ov4_02208540
+	bl SOC_Close
 	mvn r1, #0
 	bl ov4_021EACC4
 	ldmia sp!, {r3, pc}
@@ -410,7 +410,7 @@ ov4_021EACF0: ; 0x021EACF0
 	arm_func_start ov4_021EAD04
 ov4_021EAD04: ; 0x021EAD04
 	stmfd sp!, {r3, lr}
-	bl ov4_02208534
+	bl SOC_Shutdown
 	mvn r1, #0
 	bl ov4_021EACC4
 	ldmia sp!, {r3, pc}
@@ -438,7 +438,7 @@ _021EAD3C:
 	bne _021EAD3C
 	add r1, sp, #0
 	strb r2, [sp]
-	bl ov4_02208350
+	bl SOC_Bind
 	mvn r1, #0
 	bl ov4_021EACC4
 	add sp, sp, #8
@@ -462,7 +462,7 @@ _021EAD88:
 	bne _021EAD88
 	add r1, sp, #0
 	strb r2, [sp]
-	bl ov4_0220837C
+	bl SOC_Connect
 	mvn r1, #0
 	bl ov4_021EACC4
 	add sp, sp, #8
@@ -472,7 +472,7 @@ _021EAD88:
 	arm_func_start ov4_021EADC4
 ov4_021EADC4: ; 0x021EADC4
 	stmfd sp!, {r3, lr}
-	bl ov4_02208744
+	bl SOC_Listen
 	mvn r1, #0
 	bl ov4_021EACC4
 	ldmia sp!, {r3, pc}
@@ -485,7 +485,7 @@ ov4_021EADD8: ; 0x021EADD8
 	ldr r2, [r4, #0]
 	mov r5, r1
 	strb r2, [r5]
-	bl ov4_02208750
+	bl SOC_Accept
 	ldrb r2, [r5]
 	mvn r1, #0
 	str r2, [r4, #0]
@@ -496,7 +496,7 @@ ov4_021EADD8: ; 0x021EADD8
 	arm_func_start ov4_021EAE04
 ov4_021EAE04: ; 0x021EAE04
 	stmfd sp!, {r3, lr}
-	bl ov4_022083D8
+	bl SOC_Recv
 	mvn r1, #0
 	bl ov4_021EACC4
 	ldmia sp!, {r3, pc}
@@ -510,7 +510,7 @@ ov4_021EAE18: ; 0x021EAE18
 	ldr ip, [r4]
 	strb ip, [r5]
 	str r5, [sp]
-	bl ov4_022083FC
+	bl SOC_RecvFrom
 	ldrb r2, [r5]
 	mvn r1, #0
 	str r2, [r4, #0]
@@ -521,7 +521,7 @@ ov4_021EAE18: ; 0x021EAE18
 	arm_func_start ov4_021EAE48
 ov4_021EAE48: ; 0x021EAE48
 	stmfd sp!, {r3, lr}
-	bl ov4_0220848C
+	bl SOC_Send
 	mvn r1, #0
 	bl ov4_021EACC4
 	ldmia sp!, {r3, pc}
@@ -547,7 +547,7 @@ _021EAE70:
 	add ip, sp, #4
 	strb lr, [sp, #4]
 	str ip, [sp]
-	bl ov4_022084B0
+	bl SOC_SendTo
 	mvn r1, #0
 	bl ov4_021EACC4
 	add sp, sp, #0xc
@@ -585,7 +585,7 @@ ov4_021EAEF0: ; 0x021EAEF0
 	ldr r2, [r4, #0]
 	mov r5, r1
 	strb r2, [r5]
-	bl ov4_0220860C
+	bl SOC_GetSockName
 	ldrb r2, [r5]
 	mvn r1, #0
 	str r2, [r4, #0]
@@ -597,7 +597,7 @@ ov4_021EAEF0: ; 0x021EAEF0
 ov4_021EAF1C: ; 0x021EAF1C
 	stmfd sp!, {r3, lr}
 	add r1, sp, #0
-	bl ov4_02208A24
+	bl SOC_InetAtoN
 	cmp r0, #0
 	mvneq r0, #0
 	ldrne r0, [sp]

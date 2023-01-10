@@ -177,14 +177,14 @@ ov61_0222D638: ; 0x0222D638
 	cmp r0, #0
 	bne _0222D68C
 	mov r0, r5
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	beq _0222D684
 	ldr r0, [r0, #0xc]
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
 	str r0, [sp]
-	bl ov4_022089F4
+	bl SOC_InetNtoA
 	mov r1, r0
 	mov r0, r4
 	bl strcpy
@@ -208,7 +208,7 @@ ov61_0222D6A0: ; 0x0222D6A0
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_02208324
+	bl SOC_Socket
 	ldr r2, _0222D768 ; =0x0222E764
 	mvn r1, #0
 	str r0, [r2, #0x26c]
@@ -222,12 +222,12 @@ ov61_0222D6A0: ; 0x0222D6A0
 _0222D6E0:
 	mov r1, #3
 	mov r2, #0
-	bl ov4_022087CC
+	bl SOC_Fcntl
 	ldr r1, _0222D768 ; =0x0222E764
 	orr r2, r0, #4
 	ldr r0, [r1, #0x26c]
 	mov r1, #4
-	bl ov4_022087CC
+	bl SOC_Fcntl
 	cmp r0, #0
 	bge _0222D720
 	ldr r0, _0222D768 ; =0x0222E764
@@ -270,10 +270,10 @@ ov61_0222D770: ; 0x0222D770
 	cmp r0, r1
 	ldmeqia sp!, {r3, pc}
 	mov r1, #2
-	bl ov4_02208534
+	bl SOC_Shutdown
 	ldr r0, _0222D7AC ; =0x0222E764
 	ldr r0, [r0, #0x26c]
-	bl ov4_02208540
+	bl SOC_Close
 	ldr r0, _0222D7AC ; =0x0222E764
 	mvn r1, #0
 	str r1, [r0, #0x26c]
@@ -315,7 +315,7 @@ ov61_0222D7B0: ; 0x0222D7B0
 _0222D820:
 	ldr r0, [sb, #0x26c]
 	mov r1, r6
-	bl ov4_0220837C
+	bl SOC_Connect
 	cmp r0, #0
 	bge _0222D8E0
 	cmp r0, r8
@@ -398,7 +398,7 @@ _0222D92C:
 	ldr r0, [r5, #0x26c]
 	mov r3, r8
 	add r1, r1, sb
-	bl ov4_0220848C
+	bl SOC_Send
 	cmp r0, r4
 	beq _0222D984
 	cmp r0, #0
@@ -478,7 +478,7 @@ _0222DA48:
 	mov r3, r8
 	add r1, r1, sl
 	sub r2, r2, sl
-	bl ov4_022083D8
+	bl SOC_Recv
 	cmp r0, r5
 	beq _0222DB04
 	cmp r0, #0

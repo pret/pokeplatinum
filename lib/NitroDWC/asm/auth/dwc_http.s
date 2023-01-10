@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/dwc_http.inc"
 
-	.extern Unk_ov4_0221DE40
+	.extern CPSMyIp
 	.extern Unk_ov4_02216F08
 	.extern Unk_ov4_02216DDC
 	.extern Unk_ov4_022170BC
@@ -276,7 +276,7 @@ ov4_021D47BC: ; 0x021D47BC
 	ldr r2, [r1, #0x9d0]
 	add r0, r0, #0x1000
 	str r2, [r1, #0x184]
-	bl ov4_0220BCF0
+	bl CPS_SocRegister
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021D480C: .word 0x00000B68
@@ -285,12 +285,12 @@ _021D4810: .word 0x000005EA
 
 	arm_func_start ov4_021D4814
 ov4_021D4814: ; 0x021D4814
-	ldr ip, _021D4824 ; =ov4_0220D8D8
+	ldr ip, _021D4824 ; =CPS_Resolve
 	add r0, r0, #0x1000
 	ldr r0, [r0, #0x124]
 	bx ip
 	; .align 2, 0
-_021D4824: .word ov4_0220D8D8
+_021D4824: .word CPS_Resolve
 	arm_func_end ov4_021D4814
 
 	arm_func_start ov4_021D4828
@@ -383,7 +383,7 @@ ov4_021D4910: ; 0x021D4910
 	addeq sp, sp, #0x14
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	str r6, [r0, #0x12c]
-	bl ov4_0220BDA8
+	bl CPS_SocUse
 	add r0, sl, #0x1000
 	ldr r0, [r0, #0x130]
 	cmp r0, #1
@@ -402,21 +402,21 @@ ov4_021D4910: ; 0x021D4910
 	str r5, [r4, #0xc]
 	bl ov4_0220DD60
 	mov r0, #1
-	bl ov4_02210DC0
+	bl CPS_SetSsl
 _021D49C4:
 	add r0, sl, #0x1100
 	ldrh r1, [r0, #0x34]
 	mov r2, r6
 	mov r0, #0
-	bl ov4_0220BD48
-	bl ov4_0220BF5C
+	bl CPS_SocBind
+	bl CPS_TcpConnect
 	cmp r0, #0
 	add r0, sl, #0x1000
 	beq _021D4A00
 	mov r1, #3
 	str r1, [r0, #0x20]
-	bl ov4_0220BDDC
-	bl ov4_0220BD04
+	bl CPS_SocRelease
+	bl CPS_SocUnRegister
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021D4A00:
@@ -425,7 +425,7 @@ _021D4A00:
 	bl strlen
 	mov r1, r0
 	mov r0, r4
-	bl ov4_0220C6D8
+	bl CPS_SocWrite
 	str r0, [sp, #0x10]
 	cmp r0, #0
 	bgt _021D4A34
@@ -476,7 +476,7 @@ _021D4AAC:
 	str r0, [sp, #8]
 	add r0, sp, #0x10
 	str r1, [sp, #4]
-	bl ov4_0220C1D0
+	bl CPS_SocRead
 	cmp r0, #0
 	beq _021D4BDC
 	ldmib r7, {r1, r2}
@@ -510,11 +510,11 @@ _021D4B44:
 	ldr r0, [sp, #0x10]
 	cmp r0, sb
 	bls _021D4B58
-	bl ov4_0220C2C4
+	bl CPS_SocConsume
 	b _021D4BDC
 _021D4B58:
 	mov r0, sb
-	bl ov4_0220C2C4
+	bl CPS_SocConsume
 _021D4B60:
 	ldr r1, [r4, #0xa30]
 	cmp r1, #0
@@ -549,27 +549,27 @@ _021D4BBC:
 	str r1, [r0, #0x20]
 	b _021D4C00
 _021D4BDC:
-	bl ov4_0220C03C
-	bl ov4_0220C078
-	bl ov4_0220BDDC
-	bl ov4_0220BD04
+	bl CPS_TcpShutdown
+	bl CPS_TcpClose
+	bl CPS_SocRelease
+	bl CPS_SocUnRegister
 	add r0, sl, #0x1000
 	mov r1, #8
 	str r1, [r0, #0x20]
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021D4C00:
-	bl ov4_0220C03C
-	bl ov4_0220C078
-	bl ov4_0220BDDC
-	bl ov4_0220BD04
+	bl CPS_TcpShutdown
+	bl CPS_TcpClose
+	bl CPS_SocRelease
+	bl CPS_SocUnRegister
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021D4C18: .word 0x0000EA60
 _021D4C1C: .word ov4_021D5010
 _021D4C20: .word Unk_ov4_022160D0
-_021D4C24: .word Unk_ov4_0221DE40
+_021D4C24: .word CPSMyIp
 _021D4C28: .word 0x000082EA
 	arm_func_end ov4_021D4910
 

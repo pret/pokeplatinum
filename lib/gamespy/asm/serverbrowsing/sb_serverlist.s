@@ -697,7 +697,7 @@ _021FF760:
 	cmp r0, r1
 	bne _021FF7CC
 	add r0, sp, #8
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	addeq sp, sp, #0x88
 	moveq r0, #2

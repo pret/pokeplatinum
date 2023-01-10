@@ -3779,8 +3779,8 @@ _02210DB0:
 _02210DBC: .word Unk_ov4_0221DE30
 	arm_func_end ov4_02210D88
 
-	arm_func_start ov4_02210DC0
-ov4_02210DC0: ; 0x02210DC0
+	arm_func_start CPS_SetSsl
+CPS_SetSsl: ; 0x02210DC0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, _02210DE8 ; =0x02000C70
@@ -3794,7 +3794,7 @@ ov4_02210DC0: ; 0x02210DC0
 	; .align 2, 0
 _02210DE8: .word Unk_02000C70
 _02210DEC: .word OSi_ThreadInfo
-	arm_func_end ov4_02210DC0
+	arm_func_end CPS_SetSsl
 
 	arm_func_start ov4_02210DF0
 ov4_02210DF0: ; 0x02210DF0

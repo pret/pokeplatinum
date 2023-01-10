@@ -109,8 +109,8 @@ ov4_02208E1C: ; 0x02208E1C
 	bx lr
 	arm_func_end ov4_02208E1C
 
-	arm_func_start ov4_02208E24
-ov4_02208E24: ; 0x02208E24
+	arm_func_start CPS_Startup
+CPS_Startup: ; 0x02208E24
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	mov r4, r0
@@ -259,10 +259,10 @@ _02209050: .word Unk_ov4_0221F620
 _02209054: .word Unk_ov4_0221DF98
 _02209058: .word ov4_0220C8C0
 _0220905C: .word Unk_ov4_0221EE20
-	arm_func_end ov4_02208E24
+	arm_func_end CPS_Startup
 
-	arm_func_start ov4_02209060
-ov4_02209060: ; 0x02209060
+	arm_func_start CPS_CalmDown
+CPS_CalmDown: ; 0x02209060
 	stmfd sp!, {r3, r4, r5, lr}
 	bl OS_DisableInterrupts
 	mov r4, r0
@@ -285,21 +285,21 @@ _02209098:
 	; .align 2, 0
 _022090A8: .word Unk_ov4_0221DF98
 _022090AC: .word Unk_ov4_0221DDF0
-	arm_func_end ov4_02209060
+	arm_func_end CPS_CalmDown
 
-	arm_func_start ov4_022090B0
-ov4_022090B0: ; 0x022090B0
+	arm_func_start CPS_SetScavengerCallback
+CPS_SetScavengerCallback: ; 0x022090B0
 	ldr r1, _022090BC ; =0x0221DDF0
 	str r0, [r1, #0x3c]
 	bx lr
 	; .align 2, 0
 _022090BC: .word Unk_ov4_0221DDF0
-	arm_func_end ov4_022090B0
+	arm_func_end CPS_SetScavengerCallback
 
-	arm_func_start ov4_022090C0
-ov4_022090C0: ; 0x022090C0
+	arm_func_start CPS_Cleanup
+CPS_Cleanup: ; 0x022090C0
 	stmfd sp!, {r3, lr}
-	bl ov4_02209060
+	bl CPS_CalmDown
 	ldr r0, _022090FC ; =0x0221DF98
 	bl OS_JoinThread
 	ldr r0, _02209100 ; =0x0221E058
@@ -317,10 +317,10 @@ ov4_022090C0: ; 0x022090C0
 _022090FC: .word Unk_ov4_0221DF98
 _02209100: .word Unk_ov4_0221E058
 _02209104: .word Unk_ov4_0221DDF0
-	arm_func_end ov4_022090C0
+	arm_func_end CPS_Cleanup
 
-	arm_func_start ov4_02209108
-ov4_02209108: ; 0x02209108
+	arm_func_start CPS_SetThreadPriority
+CPS_SetThreadPriority: ; 0x02209108
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r2, _02209134 ; =0x0221A190
@@ -336,7 +336,7 @@ ov4_02209108: ; 0x02209108
 _02209134: .word Unk_ov4_0221A190
 _02209138: .word Unk_ov4_0221E058
 _0220913C: .word Unk_ov4_0221DF98
-	arm_func_end ov4_02209108
+	arm_func_end CPS_SetThreadPriority
 
 	arm_func_start ov4_02209140
 ov4_02209140: ; 0x02209140
@@ -726,8 +726,8 @@ _02209624: .word 0x000005E4
 _02209628: .word Unk_ov4_0221A19C
 	arm_func_end ov4_02209438
 
-	arm_func_start ov4_0220962C
-ov4_0220962C: ; 0x0220962C
+	arm_func_start CPSi_RecvCallbackFunc
+CPSi_RecvCallbackFunc: ; 0x0220962C
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	mov ip, #0
@@ -751,7 +751,7 @@ ov4_0220962C: ; 0x0220962C
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02209680: .word Unk_ov4_0221DDF0
-	arm_func_end ov4_0220962C
+	arm_func_end CPSi_RecvCallbackFunc
 
 	arm_func_start ov4_02209684
 ov4_02209684: ; 0x02209684
@@ -3448,8 +3448,8 @@ _0220BBF8:
 _0220BC00: .word 0x00000806
 	arm_func_end ov4_0220BB94
 
-	arm_func_start ov4_0220BC04
-ov4_0220BC04: ; 0x0220BC04
+	arm_func_start CPS_SocGetEport
+CPS_SocGetEport: ; 0x0220BC04
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r0, _0220BCA0 ; =0x021CCC80
 	ldr r2, _0220BCA4 ; =0x0221DDF0
@@ -3499,7 +3499,7 @@ _0220BC8C:
 _0220BCA0: .word OSi_ThreadInfo
 _0220BCA4: .word Unk_ov4_0221DDF0
 _0220BCA8: .word 0x00001388
-	arm_func_end ov4_0220BC04
+	arm_func_end CPS_SocGetEport
 
 	arm_func_start ov4_0220BCAC
 ov4_0220BCAC: ; 0x0220BCAC
@@ -3523,18 +3523,18 @@ ov4_0220BCAC: ; 0x0220BCAC
 _0220BCEC: .word Unk_ov4_0221DDF0
 	arm_func_end ov4_0220BCAC
 
-	arm_func_start ov4_0220BCF0
-ov4_0220BCF0: ; 0x0220BCF0
+	arm_func_start CPS_SocRegister
+CPS_SocRegister: ; 0x0220BCF0
 	ldr r1, _0220BD00 ; =0x021CCC80
 	ldr r1, [r1, #4]
 	str r0, [r1, #0xa4]
 	bx lr
 	; .align 2, 0
 _0220BD00: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BCF0
+	arm_func_end CPS_SocRegister
 
-	arm_func_start ov4_0220BD04
-ov4_0220BD04: ; 0x0220BD04
+	arm_func_start CPS_SocUnRegister
+CPS_SocUnRegister: ; 0x0220BD04
 	ldr r0, _0220BD18 ; =0x021CCC80
 	mov r1, #0
 	ldr r0, [r0, #4]
@@ -3542,10 +3542,10 @@ ov4_0220BD04: ; 0x0220BD04
 	bx lr
 	; .align 2, 0
 _0220BD18: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BD04
+	arm_func_end CPS_SocUnRegister
 
-	arm_func_start ov4_0220BD1C
-ov4_0220BD1C: ; 0x0220BD1C
+	arm_func_start CPS_SocDatagramMode
+CPS_SocDatagramMode: ; 0x0220BD1C
 	ldr r0, _0220BD44 ; =0x021CCC80
 	ldr r0, [r0, #4]
 	ldr r1, [r0, #0xa4]
@@ -3558,10 +3558,10 @@ ov4_0220BD1C: ; 0x0220BD1C
 	bx lr
 	; .align 2, 0
 _0220BD44: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BD1C
+	arm_func_end CPS_SocDatagramMode
 
-	arm_func_start ov4_0220BD48
-ov4_0220BD48: ; 0x0220BD48
+	arm_func_start CPS_SocBind
+CPS_SocBind: ; 0x0220BD48
 	stmfd sp!, {r4, lr}
 	ldr r3, _0220BD9C ; =0x021CCC80
 	ldr r3, [r3, #4]
@@ -3580,17 +3580,17 @@ ov4_0220BD48: ; 0x0220BD48
 	str r2, [r4, #0x1c]
 	strneh r0, [r4, #0xa]
 	ldmneia sp!, {r4, pc}
-	bl ov4_0220BC04
+	bl CPS_SocGetEport
 	strh r0, [r4, #0xa]
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0220BD9C: .word OSi_ThreadInfo
 _0220BDA0: .word 0x7F000001
 _0220BDA4: .word Unk_ov4_0221DDF0
-	arm_func_end ov4_0220BD48
+	arm_func_end CPS_SocBind
 
-	arm_func_start ov4_0220BDA8
-ov4_0220BDA8: ; 0x0220BDA8
+	arm_func_start CPS_SocUse
+CPS_SocUse: ; 0x0220BDA8
 	ldr r0, _0220BDD8 ; =0x021CCC80
 	ldr r0, [r0, #4]
 	ldr r1, [r0, #0xa4]
@@ -3605,10 +3605,10 @@ ov4_0220BDA8: ; 0x0220BDA8
 	bx lr
 	; .align 2, 0
 _0220BDD8: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BDA8
+	arm_func_end CPS_SocUse
 
-	arm_func_start ov4_0220BDDC
-ov4_0220BDDC: ; 0x0220BDDC
+	arm_func_start CPS_SocRelease
+CPS_SocRelease: ; 0x0220BDDC
 	ldr r0, _0220BDF8 ; =0x021CCC80
 	ldr r0, [r0, #4]
 	ldr r1, [r0, #0xa4]
@@ -3618,10 +3618,10 @@ ov4_0220BDDC: ; 0x0220BDDC
 	bx lr
 	; .align 2, 0
 _0220BDF8: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BDDC
+	arm_func_end CPS_SocRelease
 
-	arm_func_start ov4_0220BDFC
-ov4_0220BDFC: ; 0x0220BDFC
+	arm_func_start CPS_SocDup
+CPS_SocDup: ; 0x0220BDFC
 	ldr r1, _0220BE10 ; =0x021CCC80
 	ldr r1, [r1, #4]
 	ldr r1, [r1, #0xa4]
@@ -3629,7 +3629,7 @@ ov4_0220BDFC: ; 0x0220BDFC
 	bx lr
 	; .align 2, 0
 _0220BE10: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BDFC
+	arm_func_end CPS_SocDup
 
 	arm_func_start ov4_0220BE14
 ov4_0220BE14: ; 0x0220BE14
@@ -3651,8 +3651,8 @@ ov4_0220BE14: ; 0x0220BE14
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_0220BE14
 
-	arm_func_start ov4_0220BE54
-ov4_0220BE54: ; 0x0220BE54
+	arm_func_start CPS_SetUdpCallback
+CPS_SetUdpCallback: ; 0x0220BE54
 	ldr r1, _0220BE6C ; =0x021CCC80
 	ldr r1, [r1, #4]
 	ldr r1, [r1, #0xa4]
@@ -3661,10 +3661,10 @@ ov4_0220BE54: ; 0x0220BE54
 	bx lr
 	; .align 2, 0
 _0220BE6C: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BE54
+	arm_func_end CPS_SetUdpCallback
 
-	arm_func_start ov4_0220BE70
-ov4_0220BE70: ; 0x0220BE70
+	arm_func_start CPS_TcpListen
+CPS_TcpListen: ; 0x0220BE70
 	stmfd sp!, {r3, lr}
 	ldr r0, _0220BEA4 ; =0x021CCC80
 	ldr r0, [r0, #4]
@@ -3681,7 +3681,7 @@ _0220BE9C:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0220BEA4: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BE70
+	arm_func_end CPS_TcpListen
 
 	arm_func_start ov4_0220BEA8
 ov4_0220BEA8: ; 0x0220BEA8
@@ -3736,8 +3736,8 @@ _0220BF50:
 _0220BF58: .word Unk_ov4_0221DDF0
 	arm_func_end ov4_0220BEA8
 
-	arm_func_start ov4_0220BF5C
-ov4_0220BF5C: ; 0x0220BF5C
+	arm_func_start CPS_TcpConnect
+CPS_TcpConnect: ; 0x0220BF5C
 	stmfd sp!, {r3, lr}
 	ldr r0, _0220BF98 ; =0x021CCC80
 	ldr r0, [r0, #4]
@@ -3757,10 +3757,10 @@ _0220BF90:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0220BF98: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BF5C
+	arm_func_end CPS_TcpConnect
 
-	arm_func_start ov4_0220BF9C
-ov4_0220BF9C: ; 0x0220BF9C
+	arm_func_start CPS_SocWho
+CPS_SocWho: ; 0x0220BF9C
 	ldr r2, _0220BFE8 ; =0x021CCC80
 	ldr r2, [r2, #4]
 	ldr r3, [r2, #0xa4]
@@ -3783,7 +3783,7 @@ _0220BFE0:
 	bx lr
 	; .align 2, 0
 _0220BFE8: .word OSi_ThreadInfo
-	arm_func_end ov4_0220BF9C
+	arm_func_end CPS_SocWho
 
 	arm_func_start ov4_0220BFEC
 ov4_0220BFEC: ; 0x0220BFEC
@@ -3810,8 +3810,8 @@ _0220C024:
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_0220BFEC
 
-	arm_func_start ov4_0220C03C
-ov4_0220C03C: ; 0x0220C03C
+	arm_func_start CPS_TcpShutdown
+CPS_TcpShutdown: ; 0x0220C03C
 	stmfd sp!, {r4, lr}
 	ldr r0, _0220C074 ; =0x021CCC80
 	ldr r0, [r0, #4]
@@ -3829,10 +3829,10 @@ _0220C068:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0220C074: .word OSi_ThreadInfo
-	arm_func_end ov4_0220C03C
+	arm_func_end CPS_TcpShutdown
 
-	arm_func_start ov4_0220C078
-ov4_0220C078: ; 0x0220C078
+	arm_func_start CPS_TcpClose
+CPS_TcpClose: ; 0x0220C078
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r0, _0220C0F8 ; =0x021CCC80
 	ldr r0, [r0, #4]
@@ -3872,7 +3872,7 @@ _0220C0EC:
 	; .align 2, 0
 _0220C0F8: .word OSi_ThreadInfo
 _0220C0FC: .word Unk_ov4_0221DDF0
-	arm_func_end ov4_0220C078
+	arm_func_end CPS_TcpClose
 
 	arm_func_start ov4_0220C100
 ov4_0220C100: ; 0x0220C100
@@ -3940,8 +3940,8 @@ _0220C1B8:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	arm_func_end ov4_0220C154
 
-	arm_func_start ov4_0220C1D0
-ov4_0220C1D0: ; 0x0220C1D0
+	arm_func_start CPS_SocRead
+CPS_SocRead: ; 0x0220C1D0
 	stmfd sp!, {r3, lr}
 	ldr r1, _0220C230 ; =0x021CCC80
 	ldr r1, [r1, #4]
@@ -3971,7 +3971,7 @@ _0220C220:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0220C230: .word OSi_ThreadInfo
-	arm_func_end ov4_0220C1D0
+	arm_func_end CPS_SocRead
 
 	arm_func_start ov4_0220C234
 ov4_0220C234: ; 0x0220C234
@@ -4016,8 +4016,8 @@ _0220C2B4:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end ov4_0220C234
 
-	arm_func_start ov4_0220C2C4
-ov4_0220C2C4: ; 0x0220C2C4
+	arm_func_start CPS_SocConsume
+CPS_SocConsume: ; 0x0220C2C4
 	stmfd sp!, {r3, lr}
 	ldr r1, _0220C2F8 ; =0x021CCC80
 	ldr r1, [r1, #4]
@@ -4034,7 +4034,7 @@ _0220C2F0:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0220C2F8: .word OSi_ThreadInfo
-	arm_func_end ov4_0220C2C4
+	arm_func_end CPS_SocConsume
 
 	arm_func_start ov4_0220C2FC
 ov4_0220C2FC: ; 0x0220C2FC
@@ -4325,8 +4325,8 @@ _0220C6D0: .word OSi_ThreadInfo
 _0220C6D4: .word Unk_ov4_0221DDF0
 	arm_func_end ov4_0220C604
 
-	arm_func_start ov4_0220C6D8
-ov4_0220C6D8: ; 0x0220C6D8
+	arm_func_start CPS_SocWrite
+CPS_SocWrite: ; 0x0220C6D8
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r3, _0220C76C ; =0x021CCC80
 	mov r2, r0
@@ -4369,7 +4369,7 @@ _0220C764:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0220C76C: .word OSi_ThreadInfo
-	arm_func_end ov4_0220C6D8
+	arm_func_end CPS_SocWrite
 
 	arm_func_start ov4_0220C770
 ov4_0220C770: ; 0x0220C770
@@ -4495,7 +4495,7 @@ ov4_0220C8C0: ; 0x0220C8C0
 	str r3, [r1, #0x128]
 	ldr r0, _0220CC14 ; =0x0221DED0
 	str r2, [r1, #0x12c]
-	bl ov4_0220BCF0
+	bl CPS_SocRegister
 	mov sl, #1
 	ldr r0, _0220CC10 ; =0x0221DDF0
 	mov fp, sl
@@ -4711,7 +4711,7 @@ _0220CBF0:
 	beq _0220CC08
 	bl ov4_0220D460
 _0220CC08:
-	bl ov4_0220BD04
+	bl CPS_SocUnRegister
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0220CC10: .word Unk_ov4_0221DDF0
@@ -4892,7 +4892,7 @@ _0220CE74:
 	mov r1, r0
 	mov r0, r4
 	sub r1, r1, r4
-	bl ov4_0220C6D8
+	bl CPS_SocWrite
 	ldr r0, [sp]
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
@@ -4965,7 +4965,7 @@ _0220CF80:
 	mov r1, r0
 	mov r0, r4
 	sub r1, r1, r4
-	bl ov4_0220C6D8
+	bl CPS_SocWrite
 	ldr r0, [sp]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -4993,7 +4993,7 @@ _0220CFE4:
 	b _0220D2C4
 _0220CFF8:
 	add r0, sp, #4
-	bl ov4_0220C1D0
+	bl CPS_SocRead
 	ldr r1, [sp, #4]
 	mov r6, r0
 	cmp r1, #0xf0
@@ -5184,7 +5184,7 @@ _0220D2A8:
 	bne _0220D0DC
 _0220D2BC:
 	ldr r0, [sp, #4]
-	bl ov4_0220C2C4
+	bl CPS_SocConsume
 _0220D2C4:
 	ldr r0, _0220D308 ; =0x0221DDF0
 	ldr r0, [r0, #0x48]
@@ -5211,12 +5211,12 @@ _0220D308: .word Unk_ov4_0221DDF0
 	arm_func_start ov4_0220D30C
 ov4_0220D30C: ; 0x0220D30C
 	stmfd sp!, {r3, r4, r5, lr}
-	bl ov4_0220BDA8
-	bl ov4_0220BD1C
+	bl CPS_SocUse
+	bl CPS_SocDatagramMode
 	mov r1, #0x43
 	sub r2, r1, #0x44
 	mov r0, #0x44
-	bl ov4_0220BD48
+	bl CPS_SocBind
 	mov r5, #0
 _0220D32C:
 	bl ov4_0220CDF0
@@ -5229,7 +5229,7 @@ _0220D32C:
 	cmp r5, #4
 	blt _0220D32C
 _0220D350:
-	bl ov4_0220BDDC
+	bl CPS_SocRelease
 	cmp r4, #1
 	moveq r0, #1
 	movne r0, #0
@@ -5241,20 +5241,20 @@ ov4_0220D364: ; 0x0220D364
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r1
 	mov r5, r0
-	bl ov4_0220BDA8
-	bl ov4_0220BD1C
+	bl CPS_SocUse
+	bl CPS_SocDatagramMode
 	cmp r4, #1
 	mov r0, #0x44
 	bne _0220D398
 	ldr r1, _0220D45C ; =0x0221DDF0
 	ldr r2, [r1, #0x20]
 	mov r1, #0x43
-	bl ov4_0220BD48
+	bl CPS_SocBind
 	b _0220D3A4
 _0220D398:
 	mov r1, #0x43
 	sub r2, r1, #0x44
-	bl ov4_0220BD48
+	bl CPS_SocBind
 _0220D3A4:
 	mov r7, #0
 _0220D3A8:
@@ -5268,7 +5268,7 @@ _0220D3A8:
 	cmp r7, #4
 	blt _0220D3A8
 _0220D3CC:
-	bl ov4_0220BDDC
+	bl CPS_SocRelease
 	cmp r6, #2
 	bne _0220D400
 	ldr r1, _0220D45C ; =0x0221DDF0
@@ -5315,13 +5315,13 @@ _0220D45C: .word Unk_ov4_0221DDF0
 	arm_func_start ov4_0220D460
 ov4_0220D460: ; 0x0220D460
 	stmfd sp!, {r4, lr}
-	bl ov4_0220BDA8
-	bl ov4_0220BD1C
+	bl CPS_SocUse
+	bl CPS_SocDatagramMode
 	ldr r1, _0220D4C4 ; =0x0221DDF0
 	mov r0, #0x44
 	ldr r2, [r1, #0x20]
 	mov r1, #0x43
-	bl ov4_0220BD48
+	bl CPS_SocBind
 	ldr r4, _0220D4C8 ; =0x0221E346
 	mov r1, #7
 	mov r0, r4
@@ -5336,8 +5336,8 @@ ov4_0220D460: ; 0x0220D460
 	bl ov4_0220CDBC
 	sub r1, r0, r4
 	mov r0, r4
-	bl ov4_0220C6D8
-	bl ov4_0220BDDC
+	bl CPS_SocWrite
+	bl CPS_SocRelease
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0220D4C4: .word Unk_ov4_0221DDF0
@@ -5430,7 +5430,7 @@ _0220D5C4:
 	add r1, r2, #5
 	sub r1, r1, r0
 	strb r3, [r2, #4]
-	bl ov4_0220C6D8
+	bl CPS_SocWrite
 	mov r4, #0
 	bl OS_GetTick
 	mov r5, r0, lsr #0x10
@@ -5444,7 +5444,7 @@ _0220D610:
 	b _0220D75C
 _0220D624:
 	add r0, sp, #0
-	bl ov4_0220C1D0
+	bl CPS_SocRead
 	ldr r1, [sp]
 	cmp r1, #0xc
 	bls _0220D754
@@ -5526,7 +5526,7 @@ _0220D744:
 	blo _0220D6AC
 _0220D754:
 	ldr r0, [sp]
-	bl ov4_0220C2C4
+	bl CPS_SocConsume
 _0220D75C:
 	ldr r0, _0220D7A0 ; =0x0221DDF0
 	ldr r0, [r0, #0x48]
@@ -5624,12 +5624,12 @@ ov4_0220D874: ; 0x0220D874
 	addeq sp, sp, #4
 	mvneq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, pc}
-	bl ov4_0220BDA8
-	bl ov4_0220BD1C
+	bl CPS_SocUse
+	bl CPS_SocDatagramMode
 	mov r2, r5
 	mov r0, #0
 	mov r1, #0x35
-	bl ov4_0220BD48
+	bl CPS_SocBind
 	mov r0, r6
 	mov r2, r4
 	mov r3, #0
@@ -5637,14 +5637,14 @@ ov4_0220D874: ; 0x0220D874
 	mov r1, #1
 	bl ov4_0220D4FC
 	mov r4, r0
-	bl ov4_0220BDDC
+	bl CPS_SocRelease
 	mov r0, r4
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	arm_func_end ov4_0220D874
 
-	arm_func_start ov4_0220D8D8
-ov4_0220D8D8: ; 0x0220D8D8
+	arm_func_start CPS_Resolve
+CPS_Resolve: ; 0x0220D8D8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	ldr r2, _0220DA08 ; =0x0221DDF0
@@ -5727,8 +5727,8 @@ _0220D9E8:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0220DA08: .word Unk_ov4_0221DDF0
-_0220DA0C: .word Unk_ov4_0221DE50
-	arm_func_end ov4_0220D8D8
+_0220DA0C: .word CPSDnsIp
+	arm_func_end CPS_Resolve
 
 
 	.section .version, 4,1,2
@@ -5802,8 +5802,8 @@ Unk_ov4_0221DE04: ; 0x0221DE04
 Unk_ov4_0221DE08: ; 0x0221DE08
 	.space 0x4
 
-	.global Unk_ov4_0221DE0C
-Unk_ov4_0221DE0C: ; 0x0221DE0C
+	.global CPSNetMask
+CPSNetMask: ; 0x0221DE0C
 	.space 0x4
 
 	.global Unk_ov4_0221DE10
@@ -5818,8 +5818,8 @@ Unk_ov4_0221DE14: ; 0x0221DE14
 Unk_ov4_0221DE18: ; 0x0221DE18
 	.space 0x4
 
-	.global Unk_ov4_0221DE1C
-Unk_ov4_0221DE1C: ; 0x0221DE1C
+	.global CPSGatewayIp
+CPSGatewayIp: ; 0x0221DE1C
 	.space 0x4
 
 	.global Unk_ov4_0221DE20
@@ -5854,8 +5854,8 @@ Unk_ov4_0221DE38: ; 0x0221DE38
 Unk_ov4_0221DE3C: ; 0x0221DE3C
 	.space 0x4
 
-	.global Unk_ov4_0221DE40
-Unk_ov4_0221DE40: ; 0x0221DE40
+	.global CPSMyIp
+CPSMyIp: ; 0x0221DE40
 	.space 0x4
 
 	.global Unk_ov4_0221DE44
@@ -5870,8 +5870,8 @@ Unk_ov4_0221DE48: ; 0x0221DE48
 Unk_ov4_0221DE4C: ; 0x0221DE4C
 	.space 0x4
 
-	.global Unk_ov4_0221DE50
-Unk_ov4_0221DE50: ; 0x0221DE50
+	.global CPSDnsIp
+CPSDnsIp: ; 0x0221DE50
 	.space 0x8
 
 	.global Unk_ov4_0221DE58

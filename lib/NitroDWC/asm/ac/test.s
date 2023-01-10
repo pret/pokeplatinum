@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/test.inc"
 
-	.extern Unk_ov4_0221DBF0
+	.extern SOCLiYieldWait
 
 	.text
 
@@ -103,7 +103,7 @@ ov4_021E8234: ; 0x021E8234
 	mov r2, #4
 	mov r0, r4
 	str r2, [r1, #0]
-	bl ov4_02208874
+	bl SOC_Startup
 	cmp r0, #0
 	moveq r0, #0xc
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -112,14 +112,14 @@ ov4_021E8234: ; 0x021E8234
 	mov r0, #0x11
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021E8294: .word Unk_ov4_0221DBF0
+_021E8294: .word SOCLiYieldWait
 	arm_func_end ov4_021E8234
 
 	arm_func_start ov4_021E8298
 ov4_021E8298: ; 0x021E8298
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_022086A0
+	bl SOC_GetHostID
 	cmp r0, #0
 	beq _021E82D0
 	mov r0, r4
@@ -217,11 +217,11 @@ ov4_021E83C0: ; 0x021E83C0
 	arm_func_start ov4_021E83D4
 ov4_021E83D4: ; 0x021E83D4
 	stmfd sp!, {r3, lr}
-	bl ov4_02207EDC
+	bl SOCL_CalmDown
 	cmp r0, #0
 	movne r0, #0xb
 	ldmneia sp!, {r3, pc}
-	bl ov4_022089E8
+	bl SOC_Cleanup
 	cmp r0, #0
 	mvnne r1, #0x26
 	cmpne r0, r1
@@ -369,7 +369,7 @@ ov4_021E856C: ; 0x021E856C
 	str r0, [sp]
 	add r0, sp, #4
 	add r1, sp, #0
-	bl ov4_022086D8
+	bl SOC_SetResolver
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021E856C

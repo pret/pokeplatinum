@@ -21,9 +21,9 @@
 .public ov4_021E84C4
 .public ov4_021E8518
 .public ov4_021E856C
-.public ov4_02207EDC
-.public ov4_022086A0
-.public ov4_022086D8
-.public ov4_02208874
-.public ov4_022089E8
+.public SOCL_CalmDown
+.public SOC_GetHostID
+.public SOC_SetResolver
+.public SOC_Startup
+.public SOC_Cleanup
 .public WCM_GetPhase

@@ -21,7 +21,7 @@
 .public ov4_021EAD78
 .public ov4_021EAF1C
 .public ov4_021EAF38
-.public ov4_0220854C
+.public SOC_GetHostByName
 .public ov60_02220130
 .public ov60_022203EC
 .public ov60_0222046C

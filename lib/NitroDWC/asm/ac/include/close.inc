@@ -3,8 +3,8 @@
 .public ov4_021E63C0
 .public ov4_021E7150
 .public ov4_021E71E0
-.public ov4_02207EDC
-.public ov4_022089E8
+.public SOCL_CalmDown
+.public SOC_Cleanup
 .public ov4_02212DE0
 .public ov4_0221303C
 .public ov4_022132C4

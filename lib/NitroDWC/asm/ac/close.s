@@ -100,11 +100,11 @@ _021E71D8:
 	arm_func_start ov4_021E71E0
 ov4_021E71E0: ; 0x021E71E0
 	stmfd sp!, {r3, lr}
-	bl ov4_02207EDC
+	bl SOCL_CalmDown
 	cmp r0, #0
 	movne r0, #0
 	ldmneia sp!, {r3, pc}
-	bl ov4_022089E8
+	bl SOC_Cleanup
 	cmp r0, #0
 	mvnne r1, #0x26
 	cmpne r0, r1

@@ -785,23 +785,23 @@ Overlay overlay4
 	Object lib/libVCT/asm/fir.o
 	Object lib/libVCT/asm/mixer.o
 	Object lib/libVCT/asm/vct_main.o
-	Object lib/NitroWiFi/asm/soc/socl_startup.o
-	Object lib/NitroWiFi/asm/soc/socl_command.o
-	Object lib/NitroWiFi/asm/soc/socl_create.o
-	Object lib/NitroWiFi/asm/soc/socl_listen_accept.o
-	Object lib/NitroWiFi/asm/soc/socl_bind.o
-	Object lib/NitroWiFi/asm/soc/socl_const.o
-	Object lib/NitroWiFi/asm/soc/socl_read.o
-	Object lib/NitroWiFi/asm/soc/socl_write.o
-	Object lib/NitroWiFi/asm/soc/socl_shutdown.o
-	Object lib/NitroWiFi/asm/soc/socl_close.o
-	Object lib/NitroWiFi/asm/soc/socl_cleanup.o
-	Object lib/NitroWiFi/asm/soc/socl_resolve.o
-	Object lib/NitroWiFi/asm/soc/socl_poll.o
-	Object lib/NitroWiFi/asm/soc/socl_misc.o
-	Object lib/NitroWiFi/asm/soc/socl_list.o
-	Object lib/NitroWiFi/asm/soc/soc.o
-	Object lib/NitroWiFi/asm/soc/socl_ssl.o
+	Object lib/NitroWiFi/src/soc/socl_startup.o
+	Object lib/NitroWiFi/src/soc/socl_command.o
+	Object lib/NitroWiFi/src/soc/socl_create.o
+	Object lib/NitroWiFi/src/soc/socl_listen_accept.o
+	Object lib/NitroWiFi/src/soc/socl_bind.o
+	Object lib/NitroWiFi/src/soc/socl_const.o
+	Object lib/NitroWiFi/src/soc/socl_read.o
+	Object lib/NitroWiFi/src/soc/socl_write.o
+	Object lib/NitroWiFi/src/soc/socl_shutdown.o
+	Object lib/NitroWiFi/src/soc/socl_close.o
+	Object lib/NitroWiFi/src/soc/socl_cleanup.o
+	Object lib/NitroWiFi/src/soc/socl_resolve.o
+	Object lib/NitroWiFi/src/soc/socl_poll.o
+	Object lib/NitroWiFi/src/soc/socl_misc.o
+	Object lib/NitroWiFi/src/soc/socl_list.o
+	Object lib/NitroWiFi/src/soc/soc.o
+	Object lib/NitroWiFi/src/soc/socl_ssl.o
 	Object lib/NitroWiFi/asm/cps/network.o
 	Object lib/NitroWiFi/asm/ssl/ssl.o
 	Object lib/NitroWiFi/asm/ssl/md5.o

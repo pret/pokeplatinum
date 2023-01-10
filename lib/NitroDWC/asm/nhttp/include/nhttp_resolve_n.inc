@@ -1,2 +1,2 @@
-.public ov4_02207F58
-.public ov4_02208A24
+.public SOCL_Resolve
+.public SOC_InetAtoN

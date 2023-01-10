@@ -64,7 +64,7 @@ _021F355C:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F3598:
 	ldr r0, _021F36AC ; =0x02218D68
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	bne _021F35D4
 	ldr r2, _021F36B0 ; =0x02218E14

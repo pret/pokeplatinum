@@ -33,7 +33,7 @@ ov60_02226EDC: ; 0x02226EDC
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_02208324
+	bl SOC_Socket
 	movs r4, r0
 	bmi _02226F50
 	ldr r0, [r5, #8]
@@ -51,11 +51,11 @@ ov60_02226EDC: ; 0x02226EDC
 	ldr r1, [r5, #0x20]
 	str r2, [r1, #0x810]
 	ldr r1, [r5, #0x20]
-	bl ov4_02208BCC
+	bl SOCL_EnableSsl
 	cmp r0, #0
 	bge _02226F50
 	mov r0, r4
-	bl ov4_02208540
+	bl SOC_Close
 	mvn r4, #0
 _02226F50:
 	mov r0, r4
@@ -66,11 +66,11 @@ _02226F58: .word ov60_02226EB0
 
 	arm_func_start ov60_02226F5C
 ov60_02226F5C: ; 0x02226F5C
-	ldr ip, _02226F68 ; =ov4_02208540
+	ldr ip, _02226F68 ; =SOC_Close
 	mov r0, r1
 	bx ip
 	; .align 2, 0
-_02226F68: .word ov4_02208540
+_02226F68: .word SOC_Close
 	arm_func_end ov60_02226F5C
 
 	arm_func_start ov60_02226F6C
@@ -78,7 +78,7 @@ ov60_02226F6C: ; 0x02226F6C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r1
 	mov r0, r6
-	bl ov4_02208540
+	bl SOC_Close
 	mvn r4, #0x19
 	cmp r0, r4
 	ldmneia sp!, {r4, r5, r6, pc}
@@ -87,7 +87,7 @@ _02226F8C:
 	mov r0, r5
 	bl OS_Sleep
 	mov r0, r6
-	bl ov4_02208540
+	bl SOC_Close
 	cmp r0, r4
 	beq _02226F8C
 	ldmia sp!, {r4, r5, r6, pc}
@@ -113,7 +113,7 @@ ov60_02226FA8: ; 0x02226FA8
 	strb lr, [sp, #1]
 	strh r3, [sp, #2]
 	str r2, [sp, #4]
-	bl ov4_0220837C
+	bl SOC_Connect
 	cmp r0, #0
 	bge _02227014
 	ldr r0, [r4, #4]
@@ -138,7 +138,7 @@ ov60_02227024: ; 0x02227024
 	mov r1, r2
 	mov r2, r3
 	ldr r3, [sp, #8]
-	bl ov4_022083D8
+	bl SOC_Recv
 	cmp r0, #0
 	ldmgeia sp!, {r4, pc}
 	ldr r1, [r4, #4]
@@ -162,7 +162,7 @@ ov60_02227070: ; 0x02227070
 	mov r1, r2
 	mov r2, r3
 	ldr r3, [sp, #8]
-	bl ov4_0220848C
+	bl SOC_Send
 	cmp r0, #0
 	ldmgeia sp!, {r4, pc}
 	ldr r1, [r4, #4]
@@ -185,7 +185,7 @@ ov60_022270BC: ; 0x022270BC
 	ldmltia sp!, {r3, pc}
 	mov r0, r1
 	mov r1, #2
-	bl ov4_02208534
+	bl SOC_Shutdown
 	ldmia sp!, {r3, pc}
 	arm_func_end ov60_022270BC
 

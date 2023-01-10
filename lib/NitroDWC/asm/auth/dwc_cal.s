@@ -135,7 +135,7 @@ _021D3F5C:
 	bl OS_SNPrintf
 	bl OS_DisableInterrupts
 	mov r6, r0
-	bl ov4_02215398
+	bl WCM_GetApMacAddress
 	mov r7, r0
 	mov r1, #6
 	bl DC_InvalidateRange

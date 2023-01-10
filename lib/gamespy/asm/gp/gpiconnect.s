@@ -193,7 +193,7 @@ _021EE544:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EE580:
 	ldr r0, _021EE6A0 ; =0x0221812C
-	bl ov4_0220854C
+	bl SOC_GetHostByName
 	cmp r0, #0
 	bne _021EE5BC
 	ldr r2, _021EE6A4 ; =0x0221828C

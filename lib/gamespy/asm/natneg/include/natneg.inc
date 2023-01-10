@@ -38,4 +38,4 @@
 .public ov4_021FBA68
 .public ov4_021FBB30
 .public ov4_021FBC34
-.public ov4_0220854C
+.public SOC_GetHostByName
