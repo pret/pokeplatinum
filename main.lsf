@@ -515,13 +515,13 @@ Static main
 	Object lib/NitroSDK/src/mi/mi_uncompress.o
 	Object lib/NitroSDK/src/mi/mi_dma_card.o
 	Object lib/NitroSDK/src/mi/mi_init.o
-	Object lib/NitroSDK/asm/snd/snd_interface.o
-	Object lib/NitroSDK/asm/snd/snd_main.o
-	Object lib/NitroSDK/asm/snd/snd_command.o
-	Object lib/NitroSDK/asm/snd/snd_alarm.o
-	Object lib/NitroSDK/asm/snd/snd_work.o
-	Object lib/NitroSDK/asm/snd/snd_util.o
-	Object lib/NitroSDK/asm/snd/snd_bank.o
+	Object lib/NitroSDK/src/snd/snd_interface.o
+	Object lib/NitroSDK/src/snd/snd_main.o
+	Object lib/NitroSDK/src/snd/snd_command.o
+	Object lib/NitroSDK/src/snd/snd_alarm.o
+	Object lib/NitroSDK/src/snd/snd_work.o
+	Object lib/NitroSDK/src/snd/snd_util.o
+	Object lib/NitroSDK/src/snd/snd_bank.o
 	Object lib/NitroSDK/src/pxi/pxi_init.o
 	Object lib/NitroSDK/src/pxi/pxi_fifo.o
 	Object lib/NitroSDK/src/fs/fs_command.o
