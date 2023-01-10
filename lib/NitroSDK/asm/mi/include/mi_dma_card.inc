@@ -1,3 +1,0 @@
-.public MIi_DmaSetParams
-.public MIi_CheckAnotherAutoDMA
-.public MIi_CheckDma0SourceAddress

@@ -371,7 +371,7 @@ Static main
 	Object asm/unk_020A1E30.o
 	Object asm/unk_020A2238.o
 	Object asm/unk_020A2354.o
-	Object lib/NitroSDK/asm/wvr/wvr.o
+	Object lib/NitroSDK/src/wvr/wvr.o
 	Object lib/NitroDWC/asm/bm/dwc_backup.o
 	Object lib/NitroDWC/asm/bm/dwc_bm_init.o
 	Object lib/NitroDWC/asm/bm/util_wifiidtool.o
@@ -506,15 +506,15 @@ Static main
 	Object lib/NitroSDK/asm/os/os_vramexclusive.o
 	Object lib/NitroSDK/asm/os/os_entropy.o
 	Object lib/NitroSDK/asm/os/os_terminate_proc.o
-	Object lib/NitroSDK/asm/mi/mi_wram.o
-	Object lib/NitroSDK/asm/mi/mi_dma.o
-	Object lib/NitroSDK/asm/mi/mi_dma_hblank.o
-	Object lib/NitroSDK/asm/mi/mi_dma_gxcommand.o
-	Object lib/NitroSDK/asm/mi/mi_memory.o
-	Object lib/NitroSDK/asm/mi/mi_swap.o
-	Object lib/NitroSDK/asm/mi/mi_uncompress.o
-	Object lib/NitroSDK/asm/mi/mi_dma_card.o
-	Object lib/NitroSDK/asm/mi/mi_init.o
+	Object lib/NitroSDK/src/mi/mi_wram.o
+	Object lib/NitroSDK/src/mi/mi_dma.o
+	Object lib/NitroSDK/src/mi/mi_dma_hblank.o
+	Object lib/NitroSDK/src/mi/mi_dma_gxcommand.o
+	Object lib/NitroSDK/src/mi/mi_memory.o
+	Object lib/NitroSDK/src/mi/mi_swap.o
+	Object lib/NitroSDK/src/mi/mi_uncompress.o
+	Object lib/NitroSDK/src/mi/mi_dma_card.o
+	Object lib/NitroSDK/src/mi/mi_init.o
 	Object lib/NitroSDK/asm/snd/snd_interface.o
 	Object lib/NitroSDK/asm/snd/snd_main.o
 	Object lib/NitroSDK/asm/snd/snd_command.o
@@ -522,8 +522,8 @@ Static main
 	Object lib/NitroSDK/asm/snd/snd_work.o
 	Object lib/NitroSDK/asm/snd/snd_util.o
 	Object lib/NitroSDK/asm/snd/snd_bank.o
-	Object lib/NitroSDK/asm/pxi/pxi_init.o
-	Object lib/NitroSDK/asm/pxi/pxi_fifo.o
+	Object lib/NitroSDK/src/pxi/pxi_init.o
+	Object lib/NitroSDK/src/pxi/pxi_fifo.o
 	Object lib/NitroSDK/src/fs/fs_command.o
 	Object lib/NitroSDK/src/fs/fs_command_default.o
 	Object lib/NitroSDK/src/fs/fs_archive.o
@@ -535,12 +535,12 @@ Static main
 	Object lib/NitroSDK/asm/dgt/hmac.o
 	Object lib/NitroSDK/asm/dgt/sha1s-arm4cw.o
 	Object lib/NitroSDK/src/cp/cp_context.o
-	Object lib/NitroSDK/asm/spi/tp.o
-	Object lib/NitroSDK/asm/spi/mic.o
-	Object lib/NitroSDK/asm/spi/pm.o
-	Object lib/NitroSDK/asm/rtc/external.o
-	Object lib/NitroSDK/asm/rtc/internal.o
-	Object lib/NitroSDK/asm/rtc/convert.o
+	Object lib/NitroSDK/src/spi/tp.o
+	Object lib/NitroSDK/src/spi/mic.o
+	Object lib/NitroSDK/src/spi/pm.o
+	Object lib/NitroSDK/src/rtc/external.o
+	Object lib/NitroSDK/src/rtc/internal.o
+	Object lib/NitroSDK/src/rtc/convert.o
 	Object lib/NitroSDK/src/card/card_common.o
 	Object lib/NitroSDK/src/card/card_spi.o
 	Object lib/NitroSDK/src/card/card_backup.o
@@ -548,13 +548,13 @@ Static main
 	Object lib/NitroSDK/src/card/card_request.o
 	Object lib/NitroSDK/asm/card/card_pullout.o
 	Object lib/NitroSDK/asm/wm/wm_system.o
-	Object lib/NitroSDK/asm/wm/wm_sync.o
-	Object lib/NitroSDK/asm/wm/wm_standard.o
-	Object lib/NitroSDK/asm/wm/wm_mp.o
-	Object lib/NitroSDK/asm/wm/wm_dcf.o
-	Object lib/NitroSDK/asm/wm/wm_ds.o
-	Object lib/NitroSDK/asm/wm/wm_ks.o
-	Object lib/NitroSDK/asm/wm/wm_etc.o
+	Object lib/NitroSDK/src/wm/wm_sync.o
+	Object lib/NitroSDK/src/wm/wm_standard.o
+	Object lib/NitroSDK/src/wm/wm_mp.o
+	Object lib/NitroSDK/src/wm/wm_dcf.o
+	Object lib/NitroSDK/src/wm/wm_ds.o
+	Object lib/NitroSDK/src/wm/wm_ks.o
+	Object lib/NitroSDK/src/wm/wm_etc.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg_proc.o
 	Object lib/NitroSDK/src/ctrdg/ctrdg_backup.o
@@ -657,6 +657,8 @@ Autoload ITCM
 {
 	Address 0x01FF8000
 	Object asm/itcm.o (.itcm)
+	Object lib/NitroSDK/src/mi/mi_dma.o (.itcm)
+	Object lib/NitroSDK/src/mi/mi_dma_gxcommand.o (.itcm)
 }
 
 Autoload DTCM
