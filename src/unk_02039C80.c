@@ -6,7 +6,7 @@
 #include "unk_020068C8.h"
 #include "unk_02017E74.h"
 #include "unk_02039C80.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 
 typedef struct {
     u8 unk_00;
@@ -122,7 +122,7 @@ void sub_02039DC0 (const int param0, UnkStruct_02039E30 * param1)
 {
     u16 v0;
 
-    v0 = sub_0203A060(param0);
+    v0 = MapHeader_GetMatrixId(param0);
     sub_02039C80(&param1->unk_04, v0, param0);
 
     param1->unk_02 = v0;

@@ -21,7 +21,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_02073C2C.h"
 #include "unk_020790B0.h"
 #include "unk_02079FEC.h"
@@ -810,7 +810,7 @@ static int sub_02085C50 (void * param0)
 
         v3 = sub_0207A0FC(v0->unk_5A4->unk_00, v0->unk_B11);
         v4 = v0->unk_5A4->unk_1C;
-        v5 = sub_0203A354(v4->unk_1C->unk_00);
+        v5 = MapHeader_GetMapEvolutionMethod(v4->unk_1C->unk_00);
         v0->unk_5A4->unk_38 = sub_02076B94(v0->unk_5A4->unk_00, v3, 0, v5, &v0->unk_5A4->unk_3C);
 
         if (v0->unk_5A4->unk_38 != 0) {

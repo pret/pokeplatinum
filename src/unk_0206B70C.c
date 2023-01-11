@@ -17,7 +17,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_02039C80.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E880.h"
@@ -106,7 +106,7 @@ void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int
 
     v6 = sub_02039E30(param0->unk_2C, v4 / 32, v5 / 32);
 
-    if (sub_0203A24C(v6)) {
+    if (MapHeader_MapIsOnMainMatrix(v6)) {
         param1->unk_00 = v4;
         param1->unk_04 = v5;
     } else {

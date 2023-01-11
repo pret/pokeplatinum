@@ -49,7 +49,7 @@
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_02039C80.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203CC84.h"
@@ -549,7 +549,7 @@ static void ov5_021D13B4 (UnkStruct_0203CDB0 * param0)
     UnkStruct_020556C4 * v0;
     int v1, v2, v3;
 
-    if (sub_0203A24C(param0->unk_1C->unk_00) == 0) {
+    if (MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00) == 0) {
         return;
     }
 

@@ -10,7 +10,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0201378C.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_020507CC.h"
 #include "unk_020553DC.h"
@@ -186,9 +186,9 @@ u16 sub_020554A4 (UnkStruct_0203CDB0 * param0, int param1)
     u16 v0, v1;
 
     if (sub_02013948() == 0) {
-        v0 = sub_0203A0C4(param1);
+        v0 = MapHeader_GetDayMusicId(param1);
     } else {
-        v0 = sub_0203A0D8(param1);
+        v0 = MapHeader_GetNightMusicId(param1);
     }
 
     v1 = sub_0206AB68(sub_020507E4(param0->unk_0C), param1);

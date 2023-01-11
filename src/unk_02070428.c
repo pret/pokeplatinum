@@ -14,7 +14,7 @@
 #include "unk_02025E08.h"
 #include "unk_0202B604.h"
 #include "unk_0202D7A8.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
 #include "unk_020507CC.h"
@@ -80,7 +80,7 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
         sub_0206C404(v0, param0->unk_1C->unk_00);
     }
 
-    if (!sub_0203A274(param0->unk_1C->unk_00)) {
+    if (!MapHeader_IsCave(param0->unk_1C->unk_00)) {
         UnkStruct_020507E4 * v1 = sub_020507E4(param0->unk_0C);
 
         sub_0206AECC(v1);
@@ -90,14 +90,14 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
     {
         UnkStruct_0205EC34 * v2 = sub_0203A780(sub_0203A790(param0->unk_0C));
 
-        if ((v2->unk_04 == 0x1) && (sub_0203A1F0(param0->unk_1C->unk_00) == 0)) {
+        if ((v2->unk_04 == 0x1) && (MapHeader_IsBikeAllowed(param0->unk_1C->unk_00) == 0)) {
             v2->unk_04 = 0x0;
         } else if (v2->unk_04 == 0x2) {
             v2->unk_04 = 0x0;
         }
     }
 
-    if (sub_0203A24C(param0->unk_1C->unk_00)) {
+    if (MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00)) {
         UnkStruct_020556C4 * v3;
 
         v3 = sub_0203A76C(sub_0203A790(param0->unk_0C));

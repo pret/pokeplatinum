@@ -8,7 +8,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_0200AC5C.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_02071CFC.h"
 
 u32 sub_02071CFC (UnkStruct_0200B144 * param0, const int param1, UnkStruct_02023790 * param2)

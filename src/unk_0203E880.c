@@ -29,7 +29,7 @@
 #include "unk_02017E74.h"
 #include "unk_0201D15C.h"
 #include "unk_02023790.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A9C8.h"
 #include "unk_0203E724.h"
@@ -853,12 +853,12 @@ static void sub_0203F0E4 (UnkStruct_0203E724 * param0, u16 param1)
 
 static void * sub_0203F0FC (int param0)
 {
-    return sub_02006AC0(10, sub_0203A09C(param0), 11);
+    return sub_02006AC0(10, MapHeader_GetScriptsBank(param0), 11);
 }
 
 static u32 sub_0203F110 (int param0)
 {
-    return sub_0203A088(param0);
+    return MapHeader_GetMsgBank(param0);
 }
 
 u16 * sub_0203F118 (UnkStruct_0203CDB0 * param0, u16 param1)

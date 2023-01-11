@@ -18,7 +18,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202F180.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_020559DC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079FEC.h"

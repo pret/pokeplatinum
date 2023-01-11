@@ -66,7 +66,7 @@
 #include "unk_0202D778.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A9C8.h"
 #include "unk_0203CC84.h"
@@ -367,7 +367,7 @@ static u32 sub_0203ABD0 (UnkStruct_0203CDB0 * param0)
         v0 |= 0x4;
     }
 
-    if (sub_0203A310(param0->unk_1C->unk_00) == 1) {
+    if (MapHeader_MapIsAmitySquare(param0->unk_1C->unk_00) == 1) {
         v0 |= 0x2;
         v0 |= 0x4;
     }
@@ -1180,7 +1180,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_0203C7B8 * v15 = sub_02018144(11, sizeof(UnkStruct_0203C7B8));
 
-        v15->unk_02 = sub_0203A354(v0->unk_1C->unk_00);
+        v15->unk_02 = MapHeader_GetMapEvolutionMethod(v0->unk_1C->unk_00);
         v15->unk_01 = 0;
         v15->unk_00 = v2->unk_22;
         v15->unk_04 = v2->unk_38;

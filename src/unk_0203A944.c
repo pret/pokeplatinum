@@ -8,7 +8,7 @@
 
 #include "unk_0201378C.h"
 #include "unk_02025CB0.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A944.h"
 #include "unk_020559DC.h"
 
@@ -1850,7 +1850,7 @@ int sub_0203A944 (UnkStruct_0203CDB0 * param0, int param1)
 {
     int v0;
 
-    v0 = sub_0203A174(param1);
+    v0 = MapHeader_GetWeatherType(param1);
 
     if (v0 < 32) {
         return v0;

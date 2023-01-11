@@ -24,7 +24,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203CC84.h"
@@ -208,7 +208,7 @@ static void ov6_02240D00 (UnkStruct_0203CDB0 * param0, const BOOL param1, int * 
     int * v0;
     u16 v1, v2;
 
-    if (sub_0203A2FC(param0->unk_1C->unk_00)) {
+    if (MapHeader_MapIsTrophyGarden(param0->unk_1C->unk_00)) {
         sub_0202DA10(param0->unk_0C, &v1, &v2);
 
         if (param1) {
@@ -428,7 +428,7 @@ BOOL ov6_0224106C (UnkStruct_0203CDB0 * param0, const int param1, UnkStruct_ov6_
     sub_02052314(*param2, param0);
     sub_0205285C(*param2);
 
-    if ((sub_0203A2F0(param0->unk_1C->unk_00)) && ov6_02247660(param0)) {
+    if ((MapHeader_MapHasFeebasTiles(param0->unk_1C->unk_00)) && ov6_02247660(param0)) {
         u8 v6;
         int v7;
         u8 v8, v9;

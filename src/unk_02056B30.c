@@ -18,7 +18,7 @@
 #include "unk_0200F174.h"
 #include "unk_02017E74.h"
 #include "unk_02020020.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
 #include "unk_02054D00.h"
@@ -165,18 +165,18 @@ void sub_02056C18 (UnkStruct_0203CDB0 * param0, const int param1, const int para
     v0 = param0->unk_1C->unk_00;
     v1 = 0;
 
-    if (sub_0203A274(v0)) {
-        if (sub_0203A274(param1)) {
+    if (MapHeader_IsCave(v0)) {
+        if (MapHeader_IsCave(param1)) {
             v1 = 6;
-        } else if (sub_0203A2A8(param1)) {
+        } else if (MapHeader_IsOutdoors(param1)) {
             v1 = 5;
         } else if (sub_0203A288(param1)) {
             v1 = 6;
         } else {
             GF_ASSERT(0);
         }
-    } else if (sub_0203A2A8(v0)) {
-        if (sub_0203A274(param1)) {
+    } else if (MapHeader_IsOutdoors(v0)) {
+        if (MapHeader_IsCave(param1)) {
             v1 = 4;
         } else if (sub_0203A288(param1)) {
             v1 = 6;
@@ -184,11 +184,11 @@ void sub_02056C18 (UnkStruct_0203CDB0 * param0, const int param1, const int para
             GF_ASSERT(0);
         }
     } else if (sub_0203A288(v0)) {
-        if (sub_0203A2A8(param1)) {
+        if (MapHeader_IsOutdoors(param1)) {
             v1 = 0;
         } else if (sub_0203A288(param1)) {
             v1 = 6;
-        } else if (sub_0203A274(param1)) {
+        } else if (MapHeader_IsCave(param1)) {
             v1 = 0;
         } else {
             GF_ASSERT(0);

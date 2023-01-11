@@ -163,7 +163,7 @@ Static main
 	Object src/unk_02039A58.o
 	Object src/unk_02039A64.o
 	Object src/unk_02039C80.o
-	Object src/unk_0203A024.o
+	Object src/map_header.o
 	Object src/unk_0203A378.o
 	Object src/unk_0203A6DC.o
 	Object src/unk_0203A7D8.o

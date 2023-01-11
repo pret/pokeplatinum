@@ -17,7 +17,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202B604.h"
 #include "unk_0202CBE4.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 
 typedef struct UnkStruct_0202B628_t {
     UnkStruct_0202BC58 unk_00;
@@ -1286,12 +1286,12 @@ void sub_0202C5C4 (UnkStruct_02025E6C * param0, UnkStruct_0202B628 * param1, u32
 
     v0 = NULL;
 
-    if (sub_0203A274(param3) == 1) {
-        if (sub_0203A2A8(param2) == 1) {
+    if (MapHeader_IsCave(param3) == 1) {
+        if (MapHeader_IsOutdoors(param2) == 1) {
             v0 = sub_0202BDAC((u16)sub_0203A138(param3), param4);
         }
     } else if (sub_0203A288(param3) == 1) {
-        if (sub_0203A2A8(param2) == 1) {
+        if (MapHeader_IsOutdoors(param2) == 1) {
             if (param3 == 414) {
                 v0 = sub_0202BCE4(param4);
             } else if (param3 == 422) {
@@ -1308,7 +1308,7 @@ void sub_0202C5C4 (UnkStruct_02025E6C * param0, UnkStruct_0202B628 * param1, u32
                 }
             }
         }
-    } else if (sub_0203A2A8(param3) == 1) {
+    } else if (MapHeader_IsOutdoors(param3) == 1) {
         if (sub_0203A288(param2) == 1) {
             u8 v3 = sub_0202C6CC(param0, param2);
 

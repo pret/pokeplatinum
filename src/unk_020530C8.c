@@ -42,7 +42,7 @@
 #include "unk_0202B604.h"
 #include "unk_02034198.h"
 #include "unk_02039C80.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
@@ -278,11 +278,11 @@ void sub_020531C0 (UnkStruct_0203CDB0 * param0, BOOL param1)
 
     if (param1) {
         int v4 = sub_0203A770(v1);
-        int v5 = sub_0203A188(v0);
+        int v5 = MapHeader_GetCameraType(v0);
 
         GF_ASSERT(v4 == v5);
     } else {
-        sub_0203A778(v1, sub_0203A188(v0));
+        sub_0203A778(v1, MapHeader_GetCameraType(v0));
     }
 
     if (!param1) {
@@ -449,7 +449,7 @@ static void sub_020534EC (UnkStruct_02049FA8 * param0, const UnkStruct_0203CDB0 
 
 static BOOL sub_02053518 (const UnkStruct_0203CDB0 * param0)
 {
-    if (sub_0203A334(param0->unk_1C->unk_00)
+    if (MapHeader_IsPokemonCenter2F(param0->unk_1C->unk_00)
         && (param0->unk_1C->unk_08 == 7) && (param0->unk_1C->unk_0C == 6)) {
         return 1;
     } else {
@@ -615,7 +615,7 @@ void sub_02053808 (UnkStruct_0203CDB0 * param0)
     UnkStruct_020508D4 * v0;
     UnkStruct_02053718 * v1;
 
-    if (sub_0203A2DC(param0->unk_1C->unk_00)) {
+    if (MapHeader_MapIsUnionRoom(param0->unk_1C->unk_00)) {
         (void)0;
     } else if (sub_02053518(param0)) {
         UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);

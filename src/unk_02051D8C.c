@@ -45,7 +45,7 @@
 #include "unk_0203266C.h"
 #include "unk_02034198.h"
 #include "unk_020366A0.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_020507CC.h"
 #include "unk_02051D8C.h"
@@ -264,7 +264,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
         sub_0205281C(param0, param1);
         param0->unk_138 = sub_02055BA8(param1);
     } else {
-        param0->unk_128 = sub_0203A19C(param3);
+        param0->unk_128 = MapHeader_GetBattleBg(param3);
         param0->unk_12C = 9;
         {
             UnkStruct_02055BA8 * v7 = sub_02025CD8(param2);
@@ -282,7 +282,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
 
     param0->unk_EC = sub_02024420(param2);
     param0->unk_130 = sub_0203A138(param3);
-    param0->unk_13C = sub_0203A354(param3);
+    param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = sub_0208C324(param2);
     param0->unk_144 = sub_0206ADFC(sub_020507E4(param2));
     param0->unk_14C = sub_0203A74C(v6);
@@ -525,7 +525,7 @@ static void sub_0205281C (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203C
 {
     UnkStruct_0205EC34 * v0 = sub_0203A780(sub_0203A790(param1->unk_0C));
 
-    param0->unk_128 = sub_0203A19C(param1->unk_1C->unk_00);
+    param0->unk_128 = MapHeader_GetBattleBg(param1->unk_1C->unk_00);
 
     if (v0->unk_04 == 0x2) {
         param0->unk_128 = 1;

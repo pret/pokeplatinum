@@ -30,7 +30,7 @@
 #include "unk_0202631C.h"
 #include "unk_0202CBE4.h"
 #include "unk_020366A0.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_0205E7D0.h"
 #include "overlay005/ov5_021E1D20.h"

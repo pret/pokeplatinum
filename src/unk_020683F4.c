@@ -32,7 +32,7 @@
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A9C8.h"
 #include "unk_0203C954.h"
@@ -416,7 +416,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (!(sub_0203A24C(param0->unk_00))) {
+    if (!(MapHeader_MapIsOnMainMatrix(param0->unk_00))) {
         return -1;
     }
 
@@ -548,7 +548,7 @@ static u32 sub_02068948 (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (sub_0203A1F0(param0->unk_00) == 0) {
+    if (MapHeader_IsBikeAllowed(param0->unk_00) == 0) {
         return -1;
     }
 
@@ -828,7 +828,7 @@ static BOOL sub_02068D58 (UnkStruct_02068870 * param0)
 
 static u32 sub_02068D68 (const UnkStruct_020684D0 * param0)
 {
-    if (sub_0203A24C(param0->unk_00)) {
+    if (MapHeader_MapIsOnMainMatrix(param0->unk_00)) {
         return 0;
     }
 
@@ -1034,7 +1034,7 @@ static u32 sub_020690C4 (const UnkStruct_020684D0 * param0)
         return 2;
     }
 
-    if ((sub_0203A274(param0->unk_00) == 1) && (sub_0203A1B8(param0->unk_00) == 1)) {
+    if ((MapHeader_IsCave(param0->unk_00) == 1) && (MapHeader_IsEscapeRopeAllowed(param0->unk_00) == 1)) {
         return 0;
     }
 
@@ -1077,7 +1077,7 @@ static u32 sub_02069130 (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (!sub_0203A31C(param0->unk_00)) {
+    if (!MapHeader_IsAzureFluteAllowed(param0->unk_00)) {
         return -1;
     }
 

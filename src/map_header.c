@@ -1,34 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0203A024.h"
+#include "map_header.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
-    u16 unk_0C;
-    u16 unk_0E;
-    u16 unk_10;
-    u16 unk_12_0 : 8;
-    u16 unk_12_8 : 8;
-    u8 unk_14;
-    u8 unk_15;
-    u16 unk_16_0 : 7;
-    u16 unk_16_7 : 5;
-    u16 unk_16_12 : 1;
-    u16 unk_16_13 : 1;
-    u16 unk_16_14 : 1;
-    u16 unk_16_15 : 1;
-} UnkStruct_020E601C;
-
-static int sub_0203A20C(int param0);
-
-static const UnkStruct_020E601C Unk_020E601C[] = {
+static const MapHeader mapHeaders[] = {
 	{
 		0x0,
 		0x0,
@@ -13077,220 +13052,219 @@ static const UnkStruct_020E601C Unk_020E601C[] = {
 	},
 };
 
-
-int sub_0203A024 (int param0)
+u32 MapNumberBoundsCheck (u32 headerID)
 {
-    if (param0 >= NELEMS(Unk_020E601C)) {
+    if (headerID >= NELEMS(mapHeaders)) {
         GF_ASSERT(0);
         return 3;
     }
 
-    return param0;
+    return headerID;
 }
 
-const u16 sub_0203A038 (int param0)
+const u16 sub_0203A038 (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_00;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].unk_00;
 }
 
-const u16 sub_0203A04C (int param0)
+const u16 sub_0203A04C (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_01;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].unk_01;
 }
 
-const u16 sub_0203A060 (int param0)
+const u16 MapHeader_GetMatrixId (u32 headerID)
 {
-    u16 v0;
+    u16 matrixID;
 
-    param0 = sub_0203A024(param0);
-    v0 = Unk_020E601C[param0].unk_02;
+    headerID = MapNumberBoundsCheck(headerID);
+    matrixID = mapHeaders[headerID].matrixID;
 
-    if (v0 == 22) {
+    if (matrixID == 22) {
         if (Unk_020E4C40 == 11) {
-            v0 = 23;
+            matrixID = 23;
         }
     }
 
-    return v0;
+    return matrixID;
 }
 
-u32 sub_0203A088 (int param0)
+u32 MapHeader_GetMsgBank (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_08;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].msgBank;
 }
 
-u32 sub_0203A09C (int param0)
+u32 MapHeader_GetScriptsBank (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_04;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].scriptsBank;
 }
 
-u32 sub_0203A0B0 (int param0)
+u32 MapHeader_GetMapScriptBank (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_06;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].mapScriptBank;
 }
 
-u16 sub_0203A0C4 (int param0)
+u16 MapHeader_GetDayMusicId (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_0A;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].dayMusicID;
 }
 
-u16 sub_0203A0D8 (int param0)
+u16 MapHeader_GetNightMusicId (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_0C;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].nightMusicID;
 }
 
-BOOL sub_0203A0EC (int param0)
+BOOL MapHeader_HasWildEncounters (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_0E != 65535;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].wildEncountersBank != 65535;
 }
 
-u32 sub_0203A110 (int param0)
+u32 MapHeader_GetWildEncountersBank (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_0E;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].wildEncountersBank;
 }
 
-u32 sub_0203A124 (int param0)
+u32 MapHeader_GetEventsBank (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_10;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].eventsBank;
 }
 
-u32 sub_0203A138 (int param0)
+u32 sub_0203A138 (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_12_0;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].unk_12_0;
 }
 
-u8 sub_0203A154 (int param0)
+u8 sub_0203A154 (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_12_8;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].unk_12_8;
 }
 
-u32 sub_0203A174 (int param0)
+u32 MapHeader_GetWeatherType (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_14;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].weather;
 }
 
-u32 sub_0203A188 (int param0)
+u32 MapHeader_GetCameraType (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_15;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].cameraType;
 }
 
-u32 sub_0203A19C (int param0)
+u32 MapHeader_GetBattleBg (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_16_7;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].battleBG;
 }
 
-BOOL sub_0203A1B8 (int param0)
+BOOL MapHeader_IsEscapeRopeAllowed (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_16_14;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].isEscapeRopeAllowed;
 }
 
-BOOL sub_0203A1D4 (int param0)
+BOOL MapHeader_IsFlyAllowed (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_16_15;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].isFlyAllowed;
 }
 
-BOOL sub_0203A1F0 (int param0)
+BOOL MapHeader_IsBikeAllowed (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_16_12;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].isBikeAllowed;
 }
 
-static int sub_0203A20C (int param0)
+u32 MapHeader_GetMapType (u32 headerID)
 {
-    param0 = sub_0203A024(param0);
-    return Unk_020E601C[param0].unk_16_0;
+    headerID = MapNumberBoundsCheck(headerID);
+    return mapHeaders[headerID].mapType;
 }
 
-BOOL sub_0203A228 (int param0)
+BOOL MapHeader_IsTeleportAllowed (u32 headerID)
 {
-    if (sub_0203A1D4(param0) == 0) {
-        return 0;
+    if (MapHeader_IsFlyAllowed(headerID) == 0) {
+        return FALSE;
     }
 
-    return sub_0203A20C(param0) != 1;
+    return MapHeader_GetMapType(headerID) != 1;
 }
 
-BOOL sub_0203A24C (int param0)
+BOOL MapHeader_MapIsOnMainMatrix (u32 headerID)
 {
-    return sub_0203A060(param0) == 0;
+    return MapHeader_GetMatrixId(headerID) == 0;
 }
 
-BOOL sub_0203A260 (int param0)
+BOOL MapHeader_IsPokemonCenter (u32 headerID)
 {
-    return sub_0203A20C(param0) == 5;
+    return MapHeader_GetMapType(headerID) == 5;
 }
 
-BOOL sub_0203A274 (int param0)
+BOOL MapHeader_IsCave (u32 headerID)
 {
-    return sub_0203A20C(param0) == 3;
+    return MapHeader_GetMapType(headerID) == 3;
 }
 
-BOOL sub_0203A288 (int param0)
+BOOL sub_0203A288 (u32 headerID)
 {
-    return (sub_0203A20C(param0) == 4) || (sub_0203A20C(param0) == 5);
+    return (MapHeader_GetMapType(headerID) == 4) || (MapHeader_GetMapType(headerID) == 5);
 }
 
-BOOL sub_0203A2A8 (int param0)
+BOOL MapHeader_IsOutdoors (u32 headerID)
 {
-    return (sub_0203A20C(param0) == 1) || (sub_0203A20C(param0) == 2);
+    return (MapHeader_GetMapType(headerID) == 1) || (MapHeader_GetMapType(headerID) == 2);
 }
 
-BOOL sub_0203A2C8 (int param0)
+BOOL sub_0203A2C8 (u32 headerID)
 {
-    if (sub_0203A260(param0)) {
-        return 1;
+    if (MapHeader_IsPokemonCenter(headerID)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_0203A2DC (const int param0)
+BOOL MapHeader_MapIsUnionRoom (const u32 headerID)
 {
-    return param0 == 466;
+    return headerID == 466;
 }
 
-BOOL sub_0203A2F0 (const int param0)
+BOOL MapHeader_MapHasFeebasTiles (const u32 headerID)
 {
-    return param0 == 219;
+    return headerID == 219;
 }
 
-BOOL sub_0203A2FC (const int param0)
+BOOL MapHeader_MapIsTrophyGarden (const u32 headerID)
 {
-    return param0 == 287;
+    return headerID == 287;
 }
 
-BOOL sub_0203A310 (const int param0)
+BOOL MapHeader_MapIsAmitySquare (const u32 headerID)
 {
-    return param0 == 253;
+    return headerID == 253;
 }
 
-BOOL sub_0203A31C (const int param0)
+BOOL MapHeader_IsAzureFluteAllowed (const u32 headerID)
 {
-    if ((param0 == 220) || (param0 == 584) || (param0 == 585)) {
-        return 1;
+    if ((headerID == 220) || (headerID == 584) || (headerID == 585)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_0203A334 (const int param0)
+BOOL MapHeader_IsPokemonCenter2F (const u32 headerID)
 {
     static const u16 v0[] = {
         0x1A5,
@@ -13312,10 +13286,10 @@ BOOL sub_0203A334 (const int param0)
         0xAE,
         0xBE
     };
-    int v1;
+    int i;
 
-    for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        if (param0 == v0[v1]) {
+    for (i = 0; i < NELEMS(v0); i++) {
+        if (headerID == v0[i]) {
             return 1;
         }
     }
@@ -13323,7 +13297,7 @@ BOOL sub_0203A334 (const int param0)
     return 0;
 }
 
-int sub_0203A354 (int param0)
+u32 MapHeader_GetMapEvolutionMethod (u32 headerID)
 {
     static const u16 v0[] = {
         0x181,
@@ -13369,11 +13343,11 @@ int sub_0203A354 (int param0)
         0x249,
         0x18
     };
-    int v1;
+    int i;
 
-    for (v1 = 0; v1 < NELEMS(v0); v1 += 2) {
-        if (v0[v1] == param0) {
-            return v0[v1 + 1];
+    for (i = 0; i < NELEMS(v0); i += 2) {
+        if (v0[i] == headerID) {
+            return v0[i + 1];
         }
     }
 

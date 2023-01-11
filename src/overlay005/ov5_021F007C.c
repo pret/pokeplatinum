@@ -15,7 +15,7 @@
 #include "unk_02017E74.h"
 #include "unk_02018340.h"
 #include "unk_0201FE94.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203E880.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
@@ -479,7 +479,7 @@ BOOL ov5_021F0488 (UnkStruct_020508D4 * param0)
     case 3:
         v1->unk_0E--;
 
-        if (sub_0203A0EC(v0->unk_1C->unk_00)) {
+        if (MapHeader_HasWildEncounters(v0->unk_1C->unk_00)) {
             if (v1->unk_0E < 0) {
                 {
                     u8 v3;

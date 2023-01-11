@@ -21,7 +21,7 @@
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
 #include "unk_0202B604.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
 #include "overlay081/ov81_021D1610.h"

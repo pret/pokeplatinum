@@ -19,7 +19,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202B604.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A9C8.h"
 #include "unk_0203C954.h"
@@ -309,7 +309,7 @@ static int sub_02070950 (const UnkStruct_02070950 * param0)
         return 2;
     }
 
-    if (sub_0203A1D4(param0->unk_00) == 0) {
+    if (MapHeader_IsFlyAllowed(param0->unk_00) == 0) {
         return 1;
     }
 
@@ -673,7 +673,7 @@ static int sub_02070EEC (const UnkStruct_02070950 * param0)
         return 1;
     }
 
-    if (sub_0203A228(param0->unk_00) == 0) {
+    if (MapHeader_IsTeleportAllowed(param0->unk_00) == 0) {
         return 1;
     }
 
@@ -727,7 +727,7 @@ static int sub_02070FCC (const UnkStruct_02070950 * param0)
         return 1;
     }
 
-    if (!((sub_0203A274(param0->unk_00) == 1) && (sub_0203A1B8(param0->unk_00) == 1))) {
+    if (!((MapHeader_IsCave(param0->unk_00) == 1) && (MapHeader_IsEscapeRopeAllowed(param0->unk_00) == 1))) {
         return 1;
     }
 

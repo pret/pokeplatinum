@@ -73,7 +73,7 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
 #include "unk_02079D40.h"
@@ -2417,7 +2417,7 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
     v6 = sub_0203608C();
     v5 = param0->unk_2A - 1;
 
-    if (sub_0203A2DC(param0->unk_00->unk_134) == 1) {
+    if (MapHeader_MapIsUnionRoom(param0->unk_00->unk_134) == 1) {
         v3 = sub_020793AC(param0->unk_00->unk_28[v6 ^ 1].unk_01);
         v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
 

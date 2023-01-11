@@ -33,7 +33,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F180.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_02055808.h"

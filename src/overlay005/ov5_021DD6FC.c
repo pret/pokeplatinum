@@ -17,7 +17,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
-#include "unk_0203A024.h"
+#include "map_header.h"
 #include "unk_02071CFC.h"
 #include "overlay005/ov5_021DD6FC.h"
 
