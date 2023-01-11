@@ -812,7 +812,7 @@ Overlay overlay4
 	Object lib/NitroWiFi/src/wcm/aplist.o
 	Object lib/NitroWiFi/src/wcm/cpsif.o
 	Object lib/NitroWiFi/src/wcm/util_wcm.o
-	Object lib/NitroWiFi/asm/stubs/md5/dummy_md5.o
+	Object lib/NitroWiFi/src/stubs/md5/dummy_md5.o
 }
 
 Overlay overlay5

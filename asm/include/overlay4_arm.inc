@@ -1541,9 +1541,9 @@
 .public ov4_02215730
 .public ov4_022157B0
 .public ov4_022157E4
-.public ov4_02215844
-.public ov4_02215850
-.public ov4_0221585C
+.public MD5Init
+.public MD5Update
+.public MD5Final
 .public ov60_022215B4
 .public ov60_02221608
 .public ov60_02221664
