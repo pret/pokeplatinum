@@ -1,9 +1,0 @@
-.public sub_02018144
-.public sub_020181C4
-.public sub_02033478
-.public OS_InitTick
-.public OS_InitAlarm
-.public OS_DisableInterrupts
-.public OS_RestoreInterrupts
-.public DWC_SetAuthServer
-.public DWC_StartUtility
