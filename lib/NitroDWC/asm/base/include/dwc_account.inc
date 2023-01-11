@@ -1,4 +1,4 @@
-.public sub_020A3E4C
+.public DWC_Auth_GetId
 .public DWCi_Acc_SetMaskBits
 .public DWCi_Acc_GetUserId
 .public DWCi_Acc_GetPlayerId

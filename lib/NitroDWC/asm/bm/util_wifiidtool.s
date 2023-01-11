@@ -243,8 +243,8 @@ _020A3C10: .word 0x00269EC3
 _020A3C14: .word 0x000009BF
 	arm_func_end sub_020A3A3C
 
-	arm_func_start sub_020A3C18
-sub_020A3C18: ; 0x020A3C18
+	arm_func_start DWCi_AUTH_MakeWiFiID
+DWCi_AUTH_MakeWiFiID: ; 0x020A3C18
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x14
 	mov r4, r0
@@ -262,7 +262,7 @@ sub_020A3C18: ; 0x020A3C18
 	moveq r0, #0
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end sub_020A3C18
+	arm_func_end DWCi_AUTH_MakeWiFiID
 
 	arm_func_start sub_020A3C5C
 sub_020A3C5C: ; 0x020A3C5C
@@ -402,8 +402,8 @@ _020A3E44: .word 0x00269EC3
 _020A3E48: .word 0x000009BF
 	arm_func_end sub_020A3CAC
 
-	arm_func_start sub_020A3E4C
-sub_020A3E4C: ; 0x020A3E4C
+	arm_func_start DWC_Auth_GetId
+DWC_Auth_GetId: ; 0x020A3E4C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x14
 	mov r4, r0
@@ -425,10 +425,10 @@ sub_020A3E4C: ; 0x020A3E4C
 	str r0, [r4, #0x10]
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end sub_020A3E4C
+	arm_func_end DWC_Auth_GetId
 
-	arm_func_start sub_020A3EA0
-sub_020A3EA0: ; 0x020A3EA0
+	arm_func_start DWC_Auth_CheckWiFiIDNeedCreate
+DWC_Auth_CheckWiFiIDNeedCreate: ; 0x020A3EA0
 	stmdb sp!, {lr}
 	sub sp, sp, #0x14
 	add r0, sp, #0
@@ -450,7 +450,7 @@ _020A3EE4:
 	mov r0, #0
 	add sp, sp, #0x14
 	ldmia sp!, {pc}
-	arm_func_end sub_020A3EA0
+	arm_func_end DWC_Auth_CheckWiFiIDNeedCreate
 
 	.rodata
 

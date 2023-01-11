@@ -1,7 +1,7 @@
 .public OSi_ReferSymbol
 .public sub_020A2810
 .public sub_020A283C
-.public sub_020A3C18
+.public DWCi_AUTH_MakeWiFiID
 .public sub_020A3C5C
 .public sub_020A3CAC
 .public DWCi_Acc_SetPlayerId

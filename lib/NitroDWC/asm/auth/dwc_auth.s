@@ -676,7 +676,7 @@ _021D391C:
 _021D394C:
 	add r0, r4, #0x1f
 	bic r0, r0, #0x1f
-	bl sub_020A3C18
+	bl DWCi_AUTH_MakeWiFiID
 	ldr r0, _021D39A0 ; =0x02215F34
 	mov r1, r4
 	mov r2, #0
