@@ -94,3 +94,5 @@ compare.sh
 diff/
 
 sdk/
+
+!tools/asmdiff/asmdiff.sh
