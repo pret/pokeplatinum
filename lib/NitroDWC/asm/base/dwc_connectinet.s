@@ -461,10 +461,10 @@ _021D7EA8: .word Unk_ov4_0221A4DC
 
 	arm_func_start DWC_GetLinkLevel
 DWC_GetLinkLevel: ; 0x021D7EAC
-	ldr ip, _021D7EB4 ; =ov4_022156EC
+	ldr ip, _021D7EB4 ; =WCM_GetLinkLevel
 	bx ip
 	; .align 2, 0
-_021D7EB4: .word ov4_022156EC
+_021D7EB4: .word WCM_GetLinkLevel
 	arm_func_end DWC_GetLinkLevel
 
 	arm_func_start DWC_GetApInfo
@@ -519,7 +519,7 @@ _021D7F4C:
 	cmp r0, #3
 	bge _021D7FB0
 	add r0, sp, #0
-	bl ov4_022153DC
+	bl WCM_GetApEssid
 	mov r5, r0
 	mov r1, #0x20
 	bl DC_InvalidateRange

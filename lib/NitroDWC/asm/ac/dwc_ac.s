@@ -102,7 +102,7 @@ DWC_AC_Create: ; 0x021E5C34
 	ldr r0, _021E5DD4 ; =0x0221AE2C
 	mov r1, #0x2300
 	ldr r0, [r0, #0]
-	bl ov4_02212CC8
+	bl WCM_Init
 	cmp r0, #1
 	beq _021E5DC0
 	cmp r0, #4
@@ -616,7 +616,7 @@ _021E6418:
 	mov r0, #0
 	ldr r1, [r1, #0xc]
 	strb r2, [r1, #0x17]
-	bl ov4_022153DC
+	bl WCM_GetApEssid
 	movs r4, r0
 	beq _021E6450
 	mov r1, #0x20

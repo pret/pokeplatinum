@@ -73,19 +73,19 @@ _021E7198:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
 _021E71A0:
-	bl ov4_02212DE0
+	bl WCM_Finish
 	b _021E71D8
 _021E71A8:
-	bl ov4_0221303C
+	bl WCM_CleanupAsync
 	b _021E71D8
 _021E71B0:
-	bl ov4_022132C4
+	bl WCM_EndSearchAsync
 	b _021E71D8
 _021E71B8:
-	bl ov4_0221356C
+	bl WCM_DisconnectAsync
 	b _021E71D8
 _021E71C0:
-	bl ov4_02213688
+	bl WCM_TerminateAsync
 	b _021E71D8
 _021E71C8:
 	mov r0, #0

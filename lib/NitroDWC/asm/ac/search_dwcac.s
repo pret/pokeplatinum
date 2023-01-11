@@ -3,8 +3,8 @@
 
 	
 
-	.extern Unk_ov4_02215E48
-	.extern Unk_ov4_02215E50
+	.extern WCM_Bssid_Any
+	.extern WCM_Essid_Any
 	.text
 
 
@@ -175,8 +175,8 @@ _021E7AE4:
 	bl ov4_021E808C
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021E7B18: .word Unk_ov4_02215E48
-_021E7B1C: .word Unk_ov4_02215E50
+_021E7B18: .word WCM_Bssid_Any
+_021E7B1C: .word WCM_Essid_Any
 	arm_func_end ov4_021E7A40
 
 	arm_func_start ov4_021E7B20
@@ -200,8 +200,8 @@ ov4_021E7B20: ; 0x021E7B20
 	mov r0, #3
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021E7B68: .word Unk_ov4_02215E48
-_021E7B6C: .word Unk_ov4_02215E50
+_021E7B68: .word WCM_Bssid_Any
+_021E7B6C: .word WCM_Essid_Any
 	arm_func_end ov4_021E7B20
 
 	arm_func_start ov4_021E7B70
@@ -248,8 +248,8 @@ _021E7C00:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021E7C08: .word 0x000082EA
-_021E7C0C: .word Unk_ov4_02215E48
-_021E7C10: .word Unk_ov4_02215E50
+_021E7C0C: .word WCM_Bssid_Any
+_021E7C10: .word WCM_Essid_Any
 	arm_func_end ov4_021E7B70
 
 	arm_func_start ov4_021E7C14
@@ -436,7 +436,7 @@ _021E7E94:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021E7E9C: .word 0x000082EA
-_021E7EA0: .word Unk_ov4_02215E48
+_021E7EA0: .word WCM_Bssid_Any
 	arm_func_end ov4_021E7D84
 
 	arm_func_start ov4_021E7EA4
@@ -548,7 +548,7 @@ _021E7FE4:
 	ldmloia sp!, {r3, r4, r5, pc}
 _021E8010:
 	strb r1, [r5, #0xd13]
-	bl ov4_022132C4
+	bl WCM_EndSearchAsync
 	cmp r0, #1
 	strneb r4, [r5, #0xd0e]
 	movne r4, #7
@@ -593,7 +593,7 @@ ov4_021E808C: ; 0x021E808C
 	movgt r2, #0xc
 	ldr r2, [ip, r2, lsl #2]
 	orr r2, r3, r2
-	bl ov4_0221312C
+	bl WCM_SearchAsync
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E80AC: .word Unk_ov4_022158B4

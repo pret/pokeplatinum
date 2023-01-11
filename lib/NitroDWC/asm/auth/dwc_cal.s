@@ -173,7 +173,7 @@ _021D40A8:
 	mov r1, #0xe
 	bl OS_SNPrintf
 	add r0, sp, #0x14
-	bl ov4_022153DC
+	bl WCM_GetApEssid
 	mov r5, r0
 	mov r1, #0x20
 	bl DC_InvalidateRange

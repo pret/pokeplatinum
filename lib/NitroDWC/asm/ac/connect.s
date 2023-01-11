@@ -172,7 +172,7 @@ _021E6DB8:
 	add r0, r5, r4
 	add r1, r1, #0xc00
 	orr r2, r6, r2
-	bl ov4_02213368
+	bl WCM_ConnectAsync
 	b _021E6E00
 _021E6DDC:
 	cmp r0, #9

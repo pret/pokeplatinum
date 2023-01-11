@@ -11,7 +11,7 @@
 .public MIi_CpuCopy16
 .public MI_CpuFill8
 .public MI_CpuCopy8
-.public ov4_02214E34
+.public WCM_ClearApList
 .public ov18_02226910
 .public ov18_0222699C
 .public ov18_022269C0

@@ -5,9 +5,9 @@
 .public ov4_021E71E0
 .public SOCL_CalmDown
 .public SOC_Cleanup
-.public ov4_02212DE0
-.public ov4_0221303C
-.public ov4_022132C4
-.public ov4_0221356C
-.public ov4_02213688
+.public WCM_Finish
+.public WCM_CleanupAsync
+.public WCM_EndSearchAsync
+.public WCM_DisconnectAsync
+.public WCM_TerminateAsync
 .public WCM_GetPhase

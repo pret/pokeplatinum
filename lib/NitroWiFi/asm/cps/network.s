@@ -579,7 +579,7 @@ ov4_022093DC: ; 0x022093DC
 	add r1, r7, #6
 	sub r2, r6, #6
 	str r4, [sp]
-	bl ov4_0221545C
+	bl WCM_SendDCFDataEx
 	cmp r0, #0
 	movlt r1, #1
 	ldr r0, _02209434 ; =0x0221DDF0

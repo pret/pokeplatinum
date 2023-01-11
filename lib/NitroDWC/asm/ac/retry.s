@@ -53,13 +53,13 @@ _021E788C:
 	bl ov4_021E7A40
 	b _021E78D8
 _021E78A8:
-	bl ov4_022132C4
+	bl WCM_EndSearchAsync
 	b _021E78D8
 _021E78B0:
-	bl ov4_0221356C
+	bl WCM_DisconnectAsync
 	b _021E78D8
 _021E78B8:
-	bl ov4_02213688
+	bl WCM_TerminateAsync
 	mov r0, #4
 	bl ov4_021E63C0
 	mov r5, #0x11

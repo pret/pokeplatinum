@@ -25,7 +25,7 @@ ov4_021E80B0: ; 0x021E80B0
 	bl ov4_021E73FC
 	ldr r1, _021E8134 ; =ov4_021E6B04
 	add r0, sp, #0
-	bl ov4_02212E38
+	bl WCM_StartupAsync
 	cmp r0, #1
 	beq _021E8108
 	cmp r0, #4

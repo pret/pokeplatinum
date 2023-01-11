@@ -614,7 +614,7 @@ _02226D64:
 	ldr r2, [r7, #0x28]
 	add r0, #0x2c
 	bl MI_CpuCopy8
-	bl ov4_02214E34
+	bl WCM_ClearApList
 	ldr r2, [r7, #0]
 	ldr r3, _02226EBC ; =0x0030BFFE
 	mov r0, #0

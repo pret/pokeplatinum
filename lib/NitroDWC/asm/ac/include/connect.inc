@@ -14,5 +14,5 @@
 .public ov4_021E7490
 .public ov4_021E862C
 .public ov4_021E86C4
-.public ov4_02213368
+.public WCM_ConnectAsync
 .public WCM_GetPhase

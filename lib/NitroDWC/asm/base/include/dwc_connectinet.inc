@@ -29,5 +29,5 @@
 .public ov4_0220DCE0
 .public WCM_GetPhase
 .public WCM_GetApMacAddress
-.public ov4_022153DC
-.public ov4_022156EC
+.public WCM_GetApEssid
+.public WCM_GetLinkLevel

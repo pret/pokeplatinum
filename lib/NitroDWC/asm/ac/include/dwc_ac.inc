@@ -26,5 +26,5 @@
 .public ov4_021E80B0
 .public ov4_021E8138
 .public ov4_021E8654
-.public ov4_02212CC8
-.public ov4_022153DC
+.public WCM_Init
+.public WCM_GetApEssid

@@ -18,4 +18,4 @@
 .public DWC_AC_GetApType
 .public DWC_AC_GetApSpotInfo
 .public WCM_GetApMacAddress
-.public ov4_022153DC
+.public WCM_GetApEssid

@@ -3,8 +3,8 @@
 
 	
 
-	.extern Unk_ov4_02215E48
-	.extern Unk_ov4_02215E50
+	.extern WCM_Bssid_Any
+	.extern WCM_Essid_Any
 	.text
 
 
@@ -62,7 +62,7 @@ _022275A0:
 	ldr r0, [r2, #0x44]
 	ldr r1, [r2, #0x48]
 	ldr r2, [r2, #0x60]
-	bl ov4_0221312C
+	bl WCM_SearchAsync
 	cmp r0, #3
 	beq _02227634
 	ldr r0, _02227850 ; =0x02251D10
@@ -82,7 +82,7 @@ _022275C8:
 	ldr r0, [r2, #0x4c]
 	ldr r1, [r2, #0x28]
 	ldr r2, [r2, #0x58]
-	bl ov4_02213368
+	bl WCM_ConnectAsync
 	cmp r0, #3
 	beq _02227634
 	ldr r0, _02227850 ; =0x02251D10
@@ -192,7 +192,7 @@ _02227694:
 	ldr r0, [r2, #0x44]
 	ldr r1, [r2, #0x48]
 	ldr r2, [r2, #0x60]
-	bl ov4_0221312C
+	bl WCM_SearchAsync
 	cmp r0, #3
 	beq _02227736
 	ldr r0, _02227850 ; =0x02251D10
@@ -209,7 +209,7 @@ _02227694:
 _022276BC:
 	cmp r0, #2
 	bne _022276DE
-	bl ov4_0221303C
+	bl WCM_CleanupAsync
 	cmp r0, #3
 	beq _02227736
 	ldr r0, _02227850 ; =0x02251D10
@@ -229,7 +229,7 @@ _022276DE:
 	ldr r0, [r2, #0x4c]
 	ldr r1, [r2, #0x28]
 	ldr r2, [r2, #0x58]
-	bl ov4_02213368
+	bl WCM_ConnectAsync
 	cmp r0, #3
 	beq _02227736
 	ldr r0, _02227850 ; =0x02251D10
@@ -281,7 +281,7 @@ _0222773E:
 	ldr r0, [r2, #0x44]
 	ldr r1, [r2, #0x48]
 	ldr r2, [r2, #0x60]
-	bl ov4_0221312C
+	bl WCM_SearchAsync
 	cmp r0, #3
 	beq _0222784E
 	ldr r0, _02227850 ; =0x02251D10
@@ -298,7 +298,7 @@ _0222773E:
 _02227766:
 	cmp r0, #2
 	bne _02227788
-	bl ov4_0221303C
+	bl WCM_CleanupAsync
 	cmp r0, #3
 	beq _0222784E
 	ldr r0, _02227850 ; =0x02251D10
@@ -318,7 +318,7 @@ _02227788:
 	ldr r0, [r2, #0x4c]
 	ldr r1, [r2, #0x28]
 	ldr r2, [r2, #0x58]
-	bl ov4_02213368
+	bl WCM_ConnectAsync
 	cmp r0, #3
 	beq _0222784E
 	ldr r0, _02227850 ; =0x02251D10
@@ -358,7 +358,7 @@ _022277CE:
 	ldr r0, [r0, #0x2c]
 	cmp r0, #2
 	bne _0222784E
-	bl ov4_02212DE0
+	bl WCM_Finish
 	ldr r0, _02227850 ; =0x02251D10
 	mov r1, #0
 	str r1, [r0, #0x2c]
@@ -452,13 +452,13 @@ _02227880:
 	mov r0, #0
 	add r1, r0, #0
 	add r2, r0, #0
-	bl ov4_0221312C
+	bl WCM_SearchAsync
 	cmp r0, #3
 	beq _022278B2
 	mov r0, #0
 	pop {r3, pc}
 _02227892:
-	bl ov4_0221356C
+	bl WCM_DisconnectAsync
 	cmp r0, #3
 	beq _022278B2
 	mov r0, #0
@@ -466,7 +466,7 @@ _02227892:
 _0222789E:
 	ldr r0, [r1, #8]
 	ldr r1, _022278BC ; =ov18_0222754C
-	bl ov4_02212E38
+	bl WCM_StartupAsync
 	cmp r0, #3
 	beq _022278B2
 	mov r0, #0
@@ -488,8 +488,8 @@ ov18_022278C0: ; 0x022278C0
 	add r5, r0, #0
 	mov r0, #1
 	add r7, r1, #0
-	bl ov4_02214EE0
-	bl ov4_02214E88
+	bl WCM_LockApList
+	bl WCM_CountApList
 	add r6, r0, #0
 	cmp r6, #0
 	ble _022278F8
@@ -501,7 +501,7 @@ _022278DC:
 	bge _022278F8
 	lsl r0, r4, #0x10
 	lsr r0, r0, #0x10
-	bl ov4_02214F5C
+	bl WCM_PointApList
 	add r1, r5, #0
 	mov r2, #0xc0
 	bl MIi_CpuCopy32
@@ -511,7 +511,7 @@ _022278DC:
 	blt _022278DC
 _022278F8:
 	mov r0, #0
-	bl ov4_02214EE0
+	bl WCM_LockApList
 	add r0, r6, #0
 	pop {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -600,7 +600,7 @@ _0222798E:
 	ldr r1, [r2, #0x48]
 	ldr r0, _022279DC ; =0x022521C8
 	ldr r2, [r2, #0x60]
-	bl ov4_0221312C
+	bl WCM_SearchAsync
 	cmp r0, #3
 	bne _022279CC
 	ldr r0, _022279D8 ; =0x02251D10
@@ -629,9 +629,9 @@ _022279CC:
 	nop
 _022279D8: .word Unk_ov18_02251D10
 _022279DC: .word Unk_ov18_022521C8
-_022279E0: .word Unk_ov4_02215E48
+_022279E0: .word WCM_Bssid_Any
 _022279E4: .word Unk_ov18_02252200
-_022279E8: .word Unk_ov4_02215E50
+_022279E8: .word WCM_Essid_Any
 	thumb_func_end ov18_02227904
 
 	thumb_func_start ov18_022279EC
@@ -643,7 +643,7 @@ ov18_022279EC: ; 0x022279EC
 	ldr r0, [r0, #0x2c]
 	cmp r0, #7
 	bne _02227A14
-	bl ov4_0221356C
+	bl WCM_DisconnectAsync
 	cmp r0, #3
 	bne _02227A14
 	ldr r0, _02227A20 ; =0x02251D10
@@ -671,7 +671,7 @@ ov18_02227A24: ; 0x02227A24
 	ldr r0, [r0, #0x2c]
 	cmp r0, #3
 	bne _02227A56
-	bl ov4_0221303C
+	bl WCM_CleanupAsync
 	cmp r0, #3
 	beq _02227A46
 	add r0, r4, #0
@@ -752,7 +752,7 @@ _02227ACC:
 	ldr r0, [r2, #0x4c]
 	ldr r1, [r2, #0x28]
 	ldr r2, [r2, #0x58]
-	bl ov4_02213368
+	bl WCM_ConnectAsync
 	cmp r0, #3
 	bne _02227AF2
 	ldr r0, _02227AFC ; =0x02251D10
@@ -818,7 +818,7 @@ ov18_02227B00: ; 0x02227B00
 	sub r3, #0x1f
 	ldr r0, [r2, #0x3c]
 	add r1, r3, #0
-	bl ov4_02212CC8
+	bl WCM_Init
 	cmp r0, #0
 	beq _02227B6E
 	add r0, r4, #0
@@ -836,7 +836,7 @@ _02227B74:
 	bne _02227BA2
 	ldr r0, [r0, #8]
 	ldr r1, _02227BB8 ; =ov18_0222754C
-	bl ov4_02212E38
+	bl WCM_StartupAsync
 	cmp r0, #3
 	beq _02227B92
 	add r0, r4, #0

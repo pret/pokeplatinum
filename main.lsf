@@ -808,10 +808,10 @@ Overlay overlay4
 	Object lib/NitroWiFi/asm/ssl/sha1.o
 	Object lib/NitroWiFi/asm/ssl/arc4.o
 	Object lib/NitroWiFi/asm/ssl/biginteger.o
-	Object lib/NitroWiFi/asm/wcm/system.o
-	Object lib/NitroWiFi/asm/wcm/aplist.o
-	Object lib/NitroWiFi/asm/wcm/cpsif.o
-	Object lib/NitroWiFi/asm/wcm/util_wcm.o
+	Object lib/NitroWiFi/src/wcm/system.o
+	Object lib/NitroWiFi/src/wcm/aplist.o
+	Object lib/NitroWiFi/src/wcm/cpsif.o
+	Object lib/NitroWiFi/src/wcm/util_wcm.o
 	Object lib/NitroWiFi/asm/stubs/md5/dummy_md5.o
 }
 
