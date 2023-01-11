@@ -375,8 +375,8 @@ Static main
 	Object lib/NitroDWC/asm/bm/dwc_backup.o
 	Object lib/NitroDWC/asm/bm/dwc_bm_init.o
 	Object lib/NitroDWC/asm/bm/util_wifiidtool.o
-	Object lib/NitroDWC/asm/bm/dwc_init.o
-	Object lib/NitroDWC/asm/base/dwc_account.o
+	Object lib/NitroDWC/asm/account/dwc_init.o
+	Object lib/NitroDWC/asm/account/dwc_account.o
 	Object asm/unk_020A490C.o
 	Object asm/unk_020A4A34.o
 	Object lib/NitroSystem/src/fnd/list_nnsfnd.o
