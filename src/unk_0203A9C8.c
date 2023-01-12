@@ -367,7 +367,7 @@ static u32 sub_0203ABD0 (UnkStruct_0203CDB0 * param0)
         v0 |= 0x4;
     }
 
-    if (MapHeader_MapIsAmitySquare(param0->unk_1C->unk_00) == 1) {
+    if (MapHeader_IsAmitySquare(param0->unk_1C->unk_00) == 1) {
         v0 |= 0x2;
         v0 |= 0x4;
     }

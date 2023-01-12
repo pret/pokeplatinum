@@ -68,7 +68,7 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
 {
     int v0;
 
-    v0 = MapHeader_GetEventsBank(param1);
+    v0 = MapHeader_GetEventsArchiveID(param1);
     GF_ASSERT(sub_02006B58(32, v0) < sizeof(param0->unk_20));
     sub_02006AA4(param0->unk_20, 32, v0);
 }
@@ -284,7 +284,7 @@ void sub_0203A614 (UnkStruct_ov6_02242634 * param0, int param1)
             v0 = 143;
         }
 
-        sub_02006AA4(param0, v0, MapHeader_GetWildEncountersBank(param1));
+        sub_02006AA4(param0, v0, MapHeader_GetWildEncountersArchiveID(param1));
     }
 }
 
@@ -297,7 +297,7 @@ static void sub_0203A64C (UnkStruct_0203A3E8 * param0, int param1)
 {
     int v0;
 
-    v0 = MapHeader_GetMapScriptBank(param1);
+    v0 = MapHeader_GetMapScriptArchiveID(param1);
 
     MI_CpuClearFast(param0->unk_820, sizeof(param0->unk_820));
     GF_ASSERT(sub_02006B58(10, v0) < sizeof(param0->unk_820));

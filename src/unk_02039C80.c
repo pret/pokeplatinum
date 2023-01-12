@@ -122,7 +122,7 @@ void sub_02039DC0 (const int param0, UnkStruct_02039E30 * param1)
 {
     u16 v0;
 
-    v0 = MapHeader_GetMatrixId(param0);
+    v0 = MapHeader_GetMapMatrixID(param0);
     sub_02039C80(&param1->unk_04, v0, param0);
 
     param1->unk_02 = v0;

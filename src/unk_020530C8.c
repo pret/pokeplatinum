@@ -615,7 +615,7 @@ void sub_02053808 (UnkStruct_0203CDB0 * param0)
     UnkStruct_020508D4 * v0;
     UnkStruct_02053718 * v1;
 
-    if (MapHeader_MapIsUnionRoom(param0->unk_1C->unk_00)) {
+    if (MapHeader_IsUnionRoom(param0->unk_1C->unk_00)) {
         (void)0;
     } else if (sub_02053518(param0)) {
         UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);

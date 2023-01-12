@@ -549,7 +549,7 @@ static void ov5_021D13B4 (UnkStruct_0203CDB0 * param0)
     UnkStruct_020556C4 * v0;
     int v1, v2, v3;
 
-    if (MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00) == 0) {
+    if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00) == 0) {
         return;
     }
 

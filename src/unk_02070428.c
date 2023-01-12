@@ -97,7 +97,7 @@ void sub_02070494 (UnkStruct_0203CDB0 * param0)
         }
     }
 
-    if (MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00)) {
+    if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00)) {
         UnkStruct_020556C4 * v3;
 
         v3 = sub_0203A76C(sub_0203A790(param0->unk_0C));

@@ -2417,7 +2417,7 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
     v6 = sub_0203608C();
     v5 = param0->unk_2A - 1;
 
-    if (MapHeader_MapIsUnionRoom(param0->unk_00->unk_134) == 1) {
+    if (MapHeader_IsUnionRoom(param0->unk_00->unk_134) == 1) {
         v3 = sub_020793AC(param0->unk_00->unk_28[v6 ^ 1].unk_01);
         v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
 

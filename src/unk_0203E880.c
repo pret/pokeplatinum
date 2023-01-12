@@ -853,12 +853,12 @@ static void sub_0203F0E4 (UnkStruct_0203E724 * param0, u16 param1)
 
 static void * sub_0203F0FC (int param0)
 {
-    return sub_02006AC0(10, MapHeader_GetScriptsBank(param0), 11);
+    return sub_02006AC0(10, MapHeader_GetScriptsArchiveID(param0), 11);
 }
 
 static u32 sub_0203F110 (int param0)
 {
-    return MapHeader_GetMsgBank(param0);
+    return MapHeader_GetMsgArchiveID(param0);
 }
 
 u16 * sub_0203F118 (UnkStruct_0203CDB0 * param0, u16 param1)

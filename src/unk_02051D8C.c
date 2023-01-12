@@ -264,7 +264,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
         sub_0205281C(param0, param1);
         param0->unk_138 = sub_02055BA8(param1);
     } else {
-        param0->unk_128 = MapHeader_GetBattleBg(param3);
+        param0->unk_128 = MapHeader_GetBattleBG(param3);
         param0->unk_12C = 9;
         {
             UnkStruct_02055BA8 * v7 = sub_02025CD8(param2);
@@ -525,7 +525,7 @@ static void sub_0205281C (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203C
 {
     UnkStruct_0205EC34 * v0 = sub_0203A780(sub_0203A790(param1->unk_0C));
 
-    param0->unk_128 = MapHeader_GetBattleBg(param1->unk_1C->unk_00);
+    param0->unk_128 = MapHeader_GetBattleBG(param1->unk_1C->unk_00);
 
     if (v0->unk_04 == 0x2) {
         param0->unk_128 = 1;

@@ -1129,14 +1129,14 @@ static void ov5_021D2E14 (UnkStruct_0203CDB0 * param0)
     ov5_021D2C7C(param0, &v0, &v1);
 
     if (ov5_021D2D34(param0, v0, v1, &v2)) {
-        if ((MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00) == 1) && (MapHeader_MapIsOnMainMatrix(v2.unk_00) == 0)) {
+        if ((MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
             ov5_021D2DCC(param0, v0, v1, sub_0205EA78(param0->unk_3C));
         }
     } else {
         ov5_021D2C98(param0, &v0, &v1);
 
         if (ov5_021D2D34(param0, v0, v1, &v2)) {
-            if ((MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00) == 1) && (MapHeader_MapIsOnMainMatrix(v2.unk_00) == 0)) {
+            if ((MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00) == 1) && (MapHeader_IsOnMainMatrix(v2.unk_00) == 0)) {
                 ov5_021D2DCC(param0, v0, v1, sub_0205EA78(param0->unk_3C));
             }
         }

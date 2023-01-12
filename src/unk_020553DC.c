@@ -186,9 +186,9 @@ u16 sub_020554A4 (UnkStruct_0203CDB0 * param0, int param1)
     u16 v0, v1;
 
     if (sub_02013948() == 0) {
-        v0 = MapHeader_GetDayMusicId(param1);
+        v0 = MapHeader_GetDayMusicID(param1);
     } else {
-        v0 = MapHeader_GetNightMusicId(param1);
+        v0 = MapHeader_GetNightMusicID(param1);
     }
 
     v1 = sub_0206AB68(sub_020507E4(param0->unk_0C), param1);

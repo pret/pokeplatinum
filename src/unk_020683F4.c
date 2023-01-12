@@ -416,7 +416,7 @@ static u32 sub_0206877C (const UnkStruct_020684D0 * param0)
         return -1;
     }
 
-    if (!(MapHeader_MapIsOnMainMatrix(param0->unk_00))) {
+    if (!(MapHeader_IsOnMainMatrix(param0->unk_00))) {
         return -1;
     }
 
@@ -828,7 +828,7 @@ static BOOL sub_02068D58 (UnkStruct_02068870 * param0)
 
 static u32 sub_02068D68 (const UnkStruct_020684D0 * param0)
 {
-    if (MapHeader_MapIsOnMainMatrix(param0->unk_00)) {
+    if (MapHeader_IsOnMainMatrix(param0->unk_00)) {
         return 0;
     }
 

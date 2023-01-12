@@ -136,7 +136,7 @@ static inline void inline_ov47_0225621C_sub (UnkStruct_0203CDB0 * param0, int * 
     UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
     UnkStruct_02049FA8 * v1 = sub_0203A72C(v0);
 
-    if (MapHeader_MapIsOnMainMatrix(param0->unk_1C->unk_00)) {
+    if (MapHeader_IsOnMainMatrix(param0->unk_1C->unk_00)) {
         *param1 = param0->unk_1C->unk_08;
         *param2 = param0->unk_1C->unk_0C;
     } else {
