@@ -18,7 +18,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
 #include "unk_02017E74.h"
@@ -64,7 +64,7 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    v0->unk_2C0.unk_00 = sub_02006C24(159, 101);
+    v0->unk_2C0.unk_00 = NARC_ctor(159, 101);
     v0->unk_2C0.unk_0C = sub_02018340(101);
     v0->unk_2C0.unk_10 = sub_02002F38(101);
 
@@ -143,7 +143,7 @@ static int sub_0208927C (UnkStruct_020067E8 * param0, int * param1)
     sub_02002FA0(v0->unk_2C0.unk_10, 2);
     sub_02002FA0(v0->unk_2C0.unk_10, 3);
     sub_02002F54(v0->unk_2C0.unk_10);
-    sub_02006CA8(v0->unk_2C0.unk_00);
+    NARC_dtor(v0->unk_2C0.unk_00);
 
     {
         u32 v1;

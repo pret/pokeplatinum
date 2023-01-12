@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
@@ -68,7 +68,7 @@ static void ov16_02267C58(UnkStruct_ov16_022674C4 * param0);
 static void ov16_02267CA8(UnkStruct_ov16_022674C4 * param0, int param1);
 static void ov16_02267CE8(UnkStruct_ov16_022674C4 * param0, u32 param1);
 static void ov16_02267DC4(UnkStruct_ov16_022674C4 * param0, u32 param1);
-static void ov16_02266FE4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, UnkStruct_02002F38 * param3, int param4);
+static void ov16_02266FE4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, UnkStruct_02002F38 * param3, int param4);
 static void ov16_02267244(UnkStruct_ov16_022674C4 * param0);
 static void ov16_0226728C(UnkStruct_ov16_022674C4 * param0);
 static const UnkStruct_ov104_0223F9E0 * ov16_022682B0(u8 param0);
@@ -410,7 +410,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226F57C = {
 
 #include "overlay016/rodata_ov16_0226F6AC.h"
 
-void ov16_02266F1C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, UnkStruct_02002F38 * param3, int param4)
+void ov16_02266F1C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, UnkStruct_02002F38 * param3, int param4)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 
@@ -427,7 +427,7 @@ void ov16_02266F1C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, Un
     }
 }
 
-static void ov16_02266FE4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, UnkStruct_02002F38 * param3, int param4)
+static void ov16_02266FE4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, UnkStruct_02002F38 * param3, int param4)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 
@@ -632,9 +632,9 @@ void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
     UnkStruct_02002F38 * v3;
-    UnkStruct_02006C24 * v4;
+    NARC * v4;
 
-    v4 = sub_02006C24(27, 5);
+    v4 = NARC_ctor(27, 5);
     v1 = ov16_0223E010(param0->unk_0C);
     v2 = ov16_0223E018(param0->unk_0C);
     v3 = ov16_0223E064(param0->unk_0C);
@@ -649,7 +649,7 @@ void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)
         sub_0200D494(param0->unk_08->unk_00, v0->unk_00 - Unk_ov16_0226F334[param0->unk_25], v0->unk_02 + 0);
     }
 
-    sub_02006CA8(v4);
+    NARC_dtor(v4);
 }
 
 void ov16_02267360 (UnkStruct_ov16_022674C4 * param0)

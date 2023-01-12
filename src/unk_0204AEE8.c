@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02017E74.h"
@@ -539,10 +539,10 @@ static BOOL sub_0204B470 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * para
 
 static void * sub_0204B630 (u16 param0, int param1)
 {
-    return sub_02006AC0(178, param0, param1);
+    return AllocAndReadWholeNarcMemberByIndexPair(178, param0, param1);
 }
 
 static void sub_0204B640 (UnkStruct_0204B1E8 * param0, int param1)
 {
-    sub_02006AA4(param0, 179, param1);
+    ReadWholeNarcMemberByIndexPair(param0, 179, param1);
 }

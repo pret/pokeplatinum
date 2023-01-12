@@ -22,7 +22,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -355,7 +355,7 @@ static void ov96_0223BF1C (UnkStruct_02018340 * param0)
 static void ov96_0223BF40 (UnkStruct_ov96_0223BF40 * param0)
 {
     UnkStruct_02018340 * v0 = param0->unk_04;
-    UnkStruct_02006C24 * v1 = sub_02006C24(92, 68);
+    NARC * v1 = NARC_ctor(92, 68);
 
     sub_02007130(v1, 3, 0, 0, 0, 68);
     sub_02007130(v1, 3, 4, 0, 0, 68);
@@ -372,7 +372,7 @@ static void ov96_0223BF40 (UnkStruct_ov96_0223BF40 * param0)
 
     inline_ov61_0222C3B0(&param0->unk_FF8, v1, 4, 68);
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void ov96_0223C1FC (UnkStruct_ov96_0223BF40 * param0)

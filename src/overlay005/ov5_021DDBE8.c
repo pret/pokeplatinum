@@ -38,7 +38,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -252,7 +252,7 @@ void ov5_021DDBE8 (int param0, UnkStruct_0203CDB0 * param1, BOOL * param2)
     v1 = sub_0201CED0(v0);
     v1->unk_10 = param1;
     v1->unk_14 = param2;
-    v1->unk_20 = sub_02006C24(112, 4);
+    v1->unk_20 = NARC_ctor(112, 4);
 
     if (v1->unk_14 != NULL) {
         *(v1->unk_14) = 0;
@@ -263,7 +263,7 @@ void ov5_021DDBE8 (int param0, UnkStruct_0203CDB0 * param1, BOOL * param2)
 
 void ov5_021DDC28 (UnkStruct_ov5_021DDC28 * param0, UnkStruct_0201CD38 * param1)
 {
-    sub_02006CA8(param0->unk_20);
+    NARC_dtor(param0->unk_20);
     sub_02018238(4, param0->unk_0C);
     sub_020067D0(param1);
 }
@@ -800,7 +800,7 @@ static void include_ov5_021DDBE8_rodata (UnkStruct_0201CD38 * dummy1, void * dum
     }
 }
 
-void ov5_021DE3D0 (UnkStruct_02006C24 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, UnkStruct_02018340 * param6, u32 param7)
+void ov5_021DE3D0 (NARC * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, UnkStruct_02018340 * param6, u32 param7)
 {
     void * v0;
     NNSG2dScreenData * v1;
@@ -838,7 +838,7 @@ void ov5_021DE4AC (UnkStruct_ov5_021DE47C * param0)
     }
 }
 
-void ov5_021DE4CC (UnkStruct_02006C24 * param0, UnkStruct_ov5_021DE47C * param1, UnkStruct_ov5_021DE5A4 * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+void ov5_021DE4CC (NARC * param0, UnkStruct_ov5_021DE47C * param1, UnkStruct_ov5_021DE5A4 * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     param2->unk_00[0] = sub_02009AA8(param1->unk_190[0], param0, param5, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 1);
     param2->unk_00[1] = sub_02009B04(param1->unk_190[1], param0, param3, 0, param8, NNS_G2D_VRAM_TYPE_2DMAIN, param4, 4);
@@ -1521,7 +1521,7 @@ void ov5_021DF084 (void)
     Unk_ov5_02202120 = NULL;
 }
 
-void ov5_021DF0CC (UnkStruct_02006C24 * param0, u32 param1)
+void ov5_021DF0CC (NARC * param0, u32 param1)
 {
     void * v0;
     UnkStruct_020203AC * v1;

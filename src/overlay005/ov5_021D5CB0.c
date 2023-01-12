@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov5_021D5CB0_t {
     UnkStruct_ov5_021D5DEC unk_08[16];
 } UnkStruct_ov5_021D5CB0;
 
-static int ov5_021D5D30(UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1, int param2, UnkStruct_02006C24 * param3);
+static int ov5_021D5D30(UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1, int param2, NARC * param3);
 
 UnkStruct_ov5_021D5CB0 * ov5_021D5CB0 (void)
 {
@@ -61,11 +61,11 @@ UnkStruct_ov5_021D5CB0 * ov5_021D5CB0 (void)
 int ov5_021D5CE4 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1)
 {
     int v0, v1 = 0;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(155, 4);
+    v2 = NARC_ctor(155, 4);
 
-    param0->unk_00 = sub_02006CB8(v2, 0, 4);
+    param0->unk_00 = NARC_AllocAndReadWholeMember(v2, 0, 4);
     param0->unk_04 = (UnkStruct_ov5_021D5CE4 *)param0->unk_00;
 
     for (v0 = 0; v0 < param0->unk_04->unk_00; v0++) {
@@ -74,12 +74,12 @@ int ov5_021D5CE4 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1)
         }
     }
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 
     return v1;
 }
 
-static int ov5_021D5D30 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1, int param2, UnkStruct_02006C24 * param3)
+static int ov5_021D5D30 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1, int param2, NARC * param3)
 {
     int v0, v1;
     char v2[40];
@@ -107,7 +107,7 @@ static int ov5_021D5D30 (UnkStruct_ov5_021D5CB0 * param0, NNSG3dResTex * param1,
     param0->unk_08[v0].unk_04 = sub_0201DFE4(param1, param0->unk_04->unk_04[param2].unk_00);
     sprintf(v2, "data/fld_anime%d.bin", param2);
     param0->unk_08[v0].unk_10 = &(param0->unk_04->unk_04[param2]);
-    param0->unk_08[v0].unk_0C = sub_02006CB8(param3, param2 + 1, 4);
+    param0->unk_08[v0].unk_0C = NARC_AllocAndReadWholeMember(param3, param2 + 1, 4);
     param0->unk_08[v0].unk_08 = NNS_G3dGetTex((NNSG3dResFileHeader *)param0->unk_08[v0].unk_0C);
 
     return v0;

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "overlay006/ov6_02242F74.h"
 
@@ -20,7 +20,7 @@ void ov6_02242F74 (const int param0, const BOOL param1, const int param2, int * 
         v1 = 10;
     }
 
-    v0 = sub_02006ADC(106, v1, 4);
+    v0 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, v1, 4);
     v2 = ((param0 >> (5 * v3)) & 0x1f);
     v2 %= 32;
 

@@ -34,7 +34,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -72,9 +72,9 @@ static void ov72_0223DA90(UnkStruct_02018340 * param0);
 static void ov72_0223DB98(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223DC34(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223DC6C(UnkStruct_02018340 * param0);
-static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 * param0, UnkStruct_02006C24 * param1);
+static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 * param0, NARC * param1);
 static void ov72_0223DDA8(void);
-static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 * param0, UnkStruct_02006C24 * param1);
+static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 * param0, NARC * param1);
 static void ov72_0223DF58(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 * param0, UnkStruct_020067E8 * param1);
 static void ov72_0223E260(UnkStruct_ov72_0223DB98 * param0);
@@ -118,7 +118,7 @@ static int (* Unk_ov72_0223ED40[])(UnkStruct_ov72_0223DB98 *, int) = {
 int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov72_0223DB98 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     switch (*param1) {
     case 0:
@@ -137,7 +137,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = sub_02018340(39);
-        v1 = sub_02006C24(95, 39);
+        v1 = NARC_ctor(95, 39);
         v0->unk_10 = sub_0200B358(39);
         v0->unk_14 = sub_0200B144(0, 26, 425, 39);
 
@@ -169,7 +169,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_02004550(56, 0, 0);
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
         (*param1)++;
         break;
     case 1:
@@ -448,7 +448,7 @@ static void ov72_0223DC6C (UnkStruct_02018340 * param0)
     sub_020181C4(param0);
 }
 
-static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, UnkStruct_02006C24 * param1)
+static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0 = param0->unk_00;
 
@@ -480,7 +480,7 @@ static void ov72_0223DDA8 (void)
     sub_0201F8E4();
 }
 
-static void ov72_0223DDD8 (UnkStruct_ov72_0223DB98 * param0, UnkStruct_02006C24 * param1)
+static void ov72_0223DDD8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)
 {
     int v0;
 

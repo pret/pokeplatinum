@@ -18,7 +18,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
@@ -147,7 +147,7 @@ static void * ov84_0223F390 (UnkStruct_ov84_0223B5A0 * param0, NNSG2dCharacterDa
 {
     void * v0;
 
-    v0 = sub_02006CB8(param0->unk_D4, 21, 6);
+    v0 = NARC_AllocAndReadWholeMember(param0->unk_D4, 21, 6);
     NNS_G2dGetUnpackedBGCharacterData(v0, param1);
     return v0;
 }
@@ -341,7 +341,7 @@ static void * ov84_0223F994 (UnkStruct_ov84_0223B5A0 * param0, NNSG2dCharacterDa
 {
     void * v0;
 
-    v0 = sub_02006CB8(param0->unk_D4, 38, 6);
+    v0 = NARC_AllocAndReadWholeMember(param0->unk_D4, 38, 6);
     NNS_G2dGetUnpackedBGCharacterData(v0, param1);
     return v0;
 }

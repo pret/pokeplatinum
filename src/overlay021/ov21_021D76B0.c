@@ -565,7 +565,7 @@ static void ov21_021D7CD8 (UnkStruct_ov21_021D77E8 * param0, const UnkStruct_ov2
 static void ov21_021D7D8C (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D77E8 * param1, int param2)
 {
     UnkStruct_ov21_021D13FC * v0 = param1->unk_00;
-    UnkStruct_02006C24 * v1 = ov21_021D26E0(param1->unk_00);
+    NARC * v1 = ov21_021D26E0(param1->unk_00);
 
     param0->unk_2C[0] = sub_02009A4C(v0->unk_13C[0], v1, 84, 1, 84 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 

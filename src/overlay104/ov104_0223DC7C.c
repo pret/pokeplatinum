@@ -21,7 +21,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
@@ -79,7 +79,7 @@ typedef struct {
     UnkStruct_0200C704 * unk_18;
     UnkStruct_02002F38 * unk_1C;
     u16 * unk_20;
-    UnkStruct_02006C24 * unk_24;
+    NARC * unk_24;
     s16 unk_28;
     s16 unk_2A;
     u8 unk_2C;
@@ -201,7 +201,7 @@ void ov104_0223DC7C (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4
     v1->unk_20 = param5;
     v1->unk_28 = param6;
     v1->unk_2A = param7;
-    v1->unk_24 = sub_02006C24(112, 94);
+    v1->unk_24 = NARC_ctor(112, 94);
 
     if (v1->unk_20 != NULL) {
         *(v1->unk_20) = 0;
@@ -223,7 +223,7 @@ static void ov104_0223DD30 (UnkStruct_ov104_0223DD30 * param0, UnkStruct_0201CD3
 {
     sub_0200DA58(param0->unk_140);
     sub_0200DA58(param0->unk_34);
-    sub_02006CA8(param0->unk_24);
+    NARC_dtor(param0->unk_24);
     sub_02018238(94, param0->unk_0C);
     sub_020067D0(param1);
 }

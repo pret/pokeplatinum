@@ -98,7 +98,7 @@ void ov17_02247734 (UnkStruct_ov17_022476F8 * param0)
     }
 }
 
-void ov17_0224774C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2)
+void ov17_0224774C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2)
 {
     sub_0200CC3C(param0, param1, param2, 67, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
     sub_0200CE24(param0, param1, param2, 68, 1, 33002);

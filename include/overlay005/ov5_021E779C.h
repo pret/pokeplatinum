@@ -35,9 +35,9 @@ BOOL ov5_021E9580(const UnkStruct_ov5_021E8F60 * param0, const int param1, const
 const UnkStruct_ov5_021EF13C * ov5_021E9610(const UnkStruct_ov5_021E8F60 * param0, const u8 param1);
 u16 const * ov5_021E9624(const UnkStruct_ov5_021E8F60 * param0, const u8 param1);
 void ov5_021E9630(UnkStruct_ov5_021E8F60 * param0, UnkFuncPtr_ov5_021E9630 param1, void * param2);
-UnkStruct_02006C24 * ov5_021E9828(UnkStruct_ov5_021E8F60 * param0);
-UnkStruct_ov5_021E8F60 * ov5_021E9830(UnkStruct_02039E30 * param0, UnkStruct_ov5_021EF76C * param1, UnkStruct_02006C24 * param2);
-void ov5_021E98C8(UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1, UnkStruct_ov5_021EF76C * param2, UnkStruct_02006C24 * param3);
+NARC * ov5_021E9828(UnkStruct_ov5_021E8F60 * param0);
+UnkStruct_ov5_021E8F60 * ov5_021E9830(UnkStruct_02039E30 * param0, UnkStruct_ov5_021EF76C * param1, NARC * param2);
+void ov5_021E98C8(UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1, UnkStruct_ov5_021EF76C * param2, NARC * param3);
 void ov5_021E9938(UnkStruct_ov5_021E8F60 * param0);
 void ov5_021E9998(UnkStruct_ov5_021E8F60 * param0);
 void ov5_021E99C4(UnkStruct_ov5_021E8F60 * param0);

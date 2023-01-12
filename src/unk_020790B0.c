@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_020790C4.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020790B0.h"
 
 void sub_020790B0(void * param0);
@@ -14,7 +14,7 @@ static void sub_02079160(int param0, UnkStruct_020790C4 * param1);
 
 void sub_020790B0 (void * param0)
 {
-    sub_02006AFC(param0, 9, 0, 0, sizeof(UnkStruct_020790C4) * (467 + 1));
+    ReadFromNarcMemberByIndexPair(param0, 9, 0, 0, sizeof(UnkStruct_020790C4) * (467 + 1));
 }
 
 u32 sub_020790C4 (int param0, int param1)
@@ -87,5 +87,5 @@ u32 sub_02079104 (UnkStruct_020790C4 * param0, int param1)
 
 static void sub_02079160 (int param0, UnkStruct_020790C4 * param1)
 {
-    sub_02006AA4(param1, 9, param0);
+    ReadWholeNarcMemberByIndexPair(param1, 9, param0);
 }

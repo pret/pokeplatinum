@@ -32,7 +32,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200AC5C.h"
@@ -77,15 +77,15 @@ static void ov117_022610D8(UnkStruct_02018340 * param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 * param0);
 static void ov117_02261574(UnkStruct_ov117_02261280 * param0);
 static void ov117_022615E0(UnkStruct_ov117_02261280 * param0);
-static void ov117_0226168C(UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1);
+static void ov117_0226168C(UnkStruct_ov117_02261280 * param0, NARC * param1);
 static void ov117_022618E8(UnkStruct_ov117_02261280 * param0);
-static void ov117_02261940(UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1);
+static void ov117_02261940(UnkStruct_ov117_02261280 * param0, NARC * param1);
 static void ov117_022619F8(UnkStruct_ov117_02261280 * param0);
-static void ov117_02261A2C(UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1);
+static void ov117_02261A2C(UnkStruct_ov117_02261280 * param0, NARC * param1);
 static void ov117_02261AC4(UnkStruct_ov117_02261280 * param0);
-static void ov117_02261AC8(UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1);
+static void ov117_02261AC8(UnkStruct_ov117_02261280 * param0, NARC * param1);
 static void ov117_02261C28(UnkStruct_ov117_02261280 * param0);
-static void ov117_02261C2C(UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1);
+static void ov117_02261C2C(UnkStruct_ov117_02261280 * param0, NARC * param1);
 static void ov117_02261DD0(UnkStruct_ov117_02261280 * param0);
 static void ov117_02260EC0(UnkStruct_ov117_02261280 * param0);
 static void ov117_02260F64(UnkStruct_ov117_02261280 * param0);
@@ -244,8 +244,8 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     ov117_02265210(v0, &v0->unk_1468);
 
     {
-        UnkStruct_02006C24 * v1;
-        v1 = sub_02006C24(173, 110);
+        NARC * v1;
+        v1 = NARC_ctor(173, 110);
 
         ov117_02261A2C(v0, v1);
         ov117_02261AC8(v0, v1);
@@ -253,7 +253,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
         ov117_0226168C(v0, v1);
         ov117_02261940(v0, v1);
         ov117_02261C2C(v0, v1);
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
     }
 
     sub_02003050(v0->unk_8C, 14, 6, 110, 0, 0x20, 0xe * 16);
@@ -988,7 +988,7 @@ static u32 ov117_02261668 (u32 param0, BOOL param1)
     return NNS_GfdGetPlttKeyAddr(v0);
 }
 
-asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1)
+asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
     push {r4, r5, r6, r7, lr}
     sub sp, #0x3c
@@ -1269,7 +1269,7 @@ static void ov117_022618E8 (UnkStruct_ov117_02261280 * param0)
     ov117_02266268(param0, param0->unk_174C.unk_00);
 }
 
-static void ov117_02261940 (UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1)
+static void ov117_02261940 (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
     sub_0200CDC4(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
     sub_0200CC3C(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
@@ -1292,7 +1292,7 @@ static void ov117_022619F8 (UnkStruct_ov117_02261280 * param0)
     ov117_02265B3C(param0, &param0->unk_1560);
 }
 
-static void ov117_02261A2C (UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1)
+static void ov117_02261A2C (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
     sub_02003050(param0->unk_8C, 173, 4, 110, 0, 0, 0);
     sub_020070E8(param1, 2, param0->unk_2C, 3, 0, 0, 0, 110);
@@ -1307,7 +1307,7 @@ static void ov117_02261AC4 (UnkStruct_ov117_02261280 * param0)
     return;
 }
 
-static void ov117_02261AC8 (UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1)
+static void ov117_02261AC8 (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
     sub_02003050(param0->unk_8C, 173, 5, 110, 1, 5 * 0x20, 0);
     sub_02002FEC(param0->unk_8C, 173, 6, 110, 1, (0x20 * 10), 6 * 16, 6 * 16);
@@ -1343,7 +1343,7 @@ static void ov117_02261C28 (UnkStruct_ov117_02261280 * param0)
     return;
 }
 
-static void ov117_02261C2C (UnkStruct_ov117_02261280 * param0, UnkStruct_02006C24 * param1)
+static void ov117_02261C2C (UnkStruct_ov117_02261280 * param0, NARC * param1)
 {
     int v0, v1;
     UnkStruct_ov117_02261F08 * v2 = &param0->unk_D8;

@@ -45,7 +45,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -306,7 +306,7 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     UnkStruct_ov109_021D24F8 unk_C9C;
     UnkStruct_ov109_021D28C4 unk_D0C;
     UnkStruct_ov109_021D294C unk_D2C;
-    UnkStruct_02006C24 * unk_D80;
+    NARC * unk_D80;
     UnkStruct_02018340 * unk_D84;
     NNSG2dScreenData * unk_D88;
     NNSG2dCharacterData * unk_D8C;
@@ -463,7 +463,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
     v0->unk_24 = sub_0207A268(v0->unk_CC->unk_14.unk_08);
-    v0->unk_D80 = sub_02006C24(154, 95);
+    v0->unk_D80 = NARC_ctor(154, 95);
 
     sub_0201DBEC(8, 95);
     sub_0201E3D8();
@@ -526,7 +526,7 @@ int ov109_021D0EB4 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_0201DC3C();
-    sub_02006CA8(v0->unk_D80);
+    NARC_dtor(v0->unk_D80);
     sub_02006830(param0);
     sub_0201807C(95);
     sub_02017DF0(2);
@@ -1970,22 +1970,22 @@ static void ov109_021D2408 (UnkStruct_ov109_021D0F70 * param0)
     UnkStruct_0200C6E4 * v0 = param0->unk_D94;
     UnkStruct_0200C704 * v1 = param0->unk_D98;
     UnkStruct_02002F38 * v2 = param0->unk_D9C;
-    UnkStruct_02006C24 * v3 = param0->unk_D80;
+    NARC * v3 = param0->unk_D80;
 
     {
         sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
     }
 
     {
-        UnkStruct_02006C24 * v4;
+        NARC * v4;
 
-        v4 = sub_02006C24(122, 95);
+        v4 = NARC_ctor(122, 95);
 
         sub_0200CC3C(v0, v1, v4, 14, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         sub_0200CDC4(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
         sub_0200CE24(v0, v1, v4, 13, 0, 6);
         sub_0200CE54(v0, v1, v4, 12, 0, 7);
-        sub_02006CA8(v4);
+        NARC_dtor(v4);
     }
 
     {
@@ -2300,7 +2300,7 @@ static void ov109_021D29CC (UnkStruct_ov109_021D0F70 * param0)
     int v0;
     u32 v1;
     UnkStruct_ov109_021D2AE4 * v2 = &param0->unk_D4;
-    UnkStruct_02006C24 * v3 = param0->unk_D80;
+    NARC * v3 = param0->unk_D80;
 
     v0 = param0->unk_CC->unk_08;
     v1 = Unk_ov109_021D5A80[v0];
@@ -3414,7 +3414,7 @@ static BOOL ov109_021D3A14 (UnkStruct_ov109_021D0F70 * param0)
 static void * ov109_021D3A2C (UnkStruct_ov109_021D0F70 * param0, u32 param1, BOOL param2)
 {
     void * v0;
-    u32 v1 = sub_02006D84(param0->unk_D80, param1);
+    u32 v1 = NARC_GetMemberSize(param0->unk_D80, param1);
 
     if (param2 == 1) {
         v0 = sub_02018144(95, v1);
@@ -3422,7 +3422,7 @@ static void * ov109_021D3A2C (UnkStruct_ov109_021D0F70 * param0, u32 param1, BOO
         v0 = sub_02018184(95, v1);
     }
 
-    sub_02006D28(param0->unk_D80, param1, v0);
+    NARC_ReadWholeMember(param0->unk_D80, param1, v0);
     return v0;
 }
 

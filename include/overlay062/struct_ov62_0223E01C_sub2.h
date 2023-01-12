@@ -5,7 +5,7 @@
 #include "overlay062/struct_ov62_0223E01C_sub1_sub1.h"
 
 typedef struct {
-    UnkStruct_02006C24 * unk_00;
+    NARC * unk_00;
     int unk_04;
     int unk_08;
     UnkStruct_ov62_0223E01C_sub1_sub1 unk_0C[5][6];

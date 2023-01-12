@@ -52,7 +52,7 @@
 #include "unk_02005474.h"
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -146,7 +146,7 @@ typedef struct {
     UnkStruct_02009714 * unk_204[4];
     UnkStruct_0200B358 * unk_214;
     UnkStruct_0200B144 * unk_218;
-    UnkStruct_02006C24 * unk_21C;
+    NARC * unk_21C;
     UnkStruct_0205AA50 unk_220;
     UnkStruct_02023790 * unk_230;
     UnkStruct_02023790 * unk_234;
@@ -889,7 +889,7 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 {
     Unk_021BF67C.unk_65 = 0;
     sub_0201FFE8();
-    param0->unk_21C = sub_02006C24(89, param2);
+    param0->unk_21C = NARC_ctor(89, param2);
 
     ov64_0222E270();
     ov64_0222E290(param0, param2);
@@ -926,7 +926,7 @@ static void ov64_0222E23C (UnkStruct_ov64_0222E21C * param0)
     ov64_0222E570(param0);
     ov64_0222E3AC(param0);
 
-    sub_02006CA8(param0->unk_21C);
+    NARC_dtor(param0->unk_21C);
 }
 
 static void ov64_0222E270 (void)

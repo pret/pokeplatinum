@@ -63,7 +63,7 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     u16 unk_70[10][16];
 } UnkStruct_ov20_021D30F8;
 
-static void ov20_021D30A4(UnkStruct_ov20_021D30F8 * param0, UnkStruct_02006C24 * param1);
+static void ov20_021D30A4(UnkStruct_ov20_021D30F8 * param0, NARC * param1);
 static void ov20_021D30F8(UnkStruct_ov20_021D30F8 * param0);
 static void ov20_021D312C(UnkStruct_ov20_021D30F8 * param0);
 static void ov20_021D3184(UnkStruct_ov20_021D30F8 * param0);
@@ -126,7 +126,7 @@ void ov20_021D2EF0 (UnkStruct_ov20_021D30F8 * param0)
     sub_020181C4(param0);
 }
 
-void ov20_021D2F50 (UnkStruct_ov20_021D30F8 * param0, UnkStruct_02006C24 * param1)
+void ov20_021D2F50 (UnkStruct_ov20_021D30F8 * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0;
     u32 v1;
@@ -166,7 +166,7 @@ void ov20_021D2F50 (UnkStruct_ov20_021D30F8 * param0, UnkStruct_02006C24 * param
     sub_02019448(v0, 0);
 }
 
-static void ov20_021D30A4 (UnkStruct_ov20_021D30F8 * param0, UnkStruct_02006C24 * param1)
+static void ov20_021D30A4 (UnkStruct_ov20_021D30F8 * param0, NARC * param1)
 {
     NNSG2dPaletteData * v0;
     void * v1;

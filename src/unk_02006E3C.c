@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02017E74.h"
 #include "unk_02018340.h"
@@ -112,13 +112,13 @@ void * sub_02006FE8 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
     void * v0;
 
     if (param2 || (param4 == 1)) {
-        v0 = sub_02018184(param3, sub_02006B58(param0, param1));
+        v0 = sub_02018184(param3, GetNarcMemberSizeByIndexPair(param0, param1));
     } else {
-        v0 = sub_02018144(param3, sub_02006B58(param0, param1));
+        v0 = sub_02018144(param3, GetNarcMemberSizeByIndexPair(param0, param1));
     }
 
     if (v0 != NULL) {
-        sub_02006AA4(v0, param0, param1);
+        ReadWholeNarcMemberByIndexPair(v0, param0, param1);
 
         if (param2) {
             void * v1;
@@ -145,7 +145,7 @@ void * sub_02007068 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
 {
     void * v0;
 
-    *param5 = sub_02006B58(param0, param1);
+    *param5 = GetNarcMemberSizeByIndexPair(param0, param1);
 
     if (param2 || (param4 == 1)) {
         v0 = sub_02018184(param3, *param5);
@@ -154,7 +154,7 @@ void * sub_02007068 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
     }
 
     if (v0 != NULL) {
-        sub_02006AA4(v0, param0, param1);
+        ReadWholeNarcMemberByIndexPair(v0, param0, param1);
 
         if (param2) {
             void * v1;
@@ -179,60 +179,60 @@ void * sub_02007068 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
     return v0;
 }
 
-u32 sub_020070E8 (UnkStruct_02006C24 * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 sub_020070E8 (NARC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = sub_0200723C(param0, param1, param6, param7, 0);
     return sub_020072D0(v0, param2, param3, param4, param5);
 }
 
-void sub_0200710C (UnkStruct_02006C24 * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void sub_0200710C (NARC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = sub_0200723C(param0, param1, param6, param7, 1);
     sub_02007314(v0, param2, param3, param4, param5);
 }
 
-void sub_02007130 (UnkStruct_02006C24 * param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+void sub_02007130 (NARC * param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
 {
     sub_02007148(param0, param1, param2, 0, param3, param4, param5);
 }
 
-void sub_02007148 (UnkStruct_02006C24 * param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void sub_02007148 (NARC * param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     void * v0 = sub_0200723C(param0, param1, 0, param6, 1);
     sub_020073BC(v0, param2, param3, param4, param5);
 }
 
-void sub_0200716C (UnkStruct_02006C24 * param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy * param5)
+void sub_0200716C (NARC * param0, u32 param1, NNS_G2D_VRAM_TYPE param2, u32 param3, u32 param4, NNSG2dImagePaletteProxy * param5)
 {
     void * v0 = sub_0200723C(param0, param1, 0, param4, 1);
     sub_0200749C(v0, param2, param3, param5);
 }
 
-u32 sub_0200718C (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy * param8)
+u32 sub_0200718C (NARC * param0, u32 param1, BOOL param2, int param3, u32 param4, NNS_G2D_VRAM_TYPE param5, u32 param6, u32 param7, NNSG2dImageProxy * param8)
 {
     void * v0 = sub_0200723C(param0, param1, param2, param7, 1);
     return sub_020074EC(v0, param3, param4, param5, param6, param8);
 }
 
-void * sub_020071B4 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, NNSG2dCharacterData ** param3, u32 param4)
+void * sub_020071B4 (NARC * param0, u32 param1, BOOL param2, NNSG2dCharacterData ** param3, u32 param4)
 {
     void * v0 = sub_0200723C(param0, param1, param2, param4, 0);
     return sub_020075A0(v0, param3);
 }
 
-void * sub_020071D0 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, NNSG2dScreenData ** param3, u32 param4)
+void * sub_020071D0 (NARC * param0, u32 param1, BOOL param2, NNSG2dScreenData ** param3, u32 param4)
 {
     void * v0 = sub_0200723C(param0, param1, param2, param4, 0);
     return sub_020075BC(v0, param3);
 }
 
-void * sub_020071EC (UnkStruct_02006C24 * param0, u32 param1, NNSG2dPaletteData ** param2, u32 param3)
+void * sub_020071EC (NARC * param0, u32 param1, NNSG2dPaletteData ** param2, u32 param3)
 {
     void * v0 = sub_0200723C(param0, param1, 0, param3, 0);
     return sub_020075D8(v0, param2);
 }
 
-void * sub_02007204 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, NNSG2dCellDataBank ** param3, u32 param4)
+void * sub_02007204 (NARC * param0, u32 param1, BOOL param2, NNSG2dCellDataBank ** param3, u32 param4)
 {
     void * v0;
 
@@ -240,24 +240,24 @@ void * sub_02007204 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, NNSG2
     return sub_020075F4(v0, param3);
 }
 
-void * sub_02007220 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, NNSG2dAnimBankData ** param3, u32 param4)
+void * sub_02007220 (NARC * param0, u32 param1, BOOL param2, NNSG2dAnimBankData ** param3, u32 param4)
 {
     void * v0 = sub_0200723C(param0, param1, param2, param4, 0);
     return sub_02007610(v0, param3);
 }
 
-void * sub_0200723C (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, u32 param3, int param4)
+void * sub_0200723C (NARC * param0, u32 param1, BOOL param2, u32 param3, int param4)
 {
     u32 v0;
 
     return sub_02007250(param0, param1, param2, param3, param4, &v0);
 }
 
-void * sub_02007250 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, u32 param3, int param4, u32 * param5)
+void * sub_02007250 (NARC * param0, u32 param1, BOOL param2, u32 param3, int param4, u32 * param5)
 {
     void * v0;
 
-    *param5 = sub_02006D84(param0, param1);
+    *param5 = NARC_GetMemberSize(param0, param1);
 
     if (param2 || (param4 == 1)) {
         v0 = sub_02018184(param3, *param5);
@@ -266,7 +266,7 @@ void * sub_02007250 (UnkStruct_02006C24 * param0, u32 param1, BOOL param2, u32 p
     }
 
     if (v0 != NULL) {
-        sub_02006D28(param0, param1, v0);
+        NARC_ReadWholeMember(param0, param1, v0);
 
         if (param2) {
             void * v1;

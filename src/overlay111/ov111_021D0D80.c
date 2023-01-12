@@ -31,7 +31,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
@@ -110,7 +110,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     u16 * unk_3D8;
     u16 * unk_3DC;
     u16 * unk_3E0;
-    UnkStruct_02006C24 * unk_3E4;
+    NARC * unk_3E4;
     u8 padding_3E8[8];
     void * unk_3F0;
     NNSG2dCharacterData * unk_3F4;
@@ -1133,7 +1133,7 @@ static void ov111_021D1C0C (UnkStruct_ov111_021D0F7C * param0)
     ov111_021D3578(param0->unk_5C);
     ov111_021D2044(param0->unk_58);
 
-    sub_02006CA8(param0->unk_3E4);
+    NARC_dtor(param0->unk_3E4);
     return;
 }
 
@@ -1154,7 +1154,7 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
 {
     int v0, v1;
 
-    param0->unk_3E4 = sub_02006C24(184, 115);
+    param0->unk_3E4 = NARC_ctor(184, 115);
 
     ov111_021D1FC4(param0);
     ov111_021D2034(param0);

@@ -30,7 +30,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
@@ -571,7 +571,7 @@ void ov17_0223F864 (UnkStruct_02018340 * param0)
 void * ov17_0223F88C (UnkStruct_02095C48 * param0, UnkStruct_ov17_0223F88C * param1, UnkStruct_ov17_022472F8 * param2)
 {
     UnkStruct_ov17_0223F7E4 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     v0 = ov17_0223F7E4();
 
@@ -580,7 +580,7 @@ void * ov17_0223F88C (UnkStruct_02095C48 * param0, UnkStruct_ov17_0223F88C * par
     v0->unk_08 = param2;
     v0->unk_3C = sub_02012744(12, 21);
 
-    v1 = sub_02006C24(45, 21);
+    v1 = NARC_ctor(45, 21);
 
     {
         NNSG2dScreenData * v2;
@@ -610,7 +610,7 @@ void * ov17_0223F88C (UnkStruct_02095C48 * param0, UnkStruct_ov17_0223F88C * par
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 
     return v0;
 }

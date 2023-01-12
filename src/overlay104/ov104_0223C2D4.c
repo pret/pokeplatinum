@@ -33,7 +33,7 @@
 #include "unk_02002328.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -634,14 +634,14 @@ static void ov104_0223CB80 (UnkStruct_ov104_0223C4CC * param0)
 
 static void ov104_0223CC10 (UnkStruct_ov104_0223C4CC * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(150, 94);
+    v0 = NARC_ctor(150, 94);
 
     sub_020070E8(v0, 125, param0->unk_00, 4, 0, 0, 1, 94);
     sub_0200710C(v0, 126, param0->unk_00, 4, 0, 0, 1, 94);
     sub_02003050(param0->unk_04, 150, 171, 94, 1, 0x20, 0 * 16);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const UnkStruct_02025E6C * param2)
@@ -698,11 +698,11 @@ static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const
 
     {
         u32 v2;
-        UnkStruct_02006C24 * v3;
+        NARC * v3;
         int v4 = ov104_0222EA90(param1, 0);
 
         v2 = ov104_0222EA90(param1, 5);
-        v3 = sub_02006C24(v2, 94);
+        v3 = NARC_ctor(v2, 94);
 
         sub_020070E8(v3, ov104_0222EA90(param1, 7), param0->unk_00, 3, 0, 0, 1, 94);
 
@@ -747,7 +747,7 @@ static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const
         }
 
         sub_0201C3C0(param0->unk_00, 3);
-        sub_02006CA8(v3);
+        NARC_dtor(v3);
     }
 }
 
@@ -1095,12 +1095,12 @@ static void ov104_0223D3B0 (UnkStruct_ov104_0223C4CC * param0)
 static void ov104_0223D498 (UnkStruct_ov104_0223C4CC * param0)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
     UnkStruct_ov104_0223D3B0 * v2;
     UnkStruct_0200D0F4 * v3;
 
     v2 = sub_0209B9E0(param0->unk_08);
-    v1 = sub_02006C24(151, 94);
+    v1 = NARC_ctor(151, 94);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (v2->unk_00[v0] != 0xffff) {
@@ -1122,7 +1122,7 @@ static void ov104_0223D498 (UnkStruct_ov104_0223C4CC * param0)
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
     sub_0209B9EC(param0->unk_08);
 }
 

@@ -44,7 +44,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -604,7 +604,7 @@ static void * ov97_022341B4 (u32 param0, u32 param1, NNSG2dCharacterData ** para
     v0 = sub_02018184(param3, 4096);
 
     if (v0 != NULL) {
-        sub_02006AA4(v0, param0, param1);
+        ReadWholeNarcMemberByIndexPair(v0, param0, param1);
 
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
             sub_020181C4(v0);
@@ -615,9 +615,9 @@ static void * ov97_022341B4 (u32 param0, u32 param1, NNSG2dCharacterData ** para
     return v0;
 }
 
-static void ov97_022341EC (u32 param0, NNSG2dCharacterData ** param1, void * param2, UnkStruct_02006C24 * param3)
+static void ov97_022341EC (u32 param0, NNSG2dCharacterData ** param1, void * param2, NARC * param3)
 {
-    sub_02006D28(param3, param0, param2);
+    NARC_ReadWholeMember(param3, param0, param2);
     NNS_G2dGetUnpackedBGCharacterData(param2, param1);
 }
 
@@ -673,7 +673,7 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
     sub_020181C4(v0);
 }
 
-static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, void * param5, UnkStruct_02006C24 * param6)
+static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, void * param5, NARC * param6)
 {
     u32 v0;
     NNSG2dCharacterData * v1;
@@ -718,9 +718,9 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     int v0, v1, v2, v3, v4;
     u32 v5;
     void * v6;
-    UnkStruct_02006C24 * v7;
+    NARC * v7;
 
-    v7 = sub_02006C24(19, 78);
+    v7 = NARC_ctor(19, 78);
     v6 = sub_02018184(78, 4096);
 
     for (v0 = 0; v0 < 30; v0++) {
@@ -747,7 +747,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     }
 
     sub_020181C4(v6);
-    sub_02006CA8(v7);
+    NARC_dtor(v7);
 
     param0->unk_12664 = ov97_02234364;
 

@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "unk_020021B0.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02017E74.h"
@@ -119,12 +119,12 @@ static const u16 Unk_ov104_0223F298[][2] = {
 
 UnkStruct_0204B184 * ov104_0222DCE0 (u16 param0, int param1, int param2)
 {
-    return sub_02006AC0(param2, param0, param1);
+    return AllocAndReadWholeNarcMemberByIndexPair(param2, param0, param1);
 }
 
 void ov104_0222DCF4 (UnkStruct_0204B1E8 * param0, int param1, int param2)
 {
-    sub_02006AA4(param0, param2, param1);
+    ReadWholeNarcMemberByIndexPair(param0, param2, param1);
 }
 
 UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int param1, int param2, int param3)

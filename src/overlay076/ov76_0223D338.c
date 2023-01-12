@@ -31,7 +31,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -313,9 +313,9 @@ static BOOL ov76_0223D674 (UnkStruct_ov76_0223DE00 * param0)
     switch (param0->unk_3D4) {
     case 0:
     {
-        UnkStruct_02006C24 * v0;
+        NARC * v0;
 
-        v0 = sub_02006C24(91, 53);
+        v0 = NARC_ctor(91, 53);
 
         ov76_0223C110(param0);
         ov76_0223C188(param0);
@@ -346,7 +346,7 @@ static BOOL ov76_0223D674 (UnkStruct_ov76_0223DE00 * param0)
         ov76_0223CE2C();
         ov76_0223DCB8(param0, 0);
 
-        sub_02006CA8(v0);
+        NARC_dtor(v0);
     }
         param0->unk_3D4++;
         break;

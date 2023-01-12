@@ -29,7 +29,7 @@
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
 static inline void inline_ov61_0222C3B0_sub(UnkStruct_0201CD38 *, void *);
 
-static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, UnkStruct_02006C24 * param1, int param2, int param3)
+static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC * param1, int param2, int param3)
 {
     NNSG2dPaletteData * v0;
     void * v1;

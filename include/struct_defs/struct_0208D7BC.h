@@ -40,7 +40,7 @@ typedef struct {
     UnkStruct_02023790 * unk_694;
     UnkStruct_02023790 * unk_698;
     UnkStruct_0200B144 * unk_69C;
-    UnkStruct_02006C24 * unk_6A0;
+    NARC * unk_6A0;
     s8 unk_6A4;
     u8 unk_6A5_0 : 4;
     u8 unk_6A5_4 : 4;

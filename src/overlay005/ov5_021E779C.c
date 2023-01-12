@@ -14,7 +14,7 @@
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
 #include "unk_02017E74.h"
@@ -111,7 +111,7 @@ typedef struct UnkStruct_ov5_021E8F60_t {
     UnkStruct_ov5_021EA174 unk_C0;
     UnkStruct_ov5_021D3CAC * unk_E4;
     UnkStruct_ov5_021FAE98 const * unk_E8;
-    UnkStruct_02006C24 * unk_EC;
+    NARC * unk_EC;
     UnkFuncPtr_ov5_021E9630 unk_F0;
     void * unk_F4;
     int unk_F8;
@@ -130,7 +130,7 @@ typedef struct {
 } UnkStruct_ov5_021E7BAC;
 
 typedef struct {
-    UnkStruct_02006C24 * unk_00;
+    NARC * unk_00;
     int unk_04;
     NNSG3dRenderObj * unk_08;
     NNSG3dResFileHeader ** unk_0C;
@@ -142,8 +142,8 @@ typedef struct {
     u32 unk_24;
 } UnkStruct_ov5_021E9640;
 
-static UnkStruct_0201CD38 * ov5_021E976C(UnkStruct_02006C24 * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6);
-static NNSG3dResMdl * ov5_021E97AC(UnkStruct_02006C24 * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4);
+static UnkStruct_0201CD38 * ov5_021E976C(NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6);
+static NNSG3dResMdl * ov5_021E97AC(NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4);
 static void ov5_021E9640(UnkStruct_0201CD38 * param0);
 static void ov5_021E8F60(UnkStruct_ov5_021E8F60 * param0);
 static void ov5_021E8E28(UnkStruct_ov5_021E8F60 * param0, const int param1, const int param2, const int param3, const int param4, const int param5);
@@ -152,7 +152,7 @@ static void ov5_021E79A8(UnkStruct_ov5_021E8F60 * param0);
 static void ov5_021E7AC4(UnkStruct_ov5_021E8F60 * param0);
 static void ov5_021E77E4(UnkStruct_ov5_021E8F60 * param0, const u8 param1);
 static BOOL ov5_021E80D0(UnkStruct_ov5_021E8F60 * param0, const int param1, const int param2, const u8 param3, const u8 param4, const u8 param5, const u8 param6);
-static void ov5_021E7BAC(UnkStruct_02006C24 * param0, const int param1, UnkStruct_ov5_021E7BAC * param2);
+static void ov5_021E7BAC(NARC * param0, const int param1, UnkStruct_ov5_021E7BAC * param2);
 static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C * const param1, const UnkStruct_02039E30 * param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 * param5, UnkStruct_ov5_021E7814 * param6);
 static void ov5_021E7CD4(const u8 param0, UnkStruct_ov5_021EF76C * const param1, const UnkStruct_02039E30 * param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 * param5, UnkStruct_ov5_021E7814 * param6);
 static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF76C * const param2, const UnkStruct_02039E30 * param3, const int param4, const int param5, const BOOL param6, const UnkStruct_ov5_021E8F60 * param7);
@@ -434,7 +434,7 @@ static void ov5_021E7B4C (UnkStruct_ov5_021E8F60 * param0)
     }
 }
 
-static void ov5_021E7BAC (UnkStruct_02006C24 * param0, const int param1, UnkStruct_ov5_021E7BAC * param2)
+static void ov5_021E7BAC (NARC * param0, const int param1, UnkStruct_ov5_021E7BAC * param2)
 {
     void * v0;
     int * v1;
@@ -442,10 +442,10 @@ static void ov5_021E7BAC (UnkStruct_02006C24 * param0, const int param1, UnkStru
 
     if (param0 != NULL) {
         v0 = sub_02018184(4, v2);
-        sub_02006DC8(param0, param1, 0, v2, v0);
+        NARC_ReadFromMember(param0, param1, 0, v2, v0);
     } else {
         GF_ASSERT(FALSE);
-        v0 = sub_02006B38(67, param1, 4, 0, v2);
+        v0 = AllocAtEndAndReadFromNarcMemberByIndexPair(67, param1, 4, 0, v2);
     }
 
     v1 = &((int *)(v0))[0];
@@ -489,7 +489,7 @@ static void ov5_021E7C00 (const u8 param0, UnkStruct_ov5_021EF76C * const param1
         void * v4;
 
         v4 = &(param6->unk_00[param0]->unk_00[0]);
-        sub_02006E18(param5->unk_EC, v3.unk_00, v4);
+        NARC_ReadFile(param5->unk_EC, v3.unk_00, v4);
     }
 
     if (param6->unk_00[param0]->unk_868 != NULL) {
@@ -530,7 +530,7 @@ static void ov5_021E7CD4 (const u8 param0, UnkStruct_ov5_021EF76C * const param1
 
     {
         u8 v4[0x800];
-        sub_02006E18(param5->unk_EC, 0x800, v4);
+        NARC_ReadFile(param5->unk_EC, 0x800, v4);
     }
 
     if (param6->unk_00[param0]->unk_868 != NULL) {
@@ -595,7 +595,7 @@ static void ov5_021E7E28 (const int param0, const u8 param1, UnkStruct_ov5_021EF
         void * v3;
 
         v3 = &(param7->unk_84[param1]->unk_00[0]);
-        sub_02006E18(param7->unk_EC, v2.unk_00, v3);
+        NARC_ReadFile(param7->unk_EC, v2.unk_00, v3);
     }
 
     if (param7->unk_84[param1]->unk_868 != NULL) {
@@ -643,7 +643,7 @@ static void ov5_021E7F1C (const int param0, const u8 param1, UnkStruct_ov5_021EF
 
     {
         u8 v3[0x800];
-        sub_02006E18(param7->unk_EC, 0x800, v3);
+        NARC_ReadFile(param7->unk_EC, 0x800, v3);
     }
 
     if (param7->unk_84[param1]->unk_868 != NULL) {
@@ -684,7 +684,7 @@ static void ov5_021E7FF0 (const int param0, const u8 param1, UnkStruct_ov5_021EF
         void * v2;
 
         v2 = &(param7->unk_84[param1]->unk_00[0]);
-        sub_02006E18(param7->unk_EC, v1.unk_00, v2);
+        NARC_ReadFile(param7->unk_EC, v1.unk_00, v2);
     }
 
     if (param7->unk_84[param1]->unk_868 != NULL) {
@@ -1566,7 +1566,7 @@ UnkStruct_ov5_021E8F60 * ov5_021E9084 (UnkStruct_02039E30 * param0, UnkStruct_ov
 
     v0->unk_A4 = 0;
     v0->unk_A8 = 2;
-    v0->unk_EC = sub_02006C24(67, 4);
+    v0->unk_EC = NARC_ctor(67, 4);
     v0->unk_F0 = NULL;
 
     return v0;
@@ -1648,7 +1648,7 @@ void ov5_021E924C (UnkStruct_ov5_021E8F60 * param0)
 
 void ov5_021E92E4 (UnkStruct_ov5_021E8F60 * param0)
 {
-    sub_02006CA8(param0->unk_EC);
+    NARC_dtor(param0->unk_EC);
     ov5_021EEB48(param0->unk_00);
     sub_020181C4((void *)param0);
 }
@@ -1867,7 +1867,7 @@ static void ov5_021E964C (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         v4 = &((u8 *)(*v1->unk_0C))[v1->unk_24];
-        sub_02006E18(v1->unk_00, v3, v4);
+        NARC_ReadFile(v1->unk_00, v3, v4);
         v1->unk_24 += v3;
         break;
     case 1:
@@ -1884,7 +1884,7 @@ static void ov5_021E964C (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         v4 = &((u8 *)(*v1->unk_0C))[v1->unk_24];
-        sub_02006E18(v1->unk_00, v3, v4);
+        NARC_ReadFile(v1->unk_00, v3, v4);
 
         if (v5) {
             v1->unk_14 = 2;
@@ -1927,7 +1927,7 @@ static void ov5_021E964C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-UnkStruct_0201CD38 * ov5_021E976C (UnkStruct_02006C24 * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6)
+UnkStruct_0201CD38 * ov5_021E976C (NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6)
 {
     UnkStruct_0201CD38 * v0;
     UnkStruct_ov5_021E9640 * v1;
@@ -1949,12 +1949,12 @@ UnkStruct_0201CD38 * ov5_021E976C (UnkStruct_02006C24 * param0, const int param1
     return v0;
 }
 
-NNSG3dResMdl * ov5_021E97AC (UnkStruct_02006C24 * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4)
+NNSG3dResMdl * ov5_021E97AC (NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4)
 {
     BOOL v0;
     NNSG3dResMdl * v1;
 
-    sub_02006E18(param0, param1, *(param3));
+    NARC_ReadFile(param0, param1, *(param3));
 
     if (param4 != NULL) {
         if (sub_0201CA5C(param4) == 1) {
@@ -1980,12 +1980,12 @@ NNSG3dResMdl * ov5_021E97AC (UnkStruct_02006C24 * param0, const int param1, NNSG
     return v1;
 }
 
-UnkStruct_02006C24 * ov5_021E9828 (UnkStruct_ov5_021E8F60 * param0)
+NARC * ov5_021E9828 (UnkStruct_ov5_021E8F60 * param0)
 {
     return param0->unk_EC;
 }
 
-UnkStruct_ov5_021E8F60 * ov5_021E9830 (UnkStruct_02039E30 * param0, UnkStruct_ov5_021EF76C * param1, UnkStruct_02006C24 * param2)
+UnkStruct_ov5_021E8F60 * ov5_021E9830 (UnkStruct_02039E30 * param0, UnkStruct_ov5_021EF76C * param1, NARC * param2)
 {
     UnkStruct_ov5_021E8F60 * v0;
     BOOL v1;
@@ -2010,13 +2010,13 @@ UnkStruct_ov5_021E8F60 * ov5_021E9830 (UnkStruct_02039E30 * param0, UnkStruct_ov
     v0->unk_EC = param2;
 
     if (param2 == NULL) {
-        v0->unk_EC = sub_02006C24(67, 4);
+        v0->unk_EC = NARC_ctor(67, 4);
     }
 
     return v0;
 }
 
-void ov5_021E98C8 (UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1, UnkStruct_ov5_021EF76C * param2, UnkStruct_02006C24 * param3)
+void ov5_021E98C8 (UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1, UnkStruct_ov5_021EF76C * param2, NARC * param3)
 {
     BOOL v0;
 
@@ -2034,7 +2034,7 @@ void ov5_021E98C8 (UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1,
     param0->unk_EC = param3;
 
     if (param3 == NULL) {
-        param0->unk_EC = sub_02006C24(67, 4);
+        param0->unk_EC = NARC_ctor(67, 4);
     }
 }
 

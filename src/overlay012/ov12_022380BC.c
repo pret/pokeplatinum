@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
 #include "unk_02073C2C.h"
@@ -110,12 +110,12 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
 
     if (v4 == 2) {
-        UnkStruct_02006C24 * v13 = sub_02006C24(147, param3);
+        NARC * v13 = NARC_ctor(147, param3);
 
         sub_02078A80(v13, &v9, v2);
         sub_02078AA4(v13, &v10, v2);
         sub_02078AC8(v13, &v12, v2);
-        sub_02006CA8(v13);
+        NARC_dtor(v13);
 
         sub_02007DEC(param0->unk_18[param0->unk_00], 46, v12);
         sub_02007DEC(param0->unk_18[param0->unk_00], 20, (v8 + v11) + (36 - v11));
@@ -193,7 +193,7 @@ void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
     param0->unk_08[param0->unk_00]->unk_04 = v0.unk_00;
     param0->unk_08[param0->unk_00]->unk_08 = v0.unk_04;
 
-    sub_02006AA4(&v4, 121, v3);
+    ReadWholeNarcMemberByIndexPair(&v4, 121, v3);
     param0->unk_08[param0->unk_00]->unk_0C = v4;
     v2 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->unk_08[param0->unk_00]->unk_0C;
 

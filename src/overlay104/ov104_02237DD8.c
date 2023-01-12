@@ -17,7 +17,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02017E74.h"
 #include "unk_02018340.h"
@@ -629,13 +629,13 @@ static int ov104_02238584 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_02079FF4
 
 void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_ov104_0223BFFC * v1;
 
     v1 = (UnkStruct_ov104_0223BFFC *)param0;
 
     if (v1->unk_13 != 32) {
-        v0 = sub_02006C24(150, 94);
+        v0 = NARC_ctor(150, 94);
 
         sub_020070E8(v0, Unk_ov104_0223FBBA[v1->unk_13][0], param1->unk_00, 2, 0, 0, 1, 94);
         sub_0200710C(v0, Unk_ov104_0223FBBA[v1->unk_13][1], param1->unk_00, 2, 0, 0, 1, 94);
@@ -656,7 +656,7 @@ void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
 
         sub_0201FF0C(GX_PLANEMASK_BG2, 1);
         sub_0201C3C0(param1->unk_00, 2);
-        sub_02006CA8(v0);
+        NARC_dtor(v0);
     } else {
         sub_0201FF0C(GX_PLANEMASK_BG2, 0);
     }
@@ -666,15 +666,15 @@ void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
 
 void ov104_02238728 (void * param0, UnkStruct_ov104_0223C4CC * param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_ov104_0223BFFC * v1;
 
     v1 = (UnkStruct_ov104_0223BFFC *)param0;
-    v0 = sub_02006C24(150, 94);
+    v0 = NARC_ctor(150, 94);
 
     sub_0200710C(v0, 53, param1->unk_00, 3, 0, 0, 1, 94);
     sub_0201C3C0(param1->unk_00, 3);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     return;
 }
@@ -886,7 +886,7 @@ void ov104_02238AB4 (u8 param0, u8 param1)
     u32 v0, v1;
     NNSG2dPaletteData * v2;
     void * v3;
-    UnkStruct_02006C24 * v4;
+    NARC * v4;
     u16 * v5;
 
     if (param1 == 0) {
@@ -900,7 +900,7 @@ void ov104_02238AB4 (u8 param0, u8 param1)
     v5 = sub_02018144(94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
-    v4 = sub_02006C24(150, 94);
+    v4 = NARC_ctor(150, 94);
     v3 = sub_020071EC(v4, v0, &v2, 94);
 
     sub_0200393C(v2->pRawData, v5, 0x1000, param0, 0x0);
@@ -910,7 +910,7 @@ void ov104_02238AB4 (u8 param0, u8 param1)
     GX_LoadBGExtPltt(v5, 0x6000, v1);
     GX_EndLoadBGExtPltt();
 
-    sub_02006CA8(v4);
+    NARC_dtor(v4);
     sub_020181C4(v5);
     sub_020181C4(v3);
 

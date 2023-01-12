@@ -65,7 +65,7 @@ static void ov19_021DA1F8(UnkStruct_ov19_021D8E00 * param0);
 static void ov19_021DA204(UnkStruct_ov19_021D8E00 * param0);
 static UnkStruct_02022550 * ov19_021DA224(UnkStruct_ov19_021D8E00 * param0);
 
-BOOL ov19_021D8B54 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, UnkStruct_02006C24 * param4)
+BOOL ov19_021D8B54 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, NARC * param4)
 {
     param0->unk_794 = param1;
     param0->unk_790 = param2;
@@ -93,7 +93,7 @@ BOOL ov19_021D8B54 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * 
     return 1;
 }
 
-void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, UnkStruct_02006C24 * param1)
+void ov19_021D8C1C (UnkStruct_ov19_021D8E00 * param0, NARC * param1)
 {
     UnkStruct_ov19_021DA864 v0;
     u32 v1, v2;

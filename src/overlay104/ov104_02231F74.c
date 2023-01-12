@@ -43,7 +43,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
@@ -1081,15 +1081,15 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, UnkStruct_02073C74 * par
     UnkStruct_0200D0F4 * v5;
 
     {
-        UnkStruct_02006C24 * v6;
+        NARC * v6;
 
-        v6 = sub_02006C24(27, param2);
+        v6 = NARC_ctor(27, param2);
 
         sub_0200CC3C(v0, v1, v6, 112, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
         sub_0200CDC4(v2, 2, v0, v1, v6, 111, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
         sub_0200CE24(v0, v1, v6, 113, 0, param3);
         sub_0200CE54(v0, v1, v6, 114, 0, param3);
-        sub_02006CA8(v6);
+        NARC_dtor(v6);
     }
 
     {
@@ -1237,15 +1237,15 @@ void ov104_02232FD4 (UnkStruct_ov104_0223C4CC * param0, UnkStruct_0200D0F4 * par
 
 void ov104_02232FEC (UnkStruct_ov104_0223C4CC * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(20, 94);
+    v0 = NARC_ctor(20, 94);
 
     sub_0200CDC4(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
     sub_0200CE24(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), 0, 2001);
     sub_0200CE54(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), 0, 2001);
     sub_0200D888(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 void ov104_0223307C (UnkStruct_ov104_0223C4CC * param0)

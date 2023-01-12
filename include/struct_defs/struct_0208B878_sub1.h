@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 typedef struct {
-    UnkStruct_02006C24 * unk_00;
+    NARC * unk_00;
     UnkStruct_0200C6E4 * unk_04;
     UnkStruct_0200C704 * unk_08;
     UnkStruct_02002F38 * unk_0C;

@@ -30,7 +30,7 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -190,9 +190,9 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
         8, 1, 2, 2, 0, 0
     };
     u32 v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(66, 11);
+    v2 = NARC_ctor(66, 11);
 
     ov5_021D3190(&param0->unk_74, &v0, (7 + 1), 11);
     ov5_021D32E8(&param0->unk_74, v2, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
@@ -208,7 +208,7 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
     ov5_021D339C(&param0->unk_74, v2, 7, 0, 14529);
     ov5_021D3414(&param0->unk_74, v2, 10, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 14529);
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 
     for (v1 = 0; v1 < param2; v1++) {
         UnkStruct_ov104_0223F9E0 v3;

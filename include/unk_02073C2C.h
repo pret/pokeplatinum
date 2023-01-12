@@ -160,12 +160,12 @@ BOOL sub_0207884C(UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1,
 int sub_020788D0(int param0);
 void sub_0207893C(UnkStruct_02073C74 * param0);
 void sub_0207896C(UnkStruct_02073C74_sub1 * param0);
-void sub_020789BC(UnkStruct_02006C24 * param0, UnkStruct_02007C10 * param1, u16 param2, u16 param3);
-void sub_020789F4(UnkStruct_02006C24 * param0, UnkStruct_02015F84 * param1, UnkStruct_02007C7C * param2, u16 param3, int param4, int param5, int param6);
-void sub_02078A4C(UnkStruct_02006C24 * param0, u8 * param1, u16 param2, u16 param3);
-void sub_02078A80(UnkStruct_02006C24 * param0, s8 * param1, u16 param2);
-void sub_02078AA4(UnkStruct_02006C24 * param0, s8 * param1, u16 param2);
-void sub_02078AC8(UnkStruct_02006C24 * param0, u8 * param1, u16 param2);
+void sub_020789BC(NARC * param0, UnkStruct_02007C10 * param1, u16 param2, u16 param3);
+void sub_020789F4(NARC * param0, UnkStruct_02015F84 * param1, UnkStruct_02007C7C * param2, u16 param3, int param4, int param5, int param6);
+void sub_02078A4C(NARC * param0, u8 * param1, u16 param2, u16 param3);
+void sub_02078A80(NARC * param0, s8 * param1, u16 param2);
+void sub_02078AA4(NARC * param0, s8 * param1, u16 param2);
+void sub_02078AC8(NARC * param0, u8 * param1, u16 param2);
 BOOL sub_02078AEC(int param0, UnkStruct_02073C74 * param1, int param2);
 void sub_02078B40(UnkStruct_02073C74 * param0, UnkStruct_02078B40 * param1);
 void sub_02078E0C(UnkStruct_02078B40 * param0, UnkStruct_02073C74 * param1);

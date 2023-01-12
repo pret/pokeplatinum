@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
@@ -56,13 +56,13 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AD8 = {
 
 void ov16_0226DE44 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, UnkStruct_02002F38 * param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    UnkStruct_02006C24 * v0 = sub_02006C24(82, param2);
+    NARC * v0 = NARC_ctor(82, param2);
 
     sub_0200CDC4(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     sub_0200CC3C(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     sub_0200CE24(param0, param1, v0, 12, 0, param6);
     sub_0200CE54(param0, param1, v0, 13, 0, param7);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 void ov16_0226DEC4 (UnkStruct_0200C704 * param0, u32 param1, u32 param2, u32 param3, u32 param4)

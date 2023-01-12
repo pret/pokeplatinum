@@ -807,7 +807,7 @@ static void ov21_021D6580 (UnkStruct_ov21_021D71A8 * param0)
 static void ov21_021D65DC (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D13FC * param1, int param2)
 {
     UnkStruct_02009DC8 * v0;
-    UnkStruct_02006C24 * v1 = ov21_021D26E0(param1);
+    NARC * v1 = ov21_021D26E0(param1);
 
     v0 = sub_02009A4C(param0->unk_80[0], v1, 81, 1, 81, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 

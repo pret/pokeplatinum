@@ -37,7 +37,7 @@
 #include "unk_02005474.h"
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -334,8 +334,8 @@ void ov16_0223B3E4 (UnkStruct_0207ADB4 * param0)
 
 void ov16_0223B430 (UnkStruct_0207ADB4 * param0)
 {
-    UnkStruct_02006C24 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v0;
+    NARC * v1;
 
     sub_02006514(FS_OVERLAY_ID(overlay13));
 
@@ -348,8 +348,8 @@ void ov16_0223B430 (UnkStruct_0207ADB4 * param0)
     ov16_0223F314(param0, 0);
     MI_CpuFill16((void *)sub_02024200(), 0x0, sub_02024208());
 
-    v0 = sub_02006C24(7, 5);
-    v1 = sub_02006C24(27, 5);
+    v0 = NARC_ctor(7, 5);
+    v1 = NARC_ctor(27, 5);
     param0->unk_198 = ov16_022687C8(v0, v1, param0, ov16_0223E1B4(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
 
     sub_02002BB8(2, 5);
@@ -364,8 +364,8 @@ void ov16_0223B430 (UnkStruct_0207ADB4 * param0)
     ov16_02268A88(param0->unk_198);
     ov16_02268C04(v0, v1, param0->unk_198, 0, 1, NULL);
     ov16_02268D40(v1, param0->unk_198);
-    sub_02006CA8(v0);
-    sub_02006CA8(v1);
+    NARC_dtor(v0);
+    NARC_dtor(v1);
     sub_020027A8(1);
     ov16_0223DD4C(param0);
     sub_0200964C(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
@@ -566,13 +566,13 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     sub_0201DBEC(64, 5);
 
     {
-        UnkStruct_02006C24 * v6 = sub_02006C24(7, 5);
-        UnkStruct_02006C24 * v7 = sub_02006C24(27, 5);
+        NARC * v6 = NARC_ctor(7, 5);
+        NARC * v7 = NARC_ctor(27, 5);
 
         v0->unk_198 = ov16_022687C8(v6, v7, v0, ov16_0223E1B4(v0, ov16_0223F6E4(v0)), v0->unk_1BC);
 
-        sub_02006CA8(v6);
-        sub_02006CA8(v7);
+        NARC_dtor(v6);
+        NARC_dtor(v7);
     }
 
     ov16_0223C004(v0, v0->unk_04);
@@ -596,17 +596,17 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     ov16_02268A88(v0->unk_198);
 
     {
-        UnkStruct_02006C24 * v8;
-        UnkStruct_02006C24 * v9;
+        NARC * v8;
+        NARC * v9;
 
-        v8 = sub_02006C24(7, 5);
-        v9 = sub_02006C24(27, 5);
+        v8 = NARC_ctor(7, 5);
+        v9 = NARC_ctor(27, 5);
 
         ov16_02268C04(v8, v9, v0->unk_198, 0, 1, NULL);
         ov16_02268D40(v9, v0->unk_198);
 
-        sub_02006CA8(v8);
-        sub_02006CA8(v9);
+        NARC_dtor(v8);
+        NARC_dtor(v9);
     }
 
     v0->unk_88 = sub_0200762C(5);

@@ -231,7 +231,7 @@ static void ov100_021D17B4 (UnkStruct_ov100_021D1808 * param0)
 
 static void ov100_021D1808 (UnkStruct_ov100_021D1808 * param0)
 {
-    UnkStruct_02006C24 * v0 = param0->unk_7C4->unk_00;
+    NARC * v0 = param0->unk_7C4->unk_00;
     UnkStruct_02018340 * v1 = param0->unk_7C4->unk_0C;
     UnkStruct_0200C6E4 * v2 = param0->unk_7C4->unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_7C4->unk_08;
@@ -287,7 +287,7 @@ static void ov100_021D1A24 (UnkStruct_ov100_021D1808 * param0)
 static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
 {
     int v0;
-    UnkStruct_02006C24 * v1 = param0->unk_7C4->unk_00;
+    NARC * v1 = param0->unk_7C4->unk_00;
     UnkStruct_02018340 * v2 = param0->unk_7C4->unk_0C;
     UnkStruct_0200C6E4 * v3 = param0->unk_7C4->unk_04;
     UnkStruct_0200C704 * v4 = param0->unk_7C4->unk_08;

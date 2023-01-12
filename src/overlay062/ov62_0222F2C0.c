@@ -20,7 +20,7 @@
 #include "unk_02002328.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200AC5C.h"
@@ -60,7 +60,7 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
     GXS_SetVisiblePlane(0);
     sub_0201DBEC(4, 102);
 
-    param0->unk_14.unk_00 = sub_02006C24(162, 102);
+    param0->unk_14.unk_00 = NARC_ctor(162, 102);
     param0->unk_14.unk_10 = sub_02018340(102);
     param0->unk_14.unk_14 = sub_02002F38(102);
     param0->unk_14.unk_4C = sub_02024220(102, 0, 1, 0, 4, NULL);
@@ -173,7 +173,7 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
         sub_0202798C(v0, param0->unk_14.unk_48);
     }
 
-    sub_02006CA8(param0->unk_14.unk_00);
+    NARC_dtor(param0->unk_14.unk_00);
     sub_0200DA58(param0->unk_41E8);
     sub_0200D0B0(param0->unk_14.unk_04, param0->unk_14.unk_08);
     sub_0200C8D4(param0->unk_14.unk_04);

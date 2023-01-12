@@ -14,7 +14,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
-    UnkStruct_02006C24 * unk_00;
+    NARC * unk_00;
     UnkStruct_0200C6E4 * unk_04;
     UnkStruct_0200C704 * unk_08;
     UnkStruct_02018340 * unk_0C;

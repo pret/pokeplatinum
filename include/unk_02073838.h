@@ -12,7 +12,7 @@
 
 void sub_02073838(UnkStruct_02073838 * param0);
 void sub_02073848(UnkStruct_02073838 * param0, NNSG3dResFileHeader * param1, u32 param2);
-void sub_0207389C(UnkStruct_02073838 * param0, u32 param1, UnkStruct_02006C24 * param2, u32 param3, u32 param4, int param5);
+void sub_0207389C(UnkStruct_02073838 * param0, u32 param1, NARC * param2, u32 param3, u32 param4, int param5);
 void sub_020738C0(UnkStruct_02073838 * param0);
 void sub_020738EC(UnkStruct_02073838 * param0);
 void sub_0207390C(UnkStruct_02073838 * param0);
@@ -22,7 +22,7 @@ void sub_02073974(UnkStruct_02073974 * param0);
 void sub_02073980(UnkStruct_02073974 * param0, void * param1, u32 param2);
 void sub_02073994(UnkStruct_02073974 * param0, void * param1, u32 param2);
 void sub_020739A8(UnkStruct_02073974 * param0, UnkStruct_02073974 * param1, u32 param2);
-void sub_020739B4(UnkStruct_02073974 * param0, u32 param1, UnkStruct_02006C24 * param2, u32 param3, u32 param4, int param5);
+void sub_020739B4(UnkStruct_02073974 * param0, u32 param1, NARC * param2, u32 param3, u32 param4, int param5);
 void sub_020739F0(UnkStruct_02073974 * param0);
 void sub_02073A14(UnkStruct_02073974 * param0, const NNSG3dResMdl * param1, u32 param2);
 void sub_02073A3C(UnkStruct_02073974 * param0, const UnkStruct_02073838 * param1, u32 param2);

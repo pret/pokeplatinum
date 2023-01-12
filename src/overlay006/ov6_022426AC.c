@@ -13,7 +13,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -65,7 +65,7 @@ void ov6_022426B8 (UnkStruct_ov6_022426B8 * param0)
 void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     param0->unk_1CC = 0;
 
@@ -97,7 +97,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
     }
 
     param0->unk_38 = sub_020095C4(1, &param0->unk_3C, 4);
-    v1 = sub_02006C24(97, 4);
+    v1 = NARC_ctor(97, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_00[v0] = sub_02009714(Unk_ov6_02249030[v0], v0, 4);
@@ -115,7 +115,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
 
     ov6_02242880(param0->unk_00[0], param0->unk_00[1], param0->unk_20, param0->unk_24);
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
     ov6_022428F8(param0);
 }
 

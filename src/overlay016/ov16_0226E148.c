@@ -7,7 +7,7 @@
 #include "overlay016/struct_ov16_02268A14_decl.h"
 
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
 #include "unk_0201CCF0.h"
@@ -59,14 +59,14 @@ static void ov16_0226E188 (UnkStruct_0201CD38 * param0, void * param1)
         GF_ASSERT(v1 != NULL);
 
         {
-            UnkStruct_02006C24 * v2, * v3;
+            NARC * v2, * v3;
 
-            v2 = sub_02006C24(7, 5);
-            v3 = sub_02006C24(27, 5);
+            v2 = NARC_ctor(7, 5);
+            v3 = NARC_ctor(27, 5);
 
             ov16_02268C04(v2, v3, v1, 18, 0, NULL);
-            sub_02006CA8(v2);
-            sub_02006CA8(v3);
+            NARC_dtor(v2);
+            NARC_dtor(v3);
         }
         v0->unk_04++;
         break;

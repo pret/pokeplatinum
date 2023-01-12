@@ -15,7 +15,7 @@ UnkStruct_ov5_021E1608 * ov5_021E15F4(const u8 param0);
 void ov5_021E1608(UnkStruct_ov5_021E1608 * param0);
 void ov5_021E1610(UnkStruct_ov5_021E1608 * param0);
 void ov5_021E1674(const int param0, UnkStruct_ov5_021E1608 * param1);
-void ov5_021E16CC(UnkStruct_02006C24 * param0, const int param1, UnkStruct_ov5_021EF76C * const param2, UnkStruct_ov5_021E1608 * param3, UnkStruct_ov5_021D3CAC * param4);
+void ov5_021E16CC(NARC * param0, const int param1, UnkStruct_ov5_021EF76C * const param2, UnkStruct_ov5_021E1608 * param3, UnkStruct_ov5_021D3CAC * param4);
 void ov5_021E17CC(const VecFx32 * param0, const UnkStruct_ov5_021EF76C * param1, const BOOL param2, UnkStruct_ov5_021D5894 * const param3, UnkStruct_ov5_021E1608 * param4);
 VecFx32 * ov5_021E1890(UnkStruct_ov5_021E1890 * param0);
 VecFx32 ov5_021E1894(const UnkStruct_ov5_021E1890 * param0);

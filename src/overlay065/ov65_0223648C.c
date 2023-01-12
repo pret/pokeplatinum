@@ -42,7 +42,7 @@
 #include "unk_02005474.h"
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -635,7 +635,7 @@ static void ov65_02236820 (void)
 
 static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
     param0->unk_00 = sub_02018340(param1);
 
@@ -724,7 +724,7 @@ static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
     sub_0201FF74(GX_PLANEMASK_BG3, 0);
     sub_0201FF74(GX_PLANEMASK_OBJ, 0);
 
-    v0 = sub_02006C24(92, param1);
+    v0 = NARC_ctor(92, param1);
 
     sub_02007130(v0, 13, 0, 5 * 32, 1 * 32, param1);
     sub_020070E8(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);
@@ -742,7 +742,7 @@ static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
         param0->unk_25A = 1;
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 static void ov65_022369F0 (UnkStruct_ov65_02236840 * param0)

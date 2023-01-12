@@ -11,7 +11,7 @@
 #include "overlay108/struct_ov108_02243030.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -167,17 +167,17 @@ static void ov108_02243230 (UnkStruct_ov108_02243030 * param0)
 
 static void ov108_022432B4 (UnkStruct_ov108_02243030 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     u32 v1;
 
-    v0 = sub_02006C24(20, 103);
+    v0 = NARC_ctor(20, 103);
 
     param0->unk_1A0[2][0] = sub_02009A4C(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     param0->unk_1A0[2][1] = sub_020098B8(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
     param0->unk_1A0[2][2] = sub_02009BC4(param0->unk_190[2], v0, sub_02081938(), 0, 2, 2, 103);
     param0->unk_1A0[2][3] = sub_02009BC4(param0->unk_190[3], v0, sub_0208193C(), 0, 2, 3, 103);
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
     return;
 }
 
@@ -185,10 +185,10 @@ static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF
 {
     UnkStruct_02073C74 * v0;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
     u32 v3;
 
-    v2 = sub_02006C24(19, 103);
+    v2 = NARC_ctor(19, 103);
 
     param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
     param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v2, sub_02079FD8(), 0, 3, 2, 103);
@@ -212,7 +212,7 @@ static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF
         param0->unk_1A0[7 + v3][0] = sub_02009A4C(param0->unk_190[0], v2, sub_02079D80(v1), 0, 7 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     }
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
     return;
 }
 

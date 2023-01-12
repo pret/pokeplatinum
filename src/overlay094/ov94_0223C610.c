@@ -19,7 +19,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
@@ -281,9 +281,9 @@ static void ov94_0223C85C (UnkStruct_ov94_0223FD4C * param0)
 static void ov94_0223C888 (UnkStruct_ov94_0223FD4C * param0)
 {
     UnkStruct_02018340 * v0 = param0->unk_04;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(104, 62);
+    v1 = NARC_ctor(104, 62);
 
     sub_02007130(v1, 4, 0, 0, 16 * 3 * 2, 62);
     sub_02002E98(0, 13 * 0x20, 62);
@@ -295,7 +295,7 @@ static void ov94_0223C888 (UnkStruct_ov94_0223FD4C * param0)
 
     ov94_0223D068(param0);
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static const u16 Unk_ov94_02245A48[][2] = {

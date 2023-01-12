@@ -55,7 +55,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -1266,12 +1266,12 @@ static BOOL ov104_022305DC (UnkStruct_ov104_0222E930 * param0)
     const u8 * v2;
     s32 v3;
     u16 v4;
-    UnkStruct_02006C24 * v5;
+    NARC * v5;
 
     v3 = ov104_0222EA60(param0);
     v2 = param0->unk_1C;
     param0->unk_1C = (u8 *)(param0->unk_1C + v3);
-    v5 = sub_02006C24(151, v0->unk_34);
+    v5 = NARC_ctor(151, v0->unk_34);
 
     while (TRUE) {
         v4 = ov104_0222FC00(param0);
@@ -1284,7 +1284,7 @@ static BOOL ov104_022305DC (UnkStruct_ov104_0222E930 * param0)
         ov104_0223D29C(v1, v4);
     }
 
-    sub_02006CA8(v5);
+    NARC_dtor(v5);
     param0->unk_1C = v2;
 
     return 0;

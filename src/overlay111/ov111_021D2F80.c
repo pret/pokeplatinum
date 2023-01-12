@@ -41,7 +41,7 @@ static const u8 Unk_ov111_021D3820[4] = {
 void ov111_021D2F80 (UnkStruct_ov111_021D2F80 * param0)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     sub_0201DBEC(32, 115);
     ov111_021D3378();

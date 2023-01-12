@@ -34,7 +34,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
@@ -390,13 +390,13 @@ static int(*const Unk_ov117_02266B94[])(UnkStruct_ov117_02261280 *, UnkStruct_ov
 
 void ov117_02263AF0 (UnkStruct_02018340 * param0, int param1, int param2, UnkStruct_ov117_02263DAC * param3)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(173, 110);
+    v0 = NARC_ctor(173, 110);
 
     sub_020070E8(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
     sub_0200710C(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov117_02263DAC));
 

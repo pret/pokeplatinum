@@ -8,7 +8,7 @@
 
 #include "overlay025/struct_ov25_0225517C.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
@@ -274,20 +274,20 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     v2 = sub_02018144(8, v1[param3]);
 
     if (v2) {
-        UnkStruct_02006C24 * v3 = sub_02006C24(19, 8);
+        NARC * v3 = NARC_ctor(19, 8);
 
         if (v3) {
             NNSG2dCharacterData * v4;
             u32 v5;
 
             for (v5 = 0; v5 < param2; v5++) {
-                sub_02006DC8(v3, param1[v5], 0, v1[param3], v2);
+                NARC_ReadFromMember(v3, param1[v5], 0, v1[param3], v2);
                 NNS_G2dGetUnpackedCharacterData(v2, &v4);
                 DC_FlushRange(v4->pRawData, v0[param3]);
                 GXS_LoadOBJ(v4->pRawData, (param0 * 0x20) + (v0[param3] * v5), v0[param3]);
             }
 
-            sub_02006CA8(v3);
+            NARC_dtor(v3);
         }
 
         sub_020181C4(v2);

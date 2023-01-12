@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055130.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -477,9 +477,9 @@ int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
         v4 = sub_0202D84C(v0, v3);
 
         if ((GAME_VERSION == 10) || (GAME_VERSION == 12)) {
-            v1 = sub_02006ADC(106, Unk_ov5_021FF5A8[v4->unk_05], 4);
+            v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, Unk_ov5_021FF5A8[v4->unk_05], 4);
         } else {
-            v1 = sub_02006ADC(106, dummy[v4->unk_05], 4);
+            v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, dummy[v4->unk_05], 4);
         }
 
         v2 = v1[v4->unk_04];

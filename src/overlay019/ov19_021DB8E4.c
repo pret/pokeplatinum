@@ -73,7 +73,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C * param0, u32 param1);
 static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C * param0, fx32 param1);
 static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C * param0);
 
-BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, UnkStruct_02006C24 * param5)
+BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, NARC * param5)
 {
     int v0;
 

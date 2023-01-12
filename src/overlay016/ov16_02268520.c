@@ -11,7 +11,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_02268520.h"
@@ -179,9 +179,9 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
     const UnkStruct_ov104_0223F9E0 * v2;
     int v3, v4, v5, v6, v7, v8;
     int v9;
-    UnkStruct_02006C24 * v10;
+    NARC * v10;
 
-    v10 = sub_02006C24(27, 5);
+    v10 = NARC_ctor(27, 5);
     v0 = ov16_0223E010(param0->unk_04);
     v1 = ov16_0223E018(param0->unk_04);
     v9 = ov16_0223EC04(param0->unk_04);
@@ -208,7 +208,7 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
     sub_02003050(ov16_0223E064(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     sub_0200CE24(v0, v1, v10, v5, 1, v6);
     sub_0200CE54(v0, v1, v10, v7, 1, v8);
-    sub_02006CA8(v10);
+    NARC_dtor(v10);
 }
 
 void ov16_0226862C (UnkStruct_ov16_02268520 * param0)

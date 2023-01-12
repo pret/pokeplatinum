@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_02013610.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
 #include "unk_02017E74.h"
@@ -27,7 +27,7 @@ static void sub_0201322C (int param0, int param1, int param2, NNSG2dCharacterDat
     BOOL v0;
     void * v1 = NULL;
 
-    v1 = sub_02006AC0(param0, param1, param2);
+    v1 = AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
     GF_ASSERT(v1 != NULL);
 
     v0 = NNS_G2dGetUnpackedCharacterData(v1, &(*param3));
@@ -136,7 +136,7 @@ void sub_020133D4 (int param0, int param1, int param2, int param3, int param4, i
     int v8;
     BOOL v9;
 
-    v0 = sub_02006AC0(param0, param1, param2);
+    v0 = AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
     GF_ASSERT(v0 != NULL);
 
     v9 = NNS_G2dGetUnpackedCharacterData(v0, &v3);
@@ -275,7 +275,7 @@ void * sub_02013660 (int param0, int param1, int param2)
     BOOL v4;
 
     v2 = sub_02018144(param2, 0x20);
-    v1 = sub_02006AC0(param0, param1, param2);
+    v1 = AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
     v4 = NNS_G2dGetUnpackedPaletteData(v1, &v0);
 
     GF_ASSERT(v4 == 1);

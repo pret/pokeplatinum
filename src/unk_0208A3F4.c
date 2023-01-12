@@ -68,7 +68,7 @@ void sub_0208A3F4 (UnkStruct_02089688 * param0)
 
 void sub_0208A490 (UnkStruct_02089688 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_02018340 * v1;
     UnkStruct_0200C6E4 * v2;
     UnkStruct_0200C704 * v3;

@@ -10,9 +10,9 @@
 #include <nitro/fx/fx.h>
 
 void sub_020170BC(UnkStruct_020170F4 * param0, u32 param1, u32 param2, u32 param3);
-void sub_020170D8(UnkStruct_020170F4 * param0, UnkStruct_02006C24 * param1, u32 param2, u32 param3);
+void sub_020170D8(UnkStruct_020170F4 * param0, NARC * param1, u32 param2, u32 param3);
 void sub_02017110(UnkStruct_020170F4 * param0);
-void sub_02017164(UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, UnkStruct_02006C24 * param2, u32 param3, u32 param4, NNSFndAllocator * param5);
+void sub_02017164(UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5);
 void sub_02017190(UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, void * param2, NNSFndAllocator * param3);
 void sub_020171A0(UnkStruct_02017248 * param0, NNSFndAllocator * param1);
 void sub_020171CC(UnkStruct_02017248 * param0, fx32 param1);

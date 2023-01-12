@@ -9,8 +9,8 @@
 
 #include <nitro/fx/fx.h>
 
-BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, UnkStruct_02006C24 * param4);
-void ov19_021D8C1C(UnkStruct_ov19_021D8E00 * param0, UnkStruct_02006C24 * param1);
+BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, NARC * param4);
+void ov19_021D8C1C(UnkStruct_ov19_021D8E00 * param0, NARC * param1);
 void ov19_021D8E84(UnkStruct_ov19_021D8E00 * param0);
 void ov19_021D8F60(UnkStruct_ov19_021D8E00 * param0);
 BOOL ov19_021D9074(UnkStruct_ov19_021D8E00 * param0);

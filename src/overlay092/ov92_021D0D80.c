@@ -34,7 +34,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -146,7 +146,7 @@ int ov92_021D0EB8(UnkStruct_020067E8 * param0, int * param1);
 int ov92_021D1478(UnkStruct_020067E8 * param0, int * param1);
 static void ov92_021D14F0(void);
 static void ov92_021D1510(void);
-static void ov92_021D1888(UnkStruct_ov92_021D1B24 * param0, UnkStruct_02006C24 * param1);
+static void ov92_021D1888(UnkStruct_ov92_021D1B24 * param0, NARC * param1);
 static void ov92_021D1B24(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1530(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1634(UnkStruct_ov92_021D1B24 * param0, u32 param1, s16 param2, s16 param3, u16 param4, u16 param5);
@@ -162,7 +162,7 @@ static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 * param0, int param1, int param2);
 static void ov92_021D1F74(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1F90(UnkStruct_ov92_021D1B24 * param0);
-static void ov92_021D2150(UnkStruct_ov92_021D1B24 * param0, UnkStruct_02006C24 * param1);
+static void ov92_021D2150(UnkStruct_ov92_021D1B24 * param0, NARC * param1);
 static void ov92_021D2210(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D2254(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D22B0(UnkStruct_ov92_021D1B24 * param0);
@@ -381,16 +381,16 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov92_021D1B24 * v0 = sub_0200682C(param0);
     int v1 = 0;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     switch (*param1) {
     case 0:
         v0->unk_B860 = sub_0200B144(1, 26, 356, v0->unk_00);
-        v2 = sub_02006C24(129, v0->unk_00);
+        v2 = NARC_ctor(129, v0->unk_00);
 
         ov92_021D2150(v0, v2);
         ov92_021D1888(v0, v2);
-        sub_02006CA8(v2);
+        NARC_dtor(v2);
 
         v0->unk_BAEC = 0;
 
@@ -754,7 +754,7 @@ static void ov92_021D1510 (void)
 
 static void ov92_021D1530 (UnkStruct_ov92_021D1B24 * param0)
 {
-    UnkStruct_02006C24 * v0 = sub_02006C24(102, param0->unk_00);
+    NARC * v0 = NARC_ctor(102, param0->unk_00);
 
     param0->unk_0C.unk_00 = 0;
 
@@ -809,7 +809,7 @@ static void ov92_021D1530 (UnkStruct_ov92_021D1B24 * param0)
         }
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 static void ov92_021D1634 (UnkStruct_ov92_021D1B24 * param0, u32 param1, s16 param2, s16 param3, u16 param4, u16 param5)
@@ -943,7 +943,7 @@ static void ov92_021D1818 (int param0, int param1, int * param2, int * param3, i
     *param5 = v3;
 }
 
-static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, UnkStruct_02006C24 * param1)
+static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
 {
     sub_020183C4(param0->unk_B810, 6, &Unk_ov92_021D2970, 0);
     sub_02019EBC(param0->unk_B810, 6);
@@ -1231,21 +1231,21 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
     }
 }
 
-static void ov92_021D2150 (UnkStruct_ov92_021D1B24 * param0, UnkStruct_02006C24 * param1)
+static void ov92_021D2150 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
 {
-    param0->unk_B8CC = sub_02006CB8(param1, 0, param0->unk_00);
+    param0->unk_B8CC = NARC_AllocAndReadWholeMember(param1, 0, param0->unk_00);
     sub_0201CA3C(&param0->unk_B874, &param0->unk_B8C8, &param0->unk_B8CC);
 
-    param0->unk_BA88[3] = sub_02006CB8(param1, 1, param0->unk_00);
+    param0->unk_BA88[3] = NARC_AllocAndReadWholeMember(param1, 1, param0->unk_00);
     sub_0201CA3C(&param0->unk_B8D0[3], &param0->unk_BA74[3], &param0->unk_BA88[3]);
 
-    param0->unk_BA88[4] = sub_02006CB8(param1, 2, param0->unk_00);
+    param0->unk_BA88[4] = NARC_AllocAndReadWholeMember(param1, 2, param0->unk_00);
     sub_0201CA3C(&param0->unk_B8D0[4], &param0->unk_BA74[4], &param0->unk_BA88[4]);
 
-    param0->unk_BA88[1] = sub_02006CB8(param1, 3, param0->unk_00);
+    param0->unk_BA88[1] = NARC_AllocAndReadWholeMember(param1, 3, param0->unk_00);
     sub_0201CA3C(&param0->unk_B8D0[1], &param0->unk_BA74[1], &param0->unk_BA88[1]);
 
-    param0->unk_BA88[2] = sub_02006CB8(param1, 4, param0->unk_00);
+    param0->unk_BA88[2] = NARC_AllocAndReadWholeMember(param1, 4, param0->unk_00);
     sub_0201CA3C(&param0->unk_B8D0[2], &param0->unk_BA74[2], &param0->unk_BA88[2]);
 }
 

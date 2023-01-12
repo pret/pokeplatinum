@@ -28,7 +28,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -72,12 +72,12 @@
 static void ov59_021D1100(void * param0);
 static void ov59_021D1128(void);
 static void ov59_021D1148(UnkStruct_02018340 * param0);
-static void ov59_021D1250(UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1);
+static void ov59_021D1250(UnkStruct_020961E8 * param0, NARC * param1);
 static void ov59_021D131C(UnkStruct_020961E8 * param0);
 static void ov59_021D1354(UnkStruct_02018340 * param0);
-static void ov59_021D1388(UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1);
+static void ov59_021D1388(UnkStruct_020961E8 * param0, NARC * param1);
 static void ov59_021D1474(void);
-static void ov59_021D14A4(UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1);
+static void ov59_021D14A4(UnkStruct_020961E8 * param0, NARC * param1);
 static void ov59_021D1598(UnkStruct_020961E8 * param0);
 static void ov59_021D16A0(UnkStruct_020961E8 * param0, UnkStruct_020067E8 * param1);
 static void ov59_021D17C8(UnkStruct_020961E8 * param0);
@@ -94,7 +94,7 @@ static void ov59_021D2524(UnkStruct_020961E8 * param0);
 static void ov59_021D1784(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2);
 static void ov59_021D19B0(UnkStruct_020961E8 * param0, int param1);
 static void ov59_021D26E8(UnkStruct_020961E8 * param0);
-static void ov59_021D27FC(UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1);
+static void ov59_021D27FC(UnkStruct_020961E8 * param0, NARC * param1);
 static void ov59_021D28A4(UnkStruct_020961E8 * param0);
 static void ov59_021D2860(NNSG2dCharacterData * param0[2], NNSG2dPaletteData * param1[2], int param2, int param3, int param4);
 static void ov59_021D109C(UnkStruct_0201CD38 * param0, void * param1);
@@ -171,7 +171,7 @@ static int (* Unk_ov59_021D3480[])(UnkStruct_020961E8 *, int) = {
 int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_020961E8 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     switch (*param1) {
     case 0:
@@ -185,7 +185,7 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_02017FC8(3, 51, 0x41000);
 
-        v1 = sub_02006C24(86, 51);
+        v1 = NARC_ctor(86, 51);
         v0 = sub_0200681C(param0, sizeof(UnkStruct_020961E8), 51);
 
         memset(v0, 0, sizeof(UnkStruct_020961E8));
@@ -228,7 +228,7 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
         v0->unk_20 = sub_0200DA04(ov59_021D109C, v0, 5);
 
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
         (*param1)++;
         break;
     case 1:
@@ -517,7 +517,7 @@ static void ov59_021D1148 (UnkStruct_02018340 * param0)
     sub_02019690(4, 32, 0, 51);
 }
 
-static void ov59_021D1250 (UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1)
+static void ov59_021D1250 (UnkStruct_020961E8 * param0, NARC * param1)
 {
     int v0;
 
@@ -574,7 +574,7 @@ static void ov59_021D1354 (UnkStruct_02018340 * param0)
     sub_020181C4(param0);
 }
 
-static void ov59_021D1388 (UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1)
+static void ov59_021D1388 (UnkStruct_020961E8 * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0 = param0->unk_00;
 
@@ -605,7 +605,7 @@ static void ov59_021D1474 (void)
     sub_0201F8E4();
 }
 
-static void ov59_021D14A4 (UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1)
+static void ov59_021D14A4 (UnkStruct_020961E8 * param0, NARC * param1)
 {
     int v0;
 
@@ -1656,7 +1656,7 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
     }
 }
 
-static void ov59_021D27FC (UnkStruct_020961E8 * param0, UnkStruct_02006C24 * param1)
+static void ov59_021D27FC (UnkStruct_020961E8 * param0, NARC * param1)
 {
     param0->unk_398[0] = sub_02006F88(104, 8, &(param0->unk_3A0[0]), 51);
     param0->unk_398[1] = sub_020071EC(param1, 7, &(param0->unk_3A0[1]), 51);

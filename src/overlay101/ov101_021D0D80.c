@@ -21,7 +21,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -667,18 +667,18 @@ void * ov101_021D1998 (u32 param0)
 
 static void ov101_021D19BC (UnkStruct_ov101_021D13C8 * param0)
 {
-    param0->unk_438 = sub_02006C24(133, 79);
+    param0->unk_438 = NARC_ctor(133, 79);
 }
 
 static void ov101_021D19D4 (UnkStruct_ov101_021D13C8 * param0)
 {
-    sub_02006CA8(param0->unk_438);
+    NARC_dtor(param0->unk_438);
 }
 
 void * ov101_021D19E4 (UnkStruct_ov101_021D13C8 * param0, u32 param1, int param2)
 {
     void * v0;
-    u32 v1 = sub_02006D84(param0->unk_438, param1);
+    u32 v1 = NARC_GetMemberSize(param0->unk_438, param1);
 
     if (param2 == 1) {
         v0 = sub_02018144(79, v1);
@@ -687,7 +687,7 @@ void * ov101_021D19E4 (UnkStruct_ov101_021D13C8 * param0, u32 param1, int param2
     }
 
     GF_ASSERT(v0 != NULL);
-    sub_02006D28(param0->unk_438, param1, v0);
+    NARC_ReadWholeMember(param0->unk_438, param1, v0);
 
     return v0;
 }

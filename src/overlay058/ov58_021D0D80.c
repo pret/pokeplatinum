@@ -30,7 +30,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -80,9 +80,9 @@ static void ov58_021D11A4(UnkStruct_02018340 * param0);
 static void ov58_021D12C4(UnkStruct_02095EAC * param0);
 static void ov58_021D13B4(UnkStruct_02095EAC * param0);
 static void ov58_021D13F0(UnkStruct_02018340 * param0);
-static void ov58_021D142C(UnkStruct_02095EAC * param0, UnkStruct_02006C24 * param1);
+static void ov58_021D142C(UnkStruct_02095EAC * param0, NARC * param1);
 static void ov58_021D1524(void);
-static void ov58_021D1554(UnkStruct_02095EAC * param0, UnkStruct_02006C24 * param1);
+static void ov58_021D1554(UnkStruct_02095EAC * param0, NARC * param1);
 static void ov58_021D16D8(UnkStruct_02095EAC * param0);
 static void ov58_021D18AC(UnkStruct_02095EAC * param0, UnkStruct_020067E8 * param1);
 static void ov58_021D19D4(UnkStruct_02095EAC * param0);
@@ -167,7 +167,7 @@ static UnkStruct_ov58_021D3180 Unk_ov58_021D3180[] = {
 int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_02095EAC * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     switch (*param1) {
     case 0:
@@ -202,7 +202,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_08 = v2;
         }
 
-        v1 = sub_02006C24(78, 39);
+        v1 = NARC_ctor(78, 39);
 
         ov58_021D142C(v0, v1);
 
@@ -234,7 +234,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
             sub_02033ED4(1);
         }
 
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
         (*param1)++;
         break;
     case 1:
@@ -593,7 +593,7 @@ static void ov58_021D13F0 (UnkStruct_02018340 * param0)
     sub_020181C4(param0);
 }
 
-static void ov58_021D142C (UnkStruct_02095EAC * param0, UnkStruct_02006C24 * param1)
+static void ov58_021D142C (UnkStruct_02095EAC * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0 = param0->unk_00;
 
@@ -624,7 +624,7 @@ static void ov58_021D1524 (void)
     sub_0201F8E4();
 }
 
-static void ov58_021D1554 (UnkStruct_02095EAC * param0, UnkStruct_02006C24 * param1)
+static void ov58_021D1554 (UnkStruct_02095EAC * param0, NARC * param1)
 {
     int v0;
 

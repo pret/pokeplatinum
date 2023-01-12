@@ -22,7 +22,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
@@ -766,8 +766,8 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov116_022612CC (UnkStruct_ov116_0226139C * param0)
 {
-    param0->unk_48.unk_00 = sub_02006C24(164, 106);
-    param0->unk_48.unk_04 = sub_02006C24(158, 106);
+    param0->unk_48.unk_00 = NARC_ctor(164, 106);
+    param0->unk_48.unk_04 = NARC_ctor(158, 106);
     param0->unk_48.unk_10 = sub_02018340(106);
     param0->unk_48.unk_14 = sub_02002F38(106);
     param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);
@@ -829,8 +829,8 @@ void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
     sub_02002FA0(param0->unk_48.unk_14, 2);
     sub_02002FA0(param0->unk_48.unk_14, 3);
     sub_02002F54(param0->unk_48.unk_14);
-    sub_02006CA8(param0->unk_48.unk_00);
-    sub_02006CA8(param0->unk_48.unk_04);
+    NARC_dtor(param0->unk_48.unk_00);
+    NARC_dtor(param0->unk_48.unk_04);
     sub_020242C4(param0->unk_48.unk_18);
     sub_020203B8(param0->unk_48.unk_1C);
     sub_0200D0B0(param0->unk_48.unk_08, param0->unk_48.unk_0C);

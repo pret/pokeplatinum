@@ -33,7 +33,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
@@ -461,9 +461,9 @@ static void ov79_021D260C (UnkStruct_ov79_021D2928 * param0)
 
 static void ov79_021D2634 (UnkStruct_ov79_021D2928 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(87, param0->unk_00);
+    v0 = NARC_ctor(87, param0->unk_00);
 
     sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 2, 2, 0, 0, 0);
     sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 3, 4, 0, 0, 0);
@@ -474,7 +474,7 @@ static void ov79_021D2634 (UnkStruct_ov79_021D2928 * param0)
     sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 4, 2, 1, 0, 0);
     sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 5, 4, 1, 0, 0);
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     sub_0201C3C0(param0->unk_68, 2);
     sub_0201C3C0(param0->unk_68, 4);

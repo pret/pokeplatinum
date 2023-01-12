@@ -37,7 +37,7 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -169,15 +169,15 @@ static void sub_02087190(void * param0);
 static void sub_020871CC(void);
 static void sub_020871EC(UnkStruct_02018340 * param0);
 static void sub_0208765C(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
-static void sub_0208769C(UnkStruct_02087A10 * param0, UnkStruct_02006C24 * param1);
+static void sub_0208769C(UnkStruct_02087A10 * param0, NARC * param1);
 static void sub_02087D64(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int * param2, int param3, int * param4, VecFx32 param5[], UnkStruct_02022550 ** param6, void * param7);
 static void sub_0208737C(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1);
 static void sub_02088240(UnkStruct_02018340 * param0, int param1, VecFx32 param2[]);
 static void sub_02088260(VecFx32 param0[], int param1);
-static void sub_020877F4(UnkStruct_02087A10 * param0, UnkStruct_02006C24 * param1);
+static void sub_020877F4(UnkStruct_02087A10 * param0, NARC * param1);
 static void sub_02087A10(UnkStruct_02087A10 * param0);
 static void sub_020877C4(void);
-static void sub_02087FC0(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1, UnkStruct_02006C24 * param2);
+static void sub_02087FC0(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1, NARC * param2);
 static void sub_02088350(UnkStruct_02087A10 * param0);
 static void sub_02088514(u16 * param0);
 static void sub_02088554(UnkStruct_0205AA50 * param0, const u16 * param1, int param2, int param3, int param4, int param5, u32 param6, u8 * param7);
@@ -892,7 +892,7 @@ static UnkStruct_02087A10 * Unk_021C0A30;
 static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_02087A10 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     switch (*param1) {
     case 0:
@@ -909,7 +909,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         v0 = sub_0200681C(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = sub_02018340(18);
-        v1 = sub_02006C24(31, 18);
+        v1 = NARC_ctor(31, 18);
 
         v0->unk_168 = sub_0200B358(18);
         v0->unk_16C = sub_0200B144(0, 26, 422, 18);
@@ -939,7 +939,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
             sub_0201FFE8();
         }
 
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
         (*param1)++;
         break;
     case 1:
@@ -1518,7 +1518,7 @@ static void sub_0208765C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * para
     sub_02018238(18, param0);
 }
 
-static void sub_0208769C (UnkStruct_02087A10 * param0, UnkStruct_02006C24 * param1)
+static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0 = param0->unk_160;
 
@@ -1552,7 +1552,7 @@ void sub_020877C4 (void)
     sub_0201F8E4();
 }
 
-static void sub_020877F4 (UnkStruct_02087A10 * param0, UnkStruct_02006C24 * param1)
+static void sub_020877F4 (UnkStruct_02087A10 * param0, NARC * param1)
 {
     int v0;
 
@@ -1844,7 +1844,7 @@ static void sub_02087F78 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_020
     sub_0201A954(param0);
 }
 
-static void sub_02087FC0 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1, UnkStruct_02006C24 * param2)
+static void sub_02087FC0 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1, NARC * param2)
 {
     sub_0201A7E8(param0->unk_160, &param0->unk_41C[0], 0, 2, 1, 26, 12, 1, (32 * 8));
     sub_0201A7E8(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, ((32 * 8) + (26 * 12)));

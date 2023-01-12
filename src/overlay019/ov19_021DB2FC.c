@@ -34,7 +34,7 @@ static void ov19_021DB7BC(UnkStruct_02018340 * param0, u32 param1, u32 param2, u
 static void ov19_021DB84C(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
 static void ov19_021DB898(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
 
-BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, UnkStruct_0200B144 * param5, const UnkStruct_0200B358 * param6, int param7, UnkStruct_02006C24 * param8)
+BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, UnkStruct_0200B144 * param5, const UnkStruct_0200B358 * param6, int param7, NARC * param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;

@@ -9,7 +9,7 @@
 #include "overlay005/struct_ov5_021D57B4.h"
 #include "overlay005/struct_ov5_021D5894.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
@@ -99,7 +99,7 @@ void ov5_021E1674 (const int param0, UnkStruct_ov5_021E1608 * param1)
     }
 }
 
-void ov5_021E16CC (UnkStruct_02006C24 * param0, const int param1, UnkStruct_ov5_021EF76C * const param2, UnkStruct_ov5_021E1608 * param3, UnkStruct_ov5_021D3CAC * param4)
+void ov5_021E16CC (NARC * param0, const int param1, UnkStruct_ov5_021EF76C * const param2, UnkStruct_ov5_021E1608 * param3, UnkStruct_ov5_021D3CAC * param4)
 {
     UnkStruct_ov5_021E16CC * v0 = NULL;
     u32 v1;
@@ -107,7 +107,7 @@ void ov5_021E16CC (UnkStruct_02006C24 * param0, const int param1, UnkStruct_ov5_
 
     if (param1 != 0) {
         v0 = sub_02018184(4, param1);
-        sub_02006E18(param0, param1, v0);
+        NARC_ReadFile(param0, param1, v0);
         v1 = param1 / sizeof(UnkStruct_ov5_021E16CC);
     } else {
         v1 = 0;

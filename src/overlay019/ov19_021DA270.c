@@ -11,7 +11,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02017E74.h"
 #include "unk_020218BC.h"
@@ -21,13 +21,13 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
 
-BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, UnkStruct_02006C24 * param4)
+BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, NARC * param4)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dPaletteData * v1;
     void * v2;
 
-    param0->unk_48 = sub_02006C24(19, 10);
+    param0->unk_48 = NARC_ctor(19, 10);
 
     NNS_G2dInitImagePaletteProxy(&v0);
     sub_0200716C(param0->unk_48, sub_02079FD0(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
@@ -90,7 +90,7 @@ void ov19_021DA384 (UnkStruct_ov19_021DA384 * param0)
     }
 
     if (param0->unk_48 != NULL) {
-        sub_02006CA8(param0->unk_48);
+        NARC_dtor(param0->unk_48);
     }
 }
 
@@ -141,7 +141,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * 
     param7->unk_2E = sub_02074570(param1, 11, NULL);
 
     NNS_G2dInitImageProxy(&(param7->unk_04));
-    sub_02006DC8(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
+    NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
     NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v0);
 
     v0->mapingType = GX_GetOBJVRamModeChar();
@@ -246,14 +246,14 @@ void ov19_021DA694 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
     v1 = param1->unk_04.vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN] + (u32)G2_GetOBJCharPtr();
 
-    sub_02006DC8(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
+    NARC_ReadFromMember(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
     NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v2);
     MI_CpuCopy32(v2->pRawData, (void *)v1, (4 * 4) * 0x20);
 }
 
 void ov19_021DA744 (UnkStruct_ov19_021DA384 * param0, void * param1, u32 param2, u32 param3)
 {
-    sub_02006DC8(param0->unk_48, param2, 0, param3, param1);
+    NARC_ReadFromMember(param0->unk_48, param2, 0, param3, param1);
 }
 
 void ov19_021DA754 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)
@@ -263,7 +263,7 @@ void ov19_021DA754 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
 
         NNS_G2dInitImageProxy(&(param1->unk_04));
 
-        sub_02006DC8(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
+        NARC_ReadFromMember(param0->unk_48, param1->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
         NNS_G2dGetUnpackedCharacterData(param0->unk_4C, &v0);
         v0->mapingType = GX_GetOBJVRamModeChar();
         v0->szByte = (4 * 4) * 0x20;

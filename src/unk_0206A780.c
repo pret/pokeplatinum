@@ -7,7 +7,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 #include "overlay104/struct_ov104_02241308.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017E74.h"
 #include "unk_020218BC.h"
@@ -48,14 +48,14 @@ UnkStruct_0206A844 * sub_0206A780 (int param0)
     };
     u32 v1;
     UnkStruct_0206A844 * v2;
-    UnkStruct_02006C24 * v3;
+    NARC * v3;
 
     v2 = sub_02018144(param0, sizeof(UnkStruct_0206A844));
     MI_CpuClear8(v2, sizeof(UnkStruct_0206A844));
 
     ov5_021D3190(&v2->unk_00, &v0, 2, 11);
 
-    v3 = sub_02006C24(85, param0);
+    v3 = NARC_ctor(85, param0);
 
     ov5_021D32E8(&v2->unk_00, v3, 0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&v2->unk_00, v3, 2, 0, 13528);
@@ -66,7 +66,7 @@ UnkStruct_0206A844 * sub_0206A780 (int param0)
         v2->unk_1C8[v1] = ov5_021D3584(&v2->unk_00, &Unk_020EFA04[v1]);
     }
 
-    sub_02006CA8(v3);
+    NARC_dtor(v3);
     return v2;
 }
 

@@ -32,7 +32,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -595,7 +595,7 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B190(v0->unk_114);
     sub_0200C560(v0->unk_110);
     sub_0200B3F0(v0->unk_118);
-    sub_02006CA8(v0->unk_D4);
+    NARC_dtor(v0->unk_D4);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
     sub_0201807C(6);
@@ -821,7 +821,7 @@ static void ov84_0223BBC4 (UnkStruct_02018340 * param0)
 
 static void ov84_0223BC1C (UnkStruct_ov84_0223B5A0 * param0)
 {
-    param0->unk_D4 = sub_02006C24(13, 6);
+    param0->unk_D4 = NARC_ctor(13, 6);
 
     sub_020070E8(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, 6);
     sub_0200710C(param0->unk_D4, 14, param0->unk_00, 1, 0, 0, 0, 6);

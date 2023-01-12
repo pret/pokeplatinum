@@ -26,7 +26,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -556,11 +556,11 @@ static void ov21_021E7904 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     int v1, v2, v3, v4;
     int v5 = ov21_021D37BC(param2->unk_00);
     BOOL v6;
-    UnkStruct_02006C24 * v7 = ov21_021D26E0(param1->unk_00);
+    NARC * v7 = ov21_021D26E0(param1->unk_00);
     int v8;
-    UnkStruct_02006C24 * v9;
+    NARC * v9;
 
-    v9 = sub_02006C24(19, param3);
+    v9 = NARC_ctor(19, param3);
     v8 = ov21_021D33D4(param2->unk_00, v5);
     v1 = sub_02079D8C(v5, 0, v8);
     v2 = sub_02079FD0();
@@ -599,7 +599,7 @@ static void ov21_021E7904 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     param0->unk_24[2] = sub_02009BC4(v0->unk_13C[2], v7, 91, 1, 91 + 7000, 2, param3);
     param0->unk_24[3] = sub_02009BC4(v0->unk_13C[3], v7, 92, 1, 92 + 7000, 3, param3);
 
-    sub_02006CA8(v9);
+    NARC_dtor(v9);
 }
 
 static void ov21_021E7AA0 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E747C * param1)

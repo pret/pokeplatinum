@@ -8,7 +8,7 @@
 
 #include "library/spl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02014000.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_022237EC.h"
@@ -72,12 +72,12 @@ UnkStruct_02014014 * ov12_02223818 (int param0, int param1, int param2, int para
     return v0;
 }
 
-void * ov12_02223844 (UnkStruct_02006C24 * param0, int param1, int param2)
+void * ov12_02223844 (NARC * param0, int param1, int param2)
 {
-    return sub_02006CB8(param0, param1, param2);
+    return NARC_AllocAndReadWholeMember(param0, param1, param2);
 }
 
-UnkStruct_02014014 * ov12_0222384C (UnkStruct_02006C24 * param0, int param1, int param2, int param3)
+UnkStruct_02014014 * ov12_0222384C (NARC * param0, int param1, int param2, int param3)
 {
     UnkStruct_02014014 * v0;
     void * v1;

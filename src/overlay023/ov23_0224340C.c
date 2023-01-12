@@ -27,7 +27,7 @@
 
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -790,16 +790,16 @@ static void ov23_02243754 (void)
     }
 
     {
-        UnkStruct_02006C24 * v1;
+        NARC * v1;
 
-        v1 = sub_02006C24(50, 4);
+        v1 = NARC_ctor(50, 4);
 
         Unk_ov23_02257764->unk_1F4[1][0] = sub_02009A4C(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         Unk_ov23_02257764->unk_1F4[1][1] = sub_02009B04(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
         Unk_ov23_02257764->unk_1F4[1][2] = sub_02009BC4(Unk_ov23_02257764->unk_1D4[1][2], v1, 16, 0, 0, 2, 4);
         Unk_ov23_02257764->unk_1F4[1][3] = sub_02009BC4(Unk_ov23_02257764->unk_1D4[1][3], v1, 15, 0, 0, 3, 4);
 
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
     }
 }
 
@@ -4123,15 +4123,15 @@ static void ov23_022479F4 (UnkStruct_ov23_022471D8 * param0)
     int v1 = param0->unk_124 - 1;
 
     {
-        UnkStruct_02006C24 * v2;
+        NARC * v2;
 
-        v2 = sub_02006C24(50, 4);
+        v2 = NARC_ctor(50, 4);
 
         if (v1 < (7 - 1)) {
             param0->unk_F8[v1 + 1] = sub_02009A4C(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         }
 
-        sub_02006CA8(v2);
+        NARC_dtor(v2);
     }
 }
 

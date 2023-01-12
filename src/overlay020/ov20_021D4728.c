@@ -61,12 +61,12 @@ typedef struct {
     u16 unk_16;
 } UnkStruct_ov20_021D4BA4;
 
-static void ov20_021D4874(UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1);
-static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1);
+static void ov20_021D4874(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
+static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D498C(UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const UnkStruct_02023790 * param2, int param3);
-static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1);
+static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 * param0);
-static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, UnkStruct_02006C24 * param1, u32 param2, u32 param3);
+static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3);
 static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C * param0);
 static void ov20_021D4C40(UnkStruct_0201CD38 * param0, void * param1);
 static UnkStruct_02022550 * ov20_021D4B40(UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7);
@@ -93,7 +93,7 @@ void ov20_021D4764 (UnkStruct_ov20_021D4AD4 * param0)
     sub_020181C4(param0);
 }
 
-void ov20_021D4774 (UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1)
+void ov20_021D4774 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {
     sub_02007130(param1, 21, 4, 0, 0x40, 35);
     sub_0200710C(param1, 11, param0->unk_0C, 4, 0, 0, 1, 35);
@@ -113,7 +113,7 @@ void ov20_021D4774 (UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param
     sub_02019448(param0->unk_0C, 4);
 }
 
-static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1)
+static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {
     static const u16 v0[] = {
         12, 13, 14, 15, 16, 17, 18, 19,
@@ -133,7 +133,7 @@ static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 
     }
 }
 
-asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1)
+asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x18
@@ -298,7 +298,7 @@ asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 *
     nop
 }
 
-static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, UnkStruct_02006C24 * param1)
+static void ov20_021D4A24 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
@@ -333,7 +333,7 @@ static void ov20_021D4AD4 (UnkStruct_ov20_021D4AD4 * param0)
     ov20_021D4B2C(&param0->unk_1C);
 }
 
-static void ov20_021D4AF8 (UnkStruct_ov20_021D4B2C * param0, UnkStruct_02006C24 * param1, u32 param2, u32 param3)
+static void ov20_021D4AF8 (UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3)
 {
     param0->unk_00 = sub_02007204(param1, param2, 1, &(param0->unk_04), 35);
     param0->unk_08 = sub_02007220(param1, param3, 1, &(param0->unk_0C), 35);

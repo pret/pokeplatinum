@@ -25,7 +25,7 @@
 #include "overlay005/struct_ov5_021FF85C.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
 #include "unk_02020AEC.h"
@@ -49,7 +49,7 @@ typedef struct UnkStruct_ov5_021DF47C_t {
     u32 unk_0C;
     UnkStruct_0203CDB0 * unk_10;
     UnkStruct_ov5_021DF6AC * unk_14;
-    UnkStruct_02006C24 * unk_18;
+    NARC * unk_18;
     UnkStruct_020711EC * unk_1C;
     UnkStruct_ov5_021DF8FC * unk_20;
 } UnkStruct_ov5_021DF47C;
@@ -238,31 +238,31 @@ static u32 ov5_021DF584 (const UnkStruct_ov5_021DF47C * param0)
 
 static void ov5_021DF588 (UnkStruct_ov5_021DF47C * param0)
 {
-    param0->unk_18 = sub_02006C24(107, ov5_021DF584(param0));
+    param0->unk_18 = NARC_ctor(107, ov5_021DF584(param0));
 }
 
 static void ov5_021DF59C (UnkStruct_ov5_021DF47C * param0)
 {
-    sub_02006CA8(param0->unk_18);
+    NARC_dtor(param0->unk_18);
 }
 
 u32 ov5_021DF5A8 (UnkStruct_ov5_021DF47C * param0, u32 param1)
 {
-    u32 v0 = sub_02006D84(param0->unk_18, param1);
+    u32 v0 = NARC_GetMemberSize(param0->unk_18, param1);
     return v0;
 }
 
 void ov5_021DF5B4 (UnkStruct_ov5_021DF47C * param0, u32 param1, void * param2)
 {
-    sub_02006D28(param0->unk_18, param1, param2);
+    NARC_ReadWholeMember(param0->unk_18, param1, param2);
 }
 
 void * ov5_021DF5C0 (UnkStruct_ov5_021DF47C * param0, u32 param1, int param2)
 {
-    u32 v0 = sub_02006D84(param0->unk_18, param1);
+    u32 v0 = NARC_GetMemberSize(param0->unk_18, param1);
     void * v1 = ov5_021DF528(param0, v0, param2);
 
-    sub_02006D28(param0->unk_18, param1, v1);
+    NARC_ReadWholeMember(param0->unk_18, param1, v1);
 
     return v1;
 }

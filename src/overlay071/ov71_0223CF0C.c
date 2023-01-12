@@ -8,7 +8,7 @@
 #include "overlay071/struct_ov71_0223D238.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -56,7 +56,7 @@ static const UnkStruct_ov71_0223D73C Unk_ov71_0223D6FC[] = {
 
 static void ov71_0223D2F4(void);
 
-void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, UnkStruct_02006C24 * param1)
+void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
 {
     int v0;
 
@@ -85,7 +85,7 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, UnkStruct_02006C24 * param
         };
 
         for (v1 = 0; v1 < 8; v1++) {
-            param0->unk_224[v1] = sub_02006CB8(param1, v2[v1], 25);
+            param0->unk_224[v1] = NARC_AllocAndReadWholeMember(param1, v2[v1], 25);
 
             if (param0->unk_224[v1] != NULL) {
                 if (NNS_G2dGetUnpackedPaletteData(param0->unk_224[v1], &param0->unk_244[v1]) == 0) {

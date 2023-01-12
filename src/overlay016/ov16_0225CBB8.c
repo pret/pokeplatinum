@@ -119,7 +119,7 @@
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
@@ -3016,11 +3016,11 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
 
         {
             UnkStruct_ov16_02269668 v11;
-            UnkStruct_02006C24 * v12;
-            UnkStruct_02006C24 * v13;
+            NARC * v12;
+            NARC * v13;
 
-            v12 = sub_02006C24(7, 5);
-            v13 = sub_02006C24(27, 5);
+            v12 = NARC_ctor(7, 5);
+            v13 = NARC_ctor(27, 5);
 
             v11.unk_01 = v0->unk_09;
             v11.unk_00 = v0->unk_34;
@@ -3065,8 +3065,8 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
             ov16_0226914C(v2, v0->unk_1C);
             ov16_02269168(v2, v0->unk_10[0], v0->unk_10[1]);
             ov16_022691BC(v2);
-            sub_02006CA8(v12);
-            sub_02006CA8(v13);
+            NARC_dtor(v12);
+            NARC_dtor(v13);
         }
 
         if (v6 != NULL) {
@@ -3104,36 +3104,36 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
                 break;
             case 2:
             {
-                UnkStruct_02006C24 * v16 = sub_02006C24(7, 5);
-                UnkStruct_02006C24 * v17 = sub_02006C24(27, 5);
+                NARC * v16 = NARC_ctor(7, 5);
+                NARC * v17 = NARC_ctor(27, 5);
 
                 ov16_02268C04(v16, v17, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
                 ov16_0226846C(v6);
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v3);
-                sub_02006CA8(v16);
-                sub_02006CA8(v17);
+                NARC_dtor(v16);
+                NARC_dtor(v17);
             }
             break;
             case 3:
             {
-                UnkStruct_02006C24 * v18 = sub_02006C24(7, 5);
-                UnkStruct_02006C24 * v19 = sub_02006C24(27, 5);
+                NARC * v18 = NARC_ctor(7, 5);
+                NARC * v19 = NARC_ctor(27, 5);
 
                 ov16_02268C04(v18, v19, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
                 ov16_0226846C(v6);
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v3);
-                sub_02006CA8(v18);
-                sub_02006CA8(v19);
+                NARC_dtor(v18);
+                NARC_dtor(v19);
             }
             break;
             case 4:
             {
-                UnkStruct_02006C24 * v20 = sub_02006C24(7, 5);
-                UnkStruct_02006C24 * v21 = sub_02006C24(27, 5);
+                NARC * v20 = NARC_ctor(7, 5);
+                NARC * v21 = NARC_ctor(27, 5);
 
                 if ((ov16_0226D088(v2) == 1)) {
                     ov16_0226846C(v6);
@@ -3141,8 +3141,8 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
                 }
 
                 ov16_02268C04(v20, v21, v2, 0, 0, NULL);
-                sub_02006CA8(v20);
-                sub_02006CA8(v21);
+                NARC_dtor(v20);
+                NARC_dtor(v21);
             }
             break;
             default:
@@ -3156,8 +3156,8 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 7:
         if (ov16_02269348(v2) == 1) {
-            UnkStruct_02006C24 * v22 = sub_02006C24(7, 5);
-            UnkStruct_02006C24 * v23 = sub_02006C24(27, 5);
+            NARC * v22 = NARC_ctor(7, 5);
+            NARC * v23 = NARC_ctor(27, 5);
 
             ov16_02268C04(v22, v23, v2, 0, 0, NULL);
             ov16_0226BCCC(v2, 0);
@@ -3168,8 +3168,8 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
 
             v0->unk_0A = 8;
 
-            sub_02006CA8(v22);
-            sub_02006CA8(v23);
+            NARC_dtor(v22);
+            NARC_dtor(v23);
         }
         break;
     case 8:
@@ -3319,8 +3319,8 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
         {
             UnkStruct_ov16_02260C00 v8;
             int v9;
-            UnkStruct_02006C24 * v10 = sub_02006C24(7, 5);
-            UnkStruct_02006C24 * v11 = sub_02006C24(27, 5);
+            NARC * v10 = NARC_ctor(7, 5);
+            NARC * v11 = NARC_ctor(27, 5);
 
             for (v9 = 0; v9 < 4; v9++) {
                 v8.unk_00[v9] = v0->unk_0C[v9];
@@ -3331,8 +3331,8 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
             v8.unk_10 = v0->unk_1E;
 
             ov16_02268C04(v10, v11, v2, 11, 0, &v8);
-            sub_02006CA8(v10);
-            sub_02006CA8(v11);
+            NARC_dtor(v10);
+            NARC_dtor(v11);
         }
         v0->unk_20++;
         break;
@@ -3488,8 +3488,8 @@ static void ov16_02260F14 (UnkStruct_0201CD38 * param0, void * param1)
         {
             UnkStruct_ov16_02260F14 v6;
             int v7;
-            UnkStruct_02006C24 * v8 = sub_02006C24(7, 5);
-            UnkStruct_02006C24 * v9 = sub_02006C24(27, 5);
+            NARC * v8 = NARC_ctor(7, 5);
+            NARC * v9 = NARC_ctor(27, 5);
 
             for (v7 = 0; v7 < 4; v7++) {
                 v6.unk_00[v7] = v0->unk_10[v7];
@@ -3499,8 +3499,8 @@ static void ov16_02260F14 (UnkStruct_0201CD38 * param0, void * param1)
             v6.unk_21 = ov16_02269368(v0->unk_30, v0->unk_0E);
 
             ov16_02268C04(v8, v9, v2, 12, 0, &v6);
-            sub_02006CA8(v8);
-            sub_02006CA8(v9);
+            NARC_dtor(v8);
+            NARC_dtor(v9);
         }
 
         v0->unk_0F++;
@@ -4542,8 +4542,8 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
     case 1:
         if ((sub_0201D724(v0->unk_1A) == 0) || (v0->unk_10 == NULL)) {
             {
-                UnkStruct_02006C24 * v9 = sub_02006C24(7, 5);
-                UnkStruct_02006C24 * v10 = sub_02006C24(27, 5);
+                NARC * v9 = NARC_ctor(7, 5);
+                NARC * v10 = NARC_ctor(27, 5);
                 UnkStruct_ov16_022623F0 v11;
 
                 ov16_02269218(v2);
@@ -4574,8 +4574,8 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
 
                 v0->unk_0E = 2;
 
-                sub_02006CA8(v9);
-                sub_02006CA8(v10);
+                NARC_dtor(v9);
+                NARC_dtor(v10);
             }
         }
         break;
@@ -4590,8 +4590,8 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
     case 3:
         if (ov16_02269348(v2) == 1) {
             {
-                UnkStruct_02006C24 * v12 = sub_02006C24(7, 5);
-                UnkStruct_02006C24 * v13 = sub_02006C24(27, 5);
+                NARC * v12 = NARC_ctor(7, 5);
+                NARC * v13 = NARC_ctor(27, 5);
 
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v5);
@@ -4605,8 +4605,8 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
 
                 v0->unk_0E = 4;
 
-                sub_02006CA8(v12);
-                sub_02006CA8(v13);
+                NARC_dtor(v12);
+                NARC_dtor(v13);
             }
         }
         break;

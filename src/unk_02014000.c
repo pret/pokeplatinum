@@ -15,7 +15,7 @@
 
 #include "library/spl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014000.h"
 #include "unk_02017E74.h"
@@ -399,7 +399,7 @@ static void * sub_02014498 (u32 param0)
 
 void * sub_020144C4 (int param0, int param1, int param2)
 {
-    return sub_02006AC0(param0, param1, param2);
+    return AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
 }
 
 void sub_020144CC (UnkStruct_02014014 * param0, void * param1, int param2, int param3)

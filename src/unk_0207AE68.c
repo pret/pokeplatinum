@@ -35,7 +35,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
@@ -116,7 +116,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (UnkStruct_02079FF4 * param0, UnkStruct_02073C
     v0->unk_86 = sub_02074470(param1, 112, NULL);
     v0->unk_62 = param2;
     v0->unk_5C = param11;
-    v0->unk_80 = sub_02006C24(147, param11);
+    v0->unk_80 = NARC_ctor(147, param11);
 
     sub_02078A4C(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
     sub_02078A4C(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
@@ -217,7 +217,7 @@ void sub_0207B0E0 (UnkStruct_0207AE68 * param0)
     sub_020181C4(param0->unk_3C);
     sub_02015760(param0->unk_58);
     sub_020181C4(param0->unk_00);
-    sub_02006CA8(param0->unk_80);
+    NARC_dtor(param0->unk_80);
     sub_020181C4(param0);
     sub_02002AC8(0);
 }

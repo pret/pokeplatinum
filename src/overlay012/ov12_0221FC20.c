@@ -36,7 +36,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -143,7 +143,7 @@ typedef struct UnkStruct_ov12_0221FCDC_t {
     UnkStruct_ov16_02264408_sub1 unk_180;
     int unk_198;
     u8 unk_19C[4];
-    UnkStruct_02006C24 * unk_1A0[6];
+    NARC * unk_1A0[6];
 } UnkStruct_ov12_0221FCDC;
 
 typedef struct UnkStruct_ov12_02220314_t {
@@ -441,12 +441,12 @@ UnkStruct_ov12_0221FCDC * ov12_0221FCDC (int param0)
     v1->unk_00 = param0;
     v1->unk_08 = 0;
     v1->unk_BC = sub_02018144(v1->unk_00, sizeof(UnkStruct_ov12_02223178));
-    v1->unk_1A0[0] = sub_02006C24(7, param0);
-    v1->unk_1A0[1] = sub_02006C24(27, param0);
-    v1->unk_1A0[2] = sub_02006C24(21, param0);
-    v1->unk_1A0[3] = sub_02006C24(22, param0);
-    v1->unk_1A0[4] = sub_02006C24(23, param0);
-    v1->unk_1A0[5] = sub_02006C24(24, param0);
+    v1->unk_1A0[0] = NARC_ctor(7, param0);
+    v1->unk_1A0[1] = NARC_ctor(27, param0);
+    v1->unk_1A0[2] = NARC_ctor(21, param0);
+    v1->unk_1A0[3] = NARC_ctor(22, param0);
+    v1->unk_1A0[4] = NARC_ctor(23, param0);
+    v1->unk_1A0[5] = NARC_ctor(24, param0);
 
     if (v1->unk_BC == NULL) {
         GF_ASSERT(v1->unk_BC != NULL);
@@ -500,7 +500,7 @@ BOOL ov12_0221FDF4 (UnkStruct_ov12_0221FCDC * param0)
         int v0;
 
         for (v0 = 0; v0 < 6; v0++) {
-            sub_02006CA8(param0->unk_1A0[v0]);
+            NARC_dtor(param0->unk_1A0[v0]);
         }
     }
 
@@ -605,7 +605,7 @@ BOOL ov12_0221FE30 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_ov16_02265BBC * 
     }
 
     param0->unk_04 = param3->unk_50;
-    param0->unk_14 = sub_02006AC0(param0->unk_04, v1, param0->unk_00);
+    param0->unk_14 = AllocAndReadWholeNarcMemberByIndexPair(param0->unk_04, v1, param0->unk_00);
 
     if (param0->unk_14 == NULL) {
         GF_ASSERT(param0->unk_14 != NULL);
@@ -4221,9 +4221,9 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (UnkStruct_0207ADB4 * param0, int param1
 
     {
         int v3[6];
-        UnkStruct_02006C24 * v4;
+        NARC * v4;
 
-        v4 = sub_02006C24(27, param1);
+        v4 = NARC_ctor(27, param1);
 
         for (v0 = 0; v0 < 4; v0++) {
             if ((v0 != v2->unk_04) && (v2->unk_04 != 0xFF)) {
@@ -4247,7 +4247,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (UnkStruct_0207ADB4 * param0, int param1
             sub_0200CE54(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 78, 0, v3[3]);
         }
 
-        sub_02006CA8(v4);
+        NARC_dtor(v4);
     }
 
     {

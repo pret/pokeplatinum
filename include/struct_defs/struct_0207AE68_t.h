@@ -65,7 +65,7 @@ struct UnkStruct_0207AE68_t {
     u8 unk_75;
     int unk_78;
     int unk_7C;
-    UnkStruct_02006C24 * unk_80;
+    NARC * unk_80;
     u8 unk_84;
     u8 unk_85;
     u8 unk_86;

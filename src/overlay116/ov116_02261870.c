@@ -22,7 +22,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
@@ -80,7 +80,7 @@ static inline void inline_ov116_02261940_1 (void)
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(31, 31, 31), GX_RGB(31, 31, 31), 0);
 }
 
-void ov116_022618A8 (UnkStruct_ov116_0226501C * param0, UnkStruct_02006C24 * param1, int param2)
+void ov116_022618A8 (UnkStruct_ov116_0226501C * param0, NARC * param1, int param2)
 {
     sub_020170D8(&param0->unk_78, param1, param2, 106);
 }
@@ -574,13 +574,13 @@ void ov116_02262264 (UnkStruct_ov116_02262A8C * param0)
 
 void ov116_022622C8 (UnkStruct_ov116_0226139C * param0)
 {
-    UnkStruct_02006C24 * v0 = param0->unk_48.unk_00;
-    UnkStruct_02006C24 * v1 = param0->unk_48.unk_04;
+    NARC * v0 = param0->unk_48.unk_00;
+    NARC * v1 = param0->unk_48.unk_04;
     UnkStruct_02018340 * v2 = param0->unk_48.unk_10;
     UnkStruct_0200C6E4 * v3 = param0->unk_48.unk_08;
     UnkStruct_0200C704 * v4 = param0->unk_48.unk_0C;
     UnkStruct_02002F38 * v5 = param0->unk_48.unk_14;
-    UnkStruct_02006C24 * v6;
+    NARC * v6;
     int v7;
     int v8;
     int v9;
@@ -662,7 +662,7 @@ void ov116_022622C8 (UnkStruct_ov116_0226139C * param0)
     sub_0200CDC4(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     {
-        UnkStruct_02006C24 * v13 = sub_02006C24(171, 106);
+        NARC * v13 = NARC_ctor(171, 106);
 
         v7 = 23;
         v8 = 22;
@@ -675,7 +675,7 @@ void ov116_022622C8 (UnkStruct_ov116_0226139C * param0)
         sub_0200CE24(v3, v4, v13, v8, 0, v11);
         sub_0200CE54(v3, v4, v13, v7, 0, v11);
         sub_0200CDC4(v5, 2, v3, v4, v13, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-        sub_02006CA8(v13);
+        NARC_dtor(v13);
     }
 }
 
@@ -812,13 +812,13 @@ void ov116_022628AC (UnkStruct_ov116_02262A8C * param0)
 
 void ov116_022628B8 (UnkStruct_ov116_0226139C * param0)
 {
-    UnkStruct_02006C24 * v0 = param0->unk_48.unk_00;
-    UnkStruct_02006C24 * v1 = param0->unk_48.unk_04;
+    NARC * v0 = param0->unk_48.unk_00;
+    NARC * v1 = param0->unk_48.unk_04;
     UnkStruct_02018340 * v2 = param0->unk_48.unk_10;
     UnkStruct_0200C6E4 * v3 = param0->unk_48.unk_08;
     UnkStruct_0200C704 * v4 = param0->unk_48.unk_0C;
     UnkStruct_02002F38 * v5 = param0->unk_48.unk_14;
-    UnkStruct_02006C24 * v6 = v0;
+    NARC * v6 = v0;
 
     sub_020070E8(v6, 72, v2, 4, 0, 0, 0, 106);
     sub_020070E8(v6, 75, v2, 5, 0, 0, 0, 106);

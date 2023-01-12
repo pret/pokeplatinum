@@ -25,7 +25,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -443,13 +443,13 @@ static u8 ov110_021D1208 (u8 param0)
 
 static void ov110_021D123C (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(150, 114);
+    v0 = NARC_ctor(150, 114);
 
     sub_020070E8(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
     sub_0200710C(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     return;
 }
@@ -470,14 +470,14 @@ static void ov110_021D128C (void)
 
 static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(12, 114);
+    v0 = NARC_ctor(12, 114);
 
     sub_020070E8(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
     sub_0200710C(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
     sub_02007130(v0, 12, 4, 0, 0x20, 114);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     return;
 }

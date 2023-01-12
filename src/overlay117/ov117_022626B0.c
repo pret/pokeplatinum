@@ -13,7 +13,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017E74.h"
 #include "unk_0201C970.h"
@@ -406,7 +406,7 @@ static void ov117_02262A70 (UnkStruct_ov117_022626B0 * param0)
 
 static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
 {
-    param0->unk_00 = sub_02006AC0(173, 29, 110);
+    param0->unk_00 = AllocAndReadWholeNarcMemberByIndexPair(173, 29, 110);
     param0->unk_04 = NNS_G3dGetTex(param0->unk_00);
 
     sub_0201CBCC(param0->unk_04);
@@ -916,15 +916,15 @@ static int ov117_022638AC (UnkStruct_ov117_022626B0 * param0)
 
 static void ov117_022638D8 (UnkStruct_ov117_02261280 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(173, 110);
+    v0 = NARC_ctor(173, 110);
 
     sub_0200CDC4(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
     sub_0200CC3C(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
     sub_0200CE24(param0->unk_24, param0->unk_28, v0, 57, 0, 10003);
     sub_0200CE54(param0->unk_24, param0->unk_28, v0, 56, 0, 10003);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 static void ov117_022639BC (UnkStruct_ov117_02261280 * param0)

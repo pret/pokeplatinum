@@ -72,7 +72,7 @@ static void ov100_021D1C44 (UnkStruct_020203AC * param0, VecFx32 * param1)
 
 static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
 {
-    UnkStruct_02006C24 * v0 = param0->unk_1EBC->unk_00;
+    NARC * v0 = param0->unk_1EBC->unk_00;
     UnkStruct_02018340 * v1 = param0->unk_1EBC->unk_0C;
     UnkStruct_0200C6E4 * v2 = param0->unk_1EBC->unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_1EBC->unk_08;
@@ -196,7 +196,7 @@ static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
 static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
 {
     int v0;
-    UnkStruct_02006C24 * v1 = param0->unk_1EBC->unk_00;
+    NARC * v1 = param0->unk_1EBC->unk_00;
     UnkStruct_02018340 * v2 = param0->unk_1EBC->unk_0C;
     UnkStruct_0200C6E4 * v3 = param0->unk_1EBC->unk_04;
     UnkStruct_0200C704 * v4 = param0->unk_1EBC->unk_08;

@@ -675,7 +675,7 @@ static void ov21_021E30E4 (UnkStruct_ov21_021E2BBC * param0, const UnkStruct_ov2
 static void ov21_021E3178 (UnkStruct_ov21_021E2BBC * param0, UnkStruct_ov21_021E326C * param1, int param2)
 {
     UnkStruct_ov21_021D13FC * v0 = param0->unk_00;
-    UnkStruct_02006C24 * v1 = ov21_021D26E0(param0->unk_00);
+    NARC * v1 = ov21_021D26E0(param0->unk_00);
 
     param1->unk_18[0] = sub_02009A4C(v0->unk_13C[0], v1, 87, 1, 87 + 2000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -1247,7 +1247,7 @@ static void ov21_021E3960 (UnkStruct_ov21_021E3440 * param0, const UnkStruct_ov2
 static void ov21_021E39FC (UnkStruct_ov21_021E3900 * param0, UnkStruct_ov21_021E3440 * param1, int param2)
 {
     UnkStruct_ov21_021D13FC * v0 = param1->unk_00;
-    UnkStruct_02006C24 * v1 = ov21_021D26E0(param1->unk_00);
+    NARC * v1 = ov21_021D26E0(param1->unk_00);
 
     param0->unk_18[0] = sub_02009A4C(v0->unk_13C[0], v1, 96, 1, 96 + 2100, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 

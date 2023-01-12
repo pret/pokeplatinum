@@ -24,7 +24,7 @@ void sub_020170BC (UnkStruct_020170F4 * param0, u32 param1, u32 param2, u32 para
     sub_020173CC(param0);
 }
 
-void sub_020170D8 (UnkStruct_020170F4 * param0, UnkStruct_02006C24 * param1, u32 param2, u32 param3)
+void sub_020170D8 (UnkStruct_020170F4 * param0, NARC * param1, u32 param2, u32 param3)
 {
     param0->unk_00 = sub_0200723C(param1, param2, 0, param3, 0);
     sub_020173CC(param0);
@@ -61,7 +61,7 @@ void sub_02017110 (UnkStruct_020170F4 * param0)
     memset(param0, 0, sizeof(UnkStruct_020170F4));
 }
 
-void sub_02017164 (UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, UnkStruct_02006C24 * param2, u32 param3, u32 param4, NNSFndAllocator * param5)
+void sub_02017164 (UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, NARC * param2, u32 param3, u32 param4, NNSFndAllocator * param5)
 {
     void * v0;
 

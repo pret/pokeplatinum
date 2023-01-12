@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0207F248.h"
 
 void sub_02082C2C(UnkStruct_0207F248 * param0);
-void sub_02082CEC(UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, UnkStruct_02006C24 * param4);
+void sub_02082CEC(UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, NARC * param4);
 void sub_02082DA8(UnkStruct_0207F248 * param0, u8 param1);
 void sub_02082E58(UnkStruct_0207F248 * param0);
 void sub_02082FAC(UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3);

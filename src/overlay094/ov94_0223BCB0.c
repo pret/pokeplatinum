@@ -22,7 +22,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -320,9 +320,9 @@ static void ov94_0223C0A4 (void)
 static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(104, 62);
+    v1 = NARC_ctor(104, 62);
 
     NNS_G2dInitOamManagerModule();
     sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 62);
@@ -376,7 +376,7 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
         sub_020181C4(v2);
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 void ov94_0223C300 (UnkStruct_ov115_02261520 * param0, UnkStruct_ov94_0223FD4C * param1, UnkStruct_ov19_021DA864 * param2, int param3)

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_02017E74.h"
 #include "unk_02023790.h"
@@ -29,7 +29,7 @@ typedef struct UnkStruct_0200B144_t {
     u16 unk_06;
     union {
         UnkStruct_0200AC5C * unk_08_val1;
-        UnkStruct_02006C24 * unk_08_val2;
+        NARC * unk_08_val2;
     };
 } UnkStruct_0200B144;
 
@@ -37,7 +37,7 @@ static void sub_0200AD98(u16 * param0, const u16 * param1, const UnkStruct_0200A
 
 UnkStruct_0200AC5C * sub_0200AC5C (u32 param0, u32 param1, u32 param2)
 {
-    return sub_02006AC0(param0, param1, param2);
+    return AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
 }
 
 void sub_0200AC64 (UnkStruct_0200AC5C * param0)
@@ -88,7 +88,7 @@ void sub_0200AC6C (const UnkStruct_0200AC5C * param0, u32 param1, u16 * param2)
 
 void sub_0200ACF0 (u32 param0, u32 param1, u32 param2, u32 param3, u16 * param4)
 {
-    UnkStruct_02006C24 * v0 = sub_02006C24(param0, param3);
+    NARC * v0 = NARC_ctor(param0, param3);
 
     if (v0) {
         UnkStruct_0200AC5C v1;
@@ -96,16 +96,16 @@ void sub_0200ACF0 (u32 param0, u32 param1, u32 param2, u32 param3, u16 * param4)
         u16 * v3;
         u32 v4;
 
-        sub_02006DC8(v0, param1, 0, sizeof(UnkStruct_0200AC5C), &v1);
-        sub_02006DC8(v0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v2);
+        NARC_ReadFromMember(v0, param1, 0, sizeof(UnkStruct_0200AC5C), &v1);
+        NARC_ReadFromMember(v0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v2);
 
         inline_0200AC6C(&v2, param2, v1.unk_02);
 
         v4 = v2.unk_04 * sizeof(u16);
-        sub_02006DC8(v0, param1, v2.unk_00, v4, param4);
+        NARC_ReadFromMember(v0, param1, v2.unk_00, v4, param4);
 
         inline_0200AC6C_1(param4, v2.unk_04, param2, v1.unk_02);
-        sub_02006CA8(v0);
+        NARC_dtor(v0);
     }
 }
 
@@ -177,34 +177,34 @@ UnkStruct_02023790 * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1
 
 void sub_0200AF20 (u32 param0, u32 param1, u32 param2, u32 param3, UnkStruct_02023790 * param4)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(param0, param3);
+    v0 = NARC_ctor(param0, param3);
 
     if (v0) {
         sub_0200AF48(v0, param1, param2, param3, param4);
-        sub_02006CA8(v0);
+        NARC_dtor(v0);
     }
 }
 
-void sub_0200AF48 (UnkStruct_02006C24 * param0, u32 param1, u32 param2, u32 param3, UnkStruct_02023790 * param4)
+void sub_0200AF48 (NARC * param0, u32 param1, u32 param2, u32 param3, UnkStruct_02023790 * param4)
 {
     UnkStruct_0200AC5C v0;
     UnkStruct_0200AC6C v1;
     u16 * v2;
     u32 v3;
 
-    sub_02006DC8(param0, param1, 0, sizeof(UnkStruct_0200AC5C), &v0);
+    NARC_ReadFromMember(param0, param1, 0, sizeof(UnkStruct_0200AC5C), &v0);
 
     if (param2 < v0.unk_00) {
-        sub_02006DC8(param0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v1);
+        NARC_ReadFromMember(param0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v1);
         inline_0200AC6C(&v1, param2, v0.unk_02);
 
         v3 = v1.unk_04 * sizeof(u16);
         v2 = sub_02018184(param3, v3);
 
         if (v2) {
-            sub_02006DC8(param0, param1, v1.unk_00, v3, v2);
+            NARC_ReadFromMember(param0, param1, v1.unk_00, v3, v2);
             inline_0200AC6C_1(v2, v1.unk_04, param2, v0.unk_02);
             sub_02023D8C(param4, v2, v1.unk_04);
             sub_020181C4(v2);
@@ -217,14 +217,14 @@ void sub_0200AF48 (UnkStruct_02006C24 * param0, u32 param1, u32 param2, u32 para
 
 UnkStruct_02023790 * sub_0200B010 (u32 param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_02023790 * v1;
 
-    v0 = sub_02006C24(param0, param3);
+    v0 = NARC_ctor(param0, param3);
 
     if (v0) {
         v1 = sub_0200B044(v0, param1, param2, param3);
-        sub_02006CA8(v0);
+        NARC_dtor(v0);
     } else {
         v1 = sub_02023790(4, param3);
     }
@@ -232,17 +232,17 @@ UnkStruct_02023790 * sub_0200B010 (u32 param0, u32 param1, u32 param2, u32 param
     return v1;
 }
 
-UnkStruct_02023790 * sub_0200B044 (UnkStruct_02006C24 * param0, u32 param1, u32 param2, u32 param3)
+UnkStruct_02023790 * sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
 {
     UnkStruct_0200AC5C v0;
 
-    sub_02006DC8(param0, param1, 0, sizeof(UnkStruct_0200AC5C), &v0);
+    NARC_ReadFromMember(param0, param1, 0, sizeof(UnkStruct_0200AC5C), &v0);
 
     if (param2 < v0.unk_00) {
         UnkStruct_0200AC6C v1;
         UnkStruct_02023790 * v2;
 
-        sub_02006DC8(param0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v1);
+        NARC_ReadFromMember(param0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v1);
         inline_0200AC6C(&v1, param2, v0.unk_02);
 
         v2 = sub_02023790(v1.unk_04, param3);
@@ -255,7 +255,7 @@ UnkStruct_02023790 * sub_0200B044 (UnkStruct_02006C24 * param0, u32 param1, u32 
             v3 = sub_02018184(param3, v4);
 
             if (v3) {
-                sub_02006DC8(param0, param1, v1.unk_00, v4, v3);
+                NARC_ReadFromMember(param0, param1, v1.unk_00, v4, v3);
                 inline_0200AC6C_1(v3, v1.unk_04, param2, v0.unk_02);
                 sub_02023D8C(v2, v3, v1.unk_04);
                 sub_020181C4(v3);
@@ -278,7 +278,7 @@ u32 sub_0200B124 (u32 param0, u32 param1)
 {
     UnkStruct_0200AC5C v0;
 
-    sub_02006AFC(&v0, param0, param1, 0, sizeof(UnkStruct_0200AC5C));
+    ReadFromNarcMemberByIndexPair(&v0, param0, param1, 0, sizeof(UnkStruct_0200AC5C));
     return v0.unk_00;
 }
 
@@ -295,7 +295,7 @@ UnkStruct_0200B144 * sub_0200B144 (int param0, u32 param1, u32 param2, u32 param
                 return NULL;
             }
         } else {
-            v0->unk_08_val2 = sub_02006C24(param1, param3);
+            v0->unk_08_val2 = NARC_ctor(param1, param3);
         }
 
         v0->unk_00 = param0;
@@ -315,7 +315,7 @@ void sub_0200B190 (UnkStruct_0200B144 * param0)
             sub_0200AC64(param0->unk_08_val1);
             break;
         case 1:
-            sub_02006CA8(param0->unk_08_val2);
+            NARC_dtor(param0->unk_08_val2);
             break;
         }
 

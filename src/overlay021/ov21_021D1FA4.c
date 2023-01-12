@@ -27,7 +27,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02002B7C.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -72,7 +72,7 @@ void ov21_021D1FA4 (UnkStruct_ov21_021D13FC * param0, int param1)
     UnkStruct_ov84_0223BA5C v0;
     UnkStruct_ov21_021D1FA4 v1;
 
-    param0->unk_278 = sub_02006C24(69, param1);
+    param0->unk_278 = NARC_ctor(69, param1);
     param0->unk_00 = sub_02018340(param1);
 
     v0.unk_00 = GX_DISPMODE_GRAPHICS;
@@ -129,7 +129,7 @@ void ov21_021D2098 (UnkStruct_ov21_021D13FC * param0)
     ov21_021D4C6C(param0->unk_14C);
     sub_02002C60(2);
     ov21_021D2AB4(param0);
-    sub_02006CA8(param0->unk_278);
+    NARC_dtor(param0->unk_278);
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021D13FC));
 }
@@ -473,7 +473,7 @@ BOOL ov21_021D2664 (UnkStruct_ov21_021D2648 * param0)
     return 1;
 }
 
-UnkStruct_02006C24 * ov21_021D26E0 (UnkStruct_ov21_021D13FC * param0)
+NARC * ov21_021D26E0 (UnkStruct_ov21_021D13FC * param0)
 {
     return param0->unk_278;
 }
@@ -482,7 +482,7 @@ void * ov21_021D26E8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
 {
     void * v0;
 
-    v0 = sub_02006CB8(param0->unk_278, param1, param3);
+    v0 = NARC_AllocAndReadWholeMember(param0->unk_278, param1, param3);
 
     if (v0 != NULL) {
         if (param2) {
@@ -801,7 +801,7 @@ static void ov21_021D2AB4 (UnkStruct_ov21_021D13FC * param0)
 static void ov21_021D2AE8 (UnkStruct_ov21_021D13FC * param0, int param1)
 {
     UnkStruct_ov21_021D22F8 * v0 = &param0->unk_1B0;
-    UnkStruct_02006C24 * v1 = ov21_021D26E0(param0);
+    NARC * v1 = ov21_021D26E0(param0);
 
     v0->unk_0C[0] = sub_02009A4C(param0->unk_13C[0], v1, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
 
@@ -817,7 +817,7 @@ static void ov21_021D2AE8 (UnkStruct_ov21_021D13FC * param0, int param1)
     v0->unk_0C[3] = sub_02009BC4(param0->unk_13C[3], v1, 77, 1, 3000, 3, param1);
 }
 
-void ov21_021D2B88 (UnkStruct_ov21_021D22F8 * param0, UnkStruct_02009714 ** param1, int param2, UnkStruct_02006C24 * param3)
+void ov21_021D2B88 (UnkStruct_ov21_021D22F8 * param0, UnkStruct_02009714 ** param1, int param2, NARC * param3)
 {
     param0->unk_0C[0] = sub_02009A4C(param1[0], param3, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -969,7 +969,7 @@ void ov21_021D2E44 (UnkStruct_ov21_021D22F8 * param0, BOOL param1)
 static void ov21_021D2E70 (UnkStruct_ov21_021D13FC * param0, int param1)
 {
     UnkStruct_ov21_021D2584 * v0 = &param0->unk_1E0;
-    UnkStruct_02006C24 * v1 = ov21_021D26E0(param0);
+    NARC * v1 = ov21_021D26E0(param0);
 
     v0->unk_10[0] = sub_02009A4C(param0->unk_13C[0], v1, 119, 1, 12000, NNS_G2D_VRAM_TYPE_2DSUB, param1);
 

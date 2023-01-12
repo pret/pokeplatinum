@@ -11,7 +11,7 @@
 #include "struct_defs/struct_02008A90.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_02017E74.h"
 
@@ -342,7 +342,7 @@ void * sub_0200762C (int param0)
 
     v0->unk_333 = 0;
 
-    v7 = sub_02006AC0(117, 251, v0->unk_2E8);
+    v7 = AllocAndReadWholeNarcMemberByIndexPair(117, 251, v0->unk_2E8);
     NNS_G2dGetUnpackedCharacterData(v7, &v5);
 
     v0->unk_308.pixelFmt = v5->pixelFmt;
@@ -1246,7 +1246,7 @@ static void sub_02008B78 (UnkStruct_02007768 * param0)
             param0->unk_00[v1].unk_00_7 = 0;
 
             v6 = 1;
-            v5 = sub_02006AC0(param0->unk_00[v1].unk_04.unk_00, param0->unk_00[v1].unk_04.unk_02, param0->unk_2E8);
+            v5 = AllocAndReadWholeNarcMemberByIndexPair(param0->unk_00[v1].unk_04.unk_00, param0->unk_00[v1].unk_04.unk_02, param0->unk_2E8);
 
             NNS_G2dGetUnpackedCharacterData(v5, &v0);
 
@@ -1361,7 +1361,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
             param0->unk_00[v1].unk_00_8 = 0;
 
             v6 = 1;
-            v5 = sub_02006AC0(param0->unk_00[v1].unk_04.unk_00, param0->unk_00[v1].unk_04.unk_04, param0->unk_2E8);
+            v5 = AllocAndReadWholeNarcMemberByIndexPair(param0->unk_00[v1].unk_04.unk_00, param0->unk_00[v1].unk_04.unk_04, param0->unk_2E8);
 
             NNS_G2dGetUnpackedPaletteData(v5, &v0);
 
@@ -1376,7 +1376,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
             sub_020181C4(v5);
 
             if (param0->unk_00[v1].unk_6C.unk_00_0) {
-                v5 = sub_02006AC0(117, 252, param0->unk_2E8);
+                v5 = AllocAndReadWholeNarcMemberByIndexPair(117, 252, param0->unk_2E8);
                 NNS_G2dGetUnpackedPaletteData(v5, &v0);
                 v4 = v0->pRawData;
 

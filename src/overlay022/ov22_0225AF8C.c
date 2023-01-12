@@ -19,7 +19,7 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 #include "overlay022/struct_ov22_0225B388.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02017E74.h"
 #include "unk_02018340.h"
@@ -297,7 +297,7 @@ static void ov22_0225B2D4 (UnkStruct_ov22_0225B1BC * param0, const UnkStruct_ov2
     UnkStruct_ov22_02255CB8 v0;
     UnkStruct_ov22_022550D4 v1;
 
-    param0->unk_00.unk_5C = sub_02006C24(25, param1->unk_68);
+    param0->unk_00.unk_5C = NARC_ctor(25, param1->unk_68);
 
     v1.unk_00 = (700 + 18);
     v1.unk_04 = (100 + 18);
@@ -324,7 +324,7 @@ static void ov22_0225B35C (UnkStruct_ov22_0225B1BC * param0)
         ov22_02255524(&param0->unk_00);
     }
 
-    sub_02006CA8(param0->unk_00.unk_5C);
+    NARC_dtor(param0->unk_00.unk_5C);
 }
 
 static void ov22_0225B388 (UnkStruct_ov22_0225B1BC * param0, const UnkStruct_ov22_0225B4E4 * param1)

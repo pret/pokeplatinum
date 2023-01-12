@@ -29,7 +29,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
@@ -412,9 +412,9 @@ static void ov77_021D1208 (UnkStruct_ov77_021D1208 * param0, int param1, int par
 
     sub_020182CC(&param0->unk_70, param3, 4);
 
-    param0->unk_5C = sub_02006AC0(48, param1, param3);
-    param0->unk_60 = sub_02006AC0(48, param2, param3);
-    param0->unk_64 = sub_02006AC0(48, 2, param3);
+    param0->unk_5C = AllocAndReadWholeNarcMemberByIndexPair(48, param1, param3);
+    param0->unk_60 = AllocAndReadWholeNarcMemberByIndexPair(48, param2, param3);
+    param0->unk_64 = AllocAndReadWholeNarcMemberByIndexPair(48, 2, param3);
 
     sub_0201CA3C(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
 
@@ -448,9 +448,9 @@ static void ov77_021D1208 (UnkStruct_ov77_021D1208 * param0, int param1, int par
 
 static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(48, param1);
+    v0 = NARC_ctor(48, param1);
 
     {
         sub_020170D8(&param0->unk_150, v0, 19, param1);
@@ -495,7 +495,7 @@ static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
         sub_0201727C(&param0->unk_160, &param0->unk_1EC);
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     param0->unk_214 = ((0x10000 - 0x3fef) - (0x10000 - 0x1c7d)) / 30;
     param0->unk_218 = (0x10000 - 0x1c7d);

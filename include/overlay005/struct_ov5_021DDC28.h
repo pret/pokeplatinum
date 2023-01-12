@@ -13,7 +13,7 @@ typedef struct {
     BOOL * unk_14;
     BOOL unk_18;
     BOOL unk_1C;
-    UnkStruct_02006C24 * unk_20;
+    NARC * unk_20;
 } UnkStruct_ov5_021DDC28;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021DDC28_H

@@ -43,7 +43,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -382,7 +382,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     u32 unk_08;
-    UnkStruct_02006C24 * unk_0C;
+    NARC * unk_0C;
     UnkStruct_02039E30 * unk_10;
     UnkStruct_ov5_021EF76C * unk_14;
     UnkStruct_ov5_021E8F60 * unk_18;
@@ -597,9 +597,9 @@ typedef struct {
 struct UnkStruct_ov9_02249B04_t {
     UnkStruct_0203CDB0 * unk_00;
     UnkStruct_02071C5C * unk_04;
-    UnkStruct_02006C24 * unk_08;
-    UnkStruct_02006C24 * unk_0C;
-    UnkStruct_02006C24 * unk_10;
+    NARC * unk_08;
+    NARC * unk_0C;
+    NARC * unk_10;
     UnkStruct_ov9_02249F9C unk_14;
     UnkStruct_ov9_0224A570 unk_54;
     UnkFuncPtr_ov9_0224E33C unk_D8;
@@ -931,7 +931,7 @@ static BOOL ov9_0224AAD4(UnkStruct_020508D4 * param0);
 static BOOL ov9_0224AC58(UnkStruct_ov9_0224AC58 * param0, UnkStruct_02061AB4 * param1);
 static void ov9_0224ADC0(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224AED8(UnkStruct_ov9_02249B04 * param0);
-static void ov9_0224AEE4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, UnkStruct_02006C24 * param2);
+static void ov9_0224AEE4(UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, NARC * param2);
 static void ov9_0224B064(UnkStruct_ov9_0224B064 * param0);
 static void ov9_0224B124(UnkStruct_0201CD38 * param0, void * param1);
 static UnkStruct_02022550 * ov9_0224B130(UnkStruct_ov9_0224B064 * param0, const VecFx32 * param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
@@ -966,7 +966,7 @@ static void ov9_0224BE14(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224BE8C(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224BEB4(UnkStruct_ov9_02249B04 * param0, u32 param1);
 static void ov9_0224BF18(UnkStruct_ov9_02249B04 * param0, u32 param1);
-static void ov9_0224BF8C(UnkStruct_02006C24 * param0, UnkStruct_ov9_0224BFE0 * param1);
+static void ov9_0224BF8C(NARC * param0, UnkStruct_ov9_0224BFE0 * param1);
 static void ov9_0224BFBC(UnkStruct_ov9_02249B04 * param0);
 static void ov9_0224BFE0(UnkStruct_ov9_0224BFE0 * param0);
 static void ov9_0224BFFC(UnkStruct_ov9_02249B04 * param0);
@@ -1337,16 +1337,16 @@ static void ov9_02249C60 (UnkStruct_ov9_02249B04 * param0, u32 param1)
 
 static void ov9_02249C88 (UnkStruct_ov9_02249B04 * param0)
 {
-    param0->unk_08 = sub_02006C24(181, 4);
-    param0->unk_0C = sub_02006C24(182, 4);
-    param0->unk_10 = sub_02006C24(183, 4);
+    param0->unk_08 = NARC_ctor(181, 4);
+    param0->unk_0C = NARC_ctor(182, 4);
+    param0->unk_10 = NARC_ctor(183, 4);
 }
 
 static void ov9_02249CAC (UnkStruct_ov9_02249B04 * param0)
 {
-    sub_02006CA8(param0->unk_08);
-    sub_02006CA8(param0->unk_0C);
-    sub_02006CA8(param0->unk_10);
+    NARC_dtor(param0->unk_08);
+    NARC_dtor(param0->unk_0C);
+    NARC_dtor(param0->unk_10);
 }
 
 static void ov9_02249CC4 (UnkStruct_ov9_02249B04 * param0)
@@ -2592,7 +2592,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
         char * v1;
         NNSG2dPaletteData * v2;
 
-        v1 = sub_02006CB8(param0->unk_10, 1, 4);
+        v1 = NARC_AllocAndReadWholeMember(param0->unk_10, 1, 4);
         NNS_G2dGetUnpackedPaletteData(v1, &v2);
         sub_0201972C(2, v2->pRawData, 32, 32 * 0);
 
@@ -2616,7 +2616,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
         char * v6;
         NNSG2dCharacterData * v7;
 
-        v6 = sub_02006CB8(param0->unk_10, 0, 4);
+        v6 = NARC_AllocAndReadWholeMember(param0->unk_10, 0, 4);
         NNS_G2dGetUnpackedCharacterData(v6, &v7);
 
         sub_0201958C(param0->unk_00->unk_08, 2, v7->pRawData, v7->szByte, 0);
@@ -2627,7 +2627,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
         char * v8;
         NNSG2dScreenData * v9;
 
-        v8 = sub_02006CB8(param0->unk_10, 2, 4);
+        v8 = NARC_AllocAndReadWholeMember(param0->unk_10, 2, 4);
         NNS_G2dGetUnpackedScreenData(v8, &v9);
 
         sub_02019460(param0->unk_00->unk_08, 2, (void *)v9->rawData, v9->szByte, 0);
@@ -2656,7 +2656,7 @@ static void ov9_0224AED8 (UnkStruct_ov9_02249B04 * param0)
     G2_BlendNone();
 }
 
-static void ov9_0224AEE4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, UnkStruct_02006C24 * param2)
+static void ov9_0224AEE4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B064 * param1, NARC * param2)
 {
     param1->unk_00 = sub_020095C4(16, &param1->unk_04, 4);
     sub_0200962C(&param1->unk_04, ((FX32_ONE * 0)), ((FX32_ONE * -512)));
@@ -3663,12 +3663,12 @@ static void ov9_0224BF18 (UnkStruct_ov9_02249B04 * param0, u32 param1)
     }
 }
 
-static void ov9_0224BF8C (UnkStruct_02006C24 * param0, UnkStruct_ov9_0224BFE0 * param1)
+static void ov9_0224BF8C (NARC * param0, UnkStruct_ov9_0224BFE0 * param1)
 {
-    u32 v0 = sub_02006D84(param0, 0);
+    u32 v0 = NARC_GetMemberSize(param0, 0);
 
     param1->unk_08 = sub_02018144(4, v0);
-    sub_02006D28(param0, 0, param1->unk_08);
+    NARC_ReadWholeMember(param0, 0, param1->unk_08);
 
     param1->unk_00 = *(int *)param1->unk_08;
     param1->unk_04 = param1->unk_08;
@@ -3754,10 +3754,10 @@ static void ov9_0224C088 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224C14
         UnkStruct_ov9_0224C088 * v3;
 
         v2 = ov9_0224C044(param0, param2);
-        v1 = sub_02006D84(param0->unk_08, v2);
+        v1 = NARC_GetMemberSize(param0->unk_08, v2);
 
         param1->unk_18 = sub_02018184(4, v1);
-        sub_02006D28(param0->unk_08, v2, param1->unk_18);
+        NARC_ReadWholeMember(param0->unk_08, v2, param1->unk_18);
 
         v3 = param1->unk_18;
         param1->unk_14 = v3;
@@ -4120,10 +4120,10 @@ static void ov9_0224C4F4 (UnkStruct_ov9_02249B04 * param0, u32 param1)
         sub_020181C4(v0->unk_10);
     }
 
-    v0->unk_0C = sub_02006D84(param0->unk_0C, param1);
+    v0->unk_0C = NARC_GetMemberSize(param0->unk_0C, param1);
     v0->unk_10 = sub_02018184(4, v0->unk_0C);
 
-    sub_02006D28(param0->unk_0C, param1, v0->unk_10);
+    NARC_ReadWholeMember(param0->unk_0C, param1, v0->unk_10);
 }
 
 static u16 ov9_0224C52C (UnkStruct_ov9_02249B04 * param0, int param1, int param2)
@@ -4394,7 +4394,7 @@ static void ov9_0224C8E8 (UnkStruct_ov9_02249B04 * param0)
     }
 
     {
-        UnkStruct_02006C24 * v6 = ov5_021E9828(v3->unk_28);
+        NARC * v6 = ov5_021E9828(v3->unk_28);
 
         v2->unk_18 = ov5_021E9830(v2->unk_10, v2->unk_14, v6);
         ov5_021E931C(sub_0205EAFC(v3->unk_3C), v2->unk_18);
@@ -4716,7 +4716,7 @@ static int ov9_0224CD84 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
 {
     if (param1->unk_20 == 0) {
         int v0, v1, v2;
-        UnkStruct_02006C24 * v3;
+        NARC * v3;
         UnkStruct_ov9_0224C8E8 * v4 = &param0->unk_1E88;
 
         v3 = ov5_021E9828(param0->unk_00->unk_28);
@@ -4821,7 +4821,7 @@ static int ov9_0224CEBC (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224CBD8
     }
 
     if (v1->unk_04 == 0) {
-        UnkStruct_02006C24 * v3 = ov5_021E9828(v0->unk_28);
+        NARC * v3 = ov5_021E9828(v0->unk_28);
 
         v1->unk_18 = ov5_021E9830(NULL, v1->unk_14, v3);
         ov5_021E7A54(v1->unk_18);
@@ -9603,12 +9603,12 @@ BOOL ov9_02251044 (UnkStruct_0203CDB0 * param0, int param1, int param2, int para
 void ov9_02251094 (int param0, int * param1, int * param2, int * param3)
 {
     UnkStruct_ov9_0224BFE0 v0;
-    UnkStruct_02006C24 * v1 = sub_02006C24(181, 4);
+    NARC * v1 = NARC_ctor(181, 4);
 
     ov9_0224BF8C(v1, &v0);
     ov9_0224C050(&v0, param0, param1, param2, param3);
     ov9_0224BFE0(&v0);
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static u32 ov9_022510D0 (UnkStruct_ov9_02249B04 * param0)

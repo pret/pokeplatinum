@@ -13,7 +13,7 @@
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -71,7 +71,7 @@ void sub_02082C2C (UnkStruct_0207F248 * param0)
     }
 }
 
-void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, UnkStruct_02006C24 * param4)
+void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, NARC * param4)
 {
     UnkStruct_02073C74 * v0;
     UnkStruct_ov7_0224F358 v1;
@@ -105,7 +105,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
 void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
     int v2, v3;
     u32 v4;
     void * v5;
@@ -115,7 +115,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
     v0 = sub_0207A0FC(param0->unk_5A4->unk_00, param1);
     v2 = sub_02074470(v0, 5, NULL);
     v3 = sub_02074470(v0, 112, NULL);
-    v1 = sub_02006C24(19, 12);
+    v1 = NARC_ctor(19, 12);
     v4 = NNS_G2dGetImageLocation(sub_02021F98(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = sub_0200723C(v1, sub_02079D80(v0), 0, 12, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
@@ -127,7 +127,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
 
     sub_020181C4(v5);
     sub_0200D414(param0->unk_704[param1].unk_24, sub_02079EDC(v2, v3, 0) + 3);
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static const UnkStruct_ov7_0224F358 Unk_020F20C0[] = {

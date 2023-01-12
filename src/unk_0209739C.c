@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0209739C.h"
 
@@ -23,24 +23,24 @@ typedef struct UnkStruct_020973A8_t {
     u8 unk_0B;
 } UnkStruct_020973A8;
 
-UnkStruct_02006C24 * sub_0209739C (u32 param0)
+NARC * sub_0209739C (u32 param0)
 {
-    return sub_02006C24(68, param0);
+    return NARC_ctor(68, param0);
 }
 
-UnkStruct_020973A8 * sub_020973A8 (UnkStruct_02006C24 * param0, u32 param1, u32 param2)
+UnkStruct_020973A8 * sub_020973A8 (NARC * param0, u32 param1, u32 param2)
 {
-    return sub_02006CB8(param0, 0 + param1, param2);
+    return NARC_AllocAndReadWholeMember(param0, 0 + param1, param2);
 }
 
-void sub_020973B0 (UnkStruct_02006C24 * param0)
+void sub_020973B0 (NARC * param0)
 {
-    sub_02006CA8(param0);
+    NARC_dtor(param0);
 }
 
 UnkStruct_020973A8 * sub_020973B8 (u32 param0, u32 param1)
 {
-    return sub_02006AC0(68, 0 + param0, param1);
+    return AllocAndReadWholeNarcMemberByIndexPair(68, 0 + param0, param1);
 }
 
 UnkStruct_020973A8 * sub_020973C8 (u32 param0, u32 param1)

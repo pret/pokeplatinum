@@ -6,7 +6,7 @@
 
 #include "struct_defs/struct_020789F4.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02015F84.h"
@@ -221,7 +221,7 @@ void sub_02015FCC (UnkStruct_02015F84 * param0, UnkStruct_02007C7C * param1, con
         param0->unk_00[v0].unk_1C4 = 0;
     }
 
-    param0->unk_00[v0].unk_08 = sub_02006ADC(94, param0->unk_00[v0].unk_14, param0->unk_04);
+    param0->unk_00[v0].unk_08 = AllocAtEndAndReadWholeNarcMemberByIndexPair(94, param0->unk_00[v0].unk_14, param0->unk_04);
     param0->unk_00[v0].unk_0C = (u32 *)param0->unk_00[v0].unk_08;
     param0->unk_00[v0].unk_1C = 0;
     param0->unk_00[v0].unk_20 = 0;

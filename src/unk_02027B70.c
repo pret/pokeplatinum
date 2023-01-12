@@ -49,7 +49,7 @@ UnkStruct_02027BF4 * sub_02027BF4 (int param0)
     int v0;
     UnkStruct_02027BF4 * v1;
     UnkStruct_020973A8 * v2;
-    UnkStruct_02006C24 * v3;
+    NARC * v3;
 
     v3 = sub_0209739C(param0);
     v1 = sub_02018144(param0, sizeof(UnkStruct_02027BF4) * 64);

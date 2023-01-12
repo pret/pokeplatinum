@@ -27,7 +27,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
@@ -81,7 +81,7 @@ typedef struct {
     UnkStruct_ov95_02247958 * unk_78;
     UnkStruct_0201CD38 * unk_7C;
     UnkStruct_0201CD38 * unk_80;
-    UnkStruct_02006C24 * unk_84;
+    NARC * unk_84;
 } UnkStruct_ov95_0224B4D4;
 
 typedef struct {
@@ -148,7 +148,7 @@ void * ov95_0224B3D8 (UnkStruct_ov95_02247628 * param0)
         v0->unk_7C = NULL;
         v0->unk_80 = NULL;
         v0->unk_74 = NULL;
-        v0->unk_84 = sub_02006C24(147, 58);
+        v0->unk_84 = NARC_ctor(147, 58);
     }
 
     return v0;
@@ -179,7 +179,7 @@ void ov95_0224B438 (void * param0)
             sub_02007DC8(v0->unk_14);
         }
 
-        sub_02006CA8(v0->unk_84);
+        NARC_dtor(v0->unk_84);
         sub_02007B6C(v0->unk_10);
         sub_020181C4(v0);
     }

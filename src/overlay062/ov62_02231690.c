@@ -42,7 +42,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
@@ -140,7 +140,7 @@ void ov62_022317CC (UnkStruct_0208C06C * param0, int param1)
     UnkStruct_02002F38 * v0 = param0->unk_14.unk_14;
     UnkStruct_0200C6E4 * v1 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v2 = param0->unk_14.unk_08;
-    UnkStruct_02006C24 * v3 = param0->unk_14.unk_00;
+    NARC * v3 = param0->unk_14.unk_00;
 
     sub_02003050(v0, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
     sub_02003050(v0, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
@@ -2249,7 +2249,7 @@ void ov62_0223331C (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
 {
     UnkStruct_0200D0F4 * v0;
     UnkStruct_ov104_0223F9E0 v1;
-    UnkStruct_02006C24 * v2 = param1->unk_14.unk_00;
+    NARC * v2 = param1->unk_14.unk_00;
     UnkStruct_02018340 * v3 = param1->unk_14.unk_10;
     UnkStruct_0200C6E4 * v4 = param1->unk_14.unk_04;
     UnkStruct_0200C704 * v5 = param1->unk_14.unk_08;
@@ -2713,20 +2713,20 @@ void ov62_02233A44 (UnkStruct_0208C06C * param0)
     sub_0200D0A0(param0->unk_14.unk_08, 100000);
 }
 
-UnkStruct_02006C24 * ov62_02233A68 (int param0)
+NARC * ov62_02233A68 (int param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(19, 102);
+    v0 = NARC_ctor(19, 102);
     return v0;
 }
 
-void ov62_02233A74 (UnkStruct_02006C24 * param0)
+void ov62_02233A74 (NARC * param0)
 {
-    sub_02006CA8(param0);
+    NARC_dtor(param0);
 }
 
-UnkStruct_0200D0F4 * ov62_02233A7C (UnkStruct_0208C06C * param0, UnkStruct_02006C24 * param1, int param2, int param3, int param4, int param5)
+UnkStruct_0200D0F4 * ov62_02233A7C (UnkStruct_0208C06C * param0, NARC * param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_0200D0F4 * v0;
     UnkStruct_0200C6E4 * v1;

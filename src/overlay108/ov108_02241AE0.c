@@ -38,7 +38,7 @@
 #include "unk_02005474.h"
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -228,7 +228,7 @@ struct UnkStruct_ov108_02241DB0_t {
     u16 * unk_3C4;
     UnkStruct_02079FF4 * unk_3C8;
     UnkStruct_02079FF4 * unk_3CC;
-    UnkStruct_02006C24 * unk_3D0;
+    NARC * unk_3D0;
     u16 unk_3D4[40];
     u8 unk_424;
     u8 unk_425;
@@ -796,7 +796,7 @@ static void ov108_02242238 (UnkStruct_ov108_02241DB0 * param0)
     ov108_02243660(param0->unk_94);
     ov108_022426D4(param0->unk_90);
 
-    sub_02006CA8(param0->unk_3D0);
+    NARC_dtor(param0->unk_3D0);
     return;
 }
 
@@ -822,7 +822,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     UnkStruct_0205AA50 * v7;
     UnkStruct_02073C74 * v8;
 
-    param0->unk_3D0 = sub_02006C24(150, 103);
+    param0->unk_3D0 = NARC_ctor(150, 103);
 
     ov108_02242658(param0);
     ov108_022426B0(param0);

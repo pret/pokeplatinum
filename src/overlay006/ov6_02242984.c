@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay006/struct_ov6_02242634.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
@@ -66,7 +66,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
         u8 v2;
         UnkStruct_ov6_02242A10 * v3;
 
-        v3 = sub_02006ADC(106, 11, 4);
+        v3 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 11, 4);
 
         for (v0 = 0; v0 < 5; v0++) {
             v2 = inline_020564D0(36);

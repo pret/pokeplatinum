@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02002328.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_0201D0C8.h"
 #include "unk_0201D670.h"
@@ -31,7 +31,7 @@ typedef struct UnkStruct_02023350_t {
     u32 unk_0C;
     u8 * unk_10;
     u8 unk_14[64];
-    UnkStruct_02006C24 * unk_54;
+    NARC * unk_54;
     u32 unk_58;
     UnkStruct_02023350_sub1 unk_5C;
     BOOL unk_6C;
@@ -81,10 +81,10 @@ void sub_02023330 (UnkStruct_02023350 * param0, int param1, u32 param2)
 
 static void sub_02023350 (UnkStruct_02023350 * param0, u32 param1, u32 param2, BOOL param3, u32 param4)
 {
-    param0->unk_54 = sub_02006C24(param1, param4);
+    param0->unk_54 = NARC_ctor(param1, param4);
 
     if (param0->unk_54) {
-        sub_02006DC8(param0->unk_54, param2, 0, sizeof(UnkStruct_02023350_sub1), &(param0->unk_5C));
+        NARC_ReadFromMember(param0->unk_54, param2, 0, sizeof(UnkStruct_02023350_sub1), &(param0->unk_5C));
 
         param0->unk_6C = param3;
 
@@ -97,7 +97,7 @@ static void sub_02023350 (UnkStruct_02023350 * param0, u32 param1, u32 param2, B
             param0->unk_74 = sub_02018144(param4, param0->unk_5C.unk_08);
             param0->unk_70 = sub_020236B0;
 
-            sub_02006DC8(param0->unk_54, param2, param0->unk_5C.unk_04, param0->unk_5C.unk_08, (void *)(param0->unk_74));
+            NARC_ReadFromMember(param0->unk_54, param2, param0->unk_5C.unk_04, param0->unk_5C.unk_08, (void *)(param0->unk_74));
         }
 
         {
@@ -123,7 +123,7 @@ static void sub_02023408 (UnkStruct_02023350 * param0)
     }
 
     if (param0->unk_54) {
-        sub_02006CA8(param0->unk_54);
+        NARC_dtor(param0->unk_54);
     }
 }
 
@@ -144,7 +144,7 @@ static void sub_0202343C (UnkStruct_02023350 * param0, u32 param1)
     param0->unk_10 = sub_02018144(param1, v0);
     param0->unk_04 = sub_020234BC;
 
-    sub_02006DC8(param0->unk_54, param0->unk_58, param0->unk_5C.unk_00, v0, param0->unk_10);
+    NARC_ReadFromMember(param0->unk_54, param0->unk_58, param0->unk_5C.unk_00, v0, param0->unk_10);
 }
 
 static void sub_0202346C (UnkStruct_02023350 * param0, u32 param1)
@@ -218,7 +218,7 @@ static void sub_02023564 (const UnkStruct_02023350 * param0, u16 param1, UnkStru
 {
     u32 v0;
 
-    sub_02006DC8(param0->unk_54, param0->unk_58, param0->unk_5C.unk_00 + param1 * param0->unk_0C, param0->unk_0C, (void *)(param0->unk_14));
+    NARC_ReadFromMember(param0->unk_54, param0->unk_58, param0->unk_5C.unk_00 + param1 * param0->unk_0C, param0->unk_0C, (void *)(param0->unk_14));
 
     switch (param0->unk_08) {
     case 0:

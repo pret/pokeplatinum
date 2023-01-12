@@ -9,7 +9,7 @@
 
 #include "overlay115/struct_ov115_0226527C.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02017E74.h"
 #include "unk_0201C970.h"
@@ -145,7 +145,7 @@ UnkStruct_ov95_02247958 * ov95_022478B4 (UnkStruct_ov95_0224773C * param0, int p
     UnkStruct_ov95_02247958 * v0 = &param0->unk_18[param1];
 
     v0->unk_00 = sub_02006FE8(param2, param3, 0, 58, 1);
-    DC_FlushRange(v0->unk_00, sub_02006B58(param2, param3));
+    DC_FlushRange(v0->unk_00, GetNarcMemberSizeByIndexPair(param2, param3));
 
     if (v0->unk_00) {
         v0->unk_58 = NNS_G3dGetMdlSet(v0->unk_00);

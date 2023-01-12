@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay006/struct_ov6_02240D5C.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0201378C.h"
 #include "unk_02017E74.h"
 #include "unk_0202440C.h"
@@ -129,7 +129,7 @@ static void sub_02056400 (u32 param0, u8 * param1)
     GF_ASSERT(0 < param0 && param0 <= 493);
     v0 = (param0 - 1) * 6;
 
-    sub_02006AFC(param1, 131, 0, v0, sizeof(u8) * 6);
+    ReadFromNarcMemberByIndexPair(param1, 131, 0, v0, sizeof(u8) * 6);
 }
 
 static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)

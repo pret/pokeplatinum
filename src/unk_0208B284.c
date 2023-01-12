@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0208B878.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
@@ -173,7 +173,7 @@ static void sub_0208B3D4 (UnkStruct_0201CD38 * param0, void * param1)
 
 void sub_0208B63C (UnkStruct_0208B878 * param0, int param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
     UnkStruct_02002F38 * v3;
@@ -191,7 +191,7 @@ void sub_0208B63C (UnkStruct_0208B878 * param0, int param1)
 
 void sub_0208B6B0 (UnkStruct_0208B878 * param0, int param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
     UnkStruct_02002F38 * v3;
@@ -274,7 +274,7 @@ void sub_0208B830 (UnkStruct_0208B878 * param0)
 
 BOOL sub_0208B878 (UnkStruct_0208B878 * param0, int param1)
 {
-    param0->unk_00.unk_00 = sub_02006C24(162, param0->unk_10.unk_04);
+    param0->unk_00.unk_00 = NARC_ctor(162, param0->unk_10.unk_04);
 
     sub_0208B6B0(param0, param1);
     sub_0208B7B4(param0);
@@ -370,7 +370,7 @@ BOOL sub_0208B988 (UnkStruct_0208B878 * param0)
         break;
     default:
         sub_0208B830(param0);
-        sub_02006CA8(param0->unk_00.unk_00);
+        NARC_dtor(param0->unk_00.unk_00);
         sub_020181C4(param0);
 
         return 0;

@@ -19,7 +19,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
@@ -78,7 +78,7 @@ static int sub_02098218 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_04.unk_10 = sub_02027B50(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);
-    v1->unk_04.unk_3C = sub_02006C24(147, 71);
+    v1->unk_04.unk_3C = NARC_ctor(147, 71);
     v1->unk_04.unk_00 = sub_02018340(71);
 
     sub_0201DBEC(64, 71);
@@ -185,7 +185,7 @@ static int sub_02098388 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201DC3C();
     sub_02007B6C(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
-    sub_02006CA8(v0->unk_04.unk_3C);
+    NARC_dtor(v0->unk_04.unk_3C);
 
     ov119_021D1844(&v0->unk_04);
 

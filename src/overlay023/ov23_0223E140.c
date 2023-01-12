@@ -34,7 +34,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -1332,14 +1332,14 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     sub_0200DD0C(v1, 3, (512 - (18 + 12)), 10, 0, 29);
 
     {
-        UnkStruct_02006C24 * v6;
+        NARC * v6;
 
-        v6 = sub_02006C24(52, 29);
+        v6 = NARC_ctor(52, 29);
         sub_02007130(v6, 1, 0, 0, 32 * 3, 29);
 
         v0 = sub_020070E8(v6, 0, v1, 0, 0, 0, 0, 29);
         sub_0200710C(v6, 2, v1, 0, 0, 0, 0, 29);
-        sub_02006CA8(v6);
+        NARC_dtor(v6);
     }
 
     sub_02006E84(50, 52, 0, 10 * 0x20, 4 * 0x20, 29);
@@ -1940,9 +1940,9 @@ static int ov23_0223FC9C (int param0, UnkStruct_02018340 * param1, int param2, U
     int v6, v7, v8, v9 = param2;
     u32 v10;
     int v11 = param0;
-    UnkStruct_02006C24 * v12;
+    NARC * v12;
 
-    v12 = sub_02006C24(55, 29);
+    v12 = NARC_ctor(55, 29);
 
     if (param0 >= param3->unk_0C) {
         v11 = 4;
@@ -1957,7 +1957,7 @@ static int ov23_0223FC9C (int param0, UnkStruct_02018340 * param1, int param2, U
     }
 
     v10 = sub_020070E8(v12, v0->unk_00->unk_10, param1, 1, param2, 0, 0, 29);
-    sub_02006CA8(v12);
+    NARC_dtor(v12);
 
     for (v6 = v3; v6 < v5; v6++) {
         for (v7 = v2; v7 < v4; v7++) {
@@ -2775,7 +2775,7 @@ static void ov23_02240E60 (UnkStruct_02009DC8 * param0)
 static void ov23_02240E88 (void)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     Unk_ov23_02257740->unk_A2F = 0;
 
@@ -2792,7 +2792,7 @@ static void ov23_02240E88 (void)
         Unk_ov23_02257740->unk_1B0[v0] = sub_02009714(2, v0, 29);
     }
 
-    v1 = sub_02006C24(64, 29);
+    v1 = NARC_ctor(64, 29);
 
     ov23_02240E60(sub_02009A4C(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
     sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
@@ -2810,7 +2810,7 @@ static void ov23_02240E88 (void)
 
     ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));
     ov23_02240E60(sub_02009BC4(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, 29));
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void ov23_0224108C (void)

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02039E30_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
@@ -52,7 +52,7 @@ static void sub_02039C80 (UnkStruct_02039C80 * param0, const u16 param1, int par
         }
     }
 
-    v3 = sub_02006ADC(41, param1, 11);
+    v3 = AllocAtEndAndReadWholeNarcMemberByIndexPair(41, param1, 11);
     v4 = &((u8 *)(v3))[0];
 
     param0->unk_01 = *v4;
@@ -193,7 +193,7 @@ UnkStruct_02039EBC * sub_02039EBC (const u32 param0)
     UnkStruct_02039EBC * v3;
 
     v3 = sub_02018144(param0, sizeof(UnkStruct_02039EBC));
-    v1 = sub_02006ADC(41, 0, param0);
+    v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(41, 0, param0);
     v2 = &((u8 *)(v1))[0];
 
     v2++;

@@ -42,7 +42,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
@@ -773,11 +773,11 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
         8, 1, 2, 2, 0, 0
     };
     u32 v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     ov5_021D3190(&param0->unk_38, &v0, (7 + 1), 11);
 
-    v2 = sub_02006C24(66, 11);
+    v2 = NARC_ctor(66, 11);
 
     ov5_021D32E8(&param0->unk_38, v2, 5, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&param0->unk_38, v2, 1, 0, 13528);
@@ -817,7 +817,7 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
     param0->unk_220 = param2 + 1;
 
     sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 }
 
 static void sub_0203B4E8 (UnkStruct_020708E0 * param0)

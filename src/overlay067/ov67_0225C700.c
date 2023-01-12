@@ -30,7 +30,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -615,13 +615,13 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
 
     {
-        UnkStruct_02006C24 * v3;
+        NARC * v3;
 
-        v3 = sub_02006C24(92, param1);
+        v3 = NARC_ctor(92, param1);
 
         inline_ov61_0222C3B0(&param0->unk_D4, v3, 4, param1);
 
-        sub_02006CA8(v3);
+        NARC_dtor(v3);
     }
 }
 

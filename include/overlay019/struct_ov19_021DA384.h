@@ -22,7 +22,7 @@ typedef struct {
     u8 padding_28[24];
     const UnkStruct_ov19_021D4DF0 * unk_40;
     UnkStruct_ov19_021D61B0 * unk_44;
-    UnkStruct_02006C24 * unk_48;
+    NARC * unk_48;
     u8 unk_4C[640];
 } UnkStruct_ov19_021DA384;
 

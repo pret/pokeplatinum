@@ -12,7 +12,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 #include "overlay104/struct_ov104_02241308.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201FE94.h"
 #include "unk_020790B0.h"
@@ -250,9 +250,9 @@ static void ov13_02224588 (UnkStruct_ov13_022213F0 * param0)
 {
     UnkStruct_0200C6E4 * v0;
     u32 v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(19, param0->unk_00->unk_0C);
+    v2 = NARC_ctor(19, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
@@ -267,21 +267,21 @@ static void ov13_02224588 (UnkStruct_ov13_022213F0 * param0)
         }
     }
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 }
 
 static void ov13_02224670 (UnkStruct_ov13_022213F0 * param0)
 {
     UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_08);
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(39, param0->unk_00->unk_0C);
+    v1 = NARC_ctor(39, param0->unk_00->unk_0C);
 
     sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v1, sub_0208E9E4(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
     sub_0200CE24(v0, param0->unk_1FB0, v1, sub_0208E9E8(), 0, 45064);
     sub_0200CE54(v0, param0->unk_1FB0, v1, sub_0208E9EC(), 0, 45064);
     sub_0200CC3C(v0, param0->unk_1FB0, v1, sub_0208E9E0(), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void ov13_02224720 (UnkStruct_ov13_022213F0 * param0)
@@ -305,16 +305,16 @@ static void ov13_02224798 (UnkStruct_ov13_022213F0 * param0)
 {
     UnkStruct_0200C6E4 * v0;
     u32 v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(20, param0->unk_00->unk_0C);
+    v2 = NARC_ctor(20, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
     sub_0200CE24(v0, param0->unk_1FB0, v2, sub_02081938(), 0, 45066);
     sub_0200CE54(v0, param0->unk_1FB0, v2, sub_0208193C(), 0, 45066);
     sub_0200CC3C(v0, param0->unk_1FB0, v2, sub_02081930(), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45078);
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 }
 
 static void ov13_02224848 (UnkStruct_ov13_022213F0 * param0)

@@ -44,7 +44,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -96,12 +96,12 @@ typedef struct {
 
 static void ov83_0223E09C(UnkStruct_ov83_0223E138 * param0, u32 param1);
 static void ov83_0223E138(UnkStruct_ov83_0223E138 * param0);
-static void ov83_0223E15C(UnkStruct_ov83_0223E138 * param0, u32 param1, UnkStruct_02006C24 * param2);
+static void ov83_0223E15C(UnkStruct_ov83_0223E138 * param0, u32 param1, NARC * param2);
 static void ov83_0223E208(UnkStruct_ov83_0223E138 * param0);
 static void ov83_0223E21C(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3);
 static void ov83_0223E77C(UnkStruct_ov83_0223E824 * param0, u32 param1);
 static void ov83_0223E824(UnkStruct_ov83_0223E824 * param0);
-static void ov83_0223E844(UnkStruct_ov83_0223E824 * param0, u32 param1, UnkStruct_02006C24 * param2);
+static void ov83_0223E844(UnkStruct_ov83_0223E824 * param0, u32 param1, NARC * param2);
 static UnkStruct_ov83_0223F054 * ov83_0223EFF4(UnkStruct_ov83_0223ED3C * param0);
 static UnkStruct_ov83_0223F054 * ov83_0223F018(UnkStruct_ov83_0223ED3C * param0);
 static void ov83_0223F054(UnkStruct_ov83_0223F054 * param0);
@@ -129,7 +129,7 @@ static int ov83_0223D6A8 (int param0, const UnkStruct_02023790 * param1, int par
     return param0;
 }
 
-static UnkStruct_02015128 * ov83_0223D6BC (UnkStruct_02015064 * param0, u32 param1, u32 param2, UnkStruct_02006C24 * param3)
+static UnkStruct_02015128 * ov83_0223D6BC (UnkStruct_02015064 * param0, u32 param1, u32 param2, NARC * param3)
 {
     UnkStruct_ov22_022557A0 v0;
     void * v1;
@@ -146,7 +146,7 @@ static UnkStruct_02015128 * ov83_0223D6BC (UnkStruct_02015064 * param0, u32 para
     return v3;
 }
 
-static UnkStruct_020151A4 * ov83_0223D6EC (UnkStruct_02015064 * param0, u32 param1, u32 param2, UnkStruct_02006C24 * param3)
+static UnkStruct_020151A4 * ov83_0223D6EC (UnkStruct_02015064 * param0, u32 param1, u32 param2, NARC * param3)
 {
     UnkStruct_ov22_02255800 v0;
     void * v1;
@@ -208,7 +208,7 @@ void ov83_0223D784 (UnkStruct_ov83_0223D784 * param0)
     }
 }
 
-void ov83_0223D7A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, UnkStruct_02006C24 * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9)
+void ov83_0223D7A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, NARC * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9)
 {
     BOOL v0;
 
@@ -229,7 +229,7 @@ void ov83_0223D7A8 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * 
     sub_020093B4(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 
-void ov83_0223D894 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, UnkStruct_02006C24 * param2, UnkStruct_02009DC8 * param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+void ov83_0223D894 (UnkStruct_ov83_0223D784 * param0, UnkStruct_ov83_0223D95C * param1, NARC * param2, UnkStruct_02009DC8 * param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     BOOL v0;
     u32 v1;
@@ -399,9 +399,9 @@ void ov83_0223DB4C (UnkStruct_ov83_0223DB30 * param0, UnkStruct_ov83_0223DB4C * 
 {
     int v0;
     int v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(53, param4);
+    v2 = NARC_ctor(53, param4);
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -422,7 +422,7 @@ void ov83_0223DB4C (UnkStruct_ov83_0223DB30 * param0, UnkStruct_ov83_0223DB4C * 
         }
     }
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 
     param0->unk_00 = 1;
 }
@@ -545,7 +545,7 @@ void ov83_0223DEC4 (UnkStruct_ov83_0223E138 * param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E138));
 }
 
-void ov83_0223DEE0 (UnkStruct_ov83_0223E138 * param0, UnkStruct_02018340 * param1, u32 param2, UnkStruct_02006C24 * param3)
+void ov83_0223DEE0 (UnkStruct_ov83_0223E138 * param0, UnkStruct_02018340 * param1, u32 param2, NARC * param3)
 {
     GF_ASSERT(param0->unk_30 == 0);
 
@@ -649,7 +649,7 @@ static void ov83_0223E138 (UnkStruct_ov83_0223E138 * param0)
     sub_0201A928(param0->unk_0C, 1);
 }
 
-static void ov83_0223E15C (UnkStruct_ov83_0223E138 * param0, u32 param1, UnkStruct_02006C24 * param2)
+static void ov83_0223E15C (UnkStruct_ov83_0223E138 * param0, u32 param1, NARC * param2)
 {
     int v0;
 
@@ -766,7 +766,7 @@ void ov83_0223E34C (UnkStruct_ov83_0223E340 * param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E340));
 }
 
-void ov83_0223E368 (UnkStruct_ov83_0223E340 * param0, UnkStruct_02015064 * param1, u32 param2, UnkStruct_02006C24 * param3)
+void ov83_0223E368 (UnkStruct_ov83_0223E340 * param0, UnkStruct_02015064 * param1, u32 param2, NARC * param3)
 {
     int v0;
     static const u8 v1[] = {
@@ -989,7 +989,7 @@ void ov83_0223E6F8 (UnkStruct_ov83_0223E824 * param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223E824));
 }
 
-void ov83_0223E720 (UnkStruct_ov83_0223E824 * param0, UnkStruct_02018340 * param1, u32 param2, UnkStruct_02006C24 * param3)
+void ov83_0223E720 (UnkStruct_ov83_0223E824 * param0, UnkStruct_02018340 * param1, u32 param2, NARC * param3)
 {
     GF_ASSERT(param0->unk_28 == 0);
 
@@ -1045,7 +1045,7 @@ static void ov83_0223E824 (UnkStruct_ov83_0223E824 * param0)
     }
 }
 
-static void ov83_0223E844 (UnkStruct_ov83_0223E824 * param0, u32 param1, UnkStruct_02006C24 * param2)
+static void ov83_0223E844 (UnkStruct_ov83_0223E824 * param0, u32 param1, NARC * param2)
 {
     void * v0;
     NNSG2dScreenData * v1;
@@ -1522,7 +1522,7 @@ void ov83_0223F2A8 (UnkStruct_ov83_0223F29C * param0)
     memset(param0, 0, sizeof(UnkStruct_ov83_0223F29C));
 }
 
-void ov83_0223F2C4 (UnkStruct_ov83_0223F29C * param0, UnkStruct_ov83_0223D784 * param1, u32 param2, UnkStruct_02006C24 * param3)
+void ov83_0223F2C4 (UnkStruct_ov83_0223F29C * param0, UnkStruct_ov83_0223D784 * param1, u32 param2, NARC * param3)
 {
     int v0;
 

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "overlay005/ov5_021D37AC.h"
 
@@ -40,8 +40,8 @@ typedef struct UnkStruct_ov5_021D3CAC_t {
     NNSFndAllocator unk_00;
     UnkStruct_ov5_021D3CE4 unk_10[16];
     UnkStruct_ov5_021D37AC unk_290[2];
-    UnkStruct_02006C24 * unk_2B0;
-    UnkStruct_02006C24 * unk_2B4;
+    NARC * unk_2B0;
+    NARC * unk_2B4;
 } UnkStruct_ov5_021D3CAC;
 
 typedef struct {
@@ -88,13 +88,13 @@ static BOOL ov5_021D37AC (UnkStruct_ov5_021D37AC * param0, NNSG3dRenderObj * par
     return 1;
 }
 
-static void * ov5_021D380C (UnkStruct_02006C24 * param0, const u32 param1, NNSG3dResMdl * param2, NNSG3dAnmObj ** param3, NNSG3dResTex * param4, NNSFndAllocator * param5)
+static void * ov5_021D380C (NARC * param0, const u32 param1, NNSG3dResMdl * param2, NNSG3dAnmObj ** param3, NNSG3dResTex * param4, NNSFndAllocator * param5)
 {
     void * v0;
     void * v1 = NULL;
 
     GF_ASSERT(param1 != 0xffffffff);
-    v1 = sub_02006CB8(param0, param1, 4);
+    v1 = NARC_AllocAndReadWholeMember(param0, param1, 4);
     GF_ASSERT(v1 != NULL);
 
     {
@@ -169,8 +169,8 @@ UnkStruct_ov5_021D3CAC * ov5_021D38B8 (void)
 
     sub_020182CC(&v1->unk_00, 4, 4);
 
-    v1->unk_2B0 = sub_02006C24(110, 4);
-    v1->unk_2B4 = sub_02006C24(111, 4);
+    v1->unk_2B0 = NARC_ctor(110, 4);
+    v1->unk_2B4 = NARC_ctor(111, 4);
 
     return v1;
 }
@@ -215,7 +215,7 @@ UnkStruct_ov5_021D3CE4 * ov5_021D3978 (const int param0, const int param1, const
     int v2;
     UnkStruct_ov5_021D3A50 v3;
 
-    sub_02006D28(param9->unk_2B4, param0, &v3);
+    NARC_ReadWholeMember(param9->unk_2B4, param0, &v3);
     GF_ASSERT(param1 < 4);
 
     v2 = v3.unk_04[param1];
@@ -265,7 +265,7 @@ void ov5_021D3A50 (const int param0, NNSG3dResMdl * param1, NNSG3dResTex * param
     int v2;
     UnkStruct_ov5_021D3A50 v3;
 
-    sub_02006D28(param3->unk_2B4, param0, &v3);
+    NARC_ReadWholeMember(param3->unk_2B4, param0, &v3);
 
     if (!v3.unk_00) {
         return;
@@ -325,7 +325,7 @@ BOOL ov5_021D3B24 (const int param0, const int param1, const BOOL param2, NNSG3d
         return 0;
     }
 
-    sub_02006D28(param4->unk_2B4, param0, &v2);
+    NARC_ReadWholeMember(param4->unk_2B4, param0, &v2);
     GF_ASSERT(param1 < 4);
 
     v1 = v2.unk_04[param1];
@@ -376,7 +376,7 @@ BOOL ov5_021D3BE4 (const int param0, NNSG3dRenderObj * param1, UnkStruct_ov5_021
         return 0;
     }
 
-    sub_02006D28(param2->unk_2B4, param0, &v3);
+    NARC_ReadWholeMember(param2->unk_2B4, param0, &v3);
 
     if (ov5_021D3954(v3.unk_01) != 0) {
         return 0;
@@ -457,7 +457,7 @@ void ov5_021D3D18 (UnkStruct_ov5_021D3CAC * param0, NNSG3dRenderObj * param1, co
     int v1;
     UnkStruct_ov5_021D3A50 v2;
 
-    sub_02006D28(param0->unk_2B4, param2, &v2);
+    NARC_ReadWholeMember(param0->unk_2B4, param2, &v2);
 
     GF_ASSERT(param3 < 4);
     v1 = v2.unk_04[param3];
@@ -479,8 +479,8 @@ void ov5_021D3D7C (UnkStruct_ov5_021D3CAC * param0)
         return;
     }
 
-    sub_02006CA8(param0->unk_2B0);
-    sub_02006CA8(param0->unk_2B4);
+    NARC_dtor(param0->unk_2B0);
+    NARC_dtor(param0->unk_2B4);
     sub_020181C4(param0);
 
     param0 = NULL;
@@ -513,7 +513,7 @@ UnkStruct_ov5_021D3CE4 * ov5_021D3DE4 (const int param0, const int param1, UnkSt
     int v2;
     UnkStruct_ov5_021D3A50 v3;
 
-    sub_02006D28(param2->unk_2B4, param0, &v3);
+    NARC_ReadWholeMember(param2->unk_2B4, param0, &v3);
 
     GF_ASSERT(param1 < 4);
 
@@ -662,7 +662,7 @@ BOOL ov5_021D3F70 (const UnkStruct_ov5_021D3CE4 * param0)
 
 u16 ov5_021D3F84 (UnkStruct_ov5_021D3CAC * param0)
 {
-    return sub_02006E34(param0->unk_2B4);
+    return NARC_GetFileCount(param0->unk_2B4);
 }
 
 const u8 ov5_021D3F94 (UnkStruct_ov5_021D3CAC * param0, const int param1)
@@ -670,7 +670,7 @@ const u8 ov5_021D3F94 (UnkStruct_ov5_021D3CAC * param0, const int param1)
     u8 v0;
     UnkStruct_ov5_021D3A50 v1;
 
-    sub_02006D28(param0->unk_2B4, param1, &v1);
+    NARC_ReadWholeMember(param0->unk_2B4, param1, &v1);
 
     if (!v1.unk_00) {
         return 0;

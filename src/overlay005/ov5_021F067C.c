@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "overlay005/ov5_021F067C.h"
 
@@ -126,12 +126,12 @@ int ov5_021F0770 (UnkStruct_ov5_021F06D8 * param0, u32 param1)
     return 0;
 }
 
-void * ov5_021F0784 (UnkStruct_ov5_021F06D8 * param0, u32 param1, UnkStruct_02006C24 * param2, u32 param3, int param4)
+void * ov5_021F0784 (UnkStruct_ov5_021F06D8 * param0, u32 param1, NARC * param2, u32 param3, int param4)
 {
-    u32 v0 = sub_02006D84(param2, param3);
+    u32 v0 = NARC_GetMemberSize(param2, param3);
     void * v1 = ov5_021F070C(param0, param1, v0, param4);
 
-    sub_02006D28(param2, param3, v1);
+    NARC_ReadWholeMember(param2, param3, v1);
     return v1;
 }
 

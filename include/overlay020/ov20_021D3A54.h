@@ -9,7 +9,7 @@
 
 UnkStruct_ov20_021D3E0C * ov20_021D3A54(UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2);
 void ov20_021D3A80(UnkStruct_ov20_021D3E0C * param0);
-void ov20_021D3A98(UnkStruct_ov20_021D3E0C * param0, UnkStruct_02006C24 * param1);
+void ov20_021D3A98(UnkStruct_ov20_021D3E0C * param0, NARC * param1);
 void ov20_021D3E48(UnkStruct_ov20_021D3E0C * param0, BOOL param1);
 void ov20_021D3E74(UnkStruct_ov20_021D3E0C * param0, u32 param1);
 void ov20_021D3EF8(UnkStruct_ov20_021D3E0C * param0);

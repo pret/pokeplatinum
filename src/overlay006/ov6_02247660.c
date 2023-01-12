@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_0202B37C.h"
 #include "unk_02039C80.h"
@@ -47,7 +47,7 @@ BOOL ov6_02247660 (UnkStruct_0203CDB0 * param0)
     v8[2] = (v13 >> 8) & 0xff;
     v8[3] = v13 & 0xff;
 
-    v5 = sub_02006ADC(106, 1, 4);
+    v5 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 1, 4);
     v7 = ((int *)v5)[0];
     v1 = 0;
 
@@ -97,7 +97,7 @@ void ov6_022477A0 (int * param0)
 {
     int * v0;
 
-    v0 = sub_02006ADC(106, 0, 4);
+    v0 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 0, 4);
     (*param0) = (*v0);
 
     sub_020181C4(v0);

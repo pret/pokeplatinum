@@ -22,7 +22,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -77,7 +77,7 @@ static void ov20_021D2178(UnkStruct_0201CD38 * param0, void * param1);
 static void ov20_021D217C(UnkStruct_0201CD38 * param0, void * param1);
 static void ov20_021D2238(UnkStruct_ov20_021D2238 * param0);
 static void ov20_021D2260(UnkStruct_0201CD38 * param0, void * param1);
-static void ov20_021D2370(UnkStruct_ov20_021D2238 * param0, UnkStruct_02006C24 * param1);
+static void ov20_021D2370(UnkStruct_ov20_021D2238 * param0, NARC * param1);
 static void ov20_021D2414(UnkStruct_0201CD38 * param0, void * param1);
 static void ov20_021D24EC(UnkStruct_ov20_021D2238 * param0);
 static void ov20_021D2570(UnkStruct_0201CD38 * param0, void * param1);
@@ -280,7 +280,7 @@ static void ov20_021D2238 (UnkStruct_ov20_021D2238 * param0)
 static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov20_021D2238 * v0 = param1;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     sub_0201FF00();
     sub_0201FF68();
@@ -290,7 +290,7 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_64K);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    v1 = sub_02006C24(76, 35);
+    v1 = NARC_ctor(76, 35);
 
     ov20_021D24EC(v0);
     ov20_021D2370(v0, v1);
@@ -314,12 +314,12 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0201FF74(GX_PLANEMASK_OBJ, 1);
     GX_DispOn();
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 
     ov20_021D2238(v0);
 }
 
-static void ov20_021D2370 (UnkStruct_ov20_021D2238 * param0, UnkStruct_02006C24 * param1)
+static void ov20_021D2370 (UnkStruct_ov20_021D2238 * param0, NARC * param1)
 {
     UnkStruct_ov20_021D2128 * v0 = param0->unk_00;
 

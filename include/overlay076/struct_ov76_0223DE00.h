@@ -38,7 +38,7 @@ typedef struct {
     UnkStruct_ov76_0223BBAC unk_3E4;
     UnkStruct_ov76_0223DD88_sub3 unk_418;
     UnkStruct_02073C74 * unk_428;
-    UnkStruct_02006C24 * unk_42C;
+    NARC * unk_42C;
 } UnkStruct_ov76_0223DE00;
 
 #endif // POKEPLATINUM_STRUCT_OV76_0223DE00_H

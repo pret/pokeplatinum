@@ -12,7 +12,7 @@
 #include "overlay107/struct_ov107_02249954.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -46,7 +46,7 @@ static const u8 Unk_ov107_0224A204[4] = {
 void ov107_02249604 (UnkStruct_ov107_02249954 * param0, UnkStruct_02079FF4 * param1, u8 param2)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
     UnkStruct_02073C74 * v2;
 
     sub_0201DBEC(32, 100);
@@ -66,17 +66,17 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, UnkStruct_02079FF4 * par
     param0->unk_1A0[0][2] = sub_02009918(param0->unk_190[2], 151, 17, 1, 0, 2, 100);
     param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 16, 1, 0, 3, 100);
 
-    v1 = sub_02006C24(16, 100);
+    v1 = NARC_ctor(16, 100);
 
     param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, sub_0207CE78(0, 1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
     param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 16, sub_0207CE78(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, sub_0207CF40(), 0, 1, 2, 100);
     param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, sub_0207CF44(), 0, 1, 3, 100);
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
     ov107_02249A70(param0);
 
-    v1 = sub_02006C24(19, 100);
+    v1 = NARC_ctor(19, 100);
 
     param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v1, sub_02079FD8(), 0, 3, 2, 100);
@@ -96,7 +96,7 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, UnkStruct_02079FF4 * par
         param0->unk_1A0[3 + v0][0] = sub_02009A4C(param0->unk_190[0], v1, sub_02079D80(v2), 0, 3 + v0, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 
     for (v0 = 0; v0 < 7; v0++) {
         sub_0200A328(param0->unk_1A0[v0][0]);
@@ -223,16 +223,16 @@ static void ov107_02249A3C (void)
 
 static void ov107_02249A70 (UnkStruct_ov107_02249954 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     u32 v1;
 
-    v0 = sub_02006C24(20, 100);
+    v0 = NARC_ctor(20, 100);
 
     param0->unk_1A0[2][0] = sub_02009A4C(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
     param0->unk_1A0[2][1] = sub_020098B8(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[2][2] = sub_02009BC4(param0->unk_190[2], v0, sub_02081938(), 0, 2, 2, 100);
     param0->unk_1A0[2][3] = sub_02009BC4(param0->unk_190[3], v0, sub_0208193C(), 0, 2, 3, 100);
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
     return;
 }

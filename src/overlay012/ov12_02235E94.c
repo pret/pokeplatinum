@@ -24,7 +24,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
     UnkSPLStruct6 * unk_80;
     UnkStruct_0201CD38 * unk_84;
     BOOL unk_88;
-    UnkStruct_02006C24 * unk_8C;
+    NARC * unk_8C;
     int unk_90;
     int unk_94;
     int unk_98;
@@ -398,7 +398,7 @@ static void ov12_022360A0 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_90) {
     case 0:
-        v0->unk_8C = sub_02006C24(99, v0->unk_00);
+        v0->unk_8C = NARC_ctor(99, v0->unk_00);
 
         for (v1 = 0; v1 < 2; v1++) {
             v5 = sub_0202CA64(&v0->unk_A0, v1);
@@ -535,7 +535,7 @@ static void ov12_022360A0 (UnkStruct_0201CD38 * param0, void * param1)
 
         v0->unk_90 = 0xFF;
 
-        sub_02006CA8(v0->unk_8C);
+        NARC_dtor(v0->unk_8C);
         sub_0200DA58(param0);
         break;
     default:
@@ -2301,15 +2301,15 @@ static void ov12_02237C54 (UnkStruct_ov12_02237C54 * param0)
     v3 = ov12_02235FC8(param0->unk_90.unk_10, 3);
 
     {
-        UnkStruct_02006C24 * v6;
+        NARC * v6;
 
-        v6 = sub_02006C24(27, param0->unk_90.unk_04);
+        v6 = NARC_ctor(27, param0->unk_90.unk_04);
 
         sub_0200CC3C(param0->unk_90.unk_1C, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.unk_0C + 6000);
         sub_0200CDC4(param0->unk_90.unk_20, 2, param0->unk_90.unk_1C, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.unk_0C + 6000);
         sub_0200CE24(param0->unk_90.unk_1C, param0->unk_2C, v6, v2, 1, param0->unk_90.unk_0C + 6000);
         sub_0200CE54(param0->unk_90.unk_1C, param0->unk_2C, v6, v3, 1, param0->unk_90.unk_0C + 6000);
-        sub_02006CA8(v6);
+        NARC_dtor(v6);
     }
 }
 

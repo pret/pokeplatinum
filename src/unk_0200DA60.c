@@ -18,7 +18,7 @@
 
 #include "unk_02002328.h"
 #include "unk_0200679C.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_02009714.h"
@@ -322,7 +322,7 @@ void sub_0200E2A4 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3
         void * v1;
         u16 * v2;
 
-        v1 = sub_02006AC0(36, 1, param6);
+        v1 = AllocAndReadWholeNarcMemberByIndexPair(36, 1, param6);
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         v2 = (u16 *)v0->pRawData;
 

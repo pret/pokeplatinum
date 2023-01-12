@@ -16,7 +16,7 @@
 #include "overlay016/struct_ov16_0223E0C8.h"
 
 #include "unk_02002328.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
@@ -421,7 +421,7 @@ void sub_02094F04 (UnkStruct_02095C48 * param0, int param1, int param2, int para
     }
 
     v9 = sub_02006FE8(90, 0, 0, param1, 1);
-    v6 = sub_02006B58(90, 0) / sizeof(UnkStruct_ov6_02248BE8);
+    v6 = GetNarcMemberSizeByIndexPair(90, 0) / sizeof(UnkStruct_ov6_02248BE8);
     v2 = sub_02018184(param1, v6 + 1);
 
     if ((param6 == 1) && (param7 == 1)) {
@@ -697,7 +697,7 @@ void sub_020954F0 (UnkStruct_02095C48 * param0, int param1, int param2, int para
     u8 * v7, * v8;
 
     v6 = sub_02006FE8(90, 1, 0, param1, 1);
-    v5 = sub_02006B58(90, 1) / sizeof(UnkStruct_020954F0);
+    v5 = GetNarcMemberSizeByIndexPair(90, 1) / sizeof(UnkStruct_020954F0);
     v7 = sub_02018184(param1, v5 + 1);
     v8 = sub_02018184(param1, v5 + 1);
 

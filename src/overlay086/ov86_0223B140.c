@@ -38,7 +38,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -101,7 +101,7 @@ typedef struct {
     UnkStruct_02023790 * unk_1C48;
     UnkStruct_02023790 * unk_1C4C;
     UnkStruct_0200B144 * unk_1C50;
-    UnkStruct_02006C24 * unk_1C54;
+    NARC * unk_1C54;
 } UnkStruct_ov86_0223B3C8;
 
 typedef struct {
@@ -262,7 +262,7 @@ static void ov86_0223B900(UnkStruct_ov86_0223B3C8 * param0);
 static void ov86_0223B9A8(UnkStruct_ov86_0223B3C8 * param0);
 static void ov86_0223BA34(UnkStruct_ov86_0223B3C8 * param0);
 static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 * param0);
-static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank * param1, NNSG2dAnimBankData * param2, UnkStruct_02006C24 * param3);
+static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank * param1, NNSG2dAnimBankData * param2, NARC * param3);
 static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 * param0);
 static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 * param0, int param1, int param2);
 static void ov86_0223BE6C(UnkStruct_0201CD38 * param0, void * param1);
@@ -319,7 +319,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_1C48 = sub_02023790(500, 63);
     v0->unk_1C4C = sub_02023790(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
-    v0->unk_1C54 = sub_02006C24(147, 63);
+    v0->unk_1C54 = NARC_ctor(147, 63);
 
     {
         int v1, v2;
@@ -380,7 +380,7 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
         sub_020237BC(v0->unk_1C48);
         sub_020237BC(v0->unk_1C4C);
         sub_0200B190(v0->unk_1C50);
-        sub_02006CA8(v0->unk_1C54);
+        NARC_dtor(v0->unk_1C54);
         sub_02006830(param0);
         sub_0201807C(63);
     }
@@ -626,7 +626,7 @@ static UnkStruct_0201CD38 * ov86_0223B744 (UnkFuncPtr_0201CE28 param0, void * pa
 
 static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     static const UnkStruct_02099F80 v1 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
@@ -707,7 +707,7 @@ static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
     sub_0201ACCC(&(param0->unk_14));
     sub_0201A9F4(&param0->unk_14);
 
-    v0 = sub_02006C24(105, 63);
+    v0 = NARC_ctor(105, 63);
 
     sub_020070E8(v0, 3, param0->unk_10, 3, 0, 0, 1, 63);
     sub_0200710C(v0, 0, param0->unk_10, 3, 0, 0, 1, 63);
@@ -720,7 +720,7 @@ static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_ALL, 1);
     GX_SetVisibleWnd(GX_WNDMASK_W0);
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 static void ov86_0223B8C4 (UnkStruct_ov86_0223B3C8 * param0)
@@ -791,9 +791,9 @@ static void ov86_0223BA44 (UnkStruct_ov86_0223B3C8 * param0)
 {
     NNSG2dCellDataBank * v0;
     NNSG2dAnimBankData * v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(27, 63);
+    v2 = NARC_ctor(27, 63);
 
     NNS_G2dInitOamManagerModule();
     sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 63);
@@ -804,11 +804,11 @@ static void ov86_0223BA44 (UnkStruct_ov86_0223B3C8 * param0)
 
     ov86_0223BAC8(param0, v0, v1, v2);
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
     sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank * param1, NNSG2dAnimBankData * param2, UnkStruct_02006C24 * param3)
+static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank * param1, NNSG2dAnimBankData * param2, NARC * param3)
 {
     static const UnkStruct_02013610 v0[2] = {
         {0, 0, 10, 10},

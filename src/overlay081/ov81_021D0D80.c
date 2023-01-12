@@ -18,7 +18,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -292,9 +292,9 @@ static void ov81_021D101C (UnkStruct_02018340 * param0)
 static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 {
     u16 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(80, 42);
+    v1 = NARC_ctor(80, 42);
 
     if (sub_02025F30(param0->unk_48) == 0) {
         sub_020070E8(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
@@ -306,7 +306,7 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
         sub_02007130(v1, 5, 0, 0, 0, 42);
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 
     v0 = sub_02019FE4(param0->unk_00, 2);
     MI_CpuCopy16(v0, param0->unk_5C, 0x800);

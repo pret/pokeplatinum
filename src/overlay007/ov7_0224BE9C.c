@@ -33,7 +33,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -734,14 +734,14 @@ static void ov7_0224CA34 (UnkStruct_ov7_0224C768 * param0)
 
 static void ov7_0224CA54 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov7_0224C768 * param1, u32 param2)
 {
-    UnkStruct_02006C24 * v0 = sub_02006C24(62, param2);
+    NARC * v0 = NARC_ctor(62, param2);
 
     param1->unk_148[0] = sub_02009A4C(param1->unk_138[0], v0, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
     param1->unk_148[1] = sub_02009B04(param1->unk_138[1], v0, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
     param1->unk_148[2] = sub_02009BC4(param1->unk_138[2], v0, 5, 0, 5000, 2, param2);
     param1->unk_148[3] = sub_02009BC4(param1->unk_138[3], v0, 6, 0, 5000, 3, param2);
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
     sub_0200A3DC(param1->unk_148[0]);
     sub_0200A640(param1->unk_148[1]);
     sub_020093B4(param0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_138[0], param1->unk_138[1], param1->unk_138[2], param1->unk_138[3], NULL, NULL);

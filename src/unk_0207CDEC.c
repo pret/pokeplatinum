@@ -9,7 +9,7 @@
 
 #include "struct_defs/struct_0207D0B0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_02017E74.h"
 #include "unk_0207CDEC.h"
@@ -778,11 +778,11 @@ void * sub_0207CF48 (u16 param0, u16 param1, u32 param2)
 
     switch (param1) {
     case 0:
-        return sub_02006AC0(15, Unk_020F0CC4[param0].unk_00, param2);
+        return AllocAndReadWholeNarcMemberByIndexPair(15, Unk_020F0CC4[param0].unk_00, param2);
     case 1:
-        return sub_02006AC0(16, Unk_020F0CC4[param0].unk_02, param2);
+        return AllocAndReadWholeNarcMemberByIndexPair(16, Unk_020F0CC4[param0].unk_02, param2);
     case 2:
-        return sub_02006AC0(16, Unk_020F0CC4[param0].unk_04, param2);
+        return AllocAndReadWholeNarcMemberByIndexPair(16, Unk_020F0CC4[param0].unk_04, param2);
     }
 
     return NULL;
@@ -1074,7 +1074,7 @@ void * sub_0207D388 (int param0)
 
     v0 = sub_0207CE78(467, 0);
 
-    return sub_02006B18(15, 0, param0, 0, 36 * v0);
+    return AllocAndReadFromNarcMemberByIndexPair(15, 0, param0, 0, 36 * v0);
 }
 
 UnkStruct_0207D3B0 * sub_0207D3B0 (UnkStruct_0207D3B0 * param0, u16 param1)

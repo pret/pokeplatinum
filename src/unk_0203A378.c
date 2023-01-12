@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020619DC.h"
 #include "overlay006/struct_ov6_02242634.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
@@ -69,8 +69,8 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
     int v0;
 
     v0 = MapHeader_GetEventsArchiveID(param1);
-    GF_ASSERT(sub_02006B58(32, v0) < sizeof(param0->unk_20));
-    sub_02006AA4(param0->unk_20, 32, v0);
+    GF_ASSERT(GetNarcMemberSizeByIndexPair(32, v0) < sizeof(param0->unk_20));
+    ReadWholeNarcMemberByIndexPair(param0->unk_20, 32, v0);
 }
 
 void sub_0203A418 (UnkStruct_0203CDB0 * param0)
@@ -284,7 +284,7 @@ void sub_0203A614 (UnkStruct_ov6_02242634 * param0, int param1)
             v0 = 143;
         }
 
-        sub_02006AA4(param0, v0, MapHeader_GetWildEncountersArchiveID(param1));
+        ReadWholeNarcMemberByIndexPair(param0, v0, MapHeader_GetWildEncountersArchiveID(param1));
     }
 }
 
@@ -300,9 +300,9 @@ static void sub_0203A64C (UnkStruct_0203A3E8 * param0, int param1)
     v0 = MapHeader_GetMapScriptArchiveID(param1);
 
     MI_CpuClearFast(param0->unk_820, sizeof(param0->unk_820));
-    GF_ASSERT(sub_02006B58(10, v0) < sizeof(param0->unk_820));
+    GF_ASSERT(GetNarcMemberSizeByIndexPair(10, v0) < sizeof(param0->unk_820));
 
-    sub_02006AA4(param0->unk_820, 10, v0);
+    ReadWholeNarcMemberByIndexPair(param0->unk_820, 10, v0);
 }
 
 void * sub_0203A68C (const UnkStruct_0203CDB0 * param0)

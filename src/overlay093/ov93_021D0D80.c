@@ -11,7 +11,7 @@
 
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02017E74.h"
@@ -242,12 +242,12 @@ static void ov93_021D102C (UnkStruct_ov93_021D102C * param0)
     u8 v0;
     NNSG3dResTex * v1;
     void * v2;
-    UnkStruct_02006C24 * v3;
+    NARC * v3;
 
-    v3 = sub_02006C24(120, 72);
+    v3 = NARC_ctor(120, 72);
     sub_020182CC(&param0->unk_70, 72, 4);
 
-    param0->unk_5C = sub_02006CB8(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_00, 72);
+    param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_00, 72);
     sub_0201CA3C(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
     v1 = NNS_G3dGetTex(param0->unk_5C);
 
@@ -257,7 +257,7 @@ static void ov93_021D102C (UnkStruct_ov93_021D102C * param0)
     NNS_G3dMdlUseGlbEmi(param0->unk_58);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_60[v0] = sub_02006CB8(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_02[v0], 72);
+        param0->unk_60[v0] = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_02[v0], 72);
         v2 = NNS_G3dGetAnmByIdx(param0->unk_60[v0], 0);
 
         param0->unk_80[v0] = NNS_G3dAllocAnmObj(&param0->unk_70, v2, param0->unk_58);
@@ -266,5 +266,5 @@ static void ov93_021D102C (UnkStruct_ov93_021D102C * param0)
         NNS_G3dRenderObjAddAnmObj(&param0->unk_04, param0->unk_80[v0]);
     }
 
-    sub_02006CA8(v3);
+    NARC_dtor(v3);
 }

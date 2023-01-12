@@ -14,7 +14,7 @@
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02017E74.h"
@@ -168,7 +168,7 @@ static void ov104_0222E830 (u8 ** param0, UnkStruct_0200B144 ** param1, int para
     v0 = ov104_0222EA90(param2, 1);
     v1 = ov104_0222EA90(param2, 2);
 
-    *param0 = sub_02006AC0(149, v0, param3);
+    *param0 = AllocAndReadWholeNarcMemberByIndexPair(149, v0, param3);
     *param1 = sub_0200B144(1, 26, v1, param3);
 }
 

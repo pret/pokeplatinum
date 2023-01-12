@@ -31,7 +31,7 @@ struct UnkStruct_ov16_0225BFFC_t {
     UnkStruct_0201CD38 * unk_194;
     u16 unk_198;
     int unk_19C;
-    UnkStruct_02006C24 * unk_1A0;
+    NARC * unk_1A0;
     u8 unk_1A4;
     u8 unk_1A5[3];
 };

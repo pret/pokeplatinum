@@ -16,7 +16,7 @@
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "unk_02017E74.h"
@@ -158,11 +158,11 @@ static void ov70_0226949C(UnkStruct_ov70_0226949C * param0, u16 param1, u16 para
 static void ov70_022694D0(UnkStruct_ov70_0226949C * param0);
 static void ov70_02269508(const UnkStruct_ov70_0226949C * param0, fx32 * param1);
 static void ov70_02269510(UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1, u32 param2);
-static void ov70_02269540(UnkStruct_ov70_02269204 * param0, UnkStruct_02006C24 * param1, u32 param2);
+static void ov70_02269540(UnkStruct_ov70_02269204 * param0, NARC * param1, u32 param2);
 static void ov70_022695C4(UnkStruct_ov70_02269204 * param0);
-static void ov70_022695E0(UnkStruct_ov70_02269204 * param0, UnkStruct_02006C24 * param1, u32 param2);
+static void ov70_022695E0(UnkStruct_ov70_02269204 * param0, NARC * param1, u32 param2);
 static void ov70_02269608(UnkStruct_ov70_02269204 * param0);
-static void ov70_0226965C(UnkStruct_ov70_02269204 * param0, UnkStruct_02006C24 * param1, u32 param2);
+static void ov70_0226965C(UnkStruct_ov70_02269204 * param0, NARC * param1, u32 param2);
 static void ov70_02269700(UnkStruct_ov70_02269204 * param0);
 static void ov70_02269738(UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1, UnkStruct_ov70_0225CC54 * param2, u32 param3);
 static void ov70_0226978C(UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_02269800 * param1);
@@ -644,9 +644,9 @@ UnkStruct_ov70_02269204 * ov70_02269190 (UnkStruct_ov66_0222DFF8 * param0, UnkSt
     v0->unk_0C = param1;
 
     {
-        UnkStruct_02006C24 * v1;
+        NARC * v1;
 
-        v1 = sub_02006C24(186, param4);
+        v1 = NARC_ctor(186, param4);
 
         sub_020182CC(&v0->unk_1081C, param5, 4);
 
@@ -654,7 +654,7 @@ UnkStruct_ov70_02269204 * ov70_02269190 (UnkStruct_ov66_0222DFF8 * param0, UnkSt
         ov70_022695E0(v0, v1, param5);
         ov70_0226965C(v0, v1, param5);
 
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
     }
 
     return v0;
@@ -795,7 +795,7 @@ static void ov70_02269510 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     }
 }
 
-static void ov70_02269540 (UnkStruct_ov70_02269204 * param0, UnkStruct_02006C24 * param1, u32 param2)
+static void ov70_02269540 (UnkStruct_ov70_02269204 * param0, NARC * param1, u32 param2)
 {
     int v0;
 
@@ -818,7 +818,7 @@ static void ov70_022695C4 (UnkStruct_ov70_02269204 * param0)
     }
 }
 
-static void ov70_022695E0 (UnkStruct_ov70_02269204 * param0, UnkStruct_02006C24 * param1, u32 param2)
+static void ov70_022695E0 (UnkStruct_ov70_02269204 * param0, NARC * param1, u32 param2)
 {
     int v0;
 
@@ -848,7 +848,7 @@ static void ov70_02269608 (UnkStruct_ov70_02269204 * param0)
     }
 }
 
-static void ov70_0226965C (UnkStruct_ov70_02269204 * param0, UnkStruct_02006C24 * param1, u32 param2)
+static void ov70_0226965C (UnkStruct_ov70_02269204 * param0, NARC * param1, u32 param2)
 {
     int v0, v1;
 

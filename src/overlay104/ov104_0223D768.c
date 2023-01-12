@@ -63,7 +63,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_022417D8[] = {
     }
 };
 
-void ov104_0223D768 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, UnkStruct_02002F38 * param3, u16 param4)
+void ov104_0223D768 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, UnkStruct_02002F38 * param3, u16 param4)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
 

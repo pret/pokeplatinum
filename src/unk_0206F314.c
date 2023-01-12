@@ -31,7 +31,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
@@ -655,16 +655,16 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
     ov5_021D3190(&param0->unk_134, &v1, 2, param0->unk_00);
 
     {
-        UnkStruct_02006C24 * v3;
+        NARC * v3;
 
-        v3 = sub_02006C24(130, param0->unk_00);
+        v3 = NARC_ctor(130, param0->unk_00);
 
         ov5_021D32E8(&param0->unk_134, v3, 0, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
         ov5_021D3374(&param0->unk_134, v3, 2, 0, 13528);
         ov5_021D339C(&param0->unk_134, v3, 3, 0, 13528);
         ov5_021D3414(&param0->unk_134, v3, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
 
-        sub_02006CA8(v3);
+        NARC_dtor(v3);
     }
 
     for (v0 = 0; v0 < 2; v0++) {

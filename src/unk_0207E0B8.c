@@ -30,7 +30,7 @@
 #include "unk_02005474.h"
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -100,7 +100,7 @@ static void sub_0207E898(void * param0);
 static void sub_0207E8C0(void);
 static void sub_0207E918(UnkStruct_02018340 * param0);
 static void sub_0207EA24(UnkStruct_02018340 * param0);
-static void sub_0207EB6C(UnkStruct_0207F248 * param0, UnkStruct_02006C24 * param1);
+static void sub_0207EB6C(UnkStruct_0207F248 * param0, NARC * param1);
 static UnkStruct_0207F248 * sub_0207ECC0(UnkStruct_020067E8 * param0);
 static void sub_0207EE14(UnkStruct_0207F248 * param0);
 static void sub_0207F308(UnkStruct_0207F248 * param0);
@@ -254,7 +254,7 @@ static const u16 Unk_020F1CB0[] = {
 static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
@@ -269,7 +269,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     sub_02017DD4(4, 8);
     sub_02017FC8(3, 12, 0x30000);
 
-    v1 = sub_02006C24(20, 12);
+    v1 = NARC_ctor(20, 12);
     v0 = sub_0207ECC0(param0);
 
     sub_0200F174(1, 3, 3, 0x0, 6, 1, 12);
@@ -322,7 +322,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(sub_0207E898, v0);
     sub_020397E4();
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 
     return 1;
 }
@@ -920,7 +920,7 @@ static void sub_0207EB64 (UnkStruct_0207C690 * param0)
     sub_020242C4(param0);
 }
 
-static void sub_0207EB6C (UnkStruct_0207F248 * param0, UnkStruct_02006C24 * param1)
+static void sub_0207EB6C (UnkStruct_0207F248 * param0, NARC * param1)
 {
     sub_020070E8(param1, 15, param0->unk_00, 3, 0, 0, 0, 12);
     sub_0200710C(param1, 17, param0->unk_00, 3, 0, 0, 0, 12);
@@ -930,7 +930,7 @@ static void sub_0207EB6C (UnkStruct_0207F248 * param0, UnkStruct_02006C24 * para
         void * v1;
         u16 * v2;
 
-        v1 = sub_02006CB8(param1, 16, 12);
+        v1 = NARC_AllocAndReadWholeMember(param1, 16, 12);
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         sub_0201972C(3, (void *)v0->pRawData, v0->szByte, 0);
 
@@ -1214,9 +1214,9 @@ static void sub_0207F308 (UnkStruct_0207F248 * param0)
 static void sub_0207F388 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 * param1)
 {
     u8 v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(19, 12);
+    v1 = NARC_ctor(19, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1240,15 +1240,15 @@ static void sub_0207F388 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void sub_0207F4AC (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 * param1)
 {
     u8 v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(19, 12);
+    v1 = NARC_ctor(19, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1267,15 +1267,15 @@ static void sub_0207F4AC (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void sub_0207F5A0 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 * param1)
 {
     u8 v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(19, 12);
+    v1 = NARC_ctor(19, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1294,15 +1294,15 @@ static void sub_0207F5A0 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void sub_0207F694 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 * param1)
 {
     u8 v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(19, 12);
+    v1 = NARC_ctor(19, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1321,15 +1321,15 @@ static void sub_0207F694 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void sub_0207F788 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 * param1)
 {
     u8 v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
-    v1 = sub_02006C24(19, 12);
+    v1 = NARC_ctor(19, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1349,7 +1349,7 @@ static void sub_0207F788 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
         }
     }
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void sub_0207F884 (UnkStruct_0207F248 * param0, u8 param1, s16 param2, s16 param3)
@@ -2949,7 +2949,7 @@ void sub_02081940 (u32 param0, u16 * param1, u16 * param2, u16 * param3)
     u16 * v2;
     u32 v3;
 
-    v1 = sub_02006AC0(20, 22, param0);
+    v1 = AllocAndReadWholeNarcMemberByIndexPair(20, 22, param0);
     NNS_G2dGetUnpackedScreenData(v1, &v0);
     v2 = (u16 *)v0->rawData;
 

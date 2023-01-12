@@ -29,7 +29,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -128,7 +128,7 @@ typedef struct {
     UnkStruct_020218BC * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
-    UnkStruct_02006C24 * unk_1A4;
+    NARC * unk_1A4;
 } UnkStruct_ov112_0225C9BC;
 
 typedef struct {
@@ -478,7 +478,7 @@ static void ov112_0225C970 (UnkStruct_ov112_0225C970 * param0, const UnkStruct_o
 
 static void ov112_0225C9BC (UnkStruct_ov112_0225C9BC * param0, u32 param1)
 {
-    param0->unk_1A4 = sub_02006C24(169, param1);
+    param0->unk_1A4 = NARC_ctor(169, param1);
 
     sub_0201DBEC(48, param1);
     sub_0201FE94(&Unk_ov112_0225D858);
@@ -489,7 +489,7 @@ static void ov112_0225C9BC (UnkStruct_ov112_0225C9BC * param0, u32 param1)
 
 static void ov112_0225C9F4 (UnkStruct_ov112_0225C9BC * param0)
 {
-    sub_02006CA8(param0->unk_1A4);
+    NARC_dtor(param0->unk_1A4);
     sub_0201DC3C();
 
     ov112_0225CB60(param0);

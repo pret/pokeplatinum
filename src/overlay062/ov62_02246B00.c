@@ -583,7 +583,7 @@ int ov62_02247540 (UnkStruct_ov62_02246BF4 * param0, int param1)
 
 void ov62_02247574 (UnkStruct_ov62_02246BF4 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_02018340 * v1;
     UnkStruct_0200C6E4 * v2;
     UnkStruct_0200C704 * v3;

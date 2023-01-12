@@ -24,7 +24,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -732,9 +732,9 @@ static void ov13_02226F9C (UnkStruct_02018340 * param0)
 
 static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(77, param0->unk_00->unk_0C);
+    v0 = NARC_ctor(77, param0->unk_00->unk_0C);
 
     sub_020070E8(v0, 2, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
     sub_0200710C(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
@@ -744,14 +744,14 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
         void * v2;
         u16 * v3;
 
-        v2 = sub_02006CB8(v0, 1, param0->unk_00->unk_0C);
+        v2 = NARC_AllocAndReadWholeMember(v0, 1, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         v3 = (u16 *)v1->rawData;
         ov13_02228128(param0, v3);
         sub_020181C4(v2);
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
     sub_02003050(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
     sub_02003050(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
 

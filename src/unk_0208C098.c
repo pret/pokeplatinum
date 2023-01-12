@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200F174.h"
 #include "unk_02017E74.h"
 #include "unk_02018340.h"
@@ -159,7 +159,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210 (UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 * param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
+void sub_0208C210 (UnkStruct_02018340 * param0, int param1, NARC * param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
 {
     u32 v0;
     void * v1;
@@ -167,10 +167,10 @@ void sub_0208C210 (UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 *
     NNSG2dScreenData * v3;
     NNSG2dPaletteData * v4;
 
-    v0 = sub_02006D84(param2, param4);
+    v0 = NARC_GetMemberSize(param2, param4);
     v1 = sub_02018184(param1, v0);
 
-    sub_02006D28(param2, param4, (void *)v1);
+    NARC_ReadWholeMember(param2, param4, (void *)v1);
 
     switch (param6) {
     case 0:
@@ -208,15 +208,15 @@ void sub_0208C210 (UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 *
     sub_020181C4(v1);
 }
 
-void * sub_0208C2F4 (UnkStruct_02006C24 * param0, int param1, int param2, NNSG2dScreenData ** param3, int param4)
+void * sub_0208C2F4 (NARC * param0, int param1, int param2, NNSG2dScreenData ** param3, int param4)
 {
     int v0;
     void * v1;
 
-    v0 = sub_02006D84(param0, param2);
+    v0 = NARC_GetMemberSize(param0, param2);
     v1 = sub_02018144(param4, v0);
 
-    sub_02006D28(param0, param2, v1);
+    NARC_ReadWholeMember(param0, param2, v1);
     NNS_G2dGetUnpackedScreenData(v1, param3);
 
     return v1;

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
@@ -96,12 +96,12 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (UnkStruct_02018340 * param0)
     v0->unk_04 = param0;
 
     {
-        UnkStruct_02006C24 * v1;
+        NARC * v1;
         void * v2;
         NNSG2dScreenData * v3;
         int v4;
 
-        v1 = sub_02006C24(150, 94);
+        v1 = NARC_ctor(150, 94);
 
         for (v4 = 0; v4 < 2; v4++) {
             v2 = sub_020071D0(v1, Unk_ov104_022418B0[v4], 1, &v3, 94);
@@ -109,15 +109,15 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (UnkStruct_02018340 * param0)
             sub_020181C4(v2);
         }
 
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
     }
 
     {
-        UnkStruct_02006C24 * v5;
+        NARC * v5;
         void * v6;
         NNSG2dCharacterData * v7;
 
-        v5 = sub_02006C24(150, 94);
+        v5 = NARC_ctor(150, 94);
 
         v6 = sub_020071B4(v5, 14, 1, &v7, 94);
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[0], v7->szByte);
@@ -128,7 +128,7 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (UnkStruct_02018340 * param0)
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[1], v7->szByte);
 
         sub_020181C4(v6);
-        sub_02006CA8(v5);
+        NARC_dtor(v5);
     }
 
     v0->unk_00 = sub_0200D9E8(ov104_0223DB48, v0, (80000 - 500));

@@ -21,7 +21,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -1133,21 +1133,21 @@ static void ov13_02220D1C (UnkStruct_02018340 * param0)
 
 static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(72, param0->unk_00->unk_0C);
+    v0 = NARC_ctor(72, param0->unk_00->unk_0C);
     sub_020070E8(v0, 22, param0->unk_1E0, 7, 0, 0, 0, param0->unk_00->unk_0C);
 
     {
         NNSG2dScreenData * v1;
         void * v2;
 
-        v2 = sub_02006CB8(v0, 20, param0->unk_00->unk_0C);
+        v2 = NARC_AllocAndReadWholeMember(v0, 20, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         ov13_02225710(param0, (u16 *)v1->rawData);
         sub_020181C4(v2);
 
-        v2 = sub_02006CB8(v0, 21, param0->unk_00->unk_0C);
+        v2 = NARC_AllocAndReadWholeMember(v0, 21, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
 
         ov13_02225A3C(param0, (u16 *)v1->rawData);
@@ -1155,7 +1155,7 @@ static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
     }
 
     sub_02003050(param0->unk_1E4, 72, 23, param0->unk_00->unk_0C, 1, 0x20 * 16, 0);
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     {
         u16 * v3 = sub_02003164(param0->unk_1E4, 1);
@@ -1591,7 +1591,7 @@ static void ov13_02221738 (UnkStruct_ov13_022213F0 * param0, u8 param1)
     u32 v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v1 = sub_02006AC0(72, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
+        v1 = AllocAndReadWholeNarcMemberByIndexPair(72, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v1, &v0);
         sub_020198C0(param0->unk_1E0, 6 + v2, (u16 *)v0->rawData, 0, 0, 32, 24);
         sub_0201C3C0(param0->unk_1E0, 6 + v2);

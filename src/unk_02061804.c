@@ -41,7 +41,7 @@ typedef struct UnkStruct_02061830_t {
     int unk_08;
     int unk_0C;
     int unk_10;
-    UnkStruct_02006C24 * unk_14;
+    NARC * unk_14;
     UnkStruct_ov5_021ED0A4 unk_18;
     UnkStruct_02061830_sub1 * unk_120;
     UnkStruct_02061AB4 * unk_124;
@@ -1196,12 +1196,12 @@ UnkStruct_0203CDB0 * sub_02062894 (const UnkStruct_02061830 * param0)
     return param0->unk_128;
 }
 
-void sub_0206289C (UnkStruct_02061830 * param0, UnkStruct_02006C24 * param1)
+void sub_0206289C (UnkStruct_02061830 * param0, NARC * param1)
 {
     param0->unk_14 = param1;
 }
 
-UnkStruct_02006C24 * sub_020628A0 (const UnkStruct_02061830 * param0)
+NARC * sub_020628A0 (const UnkStruct_02061830 * param0)
 {
     GF_ASSERT(param0->unk_14 != NULL);
     return ((UnkStruct_02061830 *)param0)->unk_14;

@@ -40,15 +40,15 @@ UnkStruct_02022550 * sub_0200CA08(UnkStruct_0200C6E4 * param0, UnkStruct_0200C70
 UnkStruct_02022550 * sub_0200CA44(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13);
 BOOL sub_0200CB30(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, const UnkStruct_ov104_02241308 * param2);
 BOOL sub_0200CBDC(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, int param4, int param5, int param6);
-BOOL sub_0200CC3C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, int param3, int param4, int param5, int param6);
+BOOL sub_0200CC3C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, int param3, int param4, int param5, int param6);
 s8 sub_0200CC9C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, int param4, int param5, int param6, int param7);
-s8 sub_0200CD0C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, int param3, int param4, int param5, int param6, int param7);
+s8 sub_0200CD0C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, int param3, int param4, int param5, int param6, int param7);
 u8 sub_0200CD7C(UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, int param4, int param5, int param6, int param7, int param8, int param9);
-u8 sub_0200CDC4(UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, UnkStruct_02006C24 * param4, int param5, int param6, int param7, int param8, int param9);
+u8 sub_0200CDC4(UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9);
 BOOL sub_0200CE0C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, int param4, int param5);
-BOOL sub_0200CE24(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, int param3, int param4, int param5);
+BOOL sub_0200CE24(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, int param3, int param4, int param5);
 BOOL sub_0200CE3C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, int param4, int param5);
-BOOL sub_0200CE54(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, int param3, int param4, int param5);
+BOOL sub_0200CE54(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, int param3, int param4, int param5);
 UnkStruct_0200D0F4 * sub_0200CE6C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, const UnkStruct_ov104_0223F9E0 * param2);
 const NNSG2dImagePaletteProxy * sub_0200D04C(UnkStruct_0200C704 * param0, int param1);
 u32 sub_0200D05C(UnkStruct_0200C704 * param0, int param1, NNS_G2D_VRAM_TYPE param2);
@@ -128,10 +128,10 @@ void sub_0200D810(UnkStruct_0200D0F4 * param0, GXOamMode param1);
 u32 sub_0200D81C(UnkStruct_0200D0F4 * param0);
 BOOL sub_0200D828(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, BOOL param4, int param5, int param6);
 BOOL sub_0200D888(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, BOOL param4, int param5, int param6);
-BOOL sub_0200D8E8(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, int param3, BOOL param4, int param5, int param6);
+BOOL sub_0200D8E8(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, int param3, BOOL param4, int param5, int param6);
 void sub_0200D948(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, BOOL param4, int param5);
 void sub_0200D97C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, int param3, BOOL param4, int param5);
 UnkStruct_020218BC * sub_0200D9B0(UnkStruct_0200C704 * param0);
-void sub_0200D9B4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02006C24 * param2, int param3, BOOL param4, int param5);
+void sub_0200D9B4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, int param3, BOOL param4, int param5);
 
 #endif // POKEPLATINUM_UNK_0200C6E4_H

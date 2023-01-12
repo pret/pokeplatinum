@@ -29,7 +29,7 @@ typedef struct {
     UnkStruct_0207D3C0 * unk_C8;
     UnkStruct_02025E6C * unk_CC;
     UnkStruct_020279FC * unk_D0;
-    UnkStruct_02006C24 * unk_D4;
+    NARC * unk_D4;
     UnkStruct_0200C6E4 * unk_D8;
     UnkStruct_0200C704 * unk_DC;
     UnkStruct_0200D0F4 * unk_E0[12];

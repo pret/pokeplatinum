@@ -31,7 +31,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -116,7 +116,7 @@ static void ov21_021E9240(UnkStruct_ov21_021D22F8 * param0, UnkStruct_ov21_021D4
 static void ov21_021E92B0(UnkStruct_ov21_021D22F8 * param0);
 static UnkStruct_02007C7C * ov21_021E99E0(UnkStruct_02007768 * param0, UnkStruct_02073C74 * param1, int param2, int param3, int param4);
 static void ov21_021E92C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
-static void ov21_021E9344(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, UnkStruct_02006C24 * param3, int param4, int param5, int param6, int param7, int param8, int param9);
+static void ov21_021E9344(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, NARC * param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E93C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1);
 static void ov21_021E93F8(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, UnkStruct_ov19_021DA864 * param2, int param3);
 static void ov21_021E9458(UnkStruct_ov21_021E94F8 * param0, UnkStruct_02009714 ** param1, int param2, int param3);
@@ -127,17 +127,17 @@ static void ov21_021E9504(UnkStruct_ov21_021E95B0 * param0, UnkStruct_020218BC *
 static void ov21_021E9554(UnkStruct_ov21_021E95B0 * param0);
 static void ov21_021E9560(UnkStruct_ov21_021E95B0 * param0, UnkStruct_ov21_021D4C0C * param1, int param2, int param3, UnkStruct_02009DC8 * param4);
 static void ov21_021E95B0(UnkStruct_ov21_021E95B0 * param0);
-static void ov21_021E95BC(UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1, int param2, int param3, UnkStruct_02006C24 * param4);
+static void ov21_021E95BC(UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1, int param2, int param3, NARC * param4);
 static void ov21_021E95EC(UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1);
 static void ov21_021E95F8(UnkStruct_ov21_021E968C * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, int param4);
 static void ov21_021E968C(UnkStruct_ov21_021E968C * param0);
-static void ov21_021E96A8(UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 * param2);
-static void ov21_021E97C4(UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 * param2);
+static void ov21_021E96A8(UnkStruct_02018340 * param0, int param1, NARC * param2);
+static void ov21_021E97C4(UnkStruct_02018340 * param0, int param1, NARC * param2);
 static void ov21_021E9968(UnkStruct_0205AA50 * param0, int param1, int param2);
 static void ov21_021E998C(UnkStruct_0205AA50 * param0, int param1);
 static void ov21_021E9A0C(int param0);
 static void ov21_021E9A38(void);
-static void ov21_021E9A40(UnkStruct_ov21_021E9A9C * param0, int param1, int param2, UnkStruct_02006C24 * param3);
+static void ov21_021E9A40(UnkStruct_ov21_021E9A9C * param0, int param1, int param2, NARC * param3);
 static void ov21_021E9A9C(UnkStruct_ov21_021E9A9C * param0);
 static void ov21_021E9AC8(UnkStruct_ov21_021E9A9C * param0);
 static void ov21_021E9AE8(UnkStruct_ov21_021E9A9C * param0, int param1);
@@ -202,7 +202,7 @@ void ov21_021E8E04 (UnkStruct_ov21_021E8D48 * param0, BOOL param1)
 static void ov21_021E8E0C (UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov21_021E8E0C * param1)
 {
     UnkStruct_ov21_021D1FA4 v0;
-    UnkStruct_02006C24 * v1 = sub_02006C24(69, param1->unk_0C);
+    NARC * v1 = NARC_ctor(69, param1->unk_0C);
     int v2;
 
     param0->unk_220 = sub_02074470(param1->unk_10, 5, NULL);
@@ -260,7 +260,7 @@ static void ov21_021E8E0C (UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov2
 
     param0->unk_248 = 1;
 
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 }
 
 static void ov21_021E900C (UnkStruct_ov21_021E8D48 * param0)
@@ -461,7 +461,7 @@ static void ov21_021E92C4 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** p
     param0[3] = sub_02009918(param1[3], param3, param7, 1, param9, 3, param2);
 }
 
-static void ov21_021E9344 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, UnkStruct_02006C24 * param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void ov21_021E9344 (UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, NARC * param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     param0[0] = sub_02009A4C(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
@@ -587,7 +587,7 @@ static void ov21_021E95B0 (UnkStruct_ov21_021E95B0 * param0)
     ov21_021D4D1C(param0->unk_04);
 }
 
-static void ov21_021E95BC (UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1, int param2, int param3, UnkStruct_02006C24 * param4)
+static void ov21_021E95BC (UnkStruct_ov21_021E968C * param0, UnkStruct_02009714 ** param1, int param2, int param3, NARC * param4)
 {
     ov21_021E9344(param0->unk_08, param1, param3, param4, 90, 13, 88, 89, 5, 17000);
 }
@@ -643,7 +643,7 @@ static void ov21_021E968C (UnkStruct_ov21_021E968C * param0)
     }
 }
 
-static void ov21_021E96A8 (UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 * param2)
+static void ov21_021E96A8 (UnkStruct_02018340 * param0, int param1, NARC * param2)
 {
     void * v0;
     NNSG2dScreenData * v1;
@@ -673,7 +673,7 @@ static void ov21_021E96A8 (UnkStruct_02018340 * param0, int param1, UnkStruct_02
     sub_0201C3C0(param0, 3);
 }
 
-static void ov21_021E97C4 (UnkStruct_02018340 * param0, int param1, UnkStruct_02006C24 * param2)
+static void ov21_021E97C4 (UnkStruct_02018340 * param0, int param1, NARC * param2)
 {
     void * v0;
     NNSG2dScreenData * v1;
@@ -793,7 +793,7 @@ static void ov21_021E9A38 (void)
     sub_0201E958();
 }
 
-static void ov21_021E9A40 (UnkStruct_ov21_021E9A9C * param0, int param1, int param2, UnkStruct_02006C24 * param3)
+static void ov21_021E9A40 (UnkStruct_ov21_021E9A9C * param0, int param1, int param2, NARC * param3)
 {
     int v0;
 

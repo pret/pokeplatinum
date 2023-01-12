@@ -75,7 +75,7 @@ void ov20_021D3A80 (UnkStruct_ov20_021D3E0C * param0)
     sub_020181C4(param0);
 }
 
-void ov20_021D3A98 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02006C24 * param1)
+void ov20_021D3A98 (UnkStruct_ov20_021D3E0C * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0;
     u32 v1;

@@ -15,7 +15,7 @@
 #include "overlay016/struct_ov16_022431BC_3.h"
 
 #include "unk_020021B0.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_02017E74.h"
 #include "unk_0201D15C.h"
@@ -212,7 +212,7 @@ u32 sub_02079220 (int param0, int param1)
 
 BOOL sub_02079280 (int param0, int param1, int param2)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     int v1;
     u16 v2;
     u16 v3[2];
@@ -220,12 +220,12 @@ BOOL sub_02079280 (int param0, int param1, int param2)
 
     v4 = 0;
 
-    v1 = sub_02006B58(59, 0);
-    sub_02006AFC(&v2, 137, 0, param0 * 2, 2);
-    v0 = sub_02006C24(59, param2);
+    v1 = GetNarcMemberSizeByIndexPair(59, 0);
+    ReadFromNarcMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
+    v0 = NARC_ctor(59, param2);
 
     while (v2 != v1) {
-        sub_02006DC8(v0, 0, v2, 4, &v3[0]);
+        NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
 
         if ((v3[0] == param0) && (v3[1] == param1)) {
             v4 = 1;
@@ -239,24 +239,24 @@ BOOL sub_02079280 (int param0, int param1, int param2)
         v2 += 4;
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     return v4;
 }
 
 void sub_020792F8 (int param0, int param1, UnkStruct_02023790 * param2, int param3)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     int v1;
     u16 v2;
     u16 v3[2];
 
-    v1 = sub_02006B58(59, 0);
-    sub_02006AFC(&v2, 137, 0, param0 * 2, 2);
-    v0 = sub_02006C24(59, param3);
+    v1 = GetNarcMemberSizeByIndexPair(59, 0);
+    ReadFromNarcMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
+    v0 = NARC_ctor(59, param3);
 
     while (v2 != v1) {
-        sub_02006DC8(v0, 0, v2, 4, &v3[0]);
+        NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
 
         if ((v3[0] == param0) && (v3[1] == param1)) {
             sub_0200AF20(26, 617, v2 / 4, param3, param2);
@@ -266,7 +266,7 @@ void sub_020792F8 (int param0, int param1, UnkStruct_02023790 * param2, int para
         v2 += 4;
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     if (v2 == v1) {
         sub_020237E8(param2);
@@ -275,12 +275,12 @@ void sub_020792F8 (int param0, int param1, UnkStruct_02023790 * param2, int para
 
 void sub_0207938C (int param0, UnkStruct_0207A9CC * param1)
 {
-    sub_02006AA4(param1, 57, param0);
+    ReadWholeNarcMemberByIndexPair(param1, 57, param0);
 }
 
 void sub_0207939C (int param0, void * param1)
 {
-    sub_02006AA4(param1, 58, param0);
+    ReadWholeNarcMemberByIndexPair(param1, 58, param0);
 }
 
 u8 sub_020793AC (int param0)

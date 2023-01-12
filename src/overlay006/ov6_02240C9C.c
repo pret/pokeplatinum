@@ -16,7 +16,7 @@
 #include "overlay006/struct_ov6_02242634.h"
 #include "overlay006/struct_ov6_02242634_sub2.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0201378C.h"
 #include "unk_02017E74.h"
 #include "unk_0201D15C.h"
@@ -212,7 +212,7 @@ static void ov6_02240D00 (UnkStruct_0203CDB0 * param0, const BOOL param1, int * 
         sub_0202DA10(param0->unk_0C, &v1, &v2);
 
         if (param1) {
-            v0 = sub_02006ADC(106, 8, 4);
+            v0 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 8, 4);
 
             if (v1 != 0xffff) {
                 (*param2) = v0[v1];

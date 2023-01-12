@@ -6,7 +6,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_02039C80.h"
 #include "unk_02054BD0.h"
@@ -60,7 +60,7 @@ static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * para
     int v6, v7;
     u16 v8[16];
     void * v9;
-    UnkStruct_02006C24 * v10;
+    NARC * v10;
 
     v0 = 0;
     v7 = sub_02039E10(param0);
@@ -75,16 +75,16 @@ static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * para
         }
     }
 
-    v10 = sub_02006C24(67, 11);
+    v10 = NARC_ctor(67, 11);
 
     for (v4 = 0; v4 < param2; v4++) {
         v1 = v8[v4];
         v9 = &(param1->unk_E2[(32 * 32) * v4]);
 
-        sub_02006DC8(v10, v1, 0x10, 0x800, v9);
+        NARC_ReadFromMember(v10, v1, 0x10, 0x800, v9);
     }
 
-    sub_02006CA8(v10);
+    NARC_dtor(v10);
 }
 
 static const u8 sub_02054CC4 (const u16 param0, u16 * param1, u8 * param2)

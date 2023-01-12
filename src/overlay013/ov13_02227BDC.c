@@ -13,7 +13,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201FE94.h"
 #include "unk_0207CDEC.h"
@@ -91,9 +91,9 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
 {
     UnkStruct_0200C6E4 * v0;
     u32 v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
-    v2 = sub_02006C24(16, param0->unk_00->unk_0C);
+    v2 = NARC_ctor(16, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -103,7 +103,7 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
 
     sub_0200CE24(v0, param0->unk_30C, v2, sub_0207CF40(), 0, 46263);
     sub_0200CE54(v0, param0->unk_30C, v2, sub_0207CF44(), 0, 46263);
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 }
 
 static void ov13_02227D10 (UnkStruct_ov13_02227244 * param0, u16 param1, u32 param2)

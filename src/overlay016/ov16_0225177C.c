@@ -27,7 +27,7 @@
 #include "overlay016/struct_ov16_0225C300.h"
 
 #include "unk_020021B0.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
@@ -328,18 +328,18 @@ void ov16_02251C94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
 void ov16_02251E1C (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
 {
-    GF_ASSERT(sub_02006B58(param1, param2) < 400 * 4);
+    GF_ASSERT(GetNarcMemberSizeByIndexPair(param1, param2) < 400 * 4);
 
     param0->unk_AC = param1;
     param0->unk_B0 = param2;
     param0->unk_B4 = 0;
 
-    sub_02006AA4(&param0->unk_2700, param1, param2);
+    ReadWholeNarcMemberByIndexPair(&param0->unk_2700, param1, param2);
 }
 
 void ov16_02251E5C (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
 {
-    GF_ASSERT(sub_02006B58(param1, param2) < 400 * 4);
+    GF_ASSERT(GetNarcMemberSizeByIndexPair(param1, param2) < 400 * 4);
     GF_ASSERT(param0->unk_B8 < 4);
 
     param0->unk_BC[param0->unk_B8] = param0->unk_AC;
@@ -350,7 +350,7 @@ void ov16_02251E5C (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
     param0->unk_B0 = param2;
     param0->unk_B4 = 0;
 
-    sub_02006AA4(&param0->unk_2700, param1, param2);
+    ReadWholeNarcMemberByIndexPair(&param0->unk_2700, param1, param2);
 }
 
 BOOL ov16_02251EF4 (UnkStruct_ov16_0224B9DC * param0)

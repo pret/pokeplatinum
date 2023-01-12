@@ -27,7 +27,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -461,36 +461,36 @@ static void ov74_021D1390 (UnkStruct_ov74_021D0D80 * param0)
 {
     void * v0;
     u32 v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
     void * v3;
     NNSG2dCharacterData * v4;
     NNSG2dPaletteData * v5;
 
-    v2 = sub_02006C24(73, param0->unk_00);
-    v1 = sub_02006D84(v2, 1);
+    v2 = NARC_ctor(73, param0->unk_00);
+    v1 = NARC_GetMemberSize(v2, 1);
     v3 = sub_02018184(param0->unk_00, v1);
 
-    sub_02006D28(v2, 1, (void *)v3);
+    NARC_ReadWholeMember(v2, 1, (void *)v3);
     NNS_G2dGetUnpackedCharacterData(v3, &v4);
     sub_0201958C(param0->unk_14, 0, v4->pRawData, v4->szByte, 0);
     sub_0201958C(param0->unk_14, 4, v4->pRawData, v4->szByte, 0);
     sub_020181C4(v3);
 
-    v1 = sub_02006D84(v2, 0);
+    v1 = NARC_GetMemberSize(v2, 0);
     v3 = sub_02018184(param0->unk_00, v1);
-    sub_02006D28(v2, 0, (void *)v3);
+    NARC_ReadWholeMember(v2, 0, (void *)v3);
 
     NNS_G2dGetUnpackedPaletteData(v3, &v5);
     sub_0201972C(0, v5->pRawData, 0x20 * 1, 0);
     sub_0201972C(4, v5->pRawData, 0x20 * 1, 0);
     sub_020181C4(v3);
 
-    v1 = sub_02006D84(v2, 2);
+    v1 = NARC_GetMemberSize(v2, 2);
     param0->unk_24 = sub_02018144(param0->unk_00, v1);
 
-    sub_02006D28(v2, 2, (void *)param0->unk_24);
+    NARC_ReadWholeMember(v2, 2, (void *)param0->unk_24);
     NNS_G2dGetUnpackedScreenData(param0->unk_24, &(param0->unk_28));
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
     sub_02019CB8(param0->unk_14, 2, 0x1, 0, 0, 32, 32, 17);
     sub_02019CB8(param0->unk_14, 4, 0x1, 0, 0, 32, 32, 17);
     sub_02019964(param0->unk_14, 0, 0, 0, 32, 2, param0->unk_28->rawData, 0, 0, param0->unk_28->screenWidth / 8, param0->unk_28->screenHeight / 8);

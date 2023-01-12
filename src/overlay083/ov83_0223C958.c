@@ -13,7 +13,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -37,7 +37,7 @@ static void ov83_0223CD28(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CD54(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CD64(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CDC0(UnkStruct_ov83_0223B784 * param0);
-static void ov83_0223CDD0(UnkStruct_ov83_0223B784 * param0, UnkStruct_02006C24 * param1);
+static void ov83_0223CDD0(UnkStruct_ov83_0223B784 * param0, NARC * param1);
 static void ov83_0223CE7C(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CE9C(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CF20(UnkStruct_ov83_0223B784 * param0);
@@ -46,9 +46,9 @@ static void ov83_0223D068(UnkStruct_ov83_0223B784 * param0);
 
 void ov83_0223C958 (UnkStruct_ov83_0223B784 * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(122, param0->unk_00);
+    v0 = NARC_ctor(122, param0->unk_00);
 
     ov83_0223CE9C(param0);
     ov83_0223CC30(&(param0->unk_20), param0->unk_00);
@@ -71,7 +71,7 @@ void ov83_0223C958 (UnkStruct_ov83_0223B784 * param0)
 
     ov83_0223CF2C(param0);
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 
     Unk_021BF67C.unk_65 = 1;
     sub_0201FFE8();
@@ -325,7 +325,7 @@ static void ov83_0223CDC0 (UnkStruct_ov83_0223B784 * param0)
     sub_0201F8B4();
 }
 
-static void ov83_0223CDD0 (UnkStruct_ov83_0223B784 * param0, UnkStruct_02006C24 * param1)
+static void ov83_0223CDD0 (UnkStruct_ov83_0223B784 * param0, NARC * param1)
 {
     int v0;
     static const u8 v1[6] = {

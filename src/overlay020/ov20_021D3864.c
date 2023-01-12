@@ -55,7 +55,7 @@ void ov20_021D3880 (UnkStruct_ov20_021D3980 * param0)
     sub_020181C4(param0);
 }
 
-void ov20_021D3898 (UnkStruct_ov20_021D3980 * param0, UnkStruct_02006C24 * param1)
+void ov20_021D3898 (UnkStruct_ov20_021D3980 * param0, NARC * param1)
 {
     static const UnkStruct_ov61_0222C884 v0 = {
         3, 3, 6, 10, 2, 13, 64

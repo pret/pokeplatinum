@@ -5,7 +5,7 @@
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5778_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02017E74.h"
 #include "unk_0201C970.h"
 #include "overlay005/ov5_021D37AC.h"
@@ -88,19 +88,19 @@ UnkStruct_ov5_021EF76C * ov5_021EF76C (const int param0, UnkStruct_ov5_021D3CAC 
 
 void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     UnkStruct_ov5_021EF7A0 * v1 = param0->unk_C20;
 
-    sub_02006AA4(&param0->unk_C18, 42, v1->unk_00);
+    ReadWholeNarcMemberByIndexPair(&param0->unk_C18, 42, v1->unk_00);
 
-    param0->unk_C24 = sub_02006AC0(43, param0->unk_C18.unk_00, 4);
+    param0->unk_C24 = AllocAndReadWholeNarcMemberByIndexPair(43, param0->unk_C18.unk_00, 4);
     v1->unk_08 = param0->unk_C24[0];
 
     GF_ASSERT(v1->unk_08 < 768);
 
     param0->unk_C0C = NULL;
-    param0->unk_C04 = sub_02006AC0(44, param0->unk_C18.unk_02, 4);
-    param0->unk_C08 = sub_02006AC0(71, param0->unk_C18.unk_00, 4);
+    param0->unk_C04 = AllocAndReadWholeNarcMemberByIndexPair(44, param0->unk_C18.unk_02, 4);
+    param0->unk_C08 = AllocAndReadWholeNarcMemberByIndexPair(71, param0->unk_C18.unk_00, 4);
     param0->unk_C0C = NNS_G3dGetTex((NNSG3dResFileHeader *)param0->unk_C04);
 
     if (v1->unk_08 != 0) {
@@ -137,7 +137,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
         param0->unk_C14 = NULL;
     }
 
-    v0 = sub_02006C24(40, 4);
+    v0 = NARC_ctor(40, 4);
 
     {
         int v5;
@@ -150,7 +150,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
             v6 = param0->unk_C24[v5 + 1];
 
             GF_ASSERT(param0->unk_04[v6] == NULL);
-            param0->unk_04[v6] = sub_02006CB8(v0, v6, 4);
+            param0->unk_04[v6] = NARC_AllocAndReadWholeMember(v0, v6, 4);
 
             {
                 NNSG3dResMdl * v8;
@@ -174,7 +174,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
         BOOL v10;
         NNSG3dResTex * v11;
 
-        param0->unk_04[0] = sub_02006CB8(v0, 0, 4);
+        param0->unk_04[0] = NARC_AllocAndReadWholeMember(v0, 0, 4);
 
         v11 = NNS_G3dGetTex(
             (NNSG3dResFileHeader *)param0->unk_04[0]);
@@ -188,7 +188,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
         }
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
     G3X_EdgeMarking(1);
 
     if (ov5_021EFAC0(param0) == 0) {

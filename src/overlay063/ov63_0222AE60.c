@@ -13,7 +13,7 @@
 #include "overlay115/struct_ov115_02261520.h"
 
 #include "unk_02002F38.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -60,7 +60,7 @@ typedef struct UnkStruct_ov63_0222AE60_t {
     u32 unk_227C;
     UnkStruct_02009714 * unk_2280[4];
     UnkStruct_02009DC8 * unk_2290;
-    UnkStruct_02006C24 * unk_2294[2];
+    NARC * unk_2294[2];
 } UnkStruct_ov63_0222AE60;
 
 typedef struct {
@@ -312,8 +312,8 @@ UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, UnkStruct_
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_2294[0] = sub_02006C24(146, param3);
-    v0->unk_2294[1] = sub_02006C24(153, param3);
+    v0->unk_2294[0] = NARC_ctor(146, param3);
+    v0->unk_2294[1] = NARC_ctor(153, param3);
 
     for (v1 = 0; v1 < 2; v1++) {
         v0->unk_2280[v1] = sub_02009714((151 + 1), v1, param3);
@@ -349,8 +349,8 @@ void ov63_0222AF14 (UnkStruct_ov63_0222AE60 * param0)
     }
 
     ov63_0222AFF8(param0);
-    sub_02006CA8(param0->unk_2294[0]);
-    sub_02006CA8(param0->unk_2294[1]);
+    NARC_dtor(param0->unk_2294[0]);
+    NARC_dtor(param0->unk_2294[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_02009754(param0->unk_2280[v0]);

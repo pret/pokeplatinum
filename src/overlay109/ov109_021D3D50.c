@@ -29,7 +29,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -71,12 +71,12 @@
 static void ov109_021D40A8(void * param0);
 static void ov109_021D40D0(void);
 static void ov109_021D40F0(UnkStruct_02018340 * param0);
-static void ov109_021D41F8(UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1);
+static void ov109_021D41F8(UnkStruct_ov109_021D5140 * param0, NARC * param1);
 static void ov109_021D4294(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D42CC(UnkStruct_02018340 * param0);
-static void ov109_021D4300(UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1);
+static void ov109_021D4300(UnkStruct_ov109_021D5140 * param0, NARC * param1);
 static void ov109_021D43EC(void);
-static void ov109_021D441C(UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1);
+static void ov109_021D441C(UnkStruct_ov109_021D5140 * param0, NARC * param1);
 static void ov109_021D4518(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D45F4(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D471C(UnkStruct_ov109_021D5140 * param0);
@@ -94,7 +94,7 @@ static void ov109_021D5488(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D46D8(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2);
 static void ov109_021D48EC(UnkStruct_ov109_021D5140 * param0, int param1);
 static void ov109_021D5668(UnkStruct_ov109_021D5140 * param0);
-static void ov109_021D577C(UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1);
+static void ov109_021D577C(UnkStruct_ov109_021D5140 * param0, NARC * param1);
 static void ov109_021D5824(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D57E0(NNSG2dCharacterData * param0[2], NNSG2dPaletteData * param1[2], int param2, int param3, int param4);
 static void ov109_021D4044(UnkStruct_0201CD38 * param0, void * param1);
@@ -174,7 +174,7 @@ static int(*const Unk_ov109_021D5E9C[])(UnkStruct_ov109_021D5140 *, int) = {
 int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov109_021D5140 * v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
     UnkStruct_0209C194 * v2 = sub_02006840(param0);
 
     switch (*param1) {
@@ -189,7 +189,7 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_02017FC8(3, 95, 0x80000);
 
-        v1 = sub_02006C24(86, 95);
+        v1 = NARC_ctor(86, 95);
         GF_ASSERT(v1);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov109_021D5140), 95);
@@ -224,7 +224,7 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_02039734();
         v0->unk_30 = sub_0200DA04(ov109_021D4044, v0, 5);
-        sub_02006CA8(v1);
+        NARC_dtor(v1);
         (*param1)++;
         break;
     case 1:
@@ -516,7 +516,7 @@ static void ov109_021D40F0 (UnkStruct_02018340 * param0)
     sub_02019690(4, 32, 0, 95);
 }
 
-static void ov109_021D41F8 (UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1)
+static void ov109_021D41F8 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
 {
     int v0;
 
@@ -570,7 +570,7 @@ static void ov109_021D42CC (UnkStruct_02018340 * param0)
     sub_020181C4(param0);
 }
 
-static void ov109_021D4300 (UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1)
+static void ov109_021D4300 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
 {
     UnkStruct_02018340 * v0 = param0->unk_14;
 
@@ -602,7 +602,7 @@ static void ov109_021D43EC (void)
     sub_0201F8E4();
 }
 
-static void ov109_021D441C (UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1)
+static void ov109_021D441C (UnkStruct_ov109_021D5140 * param0, NARC * param1)
 {
     int v0;
 
@@ -1659,7 +1659,7 @@ static void ov109_021D5668 (UnkStruct_ov109_021D5140 * param0)
     }
 }
 
-static void ov109_021D577C (UnkStruct_ov109_021D5140 * param0, UnkStruct_02006C24 * param1)
+static void ov109_021D577C (UnkStruct_ov109_021D5140 * param0, NARC * param1)
 {
     param0->unk_3A8[0] = sub_02006F88(104, 8, &(param0->unk_3B0[0]), 95);
     param0->unk_3A8[1] = sub_020071EC(param1, 7, &(param0->unk_3B0[1]), 95);

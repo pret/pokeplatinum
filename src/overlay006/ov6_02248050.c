@@ -15,7 +15,7 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "unk_02005474.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "unk_02017E74.h"
@@ -145,7 +145,7 @@ static void ov6_02248124 (UnkStruct_0205E884 * const param0, UnkStruct_02017294 
     sub_02017350(param1, v0.x, v0.y, v0.z);
 }
 
-static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, UnkStruct_02006C24 * param1, u32 param2, u32 param3, int param4, NNSFndAllocator * param5)
+static void ov6_02248140 (UnkStruct_ov6_02248140 * param0, NARC * param1, u32 param2, u32 param3, int param4, NNSFndAllocator * param5)
 {
     int v0;
 
@@ -205,15 +205,15 @@ static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 {
     UnkStruct_ov6_0224825C * v0 = param2;
     int v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_0224825C));
     sub_020182CC(&v0->unk_DC, 4, 32);
 
-    v2 = sub_02006C24(141, 4);
+    v2 = NARC_ctor(141, 4);
 
     ov6_02248140(&v0->unk_00, v2, 3, 0, 3, &v0->unk_DC);
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 
     ov6_022480BC(param1->unk_3C, &v0->unk_00.unk_00);
     sub_02005748(1611);
@@ -286,15 +286,15 @@ static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     int v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
     sub_020182CC(&v0->unk_DC, 4, 32);
 
-    v2 = sub_02006C24(141, 4);
+    v2 = NARC_ctor(141, 4);
 
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 
     ov6_022480BC(param1->unk_3C, &v0->unk_00.unk_00);
     sub_02005748(1610);
@@ -306,18 +306,18 @@ static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 {
     UnkStruct_ov6_02248340 * v0 = param2;
     int v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
     sub_020182CC(&v0->unk_DC, 4, 32);
 
-    v2 = sub_02006C24(141, 4);
+    v2 = NARC_ctor(141, 4);
 
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     ov6_02248050(param1->unk_38, 0, &v0->unk_00.unk_00);
 
     sub_02005748(1610);
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 
     v0->unk_EC = 0;
 }
@@ -408,17 +408,17 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 {
     UnkStruct_ov6_02248498 * v0 = param2;
     int v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248498));
     sub_020182CC(&v0->unk_1B8, 4, 32);
 
-    v2 = sub_02006C24(141, 4);
+    v2 = NARC_ctor(141, 4);
 
     ov6_02248140(&v0->unk_00[0], v2, 14, 12, 2, &v0->unk_1B8);
     ov6_02248124(param1->unk_3C, &v0->unk_00[0].unk_00);
 
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
     sub_02005748(1613);
 
     v0->unk_1C8 = 0;
@@ -438,13 +438,13 @@ static void ov6_02248520 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 {
     UnkStruct_ov6_02248498 * v0 = param2;
     BOOL v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     switch (v0->unk_1C8) {
     case 0:
-        v2 = sub_02006C24(141, 4);
+        v2 = NARC_ctor(141, 4);
         ov6_02248140(&v0->unk_00[1], v2, 11, 9, 2, &v0->unk_1B8);
-        sub_02006CA8(v2);
+        NARC_dtor(v2);
         ov6_02248124(param1->unk_3C, &v0->unk_00[1].unk_00);
         sub_02017348(&v0->unk_00[1].unk_00, 0);
         v0->unk_1C8++;
@@ -612,12 +612,12 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 {
     UnkStruct_ov6_022487F8 * v0 = param2;
     int v1;
-    UnkStruct_02006C24 * v2;
+    NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_022487F8));
     sub_020182CC(&v0->unk_CFC, 4, 32);
 
-    v2 = sub_02006C24(141, 4);
+    v2 = NARC_ctor(141, 4);
 
     sub_020170D8(&v0->unk_00, v2, 8, 4);
 
@@ -633,7 +633,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     sub_0205EAEC(v0->unk_CE0->unk_3C, &v0->unk_CF0);
 
     v0->unk_D0C = 0;
-    sub_02006CA8(v2);
+    NARC_dtor(v2);
 }
 
 static void ov6_0224889C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * param1, void * param2)

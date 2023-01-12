@@ -24,7 +24,7 @@ Static main
 	Object src/unk_020064F0.o
 	Object src/unk_0200679C.o
 	Object src/unk_020067E8.o
-	Object src/unk_020068C8.o
+	Object src/filesystem.o
 	Object src/unk_02006E3C.o
 	Object src/unk_0200762C.o
 	Object src/unk_020093B4.o

@@ -10,7 +10,7 @@
 #include "overlay106/struct_ov106_02243310.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -37,7 +37,7 @@ static const u8 Unk_ov106_0224384C[4] = {
 void ov106_02243310 (UnkStruct_ov106_02243310 * param0, UnkStruct_02073C74 * param1)
 {
     int v0;
-    UnkStruct_02006C24 * v1;
+    NARC * v1;
 
     ov106_022435C8();
     NNS_G2dInitOamManagerModule();
@@ -54,7 +54,7 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, UnkStruct_02073C74 * par
     param0->unk_1A0[0][2] = sub_02009918(param0->unk_190[2], 151, 14, 1, 0, 2, 98);
 
     param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 13, 1, 0, 3, 98);
-    v1 = sub_02006C24(19, 98);
+    v1 = NARC_ctor(19, 98);
 
     param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, sub_02079D80(param1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 98);
     param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 98);
@@ -68,7 +68,7 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, UnkStruct_02073C74 * par
 
     sub_0201FF74(GX_PLANEMASK_OBJ, 1);
     sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_02006CA8(v1);
+    NARC_dtor(v1);
 
     return;
 }

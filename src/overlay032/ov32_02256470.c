@@ -16,7 +16,7 @@
 #include "overlay032/struct_ov32_02256470_1.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017E74.h"
@@ -302,9 +302,9 @@ static void ov32_02256898 (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
 
 static void ov32_0225692C (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov32_02256470_1 * param1)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
 
-    v0 = sub_02006C24(19, 8);
+    v0 = NARC_ctor(19, 8);
 
     if (v0) {
         UnkStruct_ov25_02255810 v1;
@@ -318,7 +318,7 @@ static void ov32_0225692C (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
         v1.unk_0D = 1;
 
         for (v3 = 0; v3 < param1->unk_00; v3++) {
-            sub_02006DC8(v0, param1->unk_04[v3].unk_00, 0, ((16 * 0x20) + 0x80), param0->unk_10A);
+            NARC_ReadFromMember(v0, param1->unk_04[v3].unk_00, 0, ((16 * 0x20) + 0x80), param0->unk_10A);
 
             NNS_G2dGetUnpackedCharacterData(param0->unk_10A, &v2);
             DC_FlushRange(v2->pRawData, (16 * 0x20));
@@ -340,7 +340,7 @@ static void ov32_0225692C (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
             }
         }
 
-        sub_02006CA8(v0);
+        NARC_dtor(v0);
     }
 }
 

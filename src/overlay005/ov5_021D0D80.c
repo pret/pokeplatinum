@@ -32,7 +32,7 @@
 
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -958,7 +958,7 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     UnkStruct_ov5_021D1A68 * v2;
 
     v2 = sub_02018144(param0, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = sub_02006ADC(96, param1, param0);
+    v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(96, param1, param0);
 
     for (v0 = 0; v0 < 24; v0++) {
         v2->unk_02[v0] = 0xffff;

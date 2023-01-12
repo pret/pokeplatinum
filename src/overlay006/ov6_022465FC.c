@@ -7,7 +7,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0201378C.h"
 #include "unk_0201D15C.h"
 #include "unk_0202440C.h"
@@ -79,7 +79,7 @@ static int ov6_0224663C (UnkStruct_0203CDB0 * param0)
     v4 = sub_02055BE8(param0);
     v5 = (((19 + v3) % 24) * 4 + (v4 / 15)) * 7;
 
-    sub_02006AFC(v1, 126, 0, v5, sizeof(u8) * 7);
+    ReadFromNarcMemberByIndexPair(v1, 126, 0, v5, sizeof(u8) * 7);
     v0 = v1[v2];
 
     GF_ASSERT(0 < v0 && v0 < 10);
@@ -91,7 +91,7 @@ static int ov6_0224669C (int param0)
     u8 v0;
     int v1 = (1 + 11) * (param0 - 1);
 
-    sub_02006AFC(&v0, 126, 1, v1, sizeof(u8));
+    ReadFromNarcMemberByIndexPair(&v0, 126, 1, v1, sizeof(u8));
 
     GF_ASSERT(v0 < 6);
     return v0;
@@ -102,7 +102,7 @@ static void ov6_022466C8 (int param0, u8 * param1)
     u8 v0;
     int v1 = (1 + 11) * (param0 - 1) + 1;
 
-    sub_02006AFC(param1, 126, 1, v1, sizeof(u8) * 11);
+    ReadFromNarcMemberByIndexPair(param1, 126, 1, v1, sizeof(u8) * 11);
 }
 
 static BOOL ov6_022466E8 (UnkStruct_0203CDB0 * param0, int param1, int param2)

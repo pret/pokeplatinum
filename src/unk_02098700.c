@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02017E74.h"
 #include "unk_02098700.h"
@@ -20,12 +20,12 @@ typedef struct UnkStruct_02098700_t {
     short * unk_14;
 } UnkStruct_02098700;
 
-static int * sub_020988C8(UnkStruct_02006C24 * param0, int param1);
-static int * sub_020988D8(UnkStruct_02006C24 * param0, int param1);
-static void sub_020988E8(UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3);
-static void sub_02098910(UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3);
-static void sub_02098938(UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3);
-static void sub_02098960(UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3);
+static int * sub_020988C8(NARC * param0, int param1);
+static int * sub_020988D8(NARC * param0, int param1);
+static void sub_020988E8(NARC * param0, short ** param1, short ** param2, int param3);
+static void sub_02098910(NARC * param0, short ** param1, short ** param2, int param3);
+static void sub_02098938(NARC * param0, short ** param1, short ** param2, int param3);
+static void sub_02098960(NARC * param0, short ** param1, short ** param2, int param3);
 
 UnkStruct_02098700 * sub_02098700 (int param0)
 {
@@ -47,7 +47,7 @@ void sub_02098718 (UnkStruct_02098700 * param0)
 
 void sub_0209872C (UnkStruct_02098700 * param0, int param1, int param2)
 {
-    UnkStruct_02006C24 * v0;
+    NARC * v0;
     u32 v1;
 
     GF_ASSERT(param0);
@@ -55,7 +55,7 @@ void sub_0209872C (UnkStruct_02098700 * param0, int param1, int param2)
     GF_ASSERT(param0->unk_04 == NULL);
 
     v1 = sub_020989B8();
-    v0 = sub_02006C24(v1, param2);
+    v0 = NARC_ctor(v1, param2);
 
     param0->unk_00 = sub_020988C8(v0, param2);
     param0->unk_04 = sub_020988D8(v0, param2);
@@ -68,7 +68,7 @@ void sub_0209872C (UnkStruct_02098700 * param0, int param1, int param2)
         sub_02098960(v0, &param0->unk_10, &param0->unk_14, param2);
     }
 
-    sub_02006CA8(v0);
+    NARC_dtor(v0);
 }
 
 void sub_020987BC (UnkStruct_02098700 * param0)
@@ -134,7 +134,7 @@ short sub_020988A8 (const UnkStruct_02098700 * param0, int param1)
     return param0->unk_14[param1];
 }
 
-static int * sub_020988C8 (UnkStruct_02006C24 * param0, int param1)
+static int * sub_020988C8 (NARC * param0, int param1)
 {
     void * v0;
 
@@ -142,7 +142,7 @@ static int * sub_020988C8 (UnkStruct_02006C24 * param0, int param1)
     return (int *)v0;
 }
 
-static int * sub_020988D8 (UnkStruct_02006C24 * param0, int param1)
+static int * sub_020988D8 (NARC * param0, int param1)
 {
     void * v0;
 
@@ -150,25 +150,25 @@ static int * sub_020988D8 (UnkStruct_02006C24 * param0, int param1)
     return (int *)v0;
 }
 
-static void sub_020988E8 (UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3)
+static void sub_020988E8 (NARC * param0, short ** param1, short ** param2, int param3)
 {
     *param1 = (short *)sub_0200723C(param0, 9, 0, param3, 0);
     *param2 = (short *)sub_0200723C(param0, 10, 0, param3, 0);
 }
 
-static void sub_02098910 (UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3)
+static void sub_02098910 (NARC * param0, short ** param1, short ** param2, int param3)
 {
     *param1 = (short *)sub_0200723C(param0, 7, 0, param3, 0);
     *param2 = (short *)sub_0200723C(param0, 8, 0, param3, 0);
 }
 
-static void sub_02098938 (UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3)
+static void sub_02098938 (NARC * param0, short ** param1, short ** param2, int param3)
 {
     *param1 = (short *)sub_0200723C(param0, 5, 0, param3, 0);
     *param2 = (short *)sub_0200723C(param0, 6, 0, param3, 0);
 }
 
-static void sub_02098960 (UnkStruct_02006C24 * param0, short ** param1, short ** param2, int param3)
+static void sub_02098960 (NARC * param0, short ** param1, short ** param2, int param3)
 {
     *param1 = (short *)sub_0200723C(param0, 3, 0, param3, 0);
     *param2 = (short *)sub_0200723C(param0, 4, 0, param3, 0);

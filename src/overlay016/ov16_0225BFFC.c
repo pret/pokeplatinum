@@ -61,7 +61,7 @@
 #include "overlay016/struct_ov16_02266A38.h"
 #include "overlay016/struct_ov16_022674C4.h"
 
-#include "unk_020068C8.h"
+#include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
@@ -167,7 +167,7 @@ UnkStruct_ov16_0225BFFC * ov16_0225BFFC (UnkStruct_0207ADB4 * param0, UnkStruct_
 
     v0->unk_190 = param1->unk_00;
     v0->unk_191 = param1->unk_01;
-    v0->unk_1A0 = sub_02006C24(147, 5);
+    v0->unk_1A0 = NARC_ctor(147, 5);
 
     return v0;
 }
@@ -293,7 +293,7 @@ void ov16_0225C104 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 
     ov16_022647D8(param1);
 
-    sub_02006CA8(param1->unk_1A0);
+    NARC_dtor(param1->unk_1A0);
     sub_020181C4(param1);
 }
 
@@ -757,18 +757,18 @@ static void ov16_0225C79C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
             UnkStruct_ov16_02268A14 * v0;
             int v1;
             UnkStruct_ov16_022674C4 * v2;
-            UnkStruct_02006C24 * v3;
-            UnkStruct_02006C24 * v4;
+            NARC * v3;
+            NARC * v4;
 
-            v3 = sub_02006C24(7, 5);
-            v4 = sub_02006C24(27, 5);
+            v3 = NARC_ctor(7, 5);
+            v4 = NARC_ctor(27, 5);
             v0 = ov16_0223E02C(param0);
 
             ov16_02268C04(v3, v4, v0, 0, 0, NULL);
             ov16_0226BCCC(v0, 0);
 
-            sub_02006CA8(v3);
-            sub_02006CA8(v4);
+            NARC_dtor(v3);
+            NARC_dtor(v4);
 
             v1 = ov16_0223E258(param0, param1->unk_190);
 
