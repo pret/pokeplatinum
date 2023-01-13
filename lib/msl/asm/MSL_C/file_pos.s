@@ -6,7 +6,7 @@
 	.extern Unk_021D0944
 	.extern Unk_021D0968
 	.extern Unk_021D0D40
-	.extern Unk_02101490
+	.extern __files
 
 
 	.text
@@ -122,7 +122,7 @@ _020D4BD8:
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_020D4BE0: .word Unk_02101490
+_020D4BE0: .word __files
 _020D4BE4: .word 0x021014DC
 _020D4BE8: .word 0x02101528
 _020D4BEC: .word Unk_021D0968
@@ -343,7 +343,7 @@ _020D4EEC:
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_020D4EF4: .word Unk_02101490
+_020D4EF4: .word __files
 _020D4EF8: .word 0x021014DC
 _020D4EFC: .word 0x02101528
 _020D4F00: .word Unk_021D0968
