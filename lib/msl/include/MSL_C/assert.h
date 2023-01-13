@@ -1,17 +1,13 @@
-#ifndef _MSL_ASSERT_H_
-#define _MSL_ASSERT_H_
+#ifdef __MWERKS__
+    #if __MWERKS__ >= 0x3000
+        #pragma notonce
+    #endif
+#endif
 
-#define assert(expr) ((expr) ? (void)0 : __msl_assertion_failed(#expr, __FILE__, __func__, __LINE__))
+#include <ansi_params.h>
 
-// For matching
-#define assert_ex(expr, file, line) ((expr) ? (void)0 : __msl_assertion_failed(#expr, file, __func__, line))
-
-// Assertion (%s) failed in "%s", function "%s", line %d
-extern void __msl_assertion_failed(
-    const char * expr,
-    const char * file,
-    const char * func,
-    int line
-);
-
-#endif //_MSL_ASSERT_H_
+#if !_MSL_USING_MW_C_HEADERS
+    #error You must have the non-MSL C header file access path before the MSL access path
+#else
+    #include <cassert>
+#endif

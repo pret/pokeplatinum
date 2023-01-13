@@ -14,6 +14,7 @@ Makefile text eol=lf
 *.md text eol=lf
 *.lsf text eol=lf
 *.yml text eol=lf
+lib/msl/include/MSL_C/* text eol=lf
 
 *.bin binary
 

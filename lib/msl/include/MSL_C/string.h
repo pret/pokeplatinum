@@ -25,4 +25,4 @@ char * strstr(const char * haystack, const char * needle);
 _MSL_END_EXTERN_C
     _MSL_END_NAMESPACE_STD
 
-#endif //MSL_STRING_H_
+#endif 

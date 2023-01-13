@@ -1,23 +1,18 @@
-#ifndef MSL_STDARG_H
-#define MSL_STDARG_H
+#ifndef _MSL_STDARG_H
+#define _MSL_STDARG_H
 
 #include <ansi_params.h>
 
-_MSL_BEGIN_NAMESPACE_STD
-    _MSL_BEGIN_EXTERN_C
+#if !_MSL_USING_MW_C_HEADERS
+    #error You must have the non-MSL C header file access path before the MSL access path
+#else
 
-#ifndef _MSL_VA_LIST_TYPE
-#define _MSL_VA_LIST_TYPE char *
-#endif //_MSL_VA_LIST_TYPE
-#ifndef _MSL_VA_LIST_DEFINED
-typedef _MSL_VA_LIST_TYPE va_list;
-#define _MSL_VA_LIST_DEFINED
+#include <cstdarg>
+
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+using std::va_list;
 #endif
 
-#define va_start(list, arg) ({list = (va_list)(((u32) & (arg) & ~3) + 4);})
-#define va_end(list) ((void)0)
+#endif
 
-_MSL_END_EXTERN_C
-_MSL_END_NAMESPACE_STD
-
-#endif //MSL_STDARG_H
+#endif

@@ -1,14 +1,19 @@
-#ifndef MSL_STDDEF_H_
-#define MSL_STDDEF_H_
+#ifndef _MSL_STDDEF_H
+#define _MSL_STDDEF_H
 
-#include <size_t.h>
+#include <ansi_params.h>
 
-_MSL_BEGIN_NAMESPACE_STD
-    _MSL_BEGIN_EXTERN_C
+#if !_MSL_USING_MW_C_HEADERS
+    #error You must have the non-MSL C header file access path before the MSL access path
+#else
 
-#define offsetof(type, field) ((size_t)&((type *)0)->field)
+#include <cstddef>
 
-_MSL_END_EXTERN_C
-_MSL_END_NAMESPACE_STD
+#if defined(__cplusplus) && defined(_MSL_USING_NAMESPACE)
+using std::ptrdiff_t;
+using std::size_t;
+#endif
 
-#endif //MSL_STDDEF_H_
+#endif
+
+#endif

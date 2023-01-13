@@ -3,12 +3,23 @@
 
 #include <ansi_params.h>
 
+#ifndef RC_INVOKED
+
 _MSL_BEGIN_NAMESPACE_STD
     _MSL_BEGIN_EXTERN_C
 
-typedef __typeof__ (sizeof(0)) size_t;
+    #ifndef _MSL_SIZE_T_TYPE
+        #define _MSL_SIZE_T_TYPE __typeof__(sizeof(0))
+    #endif
+
+    #ifndef _MSL_SIZE_T_DEFINED
+        #define _MSL_SIZE_T_DEFINED
+typedef _MSL_SIZE_T_TYPE size_t;
+    #endif
 
 _MSL_END_EXTERN_C
-    _MSL_END_NAMESPACE_STD
+_MSL_END_NAMESPACE_STD
 
-#endif //_MSL_SIZE_T_H
+#endif
+
+#endif
