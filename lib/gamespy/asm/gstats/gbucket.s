@@ -251,7 +251,7 @@ _021F6098:
 	bl strlen
 	add r0, r4, r0
 	add r0, r0, #1
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	mov r4, r0
 	mov r1, r5
 	bl strcpy
@@ -262,7 +262,7 @@ _021F6098:
 	mov r1, r4
 	bl ov4_021F623C
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r6
 	bl ov4_021F62B8
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -395,7 +395,7 @@ _021F6278:
 	ldr r0, [r5, #0xc]
 	cmp r0, #0
 	beq _021F6290
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _021F6290:
 	cmp r4, #0
 	moveq r0, #0

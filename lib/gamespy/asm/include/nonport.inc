@@ -7,7 +7,7 @@
 .public strcpy
 .public _ull_div
 .public _s32_div_f
-.public ov4_021D7880
+.public DWCi_GsMalloc
 .public ov4_021EAA74
 .public ov4_021EACC4
 .public ov4_021EAEB4

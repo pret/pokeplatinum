@@ -16,8 +16,8 @@
 .public _f_flt
 .public _s32_div_f
 .public _u32_div_f
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021E9A8C
 .public ov4_021E9B50
 .public ov4_021E9BBC
@@ -46,11 +46,11 @@
 .public ov4_021FE144
 .public ov4_021FE184
 .public ov4_021FE1A8
-.public ov4_021FE1E8
+.public SBServerAddIntKeyValue
 .public ov4_021FE220
-.public ov4_021FE28C
+.public SBServerGetIntValueA
 .public ov4_021FE31C
-.public ov4_021FE350
+.public SBServerGetPublicInetAddress
 .public ov4_021FE37C
 .public ov4_021FE3C8
 .public ov4_021FE3D0

@@ -55,7 +55,7 @@ _021F1798: ; jump table
 	b _021F19A8 ; case 4
 _021F17AC:
 	mov r0, #0x20
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r5, r0
 	bne _021F17D4
 	ldr r1, _021F1A48 ; =0x02218954
@@ -93,7 +93,7 @@ _021F1808:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F1838:
 	mov r0, #8
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r3, r0
 	bne _021F1860
 	ldr r1, _021F1A48 ; =0x02218954
@@ -126,7 +126,7 @@ _021F1860:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F18B4:
 	mov r0, #0x204
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	bne _021F18DC
 	ldr r1, _021F1A48 ; =0x02218954
@@ -155,7 +155,7 @@ _021F18DC:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F1920:
 	mov r0, #0x10
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r3, r0
 	bne _021F1948
 	ldr r1, _021F1A48 ; =0x02218954
@@ -192,7 +192,7 @@ _021F1954:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F19A8:
 	mov r0, #4
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r3, r0
 	bne _021F19D0
 	ldr r1, _021F1A48 ; =0x02218954
@@ -249,7 +249,7 @@ ov4_021F1A54: ; 0x021F1A54
 	mov r6, r2
 	mov r5, r3
 	ldr r4, [r8]
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	cmp r0, #0
 	bne _021F1A90
 	ldr r1, _021F1B08 ; =0x02218954
@@ -318,20 +318,20 @@ _021F1B4C:
 	ldr r0, [r5, #4]
 	bl ov4_021EACF0
 	ldr r0, [r5, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r5, #0x18]
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r5, #8]
 _021F1B80:
 	ldr r0, [r4, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r1, #0
 	mov r0, r4
 	str r1, [r4, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021F1B9C: .word Unk_ov4_02218968

@@ -203,7 +203,7 @@ ov66_0224B66C: ; 0x0224B66C
 	bl __msl_assertion_failed
 _0224B68C:
 	ldr r0, [r4, #0x15c]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r4, #0x134]
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -570,7 +570,7 @@ _0224BB20:
 	bl __msl_assertion_failed
 _0224BB3C:
 	mov r0, #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	addeq sp, sp, #0x1ec
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
@@ -853,7 +853,7 @@ _0224BF1C:
 	ldr r0, [r4, #8]
 	add r1, r1, #1
 	mov r1, r1, lsl #2
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	cmp r0, #0
 	bne _0224BF50
 	ldr r0, _0224BFE0 ; =0x022599A4
@@ -868,7 +868,7 @@ _0224BF50:
 	ldr r0, [r4, #0xc]
 	add r1, r1, #1
 	mov r1, r1, lsl #2
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	cmp r0, #0
 	bne _0224BF88
 	ldr r0, _0224BFE0 ; =0x022599A4
@@ -979,9 +979,9 @@ _0224C098:
 	mov r1, r6
 	blx r5
 	ldr r0, [sp, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1204,14 +1204,14 @@ _0224C3DC:
 	movs r5, r0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	ldr r0, [r5, #0x15c]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	cmp r6, #0
 	ldreq r6, _0224C450 ; =0x0225992C
 	mov r0, r6
 	bl strlen
 	mov r4, r0
 	add r0, r4, #1
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r5, #0x15c]
 	cmp r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}

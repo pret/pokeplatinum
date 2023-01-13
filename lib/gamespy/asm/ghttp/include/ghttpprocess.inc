@@ -9,8 +9,8 @@
 .public strcspn
 .public strstr
 .public atoi
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021EA840
 .public ov4_021EA8A4
 .public ov4_021EA8AC
@@ -20,7 +20,7 @@
 .public ov4_021EACDC
 .public ov4_021EAD78
 .public ov4_021EAF1C
-.public ov4_021EAF38
+.public GOAGetLastError
 .public SOC_GetHostByName
 .public ov60_02220130
 .public ov60_022203EC

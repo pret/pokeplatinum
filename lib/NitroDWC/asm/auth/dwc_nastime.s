@@ -146,7 +146,7 @@ _021D6C88:
 _021D6C94: .word Unk_ov4_02216570
 _021D6C98: .word errno
 _021D6C9C: .word Unk_ov4_02216540
-_021D6CA0: .word Unk_ov4_0221A4B4
+_021D6CA0: .word DWCnastimediffvalid
 	arm_func_end DWC_Auth_SetNasTimeDiff
 
 	.data
@@ -213,15 +213,15 @@ Unk_ov4_02216570: ; 0x02216570
 	.bss
 
 
-	.global Unk_ov4_0221A4B4
-Unk_ov4_0221A4B4: ; 0x0221A4B4
+	.global DWCnastimediffvalid
+DWCnastimediffvalid: ; 0x0221A4B4
 	.space 0x4
 
-	.global Unk_ov4_0221A4B8
-Unk_ov4_0221A4B8: ; 0x0221A4B8
+	.global DWCnastimediffbase
+DWCnastimediffbase: ; 0x0221A4B8
 	.space 0x8
 
-	.global Unk_ov4_0221A4C0
-Unk_ov4_0221A4C0: ; 0x0221A4C0
+	.global DWCnastimediff
+DWCnastimediff: ; 0x0221A4C0
 	.space 0x8
 

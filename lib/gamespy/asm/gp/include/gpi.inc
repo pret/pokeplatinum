@@ -6,9 +6,9 @@
 .public strncmp
 .public strstr
 .public atoi
-.public ov4_021D7880
-.public ov4_021D7894
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsRealloc
+.public DWCi_GsFree
 .public ov4_021EA364
 .public ov4_021EA840
 .public ov4_021EA898

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EB228
-ov4_021EB228: ; 0x021EB228
+	arm_func_start gpInitialize
+gpInitialize: ; 0x021EB228
 	stmfd sp!, {r3, lr}
 	ldr r3, _021EB254 ; =0x0221AE50
 	ldr r3, [r3, #0]
@@ -21,10 +21,10 @@ ov4_021EB228: ; 0x021EB228
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EB254: .word Unk_ov4_0221AE50
-	arm_func_end ov4_021EB228
+	arm_func_end gpInitialize
 
-	arm_func_start ov4_021EB258
-ov4_021EB258: ; 0x021EB258
+	arm_func_start gpDestroy
+gpDestroy: ; 0x021EB258
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne r1, [r0]
@@ -32,10 +32,10 @@ ov4_021EB258: ; 0x021EB258
 	ldmeqia sp!, {r3, pc}
 	bl ov4_021EBF14
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021EB258
+	arm_func_end gpDestroy
 
-	arm_func_start ov4_021EB274
-ov4_021EB274: ; 0x021EB274
+	arm_func_start gpProcess
+gpProcess: ; 0x021EB274
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne r1, [r0]
@@ -49,10 +49,10 @@ ov4_021EB274: ; 0x021EB274
 	mov r1, #0
 	bl ov4_021EC3B0
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021EB274
+	arm_func_end gpProcess
 
-	arm_func_start ov4_021EB2A8
-ov4_021EB2A8: ; 0x021EB2A8
+	arm_func_start gpSetCallback
+gpSetCallback: ; 0x021EB2A8
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne ip, [r0]
@@ -76,10 +76,10 @@ _021EB2E0:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EB2F4: .word Unk_ov4_02217940
-	arm_func_end ov4_021EB2A8
+	arm_func_end gpSetCallback
 
-	arm_func_start ov4_021EB2F8
-ov4_021EB2F8: ; 0x021EB2F8
+	arm_func_start gpConnectPreAuthenticatedA
+gpConnectPreAuthenticatedA: ; 0x021EB2F8
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x44
 	movs lr, r0
@@ -148,10 +148,10 @@ _021EB3B0:
 	; .align 2, 0
 _021EB3F4: .word Unk_ov4_02217950
 _021EB3F8: .word Unk_ov4_02217960
-	arm_func_end ov4_021EB2F8
+	arm_func_end gpConnectPreAuthenticatedA
 
-	arm_func_start ov4_021EB3FC
-ov4_021EB3FC: ; 0x021EB3FC
+	arm_func_start gpDisconnect
+gpDisconnect: ; 0x021EB3FC
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	ldrne r1, [r4]
@@ -165,10 +165,10 @@ ov4_021EB3FC: ; 0x021EB3FC
 	mov r0, r4
 	bl ov4_021EBF70
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021EB3FC
+	arm_func_end gpDisconnect
 
-	arm_func_start ov4_021EB430
-ov4_021EB430: ; 0x021EB430
+	arm_func_start gpProfileSearchA
+gpProfileSearchA: ; 0x021EB430
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x2c
 	cmp r0, #0
@@ -222,10 +222,10 @@ _021EB4B0:
 	; .align 2, 0
 _021EB4F0: .word Unk_ov4_02217950
 _021EB4F4: .word 0x00000601
-	arm_func_end ov4_021EB430
+	arm_func_end gpProfileSearchA
 
-	arm_func_start ov4_021EB4F8
-ov4_021EB4F8: ; 0x021EB4F8
+	arm_func_start gpGetInfo
+gpGetInfo: ; 0x021EB4F8
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x20c
 	movs r5, r0
@@ -286,10 +286,10 @@ _021EB5B4:
 	; .align 2, 0
 _021EB5CC: .word Unk_ov4_02217950
 _021EB5D0: .word Unk_ov4_02217964
-	arm_func_end ov4_021EB4F8
+	arm_func_end gpGetInfo
 
-	arm_func_start ov4_021EB5D4
-ov4_021EB5D4: ; 0x021EB5D4
+	arm_func_start gpSetInfosA
+gpSetInfosA: ; 0x021EB5D4
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne ip, [r0]
@@ -312,10 +312,10 @@ _021EB618:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EB620: .word Unk_ov4_02217964
-	arm_func_end ov4_021EB5D4
+	arm_func_end gpSetInfosA
 
-	arm_func_start ov4_021EB624
-ov4_021EB624: ; 0x021EB624
+	arm_func_start gpSendBuddyRequestA
+gpSendBuddyRequestA: ; 0x021EB624
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	sub sp, sp, #0x400
@@ -414,10 +414,10 @@ _021EB788: .word Unk_ov4_022179B0
 _021EB78C: .word Unk_ov4_022179BC
 _021EB790: .word Unk_ov4_022179CC
 _021EB794: .word Unk_ov4_022179D8
-	arm_func_end ov4_021EB624
+	arm_func_end gpSendBuddyRequestA
 
-	arm_func_start ov4_021EB798
-ov4_021EB798: ; 0x021EB798
+	arm_func_start gpAuthBuddyRequest
+gpAuthBuddyRequest: ; 0x021EB798
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne r3, [r0]
@@ -440,10 +440,10 @@ _021EB7DC:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EB7E4: .word Unk_ov4_02217964
-	arm_func_end ov4_021EB798
+	arm_func_end gpAuthBuddyRequest
 
-	arm_func_start ov4_021EB7E8
-ov4_021EB7E8: ; 0x021EB7E8
+	arm_func_start gpDenyBuddyRequest
+gpDenyBuddyRequest: ; 0x021EB7E8
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	ldrne r5, [r4]
@@ -479,7 +479,7 @@ _021EB82C:
 	cmp r0, #0
 	bgt _021EB89C
 	ldr r0, [r1, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp]
 	mov r1, #0
 	str r1, [r0, #0x10]
@@ -495,10 +495,10 @@ _021EB89C:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021EB8A4: .word Unk_ov4_02217964
-	arm_func_end ov4_021EB7E8
+	arm_func_end gpDenyBuddyRequest
 
-	arm_func_start ov4_021EB8A8
-ov4_021EB8A8: ; 0x021EB8A8
+	arm_func_start gpGetNumBuddies
+gpGetNumBuddies: ; 0x021EB8A8
 	cmp r0, #0
 	ldrne r2, [r0]
 	cmpne r2, #0
@@ -511,10 +511,10 @@ ov4_021EB8A8: ; 0x021EB8A8
 	ldreq r2, [r2, #0x430]
 	streq r2, [r1]
 	bx lr
-	arm_func_end ov4_021EB8A8
+	arm_func_end gpGetNumBuddies
 
-	arm_func_start ov4_021EB8D8
-ov4_021EB8D8: ; 0x021EB8D8
+	arm_func_start gpGetBuddyStatus
+gpGetBuddyStatus: ; 0x021EB8D8
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r4, r0
 	ldrne r3, [r4]
@@ -604,10 +604,10 @@ _021EBA08: .word Unk_ov4_02217A00
 _021EBA0C: .word Unk_ov4_02217A0C
 _021EBA10: .word Unk_ov4_0221792C
 _021EBA14: .word 0x000005CF
-	arm_func_end ov4_021EB8D8
+	arm_func_end gpGetBuddyStatus
 
-	arm_func_start ov4_021EBA18
-ov4_021EBA18: ; 0x021EBA18
+	arm_func_start gpGetBuddyIndex
+gpGetBuddyIndex: ; 0x021EBA18
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r4, r2
@@ -636,10 +636,10 @@ ov4_021EBA18: ; 0x021EBA18
 	mov r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021EBA18
+	arm_func_end gpGetBuddyIndex
 
-	arm_func_start ov4_021EBA88
-ov4_021EBA88: ; 0x021EBA88
+	arm_func_start gpIsBuddy
+gpIsBuddy: ; 0x021EBA88
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne r2, [r0]
@@ -659,10 +659,10 @@ ov4_021EBA88: ; 0x021EBA88
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021EBA88
+	arm_func_end gpIsBuddy
 
-	arm_func_start ov4_021EBAD4
-ov4_021EBAD4: ; 0x021EBAD4
+	arm_func_start gpDeleteBuddy
+gpDeleteBuddy: ; 0x021EBAD4
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne r3, [r0]
@@ -687,10 +687,10 @@ _021EBB18:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EBB28: .word Unk_ov4_02217964
-	arm_func_end ov4_021EBAD4
+	arm_func_end gpDeleteBuddy
 
-	arm_func_start ov4_021EBB2C
-ov4_021EBB2C: ; 0x021EBB2C
+	arm_func_start gpSetStatusA
+gpSetStatusA: ; 0x021EBB2C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x200
 	movs r7, r0
@@ -839,10 +839,10 @@ _021EBD48: .word Unk_ov4_022179B0
 _021EBD4C: .word Unk_ov4_02217A50
 _021EBD50: .word Unk_ov4_02217A60
 _021EBD54: .word Unk_ov4_022179D8
-	arm_func_end ov4_021EBB2C
+	arm_func_end gpSetStatusA
 
-	arm_func_start ov4_021EBD58
-ov4_021EBD58: ; 0x021EBD58
+	arm_func_start gpSendBuddyMessageA
+gpSendBuddyMessageA: ; 0x021EBD58
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldrne ip, [r0]
@@ -875,7 +875,7 @@ _021EBDB8:
 	; .align 2, 0
 _021EBDC4: .word Unk_ov4_02217964
 _021EBDC8: .word Unk_ov4_02217A6C
-	arm_func_end ov4_021EBD58
+	arm_func_end gpSendBuddyMessageA
 
 	.data
 

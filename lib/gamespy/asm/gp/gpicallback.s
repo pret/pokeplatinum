@@ -50,7 +50,7 @@ _021EDED8:
 	addeq sp, sp, #0x10
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, #0x10
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r3, r0
 	beq _021EDF20
 	str r7, [r3, #0]
@@ -84,7 +84,7 @@ ov4_021EDF5C: ; 0x021EDF5C
 	mov r0, #0x18
 	mov r5, r3
 	ldr r4, [r6, #0]
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	cmp r0, #0
 	bne _021EDF9C
 	ldr r1, _021EDFFC ; =0x022180C8
@@ -156,7 +156,7 @@ _021EE04C:
 	bne _021EE088
 	ldr r0, [r7, #8]
 	ldr r0, [r0, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r7, #8]
 	mov r1, #0
 	str r1, [r0, #8]
@@ -174,12 +174,12 @@ _021EE088:
 _021EE0AC:
 	ldr r0, [r6, #0x3c]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x3c]
 	str r4, [r0, r5, lsl #2]
 	ldr r0, [r6, #0x40]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x40]
 	str r8, [r0, r5, lsl #2]
 	ldr r0, [r6, #0x38]
@@ -188,11 +188,11 @@ _021EE0AC:
 	blt _021EE0AC
 _021EE0E4:
 	ldr r0, [r6, #0x3c]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r6, #0x3c]
 	ldr r0, [r6, #0x40]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r6, #0x40]
 	b _021EE1CC
@@ -201,7 +201,7 @@ _021EE108:
 	bne _021EE128
 	ldr r4, [r7, #8]
 	ldr r0, [r4, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0xc]
 	b _021EE1CC
@@ -212,7 +212,7 @@ _021EE128:
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
 	beq _021EE1CC
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x10]
 	b _021EE1CC
@@ -223,7 +223,7 @@ _021EE150:
 	ldr r0, [r4, #8]
 	cmp r0, #0
 	beq _021EE1CC
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #8]
 	b _021EE1CC
@@ -239,7 +239,7 @@ _021EE178:
 _021EE198:
 	ldr r0, [r5, #8]
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
 	str r6, [r0, r4, lsl #2]
 	ldr r0, [r5, #4]
@@ -248,16 +248,16 @@ _021EE198:
 	blt _021EE198
 _021EE1BC:
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r5, #8]
 _021EE1CC:
 	ldr r0, [r7, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r1, #0
 	mov r0, r7
 	str r1, [r7, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021EE1E8: .word Unk_ov4_022180D8

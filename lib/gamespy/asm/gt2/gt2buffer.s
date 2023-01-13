@@ -12,7 +12,7 @@ ov4_021F741C: ; 0x021F741C
 	mov r4, r1
 	mov r5, r0
 	mov r0, r4
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r5, #0]
 	cmp r0, #0
 	moveq r0, #0

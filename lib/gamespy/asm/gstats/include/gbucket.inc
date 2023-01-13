@@ -8,8 +8,8 @@
 .public _dsub
 .public _s32_div_f
 .public _d_div
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021EA44C
 .public ov4_021EA598
 .public ov4_021EA8AC

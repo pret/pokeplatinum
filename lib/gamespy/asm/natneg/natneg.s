@@ -133,8 +133,8 @@ _021FAFFC:
 _021FB014: .word Unk_ov4_0221B3E4
 	arm_func_end ov4_021FAFB0
 
-	arm_func_start ov4_021FB018
-ov4_021FB018: ; 0x021FB018
+	arm_func_start NNFreeNegotiateList
+NNFreeNegotiateList: ; 0x021FB018
 	stmfd sp!, {r3, lr}
 	ldr r0, _021FB040 ; =0x0221B3E4
 	ldr r0, [r0, #0x10]
@@ -147,7 +147,7 @@ ov4_021FB018: ; 0x021FB018
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021FB040: .word Unk_ov4_0221B3E4
-	arm_func_end ov4_021FB018
+	arm_func_end NNFreeNegotiateList
 
 	arm_func_start ov4_021FB044
 ov4_021FB044: ; 0x021FB044
@@ -160,7 +160,7 @@ ov4_021FB044: ; 0x021FB044
 	movne r0, #0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB064: .word Unk_ov4_022197A8
+_021FB064: .word NNMagicData
 	arm_func_end ov4_021FB044
 
 	arm_func_start ov4_021FB068
@@ -386,7 +386,7 @@ _021FB370:
 	add sp, sp, #0x5c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FB38C: .word Unk_ov4_022197A8
+_021FB38C: .word NNMagicData
 _021FB390: .word 0x0221AEEC
 _021FB394: .word Unk_ov4_0221B3E4
 _021FB398: .word 0x00006CFD
@@ -466,7 +466,7 @@ ov4_021FB39C: ; 0x021FB39C
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FB4B8: .word Unk_ov4_022197A8
+_021FB4B8: .word NNMagicData
 	arm_func_end ov4_021FB39C
 
 	arm_func_start ov4_021FB4BC
@@ -546,8 +546,8 @@ _021FB5A4: .word Unk_ov4_022197B8
 _021FB5A8: .word Unk_ov4_022197D4
 	arm_func_end ov4_021FB534
 
-	arm_func_start ov4_021FB5AC
-ov4_021FB5AC: ; 0x021FB5AC
+	arm_func_start NNBeginNegotiationWithSocket
+NNBeginNegotiationWithSocket: ; 0x021FB5AC
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr ip, _021FB670 ; =0x0221AE50
 	mov r8, r0
@@ -600,10 +600,10 @@ _021FB664:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021FB670: .word Unk_ov4_0221AE50
-	arm_func_end ov4_021FB5AC
+	arm_func_end NNBeginNegotiationWithSocket
 
-	arm_func_start ov4_021FB674
-ov4_021FB674: ; 0x021FB674
+	arm_func_start NNCancel
+NNCancel: ; 0x021FB674
 	stmfd sp!, {r4, lr}
 	bl ov4_021FAE80
 	movs r4, r0
@@ -619,7 +619,7 @@ _021FB698:
 	mov r0, #4
 	str r0, [r4, #0x10]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FB674
+	arm_func_end NNCancel
 
 	arm_func_start ov4_021FB6AC
 ov4_021FB6AC: ; 0x021FB6AC
@@ -661,7 +661,7 @@ _021FB700:
 	beq _021FB754
 	mov r0, r6
 	mov r2, r8
-	bl ov4_021FBC34
+	bl NNProcessData
 	ldr r0, [sb, #0x10]
 	cmp r0, #4
 	ldrne r0, [sb]
@@ -687,7 +687,7 @@ _021FB754:
 	mov r2, #0
 	blx r4
 	ldr r0, [sb, #8]
-	bl ov4_021FB674
+	bl NNCancel
 	b _021FB7CC
 _021FB7A8:
 	add r0, r1, #1
@@ -733,7 +733,7 @@ _021FB7CC:
 	str r0, [sb]
 _021FB844:
 	ldr r0, [sb, #8]
-	bl ov4_021FB674
+	bl NNCancel
 _021FB84C:
 	ldr r0, [sb, #0x10]
 	cmp r0, #1
@@ -751,15 +751,15 @@ _021FB84C:
 	mov r2, #0
 	blx r4
 	ldr r0, [sb, #8]
-	bl ov4_021FB674
+	bl NNCancel
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _021FB898: .word Unk_ov4_0221B3F8
 	arm_func_end ov4_021FB6AC
 
-	arm_func_start ov4_021FB89C
-ov4_021FB89C: ; 0x021FB89C
+	arm_func_start NNThink
+NNThink: ; 0x021FB89C
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _021FB8DC ; =0x0221B3E4
 	ldr r0, [r0, #0x10]
@@ -779,7 +779,7 @@ _021FB8C0:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021FB8DC: .word Unk_ov4_0221B3E4
-	arm_func_end ov4_021FB89C
+	arm_func_end NNThink
 
 	arm_func_start ov4_021FB8E0
 ov4_021FB8E0: ; 0x021FB8E0
@@ -834,7 +834,7 @@ ov4_021FB8E0: ; 0x021FB8E0
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FB9A8: .word Unk_ov4_022197A8
+_021FB9A8: .word NNMagicData
 	arm_func_end ov4_021FB8E0
 
 	arm_func_start ov4_021FB9AC
@@ -867,7 +867,7 @@ _021FB9FC:
 	mov r2, #0
 	blx ip
 	ldr r0, [r4, #8]
-	bl ov4_021FB674
+	bl NNCancel
 	ldmia sp!, {r3, r4, r5, pc}
 _021FBA1C:
 	ldr r1, [r5, #0xc]
@@ -1020,8 +1020,8 @@ _021FBBF0:
 	ldmia sp!, {r3, r4, pc}
 	arm_func_end ov4_021FBB30
 
-	arm_func_start ov4_021FBC34
-ov4_021FBC34: ; 0x021FBC34
+	arm_func_start NNProcessData
+NNProcessData: ; 0x021FBC34
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x2c
 	mov r6, r0
@@ -1114,13 +1114,13 @@ _021FBD18:
 	bl ov4_021FBB30
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
-	arm_func_end ov4_021FBC34
+	arm_func_end NNProcessData
 
 	.data
 
 
-	.global Unk_ov4_022197A8
-Unk_ov4_022197A8: ; 0x022197A8
+	.global NNMagicData
+NNMagicData: ; 0x022197A8
 	.incbin "incbin/overlay4_data.bin", 0x3928, 0x3930 - 0x3928
 
 	.global Unk_ov4_022197B0

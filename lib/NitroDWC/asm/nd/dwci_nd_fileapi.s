@@ -520,8 +520,8 @@ _02224D10: .word Unk_ov60_02229E74
 _02224D14: .word Unk_ov60_02229E6C
 	arm_func_end ov60_02224CB8
 
-	arm_func_start ov60_02224D18
-ov60_02224D18: ; 0x02224D18
+	arm_func_start DWCi_NdGetFileListNumAsync
+DWCi_NdGetFileListNumAsync: ; 0x02224D18
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0xc
 	ldr r2, _02224D84 ; =0x02228CD8
@@ -552,10 +552,10 @@ ov60_02224D18: ; 0x02224D18
 	; .align 2, 0
 _02224D84: .word Unk_ov60_02228CD8
 _02224D88: .word Unk_ov60_02229F5C
-	arm_func_end ov60_02224D18
+	arm_func_end DWCi_NdGetFileListNumAsync
 
-	arm_func_start ov60_02224D8C
-ov60_02224D8C: ; 0x02224D8C
+	arm_func_start DWCi_NdGetFileListAsync
+DWCi_NdGetFileListAsync: ; 0x02224D8C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x18
 	mov r4, r2
@@ -738,10 +738,10 @@ _0222503C: .word Unk_ov60_02229E70
 _02225040: .word Unk_ov60_02228CCC
 _02225044: .word 0x02229CA8
 _02225048: .word 0x02229CB0
-	arm_func_end ov60_02224D8C
+	arm_func_end DWCi_NdGetFileListAsync
 
-	arm_func_start ov60_0222504C
-ov60_0222504C: ; 0x0222504C
+	arm_func_start DWCi_NdGetFileAsync
+DWCi_NdGetFileAsync: ; 0x0222504C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0xc
 	mov r8, r0
@@ -861,15 +861,15 @@ _022251F8: .word Unk_ov60_02229E5C
 _022251FC: .word Unk_ov60_02228CE4
 _02225200: .word Unk_ov60_02229E70
 _02225204: .word 0x02229CB4
-	arm_func_end ov60_0222504C
+	arm_func_end DWCi_NdGetFileAsync
 
-	arm_func_start ov60_02225208
-ov60_02225208: ; 0x02225208
+	arm_func_start DWCi_NdGetProgress
+DWCi_NdGetProgress: ; 0x02225208
 	ldr ip, _02225210 ; =ov60_02227184
 	bx ip
 	; .align 2, 0
 _02225210: .word ov60_02227184
-	arm_func_end ov60_02225208
+	arm_func_end DWCi_NdGetProgress
 
 	.rodata
 

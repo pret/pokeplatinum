@@ -2,7 +2,7 @@
 #define _GSTATS_H_
 
 #include <gs/nonport.h>
-#include <stringutil.h>
+#include <gs/stringutil.h>
 #include "gbucket.h"
 
 #ifdef __cplusplus

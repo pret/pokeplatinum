@@ -7,8 +7,8 @@
 .public strncmp
 .public strstr
 .public atoi
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021EA7F4
 .public ov4_021EA8E0
 .public ov4_021EA924
@@ -19,7 +19,7 @@
 .public ov4_021EAD78
 .public ov4_021EADC4
 .public ov4_021EAEF0
-.public ov4_021EAF38
+.public GOAGetLastError
 .public ov4_021EB018
 .public ov4_021EB034
 .public B64Encode

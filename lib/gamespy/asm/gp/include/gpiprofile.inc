@@ -3,8 +3,8 @@
 .public strncmp
 .public atoi
 .public _s32_div_f
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021EA1FC
 .public ov4_021EA44C
 .public ov4_021EA4F4

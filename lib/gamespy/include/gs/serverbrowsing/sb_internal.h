@@ -2,12 +2,12 @@
 #define _SB_INTERNAL_H_
 
 #include <gs/nonport.h>
-#include <darray.h>
-#include <hashtable.h>
-#include <stringutil.h>
-#include <available.h>
+#include <gs/darray.h>
+#include <gs/hashtable.h>
+#include <gs/stringutil.h>
+#include <gs/available.h>
 #include "sb_serverbrowsing.h"
-#include <qr2/qr2regkeys.h>
+#include <gs/qr2/qr2regkeys.h>
 #include "sb_crypt.h"
 
 #ifdef __cplusplus

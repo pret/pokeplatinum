@@ -19,7 +19,7 @@ DWC_Svl_Init: ; 0x021D6CA4
 	beq _021D6CD4
 	ldr r1, _021D6D30 ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _021D6CD4:
@@ -32,7 +32,7 @@ _021D6CD4:
 	bne _021D6D04
 	ldr r1, _021D6D30 ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _021D6D04:
@@ -131,7 +131,7 @@ _021D6DE0:
 	beq _021D6E64
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #0xb0
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -155,7 +155,7 @@ _021D6E94:
 	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #0xb0
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -185,7 +185,7 @@ _021D6F04:
 	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #0xb0
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -202,7 +202,7 @@ _021D6F2C:
 	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #0xb0
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -227,7 +227,7 @@ _021D6F6C:
 	bl DWC_Http_Destroy
 	ldr r1, _021D6FDC ; =0xFFFFA1DC
 	mov r0, #9
-	bl ov4_021D7724
+	bl DWCi_SetError
 	mov r0, #0
 	add sp, sp, #0xb0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -294,7 +294,7 @@ _021D7098:
 	bl DWC_Http_Destroy
 	ldr r1, _021D70C0 ; =0xFFFFA1DB
 	mov r0, #0x11
-	bl ov4_021D7724
+	bl DWCi_SetError
 	mov r0, #4
 	ldmia sp!, {r3, pc}
 _021D70B4:
@@ -318,7 +318,7 @@ ov4_021D70C4: ; 0x021D70C4
 	bne _021D7100
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
 	mov r0, #0x10
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
@@ -337,7 +337,7 @@ _021D7118:
 	bne _021D7144
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
 	mov r0, #0x10
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
@@ -350,7 +350,7 @@ _021D7144:
 	bne _021D7174
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
 	mov r0, #0x10
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
@@ -360,7 +360,7 @@ _021D7174:
 	ldr r1, _021D72C8 ; =0xFFFF9E58
 	mov r0, #0x10
 	sub r1, r1, r2
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
@@ -374,7 +374,7 @@ _021D7198:
 	bgt _021D71CC
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
 	mov r0, #0x10
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
@@ -388,7 +388,7 @@ _021D71CC:
 	bne _021D7200
 	ldr r1, _021D72B8 ; =0xFFFF9DF3
 	mov r0, #0x10
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}
@@ -398,7 +398,7 @@ _021D7200:
 	ldr r1, _021D72D0 ; =0xFFFFA240
 	mov r0, #0x10
 	sub r1, r1, r2
-	bl ov4_021D7724
+	bl DWCi_SetError
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, pc}

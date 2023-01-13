@@ -3,11 +3,11 @@
 
 #include <stdio.h>
 #include <gs/nonport.h>
-#include <hashtable.h>
-#include <darray.h>
-#include <md5.h>
-#include <stringutil.h>
-#include <available.h>
+#include <gs/hashtable.h>
+#include <gs/darray.h>
+#include <gs/md5.h>
+#include <gs/stringutil.h>
+#include <gs/available.h>
 #include "gp.h"
 
 #define DEBUG_CRAZY

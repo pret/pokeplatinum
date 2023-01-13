@@ -63,8 +63,8 @@ _021E96F8: .word Unk_ov4_0221AE50
 _021E96FC: .word 0x0221AE60
 	arm_func_end ov4_021E96B0
 
-	arm_func_start ov4_021E9700
-ov4_021E9700: ; 0x021E9700
+	arm_func_start GSIStartAvailableCheckA
+GSIStartAvailableCheckA: ; 0x021E9700
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x40
 	mov r4, r0
@@ -129,7 +129,7 @@ _021E97E8: .word Unk_ov4_022176A4
 _021E97EC: .word 0x00006CFC
 _021E97F0: .word 0x0221AE58
 _021E97F4: .word 0x0221AE65
-	arm_func_end ov4_021E9700
+	arm_func_end GSIStartAvailableCheckA
 
 	arm_func_start ov4_021E97F8
 ov4_021E97F8: ; 0x021E97F8
@@ -182,8 +182,8 @@ _021E98A8: .word Unk_ov4_0221AE50
 _021E98AC: .word Unk_ov4_022176C8
 	arm_func_end ov4_021E97F8
 
-	arm_func_start ov4_021E98B0
-ov4_021E98B0: ; 0x021E98B0
+	arm_func_start GSIAvailableCheckThink
+GSIAvailableCheckThink: ; 0x021E98B0
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x58
 	ldr r2, _021E99E8 ; =0x0221AE50
@@ -269,7 +269,7 @@ _021E99DC:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E99E8: .word Unk_ov4_0221AE50
-	arm_func_end ov4_021E98B0
+	arm_func_end GSIAvailableCheckThink
 
 	.data
 

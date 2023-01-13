@@ -7,8 +7,8 @@
 	.text
 
 
-	arm_func_start ov4_021FBD94
-ov4_021FBD94: ; 0x021FBD94
+	arm_func_start qr2_init_socketA
+qr2_init_socketA: ; 0x021FBD94
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x40
 	movs r5, r0
@@ -18,7 +18,7 @@ ov4_021FBD94: ; 0x021FBD94
 	ldreq r6, _021FBF40 ; =0x022197F4
 	beq _021FBDC4
 	mov r0, #0x110
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	mov r6, r0
 	str r0, [r5, #0]
 _021FBDC4:
@@ -130,10 +130,10 @@ _021FBF48: .word Unk_ov4_0221B5F8
 _021FBF4C: .word Unk_ov4_0221B610
 _021FBF50: .word Unk_ov4_02219904
 _021FBF54: .word 0x00006CFC
-	arm_func_end ov4_021FBD94
+	arm_func_end qr2_init_socketA
 
-	arm_func_start ov4_021FBF58
-ov4_021FBF58: ; 0x021FBF58
+	arm_func_start qr2_register_natneg_callback
+qr2_register_natneg_callback: ; 0x021FBF58
 	cmp r0, #0
 	ldreq r0, _021FBF6C ; =0x022197F0
 	ldreq r0, [r0]
@@ -141,10 +141,10 @@ ov4_021FBF58: ; 0x021FBF58
 	bx lr
 	; .align 2, 0
 _021FBF6C: .word Unk_ov4_022197F0
-	arm_func_end ov4_021FBF58
+	arm_func_end qr2_register_natneg_callback
 
-	arm_func_start ov4_021FBF70
-ov4_021FBF70: ; 0x021FBF70
+	arm_func_start qr2_register_clientmessage_callback
+qr2_register_clientmessage_callback: ; 0x021FBF70
 	cmp r0, #0
 	ldreq r0, _021FBF84 ; =0x022197F0
 	ldreq r0, [r0]
@@ -152,10 +152,10 @@ ov4_021FBF70: ; 0x021FBF70
 	bx lr
 	; .align 2, 0
 _021FBF84: .word Unk_ov4_022197F0
-	arm_func_end ov4_021FBF70
+	arm_func_end qr2_register_clientmessage_callback
 
-	arm_func_start ov4_021FBF88
-ov4_021FBF88: ; 0x021FBF88
+	arm_func_start qr2_register_publicaddress_callback
+qr2_register_publicaddress_callback: ; 0x021FBF88
 	cmp r0, #0
 	ldreq r0, _021FBF9C ; =0x022197F0
 	ldreq r0, [r0]
@@ -163,10 +163,10 @@ ov4_021FBF88: ; 0x021FBF88
 	bx lr
 	; .align 2, 0
 _021FBF9C: .word Unk_ov4_022197F0
-	arm_func_end ov4_021FBF88
+	arm_func_end qr2_register_publicaddress_callback
 
-	arm_func_start ov4_021FBFA0
-ov4_021FBFA0: ; 0x021FBFA0
+	arm_func_start qr2_think
+qr2_think: ; 0x021FBFA0
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	ldreq r0, _021FBFD0 ; =0x022197F0
@@ -182,7 +182,7 @@ _021FBFC4:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FBFD0: .word Unk_ov4_022197F0
-	arm_func_end ov4_021FBFA0
+	arm_func_end qr2_think
 
 	arm_func_start ov4_021FBFD4
 ov4_021FBFD4: ; 0x021FBFD4
@@ -222,7 +222,7 @@ _021FC028:
 	mov r1, r7
 	mov r3, sb
 	strb r5, [r7, r2]
-	bl ov4_021FCF60
+	bl qr2_parse_queryA
 _021FC064:
 	ldr r0, [sl]
 	bl ov4_021EAB6C
@@ -313,8 +313,8 @@ _021FC18C: .word 0x0000EA60
 _021FC190: .word 0x00004E20
 	arm_func_end ov4_021FC080
 
-	arm_func_start ov4_021FC194
-ov4_021FC194: ; 0x021FC194
+	arm_func_start qr2_send_statechanged
+qr2_send_statechanged: ; 0x021FC194
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	ldreq r0, _021FC1E8 ; =0x022197F0
@@ -339,10 +339,10 @@ ov4_021FC194: ; 0x021FC194
 	; .align 2, 0
 _021FC1E8: .word Unk_ov4_022197F0
 _021FC1EC: .word 0x00002710
-	arm_func_end ov4_021FC194
+	arm_func_end qr2_send_statechanged
 
-	arm_func_start ov4_021FC1F0
-ov4_021FC1F0: ; 0x021FC1F0
+	arm_func_start qr2_shutdown
+qr2_shutdown: ; 0x021FC1F0
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	ldreq r0, _021FC26C ; =0x022197F0
@@ -375,15 +375,15 @@ _021FC254:
 	cmp r4, r0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FC26C: .word Unk_ov4_022197F0
 _021FC270: .word Unk_ov4_022197F4
-	arm_func_end ov4_021FC1F0
+	arm_func_end qr2_shutdown
 
-	arm_func_start ov4_021FC274
-ov4_021FC274: ; 0x021FC274
+	arm_func_start qr2_keybuffer_add
+qr2_keybuffer_add: ; 0x021FC274
 	ldr r3, [r0, #0x100]
 	cmp r3, #0xfe
 	bxge lr
@@ -395,10 +395,10 @@ ov4_021FC274: ; 0x021FC274
 	str r2, [r0, #0x100]
 	strb r1, [r0, r3]
 	bx lr
-	arm_func_end ov4_021FC274
+	arm_func_end qr2_keybuffer_add
 
-	arm_func_start ov4_021FC2A0
-ov4_021FC2A0: ; 0x021FC2A0
+	arm_func_start qr2_buffer_add_int
+qr2_buffer_add_int: ; 0x021FC2A0
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x14
 	mov r2, r1
@@ -408,15 +408,15 @@ ov4_021FC2A0: ; 0x021FC2A0
 	bl sprintf
 	add r1, sp, #0
 	mov r0, r4
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _021FC2D0: .word Unk_ov4_0221995C
-	arm_func_end ov4_021FC2A0
+	arm_func_end qr2_buffer_add_int
 
-	arm_func_start ov4_021FC2D4
-ov4_021FC2D4: ; 0x021FC2D4
+	arm_func_start qr2_buffer_addA
+qr2_buffer_addA: ; 0x021FC2D4
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r1
 	mov r4, r0
@@ -440,7 +440,7 @@ ov4_021FC2D4: ; 0x021FC2D4
 	sub r0, r0, #1
 	strb r1, [r4, r0]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021FC2D4
+	arm_func_end qr2_buffer_addA
 
 	arm_func_start ov4_021FC330
 ov4_021FC330: ; 0x021FC330
@@ -880,7 +880,7 @@ _021FC91C:
 	mov r0, sb
 	cmp r1, #0
 	moveq r1, fp
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	cmp r8, #0
 	bne _021FC96C
 	ldrb r0, [r7]
@@ -894,7 +894,7 @@ _021FC91C:
 	bne _021FC96C
 	ldr r1, _021FCA84 ; =0x02219984
 	mov r0, sb
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 _021FC96C:
 	ldr r0, [sp, #0x108]
 	add r5, r5, #1
@@ -961,7 +961,7 @@ _021FCA40:
 	bne _021FCA58
 	ldr r1, _021FCA84 ; =0x02219984
 	mov r0, sb
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 _021FCA58:
 	add r5, r5, #1
 	cmp r5, fp
@@ -1096,7 +1096,7 @@ _021FCC08:
 	bne _021FCC84
 	mov r0, sb
 	mov r1, r5
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r0, [sb, #0x800]
 	mov r1, #0x5c
 	add r0, sb, r0
@@ -1112,7 +1112,7 @@ _021FCC08:
 	bne _021FCC70
 	ldr r1, _021FCD68 ; =0x02219984
 	mov r0, sb
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 _021FCC70:
 	ldr r0, [sb, #0x800]
 	mov r1, #0x5c
@@ -1131,7 +1131,7 @@ _021FCC90:
 	bl sprintf
 	mov r0, sb
 	add r1, sp, #0x108
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r0, [sb, #0x800]
 	cmp r8, #1
 	add r1, sb, r0
@@ -1161,7 +1161,7 @@ _021FCD08:
 	bne _021FCD20
 	ldr r1, _021FCD68 ; =0x02219984
 	mov r0, sb
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 _021FCD20:
 	ldr r0, [sb, #0x800]
 	add r4, r4, #1
@@ -1208,7 +1208,7 @@ ov4_021FCD70: ; 0x021FCD70
 	bl ov4_021FCB98
 	ldr r1, _021FCDD0 ; =0x02219990
 	mov r0, r4
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r0, [r4, #0x800]
 	sub r0, r0, #1
 	str r0, [r4, #0x800]
@@ -1331,8 +1331,8 @@ _021FCF04:
 _021FCF5C: .word 0x66666667
 	arm_func_end ov4_021FCEFC
 
-	arm_func_start ov4_021FCF60
-ov4_021FCF60: ; 0x021FCF60
+	arm_func_start qr2_parse_queryA
+qr2_parse_queryA: ; 0x021FCF60
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x810
 	movs r8, r0
@@ -1544,7 +1544,7 @@ _021FD248:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _021FD270: .word Unk_ov4_022197F0
-	arm_func_end ov4_021FCF60
+	arm_func_end qr2_parse_queryA
 
 	arm_func_start ov4_021FD274
 ov4_021FD274: ; 0x021FD274
@@ -1603,12 +1603,12 @@ _021FD324:
 	bl sprintf
 	mov r0, r6
 	mov r1, r7
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r0, [r5, r8, lsl #2]
 	bl SOC_InetNtoA
 	mov r1, r0
 	mov r0, r6
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	add r8, r8, #1
 	ldr r0, [r4, #0]
 	cmp r8, r0
@@ -1616,50 +1616,50 @@ _021FD324:
 _021FD364:
 	ldr r1, _021FD4C0 ; =0x022199B0
 	add r0, sp, #0x24
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r1, [sl, #0xc0]
 	add r0, sp, #0x24
-	bl ov4_021FC2A0
+	bl qr2_buffer_add_int
 	ldr r1, _021FD4C4 ; =0x022199BC
 	add r0, sp, #0x24
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r0, [sl, #0xc8]
 	cmp r0, #0
 	ldrne r1, _021FD4C8 ; =0x022199C4
 	add r0, sp, #0x24
 	ldreq r1, _021FD4CC ; =0x022199C8
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	cmp sb, #0
 	beq _021FD3C0
 	ldr r1, _021FD4D0 ; =0x022199CC
 	add r0, sp, #0x24
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	add r0, sp, #0x24
 	mov r1, sb
-	bl ov4_021FC2A0
+	bl qr2_buffer_add_int
 _021FD3C0:
 	ldr r1, _021FD4D4 ; =0x022199DC
 	add r0, sp, #0x24
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	add r0, sp, #0x24
 	add r1, sl, #4
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r0, [sl, #0xa8]
 	cmp r0, #0
 	beq _021FD418
 	ldr r1, _021FD4D8 ; =0x022199E8
 	add r0, sp, #0x24
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	ldr r1, [sl, #0x104]
 	add r0, sp, #0x24
-	bl ov4_021FC2A0
+	bl qr2_buffer_add_int
 	ldr r1, _021FD4DC ; =0x022199F4
 	add r0, sp, #0x24
-	bl ov4_021FC2D4
+	bl qr2_buffer_addA
 	add r0, sl, #0x100
 	ldrh r1, [r0, #8]
 	add r0, sp, #0x24
-	bl ov4_021FC2A0
+	bl qr2_buffer_add_int
 _021FD418:
 	cmp sb, #2
 	beq _021FD448

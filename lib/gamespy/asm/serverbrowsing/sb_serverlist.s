@@ -17,14 +17,14 @@ ov4_021FEEC8: ; 0x021FEEC8
 	ldr r5, [r1, #0]
 	ldr r1, [r2, #0x498]
 	mov r2, #0
-	bl ov4_021FE28C
+	bl SBServerGetIntValueA
 	ldr r1, _021FEF20 ; =0x0221B75C
 	mov r4, r0
 	ldr r1, [r1, #0]
 	mov r0, r5
 	ldr r1, [r1, #0x498]
 	mov r2, #0
-	bl ov4_021FE28C
+	bl SBServerGetIntValueA
 	ldr r1, _021FEF20 ; =0x0221B75C
 	sub r0, r4, r0
 	ldr r1, [r1, #0]
@@ -264,7 +264,7 @@ _021FF1FC:
 	bl ov4_021E9BC4
 	ldr r5, [r0, #0]
 	mov r0, r5
-	bl ov4_021FE350
+	bl SBServerGetPublicInetAddress
 	cmp r8, r0
 	bne _021FF230
 	mov r0, r5
@@ -1088,7 +1088,7 @@ _021FFCD8:
 	cmp r0, #0
 	bne _021FFD18
 	mov r0, #0x1000
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	cmp r0, #0
 	str r0, [r5, #0x7c]
 	addeq sp, sp, #0x30c
@@ -1169,7 +1169,7 @@ ov4_021FFDE0: ; 0x021FFDE0
 	ldr r0, [r4, #0x7c]
 	cmp r0, #0
 	beq _021FFDF8
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _021FFDF8:
 	mov r1, #0
 	str r1, [r4, #0x7c]
@@ -1521,7 +1521,7 @@ _022002A0:
 	ldrb r2, [r8], #1
 	ldr r1, [r1, #0]
 	mov r0, sb
-	bl ov4_021FE1E8
+	bl SBServerAddIntKeyValue
 	sub r7, r7, #1
 	b _02200354
 _022002B8:
@@ -1539,7 +1539,7 @@ _022002B8:
 	orr r2, r2, r3
 	mov r2, r2, lsl #0x10
 	mov r2, r2, lsr #0x10
-	bl ov4_021FE1E8
+	bl SBServerAddIntKeyValue
 	add r8, r8, #2
 	sub r7, r7, #2
 	b _02200354

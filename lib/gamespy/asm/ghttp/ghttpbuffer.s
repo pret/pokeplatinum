@@ -35,7 +35,7 @@ _0221FE6C:
 	ldmib r5, {r0, r1}
 	add r4, r1, r4
 	mov r1, r4
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	cmp r0, #0
 	moveq r0, #0
 	stmneib r5, {r0, r4}
@@ -218,7 +218,7 @@ _022200F0:
 	ldr r1, [r4, #0x1c]
 	cmp r1, #0
 	bne _02220110
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _02220110:
 	mov r0, r4
 	mov r1, #0
@@ -561,7 +561,7 @@ _0222058C:
 	mov r0, #5
 	str r0, [r7, #0x38]
 	ldr r0, [r7, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	str r0, [r7, #0x4c]
 	add sp, sp, #8
 	mov r0, #0

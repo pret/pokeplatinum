@@ -1,7 +1,7 @@
 .public __msl_assertion_failed
 .public memset
 .public strcmp
-.public ov4_021D78B0
+.public DWCi_GsFree
 .public ov4_021EBDCC
 .public ov4_021EBF14
 .public ov4_021EBF70

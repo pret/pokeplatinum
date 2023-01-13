@@ -16,4 +16,4 @@
 .public DWC_Http_GetBase64DecodedResult
 .public DWC_Auth_SetNasTimeDiff
 .public ov4_021D70C4
-.public ov4_021D7724
+.public DWCi_SetError

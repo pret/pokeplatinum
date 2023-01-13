@@ -60,7 +60,7 @@ ov4_021EA8AC: ; 0x021EA8AC
 	ldmeqia sp!, {r3, r4, r5, pc}
 	bl strlen
 	add r0, r0, #1
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	beq _021EA8D8
 	mov r1, r5
@@ -604,14 +604,14 @@ ov4_021EAF1C: ; 0x021EAF1C
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021EAF1C
 
-	arm_func_start ov4_021EAF38
-ov4_021EAF38: ; 0x021EAF38
+	arm_func_start GOAGetLastError
+GOAGetLastError: ; 0x021EAF38
 	ldr r0, _021EAF44 ; =0x0221AF2C
 	ldr r0, [r0, #4]
 	bx lr
 	; .align 2, 0
 _021EAF44: .word Unk_ov4_0221AF2C
-	arm_func_end ov4_021EAF38
+	arm_func_end GOAGetLastError
 
 	arm_func_start ov4_021EAF48
 ov4_021EAF48: ; 0x021EAF48

@@ -17,8 +17,8 @@
 #endif
 
 #include <string.h>
-//#include <stdlib.h>
-//#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #if defined(_XBOX)
     #include <Xtl.h>
@@ -102,7 +102,7 @@
     #define _MD5_H_
     #include <ninet.h>
     #undef _MD5_H_
-//#include <extras.h>
+    #include <MSL_Extras/extras.h>
 
 #else
     #error The GameSpy SDKs do not support this operating system

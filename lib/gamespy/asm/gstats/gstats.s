@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F6338
-ov4_021F6338: ; 0x021F6338
+	arm_func_start CloseStatsConnection
+CloseStatsConnection: ; 0x021F6338
 	stmfd sp!, {r3, lr}
 	ldr r0, _021F63A0 ; =0x02219358
 	mvn r1, #0
@@ -28,7 +28,7 @@ _021F6364:
 	ldr r0, [r0, #0xc]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, _021F63A4 ; =0x0221AF80
 	mov r1, #0
 	str r1, [r0, #0xc]
@@ -38,10 +38,10 @@ _021F6364:
 	; .align 2, 0
 _021F63A0: .word Unk_ov4_02219358
 _021F63A4: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6338
+	arm_func_end CloseStatsConnection
 
-	arm_func_start ov4_021F63A8
-ov4_021F63A8: ; 0x021F63A8
+	arm_func_start IsStatsConnected
+IsStatsConnected: ; 0x021F63A8
 	ldr r1, _021F63C4 ; =0x02219358
 	mvn r0, #0
 	ldr r1, [r1, #0]
@@ -51,10 +51,10 @@ ov4_021F63A8: ; 0x021F63A8
 	bx lr
 	; .align 2, 0
 _021F63C4: .word Unk_ov4_02219358
-	arm_func_end ov4_021F63A8
+	arm_func_end IsStatsConnected
 
-	arm_func_start ov4_021F63C8
-ov4_021F63C8: ; 0x021F63C8
+	arm_func_start PersistThink
+PersistThink: ; 0x021F63C8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	ldr r0, _021F6510 ; =0x02219358
 	mvn r1, #0
@@ -89,7 +89,7 @@ _021F641C:
 	ldr r1, [sl, #0x2c]
 	ldr r0, [sl, #0xc]
 	add r1, r1, #1
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	str r0, [sl, #0xc]
 	cmp r0, #0
 	moveq r0, #0
@@ -105,7 +105,7 @@ _021F6460:
 	bl ov4_021EAE04
 	cmp r0, #0
 	bgt _021F6494
-	bl ov4_021F6338
+	bl CloseStatsConnection
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _021F6494:
@@ -145,7 +145,7 @@ _021F64F4:
 	; .align 2, 0
 _021F6510: .word Unk_ov4_02219358
 _021F6514: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F63C8
+	arm_func_end PersistThink
 
 	arm_func_start ov4_021F6518
 ov4_021F6518: ; 0x021F6518
@@ -1287,11 +1287,11 @@ Unk_ov4_0221AFAC: ; 0x0221AFAC
 Unk_ov4_0221AFB0: ; 0x0221AFB0
 	.space 0x200
 
-	.global Unk_ov4_0221B1B0
-Unk_ov4_0221B1B0: ; 0x0221B1B0
+	.global gcd_gamename
+gcd_gamename: ; 0x0221B1B0
 	.space 0x100
 
-	.global Unk_ov4_0221B2B0
-Unk_ov4_0221B2B0: ; 0x0221B2B0
+	.global gcd_secret_key
+gcd_secret_key: ; 0x0221B2B0
 	.space 0x100
 

@@ -31,8 +31,8 @@ _02224228:
 _02224230: .word Unk_ov60_02229E50
 	arm_func_end ov60_022241E8
 
-	arm_func_start ov60_02224234
-ov60_02224234: ; 0x02224234
+	arm_func_start DWCi_NdStartup
+DWCi_NdStartup: ; 0x02224234
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr ip, _022243C4 ; =0x02229E50
 	mov r5, r0
@@ -145,7 +145,7 @@ _022243CC: .word Unk_ov60_02229ED8
 _022243D0: .word Unk_ov60_02229E84
 _022243D4: .word Unk_ov60_02229EBC
 _022243D8: .word Unk_ov60_02229EA4
-	arm_func_end ov60_02224234
+	arm_func_end DWCi_NdStartup
 
 	arm_func_start ov60_022243DC
 ov60_022243DC: ; 0x022243DC
@@ -169,8 +169,8 @@ ov60_022243DC: ; 0x022243DC
 _0222441C: .word Unk_ov60_02229E50
 	arm_func_end ov60_022243DC
 
-	arm_func_start ov60_02224420
-ov60_02224420: ; 0x02224420
+	arm_func_start DWCi_NdCleanupAsync
+DWCi_NdCleanupAsync: ; 0x02224420
 	ldr r1, _0222443C ; =0x02229E50
 	mov r2, #0
 	str r2, [r1, #0x14]
@@ -182,7 +182,7 @@ ov60_02224420: ; 0x02224420
 _0222443C: .word Unk_ov60_02229E50
 _02224440: .word ov60_022258C4
 _02224444: .word ov60_022243DC
-	arm_func_end ov60_02224420
+	arm_func_end DWCi_NdCleanupAsync
 
 	.bss
 

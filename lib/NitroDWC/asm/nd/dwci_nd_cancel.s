@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov60_02224448
-ov60_02224448: ; 0x02224448
+	arm_func_start DWCi_NdCancelAsync
+DWCi_NdCancelAsync: ; 0x02224448
 	stmfd sp!, {r4, lr}
 	bl ov60_02225588
 	cmp r0, #0
@@ -25,4 +25,4 @@ _02224474:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02224480: .word Unk_ov60_02229E74
-	arm_func_end ov60_02224448
+	arm_func_end DWCi_NdCancelAsync

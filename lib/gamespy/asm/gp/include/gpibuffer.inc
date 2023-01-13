@@ -6,11 +6,11 @@
 .public strncmp
 .public strchr
 .public atoi
-.public ov4_021D7894
+.public DWCi_GsRealloc
 .public ov4_021E9BBC
 .public ov4_021EAE04
 .public ov4_021EAE48
-.public ov4_021EAF38
+.public GOAGetLastError
 .public ov4_021ED420
 .public ov4_021ED4B8
 .public ov4_021ED5C4

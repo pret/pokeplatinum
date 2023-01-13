@@ -31,11 +31,11 @@
 .public ov4_021FB4BC
 .public ov4_021FB4F4
 .public ov4_021FB534
-.public ov4_021FB674
+.public NNCancel
 .public ov4_021FB6AC
 .public ov4_021FB8E0
 .public ov4_021FB9AC
 .public ov4_021FBA68
 .public ov4_021FBB30
-.public ov4_021FBC34
+.public NNProcessData
 .public SOC_GetHostByName

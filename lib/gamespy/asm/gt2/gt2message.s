@@ -366,7 +366,7 @@ _021F8C5C:
 	ldr r0, [r5, #0x38]
 	cmp r0, #0
 	beq _021F8CA4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r5, #0x38]
 _021F8CA4:
@@ -1423,7 +1423,7 @@ _021F9AA0:
 	cmp r2, r6
 	bne _021F9B34
 	ldr r0, [sl]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	cmp r0, r5
 	bne _021F9B18
 	ldrh ip, [sp, #0xe]

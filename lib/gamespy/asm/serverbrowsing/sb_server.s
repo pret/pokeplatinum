@@ -27,11 +27,11 @@ _021FE0CC: .word strcasecmp
 
 	arm_func_start ov4_021FE0D0
 ov4_021FE0D0: ; 0x021FE0D0
-	ldr ip, _021FE0DC ; =ov4_021D78B0
+	ldr ip, _021FE0DC ; =DWCi_GsFree
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
-_021FE0DC: .word ov4_021D78B0
+_021FE0DC: .word DWCi_GsFree
 	arm_func_end ov4_021FE0D0
 
 	arm_func_start ov4_021FE0E0
@@ -95,7 +95,7 @@ ov4_021FE184: ; 0x021FE184
 	mov r1, #0
 	mov r0, r4
 	str r1, [r4, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021FE184
 
@@ -119,8 +119,8 @@ ov4_021FE1A8: ; 0x021FE1A8
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021FE1A8
 
-	arm_func_start ov4_021FE1E8
-ov4_021FE1E8: ; 0x021FE1E8
+	arm_func_start SBServerAddIntKeyValue
+SBServerAddIntKeyValue: ; 0x021FE1E8
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x14
 	mov r4, r1
@@ -136,7 +136,7 @@ ov4_021FE1E8: ; 0x021FE1E8
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _021FE21C: .word Unk_ov4_02219F7C
-	arm_func_end ov4_021FE1E8
+	arm_func_end SBServerAddIntKeyValue
 
 	arm_func_start ov4_021FE220
 ov4_021FE220: ; 0x021FE220
@@ -171,8 +171,8 @@ _021FE284: .word Unk_ov4_02219F88
 _021FE288: .word Unk_ov4_02219F64
 	arm_func_end ov4_021FE220
 
-	arm_func_start ov4_021FE28C
-ov4_021FE28C: ; 0x021FE28C
+	arm_func_start SBServerGetIntValueA
+SBServerGetIntValueA: ; 0x021FE28C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	mov r6, r0
@@ -216,7 +216,7 @@ _021FE30C:
 	; .align 2, 0
 _021FE314: .word Unk_ov4_02219F94
 _021FE318: .word 0x020FE864
-	arm_func_end ov4_021FE28C
+	arm_func_end SBServerGetIntValueA
 
 	arm_func_start ov4_021FE31C
 ov4_021FE31C: ; 0x021FE31C
@@ -236,14 +236,14 @@ _021FE344:
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021FE31C
 
-	arm_func_start ov4_021FE350
-ov4_021FE350: ; 0x021FE350
+	arm_func_start SBServerGetPublicInetAddress
+SBServerGetPublicInetAddress: ; 0x021FE350
 	ldr r0, [r0, #0]
 	bx lr
-	arm_func_end ov4_021FE350
+	arm_func_end SBServerGetPublicInetAddress
 
-	arm_func_start ov4_021FE358
-ov4_021FE358: ; 0x021FE358
+	arm_func_start SBServerGetPublicQueryPort
+SBServerGetPublicQueryPort: ; 0x021FE358
 	ldrh r0, [r0, #4]
 	mov r1, r0, asr #8
 	mov r0, r0, lsl #8
@@ -253,7 +253,7 @@ ov4_021FE358: ; 0x021FE358
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	bx lr
-	arm_func_end ov4_021FE358
+	arm_func_end SBServerGetPublicQueryPort
 
 	arm_func_start ov4_021FE37C
 ov4_021FE37C: ; 0x021FE37C
@@ -261,24 +261,24 @@ ov4_021FE37C: ; 0x021FE37C
 	bx lr
 	arm_func_end ov4_021FE37C
 
-	arm_func_start ov4_021FE384
-ov4_021FE384: ; 0x021FE384
+	arm_func_start SBServerHasPrivateAddress
+SBServerHasPrivateAddress: ; 0x021FE384
 	ldrb r0, [r0, #0x15]
 	and r0, r0, #2
 	cmp r0, #2
 	moveq r0, #1
 	movne r0, #0
 	bx lr
-	arm_func_end ov4_021FE384
+	arm_func_end SBServerHasPrivateAddress
 
-	arm_func_start ov4_021FE39C
-ov4_021FE39C: ; 0x021FE39C
+	arm_func_start SBServerGetPrivateInetAddress
+SBServerGetPrivateInetAddress: ; 0x021FE39C
 	ldr r0, [r0, #8]
 	bx lr
-	arm_func_end ov4_021FE39C
+	arm_func_end SBServerGetPrivateInetAddress
 
-	arm_func_start ov4_021FE3A4
-ov4_021FE3A4: ; 0x021FE3A4
+	arm_func_start SBServerGetPrivateQueryPort
+SBServerGetPrivateQueryPort: ; 0x021FE3A4
 	ldrh r0, [r0, #0xc]
 	mov r1, r0, asr #8
 	mov r0, r0, lsl #8
@@ -288,7 +288,7 @@ ov4_021FE3A4: ; 0x021FE3A4
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	bx lr
-	arm_func_end ov4_021FE3A4
+	arm_func_end SBServerGetPrivateQueryPort
 
 	arm_func_start ov4_021FE3C8
 ov4_021FE3C8: ; 0x021FE3C8
@@ -610,7 +610,7 @@ ov4_021FE79C: ; 0x021FE79C
 	mov r0, #0x24
 	mov r6, r1
 	mov r5, r2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	addeq sp, sp, #8
 	moveq r0, #0
@@ -628,7 +628,7 @@ ov4_021FE79C: ; 0x021FE79C
 	cmp r0, #0
 	bne _021FE808
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #8
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}

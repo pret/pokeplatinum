@@ -118,7 +118,7 @@ _021F1EAC:
 	beq _021F1EE8
 	ldr r0, [sp, #8]
 	ldr r0, [r0, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #8]
 	mov r1, #0
 	str r1, [r0, #0x18]
@@ -583,7 +583,7 @@ _021F2538:
 	cmp r1, #0
 	beq _021F25F0
 	mov r0, #0xc
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r5, r0
 	bne _021F2578
 	ldr r1, _021F2628 ; =0x02218B5C
@@ -704,11 +704,11 @@ ov4_021F26CC: ; 0x021F26CC
 	ldr r0, [r4, #8]
 	bl ov4_021EACF0
 	ldr r0, [r4, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x18]
 	ldr r0, [r4, #0x28]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x28]
 	ldr r0, [r4, #0x38]
@@ -719,7 +719,7 @@ ov4_021F26CC: ; 0x021F26CC
 	str r0, [r4, #0x38]
 _021F2720:
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021F26CC
 
@@ -936,7 +936,7 @@ ov4_021F29E8: ; 0x021F29E8
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}
@@ -949,7 +949,7 @@ ov4_021F2A04: ; 0x021F2A04
 	mov r0, #0x40
 	mov r7, r1
 	mov r6, r2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1084,7 +1084,7 @@ _021F2BAC:
 	cmp r0, r1
 	bne _021F2C50
 	ldr r0, [r4, #8]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	mvn r2, #5
 	cmp r0, r2
 	subne r1, r2, #0x14

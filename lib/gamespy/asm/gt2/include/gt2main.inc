@@ -8,10 +8,10 @@
 .public ov4_021F805C
 .public ov4_021F80B8
 .public ov4_021F8340
-.public ov4_021F849C
-.public ov4_021F86F0
+.public gt2Think
+.public gt2CloseConnectionHard
 .public ov4_021F8700
-.public ov4_021F8710
+.public gt2CloseAllConnectionsHard
 .public ov4_021F9A68
 .public ov4_021FA344
 .public ov4_021FA3FC

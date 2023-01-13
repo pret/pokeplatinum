@@ -25,7 +25,7 @@ _021ED448:
 	bne _021ED480
 	add r6, r6, #0x800
 	add r1, r6, #1
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	cmp r0, #0
 	bne _021ED480
 	ldr r1, _021ED4B4 ; =0x02217E9C
@@ -96,7 +96,7 @@ _021ED51C:
 	add r5, r5, r0
 	mov r0, r6
 	add r1, r5, #1
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	movs r6, r0
 	bne _021ED578
 	ldr r1, _021ED5C0 ; =0x02217E9C
@@ -179,7 +179,7 @@ ov4_021ED62C: ; 0x021ED62C
 	cmp r0, r1
 	bne _021ED6D8
 	mov r0, r8
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	mvn r2, #5
 	cmp r0, r2
 	subne r1, r2, #0x14
@@ -447,7 +447,7 @@ _021ED9FC:
 	mov r7, r0
 	add r1, r0, #1
 	mov r0, r5
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	movs r5, r0
 	bne _021EDA38
 	ldr r1, _021EDB44 ; =0x02217E9C
@@ -466,7 +466,7 @@ _021EDA38:
 	cmp r8, r4
 	bne _021EDA94
 	mov r0, sl
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	ldr r1, [sp, #0xc]
 	cmp r0, r1
 	ldrne r1, [sp, #0x10]

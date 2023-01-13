@@ -1,7 +1,7 @@
 .public sprintf
 .public strlen
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021E9BBC
 .public ov4_021EA898
 .public ov4_021EAF1C
@@ -16,7 +16,7 @@
 .public ov4_021FE890
 .public ov4_021FEA48
 .public ov4_021FEBE0
-.public ov4_021FEE10
+.public ServerBrowserThink
 .public ov4_021FEE28
 .public ov4_021FF0CC
 .public ov4_021FF180

@@ -704,24 +704,24 @@ Overlay overlay4
 	Object lib/NitroDWC/asm/auth/dwc_nastime.o
 	Object lib/NitroDWC/asm/auth/dwc_svl.o
 	Object lib/NitroDWC/asm/auth/util_base64.o
-	Object lib/NitroDWC/asm/base/dwc_error.o
-	Object lib/NitroDWC/asm/base/dwc_memfunc.o
+	Object lib/NitroDWC/src/base/dwc_error.o
+	Object lib/NitroDWC/src/base/dwc_memfunc.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_cybertrust.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_nas_self.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_thawte_premiumserver.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_thawte_server.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_verisign.o
 	Object lib/NitroDWC/asm/auth/dwc_ca_globalsign.o
-	Object lib/NitroDWC/asm/base/dwc_connectinet.o
-	Object lib/NitroDWC/asm/base/dwc_nasfunc.o
-	Object lib/NitroDWC/asm/base/dwc_nd.o
+	Object lib/NitroDWC/src/base/dwc_connectinet.o
+	Object lib/NitroDWC/src/base/dwc_nasfunc.o
+	Object lib/NitroDWC/src/base/dwc_nd.o
 	Object lib/NitroDWC/asm/base/dwc_common.o
-	Object lib/NitroDWC/asm/base/dwc_main.o
-	Object lib/NitroDWC/asm/base/dwc_login.o
-	Object lib/NitroDWC/asm/base/dwc_friend.o
-	Object lib/NitroDWC/asm/base/dwc_match.o
-	Object lib/NitroDWC/asm/base/dwc_transport.o
-	Object lib/NitroDWC/asm/base/dwc_ghttp.o
+	Object lib/NitroDWC/src/base/dwc_main.o
+	Object lib/NitroDWC/src/base/dwc_login.o
+	Object lib/NitroDWC/src/base/dwc_friend.o
+	Object lib/NitroDWC/src/base/dwc_match.o
+	Object lib/NitroDWC/src/base/dwc_transport.o
+	Object lib/NitroDWC/src/base/dwc_ghttp.o
 	Object lib/NitroDWC/asm/ac/dwc_ac.o
 	Object lib/NitroDWC/asm/ac/beacon.o
 	Object lib/NitroDWC/asm/ac/callback.o

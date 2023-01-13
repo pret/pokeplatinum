@@ -7,8 +7,8 @@
 .public strcpy
 .public strcmp
 .public _s32_div_f
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021EA840
 .public ov4_021EA8A8
 .public ov4_021EAB6C
@@ -19,8 +19,8 @@
 .public ov4_021EAF1C
 .public ov4_021FBFD4
 .public ov4_021FC080
-.public ov4_021FC2A0
-.public ov4_021FC2D4
+.public qr2_buffer_add_int
+.public qr2_buffer_addA
 .public ov4_021FC330
 .public ov4_021FC3A4
 .public ov4_021FC44C
@@ -37,7 +37,7 @@
 .public ov4_021FCD70
 .public ov4_021FCDD4
 .public ov4_021FCEFC
-.public ov4_021FCF60
+.public qr2_parse_queryA
 .public ov4_021FD274
 .public ov4_021FD2D4
 .public SOC_GetHostByName

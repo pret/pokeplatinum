@@ -84,7 +84,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	moveq r0, #4
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
 	mov r0, #0x44
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	addeq sp, sp, #0x1c
 	moveq r0, #1
@@ -111,7 +111,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	cmp r0, #0
 	bne _021FA4C8
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x1c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -126,7 +126,7 @@ _021FA4C8:
 	ldr r0, [r4, #0xc]
 	bl ov4_021EA364
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x1c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -144,7 +144,7 @@ _021FA500:
 	ldr r0, [r4, #0x10]
 	bl ov4_021E9B50
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x1c
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -177,7 +177,7 @@ _021FA544:
 	ldr r0, [r4, #0x10]
 	bl ov4_021E9B50
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x1c
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -223,7 +223,7 @@ ov4_021FA61C: ; 0x021FA61C
 	ldr r0, [r4, #0x10]
 	bl ov4_021E9B50
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov4_021EA8A8
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021FA61C
@@ -236,11 +236,11 @@ ov4_021FA660: ; 0x021FA660
 
 	arm_func_start ov4_021FA668
 ov4_021FA668: ; 0x021FA668
-	ldr ip, _021FA674 ; =ov4_021D7880
+	ldr ip, _021FA674 ; =DWCi_GsMalloc
 	mov r0, #0xa0
 	bx ip
 	; .align 2, 0
-_021FA674: .word ov4_021D7880
+_021FA674: .word DWCi_GsMalloc
 	arm_func_end ov4_021FA668
 
 	arm_func_start ov4_021FA678
@@ -350,10 +350,10 @@ _021FA808:
 	cmp r0, #0
 	beq _021FA880
 	ldr r0, [r0, #0x44]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp]
 	ldr r0, [r0, #0x50]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp]
 	ldr r0, [r0, #0x5c]
 	cmp r0, #0
@@ -379,7 +379,7 @@ _021FA864:
 	bl ov4_021E9B50
 _021FA878:
 	ldr r0, [sp]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _021FA880:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -484,7 +484,7 @@ ov4_021FA94C: ; 0x021FA94C
 	cmp r0, r1
 	bne _021FAA78
 	ldr r0, [r6, #0]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	mvn r2, #0xe
 	cmp r0, r2
 	bne _021FAA2C
@@ -630,7 +630,7 @@ ov4_021FABC0: ; 0x021FABC0
 	ldmneia sp!, {r4, pc}
 	mov r1, #1
 	str r1, [r4, #0x18]
-	bl ov4_021F8710
+	bl gt2CloseAllConnectionsHard
 	mov r0, r4
 	bl ov4_021F763C
 	cmp r0, #0

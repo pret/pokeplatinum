@@ -116,8 +116,8 @@ _021D8A9C:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	arm_func_end DWC_GetCommonValueString
 
-	arm_func_start ov4_021D8ABC
-ov4_021D8ABC: ; 0x021D8ABC
+	arm_func_start DWCi_GetMathRand32
+DWCi_GetMathRand32: ; 0x021D8ABC
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	ldr r1, _021D8BC8 ; =0x0221A4EC
@@ -192,10 +192,10 @@ _021D8BCC: .word Unk_ov4_0221A4EC
 _021D8BD0: .word 0x6C078965
 _021D8BD4: .word 0x5D588B65
 _021D8BD8: .word 0x00269EC3
-	arm_func_end ov4_021D8ABC
+	arm_func_end DWCi_GetMathRand32
 
-	arm_func_start ov4_021D8BDC
-ov4_021D8BDC: ; 0x021D8BDC
+	arm_func_start DWCi_WStrLen
+DWCi_WStrLen: ; 0x021D8BDC
 	ldrh r1, [r0]
 	mov r2, #0
 	cmp r1, #0
@@ -209,7 +209,7 @@ _021D8BEC:
 _021D8C00:
 	mov r0, r2
 	bx lr
-	arm_func_end ov4_021D8BDC
+	arm_func_end DWCi_WStrLen
 
 	.data
 

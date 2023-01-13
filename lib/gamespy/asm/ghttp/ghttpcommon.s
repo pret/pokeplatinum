@@ -163,7 +163,7 @@ _02220A18:
 	cmp r2, r0
 	bne _02220A88
 	ldr r0, [r7, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	mvn r2, #5
 	cmp r0, r2
 	subne r1, r2, #0x14
@@ -266,7 +266,7 @@ ov60_02220B90: ; 0x02220B90
 	cmp r0, r1
 	bne _02220BF4
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	mvn r2, #5
 	cmp r0, r2
 	subne r1, r2, #0x14

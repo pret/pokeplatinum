@@ -177,8 +177,8 @@ _022215AC: .word Unk_ov60_02229268
 _022215B0: .word Unk_ov60_02229298
 	arm_func_end ov60_0222144C
 
-	arm_func_start ov60_022215B4
-ov60_022215B4: ; 0x022215B4
+	arm_func_start ghttpStartup
+ghttpStartup: ; 0x022215B4
 	stmfd sp!, {r3, lr}
 	bl ov60_0222084C
 	ldr r0, _022215FC ; =0x02229E3C
@@ -202,10 +202,10 @@ _022215F4:
 _022215FC: .word Unk_ov60_02229E3C
 _02221600: .word Unk_ov60_0222911C
 _02221604: .word Unk_ov60_02229120
-	arm_func_end ov60_022215B4
+	arm_func_end ghttpStartup
 
-	arm_func_start ov60_02221608
-ov60_02221608: ; 0x02221608
+	arm_func_start ghttpCleanup
+ghttpCleanup: ; 0x02221608
 	stmfd sp!, {r3, lr}
 	bl ov60_0222084C
 	ldr r0, _0222165C ; =0x02229E3C
@@ -218,7 +218,7 @@ ov60_02221608: ; 0x02221608
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	beq _02221648
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, _02221660 ; =0x02229E28
 	mov r1, #0
 	str r1, [r0, #0]
@@ -232,10 +232,10 @@ _02221654:
 	; .align 2, 0
 _0222165C: .word Unk_ov60_02229E3C
 _02221660: .word Unk_ov60_02229E28
-	arm_func_end ov60_02221608
+	arm_func_end ghttpCleanup
 
-	arm_func_start ov60_02221664
-ov60_02221664: ; 0x02221664
+	arm_func_start ghttpGetA
+ghttpGetA: ; 0x02221664
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x18
 	mov ip, #0
@@ -248,13 +248,13 @@ ov60_02221664: ; 0x02221664
 	mov r1, ip
 	mov r2, ip
 	mov r3, ip
-	bl ov60_022216A0
+	bl ghttpGetExA
 	add sp, sp, #0x18
 	ldmia sp!, {r3, pc}
-	arm_func_end ov60_02221664
+	arm_func_end ghttpGetA
 
-	arm_func_start ov60_022216A0
-ov60_022216A0: ; 0x022216A0
+	arm_func_start ghttpGetExA
+ghttpGetExA: ; 0x022216A0
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r8, r0
 	ldrnesb r0, [r8]
@@ -305,7 +305,7 @@ _02221748:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _0222175C
-	bl ov60_022215B4
+	bl ghttpStartup
 _0222175C:
 	bl ov60_02220D8C
 	movs r4, r0
@@ -417,17 +417,17 @@ _022218DC: .word 0x00000129
 _022218E0: .word Unk_ov60_022292F4
 _022218E4: .word 0x0000012A
 _022218E8: .word Unk_ov60_02229E3C
-	arm_func_end ov60_022216A0
+	arm_func_end ghttpGetExA
 
-	arm_func_start ov60_022218EC
-ov60_022218EC: ; 0x022218EC
+	arm_func_start ghttpThink
+ghttpThink: ; 0x022218EC
 	ldr ip, _022218F8 ; =ov60_022211B0
 	ldr r0, _022218FC ; =ov60_0222144C
 	bx ip
 	; .align 2, 0
 _022218F8: .word ov60_022211B0
 _022218FC: .word ov60_0222144C
-	arm_func_end ov60_022218EC
+	arm_func_end ghttpThink
 
 	.data
 

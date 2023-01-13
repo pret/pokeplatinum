@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021FABFC
-ov4_021FABFC: ; 0x021FABFC
+	arm_func_start gt2AddressToString
+gt2AddressToString: ; 0x021FABFC
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r2
 	mov r5, r1
@@ -57,7 +57,7 @@ _021FAC9C: .word Unk_ov4_0221B3B8
 _021FACA0: .word Unk_ov4_02219764
 _021FACA4: .word Unk_ov4_0221976C
 _021FACA8: .word Unk_ov4_02219770
-	arm_func_end ov4_021FABFC
+	arm_func_end gt2AddressToString
 
 	arm_func_start ov4_021FACAC
 ov4_021FACAC: ; 0x021FACAC

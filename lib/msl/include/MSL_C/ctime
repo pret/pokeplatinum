@@ -20,7 +20,7 @@
 
 #ifndef RC_INVOKED
 
-if defined(__m56800__) || defined(__m56800E__)
+#if defined(__m56800__) || defined(__m56800E__)
     #include <time.56800.h>
 #endif
 

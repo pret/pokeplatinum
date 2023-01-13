@@ -1,9 +1,0 @@
-.public MI_CpuCopy8
-.public ov4_021D773C
-.public ov4_021D7744
-.public ov4_021D775C
-.public DWC_Alloc
-.public DWC_AllocEx
-.public DWC_Free
-.public DWC_Realloc
-.public DWC_ReallocEx

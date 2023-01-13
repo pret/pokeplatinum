@@ -211,7 +211,7 @@ ov60_02222A74: ; 0x02222A74
 	mov r0, #5
 	str r0, [r4, #0x38]
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	add sp, sp, #0x10
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r4, pc}
@@ -225,7 +225,7 @@ _02222AD4:
 	mov r0, #5
 	str r0, [r4, #0x38]
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	add sp, sp, #0x10
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r4, pc}
@@ -289,7 +289,7 @@ _02222BBC:
 	cmp r0, r1
 	bne _02222C20
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	mvn r2, #5
 	cmp r0, r2
 	subne r1, r2, #0x14
@@ -328,7 +328,7 @@ _02222C58:
 	str r0, [r4, #0x38]
 	ldmneia sp!, {r4, pc}
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	add sp, sp, #0x10
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r4, pc}
@@ -687,7 +687,7 @@ ov60_02223130: ; 0x02223130
 	mov r0, #5
 	str r0, [r4, #0x38]
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	add sp, sp, #4
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r3, r4, pc}
@@ -874,7 +874,7 @@ _022233E8:
 	mov r0, #7
 	str r0, [r4, #0x38]
 	ldr r0, [r4, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	str r0, [r4, #0x4c]
 	add sp, sp, #4
 	add sp, sp, #0x400
@@ -1191,7 +1191,7 @@ ov60_02223838: ; 0x02223838
 	sub sp, sp, #0x18
 	mov sl, r0
 	mov r0, #0x1000
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [sp, #4]
 	cmp r0, #0
 	bne _0222386C
@@ -1355,7 +1355,7 @@ _02223A60:
 	bl strlen
 	add r1, r5, #0xe
 	add r0, r1, r0
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [sl, #0x108]
 	cmp r0, #0
 	moveq r0, #1
@@ -1485,11 +1485,11 @@ _02223C50:
 	mov r0, #7
 	str r0, [sl, #0x38]
 	ldr r0, [sl, #0x48]
-	bl ov4_021EAF38
+	bl GOAGetLastError
 	str r0, [sl, #0x4c]
 _02223C74:
 	ldr r0, [sp, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
@@ -1512,7 +1512,7 @@ ov60_02223CA8: ; 0x02223CA8
 	mov r7, r0
 	mov r0, #0x2000
 	mov r8, #0
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r6, r0
 	bne _02223CDC
 	mov r0, #1
@@ -1562,7 +1562,7 @@ _02223D58:
 	blo _02223CE8
 _02223D70:
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	arm_func_end ov60_02223CA8
 

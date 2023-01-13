@@ -1,6 +1,6 @@
 .public memcpy
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021E9B50
 .public ov4_021E9BBC
 .public ov4_021E9BC4

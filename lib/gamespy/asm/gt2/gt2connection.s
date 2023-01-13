@@ -51,7 +51,7 @@ ov4_021F7FB4: ; 0x021F7FB4
 	ldr r0, [sp, #0x38]
 	cmp r0, #0
 	ble _021F8014
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	cmp r0, #0
 	str r0, [r5, #0x38]
 	addeq sp, sp, #0x20
@@ -371,17 +371,17 @@ ov4_021F83EC: ; 0x021F83EC
 	ldr r0, [r4, #0x38]
 	cmp r0, #0
 	beq _021F8404
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _021F8404:
 	ldr r0, [r4, #0x44]
 	cmp r0, #0
 	beq _021F8414
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _021F8414:
 	ldr r0, [r4, #0x50]
 	cmp r0, #0
 	beq _021F8424
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _021F8424:
 	ldr r0, [r4, #0x5c]
 	cmp r0, #0
@@ -404,6 +404,6 @@ _021F8454:
 	bl ov4_021E9B50
 _021F8464:
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021F83EC

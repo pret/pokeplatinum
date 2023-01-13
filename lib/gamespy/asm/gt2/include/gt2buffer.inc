@@ -2,4 +2,4 @@
 .public memcpy
 .public memmove
 .public strlen
-.public ov4_021D7880
+.public DWCi_GsMalloc

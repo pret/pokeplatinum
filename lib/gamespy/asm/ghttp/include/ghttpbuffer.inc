@@ -3,10 +3,10 @@
 .public memset
 .public sprintf
 .public strlen
-.public ov4_021D7894
-.public ov4_021D78B0
+.public DWCi_GsRealloc
+.public DWCi_GsFree
 .public ov4_021EAA74
-.public ov4_021EAF38
+.public GOAGetLastError
 .public ov60_0221FE2C
 .public ov60_02220130
 .public ov60_02220B90

@@ -346,7 +346,7 @@ _022580E8:
 	bl ov66_022584B8
 _022580EC:
 	mov r0, r5
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, pc}
 _022580FC:
@@ -359,7 +359,7 @@ _022580FC:
 	cmp r0, #0
 	bne _02258130
 	mov r0, r5
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov66_022584B8
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, pc}
@@ -368,7 +368,7 @@ _02258130:
 	ldr r0, [r0, #0x60]
 	cmp r0, #0
 	beq _02258150
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, _022581D8 ; =0x0225B52C
 	mov r1, #0
 	str r1, [r0, #0x60]
@@ -379,7 +379,7 @@ _02258150:
 	cmp r0, #0
 	bne _02258178
 	mov r0, r5
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov66_022584B8
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, pc}
@@ -394,7 +394,7 @@ _02258178:
 	cmp r0, #0
 	bne _022581B0
 	mov r0, r5
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov66_022584B8
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, pc}
@@ -621,12 +621,12 @@ _022584B4: .word 0x0225B604
 	arm_func_start ov66_022584B8
 ov66_022584B8: ; 0x022584B8
 	stmfd sp!, {r3, lr}
-	bl ov4_021D7708
+	bl DWCi_IsError
 	cmp r0, #0
 	bne _022584D4
 	ldr r1, _022584E4 ; =0xFFFEA048
 	mov r0, #6
-	bl ov4_021D7724
+	bl DWCi_SetError
 _022584D4:
 	ldr r0, _022584E8 ; =0x0225B52C
 	mov r1, #1
@@ -733,7 +733,7 @@ _02258620:
 	ldr r0, [r0, #0x60]
 	cmp r0, #0
 	beq _02258644
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, _02258660 ; =0x0225B52C
 	mov r1, #0
 	str r1, [r0, #0x64]

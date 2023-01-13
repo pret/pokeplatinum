@@ -1,6 +1,6 @@
 .public __msl_assertion_failed
 .public memcmp
-.public ov4_021D78B0
+.public DWCi_GsFree
 .public ov4_021E9BBC
 .public ov4_021E9BC4
 .public ov4_021E9C2C
@@ -9,7 +9,7 @@
 .public ov4_021EA840
 .public ov4_021EAB6C
 .public ov4_021EAE18
-.public ov4_021EAF38
+.public GOAGetLastError
 .public ov4_021F71C4
 .public ov4_021F72E0
 .public ov4_021F73E8

@@ -676,7 +676,7 @@ _02253DAC:
 _02253DC4:
 	bl ov4_021EA8A4
 	ldr r0, _022541BC ; =0x000008B4
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	addeq sp, sp, #0xc
 	moveq r0, #0
@@ -797,7 +797,7 @@ _02253F28:
 	cmp r0, #0
 	mov r0, r4
 	bne _02253FA0
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov4_021EA8A8
 	add sp, sp, #0xc
 	mov r0, r7
@@ -809,7 +809,7 @@ _02253FA0:
 	mov r0, r4
 	bl ov66_0224B8EC
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov4_021EA8A8
 	add sp, sp, #0xc
 	mov r0, r7
@@ -825,7 +825,7 @@ _02253FCC:
 	mov r0, r4
 	bl ov66_0224B8EC
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov4_021EA8A8
 	add sp, sp, #0xc
 	mov r0, r7
@@ -844,7 +844,7 @@ _02254008:
 	mov r0, r4
 	bl ov66_0224B8EC
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov4_021EA8A8
 	add sp, sp, #0xc
 	mov r0, r7
@@ -1144,7 +1144,7 @@ _0225444C:
 	add r0, r4, #0x1c
 	bl ov66_022561B0
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	bl ov4_021EA8A8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0

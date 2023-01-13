@@ -5,8 +5,8 @@
 .public strncmp
 .public strstr
 .public atoi
-.public ov4_021D7894
-.public ov4_021D78B0
+.public DWCi_GsRealloc
+.public DWCi_GsFree
 .public ov4_021E9B50
 .public ov4_021E9BBC
 .public ov4_021E9BC4
@@ -16,7 +16,7 @@
 .public ov4_021EAD04
 .public ov4_021EAE04
 .public ov4_021F5D7C
-.public ov4_021F6338
+.public CloseStatsConnection
 .public ov4_021F6518
 .public ov4_021F6560
 .public ov4_021F6634

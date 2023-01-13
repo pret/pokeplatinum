@@ -18,7 +18,7 @@ ov66_022483C4: ; 0x022483C4
 	bl __msl_assertion_failed
 _022483E4:
 	ldr r0, [r4, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _022483F0: .word Unk_ov66_02259358
@@ -122,104 +122,104 @@ _022484CC: ; jump table
 _0224854C:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224855C:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224856C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248584:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224859C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022485BC:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022485DC:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022485F4:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224861C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224863C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248654:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224866C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248684:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248694:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022486AC:
 	ldr r6, [r4, #8]
@@ -230,52 +230,52 @@ _022486AC:
 _022486C0:
 	ldr r0, [r6, #8]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0xc]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #4]
 	add r5, r5, #1
 	cmp r5, r0
 	blt _022486C0
 _022486E8:
 	ldr r0, [r6, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248704:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248714:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224872C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248744:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224875C:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	mov r5, #0
 	cmp r0, #0
@@ -283,27 +283,27 @@ _0224875C:
 _02248778:
 	ldr r0, [r6, #0xc]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	add r5, r5, #1
 	cmp r5, r0
 	blt _02248778
 _02248794:
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022487A8:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x14]
 	mov r5, #0
 	cmp r0, #0
@@ -311,46 +311,46 @@ _022487A8:
 _022487DC:
 	ldr r0, [r6, #0x18]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x14]
 	add r5, r5, #1
 	cmp r5, r0
 	blt _022487DC
 _022487F8:
 	ldr r0, [r6, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248804:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248824:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _0224884C:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248864:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	mov r5, #0
 	cmp r0, #0
@@ -358,19 +358,19 @@ _02248864:
 _02248880:
 	ldr r0, [r6, #0xc]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	add r5, r5, #1
 	cmp r5, r0
 	blt _02248880
 _0224889C:
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022488A8:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	mov r5, #0
 	cmp r0, #0
@@ -378,26 +378,26 @@ _022488A8:
 _022488C4:
 	ldr r0, [r6, #0xc]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	add r5, r5, #1
 	cmp r5, r0
 	blt _022488C4
 _022488E0:
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022488EC:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248904:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #4]
 	mov r5, #0
 	cmp r0, #0
@@ -405,32 +405,32 @@ _02248904:
 _02248920:
 	ldr r0, [r6, #8]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #4]
 	add r5, r5, #1
 	cmp r5, r0
 	blt _02248920
 _0224893C:
 	ldr r0, [r6, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248950:
 	ldr r5, [r4, #8]
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r5, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248978:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
 	mov r5, #0
 	cmp r0, #0
@@ -438,12 +438,12 @@ _02248978:
 _02248994:
 	ldr r0, [r6, #0xc]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x10]
 	cmp r0, #0
 	beq _022489B4
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _022489B4:
 	ldr r0, [r6, #8]
 	add r5, r5, #1
@@ -451,16 +451,16 @@ _022489B4:
 	blt _02248994
 _022489C4:
 	ldr r0, [r6, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _022489D8:
 	ldr r6, [r4, #8]
 	ldr r0, [r6, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0xc]
 	mov r5, #0
 	cmp r0, #0
@@ -468,12 +468,12 @@ _022489D8:
 _022489FC:
 	ldr r0, [r6, #0x10]
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x14]
 	cmp r0, #0
 	beq _02248A1C
 	ldr r0, [r0, r5, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 _02248A1C:
 	ldr r0, [r6, #0xc]
 	add r5, r5, #1
@@ -481,14 +481,14 @@ _02248A1C:
 	blt _022489FC
 _02248A2C:
 	ldr r0, [r6, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r6, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248A40:
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	b _02248A64
 _02248A50:
 	ldr r0, _02248A90 ; =0x022593EC
@@ -498,7 +498,7 @@ _02248A50:
 	bl __msl_assertion_failed
 _02248A64:
 	ldr r0, [r4, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _02248A70: .word Unk_ov66_02259358
@@ -718,7 +718,7 @@ _02248D2C:
 	str r1, [r2, #0x14]
 	str r7, [sp]
 	str r6, [sp, #4]
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [sp, #8]
 	cmp r0, #0
 	addeq sp, sp, #0x18
@@ -739,12 +739,12 @@ _02248D2C:
 	bl strlen
 	mov r6, r0
 	add r0, r6, #1
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [sp, #0x14]
 	cmp r0, #0
 	bne _02248DD0
 	ldr r0, [sp, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -800,9 +800,9 @@ _02248E6C:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -816,9 +816,9 @@ _02248EA8:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -832,9 +832,9 @@ _02248EE4:
 	cmp r0, #0
 	bne _02248F20
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -847,9 +847,9 @@ _02248F20:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -863,9 +863,9 @@ _02248F58:
 	cmp r0, #0
 	bne _02248F94
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -878,9 +878,9 @@ _02248F94:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -894,9 +894,9 @@ _02248FCC:
 	cmp r0, #0
 	bne _02249008
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -909,9 +909,9 @@ _02249008:
 	cmp r0, #0
 	bne _02249040
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -924,9 +924,9 @@ _02249040:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -940,9 +940,9 @@ _02249078:
 	cmp r0, #0
 	bne _022490B4
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -955,9 +955,9 @@ _022490B4:
 	cmp r0, #0
 	bne _022490EC
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -970,9 +970,9 @@ _022490EC:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -986,9 +986,9 @@ _02249124:
 	cmp r0, #0
 	bne _02249160
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1001,9 +1001,9 @@ _02249160:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1017,9 +1017,9 @@ _02249198:
 	cmp r0, #0
 	bne _022491D4
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1032,9 +1032,9 @@ _022491D4:
 	cmp r0, #0
 	bne _0224920C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1047,9 +1047,9 @@ _0224920C:
 	cmp r0, #0
 	bne _02249244
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1062,9 +1062,9 @@ _02249244:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1078,9 +1078,9 @@ _0224927C:
 	cmp r0, #0
 	bne _022492B8
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1093,9 +1093,9 @@ _022492B8:
 	cmp r0, #0
 	bne _022492F0
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1108,9 +1108,9 @@ _022492F0:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1124,9 +1124,9 @@ _02249328:
 	cmp r0, #0
 	bne _02249364
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1139,9 +1139,9 @@ _02249364:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1155,9 +1155,9 @@ _0224939C:
 	cmp r0, #0
 	bne _022493D8
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1166,14 +1166,14 @@ _022493D8:
 	cmp r0, #0
 	beq _0224AA5C
 	mov r0, #0x20
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r6, #4]
 	cmp r0, #0
 	bne _02249414
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1192,9 +1192,9 @@ _02249424:
 	cmp r0, #0
 	bne _02249460
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1207,9 +1207,9 @@ _02249460:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1223,9 +1223,9 @@ _02249498:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1239,9 +1239,9 @@ _022494D4:
 	cmp r0, #0
 	bne _02249510
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1254,9 +1254,9 @@ _02249510:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1278,14 +1278,14 @@ _0224956C:
 	beq _0224964C
 	ldr r0, [r4, #4]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r8, #8]
 	cmp r0, #0
 	bne _022495B4
 	mov r0, r8
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1314,16 +1314,16 @@ _022495C8:
 _02249604:
 	ldr r0, [r8, #8]
 	ldr r0, [r0, r7, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r7, r7, #1
 	bpl _02249604
 _02249618:
 	ldr r0, [r8, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r8
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1349,14 +1349,14 @@ _0224966C:
 	beq _0224974C
 	ldr r0, [r4, #4]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r8, #0xc]
 	cmp r0, #0
 	bne _022496B4
 	mov r0, r8
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1385,16 +1385,16 @@ _022496C8:
 _02249704:
 	ldr r0, [r8, #0xc]
 	ldr r0, [r0, r7, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r7, r7, #1
 	bpl _02249704
 _02249718:
 	ldr r0, [r8, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r8
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1428,14 +1428,14 @@ _02249798:
 	ldr r0, [r4, #4]
 	mov r6, r0, lsl #2
 	mov r0, r6
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r8, #0x10]
 	cmp r0, #0
 	bne _022497D0
 	mov r0, r8
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1454,9 +1454,9 @@ _022497E0:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1470,9 +1470,9 @@ _0224981C:
 	cmp r0, #0
 	bne _02249858
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1485,9 +1485,9 @@ _02249858:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1501,9 +1501,9 @@ _02249890:
 	cmp r0, #0
 	bne _022498CC
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1512,14 +1512,14 @@ _022498CC:
 	cmp r0, #0
 	beq _0224AA5C
 	mov r0, #0x20
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r6, #8]
 	cmp r0, #0
 	bne _02249908
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1538,9 +1538,9 @@ _02249918:
 	cmp r0, #0
 	bne _02249954
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1553,9 +1553,9 @@ _02249954:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1569,9 +1569,9 @@ _0224998C:
 	cmp r0, #0
 	bne _022499C8
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1592,14 +1592,14 @@ _022499E8:
 	beq _02249AC8
 	ldr r0, [r4, #8]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0xc]
 	cmp r0, #0
 	bne _02249A30
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1628,16 +1628,16 @@ _02249A44:
 _02249A80:
 	ldr r0, [r7, #0xc]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _02249A80
 _02249A94:
 	ldr r0, [r7, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1671,14 +1671,14 @@ _02249B14:
 	ldr r0, [r4, #8]
 	mov r6, r0, lsl #2
 	mov r0, r6
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0x10]
 	cmp r0, #0
 	bne _02249B4C
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1723,9 +1723,9 @@ _02249BC0:
 	cmp r0, #0
 	bne _02249BFC
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1738,9 +1738,9 @@ _02249BFC:
 	cmp r0, #0
 	bne _02249C34
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1753,9 +1753,9 @@ _02249C34:
 	cmp r0, #0
 	bne _02249C6C
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1768,9 +1768,9 @@ _02249C6C:
 	cmp r0, #0
 	bne _02249CA4
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1791,14 +1791,14 @@ _02249CC4:
 	beq _0224AA5C
 	ldr r0, [r4, #0x14]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0x18]
 	cmp r0, #0
 	bne _02249D0C
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1827,16 +1827,16 @@ _02249D20:
 _02249D5C:
 	ldr r0, [r7, #0x18]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _02249D5C
 _02249D70:
 	ldr r0, [r7, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1856,9 +1856,9 @@ _02249DA8:
 	cmp r0, #0
 	bne _02249DE4
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1871,9 +1871,9 @@ _02249DE4:
 	cmp r0, #0
 	bne _02249E1C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1886,9 +1886,9 @@ _02249E1C:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1902,9 +1902,9 @@ _02249E54:
 	cmp r0, #0
 	bne _02249E90
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1917,9 +1917,9 @@ _02249E90:
 	cmp r0, #0
 	bne _02249EC8
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1932,9 +1932,9 @@ _02249EC8:
 	cmp r0, #0
 	bne _02249F00
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1947,9 +1947,9 @@ _02249F00:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1963,9 +1963,9 @@ _02249F38:
 	cmp r0, #0
 	bne _02249F74
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1978,9 +1978,9 @@ _02249F74:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1994,9 +1994,9 @@ _02249FAC:
 	cmp r0, #0
 	bne _02249FE8
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2017,14 +2017,14 @@ _0224A008:
 	beq _0224AA5C
 	ldr r0, [r4, #8]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0xc]
 	cmp r0, #0
 	bne _0224A050
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2053,16 +2053,16 @@ _0224A064:
 _0224A0A0:
 	ldr r0, [r7, #0xc]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A0A0
 _0224A0B4:
 	ldr r0, [r7, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2082,9 +2082,9 @@ _0224A0EC:
 	cmp r0, #0
 	bne _0224A128
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2105,14 +2105,14 @@ _0224A148:
 	beq _0224AA5C
 	ldr r0, [r4, #8]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0xc]
 	cmp r0, #0
 	bne _0224A190
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2141,16 +2141,16 @@ _0224A1A4:
 _0224A1E0:
 	ldr r0, [r7, #0xc]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A1E0
 _0224A1F4:
 	ldr r0, [r7, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2170,9 +2170,9 @@ _0224A22C:
 	cmp r0, #0
 	bne _0224A268
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2185,9 +2185,9 @@ _0224A268:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2201,9 +2201,9 @@ _0224A2A0:
 	cmp r0, #0
 	bne _0224A2DC
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2224,14 +2224,14 @@ _0224A2FC:
 	beq _0224A3DC
 	ldr r0, [r4, #4]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #8]
 	cmp r0, #0
 	bne _0224A344
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2260,16 +2260,16 @@ _0224A358:
 _0224A394:
 	ldr r0, [r7, #8]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A394
 _0224A3A8:
 	ldr r0, [r7, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2303,14 +2303,14 @@ _0224A428:
 	ldr r0, [r4, #4]
 	mov r6, r0, lsl #2
 	mov r0, r6
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0xc]
 	cmp r0, #0
 	bne _0224A460
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2329,9 +2329,9 @@ _0224A470:
 	cmp r0, #0
 	bne _0224A4AC
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2344,9 +2344,9 @@ _0224A4AC:
 	cmp r0, #0
 	bne _0224A4E4
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2359,9 +2359,9 @@ _0224A4E4:
 	cmp r0, #0
 	bne _0224A51C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2374,9 +2374,9 @@ _0224A51C:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r6
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2390,9 +2390,9 @@ _0224A554:
 	cmp r0, #0
 	bne _0224A590
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2413,14 +2413,14 @@ _0224A5B0:
 	beq _0224A690
 	ldr r0, [r4, #8]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0xc]
 	cmp r0, #0
 	bne _0224A5F8
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2449,16 +2449,16 @@ _0224A60C:
 _0224A648:
 	ldr r0, [r7, #0xc]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A648
 _0224A65C:
 	ldr r0, [r7, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2484,14 +2484,14 @@ _0224A6B0:
 	beq _0224AA5C
 	ldr r0, [r4, #8]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0x10]
 	cmp r0, #0
 	bne _0224A6F8
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2520,16 +2520,16 @@ _0224A70C:
 _0224A748:
 	ldr r0, [r7, #0x10]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A748
 _0224A75C:
 	ldr r0, [r7, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2549,9 +2549,9 @@ _0224A794:
 	cmp r0, #0
 	bne _0224A7D0
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2564,9 +2564,9 @@ _0224A7D0:
 	cmp r0, #0
 	bne _0224A808
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2587,14 +2587,14 @@ _0224A828:
 	beq _0224A908
 	ldr r0, [r4, #0xc]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0x10]
 	cmp r0, #0
 	bne _0224A870
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2623,16 +2623,16 @@ _0224A884:
 _0224A8C0:
 	ldr r0, [r7, #0x10]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A8C0
 _0224A8D4:
 	ldr r0, [r7, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2658,14 +2658,14 @@ _0224A928:
 	beq _0224AA5C
 	ldr r0, [r4, #0xc]
 	mov r0, r0, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r7, #0x14]
 	cmp r0, #0
 	bne _0224A970
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2694,16 +2694,16 @@ _0224A984:
 _0224A9C0:
 	ldr r0, [r7, #0x14]
 	ldr r0, [r0, r8, lsl #2]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	subs r8, r8, #1
 	bpl _0224A9C0
 _0224A9D4:
 	ldr r0, [r7, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r7
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2723,9 +2723,9 @@ _0224AA0C:
 	cmp r0, #0
 	bne _0224AA5C
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [sp, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}

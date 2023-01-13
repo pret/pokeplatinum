@@ -19,7 +19,7 @@ ov60_02221908: ; 0x02221908
 	ldr r0, [r4, #0]
 	bl ov4_021E9B50
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	arm_func_end ov60_02221908
 

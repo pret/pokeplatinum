@@ -6,8 +6,8 @@
 .public atoi
 .public strcasecmp
 .public _u32_div_f
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021EA224
 .public ov4_021EA364
 .public ov4_021EA3D8

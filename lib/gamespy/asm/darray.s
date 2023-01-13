@@ -30,7 +30,7 @@ ov4_021E9A10: ; 0x021E9A10
 	ldr r0, [r4, #8]
 	mul r1, r2, r0
 	ldr r0, [r4, #0x14]
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	str r0, [r4, #0x14]
 	cmp r0, #0
 	ldmneia sp!, {r4, pc}
@@ -66,7 +66,7 @@ ov4_021E9A8C: ; 0x021E9A8C
 	mov r0, #0x18
 	mov r6, r1
 	mov r5, r2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	bne _021E9AC0
 	ldr r0, _021E9B3C ; =0x022177A8
@@ -94,7 +94,7 @@ _021E9ADC:
 	beq _021E9B30
 	ldr r0, [r4, #8]
 	mul r0, r1, r0
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r4, #0x14]
 	cmp r0, #0
 	bne _021E9B34
@@ -142,9 +142,9 @@ _021E9B80:
 	blt _021E9B80
 _021E9B9C:
 	ldr r0, [r5, #0x14]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r5
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021E9BB0: .word Unk_ov4_022177A8

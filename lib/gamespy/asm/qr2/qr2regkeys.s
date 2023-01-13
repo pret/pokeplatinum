@@ -3,8 +3,8 @@
 	.text
 
 
-	arm_func_start ov4_021FD4E0
-ov4_021FD4E0: ; 0x021FD4E0
+	arm_func_start qr2_register_keyA
+qr2_register_keyA: ; 0x021FD4E0
 	cmp r0, #0x32
 	bxlt lr
 	cmp r0, #0xfe
@@ -14,7 +14,7 @@ ov4_021FD4E0: ; 0x021FD4E0
 	bx lr
 	; .align 2, 0
 _021FD4FC: .word Unk_ov4_02219B38
-	arm_func_end ov4_021FD4E0
+	arm_func_end qr2_register_keyA
 
 	.data
 

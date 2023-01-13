@@ -7,11 +7,11 @@
 .public strncmp
 .public strtoul
 .public _u32_div_f
-.public ov4_021D7708
-.public ov4_021D7724
+.public DWCi_IsError
+.public DWCi_SetError
 .public DWC_Alloc
 .public DWC_Free
-.public ov4_021D78B0
+.public DWCi_GsFree
 .public DWC_InitGHTTP
 .public DWC_ShutdownGHTTP
 .public DWC_ProcessGHTTP

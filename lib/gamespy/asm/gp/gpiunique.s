@@ -45,7 +45,7 @@ _021F5790:
 	cmp r1, #0
 	beq _021F57FC
 	mov r0, #4
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r3, r0
 	bne _021F57D0
 	ldr r1, _021F581C ; =0x022191AC

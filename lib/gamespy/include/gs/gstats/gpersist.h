@@ -7,24 +7,6 @@
 extern "C" {
 #endif
 
-#if 0
-#define GE_NOERROR 0
-#define GE_NOSOCKET 1
-#define GE_NODNS 2
-#define GE_NOCONNECT 3
-#define GE_BUSY 4
-#define GE_DATAERROR 5
-
-extern char gcd_secret_key[256];
-extern char gcd_gamename[256];
-int InitStatsConnection(int gameport);
-int IsStatsConnected();
-void CloseStatsConnection(void);
-char * GetChallenge(statsgame_t game);
-char * GenerateAuth(char * challenge, gsi_char * password, char response[33]);
-
-#endif
-
 #ifndef GSI_UNICODE
 #define GenerateAuth GenerateAuthA
 #define PreAuthenticatePlayerCD PreAuthenticatePlayerCDA

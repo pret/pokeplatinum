@@ -184,8 +184,8 @@ _021FEAB4:
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021FEA48
 
-	arm_func_start ov4_021FEAE8
-ov4_021FEAE8: ; 0x021FEAE8
+	arm_func_start ServerBrowserNewA
+ServerBrowserNewA: ; 0x021FEAE8
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x10
 	ldr r4, [sp, #0x30]
@@ -203,7 +203,7 @@ ov4_021FEAE8: ; 0x021FEAE8
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 _021FEB24:
 	ldr r0, _021FEBB0 ; =0x00000638
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	addeq sp, sp, #0x10
 	moveq r0, #0
@@ -241,10 +241,10 @@ _021FEBAC: .word Unk_ov4_0221AE50
 _021FEBB0: .word 0x00000638
 _021FEBB4: .word ov4_021FE890
 _021FEBB8: .word ov4_021FEA48
-	arm_func_end ov4_021FEAE8
+	arm_func_end ServerBrowserNewA
 
-	arm_func_start ov4_021FEBBC
-ov4_021FEBBC: ; 0x021FEBBC
+	arm_func_start ServerBrowserFree
+ServerBrowserFree: ; 0x021FEBBC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x4c
@@ -252,9 +252,9 @@ ov4_021FEBBC: ; 0x021FEBBC
 	mov r0, r4
 	bl ov4_021FDB54
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FEBBC
+	arm_func_end ServerBrowserFree
 
 	arm_func_start ov4_021FEBE0
 ov4_021FEBE0: ; 0x021FEBE0
@@ -324,7 +324,7 @@ _021FECCC:
 	mov r0, r4
 	bl ov4_021EA898
 	mov r0, sl
-	bl ov4_021FEE10
+	bl ServerBrowserThink
 _021FECDC:
 	ldr r1, [sl, #0x4c]
 	cmp r1, #3
@@ -342,8 +342,8 @@ _021FED08: .word Unk_ov4_02219B38
 _021FED0C: .word Unk_ov4_02219FA8
 	arm_func_end ov4_021FEBE0
 
-	arm_func_start ov4_021FED10
-ov4_021FED10: ; 0x021FED10
+	arm_func_start ServerBrowserLimitUpdateA
+ServerBrowserLimitUpdateA: ; 0x021FED10
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x10
 	ldr lr, [sp, #0x18]
@@ -357,10 +357,10 @@ ov4_021FED10: ; 0x021FED10
 	bl ov4_021FEBE0
 	add sp, sp, #0x10
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021FED10
+	arm_func_end ServerBrowserLimitUpdateA
 
-	arm_func_start ov4_021FED44
-ov4_021FED44: ; 0x021FED44
+	arm_func_start ServerBrowserSendMessageToServerA
+ServerBrowserSendMessageToServerA: ; 0x021FED44
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r5, r0
@@ -383,10 +383,10 @@ ov4_021FED44: ; 0x021FED44
 	bl ov4_022011B4
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021FED44
+	arm_func_end ServerBrowserSendMessageToServerA
 
-	arm_func_start ov4_021FED9C
-ov4_021FED9C: ; 0x021FED9C
+	arm_func_start ServerBrowserSendNatNegotiateCookieToServerA
+ServerBrowserSendNatNegotiateCookieToServerA: ; 0x021FED9C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	mov r6, r2
@@ -405,10 +405,10 @@ ov4_021FED9C: ; 0x021FED9C
 	mov r2, r2, lsr #0x10
 	bl ov4_022012DC
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021FED9C
+	arm_func_end ServerBrowserSendNatNegotiateCookieToServerA
 
-	arm_func_start ov4_021FEDE4
-ov4_021FEDE4: ; 0x021FEDE4
+	arm_func_start ServerBrowserRemoveServer
+ServerBrowserRemoveServer: ; 0x021FEDE4
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x4c
@@ -420,17 +420,17 @@ ov4_021FEDE4: ; 0x021FEDE4
 	add r0, r4, #0x4c
 	bl ov4_021FF278
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FEDE4
+	arm_func_end ServerBrowserRemoveServer
 
-	arm_func_start ov4_021FEE10
-ov4_021FEE10: ; 0x021FEE10
+	arm_func_start ServerBrowserThink
+ServerBrowserThink: ; 0x021FEE10
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	bl ov4_021FE000
 	add r0, r4, #0x4c
 	bl ov4_022014B8
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FEE10
+	arm_func_end ServerBrowserThink
 
 	arm_func_start ov4_021FEE28
 ov4_021FEE28: ; 0x021FEE28
@@ -443,18 +443,18 @@ ov4_021FEE28: ; 0x021FEE28
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021FEE28
 
-	arm_func_start ov4_021FEE44
-ov4_021FEE44: ; 0x021FEE44
+	arm_func_start ServerBrowserClear
+ServerBrowserClear: ; 0x021FEE44
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	bl ov4_021FEE28
 	add r0, r4, #0x4c
 	bl ov4_021FF340
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FEE44
+	arm_func_end ServerBrowserClear
 
-	arm_func_start ov4_021FEE5C
-ov4_021FEE5C: ; 0x021FEE5C
+	arm_func_start ServerBrowserState
+ServerBrowserState: ; 0x021FEE5C
 	ldr r1, [r0, #0x10]
 	cmp r1, #0
 	movgt r0, #2
@@ -468,40 +468,40 @@ ov4_021FEE5C: ; 0x021FEE5C
 	moveq r0, #0
 	movne r0, #3
 	bx lr
-	arm_func_end ov4_021FEE5C
+	arm_func_end ServerBrowserState
 
-	arm_func_start ov4_021FEE90
-ov4_021FEE90: ; 0x021FEE90
+	arm_func_start ServerBrowserGetServer
+ServerBrowserGetServer: ; 0x021FEE90
 	ldr ip, _021FEE9C ; =ov4_021FF2D4
 	add r0, r0, #0x4c
 	bx ip
 	; .align 2, 0
 _021FEE9C: .word ov4_021FF2D4
-	arm_func_end ov4_021FEE90
+	arm_func_end ServerBrowserGetServer
 
-	arm_func_start ov4_021FEEA0
-ov4_021FEEA0: ; 0x021FEEA0
+	arm_func_start ServerBrowserCount
+ServerBrowserCount: ; 0x021FEEA0
 	ldr ip, _021FEEAC ; =ov4_021FF2C4
 	add r0, r0, #0x4c
 	bx ip
 	; .align 2, 0
 _021FEEAC: .word ov4_021FF2C4
-	arm_func_end ov4_021FEEA0
+	arm_func_end ServerBrowserCount
 
-	arm_func_start ov4_021FEEB0
-ov4_021FEEB0: ; 0x021FEEB0
+	arm_func_start ServerBrowserSortA
+ServerBrowserSortA: ; 0x021FEEB0
 	ldr ip, _021FEEBC ; =ov4_021FF0CC
 	add r0, r0, #0x4c
 	bx ip
 	; .align 2, 0
 _021FEEBC: .word ov4_021FF0CC
-	arm_func_end ov4_021FEEB0
+	arm_func_end ServerBrowserSortA
 
-	arm_func_start ov4_021FEEC0
-ov4_021FEEC0: ; 0x021FEEC0
+	arm_func_start ServerBrowserGetMyPublicIPAddr
+ServerBrowserGetMyPublicIPAddr: ; 0x021FEEC0
 	ldr r0, [r0, #0x4ec]
 	bx lr
-	arm_func_end ov4_021FEEC0
+	arm_func_end ServerBrowserGetMyPublicIPAddr
 
 	.data
 

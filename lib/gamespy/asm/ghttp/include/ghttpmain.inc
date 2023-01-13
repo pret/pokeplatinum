@@ -1,5 +1,5 @@
 .public __msl_assertion_failed
-.public ov4_021D78B0
+.public DWCi_GsFree
 .public ov4_021EA898
 .public ov4_021EA8AC
 .public ov60_0221FEB8
@@ -17,8 +17,8 @@
 .public ov60_02221318
 .public ov60_02221390
 .public ov60_0222144C
-.public ov60_022215B4
-.public ov60_022216A0
+.public ghttpStartup
+.public ghttpGetExA
 .public ov60_02221D4C
 .public ov60_022229B0
 .public ov60_02222A74

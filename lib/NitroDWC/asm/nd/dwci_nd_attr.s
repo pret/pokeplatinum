@@ -94,8 +94,8 @@ _02223E88: .word Unk_ov60_02229E5C
 _02223E8C: .word Unk_ov60_02229E78
 	arm_func_end ov60_02223DC0
 
-	arm_func_start ov60_02223E90
-ov60_02223E90: ; 0x02223E90
+	arm_func_start DWCi_NdSetAttr
+DWCi_NdSetAttr: ; 0x02223E90
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -125,4 +125,4 @@ _02223EF0:
 	bl ov60_02225548
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov60_02223E90
+	arm_func_end DWCi_NdSetAttr

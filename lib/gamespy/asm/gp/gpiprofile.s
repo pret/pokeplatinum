@@ -31,29 +31,29 @@ ov4_021F2F90: ; 0x021F2F90
 	cmp r0, #0
 	beq _021F2FE0
 	ldr r0, [r0, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r4, #8]
 	mov r1, #0
 	str r1, [r0, #8]
 	ldr r0, [r4, #8]
 	ldr r0, [r0, #0xc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldr r0, [r4, #8]
 	mov r1, #0
 	str r1, [r0, #0xc]
 	ldr r0, [r4, #8]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #8]
 _021F2FE0:
 	mov r0, r4
 	bl ov4_021F163C
 	ldr r0, [r4, #0x10]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x10]
 	ldr r0, [r4, #0x18]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x18]
 	ldmia sp!, {r4, pc}
@@ -147,7 +147,7 @@ _021F3120:
 	cmp r2, #0
 	beq _021F319C
 	mov r0, #8
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r3, r0
 	bne _021F316C
 	ldr r1, _021F31C0 ; =0x02218D00

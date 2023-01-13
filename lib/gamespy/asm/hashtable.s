@@ -61,7 +61,7 @@ _021EA290:
 	bl __msl_assertion_failed
 _021EA2AC:
 	mov r0, #0x14
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	movs r4, r0
 	bne _021EA2D0
 	ldr r0, _021EA35C ; =0x022178B4
@@ -71,7 +71,7 @@ _021EA2AC:
 	bl __msl_assertion_failed
 _021EA2D0:
 	mov r0, sb, lsl #2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [r4, #0]
 	cmp r0, #0
 	bne _021EA2F8
@@ -140,9 +140,9 @@ _021EA39C:
 	blt _021EA39C
 _021EA3B8:
 	ldr r0, [r5, #0]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, r5
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021EA3CC: .word Unk_ov4_022178B4

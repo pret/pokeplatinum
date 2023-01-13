@@ -224,23 +224,23 @@ ov4_0220DC98: ; 0x0220DC98
 _0220DCCC: .word 0x386D4380
 	arm_func_end ov4_0220DC98
 
-	arm_func_start ov4_0220DCD0
-ov4_0220DCD0: ; 0x0220DCD0
+	arm_func_start CPS_GetSslHandshakePriority
+CPS_GetSslHandshakePriority: ; 0x0220DCD0
 	ldr r0, _0220DCDC ; =0x0221A1BC
 	ldr r0, [r0, #4]
 	bx lr
 	; .align 2, 0
 _0220DCDC: .word Unk_ov4_0221A1BC
-	arm_func_end ov4_0220DCD0
+	arm_func_end CPS_GetSslHandshakePriority
 
-	arm_func_start ov4_0220DCE0
-ov4_0220DCE0: ; 0x0220DCE0
+	arm_func_start CPS_SetSslHandshakePriority
+CPS_SetSslHandshakePriority: ; 0x0220DCE0
 	ldr r1, _0220DCEC ; =0x0221A1BC
 	str r0, [r1, #4]
 	bx lr
 	; .align 2, 0
 _0220DCEC: .word Unk_ov4_0221A1BC
-	arm_func_end ov4_0220DCE0
+	arm_func_end CPS_SetSslHandshakePriority
 
 	arm_func_start ov4_0220DCF0
 ov4_0220DCF0: ; 0x0220DCF0

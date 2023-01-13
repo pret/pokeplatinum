@@ -2,7 +2,7 @@
 .public ov4_021EA840
 .public ov4_021EAE04
 .public ov4_021EAE48
-.public ov4_021EAF38
+.public GOAGetLastError
 .public ov60_0221FE2C
 .public ov60_02220130
 .public ov60_02220504

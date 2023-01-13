@@ -1,7 +1,7 @@
 .public memset
 .public _u32_div_f
-.public ov4_021D7880
-.public ov4_021D78B0
+.public DWCi_GsMalloc
+.public DWCi_GsFree
 .public ov4_021E9A8C
 .public ov4_021E9B50
 .public ov4_021E9BBC
@@ -22,13 +22,13 @@
 .public ov4_021EAD18
 .public ov4_021EAE5C
 .public ov4_021EAEF0
-.public ov4_021EAF38
+.public GOAGetLastError
 .public ov4_021F741C
 .public ov4_021F763C
 .public ov4_021F7D38
 .public ov4_021F82D8
 .public ov4_021F83EC
-.public ov4_021F8710
+.public gt2CloseAllConnectionsHard
 .public ov4_021F9968
 .public ov4_021FA360
 .public ov4_021FA380

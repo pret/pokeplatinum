@@ -16,7 +16,7 @@ ov4_021EBDCC: ; 0x021EBDCC
 	mov r0, #0x490
 	mov r5, r1
 	mov r4, r2
-	bl ov4_021D7880
+	bl DWCi_GsMalloc
 	str r0, [sp]
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -48,7 +48,7 @@ ov4_021EBDCC: ; 0x021EBDCC
 	cmp r0, #0
 	bne _021EBE84
 	ldr r0, [sp]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [sp]
 	add sp, sp, #4
@@ -104,13 +104,13 @@ ov4_021EBF14: ; 0x021EBF14
 	mov r1, #1
 	bl ov4_021EF75C
 	ldr r0, [r4, #0x460]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x460]
 	ldr r0, [r4, #0x428]
 	bl ov4_021EA364
 	mov r0, r4
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r5, #0]
 	ldmia sp!, {r3, r4, r5, pc}
@@ -143,33 +143,33 @@ ov4_021EBF70: ; 0x021EBF70
 	str r1, [r4, #0x1e8]
 	str r1, [r4, #0x1e0]
 	ldr r0, [r4, #0x1dc]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x1dc]
 	str r0, [r4, #0x1f0]
 	ldr r0, [r4, #0x1ec]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x1ec]
 	str r0, [r4, #0x1fc]
 	str r0, [r4, #0x200]
 	str r0, [r4, #0x1f8]
 	ldr r0, [r4, #0x1f4]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x1f4]
 	str r0, [r4, #0x448]
 	str r0, [r4, #0x44c]
 	str r0, [r4, #0x444]
 	ldr r0, [r4, #0x440]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x440]
 	str r0, [r4, #0x458]
 	str r0, [r4, #0x45c]
 	str r0, [r4, #0x454]
 	ldr r0, [r4, #0x450]
-	bl ov4_021D78B0
+	bl DWCi_GsFree
 	mov r0, #0
 	str r0, [r4, #0x450]
 	sub r0, r0, #1
@@ -287,7 +287,7 @@ _021EC178:
 	str r0, [sl, #0x1f0]
 	add r1, r0, #1
 	ldr r0, [sl, #0x1ec]
-	bl ov4_021D7894
+	bl DWCi_GsRealloc
 	cmp r0, #0
 	bne _021EC1E4
 	ldr r1, _021EC398 ; =0x02217AF4
