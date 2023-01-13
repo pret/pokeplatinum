@@ -616,32 +616,32 @@ Static main
 	Object lib/msl/asm/MSL_C++/ios.o
 	Object lib/msl/asm/MSL_C++/locale_cpp.o
 	Object lib/msl/asm/MSL_C++/msl_thread.o
-	Object lib/Mathlib/asm/_d_add.o
-	Object lib/Mathlib/asm/_d_dtof.o
-	Object lib/Mathlib/asm/_d_dtoi.o
-	Object lib/Mathlib/asm/_d_dtou.o
-	Object lib/Mathlib/asm/_d_dtoull.o
-	Object lib/Mathlib/asm/_d_itod.o
-	Object lib/Mathlib/asm/_d_mul.o
-	Object lib/Mathlib/asm/_d_sqrt.o
-	Object lib/Mathlib/asm/_d_sub.o
-	Object lib/Mathlib/asm/_f_add.o
-	Object lib/Mathlib/asm/_f_cmp.o
-	Object lib/Mathlib/asm/_f_div.o
-	Object lib/Mathlib/asm/_f_ftod.o
-	Object lib/Mathlib/asm/_f_ftoi.o
-	Object lib/Mathlib/asm/_f_ftou.o
-	Object lib/Mathlib/asm/_f_itof.o
-	Object lib/Mathlib/asm/_f_lltof.o
-	Object lib/Mathlib/asm/_f_mul.o
-	Object lib/Mathlib/asm/_f_sub.o
-	Object lib/Mathlib/asm/_ll_div.o
-	Object lib/Mathlib/asm/_ll_mul.o
-	Object lib/Mathlib/asm/_ll_sll.o
-	Object lib/Mathlib/asm/_s32_div_f.o
-	Object lib/Mathlib/asm/_u32_div_f.o
-	Object lib/Mathlib/asm/_d_div.o
-	Object lib/Mathlib/asm/ieee_status.o
+	Object lib/msl/asm/Mathlib/_d_add.o
+	Object lib/msl/asm/Mathlib/_d_dtof.o
+	Object lib/msl/asm/Mathlib/_d_dtoi.o
+	Object lib/msl/asm/Mathlib/_d_dtou.o
+	Object lib/msl/asm/Mathlib/_d_dtoull.o
+	Object lib/msl/asm/Mathlib/_d_itod.o
+	Object lib/msl/asm/Mathlib/_d_mul.o
+	Object lib/msl/asm/Mathlib/_d_sqrt.o
+	Object lib/msl/asm/Mathlib/_d_sub.o
+	Object lib/msl/asm/Mathlib/_f_add.o
+	Object lib/msl/asm/Mathlib/_f_cmp.o
+	Object lib/msl/asm/Mathlib/_f_div.o
+	Object lib/msl/asm/Mathlib/_f_ftod.o
+	Object lib/msl/asm/Mathlib/_f_ftoi.o
+	Object lib/msl/asm/Mathlib/_f_ftou.o
+	Object lib/msl/asm/Mathlib/_f_itof.o
+	Object lib/msl/asm/Mathlib/_f_lltof.o
+	Object lib/msl/asm/Mathlib/_f_mul.o
+	Object lib/msl/asm/Mathlib/_f_sub.o
+	Object lib/msl/asm/Mathlib/_ll_div.o
+	Object lib/msl/asm/Mathlib/_ll_mul.o
+	Object lib/msl/asm/Mathlib/_ll_sll.o
+	Object lib/msl/asm/Mathlib/_s32_div_f.o
+	Object lib/msl/asm/Mathlib/_u32_div_f.o
+	Object lib/msl/asm/Mathlib/_d_div.o
+	Object lib/msl/asm/Mathlib/ieee_status.o
 	Object lib/msl/asm/Runtime/semihosted_console_io.o
 	Object lib/msl/asm/Runtime/compressednumbers.o
 	Object lib/msl/asm/Runtime/exceptionhandler.o
