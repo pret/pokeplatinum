@@ -579,7 +579,7 @@ Static main
 	Object lib/msl/asm/MSL_C/errno.o
 	Object lib/msl/src/MSL_C/arith.o
 	Object lib/msl/src/MSL_C/assert.o
-	Object lib/msl/asm/MSL_C/buffer_io.o
+	Object lib/msl/src/MSL_C/buffer_io.o
 	Object lib/msl/asm/MSL_C/direct_io.o
 	Object lib/msl/asm/MSL_C/file_io.o
 	Object lib/msl/asm/MSL_C/file_pos.o
