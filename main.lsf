@@ -577,7 +577,7 @@ Static main
 	Object lib/msl/src/MSL_C/alloc.o
 	Object lib/msl/src/MSL_C/ansi_files.o
 	Object lib/msl/asm/MSL_C/errno.o
-	Object lib/msl/asm/MSL_C/arith.o
+	Object lib/msl/src/MSL_C/arith.o
 	Object lib/msl/asm/MSL_C/assert.o
 	Object lib/msl/asm/MSL_C/buffer_io.o
 	Object lib/msl/asm/MSL_C/direct_io.o
