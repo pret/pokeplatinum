@@ -2,7 +2,7 @@
 #define NITRO_OS_COMMON_PRINTF_H_
 
 #pragma warn_padding off
-//#include <stdio.h>
+// #include <stdio.h>
 #include <null.h>
 #include <size_t.h>
 #pragma warn_padding reset

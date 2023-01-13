@@ -57,7 +57,7 @@ NITRO_PRECOMPILE_DEPFILE := $(BUILD_DIR)/precompile/nitro.d
 
 # Directories
 
-LIB_SUBDIRS               := NitroSDK NitroSystem NitroDWC NitroWiFi libVCT gamespy msl
+LIB_SUBDIRS               := NitroSDK NitroSystem NitroDWC NitroWiFi libVCT gamespy msl Mathlib
 
 SRC_SUBDIR                := src
 ASM_SUBDIR                := asm
@@ -104,14 +104,14 @@ EXCCFLAGS         := -Cpp_exceptions off
 include $(WORK_DIR)/force_active.mk
 
 MWCFLAGS           = $(DEFINES) $(OPTFLAGS) -enum int -lang c99 $(EXCCFLAGS) -gccext,on -proc $(PROC) -msgstyle gcc -gccinc -ipa file -interworking -inline on,noauto -char signed
-MWASFLAGS          = $(DEFINES) -proc $(PROC_S) -gccinc -i . -i ./include -i ./asm -i $(WORK_DIR)/files -I$(WORK_DIR)/lib/include -DSDK_ASM
+MWASFLAGS          = $(DEFINES) -proc $(PROC_S) -gccinc -i . -i ./include -i ./asm -i $(WORK_DIR)/files -I$(WORK_DIR)/lib/msl/include/MSL_C -DSDK_ASM
 MWLDFLAGS         := -w on -proc $(PROC) -nopic -nopid -interworking -map closure,unused -symtab sort -m _start -msgstyle gcc -force_active $(FORCE_ACTIVE_SYMBOLS)
 ARFLAGS           := rcS
 
 # The foreach iterates through all library folders defined in LIB_SUBDIRS
 # and generates the relevant includes
 # e.g. -I$(WORK_DIR)/lib/NitroSDK/include -I$(WORK_DIR)/lib/NitroSystem/include
-LIBRARY_INCLUDE_FLAGS := -I$(WORK_DIR)/lib/include $(foreach dname,$(LIB_SUBDIRS),-I$(WORK_DIR)/lib/$(dname)/include)
+LIBRARY_INCLUDE_FLAGS := -I$(WORK_DIR)/lib/msl/include/MSL_C $(foreach dname,$(LIB_SUBDIRS),-I$(WORK_DIR)/lib/$(dname)/include)
 
 SRC_INCLUDE_FLAGS := -i ./include -i ./include/library -i $(WORK_DIR)/files $(LIBRARY_INCLUDE_FLAGS)
 SDK_INCLUDE_FLAGS := $(LIBRARY_INCLUDE_FLAGS)
@@ -125,7 +125,7 @@ MW_COMPILE_LIB_PRECOMPILE = $(WINE) $(MWCC) $(MWCFLAGS) $(SDK_INCLUDE_FLAGS)
 
 MW_ASSEMBLE = $(WINE) $(MWAS) $(MWASFLAGS)
 
-export MWCIncludes := lib/include
+export MWCIncludes := lib/msl/include/MSL_C
 
 LSF               := $(addsuffix .lsf,$(NEFNAME))
 ifneq ($(LSF),)
