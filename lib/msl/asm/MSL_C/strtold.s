@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/strtold.inc"
 
-	.extern Unk_021D0D40
+	.extern errno
 	.extern Unk_021015AC
 	.extern Unk_021015B4
 
@@ -1403,7 +1403,7 @@ _020DA42C:
 	; .align 2, 0
 _020DA43C: .word __StringRead
 _020DA440: .word 0x7FEFFFFF
-_020DA444: .word Unk_021D0D40
+_020DA444: .word errno
 	arm_func_end strtod
 
 	arm_func_start atof

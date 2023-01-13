@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/dwc_nastime.inc"
 
-	.extern Unk_021D0D40
+	.extern errno
 
 	.text
 
@@ -144,7 +144,7 @@ _021D6C88:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021D6C94: .word Unk_ov4_02216570
-_021D6C98: .word Unk_021D0D40
+_021D6C98: .word errno
 _021D6C9C: .word Unk_ov4_02216540
 _021D6CA0: .word Unk_ov4_0221A4B4
 	arm_func_end DWC_Auth_SetNasTimeDiff

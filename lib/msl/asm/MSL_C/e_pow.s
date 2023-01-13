@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/e_pow.inc"
 
-	.extern Unk_021D0D40
+	.extern errno
 
 	.text
 
@@ -398,7 +398,7 @@ _020DD488: .word 0x43400000
 _020DD48C: .word 0xFFFFFC01
 _020DD490: .word 0x3FE00000
 _020DD494: .word 0x021015B0
-_020DD498: .word Unk_021D0D40
+_020DD498: .word errno
 _020DD49C: .word 0x41E00000
 _020DD4A0: .word 0x3FEFFFFF
 _020DD4A4: .word 0x3FD00000

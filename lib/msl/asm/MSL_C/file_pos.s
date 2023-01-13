@@ -5,7 +5,7 @@
 	.extern Unk_021D0920
 	.extern Unk_021D0944
 	.extern Unk_021D0968
-	.extern Unk_021D0D40
+	.extern errno
 	.extern __files
 
 
@@ -47,7 +47,7 @@ _020D4AA4:
 	subhs r0, r0, r1
 	bx lr
 	; .align 2, 0
-_020D4ADC: .word Unk_021D0D40
+_020D4ADC: .word errno
 	arm_func_end _ftell
 
 	arm_func_start ftell
@@ -264,7 +264,7 @@ _020D4DD0:
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
-_020D4DE0: .word Unk_021D0D40
+_020D4DE0: .word errno
 	arm_func_end _fseek
 
 	arm_func_start fseek

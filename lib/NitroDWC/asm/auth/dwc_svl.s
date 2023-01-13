@@ -2,7 +2,7 @@
 	.include "include/dwc_svl.inc"
 
 	.extern OSi_ThreadInfo
-	.extern Unk_021D0D40
+	.extern errno
 
 	.extern Unk_ov4_02215EA0
 	.text
@@ -444,7 +444,7 @@ _021D72B4: .word Unk_ov4_0221A4C8
 _021D72B8: .word 0xFFFF9DF3
 _021D72BC: .word Unk_ov4_022165E4
 _021D72C0: .word Unk_ov4_022165EC
-_021D72C4: .word Unk_021D0D40
+_021D72C4: .word errno
 _021D72C8: .word 0xFFFF9E58
 _021D72CC: .word Unk_ov4_022165F8
 _021D72D0: .word 0xFFFFA240

@@ -1,6 +1,6 @@
 	.include "macros/function.inc"
 
-	.extern Unk_021D0D40
+	.extern errno
 
 	.text
 
@@ -122,5 +122,5 @@ _020E070C:
 	; .align 2, 0
 _020E0728: .word 0x7FF00000
 _020E072C: .word 0x7FF80000
-_020E0730: .word Unk_021D0D40
+_020E0730: .word errno
 	arm_func_end _dsqrt

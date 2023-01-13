@@ -2,7 +2,7 @@
 	.include "include/dwc_auth.inc"
 
 	.extern OSi_ThreadInfo
-	.extern Unk_021D0D40
+	.extern errno
 	.extern Unk_ov4_0221A43C
 
 	.text
@@ -879,7 +879,7 @@ _021D3C3C:
 	; .align 2, 0
 _021D3C44: .word Unk_ov4_0221A414
 _021D3C48: .word Unk_ov4_02215F40
-_021D3C4C: .word Unk_021D0D40
+_021D3C4C: .word errno
 _021D3C50: .word Unk_ov4_02215F48
 _021D3C54: .word 0x00004E85
 _021D3C58: .word Unk_ov4_02215F54

@@ -2,7 +2,7 @@
 	.include "include/dwc_netcheck.inc"
 
 	.extern OSi_ThreadInfo
-	.extern Unk_021D0D40
+	.extern errno
 
 	.extern Unk_ov4_02215EA0
 	.text
@@ -1259,7 +1259,7 @@ _021D69C4: .word Unk_ov4_0221635C
 _021D69C8: .word Unk_ov4_0221A450
 _021D69CC: .word OSi_ThreadInfo
 _021D69D0: .word Unk_ov4_02216470
-_021D69D4: .word Unk_021D0D40
+_021D69D4: .word errno
 _021D69D8: .word 0x0000012E
 _021D69DC: .word Unk_ov4_02215EA0
 _021D69E0: .word 0x00004E20
