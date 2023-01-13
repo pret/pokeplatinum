@@ -574,7 +574,7 @@ Static main
 	Object lib/msl/asm/MSL_C/abort_exit_arm.o
 	Object lib/msl/asm/MSL_C/critical_region.o
 	Object lib/msl/asm/MSL_C/math_arm.o
-	Object lib/msl/asm/MSL_C/alloc.o
+	Object lib/msl/src/MSL_C/alloc.o
 	Object lib/msl/asm/MSL_C/ansi_files.o
 	Object lib/msl/asm/MSL_C/errno.o
 	Object lib/msl/asm/MSL_C/arith.o

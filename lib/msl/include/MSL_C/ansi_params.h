@@ -13,4 +13,6 @@
 #define _MSL_END_NAMESPACE_STD
 #endif //__cplusplus
 
+#define __std(ref) ref
+
 #endif //_MSL_MSLEXTERN_H
