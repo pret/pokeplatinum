@@ -13,7 +13,7 @@
 #include "overlay066/struct_ov66_022589B4.h"
 
 #include "heap.h"
-#include "unk_02022974.h"
+#include "error_handling.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
 #include "overlay004/ov4_021D0D80.h"

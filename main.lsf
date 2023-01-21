@@ -84,7 +84,7 @@ Static main
 	Object src/unk_020218BC.o
 	Object src/unk_02022594.o
 	Object src/unk_02022844.o
-	Object src/unk_02022974.o
+	Object src/error_handling.o
 	Object src/unk_0202298C.o
 	Object src/unk_0202309C.o
 	Object src/unk_020232E0.o

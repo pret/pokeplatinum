@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_UNK_02022974_H
-#define POKEPLATINUM_UNK_02022974_H
-
-void GF_AssertFail(void);
-
-#endif // POKEPLATINUM_UNK_02022974_H

@@ -32,7 +32,7 @@
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"
-#include "unk_02022974.h"
+#include "error_handling.h"
 #include "unk_02023790.h"
 #include "unk_02023FCC.h"
 #include "overlay022/ov22_02255094.h"

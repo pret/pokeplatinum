@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 #include "heap.h"
-#include "unk_02022974.h"
+#include "error_handling.h"
 #include "unk_02023790.h"
 #include "overlay098/ov98_022499C8.h"
 

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02022974.h"
+#include "error_handling.h"
 #include "unk_020366A0.h"
 #include "unk_0209B47C.h"
 

@@ -18,7 +18,7 @@
 #include "unk_020067E8.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_02022974.h"
+#include "error_handling.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02030CE8.h"

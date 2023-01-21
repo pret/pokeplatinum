@@ -43,7 +43,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02022974.h"
+#include "error_handling.h"
 #include "unk_02023790.h"
 #include "unk_02034198.h"
 #include "overlay117/ov117_02260668.h"
