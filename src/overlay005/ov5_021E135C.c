@@ -11,7 +11,7 @@
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "overlay005/ov5_021E135C.h"
@@ -70,7 +70,7 @@ static void ov5_021E139C (UnkStruct_0201CD38 * param0, void * param1)
             sub_0200F174(2, 0, 0, 0x0, 6, 1, 4);
         } else if ((v0->unk_0C > 20) && sub_0200F2AC()) {
             *v0->unk_04 = 1;
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             sub_0200DA58(param0);
         } else {
             break;
@@ -121,7 +121,7 @@ static void ov5_021E1470 (UnkStruct_0201CD38 * param0, void * param1)
         if (sub_0200F2AC()) {
             sub_0205EA84(v0->unk_00->unk_3C, 1);
             *v0->unk_04 = 1;
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             sub_0200DA58(param0);
         }
         break;
@@ -130,7 +130,7 @@ static void ov5_021E1470 (UnkStruct_0201CD38 * param0, void * param1)
 
 void ov5_021E15A8 (UnkStruct_0203CDB0 * param0, BOOL param1, BOOL * param2)
 {
-    UnkStruct_ov5_021E135C * v0 = sub_02018184(4, sizeof(UnkStruct_ov5_021E135C));
+    UnkStruct_ov5_021E135C * v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E135C));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E135C));
 

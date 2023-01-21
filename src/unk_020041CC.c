@@ -9,7 +9,7 @@
 #include "unk_02003B60.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02034198.h"
 
 void sub_020041E8(u16 param0);
@@ -1026,7 +1026,7 @@ BOOL sub_02004D78 (u16 param0, int param1, int param2, u32 param3, int param4)
     }
 
     if (param3 == 14) {
-        *v6 = sub_02018144(param4, v2);
+        *v6 = AllocFromHeap(param4, v2);
 
         if (*v6 == NULL) {
             GF_ASSERT(FALSE);
@@ -1098,7 +1098,7 @@ void sub_02004E84 (u32 param0)
 
     if (*v1 == 1) {
         *v1 = 0;
-        sub_020181C4(*v2);
+        FreeToHeap(*v2);
     }
 
     return;

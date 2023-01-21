@@ -36,7 +36,7 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -97,7 +97,7 @@ static BOOL (* Unk_ov87_021D1BA0[])(UnkStruct_ov87_021D106C *, int *) = {
 
 UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const UnkStruct_ov87_021D12C0 * param1)
 {
-    UnkStruct_ov87_021D106C * v0 = sub_02018144(61, sizeof(UnkStruct_ov87_021D106C));
+    UnkStruct_ov87_021D106C * v0 = AllocFromHeap(61, sizeof(UnkStruct_ov87_021D106C));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -126,7 +126,7 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
 {
     if (param0) {
         sub_02017798(NULL, NULL);
-        sub_020181C4(param0->unk_1FC);
+        FreeToHeap(param0->unk_1FC);
         sub_020237BC(param0->unk_1F8);
         sub_020237BC(param0->unk_1F4);
         sub_0200B3F0(param0->unk_1F0);
@@ -135,8 +135,8 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         sub_0200B190(param0->unk_1E4);
         sub_02021964(param0->unk_34);
         sub_0200A878();
-        sub_020181C4(param0->unk_10);
-        sub_020181C4(param0);
+        FreeToHeap(param0->unk_10);
+        FreeToHeap(param0);
     }
 }
 
@@ -476,8 +476,8 @@ static void ov87_021D186C (UnkStruct_ov87_021D106C * param0)
         }
     }
 
-    sub_020181C4(param0->unk_1DC);
-    sub_020181C4(param0->unk_1E0);
+    FreeToHeap(param0->unk_1DC);
+    FreeToHeap(param0->unk_1E0);
 }
 
 static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank * param1, NNSG2dAnimBankData * param2)
@@ -535,8 +535,8 @@ static void ov87_021D18A0 (UnkStruct_ov87_021D106C * param0, NNSG2dCellDataBank 
         sub_02021CAC(param0->unk_1C4[v9], 0);
     }
 
-    sub_020181C4(v8);
-    sub_020181C4(v7);
+    FreeToHeap(v8);
+    FreeToHeap(v7);
 }
 
 static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)

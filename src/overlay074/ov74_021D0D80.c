@@ -33,7 +33,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -107,7 +107,7 @@ int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v1 = (UnkStruct_020279FC *)sub_02006840(param0);
 
-    sub_02017FC8(3, 38, 0x10000);
+    CreateHeap(3, 38, 0x10000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov74_021D0D80), 38);
     memset(v0, 0, sizeof(UnkStruct_ov74_021D0D80));
@@ -149,7 +149,7 @@ int ov74_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     sub_02027A68(NULL, v0->unk_18.unk_00_8);
     sub_02002AC8(1);
     sub_02006830(param0);
-    sub_0201807C(v0->unk_00);
+    DestroyHeap(v0->unk_00);
 
     return 1;
 }
@@ -454,7 +454,7 @@ static void ov74_021D135C (UnkStruct_ov74_021D0D80 * param0)
     sub_02019044(param0->unk_14, 2);
     sub_02019044(param0->unk_14, 1);
     sub_02019044(param0->unk_14, 0);
-    sub_020181C4(param0->unk_14);
+    FreeToHeap(param0->unk_14);
 }
 
 static void ov74_021D1390 (UnkStruct_ov74_021D0D80 * param0)
@@ -468,25 +468,25 @@ static void ov74_021D1390 (UnkStruct_ov74_021D0D80 * param0)
 
     v2 = NARC_ctor(73, param0->unk_00);
     v1 = NARC_GetMemberSize(v2, 1);
-    v3 = sub_02018184(param0->unk_00, v1);
+    v3 = AllocFromHeapAtEnd(param0->unk_00, v1);
 
     NARC_ReadWholeMember(v2, 1, (void *)v3);
     NNS_G2dGetUnpackedCharacterData(v3, &v4);
     sub_0201958C(param0->unk_14, 0, v4->pRawData, v4->szByte, 0);
     sub_0201958C(param0->unk_14, 4, v4->pRawData, v4->szByte, 0);
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 
     v1 = NARC_GetMemberSize(v2, 0);
-    v3 = sub_02018184(param0->unk_00, v1);
+    v3 = AllocFromHeapAtEnd(param0->unk_00, v1);
     NARC_ReadWholeMember(v2, 0, (void *)v3);
 
     NNS_G2dGetUnpackedPaletteData(v3, &v5);
     sub_0201972C(0, v5->pRawData, 0x20 * 1, 0);
     sub_0201972C(4, v5->pRawData, 0x20 * 1, 0);
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 
     v1 = NARC_GetMemberSize(v2, 2);
-    param0->unk_24 = sub_02018144(param0->unk_00, v1);
+    param0->unk_24 = AllocFromHeap(param0->unk_00, v1);
 
     NARC_ReadWholeMember(v2, 2, (void *)param0->unk_24);
     NNS_G2dGetUnpackedScreenData(param0->unk_24, &(param0->unk_28));
@@ -502,7 +502,7 @@ static void ov74_021D1390 (UnkStruct_ov74_021D0D80 * param0)
 
 static void ov74_021D14E8 (UnkStruct_ov74_021D0D80 * param0)
 {
-    sub_020181C4(param0->unk_24);
+    FreeToHeap(param0->unk_24);
 }
 
 static void ov74_021D14F4 (UnkStruct_ov74_021D0D80 * param0)

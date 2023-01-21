@@ -21,7 +21,7 @@
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_020244AC.h"
 #include "unk_02025E68.h"
@@ -59,7 +59,7 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
 {
     UnkStruct_0205C22C * v0;
 
-    v0 = (UnkStruct_0205C22C *)sub_02018144(31, sizeof(UnkStruct_0205C22C));
+    v0 = (UnkStruct_0205C22C *)AllocFromHeap(31, sizeof(UnkStruct_0205C22C));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0205C22C));
 
@@ -70,7 +70,7 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
     v0->unk_474 = sub_020245BC(v0->unk_470->unk_0C, 9);
     v0->unk_08 = v0->unk_470->unk_3C;
 
-    sub_02017FD4(11, 89, 10000);
+    CreateHeapAtEnd(11, 89, 10000);
     v0->unk_478 = sub_0205C95C(89);
     sub_0205C2C8(v0);
 
@@ -104,8 +104,8 @@ void sub_0205C2E0 (UnkStruct_0205C22C * param0)
 {
     sub_0200DA58(param0->unk_04);
     sub_0205C970(param0->unk_478);
-    sub_0201807C(89);
-    sub_020181C4(param0);
+    DestroyHeap(89);
+    FreeToHeap(param0);
 }
 
 static void sub_0205C304 (UnkStruct_0201CD38 * param0, void * param1)
@@ -516,7 +516,7 @@ static void sub_0205C900 (UnkStruct_0205C95C * param0)
 
 static void sub_0205C924 (UnkStruct_0205C924 * param0)
 {
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
 
     if (param0->unk_04 != NULL) {
         sub_020237BC(param0->unk_04);
@@ -538,7 +538,7 @@ static void sub_0205C944 (UnkStruct_0205C95C * param0)
 
 UnkStruct_0205C95C * sub_0205C95C (int param0)
 {
-    UnkStruct_0205C95C * v0 = sub_02018144(param0, sizeof(UnkStruct_0205C95C));
+    UnkStruct_0205C95C * v0 = AllocFromHeap(param0, sizeof(UnkStruct_0205C95C));
 
     sub_0205C900(v0);
     return v0;
@@ -547,5 +547,5 @@ UnkStruct_0205C95C * sub_0205C95C (int param0)
 void sub_0205C970 (UnkStruct_0205C95C * param0)
 {
     sub_0205C944(param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }

@@ -20,7 +20,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -153,7 +153,7 @@ void sub_0209AA74 (int param0, int param1)
     sub_02019120(6, 0);
     sub_02019120(7, 0);
     sub_02019044(v0, 0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     PM_ForceToPowerOff();
 }

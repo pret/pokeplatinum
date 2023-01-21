@@ -6,7 +6,7 @@
 
 #include "overlay111/struct_ov111_021D2F80.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/ov111_021D33F4.h"
@@ -39,7 +39,7 @@ UnkStruct_ov111_021D33F4 * ov111_021D33F4 (UnkStruct_ov111_021D2F80 * param0, u3
     UnkStruct_ov111_021D33F4 * v0;
     VecFx32 v1;
 
-    v0 = sub_02018144(115, sizeof(UnkStruct_ov111_021D33F4));
+    v0 = AllocFromHeap(115, sizeof(UnkStruct_ov111_021D33F4));
     memset(v0, 0, sizeof(UnkStruct_ov111_021D33F4));
     v0->unk_0C = ov111_021D3280(param0, param1, param2, param6, param7, param5);
     v0->unk_02 = param5;
@@ -52,7 +52,7 @@ UnkStruct_ov111_021D33F4 * ov111_021D33F4 (UnkStruct_ov111_021D2F80 * param0, u3
 void * ov111_021D3448 (UnkStruct_ov111_021D33F4 * param0)
 {
     sub_02021BD4(param0->unk_0C);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
     return NULL;
 }
 

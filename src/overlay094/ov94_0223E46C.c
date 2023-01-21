@@ -30,7 +30,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -387,7 +387,7 @@ static void ov94_0223E9B8 (UnkStruct_ov94_0223FD4C * param0)
 
     param0->unk_BAC = sub_02023790((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 41);
-    param0->unk_10E4 = sub_02018144(62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
+    param0->unk_10E4 = AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
@@ -399,9 +399,9 @@ static void ov94_0223E9B8 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223EA20 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_020181C4(param0->unk_10E4->unk_14);
-    sub_020181C4(param0->unk_10E4->unk_18);
-    sub_020181C4(param0->unk_10E4);
+    FreeToHeap(param0->unk_10E4->unk_14);
+    FreeToHeap(param0->unk_10E4->unk_18);
+    FreeToHeap(param0->unk_10E4);
     sub_020237BC(param0->unk_BAC);
     sub_020237BC(param0->unk_BB0);
 }

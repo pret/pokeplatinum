@@ -16,7 +16,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 #include "map_header.h"
 #include "unk_020508D4.h"
@@ -101,7 +101,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
 
 void sub_02056B30 (UnkStruct_020508D4 * param0, int param1, int param2, int param3, u16 param4, int param5, int param6, int param7)
 {
-    UnkStruct_02056B30 * v0 = sub_02018144(param7, sizeof(UnkStruct_02056B30));
+    UnkStruct_02056B30 * v0 = AllocFromHeap(param7, sizeof(UnkStruct_02056B30));
 
     v0->unk_04 = param1;
     v0->unk_08 = param2;
@@ -129,7 +129,7 @@ static BOOL sub_02056B70 (UnkStruct_020508D4 * param0)
     case 1:
         if (sub_0200F2AC()) {
             ov5_021EF3DC(v0->unk_04->unk_1C);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return 1;
         }
     }
@@ -139,7 +139,7 @@ static BOOL sub_02056B70 (UnkStruct_020508D4 * param0)
 
 void sub_02056BDC (UnkStruct_0203CDB0 * param0, const int param1, const int param2, const int param3, const int param4, const int param5, const int param6)
 {
-    UnkStruct_02056BDC * v0 = sub_02018184(11, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02056BDC));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -155,7 +155,7 @@ void sub_02056C18 (UnkStruct_0203CDB0 * param0, const int param1, const int para
 {
     int v0;
     int v1;
-    UnkStruct_02056BDC * v2 = sub_02018184(11, sizeof(UnkStruct_02056BDC));
+    UnkStruct_02056BDC * v2 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02056BDC));
 
     v2->unk_00 = 0;
     v2->unk_04 = 0;
@@ -247,7 +247,7 @@ static BOOL sub_02056CFC (UnkStruct_020508D4 * param0)
         (v1->unk_00)++;
         break;
     case 6:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 

@@ -13,7 +13,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
 #include "unk_0201FE94.h"
@@ -89,7 +89,7 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
 
             if (param0->unk_224[v1] != NULL) {
                 if (NNS_G2dGetUnpackedPaletteData(param0->unk_224[v1], &param0->unk_244[v1]) == 0) {
-                    sub_020181C4(param0->unk_244[v1]);
+                    FreeToHeap(param0->unk_244[v1]);
                     GF_ASSERT(0);
                 }
             } else {
@@ -182,7 +182,7 @@ void ov71_0223D238 (UnkStruct_ov71_0223D238 * param0)
     u8 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_020181C4(param0->unk_224[v0]);
+        FreeToHeap(param0->unk_224[v0]);
     }
 
     sub_0200A4E4(param0->unk_1A0[0][0]);

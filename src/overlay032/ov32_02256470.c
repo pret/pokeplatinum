@@ -19,7 +19,7 @@
 #include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02079D40.h"
 #include "unk_0207CDEC.h"
@@ -86,7 +86,7 @@ static const struct {
 
 BOOL ov32_02256470 (UnkStruct_ov32_02256470 ** param0, const UnkStruct_ov32_02256470_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)sub_02018144(8, sizeof(UnkStruct_ov32_02256470));
+    UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)AllocFromHeap(8, sizeof(UnkStruct_ov32_02256470));
 
     if (v0 != NULL) {
         int v1;
@@ -125,7 +125,7 @@ void ov32_02256508 (UnkStruct_ov32_02256470 * param0)
             sub_0200DA58(param0->unk_F4);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

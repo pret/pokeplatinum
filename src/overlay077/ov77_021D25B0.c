@@ -32,7 +32,7 @@
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201C970.h"
 #include "unk_0201D15C.h"
@@ -948,7 +948,7 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201FF00();
     sub_0201FF68();
     sub_02017DD4(4, 8);
-    sub_02017FC8(3, v1, 0xa0000);
+    CreateHeap(3, v1, 0xa0000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
@@ -1025,7 +1025,7 @@ static int ov77_021D2E60 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201D2DC(v0->unk_14);
     sub_02006830(param0);
-    sub_0201807C(76);
+    DestroyHeap(76);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
 
     return 1;
@@ -1188,7 +1188,7 @@ static void ov77_021D3234 (UnkStruct_ov77_021D2E9C * param0)
         sub_02019044(param0->unk_0C, 3);
         sub_02019044(param0->unk_0C, 7);
         sub_02019044(param0->unk_0C, 5);
-        sub_020181C4(param0->unk_0C);
+        FreeToHeap(param0->unk_0C);
 
         param0->unk_18.unk_02 = 0;
     }
@@ -1342,9 +1342,9 @@ static void ov77_021D34A8 (UnkStruct_ov77_021D2E9C * param0)
     v1 = ov77_021D555C();
     v2 = ov77_021D6CB8();
 
-    param0->unk_34.unk_14 = sub_02018144(76, v1);
+    param0->unk_34.unk_14 = AllocFromHeap(76, v1);
     param0->unk_34.unk_18 = ov77_021D6734(16);
-    param0->unk_34.unk_1C = sub_02018144(76, v2);
+    param0->unk_34.unk_1C = AllocFromHeap(76, v2);
 
     memset(param0->unk_34.unk_14, 0, v1);
     memset(param0->unk_34.unk_1C, 0, v2);
@@ -1380,12 +1380,12 @@ static void ov77_021D35B8 (UnkStruct_ov77_021D2E9C * param0)
         sub_020203B8(param0->unk_34.unk_20.unk_08);
 
         for (v0 = 0; v0 < param0->unk_34.unk_20.unk_21C; v0++) {
-            sub_020181C4(param0->unk_34.unk_20.unk_0C[v0].unk_54);
+            FreeToHeap(param0->unk_34.unk_20.unk_0C[v0].unk_54);
         }
 
         param0->unk_34.unk_20.unk_21C = 0;
 
-        sub_020181C4(param0->unk_34.unk_20.unk_00);
+        FreeToHeap(param0->unk_34.unk_20.unk_00);
 
         param0->unk_34.unk_04 = 0;
         param0->unk_34.unk_05 = 0;
@@ -1423,7 +1423,7 @@ static void ov77_021D361C (UnkStruct_ov77_021D2E9C * param0, BOOL param1)
         }
 
         if (param1 == 1) {
-            sub_020181C4(param0->unk_0C);
+            FreeToHeap(param0->unk_0C);
             param0->unk_0C = NULL;
         }
     }
@@ -1448,20 +1448,20 @@ static void ov77_021D36F8 (UnkStruct_ov77_021D2E9C * param0)
         }
 
         if (param0->unk_34.unk_14 != NULL) {
-            sub_020181C4(param0->unk_34.unk_14);
+            FreeToHeap(param0->unk_34.unk_14);
             param0->unk_34.unk_14 = NULL;
         }
 
         if (param0->unk_34.unk_1C != NULL) {
             ov77_021D6E28(param0->unk_34.unk_1C);
-            sub_020181C4(param0->unk_34.unk_1C);
+            FreeToHeap(param0->unk_34.unk_1C);
             param0->unk_34.unk_1C = NULL;
         }
 
         ov77_021D361C(param0, 1);
 
         if (param0->unk_34.unk_240 != NULL) {
-            sub_020181C4(param0->unk_34.unk_240);
+            FreeToHeap(param0->unk_34.unk_240);
             param0->unk_34.unk_240 = NULL;
         }
 
@@ -1587,7 +1587,7 @@ static void ov77_021D3B5C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     sub_02007130(v1, 72, 0, 0, 0, 76);
     sub_02007130(v1, 72, 4, 0, 0, 76);
 
-    param1->unk_240 = sub_02018144(76, 0x200);
+    param1->unk_240 = AllocFromHeap(76, 0x200);
 
     MI_CpuCopy16((void *)HW_BG_PLTT, param1->unk_240, 0x200);
     MI_CpuClear16(param1->unk_240, 2);
@@ -1693,7 +1693,7 @@ static void ov77_021D3EDC (UnkStruct_ov77_021D37C0 * param0, int param1)
         v1 = (u8 *)param0->unk_20.unk_04 + param0->unk_20.unk_04->texInfo.ofsTex;
         v2 = (u32)(v1 - (u8 *)param0->unk_20.unk_00);
 
-        sub_020182F0(param0->unk_20.unk_00, v2);
+        ReallocFromHeap(param0->unk_20.unk_00, v2);
     }
 }
 
@@ -2603,7 +2603,7 @@ static void ov77_021D5478 (UnkStruct_ov77_021D2E9C * param0)
 {
     if (param0->unk_298.unk_02) {
         sub_02019044(param0->unk_0C, 2);
-        sub_020181C4(param0->unk_0C);
+        FreeToHeap(param0->unk_0C);
         param0->unk_298.unk_02 = 0;
     }
 

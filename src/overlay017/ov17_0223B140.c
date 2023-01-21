@@ -35,7 +35,7 @@
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -160,7 +160,7 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 21, 0x70000);
+    CreateHeap(3, 21, 0x70000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov17_02246F24), 21);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02246F24));
@@ -370,7 +370,7 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B190(v0->unk_0C.unk_40);
     sub_0200B190(v0->unk_0C.unk_44);
 
-    sub_020181C4(v0->unk_0C.unk_24);
+    FreeToHeap(v0->unk_0C.unk_24);
     sub_0200DA58(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_08);
@@ -379,7 +379,7 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201807C(21);
+    DestroyHeap(21);
     sub_02095A24();
     sub_02039794();
     sub_02006514(FS_OVERLAY_ID(overlay11));
@@ -674,8 +674,8 @@ static void ov17_0223BBA8 (UnkStruct_ov17_02246F24 * param0, NARC * param1)
     {
         u16 * v0, * v1, * v2, * v3;
 
-        v0 = sub_02018144(21, 0x20);
-        v1 = sub_02018144(21, 0x20);
+        v0 = AllocFromHeap(21, 0x20);
+        v1 = AllocFromHeap(21, 0x20);
         v2 = sub_02003164(param0->unk_0C.unk_50, 0);
         v3 = sub_0200316C(param0->unk_0C.unk_50, 0);
 
@@ -686,8 +686,8 @@ static void ov17_0223BBA8 (UnkStruct_ov17_02246F24 * param0, NARC * param1)
         MI_CpuCopy16(v0, &v3[Unk_ov17_022536B4[param0->unk_00->unk_00.unk_113] * 16], 0x20);
         MI_CpuCopy16(v1, &v3[Unk_ov17_022536B4[0] * 16], 0x20);
 
-        sub_020181C4(v0);
-        sub_020181C4(v1);
+        FreeToHeap(v0);
+        FreeToHeap(v1);
     }
 }
 

@@ -37,7 +37,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -349,7 +349,7 @@ int ov112_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov66_02230FA0 * v1;
 
     v1 = sub_02006840(param0);
-    sub_02017FC8(3, 107, 0x50000);
+    CreateHeap(3, 107, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov112_0225C970), 107);
     memset(v0, 0, sizeof(UnkStruct_ov112_0225C970));
@@ -456,7 +456,7 @@ int ov112_0225C8FC (UnkStruct_020067E8 * param0, int * param1)
     ov112_0225C9F4(&v0->unk_08);
 
     sub_02006830(param0);
-    sub_0201807C(107);
+    DestroyHeap(107);
 
     return 1;
 }
@@ -552,7 +552,7 @@ static void ov112_0225CB60 (UnkStruct_ov112_0225C9BC * param0)
         }
     }
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     Unk_021BF67C.unk_65 = 0;
     sub_0201FFE8();
 }
@@ -606,7 +606,7 @@ static void ov112_0225CC64 (UnkStruct_ov112_0225CC84 * param0, UnkStruct_ov112_0
 
 static void ov112_0225CC84 (UnkStruct_ov112_0225CC84 * param0)
 {
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
 }
 
 static void ov112_0225CC90 (UnkStruct_ov112_0225CC84 * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2, u8 param3, u8 param4)
@@ -989,7 +989,7 @@ static void ov112_0225D2D0 (UnkStruct_ov112_0225D2D0 * param0)
 {
     int v0;
 
-    sub_020181C4(param0->unk_94);
+    FreeToHeap(param0->unk_94);
     sub_020237BC(param0->unk_90);
 
     for (v0 = 0; v0 < 3; v0++) {

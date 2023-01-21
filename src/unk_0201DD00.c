@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0202144C.h"
 #include "struct_defs/struct_02024184.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
 #include "unk_0201E0A4.h"
@@ -36,9 +36,9 @@ UnkStruct_0201DD00 * sub_0201DD00 (int param0, int param1)
     UnkStruct_0201DD00 * v0;
     int v1;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_0201DD00));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0201DD00));
 
-    v0->unk_00 = sub_02018144(param1, sizeof(UnkStruct_0201DDF4) * param0);
+    v0->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_0201DDF4) * param0);
     v0->unk_04 = param0;
 
     for (v1 = 0; v1 < v0->unk_04; v1++) {
@@ -51,8 +51,8 @@ UnkStruct_0201DD00 * sub_0201DD00 (int param0, int param1)
 void sub_0201DD3C (UnkStruct_0201DD00 * param0)
 {
     sub_0201DDB4(param0);
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0);
 }
 
 UnkStruct_0201DDF4 * sub_0201DD54 (UnkStruct_0201DD00 * param0, const UnkStruct_02024184 * param1, const NNSG3dResTex * param2, NNSGfdTexKey param3, NNSGfdPlttKey param4, const fx32 param5)

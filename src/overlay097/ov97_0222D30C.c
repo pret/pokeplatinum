@@ -53,7 +53,7 @@
 #include "unk_0201378C.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -275,7 +275,7 @@ static void ov97_0222D34C (UnkStruct_020067E8 * param0)
     sub_02019044(v1->unk_00, 1);
     sub_02019044(v1->unk_00, 4);
     sub_02019044(v1->unk_00, 5);
-    sub_020181C4(v1->unk_00);
+    FreeToHeap(v1->unk_00);
 }
 
 static void ov97_0222D3E8 (UnkStruct_ov97_0222D04C * param0)
@@ -1093,7 +1093,7 @@ static int ov97_0222E2DC (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov97_0222D04C * v0;
 
     ov97_022301B0(param0);
-    sub_02017FC8(3, 86, 0x30000);
+    CreateHeap(3, 86, 0x30000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov97_0222D04C), 86);
     memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
@@ -1122,7 +1122,7 @@ static int ov97_0222E2DC (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_08 = sub_02025E44(v0->unk_04);
     v0->unk_68 = 0xff;
 
-    sub_02017FC8(0, 91, 0x300);
+    CreateHeap(0, 91, 0x300);
 
     return 1;
 }
@@ -1996,7 +1996,7 @@ static void ov97_0222F4BC (UnkStruct_0201CD38 * param0, void * param1)
     default:
         *(v0->unk_30A0) = 0;
         sub_0200DA58(param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return;
     }
 
@@ -2090,7 +2090,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
             ov97_0222D444(&v3->unk_58, 0);
 
             {
-                UnkStruct_ov97_0222E398 * v4 = sub_02018144(86, sizeof(UnkStruct_ov97_0222E398));
+                UnkStruct_ov97_0222E398 * v4 = AllocFromHeap(86, sizeof(UnkStruct_ov97_0222E398));
 
                 memset(v4, 0, sizeof(UnkStruct_ov97_0222E398));
 
@@ -2477,9 +2477,9 @@ static int ov97_022301BC (UnkStruct_020067E8 * param0, int * param1)
         sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
     }
 
-    sub_0201807C(91);
+    DestroyHeap(91);
     sub_02006830(param0);
-    sub_0201807C(86);
+    DestroyHeap(86);
 
     if (v0->unk_1638 == 2) {
         sub_02017B70(0);
@@ -2545,7 +2545,7 @@ static void ov97_02230280 (int param0)
 static void ov97_022302D4 (void)
 {
     sub_020334CC();
-    sub_020181C4(Unk_ov97_0223F1AC);
+    FreeToHeap(Unk_ov97_0223F1AC);
     sub_02039794();
 
     Unk_ov97_0223F1AC = NULL;
@@ -2575,7 +2575,7 @@ static void ov97_022302F4 (UnkStruct_ov97_0222D04C * param0)
     case 38:
         if (sub_020334A4() == 1) {
             Unk_ov97_0223F1B4 = 0;
-            Unk_ov97_0223F1AC = sub_02018144(86, ov97_02238D4C());
+            Unk_ov97_0223F1AC = AllocFromHeap(86, ov97_02238D4C());
             ov97_02238A4C(&(param0->unk_638[0]), ov97_02230280, Unk_ov97_0223F1AC);
             Unk_ov97_0223F1A8 = 39;
             sub_02039734();

@@ -8,7 +8,7 @@
 #include "struct_defs/struct_021BF67C.h"
 
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
 #include "unk_02024358.h"
@@ -135,7 +135,7 @@ static void sub_02017850 (void)
         v2++;
     }
 
-    sub_02017E74(Unk_020E5674, NELEMS(Unk_020E5674), 123, v2);
+    InitHeapSystem(Unk_020E5674, NELEMS(Unk_020E5674), 123, v2);
 }
 
 void sub_0201789C (void)
@@ -213,13 +213,13 @@ void * sub_02017A40 (int param0, const char * param1)
     if (FS_OpenFile(&v0, param1)) {
         u32 v2 = FS_GetLength(&v0);
 
-        v1 = sub_02018144(param0, v2);
+        v1 = AllocFromHeap(param0, v2);
 
         if (v1 == NULL) {
             (void)0;
         } else {
             if (FS_ReadFile(&v0, v1, v2) != v2) {
-                sub_02018238(param0, v1);
+                FreeToHeapExplicit(param0, v1);
                 v1 = NULL;
             }
         }
@@ -263,7 +263,7 @@ void sub_02017ACC (void)
 
     for (v0 = 128 - 1; v0 > -1; v0--) {
         if (Unk_021BF6F0[v0].unk_00 != NULL) {
-            sub_020181C4(Unk_021BF6F0[v0].unk_00);
+            FreeToHeap(Unk_021BF6F0[v0].unk_00);
 
             Unk_021BF6F0[v0].unk_00 = NULL;
             Unk_021BF6F0[v0].unk_04 = 0;
@@ -492,7 +492,7 @@ void sub_02017E00 (int param0)
 {
     GF_ASSERT(Unk_021BF67C.unk_70 == NULL);
 
-    Unk_021BF67C.unk_70 = sub_02018184(param0, sizeof(u32));
+    Unk_021BF67C.unk_70 = AllocFromHeapAtEnd(param0, sizeof(u32));
     *(Unk_021BF67C.unk_70) = 0x2f93a1bc;
 }
 
@@ -501,7 +501,7 @@ void sub_02017E2C (void)
     GF_ASSERT(Unk_021BF67C.unk_70 != NULL);
 
     *(Unk_021BF67C.unk_70) = 0;
-    sub_020181C4(Unk_021BF67C.unk_70);
+    FreeToHeap(Unk_021BF67C.unk_70);
     Unk_021BF67C.unk_70 = NULL;
 }
 

@@ -21,7 +21,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay005/ov5_021D2F14.h"
 
@@ -46,14 +46,14 @@ void ov5_021D2F14 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F2EC
         param0->unk_1C4 = 6;
     }
 
-    v1 = sub_02018144(param3, sub_02009F34() * param0->unk_1C4);
+    v1 = AllocFromHeap(param3, sub_02009F34() * param0->unk_1C4);
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = sub_02009F38(v1, v4);
         v2 = sub_02017A40(param3, param1->val1[v4]);
 
         sub_02009F40(v2, v0, param3);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
@@ -74,14 +74,14 @@ void ov5_021D2F14 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov7_0224F2EC
         sub_02009F8C(v0);
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     sub_0200A41C(param0->unk_1AC[0]);
     sub_0200A684(param0->unk_1AC[1]);
 
     v2 = sub_02017A40(param3, param1->val2.unk_18);
     param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 }
 
 void ov5_021D30A8 (UnkStruct_ov5_021D30A8 * param0)
@@ -342,10 +342,10 @@ UnkStruct_0200D0F4 * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStr
     UnkStruct_ov115_02261520 v3;
     int v4[6];
 
-    v2 = sub_02018144(param0->unk_1C6, sizeof(UnkStruct_0200D0F4));
+    v2 = AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_0200D0F4));
 
-    v2->unk_08 = sub_02018144(param0->unk_1C6, sizeof(UnkStruct_02009508));
-    v2->unk_08->unk_00 = sub_02018144(param0->unk_1C6, sizeof(UnkStruct_ov19_021DA864));
+    v2->unk_08 = AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_02009508));
+    v2->unk_08->unk_00 = AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_ov19_021DA864));
     v2->unk_04 = v2->unk_08->unk_00;
 
     for (v0 = 0; v0 < 6; v0++) {

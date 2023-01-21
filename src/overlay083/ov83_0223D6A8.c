@@ -54,7 +54,7 @@
 #include "unk_0200DA60.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -141,7 +141,7 @@ static UnkStruct_02015128 * ov83_0223D6BC (UnkStruct_02015064 * param0, u32 para
     v0.unk_04 = v2;
     v3 = sub_02015128(&v0);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v3;
 }
@@ -159,7 +159,7 @@ static UnkStruct_020151A4 * ov83_0223D6EC (UnkStruct_02015064 * param0, u32 para
     v0.unk_08 = 1;
     v3 = sub_020151A4(&v0);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v3;
 }
@@ -674,8 +674,8 @@ static void ov83_0223E15C (UnkStruct_ov83_0223E138 * param0, u32 param1, NARC * 
 
 static void ov83_0223E208 (UnkStruct_ov83_0223E138 * param0)
 {
-    sub_020181C4(param0->unk_20);
-    sub_020181C4(param0->unk_28);
+    FreeToHeap(param0->unk_20);
+    FreeToHeap(param0->unk_28);
 }
 
 static void ov83_0223E21C (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3)
@@ -1057,7 +1057,7 @@ static void ov83_0223E844 (UnkStruct_ov83_0223E824 * param0, u32 param1, NARC * 
 
     sub_020198C0(param0->unk_04, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     sub_02019E2C(param0->unk_04, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, 4);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_0201C3C0(param0->unk_04, 1);
 }
 

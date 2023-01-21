@@ -12,7 +12,7 @@
 
 #include "unk_0200D9E8.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
 #include "overlay012/ov12_02237EFC.h"
@@ -44,7 +44,7 @@ UnkStruct_ov12_02237F98 * ov12_02237EFC (int param0, UnkStruct_ov12_02237EFC * p
     UnkStruct_ov12_02237F98 * v0;
 
     v0 = NULL;
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov12_02237F98));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -105,10 +105,10 @@ void ov12_02237F74 (UnkStruct_ov12_02237F98 * param0)
             continue;
         }
 
-        sub_020181C4(param0->unk_08[v0]);
+        FreeToHeap(param0->unk_08[v0]);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov12_02237F98 (UnkStruct_ov12_02237F98 * param0)
@@ -140,7 +140,7 @@ UnkStruct_ov12_02238004 * ov12_02237FC8 (int param0, UnkStruct_ov12_02237F38 * p
 
     v0 == NULL;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov12_02238004));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov12_02238004));
 
     if (v0 == NULL) {
         GF_ASSERT(0);

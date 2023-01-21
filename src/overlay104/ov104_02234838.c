@@ -17,7 +17,7 @@
 #include "overlay104/struct_ov104_0223B5C0.h"
 
 #include "unk_020041CC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201FE94.h"
 #include "unk_0202440C.h"
 #include "unk_02030108.h"
@@ -112,7 +112,7 @@ BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
     };
 
     v3 = sub_0209B978(param0->unk_00->unk_00);
-    v4 = sub_02018144(11, sizeof(UnkStruct_ov104_02235208));
+    v4 = AllocFromHeap(11, sizeof(UnkStruct_ov104_02235208));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov104_02235208));
 
@@ -181,7 +181,7 @@ static void ov104_02234A08 (void * param0)
     UnkStruct_ov104_02235208 * v2 = param0;
 
     ov104_022351CC(v2->unk_10, param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }

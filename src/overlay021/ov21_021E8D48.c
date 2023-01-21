@@ -39,7 +39,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -145,7 +145,7 @@ static void ov21_021E9B08(UnkStruct_ov21_021E9A9C * param0, int param1);
 
 UnkStruct_ov21_021E8D48 * ov21_021E8D48 (const UnkStruct_ov21_021E8E0C * param0)
 {
-    UnkStruct_ov21_021E8D48 * v0 = sub_02018144(param0->unk_0C, sizeof(UnkStruct_ov21_021E8D48));
+    UnkStruct_ov21_021E8D48 * v0 = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_ov21_021E8D48));
 
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8D48));
 
@@ -177,7 +177,7 @@ void ov21_021E8DD0 (UnkStruct_ov21_021E8D48 * param0)
     ov21_021E900C(param0);
 
     sub_0200DA58(param0->unk_224);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 BOOL ov21_021E8DEC (const UnkStruct_ov21_021E8D48 * param0)
@@ -654,22 +654,22 @@ static void ov21_021E96A8 (UnkStruct_02018340 * param0, int param1, NARC * param
     v0 = sub_020071D0(param2, 50, 1, &v1, param1);
 
     sub_020198C0(param0, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 51, 1, &v1, param1);
 
     sub_020198C0(param0, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 52, 1, &v1, param1);
 
     sub_020198C0(param0, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = sub_020071D0(param2, 54, 1, &v1, param1);
 
     sub_020198C0(param0, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_0201C3C0(param0, 3);
 }
 
@@ -683,7 +683,7 @@ static void ov21_021E97C4 (UnkStruct_02018340 * param0, int param1, NARC * param
     v0 = sub_020071D0(param2, 57, 1, &v1, param1);
 
     sub_020198C0(param0, 2, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_0201C3C0(param0, 2);
 }
 
@@ -835,7 +835,7 @@ static void ov21_021E9AC8 (UnkStruct_ov21_021E9A9C * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020181C4(param0->unk_00[0]);
+        FreeToHeap(param0->unk_00[0]);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021E9A9C));

@@ -35,7 +35,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -133,7 +133,7 @@ static void ov95_0224BD5C(UnkStruct_0201CD38 * param0, void * param1);
 
 void * ov95_0224B3D8 (UnkStruct_ov95_02247628 * param0)
 {
-    UnkStruct_ov95_0224B4D4 * v0 = sub_02018144(58, sizeof(UnkStruct_ov95_0224B4D4));
+    UnkStruct_ov95_0224B4D4 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224B4D4));
 
     if (v0) {
         int v1;
@@ -181,7 +181,7 @@ void ov95_0224B438 (void * param0)
 
         NARC_dtor(v0->unk_84);
         sub_02007B6C(v0->unk_10);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
@@ -560,7 +560,7 @@ static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
 
 static void ov95_0224BBB0 (UnkStruct_ov95_0224B4D4 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov95_0224BBB0 * v0 = sub_02018144(58, sizeof(UnkStruct_ov95_0224BBB0));
+    UnkStruct_ov95_0224BBB0 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BBB0));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -606,7 +606,7 @@ static void ov95_0224BC30 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 ** param1)
 {
-    UnkStruct_ov95_0224BC6C * v0 = sub_02018144(58, sizeof(UnkStruct_ov95_0224BC6C));
+    UnkStruct_ov95_0224BC6C * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BC6C));
 
     if (v0) {
         v0->unk_04 = 0;
@@ -628,7 +628,7 @@ static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 
         *param1 = sub_0200D9E8(ov95_0224BD5C, v0, 0);
 
         if (*param1 == NULL) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
     } else {
         *param1 = NULL;
@@ -641,7 +641,7 @@ static void ov95_0224BCE8 (UnkStruct_0201CD38 * param0)
         UnkStruct_ov95_0224BC6C * v0 = sub_0201CED0(param0);
 
         *(v0->unk_00) = NULL;
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
     }
 }

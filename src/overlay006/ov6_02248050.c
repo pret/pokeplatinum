@@ -18,7 +18,7 @@
 #include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "overlay005/ov5_021D1A94.h"
@@ -208,7 +208,7 @@ static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_0224825C));
-    sub_020182CC(&v0->unk_DC, 4, 32);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_DC, 4, 32);
 
     v2 = NARC_ctor(141, 4);
 
@@ -289,7 +289,7 @@ static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
-    sub_020182CC(&v0->unk_DC, 4, 32);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_DC, 4, 32);
 
     v2 = NARC_ctor(141, 4);
 
@@ -309,7 +309,7 @@ static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248340));
-    sub_020182CC(&v0->unk_DC, 4, 32);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_DC, 4, 32);
 
     v2 = NARC_ctor(141, 4);
 
@@ -411,7 +411,7 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248498));
-    sub_020182CC(&v0->unk_1B8, 4, 32);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_1B8, 4, 32);
 
     v2 = NARC_ctor(141, 4);
 
@@ -615,7 +615,7 @@ static void ov6_022487F8 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC * v2;
 
     memset(v0, 0, sizeof(UnkStruct_ov6_022487F8));
-    sub_020182CC(&v0->unk_CFC, 4, 32);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_CFC, 4, 32);
 
     v2 = NARC_ctor(141, 4);
 
@@ -648,7 +648,7 @@ static void ov6_0224889C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     sub_02017110(&v0->unk_00);
 
     for (v1 = 0; v1 < 4; v1++) {
-        sub_020181C4(v0->unk_CD0[v1]);
+        FreeToHeap(v0->unk_CD0[v1]);
     }
 }
 

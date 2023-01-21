@@ -3,7 +3,7 @@
 #include <vct.h>
 #include <dwc.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 #include "overlay004/ov4_021D0D80.h"
@@ -384,7 +384,7 @@ BOOL ov4_021D2C70 (int param0, void * param1, int param2)
 
 static void ov4_021D2C98 (void ** param0, void ** param1, int param2, int param3)
 {
-    *param0 = sub_02018144(param3, param2 + 32);
+    *param0 = AllocFromHeap(param3, param2 + 32);
     MI_CpuClear8(*param0, param2 + 32);
     *param1 = (UnkStruct_ov4_0221A408 *)(((u32) * param0 + 31) / 32 * 32);
 }
@@ -522,8 +522,8 @@ void ov4_021D2F08 (void)
 
         VCT_Cleanup();
 
-        sub_02018238(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_888);
-        sub_02018238(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_880);
+        FreeToHeapExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_888);
+        FreeToHeapExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_880);
         Unk_ov4_0221A408 = NULL;
 
         if (v0 != NULL) {

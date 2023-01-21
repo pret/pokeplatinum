@@ -29,7 +29,7 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -1030,8 +1030,8 @@ static void ov16_02267A4C (UnkStruct_ov16_022674C4 * param0)
     int v3, v4, v5, v6;
 
     v3 = 3 * 0x20;
-    v0 = sub_02018144(5, v3);
-    v1 = sub_02018144(5, v3 * 2);
+    v0 = AllocFromHeap(5, v3);
+    v1 = AllocFromHeap(5, v3 * 2);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
     sub_0200C67C(ov16_0223E054(param0->unk_0C), param0->unk_48, 3, 0, v0);
@@ -1065,8 +1065,8 @@ static void ov16_02267A4C (UnkStruct_ov16_022674C4 * param0)
         MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->unk_25][1].unk_00 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->unk_25][1].unk_02);
     }
 
-    sub_020181C4(v0);
-    sub_020181C4(v1);
+    FreeToHeap(v0);
+    FreeToHeap(v1);
 }
 
 static void ov16_02267B6C (UnkStruct_ov16_022674C4 * param0, u32 param1)
@@ -1074,7 +1074,7 @@ static void ov16_02267B6C (UnkStruct_ov16_022674C4 * param0, u32 param1)
     u8 * v0;
     NNSG2dImageProxy * v1;
 
-    v0 = sub_02018144(5, 3 * 0x20);
+    v0 = AllocFromHeap(5, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
     sub_0200C67C(ov16_0223E04C(param0->unk_0C), param1, 3, 1, v0);
@@ -1091,7 +1091,7 @@ static void ov16_02267B6C (UnkStruct_ov16_022674C4 * param0, u32 param1)
         MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->unk_25][0].unk_02], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->unk_25][1].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->unk_25][1].unk_02);
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov16_02267BF8 (UnkStruct_ov16_022674C4 * param0)
@@ -1099,7 +1099,7 @@ static void ov16_02267BF8 (UnkStruct_ov16_022674C4 * param0)
     u8 * v0;
     NNSG2dImageProxy * v1;
 
-    v0 = sub_02018144(5, 3 * 0x20);
+    v0 = AllocFromHeap(5, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
     sub_0200C67C(ov16_0223E04C(param0->unk_0C), param0->unk_2C, 3, 0, v0);
@@ -1115,7 +1115,7 @@ static void ov16_02267BF8 (UnkStruct_ov16_022674C4 * param0)
         MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->unk_25].unk_00 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->unk_25].unk_02);
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov16_02267C58 (UnkStruct_ov16_022674C4 * param0)
@@ -1603,7 +1603,7 @@ void ov16_0226834C (UnkStruct_ov16_022674C4 * param0, u8 * param1)
 
     *param1 = 0;
 
-    v0 = sub_02018144(5, sizeof(UnkStruct_ov16_0226834C));
+    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov16_0226834C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226834C));
 
     v0->unk_00 = param0;
@@ -1654,7 +1654,7 @@ static void ov16_02268380 (UnkStruct_0201CD38 * param0, void * param1)
 
         (*(v0->unk_04)) = 1;
 
-        sub_020181C4(param1);
+        FreeToHeap(param1);
         sub_0200DA58(param0);
 
         return;

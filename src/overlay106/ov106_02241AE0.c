@@ -49,7 +49,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -207,7 +207,7 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006590(FS_OVERLAY_ID(overlay104), 2);
     ov106_022424C8();
-    sub_02017FC8(3, 98, 0x20000);
+    CreateHeap(3, 98, 0x20000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
@@ -332,7 +332,7 @@ int ov106_02241CF0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(98);
+    DestroyHeap(98);
     sub_02006514(FS_OVERLAY_ID(overlay104));
 
     return 1;
@@ -397,8 +397,8 @@ static BOOL ov106_02241E14 (UnkStruct_ov106_02243118 * param0)
 
         if (sub_02006844(param0->unk_04) == 1) {
             param0->unk_288 = param0->unk_BC->unk_14;
-            sub_020181C4(param0->unk_BC);
-            sub_020181C4(param0->unk_04);
+            FreeToHeap(param0->unk_BC);
+            FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
             ov106_0224248C(param0);
             param0->unk_10 = 0;
@@ -888,7 +888,7 @@ static void ov106_022426A4 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
     sub_02019044(param0, 4);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }
@@ -1053,7 +1053,7 @@ static void ov106_02242884 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 6));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 6));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return;
 }
@@ -1224,7 +1224,7 @@ static void ov106_02242C2C (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 
 static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
 {
-    param0->unk_BC = sub_02018144(98, sizeof(UnkStruct_02098D38));
+    param0->unk_BC = AllocFromHeap(98, sizeof(UnkStruct_02098D38));
     memset(param0->unk_BC, 0, sizeof(UnkStruct_02098D38));
 
     param0->unk_BC->unk_00 = param0->unk_290;

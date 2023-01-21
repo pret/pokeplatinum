@@ -40,7 +40,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -143,9 +143,9 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 94, 0x90000);
+    CreateHeap(3, 94, 0x90000);
 
-    v0 = sub_02018144(94, sizeof(UnkStruct_ov104_0223C4CC));
+    v0 = AllocFromHeap(94, sizeof(UnkStruct_ov104_0223C4CC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C4CC));
 
     v0->unk_08 = param0;
@@ -233,7 +233,7 @@ void ov104_0223C4CC (UnkStruct_ov104_0223C4CC * param0)
     sub_02002FA0(param0->unk_04, 2);
     sub_02002FA0(param0->unk_04, 3);
     sub_02002F54(param0->unk_04);
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     sub_0200DA58(param0->unk_94);
     sub_0200DA58(param0->unk_98);
     sub_0200DA58(param0->unk_9C);
@@ -242,14 +242,14 @@ void ov104_0223C4CC (UnkStruct_ov104_0223C4CC * param0)
     ov104_0223CFEC(param0->unk_0C);
 
     sub_0201E530();
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201807C(94);
+    DestroyHeap(94);
 
     sub_02002AC8(0);
     sub_02002AE4(0);
@@ -719,7 +719,7 @@ static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const
             GX_LoadBGExtPltt(v5->pRawData, 0x6000, 0x2000);
             GX_EndLoadBGExtPltt();
 
-            sub_020181C4(v6);
+            FreeToHeap(v6);
         }
 
         sub_020038B0(param0->unk_04, 0, 2, 0x0, 0, 1);
@@ -742,7 +742,7 @@ static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const
                 GX_LoadBGExtPltt(v7->pRawData, 0x4000, 0x2000);
                 GX_EndLoadBGExtPltt();
 
-                sub_020181C4(v8);
+                FreeToHeap(v8);
             }
         }
 

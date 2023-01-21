@@ -8,7 +8,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_02014D38.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02023790.h"
 #include "unk_020244AC.h"
@@ -147,7 +147,7 @@ void include_unk_020E5538 (void)
 UnkStruct_02014D38 * sub_02014D38 (u32 param0)
 {
     int v0;
-    UnkStruct_02014D38 * v1 = sub_02018144(param0, sizeof(UnkStruct_02014D38));
+    UnkStruct_02014D38 * v1 = AllocFromHeap(param0, sizeof(UnkStruct_02014D38));
 
     for (v0 = 0; v0 < 11; v0++) {
         v1->unk_00 = param0;
@@ -165,7 +165,7 @@ void sub_02014D70 (UnkStruct_02014D38 * param0)
         sub_0200B190(param0->unk_04[v0]);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, UnkStruct_02023790 * param2)
@@ -348,7 +348,7 @@ UnkStruct_02014FB0 * sub_02014FB0 (u32 param0)
     UnkStruct_02014FB0 * v0;
     u32 v1;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02014FB0));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02014FB0));
     memset(v0, 0, sizeof(UnkStruct_02014FB0));
 
     v0->unk_04 = sub_02007068(191, 0, 0, param0, 0, &v1);
@@ -359,9 +359,9 @@ UnkStruct_02014FB0 * sub_02014FB0 (u32 param0)
 
 void sub_02014FF0 (UnkStruct_02014FB0 * param0)
 {
-    sub_020181C4(param0->unk_04);
+    FreeToHeap(param0->unk_04);
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 u32 sub_02015004 (const UnkStruct_02014FB0 * param0)

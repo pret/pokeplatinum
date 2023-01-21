@@ -9,7 +9,7 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 
 typedef struct {
@@ -712,7 +712,7 @@ void sub_02005E64 (int param0, int param1)
 
     sub_02005F24();
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02005E64));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02005E64));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -772,7 +772,7 @@ void sub_02005F24 ()
     if (*v1 != NULL) {
         v0 = sub_0201CED0(*v1);
         sub_0200DA58(*v1);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     *v1 = NULL;

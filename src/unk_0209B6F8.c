@@ -22,7 +22,7 @@
 
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0209B6F8.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0223C2D4.h"
@@ -142,7 +142,7 @@ int sub_0209B75C (UnkStruct_020067E8 * param0, int * param1)
             }
 
             if ((v0->unk_08 != NULL) && (v0->unk_10 == 1)) {
-                sub_020181C4(v0->unk_08);
+                FreeToHeap(v0->unk_08);
             }
 
             v0->unk_04 = NULL;

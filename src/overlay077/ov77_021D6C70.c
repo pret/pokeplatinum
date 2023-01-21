@@ -13,7 +13,7 @@
 #include "unk_0200762C.h"
 #include "unk_0201378C.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "unk_02073C2C.h"
@@ -154,7 +154,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 
     sub_02014000();
 
-    param0->unk_14 = sub_02018144(76, 0x4800);
+    param0->unk_14 = AllocFromHeap(76, 0x4800);
     param0->unk_18 = sub_02014014(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, 76);
     v2 = sub_02014784(param0->unk_18);
 
@@ -167,7 +167,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
 void ov77_021D6E28 (UnkStruct_ov77_021D6CFC * param0)
 {
     sub_0201411C(param0->unk_18);
-    sub_020181C4(param0->unk_14);
+    FreeToHeap(param0->unk_14);
     sub_02007B6C(param0->unk_00);
 }
 

@@ -28,7 +28,7 @@
 
 #include "unk_020021B0.h"
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 #include "unk_020366A0.h"
@@ -6213,7 +6213,7 @@ BOOL ov16_02259B9C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                     param1->unk_2140 |= 0x4000000;
 
                     ov16_022662FC(param0, param1, param1->unk_118);
-                    sub_020181C4(v3);
+                    FreeToHeap(v3);
 
                     *param2 = (0 + 262);
                     v2 = 1;

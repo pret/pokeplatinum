@@ -70,7 +70,7 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -614,8 +614,8 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
 
     v1 = sub_02006840(param0);
 
-    sub_02017FC8(3, 112, 0x3a000);
-    sub_02017FC8(3, 113, 0x3d000);
+    CreateHeap(3, 112, 0x3a000);
+    CreateHeap(3, 113, 0x3d000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov70_0225DEE8), 112);
     memset(v0, 0, sizeof(UnkStruct_ov70_0225DEE8));
@@ -835,9 +835,9 @@ int ov70_0225DDF8 (UnkStruct_020067E8 * param0, int * param1)
     ov70_0225C894(v0->unk_44C);
     ov70_0225E6D0(&v0->unk_3C);
 
-    sub_020181C4(v0);
-    sub_0201807C(112);
-    sub_0201807C(113);
+    FreeToHeap(v0);
+    DestroyHeap(112);
+    DestroyHeap(113);
     sub_020057BC(0);
     sub_0200592C(0);
 
@@ -1116,7 +1116,7 @@ void ov70_0225E234 (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
 
     ov66_0222E640(v1, v0, 112);
     ov70_0225F2C8(&param0->unk_340, v0, param2);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 void ov70_0225E27C (UnkStruct_ov70_0225DEE8 * param0, UnkEnum_ov66_022324D0 param1, u32 param2)
@@ -1381,7 +1381,7 @@ static void ov70_0225E6D0 (UnkStruct_ov70_0225E4EC * param0)
             sub_02019044(param0->unk_00, Unk_ov70_0226D5CC[v0]);
         }
 
-        sub_020181C4(param0->unk_00);
+        FreeToHeap(param0->unk_00);
     }
 
     {
@@ -2541,7 +2541,7 @@ static void ov70_0225FA14 (UnkStruct_ov70_0225E4EC * param0, NARC * param1, u32 
 
     sub_020198C0(param0->unk_00, param3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     sub_0201C3C0(param0->unk_00, param3);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov70_0225FA84 (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225E4EC * param1, NARC * param2, u32 param3)
@@ -2674,7 +2674,7 @@ static void ov70_0225FAD0 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
 
     ov70_0225FDA0(param0, param2, param3, param7, param8);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov70_0225FDA0 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225FA84 * param1, UnkStruct_ov70_0225E4EC * param2, u32 param3, const UnkStruct_ov66_0222E71C * param4)
@@ -2695,7 +2695,7 @@ static void ov70_0225FDA0 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
             NNS_G2dGetUnpackedCharacterData(v3, &v4);
 
             sub_0201958C(param2->unk_00, Unk_ov70_0226D5CC[3], v4->pRawData, 4 * 2 * 32, Unk_ov70_0226D590[v1]);
-            sub_020181C4(v3);
+            FreeToHeap(v3);
             sub_020198E8(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, Unk_ov70_0226D624[v1], 0, 0, 4, 2);
             sub_02019E2C(param2->unk_00, Unk_ov70_0226D5CC[3], 26, 2 + (2 * v1), 4, 2, 11 + sub_0207C92C(v2));
             sub_0201C3C0(param2->unk_00, Unk_ov70_0226D5CC[3]);
@@ -3131,7 +3131,7 @@ static void ov70_022607A8 (UnkStruct_ov70_02260744 * param0)
     sub_0201A8FC(&param0->unk_0C);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020181C4(param0->unk_20[v0]);
+        FreeToHeap(param0->unk_20[v0]);
     }
 
     param0->unk_02 = 0;

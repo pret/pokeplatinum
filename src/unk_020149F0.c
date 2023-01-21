@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_020149F0.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -23,7 +23,7 @@ UnkStruct_020149F0 * sub_020149F0 (u32 param0)
         0x11f,
         0xffff
     };
-    UnkStruct_020149F0 * v1 = sub_02018144(param0, sizeof(UnkStruct_020149F0));
+    UnkStruct_020149F0 * v1 = AllocFromHeap(param0, sizeof(UnkStruct_020149F0));
 
     if (v1) {
         v1->unk_00 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
@@ -43,7 +43,7 @@ void sub_02014A20 (UnkStruct_020149F0 * param0)
             sub_020237BC(param0->unk_04);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

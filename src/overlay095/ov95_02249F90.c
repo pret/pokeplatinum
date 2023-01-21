@@ -15,7 +15,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201FE94.h"
 #include "overlay095/ov95_02246C20.h"
@@ -50,7 +50,7 @@ static void ov95_0224A358(UnkStruct_02018340 * param0, int param1, int param2);
 
 void * ov95_02249F90 (UnkStruct_ov95_02247628 * param0)
 {
-    UnkStruct_ov95_02249FF8 * v0 = sub_02018144(58, sizeof(UnkStruct_ov95_02249FF8));
+    UnkStruct_ov95_02249FF8 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_02249FF8));
 
     if (v0) {
         int v1;
@@ -71,7 +71,7 @@ void ov95_02249FB4 (void * param0)
         int v1;
 
         ov95_0224A320(v0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 

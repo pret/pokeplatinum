@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_02017038.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -110,7 +110,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
         ov5_021E6CF0(v4, v7, 1, v6, 3, v0);
 
         v2 = sub_0207A048(v3, v4);
-        sub_020181C4(v4);
+        FreeToHeap(v4);
     }
 
     return 0;

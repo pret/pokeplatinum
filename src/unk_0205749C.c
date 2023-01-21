@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay066/struct_ov66_0222DCE0.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0205749C.h"
 #include "overlay066/ov66_0222DCE0.h"
@@ -34,7 +34,7 @@ void sub_0205749C (UnkStruct_020508D4 * param0, BOOL param1)
 {
     UnkStruct_0205749C * v0;
 
-    v0 = sub_02018184(11, sizeof(UnkStruct_0205749C));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205749C));
     memset(v0, 0, sizeof(UnkStruct_0205749C));
 
     v0->unk_02 = param1;
@@ -57,7 +57,7 @@ static BOOL sub_020574CC (UnkStruct_020508D4 * param0)
     }
     break;
     case 1:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 

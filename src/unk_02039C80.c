@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02039E30_decl.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02039C80.h"
 #include "map_header.h"
 
@@ -88,7 +88,7 @@ static void sub_02039C80 (UnkStruct_02039C80 * param0, const u16 param1, int par
     }
 
     MI_CpuCopy8(v4, param0->unk_A8E, param0->unk_01 * param0->unk_00 * 2);
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 }
 
 UnkStruct_02039E30 * sub_02039D6C (void)
@@ -100,7 +100,7 @@ UnkStruct_02039E30 * sub_02039D78 (u32 param0)
 {
     UnkStruct_02039E30 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02039E30));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02039E30));
 
     v0->unk_00 = 0;
     v0->unk_01 = 0;
@@ -132,7 +132,7 @@ void sub_02039DC0 (const int param0, UnkStruct_02039E30 * param1)
 
 void sub_02039DE4 (UnkStruct_02039E30 * const param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 u16 sub_02039DEC (int param0, const UnkStruct_02039E30 * param1)
@@ -192,7 +192,7 @@ UnkStruct_02039EBC * sub_02039EBC (const u32 param0)
     u8 * v2;
     UnkStruct_02039EBC * v3;
 
-    v3 = sub_02018144(param0, sizeof(UnkStruct_02039EBC));
+    v3 = AllocFromHeap(param0, sizeof(UnkStruct_02039EBC));
     v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(41, 0, param0);
     v2 = &((u8 *)(v1))[0];
 
@@ -207,7 +207,7 @@ UnkStruct_02039EBC * sub_02039EBC (const u32 param0)
     v2 += (v0);
 
     MI_CpuCopy8(v2, v3->unk_00, 30 * 30 * 2);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v3;
 }
@@ -215,7 +215,7 @@ UnkStruct_02039EBC * sub_02039EBC (const u32 param0)
 void sub_02039EF0 (UnkStruct_02039EBC * param0)
 {
     GF_ASSERT(param0 != NULL);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 int sub_02039F04 (const UnkStruct_02039EBC * param0, const u32 param1, const u32 param2)

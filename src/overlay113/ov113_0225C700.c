@@ -64,7 +64,7 @@
 #include "unk_02015920.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -366,7 +366,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 118, 0x50000);
+    CreateHeap(3, 118, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov113_0225DBCC), 118);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225DBCC));
@@ -656,7 +656,7 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
     ov113_0225DC4C(v0);
     ov113_0225D12C(v0->unk_08);
 
-    sub_020181C4(v0->unk_08);
+    FreeToHeap(v0->unk_08);
     sub_0200D0B0(v0->unk_1C, v0->unk_20);
     sub_0200C8D4(v0->unk_1C);
     sub_02002FA0(v0->unk_0C, 0);
@@ -680,7 +680,7 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
     sub_02002B20(0);
     sub_02039794();
     sub_02006830(param0);
-    sub_0201807C(118);
+    DestroyHeap(118);
 
     return 1;
 }
@@ -1164,7 +1164,7 @@ static BOOL ov113_0225D938 (int param0, int param1, UnkStruct_0200D0F4 * param2,
     MI_CpuCopy16(v4, (void *)((u32)v0 + v1->vramLocation.baseAddrOfVram[param5]), 0x20 * 2);
     MI_CpuCopy16(v5, (void *)((u32)v0 + 0x20 * 2 + v1->vramLocation.baseAddrOfVram[param5]), 0x20 * 2);
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
     return 1;
 }
 

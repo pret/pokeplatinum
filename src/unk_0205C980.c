@@ -5,7 +5,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0205C980.h"
 
 static const int Unk_020ED7F0[][3] = {
@@ -104,14 +104,14 @@ u16 * sub_0205CA4C (int param0)
     int v6;
 
     v0 = sub_02006F88(86, 7, &v2, param0);
-    v4 = sub_02018144(param0, 16 * 18 * 2);
+    v4 = AllocFromHeap(param0, 16 * 18 * 2);
     v5 = (u16 *)v2->pRawData;
 
     for (v6 = 0; v6 < 16 * 16; v6++) {
         v4[v6] = v5[v6];
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return v4;
 }

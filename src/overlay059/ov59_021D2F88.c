@@ -11,7 +11,7 @@
 #include "overlay059/struct_ov59_021D30E0.h"
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_020298BC.h"
 #include "unk_0202B37C.h"
@@ -53,7 +53,7 @@ static u32 ov59_021D2F88 (UnkStruct_021C0794 * param0)
 static void * ov59_021D2F94 (UnkStruct_021C0794 * param0, int param1, u32 param2)
 {
     UnkStruct_0202B4A0 * v0 = sub_0202B4A0(param0);
-    void * v1 = sub_02018184(param1, param2);
+    void * v1 = AllocFromHeapAtEnd(param1, param2);
 
     MI_CpuCopyFast(ov59_021D2A30(v0), v1, param2);
 
@@ -76,7 +76,7 @@ static void * ov59_021D2FE0 (UnkStruct_021C0794 * param0, int param1, u32 param2
 {
     UnkStruct_02029C68 * v0;
     UnkStruct_0202A750 * v1 = sub_0202A750(param0);
-    void * v2 = sub_02018184(param1, param2);
+    void * v2 = AllocFromHeapAtEnd(param1, param2);
 
     v0 = sub_02029CA8(v1, 0);
     MI_CpuCopyFast(v0, v2, param2);
@@ -124,7 +124,7 @@ static void * ov59_021D30B4 (UnkStruct_021C0794 * param0, int param1, u32 param2
 {
     UnkStruct_ov96_0223B450_sub1 * v0;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     MI_CpuClear8(v0, param2);
     sub_02073700(param0, 0, v0);
 
@@ -167,7 +167,7 @@ void ov59_021D30E0 (UnkStruct_021C0794 * param0, UnkStruct_ov59_021D30E0 * param
         GF_ASSERT(v4 > v0);
 
         MI_CpuCopyFast(v1, v5, v0);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
 
         v5 += v0;
         v4 -= v0;

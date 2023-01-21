@@ -3,7 +3,7 @@
 
 #include "overlay021/struct_ov21_021D4660.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay021/ov21_021D423C.h"
 
 typedef struct UnkStruct_ov21_021D423C_t {
@@ -20,7 +20,7 @@ UnkStruct_ov21_021D423C * ov21_021D423C (int param0)
 {
     UnkStruct_ov21_021D423C * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov21_021D423C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D423C));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D423C));
 

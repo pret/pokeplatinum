@@ -13,7 +13,7 @@
 #include "unk_02002F38.h"
 #include "filesystem.h"
 #include "unk_0200762C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 typedef struct {
     u8 unk_00;
@@ -319,7 +319,7 @@ void * sub_0200762C (int param0)
     u8 * v6;
     void * v7;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02007768));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02007768));
 
     v0->unk_2E8 = param0;
     v0->unk_330 = 0;
@@ -327,11 +327,11 @@ void * sub_0200762C (int param0)
     v0->unk_2F0 = (32 * 32 * 0x20);
     v0->unk_2F4 = 0;
     v0->unk_2F8 = (0x20 * 4);
-    v0->unk_2FC = sub_02018144(param0, (32 * 32 * 0x20));
-    v0->unk_300 = sub_02018144(param0, (0x20 * 6));
+    v0->unk_2FC = AllocFromHeap(param0, (32 * 32 * 0x20));
+    v0->unk_300 = AllocFromHeap(param0, (0x20 * 6));
 
     MI_CpuClearFast(v0->unk_300, sizeof((0x20 * 6)));
-    v0->unk_304 = sub_02018144(param0, (0x20 * 6));
+    v0->unk_304 = AllocFromHeap(param0, (0x20 * 6));
     MI_CpuClearFast(v0->unk_304, sizeof((0x20 * 6)));
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -359,7 +359,7 @@ void * sub_0200762C (int param0)
         }
     }
 
-    sub_020181C4(v7);
+    FreeToHeap(v7);
 
     v0->unk_331 = 1;
     v0->unk_332 = 1;
@@ -485,10 +485,10 @@ void sub_02007768 (UnkStruct_02007768 * param0)
 
 void sub_02007B6C (UnkStruct_02007768 * param0)
 {
-    sub_020181C4(param0->unk_2FC);
-    sub_020181C4(param0->unk_300);
-    sub_020181C4(param0->unk_304);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_2FC);
+    FreeToHeap(param0->unk_300);
+    FreeToHeap(param0->unk_304);
+    FreeToHeap(param0);
 }
 
 void sub_02007B98 (UnkStruct_02007C7C * param0, int param1)
@@ -1339,7 +1339,7 @@ static void sub_02008B78 (UnkStruct_02007768 * param0)
                 }
             }
 
-            sub_020181C4(v5);
+            FreeToHeap(v5);
         }
     }
 
@@ -1373,7 +1373,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
                 param0->unk_304[v2 + 0x10 * v1] = v4[v2];
             }
 
-            sub_020181C4(v5);
+            FreeToHeap(v5);
 
             if (param0->unk_00[v1].unk_6C.unk_00_0) {
                 v5 = AllocAndReadWholeNarcMemberByIndexPair(117, 252, param0->unk_2E8);
@@ -1385,7 +1385,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
                     param0->unk_304[v2 + 0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)] = v4[v2];
                 }
 
-                sub_020181C4(v5);
+                FreeToHeap(v5);
             }
         }
 

@@ -13,7 +13,7 @@
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay016/ov16_0226DB7C.h"
 
 typedef struct UnkStruct_ov16_0226DC24_t {
@@ -77,7 +77,7 @@ UnkStruct_ov16_0226DC24 * ov16_0226DC24 (UnkStruct_0200C6E4 * param0, UnkStruct_
     v1.unk_08 = param7;
     v1.unk_2C = param8;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_ov16_0226DC24));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov16_0226DC24));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DC24));
 
     for (v2 = 0; v2 < 5; v2++) {
@@ -98,7 +98,7 @@ void ov16_0226DCA8 (UnkStruct_ov16_0226DC24 * param0)
     }
 
     sub_0200DA58(param0->unk_14);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov16_0226DCCC (UnkStruct_ov16_0226DC24 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)

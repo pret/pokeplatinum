@@ -20,7 +20,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201FE94.h"
 #include "unk_02056720.h"
@@ -93,7 +93,7 @@ UnkStruct_0201CD38 * sub_0200DA3C(UnkFuncPtr_0201CE28 param0, void * param1, u32
 
 BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, UnkStruct_ov25_0225424C * param3)
 {
-    *param0 = sub_02018144(7, sizeof(UnkStruct_ov25_02254560));
+    *param0 = AllocFromHeap(7, sizeof(UnkStruct_ov25_02254560));
 
     if (*param0 != NULL) {
         UnkStruct_ov25_02254560 * v0 = *param0;
@@ -103,7 +103,7 @@ BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_0225
         v0->unk_1CC = ov25_02255540(v0->unk_1C8, 7);
 
         if (v0->unk_1CC == NULL) {
-            sub_020181C4(*param0);
+            FreeToHeap(*param0);
             *param0 = NULL;
             return 0;
         }
@@ -160,7 +160,7 @@ static void ov25_02254684 (UnkStruct_ov25_02254560 * param0)
     if (v1) {
         MI_CpuCopy32(v0->pRawData, param0->unk_200, 8 * 0x40);
         DC_FlushRange(param0->unk_200, 8 * 0x40);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 }
 
@@ -203,14 +203,14 @@ void ov25_02254754 (UnkStruct_ov25_02254560 * param0)
         }
 
         if (param0->unk_1F8) {
-            sub_020181C4(param0->unk_1F8);
+            FreeToHeap(param0->unk_1F8);
         }
 
         if (param0->unk_1D0) {
             sub_0200DA58(param0->unk_1D0);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

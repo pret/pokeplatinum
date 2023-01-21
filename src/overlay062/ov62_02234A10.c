@@ -16,7 +16,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -280,7 +280,7 @@ BOOL ov62_02235008 (UnkStruct_0208C06C * param0)
     switch (param0->unk_08) {
     case 0:
 
-        v0 = sub_02018144(102, sizeof(UnkStruct_ov62_02235008));
+        v0 = AllocFromHeap(102, sizeof(UnkStruct_ov62_02235008));
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov62_02235008));
         param0->unk_860 = v0;
         v0->unk_50 = 16;
@@ -359,7 +359,7 @@ BOOL ov62_02235008 (UnkStruct_0208C06C * param0)
             sub_0208B8B8(param0->unk_6F0, v9 + (15 + 1), v10);
             sub_0208B9E0(param0->unk_6F0, 0);
             ov62_0222FF7C(param0);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
         return 1;
     }

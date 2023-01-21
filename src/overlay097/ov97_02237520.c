@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay097/ov97_02237520.h"
 
 #include "library/crypto.h"
@@ -172,7 +172,7 @@ void ov97_02237520 (u32 param0)
 
 void * ov97_0223752C (u32 param0)
 {
-    return sub_02018144(Unk_ov97_0223F54C, param0);
+    return AllocFromHeap(Unk_ov97_0223F54C, param0);
 }
 
 static BOOL ov97_02237540 (void)
@@ -192,7 +192,7 @@ static BOOL ov97_02237540 (void)
             CTRDG_CpuCopy8(((void *)0x8020000), v3, 128);
             CTRDG_Enable(0);
 
-            CRYPTO_SetAllocator(ov97_0223752C, sub_020181C4);
+            CRYPTO_SetAllocator(ov97_0223752C, FreeToHeap);
 
             if (CRYPTO_VerifySignature(v2, 0x4A8, v3, Unk_ov97_0223DA1C)) {
                 return 1;

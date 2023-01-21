@@ -45,7 +45,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -702,7 +702,7 @@ void ov23_0223E2F8 (void)
             sub_02059514();
         }
 
-        sub_020181C4(Unk_ov23_02257740);
+        FreeToHeap(Unk_ov23_02257740);
         Unk_ov23_02257740 = NULL;
     }
 }
@@ -1316,7 +1316,7 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     sub_0201FF0C(GX_PLANEMASK_BG1, 0);
     sub_0201FF0C(GX_PLANEMASK_BG2, 0);
     sub_0201FF0C(GX_PLANEMASK_BG3, 0);
-    sub_02017FC8(3, 29, 0x50000);
+    CreateHeap(3, 29, 0x50000);
 
     v1 = sub_02018340(29);
     Unk_ov23_02257740->unk_04 = v1;
@@ -1393,7 +1393,7 @@ static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_18[v1] != NULL) {
-            sub_020181C4(param0->unk_18[v1]);
+            FreeToHeap(param0->unk_18[v1]);
             param0->unk_18[v1] = NULL;
         }
     }
@@ -1405,11 +1405,11 @@ static void ov23_0223F020 (UnkStruct_ov23_0223EE80 * param0)
     sub_0201F8B4();
 
     sub_02017798(NULL, NULL);
-    sub_020181C4(Unk_ov23_02257740->unk_04);
+    FreeToHeap(Unk_ov23_02257740->unk_04);
 
     Unk_ov23_02257740->unk_04 = NULL;
 
-    sub_0201807C(29);
+    DestroyHeap(29);
     ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->unk_00->unk_08, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
 }
 
@@ -1613,7 +1613,7 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
 
             Unk_ov23_02257740->unk_8CC = NULL;
 
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             sub_0200DA58(param0);
 
             ov23_0224DBF4(1);
@@ -1681,7 +1681,7 @@ static void ov23_0223F70C (UnkStruct_0203CDB0 * param0)
     void * v1 = sub_0202BE14(11);
 
     sub_0202B758(param0->unk_9C, v1, 1);
-    v0 = sub_02018184(11, sizeof(UnkStruct_ov23_0223EE80));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0223EE80));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0223EE80));
     v0->unk_10 = param0;
@@ -2949,7 +2949,7 @@ void ov23_022412F0 (void)
     GF_ASSERT(!Unk_ov23_02257740->unk_8D0);
     GF_ASSERT(!Unk_ov23_02257740->unk_8C4);
 
-    v0 = sub_02018184(11, sizeof(UnkStruct_ov23_022412CC));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
     sub_020360DC(71);
@@ -2964,7 +2964,7 @@ void ov23_02241364 (void)
 {
     if (Unk_ov23_02257740->unk_8C4) {
         sub_0200DA58(Unk_ov23_02257740->unk_8C4);
-        sub_020181C4(Unk_ov23_02257740->unk_8D0);
+        FreeToHeap(Unk_ov23_02257740->unk_8D0);
         Unk_ov23_02257740->unk_8C4 = NULL;
         Unk_ov23_02257740->unk_8D0 = NULL;
     }

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay005/ov5_021D57BC.h"
 
 typedef struct UnkStruct_ov5_021D57D8_t {
@@ -18,7 +18,7 @@ UnkStruct_ov5_021D57D8 * ov5_021D57BC (void)
 {
     UnkStruct_ov5_021D57D8 * v0;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021D57D8));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D57D8));
     MI_CpuClear32(v0, sizeof(UnkStruct_ov5_021D57D8));
 
     return v0;
@@ -26,7 +26,7 @@ UnkStruct_ov5_021D57D8 * ov5_021D57BC (void)
 
 void ov5_021D57D8 (UnkStruct_ov5_021D57D8 ** param0)
 {
-    sub_02018238(4, *param0);
+    FreeToHeapExplicit(4, *param0);
     *param0 = NULL;
 }
 

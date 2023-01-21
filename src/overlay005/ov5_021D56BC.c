@@ -3,7 +3,7 @@
 
 #include "overlay005/struct_ov5_021D57B4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay005/ov5_021D56BC.h"
 
 typedef struct {
@@ -20,7 +20,7 @@ UnkStruct_ov5_021D5778 * ov5_021D56BC (void)
 {
     UnkStruct_ov5_021D5778 * v0;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021D5778));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D5778));
     GF_ASSERT(v0 != NULL);
 
     return v0;
@@ -48,10 +48,10 @@ void ov5_021D56D4 (const char * param0, UnkStruct_ov5_021D5778 * param1)
         v3 = sizeof(UnkStruct_ov5_021D5778_sub1) * v1;
         v4 = sizeof(UnkStruct_ov5_021D57B4) * v2;
 
-        param1->unk_00 = sub_02018144(4, v3);
+        param1->unk_00 = AllocFromHeap(4, v3);
         GF_ASSERT(param1->unk_00 != NULL);
 
-        param1->unk_04 = sub_02018144(4, v4);
+        param1->unk_04 = AllocFromHeap(4, v4);
         GF_ASSERT(param1->unk_04 != NULL);
 
         v5 = FS_ReadFile(&v0, param1->unk_00, v3);
@@ -68,9 +68,9 @@ void ov5_021D56D4 (const char * param0, UnkStruct_ov5_021D5778 * param1)
 
 void ov5_021D5778 (UnkStruct_ov5_021D5778 * param0)
 {
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0);
 }
 
 void ov5_021D5790 (const int param0, const UnkStruct_ov5_021D5778 * param1, u16 * param2)

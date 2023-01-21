@@ -18,7 +18,7 @@
 #include "unk_020067E8.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201FE94.h"
 #include "unk_020218BC.h"
@@ -108,7 +108,7 @@ int ov83_0223B5B0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov83_0223C344 * v0 = sub_02006840(param0);
     UnkStruct_ov83_0223B784 * v1;
 
-    sub_02017FC8(3, 56, 0x20000);
+    CreateHeap(3, 56, 0x20000);
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov83_0223B784), 56);
     memset(v1, 0, sizeof(UnkStruct_ov83_0223B784));
 
@@ -229,7 +229,7 @@ int ov83_0223B710 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_18 = NULL;
 
-    sub_0201807C(v0);
+    DestroyHeap(v0);
     return 1;
 }
 
@@ -602,7 +602,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
             v0 = sub_0202A93C(param1->unk_00);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->unk_00);
             v1 = ov83_0223D508(28, v0, sub_0202A910(), param1->unk_148C);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
 
             if (v1 == 1) {
                 (*param2)++;
@@ -1078,7 +1078,7 @@ static void ov83_0223C87C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223
 {
     GF_ASSERT(param1->unk_1494.unk_100);
 
-    sub_020181C4(param1->unk_1494.unk_100);
+    FreeToHeap(param1->unk_1494.unk_100);
     param1->unk_1494.unk_100 = NULL;
 
     if (param0->unk_26) {

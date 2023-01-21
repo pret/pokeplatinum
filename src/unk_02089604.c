@@ -11,7 +11,7 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_02023FCC.h"
@@ -272,7 +272,7 @@ BOOL sub_02089820 (UnkStruct_02089688 * param0)
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         sub_02002FBC(param0->unk_2C0.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     sub_02089808(param0, 1);

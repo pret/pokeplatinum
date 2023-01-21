@@ -37,7 +37,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02020AEC.h"
@@ -167,11 +167,11 @@ BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
             }
         }
 
-        sub_020181C4(v3);
+        FreeToHeap(v3);
     }
 
     if (v1 != NULL) {
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     v7 = sub_0200B144(1, 26, 361, 32);
@@ -261,7 +261,7 @@ UnkStruct_ov5_021F6704 * ov5_021F6704 (UnkStruct_0203CDB0 * param0, u8 param1, u
     UnkStruct_ov5_021F6704 * v0;
     int v1;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021F6704));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021F6704));
 
     if (v0 == NULL) {
         return NULL;
@@ -438,7 +438,7 @@ static void ov5_021F6AD4 (UnkStruct_ov5_021F6704 * param0)
     }
 
     sub_0200DA58(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }

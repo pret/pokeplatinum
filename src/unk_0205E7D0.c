@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205EC34.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "unk_02063400.h"
@@ -116,7 +116,7 @@ void sub_0205E884 (UnkStruct_0205E884 * param0, int param1)
 
 void sub_0205E8E0 (UnkStruct_0205E884 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_0205E8E8 (UnkStruct_0205E884 * param0)
@@ -131,7 +131,7 @@ static UnkStruct_0205E884 * sub_0205E8FC (void)
 {
     UnkStruct_0205E884 * v0;
 
-    v0 = sub_02018144(11, (sizeof(UnkStruct_0205E884)));
+    v0 = AllocFromHeap(11, (sizeof(UnkStruct_0205E884)));
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, (sizeof(UnkStruct_0205E884)));
 

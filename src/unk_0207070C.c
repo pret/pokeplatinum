@@ -15,7 +15,7 @@
 #include "struct_defs/struct_020711C8.h"
 #include "functypes/funcptr_02084808.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202B604.h"
@@ -240,7 +240,7 @@ static void sub_02070838 (UnkStruct_0203CDB0 * param0, UnkStruct_02070950 * para
 
 static UnkStruct_0207086C * sub_0207086C (const UnkStruct_020709CC * param0, const UnkStruct_02070950 * param1)
 {
-    UnkStruct_0207086C * v0 = sub_02018144(32, sizeof(UnkStruct_0207086C));
+    UnkStruct_0207086C * v0 = AllocFromHeap(32, sizeof(UnkStruct_0207086C));
 
     v0->unk_00 = 0x19740205;
     v0->unk_04 = param1->unk_08;
@@ -252,7 +252,7 @@ static UnkStruct_0207086C * sub_0207086C (const UnkStruct_020709CC * param0, con
 static void sub_02070890 (UnkStruct_0207086C * param0)
 {
     GF_ASSERT(param0->unk_00 == 0x19740205);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static int sub_020708AC (const UnkStruct_02070950 * param0)
@@ -335,12 +335,12 @@ static void sub_020709CC (UnkStruct_020709CC * param0, const UnkStruct_02070950 
     {
         u32 * v2;
 
-        v2 = (u32 *)sub_02018144(11, 4);
+        v2 = (u32 *)AllocFromHeap(11, 4);
         *v2 = param0->unk_04;
         v1->unk_260 = (void *)v2;
     }
 
-    v1->unk_25C = sub_02018144(11, sizeof(UnkStruct_0203D8AC));
+    v1->unk_25C = AllocFromHeap(11, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(v0, v1->unk_25C, 1);
     sub_0203D884(v0, v1->unk_25C);
@@ -715,7 +715,7 @@ static BOOL sub_02070F94 (UnkStruct_020508D4 * param0)
     UnkStruct_020711C8 * v1 = sub_02050A64(param0);
     void * v2 = ov6_02247530(v0, v1->unk_00, 4);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     sub_02050924(param0, ov6_02247554, v2);
 
     return 0;
@@ -770,7 +770,7 @@ static BOOL sub_02071050 (UnkStruct_020508D4 * param0)
         sub_0202B758(v0->unk_9C, v3, 1);
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     sub_02050924(param0, ov6_022474AC, v2);
 
     return 0;

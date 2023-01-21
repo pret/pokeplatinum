@@ -28,7 +28,7 @@
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
@@ -79,7 +79,7 @@ static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         sub_02002FBC(param0->unk_48.unk_14, v0->pRawData, 2, 14 * 16, 32);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     {
@@ -242,7 +242,7 @@ int ov116_022609B4 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov116_0226139C * v0;
 
-    sub_02017FC8(3, 106, 0x65000);
+    CreateHeap(3, 106, 0x65000);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov116_0226139C), 106);
     memset(v0, 0, sizeof(UnkStruct_ov116_0226139C));
 
@@ -743,7 +743,7 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
         v0 = ov116_022617E4(v1);
 
         sub_02006830(param0);
-        sub_0201807C(106);
+        DestroyHeap(106);
         sub_020388F4(0, 1);
 
         if (v0 != 0) {
@@ -802,7 +802,7 @@ static void ov116_022612CC (UnkStruct_ov116_0226139C * param0)
         G3X_SetEdgeColorTable(v0);
     }
 
-    sub_020182CC(&param0->unk_48.unk_24, 106, 32);
+    GF_ExpHeap_FndInitAllocator(&param0->unk_48.unk_24, 106, 32);
 }
 
 void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
@@ -823,7 +823,7 @@ void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
     sub_02019044(param0->unk_48.unk_10, 5);
     sub_02019044(param0->unk_48.unk_10, 6);
     sub_02019044(param0->unk_48.unk_10, 7);
-    sub_020181C4(param0->unk_48.unk_10);
+    FreeToHeap(param0->unk_48.unk_10);
     sub_02002FA0(param0->unk_48.unk_14, 0);
     sub_02002FA0(param0->unk_48.unk_14, 1);
     sub_02002FA0(param0->unk_48.unk_14, 2);

@@ -28,7 +28,7 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -1145,13 +1145,13 @@ static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
         v2 = NARC_AllocAndReadWholeMember(v0, 20, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         ov13_02225710(param0, (u16 *)v1->rawData);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
 
         v2 = NARC_AllocAndReadWholeMember(v0, 21, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
 
         ov13_02225A3C(param0, (u16 *)v1->rawData);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     sub_02003050(param0->unk_1E4, 72, 23, param0->unk_00->unk_0C, 1, 0x20 * 16, 0);
@@ -1174,14 +1174,14 @@ static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
 
     {
         u16 * v5 = sub_02003164(param0->unk_1E4, 1);
-        u16 * v6 = sub_02018144(param0->unk_00->unk_0C, 0x20);
+        u16 * v6 = AllocFromHeap(param0->unk_00->unk_0C, 0x20);
 
         memcpy(v6, &v5[13 * 16], 0x20);
         memcpy(&v6[7], &v5[9 * 16 + 10], 4);
         memcpy(&v6[3], &v5[9 * 16 + 12], 4);
 
         sub_02002FBC(param0->unk_1E4, v6, 1, 13 * 16, 0x20);
-        sub_020181C4(v6);
+        FreeToHeap(v6);
     }
 }
 
@@ -1595,7 +1595,7 @@ static void ov13_02221738 (UnkStruct_ov13_022213F0 * param0, u8 param1)
         NNS_G2dGetUnpackedScreenData(v1, &v0);
         sub_020198C0(param0->unk_1E0, 6 + v2, (u16 *)v0->rawData, 0, 0, 32, 24);
         sub_0201C3C0(param0->unk_1E0, 6 + v2);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 }
 

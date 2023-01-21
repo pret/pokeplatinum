@@ -10,7 +10,7 @@
 #include "unk_0200762C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02015F84.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 typedef struct UnkStruct_02015F84_t UnkStruct_02015F84;
 typedef struct UnkStruct_02016DAC_t UnkStruct_02016DAC;
@@ -177,11 +177,11 @@ UnkStruct_02015F84 * sub_02015F84 (const int param0, const int param1, const u8 
 {
     UnkStruct_02015F84 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02015F84));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02015F84));
     v0->unk_08 = param2;
     v0->unk_09 = param1;
     v0->unk_04 = param0;
-    v0->unk_00 = sub_02018144(param0, sizeof(UnkStruct_02016E64) * param1);
+    v0->unk_00 = AllocFromHeap(param0, sizeof(UnkStruct_02016E64) * param1);
 
     MI_CpuClear8(v0->unk_00, sizeof(UnkStruct_02016E64) * param1);
 
@@ -190,8 +190,8 @@ UnkStruct_02015F84 * sub_02015F84 (const int param0, const int param1, const u8 
 
 void sub_02015FB8 (UnkStruct_02015F84 * param0)
 {
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0);
 }
 
 void sub_02015FCC (UnkStruct_02015F84 * param0, UnkStruct_02007C7C * param1, const UnkStruct_020789F4 * param2, const u8 param3)
@@ -256,7 +256,7 @@ void sub_02016114 (UnkStruct_02015F84 * param0, const u8 param1)
         param0->unk_00[param1].unk_20 = 1;
         param0->unk_00[param1].unk_10 = 0;
 
-        sub_020181C4(param0->unk_00[param1].unk_08);
+        FreeToHeap(param0->unk_00[param1].unk_08);
     }
 }
 
@@ -276,7 +276,7 @@ static void sub_02016150 (UnkStruct_0201CD38 * param0, void * param1)
 
         sub_0200DA58(param0);
         v0->unk_04 = NULL;
-        sub_020181C4(v0->unk_08);
+        FreeToHeap(v0->unk_08);
     }
 }
 

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 static const char *Unk_02100498[] = {
 	{ "battle/skill/waza_seq.narc" },
@@ -299,9 +299,9 @@ static void * AllocAndReadFromNarcMemberByPathAndIndex (const char * path, int m
     GF_ASSERT(btafStart != 0);
 
     if (allocAtEnd == 0) {
-        dest = sub_02018144(heapID, btafStart);
+        dest = AllocFromHeap(heapID, btafStart);
     } else {
-        dest = sub_02018184(heapID, btafStart);
+        dest = AllocFromHeapAtEnd(heapID, btafStart);
     }
 
     FS_ReadFile(&file, dest, btafStart);
@@ -386,7 +386,7 @@ u32 GetNarcMemberSizeByIndexPair (int narcIndex, int memberIndex)
 
 NARC * NARC_ctor (u32 narcIndex, u32 heapID)
 {
-    NARC * narc = sub_02018144(heapID, sizeof(NARC));
+    NARC * narc = AllocFromHeap(heapID, sizeof(NARC));
 
     if (narc) {
         u32 btnfStart;
@@ -416,7 +416,7 @@ NARC * NARC_ctor (u32 narcIndex, u32 heapID)
 void NARC_dtor (NARC * param0)
 {
     FS_CloseFile(&(param0->unk_00));
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void * NARC_AllocAndReadWholeMember (NARC * narc, u32 memberIndex, u32 heapID)
@@ -432,7 +432,7 @@ void * NARC_AllocAndReadWholeMember (NARC * narc, u32 memberIndex, u32 heapID)
     FS_ReadFile(&(narc->unk_00), &fileEnd, 4);
     FS_SeekFile(&(narc->unk_00), narc->unk_B0 + 8 + fileStart, FS_SEEK_SET);
 
-    dest = sub_02018144(heapID, fileEnd - fileStart);
+    dest = AllocFromHeap(heapID, fileEnd - fileStart);
 
     if (dest) {
         FS_ReadFile(&(narc->unk_00), dest, fileEnd - fileStart);

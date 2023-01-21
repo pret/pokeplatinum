@@ -17,7 +17,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -124,7 +124,7 @@ static void ov77_021D66A0 (UnkStruct_ov77_021D6800 * param0, UnkStruct_ov115_022
 UnkStruct_ov77_021D670C * ov77_021D670C (void)
 {
     int v0 = sizeof(UnkStruct_ov77_021D670C);
-    UnkStruct_ov77_021D670C * v1 = sub_02018144(76, v0);
+    UnkStruct_ov77_021D670C * v1 = AllocFromHeap(76, v0);
 
     memset(v1, 0, v0);
 
@@ -139,9 +139,9 @@ UnkStruct_ov77_021D6734 * ov77_021D6734 (const int param0)
     int v0;
     UnkStruct_ov77_021D6734 * v1;
 
-    v1 = sub_02018144(76, sizeof(UnkStruct_ov77_021D6734));
+    v1 = AllocFromHeap(76, sizeof(UnkStruct_ov77_021D6734));
     v0 = sizeof(UnkStruct_ov77_021D6ADC) * param0;
-    v1->unk_04 = sub_02018144(76, v0);
+    v1->unk_04 = AllocFromHeap(76, v0);
 
     memset(v1->unk_04, 0, v0);
     v1->unk_00 = param0;
@@ -159,8 +159,8 @@ void ov77_021D6760 (UnkStruct_ov77_021D6734 * param0)
         }
     }
 
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0);
 }
 
 UnkStruct_02022550 ** ov77_021D6794 (UnkStruct_ov77_021D6734 * param0, const int param1)
@@ -187,7 +187,7 @@ void ov77_021D67B0 (UnkStruct_ov77_021D670C * param0)
         }
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov77_021D6800 (UnkStruct_ov77_021D6800 * param0)

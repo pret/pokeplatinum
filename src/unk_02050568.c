@@ -15,7 +15,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 #include "unk_02050568.h"
 #include "unk_020507CC.h"
@@ -42,7 +42,7 @@ static void sub_0205075C(UnkStruct_0203CDB0 * param0);
 
 void sub_02050568 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02050568 * v0 = sub_02018184(11, sizeof(UnkStruct_02050568));
+    UnkStruct_02050568 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050568));
 
     memset(v0, 0, sizeof(UnkStruct_02050568));
     sub_02050944(param0->unk_10, sub_020505A0, v0);
@@ -123,7 +123,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
         v1->unk_08++;
         break;
     case 11:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         sub_02070428(v0, 0);
         return 1;
     }

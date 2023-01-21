@@ -23,7 +23,7 @@
 #include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -409,7 +409,7 @@ BOOL sub_0204B3B8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param
     v1 = sub_0204B184(param1, param2, param7);
     v0 = sub_0204B470(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v0;
 }
@@ -427,7 +427,7 @@ void sub_0204B404 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param
         sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, param5);
     }
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 }
 
 static BOOL sub_0204B470 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * param1, u16 param2, UnkStruct_ov104_0223A348_sub2 * param3, u8 param4, u16 * param5, u16 * param6, UnkStruct_0204B404 * param7, int param8)

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02033200.h"
 #include "overlay018/ov18_0221F800.h"
 
@@ -18,11 +18,11 @@ void ov18_0221F800 (int param0)
 
     v0 = OS_DisableInterrupts();
     DWC_SetAuthServer((DWC_CONNECTINET_AUTH_RELEASE));
-    v1 = sub_02018144(param0, DWC_UTILITY_WORK_SIZE);
+    v1 = AllocFromHeap(param0, DWC_UTILITY_WORK_SIZE);
 
     (void)DWC_StartUtility(v1, DWC_LANGUAGE_ENGLISH, DWC_UTILITY_TOP_MENU_COMMON);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     OS_RestoreInterrupts(v0);
     OS_EnableIrq( );

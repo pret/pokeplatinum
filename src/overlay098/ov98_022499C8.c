@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02022974.h"
 #include "unk_02023790.h"
 #include "overlay098/ov98_022499C8.h"
@@ -52,7 +52,7 @@ asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
    bne _022499DC
    add r0, r7, #0
    mov r1, #0xc8
-   bl sub_02018144
+   bl AllocFromHeap
    str r0, [sp, #4]
    ldr r0, [sp]
    ldr r1, [sp, #4]
@@ -116,7 +116,7 @@ asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
    mov r0, #0
    strb r0, [r5, r4]
    ldr r0, [sp, #4]
-   bl sub_020181C4
+   bl FreeToHeap
    add sp, #8
    pop {r3, r4, r5, r6, r7, pc}
 }
@@ -128,7 +128,7 @@ asm void ov98_02249A80 (void)
    add r0, r1, #0
    mov r1, #0xc8
    mov r5, #1
-   bl sub_02018144
+   bl AllocFromHeap
    add r4, r0, #0
    add r0, r6, #0
    add r1, r4, #0
@@ -153,7 +153,7 @@ asm void ov98_02249A80 (void)
    bne _02249AA6
  _02249AB8:
    add r0, r4, #0
-   bl sub_020181C4
+   bl FreeToHeap
    add r0, r5, #0
    pop {r4, r5, r6, pc}
    nop

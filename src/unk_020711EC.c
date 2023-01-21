@@ -13,7 +13,7 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020711EC.h"
 
 typedef struct UnkStruct_ov101_021D5D90_t {
@@ -246,7 +246,7 @@ static UnkStruct_020711EC * sub_0207142C (int param0)
 {
     UnkStruct_020711EC * v0;
 
-    v0 = sub_02018144(param0, (sizeof(UnkStruct_020711EC)));
+    v0 = AllocFromHeap(param0, (sizeof(UnkStruct_020711EC)));
     GF_ASSERT(v0 != NULL);
 
     memset(v0, 0, (sizeof(UnkStruct_020711EC)));
@@ -255,7 +255,7 @@ static UnkStruct_020711EC * sub_0207142C (int param0)
 
 static void sub_02071450 (UnkStruct_020711EC * param0)
 {
-    sub_02018238(param0->unk_08, param0);
+    FreeToHeapExplicit(param0->unk_08, param0);
 }
 
 static UnkStruct_ov101_021D5D90 * sub_0207145C (int param0, int param1)
@@ -263,7 +263,7 @@ static UnkStruct_ov101_021D5D90 * sub_0207145C (int param0, int param1)
     UnkStruct_ov101_021D5D90 * v0;
 
     param1 *= (sizeof(UnkStruct_ov101_021D5D90));
-    v0 = sub_02018144(param0, param1);
+    v0 = AllocFromHeap(param0, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);
@@ -273,7 +273,7 @@ static UnkStruct_ov101_021D5D90 * sub_0207145C (int param0, int param1)
 
 static void sub_02071480 (UnkStruct_020711EC * param0)
 {
-    sub_02018238(param0->unk_08, param0->unk_0C);
+    FreeToHeapExplicit(param0->unk_08, param0->unk_0C);
 }
 
 static void sub_02071490 (UnkStruct_ov101_021D5D90 * param0)

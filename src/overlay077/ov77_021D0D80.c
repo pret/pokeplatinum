@@ -36,7 +36,7 @@
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201C970.h"
 #include "unk_0201D15C.h"
@@ -193,7 +193,7 @@ static int ov77_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
-    sub_02017FC8(3, v1, 0x40000);
+    CreateHeap(3, v1, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov77_021D17B4), v1);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D17B4));
@@ -341,7 +341,7 @@ static int ov77_021D10FC (UnkStruct_020067E8 * param0, int * param1)
     ov77_021D1908(v0);
 
     sub_02006830(param0);
-    sub_0201807C(v1);
+    DestroyHeap(v1);
 
     switch (v2) {
     default:
@@ -410,7 +410,7 @@ static void ov77_021D1208 (UnkStruct_ov77_021D1208 * param0, int param1, int par
     void * v1;
     NNSG3dResTex * v2;
 
-    sub_020182CC(&param0->unk_70, param3, 4);
+    GF_ExpHeap_FndInitAllocator(&param0->unk_70, param3, 4);
 
     param0->unk_5C = AllocAndReadWholeNarcMemberByIndexPair(48, param1, param3);
     param0->unk_60 = AllocAndReadWholeNarcMemberByIndexPair(48, param2, param3);
@@ -510,9 +510,9 @@ static void ov77_021D14E4 (UnkStruct_ov77_021D1208 * param0)
     NNS_G3dFreeAnmObj(&param0->unk_70, param0->unk_68);
     NNS_G3dFreeAnmObj(&param0->unk_70, param0->unk_6C);
 
-    sub_020181C4(param0->unk_60);
-    sub_020181C4(param0->unk_64);
-    sub_020181C4(param0->unk_5C);
+    FreeToHeap(param0->unk_60);
+    FreeToHeap(param0->unk_64);
+    FreeToHeap(param0->unk_5C);
 }
 
 static void ov77_021D1514 (UnkStruct_ov77_021D1208 * param0)
@@ -795,7 +795,7 @@ static void ov77_021D1908 (UnkStruct_ov77_021D17B4 * param0)
     sub_02019044(param0->unk_04, 1);
     sub_02019044(param0->unk_04, 3);
     sub_02019044(param0->unk_04, 7);
-    sub_020181C4(param0->unk_04);
+    FreeToHeap(param0->unk_04);
 }
 
 static void ov77_021D1984 (UnkStruct_ov77_021D1568 * param0, UnkStruct_ov77_021D1208 * param1)

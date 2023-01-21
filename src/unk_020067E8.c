@@ -5,7 +5,7 @@
 
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 typedef struct UnkStruct_020067E8_t {
     UnkStruct_0208BE5C unk_00;
@@ -21,7 +21,7 @@ UnkStruct_020067E8 * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * par
 {
     UnkStruct_020067E8 * v0;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_020067E8));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_020067E8));
 
     v0->unk_00 = *param0;
     v0->unk_10 = 0;
@@ -36,12 +36,12 @@ UnkStruct_020067E8 * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * par
 
 void sub_02006814 (UnkStruct_020067E8 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void * sub_0200681C (UnkStruct_020067E8 * param0, int param1, int param2)
 {
-    param0->unk_1C = sub_02018144(param2, param1);
+    param0->unk_1C = AllocFromHeap(param2, param1);
     return param0->unk_1C;
 }
 
@@ -52,7 +52,7 @@ void * sub_0200682C (UnkStruct_020067E8 * param0)
 
 void sub_02006830 (UnkStruct_020067E8 * param0)
 {
-    sub_020181C4(param0->unk_1C);
+    FreeToHeap(param0->unk_1C);
     param0->unk_1C = NULL;
 }
 

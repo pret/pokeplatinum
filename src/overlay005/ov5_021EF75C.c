@@ -6,7 +6,7 @@
 #include "overlay005/struct_ov5_021D5778_decl.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D56BC.h"
@@ -69,16 +69,16 @@ static void ov5_021EF75C (void * param0, NNSG3dResTex * param1)
     v0 = (u8 *)param1 + param1->texInfo.ofsTex;
     v1 = (u32)(v0 - (u8 *)param0);
 
-    sub_020182F0(param0, v1);
+    ReallocFromHeap(param0, v1);
 }
 
 UnkStruct_ov5_021EF76C * ov5_021EF76C (const int param0, UnkStruct_ov5_021D3CAC * param1)
 {
     UnkStruct_ov5_021EF76C * v0;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021EF76C));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EF76C));
 
-    v0->unk_C20 = sub_02018184(4, sizeof(UnkStruct_ov5_021EF7A0));
+    v0->unk_C20 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021EF7A0));
     v0->unk_C20->unk_00 = param0;
     v0->unk_C20->unk_04 = param1;
     v0->unk_C20->unk_0C = 0;
@@ -205,7 +205,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
         ov5_021D56D4(v12, param0->unk_C14);
     }
 
-    sub_020181C4(param0->unk_C20);
+    FreeToHeap(param0->unk_C20);
     param0->unk_C20 = NULL;
 }
 
@@ -232,18 +232,18 @@ void ov5_021EFA10 (UnkStruct_ov5_021EF76C ** param0)
 
     for (v0 = 0; v0 < 768; v0++) {
         if ((*param0)->unk_04[v0] != NULL) {
-            sub_020181C4((*param0)->unk_04[v0]);
+            FreeToHeap((*param0)->unk_04[v0]);
         }
     }
 
-    sub_020181C4((*param0)->unk_C24);
-    sub_020181C4((*param0)->unk_C04);
+    FreeToHeap((*param0)->unk_C24);
+    FreeToHeap((*param0)->unk_C04);
 
     (*param0)->unk_C04 = NULL;
-    sub_020181C4((*param0)->unk_C08);
+    FreeToHeap((*param0)->unk_C08);
 
     (*param0)->unk_C08 = NULL;
-    sub_020181C4((*param0));
+    FreeToHeap((*param0));
 
     (*param0) = NULL;
 }

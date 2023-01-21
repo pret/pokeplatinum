@@ -6,7 +6,7 @@
 #include "overlay104/struct_ov104_0223C23C_decl.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "overlay104/ov104_0223C164.h"
 
@@ -31,7 +31,7 @@ UnkStruct_ov104_0223C23C * ov104_0223C164 (UnkStruct_02018340 * param0)
 {
     UnkStruct_ov104_0223C23C * v0;
 
-    v0 = sub_02018144(94, sizeof(UnkStruct_ov104_0223C23C));
+    v0 = AllocFromHeap(94, sizeof(UnkStruct_ov104_0223C23C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C23C));
     v0->unk_04 = ov104_0223C188(param0);
 
@@ -42,7 +42,7 @@ static UnkStruct_ov104_0223C188 * ov104_0223C188 (UnkStruct_02018340 * param0)
 {
     UnkStruct_ov104_0223C188 * v0;
 
-    v0 = sub_02018144(94, sizeof(UnkStruct_ov104_0223C188));
+    v0 = AllocFromHeap(94, sizeof(UnkStruct_ov104_0223C188));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C188));
 
     v0->unk_04 = param0;
@@ -101,7 +101,7 @@ static void ov104_0223C250(UnkStruct_ov104_0223C188 * param0);
 void ov104_0223C23C (UnkStruct_ov104_0223C23C * param0)
 {
     ov104_0223C250(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }
@@ -109,7 +109,7 @@ void ov104_0223C23C (UnkStruct_ov104_0223C23C * param0)
 static void ov104_0223C250 (UnkStruct_ov104_0223C188 * param0)
 {
     sub_0200DA58(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }

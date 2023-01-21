@@ -18,7 +18,7 @@
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0226D094.h"
@@ -150,7 +150,7 @@ static UnkStruct_ov16_0226D160 * ov16_0226D160 (void)
 {
     UnkStruct_ov16_0226D160 * v0;
 
-    v0 = sub_02018144(5, sizeof(UnkStruct_ov16_0226D160));
+    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov16_0226D160));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226D160));
     return v0;
 }
@@ -158,7 +158,7 @@ static UnkStruct_ov16_0226D160 * ov16_0226D160 (void)
 static void ov16_0226D17C (UnkStruct_ov16_0226D160 * param0)
 {
     GF_ASSERT(param0->unk_00.unk_04 == NULL);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 UnkStruct_ov16_0226D160 * ov16_0226D194 (u8 param0[], UnkEnum_ov16_0226D194 param1, UnkEnum_ov16_0226D194_1 param2, UnkEnum_ov16_0226D194_3 param3, UnkStruct_0200C6E4 * param4, UnkStruct_0200C704 * param5)

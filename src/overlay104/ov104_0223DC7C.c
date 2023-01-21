@@ -29,7 +29,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -224,7 +224,7 @@ static void ov104_0223DD30 (UnkStruct_ov104_0223DD30 * param0, UnkStruct_0201CD3
     sub_0200DA58(param0->unk_140);
     sub_0200DA58(param0->unk_34);
     NARC_dtor(param0->unk_24);
-    sub_02018238(94, param0->unk_0C);
+    FreeToHeapExplicit(94, param0->unk_0C);
     sub_020067D0(param1);
 }
 
@@ -261,7 +261,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
 
     switch (param0->unk_00) {
     case 0:
-        param0->unk_0C = sub_02018144(param1, sizeof(UnkStruct_ov104_0223DDE4));
+        param0->unk_0C = AllocFromHeap(param1, sizeof(UnkStruct_ov104_0223DDE4));
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov104_0223DDE4));
 
         v0 = param0->unk_0C;
@@ -641,7 +641,7 @@ static void ov104_0223E5A8 (UnkStruct_ov104_0223DD30 * param0, const UnkStruct_o
         v0 = sub_02006F88(112, param1->unk_08, &v1, 94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     param0->unk_140 = sub_0200D9E8(ov104_0223E6BC, param0, 1100);

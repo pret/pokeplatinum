@@ -19,7 +19,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098D38.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
@@ -168,7 +168,7 @@ static void sub_0204FCF8 (UnkStruct_020508D4 * param0, u16 param1, u16 param2, u
 {
     UnkStruct_0204FCF8 * v0;
 
-    v0 = sub_02018144(11, sizeof(UnkStruct_0204FCF8));
+    v0 = AllocFromHeap(11, sizeof(UnkStruct_0204FCF8));
     memset(v0, 0, sizeof(UnkStruct_0204FCF8));
 
     v0->unk_04[0] = param1;
@@ -207,7 +207,7 @@ static BOOL sub_0204FD38 (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 1;
     }
 
@@ -217,7 +217,7 @@ static BOOL sub_0204FD38 (UnkStruct_020508D4 * param0)
 static void sub_0204FDB4 (UnkStruct_020508D4 * param0, void ** param1, u8 param2)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_0204FE50 * v1 = sub_02018144(11, sizeof(UnkStruct_0204FE50));
+    UnkStruct_0204FE50 * v1 = AllocFromHeap(11, sizeof(UnkStruct_0204FE50));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0204FE50));
 
@@ -247,7 +247,7 @@ static BOOL sub_0204FDE8 (UnkStruct_020508D4 * param0)
         v1->unk_00 = sub_0204FFF4(v1, v0);
         break;
     case 4:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 
@@ -257,7 +257,7 @@ static BOOL sub_0204FDE8 (UnkStruct_020508D4 * param0)
 static int sub_0204FE50 (UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
     u8 v0;
-    UnkStruct_02098C44 * v1 = sub_02018144(11, sizeof(UnkStruct_02098C44));
+    UnkStruct_02098C44 * v1 = AllocFromHeap(11, sizeof(UnkStruct_02098C44));
 
     MI_CpuClearFast(v1, sizeof(UnkStruct_02098C44));
 
@@ -313,7 +313,7 @@ static int sub_0204FF1C (UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param
 
     MI_CpuCopy8(v1->unk_2C, param0->unk_06, 3);
     param0->unk_05 = v1->unk_22;
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     *(param0->unk_0C) = NULL;
     return 2;
@@ -328,7 +328,7 @@ static int sub_0204FF6C (UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param
     };
 
     v1 = param1->unk_0C;
-    v0 = sub_02018184(param2, sizeof(UnkStruct_02098D38));
+    v0 = AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02098D38));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
 
@@ -361,7 +361,7 @@ static int sub_0204FFF4 (UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param
 
     v0 = *(param0->unk_0C);
     param0->unk_05 = v0->unk_14;
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     *(param0->unk_0C) = NULL;
 
     return 0;

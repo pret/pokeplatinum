@@ -47,7 +47,7 @@
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -132,7 +132,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_02017FC8(3, 39, 0x40000);
+        CreateHeap(3, 39, 0x40000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
@@ -246,7 +246,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     sub_02017798(NULL, NULL);
-    sub_0201807C(39);
+    DestroyHeap(39);
 
     return 1;
 }
@@ -445,7 +445,7 @@ static void ov72_0223DC6C (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)

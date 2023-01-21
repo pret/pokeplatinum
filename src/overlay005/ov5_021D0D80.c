@@ -36,7 +36,7 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201C970.h"
 #include "unk_0201DBEC.h"
@@ -190,10 +190,10 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
             }
         }
 
-        sub_02017FC8(3, 4, v1->unk_74->unk_04);
+        CreateHeap(3, 4, v1->unk_74->unk_04);
         GF_ASSERT(v1->unk_04 == NULL);
 
-        v1->unk_04 = sub_02018144(4, sizeof(UnkStruct_0203CDB0_sub2));
+        v1->unk_04 = AllocFromHeap(4, sizeof(UnkStruct_0203CDB0_sub2));
         MI_CpuClear8(v1->unk_04, sizeof(UnkStruct_0203CDB0_sub2));
         v1->unk_04->unk_04 = ov5_021D1A94(v1, 4, 8);
 
@@ -351,12 +351,12 @@ static int ov5_021D0FB4 (UnkStruct_020067E8 * param0, int * param1)
             sub_0201CBA0();
             ov5_021D1AE4(v0->unk_04->unk_04);
             sub_02017798(NULL, NULL);
-            sub_020181C4(v0->unk_08);
-            sub_020181C4(v0->unk_04);
+            FreeToHeap(v0->unk_08);
+            FreeToHeap(v0->unk_04);
 
             v0->unk_04 = NULL;
 
-            sub_0201807C(4);
+            DestroyHeap(4);
 
             if (v0->unk_74->unk_00_20) {
                 sub_02006514(FS_OVERLAY_ID(overlay6));
@@ -957,7 +957,7 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     u16 * v1;
     UnkStruct_ov5_021D1A68 * v2;
 
-    v2 = sub_02018144(param0, sizeof(UnkStruct_ov5_021D1A68));
+    v2 = AllocFromHeap(param0, sizeof(UnkStruct_ov5_021D1A68));
     v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(96, param1, param0);
 
     for (v0 = 0; v0 < 24; v0++) {
@@ -973,7 +973,7 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     }
 
     v2->unk_00 = v0;
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     return v2;
 }
 
@@ -989,7 +989,7 @@ static const int ov5_021D1A6C (const UnkStruct_ov5_021D1A68 * param0)
 
 static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static BOOL ov5_021D1A78 (UnkStruct_0203CDB0 * param0)

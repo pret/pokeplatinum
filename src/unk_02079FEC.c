@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_02079FF4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079FEC.h"
@@ -20,7 +20,7 @@ UnkStruct_02079FF4 * sub_02079FF4 (u32 param0)
 {
     UnkStruct_02079FF4 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02079FF4));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02079FF4));
     sub_0207A008(v0);
 
     return v0;
@@ -119,13 +119,13 @@ BOOL sub_0207A184 (UnkStruct_02079FF4 * param0, int param1, int param2)
     GF_ASSERT((param2) < (param0)->unk_04);
     GF_ASSERT((param2) < (param0)->unk_00);
 
-    v0 = sub_02018144(0, sizeof(struct UnkStruct_02073C74_t));
+    v0 = AllocFromHeap(0, sizeof(struct UnkStruct_02073C74_t));
     *v0 = param0->unk_08[param1];
 
     param0->unk_08[param1] = param0->unk_08[param2];
     param0->unk_08[param2] = *v0;
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return 0;
 }

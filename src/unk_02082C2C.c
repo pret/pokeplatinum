@@ -17,7 +17,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0201FE94.h"
@@ -125,7 +125,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
         GX_LoadOBJ(v6->pRawData, v4, v6->szByte);
     }
 
-    sub_020181C4(v5);
+    FreeToHeap(v5);
     sub_0200D414(param0->unk_704[param1].unk_24, sub_02079EDC(v2, v3, 0) + 3);
     NARC_dtor(v1);
 }

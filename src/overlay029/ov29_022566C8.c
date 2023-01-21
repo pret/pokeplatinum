@@ -17,7 +17,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02099D44.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -49,18 +49,18 @@ static void ov29_02256B18(UnkStruct_ov29_022566C8 * param0);
 
 BOOL ov29_022566C8 (UnkStruct_ov29_022566C8 ** param0, const UnkStruct_ov29_022566C8_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov29_022566C8 * v0 = (UnkStruct_ov29_022566C8 *)sub_02018144(8, sizeof(UnkStruct_ov29_022566C8));
+    UnkStruct_ov29_022566C8 * v0 = (UnkStruct_ov29_022566C8 *)AllocFromHeap(8, sizeof(UnkStruct_ov29_022566C8));
 
     if (v0 != NULL) {
-        GF_ASSERT(sub_0201833C(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(7));
         ov25_02255090(v0->unk_08, 16);
 
-        GF_ASSERT(sub_0201833C(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(7));
         v0->unk_00 = param1;
         v0->unk_04 = ov25_02254674();
         v0->unk_50 = ov25_02254664();
 
-        GF_ASSERT(sub_0201833C(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(7));
         *param0 = v0;
         return 1;
     }
@@ -92,15 +92,15 @@ static BOOL ov29_02256728 (UnkStruct_ov29_022566C8 * param0)
 void ov29_02256770 (UnkStruct_ov29_022566C8 * param0)
 {
     if (param0 != NULL) {
-        GF_ASSERT(sub_0201833C(7));
+        GF_ASSERT(GF_heap_c_dummy_return_true(7));
 
         if (param0->unk_70) {
             sub_02099DA8(param0->unk_00->unk_16E8, param0->unk_70->unk_0C, (20 * 19 * 0x20));
             sub_0201A8FC(param0->unk_70);
-            sub_020181C4(param0->unk_70);
+            FreeToHeap(param0->unk_70);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -170,29 +170,29 @@ static void ov29_02256804 (UnkStruct_0201CD38 * param0, void * param1)
     GXSDispCnt v2;
     UnkStruct_ov29_022566C8 * v3;
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     v3 = ov25_0225523C(param1);
 
     sub_020183C4(v3->unk_04, 6, &v0, 0);
     sub_020183C4(v3->unk_04, 7, &v1, 0);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     sub_02006E3C(12, 30, v3->unk_04, 6, 0, 0, 1, 8);
     sub_02006E60(12, 31, v3->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     ov29_02256728(v3);
     sub_0201A954(v3->unk_70);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     ov29_02256ABC(v3);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     sub_02019448(v3->unk_04, 7);
 
@@ -200,7 +200,7 @@ static void ov29_02256804 (UnkStruct_0201CD38 * param0, void * param1)
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
     ov29_022567F0(param1);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 }
 
 static void ov29_02256908 (UnkStruct_0201CD38 * param0, void * param1)

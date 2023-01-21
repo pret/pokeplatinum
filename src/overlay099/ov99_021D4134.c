@@ -11,7 +11,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
@@ -195,7 +195,7 @@ void ov99_021D439C (UnkStruct_ov99_021D2CB0 * param0, int param1, int param2, in
 
     GX_EndLoadBGExtPltt();
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
     sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
     sub_020038B0(param0->unk_0C, 1, 2, 0x0, 0, 1);
     sub_020070E8(param0->unk_10F8, v3->unk_00, param0->unk_08, param2, 0, 0, 0, 75);

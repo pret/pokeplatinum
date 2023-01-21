@@ -21,7 +21,7 @@
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
 #include "unk_020131EC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02023790.h"
 #include "unk_020298BC.h"
@@ -422,7 +422,7 @@ void sub_02094F04 (UnkStruct_02095C48 * param0, int param1, int param2, int para
 
     v9 = sub_02006FE8(90, 0, 0, param1, 1);
     v6 = GetNarcMemberSizeByIndexPair(90, 0) / sizeof(UnkStruct_ov6_02248BE8);
-    v2 = sub_02018184(param1, v6 + 1);
+    v2 = AllocFromHeapAtEnd(param1, v6 + 1);
 
     if ((param6 == 1) && (param7 == 1)) {
         v5 = 1;
@@ -520,8 +520,8 @@ void sub_02094F04 (UnkStruct_02095C48 * param0, int param1, int param2, int para
         }
     }
 
-    sub_020181C4(v2);
-    sub_020181C4(v9);
+    FreeToHeap(v2);
+    FreeToHeap(v9);
 }
 
 void sub_020951B0 (UnkStruct_02095C48 * param0, int param1)
@@ -602,7 +602,7 @@ void sub_020951B0 (UnkStruct_02095C48 * param0, int param1)
         sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.unk_110);
     }
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 }
 
 void sub_02095338 (UnkStruct_02095C48 * param0)
@@ -698,8 +698,8 @@ void sub_020954F0 (UnkStruct_02095C48 * param0, int param1, int param2, int para
 
     v6 = sub_02006FE8(90, 1, 0, param1, 1);
     v5 = GetNarcMemberSizeByIndexPair(90, 1) / sizeof(UnkStruct_020954F0);
-    v7 = sub_02018184(param1, v5 + 1);
-    v8 = sub_02018184(param1, v5 + 1);
+    v7 = AllocFromHeapAtEnd(param1, v5 + 1);
+    v8 = AllocFromHeapAtEnd(param1, v5 + 1);
 
     for (v0 = 0; v0 < v5; v0++) {
         if (param4 != v6[v0].unk_04_10) {
@@ -761,9 +761,9 @@ void sub_020954F0 (UnkStruct_02095C48 * param0, int param1, int param2, int para
         param0->unk_00.unk_C0[2] = v9;
     }
 
-    sub_020181C4(v8);
-    sub_020181C4(v7);
-    sub_020181C4(v6);
+    FreeToHeap(v8);
+    FreeToHeap(v7);
+    FreeToHeap(v6);
 }
 
 s8 sub_02095734 (int param0)

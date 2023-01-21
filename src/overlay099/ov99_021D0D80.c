@@ -31,7 +31,7 @@
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -107,7 +107,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 75, 0x80000);
+    CreateHeap(3, 75, 0x80000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov99_021D2CB0), 75);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov99_021D2CB0));
@@ -289,7 +289,7 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201DC3C();
     sub_0201E530();
     sub_02006830(param0);
-    sub_0201807C(75);
+    DestroyHeap(75);
 
     return 1;
 }
@@ -325,7 +325,7 @@ static void ov99_021D1270 (UnkStruct_ov99_021D2CB0 * param0)
     sub_02019044(param0->unk_08, 3);
     sub_02019044(param0->unk_08, 2);
     sub_02019044(param0->unk_08, 1);
-    sub_020181C4(param0->unk_08);
+    FreeToHeap(param0->unk_08);
 
     ov99_021D1A4C(param0->unk_10);
 }
@@ -350,7 +350,7 @@ static void ov99_021D1314 (UnkStruct_ov99_021D2CB0 * param0)
     sub_02019044(param0->unk_08, 2);
     sub_02019044(param0->unk_08, 3);
     sub_02019044(param0->unk_08, 7);
-    sub_020181C4(param0->unk_08);
+    FreeToHeap(param0->unk_08);
 }
 
 static void ov99_021D1350 (void * param0)

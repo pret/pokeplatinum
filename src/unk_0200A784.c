@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "unk_0200A784.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "unk_0202309C.h"
 
@@ -61,7 +61,7 @@ static void sub_0200A7C8 (int param0, int param1, int param2, int param3, int pa
     BOOL v0;
 
     GF_ASSERT(Unk_021BF430 == NULL);
-    Unk_021BF430 = sub_02018144(param8, sizeof(UnkStruct_021BF430));
+    Unk_021BF430 = AllocFromHeap(param8, sizeof(UnkStruct_021BF430));
 
     GF_ASSERT(Unk_021BF430);
     Unk_021BF430->unk_38 = param8;
@@ -87,7 +87,7 @@ void sub_0200A878 (void)
 
     sub_0200A93C(Unk_021BF430->unk_38);
     sub_0200A944(Unk_021BF430->unk_38);
-    sub_020181C4(Unk_021BF430);
+    FreeToHeap(Unk_021BF430);
 
     Unk_021BF430 = NULL;
 }

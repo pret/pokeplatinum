@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_0207E060.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0207E060.h"
 #include "overlay004/ov4_021D0D80.h"
@@ -15,7 +15,7 @@ UnkStruct_0207E060 * sub_0207E060 (const UnkStruct_02025E6C * param0, u32 param1
     UnkStruct_0207E060 * v0;
     BOOL v1;
 
-    v0 = sub_02018144(param1, (sizeof(UnkStruct_0207E060)));
+    v0 = AllocFromHeap(param1, (sizeof(UnkStruct_0207E060)));
     memset(v0, 0, (sizeof(UnkStruct_0207E060)));
 
     v0->unk_1B = 28;
@@ -32,5 +32,5 @@ UnkStruct_0207E060 * sub_0207E060 (const UnkStruct_02025E6C * param0, u32 param1
 
 void sub_0207E0B0 (UnkStruct_0207E060 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }

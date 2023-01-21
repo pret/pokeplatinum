@@ -7,7 +7,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02017038.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
@@ -52,7 +52,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
         sub_0202F180(param1, v1);
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v0;
 }
@@ -71,7 +71,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     ov5_021E6CF0(v4, param2, param3, v2, 4, v0);
 
     v1 = sub_0207A048(v3, v4);
-    sub_020181C4(v4);
+    FreeToHeap(v4);
 
     return v1;
 }

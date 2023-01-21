@@ -11,7 +11,7 @@
 
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0202602C.h"
 #include "unk_02030EE0.h"
@@ -76,16 +76,16 @@ void sub_02033200 (UnkStruct_02025E6C * param0, BOOL param1)
         return;
     }
 
-    Unk_021C07C0 = (UnkStruct_021C07C0 *)sub_02018144(15, sizeof(UnkStruct_021C07C0));
+    Unk_021C07C0 = (UnkStruct_021C07C0 *)AllocFromHeap(15, sizeof(UnkStruct_021C07C0));
     MI_CpuClear8(Unk_021C07C0, sizeof(UnkStruct_021C07C0));
 
-    Unk_021C07C0->unk_14E8 = sub_02018144(15, sub_02031C50());
+    Unk_021C07C0->unk_14E8 = AllocFromHeap(15, sub_02031C50());
     MI_CpuClear8(Unk_021C07C0->unk_14E8, sub_02031C50());
 
-    Unk_021C07C0->unk_1500 = sub_02018144(15, sub_0202602C());
+    Unk_021C07C0->unk_1500 = AllocFromHeap(15, sub_0202602C());
     MI_CpuClear8(Unk_021C07C0->unk_1500, sub_0202602C());
 
-    Unk_021C07C0->unk_1508 = (u32)sub_02018144(15, WM_SIZE_USER_GAMEINFO + 32);
+    Unk_021C07C0->unk_1508 = (u32)AllocFromHeap(15, WM_SIZE_USER_GAMEINFO + 32);
     Unk_021C07C0->unk_150C = (u16 *)(32 - (Unk_021C07C0->unk_1508 % 32) + Unk_021C07C0->unk_1508);
 
     Unk_021C07C0->unk_1504 = 0x333;
@@ -388,10 +388,10 @@ void sub_02033794 (BOOL param0)
 
 static void sub_020337C0 (void)
 {
-    sub_020181C4(Unk_021C07C0->unk_1500);
-    sub_020181C4(Unk_021C07C0->unk_14E8);
-    sub_020181C4((void *)Unk_021C07C0->unk_1508);
-    sub_020181C4(Unk_021C07C0);
+    FreeToHeap(Unk_021C07C0->unk_1500);
+    FreeToHeap(Unk_021C07C0->unk_14E8);
+    FreeToHeap((void *)Unk_021C07C0->unk_1508);
+    FreeToHeap(Unk_021C07C0);
 
     Unk_021C07C0 = NULL;
 }

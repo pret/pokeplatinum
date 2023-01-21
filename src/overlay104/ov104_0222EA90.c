@@ -3,7 +3,7 @@
 
 #include "overlay104/struct_ov104_0223C4CC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201FE94.h"
 #include "overlay104/ov104_0222EA90.h"
@@ -411,12 +411,12 @@ void ov104_0222EBA4 (UnkStruct_ov104_0223C4CC * param0, void ** param1, int para
 
 static void ov104_0222EBBC (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    *param1 = sub_02018144(94, 32);
+    *param1 = AllocFromHeap(94, 32);
 }
 
 static void ov104_0222EBCC (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    sub_020181C4(*param1);
+    FreeToHeap(*param1);
 }
 
 static void ov104_0222EBD8 (UnkStruct_ov104_0223C4CC * param0, void ** param1)

@@ -14,7 +14,7 @@
 
 #include "unk_0200D9E8.h"
 #include "unk_0201378C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02056720.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02255ACC.h"
@@ -63,7 +63,7 @@ static void NitroStaticInit (void)
 
 static BOOL ov45_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
-    UnkStruct_ov45_022561D4 * v0 = (UnkStruct_ov45_022561D4 *)sub_02018144(8, sizeof(UnkStruct_ov45_022561D4));
+    UnkStruct_ov45_022561D4 * v0 = (UnkStruct_ov45_022561D4 *)AllocFromHeap(8, sizeof(UnkStruct_ov45_022561D4));
 
     if (v0 != NULL) {
         if (ov45_0225621C(v0, param1, param2, param3)) {
@@ -73,7 +73,7 @@ static BOOL ov45_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
             }
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     return 0;
@@ -146,7 +146,7 @@ static void ov45_022562F8 (UnkStruct_ov45_022561D4 * param0)
     ov25_02255B34(param0->unk_14);
     ov45_02256728(param0->unk_08);
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov45_02256310 (u32 param0, u32 param1, u32 param2, void * param3)

@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02025E6C.h"
 
 #include "unk_020021B0.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 
@@ -19,7 +19,7 @@ UnkStruct_02025E6C * sub_02025E6C (u32 param0)
 {
     UnkStruct_02025E6C * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02025E6C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02025E6C));
     sub_02025E8C(v0);
 
     return v0;

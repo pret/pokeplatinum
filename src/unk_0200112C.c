@@ -13,7 +13,7 @@
 #include "unk_0200112C.h"
 #include "unk_02002B7C.h"
 #include "unk_020149F0.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 
@@ -51,7 +51,7 @@ static void sub_02001AD8(UnkStruct_0200112C * param0, u8 param1);
 
 UnkStruct_0200112C * sub_0200112C (const UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 param2, u8 param3)
 {
-    UnkStruct_0200112C * v0 = (UnkStruct_0200112C *)sub_02018144(param3, sizeof(UnkStruct_0200112C));
+    UnkStruct_0200112C * v0 = (UnkStruct_0200112C *)AllocFromHeap(param3, sizeof(UnkStruct_0200112C));
 
     v0->unk_00 = *param0;
     v0->unk_24 = sub_020149F0(param3);
@@ -160,7 +160,7 @@ void sub_02001384 (UnkStruct_0200112C * param0, u16 * param1, u16 * param2)
     }
 
     sub_02014A20(param0->unk_24);
-    sub_02018238(param0->unk_30, param0);
+    FreeToHeapExplicit(param0->unk_30, param0);
 }
 
 void sub_020013AC (UnkStruct_0200112C * param0)

@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02032318.h"
 #include "struct_defs/struct_0203233C.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02032188.h"
 #include "unk_020322D8.h"
 #include "unk_02032798.h"
@@ -281,7 +281,7 @@ BOOL sub_02032574 (UnkStruct_020322F8 * param0, UnkStruct_0203233C * param1, BOO
 void sub_020325EC (UnkStruct_020322F8 * param0, int param1, UnkStruct_02032188 * param2)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_020322F8));
-    param0->unk_18 = sub_02018144(15, sizeof(UnkStruct_020322D8) * param1);
+    param0->unk_18 = AllocFromHeap(15, sizeof(UnkStruct_020322D8) * param1);
 
     MI_CpuFill8(param0->unk_18, 0, sizeof(UnkStruct_020322D8) * param1);
     param0->unk_1C = param1;
@@ -301,7 +301,7 @@ void sub_02032618 (UnkStruct_020322F8 * param0)
 
 void sub_02032638 (UnkStruct_020322F8 * param0)
 {
-    sub_020181C4(param0->unk_18);
+    FreeToHeap(param0->unk_18);
 }
 
 BOOL sub_02032644 (UnkStruct_020322F8 * param0, int param1)

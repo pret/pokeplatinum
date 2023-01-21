@@ -61,7 +61,7 @@ Static main
 	Object src/unk_02017428.o
 	Object src/unk_02017498.o
 	Object src/unk_02017728.o
-	Object src/unk_02017E74.o
+	Object src/heap.o
 	Object src/unk_02018340.o
 	Object src/unk_0201C970.o
 	Object src/unk_0201CCF0.o

@@ -67,7 +67,7 @@
 #include "unk_0201378C.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -758,21 +758,21 @@ int ov65_0222E2A8 (UnkStruct_020067E8 * param0, int * param1)
             case 6:
             case 12:
             case 7:
-                sub_02017FC8(3, 121, 0x10000);
+                CreateHeap(3, 121, 0x10000);
                 break;
             default:
                 break;
             }
         } else {
-            sub_02017FC8(3, 121, 0x10000);
+            CreateHeap(3, 121, 0x10000);
         }
 
         sub_02006590(FS_OVERLAY_ID(overlay63), 2);
 
         if (v1->unk_04 == 1) {
-            sub_02017FC8(3, 54, 0x70000);
+            CreateHeap(3, 54, 0x70000);
         } else {
-            sub_02017FC8(3, 54, 0xa0000);
+            CreateHeap(3, 54, 0xa0000);
         }
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov65_0222EBE0), 54);
@@ -915,7 +915,7 @@ int ov65_0222E548 (UnkStruct_020067E8 * param0, int * param1)
     sub_02006830(param0);
     sub_0201E530();
     sub_0201DC3C();
-    sub_0201807C(54);
+    DestroyHeap(54);
 
     switch (v0->unk_3AC) {
     case 8:
@@ -929,7 +929,7 @@ int ov65_0222E548 (UnkStruct_020067E8 * param0, int * param1)
     case 6:
     case 12:
     case 7:
-        sub_0201807C(121);
+        DestroyHeap(121);
         break;
     default:
         break;
@@ -1242,12 +1242,12 @@ static void ov65_0222E90C (UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C 
 static void ov65_0222E99C (UnkStruct_ov65_0222E99C * param0)
 {
     if (param0->unk_00 != NULL) {
-        sub_020181C4(param0->unk_00);
+        FreeToHeap(param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_08 != NULL) {
-        sub_020181C4(param0->unk_08);
+        FreeToHeap(param0->unk_08);
         param0->unk_08 = NULL;
     }
 }
@@ -1454,7 +1454,7 @@ static void ov65_0222EC5C (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
@@ -4817,7 +4817,7 @@ static void ov65_02232DC0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
         sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_164, 0, v0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
@@ -5212,13 +5212,13 @@ static void ov65_02233570 (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     sub_0201A8FC(&param0->unk_BE0.unk_1FC);
-    sub_020181C4(param0->unk_BE0.unk_04);
+    FreeToHeap(param0->unk_BE0.unk_04);
 
     for (v0 = 0; v0 < 7; v0++) {
-        sub_020181C4(param0->unk_BE0.unk_0C[v0]);
+        FreeToHeap(param0->unk_BE0.unk_0C[v0]);
     }
 
-    sub_020181C4(param0->unk_BE0.unk_44);
+    FreeToHeap(param0->unk_BE0.unk_44);
 }
 
 static void ov65_022335F8 (NNSG2dScreenData * param0, u8 param1)
@@ -5496,7 +5496,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, r6, #0
     bl sub_0200B498
     add r0, r6, #0
-    bl sub_020181C4
+    bl FreeToHeap
     mov r2, #0x5a
     lsl r2, r2, #2
     ldr r0, [r5, r2]
@@ -6899,7 +6899,7 @@ static void ov65_02234F68 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
         sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_BE0.unk_00, 0, v0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 

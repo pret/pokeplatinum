@@ -22,7 +22,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
@@ -1170,7 +1170,7 @@ static void ov65_022362B0 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_0223
 
 static void ov65_022362EC (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_02236318 * param1)
 {
-    sub_020181C4(param1->unk_00);
+    FreeToHeap(param1->unk_00);
     memset(param1, 0, sizeof(UnkStruct_ov65_02236318));
 }
 

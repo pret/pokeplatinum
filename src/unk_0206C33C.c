@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202D7A8.h"
@@ -298,7 +298,7 @@ void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
     sub_0202D980(v1, 2, sub_02074470(v0, 175, NULL));
     sub_0202D980(v1, 3, sub_02074470(v0, 0, NULL));
     sub_0202D980(v1, 5, sub_02074470(v0, 164, NULL));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v3 = sub_0202D8BC(v2);
     sub_0206C538(v2, param1, v3);

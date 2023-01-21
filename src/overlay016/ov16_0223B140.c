@@ -52,7 +52,7 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -175,7 +175,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02017FC8(3, 5, 0xb0000);
+        CreateHeap(3, 5, 0xb0000);
 
         if ((v0->unk_00 & 0x4) && ((v0->unk_164 & 0x10) == 0)) {
             *param1 = 1;
@@ -247,14 +247,14 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         if (ov16_0223DB1C(param0) == 1) {
             *param1 = 11;
         } else {
-            sub_0201807C(5);
+            DestroyHeap(5);
             *param1 = 13;
         }
         break;
     case 11:
         if (ov16_0223DD10(param0) == 1) {
             sub_02006514(FS_OVERLAY_ID(overlay10));
-            sub_0201807C(5);
+            DestroyHeap(5);
             *param1 = 12;
         }
         break;
@@ -271,7 +271,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         v2 = ov16_0223ECC4(v0, &v1, &v3);
 
         if (v2) {
-            sub_02017FC8(3, 73, 0x30000);
+            CreateHeap(3, 73, 0x30000);
             v4 = sub_0207A0FC(v0->unk_04[0], v1);
             v0->unk_170 = sub_0207AE68(v0->unk_04[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->unk_100, v3, 0x1 | 0x2, 73);
             *param1 = 14;
@@ -286,7 +286,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
         if (sub_0207B0D0(v5) == 1) {
             sub_0207B0E0(v5);
-            sub_0201807C(73);
+            DestroyHeap(73);
             *param1 = 13;
         }
     }
@@ -560,7 +560,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     v0->unk_08 = sub_0201A778(5, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
-        v0->unk_1CC[v3].unk_00 = sub_02018144(5, (32 * 10 * 10));
+        v0->unk_1CC[v3].unk_00 = AllocFromHeap(5, (32 * 10 * 10));
     }
 
     sub_0201DBEC(64, 5);
@@ -731,16 +731,16 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
 
     for (v2 = 0; v2 < 4; v2++) {
         sub_0207A21C(v0->unk_68[v2], v1->unk_04[v2]);
-        sub_020181C4(v0->unk_68[v2]);
+        FreeToHeap(v0->unk_68[v2]);
         sub_02025E80(v0->unk_48[v2], v1->unk_D0[v2]);
-        sub_020181C4(v0->unk_48[v2]);
+        FreeToHeap(v0->unk_48[v2]);
     }
 
     sub_02015760(v0->unk_1AC);
     sub_0207D3EC(v0->unk_58, v1->unk_E0);
-    sub_020181C4(v0->unk_58);
+    FreeToHeap(v0->unk_58);
     sub_02026338(v0->unk_60, v1->unk_E8);
-    sub_020181C4(v0->unk_60);
+    FreeToHeap(v0->unk_60);
 
     v1->unk_EC = v0->unk_64;
     v1->unk_E4 = v0->unk_5C;
@@ -758,10 +758,10 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     v1->unk_19C = v0->unk_2474_0;
 
     for (v2 = 0; v2 < 4; v2++) {
-        sub_020181C4(v0->unk_1CC[v2].unk_00);
+        FreeToHeap(v0->unk_1CC[v2].unk_00);
     }
 
-    sub_020181C4(v0->unk_18);
+    FreeToHeap(v0->unk_18);
     sub_02002FA0(v0->unk_28, 0);
     sub_02002FA0(v0->unk_28, 1);
     sub_02002FA0(v0->unk_28, 2);
@@ -790,9 +790,9 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_02002AE4(0);
     sub_02002B20(0);
     sub_0201A928(v0->unk_08, 3);
-    sub_020181C4(v0->unk_04);
-    sub_020181C4(v0->unk_21C);
-    sub_020181C4(v0->unk_220);
+    FreeToHeap(v0->unk_04);
+    FreeToHeap(v0->unk_21C);
+    FreeToHeap(v0->unk_220);
     sub_0200C560(v0->unk_1A4);
     sub_02002C60(2);
     sub_0200DA58(v0->unk_1C);
@@ -817,7 +817,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
         ov16_0226E174(v0->unk_2478);
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_02006514(FS_OVERLAY_ID(overlay11));
     sub_02006514(FS_OVERLAY_ID(overlay12));
 
@@ -1960,7 +1960,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
                 int v2;
 
                 for (v2 = 0; v2 < 4; v2++) {
-                    sub_020181C4(v0->unk_10[v2]);
+                    FreeToHeap(v0->unk_10[v2]);
                 }
             }
 
@@ -2002,8 +2002,8 @@ static void ov16_0223D7B4 (UnkStruct_020067E8 * param0)
     sub_0201A928(v0->unk_08, 1);
     sub_0201FF0C(GX_PLANEMASK_BG1, 0);
     sub_02019044(v0->unk_04, 1);
-    sub_020181C4(v0->unk_04);
-    sub_020181C4(v0);
+    FreeToHeap(v0->unk_04);
+    FreeToHeap(v0);
 }
 
 static BOOL ov16_0223D800 (UnkStruct_020067E8 * param0)
@@ -2026,7 +2026,7 @@ static BOOL ov16_0223D800 (UnkStruct_020067E8 * param0)
         return 0;
     }
 
-    v0->unk_1C0 = sub_02018144(5, sizeof(UnkStruct_ov10_0221F800));
+    v0->unk_1C0 = AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
     MI_CpuClearFast(v0->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
     v2 = sub_0203608C();
 
@@ -2070,11 +2070,11 @@ static BOOL ov16_0223D944 (UnkStruct_020067E8 * param0)
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_1C0->unk_14[v0] != NULL) {
-                sub_020181C4(v1->unk_1C0->unk_14[v0]);
+                FreeToHeap(v1->unk_1C0->unk_14[v0]);
             }
         }
 
-        sub_020181C4(v1->unk_1C0);
+        FreeToHeap(v1->unk_1C0);
         return 1;
     }
 
@@ -2094,7 +2094,7 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
     }
 
     v2 = sub_0203608C();
-    v0->unk_1C0 = sub_02018144(5, sizeof(UnkStruct_ov10_0221F800));
+    v0->unk_1C0 = AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
 
     MI_CpuClearFast(v0->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
 
@@ -2130,11 +2130,11 @@ static BOOL ov16_0223DAD4 (UnkStruct_020067E8 * param0)
     if (v1->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_1C0->unk_14[v0] != NULL) {
-                sub_020181C4(v1->unk_1C0->unk_14[v0]);
+                FreeToHeap(v1->unk_1C0->unk_14[v0]);
             }
         }
 
-        sub_020181C4(v1->unk_1C0);
+        FreeToHeap(v1->unk_1C0);
         return 1;
     }
 
@@ -2154,7 +2154,7 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
 
     v2 = sub_0203608C();
     sub_02006590(FS_OVERLAY_ID(overlay10), 2);
-    v1 = sub_02018144(5, sizeof(UnkStruct_ov10_0221F800));
+    v1 = AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
 
     v0->unk_170 = v1;
     MI_CpuClearFast(v1, sizeof(UnkStruct_ov10_0221F800));
@@ -2232,11 +2232,11 @@ static BOOL ov16_0223DD10 (UnkStruct_020067E8 * param0)
     if (v2->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
             if (v2->unk_14[v0] != NULL) {
-                sub_020181C4(v2->unk_14[v0]);
+                FreeToHeap(v2->unk_14[v0]);
             }
         }
 
-        sub_020181C4(v2);
+        FreeToHeap(v2);
         return 1;
     }
 

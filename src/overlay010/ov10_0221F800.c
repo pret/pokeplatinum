@@ -52,7 +52,7 @@
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
@@ -1433,7 +1433,7 @@ static void ov10_02220E30 (UnkStruct_ov10_0221FB28 * param0)
         sub_02019044(param0->unk_0C, 0);
     }
 
-    sub_020181C4(param0->unk_0C);
+    FreeToHeap(param0->unk_0C);
 }
 
 static void ov10_02220E70 (UnkStruct_ov10_0221FB28 * param0)
@@ -1761,7 +1761,7 @@ static void ov10_022217CC (UnkStruct_ov10_0221FB28 * param0)
     G3X_AlphaBlend(1);
     sub_02014000();
 
-    param0->unk_B54 = sub_02018144(param0->unk_00->unk_24, 0x4800);
+    param0->unk_B54 = AllocFromHeap(param0->unk_00->unk_24, 0x4800);
     param0->unk_B50 = sub_02014014(ov10_02221928, ov10_0222194C, param0->unk_B54, 0x4800, 1, param0->unk_00->unk_24);
 
     v0 = sub_02014784(param0->unk_B50);
@@ -1805,7 +1805,7 @@ static void ov10_022218F4 (UnkStruct_ov10_0221FB28 * param0)
     }
 
     sub_0201411C(param0->unk_B50);
-    sub_020181C4(param0->unk_B54);
+    FreeToHeap(param0->unk_B54);
     sub_020242C4(param0->unk_B4C);
 }
 
@@ -1922,7 +1922,7 @@ static void ov10_02221A10 (UnkStruct_ov10_0221FB28 * param0)
     sub_02019044(param0->unk_0C, 3);
     sub_02019044(param0->unk_0C, 2);
     sub_02019044(param0->unk_0C, 1);
-    sub_020181C4(param0->unk_0C);
+    FreeToHeap(param0->unk_0C);
 }
 
 static void ov10_02221A3C (UnkStruct_ov10_0221FB28 * param0)
@@ -1945,7 +1945,7 @@ static void ov10_02221A3C (UnkStruct_ov10_0221FB28 * param0)
 
         v3 = (u16 *)v1->pRawData;
         memcpy(param0->unk_4D8, &v3[3 * 16], 32 * 3);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     sub_02081940(param0->unk_00->unk_24, param0->unk_298, param0->unk_358, param0->unk_418);
@@ -2419,43 +2419,43 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
 
     if (MapHeader_IsUnionRoom(param0->unk_00->unk_134) == 1) {
         v3 = sub_020793AC(param0->unk_00->unk_28[v6 ^ 1].unk_01);
-        v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
+        v1 = AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
         sub_02023DF0(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
         v0 = sub_0202C174(v1, v3, v5, param0->unk_24);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     } else {
         switch (sub_0203895C()) {
         case 1:
             v3 = sub_020793AC(param0->unk_00->unk_28[v6 ^ 1].unk_01);
-            v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
+            v1 = AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             sub_02023DF0(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
 
             v0 = sub_0202BFCC(v1, v3, v5, param0->unk_24);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             break;
         case 2:
             v3 = sub_020793AC(param0->unk_00->unk_28[v6 ^ 1].unk_01);
-            v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
+            v1 = AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             sub_02023DF0(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
 
             v0 = sub_0202C00C(v1, v3, v5, param0->unk_24);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             break;
         case 3:
             v3 = sub_020793AC(param0->unk_00->unk_28[v6 ^ 1].unk_01);
-            v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
+            v1 = AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             sub_02023DF0(param0->unk_14[sub_020362F4(v6 ^ 1)], v1, 8);
 
             v0 = sub_0202C0AC(v1, v3, v5, param0->unk_24);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             break;
         case 4:
-            v1 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
-            v2 = sub_02018144(param0->unk_24, sizeof(u16) * 8);
+            v1 = AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
+            v2 = AllocFromHeap(param0->unk_24, sizeof(u16) * 8);
 
             if (ov10_02220AD0() == 1) {
                 v3 = sub_020793AC(param0->unk_00->unk_28[1].unk_01);
@@ -2473,8 +2473,8 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
 
             v0 = sub_0202C04C(v1, v2, v3, v4, v5, param0->unk_24);
 
-            sub_020181C4(v1);
-            sub_020181C4(v2);
+            FreeToHeap(v1);
+            FreeToHeap(v2);
             break;
         default:
             return;

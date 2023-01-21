@@ -13,7 +13,7 @@
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/union_0206B878.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_02039C80.h"
@@ -171,7 +171,7 @@ static void sub_0206B878 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * para
     v1 = FS_ReadFile(&v0, &v3, 4);
     GF_ASSERT(v1 >= 0);
 
-    v4 = sub_02018184(11, sizeof(UnkStruct_0206B878));
+    v4 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206B878));
     MI_CpuClear8(v4, sizeof(UnkStruct_0206B878));
 
     param1->unk_13A = v3;
@@ -204,7 +204,7 @@ static void sub_0206B878 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * para
     }
 
     (void)FS_CloseFile(&v0);
-    sub_020181C4(v4);
+    FreeToHeap(v4);
 
     return;
 }

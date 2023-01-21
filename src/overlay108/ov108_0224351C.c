@@ -7,7 +7,7 @@
 
 #include "overlay108/struct_ov108_02243030.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "unk_02079D40.h"
 #include "overlay108/ov108_02243030.h"
@@ -37,7 +37,7 @@ UnkStruct_ov108_02243594 * ov108_0224351C (UnkStruct_ov108_02243030 * param0, u3
     UnkStruct_ov108_02243594 * v0;
     VecFx32 v1;
 
-    v0 = sub_02018144(103, sizeof(UnkStruct_ov108_02243594));
+    v0 = AllocFromHeap(103, sizeof(UnkStruct_ov108_02243594));
     memset(v0, 0, sizeof(UnkStruct_ov108_02243594));
 
     v0->unk_10 = ov108_022430F0(param0, param1, param2, param3, param4, param7, param8, param9);
@@ -60,7 +60,7 @@ UnkStruct_ov108_02243594 * ov108_0224351C (UnkStruct_ov108_02243030 * param0, u3
 void * ov108_02243594 (UnkStruct_ov108_02243594 * param0)
 {
     sub_02021BD4(param0->unk_10);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return NULL;
 }

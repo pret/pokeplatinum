@@ -6,7 +6,7 @@
 
 #include "overlay105/struct_ov105_02245AAC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay105/ov105_02245AAC.h"
 #include "overlay105/ov105_02245DC4.h"
@@ -26,7 +26,7 @@ UnkStruct_ov105_02245E1C * ov105_02245DC4 (UnkStruct_ov105_02245AAC * param0, u3
 {
     UnkStruct_ov105_02245E1C * v0;
 
-    v0 = sub_02018144(param4, sizeof(UnkStruct_ov105_02245E1C));
+    v0 = AllocFromHeap(param4, sizeof(UnkStruct_ov105_02245E1C));
     memset(v0, 0, sizeof(UnkStruct_ov105_02245E1C));
 
     v0->unk_00 = param2;
@@ -41,7 +41,7 @@ UnkStruct_ov105_02245E1C * ov105_02245DC4 (UnkStruct_ov105_02245AAC * param0, u3
 void * ov105_02245E1C (UnkStruct_ov105_02245E1C * param0)
 {
     sub_02021BD4(param0->unk_08);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return NULL;
 }

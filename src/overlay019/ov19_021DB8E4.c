@@ -22,7 +22,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200C440.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -90,11 +90,11 @@ BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * 
 
         v2 = sub_020071EC(param5, 27, &v1, 10);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][0]), 0x40);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
 
         v2 = sub_020071EC(param5, 20, &v1, 10);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][32]), 0x20);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
 
         {
             int v3;
@@ -164,19 +164,19 @@ void ov19_021DBAD0 (UnkStruct_ov19_021DBA9C * param0)
     }
 
     if (param0->unk_14) {
-        sub_020181C4(param0->unk_14);
+        FreeToHeap(param0->unk_14);
     }
 
     if (param0->unk_1C) {
-        sub_020181C4(param0->unk_1C);
+        FreeToHeap(param0->unk_1C);
     }
 
     if (param0->unk_2C) {
-        sub_020181C4(param0->unk_2C);
+        FreeToHeap(param0->unk_2C);
     }
 
     if (param0->unk_34) {
-        sub_020181C4(param0->unk_34);
+        FreeToHeap(param0->unk_34);
     }
 
     if (param0->unk_44) {
@@ -194,7 +194,7 @@ void ov19_021DBAD0 (UnkStruct_ov19_021DBA9C * param0)
             sub_0201A8FC(&(param0->unk_10[v0]));
         }
 
-        sub_020181C4(param0->unk_10);
+        FreeToHeap(param0->unk_10);
     }
 }
 
@@ -474,7 +474,7 @@ static void ov19_021DC034 (UnkStruct_ov19_021DBA9C * param0, int param1)
     static const UnkFuncPtr_0201CE28 v0[] = {
         ov19_021DC0A0, ov19_021DC1CC,
     };
-    UnkStruct_ov19_021DC034 * v1 = sub_02018144(10, sizeof(UnkStruct_ov19_021DC034));
+    UnkStruct_ov19_021DC034 * v1 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC034));
 
     if (v1) {
         v1->unk_00 = param0;
@@ -484,7 +484,7 @@ static void ov19_021DC034 (UnkStruct_ov19_021DBA9C * param0, int param1)
         param0->unk_DC = sub_0200D9E8(v0[param1], v1, 0);
 
         if (param0->unk_DC == NULL) {
-            sub_020181C4(v1);
+            FreeToHeap(v1);
         }
     }
 }
@@ -495,7 +495,7 @@ static void ov19_021DC074 (UnkStruct_0201CD38 * param0, void * param1)
 
     v0->unk_00->unk_DC = NULL;
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_0200DA58(param0);
 }
 
@@ -587,7 +587,7 @@ static void ov19_021DC1CC (UnkStruct_0201CD38 * param0, void * param1)
 
 void ov19_021DC29C (UnkStruct_ov19_021DBA9C * param0)
 {
-    UnkStruct_ov19_021DC29C * v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021DC29C));
+    UnkStruct_ov19_021DC29C * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
         u32 v1 = ov19_021D5F88(param0->unk_0C);
@@ -650,7 +650,7 @@ static void ov19_021DC37C (UnkStruct_0201CD38 * param0, void * param1)
 
 void ov19_021DC3F4 (UnkStruct_ov19_021DBA9C * param0)
 {
-    UnkStruct_ov19_021DC29C * v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021DC29C));
+    UnkStruct_ov19_021DC29C * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
         v0->unk_16 = 0;
@@ -724,7 +724,7 @@ static void ov19_021DC4F8 (UnkStruct_ov19_021DBA9C * param0, u32 param1)
             sub_02021E90(param0->unk_90, 6);
         }
 
-        sub_020181C4(v4);
+        FreeToHeap(v4);
     }
 }
 

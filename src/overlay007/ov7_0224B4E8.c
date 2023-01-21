@@ -25,7 +25,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -548,7 +548,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
         sub_020237BC(v1->unk_1C);
         sub_020237BC(v1->unk_20);
         sub_0207A2C0(v1->unk_6C);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     default:
         return 1;
@@ -559,7 +559,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
 
 static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_ov7_0224B4E8 * v0 = sub_02018184(11, sizeof(UnkStruct_ov7_0224B4E8));
+    UnkStruct_ov7_0224B4E8 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
 

@@ -40,7 +40,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -188,7 +188,7 @@ static void ov7_0224CCF4(UnkStruct_02029D04 * param0, UnkStruct_0207D3C0 * param
 
 UnkStruct_ov7_0224BEFC * ov7_0224BE9C (u32 param0, UnkStruct_021C0794 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov7_0224BEFC * v0 = sub_02018144(param0, sizeof(UnkStruct_ov7_0224BEFC));
+    UnkStruct_ov7_0224BEFC * v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov7_0224BEFC));
 
     memset(v0, 0, sizeof(UnkStruct_ov7_0224BEFC));
 
@@ -214,7 +214,7 @@ void ov7_0224BEFC (UnkStruct_ov7_0224BEFC * param0)
     ov7_0224C3E0(param0);
 
     memset(param0, 0, sizeof(UnkStruct_ov7_0224BEFC));
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)

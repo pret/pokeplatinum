@@ -21,7 +21,7 @@
 
 #include "filesystem.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0202298C.h"
 #include "unk_020298BC.h"
@@ -135,8 +135,8 @@ void ov22_0225B020 (UnkStruct_ov22_0225B1BC * param0)
     ov22_022594AC(&param0->unk_1E8);
     ov22_0225B35C(param0);
 
-    sub_020181C4(param0->unk_298);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_298);
+    FreeToHeap(param0);
 }
 
 void ov22_0225B06C (UnkStruct_ov22_0225B1BC * param0)
@@ -239,7 +239,7 @@ static UnkStruct_ov22_0225B1BC * ov22_0225B1BC (const UnkStruct_ov22_0225B4E4 * 
     UnkStruct_ov22_0225B1BC * v0;
     BOOL v1;
 
-    v0 = sub_02018144(param0->unk_68, sizeof(UnkStruct_ov22_0225B1BC));
+    v0 = AllocFromHeap(param0->unk_68, sizeof(UnkStruct_ov22_0225B1BC));
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->unk_68;
@@ -269,7 +269,7 @@ static UnkStruct_ov22_0225B1BC * ov22_0225B258 (const UnkStruct_ov22_0225B4E4 * 
     UnkStruct_ov22_0225B1BC * v0;
     BOOL v1;
 
-    v0 = sub_02018144(param0->unk_68, sizeof(UnkStruct_ov22_0225B1BC));
+    v0 = AllocFromHeap(param0->unk_68, sizeof(UnkStruct_ov22_0225B1BC));
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->unk_68;

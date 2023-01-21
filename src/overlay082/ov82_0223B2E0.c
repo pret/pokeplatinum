@@ -11,7 +11,7 @@
 #include "overlay083/struct_ov83_0223C344.h"
 
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0207CB08.h"
 #include "unk_0207CDEC.h"
 #include "unk_0207D3B8.h"
@@ -131,12 +131,12 @@ static int ov82_0223B3DC (UnkStruct_ov83_0223C344 * param0)
 
     v0 = sub_0207CB08(param0->unk_00);
     memcpy(v0, param0->unk_18, sub_0207CB20());
-    sub_020181C4(param0->unk_18);
+    FreeToHeap(param0->unk_18);
 
     param0->unk_18 = NULL;
     param0->unk_08 = sub_0207CB94(v0);
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     switch (sub_0207CB9C(v0)) {
     case 1:
@@ -204,7 +204,7 @@ static int ov82_0223B510 (UnkStruct_ov83_0223C344 * param0)
     sub_02097390(param0->unk_18, &v0, &v1);
     sub_0207D9C8(param0->unk_0C, 4, v1, v0);
 
-    sub_020181C4(param0->unk_18);
+    FreeToHeap(param0->unk_18);
     param0->unk_18 = NULL;
 
     return 0;

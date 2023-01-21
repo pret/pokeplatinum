@@ -19,7 +19,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -86,7 +86,7 @@ static const UnkUnion_02022594 Unk_ov62_02248C1C[] = {
 
 static BOOL ov62_02235E64 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_ov62_02235E64 * v0 = sub_02018144(102, sizeof(UnkStruct_ov62_02235E64));
+    UnkStruct_ov62_02235E64 * v0 = AllocFromHeap(102, sizeof(UnkStruct_ov62_02235E64));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02235E64));
     param0->unk_860 = v0;
@@ -513,7 +513,7 @@ static BOOL ov62_022366D4 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
         break;
     default:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 1;
     }
 
@@ -571,7 +571,7 @@ static BOOL ov62_022367B4 (UnkStruct_0208C06C * param0)
             sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         } else {
             sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
             sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);

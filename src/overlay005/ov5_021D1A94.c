@@ -11,7 +11,7 @@
 #include "overlay006/struct_ov6_0223E6EC.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0203CC84.h"
 #include "overlay005/ov5_021D1A94.h"
@@ -37,18 +37,18 @@ UnkStruct_ov5_021D1A94 * ov5_021D1A94 (UnkStruct_0203CDB0 * param0, int param1, 
     UnkStruct_ov5_021D1A94 * v0;
     u32 v1;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov5_021D1A94));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021D1A94));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
-    v0->unk_0C = sub_02018144(param1, sizeof(UnkStruct_ov5_021D1BEC) * param2);
+    v0->unk_0C = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
     MI_CpuClear32(v0->unk_0C, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
     v1 = sub_0201CD80(param2);
 
-    v0->unk_10 = sub_02018144(param1, v1);
+    v0->unk_10 = AllocFromHeap(param1, v1);
     v0->unk_10 = sub_0201CD88(param2, v0->unk_10);
 
     return v0;
@@ -62,9 +62,9 @@ void ov5_021D1AE4 (UnkStruct_ov5_021D1A94 * param0)
         ov5_021D1BEC(&param0->unk_0C[v0]);
     }
 
-    sub_020181C4(param0->unk_0C);
-    sub_020181C4(param0->unk_10);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_0C);
+    FreeToHeap(param0->unk_10);
+    FreeToHeap(param0);
 }
 
 void ov5_021D1B18 (UnkStruct_ov5_021D1A94 * param0)
@@ -110,7 +110,7 @@ UnkStruct_ov5_021D1BEC * ov5_021D1B6C (UnkStruct_ov5_021D1A94 * param0, const Un
             GF_ASSERT(v1->unk_08 != NULL);
 
             if (param1->unk_04 != 0) {
-                v1->unk_10 = sub_02018144(param0->unk_04, param1->unk_04);
+                v1->unk_10 = AllocFromHeap(param0->unk_04, param1->unk_04);
             }
 
             if (param1->unk_08) {
@@ -136,7 +136,7 @@ void ov5_021D1BEC (UnkStruct_ov5_021D1BEC * param0)
     }
 
     if (param0->unk_0C->unk_04 != 0) {
-        sub_020181C4(param0->unk_10);
+        FreeToHeap(param0->unk_10);
     }
 
     sub_0200DA58(param0->unk_04);

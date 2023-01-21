@@ -15,7 +15,7 @@
 #include "unk_02002B7C.h"
 #include "unk_0200AC5C.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
@@ -42,7 +42,7 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
     sub_0202F4C0(v1->unk_26, &v2, &v3);
     v6 = sub_02023790(v9, param2);
     v7 = sub_02023790(v9, param2);
-    v8 = sub_02018144(param2, sizeof(u16) * v9);
+    v8 = AllocFromHeap(param2, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {
         for (v10 = 8 - 1; v10 > -1; v10--) {
@@ -92,7 +92,7 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
 
     sub_020237BC(v6);
     sub_020237BC(v7);
-    sub_020181C4(v8);
+    FreeToHeap(v8);
 }
 
 static void ov62_0224856C (UnkStruct_02023790 * param0, int param1)

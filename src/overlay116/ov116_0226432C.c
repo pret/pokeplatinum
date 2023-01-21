@@ -26,7 +26,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "overlay116/ov116_02261870.h"
@@ -428,7 +428,7 @@ static void ov116_022649E4 (UnkStruct_0201CD38 * param0, void * param1)
     if ((sub_0200F2AC() == 0) || (v1->unk_2C.unk_00 == 1)) {
         *v0->unk_10 = 0;
         sub_0200DA58(param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return;
     }
 
@@ -592,7 +592,7 @@ static void ov116_022649E4 (UnkStruct_0201CD38 * param0, void * param1)
 
     default:
         ov116_02261E0C(v0->unk_00, 0, 0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
         break;
     }
@@ -602,7 +602,7 @@ static void ov116_022649E4 (UnkStruct_0201CD38 * param0, void * param1)
 
 void ov116_02264FEC (UnkStruct_ov116_02262A8C * param0, BOOL * param1)
 {
-    UnkStruct_ov116_02264FEC * v0 = sub_02018144(106, sizeof(UnkStruct_ov116_02264FEC));
+    UnkStruct_ov116_02264FEC * v0 = AllocFromHeap(106, sizeof(UnkStruct_ov116_02264FEC));
 
     v0->unk_00 = param0;
     v0->unk_04 = 0;

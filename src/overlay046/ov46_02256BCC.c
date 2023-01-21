@@ -15,7 +15,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -53,7 +53,7 @@ static void ov46_022570C4(UnkStruct_ov46_02256BCC * param0, BOOL param1);
 
 BOOL ov46_02256BCC (UnkStruct_ov46_02256BCC ** param0, const UnkStruct_ov46_02256BCC_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov46_02256BCC * v0 = (UnkStruct_ov46_02256BCC *)sub_02018144(8, sizeof(UnkStruct_ov46_02256BCC));
+    UnkStruct_ov46_02256BCC * v0 = (UnkStruct_ov46_02256BCC *)AllocFromHeap(8, sizeof(UnkStruct_ov46_02256BCC));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);
@@ -77,7 +77,7 @@ void ov46_02256C0C (UnkStruct_ov46_02256BCC * param0)
 {
     if (param0 != NULL) {
         ov46_02256CF4(param0);
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

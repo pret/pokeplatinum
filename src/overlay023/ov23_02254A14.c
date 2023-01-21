@@ -19,7 +19,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201D670.h"
 #include "unk_0202854C.h"
@@ -265,7 +265,7 @@ static BOOL ov23_02254AD4 (UnkStruct_020508D4 * param0)
             ov23_022545D0(v1->unk_508);
             ov23_0225430C(v1->unk_504);
             ov5_021D1BEC(v1->unk_50C);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return 1;
         }
         break;
@@ -338,7 +338,7 @@ static BOOL ov23_02254C84 (UnkStruct_020508D4 * param0)
 
 void ov23_02254D98 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
 {
-    UnkStruct_ov23_02256098 * v0 = sub_02018184(11, sizeof(UnkStruct_ov23_02256098));
+    UnkStruct_ov23_02256098 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02256098));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02256098));
     ov23_02255EBC(0, v0);
@@ -1324,7 +1324,7 @@ static void ov23_02255EC4 (UnkStruct_ov23_02255EC4 * param0)
 
 static void ov23_02255EF0 (UnkStruct_ov23_02255EC4 * param0)
 {
-    sub_020181C4(param0->unk_54);
+    FreeToHeap(param0->unk_54);
 }
 
 static void ov23_02255EFC (UnkStruct_ov23_02255EC4 * param0)

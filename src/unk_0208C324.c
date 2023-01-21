@@ -37,7 +37,7 @@
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -160,7 +160,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     G2S_BlendNone();
 
     sub_02017DD4(4, 8);
-    sub_02017FC8(3, 19, 0x40000);
+    CreateHeap(3, 19, 0x40000);
 
     v1 = NARC_ctor(39, 19);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_0208D7BC), 19);
@@ -298,7 +298,7 @@ static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
 
     sub_02006830(param0);
-    sub_0201807C(19);
+    DestroyHeap(19);
 
     return 1;
 }
@@ -464,7 +464,7 @@ static void sub_0208C76C (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
 
-    sub_02018238(19, param0);
+    FreeToHeapExplicit(19, param0);
 }
 
 static void sub_0208C7AC (UnkStruct_0208D7BC * param0, NARC * param1)
@@ -934,7 +934,7 @@ static int sub_0208CF78 (UnkStruct_0208D7BC * param0)
         param0->unk_250.unk_4A = (u8)sub_02074470(v1, 24, NULL);
 
         if (param0->unk_24C->unk_11 == 2) {
-            sub_020181C4(v1);
+            FreeToHeap(v1);
         }
 
         sub_02002E98(0, 14 * 32, 19);
@@ -1016,7 +1016,7 @@ static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 *
 
     sub_020774C8(param1, v0);
     sub_0208D200(param0, v0, param2);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void sub_0208D200 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74 * param1, UnkStruct_0208D1D4 * param2)
@@ -1355,7 +1355,7 @@ static void sub_0208D948 (UnkStruct_0208D7BC * param0)
 
         sub_020198C0(param0->unk_00, 3, v0->rawData, 0, 0, 32, 32);
         sub_0201C3C0(param0->unk_00, 3);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     if (param0->unk_6A4 == 0) {

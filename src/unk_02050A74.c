@@ -17,7 +17,7 @@
 #include "overlay006/struct_ov6_02240D5C.h"
 
 #include "unk_020041CC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
 #include "unk_02026150.h"
@@ -105,7 +105,7 @@ static UnkStruct_02050ACC * sub_02050ACC (UnkStruct_ov6_02240D5C * param0, int p
 {
     UnkStruct_02050ACC * v0;
 
-    v0 = sub_02018184(11, sizeof(UnkStruct_02050ACC));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050ACC));
     v0->unk_00 = param3;
 
     if (param3 != NULL) {
@@ -122,7 +122,7 @@ static UnkStruct_02050ACC * sub_02050ACC (UnkStruct_ov6_02240D5C * param0, int p
 static void sub_02050AF0 (UnkStruct_02050ACC * param0)
 {
     sub_020520A4(param0->unk_10);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static BOOL sub_02050B04 (UnkStruct_02050ACC * param0)
@@ -315,7 +315,7 @@ static UnkStruct_02050DD4 * sub_02050DD4 (UnkStruct_ov6_02240D5C * param0, int p
 {
     UnkStruct_02050DD4 * v0;
 
-    v0 = sub_02018184(11, sizeof(UnkStruct_02050DD4));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050DD4));
     v0->unk_0C = param3;
 
     if (param3 != NULL) {
@@ -333,7 +333,7 @@ static UnkStruct_02050DD4 * sub_02050DD4 (UnkStruct_ov6_02240D5C * param0, int p
 static void sub_02050DFC (UnkStruct_02050DD4 * param0)
 {
     sub_020520A4(param0->unk_10);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02050E10 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)

@@ -23,7 +23,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -805,7 +805,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 ov94_02243BC4(param0, v1, sub_0202DAAC(param0->unk_00->unk_00), 0);
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                sub_020181C4(v1);
+                FreeToHeap(v1);
             } else {
                 ov94_0224362C(param0);
             }
@@ -823,7 +823,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 param0->unk_2C = 34;
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                sub_020181C4(v2);
+                FreeToHeap(v2);
             }
             break;
         case -12:
@@ -1255,7 +1255,7 @@ static void ov94_02243B08 (UnkStruct_ov94_0223FD4C * param0, int param1)
         sub_020774C8(sub_02079C9C(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
         sub_02079968(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     } else {
         UnkStruct_02073C74 * v1 = sub_0207A0FC(param0->unk_00->unk_08, param0->unk_112);
 

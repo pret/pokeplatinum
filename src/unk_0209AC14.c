@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay007/struct_ov7_0224D008.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0207CB08.h"
 #include "unk_0209AC14.h"
@@ -44,7 +44,7 @@ static u8 sub_0209AC50 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
 
     param1->unk_2A8 = sub_0207CBAC(param1->unk_04);
 
-    sub_020181C4(param1->unk_04);
+    FreeToHeap(param1->unk_04);
     sub_020509D4(param0);
 
     return 17;

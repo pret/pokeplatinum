@@ -9,7 +9,7 @@
 #include "overlay097/struct_ov97_0222D04C.h"
 
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -34,7 +34,7 @@ static void * ov97_02238D74 (DWCAllocType param0, u32 param1, int param2)
 
     param1 = (((param1 + sizeof(void *)) + 32) & ~31) + 32;
 
-    v0 = sub_02018144(86, param1);
+    v0 = AllocFromHeap(86, param1);
     v1 = (u32 *)(((u32)v0 + 32) & ~31);
 
     v1--;
@@ -54,7 +54,7 @@ static void ov97_02238D94 (DWCAllocType param0, void * param1, u32 param2)
     }
 
     v0 = (u32 *)((u32)param1 - 4);
-    sub_020181C4((void *)*v0);
+    FreeToHeap((void *)*v0);
 }
 
 static volatile BOOL Unk_ov97_02240410;

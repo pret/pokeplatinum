@@ -10,7 +10,7 @@
 #include "overlay087/struct_ov87_021D12C0.h"
 
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_0202DF8C.h"
 #include "overlay087/ov87_021D0D80.h"
@@ -36,8 +36,8 @@ int ov87_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov87_021D0D80 * v0;
 
-    sub_02017FC8(3, 60, 16384);
-    sub_02017FC8(3, 61, 114688);
+    CreateHeap(3, 60, 16384);
+    CreateHeap(3, 61, 114688);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov87_021D0D80), 60);
 
@@ -62,8 +62,8 @@ int ov87_021D0DFC (UnkStruct_020067E8 * param0, int * param1)
     ov87_021D1140(v0->unk_C8);
     ov87_021D1000(&(v0->unk_00));
     sub_02006830(param0);
-    sub_0201807C(61);
-    sub_0201807C(60);
+    DestroyHeap(61);
+    DestroyHeap(60);
 
     return 1;
 }

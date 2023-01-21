@@ -28,7 +28,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -97,7 +97,7 @@ int sub_02099DFC (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02099DFC * v0;
     int v1 = 88;
 
-    sub_02017FC8(3, v1, 0x20000);
+    CreateHeap(3, v1, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_02099DFC), v1);
     memset(v0, 0, sizeof(UnkStruct_02099DFC));
@@ -167,7 +167,7 @@ int sub_02099F54 (UnkStruct_020067E8 * param0, int * param1)
     int v1 = v0->unk_00;
 
     sub_02006830(param0);
-    sub_0201807C(v1);
+    DestroyHeap(v1);
     OS_ResetSystem(0);
 
     return 1;
@@ -247,7 +247,7 @@ static void sub_0209A044 (UnkStruct_02099DFC * param0)
     sub_02019120(6, 0);
     sub_02019120(7, 0);
     sub_02019044(param0->unk_14, 0);
-    sub_020181C4(param0->unk_14);
+    FreeToHeap(param0->unk_14);
 }
 
 static void sub_0209A098 (UnkStruct_02099DFC * param0)

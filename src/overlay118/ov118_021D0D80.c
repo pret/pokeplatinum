@@ -16,7 +16,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
 #include "unk_02020020.h"
@@ -65,7 +65,7 @@ void ov118_021D0D80 (UnkStruct_0207F248 * param0)
 {
     GF_ASSERT(param0->unk_B24 == NULL);
 
-    param0->unk_B24 = sub_02018144(12, sizeof(UnkStruct_ov118_021D0FDC));
+    param0->unk_B24 = AllocFromHeap(12, sizeof(UnkStruct_ov118_021D0FDC));
     MI_CpuClear8(param0->unk_B24, sizeof(UnkStruct_ov118_021D0FDC));
     param0->unk_B24->unk_14 = param0->unk_B11;
 }
@@ -168,7 +168,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 
 static void ov118_021D0F70 (UnkStruct_0207F248 * param0)
 {
-    sub_020181C4(param0->unk_B24);
+    FreeToHeap(param0->unk_B24);
     param0->unk_B24 = NULL;
 }
 
@@ -195,7 +195,7 @@ static void ov118_021D0FDC (UnkStruct_ov118_021D0FDC * param0)
 
     sub_02014000();
 
-    v0 = sub_02018144(12, 0x4800);
+    v0 = AllocFromHeap(12, 0x4800);
     param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, 12);
     v1 = sub_02014784(param0->unk_18);
 
@@ -258,7 +258,7 @@ static void ov118_021D110C (UnkStruct_ov118_021D0FDC * param0)
 
     v0 = sub_02014730(param0->unk_18);
     sub_0201411C(param0->unk_18);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static u32 ov118_021D1128 (u32 param0, BOOL param1)

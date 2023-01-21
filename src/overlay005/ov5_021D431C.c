@@ -12,7 +12,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
@@ -53,7 +53,7 @@ UnkStruct_ov5_021D432C * ov5_021D431C (void)
 {
     UnkStruct_ov5_021D432C * v0;
 
-    v0 = sub_02018184(4, sizeof(UnkStruct_ov5_021D432C));
+    v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021D432C));
     v0->unk_00 = 0;
 
     return v0;
@@ -61,7 +61,7 @@ UnkStruct_ov5_021D432C * ov5_021D431C (void)
 
 void ov5_021D432C (UnkStruct_ov5_021D432C * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov5_021D4334 (const int param0, const int param1, UnkStruct_ov5_021D432C * param2)
@@ -717,7 +717,7 @@ static BOOL ov5_021D4BC8 (UnkStruct_020508D4 * param0)
     v0 = ov5_021D42F0(v1->unk_54, *v2);
 
     if (v0) {
-        sub_020181C4(v2);
+        FreeToHeap(v2);
         return 1;
     }
 
@@ -832,7 +832,7 @@ void ov5_021D4CEC (UnkStruct_0203CDB0 * param0, const u8 param1)
 
 void ov5_021D4D48 (UnkStruct_0203CDB0 * param0, const u8 param1)
 {
-    u8 * v0 = sub_02018184(4, sizeof(u8));
+    u8 * v0 = AllocFromHeapAtEnd(4, sizeof(u8));
 
     *v0 = param1;
     sub_02050944(param0->unk_10, ov5_021D4BC8, v0);
@@ -878,7 +878,7 @@ UnkStruct_ov5_021D4E00 * ov5_021D4E00 (void)
 {
     UnkStruct_ov5_021D4E00 * v0;
 
-    v0 = sub_02018184(4, sizeof(UnkStruct_ov5_021D4E00));
+    v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021D4E00));
     v0->unk_00 = 0;
 
     return v0;
@@ -929,7 +929,7 @@ BOOL ov5_021D4E10 (UnkStruct_020508D4 * param0)
         break;
     case 3:
         if (sub_0200F2AC() && (v2->unk_0C == sub_02020A88(v1->unk_24))) {
-            sub_020181C4(v2);
+            FreeToHeap(v2);
             return 1;
         }
         break;
@@ -968,7 +968,7 @@ BOOL ov5_021D4F14 (UnkStruct_020508D4 * param0)
     break;
     case 1:
         if (sub_0200F2AC()) {
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return 1;
         }
         break;
@@ -1001,7 +1001,7 @@ BOOL ov5_021D4FA0 (UnkStruct_020508D4 * param0)
     break;
     case 1:
         if (sub_0200F2AC()) {
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return 1;
         }
         break;
@@ -1082,7 +1082,7 @@ BOOL ov5_021D5020 (UnkStruct_020508D4 * param0)
         break;
     case 3:
         if (sub_0200F2AC() && (v2->unk_0C == sub_02020A88(v1->unk_24))) {
-            sub_020181C4(v2);
+            FreeToHeap(v2);
             return 1;
         }
         break;
@@ -1137,7 +1137,7 @@ BOOL ov5_021D5150 (UnkStruct_020508D4 * param0)
         break;
     case 3:
         if (sub_0200F2AC()) {
-            sub_020181C4(v2);
+            FreeToHeap(v2);
             return 1;
         }
         break;

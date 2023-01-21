@@ -13,7 +13,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -73,7 +73,7 @@ static void ov5_021DD744 (UnkStruct_ov5_021DD9C8 * param0, u8 param1, u16 param2
     v0 = sub_02006F88(160, v3 + 1, &v2, 4);
 
     ov5_021DD6FC(v2->pRawData, 1, param3);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov5_021DD7A0 (UnkStruct_ov5_021DD9C8 * param0, const int param1)
@@ -126,7 +126,7 @@ static void ov5_021DD7A0 (UnkStruct_ov5_021DD9C8 * param0, const int param1)
         }
 
         sub_0201A954(&param0->unk_20);
-        sub_020181C4(param0->unk_38);
+        FreeToHeap(param0->unk_38);
     }
 }
 
@@ -228,7 +228,7 @@ UnkStruct_ov5_021DD9C8 * ov5_021DD98C (UnkStruct_02018340 * param0)
 {
     UnkStruct_ov5_021DD9C8 * v0;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021DD9C8));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021DD9C8));
     v0->unk_40 = sub_02023790(22, 4);
 
     ov5_021DD894(v0, param0);
@@ -243,7 +243,7 @@ void ov5_021DD9C8 (UnkStruct_ov5_021DD9C8 * param0)
     sub_0200B190(param0->unk_3C);
     sub_0201A8FC(&param0->unk_20);
     sub_020237BC(param0->unk_40);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     param0 = NULL;
 }

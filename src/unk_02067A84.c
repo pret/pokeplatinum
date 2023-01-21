@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0203E880.h"
 #include "unk_0205E7D0.h"
@@ -415,7 +415,7 @@ static UnkStruct_0201CD38 * sub_02067FF0 (UnkStruct_0203CDB0 * param0, UnkStruct
     UnkStruct_0201CD38 * v0;
     UnkStruct_020EF6D0 * v1;
 
-    v1 = sub_02018184(4, (sizeof(UnkStruct_020EF6D0)));
+    v1 = AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, (sizeof(UnkStruct_020EF6D0)));
@@ -449,7 +449,7 @@ static void sub_02068054 (UnkStruct_0201CD38 * param0)
 
     v0 = sub_0201CED0(param0);
 
-    sub_02018238(4, v0);
+    FreeToHeapExplicit(4, v0);
     sub_0200DA58(param0);
 }
 

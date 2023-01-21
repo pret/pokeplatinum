@@ -10,7 +10,7 @@
 #include "unk_020064F0.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_02056720.h"
 #include "overlay005/ov5_021DDAE4.h"
@@ -57,7 +57,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
         break;
     case 4:
         if (sub_0200AC1C(2)) {
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return 1;
         }
         break;
@@ -68,7 +68,7 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
 
 void ov5_021DDBC8 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_ov5_021DDBC8 * v0 = sub_02018184(11, sizeof(UnkStruct_ov5_021DDBC8));
+    UnkStruct_ov5_021DDBC8 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021DDBC8));
 
     v0->unk_00 = 0;
     sub_02050944(param0, ov5_021DDAE4, v0);

@@ -19,7 +19,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -79,7 +79,7 @@ const UnkStruct_ov84_02240FA8 * ov23_02253D40 (void)
 UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018340 * param2, int param3, int param4)
 {
     int v0 = param4;
-    UnkStruct_ov23_02253E2C * v1 = sub_02018144(param1, sizeof(UnkStruct_ov23_02253E2C));
+    UnkStruct_ov23_02253E2C * v1 = AllocFromHeap(param1, sizeof(UnkStruct_ov23_02253E2C));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_ov23_02253E2C));
 
@@ -113,7 +113,7 @@ void ov23_02253DD8 (UnkStruct_ov23_02253E2C * param0)
     sub_020237BC(param0->unk_04);
     sub_0200B3F0(param0->unk_28);
     sub_0200B190(param0->unk_24);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov23_02253DFC (UnkStruct_ov23_02253E2C * param0, int param1, int param2)

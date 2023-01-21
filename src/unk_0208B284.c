@@ -14,7 +14,7 @@
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0208B284.h"
 
@@ -45,7 +45,7 @@ UnkStruct_0208B878 * sub_0208B284 (UnkStruct_0208B284 param0, UnkStruct_0200C6E4
 {
     UnkStruct_0208B878 * v0;
 
-    v0 = sub_02018144(param0.unk_04, sizeof(UnkStruct_0208B878));
+    v0 = AllocFromHeap(param0.unk_04, sizeof(UnkStruct_0208B878));
     v0->unk_10.unk_00 = param0.unk_00;
     v0->unk_10.unk_04 = param0.unk_04;
     v0->unk_10.unk_08 = param0.unk_08;
@@ -371,7 +371,7 @@ BOOL sub_0208B988 (UnkStruct_0208B878 * param0)
     default:
         sub_0208B830(param0);
         NARC_dtor(param0->unk_00.unk_00);
-        sub_020181C4(param0);
+        FreeToHeap(param0);
 
         return 0;
     }

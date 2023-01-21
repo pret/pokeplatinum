@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay070/ov70_0226C338.h"
 
 typedef struct {
@@ -106,7 +106,7 @@ UnkStruct_ov70_0226C39C * ov70_0226C338 (u32 param0, int param1, int param2, int
     UnkStruct_ov70_0226C39C * v0;
     int v1;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov70_0226C39C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov70_0226C39C));
     memset(v0, 0, sizeof(UnkStruct_ov70_0226C39C));
 
     ov70_0226C568(&v0->unk_00, &Unk_ov70_0226E678[param1]);
@@ -127,7 +127,7 @@ UnkStruct_ov70_0226C39C * ov70_0226C338 (u32 param0, int param1, int param2, int
 
 void ov70_0226C39C (UnkStruct_ov70_0226C39C * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov70_0226C3A4 (UnkStruct_ov70_0226C39C * param0)

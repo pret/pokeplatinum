@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02027F8C.h"
 
 #include "unk_020021B0.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_02027F84.h"
 
@@ -57,7 +57,7 @@ void sub_02027FEC (UnkStruct_02027F8C * param0, UnkStruct_02027F8C * param1, int
     int v3[5];
     UnkStruct_02027F8C * v4;
 
-    v4 = sub_02018144(param3, sizeof(UnkStruct_02027F8C) * 16);
+    v4 = AllocFromHeap(param3, sizeof(UnkStruct_02027F8C) * 16);
     sub_02027F98(v4);
 
     for (v0 = 0; v0 < param2; v0++) {
@@ -94,7 +94,7 @@ void sub_02027FEC (UnkStruct_02027F8C * param0, UnkStruct_02027F8C * param1, int
     }
 
     memcpy(param0, v4, sizeof(UnkStruct_02027F8C) * 16);
-    sub_020181C4(v4);
+    FreeToHeap(v4);
 }
 
 int sub_020280E0 (UnkStruct_02027F8C * param0, u32 param1)

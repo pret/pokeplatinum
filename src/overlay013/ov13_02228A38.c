@@ -9,7 +9,7 @@
 #include "struct_defs/struct_020F1DB8.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201E010.h"
 #include "overlay013/ov13_02228A38.h"
 #include "overlay016/ov16_0226DB7C.h"
@@ -25,14 +25,14 @@ struct UnkStruct_ov13_02228A50_t {
 
 UnkStruct_ov13_02228A50 * ov13_02228A38 (u32 param0)
 {
-    UnkStruct_ov13_02228A50 * v0 = sub_02018144(param0, sizeof(UnkStruct_ov13_02228A50));
+    UnkStruct_ov13_02228A50 * v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov13_02228A50));
     memset(v0, 0, sizeof(UnkStruct_ov13_02228A50));
     return v0;
 }
 
 void ov13_02228A50 (UnkStruct_ov13_02228A50 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 UnkStruct_ov16_0226DC24 * ov13_02228A58 (UnkStruct_ov13_02228A50 * param0)

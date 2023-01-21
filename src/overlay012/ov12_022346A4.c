@@ -14,7 +14,7 @@
 
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_022346A4.h"
@@ -146,7 +146,7 @@ static void ov12_02234750 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         ov12_02220220(v0->unk_00, param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return;
     }
 
@@ -241,7 +241,7 @@ static void ov12_02234918 (UnkStruct_0201CD38 * param0, void * param1)
     case 4:
         sub_0200D0F4(v0->unk_10);
         ov12_02220220(v0->unk_00, param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return;
     }
 
@@ -345,7 +345,7 @@ static void ov12_02234B64 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         ov12_02220220(v0->unk_00, param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return;
     }
 
@@ -427,7 +427,7 @@ static void ov12_02234CA8 (UnkStruct_0201CD38 * param0, void * param1)
             sub_0200D0F4(v0->unk_18[v1]);
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }

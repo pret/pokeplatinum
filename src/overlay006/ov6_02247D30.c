@@ -6,7 +6,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02039C80.h"
 #include "unk_020508D4.h"
 #include "unk_02054D00.h"
@@ -45,7 +45,7 @@ void ov6_02247D30 (UnkStruct_0203CDB0 * param0, const u8 param1)
     v0 = sub_020552B4(param0, v3, &v1, &v2);
 
     if (v0) {
-        UnkStruct_ov6_02247D30 * v4 = sub_02018184(4, sizeof(UnkStruct_ov6_02247D30));
+        UnkStruct_ov6_02247D30 * v4 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02247D30));
 
         v4->unk_0C = param1;
         v4->unk_0D = 0;
@@ -138,7 +138,7 @@ static BOOL ov6_02247DAC (UnkStruct_020508D4 * param0)
         }
         break;
     case 5:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 

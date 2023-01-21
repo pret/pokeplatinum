@@ -10,7 +10,7 @@
 #include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_02009714.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202298C.h"
 
 
@@ -97,9 +97,9 @@ UnkStruct_02009714 * sub_02009714 (int param0, int param1, int param2)
     UnkStruct_02009714 * v0;
     int v1;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_02009714));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_02009714));
     v0->unk_00 = sub_0202298C(param0, param2);
-    v0->unk_04 = sub_02018144(param2, sizeof(UnkStruct_02009DC8) * param0);
+    v0->unk_04 = AllocFromHeap(param2, sizeof(UnkStruct_02009DC8) * param0);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_02009DC8) * param0);
 
@@ -121,10 +121,10 @@ void sub_02009754 (UnkStruct_02009714 * param0)
     sub_020229D8(param0->unk_00);
     param0->unk_00 = NULL;
 
-    sub_020181C4(param0->unk_04);
+    FreeToHeap(param0->unk_04);
     param0->unk_04 = NULL;
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
     param0 = NULL;
 }
 
@@ -368,9 +368,9 @@ UnkStruct_02009CFC * sub_02009CFC (int param0, int param1)
 {
     UnkStruct_02009CFC * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02009CFC));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02009CFC));
 
-    v0->unk_00 = sub_02018144(param1, sizeof(UnkStruct_02009DC8 *) * param0);
+    v0->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_02009DC8 *) * param0);
     v0->unk_04 = param0;
     v0->unk_08 = 0;
 
@@ -379,8 +379,8 @@ UnkStruct_02009CFC * sub_02009CFC (int param0, int param1)
 
 void sub_02009D20 (UnkStruct_02009CFC * param0)
 {
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0);
     param0 = NULL;
 }
 
@@ -591,7 +591,7 @@ void sub_02009F40 (const void * param0, UnkStruct_02009F38 * param1, int param2)
     param1->unk_04 = sub_0200A2C0((const UnkStruct_0200A2C0 *)(v1 + 1));
 
     if (param1->unk_04 > 0) {
-        param1->unk_00 = sub_02018144(param2, sizeof(UnkStruct_0200A2C0) * param1->unk_04);
+        param1->unk_00 = AllocFromHeap(param2, sizeof(UnkStruct_0200A2C0) * param1->unk_04);
     } else {
         param1->unk_00 = NULL;
     }
@@ -604,7 +604,7 @@ void sub_02009F40 (const void * param0, UnkStruct_02009F38 * param1, int param2)
 void sub_02009F8C (UnkStruct_02009F38 * param0)
 {
     if (param0->unk_00) {
-        sub_020181C4(param0->unk_00);
+        FreeToHeap(param0->unk_00);
     }
 
     param0->unk_00 = NULL;
@@ -748,7 +748,7 @@ static UnkStruct_0200A144 * sub_0200A144 (void * param0, int param1, int param2)
 {
     UnkStruct_0200A144 * v0;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_0200A144));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_0200A144));
     NNS_G2dGetUnpackedCharacterData(param0, &v0->unk_00);
     v0->unk_04 = param1;
 
@@ -759,7 +759,7 @@ static UnkStruct_02009E34 * sub_0200A164 (void * param0, int param1, int param2,
 {
     UnkStruct_02009E34 * v0;
 
-    v0 = sub_02018144(param3, sizeof(UnkStruct_02009E34));
+    v0 = AllocFromHeap(param3, sizeof(UnkStruct_02009E34));
     NNS_G2dGetUnpackedPaletteData(param0, &v0->unk_00);
 
     v0->unk_04 = param1;
@@ -772,7 +772,7 @@ static UnkStruct_02009E4C * sub_0200A188 (void * param0, int param1)
 {
     UnkStruct_02009E4C * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02009E4C));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02009E4C));
     NNS_G2dGetUnpackedCellBank(param0, &v0->unk_00);
 
     return v0;
@@ -782,7 +782,7 @@ static UnkStruct_02009E64 * sub_0200A1A4 (void * param0, int param1)
 {
     UnkStruct_02009E64 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02009E64));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02009E64));
     NNS_G2dGetUnpackedAnimBank(param0, &v0->unk_00);
 
     return v0;
@@ -792,7 +792,7 @@ static UnkStruct_02009E7C * sub_0200A1C0 (void * param0, int param1)
 {
     UnkStruct_02009E7C * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02009E7C));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02009E7C));
     NNS_G2dGetUnpackedMultiCellBank(param0, &v0->unk_00);
 
     return v0;
@@ -802,7 +802,7 @@ static UnkStruct_02009E94 * sub_0200A1DC (void * param0, int param1)
 {
     UnkStruct_02009E94 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02009E94));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02009E94));
     NNS_G2dGetUnpackedMCAnimBank(param0, &v0->unk_00);
 
     return v0;
@@ -811,7 +811,7 @@ static UnkStruct_02009E94 * sub_0200A1DC (void * param0, int param1)
 static void sub_0200A1F8 (UnkStruct_02009DC8 * param0)
 {
     if (param0->unk_08) {
-        sub_020181C4(param0->unk_08);
+        FreeToHeap(param0->unk_08);
     }
 
     param0->unk_08 = NULL;
@@ -881,14 +881,14 @@ static void * sub_0200A2DC (NARC * param0, u32 param1, BOOL param2, u32 param3, 
             void * v1;
 
             if (param4 == 0) {
-                v1 = sub_02018144(param3, MI_GetUncompressedSize(v0));
+                v1 = AllocFromHeap(param3, MI_GetUncompressedSize(v0));
             } else {
-                v1 = sub_02018184(param3, MI_GetUncompressedSize(v0));
+                v1 = AllocFromHeapAtEnd(param3, MI_GetUncompressedSize(v0));
             }
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
-                sub_020181C4(v0);
+                FreeToHeap(v0);
             }
 
             v0 = v1;

@@ -42,7 +42,7 @@
 #include "unk_0200B358.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -284,7 +284,7 @@ void ov56_02256468 (UnkStruct_ov56_02256468 * param0)
         ov56_022563E8(param0->unk_22C);
         ov56_022564E4(v0);
 
-        sub_020181C4(param0->unk_20);
+        FreeToHeap(param0->unk_20);
         sub_020067D0(param0->unk_2F8);
     } else {
         GF_ASSERT(0);

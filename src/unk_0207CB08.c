@@ -13,7 +13,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_020298BC.h"
@@ -30,7 +30,7 @@ static u32 sub_0207CC00(UnkStruct_021C0794 * param0);
 
 UnkStruct_0207CB08 * sub_0207CB08 (u8 param0)
 {
-    UnkStruct_0207CB08 * v0 = (UnkStruct_0207CB08 *)sub_02018144(param0, sizeof(UnkStruct_0207CB08));
+    UnkStruct_0207CB08 * v0 = (UnkStruct_0207CB08 *)AllocFromHeap(param0, sizeof(UnkStruct_0207CB08));
     memset(v0, 0, sizeof(UnkStruct_0207CB08));
     return v0;
 }

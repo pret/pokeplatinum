@@ -8,7 +8,7 @@
 
 #include "filesystem.h"
 #include "unk_0200AC5C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 
 typedef struct {
@@ -42,7 +42,7 @@ UnkStruct_0200AC5C * sub_0200AC5C (u32 param0, u32 param1, u32 param2)
 
 void sub_0200AC64 (UnkStruct_0200AC5C * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static inline int inline_0200ACF0 (u32 param0)
@@ -125,14 +125,14 @@ void sub_0200ADAC (const UnkStruct_0200AC5C * param0, u32 param1, UnkStruct_0202
         inline_0200AC6C(&v0, param1, param0->unk_02);
 
         v2 = v0.unk_04 * sizeof(u16);
-        v1 = sub_02018184(0, v2);
+        v1 = AllocFromHeapAtEnd(0, v2);
 
         if (v1) {
             MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
 
             inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
             sub_02023D8C(param2, v1, v0.unk_04);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
         }
     } else {
         GF_ASSERT(0);
@@ -150,7 +150,7 @@ UnkStruct_02023790 * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1
         v0 = param0->unk_04[param1];
         inline_0200AC6C(&v0, param1, param0->unk_02);
         v2 = v0.unk_04 * sizeof(u16);
-        v1 = sub_02018184(param2, v2);
+        v1 = AllocFromHeapAtEnd(param2, v2);
 
         if (v1) {
             UnkStruct_02023790 * v3;
@@ -164,7 +164,7 @@ UnkStruct_02023790 * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1
                 sub_02023D8C(v3, v1, v0.unk_04);
             }
 
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return v3;
         }
 
@@ -201,13 +201,13 @@ void sub_0200AF48 (NARC * param0, u32 param1, u32 param2, u32 param3, UnkStruct_
         inline_0200AC6C(&v1, param2, v0.unk_02);
 
         v3 = v1.unk_04 * sizeof(u16);
-        v2 = sub_02018184(param3, v3);
+        v2 = AllocFromHeapAtEnd(param3, v3);
 
         if (v2) {
             NARC_ReadFromMember(param0, param1, v1.unk_00, v3, v2);
             inline_0200AC6C_1(v2, v1.unk_04, param2, v0.unk_02);
             sub_02023D8C(param4, v2, v1.unk_04);
-            sub_020181C4(v2);
+            FreeToHeap(v2);
         }
     } else {
         GF_ASSERT(0);
@@ -252,13 +252,13 @@ UnkStruct_02023790 * sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 pa
             u32 v4;
 
             v4 = v1.unk_04 * sizeof(u16);
-            v3 = sub_02018184(param3, v4);
+            v3 = AllocFromHeapAtEnd(param3, v4);
 
             if (v3) {
                 NARC_ReadFromMember(param0, param1, v1.unk_00, v4, v3);
                 inline_0200AC6C_1(v3, v1.unk_04, param2, v0.unk_02);
                 sub_02023D8C(v2, v3, v1.unk_04);
-                sub_020181C4(v3);
+                FreeToHeap(v3);
             }
         }
 
@@ -284,14 +284,14 @@ u32 sub_0200B124 (u32 param0, u32 param1)
 
 UnkStruct_0200B144 * sub_0200B144 (int param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_0200B144 * v0 = sub_02018184(param3, sizeof(UnkStruct_0200B144));
+    UnkStruct_0200B144 * v0 = AllocFromHeapAtEnd(param3, sizeof(UnkStruct_0200B144));
 
     if (v0) {
         if (param0 == 0) {
             v0->unk_08_val1 = sub_0200AC5C(param1, param2, param3);
 
             if (v0->unk_08_val1 == NULL) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return NULL;
             }
         } else {
@@ -319,7 +319,7 @@ void sub_0200B190 (UnkStruct_0200B144 * param0)
             break;
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

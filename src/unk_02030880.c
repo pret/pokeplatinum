@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_0203061C.h"
@@ -160,7 +160,7 @@ BOOL sub_020309A0 (UnkStruct_021C0794 * param0, int param1, int param2, int para
     }
 
     if (v1 != NULL) {
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     return v6;

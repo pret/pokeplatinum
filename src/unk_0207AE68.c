@@ -46,7 +46,7 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -104,7 +104,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (UnkStruct_02079FF4 * param0, UnkStruct_02073C
     UnkStruct_02008A90 v1;
     int v2;
 
-    v0 = (UnkStruct_0207AE68 *)sub_02018144(param11, sizeof(UnkStruct_0207AE68));
+    v0 = (UnkStruct_0207AE68 *)AllocFromHeap(param11, sizeof(UnkStruct_0207AE68));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0207AE68));
     MI_CpuFill16((void *)sub_020241F0(), 0x0, sub_020241F8());
@@ -149,7 +149,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (UnkStruct_02079FF4 * param0, UnkStruct_02073C
     v0->unk_08 = sub_0200B144(1, 26, 368, param11);
     v0->unk_0C = sub_0200B358(param11);
     v0->unk_10 = sub_02023790((2 * 160), param11);
-    v0->unk_3C = sub_02018144(param11, sizeof(UnkStruct_02098D38));
+    v0->unk_3C = AllocFromHeap(param11, sizeof(UnkStruct_02098D38));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(UnkStruct_02098D38));
 
@@ -213,12 +213,12 @@ void sub_0207B0E0 (UnkStruct_0207AE68 * param0)
     sub_0207C460(param0->unk_00);
     sub_0200B190(param0->unk_08);
     sub_0200B3F0(param0->unk_0C);
-    sub_020181C4(param0->unk_10);
-    sub_020181C4(param0->unk_3C);
+    FreeToHeap(param0->unk_10);
+    FreeToHeap(param0->unk_3C);
     sub_02015760(param0->unk_58);
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     NARC_dtor(param0->unk_80);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
     sub_02002AC8(0);
 }
 
@@ -327,7 +327,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_020086FC(param0->unk_1C[0], 0, 16, 4, 0x7fff);
                 sub_020086FC(param0->unk_1C[1], 0, 16, 4, 0x7fff);
 
-                GF_ASSERT(sub_020182A4(param0->unk_5C) > 0x8000);
+                GF_ASSERT(GF_ExpHeap_FndGetTotalFreeSize(param0->unk_5C) > 0x8000);
                 sub_02005748(1529);
             }
             param0->unk_66 = 40;
@@ -736,7 +736,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
 
                 v3 = sub_0202818C(param0->unk_5C);
                 sub_02074B30(v1, 170, v3);
-                sub_020181C4(v3);
+                FreeToHeap(v3);
                 sub_02074B30(v1, 162, &v2);
 
                 MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
@@ -753,7 +753,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
                 sub_02056A48(param0->unk_54, sub_02076B10(v1));
-                sub_020181C4(v1);
+                FreeToHeap(v1);
                 sub_0207D60C(param0->unk_4C, 4, 1, param0->unk_5C);
             }
         }
@@ -958,7 +958,7 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     sub_02074B30(v1, 5, (u8 *)&param0->unk_62);
     sub_0207418C(v1);
     sub_02075EF4(&v0, v1, 2);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     param0->unk_1C[1] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
 
@@ -987,7 +987,7 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
     v0 = sub_0200B1EC(param0->unk_08, param1);
 
     sub_0200C388(param0->unk_0C, param0->unk_10, v0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_0201ADA4(param0->unk_04, 0xff);
 
     return sub_0201D738(param0->unk_04, 1, param0->unk_10, 0, 0, sub_02027AC0(param0->unk_2C), sub_0207C5CC);

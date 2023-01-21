@@ -44,7 +44,7 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -447,7 +447,7 @@ static UnkStruct_02014014 * ov119_021D13EC (int param0)
     void * v1;
     UnkStruct_020203AC * v2;
 
-    v1 = sub_02018144(param0, 0x4800);
+    v1 = AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, param0);
     v2 = sub_02014784(v0);
 
@@ -477,7 +477,7 @@ void ov119_021D145C (UnkStruct_02014014 * param0)
 
     v0 = sub_02014730(param0);
     sub_0201411C(param0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov119_021D1474 (UnkSPLStruct6 * param0)
@@ -495,7 +495,7 @@ UnkStruct_ov119_021D14DC * ov119_021D14AC (UnkStruct_ov119_021D1930 * param0)
     int v3;
     UnkStruct_ov119_021D14DC * v4;
 
-    v4 = sub_02018144(param0->unk_00, sizeof(UnkStruct_ov119_021D14DC));
+    v4 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov119_021D14DC));
 
     GF_ASSERT(v4 != NULL);
 
@@ -532,7 +532,7 @@ BOOL ov119_021D14F8 (UnkStruct_ov119_021D14DC * param0)
 
 void ov119_021D150C (UnkStruct_ov119_021D14DC * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)

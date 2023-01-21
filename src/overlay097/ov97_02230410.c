@@ -47,7 +47,7 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02013B10.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -719,7 +719,7 @@ static void ov97_02230F58 (UnkStruct_ov97_02230868 * param0, u32 param1, u32 par
     NNS_G2dGetUnpackedScreenData(v1, &v0);
 
     sub_02019574(param0->unk_2A5C, param2, v0->rawData, param3);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov97_02230F98 (UnkStruct_ov97_02230868 * param0, int param1)
@@ -826,7 +826,7 @@ static void ov97_022310FC (UnkStruct_ov97_02230868 * param0)
         GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
         sub_02021E90(param0->unk_2E90[v1], sub_02079EDC(v2, 0, 0) + 3);
-        sub_020181C4(v3);
+        FreeToHeap(v3);
     }
 }
 
@@ -834,7 +834,7 @@ static int ov97_02231224 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov97_02230868 * v0;
 
-    sub_02017FC8(3, 87, 0x30000);
+    CreateHeap(3, 87, 0x30000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov97_02230868), 87);
     memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
@@ -849,7 +849,7 @@ static int ov97_02231224 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_2C9C = 1;
 
     ov97_02237694(87);
-    sub_02017FC8(0, 91, 0x300);
+    CreateHeap(0, 91, 0x300);
 
     return 1;
 }
@@ -1470,11 +1470,11 @@ static int ov97_02231F38 (UnkStruct_020067E8 * param0, int * param1)
     sub_02019044(v1->unk_2A5C, 1);
     sub_02019044(v1->unk_2A5C, 2);
     sub_02019044(v1->unk_2A5C, 3);
-    sub_020181C4(v1->unk_2A5C);
+    FreeToHeap(v1->unk_2A5C);
     sub_02000EC4(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
-    sub_0201807C(91);
+    DestroyHeap(91);
     sub_02006830(param0);
-    sub_0201807C(87);
+    DestroyHeap(87);
 
     return 1;
 }
@@ -1492,7 +1492,7 @@ void ov97_02231FFC (UnkStruct_02018340 * param0, void * param1, int param2)
 
     ov97_02232074(param0);
 
-    v0 = sub_02018184(param2, sizeof(UnkStruct_ov97_02230868));
+    v0 = AllocFromHeapAtEnd(param2, sizeof(UnkStruct_ov97_02230868));
     memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
 
     v0->unk_2A5C = param0;
@@ -1504,5 +1504,5 @@ void ov97_02231FFC (UnkStruct_02018340 * param0, void * param1, int param2)
     v0->unk_2C20 = 0;
 
     ov97_02230C44(v0, 1, 0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }

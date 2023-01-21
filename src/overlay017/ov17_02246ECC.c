@@ -5,7 +5,7 @@
 #include "overlay017/struct_ov17_02246F24.h"
 #include "overlay017/struct_ov17_022472F8.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02073C2C.h"
 #include "unk_020790B0.h"
 #include "unk_020933F8.h"
@@ -1264,14 +1264,14 @@ void ov17_02246ECC (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0223BE58 * 
     int v0;
     UnkStruct_ov17_02246F9C * v1;
 
-    v1 = sub_02018144(21, sizeof(UnkStruct_ov17_02246F9C));
+    v1 = AllocFromHeap(21, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = param0->unk_00->unk_00.unk_117; v0 < 4; v0++) {
         ov17_02246F24(param0, v1, v0);
         ov17_02246F9C(param0, v1, v0, &param1->unk_00[v0], &param1->unk_08[v0]);
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246F9C * param1, int param2)

@@ -20,7 +20,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -390,11 +390,11 @@ static void ov99_021D1BC4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 
             v5 = 32;
         }
 
-        param0->unk_10F4 = sub_02018144(75, (0x20 * 8));
+        param0->unk_10F4 = AllocFromHeap(75, (0x20 * 8));
         v3 = sub_020071B4(param0->unk_10F8, v5, 0, &v4, 75);
 
         MI_CpuCopy32(v4->pRawData, param0->unk_10F4, (0x20 * 8));
-        sub_020181C4(v3);
+        FreeToHeap(v3);
         DC_FlushRange(param0->unk_10F4, (0x20 * 8));
     }
 }
@@ -405,7 +405,7 @@ static void ov99_021D1C9C (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 
     sub_0200D0F4(param2);
 
     if (param0->unk_10F4 != NULL) {
-        sub_020181C4(param0->unk_10F4);
+        FreeToHeap(param0->unk_10F4);
         param0->unk_10F4 = NULL;
     }
 }
@@ -678,7 +678,7 @@ static void ov99_021D2180 (UnkStruct_ov99_021D2CB0 * param0)
 
         v2 = sub_020071EC(param0->unk_10F8, 16, &v1, 75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val2.unk_08, 0x20 * 4);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     sub_02019184(v0, 2, 0, 0);
@@ -818,7 +818,7 @@ static void ov99_021D24F0 (UnkStruct_ov99_021D2CB0 * param0)
 
         v2 = sub_020071EC(param0->unk_10F8, 17, &v1, 75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
 
         sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 0, 16 * 1, 0x20);
         sub_02002FBC(param0->unk_0C, param0->unk_FA4.unk_08_val3.unk_08, 1, 16 * 1, 0x20);
@@ -1105,7 +1105,7 @@ static void ov99_021D2BBC (UnkStruct_ov99_021D2CB0 * param0)
 
     if (param0->unk_24 != NULL) {
         sub_0201A8FC(param0->unk_24);
-        sub_020181C4(param0->unk_24);
+        FreeToHeap(param0->unk_24);
         param0->unk_24 = NULL;
     }
 }

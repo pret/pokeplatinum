@@ -18,7 +18,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02015064.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
@@ -268,7 +268,7 @@ static void ov83_0223CCCC (UnkStruct_02018340 ** param0)
     sub_02019044(*param0, 4);
     sub_02019044(*param0, 2);
     sub_02019044(*param0, 1);
-    sub_020181C4(*param0);
+    FreeToHeap(*param0);
 }
 
 static void ov83_0223CCF8 (UnkStruct_ov83_0223B784 * param0)

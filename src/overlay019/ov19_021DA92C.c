@@ -22,7 +22,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200C440.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -109,7 +109,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
             sub_0201A8FC(&param0->unk_04[v0]);
         }
 
-        sub_020181C4(param0->unk_04);
+        FreeToHeap(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
@@ -135,7 +135,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_28) {
-        sub_020181C4(param0->unk_28);
+        FreeToHeap(param0->unk_28);
     }
 
     if (param0->unk_30) {
@@ -143,7 +143,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_34) {
-        sub_020181C4(param0->unk_34);
+        FreeToHeap(param0->unk_34);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -249,7 +249,7 @@ static void ov19_021DAB44 (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 {
     if (param0->unk_4C == NULL) {
-        UnkStruct_ov19_021DAE2C * v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021DAE2C));
+        UnkStruct_ov19_021DAE2C * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DAE2C));
 
         if (v0) {
             const UnkStruct_ov19_021D5BAC * v1 = ov19_021D5E70(param0->unk_10);
@@ -266,7 +266,7 @@ static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAC90 (UnkStruct_ov19_021DA9E0 * param0)
 {
     if (param0->unk_4C) {
-        sub_020181C4(sub_0201CED0(param0->unk_4C));
+        FreeToHeap(sub_0201CED0(param0->unk_4C));
         sub_0200DA58(param0->unk_4C);
         param0->unk_4C = NULL;
     }

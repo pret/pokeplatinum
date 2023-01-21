@@ -11,7 +11,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201E190.h"
 #include "unk_02073838.h"
@@ -84,7 +84,7 @@ void sub_020738EC (UnkStruct_02073838 * param0)
 void sub_0207390C (UnkStruct_02073838 * param0)
 {
     if (param0->unk_04) {
-        sub_020181C4(param0->unk_04);
+        FreeToHeap(param0->unk_04);
     }
 }
 
@@ -153,7 +153,7 @@ static void sub_020739D8 (UnkStruct_02073974 * param0, void * param1, u32 param2
 void sub_020739F0 (UnkStruct_02073974 * param0)
 {
     if ((param0->unk_00 & (1 << 0))) {
-        sub_020181C4(param0->unk_08);
+        FreeToHeap(param0->unk_08);
         param0->unk_00 &= (~((1 << 0)));
     }
 
@@ -163,7 +163,7 @@ void sub_020739F0 (UnkStruct_02073974 * param0)
 
 void sub_02073A14 (UnkStruct_02073974 * param0, const NNSG3dResMdl * param1, u32 param2)
 {
-    sub_020182CC(&param0->unk_14, param2, 4);
+    GF_ExpHeap_FndInitAllocator(&param0->unk_14, param2, 4);
     param0->unk_10 = NNS_G3dAllocAnmObj(&param0->unk_14, param0->unk_0C, param1);
 
     GF_ASSERT(param0->unk_10 != NULL);

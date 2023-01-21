@@ -18,7 +18,7 @@
 #include "filesystem.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 
 enum {
@@ -142,7 +142,7 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
         return NULL;
     }
 
-    v0 = sub_02018144(param5, sizeof(UnkStruct_02014014));
+    v0 = AllocFromHeap(param5, sizeof(UnkStruct_02014014));
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
     }
@@ -220,7 +220,7 @@ void sub_0201411C (UnkStruct_02014014 * param0)
     param0->unk_08 = NULL;
 
     if (param0->unk_04 != NULL) {
-        sub_020181C4(param0->unk_04);
+        FreeToHeap(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
@@ -235,7 +235,7 @@ void sub_0201411C (UnkStruct_02014014 * param0)
         sub_020203B8(param0->unk_20);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_020141E4 (void)

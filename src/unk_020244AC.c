@@ -14,7 +14,7 @@
 #include "struct_defs/struct_02025340.h"
 
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
 #include "unk_020277A4.h"
@@ -118,7 +118,7 @@ UnkStruct_021C0794 * sub_020244AC (void)
     UnkStruct_021C0794 * v0;
     int v1;
 
-    v0 = sub_02018144(1, sizeof(UnkStruct_021C0794));
+    v0 = AllocFromHeap(1, sizeof(UnkStruct_021C0794));
     MI_CpuClearFast(v0, sizeof(UnkStruct_021C0794));
 
     Unk_021C0794 = v0;
@@ -197,7 +197,7 @@ const void * sub_020245E0 (const UnkStruct_021C0794 * param0, int param1)
 BOOL sub_020245E8 (UnkStruct_021C0794 * param0)
 {
     int v0, v1;
-    u8 * v2 = sub_02018184(3, 0x1000);
+    u8 * v2 = AllocFromHeapAtEnd(3, 0x1000);
 
     sub_02017B7C(1);
 
@@ -213,7 +213,7 @@ BOOL sub_020245E8 (UnkStruct_021C0794 * param0)
         sub_02025A9C(0x1000 * (v0 + 64), v2, 0x1000);
     }
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
     sub_0202479C(param0);
 
     param0->unk_04 = 0;
@@ -549,8 +549,8 @@ static int sub_02024ABC (UnkStruct_021C0794 * param0)
     int v4, v5;
     int v6, v7, v8, v9;
 
-    v2 = sub_02018184(3, 0x1000 * 32);
-    v3 = sub_02018184(3, 0x1000 * 32);
+    v2 = AllocFromHeapAtEnd(3, 0x1000 * 32);
+    v3 = AllocFromHeapAtEnd(3, 0x1000 * 32);
 
     if (sub_02025AC0(0 * 0x1000, v2, 0x1000 * 32)) {
         sub_02024920(&v0[0], param0, (u32)v2, 0);
@@ -568,8 +568,8 @@ static int sub_02024ABC (UnkStruct_021C0794 * param0)
         sub_02024860(&v1[1]);
     }
 
-    sub_020181C4(v2);
-    sub_020181C4(v3);
+    FreeToHeap(v2);
+    FreeToHeap(v3);
 
     v4 = sub_020249D4(&v0[0], &v0[1], &v6, &v8);
     v5 = sub_020249D4(&v1[0], &v1[1], &v7, &v9);
@@ -650,7 +650,7 @@ static void sub_02024CD4 (UnkStruct_021C0794 * param0, int * param1, int * param
     if ((v5 != 0xffffffff) || (v6 != 0xffffffff)) {
         v0 = sub_020257E8(
             param0, 3, 1, &v1, &v2);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
 
         if (v1 == 2) {
             *param1 = 3;
@@ -664,7 +664,7 @@ static void sub_02024CD4 (UnkStruct_021C0794 * param0, int * param1, int * param
 
         if ((v5 != 0xffffffff) || (v6 != 0xffffffff)) {
             v0 = sub_020257E8(param0, 3, v3, &v1, &v2);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
 
             if (v1 == 2) {
                 *param2 = 3;
@@ -1051,7 +1051,7 @@ void sub_02025340 (UnkStruct_021C0794 * param0)
         v0[v1].unk_0C(v3);
 
         sub_02025428(param0, v0[v1].unk_00, v3);
-        sub_020181C4(v3);
+        FreeToHeap(v3);
     }
 
     sub_020247D4(param0);
@@ -1202,7 +1202,7 @@ void * sub_02025680 (UnkStruct_021C0794 * param0, int param1, int param2, int * 
 
     GF_ASSERT(v0->unk_00 == param2);
     v2 = v0->unk_08() + sizeof(UnkStruct_020253B4);
-    v1 = sub_02018144(param1, v2);
+    v1 = AllocFromHeap(param1, v2);
 
     sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
 
@@ -1270,7 +1270,7 @@ void * sub_020257E8 (UnkStruct_021C0794 * param0, int param1, int param2, int * 
     GF_ASSERT(v0->unk_00 == param2);
 
     v2 = v0->unk_08() + sizeof(UnkStruct_020253B4);
-    v1 = sub_02018144(param1, v2);
+    v1 = AllocFromHeap(param1, v2);
 
     sub_020259F8(param0, param2, &v7, &v8, &v9);
     sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
@@ -1414,7 +1414,7 @@ BOOL sub_02025AC0 (u32 param0, void * param1, u32 param2)
     OS_ReleaseLockID(v0);
 
     if (!v1) {
-        sub_020181C4(Unk_021C0794);
+        FreeToHeap(Unk_021C0794);
         sub_0209A74C(1);
     }
 
@@ -1487,7 +1487,7 @@ static void sub_02025C1C (s32 param0, int param1)
     CARD_UnlockBackup(param0);
     OS_ReleaseLockID(param0);
 
-    sub_020181C4(Unk_021C0794);
+    FreeToHeap(Unk_021C0794);
     sub_0209AA74(1, param1);
 }
 

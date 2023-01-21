@@ -13,7 +13,7 @@
 
 #include "unk_020021B0.h"
 #include "unk_02014A84.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -78,7 +78,7 @@ UnkStruct_0202818C * sub_0202818C (int param0)
 {
     UnkStruct_0202818C * v0;
 
-    v0 = sub_02018184(param0, sizeof(UnkStruct_0202818C));
+    v0 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202818C));
     sub_02028124(v0);
 
     return v0;

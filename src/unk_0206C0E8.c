@@ -14,7 +14,7 @@
 #include "struct_defs/struct_02049FA8.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
@@ -41,7 +41,7 @@ static BOOL sub_0206C120(UnkStruct_020508D4 * param0);
 
 void sub_0206C0E8 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_0206C0E8 * v0 = sub_02018184(11, sizeof(UnkStruct_0206C0E8));
+    UnkStruct_0206C0E8 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C0E8));
 
     v0->unk_00 = ov6_022426AC(11);
     v0->unk_04 = ov6_02242A10(11, param0);
@@ -135,7 +135,7 @@ static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
         sub_02070428(v0, 0);
         ov6_02242A8C(v1->unk_04);
         ov6_022426B8(v1->unk_00);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
 
         return 1;
     }

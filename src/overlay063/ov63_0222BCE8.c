@@ -3,7 +3,7 @@
 
 #include "overlay063/union_ov63_0222BDAC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay063/ov63_0222BCE8.h"
 
 typedef struct UnkStruct_ov63_0222BCE8_t {
@@ -16,13 +16,13 @@ UnkStruct_ov63_0222BCE8 * ov63_0222BCE8 (u16 param0, u16 param1, u32 param2)
 {
     UnkStruct_ov63_0222BCE8 * v0;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_ov63_0222BCE8));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov63_0222BCE8));
     GF_ASSERT(v0);
 
     v0->unk_00 = param0;
     v0->unk_02 = param1;
 
-    v0->unk_04 = sub_02018144(param2, sizeof(UnkUnion_ov63_0222BDAC) * (v0->unk_00 * v0->unk_02));
+    v0->unk_04 = AllocFromHeap(param2, sizeof(UnkUnion_ov63_0222BDAC) * (v0->unk_00 * v0->unk_02));
     GF_ASSERT(v0->unk_04);
     memset(v0->unk_04, 0, sizeof(UnkUnion_ov63_0222BDAC) * (v0->unk_00 * v0->unk_02));
 
@@ -32,8 +32,8 @@ UnkStruct_ov63_0222BCE8 * ov63_0222BCE8 (u16 param0, u16 param1, u32 param2)
 void ov63_0222BD30 (UnkStruct_ov63_0222BCE8 * param0)
 {
     GF_ASSERT(param0);
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0);
 }
 
 u16 ov63_0222BD48 (const UnkStruct_ov63_0222BCE8 * param0)

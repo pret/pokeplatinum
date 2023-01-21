@@ -22,7 +22,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
@@ -327,7 +327,7 @@ UnkStruct_0204AFC4 * sub_0204A124 (UnkStruct_021C0794 * param0, u16 param1, u16 
     UnkStruct_0203068C * v4;
     UnkStruct_0202CD88 * v5;
 
-    v3 = sub_02018144(11, sizeof(UnkStruct_0204AFC4));
+    v3 = AllocFromHeap(11, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
 
     v3->unk_04 = 11;
@@ -419,7 +419,7 @@ void sub_0204A32C (UnkStruct_0204AFC4 * param0)
     v0 = param0->unk_04;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_0204AFC4));
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     param0 = NULL;
 }
@@ -437,7 +437,7 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
     UnkStruct_02073C74 * v3;
 
     if ((v1->unk_23 != 0) || (v1->unk_22 == 7)) {
-        sub_020181C4(*param1);
+        FreeToHeap(*param1);
         *param1 = NULL;
         return 0;
     }
@@ -451,7 +451,7 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
         param0->unk_36[v0] = sub_02074470(v3, 6, NULL);
     }
 
-    sub_020181C4(*param1);
+    FreeToHeap(*param1);
     *param1 = NULL;
     return 1;
 }
@@ -1029,7 +1029,7 @@ static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * para
     UnkStruct_02079FF4 * v2;
     UnkStruct_02073C74 * v3;
 
-    v1 = sub_02018184(param0->unk_04, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
+    v1 = AllocFromHeapAtEnd(param0->unk_04, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
     v2 = sub_0207A268(param1);
 
@@ -1040,7 +1040,7 @@ static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * para
 
     sub_0202D2F0(param0->unk_74, param2, v1);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 u8 sub_0204AE84 (u16 param0)

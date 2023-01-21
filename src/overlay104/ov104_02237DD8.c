@@ -19,7 +19,7 @@
 #include "unk_02002F38.h"
 #include "filesystem.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201FE94.h"
@@ -151,7 +151,7 @@ UnkStruct_ov104_0223BFFC * ov104_02237DD8 (UnkStruct_021C0794 * param0, u16 para
     static UnkStruct_ov104_0223BFFC * v9;
     UnkStruct_020305B8 * v10;
 
-    v9 = sub_02018144(11, sizeof(UnkStruct_ov104_0223BFFC));
+    v9 = AllocFromHeap(11, sizeof(UnkStruct_ov104_0223BFFC));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BFFC));
 
     v9->unk_08 = sub_020304A0(param0);
@@ -310,7 +310,7 @@ static void ov104_02238114 (UnkStruct_ov104_0223BFFC * param0)
         ov104_0223C034(param0, param0->unk_74, v2);
     }
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 
     return;
 }
@@ -343,15 +343,15 @@ void ov104_02238210 (UnkStruct_ov104_0223BFFC * param0)
     }
 
     if (param0->unk_70 != NULL) {
-        sub_020181C4(param0->unk_70);
+        FreeToHeap(param0->unk_70);
     }
 
     if (param0->unk_74 != NULL) {
-        sub_020181C4(param0->unk_74);
+        FreeToHeap(param0->unk_74);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223BFFC));
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     param0 = NULL;
 
@@ -470,7 +470,7 @@ u16 ov104_02238464 (UnkStruct_ov104_0223BFFC * param0, u8 param1)
     v2 = ov104_02238498(param0, param1);
     v1 = ov104_0222DD04(&v0, param0->unk_78[v2], 11, 178);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return ov104_0222E10C(v0.unk_04);
 }
@@ -651,7 +651,7 @@ void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
             GX_LoadBGExtPltt(v2->pRawData, 0x4000, 0x2000);
             GX_EndLoadBGExtPltt();
 
-            sub_020181C4(v3);
+            FreeToHeap(v3);
         }
 
         sub_0201FF0C(GX_PLANEMASK_BG2, 1);
@@ -897,7 +897,7 @@ void ov104_02238AB4 (u8 param0, u8 param1)
         v1 = (9 * 16) * 2;
     }
 
-    v5 = sub_02018144(94, 0x1000 * 2);
+    v5 = AllocFromHeap(94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
     v4 = NARC_ctor(150, 94);
@@ -911,8 +911,8 @@ void ov104_02238AB4 (u8 param0, u8 param1)
     GX_EndLoadBGExtPltt();
 
     NARC_dtor(v4);
-    sub_020181C4(v5);
-    sub_020181C4(v3);
+    FreeToHeap(v5);
+    FreeToHeap(v3);
 
     return;
 }

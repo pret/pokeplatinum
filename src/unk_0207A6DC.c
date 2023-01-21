@@ -17,7 +17,7 @@
 
 #include "unk_020021B0.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_02027F84.h"
 #include "unk_0202CC64.h"
@@ -104,8 +104,8 @@ void sub_0207A6DC (void * param0)
         return;
     }
 
-    v2 = (UnkStruct_0207ACB4 *)sub_02018144(5, sizeof(UnkStruct_0207ACB4));
-    v3 = (UnkStruct_0207AD40 *)sub_02018144(5, sizeof(UnkStruct_0207AD40));
+    v2 = (UnkStruct_0207ACB4 *)AllocFromHeap(5, sizeof(UnkStruct_0207ACB4));
+    v3 = (UnkStruct_0207AD40 *)AllocFromHeap(5, sizeof(UnkStruct_0207AD40));
 
     sub_02032798(Unk_020F099C, v0, param0);
 
@@ -235,7 +235,7 @@ void sub_0207A81C (UnkStruct_0207ADB4 * param0, int param1, int param2, void * p
     u16 * v4;
     u16 * v5;
 
-    v1 = (UnkStruct_0207A81C *)sub_02018144(5, sizeof(UnkStruct_0207A81C));
+    v1 = (UnkStruct_0207A81C *)AllocFromHeap(5, sizeof(UnkStruct_0207A81C));
     v3 = ov16_0223E06C(param0);
     v4 = ov16_0223E08C(param0);
     v5 = ov16_0223E098(param0);
@@ -263,7 +263,7 @@ void sub_0207A81C (UnkStruct_0207ADB4 * param0, int param1, int param2, void * p
         v4[0]++;
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void sub_0207A8A8 (int param0, int param1, void * param2, void * param3)
@@ -460,7 +460,7 @@ BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
         int v2;
 
         for (v2 = 0; v2 < 4; v2++) {
-            param0->unk_10[v2] = sub_02018144(5, 136);
+            param0->unk_10[v2] = AllocFromHeap(5, 136);
         }
     }
 
@@ -597,7 +597,7 @@ void sub_0207ACB4 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     default:
     case 255:
-        sub_020181C4(param1);
+        FreeToHeap(param1);
         sub_0200DA58(param0);
         break;
     }
@@ -635,7 +635,7 @@ void sub_0207AD40 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     default:
     case 255:
-        sub_020181C4(param1);
+        FreeToHeap(param1);
         sub_0200DA58(param0);
         break;
     }

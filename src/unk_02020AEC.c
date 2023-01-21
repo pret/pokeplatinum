@@ -12,7 +12,7 @@
 #include "overlay005/struct_ov5_021DF84C.h"
 #include "overlay005/struct_ov5_021EDDAC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201DD00.h"
 #include "unk_02020AEC.h"
@@ -146,7 +146,7 @@ void sub_02020B90 (int param0, int param1)
 
     GF_ASSERT((Unk_021C0774 == NULL));
 
-    Unk_021C0774 = sub_02018144(param1, sizeof(UnkStruct_02020C44) * param0);
+    Unk_021C0774 = AllocFromHeap(param1, sizeof(UnkStruct_02020C44) * param0);
     Unk_021C0778 = param0;
 
     for (v0 = 0; v0 < param0; v0++) {
@@ -162,7 +162,7 @@ void sub_02020BD0 (void)
         sub_02020CCC(Unk_021C0774 + v0);
     }
 
-    sub_020181C4(Unk_021C0774);
+    FreeToHeap(Unk_021C0774);
 
     Unk_021C0774 = NULL;
     Unk_021C0778 = 0;
@@ -196,19 +196,19 @@ UnkStruct_02020C44 * sub_02020C44 (const UnkStruct_ov5_021EDDAC * param0)
 
     v0->unk_00 = 1;
     v0->unk_01 = 1;
-    v0->unk_04 = sub_02018144(param0->unk_04, sizeof(UnkStruct_020216E0) * param0->unk_00);
+    v0->unk_04 = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_020216E0) * param0->unk_00);
     v0->unk_08 = param0->unk_00;
 
     sub_02020B14(&v0->unk_0C);
 
     v0->unk_0C.unk_BC = &v0->unk_0C;
     v0->unk_0C.unk_C0 = &v0->unk_0C;
-    v0->unk_CC = sub_02018144(param0->unk_04, sizeof(UnkStruct_020216E0 *) * param0->unk_00);
+    v0->unk_CC = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_020216E0 *) * param0->unk_00);
 
     sub_020216A8(v0);
-    v0->unk_D4 = sub_02018144(param0->unk_04, sizeof(NNSFndAllocator));
+    v0->unk_D4 = AllocFromHeap(param0->unk_04, sizeof(NNSFndAllocator));
 
-    sub_020182CC(v0->unk_D4, param0->unk_04, 4);
+    GF_ExpHeap_FndInitAllocator(v0->unk_D4, param0->unk_04, 4);
     v0->unk_D8 = sub_0201DD00(param0->unk_00, param0->unk_04);
 
     return v0;
@@ -223,9 +223,9 @@ BOOL sub_02020CCC (UnkStruct_02020C44 * param0)
 
     if (param0->unk_00 != 0) {
         sub_02020D14(param0);
-        sub_020181C4(param0->unk_04);
-        sub_020181C4(param0->unk_CC);
-        sub_020181C4(param0->unk_D4);
+        FreeToHeap(param0->unk_04);
+        FreeToHeap(param0->unk_CC);
+        FreeToHeap(param0->unk_D4);
         sub_0201DD3C(param0->unk_D8);
         sub_02020AEC(param0);
     }

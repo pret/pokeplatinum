@@ -17,7 +17,7 @@
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02022974.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
@@ -99,8 +99,8 @@ int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov98_02246E88 * v0;
 
-    sub_02017FC8(3, 108, 0x28000);
-    sub_02017FC8(0, 91, 0x300);
+    CreateHeap(3, 108, 0x28000);
+    CreateHeap(0, 91, 0x300);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov98_02246E88), 108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
@@ -179,8 +179,8 @@ int ov98_02246DC0 (UnkStruct_020067E8 * param0, int * param1)
     sub_020237BC(v0->unk_118);
     sub_020237BC(v0->unk_114);
     sub_02006830(param0);
-    sub_0201807C(108);
-    sub_0201807C(91);
+    DestroyHeap(108);
+    DestroyHeap(91);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
 
     return 1;
@@ -191,7 +191,7 @@ static void ov98_02246E08 (UnkStruct_ov98_02246E88 * param0)
     if (param0->unk_80 == 0) {
         sub_02006590(FS_OVERLAY_ID(overlay94), 2);
 
-        param0->unk_0C = sub_02018144(108, 0x20000 + 32);
+        param0->unk_0C = AllocFromHeap(108, 0x20000 + 32);
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
 
         sub_02099550();
@@ -206,7 +206,7 @@ static void ov98_02246E54 (UnkStruct_ov98_02246E88 * param0)
     if (param0->unk_80 == 1) {
         NNS_FndDestroyExpHeap(param0->unk_10);
 
-        sub_020181C4(param0->unk_0C);
+        FreeToHeap(param0->unk_0C);
         sub_020995C4();
         sub_02099560();
         sub_020334CC();
@@ -273,11 +273,11 @@ void ov98_02246EF8 (UnkStruct_ov98_02246E88 * param0)
 {
     char * v0;
 
-    v0 = sub_02018144(108, sizeof(char) * 100);
+    v0 = AllocFromHeap(108, sizeof(char) * 100);
 
     ov98_022499C8(param0->unk_114, v0, 108);
     sub_02030D38(param0->unk_04, v0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 void ov98_02246F24 (UnkStruct_ov98_02246E88 * param0)
@@ -559,7 +559,7 @@ static void * ov98_02247168 (UnkStruct_ov98_02246E88 * param0)
 {
     UnkStruct_ov98_02247168 * v0;
 
-    v0 = sub_02018144(108, sizeof(UnkStruct_ov98_02247168));
+    v0 = AllocFromHeap(108, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247168));
 
     v0->unk_00 = param0->unk_04;
@@ -581,6 +581,6 @@ static void ov98_02247198 (UnkStruct_ov98_02246E88 * param0)
         sub_0206AF5C(sub_020507E4(param0->unk_04));
     }
 
-    sub_020181C4(param0->unk_98);
+    FreeToHeap(param0->unk_98);
     ov98_02246E88(param0, 0, 0);
 }

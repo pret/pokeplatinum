@@ -34,7 +34,7 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -597,7 +597,7 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
 void ov94_0223DB2C (UnkStruct_02073C74 * param0)
 {
     UnkStruct_02008A90 v0;
-    u8 * v1 = sub_02018144(62, (0x20 * 10 * 10));
+    u8 * v1 = AllocFromHeap(62, (0x20 * 10 * 10));
 
     sub_02075EF4(&v0, param0, 2);
 
@@ -612,7 +612,7 @@ void ov94_0223DB2C (UnkStruct_02073C74 * param0)
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
     sub_02006E84(v0.unk_00, v0.unk_04, 1, 0x20 * 13, 32, 62);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov94_0223DBBC (UnkStruct_ov94_0223FD4C * param0)

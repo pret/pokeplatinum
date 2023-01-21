@@ -22,7 +22,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -71,7 +71,7 @@ int ov115_02260440 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov115_02260440 * v1 = sub_02006840(param0);
     BOOL v2;
 
-    sub_02017FC8(3, 99, 0x60000);
+    CreateHeap(3, 99, 0x60000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov115_0226095C), 99);
     memset(v0, 0, sizeof(UnkStruct_ov115_0226095C));
@@ -383,7 +383,7 @@ int ov115_022608E4 (UnkStruct_020067E8 * param0, int * param1)
         ov115_02260B30(v0);
 
         sub_02006830(param0);
-        sub_0201807C(99);
+        DestroyHeap(99);
         sub_020388F4(0, 1);
 
         if (v2 == 1) {
@@ -544,7 +544,7 @@ static void ov115_02260ADC (UnkStruct_ov115_0226095C * param0, u32 param1)
 
 static void ov115_02260B30 (UnkStruct_ov115_0226095C * param0)
 {
-    sub_020181C4(param0->unk_48.unk_04);
+    FreeToHeap(param0->unk_48.unk_04);
     param0->unk_48.unk_04 = NULL;
     param0->unk_48.unk_00 = 0;
 }

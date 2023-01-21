@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02079FF4_decl.h"
 #include "struct_decls/struct_0207D3B0_decl.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02073C2C.h"
 #include "unk_020790B0.h"
 #include "unk_02079FEC.h"
@@ -28,7 +28,7 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
     v0 = sub_0207CF48(param1, 0, param3);
 
     if (sub_0207D014(v0, 14) != 1) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 0;
     }
 
@@ -36,35 +36,35 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
     if (sub_0207D014(v0, 15) != 0) {
         if ((v1[0] & 0x7) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 16) != 0) {
         if ((v1[0] & (0x8 | 0x80)) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 17) != 0) {
         if ((v1[0] & 0x10) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 18) != 0) {
         if ((v1[0] & 0x20) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 19) != 0) {
         if ((v1[0] & 0x40) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
@@ -73,40 +73,40 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
     if (((sub_0207D014(v0, 23) != 0) || (sub_0207D014(v0, 24) != 0)) && (sub_0207D014(v0, 25) == 0)) {
         if (v1[0] == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     } else if (sub_0207D014(v0, 38) != 0) {
         if ((v1[0] != 0) && (v1[0] < sub_02074470(param0, 164, NULL))) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 25) != 0) {
         if (sub_02074470(param0, 161, NULL) < 100) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 26) != 0) {
         if (sub_02076B94(NULL, param0, 3, param1, NULL) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if ((sub_0207D014(v0, 34) != 0) || (sub_0207D014(v0, 35) != 0)) {
         if ((sub_02074470(param0, 62 + param2, NULL) < 3) && (sub_020790DC(sub_02074470(param0, 54 + param2, NULL), 0) >= 5)) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
 
     if (sub_0207D014(v0, 36) != 0) {
         if (sub_02096F34(param0, param2) == 1) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 1;
         }
     }
@@ -114,7 +114,7 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
     if (sub_0207D014(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
             if (sub_02096F34(param0, v1[0]) == 1) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         }
@@ -133,17 +133,17 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
             if (v1[6] > 0) {
                 if ((v1[0] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                    sub_020181C4(v0);
+                    FreeToHeap(v0);
                     return 1;
                 }
             } else if (v1[6] < 0) {
                 if (v1[0] > 0) {
-                    sub_020181C4(v0);
+                    FreeToHeap(v0);
                     return 1;
                 }
 
                 if (sub_02097144(param0, v0) == 1) {
-                    sub_020181C4(v0);
+                    FreeToHeap(v0);
                     return 1;
                 }
             }
@@ -155,17 +155,17 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
         if (v1[6] > 0) {
             if ((v1[1] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[1] > 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         }
@@ -176,17 +176,17 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
         if (v1[6] > 0) {
             if ((v1[2] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[2] > 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         }
@@ -197,17 +197,17 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
         if (v1[6] > 0) {
             if ((v1[3] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[3] > 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         }
@@ -218,17 +218,17 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
         if (v1[6] > 0) {
             if ((v1[4] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[4] > 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         }
@@ -239,23 +239,23 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
         if (v1[6] > 0) {
             if ((v1[5] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[5] > 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return 0;
 }
@@ -276,7 +276,7 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     v0 = sub_0207CF48(param1, 0, param4);
 
     if (sub_0207D014(v0, 14) != 1) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 0;
     }
 
@@ -493,7 +493,7 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     }
 
     if ((v2 == 0) && (v3 == 1)) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 0;
     }
 
@@ -502,27 +502,27 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     if (v1[0] < 100) {
         if (sub_0207D014(v0, 45) != 0) {
             if (sub_020971D0(param0, v1[0], sub_0207D014(v0, 56), param3, param4) == 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return v2;
             }
         }
     } else if ((v1[0] >= 100) && (v1[0] < 200)) {
         if (sub_0207D014(v0, 46) != 0) {
             if (sub_020971D0(param0, v1[0], sub_0207D014(v0, 57), param3, param4) == 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return v2;
             }
         }
     } else if ((v1[0] >= 200) && (v1[0] <= 255)) {
         if (sub_0207D014(v0, 47) != 0) {
             if (sub_020971D0(param0, v1[0], sub_0207D014(v0, 58), param3, param4) == 0) {
-                sub_020181C4(v0);
+                FreeToHeap(v0);
                 return v2;
             }
         }
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     return v2;
 }
 

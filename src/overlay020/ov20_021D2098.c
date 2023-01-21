@@ -29,7 +29,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201FE94.h"
@@ -110,7 +110,7 @@ static void ov20_021D2DD8(UnkStruct_0201CD38 * param0, void * param1);
 
 UnkStruct_ov20_021D2128 * ov20_021D2098 (const UnkStruct_ov20_021D16E8 * param0, const UnkStruct_020998EC * param1)
 {
-    UnkStruct_ov20_021D2128 * v0 = sub_02018144(35, sizeof(UnkStruct_ov20_021D2128));
+    UnkStruct_ov20_021D2128 * v0 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2128));
 
     if (v0) {
         int v1;
@@ -156,8 +156,8 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
         sub_0200A878();
         sub_02021964(param0->unk_24);
 
-        sub_020181C4(param0->unk_20);
-        sub_020181C4(param0);
+        FreeToHeap(param0->unk_20);
+        FreeToHeap(param0);
     }
 }
 
@@ -216,7 +216,7 @@ void ov20_021D21A0 (UnkStruct_ov20_021D2128 * param0, int param1)
     };
 
     if (param1 < NELEMS(v0)) {
-        UnkStruct_ov20_021D2238 * v1 = sub_02018144(35, sizeof(UnkStruct_ov20_021D2238));
+        UnkStruct_ov20_021D2238 * v1 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2238));
 
         if (v1) {
             int v2;
@@ -274,7 +274,7 @@ static void ov20_021D2238 (UnkStruct_ov20_021D2238 * param0)
 {
     sub_0200DA58(param0->unk_00->unk_08[param0->unk_10]);
     param0->unk_00->unk_08[param0->unk_10] = NULL;
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
@@ -360,11 +360,11 @@ static void ov20_021D2414 (UnkStruct_0201CD38 * param0, void * param1)
 
             for (v2 = 0; v2 < 2; v2++) {
                 if (v1->unk_234[v2] != NULL) {
-                    sub_020181C4(v1->unk_234[v2]);
+                    FreeToHeap(v1->unk_234[v2]);
                 }
 
                 if (v1->unk_23C[v2] != NULL) {
-                    sub_020181C4(v1->unk_23C[v2]);
+                    FreeToHeap(v1->unk_23C[v2]);
                 }
             }
 

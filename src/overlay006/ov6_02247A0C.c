@@ -17,7 +17,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -99,7 +99,7 @@ void ov6_02247A0C (UnkStruct_020508D4 * param0)
 {
     UnkStruct_ov6_02247A0C * v0;
 
-    v0 = sub_02018184(11, sizeof(UnkStruct_ov6_02247A0C));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
     sub_02050944(param0, ov6_02247A34, v0);
@@ -122,7 +122,7 @@ static BOOL ov6_02247A34 (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 
@@ -139,7 +139,7 @@ void * ov6_02247A90 (void * param0)
 
     v1 = sub_0203D170(param0);
     v8 = sub_0203D174(param0);
-    v0 = sub_02018144(11, sizeof(UnkStruct_ov6_02247A90));
+    v0 = AllocFromHeap(11, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 
@@ -209,7 +209,7 @@ void ov6_02247CC8 (void * param0)
     sub_0201A8FC(&v0->unk_00);
     sub_0200B190(v0->unk_10);
     sub_0200B3F0(v0->unk_14);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static int ov6_02247CF4 (const UnkStruct_02023790 * param0, int param1, int param2, int param3)

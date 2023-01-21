@@ -12,7 +12,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02015920.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02023FCC.h"
 
@@ -103,7 +103,7 @@ UnkStruct_02015920 * sub_02015920 (u32 param0)
 {
     UnkStruct_02015920 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02015920));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02015920));
     sub_02015A80(v0, param0);
 
     return v0;
@@ -115,7 +115,7 @@ void sub_02015938 (UnkStruct_02015920 * param0)
         sub_02015A54(param0);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02015958 (UnkStruct_02015920 * param0, const UnkStruct_02015958 * param1)
@@ -328,7 +328,7 @@ static void sub_02015D00 (UnkStruct_02015C38 * param0)
     sub_0201C3C0(param0->unk_00, param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_020181C4(param0->unk_08[v0]);
+        FreeToHeap(param0->unk_08[v0]);
     }
 
     memset(param0, 0, sizeof(UnkStruct_02015C38));
@@ -369,7 +369,7 @@ static void sub_02015DCC (u32 param0, u32 param1, UnkStruct_02018340 * param2, u
 {
     UnkStruct_02015DCC * v0;
 
-    v0 = sub_02018144(param5, sizeof(UnkStruct_02015DCC));
+    v0 = AllocFromHeap(param5, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
 
     v0->unk_08 = sub_02006F50(param0, param1, 1, &v0->unk_04, param5);
@@ -384,7 +384,7 @@ static void sub_02015E1C (u32 param0, u32 param1, int param2, u32 param3, u32 pa
 {
     UnkStruct_02015E1C * v0;
 
-    v0 = sub_02018144(param5, sizeof(UnkStruct_02015E1C));
+    v0 = AllocFromHeap(param5, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
     v0->unk_04 = sub_02006F88(param0, param1, &v0->unk_00, param5);
@@ -403,8 +403,8 @@ static void sub_02015E64 (UnkStruct_0201CD38 * param0, void * param1)
 
     sub_0201958C(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     sub_0200DA58(param0);
-    sub_020181C4(v0->unk_08);
-    sub_020181C4(v0);
+    FreeToHeap(v0->unk_08);
+    FreeToHeap(v0);
 }
 
 static void sub_02015EA0 (UnkStruct_0201CD38 * param0, void * param1)
@@ -420,8 +420,8 @@ static void sub_02015EA0 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     sub_0200DA58(param0);
-    sub_020181C4(v0->unk_04);
-    sub_020181C4(v0);
+    FreeToHeap(v0->unk_04);
+    FreeToHeap(v0);
 }
 
 static void sub_02015EE8 (UnkStruct_02018340 * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4)

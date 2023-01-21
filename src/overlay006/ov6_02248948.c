@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay006/ov6_02248050.h"
 #include "overlay006/ov6_02248948.h"
 
@@ -54,7 +54,7 @@ static void ov6_02248948 (UnkStruct_0201CD38 * param0, void * param1)
     case 1:
         Unk_ov6_02249834[v0->unk_0C](v0->unk_00);
         *v0->unk_04 = 1;
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
         break;
     }
@@ -62,7 +62,7 @@ static void ov6_02248948 (UnkStruct_0201CD38 * param0, void * param1)
 
 void ov6_0224899C (UnkStruct_0203CDB0 * param0, u16 * param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov6_02248948 * v0 = sub_02018144(param3, sizeof(UnkStruct_ov6_02248948));
+    UnkStruct_ov6_02248948 * v0 = AllocFromHeap(param3, sizeof(UnkStruct_ov6_02248948));
 
     memset(v0, 0, sizeof(UnkStruct_ov6_02248948));
 

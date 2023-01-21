@@ -6,7 +6,7 @@
 
 #include "filesystem.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 
 static u32 sub_020072D0(void * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3, u32 param4);
@@ -112,9 +112,9 @@ void * sub_02006FE8 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
     void * v0;
 
     if (param2 || (param4 == 1)) {
-        v0 = sub_02018184(param3, GetNarcMemberSizeByIndexPair(param0, param1));
+        v0 = AllocFromHeapAtEnd(param3, GetNarcMemberSizeByIndexPair(param0, param1));
     } else {
-        v0 = sub_02018144(param3, GetNarcMemberSizeByIndexPair(param0, param1));
+        v0 = AllocFromHeap(param3, GetNarcMemberSizeByIndexPair(param0, param1));
     }
 
     if (v0 != NULL) {
@@ -124,14 +124,14 @@ void * sub_02006FE8 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
             void * v1;
 
             if (param4 == 0) {
-                v1 = sub_02018144(param3, MI_GetUncompressedSize(v0));
+                v1 = AllocFromHeap(param3, MI_GetUncompressedSize(v0));
             } else {
-                v1 = sub_02018184(param3, MI_GetUncompressedSize(v0));
+                v1 = AllocFromHeapAtEnd(param3, MI_GetUncompressedSize(v0));
             }
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
-                sub_020181C4(v0);
+                FreeToHeap(v0);
             }
 
             v0 = v1;
@@ -148,9 +148,9 @@ void * sub_02007068 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
     *param5 = GetNarcMemberSizeByIndexPair(param0, param1);
 
     if (param2 || (param4 == 1)) {
-        v0 = sub_02018184(param3, *param5);
+        v0 = AllocFromHeapAtEnd(param3, *param5);
     } else {
-        v0 = sub_02018144(param3, *param5);
+        v0 = AllocFromHeap(param3, *param5);
     }
 
     if (v0 != NULL) {
@@ -162,14 +162,14 @@ void * sub_02007068 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
             *param5 = MI_GetUncompressedSize(v0);
 
             if (param4 == 0) {
-                v1 = sub_02018144(param3, *param5);
+                v1 = AllocFromHeap(param3, *param5);
             } else {
-                v1 = sub_02018184(param3, *param5);
+                v1 = AllocFromHeapAtEnd(param3, *param5);
             }
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
-                sub_020181C4(v0);
+                FreeToHeap(v0);
             }
 
             v0 = v1;
@@ -260,9 +260,9 @@ void * sub_02007250 (NARC * param0, u32 param1, BOOL param2, u32 param3, int par
     *param5 = NARC_GetMemberSize(param0, param1);
 
     if (param2 || (param4 == 1)) {
-        v0 = sub_02018184(param3, *param5);
+        v0 = AllocFromHeapAtEnd(param3, *param5);
     } else {
-        v0 = sub_02018144(param3, *param5);
+        v0 = AllocFromHeap(param3, *param5);
     }
 
     if (v0 != NULL) {
@@ -274,14 +274,14 @@ void * sub_02007250 (NARC * param0, u32 param1, BOOL param2, u32 param3, int par
             *param5 = MI_GetUncompressedSize(v0);
 
             if (param4 == 0) {
-                v1 = sub_02018144(param3, *param5);
+                v1 = AllocFromHeap(param3, *param5);
             } else {
-                v1 = sub_02018184(param3, *param5);
+                v1 = AllocFromHeapAtEnd(param3, *param5);
             }
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
-                sub_020181C4(v0);
+                FreeToHeap(v0);
             }
 
             v0 = v1;
@@ -304,7 +304,7 @@ static u32 sub_020072D0 (void * param0, UnkStruct_02018340 * param1, u32 param2,
             sub_0201958C(param1, param2, v0->pRawData, param4, param3);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 
     return param4;
@@ -327,7 +327,7 @@ static void sub_02007314 (void * param0, UnkStruct_02018340 * param1, u32 param2
             sub_02019460(param1, param2, v0->rawData, param4, param3);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -350,7 +350,7 @@ static u32 sub_02007374 (void * param0, int param1, u32 param2, u32 param3)
             v0[param1](v1->pRawData, param2, param3);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 
     return param3;
@@ -408,7 +408,7 @@ static void sub_020073BC (void * param0, int param1, u32 param2, u32 param3, u32
             }
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -429,7 +429,7 @@ static void sub_0200749C (void * param0, NNS_G2D_VRAM_TYPE param1, u32 param2, N
             }
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -454,7 +454,7 @@ static u32 sub_020074EC (void * param0, int param1, u32 param2, NNS_G2D_VRAM_TYP
             v1 = v2->szByte;
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 
     return v1;
@@ -487,7 +487,7 @@ static void sub_02007534 (void * param0, int param1, u32 param2, NNS_G2D_VRAM_TY
             v0[param1](v1, param4, param3, param5);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -495,7 +495,7 @@ static void * sub_020075A0 (void * param0, NNSG2dCharacterData ** param1)
 {
     if (param0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(param0, param1) == 0) {
-            sub_020181C4(param0);
+            FreeToHeap(param0);
             return NULL;
         }
     }
@@ -507,7 +507,7 @@ static void * sub_020075BC (void * param0, NNSG2dScreenData ** param1)
 {
     if (param0 != NULL) {
         if (NNS_G2dGetUnpackedScreenData(param0, param1) == 0) {
-            sub_020181C4(param0);
+            FreeToHeap(param0);
             return NULL;
         }
     }
@@ -519,7 +519,7 @@ static void * sub_020075D8 (void * param0, NNSG2dPaletteData ** param1)
 {
     if (param0 != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(param0, param1) == 0) {
-            sub_020181C4(param0);
+            FreeToHeap(param0);
             return NULL;
         }
     }
@@ -531,7 +531,7 @@ static void * sub_020075F4 (void * param0, NNSG2dCellDataBank ** param1)
 {
     if (param0 != NULL) {
         if (NNS_G2dGetUnpackedCellBank(param0, param1) == 0) {
-            sub_020181C4(param0);
+            FreeToHeap(param0);
             return NULL;
         }
     }
@@ -543,7 +543,7 @@ static void * sub_02007610 (void * param0, NNSG2dAnimBankData ** param1)
 {
     if (param0 != NULL) {
         if (NNS_G2dGetUnpackedAnimBank(param0, param1) == 0) {
-            sub_020181C4(param0);
+            FreeToHeap(param0);
             return NULL;
         }
     }

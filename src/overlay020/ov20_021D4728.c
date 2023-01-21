@@ -19,7 +19,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -73,7 +73,7 @@ static UnkStruct_02022550 * ov20_021D4B40(UnkStruct_ov20_021D4AD4 * param0, NNSG
 
 UnkStruct_ov20_021D4AD4 * ov20_021D4728 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
 {
-    UnkStruct_ov20_021D4AD4 * v0 = sub_02018144(35, sizeof(UnkStruct_ov20_021D4AD4));
+    UnkStruct_ov20_021D4AD4 * v0 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4AD4));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -90,7 +90,7 @@ UnkStruct_ov20_021D4AD4 * ov20_021D4728 (UnkStruct_ov20_021D2128 * param0, const
 void ov20_021D4764 (UnkStruct_ov20_021D4AD4 * param0)
 {
     ov20_021D4AD4(param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov20_021D4774 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
@@ -128,7 +128,7 @@ static void ov20_021D4874 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
         if (v2) {
             MI_CpuCopy16(v3->rawData, param0->unk_2C[v1], 77 * 2);
             DC_FlushRange(param0->unk_2C[v1], 77 * 2);
-            sub_020181C4(v2);
+            FreeToHeap(v2);
         }
     }
 }
@@ -208,7 +208,7 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     mov r1, #4
     bl sub_0201958C
     add r0, r7, #0
-    bl sub_020181C4
+    bl FreeToHeap
  _021D496C:
     add r0, r4, #0
     bl sub_020237BC
@@ -341,8 +341,8 @@ static void ov20_021D4AF8 (UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 
 
 static void ov20_021D4B2C (UnkStruct_ov20_021D4B2C * param0)
 {
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0->unk_08);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0->unk_08);
 }
 
 static UnkStruct_02022550 * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7)
@@ -382,7 +382,7 @@ static UnkStruct_02022550 * ov20_021D4B40 (UnkStruct_ov20_021D4AD4 * param0, NNS
 
 void ov20_021D4BA4 (UnkStruct_ov20_021D4AD4 * param0)
 {
-    UnkStruct_ov20_021D4BA4 * v0 = sub_02018144(35, sizeof(UnkStruct_ov20_021D4BA4));
+    UnkStruct_ov20_021D4BA4 * v0 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4BA4));
 
     if (v0) {
         static const struct {
@@ -453,7 +453,7 @@ static void ov20_021D4C40 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 3:
         v0->unk_00->unk_4FC = NULL;
-        sub_020181C4(param1);
+        FreeToHeap(param1);
         sub_0200DA58(param0);
     }
 }

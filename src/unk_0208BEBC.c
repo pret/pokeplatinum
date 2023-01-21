@@ -14,7 +14,7 @@
 
 #include "unk_020041CC.h"
 #include "unk_020064F0.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201FE94.h"
 #include "unk_020277A4.h"
 #include "unk_0208B284.h"
@@ -50,7 +50,7 @@ static int sub_0208BEBC (UnkStruct_020067E8 * param0, int * param1, int param2)
 {
     UnkStruct_0208C06C * v0;
 
-    sub_02017FC8(3, 102, 0x55000);
+    CreateHeap(3, 102, 0x55000);
     v0 = sub_0208BA78(param0);
     ov62_02230060(v0);
     sub_0200544C(1, (127 / 3));
@@ -132,7 +132,7 @@ static int sub_0208BF6C (UnkStruct_020067E8 * param0, int * param1)
     break;
     default:
         ov62_0222F514(v0);
-        sub_0201807C(102);
+        DestroyHeap(102);
         sub_02006514(FS_OVERLAY_ID(overlay62));
         Unk_021BF67C.unk_65 = 0;
         sub_0201FFE8();

@@ -49,7 +49,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -1148,8 +1148,8 @@ void ov16_0223EF8C (UnkStruct_0207ADB4 * param0)
     int v1, v2, v3, v4, v5, v6;
     u8 * v7;
 
-    param0->unk_21C = sub_02018144(5, 0x10000);
-    param0->unk_220 = sub_02018144(5, 0x200);
+    param0->unk_21C = AllocFromHeap(5, 0x10000);
+    param0->unk_220 = AllocFromHeap(5, 0x200);
 
     MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), param0->unk_21C, 0x10000);
     MI_CpuCopy32(sub_02003164(param0->unk_28, 0), param0->unk_220, HW_BG_PLTT_SIZE);

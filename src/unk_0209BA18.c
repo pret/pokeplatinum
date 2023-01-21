@@ -10,7 +10,7 @@
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_0203CC84.h"
 #include "unk_0209BA18.h"
@@ -22,7 +22,7 @@ static BOOL ov104_02239C88(UnkStruct_0209BBA4 * param0, u16 param1, u16 param2);
 
 UnkStruct_ov104_02230BE4 * sub_0209BA18 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_ov104_02230BE4 * v0 = sub_02018184(11, sizeof(UnkStruct_ov104_02230BE4));
+    UnkStruct_ov104_02230BE4 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov104_02230BE4));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_02230BE4));
 

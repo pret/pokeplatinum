@@ -17,7 +17,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02099D44.h"
@@ -60,7 +60,7 @@ static void ov41_02256D1C(UnkStruct_0201CD38 * param0, void * param1);
 
 BOOL ov41_022567B0 (UnkStruct_ov41_022567B0 ** param0, const UnkStruct_ov41_022567B0_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov41_022567B0 * v0 = (UnkStruct_ov41_022567B0 *)sub_02018144(8, sizeof(UnkStruct_ov41_022567B0));
+    UnkStruct_ov41_022567B0 * v0 = (UnkStruct_ov41_022567B0 *)AllocFromHeap(8, sizeof(UnkStruct_ov41_022567B0));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);
@@ -85,7 +85,7 @@ void ov41_022567F8 (UnkStruct_ov41_022567B0 * param0)
 {
     if (param0 != NULL) {
         ov41_02256864(param0);
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -218,13 +218,13 @@ static void ov41_022568DC (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov41_022567B0 * v3;
     u32 v4;
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
     v3 = ov25_0225523C(param1);
 
     sub_020183C4(v3->unk_04, 6, &v0, 0);
     sub_020183C4(v3->unk_04, 7, &v1, 0);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     v4 = sub_02006E3C(12, 86, v3->unk_04, 6, 0, 0, 1, 8);
     v4 /= 0x20;
@@ -232,7 +232,7 @@ static void ov41_022568DC (UnkStruct_0201CD38 * param0, void * param1)
     sub_02006E60(12, 85, v3->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
     ov41_022569BC(v3, v4);
     sub_02019448(v3->unk_04, 7);
@@ -241,7 +241,7 @@ static void ov41_022568DC (UnkStruct_0201CD38 * param0, void * param1)
     GXS_SetVisiblePlane(v2.visiblePlane | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ);
 
     ov41_022568C8(param1);
-    GF_ASSERT(sub_0201833C(8));
+    GF_ASSERT(GF_heap_c_dummy_return_true(8));
 }
 
 static void ov41_022569BC (UnkStruct_ov41_022567B0 * param0, u32 param1)

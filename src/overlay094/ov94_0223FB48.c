@@ -34,7 +34,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -491,12 +491,12 @@ static void ov94_022401E0 (UnkStruct_ov94_0223FD4C * param0)
         param0->unk_112 = 0;
     }
 
-    param0->unk_1108 = sub_02018144(62, sizeof(UnkStruct_ov94_0223FD4C_sub2));
+    param0->unk_1108 = AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub2));
 }
 
 static void ov94_02240268 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_020181C4(param0->unk_1108);
+    FreeToHeap(param0->unk_1108);
     sub_020237BC(param0->unk_BA4);
     sub_020237BC(param0->unk_BAC);
     sub_020237BC(param0->unk_BA8);
@@ -1042,7 +1042,7 @@ void * ov94_02240DD0 (NARC * param0, u32 param1, NNSG2dCharacterData ** param2, 
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return NULL;
         }
     }
@@ -1064,7 +1064,7 @@ static void ov94_02240DF8 (int param0, int param1, int param2, int param3, UnkSt
     param6->unk_08 = param4;
     param6->unk_04 = sub_02079EDC(param0, param1, param2) + 3;
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov94_02240E50 (UnkStruct_02073C74_sub1 * param0, UnkStruct_ov94_0223BA88_sub2 * param1)
@@ -1087,7 +1087,7 @@ static void ov94_02240E5C (void * param0)
         }
     }
 
-    sub_020181C4(v0->unk_1114);
+    FreeToHeap(v0->unk_1114);
 }
 
 static void ov94_02240EAC (UnkStruct_02073C74_sub1 * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, u16 * param3, int param4, NARC * param5, UnkStruct_ov94_0223BA88_sub2 * param6, UnkStruct_ov94_02240FA0 * param7)
@@ -1144,7 +1144,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
     NARC * v6;
     UnkStruct_ov94_02240FA0 * v7;
 
-    param0->unk_1114 = v7 = sub_02018184(3, sizeof(UnkStruct_ov94_02240FA0) * 30);
+    param0->unk_1114 = v7 = AllocFromHeapAtEnd(3, sizeof(UnkStruct_ov94_02240FA0) * 30);
     v6 = NARC_ctor(19, 62);
 
     if ((param1 >= 0) && (param1 < 18)) {

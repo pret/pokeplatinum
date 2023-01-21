@@ -6,7 +6,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0201378C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201E0A4.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021D5878.h"
@@ -33,7 +33,7 @@ UnkStruct_ov5_021D538C * ov5_021D521C (UnkStruct_ov5_021D5894 * param0, const u8
 
     GF_ASSERT(param1 < 4);
 
-    v1 = sub_02018144(4, sizeof(UnkStruct_ov5_021D538C));
+    v1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D538C));
 
     v1->unk_0C = param0;
     v1->unk_00 = ov5_021D53D4(param1, &v1->unk_04);
@@ -59,7 +59,7 @@ void ov5_021D5278 (UnkStruct_ov5_021D538C ** param0)
     GF_ASSERT(param0);
 
     ov5_021D555C(&(*param0)->unk_04);
-    sub_02018238(4, *param0);
+    FreeToHeapExplicit(4, *param0);
 
     *param0 = NULL;
 }
@@ -167,7 +167,7 @@ static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
         }
     } while (!((v5[0] == 'E') && (v5[1] == 'O') && (v5[2] == 'F')));
 
-    *param1 = sub_02018144(4, sizeof(UnkStruct_ov5_021D52F4) * v2);
+    *param1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D52F4) * v2);
     MI_CpuClear8(*param1, sizeof(UnkStruct_ov5_021D52F4) * v2);
     v3 = v4;
 
@@ -195,14 +195,14 @@ static u32 ov5_021D53D4 (u32 param0, UnkStruct_ov5_021D52F4 ** param1)
         v3 = sub_0201E0B8(v3, v5, 0xd);
     }
 
-    sub_02018238(4, v4);
+    FreeToHeapExplicit(4, v4);
 
     return v2;
 }
 
 static void ov5_021D555C (UnkStruct_ov5_021D52F4 ** param0)
 {
-    sub_02018238(4, *param0);
+    FreeToHeapExplicit(4, *param0);
     *param0 = NULL;
 }
 

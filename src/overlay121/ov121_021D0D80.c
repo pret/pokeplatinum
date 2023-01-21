@@ -23,7 +23,7 @@
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201FE94.h"
 #include "unk_02020020.h"
@@ -78,7 +78,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 30, 0x50000);
+    CreateHeap(3, 30, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov121_021D0FF4), 30);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov121_021D0FF4));
@@ -162,7 +162,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
     sub_02006830(param0);
-    sub_0201807C(30);
+    DestroyHeap(30);
 
     return 1;
 }
@@ -246,7 +246,7 @@ static void ov121_021D1074 (UnkStruct_ov121_021D0FF4 * param0)
 {
     NARC * v0;
 
-    sub_020182CC(&param0->unk_D8, 30, 4);
+    GF_ExpHeap_FndInitAllocator(&param0->unk_D8, 30, 4);
 
     v0 = NARC_ctor(48, 30);
 

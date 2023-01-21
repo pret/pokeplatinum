@@ -7,7 +7,7 @@
 
 #include "struct_defs/struct_020279FC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 
@@ -15,7 +15,7 @@ UnkStruct_020279FC * sub_020279FC (u32 param0)
 {
     UnkStruct_020279FC * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_020279FC));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_020279FC));
     sub_02027A1C(v0);
 
     return v0;

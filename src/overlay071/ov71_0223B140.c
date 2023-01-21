@@ -24,7 +24,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
@@ -158,7 +158,7 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
-    sub_02017FC8(3, 25, 0x28000);
+    CreateHeap(3, 25, 0x28000);
 
     v1 = NARC_ctor(51, 25);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov71_0223B620), 25);
@@ -393,8 +393,8 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
     ov71_0223B668(v0);
     ov71_0223D238(&v0->unk_30E4);
 
-    sub_020181C4(v0->unk_30B8);
-    sub_020181C4(v0->unk_335C);
+    FreeToHeap(v0->unk_30B8);
+    FreeToHeap(v0->unk_335C);
 
     ov71_0223C6D4(v0->unk_04);
     ov71_0223BBDC(v0->unk_00);
@@ -402,7 +402,7 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E530();
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(25);
+    DestroyHeap(25);
     sub_0200544C(1, 127);
 
     return 1;
@@ -487,7 +487,7 @@ static void ov71_0223B6A8 (const u8 param0, const u8 param1, NARC * param2)
             GXS_LoadBGPltt(&v2[16], 2 * 16, 2 * 16 * 3);
             GXS_LoadBGPltt(&v2[16 * 15], 2 * 16 * 15, 2 * 16);
 
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
     }
 }
@@ -523,7 +523,7 @@ static void ov71_0223B768 (const u8 param0, NARC * param1)
     GX_LoadBGPltt(v1->pRawData, 0, 2 * 16);
     GXS_LoadBGPltt(v1->pRawData, 0, 2 * 16);
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov71_0223B820 (const u8 param0, NARC * param1)
@@ -538,7 +538,7 @@ static void ov71_0223B820 (const u8 param0, NARC * param1)
     DC_FlushRange(&v1[2 * 16 * param0], 2 * 16);
     GXS_LoadBGPltt(&v1[2 * 16 * param0], 2 * 16 * 4, 2 * 16);
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov71_0223B858 (UnkStruct_02018340 * param0)
@@ -672,7 +672,7 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
 
         DC_FlushRange(v1->pRawData, 2 * 16 * 16);
         GXS_LoadBGPltt(v1->pRawData, 0, 2 * 16 * 16);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     ov71_0223B6A8(param0->unk_B4->unk_03, param0->unk_B4->unk_04_3, param1);
@@ -685,7 +685,7 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
 
         DC_FlushRange(v3->pRawData, 16 * 2 * 16);
         GX_LoadBGPltt(v3->pRawData, 0, 16 * 2 * 16);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     ov71_0223B768(param0->unk_B4->unk_00, param1);
@@ -768,7 +768,7 @@ static void ov71_0223BBDC (UnkStruct_02018340 * param0)
     sub_02019044(param0, 5);
     sub_02019044(param0, 2);
     sub_02019044(param0, 3);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)

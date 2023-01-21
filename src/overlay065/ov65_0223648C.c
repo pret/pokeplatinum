@@ -52,7 +52,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -413,8 +413,8 @@ int ov65_0223648C (UnkStruct_020067E8 * param0, int * param1)
     v2 = sub_020389B8();
     GF_ASSERT(v2 == 1);
 
-    sub_02017FC8(3, 96, 0x18000);
-    sub_02017FC8(3, 97, 0xa000);
+    CreateHeap(3, 96, 0x18000);
+    CreateHeap(3, 97, 0xa000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov65_022367A8), 96);
 
@@ -523,8 +523,8 @@ int ov65_0223668C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201DC3C();
     sub_02006830(param0);
-    sub_0201807C(97);
-    sub_0201807C(96);
+    DestroyHeap(97);
+    DestroyHeap(96);
     sub_02006514(FS_OVERLAY_ID(overlay63));
 
     return 1;
@@ -747,12 +747,12 @@ static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
 
 static void ov65_022369F0 (UnkStruct_ov65_02236840 * param0)
 {
-    sub_020181C4(param0->unk_244);
-    sub_020181C4(param0->unk_250);
+    FreeToHeap(param0->unk_244);
+    FreeToHeap(param0->unk_250);
     sub_02019044(param0->unk_00, 2);
     sub_02019044(param0->unk_00, 1);
     sub_02019044(param0->unk_00, 0);
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
 }
 
 static void ov65_02236A28 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)

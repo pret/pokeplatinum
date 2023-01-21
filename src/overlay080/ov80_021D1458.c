@@ -25,7 +25,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -142,7 +142,7 @@ int ov80_021D1458 (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0;
 
-    param0->unk_34 = sub_02018144(param0->unk_04, sizeof(UnkStruct_ov80_021D1478));
+    param0->unk_34 = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov80_021D1478));
     v0 = (UnkStruct_ov80_021D1478 *)param0->unk_34;
 
     memset(v0, 0, sizeof(UnkStruct_ov80_021D1478));
@@ -162,7 +162,7 @@ int ov80_021D1478 (UnkStruct_ov80_021D2A08 * param0)
 
     ov80_021D2C1C(v0->unk_9C);
     ov80_021D1F14(param0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return 1;
 }

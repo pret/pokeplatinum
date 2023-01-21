@@ -43,7 +43,7 @@
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -134,7 +134,7 @@ int ov75_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_020978D8 * v0;
     UnkStruct_ov75_021D1184 * v1 = (UnkStruct_ov75_021D1184 *)sub_0200682C(param0);
 
-    sub_02017FC8(3, 41, 0x20000);
+    CreateHeap(3, 41, 0x20000);
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov75_021D1184), 41);
     memset(v1, 0, sizeof(UnkStruct_ov75_021D1184));
 
@@ -174,7 +174,7 @@ int ov75_021D0E10 (UnkStruct_020067E8 * param0, int * param1)
     v1 = v0->unk_00;
 
     sub_02006830(param0);
-    sub_0201807C(v1);
+    DestroyHeap(v1);
 
     return 1;
 }
@@ -698,7 +698,7 @@ static void ov75_021D1564 (UnkStruct_ov75_021D1184 * param0)
     sub_02019044(param0->unk_18, 2);
     sub_02019044(param0->unk_18, 1);
     sub_02019044(param0->unk_18, 0);
-    sub_020181C4(param0->unk_18);
+    FreeToHeap(param0->unk_18);
 }
 
 static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
@@ -720,16 +720,16 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
     sub_0200DD0C(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
 
     v1 = NARC_GetMemberSize(v5, v6);
-    v2 = sub_02018184(param0->unk_00, v1);
+    v2 = AllocFromHeapAtEnd(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, v6, (void *)v2);
 
     NNS_G2dGetUnpackedCharacterData(v2, &v3);
     sub_0201958C(param0->unk_18, 1, v3->pRawData, v3->szByte, 0);
     sub_0201958C(param0->unk_18, 4, v3->pRawData, v3->szByte, 0);
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v8);
-    v2 = sub_02018184(param0->unk_00, v1);
+    v2 = AllocFromHeapAtEnd(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, v8, (void *)v2);
 
     NNS_G2dGetUnpackedPaletteData(v2, &v4);
@@ -754,15 +754,15 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
     sub_020039B0(param0->unk_30, 2, 0, 16 * 3, 16, 0x0);
     sub_02003858(param0->unk_30, 1);
     sub_02003694(param0->unk_30);
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v7);
-    param0->unk_34 = sub_02018144(param0->unk_00, v1);
+    param0->unk_34 = AllocFromHeap(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, v7, (void *)param0->unk_34);
     NNS_G2dGetUnpackedScreenData(param0->unk_34, &(param0->unk_3C));
 
     v1 = NARC_GetMemberSize(v5, 36);
-    param0->unk_38 = sub_02018144(param0->unk_00, v1);
+    param0->unk_38 = AllocFromHeap(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, 36, (void *)param0->unk_38);
     NNS_G2dGetUnpackedScreenData(param0->unk_38, &(param0->unk_40));
 
@@ -785,8 +785,8 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
 
 static void ov75_021D1868 (UnkStruct_ov75_021D1184 * param0)
 {
-    sub_020181C4(param0->unk_38);
-    sub_020181C4(param0->unk_34);
+    FreeToHeap(param0->unk_38);
+    FreeToHeap(param0->unk_34);
     sub_02002FA0(param0->unk_30, 2);
     sub_02002FA0(param0->unk_30, 0);
     sub_02002F54(param0->unk_30);

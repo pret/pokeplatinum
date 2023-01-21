@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 
 struct UnkStruct_02023790_t {
@@ -17,7 +17,7 @@ UnkStruct_02023790 * sub_02023790 (u32 param0, u32 param1)
 {
     UnkStruct_02023790 * v0;
 
-    v0 = sub_02018144(param1, (sizeof(UnkStruct_02023790) - sizeof(u16)) + sizeof(u16) * param0);
+    v0 = AllocFromHeap(param1, (sizeof(UnkStruct_02023790) - sizeof(u16)) + sizeof(u16) * param0);
 
     if (v0) {
         v0->unk_04 = 0xb6f8d2ec;
@@ -34,7 +34,7 @@ void sub_020237BC (UnkStruct_02023790 * param0)
     GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
 
     param0->unk_04 = 0xb6f8d2ec + 1;
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_020237E8 (UnkStruct_02023790 * param0)

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
 
@@ -27,7 +27,7 @@ void sub_020363E8 (int param0)
     int v0;
 
     if (!Unk_021C07D0) {
-        Unk_021C07D0 = sub_02018144(param0, sizeof(UnkStruct_021C07D0));
+        Unk_021C07D0 = AllocFromHeap(param0, sizeof(UnkStruct_021C07D0));
         MI_CpuFill8(Unk_021C07D0, 0, sizeof(UnkStruct_021C07D0));
     }
 
@@ -42,7 +42,7 @@ void sub_020363E8 (int param0)
 
 void sub_02036438 (void)
 {
-    sub_020181C4(Unk_021C07D0);
+    FreeToHeap(Unk_021C07D0);
     Unk_021C07D0 = NULL;
 }
 

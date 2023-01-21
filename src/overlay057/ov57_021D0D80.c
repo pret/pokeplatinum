@@ -22,7 +22,7 @@
 #include "unk_02000C88.h"
 #include "unk_020067E8.h"
 #include "unk_02017428.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -71,7 +71,7 @@ const UnkStruct_0208BE5C Unk_ov57_021D0F70 = {
 
 static int ov57_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_02017FC8(3, 77, 131072);
+    CreateHeap(3, 77, 131072);
     sub_02001028();
 
     return 1;
@@ -87,7 +87,7 @@ static int ov57_021D0D98 (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_0201807C(77);
+    DestroyHeap(77);
     sub_02000EC4(0xffffffff, &Unk_020F6824);
 
     return 1;
@@ -95,7 +95,7 @@ static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0DC8 (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_02017FC8(3, 77, 131072);
+    CreateHeap(3, 77, 131072);
     sub_02001028();
 
     return 1;
@@ -113,14 +113,14 @@ static int ov57_021D0DE0 (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0E00 (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_0201807C(77);
+    DestroyHeap(77);
     sub_02000EC4(0xffffffff, &Unk_020EA10C);
     return 1;
 }
 
 static int ov57_021D0E1C (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_02017FC8(3, 77, 131072);
+    CreateHeap(3, 77, 131072);
     sub_02001028();
 
     return 1;
@@ -146,7 +146,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0E90 (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_0201807C(77);
+    DestroyHeap(77);
     sub_02000EC4(0xffffffff, &Unk_020EA11C);
     return 1;
 }

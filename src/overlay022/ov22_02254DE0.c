@@ -12,7 +12,7 @@
 #include "overlay022/struct_ov22_02255040.h"
 
 #include "unk_02015064.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02022594.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
@@ -25,8 +25,8 @@ UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
 {
     UnkStruct_ov22_02254DE0 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov22_02254DE0));
-    v0->unk_00 = sub_02018144(param1, sizeof(UnkStruct_ov22_02255040) * param0);
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov22_02254DE0));
+    v0->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_ov22_02255040) * param0);
     memset(v0->unk_00, 0, sizeof(UnkStruct_ov22_02255040) * param0);
     v0->unk_04 = param0;
 
@@ -35,8 +35,8 @@ UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
 
 void ov22_02254E0C (UnkStruct_ov22_02254DE0 * param0)
 {
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0);
     param0 = NULL;
 }
 

@@ -56,7 +56,7 @@
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -601,13 +601,13 @@ static void * ov97_022341B4 (u32 param0, u32 param1, NNSG2dCharacterData ** para
 {
     void * v0;
 
-    v0 = sub_02018184(param3, 4096);
+    v0 = AllocFromHeapAtEnd(param3, 4096);
 
     if (v0 != NULL) {
         ReadWholeNarcMemberByIndexPair(v0, param0, param1);
 
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param2) == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return NULL;
         }
     }
@@ -670,7 +670,7 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
     sub_02021E90(param5, sub_02079EDC(param0, v1, param1) + 8);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkStruct_02022550 * param4, void * param5, NARC * param6)
@@ -721,7 +721,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     NARC * v7;
 
     v7 = NARC_ctor(19, 78);
-    v6 = sub_02018184(78, 4096);
+    v6 = AllocFromHeapAtEnd(78, 4096);
 
     for (v0 = 0; v0 < 30; v0++) {
         if (ov97_02236924(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 5, NULL)) {
@@ -746,7 +746,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
         }
     }
 
-    sub_020181C4(v6);
+    FreeToHeap(v6);
     NARC_dtor(v7);
 
     param0->unk_12664 = ov97_02234364;
@@ -1793,7 +1793,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov97_02234A2C * v0;
 
-    sub_02017FC8(3, 78, 0x38000);
+    CreateHeap(3, 78, 0x38000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov97_02234A2C), 78);
     memset(v0, 0, sizeof(UnkStruct_ov97_02234A2C));
@@ -2164,10 +2164,10 @@ static int ov97_02235CC8 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_020237BC(v0->unk_12668);
     sub_020237BC(v0->unk_1266C);
-    sub_020181C4(v0->unk_20);
+    FreeToHeap(v0->unk_20);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     sub_02006830(param0);
-    sub_0201807C(78);
+    DestroyHeap(78);
 
     ov97_02238400(0);
 

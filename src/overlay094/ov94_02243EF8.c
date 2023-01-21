@@ -12,7 +12,7 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
@@ -317,7 +317,7 @@ static void ov94_02244378 (NNSG2dCharacterData * param0, NNSG2dPaletteData * par
 void ov94_022443B8 (UnkStruct_ov94_0223FD4C * param0)
 {
     if (param0->unk_10F0) {
-        sub_020181C4(param0->unk_10FC);
-        sub_020181C4(param0->unk_10F4);
+        FreeToHeap(param0->unk_10FC);
+        FreeToHeap(param0->unk_10F4);
     }
 }

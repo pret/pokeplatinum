@@ -12,7 +12,7 @@
 #include "overlay021/struct_ov21_021D3A60.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
@@ -242,13 +242,13 @@ BOOL ov21_021D3464 (UnkStruct_ov21_021D3320 * param0, int param1, int param2, in
     int v5;
     BOOL v6;
 
-    v0 = sub_02018184(param7, sizeof(u16) * 493);
+    v0 = AllocFromHeapAtEnd(param7, sizeof(u16) * 493);
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(u16) * 493);
 
     v1 = 0;
-    v2 = sub_02018184(param7, sizeof(u16) * 493);
+    v2 = AllocFromHeapAtEnd(param7, sizeof(u16) * 493);
 
     GF_ASSERT(v2);
     memset(v2, 0, sizeof(u16) * 493);
@@ -341,9 +341,9 @@ BOOL ov21_021D3464 (UnkStruct_ov21_021D3320 * param0, int param1, int param2, in
 
     ov21_021D3FA8(&param0->unk_04, &param0->unk_1738, &param0->unk_173C);
 
-    sub_020181C4(v0);
-    sub_020181C4(v2);
-    sub_020181C4(v4);
+    FreeToHeap(v0);
+    FreeToHeap(v2);
+    FreeToHeap(v4);
 
     return v6;
 }
@@ -743,7 +743,7 @@ static void ov21_021D3B98 (int param0, u16 * param1, int * param2, const u16 * p
 
     if (v0 != NULL) {
         ov21_021D39E4(param1, param2, v0, v1, param3, param4, v2, param6);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;
@@ -793,7 +793,7 @@ static void ov21_021D3C48 (int param0, u16 * param1, int * param2, const u16 * p
 
     if (v0 != NULL) {
         ov21_021D39E4(param1, param2, param3, param4, v0, v1, 1, param6);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;
@@ -867,7 +867,7 @@ static void ov21_021D3D2C (int param0, u16 * param1, int * param2, const u16 * p
 
     if (v0 != NULL) {
         ov21_021D39E4(param1, param2, param3, param4, v0, v1, 0, param6);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;
@@ -932,7 +932,7 @@ static void ov21_021D3E80 (int param0, u16 * param1, int * param2, const u16 * p
 
     if (v0 != NULL) {
         ov21_021D39E4(param1, param2, param3, param4, v0, v1, 1, param6);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     } else {
         memcpy(param1, param3, (sizeof(u16)) * param4);
         *param2 = param4;

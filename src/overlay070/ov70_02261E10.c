@@ -11,7 +11,7 @@
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay070/ov70_0225C858.h"
 #include "overlay070/ov70_02260B44.h"
 #include "overlay070/ov70_02261E10.h"
@@ -147,7 +147,7 @@ UnkStruct_ov70_02261E10 * ov70_02261E10 (int param0, int param1, const UnkStruct
     UnkStruct_ov70_02261E10 * v0;
     int v1;
 
-    v0 = sub_02018144(param3, sizeof(UnkStruct_ov70_02261E10));
+    v0 = AllocFromHeap(param3, sizeof(UnkStruct_ov70_02261E10));
     memset(v0, 0, sizeof(UnkStruct_ov70_02261E10));
 
     v0->unk_00 = param2;
@@ -277,7 +277,7 @@ void ov70_022621AC (UnkStruct_ov70_02261E10 * param0)
     ov70_02260D80(param0->unk_04);
     ov70_02260BB8(param0->unk_04);
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov70_02262210 (UnkStruct_ov70_02261E10 * param0)

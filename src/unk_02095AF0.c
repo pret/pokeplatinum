@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02095C60.h"
 #include "overlay017/struct_ov17_0224EDE0.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020298BC.h"
 #include "unk_02032798.h"
 #include "unk_02034198.h"
@@ -97,7 +97,7 @@ BOOL sub_02095B5C (UnkStruct_02095C48 * param0, int param1, const UnkStruct_0202
     int v2;
 
     v1 = sub_02029C64();
-    v0 = sub_02018144(20, v1 + 1);
+    v0 = AllocFromHeap(20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
@@ -107,7 +107,7 @@ BOOL sub_02095B5C (UnkStruct_02095C48 * param0, int param1, const UnkStruct_0202
         v2 = 0;
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     return v2;
 }
 

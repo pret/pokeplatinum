@@ -5,7 +5,7 @@
 
 #include "unk_0200D9E8.h"
 #include "unk_02013B10.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 typedef struct UnkStruct_02013B10_t {
     void * unk_00[2];
@@ -38,7 +38,7 @@ UnkStruct_02013B10 * sub_02013B10 (int param0, void * param1, void * param2)
 {
     UnkStruct_02013B10 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02013B10));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02013B10));
     memset(v0, 0, sizeof(UnkStruct_02013B10));
 
     v0->unk_09 = 1;
@@ -52,7 +52,7 @@ void sub_02013B40 (UnkStruct_02013B10 * param0)
 {
     GF_ASSERT(param0);
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
     param0 = NULL;
 }
 
@@ -106,7 +106,7 @@ UnkStruct_02013BE0 * sub_02013BE0 (int param0)
 {
     UnkStruct_02013BE0 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02013BE0));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02013BE0));
     memset(v0, 0, sizeof(UnkStruct_02013BE0));
     v0->unk_600 = sub_02013B10(param0, v0->unk_00, v0->unk_300);
 
@@ -173,7 +173,7 @@ void sub_02013D74 (UnkStruct_02013BE0 * param0)
     sub_02013D38(param0);
     sub_02013FC8();
     sub_02013B40(param0->unk_600);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void * sub_02013D94 (UnkStruct_02013BE0 * param0)

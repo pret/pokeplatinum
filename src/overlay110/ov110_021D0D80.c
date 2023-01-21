@@ -31,7 +31,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -115,7 +115,7 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    sub_02017FC8(3, 114, 0x20000);
+    CreateHeap(3, 114, 0x20000);
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov110_021D0F78), 114);
     memset(v1, 0, sizeof(UnkStruct_ov110_021D0F78));
 
@@ -192,7 +192,7 @@ int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(114);
+    DestroyHeap(114);
 
     return 1;
 }
@@ -401,7 +401,7 @@ static void ov110_021D11CC (UnkStruct_02018340 * param0)
     sub_02019044(param0, 0);
     sub_02019044(param0, 2);
     sub_02019044(param0, 6);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }
@@ -463,7 +463,7 @@ static void ov110_021D128C (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return;
 }
@@ -1198,7 +1198,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     cmp r4, #0
     beq _021D1978
     add r0, r4, #0
-    bl sub_020181C4
+    bl FreeToHeap
  _021D1978:
     add r0, r5, #0
     mov r1, #0

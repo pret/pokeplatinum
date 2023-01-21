@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02027854.h"
 #include "struct_defs/struct_02027BF4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02027B70.h"
 #include "unk_0209739C.h"
 
@@ -41,7 +41,7 @@ void sub_02027B90 (UnkStruct_02027854 * param0, int param1, const u16 * param2, 
         param0[v0].unk_0B = 3;
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 UnkStruct_02027BF4 * sub_02027BF4 (int param0)
@@ -52,7 +52,7 @@ UnkStruct_02027BF4 * sub_02027BF4 (int param0)
     NARC * v3;
 
     v3 = sub_0209739C(param0);
-    v1 = sub_02018144(param0, sizeof(UnkStruct_02027BF4) * 64);
+    v1 = AllocFromHeap(param0, sizeof(UnkStruct_02027BF4) * 64);
 
     for (v0 = 0; v0 < 64; v0++) {
         v2 = sub_020973A8(v3, v0, param0);
@@ -61,7 +61,7 @@ UnkStruct_02027BF4 * sub_02027BF4 (int param0)
         v1[v0].unk_01 = sub_020973D4(v2, 4);
         v1[v0].unk_02 = sub_020973D4(v2, 2);
 
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     sub_020973B0(v3);

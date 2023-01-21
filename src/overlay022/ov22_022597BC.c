@@ -12,7 +12,7 @@
 #include "unk_0200679C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "overlay022/ov22_022597BC.h"
@@ -106,7 +106,7 @@ void ov22_02259838 (UnkStruct_ov22_02259820 * param0, int param1)
         v1 = sub_02006F6C(param0->unk_00->unk_04, v2, 0, &v0, param0->unk_14);
 
         ov22_02259ABC(param0->unk_00->unk_00, param0->unk_00->unk_1C, v0, param0->unk_00->unk_14, param0->unk_00->unk_18, param0->unk_00->unk_0C, param0->unk_00->unk_10, param0->unk_00->unk_28, param0->unk_00->unk_20);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 }
 
@@ -118,7 +118,7 @@ void ov22_022598A0 (UnkStruct_ov22_02259820 * param0)
     v1 = sub_02006F6C(param0->unk_00->unk_04, param0->unk_00->unk_08, 0, &v0, param0->unk_14);
 
     ov22_02259ABC(param0->unk_00->unk_00, param0->unk_00->unk_1C, v0, param0->unk_00->unk_14, param0->unk_00->unk_18, param0->unk_00->unk_0C, param0->unk_00->unk_10, param0->unk_00->unk_28, param0->unk_00->unk_20);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     memset(param0, 0, sizeof(UnkStruct_ov22_02259820));
 }
@@ -188,7 +188,7 @@ static void ov22_022599A0 (UnkStruct_ov22_022599A0 * param0, int * param1, int *
     v3 = v1->screenHeight / 8;
 
     ov22_02259ABC(param0->unk_00, param0->unk_1C, v1, v4, v3, v5, v6, param0->unk_28, param0->unk_24);
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 
     if (param1) {
         *param1 = v4;
@@ -233,7 +233,7 @@ static void ov22_02259B3C (u32 param0, u32 param1, UnkStruct_02018340 * param2, 
 {
     UnkStruct_ov22_02259B3C * v0;
 
-    v0 = sub_02018144(param5, sizeof(UnkStruct_ov22_02259B3C));
+    v0 = AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B3C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B3C));
 
     v0->unk_08 = sub_02006F50(param0, param1, 0, &v0->unk_04, param5);
@@ -248,7 +248,7 @@ static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 p
 {
     UnkStruct_ov22_02259B8C * v0;
 
-    v0 = sub_02018144(param5, sizeof(UnkStruct_ov22_02259B8C));
+    v0 = AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B8C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B8C));
 
     v0->unk_04 = sub_02006F88(param0, param1, &v0->unk_00, param5);
@@ -267,8 +267,8 @@ static void ov22_02259BD4 (UnkStruct_0201CD38 * param0, void * param1)
 
     sub_0201958C(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
     sub_0200DA58(param0);
-    sub_020181C4(v0->unk_08);
-    sub_020181C4(v0);
+    FreeToHeap(v0->unk_08);
+    FreeToHeap(v0);
 }
 
 static void ov22_02259C10 (UnkStruct_0201CD38 * param0, void * param1)
@@ -284,6 +284,6 @@ static void ov22_02259C10 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     sub_0200DA58(param0);
-    sub_020181C4(v0->unk_04);
-    sub_020181C4(v0);
+    FreeToHeap(v0->unk_04);
+    FreeToHeap(v0);
 }

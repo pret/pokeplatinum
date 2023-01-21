@@ -43,7 +43,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201FE94.h"
@@ -161,7 +161,7 @@ static void ov19_021D797C(void);
 
 BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D4DF0 * param1, const UnkStruct_ov19_021D5DF8 * param2)
 {
-    UnkStruct_ov19_021D61B0 * v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021D61B0));
+    UnkStruct_ov19_021D61B0 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021D61B0));
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
@@ -268,8 +268,8 @@ void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
     sub_02019044(param0->unk_1C0, 4);
     sub_02007B6C(param0->unk_1BC);
     sub_02002C28(0);
-    sub_020181C4(param0->unk_1C0);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_1C0);
+    FreeToHeap(param0);
     sub_0200A878();
 }
 
@@ -339,7 +339,7 @@ void ov19_021D6594 (UnkStruct_ov19_021D61B0 * param0, u32 param1)
 
         for (v2 = 0; v2 < 4; v2++) {
             if (param0->unk_08[v2] == NULL) {
-                v1 = sub_02018144(10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
+                v1 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
 
                 if (v1 != NULL) {
                     v1->unk_00 = param1;
@@ -398,7 +398,7 @@ static void ov19_021D6640 (UnkStruct_ov19_021D6640 * param0)
 
     sub_0200DA58(v0->unk_08[param0->unk_04]);
     v0->unk_08[param0->unk_04] = NULL;
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov19_021D6664 (UnkStruct_0201CD38 * param0, void * param1)
@@ -2031,7 +2031,7 @@ static void ov19_021D797C (void)
         u32 i;
 
         for (i = 0; i < Unk_ov19_021E05EC; i++) {
-            sub_020181C4(Unk_ov19_021E05F0[i].unk_08);
+            FreeToHeap(Unk_ov19_021E05F0[i].unk_08);
 
             if (Unk_ov19_021E05F0[i].unk_00) {
                 Unk_ov19_021E05F0[i].unk_00(Unk_ov19_021E05F0[i].unk_04);

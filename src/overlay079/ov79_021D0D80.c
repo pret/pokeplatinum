@@ -27,7 +27,7 @@
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -83,7 +83,7 @@ int ov79_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov79_021D0E1C * v0 = NULL;
     UnkStruct_0203D9B8 * v1 = sub_02006840(param0);
 
-    sub_02017FC8(3, 45, 0x20000);
+    CreateHeap(3, 45, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov79_021D0E1C), 45);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov79_021D0E1C));
@@ -118,7 +118,7 @@ int ov79_021D0DDC (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_20->unk_06 = v0->unk_82;
 
     sub_02006830(param0);
-    sub_0201807C(v0->unk_00);
+    DestroyHeap(v0->unk_00);
 
     return 1;
 }
@@ -613,7 +613,7 @@ static void ov79_021D13A4 (UnkStruct_ov79_021D0E1C * param0)
         sub_02019044(param0->unk_24, v0);
     }
 
-    sub_020181C4(param0->unk_24);
+    FreeToHeap(param0->unk_24);
 }
 
 static void ov79_021D13C4 (UnkStruct_ov79_021D0E1C * param0)

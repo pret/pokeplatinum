@@ -16,7 +16,7 @@
 #include "unk_0200F85C.h"
 #include "unk_02012480.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 typedef struct {
     UnkStruct_0200F600 * unk_00;
@@ -452,7 +452,7 @@ void sub_0200F6AC (UnkStruct_0200F600 * param0, int param1)
 
 void sub_0200F6D8 (UnkStruct_0200F600 * param0, void * param1, UnkFuncPtr_0200F634 param2, int param3, int param4)
 {
-    UnkStruct_0200F6D8 * v0 = sub_02018184(param4, sizeof(UnkStruct_0200F6D8));
+    UnkStruct_0200F6D8 * v0 = AllocFromHeapAtEnd(param4, sizeof(UnkStruct_0200F6D8));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -464,7 +464,7 @@ void sub_0200F6D8 (UnkStruct_0200F600 * param0, void * param1, UnkFuncPtr_0200F6
 
 void sub_0200F704 (UnkStruct_0200F600 * param0, int param1, int param2)
 {
-    UnkStruct_0200F704 * v0 = sub_02018184(param2, sizeof(UnkStruct_0200F704));
+    UnkStruct_0200F704 * v0 = AllocFromHeapAtEnd(param2, sizeof(UnkStruct_0200F704));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -478,7 +478,7 @@ static void sub_0200F728 (UnkStruct_0201CD38 * param0, void * param1)
 
     sub_0200F634(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C);
     sub_0200DA58(param0);
-    sub_020181C4(param1);
+    FreeToHeap(param1);
 }
 
 static void sub_0200F748 (UnkStruct_0201CD38 * param0, void * param1)
@@ -487,7 +487,7 @@ static void sub_0200F748 (UnkStruct_0201CD38 * param0, void * param1)
 
     sub_0200F6AC(v0->unk_00, v0->unk_04);
     sub_0200DA58(param0);
-    sub_020181C4(param1);
+    FreeToHeap(param1);
 }
 
 static void sub_0200F764 (void * param0)

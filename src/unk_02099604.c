@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay082/struct_ov82_0223B164.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_0202A910.h"
 #include "unk_0203CC84.h"
@@ -25,7 +25,7 @@ UnkStruct_ov82_0223B164 * sub_02099604 (int param0, UnkStruct_021C0794 * param1,
 {
     UnkStruct_ov82_0223B164 * v0;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_ov82_0223B164));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov82_0223B164));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov82_0223B164));
 
     v0->unk_0C = param1;

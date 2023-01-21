@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay006/ov6_02242F74.h"
 
 static u8 ov6_02242FC0(const int param0);
@@ -27,7 +27,7 @@ void ov6_02242F74 (const int param0, const BOOL param1, const int param2, int * 
     (*param3) = v0[v2];
     (*param4) = v0[v2];
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static u8 ov6_02242FC0 (const int param0)

@@ -6,7 +6,7 @@
 #include "filesystem.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 
 static void sub_020131EC(const u8 * param0, u8 * param1, int * param2, int * param3, int param4, int param5);
 
@@ -34,7 +34,7 @@ static void sub_0201322C (int param0, int param1, int param2, NNSG2dCharacterDat
     GF_ASSERT(param3 != NULL);
     GF_ASSERT(v0 != 0);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void sub_02013260 (int param0, int param1, int param2, int param3, NNSG2dCharacterData * param4, void * param5)
@@ -116,7 +116,7 @@ static void * sub_02013388 (int param0, int param1, int param2, int param3, int 
     int v1;
 
     v1 = ((param5 * param6) * ((8 / 2) * 8));
-    v0 = sub_02018144(param2, v1);
+    v0 = AllocFromHeap(param2, v1);
 
     sub_02013338(param0, param1, param2, param3, param4, param5, param6, v0, param7, param8, param9, param10);
 
@@ -166,7 +166,7 @@ void sub_020133D4 (int param0, int param1, int param2, int param3, int param4, i
         }
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 void * sub_020134A8 (int param0, int param1, int param2, int param3, int param4, int param5, int param6)
@@ -175,7 +175,7 @@ void * sub_020134A8 (int param0, int param1, int param2, int param3, int param4,
     int v1;
 
     v1 = ((param5 * param6) * ((8 / 2) * 8));
-    v0 = sub_02018144(param2, v1);
+    v0 = AllocFromHeap(param2, v1);
 
     sub_020133D4(param0, param1, param2, param3, param4, param5, param6, v0);
 
@@ -233,7 +233,7 @@ void sub_02013584 (int param0, int param1, int param2, int param3, int param4, i
         sub_02013560(param5, param6, &v4[v0], &v2, v3, param7);
     }
 
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 }
 
 void sub_020135F0 (int param0, int param1, int param2, const UnkStruct_02013610 * param3, void * param4)
@@ -259,7 +259,7 @@ void * sub_0201363C (int param0, int param1, int param2)
     int v1;
 
     v1 = (10 * 10 * ((8 / 2) * 8));
-    v0 = sub_02018144(param2, v1);
+    v0 = AllocFromHeap(param2, v1);
 
     sub_02013610(param0, param1, param2, v0);
 
@@ -274,14 +274,14 @@ void * sub_02013660 (int param0, int param1, int param2)
     int v3;
     BOOL v4;
 
-    v2 = sub_02018144(param2, 0x20);
+    v2 = AllocFromHeap(param2, 0x20);
     v1 = AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
     v4 = NNS_G2dGetUnpackedPaletteData(v1, &v0);
 
     GF_ASSERT(v4 == 1);
     MI_CpuCopy16(v0->pRawData, v2, 0x20);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v2;
 }
@@ -310,7 +310,7 @@ void sub_020136A4 (int param0, int param1, int param2, int param3, int param4, i
         sub_02013560(param5, param6, &v4[v0], &v2, v3, param7);
     }
 
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 }
 
 void sub_02013720 (int param0, int param1, int param2, const UnkStruct_02013610 * param3, void * param4, u32 param5, BOOL param6, int param7, int param8)

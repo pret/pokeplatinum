@@ -28,7 +28,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02023790.h"
 #include "unk_0202631C.h"
@@ -1040,7 +1040,7 @@ UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (UnkStruct_0203CDB0 * param0, u8 param1, u
     UnkStruct_ov5_021F7ED8 * v0;
     int v1;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021F7ED8));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021F7ED8));
 
     if (v0 == NULL) {
         return NULL;
@@ -1202,7 +1202,7 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
     }
 
     sub_0200DA58(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }

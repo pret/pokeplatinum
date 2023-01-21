@@ -5,7 +5,7 @@
 
 #include "overlay021/struct_ov21_021D4FE4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay021/ov21_021D4EE4.h"
 
 typedef struct UnkStruct_ov21_021D4EE4_t {
@@ -30,7 +30,7 @@ UnkStruct_ov21_021D4EE4 * ov21_021D4EE4 (int param0)
 {
     UnkStruct_ov21_021D4EE4 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov21_021D4EE4));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D4EE4));
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4EE4));
 
     return v0;
@@ -38,7 +38,7 @@ UnkStruct_ov21_021D4EE4 * ov21_021D4EE4 (int param0)
 
 void ov21_021D4EFC (UnkStruct_ov21_021D4EE4 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov21_021D4F04 (UnkStruct_ov21_021D4EE4 * param0, const UnkStruct_ov21_021D4FE4 * param1, int param2, int param3)

@@ -12,7 +12,7 @@
 #include "overlay080/struct_ov80_021D2E10.h"
 
 #include "unk_0200C6E4.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay080/ov80_021D2AF4.h"
 
@@ -51,11 +51,11 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 
-    v0 = sub_02018144(param4, sizeof(UnkStruct_ov80_021D2C1C));
+    v0 = AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C1C));
     memset(v0, 0, sizeof(UnkStruct_ov80_021D2C1C));
 
     v0->unk_00 = param3;
-    v0->unk_08 = sub_02018144(param4, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
+    v0->unk_08 = AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
 
     v2 = Unk_ov80_021D31D8;
@@ -99,8 +99,8 @@ void ov80_021D2C1C (UnkStruct_ov80_021D2C1C * param0)
         sub_02021BD4(v0->unk_18);
     }
 
-    sub_020181C4(param0->unk_08);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_08);
+    FreeToHeap(param0);
 }
 
 UnkStruct_ov80_021D2C5C * ov80_021D2C5C (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3)
@@ -215,10 +215,10 @@ UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
     v1 = FS_ReadFile(&v0, &v3, 4);
     GF_ASSERT(v1 >= 0);
 
-    v4 = sub_02018144(param1, sizeof(UnkStruct_ov80_021D2E10));
+    v4 = AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2E10));
     memset(v4, 0, sizeof(UnkStruct_ov80_021D2E10));
 
-    v4->unk_04 = sub_02018144(param1, sizeof(UnkStruct_ov80_021D2AF4) * v3);
+    v4->unk_04 = AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2AF4) * v3);
     memset(v4->unk_04, 0, sizeof(UnkStruct_ov80_021D2AF4) * v3);
 
     v4->unk_00 = v3;
@@ -236,8 +236,8 @@ UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
 
 void ov80_021D2E10 (UnkStruct_ov80_021D2E10 * param0)
 {
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0);
 }
 
 UnkStruct_ov80_021D2AF4 * ov80_021D2E24 (UnkStruct_ov80_021D2E10 * param0, int param1, int param2, u16 param3)

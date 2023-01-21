@@ -9,7 +9,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
 #include "unk_0202298C.h"
@@ -51,7 +51,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
 
     {
         v0 = sub_02022F24(v1);
-        *param0 = sub_02018144(param3, v0);
+        *param0 = AllocFromHeap(param3, v0);
         memcpy(*param0, v1, v0);
     }
 
@@ -61,7 +61,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
         NNS_G3dPlttSetPlttKey(v5, v4);
     }
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 BOOL ov70_0225C7A0 (const UnkStruct_020170F4 * param0, const UnkStruct_02017294 * param1)

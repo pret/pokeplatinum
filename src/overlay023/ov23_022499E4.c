@@ -8,7 +8,7 @@
 #include "functypes/funcptr_020598EC.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202CD50.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
@@ -76,7 +76,7 @@ void ov23_022499E8 (UnkStruct_0203CDB0 * param0)
     sub_0205965C(param0);
 
     v0 = sub_0205964C();
-    sub_02017FC8(3, 33, 0xe800);
+    CreateHeap(3, 33, 0xe800);
 
     if (!sub_0206ADDC(sub_020507E4(v0->unk_18->unk_0C))) {
         sub_02036894();
@@ -667,7 +667,7 @@ static void ov23_0224A1A0 (void)
     ov23_02242D08();
 
     sub_020367D0();
-    sub_0201807C(33);
+    DestroyHeap(33);
 
     v0->unk_41 = 0;
 

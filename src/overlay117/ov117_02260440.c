@@ -9,7 +9,7 @@
 #include "overlay117/struct_ov117_022605C0.h"
 
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
@@ -42,7 +42,7 @@ int ov117_02260440 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov117_02260440 * v0 = sub_02006840(param0);
     UnkStruct_ov117_022605C0 * v1;
 
-    sub_02017FC8(3, 110, 0x60000);
+    CreateHeap(3, 110, 0x60000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov117_022605C0), 110);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov117_022605C0));
@@ -130,7 +130,7 @@ int ov117_022605C0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov117_022605C0 * v0 = sub_0200682C(param0);
 
     sub_02006830(param0);
-    sub_0201807C(110);
+    DestroyHeap(110);
 
     return 1;
 }

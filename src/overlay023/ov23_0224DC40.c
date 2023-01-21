@@ -26,7 +26,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E68.h"
@@ -216,7 +216,7 @@ void ov23_0224DCB8 (int param0, UnkFuncPtr_ov23_0224DCB8 param1, UnkStruct_0203C
     UnkStruct_ov23_0224E280 * v0;
     UnkStruct_ov84_02240FA8 v1;
 
-    v0 = sub_02018144(33, sizeof(UnkStruct_ov23_0224E280));
+    v0 = AllocFromHeap(33, sizeof(UnkStruct_ov23_0224E280));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0224E280));
 
     Unk_ov23_022577B4 = v0;
@@ -290,7 +290,7 @@ static void ov23_0224DDE4 (UnkStruct_0201CD38 * param0, UnkStruct_ov23_0224E280 
         param1->unk_2C(0);
     }
 
-    sub_020181C4(param1);
+    FreeToHeap(param1);
     sub_02059514();
     sub_0200DA58(param0);
 
@@ -945,7 +945,7 @@ static void ov23_0224E9C4 (UnkStruct_0201CD38 * param0, UnkStruct_ov23_022577B0 
 
     ov23_0224EA08(param0, param1);
 
-    sub_020181C4(param1);
+    FreeToHeap(param1);
     sub_02059514();
     sub_0200DA58(param0);
 
@@ -1284,7 +1284,7 @@ void ov23_0224F07C (int param0, int param1, UnkStruct_0203CDB0 * param2)
         return;
     }
 
-    v0 = sub_02018144(33, sizeof(UnkStruct_ov23_022577B0));
+    v0 = AllocFromHeap(33, sizeof(UnkStruct_ov23_022577B0));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022577B0));
 
     Unk_ov23_022577B0 = v0;

@@ -21,7 +21,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -67,7 +67,7 @@ void ov19_021DB370 (UnkStruct_ov19_021DB6F0 * param0)
         }
 
         if (param0->unk_24) {
-            sub_020181C4(param0->unk_24);
+            FreeToHeap(param0->unk_24);
         }
 
         if (param0->unk_14) {
@@ -82,7 +82,7 @@ void ov19_021DB370 (UnkStruct_ov19_021DB6F0 * param0)
             sub_020237BC(param0->unk_34);
         }
 
-        sub_020181C4(param0->unk_18);
+        FreeToHeap(param0->unk_18);
         param0->unk_18 = NULL;
     }
 }

@@ -18,7 +18,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_0200AC5C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -46,7 +46,7 @@ static void ov54_022566A8(UnkStruct_ov54_0225642C * param0);
 
 BOOL ov54_0225642C (UnkStruct_ov54_0225642C ** param0, const UnkStruct_ov54_0225642C_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov54_0225642C * v0 = (UnkStruct_ov54_0225642C *)sub_02018144(8, sizeof(UnkStruct_ov54_0225642C));
+    UnkStruct_ov54_0225642C * v0 = (UnkStruct_ov54_0225642C *)AllocFromHeap(8, sizeof(UnkStruct_ov54_0225642C));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);
@@ -64,7 +64,7 @@ BOOL ov54_0225642C (UnkStruct_ov54_0225642C ** param0, const UnkStruct_ov54_0225
 void ov54_02256460 (UnkStruct_ov54_0225642C * param0)
 {
     if (param0 != NULL) {
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

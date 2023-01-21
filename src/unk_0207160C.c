@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
@@ -297,7 +297,7 @@ void sub_0207183C (UnkStruct_0203CDB0 * param0)
         return;
     }
 
-    v2 = sub_02018184(11, sizeof(UnkStruct_020718D8));
+    v2 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_020718D8));
     v2->unk_00 = 0;
 
     {
@@ -372,7 +372,7 @@ static BOOL sub_020718D8 (UnkStruct_020508D4 * param0)
         (v2->unk_00)++;
         break;
     case 3:
-        sub_020181C4(v2);
+        FreeToHeap(v2);
         return 1;
     }
 
@@ -427,7 +427,7 @@ static BOOL sub_020719D8 (UnkStruct_020508D4 * param0)
         (v2->unk_00)++;
         break;
     case 3:
-        sub_020181C4(v2);
+        FreeToHeap(v2);
         return 1;
     }
 

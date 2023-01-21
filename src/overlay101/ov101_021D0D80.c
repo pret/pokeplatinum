@@ -29,7 +29,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -87,7 +87,7 @@ int ov101_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_020177A4();
     sub_0201FF00();
     sub_0201FF68();
-    sub_02017FC8(3, 79, 0x80000);
+    CreateHeap(3, 79, 0x80000);
 
     v0 = sub_0200681C(param0, (sizeof(UnkStruct_ov101_021D0F3C)), 79);
     memset(v0, 0, (sizeof(UnkStruct_ov101_021D0F3C)));
@@ -169,7 +169,7 @@ int ov101_021D0EE4 (UnkStruct_020067E8 * param0, int * param1)
     ov101_021D0F94(v1);
 
     sub_02006830(param0);
-    sub_0201807C(79);
+    DestroyHeap(79);
 
     return 1;
 }
@@ -203,7 +203,7 @@ static UnkStruct_ov101_021D13C8 * ov101_021D0F6C (UnkStruct_0203E348 * param0)
 
 static void ov101_021D0F94 (UnkStruct_ov101_021D13C8 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov101_021D0F9C (UnkStruct_ov101_021D13C8 * param0)
@@ -370,7 +370,7 @@ static void ov101_021D11A4 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
     sub_02019044(param0, 7);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov101_021D11D0 (void)
@@ -387,45 +387,45 @@ static void ov101_021D121C (UnkStruct_ov101_021D13C8 * param0)
 
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_448);
     sub_0201972C(1, param0->unk_448->pRawData, (32 * 13), (32 * 0));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 0, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_444);
     sub_0201958C(param0->unk_43C, 1, param0->unk_444->pRawData, param0->unk_444->szByte, (32 * 0));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 1, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_440);
     sub_02019574(param0->unk_43C, 1, (void *)param0->unk_440->rawData, param0->unk_440->szByte);
     sub_02019448(param0->unk_43C, 1);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 8, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_444);
     sub_0201958C(param0->unk_43C, 2, param0->unk_444->pRawData, param0->unk_444->szByte, (32 * 0));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 9, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_440);
     sub_02019574(param0->unk_43C, 2, (void *)param0->unk_440->rawData, param0->unk_440->szByte);
     sub_02019448(param0->unk_43C, 2);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 3, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &param0->unk_448);
     sub_0201972C(7, param0->unk_448->pRawData, (32 * 13), (32 * 0));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 2, 0);
     NNS_G2dGetUnpackedCharacterData(v0, &param0->unk_444);
     sub_0201958C(param0->unk_43C, 7, param0->unk_444->pRawData, param0->unk_444->szByte, 0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 4, 0);
     NNS_G2dGetUnpackedScreenData(v0, &param0->unk_440);
     sub_02019574(param0->unk_43C, 7, (void *)param0->unk_440->rawData, param0->unk_440->szByte);
     sub_02019448(param0->unk_43C, 7);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 void ov101_021D13C8 (UnkStruct_ov101_021D13C8 * param0)
@@ -657,7 +657,7 @@ static void ov101_021D197C (void * param0)
 
 void * ov101_021D1998 (u32 param0)
 {
-    void * v0 = sub_02018144(79, param0);
+    void * v0 = AllocFromHeap(79, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -681,9 +681,9 @@ void * ov101_021D19E4 (UnkStruct_ov101_021D13C8 * param0, u32 param1, int param2
     u32 v1 = NARC_GetMemberSize(param0->unk_438, param1);
 
     if (param2 == 1) {
-        v0 = sub_02018144(79, v1);
+        v0 = AllocFromHeap(79, v1);
     } else {
-        v0 = sub_02018184(79, v1);
+        v0 = AllocFromHeapAtEnd(79, v1);
     }
 
     GF_ASSERT(v0 != NULL);

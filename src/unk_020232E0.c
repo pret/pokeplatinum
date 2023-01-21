@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02002328.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D0C8.h"
 #include "unk_0201D670.h"
 #include "unk_020232E0.h"
@@ -54,7 +54,7 @@ static u8 sub_020236C8(const UnkStruct_02023350 * param0, u32 param1);
 
 UnkStruct_02023350 * sub_020232E0 (u32 param0, u32 param1, int param2, BOOL param3, u32 param4)
 {
-    UnkStruct_02023350 * v0 = sub_02018144(param4, sizeof(UnkStruct_02023350));
+    UnkStruct_02023350 * v0 = AllocFromHeap(param4, sizeof(UnkStruct_02023350));
 
     if (v0) {
         sub_02023350(v0, param0, param1, param3, param4);
@@ -68,7 +68,7 @@ void sub_02023318 (UnkStruct_02023350 * param0)
 {
     sub_02023478(param0);
     sub_02023408(param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02023330 (UnkStruct_02023350 * param0, int param1, u32 param2)
@@ -94,7 +94,7 @@ static void sub_02023350 (UnkStruct_02023350 * param0, u32 param1, u32 param2, B
         } else {
             GF_ASSERT(param0->unk_5C.unk_04);
 
-            param0->unk_74 = sub_02018144(param4, param0->unk_5C.unk_08);
+            param0->unk_74 = AllocFromHeap(param4, param0->unk_5C.unk_08);
             param0->unk_70 = sub_020236B0;
 
             NARC_ReadFromMember(param0->unk_54, param2, param0->unk_5C.unk_04, param0->unk_5C.unk_08, (void *)(param0->unk_74));
@@ -119,7 +119,7 @@ static void sub_02023350 (UnkStruct_02023350 * param0, u32 param1, u32 param2, B
 static void sub_02023408 (UnkStruct_02023350 * param0)
 {
     if (param0->unk_74) {
-        sub_020181C4(param0->unk_74);
+        FreeToHeap(param0->unk_74);
     }
 
     if (param0->unk_54) {
@@ -141,7 +141,7 @@ static void sub_0202343C (UnkStruct_02023350 * param0, u32 param1)
 {
     u32 v0 = param0->unk_0C * param0->unk_5C.unk_08;
 
-    param0->unk_10 = sub_02018144(param1, v0);
+    param0->unk_10 = AllocFromHeap(param1, v0);
     param0->unk_04 = sub_020234BC;
 
     NARC_ReadFromMember(param0->unk_54, param0->unk_58, param0->unk_5C.unk_00, v0, param0->unk_10);
@@ -164,7 +164,7 @@ static void sub_02023478 (UnkStruct_02023350 * param0)
 
 static void sub_0202348C (UnkStruct_02023350 * param0)
 {
-    sub_020181C4(param0->unk_10);
+    FreeToHeap(param0->unk_10);
     param0->unk_10 = NULL;
 }
 

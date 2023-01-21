@@ -15,7 +15,7 @@
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235254.h"
 
@@ -943,7 +943,7 @@ void * ov12_02235E50 (UnkStruct_ov12_0221FCDC * param0, int param1)
     GF_ASSERT(param0 != NULL);
 
     v0 = ov12_0221FDE4(param0);
-    v1 = sub_02018144(v0, param1);
+    v1 = AllocFromHeap(v0, param1);
 
     GF_ASSERT(v1 != NULL);
     memset(v1, 0, param1);
@@ -954,5 +954,5 @@ void * ov12_02235E50 (UnkStruct_ov12_0221FCDC * param0, int param1)
 void ov12_02235E80 (void * param0)
 {
     GF_ASSERT(param0 != NULL);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }

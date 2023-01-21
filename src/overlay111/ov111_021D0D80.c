@@ -42,7 +42,7 @@
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -336,7 +336,7 @@ int ov111_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_0203E608 * v2;
 
     ov111_021D1D30();
-    sub_02017FC8(3, 115, 0x48000);
+    CreateHeap(3, 115, 0x48000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov111_021D0F7C), 115);
     memset(v1, 0, sizeof(UnkStruct_ov111_021D0F7C));
@@ -445,7 +445,7 @@ int ov111_021D0F40 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(115);
+    DestroyHeap(115);
 
     return 1;
 }
@@ -1127,8 +1127,8 @@ static void ov111_021D1C0C (UnkStruct_ov111_021D0F7C * param0)
     sub_020237BC(param0->unk_40);
     sub_020237BC(param0->unk_44);
     sub_0200C560(param0->unk_160);
-    sub_020181C4(param0->unk_3F0);
-    sub_020181C4(param0->unk_3F8);
+    FreeToHeap(param0->unk_3F0);
+    FreeToHeap(param0->unk_3F8);
 
     ov111_021D3578(param0->unk_5C);
     ov111_021D2044(param0->unk_58);
@@ -1278,7 +1278,7 @@ static void ov111_021D2044 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
     sub_02019044(param0, 2);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }
@@ -1494,7 +1494,7 @@ static void ov111_021D22D0 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 5));
     GXS_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 5));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return;
 }
@@ -1508,7 +1508,7 @@ static void ov111_021D2304 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 9));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 10));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return;
 }
@@ -2190,7 +2190,7 @@ static void ov111_021D2E4C (UnkStruct_ov111_021D0F7C * param0)
 
 static void ov111_021D2E8C (UnkStruct_ov111_021D0F7C * param0)
 {
-    param0->unk_3F8 = sub_02018144(115, param0->unk_3F4->szByte);
+    param0->unk_3F8 = AllocFromHeap(115, param0->unk_3F4->szByte);
 
     if (param0->unk_3F8 == NULL) {
         GF_ASSERT(param0->unk_3F8 != NULL);

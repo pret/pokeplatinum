@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02039C80.h"
 #include "unk_02054BD0.h"
 
@@ -25,7 +25,7 @@ void sub_02054BD0 (UnkStruct_0203CDB0 * param0, const u8 param1)
     void * v1;
 
     if (param0->unk_58 == NULL) {
-        param0->unk_58 = sub_02018144(11, sizeof(UnkStruct_02054C18));
+        param0->unk_58 = AllocFromHeap(11, sizeof(UnkStruct_02054C18));
 
         sub_02054C18(param0->unk_2C, param0->unk_58, param1);
     }
@@ -34,7 +34,7 @@ void sub_02054BD0 (UnkStruct_0203CDB0 * param0, const u8 param1)
 void sub_02054BF8 (UnkStruct_0203CDB0 * param0)
 {
     if (param0->unk_58 != NULL) {
-        sub_020181C4(param0->unk_58);
+        FreeToHeap(param0->unk_58);
         param0->unk_58 = NULL;
     }
 }

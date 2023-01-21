@@ -11,7 +11,7 @@
 #include "struct_defs/struct_020698E4.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CED8.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
@@ -64,7 +64,7 @@ UnkStruct_0206942C * sub_0206940C (const int param0)
 {
     UnkStruct_0206942C * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_0206942C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0206942C));
 
     sub_0201CFEC(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &v0->unk_BC);
     return v0;
@@ -72,7 +72,7 @@ UnkStruct_0206942C * sub_0206940C (const int param0)
 
 void sub_0206942C (UnkStruct_0206942C * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02069434 (UnkStruct_0206942C * param0)
@@ -534,7 +534,7 @@ BOOL sub_02069A00 (UnkStruct_020508D4 * param0)
         }
         break;
     case 4:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         sub_02062C78(v0->unk_38);
         return 1;
         break;

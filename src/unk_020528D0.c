@@ -26,7 +26,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -114,7 +114,7 @@ static void sub_02052914 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * para
 {
     UnkStruct_02052AA4 * v0;
 
-    v0 = sub_02018144(11, sizeof(UnkStruct_02052AA4));
+    v0 = AllocFromHeap(11, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -178,8 +178,8 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
         sub_0200B3F0(v0->unk_20);
         sub_0200B190(v0->unk_1C);
         sub_02019044(v0->unk_08, 3);
-        sub_020181C4(v0->unk_08);
-        sub_020181C4(v0);
+        FreeToHeap(v0->unk_08);
+        FreeToHeap(v0);
 
         return 1;
     }

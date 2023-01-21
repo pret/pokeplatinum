@@ -22,7 +22,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 #include "overlay066/ov66_0223177C.h"
@@ -106,7 +106,7 @@ UnkStruct_ov66_0223177C * ov66_0223177C (u32 param0)
 {
     UnkStruct_ov66_0223177C * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov66_0223177C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov66_0223177C));
     memset(v0, 0, sizeof(UnkStruct_ov66_0223177C));
 
     ov66_02231D38(&v0->unk_08);
@@ -118,7 +118,7 @@ UnkStruct_ov66_0223177C * ov66_0223177C (u32 param0)
 void ov66_022317AC (UnkStruct_ov66_0223177C * param0)
 {
     ov66_02231EEC(&param0->unk_5C);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov66_022317C0 (UnkStruct_ov66_0223177C * param0)

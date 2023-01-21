@@ -13,7 +13,7 @@
 
 #include "filesystem.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -48,7 +48,7 @@ BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * 
             NNS_G2dLoadPalette(v1, 6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v0);
         }
 
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     param0->unk_08 = sub_02007204(param4, 21, 1, &(param0->unk_10), 10);
@@ -70,22 +70,22 @@ BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * 
 void ov19_021DA384 (UnkStruct_ov19_021DA384 * param0)
 {
     if (param0->unk_08 != NULL) {
-        sub_020181C4(param0->unk_08);
+        FreeToHeap(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_00 != NULL) {
-        sub_020181C4(param0->unk_00);
+        FreeToHeap(param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_14 != NULL) {
-        sub_020181C4(param0->unk_14);
+        FreeToHeap(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18 != NULL) {
-        sub_020181C4(param0->unk_18);
+        FreeToHeap(param0->unk_18);
         param0->unk_18 = NULL;
     }
 

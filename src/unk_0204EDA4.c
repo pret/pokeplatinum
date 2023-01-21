@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_020997B8.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
@@ -48,7 +48,7 @@ BOOL sub_0204EDEC (UnkStruct_0203E724 * param0)
         *v1 = 0xff;
     }
 
-    sub_020181C4(*v0);
+    FreeToHeap(*v0);
     *v0 = NULL;
 
     return 0;
@@ -70,7 +70,7 @@ BOOL sub_0204EE3C (UnkStruct_0203E724 * param0)
     v1 = sub_020997D8(v0, 32);
     *v2 = sub_020998D8(v1);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     return 0;
 }
 
@@ -90,7 +90,7 @@ static void sub_0204EE90 (UnkStruct_0203E724 * param0, u16 param1, UnkStruct_020
 
     sub_0203E284(param0->unk_34, v1);
     sub_0203E764(param0, sub_02041D60);
-    sub_020181C4(param3);
+    FreeToHeap(param3);
 }
 
 BOOL sub_0204EEFC (UnkStruct_0203E724 * param0)
@@ -120,7 +120,7 @@ BOOL sub_0204EF40 (UnkStruct_0203E724 * param0)
     u16 * v3;
 
     v0 = sub_0207A0FC(sub_0207A268(param0->unk_34->unk_0C), v1);
-    v3 = sub_02018144(32, (1 + 1) * 2);
+    v3 = AllocFromHeap(32, (1 + 1) * 2);
 
     *(v3 + 0) = v2;
     *(v3 + 1) = 0xffff;

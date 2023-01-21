@@ -24,7 +24,7 @@
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -167,7 +167,7 @@ void ov84_0223F3AC (UnkStruct_ov84_0223B5A0 * param0, u8 param1, u8 param2)
 
     sub_0201ADDC(&param0->unk_04[5], v0->pRawData, v2, 0, 32 * 8, 16, param0->unk_427 + param0->unk_428 * param1, 3, 10, 10);
     sub_0201A9A4(&param0->unk_04[5]);
-    sub_02018238(6, v1);
+    FreeToHeapExplicit(6, v1);
 }
 
 void ov84_0223F438 (UnkStruct_ov84_0223B5A0 * param0)
@@ -191,7 +191,7 @@ void ov84_0223F438 (UnkStruct_ov84_0223B5A0 * param0)
     }
 
     sub_0201A9A4(&param0->unk_04[5]);
-    sub_02018238(6, v1);
+    FreeToHeapExplicit(6, v1);
 }
 
 static void ov84_0223F4E8 (UnkStruct_ov84_0223B5A0 * param0, u32 param1, u32 param2)
@@ -354,7 +354,7 @@ static void ov84_0223F9B0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 
     v1 = ov84_0223F994(param0, &v0);
     sub_0201ADDC(&param0->unk_04[0], v0->pRawData, 40, 0, 64, 16, 0, param1, 24, 16);
-    sub_02018238(6, v1);
+    FreeToHeapExplicit(6, v1);
 }
 
 void ov84_0223F9F0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
@@ -374,7 +374,7 @@ void ov84_0223FA44 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 
     v1 = ov84_0223F994(param0, &v0);
     sub_0201ADDC(&param0->unk_04[0], v0->pRawData, 0, 0, 64, 16, 96, param1, 40, 16);
-    sub_02018238(6, v1);
+    FreeToHeapExplicit(6, v1);
 }
 
 void ov84_0223FA88 (UnkStruct_ov84_0223B5A0 * param0)

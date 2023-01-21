@@ -19,7 +19,7 @@
 #include "overlay083/struct_ov83_0223FE50.h"
 #include "overlay083/struct_ov83_022401AC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E3BC.h"
 #include "unk_0202A910.h"
@@ -713,7 +713,7 @@ void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, UnkStruct_0202A93C * param
 
         v5 += sub_020973D4(v0, 10);
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     if ((v9 >= 2) && (param3 > 1)) {

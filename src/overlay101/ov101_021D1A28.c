@@ -38,7 +38,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_020711EC.h"
@@ -3738,39 +3738,39 @@ static void ov101_021D4D38 (UnkStruct_ov101_021D13C8 * param0)
     ov101_021D4EA8(v1, 0x4, v2->unk_A4[UnkEnum_ov101_021D4F58_03]);
     ov101_021D4EA8(v1, 0x4, v2->unk_A4[UnkEnum_ov101_021D4F58_04]);
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 5, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &v1);
     ov101_021D4EA8(v1, 0, v2->unk_24);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 6, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &v1);
     ov101_021D4EA8(v1, 0, v2->unk_44);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 7, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &v1);
     ov101_021D4EA8(v1, 0, v2->unk_64);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 74, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &v1);
     ov101_021D4EA8(v1, 0, v2->unk_144[UnkEnum_ov101_021D4F58_00]);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 75, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &v1);
     ov101_021D4EA8(v1, 0, v2->unk_144[UnkEnum_ov101_021D4F58_01]);
     ov101_021D4EA8(v1, 0, v2->unk_144[UnkEnum_ov101_021D4F58_02]);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v0 = ov101_021D19E4(param0, 76, 0);
     NNS_G2dGetUnpackedPaletteData(v0, &v1);
     ov101_021D4EA8(v1, 0, v2->unk_144[UnkEnum_ov101_021D4F58_03]);
     ov101_021D4EA8(v1, 0, v2->unk_144[UnkEnum_ov101_021D4F58_04]);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov101_021D4EA4 (UnkStruct_ov101_021D13C8 * param0)
@@ -4136,7 +4136,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D8700 = {
 
 static void ov101_021D53B0 (UnkStruct_ov101_021D13C8 * param0)
 {
-    UnkStruct_ov101_021D53B0 * v0 = sub_02018184(79, sizeof(UnkStruct_ov101_021D53B0));
+    UnkStruct_ov101_021D53B0 * v0 = AllocFromHeapAtEnd(79, sizeof(UnkStruct_ov101_021D53B0));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -4147,7 +4147,7 @@ static void ov101_021D53B0 (UnkStruct_ov101_021D13C8 * param0)
 
 static void ov101_021D53D4 (UnkStruct_ov101_021D13C8 * param0)
 {
-    UnkStruct_ov101_021D53B0 * v0 = sub_02018184(79, sizeof(UnkStruct_ov101_021D53B0));
+    UnkStruct_ov101_021D53B0 * v0 = AllocFromHeapAtEnd(79, sizeof(UnkStruct_ov101_021D53B0));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;
@@ -4158,7 +4158,7 @@ static void ov101_021D53D4 (UnkStruct_ov101_021D13C8 * param0)
 
 static void ov101_021D53F8 (UnkStruct_ov101_021D13C8 * param0, int param1)
 {
-    UnkStruct_ov101_021D53B0 * v0 = sub_02018184(79, sizeof(UnkStruct_ov101_021D53B0));
+    UnkStruct_ov101_021D53B0 * v0 = AllocFromHeapAtEnd(79, sizeof(UnkStruct_ov101_021D53B0));
 
     v0->unk_00 = 0;
     v0->unk_08 = param1;
@@ -4189,7 +4189,7 @@ static void ov101_021D542C (UnkStruct_0201CD38 * param0, void * param1)
     ov101_021D4F40(v0->unk_0C, 7, 0x1, v4);
 
     if ((v5 == 16) || (v0->unk_0C->unk_00 == 63)) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
     }
 }
@@ -4214,7 +4214,7 @@ static void ov101_021D548C (UnkStruct_0201CD38 * param0, void * param1)
     ov101_021D4F40(v0->unk_0C, 7, 0x1, v4);
 
     if ((v5 == 16) || (v0->unk_0C->unk_00 == 63)) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
     }
 }
@@ -4228,7 +4228,7 @@ static void ov101_021D54EC (UnkStruct_0201CD38 * param0, void * param1)
     int v5;
 
     if (v0->unk_0C->unk_00 == 63) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
         return;
     }
@@ -4264,7 +4264,7 @@ static void ov101_021D54EC (UnkStruct_0201CD38 * param0, void * param1)
         ov101_021D4F40(v0->unk_0C, 7, 0x1, v4);
 
         if (v5 == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             sub_0200DA58(param0);
         }
     }

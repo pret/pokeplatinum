@@ -15,7 +15,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -579,7 +579,7 @@ static void sub_020908CC (UnkStruct_0208D7BC * param0)
 
                 sub_020774C8(v1, v3);
                 sub_02090800(&param0->unk_244[0], v3, v2);
-                sub_020181C4(v3);
+                FreeToHeap(v3);
             }
         } else {
             sub_02090800(&param0->unk_244[0], v1, v2);

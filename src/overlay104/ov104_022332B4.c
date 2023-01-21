@@ -19,7 +19,7 @@
 
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0202FF4C.h"
 #include "unk_02051D8C.h"
@@ -114,7 +114,7 @@ BOOL ov104_02233324 (UnkStruct_ov104_0222E930 * param0)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
-    v2 = sub_02018144(11, sizeof(UnkStruct_ov104_02234130));
+    v2 = AllocFromHeap(11, sizeof(UnkStruct_ov104_02234130));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02234130));
 
@@ -181,7 +181,7 @@ BOOL ov104_022333F8 (UnkStruct_ov104_0222E930 * param0)
         v1->unk_4DC[v0] = 0;
     }
 
-    v2 = sub_02018144(11, sizeof(UnkStruct_ov104_02234130));
+    v2 = AllocFromHeap(11, sizeof(UnkStruct_ov104_02234130));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02234130));
 
     v2->unk_00 = v3->unk_08;
@@ -202,7 +202,7 @@ static void ov104_02233478 (void * param0)
     UnkStruct_ov104_02234130 * v1 = param0;
 
     ov104_0223410C(v1->unk_1C, param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }
@@ -308,7 +308,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         v3 = sub_02073C74(11);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
         *v15 = sub_02074470(v3, 177, NULL);
-        sub_020181C4(v3);
+        FreeToHeap(v3);
         break;
     case 18:
         v5 = ov104_0223AA74(v4->unk_04, 1);
@@ -336,7 +336,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
             }
         }
 
-        sub_020181C4(v3);
+        FreeToHeap(v3);
 
         v9 = 0;
 

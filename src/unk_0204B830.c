@@ -20,7 +20,7 @@
 
 #include "unk_0200B358.h"
 #include "unk_02017038.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
@@ -324,7 +324,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     if (v6) {
-        sub_020181C4(v6);
+        FreeToHeap(v6);
     }
 }
 

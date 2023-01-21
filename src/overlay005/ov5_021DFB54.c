@@ -20,7 +20,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0202CD50.h"
 #include "unk_020508D4.h"
@@ -1640,7 +1640,7 @@ static UnkStruct_0201CD38 * ov5_021E0F54 (UnkStruct_0203CDB0 * param0, u32 param
     {
         UnkStruct_0201CD38 * v2;
         UnkStruct_02061AB4 * v3 = sub_0205EB3C(v0);
-        UnkStruct_ov5_021E0FF0 * v4 = sub_02018184(4, (sizeof(UnkStruct_ov5_021E0FF0)));
+        UnkStruct_ov5_021E0FF0 * v4 = AllocFromHeapAtEnd(4, (sizeof(UnkStruct_ov5_021E0FF0)));
 
         v4->unk_00 = 0;
         v4->unk_08 = param0;
@@ -1670,7 +1670,7 @@ static void ov5_021E0FC0 (UnkStruct_0201CD38 * param0)
         int v2 = sub_0205ED6C(0x0, sub_0205EB98(v1));
 
         ov5_021DFB90(v1);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
     }
 }
@@ -1767,7 +1767,7 @@ static UnkStruct_02061AB4 * ov5_021E10D4 (UnkStruct_0205E884 * param0, int param
 
 static void * ov5_021E1110 (int param0)
 {
-    void * v0 = sub_02018184(4, param0);
+    void * v0 = AllocFromHeapAtEnd(4, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -1777,7 +1777,7 @@ static void * ov5_021E1110 (int param0)
 
 static void ov5_021E1134 (void * param0)
 {
-    sub_02018238(4, param0);
+    FreeToHeapExplicit(4, param0);
 }
 
 static UnkStruct_02073C74 * ov5_021E1140 (UnkStruct_0203CDB0 * param0, int param1)

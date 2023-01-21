@@ -11,7 +11,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 
 static void sub_020170F4(UnkStruct_0201CD38 * param0, void * param1);
@@ -55,7 +55,7 @@ void sub_02017110 (UnkStruct_020170F4 * param0)
     }
 
     if (param0->unk_00) {
-        sub_020181C4(param0->unk_00);
+        FreeToHeap(param0->unk_00);
     }
 
     memset(param0, 0, sizeof(UnkStruct_020170F4));
@@ -83,7 +83,7 @@ void sub_020171A0 (UnkStruct_02017248 * param0, NNSFndAllocator * param1)
         NNS_G3dFreeAnmObj(param1, param0->unk_08);
 
         if (param0->unk_10 == 0) {
-            sub_020181C4(param0->unk_00);
+            FreeToHeap(param0->unk_00);
         }
     }
 

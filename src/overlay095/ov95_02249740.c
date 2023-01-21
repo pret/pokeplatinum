@@ -22,7 +22,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201FE94.h"
@@ -122,7 +122,7 @@ static void ov95_02249F38(UnkStruct_0201CD38 * param0, void * param1);
 
 void * ov95_02249740 (UnkStruct_ov95_02247628 * param0)
 {
-    UnkStruct_ov95_022497D8 * v0 = sub_02018144(58, sizeof(UnkStruct_ov95_022497D8));
+    UnkStruct_ov95_022497D8 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_022497D8));
 
     if (v0) {
         int v1;
@@ -152,7 +152,7 @@ void ov95_02249770 (void * param0)
         ov95_02249C10(v0);
         ov95_02249C30(&(v0->unk_34));
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 

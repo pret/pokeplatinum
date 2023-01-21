@@ -11,7 +11,7 @@
 #include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02079D40.h"
 #include "overlay025/ov25_02254560.h"
@@ -109,7 +109,7 @@ void ov25_0225517C (const UnkStruct_ov25_0225517C * param0, u32 param1, void * p
             u32 v2;
 
             v2 = sizeof(UnkStruct_ov25_02255224) + param0[v0].unk_08;
-            v1 = sub_02018144(param6, v2);
+            v1 = AllocFromHeap(param6, v2);
 
             if (v1 != NULL) {
                 if (param0[v0].unk_08 != 0) {
@@ -129,7 +129,7 @@ void ov25_0225517C (const UnkStruct_ov25_0225517C * param0, u32 param1, void * p
                         param0[v0].unk_04(v1->unk_14, v1);
                     }
                 } else {
-                    sub_020181C4(v1);
+                    FreeToHeap(v1);
                 }
 
                 return;
@@ -148,7 +148,7 @@ void ov25_02255224 (u32 * param0, UnkStruct_ov25_02255224 * param1)
     ov25_022550F0(param0, param1->unk_00);
 
     sub_0200DA58(param1->unk_14);
-    sub_020181C4(param1);
+    FreeToHeap(param1);
 }
 
 void * ov25_0225523C (UnkStruct_ov25_02255224 * param0)
@@ -195,7 +195,7 @@ void ov25_02255290 (u16 * param0, u32 param1)
 {
     u16 * v0;
 
-    v0 = sub_02018144(8, 0x20);
+    v0 = AllocFromHeap(8, 0x20);
 
     if (v0) {
         static const u8 v1[] = {
@@ -219,7 +219,7 @@ void ov25_02255290 (u16 * param0, u32 param1)
             param0[v2] = v0[v1[v6]];
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
@@ -227,10 +227,10 @@ void ov25_02255308 (u32 param0, u32 param1)
 {
     u16 * v0;
 
-    v0 = sub_02018144(8, 0x20);
+    v0 = AllocFromHeap(8, 0x20);
 
     if (v0) {
-        u16 * v1 = sub_02018144(8, 0x20);
+        u16 * v1 = AllocFromHeap(8, 0x20);
 
         ov25_02254728(v0);
 
@@ -243,10 +243,10 @@ void ov25_02255308 (u32 param0, u32 param1)
 
             DC_FlushRange(v1, 0x20);
             GXS_LoadOBJPltt(v1, param1 * 0x20, 0x20);
-            sub_020181C4(v1);
+            FreeToHeap(v1);
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
@@ -261,7 +261,7 @@ void ov25_02255360 (u32 param0)
         ov25_02255290(v1->pRawData, 4 * 0x10);
         DC_FlushRange(v1->pRawData, 4 * 0x20);
         GXS_LoadOBJPltt(v1->pRawData, param0 * 0x20, 4 * 0x20);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
@@ -271,7 +271,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     static const u16 v1[2] = {640, 1152};
     u8 * v2;
 
-    v2 = sub_02018144(8, v1[param3]);
+    v2 = AllocFromHeap(8, v1[param3]);
 
     if (v2) {
         NARC * v3 = NARC_ctor(19, 8);
@@ -290,7 +290,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
             NARC_dtor(v3);
         }
 
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 }
 

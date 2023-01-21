@@ -5,7 +5,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 
 #include "unk_020041CC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "overlay005/ov5_021DDBE8.h"
 
@@ -34,7 +34,7 @@ static BOOL sub_0205578C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (v1->unk_04 == 1) {
-            sub_020181C4(v1);
+            FreeToHeap(v1);
             return 1;
         }
         break;
@@ -45,7 +45,7 @@ static BOOL sub_0205578C (UnkStruct_020508D4 * param0)
 
 void sub_020557DC (UnkStruct_020508D4 * param0, int param1, int param2)
 {
-    UnkStruct_0205578C * v0 = sub_02018184(11, sizeof(UnkStruct_0205578C));
+    UnkStruct_0205578C * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205578C));
 
     v0->unk_00 = 0;
     v0->unk_04 = 0;

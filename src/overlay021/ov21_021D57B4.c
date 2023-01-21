@@ -8,7 +8,7 @@
 #include "overlay021/struct_ov21_021D5890.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay021/ov21_021D57B4.h"
 
@@ -59,7 +59,7 @@ void ov21_021D5844 (UnkStruct_ov21_021D5844 * param0)
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_00);
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
 
     param0->unk_00 = NULL;
     param0->unk_04 = 0;

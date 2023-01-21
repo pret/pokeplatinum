@@ -14,7 +14,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02022594.h"
 #include "unk_02073C2C.h"
 #include "overlay022/ov22_02255094.h"
@@ -82,7 +82,7 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Un
             param0->unk_08.unk_02 = v3;
         }
 
-        sub_020181C4(v4);
+        FreeToHeap(v4);
     }
 
     param0->unk_0C = param2;

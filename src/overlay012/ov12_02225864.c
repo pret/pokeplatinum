@@ -22,7 +22,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02013B10.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -925,7 +925,7 @@ UnkStruct_ov12_02226504 * ov12_02226544 (u32 param0, u32 param1, int param2)
 {
     UnkStruct_ov12_02226504 * v0;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_ov12_02226504));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
 
     GF_ASSERT(v0);
@@ -952,7 +952,7 @@ void ov12_022265C0 (UnkStruct_ov12_02226504 * param0)
         sub_02013B40(param0->unk_1C);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void * ov12_022265E4 (const UnkStruct_ov12_02226504 * param0)
@@ -988,7 +988,7 @@ UnkStruct_ov12_0222660C * ov12_0222662C (u8 param0, u8 param1, u16 param2, fx32 
     void * v2;
     const void * v3;
 
-    v0 = sub_02018144(param8, sizeof(UnkStruct_ov12_0222660C));
+    v0 = AllocFromHeap(param8, sizeof(UnkStruct_ov12_0222660C));
     GF_ASSERT(v0);
 
     memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
@@ -1012,7 +1012,7 @@ void ov12_0222669C (UnkStruct_ov12_0222660C * param0)
         sub_02013D74(param0->unk_1C);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void * ov12_022266C0 (const UnkStruct_ov12_0222660C * param0)
@@ -1151,14 +1151,14 @@ void ov12_02226858 (UnkStruct_ov12_022267D4 * param0)
     GF_ASSERT(param0 != NULL);
 
     sub_0200DA58(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 UnkStruct_ov12_022267D4 * ov12_02226870 (UnkStruct_02002F38 * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
 {
     UnkStruct_ov12_022267D4 * v0 = NULL;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov12_022267D4));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov12_022267D4));
 
     GF_ASSERT(v0 != NULL);
 

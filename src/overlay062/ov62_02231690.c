@@ -51,7 +51,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
 #include "unk_02014A84.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -2680,12 +2680,12 @@ void ov62_022339A0 (UnkStruct_0208C06C * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_87C[v0] != NULL) {
-            sub_020181C4(param0->unk_87C[v0]);
+            FreeToHeap(param0->unk_87C[v0]);
             param0->unk_87C[v0] = NULL;
         }
 
         if (param0->unk_88C[v0] != NULL) {
-            sub_020181C4(param0->unk_88C[v0]);
+            FreeToHeap(param0->unk_88C[v0]);
             param0->unk_88C[v0] = NULL;
         }
     }

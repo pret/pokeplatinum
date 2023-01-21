@@ -26,7 +26,7 @@
 #include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02023790.h"
 #include "map_header.h"
@@ -482,7 +482,7 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
             sub_020237BC(v3->unk_44);
             sub_020237BC(v3->unk_48);
             v3->unk_00 = 0;
-            sub_020181C4(v3);
+            FreeToHeap(v3);
 
             if (v1 != NULL) {
                 v1(v4);
@@ -501,7 +501,7 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
 {
     UnkStruct_0203EF60 * v0;
 
-    v0 = sub_02018144(11, sizeof(UnkStruct_0203EF60));
+    v0 = AllocFromHeap(11, sizeof(UnkStruct_0203EF60));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -517,8 +517,8 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
 static void sub_0203EA50 (UnkStruct_0203E724 * param0)
 {
     sub_0200B190(param0->unk_2C);
-    sub_020181C4(param0->unk_30);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_30);
+    FreeToHeap(param0);
 
     return;
 }
@@ -547,7 +547,7 @@ UnkStruct_0203E724 * sub_0203EAB8 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkStruct_0203E724 * v0 = NULL;
 
-    v0 = sub_02018144(11, sizeof(UnkStruct_0203E724));
+    v0 = AllocFromHeap(11, sizeof(UnkStruct_0203E724));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -1103,7 +1103,7 @@ UnkStruct_0203F478 * sub_0203F478 (UnkStruct_0203CDB0 * param0, int param1)
     v6 = 0;
     v5 = sub_0203A448(param0);
     v5++;
-    v0 = sub_02018144(param1, sizeof(UnkStruct_0203F478) * v5);
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
 
     if (v5 == 1) {
         v0[0].unk_04 = 0xff;

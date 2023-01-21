@@ -5,7 +5,7 @@
 #include "overlay115/struct_ov115_02265AD0.h"
 #include "overlay115/struct_ov115_02265AD4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay115/ov115_02260BBC.h"
 
 typedef struct UnkStruct_ov115_02260BE4_t {
@@ -27,7 +27,7 @@ UnkStruct_ov115_02260BE4 * ov115_02260BBC (u32 param0, u32 param1, u32 param2, c
 {
     UnkStruct_ov115_02260BE4 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov115_02260BE4));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov115_02260BE4));
     memset(v0, 0, sizeof(UnkStruct_ov115_02260BE4));
 
     v0->unk_00 = param1;
@@ -40,7 +40,7 @@ UnkStruct_ov115_02260BE4 * ov115_02260BBC (u32 param0, u32 param1, u32 param2, c
 
 void ov115_02260BE4 (UnkStruct_ov115_02260BE4 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 BOOL ov115_02260BEC (UnkStruct_ov115_02260BE4 * param0)

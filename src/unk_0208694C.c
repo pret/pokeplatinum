@@ -51,7 +51,7 @@
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
@@ -904,7 +904,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_02017FC8(3, 18, 0x20000 + 0x8000);
+        CreateHeap(3, 18, 0x20000 + 0x8000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
@@ -1143,7 +1143,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
         v4 = sub_02073C74(18);
         sub_02073D80(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
-        sub_020181C4(v4);
+        FreeToHeap(v4);
     }
 
     if ((v0->unk_158 == 0) || (sub_0200220C(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
@@ -1171,11 +1171,11 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02021964(v0->unk_188);
     sub_0200A878();
-    sub_02018238(18, v0->unk_510);
+    FreeToHeapExplicit(18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
-        sub_02018238(18, v0->unk_518);
-        sub_02018238(18, v0->unk_520);
+        FreeToHeapExplicit(18, v0->unk_518);
+        FreeToHeapExplicit(18, v0->unk_520);
     }
 
     sub_02019044(v0->unk_160, 7);
@@ -1200,7 +1200,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B3F0(v0->unk_168);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(18);
+    DestroyHeap(18);
 
     {
         Unk_021BF67C.unk_65 = 0;
@@ -1214,7 +1214,7 @@ UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param
 {
     UnkStruct_0208737C * v0;
 
-    v0 = (UnkStruct_0208737C *)sub_02018144(param0, sizeof(UnkStruct_0208737C));
+    v0 = (UnkStruct_0208737C *)AllocFromHeap(param0, sizeof(UnkStruct_0208737C));
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -1237,7 +1237,7 @@ void sub_0208716C (UnkStruct_0208737C * param0)
     GF_ASSERT((param0) != NULL);
 
     sub_020237BC(param0->unk_18);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void sub_02087190 (void * param0)
@@ -1422,7 +1422,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         v1 = sub_02073C74(18);
         sub_02073D80(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         sub_0200B538(param0->unk_168, 0, sub_02076B10(v1));
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     if (v0->unk_44 != 0) {
@@ -1489,7 +1489,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
 
             sub_02073D80(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             sub_0200B538(param0->unk_168, 0, sub_02076B10(v4));
-            sub_020181C4(v4);
+            FreeToHeap(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;
             sub_02023D28(v0, param0->unk_D8);
@@ -1515,7 +1515,7 @@ static void sub_0208765C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * para
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    sub_02018238(18, param0);
+    FreeToHeapExplicit(18, param0);
 }
 
 static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)

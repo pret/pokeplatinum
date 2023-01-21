@@ -8,7 +8,7 @@
 #include "overlay025/struct_ov25_02255958.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay025/ov25_02255540.h"
 
 struct UnkStruct_ov25_022558C4_t {
@@ -61,7 +61,7 @@ UnkStruct_ov25_022555E8 * ov25_02255540 (NNSG2dOamManagerInstance * param0, u32 
     BOOL v1 = 0;
 
     do {
-        v0 = sub_02018144(param1, sizeof(UnkStruct_ov25_022555E8));
+        v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov25_022555E8));
 
         if (v0 == NULL) {
             break;
@@ -73,19 +73,19 @@ UnkStruct_ov25_022555E8 * ov25_02255540 (NNSG2dOamManagerInstance * param0, u32 
         v0->unk_00 = param0;
         v0->unk_18 = param1;
         v0->unk_10 = NNS_G2dGetOamManagerOamCapacity(param0);
-        v0->unk_14 = sub_02018144(param1, sizeof(GXOamAttr) * v0->unk_10);
+        v0->unk_14 = AllocFromHeap(param1, sizeof(GXOamAttr) * v0->unk_10);
 
         if (v0->unk_14 == NULL) {
             break;
         }
 
-        v0->unk_0C = sub_02018144(param1, sizeof(UnkStruct_ov25_022558C4) * v0->unk_10);
+        v0->unk_0C = AllocFromHeap(param1, sizeof(UnkStruct_ov25_022558C4) * v0->unk_10);
 
         if (v0->unk_0C == NULL) {
             break;
         }
 
-        v0->unk_04 = sub_02018144(param1, sizeof(UnkStruct_ov25_022558C4 *) * v0->unk_10);
+        v0->unk_04 = AllocFromHeap(param1, sizeof(UnkStruct_ov25_022558C4 *) * v0->unk_10);
 
         if (v0->unk_04 == NULL) {
             break;
@@ -102,18 +102,18 @@ UnkStruct_ov25_022555E8 * ov25_02255540 (NNSG2dOamManagerInstance * param0, u32 
     if (v1 == 0) {
         if (v0 != NULL) {
             if (v0->unk_14 != NULL) {
-                sub_02018238(param1, v0->unk_14);
+                FreeToHeapExplicit(param1, v0->unk_14);
             }
 
             if (v0->unk_0C != NULL) {
-                sub_02018238(param1, v0->unk_0C);
+                FreeToHeapExplicit(param1, v0->unk_0C);
             }
 
             if (v0->unk_04 != NULL) {
-                sub_02018238(param1, v0->unk_04);
+                FreeToHeapExplicit(param1, v0->unk_04);
             }
 
-            sub_02018238(param1, v0);
+            FreeToHeapExplicit(param1, v0);
         }
 
         return NULL;
@@ -126,18 +126,18 @@ void ov25_022555E8 (UnkStruct_ov25_022555E8 * param0)
 {
     if (param0) {
         if (param0->unk_14) {
-            sub_020181C4(param0->unk_14);
+            FreeToHeap(param0->unk_14);
         }
 
         if (param0->unk_0C) {
-            sub_020181C4(param0->unk_0C);
+            FreeToHeap(param0->unk_0C);
         }
 
         if (param0->unk_04) {
-            sub_020181C4(param0->unk_04);
+            FreeToHeap(param0->unk_04);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -323,12 +323,12 @@ BOOL ov25_02255958 (UnkStruct_ov25_02255958 * param0, u32 param1, u32 param2, u3
 void ov25_022559B0 (UnkStruct_ov25_02255958 * param0)
 {
     if (param0->unk_00 != NULL) {
-        sub_02018238(param0->unk_10, param0->unk_00);
+        FreeToHeapExplicit(param0->unk_10, param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_04 != NULL) {
-        sub_02018238(param0->unk_10, param0->unk_04);
+        FreeToHeapExplicit(param0->unk_10, param0->unk_04);
         param0->unk_04 = NULL;
     }
 }

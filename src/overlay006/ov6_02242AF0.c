@@ -10,7 +10,7 @@
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
@@ -116,7 +116,7 @@ void ov6_02242B58 (UnkStruct_0203CDB0 * param0, const u16 param1, const u16 para
 
     v0 = sub_02027860(sub_0203D174(param0));
     v1 = (UnkStruct_ov6_02242AF0 *)sub_02027F6C(v0, 6);
-    v2 = sub_02018184(4, sizeof(UnkStruct_ov6_02242B58));
+    v2 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02242B58));
 
     memset(v2, 0, sizeof(UnkStruct_ov6_02242B58));
 
@@ -249,7 +249,7 @@ static BOOL ov6_02242C5C (UnkStruct_020508D4 * param0)
         (v1->unk_05)++;
         break;
     case 5:
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 

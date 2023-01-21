@@ -31,7 +31,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
@@ -488,7 +488,7 @@ void ov23_0224B4E4 (void)
     ov23_0224C6E8();
 
     if (Unk_ov23_022577AC) {
-        sub_020181C4(Unk_ov23_022577AC);
+        FreeToHeap(Unk_ov23_022577AC);
     }
 
     Unk_ov23_022577AC = NULL;
@@ -813,7 +813,7 @@ static void ov23_0224BA48 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     sub_0200DA58(param0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     ov23_02243204();
 }
@@ -833,7 +833,7 @@ static void ov23_0224BA6C (UnkStruct_0201CD38 * param0, void * param1)
 
     sub_020360D0(59, &v1);
     sub_0200DA58(param0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     ov23_02243204();
     ov23_0224DC24();
@@ -942,7 +942,7 @@ static void ov23_0224BC5C (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     UnkStruct_ov23_0224BA48 * v0 = NULL;
 
     ov23_0224DC08();
-    v0 = sub_02018184(4, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -964,7 +964,7 @@ static UnkStruct_ov23_0224BA48 * ov23_0224BCC4 (UnkStruct_0203CDB0 * param0, int
     UnkStruct_ov23_0224BA48 * v0 = NULL;
 
     if (param0->unk_10 == NULL) {
-        v0 = sub_02018184(11, sizeof(UnkStruct_ov23_0224BA48));
+        v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_0224BA48));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
         v0->unk_18 = -1;
@@ -1174,7 +1174,7 @@ static void ov23_0224C090 (UnkStruct_0203CDB0 * param0, int param1, int param2, 
 {
     UnkStruct_ov23_0224BA48 * v0 = NULL;
 
-    v0 = sub_02018184(4, sizeof(UnkStruct_ov23_0224BA48));
+    v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224BA48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224BA48));
 
     v0->unk_18 = -1;
@@ -1697,7 +1697,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
 
         sub_02059638(0);
         sub_02059514();
-        sub_020181C4(v1);
+        FreeToHeap(v1);
 
         if (sub_02033DFC() && ov23_02242E58(v1->unk_1C, v1->unk_20)) {
             ov23_02242FA8();
@@ -1850,7 +1850,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
 
             sub_020360D0(86, &v10);
             sub_0200DA58(param0);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
 
             ov23_02243204();
             return;
@@ -1870,7 +1870,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         sub_0200DA58(param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
 
         ov23_02243204();
         ov23_0224DC24();
@@ -1961,7 +1961,7 @@ static void ov23_0224CE94 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     sub_0200DA58(param0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     ov23_02243204();
     sub_02059514();
@@ -1974,7 +1974,7 @@ static void ov23_0224CEC8 (void)
 
     ov23_0224DC08();
 
-    v0 = sub_02018184(4, sizeof(UnkStruct_ov23_0224CB1C));
+    v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_0224CB1C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_0224CB1C));
 
     v0->unk_0C = 0;
@@ -2354,7 +2354,7 @@ static void ov23_0224D54C (UnkStruct_ov23_0224D54C * param0)
 
 static void ov23_0224D5A8 (UnkStruct_0201CD38 * param0, void * param1)
 {
-    sub_020181C4(param1);
+    FreeToHeap(param1);
     sub_0200DA58(param0);
 }
 
@@ -2393,7 +2393,7 @@ static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
         sub_0200F174(2, 0, 0, 0x0, 6, 1, 4);
         break;
     case 4:
-        sub_020181C4(param1);
+        FreeToHeap(param1);
         sub_0200DA58(param0);
         ov23_02243204();
         break;
@@ -2418,7 +2418,7 @@ void ov23_0224D6AC (int param0, int param1, void * param2, void * param3)
     UnkStruct_0201CD38 * v2;
 
     if (v1[0] == sub_0203608C()) {
-        UnkStruct_ov23_0224D54C * v3 = sub_02018144(11, sizeof(UnkStruct_ov23_0224D54C));
+        UnkStruct_ov23_0224D54C * v3 = AllocFromHeap(11, sizeof(UnkStruct_ov23_0224D54C));
 
         MI_CpuClear8(v3, sizeof(v3));
 

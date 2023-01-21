@@ -28,7 +28,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
@@ -408,10 +408,10 @@ static void ov6_0224339C (UnkStruct_ov6_02243258 * param0)
     sub_02009754(param0->unk_19C);
     sub_02009754(param0->unk_1A0);
     sub_02009754(param0->unk_1A4);
-    sub_020181C4(param0->unk_1A8);
-    sub_020181C4(param0->unk_1AC);
-    sub_020181C4(param0->unk_1B0);
-    sub_020181C4(param0->unk_1B4);
+    FreeToHeap(param0->unk_1A8);
+    FreeToHeap(param0->unk_1AC);
+    FreeToHeap(param0->unk_1B0);
+    FreeToHeap(param0->unk_1B4);
     sub_020219C0(param0->unk_08);
     sub_02021964(param0->unk_08);
 }
@@ -1064,7 +1064,7 @@ void ov6_02243FC8 (UnkStruct_0201CD38 * param0)
 
 static UnkStruct_ov6_02243FFC * ov6_02243FDC (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_ov6_02243FFC * v0 = sub_02018184(4, (sizeof(UnkStruct_ov6_02243FFC)));
+    UnkStruct_ov6_02243FFC * v0 = AllocFromHeapAtEnd(4, (sizeof(UnkStruct_ov6_02243FFC)));
 
     memset(v0, 0, (sizeof(UnkStruct_ov6_02243FFC)));
     v0->unk_60 = param0;
@@ -1074,7 +1074,7 @@ static UnkStruct_ov6_02243FFC * ov6_02243FDC (UnkStruct_0203CDB0 * param0)
 
 static void ov6_02243FFC (UnkStruct_ov6_02243FFC * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov6_02244004 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1645,12 +1645,12 @@ static void ov6_02244734 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         if (v1->unk_270 != NULL) {
-            sub_020181C4(v1->unk_270);
+            FreeToHeap(v1->unk_270);
             v1->unk_270 = NULL;
         }
 
         if (v1->unk_274 != NULL) {
-            sub_020181C4(v1->unk_274);
+            FreeToHeap(v1->unk_274);
             v1->unk_274 = NULL;
         }
 
@@ -1950,7 +1950,7 @@ static void ov6_02244E54 (NARC * param0, u32 param1, NNSG2dPaletteData ** param2
     NNS_G2dGetUnpackedPaletteData(v0, param2);
 
     sub_0201972C(3, (*param2)->pRawData, (32 * 1), (32 * 12));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov6_02244E7C (UnkStruct_02018340 * param0, NARC * param1, u32 param2, NNSG2dCharacterData ** param3)
@@ -1961,7 +1961,7 @@ static void ov6_02244E7C (UnkStruct_02018340 * param0, NARC * param1, u32 param2
     NNS_G2dGetUnpackedCharacterData(v0, param3);
 
     sub_0201958C(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov6_02244EB4 (UnkStruct_02018340 * param0, NARC * param1, u32 param2, NNSG2dScreenData ** param3)
@@ -1977,7 +1977,7 @@ static void ov6_02244EB4 (UnkStruct_02018340 * param0, NARC * param1, u32 param2
     sub_02019574(param0, 3, (void *)(*param3)->rawData, (*param3)->szByte);
     sub_02019E2C(param0, 3, 0, 0, 32, 32, 12);
     sub_02019448(param0, 3);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov6_02244F20 (UnkStruct_02018340 * param0)
@@ -2064,7 +2064,7 @@ static void ov6_0224508C (UnkStruct_ov6_02243FFC * param0, UnkStruct_02008A90 * 
 
 static void * ov6_0224509C (UnkStruct_02073C74 * param0, UnkStruct_02008A90 * param1, u32 param2)
 {
-    void * v0 = sub_02018144(4, (32 * 10) * 10);
+    void * v0 = AllocFromHeap(4, (32 * 10) * 10);
 
     GF_ASSERT(v0 != NULL);
 
@@ -2904,7 +2904,7 @@ void ov6_02245CFC (UnkStruct_0201CD38 * param0)
 {
     UnkStruct_ov6_02249270 * v0 = sub_0201CED0(param0);
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     sub_0200DA58(param0);
 }
 
@@ -3032,7 +3032,7 @@ static int(*const Unk_ov6_02249270[])(UnkStruct_ov6_02249270 *) = {
 
 static void * ov6_02245F44 (u32 param0, int param1)
 {
-    void * v0 = sub_02018184(param0, param1);
+    void * v0 = AllocFromHeapAtEnd(param0, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

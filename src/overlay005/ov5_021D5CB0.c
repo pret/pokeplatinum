@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201DD00.h"
 #include "overlay005/ov5_021D5CB0.h"
@@ -42,7 +42,7 @@ UnkStruct_ov5_021D5CB0 * ov5_021D5CB0 (void)
     int v0;
     UnkStruct_ov5_021D5CB0 * v1 = NULL;
 
-    v1 = sub_02018144(4, sizeof(UnkStruct_ov5_021D5CB0));
+    v1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D5CB0));
 
     GF_ASSERT(v1);
 
@@ -154,7 +154,7 @@ void ov5_021D5E5C (UnkStruct_ov5_021D5CB0 * param0, int param1)
     }
 
     if (param0->unk_08[param1].unk_0C) {
-        sub_020181C4(param0->unk_08[param1].unk_0C);
+        FreeToHeap(param0->unk_08[param1].unk_0C);
     }
 
     if (param0->unk_08[param1].unk_10 != NULL) {
@@ -177,13 +177,13 @@ void ov5_021D5E8C (UnkStruct_ov5_021D5CB0 * param0)
         ov5_021D5E5C(param0, v0);
     }
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
 }
 
 void ov5_021D5EAC (UnkStruct_ov5_021D5CB0 * param0)
 {
     if (param0 != NULL) {
-        sub_020181C4(param0);
+        FreeToHeap(param0);
         param0 = NULL;
     }
 }

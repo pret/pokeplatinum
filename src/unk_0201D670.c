@@ -14,7 +14,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -67,7 +67,7 @@ static void sub_0201D6B0 (u8 param0)
 
         if (v0) {
             sub_0201DBD8(v0);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
 
         sub_0200DA58(Unk_021C04E0[param0]);
@@ -180,7 +180,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
         return 0xff;
     }
 
-    v0 = sub_02018144(0, sizeof(UnkStruct_0201D834));
+    v0 = AllocFromHeap(0, sizeof(UnkStruct_0201D834));
 
     v0->unk_27 = 1;
     v0->unk_28 = 0;
@@ -227,7 +227,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
         }
 
         sub_0201DBD8(v0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
 
         return 8;
     }
@@ -377,11 +377,11 @@ static u8 * sub_0201DB50 (void)
     void * v1;
     u8 * v2;
 
-    v2 = sub_02018144(0, 3 * 4 * 4 * 0x20);
+    v2 = AllocFromHeap(0, 3 * 4 * 4 * 0x20);
     v1 = sub_02006F50(14, 5, 0, &v0, 0);
 
     MI_CpuCopy32(v0->pRawData, v2, 3 * 4 * 4 * 0x20);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v2;
 }
@@ -407,7 +407,7 @@ void sub_0201DB8C (UnkStruct_0201D834 * param0, u16 param1, u16 param2, u16 para
 static void sub_0201DBD8 (UnkStruct_0201D834 * param0)
 {
     if (param0->unk_30) {
-        sub_020181C4(param0->unk_30);
+        FreeToHeap(param0->unk_30);
         param0->unk_30 = NULL;
     }
 }

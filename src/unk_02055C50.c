@@ -15,7 +15,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
 #include "unk_020277A4.h"
@@ -90,7 +90,7 @@ UnkStruct_02055CBC * sub_02055C8C (UnkStruct_0203CDB0 * param0, int param1)
 {
     UnkStruct_02055CBC * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02055CBC));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
     v0->unk_00 = param1;
@@ -103,8 +103,8 @@ UnkStruct_02055CBC * sub_02055C8C (UnkStruct_0203CDB0 * param0, int param1)
 void sub_02055CBC (UnkStruct_02055CBC * param0)
 {
     sub_02055D48(param0);
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0);
 }
 
 void sub_02055CD4 (UnkStruct_0203CDB0 * param0, int param1)
@@ -116,7 +116,7 @@ void sub_02055CD4 (UnkStruct_0203CDB0 * param0, int param1)
         v1 = sub_02027BF4(11);
         v0 = sub_02027854(param0->unk_0C);
         sub_02027EAC(v0, v1, param1);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     } else {
         v1 = param0->unk_04->unk_18->unk_04;
         v0 = sub_02027854(param0->unk_0C);
@@ -129,7 +129,7 @@ static void sub_02055D14 (UnkStruct_0203CDB0 * param0, UnkStruct_02055CBC * para
     UnkStruct_ov5_021DF47C * v0 = param0->unk_40;
     u32 v1 = ov5_021DF5A8(v0, 17);
 
-    param1->unk_60 = sub_02018144(param1->unk_00, v1);
+    param1->unk_60 = AllocFromHeap(param1->unk_00, v1);
 
     ov5_021DF5B4(v0, 17, param1->unk_60);
     sub_0201CA3C(&param1->unk_08, &param1->unk_5C, &param1->unk_60);
@@ -457,7 +457,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
     case 4:
         sub_0205EA84(v0->unk_3C, v1->unk_04);
         sub_02062DD0(sub_0205EB3C(v0->unk_3C));
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return 1;
     }
 
@@ -468,7 +468,7 @@ void sub_020562AC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_020562AC * v0;
 
-    v0 = sub_02018144(32, sizeof(UnkStruct_020562AC));
+    v0 = AllocFromHeap(32, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;

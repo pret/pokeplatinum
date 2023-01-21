@@ -5,7 +5,7 @@
 
 #include "filesystem.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
 
@@ -31,7 +31,7 @@ UnkStruct_02098700 * sub_02098700 (int param0)
 {
     UnkStruct_02098700 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02098700));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02098700));
     memset(v0, 0, sizeof(UnkStruct_02098700));
 
     return v0;
@@ -41,7 +41,7 @@ void sub_02098718 (UnkStruct_02098700 * param0)
 {
     GF_ASSERT(param0);
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
     param0 = NULL;
 }
 
@@ -76,13 +76,13 @@ void sub_020987BC (UnkStruct_02098700 * param0)
     GF_ASSERT(param0->unk_00);
     GF_ASSERT(param0->unk_04);
 
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0->unk_04);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0->unk_04);
 
-    sub_020181C4(param0->unk_08);
-    sub_020181C4(param0->unk_0C);
-    sub_020181C4(param0->unk_10);
-    sub_020181C4(param0->unk_14);
+    FreeToHeap(param0->unk_08);
+    FreeToHeap(param0->unk_0C);
+    FreeToHeap(param0->unk_10);
+    FreeToHeap(param0->unk_14);
 
     param0->unk_00 = NULL;
     param0->unk_04 = NULL;

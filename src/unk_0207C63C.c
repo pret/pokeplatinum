@@ -12,7 +12,7 @@
 #include "library/spl.h"
 
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201FE94.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
@@ -139,7 +139,7 @@ static UnkStruct_02014014 * sub_0207C7CC (int param0)
     void * v1;
     UnkStruct_020203AC * v2;
 
-    v1 = sub_02018144(param0, 0x4800);
+    v1 = AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, param0);
     v2 = sub_02014784(v0);
 
@@ -170,7 +170,7 @@ void sub_0207C83C (UnkStruct_02014014 * param0)
     v0 = sub_02014730(param0);
 
     sub_0201411C(param0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void sub_0207C854 (UnkSPLStruct6 * param0)
@@ -189,7 +189,7 @@ UnkStruct_0207C8C4 * sub_0207C894 (UnkStruct_0207C894 * param0)
     int v3;
     UnkStruct_0207C8C4 * v4;
 
-    v4 = sub_02018144(param0->unk_00, sizeof(UnkStruct_0207C8C4));
+    v4 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0207C8C4));
 
     GF_ASSERT(v4 != NULL);
 
@@ -227,5 +227,5 @@ BOOL sub_0207C8E0 (UnkStruct_0207C8C4 * param0)
 void sub_0207C8F4 (UnkStruct_0207C8C4 * param0)
 {
     sub_0207C83C(param0->unk_0C);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }

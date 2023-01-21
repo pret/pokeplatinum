@@ -10,7 +10,7 @@
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02030EE0.h"
 #include "unk_02032798.h"
 #include "unk_020329E0.h"
@@ -37,22 +37,22 @@ UnkStruct_0209BDF8 * sub_0209BDF8 (UnkStruct_0209C194 * param0, u32 param1)
 {
     UnkStruct_0209BDF8 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_0209BDF8));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0209BDF8));
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, sizeof(UnkStruct_0209BDF8));
 
     v0->unk_00 = param0;
-    v0->unk_4C = sub_02018144(param1, 5 * (236 * 6 + 4 * 2));
-    v0->unk_50 = sub_02018144(param1, 5 * (236 * 6 + 4 * 2));
+    v0->unk_4C = AllocFromHeap(param1, 5 * (236 * 6 + 4 * 2));
+    v0->unk_50 = AllocFromHeap(param1, 5 * (236 * 6 + 4 * 2));
 
     return v0;
 }
 
 void sub_0209BE38 (UnkStruct_0209BDF8 * param0)
 {
-    sub_020181C4(param0->unk_4C);
-    sub_020181C4(param0->unk_50);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_4C);
+    FreeToHeap(param0->unk_50);
+    FreeToHeap(param0);
 }
 
 void sub_0209BE50 (UnkStruct_0209BDF8 * param0)

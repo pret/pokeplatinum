@@ -21,7 +21,7 @@
 #include "filesystem.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02073C2C.h"
@@ -118,7 +118,7 @@ static void ov33_022572A0(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33
 
 BOOL ov33_02256474 (UnkStruct_ov33_02256474 ** param0, const UnkStruct_ov33_02256474_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov33_02256474 * v0 = (UnkStruct_ov33_02256474 *)sub_02018144(8, sizeof(UnkStruct_ov33_02256474));
+    UnkStruct_ov33_02256474 * v0 = (UnkStruct_ov33_02256474 *)AllocFromHeap(8, sizeof(UnkStruct_ov33_02256474));
 
     if (v0 != NULL) {
         int v1;
@@ -166,7 +166,7 @@ void ov33_022564F0 (UnkStruct_ov33_02256474 * param0)
             sub_0200DA58(param0->unk_B0);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 
@@ -271,7 +271,7 @@ static void ov33_02256634 (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
             NNS_G2dGetUnpackedCharacterData(v4, &v3);
             DC_FlushRange(v3->pRawData, ((4 * 4 * 2) * 0x20));
             GXS_LoadOBJ(v3->pRawData, ((4 * 4 * 2) * 0x20) * v5, ((4 * 4 * 2) * 0x20));
-            sub_020181C4(v4);
+            FreeToHeap(v4);
 
             v2.unk_00.x = (((v0[v5].x)) << FX32_SHIFT);
             v2.unk_00.y = (((v0[v5].y)) << FX32_SHIFT);

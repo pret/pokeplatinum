@@ -41,7 +41,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0201378C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -680,7 +680,7 @@ static void ov97_0222C688 (UnkStruct_020067E8 * param0)
     sub_02019044(v1->unk_04, 1);
     sub_02019044(v1->unk_04, 4);
     sub_02019044(v1->unk_04, 5);
-    sub_020181C4(v1->unk_04);
+    FreeToHeap(v1->unk_04);
 }
 
 static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
@@ -705,7 +705,7 @@ static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_15C = UnkEnum_ov97_0222C6F8_00;
     v0->unk_158 = 0;
 
-    sub_02017FC8(0, 91, 0x300);
+    CreateHeap(0, 91, 0x300);
     sub_02004550(9, 1174, 1);
 
     return 1;
@@ -795,10 +795,10 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov97_0222C948 (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_0201807C(91);
+    DestroyHeap(91);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     sub_02006830(param0);
-    sub_0201807C(85);
+    DestroyHeap(85);
 
     return 1;
 }

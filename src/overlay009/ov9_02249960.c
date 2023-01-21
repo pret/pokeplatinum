@@ -48,7 +48,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CED8.h"
 #include "unk_0201D15C.h"
@@ -1184,7 +1184,7 @@ void ov9_02249960 (UnkStruct_0203CDB0 * param0)
 
     v0 = sub_02027860(sub_0203D174(param0));
     v1 = sub_02027F6C(v0, 9);
-    v2 = sub_02018144(4, sizeof(UnkStruct_ov9_02249B04));
+    v2 = AllocFromHeap(4, sizeof(UnkStruct_ov9_02249B04));
 
     memset(v2, 0, sizeof(UnkStruct_ov9_02249B04));
 
@@ -1256,7 +1256,7 @@ void ov9_02249A60 (UnkStruct_0203CDB0 * param0)
     ov9_0224BE8C(v0);
     ov9_02249CAC(v0);
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     param0->unk_04->unk_24 = NULL;
 }
@@ -1745,10 +1745,10 @@ static void ov9_0224A1E4 (UnkStruct_ov9_02249B04 * param0, int param1)
 
     v0->unk_00 = param1;
     param1 *= sizeof(UnkStruct_ov9_0224A294);
-    v0->unk_04 = sub_02018144(4, param1);
+    v0->unk_04 = AllocFromHeap(4, param1);
 
     memset(v0->unk_04, 0, param1);
-    sub_020182CC(&v0->unk_10, 4, 4);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_10, 4, 4);
 
     v0->unk_08 = ov5_021DF5C0(param0->unk_00->unk_40, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
@@ -1838,11 +1838,11 @@ static void ov9_0224A334 (UnkStruct_ov9_02249B04 * param0)
     }
 
     if (v1->unk_08 != NULL) {
-        sub_020181C4(v1->unk_08);
+        FreeToHeap(v1->unk_08);
         v1->unk_08 = NULL;
     }
 
-    sub_020181C4(v1->unk_04);
+    FreeToHeap(v1->unk_04);
     v1->unk_04 = NULL;
 }
 
@@ -2609,7 +2609,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
             }
         }
 
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     {
@@ -2620,7 +2620,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
         NNS_G2dGetUnpackedCharacterData(v6, &v7);
 
         sub_0201958C(param0->unk_00->unk_08, 2, v7->pRawData, v7->szByte, 0);
-        sub_020181C4(v6);
+        FreeToHeap(v6);
     }
 
     {
@@ -2633,7 +2633,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
         sub_02019460(param0->unk_00->unk_08, 2, (void *)v9->rawData, v9->szByte, 0);
         sub_02019574(param0->unk_00->unk_08, 2, (void *)v9->rawData, v9->szByte);
         sub_02019448(param0->unk_00->unk_08, 2);
-        sub_020181C4(v8);
+        FreeToHeap(v8);
     }
 
     {
@@ -2926,7 +2926,7 @@ static void ov9_0224B3F8 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B52
         GF_ASSERT(param1->unk_04);
 
         v0 = param1->unk_04 * sizeof(UnkStruct_ov101_021D5D90 *);
-        param1->unk_08 = sub_02018184(4, v0);
+        param1->unk_08 = AllocFromHeapAtEnd(4, v0);
 
         memset((u8 *)param1->unk_08, 0, v0);
         ov9_0224B6CC(param0, param1, param3, param4);
@@ -2992,7 +2992,7 @@ static void ov9_0224B528 (UnkStruct_ov9_0224B528 * param0)
             }
         }
 
-        sub_020181C4(param0->unk_08);
+        FreeToHeap(param0->unk_08);
 
         param0->unk_08 = NULL;
         param0->unk_04 = 0;
@@ -3667,7 +3667,7 @@ static void ov9_0224BF8C (NARC * param0, UnkStruct_ov9_0224BFE0 * param1)
 {
     u32 v0 = NARC_GetMemberSize(param0, 0);
 
-    param1->unk_08 = sub_02018144(4, v0);
+    param1->unk_08 = AllocFromHeap(4, v0);
     NARC_ReadWholeMember(param0, 0, param1->unk_08);
 
     param1->unk_00 = *(int *)param1->unk_08;
@@ -3686,7 +3686,7 @@ static void ov9_0224BFE0 (UnkStruct_ov9_0224BFE0 * param0)
 {
     GF_ASSERT(param0->unk_08 != NULL);
 
-    sub_020181C4(param0->unk_08);
+    FreeToHeap(param0->unk_08);
     param0->unk_08 = NULL;
 }
 
@@ -3756,7 +3756,7 @@ static void ov9_0224C088 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224C14
         v2 = ov9_0224C044(param0, param2);
         v1 = NARC_GetMemberSize(param0->unk_08, v2);
 
-        param1->unk_18 = sub_02018184(4, v1);
+        param1->unk_18 = AllocFromHeapAtEnd(4, v1);
         NARC_ReadWholeMember(param0->unk_08, v2, param1->unk_18);
 
         v3 = param1->unk_18;
@@ -3797,7 +3797,7 @@ static void ov9_0224C134 (UnkStruct_ov9_0224C14C * param0)
 static void ov9_0224C14C (UnkStruct_ov9_0224C14C * param0)
 {
     if (param0->unk_18 != NULL) {
-        sub_020181C4(param0->unk_18);
+        FreeToHeap(param0->unk_18);
     }
 
     ov9_0224C134(param0);
@@ -3961,7 +3961,7 @@ static void ov9_0224C300 (UnkStruct_ov9_02249B04 * param0)
     UnkStruct_ov9_0224C2C4 * v0 = &param0->unk_169C.unk_28;
 
     if (v0->unk_10 != NULL) {
-        sub_020181C4(v0->unk_10);
+        FreeToHeap(v0->unk_10);
     }
 
     memset(v0, 0, sizeof(UnkStruct_ov9_0224C2C4));
@@ -4001,7 +4001,7 @@ static void ov9_0224C378 (UnkStruct_ov9_02249B04 * param0, int param1, int param
     ov9_02249E20(param0, v3);
 
     if (v0->unk_10 != NULL) {
-        sub_020181C4(v0->unk_10);
+        FreeToHeap(v0->unk_10);
         v0->unk_10 = NULL;
     }
 
@@ -4033,7 +4033,7 @@ static void ov9_0224C3F8 (UnkStruct_ov9_02249B04 * param0, u32 param1)
     v0->unk_00 = v3;
 
     if (v0->unk_10 != NULL) {
-        sub_020181C4(v0->unk_10);
+        FreeToHeap(v0->unk_10);
         v0->unk_10 = NULL;
     }
 
@@ -4056,7 +4056,7 @@ static void ov9_0224C44C (UnkStruct_ov9_02249B04 * param0)
     ov9_02249E20(param0, v0->unk_04);
 
     if (v0->unk_10 != NULL) {
-        sub_020181C4(v0->unk_10);
+        FreeToHeap(v0->unk_10);
         v0->unk_10 = NULL;
     }
 }
@@ -4117,11 +4117,11 @@ static void ov9_0224C4F4 (UnkStruct_ov9_02249B04 * param0, u32 param1)
     UnkStruct_ov9_0224C2C4 * v0 = &param0->unk_169C.unk_28;
 
     if (v0->unk_10 != NULL) {
-        sub_020181C4(v0->unk_10);
+        FreeToHeap(v0->unk_10);
     }
 
     v0->unk_0C = NARC_GetMemberSize(param0->unk_0C, param1);
-    v0->unk_10 = sub_02018184(4, v0->unk_0C);
+    v0->unk_10 = AllocFromHeapAtEnd(4, v0->unk_0C);
 
     NARC_ReadWholeMember(param0->unk_0C, param1, v0->unk_10);
 }
@@ -5447,7 +5447,7 @@ static void ov9_0224D814 (UnkStruct_ov9_02249B04 * param0, u32 param1)
         u32 v1 = Unk_ov9_022514A4[param1];
         u32 v2 = ov5_021DF5A8(param0->unk_00->unk_40, v1);
 
-        v0->unk_258[param1].unk_04 = sub_02018184(4, v2);
+        v0->unk_258[param1].unk_04 = AllocFromHeapAtEnd(4, v2);
         ov5_021DF5B4(param0->unk_00->unk_40, v1, v0->unk_258[param1].unk_04);
         v0->unk_258[param1].unk_00 = param1;
     }
@@ -5461,7 +5461,7 @@ static void ov9_0224D874 (UnkStruct_ov9_02249B04 * param0, u32 param1)
 
     if (v0->unk_258[param1].unk_00 != 5) {
         v0->unk_258[param1].unk_00 = 5;
-        sub_020181C4(v0->unk_258[param1].unk_04);
+        FreeToHeap(v0->unk_258[param1].unk_04);
     }
 }
 
@@ -7426,7 +7426,7 @@ UnkStruct_ov9_0224F6EC * ov9_0224F2BC (UnkStruct_0203CDB0 * param0, UnkStruct_02
 {
     UnkStruct_ov9_0224F6EC * v0;
 
-    v0 = sub_02018184(4, sizeof(UnkStruct_ov9_0224F6EC));
+    v0 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov9_0224F6EC));
     memset(v0, 0, sizeof(UnkStruct_ov9_0224F6EC));
 
     v0->unk_00 = param0->unk_04->unk_24;
@@ -7776,7 +7776,7 @@ BOOL ov9_0224F6EC (UnkStruct_ov9_0224F6EC * param0)
     }
 
     if (v0 == 1) {
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 
     return v0;

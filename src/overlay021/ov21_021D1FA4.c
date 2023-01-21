@@ -35,7 +35,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
 #include "unk_02015064.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201FE94.h"
 #include "unk_020218BC.h"
@@ -119,7 +119,7 @@ void ov21_021D2098 (UnkStruct_ov21_021D13FC * param0)
     ov21_021D2A00(param0);
     ov21_021D299C(param0->unk_00);
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     sub_02021964(param0->unk_138);
     sub_02009754(param0->unk_13C[0]);
     sub_02009754(param0->unk_13C[1]);
@@ -488,11 +488,11 @@ void * ov21_021D26E8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
         if (param2) {
             void * v1;
 
-            v1 = sub_02018144(param3, MI_GetUncompressedSize(v0));
+            v1 = AllocFromHeap(param3, MI_GetUncompressedSize(v0));
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
-                sub_020181C4(v0);
+                FreeToHeap(v0);
             }
 
             v0 = v1;
@@ -517,7 +517,7 @@ u32 ov21_021D2724 (UnkStruct_ov21_021D13FC * param0, u32 param1, UnkStruct_02018
             sub_0201958C(param2, param3, v1->pRawData, param5, param4);
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     return param5;
@@ -550,7 +550,7 @@ void ov21_021D276C (UnkStruct_ov21_021D13FC * param0, u32 param1, int param2, u3
             v0[param2](v2->pRawData, param3, param4);
         }
 
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 }
 
@@ -560,7 +560,7 @@ void * ov21_021D27B8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedScreenData(v0, param3) == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return NULL;
         }
     }
@@ -574,7 +574,7 @@ void * ov21_021D27E0 (UnkStruct_ov21_021D13FC * param0, u32 param1, NNSG2dPalett
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(v0, param2) == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return NULL;
         }
     }
@@ -588,7 +588,7 @@ void * ov21_021D2808 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param3) == 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return NULL;
         }
     }

@@ -25,7 +25,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201FE94.h"
@@ -54,7 +54,7 @@ int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 
-    sub_02017FC8(3, 111, 0xC0000);
+    CreateHeap(3, 111, 0xC0000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
@@ -166,7 +166,7 @@ int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201FFE8();
     sub_02006830(param0);
-    sub_0201807C(111);
+    DestroyHeap(111);
     sub_02005454(0);
 
     return 1;
@@ -241,7 +241,7 @@ static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
     ov100_021D0FA0(param0);
 
     G3X_AlphaBlend(1);
-    sub_020182CC(&param0->unk_1C, 111, 32);
+    GF_ExpHeap_FndInitAllocator(&param0->unk_1C, 111, 32);
 }
 
 static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
@@ -262,7 +262,7 @@ static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
     sub_02019044(param0->unk_0C, 5);
     sub_02019044(param0->unk_0C, 6);
     sub_02019044(param0->unk_0C, 7);
-    sub_020181C4(param0->unk_0C);
+    FreeToHeap(param0->unk_0C);
 
     sub_02002FA0(param0->unk_10, 0);
     sub_02002FA0(param0->unk_10, 1);

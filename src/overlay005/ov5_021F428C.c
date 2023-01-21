@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02073B50.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02063400.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
@@ -92,11 +92,11 @@ void ov5_021F42A8 (void * param0)
     UnkStruct_ov5_021F431C * v0 = param0;
 
     if (v0->unk_1F8 != NULL) {
-        sub_020181C4(v0->unk_1F8);
+        FreeToHeap(v0->unk_1F8);
     }
 
     if (v0->unk_1FC != NULL) {
-        sub_020181C4(v0->unk_1FC);
+        FreeToHeap(v0->unk_1FC);
     }
 
     ov5_021F4370(v0);
@@ -288,7 +288,7 @@ static void ov5_021F45D0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
             sub_02073AA8(&v0->unk_74->unk_04[v1]);
         }
 
-        sub_020181C4(v0->unk_74);
+        FreeToHeap(v0->unk_74);
     }
 }
 

@@ -22,7 +22,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
@@ -256,7 +256,7 @@ static void ov100_021D2324 (UnkStruct_ov100_021D1C98 * param0)
 
 void * ov100_021D2340 (UnkStruct_ov100_021D4DD8 * param0)
 {
-    UnkStruct_ov100_021D1C98 * v0 = sub_02018144(111, sizeof(UnkStruct_ov100_021D1C98));
+    UnkStruct_ov100_021D1C98 * v0 = AllocFromHeap(111, sizeof(UnkStruct_ov100_021D1C98));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D1C98));
 
@@ -724,7 +724,7 @@ BOOL ov100_021D2C8C (void * param0)
         v0->unk_00++;
         break;
     default:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 0;
     }
 

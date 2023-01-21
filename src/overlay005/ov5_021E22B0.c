@@ -5,7 +5,7 @@
 
 #include "overlay005/struct_ov5_021E2098.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201FE94.h"
 #include "overlay005/ov5_021E2098.h"
 #include "overlay005/ov5_021E22B0.h"
@@ -24,7 +24,7 @@ UnkStruct_ov5_021E2310 * ov5_021E22B0 (int param0, int param1)
 
     GX_ResetBankForBG();
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021E2310));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2310));
     MI_CpuClear32(v0, sizeof(UnkStruct_ov5_021E2310));
 
     {
@@ -56,5 +56,5 @@ void ov5_021E2310 (UnkStruct_ov5_021E2310 ** param0)
     ov5_021E20E8(&(*param0)->unk_00, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     GX_SetBankForBG(GX_VRAM_BG_128_C);
     sub_0201FF0C(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
-    sub_02018238(4, *param0);
+    FreeToHeapExplicit(4, *param0);
 }

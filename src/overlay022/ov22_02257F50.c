@@ -14,7 +14,7 @@
 #include "overlay022/struct_ov22_022599A0.h"
 
 #include "unk_0200679C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
 #include "unk_02022594.h"
@@ -506,7 +506,7 @@ static void ov22_022584F0 (UnkStruct_ov22_02257F50_sub1_sub1 * param0, int param
 {
     int v0;
 
-    param0->unk_00 = sub_02018144(14, sizeof(UnkStruct_ov22_02259560) * param1);
+    param0->unk_00 = AllocFromHeap(14, sizeof(UnkStruct_ov22_02259560) * param1);
     param0->unk_04 = param1;
     param0->unk_08 = 0;
 
@@ -520,7 +520,7 @@ static void ov22_022584F0 (UnkStruct_ov22_02257F50_sub1_sub1 * param0, int param
 
 static void ov22_02258534 (UnkStruct_ov22_02257F50_sub1_sub1 * param0)
 {
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     param0->unk_00 = NULL;
     memset(param0, 0, sizeof(UnkStruct_ov22_02257F50_sub1_sub1));
 }
@@ -623,7 +623,7 @@ static void ov22_0225864C (UnkStruct_ov22_02257F50 * param0, int param1, int par
     v1->unk_20 = ov22_022585A8(param0, param1, param2);
     v1->unk_24 = ov22_022585A8(param0, param3, param4);
     v1->unk_2C = v1->unk_20 + v1->unk_24;
-    v1->unk_28 = sub_02018144(13, sizeof(UnkStruct_ov22_0225886C) * v1->unk_2C);
+    v1->unk_28 = AllocFromHeap(13, sizeof(UnkStruct_ov22_0225886C) * v1->unk_2C);
 
     GF_ASSERT(v1->unk_28);
 
@@ -697,7 +697,7 @@ static void ov22_022586C4 (UnkStruct_0201CD38 * param0, void * param1)
 
         v0->unk_00->unk_00.unk_3C = 0;
 
-        sub_020181C4(v0->unk_28);
+        FreeToHeap(v0->unk_28);
         sub_020067D0(param0);
 
         return;

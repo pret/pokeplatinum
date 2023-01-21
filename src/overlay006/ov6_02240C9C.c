@@ -18,7 +18,7 @@
 
 #include "filesystem.h"
 #include "unk_0201378C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -222,7 +222,7 @@ static void ov6_02240D00 (UnkStruct_0203CDB0 * param0, const BOOL param1, int * 
                 (*param3) = v0[v2];
             }
 
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
     }
 }
@@ -382,8 +382,8 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
         v6 = 0;
     }
 
-    GF_ASSERT(sub_0201833C(4));
-    GF_ASSERT(sub_0201833C(11));
+    GF_ASSERT(GF_heap_c_dummy_return_true(4));
+    GF_ASSERT(GF_heap_c_dummy_return_true(11));
 
     if (v6 == 0) {
         sub_020520A4(v0);
@@ -738,8 +738,8 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C ** param1
         v5 = 0;
     }
 
-    GF_ASSERT(sub_0201833C(4));
-    GF_ASSERT(sub_0201833C(11));
+    GF_ASSERT(GF_heap_c_dummy_return_true(4));
+    GF_ASSERT(GF_heap_c_dummy_return_true(11));
 
     if (v5 == 0) {
         sub_020520A4(*param1);
@@ -1192,7 +1192,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
     v0 = ov6_02242514(param2, param4, v5, param6);
 
     GF_ASSERT(v0);
-    sub_020181C4(v5);
+    FreeToHeap(v5);
 }
 
 static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStruct_ov6_022422D0 * param3, UnkStruct_02073C74 * param4, UnkStruct_ov6_02240D5C * param5)
@@ -1238,7 +1238,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
 
                     v2 = ov6_02242514(param2, param3, v3, param5);
                     GF_ASSERT(v2);
-                    sub_020181C4(v3);
+                    FreeToHeap(v3);
                     return;
                 }
             }
@@ -1250,7 +1250,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
     v2 = ov6_02242514(param2, param3, v3, param5);
 
     GF_ASSERT(v2);
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 }
 
 static BOOL ov6_02241DC4 (UnkStruct_02073C74 * param0, const int param1, const UnkStruct_ov6_022422D0 * param2, const UnkStruct_ov6_0224222C * param3, const u8 param4, const int param5, UnkStruct_ov6_02240D5C * param6)
@@ -1636,7 +1636,7 @@ static void ov6_0224239C (const u32 param0, UnkStruct_0206C638 * param1, UnkStru
     v6 = sub_0207A048(param2->unk_04[1], v7);
 
     GF_ASSERT(v6);
-    sub_020181C4(v7);
+    FreeToHeap(v7);
 }
 
 static BOOL ov6_02242440 (UnkStruct_0203CDB0 * param0, UnkStruct_0206C638 ** param1)

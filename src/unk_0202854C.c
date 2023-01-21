@@ -13,7 +13,7 @@
 #include "struct_defs/struct_020298B0.h"
 
 #include "unk_0201378C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E68.h"
@@ -92,7 +92,7 @@ UnkStruct_0202855C * sub_0202855C (u32 param0)
 {
     UnkStruct_0202855C * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_0202855C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0202855C));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0202855C));
     return v0;
 }

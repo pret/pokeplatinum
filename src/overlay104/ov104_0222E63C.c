@@ -17,7 +17,7 @@
 #include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_0209B6F8.h"
 #include "overlay104/ov104_0222E63C.h"
@@ -35,7 +35,7 @@ UnkStruct_ov104_022320B4 * ov104_0222E63C (UnkStruct_0209B75C * param0, int para
 {
     UnkStruct_ov104_022320B4 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov104_022320B4));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov104_022320B4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_022320B4));
 
     v0->unk_00 = param0;
@@ -96,17 +96,17 @@ void ov104_0222E710 (UnkStruct_ov104_022320B4 * param0)
     sub_0200B3F0(param0->unk_44);
     sub_020237BC(param0->unk_48);
     sub_020237BC(param0->unk_4C);
-    sub_020181C4(param0->unk_40);
+    FreeToHeap(param0->unk_40);
     sub_0200B190(param0->unk_3C);
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov104_0222E748 (UnkStruct_ov104_022320B4 * param0, int param1, int param2)
 {
     UnkStruct_ov104_0222E930 * v0;
 
-    v0 = sub_02018144(param0->unk_34, sizeof(UnkStruct_ov104_0222E930));
+    v0 = AllocFromHeap(param0->unk_34, sizeof(UnkStruct_ov104_0222E930));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0222E930));
 
     ov104_0222E930(v0, Unk_ov104_0223F674, Unk_ov104_0223F63C);
@@ -148,10 +148,10 @@ static void ov104_0222E7FC (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0
     }
 
     if (param1->unk_84 != param0->unk_40) {
-        sub_020181C4(param1->unk_84);
+        FreeToHeap(param1->unk_84);
     }
 
-    sub_020181C4(param1);
+    FreeToHeap(param1);
 }
 
 static void ov104_0222E82C (UnkStruct_ov104_022320B4 * param0, u16 param1, u32 * param2, void * param3)
@@ -206,7 +206,7 @@ UnkStruct_ov104_0222E8C8 * ov104_0222E8C8 (UnkStruct_ov104_022320B4 * param0, in
 {
     UnkStruct_ov104_0222E8C8 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov104_0222E8C8));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov104_0222E8C8));
     *v0 = param0->unk_24;
 
     return v0;
@@ -215,7 +215,7 @@ UnkStruct_ov104_0222E8C8 * ov104_0222E8C8 (UnkStruct_ov104_022320B4 * param0, in
 void ov104_0222E8E8 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0222E8C8 * param1)
 {
     param0->unk_24 = *param1;
-    sub_020181C4(param1);
+    FreeToHeap(param1);
 }
 
 static void ov104_0222E904 (UnkStruct_ov104_0222E930 * param0, int param1)

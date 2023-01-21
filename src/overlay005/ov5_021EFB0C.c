@@ -13,7 +13,7 @@
 #include "struct_defs/struct_02055130.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202D7A8.h"
@@ -86,7 +86,7 @@ UnkStruct_ov5_021EFB30 * ov5_021EFB0C (void)
     u8 v0;
     UnkStruct_ov5_021EFB30 * v1;
 
-    v1 = sub_02018144(4, sizeof(UnkStruct_ov5_021EFB30));
+    v1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EFB30));
 
     for (v0 = 0; v0 < 21; v0++) {
         v1->unk_00[v0].unk_00 = 0;
@@ -98,7 +98,7 @@ UnkStruct_ov5_021EFB30 * ov5_021EFB0C (void)
 
 void ov5_021EFB30 (UnkStruct_ov5_021EFB30 ** param0)
 {
-    sub_020181C4(*param0);
+    FreeToHeap(*param0);
     *param0 = NULL;
 }
 
@@ -483,7 +483,7 @@ int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
         }
 
         v2 = v1[v4->unk_04];
-        sub_020181C4(v1);
+        FreeToHeap(v1);
 
         return v2;
     }

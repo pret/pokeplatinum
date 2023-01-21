@@ -14,7 +14,7 @@
 #include "unk_0200679C.h"
 #include "unk_0200D9E8.h"
 #include "unk_02013B10.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "overlay100/ov100_021D4E04.h"
 #include "overlay104/ov104_0223E894.h"
@@ -176,7 +176,7 @@ static void inline_ov104_0223F1B4_2 (void * param0)
    {
     UnkStruct_ov104_0223F174 * v0;
 
-    v0 = sub_02018144(param2, sizeof(UnkStruct_ov104_0223F174));
+    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov104_0223F174));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223F174));
     GF_ASSERT(v0);
 
@@ -202,7 +202,7 @@ void ov104_0223F258 (UnkStruct_ov104_0223F174 * param0)
         sub_02013B40(param0->unk_1C);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void * ov104_0223F27C (const UnkStruct_ov104_0223F174 * param0)

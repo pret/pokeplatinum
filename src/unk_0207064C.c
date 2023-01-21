@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02049FA8.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0203A7D8.h"
 #include "unk_020508D4.h"
 #include "unk_020530C8.h"
@@ -28,7 +28,7 @@ typedef struct {
 
 void * sub_0207064C (u32 param0, UnkStruct_0203CDB0 * param1, UnkStruct_02073C74 * param2, u16 param3, s16 param4, s16 param5)
 {
-    UnkStruct_0207064C * v0 = sub_02018184(param0, (sizeof(UnkStruct_0207064C)));
+    UnkStruct_0207064C * v0 = AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
 
     memset(v0, 0, (sizeof(UnkStruct_0207064C)));
 
@@ -69,7 +69,7 @@ BOOL sub_02070680 (UnkStruct_020508D4 * param0)
             sub_02053AFC(param0, v3.unk_00, -1, v3.unk_08, v3.unk_0C, 1);
         }
 
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 
     return 0;

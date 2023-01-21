@@ -19,7 +19,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200D9E8.h"
 #include "unk_020131EC.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
@@ -53,13 +53,13 @@ UnkStruct_ov6_022426B8 * ov6_022426AC (const int param0)
 {
     UnkStruct_ov6_022426B8 * v0;
 
-    v0 = sub_02018184(param0, sizeof(UnkStruct_ov6_022426B8));
+    v0 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_022426B8));
     return v0;
 }
 
 void ov6_022426B8 (UnkStruct_ov6_022426B8 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
@@ -149,8 +149,8 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
     }
 
     sub_02021964(param0->unk_38);
-    sub_020181C4(param0->unk_20);
-    sub_020181C4(param0->unk_24);
+    FreeToHeap(param0->unk_20);
+    FreeToHeap(param0->unk_24);
 }
 
 static void ov6_02242860 (UnkStruct_0201CD38 * param0, void * param1)

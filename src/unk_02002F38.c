@@ -9,7 +9,7 @@
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020241F0.h"
 
 typedef struct UnkStruct_02002F38_t {
@@ -46,7 +46,7 @@ UnkStruct_02002F38 * sub_02002F38 (int param0)
 {
     UnkStruct_02002F38 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02002F38));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02002F38));
     MI_CpuClear8(v0, sizeof(UnkStruct_02002F38));
 
     return v0;
@@ -54,7 +54,7 @@ UnkStruct_02002F38 * sub_02002F38 (int param0)
 
 void sub_02002F54 (UnkStruct_02002F38 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02002F5C (UnkStruct_02002F38 * param0, int param1, void * param2, void * param3, u32 param4)
@@ -69,16 +69,16 @@ void sub_02002F70 (UnkStruct_02002F38 * param0, int param1, u32 param2, u32 para
     void * v0;
     void * v1;
 
-    v0 = sub_02018144(param3, param2);
-    v1 = sub_02018144(param3, param2);
+    v0 = AllocFromHeap(param3, param2);
+    v1 = AllocFromHeap(param3, param2);
 
     sub_02002F5C(param0, param1, v0, v1, param2);
 }
 
 void sub_02002FA0 (UnkStruct_02002F38 * param0, int param1)
 {
-    sub_020181C4(param0->unk_00[param1].unk_00);
-    sub_020181C4(param0->unk_00[param1].unk_04);
+    FreeToHeap(param0->unk_00[param1].unk_00);
+    FreeToHeap(param0->unk_00[param1].unk_04);
 }
 
 void sub_02002FBC (UnkStruct_02002F38 * param0, const void * param1, int param2, u16 param3, u16 param4)
@@ -102,7 +102,7 @@ void sub_02002FEC (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 para
     GF_ASSERT(param6 * sizeof(param6) + param5 <= param0->unk_00[param4].unk_08);
 
     sub_02002FBC(param0, &(((u16 *)(v0->pRawData))[param7]), param4, param6, param5);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 void sub_02003050 (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6)
@@ -150,7 +150,7 @@ void sub_020030E4 (u32 param0, u32 param1, u32 param2, u32 param3, u16 param4, v
     }
 
     MI_CpuCopy16(&(((u16 *)(v0->pRawData))[param4]), param5, param3);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 void sub_02003120 (UnkStruct_02002F38 * param0, int param1, u16 param2, int param3, u16 param4, u16 param5)
@@ -627,5 +627,5 @@ void sub_02003B08 (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 para
 
     sub_02003A8C(v0->pRawData, 16, param7, param8, param9);
     sub_02002FBC(param0, v0->pRawData, param4, param6, param5);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }

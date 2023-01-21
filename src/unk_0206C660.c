@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay006/struct_ov6_02246254.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206C660.h"
@@ -79,9 +79,9 @@ static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
         v1->unk_04++;
         break;
     case 6:
-        sub_020181C4(v1->unk_24);
-        sub_020181C4(v1->unk_28);
-        sub_020181C4(v1);
+        FreeToHeap(v1->unk_24);
+        FreeToHeap(v1->unk_28);
+        FreeToHeap(v1);
         return 1;
     }
 
@@ -90,7 +90,7 @@ static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
 
 void sub_0206C740 (UnkStruct_020508D4 * param0, UnkStruct_ov6_02246204 * param1, int param2, u32 param3)
 {
-    UnkStruct_0206C660 * v0 = sub_02018144(param3, sizeof(UnkStruct_0206C660));
+    UnkStruct_0206C660 * v0 = AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
 
     memset(v0, 0, sizeof(UnkStruct_0206C660));
 

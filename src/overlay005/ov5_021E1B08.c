@@ -6,7 +6,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0205D8CC.h"
 #include "overlay005/ov5_021E1B08.h"
@@ -26,7 +26,7 @@ static BOOL ov5_021E1CB0(UnkStruct_0203CDB0 * param0);
 
 void * ov5_021E1B08 (u32 param0)
 {
-    void * v0 = sub_02018144(param0, sizeof(UnkStruct_ov5_021E1B20));
+    void * v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov5_021E1B20));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021E1B20));
     return v0;
@@ -38,7 +38,7 @@ void ov5_021E1B20 (UnkStruct_ov5_021E1B20 * param0)
         sub_0201A8FC(&param0->unk_00);
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov5_021E1B38 (UnkStruct_ov5_021E1B20 * param0, u16 param1, u16 param2)

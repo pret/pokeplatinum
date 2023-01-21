@@ -11,7 +11,7 @@
 #include "overlay034/struct_ov34_02256540_1.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02022594.h"
 #include "unk_0203E880.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -49,7 +49,7 @@ static void NitroStaticInit (void)
 
 static BOOL ov34_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
-    UnkStruct_ov34_0225621C * v0 = (UnkStruct_ov34_0225621C *)sub_02018144(8, sizeof(UnkStruct_ov34_0225621C));
+    UnkStruct_ov34_0225621C * v0 = (UnkStruct_ov34_0225621C *)AllocFromHeap(8, sizeof(UnkStruct_ov34_0225621C));
 
     if (v0 != NULL) {
         if (ov34_0225621C(v0, param1, param2, param3)) {
@@ -59,7 +59,7 @@ static BOOL ov34_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
             }
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 
     return 0;
@@ -83,11 +83,11 @@ static BOOL ov34_0225621C (UnkStruct_ov34_0225621C * param0, UnkStruct_ov25_0225
 static void ov34_02256244 (UnkStruct_ov34_0225621C * param0)
 {
     if (param0->unk_50) {
-        sub_020181C4(param0->unk_50);
+        FreeToHeap(param0->unk_50);
     }
 
     ov34_02256604(param0->unk_48);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov34_02256260 (UnkStruct_0201CD38 * param0, void * param1)
@@ -249,7 +249,7 @@ static void ov34_02256428 (UnkStruct_ov34_0225621C * param0, int param1, int par
             }
         }
 
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 }
 

@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0202E794.h"
 
 #include "unk_020021B0.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -177,7 +177,7 @@ UnkStruct_0202E794 * ov59_021D2C28 (UnkStruct_021C0794 * param0, int param1, u32
     UnkStruct_0202E794 * v0;
     UnkStruct_0202440C * v1;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     v1 = sub_0202440C(param0);
 
     GF_ASSERT(param2 == ov59_021D2B44(param0));
@@ -191,7 +191,7 @@ UnkStruct_0202E794 * ov59_021D2C70 (UnkStruct_021C0794 * param0, int param1, u32
     UnkStruct_0202E794 * v0;
     UnkStruct_0202440C * v1;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     v1 = sub_0202440C(param0);
 
     GF_ASSERT(param2 == ov59_021D2B4C(param0));
@@ -205,7 +205,7 @@ UnkStruct_0202E794 * ov59_021D2CB4 (UnkStruct_021C0794 * param0, int param1, u32
     UnkStruct_0202E794 * v0;
     UnkStruct_0202440C * v1;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     v1 = sub_0202440C(param0);
 
     GF_ASSERT(param2 == ov59_021D2B54(param0));
@@ -219,7 +219,7 @@ UnkStruct_0202E794 * ov59_021D2CF8 (UnkStruct_021C0794 * param0, int param1, u32
     UnkStruct_0202E794 * v0;
     UnkStruct_0202440C * v1;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     v1 = sub_0202440C(param0);
 
     GF_ASSERT(param2 == ov59_021D2B44(param0));
@@ -233,7 +233,7 @@ UnkStruct_0202E794 * ov59_021D2D3C (UnkStruct_021C0794 * param0, int param1, u32
     UnkStruct_0202E794 * v0;
     UnkStruct_0202440C * v1;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     v1 = sub_0202440C(param0);
 
     GF_ASSERT(param2 == ov59_021D2B4C(param0));
@@ -247,7 +247,7 @@ UnkStruct_0202E794 * ov59_021D2D80 (UnkStruct_021C0794 * param0, int param1, u32
     UnkStruct_0202E794 * v0;
     UnkStruct_0202440C * v1;
 
-    v0 = sub_02018184(param1, param2);
+    v0 = AllocFromHeapAtEnd(param1, param2);
     v1 = sub_0202440C(param0);
 
     GF_ASSERT(param2 == ov59_021D2B54(param0));

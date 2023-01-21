@@ -18,7 +18,7 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "unk_0200AC5C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0202D05C.h"
 #include "unk_020329E0.h"
@@ -653,7 +653,7 @@ BOOL ov104_0223A0C4 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * par
     v1 = ov104_0222DD04(&param1->unk_00, param2, param7, ov104_0223A77C(param0->unk_0F));
     v0 = ov104_0223A118(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v0;
 }
@@ -937,7 +937,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
         sub_0205213C(v3, v6, 0);
     }
 
-    sub_020181C4(v6);
+    FreeToHeap(v6);
     sub_02052894(v3);
 
     ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->unk_04);
@@ -973,7 +973,7 @@ static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_022
         sub_0207A048(param0->unk_04[param3], v2);
     }
 
-    sub_020181C4(v2);
+    FreeToHeap(v2);
 }
 
 static u32 ov104_0223A700 (u8 param0)

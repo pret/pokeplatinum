@@ -20,7 +20,7 @@
 #include "overlay023/struct_ov23_0224A294.h"
 
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -82,7 +82,7 @@ BOOL sub_02057524 (void * param0, UnkStruct_0203CDB0 * param1, BOOL param2)
     Unk_021C0848->unk_04 = NULL;
 
     if (param2) {
-        Unk_021C0848->unk_04 = sub_02018144(15, ov23_02249918());
+        Unk_021C0848->unk_04 = AllocFromHeap(15, ov23_02249918());
         ov23_0224991C(Unk_021C0848->unk_04);
     }
 
@@ -157,7 +157,7 @@ void sub_020576CC (BOOL param0)
     if (Unk_021C0848) {
         for (v1 = 0; v1 < 5; v1++) {
             if (Unk_021C0848->unk_27C[v1]) {
-                sub_020181C4(Unk_021C0848->unk_27C[v1]);
+                FreeToHeap(Unk_021C0848->unk_27C[v1]);
                 Unk_021C0848->unk_27C[v1] = NULL;
             }
         }
@@ -174,10 +174,10 @@ void sub_020576CC (BOOL param0)
 
         if (Unk_021C0848->unk_04) {
             ov23_02249938(Unk_021C0848->unk_04);
-            sub_020181C4(Unk_021C0848->unk_04);
+            FreeToHeap(Unk_021C0848->unk_04);
         }
 
-        sub_020181C4(Unk_021C0848);
+        FreeToHeap(Unk_021C0848);
         Unk_021C0848 = NULL;
     }
 }

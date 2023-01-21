@@ -11,7 +11,7 @@
 
 #include "filesystem.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
 #include "unk_02020020.h"
@@ -47,14 +47,14 @@ static void ov95_02247B5C(UnkStruct_ov95_0224773C * param0);
 
 UnkStruct_ov95_0224773C * ov95_022476F0 (u32 param0, fx32 param1, fx32 param2, fx32 param3)
 {
-    UnkStruct_ov95_0224773C * v0 = sub_02018144(58, sizeof(UnkStruct_ov95_0224773C));
+    UnkStruct_ov95_0224773C * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224773C));
 
     if (v0) {
         u32 v1;
 
         ov95_02247AF0(v0, param1, param2, param3);
 
-        v0->unk_18 = sub_02018144(58, sizeof(UnkStruct_ov95_02247958) * param0);
+        v0->unk_18 = AllocFromHeap(58, sizeof(UnkStruct_ov95_02247958) * param0);
         v0->unk_1C = param0;
 
         for (v1 = 0; v1 < param0; v1++) {
@@ -73,9 +73,9 @@ void ov95_0224773C (UnkStruct_ov95_0224773C * param0)
         ov95_0224789C(&(param0->unk_18[v0]));
     }
 
-    sub_020181C4(param0->unk_18);
+    FreeToHeap(param0->unk_18);
     ov95_02247B5C(param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov95_02247770 (UnkStruct_ov95_0224773C * param0)
@@ -134,7 +134,7 @@ static void ov95_02247868 (UnkStruct_ov95_02247958 * param0)
 static void ov95_0224789C (UnkStruct_ov95_02247958 * param0)
 {
     if (param0->unk_00) {
-        sub_020181C4(param0->unk_00);
+        FreeToHeap(param0->unk_00);
         param0->unk_00 = NULL;
         param0->unk_64 = 0;
     }

@@ -9,14 +9,14 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 
 static UnkStruct_02013A04 * sub_02013AAC(UnkStruct_02013A04 * param0, u32 * param1);
 
 UnkStruct_02013A04 * sub_02013A04 (u32 param0, u32 param1)
 {
-    UnkStruct_02013A04 * v0 = sub_02018144(param1, sizeof(UnkStruct_02013A04) * (param0 + 1));
+    UnkStruct_02013A04 * v0 = AllocFromHeap(param1, sizeof(UnkStruct_02013A04) * (param0 + 1));
 
     if (v0) {
         u32 v1;
@@ -36,7 +36,7 @@ UnkStruct_02013A04 * sub_02013A04 (u32 param0, u32 param1)
 void sub_02013A3C (UnkStruct_02013A04 * param0)
 {
     sub_02013AE8(param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02013A4C (UnkStruct_02013A04 * param0, const UnkStruct_0200B144 * param1, u32 param2, u32 param3)

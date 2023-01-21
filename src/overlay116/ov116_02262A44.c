@@ -4,12 +4,12 @@
 #include "overlay116/struct_ov116_02262A44.h"
 #include "overlay116/struct_ov116_022649E4.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay116/ov116_02262A44.h"
 
 UnkStruct_ov116_02262A44 * ov116_02262A44 (int param0, UnkStruct_ov116_022649E4 * param1)
 {
-    UnkStruct_ov116_02262A44 * v0 = sub_02018144(106, sizeof(UnkStruct_ov116_02262A44));
+    UnkStruct_ov116_02262A44 * v0 = AllocFromHeap(106, sizeof(UnkStruct_ov116_02262A44));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262A44));
 
@@ -22,7 +22,7 @@ UnkStruct_ov116_02262A44 * ov116_02262A44 (int param0, UnkStruct_ov116_022649E4 
 
 void ov116_02262A6C (UnkStruct_ov116_02262A44 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 BOOL ov116_02262A74 (UnkStruct_ov116_02262A44 * param0)

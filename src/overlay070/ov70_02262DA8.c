@@ -6,7 +6,7 @@
 #include "overlay070/funcptr_ov70_0226DA18.h"
 #include "overlay070/struct_ov70_0226DA18.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay070/ov70_02262DA8.h"
 
 typedef struct {
@@ -48,7 +48,7 @@ UnkStruct_ov70_022630A4 * ov70_02262DA8 (UnkStruct_ov70_0225DEE8 * param0, u32 p
 {
     UnkStruct_ov70_022630A4 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov70_022630A4));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov70_022630A4));
     memset(v0, 0, sizeof(UnkStruct_ov70_022630A4));
 
     v0->unk_00 = param1;
@@ -78,7 +78,7 @@ void ov70_02262DF4 (UnkStruct_ov70_022630A4 * param0)
     }
 
     ov70_02262F70(&param0->unk_2D8);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov70_02262E20 (UnkStruct_ov70_022630A4 * param0)
@@ -100,7 +100,7 @@ void * ov70_02262E3C (UnkStruct_ov70_02263344 * param0, u32 param1)
 {
     GF_ASSERT(param0->unk_04.unk_04 == NULL);
 
-    param0->unk_04.unk_04 = sub_02018144(param0->unk_00, param1);
+    param0->unk_04.unk_04 = AllocFromHeap(param0->unk_00, param1);
     memset(param0->unk_04.unk_04, 0, param1);
 
     return param0->unk_04.unk_04;
@@ -109,7 +109,7 @@ void * ov70_02262E3C (UnkStruct_ov70_02263344 * param0, u32 param1)
 void ov70_02262E64 (UnkStruct_ov70_02263344 * param0)
 {
     GF_ASSERT(param0->unk_04.unk_04 != NULL);
-    sub_020181C4(param0->unk_04.unk_04);
+    FreeToHeap(param0->unk_04.unk_04);
     param0->unk_04.unk_04 = NULL;
 }
 
@@ -185,11 +185,11 @@ static void ov70_02262F64 (UnkStruct_ov70_02263344 * param0, u32 param1, u32 par
 static void ov70_02262F70 (UnkStruct_ov70_02263344 * param0)
 {
     if (param0->unk_04.unk_04 != NULL) {
-        sub_020181C4(param0->unk_04.unk_04);
+        FreeToHeap(param0->unk_04.unk_04);
     }
 
     if (param0->unk_14.unk_04 != NULL) {
-        sub_020181C4(param0->unk_14.unk_04);
+        FreeToHeap(param0->unk_14.unk_04);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov70_02263344));

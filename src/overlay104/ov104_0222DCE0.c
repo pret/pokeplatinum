@@ -23,7 +23,7 @@
 #include "filesystem.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
@@ -437,7 +437,7 @@ void ov104_0222E278 (UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, 
     UnkStruct_0204B184 * v0;
 
     v0 = ov104_0222DD04(&param0->unk_00, param1, param2, param3);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return;
 }
@@ -597,7 +597,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
             v3[v0] = v6.unk_0C;
         }
 
-        sub_020181C4(v5);
+        FreeToHeap(v5);
         v5 = ov104_0222DD04(&v4, param2, 11, 178);
         ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
 
@@ -606,7 +606,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
         }
     }
 
-    sub_020181C4(v5);
+    FreeToHeap(v5);
     ov104_0222E330(param4, param3, param5, NULL, param6, param0, 11, 179);
 
     return;

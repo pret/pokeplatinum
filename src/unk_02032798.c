@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02039A58.h"
 #include "functypes/funcptr_020F8E60.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02032798.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -58,7 +58,7 @@ void sub_02032798 (const UnkStruct_02039A58 * param0, int param1, void * param2)
     int v0;
 
     if (!Unk_021C07B0) {
-        Unk_021C07B0 = sub_02018144(15, sizeof(UnkStruct_021C07B0));
+        Unk_021C07B0 = AllocFromHeap(15, sizeof(UnkStruct_021C07B0));
     }
 
     Unk_021C07B0->unk_00 = param0;
@@ -75,7 +75,7 @@ void sub_02032798 (const UnkStruct_02039A58 * param0, int param1, void * param2)
 void sub_020327E0 (void)
 {
     if (Unk_021C07B0) {
-        sub_020181C4(Unk_021C07B0);
+        FreeToHeap(Unk_021C07B0);
         Unk_021C07B0 = NULL;
     }
 }

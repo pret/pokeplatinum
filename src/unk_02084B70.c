@@ -17,7 +17,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -59,22 +59,22 @@ static u8 sub_02084B70 (u16 param0)
     v0 = sub_0207CF48(param0, 0, 12);
 
     if (sub_0207D014(v0, 14) != 1) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 28;
     }
 
     if ((sub_0207D014(v0, 27) != 0) || (sub_0207D014(v0, 28) != 0) || (sub_0207D014(v0, 29) != 0) || (sub_0207D014(v0, 30) != 0) || (sub_0207D014(v0, 31) != 0) || (sub_0207D014(v0, 32) != 0) || (sub_0207D014(v0, 33) != 0)) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 0;
     }
 
     if (sub_0207D014(v0, 24) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 1;
     }
 
     if (sub_0207D014(v0, 25) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 2;
     }
 
@@ -87,136 +87,136 @@ static u8 sub_02084B70 (u16 param0)
 
     switch (v1) {
     case 0x1:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 3;
     case 0x2:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 4;
     case 0x4:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 5;
     case 0x8:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 6;
     case 0x10:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 7;
     case 0x20:
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 8;
     case 0x3f:
         if (sub_0207D014(v0, 38) != 0) {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 11;
         } else {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return 9;
         }
     }
 
     if (sub_0207D014(v0, 21) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 10;
     }
 
     if (sub_0207D014(v0, 38) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 11;
     }
 
     v1 = sub_0207D014(v0, 48);
 
     if (v1 > 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 12;
     }
 
     if (v1 < 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 18;
     }
 
     v1 = sub_0207D014(v0, 49);
 
     if (v1 > 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 13;
     }
 
     if (v1 < 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 19;
     }
 
     v1 = sub_0207D014(v0, 50);
 
     if (v1 > 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 14;
     }
 
     if (v1 < 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 20;
     }
 
     v1 = sub_0207D014(v0, 51);
 
     if (v1 > 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 15;
     }
 
     if (v1 < 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 21;
     }
 
     v1 = sub_0207D014(v0, 52);
 
     if (v1 > 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 16;
     }
 
     if (v1 < 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 22;
     }
 
     v1 = sub_0207D014(v0, 53);
 
     if (v1 > 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 17;
     }
 
     if (v1 < 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 23;
     }
 
     if (sub_0207D014(v0, 26) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 24;
     }
 
     if (sub_0207D014(v0, 34) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 25;
     }
 
     if (sub_0207D014(v0, 35) != 0) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 26;
     }
 
     if ((sub_0207D014(v0, 36) != 0) || (sub_0207D014(v0, 37) != 0)) {
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return 27;
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     return 28;
 }
 

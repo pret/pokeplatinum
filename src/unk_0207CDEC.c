@@ -11,7 +11,7 @@
 
 #include "filesystem.h"
 #include "unk_0200AC5C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0207CDEC.h"
 
 typedef struct {
@@ -811,7 +811,7 @@ s32 sub_0207CFF0 (u16 param0, u16 param1, u32 param2)
 
     v0 = (UnkStruct_0207D3B0 *)sub_0207CF48(param0, 0, param2);
     v1 = sub_0207D014(v0, param1);
-    sub_02018238(param2, v0);
+    FreeToHeapExplicit(param2, v0);
 
     return v1;
 }

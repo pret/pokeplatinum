@@ -31,7 +31,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
@@ -211,7 +211,7 @@ void ov17_0223F334 (UnkStruct_02095C48 * param0, int param1)
         param0->unk_00.unk_118[v1].unk_02 = ov17_02252A70(param0->unk_00.unk_E8[v1], v0);
     }
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 void ov17_0223F374 (UnkStruct_02095C48 * param0)
@@ -407,7 +407,7 @@ UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, UnkStruct_02002F38 * param1
 {
     UnkStruct_ov17_0223F744 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov17_0223F744));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
 
     v0->unk_04 = param1;
@@ -424,7 +424,7 @@ void ov17_0223F744 (UnkStruct_ov17_0223F744 * param0)
     GF_ASSERT(param0->unk_00 != NULL);
 
     sub_0200DA58(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 BOOL ov17_0223F760 (void)

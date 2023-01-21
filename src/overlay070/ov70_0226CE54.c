@@ -9,7 +9,7 @@
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay070/ov70_0225C858.h"
@@ -83,7 +83,7 @@ UnkStruct_ov70_0226CF38 * ov70_0226CE54 (UnkStruct_ov70_0225DEE8 * param0, u32 p
         63, 62, 61,
     };
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov70_0226CF38));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov70_0226CF38));
     memset(v0, 0, sizeof(UnkStruct_ov70_0226CF38));
 
     v0->unk_00 = param0;
@@ -115,7 +115,7 @@ UnkStruct_ov70_0226CF38 * ov70_0226CE54 (UnkStruct_ov70_0225DEE8 * param0, u32 p
 
 void ov70_0226CF38 (UnkStruct_ov70_0226CF38 * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov70_0226CF40 (UnkStruct_ov70_0226CF38 * param0)

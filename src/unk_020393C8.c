@@ -9,7 +9,7 @@
 
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02033200.h"
 #include "unk_02034198.h"
 #include "unk_020366A0.h"
@@ -43,7 +43,7 @@ UnkStruct_020393C8 * sub_020393C8 (u32 param0, u32 param1, int param2, int param
     sub_020394D0(param6, param4, (16 * 2 * 14), param1);
     sub_02039530(param6, param4, param1);
 
-    v0 = (UnkStruct_020393C8 *)sub_02018184(param1, sizeof(UnkStruct_020393C8));
+    v0 = (UnkStruct_020393C8 *)AllocFromHeapAtEnd(param1, sizeof(UnkStruct_020393C8));
 
     v0->unk_18 = sub_0200DA3C(sub_02039428, v0, 5);
     v0->unk_0C = param2;
@@ -132,7 +132,7 @@ void sub_02039440 (UnkStruct_020393C8 * param0)
         inline_02039440((GXOamAttr *)(HW_OAM_END));
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_02039474 (UnkStruct_020393C8 * param0, BOOL param1, u32 param2)
@@ -146,7 +146,7 @@ void sub_02039474 (UnkStruct_020393C8 * param0, BOOL param1, u32 param2)
 
 void * sub_020394A8 (u32 param0)
 {
-    void * v0 = sub_02018184(param0, 600);
+    void * v0 = AllocFromHeapAtEnd(param0, 600);
 
     sub_02017A94("data/pl_wm.NCLR", &v0);
     DC_FlushRange(v0, 600);
@@ -156,7 +156,7 @@ void * sub_020394A8 (u32 param0)
 
 static void sub_020394D0 (int param0, BOOL param1, u32 param2, u32 param3)
 {
-    void * v0 = sub_02018184(param3, 600);
+    void * v0 = AllocFromHeapAtEnd(param3, 600);
 
     if (v0) {
         NNSG2dPaletteData * v1;
@@ -171,13 +171,13 @@ static void sub_020394D0 (int param0, BOOL param1, u32 param2, u32 param3)
             GXS_LoadOBJPltt(v1->pRawData, param2, (16 * 2));
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
 static void sub_02039530 (int param0, BOOL param1, u32 param2)
 {
-    void * v0 = sub_02018184(param2, 600);
+    void * v0 = AllocFromHeapAtEnd(param2, 600);
 
     if (v0) {
         NNSG2dCharacterData * v1;
@@ -228,7 +228,7 @@ static void sub_02039530 (int param0, BOOL param1, u32 param2)
             GXS_LoadOBJ(v1->pRawData, v2, (4 * 4 * 32));
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 

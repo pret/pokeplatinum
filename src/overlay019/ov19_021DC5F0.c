@@ -16,7 +16,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_020218BC.h"
 #include "unk_02079FEC.h"
@@ -70,7 +70,7 @@ BOOL ov19_021DC5F0 (UnkStruct_ov19_021DC680 * param0, UnkStruct_ov19_021D61B0 * 
 
     ov19_021DA3CC(param0->unk_38, param0->unk_3C, 6);
 
-    param0->unk_1C = sub_02018144(10, sizeof(VecFx32) * 6 * 8);
+    param0->unk_1C = AllocFromHeap(10, sizeof(VecFx32) * 6 * 8);
     param0->unk_14 = sub_020071D0(param5, 6, 1, &(param0->unk_18), 10);
 
     if ((param0->unk_14 == NULL) || (param0->unk_1C == NULL)) {
@@ -85,11 +85,11 @@ BOOL ov19_021DC5F0 (UnkStruct_ov19_021DC680 * param0, UnkStruct_ov19_021D61B0 * 
 void ov19_021DC680 (UnkStruct_ov19_021DC680 * param0)
 {
     if (param0->unk_14) {
-        sub_020181C4(param0->unk_14);
+        FreeToHeap(param0->unk_14);
     }
 
     if (param0->unk_1C != NULL) {
-        sub_020181C4(param0->unk_1C);
+        FreeToHeap(param0->unk_1C);
     }
 
     ov19_021DCF50(param0);

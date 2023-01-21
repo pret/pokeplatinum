@@ -13,7 +13,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -209,12 +209,12 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
         sub_0205213C(v5, v6, 0);
     }
 
-    sub_020181C4(v6);
+    FreeToHeap(v6);
     sub_02052894(v5);
 
     v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], 11, 178);
 
-    sub_020181C4(v8);
+    FreeToHeap(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
     sub_0207A014(v5->unk_04[1], ov104_0223BDA4(param0->unk_10, 0));
 
@@ -229,7 +229,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
         sub_0205213C(v5, v6, 1);
     }
 
-    sub_020181C4(v6);
+    FreeToHeap(v6);
 
     switch (param0->unk_10) {
     case 2:
@@ -240,7 +240,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
         sub_02025E80(v11, v5->unk_D0[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], 11, 178);
-        sub_020181C4(v8);
+        FreeToHeap(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
         sub_0207A014(v5->unk_04[3], ov104_0223BDA4(param0->unk_10, 0));
@@ -252,7 +252,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
             sub_0205213C(v5, v6, 3);
         }
 
-        sub_020181C4(v6);
+        FreeToHeap(v6);
         break;
     }
 
@@ -331,7 +331,7 @@ void ov104_0223C04C (UnkStruct_ov104_0223BFFC * param0)
         sub_02074B30(v6, 6, &v0);
     }
 
-    sub_020181C4(v5);
+    FreeToHeap(v5);
     return;
 }
 

@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "unk_02005474.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0205DAC8.h"
 #include "unk_0205E7D0.h"
@@ -153,7 +153,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
 
 static void * ov5_021E132C (int param0)
 {
-    void * v0 = sub_02018184(4, param0);
+    void * v0 = AllocFromHeapAtEnd(4, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -163,5 +163,5 @@ static void * ov5_021E132C (int param0)
 
 static void ov5_021E1350 (void * param0)
 {
-    sub_02018238(4, param0);
+    FreeToHeapExplicit(4, param0);
 }

@@ -8,7 +8,7 @@
 #include "overlay006/struct_ov6_02242634.h"
 
 #include "filesystem.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
@@ -59,7 +59,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
     u8 v0;
     UnkStruct_ov6_02242A8C * v1;
 
-    v1 = sub_02018184(param0, sizeof(UnkStruct_ov6_02242A8C));
+    v1 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_02242A8C));
     v1->unk_2C = param1;
 
     {
@@ -80,7 +80,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
             v1->unk_30 = param1->unk_1C->unk_00;
         }
 
-        sub_020181C4(v3);
+        FreeToHeap(v3);
     }
 
     return v1;
@@ -88,7 +88,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
 
 void ov6_02242A8C (UnkStruct_ov6_02242A8C * param0)
 {
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov6_02242A94 (const u8 param0, UnkStruct_ov6_02242A8C * param1)

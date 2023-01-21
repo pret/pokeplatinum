@@ -9,7 +9,7 @@
 
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "unk_0206A780.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -50,7 +50,7 @@ UnkStruct_0206A844 * sub_0206A780 (int param0)
     UnkStruct_0206A844 * v2;
     NARC * v3;
 
-    v2 = sub_02018144(param0, sizeof(UnkStruct_0206A844));
+    v2 = AllocFromHeap(param0, sizeof(UnkStruct_0206A844));
     MI_CpuClear8(v2, sizeof(UnkStruct_0206A844));
 
     ov5_021D3190(&v2->unk_00, &v0, 2, 11);
@@ -81,7 +81,7 @@ void sub_0206A844 (UnkStruct_0206A844 * param0)
     }
 
     ov5_021D375C(&param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void sub_0206A870 (UnkStruct_0206A844 * param0)

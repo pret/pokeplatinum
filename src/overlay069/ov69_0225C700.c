@@ -56,7 +56,7 @@
 #include "unk_02015920.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -702,7 +702,7 @@ int ov69_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov66_02230F50 * v1;
 
     v1 = sub_02006840(param0);
-    sub_02017FC8(3, 105, 0x50000);
+    CreateHeap(3, 105, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov69_0225CE64), 105);
     memset(v0, 0, sizeof(UnkStruct_ov69_0225CE64));
@@ -808,7 +808,7 @@ int ov69_0225C8FC (UnkStruct_020067E8 * param0, int * param1)
     ov69_0225D35C(&v0->unk_20);
 
     sub_02006830(param0);
-    sub_0201807C(105);
+    DestroyHeap(105);
 
     return 1;
 }
@@ -840,7 +840,7 @@ static void ov69_0225C980 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov6
             v2++;
         }
 
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
     {
         void * v6;
@@ -865,7 +865,7 @@ static void ov69_0225C980 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov6
                 v7++;
             }
 
-            sub_020181C4(v6);
+            FreeToHeap(v6);
             v12++;
         }
     }
@@ -1481,7 +1481,7 @@ static void ov69_0225D504 (UnkStruct_ov69_0225D35C * param0)
         }
     }
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     Unk_021BF67C.unk_65 = 0;
     sub_0201FFE8();
 }
@@ -2072,7 +2072,7 @@ static void ov69_0225DFBC (UnkStruct_ov69_0225E084 * param0, UnkStruct_ov69_0225
     ov69_0225E4E8(&param0->unk_2E4);
     ov69_0225EAE8(&param0->unk_1B8, param1);
 
-    sub_020181C4(param0->unk_94);
+    FreeToHeap(param0->unk_94);
     ov69_0225E61C(param0);
     sub_0201A8FC(&param0->unk_1A8);
     ov69_0225E148(param0);
@@ -2580,12 +2580,12 @@ static void ov69_0225E7DC (UnkStruct_ov69_0225E7DC * param0)
 
     if (param0->unk_18 > 0) {
         for (v0 = 0; v0 < param0->unk_18; v0++) {
-            sub_020181C4(param0->unk_08[v0]);
+            FreeToHeap(param0->unk_08[v0]);
         }
     }
 
     if (param0->unk_24 > 0) {
-        sub_020181C4(param0->unk_1C);
+        FreeToHeap(param0->unk_1C);
     }
 }
 

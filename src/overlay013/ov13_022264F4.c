@@ -31,7 +31,7 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
@@ -748,7 +748,7 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         v3 = (u16 *)v1->rawData;
         ov13_02228128(param0, v3);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
     }
 
     NARC_dtor(v0);

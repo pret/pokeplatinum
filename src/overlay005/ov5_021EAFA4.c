@@ -5,7 +5,7 @@
 
 #include "overlay115/struct_ov115_0226527C.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 #include "overlay005/ov5_021EAFA4.h"
 
@@ -84,7 +84,7 @@ UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
 {
     UnkStruct_ov5_021EB0E0 * v0;
 
-    v0 = sub_02018144(4, sizeof(UnkStruct_ov5_021EB0E0));
+    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EB0E0));
     ov5_021EB0E0(v0, param0);
 
     return v0;
@@ -130,6 +130,6 @@ void ov5_021EB184 (UnkStruct_ov5_021EB0E0 ** param0)
 
     GF_ASSERT((*param0) != NULL);
 
-    sub_020181C4((*param0));
+    FreeToHeap((*param0));
     (*param0) = NULL;
 }

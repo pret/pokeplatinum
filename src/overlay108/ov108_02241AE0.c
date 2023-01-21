@@ -46,7 +46,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
@@ -297,7 +297,7 @@ int ov108_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006590(FS_OVERLAY_ID(overlay104), 2);
     ov108_02242344();
-    sub_02017FC8(3, 103, 0x20000);
+    CreateHeap(3, 103, 0x20000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov108_02241DB0), 103);
     memset(v1, 0, sizeof(UnkStruct_ov108_02241DB0));
@@ -428,7 +428,7 @@ int ov108_02241D70 (UnkStruct_020067E8 * param0, int * param1)
     ov108_02242238(v1);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(103);
+    DestroyHeap(103);
     sub_02006514(FS_OVERLAY_ID(overlay104));
 
     return 1;
@@ -915,7 +915,7 @@ static void ov108_022426D4 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 3);
     sub_02019044(param0, 1);
     sub_02019044(param0, 4);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 
     return;
 }
@@ -1076,7 +1076,7 @@ static void ov108_022428C0 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 7));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 7));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     return;
 }

@@ -66,7 +66,7 @@
 #include "unk_020131EC.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -649,7 +649,7 @@ int ov64_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov64_0222DFD0 * v0;
 
     sub_02006590(FS_OVERLAY_ID(overlay63), 2);
-    sub_02017FC8(3, 52, 0x70000);
+    CreateHeap(3, 52, 0x70000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov64_0222DFD0), 52);
     memset(v0, 0, sizeof(UnkStruct_ov64_0222DFD0));
@@ -734,7 +734,7 @@ int ov64_0222DEA4 (UnkStruct_020067E8 * param0, int * param1)
     ov64_0222E060(&v0->unk_28C);
 
     sub_02006830(param0);
-    sub_0201807C(52);
+    DestroyHeap(52);
     sub_02006514(FS_OVERLAY_ID(overlay63));
 
     return 1;
@@ -988,7 +988,7 @@ static void ov64_0222E3AC (UnkStruct_ov64_0222E21C * param0)
         sub_02019044(param0->unk_00, Unk_ov64_02232258[v0]);
     }
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
@@ -1113,7 +1113,7 @@ static void ov64_0222E71C (UnkStruct_ov64_0222E21C * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020181C4(param0->unk_278.unk_00[v0]);
+        FreeToHeap(param0->unk_278.unk_00[v0]);
     }
 }
 
@@ -1165,7 +1165,7 @@ static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 
 
     sub_02025EC0(v1, sub_0202AEF0(v0, param2));
     sub_0200B498(param0->unk_214, 0, v1);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
@@ -1175,7 +1175,7 @@ static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 
 
     sub_02025EC0(v0, sub_0202AF34(v1, param2));
     sub_0200B498(param0->unk_214, 0, v0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static BOOL ov64_0222E8FC (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2)
@@ -1345,7 +1345,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
 
             sub_02025EC0(v2, sub_02023E2C(param1->unk_2C.unk_00));
             sub_0200B498(param2->unk_214, 0, v2);
-            sub_020181C4(v2);
+            FreeToHeap(v2);
 
             v1 = sub_02023B38(param1->unk_2C.unk_04, &v0);
 
@@ -1604,7 +1604,7 @@ static void ov64_0222EE00 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
     sub_020237BC(param0->unk_38);
     sub_0201A8FC(&param0->unk_04);
     sub_0201A8FC(&param0->unk_1C);
-    sub_020181C4(param0->unk_14);
+    FreeToHeap(param0->unk_14);
 }
 
 static void ov64_0222EE20 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
@@ -3146,7 +3146,7 @@ static void ov64_02230804 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222
 {
     sub_0201A8FC(&param0->unk_00);
     sub_0201A8FC(&param0->unk_10);
-    sub_020181C4(param0->unk_20);
+    FreeToHeap(param0->unk_20);
 }
 
 static void ov64_0223081C (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
@@ -3508,7 +3508,7 @@ static void ov64_02230F60 (UnkStruct_ov64_02230F60 * param0)
     int v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        sub_020181C4(param0->unk_00[v0]);
+        FreeToHeap(param0->unk_00[v0]);
     }
 }
 
@@ -3932,7 +3932,7 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #0x32
     ldr r0, [sp, #0x24]
     lsl r1, r1, #6
-    bl sub_02018144
+    bl AllocFromHeap
     mov r3, #0
     str r0, [sp, #0x34]
     str r3, [sp]
@@ -3961,7 +3961,7 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add r0, #0x40
     bl sub_0201ADDC
     ldr r0, [sp, #0x34]
-    bl sub_020181C4
+    bl FreeToHeap
     mov r0, #0x20
     str r0, [sp]
     ldr r0, [sp, #0x24]

@@ -42,7 +42,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -187,7 +187,7 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_02017FC8(3, 95, 0x80000);
+        CreateHeap(3, 95, 0x80000);
 
         v1 = NARC_ctor(86, 95);
         GF_ASSERT(v1);
@@ -330,7 +330,7 @@ int ov109_021D3F9C (UnkStruct_020067E8 * param0, int * param1)
 
     ov109_021D4294(v1);
     sub_02006830(param0);
-    sub_0201807C(95);
+    DestroyHeap(95);
 
     return 1;
 }
@@ -549,8 +549,8 @@ static void ov109_021D4294 (UnkStruct_ov109_021D5140 * param0)
     int v0;
 
     ov109_021D5824(param0);
-    sub_020181C4(param0->unk_1C.unk_0C);
-    sub_020181C4(param0->unk_41C);
+    FreeToHeap(param0->unk_1C.unk_0C);
+    FreeToHeap(param0->unk_41C);
 
     for (v0 = 0; v0 < 5; v0++) {
         sub_020237BC(param0->unk_3C[v0]);
@@ -567,7 +567,7 @@ static void ov109_021D42CC (UnkStruct_02018340 * param0)
     sub_02019044(param0, 4);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov109_021D4300 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
@@ -1690,10 +1690,10 @@ static void ov109_021D57E0 (NNSG2dCharacterData * param0[2], NNSG2dPaletteData *
 
 static void ov109_021D5824 (UnkStruct_ov109_021D5140 * param0)
 {
-    sub_020181C4(param0->unk_3A8[0]);
-    sub_020181C4(param0->unk_3A8[1]);
-    sub_020181C4(param0->unk_398[0]);
-    sub_020181C4(param0->unk_398[1]);
+    FreeToHeap(param0->unk_3A8[0]);
+    FreeToHeap(param0->unk_3A8[1]);
+    FreeToHeap(param0->unk_398[0]);
+    FreeToHeap(param0->unk_398[1]);
 }
 
 static int ov109_021D5854 (UnkStruct_ov109_021D5140 * param0)

@@ -21,7 +21,7 @@
 #include "unk_02000C88.h"
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02034198.h"
 #include "unk_02039C80.h"
 #include "unk_0203A378.h"
@@ -161,14 +161,14 @@ static UnkStruct_0203CDB0 * sub_0203CDB0 (UnkStruct_020067E8 * param0)
     UnkStruct_0203CC84 * v0;
     UnkStruct_0203CDB0 * v1;
 
-    sub_02017FC8(3, 11, 0x1c000);
-    sub_02017FC8(3, 32, 0x4000);
-    sub_02017FC8(0, 91, 0x300);
+    CreateHeap(3, 11, 0x1c000);
+    CreateHeap(3, 32, 0x4000);
+    CreateHeap(0, 91, 0x300);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_0203CDB0), 11);
     MI_CpuClear8(v1, sizeof(UnkStruct_0203CDB0));
 
-    v1->unk_00 = sub_02018144(11, sizeof(UnkStruct_0203CDB0_sub1));
+    v1->unk_00 = AllocFromHeap(11, sizeof(UnkStruct_0203CDB0_sub1));
     v1->unk_00->unk_00 = NULL;
     v1->unk_00->unk_04 = NULL;
     v1->unk_00->unk_08 = 0;
@@ -200,16 +200,16 @@ static void sub_0203CE6C (UnkStruct_020067E8 * param0)
 
     sub_02039DE4(v0->unk_2C);
     sub_0203A398(v0);
-    sub_020181C4(v0->unk_98);
+    FreeToHeap(v0->unk_98);
     sub_0206942C(v0->unk_94);
     sub_0209ACDC(v0->unk_B4);
     sub_0209C388(v0->unk_BC);
 
-    sub_020181C4(v0->unk_00);
+    FreeToHeap(v0->unk_00);
     sub_02006830(param0);
-    sub_0201807C(91);
-    sub_0201807C(11);
-    sub_0201807C(32);
+    DestroyHeap(91);
+    DestroyHeap(11);
+    DestroyHeap(32);
 }
 
 static void sub_0203CECC (UnkStruct_020067E8 ** param0)

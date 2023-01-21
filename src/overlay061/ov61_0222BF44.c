@@ -38,7 +38,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -165,7 +165,7 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 117, 0x50000);
+    CreateHeap(3, 117, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov61_0222C664), 117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
@@ -269,7 +269,7 @@ int ov61_0222C160 (UnkStruct_020067E8 * param0, int * param1)
     sub_020237BC(v0->unk_3C);
     sub_020237BC(v0->unk_34);
     ov61_0222C70C(v0);
-    sub_020181C4(v0->unk_04);
+    FreeToHeap(v0->unk_04);
     ov61_0222C38C(v0->unk_04);
     sub_02017798(NULL, NULL);
     sub_020177A4();
@@ -280,7 +280,7 @@ int ov61_0222C160 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002B20(0);
     sub_02039794();
     sub_02006830(param0);
-    sub_0201807C(117);
+    DestroyHeap(117);
 
     return 1;
 }

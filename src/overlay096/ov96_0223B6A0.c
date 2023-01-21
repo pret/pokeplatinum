@@ -31,7 +31,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
@@ -79,7 +79,7 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        sub_02017FC8(3, 68, 0x50000);
+        CreateHeap(3, 68, 0x50000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
@@ -104,7 +104,7 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
         ov96_0223BC64(v0);
         sub_02004550(52, 0, 0);
 
-        v0->unk_24 = sub_02018144(68, 0x20000 + 32);
+        v0->unk_24 = AllocFromHeap(68, 0x20000 + 32);
         v0->unk_28 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_24 + 31) / 32 * 32), 0x20000);
 
         sub_02004550(11, 1175, 1);
@@ -173,7 +173,7 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov96_0223BF40 * v0 = sub_0200682C(param0);
     int v1;
 
-    sub_020181C4(v0->unk_24);
+    FreeToHeap(v0->unk_24);
     sub_020995C4();
     sub_02099560();
 
@@ -187,10 +187,10 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
     ov96_0223B99C(v0);
 
     sub_020334CC();
-    sub_020181C4(v0->unk_04);
+    FreeToHeap(v0->unk_04);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(68);
+    DestroyHeap(68);
 
     return 1;
 }

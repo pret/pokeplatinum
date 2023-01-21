@@ -6,7 +6,7 @@
 
 #include "overlay115/struct_ov115_0226527C.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02020020.h"
 #include "overlay070/ov70_0225C9B4.h"
 #include "overlay070/ov70_02260A70.h"
@@ -28,7 +28,7 @@ UnkStruct_ov70_02260AD4 * ov70_02260A70 (u32 param0)
     UnkStruct_ov70_02260AD4 * v0;
     VecFx32 v1;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov70_02260AD4));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov70_02260AD4));
     memset(v0, 0, sizeof(UnkStruct_ov70_02260AD4));
     v0->unk_00 = sub_020203AC(param0);
 
@@ -43,7 +43,7 @@ void ov70_02260AD4 (UnkStruct_ov70_02260AD4 * param0)
 {
     sub_020203E0();
     sub_020203B8(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov70_02260AEC (UnkStruct_ov70_02260AD4 * param0)

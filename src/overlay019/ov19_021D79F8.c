@@ -19,7 +19,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -194,7 +194,7 @@ static void ov19_021D7BC0 (UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov1
 
         ov19_021D78C8(v0->pRawData, param0->unk_5860[v2], 16, 0x7fff, 16);
         DC_FlushRange(param0->unk_5860, sizeof(param0->unk_5860));
-        sub_020181C4(v1);
+        FreeToHeap(v1);
     }
 }
 
@@ -224,13 +224,13 @@ static void ov19_021D7C58 (UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov1
                 v3 = 84 - (v4 / 2);
 
                 sub_0201D78C(v2, 0, param1->unk_04, v3, 13, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
-                sub_020181C4(v2);
+                FreeToHeap(v2);
             }
 
             sub_0201958C(param0->unk_58F4, 3, v1->pRawData, v1->szByte, param2);
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
     }
 }
 
@@ -251,7 +251,7 @@ static void ov19_021D7D00 (UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov1
             ov19_021D8764(v1, (const u16 *)(v2->rawData), param2, param3, param4);
         }
 
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_02019460(param0->unk_58F4, 3, v1, 0x1000, 0);
     }
 }
@@ -448,7 +448,7 @@ static void ov19_021D81B8 (UnkStruct_ov19_021D8318 * param0, int param1, int par
     UnkStruct_ov19_021D81B8 * v0;
 
     param0->unk_A3 = 0;
-    v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021D81B8));
+    v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021D81B8));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -461,7 +461,7 @@ static void ov19_021D81B8 (UnkStruct_ov19_021D8318 * param0, int param1, int par
         if (ov19_021D77C8(ov19_021D8210, v0, 0) != NULL) {
             param0->unk_A3 = 1;
         } else {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
     }
 }

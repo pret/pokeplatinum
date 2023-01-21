@@ -22,7 +22,7 @@
 #include "unk_0200DA60.h"
 #include "unk_020149F0.h"
 #include "unk_02014D38.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D0C8.h"
 #include "unk_0201D670.h"
@@ -79,7 +79,7 @@ static void ov20_021D375C(UnkStruct_ov20_021D30F8 * param0, BOOL param1);
 
 UnkStruct_ov20_021D30F8 * ov20_021D2EA4 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
 {
-    UnkStruct_ov20_021D30F8 * v0 = sub_02018144(35, sizeof(UnkStruct_ov20_021D30F8));
+    UnkStruct_ov20_021D30F8 * v0 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D30F8));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -123,7 +123,7 @@ void ov20_021D2EF0 (UnkStruct_ov20_021D30F8 * param0)
     sub_0201A8FC(&param0->unk_0C);
     sub_0201A8FC(&param0->unk_1C);
     sub_0201A8FC(&param0->unk_2C);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 void ov20_021D2F50 (UnkStruct_ov20_021D30F8 * param0, NARC * param1)
@@ -178,7 +178,7 @@ static void ov20_021D30A4 (UnkStruct_ov20_021D30F8 * param0, NARC * param1)
     MI_CpuCopy16(v0->pRawData, param0->unk_70, sizeof(param0->unk_70));
     DC_FlushRange(param0->unk_70, sizeof(param0->unk_70));
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 static void ov20_021D30F8 (UnkStruct_ov20_021D30F8 * param0)

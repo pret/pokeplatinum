@@ -21,7 +21,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -178,5 +178,5 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0201A8FC(&v1);
     sub_0200B190(v2);
     sub_0200B3F0(v5);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }

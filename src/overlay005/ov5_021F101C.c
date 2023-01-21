@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_020711C8.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020508D4.h"
 #include "unk_0205E7D0.h"
 #include "overlay005/ov5_021F007C.h"
@@ -29,14 +29,14 @@ BOOL ov5_021F101C (UnkStruct_020508D4 * param0)
 
     switch (*v2) {
     case 0:
-        v1->unk_04 = sub_02018184(11, sizeof(UnkStruct_ov5_021F101C));
+        v1->unk_04 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov5_021F101C));
         (*v2)++;
         break;
     case 1:
     {
         int v4 = ov5_021F0484();
 
-        v3->unk_04 = sub_02018184(11, v4);
+        v3->unk_04 = AllocFromHeapAtEnd(11, v4);
         memset(v3->unk_04, 0, v4);
     }
         (*v2)++;
@@ -59,8 +59,8 @@ BOOL ov5_021F101C (UnkStruct_020508D4 * param0)
         (*v2)++;
         break;
     case 5:
-        sub_020181C4(v1->unk_04);
-        sub_020181C4(v1);
+        FreeToHeap(v1->unk_04);
+        FreeToHeap(v1);
         return 1;
     }
 

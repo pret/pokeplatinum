@@ -3,14 +3,14 @@
 
 #include "struct_defs/struct_020972FC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020972FC.h"
 
 static void sub_02097344(u32 * param0, u16 param1);
 
 UnkStruct_020972FC * sub_020972FC (u8 param0)
 {
-    UnkStruct_020972FC * v0 = (UnkStruct_020972FC *)sub_02018144(param0, sizeof(UnkStruct_020972FC));
+    UnkStruct_020972FC * v0 = (UnkStruct_020972FC *)AllocFromHeap(param0, sizeof(UnkStruct_020972FC));
     memset(v0, 0, sizeof(UnkStruct_020972FC));
     return v0;
 }

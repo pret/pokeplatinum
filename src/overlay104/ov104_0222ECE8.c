@@ -12,7 +12,7 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_020302D0.h"
 #include "unk_02030494.h"
@@ -1121,7 +1121,7 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
         sub_0207A048(v5->unk_28, v4);
     }
 
-    sub_020181C4(v4);
+    FreeToHeap(v4);
 
     if (sub_0203608C() != 0) {
         sub_0207A184(v5->unk_28, 0, 2);
@@ -1420,7 +1420,7 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
         sub_0207A048(v5->unk_70, v4);
     }
 
-    sub_020181C4(v4);
+    FreeToHeap(v4);
 
     if (sub_0203608C() != 0) {
         sub_0207A184(v5->unk_70, 0, 2);

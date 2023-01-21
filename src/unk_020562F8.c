@@ -13,7 +13,7 @@
 
 #include "filesystem.h"
 #include "unk_0201378C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_0202CD50.h"
 #include "unk_0202EEC0.h"
@@ -164,7 +164,7 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
         param1->unk_00[v0].unk_07 = sub_02074470(v3, 178, NULL);
     }
 
-    sub_020181C4(v3);
+    FreeToHeap(v3);
 }
 
 static int sub_020564B4 (UnkStruct_020564B4 * param0)
@@ -283,7 +283,7 @@ static UnkStruct_ov6_02240D5C * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkSt
     sub_02052314(v0, param0);
     sub_0202F000(v2, param1->unk_3C, v1);
     sub_0205213C(v0, v1, 1);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 
     return v0;
 }

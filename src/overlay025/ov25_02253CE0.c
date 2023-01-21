@@ -24,7 +24,7 @@
 #include "unk_02005474.h"
 #include "unk_020064F0.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201E3D8.h"
 #include "unk_02022594.h"
 #include "unk_02025E08.h"
@@ -169,10 +169,10 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** para
 {
     UnkStruct_ov25_02253CE0 * v0;
 
-    sub_02017FC8(3, 7, 49152);
-    sub_02017FC8(3, 8, 49152);
+    CreateHeap(3, 7, 49152);
+    CreateHeap(3, 8, 49152);
 
-    v0 = sub_02018144(7, sizeof(UnkStruct_ov25_02253CE0));
+    v0 = AllocFromHeap(7, sizeof(UnkStruct_ov25_02253CE0));
 
     if (v0 != NULL) {
         *param1 = v0;
@@ -303,10 +303,10 @@ static void ov25_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
         *(v1->unk_34) = NULL;
 
         ov25_02253E20(v1);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         sub_0200DA58(param0);
-        sub_0201807C(7);
-        sub_0201807C(8);
+        DestroyHeap(7);
+        DestroyHeap(8);
     }
 }
 

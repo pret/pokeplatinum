@@ -12,7 +12,7 @@
 #include "unk_02002B7C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
@@ -283,7 +283,7 @@ static void ov99_021D4104(UnkStruct_0201CD38 * param0, void * param1);
 
 UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1, int param2, int param3, UnkStruct_0200B144 * param4)
 {
-    UnkStruct_ov99_021D3E78 * v0 = sub_02018144(75, sizeof(UnkStruct_ov99_021D3E78));
+    UnkStruct_ov99_021D3E78 * v0 = AllocFromHeap(75, sizeof(UnkStruct_ov99_021D3E78));
 
     if (v0) {
         v0->unk_20 = param0;
@@ -321,9 +321,9 @@ void ov99_021D3F38 (UnkStruct_ov99_021D3E78 * param0)
     sub_020237BC(param0->unk_30);
     sub_0201A8FC(param0->unk_24);
     sub_0201A8FC(param0->unk_28);
-    sub_020181C4(param0->unk_24);
-    sub_020181C4(param0->unk_28);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_24);
+    FreeToHeap(param0->unk_28);
+    FreeToHeap(param0);
 }
 
 BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)

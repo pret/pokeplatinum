@@ -11,7 +11,7 @@
 #include "library/spl.h"
 
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_0222421C.h"
 #include "overlay012/ov12_02225104.h"
@@ -651,7 +651,7 @@ void ov12_02224F14 (UnkSPLStruct6 * param0)
     UnkStruct_ov12_02225640 * v1;
 
     v0 = sub_02014764();
-    v1 = sub_02018144(ov12_0221FDE4(v0), sizeof(UnkStruct_ov12_02225640));
+    v1 = AllocFromHeap(ov12_0221FDE4(v0), sizeof(UnkStruct_ov12_02225640));
 
     v1->unk_00 = v0;
     v1->unk_04 = ov12_02220250(v1->unk_00);
@@ -685,7 +685,7 @@ void ov12_02224F14 (UnkSPLStruct6 * param0)
     }
 
     ov12_0222421C(param0, v1);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 s8 ov12_02224FC4 (UnkStruct_ov12_02225640 * param0)

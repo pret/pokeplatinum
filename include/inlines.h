@@ -18,7 +18,7 @@
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201D15C.h"
 #include "map_header.h"
 #include "unk_0203A6DC.h"
@@ -40,7 +40,7 @@ static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC 
 
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_08, 4 * 0x20);
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_88, 4 * 0x20);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     inline_ov61_0222C3B0_sub_1(param0);
 
     param0->unk_04 = 1;

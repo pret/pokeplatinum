@@ -13,7 +13,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -67,7 +67,7 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
 
     GF_ASSERT(param1 < 4);
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_ov6_02246204));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_02246204));
     memset(v0, 0, sizeof(UnkStruct_ov6_02246204));
 
     v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
@@ -89,10 +89,10 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
 
 void ov6_02246204 (UnkStruct_ov6_02246204 * param0)
 {
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0->unk_08);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0->unk_08);
+    FreeToHeap(param0);
 }
 
 u32 ov6_02246224 (const UnkStruct_ov6_02246204 * param0)

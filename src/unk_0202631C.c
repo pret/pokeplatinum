@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0202631C.h"
 #include "unk_02073C2C.h"
@@ -43,7 +43,7 @@ UnkStruct_02026324 * sub_02026324 (u32 param0)
 {
     UnkStruct_02026324 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_02026324));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02026324));
     sub_02026D6C(v0);
 
     return v0;

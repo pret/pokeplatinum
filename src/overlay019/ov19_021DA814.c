@@ -10,7 +10,7 @@
 #include "overlay019/struct_ov19_021DA8D8.h"
 
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA814.h"
@@ -47,12 +47,12 @@ void ov19_021DA864 (UnkStruct_ov19_021DA8D8 * param0, NARC * param1)
 void ov19_021DA8D8 (UnkStruct_ov19_021DA8D8 * param0)
 {
     if (param0->unk_08 != NULL) {
-        sub_020181C4(param0->unk_08);
+        FreeToHeap(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_0C != NULL) {
-        sub_020181C4(param0->unk_0C);
+        FreeToHeap(param0->unk_0C);
         param0->unk_0C = NULL;
     }
 }

@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "unk_02014D38.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202631C.h"
 #include "unk_0209747C.h"
 #include "unk_020998EC.h"
@@ -3167,7 +3167,7 @@ UnkStruct_020998EC * sub_020998EC (u32 param0, const UnkStruct_0209747C * param1
     UnkStruct_020998EC * v0;
     int v1;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_020998EC));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_020998EC));
     v0->unk_00 = param1;
     v0->unk_04 = sub_02014D38(param0);
 
@@ -3185,7 +3185,7 @@ void sub_0209992C (UnkStruct_020998EC * param0)
 {
     if (param0) {
         sub_02014D70(param0->unk_04);
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

@@ -21,7 +21,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -105,7 +105,7 @@ void sub_0209B49C (void)
     Unk_021C3A34 = 1;
 
     OS_InitArenaHiAndLo(OS_ARENA_MAIN);
-    sub_02017E74(Unk_020F8B84, NELEMS(Unk_020F8B84), NELEMS(Unk_020F8B84), 0);
+    InitHeapSystem(Unk_020F8B84, NELEMS(Unk_020F8B84), NELEMS(Unk_020F8B84), 0);
 
     v4 = 3;
 
@@ -192,7 +192,7 @@ void sub_0209B49C (void)
 
     sub_0201A8FC(&v1);
     sub_0200B190(v2);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     OS_ResetSystem(0);
 }

@@ -42,7 +42,7 @@
 #include "unk_0200F174.h"
 #include "unk_02013A04.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
@@ -406,7 +406,7 @@ int ov84_0223B5A0 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_02017FC8(3, 6, 0x30000);
+    CreateHeap(3, 6, 0x30000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov84_0223B5A0), 6);
     memset(v0, 0, sizeof(UnkStruct_ov84_0223B5A0));
@@ -598,7 +598,7 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
     NARC_dtor(v0->unk_D4);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    sub_0201807C(6);
+    DestroyHeap(6);
     sub_02017DD4(4, 8);
 
     return 1;
@@ -816,7 +816,7 @@ static void ov84_0223BBC4 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    sub_02018238(6, param0);
+    FreeToHeapExplicit(6, param0);
 }
 
 static void ov84_0223BC1C (UnkStruct_ov84_0223B5A0 * param0)
@@ -2041,7 +2041,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
     v3[v1] = 11;
     v1++;
     ov84_0223FB70(param0, v3, v1);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static int ov84_0223D730 (UnkStruct_ov84_0223B5A0 * param0)

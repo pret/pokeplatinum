@@ -13,7 +13,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201CCF0.h"
 #include "unk_02061804.h"
 #include "unk_02063400.h"
@@ -195,7 +195,7 @@ UnkStruct_0201CD38 * sub_02065700 (UnkStruct_02061AB4 * param0, const UnkStruct_
     UnkStruct_0201CD38 * v0;
     UnkStruct_020EEE54 * v1;
 
-    v1 = sub_02018184(4, (sizeof(UnkStruct_020EEE54)));
+    v1 = AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EEE54)));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, (sizeof(UnkStruct_020EEE54)));
@@ -231,7 +231,7 @@ void sub_02065758 (UnkStruct_0201CD38 * param0)
     GF_ASSERT(sub_02065684(v0->unk_0C) == 1);
 
     sub_020656AC(v0->unk_0C);
-    sub_02018238(4, v0);
+    FreeToHeapExplicit(4, v0);
     sub_0200DA58(param0);
 }
 

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202298C.h"
 
 #include "nnsys.h"
@@ -51,10 +51,10 @@ UnkStruct_0202298C * sub_0202298C (int param0, int param1)
     UnkStruct_0202298C * v0;
     int v1;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_0202298C));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0202298C));
     GF_ASSERT(v0);
 
-    v0->unk_00 = sub_02018144(param1, sizeof(UnkStruct_02022BC0) * param0);
+    v0->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_02022BC0) * param0);
     GF_ASSERT(v0->unk_00);
 
     for (v1 = 0; v1 < param0; v1++) {
@@ -72,8 +72,8 @@ void sub_020229D8 (UnkStruct_0202298C * param0)
     GF_ASSERT(param0);
 
     sub_02022AE4(param0);
-    sub_020181C4(param0->unk_00);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_00);
+    FreeToHeap(param0);
 }
 
 BOOL sub_020229F8 (UnkStruct_0202298C * param0, int param1)
@@ -134,7 +134,7 @@ void sub_02022AB0 (UnkStruct_0202298C * param0, UnkStruct_02022BC0 * param1)
     GF_ASSERT(param1);
 
     if (param1->unk_04) {
-        sub_020181C4(param1->unk_04);
+        FreeToHeap(param1->unk_04);
         param1->unk_04 = NULL;
     }
 
@@ -182,7 +182,7 @@ void sub_02022B64 (UnkStruct_02022BC0 * param0, void * param1)
     GF_ASSERT(param0);
 
     if (param0->unk_04) {
-        sub_020181C4(param0->unk_04);
+        FreeToHeap(param0->unk_04);
     }
 
     param0->unk_04 = param1;
@@ -222,10 +222,10 @@ UnkStruct_02022BD8 * sub_02022BD8 (int param0, int param1)
     UnkStruct_02022BD8 * v0;
     int v1;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_02022BD8));
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02022BD8));
 
     v0->unk_00 = sub_0202298C(param0, param1);
-    v0->unk_04 = sub_02018144(param1, sizeof(UnkStruct_02022BD8_2) * param0);
+    v0->unk_04 = AllocFromHeap(param1, sizeof(UnkStruct_02022BD8_2) * param0);
 
     for (v1 = 0; v1 < param0; v1++) {
         sub_02022F5C(v0->unk_04 + v1);
@@ -240,8 +240,8 @@ void sub_02022C1C (UnkStruct_02022BD8 * param0)
 
     sub_02022D58(param0);
     sub_020229D8(param0->unk_00);
-    sub_020181C4(param0->unk_04);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_04);
+    FreeToHeap(param0);
 }
 
 BOOL sub_02022C40 (const UnkStruct_02022BD8 * param0, int param1)
@@ -291,7 +291,7 @@ void sub_02022CB4 (UnkStruct_02022BD8 * param0, UnkStruct_02022BD8_2 * param1)
     GF_ASSERT(param1);
 
     if ((param1->unk_16 == 1) && (param1->unk_14 == 0)) {
-        sub_020181C4(param1->unk_10);
+        FreeToHeap(param1->unk_10);
         param1->unk_16 = NULL;
     }
 
@@ -417,7 +417,7 @@ void sub_02022E54 (UnkStruct_02022BD8_2 * param0)
 
     sub_02023048(sub_02022F80(param0));
     sub_02023034(sub_02022F70(param0), param0->unk_04, param0->unk_08, param0->unk_0C);
-    sub_020181C4(param0->unk_10);
+    FreeToHeap(param0->unk_10);
 
     param0->unk_10 = NULL;
     param0->unk_14 = 1;
@@ -577,7 +577,7 @@ static void * sub_02023060 (void * param0, u32 param1)
     void * v1;
 
     v0 = sub_02023084(param0);
-    v1 = sub_02018144(param1, v0);
+    v1 = AllocFromHeap(param1, v0);
 
     memcpy(v1, param0, v0);
     return v1;

@@ -17,7 +17,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "overlay063/ov63_0222AE60.h"
 
@@ -307,7 +307,7 @@ UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, UnkStruct_
     UnkStruct_ov63_0222AE60 * v0;
     int v1;
 
-    v0 = sub_02018144(param3, sizeof(UnkStruct_ov63_0222AE60));
+    v0 = AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222AE60));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222AE60));
 
     v0->unk_00 = param0;
@@ -328,7 +328,7 @@ UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, UnkStruct_
     }
 
     v0->unk_0C = param2;
-    v0->unk_08 = sub_02018144(param3, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
+    v0->unk_08 = AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
 
     return v0;
@@ -356,8 +356,8 @@ void ov63_0222AF14 (UnkStruct_ov63_0222AE60 * param0)
         sub_02009754(param0->unk_2280[v0]);
     }
 
-    sub_020181C4(param0->unk_08);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_08);
+    FreeToHeap(param0);
 }
 
 void ov63_0222AF94 (UnkStruct_ov63_0222AE60 * param0, u32 param1, u32 param2, int param3, u32 param4)

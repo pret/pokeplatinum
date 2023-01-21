@@ -15,7 +15,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020218BC.h"
 #include "unk_0207CDEC.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -73,7 +73,7 @@ static void ov19_021DE8E0(UnkStruct_0201CD38 * param0, void * param1);
 
 BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4)
 {
-    UnkStruct_ov19_021DE3E8 * v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021DE3E8));
+    UnkStruct_ov19_021DE3E8 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE3E8));
 
     if (v0) {
         v0->unk_04 = param1;
@@ -97,7 +97,7 @@ BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 *
 void ov19_021DE440 (UnkStruct_ov19_021DE3E8 * param0)
 {
     ov19_021DE51C(param0);
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 static void ov19_021DE450 (UnkStruct_ov19_021DE3E8 * param0)
@@ -130,7 +130,7 @@ static void ov19_021DE450 (UnkStruct_ov19_021DE3E8 * param0)
                 param0->unk_28[v5] = 0;
             }
 
-            sub_020181C4(v3);
+            FreeToHeap(v3);
         }
     } else {
         int v6;
@@ -333,7 +333,7 @@ BOOL ov19_021DE800 (UnkStruct_ov19_021DE3E8 * param0)
 
 static void ov19_021DE858 (UnkStruct_ov19_021DE3E8 * param0, int param1, const VecFx32 * param2, int param3, int param4)
 {
-    UnkStruct_ov19_021DE858 * v0 = sub_02018144(10, sizeof(UnkStruct_ov19_021DE858));
+    UnkStruct_ov19_021DE858 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE858));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -349,7 +349,7 @@ static void ov19_021DE858 (UnkStruct_ov19_021DE3E8 * param0, int param1, const V
         if (ov19_021D77C8(ov19_021DE8E0, v0, 0)) {
             param0->unk_34++;
         } else {
-            sub_020181C4(v0);
+            FreeToHeap(v0);
         }
     }
 }

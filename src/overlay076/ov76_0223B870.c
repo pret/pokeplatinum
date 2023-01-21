@@ -41,7 +41,7 @@
 #include "unk_02012744.h"
 #include "unk_02013A04.h"
 #include "unk_02014000.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
@@ -346,7 +346,7 @@ static void ov76_0223BCA0 (UnkStruct_0201CD38 * param0, void * param1)
 
     if (v1 == 0) {
         *(v0->unk_16C) = 0;
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         sub_0200DA58(param0);
     }
 }
@@ -355,7 +355,7 @@ void ov76_0223BD30 (UnkStruct_ov76_0223DE00 * param0, s8 param1, int param2)
 {
     UnkStruct_ov76_0223BCA0 * v0;
 
-    v0 = sub_02018144(53, sizeof(UnkStruct_ov76_0223BCA0));
+    v0 = AllocFromHeap(53, sizeof(UnkStruct_ov76_0223BCA0));
     v0->unk_164 = param0->unk_D4.unk_10;
 
     {

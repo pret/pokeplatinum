@@ -14,7 +14,7 @@
 #include "unk_020067E8.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02099550.h"
 #include "overlay066/ov66_0222DCE0.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -43,7 +43,7 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
         sub_020995B4();
     }
 
-    sub_02017FC8(3, 104, 0x5000);
+    CreateHeap(3, 104, 0x5000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov66_0222DD90), 104);
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DD90));
@@ -95,7 +95,7 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
     ov66_0222DEEC(v0->unk_04);
 
     sub_02006830(param0);
-    sub_0201807C(104);
+    DestroyHeap(104);
 
     {
         FS_EXTERN_OVERLAY(overlay63);

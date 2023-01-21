@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0201EE28.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 
@@ -92,11 +92,11 @@ void sub_0201E88C (const UnkStruct_ov22_022559F8 * param0, GXOBJVRamModeChar par
     int v2;
 
     if (Unk_021C0760 == NULL) {
-        Unk_021C0760 = sub_02018144(param0->unk_0C, sizeof(UnkStruct_021C0760));
+        Unk_021C0760 = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_021C0760));
         MI_CpuClear32(Unk_021C0760, sizeof(UnkStruct_021C0760));
 
         Unk_021C0760->unk_04 = param0->unk_00;
-        Unk_021C0760->unk_00 = sub_02018144(param0->unk_0C, sizeof(UnkStruct_0201EED4) * Unk_021C0760->unk_04);
+        Unk_021C0760->unk_00 = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_0201EED4) * Unk_021C0760->unk_04);
 
         for (v0 = 0; v0 < param0->unk_00; v0++) {
             sub_0201EED4(Unk_021C0760->unk_00 + v0);
@@ -123,8 +123,8 @@ void sub_0201E958 (void)
 
         sub_0201EBA0();
 
-        sub_020181C4(Unk_021C0760->unk_00);
-        sub_020181C4(Unk_021C0760);
+        FreeToHeap(Unk_021C0760->unk_00);
+        FreeToHeap(Unk_021C0760);
 
         Unk_021C0760 = NULL;
     }
@@ -881,19 +881,19 @@ static void sub_0201F47C (u32 param0, u32 param1, int param2)
     Unk_021C0760->unk_28 = param1;
 
     if (Unk_021C0760->unk_34 != NULL) {
-        sub_020181C4(Unk_021C0760->unk_34);
+        FreeToHeap(Unk_021C0760->unk_34);
     }
 
     if (Unk_021C0760->unk_38 != NULL) {
-        sub_020181C4(Unk_021C0760->unk_38);
+        FreeToHeap(Unk_021C0760->unk_38);
     }
 
     if (Unk_021C0760->unk_24 != 0) {
-        Unk_021C0760->unk_34 = sub_02018144(param2, sizeof(u8) * (param0 / 8));
+        Unk_021C0760->unk_34 = AllocFromHeap(param2, sizeof(u8) * (param0 / 8));
     }
 
     if (Unk_021C0760->unk_28 != 0) {
-        Unk_021C0760->unk_38 = sub_02018144(param2, sizeof(u8) * (param1 / 8));
+        Unk_021C0760->unk_38 = AllocFromHeap(param2, sizeof(u8) * (param1 / 8));
     }
 
     sub_0201F460();
@@ -905,10 +905,10 @@ static void sub_0201F4E4 (u8 * param0)
         if (param0 == Unk_021C0760->unk_34) {
             Unk_021C0760->unk_24 = 0;
 
-            sub_020181C4(param0);
+            FreeToHeap(param0);
         } else {
             Unk_021C0760->unk_28 = 0;
-            sub_020181C4(param0);
+            FreeToHeap(param0);
         }
 
         param0 = NULL;

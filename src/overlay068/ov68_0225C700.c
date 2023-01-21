@@ -51,7 +51,7 @@
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -343,7 +343,7 @@ int ov68_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 
     v1 = sub_02006840(param0);
 
-    sub_02017FC8(3, 122, 0x50000);
+    CreateHeap(3, 122, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov68_0225C700), 122);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
@@ -439,7 +439,7 @@ int ov68_0225C8A8 (UnkStruct_020067E8 * param0, int * param1)
     ov68_0225C960(&v0->unk_00);
 
     sub_02006830(param0);
-    sub_0201807C(122);
+    DestroyHeap(122);
     sub_020057BC(0);
 
     return 1;
@@ -530,7 +530,7 @@ static void ov68_0225CA8C (UnkStruct_ov68_0225C91C * param0)
         }
     }
 
-    sub_020181C4(param0->unk_00);
+    FreeToHeap(param0->unk_00);
 }
 
 static void ov68_0225CAB4 (UnkStruct_ov68_0225C91C * param0, u32 param1)
@@ -652,7 +652,7 @@ static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 par
 
     ov66_0222E640(v1, v0, param2);
     sub_0200B498(param0->unk_24, param1, v0);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov68_0225CCA8 (UnkUnion_ov68_0225CCA8 * param0, UnkStruct_ov68_0225CB70 * param1, UnkStruct_ov68_0225C91C * param2, UnkStruct_ov66_02231374 * param3, u32 param4)
@@ -1305,7 +1305,7 @@ static void ov68_0225D868 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         ov68_0225DC24(&param0->unk_A8);
     }
 
-    sub_020181C4(param0->unk_80);
+    FreeToHeap(param0->unk_80);
     param0->unk_80 = NULL;
 
     {

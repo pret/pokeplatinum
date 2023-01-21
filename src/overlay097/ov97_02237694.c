@@ -41,7 +41,7 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
@@ -94,7 +94,7 @@ void * ov97_022376C4 (UnkStruct_020067E8 * param0, int param1, int param2, int p
 {
     void * v0;
 
-    sub_02017FC8(3, param1, param3);
+    CreateHeap(3, param1, param3);
     v0 = sub_0200681C(param0, param2, param1);
 
     memset(v0, 0, param2);
@@ -687,7 +687,7 @@ void ov97_02238194 (UnkStruct_02018340 * param0, UnkStruct_0202DF40 * param1)
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 
         sub_02019574(param0, 5, v3->rawData, 32 * 24 * 2);
-        sub_020181C4(v4);
+        FreeToHeap(v4);
     }
 
     sub_02019E2C(param0, 5, 0, 0, 32, 24, 8 + v0);
@@ -730,11 +730,11 @@ void ov97_0223829C (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
     u16 v3, v4;
     int v5;
 
-    v0 = sub_02018144(param2, sizeof(MATHCRC16Table));
+    v0 = AllocFromHeap(param2, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
     v3 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(UnkStruct_ov97_0222D250));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     OS_GetMacAddress((u8 *)v2);
 
@@ -747,12 +747,12 @@ void ov97_0223829C (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
         v4 = v2[v5];
     }
 
-    v1 = sub_02018144(param2, sizeof(CRYPTORC4Context));
+    v1 = AllocFromHeap(param2, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v2, 8);
     CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(UnkUnion_ov97_0222D2B0), param1);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * param1, int param2)
@@ -764,11 +764,11 @@ void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
     u16 v4, v5;
     int v6;
 
-    v0 = sub_02018144(param2, sizeof(MATHCRC16Table));
+    v0 = AllocFromHeap(param2, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
     v4 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(UnkStruct_ov97_0222D250));
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 
     v2 = sub_02033F3C(0);
     memcpy(v3, v2->bssid, WM_SIZE_BSSID);
@@ -782,12 +782,12 @@ void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
         v5 = v3[v6];
     }
 
-    v1 = sub_02018144(param2, sizeof(CRYPTORC4Context));
+    v1 = AllocFromHeap(param2, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v3, 8);
     CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(UnkUnion_ov97_0222D2B0), param1);
 
-    sub_020181C4(v1);
+    FreeToHeap(v1);
 }
 
 void ov97_022383C4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)

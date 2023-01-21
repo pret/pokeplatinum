@@ -17,7 +17,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_02034198.h"
 #include "unk_02073C2C.h"
@@ -170,7 +170,7 @@ void * ov16_0224B940 (UnkStruct_0207ADB4 * param0)
     UnkStruct_ov16_0224B9DC * v0;
     int v1;
 
-    v0 = sub_02018144(5, sizeof(UnkStruct_ov16_0224B9DC));
+    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov16_0224B9DC));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_ov16_0224B9DC));
 
@@ -203,8 +203,8 @@ int ov16_0224B990 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
 
 void ov16_0224B9DC (UnkStruct_ov16_0224B9DC * param0)
 {
-    sub_020181C4(param0->unk_354.unk_1DCC);
-    sub_020181C4(param0);
+    FreeToHeap(param0->unk_354.unk_1DCC);
+    FreeToHeap(param0);
 }
 
 void ov16_0224B9F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3, int param4)

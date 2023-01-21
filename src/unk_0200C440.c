@@ -6,7 +6,7 @@
 #include "unk_020021B0.h"
 #include "unk_02006E3C.h"
 #include "unk_0200C440.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 
 typedef struct UnkStruct_0200C440_t {
@@ -31,7 +31,7 @@ static const struct {
 
 UnkStruct_0200C440 * sub_0200C440 (u32 param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_0200C440 * v0 = sub_02018144(param3, sizeof(UnkStruct_0200C440));
+    UnkStruct_0200C440 * v0 = AllocFromHeap(param3, sizeof(UnkStruct_0200C440));
 
     if (v0) {
         u32 v1;
@@ -82,10 +82,10 @@ void sub_0200C560 (UnkStruct_0200C440 * param0)
 {
     if (param0) {
         if (param0->unk_00) {
-            sub_020181C4(param0->unk_00);
+            FreeToHeap(param0->unk_00);
         }
 
-        sub_020181C4(param0);
+        FreeToHeap(param0);
     }
 }
 

@@ -15,7 +15,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02023790.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -139,7 +139,7 @@ void ov23_022417E0 (void)
 void ov23_022417F4 (void)
 {
     if (Unk_ov23_02257744) {
-        sub_020181C4(Unk_ov23_02257744);
+        FreeToHeap(Unk_ov23_02257744);
         Unk_ov23_02257744 = NULL;
     }
 }
@@ -559,7 +559,7 @@ void ov23_02241E6C (void)
     GF_ASSERT(!Unk_ov23_02257744->unk_460);
     GF_ASSERT(!Unk_ov23_02257744->unk_45C);
 
-    v0 = sub_02018184(11, sizeof(UnkStruct_ov23_02241E4C));
+    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02241E4C));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02241E4C));
     v0->unk_02 = 100;
 
@@ -571,7 +571,7 @@ void ov23_02241ED0 (void)
 {
     if (Unk_ov23_02257744->unk_45C) {
         sub_0200DA58(Unk_ov23_02257744->unk_45C);
-        sub_020181C4(Unk_ov23_02257744->unk_460);
+        FreeToHeap(Unk_ov23_02257744->unk_460);
 
         Unk_ov23_02257744->unk_45C = NULL;
         Unk_ov23_02257744->unk_460 = NULL;

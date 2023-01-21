@@ -10,7 +10,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_0202D05C.h"
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
@@ -169,7 +169,7 @@ BOOL ov104_0223971C (UnkStruct_ov104_0222E930 * param0)
         }
     }
 
-    sub_020181C4(v1->unk_A8);
+    FreeToHeap(v1->unk_A8);
     v1->unk_A8 = NULL;
 
     return 0;

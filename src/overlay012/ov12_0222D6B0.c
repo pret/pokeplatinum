@@ -18,7 +18,7 @@
 
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -176,7 +176,7 @@ static void ov12_0222D6B0 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         ov12_02220220(v1->unk_08, param0);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
 
         return;
     }
@@ -194,7 +194,7 @@ void ov12_0222D7C0 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     UnkStruct_ov12_0222D6B0 * v1;
     UnkStruct_ov104_0223F9E0 v2;
 
-    v1 = sub_02018144(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D6B0));
+    v1 = AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D6B0));
 
     GF_ASSERT(v1 != NULL);
 
@@ -396,7 +396,7 @@ static void ov12_0222D934 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         ov12_02220220(v2->unk_0C, param0);
-        sub_020181C4(v2);
+        FreeToHeap(v2);
         return;
     }
 
@@ -415,7 +415,7 @@ void ov12_0222DB60 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     UnkStruct_ov12_0222D934 * v1;
     UnkStruct_ov104_0223F9E0 v2;
 
-    v1 = sub_02018144(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D934));
+    v1 = AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222D934));
 
     GF_ASSERT(v1 != NULL);
 
@@ -616,7 +616,7 @@ static void ov12_0222DE24 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     default:
         ov12_02220220(v1->unk_08, param0);
-        sub_020181C4(v1);
+        FreeToHeap(v1);
         return;
     }
 
@@ -639,7 +639,7 @@ void ov12_0222DEFC (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     UnkStruct_ov12_0222DE24 * v2;
     UnkStruct_ov104_0223F9E0 v3;
 
-    v2 = sub_02018144(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222DE24));
+    v2 = AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222DE24));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_01 = 0;
@@ -747,7 +747,7 @@ static void ov12_0222E080 (UnkStruct_0201CD38 * param0, void * param1)
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         ov12_02222664(v0->unk_04.unk_04, 2);
         ov12_02220220(v0->unk_04.unk_04, param0);
-        sub_020181C4(v0);
+        FreeToHeap(v0);
         return;
     }
 
@@ -820,7 +820,7 @@ static void ov12_0222E25C (UnkStruct_0201CD38 * param0, void * param1)
             }
 
             ov12_02220220(v0->unk_00.unk_04, param0);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return;
         }
     }
@@ -959,7 +959,7 @@ static void ov12_0222E390 (UnkStruct_0201CD38 * param0, void * param1)
             }
 
             ov12_02220220(v0->unk_00.unk_04, param0);
-            sub_020181C4(v0);
+            FreeToHeap(v0);
             return;
         }
     }

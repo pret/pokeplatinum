@@ -6,7 +6,7 @@
 
 #include "struct_defs/struct_0207CDEC.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0207CB08.h"
 #include "unk_0207CDEC.h"
@@ -55,7 +55,7 @@ UnkStruct_0207D3C0 * sub_0207D3C0 (int param0)
 {
     UnkStruct_0207D3C0 * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_0207D3C0));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0207D3C0));
     sub_0207D3D8(v0);
 
     return v0;
@@ -486,7 +486,7 @@ UnkStruct_0207D99C * sub_0207D99C (u32 param0)
 {
     UnkStruct_0207D99C * v0;
 
-    v0 = sub_02018144(param0, sizeof(UnkStruct_0207D99C));
+    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0207D99C));
     MI_CpuClear16(v0, sizeof(UnkStruct_0207D99C));
 
     return v0;

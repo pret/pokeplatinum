@@ -25,7 +25,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_02014A84.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0202D05C.h"
 
@@ -538,7 +538,7 @@ UnkStruct_ov90_021D1750 * sub_0202D71C (UnkStruct_0202D764 * param0, int param1)
 {
     UnkStruct_ov90_021D1750 * v0;
 
-    v0 = sub_02018144(param1, sizeof(UnkStruct_ov90_021D1750) * 30);
+    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov90_021D1750) * 30);
     MI_CpuCopy8(param0->unk_740, v0, sizeof(UnkStruct_ov90_021D1750) * 30);
 
     return v0;

@@ -9,7 +9,7 @@
 
 #include "unk_020064F0.h"
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02099550.h"
 #include "overlay018/ov18_0221F800.h"
 
@@ -63,9 +63,9 @@ void sub_020995C4 (void)
 
 static int sub_020995D4 (UnkStruct_020067E8 * param0, int * param1)
 {
-    sub_02017FC8(3, 49, 0x41000);
+    CreateHeap(3, 49, 0x41000);
     sub_02099590(((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08, 49);
-    sub_0201807C(49);
+    DestroyHeap(49);
 
     OS_ResetSystem(0);
     return 1;

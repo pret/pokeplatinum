@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "overlay005/ov5_021EEAC8.h"
 
 typedef struct UnkStruct_ov5_021EEB48_t {
@@ -21,7 +21,7 @@ UnkStruct_ov5_021EEB48 * ov5_021EEAC8 (const BOOL param0)
     int v1;
     UnkStruct_ov5_021EEB48 * v2;
 
-    v2 = sub_02018144(4, sizeof(UnkStruct_ov5_021EEB48));
+    v2 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EEB48));
     memset(v2, 0, sizeof(UnkStruct_ov5_021EEB48));
 
     v2->unk_00 = 1;
@@ -38,7 +38,7 @@ UnkStruct_ov5_021EEB48 * ov5_021EEAC8 (const BOOL param0)
         }
 
         if (param0) {
-            v2->unk_14[v0] = sub_02018144(4, 0x9000);
+            v2->unk_14[v0] = AllocFromHeap(4, 0x9000);
 
             if (v2->unk_14[v0] == NULL) {
                 return NULL;
@@ -62,21 +62,21 @@ void ov5_021EEB48 (UnkStruct_ov5_021EEB48 * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_00 == 2) {
-            sub_020181C4((void *)param0->unk_04[v0]);
+            FreeToHeap((void *)param0->unk_04[v0]);
         }
 
         param0->unk_04[v0] = NULL;
 
         if (param0->unk_14[v0] != NULL) {
             if (param0->unk_02 == 2) {
-                sub_020181C4((void *)param0->unk_14[v0]);
+                FreeToHeap((void *)param0->unk_14[v0]);
             }
 
             param0->unk_14[v0] = NULL;
         }
     }
 
-    sub_020181C4((void *)param0);
+    FreeToHeap((void *)param0);
     param0 = NULL;
 }
 
@@ -101,7 +101,7 @@ UnkStruct_ov5_021EEB48 * ov5_021EEBC0 (const BOOL param0)
     u32 v0;
     UnkStruct_ov5_021EEB48 * v1;
 
-    v1 = sub_02018144(4, sizeof(UnkStruct_ov5_021EEB48));
+    v1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EEB48));
     memset(v1, 0, sizeof(UnkStruct_ov5_021EEB48));
     v1->unk_00 = 2;
 
@@ -110,12 +110,12 @@ UnkStruct_ov5_021EEB48 * ov5_021EEBC0 (const BOOL param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_04[v0] = sub_02018144(
+        v1->unk_04[v0] = AllocFromHeap(
             4, 0xf000);
         MI_CpuClear8(v1->unk_04[v0], 0xf000);
 
         if (param0 == 1) {
-            v1->unk_14[v0] = sub_02018144(
+            v1->unk_14[v0] = AllocFromHeap(
                 4, 0x9000);
             MI_CpuClear8(v1->unk_14[v0], 0x9000);
         }

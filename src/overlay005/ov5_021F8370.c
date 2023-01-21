@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "struct_defs/struct_02071C34.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0203CC84.h"
@@ -68,7 +68,7 @@ void ov5_021F8370 (UnkStruct_0203CDB0 * param0)
 
     v1 = sub_02027860(sub_0203D174(param0));
     v2 = sub_02027F6C(v1, 10);
-    v3 = sub_02018144(4, sizeof(UnkStruct_ov5_021F8480));
+    v3 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
 
@@ -92,7 +92,7 @@ void ov5_021F83C0 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov5_021F8480 * v0 = param0->unk_04->unk_24;
 
-    sub_020181C4(v0);
+    FreeToHeap(v0);
     param0->unk_04->unk_24 = NULL;
 }
 

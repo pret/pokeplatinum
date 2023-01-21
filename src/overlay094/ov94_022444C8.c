@@ -11,7 +11,7 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0202DA40.h"
 #include "unk_02056720.h"
@@ -133,7 +133,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                     v0 = 4;
                 }
 
-                sub_020181C4(v5);
+                FreeToHeap(v5);
             } else {
                 ov94_0223C4C0(param0, 1, 0);
                 v0 = 4;
@@ -156,8 +156,8 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
 int ov94_0224484C (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    sub_020181C4(param0->unk_1104);
-    sub_020181C4(param0->unk_120);
+    FreeToHeap(param0->unk_1104);
+    FreeToHeap(param0->unk_120);
     ov94_0223C4C8(param0);
 
     return 1;

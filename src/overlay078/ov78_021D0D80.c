@@ -57,7 +57,7 @@
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_02017728.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201C970.h"
 #include "unk_0201D670.h"
@@ -285,13 +285,13 @@ int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov84_0223BA5C v2;
     BOOL v3;
 
-    sub_02017FC8(3, 47, 0x40000);
+    CreateHeap(3, 47, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov78_021D107C), 47);
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov78_021D107C));
 
-    sub_020182CC(&v0->unk_2B4, 47, 32);
+    GF_ExpHeap_FndInitAllocator(&v0->unk_2B4, 47, 32);
 
     v1 = sub_02006840(param0);
     v0->unk_700 = sub_02027B50(v1->unk_04);
@@ -416,12 +416,12 @@ int ov78_021D0FA8 (UnkStruct_020067E8 * param0, int * param1)
     ov78_021D2884(v0);
 
     ov78_021D12EC(v0->unk_94);
-    sub_020181C4(v0->unk_94);
+    FreeToHeap(v0->unk_94);
     ov78_021D10DC();
 
     sub_0201DC3C();
     sub_02006830(param0);
-    sub_0201807C(47);
+    DestroyHeap(47);
 
     return 1;
 }
@@ -632,7 +632,7 @@ static void ov78_021D1308 (UnkStruct_ov78_021D107C * param0, int param1)
 static void ov78_021D13A0 (UnkStruct_ov78_021D107C * param0)
 {
     sub_0201A8FC(param0->unk_98);
-    sub_020181C4(param0->unk_98);
+    FreeToHeap(param0->unk_98);
 }
 
 static void ov78_021D13B8 (UnkStruct_ov78_021D107C * param0, int param1)
@@ -762,12 +762,12 @@ static void ov78_021D1694 (UnkStruct_ov78_021D15CC * param0, int param1, int par
 static void ov78_021D16D8 (UnkStruct_ov78_021D15CC * param0, NNSFndAllocator * param1)
 {
     if (param0->unk_54) {
-        sub_020181C4(param0->unk_54);
+        FreeToHeap(param0->unk_54);
     }
 
     if (param0->unk_64) {
         NNS_G3dFreeAnmObj(param1, param0->unk_6C);
-        sub_020181C4(param0->unk_64);
+        FreeToHeap(param0->unk_64);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov78_021D15CC));
@@ -1535,8 +1535,8 @@ static void ov78_021D24E4 (UnkStruct_ov78_021D2448 * param0)
     sub_02015238(param0->unk_08);
     sub_02015164(param0->unk_00);
     sub_020151D4(param0->unk_04);
-    sub_020181C4(param0->unk_0C);
-    sub_020181C4(param0->unk_10);
+    FreeToHeap(param0->unk_0C);
+    FreeToHeap(param0->unk_10);
 }
 
 static void ov78_021D2508 (UnkStruct_ov78_021D2448 * param0, BOOL param1)
@@ -1716,7 +1716,7 @@ static void ov78_021D2884 (UnkStruct_ov78_021D107C * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         sub_0201A8FC(param0->unk_9C[v0]);
-        sub_020181C4(param0->unk_9C[v0]);
+        FreeToHeap(param0->unk_9C[v0]);
     }
 }
 

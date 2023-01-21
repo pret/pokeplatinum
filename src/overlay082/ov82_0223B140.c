@@ -7,7 +7,7 @@
 #include "overlay083/struct_ov83_0223C344.h"
 
 #include "unk_020067E8.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
@@ -35,7 +35,7 @@ int ov82_0223B164 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov83_0223C344 * v0 = NULL;
     UnkStruct_ov82_0223B164 * v1 = (UnkStruct_ov82_0223B164 *)sub_02006840(param0);
 
-    sub_02017FC8(3, 55, 0x20000);
+    CreateHeap(3, 55, 0x20000);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov83_0223C344), 55);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov83_0223C344));
 
@@ -99,7 +99,7 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         v0 = v1->unk_00;
 
-        sub_020181C4(v1->unk_0C);
+        FreeToHeap(v1->unk_0C);
         MI_CpuClear8(v1, sizeof(UnkStruct_ov83_0223C344));
         sub_02006830(param0);
 
@@ -107,7 +107,7 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
             ov4_021D1F18();
         }
 
-        sub_0201807C(v0);
+        DestroyHeap(v0);
 
         if (v2->unk_20 == 0) {
             return 1;

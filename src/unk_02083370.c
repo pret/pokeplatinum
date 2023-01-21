@@ -20,7 +20,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
@@ -628,13 +628,13 @@ static void sub_02084134 (UnkStruct_0207F248 * param0)
 
     v1 = &param0->unk_7F8;
 
-    v0 = sub_02018144(12, sizeof(UnkStruct_020831B4));
+    v0 = AllocFromHeap(12, sizeof(UnkStruct_020831B4));
     *v0 = param0->unk_704[v1->unk_300[0]];
 
     param0->unk_704[v1->unk_300[0]] = param0->unk_704[v1->unk_300[1]];
     param0->unk_704[v1->unk_300[1]] = *v0;
 
-    sub_02018238(12, v0);
+    FreeToHeapExplicit(12, v0);
 
     v3 = param0->unk_704[v1->unk_300[0]].unk_16;
     param0->unk_704[v1->unk_300[0]].unk_16 = param0->unk_704[v1->unk_300[1]].unk_16;

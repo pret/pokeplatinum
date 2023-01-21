@@ -5,7 +5,7 @@
 #include "overlay013/struct_ov13_02227244.h"
 
 #include "unk_0200C6E4.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/ov13_02228128.h"
@@ -339,13 +339,13 @@ static void ov13_022286B8 (UnkStruct_ov13_02227244 * param0, u8 param1, u8 param
 {
     u16 * v0;
 
-    v0 = sub_02018144(param0->unk_00->unk_0C, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
+    v0 = AllocFromHeap(param0->unk_00->unk_0C, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
 
     ov13_0222863C(param0, v0, param1, param2, param3);
 
     sub_020198C0(param0->unk_04, 6, v0, Unk_ov13_02229D7C[param1].unk_00, Unk_ov13_02229D7C[param1].unk_01, Unk_ov13_02229D7C[param1].unk_02, Unk_ov13_02229D7C[param1].unk_03);
     sub_0201C3C0(param0->unk_04, 6);
-    sub_020181C4(v0);
+    FreeToHeap(v0);
 }
 
 static void ov13_0222872C (UnkStruct_ov13_02227244 * param0, u8 param1, u8 param2)

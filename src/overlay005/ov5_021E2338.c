@@ -37,7 +37,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_02013B10.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201FE94.h"
@@ -106,7 +106,7 @@ void ov5_021E2338 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E2338));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2338));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2338));
         v1 = v0->unk_0C;
         v1->unk_1C = ov5_021DDF38();
@@ -175,7 +175,7 @@ void ov5_021E24A8 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E24A8));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E24A8));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E24A8));
         v1 = v0->unk_0C;
         v1->unk_1C = ov5_021DDF38();
@@ -242,7 +242,7 @@ void ov5_021E261C (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E261C));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E261C));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E261C));
         v1 = v0->unk_0C;
         ov5_021E28B0(&v1->unk_00, 4);
@@ -300,7 +300,7 @@ void ov5_021E2748 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E2748));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2748));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2748));
         v1 = v0->unk_0C;
         ov5_021E28B0(&v1->unk_00, 4);
@@ -415,7 +415,7 @@ void ov5_021E2944 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E2944));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2944));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2944));
         v1 = v0->unk_0C;
         v0->unk_00++;
@@ -468,7 +468,7 @@ void ov5_021E2A4C (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E2A4C));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2A4C));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2A4C));
         v1 = v0->unk_0C;
         v0->unk_00++;
@@ -607,7 +607,7 @@ void ov5_021E2B54 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E2B54));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2B54));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2B54));
         v1 = v0->unk_0C;
 
@@ -767,7 +767,7 @@ void ov5_021E2EB0 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E2EB0));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2EB0));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E2EB0));
         v1 = v0->unk_0C;
 
@@ -914,7 +914,7 @@ void ov5_021E31A4 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E31A4));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E31A4));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E31A4));
         v1 = v0->unk_0C;
 
@@ -1085,7 +1085,7 @@ void ov5_021E3560 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E3560));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E3560));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E3560));
         v1 = v0->unk_0C;
 
@@ -1297,7 +1297,7 @@ void ov5_021E3AD0 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E3AD0));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E3AD0));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E3AD0));
         v1 = v0->unk_0C;
 
@@ -1423,7 +1423,7 @@ void ov5_021E3D8C (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E3D8C));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E3D8C));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E3D8C));
         v1 = v0->unk_0C;
 
@@ -1649,7 +1649,7 @@ void ov5_021E4260 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E4260));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4260));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4260));
         v1 = v0->unk_0C;
 
@@ -1764,7 +1764,7 @@ void ov5_021E44C0 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E44C0));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E44C0));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E44C0));
         v1 = v0->unk_0C;
 
@@ -1925,7 +1925,7 @@ void ov5_021E4738 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E4738));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4738));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4738));
         v1 = v0->unk_0C;
 
@@ -2071,7 +2071,7 @@ void ov5_021E4B3C (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E4B3C));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4B3C));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4B3C));
         v1 = v0->unk_0C;
 
@@ -2269,7 +2269,7 @@ void ov5_021E4E14 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E4E14));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4E14));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4E14));
 
         sub_0201FF0C(GX_PLANEMASK_BG1, 0);
@@ -2355,7 +2355,7 @@ void ov5_021E4F7C (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_00) {
     case 0:
-        v0->unk_0C = sub_02018144(4, sizeof(UnkStruct_ov5_021E4F7C));
+        v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4F7C));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4F7C));
 
         sub_0201FF0C(GX_PLANEMASK_BG1, 0);
@@ -2652,7 +2652,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
     switch (param0->unk_00) {
     case 0:
-        param0->unk_0C = sub_02018144(param1, sizeof(UnkStruct_ov5_021E52A8));
+        param0->unk_0C = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021E52A8));
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov5_021E52A8));
         v0 = param0->unk_0C;
 
@@ -2988,7 +2988,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
     switch (param0->unk_00) {
     case 0:
-        param0->unk_0C = sub_02018144(param1, sizeof(UnkStruct_ov5_021E5890));
+        param0->unk_0C = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021E5890));
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov5_021E5890));
         v0 = param0->unk_0C;
 

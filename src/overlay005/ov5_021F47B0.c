@@ -11,7 +11,7 @@
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02061804.h"
 #include "unk_02063400.h"
 #include "unk_020711EC.h"
@@ -154,7 +154,7 @@ static void ov5_021F48F0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     UnkStruct_021F487C * v0 = param1;
 
     sub_02073A90(v0->unk_88);
-    sub_020181C4(v0->unk_88);
+    FreeToHeap(v0->unk_88);
 }
 
 static void ov5_021F4908 (UnkStruct_ov101_021D5D90 * param0, void * param1)

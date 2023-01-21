@@ -12,7 +12,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_02017E74.h"
+#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201FE94.h"
 #include "map_header.h"
@@ -87,7 +87,7 @@ static void ov5_021F00BC (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 static void ov5_021F00E4 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * param1, void * param2)
 {
     UnkStruct_ov5_021F007C * v0 = param2;
-    sub_020181C4(v0->unk_00);
+    FreeToHeap(v0->unk_00);
 }
 
 static void ov5_021F00F0 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * param1, void * param2)
@@ -253,11 +253,11 @@ static void ov5_021F0260 (UnkStruct_02018340 * param0)
 
     sub_0201972C(2, &v0, sizeof(short), (6 * 32) + 2);
 
-    v1 = sub_02018144(4, sizeof(u8) * 32);
+    v1 = AllocFromHeap(4, sizeof(u8) * 32);
     memset(v1, 0x11, sizeof(u8) * 32);
 
     sub_0201958C(param0, 2, v1, sizeof(u8) * 32, 1);
-    sub_020181C4(v1);
+    FreeToHeap(v1);
     sub_02019EE0(param0, 2, (6 << 12) | 1);
 }
 
@@ -423,7 +423,7 @@ static void ov5_021F0468 (UnkStruct_ov5_021F0468 * param0)
         param0->unk_00 = NULL;
     }
 
-    sub_020181C4(param0);
+    FreeToHeap(param0);
 }
 
 u32 ov5_021F0484 (void)
