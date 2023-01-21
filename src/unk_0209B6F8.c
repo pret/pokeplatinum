@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_0223D3B0_sub1.h"
 #include "overlay104/struct_ov104_0223D8F0.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_0209B6F8.h"
@@ -225,16 +225,16 @@ static void sub_0209B8E8 (UnkStruct_0209B75C * param0)
 
 static void sub_0209B924 (void)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay104), 2);
-    sub_02006590(FS_OVERLAY_ID(overlay105), 2);
-    sub_02006590(FS_OVERLAY_ID(overlay63), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay104), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay105), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay63), 2);
 }
 
 static void sub_0209B94C (void)
 {
-    sub_02006514(FS_OVERLAY_ID(overlay104));
-    sub_02006514(FS_OVERLAY_ID(overlay105));
-    sub_02006514(FS_OVERLAY_ID(overlay63));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay104));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay105));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay63));
 }
 
 UnkStruct_ov104_02230BE4 * sub_0209B970 (UnkStruct_0209B75C * param0)

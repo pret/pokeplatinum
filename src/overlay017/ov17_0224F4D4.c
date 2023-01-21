@@ -18,7 +18,7 @@
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
@@ -345,9 +345,9 @@ int ov17_0224F86C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02039794();
 
-    sub_02006514(FS_OVERLAY_ID(overlay11));
-    sub_02006514(FS_OVERLAY_ID(overlay12));
-    sub_02006514(FS_OVERLAY_ID(overlay22));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay11));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay22));
 
     return 1;
 }

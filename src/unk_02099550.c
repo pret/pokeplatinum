@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0208BE5C.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_02099550.h"
@@ -20,22 +20,22 @@ FS_EXTERN_OVERLAY(overlay89);
 
 void sub_02099550 (void)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay4), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay4), 2);
 }
 
 void sub_02099560 (void)
 {
-    sub_02006514(FS_OVERLAY_ID(overlay4));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay4));
 }
 
 void sub_02099570 (void)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay18), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay18), 2);
 }
 
 void sub_02099580 (void)
 {
-    sub_02006514(FS_OVERLAY_ID(overlay18));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay18));
 }
 
 void sub_02099590 (UnkStruct_021C0794 * param0, int param1)
@@ -53,12 +53,12 @@ void sub_02099590 (UnkStruct_021C0794 * param0, int param1)
 
 void sub_020995B4 (void)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay60), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay60), 2);
 }
 
 void sub_020995C4 (void)
 {
-    sub_02006514(FS_OVERLAY_ID(overlay60));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay60));
 }
 
 static int sub_020995D4 (UnkStruct_020067E8 * param0, int * param1)

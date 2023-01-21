@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0208C06C.h"
 
 #include "unk_020041CC.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "heap.h"
 #include "unk_0201FE94.h"
 #include "unk_020277A4.h"
@@ -133,7 +133,7 @@ static int sub_0208BF6C (UnkStruct_020067E8 * param0, int * param1)
     default:
         ov62_0222F514(v0);
         DestroyHeap(102);
-        sub_02006514(FS_OVERLAY_ID(overlay62));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay62));
         Unk_021BF67C.unk_65 = 0;
         sub_0201FFE8();
 

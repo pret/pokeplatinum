@@ -25,7 +25,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
@@ -78,9 +78,9 @@ static const struct {
 
 static void NitroStaticInit (void)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay11), 2);
-    sub_02006590(FS_OVERLAY_ID(overlay12), 2);
-    sub_02006590(FS_OVERLAY_ID(overlay22), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay11), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay12), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay22), 2);
 }
 
 UnkStruct_0207C690 * ov17_0223F140 (int param0)

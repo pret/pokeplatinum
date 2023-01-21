@@ -30,7 +30,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "filesystem.h"
 #include "unk_0200A784.h"
@@ -175,17 +175,17 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
         sub_020531A0(v1);
 
         if (v1->unk_74->unk_00_20) {
-            sub_02006590(FS_OVERLAY_ID(overlay6), 2);
+            HandleLoadOverlay(FS_OVERLAY_ID(overlay6), 2);
 
             switch (ov5_021D1178(v1)) {
             case 0:
-                sub_02006590(FS_OVERLAY_ID(overlay8), 2);
+                HandleLoadOverlay(FS_OVERLAY_ID(overlay8), 2);
                 break;
             case 1:
-                sub_02006590(FS_OVERLAY_ID(overlay7), 2);
+                HandleLoadOverlay(FS_OVERLAY_ID(overlay7), 2);
                 break;
             case 2:
-                sub_02006590(FS_OVERLAY_ID(overlay9), 2);
+                HandleLoadOverlay(FS_OVERLAY_ID(overlay9), 2);
                 break;
             }
         }
@@ -359,10 +359,10 @@ static int ov5_021D0FB4 (UnkStruct_020067E8 * param0, int * param1)
             DestroyHeap(4);
 
             if (v0->unk_74->unk_00_20) {
-                sub_02006514(FS_OVERLAY_ID(overlay6));
-                sub_02006514(FS_OVERLAY_ID(overlay8));
-                sub_02006514(FS_OVERLAY_ID(overlay7));
-                sub_02006514(FS_OVERLAY_ID(overlay9));
+                UnloadOverlayByID(FS_OVERLAY_ID(overlay6));
+                UnloadOverlayByID(FS_OVERLAY_ID(overlay8));
+                UnloadOverlayByID(FS_OVERLAY_ID(overlay7));
+                UnloadOverlayByID(FS_OVERLAY_ID(overlay9));
             }
 
             return 1;

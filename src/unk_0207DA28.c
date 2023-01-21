@@ -13,7 +13,7 @@
 #include "overlay115/struct_ov115_02260440.h"
 #include "overlay117/struct_ov117_02260440.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "heap.h"
 #include "unk_0202CD50.h"
 #include "unk_02034198.h"
@@ -391,7 +391,7 @@ static UnkStruct_ov115_02260440 * sub_0207DE90 (UnkStruct_0203CDB0 * param0, u32
         v0->unk_39 = 0;
         v0->unk_34 = param0->unk_0C;
 
-        sub_02006590(FS_OVERLAY_ID(overlay114), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay114), 2);
         sub_0203CD84(param0, &v1, v0);
     }
     return v0;
@@ -402,7 +402,7 @@ static void sub_0207DED8 (UnkStruct_ov115_02260440 * param0)
     FS_EXTERN_OVERLAY(overlay114);
 
     FreeToHeap(param0);
-    sub_02006514(FS_OVERLAY_ID(overlay114));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay114));
 }
 
 static UnkStruct_ov66_02231134 * sub_0207DEEC (UnkStruct_0203CDB0 * param0, u32 param1, u32 param2)
@@ -422,7 +422,7 @@ static UnkStruct_ov66_02231134 * sub_0207DEEC (UnkStruct_0203CDB0 * param0, u32 
         v0->unk_38 = 0;
         v0->unk_34 = param0->unk_0C;
 
-        sub_02006590(FS_OVERLAY_ID(overlay114), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay114), 2);
         sub_0203CD84(param0, &v1, v0);
     }
     return v0;
@@ -433,7 +433,7 @@ static void sub_0207DF2C (UnkStruct_ov66_02231134 * param0)
     FS_EXTERN_OVERLAY(overlay114);
 
     FreeToHeap(param0);
-    sub_02006514(FS_OVERLAY_ID(overlay114));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay114));
 }
 
 static UnkStruct_ov117_02260440 * sub_0207DF40 (UnkStruct_0203CDB0 * param0, u32 param1, u32 param2)
@@ -455,7 +455,7 @@ static UnkStruct_ov117_02260440 * sub_0207DF40 (UnkStruct_0203CDB0 * param0, u32
         v0->unk_39 = 0;
         v0->unk_34 = param0->unk_0C;
 
-        sub_02006590(FS_OVERLAY_ID(overlay114), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay114), 2);
         sub_0203CD84(param0, &v1, v0);
     }
 
@@ -467,7 +467,7 @@ static void sub_0207DF88 (UnkStruct_ov115_02260440 * param0)
     FS_EXTERN_OVERLAY(overlay114);
 
     FreeToHeap(param0);
-    sub_02006514(FS_OVERLAY_ID(overlay114));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay114));
 }
 
 static void sub_0207DF9C (UnkStruct_0203CDB0 * param0)

@@ -28,7 +28,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -210,7 +210,7 @@ static BOOL ov62_02237D24 (UnkStruct_0208C06C * param0)
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02237D24));
     param0->unk_860 = v0;
-    sub_02006590(FS_OVERLAY_ID(overlay22), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay22), 2);
 
     {
         v0->unk_218.unk_00 = param0->unk_14.unk_10;
@@ -479,7 +479,7 @@ static BOOL ov62_022380B0 (UnkStruct_0208C06C * param0)
             ov62_0222FB60(param0, 5);
 
             FreeToHeap(v0);
-            sub_02006514(FS_OVERLAY_ID(overlay22));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay22));
             sub_02017798(ov62_0222F8E4, param0);
         } else {
             sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -568,7 +568,7 @@ static BOOL ov62_022383E4 (UnkStruct_0208C06C * param0)
             ov62_0222FB60(param0, 5);
 
             FreeToHeap(v0);
-            sub_02006514(FS_OVERLAY_ID(overlay22));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay22));
             sub_02017798(ov62_0222F8E4, param0);
         } else {
             sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
@@ -818,7 +818,7 @@ static BOOL ov62_0223896C (UnkStruct_0208C06C * param0)
             ov62_0222FB60(param0, 5);
 
             FreeToHeap(v0);
-            sub_02006514(FS_OVERLAY_ID(overlay22));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay22));
             sub_02017798(ov62_0222F8E4, param0);
         } else {
             sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);

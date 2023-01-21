@@ -44,7 +44,7 @@
 #include "overlay019/struct_ov19_021D6104.h"
 
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -2630,7 +2630,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             v2 = sub_0207D990(param0->unk_11C);
             param0->unk_214 = sub_0207D824(v2, v0, 9);
             sub_0207CB2C(param0->unk_214, param0->unk_11C, 1, NULL);
-            sub_02006590(FS_OVERLAY_ID(overlay84), 2);
+            HandleLoadOverlay(FS_OVERLAY_ID(overlay84), 2);
             param0->unk_210 = sub_020067E8(&Unk_ov84_02241130, param0->unk_214, 9);
             (*param1)++;
         }
@@ -2641,7 +2641,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 
             sub_02006814(param0->unk_210);
             FreeToHeap(param0->unk_214);
-            sub_02006514(FS_OVERLAY_ID(overlay84));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay84));
 
             if ((v1 == 112) && (sub_02074570(param0->unk_00.unk_4C.unk_00, 5, NULL) != 487)) {
                 (void)0;

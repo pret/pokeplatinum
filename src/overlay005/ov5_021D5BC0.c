@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_0205964C.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021EA714.h"
@@ -85,7 +85,7 @@ static void ov5_021D5C54 (UnkStruct_0203CDB0 * param0)
 
 static void ov5_021D5C5C (UnkStruct_0203CDB0 * param0)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay56), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay56), 2);
     param0->unk_84 = ov56_02256410(param0);
 }
 
@@ -102,7 +102,7 @@ static void ov5_021D5C80 (UnkStruct_0203CDB0 * param0)
 static void ov5_021D5C88 (UnkStruct_0203CDB0 * param0)
 {
     ov56_02256468(param0->unk_84);
-    sub_02006514(FS_OVERLAY_ID(overlay56));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay56));
 }
 
 static BOOL ov5_021D5CA0 (UnkStruct_0203CDB0 * param0)

@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "heap.h"
@@ -44,8 +44,8 @@ static BOOL ov5_021DDAE4 (UnkStruct_020508D4 * param0)
         if (ov24_02253DB4(v0->unk_08)) {
             UnkStruct_02056B24 * v2 = sub_02056B24(v0->unk_0C);
 
-            sub_02006514(FS_OVERLAY_ID(overlay24));
-            sub_02006590(FS_OVERLAY_ID(overlay25), 2);
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay24));
+            HandleLoadOverlay(FS_OVERLAY_ID(overlay25), 2);
             sub_020567D0(v2);
             ov25_02253CE8(v0, &v0->unk_04->unk_14, v0->unk_0C, v0->unk_08, sub_0200A914(1));
             v1->unk_00++;

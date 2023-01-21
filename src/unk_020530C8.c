@@ -25,7 +25,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
@@ -1249,7 +1249,7 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         break;
     case 9:
         v0->unk_70 = 1;
-        sub_02006590(FS_OVERLAY_ID(overlay23), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay23), 2);
         ov23_022499E8(v0);
         sub_020539E8(param0, v1->unk_08, -1, v1->unk_10, v1->unk_14, 1);
         (v1->unk_00)++;
@@ -1317,7 +1317,7 @@ BOOL sub_0205430C (UnkStruct_020508D4 * param0)
         break;
     case 4:
         v0->unk_70 = 0;
-        sub_02006514(FS_OVERLAY_ID(overlay23));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay23));
         sub_020539E8(param0, v1->unk_08, -1, v1->unk_10, v1->unk_14, 1);
         (v1->unk_00)++;
         break;

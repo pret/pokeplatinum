@@ -19,7 +19,7 @@
 #include "overlay005/struct_ov5_021D1CAC.h"
 
 #include "unk_02000C88.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_02034198.h"
@@ -118,7 +118,7 @@ void sub_0203CD00 (UnkStruct_0203CDB0 * param0)
 {
     GF_ASSERT(param0->unk_00->unk_04 == NULL);
     GF_ASSERT(param0->unk_00->unk_00 == NULL);
-    sub_02006590(FS_OVERLAY_ID(overlay5), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay5), 2);
 
     param0->unk_68 = 0;
     param0->unk_00->unk_08 = 0;
@@ -237,7 +237,7 @@ BOOL sub_0203CEEC (UnkStruct_0203CDB0 * param0)
         sub_0203CECC(&param0->unk_00->unk_00);
 
         if (param0->unk_00->unk_00 == NULL) {
-            sub_02006514(FS_OVERLAY_ID(overlay5));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay5));
         }
     } else if (param0->unk_00->unk_04) {
         sub_0203CECC(&param0->unk_00->unk_04);

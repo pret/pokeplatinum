@@ -22,7 +22,7 @@
 #include "overlay025/struct_ov25_02254560_1.h"
 
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201E3D8.h"
@@ -524,7 +524,7 @@ static void ov25_02254170 (UnkStruct_ov25_02253CE0 * param0, int param1)
 
         for (v0 = 0; v0 < NELEMS(Unk_ov25_02255E7C); v0++) {
             if (Unk_ov25_02255E7C[v0].unk_00 == param1) {
-                sub_02006590(Unk_ov25_02255E7C[v0].unk_04, 2);
+                HandleLoadOverlay(Unk_ov25_02255E7C[v0].unk_04, 2);
                 param0->unk_14 = param1;
                 param0->unk_18 = Unk_ov25_02255E7C[v0].unk_04;
                 break;
@@ -536,7 +536,7 @@ static void ov25_02254170 (UnkStruct_ov25_02253CE0 * param0, int param1)
 static void ov25_022541BC (UnkStruct_ov25_02253CE0 * param0)
 {
     if (param0->unk_14 != -1) {
-        sub_02006514(param0->unk_18);
+        UnloadOverlayByID(param0->unk_18);
         param0->unk_14 = -1;
     }
 }

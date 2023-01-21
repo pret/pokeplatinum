@@ -28,7 +28,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "filesystem.h"
 #include "unk_02006E3C.h"
@@ -2964,11 +2964,11 @@ void sub_02081940 (u32 param0, u16 * param1, u16 * param2, u16 * param3)
 
 void sub_020819B4 (UnkStruct_0207F248 * param0)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay118), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay118), 2);
     ov118_021D0D80(param0);
 }
 
 void sub_020819CC (UnkStruct_0207F248 * param0)
 {
-    sub_02006514(FS_OVERLAY_ID(overlay118));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay118));
 }

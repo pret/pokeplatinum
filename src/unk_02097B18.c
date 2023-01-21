@@ -20,7 +20,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "filesystem.h"
 #include "unk_0200762C.h"
@@ -275,8 +275,8 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     DestroyHeap(53);
-    sub_02006514(FS_OVERLAY_ID(overlay11));
-    sub_02006514(FS_OVERLAY_ID(overlay12));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay11));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
 
     return 1;
 }

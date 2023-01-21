@@ -21,7 +21,7 @@
 #include "overlay006/struct_ov6_02240D5C.h"
 
 #include "unk_020041CC.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_0202B604.h"
@@ -251,7 +251,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 != 0) {
-            sub_02006514(FS_OVERLAY_ID(overlay61));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay61));
             sub_020995C4();
         }
 
@@ -273,9 +273,9 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
         param0->unk_10->unk_E4 = sub_0207D99C(param1);
         param0->unk_10->unk_11C = sub_0202CD88(param0->unk_0C);
 
-        if (sub_02006590(FS_OVERLAY_ID(overlay62), 2) == 1) {
+        if (HandleLoadOverlay(FS_OVERLAY_ID(overlay62), 2) == 1) {
             ov62_02248408(sub_0202F264(), param0->unk_10, param1);
-            sub_02006514(FS_OVERLAY_ID(overlay62));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay62));
         }
 
         param0->unk_14->unk_874 = 1;
@@ -337,7 +337,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
 
         if (param0->unk_14->unk_00 != 0) {
             sub_020995B4();
-            sub_02006590(FS_OVERLAY_ID(overlay61), 2);
+            HandleLoadOverlay(FS_OVERLAY_ID(overlay61), 2);
         }
 
         return 1;

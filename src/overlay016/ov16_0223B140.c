@@ -35,7 +35,7 @@
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "filesystem.h"
 #include "unk_02006E3C.h"
@@ -221,7 +221,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 6:
         if (ov16_0223DAD4(param0) == 1) {
-            sub_02006514(FS_OVERLAY_ID(overlay10));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay10));
             *param1 = 7;
             sub_020364F0(61);
         }
@@ -232,8 +232,8 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 8:
-        sub_02006590(FS_OVERLAY_ID(overlay11), 2);
-        sub_02006590(FS_OVERLAY_ID(overlay12), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay11), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay12), 2);
         ov16_0223B790(param0);
         *param1 = 9;
         break;
@@ -253,7 +253,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 11:
         if (ov16_0223DD10(param0) == 1) {
-            sub_02006514(FS_OVERLAY_ID(overlay10));
+            UnloadOverlayByID(FS_OVERLAY_ID(overlay10));
             DestroyHeap(5);
             *param1 = 12;
         }
@@ -309,12 +309,12 @@ void ov16_0223B384 (UnkStruct_0207ADB4 * param0)
     ov16_0223F314(param0, 3);
 
     if (param0->unk_2441 == 0) {
-        sub_02006514(FS_OVERLAY_ID(overlay12));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
     } else {
-        sub_02006514(FS_OVERLAY_ID(overlay14));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay14));
     }
 
-    sub_02006590(FS_OVERLAY_ID(overlay13), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay13), 2);
 }
 
 void ov16_0223B3E4 (UnkStruct_0207ADB4 * param0)
@@ -337,12 +337,12 @@ void ov16_0223B430 (UnkStruct_0207ADB4 * param0)
     NARC * v0;
     NARC * v1;
 
-    sub_02006514(FS_OVERLAY_ID(overlay13));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay13));
 
     if (param0->unk_2441 == 0) {
-        sub_02006590(FS_OVERLAY_ID(overlay12), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay12), 2);
     } else {
-        sub_02006590(FS_OVERLAY_ID(overlay14), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay14), 2);
     }
 
     ov16_0223F314(param0, 0);
@@ -490,11 +490,11 @@ void ov16_0223B748 (UnkStruct_0207ADB4 * param0, int param1)
     param0->unk_2441 = param1;
 
     if (param1 == 0) {
-        sub_02006514(FS_OVERLAY_ID(overlay14));
-        sub_02006590(FS_OVERLAY_ID(overlay12), 2);
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay14));
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay12), 2);
     } else {
-        sub_02006514(FS_OVERLAY_ID(overlay12));
-        sub_02006590(FS_OVERLAY_ID(overlay14), 2);
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay14), 2);
     }
 }
 
@@ -818,11 +818,11 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     }
 
     FreeToHeap(v0);
-    sub_02006514(FS_OVERLAY_ID(overlay11));
-    sub_02006514(FS_OVERLAY_ID(overlay12));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay11));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
 
     if (!sub_020389B8()) {
-        sub_02006514(FS_OVERLAY_ID(overlay21));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay21));
     }
 }
 
@@ -1646,7 +1646,7 @@ static void ov16_0223D0C4 (UnkStruct_0201CD38 * param0, void * param1)
 static void NitroStaticInit (void)
 {
     if (!sub_020389B8()) {
-        sub_02006590(FS_OVERLAY_ID(overlay21), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay21), 2);
     }
 }
 
@@ -2020,7 +2020,7 @@ static BOOL ov16_0223D800 (UnkStruct_020067E8 * param0)
         return 0;
     }
 
-    sub_02006590(FS_OVERLAY_ID(overlay10), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay10), 2);
 
     if ((v0->unk_2C & 0x8) == 0) {
         return 0;
@@ -2153,7 +2153,7 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
     }
 
     v2 = sub_0203608C();
-    sub_02006590(FS_OVERLAY_ID(overlay10), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay10), 2);
     v1 = AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
 
     v0->unk_170 = v1;

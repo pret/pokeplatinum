@@ -14,7 +14,7 @@
 
 #include "unk_02000C88.h"
 #include "unk_020041CC.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -189,7 +189,7 @@ int ov98_02246DC0 (UnkStruct_020067E8 * param0, int * param1)
 static void ov98_02246E08 (UnkStruct_ov98_02246E88 * param0)
 {
     if (param0->unk_80 == 0) {
-        sub_02006590(FS_OVERLAY_ID(overlay94), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay94), 2);
 
         param0->unk_0C = AllocFromHeap(108, 0x20000 + 32);
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
@@ -210,7 +210,7 @@ static void ov98_02246E54 (UnkStruct_ov98_02246E88 * param0)
         sub_020995C4();
         sub_02099560();
         sub_020334CC();
-        sub_02006514(FS_OVERLAY_ID(overlay94));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay94));
 
         param0->unk_80 = 0;
     }

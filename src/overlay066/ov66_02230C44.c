@@ -20,7 +20,7 @@
 #include "overlay115/struct_ov115_02260440.h"
 #include "overlay117/struct_ov117_02260440.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_02025E68.h"
@@ -574,7 +574,7 @@ static void ov66_022310D8 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
         ov115_02260440, ov115_0226048C, ov115_022608E4, FS_OVERLAY_ID(overlay115),
     };
 
-    sub_02006590(FS_OVERLAY_ID(overlay114), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay114), 2);
 
     {
         UnkStruct_ov115_02260440 * v1;
@@ -589,7 +589,7 @@ static void ov66_022310D8 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 static int ov66_02231104 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1)
 {
     FS_EXTERN_OVERLAY(overlay114);
-    sub_02006514(FS_OVERLAY_ID(overlay114));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay114));
 
     {
         UnkStruct_ov115_02260440 * v0;
@@ -640,7 +640,7 @@ static void ov66_02231178 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
         ov116_022609B4, ov116_02260CF4, ov116_0226126C, FS_OVERLAY_ID(overlay116),
     };
 
-    sub_02006590(FS_OVERLAY_ID(overlay114), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay114), 2);
 
     {
         UnkStruct_ov66_02231134 * v1;
@@ -655,7 +655,7 @@ static void ov66_02231178 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 static int ov66_022311A4 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1)
 {
     FS_EXTERN_OVERLAY(overlay114);
-    sub_02006514(FS_OVERLAY_ID(overlay114));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay114));
 
     {
         UnkStruct_ov66_02231134 * v0;
@@ -705,7 +705,7 @@ static void ov66_02231220 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
         ov117_02260440, ov117_02260474, ov117_022605C0, FS_OVERLAY_ID(overlay117),
     };
 
-    sub_02006590(FS_OVERLAY_ID(overlay114), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay114), 2);
 
     {
         UnkStruct_ov117_02260440 * v1;
@@ -720,7 +720,7 @@ static void ov66_02231220 (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_0223
 static int ov66_0223124C (UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1)
 {
     FS_EXTERN_OVERLAY(overlay114);
-    sub_02006514(FS_OVERLAY_ID(overlay114));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay114));
 
     {
         UnkStruct_ov117_02260440 * v0;

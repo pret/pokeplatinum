@@ -50,7 +50,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "filesystem.h"
 #include "unk_02006E3C.h"
@@ -648,7 +648,7 @@ int ov64_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov64_0222DFD0 * v0;
 
-    sub_02006590(FS_OVERLAY_ID(overlay63), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay63), 2);
     CreateHeap(3, 52, 0x70000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov64_0222DFD0), 52);
@@ -735,7 +735,7 @@ int ov64_0222DEA4 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     DestroyHeap(52);
-    sub_02006514(FS_OVERLAY_ID(overlay63));
+    UnloadOverlayByID(FS_OVERLAY_ID(overlay63));
 
     return 1;
 }

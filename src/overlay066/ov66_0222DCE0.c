@@ -10,7 +10,7 @@
 
 #include "overlay066/struct_ov66_0222DCE0.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
@@ -38,7 +38,7 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
 
     {
         FS_EXTERN_OVERLAY(overlay63);
-        sub_02006590(FS_OVERLAY_ID(overlay63), 2);
+        HandleLoadOverlay(FS_OVERLAY_ID(overlay63), 2);
         sub_02099550();
         sub_020995B4();
     }
@@ -99,7 +99,7 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
 
     {
         FS_EXTERN_OVERLAY(overlay63);
-        sub_02006514(FS_OVERLAY_ID(overlay63));
+        UnloadOverlayByID(FS_OVERLAY_ID(overlay63));
         sub_020995C4();
         sub_02099560();
     }

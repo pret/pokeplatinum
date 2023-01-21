@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0208BE5C.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 
@@ -68,7 +68,7 @@ BOOL sub_02006844 (UnkStruct_020067E8 * param0)
     switch (param0->unk_10) {
     case 0:
         if (param0->unk_00.unk_0C != 0xffffffff) {
-            sub_02006590(param0->unk_00.unk_0C, 2);
+            HandleLoadOverlay(param0->unk_00.unk_0C, 2);
         }
 
         param0->unk_10 = 1;
@@ -93,7 +93,7 @@ BOOL sub_02006844 (UnkStruct_020067E8 * param0)
 
         if (v0 == 1) {
             if (param0->unk_00.unk_0C != 0xffffffff) {
-                sub_02006514(param0->unk_00.unk_0C);
+                UnloadOverlayByID(param0->unk_00.unk_0C);
             }
 
             return 1;

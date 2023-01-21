@@ -15,7 +15,7 @@
 #include "overlay076/struct_ov76_0223DE00.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
-#include "unk_020064F0.h"
+#include "poke_overlay.h"
 #include "unk_0200C6E4.h"
 #include "unk_02022594.h"
 #include "unk_0202C9F4.h"
@@ -28,8 +28,8 @@ FS_EXTERN_OVERLAY(overlay12);
 
 static void NitroStaticInit (void)
 {
-    sub_02006590(FS_OVERLAY_ID(overlay11), 2);
-    sub_02006590(FS_OVERLAY_ID(overlay12), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay11), 2);
+    HandleLoadOverlay(FS_OVERLAY_ID(overlay12), 2);
 }
 
 static void ov76_0223B15C (UnkUnion_02022594 * param0, u8 param1, u8 param2)
