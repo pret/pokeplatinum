@@ -15,6 +15,6 @@ typedef struct {
     s8 unk_0A;
     u8 unk_0B;
     UnkStruct_020790C4_sub1 unk_0C;
-} UnkStruct_020790C4;
+} MoveTable;
 
 #endif // POKEPLATINUM_STRUCT_020790C4_H

@@ -77,7 +77,7 @@
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079170.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
@@ -904,7 +904,7 @@ static u32 sub_020745D0 (UnkStruct_02073C74_sub1 * param0, int param1, void * pa
     case 67:
     case 68:
     case 69:
-        v0 = sub_020790DC(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
+        v0 = GetMoveMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
         break;
     case 70:
         v0 = v3->unk_10_0;
@@ -1777,8 +1777,8 @@ static void sub_02075454 (UnkStruct_02073C74_sub1 * param0, int param1, int para
     case 59:
     case 60:
     case 61:
-        if ((v3->unk_08[param1 - 58] + param2) > sub_020790DC(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
-            v3->unk_08[param1 - 58] = sub_020790DC(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
+        if ((v3->unk_08[param1 - 58] + param2) > GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
+            v3->unk_08[param1 - 58] = GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
         } else {
             v3->unk_08[param1 - 58] += param2;
         }
@@ -3568,7 +3568,7 @@ void sub_02077144 (UnkStruct_02073C74_sub1 * param0, u16 param1)
     }
 
     v1[3] = param1;
-    v2[3] = sub_020790C4(param1, 5);
+    v2[3] = GetMoveAttributeibute(param1, 5);
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -3589,7 +3589,7 @@ void sub_020771F8 (UnkStruct_02073C74 * param0, u16 param1, u8 param2)
     v1 = 0;
     sub_02074B30(param0, 62 + param2, &v1);
 
-    v0 = sub_020790DC(param1, 0);
+    v0 = GetMoveMaxPP(param1, 0);
     sub_02074B30(param0, 58 + param2, (u8 *)&v0);
 
     return;
@@ -3608,7 +3608,7 @@ void sub_02077238 (UnkStruct_02073C74_sub1 * param0, u16 param1, u8 param2)
     sub_02074C60(param0, 54 + param2, (u8 *)&param1);
 
     v1 = sub_02074570(param0, 62 + param2, NULL);
-    v0 = sub_020790DC(param1, v1);
+    v0 = GetMoveMaxPP(param1, v1);
 
     sub_02074C60(param0, 58 + param2, (u8 *)&v0);
 }

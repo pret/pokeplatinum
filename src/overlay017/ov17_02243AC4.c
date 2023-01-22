@@ -3,7 +3,7 @@
 
 #include "overlay017/struct_ov17_022472F8.h"
 
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "overlay017/ov17_02243AC4.h"
 
 __attribute__((aligned(4))) static const s8 Unk_ov17_022539C8[][5] = {
@@ -47,7 +47,7 @@ int ov17_02243AF0 (int param0, int param1, int param2, int param3)
     int v0;
     int v1;
 
-    v0 = sub_020790C4(param1, 11);
+    v0 = GetMoveAttributeibute(param1, 11);
     v1 = Unk_ov17_022539C8[param0][v0];
 
     return v1;

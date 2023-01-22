@@ -59,7 +59,7 @@
 #include "unk_0202F1D4.h"
 #include "unk_02034198.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207A6DC.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -759,7 +759,7 @@ void ov16_022656F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     for (v1 = 0; v1 < 4; v1++) {
         v0.unk_04[v1] = param1->unk_2D40[param2].unk_0C[v1];
         v0.unk_0C[v1] = param1->unk_2D40[param2].unk_2C[v1];
-        v0.unk_10[v1] = sub_020790DC(param1->unk_2D40[param2].unk_0C[v1], param1->unk_2D40[param2].unk_30[v1]);
+        v0.unk_10[v1] = GetMoveMaxPP(param1->unk_2D40[param2].unk_0C[v1], param1->unk_2D40[param2].unk_30[v1]);
     }
 
     v0.unk_02 = ov16_02254A6C(param0, param1, param2, 0, 0xffffffff);

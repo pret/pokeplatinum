@@ -71,7 +71,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079170.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
@@ -6729,7 +6729,7 @@ static BOOL ov16_02247F44 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    param1->unk_134 = sub_02079104(&param1->unk_354.unk_8A[param1->unk_3044], v0);
+    param1->unk_134 = GetMoveTableAttribute(&param1->unk_354.unk_8A[param1->unk_3044], v0);
 
     return 0;
 }

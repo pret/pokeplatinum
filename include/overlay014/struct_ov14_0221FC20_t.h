@@ -30,7 +30,7 @@ struct UnkStruct_ov14_0221FC20_t {
     u8 unk_7F[2];
     u16 unk_82[2];
     u8 unk_86[4];
-    UnkStruct_020790C4 unk_8A[468];
+    MoveTable unk_8A[468];
     UnkStruct_0207D3B0 * unk_1DCC;
     u16 unk_1DD0[4];
     u16 unk_1DD8[4];

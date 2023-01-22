@@ -7,7 +7,7 @@
 
 #include "heap.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
 #include "unk_02096420.h"
@@ -98,7 +98,7 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
     }
 
     if ((sub_0207D014(v0, 34) != 0) || (sub_0207D014(v0, 35) != 0)) {
-        if ((sub_02074470(param0, 62 + param2, NULL) < 3) && (sub_020790DC(sub_02074470(param0, 54 + param2, NULL), 0) >= 5)) {
+        if ((sub_02074470(param0, 62 + param2, NULL) < 3) && (GetMoveMaxPP(sub_02074470(param0, 54 + param2, NULL), 0) >= 5)) {
             FreeToHeap(v0);
             return 1;
         }
@@ -548,7 +548,7 @@ static u8 sub_02096F34 (UnkStruct_02073C74 * param0, u32 param1)
     v1 = (u8)sub_02074470(param0, 58 + param1, NULL);
     v2 = (u8)sub_02074470(param0, 62 + param1, NULL);
 
-    if (v1 < sub_020790DC(v0, v2)) {
+    if (v1 < GetMoveMaxPP(v0, v2)) {
         return 1;
     }
 
@@ -568,7 +568,7 @@ static u8 sub_02096F84 (UnkStruct_02073C74 * param0, u32 param1, u32 param2)
     }
 
     v1 = (u8)sub_02074470(param0, 58 + param1, NULL);
-    v2 = (u8)sub_020790DC(v0, sub_02074470(param0, 62 + param1, NULL));
+    v2 = (u8)GetMoveMaxPP(v0, sub_02074470(param0, 62 + param1, NULL));
 
     if (v1 < v2) {
         if (param2 == 127) {
@@ -603,12 +603,12 @@ static u8 sub_02097004 (UnkStruct_02073C74 * param0, u32 param1, u32 param2)
 
     v0 = (u16)sub_02074470(param0, 54 + param1, NULL);
 
-    if (sub_020790DC(v0, 0) < 5) {
+    if (GetMoveMaxPP(v0, 0) < 5) {
         return 0;
     }
 
     v1 = (u8)sub_02074470(param0, 58 + param1, NULL);
-    v3 = (u8)sub_020790DC(v0, v2);
+    v3 = (u8)GetMoveMaxPP(v0, v2);
 
     if (v2 + param2 > 3) {
         v2 = 3;
@@ -616,7 +616,7 @@ static u8 sub_02097004 (UnkStruct_02073C74 * param0, u32 param1, u32 param2)
         v2 = v2 + param2;
     }
 
-    v1 = v1 + sub_020790DC(v0, v2) - v3;
+    v1 = v1 + GetMoveMaxPP(v0, v2) - v3;
 
     sub_02074B30(param0, 62 + param1, &v2);
     sub_02074B30(param0, 58 + param1, &v1);

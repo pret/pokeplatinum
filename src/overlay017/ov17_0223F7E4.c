@@ -44,7 +44,7 @@
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0223F7E4.h"
@@ -1460,8 +1460,8 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param1[v1] != 0) {
-            v0->unk_12C[v1] = sub_020790C4(param1[v1], 10);
-            v0->unk_130[v1] = sub_020790C4(param1[v1], 11);
+            v0->unk_12C[v1] = GetMoveAttributeibute(param1[v1], 10);
+            v0->unk_130[v1] = GetMoveAttributeibute(param1[v1], 11);
         } else {
             v0->unk_12C[v1] = 0;
             v0->unk_130[v1] = 0;

@@ -50,7 +50,7 @@
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
 #include "unk_0208C098.h"
@@ -1083,7 +1083,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74 * para
         param2->unk_34[v1] = (u16)sub_02074470(param1, 54 + v1, NULL);
         param2->unk_3C[v1] = (u8)sub_02074470(param1, 58 + v1, NULL);
         v2 = (u8)sub_02074470(param1, 62 + v1, NULL);
-        param2->unk_40[v1] = sub_020790DC(param2->unk_34[v1], v2);
+        param2->unk_40[v1] = GetMoveMaxPP(param2->unk_34[v1], v2);
     }
 
     param2->unk_45 = (u8)sub_02074470(param1, 19, NULL);
@@ -1946,7 +1946,7 @@ static void sub_0208E498 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0208E46C(param0);
 
     if (param1 != 0xffffffff) {
-        v0 = sub_020790C4(param1, 10);
+        v0 = GetMoveAttributeibute(param1, 10);
         v2 = sub_02095734(v0) / 10;
 
         for (v1 = 0; v1 < v2; v1++) {

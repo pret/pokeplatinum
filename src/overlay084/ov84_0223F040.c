@@ -31,7 +31,7 @@
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202A910.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_0207CDEC.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_0223F040.h"
@@ -249,14 +249,14 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     sub_0201D78C(v0, 0, v1, 96, 32, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_020237BC(v1);
 
-    v3 = sub_020790DC(v2, 0);
+    v3 = GetMoveMaxPP(v2, 0);
     v1 = sub_0200B1EC(param0->unk_114, 90);
     sub_0200B60C(param0->unk_118, 0, v3, 2, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_020237BC(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 48, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v3 = sub_020790C4(v2, 2);
+    v3 = GetMoveAttributeibute(v2, 2);
 
     if (v3 <= 1) {
         v1 = sub_0200B1EC(param0->unk_114, 24);
@@ -268,7 +268,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_020237BC(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 96 + 64, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    v3 = sub_020790C4(v2, 4);
+    v3 = GetMoveAttributeibute(v2, 4);
 
     if (v3 == 0) {
         v1 = sub_0200B1EC(param0->unk_114, 24);

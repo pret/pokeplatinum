@@ -21,7 +21,7 @@
 #include "unk_02025E68.h"
 #include "unk_02034198.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
 #include "unk_0207D3B8.h"
@@ -178,7 +178,7 @@ void * ov16_0224B940 (UnkStruct_0207ADB4 * param0)
     ov16_022542B8(param0, v0);
     ov16_02251604(param0, v0);
 
-    sub_020790B0(&v0->unk_354.unk_8A);
+    LoadMoveTable(&v0->unk_354.unk_8A);
     v0->unk_354.unk_1DCC = sub_0207D388(5);
 
     return v0;

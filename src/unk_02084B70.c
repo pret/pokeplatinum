@@ -23,7 +23,7 @@
 #include "unk_02023790.h"
 #include "map_header.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
 #include "unk_0207D3B8.h"
@@ -1143,7 +1143,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * para
     v0 = 0;
     sub_02074B30(param1, 62 + param2, &v0);
 
-    v0 = sub_020790DC(param0->unk_5A4->unk_26, 0);
+    v0 = GetMoveMaxPP(param0->unk_5A4->unk_26, 0);
     sub_02074B30(param1, 58 + param2, &v0);
 
     if (param0->unk_5A4->unk_24 != 0) {

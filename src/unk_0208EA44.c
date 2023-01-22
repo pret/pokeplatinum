@@ -16,7 +16,7 @@
 #include "unk_0201FE94.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079D40.h"
 #include "unk_0207C908.h"
 #include "unk_0208C324.h"
@@ -350,7 +350,7 @@ static void sub_0208EF0C (UnkStruct_0208D7BC * param0)
             continue;
         }
 
-        sub_0208F194(param0, 13 + v0, 5 + v0, sub_020790C4(param0->unk_250.unk_34[v0], 3));
+        sub_0208F194(param0, 13 + v0, 5 + v0, GetMoveAttributeibute(param0->unk_250.unk_34[v0], 3));
     }
 
     sub_0208F71C(param0);
@@ -383,13 +383,13 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, sub_020790C4(param0->unk_250.unk_34[v0], 3));
+            sub_0208F194(param0, 13 + v0, 5 + v0, GetMoveAttributeibute(param0->unk_250.unk_34[v0], 3));
             sub_0200D3EC(param0->unk_41C[13 + v0], 1);
             sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, sub_020790C4(param0->unk_24C->unk_18, 3));
+            sub_0208F194(param0, 13 + 4, 5 + 4, GetMoveAttributeibute(param0->unk_24C->unk_18, 3));
             sub_0200D3EC(param0->unk_41C[13 + 4], 1);
             sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -404,13 +404,13 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, sub_020790C4(param0->unk_250.unk_34[v0], 11) + 18);
+            sub_0208F194(param0, 13 + v0, 5 + v0, GetMoveAttributeibute(param0->unk_250.unk_34[v0], 11) + 18);
             sub_0200D3EC(param0->unk_41C[13 + v0], 1);
             sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, sub_020790C4(param0->unk_24C->unk_18, 11) + 18);
+            sub_0208F194(param0, 13 + 4, 5 + 4, GetMoveAttributeibute(param0->unk_24C->unk_18, 11) + 18);
             sub_0200D3EC(param0->unk_41C[13 + 4], 1);
             sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -463,7 +463,7 @@ void sub_0208F22C (UnkStruct_0208D7BC * param0, u8 param1, u8 param2)
 
 void sub_0208F294 (UnkStruct_0208D7BC * param0, u32 param1)
 {
-    u32 v0 = sub_020790C4(param1, 1);
+    u32 v0 = GetMoveAttributeibute(param1, 1);
 
     sub_0200D948(param0->unk_414, param0->unk_418, sub_0207CAC0(), sub_0207CA90(v0), 1, 10);
     sub_0200D414(param0->unk_41C[18], sub_0207CAA8(v0) + 3);

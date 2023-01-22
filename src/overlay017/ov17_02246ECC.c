@@ -7,7 +7,7 @@
 
 #include "heap.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_022413D8.h"
@@ -1284,8 +1284,8 @@ static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
         param1->unk_00[v0].unk_00 = sub_02074470(param0->unk_00->unk_00.unk_00[param2], 54 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {
-            param1->unk_00[v0].unk_0A = sub_020790C4(param1->unk_00[v0].unk_00, 10);
-            param1->unk_00[v0].unk_0B = sub_020790C4(param1->unk_00[v0].unk_00, 11);
+            param1->unk_00[v0].unk_0A = GetMoveAttributeibute(param1->unk_00[v0].unk_00, 10);
+            param1->unk_00[v0].unk_0B = GetMoveAttributeibute(param1->unk_00[v0].unk_00, 11);
         } else {
             param1->unk_00[v0].unk_00 = 0;
         }

@@ -36,7 +36,7 @@
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
 #include "unk_0207D3B8.h"
@@ -1263,11 +1263,11 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
 
             v2->unk_02 = sub_02074470(param0->unk_04[v0].unk_00, 58 + v1, NULL);
             v2->unk_03 = sub_02074470(param0->unk_04[v0].unk_00, 62 + v1, NULL);
-            v2->unk_03 = sub_020790DC(v2->unk_00, v2->unk_03);
-            v2->unk_04 = sub_020790C4(v2->unk_00, 3);
-            v2->unk_05 = sub_020790C4(v2->unk_00, 1);
-            v2->unk_06 = sub_020790C4(v2->unk_00, 4);
-            v2->unk_07 = sub_020790C4(v2->unk_00, 2);
+            v2->unk_03 = GetMoveMaxPP(v2->unk_00, v2->unk_03);
+            v2->unk_04 = GetMoveAttributeibute(v2->unk_00, 3);
+            v2->unk_05 = GetMoveAttributeibute(v2->unk_00, 1);
+            v2->unk_06 = GetMoveAttributeibute(v2->unk_00, 4);
+            v2->unk_07 = GetMoveAttributeibute(v2->unk_00, 2);
         }
     }
 }
@@ -1541,7 +1541,7 @@ static void ov13_02221654 (UnkStruct_ov13_022213F0 * param0, u8 param1)
         v2 = param0->unk_00->unk_24;
     }
 
-    v0 = sub_020790C4(v2, 10);
+    v0 = GetMoveAttributeibute(v2, 10);
     v3 = sub_02095734(v0) / 10;
 
     for (v1 = 0; v1 < v3; v1++) {

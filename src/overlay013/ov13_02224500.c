@@ -15,7 +15,7 @@
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201FE94.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
 #include "unk_0207C908.h"
@@ -607,7 +607,7 @@ static void ov13_02224FA8 (UnkStruct_ov13_022213F0 * param0)
     if (param0->unk_00->unk_34 < 4) {
         ov13_02224A5C(param0, param0->unk_1FB4[26], v0->unk_30[param0->unk_00->unk_34].unk_05);
     } else {
-        ov13_02224A5C(param0, param0->unk_1FB4[26], sub_020790C4(param0->unk_00->unk_24, 1));
+        ov13_02224A5C(param0, param0->unk_1FB4[26], GetMoveAttributeibute(param0->unk_00->unk_24, 1));
     }
 
     ov13_022249AC(param0->unk_1FB4[26], Unk_ov13_02229274[0], Unk_ov13_02229274[1]);
@@ -666,7 +666,7 @@ static void ov13_022251B4 (UnkStruct_ov13_022213F0 * param0)
     }
 
     if (param0->unk_00->unk_24 != 0) {
-        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, sub_020790C4(param0->unk_00->unk_24, 3));
+        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, GetMoveAttributeibute(param0->unk_00->unk_24, 3));
         ov13_022249AC(param0->unk_1FB4[25], Unk_ov13_022293DC[4][0], Unk_ov13_022293DC[4][1]);
     }
 }
@@ -683,12 +683,12 @@ static void ov13_02225248 (UnkStruct_ov13_022213F0 * param0)
             continue;
         }
 
-        ov13_02224A0C(param0, param0->unk_1FB4[21 + v1], 45072 + v1, sub_020790C4(v0->unk_30[v1].unk_00, 11) + 18);
+        ov13_02224A0C(param0, param0->unk_1FB4[21 + v1], 45072 + v1, GetMoveAttributeibute(v0->unk_30[v1].unk_00, 11) + 18);
         ov13_022249AC(param0->unk_1FB4[21 + v1], Unk_ov13_022293DC[v1][0], Unk_ov13_022293DC[v1][1]);
     }
 
     if (param0->unk_00->unk_24 != 0) {
-        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, sub_020790C4(param0->unk_00->unk_24, 11) + 18);
+        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, GetMoveAttributeibute(param0->unk_00->unk_24, 11) + 18);
         ov13_022249AC(param0->unk_1FB4[25], Unk_ov13_022293DC[4][0], Unk_ov13_022293DC[4][1]);
     }
 }

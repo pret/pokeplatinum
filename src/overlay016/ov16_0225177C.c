@@ -33,7 +33,7 @@
 #include "unk_02025E68.h"
 #include "unk_020366A0.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079170.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
@@ -527,7 +527,7 @@ int ov16_02252060 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, voi
     case 40:
     case 41:
     case 42:
-        return sub_020790DC(v0->unk_0C[param2 - 39], v0->unk_30[param2 - 39]);
+        return GetMoveMaxPP(v0->unk_0C[param2 - 39], v0->unk_30[param2 - 39]);
         break;
     case 43:
         return v0->unk_34;
@@ -1076,7 +1076,7 @@ void ov16_02252A2C (UnkStruct_ov16_02252060 * param0, int param1, int param2)
     {
         int v1;
 
-        v1 = sub_020790DC(param0->unk_0C[param1 - 31], param0->unk_30[param1 - 31]);
+        v1 = GetMoveMaxPP(param0->unk_0C[param1 - 31], param0->unk_30[param1 - 31]);
 
         if (param0->unk_2C[param1 - 31] + param2 > v1) {
             param0->unk_2C[param1 - 31] = v1;
@@ -5429,7 +5429,7 @@ BOOL ov16_02258CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
         for (v5 = 0; v5 < 4; v5++) {
             if (param1->unk_2D40[param1->unk_64].unk_0C[v5]) {
-                v4 = sub_020790DC(param1->unk_2D40[param1->unk_64].unk_0C[v5], param1->unk_2D40[param1->unk_64].unk_30[v5]) - param1->unk_2D40[param1->unk_64].unk_2C[v5];
+                v4 = GetMoveMaxPP(param1->unk_2D40[param1->unk_64].unk_0C[v5], param1->unk_2D40[param1->unk_64].unk_30[v5]) - param1->unk_2D40[param1->unk_64].unk_2C[v5];
 
                 if (v4 > v6) {
                     v6 = v4;
@@ -5711,7 +5711,7 @@ BOOL ov16_02259204 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
         for (v4 = 0; v4 < 4; v4++) {
             if (param1->unk_2D40[param1->unk_6C].unk_0C[v4]) {
-                v3 = sub_020790DC(param1->unk_2D40[param1->unk_6C].unk_0C[v4], param1->unk_2D40[param1->unk_6C].unk_30[v4]) - param1->unk_2D40[param1->unk_6C].unk_2C[v4];
+                v3 = GetMoveMaxPP(param1->unk_2D40[param1->unk_6C].unk_0C[v4], param1->unk_2D40[param1->unk_6C].unk_30[v4]) - param1->unk_2D40[param1->unk_6C].unk_2C[v4];
 
                 if (v3 > v5) {
                     v5 = v3;

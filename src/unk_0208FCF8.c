@@ -20,7 +20,7 @@
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_0207A274.h"
 #include "unk_0208C324.h"
 #include "unk_0208EA44.h"
@@ -840,7 +840,7 @@ static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
         v5 = param0->unk_250.unk_40[param1];
     } else {
         v3 = param0->unk_24C->unk_18;
-        v4 = sub_020790DC(v3, 0);
+        v4 = GetMoveMaxPP(v3, 0);
         v5 = v4;
     }
 
@@ -872,7 +872,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0201ADA4(&param0->unk_244[6], 0);
     sub_0201ADA4(&param0->unk_244[7], 0);
 
-    v2 = sub_020790C4(param1, 2);
+    v2 = GetMoveAttributeibute(param1, 2);
 
     if (v2 <= 1) {
         sub_0200B1B8(param0->unk_688, 154, param0->unk_694);
@@ -882,7 +882,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
 
     sub_020900D8(param0, &param0->unk_244[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    v2 = sub_020790C4(param1, 4);
+    v2 = GetMoveAttributeibute(param1, 4);
 
     if (v2 == 0) {
         sub_0200B1B8(param0->unk_688, 154, param0->unk_694);
@@ -969,7 +969,7 @@ void sub_02091570 (UnkStruct_0208D7BC * param0, u32 param1)
 
     sub_0201ADA4(&param0->unk_244[5], 0);
 
-    v1 = sub_020790C4(param1, 10);
+    v1 = GetMoveAttributeibute(param1, 10);
     v2 = sub_0209577C(v1);
     v0 = sub_0200B144(0, 26, 210, 19);
 

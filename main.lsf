@@ -282,7 +282,7 @@ Static main
 	Object src/unk_02073700.o
 	Object src/unk_02073838.o
 	Object src/unk_02073C2C.o
-	Object src/unk_020790B0.o
+	Object src/move_table.o
 	Object src/unk_02079170.o
 	Object src/unk_020797C8.o
 	Object src/unk_02079D40.o

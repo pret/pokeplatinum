@@ -133,7 +133,7 @@
 #include "unk_0201D670.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CDEC.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -6304,13 +6304,13 @@ static void ov16_02264530 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_02265BBC 
 static void ov16_022645B8 (u8 * param0, u8 * param1, int param2, int param3, u16 param4)
 {
     if (param2 == 0) {
-        if ((sub_020790C4(param4, 9) & 0x40) == 0) {
+        if ((GetMoveAttributeibute(param4, 9) & 0x40) == 0) {
             param0[0] = 1;
         } else {
             param0[0] = 0;
         }
 
-        if (sub_020790C4(param4, 9) & 0x80) {
+        if (GetMoveAttributeibute(param4, 9) & 0x80) {
             param1[0] = 1;
         } else {
             param1[0] = 0;

@@ -13,7 +13,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201FE94.h"
 #include "unk_020218BC.h"
-#include "unk_020790B0.h"
+#include "move_table.h"
 #include "unk_0207C908.h"
 #include "unk_0207CDEC.h"
 #include "overlay084/ov84_022403F4.h"
@@ -443,8 +443,8 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
     }
 
     v0 = sub_0207D268(param1);
-    v1 = sub_020790C4(v0, 3);
-    v2 = sub_020790C4(v0, 1);
+    v1 = GetMoveAttributeibute(v0, 3);
+    v2 = GetMoveAttributeibute(v0, 1);
 
     sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
     sub_0200D41C(param0->unk_E0[10], sub_0207C92C(v1) + 6);
