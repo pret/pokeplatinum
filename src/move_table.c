@@ -12,7 +12,7 @@ void LoadMoveTable (void * dest) {
     ReadFromNarcMemberByIndexPair(dest, 9, 0, 0, sizeof(MoveTable) * (467 + 1));
 }
 
-u32 GetMoveAttributeibute (int moveID, int attrno)
+u32 GetMoveAttribute (int moveID, int attrno)
 {
     MoveTable moveData;
 
@@ -28,7 +28,7 @@ u8 GetMoveMaxPP (u16 moveID, u8 ppUps)
         ppUps = 3;
     }
 
-    pp = GetMoveAttributeibute(moveID, 5);
+    pp = GetMoveAttribute(moveID, 5);
     pp += (pp * 20 * ppUps) / 100;
 
     return pp;

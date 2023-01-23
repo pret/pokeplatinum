@@ -3568,7 +3568,7 @@ void sub_02077144 (UnkStruct_02073C74_sub1 * param0, u16 param1)
     }
 
     v1[3] = param1;
-    v2[3] = GetMoveAttributeibute(param1, 5);
+    v2[3] = GetMoveAttribute(param1, 5);
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {

@@ -1284,8 +1284,8 @@ static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
         param1->unk_00[v0].unk_00 = sub_02074470(param0->unk_00->unk_00.unk_00[param2], 54 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {
-            param1->unk_00[v0].unk_0A = GetMoveAttributeibute(param1->unk_00[v0].unk_00, 10);
-            param1->unk_00[v0].unk_0B = GetMoveAttributeibute(param1->unk_00[v0].unk_00, 11);
+            param1->unk_00[v0].unk_0A = GetMoveAttribute(param1->unk_00[v0].unk_00, 10);
+            param1->unk_00[v0].unk_0B = GetMoveAttribute(param1->unk_00[v0].unk_00, 11);
         } else {
             param1->unk_00[v0].unk_00 = 0;
         }

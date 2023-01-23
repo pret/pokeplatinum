@@ -19,7 +19,7 @@ typedef enum MoveAttribute {
 } MoveAttribute;
 
 void LoadMoveTable(void * dest);
-u32 GetMoveAttributeibute(int moveID, int attrno);
+u32 GetMoveAttribute(int moveID, int attrno);
 u8 GetMoveMaxPP(u16 moveID, u8 ppUps);
 u32 GetMoveTableAttribute(MoveTable * moveTable, int attribute);
 

@@ -1264,10 +1264,10 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
             v2->unk_02 = sub_02074470(param0->unk_04[v0].unk_00, 58 + v1, NULL);
             v2->unk_03 = sub_02074470(param0->unk_04[v0].unk_00, 62 + v1, NULL);
             v2->unk_03 = GetMoveMaxPP(v2->unk_00, v2->unk_03);
-            v2->unk_04 = GetMoveAttributeibute(v2->unk_00, 3);
-            v2->unk_05 = GetMoveAttributeibute(v2->unk_00, 1);
-            v2->unk_06 = GetMoveAttributeibute(v2->unk_00, 4);
-            v2->unk_07 = GetMoveAttributeibute(v2->unk_00, 2);
+            v2->unk_04 = GetMoveAttribute(v2->unk_00, 3);
+            v2->unk_05 = GetMoveAttribute(v2->unk_00, 1);
+            v2->unk_06 = GetMoveAttribute(v2->unk_00, 4);
+            v2->unk_07 = GetMoveAttribute(v2->unk_00, 2);
         }
     }
 }
@@ -1541,7 +1541,7 @@ static void ov13_02221654 (UnkStruct_ov13_022213F0 * param0, u8 param1)
         v2 = param0->unk_00->unk_24;
     }
 
-    v0 = GetMoveAttributeibute(v2, 10);
+    v0 = GetMoveAttribute(v2, 10);
     v3 = sub_02095734(v0) / 10;
 
     for (v1 = 0; v1 < v3; v1++) {

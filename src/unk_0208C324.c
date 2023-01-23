@@ -1946,7 +1946,7 @@ static void sub_0208E498 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0208E46C(param0);
 
     if (param1 != 0xffffffff) {
-        v0 = GetMoveAttributeibute(param1, 10);
+        v0 = GetMoveAttribute(param1, 10);
         v2 = sub_02095734(v0) / 10;
 
         for (v1 = 0; v1 < v2; v1++) {
