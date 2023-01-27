@@ -107,7 +107,7 @@ static void sub_02017808 (BOOL param0)
     OS_EnableIrq( );
 }
 
-static const UnkStruct_02017E74 Unk_020E5674[] = {
+static const HeapParam Unk_020E5674[] = {
     {0xD200, OS_ARENA_MAIN},
     {0x20E00, OS_ARENA_MAIN},
     {0x10, OS_ARENA_MAIN},

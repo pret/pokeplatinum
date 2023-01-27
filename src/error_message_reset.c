@@ -28,9 +28,9 @@
 #include "unk_02023790.h"
 #include "unk_02034198.h"
 #include "unk_020366A0.h"
-#include "unk_0209B47C.h"
+#include "error_message_reset.h"
 
-static const UnkStruct_02099F80 Unk_020F8BB8 = {
+static const UnkStruct_02099F80 sErrorMessageBanksConfig = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_NONE,
@@ -43,14 +43,14 @@ static const UnkStruct_02099F80 Unk_020F8BB8 = {
     GX_VRAM_TEXPLTT_NONE
 };
 
-static const UnkStruct_ov84_0223BA5C Unk_020F8B8C = {
+static const UnkStruct_ov84_0223BA5C sErrorMessageBgModeSet = {
     GX_DISPMODE_GRAPHICS,
     GX_BGMODE_0,
     GX_BGMODE_0,
     GX_BG0_AS_2D
 };
 
-static const UnkStruct_ov97_0222DB78 Unk_020F8B9C = {
+static const UnkStruct_ov97_0222DB78 sErrorMessageBgTemplate = {
     0x0,
     0x0,
     0x800,
@@ -66,7 +66,7 @@ static const UnkStruct_ov97_0222DB78 Unk_020F8B9C = {
     0x0
 };
 
-static const UnkStruct_ov61_0222C884 Unk_020F8B7C = {
+static const UnkStruct_ov61_0222C884 sErrorMessageWindowTemplate = {
     0x0,
     0x3,
     0x3,
@@ -76,45 +76,47 @@ static const UnkStruct_ov61_0222C884 Unk_020F8B7C = {
     0x23
 };
 
-static const UnkStruct_02017E74 Unk_020F8B84[] = {
-    {0x20000, OS_ARENA_MAIN}
+static const HeapParam sErrorMessageHeapParams[] = {
+    {
+        .size = 0x20000,
+        .arena = OS_ARENA_MAIN
+    }
 };
 
-static BOOL Unk_021C3A34 = 0;
+static BOOL sErrorMessagePrinterLock;
 
-static void sub_0209B47C (void)
+static void VBlankIntr (void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void sub_0209B49C (void)
+void PrintErrorMessageAndReset (void)
 {
-    UnkStruct_02018340 * v0;
-    UnkStruct_0205AA50 v1;
-    UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    UnkStruct_02018340 * bgConfig;
+    UnkStruct_0205AA50 window;
+    UnkStruct_0200B144 * errorMsgData;
+    UnkStruct_02023790 * errorString;
     int v4;
-    int v5;
-    int v6 = 0;
+    int v5 = 0;
 
-    if (Unk_021C3A34 == 1) {
+    if (sErrorMessagePrinterLock == TRUE) {
         return;
     }
 
-    Unk_021C3A34 = 1;
+    sErrorMessagePrinterLock = TRUE;
 
     OS_InitArenaHiAndLo(OS_ARENA_MAIN);
-    InitHeapSystem(Unk_020F8B84, NELEMS(Unk_020F8B84), NELEMS(Unk_020F8B84), 0);
+    InitHeapSystem(sErrorMessageHeapParams, NELEMS(sErrorMessageHeapParams), NELEMS(sErrorMessageHeapParams), 0);
 
     v4 = 3;
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    (void)OS_DisableIrqMask(OS_IE_V_BLANK);
-    OS_SetIrqFunction(OS_IE_V_BLANK, sub_0209B47C);
-    (void)OS_EnableIrqMask(OS_IE_V_BLANK);
+    OS_DisableIrqMask(OS_IE_V_BLANK);
+    OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
+    OS_EnableIrqMask(OS_IE_V_BLANK);
 
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
@@ -134,29 +136,29 @@ void sub_0209B49C (void)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_0201FE94(&Unk_020F8BB8);
-    v0 = sub_02018340(v6);
+    sub_0201FE94(&sErrorMessageBanksConfig);
+    bgConfig = sub_02018340(v5);
 
-    sub_02018368(&Unk_020F8B8C);
-    sub_020183C4(v0, 0, &Unk_020F8B9C, 0);
-    sub_02019EBC(v0, 0);
-    sub_0200DAA4(v0, 0, (512 - 9), 2, 0, v6);
-    sub_02002E7C(0, 1 * (2 * 16), v6);
-    sub_02019690(0, 32, 0, v6);
+    sub_02018368(&sErrorMessageBgModeSet);
+    sub_020183C4(bgConfig, 0, &sErrorMessageBgTemplate, 0);
+    sub_02019EBC(bgConfig, 0);
+    sub_0200DAA4(bgConfig, 0, (512 - 9), 2, 0, v5);
+    sub_02002E7C(0, 1 * (2 * 16), v5);
+    sub_02019690(0, 32, 0, v5);
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);
 
-    v2 = sub_0200B144(1, 26, 214, v6);
-    v3 = sub_02023790(0x180, v6);
+    errorMsgData = sub_0200B144(1, 26, 214, v5);
+    errorString = sub_02023790(0x180, v5);
 
     sub_0201D710();
 
-    sub_0201A8D4(v0, &v1, &Unk_020F8B7C);
-    sub_0201AE78(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    sub_0200DC48(&v1, 0, (512 - 9), 2);
-    sub_0200B1B8(v2, v4, v3);
-    sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
-    sub_020237BC(v3);
+    sub_0201A8D4(bgConfig, &window, &sErrorMessageWindowTemplate);
+    sub_0201AE78(&window, 15, 0, 0, 26 * 8, 18 * 8);
+    sub_0200DC48(&window, 0, (512 - 9), 2);
+    sub_0200B1B8(errorMsgData, v4, errorString);
+    sub_0201D738(&window, 0, errorString, 0, 0, 0, NULL);
+    sub_020237BC(errorString);
 
     sub_0201FFD0();
     sub_0200F338(0);
@@ -178,9 +180,7 @@ void sub_0209B49C (void)
     while (TRUE) {
         sub_0200106C();
 
-        v5 = PAD_Read();
-
-        if (v5 & PAD_BUTTON_A) {
+        if (PAD_Read() & PAD_BUTTON_A) {
             break;
         }
 
@@ -190,9 +190,9 @@ void sub_0209B49C (void)
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
 
-    sub_0201A8FC(&v1);
-    sub_0200B190(v2);
-    FreeToHeap(v0);
+    sub_0201A8FC(&window);
+    sub_0200B190(errorMsgData);
+    FreeToHeap(bgConfig);
 
     OS_ResetSystem(0);
 }

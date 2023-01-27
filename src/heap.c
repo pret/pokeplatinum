@@ -5,7 +5,7 @@
 
 #include "heap.h"
 #include "unk_020366A0.h"
-#include "unk_0209B47C.h"
+#include "error_message_reset.h"
 
 typedef struct {
     NNSFndHeapHandle * heapHandles;
@@ -31,7 +31,7 @@ static void * AllocFromHeapInternal(NNSFndHeapHandle heap, u32 size, s32 alignme
 
 static HeapInfo sHeapInfo = { 0 };
 
-void InitHeapSystem (const UnkStruct_02017E74 * templates, u32 nTemplates, u32 totalNumHeaps, u32 pre_size)
+void InitHeapSystem (const HeapParam * templates, u32 nTemplates, u32 totalNumHeaps, u32 pre_size)
 {
     void * ptr;
     u32 unk_size, i;
@@ -61,18 +61,18 @@ void InitHeapSystem (const UnkStruct_02017E74 * templates, u32 nTemplates, u32 t
     sHeapInfo.maxHeaps = unk_size;
 
     for (i = 0; i < nTemplates; i++) {
-        switch (templates[i].unk_04) {
+        switch (templates[i].arena) {
         case OS_ARENA_MAIN:
         default:
-            ptr = OS_AllocFromMainArenaLo(templates[i].unk_00, 4);
+            ptr = OS_AllocFromMainArenaLo(templates[i].size, 4);
             break;
         case OS_ARENA_MAINEX:
-            ptr = OS_AllocFromMainExArenaHi(templates[i].unk_00, 4);
+            ptr = OS_AllocFromMainExArenaHi(templates[i].size, 4);
             break;
         }
 
         if (ptr != NULL) {
-            sHeapInfo.heapHandles[i] = NNS_FndCreateExpHeap(ptr, templates[i].unk_00);
+            sHeapInfo.heapHandles[i] = NNS_FndCreateExpHeap(ptr, templates[i].size);
             sHeapInfo.heapIdxs[i] = i;
         } else {
             GF_ASSERT(0);
@@ -212,7 +212,7 @@ static void * AllocFromHeapInternal (NNSFndHeapHandle heap, u32 size, s32 alignm
 static void AllocFail (void)
 {
     if (sub_02036780()) {
-        sub_0209B49C();
+        PrintErrorMessageAndReset();
     }
 }
 

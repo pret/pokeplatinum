@@ -355,7 +355,7 @@ Static main
 	Object src/unk_0209ACBC.o
 	Object src/unk_0209ACF4.o
 	Object src/unk_0209B344.o
-	Object src/unk_0209B47C.o
+	Object src/error_message_reset.o
 	Object src/unk_0209B6F8.o
 	Object src/unk_0209BA18.o
 	Object src/unk_0209BA80.o
