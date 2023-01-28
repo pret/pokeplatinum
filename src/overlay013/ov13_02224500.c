@@ -19,7 +19,7 @@
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
 #include "unk_0207C908.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
 #include "unk_0208C324.h"
@@ -439,7 +439,7 @@ static void ov13_02224B28 (u16 param0, UnkStruct_0200D0F4 * param1, const int pa
         return;
     }
 
-    if (sub_0207D2D0(param0) == 1) {
+    if (IsItemMail(param0) == 1) {
         sub_0200D364(param1, 1);
     } else {
         sub_0200D364(param1, 0);

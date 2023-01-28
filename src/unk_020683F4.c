@@ -58,7 +58,7 @@
 #include "unk_0206B9D8.h"
 #include "unk_02079FEC.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_020989DC.h"
 #include "overlay005/ov5_021D0D80.h"
@@ -605,7 +605,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_1C = v0;
     v2->unk_24 = param0->unk_04;
     v2->unk_22 = param0->unk_06;
-    v2->unk_26 = sub_0207D268(param0->unk_04);
+    v2->unk_26 = GetMoveFromTMOrHMItemID(param0->unk_04);
 
     sub_0203CD84(v0, &Unk_020F1E88, v2);
     v1->unk_25C = v2;
@@ -1154,7 +1154,7 @@ BOOL sub_02069238 (UnkStruct_0203CDB0 * param0)
     }
 
     v3 = (u16)sub_0207D3FC(sub_0207D990(param0->unk_0C));
-    v4 = (u16)sub_0207CFF0(v3, 6, 11);
+    v4 = (u16)GetItemAttribute(v3, 6, 11);
     v2 = (UnkFuncPtr_02069238)sub_020683F4(2, v4);
     v1 = (UnkFuncPtr_020EF79C)sub_020683F4(1, v4);
 

@@ -58,7 +58,7 @@
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C098.h"
 #include "overlay084/ov84_0223B5A0.h"
@@ -881,7 +881,7 @@ static void ov84_0223BE84 (UnkStruct_0200B144 * param0, UnkStruct_02023790 * par
 
 static void ov84_0223BE94 (UnkStruct_0200B144 * param0, UnkStruct_02023790 * param1, u16 param2, u32 param3)
 {
-    sub_0200B1B8(param0, sub_0207D268(param2), param1);
+    sub_0200B1B8(param0, GetMoveFromTMOrHMItemID(param2), param1);
 }
 
 static void ov84_0223BEAC (UnkStruct_ov84_0223B5A0 * param0)
@@ -1981,7 +1981,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
     u8 v2;
     u8 v3[12];
 
-    v0 = sub_0207CF48(param0->unk_C4->unk_66, 0, 6);
+    v0 = LoadItemDataOrGfx(param0->unk_C4->unk_66, 0, 6);
     v1 = 0;
     v2 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08;
 
@@ -1997,7 +1997,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
                 v1++;
             }
         } else {
-            if (sub_0207D014(v0, 6) != 0) {
+            if (GetItemAttributeFromStruct(v0, 6) != 0) {
                 if ((param0->unk_C4->unk_66 == 450) && (param0->unk_C4->unk_76_0 == 1)) {
                     v3[v1] = 1;
                 } else if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 5) {
@@ -2013,7 +2013,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
                 v1++;
             }
         }
-        if (sub_0207D014(v0, 3) == 0) {
+        if (GetItemAttributeFromStruct(v0, 3) == 0) {
             v3[v1] = 8;
             v1++;
 
@@ -2022,7 +2022,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
                 v1++;
             }
         }
-        if (sub_0207D014(v0, 4) != 0) {
+        if (GetItemAttributeFromStruct(v0, 4) != 0) {
             if (sub_0207D3FC(param0->unk_C8) == param0->unk_C4->unk_66) {
                 v3[v1] = 7;
             } else {
@@ -2117,7 +2117,7 @@ static int ov84_0223D858 (UnkStruct_ov84_0223B5A0 * param0)
 
     ov84_0223FD84(param0);
 
-    v1 = sub_0207CFF0(param0->unk_C4->unk_66, 6, 6);
+    v1 = GetItemAttribute(param0->unk_C4->unk_66, 6, 6);
     v0 = (UnkFuncPtr_02069238)sub_020683F4(2, v1);
 
     if (v0 != NULL) {
@@ -2195,11 +2195,11 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
     switch (param0->unk_483) {
     case 0:
     {
-        u16 v0 = sub_0207D268(param0->unk_C4->unk_66);
+        u16 v0 = GetMoveFromTMOrHMItemID(param0->unk_C4->unk_66);
 
         sub_0200B630(param0->unk_118, 0, v0);
 
-        if (sub_0207D28C(v0) == 1) {
+        if (IsMoveHM(v0) == 1) {
             sub_0200B1B8(param0->unk_114, 59, param0->unk_3F8);
         } else {
             sub_0200B1B8(param0->unk_114, 58, param0->unk_3F8);
@@ -2317,7 +2317,7 @@ static UnkStruct_02023790 * ov84_0223DC9C (UnkStruct_ov84_0223B5A0 * param0, u16
         return sub_0200B1EC(param0->unk_114, 62);
     }
 
-    v0 = sub_0207CFF0(param1, 2, 6);
+    v0 = GetItemAttribute(param1, 2, 6);
     ov84_0223B9F4(param0, (u8)v0);
     param0->unk_488 = 1;
     sub_02005748(1536);
@@ -2595,7 +2595,7 @@ static int ov84_0223E27C (UnkStruct_ov84_0223B5A0 * param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (sub_0207CFF0(param0->unk_C4->unk_66, 3, 6) != 0) {
+            if (GetItemAttribute(param0->unk_C4->unk_66, 3, 6) != 0) {
                 UnkStruct_02023790 * v1;
 
                 sub_0201ADA4(&param0->unk_04[6], 15);
@@ -2666,9 +2666,9 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
             sub_0200B70C(param0->unk_118, 0, param0->unk_C4->unk_66);
             ov84_02240B34(param0, 2);
 
-            param0->unk_48C = sub_0207CFF0(param0->unk_C4->unk_66, 0, 6);
+            param0->unk_48C = GetItemAttribute(param0->unk_C4->unk_66, 0, 6);
 
-            if ((sub_0207CFF0(param0->unk_C4->unk_66, 3, 6) != 0) || (param0->unk_48C == 0)) {
+            if ((GetItemAttribute(param0->unk_C4->unk_66, 3, 6) != 0) || (param0->unk_48C == 0)) {
                 v1 = sub_0200B1EC(param0->unk_114, 74);
                 sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
                 sub_020237BC(v1);
@@ -2922,7 +2922,7 @@ static int ov84_0223EA18 (UnkStruct_ov84_0223B5A0 * param0)
 
         if (v0 == 1) {
             if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 0) {
-                if (sub_0207CFF0(param0->unk_C4->unk_66, 6, 6) != 13) {
+                if (GetItemAttribute(param0->unk_C4->unk_66, 6, 6) != 13) {
                     sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, 6);
                     sub_0201ADA4(&param0->unk_04[6], 15);
                     sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);

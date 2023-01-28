@@ -63,7 +63,7 @@
 #include "unk_02079FEC.h"
 #include "unk_0207A274.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208694C.h"
 #include "unk_0208C324.h"
@@ -547,7 +547,7 @@ static int ov19_021D0FF0 (UnkStruct_ov19_021D5DF8 * param0)
 
 static BOOL ov19_021D1238 (UnkStruct_ov19_021D5DF8 * param0, int * param1)
 {
-    if (sub_0207D2D0(ov19_021D5E74(&param0->unk_00))) {
+    if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
         *param1 = 30;
         return 1;
     }
@@ -1225,7 +1225,7 @@ static void ov19_021D2308 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 
             break;
         case UnkEnum_021DFB94_47:
-            if (sub_0207D2D0(ov19_021D5E74(&param0->unk_00))) {
+            if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
                 sub_02005748(1523);
                 ov19_021D5408(&param0->unk_00, 24);
                 ov19_021D6594(param0->unk_114, 24);
@@ -1243,7 +1243,7 @@ static void ov19_021D2308 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             ov19_021D0EB0(param0, ov19_021D4390);
             break;
         case UnkEnum_021DFB94_49:
-            if (sub_0207D2D0(ov19_021D5E74(&param0->unk_00))) {
+            if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
                 sub_02005748(1523);
                 ov19_021D5408(&param0->unk_00, 24);
                 ov19_021D6594(param0->unk_114, 24);
@@ -2211,7 +2211,7 @@ static BOOL ov19_021D357C (UnkStruct_ov19_021D5DF8 * param0, int * param1)
     {
         u16 v0 = ov19_021D5E74(&param0->unk_00);
 
-        if (sub_0207D2D0(ov19_021D5E74(&param0->unk_00))) {
+        if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
             *param1 = 30;
             return 0;
         }
@@ -2705,7 +2705,7 @@ static void ov19_021D3FB0 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     case 0:
         v0 = ov19_021D5E74(&param0->unk_00);
 
-        if (sub_0207D2D0(v0)) {
+        if (IsItemMail(v0)) {
             sub_02005748(1523);
             ov19_021D5408(&param0->unk_00, 24);
             ov19_021D6594(param0->unk_114, 24);
@@ -2782,7 +2782,7 @@ static void ov19_021D4184 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     case 0:
         v0 = ov19_021D5F88(&param0->unk_00);
 
-        if (sub_0207D2D0(v0)) {
+        if (IsItemMail(v0)) {
             sub_02005748(1523);
             ov19_021D5408(&param0->unk_00, 24);
             ov19_021D6594(param0->unk_114, 24);
@@ -4174,7 +4174,7 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_02073C74_
     }
 
     if (v0->unk_06 != 0) {
-        sub_0207CFA0(v0->unk_1C, v0->unk_06, 9);
+        GetItemNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
         sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }
@@ -4281,7 +4281,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     v0->unk_06 = param1;
 
     if (v0->unk_06 != 0) {
-        sub_0207CFA0(v0->unk_1C, v0->unk_06, 9);
+        GetItemNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
         sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }

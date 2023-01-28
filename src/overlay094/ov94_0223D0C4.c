@@ -43,7 +43,7 @@
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_0223FB48.h"
@@ -544,7 +544,7 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     v2 = sub_0200B29C(param2, param0, 102, 62);
     v0 = sub_0200B1EC(param1, v10);
 
-    sub_0207CFA0(v5, v8, 62);
+    GetItemNameIntoString(v5, v8, 62);
 
     for (v9 = 0; v9 < 5; v9++) {
         sub_0201ADA4(&param3[v9], 0x0);

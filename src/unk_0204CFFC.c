@@ -26,7 +26,7 @@
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_020923C0.h"
 #include "overlay005/ov5_021E622C.h"
 
@@ -313,7 +313,7 @@ BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
     v4 = sub_02074470(v1, 9, NULL);
 
     if (v2 > 0) {
-        if (sub_0207CFF0(sub_02074470(v1, 6, NULL), 1, 11) == 53) {
+        if (GetItemAttribute(sub_02074470(v1, 6, NULL), 1, 11) == 53) {
             v2 = v2 * 150 / 100;
         }
 

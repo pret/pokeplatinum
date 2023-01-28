@@ -29,7 +29,7 @@
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DB8E4.h"

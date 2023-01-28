@@ -11,7 +11,7 @@
 #include "overlay097/struct_ov97_0223685C.h"
 
 #include "unk_02073C2C.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_022392E4.h"
 

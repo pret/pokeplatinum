@@ -60,7 +60,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
@@ -617,7 +617,7 @@ static void ov7_0224D6BC (UnkStruct_ov7_0224D008 * param0)
         v4 = ov7_0224D698(param0, param0->unk_290[v3]);
 
         if ((v4 <= 420) && (v4 >= 328)) {
-            v1 = sub_0200B1EC(v5, sub_0207D268(v4));
+            v1 = sub_0200B1EC(v5, GetMoveFromTMOrHMItemID(v4));
             sub_02013A6C(param0->unk_7C, v1, param0->unk_290[v3]);
             sub_020237BC(v1);
 
@@ -672,10 +672,10 @@ static void ov7_0224D85C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
         if (v0->unk_2A9 == 0) {
             v1 = sub_02023790(130, 11);
-            sub_0207CFC8(v1, (u16)param1, 11);
+            GetItemDescriptionIntoString(v1, (u16)param1, 11);
         } else if (v0->unk_2A9 == 3) {
             v1 = sub_02023790(130, 11);
-            sub_0207CFC8(v1, (u16)param1, 11);
+            GetItemDescriptionIntoString(v1, (u16)param1, 11);
         } else if (v0->unk_2A9 == 1) {
             UnkStruct_0200B144 * v2;
 
@@ -1050,7 +1050,7 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
     sub_0200B60C(param0->unk_8C, 2, param0->unk_2B0 * param0->unk_2AC, 6, 0, 1);
 
     if ((param0->unk_2AA <= 420) && (param0->unk_2AA >= 328)) {
-        u16 v2 = sub_0207D268(param0->unk_2AA);
+        u16 v2 = GetMoveFromTMOrHMItemID(param0->unk_2AA);
 
         sub_0200B630(param0->unk_8C, 3, v2);
 
@@ -1137,7 +1137,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
                 sub_0200B77C(param0->unk_8C, 0, param0->unk_2AA);
             }
 
-            sub_0200B7B4(param0->unk_8C, 1, sub_0207CFF0(param0->unk_2AA, 5, 11));
+            sub_0200B7B4(param0->unk_8C, 1, GetItemAttribute(param0->unk_2AA, 5, 11));
         } else if (param0->unk_2A9 == 3) {
             if (param0->unk_2AC == 1) {
                 sub_0200B70C(param0->unk_8C, 0, param0->unk_2AA);
@@ -1146,7 +1146,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
             }
 
             v0 = sub_0200B1EC(param0->unk_88, 6);
-            sub_0200B7B4(param0->unk_8C, 1, sub_0207CFF0(param0->unk_2AA, 5, 11));
+            sub_0200B7B4(param0->unk_8C, 1, GetItemAttribute(param0->unk_2AA, 5, 11));
         } else {
             if (param0->unk_2A9 == 1) {
                 ov7_0224E834(param0, param0->unk_2AA, 0);
@@ -1299,7 +1299,7 @@ static void ov7_0224E834 (UnkStruct_ov7_0224D008 * param0, u16 param1, u16 param
 static u32 ov7_0224E890 (UnkStruct_ov7_0224D008 * param0, u16 param1)
 {
     if (param0->unk_2A9 == 0) {
-        return sub_0207CFF0(param1, 0, 11);
+        return GetItemAttribute(param1, 0, 11);
     } else if (param0->unk_2A9 == 3) {
         return ov7_0224E8CC(param0, param1);
     } else if (param0->unk_2A9 == 1) {

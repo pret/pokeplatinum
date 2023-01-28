@@ -95,7 +95,7 @@
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 #include "unk_020972FC.h"
@@ -1297,7 +1297,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v4.unk_04 = sub_0207CB94(v2);
         v4.unk_06 = sub_0207CBA4(v2);
         v4.unk_00 = param0;
-        v5 = sub_0207CFF0(v4.unk_04, 6, 11);
+        v5 = GetItemAttribute(v4.unk_04, 6, 11);
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &v1->unk_230);
     }
@@ -1341,7 +1341,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
 
         FreeToHeap(v1->unk_260);
 
-        if ((sub_0207D2D0(v10) == 1) && (sub_02074470(v8, 6, NULL) == 0)) {
+        if ((IsItemMail(v10) == 1) && (sub_02074470(v8, 6, NULL) == 0)) {
             UnkStruct_02097728 * v11;
             UnkStruct_0203C540 * v12;
 

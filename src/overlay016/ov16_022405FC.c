@@ -77,7 +77,7 @@
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
 #include "unk_0207A274.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0208694C.h"
 #include "unk_0208C098.h"
 #include "overlay012/ov12_02235E94.h"
@@ -7664,7 +7664,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     for (v1 = v2->unk_30[6]; v1 < ov16_0223DF60(v2->unk_00, v6); v1++) {
         v3 = ov16_0223DFAC(v2->unk_00, v6, v1);
         v9 = sub_02074470(v3, 6, NULL);
-        v10 = sub_0207CFF0(v9, 1, 5);
+        v10 = GetItemAttribute(v9, 1, 5);
 
         if ((v10 == 51) || (v2->unk_04->unk_A4[v5] & sub_020787CC(v1))) {
             break;
@@ -7686,7 +7686,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         u32 v12;
 
         v9 = sub_02074470(v3, 6, NULL);
-        v10 = sub_0207CFF0(v9, 1, 5);
+        v10 = GetItemAttribute(v9, 1, 5);
 
         if (((v8 & 0x1) == 0) && ((v2->unk_04->unk_2D40[1].unk_4C + v2->unk_04->unk_2D40[3].unk_4C) == 0) && (sub_02074470(v3, 163, NULL)) && (v2->unk_04->unk_3144 == 0)) {
             sub_0200549C(1127);
@@ -8125,8 +8125,8 @@ static void ov16_022499C0 (UnkStruct_02079FF4 * param0, int param1, int param2, 
     v8 = sub_02075874(param2, param3, 5);
     v7 = sub_0207A0FC(param0, param1);
     v4 = sub_02074470(v7, 6, NULL);
-    v5 = sub_0207CFF0(v4, 1, 5);
-    v6 = sub_0207CFF0(v4, 2, 5);
+    v5 = GetItemAttribute(v4, 1, 5);
+    v6 = GetItemAttribute(v4, 2, 5);
     v3 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {

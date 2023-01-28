@@ -80,7 +80,7 @@
 #include "move_table.h"
 #include "unk_02079170.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_02092494.h"
 
 static const s8 Unk_020F0695[][5] = {
@@ -1122,7 +1122,7 @@ static u32 sub_020745D0 (UnkStruct_02073C74_sub1 * param0, int param1, void * pa
     case 177:
     case 178:
         if ((v2->unk_00 == 493) && (v2->unk_0D == 121)) {
-            v0 = sub_02077988(sub_0207CFF0(v2->unk_02, 1, 0));
+            v0 = sub_02077988(GetItemAttribute(v2->unk_02, 1, 0));
         } else {
             v0 = sub_020759CC(v2->unk_00, v3->unk_18_3, 6 + (param1 - 177));
         }
@@ -2376,7 +2376,7 @@ void sub_02075C74 (UnkStruct_02073C74 * param0, u8 param1, u16 param2)
     }
 
     v1 = sub_02074470(param0, 6, NULL);
-    v5 = sub_0207CFF0(v1, 1, 0);
+    v5 = GetItemAttribute(v1, 1, 0);
     v4 = 0;
     v2 = sub_02074470(param0, 9, NULL);
 
@@ -3219,7 +3219,7 @@ u16 sub_02076B94 (UnkStruct_02079FF4 * param0, UnkStruct_02073C74 * param1, u8 p
     v6 = sub_02074470(param1, 0, NULL);
     v8 = sub_02074470(param1, 20, NULL);
     v9 = (v6 & 0xffff0000) >> 16;
-    v7 = sub_0207CFF0(v1, 1, 0);
+    v7 = GetItemAttribute(v1, 1, 0);
 
     if (v0 != 64) {
         if ((v7 == 64) && (param2 != 3)) {
@@ -4033,7 +4033,7 @@ void sub_02077930 (UnkStruct_02073C74_sub1 * param0)
     v2 = sub_02074570(param0, 6, NULL);
 
     if ((v0 == 493) && (v1 == 121)) {
-        v3 = sub_02077988(sub_0207CFF0(v2, 1, 0));
+        v3 = sub_02077988(GetItemAttribute(v2, 1, 0));
         sub_02074C60(param0, 112, &v3);
     }
 }

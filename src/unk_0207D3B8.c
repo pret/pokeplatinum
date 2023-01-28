@@ -9,7 +9,7 @@
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 
 typedef struct UnkStruct_0207D3C0_t {
@@ -83,7 +83,7 @@ void sub_0207D404 (UnkStruct_0207D3C0 * param0, u32 param1)
 
 static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4)
 {
-    u32 v0 = sub_0207CFF0(param1, 5, param4);
+    u32 v0 = GetItemAttribute(param1, 5, param4);
 
     switch (v0) {
     case 7:

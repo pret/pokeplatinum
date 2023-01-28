@@ -32,7 +32,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202A910.h"
 #include "move_table.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_0223F040.h"
 #include "overlay084/ov84_022403F4.h"
@@ -210,7 +210,7 @@ void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     if (param1 != 0xffff) {
         v0 = sub_02023790(130, 6);
-        sub_0207CFC8(v0, param1, 6);
+        GetItemDescriptionIntoString(v0, param1, 6);
     } else {
         v0 = sub_0200B1EC(param0->unk_114, 94);
     }
@@ -227,7 +227,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     u16 v3;
 
     v0 = &param0->unk_04[1];
-    v2 = sub_0207D268(param1);
+    v2 = GetMoveFromTMOrHMItemID(param1);
 
     v1 = sub_0200B1EC(param0->unk_114, 98);
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

@@ -24,7 +24,7 @@
 #include "unk_020218BC.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207E0B8.h"
 #include "overlay107/ov107_02249604.h"
 
@@ -70,8 +70,8 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, UnkStruct_02079FF4 * par
 
     param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, sub_0207CE78(0, 1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
     param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 16, sub_0207CE78(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
-    param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, sub_0207CF40(), 0, 1, 2, 100);
-    param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, sub_0207CF44(), 0, 1, 3, 100);
+    param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, GetItemIconCellArchiveIndex(), 0, 1, 2, 100);
+    param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, GetItemIconCellAnimationArchiveIndex(), 0, 1, 3, 100);
 
     NARC_dtor(v1);
     ov107_02249A70(param0);

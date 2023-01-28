@@ -13,7 +13,7 @@
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_0207CB08.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_020972FC.h"
 #include "overlay082/ov82_0223B140.h"

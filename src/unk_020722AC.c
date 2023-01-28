@@ -55,7 +55,7 @@
 #include "unk_020508D4.h"
 #include "unk_0206A780.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_02097624.h"
 #include "overlay005/ov5_021D37AC.h"

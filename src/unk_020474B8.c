@@ -34,7 +34,7 @@
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_020923C0.h"
 #include "unk_0209739C.h"
 
@@ -139,7 +139,7 @@ BOOL sub_02047660 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4;
 
-    v4 = sub_0207D268(v3);
+    v4 = GetMoveFromTMOrHMItemID(v3);
     sub_0200B630(*v1, v2, v4);
 
     return 0;

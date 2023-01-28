@@ -73,7 +73,7 @@
 #include "unk_0202EEC0.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0209A74C.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
@@ -1256,7 +1256,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         v3 = sub_0207CF10(v2);
         v8 = sub_02023790(64, 78);
 
-        sub_0207CFA0(v8, v3, 78);
+        GetItemNameIntoString(v8, v3, 78);
 
         v4.unk_3C = v8;
         v4.unk_34 = -1;

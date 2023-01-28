@@ -15,7 +15,7 @@
 #include "unk_020218BC.h"
 #include "move_table.h"
 #include "unk_0207C908.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay084/ov84_022403F4.h"
 
 static void ov84_02240424(UnkStruct_ov84_0223B5A0 * param0);
@@ -249,7 +249,7 @@ static void ov84_022404C0 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0200CE24(param0->unk_D8, param0->unk_DC, param0->unk_D4, 30, 0, 49404);
     sub_0200CE24(param0->unk_D8, param0->unk_DC, param0->unk_D4, 9, 0, 49405);
     sub_0200CE24(param0->unk_D8, param0->unk_DC, param0->unk_D4, 35, 0, 49406);
-    sub_0200CE0C(param0->unk_D8, param0->unk_DC, 16, sub_0207CF40(), 0, 49407);
+    sub_0200CE0C(param0->unk_D8, param0->unk_DC, 16, GetItemIconCellArchiveIndex(), 0, 49407);
     sub_0200CE0C(param0->unk_D8, param0->unk_DC, 62, 5, 0, 49408);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 0, 0, 49401);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 23, 0, 49402);
@@ -257,7 +257,7 @@ static void ov84_022404C0 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 29, 0, 49404);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 8, 0, 49405);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 34, 0, 49406);
-    sub_0200CE3C(param0->unk_D8, param0->unk_DC, 16, sub_0207CF44(), 0, 49407);
+    sub_0200CE3C(param0->unk_D8, param0->unk_DC, 16, GetItemIconCellAnimationArchiveIndex(), 0, 49407);
     sub_0200CE3C(param0->unk_D8, param0->unk_DC, 62, 6, 0, 49408);
     sub_0207C9EC(param0->unk_D8, param0->unk_DC, 49409, 49409);
 }
@@ -442,7 +442,7 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
         return;
     }
 
-    v0 = sub_0207D268(param1);
+    v0 = GetMoveFromTMOrHMItemID(param1);
     v1 = GetMoveAttribute(v0, 3);
     v2 = GetMoveAttribute(v0, 1);
 

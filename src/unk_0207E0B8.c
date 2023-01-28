@@ -60,7 +60,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02079FEC.h"
 #include "unk_0207A2A8.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -1772,7 +1772,7 @@ static u8 sub_020800B4 (UnkStruct_0207F248 * param0, u8 * param1)
             param1[v4] = 0;
             v4++;
 
-            if (sub_0207D2D0(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
+            if (IsItemMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
                 param1[v4] = 5;
             } else {
                 param1[v4] = 2;
@@ -2583,7 +2583,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
 {
     UnkStruct_0207D3B0 * v0;
 
-    v0 = sub_0207CF48(param0->unk_5A4->unk_24, 0, 12);
+    v0 = LoadItemDataOrGfx(param0->unk_5A4->unk_24, 0, 12);
 
     if ((param0->unk_5A4->unk_24 == 466) && (sub_02077B14(sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
         param0->unk_5A4->unk_38 = 1;
@@ -2592,13 +2592,13 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
         return 31;
     }
 
-    if ((sub_0207D014(v0, 34) != 0) || (sub_0207D014(v0, 35) != 0)) {
+    if ((GetItemAttributeFromStruct(v0, 34) != 0) || (GetItemAttributeFromStruct(v0, 35) != 0)) {
         FreeToHeap(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
-    if ((sub_0207D014(v0, 36) != 0) && (sub_0207D014(v0, 37) == 0)) {
+    if ((GetItemAttributeFromStruct(v0, 36) != 0) && (GetItemAttributeFromStruct(v0, 37) == 0)) {
         FreeToHeap(v0);
         sub_020866A0(param0, 1);
         return 6;
@@ -2607,7 +2607,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
     if (sub_0209693C(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
-        if (sub_0207D014(v0, 26) != 0) {
+        if (GetItemAttributeFromStruct(v0, 26) != 0) {
             UnkStruct_02073C74 * v1 = sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11);
 
             param0->unk_5A4->unk_38 = sub_02076B94(NULL, v1, 3, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);
@@ -2616,7 +2616,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
             return 32;
         }
 
-        if ((sub_0207D36C(param0->unk_5A4->unk_24) == 1) && (param0->unk_5A4->unk_10 != NULL)) {
+        if ((IsItemHerbalMedicine(param0->unk_5A4->unk_24) == 1) && (param0->unk_5A4->unk_10 != NULL)) {
             UnkStruct_02073C74 * v2 = sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11);
             sub_0206D90C(param0->unk_5A4->unk_10, v2, param0->unk_5A4->unk_24);
         }
@@ -2636,7 +2636,7 @@ static u8 sub_020811F4 (UnkStruct_0207F248 * param0)
 {
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         return 0;
-    } else if (sub_0207D2D0(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
+    } else if (IsItemMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
         return 2;
     }
 
@@ -2674,7 +2674,7 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
     if (v2 == -1) {
         switch (sub_020811F4(param0)) {
         case 0:
-            if (sub_0207D2D0(param0->unk_5A4->unk_24) == 1) {
+            if (IsItemMail(param0->unk_5A4->unk_24) == 1) {
                 param0->unk_5A4->unk_23 = 6;
                 return 32;
             }
@@ -2812,7 +2812,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
             sub_0200B1B8(param0->unk_69C, 83, param0->unk_6A4);
             v0 = 11;
         } else {
-            if (sub_0207D2D0(param0->unk_5A4->unk_24) == 1) {
+            if (IsItemMail(param0->unk_5A4->unk_24) == 1) {
                 sub_0207D60C(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
                 sub_020814A8(param0, v2, v4, v5);
                 param0->unk_5A4->unk_23 = 6;

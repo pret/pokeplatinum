@@ -52,7 +52,7 @@
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0208C098.h"
 #include "unk_0208C324.h"
 #include "unk_0208EA44.h"
@@ -771,7 +771,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
         sub_02005748(1501);
 
         if (param0->unk_6A5_0 != 4) {
-            if ((sub_0207D28C(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
+            if ((IsMoveHM(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
                 sub_0200D3EC(param0->unk_41C[18], 0);
                 sub_0208E46C(param0);
                 sub_020914F8(param0);

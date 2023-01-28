@@ -25,7 +25,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207E0B8.h"
 #include "unk_02082C2C.h"
 #include "unk_0208C098.h"
@@ -227,7 +227,7 @@ void sub_02083040 (UnkStruct_0207F248 * param0, u8 param1, u16 param2)
         return;
     }
 
-    if (sub_0207D2D0(param2) == 1) {
+    if (IsItemMail(param2) == 1) {
         sub_02021D6C(*v0, 1);
     } else {
         sub_02021D6C(*v0, 0);

@@ -53,7 +53,7 @@
 #include "unk_020244AC.h"
 #include "unk_02033200.h"
 #include "unk_02073C2C.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay097/ov97_02237694.h"
 
 typedef struct {
@@ -658,7 +658,7 @@ static void ov97_022380C8 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
         break;
     }
 
-    ov97_02237B0C(16, sub_0207CE78(v0, 1), sub_0207CE78(v0, 2), sub_0207CF40(), sub_0207CF44(), 1);
+    ov97_02237B0C(16, sub_0207CE78(v0, 1), sub_0207CE78(v0, 2), GetItemIconCellArchiveIndex(), GetItemIconCellAnimationArchiveIndex(), 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
 
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 0);

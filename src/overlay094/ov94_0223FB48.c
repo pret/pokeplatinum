@@ -46,7 +46,7 @@
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_022414B8.h"
@@ -1119,7 +1119,7 @@ static void ov94_02240EAC (UnkStruct_02073C74_sub1 * param0, UnkStruct_02022550 
         if (v1 != 0) {
             sub_02021CAC(param2, 1);
 
-            if (sub_0207D2D0(v1)) {
+            if (IsItemMail(v1)) {
                 sub_02021D6C(param2, 41);
             } else {
                 sub_02021D6C(param2, 40);
@@ -1419,7 +1419,7 @@ BOOL ov94_02241498 (UnkStruct_02073C74 * param0)
 {
     int v0 = sub_02074470(param0, 6, NULL);
 
-    if (sub_0207D2D0(v0)) {
+    if (IsItemMail(v0)) {
         return 1;
     }
 

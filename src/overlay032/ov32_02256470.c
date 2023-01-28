@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02079D40.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -291,7 +291,7 @@ static void ov32_02256898 (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
         if (param1->unk_04[v0].unk_0A != 0) {
-            v1.unk_08 = sub_0207D2D0(param1->unk_04[v0].unk_0A) ? 1 : 0;
+            v1.unk_08 = IsItemMail(param1->unk_04[v0].unk_0A) ? 1 : 0;
             v1.unk_00.x = ((Unk_ov32_02256CCC[v0].unk_00 + 28) << FX32_SHIFT);
             v1.unk_00.y = ((Unk_ov32_02256CCC[v0].unk_02 + 21) << FX32_SHIFT);
 

@@ -25,7 +25,7 @@
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -56,34 +56,34 @@ static u8 sub_02084B70 (u16 param0)
     UnkStruct_0207D3B0 * v0;
     s32 v1;
 
-    v0 = sub_0207CF48(param0, 0, 12);
+    v0 = LoadItemDataOrGfx(param0, 0, 12);
 
-    if (sub_0207D014(v0, 14) != 1) {
+    if (GetItemAttributeFromStruct(v0, 14) != 1) {
         FreeToHeap(v0);
         return 28;
     }
 
-    if ((sub_0207D014(v0, 27) != 0) || (sub_0207D014(v0, 28) != 0) || (sub_0207D014(v0, 29) != 0) || (sub_0207D014(v0, 30) != 0) || (sub_0207D014(v0, 31) != 0) || (sub_0207D014(v0, 32) != 0) || (sub_0207D014(v0, 33) != 0)) {
+    if ((GetItemAttributeFromStruct(v0, 27) != 0) || (GetItemAttributeFromStruct(v0, 28) != 0) || (GetItemAttributeFromStruct(v0, 29) != 0) || (GetItemAttributeFromStruct(v0, 30) != 0) || (GetItemAttributeFromStruct(v0, 31) != 0) || (GetItemAttributeFromStruct(v0, 32) != 0) || (GetItemAttributeFromStruct(v0, 33) != 0)) {
         FreeToHeap(v0);
         return 0;
     }
 
-    if (sub_0207D014(v0, 24) != 0) {
+    if (GetItemAttributeFromStruct(v0, 24) != 0) {
         FreeToHeap(v0);
         return 1;
     }
 
-    if (sub_0207D014(v0, 25) != 0) {
+    if (GetItemAttributeFromStruct(v0, 25) != 0) {
         FreeToHeap(v0);
         return 2;
     }
 
-    v1 = sub_0207D014(v0, 15);
-    v1 += (sub_0207D014(v0, 16) << 1);
-    v1 += (sub_0207D014(v0, 17) << 2);
-    v1 += (sub_0207D014(v0, 18) << 3);
-    v1 += (sub_0207D014(v0, 19) << 4);
-    v1 += (sub_0207D014(v0, 20) << 5);
+    v1 = GetItemAttributeFromStruct(v0, 15);
+    v1 += (GetItemAttributeFromStruct(v0, 16) << 1);
+    v1 += (GetItemAttributeFromStruct(v0, 17) << 2);
+    v1 += (GetItemAttributeFromStruct(v0, 18) << 3);
+    v1 += (GetItemAttributeFromStruct(v0, 19) << 4);
+    v1 += (GetItemAttributeFromStruct(v0, 20) << 5);
 
     switch (v1) {
     case 0x1:
@@ -105,7 +105,7 @@ static u8 sub_02084B70 (u16 param0)
         FreeToHeap(v0);
         return 8;
     case 0x3f:
-        if (sub_0207D014(v0, 38) != 0) {
+        if (GetItemAttributeFromStruct(v0, 38) != 0) {
             FreeToHeap(v0);
             return 11;
         } else {
@@ -114,17 +114,17 @@ static u8 sub_02084B70 (u16 param0)
         }
     }
 
-    if (sub_0207D014(v0, 21) != 0) {
+    if (GetItemAttributeFromStruct(v0, 21) != 0) {
         FreeToHeap(v0);
         return 10;
     }
 
-    if (sub_0207D014(v0, 38) != 0) {
+    if (GetItemAttributeFromStruct(v0, 38) != 0) {
         FreeToHeap(v0);
         return 11;
     }
 
-    v1 = sub_0207D014(v0, 48);
+    v1 = GetItemAttributeFromStruct(v0, 48);
 
     if (v1 > 0) {
         FreeToHeap(v0);
@@ -136,7 +136,7 @@ static u8 sub_02084B70 (u16 param0)
         return 18;
     }
 
-    v1 = sub_0207D014(v0, 49);
+    v1 = GetItemAttributeFromStruct(v0, 49);
 
     if (v1 > 0) {
         FreeToHeap(v0);
@@ -148,7 +148,7 @@ static u8 sub_02084B70 (u16 param0)
         return 19;
     }
 
-    v1 = sub_0207D014(v0, 50);
+    v1 = GetItemAttributeFromStruct(v0, 50);
 
     if (v1 > 0) {
         FreeToHeap(v0);
@@ -160,7 +160,7 @@ static u8 sub_02084B70 (u16 param0)
         return 20;
     }
 
-    v1 = sub_0207D014(v0, 51);
+    v1 = GetItemAttributeFromStruct(v0, 51);
 
     if (v1 > 0) {
         FreeToHeap(v0);
@@ -172,7 +172,7 @@ static u8 sub_02084B70 (u16 param0)
         return 21;
     }
 
-    v1 = sub_0207D014(v0, 52);
+    v1 = GetItemAttributeFromStruct(v0, 52);
 
     if (v1 > 0) {
         FreeToHeap(v0);
@@ -184,7 +184,7 @@ static u8 sub_02084B70 (u16 param0)
         return 22;
     }
 
-    v1 = sub_0207D014(v0, 53);
+    v1 = GetItemAttributeFromStruct(v0, 53);
 
     if (v1 > 0) {
         FreeToHeap(v0);
@@ -196,22 +196,22 @@ static u8 sub_02084B70 (u16 param0)
         return 23;
     }
 
-    if (sub_0207D014(v0, 26) != 0) {
+    if (GetItemAttributeFromStruct(v0, 26) != 0) {
         FreeToHeap(v0);
         return 24;
     }
 
-    if (sub_0207D014(v0, 34) != 0) {
+    if (GetItemAttributeFromStruct(v0, 34) != 0) {
         FreeToHeap(v0);
         return 25;
     }
 
-    if (sub_0207D014(v0, 35) != 0) {
+    if (GetItemAttributeFromStruct(v0, 35) != 0) {
         FreeToHeap(v0);
         return 26;
     }
 
-    if ((sub_0207D014(v0, 36) != 0) || (sub_0207D014(v0, 37) != 0)) {
+    if ((GetItemAttributeFromStruct(v0, 36) != 0) || (GetItemAttributeFromStruct(v0, 37) != 0)) {
         FreeToHeap(v0);
         return 27;
     }
@@ -544,7 +544,7 @@ static int sub_02085704 (void * param0)
 
 BOOL sub_020857A8 (u16 param0)
 {
-    if (sub_0207CFF0(param0, 24, 12) != 0) {
+    if (GetItemAttribute(param0, 24, 12) != 0) {
         return 1;
     }
 
@@ -944,7 +944,7 @@ u8 sub_02086104 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1)
         }
     }
 
-    if (sub_02077FB4(param1, sub_0207D2B4(param0->unk_5A4->unk_24)) == 0) {
+    if (sub_02077FB4(param1, GetTMOrHMNumberFromItemID(param0->unk_5A4->unk_24)) == 0) {
         return 0xff;
     }
 
@@ -1147,7 +1147,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * para
     sub_02074B30(param1, 58 + param2, &v0);
 
     if (param0->unk_5A4->unk_24 != 0) {
-        if (sub_0207D28C(param0->unk_5A4->unk_26) == 0) {
+        if (IsMoveHM(param0->unk_5A4->unk_26) == 0) {
             sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
         }
 

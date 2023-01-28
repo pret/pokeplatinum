@@ -20,7 +20,7 @@
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
 #include "unk_02073C2C.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0209747C.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay075/ov75_021D0D80.h"

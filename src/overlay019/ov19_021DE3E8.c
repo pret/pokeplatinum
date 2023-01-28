@@ -17,7 +17,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_020218BC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D8B54.h"

@@ -78,7 +78,7 @@
 #include "unk_02079170.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
@@ -2120,7 +2120,7 @@ static void ov10_02221EEC (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 
         if (param0->unk_214[param1].unk_0A == 0) {
             sub_0200D3F4(param0->unk_198[param1 * 5 + 1], 0);
-        } else if (sub_0207D2D0(param0->unk_214[param1].unk_0A) == 1) {
+        } else if (IsItemMail(param0->unk_214[param1].unk_0A) == 1) {
             sub_0200D364(param0->unk_198[param1 * 5 + 1], 1);
         } else {
             sub_0200D364(param0->unk_198[param1 * 5 + 1], 0);

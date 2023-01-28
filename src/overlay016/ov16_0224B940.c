@@ -23,7 +23,7 @@
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"

@@ -16,7 +16,7 @@
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201FE94.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/ov13_02227BDC.h"
 #include "overlay013/ov13_02228A38.h"
@@ -101,8 +101,8 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
         sub_0200CDC4(param0->unk_08, 3, v0, param0->unk_30C, v2, sub_0207CE78(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
     }
 
-    sub_0200CE24(v0, param0->unk_30C, v2, sub_0207CF40(), 0, 46263);
-    sub_0200CE54(v0, param0->unk_30C, v2, sub_0207CF44(), 0, 46263);
+    sub_0200CE24(v0, param0->unk_30C, v2, GetItemIconCellArchiveIndex(), 0, 46263);
+    sub_0200CE54(v0, param0->unk_30C, v2, GetItemIconCellAnimationArchiveIndex(), 0, 46263);
     NARC_dtor(v2);
 }
 

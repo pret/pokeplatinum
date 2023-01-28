@@ -36,7 +36,7 @@
 #include "move_table.h"
 #include "unk_02079170.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0208C098.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
@@ -3042,7 +3042,7 @@ BOOL ov16_02255980 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     v0 = 0;
     v1 = ov16_0223E208(param0, param2);
 
-    if ((param1->unk_2D40[param2].unk_78) && ((param1->unk_1C4[v1].unk_00_23 & sub_020787CC(param1->unk_219C[param2])) == 0) && (sub_0207D2D0(param1->unk_2D40[param2].unk_78) == 0)) {
+    if ((param1->unk_2D40[param2].unk_78) && ((param1->unk_1C4[v1].unk_00_23 & sub_020787CC(param1->unk_219C[param2])) == 0) && (IsItemMail(param1->unk_2D40[param2].unk_78) == 0)) {
         v0 = 1;
     }
 
@@ -3051,7 +3051,7 @@ BOOL ov16_02255980 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
 BOOL ov16_022559DC (UnkStruct_ov16_0224B9DC * param0, int param1)
 {
-    return sub_0207D2D0(param0->unk_2D40[param1].unk_78) == 0;
+    return IsItemMail(param0->unk_2D40[param1].unk_78) == 0;
 }
 
 BOOL ov16_022559FC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
@@ -5629,7 +5629,7 @@ BOOL ov16_02258CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         break;
     default:
 
-        if (sub_0207D324(param1->unk_2D40[param2].unk_78) == 1) {
+        if (IsItemBerry(param1->unk_2D40[param2].unk_78) == 1) {
             v0 = 1;
         }
         break;
@@ -6169,7 +6169,7 @@ BOOL ov16_02259B9C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         }
 
         if ((param1->unk_2D40[param1->unk_118].unk_00 == 493) && (param1->unk_2D40[param1->unk_118].unk_4C) && (ov16_02255A4C(param1, param1->unk_118) == 121)) {
-            v1 = sub_02077988(sub_0207CFF0(param1->unk_2D40[param1->unk_118].unk_78, 1, 5));
+            v1 = sub_02077988(GetItemAttribute(param1->unk_2D40[param1->unk_118].unk_78, 1, 5));
 
             if (param1->unk_2D40[param1->unk_118].unk_26_0 != v1) {
                 param1->unk_2D40[param1->unk_118].unk_26_0 = v1;
@@ -6974,7 +6974,7 @@ s32 ov16_0225B0FC (UnkStruct_ov16_0224B9DC * param0, u16 param1, u16 param2)
     v1 = sub_0207CE78(param1, 0);
     v0 = sub_0207D3B0(param0->unk_354.unk_1DCC, v1);
 
-    return sub_0207D014(v0, param2);
+    return GetItemAttributeFromStruct(v0, param2);
 }
 
 int ov16_0225B120 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)

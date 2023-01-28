@@ -94,7 +94,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 #include "unk_02092494.h"
@@ -786,7 +786,7 @@ static void ov88_0223BD18 (UnkStruct_02073C74 * param0, UnkStruct_ov88_0223C8AC 
     }
 
     if (v1 != 0) {
-        param1->unk_02 = sub_0207D2D0(v1) + 1;
+        param1->unk_02 = IsItemMail(v1) + 1;
     }
 }
 
@@ -1387,7 +1387,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02
     sub_0201ADA4(&param0[32 + param1], 0);
 
     v1 = sub_02023790(20, 26);
-    sub_0207CFA0(v1, v2, 26);
+    GetItemNameIntoString(v1, v2, 26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, 0, 3, 0);
     sub_020237BC(v1);
 }

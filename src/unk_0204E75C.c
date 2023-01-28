@@ -10,7 +10,7 @@
 
 #include "unk_0204E75C.h"
 #include "unk_0205DFC4.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 
 BOOL sub_0204E75C (UnkStruct_0203E724 * param0)
@@ -83,7 +83,7 @@ BOOL sub_0204E934 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = (u16)sub_0207CFF0(v1, 5, 11);
+    *v2 = (u16)GetItemAttribute(v1, 5, 11);
     return 0;
 }
 

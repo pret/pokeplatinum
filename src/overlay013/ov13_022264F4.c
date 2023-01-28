@@ -41,7 +41,7 @@
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "overlay013/ov13_022264F4.h"
 #include "overlay013/ov13_02227288.h"
@@ -406,7 +406,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
     if (param0->unk_114D == 3) {
         int v1 = ov13_02227244(param0);
-        u32 v2 = sub_0207CFF0(v0->unk_1C, 7, v0->unk_0C);
+        u32 v2 = GetItemAttribute(v0->unk_1C, 7, v0->unk_0C);
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
             UnkStruct_02073C74 * v3;

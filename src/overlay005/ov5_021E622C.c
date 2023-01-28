@@ -31,7 +31,7 @@
 #include "unk_020559DC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079FEC.h"
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_02092494.h"
 #include "overlay005/ov5_021E622C.h"
 
@@ -2016,7 +2016,7 @@ int ov5_021E6270 (UnkStruct_02026310 * param0)
 static int ov5_021E62B0 (UnkStruct_02073C74_sub1 * param0)
 {
     int v0 = sub_02074570(param0, 6, NULL);
-    return sub_0207D2D0(v0);
+    return IsItemMail(v0);
 }
 
 static void ov5_021E62C4 (UnkStruct_02079FF4 * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3)
@@ -2441,7 +2441,7 @@ static void ov5_021E6948 (UnkStruct_02073C74 * param0, UnkStruct_02073C74_sub1 *
     for (v0 = 0; v0 < 4; v0++) {
         if (v7->unk_00[v0] != 0) {
             for (v1 = 0; v1 < 100; v1++) {
-                if (v7->unk_00[v0] == sub_0207D268(328 + v1)) {
+                if (v7->unk_00[v0] == GetMoveFromTMOrHMItemID(328 + v1)) {
                     if (sub_02077FE4(v3, v6, v1)) {
                         if (sub_020770C4(param0, v7->unk_00[v0]) == 0xffff) {
                             sub_02077134(param0, v7->unk_00[v0]);

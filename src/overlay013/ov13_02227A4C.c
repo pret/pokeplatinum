@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0207CDEC.h"
 #include "overlay013/struct_ov13_02227244.h"
 
-#include "unk_0207CDEC.h"
+#include "item.h"
 #include "unk_0207D3B8.h"
 #include "overlay013/ov13_02227A4C.h"
 
@@ -61,7 +61,7 @@ void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
             }
 
             if (!((v0->unk_00 == 0) || (v0->unk_02 == 0))) {
-                v4 = sub_0207CFF0(v0->unk_00, 13, param0->unk_00->unk_0C);
+                v4 = GetItemAttribute(v0->unk_00, 13, param0->unk_00->unk_0C);
 
                 for (v3 = 0; v3 < 5; v3++) {
                     if ((v4 & (1 << v3)) == 0) {
