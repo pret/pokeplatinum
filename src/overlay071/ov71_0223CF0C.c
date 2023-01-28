@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay071/ov71_0223CF0C.h"
 
@@ -98,7 +98,7 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
         }
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)

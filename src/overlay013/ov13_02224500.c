@@ -14,7 +14,7 @@
 
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "move_table.h"
 #include "unk_02079D40.h"
 #include "unk_02079FEC.h"
@@ -232,7 +232,7 @@ void ov13_02224500 (UnkStruct_ov13_022213F0 * param0)
     ov13_02224848(param0);
     ov13_02224948(param0);
     ov13_0222554C(param0);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov13_0222453C (UnkStruct_ov13_022213F0 * param0)

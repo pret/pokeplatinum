@@ -16,7 +16,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201C970.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
@@ -204,8 +204,8 @@ static void ov93_021D0FA8 (void)
 {
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -216,7 +216,7 @@ static void ov93_021D0FA8 (void)
     G3X_EdgeMarking(1);
     G3X_SetEdgeColorTable(Unk_ov93_021D14A8);
 
-    sub_0201FFE8();
+    GX_SwapDisplay();
 }
 
 static void ov93_021D100C (void)
@@ -234,7 +234,7 @@ static void ov93_021D100C (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov93_021D102C (UnkStruct_ov93_021D102C * param0)

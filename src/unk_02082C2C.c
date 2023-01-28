@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -32,8 +32,8 @@
 
 void sub_02082C2C (UnkStruct_0207F248 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, 12);
 
     param0->unk_5A8 = sub_0200C6E4(12);

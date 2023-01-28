@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -654,11 +654,11 @@ void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
             FreeToHeap(v3);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         sub_0201C3C0(param1->unk_00, 2);
         NARC_dtor(v0);
     } else {
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
     return;

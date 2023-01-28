@@ -45,7 +45,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02022594.h"
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
@@ -809,8 +809,8 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
 
         sub_02003178(param0->unk_D4.unk_14, 0x1, (1 << 0) | (1 << 1), 0, 0, 16, 0);
         sub_02003178(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 0, 16, 0);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
-        sub_0201FF74((GX_PLANEMASK_BG2), 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
+        GX_EngineBToggleLayers((GX_PLANEMASK_BG2), 1);
         sub_02019060(7, 1);
         ov76_0223D2F4(param0, 1);
         ov76_0223C568(param0, 1);
@@ -838,7 +838,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
     {
         switch (param0->unk_3DC) {
         case 0:
-            sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
             sub_02003178(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 0, 10, 0);
             sub_02003178(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 0, 10, 0);
             ov76_0223DCB8(param0, 0);
@@ -915,7 +915,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
 
             if (v4 == 0) {
                 ov12_0223783C(param0->unk_D4.unk_158);
-                sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+                GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
                 ov76_0223DE00(param0);
                 param0->unk_3E0 = 0;
                 param0->unk_3DC++;
@@ -960,7 +960,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
                 param0->unk_D4.unk_158 = ov12_02237728(&v5);
 
                 ov76_0223D3A0();
-                sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+                GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
                 param0->unk_3DC++;
             }
@@ -984,7 +984,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
                 break;
             }
 
-            sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
             ov76_0223DCB8(param0, 1);
             param0->unk_3DC = 0;
             param0->unk_3D4 = 4;
@@ -1032,7 +1032,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             sub_02003178(param0->unk_D4.unk_14, 0x2, (1 << 0) | (1 << 1) | (1 << 3) | (1 << 11), 0, 0, 10, 0);
             sub_02003178(param0->unk_D4.unk_14, 0x8, 0xFFFF, 0, 0, 10, 0);
             ov76_0223DCB8(param0, 0);
-            sub_0201FF74(GX_PLANEMASK_BG0, 0);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
             param0->unk_3DC++;
             break;
         case 1:
@@ -1061,7 +1061,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             param0->unk_3DC++;
             break;
         case 2:
-            sub_0201FF74(GX_PLANEMASK_BG0, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
             param0->unk_3DC++;
         case 3:
         {
@@ -1120,7 +1120,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
     }
     break;
     case 8:
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         sub_02003178(param0->unk_D4.unk_14, 0x1, (1 << 1), 0, 0, 16, 0);
         param0->unk_3D4++;
         break;
@@ -1134,7 +1134,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
         sub_02003178(param0->unk_D4.unk_14, 0x4, 0xFFFF, 0, 16, 0, 0);
         sub_02019060(3, 3);
         sub_02019060(7, 3);
-        sub_0201FF74((GX_PLANEMASK_BG2), 0);
+        GX_EngineBToggleLayers((GX_PLANEMASK_BG2), 0);
         ov76_0223D2F4(param0, 0);
         ov76_0223C568(param0, 0);
         ov76_0223B96C(param0, 0);
@@ -1339,8 +1339,8 @@ void ov76_0223EB20 (int param0)
 {
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -1354,7 +1354,7 @@ void ov76_0223EB54 (int param0)
 
 void ov76_0223EB64 (UnkStruct_02018340 * param0)
 {
-    sub_0201FF00();
+    GX_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -1370,7 +1370,7 @@ void ov76_0223EB64 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -1446,7 +1446,7 @@ void ov76_0223EB64 (UnkStruct_02018340 * param0)
         sub_02019EBC(param0, 3);
 
         G2_SetBG0Priority(1);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {
@@ -1521,7 +1521,7 @@ void ov76_0223EB64 (UnkStruct_02018340 * param0)
         sub_02019EBC(param0, 5);
         sub_02019EBC(param0, 6);
         sub_02019EBC(param0, 7);
-        sub_0201FF74((GX_PLANEMASK_BG2), 0);
+        GX_EngineBToggleLayers((GX_PLANEMASK_BG2), 0);
     }
 }
 

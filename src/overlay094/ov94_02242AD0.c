@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
@@ -312,8 +312,8 @@ static void ov94_02242B54 (UnkStruct_02018340 * param0)
     sub_02019690(1, 32, 0, 62);
     sub_02019690(4, 32, 0, 62);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov94_02242C80 (UnkStruct_02018340 * param0)
@@ -337,7 +337,7 @@ static void ov94_02242CAC (UnkStruct_ov94_0223FD4C * param0)
     if (param0->unk_10F0 == 0) {
         sub_02019120(4, 0);
         sub_02019120(5, 0);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
     }
 
     if (param0->unk_20 == 9) {

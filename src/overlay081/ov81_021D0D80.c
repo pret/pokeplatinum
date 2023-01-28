@@ -26,7 +26,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -74,8 +74,8 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -106,9 +106,9 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     ov81_021D1434(v0);
 
     sub_02017798(ov81_021D0F00, v0);
-    sub_0201FFD0();
+    GX_BothDispOn();
     sub_02039734();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(67, 0, 0);
 
     return 1;
@@ -180,7 +180,7 @@ static void ov81_021D0F20 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov81_021D0F40 (UnkStruct_02018340 * param0)
@@ -281,7 +281,7 @@ static void ov81_021D0F40 (UnkStruct_02018340 * param0)
 
 static void ov81_021D101C (UnkStruct_02018340 * param0)
 {
-    sub_0201FF00();
+    GX_DisableEngineALayers();
     sub_02019044(param0, 3);
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);

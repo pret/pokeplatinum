@@ -17,7 +17,7 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02022594.h"
 #include "unk_0208B284.h"
 #include "overlay062/ov62_0222F2C0.h"
@@ -516,8 +516,8 @@ static BOOL ov62_02235A80 (UnkStruct_0208C06C * param0)
         sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         break;
     case 2:
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov62_022317CC(param0, param0->unk_14.unk_48);
         sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
@@ -526,8 +526,8 @@ static BOOL ov62_02235A80 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
         break;
     case 3:
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
         param0->unk_08++;
         break;
     case 4:
@@ -569,8 +569,8 @@ static BOOL ov62_02235C70 (UnkStruct_0208C06C * param0)
         sub_02003A2C(param0->unk_14.unk_14, 1, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         break;
     case 2:
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov62_022317CC(param0, param0->unk_14.unk_48);
         sub_02003A2C(param0->unk_14.unk_14, 2, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
         sub_02003A2C(param0->unk_14.unk_14, 0, 0xFFFF, param0->unk_14.unk_40, param0->unk_14.unk_44);
@@ -579,8 +579,8 @@ static BOOL ov62_02235C70 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
         break;
     case 3:
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
         param0->unk_08++;
         break;
     case 4:

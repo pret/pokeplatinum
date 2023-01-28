@@ -54,7 +54,7 @@
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
@@ -693,7 +693,7 @@ static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
 
     param0->unk_10 = sub_02018340(63);
 
-    sub_0201FE94(&v1);
+    GX_SetBanks(&v1);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
     sub_02018368(&v2);
@@ -751,7 +751,7 @@ static void ov86_0223B900 (UnkStruct_ov86_0223B3C8 * param0)
     NNS_GfdInitFrmTexVramManager(1, 1);
     NNS_GfdInitFrmPlttVramManager(0x4000, 1);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(2);
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 0, 0);
@@ -805,7 +805,7 @@ static void ov86_0223BA44 (UnkStruct_ov86_0223B3C8 * param0)
     ov86_0223BAC8(param0, v0, v1, v2);
 
     NARC_dtor(v2);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank * param1, NNSG2dAnimBankData * param2, NARC * param3)

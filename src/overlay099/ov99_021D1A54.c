@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay099/ov99_021D1A54.h"
@@ -470,8 +470,8 @@ static void ov99_021D1D68 (UnkStruct_ov99_021D2CB0 * param0)
 
     sub_02019120(2, 1);
     sub_02019120(7, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_0201C3C0(param0->unk_08, 2);
     sub_0201C3C0(param0->unk_08, 7);
@@ -481,8 +481,8 @@ static void ov99_021D1E6C (UnkStruct_ov99_021D2CB0 * param0)
 {
     sub_02019120(2, 0);
     sub_02019120(7, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 
 static void ov99_021D1E90 (UnkStruct_ov99_021D2CB0 * param0)
@@ -688,8 +688,8 @@ static void ov99_021D2180 (UnkStruct_ov99_021D2CB0 * param0)
 
     sub_02019120(2, 1);
     sub_02019120(7, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_0201C3C0(param0->unk_08, 2);
     sub_0201C3C0(param0->unk_08, 7);
@@ -699,8 +699,8 @@ static void ov99_021D22AC (UnkStruct_ov99_021D2CB0 * param0)
 {
     sub_02019120(2, 0);
     sub_02019120(7, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 
 static void ov99_021D22D0 (UnkStruct_ov99_021D2CB0 * param0)
@@ -831,8 +831,8 @@ static void ov99_021D24F0 (UnkStruct_ov99_021D2CB0 * param0)
 
     sub_02019120(2, 1);
     sub_02019120(7, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_0201C3C0(param0->unk_08, 2);
     sub_0201C3C0(param0->unk_08, 7);
@@ -842,8 +842,8 @@ static void ov99_021D2640 (UnkStruct_ov99_021D2CB0 * param0)
 {
     sub_02019120(2, 0);
     sub_02019120(7, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 
 static void ov99_021D2664 (UnkStruct_ov99_021D2CB0 * param0)
@@ -1065,7 +1065,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
 
     Unk_021BF67C.unk_65 = 0;
 
-    sub_0201FFE8();
+    GX_SwapDisplay();
     sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {

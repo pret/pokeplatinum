@@ -21,7 +21,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay077/ov77_021D6670.h"
 
@@ -217,8 +217,8 @@ static void ov77_021D6800 (UnkStruct_ov77_021D6800 * param0)
     sub_0200A328(param0->unk_1A0[0]);
     sub_0200A5C8(param0->unk_1A0[1]);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov77_021D691C (UnkStruct_ov77_021D6800 * param0)

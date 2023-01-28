@@ -54,7 +54,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_020277A4.h"
@@ -195,7 +195,7 @@ void ov62_0223197C (UnkStruct_0208C06C * param0, int param1)
     param0->unk_8A0 = 1;
 
     ov62_022302A8(param0, 6, 0);
-    sub_0201FF74(GX_PLANEMASK_BG2, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     G2S_BlendNone();
     sub_02019060(6, 0);
     sub_0201A7A0(v1);
@@ -220,7 +220,7 @@ void ov62_02231A1C (UnkStruct_0208C06C * param0)
     sub_0201ACF4(&param0->unk_8A4);
     sub_0201A8FC(&param0->unk_8A4);
     sub_02019EBC(param0->unk_14.unk_10, 6);
-    sub_0201FF74(GX_PLANEMASK_BG2, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     sub_02019060(6, 2);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
@@ -231,7 +231,7 @@ void ov62_02231A88 (UnkStruct_0208C06C * param0)
 {
     sub_0201ACF4(&param0->unk_8A4);
     sub_0201A8FC(&param0->unk_8A4);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 void ov62_02231AAC (UnkStruct_0208C06C * param0, int param1)
@@ -246,7 +246,7 @@ void ov62_02231AAC (UnkStruct_0208C06C * param0, int param1)
     param0->unk_8A0 = 1;
 
     ov62_022302A8(param0, 2, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
     sub_0201A7A0(v1);
     sub_0201A7E8(param0->unk_14.unk_10, v1, 2, 1, 19, 30, 4, 14, 32);
 
@@ -286,7 +286,7 @@ void ov62_02231B8C (UnkStruct_0208C06C * param0)
     sub_0201ACF4(&param0->unk_8A4);
     sub_0201A8FC(&param0->unk_8A4);
     sub_02019EBC(param0->unk_14.unk_10, 2);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 void ov62_02231BC4 (UnkStruct_0208C06C * param0, int param1)
@@ -309,7 +309,7 @@ void ov62_02231BC4 (UnkStruct_0208C06C * param0, int param1)
 
     sub_02019060(6, 0);
     ov62_022302A8(param0, 6, 0);
-    sub_0201FF74(GX_PLANEMASK_BG2, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
     sub_0201A7A0(v1);
     sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 1, 19, 30, 4, 14, 32);
 

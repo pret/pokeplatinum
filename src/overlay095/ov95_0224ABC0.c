@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
@@ -344,7 +344,7 @@ static void ov95_0224AE1C (UnkStruct_ov95_0224AC64 * param0)
     };
     u32 v5;
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     sub_02018368(&v1);
     sub_020183C4(param0->unk_0C, 2, &v2, 1);
@@ -400,8 +400,8 @@ static void ov95_0224AE1C (UnkStruct_ov95_0224AC64 * param0)
 
     sub_02019120(7, 0);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov95_0224B050 (UnkStruct_ov95_0224AC64 * param0)
@@ -446,7 +446,7 @@ static void ov95_0224B084 (UnkStruct_ov95_0224AC64 * param0)
     NNS_GfdInitFrmTexVramManager(1, 1);
     NNS_GfdInitFrmPlttVramManager(0x4000, 1);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(0);
 
     param0->unk_20 = ov95_022476F0(1, 0, 0, 0);

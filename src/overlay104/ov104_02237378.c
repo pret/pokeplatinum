@@ -29,7 +29,7 @@
 #include "unk_0200B358.h"
 #include "unk_02014000.h"
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
 #include "unk_02030494.h"
@@ -538,7 +538,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
         *v20 = ov104_02239014(v3);
         break;
     case 46:
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         break;
     case 47:
         *v20 = v3->unk_1F;

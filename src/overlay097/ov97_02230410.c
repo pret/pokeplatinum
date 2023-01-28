@@ -50,7 +50,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_0202440C.h"
@@ -1109,7 +1109,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 6:
         sub_02005748(1536);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov97_02230518(&v4->unk_2C30, 0);
         ov97_02230500(&v4->unk_2C40, 0);
         ov97_022312B4(v4, 1, 1 * FX32_ONE, 0.025 * FX32_ONE);
@@ -1135,7 +1135,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
         if (ov97_02231354(v4)) {
             ov97_02230C44(v4, 1, 0);
             ov97_022312B4(v4, 0, 1800 * FX32_ONE, 900 * FX32_ONE);
-            sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
             *param1 = 10;
         }
         break;
@@ -1143,7 +1143,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
         if (ov97_02231354(v4)) {
             sub_0200E060(&v4->unk_2C30, 0, ((1 + 9) + 9), 10);
             sub_0200DC48(&v4->unk_2C40, 0, (1 + 9), 14);
-            sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
             ov97_02231318(v4);
             *param1 = 5;
         }

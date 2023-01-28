@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_02039C80.h"
 #include "unk_0208C098.h"
@@ -197,7 +197,7 @@ static void ov80_021D0EA8 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
@@ -206,8 +206,8 @@ static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        sub_0201FF00();
-        sub_0201FF68();
+        GX_DisableEngineALayers();
+        GX_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -253,8 +253,8 @@ static void ov80_021D0FF4 (UnkStruct_ov80_021D2A08 * param0)
     int v0;
 
     sub_0201E530();
-    sub_0201FF0C(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    sub_0201FF74(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     sub_02017798(NULL, NULL);
     sub_020177A4();
 

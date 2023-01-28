@@ -37,7 +37,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_020279FC.h"
@@ -185,8 +185,8 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
 
             sub_02017798(NULL, NULL);
             sub_020177A4();
-            sub_0201FF00();
-            sub_0201FF68();
+            GX_DisableEngineALayers();
+            GX_DisableEngineBLayers();
 
             GX_SetVisiblePlane(0);
             GXS_SetVisiblePlane(0);

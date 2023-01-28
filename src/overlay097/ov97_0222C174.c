@@ -44,7 +44,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_0202440C.h"
@@ -546,7 +546,7 @@ static void ov97_0222C254 (UnkStruct_ov97_0222C388 * param0)
         GX_BG0_AS_2D
     };
 
-    sub_0201FE94(&v1);
+    GX_SetBanks(&v1);
 
     sub_02018368(&v2);
     ov97_022376FC(param0->unk_04, 0, 1, 0xF000, 0x0);
@@ -763,8 +763,8 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
     case UnkEnum_ov97_0222C78C_05:
         ov97_0222C388(v0);
 
-        sub_0201FF74(GX_PLANEMASK_BG0, 1);
-        sub_0201FF74(GX_PLANEMASK_BG1, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
         ov97_02231FFC(v0->unk_04, &v0->unk_3180, 85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
@@ -846,7 +846,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     sub_0200B3F0(v2);
     sub_0200B190(v3);
     sub_0202DB2C(param0->unk_3174, &v4->unk_00, 3);
-    sub_0201FF74(GX_PLANEMASK_BG0, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
     ov97_02238194(param0->unk_04, (UnkStruct_0202DF40 *)v4);
 }

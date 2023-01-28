@@ -20,7 +20,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0202440C.h"
 #include "unk_020279FC.h"
@@ -275,7 +275,7 @@ static int ov83_0223B78C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         ov83_0223C958(param1);
 
         sub_02039734();
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         if (param1->unk_1488 > 1) {
             ov83_0223DF84(&param1->unk_5B0);
@@ -642,9 +642,9 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     switch (*param2) {
     case 0:
         ov83_0223EC4C(&param1->unk_6A0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
         param1->unk_31C = 0;
 

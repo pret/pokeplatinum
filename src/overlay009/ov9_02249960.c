@@ -53,7 +53,7 @@
 #include "unk_0201CED8.h"
 #include "unk_0201D15C.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02020AEC.h"
 #include "unk_020218BC.h"
@@ -2586,7 +2586,7 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
 {
     char * v0;
 
-    sub_0201FF0C(2, 0);
+    GX_EngineAToggleLayers(2, 0);
 
     {
         char * v1;
@@ -2647,8 +2647,8 @@ static void ov9_0224ADC0 (UnkStruct_ov9_02249B04 * param0)
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 0, 16);
     }
 
-    sub_0201FF0C(2, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov9_0224AED8 (UnkStruct_ov9_02249B04 * param0)

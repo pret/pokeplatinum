@@ -78,7 +78,7 @@ Static main
 	Object src/unk_0201E3D8.o
 	Object src/unk_0201E86C.o
 	Object src/unk_0201F834.o
-	Object src/unk_0201FE94.o
+	Object src/gx_layers.o
 	Object src/unk_02020020.o
 	Object src/unk_02020AEC.o
 	Object src/unk_020218BC.o

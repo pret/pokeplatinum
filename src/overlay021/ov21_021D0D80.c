@@ -48,7 +48,7 @@
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_0202419C.h"
@@ -1055,7 +1055,7 @@ static void ov21_021D1E74 (void)
         GX_VRAM_TEXPLTT_0_G
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov21_021D1E94 (int param0)

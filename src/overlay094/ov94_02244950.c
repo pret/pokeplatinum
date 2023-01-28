@@ -24,7 +24,7 @@
 #include "unk_0200F174.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_02025CB0.h"
 #include "unk_020279FC.h"
@@ -110,10 +110,10 @@ int ov94_02244950 (UnkStruct_ov94_0223FD4C * param0, int param1)
     ov94_02244B8C(param0);
     ov94_02244E48(param0);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-    sub_0201FF74(GX_PLANEMASK_BG0, 1);
-    sub_0201FF74(GX_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
     sub_02038438(param0->unk_00->unk_20);
 
     ov94_02245934(param0);
@@ -191,7 +191,7 @@ static void ov94_02244A7C (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 0, &v0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         sub_02019EBC(param0, 0);
     }
 
@@ -213,7 +213,7 @@ static void ov94_02244A7C (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 1, &v1, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     {
@@ -234,7 +234,7 @@ static void ov94_02244A7C (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 4, &v2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG0, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         sub_02019EBC(param0, 4);
     }
 
@@ -256,12 +256,12 @@ static void ov94_02244A7C (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 5, &v3, 0);
-        sub_0201FF74(GX_PLANEMASK_BG1, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     sub_02019690(0, 32, 0, 62);
     sub_02019690(4, 32, 0, 62);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 
 static void ov94_02244B68 (UnkStruct_02018340 * param0)

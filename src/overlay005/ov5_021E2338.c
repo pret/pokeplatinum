@@ -40,7 +40,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
@@ -627,7 +627,7 @@ void ov5_021E2B54 (UnkStruct_0201CD38 * param0, void * param1)
             sub_02021F58(v1->unk_21C[v4], v4 * 2);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -790,7 +790,7 @@ void ov5_021E2EB0 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_02021CF8(v1->unk_200[v4], 2);
             }
         }
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -935,7 +935,7 @@ void ov5_021E31A4 (UnkStruct_0201CD38 * param0, void * param1)
             sub_02021F58(v1->unk_224[v5], v5);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -1108,7 +1108,7 @@ void ov5_021E3560 (UnkStruct_0201CD38 * param0, void * param1)
             v1->unk_258[v3] = ov5_021DE6A4(4);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_270 = sub_0201A778(4, 1);
         sub_0201A7E8(v0->unk_10->unk_08, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
@@ -1311,7 +1311,7 @@ void ov5_021E3AD0 (UnkStruct_0201CD38 * param0, void * param1)
         v1->unk_230 = ov5_021DE62C(
             &v1->unk_5C, &v1->unk_1FC, (128 * FX32_ONE), (-32 * FX32_ONE), 0, 0);
         sub_02021CAC(v1->unk_230, 0);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -1440,7 +1440,7 @@ void ov5_021E3D8C (UnkStruct_0201CD38 * param0, void * param1)
             sub_02021CAC(v1->unk_1D4[v4], 0);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_264 = sub_0201A778(4, 1);
         sub_0201A7E8(v0->unk_10->unk_08, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
@@ -1662,7 +1662,7 @@ void ov5_021E4260 (UnkStruct_0201CD38 * param0, void * param1)
             &v1->unk_2C, &v1->unk_1CC, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0);
         sub_02021CAC(v1->unk_200, 0);
         sub_02021FE0(v1->unk_200, GX_OAM_MODE_XLU);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -1779,7 +1779,7 @@ void ov5_021E44C0 (UnkStruct_0201CD38 * param0, void * param1)
             sub_02021CAC(v1->unk_1D4[v3], 0);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -1940,7 +1940,7 @@ void ov5_021E4738 (UnkStruct_0201CD38 * param0, void * param1)
             sub_02021CAC(v1->unk_1D4[v3], 0);
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v0->unk_00++;
         break;
@@ -2085,7 +2085,7 @@ void ov5_021E4B3C (UnkStruct_0201CD38 * param0, void * param1)
         sub_02021CAC(v1->unk_1DC, 0);
         sub_02021FE0(v1->unk_1DC, GX_OAM_MODE_XLU);
         sub_02021E80(v1->unk_1DC, 1);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_04 = ov5_021DEBEC(4);
 
@@ -2272,9 +2272,9 @@ void ov5_021E4E14 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4E14));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4E14));
 
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
         v0->unk_00++;
         break;
@@ -2358,9 +2358,9 @@ void ov5_021E4F7C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_0C = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E4F7C));
         memset(v0->unk_0C, 0, sizeof(UnkStruct_ov5_021E4F7C));
 
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
         v0->unk_00++;
         break;
@@ -2658,7 +2658,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
         sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
 
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         sub_0201A7E8(param0->unk_10->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
         sub_0201ADA4(&v0->unk_2E0, 0);
         v7 = ov5_021E5240(param2->unk_04, param1);
@@ -2706,7 +2706,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
         ov5_021DED20(param0, v0->unk_40, 6, 8, 16, (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ), (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ));
 
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
         param0->unk_00++;
         break;
@@ -2731,7 +2731,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
             break;
         }
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1 = ov5_021E51B4(&v0->unk_250);
 
@@ -2789,7 +2789,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 1);
 
             sub_0201C63C(param0->unk_10->unk_08, 2, 0, -((v0->unk_00.unk_00 >> FX32_SHIFT) + -92));
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             sub_02019060(2, 0);
             param0->unk_00++;
         }
@@ -3046,7 +3046,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
         ov5_021DE5D0(v0->unk_2CC[1], param1, param2->unk_04, 14, (GX_RGB(0, 0, 0)));
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         ov5_021E5128(&v0->unk_2F4, &v0->unk_5C, &v0->unk_1FC[3], (FX32_CONST(128)), (FX32_CONST(96)), param1);
 
@@ -3111,7 +3111,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
             sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
 
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             sub_0201A7E8(param0->unk_10->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
             sub_0201ADA4(&v0->unk_358, 0);
             v9 = ov5_021E5240(param2->unk_06, param1);
@@ -3130,10 +3130,10 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
             if (param0->unk_04 == 0) {
                 ov5_021DF17C(3);
-                sub_0201FF0C(
+                GX_EngineAToggleLayers(
                     GX_PLANEMASK_BG0, 1);
 
-                sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+                GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             }
         } else {
             ov5_021E51B4(&v0->unk_2F4);
@@ -3279,7 +3279,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         if (v1) {
             param0->unk_00++;
 
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
             ov5_021DDE14(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
             ov5_021DDE14(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);

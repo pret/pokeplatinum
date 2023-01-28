@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0205D8CC.h"
 #include "unk_0205E7D0.h"
@@ -1698,7 +1698,7 @@ static void ov6_0224481C (UnkStruct_ov6_02243FFC * param0)
     G2_SetBG1Priority(1);
     G2_SetBG3Priority(0);
 
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
     ov6_02244E54(v0, 2, &param0->unk_6C);
     ov6_02244E7C(param0->unk_60->unk_08, v0, 0, &param0->unk_68);
@@ -1707,12 +1707,12 @@ static void ov6_0224481C (UnkStruct_ov6_02243FFC * param0)
 
     NARC_dtor(v0);
     param0->unk_244 = sub_020711EC(4, 32);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
 static void ov6_022448C8 (UnkStruct_ov6_02243FFC * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_0207121C(param0->unk_244);
 
     ov6_02244F20(param0->unk_60->unk_08);
@@ -1722,7 +1722,7 @@ static void ov6_022448C8 (UnkStruct_ov6_02243FFC * param0)
     G2_SetBG3Priority(param0->unk_26);
 
     sub_0205D8CC(0, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
 static NARC * ov6_0224491C (void)

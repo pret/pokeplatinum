@@ -11,7 +11,7 @@
 #include "overlay097/struct_ov97_0223829C.h"
 
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_0202DAB4.h"
@@ -32,7 +32,7 @@ void ov97_02232054 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 void ov97_02232074 (UnkStruct_02018340 * param0)

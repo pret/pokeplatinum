@@ -32,7 +32,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
@@ -282,8 +282,8 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov20_021D2238 * v0 = param1;
     NARC * v1;
 
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
@@ -310,8 +310,8 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     v0->unk_00->unk_254 = ov20_021D4728(v0->unk_00, v0->unk_04, v0->unk_08);
     ov20_021D4774(v0->unk_00->unk_254, v1);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     GX_DispOn();
 
     NARC_dtor(v1);
@@ -480,7 +480,7 @@ static void ov20_021D24EC (UnkStruct_ov20_021D2238 * param0)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
     sub_02018368(&v1);
 
     sub_020183C4(v7->unk_20, 0, &v2, 0);

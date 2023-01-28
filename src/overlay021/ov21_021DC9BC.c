@@ -31,7 +31,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -455,7 +455,7 @@ static int ov21_021DCD04 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
         param1->unk_00++;
         break;
     case 3:
-        sub_0201FF0C(GX_BLEND_PLANEMASK_BG1, 1);
+        GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
         FreeToHeap(v3->unk_804);
         FreeToHeap(v3->unk_808);
         FreeToHeap(param1->unk_08);
@@ -1190,7 +1190,7 @@ static void ov21_021DDB8C (UnkStruct_ov21_021DD420 * param0)
     param0->unk_80C = 0;
     param0->unk_810 = 0;
 
-    sub_0201FF0C(GX_BLEND_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
         sub_02021CAC(param0->unk_04[v0], 0);
@@ -1202,7 +1202,7 @@ static void ov21_021DDBCC (UnkStruct_ov21_021DD420 * param0)
     int v0;
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG3, 0, 16);
-    sub_0201FF0C(GX_BLEND_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
 
     for (v0 = 0; v0 < param0->unk_C4; v0++) {
         sub_02021CAC(param0->unk_04[v0], 0);
@@ -1225,7 +1225,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
 
             param0->unk_810 = 1;
         } else {
-            sub_0201FF0C(GX_BLEND_PLANEMASK_BG1, 1);
+            GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
             param0->unk_810 = 0;
         }
     }
@@ -1245,7 +1245,7 @@ static void ov21_021DDC14 (UnkStruct_ov21_021DD420 * param0)
 
     if (param0->unk_80C >= 32) {
         if (param0->unk_810 == 0) {
-            sub_0201FF0C(GX_BLEND_PLANEMASK_BG1, 0);
+            GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
         } else {
             for (v2 = 0; v2 < param0->unk_C4; v2++) {
                 sub_02021CAC(param0->unk_04[v2], 0);

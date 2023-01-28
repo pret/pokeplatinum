@@ -60,7 +60,7 @@
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
@@ -1264,11 +1264,11 @@ static void ov22_02257104 (UnkStruct_ov22_02255D44 * param0)
     G2_SetBG2Priority(3);
     G2_SetBG3Priority(0);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0200F338(0);
 }
 
@@ -1282,10 +1282,10 @@ static void ov22_0225718C (UnkStruct_ov22_02255D44 * param0)
 
     sub_0200F344(0, 0x0);
     sub_020219A4(param0->unk_00.unk_44, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov22_022571D4 (UnkStruct_ov22_02255D44 * param0)

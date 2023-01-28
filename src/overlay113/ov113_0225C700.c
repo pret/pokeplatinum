@@ -71,7 +71,7 @@
 #include "unk_0201E190.h"
 #include "unk_0201E3D8.h"
 #include "unk_0201E86C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
@@ -356,8 +356,8 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -441,19 +441,19 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
         ov66_0222E31C(v0->unk_00->unk_00, 1);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-    sub_0201FF74(GX_PLANEMASK_BG1, 1);
-    sub_0201FF74(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
 
     Unk_021BF67C.unk_65 = 1;
 
-    sub_0201FFE8();
-    sub_0201FFD0();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_SwapDisplay();
+    GX_BothDispOn();
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
@@ -713,8 +713,8 @@ static void ov113_0225CF18 (void * param0)
 
 static void ov113_0225CF58 (UnkStruct_02018340 * param0)
 {
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -730,7 +730,7 @@ static void ov113_0225CF58 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -814,7 +814,7 @@ static void ov113_0225CF58 (UnkStruct_02018340 * param0)
         sub_02019184(param0, 3, 3, 0);
 
         G2_SetBG0Priority(2);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {
@@ -1292,7 +1292,7 @@ static UnkStruct_0207C690 * ov113_0225DC6C (int param0)
 
 static void ov113_0225DC88 (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(1);
 
     G3X_SetShading(GX_SHADING_TOON);

@@ -73,7 +73,7 @@
 #include "unk_0201E0A4.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0202309C.h"
 #include "unk_02023790.h"
@@ -888,7 +888,7 @@ static void ov64_0222E164 (UnkStruct_ov64_0222E060 * param0)
 static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov64_0222E060 * param1, u32 param2)
 {
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
     param0->unk_21C = NARC_ctor(89, param2);
 
     ov64_0222E270();
@@ -899,7 +899,7 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     ov64_0222E9A4(param0, param2);
     ov64_0222E6D8(param0, param2);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
@@ -943,7 +943,7 @@ static void ov64_0222E270 (void)
         GX_VRAM_TEX_NONE, GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov64_0222E290 (UnkStruct_ov64_0222E21C * param0, u32 param1)

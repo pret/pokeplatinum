@@ -41,7 +41,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
@@ -149,8 +149,8 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -193,7 +193,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     sub_020920C0(v0);
     sub_020917E0(v0);
     sub_02017798(sub_0208C604, v0);
-    sub_0201FFD0();
+    GX_BothDispOn();
     sub_02004550(61, 0, 0);
     sub_020397E4();
     NARC_dtor(v1);
@@ -330,7 +330,7 @@ static void sub_0208C638 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void sub_0208C658 (UnkStruct_02018340 * param0)
@@ -455,8 +455,8 @@ static void sub_0208C658 (UnkStruct_02018340 * param0)
 
 static void sub_0208C76C (UnkStruct_02018340 * param0)
 {
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);

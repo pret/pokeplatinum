@@ -10,7 +10,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 
 enum {
     UnkEnum_00 = 0,
@@ -98,18 +98,18 @@ void sub_02018368 (const UnkStruct_ov84_0223BA5C * param0)
     GX_SetBGScrOffset(GX_BGSCROFFSET_0x00000);
     GX_SetBGCharOffset(GX_BGCHAROFFSET_0x00000);
 
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 }
 
 void sub_020183A0 (const UnkStruct_ov84_0223BA5C * param0, u8 param1)
 {
     if (param1 == 0) {
         GX_SetGraphicsMode(param0->unk_00, param0->unk_04, param0->unk_0C);
-        sub_0201FF00();
+        GX_DisableEngineALayers();
     } else {
         GXS_SetGraphicsMode(param0->unk_08);
-        sub_0201FF68();
+        GX_DisableEngineBLayers();
     }
 }
 
@@ -119,19 +119,19 @@ void sub_020183C4 (UnkStruct_02018340 * param0, u8 param1, const UnkStruct_ov97_
 
     switch (param1) {
     case 0:
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         G2_SetBG0Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
         G2_SetBG0Priority((int)param2->unk_15);
         G2_BG0Mosaic((BOOL)param2->unk_18);
         break;
     case 1:
-        sub_0201FF0C(GX_PLANEMASK_BG1, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         G2_SetBG1Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
         G2_SetBG1Priority((int)param2->unk_15);
         G2_BG1Mosaic((BOOL)param2->unk_18);
         break;
     case 2:
-        sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
         switch (param3) {
         default:
@@ -150,7 +150,7 @@ void sub_020183C4 (UnkStruct_02018340 * param0, u8 param1, const UnkStruct_ov97_
         G2_BG2Mosaic((BOOL)param2->unk_18);
         break;
     case 3:
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
         switch (param3) {
         default:
@@ -169,19 +169,19 @@ void sub_020183C4 (UnkStruct_02018340 * param0, u8 param1, const UnkStruct_ov97_
         G2_BG3Mosaic((BOOL)param2->unk_18);
         break;
     case 4:
-        sub_0201FF74(GX_PLANEMASK_BG0, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         G2S_SetBG0Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
         G2S_SetBG0Priority((int)param2->unk_15);
         G2S_BG0Mosaic((BOOL)param2->unk_18);
         break;
     case 5:
-        sub_0201FF74(GX_PLANEMASK_BG1, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
         G2S_SetBG1Control((GXBGScrSizeText)v0, (GXBGColorMode)param2->unk_11, (GXBGScrBase)param2->unk_12, (GXBGCharBase)param2->unk_13, (GXBGExtPltt)param2->unk_14);
         G2S_SetBG1Priority((int)param2->unk_15);
         G2S_BG1Mosaic((BOOL)param2->unk_18);
         break;
     case 6:
-        sub_0201FF74(GX_PLANEMASK_BG2, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
 
         switch (param3) {
         default:
@@ -200,7 +200,7 @@ void sub_020183C4 (UnkStruct_02018340 * param0, u8 param1, const UnkStruct_ov97_
         G2S_BG2Mosaic((BOOL)param2->unk_18);
         break;
     case 7:
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
 
         switch (param3) {
         default:
@@ -627,28 +627,28 @@ void sub_02019120 (u8 param0, u8 param1)
 {
     switch (param0) {
     case 0:
-        sub_0201FF0C(GX_PLANEMASK_BG0, param1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, param1);
         break;
     case 1:
-        sub_0201FF0C(GX_PLANEMASK_BG1, param1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, param1);
         break;
     case 2:
-        sub_0201FF0C(GX_PLANEMASK_BG2, param1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, param1);
         break;
     case 3:
-        sub_0201FF0C(GX_PLANEMASK_BG3, param1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, param1);
         break;
     case 4:
-        sub_0201FF74(GX_PLANEMASK_BG0, param1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, param1);
         break;
     case 5:
-        sub_0201FF74(GX_PLANEMASK_BG1, param1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, param1);
         break;
     case 6:
-        sub_0201FF74(GX_PLANEMASK_BG2, param1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, param1);
         break;
     case 7:
-        sub_0201FF74(GX_PLANEMASK_BG3, param1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, param1);
         break;
     }
 }

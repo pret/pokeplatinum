@@ -35,7 +35,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_0202CD50.h"
 #include "unk_020711EC.h"
@@ -85,8 +85,8 @@ int ov101_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
     CreateHeap(3, 79, 0x80000);
 
     v0 = sub_0200681C(param0, (sizeof(UnkStruct_ov101_021D0F3C)), 79);
@@ -214,16 +214,16 @@ static void ov101_021D0F9C (UnkStruct_ov101_021D13C8 * param0)
     ov101_021D10B8(param0->unk_43C);
     ov101_021D11D0();
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_BG0, 0);
-    sub_0201FF74(GX_PLANEMASK_BG1, 0);
-    sub_0201FF74(GX_PLANEMASK_BG2, 0);
-    sub_0201FF74(GX_PLANEMASK_BG3, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBG0Priority(0);
     G2_SetBG1Priority(1);
@@ -260,7 +260,7 @@ static void ov101_021D1098 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov101_021D10B8 (UnkStruct_02018340 * param0)

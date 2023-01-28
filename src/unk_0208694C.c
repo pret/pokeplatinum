@@ -59,7 +59,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_020279FC.h"
@@ -898,8 +898,8 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        sub_0201FF00();
-        sub_0201FF68();
+        GX_DisableEngineALayers();
+        GX_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -936,7 +936,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
 
         {
             Unk_021BF67C.unk_65 = 1;
-            sub_0201FFE8();
+            GX_SwapDisplay();
         }
 
         NARC_dtor(v1);
@@ -1204,7 +1204,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
     {
         Unk_021BF67C.unk_65 = 0;
-        sub_0201FFE8();
+        GX_SwapDisplay();
     }
 
     return 1;
@@ -1273,7 +1273,7 @@ static void sub_020871CC (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void sub_020871EC (UnkStruct_02018340 * param0)
@@ -1386,14 +1386,14 @@ static void sub_020871EC (UnkStruct_02018340 * param0)
 
 static void sub_0208732C (int param0)
 {
-    sub_0201FF0C(GX_BLEND_PLANEMASK_BG0, param0);
-    sub_0201FF0C(GX_BLEND_PLANEMASK_BG1, param0);
-    sub_0201FF0C(GX_BLEND_PLANEMASK_BG2, param0);
-    sub_0201FF0C(GX_BLEND_PLANEMASK_BG3, 0);
-    sub_0201FF0C(GX_BLEND_PLANEMASK_OBJ, param0);
-    sub_0201FF74(GX_BLEND_PLANEMASK_BG0, param0);
-    sub_0201FF74(GX_BLEND_PLANEMASK_BG1, 0);
-    sub_0201FF74(GX_BLEND_PLANEMASK_OBJ, 0);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, param0);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG2, param0);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_OBJ, param0);
+    GX_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
+    GX_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
+    GX_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
 }
 
 static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1)
@@ -1667,8 +1667,8 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         sub_02087BE4(param0, &v1);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1)

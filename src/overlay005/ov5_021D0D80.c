@@ -42,7 +42,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
@@ -206,7 +206,7 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
         ov5_021D15B4();
         ov5_021D154C();
 
-        sub_0201FFE8();
+        GX_SwapDisplay();
         v1->unk_08 = sub_02018340(4);
         ov5_021D1444(v1->unk_08);
         sub_0205D8CC(0, 1);
@@ -576,7 +576,7 @@ static void ov5_021D1414 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 void ov5_021D1434 (UnkStruct_02018340 * param0)
@@ -677,7 +677,7 @@ static void ov5_021D1444 (UnkStruct_02018340 * param0)
 
 static void ov5_021D1524 (UnkStruct_02018340 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
     sub_02019044(param0, 3);
@@ -815,7 +815,7 @@ void ov5_021D1744 (const u8 param0)
 
 static void ov5_021D1790 (UnkStruct_0203CDB0 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, Unk_02100844);
 
     param0->unk_50 = ov5_021D38B8();
@@ -922,8 +922,8 @@ static void ov5_021D1878 (UnkStruct_0203CDB0 * param0)
 
 static void ov5_021D1968 (UnkStruct_0203CDB0 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FFD0();
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_BothDispOn();
     param0->unk_44 = ov5_021D5878();
     ov5_021D1578(param0->unk_44);
     param0->unk_48 = ov5_021D57BC();

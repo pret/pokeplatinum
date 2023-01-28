@@ -36,7 +36,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
@@ -371,7 +371,7 @@ static void ov6_0223E1B0 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov6_0223E1D0 (UnkStruct_02018340 * param0)
@@ -387,7 +387,7 @@ static void ov6_0223E1D0 (UnkStruct_02018340 * param0)
         sub_02018368(&v0);
     }
 
-    sub_0201FF0C(
+    GX_EngineAToggleLayers(
         GX_PLANEMASK_BG0, 1);
 
     {
@@ -438,7 +438,7 @@ static void ov6_0223E280 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov6_0223E140 * v0 = param1;
 
-    sub_0201FE94(&v0->unk_04);
+    GX_SetBanks(&v0->unk_04);
     ov6_0223E2A4(v0->unk_00->unk_08);
     ov6_0223E2AC(v0->unk_00->unk_08);
     sub_0200DA58(param0);
@@ -452,7 +452,7 @@ static void ov6_0223E2A4 (UnkStruct_02018340 * param0)
 static void ov6_0223E2AC (UnkStruct_02018340 * param0)
 {
     ov5_021D1434(param0);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
 static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)

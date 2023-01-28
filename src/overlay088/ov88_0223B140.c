@@ -68,7 +68,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "unk_02023790.h"
@@ -294,8 +294,8 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -332,7 +332,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223ECBC(&v0->unk_49C[23], 20, 1, v0->unk_184, v0->unk_178);
     sub_02095CD4(v0->unk_00);
     sub_02019120(0, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
@@ -397,13 +397,13 @@ static void ov88_0223B3C0 (UnkStruct_02095E80 * param0)
     sub_02019120(4, 1);
     sub_02019120(5, 1);
     sub_02019120(6, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_02019120(0, 1);
     sub_02019120(1, 1);
     sub_02019120(2, 1);
     sub_02019120(3, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     ov88_0223C63C();
     ov88_0223C66C(param0, v0);
@@ -707,7 +707,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         if (param0->unk_54 == 4) {
             param0->unk_4C++;
 
-            sub_0201FF0C(GX_PLANEMASK_OBJ, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
             ov88_0223B7A0(param0->unk_2270, 0, param0);
             ov88_0223B7A0(param0->unk_2274, 6, param0);
 
@@ -725,7 +725,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         sub_02019120(1, 1);
         sub_02019120(2, 1);
         sub_02019120(3, 1);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
         break;
@@ -743,7 +743,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         sub_02019120(4, 1);
         sub_02019120(5, 1);
         sub_02019120(6, 1);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
         ov88_0223E8B4(param0);
@@ -948,7 +948,7 @@ static void ov88_0223C15C (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov88_0223C17C (UnkStruct_02018340 * param0)

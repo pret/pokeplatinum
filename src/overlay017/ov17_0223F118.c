@@ -35,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02024220.h"
 #include "unk_02073C2C.h"
 #include "overlay017/ov17_0223F118.h"
@@ -93,7 +93,7 @@ UnkStruct_0207C690 * ov17_0223F140 (int param0)
 
 static void ov17_0223F15C (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);

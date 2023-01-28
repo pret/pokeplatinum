@@ -30,7 +30,7 @@
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
@@ -263,7 +263,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     param1->unk_30 = NULL;
 
     sub_0201A7A0(&param1->unk_1C);
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 

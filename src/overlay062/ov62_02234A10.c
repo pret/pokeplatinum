@@ -20,7 +20,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_0208B284.h"
@@ -53,14 +53,14 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
     sub_0201D78C(v2, 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_020237BC(v0);
     sub_0201A9A4(v2);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 static void ov62_02234A90 (UnkStruct_0208C06C * param0)
 {
     sub_0201ACF4(&param0->unk_8A4);
     sub_0201A8FC(&param0->unk_8A4);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)

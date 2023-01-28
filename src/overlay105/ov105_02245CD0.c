@@ -8,7 +8,7 @@
 #include "struct_defs/struct_02008A90.h"
 
 #include "unk_0200762C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "unk_02073C2C.h"
 
@@ -19,7 +19,7 @@ void ov105_02245DB8(UnkStruct_02007C7C * param0, int param1);
 
 void ov105_02245CD0 (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(0);
 
     G3X_SetShading(GX_SHADING_TOON);

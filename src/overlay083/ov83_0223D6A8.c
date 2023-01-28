@@ -59,7 +59,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201E3BC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02098FFC.h"
 #include "overlay083/ov83_0223D4CC.h"
@@ -998,8 +998,8 @@ void ov83_0223E720 (UnkStruct_ov83_0223E824 * param0, UnkStruct_02018340 * param
     ov83_0223E77C(param0, param2);
     ov83_0223E844(param0, param2, param3);
 
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     param0->unk_28 = 1;
 }
@@ -1068,8 +1068,8 @@ static void ov83_0223E8DC (UnkStruct_0201CD38 * param0, void * param1)
     v0->unk_30++;
 
     if (v0->unk_30 >= 30) {
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         sub_0200DA58(param0);
         v0->unk_2C = NULL;
     }
@@ -1090,8 +1090,8 @@ void ov83_0223E908 (UnkStruct_ov83_0223E824 * param0, u32 param1)
     }
 
     sub_0201A954(param0->unk_08[0]);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 BOOL ov83_0223E984 (const UnkStruct_ov83_0223E824 * param0)
@@ -1109,8 +1109,8 @@ void ov83_0223E994 (UnkStruct_ov83_0223E824 * param0)
         return;
     }
 
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     sub_0200DA58(param0->unk_2C);
 
     param0->unk_2C = NULL;

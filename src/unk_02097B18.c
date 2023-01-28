@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
 #include "unk_0202440C.h"
@@ -229,14 +229,14 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
 
     v0 = sub_0200682C(param0);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
-    sub_0201FF74(GX_PLANEMASK_BG0, 0);
-    sub_0201FF74(GX_PLANEMASK_BG1, 0);
-    sub_0201FF74(GX_PLANEMASK_BG2, 0);
-    sub_0201FF74(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_02019044(v0->unk_D4.unk_10, 1);
     sub_02019044(v0->unk_D4.unk_10, 2);
     sub_02019044(v0->unk_D4.unk_10, 3);

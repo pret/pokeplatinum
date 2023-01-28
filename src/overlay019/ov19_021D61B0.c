@@ -46,7 +46,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -176,8 +176,8 @@ BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D
 
             sub_02017798(NULL, NULL);
             sub_020177A4();
-            sub_0201FF00();
-            sub_0201FF68();
+            GX_DisableEngineALayers();
+            GX_DisableEngineBLayers();
 
             GX_SetVisiblePlane(0);
             GXS_SetVisiblePlane(0);
@@ -1780,7 +1780,7 @@ static void ov19_021D74B4 (UnkStruct_ov19_021D61B0 * param0, const UnkStruct_ov1
         0
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
@@ -1829,8 +1829,8 @@ static void ov19_021D75CC (UnkStruct_ov19_021D61B0 * param0, const UnkStruct_ov1
         ov19_021DC6A0(&(param0->unk_B290));
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     GX_DispOn();
 }
 
@@ -1839,7 +1839,7 @@ static void ov19_021D76FC (void)
     NNS_G3dInit();
     G3X_InitMtxStack();
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);

@@ -53,7 +53,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_020244AC.h"
@@ -816,7 +816,7 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
 
     param0->unk_220 = param2 + 1;
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     NARC_dtor(v2);
 }
 

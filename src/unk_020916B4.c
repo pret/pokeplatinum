@@ -8,7 +8,7 @@
 
 #include "unk_0200762C.h"
 #include "unk_02015F84.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "unk_02073C2C.h"
@@ -135,7 +135,7 @@ void sub_020916B4 (UnkStruct_0208D7BC * param0)
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     G3_ViewPort(0, 0, 255, 191);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(2);
 }

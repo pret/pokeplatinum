@@ -43,7 +43,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_02023FCC.h"
@@ -871,8 +871,8 @@ static BOOL ov62_02241D24 (UnkStruct_0208C06C * param0)
         ov62_022343B8(param0, 56, 3);
         ov62_022343B8(param0, 59, 7);
 
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
 
         ov62_02245C64(param0);
         ov62_02245C08(param0, 0);
@@ -898,8 +898,8 @@ static BOOL ov62_02241D24 (UnkStruct_0208C06C * param0)
             ov62_022418DC(param0, v0->unk_4C2);
             ov62_022419D4(param0, v0->unk_4C3, v0->unk_4C4);
 
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -1876,8 +1876,8 @@ static BOOL ov62_02242D90 (UnkStruct_0208C06C * param0)
         ov62_022343B8(param0, 4, 3);
         ov62_022343B8(param0, 7, 7);
 
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
 
         ov62_02241C38(param0);
         ov62_02234540(param0, 1);
@@ -1903,8 +1903,8 @@ static BOOL ov62_02242D90 (UnkStruct_0208C06C * param0)
         ov62_02231664(&v0->unk_08, 0);
 
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 0)) {
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
 
             ov62_0224141C(param0, 1);
             ov62_02234358(param0, param0->unk_6F0, 16, 76 + (param0->unk_14.unk_48C.unk_38.unk_04 * 24));
@@ -2011,8 +2011,8 @@ static BOOL ov62_0224312C (UnkStruct_0208C06C * param0)
         v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, 102);
 
         ov62_02241AA4(param0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -2024,8 +2024,8 @@ static BOOL ov62_0224312C (UnkStruct_0208C06C * param0)
             ov62_02241954(param0, v0->unk_4C0);
             ov62_022418DC(param0, v0->unk_4C2);
             ov62_022419D4(param0, v0->unk_4C3, v0->unk_4C4);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -2062,10 +2062,10 @@ static BOOL ov62_0224324C (UnkStruct_0208C06C * param0)
         ov62_022343B8(param0, ov62_02233FEC(&v0->unk_10C), 3);
         ov62_0223427C(&v0->unk_10C, 0);
         ov62_02234540(param0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 3:
@@ -2074,8 +2074,8 @@ static BOOL ov62_0224324C (UnkStruct_0208C06C * param0)
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 0)) {
             ov62_0223427C(&v0->unk_10C, 1);
             ov62_02245640(param0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -2129,8 +2129,8 @@ static BOOL ov62_02243410 (UnkStruct_0208C06C * param0)
         sub_02024034(v0->unk_608[0]);
         sub_02024034(v0->unk_608[1]);
         sub_02024034(v0->unk_608[2]);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
         ov62_022444A0(param0);
         ov62_02234540(param0, 1);
@@ -2184,8 +2184,8 @@ static BOOL ov62_02243514 (UnkStruct_0208C06C * param0)
 
             ov62_022455C4(param0);
             ov62_02234540(param0, 0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-            sub_0201FF74(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
             param0->unk_08++;
             break;
         case 1:
@@ -2216,8 +2216,8 @@ static BOOL ov62_02243514 (UnkStruct_0208C06C * param0)
             ov62_02231B8C(param0);
             sub_02019EBC(param0->unk_14.unk_10, 2);
             sub_02019EBC(param0->unk_14.unk_10, 6);
-            sub_0201FF74(GX_PLANEMASK_BG2, 0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             param0->unk_08++;
             break;
         case 4:
@@ -2262,8 +2262,8 @@ static BOOL ov62_02243514 (UnkStruct_0208C06C * param0)
                     ov62_022323B8(&v0->unk_80, 1);
                 }
 
-                sub_0201FF74(GX_PLANEMASK_BG2, 1);
-                sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+                GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+                GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
                 param0->unk_08++;
             }
 
@@ -2466,8 +2466,8 @@ static BOOL ov62_02243B1C (UnkStruct_0208C06C * param0)
 
         ov62_022343B8(param0, 6, 7);
 
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
 
         ov62_02245C64(param0);
         ov62_02245C08(param0, 0);
@@ -2498,10 +2498,10 @@ static BOOL ov62_02243B1C (UnkStruct_0208C06C * param0)
         ov62_022343B8(param0, ov62_02233FEC(&v0->unk_10C), 3);
         ov62_0223427C(&v0->unk_10C, 0);
         ov62_02234540(param0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 3:
@@ -2510,8 +2510,8 @@ static BOOL ov62_02243B1C (UnkStruct_0208C06C * param0)
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 0)) {
             ov62_0223427C(&v0->unk_10C, 1);
             ov62_02245640(param0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -2722,7 +2722,7 @@ static BOOL ov62_02243FA8 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
     case 1:
         ov62_022314F0(&v0->unk_00, &v0->unk_04, (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), (GX_BLEND_PLANEMASK_BG3), (GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ), 0);
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_08++;
         break;
     case 2:
@@ -2772,7 +2772,7 @@ static BOOL ov62_022440D4 (UnkStruct_0208C06C * param0)
         ov62_02231664(&v0->unk_08, 1);
 
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 1, 0)) {
-            sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
             ov62_02245BD8(param0);
             param0->unk_08++;
         }
@@ -2982,10 +2982,10 @@ static BOOL ov62_022444BC (UnkStruct_0208C06C * param0)
         ov62_0223427C(&v0->unk_10C, 0);
         ov62_02234540(param0, 0);
 
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 3:
@@ -2994,8 +2994,8 @@ static BOOL ov62_022444BC (UnkStruct_0208C06C * param0)
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 0)) {
             ov62_0223427C(&v0->unk_10C, 1);
             ov62_02245640(param0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -3049,8 +3049,8 @@ static BOOL ov62_02244720 (UnkStruct_0208C06C * param0)
         sub_02024034(v0->unk_608[0]);
         sub_02024034(v0->unk_608[1]);
         sub_02024034(v0->unk_608[2]);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
         ov62_022444A0(param0);
         ov62_02234540(param0, 1);
@@ -3158,7 +3158,7 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
     UnkStruct_ov62_02241204 * v2 = param0->unk_860;
 
     ov62_022302A8(param0, 2, param2);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
     sub_0201A7A0(v1);
     sub_0201A7E8(param0->unk_14.unk_10, v1, 2, 1, 19, 30, 4, 14, 300);
 
@@ -3292,8 +3292,8 @@ static BOOL ov62_02244CD4 (UnkStruct_0208C06C * param0)
 
             ov62_02234540(param0, 0);
             ov62_022455C4(param0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-            sub_0201FF74(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
             param0->unk_08++;
             break;
         case 1:
@@ -3322,8 +3322,8 @@ static BOOL ov62_02244CD4 (UnkStruct_0208C06C * param0)
             ov62_02231B8C(param0);
             sub_02019EBC(param0->unk_14.unk_10, 2);
             sub_02019EBC(param0->unk_14.unk_10, 6);
-            sub_0201FF74(GX_PLANEMASK_BG2, 0);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
             param0->unk_08++;
             break;
         case 4:
@@ -3477,8 +3477,8 @@ static BOOL ov62_02245018 (UnkStruct_0208C06C * param0)
 
         sub_02019EBC(param0->unk_14.unk_10, 2);
         sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
         sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         ov62_0223376C(param0, 0);
@@ -3538,10 +3538,10 @@ static BOOL ov62_02245018 (UnkStruct_0208C06C * param0)
                 ov62_022323B8(&v0->unk_80, 1);
             }
 
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_BG3, 1);
-            sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
             param0->unk_08++;
         }
 
@@ -4159,7 +4159,7 @@ static BOOL ov62_02245D80 (UnkStruct_0208C06C * param0)
         }
 
         ov62_02234540(param0, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -4191,8 +4191,8 @@ static BOOL ov62_02245D80 (UnkStruct_0208C06C * param0)
                 ov62_0223427C(&v0->unk_10C, 1);
             }
 
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
         break;
@@ -4221,8 +4221,8 @@ static BOOL ov62_02245ECC (UnkStruct_0208C06C * param0)
 
         ov62_02234540(param0, 0);
         ov62_022455C4(param0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -4276,7 +4276,7 @@ static BOOL ov62_02245FE4 (UnkStruct_0208C06C * param0)
     case 1:
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 2)) {
             ov62_0224568C(param0);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
         break;
@@ -4293,7 +4293,7 @@ static BOOL ov62_02246090 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -4309,7 +4309,7 @@ static BOOL ov62_02246090 (UnkStruct_0208C06C * param0)
 
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 2)) {
             ov62_02244AB4(param0, 100, 0);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -4329,7 +4329,7 @@ static BOOL ov62_0224613C (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -4460,8 +4460,8 @@ static BOOL ov62_02246428 (UnkStruct_0208C06C * param0)
     case 0:
         sub_02019EBC(param0->unk_14.unk_10, 2);
         sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -4515,8 +4515,8 @@ static BOOL ov62_02246428 (UnkStruct_0208C06C * param0)
                 ov62_022323B8(&v0->unk_80, 1);
             }
 
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -4538,8 +4538,8 @@ static BOOL ov62_02246640 (UnkStruct_0208C06C * param0)
         ov62_02231A88(param0);
         sub_02019EBC(param0->unk_14.unk_10, 2);
         sub_02019EBC(param0->unk_14.unk_10, 6);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -4591,8 +4591,8 @@ static BOOL ov62_02246640 (UnkStruct_0208C06C * param0)
                 ov62_022323B8(&v0->unk_80, 1);
             }
 
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 

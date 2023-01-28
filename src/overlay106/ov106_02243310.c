@@ -17,7 +17,7 @@
 #include "unk_0200A784.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02079D40.h"
 #include "overlay106/ov106_02243310.h"
@@ -66,8 +66,8 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, UnkStruct_02073C74 * par
         sub_0200A5C8(param0->unk_1A0[v0][1]);
     }
 
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     NARC_dtor(v1);
 
     return;

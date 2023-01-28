@@ -24,7 +24,7 @@
 #include "unk_020170BC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "overlay100/ov100_021D13E4.h"
@@ -192,7 +192,7 @@ BOOL ov100_021D16C4 (void * param0)
         ov100_021D4AA4(&v0->unk_1A4.unk_00[1], &v0->unk_7C4->unk_1C, 2);
         ov100_021D4AA4(&v0->unk_1A4.unk_00[2], &v0->unk_7C4->unk_1C, 2);
         ov100_021D4AA4(&v0->unk_1A4.unk_498, &v0->unk_7C4->unk_1C, 0);
-        sub_0201FF74(GX_PLANEMASK_BG0, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         v0->unk_00++;
         break;
     default:

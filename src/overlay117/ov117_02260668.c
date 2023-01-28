@@ -50,7 +50,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02023790.h"
 #include "unk_0202419C.h"
@@ -190,8 +190,8 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov117_02261280 * v0;
 
     sub_02017798(NULL, NULL);
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -269,10 +269,10 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
 
     Unk_021BF67C.unk_65 = 1;
 
-    sub_0201FFE8();
-    sub_0201FFD0();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_SwapDisplay();
+    GX_BothDispOn();
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
         sub_02002AE4(1);
@@ -456,8 +456,8 @@ int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
         sub_0201A8FC(&v0->unk_30[v1]);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(v0->unk_2C, 1);
     sub_02019044(v0->unk_2C, 2);
     sub_02019044(v0->unk_2C, 3);
@@ -527,7 +527,7 @@ static UnkStruct_0207C690 * ov117_02260E14 (int param0)
 
 static void ov117_02260E34 (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
@@ -641,7 +641,7 @@ static void ov117_02260F7C (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov117_022610D8 (UnkStruct_02018340 * param0)
 {
-    sub_0201FF00();
+    GX_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -657,7 +657,7 @@ static void ov117_022610D8 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -741,7 +741,7 @@ static void ov117_022610D8 (UnkStruct_02018340 * param0)
         sub_02019184(param0, 3, 3, 0);
 
         G2_SetBG0Priority(2);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {

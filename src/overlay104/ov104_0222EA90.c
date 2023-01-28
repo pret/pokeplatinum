@@ -5,7 +5,7 @@
 
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay104/ov104_0223D9E4.h"
@@ -426,7 +426,7 @@ static void ov104_0222EBD8 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
     sub_02019060(0, 1);
     sub_02019060(2, 2);
     sub_02019060(3, 3);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
 }
@@ -454,7 +454,7 @@ static void ov104_0222EC20 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
     sub_02019060(3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
 }

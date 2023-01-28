@@ -50,7 +50,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
@@ -769,7 +769,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
 
 static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * param1)
 {
-    sub_0201FF00();
+    GX_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -785,7 +785,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * para
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -861,7 +861,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * para
         sub_02019EBC(param1, 3);
 
         G2_SetBG0Priority(0x1);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {
@@ -929,15 +929,15 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * para
     param0->unk_74 = 0xff;
     param0->unk_75 = 0xa0;
 
-    sub_0201FFD0();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_BothDispOn();
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02017798(sub_0207C520, param0);
 }
 
 static void sub_0207C460 (UnkStruct_02018340 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
     sub_02019044(param0, 3);

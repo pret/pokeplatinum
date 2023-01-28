@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -165,10 +165,10 @@ static int sub_02098388 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_020242C4(v0->unk_04.unk_34);
 
-    sub_0201FF0C(1, 0);
-    sub_0201FF0C(2, 0);
-    sub_0201FF0C(3, 0);
-    sub_0201FF74(4, 0);
+    GX_EngineAToggleLayers(1, 0);
+    GX_EngineAToggleLayers(2, 0);
+    GX_EngineAToggleLayers(3, 0);
+    GX_EngineBToggleLayers(4, 0);
 
     sub_02002FA0(v0->unk_04.unk_04, 0);
     sub_02002FA0(v0->unk_04.unk_04, 2);

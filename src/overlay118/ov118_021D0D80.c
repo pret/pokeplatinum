@@ -18,7 +18,7 @@
 #include "unk_02014000.h"
 #include "heap.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02023790.h"
 #include "unk_0202419C.h"
@@ -110,7 +110,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         v0->unk_00++;
         break;
     case 4:
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         ov118_021D1028(v0);
         v0->unk_00++;
         break;

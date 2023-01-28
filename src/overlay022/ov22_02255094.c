@@ -34,7 +34,7 @@
 #include "unk_02018340.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0202298C.h"
 #include "unk_0202419C.h"
@@ -74,14 +74,14 @@ void ov22_02255094 (void)
 
     Unk_021BF67C.unk_65 = 1;
 
-    sub_0201FFE8();
+    GX_SwapDisplay();
 }
 
 void ov22_022550B4 (void)
 {
     Unk_021BF67C.unk_65 = 0;
 
-    sub_0201FFE8();
+    GX_SwapDisplay();
     ov22_02255738();
     ov22_0225572C();
 
@@ -442,7 +442,7 @@ static void ov22_02255634 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov22_02255654 (void)
@@ -450,7 +450,7 @@ static void ov22_02255654 (void)
     NNS_G3dInit();
     G3X_InitMtxStack();
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
@@ -481,10 +481,10 @@ static void ov22_022556DC (void)
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
     NNS_G2dInitOamManagerModule();
 
-    sub_0201FF00();
-    sub_0201FF68();
-    sub_0201FF0C((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ), 1);
-    sub_0201FF74((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ), 1);
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
+    GX_EngineAToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ), 1);
+    GX_EngineBToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ), 1);
 }
 
 static void ov22_0225572C (void)
@@ -495,8 +495,8 @@ static void ov22_0225572C (void)
 
 static void ov22_02255738 (void)
 {
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     NNS_G2dInitOamManagerModule();
 }

@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_020241F0.h"
 
@@ -81,8 +81,8 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
         sub_02017798(NULL, NULL);
         sub_020177BC(NULL, NULL);
 
-        sub_0201FF00();
-        sub_0201FF68();
+        GX_DisableEngineALayers();
+        GX_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
         sub_02017DD4(4, 8);
@@ -91,7 +91,7 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
         ov73_021D366C(v0);
 
         sub_02017798(ov73_021D3420, (void *)v0);
-        sub_0201FFD0();
+        GX_BothDispOn();
 
         {
             u16 * v2 = (u16 *)sub_020241F0();
@@ -187,7 +187,7 @@ static void ov73_021D342C (UnkStruct_ov73_021D342C * param0)
             GX_VRAM_TEXPLTT_NONE
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
     }
 
     {

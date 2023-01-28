@@ -22,7 +22,7 @@
 #include "unk_020170BC.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
@@ -336,7 +336,7 @@ void ov100_021D4C94 (UnkStruct_ov100_021D46C8 * param0, int param1)
 void ov100_021D4DC8 (int param0)
 {
     Unk_021BF67C.unk_65 = param0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
 }
 
 void ov100_021D4DD8 (UnkStruct_ov100_021D4DD8 * param0, int param1)

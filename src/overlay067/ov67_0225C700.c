@@ -41,7 +41,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -571,7 +571,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    sub_0201FE94(&Unk_ov67_0225D410);
+    GX_SetBanks(&Unk_ov67_0225D410);
 
     {
         sub_0201975C(Unk_ov67_0225D3F4[0], 0);
@@ -612,7 +612,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
         sub_02006E60(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
         NARC * v3;

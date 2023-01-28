@@ -40,7 +40,7 @@
 #include "unk_02013A04.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
@@ -227,7 +227,7 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
 
     ov23_0224F500(param0->unk_23C[1 + param0->unk_29C]->unk_00, 2, 1);
     param0->unk_25C = param2 + 1;
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov23_0224F460 (UnkStruct_ov23_02250CD4 * param0)

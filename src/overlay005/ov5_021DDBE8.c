@@ -48,7 +48,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02054884.h"
@@ -1474,9 +1474,9 @@ void ov5_021DEFA0 (UnkStruct_0203CDB0 * param0)
     Unk_ov5_02202120->unk_02 = 0;
     Unk_ov5_02202120->unk_04 = param0;
 
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
     GX_ResetBankForBG();
     MI_CpuClearFast((void *)HW_LCDC_VRAM_C, HW_VRAM_C_SIZE);
@@ -1660,10 +1660,10 @@ static void ov5_021DF30C (UnkStruct_0203CDB0 * param0)
             GX_VRAM_TEXPLTT_0123_E
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
     }
 
-    sub_0201FF0C(
+    GX_EngineAToggleLayers(
         GX_PLANEMASK_BG0, 0);
 
     {
@@ -1684,7 +1684,7 @@ static void ov5_021DF30C (UnkStruct_0203CDB0 * param0)
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
 
             sub_02019060(3, 3);
-            sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
             {
                 MtxFx22 v2;
@@ -1717,7 +1717,7 @@ static void ov5_021DF30C (UnkStruct_0203CDB0 * param0)
         }
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov5_021DF3D4 (UnkStruct_0203CDB0 * param0)

@@ -38,7 +38,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
@@ -511,7 +511,7 @@ static void ov7_0224D474 (UnkStruct_ov7_0224D008 * param0)
 
 static void ov7_0224D548 (UnkStruct_ov7_0224D008 * param0)
 {
-    param0->unk_2A0 = sub_02020014();
+    param0->unk_2A0 = GX_EngineAGetLayers();
     param0->unk_29C[0] = sub_0201A008(param0->unk_00, 0);
     param0->unk_29C[1] = sub_0201A008(param0->unk_00, 1);
     param0->unk_29C[2] = sub_0201A008(param0->unk_00, 2);
@@ -522,10 +522,10 @@ static void ov7_0224D548 (UnkStruct_ov7_0224D008 * param0)
     sub_02019060(2, 1);
     sub_02019060(3, 0);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
 static void ov7_0224D5D8 (UnkStruct_ov7_0224D008 * param0)
@@ -534,7 +534,7 @@ static void ov7_0224D5D8 (UnkStruct_ov7_0224D008 * param0)
     sub_02019060(1, param0->unk_29C[1]);
     sub_02019060(2, param0->unk_29C[2]);
     sub_02019060(3, param0->unk_29C[3]);
-    sub_0201FF48(param0->unk_2A0);
+    GX_EngineASetLayers(param0->unk_2A0);
 }
 
 static u8 ov7_0224D620 (UnkStruct_ov7_0224D008 * param0)
@@ -1477,7 +1477,7 @@ static void ov7_0224EAD0 (UnkStruct_ov7_0224D008 * param0)
         param0->unk_25C[v0] = ov5_021D3104(&param0->unk_94, &Unk_ov7_0224F358[v0]);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov7_0224EB14 (UnkStruct_ov7_0224D008 * param0)

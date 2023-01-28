@@ -9,7 +9,7 @@
 #include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02034198.h"
 #include "unk_020393C8.h"
@@ -62,8 +62,8 @@ void ov79_021D20F4 (UnkStruct_ov79_021D0E1C * param0)
         sub_02039734();
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 void ov79_021D21CC (UnkStruct_ov79_021D0E1C * param0)

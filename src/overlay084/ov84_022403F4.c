@@ -11,7 +11,7 @@
 
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "move_table.h"
 #include "unk_0207C908.h"
@@ -174,8 +174,8 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov84_022411B0[] = {
 
 void ov84_022403F4 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, 6);
     ov84_02240424(param0);
     ov84_022404C0(param0);

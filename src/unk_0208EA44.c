@@ -13,7 +13,7 @@
 #include "unk_0200C6E4.h"
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
@@ -130,8 +130,8 @@ static const u8 Unk_020F411C[] = {
 
 void sub_0208EA44 (UnkStruct_0208D7BC * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, 19);
 
     param0->unk_414 = sub_0200C6E4(19);

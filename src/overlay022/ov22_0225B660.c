@@ -29,7 +29,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_0202419C.h"
@@ -89,7 +89,7 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
 
     ov22_02255094();
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
     {

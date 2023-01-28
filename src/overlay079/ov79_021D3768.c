@@ -9,7 +9,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_0200762C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "unk_02073C2C.h"
@@ -37,7 +37,7 @@ void ov79_021D3768 (UnkStruct_ov79_021D3820 * param0, UnkStruct_ov79_021D38D0 * 
 
     ov79_021D3870(param0, param2);
     ov79_021D38D0(param0, param1, param2);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 }

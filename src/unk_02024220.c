@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0207C690.h"
 
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02024220.h"
 
 static void sub_020242DC(void);
@@ -56,7 +56,7 @@ void sub_020242C4 (UnkStruct_0207C690 * param0)
 
 static void sub_020242DC (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(0);
     G3X_SetShading(GX_SHADING_TOON);

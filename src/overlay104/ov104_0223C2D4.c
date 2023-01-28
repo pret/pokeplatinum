@@ -44,7 +44,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
@@ -133,8 +133,8 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -186,9 +186,9 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     v0->unk_98 = sub_0200D9E8(ov104_0223C72C, v0, 61000);
     v0->unk_9C = sub_0200D9E8(ov104_0223C738, v0, 80000);
 
-    sub_0201FFD0();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_BothDispOn();
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(4, ov104_0222EA90(v2, 3), 1);
 
     sub_02002AE4(1);
@@ -214,8 +214,8 @@ void ov104_0223C4CC (UnkStruct_ov104_0223C4CC * param0)
 
     ov104_0223CEEC(param0);
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(param0->unk_00, 1);
     sub_02019044(param0->unk_00, 2);
     sub_02019044(param0->unk_00, 3);
@@ -456,7 +456,7 @@ static void ov104_0223C948 (UnkStruct_02018340 * param0, int param1)
     int v0;
 
     v0 = ov104_0222EA90(param1, 0);
-    sub_0201FF00();
+    GX_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v1 = {
@@ -472,7 +472,7 @@ static void ov104_0223C948 (UnkStruct_02018340 * param0, int param1)
             GX_VRAM_TEXPLTT_0_F
         };
 
-        sub_0201FE94(&v1);
+        GX_SetBanks(&v1);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -585,7 +585,7 @@ static void ov104_0223C948 (UnkStruct_02018340 * param0, int param1)
         }
 
         G2_SetBG0Priority(0);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {
@@ -794,7 +794,7 @@ static UnkStruct_0207C690 * ov104_0223CF4C (int param0)
 
 static void ov104_0223CF68 (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);

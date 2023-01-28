@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_0209A74C.h"
 
@@ -85,21 +85,21 @@ void sub_0209A74C (int param0)
     sub_0200F344(1, 0);
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
 
     G2_BlendNone();
     G2S_BlendNone();
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
-    sub_0201FE94(&Unk_020F8AF8);
+    GX_SetBanks(&Unk_020F8AF8);
 
     v0 = sub_02018340(param0);
 
@@ -122,7 +122,7 @@ void sub_0209A74C (int param0)
     sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
     sub_020237BC(v3);
-    sub_0201FFD0();
+    GX_BothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
@@ -160,20 +160,20 @@ void sub_0209A8E0 (int param0)
     sub_0200F344(1, 0);
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     sub_02017DD4(4, 8);
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
 
     G2_BlendNone();
     G2S_BlendNone();
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    sub_0201FE94(&Unk_020F8AF8);
+    GX_SetBanks(&Unk_020F8AF8);
 
     v0 = sub_02018340(param0);
 
@@ -196,7 +196,7 @@ void sub_0209A8E0 (int param0)
     sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
     sub_020237BC(v3);
-    sub_0201FFD0();
+    GX_BothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);

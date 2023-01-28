@@ -22,7 +22,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02056720.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -318,8 +318,8 @@ static void ov25_02254820 (UnkStruct_0201CD38 * param0, void * param1)
     GX_SetBankForSubOBJ(GX_VRAM_SUB_OBJ_16_I);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    sub_0201FF68();
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_DisableEngineBLayers();
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_020183C4(v2->unk_1F8, 4, &v0, 0);
     sub_020183C4(v2->unk_1F8, 5, &v1, 0);
 

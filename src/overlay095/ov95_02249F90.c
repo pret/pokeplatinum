@@ -17,7 +17,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_02249F90.h"
 
@@ -219,7 +219,7 @@ static void ov95_0224A10C (UnkStruct_ov95_02249FF8 * param0)
         0
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     sub_02018368(&v1);
 
@@ -259,8 +259,8 @@ static void ov95_0224A10C (UnkStruct_ov95_02249FF8 * param0)
 
     ov95_0224A358(param0->unk_0C, UnkEnum_ov95_0224A020_00, UnkEnum_ov95_0224A020_02);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov95_0224A320 (UnkStruct_ov95_02249FF8 * param0)

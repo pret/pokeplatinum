@@ -37,7 +37,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
@@ -248,7 +248,7 @@ static void ov74_021D10F8 (void)
         GX_VRAM_BG_128_A, GX_VRAM_BGEXTPLTT_NONE, GX_VRAM_SUB_BG_128_C, GX_VRAM_SUB_BGEXTPLTT_NONE, GX_VRAM_OBJ_16_G, GX_VRAM_OBJEXTPLTT_NONE, GX_VRAM_SUB_OBJ_16_I, GX_VRAM_SUB_OBJEXTPLTT_NONE, GX_VRAM_TEX_NONE, GX_VRAM_TEXPLTT_NONE
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
 }
 
 static void ov74_021D1118 (void * param0)
@@ -272,8 +272,8 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        sub_0201FF00();
-        sub_0201FF68();
+        GX_DisableEngineALayers();
+        GX_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -292,7 +292,7 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
         ov74_021D14F4(param0);
         ov74_021D1668(param0);
         sub_0201DBEC(32, param0->unk_00);
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         sub_020397E4();
         sub_02017798(ov74_021D1118, param0);
         param0->unk_08 = 0;
@@ -325,8 +325,8 @@ static int ov74_021D122C (UnkStruct_ov74_021D0D80 * param0)
     case 1:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        sub_0201FF00();
-        sub_0201FF68();
+        GX_DisableEngineALayers();
+        GX_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);

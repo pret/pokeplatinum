@@ -14,7 +14,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "map_header.h"
 #include "unk_0203E880.h"
 #include "unk_020508D4.h"
@@ -68,7 +68,7 @@ static void ov5_021F007C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
 
     sub_02019060(2, 0);
-    sub_0201FF0C((GX_PLANEMASK_BG2), 1);
+    GX_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     sub_02005748(1608);
 }
 
@@ -121,7 +121,7 @@ static void ov5_021F013C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 0, 16 - 0);
 
     sub_02019060(2, 0);
-    sub_0201FF0C((GX_PLANEMASK_BG2), 1);
+    GX_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
     sub_02005748(1608);
 }
 
@@ -302,14 +302,14 @@ static void ov5_021F0310 (UnkStruct_0203CDB0 * param0)
 {
     u16 v0 = 0x7fff;
 
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     G2_SetBG2Priority(3);
 
     sub_0201972C(2, &v0, 2, ((6 * 32) + 4));
     sub_020196C0(param0->unk_08, 2, 2, 1, 2);
     sub_02019EE0(param0->unk_08, 2, ((6 << 12) | 2));
-    sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
     ov5_021F02F4(param0);
 }
@@ -318,14 +318,14 @@ static void ov5_021F0374 (UnkStruct_0203CDB0 * param0)
 {
     u16 v0 = 0x7fff;
 
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
     G2_SetBG3Priority(3);
 
     sub_0201972C(3, &v0, 2, ((6 * 32) + 4));
     sub_020196C0(param0->unk_08, 3, 2, 1, 2);
     sub_02019EE0(param0->unk_08, 3, ((6 << 12) | 2));
-    sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
     ov5_021F02F4(param0);
 }
@@ -462,7 +462,7 @@ BOOL ov5_021F0488 (UnkStruct_020508D4 * param0)
         v1->unk_0C = 2;
 
         sub_02019060(2, 0);
-        sub_0201FF0C((GX_PLANEMASK_BG2), 1);
+        GX_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
         break;
     case 2:
         if (v1->unk_08 == 0) {
@@ -520,7 +520,7 @@ BOOL ov5_021F0488 (UnkStruct_020508D4 * param0)
 
         if (v2 == 1) {
             if (v1->unk_08 == 0) {
-                sub_0201FF0C((GX_PLANEMASK_BG2), 0);
+                GX_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
                 G2_BlendNone();
                 sub_02019060(2, 3);
 

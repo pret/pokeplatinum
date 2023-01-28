@@ -6,7 +6,7 @@
 
 #include "unk_02017728.h"
 #include "unk_0201C970.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02024220.h"
 
 void sub_0201C9CC(NNSG3dResMdl ** param0, NNSG3dResFileHeader ** param1);
@@ -101,7 +101,7 @@ void sub_0201CAF4 (const u8 param0)
 
 static void sub_0201CB1C (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);

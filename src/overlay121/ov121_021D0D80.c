@@ -25,7 +25,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -68,8 +68,8 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -95,8 +95,8 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     Unk_021BF67C.unk_65 = 0;
 
-    sub_0201FFE8();
-    sub_0201FFD0();
+    GX_SwapDisplay();
+    GX_BothDispOn();
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
@@ -183,8 +183,8 @@ static void ov121_021D0F7C (void * param0)
 
 static void ov121_021D0F94 (void)
 {
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -200,7 +200,7 @@ static void ov121_021D0F94 (void)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -336,7 +336,7 @@ static UnkStruct_0207C690 * ov121_021D1270 (int param0)
 
 static void ov121_021D128C (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 

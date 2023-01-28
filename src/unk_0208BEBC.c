@@ -15,7 +15,7 @@
 #include "unk_020041CC.h"
 #include "poke_overlay.h"
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020277A4.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
@@ -135,7 +135,7 @@ static int sub_0208BF6C (UnkStruct_020067E8 * param0, int * param1)
         DestroyHeap(102);
         UnloadOverlayByID(FS_OVERLAY_ID(overlay62));
         Unk_021BF67C.unk_65 = 0;
-        sub_0201FFE8();
+        GX_SwapDisplay();
 
         return 1;
     }

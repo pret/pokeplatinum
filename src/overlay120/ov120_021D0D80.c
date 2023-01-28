@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 
 typedef struct {
     int unk_00;
@@ -72,8 +72,8 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
         sub_02017798(NULL, NULL);
         sub_020177BC(NULL, NULL);
 
-        sub_0201FF00();
-        sub_0201FF68();
+        GX_DisableEngineALayers();
+        GX_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -84,7 +84,7 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
         ov120_021D114C(v0);
 
         sub_02017798(ov120_021D0F18, (void *)v0);
-        sub_0201FFD0();
+        GX_BothDispOn();
 
         v0->unk_24 = 0;
         *param1 = 1;
@@ -174,7 +174,7 @@ static void ov120_021D0F24 (UnkStruct_ov120_021D0F24 * param0)
             GX_VRAM_TEXPLTT_NONE
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
     }
 
     {

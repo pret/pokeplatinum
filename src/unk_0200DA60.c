@@ -30,7 +30,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "overlay005/ov5_021D2F14.h"
@@ -639,7 +639,7 @@ static void sub_0200EDD4 (UnkStruct_0200ED50 * param0, u8 param1, u8 param2)
     param0->unk_1C8 = ov5_021D3584(&param0->unk_00, &v0);
 
     sub_020219F8(param0->unk_00.unk_00);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void sub_0200EE24 (UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2)

@@ -39,7 +39,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
@@ -309,7 +309,7 @@ static void ov87_021D139C (UnkStruct_ov87_021D106C * param0)
     };
     u32 v4;
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     sub_02018368(&v1);
@@ -330,7 +330,7 @@ static void ov87_021D139C (UnkStruct_ov87_021D106C * param0)
     sub_02019448(param0->unk_10, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1, 8, 8);
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov87_021D14B8 (UnkStruct_ov87_021D106C * param0)

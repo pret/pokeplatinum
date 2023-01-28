@@ -18,7 +18,7 @@
 
 #include "unk_020041CC.h"
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_0202440C.h"
 #include "unk_02030108.h"
 #include "unk_02051D8C.h"
@@ -279,9 +279,9 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
         break;
     case 31:
         if (v9 == 0) {
-            sub_0201FF0C(GX_PLANEMASK_BG2, 1);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         } else {
-            sub_0201FF0C(GX_PLANEMASK_BG2, 0);
+            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         }
         break;
     case 32:

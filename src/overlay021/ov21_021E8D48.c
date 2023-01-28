@@ -44,7 +44,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
@@ -334,7 +334,7 @@ static void ov21_021E90B0 (UnkStruct_02018340 * param0, int param1)
     }
 
     sub_02019060(0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     sub_02019044(param0, 0);
 
     {

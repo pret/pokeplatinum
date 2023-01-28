@@ -63,7 +63,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
@@ -1396,7 +1396,7 @@ static void ov69_0225D318 (UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC 
     param0->unk_1A8 = NARC_ctor(163, param2);
 
     sub_0201DBEC(64, param2);
-    sub_0201FE94(&Unk_ov69_0225F0C0);
+    GX_SetBanks(&Unk_ov69_0225F0C0);
 
     ov69_0225D3A4(param0, param1, param2);
     ov69_0225D53C(param0, param2);
@@ -1432,7 +1432,7 @@ static void ov69_0225D3A4 (UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC 
     param0->unk_00 = sub_02018340(param2);
     Unk_021BF67C.unk_65 = 1;
 
-    sub_0201FFE8();
+    GX_SwapDisplay();
 
     {
         int v0;
@@ -1483,7 +1483,7 @@ static void ov69_0225D504 (UnkStruct_ov69_0225D35C * param0)
 
     FreeToHeap(param0->unk_00);
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
 }
 
 static void ov69_0225D53C (UnkStruct_ov69_0225D35C * param0, u32 param1)
@@ -1509,8 +1509,8 @@ static void ov69_0225D53C (UnkStruct_ov69_0225D35C * param0, u32 param1)
     }
 
     sub_02039734();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov69_0225D5D8 (UnkStruct_ov69_0225D35C * param0)
@@ -1541,7 +1541,7 @@ static void ov69_0225D63C (UnkStruct_ov69_0225D35C * param0)
 
 static void ov69_0225D64C (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);

@@ -47,7 +47,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_020244AC.h"
@@ -391,9 +391,9 @@ void ov97_02237B0C (int param0, int param1, int param2, int param3, int param4, 
     sub_020093B4(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
 
     if (param5 == 0) {
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     } else {
-        sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     }
 
     sub_02017798(ov97_02237E58, NULL);

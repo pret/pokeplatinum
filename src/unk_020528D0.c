@@ -29,7 +29,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_0203A6DC.h"
@@ -104,7 +104,7 @@ static void sub_020528D0 (UnkStruct_02018340 * param0)
         0
     };
 
-    sub_0201FE94(&v0);
+    GX_SetBanks(&v0);
     sub_02018368(&v1);
     sub_020183C4(param0, 3, &v2, 0);
     sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);

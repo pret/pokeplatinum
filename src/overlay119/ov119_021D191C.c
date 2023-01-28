@@ -15,7 +15,7 @@
 #include "unk_02015F84.h"
 #include "unk_0201D670.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "overlay119/ov119_021D0D80.h"
@@ -541,7 +541,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
         }
 
         sub_0200D3CC(param0->unk_74, 4);
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         param0->unk_68++;
         break;
     case 1:
@@ -609,7 +609,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
             break;
         }
 
-        sub_0201FF0C(GX_PLANEMASK_BG1, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         ov119_021D190C(param0, 0);
         sub_0200D3F4(param0->unk_74, 0);
         sub_0200D3F4(param0->unk_78, 0);
@@ -658,7 +658,7 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D14DC(param0->unk_04.unk_40, 1);
         ov119_021D14DC(param0->unk_04.unk_40, 2);
         ov119_021D14DC(param0->unk_04.unk_40, 3);
-        sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         param0->unk_68++;
         break;
     case 1:
@@ -719,7 +719,7 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
 
         ov119_021D190C(param0, 0);
 
-        sub_0201FF0C(GX_PLANEMASK_BG1, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         sub_0200D3F4(param0->unk_74, 0);
         sub_0200D3F4(param0->unk_78, 0);
         sub_0200D3F4(param0->unk_7C, 0);

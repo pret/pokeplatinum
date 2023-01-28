@@ -35,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -139,8 +139,8 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -213,9 +213,9 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_04 = sub_0200D9E8(ov17_0224FAFC, v0, 80000);
     v0->unk_850 = 1;
 
-    sub_0201FFD0();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_BothDispOn();
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     sub_02017798(ov17_0224FA24, v0);
@@ -294,8 +294,8 @@ int ov17_0224F86C (UnkStruct_020067E8 * param0, int * param1)
         sub_0201A8FC(&v0->unk_10.unk_24[v1]);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(v0->unk_10.unk_20, 1);
     sub_02019044(v0->unk_10.unk_20, 2);
     sub_02019044(v0->unk_10.unk_20, 3);
@@ -412,7 +412,7 @@ static void ov17_0224FAFC (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov17_0224FB34 (UnkStruct_02018340 * param0)
 {
-    sub_0201FF00();
+    GX_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -428,7 +428,7 @@ static void ov17_0224FB34 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -510,7 +510,7 @@ static void ov17_0224FB34 (UnkStruct_02018340 * param0)
         sub_02019184(param0, 3, 3, 0);
 
         G2_SetBG0Priority(1);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {

@@ -52,7 +52,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -1157,7 +1157,7 @@ static void ov23_0223EC34 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        sub_0201FE94(&v0);
+        GX_SetBanks(&v0);
     }
     {
         UnkStruct_ov84_0223BA5C v1 = {
@@ -1312,10 +1312,10 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     sub_02004550(58, 0, 0);
     ov23_0223E140();
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     CreateHeap(3, 29, 0x50000);
 
     v1 = sub_02018340(29);
@@ -1456,10 +1456,10 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
     case 6:
         sub_02039734();
         sub_0200F174(3, 17, 17, 0x0, 6, 1, 29);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG1, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG2, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG3, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         (v0->unk_00)++;
         break;
     case 7:
@@ -2847,8 +2847,8 @@ static void ov23_0224108C (void)
         sub_02021CC8(Unk_ov23_02257740->unk_24C[v0], 1);
     }
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov23_0224119C (void)

@@ -13,7 +13,7 @@
 
 #include "unk_02014000.h"
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -37,8 +37,8 @@ static void sub_0207C854(UnkSPLStruct6 * param0);
 
 void sub_0207C63C (void)
 {
-    sub_0201FF00();
-    sub_0201FF68();
+    GX_DisableEngineALayers();
+    GX_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 }
@@ -59,7 +59,7 @@ UnkStruct_0207C690 * sub_0207C690 (int param0)
 
 void sub_0207C6AC (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(1);
 
     G3X_SetShading(GX_SHADING_TOON);

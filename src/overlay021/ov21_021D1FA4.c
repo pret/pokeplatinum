@@ -37,7 +37,7 @@
 #include "unk_02015064.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -91,8 +91,8 @@ void ov21_021D1FA4 (UnkStruct_ov21_021D13FC * param0, int param1)
     param0->unk_13C[2] = sub_02009714(32, 2, param1);
     param0->unk_13C[3] = sub_02009714(32, 3, param1);
 
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     v1.unk_00 = param0->unk_138;
     v1.unk_04 = param0->unk_00;
@@ -643,7 +643,7 @@ static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
     }
 
     sub_02019060(0, 2);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     {
         UnkStruct_ov97_0222DB78 v2 = {

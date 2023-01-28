@@ -15,7 +15,7 @@
 #include "unk_02002F38.h"
 #include "filesystem.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "item.h"
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/ov13_02227BDC.h"
@@ -73,7 +73,7 @@ void ov13_02227BDC (UnkStruct_ov13_02227244 * param0)
     ov13_02227F7C(param0);
     ov13_02228070(param0);
 
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov13_02227C08 (UnkStruct_ov13_02227244 * param0)

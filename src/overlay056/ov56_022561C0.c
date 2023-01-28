@@ -46,7 +46,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "unk_02023790.h"
@@ -174,11 +174,11 @@ static void ov56_022561C0 (UnkStruct_0201CD38 * param0, void * param1)
         ov56_02256704(v0);
         sub_02002BEC(1, 4);
         ov56_022562EC(v0->unk_14, v0->unk_22C);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 1);
-        sub_0201FF74(GX_PLANEMASK_BG0, 1);
-        sub_0201FF74(GX_PLANEMASK_BG1, 1);
-        sub_0201FF74(GX_PLANEMASK_BG2, 1);
-        sub_0201FF74(GX_PLANEMASK_BG3, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         ov56_02257100(v0);
         v0->unk_00++;
         break;
@@ -322,7 +322,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
 
         sub_020183C4(param0, 4, &v0, 0);
         sub_02019EBC(param0, 4);
-        sub_0201FF74(GX_PLANEMASK_BG0, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
     {
@@ -344,7 +344,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
 
         sub_020183C4(param0, 5, &v1, 0);
         sub_02019EBC(param0, 5);
-        sub_0201FF74(GX_PLANEMASK_BG1, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     {
@@ -366,7 +366,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
 
         sub_020183C4(param0, 6, &v2, 0);
         sub_02019EBC(param0, 6);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
     {
@@ -387,7 +387,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 7, &v3, 0);
-        sub_0201FF74(GX_PLANEMASK_BG3, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
     sub_02006E84(74, 0, 4, 0, 0x20 * 3, 4);

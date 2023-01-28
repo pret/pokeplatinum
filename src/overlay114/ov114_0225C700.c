@@ -58,7 +58,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
@@ -1349,7 +1349,7 @@ static void ov114_0225CEF0 (UnkStruct_ov114_0225CEF0 * param0, const UnkStruct_o
     param0->unk_08 = param3;
 
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
 
     {
         int v0;
@@ -1409,8 +1409,8 @@ static void ov114_0225CFCC (UnkStruct_ov114_0225CFCC * param0, u32 param1, u32 p
     param0->unk_00 = sub_020095C4(param1, &param0->unk_04, param4);
 
     sub_02039734();
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov114_0225D058 (UnkStruct_ov114_0225CFCC * param0)
@@ -1657,7 +1657,7 @@ static UnkStruct_ov114_0225D678 * ov114_0225D48C (const UnkStruct_ov114_0225C76C
     GX_SetVisibleWnd(0);
     GXS_SetVisibleWnd(0);
 
-    sub_0201FE94(&Unk_ov114_022601B4);
+    GX_SetBanks(&Unk_ov114_022601B4);
 
     v0->unk_02 = param2;
 
@@ -2315,7 +2315,7 @@ static void ov114_0225E1A4 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
     ov114_0225D190(param2, param0->unk_14, 16);
     param0->unk_10 = param3;
 
-    sub_0201FF0C(GX_PLANEMASK_BG0, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     sub_020070E8(param4, 7, param1->unk_00, 0, 0, 0, 0, param5);
     sub_0200710C(param4, 10, param1->unk_00, 0, 0, 0, 0, param5);
 }
@@ -2343,7 +2343,7 @@ static void ov114_0225E244 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
 
     sub_0201D78C(&param0->unk_00, 2, param0->unk_14, v1, 0, 0, Unk_ov114_022600F8[param0->unk_10], NULL);
     sub_02002C60(2);
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
 static void ov114_0225E2D4 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0225CEF0 * param1)
@@ -2416,13 +2416,13 @@ static BOOL ov114_0225E438 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
         break;
     case 1:
         sub_0201ACF4(&param0->unk_00);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 0);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
 
         ov114_0225E4B0(param0, param1, 0);
 
         sub_02019EBC(param1->unk_00, 0);
         sub_02019EBC(param1->unk_00, 1);
-        sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         return 1;
     }
 
@@ -2507,7 +2507,7 @@ static UnkStruct_ov114_0225E854 * ov114_0225E5A8 (const UnkStruct_ov114_0225C76C
     GX_SetVisibleWnd(0);
     GXS_SetVisibleWnd(0);
 
-    sub_0201FE94(&Unk_ov114_022601DC);
+    GX_SetBanks(&Unk_ov114_022601DC);
 
     v0->unk_02 = param3;
 

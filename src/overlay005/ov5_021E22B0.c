@@ -6,7 +6,7 @@
 #include "overlay005/struct_ov5_021E2098.h"
 
 #include "heap.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "overlay005/ov5_021E2098.h"
 #include "overlay005/ov5_021E22B0.h"
 
@@ -18,9 +18,9 @@ UnkStruct_ov5_021E2310 * ov5_021E22B0 (int param0, int param1)
 {
     UnkStruct_ov5_021E2310 * v0;
 
-    sub_0201FF0C(GX_PLANEMASK_BG1, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG2, 0);
-    sub_0201FF0C(GX_PLANEMASK_BG3, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
     GX_ResetBankForBG();
 
@@ -55,6 +55,6 @@ void ov5_021E2310 (UnkStruct_ov5_021E2310 ** param0)
 {
     ov5_021E20E8(&(*param0)->unk_00, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     GX_SetBankForBG(GX_VRAM_BG_128_C);
-    sub_0201FF0C(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
     FreeToHeapExplicit(4, *param0);
 }

@@ -8,7 +8,7 @@
 
 #include "unk_0200C6E4.h"
 #include "unk_0201DBEC.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 
 void ov80_021D2A08(UnkStruct_ov80_021D2A08 * param0);
 void ov80_021D2AC0(UnkStruct_ov80_021D2A08 * param0);
@@ -17,8 +17,8 @@ void ov80_021D2AEC(UnkStruct_ov80_021D2A08 * param0);
 
 void ov80_021D2A08 (UnkStruct_ov80_021D2A08 * param0)
 {
-    sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-    sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, param0->unk_04);
 
     param0->unk_D8 = sub_0200C6E4(param0->unk_04);

@@ -76,7 +76,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E86C.h"
 #include "unk_0201F834.h"
-#include "unk_0201FE94.h"
+#include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "error_handling.h"
 #include "unk_02023790.h"
@@ -1292,9 +1292,9 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, UnkStruct_021C0794 
     G2S_BlendNone();
 
     sub_0201DBEC(32, param2);
-    sub_0201FE94(&Unk_ov70_0226D664);
+    GX_SetBanks(&Unk_ov70_0226D664);
     Unk_021BF67C.unk_65 = 0;
-    sub_0201FFE8();
+    GX_SwapDisplay();
 
     {
         sub_0201975C(0, 0);
@@ -1355,8 +1355,8 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, UnkStruct_021C0794 
 
         param0->unk_1A4 = sub_0201DCC8(24, param2);
 
-        sub_0201FF0C(GX_PLANEMASK_OBJ, 1);
-        sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     }
 
     {
@@ -1414,7 +1414,7 @@ static void ov70_0225E740 (UnkStruct_ov70_0225E4EC * param0)
 
 static void ov70_0225E754 (void)
 {
-    sub_0201FF0C(GX_PLANEMASK_BG0, 1);
+    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 
@@ -2123,10 +2123,10 @@ static void ov70_0225F350 (UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov7
         param0->unk_00 = 0;
 
         sub_0201975C(4, 0);
-        sub_0201FF74(GX_PLANEMASK_BG0, 0);
-        sub_0201FF74(GX_PLANEMASK_BG1, 0);
-        sub_0201FF74(GX_PLANEMASK_BG2, 0);
-        sub_0201FF74(GX_PLANEMASK_BG3, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     } else {
         param0->unk_00 = 5;
     }
@@ -2172,10 +2172,10 @@ static void ov70_0225F418 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
                 param0->unk_01 = 4;
             }
 
-            sub_0201FF74(GX_PLANEMASK_BG0, 1);
-            sub_0201FF74(GX_PLANEMASK_BG1, 1);
-            sub_0201FF74(GX_PLANEMASK_BG2, 1);
-            sub_0201FF74(GX_PLANEMASK_OBJ, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+            GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
             param0->unk_00++;
         }
         break;
