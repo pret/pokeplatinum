@@ -11,7 +11,7 @@ Static main
 	StackSize 0 2048
 	Object src/main.o
 	Object src/unk_0200112C.o
-	Object src/unk_020E4C40.o
+	Object src/game_version.o
 	Object src/unk_02001AF4.o
 	Object src/unk_020021B0.o
 	Object src/unk_02002328.o
