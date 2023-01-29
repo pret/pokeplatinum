@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "overlay006/struct_ov6_02240D5C.h"
 
@@ -55,7 +55,7 @@ static const UnkStruct_020EC208 Unk_020EC208[35] = {
 };
 
 static u32 sub_02051C20(u32 param0);
-static u32 sub_02051CD0(UnkStruct_02079FF4 * param0, int param1);
+static u32 sub_02051CD0(Party * param0, int param1);
 static u32 sub_02051B50(const UnkStruct_ov6_02240D5C * param0);
 static u32 sub_02051BBC(u32 param0, const UnkStruct_ov6_02240D5C * param1);
 static u32 sub_02051BE8(u32 param0, const UnkStruct_ov6_02240D5C * param1);
@@ -219,7 +219,7 @@ static u32 sub_02051C20 (u32 param0)
     return v0;
 }
 
-static u32 sub_02051CD0 (UnkStruct_02079FF4 * param0, int param1)
+static u32 sub_02051CD0 (Party * param0, int param1)
 {
     UnkStruct_02073C74 * v0;
     u32 v1;

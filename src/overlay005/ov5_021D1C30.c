@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -896,7 +896,7 @@ static BOOL ov5_021D29D8 (UnkStruct_0203CDB0 * param0, const int param1, const i
 
 static BOOL ov5_021D2ABC (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
     UnkStruct_02026310 * v1 = sub_02026310(param0->unk_0C);
 
     if (ov5_021E7154(v1, v0, param0) == 1) {
@@ -954,7 +954,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
-    UnkStruct_02079FF4 * v3 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v3 = GetPartyFromSavedata(param0->unk_0C);
     u16 v4 = sub_0203A138(param0->unk_1C->unk_00);
 
     v1 = Party_GetCurrentCount(v3);
@@ -967,7 +967,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov5_021D2B94 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
     u16 * v1 = sub_0203A78C(sub_0203A790(param0->unk_0C));
 
     (*v1)++;

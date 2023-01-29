@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02017038.h"
@@ -33,7 +33,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     BOOL v0;
     UnkStruct_02073C74 * v1;
     u32 v2;
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
     UnkStruct_02025E6C * v4;
 
     v4 = sub_02025E38(param1);
@@ -62,7 +62,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     int v0;
     BOOL v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1);
-    UnkStruct_02079FF4 * v3 = GetPartyFromSavedata(param1);
+    Party * v3 = GetPartyFromSavedata(param1);
     UnkStruct_02073C74 * v4 = sub_02073C74(32);
 
     sub_02073C2C(v4);
@@ -76,12 +76,12 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     return v1;
 }
 
-void sub_02054988 (UnkStruct_02079FF4 * param0, int param1, int param2, u16 param3)
+void sub_02054988 (Party * param0, int param1, int param2, u16 param3)
 {
     sub_020771F8(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
 }
 
-int sub_020549A0 (UnkStruct_02079FF4 * param0, u16 param1)
+int sub_020549A0 (Party * param0, u16 param1)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
@@ -104,7 +104,7 @@ int sub_020549A0 (UnkStruct_02079FF4 * param0, u16 param1)
     return 0xff;
 }
 
-int sub_02054A10 (const UnkStruct_02079FF4 * param0)
+int sub_02054A10 (const Party * param0)
 {
     int v0, v1, v2;
     UnkStruct_02073C74 * v3;
@@ -123,7 +123,7 @@ int sub_02054A10 (const UnkStruct_02079FF4 * param0)
     return v2;
 }
 
-UnkStruct_02073C74 * sub_02054A40 (const UnkStruct_02079FF4 * param0)
+UnkStruct_02073C74 * sub_02054A40 (const Party * param0)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
@@ -142,7 +142,7 @@ UnkStruct_02073C74 * sub_02054A40 (const UnkStruct_02079FF4 * param0)
     return NULL;
 }
 
-UnkStruct_02073C74 * sub_02054A74 (const UnkStruct_02079FF4 * param0)
+UnkStruct_02073C74 * sub_02054A74 (const Party * param0)
 {
     u16 v0, v1;
     UnkStruct_02073C74 * v2;
@@ -160,7 +160,7 @@ UnkStruct_02073C74 * sub_02054A74 (const UnkStruct_02079FF4 * param0)
     return NULL;
 }
 
-BOOL sub_02054AB0 (const UnkStruct_02079FF4 * param0)
+BOOL sub_02054AB0 (const Party * param0)
 {
     if (sub_02054A10(param0) >= 2) {
         return 1;
@@ -169,7 +169,7 @@ BOOL sub_02054AB0 (const UnkStruct_02079FF4 * param0)
     }
 }
 
-void sub_02054AC4 (UnkStruct_02079FF4 * param0)
+void sub_02054AC4 (Party * param0)
 {
     int v0, v1;
     u8 v2 = 1;
@@ -186,7 +186,7 @@ void sub_02054AC4 (UnkStruct_02079FF4 * param0)
     }
 }
 
-int sub_02054B04 (UnkStruct_02079FF4 * param0, u16 param1)
+int sub_02054B04 (Party * param0, u16 param1)
 {
     int v0 = 0;
     int v1 = 0;

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0202BE38.h"
@@ -512,7 +512,7 @@ static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
             }
         } else {
             UnkStruct_020797DC * v7 = sub_02024420(v0->unk_0C);
-            UnkStruct_02079FF4 * v8 = GetPartyFromSavedata(v0->unk_0C);
+            Party * v8 = GetPartyFromSavedata(v0->unk_0C);
 
             if ((sub_020799A0(v7) == 18) && (Party_GetCurrentCount(v8) == 6)) {
                 sub_0203E8E0(param0, 8822, NULL, NULL);
@@ -890,7 +890,7 @@ void sub_020517E8 (UnkStruct_0203CDB0 * param0, const u8 * param1, int param2)
     sub_02050904(param0, sub_02051790, v0);
 }
 
-void sub_0205184C (UnkStruct_0203CDB0 * param0, const UnkStruct_02079FF4 * param1, int param2)
+void sub_0205184C (UnkStruct_0203CDB0 * param0, const Party * param1, int param2)
 {
     UnkStruct_02050ACC * v0;
     UnkStruct_ov6_02240D5C * v1;

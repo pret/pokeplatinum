@@ -17,7 +17,7 @@
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay108/struct_ov108_02241DB0_decl.h"
 #include "overlay108/struct_ov108_02243594_decl.h"
@@ -226,8 +226,8 @@ struct UnkStruct_ov108_02241DB0_t {
     UnkStruct_ov108_02243594 * unk_3BC;
     int * unk_3C0;
     u16 * unk_3C4;
-    UnkStruct_02079FF4 * unk_3C8;
-    UnkStruct_02079FF4 * unk_3CC;
+    Party * unk_3C8;
+    Party * unk_3CC;
     NARC * unk_3D0;
     u16 unk_3D4[40];
     u8 unk_424;

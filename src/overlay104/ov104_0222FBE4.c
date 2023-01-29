@@ -18,7 +18,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222D77C_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
@@ -2742,7 +2742,7 @@ static BOOL ov104_02231D10 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02231D1C (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     UnkStruct_02073C74 * v1;
     UnkStruct_ov104_02230BE4 * v2;
     UnkStruct_ov104_0223C4CC * v3 = ov104_0222E924(param0->unk_00);

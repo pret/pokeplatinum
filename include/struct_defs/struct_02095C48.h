@@ -6,7 +6,7 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
@@ -14,7 +14,7 @@
 
 typedef struct {
     UnkStruct_02095C48_sub1 unk_00;
-    UnkStruct_02079FF4 * unk_148;
+    Party * unk_148;
     void * unk_14C[4];
     void * unk_150;
     u8 unk_154;

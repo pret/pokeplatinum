@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -239,7 +239,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
     BOOL v8;
     BOOL v9;
     UnkStruct_ov6_02241674 v10;
-    UnkStruct_02079FF4 * v11;
+    Party * v11;
     UnkStruct_ov6_02242634 * v12;
     UnkStruct_ov6_0224222C v13[12];
     UnkStruct_ov6_022422D0 v14;
@@ -397,7 +397,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
 BOOL ov6_0224106C (UnkStruct_0203CDB0 * param0, const int param1, UnkStruct_ov6_02240D5C ** param2)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     BOOL v2;
     UnkStruct_ov6_0224222C v3[12];
     UnkStruct_ov6_022422D0 v4;
@@ -493,7 +493,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
     BOOL v7;
     BOOL v8;
     UnkStruct_ov6_02241674 v9;
-    UnkStruct_02079FF4 * v10;
+    Party * v10;
     UnkStruct_ov6_02242634 * v11;
     UnkStruct_ov6_0224222C v12[12];
     UnkStruct_ov6_022422D0 v13;
@@ -616,7 +616,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C ** param1
     BOOL v7;
     BOOL v8;
     UnkStruct_ov6_02241674 v9;
-    UnkStruct_02079FF4 * v10;
+    Party * v10;
     UnkStruct_ov6_02242634 * v11;
     UnkStruct_ov6_0224222C v12[12];
     UnkStruct_ov6_022422D0 v13;
@@ -1373,7 +1373,7 @@ void ov6_02242034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     v1 = ov5_021EFFE4(param0);
 
     {
-        UnkStruct_02079FF4 * v4;
+        Party * v4;
 
         v4 = GetPartyFromSavedata(param0->unk_0C);
         v0 = Party_GetPokemonBySlotIndex(v4, 0);
@@ -1410,7 +1410,7 @@ void ov6_022420D4 (UnkStruct_0203CDB0 * param0, u16 param1, u8 param2, UnkStruct
     UnkStruct_ov6_022422D0 v1;
 
     {
-        UnkStruct_02079FF4 * v2;
+        Party * v2;
 
         v2 = GetPartyFromSavedata(param0->unk_0C);
         v0 = Party_GetPokemonBySlotIndex(v2, 0);

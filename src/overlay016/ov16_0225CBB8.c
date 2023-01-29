@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -3707,7 +3707,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         int v2;
         int v3 = 0;
         int v4;
-        UnkStruct_02079FF4 * v5 = ov16_0223DF20(v0->unk_00, v0->unk_0D);
+        Party * v5 = ov16_0223DF20(v0->unk_00, v0->unk_0D);
         UnkStruct_02073C74 * v6;
 
         if ((ov16_0223DF0C(v0->unk_00) & 0x2) && ((ov16_0223DF0C(v0->unk_00) & 0x8) == 0)) {
@@ -4272,7 +4272,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                 int v4 = 0;
                 int v5;
                 int v6, v7;
-                UnkStruct_02079FF4 * v8;
+                Party * v8;
                 UnkStruct_02073C74 * v9, * v10;
 
                 ov16_0223B384(v0->unk_00);
@@ -4400,7 +4400,7 @@ static void ov16_02262258 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D840 * v0 = (UnkStruct_ov16_0225D840 *)param1;
     int v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_02073C74 * v3;
     int v4, v5;
     u32 v6;
@@ -4462,7 +4462,7 @@ static void  ov16_0226232C (UnkStruct_0201CD38 * param0, void * param1)
         ov16_02264730(v0->unk_00);
     } else {
         {
-            UnkStruct_02079FF4 * v2;
+            Party * v2;
             UnkStruct_02073C74 * v3;
             int v4 = v1 - 1;
 

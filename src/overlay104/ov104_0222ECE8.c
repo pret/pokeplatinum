@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "overlay104/struct_ov104_0223ADA0.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
@@ -140,7 +140,7 @@ void ov104_0222ED2C (int param0, int param1, void * param2, void * param3)
 
 BOOL ov104_0222ED44 (UnkStruct_ov104_0223B5C0 * param0)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     UnkStruct_02073C74 * v1;
     int v2, v3;
     u16 * v4;
@@ -281,7 +281,7 @@ BOOL ov104_0222EE60 (UnkStruct_ov104_0223B5C0 * param0)
 {
     int v0, v1, v2, v3, v4;
     UnkStruct_02073C74 * v5;
-    UnkStruct_02079FF4 * v6;
+    Party * v6;
 
     v1 = 0;
     v3 = 512;

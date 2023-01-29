@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -436,7 +436,7 @@ static void sub_02059BF4 (void)
     sub_02059B74();
 }
 
-static void sub_02059C2C (BOOL param0, const UnkStruct_02079FF4 * param1)
+static void sub_02059C2C (BOOL param0, const Party * param1)
 {
     if (param1) {
         Unk_021C084C->unk_44 = sub_02079FF4(11);

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
@@ -431,7 +431,7 @@ static void ov7_0224BBA0 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 {
-    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_10->unk_0C);
+    Party * v0 = GetPartyFromSavedata(param0->unk_10->unk_0C);
     int v1 = sub_0207A594(param0->unk_10->unk_B0, v0, param0->unk_6C);
     int v2;
 

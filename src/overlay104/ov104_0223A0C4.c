@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202D764.h"
@@ -907,7 +907,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     u32 v2;
     UnkStruct_ov6_02240D5C * v3;
     UnkStruct_021C0794 * v4;
-    UnkStruct_02079FF4 * v5;
+    Party * v5;
     UnkStruct_02073C74 * v6;
 
     v3 = sub_02051D8C(param0->unk_04, ov104_0223A700(param0->unk_0F));

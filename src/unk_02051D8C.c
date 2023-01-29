@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -233,7 +233,7 @@ void sub_0205213C (UnkStruct_ov6_02240D5C * param0, UnkStruct_02073C74 * param1,
     GF_ASSERT(v0);
 }
 
-void sub_02052164 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_02079FF4 * param1, int param2)
+void sub_02052164 (UnkStruct_ov6_02240D5C * param0, const Party * param1, int param2)
 {
     GF_ASSERT(param2 < 4);
     Party_cpy(param1, param0->unk_04[param2]);
@@ -253,7 +253,7 @@ void sub_020521A4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0202CC84 * p
 void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * param1, UnkStruct_021C0794 * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param2);
-    UnkStruct_02079FF4 * v1 = GetPartyFromSavedata(param2);
+    Party * v1 = GetPartyFromSavedata(param2);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     UnkStruct_02026324 * v3 = sub_02027560(param2);
     UnkStruct_0202CC84 * v4 = sub_0202CC98(param2);
@@ -308,7 +308,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     int v0;
     u32 v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1->unk_0C);
-    UnkStruct_02079FF4 * v3 = GetPartyFromSavedata(param1->unk_0C);
+    Party * v3 = GetPartyFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v6 = sub_0202CC98(param1->unk_0C);
@@ -356,7 +356,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     sub_02052894(param0);
 }
 
-void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * param1, const UnkStruct_02079FF4 * param2, const u8 * param3)
+void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * param1, const Party * param2, const u8 * param3)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
@@ -442,7 +442,7 @@ void sub_020526CC (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
 void sub_020526E8 (const UnkStruct_ov6_02240D5C * param0, UnkStruct_0203CDB0 * param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
-    UnkStruct_02079FF4 * v1 = GetPartyFromSavedata(param1->unk_0C);
+    Party * v1 = GetPartyFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
     u16 * v4 = sub_0203A784(sub_0203A790(param1->unk_0C));
@@ -458,7 +458,7 @@ void sub_020526E8 (const UnkStruct_ov6_02240D5C * param0, UnkStruct_0203CDB0 * p
 void sub_02052754 (const UnkStruct_ov6_02240D5C * param0, UnkStruct_0203CDB0 * param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
-    UnkStruct_02079FF4 * v1 = GetPartyFromSavedata(param1->unk_0C);
+    Party * v1 = GetPartyFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
 

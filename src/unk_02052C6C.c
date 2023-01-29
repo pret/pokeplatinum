@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0202DF8C.h"
@@ -73,7 +73,7 @@ static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
 static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
 {
     UnkStruct_0202DF8C * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     RTCDate v2;
     int v3;
 
@@ -187,7 +187,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     UnkStruct_02025E6C * v4;
     UnkStruct_0205300C * v5;
     UnkStruct_0202CD88 * v6;
-    UnkStruct_02079FF4 * v7;
+    Party * v7;
 
     v0 = sub_02050A60(param0);
     v5 = AllocFromHeap(32, sizeof(UnkStruct_0205300C));

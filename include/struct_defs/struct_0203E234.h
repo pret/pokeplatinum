@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 typedef struct {
     const UnkStruct_02025E6C * unk_00;
-    const UnkStruct_02079FF4 * unk_04;
+    const Party * unk_04;
     const UnkStruct_02025E5C * unk_08;
 } UnkStruct_0203E234;
 

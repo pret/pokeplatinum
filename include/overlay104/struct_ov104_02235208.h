@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_02235208_H
 #define POKEPLATINUM_STRUCT_OV104_02235208_H
 
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
@@ -10,7 +10,7 @@ typedef struct {
     u8 unk_05;
     u16 unk_06;
     u8 * unk_08;
-    UnkStruct_02079FF4 * unk_0C;
+    Party * unk_0C;
     void * unk_10;
     u16 * unk_14;
     u16 unk_18;

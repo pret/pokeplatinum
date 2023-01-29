@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 
 #include "struct_defs/struct_02027F8C.h"
@@ -288,7 +288,7 @@ static void sub_0207A8A8 (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207A8F4 (UnkStruct_0207A778 * param0, u32 param1)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
@@ -378,13 +378,13 @@ static void sub_0207AA28 (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207AA38 (UnkStruct_0207A778 * param0)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_02079FF4 *)&param0->unk_20[0];
+    v0 = (Party *)&param0->unk_20[0];
     Party_cpy(param0->unk_00->unk_04[0], v0);
 
     return 1;
@@ -525,13 +525,13 @@ static void sub_0207AC18 (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207AC28 (UnkStruct_0207A778 * param0, int param1)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_02079FF4 *)&param0->unk_20[0];
+    v0 = (Party *)&param0->unk_20[0];
     Party_cpy(param0->unk_00->unk_04[param1], v0);
 
     return 1;

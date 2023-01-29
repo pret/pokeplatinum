@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/struct_ov6_02240D5C.h"
 #include "overlay104/struct_ov104_0223A348.h"
@@ -21,7 +21,7 @@ u32 ov104_0222DD6C(UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 param
 void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_02073C74 * param1, u8 param2);
 u16 ov104_0222E10C(u8 param0);
 void ov104_0222E134(UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1);
-void ov104_0222E1C0(UnkStruct_021C0794 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02073C74 * param2);
+void ov104_0222E1C0(UnkStruct_021C0794 * param0, Party * param1, UnkStruct_02073C74 * param2);
 void ov104_0222E1D8(UnkStruct_02022550 * param0, u8 param1);
 void ov104_0222E204(UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);

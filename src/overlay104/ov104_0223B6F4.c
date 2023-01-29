@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
 #include "overlay006/struct_ov6_02240D5C.h"
@@ -39,10 +39,10 @@ UnkStruct_ov6_02240D5C * ov104_0223B810(UnkStruct_ov104_0223BA10 * param0, UnkSt
 static u32 ov104_0223B9E4(u8 param0);
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 * param0);
 BOOL ov104_0223BA14(u8 param0);
-void ov104_0223BA24(UnkStruct_02079FF4 * param0);
+void ov104_0223BA24(Party * param0);
 void ov104_0223BAB8(UnkStruct_ov104_0223BA10 * param0);
 void ov104_0223BA7C(UnkStruct_ov104_0223BA10 * param0, UnkStruct_02073C74 * param1);
-void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02073C74 * param2);
+void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, Party * param1, UnkStruct_02073C74 * param2);
 static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BC24(u16 param0);
@@ -279,7 +279,7 @@ BOOL ov104_0223BA14 (u8 param0)
     return 0;
 }
 
-void ov104_0223BA24 (UnkStruct_02079FF4 * param0)
+void ov104_0223BA24 (Party * param0)
 {
     int v0, v1, v2;
     u32 v3;
@@ -312,7 +312,7 @@ void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, UnkStruct_02073C74 * par
     return;
 }
 
-void ov104_0223BAA0 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02073C74 * param2)
+void ov104_0223BAA0 (UnkStruct_ov104_0223BA10 * param0, Party * param1, UnkStruct_02073C74 * param2)
 {
     ov104_0223BA7C(param0, param2);
     Party_AddPokemon(param1, param2);

@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_0221FC20_H
 #define POKEPLATINUM_STRUCT_OV13_0221FC20_H
 
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 
 typedef struct {
-    UnkStruct_02079FF4 * unk_00;
+    Party * unk_00;
     void * unk_04;
     UnkStruct_0207ADB4 * unk_08;
     u32 unk_0C;

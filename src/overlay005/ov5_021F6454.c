@@ -19,7 +19,7 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay005/struct_ov5_021F6704_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
@@ -500,7 +500,7 @@ BOOL ov5_021F6B3C (UnkStruct_0203E724 * param0)
 BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     int v2, v3, v4;
     int v5, v6;
     u32 v7;
@@ -567,7 +567,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     int v2, v3;
     u32 v4;
     int v5;
@@ -638,7 +638,7 @@ BOOL ov5_021F6E9C (UnkStruct_0203E724 * param0)
     u32 v0, v1, v2;
     int v3, v4, v5;
     UnkStruct_02073C74 * v6;
-    UnkStruct_02079FF4 * v7;
+    Party * v7;
     UnkStruct_0203CDB0 * v8 = param0->unk_34;
     u16 * v9 = inline_0204FCAC(param0);
     u16 * v10 = inline_0204FCAC(param0);
@@ -672,7 +672,7 @@ BOOL ov5_021F6F44 (UnkStruct_0203E724 * param0)
     u32 v0, v1;
     u16 v2, v3;
     UnkStruct_02073C74 * v4;
-    UnkStruct_02079FF4 * v5;
+    Party * v5;
     UnkStruct_0203CDB0 * v6 = param0->unk_34;
     u16 v7 = inline_02049538(param0);
     u16 v8 = inline_02049538(param0);
@@ -796,7 +796,7 @@ BOOL ov5_021F7208 (UnkStruct_0203E724 * param0)
 BOOL ov5_021F7270 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     UnkStruct_0203CDB0 * v2 = param0->unk_34;
     u16 v3 = inline_02049538(param0);
     u16 * v4 = inline_0204FCAC(param0);

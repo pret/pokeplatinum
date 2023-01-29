@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -96,8 +96,8 @@ static void ov94_02240EAC(UnkStruct_02073C74_sub1 * param0, UnkStruct_02022550 *
 void * ov94_02240DD0(NARC * param0, u32 param1, NNSG2dCharacterData ** param2, u32 param3);
 static int ov94_02241328(UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_ov94_0223BA88_sub3 * param1);
 static void ov94_02241464(UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_02022550 ** param1, UnkStruct_ov94_0223BA88_sub3 * param2, UnkStruct_ov94_02240FA0 * param3);
-static int ov94_0224121C(UnkStruct_02079FF4 * param0, UnkStruct_020797DC * param1, int param2, int param3);
-static int ov94_022412F4(UnkStruct_02079FF4 * param0, UnkStruct_020797DC * param1, int param2, int param3);
+static int ov94_0224121C(Party * param0, UnkStruct_020797DC * param1, int param2, int param3);
+static int ov94_022412F4(Party * param0, UnkStruct_020797DC * param1, int param2, int param3);
 static int ov94_02240BB0(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_0224123C(UnkStruct_02073C74_sub1 * param0);
 static int ov94_02241278(UnkStruct_02073C74_sub1 * param0);
@@ -1214,7 +1214,7 @@ int ov94_022411D0 (int param0)
     }
 }
 
-UnkStruct_02073C74_sub1 * ov94_022411DC (UnkStruct_02079FF4 * param0, UnkStruct_020797DC * param1, int param2, int param3)
+UnkStruct_02073C74_sub1 * ov94_022411DC (Party * param0, UnkStruct_020797DC * param1, int param2, int param3)
 {
     if (ov94_022411D0(param2)) {
         if (param3 > (Party_GetCurrentCount(param0) - 1)) {
@@ -1227,7 +1227,7 @@ UnkStruct_02073C74_sub1 * ov94_022411DC (UnkStruct_02079FF4 * param0, UnkStruct_
     return sub_02079C9C(param1, param2, param3);
 }
 
-static int ov94_0224121C (UnkStruct_02079FF4 * param0, UnkStruct_020797DC * param1, int param2, int param3)
+static int ov94_0224121C (Party * param0, UnkStruct_020797DC * param1, int param2, int param3)
 {
     if (ov94_022411D0(param2)) {
         if (Party_GetCurrentCount(param0) < 2) {
@@ -1317,7 +1317,7 @@ static int ov94_022412C8 (UnkStruct_02073C74_sub1 * param0)
     return 0;
 }
 
-static int ov94_022412F4 (UnkStruct_02079FF4 * param0, UnkStruct_020797DC * param1, int param2, int param3)
+static int ov94_022412F4 (Party * param0, UnkStruct_020797DC * param1, int param2, int param3)
 {
     UnkStruct_02073C74_sub1 * v0 = ov94_022411DC(param0, param1, param2, param3);
 

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E724_t.h"
@@ -34,7 +34,7 @@ BOOL sub_0204CFFC (UnkStruct_0203E724 * param0)
 {
     int v0 = sub_0203A138(param0->unk_34->unk_1C->unk_00);
     int v1 = 24;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_0203CDB0 * v3 = param0->unk_34;
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
@@ -92,7 +92,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
     int v0;
     u8 v1;
     BOOL v2;
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
     UnkStruct_02073C74 * v4;
     UnkStruct_0203CDB0 * v5 = param0->unk_34;
     UnkStruct_02025E6C * v6 = sub_02025E38(v5->unk_0C);
@@ -641,7 +641,7 @@ BOOL sub_0204DC98 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4 = inline_02049538(param0);
     u8 v5, v6;
@@ -671,7 +671,7 @@ BOOL sub_0204DD28 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4 = inline_02049538(param0);
     u8 v5, v6, v7;
@@ -716,7 +716,7 @@ BOOL sub_0204DE00 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4 = inline_02049538(param0);
     u8 v5, v6;
@@ -765,7 +765,7 @@ BOOL sub_0204DE94 (UnkStruct_0203E724 * param0)
 BOOL sub_0204DF08 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3, v4, v5, v6;
 
@@ -822,7 +822,7 @@ BOOL sub_0204E01C (UnkStruct_0203E724 * param0)
 BOOL sub_0204E094 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02073C74 * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3, v4, v5;
 
@@ -857,7 +857,7 @@ BOOL sub_0204E12C (UnkStruct_0203E724 * param0)
     u8 v0, v1;
     u16 v2;
     UnkStruct_02073C74 * v3;
-    UnkStruct_02079FF4 * v4;
+    Party * v4;
     UnkStruct_0203CDB0 * v5 = param0->unk_34;
     u16 * v6 = inline_0204FCAC(param0);
     u16 v7 = inline_02049538(param0);
@@ -887,7 +887,7 @@ BOOL sub_0204E12C (UnkStruct_0203E724 * param0)
 BOOL sub_0204E1D0 (UnkStruct_0203E724 * param0)
 {
     int v0, v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_02073C74 * v3;
     UnkStruct_0203CDB0 * v4 = param0->unk_34;
     u16 v5 = inline_02049538(param0);

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_02237DD8_H
 #define POKEPLATINUM_OV104_02237DD8_H
 
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C4CC_decl.h"
@@ -20,7 +20,7 @@ void ov104_022384A8(UnkStruct_ov104_0223BFFC * param0);
 void ov104_022384B4(UnkStruct_ov104_0223BFFC * param0);
 void ov104_022384D4(UnkStruct_ov104_0223BFFC * param0);
 void ov104_022384DC(UnkStruct_ov104_0223BFFC * param0);
-int ov104_02238538(UnkStruct_ov104_0223BFFC * param0, UnkStruct_02079FF4 * param1, UnkStruct_02079FF4 * param2, int param3);
+int ov104_02238538(UnkStruct_ov104_0223BFFC * param0, Party * param1, Party * param2, int param3);
 void ov104_02238658(void * param0, UnkStruct_ov104_0223C4CC * param1);
 void ov104_02238728(void * param0, UnkStruct_ov104_0223C4CC * param1);
 void ov104_02238764(UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov104_0223C4CC * param1, u16 param2);
@@ -34,6 +34,6 @@ void ov104_02238AB4(u8 param0, u8 param1);
 BOOL ov104_02238B40(UnkStruct_ov104_0223BFFC * param0, u16 param1, u16 param2);
 void ov104_02238B88(UnkStruct_ov104_0223BFFC * param0, u8 param1);
 u16  ov104_02239014(UnkStruct_ov104_0223BFFC * param0);
-void ov104_02239054(UnkStruct_02079FF4 * param0, UnkStruct_02079FF4 * param1, int param2, int param3);
+void ov104_02239054(Party * param0, Party * param1, int param2, int param3);
 
 #endif // POKEPLATINUM_OV104_02237DD8_H

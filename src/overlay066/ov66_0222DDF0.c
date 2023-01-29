@@ -17,7 +17,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0223177C_decl.h"
@@ -2314,7 +2314,7 @@ static void ov66_0222F768 (UnkStruct_ov66_0222DFF8 * param0)
 static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 * param1, u32 param2)
 {
     UnkStruct_02025E6C * v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     UnkStruct_0202C878 * v2;
     UnkStruct_02026324 * v3;
     UnkStruct_02055BA8 * v4;

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207D3B0_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -1975,7 +1975,7 @@ BOOL ov16_02253FCC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                 {
                     int v3;
                     int v4;
-                    UnkStruct_02079FF4 * v5;
+                    Party * v5;
                     UnkStruct_02073C74 * v6;
 
                     v5 = ov16_0223DF20(param0, 1);
@@ -2006,7 +2006,7 @@ BOOL ov16_02253FCC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                 {
                     int v7;
                     int v8;
-                    UnkStruct_02079FF4 * v9;
+                    Party * v9;
                     UnkStruct_02073C74 * v10;
 
                     v9 = ov16_0223DF20(param0, 1);
@@ -3113,7 +3113,7 @@ BOOL ov16_02255AB4 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, in
 BOOL ov16_02255B10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
 {
     BOOL v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     UnkStruct_02073C74 * v2;
     int v3;
     int v4 = 0, v5, v6, v7, v8, v9;

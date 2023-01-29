@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -1959,15 +1959,15 @@ typedef struct {
 void ov5_021E6DE8(UnkStruct_02073C74 * param0, u16 param1, UnkStruct_02026310 * param2, u32 param3, u8 param4);
 void sub_020262C0(UnkStruct_02026224 * param0);
 static u8 ov5_021E70FC(UnkStruct_02026310 * param0);
-static int ov5_021E6F6C(UnkStruct_02079FF4 * param0);
+static int ov5_021E6F6C(Party * param0);
 static u8 ov5_021E6FF0(UnkStruct_02073C74_sub1 ** param0);
 void ov5_021E6B40(UnkStruct_02026310 * param0);
 int ov5_021E6630(UnkStruct_02026310 * param0, u8 param1, UnkStruct_0200B358 * param2);
 u8 ov5_021E6640(UnkStruct_02026310 * param0, int param1, UnkStruct_0200B358 * param2);
-u16 ov5_021E73A0(UnkStruct_02079FF4 * param0, int param1, UnkStruct_0200B358 * param2);
+u16 ov5_021E73A0(Party * param0, int param1, UnkStruct_0200B358 * param2);
 u8 ov5_021E73C8(UnkStruct_02026310 * param0);
 void ov5_021E72BC(UnkStruct_02026310 * param0, UnkStruct_0200B358 * param1);
-static void ov5_021E62C4(UnkStruct_02079FF4 * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3);
+static void ov5_021E62C4(Party * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3);
 static int ov5_021E7110(UnkStruct_0203CDB0 * param0);
 
 static UnkStruct_02073C74_sub1 * ov5_021E622C (UnkStruct_02026310 * param0, int param1)
@@ -2019,7 +2019,7 @@ static int ov5_021E62B0 (UnkStruct_02073C74_sub1 * param0)
     return IsItemMail(v0);
 }
 
-static void ov5_021E62C4 (UnkStruct_02079FF4 * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3)
+static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3)
 {
     int v0;
     UnkStruct_02073C74 * v1 = Party_GetPokemonBySlotIndex(param0, param1);
@@ -2047,7 +2047,7 @@ static void ov5_021E62C4 (UnkStruct_02079FF4 * param0, int param1, UnkStruct_020
     }
 }
 
-void ov5_021E6358 (UnkStruct_02079FF4 * param0, int param1, UnkStruct_02026310 * param2, UnkStruct_021C0794 * param3)
+void ov5_021E6358 (Party * param0, int param1, UnkStruct_02026310 * param2, UnkStruct_021C0794 * param3)
 {
     int v0;
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param3);
@@ -2098,7 +2098,7 @@ static void ov5_021E63E0 (UnkStruct_02073C74 * param0)
     sub_0207418C(param0);
 }
 
-static int ov5_021E6444 (UnkStruct_02079FF4 * param0, UnkStruct_02026218 * param1, UnkStruct_0200B358 * param2)
+static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, UnkStruct_0200B358 * param2)
 {
     UnkStruct_02073C74 * v0 = sub_02073C74(4);
     UnkStruct_02073C74_sub1 * v1 = sub_02026220(param1);
@@ -2129,7 +2129,7 @@ static int ov5_021E6444 (UnkStruct_02079FF4 * param0, UnkStruct_02026218 * param
     return v4;
 }
 
-u16 ov5_021E64F8 (UnkStruct_02079FF4 * param0, UnkStruct_0200B358 * param1, UnkStruct_02026310 * param2, u8 param3)
+u16 ov5_021E64F8 (Party * param0, UnkStruct_0200B358 * param1, UnkStruct_02026310 * param2, u8 param3)
 {
     u16 v0;
     UnkStruct_02026218 * v1 = sub_02026218(param2, param3);
@@ -2681,7 +2681,7 @@ void ov5_021E6DE8 (UnkStruct_02073C74 * param0, u16 param1, UnkStruct_02026310 *
     sub_020237BC(v3);
 }
 
-void ov5_021E6EA8 (UnkStruct_02026310 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02025E6C * param2)
+void ov5_021E6EA8 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_02025E6C * param2)
 {
     u16 v0;
     u8 v1[2], v2;
@@ -2715,7 +2715,7 @@ void ov5_021E6EA8 (UnkStruct_02026310 * param0, UnkStruct_02079FF4 * param1, Unk
     FreeToHeap(v3);
 }
 
-static int ov5_021E6F6C (UnkStruct_02079FF4 * param0)
+static int ov5_021E6F6C (Party * param0)
 {
     u8 v0;
     u8 v1;
@@ -2851,7 +2851,7 @@ static int ov5_021E7110 (UnkStruct_0203CDB0 * param0)
     return 255;
 }
 
-BOOL ov5_021E7154 (UnkStruct_02026310 * param0, UnkStruct_02079FF4 * param1, UnkStruct_0203CDB0 * param2)
+BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_0203CDB0 * param2)
 {
     u32 v0, v1, v2, v3, v4;
     u32 v5 = 0, v6;
@@ -2916,7 +2916,7 @@ BOOL ov5_021E7154 (UnkStruct_02026310 * param0, UnkStruct_02079FF4 * param1, Unk
     return 0;
 }
 
-UnkStruct_02073C74 * ov5_021E7278 (UnkStruct_02079FF4 * param0)
+UnkStruct_02073C74 * ov5_021E7278 (Party * param0)
 {
     int v0;
     UnkStruct_02073C74 * v1;
@@ -2978,7 +2978,7 @@ void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 para
     sub_0200BCF0(param5, param3, v3);
 }
 
-u16 ov5_021E73A0 (UnkStruct_02079FF4 * param0, int param1, UnkStruct_0200B358 * param2)
+u16 ov5_021E73A0 (Party * param0, int param1, UnkStruct_0200B358 * param2)
 {
     UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(param0, param1);
 

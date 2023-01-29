@@ -19,7 +19,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -1339,7 +1339,7 @@ UnkStruct_ov113_022607EC * ov113_0225DD44 (UnkStruct_ov113_0225DBCC * param0)
 
 static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_ov113_02260818 * param2)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     int v1;
     UnkStruct_02073C74 * v2;
     int v3;

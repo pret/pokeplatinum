@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -29,7 +29,7 @@ void ov6_02246034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     int v2;
     UnkStruct_0202D7B0 * v3;
     UnkStruct_0206C638 * v4;
-    UnkStruct_02079FF4 * v5;
+    Party * v5;
     UnkStruct_02073C74 * v6;
 
     v5 = param1->unk_04[1];

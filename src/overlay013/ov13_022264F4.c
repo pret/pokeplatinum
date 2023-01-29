@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 
@@ -476,7 +476,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
         }
 
         {
-            UnkStruct_02079FF4 * v7 = ov16_0223DF20(v0->unk_00, v0->unk_10);
+            Party * v7 = ov16_0223DF20(v0->unk_00, v0->unk_10);
             UnkStruct_020797DC * v8 = ov16_0223E228(v0->unk_00);
 
             if ((Party_GetCurrentCount(v7) == 6) && (sub_020799A0(v8) == 18)) {

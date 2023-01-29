@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -1329,7 +1329,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
     break;
     case 4:
     {
-        UnkStruct_02079FF4 * v7;
+        Party * v7;
         UnkStruct_02073C74 * v8;
         u32 v9;
         u16 v10;
@@ -1936,7 +1936,7 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
     UnkStruct_0203C7B8 * v2;
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
     UnkStruct_02073C74 * v4;
     UnkStruct_0207AE68 * v5;
 

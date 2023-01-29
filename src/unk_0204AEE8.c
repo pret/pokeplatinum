@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -202,7 +202,7 @@ u16 sub_0204B044 (UnkStruct_0203CDB0 * param0, const u16 * param1)
 void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
 {
     int v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     UnkStruct_02073C74 * v2;
     UnkStruct_02025E6C * v3 = sub_02025E38(param1);
 

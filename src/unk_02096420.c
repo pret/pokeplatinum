@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3B0_decl.h"
 
 #include "heap.h"
@@ -260,7 +260,7 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
     return 0;
 }
 
-u8 sub_0209693C (UnkStruct_02079FF4 * param0, u16 param1, u8 param2, u8 param3, u32 param4)
+u8 sub_0209693C (Party * param0, u16 param1, u8 param2, u8 param3, u32 param4)
 {
     UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(param0, param2);
     return sub_02096420(v0, param1, param3, param4);
@@ -526,7 +526,7 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     return v2;
 }
 
-u8 sub_02096F14 (UnkStruct_02079FF4 * param0, u16 param1, u8 param2, u8 param3, u16 param4, u32 param5)
+u8 sub_02096F14 (Party * param0, u16 param1, u8 param2, u8 param3, u16 param4, u32 param5)
 {
     UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(param0, param2);
 
@@ -752,7 +752,7 @@ static u8 sub_020971D0 (UnkStruct_02073C74 * param0, s32 param1, s32 param2, u16
     return 1;
 }
 
-void sub_02097284 (UnkStruct_02079FF4 * param0)
+void sub_02097284 (Party * param0)
 {
     int v0, v1, v2;
     u32 v3;

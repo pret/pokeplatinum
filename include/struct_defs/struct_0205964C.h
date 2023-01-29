@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "functypes/funcptr_020598EC.h"
 #include "struct_defs/struct_02072014.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include <nitro/math.h>
 
@@ -24,7 +24,7 @@ typedef struct {
     u8 unk_41;
     u8 unk_42;
     u8 unk_43;
-    UnkStruct_02079FF4 * unk_44;
+    Party * unk_44;
 } UnkStruct_0205964C;
 
 #endif // POKEPLATINUM_STRUCT_0205964C_H

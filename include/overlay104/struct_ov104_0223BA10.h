@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_0223BA10_H
 
 #include "struct_decls/struct_020302DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
@@ -24,8 +24,8 @@ typedef struct {
     u16 unk_22;
     u8 unk_24[3];
     u8 unk_27;
-    UnkStruct_02079FF4 * unk_28;
-    UnkStruct_02079FF4 * unk_2C;
+    Party * unk_28;
+    Party * unk_2C;
     u16 unk_30[14];
     UnkStruct_ov104_0223A348 unk_4C[2];
     u16 unk_26C[4];

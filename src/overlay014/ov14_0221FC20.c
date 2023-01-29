@@ -3,7 +3,7 @@
 
 #include "assert.h"
 
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay014/struct_ov14_0221FC20_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -1311,7 +1311,7 @@ static void ov14_02220D48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
 static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     UnkStruct_02073C74 * v1;
     int v2;
     u8 v3;
@@ -1527,7 +1527,7 @@ static void ov14_02221114 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
 static void ov14_022211AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     UnkStruct_02073C74 * v1;
     int v2;
     u8 v3;
@@ -1564,7 +1564,7 @@ static void ov14_022211AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
 static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     UnkStruct_02073C74 * v1;
     int v2;
     u8 v3;
@@ -3968,7 +3968,7 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
     u8 v3;
     BOOL v4;
     u8 * v5;
-    UnkStruct_02079FF4 * v6;
+    Party * v6;
     UnkStruct_02073C74 * v7;
     UnkStruct_ov16_0224B9DC * v8;
 

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_02073C74_sub2_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008A90.h"
@@ -179,7 +179,7 @@ u8 sub_02076AF8(UnkStruct_02073C74 * param0);
 u8 sub_02076B00(UnkStruct_02073C74_sub1 * param0);
 UnkStruct_02073C74_sub1 * sub_02076B10(UnkStruct_02073C74 * param0);
 u8 sub_02076B14(UnkStruct_02073C74 * param0);
-u16 sub_02076B94(UnkStruct_02079FF4 * param0, UnkStruct_02073C74 * param1, u8 param2, u16 param3, int * param4);
+u16 sub_02076B94(Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 param3, int * param4);
 void sub_02077020(UnkStruct_02073C74_sub1 * param0);
 u16 sub_020770C4(UnkStruct_02073C74 * param0, u16 param1);
 u16 sub_020770D4(UnkStruct_02073C74_sub1 * param0, u16 param1);
@@ -194,7 +194,7 @@ void sub_0207734C(UnkStruct_02073C74_sub1 * param0, int param1, int param2);
 void sub_02077408(UnkStruct_02073C74 * param0, u32 param1);
 BOOL sub_0207749C(UnkStruct_02073C74 * param0, u16 param1);
 void sub_020774C8(UnkStruct_02073C74_sub1 * param0, UnkStruct_02073C74 * param1);
-u8 sub_02077550(UnkStruct_02079FF4 * param0);
+u8 sub_02077550(Party * param0);
 u16 sub_020775A4(u16 param0);
 u16 sub_020775C4(u16 param0);
 void sub_020775EC(UnkStruct_02073C74 * param0, UnkStruct_02073C74 * param1);
@@ -203,10 +203,10 @@ void sub_02077618(UnkStruct_02073C74 * param0, UnkStruct_02073C74_sub1 * param1)
 s8 sub_0207762C(UnkStruct_02073C74 * param0, int param1);
 s8 sub_02077634(UnkStruct_02073C74_sub1 * param0, int param1);
 s8 sub_02077648(u32 param0, int param1);
-void sub_020776B0(UnkStruct_02079FF4 * param0);
-u8 sub_02077758(UnkStruct_02079FF4 * param0, u8 param1);
-void sub_020777B4(UnkStruct_02079FF4 * param0, s32 param1);
-void sub_0207782C(UnkStruct_02079FF4 * param0);
+void sub_020776B0(Party * param0);
+u8 sub_02077758(Party * param0, u8 param1);
+void sub_020777B4(Party * param0, s32 param1);
+void sub_0207782C(Party * param0);
 BOOL sub_020778D8(UnkStruct_02073C74 * param0);
 BOOL sub_020778E0(UnkStruct_02073C74_sub1 * param0);
 BOOL sub_020778F8(UnkStruct_02073C74 * param0);
@@ -3199,7 +3199,7 @@ u8 sub_02076B14 (UnkStruct_02073C74 * param0)
     return 0;
 }
 
-u16 sub_02076B94 (UnkStruct_02079FF4 * param0, UnkStruct_02073C74 * param1, u8 param2, u16 param3, int * param4)
+u16 sub_02076B94 (Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 param3, int * param4)
 {
     u16 v0;
     u16 v1;
@@ -3746,7 +3746,7 @@ void sub_020774C8 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02073C74 * param1
     sub_0207418C(param1);
 }
 
-u8 sub_02077550 (UnkStruct_02079FF4 * param0)
+u8 sub_02077550 (Party * param0)
 {
     u8 v0, v1;
     int v2, v3;
@@ -3844,7 +3844,7 @@ int sub_02077660 (int param0, int param1, u16 * param2)
     return v0;
 }
 
-void sub_020776B0 (UnkStruct_02079FF4 * param0)
+void sub_020776B0 (Party * param0)
 {
     u16 v0;
     u8 v1;
@@ -3885,7 +3885,7 @@ void sub_020776B0 (UnkStruct_02079FF4 * param0)
     }
 }
 
-u8 sub_02077758 (UnkStruct_02079FF4 * param0, u8 param1)
+u8 sub_02077758 (Party * param0, u8 param1)
 {
     int v0 = 0;
     int v1 = 1;
@@ -3917,7 +3917,7 @@ u8 sub_02077758 (UnkStruct_02079FF4 * param0, u8 param1)
     return v2;
 }
 
-void sub_020777B4 (UnkStruct_02079FF4 * param0, s32 param1)
+void sub_020777B4 (Party * param0, s32 param1)
 {
     int v0;
     int v1;
@@ -3949,7 +3949,7 @@ void sub_020777B4 (UnkStruct_02079FF4 * param0, s32 param1)
     }
 }
 
-void sub_0207782C (UnkStruct_02079FF4 * param0)
+void sub_0207782C (Party * param0)
 {
     int v0;
     int v1;
@@ -4144,7 +4144,7 @@ void sub_02077A64 (UnkStruct_02073C74 * param0)
     }
 }
 
-void sub_02077A9C (UnkStruct_02079FF4 * param0, int param1)
+void sub_02077A9C (Party * param0, int param1)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
@@ -4202,7 +4202,7 @@ BOOL sub_02077B14 (UnkStruct_02073C74 * param0)
     return 0;
 }
 
-void sub_02077B8C (UnkStruct_02079FF4 * param0)
+void sub_02077B8C (Party * param0)
 {
     int v0, v1, v2, v3;
     UnkStruct_02073C74 * v4;
@@ -4221,7 +4221,7 @@ void sub_02077B8C (UnkStruct_02079FF4 * param0)
     }
 }
 
-BOOL sub_02077BD8 (UnkStruct_02079FF4 * param0, int param1, const RTCTime * param2)
+BOOL sub_02077BD8 (Party * param0, int param1, const RTCTime * param2)
 {
     s32 v0, v1;
 

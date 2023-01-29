@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"
@@ -96,7 +96,7 @@ BOOL ov104_022348A8 (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
 {
     int v0;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     UnkStruct_02073C74 * v2;
     UnkStruct_ov104_0223B5C0 * v3;
     UnkStruct_ov104_02235208 * v4;
@@ -190,7 +190,7 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_ov104_02230BE4 * v0;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_ov104_0223B5C0 * v3;
     u8 v4, v5;
     u32 v6;
@@ -406,7 +406,7 @@ BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_0202440C * v0;
     u16 v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_02073C74 * v3;
     UnkStruct_ov104_0223B5C0 * v4;
     UnkStruct_ov104_02230BE4 * v5 = sub_0209B970(param0->unk_00->unk_00);

@@ -4,13 +4,13 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
     int unk_00;
     UnkStruct_02073C74 * unk_04[6];
-    UnkStruct_02079FF4 * unk_1C;
+    Party * unk_1C;
     UnkStruct_0202CA1C * unk_20;
     UnkStruct_020279FC * unk_24;
     UnkStruct_021C0794 * unk_28;

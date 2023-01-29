@@ -22,7 +22,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0207A9CC.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -61,7 +61,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 * unk_60;
     UnkStruct_020797DC * unk_64;
-    UnkStruct_02079FF4 * unk_68[4];
+    Party * unk_68[4];
     UnkStruct_0202CC84 * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;

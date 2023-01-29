@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202DFA8.h"
@@ -29,7 +29,7 @@ void sub_0202DF94 (UnkStruct_0202DF8C * param0)
     MI_CpuClear32(param0, sizeof(UnkStruct_0202DF8C));
 }
 
-void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const UnkStruct_02079FF4 * param1, const RTCDate * param2)
+void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCDate * param2)
 {
     UnkStruct_0202DFA8 * v0;
     UnkStruct_02073C74 * v1;

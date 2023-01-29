@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay032/struct_ov32_02256470_decl.h"
 
@@ -41,7 +41,7 @@ static void ov32_022562B4(UnkStruct_ov32_0225621C * param0, u32 param1);
 static BOOL ov32_022562C8(UnkStruct_ov32_0225621C * param0);
 static BOOL ov32_02256308(UnkStruct_ov32_0225621C * param0);
 static BOOL ov32_02256394(UnkStruct_ov32_0225621C * param0);
-static void ov32_022563C8(UnkStruct_ov32_02256470_1 * param0, UnkStruct_02079FF4 * param1);
+static void ov32_022563C8(UnkStruct_ov32_02256470_1 * param0, Party * param1);
 
 static void NitroStaticInit (void)
 {
@@ -197,7 +197,7 @@ static BOOL ov32_02256394 (UnkStruct_ov32_0225621C * param0)
     return 0;
 }
 
-static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, UnkStruct_02079FF4 * param1)
+static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
 {
     UnkStruct_02073C74 * v0;
     int v1;

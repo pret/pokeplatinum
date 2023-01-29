@@ -19,7 +19,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0207A9CC.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -42,7 +42,7 @@ u32 ov16_0223DF0C(UnkStruct_0207ADB4 * param0);
 UnkStruct_ov16_0224B9DC * ov16_0223DF10(UnkStruct_0207ADB4 * param0);
 UnkStruct_ov16_0225BFFC * ov16_0223DF14(UnkStruct_0207ADB4 * param0, int param1);
 int ov16_0223DF1C(UnkStruct_0207ADB4 * param0);
-UnkStruct_02079FF4 * ov16_0223DF20(UnkStruct_0207ADB4 * param0, int param1);
+Party * ov16_0223DF20(UnkStruct_0207ADB4 * param0, int param1);
 int ov16_0223DF60(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_02073C74 * ov16_0223DFAC(UnkStruct_0207ADB4 * param0, int param1, int param2);
 UnkStruct_02007768 * ov16_0223E000(UnkStruct_0207ADB4 * param0);
@@ -165,7 +165,7 @@ void ov16_0223F858(UnkStruct_0207ADB4 * param0, u8 * param1);
 void ov16_0223F87C(UnkStruct_0207ADB4 * param0, u8 * param1);
 void ov16_0223F8AC(UnkStruct_0207ADB4 * param0, UnkStruct_02007C7C ** param1);
 void ov16_0223F8DC(UnkStruct_0207ADB4 * param0, int param1);
-u32 ov16_0223F904(UnkStruct_02079FF4 * param0, UnkStruct_02025E6C * param1);
+u32 ov16_0223F904(Party * param0, UnkStruct_02025E6C * param1);
 void ov16_0223F938(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);

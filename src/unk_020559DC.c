@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055BA8.h"
@@ -98,7 +98,7 @@ static void sub_02055AC0 (UnkStruct_0203CDB0 * param0, s32 param1)
     sub_0202D80C(sub_0202D834(param0->unk_0C), sub_0202B428(sub_0202B4A0(param0->unk_0C)));
 
     {
-        UnkStruct_02079FF4 * v0;
+        Party * v0;
 
         v0 = GetPartyFromSavedata(param0->unk_0C);
         sub_020777B4(v0, param1);
@@ -144,7 +144,7 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
     }
 
     {
-        UnkStruct_02079FF4 * v1;
+        Party * v1;
 
         v1 = GetPartyFromSavedata(param0->unk_0C);
         sub_02077BD8(v1, param1, param2);

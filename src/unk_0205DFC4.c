@@ -5,7 +5,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -262,7 +262,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
 BOOL sub_0205E1F8 (UnkStruct_021C0794 * param0)
 {
     int v0, v1, v2, v3 = 0;
-    UnkStruct_02079FF4 * v4;
+    Party * v4;
     static const u16 v5[] = {377, 378, 379};
     u16 v6[6];
 

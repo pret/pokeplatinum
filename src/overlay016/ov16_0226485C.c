@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
 
@@ -582,7 +582,7 @@ void ov16_02265330 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     int v3, v4;
     int v5;
     int v6;
-    UnkStruct_02079FF4 * v7;
+    Party * v7;
     UnkStruct_02073C74 * v8;
     u32 v9;
     int v10;
@@ -1722,7 +1722,7 @@ static void ov16_02266CF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v3;
     int v4;
     u32 v5;
-    UnkStruct_02079FF4 * v6;
+    Party * v6;
     UnkStruct_02073C74 * v7;
 
     MI_CpuClearFast(param2, sizeof(UnkStruct_ov16_0225C840));

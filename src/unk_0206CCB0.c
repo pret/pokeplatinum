@@ -16,7 +16,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 
@@ -1040,7 +1040,7 @@ void sub_0206D7C4 (UnkStruct_0203CDB0 * param0)
     u8 v4, v5;
     UnkStruct_02073C74 * v6;
     UnkUnion_0206D1B8 v7;
-    UnkStruct_02079FF4 * v8;
+    Party * v8;
     UnkStruct_0206D8B0 * v9 = &v7.val11;
 
     v0 = 0;
@@ -2966,7 +2966,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     UnkStruct_02023790 * v0;
     u16 v1, v2;
     UnkStruct_02073C74 * v3;
-    UnkStruct_02079FF4 * v4;
+    Party * v4;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0->unk_0C);
     UnkStruct_02026324 * v6 = sub_02027560(param0->unk_0C);
 

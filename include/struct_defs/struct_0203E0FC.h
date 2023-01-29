@@ -11,14 +11,14 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
     UnkStruct_0202DA40 * unk_00;
     UnkStruct_02025CCC * unk_04;
-    UnkStruct_02079FF4 * unk_08;
+    Party * unk_08;
     UnkStruct_020797DC * unk_0C;
     UnkStruct_02026324 * unk_10;
     UnkStruct_0202B370 * unk_14;

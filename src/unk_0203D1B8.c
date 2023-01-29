@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
@@ -1550,7 +1550,7 @@ void sub_0203E2D4 (UnkStruct_0203CDB0 * param0, void * param1)
 void sub_0203E2FC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203E2FC v0;
-    UnkStruct_02079FF4 * v1 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v1 = GetPartyFromSavedata(param0->unk_0C);
     UnkStruct_02073C74 * v2 = ov5_021E7278(v1);
 
     GF_ASSERT(v2 != NULL);

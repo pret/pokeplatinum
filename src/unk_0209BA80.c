@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0204AFC4.h"
@@ -266,7 +266,7 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
 
     v1 = 40;
     v3 = GetPartyFromSavedata(param0->unk_00);

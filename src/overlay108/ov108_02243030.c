@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -30,16 +30,16 @@ static const u8 Unk_ov108_02243760[4] = {
     11, 11, 11, 11,
 };
 
-void ov108_02243030(UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02079FF4 * param2, u8 param3);
+void ov108_02243030(UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3);
 UnkStruct_02022550 * ov108_022430F0(UnkStruct_ov108_02243030 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
 void ov108_02243194(UnkStruct_ov108_02243030 * param0);
 static void ov108_022431FC(void);
 static void ov108_02243230(UnkStruct_ov108_02243030 * param0);
 static void ov108_022432B4(UnkStruct_ov108_02243030 * param0);
-static void ov108_02243360(UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02079FF4 * param2, u8 param3);
+static void ov108_02243360(UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3);
 static void ov108_02243490(UnkStruct_ov108_02243030 * param0);
 
-void ov108_02243030 (UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02079FF4 * param2, u8 param3)
+void ov108_02243030 (UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3)
 {
     int v0;
 
@@ -181,7 +181,7 @@ static void ov108_022432B4 (UnkStruct_ov108_02243030 * param0)
     return;
 }
 
-static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02079FF4 * param2, u8 param3)
+static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3)
 {
     UnkStruct_02073C74 * v0;
     UnkStruct_02073C74 * v1;

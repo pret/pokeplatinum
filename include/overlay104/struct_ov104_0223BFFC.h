@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
@@ -34,8 +34,8 @@ typedef struct {
     UnkStruct_0200D0F4 * unk_40[4];
     UnkStruct_0200D0F4 * unk_50[4];
     UnkStruct_0200D0F4 * unk_60[4];
-    UnkStruct_02079FF4 * unk_70;
-    UnkStruct_02079FF4 * unk_74;
+    Party * unk_70;
+    Party * unk_74;
     u16 unk_78[14];
     u32 unk_94[4];
     u32 unk_A4[4];

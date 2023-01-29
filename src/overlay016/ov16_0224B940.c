@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay014/struct_ov14_0221FC20_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -3735,7 +3735,7 @@ static void ov16_0225074C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
 static void ov16_02250760 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     u32 v1;
 
     v1 = ov16_0223DF0C(param0);
@@ -3784,7 +3784,7 @@ static BOOL ov16_0225079C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     int v6;
                     int v7 = 0;
                     int v8 = 0;
-                    UnkStruct_02079FF4 * v9;
+                    Party * v9;
                     UnkStruct_02073C74 * v10;
                     UnkStruct_ov16_0225BFFC * v11;
 
@@ -3820,7 +3820,7 @@ static BOOL ov16_0225079C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 {
                     int v12;
                     int v13 = 0;
-                    UnkStruct_02079FF4 * v14;
+                    Party * v14;
                     UnkStruct_02073C74 * v15;
                     UnkStruct_ov16_0225BFFC * v16;
 
@@ -3885,7 +3885,7 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     {
                         int v4;
                         int v5 = 0;
-                        UnkStruct_02079FF4 * v6;
+                        Party * v6;
                         UnkStruct_02073C74 * v7;
                         UnkStruct_ov16_0225BFFC * v8;
 
@@ -3911,8 +3911,8 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 {
                     int v9;
                     int v10 = 0;
-                    UnkStruct_02079FF4 * v11;
-                    UnkStruct_02079FF4 * v12;
+                    Party * v11;
+                    Party * v12;
                     UnkStruct_02073C74 * v13;
                     UnkStruct_ov16_0225BFFC * v14;
 
@@ -3950,7 +3950,7 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 {
                     int v15;
                     int v16 = 0;
-                    UnkStruct_02079FF4 * v17;
+                    Party * v17;
                     UnkStruct_02073C74 * v18;
                     UnkStruct_ov16_0225BFFC * v19;
 

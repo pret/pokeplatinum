@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_02075874_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
 
 #include <nitro/rtc.h>
@@ -88,7 +88,7 @@ u8 sub_02076AF8(UnkStruct_02073C74 * param0);
 u8 sub_02076B00(UnkStruct_02073C74_sub1 * param0);
 UnkStruct_02073C74_sub1 * sub_02076B10(UnkStruct_02073C74 * param0);
 u8 sub_02076B14(UnkStruct_02073C74 * param0);
-u16 sub_02076B94(UnkStruct_02079FF4 * param0, UnkStruct_02073C74 * param1, u8 param2, u16 param3, int * param4);
+u16 sub_02076B94(Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 param3, int * param4);
 u16 sub_02076F84(const u16 param0);
 u16 sub_02076FD4(const u16 param0);
 void sub_02077020(UnkStruct_02073C74_sub1 * param0);
@@ -105,7 +105,7 @@ void sub_0207734C(UnkStruct_02073C74_sub1 * param0, int param1, int param2);
 void sub_02077408(UnkStruct_02073C74 * param0, u32 param1);
 BOOL sub_0207749C(UnkStruct_02073C74 * param0, u16 param1);
 void sub_020774C8(UnkStruct_02073C74_sub1 * param0, UnkStruct_02073C74 * param1);
-u8 sub_02077550(UnkStruct_02079FF4 * param0);
+u8 sub_02077550(Party * param0);
 u16 sub_020775A4(u16 param0);
 u16 sub_020775C4(u16 param0);
 void sub_020775EC(UnkStruct_02073C74 * param0, UnkStruct_02073C74 * param1);
@@ -115,10 +115,10 @@ s8 sub_0207762C(UnkStruct_02073C74 * param0, int param1);
 s8 sub_02077634(UnkStruct_02073C74_sub1 * param0, int param1);
 s8 sub_02077648(u32 param0, int param1);
 int sub_02077660(int param0, int param1, u16 * param2);
-void sub_020776B0(UnkStruct_02079FF4 * param0);
-u8 sub_02077758(UnkStruct_02079FF4 * param0, u8 param1);
-void sub_020777B4(UnkStruct_02079FF4 * param0, s32 param1);
-void sub_0207782C(UnkStruct_02079FF4 * param0);
+void sub_020776B0(Party * param0);
+u8 sub_02077758(Party * param0, u8 param1);
+void sub_020777B4(Party * param0, s32 param1);
+void sub_0207782C(Party * param0);
 BOOL sub_020778D8(UnkStruct_02073C74 * param0);
 BOOL sub_020778E0(UnkStruct_02073C74_sub1 * param0);
 BOOL sub_020778F8(UnkStruct_02073C74 * param0);
@@ -129,12 +129,12 @@ u8 sub_02077988(u16 param0);
 int sub_02077A00(UnkStruct_02073C74 * param0);
 int sub_02077A1C(UnkStruct_02073C74_sub1 * param0);
 void sub_02077A64(UnkStruct_02073C74 * param0);
-void sub_02077A9C(UnkStruct_02079FF4 * param0, int param1);
+void sub_02077A9C(Party * param0, int param1);
 void sub_02077ACC(UnkStruct_02073C74 * param0, int param1);
 void sub_02077ADC(UnkStruct_02073C74_sub1 * param0, int param1);
 BOOL sub_02077B14(UnkStruct_02073C74 * param0);
-void sub_02077B8C(UnkStruct_02079FF4 * param0);
-BOOL sub_02077BD8(UnkStruct_02079FF4 * param0, int param1, const RTCTime * param2);
+void sub_02077B8C(Party * param0);
+BOOL sub_02077BD8(Party * param0, int param1, const RTCTime * param2);
 BOOL sub_02077C20(UnkStruct_02073C74 * param0, int param1, int param2);
 void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);

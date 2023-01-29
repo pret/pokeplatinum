@@ -20,7 +20,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -1526,7 +1526,7 @@ static void ov10_02221188 (UnkStruct_ov10_0221FB28 * param0, u8 param1, s16 para
     }
 }
 
-static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_02079FF4 * param1, u16 param2, u16 param3)
+static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u16 param2, u16 param3)
 {
     UnkStruct_02073C74 * v0;
     u8 v1;
@@ -2027,7 +2027,7 @@ static void ov10_02221C48 (UnkStruct_ov10_0221FB28 * param0, u8 param1)
     sub_0201C3C0(param0->unk_0C, 2);
 }
 
-static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_02079FF4 * param1, u8 param2)
+static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 param2)
 {
     UnkStruct_02073C74 * v0;
     u16 v1;

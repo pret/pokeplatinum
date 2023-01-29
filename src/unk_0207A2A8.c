@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
@@ -97,7 +97,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, UnkStruct_02073C74 * param
     return 1;
 }
 
-int sub_0207A3AC (const UnkStruct_0202610C * param0, UnkStruct_02079FF4 * param1, const UnkStruct_02098700 * param2, u8 * param3)
+int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2, u8 * param3)
 {
     UnkStruct_02073C74 * v0;
     int v1, v2 = 0, v3, v4, v5 = 0;
@@ -204,7 +204,7 @@ static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, 
     return 0;
 }
 
-int sub_0207A594 (const UnkStruct_0202610C * param0, UnkStruct_02079FF4 * param1, const UnkStruct_02098700 * param2)
+int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2)
 {
     UnkStruct_02073C74 * v0;
     int v1, v2, v3, v4, v5 = 0;

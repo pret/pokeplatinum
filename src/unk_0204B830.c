@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
@@ -163,7 +163,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0204BA50 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
 
     if (Party_GetCurrentCount(v0) < 6) {
         return 1;
@@ -190,7 +190,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
     UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
     UnkStruct_02073C74 * v4;
     BOOL v5;
     UnkStruct_02073C74 * v6 = NULL;

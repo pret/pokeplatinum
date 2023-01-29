@@ -14,7 +14,7 @@
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_02078B40.h"
-#include "struct_defs/struct_02079FF4.h"
+#include "struct_defs/struct_party.h"
 #include "overlay006/struct_ov6_02240D5C.h"
 
 #include "unk_02006224.h"
@@ -34,8 +34,8 @@
 
 UnkStruct_0202F264 * Unk_021C07A4 = NULL;
 
-static void sub_0202FCE8(const UnkStruct_02079FF4 * param0, UnkStruct_0202FD30 * param1);
-static void sub_0202FD30(UnkStruct_0202FD30 * param0, UnkStruct_02079FF4 * param1);
+static void sub_0202FCE8(const Party * param0, UnkStruct_0202FD30 * param1);
+static void sub_0202FD30(UnkStruct_0202FD30 * param0, Party * param1);
 static BOOL sub_0202F75C(UnkStruct_021C0794 * param0, UnkStruct_0202F264 * param1);
 static BOOL sub_0202F794(UnkStruct_021C0794 * param0, const UnkStruct_0202F264 * param1);
 static void sub_0202F860(void * param0, u32 param1, u32 param2);
@@ -579,7 +579,7 @@ void sub_0202FAFC (UnkStruct_ov6_02240D5C * param0, UnkStruct_021C0794 * param1)
     }
 }
 
-static void sub_0202FCE8 (const UnkStruct_02079FF4 * param0, UnkStruct_0202FD30 * param1)
+static void sub_0202FCE8 (const Party * param0, UnkStruct_0202FD30 * param1)
 {
     int v0;
     UnkStruct_02073C74 * v1;
@@ -595,7 +595,7 @@ static void sub_0202FCE8 (const UnkStruct_02079FF4 * param0, UnkStruct_0202FD30 
     }
 }
 
-static void sub_0202FD30 (UnkStruct_0202FD30 * param0, UnkStruct_02079FF4 * param1)
+static void sub_0202FD30 (UnkStruct_0202FD30 * param0, Party * param1)
 {
     int v0;
     UnkStruct_02073C74 * v1;

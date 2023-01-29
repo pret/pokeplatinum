@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_defs/struct_0202FF58.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
@@ -33,8 +33,8 @@ typedef struct {
     u32 unk_3E0[4];
     UnkStruct_ov104_0223A348_sub2 unk_3F0[4];
     u16 unk_4D0;
-    UnkStruct_02079FF4 * unk_4D4;
-    UnkStruct_02079FF4 * unk_4D8;
+    Party * unk_4D4;
+    Party * unk_4D8;
     u16 unk_4DC[6];
     u16 unk_4E8[6];
     UnkStruct_0202FF58 * unk_4F4;

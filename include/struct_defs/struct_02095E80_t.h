@@ -22,7 +22,7 @@
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/struct_02095E80_sub1.h"
 #include "struct_defs/struct_02098D38.h"
@@ -108,8 +108,8 @@ struct UnkStruct_02095E80_t {
     int unk_2168;
     u8 unk_216C[256];
     int (* unk_226C)(UnkStruct_02095E80 *);
-    UnkStruct_02079FF4 * unk_2270;
-    UnkStruct_02079FF4 * unk_2274;
+    Party * unk_2270;
+    Party * unk_2274;
     UnkStruct_0202CC84 * unk_2278;
     UnkStruct_02027F8C * unk_227C;
     UnkStruct_02027F8C unk_2280;

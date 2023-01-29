@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -163,7 +163,7 @@ BOOL sub_02049EC4 (u16 param0, UnkStruct_021C0794 * param1, u8 param2)
 {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
-    UnkStruct_02079FF4 * v6;
+    Party * v6;
     UnkStruct_02073C74 * v7;
     UnkStruct_02049D38 v8[6];
 
@@ -433,7 +433,7 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
 {
     u16 v0 = 0;
     UnkStruct_02098C44 * v1 = *param1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_02073C74 * v3;
 
     if ((v1->unk_23 != 0) || (v1->unk_22 == 7)) {
@@ -460,7 +460,7 @@ int sub_0204A410 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
 {
     u16 v0 = 0, v1 = 0;
     u16 v2[4], v3[4];
-    UnkStruct_02079FF4 * v4;
+    Party * v4;
     UnkStruct_02073C74 * v5;
 
     v4 = GetPartyFromSavedata(param1);
@@ -552,7 +552,7 @@ BOOL sub_0204A57C (UnkStruct_0204AFC4 * param0)
 
 static void sub_0204A5A0 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1, u16 param2)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
 
     if ((param0->unk_0F != 0) && (param0->unk_0F != 1)) {
         return;
@@ -951,7 +951,7 @@ static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204A
     u8 v0 = 1;
     u8 v1;
     int v2;
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
     UnkStruct_02073C74 * v4;
 
     v3 = GetPartyFromSavedata(param0);
@@ -1026,7 +1026,7 @@ static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * para
 {
     int v0 = 0;
     UnkStruct_ov104_0223A348_sub2 * v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_02073C74 * v3;
 
     v1 = AllocFromHeapAtEnd(param0->unk_04, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);

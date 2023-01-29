@@ -15,7 +15,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay106/struct_ov106_02243118_decl.h"
 #include "overlay106/struct_ov106_02243650_decl.h"
@@ -120,7 +120,7 @@ struct UnkStruct_ov106_02243118_t {
     UnkStruct_ov106_02243650 * unk_284;
     int unk_288;
     u16 * unk_28C;
-    UnkStruct_02079FF4 * unk_290;
+    Party * unk_290;
     u8 * unk_294;
     u16 * unk_298;
     NARC * unk_29C;
@@ -1550,7 +1550,7 @@ void ov106_0224313C (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
-    UnkStruct_02079FF4 * v3;
+    Party * v3;
 
     v1 = 0;
 

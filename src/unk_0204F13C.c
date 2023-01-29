@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F1E88.h"
@@ -159,7 +159,7 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
-    UnkStruct_02079FF4 * v6;
+    Party * v6;
     UnkStruct_02073C74 * v7;
     u16 v8[6];
 

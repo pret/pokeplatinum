@@ -14,7 +14,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_02241584_decl.h"
 #include "overlay016/struct_ov16_0224B7CC_decl.h"
@@ -338,7 +338,7 @@ static int ov16_0224B504(UnkStruct_ov16_0224B9DC * param0, int param1);
 static int ov16_0224B510(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
 static int ov16_0224B518(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
 static u32 ov16_022431BC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static void ov16_022499C0(UnkStruct_02079FF4 * param0, int param1, int param2, int param3);
+static void ov16_022499C0(Party * param0, int param1, int param2, int param3);
 static int ov16_0224A724(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
 static void ov16_0224B520(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC * param1, UnkStruct_02073C74 * param2);
 static void ov16_0224B7CC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC * param1);
@@ -4301,7 +4301,7 @@ static BOOL ov16_02244BC4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if (v1 & 0x1) {
         {
-            UnkStruct_02079FF4 * v2;
+            Party * v2;
             UnkStruct_02073C74 * v3;
             int v4;
             int v5 = 0, v6, v7, v8, v9, v10;
@@ -7033,8 +7033,8 @@ static BOOL ov16_02248324 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if ((v5 & 0x8) || ((v5 & 0x10) && (ov16_0223E208(param0, v2)))) {
         {
-            UnkStruct_02079FF4 * v8;
-            UnkStruct_02079FF4 * v9;
+            Party * v8;
+            Party * v9;
 
             v8 = ov16_0223DF20(param0, v2);
             v9 = ov16_0223DF20(param0, ov16_0223E258(param0, v2));
@@ -7066,7 +7066,7 @@ static BOOL ov16_02248324 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         }
     } else {
         {
-            UnkStruct_02079FF4 * v10;
+            Party * v10;
 
             v10 = ov16_0223DF20(param0, v2);
             v7 = ov16_0223DF14(param0, v2);
@@ -8110,7 +8110,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_022499C0 (UnkStruct_02079FF4 * param0, int param1, int param2, int param3)
+static void ov16_022499C0 (Party * param0, int param1, int param2, int param3)
 {
     int v0;
     s16 v1 = 0;
@@ -8604,7 +8604,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         if (sub_0200384C(v4) == 0) {
             {
                 UnkStruct_ov16_0225C300 v21;
-                UnkStruct_02079FF4 * v22;
+                Party * v22;
                 int v23;
 
                 v22 = ov16_0223DF20(v2->unk_00, 0);

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
 #include "overlay006/struct_ov6_02240D5C.h"
@@ -1581,7 +1581,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkS
     UnkStruct_ov104_0223A348_sub1 v10;
     UnkStruct_0204B184 * v11;
     UnkStruct_02025E6C * v12;
-    UnkStruct_02079FF4 * v13;
+    Party * v13;
 
     v6 = (param0->unk_05 * 2);
     v4 = ov104_0223B500(param0->unk_04);
@@ -1805,7 +1805,7 @@ u8 ov104_0223B5C0 (UnkStruct_ov104_0223B5C0 * param0)
 {
     u32 v0;
     int v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_02073C74 * v3;
 
     v2 = GetPartyFromSavedata(param0->unk_6FC);
@@ -1863,7 +1863,7 @@ static u16 ov104_0223B644 (u8 param0)
 
 u16 ov104_0223B64C (UnkStruct_ov104_0223B5C0 * param0)
 {
-    UnkStruct_02079FF4 * v0;
+    Party * v0;
     UnkStruct_02073C74 * v1;
     u16 v2, v3;
 

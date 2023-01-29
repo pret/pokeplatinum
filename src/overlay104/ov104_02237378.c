@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
 
@@ -312,7 +312,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_02023790 * v0;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02079FF4 * v2;
+    Party * v2;
     UnkStruct_ov104_0223BFFC * v3;
     u8 v4, v5, v6;
     u32 v7[9][2];

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay033/struct_ov33_02256474_decl.h"
 
@@ -76,7 +76,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_60 = param1;
 
         {
-            UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(sub_020245A4());
+            Party * v0 = GetPartyFromSavedata(sub_020245A4());
             UnkStruct_02073C74 * v1;
             int v2;
             int v3;

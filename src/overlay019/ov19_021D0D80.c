@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_02075874_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -119,7 +119,7 @@ typedef struct {
     u16 unk_08[NELEMS(Unk_ov19_021DFDF0)];
     UnkStruct_02073C74_sub1 * unk_10;
     UnkStruct_020797DC * unk_14;
-    UnkStruct_02079FF4 * unk_18;
+    Party * unk_18;
     BOOL unk_1C;
 } UnkStruct_ov19_021D38E0;
 
@@ -129,7 +129,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_02042434 * unk_118;
     UnkStruct_021C0794 * unk_11C;
     UnkStruct_020797DC * unk_120;
-    UnkStruct_02079FF4 * unk_124;
+    Party * unk_124;
     UnkStruct_0208737C * unk_128;
     UnkStruct_02098D38 unk_12C;
     UnkStruct_ov19_021D38E0 unk_15C;

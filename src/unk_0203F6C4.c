@@ -36,7 +36,7 @@
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
@@ -7005,7 +7005,7 @@ static BOOL sub_02045344 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = inline_02049538(param0);
     u16 * v1 = inline_0204FCAC(param0);
-    UnkStruct_02079FF4 * v2 = GetPartyFromSavedata(param0->unk_34->unk_0C);
+    Party * v2 = GetPartyFromSavedata(param0->unk_34->unk_0C);
 
     *v1 = Party_HasPokemon(v2, v0);
     return 1;
@@ -7014,7 +7014,7 @@ static BOOL sub_02045344 (UnkStruct_0203E724 * param0)
 static BOOL sub_02045384 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = inline_02049538(param0);
-    UnkStruct_02079FF4 * v1 = GetPartyFromSavedata(param0->unk_34->unk_0C);
+    Party * v1 = GetPartyFromSavedata(param0->unk_34->unk_0C);
     int v2;
     int v3;
     int v4 = Party_GetCurrentCount(v1);
@@ -7040,7 +7040,7 @@ static BOOL sub_02045404 (UnkStruct_0203E724 * param0)
     UnkStruct_02073C74 * v0;
     int v1, v2, v3, v4, v5, v6;
     u16 * v7 = inline_0204FCAC(param0);
-    UnkStruct_02079FF4 * v8 = GetPartyFromSavedata(param0->unk_34->unk_0C);
+    Party * v8 = GetPartyFromSavedata(param0->unk_34->unk_0C);
     int v9 = Party_GetCurrentCount(v8);
 
     v3 = 0;
@@ -8288,7 +8288,7 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
     v3 = 0;
 
     {
-        UnkStruct_02079FF4 * v4;
+        Party * v4;
         int v5;
 
         v4 = GetPartyFromSavedata(param0);
@@ -8451,7 +8451,7 @@ static BOOL sub_0204698C (UnkStruct_0203E724 * param0)
 static BOOL sub_020469D0 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     u16 v2 = inline_02049538(param0);
 
     v1 = GetPartyFromSavedata(param0->unk_34->unk_0C);

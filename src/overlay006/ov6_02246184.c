@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -107,7 +107,7 @@ u32 ov6_0224622C (const UnkStruct_ov6_02246204 * param0)
 
 void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2)
 {
-    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
 
     sub_0207A128(v0, param2, param1->unk_04);
     sub_0202F180(param0->unk_0C, param1->unk_04);
@@ -115,7 +115,7 @@ void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
 
 void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, UnkStruct_02073C74 * param4, UnkStruct_02073C74 * param5)
 {
-    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
     UnkStruct_02073C74 * v1;
     UnkStruct_02023790 * v2;
     u32 v3;

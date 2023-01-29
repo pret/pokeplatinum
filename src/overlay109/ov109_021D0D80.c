@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -289,7 +289,7 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     int unk_18;
     int unk_1C;
     u32 unk_20;
-    UnkStruct_02079FF4 * unk_24;
+    Party * unk_24;
     UnkStruct_ov109_021D2D78 * unk_28;
     UnkStruct_ov109_021D0F70_sub1 unk_2C;
     u8 unk_AC[32];
@@ -429,7 +429,7 @@ static BOOL ov109_021D3B54(UnkStruct_ov109_021D0F70 * param0, int param1);
 static void ov109_021D3B70(UnkStruct_ov109_021D0F70 * param0, int param1);
 static int ov109_021D3BC4(UnkStruct_ov109_021D0F70 * param0);
 static BOOL ov109_021D3C08(UnkStruct_ov109_021D0F70 * param0, fx32 param1, int param2);
-static BOOL ov109_021D3C94(UnkStruct_02079FF4 * param0);
+static BOOL ov109_021D3C94(Party * param0);
 static BOOL ov109_021D3CD8(UnkStruct_ov109_021D0F70 * param0);
 static int ov109_021D3D1C(UnkStruct_ov109_021D0F70 * param0);
 static BOOL ov109_021D3D3C(UnkStruct_ov109_021D0F70 * param0);
@@ -3523,11 +3523,11 @@ static BOOL ov109_021D3B54 (UnkStruct_ov109_021D0F70 * param0, int param1)
 static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_02079FF4 * v2, * v3;
+    Party * v2, * v3;
     UnkStruct_02073C74 * v4, * v5;
 
     v2 = param0->unk_24;
-    v3 = (UnkStruct_02079FF4 *)sub_0209C188(param0->unk_D0, param1);
+    v3 = (Party *)sub_0209C188(param0->unk_D0, param1);
 
     v0 = param0->unk_CC->unk_04;
     v1 = param0->unk_2C.unk_18[param1];
@@ -3597,7 +3597,7 @@ static BOOL ov109_021D3C08 (UnkStruct_ov109_021D0F70 * param0, fx32 param1, int 
     return 0;
 }
 
-static BOOL ov109_021D3C94 (UnkStruct_02079FF4 * param0)
+static BOOL ov109_021D3C94 (Party * param0)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
@@ -3625,7 +3625,7 @@ static BOOL ov109_021D3CD8 (UnkStruct_ov109_021D0F70 * param0)
 
     {
         int v0;
-        UnkStruct_02079FF4 * v1;
+        Party * v1;
 
         for (v0 = 0; v0 < 5; v0++) {
             if (ov109_021D3B54(param0, v0)) {

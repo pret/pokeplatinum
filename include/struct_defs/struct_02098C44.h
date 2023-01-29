@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_02098C44_H
 
 #include "struct_defs/struct_020279FC.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 
 typedef struct {
-    UnkStruct_02079FF4 * unk_00;
+    Party * unk_00;
     void * unk_04;
     void * unk_08;
     UnkStruct_020279FC * unk_0C;

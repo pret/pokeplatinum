@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
@@ -953,7 +953,7 @@ static void ov16_0225CA60 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 static void ov16_0225CA74 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_02266A38 * v0 = (UnkStruct_ov16_02266A38 *)&param1->unk_90[0];
-    UnkStruct_02079FF4 * v1;
+    Party * v1;
     UnkStruct_02073C74 * v2;
     int v3;
     int v4;

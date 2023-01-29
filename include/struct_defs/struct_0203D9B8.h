@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202AB28_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_defs/struct_020989DC.h"
 
@@ -17,7 +17,7 @@ typedef struct {
     u16 unk_06;
     UnkStruct_0202AB28 * unk_08;
     UnkStruct_02025E6C * unk_0C;
-    UnkStruct_02079FF4 * unk_10;
+    Party * unk_10;
     UnkStruct_0207D3C0 * unk_14;
     UnkStruct_020279FC * unk_18;
     UnkStruct_020989DC unk_1C[100];

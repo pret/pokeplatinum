@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0207A9CC.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
@@ -22,7 +22,7 @@
 
 typedef struct {
     u32 unk_00;
-    UnkStruct_02079FF4 * unk_04[4];
+    Party * unk_04[4];
     int unk_14;
     int unk_18[4];
     UnkStruct_0207A9CC unk_28[4];

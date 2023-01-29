@@ -17,7 +17,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
-#include "struct_decls/struct_02079FF4_decl.h"
+#include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay105/struct_ov105_02241FF4_decl.h"
 #include "overlay105/struct_ov105_02245E1C_decl.h"
@@ -134,8 +134,8 @@ struct UnkStruct_ov105_02241FF4_t {
     UnkStruct_ov105_02246060 * unk_310;
     UnkStruct_ov105_02245E1C * unk_314;
     UnkStruct_ov105_02245E1C * unk_318;
-    UnkStruct_02079FF4 * unk_31C;
-    UnkStruct_02079FF4 * unk_320;
+    Party * unk_31C;
+    Party * unk_320;
     u16 unk_324[6];
     u16 * unk_330;
     int unk_334;
@@ -186,7 +186,7 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_022452A0(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_022452E4(void);
 static void ov105_0224531C(UnkStruct_ov105_02241FF4 * param0);
-static void ov105_022453F8(UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 param2, int param3, const UnkStruct_02079FF4 * param4);
+static void ov105_022453F8(UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 param2, int param3, const Party * param4);
 static void ov105_0224472C(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_02244678(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_0224473C(UnkStruct_02018340 * param0);
@@ -219,7 +219,7 @@ static void ov105_02244EE8(UnkStruct_ov105_02241FF4 * param0, u32 param1, s32 pa
 static void ov105_02244F00(UnkStruct_ov105_02241FF4 * param0, u32 param1, UnkStruct_02073C74_sub1 * param2);
 static void ov105_02244F0C(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
 static void ov105_02244F84(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
-static void ov105_02244FF8(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const UnkStruct_02079FF4 * param9);
+static void ov105_02244FF8(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const Party * param9);
 static void ov105_022450DC(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8, u8 param9);
 static void ov105_02245464(UnkStruct_ov105_02241FF4 * param0);
 static BOOL ov105_022454F8(UnkStruct_ov105_02241FF4 * param0, u8 param1);
@@ -2762,7 +2762,7 @@ static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     return;
 }
 
-static void ov105_02244FF8 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const UnkStruct_02079FF4 * param9)
+static void ov105_02244FF8 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const Party * param9)
 {
     u8 v0;
     u32 v1, v2, v3;
@@ -2951,7 +2951,7 @@ static void ov105_0224531C (UnkStruct_ov105_02241FF4 * param0)
     return;
 }
 
-static void ov105_022453F8 (UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 param2, int param3, const UnkStruct_02079FF4 * param4)
+static void ov105_022453F8 (UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 param2, int param3, const Party * param4)
 {
     int v0 = param2;
 
