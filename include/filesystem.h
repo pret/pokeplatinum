@@ -50,7 +50,7 @@ void * AllocAtEndAndReadWholeNarcMemberByIndexPair(int narcIndex, int memberInde
 void ReadFromNarcMemberByIndexPair(void * dest, int narcIndex, int memberIndex, int offset, int bytesToRead);
 
 /*
- * Creates a new buffer large enough to hold the bytesToRead to read, then reads the specified data slice.
+ * Creates a new buffer large enough to hold the size of the data to read, then reads the specified data slice.
  * The AllocAtEnd variant is preferred for very short-lived buffers.
  *
  * @param narcIndex:      Index of NARC to read
@@ -65,7 +65,7 @@ void * AllocAndReadFromNarcMemberByIndexPair(int narcIndex, int memberIndex, int
 void * AllocAtEndAndReadFromNarcMemberByIndexPair(int narcIndex, int memberIndex, int heapID, int offset, int bytesToRead);
 
 /*
- * Gets the bytesToRead of a NARC member. Useful when managing the read buffer yourself and the NARC has variable
+ * Gets the size of a NARC member. Useful when managing the read buffer yourself and the NARC has variable
  * sized members.
  *
  * @param narcIndex:      Index of NARC to read
@@ -114,7 +114,7 @@ void * NARC_AllocAndReadWholeMember(NARC * narc, u32 memberIndex, u32 heapID);
 void NARC_ReadWholeMember(NARC * narc, u32 memberIndex, void * dest);
 
 /*
- * Gets the bytesToRead of a NARC member. Useful when managing the read buffer yourself and the NARC has variable
+ * Gets the size of a NARC member. Useful when managing the read buffer yourself and the NARC has variable
  * sized members.
  *
  * @param narc:           Pointer to the NARC
