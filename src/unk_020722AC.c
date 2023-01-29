@@ -54,7 +54,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_020508D4.h"
 #include "unk_0206A780.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_02097624.h"
@@ -1012,8 +1012,8 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
         return;
     }
 
-    v1 = sub_0207A268(sub_0203D174(param0->unk_16C));
-    v2 = sub_0207A0FC(v1, param1);
+    v1 = GetPartyFromSavedata(sub_0203D174(param0->unk_16C));
+    v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
     sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
 
@@ -1225,7 +1225,7 @@ static int sub_02073524 (UnkStruct_02072334 * param0, int param1)
         v0 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098C44));
         MI_CpuClear8(v0, sizeof(UnkStruct_02098C44));
 
-        v0->unk_00 = sub_0207A268(sub_0203D174(param0->unk_16C));
+        v0->unk_00 = GetPartyFromSavedata(sub_0203D174(param0->unk_16C));
         v0->unk_04 = sub_0207D990(sub_0203D174(param0->unk_16C));
         v0->unk_0C = sub_02025E44(sub_0203D174(param0->unk_16C));
         v0->unk_08 = sub_02028430(param0->unk_16C->unk_0C);

@@ -49,7 +49,7 @@
 #include "unk_020559DC.h"
 #include "unk_0205D8CC.h"
 #include "unk_0206A8DC.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_02096420.h"
 
 typedef struct {
@@ -83,7 +83,7 @@ static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
         sub_0202DF94(v0);
     }
 
-    v1 = sub_0207A268(param0->unk_0C);
+    v1 = GetPartyFromSavedata(param0->unk_0C);
 
     sub_020138A4(&v2);
     sub_0202DFA8(v0, v1, &v2);
@@ -132,7 +132,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
     {
         int v6;
 
-        sub_02097284(sub_0207A268(v2->unk_0C));
+        sub_02097284(GetPartyFromSavedata(v2->unk_0C));
         sub_02024804();
         v6 = sub_020246E0(v2->unk_0C);
         sub_02052C6C(v2, v3->unk_00);
@@ -198,7 +198,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
 
     v5->unk_00 = sub_0206A954(v3);
     v5->unk_04.unk_00 = sub_02025E38(v0->unk_0C);
-    v5->unk_04.unk_04 = sub_0207A268(v0->unk_0C);
+    v5->unk_04.unk_04 = GetPartyFromSavedata(v0->unk_0C);
     v5->unk_04.unk_08 = sub_02025E5C(v0->unk_0C);
     v5->unk_10.unk_00 = sub_02025F30(sub_02025E38(v0->unk_0C));
     v5->unk_10.unk_04 = sub_0206A954(v3);
@@ -208,7 +208,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
         sub_02055C2C(v0);
     }
 
-    v7 = sub_0207A268(v0->unk_0C);
+    v7 = GetPartyFromSavedata(v0->unk_0C);
 
     sub_02054AC4(v7);
     sub_0203D178(v1);

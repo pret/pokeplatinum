@@ -35,7 +35,7 @@
 #include "unk_02038F8C.h"
 #include "map_header.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0208C098.h"
 #include "unk_02092494.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -380,7 +380,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1)
 void ov104_0222E1C0 (UnkStruct_021C0794 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02073C74 * param2)
 {
     ov104_0222E134(param0, param2);
-    sub_0207A048(param1, param2);
+    Party_AddPokemon(param1, param2);
     return;
 }
 

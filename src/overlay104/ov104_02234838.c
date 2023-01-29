@@ -24,7 +24,7 @@
 #include "unk_02051D8C.h"
 #include "unk_0206CCB0.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -127,16 +127,16 @@ BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
 
     sub_0207A008(v4->unk_0C);
 
-    v1 = sub_0207A268(v5->unk_08);
-    v2 = sub_0207A0FC(v1, v3->unk_260[0]);
+    v1 = GetPartyFromSavedata(v5->unk_08);
+    v2 = Party_GetPokemonBySlotIndex(v1, v3->unk_260[0]);
 
-    sub_0207A048(v4->unk_0C, v2);
+    Party_AddPokemon(v4->unk_0C, v2);
 
     if (v4->unk_04 == 1) {
-        v2 = sub_0207A0FC(v1, v3->unk_260[1]);
-        sub_0207A048(v4->unk_0C, v2);
+        v2 = Party_GetPokemonBySlotIndex(v1, v3->unk_260[1]);
+        Party_AddPokemon(v4->unk_0C, v2);
     } else if ((v4->unk_04 == 2) || (v4->unk_04 == 3)) {
-        sub_0207A048(v4->unk_0C, v3->unk_D8C);
+        Party_AddPokemon(v4->unk_0C, v3->unk_D8C);
     }
 
     sub_0209B988(param0->unk_00->unk_00, &v6, v4, 0, ov104_02234A08);
@@ -253,11 +253,11 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
         *v11 = v3->unk_D88;
         break;
     case 27:
-        v2 = sub_0207A268(v0->unk_08);
+        v2 = GetPartyFromSavedata(v0->unk_08);
         v5 = ov104_0223B500(v3->unk_04);
 
         for (v7 = 0; v7 < v5; v7++) {
-            v1 = sub_0207A0FC(v2, v3->unk_260[v7]);
+            v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[v7]);
             sub_02074B30(v1, 6, &v3->unk_728[v7]);
         }
         break;
@@ -295,8 +295,8 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
         *v11 = ov104_02235578(v3);
         break;
     case 15:
-        v2 = sub_0207A268(v0->unk_08);
-        v1 = sub_0207A0FC(v2, v3->unk_260[0]);
+        v2 = GetPartyFromSavedata(v0->unk_08);
+        v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[0]);
         *v11 = sub_02074470(v1, 5, NULL);
         break;
     case 35:
@@ -412,8 +412,8 @@ BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_02230BE4 * v5 = sub_0209B970(param0->unk_00->unk_00);
 
     v4 = sub_0209B978(param0->unk_00->unk_00);
-    v2 = sub_0207A268(v5->unk_08);
-    v3 = sub_0207A0FC(v2, v4->unk_260[0]);
+    v2 = GetPartyFromSavedata(v5->unk_08);
+    v3 = Party_GetPokemonBySlotIndex(v2, v4->unk_260[0]);
     v1 = sub_02074470(v3, 5, NULL);
 
     if (v4->unk_04 == 0) {

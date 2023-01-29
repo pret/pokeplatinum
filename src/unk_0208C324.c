@@ -51,7 +51,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0208C098.h"
 #include "unk_0208C324.h"
@@ -1555,7 +1555,7 @@ static s8 sub_0208DC84 (UnkStruct_0208D7BC * param0, s8 param1)
             return -1;
         }
 
-        v0 = sub_0207A0FC(param0->unk_24C->unk_00, v1);
+        v0 = Party_GetPokemonBySlotIndex(param0->unk_24C->unk_00, v1);
 
         if (sub_02074470(v0, 5, NULL) != 0) {
             if (sub_02074470(v0, 76, NULL) != 0) {
@@ -1608,7 +1608,7 @@ void * sub_0208DD48 (UnkStruct_0208D7BC * param0)
     case 0:
         return (void *)((u32)param0->unk_24C->unk_00 + (sub_02076AF0() * param0->unk_24C->unk_14));
     case 1:
-        return (void *)sub_0207A0FC(param0->unk_24C->unk_00, param0->unk_24C->unk_14);
+        return (void *)Party_GetPokemonBySlotIndex(param0->unk_24C->unk_00, param0->unk_24C->unk_14);
     case 2:
         return (void *)((u32)param0->unk_24C->unk_00 + (sub_02076AF4() * param0->unk_24C->unk_14));
     }

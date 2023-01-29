@@ -15,7 +15,7 @@
 #include "unk_02023790.h"
 #include "unk_0202DF8C.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 static int inline inline_0202E1A8(const UnkStruct_0202DF8C * param0, int param1);
 
@@ -45,13 +45,13 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const UnkStruct_02079FF4 * param
     }
 
     v0 = &param0->unk_00[param0->unk_2AA8];
-    v3 = sub_0207A0F8(param1);
+    v3 = Party_GetCurrentCount(param1);
     v2 = sub_02023790(11, 0);
 
     MI_CpuClear16(v0->unk_00, sizeof(UnkStruct_0202E1F4) * 6);
 
     for (v4 = 0, v5 = 0; v4 < v3; v4++) {
-        v1 = sub_0207A0FC(param1, v4);
+        v1 = Party_GetPokemonBySlotIndex(param1, v4);
         v6 = sub_02073C88(v1);
 
         if (sub_02074470(v1, 76, NULL) == 0) {

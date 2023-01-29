@@ -75,7 +75,7 @@
 #include "unk_02038F8C.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
 #include "unk_0207D3B8.h"
@@ -272,7 +272,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
         if (v2) {
             CreateHeap(3, 73, 0x30000);
-            v4 = sub_0207A0FC(v0->unk_04[0], v1);
+            v4 = Party_GetPokemonBySlotIndex(v0->unk_04[0], v1);
             v0->unk_170 = sub_0207AE68(v0->unk_04[0], v4, v2, v0->unk_108, v0->unk_140, v0->unk_E8, v0->unk_E0, v0->unk_11C, v0->unk_100, v3, 0x1 | 0x2, 73);
             *param1 = 14;
         } else {
@@ -726,11 +726,11 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     ov16_0223EE70(v0);
 
     if (v0->unk_241C != 0x4) {
-        ov16_0223EF68(v0, sub_0207A0FC(v0->unk_68[1], 0));
+        ov16_0223EF68(v0, Party_GetPokemonBySlotIndex(v0->unk_68[1], 0));
     }
 
     for (v2 = 0; v2 < 4; v2++) {
-        sub_0207A21C(v0->unk_68[v2], v1->unk_04[v2]);
+        Party_cpy(v0->unk_68[v2], v1->unk_04[v2]);
         FreeToHeap(v0->unk_68[v2]);
         sub_02025E80(v0->unk_48[v2], v1->unk_D0[v2]);
         FreeToHeap(v0->unk_48[v2]);
@@ -1131,8 +1131,8 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
         int v5;
 
         for (v0 = 0; v0 < 4; v0++) {
-            for (v1 = 0; v1 < sub_0207A0F8(param1->unk_04[v0]); v1++) {
-                v3 = sub_0207A0FC(param1->unk_04[v0], v1);
+            for (v1 = 0; v1 < Party_GetCurrentCount(param1->unk_04[v0]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(param1->unk_04[v0], v1);
                 v5 = sub_02075D6C(v3);
                 sub_02074B30(v3, 111, &v5);
             }
@@ -1158,12 +1158,12 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
 
                 for (v0 = 0; v0 < 4; v0++) {
                     ov16_02263730(param0, param0->unk_34[v0]);
-                    sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+                    Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
                 }
 
                 for (v0 = 0; v0 < param0->unk_44; v0++) {
-                    for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0]); v1++) {
-                        v3 = sub_0207A0FC(param0->unk_68[v0], v1);
+                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
                         if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
                             break;
@@ -1185,12 +1185,12 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
 
                 for (v0 = 0; v0 < 4; v0++) {
                     ov16_02263730(param0, param0->unk_34[v0]);
-                    sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+                    Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
                 }
 
                 for (v0 = 0; v0 < param0->unk_44; v0++) {
-                    for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0]); v1++) {
-                        v3 = sub_0207A0FC(param0->unk_68[v0], v1);
+                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
                         if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
                             break;
@@ -1212,12 +1212,12 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                 param0->unk_44 = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+                    Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
                 }
 
                 for (v0 = 0; v0 < param0->unk_44; v0++) {
-                    for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0 & 1]); v1++) {
-                        v3 = sub_0207A0FC(param0->unk_68[v0 & 1], v1);
+                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0 & 1]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0 & 1], v1);
 
                         if (v0 > 1) {
                             if ((ov16_0225B45C(param0, param0->unk_30, 2, v0 & 1) != v1) && (sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
@@ -1243,10 +1243,10 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                 param0->unk_44 = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+                    Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
 
-                    for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0]); v1++) {
-                        v3 = sub_0207A0FC(param0->unk_68[v0], v1);
+                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
                         if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
                             break;
@@ -1272,7 +1272,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
             param0->unk_44 = v0;
 
             for (v0 = 0; v0 < 4; v0++) {
-                sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+                Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
             }
 
             for (v0 = 0; v0 < param0->unk_44; v0++) {
@@ -1310,12 +1310,12 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
         param0->unk_44 = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+            Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
         }
 
         for (v0 = 0; v0 < param0->unk_44; v0++) {
-            for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0]); v1++) {
-                v3 = sub_0207A0FC(param0->unk_68[v0], v1);
+            for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
                 if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
                     break;
@@ -1338,12 +1338,12 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
         param0->unk_44 = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+            Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
         }
 
         for (v0 = 0; v0 < param0->unk_44; v0++) {
-            for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0 & 1]); v1++) {
-                v3 = sub_0207A0FC(param0->unk_68[v0 & 1], v1);
+            for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0 & 1]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0 & 1], v1);
 
                 if (v0 > 1) {
                     if ((ov16_0225B45C(param0, param0->unk_30, 2, v0 & 1) != v1) && (sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
@@ -1372,10 +1372,10 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
         param0->unk_44 = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            sub_0207A21C(param1->unk_04[v0], param0->unk_68[v0]);
+            Party_cpy(param1->unk_04[v0], param0->unk_68[v0]);
 
-            for (v1 = 0; v1 < sub_0207A0F8(param0->unk_68[v0]); v1++) {
-                v3 = sub_0207A0FC(param0->unk_68[v0], v1);
+            for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
                 if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
                     break;
@@ -1390,19 +1390,19 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
     }
 
     if (param0->unk_2C & 0x200) {
-        v3 = sub_0207A0FC(param0->unk_68[1], 0);
+        v3 = Party_GetPokemonBySlotIndex(param0->unk_68[1], 0);
         sub_02074470(v3, 144, (u8 *)&param0->unk_AC[1].unk_14);
     }
 
     if (param0->unk_2C & 0x1) {
         if ((ov16_0223CD3C(param0->unk_AC[1].unk_01) == 1) || (ov16_0223CD3C(param0->unk_AC[3].unk_01) == 1)) {
-            for (v0 = 0; v0 < sub_0207A0F8(param0->unk_68[0]); v0++) {
-                v3 = sub_0207A0FC(param0->unk_68[0], v0);
+            for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_68[0]); v0++) {
+                v3 = Party_GetPokemonBySlotIndex(param0->unk_68[0], v0);
                 sub_02075C74(v3, 3, param0->unk_2404);
             }
 
-            for (v0 = 0; v0 < sub_0207A0F8(param0->unk_68[2]); v0++) {
-                v3 = sub_0207A0FC(param0->unk_68[2], v0);
+            for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_68[2]); v0++) {
+                v3 = Party_GetPokemonBySlotIndex(param0->unk_68[2], v0);
                 sub_02075C74(v3, 3, param0->unk_2404);
             }
         }

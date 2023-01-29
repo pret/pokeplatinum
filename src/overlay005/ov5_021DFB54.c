@@ -33,7 +33,7 @@
 #include "unk_02063400.h"
 #include "unk_020655F4.h"
 #include "unk_02071B10.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -1782,6 +1782,6 @@ static void ov5_021E1134 (void * param0)
 
 static UnkStruct_02073C74 * ov5_021E1140 (UnkStruct_0203CDB0 * param0, int param1)
 {
-    UnkStruct_02073C74 * v0 = sub_0207A0FC(sub_0207A268(param0->unk_0C), param1);
+    UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(param0->unk_0C), param1);
     return v0;
 }

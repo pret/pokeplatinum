@@ -38,7 +38,7 @@
 #include "unk_02056720.h"
 #include "unk_0206CCB0.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay006/ov6_022465FC.h"
 #include "overlay006/ov6_02246A30.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -130,8 +130,8 @@ BOOL sub_02048F74 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02048F98 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02079FF4 * v0 = sub_0207A268(param0->unk_34->unk_0C);
-    UnkStruct_02073C74 * v1 = sub_0207A0FC(v0, inline_02049538(param0));
+    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_34->unk_0C);
+    UnkStruct_02073C74 * v1 = Party_GetPokemonBySlotIndex(v0, inline_02049538(param0));
 
     sub_0206D60C(param0->unk_34, v1);
     return 0;
@@ -217,8 +217,8 @@ BOOL sub_0204912C (UnkStruct_0203E724 * param0)
     switch (sub_0203E838(param0)) {
     case 0:
     {
-        UnkStruct_02079FF4 * v1 = sub_0207A268(param0->unk_34->unk_0C);
-        UnkStruct_02073C74 * v2 = sub_0207A0FC(v1, inline_02049538(param0));
+        UnkStruct_02079FF4 * v1 = GetPartyFromSavedata(param0->unk_34->unk_0C);
+        UnkStruct_02073C74 * v2 = Party_GetPokemonBySlotIndex(v1, inline_02049538(param0));
 
         sub_0206CF48(v0, v2, 4);
     }
@@ -287,7 +287,7 @@ static void sub_0204922C (UnkStruct_0200B358 * param0, int param1, const u16 * p
 
 static void sub_02049268 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
-    UnkStruct_02079FF4 * v0 = sub_0207A268(param0->unk_0C);
+    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
     UnkStruct_02073C74 * v1 = sub_02054A74(v0);
 
     sub_0200B538(param1, 0, sub_02076B10(v1));

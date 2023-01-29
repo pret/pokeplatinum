@@ -61,7 +61,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202CBE4.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay086/ov86_0223B140.h"
 
 typedef struct {
@@ -325,10 +325,10 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         int v1, v2;
 
         v0->unk_04 = 0;
-        v2 = sub_0207A0F8(v0->unk_0C->unk_04);
+        v2 = Party_GetCurrentCount(v0->unk_0C->unk_04);
 
         for (v1 = 0; v1 < v2; v1++) {
-            if (sub_02074470(sub_0207A0FC(v0->unk_0C->unk_04, v1), 76, NULL) == 0) {
+            if (sub_02074470(Party_GetPokemonBySlotIndex(v0->unk_0C->unk_04, v1), 76, NULL) == 0) {
                 v0->unk_2C8[v0->unk_04] = v1;
                 v0->unk_04++;
             }
@@ -858,7 +858,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         param0->unk_1B4[v12] = sub_02021B90(&v3);
 
         sub_02021CAC(param0->unk_1B4[v12], 0);
-        v11 = sub_0207A0FC(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
+        v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
         sub_02075EF4(&v1, (UnkStruct_02073C74 *)v11, 2);
 
         param0->unk_2E0[v12] = sub_02074470((UnkStruct_02073C74 *)v11, 5, NULL);
@@ -1280,7 +1280,7 @@ static void ov86_0223C3E4 (UnkStruct_ov86_0223B3C8 * param0, int param1, int par
     v0->unk_1C = param0->unk_1C4C;
     v0->unk_20 = param0->unk_1C50;
     v0->unk_2C = (param1 & 1) ? 0 : 120;
-    v0->unk_24 = sub_0207A0FC(param0->unk_0C->unk_04, param0->unk_2C8[param1]);
+    v0->unk_24 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[param1]);
     v0->unk_28 = param0->unk_0C->unk_00;
     v0->unk_30 = 0;
     v0->unk_34 = 0;

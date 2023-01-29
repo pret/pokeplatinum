@@ -19,7 +19,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_020218BC.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021D79F8.h"
@@ -188,7 +188,7 @@ static void ov19_021DC79C (UnkStruct_0201CD38 * param0, void * param1)
 
 void ov19_021DC834 (UnkStruct_ov19_021DC680 * param0)
 {
-    int v0 = sub_0207A0F8(param0->unk_0C->unk_04);
+    int v0 = Party_GetCurrentCount(param0->unk_0C->unk_04);
 
     if (param0->unk_28 < v0) {
         int v1, v2;
@@ -245,7 +245,7 @@ BOOL ov19_021DC95C (UnkStruct_ov19_021DC680 * param0)
 
 void ov19_021DC96C (UnkStruct_ov19_021DC680 * param0)
 {
-    u32 v0 = sub_0207A0F8(param0->unk_0C->unk_04) - 1;
+    u32 v0 = Party_GetCurrentCount(param0->unk_0C->unk_04) - 1;
 
     if (param0->unk_28 > v0) {
         VecFx32 v1;
@@ -395,7 +395,7 @@ void ov19_021DCC80 (UnkStruct_ov19_021DC680 * param0, u32 param1, const UnkStruc
     u32 v1;
     UnkStruct_ov19_021DCD18 * v2;
 
-    v0 = sub_0207A0F8(param0->unk_0C->unk_04) - 1;
+    v0 = Party_GetCurrentCount(param0->unk_0C->unk_04) - 1;
     v1 = 1048 + 32 * v0;
     v2 = &param0->unk_3C[v0];
 
@@ -519,10 +519,10 @@ static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
     int v1, v2, v3;
 
     v3 = (param1) ? 0 : 208;
-    v2 = sub_0207A0F8(param0->unk_0C->unk_04);
+    v2 = Party_GetCurrentCount(param0->unk_0C->unk_04);
 
     for (v1 = 0; v1 < v2; v1++) {
-        v0 = sub_0207A0FC(param0->unk_0C->unk_04, v1);
+        v0 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, v1);
         ov19_021DA428(param0->unk_38, (UnkStruct_02073C74_sub1 *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
         sub_02021CAC(param0->unk_3C[v1].unk_00, param1);
     }
@@ -532,7 +532,7 @@ static void ov19_021DCF50 (UnkStruct_ov19_021DC680 * param0)
 {
     int v0, v1;
 
-    v1 = sub_0207A0F8(param0->unk_0C->unk_04);
+    v1 = Party_GetCurrentCount(param0->unk_0C->unk_04);
 
     for (v0 = 0; v0 < v1; v0++) {
         if (param0->unk_3C[v0].unk_00) {

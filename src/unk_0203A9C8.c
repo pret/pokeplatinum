@@ -91,7 +91,7 @@
 #include "unk_0207070C.h"
 #include "unk_02071D40.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
@@ -1028,11 +1028,11 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02098D38 * v3 = AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
-        v3->unk_00 = sub_0207A268(v0->unk_0C);
+        v3->unk_00 = GetPartyFromSavedata(v0->unk_0C);
         v3->unk_04 = sub_02025E44(v0->unk_0C);
         v3->unk_11 = 1;
         v3->unk_14 = v2->unk_22;
-        v3->unk_13 = (u8)sub_0207A0F8(v3->unk_00);
+        v3->unk_13 = (u8)Party_GetCurrentCount(v3->unk_00);
         v3->unk_18 = 0;
         v3->unk_12 = 0;
         v3->unk_20 = sub_0202D79C(v0->unk_0C);
@@ -1052,7 +1052,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02098D38 * v4 = AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
-        v4->unk_00 = sub_0207A268(v0->unk_0C);
+        v4->unk_00 = GetPartyFromSavedata(v0->unk_0C);
         v4->unk_04 = sub_02025E44(v0->unk_0C);
         v4->unk_11 = 1;
         v4->unk_14 = v2->unk_22;
@@ -1083,7 +1083,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02098D38 * v6 = AllocFromHeap(11, sizeof(UnkStruct_02098D38));
 
-        v6->unk_00 = sub_0207A268(v0->unk_0C);
+        v6->unk_00 = GetPartyFromSavedata(v0->unk_0C);
         v6->unk_04 = sub_02025E44(v0->unk_0C);
         v6->unk_11 = 1;
         v6->unk_14 = v2->unk_22;
@@ -1133,7 +1133,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
         UnkStruct_02097728 * v9;
         UnkStruct_02073C74 * v10;
 
-        v10 = sub_0207A0FC(sub_0207A268(v0->unk_0C), v2->unk_22);
+        v10 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(v0->unk_0C), v2->unk_22);
         v9 = sub_0203D984(v0, v10, 11);
 
         v1->unk_25C = v9;
@@ -1312,7 +1312,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v6 = AllocFromHeap(11, sizeof(UnkStruct_02098C44));
         memset(v6, 0, sizeof(UnkStruct_02098C44));
 
-        v6->unk_00 = sub_0207A268(v0->unk_0C);
+        v6->unk_00 = GetPartyFromSavedata(v0->unk_0C);
         v6->unk_04 = sub_0207D990(v0->unk_0C);
         v6->unk_08 = sub_02028430(v0->unk_0C);
         v6->unk_0C = sub_02025E44(v0->unk_0C);
@@ -1334,10 +1334,10 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         u32 v9;
         u16 v10;
 
-        v7 = sub_0207A268(v0->unk_0C);
+        v7 = GetPartyFromSavedata(v0->unk_0C);
         v9 = *(u32 *)v1->unk_260;
         v10 = sub_0207CB94(v2);
-        v8 = sub_0207A0FC(v7, v9);
+        v8 = Party_GetPokemonBySlotIndex(v7, v9);
 
         FreeToHeap(v1->unk_260);
 
@@ -1644,7 +1644,7 @@ static BOOL sub_0203C1C8 (UnkStruct_020508D4 * param0)
 
         memset(v3, 0, sizeof(UnkStruct_02098C44));
 
-        v3->unk_00 = sub_0207A268(v0->unk_0C);
+        v3->unk_00 = GetPartyFromSavedata(v0->unk_0C);
         v3->unk_04 = sub_0207D990(v0->unk_0C);
         v3->unk_08 = sub_02028430(v0->unk_0C);
         v3->unk_0C = sub_02025E44(v0->unk_0C);
@@ -1771,7 +1771,7 @@ BOOL sub_0203C434 (UnkStruct_020508D4 * param0)
         void * v5;
         void * v6;
 
-        v4 = sub_0207A0FC(sub_0207A268(v0->unk_0C), v3);
+        v4 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(v0->unk_0C), v3);
         v5 = sub_0207064C(11, v0, v4, v2->unk_1C, v2->unk_14 * 32 + 16, v2->unk_18 * 32 + 16);
         v6 = sub_0202BE00((20 - 19), v2->unk_1C, 11);
 
@@ -1868,7 +1868,7 @@ static void sub_0203C668 (UnkStruct_0203CDB0 * param0, UnkStruct_020708E0 * para
     v1 = AllocFromHeap(11, sizeof(UnkStruct_02098C44));
 
     memset(v1, 0, sizeof(UnkStruct_02098C44));
-    v1->unk_00 = sub_0207A268(param0->unk_0C);
+    v1->unk_00 = GetPartyFromSavedata(param0->unk_0C);
     v1->unk_04 = sub_0207D990(param0->unk_0C);
     v1->unk_08 = sub_02028430(param0->unk_0C);
     v1->unk_0C = sub_02025E44(param0->unk_0C);
@@ -1879,7 +1879,7 @@ static void sub_0203C668 (UnkStruct_0203CDB0 * param0, UnkStruct_020708E0 * para
     v1->unk_20 = param2;
     v1->unk_1C = param0;
 
-    sub_02097750(param1->unk_25C, sub_0207A0FC(v1->unk_00, v0->unk_02));
+    sub_02097750(param1->unk_25C, Party_GetPokemonBySlotIndex(v1->unk_00, v0->unk_02));
     sub_02097770(param1->unk_25C);
     sub_0203CD84(param0, &Unk_020F1E88, v1);
 
@@ -1947,8 +1947,8 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
     sub_0200569C();
     CreateHeap(3, 73, 0x30000);
 
-    v3 = sub_0207A268(v0->unk_0C);
-    v4 = sub_0207A0FC(v3, v2->unk_00);
+    v3 = GetPartyFromSavedata(v0->unk_0C);
+    v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
 
     if (v2->unk_01 == 0) {
         v5 = sub_0207AE68(v3, v4, v2->unk_04, sub_02025E44(v0->unk_0C), sub_0208C324(v0->unk_0C), sub_02027560(v0->unk_0C), sub_0207D990(v0->unk_0C), sub_0202CD88(v0->unk_0C), sub_02056B24(v0->unk_0C), v2->unk_08, 0x1, 73);

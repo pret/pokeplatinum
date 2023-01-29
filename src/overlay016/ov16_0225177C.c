@@ -35,7 +35,7 @@
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "unk_02079170.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0208C098.h"
 #include "unk_02098700.h"
@@ -1981,8 +1981,8 @@ BOOL ov16_02253FCC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                     v5 = ov16_0223DF20(param0, 1);
                     v4 = 0;
 
-                    for (v3 = 0; v3 < sub_0207A0F8(v5); v3++) {
-                        v6 = sub_0207A0FC(v5, v3);
+                    for (v3 = 0; v3 < Party_GetCurrentCount(v5); v3++) {
+                        v6 = Party_GetPokemonBySlotIndex(v5, v3);
 
                         if (sub_02074470(v6, 163, NULL)) {
                             v4++;
@@ -2012,8 +2012,8 @@ BOOL ov16_02253FCC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                     v9 = ov16_0223DF20(param0, 1);
                     v8 = 0;
 
-                    for (v7 = 0; v7 < sub_0207A0F8(v9); v7++) {
-                        v10 = sub_0207A0FC(v9, v7);
+                    for (v7 = 0; v7 < Party_GetCurrentCount(v9); v7++) {
+                        v10 = Party_GetPokemonBySlotIndex(v9, v7);
 
                         if (sub_02074470(v10, 163, NULL)) {
                             v8++;
@@ -3149,7 +3149,7 @@ BOOL ov16_02255B10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     }
 
     for (v6 = v7; v6 < v8; v6++) {
-        v2 = sub_0207A0FC(v1, v6);
+        v2 = Party_GetPokemonBySlotIndex(v1, v6);
 
         if ((sub_02074470(v2, 5, NULL)) && (sub_02074470(v2, 76, NULL) == 0) && (sub_02074470(v2, 163, NULL)) && (v10 != v6) && (v11 != v6)) {
             v4++;

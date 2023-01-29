@@ -81,7 +81,7 @@
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_022324F0.h"
@@ -1346,11 +1346,11 @@ static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_o
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);
 
-    v0 = sub_0207A268(param1);
-    v1 = sub_0207A0F8(v0);
+    v0 = GetPartyFromSavedata(param1);
+    v1 = Party_GetCurrentCount(v0);
 
     for (v3 = 0; v3 < v1; v3++) {
-        v2 = sub_0207A0FC(v0, v3);
+        v2 = Party_GetPokemonBySlotIndex(v0, v3);
         param2[v3].unk_02 = sub_02074470(v2, 174, NULL);
         param2[v3].unk_04 = sub_02074470(v2, 0, NULL);
         param2[v3].unk_08 = sub_02074470(v2, 112, NULL);

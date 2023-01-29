@@ -63,7 +63,7 @@
 #include "unk_0206CCB0.h"
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0225177C.h"
@@ -271,22 +271,22 @@ UnkStruct_02079FF4 * ov16_0223DF20 (UnkStruct_0207ADB4 * param0, int param1)
 int ov16_0223DF60 (UnkStruct_0207ADB4 * param0, int param1)
 {
     if ((param0->unk_2C & 0x8) || ((param0->unk_2C & 0x10) && (ov16_0223E1F8(param0, param1) & 0x1))) {
-        return sub_0207A0F8(param0->unk_68[param1]);
+        return Party_GetCurrentCount(param0->unk_68[param1]);
     } else if (param0->unk_2C & 0x2) {
-        return sub_0207A0F8(param0->unk_68[param1 & 1]);
+        return Party_GetCurrentCount(param0->unk_68[param1 & 1]);
     } else {
-        return sub_0207A0F8(param0->unk_68[param1]);
+        return Party_GetCurrentCount(param0->unk_68[param1]);
     }
 }
 
 UnkStruct_02073C74 * ov16_0223DFAC (UnkStruct_0207ADB4 * param0, int param1, int param2)
 {
     if ((param0->unk_2C & 0x8) || ((param0->unk_2C & 0x10) && (ov16_0223E1F8(param0, param1) & 0x1))) {
-        return sub_0207A0FC(param0->unk_68[param1], param2);
+        return Party_GetPokemonBySlotIndex(param0->unk_68[param1], param2);
     } else if (param0->unk_2C & 0x2) {
-        return sub_0207A0FC(param0->unk_68[param1 & 1], param2);
+        return Party_GetPokemonBySlotIndex(param0->unk_68[param1 & 1], param2);
     } else {
-        return sub_0207A0FC(param0->unk_68[param1], param2);
+        return Party_GetPokemonBySlotIndex(param0->unk_68[param1], param2);
     }
 }
 
@@ -995,7 +995,7 @@ u16 ov16_0223ECC4 (UnkStruct_ov6_02240D5C * param0, int * param1, int * param2)
         }
 
         if (param1[0] < 6) {
-            v0 = sub_0207A0FC(param0->unk_04[0], param1[0]);
+            v0 = Party_GetPokemonBySlotIndex(param0->unk_04[0], param1[0]);
 
             if ((v1 = sub_02076B94(param0->unk_04[0], v0, 0, param0->unk_13C, param2))) {
                 return v1;

@@ -26,7 +26,7 @@
 #include "unk_02051D8C.h"
 #include "unk_0205DFC4.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_02096420.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223B6F4.h"
@@ -181,7 +181,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
     v5->unk_128 = 21;
     v5->unk_12C = 21;
 
-    sub_0207A014(v5->unk_04[0], v2);
+    Party_InitWithCapacity(v5->unk_04[0], v2);
 
     if (sub_0203608C() == 0) {
         v4 = 0;
@@ -192,7 +192,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
     v6 = sub_02073C74(11);
 
     for (v0 = 0; v0 < v2; v0++) {
-        sub_020775EC(sub_0207A0FC(param0->unk_28, (v4 + v0)), v6);
+        sub_020775EC(Party_GetPokemonBySlotIndex(param0->unk_28, (v4 + v0)), v6);
 
         sub_0205213C(v5, v6, 0);
     }
@@ -204,7 +204,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
 
     FreeToHeap(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
-    sub_0207A014(v5->unk_04[1], ov104_0223B7DC(param0->unk_10, 0));
+    Party_InitWithCapacity(v5->unk_04[1], ov104_0223B7DC(param0->unk_10, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
         v5->unk_28[v0].unk_0C = ov104_0223BB10(param0);
@@ -213,7 +213,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
     v6 = sub_02073C74(11);
 
     for (v0 = 0; v0 < v3; v0++) {
-        sub_020775EC(sub_0207A0FC(param0->unk_2C, v0), v6);
+        sub_020775EC(Party_GetPokemonBySlotIndex(param0->unk_2C, v0), v6);
         sub_0205213C(v5, v6, 1);
     }
 
@@ -231,12 +231,12 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
         FreeToHeap(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
-        sub_0207A014(v5->unk_04[3], ov104_0223B7DC(param0->unk_10, 0));
+        Party_InitWithCapacity(v5->unk_04[3], ov104_0223B7DC(param0->unk_10, 0));
 
         v6 = sub_02073C74(11);
 
         for (v0 = 0; v0 < v3; v0++) {
-            sub_020775EC(sub_0207A0FC(param0->unk_2C, (v3 + v0)), v6);
+            sub_020775EC(Party_GetPokemonBySlotIndex(param0->unk_2C, (v3 + v0)), v6);
             sub_0205213C(v5, v6, 3);
         }
 
@@ -285,10 +285,10 @@ void ov104_0223BA24 (UnkStruct_02079FF4 * param0)
     u32 v3;
     UnkStruct_02073C74 * v4;
 
-    v2 = sub_0207A0F8(param0);
+    v2 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v4 = sub_0207A0FC(param0, v0);
+        v4 = Party_GetPokemonBySlotIndex(param0, v0);
 
         if (sub_02074470(v4, 172, NULL) == 0) {
             continue;
@@ -315,7 +315,7 @@ void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, UnkStruct_02073C74 * par
 void ov104_0223BAA0 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_02079FF4 * param1, UnkStruct_02073C74 * param2)
 {
     ov104_0223BA7C(param0, param2);
-    sub_0207A048(param1, param2);
+    Party_AddPokemon(param1, param2);
     return;
 }
 

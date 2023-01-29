@@ -24,7 +24,7 @@
 #include "unk_02067A84.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 BOOL sub_02048614(UnkStruct_0203E724 * param0);
 BOOL sub_020486E0(UnkStruct_0203E724 * param0);
@@ -298,7 +298,7 @@ BOOL sub_02048AE0 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_02054AB0(sub_0207A268(param0->unk_34->unk_0C));
+    *v0 = sub_02054AB0(GetPartyFromSavedata(param0->unk_34->unk_0C));
     return 0;
 }
 

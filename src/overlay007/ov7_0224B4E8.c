@@ -34,7 +34,7 @@
 #include "unk_02026150.h"
 #include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A2A8.h"
 #include "overlay007/ov7_0224B4E8.h"
 
@@ -431,7 +431,7 @@ static void ov7_0224BBA0 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 {
-    UnkStruct_02079FF4 * v0 = sub_0207A268(param0->unk_10->unk_0C);
+    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_10->unk_0C);
     int v1 = sub_0207A594(param0->unk_10->unk_B0, v0, param0->unk_6C);
     int v2;
 

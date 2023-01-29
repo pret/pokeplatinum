@@ -36,7 +36,7 @@
 #include "unk_020329E0.h"
 #include "unk_02051D8C.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 #include "overlay063/ov63_0222CCE4.h"
@@ -185,7 +185,7 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
         v0 = ov104_0223BD70(v9->unk_10, 1);
 
         for (v1 = 0; v1 < v0; v1++) {
-            v11 = sub_0207A0FC(v9->unk_70, v1);
+            v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
             v7 = sub_02074470(v11, 161, NULL);
             v7 -= 3;
             v6 = sub_02075AD0(sub_02074470(v11, 5, NULL), v7);
@@ -195,10 +195,10 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
         }
     }
 
-    v4 = sub_0207A0F8(v9->unk_70);
+    v4 = Party_GetCurrentCount(v9->unk_70);
 
     for (v1 = 0; v1 < v4; v1++) {
-        v11 = sub_0207A0FC(v9->unk_70, v1);
+        v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
 
         v5 = v9->unk_94[v1];
         sub_02074B30(v11, 164, &v5);
@@ -261,10 +261,10 @@ static void ov104_02237634 (UnkStruct_ov104_02238240 * param0, UnkStruct_ov104_0
     param1->unk_12 = 0;
     param1->unk_1F = 0;
 
-    v1 = sub_0207A0F8(param1->unk_70);
+    v1 = Party_GetCurrentCount(param1->unk_70);
 
     for (v0 = 0; v0 < v1; v0++) {
-        v2 = sub_0207A0FC(param1->unk_70, v0);
+        v2 = Party_GetPokemonBySlotIndex(param1->unk_70, v0);
 
         param1->unk_94[v0] = sub_02074470(v2, 164, NULL);
         param1->unk_A4[v0] = sub_02074470(v2, 165, NULL);
@@ -363,9 +363,9 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
         break;
     case 15:
         if (v18 == 0) {
-            v1 = sub_0207A0FC(v3->unk_70, 0);
+            v1 = Party_GetPokemonBySlotIndex(v3->unk_70, 0);
         } else {
-            v1 = sub_0207A0FC(v3->unk_74, 0);
+            v1 = Party_GetPokemonBySlotIndex(v3->unk_74, 0);
         }
 
         *v20 = sub_02074470(v1, 6, NULL);
@@ -374,10 +374,10 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
         *v20 = v3->unk_13;
         break;
     case 18:
-        v2 = sub_0207A268(v14->unk_08);
+        v2 = GetPartyFromSavedata(v14->unk_08);
 
         for (v11 = 0; v11 < 3; v11++) {
-            v1 = sub_0207A0FC(v2, v3->unk_2C[v11]);
+            v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_2C[v11]);
             sub_02074B30(v1, 6, &v3->unk_412[v11]);
         }
         break;

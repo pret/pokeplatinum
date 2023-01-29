@@ -17,7 +17,7 @@
 #include "unk_02056720.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207AE68.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022444C8.h"
@@ -194,7 +194,7 @@ static void ov94_022448E8 (UnkStruct_ov94_0223FD4C * param0)
     UnkStruct_02073C74 * v0 = ov94_022448AC(param0, param0->unk_24);
 
     if (param0->unk_124.unk_00 == 18) {
-        sub_020775EC(v0, sub_0207A0FC(param0->unk_00->unk_08, param0->unk_124.unk_04));
+        sub_020775EC(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_124.unk_04));
     } else {
         int v1 = 0, v2 = 0;
 

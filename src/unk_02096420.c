@@ -8,7 +8,7 @@
 #include "heap.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_02096420.h"
 
@@ -262,7 +262,7 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
 
 u8 sub_0209693C (UnkStruct_02079FF4 * param0, u16 param1, u8 param2, u8 param3, u32 param4)
 {
-    UnkStruct_02073C74 * v0 = sub_0207A0FC(param0, param2);
+    UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(param0, param2);
     return sub_02096420(v0, param1, param3, param4);
 }
 
@@ -528,7 +528,7 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
 
 u8 sub_02096F14 (UnkStruct_02079FF4 * param0, u16 param1, u8 param2, u8 param3, u16 param4, u32 param5)
 {
-    UnkStruct_02073C74 * v0 = sub_0207A0FC(param0, param2);
+    UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(param0, param2);
 
     return sub_02096954(v0, param1, param3, param4, param5);
 }
@@ -758,10 +758,10 @@ void sub_02097284 (UnkStruct_02079FF4 * param0)
     u32 v3;
     UnkStruct_02073C74 * v4;
 
-    v2 = sub_0207A0F8(param0);
+    v2 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v4 = sub_0207A0FC(param0, v0);
+        v4 = Party_GetPokemonBySlotIndex(param0, v0);
 
         if (sub_02074470(v4, 172, NULL) == 0) {
             continue;

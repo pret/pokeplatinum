@@ -62,7 +62,7 @@
 #include "unk_020393C8.h"
 #include "unk_02056720.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
 #include "unk_0207D3B8.h"
@@ -698,7 +698,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     switch (param0->unk_78) {
     case 13:
     case 14:
-        if (sub_0207D730(param0->unk_4C, 4, param0->unk_5C) && (sub_0207A0F8(param0->unk_24) < 6)) {
+        if (sub_0207D730(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
                 UnkStruct_02073C74 * v1;
                 int v2;
@@ -748,7 +748,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 sub_02074B30(v1, 111, &v0);
 
                 sub_0207418C(v1);
-                sub_0207A048(param0->unk_24, v1);
+                Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);

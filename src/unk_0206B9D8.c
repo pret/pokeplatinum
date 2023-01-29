@@ -32,7 +32,7 @@
 #include "unk_0204AEE8.h"
 #include "unk_020508D4.h"
 #include "unk_0206B9D8.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
@@ -75,7 +75,7 @@ static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     MI_CpuClear8(v2, sizeof(UnkStruct_02098C44));
 
     v2->unk_0C = sub_02025E44(v1);
-    v2->unk_00 = sub_0207A268(v1);
+    v2->unk_00 = GetPartyFromSavedata(v1);
     v2->unk_04 = sub_0207D990(v1);
     v2->unk_21 = 0;
     v2->unk_20 = param0->unk_08;
@@ -137,12 +137,12 @@ static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
     MI_CpuClear8(v0, sizeof(UnkStruct_02098D38));
 
     v0->unk_04 = sub_02025E44(v1);
-    v0->unk_00 = sub_0207A268(v1);
+    v0->unk_00 = GetPartyFromSavedata(v1);
     v0->unk_1C = sub_0207A274(v1);
     v0->unk_2C = sub_0208C324(v1);
     v0->unk_11 = 1;
     v0->unk_14 = param0->unk_0D;
-    v0->unk_13 = (u8)sub_0207A0F8(v0->unk_00);
+    v0->unk_13 = (u8)Party_GetCurrentCount(v0->unk_00);
     v0->unk_18 = 0;
     v0->unk_12 = param0->unk_09;
     v0->unk_20 = sub_0202D79C(v1);

@@ -33,7 +33,7 @@
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 static BOOL sub_0204B470(UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * param1, u16 param2, UnkStruct_ov104_0223A348_sub2 * param3, u8 param4, u16 * param5, u16 * param6, UnkStruct_0204B404 * param7, int param8);
 static void * sub_0204B630(u16 param0, int param1);
@@ -207,10 +207,10 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     UnkStruct_02025E6C * v3 = sub_02025E38(param1);
 
     param0->unk_83E[0] = sub_02025F30(v3);
-    v1 = sub_0207A268(param1);
+    v1 = GetPartyFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_83E[1 + v0] = sub_02074470(sub_0207A0FC(v1, param0->unk_2A[v0]), 5, NULL);
+        param0->unk_83E[1 + v0] = sub_02074470(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), 5, NULL);
     }
 
     param0->unk_83E[3] = sub_0202D3B4(param0->unk_74, 3, 0);

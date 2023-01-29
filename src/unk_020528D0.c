@@ -43,7 +43,7 @@
 #include "unk_02055808.h"
 #include "unk_02070428.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 typedef struct {
     int unk_00;
@@ -220,7 +220,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
     case 0:
     {
         if ((v0 != NULL) && (v0->unk_0C != NULL)) {
-            sub_02077A9C(sub_0207A268(v0->unk_0C), 0);
+            sub_02077A9C(GetPartyFromSavedata(v0->unk_0C), 0);
         }
     }
 

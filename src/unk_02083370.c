@@ -26,7 +26,7 @@
 #include "unk_020218BC.h"
 #include "unk_0207070C.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -175,14 +175,14 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
     v3 = param0->unk_5A4->unk_1C;
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
-        v0 = sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11);
+        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         sub_0200B1B8(param0->unk_69C, 81, param0->unk_6A8);
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else if (sub_0207D570(param0->unk_5A4->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, 12) == 1) {
         u32 v4;
 
-        v0 = sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11);
+        v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         v4 = 0;
 
         sub_02074B30(v0, 6, &v4);
@@ -308,7 +308,7 @@ static int sub_0208384C (void * param0)
     UnkStruct_02073C74 * v1;
 
     v0 = param0;
-    v1 = sub_0207A0FC(v0->unk_5A4->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
 
     if (sub_02097788(v0->unk_5A4->unk_08, v1, 12) != 0xFFFFFFFF) {
         v0->unk_704[v0->unk_B11].unk_0C = 0;
@@ -344,7 +344,7 @@ static int sub_020838F4 (void * param0)
         UnkStruct_02073C74 * v1;
         u32 v2;
 
-        v1 = sub_0207A0FC(v0->unk_5A4->unk_00, v0->unk_B11);
+        v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
         v2 = 0;
 
         sub_02074B30(v1, 6, &v2);
@@ -412,7 +412,7 @@ int sub_02083A78 (void * param0)
     UnkStruct_02073C74 * v1;
 
     v0 = param0;
-    v1 = sub_0207A0FC(v0->unk_5A4->unk_00, v0->unk_B11);
+    v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
 
     sub_0207893C(v1);
 
@@ -553,7 +553,7 @@ BOOL sub_02083D1C (UnkStruct_0207F248 * param0)
         break;
 
     case 4:
-        sub_0207A184(param0->unk_5A4->unk_00, v0->unk_300[0], v0->unk_300[1]);
+        Party_SwapSlots(param0->unk_5A4->unk_00, v0->unk_300[0], v0->unk_300[1]);
         sub_02021CAC(param0->unk_5B0[6], 1);
 
         v0->unk_304 = 0;
@@ -843,7 +843,7 @@ static void sub_02084760 (UnkStruct_0207F248 * param0, int * param1)
 
 int sub_02084780 (UnkStruct_0207F248 * param0)
 {
-    UnkStruct_02073C74 * v0 = sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11);
+    UnkStruct_02073C74 * v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     if (sub_02074470(v0, 162, NULL) == 0) {
         sub_0200B1B8(param0->unk_69C, 129, param0->unk_6A4);

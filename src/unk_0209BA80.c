@@ -13,7 +13,7 @@
 #include "unk_02034198.h"
 #include "unk_0205DFC4.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
@@ -269,7 +269,7 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
     UnkStruct_02079FF4 * v3;
 
     v1 = 40;
-    v3 = sub_0207A268(param0->unk_00);
+    v3 = GetPartyFromSavedata(param0->unk_00);
 
     param0->unk_6A[0] = param1;
     param0->unk_6A[1] = param2;
@@ -280,12 +280,12 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
         param0->unk_76[1] = 0;
         param0->unk_7E[1] = 0;
     } else {
-        v2 = sub_0207A0FC(v3, param1);
+        v2 = Party_GetPokemonBySlotIndex(v3, param1);
 
         param0->unk_76[0] = sub_02074470(v2, 5, NULL);
         param0->unk_7E[0] = sub_02074470(v2, 6, NULL);
 
-        v2 = sub_0207A0FC(v3, param2);
+        v2 = Party_GetPokemonBySlotIndex(v3, param2);
 
         param0->unk_76[1] = sub_02074470(v2, 5, NULL);
         param0->unk_7E[1] = sub_02074470(v2, 6, NULL);

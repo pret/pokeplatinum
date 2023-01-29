@@ -47,7 +47,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
 #include "unk_020797C8.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A274.h"
 #include "unk_02096420.h"
 #include "overlay006/ov6_02240C9C.h"
@@ -183,7 +183,7 @@ static BOOL sub_02050B30 (UnkStruct_020508D4 * param0)
         }
 
         if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
-            sub_02097284(sub_0207A268(v0->unk_0C));
+            sub_02097284(GetPartyFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);
@@ -401,7 +401,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
         }
 
         if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
-            sub_02097284(sub_0207A268(v0->unk_0C));
+            sub_02097284(GetPartyFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);
@@ -477,7 +477,7 @@ static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
 
         if (v1->unk_10->unk_14 == 0x4) {
             UnkStruct_0202440C * v4 = sub_0202440C(v0->unk_0C);
-            UnkStruct_02073C74 * v5 = sub_0207A0FC(v1->unk_10->unk_04[1], 0);
+            UnkStruct_02073C74 * v5 = Party_GetPokemonBySlotIndex(v1->unk_10->unk_04[1], 0);
 
             sub_0206D018(v4, v5);
         }
@@ -512,9 +512,9 @@ static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
             }
         } else {
             UnkStruct_020797DC * v7 = sub_02024420(v0->unk_0C);
-            UnkStruct_02079FF4 * v8 = sub_0207A268(v0->unk_0C);
+            UnkStruct_02079FF4 * v8 = GetPartyFromSavedata(v0->unk_0C);
 
-            if ((sub_020799A0(v7) == 18) && (sub_0207A0F8(v8) == 6)) {
+            if ((sub_020799A0(v7) == 18) && (Party_GetCurrentCount(v8) == 6)) {
                 sub_0203E8E0(param0, 8822, NULL, NULL);
             }
         }
@@ -590,7 +590,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     ov6_022420D4(v2, param1, param2, v1);
 
     v4 = 1;
-    v3 = sub_0207A0FC(v1->unk_04[1], 0);
+    v3 = Party_GetPokemonBySlotIndex(v1->unk_04[1], 0);
 
     sub_02074B30(v3, 110, &v4);
 
@@ -925,7 +925,7 @@ static void sub_020518B0 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
         if (v2 == 0x1) {
             sub_0202CFEC(sub_0202CD88(param0->unk_0C), 8);
         } else if (v2 == 0x4) {
-            v0 = sub_0207A0FC(
+            v0 = Party_GetPokemonBySlotIndex(
                 param1->unk_04[1], 0);
 
             if (sub_0207A294(0, sub_02074470(v0, 5, 0))) {
@@ -940,7 +940,7 @@ static void sub_020518B0 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
         }
     } else if ((v1 & 0x20) || (v1 & 0x200)) {
         if (v2 == 0x4) {
-            v0 = sub_0207A0FC(
+            v0 = Party_GetPokemonBySlotIndex(
                 param1->unk_04[1], 0);
 
             if (sub_0207A294(0, sub_02074470(v0, 5, 0))) {
@@ -977,7 +977,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
             param0->unk_78.unk_02++;
 
             if (param0->unk_78.unk_02 >= 5) {
-                v0 = sub_0207A0FC(param1->unk_04[1], 0);
+                v0 = Party_GetPokemonBySlotIndex(param1->unk_04[1], 0);
                 v3 = sub_0202BECC(sub_02025E5C(param0->unk_0C), sub_02074470(v0, 5, 0), sub_02074470(v0, 111, 0), param1->unk_138, 11);
                 sub_0202B758(param0->unk_9C, v3, 2);
             }
@@ -985,7 +985,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
             int v4;
 
             v4 = param1->unk_148;
-            v0 = sub_0207A0FC(param1->unk_04[v4], 0);
+            v0 = Party_GetPokemonBySlotIndex(param1->unk_04[v4], 0);
             v3 = sub_0202BE4C(sub_02025E5C(param0->unk_0C), sub_02074470(v0, 5, 0), sub_02074470(v0, 111, 0), param1->unk_138, 11);
 
             sub_0202B758(param0->unk_9C, v3, 2);
@@ -1014,7 +1014,7 @@ void sub_02051ABC (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     {
         UnkStruct_02073C74 * v3;
 
-        v3 = sub_0207A0FC(v1->unk_04[1], 0);
+        v3 = Party_GetPokemonBySlotIndex(v1->unk_04[1], 0);
         sub_02077A64(v3);
     }
 

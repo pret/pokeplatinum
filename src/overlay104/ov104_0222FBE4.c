@@ -87,7 +87,7 @@
 #include "unk_0205964C.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0208694C.h"
 #include "unk_02096420.h"
 #include "unk_0209B6F8.h"
@@ -2005,7 +2005,7 @@ static BOOL ov104_02231050 (UnkStruct_ov104_0222E930 * param0)
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    sub_02097284(sub_0207A268(v0->unk_08));
+    sub_02097284(GetPartyFromSavedata(v0->unk_08));
     return 0;
 }
 
@@ -2754,8 +2754,8 @@ static BOOL ov104_02231D1C (UnkStruct_ov104_0222E930 * param0)
     u16 v9 = ov104_0222EA48(param0);
 
     v2 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0207A268(v2->unk_08);
-    v1 = sub_0207A0FC(v0, v4);
+    v0 = GetPartyFromSavedata(v2->unk_08);
+    v1 = Party_GetPokemonBySlotIndex(v0, v4);
     v8 = 8;
     v9 = (GX_RGB(0, 0, 0));
 

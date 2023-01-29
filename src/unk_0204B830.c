@@ -40,7 +40,7 @@
 #include "unk_02056720.h"
 #include "unk_0206AFE0.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_020923C0.h"
 #include "unk_02092494.h"
@@ -163,9 +163,9 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0204BA50 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_02079FF4 * v0 = sub_0207A268(param0->unk_0C);
+    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_0C);
 
-    if (sub_0207A0F8(v0) < 6) {
+    if (Party_GetCurrentCount(v0) < 6) {
         return 1;
     } else {
         return 0;
@@ -316,8 +316,8 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0207418C(v4);
 
-    v3 = sub_0207A268(param0->unk_0C);
-    v5 = sub_0207A048(v3, v4);
+    v3 = GetPartyFromSavedata(param0->unk_0C);
+    v5 = Party_AddPokemon(v3, v4);
 
     if (v5) {
         sub_0202F180(param0->unk_0C, v4);

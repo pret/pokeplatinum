@@ -17,7 +17,7 @@
 #include "gx_layers.h"
 #include "move_table.h"
 #include "unk_02079D40.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207C908.h"
 #include "item.h"
 #include "unk_0207E0B8.h"
@@ -741,7 +741,7 @@ void ov13_0222537C (UnkStruct_ov13_022213F0 * param0)
     u16 v0;
     u16 v1;
 
-    for (v0 = 0; v0 < sub_0207A0F8(param0->unk_00->unk_00); v0++) {
+    for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_00->unk_00); v0++) {
         if (param0->unk_04[v0].unk_04 == 0) {
             continue;
         }

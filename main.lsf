@@ -286,7 +286,7 @@ Static main
 	Object src/unk_02079170.o
 	Object src/unk_020797C8.o
 	Object src/unk_02079D40.o
-	Object src/unk_02079FEC.o
+	Object src/party.o
 	Object src/unk_0207A274.o
 	Object src/unk_0207A2A8.o
 	Object src/unk_0207A6DC.o

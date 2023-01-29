@@ -25,7 +25,7 @@
 #include "unk_0202631C.h"
 #include "unk_0203CC84.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -73,7 +73,7 @@ void ov118_021D0D80 (UnkStruct_0207F248 * param0)
 int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 {
     UnkStruct_ov118_021D0FDC * v0 = param0->unk_B24;
-    UnkStruct_02073C74 * v1 = sub_0207A0FC(param0->unk_5A4->unk_00, param0->unk_B11);
+    UnkStruct_02073C74 * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     switch (v0->unk_00) {
     case 0:

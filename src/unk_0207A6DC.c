@@ -25,7 +25,7 @@
 #include "unk_02032798.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A6DC.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0226485C.h"
@@ -139,7 +139,7 @@ static int sub_0207A75C (void)
 
 static int sub_0207A764 (void)
 {
-    return sub_02079FEC();
+    return Party_sizeof();
 }
 
 static int sub_0207A76C (void)
@@ -385,7 +385,7 @@ BOOL sub_0207AA38 (UnkStruct_0207A778 * param0)
     }
 
     v0 = (UnkStruct_02079FF4 *)&param0->unk_20[0];
-    sub_0207A21C(param0->unk_00->unk_04[0], v0);
+    Party_cpy(param0->unk_00->unk_04[0], v0);
 
     return 1;
 }
@@ -400,7 +400,7 @@ BOOL sub_0207AA5C (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(27, (void *)&param0->unk_20[0], sub_02079FEC());
+    return sub_0203597C(27, (void *)&param0->unk_20[0], Party_sizeof());
 }
 
 static void sub_0207AA90 (int param0, int param1, void * param2, void * param3)
@@ -532,7 +532,7 @@ BOOL sub_0207AC28 (UnkStruct_0207A778 * param0, int param1)
     }
 
     v0 = (UnkStruct_02079FF4 *)&param0->unk_20[0];
-    sub_0207A21C(param0->unk_00->unk_04[param1], v0);
+    Party_cpy(param0->unk_00->unk_04[param1], v0);
 
     return 1;
 }
@@ -548,9 +548,9 @@ BOOL sub_0207AC54 (UnkStruct_0207A778 * param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return sub_0203597C(31, (void *)&param0->unk_20[0], sub_02079FEC());
+        return sub_0203597C(31, (void *)&param0->unk_20[0], Party_sizeof());
     } else {
-        return sub_0203597C(32, (void *)&param0->unk_20[0], sub_02079FEC());
+        return sub_0203597C(32, (void *)&param0->unk_20[0], Party_sizeof());
     }
 }
 

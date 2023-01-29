@@ -9,7 +9,7 @@
 
 #include "unk_0202602C.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A2A8.h"
 #include "unk_02098700.h"
 
@@ -126,7 +126,7 @@ int sub_0207A3AC (const UnkStruct_0202610C * param0, UnkStruct_02079FF4 * param1
         if (param3[v4]) {
             int v8 = param3[v4] - 1;
 
-            v0 = sub_0207A0FC(param1, v8);
+            v0 = Party_GetPokemonBySlotIndex(param1, v8);
 
             if (sub_0207A2D0(param0, v0, param2) == 0) {
                 return 5;
@@ -211,13 +211,13 @@ int sub_0207A594 (const UnkStruct_0202610C * param0, UnkStruct_02079FF4 * param1
     u16 v6[6], v7[6], v8[6];
     int v9;
 
-    v2 = sub_0207A0F8(param1);
+    v2 = Party_GetCurrentCount(param1);
     v9 = v2;
 
     MI_CpuClear8(v8, 6 * sizeof(u16));
 
     for (v4 = 0; v4 < v2; v4++) {
-        v0 = sub_0207A0FC(param1, v4);
+        v0 = Party_GetPokemonBySlotIndex(param1, v4);
         v6[v4] = (u16)sub_02074470(v0, 5, NULL);
         v7[v4] = sub_02074470(v0, 161, NULL);
 

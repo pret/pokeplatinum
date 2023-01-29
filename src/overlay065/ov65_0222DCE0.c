@@ -99,7 +99,7 @@
 #include "unk_020393C8.h"
 #include "unk_020507CC.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207DFAC.h"
 #include "unk_02099550.h"
@@ -660,13 +660,13 @@ static int ov65_0222DED4 (int param0)
 
 static int ov65_0222DF88 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    UnkStruct_02079FF4 * v0 = sub_0207A268(param0->unk_160);
+    UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(param0->unk_160);
     UnkStruct_02073C74 * v1;
-    int v2 = sub_0207A0F8(v0);
+    int v2 = Party_GetCurrentCount(v0);
     int v3, v4 = 0;
 
     for (v3 = 0; v3 < v2; v3++) {
-        v1 = sub_0207A0FC(v0, v3);
+        v1 = Party_GetPokemonBySlotIndex(v0, v3);
 
         if (sub_02074470(v1, 163, NULL) == 0) {
             continue;
@@ -1809,16 +1809,16 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_160);
     UnkStruct_02026324 * v1 = sub_02027560(param0->unk_160);
-    UnkStruct_02079FF4 * v2 = sub_0207A268(param0->unk_160);
+    UnkStruct_02079FF4 * v2 = GetPartyFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
     int v4, v5;
 
     GF_ASSERT((sizeof(UnkStruct_0207E060)) == sizeof(UnkStruct_0207E060));
 
-    v4 = sub_0207A0F8(v2);
+    v4 = Party_GetCurrentCount(v2);
 
     for (v5 = 0; v5 < v4; v5++) {
-        UnkStruct_02073C74 * v6 = sub_0207A0FC(v2, v5);
+        UnkStruct_02073C74 * v6 = Party_GetPokemonBySlotIndex(v2, v5);
 
         param0->unk_04->unk_00.unk_00[v5] = sub_02074470(v6, 5, NULL);
         param0->unk_04->unk_00.unk_0C[v5] = sub_02074470(v6, 6, NULL);

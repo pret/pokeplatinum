@@ -18,7 +18,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 static u8 sub_02048268(u16 param0, u16 param1);
 
@@ -51,10 +51,10 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     u8 v16;
     u32 v17, v18, v19;
 
-    v8 = sub_0207A0F8(sub_0207A268(v0->unk_0C));
+    v8 = Party_GetCurrentCount(GetPartyFromSavedata(v0->unk_0C));
 
     for (v11 = 0, v12 = 0, v9 = 0; v9 < v8; v9++) {
-        v1 = sub_0207A0FC(sub_0207A268(v0->unk_0C), v9);
+        v1 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(v0->unk_0C), v9);
 
         if (sub_02074470(v1, 76, NULL) == 0) {
             v15 = (sub_02074470(v1, 7, NULL) & 0xffff);

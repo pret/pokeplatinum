@@ -37,7 +37,7 @@
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C098.h"
@@ -1205,8 +1205,8 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
 {
     u16 v0, v1;
 
-    for (v0 = 0; v0 < sub_0207A0F8(param0->unk_00->unk_00); v0++) {
-        param0->unk_04[v0].unk_00 = sub_0207A0FC(param0->unk_00->unk_00, v0);
+    for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_00->unk_00); v0++) {
+        param0->unk_04[v0].unk_00 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_00, v0);
         param0->unk_04[v0].unk_04 = sub_02074470(param0->unk_04[v0].unk_00, 5, NULL);
 
         if (param0->unk_04[v0].unk_04 == 0) {

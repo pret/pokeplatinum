@@ -18,7 +18,7 @@
 #include "unk_02049D08.h"
 #include "unk_0204FA34.h"
 #include "unk_0205DFC4.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_02096420.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -354,7 +354,7 @@ BOOL ov104_02239B14 (UnkStruct_ov104_0222E930 * param0)
         sub_0204A4C8(v1, v2->unk_08);
     }
 
-    sub_02097284(sub_0207A268(v2->unk_08));
+    sub_02097284(GetPartyFromSavedata(v2->unk_08));
     sub_0209BA80(v1);
 
     v1->unk_8D4 = 0;

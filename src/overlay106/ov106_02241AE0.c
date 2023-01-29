@@ -63,7 +63,7 @@
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0208C324.h"
 #include "unk_0209BA80.h"
@@ -842,7 +842,7 @@ static void ov106_02242500 (UnkStruct_ov106_02243118 * param0)
     param0->unk_280 = ov106_022435FC(&param0->unk_C0, 0, 1, ov106_02242F24(param0), ov106_02242F3C(param0), NULL);
     param0->unk_284 = ov106_022435FC(&param0->unk_C0, 1, 1, 160, 160, NULL);
 
-    ov106_022436CC(param0->unk_284, sub_0207A0FC(param0->unk_290, 0));
+    ov106_022436CC(param0->unk_284, Party_GetPokemonBySlotIndex(param0->unk_290, 0));
 
     if (sub_02035E38()) {
         sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -875,7 +875,7 @@ static void ov106_0224262C (UnkStruct_ov106_02243118 * param0)
 
 static void ov106_02242688 (UnkStruct_ov106_02243118 * param0)
 {
-    ov106_02243310(&param0->unk_C0, sub_0207A0FC(param0->unk_290, 0));
+    ov106_02243310(&param0->unk_C0, Party_GetPokemonBySlotIndex(param0->unk_290, 0));
     return;
 }
 
@@ -1147,7 +1147,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
     UnkStruct_02073C74 * v5;
     u16 v6[(10 + 1)];
 
-    v5 = sub_0207A0FC(param0->unk_290, 0);
+    v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
     sub_02074470(v5, 179, v6);
     sub_0201ADA4(param1, param6);
 
@@ -1231,7 +1231,7 @@ static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
     param0->unk_BC->unk_11 = 1;
     param0->unk_BC->unk_04 = param0->unk_B4;
     param0->unk_BC->unk_12 = 1;
-    param0->unk_BC->unk_13 = sub_0207A0F8(param0->unk_290);
+    param0->unk_BC->unk_13 = Party_GetCurrentCount(param0->unk_290);
     param0->unk_BC->unk_14 = 0;
     param0->unk_BC->unk_18 = 0;
     param0->unk_BC->unk_1C = sub_0207A274(param0->unk_B8);
@@ -1564,7 +1564,7 @@ void ov106_0224313C (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
     }
 
     param0->unk_2A0[2] = param0->unk_18;
-    v2 = sub_0207A0FC(param0->unk_290, 0);
+    v2 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
     param0->unk_2A0[3] = sub_02074470(v2, 161, NULL);
 
     return;

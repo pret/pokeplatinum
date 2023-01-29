@@ -57,7 +57,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206CCB0.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_020923C0.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"

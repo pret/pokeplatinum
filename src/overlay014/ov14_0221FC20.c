@@ -14,7 +14,7 @@
 #include "overlay016/struct_ov16_0224B9DC_t.h"
 
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay014/ov14_0221FC20.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0225177C.h"
@@ -1335,7 +1335,7 @@ static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
-        v1 = sub_0207A0FC(v0, v2);
+        v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (sub_02074470(v1, 163, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 494)) {
             param1->unk_354.unk_08++;
@@ -1553,7 +1553,7 @@ static void ov14_022211AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_0223DF20(param0, v3);
 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
-        v1 = sub_0207A0FC(v0, v2);
+        v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (sub_02074470(v1, 163, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 494) && (sub_02074470(v1, 160, NULL) & v7)) {
             ov14_02222D24(param1, v8);
@@ -1590,7 +1590,7 @@ static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_0223DF20(param0, v3);
 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
-        v1 = sub_0207A0FC(v0, v2);
+        v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (sub_02074470(v1, 163, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 494) && ((sub_02074470(v1, 160, NULL) & v7) == 0)) {
             ov14_02222D24(param1, v8);
@@ -3987,8 +3987,8 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
 
     v6 = ov16_0223DF20(param0, param1);
 
-    for (v0 = 0; v0 < sub_0207A0F8(v6); v0++) {
-        v7 = sub_0207A0FC(v6, v0);
+    for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
+        v7 = Party_GetPokemonBySlotIndex(v6, v0);
 
         if ((sub_02074470(v7, 163, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 494)) {
             v1++;

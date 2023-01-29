@@ -16,7 +16,7 @@
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
@@ -112,7 +112,7 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     param1->unk_A8 = AllocFromHeap(11, sizeof(UnkStruct_02098C44));
     MI_CpuClearFast(param1->unk_A8, sizeof(UnkStruct_02098C44));
 
-    param1->unk_A8->unk_00 = sub_0207A268(param1->unk_00);
+    param1->unk_A8->unk_00 = GetPartyFromSavedata(param1->unk_00);
     param1->unk_A8->unk_04 = sub_0207D990(param1->unk_00);
     param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
     param1->unk_A8->unk_0C = sub_02025E44(param1->unk_00);
@@ -199,12 +199,12 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
     MI_CpuClear8(param1->unk_AC, sizeof(UnkStruct_02098D38));
 
     param1->unk_AC->unk_04 = sub_02025E44(param1->unk_00);
-    param1->unk_AC->unk_00 = sub_0207A268(param1->unk_00);
+    param1->unk_AC->unk_00 = GetPartyFromSavedata(param1->unk_00);
     param1->unk_AC->unk_1C = sub_0207A274(param1->unk_00);
     param1->unk_AC->unk_2C = sub_0208C324(param1->unk_00);
     param1->unk_AC->unk_11 = 1;
     param1->unk_AC->unk_14 = param1->unk_9F;
-    param1->unk_AC->unk_13 = (u8)sub_0207A0F8(param1->unk_AC->unk_00);
+    param1->unk_AC->unk_13 = (u8)Party_GetCurrentCount(param1->unk_AC->unk_00);
     param1->unk_AC->unk_18 = 0;
     param1->unk_AC->unk_12 = 0;
     param1->unk_AC->unk_20 = sub_0202D79C(param1->unk_00);

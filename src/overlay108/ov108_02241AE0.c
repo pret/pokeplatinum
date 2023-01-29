@@ -61,7 +61,7 @@
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0223BCBC.h"
 #include "overlay108/ov108_02241AE0.h"
@@ -864,8 +864,8 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
         param0->unk_37C[v5] = ov108_0224351C(&param0->unk_E8, 3 + v5, 3, 3, 1, 16, v3 + (40 * v5), 1, 2, 0);
         param0->unk_38C[v5] = ov108_0224351C(&param0->unk_E8, 7 + v5, 3, 3, 1, 238, v3 + (40 * v5), 1, 2, 0);
 
-        ov108_02243610(param0->unk_37C[v5], sub_0207A0FC(param0->unk_3C8, v5));
-        ov108_02243610(param0->unk_38C[v5], sub_0207A0FC(param0->unk_3CC, v5));
+        ov108_02243610(param0->unk_37C[v5], Party_GetPokemonBySlotIndex(param0->unk_3C8, v5));
+        ov108_02243610(param0->unk_38C[v5], Party_GetPokemonBySlotIndex(param0->unk_3CC, v5));
 
         ov108_02243624(param0->unk_37C[v5], 0);
         ov108_02243624(param0->unk_38C[v5], 0);
@@ -1588,7 +1588,7 @@ static void ov108_02242F38 (UnkStruct_ov108_02241DB0 * param0)
     v1 = ov104_0223BDA4(param0->unk_09, 1);
 
     for (v2 = 0; v2 < v0; v2++) {
-        v3 = sub_0207A0FC(param0->unk_3C8, v2);
+        v3 = Party_GetPokemonBySlotIndex(param0->unk_3C8, v2);
 
         if (sub_02074470(v3, 6, NULL) == 0) {
             ov108_022435A8(param0->unk_39C[v2], 0);
@@ -1598,7 +1598,7 @@ static void ov108_02242F38 (UnkStruct_ov108_02241DB0 * param0)
     }
 
     for (v2 = 0; v2 < v1; v2++) {
-        v3 = sub_0207A0FC(param0->unk_3CC, v2);
+        v3 = Party_GetPokemonBySlotIndex(param0->unk_3CC, v2);
 
         if (sub_02074470(v3, 6, NULL) == 0) {
             ov108_022435A8(param0->unk_3AC[v2], 0);

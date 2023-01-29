@@ -22,7 +22,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02079D40.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207E0B8.h"
 #include "overlay108/ov108_02243030.h"
 
@@ -197,15 +197,15 @@ static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, UnkStruct_02079FF
     for (v3 = 0; v3 < (2 * 2); v3++) {
         if (v3 == 3) {
             if (param3 == 0) {
-                v0 = sub_0207A0FC(param1, 0);
-                v1 = sub_0207A0FC(param2, 0);
+                v0 = Party_GetPokemonBySlotIndex(param1, 0);
+                v1 = Party_GetPokemonBySlotIndex(param2, 0);
             } else {
-                v0 = sub_0207A0FC(param1, v3);
-                v1 = sub_0207A0FC(param2, v3);
+                v0 = Party_GetPokemonBySlotIndex(param1, v3);
+                v1 = Party_GetPokemonBySlotIndex(param2, v3);
             }
         } else {
-            v0 = sub_0207A0FC(param1, v3);
-            v1 = sub_0207A0FC(param2, v3);
+            v0 = Party_GetPokemonBySlotIndex(param1, v3);
+            v1 = Party_GetPokemonBySlotIndex(param2, v3);
         }
 
         param0->unk_1A0[3 + v3][0] = sub_02009A4C(param0->unk_190[0], v2, sub_02079D80(v0), 0, 3 + v3, NNS_G2D_VRAM_TYPE_2DMAIN, 103);

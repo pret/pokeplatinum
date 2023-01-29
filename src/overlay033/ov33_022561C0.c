@@ -18,7 +18,7 @@
 #include "unk_020244AC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay033/ov33_02256474.h"
 
@@ -76,17 +76,17 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
         param0->unk_60 = param1;
 
         {
-            UnkStruct_02079FF4 * v0 = sub_0207A268(sub_020245A4());
+            UnkStruct_02079FF4 * v0 = GetPartyFromSavedata(sub_020245A4());
             UnkStruct_02073C74 * v1;
             int v2;
             int v3;
             int v4;
 
             v4 = 0;
-            param0->unk_04.unk_00 = sub_0207A0F8(v0);
+            param0->unk_04.unk_00 = Party_GetCurrentCount(v0);
 
             for (v2 = 0; v2 < param0->unk_04.unk_00; v2++) {
-                v1 = sub_0207A0FC(v0, v2);
+                v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
                 if (sub_02074470(v1, 76, NULL) == 0) {
                     param0->unk_04.unk_04[v4].unk_04 = sub_02074470(v1, 5, NULL);

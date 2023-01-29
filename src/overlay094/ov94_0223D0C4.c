@@ -42,7 +42,7 @@
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223D0C4.h"
@@ -450,7 +450,7 @@ static int ov94_0223D754 (UnkStruct_ov94_0223FD4C * param0)
             UnkStruct_02073C74 * v0 = (UnkStruct_02073C74 *)param0->unk_12C.unk_00.unk_00;
 
             if (ov94_02241498(v0)) {
-                if (sub_0207A0F8(param0->unk_00->unk_08) == 6) {
+                if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
                     ov94_0223D88C(param0, 36, 1, 0, 0xf0f, v0);
                     ov94_0223C3F4(param0, 3, 1);
                     return 3;

@@ -12,7 +12,7 @@
 #include "unk_0202D778.h"
 #include "unk_02032798.h"
 #include "unk_02034198.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_02095CD4.h"
 #include "overlay088/ov88_0223B140.h"
 
@@ -69,7 +69,7 @@ void sub_02095CFC (int param0, int param1, void * param2, void * param3)
         memcpy((void *)v1->unk_2274, param2, (236 * 6 + 4 * 2));
         v1->unk_58++;
 
-        if ((v1->unk_58) * (236 * 6 + 4 * 2) >= sub_02079FEC()) {
+        if ((v1->unk_58) * (236 * 6 + 4 * 2) >= Party_sizeof()) {
             if (sub_0203608C() == 1) {
                 ov88_0223D058(v1, 27, 0);
             } else {

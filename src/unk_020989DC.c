@@ -27,7 +27,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202A910.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 #include "unk_020989DC.h"
@@ -110,7 +110,7 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
 
     v0->unk_08 = sub_0202AB28(param0);
     v0->unk_0C = sub_02025E38(param0);
-    v0->unk_10 = sub_0207A268(param0);
+    v0->unk_10 = GetPartyFromSavedata(param0);
     v0->unk_14 = sub_0207D990(param0);
     v0->unk_18 = sub_02025E44(param0);
 
@@ -331,7 +331,7 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
     v2->unk_04 = param0->unk_0C->unk_18;
     v2->unk_11 = 1;
     v2->unk_14 = v0;
-    v2->unk_13 = (u8)sub_0207A0F8(v2->unk_00);
+    v2->unk_13 = (u8)Party_GetCurrentCount(v2->unk_00);
     v2->unk_18 = 0;
     v2->unk_12 = 3;
     v2->unk_2C = 1;
@@ -389,7 +389,7 @@ static int sub_02098D7C (UnkStruct_02098BE4 * param0)
 
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
     v1->unk_04 = sub_0202AC70(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
-    v1->unk_00 = sub_0207A0FC(param0->unk_0C->unk_10, param0->unk_08);
+    v1->unk_00 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_10, param0->unk_08);
     v1->unk_0A = sub_02027AC0(param0->unk_0C->unk_18);
     v1->unk_0B = sub_02027B50(param0->unk_0C->unk_18);
 
@@ -431,7 +431,7 @@ static int sub_02098E0C (UnkStruct_02098BE4 * param0)
     v1->unk_04 = param0->unk_0C->unk_18;
     v1->unk_11 = 1;
     v1->unk_14 = param0->unk_08;
-    v1->unk_13 = (u8)sub_0207A0F8(v1->unk_00);
+    v1->unk_13 = (u8)Party_GetCurrentCount(v1->unk_00);
     v1->unk_18 = 0;
     v1->unk_12 = 4;
     v1->unk_24 = v2;

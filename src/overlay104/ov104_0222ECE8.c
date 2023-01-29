@@ -20,7 +20,7 @@
 #include "unk_02034198.h"
 #include "unk_0205DFC4.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/ov104_0223B6F4.h"
@@ -286,8 +286,8 @@ BOOL ov104_0222EE60 (UnkStruct_ov104_0223B5C0 * param0)
     v1 = 0;
     v3 = 512;
     v4 = sub_02073C70();
-    v6 = sub_0207A268(param0->unk_6FC);
-    v5 = sub_0207A0FC(v6, param0->unk_260[0]);
+    v6 = GetPartyFromSavedata(param0->unk_6FC);
+    v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
 
@@ -669,7 +669,7 @@ BOOL ov104_0222F238 (UnkStruct_ov104_0223ADA0 * param0)
     v0 = ov104_0223AA50(param0->unk_04);
 
     for (v1 = 0; v1 < v0; v1++) {
-        v8 = sub_0207A0FC(param0->unk_4D4, v1);
+        v8 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v1);
         v7[v1] = sub_02074470(v8, 71, NULL);
         v6[v1] = sub_02074470(v8, 0, NULL);
     }
@@ -1084,7 +1084,7 @@ BOOL ov104_0222F758 (UnkStruct_ov104_0223BA10 * param0)
     v4 = sub_02073C70();
 
     for (v0 = 0; v0 < v5; v0++) {
-        v6 = sub_0207A0FC(param0->unk_28, v0);
+        v6 = Party_GetPokemonBySlotIndex(param0->unk_28, v0);
         MI_CpuCopy8(v6, &param0->unk_410[v0 * v4], v4);
     }
 
@@ -1118,14 +1118,14 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
 
     for (v1 = 0; v1 < v0; v1++) {
         MI_CpuCopy8(&v6[v3 * v1], v4, v3);
-        sub_0207A048(v5->unk_28, v4);
+        Party_AddPokemon(v5->unk_28, v4);
     }
 
     FreeToHeap(v4);
 
     if (sub_0203608C() != 0) {
-        sub_0207A184(v5->unk_28, 0, 2);
-        sub_0207A184(v5->unk_28, 1, 3);
+        Party_SwapSlots(v5->unk_28, 0, 2);
+        Party_SwapSlots(v5->unk_28, 1, 3);
     }
 
     return;
@@ -1383,7 +1383,7 @@ BOOL ov104_0222FAD0 (UnkStruct_ov104_0223BFFC * param0)
     v4 = sub_02073C70();
 
     for (v0 = 0; v0 < v5; v0++) {
-        v6 = sub_0207A0FC(param0->unk_70, v0);
+        v6 = Party_GetPokemonBySlotIndex(param0->unk_70, v0);
         MI_CpuCopy8(v6, &param0->unk_474[v0 * v4], v4);
     }
 
@@ -1417,14 +1417,14 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
 
     for (v1 = 0; v1 < v0; v1++) {
         MI_CpuCopy8(&v6[v3 * v1], v4, v3);
-        sub_0207A048(v5->unk_70, v4);
+        Party_AddPokemon(v5->unk_70, v4);
     }
 
     FreeToHeap(v4);
 
     if (sub_0203608C() != 0) {
-        sub_0207A184(v5->unk_70, 0, 2);
-        sub_0207A184(v5->unk_70, 1, 3);
+        Party_SwapSlots(v5->unk_70, 0, 2);
+        Party_SwapSlots(v5->unk_70, 1, 3);
     }
 
     return;

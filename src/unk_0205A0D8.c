@@ -51,7 +51,7 @@
 #include "unk_02061804.h"
 #include "unk_020655F4.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
@@ -144,7 +144,7 @@ static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * para
     v0->unk_00 = param2;
     v0->unk_11 = 1;
     v0->unk_14 = param3;
-    v0->unk_13 = (u8)sub_0207A0F8(v0->unk_00);
+    v0->unk_13 = (u8)Party_GetCurrentCount(v0->unk_00);
     v0->unk_18 = 0;
     v0->unk_12 = param4;
     v0->unk_20 = sub_0202D79C(v1);
@@ -164,7 +164,7 @@ static void sub_0205A164 (UnkStruct_0205A0D8 * param0, int param1)
 
     v1->unk_0C = sub_02025E44(param0->unk_24->unk_0C);
     v1->unk_14 = (void *)param0->unk_24->unk_B0;
-    v1->unk_00 = sub_0207A268(param0->unk_24->unk_0C);
+    v1->unk_00 = GetPartyFromSavedata(param0->unk_24->unk_0C);
     v1->unk_04 = sub_0207D990(param0->unk_24->unk_0C);
     v1->unk_21 = 0;
     v1->unk_20 = 2;
@@ -383,7 +383,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 17:
-        sub_0205A0D8(v0, v0->unk_24, sub_0207A268(v0->unk_24->unk_0C), v0->unk_3C, 0, 11);
+        sub_0205A0D8(v0, v0->unk_24, GetPartyFromSavedata(v0->unk_24->unk_0C), v0->unk_3C, 0, 11);
         v0->unk_34 = 18;
         break;
     case 18:
@@ -520,7 +520,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 36:
-        sub_0200B538(v0->unk_28, 1, sub_02076B10(sub_0207A0FC(v0->unk_50, v0->unk_84)));
+        sub_0200B538(v0->unk_28, 1, sub_02076B10(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
         sub_0200B1B8(v0->unk_2C, 18, v0->unk_0C);
         sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
@@ -700,7 +700,7 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
         v0->unk_48 = AllocFromHeapAtEnd(11, v2);
         v0->unk_50 = sub_02079FF4(11);
 
-        sub_0207A014(v0->unk_50, 3);
+        Party_InitWithCapacity(v0->unk_50, 3);
 
         v0->unk_44 = 5;
         v0->unk_34 = 23;
@@ -756,7 +756,7 @@ static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
     u8 * v2;
     int v3, v4;
 
-    v0 = sub_0207A268(param0->unk_24->unk_0C);
+    v0 = GetPartyFromSavedata(param0->unk_24->unk_0C);
     v2 = param0->unk_4C;
     v4 = sub_02076AF0();
     v1 = (UnkStruct_0205AD20 *)(v2 + v4 * 3);
@@ -764,7 +764,7 @@ static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
 
     if (v1->unk_00) {
         for (v3 = 0; v3 < 3; v3++) {
-            MI_CpuCopy8(sub_0207A0FC(v0, param0->unk_3D[v3] - 1), v2, v4);
+            MI_CpuCopy8(Party_GetPokemonBySlotIndex(v0, param0->unk_3D[v3] - 1), v2, v4);
             v2 += v4;
         }
     }
@@ -845,10 +845,10 @@ static void sub_0205AD80 (UnkStruct_0205A0D8 * param0)
     int v1;
 
     v0 = sub_02076AF0();
-    sub_0207A014(param0->unk_50, 3);
+    Party_InitWithCapacity(param0->unk_50, 3);
 
     for (v1 = 0; v1 < 3; v1++) {
-        sub_0207A048(param0->unk_50, (UnkStruct_02073C74 *)(&param0->unk_48[v1 * v0]));
+        Party_AddPokemon(param0->unk_50, (UnkStruct_02073C74 *)(&param0->unk_48[v1 * v0]));
     }
 }
 
@@ -864,10 +864,10 @@ static void sub_0205ADAC (UnkStruct_0205A0D8 * param0)
 
     MI_CpuCopy8(v2, v1, v0);
 
-    sub_0207A014(param0->unk_50, 3);
+    Party_InitWithCapacity(param0->unk_50, 3);
 
     for (v3 = 0; v3 < 3; v3++) {
-        sub_0207A048(param0->unk_50, (UnkStruct_02073C74 *)(&param0->unk_4C[v3 * v0]));
+        Party_AddPokemon(param0->unk_50, (UnkStruct_02073C74 *)(&param0->unk_4C[v3 * v0]));
     }
 }
 

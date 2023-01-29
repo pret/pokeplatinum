@@ -23,7 +23,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02079D40.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0207E0B8.h"
 #include "overlay107/ov107_02249604.h"
@@ -85,12 +85,12 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, UnkStruct_02079FF4 * par
     for (v0 = 0; v0 < 4; v0++) {
         if (v0 == 3) {
             if (param2 == 0) {
-                v2 = sub_0207A0FC(param1, 0);
+                v2 = Party_GetPokemonBySlotIndex(param1, 0);
             } else {
-                v2 = sub_0207A0FC(param1, v0);
+                v2 = Party_GetPokemonBySlotIndex(param1, v0);
             }
         } else {
-            v2 = sub_0207A0FC(param1, v0);
+            v2 = Party_GetPokemonBySlotIndex(param1, v0);
         }
 
         param0->unk_1A0[3 + v0][0] = sub_02009A4C(param0->unk_190[0], v1, sub_02079D80(v2), 0, 3 + v0, NNS_G2D_VRAM_TYPE_2DMAIN, 100);

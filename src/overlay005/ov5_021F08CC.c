@@ -39,7 +39,7 @@
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F08CC.h"
 #include "overlay005/ov5_021F5A10.h"
@@ -120,7 +120,7 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
 
             if (v2 == 1) {
                 {
-                    UnkStruct_02073C74 * v3 = sub_0207A0FC(v1->unk_10->unk_04[1], 0);
+                    UnkStruct_02073C74 * v3 = Party_GetPokemonBySlotIndex(v1->unk_10->unk_04[1], 0);
                     sub_0206D340(v0, 1, v1->unk_04, v3);
                 }
 

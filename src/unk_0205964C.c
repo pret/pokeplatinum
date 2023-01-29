@@ -27,7 +27,7 @@
 #include "unk_0205964C.h"
 #include "unk_0205A0D8.h"
 #include "unk_02071D40.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_02099500.h"
 #include "overlay007/ov7_02249960.h"
 #include "overlay023/ov23_02241F74.h"
@@ -440,7 +440,7 @@ static void sub_02059C2C (BOOL param0, const UnkStruct_02079FF4 * param1)
 {
     if (param1) {
         Unk_021C084C->unk_44 = sub_02079FF4(11);
-        sub_0207A21C(param1, Unk_021C084C->unk_44);
+        Party_cpy(param1, Unk_021C084C->unk_44);
     }
 
     if (param0) {

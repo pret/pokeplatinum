@@ -43,7 +43,7 @@
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_02097B18.h"
 #include "overlay076/ov76_0223B140.h"
@@ -330,12 +330,12 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
             int v3;
             int v4;
 
-            v1->unk_1C = sub_0207A268(v0->unk_10);
-            v4 = sub_0207A0F8(v1->unk_1C);
+            v1->unk_1C = GetPartyFromSavedata(v0->unk_10);
+            v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
             for (v3 = 0; v3 < v4; v3++) {
-                v1->unk_04[v3] = sub_0207A0FC(v1->unk_1C, v3);
+                v1->unk_04[v3] = Party_GetPokemonBySlotIndex(v1->unk_1C, v3);
             }
 
             for ( ; v3 < 6; v3++) {

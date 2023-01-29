@@ -20,7 +20,7 @@
 #include "unk_0205DFC4.h"
 #include "unk_02061804.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay004/ov4_021D0D80.h"
 
 typedef struct {
@@ -246,10 +246,10 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     UnkStruct_02073C74 * v0;
     u16 v1, v2;
 
-    v2 = sub_0207A0F8(sub_0207A268(param0));
+    v2 = Party_GetCurrentCount(GetPartyFromSavedata(param0));
 
     for (v1 = 0; v1 < v2; v1++) {
-        v0 = sub_0207A0FC(sub_0207A268(param0), v1);
+        v0 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(param0), v1);
 
         if (sub_02074470(v0, 76, NULL) == 0) {
             return v1;
@@ -266,11 +266,11 @@ BOOL sub_0205E1F8 (UnkStruct_021C0794 * param0)
     static const u16 v5[] = {377, 378, 379};
     u16 v6[6];
 
-    v4 = sub_0207A268(param0);
-    v2 = sub_0207A0F8(v4);
+    v4 = GetPartyFromSavedata(param0);
+    v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = sub_02074470(sub_0207A0FC(v4, v0), 5, NULL);
+        v6[v0] = sub_02074470(Party_GetPokemonBySlotIndex(v4, v0), 5, NULL);
     }
 
     for (v0 = 0; v0 < 3; v0++) {

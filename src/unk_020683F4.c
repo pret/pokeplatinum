@@ -56,7 +56,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_0207CB08.h"
 #include "item.h"
 #include "unk_0207D3B8.h"
@@ -342,7 +342,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     memset(v2, 0, sizeof(UnkStruct_02098C44));
 
-    v2->unk_00 = sub_0207A268(v0->unk_0C);
+    v2->unk_00 = GetPartyFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);
@@ -595,7 +595,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     memset(v2, 0, sizeof(UnkStruct_02098C44));
 
-    v2->unk_00 = sub_0207A268(v0->unk_0C);
+    v2->unk_00 = GetPartyFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);
@@ -995,7 +995,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     memset(v2, 0, sizeof(UnkStruct_02098C44));
 
-    v2->unk_00 = sub_0207A268(v0->unk_0C);
+    v2->unk_00 = GetPartyFromSavedata(v0->unk_0C);
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);

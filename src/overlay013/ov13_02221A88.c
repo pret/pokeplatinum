@@ -24,7 +24,7 @@
 #include "unk_02023790.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0208C098.h"
 #include "unk_0208C324.h"
@@ -1128,7 +1128,7 @@ static void ov13_0222339C (UnkStruct_ov13_022213F0 * param0)
 {
     s32 v0;
 
-    for (v0 = 0; v0 < sub_0207A0F8(param0->unk_00->unk_00); v0++) {
+    for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_00->unk_00); v0++) {
         sub_0201ADA4(&param0->unk_206C[0 + v0], 0);
 
         if (param0->unk_04[v0].unk_04 == 0) {

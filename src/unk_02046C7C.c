@@ -26,7 +26,7 @@
 #include "unk_0203E880.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "unk_020933F8.h"
 #include "overlay005/ov5_021EF3A8.h"
 #include "overlay006/ov6_02247A0C.h"
@@ -106,7 +106,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     u16 v7 = inline_02049538(param0);
     UnkStruct_02093800 v8;
 
-    v1 = sub_0207A0FC(sub_0207A268(param0->unk_34->unk_0C), v7);
+    v1 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(param0->unk_34->unk_0C), v7);
     v0 = sub_02025F04(v3, 4);
 
     v8.unk_00 = v5;

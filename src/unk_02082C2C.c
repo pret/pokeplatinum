@@ -24,7 +24,7 @@
 #include "unk_020218BC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "item.h"
 #include "unk_0207E0B8.h"
 #include "unk_02082C2C.h"
@@ -77,7 +77,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
     UnkStruct_ov7_0224F358 v1;
     u32 v2;
 
-    v0 = sub_0207A0FC(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
 
     param0->unk_704[param1].unk_16 = param2;
     param0->unk_704[param1].unk_18 = param3;
@@ -112,7 +112,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
     NNSG2dCharacterData * v6;
     BOOL v7;
 
-    v0 = sub_0207A0FC(param0->unk_5A4->unk_00, param1);
+    v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
     v2 = sub_02074470(v0, 5, NULL);
     v3 = sub_02074470(v0, 112, NULL);
     v1 = NARC_ctor(19, 12);

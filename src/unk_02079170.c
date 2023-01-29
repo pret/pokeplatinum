@@ -23,7 +23,7 @@
 #include "unk_020277A4.h"
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 
 void sub_02079170(UnkStruct_ov6_02240D5C * param0, const UnkStruct_021C0794 * param1, int param2);
@@ -299,7 +299,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
 
     v5 = sub_0201D2D0();
 
-    sub_0207A014(param0->unk_04[param1], 6);
+    Party_InitWithCapacity(param0->unk_04[param1], 6);
 
     v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
     v7 = sub_02073C74(param2);
@@ -338,7 +338,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
             sub_02073D80(v7, v9, v8[v1].unk_02, v6, 1, v4, 2, 0);
             sub_02078AEC(v8[v1].unk_06, v7, param2);
             sub_02074B30(v7, 112, &v10);
-            sub_0207A048(param0->unk_04[param1], v7);
+            Party_AddPokemon(param0->unk_04[param1], v7);
         }
     }
     break;
@@ -372,7 +372,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
 
             sub_02078AEC(v11[v1].unk_0E, v7, param2);
             sub_02074B30(v7, 112, &v13);
-            sub_0207A048(param0->unk_04[param1], v7);
+            Party_AddPokemon(param0->unk_04[param1], v7);
         }
     }
     break;
@@ -402,7 +402,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
             sub_02074B30(v7, 6, (u8 *)&v14[v1].unk_06);
             sub_02078AEC(v14[v1].unk_08, v7, param2);
             sub_02074B30(v7, 112, &v16);
-            sub_0207A048(param0->unk_04[param1], v7);
+            Party_AddPokemon(param0->unk_04[param1], v7);
         }
     }
     break;
@@ -437,7 +437,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
 
             sub_02078AEC(v17[v1].unk_10, v7, param2);
             sub_02074B30(v7, 112, &v19);
-            sub_0207A048(param0->unk_04[param1], v7);
+            Party_AddPokemon(param0->unk_04[param1], v7);
         }
     }
     break;

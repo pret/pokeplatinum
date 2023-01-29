@@ -30,7 +30,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202F1D4.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 
 UnkStruct_0202F264 * Unk_021C07A4 = NULL;
 
@@ -586,11 +586,11 @@ static void sub_0202FCE8 (const UnkStruct_02079FF4 * param0, UnkStruct_0202FD30 
 
     MI_CpuClear8(param1, sizeof(UnkStruct_0202FD30));
 
-    param1->unk_00 = sub_0207A0F4(param0);
-    param1->unk_02 = sub_0207A0F8(param0);
+    param1->unk_00 = Party_GetCapacity(param0);
+    param1->unk_02 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < param1->unk_02; v0++) {
-        v1 = sub_0207A0FC(param0, v0);
+        v1 = Party_GetPokemonBySlotIndex(param0, v0);
         sub_02078B40(v1, &param1->unk_04[v0]);
     }
 }
@@ -603,12 +603,12 @@ static void sub_0202FD30 (UnkStruct_0202FD30 * param0, UnkStruct_02079FF4 * para
 
     v1 = sub_02073C74(11);
 
-    sub_0207A014(param1, param0->unk_00);
+    Party_InitWithCapacity(param1, param0->unk_00);
 
     for (v0 = 0; v0 < param0->unk_02; v0++) {
         sub_02078E0C(&param0->unk_04[v0], v1);
         sub_02074B30(v1, 162, &v2);
-        sub_0207A048(param1, v1);
+        Party_AddPokemon(param1, v1);
     }
 
     FreeToHeap(v1);

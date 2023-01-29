@@ -68,7 +68,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02073C2C.h"
-#include "unk_02079FEC.h"
+#include "party.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_022380BC.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -969,8 +969,8 @@ static void ov16_0225CA74 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
         for (v4 = 0; v4 < ov16_0223DF1C(param0); v4++) {
             v1 = ov16_0223DF20(param0, v4);
 
-            for (v3 = 0; v3 < sub_0207A0F8(v1); v3++) {
-                v2 = sub_0207A0FC(v1, v3);
+            for (v3 = 0; v3 < Party_GetCurrentCount(v1); v3++) {
+                v2 = Party_GetPokemonBySlotIndex(v1, v3);
 
                 if ((sub_02074470(v2, 5, NULL)) && (sub_02074470(v2, 76, NULL) == 0)) {
                     if (ov16_0223E208(param0, v4)) {
