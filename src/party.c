@@ -131,7 +131,7 @@ void Party_cpy (const Party * src, Party * dest)
     *dest = *src;
 }
 
-BOOL Party_HasPokemon (const Party * party, int species)
+BOOL Party_HasSpecies (const Party * party, int species)
 {
     int i;
 

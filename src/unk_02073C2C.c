@@ -3340,7 +3340,7 @@ u16 sub_02076B94 (Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 pa
                 break;
             case 21:
                 if (param0 != NULL) {
-                    if (Party_HasPokemon(param0, v10->unk_00[v3].unk_02) == 1) {
+                    if (Party_HasSpecies(param0, v10->unk_00[v3].unk_02) == 1) {
                         v4 = v10->unk_00[v3].unk_04;
                         param4[0] = 21;
                     }

@@ -2041,7 +2041,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     sub_02026258(param2, 0);
     Party_RemovePokemonBySlotIndex(param0, param1);
 
-    if (Party_HasPokemon(param0, 441) == 0) {
+    if (Party_HasSpecies(param0, 441) == 0) {
         UnkStruct_0202CC84 * v7 = sub_0202CC98(param3);
         sub_0202CCA8(v7);
     }

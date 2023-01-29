@@ -2527,7 +2527,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 
     param4->unk_2C = param2;
 
-    if (Party_HasPokemon(param0, 441) == 0) {
+    if (Party_HasSpecies(param0, 441) == 0) {
         UnkStruct_0202CC84 * v4 = sub_0202CC98(param4->unk_10);
         sub_0202CCA8(v4);
     }

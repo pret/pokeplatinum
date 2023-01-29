@@ -7007,7 +7007,7 @@ static BOOL sub_02045344 (UnkStruct_0203E724 * param0)
     u16 * v1 = inline_0204FCAC(param0);
     Party * v2 = GetPartyFromSavedata(param0->unk_34->unk_0C);
 
-    *v1 = Party_HasPokemon(v2, v0);
+    *v1 = Party_HasSpecies(v2, v0);
     return 1;
 }
 
