@@ -41,9 +41,9 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -261,9 +261,9 @@ int ov107_02245EB0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov107_02246170 * v1;
     UnkStruct_ov104_0223597C * v2;
 
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay104), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     ov107_02246EAC();
-    CreateHeap(3, 100, 0x20000);
+    Heap_Create(3, 100, 0x20000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov107_02246170), 100);
     memset(v1, 0, sizeof(UnkStruct_ov107_02246170));
@@ -401,8 +401,8 @@ int ov107_02246130 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(100);
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay104));
+    Heap_Destroy(100);
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
     return 1;
 }
@@ -478,7 +478,7 @@ static void ov107_02246274 (UnkStruct_ov107_02246170 * param0)
     ov107_02247B78(param0, &param0->unk_50[3]);
     ov107_02247C64(param0, &param0->unk_50[2]);
     ov107_02248240(param0);
-    GX_BothDispOn();
+    GXLayers_TurnBothDispOn();
 
     return;
 }
@@ -1112,8 +1112,8 @@ static void ov107_02246EAC (void)
 {
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -1226,7 +1226,7 @@ static void ov107_02247220 (UnkStruct_ov107_02246170 * param0)
     ov107_0224752C(param0, 2);
     ov107_02247574();
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     ov107_022475F0(param0, 4);
 
     return;
@@ -1240,15 +1240,15 @@ static void ov107_02247280 (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_022472A4 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
     sub_02019044(param0, 3);
     sub_02019044(param0, 2);
     sub_02019044(param0, 0);
     sub_02019044(param0, 1);
     sub_02019044(param0, 4);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return;
 }
@@ -1283,7 +1283,7 @@ static void ov107_02247320 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     return;
 }
 
@@ -1410,7 +1410,7 @@ static void ov107_02247340 (UnkStruct_02018340 * param0)
     }
 
     G2_SetBG0Priority(0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
 
     return;
 }
@@ -1437,7 +1437,7 @@ static void ov107_022474F8 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return;
 }
@@ -1459,7 +1459,7 @@ static void ov107_02247574 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return;
 }
@@ -3080,7 +3080,7 @@ static void ov107_02248A2C (UnkStruct_ov107_02246170 * param0, u8 param1)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02247804(param0, &param0->unk_50[4], v0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
     return;
 }
@@ -3120,7 +3120,7 @@ static void ov107_02248AF0 (UnkStruct_ov107_02246170 * param0, u8 param1)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02247A3C(param0, &param0->unk_50[4], v0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
     return;
 }
@@ -3621,7 +3621,7 @@ static void ov107_02249238 (UnkStruct_ov107_02246170 * param0)
 {
     sub_0201ADA4(&param0->unk_50[4], 0);
     sub_0201ACF4(&param0->unk_50[4]);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
 }

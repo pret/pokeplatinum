@@ -298,7 +298,7 @@ BOOL sub_02048AE0 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = sub_02054AB0(GetPartyFromSavedata(param0->unk_34->unk_0C));
+    *v0 = sub_02054AB0(Party_GetFromSavedata(param0->unk_34->unk_0C));
     return 0;
 }
 

@@ -65,7 +65,7 @@ void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param
         return;
     }
 
-    Unk_021C07B4 = AllocFromHeap(15, sizeof(UnkStruct_021C07B4));
+    Unk_021C07B4 = Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07B4));
     MI_CpuClear8(Unk_021C07B4, sizeof(UnkStruct_021C07B4));
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
@@ -92,7 +92,7 @@ void sub_02032A70 (void)
         }
 
         if (Unk_021C07B4) {
-            FreeToHeap(Unk_021C07B4);
+            Heap_FreeToHeap(Unk_021C07B4);
         }
 
         Unk_021C07B4 = NULL;

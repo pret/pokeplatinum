@@ -157,7 +157,7 @@ static void sub_020366A0 (UnkStruct_021C0794 * param0, int param1)
     GF_ASSERT(param0);
     sub_02033478();
 
-    Unk_021C07D4 = (UnkStruct_021C07D4 *)AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+    Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
     MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
 
     Unk_021C07D4->unk_40 = 50;
@@ -186,17 +186,17 @@ static void sub_02036734 (void)
     sub_020327E0();
 
     if (Unk_021C07D4->unk_00) {
-        FreeToHeap(Unk_021C07D4->unk_00);
+        Heap_FreeToHeap(Unk_021C07D4->unk_00);
     }
 
     if (sub_020389B8()) {
-        DestroyHeap(49);
+        Heap_Destroy(49);
     }
 
     sub_02039794();
     sub_020334CC();
-    FreeToHeap(Unk_021C07D4);
-    DestroyHeap(15);
+    Heap_FreeToHeap(Unk_021C07D4);
+    Heap_Destroy(15);
 
     Unk_021C07D4 = NULL;
 }
@@ -216,7 +216,7 @@ void sub_02036794 (UnkStruct_021C0794 * param0)
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0xF000);
+    Heap_CreateAtEnd(3, 15, 0xF000);
     sub_020366A0(param0, 10);
 
     Unk_021C07D4->unk_4B = 0;
@@ -294,7 +294,7 @@ void sub_020368B8 (UnkStruct_021C0794 * param0, int param1, int param2, const Un
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0x7080);
+    Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, param1);
 
     Unk_021C07D4->unk_4B = param2;
@@ -309,7 +309,7 @@ void sub_02036900 (UnkStruct_021C0794 * param0, int param1, int param2, const Un
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0x7080);
+    Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, param1);
 
     Unk_021C07D4->unk_4B = param2;
@@ -371,7 +371,7 @@ void sub_020369EC (UnkStruct_021C0794 * param0)
         return;
     }
 
-    if (CreateHeapAtEnd(3, 15, 0x7080) == 0) {
+    if (Heap_CreateAtEnd(3, 15, 0x7080) == 0) {
         sub_02038A0C();
     }
 
@@ -518,7 +518,7 @@ void sub_02036BE8 (UnkStruct_021C0794 * param0, int param1)
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0x7080);
+    Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, param1);
     sub_02036C94(sub_02037E20, 0);
 }
@@ -529,7 +529,7 @@ void sub_02036C1C (UnkStruct_021C0794 * param0, int param1)
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0x7080);
+    Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, param1);
     sub_02036C94(sub_02037E68, 0);
 }
@@ -1528,7 +1528,7 @@ void sub_02037BC0 (UnkStruct_021C0794 * param0)
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0x7000);
+    Heap_CreateAtEnd(3, 15, 0x7000);
     sub_020366A0(param0, 14);
 
     Unk_021C07D4->unk_4B = 0;
@@ -1612,7 +1612,7 @@ void sub_02037D48 (UnkStruct_021C0794 * param0)
         return;
     }
 
-    CreateHeapAtEnd(3, 15, 0x7000);
+    Heap_CreateAtEnd(3, 15, 0x7000);
     sub_020366A0(param0, 17);
     Unk_021C07D4->unk_4B = 0;
     sub_02036C94(sub_02037D08, 0);
@@ -2068,8 +2068,8 @@ BOOL sub_020383E8 (void)
 void sub_02038438 (UnkStruct_021C0794 * param0)
 {
     if (!Unk_021C07D4) {
-        CreateHeapAtEnd(3, 15, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+        Heap_CreateAtEnd(3, 15, 0x100);
+        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 24;
         Unk_021C07D4->unk_51 = 1;
@@ -2084,17 +2084,17 @@ void sub_0203848C (void)
     if (Unk_021C07D4) {
         sub_02017DF0(1);
         sub_020388F4(0, 0);
-        FreeToHeap(Unk_021C07D4);
+        Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
-        DestroyHeap(15);
+        Heap_Destroy(15);
     }
 }
 
 void sub_020384C0 (UnkStruct_021C0794 * param0)
 {
     if (!Unk_021C07D4) {
-        CreateHeapAtEnd(3, 15, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+        Heap_CreateAtEnd(3, 15, 0x100);
+        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 25;
         Unk_021C07D4->unk_51 = 1;
@@ -2109,17 +2109,17 @@ void sub_02038514 (void)
     if (Unk_021C07D4) {
         sub_02017DF0(1);
         sub_020388F4(0, 0);
-        FreeToHeap(Unk_021C07D4);
+        Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
-        DestroyHeap(15);
+        Heap_Destroy(15);
     }
 }
 
 void sub_02038548 (UnkStruct_021C0794 * param0)
 {
     if (!Unk_021C07D4) {
-        CreateHeapAtEnd(3, 15, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+        Heap_CreateAtEnd(3, 15, 0x100);
+        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 36;
         Unk_021C07D4->unk_51 = 1;
@@ -2134,9 +2134,9 @@ void sub_0203859C (void)
     if (Unk_021C07D4) {
         sub_02017DF0(1);
         sub_020388F4(0, 0);
-        FreeToHeap(Unk_021C07D4);
+        Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
-        DestroyHeap(15);
+        Heap_Destroy(15);
     }
 }
 
@@ -2211,7 +2211,7 @@ static void sub_020386B4 (void)
     }
 
     {
-        CreateHeapAtEnd(3, 49, (0x2A000 + 0xA000 + 0x1400));
+        Heap_CreateAtEnd(3, 49, (0x2A000 + 0xA000 + 0x1400));
     }
 
     if (sub_02034778(1, 1, 512, 1)) {
@@ -2231,9 +2231,9 @@ void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
     }
 
     sub_02017DE0(1);
-    CreateHeapAtEnd(3, 15, 0x7080);
+    Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, 23);
-    Unk_021C07D4->unk_00 = AllocFromHeap(15, param1);
+    Unk_021C07D4->unk_00 = Heap_AllocFromHeap(15, param1);
     MI_CpuFill8(Unk_021C07D4->unk_00, 0, param1);
 
     Unk_021C07D4->unk_4B = 0;
@@ -2253,7 +2253,7 @@ void sub_0203878C (UnkStruct_021C0794 * param0, const void * param1)
     }
 
     sub_02017DE0(1);
-    CreateHeapAtEnd(3, 15, 0x7080);
+    Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, 33);
 
     Unk_021C07D4->unk_00 = NULL;
@@ -2539,7 +2539,7 @@ static void sub_02038BA8 (void)
     }
 
     {
-        CreateHeapAtEnd(3, 49, 0x60000);
+        Heap_CreateAtEnd(3, 49, 0x60000);
     }
 
     if (sub_02034778(1, 1, 512, 1)) {

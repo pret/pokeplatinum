@@ -23,7 +23,7 @@ UnkStruct_020149F0 * sub_020149F0 (u32 param0)
         0x11f,
         0xffff
     };
-    UnkStruct_020149F0 * v1 = AllocFromHeap(param0, sizeof(UnkStruct_020149F0));
+    UnkStruct_020149F0 * v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020149F0));
 
     if (v1) {
         v1->unk_00 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
@@ -43,7 +43,7 @@ void sub_02014A20 (UnkStruct_020149F0 * param0)
             sub_020237BC(param0->unk_04);
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02049FA8.h"
 #include "overlay006/struct_ov6_02242634.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
@@ -59,14 +59,14 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
     u8 v0;
     UnkStruct_ov6_02242A8C * v1;
 
-    v1 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_02242A8C));
+    v1 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_02242A8C));
     v1->unk_2C = param1;
 
     {
         u8 v2;
         UnkStruct_ov6_02242A10 * v3;
 
-        v3 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 11, 4);
+        v3 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 11, 4);
 
         for (v0 = 0; v0 < 5; v0++) {
             v2 = inline_020564D0(36);
@@ -80,7 +80,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
             v1->unk_30 = param1->unk_1C->unk_00;
         }
 
-        FreeToHeap(v3);
+        Heap_FreeToHeap(v3);
     }
 
     return v1;
@@ -88,7 +88,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
 
 void ov6_02242A8C (UnkStruct_ov6_02242A8C * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov6_02242A94 (const u8 param0, UnkStruct_ov6_02242A8C * param1)

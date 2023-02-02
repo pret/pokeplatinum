@@ -56,7 +56,7 @@ UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 para
     UnkStruct_02073C74 * v9;
     static UnkStruct_ov104_0223B5C0 * v10;
 
-    v10 = AllocFromHeap(11, sizeof(UnkStruct_ov104_0223B5C0));
+    v10 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223B5C0));
     MI_CpuClear8(v10, sizeof(UnkStruct_ov104_0223B5C0));
 
     v10->unk_6F8 = sub_02030114(param0);
@@ -113,7 +113,7 @@ UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 para
     }
 
     for (v5 = 0; v5 < v4; v5++) {
-        v9 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(v10->unk_6FC), v10->unk_260[v5]);
+        v9 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v10->unk_6FC), v10->unk_260[v5]);
         v10->unk_728[v5] = sub_02074470(v9, 6, NULL);
     }
 
@@ -198,16 +198,16 @@ void ov104_02235190 (UnkStruct_ov104_0223B5C0 * param0)
     }
 
     if (param0->unk_264 != NULL) {
-        FreeToHeap(param0->unk_264);
+        Heap_FreeToHeap(param0->unk_264);
     }
 
     if (param0->unk_D8C != NULL) {
-        FreeToHeap(param0->unk_D8C);
+        Heap_FreeToHeap(param0->unk_D8C);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223B5C0));
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
     param0 = NULL;
 
     return;
@@ -266,7 +266,7 @@ void ov104_0223526C (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
     sub_02030140(param0->unk_6F8, 0, 0, 0, v1);
     sub_0203012C(param0->unk_6F8, 1);
 
-    v10 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(param0->unk_6FC), param0->unk_260[0]);
+    v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_6FC), param0->unk_260[0]);
     v9 = sub_02074470(v10, 5, NULL);
     v8 = sub_02030698(v4, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)));
     v1[0] = param0->unk_05;
@@ -337,7 +337,7 @@ u16 ov104_022354C0 (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
     v2 = (param0->unk_05 * 2) + param1;
     v1 = ov104_0222DD04(&v0, param0->unk_18[v2], 11, 178);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return ov104_0222E10C(v0.unk_04);
 }

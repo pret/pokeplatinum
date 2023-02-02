@@ -943,7 +943,7 @@ void * ov12_02235E50 (UnkStruct_ov12_0221FCDC * param0, int param1)
     GF_ASSERT(param0 != NULL);
 
     v0 = ov12_0221FDE4(param0);
-    v1 = AllocFromHeap(v0, param1);
+    v1 = Heap_AllocFromHeap(v0, param1);
 
     GF_ASSERT(v1 != NULL);
     memset(v1, 0, param1);
@@ -954,5 +954,5 @@ void * ov12_02235E50 (UnkStruct_ov12_0221FCDC * param0, int param1)
 void ov12_02235E80 (void * param0)
 {
     GF_ASSERT(param0 != NULL);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }

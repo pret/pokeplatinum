@@ -191,7 +191,7 @@ static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
 
     GF_ASSERT((Unk_ov7_0224F5A0 == NULL));
 
-    Unk_ov7_0224F5A0 = AllocFromHeap(4, sizeof(UnkStruct_ov7_02249C2C));
+    Unk_ov7_0224F5A0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov7_02249C2C));
     MI_CpuFill8(Unk_ov7_0224F5A0, 0, sizeof(UnkStruct_ov7_02249C2C));
 
     Unk_ov7_0224F5A0->unk_88 = 0;
@@ -227,7 +227,7 @@ static void ov7_02249B98 (void)
         sub_020237BC(Unk_ov7_0224F5A0->unk_00[v0]);
     }
 
-    FreeToHeap(Unk_ov7_0224F5A0->unk_7C);
+    Heap_FreeToHeap(Unk_ov7_0224F5A0->unk_7C);
 
     if (Unk_ov7_0224F5A0->unk_50) {
         sub_0200B3F0(Unk_ov7_0224F5A0->unk_50);
@@ -250,7 +250,7 @@ static void ov7_02249B98 (void)
         sub_0201A8FC(&Unk_ov7_0224F5A0->unk_40);
     }
 
-    FreeToHeap(Unk_ov7_0224F5A0);
+    Heap_FreeToHeap(Unk_ov7_0224F5A0);
     Unk_ov7_0224F5A0 = NULL;
 }
 

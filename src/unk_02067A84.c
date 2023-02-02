@@ -415,7 +415,7 @@ static UnkStruct_0201CD38 * sub_02067FF0 (UnkStruct_0203CDB0 * param0, UnkStruct
     UnkStruct_0201CD38 * v0;
     UnkStruct_020EF6D0 * v1;
 
-    v1 = AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
+    v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, (sizeof(UnkStruct_020EF6D0)));
@@ -449,7 +449,7 @@ static void sub_02068054 (UnkStruct_0201CD38 * param0)
 
     v0 = sub_0201CED0(param0);
 
-    FreeToHeapExplicit(4, v0);
+    Heap_FreeToHeapExplicit(4, v0);
     sub_0200DA58(param0);
 }
 

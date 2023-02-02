@@ -345,7 +345,7 @@ UnkStruct_02029C68 * sub_02029C68 (u32 param0)
 {
     UnkStruct_02029C68 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02029C68));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02029C68));
     inline_02029BFC(v0);
 
     return v0;
@@ -355,7 +355,7 @@ UnkStruct_02029C88 * sub_02029C88 (u32 param0)
 {
     UnkStruct_02029C88 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02029C88));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02029C88));
     inline_02029BFC_1(v0);
 
     return v0;

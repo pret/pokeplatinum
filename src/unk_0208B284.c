@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0208B878.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -45,7 +45,7 @@ UnkStruct_0208B878 * sub_0208B284 (UnkStruct_0208B284 param0, UnkStruct_0200C6E4
 {
     UnkStruct_0208B878 * v0;
 
-    v0 = AllocFromHeap(param0.unk_04, sizeof(UnkStruct_0208B878));
+    v0 = Heap_AllocFromHeap(param0.unk_04, sizeof(UnkStruct_0208B878));
     v0->unk_10.unk_00 = param0.unk_00;
     v0->unk_10.unk_04 = param0.unk_04;
     v0->unk_10.unk_08 = param0.unk_08;
@@ -371,7 +371,7 @@ BOOL sub_0208B988 (UnkStruct_0208B878 * param0)
     default:
         sub_0208B830(param0);
         NARC_dtor(param0->unk_00.unk_00);
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
 
         return 0;
     }

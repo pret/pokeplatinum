@@ -11,7 +11,7 @@
 #include "overlay108/struct_ov108_02243030.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -68,8 +68,8 @@ void ov108_02243030 (UnkStruct_ov108_02243030 * param0, Party * param1, Party * 
         sub_0200A5C8(param0->unk_1A0[v0][1]);
     }
 
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     return;
 }

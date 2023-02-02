@@ -146,7 +146,7 @@ static void ov12_02234750 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         ov12_02220220(v0->unk_00, param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return;
     }
 
@@ -241,7 +241,7 @@ static void ov12_02234918 (UnkStruct_0201CD38 * param0, void * param1)
     case 4:
         sub_0200D0F4(v0->unk_10);
         ov12_02220220(v0->unk_00, param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return;
     }
 
@@ -345,7 +345,7 @@ static void ov12_02234B64 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         ov12_02220220(v0->unk_00, param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return;
     }
 
@@ -427,7 +427,7 @@ static void ov12_02234CA8 (UnkStruct_0201CD38 * param0, void * param1)
             sub_0200D0F4(v0->unk_18[v1]);
         }
 
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         ov12_02220220(v0->unk_00, param0);
         return;
     }

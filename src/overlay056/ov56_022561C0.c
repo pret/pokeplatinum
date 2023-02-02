@@ -174,11 +174,11 @@ static void ov56_022561C0 (UnkStruct_0201CD38 * param0, void * param1)
         ov56_02256704(v0);
         sub_02002BEC(1, 4);
         ov56_022562EC(v0->unk_14, v0->unk_22C);
-        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         ov56_02257100(v0);
         v0->unk_00++;
         break;
@@ -284,7 +284,7 @@ void ov56_02256468 (UnkStruct_ov56_02256468 * param0)
         ov56_022563E8(param0->unk_22C);
         ov56_022564E4(v0);
 
-        FreeToHeap(param0->unk_20);
+        Heap_FreeToHeap(param0->unk_20);
         sub_020067D0(param0->unk_2F8);
     } else {
         GF_ASSERT(0);
@@ -322,7 +322,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
 
         sub_020183C4(param0, 4, &v0, 0);
         sub_02019EBC(param0, 4);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
     {
@@ -344,7 +344,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
 
         sub_020183C4(param0, 5, &v1, 0);
         sub_02019EBC(param0, 5);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     {
@@ -366,7 +366,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
 
         sub_020183C4(param0, 6, &v2, 0);
         sub_02019EBC(param0, 6);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
     {
@@ -387,7 +387,7 @@ static void ov56_02256508 (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 7, &v3, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
     sub_02006E84(74, 0, 4, 0, 0x20 * 3, 4);

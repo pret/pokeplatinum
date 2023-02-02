@@ -10,7 +10,7 @@
 #include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_02061804.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -125,9 +125,9 @@ void * ov5_021ECD68 (const UnkStruct_02061830 * param0, u32 param1, int param2)
     u32 v2 = NARC_GetMemberSize(v1, param1);
 
     if (param2 == 1) {
-        v0 = AllocFromHeap(4, v2);
+        v0 = Heap_AllocFromHeap(4, v2);
     } else {
-        v0 = AllocFromHeapAtEnd(4, v2);
+        v0 = Heap_AllocFromHeapAtEnd(4, v2);
     }
 
     NARC_ReadWholeMember(v1, param1, v0);

@@ -79,9 +79,9 @@ static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
         v1->unk_04++;
         break;
     case 6:
-        FreeToHeap(v1->unk_24);
-        FreeToHeap(v1->unk_28);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1->unk_24);
+        Heap_FreeToHeap(v1->unk_28);
+        Heap_FreeToHeap(v1);
         return 1;
     }
 
@@ -90,7 +90,7 @@ static BOOL sub_0206C680 (UnkStruct_020508D4 * param0)
 
 void sub_0206C740 (UnkStruct_020508D4 * param0, UnkStruct_ov6_02246204 * param1, int param2, u32 param3)
 {
-    UnkStruct_0206C660 * v0 = AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
+    UnkStruct_0206C660 * v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
 
     memset(v0, 0, sizeof(UnkStruct_0206C660));
 

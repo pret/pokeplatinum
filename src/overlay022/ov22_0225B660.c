@@ -67,8 +67,8 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov22_0225B85C * v0;
     UnkStruct_02041DC8 * v1;
 
-    CreateHeap(3, 13, 0x20000);
-    CreateHeap(3, 14, 0x40000);
+    Heap_Create(3, 13, 0x20000);
+    Heap_Create(3, 14, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
@@ -89,7 +89,7 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
 
     ov22_02255094();
     Unk_021BF67C.unk_65 = 0;
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
     {
@@ -175,8 +175,8 @@ int ov22_0225B7FC (UnkStruct_020067E8 * param0, int * param1)
     sub_02017798(NULL, NULL);
     sub_020177A4();
     sub_02006830(param0);
-    DestroyHeap(13);
-    DestroyHeap(14);
+    Heap_Destroy(13);
+    Heap_Destroy(14);
 
     return 1;
 }
@@ -211,7 +211,7 @@ static void ov22_0225B85C (UnkStruct_ov22_0225B85C * param0)
 
     sub_020198C0(param0->unk_14.unk_40, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     sub_02019E2C(param0->unk_14.unk_40, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, v3);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0201C3C0(param0->unk_14.unk_40, 1);
 }
 
@@ -354,7 +354,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0202A560(param0->unk_04, v5);
     v6 = sub_02076B10(v5);
     sub_0200B5CC(v1, 4, v6);
-    FreeToHeap(v5);
+    Heap_FreeToHeap(v5);
 
     v7 = sub_0200B144(0, 26, 385, 13);
     GF_ASSERT(v7);

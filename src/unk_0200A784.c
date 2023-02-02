@@ -61,7 +61,7 @@ static void sub_0200A7C8 (int param0, int param1, int param2, int param3, int pa
     BOOL v0;
 
     GF_ASSERT(Unk_021BF430 == NULL);
-    Unk_021BF430 = AllocFromHeap(param8, sizeof(UnkStruct_021BF430));
+    Unk_021BF430 = Heap_AllocFromHeap(param8, sizeof(UnkStruct_021BF430));
 
     GF_ASSERT(Unk_021BF430);
     Unk_021BF430->unk_38 = param8;
@@ -87,7 +87,7 @@ void sub_0200A878 (void)
 
     sub_0200A93C(Unk_021BF430->unk_38);
     sub_0200A944(Unk_021BF430->unk_38);
-    FreeToHeap(Unk_021BF430);
+    Heap_FreeToHeap(Unk_021BF430);
 
     Unk_021BF430 = NULL;
 }

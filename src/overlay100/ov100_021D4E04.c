@@ -176,7 +176,7 @@ static void inline_ov104_0223F1B4_2 (void * param0)
    {
     UnkStruct_ov104_0223F174 * v0;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov104_0223F174));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov104_0223F174));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223F174));
     GF_ASSERT(v0);
 
@@ -202,7 +202,7 @@ void ov104_0223F258 (UnkStruct_ov104_0223F174 * param0)
         sub_02013B40(param0->unk_1C);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void * ov104_0223F27C (const UnkStruct_ov104_0223F174 * param0)

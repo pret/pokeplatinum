@@ -35,7 +35,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -161,7 +161,7 @@ static void ov19_021D797C(void);
 
 BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D4DF0 * param1, const UnkStruct_ov19_021D5DF8 * param2)
 {
-    UnkStruct_ov19_021D61B0 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021D61B0));
+    UnkStruct_ov19_021D61B0 * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D61B0));
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
@@ -176,8 +176,8 @@ BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D
 
             sub_02017798(NULL, NULL);
             sub_020177A4();
-            GX_DisableEngineALayers();
-            GX_DisableEngineBLayers();
+            GXLayers_DisableEngineALayers();
+            GXLayers_DisableEngineBLayers();
 
             GX_SetVisiblePlane(0);
             GXS_SetVisiblePlane(0);
@@ -268,8 +268,8 @@ void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
     sub_02019044(param0->unk_1C0, 4);
     sub_02007B6C(param0->unk_1BC);
     sub_02002C28(0);
-    FreeToHeap(param0->unk_1C0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_1C0);
+    Heap_FreeToHeap(param0);
     sub_0200A878();
 }
 
@@ -339,7 +339,7 @@ void ov19_021D6594 (UnkStruct_ov19_021D61B0 * param0, u32 param1)
 
         for (v2 = 0; v2 < 4; v2++) {
             if (param0->unk_08[v2] == NULL) {
-                v1 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
+                v1 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
 
                 if (v1 != NULL) {
                     v1->unk_00 = param1;
@@ -398,7 +398,7 @@ static void ov19_021D6640 (UnkStruct_ov19_021D6640 * param0)
 
     sub_0200DA58(v0->unk_08[param0->unk_04]);
     v0->unk_08[param0->unk_04] = NULL;
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov19_021D6664 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1780,7 +1780,7 @@ static void ov19_021D74B4 (UnkStruct_ov19_021D61B0 * param0, const UnkStruct_ov1
         0
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
@@ -1829,8 +1829,8 @@ static void ov19_021D75CC (UnkStruct_ov19_021D61B0 * param0, const UnkStruct_ov1
         ov19_021DC6A0(&(param0->unk_B290));
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     GX_DispOn();
 }
 
@@ -1839,7 +1839,7 @@ static void ov19_021D76FC (void)
     NNS_G3dInit();
     G3X_InitMtxStack();
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
@@ -2031,7 +2031,7 @@ static void ov19_021D797C (void)
         u32 i;
 
         for (i = 0; i < Unk_ov19_021E05EC; i++) {
-            FreeToHeap(Unk_ov19_021E05F0[i].unk_08);
+            Heap_FreeToHeap(Unk_ov19_021E05F0[i].unk_08);
 
             if (Unk_ov19_021E05F0[i].unk_00) {
                 Unk_ov19_021E05F0[i].unk_00(Unk_ov19_021E05F0[i].unk_04);

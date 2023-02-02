@@ -30,7 +30,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -173,13 +173,13 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        CreateHeap(3, 39, 0x40000);
+        Heap_Create(3, 39, 0x40000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_02095EAC), 39);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
@@ -367,10 +367,10 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
 
         ov58_021D13B4(v0);
 
-        FreeToHeap(v0->unk_08);
+        Heap_FreeToHeap(v0->unk_08);
         sub_02006830(param0);
         sub_02017798(NULL, NULL);
-        DestroyHeap(39);
+        Heap_Destroy(39);
         sub_02037B58(2);
 
         return 1;
@@ -403,7 +403,7 @@ static void ov58_021D1184 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov58_021D11A4 (UnkStruct_02018340 * param0)
@@ -562,7 +562,7 @@ static void ov58_021D12C4 (UnkStruct_02095EAC * param0)
 
     sub_0200B1B8(param0->unk_10, 7, param0->unk_28);
 
-    param0->unk_442C = AllocFromHeap(39, 30 * 16 * 32);
+    param0->unk_442C = Heap_AllocFromHeap(39, 30 * 16 * 32);
     param0->unk_9454 = sub_02015920(39);
     param0->unk_378 = 0;
 }
@@ -571,7 +571,7 @@ static void ov58_021D13B4 (UnkStruct_02095EAC * param0)
 {
     int v0;
 
-    FreeToHeap(param0->unk_442C);
+    Heap_FreeToHeap(param0->unk_442C);
     sub_02015938(param0->unk_9454);
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -590,7 +590,7 @@ static void ov58_021D13F0 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov58_021D142C (UnkStruct_02095EAC * param0, NARC * param1)
@@ -732,8 +732,8 @@ static void ov58_021D16D8 (UnkStruct_02095EAC * param0)
             sub_02021CAC(param0->unk_274[v0], 0);
         }
     }
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov58_021D18AC (UnkStruct_02095EAC * param0, UnkStruct_020067E8 * param1)

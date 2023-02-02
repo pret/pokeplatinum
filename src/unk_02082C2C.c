@@ -13,7 +13,7 @@
 #include "overlay104/struct_ov104_022412F4.h"
 #include "overlay104/struct_ov104_0224133C.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
@@ -32,8 +32,8 @@
 
 void sub_02082C2C (UnkStruct_0207F248 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, 12);
 
     param0->unk_5A8 = sub_0200C6E4(12);
@@ -125,7 +125,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
         GX_LoadOBJ(v6->pRawData, v4, v6->szByte);
     }
 
-    FreeToHeap(v5);
+    Heap_FreeToHeap(v5);
     sub_0200D414(param0->unk_704[param1].unk_24, sub_02079EDC(v2, v3, 0) + 3);
     NARC_dtor(v1);
 }
@@ -227,7 +227,7 @@ void sub_02083040 (UnkStruct_0207F248 * param0, u8 param1, u16 param2)
         return;
     }
 
-    if (IsItemMail(param2) == 1) {
+    if (Item_IsMail(param2) == 1) {
         sub_02021D6C(*v0, 1);
     } else {
         sub_02021D6C(*v0, 0);

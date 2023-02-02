@@ -69,7 +69,7 @@ UnkStruct_ov17_02252B48 * ov17_02252B48 (UnkStruct_0200C6E4 * param0, UnkStruct_
     v1.unk_08 = param7;
     v1.unk_2C = param8;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov17_02252B48));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov17_02252B48));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02252B48));
 
     for (v2 = 0; v2 < 5; v2++) {
@@ -90,7 +90,7 @@ void ov17_02252BCC (UnkStruct_ov17_02252B48 * param0)
     }
 
     sub_0200DA58(param0->unk_14);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov17_02252BF0 (UnkStruct_ov17_02252B48 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)

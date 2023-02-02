@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "unk_02023790.h"
@@ -37,12 +37,12 @@ static void sub_0200AD98(u16 * param0, const u16 * param1, const UnkStruct_0200A
 
 UnkStruct_0200AC5C * sub_0200AC5C (u32 param0, u32 param1, u32 param2)
 {
-    return AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
+    return NARC_AllocAndReadWholeMemberByIndexPair(param0, param1, param2);
 }
 
 void sub_0200AC64 (UnkStruct_0200AC5C * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static inline int inline_0200ACF0 (u32 param0)
@@ -125,14 +125,14 @@ void sub_0200ADAC (const UnkStruct_0200AC5C * param0, u32 param1, UnkStruct_0202
         inline_0200AC6C(&v0, param1, param0->unk_02);
 
         v2 = v0.unk_04 * sizeof(u16);
-        v1 = AllocFromHeapAtEnd(0, v2);
+        v1 = Heap_AllocFromHeapAtEnd(0, v2);
 
         if (v1) {
             MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
 
             inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
             sub_02023D8C(param2, v1, v0.unk_04);
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
         }
     } else {
         GF_ASSERT(0);
@@ -150,7 +150,7 @@ UnkStruct_02023790 * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1
         v0 = param0->unk_04[param1];
         inline_0200AC6C(&v0, param1, param0->unk_02);
         v2 = v0.unk_04 * sizeof(u16);
-        v1 = AllocFromHeapAtEnd(param2, v2);
+        v1 = Heap_AllocFromHeapAtEnd(param2, v2);
 
         if (v1) {
             UnkStruct_02023790 * v3;
@@ -164,7 +164,7 @@ UnkStruct_02023790 * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1
                 sub_02023D8C(v3, v1, v0.unk_04);
             }
 
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
             return v3;
         }
 
@@ -201,13 +201,13 @@ void sub_0200AF48 (NARC * param0, u32 param1, u32 param2, u32 param3, UnkStruct_
         inline_0200AC6C(&v1, param2, v0.unk_02);
 
         v3 = v1.unk_04 * sizeof(u16);
-        v2 = AllocFromHeapAtEnd(param3, v3);
+        v2 = Heap_AllocFromHeapAtEnd(param3, v3);
 
         if (v2) {
             NARC_ReadFromMember(param0, param1, v1.unk_00, v3, v2);
             inline_0200AC6C_1(v2, v1.unk_04, param2, v0.unk_02);
             sub_02023D8C(param4, v2, v1.unk_04);
-            FreeToHeap(v2);
+            Heap_FreeToHeap(v2);
         }
     } else {
         GF_ASSERT(0);
@@ -252,13 +252,13 @@ UnkStruct_02023790 * sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 pa
             u32 v4;
 
             v4 = v1.unk_04 * sizeof(u16);
-            v3 = AllocFromHeapAtEnd(param3, v4);
+            v3 = Heap_AllocFromHeapAtEnd(param3, v4);
 
             if (v3) {
                 NARC_ReadFromMember(param0, param1, v1.unk_00, v4, v3);
                 inline_0200AC6C_1(v3, v1.unk_04, param2, v0.unk_02);
                 sub_02023D8C(v2, v3, v1.unk_04);
-                FreeToHeap(v3);
+                Heap_FreeToHeap(v3);
             }
         }
 
@@ -278,20 +278,20 @@ u32 sub_0200B124 (u32 param0, u32 param1)
 {
     UnkStruct_0200AC5C v0;
 
-    ReadFromNarcMemberByIndexPair(&v0, param0, param1, 0, sizeof(UnkStruct_0200AC5C));
+    NARC_ReadFromMemberByIndexPair(&v0, param0, param1, 0, sizeof(UnkStruct_0200AC5C));
     return v0.unk_00;
 }
 
 UnkStruct_0200B144 * sub_0200B144 (int param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_0200B144 * v0 = AllocFromHeapAtEnd(param3, sizeof(UnkStruct_0200B144));
+    UnkStruct_0200B144 * v0 = Heap_AllocFromHeapAtEnd(param3, sizeof(UnkStruct_0200B144));
 
     if (v0) {
         if (param0 == 0) {
             v0->unk_08_val1 = sub_0200AC5C(param1, param2, param3);
 
             if (v0->unk_08_val1 == NULL) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return NULL;
             }
         } else {
@@ -319,7 +319,7 @@ void sub_0200B190 (UnkStruct_0200B144 * param0)
             break;
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

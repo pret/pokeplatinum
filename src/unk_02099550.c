@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0208BE5C.h"
 
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_02099550.h"
@@ -20,22 +20,22 @@ FS_EXTERN_OVERLAY(overlay89);
 
 void sub_02099550 (void)
 {
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay4), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay4), 2);
 }
 
 void sub_02099560 (void)
 {
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay4));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay4));
 }
 
 void sub_02099570 (void)
 {
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay18), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay18), 2);
 }
 
 void sub_02099580 (void)
 {
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay18));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
 }
 
 void sub_02099590 (UnkStruct_021C0794 * param0, int param1)
@@ -53,19 +53,19 @@ void sub_02099590 (UnkStruct_021C0794 * param0, int param1)
 
 void sub_020995B4 (void)
 {
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay60), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay60), 2);
 }
 
 void sub_020995C4 (void)
 {
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay60));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
 }
 
 static int sub_020995D4 (UnkStruct_020067E8 * param0, int * param1)
 {
-    CreateHeap(3, 49, 0x41000);
+    Heap_Create(3, 49, 0x41000);
     sub_02099590(((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08, 49);
-    DestroyHeap(49);
+    Heap_Destroy(49);
 
     OS_ResetSystem(0);
     return 1;

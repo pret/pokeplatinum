@@ -22,7 +22,7 @@
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -73,13 +73,13 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        CreateHeap(3, 68, 0x50000);
+        Heap_Create(3, 68, 0x50000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
@@ -104,7 +104,7 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
         ov96_0223BC64(v0);
         sub_02004550(52, 0, 0);
 
-        v0->unk_24 = AllocFromHeap(68, 0x20000 + 32);
+        v0->unk_24 = Heap_AllocFromHeap(68, 0x20000 + 32);
         v0->unk_28 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_24 + 31) / 32 * 32), 0x20000);
 
         sub_02004550(11, 1175, 1);
@@ -173,7 +173,7 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov96_0223BF40 * v0 = sub_0200682C(param0);
     int v1;
 
-    FreeToHeap(v0->unk_24);
+    Heap_FreeToHeap(v0->unk_24);
     sub_020995C4();
     sub_02099560();
 
@@ -187,10 +187,10 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
     ov96_0223B99C(v0);
 
     sub_020334CC();
-    FreeToHeap(v0->unk_04);
+    Heap_FreeToHeap(v0->unk_04);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(68);
+    Heap_Destroy(68);
 
     return 1;
 }
@@ -222,7 +222,7 @@ static void ov96_0223B960 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov96_0223B980 (UnkStruct_ov96_0223BF40 * param0, UnkStruct_020067E8 * param1)
@@ -320,8 +320,8 @@ static void ov96_0223BB0C (UnkStruct_ov96_0223BF40 * param0)
             sub_02021CAC(param0->unk_E30[v0], 0);
         }
     }
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02039734();
 }
 

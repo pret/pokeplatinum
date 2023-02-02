@@ -15,7 +15,7 @@ UnkStruct_020158A8 * sub_020158A8 (int param0)
     UnkStruct_020158A8 * v0;
     int v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_020158A8));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020158A8));
     MI_CpuClear8(v0, sizeof(UnkStruct_020158A8));
 
     v0->unk_00 = sub_0200B144(0, 26, 465, param0);
@@ -37,7 +37,7 @@ void sub_020158F4 (UnkStruct_020158A8 * param0)
     }
 
     sub_0200B190(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 const UnkStruct_02023790 * sub_02015918 (UnkStruct_020158A8 * param0, int param1)

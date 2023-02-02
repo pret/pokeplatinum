@@ -20,7 +20,7 @@
 #include "overlay005/struct_ov5_021EDDAC.h"
 #include "overlay063/struct_ov63_0222CC3C.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "heap.h"
@@ -152,13 +152,13 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
 {
     UnkStruct_ov66_02234548 * v0;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov66_02234548));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
 
     {
         int v1;
 
-        v0->unk_10 = AllocFromHeap(param2, sizeof(UnkStruct_ov66_02234798) * param0);
+        v0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02234798) * param0);
         v0->unk_14 = param0;
 
         for (v1 = 0; v1 < v0->unk_14; v1++) {
@@ -269,8 +269,8 @@ void ov66_02234548 (UnkStruct_ov66_02234548 * param0)
     sub_02022C1C(param0->unk_08);
     sub_020229D8(param0->unk_00);
     sub_020229D8(param0->unk_04);
-    FreeToHeap(param0->unk_10);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0);
 }
 
 void ov66_02234590 (UnkStruct_ov66_02234548 * param0)

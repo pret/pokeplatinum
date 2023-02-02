@@ -34,7 +34,7 @@ void sub_0205749C (UnkStruct_020508D4 * param0, BOOL param1)
 {
     UnkStruct_0205749C * v0;
 
-    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205749C));
+    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205749C));
     memset(v0, 0, sizeof(UnkStruct_0205749C));
 
     v0->unk_02 = param1;
@@ -57,7 +57,7 @@ static BOOL sub_020574CC (UnkStruct_020508D4 * param0)
     }
     break;
     case 1:
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         return 1;
     }
 

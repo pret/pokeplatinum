@@ -92,7 +92,7 @@ UnkStruct_0202855C * sub_0202855C (u32 param0)
 {
     UnkStruct_0202855C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0202855C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202855C));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0202855C));
     return v0;
 }

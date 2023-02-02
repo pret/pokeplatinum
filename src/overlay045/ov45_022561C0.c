@@ -63,7 +63,7 @@ static void NitroStaticInit (void)
 
 static BOOL ov45_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
-    UnkStruct_ov45_022561D4 * v0 = (UnkStruct_ov45_022561D4 *)AllocFromHeap(8, sizeof(UnkStruct_ov45_022561D4));
+    UnkStruct_ov45_022561D4 * v0 = (UnkStruct_ov45_022561D4 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov45_022561D4));
 
     if (v0 != NULL) {
         if (ov45_0225621C(v0, param1, param2, param3)) {
@@ -73,7 +73,7 @@ static BOOL ov45_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
             }
         }
 
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     return 0;
@@ -146,7 +146,7 @@ static void ov45_022562F8 (UnkStruct_ov45_022561D4 * param0)
     ov25_02255B34(param0->unk_14);
     ov45_02256728(param0->unk_08);
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov45_02256310 (u32 param0, u32 param1, u32 param2, void * param3)

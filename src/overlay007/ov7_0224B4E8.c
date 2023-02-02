@@ -431,7 +431,7 @@ static void ov7_0224BBA0 (UnkStruct_ov7_0224B4E8 * param0)
 
 static BOOL ov7_0224BBC4 (UnkStruct_ov7_0224B4E8 * param0)
 {
-    Party * v0 = GetPartyFromSavedata(param0->unk_10->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_10->unk_0C);
     int v1 = sub_0207A594(param0->unk_10->unk_B0, v0, param0->unk_6C);
     int v2;
 
@@ -548,7 +548,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
         sub_020237BC(v1->unk_1C);
         sub_020237BC(v1->unk_20);
         sub_0207A2C0(v1->unk_6C);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         return 1;
     default:
         return 1;
@@ -559,7 +559,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
 
 static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_ov7_0224B4E8 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
+    UnkStruct_ov7_0224B4E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov7_0224B4E8));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov7_0224B4E8));
 

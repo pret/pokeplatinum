@@ -17,8 +17,8 @@ void ov80_021D2AEC(UnkStruct_ov80_021D2A08 * param0);
 
 void ov80_021D2A08 (UnkStruct_ov80_021D2A08 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, param0->unk_04);
 
     param0->unk_D8 = sub_0200C6E4(param0->unk_04);

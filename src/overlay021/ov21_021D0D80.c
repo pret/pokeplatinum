@@ -128,7 +128,7 @@ int ov21_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     BOOL v3;
 
     sub_02004550(54, 0, 0);
-    CreateHeap(3, 37, 0x40000);
+    Heap_Create(3, 37, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov21_021D0F18), 37);
 
@@ -221,7 +221,7 @@ int ov21_021D0EC8 (UnkStruct_020067E8 * param0, int * param1)
     ov21_021D12C4();
     sub_0201DC3C();
     sub_02006830(param0);
-    DestroyHeap(37);
+    Heap_Destroy(37);
     sub_0200544C(1, 127);
 
     return 1;
@@ -307,7 +307,7 @@ UnkStruct_ov21_021D0F60 * ov21_021D0F60 (int param0, const UnkStruct_ov21_021D0D
     int v1;
     UnkStruct_ov21_021D3208 v2;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D0F60));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D0F60));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D0F60));
@@ -992,28 +992,28 @@ static void ov21_021D1D08 (UnkStruct_ov21_021D0F60 * param0)
     ov21_021D4660(&param0->unk_1A80);
 
     GF_ASSERT(param0->unk_1A70);
-    FreeToHeap(param0->unk_1A70);
+    Heap_FreeToHeap(param0->unk_1A70);
 
     GF_ASSERT(param0->unk_1A74);
-    FreeToHeap(param0->unk_1A74);
+    Heap_FreeToHeap(param0->unk_1A74);
 
     GF_ASSERT(param0->unk_1A78);
-    FreeToHeap(param0->unk_1A78);
+    Heap_FreeToHeap(param0->unk_1A78);
 
     GF_ASSERT(param0->unk_1A7C);
-    FreeToHeap(param0->unk_1A7C);
+    Heap_FreeToHeap(param0->unk_1A7C);
 
     GF_ASSERT(param0->unk_1D64);
-    FreeToHeap(param0->unk_1D64);
+    Heap_FreeToHeap(param0->unk_1D64);
 
     GF_ASSERT(param0->unk_1D68);
-    FreeToHeap(param0->unk_1D68);
+    Heap_FreeToHeap(param0->unk_1D68);
 
     GF_ASSERT(param0->unk_1D6C);
-    FreeToHeap(param0->unk_1D6C);
+    Heap_FreeToHeap(param0->unk_1D6C);
 
     GF_ASSERT(param0->unk_1D70);
-    FreeToHeap(param0->unk_1D70);
+    Heap_FreeToHeap(param0->unk_1D70);
 
     for (v0 = 0; v0 < 10; v0++) {
         if (Unk_ov21_021E9B9C[v0]) {
@@ -1037,7 +1037,7 @@ static void ov21_021D1D08 (UnkStruct_ov21_021D0F60 * param0)
 
     ov21_021D3320(&param0->unk_0C);
     ov21_021D2098(&param0->unk_177C);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021D1E74 (void)
@@ -1055,7 +1055,7 @@ static void ov21_021D1E74 (void)
         GX_VRAM_TEXPLTT_0_G
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov21_021D1E94 (int param0)

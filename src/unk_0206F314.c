@@ -31,7 +31,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
@@ -201,9 +201,9 @@ static int sub_0206F314 (UnkStruct_0206F314 * param0, UnkStruct_0203CDB0 * param
     UnkStruct_0206F7F8 * v0;
     UnkStruct_021C0794 * v1 = param1->unk_0C;
 
-    CreateHeap(3, 80, 0x6000);
+    Heap_Create(3, 80, 0x6000);
 
-    v0 = AllocFromHeap(80, sizeof(UnkStruct_0206F7F8));
+    v0 = Heap_AllocFromHeap(80, sizeof(UnkStruct_0206F7F8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0206F7F8));
 
     v0->unk_00 = 80;
@@ -245,9 +245,9 @@ static int sub_0206F3A0 (UnkStruct_0206F314 * param0)
 
     v3 = v5->unk_00;
 
-    FreeToHeap(v5);
+    Heap_FreeToHeap(v5);
     MI_CpuClear8(v5, sizeof(UnkStruct_0206F7F8));
-    DestroyHeap(v3);
+    Heap_Destroy(v3);
 
     return 12;
 }
@@ -475,7 +475,7 @@ static void sub_0206F7F8 (UnkStruct_0206F7F8 * param0, UnkStruct_021C0794 * para
     int v0, v1, v2, v3;
     UnkStruct_0202EE10 * v4;
 
-    param0->unk_324 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02070050) * param0->unk_18);
+    param0->unk_324 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02070050) * param0->unk_18);
     MI_CpuClear8(param0->unk_324, sizeof(UnkStruct_02070050) * param0->unk_18);
     param0->unk_308[0] = sub_0202ED8C(param1, param0->unk_16, param0->unk_00);
 
@@ -530,7 +530,7 @@ static void sub_0206F9D4 (UnkStruct_0206F7F8 * param0)
         sub_0202EE8C(param0->unk_308[v0]);
     }
 
-    FreeToHeap(param0->unk_324);
+    Heap_FreeToHeap(param0->unk_324);
 }
 
 static void sub_0206FA08 (UnkStruct_0206F7F8 * param0)
@@ -908,7 +908,7 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
         v1->unk_00 = sub_0206F3A0(v1);
         break;
     case 12:
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         return 1;
     }
 
@@ -918,7 +918,7 @@ static BOOL sub_020702D0 (UnkStruct_020508D4 * param0)
 void sub_020703FC (UnkStruct_020508D4 * param0, u16 param1)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_0206F314 * v1 = AllocFromHeap(11, sizeof(UnkStruct_0206F314));
+    UnkStruct_0206F314 * v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206F314));
 
     v1->unk_00 = 0;
     v1->unk_04 = param1;

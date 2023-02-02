@@ -84,7 +84,7 @@ static void NitroStaticInit (void)
 
 static BOOL ov28_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
-    UnkStruct_ov28_02256210 * v0 = (UnkStruct_ov28_02256210 *)AllocFromHeap(8, sizeof(UnkStruct_ov28_02256210));
+    UnkStruct_ov28_02256210 * v0 = (UnkStruct_ov28_02256210 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov28_02256210));
 
     if (v0 != NULL) {
         if (ov28_02256210(v0, param3, param2)) {
@@ -174,7 +174,7 @@ static void ov28_022562CC (UnkStruct_0201CD38 * param0, void * param1)
 
         if (v0[v1->unk_00](v1)) {
             ov28_02256298(v1);
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
             sub_0200DA58(param0);
             ov25_02254260(v1->unk_10);
         }

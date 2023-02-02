@@ -15,7 +15,7 @@
 
 #include "library/spl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014000.h"
 #include "heap.h"
@@ -142,7 +142,7 @@ UnkStruct_02014014 * sub_02014014 (UnkFuncPtr_02014014 param0, UnkFuncPtr_020140
         return NULL;
     }
 
-    v0 = AllocFromHeap(param5, sizeof(UnkStruct_02014014));
+    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02014014));
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
     }
@@ -220,7 +220,7 @@ void sub_0201411C (UnkStruct_02014014 * param0)
     param0->unk_08 = NULL;
 
     if (param0->unk_04 != NULL) {
-        FreeToHeap(param0->unk_04);
+        Heap_FreeToHeap(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
@@ -235,7 +235,7 @@ void sub_0201411C (UnkStruct_02014014 * param0)
         sub_020203B8(param0->unk_20);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_020141E4 (void)
@@ -399,7 +399,7 @@ static void * sub_02014498 (u32 param0)
 
 void * sub_020144C4 (int param0, int param1, int param2)
 {
-    return AllocAndReadWholeNarcMemberByIndexPair(param0, param1, param2);
+    return NARC_AllocAndReadWholeMemberByIndexPair(param0, param1, param2);
 }
 
 void sub_020144CC (UnkStruct_02014014 * param0, void * param1, int param2, int param3)

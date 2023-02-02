@@ -246,10 +246,10 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     UnkStruct_02073C74 * v0;
     u16 v1, v2;
 
-    v2 = Party_GetCurrentCount(GetPartyFromSavedata(param0));
+    v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));
 
     for (v1 = 0; v1 < v2; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(param0), v1);
+        v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0), v1);
 
         if (sub_02074470(v0, 76, NULL) == 0) {
             return v1;
@@ -266,7 +266,7 @@ BOOL sub_0205E1F8 (UnkStruct_021C0794 * param0)
     static const u16 v5[] = {377, 378, 379};
     u16 v6[6];
 
-    v4 = GetPartyFromSavedata(param0);
+    v4 = Party_GetFromSavedata(param0);
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -313,7 +313,7 @@ static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)
     if (v2->unk_0C == 0) {
         v0.x = v0.y = v0.z = 0;
         sub_020630AC(v2->unk_00, &v0);
-        FreeToHeap(v2);
+        Heap_FreeToHeap(v2);
         return 1;
     }
 
@@ -323,7 +323,7 @@ static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)
 void sub_0205E318 (UnkStruct_020508D4 * param0, UnkStruct_02061AB4 * param1, u16 param2, u16 param3, u16 param4, u16 param5)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_0205E268 * v1 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
+    UnkStruct_0205E268 * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E268));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E268));
 
@@ -348,7 +348,7 @@ static BOOL sub_0205E3AC (UnkStruct_020508D4 * param0)
         v1->unk_08 = 0;
 
         if (v1->unk_04-- == 0) {
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
             return 1;
         }
     }
@@ -359,7 +359,7 @@ static BOOL sub_0205E3AC (UnkStruct_020508D4 * param0)
 void sub_0205E3F4 (UnkStruct_020508D4 * param0, UnkStruct_02061AB4 * param1, u16 param2, u16 param3)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_0205E3AC * v1 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
+    UnkStruct_0205E3AC * v1 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0205E3AC));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205E3AC));
 

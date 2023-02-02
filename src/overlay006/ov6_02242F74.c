@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "overlay006/ov6_02242F74.h"
 
@@ -20,14 +20,14 @@ void ov6_02242F74 (const int param0, const BOOL param1, const int param2, int * 
         v1 = 10;
     }
 
-    v0 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, v1, 4);
+    v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, v1, 4);
     v2 = ((param0 >> (5 * v3)) & 0x1f);
     v2 %= 32;
 
     (*param3) = v0[v2];
     (*param4) = v0[v2];
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static u8 ov6_02242FC0 (const int param0)

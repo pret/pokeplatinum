@@ -82,7 +82,7 @@ void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Un
             param0->unk_08.unk_02 = v3;
         }
 
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
     }
 
     param0->unk_0C = param2;

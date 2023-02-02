@@ -286,7 +286,7 @@ BOOL ov104_0222EE60 (UnkStruct_ov104_0223B5C0 * param0)
     v1 = 0;
     v3 = 512;
     v4 = sub_02073C70();
-    v6 = GetPartyFromSavedata(param0->unk_6FC);
+    v6 = Party_GetFromSavedata(param0->unk_6FC);
     v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
 
     MI_CpuCopy8(v5, &param0->unk_784[0], v4);
@@ -1121,7 +1121,7 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
         Party_AddPokemon(v5->unk_28, v4);
     }
 
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 
     if (sub_0203608C() != 0) {
         Party_SwapSlots(v5->unk_28, 0, 2);
@@ -1420,7 +1420,7 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
         Party_AddPokemon(v5->unk_70, v4);
     }
 
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 
     if (sub_0203608C() != 0) {
         Party_SwapSlots(v5->unk_70, 0, 2);

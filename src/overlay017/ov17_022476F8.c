@@ -83,7 +83,7 @@ void ov17_022476F8 (UnkStruct_ov17_022476F8 * param0, int param1)
     }
 
     sub_02007DC8(param0->unk_08[param1]);
-    FreeToHeap(param0->unk_48[param1].unk_00);
+    Heap_FreeToHeap(param0->unk_48[param1].unk_00);
 
     param0->unk_08[param1] = NULL;
     param0->unk_48[param1].unk_00 = NULL;
@@ -116,7 +116,7 @@ void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx
 {
     UnkStruct_ov17_022477B8 * v0;
 
-    v0 = AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
+    v0 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
     v0->unk_04 = sub_0200CE6C(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
@@ -159,7 +159,7 @@ static void ov17_02247840 (UnkStruct_0201CD38 * param0, void * param1)
     default:
         sub_0200D0F4(v0->unk_04);
         (*(v0->unk_00))--;
-        FreeToHeap(param1);
+        Heap_FreeToHeap(param1);
         sub_0200DA58(param0);
         return;
     }

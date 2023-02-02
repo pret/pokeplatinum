@@ -161,7 +161,7 @@ asm UnkStruct_02023790 * ov21_021D56BC (int param0, int param1, int param2, int 
     bne _021D56E8
     cmp r4, #1
     blt _021D56E0
-    bl GF_AssertFail
+    bl ErrorHandling_AssertFail
  _021D56E0:
     add r0, r5, r4
     str r0, [sp, #4]
@@ -178,7 +178,7 @@ asm UnkStruct_02023790 * ov21_021D56BC (int param0, int param1, int param2, int 
     stmia r2 !, {r0, r1}
     cmp r4, #1
     blt _021D5700
-    bl GF_AssertFail
+    bl ErrorHandling_AssertFail
  _021D5700:
     ldr r0, [sp, #4]
     lsl r1, r0, #2

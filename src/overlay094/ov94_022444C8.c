@@ -133,7 +133,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                     v0 = 4;
                 }
 
-                FreeToHeap(v5);
+                Heap_FreeToHeap(v5);
             } else {
                 ov94_0223C4C0(param0, 1, 0);
                 v0 = 4;
@@ -156,8 +156,8 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
 int ov94_0224484C (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    FreeToHeap(param0->unk_1104);
-    FreeToHeap(param0->unk_120);
+    Heap_FreeToHeap(param0->unk_1104);
+    Heap_FreeToHeap(param0->unk_120);
     ov94_0223C4C8(param0);
 
     return 1;

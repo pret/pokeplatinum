@@ -108,7 +108,7 @@ int ov83_0223B5B0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov83_0223C344 * v0 = sub_02006840(param0);
     UnkStruct_ov83_0223B784 * v1;
 
-    CreateHeap(3, 56, 0x20000);
+    Heap_Create(3, 56, 0x20000);
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov83_0223B784), 56);
     memset(v1, 0, sizeof(UnkStruct_ov83_0223B784));
 
@@ -229,7 +229,7 @@ int ov83_0223B710 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_18 = NULL;
 
-    DestroyHeap(v0);
+    Heap_Destroy(v0);
     return 1;
 }
 
@@ -275,7 +275,7 @@ static int ov83_0223B78C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         ov83_0223C958(param1);
 
         sub_02039734();
-        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         if (param1->unk_1488 > 1) {
             ov83_0223DF84(&param1->unk_5B0);
@@ -602,7 +602,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
             v0 = sub_0202A93C(param1->unk_00);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->unk_00);
             v1 = ov83_0223D508(28, v0, sub_0202A910(), param1->unk_148C);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
 
             if (v1 == 1) {
                 (*param2)++;
@@ -642,9 +642,9 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     switch (*param2) {
     case 0:
         ov83_0223EC4C(&param1->unk_6A0, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
         param1->unk_31C = 0;
 
@@ -1078,7 +1078,7 @@ static void ov83_0223C87C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223
 {
     GF_ASSERT(param1->unk_1494.unk_100);
 
-    FreeToHeap(param1->unk_1494.unk_100);
+    Heap_FreeToHeap(param1->unk_1494.unk_100);
     param1->unk_1494.unk_100 = NULL;
 
     if (param0->unk_26) {

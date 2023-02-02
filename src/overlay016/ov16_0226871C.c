@@ -1032,7 +1032,7 @@ static void * ov16_0226871C (void)
 {
     UnkStruct_ov16_02268A14 * v0;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov16_02268A14));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_02268A14));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_02268A14));
     v0->unk_66B = -1;
 
@@ -1096,7 +1096,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2,
         int v6;
 
         for (v5 = 0; v5 < 7; v5++) {
-            v0->unk_3C[v5] = AllocFromHeap(5, 0x800);
+            v0->unk_3C[v5] = Heap_AllocFromHeap(5, 0x800);
 
             if ((ov16_0223DF0C(param2) & 0x80) && (Unk_ov16_02270264[v5] == 49)) {
                 v6 = 170;
@@ -1107,7 +1107,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2,
             v4 = sub_02006F6C(7, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[v5], 0x800);
-            FreeToHeap(v4);
+            Heap_FreeToHeap(v4);
         }
     }
 
@@ -1116,7 +1116,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2,
         int v8;
 
         v8 = (ov16_0223DF0C(param2) & 0x80) ? 340 : 242;
-        v0->unk_58 = AllocFromHeap(5, 0x200);
+        v0->unk_58 = Heap_AllocFromHeap(5, 0x200);
 
         sub_02003050(v1, 7, v8, 5, 1, 0, 0);
 
@@ -1141,7 +1141,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2,
 
         for (v12 = 0; v12 < 4; v12++) {
             for (v11 = 0; v11 < 4; v11++) {
-                v0->unk_68[v12].unk_18[v11] = AllocFromHeap(5, sub_0208C098(6));
+                v0->unk_68[v12].unk_18[v11] = Heap_AllocFromHeap(5, sub_0208C098(6));
             }
         }
     }
@@ -1151,8 +1151,8 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2,
         void * v14;
         int v15;
 
-        v0->unk_5C = AllocFromHeap(5, 0x40);
-        v0->unk_60 = AllocFromHeap(5, 0x40);
+        v0->unk_5C = Heap_AllocFromHeap(5, 0x40);
+        v0->unk_60 = Heap_AllocFromHeap(5, 0x40);
 
         MI_CpuCopy16(v0->unk_58, v0->unk_5C, 0x20);
         MI_CpuCopy16(&v0->unk_58[7 * 16], &v0->unk_5C[16 * 1], 0x20);
@@ -1173,7 +1173,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2,
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x20);
         }
 
-        FreeToHeap(v14);
+        Heap_FreeToHeap(v14);
         sub_02002B4C();
         sub_02002B6C();
 
@@ -1199,15 +1199,15 @@ void ov16_02268A14 (UnkStruct_ov16_02268A14 * param0)
     sub_0200DA58(param0->unk_678);
 
     for (v0 = 0; v0 < 7; v0++) {
-        FreeToHeap(param0->unk_3C[v0]);
+        Heap_FreeToHeap(param0->unk_3C[v0]);
     }
 
-    FreeToHeap(param0->unk_58);
+    Heap_FreeToHeap(param0->unk_58);
     ov16_0226ABE8(param0);
-    FreeToHeap(param0->unk_5C);
-    FreeToHeap(param0->unk_60);
+    Heap_FreeToHeap(param0->unk_5C);
+    Heap_FreeToHeap(param0->unk_60);
     sub_0200DA58(param0->unk_64);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov16_02268A88 (UnkStruct_ov16_02268A14 * param0)
@@ -1722,7 +1722,7 @@ static void ov16_02269550 (UnkStruct_ov16_02268A14 * param0, int param1)
     G2S_SetWnd1Position(0, ((18 * 8)), 255, 192);
     GXS_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
 
-    v1 = AllocFromHeap(5, sizeof(UnkStruct_ov16_0226B988));
+    v1 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226B988));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov16_0226B988));
 
     v1->unk_00 = param0;
@@ -1930,7 +1930,7 @@ static void ov16_022699AC (UnkStruct_ov16_02268A14 * param0, int param1, int par
 
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_00[v1] != 0) {
-                v6 = GetMoveAttribute(v0->unk_00[v1], 3);
+                v6 = MoveTable_GetMoveAttribute(v0->unk_00[v1], 3);
                 ov16_0226B06C(param0, v6, v1);
             } else {
                 ov16_0226B088(param0, v1);
@@ -2047,7 +2047,7 @@ static void ov16_02269E94 (UnkStruct_ov16_02268A14 * param0, int param1, int par
 
         v4 = sub_02006F6C(7, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
 
         v2 = ov16_0223DF00(param0->unk_00);
         sub_02019574(v2, 4, param0->unk_3C[6], 0x800);
@@ -2769,7 +2769,7 @@ static void ov16_0226ABE8 (UnkStruct_ov16_02268A14 * param0)
 
     for (v1 = 0; v1 < 4; v1++) {
         for (v0 = 0; v0 < 4; v0++) {
-            FreeToHeap(param0->unk_68[v1].unk_18[v0]);
+            Heap_FreeToHeap(param0->unk_68[v1].unk_18[v0]);
 
             if (param0->unk_68[v1].unk_28[v0].unk_00.unk_0C != NULL) {
                 sub_0201A8FC(&param0->unk_68[v1].unk_28[v0].unk_00);
@@ -2810,10 +2810,10 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
 
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
-            v5 = GetMoveAttribute(param2->unk_00[v4], 3);
+            v5 = MoveTable_GetMoveAttribute(param2->unk_00[v4], 3);
             v1 = sub_02006F50(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
         }
 
         if ((v0->unk_28[v4].unk_00.unk_0C == NULL) || ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0))) {
@@ -2885,7 +2885,7 @@ static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
         GF_ASSERT(param0->unk_5EC[v0] == NULL);
 
         if (v4->unk_00[v0] != 0) {
-            v5 = GetMoveAttribute(v4->unk_00[v0], 3);
+            v5 = MoveTable_GetMoveAttribute(v4->unk_00[v0], 3);
             v3.unk_14[0] = 20025 + v0;
             v3.unk_00 = Unk_ov16_022702B4[v0][0];
             v3.unk_02 = Unk_ov16_022702B4[v0][1];
@@ -3557,7 +3557,7 @@ static void ov16_0226B988 (UnkStruct_0201CD38 * param0, void * param1)
         sub_02019184(v1, 5, 0, 0);
         sub_02019184(v1, 5, 3, 0);
         ov16_0223F288(v0->unk_00->unk_00, 1);
-        FreeToHeap(param1);
+        Heap_FreeToHeap(param1);
         sub_0200DA58(param0);
 
         return;

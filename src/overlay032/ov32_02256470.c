@@ -16,7 +16,7 @@
 #include "overlay032/struct_ov32_02256470_1.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -86,7 +86,7 @@ static const struct {
 
 BOOL ov32_02256470 (UnkStruct_ov32_02256470 ** param0, const UnkStruct_ov32_02256470_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)AllocFromHeap(8, sizeof(UnkStruct_ov32_02256470));
+    UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov32_02256470));
 
     if (v0 != NULL) {
         int v1;
@@ -125,7 +125,7 @@ void ov32_02256508 (UnkStruct_ov32_02256470 * param0)
             sub_0200DA58(param0->unk_F4);
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 
@@ -291,7 +291,7 @@ static void ov32_02256898 (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
         if (param1->unk_04[v0].unk_0A != 0) {
-            v1.unk_08 = IsItemMail(param1->unk_04[v0].unk_0A) ? 1 : 0;
+            v1.unk_08 = Item_IsMail(param1->unk_04[v0].unk_0A) ? 1 : 0;
             v1.unk_00.x = ((Unk_ov32_02256CCC[v0].unk_00 + 28) << FX32_SHIFT);
             v1.unk_00.y = ((Unk_ov32_02256CCC[v0].unk_02 + 21) << FX32_SHIFT);
 

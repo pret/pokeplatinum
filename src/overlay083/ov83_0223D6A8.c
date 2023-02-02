@@ -44,7 +44,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -141,7 +141,7 @@ static UnkStruct_02015128 * ov83_0223D6BC (UnkStruct_02015064 * param0, u32 para
     v0.unk_04 = v2;
     v3 = sub_02015128(&v0);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v3;
 }
@@ -159,7 +159,7 @@ static UnkStruct_020151A4 * ov83_0223D6EC (UnkStruct_02015064 * param0, u32 para
     v0.unk_08 = 1;
     v3 = sub_020151A4(&v0);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v3;
 }
@@ -674,8 +674,8 @@ static void ov83_0223E15C (UnkStruct_ov83_0223E138 * param0, u32 param1, NARC * 
 
 static void ov83_0223E208 (UnkStruct_ov83_0223E138 * param0)
 {
-    FreeToHeap(param0->unk_20);
-    FreeToHeap(param0->unk_28);
+    Heap_FreeToHeap(param0->unk_20);
+    Heap_FreeToHeap(param0->unk_28);
 }
 
 static void ov83_0223E21C (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3)
@@ -998,8 +998,8 @@ void ov83_0223E720 (UnkStruct_ov83_0223E824 * param0, UnkStruct_02018340 * param
     ov83_0223E77C(param0, param2);
     ov83_0223E844(param0, param2, param3);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     param0->unk_28 = 1;
 }
@@ -1057,7 +1057,7 @@ static void ov83_0223E844 (UnkStruct_ov83_0223E824 * param0, u32 param1, NARC * 
 
     sub_020198C0(param0->unk_04, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     sub_02019E2C(param0->unk_04, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, 4);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0201C3C0(param0->unk_04, 1);
 }
 
@@ -1068,8 +1068,8 @@ static void ov83_0223E8DC (UnkStruct_0201CD38 * param0, void * param1)
     v0->unk_30++;
 
     if (v0->unk_30 >= 30) {
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         sub_0200DA58(param0);
         v0->unk_2C = NULL;
     }
@@ -1090,8 +1090,8 @@ void ov83_0223E908 (UnkStruct_ov83_0223E824 * param0, u32 param1)
     }
 
     sub_0201A954(param0->unk_08[0]);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 BOOL ov83_0223E984 (const UnkStruct_ov83_0223E824 * param0)
@@ -1109,8 +1109,8 @@ void ov83_0223E994 (UnkStruct_ov83_0223E824 * param0)
         return;
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     sub_0200DA58(param0->unk_2C);
 
     param0->unk_2C = NULL;

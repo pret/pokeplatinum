@@ -12,7 +12,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 #include "overlay104/struct_ov104_02241308.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200C6E4.h"
 #include "gx_layers.h"
 #include "move_table.h"
@@ -232,7 +232,7 @@ void ov13_02224500 (UnkStruct_ov13_022213F0 * param0)
     ov13_02224848(param0);
     ov13_02224948(param0);
     ov13_0222554C(param0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov13_0222453C (UnkStruct_ov13_022213F0 * param0)
@@ -439,7 +439,7 @@ static void ov13_02224B28 (u16 param0, UnkStruct_0200D0F4 * param1, const int pa
         return;
     }
 
-    if (IsItemMail(param0) == 1) {
+    if (Item_IsMail(param0) == 1) {
         sub_0200D364(param1, 1);
     } else {
         sub_0200D364(param1, 0);
@@ -607,7 +607,7 @@ static void ov13_02224FA8 (UnkStruct_ov13_022213F0 * param0)
     if (param0->unk_00->unk_34 < 4) {
         ov13_02224A5C(param0, param0->unk_1FB4[26], v0->unk_30[param0->unk_00->unk_34].unk_05);
     } else {
-        ov13_02224A5C(param0, param0->unk_1FB4[26], GetMoveAttribute(param0->unk_00->unk_24, 1));
+        ov13_02224A5C(param0, param0->unk_1FB4[26], MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 1));
     }
 
     ov13_022249AC(param0->unk_1FB4[26], Unk_ov13_02229274[0], Unk_ov13_02229274[1]);
@@ -666,7 +666,7 @@ static void ov13_022251B4 (UnkStruct_ov13_022213F0 * param0)
     }
 
     if (param0->unk_00->unk_24 != 0) {
-        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, GetMoveAttribute(param0->unk_00->unk_24, 3));
+        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 3));
         ov13_022249AC(param0->unk_1FB4[25], Unk_ov13_022293DC[4][0], Unk_ov13_022293DC[4][1]);
     }
 }
@@ -683,12 +683,12 @@ static void ov13_02225248 (UnkStruct_ov13_022213F0 * param0)
             continue;
         }
 
-        ov13_02224A0C(param0, param0->unk_1FB4[21 + v1], 45072 + v1, GetMoveAttribute(v0->unk_30[v1].unk_00, 11) + 18);
+        ov13_02224A0C(param0, param0->unk_1FB4[21 + v1], 45072 + v1, MoveTable_GetMoveAttribute(v0->unk_30[v1].unk_00, 11) + 18);
         ov13_022249AC(param0->unk_1FB4[21 + v1], Unk_ov13_022293DC[v1][0], Unk_ov13_022293DC[v1][1]);
     }
 
     if (param0->unk_00->unk_24 != 0) {
-        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, GetMoveAttribute(param0->unk_00->unk_24, 11) + 18);
+        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 11) + 18);
         ov13_022249AC(param0->unk_1FB4[25], Unk_ov13_022293DC[4][0], Unk_ov13_022293DC[4][1]);
     }
 }

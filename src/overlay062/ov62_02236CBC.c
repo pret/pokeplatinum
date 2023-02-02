@@ -575,7 +575,7 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02236CBC * v0;
 
     if (param0->unk_08 == 0) {
-        v0 = AllocFromHeap(102, sizeof(UnkStruct_ov62_02236CBC));
+        v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02236CBC));
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov62_02236CBC));
         param0->unk_860 = v0;
         v0->unk_00 = 0;
@@ -642,8 +642,8 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
         ov62_022371CC(param0);
         ov62_0223712C(param0);
         ov62_02234540(param0, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
         param0->unk_08++;
         break;
     case 4:
@@ -719,10 +719,10 @@ static BOOL ov62_02237B00 (UnkStruct_0208C06C * param0)
         ov62_02236DE8(param0);
         ov62_02234540(param0, 0);
 
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
 
         v0->unk_00 = 16;
         v0->unk_00 = 0;
@@ -755,7 +755,7 @@ static BOOL ov62_02237B00 (UnkStruct_0208C06C * param0)
         if (ov62_02231664(&v0->unk_00, 0)) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
             G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ, 7, 8);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             ov62_022318E8(param0);
             ov62_02231688(&v0->unk_00);
             sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);

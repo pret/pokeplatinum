@@ -28,7 +28,7 @@ UnkStruct_ov70_02260AD4 * ov70_02260A70 (u32 param0)
     UnkStruct_ov70_02260AD4 * v0;
     VecFx32 v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov70_02260AD4));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_02260AD4));
     memset(v0, 0, sizeof(UnkStruct_ov70_02260AD4));
     v0->unk_00 = sub_020203AC(param0);
 
@@ -43,7 +43,7 @@ void ov70_02260AD4 (UnkStruct_ov70_02260AD4 * param0)
 {
     sub_020203E0();
     sub_020203B8(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov70_02260AEC (UnkStruct_ov70_02260AD4 * param0)

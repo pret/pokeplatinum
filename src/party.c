@@ -26,7 +26,7 @@ Party * sub_02079FF4 (u32 param0)
 {
     Party * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(Party));
+    v0 = Heap_AllocFromHeap(param0, sizeof(Party));
     sub_0207A008(v0);
 
     return v0;
@@ -115,13 +115,13 @@ BOOL Party_SwapSlots (Party * party, int slotA, int slotB)
     PARTY_ASSERT_SLOT(party, slotA);
     PARTY_ASSERT_SLOT(party, slotB);
 
-    tempPokemon = AllocFromHeap(0, sizeof(struct UnkStruct_02073C74_t));
+    tempPokemon = Heap_AllocFromHeap(0, sizeof(struct UnkStruct_02073C74_t));
     *tempPokemon = party->pokemon[slotA];
 
     party->pokemon[slotA] = party->pokemon[slotB];
     party->pokemon[slotB] = *tempPokemon;
 
-    FreeToHeap(tempPokemon);
+    Heap_FreeToHeap(tempPokemon);
 
     return FALSE;
 }
@@ -144,7 +144,7 @@ BOOL Party_HasSpecies (const Party * party, int species)
     return i != party->currentCount;
 }
 
-Party * GetPartyFromSavedata (UnkStruct_021C0794 * param0)
+Party * Party_GetFromSavedata (UnkStruct_021C0794 * param0)
 {
     Party * v0;
 

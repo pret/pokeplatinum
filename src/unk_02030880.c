@@ -160,7 +160,7 @@ BOOL sub_020309A0 (UnkStruct_021C0794 * param0, int param1, int param2, int para
     }
 
     if (v1 != NULL) {
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 
     return v6;

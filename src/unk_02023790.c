@@ -17,7 +17,7 @@ UnkStruct_02023790 * sub_02023790 (u32 param0, u32 param1)
 {
     UnkStruct_02023790 * v0;
 
-    v0 = AllocFromHeap(param1, (sizeof(UnkStruct_02023790) - sizeof(u16)) + sizeof(u16) * param0);
+    v0 = Heap_AllocFromHeap(param1, (sizeof(UnkStruct_02023790) - sizeof(u16)) + sizeof(u16) * param0);
 
     if (v0) {
         v0->unk_04 = 0xb6f8d2ec;
@@ -34,7 +34,7 @@ void sub_020237BC (UnkStruct_02023790 * param0)
     GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
 
     param0->unk_04 = 0xb6f8d2ec + 1;
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_020237E8 (UnkStruct_02023790 * param0)

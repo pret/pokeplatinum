@@ -46,7 +46,7 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -294,13 +294,13 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    CreateHeap(3, 26, 0x50000 + 0x20000 + 2000);
+    Heap_Create(3, 26, 0x50000 + 0x20000 + 2000);
 
     v1 = NARC_ctor(54, 26);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_02095E80), 26);
@@ -332,7 +332,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223ECBC(&v0->unk_49C[23], 20, 1, v0->unk_184, v0->unk_178);
     sub_02095CD4(v0->unk_00);
     sub_02019120(0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
 
@@ -397,13 +397,13 @@ static void ov88_0223B3C0 (UnkStruct_02095E80 * param0)
     sub_02019120(4, 1);
     sub_02019120(5, 1);
     sub_02019120(6, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     sub_02019120(0, 1);
     sub_02019120(1, 1);
     sub_02019120(2, 1);
     sub_02019120(3, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     ov88_0223C63C();
     ov88_0223C66C(param0, v0);
@@ -707,7 +707,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         if (param0->unk_54 == 4) {
             param0->unk_4C++;
 
-            GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
             ov88_0223B7A0(param0->unk_2270, 0, param0);
             ov88_0223B7A0(param0->unk_2274, 6, param0);
 
@@ -725,7 +725,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         sub_02019120(1, 1);
         sub_02019120(2, 1);
         sub_02019120(3, 1);
-        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
         break;
@@ -743,7 +743,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
         sub_02019120(4, 1);
         sub_02019120(5, 1);
         sub_02019120(6, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
         ov88_0223E8B4(param0);
@@ -786,7 +786,7 @@ static void ov88_0223BD18 (UnkStruct_02073C74 * param0, UnkStruct_ov88_0223C8AC 
     }
 
     if (v1 != 0) {
-        param1->unk_02 = IsItemMail(v1) + 1;
+        param1->unk_02 = Item_IsMail(v1) + 1;
     }
 }
 
@@ -874,11 +874,11 @@ static void ov88_0223BFD8 (UnkStruct_02095E80 * param0)
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2270); v0++) {
-        FreeToHeap(param0->unk_7E8[v0]);
+        Heap_FreeToHeap(param0->unk_7E8[v0]);
     }
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_2274); v0++) {
-        FreeToHeap(param0->unk_7E8[v0 + 6]);
+        Heap_FreeToHeap(param0->unk_7E8[v0 + 6]);
     }
 }
 
@@ -893,13 +893,13 @@ int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223BFD8(v0);
 
     sub_020237BC(v0->unk_190);
-    FreeToHeap(v0->unk_2274);
+    Heap_FreeToHeap(v0->unk_2274);
 
     ov88_0223BF7C(v0);
     ov88_0223EC04(v0->unk_49C);
     ov88_0223C44C(v0->unk_174);
 
-    FreeToHeapExplicit(26, v0->unk_174);
+    Heap_FreeToHeapExplicit(26, v0->unk_174);
     sub_0200B190(v0->unk_184);
     sub_0200B3F0(v0->unk_180);
     sub_0200B3F0(v0->unk_17C);
@@ -907,7 +907,7 @@ int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
     sub_020237BC(v0->unk_18C);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(26);
+    Heap_Destroy(26);
 
     return 1;
 }
@@ -948,7 +948,7 @@ static void ov88_0223C15C (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov88_0223C17C (UnkStruct_02018340 * param0)
@@ -1162,7 +1162,7 @@ static void ov88_0223C370 (UnkStruct_02095E80 * param0, UnkStruct_020067E8 * par
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->unk_04 = v0->unk_10;
-    param0->unk_2274 = AllocFromHeap(26, Party_sizeof());
+    param0->unk_2274 = Heap_AllocFromHeap(26, Party_sizeof());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_sizeof());
@@ -1202,7 +1202,7 @@ static void ov88_0223C488 (NARC * param0, u32 param1, UnkStruct_02018340 * param
             }
         }
 
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 }
 
@@ -1387,7 +1387,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
     sub_0201ADA4(&param0[32 + param1], 0);
 
     v1 = sub_02023790(20, 26);
-    GetItemNameIntoString(v1, v2, 26);
+    Item_GetNameIntoString(v1, v2, 26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, 0, 3, 0);
     sub_020237BC(v1);
 }
@@ -1898,7 +1898,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
 
             sub_02025EC0(v2, sub_0202AEF0(param0->unk_36EC, v0));
             sub_0200B498(param0->unk_36CC, 0, v2);
-            FreeToHeap(v2);
+            Heap_FreeToHeap(v2);
         }
 
         ov88_0223D49C(param0, 60);
@@ -2537,8 +2537,8 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     sub_020775EC(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);
     sub_0202CF28(param4->unk_20, (1 + 18));
-    FreeToHeap(v0);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(v1);
 }
 
 static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, UnkStruct_02073C74 * param1)

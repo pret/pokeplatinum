@@ -430,7 +430,7 @@ asm static void ov22_0225A154 (UnkStruct_ov22_0225A154 * param0, int param1, Unk
     bl sub_0201ED94
     cmp r0, #0
     bne _0225A1F0
-    bl GF_AssertFail
+    bl ErrorHandling_AssertFail
  _0225A1F0:
     ldr r0, [r5, #0x18]
     add r1, sp, #0x80

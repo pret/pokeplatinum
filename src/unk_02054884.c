@@ -37,7 +37,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     UnkStruct_02025E6C * v4;
 
     v4 = sub_02025E38(param1);
-    v3 = GetPartyFromSavedata(param1);
+    v3 = Party_GetFromSavedata(param1);
     v1 = sub_02073C74(param0);
 
     sub_02073C2C(v1);
@@ -52,7 +52,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
         sub_0202F180(param1, v1);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }
@@ -62,7 +62,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     int v0;
     BOOL v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1);
-    Party * v3 = GetPartyFromSavedata(param1);
+    Party * v3 = Party_GetFromSavedata(param1);
     UnkStruct_02073C74 * v4 = sub_02073C74(32);
 
     sub_02073C2C(v4);
@@ -71,7 +71,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     ov5_021E6CF0(v4, param2, param3, v2, 4, v0);
 
     v1 = Party_AddPokemon(v3, v4);
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 
     return v1;
 }

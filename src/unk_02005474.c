@@ -712,7 +712,7 @@ void sub_02005E64 (int param0, int param1)
 
     sub_02005F24();
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02005E64));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02005E64));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -772,7 +772,7 @@ void sub_02005F24 ()
     if (*v1 != NULL) {
         v0 = sub_0201CED0(*v1);
         sub_0200DA58(*v1);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     *v1 = NULL;

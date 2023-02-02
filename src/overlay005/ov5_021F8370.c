@@ -68,7 +68,7 @@ void ov5_021F8370 (UnkStruct_0203CDB0 * param0)
 
     v1 = sub_02027860(sub_0203D174(param0));
     v2 = sub_02027F6C(v1, 10);
-    v3 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8480));
+    v3 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
 
@@ -92,7 +92,7 @@ void ov5_021F83C0 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov5_021F8480 * v0 = param0->unk_04->unk_24;
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     param0->unk_04->unk_24 = NULL;
 }
 

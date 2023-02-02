@@ -57,7 +57,7 @@ void sub_02027FEC (UnkStruct_02027F8C * param0, UnkStruct_02027F8C * param1, int
     int v3[5];
     UnkStruct_02027F8C * v4;
 
-    v4 = AllocFromHeap(param3, sizeof(UnkStruct_02027F8C) * 16);
+    v4 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_02027F8C) * 16);
     sub_02027F98(v4);
 
     for (v0 = 0; v0 < param2; v0++) {
@@ -94,7 +94,7 @@ void sub_02027FEC (UnkStruct_02027F8C * param0, UnkStruct_02027F8C * param1, int
     }
 
     memcpy(param0, v4, sizeof(UnkStruct_02027F8C) * 16);
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 }
 
 int sub_020280E0 (UnkStruct_02027F8C * param0, u32 param1)

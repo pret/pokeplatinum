@@ -84,7 +84,7 @@ UnkStruct_ov5_021EB0E0 * ov5_021EB0C8 (UnkStruct_020203AC * const param0)
 {
     UnkStruct_ov5_021EB0E0 * v0;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EB0E0));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EB0E0));
     ov5_021EB0E0(v0, param0);
 
     return v0;
@@ -130,6 +130,6 @@ void ov5_021EB184 (UnkStruct_ov5_021EB0E0 ** param0)
 
     GF_ASSERT((*param0) != NULL);
 
-    FreeToHeap((*param0));
+    Heap_FreeToHeap((*param0));
     (*param0) = NULL;
 }

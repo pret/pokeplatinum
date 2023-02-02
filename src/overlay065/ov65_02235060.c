@@ -1170,7 +1170,7 @@ static void ov65_022362B0 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_0223
 
 static void ov65_022362EC (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_02236318 * param1)
 {
-    FreeToHeap(param1->unk_00);
+    Heap_FreeToHeap(param1->unk_00);
     memset(param1, 0, sizeof(UnkStruct_ov65_02236318));
 }
 

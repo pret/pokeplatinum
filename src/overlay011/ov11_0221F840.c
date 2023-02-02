@@ -19,7 +19,7 @@ UnkStruct_02014014 * ov11_0221F840 (int param0)
     void * v1;
     UnkStruct_020203AC * v2;
 
-    v1 = AllocFromHeap(param0, 0x4800);
+    v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, param0);
     v2 = sub_02014784(v0);
 
@@ -36,7 +36,7 @@ UnkStruct_02014014 * ov11_0221F888 (int param0)
     void * v1;
     UnkStruct_020203AC * v2;
 
-    v1 = AllocFromHeap(param0, 0x4200);
+    v1 = Heap_AllocFromHeap(param0, 0x4200);
 
     if (v1 == NULL) {
         return NULL;
@@ -59,7 +59,7 @@ void ov11_0221F8D8 (UnkStruct_02014014 * param0)
     v0 = sub_02014730(param0);
 
     sub_0201411C(param0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 void ov11_0221F8F0 (void)

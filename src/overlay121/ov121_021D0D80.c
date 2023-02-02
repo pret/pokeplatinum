@@ -18,7 +18,7 @@
 #include "unk_02002328.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
@@ -68,8 +68,8 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -78,7 +78,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    CreateHeap(3, 30, 0x50000);
+    Heap_Create(3, 30, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov121_021D0FF4), 30);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov121_021D0FF4));
@@ -95,8 +95,8 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     Unk_021BF67C.unk_65 = 0;
 
-    GX_SwapDisplay();
-    GX_BothDispOn();
+    GXLayers_SwapDisplay();
+    GXLayers_TurnBothDispOn();
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
@@ -162,7 +162,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
     sub_02006830(param0);
-    DestroyHeap(30);
+    Heap_Destroy(30);
 
     return 1;
 }
@@ -183,8 +183,8 @@ static void ov121_021D0F7C (void * param0)
 
 static void ov121_021D0F94 (void)
 {
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -200,7 +200,7 @@ static void ov121_021D0F94 (void)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -246,7 +246,7 @@ static void ov121_021D1074 (UnkStruct_ov121_021D0FF4 * param0)
 {
     NARC * v0;
 
-    GF_ExpHeap_FndInitAllocator(&param0->unk_D8, 30, 4);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_D8, 30, 4);
 
     v0 = NARC_ctor(48, 30);
 
@@ -336,7 +336,7 @@ static UnkStruct_0207C690 * ov121_021D1270 (int param0)
 
 static void ov121_021D128C (void)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 

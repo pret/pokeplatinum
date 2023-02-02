@@ -546,7 +546,7 @@ static void ov97_0222C254 (UnkStruct_ov97_0222C388 * param0)
         GX_BG0_AS_2D
     };
 
-    GX_SetBanks(&v1);
+    GXLayers_SetBanks(&v1);
 
     sub_02018368(&v2);
     ov97_022376FC(param0->unk_04, 0, 1, 0xF000, 0x0);
@@ -680,7 +680,7 @@ static void ov97_0222C688 (UnkStruct_020067E8 * param0)
     sub_02019044(v1->unk_04, 1);
     sub_02019044(v1->unk_04, 4);
     sub_02019044(v1->unk_04, 5);
-    FreeToHeap(v1->unk_04);
+    Heap_FreeToHeap(v1->unk_04);
 }
 
 static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
@@ -705,7 +705,7 @@ static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_15C = UnkEnum_ov97_0222C6F8_00;
     v0->unk_158 = 0;
 
-    CreateHeap(0, 91, 0x300);
+    Heap_Create(0, 91, 0x300);
     sub_02004550(9, 1174, 1);
 
     return 1;
@@ -763,8 +763,8 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
     case UnkEnum_ov97_0222C78C_05:
         ov97_0222C388(v0);
 
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
         ov97_02231FFC(v0->unk_04, &v0->unk_3180, 85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
@@ -795,10 +795,10 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov97_0222C948 (UnkStruct_020067E8 * param0, int * param1)
 {
-    DestroyHeap(91);
+    Heap_Destroy(91);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     sub_02006830(param0);
-    DestroyHeap(85);
+    Heap_Destroy(85);
 
     return 1;
 }
@@ -846,7 +846,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     sub_0200B3F0(v2);
     sub_0200B190(v3);
     sub_0202DB2C(param0->unk_3174, &v4->unk_00, 3);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
     ov97_02238194(param0->unk_04, (UnkStruct_0202DF40 *)v4);
 }

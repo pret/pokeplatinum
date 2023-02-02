@@ -19,7 +19,7 @@ void ov105_02245DB8(UnkStruct_02007C7C * param0, int param1);
 
 void ov105_02245CD0 (void)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     G2_SetBG0Priority(0);
 
     G3X_SetShading(GX_SHADING_TOON);

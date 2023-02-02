@@ -9,7 +9,7 @@
 
 #include "struct_defs/struct_0207D0B0.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "item.h"
@@ -762,17 +762,17 @@ u16 sub_0207CF10 (u16 param0)
     return 0;
 }
 
-u16 GetItemIconCellArchiveIndex (void)
+u16 Item_GetIndexOfIconNCER (void)
 {
     return 1;
 }
 
-u16 GetItemIconCellAnimationArchiveIndex (void)
+u16 Item_GetIndexOfIconNANR (void)
 {
     return 0;
 }
 
-void * LoadItemDataOrGfx (u16 itemID, u16 attributeID, u32 heapID)
+void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
 {
     if (itemID > 467) {
         itemID = 0;
@@ -780,17 +780,17 @@ void * LoadItemDataOrGfx (u16 itemID, u16 attributeID, u32 heapID)
 
     switch (attributeID) {
     case 0:
-        return AllocAndReadWholeNarcMemberByIndexPair(15, sItemNarcIDs[itemID].dataArchiveID, heapID);
+        return NARC_AllocAndReadWholeMemberByIndexPair(15, sItemNarcIDs[itemID].dataArchiveID, heapID);
     case 1:
-        return AllocAndReadWholeNarcMemberByIndexPair(16, sItemNarcIDs[itemID].imageArchiveID, heapID);
+        return NARC_AllocAndReadWholeMemberByIndexPair(16, sItemNarcIDs[itemID].imageArchiveID, heapID);
     case 2:
-        return AllocAndReadWholeNarcMemberByIndexPair(16, sItemNarcIDs[itemID].palArchiveID, heapID);
+        return NARC_AllocAndReadWholeMemberByIndexPair(16, sItemNarcIDs[itemID].palArchiveID, heapID);
     }
 
     return NULL;
 }
 
-void GetItemNameIntoString (UnkStruct_02023790 * dest, u16 itemID, u32 heapID)
+void Item_GetNameIntoString (UnkStruct_02023790 * dest, u16 itemID, u32 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 392, heapID);
 
@@ -798,7 +798,7 @@ void GetItemNameIntoString (UnkStruct_02023790 * dest, u16 itemID, u32 heapID)
     sub_0200B190(msgData);
 }
 
-void GetItemDescriptionIntoString (UnkStruct_02023790 * dest, u16 itemID, u16 heapID)
+void Item_GetDescriptionIntoString (UnkStruct_02023790 * dest, u16 itemID, u16 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 391, heapID);
 
@@ -806,19 +806,19 @@ void GetItemDescriptionIntoString (UnkStruct_02023790 * dest, u16 itemID, u16 he
     sub_0200B190(msgData);
 }
 
-s32 GetItemAttribute (u16 itemID, u16 attributeID, u32 heapID)
+s32 Item_GetAttribute (u16 itemID, u16 attributeID, u32 heapID)
 {
     UnkStruct_0207D3B0 * v0;
     s32 v1;
 
-    v0 = (UnkStruct_0207D3B0 *)LoadItemDataOrGfx(itemID, 0, heapID);
-    v1 = GetItemAttributeFromStruct(v0, attributeID);
-    FreeToHeapExplicit(heapID, v0);
+    v0 = (UnkStruct_0207D3B0 *)Item_LoadDataOrGFX(itemID, 0, heapID);
+    v1 = Item_GetAttributeFromStruct(v0, attributeID);
+    Heap_FreeToHeapExplicit(heapID, v0);
 
     return v1;
 }
 
-s32 GetItemAttributeFromStruct (UnkStruct_0207D3B0 * itemData, u16 attributeID)
+s32 Item_GetAttributeFromStruct (UnkStruct_0207D3B0 * itemData, u16 attributeID)
 {
     switch (attributeID) {
     case 0:
@@ -969,7 +969,7 @@ const u16 GetMoveFromTMOrHMItemID (u16 itemID)
     return sMovesTMHM[itemID];
 }
 
-u8 IsMoveHM (u16 moveID)
+u8 Item_IsMoveHM (u16 moveID)
 {
     u8 v0;
 
@@ -982,7 +982,7 @@ u8 IsMoveHM (u16 moveID)
     return FALSE;
 }
 
-u8 GetTMOrHMNumberFromItemID (u16 itemID)
+u8 Item_GetTMOrHMNumberFromID (u16 itemID)
 {
     if ((itemID < 328) || (itemID > 427)) {
         return 0;
@@ -991,7 +991,7 @@ u8 GetTMOrHMNumberFromItemID (u16 itemID)
     return itemID - 328;
 }
 
-u8 IsItemMail (u16 itemID)
+u8 Item_IsMail (u16 itemID)
 {
     u32 i;
 
@@ -1026,7 +1026,7 @@ u16 sub_0207D310 (u8 param0)
     return sMailItemIDs[param0];
 }
 
-u8 IsItemBerry (u16 itemID)
+u8 Item_IsBerry (u16 itemID)
 {
     u32 i;
 
@@ -1057,7 +1057,7 @@ u16 sub_0207D354 (u8 param0)
     return sBerryItemIDs[param0];
 }
 
-u8 IsItemHerbalMedicine (u16 itemID)
+u8 Item_IsHerbalMedicine (u16 itemID)
 {	
 	if ((itemID == 34) || (itemID == 35) || (itemID == 36) || (itemID == 37)) {
         return TRUE;
@@ -1069,7 +1069,7 @@ u8 IsItemHerbalMedicine (u16 itemID)
 void * sub_0207D388 (int param0)
 {
     int v0 = sub_0207CE78(467, 0);
-    return AllocAndReadFromNarcMemberByIndexPair(15, 0, param0, 0, 36 * v0);
+    return NARC_AllocAndReadFromMemberByIndexPair(15, 0, param0, 0, 36 * v0);
 }
 
 UnkStruct_0207D3B0 * sub_0207D3B0 (UnkStruct_0207D3B0 * param0, u16 param1)

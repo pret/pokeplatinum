@@ -30,7 +30,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -180,7 +180,7 @@ int ov67_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov67_0225D154 * v0;
     UnkStruct_ov66_02231024 * v1;
 
-    CreateHeap(3, 112, 0x20000);
+    Heap_Create(3, 112, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov67_0225D154), 112);
     memset(v0, 0, sizeof(UnkStruct_ov67_0225D154));
@@ -416,8 +416,8 @@ int ov67_0225CB1C (UnkStruct_020067E8 * param0, int * param1)
 
     inline_ov96_0223BDEC(&v0->unk_D4, 0);
 
-    FreeToHeap(v0);
-    DestroyHeap(112);
+    Heap_FreeToHeap(v0);
+    Heap_Destroy(112);
 
     return 1;
 }
@@ -427,7 +427,7 @@ int ov67_0225CB8C (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov67_0225D154 * v0;
     UnkStruct_ov66_02231300 * v1;
 
-    CreateHeap(3, 112, 0x20000);
+    Heap_Create(3, 112, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov67_0225D154), 112);
     memset(v0, 0, sizeof(UnkStruct_ov67_0225D154));
@@ -552,8 +552,8 @@ int ov67_0225CDC0 (UnkStruct_020067E8 * param0, int * param1)
 
     inline_ov96_0223BDEC(&v0->unk_D4, 0);
 
-    FreeToHeap(v0);
-    DestroyHeap(112);
+    Heap_FreeToHeap(v0);
+    Heap_Destroy(112);
 
     return 1;
 }
@@ -571,7 +571,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    GX_SetBanks(&Unk_ov67_0225D410);
+    GXLayers_SetBanks(&Unk_ov67_0225D410);
 
     {
         sub_0201975C(Unk_ov67_0225D3F4[0], 0);
@@ -612,7 +612,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
         sub_02006E60(92, 11, param0->unk_0C, Unk_ov67_0225D3F4[2], 0, 0, 0, param1);
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
         NARC * v3;
@@ -634,7 +634,7 @@ static void ov67_0225D154 (UnkStruct_ov67_0225D154 * param0)
             sub_02019044(param0->unk_0C, Unk_ov67_0225D3F4[v0]);
         }
 
-        FreeToHeap(param0->unk_0C);
+        Heap_FreeToHeap(param0->unk_0C);
     }
 }
 

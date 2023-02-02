@@ -2016,7 +2016,7 @@ int ov5_021E6270 (UnkStruct_02026310 * param0)
 static int ov5_021E62B0 (UnkStruct_02073C74_sub1 * param0)
 {
     int v0 = sub_02074570(param0, 6, NULL);
-    return IsItemMail(v0);
+    return Item_IsMail(v0);
 }
 
 static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3)
@@ -2124,7 +2124,7 @@ static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, UnkStruct_
     Party_AddPokemon(param0, v0);
     sub_02073C54(v1);
     sub_02026258(param1, 0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return v4;
 }
@@ -2154,7 +2154,7 @@ int ov5_021E6520 (UnkStruct_02073C74_sub1 * param0, u32 param1)
 
     sub_02074C60(v1, 8, (u8 *)&v3);
     v2 = sub_02075B40(v1);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return v2;
 }
@@ -2406,7 +2406,7 @@ static u8 ov5_021E68D8 (UnkStruct_02073C74 * param0, u16 * param1)
 static void ov5_021E6948 (UnkStruct_02073C74 * param0, UnkStruct_02073C74_sub1 * param1, UnkStruct_02073C74_sub1 * param2)
 {
     u16 v0, v1, v2, v3, v4, v5, v6;
-    UnkStruct_ov5_021E6948 * v7 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E6948));
+    UnkStruct_ov5_021E6948 * v7 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E6948));
 
     v2 = 0;
 
@@ -2481,7 +2481,7 @@ static void ov5_021E6948 (UnkStruct_02073C74 * param0, UnkStruct_02073C74_sub1 *
         }
     }
 
-    FreeToHeap(v7);
+    Heap_FreeToHeap(v7);
 }
 
 void ov5_021E6B40 (UnkStruct_02026310 * param0)
@@ -2712,7 +2712,7 @@ void ov5_021E6EA8 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_02025E
 
     Party_AddPokemon(param1, v3);
     ov5_021E6B40(param0);
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 }
 
 static int ov5_021E6F6C (Party * param0)
@@ -3125,7 +3125,7 @@ static void ov5_021E742C (UnkStruct_02073C74 * param0, int param1)
 
     sub_020775EC(v16, param0);
     sub_020237BC(v15);
-    FreeToHeap(v16);
+    Heap_FreeToHeap(v16);
 }
 
 void ov5_021E771C (UnkStruct_02073C74 * param0, int param1)

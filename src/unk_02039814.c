@@ -126,22 +126,22 @@ void sub_02039834 (int param0, int param1, int param2)
 
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
     Unk_021BF67C.unk_65 = 0;
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 
     G2_BlendNone();
     G2S_BlendNone();
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    GX_SetBanks(&Unk_020E5EFC);
+    GXLayers_SetBanks(&Unk_020E5EFC);
     v0 = sub_02018340(param0);
 
     sub_02018368(&Unk_020E5ED0);
@@ -170,7 +170,7 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
     sub_020237BC(v3);
 
-    GX_BothDispOn();
+    GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
@@ -178,5 +178,5 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0201A8FC(&v1);
     sub_0200B190(v2);
     sub_0200B3F0(v5);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }

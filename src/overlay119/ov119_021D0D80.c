@@ -69,8 +69,8 @@ static void ov119_021D1474(UnkSPLStruct6 * param0);
 
 void ov119_021D0D80 (void)
 {
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -92,7 +92,7 @@ UnkStruct_0207C690 * ov119_021D0DD4 (void)
 
 void ov119_021D0DF4 (void)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
@@ -125,7 +125,7 @@ void ov119_021D0E78 (void)
 
 void ov119_021D0EB8 (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
+    GXLayers_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -141,7 +141,7 @@ void ov119_021D0EB8 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -217,11 +217,11 @@ void ov119_021D0EB8 (UnkStruct_02018340 * param0)
         sub_02019EBC(param0, 3);
 
         G2_SetBG0Priority(1);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
-    GX_BothDispOn();
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_TurnBothDispOn();
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     {
         UnkStruct_ov97_0222DB78 v3[] = {
@@ -447,7 +447,7 @@ static UnkStruct_02014014 * ov119_021D13EC (int param0)
     void * v1;
     UnkStruct_020203AC * v2;
 
-    v1 = AllocFromHeap(param0, 0x4800);
+    v1 = Heap_AllocFromHeap(param0, 0x4800);
     v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, param0);
     v2 = sub_02014784(v0);
 
@@ -477,7 +477,7 @@ void ov119_021D145C (UnkStruct_02014014 * param0)
 
     v0 = sub_02014730(param0);
     sub_0201411C(param0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov119_021D1474 (UnkSPLStruct6 * param0)
@@ -495,7 +495,7 @@ UnkStruct_ov119_021D14DC * ov119_021D14AC (UnkStruct_ov119_021D1930 * param0)
     int v3;
     UnkStruct_ov119_021D14DC * v4;
 
-    v4 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov119_021D14DC));
+    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov119_021D14DC));
 
     GF_ASSERT(v4 != NULL);
 
@@ -532,7 +532,7 @@ BOOL ov119_021D14F8 (UnkStruct_ov119_021D14DC * param0)
 
 void ov119_021D150C (UnkStruct_ov119_021D14DC * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)

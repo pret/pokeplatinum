@@ -36,8 +36,8 @@ int ov87_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov87_021D0D80 * v0;
 
-    CreateHeap(3, 60, 16384);
-    CreateHeap(3, 61, 114688);
+    Heap_Create(3, 60, 16384);
+    Heap_Create(3, 61, 114688);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov87_021D0D80), 60);
 
@@ -62,8 +62,8 @@ int ov87_021D0DFC (UnkStruct_020067E8 * param0, int * param1)
     ov87_021D1140(v0->unk_C8);
     ov87_021D1000(&(v0->unk_00));
     sub_02006830(param0);
-    DestroyHeap(61);
-    DestroyHeap(60);
+    Heap_Destroy(61);
+    Heap_Destroy(60);
 
     return 1;
 }

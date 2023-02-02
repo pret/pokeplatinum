@@ -104,14 +104,14 @@ u16 * sub_0205CA4C (int param0)
     int v6;
 
     v0 = sub_02006F88(86, 7, &v2, param0);
-    v4 = AllocFromHeap(param0, 16 * 18 * 2);
+    v4 = Heap_AllocFromHeap(param0, 16 * 18 * 2);
     v5 = (u16 *)v2->pRawData;
 
     for (v6 = 0; v6 < 16 * 16; v6++) {
         v4[v6] = v5[v6];
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return v4;
 }

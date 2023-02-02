@@ -40,7 +40,7 @@ static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC 
 
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_08, 4 * 0x20);
     MI_CpuCopy16(&((u16 *)(v0->pRawData))[0 * 16], param0->unk_88, 4 * 0x20);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
     inline_ov61_0222C3B0_sub_1(param0);
 
     param0->unk_04 = 1;

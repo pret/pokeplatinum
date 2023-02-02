@@ -32,7 +32,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -398,15 +398,15 @@ int ov84_0223B5A0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     G2_BlendNone();
     G2S_BlendNone();
 
-    CreateHeap(3, 6, 0x30000);
+    Heap_Create(3, 6, 0x30000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov84_0223B5A0), 6);
     memset(v0, 0, sizeof(UnkStruct_ov84_0223B5A0));
@@ -598,7 +598,7 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
     NARC_dtor(v0->unk_D4);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(6);
+    Heap_Destroy(6);
     sub_02017DD4(4, 8);
 
     return 1;
@@ -654,7 +654,7 @@ static void ov84_0223BA3C (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov84_0223BA5C (UnkStruct_02018340 * param0)
@@ -807,8 +807,8 @@ static void ov84_0223BA5C (UnkStruct_02018340 * param0)
 
 static void ov84_0223BBC4 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 7);
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -816,7 +816,7 @@ static void ov84_0223BBC4 (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeapExplicit(6, param0);
+    Heap_FreeToHeapExplicit(6, param0);
 }
 
 static void ov84_0223BC1C (UnkStruct_ov84_0223B5A0 * param0)
@@ -1981,7 +1981,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
     u8 v2;
     u8 v3[12];
 
-    v0 = LoadItemDataOrGfx(param0->unk_C4->unk_66, 0, 6);
+    v0 = Item_LoadDataOrGFX(param0->unk_C4->unk_66, 0, 6);
     v1 = 0;
     v2 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08;
 
@@ -1997,7 +1997,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
                 v1++;
             }
         } else {
-            if (GetItemAttributeFromStruct(v0, 6) != 0) {
+            if (Item_GetAttributeFromStruct(v0, 6) != 0) {
                 if ((param0->unk_C4->unk_66 == 450) && (param0->unk_C4->unk_76_0 == 1)) {
                     v3[v1] = 1;
                 } else if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 5) {
@@ -2013,7 +2013,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
                 v1++;
             }
         }
-        if (GetItemAttributeFromStruct(v0, 3) == 0) {
+        if (Item_GetAttributeFromStruct(v0, 3) == 0) {
             v3[v1] = 8;
             v1++;
 
@@ -2022,7 +2022,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
                 v1++;
             }
         }
-        if (GetItemAttributeFromStruct(v0, 4) != 0) {
+        if (Item_GetAttributeFromStruct(v0, 4) != 0) {
             if (sub_0207D3FC(param0->unk_C8) == param0->unk_C4->unk_66) {
                 v3[v1] = 7;
             } else {
@@ -2041,7 +2041,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
     v3[v1] = 11;
     v1++;
     ov84_0223FB70(param0, v3, v1);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static int ov84_0223D730 (UnkStruct_ov84_0223B5A0 * param0)
@@ -2117,7 +2117,7 @@ static int ov84_0223D858 (UnkStruct_ov84_0223B5A0 * param0)
 
     ov84_0223FD84(param0);
 
-    v1 = GetItemAttribute(param0->unk_C4->unk_66, 6, 6);
+    v1 = Item_GetAttribute(param0->unk_C4->unk_66, 6, 6);
     v0 = (UnkFuncPtr_02069238)sub_020683F4(2, v1);
 
     if (v0 != NULL) {
@@ -2199,7 +2199,7 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
 
         sub_0200B630(param0->unk_118, 0, v0);
 
-        if (IsMoveHM(v0) == 1) {
+        if (Item_IsMoveHM(v0) == 1) {
             sub_0200B1B8(param0->unk_114, 59, param0->unk_3F8);
         } else {
             sub_0200B1B8(param0->unk_114, 58, param0->unk_3F8);
@@ -2317,7 +2317,7 @@ static UnkStruct_02023790 * ov84_0223DC9C (UnkStruct_ov84_0223B5A0 * param0, u16
         return sub_0200B1EC(param0->unk_114, 62);
     }
 
-    v0 = GetItemAttribute(param1, 2, 6);
+    v0 = Item_GetAttribute(param1, 2, 6);
     ov84_0223B9F4(param0, (u8)v0);
     param0->unk_488 = 1;
     sub_02005748(1536);
@@ -2595,7 +2595,7 @@ static int ov84_0223E27C (UnkStruct_ov84_0223B5A0 * param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            if (GetItemAttribute(param0->unk_C4->unk_66, 3, 6) != 0) {
+            if (Item_GetAttribute(param0->unk_C4->unk_66, 3, 6) != 0) {
                 UnkStruct_02023790 * v1;
 
                 sub_0201ADA4(&param0->unk_04[6], 15);
@@ -2666,9 +2666,9 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
             sub_0200B70C(param0->unk_118, 0, param0->unk_C4->unk_66);
             ov84_02240B34(param0, 2);
 
-            param0->unk_48C = GetItemAttribute(param0->unk_C4->unk_66, 0, 6);
+            param0->unk_48C = Item_GetAttribute(param0->unk_C4->unk_66, 0, 6);
 
-            if ((GetItemAttribute(param0->unk_C4->unk_66, 3, 6) != 0) || (param0->unk_48C == 0)) {
+            if ((Item_GetAttribute(param0->unk_C4->unk_66, 3, 6) != 0) || (param0->unk_48C == 0)) {
                 v1 = sub_0200B1EC(param0->unk_114, 74);
                 sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
                 sub_020237BC(v1);
@@ -2922,7 +2922,7 @@ static int ov84_0223EA18 (UnkStruct_ov84_0223B5A0 * param0)
 
         if (v0 == 1) {
             if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 0) {
-                if (GetItemAttribute(param0->unk_C4->unk_66, 6, 6) != 13) {
+                if (Item_GetAttribute(param0->unk_C4->unk_66, 6, 6) != 13) {
                     sub_0207CD34(param0->unk_CC, param0->unk_3F8, param0->unk_C4->unk_66, -1, 6);
                     sub_0201ADA4(&param0->unk_04[6], 15);
                     sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);

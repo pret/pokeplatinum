@@ -163,7 +163,7 @@ BOOL sub_0204B85C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0204BA50 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
 
     if (Party_GetCurrentCount(v0) < 6) {
         return 1;
@@ -316,7 +316,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0207418C(v4);
 
-    v3 = GetPartyFromSavedata(param0->unk_0C);
+    v3 = Party_GetFromSavedata(param0->unk_0C);
     v5 = Party_AddPokemon(v3, v4);
 
     if (v5) {
@@ -324,7 +324,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     if (v6) {
-        FreeToHeap(v6);
+        Heap_FreeToHeap(v6);
     }
 }
 

@@ -127,8 +127,8 @@ int ov20_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
         sub_02004550(62, 0, 0);
-        CreateHeap(3, 34, 32768);
-        CreateHeap(3, 35, 163840);
+        Heap_Create(3, 34, 32768);
+        Heap_Create(3, 35, 163840);
         v0 = ov20_021D0EC8(param0);
         ov20_021D21A0(v0->unk_14, 0);
         (*param1)++;
@@ -217,8 +217,8 @@ int ov20_021D0EA8 (UnkStruct_020067E8 * param0, int * param1)
 {
     ov20_021D1014(sub_0200682C(param0), param0);
 
-    DestroyHeap(34);
-    DestroyHeap(35);
+    Heap_Destroy(34);
+    Heap_Destroy(35);
 
     return 1;
 }

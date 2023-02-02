@@ -29,7 +29,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200D9E8.h"
 #include "unk_020170BC.h"
@@ -371,7 +371,7 @@ static void ov6_0223E1B0 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov6_0223E1D0 (UnkStruct_02018340 * param0)
@@ -387,7 +387,7 @@ static void ov6_0223E1D0 (UnkStruct_02018340 * param0)
         sub_02018368(&v0);
     }
 
-    GX_EngineAToggleLayers(
+    GXLayers_EngineAToggleLayers(
         GX_PLANEMASK_BG0, 1);
 
     {
@@ -438,7 +438,7 @@ static void ov6_0223E280 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov6_0223E140 * v0 = param1;
 
-    GX_SetBanks(&v0->unk_04);
+    GXLayers_SetBanks(&v0->unk_04);
     ov6_0223E2A4(v0->unk_00->unk_08);
     ov6_0223E2AC(v0->unk_00->unk_08);
     sub_0200DA58(param0);
@@ -452,7 +452,7 @@ static void ov6_0223E2A4 (UnkStruct_02018340 * param0)
 static void ov6_0223E2AC (UnkStruct_02018340 * param0)
 {
     ov5_021D1434(param0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
 static UnkStruct_ov5_021E20E8 * ov6_0223E2BC (int param0, int param1)
@@ -524,7 +524,7 @@ static BOOL ov6_0223E33C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         ov6_0223FE08(v1->unk_00);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         return 1;
     }
 
@@ -534,7 +534,7 @@ static BOOL ov6_0223E33C (UnkStruct_020508D4 * param0)
 void ov6_0223E384 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_ov6_0223E33C * v1 = AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
@@ -611,7 +611,7 @@ static BOOL ov6_0223E408 (UnkStruct_020508D4 * param0)
         break;
     case 7:
         ov6_0223FE08(v1->unk_00);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         return 1;
     }
 
@@ -621,7 +621,7 @@ static BOOL ov6_0223E408 (UnkStruct_020508D4 * param0)
 void ov6_0223E4EC (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_ov6_0223E33C * v1 = AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
@@ -1094,7 +1094,7 @@ static void ov6_0223EB4C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     v0->unk_10C = sub_0206251C(v0->unk_104->unk_38, 0);
     v0->unk_110 = sub_0205EB3C(sub_0205EF3C(v0->unk_104));
 
-    GF_ExpHeap_FndInitAllocator(&v0->unk_C0, 4, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_C0, 4, 32);
     ov6_0223EA98(v0);
     GX_SetMasterBrightness(v0->unk_0C);
 
@@ -1846,7 +1846,7 @@ UnkStruct_ov6_0223FDE4 * ov6_0223FDE4 (u32 param0)
 {
     UnkStruct_ov6_0223FDE4 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_0223FDE4));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_0223FDE4));
     memset(v0, 0, sizeof(UnkStruct_ov6_0223FDE4));
     v0->unk_00 = sub_020203AC(param0);
     v0->unk_40 = 5;
@@ -1857,7 +1857,7 @@ UnkStruct_ov6_0223FDE4 * ov6_0223FDE4 (u32 param0)
 void ov6_0223FE08 (UnkStruct_ov6_0223FDE4 * param0)
 {
     sub_020203B8(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u32 param3, u32 param4, UnkStruct_020203AC * param5)
@@ -2028,12 +2028,12 @@ UnkStruct_ov6_022400A8 * ov6_02240074 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov6_022400A8 * v0;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov6_022400A8));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022400A8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022400A8));
     v0->unk_00 = param0;
     v0->unk_12C = 5;
 
-    GF_ExpHeap_FndInitAllocator(&v0->unk_11C, 4, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_11C, 4, 32);
 
     return v0;
 }
@@ -2041,7 +2041,7 @@ UnkStruct_ov6_022400A8 * ov6_02240074 (UnkStruct_0203CDB0 * param0)
 void ov6_022400A8 (UnkStruct_ov6_022400A8 * param0)
 {
     GF_ASSERT(param0->unk_12C == 5);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov6_022400C4 (UnkStruct_ov6_022400A8 * param0)
@@ -2064,13 +2064,13 @@ UnkStruct_ov6_022401B8 * ov6_02240104 (u32 param0, UnkStruct_0203CDB0 * param1)
 {
     UnkStruct_ov6_022401B8 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_022401B8));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_022401B8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022401B8));
     v0->unk_04 = param1;
     v0->unk_00 = 0;
     v0->unk_11C = param0;
 
-    GF_ExpHeap_FndInitAllocator(&v0->unk_10C, param0, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_10C, param0, 32);
     ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
 
     {
@@ -2093,7 +2093,7 @@ UnkStruct_ov6_022401B8 * ov6_02240104 (u32 param0, UnkStruct_0203CDB0 * param1)
 void ov6_022401B8 (UnkStruct_ov6_022401B8 * param0)
 {
     ov6_02240340(&param0->unk_34, &param0->unk_10C);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov6_022401D0 (UnkStruct_ov6_022401B8 * param0, u32 param1)
@@ -2423,7 +2423,7 @@ static UnkStruct_ov6_02240774 * ov6_0224060C (u32 param0, u32 param1)
     UnkStruct_ov6_02240774 * v0;
     int v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240774));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240774));
     memset(v0, 0, sizeof(UnkStruct_ov6_02240774));
 
     ov6_0223FD58(&v0->unk_00, 98, param1, param0);
@@ -2446,7 +2446,7 @@ static void ov6_02240654 (UnkStruct_ov6_02240774 * param0)
     }
 
     ov6_0223FD68(&param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov6_0224067C (UnkStruct_ov6_02240774 * param0, fx32 param1, fx32 param2, fx32 param3, s32 param4, u16 param5, u16 param6, u16 param7)
@@ -2592,10 +2592,10 @@ static UnkStruct_ov6_02240A00 * ov6_022408C8 (u32 param0, u32 param1)
     int v1;
     NARC * v2;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240A00));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240A00));
     memset(v0, 0, sizeof(UnkStruct_ov6_02240A00));
 
-    GF_ExpHeap_FndInitAllocator(&v0->unk_C4, param0, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_C4, param0, 32);
     v2 = NARC_ctor(98, param0);
     ov6_0223FD60(&v0->unk_78, v2, param1, param0);
 
@@ -2625,7 +2625,7 @@ static void ov6_02240968 (UnkStruct_ov6_02240A00 * param0)
         ov6_0223FD84(&param0->unk_88[v0], &param0->unk_C4);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov6_02240994 (UnkStruct_ov6_02240A00 * param0, fx32 param1, fx32 param2, fx32 param3, u16 param4, u16 param5, u16 param6)
@@ -2796,13 +2796,13 @@ UnkStruct_ov6_02240C44 * ov6_02240B9C (u32 param0, UnkStruct_0203CDB0 * param1)
     int v1;
     NARC * v2;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240C44));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240C44));
     memset(v0, 0, sizeof(UnkStruct_ov6_02240C44));
 
     v2 = NARC_ctor(98, param0);
     v0->unk_D8 = param1;
 
-    GF_ExpHeap_FndInitAllocator(&v0->unk_DC, param0, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, param0, 32);
     ov6_0223FD60(&v0->unk_78, v2, 15, param0);
 
     for (v1 = 0; v1 < 4; v1++) {

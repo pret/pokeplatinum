@@ -34,7 +34,7 @@ static void * ov97_02238D74 (DWCAllocType param0, u32 param1, int param2)
 
     param1 = (((param1 + sizeof(void *)) + 32) & ~31) + 32;
 
-    v0 = AllocFromHeap(86, param1);
+    v0 = Heap_AllocFromHeap(86, param1);
     v1 = (u32 *)(((u32)v0 + 32) & ~31);
 
     v1--;
@@ -54,7 +54,7 @@ static void ov97_02238D94 (DWCAllocType param0, void * param1, u32 param2)
     }
 
     v0 = (u32 *)((u32)param1 - 4);
-    FreeToHeap((void *)*v0);
+    Heap_FreeToHeap((void *)*v0);
 }
 
 static volatile BOOL Unk_ov97_02240410;

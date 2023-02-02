@@ -312,8 +312,8 @@ static void ov94_02242B54 (UnkStruct_02018340 * param0)
     sub_02019690(1, 32, 0, 62);
     sub_02019690(4, 32, 0, 62);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov94_02242C80 (UnkStruct_02018340 * param0)
@@ -337,7 +337,7 @@ static void ov94_02242CAC (UnkStruct_ov94_0223FD4C * param0)
     if (param0->unk_10F0 == 0) {
         sub_02019120(4, 0);
         sub_02019120(5, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
     }
 
     if (param0->unk_20 == 9) {
@@ -805,7 +805,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 ov94_02243BC4(param0, v1, sub_0202DAAC(param0->unk_00->unk_00), 0);
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                FreeToHeap(v1);
+                Heap_FreeToHeap(v1);
             } else {
                 ov94_0224362C(param0);
             }
@@ -823,7 +823,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 param0->unk_2C = 34;
 
                 sub_0202DA68(param0->unk_00->unk_00, 0);
-                FreeToHeap(v2);
+                Heap_FreeToHeap(v2);
             }
             break;
         case -12:
@@ -1255,7 +1255,7 @@ static void ov94_02243B08 (UnkStruct_ov94_0223FD4C * param0, int param1)
         sub_020774C8(sub_02079C9C(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
         sub_02079968(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     } else {
         UnkStruct_02073C74 * v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 

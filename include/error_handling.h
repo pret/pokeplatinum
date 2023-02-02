@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_ERROR_HANDLING_H
 #define POKEPLATINUM_ERROR_HANDLING_H
 
-void GF_AssertFail(void);
+void ErrorHandling_AssertFail(void);
 
 #endif // POKEPLATINUM_ERROR_HANDLING_H

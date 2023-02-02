@@ -246,7 +246,7 @@ static void ov100_021D3558 (UnkStruct_ov100_021D3084 * param0)
 
 void * ov100_021D3620 (UnkStruct_ov100_021D4DD8 * param0)
 {
-    UnkStruct_ov100_021D3084 * v0 = AllocFromHeap(111, sizeof(UnkStruct_ov100_021D3084));
+    UnkStruct_ov100_021D3084 * v0 = Heap_AllocFromHeap(111, sizeof(UnkStruct_ov100_021D3084));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D3084));
 
@@ -692,7 +692,7 @@ BOOL ov100_021D3FD4 (void * param0)
         v0->unk_00++;
         break;
     default:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 0;
     }
 

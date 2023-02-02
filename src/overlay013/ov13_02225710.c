@@ -433,13 +433,13 @@ static void ov13_02225C4C (UnkStruct_ov13_022213F0 * param0, u16 * param1, u8 pa
 
 static void ov13_02225D8C (UnkStruct_ov13_022213F0 * param0, u8 param1, u8 param2, u8 param3)
 {
-    u16 * v0 = AllocFromHeap(param0->unk_00->unk_0C, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
+    u16 * v0 = Heap_AllocFromHeap(param0->unk_00->unk_0C, Unk_ov13_02229924[param1].unk_02 * Unk_ov13_02229924[param1].unk_03 * 2);
 
     ov13_02225C4C(param0, v0, param1, param2, param3);
 
     sub_020198C0(param0->unk_1E0, 6, v0, Unk_ov13_02229924[param1].unk_00, Unk_ov13_02229924[param1].unk_01, Unk_ov13_02229924[param1].unk_02, Unk_ov13_02229924[param1].unk_03);
     sub_0201C3C0(param0->unk_1E0, 6);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov13_02225E08 (UnkStruct_ov13_022213F0 * param0, u8 param1, u8 param2)

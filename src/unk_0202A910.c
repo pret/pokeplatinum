@@ -41,7 +41,7 @@ UnkStruct_0202A93C * sub_0202A93C (int param0)
 {
     UnkStruct_0202A93C * v0;
 
-    v0 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202A93C));
+    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202A93C));
     sub_0202A924(v0);
 
     return v0;

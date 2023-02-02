@@ -27,7 +27,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02002B7C.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -91,8 +91,8 @@ void ov21_021D1FA4 (UnkStruct_ov21_021D13FC * param0, int param1)
     param0->unk_13C[2] = sub_02009714(32, 2, param1);
     param0->unk_13C[3] = sub_02009714(32, 3, param1);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     v1.unk_00 = param0->unk_138;
     v1.unk_04 = param0->unk_00;
@@ -119,7 +119,7 @@ void ov21_021D2098 (UnkStruct_ov21_021D13FC * param0)
     ov21_021D2A00(param0);
     ov21_021D299C(param0->unk_00);
 
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
     sub_02021964(param0->unk_138);
     sub_02009754(param0->unk_13C[0]);
     sub_02009754(param0->unk_13C[1]);
@@ -488,11 +488,11 @@ void * ov21_021D26E8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
         if (param2) {
             void * v1;
 
-            v1 = AllocFromHeap(param3, MI_GetUncompressedSize(v0));
+            v1 = Heap_AllocFromHeap(param3, MI_GetUncompressedSize(v0));
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
             }
 
             v0 = v1;
@@ -517,7 +517,7 @@ u32 ov21_021D2724 (UnkStruct_ov21_021D13FC * param0, u32 param1, UnkStruct_02018
             sub_0201958C(param2, param3, v1->pRawData, param5, param4);
         }
 
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     return param5;
@@ -550,7 +550,7 @@ void ov21_021D276C (UnkStruct_ov21_021D13FC * param0, u32 param1, int param2, u3
             v0[param2](v2->pRawData, param3, param4);
         }
 
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 }
 
@@ -560,7 +560,7 @@ void * ov21_021D27B8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedScreenData(v0, param3) == 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return NULL;
         }
     }
@@ -574,7 +574,7 @@ void * ov21_021D27E0 (UnkStruct_ov21_021D13FC * param0, u32 param1, NNSG2dPalett
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(v0, param2) == 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return NULL;
         }
     }
@@ -588,7 +588,7 @@ void * ov21_021D2808 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param3) == 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return NULL;
         }
     }
@@ -643,7 +643,7 @@ static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
     }
 
     sub_02019060(0, 2);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     {
         UnkStruct_ov97_0222DB78 v2 = {

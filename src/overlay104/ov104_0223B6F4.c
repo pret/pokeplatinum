@@ -197,12 +197,12 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
         sub_0205213C(v5, v6, 0);
     }
 
-    FreeToHeap(v6);
+    Heap_FreeToHeap(v6);
     sub_02052894(v5);
 
     v8 = ov104_0222DD04(&v7, param0->unk_30[param0->unk_11], 11, 178);
 
-    FreeToHeap(v8);
+    Heap_FreeToHeap(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
     Party_InitWithCapacity(v5->unk_04[1], ov104_0223B7DC(param0->unk_10, 0));
 
@@ -217,7 +217,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
         sub_0205213C(v5, v6, 1);
     }
 
-    FreeToHeap(v6);
+    Heap_FreeToHeap(v6);
 
     switch (param0->unk_10) {
     case 2:
@@ -228,7 +228,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
         sub_02025E80(v11, v5->unk_D0[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_30[param0->unk_11 + 7], 11, 178);
-        FreeToHeap(v8);
+        Heap_FreeToHeap(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
         Party_InitWithCapacity(v5->unk_04[3], ov104_0223B7DC(param0->unk_10, 0));
@@ -240,7 +240,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
             sub_0205213C(v5, v6, 3);
         }
 
-        FreeToHeap(v6);
+        Heap_FreeToHeap(v6);
         break;
     }
 
@@ -335,7 +335,7 @@ void ov104_0223BAB8 (UnkStruct_ov104_0223BA10 * param0)
         ov104_0223BAA0(param0, param0->unk_2C, v3);
     }
 
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 
     return;
 }

@@ -21,7 +21,7 @@
 #include "overlay006/struct_ov6_02240D5C.h"
 
 #include "unk_020041CC.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_0202B604.h"
@@ -90,14 +90,14 @@ static void sub_0208BAAC (UnkStruct_020067E8 * param0, int param1)
 {
     UnkStruct_0208BC3C * v0;
 
-    CreateHeap(3, 119, 0x10000);
+    Heap_Create(3, 119, 0x10000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_0208BC3C), 119);
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0208BC3C));
 
     v0->unk_28 = sub_02006840(param0);
     v0->unk_0C = v0->unk_28->unk_0C;
-    v0->unk_14 = AllocFromHeap(119, sizeof(UnkStruct_0208C06C));
+    v0->unk_14 = Heap_AllocFromHeap(119, sizeof(UnkStruct_0208C06C));
 
     MI_CpuFill8(v0->unk_14, 0, sizeof(UnkStruct_0208C06C));
 
@@ -214,10 +214,10 @@ static int sub_0208BC08 (UnkStruct_020067E8 * param0, int * param1)
         sub_0202F22C();
     }
 
-    FreeToHeap(v0->unk_14);
+    Heap_FreeToHeap(v0->unk_14);
     sub_02006830(param0);
     sub_0200544C(1, 127);
-    DestroyHeap(119);
+    Heap_Destroy(119);
 
     return 1;
 }
@@ -251,7 +251,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
     switch (param0->unk_00) {
     case 0:
         if (param0->unk_14->unk_00 != 0) {
-            UnloadOverlayByID(FS_OVERLAY_ID(overlay61));
+            Overlay_UnloadByID(FS_OVERLAY_ID(overlay61));
             sub_020995C4();
         }
 
@@ -273,15 +273,15 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
         param0->unk_10->unk_E4 = sub_0207D99C(param1);
         param0->unk_10->unk_11C = sub_0202CD88(param0->unk_0C);
 
-        if (HandleLoadOverlay(FS_OVERLAY_ID(overlay62), 2) == 1) {
+        if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
             ov62_02248408(sub_0202F264(), param0->unk_10, param1);
-            UnloadOverlayByID(FS_OVERLAY_ID(overlay62));
+            Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
         }
 
         param0->unk_14->unk_874 = 1;
 
         if (v0 != 1) {
-            FreeToHeap(param0->unk_10->unk_E4);
+            Heap_FreeToHeap(param0->unk_10->unk_E4);
             sub_020520A4(param0->unk_10);
             param0->unk_00 = 0;
             return 1;
@@ -317,7 +317,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
             }
         }
 
-        FreeToHeap(param0->unk_10->unk_E4);
+        Heap_FreeToHeap(param0->unk_10->unk_E4);
         sub_020520A4(param0->unk_10);
         sub_02006814(param0->unk_08);
 
@@ -337,7 +337,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
 
         if (param0->unk_14->unk_00 != 0) {
             sub_020995B4();
-            HandleLoadOverlay(FS_OVERLAY_ID(overlay61), 2);
+            Overlay_LoadByID(FS_OVERLAY_ID(overlay61), 2);
         }
 
         return 1;

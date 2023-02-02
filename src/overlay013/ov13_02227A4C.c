@@ -61,7 +61,7 @@ void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
             }
 
             if (!((v0->unk_00 == 0) || (v0->unk_02 == 0))) {
-                v4 = GetItemAttribute(v0->unk_00, 13, param0->unk_00->unk_0C);
+                v4 = Item_GetAttribute(v0->unk_00, 13, param0->unk_00->unk_0C);
 
                 for (v3 = 0; v3 < 5; v3++) {
                     if ((v4 & (1 << v3)) == 0) {

@@ -139,7 +139,7 @@ void ov23_022417E0 (void)
 void ov23_022417F4 (void)
 {
     if (Unk_ov23_02257744) {
-        FreeToHeap(Unk_ov23_02257744);
+        Heap_FreeToHeap(Unk_ov23_02257744);
         Unk_ov23_02257744 = NULL;
     }
 }
@@ -559,7 +559,7 @@ void ov23_02241E6C (void)
     GF_ASSERT(!Unk_ov23_02257744->unk_460);
     GF_ASSERT(!Unk_ov23_02257744->unk_45C);
 
-    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02241E4C));
+    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_02241E4C));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02241E4C));
     v0->unk_02 = 100;
 
@@ -571,7 +571,7 @@ void ov23_02241ED0 (void)
 {
     if (Unk_ov23_02257744->unk_45C) {
         sub_0200DA58(Unk_ov23_02257744->unk_45C);
-        FreeToHeap(Unk_ov23_02257744->unk_460);
+        Heap_FreeToHeap(Unk_ov23_02257744->unk_460);
 
         Unk_ov23_02257744->unk_45C = NULL;
         Unk_ov23_02257744->unk_460 = NULL;

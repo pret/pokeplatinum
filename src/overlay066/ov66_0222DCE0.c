@@ -10,7 +10,7 @@
 
 #include "overlay066/struct_ov66_0222DCE0.h"
 
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_0200D9E8.h"
 #include "unk_02017728.h"
@@ -38,12 +38,12 @@ int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
 
     {
         FS_EXTERN_OVERLAY(overlay63);
-        HandleLoadOverlay(FS_OVERLAY_ID(overlay63), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
         sub_02099550();
         sub_020995B4();
     }
 
-    CreateHeap(3, 104, 0x5000);
+    Heap_Create(3, 104, 0x5000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov66_0222DD90), 104);
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DD90));
@@ -95,11 +95,11 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
     ov66_0222DEEC(v0->unk_04);
 
     sub_02006830(param0);
-    DestroyHeap(104);
+    Heap_Destroy(104);
 
     {
         FS_EXTERN_OVERLAY(overlay63);
-        UnloadOverlayByID(FS_OVERLAY_ID(overlay63));
+        Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
         sub_020995C4();
         sub_02099560();
     }

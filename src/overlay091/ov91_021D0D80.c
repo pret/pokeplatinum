@@ -39,7 +39,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -368,7 +368,7 @@ int ov91_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov91_021D0ED8 * v0;
 
-    CreateHeap(3, 67, 0x20000);
+    Heap_Create(3, 67, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov91_021D0ED8), 67);
     memset(v0, 0, sizeof(UnkStruct_ov91_021D0ED8));
@@ -446,7 +446,7 @@ int ov91_021D0EBC (UnkStruct_020067E8 * param0, int * param1)
     ov91_021D0F6C(v0);
 
     sub_02006830(param0);
-    DestroyHeap(67);
+    Heap_Destroy(67);
 
     return 1;
 }
@@ -458,8 +458,8 @@ static void ov91_021D0ED8 (UnkStruct_ov91_021D0ED8 * param0)
     sub_02017798(NULL, NULL);
     sub_020177A4();
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -521,7 +521,7 @@ static void ov91_021D0FC4 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov91_021D0FE4 (UnkStruct_02018340 * param0)
@@ -605,11 +605,11 @@ static void ov91_021D0FE4 (UnkStruct_02018340 * param0)
 
 static void ov91_021D1098 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeapExplicit(67, param0);
+    Heap_FreeToHeapExplicit(67, param0);
 }
 
 static void ov91_021D10C8 (UnkStruct_ov91_021D0ED8 * param0, NARC * param1)
@@ -761,7 +761,7 @@ static int ov91_021D13E4 (UnkStruct_ov91_021D0ED8 * param0)
     v0 = 0;
     sub_02074B30(param0->unk_00->unk_00, 62 + param0->unk_00->unk_17, &v0);
 
-    v0 = GetMoveMaxPP(ov91_021D1DD0(param0), 0);
+    v0 = MoveTable_GetMoveMaxPP(ov91_021D1DD0(param0), 0);
     sub_02074B30(param0->unk_00->unk_00, 58 + param0->unk_00->unk_17, &v0);
 
     param0->unk_00->unk_16 = 0;
@@ -989,7 +989,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         UnkStruct_0200B144 * v0;
         u32 v1;
 
-        v1 = GetMoveAttribute(param1, 2);
+        v1 = MoveTable_GetMoveAttribute(param1, 2);
 
         if (v1 <= 1) {
             sub_0200B1B8(param0->unk_F8, 33, param0->unk_100);
@@ -999,7 +999,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
         ov91_021D1580(param0, 7, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-        v1 = GetMoveAttribute(param1, 4);
+        v1 = MoveTable_GetMoveAttribute(param1, 4);
 
         if (v1 == 0) {
             sub_0200B1B8(param0->unk_F8, 33, param0->unk_100);
@@ -1009,7 +1009,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
         ov91_021D1580(param0, 8, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-        v1 = GetMoveMaxPP(param1, 0);
+        v1 = MoveTable_GetMoveMaxPP(param1, 0);
         ov91_021D1618(param0, 31, v1, 2, 0);
         ov91_021D1580(param0, 9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
@@ -1045,7 +1045,7 @@ static void ov91_021D1A68 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         u32 v1;
         u32 v2;
 
-        v1 = GetMoveAttribute(param1, 10);
+        v1 = MoveTable_GetMoveAttribute(param1, 10);
         v2 = sub_0209577C(v1);
         v0 = sub_0200B144(0, 26, 210, 67);
 
@@ -1090,7 +1090,7 @@ static void ov91_021D1BBC (UnkStruct_ov91_021D0ED8 * param0, u16 param1)
     ov91_021D1B94(param0);
 
     if (param1 != 0xffff) {
-        v0 = GetMoveAttribute(param1, 10);
+        v0 = MoveTable_GetMoveAttribute(param1, 10);
         v2 = sub_02095734(v0) / 10;
 
         for (v1 = 0; v1 < v2; v1++) {
@@ -1317,7 +1317,7 @@ static void ov91_021D2014 (UnkStruct_ov91_021D0ED8 * param0)
 
     sub_0200C7C0(param0->unk_110, param0->unk_114, 13);
     sub_0200CB30(param0->unk_110, param0->unk_114, &v0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov91_021D20B4 (UnkStruct_ov91_021D0ED8 * param0)
@@ -1370,9 +1370,9 @@ static void ov91_021D22A0 (UnkStruct_ov91_021D0ED8 * param0, u16 param1, u16 par
     u32 v0;
 
     if (param0->unk_00->unk_14 == 0) {
-        v0 = GetMoveAttribute(param1, 3);
+        v0 = MoveTable_GetMoveAttribute(param1, 3);
     } else {
-        v0 = GetMoveAttribute(param1, 11) + 18;
+        v0 = MoveTable_GetMoveAttribute(param1, 11) + 18;
     }
 
     sub_0200D948(param0->unk_110, param0->unk_114, sub_0207C944(), sub_0207C908(v0), 1, 47276 + param2);
@@ -1451,7 +1451,7 @@ static void ov91_021D237C (UnkStruct_ov91_021D0ED8 * param0, u16 param1, u16 par
 
 static void ov91_021D24B4 (UnkStruct_ov91_021D0ED8 * param0, u16 param1)
 {
-    u32 v0 = GetMoveAttribute(param1, 1);
+    u32 v0 = MoveTable_GetMoveAttribute(param1, 1);
 
     sub_0200D948(param0->unk_110, param0->unk_114, sub_0207CAC0(), sub_0207CA90(v0), 1, 47275);
     sub_0200D41C(param0->unk_118[5], sub_0207CAA8(v0) + 2);

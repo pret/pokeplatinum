@@ -37,7 +37,7 @@ UnkStruct_0209BBA4 * ov104_02239C58 (UnkStruct_021C0794 * param0)
 {
     static UnkStruct_0209BBA4 * v0;
 
-    v0 = AllocFromHeap(11, sizeof(UnkStruct_0209BBA4));
+    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209BBA4));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209BBA4));
 
     v0->unk_00 = param0;
@@ -50,7 +50,7 @@ void ov104_02239C7C (UnkStruct_0209BBA4 * param0)
         return;
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
     param0 = NULL;
 
     return;
@@ -109,10 +109,10 @@ static void ov104_02239D1C (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
 {
     u8 v0;
 
-    param1->unk_A8 = AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    param1->unk_A8 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
     MI_CpuClearFast(param1->unk_A8, sizeof(UnkStruct_02098C44));
 
-    param1->unk_A8->unk_00 = GetPartyFromSavedata(param1->unk_00);
+    param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);
     param1->unk_A8->unk_04 = sub_0207D990(param1->unk_00);
     param1->unk_A8->unk_08 = sub_02028430(param1->unk_00);
     param1->unk_A8->unk_0C = sub_02025E44(param1->unk_00);
@@ -180,7 +180,7 @@ static void ov104_02239F38 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
 
     MI_CpuCopy8(param1->unk_A8->unk_2C, param1->unk_A1, 2);
     param1->unk_9F = param1->unk_A8->unk_22;
-    FreeToHeap(param1->unk_A8);
+    Heap_FreeToHeap(param1->unk_A8);
 
     param1->unk_A8 = NULL;
     *param1->unk_B0 = 2;
@@ -195,11 +195,11 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
 
-    param1->unk_AC = AllocFromHeapAtEnd(param3, sizeof(UnkStruct_02098D38));
+    param1->unk_AC = Heap_AllocFromHeapAtEnd(param3, sizeof(UnkStruct_02098D38));
     MI_CpuClear8(param1->unk_AC, sizeof(UnkStruct_02098D38));
 
     param1->unk_AC->unk_04 = sub_02025E44(param1->unk_00);
-    param1->unk_AC->unk_00 = GetPartyFromSavedata(param1->unk_00);
+    param1->unk_AC->unk_00 = Party_GetFromSavedata(param1->unk_00);
     param1->unk_AC->unk_1C = sub_0207A274(param1->unk_00);
     param1->unk_AC->unk_2C = sub_0208C324(param1->unk_00);
     param1->unk_AC->unk_11 = 1;
@@ -219,7 +219,7 @@ static void ov104_02239FB0 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * pa
 static void ov104_0223A090 (UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3)
 {
     param1->unk_9F = param1->unk_AC->unk_14;
-    FreeToHeap(param1->unk_AC);
+    Heap_FreeToHeap(param1->unk_AC);
     param1->unk_AC = NULL;
     *param1->unk_B0 = 0;
     param1->unk_9D = 0;

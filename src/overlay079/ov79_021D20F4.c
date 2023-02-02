@@ -62,8 +62,8 @@ void ov79_021D20F4 (UnkStruct_ov79_021D0E1C * param0)
         sub_02039734();
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 void ov79_021D21CC (UnkStruct_ov79_021D0E1C * param0)

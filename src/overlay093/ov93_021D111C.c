@@ -11,7 +11,7 @@
 
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -88,7 +88,7 @@ int ov93_021D111C (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov93_021D13C0 * v1;
     UnkStruct_0206C8D4 * v2;
 
-    CreateHeap(3, 72, 0x20000);
+    Heap_Create(3, 72, 0x20000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov93_021D13C0), 72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D13C0));
@@ -188,14 +188,14 @@ int ov93_021D12F0 (UnkStruct_020067E8 * param0, int * param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         NNS_G3dFreeAnmObj(&v1->unk_6C, v1->unk_7C[v0]);
-        FreeToHeap(v1->unk_60[v0]);
+        Heap_FreeToHeap(v1->unk_60[v0]);
     }
 
-    FreeToHeap(v1->unk_5C);
+    Heap_FreeToHeap(v1->unk_5C);
     sub_020203B8(v1->unk_00);
     sub_02006830(param0);
     sub_0201CBA0();
-    DestroyHeap(72);
+    Heap_Destroy(72);
 
     return 1;
 }
@@ -204,8 +204,8 @@ static void ov93_021D133C (void)
 {
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -216,7 +216,7 @@ static void ov93_021D133C (void)
     G3X_EdgeMarking(1);
     G3X_SetEdgeColorTable(Unk_ov93_021D1524);
 
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 }
 
 static void ov93_021D13A0 (void)
@@ -234,7 +234,7 @@ static void ov93_021D13A0 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov93_021D13C0 (UnkStruct_ov93_021D13C0 * param0)
@@ -245,7 +245,7 @@ static void ov93_021D13C0 (UnkStruct_ov93_021D13C0 * param0)
     NARC * v3;
 
     v3 = NARC_ctor(156, 72);
-    GF_ExpHeap_FndInitAllocator(&param0->unk_6C, 72, 4);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_6C, 72, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15C8[param0->unk_94].unk_00, 72);
     sub_0201CA3C(&param0->unk_04, &param0->unk_58, &param0->unk_5C);

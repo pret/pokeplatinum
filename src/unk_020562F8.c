@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay006/struct_ov6_02240D5C.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "unk_0202440C.h"
@@ -129,7 +129,7 @@ static void sub_02056400 (u32 param0, u8 * param1)
     GF_ASSERT(0 < param0 && param0 <= 493);
     v0 = (param0 - 1) * 6;
 
-    ReadFromNarcMemberByIndexPair(param1, 131, 0, v0, sizeof(u8) * 6);
+    NARC_ReadFromMemberByIndexPair(param1, 131, 0, v0, sizeof(u8) * 6);
 }
 
 static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)
@@ -164,7 +164,7 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
         param1->unk_00[v0].unk_07 = sub_02074470(v3, 178, NULL);
     }
 
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 }
 
 static int sub_020564B4 (UnkStruct_020564B4 * param0)
@@ -283,7 +283,7 @@ static UnkStruct_ov6_02240D5C * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkSt
     sub_02052314(v0, param0);
     sub_0202F000(v2, param1->unk_3C, v1);
     sub_0205213C(v0, v1, 1);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }

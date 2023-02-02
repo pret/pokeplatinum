@@ -20,7 +20,7 @@ UnkStruct_ov21_021D423C * ov21_021D423C (int param0)
 {
     UnkStruct_ov21_021D423C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D423C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D423C));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D423C));
 

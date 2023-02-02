@@ -684,7 +684,7 @@ UnkStruct_0206D140 * sub_0206D140 (int param0)
 {
     UnkStruct_0206D140 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0206D140));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0206D140));
     MI_CpuClearFast(v0, sizeof(UnkStruct_0206D140));
 
     return v0;
@@ -692,7 +692,7 @@ UnkStruct_0206D140 * sub_0206D140 (int param0)
 
 void sub_0206D158 (UnkStruct_0206D140 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_0206D160 (UnkStruct_0206D140 * param0, UnkStruct_02073C74 * param1, int param2, int param3, u32 param4)
@@ -1046,7 +1046,7 @@ void sub_0206D7C4 (UnkStruct_0203CDB0 * param0)
     v0 = 0;
     v1 = 0;
     v2 = 0;
-    v8 = GetPartyFromSavedata(param0->unk_0C);
+    v8 = Party_GetFromSavedata(param0->unk_0C);
     v4 = Party_GetCurrentCount(v8);
 
     for (v5 = 0; v5 < v4; v5++) {
@@ -1067,11 +1067,11 @@ void sub_0206D7C4 (UnkStruct_0203CDB0 * param0)
 
     if (v2 == 0) {
         if ((v0 == 1) && (v1 == 0)) {
-            v6 = sub_02054A74(GetPartyFromSavedata(param0->unk_0C));
+            v6 = sub_02054A74(Party_GetFromSavedata(param0->unk_0C));
             sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(param0, 2, 16, v9);
         } else if ((v0 == 0) && (v1 == 1)) {
-            v6 = sub_02054A74(GetPartyFromSavedata(param0->unk_0C));
+            v6 = sub_02054A74(Party_GetFromSavedata(param0->unk_0C));
             sub_0206CE38(v6, &v9->unk_00, &v9->unk_02, &v9->unk_03, &v9->unk_04);
             sub_0206CD70(param0, 2, 16, v9);
         }
@@ -1656,7 +1656,7 @@ void sub_0206E174 (UnkStruct_0203CDB0 * param0, u16 param1)
     UnkStruct_0206E1C0 * v1 = &v0.val27;
     UnkStruct_02073C74 * v2;
 
-    v2 = sub_02054A74(GetPartyFromSavedata(param0->unk_0C));
+    v2 = sub_02054A74(Party_GetFromSavedata(param0->unk_0C));
 
     sub_0206CE38(v2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0206CED0(32, v2, &v1->unk_05, v1->unk_06);
@@ -2970,7 +2970,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     UnkStruct_02025E6C * v5 = sub_02025E38(param0->unk_0C);
     UnkStruct_02026324 * v6 = sub_02027560(param0->unk_0C);
 
-    v4 = GetPartyFromSavedata(param0->unk_0C);
+    v4 = Party_GetFromSavedata(param0->unk_0C);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
     sub_0206CE74(param1, 0, sub_02074470(v3, 5, NULL), sub_02074470(v3, 111, NULL), sub_02025FD8(v5), sub_02025FCC(v5));

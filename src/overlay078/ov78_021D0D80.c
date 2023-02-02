@@ -285,13 +285,13 @@ int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov84_0223BA5C v2;
     BOOL v3;
 
-    CreateHeap(3, 47, 0x40000);
+    Heap_Create(3, 47, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov78_021D107C), 47);
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov78_021D107C));
 
-    GF_ExpHeap_FndInitAllocator(&v0->unk_2B4, 47, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_2B4, 47, 32);
 
     v1 = sub_02006840(param0);
     v0->unk_700 = sub_02027B50(v1->unk_04);
@@ -319,8 +319,8 @@ int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02018368(&v2);
     ov78_021D1224(v0->unk_94, 47);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
 
     ov78_021D1308(v0, 47);
     ov78_021D20A4(v0, 47);
@@ -416,12 +416,12 @@ int ov78_021D0FA8 (UnkStruct_020067E8 * param0, int * param1)
     ov78_021D2884(v0);
 
     ov78_021D12EC(v0->unk_94);
-    FreeToHeap(v0->unk_94);
+    Heap_FreeToHeap(v0->unk_94);
     ov78_021D10DC();
 
     sub_0201DC3C();
     sub_02006830(param0);
-    DestroyHeap(47);
+    Heap_Destroy(47);
 
     return 1;
 }
@@ -482,7 +482,7 @@ static void ov78_021D10F0 (void)
         GX_VRAM_TEXPLTT_0_G
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov78_021D1110 (int param0)
@@ -632,7 +632,7 @@ static void ov78_021D1308 (UnkStruct_ov78_021D107C * param0, int param1)
 static void ov78_021D13A0 (UnkStruct_ov78_021D107C * param0)
 {
     sub_0201A8FC(param0->unk_98);
-    FreeToHeap(param0->unk_98);
+    Heap_FreeToHeap(param0->unk_98);
 }
 
 static void ov78_021D13B8 (UnkStruct_ov78_021D107C * param0, int param1)
@@ -706,8 +706,8 @@ static void ov78_021D1528 (UnkStruct_ov78_021D107C * param0, int param1)
     param0->unk_24C[2] = sub_02009714(2, 2, param1);
     param0->unk_24C[3] = sub_02009714(2, 3, param1);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov78_021D1594 (UnkStruct_ov78_021D107C * param0)
@@ -762,12 +762,12 @@ static void ov78_021D1694 (UnkStruct_ov78_021D15CC * param0, int param1, int par
 static void ov78_021D16D8 (UnkStruct_ov78_021D15CC * param0, NNSFndAllocator * param1)
 {
     if (param0->unk_54) {
-        FreeToHeap(param0->unk_54);
+        Heap_FreeToHeap(param0->unk_54);
     }
 
     if (param0->unk_64) {
         NNS_G3dFreeAnmObj(param1, param0->unk_6C);
-        FreeToHeap(param0->unk_64);
+        Heap_FreeToHeap(param0->unk_64);
     }
 
     memset(param0, 0, sizeof(UnkStruct_ov78_021D15CC));
@@ -1116,7 +1116,7 @@ static void ov78_021D1CA8 (UnkStruct_ov78_021D107C * param0, int param1)
     switch (param0->unk_04) {
     case 0:
         ov78_021D213C(&param0->unk_10, param0->unk_648, &param0->unk_64C);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         param0->unk_04++;
         break;
     case 1:
@@ -1535,8 +1535,8 @@ static void ov78_021D24E4 (UnkStruct_ov78_021D2448 * param0)
     sub_02015238(param0->unk_08);
     sub_02015164(param0->unk_00);
     sub_020151D4(param0->unk_04);
-    FreeToHeap(param0->unk_0C);
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_0C);
+    Heap_FreeToHeap(param0->unk_10);
 }
 
 static void ov78_021D2508 (UnkStruct_ov78_021D2448 * param0, BOOL param1)
@@ -1716,7 +1716,7 @@ static void ov78_021D2884 (UnkStruct_ov78_021D107C * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         sub_0201A8FC(param0->unk_9C[v0]);
-        FreeToHeap(param0->unk_9C[v0]);
+        Heap_FreeToHeap(param0->unk_9C[v0]);
     }
 }
 

@@ -23,7 +23,7 @@
 #include "struct_defs/struct_0203F478.h"
 #include "struct_defs/struct_0205AA50.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
@@ -482,7 +482,7 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
             sub_020237BC(v3->unk_44);
             sub_020237BC(v3->unk_48);
             v3->unk_00 = 0;
-            FreeToHeap(v3);
+            Heap_FreeToHeap(v3);
 
             if (v1 != NULL) {
                 v1(v4);
@@ -501,7 +501,7 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
 {
     UnkStruct_0203EF60 * v0;
 
-    v0 = AllocFromHeap(11, sizeof(UnkStruct_0203EF60));
+    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203EF60));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -517,8 +517,8 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
 static void sub_0203EA50 (UnkStruct_0203E724 * param0)
 {
     sub_0200B190(param0->unk_2C);
-    FreeToHeap(param0->unk_30);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_30);
+    Heap_FreeToHeap(param0);
 
     return;
 }
@@ -547,7 +547,7 @@ UnkStruct_0203E724 * sub_0203EAB8 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkStruct_0203E724 * v0 = NULL;
 
-    v0 = AllocFromHeap(11, sizeof(UnkStruct_0203E724));
+    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203E724));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -680,7 +680,7 @@ static u16 sub_0203EB20 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * param
 
 static void sub_0203EF14 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * param1, int param2, u32 param3)
 {
-    u8 * v0 = AllocAndReadWholeNarcMemberByIndexPair(10, param2, 11);
+    u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(10, param2, 11);
 
     param1->unk_30 = (u8 *)v0;
     param1->unk_2C = sub_0200B144(1, 26, param3, 11);
@@ -853,7 +853,7 @@ static void sub_0203F0E4 (UnkStruct_0203E724 * param0, u16 param1)
 
 static void * sub_0203F0FC (int param0)
 {
-    return AllocAndReadWholeNarcMemberByIndexPair(10, MapHeader_GetScriptsArchiveID(param0), 11);
+    return NARC_AllocAndReadWholeMemberByIndexPair(10, MapHeader_GetScriptsArchiveID(param0), 11);
 }
 
 static u32 sub_0203F110 (int param0)
@@ -1103,7 +1103,7 @@ UnkStruct_0203F478 * sub_0203F478 (UnkStruct_0203CDB0 * param0, int param1)
     v6 = 0;
     v5 = sub_0203A448(param0);
     v5++;
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
 
     if (v5 == 1) {
         v0[0].unk_04 = 0xff;

@@ -60,7 +60,7 @@ static void NitroStaticInit (void)
 
 static BOOL ov44_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
-    UnkStruct_ov44_0225621C * v0 = (UnkStruct_ov44_0225621C *)AllocFromHeap(8, sizeof(UnkStruct_ov44_0225621C));
+    UnkStruct_ov44_0225621C * v0 = (UnkStruct_ov44_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov44_0225621C));
 
     if (v0 != NULL) {
         if (ov44_0225621C(v0, param1, param2, param3)) {
@@ -70,7 +70,7 @@ static BOOL ov44_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
             }
         }
 
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     return 0;
@@ -78,7 +78,7 @@ static BOOL ov44_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
 
 static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
-    Party * v0 = GetPartyFromSavedata(ov25_02254544(param1));
+    Party * v0 = Party_GetFromSavedata(ov25_02254544(param1));
     UnkStruct_02073C74 * v1;
     int v2;
     int v3 = 0;
@@ -127,7 +127,7 @@ static void ov44_02256314 (UnkStruct_ov44_0225621C * param0)
 {
     ov25_02255B34(param0->unk_40);
     ov44_022565F8(param0->unk_38);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov44_0225632C (u32 param0, u32 param1, u32 param2, void * param3)

@@ -30,7 +30,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
@@ -539,7 +539,7 @@ static void * ov17_0223F7E4 (void)
 {
     UnkStruct_ov17_0223F7E4 * v0;
 
-    v0 = AllocFromHeap(21, sizeof(UnkStruct_ov17_0223F7E4));
+    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_0223F7E4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F7E4));
     v0->unk_2C8 = -1;
 
@@ -588,10 +588,10 @@ void * ov17_0223F88C (UnkStruct_02095C48 * param0, UnkStruct_ov17_0223F88C * par
         int v4;
 
         for (v4 = 0; v4 < 5; v4++) {
-            v0->unk_20[v4] = AllocFromHeap(21, 0x800);
+            v0->unk_20[v4] = Heap_AllocFromHeap(21, 0x800);
             v3 = sub_020071D0(v1, Unk_ov17_02253250[v4], 1, &v2, 21);
             MI_CpuCopy32(v2->rawData, v0->unk_20[v4], 0x800);
-            FreeToHeap(v3);
+            Heap_FreeToHeap(v3);
         }
     }
 
@@ -603,7 +603,7 @@ void * ov17_0223F88C (UnkStruct_02095C48 * param0, UnkStruct_ov17_0223F88C * par
         v6 = v0->unk_04->unk_50;
 
         for (v7 = 0; v7 < 2; v7++) {
-            v0->unk_34[v7] = AllocFromHeap(21, 0x200);
+            v0->unk_34[v7] = Heap_AllocFromHeap(21, 0x200);
             sub_02003050(v6, 45, Unk_ov17_02253238[v7], 21, 1, 0, 0);
             v5 = sub_02003164(v6, 1);
             MI_CpuCopy16(v5, v0->unk_34[v7], 0x200);
@@ -625,15 +625,15 @@ void ov17_0223F960 (UnkStruct_ov17_0223F7E4 * param0)
     ov17_02252BCC(param0->unk_2FC);
 
     for (v0 = 0; v0 < 5; v0++) {
-        FreeToHeap(param0->unk_20[v0]);
+        Heap_FreeToHeap(param0->unk_20[v0]);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        FreeToHeap(param0->unk_34[v0]);
+        Heap_FreeToHeap(param0->unk_34[v0]);
     }
 
     ov17_022409F4(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov17_0223F9C4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int param2, void * param3)
@@ -1460,8 +1460,8 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param1[v1] != 0) {
-            v0->unk_12C[v1] = GetMoveAttribute(param1[v1], 10);
-            v0->unk_130[v1] = GetMoveAttribute(param1[v1], 11);
+            v0->unk_12C[v1] = MoveTable_GetMoveAttribute(param1[v1], 10);
+            v0->unk_130[v1] = MoveTable_GetMoveAttribute(param1[v1], 11);
         } else {
             v0->unk_12C[v1] = 0;
             v0->unk_130[v1] = 0;
@@ -1814,7 +1814,7 @@ static void ov17_022411E4 (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov17_0223F7E4 * v0 = param1;
 
     sub_0201958C(v0->unk_04->unk_24, 4, v0->unk_2C4->pRawData, 0x6000, 0);
-    FreeToHeap(v0->unk_2C0);
+    Heap_FreeToHeap(v0->unk_2C0);
 
     v0->unk_2C0 = NULL;
 

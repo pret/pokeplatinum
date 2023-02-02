@@ -5,16 +5,16 @@
 
 #include <nnsys.h>
 
-BOOL CreateHeap(u32 parent, u32 child, u32 size);
-BOOL CreateHeapAtEnd(u32 parent, u32 child, u32 size);
-void DestroyHeap(u32 heapID);
-void * AllocFromHeap(u32 heapID, u32 size);
-void * AllocFromHeapAtEnd(u32 heapID, u32 size);
-void FreeToHeap(void * ptr);
-void FreeToHeapExplicit(u32 heapID, void * ptr);
-u32 GF_ExpHeap_FndGetTotalFreeSize(u32 heapID);
-void GF_ExpHeap_FndInitAllocator(NNSFndAllocator * pAllocator, u32 heapID, int alignment);
-void ReallocFromHeap(void * ptr, u32 newSize);
+BOOL Heap_Create(u32 parent, u32 child, u32 size);
+BOOL Heap_CreateAtEnd(u32 parent, u32 child, u32 size);
+void Heap_Destroy(u32 heapID);
+void * Heap_AllocFromHeap(u32 heapID, u32 size);
+void * Heap_AllocFromHeapAtEnd(u32 heapID, u32 size);
+void Heap_FreeToHeap(void * ptr);
+void Heap_FreeToHeapExplicit(u32 heapID, void * ptr);
+u32 Heap_FndGetTotalFreeSizeForExpHeap(u32 heapID);
+void Heap_FndInitAllocatorForExpHeap(NNSFndAllocator * pAllocator, u32 heapID, int alignment);
+void Heap_ReallocFromHeap(void * ptr, u32 newSize);
 BOOL GF_heap_c_dummy_return_true(u32 heapID);
 
 #endif // POKEPLATINUM_UNK_02017E74_H

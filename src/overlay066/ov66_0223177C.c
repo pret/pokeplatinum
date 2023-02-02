@@ -106,7 +106,7 @@ UnkStruct_ov66_0223177C * ov66_0223177C (u32 param0)
 {
     UnkStruct_ov66_0223177C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov66_0223177C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov66_0223177C));
     memset(v0, 0, sizeof(UnkStruct_ov66_0223177C));
 
     ov66_02231D38(&v0->unk_08);
@@ -118,7 +118,7 @@ UnkStruct_ov66_0223177C * ov66_0223177C (u32 param0)
 void ov66_022317AC (UnkStruct_ov66_0223177C * param0)
 {
     ov66_02231EEC(&param0->unk_5C);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov66_022317C0 (UnkStruct_ov66_0223177C * param0)

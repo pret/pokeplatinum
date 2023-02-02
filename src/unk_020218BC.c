@@ -105,16 +105,16 @@ UnkStruct_020218BC * sub_020218BC (const UnkStruct_020095C4 * param0)
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_04);
 
-    v0 = AllocFromHeap(param0->unk_08, sizeof(UnkStruct_020218BC));
+    v0 = Heap_AllocFromHeap(param0->unk_08, sizeof(UnkStruct_020218BC));
     GF_ASSERT(v0);
 
     sub_02021A50(v0);
 
-    v0->unk_00 = AllocFromHeap(param0->unk_08, sizeof(UnkStruct_02022550) * param0->unk_00);
+    v0->unk_00 = Heap_AllocFromHeap(param0->unk_08, sizeof(UnkStruct_02022550) * param0->unk_00);
     GF_ASSERT(v0->unk_00);
     v0->unk_04 = param0->unk_00;
 
-    v0->unk_08 = AllocFromHeap(param0->unk_08, sizeof(UnkStruct_02022550 *) * param0->unk_00);
+    v0->unk_08 = Heap_AllocFromHeap(param0->unk_08, sizeof(UnkStruct_02022550 *) * param0->unk_00);
     GF_ASSERT(v0->unk_08);
 
     sub_02022518(v0);
@@ -143,12 +143,12 @@ BOOL sub_02021964 (UnkStruct_020218BC * param0)
 
     sub_020219C0(param0);
 
-    FreeToHeap(param0->unk_114);
-    FreeToHeap(param0->unk_08);
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_114);
+    Heap_FreeToHeap(param0->unk_08);
+    Heap_FreeToHeap(param0->unk_00);
 
     sub_02021A50(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     param0 = NULL;
 
@@ -330,11 +330,11 @@ void sub_02021BD4 (UnkStruct_02022550 * param0)
             UnkStruct_02021E2C * v3 = (UnkStruct_02021E2C *)&param0->unk_40;
 
             if (v3->unk_74 != NULL) {
-                FreeToHeap(v3->unk_74);
+                Heap_FreeToHeap(v3->unk_74);
             }
 
             if (v3->unk_78 != NULL) {
-                FreeToHeap(v3->unk_78);
+                Heap_FreeToHeap(v3->unk_78);
             }
         }
 
@@ -672,25 +672,25 @@ void sub_02022014 (int param0)
 {
     void * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(GXOamAttr) * 128);
+    v0 = Heap_AllocFromHeap(param0, sizeof(GXOamAttr) * 128);
 
     MI_CpuFill16(v0, 0x2C0, sizeof(GXOamAttr) * 128);
     DC_FlushRange(v0, sizeof(GXOamAttr) * 128);
     GX_LoadOAM(v0, 0, sizeof(GXOamAttr) * 128);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 void sub_0202204C (int param0)
 {
     void * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(GXOamAttr) * 128);
+    v0 = Heap_AllocFromHeap(param0, sizeof(GXOamAttr) * 128);
 
     MI_CpuFill16(v0, 0x2C0, sizeof(GXOamAttr) * 128);
     GXS_LoadOAM(v0, 0, sizeof(GXOamAttr) * 128);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 u32 sub_0202207C (const UnkStruct_02022550 * param0, u32 param1, u32 param2)
@@ -843,8 +843,8 @@ static void sub_02022264 (UnkStruct_02022550 * param0, int param1)
     v1 = NNS_G2dGetAnimSequenceByIdx(v0->unk_70, 0);
     v2 = NNS_G2dGetMCBankNumNodesRequired(v0->unk_6C);
 
-    v0->unk_74 = AllocFromHeap(param1, sizeof(NNSG2dNode) * v2);
-    v0->unk_78 = AllocFromHeap(param1, sizeof(NNSG2dCellAnimation) * v2);
+    v0->unk_74 = Heap_AllocFromHeap(param1, sizeof(NNSG2dNode) * v2);
+    v0->unk_78 = Heap_AllocFromHeap(param1, sizeof(NNSG2dCellAnimation) * v2);
 
     NNS_G2dInitMCAnimation((NNSG2dMultiCellAnimation *)&v0->unk_08, v0->unk_74, v0->unk_78, v2, v0->unk_04, v0->unk_00, v0->unk_6C);
     NNS_G2dSetAnimSequenceToMCAnimation((NNSG2dMultiCellAnimation *)&v0->unk_08, v1);

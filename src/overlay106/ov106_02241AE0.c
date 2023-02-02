@@ -37,9 +37,9 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -205,9 +205,9 @@ int ov106_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov106_02243118 * v1;
     UnkStruct_ov104_02235208 * v2;
 
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay104), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     ov106_022424C8();
-    CreateHeap(3, 98, 0x20000);
+    Heap_Create(3, 98, 0x20000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
@@ -332,8 +332,8 @@ int ov106_02241CF0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(98);
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay104));
+    Heap_Destroy(98);
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
     return 1;
 }
@@ -397,8 +397,8 @@ static BOOL ov106_02241E14 (UnkStruct_ov106_02243118 * param0)
 
         if (sub_02006844(param0->unk_04) == 1) {
             param0->unk_288 = param0->unk_BC->unk_14;
-            FreeToHeap(param0->unk_BC);
-            FreeToHeap(param0->unk_04);
+            Heap_FreeToHeap(param0->unk_BC);
+            Heap_FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
             ov106_0224248C(param0);
             param0->unk_10 = 0;
@@ -802,8 +802,8 @@ static void ov106_022424C8 (void)
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -837,7 +837,7 @@ static void ov106_02242500 (UnkStruct_ov106_02243118 * param0)
     ov106_022436E0(param0->unk_48, param0->unk_4C);
     ov106_02242F4C(param0, param0->unk_48);
 
-    GX_BothDispOn();
+    GXLayers_TurnBothDispOn();
 
     param0->unk_280 = ov106_022435FC(&param0->unk_C0, 0, 1, ov106_02242F24(param0), ov106_02242F3C(param0), NULL);
     param0->unk_284 = ov106_022435FC(&param0->unk_C0, 1, 1, 160, 160, NULL);
@@ -867,7 +867,7 @@ static void ov106_0224262C (UnkStruct_ov106_02243118 * param0)
     ov106_0224283C(param0, 3);
     ov106_02242884();
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     ov106_022428B8(param0, 4);
 
     return;
@@ -881,14 +881,14 @@ static void ov106_02242688 (UnkStruct_ov106_02243118 * param0)
 
 static void ov106_022426A4 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
     sub_02019044(param0, 3);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
     sub_02019044(param0, 4);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return;
 }
@@ -927,7 +927,7 @@ static void ov106_0224271C (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     return;
 }
 
@@ -1031,7 +1031,7 @@ static void ov106_0224273C (UnkStruct_02018340 * param0)
     }
 
     G2_SetBG0Priority(0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     return;
 }
@@ -1053,7 +1053,7 @@ static void ov106_02242884 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 6));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 6));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return;
 }
@@ -1224,7 +1224,7 @@ static void ov106_02242C2C (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 
 static void ov106_02242CA4 (UnkStruct_ov106_02243118 * param0)
 {
-    param0->unk_BC = AllocFromHeap(98, sizeof(UnkStruct_02098D38));
+    param0->unk_BC = Heap_AllocFromHeap(98, sizeof(UnkStruct_02098D38));
     memset(param0->unk_BC, 0, sizeof(UnkStruct_02098D38));
 
     param0->unk_BC->unk_00 = param0->unk_290;

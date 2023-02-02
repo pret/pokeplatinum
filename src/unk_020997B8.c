@@ -11,7 +11,7 @@
 
 UnkStruct_020997B8 * sub_020997B8 (u32 param0)
 {
-    UnkStruct_020997B8 * v0 = AllocFromHeap(param0, sizeof(UnkStruct_020997B8));
+    UnkStruct_020997B8 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020997B8));
 
     memset(v0, 0, sizeof(UnkStruct_020997B8));
     return v0;
@@ -19,7 +19,7 @@ UnkStruct_020997B8 * sub_020997B8 (u32 param0)
 
 void sub_020997D0 (UnkStruct_020997B8 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 u16 * sub_020997D8 (UnkStruct_02073C74 * param0, u32 param1)
@@ -40,8 +40,8 @@ u16 * sub_020997D8 (UnkStruct_02073C74 * param0, u32 param1)
         v2[v7] = (u16)sub_02074470(param0, 54 + v7, NULL);
     }
 
-    v0 = AllocFromHeap(param1, (44 / 2) * 2);
-    v1 = AllocFromHeap(param1, (44 / 2) * 2);
+    v0 = Heap_AllocFromHeap(param1, (44 / 2) * 2);
+    v1 = Heap_AllocFromHeap(param1, (44 / 2) * 2);
 
     sub_02077D28(v3, v5, v0);
 
@@ -77,7 +77,7 @@ u16 * sub_020997D8 (UnkStruct_02073C74 * param0, u32 param1)
         }
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return v1;
 }

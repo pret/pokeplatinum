@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
@@ -207,7 +207,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     UnkStruct_02025E6C * v3 = sub_02025E38(param1);
 
     param0->unk_83E[0] = sub_02025F30(v3);
-    v1 = GetPartyFromSavedata(param1);
+    v1 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_83E[1 + v0] = sub_02074470(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), 5, NULL);
@@ -409,7 +409,7 @@ BOOL sub_0204B3B8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param
     v1 = sub_0204B184(param1, param2, param7);
     v0 = sub_0204B470(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }
@@ -427,7 +427,7 @@ void sub_0204B404 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param
         sub_0204B1E8(param0, &(param1->unk_30[v0]), param4->unk_04[v0], param4->unk_00, param4->unk_08[v0], v1, v0, param3, param5);
     }
 
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 }
 
 static BOOL sub_0204B470 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * param1, u16 param2, UnkStruct_ov104_0223A348_sub2 * param3, u8 param4, u16 * param5, u16 * param6, UnkStruct_0204B404 * param7, int param8)
@@ -539,10 +539,10 @@ static BOOL sub_0204B470 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * para
 
 static void * sub_0204B630 (u16 param0, int param1)
 {
-    return AllocAndReadWholeNarcMemberByIndexPair(178, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(178, param0, param1);
 }
 
 static void sub_0204B640 (UnkStruct_0204B1E8 * param0, int param1)
 {
-    ReadWholeNarcMemberByIndexPair(param0, 179, param1);
+    NARC_ReadWholeMemberByIndexPair(param0, 179, param1);
 }

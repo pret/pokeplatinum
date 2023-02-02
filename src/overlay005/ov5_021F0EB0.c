@@ -39,7 +39,7 @@ static void(*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 UnkStruct_0201CD38 * ov5_021F0EB0 (UnkStruct_0203CDB0 * param0, u32 param1)
 {
     UnkStruct_0201CD38 * v0;
-    UnkStruct_ov5_021F0FB8 * v1 = AllocFromHeapAtEnd(param1, (sizeof(UnkStruct_ov5_021F0FB8)));
+    UnkStruct_ov5_021F0FB8 * v1 = Heap_AllocFromHeapAtEnd(param1, (sizeof(UnkStruct_ov5_021F0FB8)));
 
     memset(v1, 0, (sizeof(UnkStruct_ov5_021F0FB8)));
 
@@ -64,7 +64,7 @@ void ov5_021F0EFC (UnkStruct_0201CD38 * param0)
 {
     UnkStruct_ov5_021F0FB8 * v0 = sub_0201CED0(param0);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0200DA58(param0);
 }
 

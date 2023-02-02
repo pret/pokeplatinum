@@ -47,12 +47,12 @@ void ov19_021DA864 (UnkStruct_ov19_021DA8D8 * param0, NARC * param1)
 void ov19_021DA8D8 (UnkStruct_ov19_021DA8D8 * param0)
 {
     if (param0->unk_08 != NULL) {
-        FreeToHeap(param0->unk_08);
+        Heap_FreeToHeap(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_0C != NULL) {
-        FreeToHeap(param0->unk_0C);
+        Heap_FreeToHeap(param0->unk_0C);
         param0->unk_0C = NULL;
     }
 }

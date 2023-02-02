@@ -101,7 +101,7 @@ UnkStruct_ov23_022542D8 * ov23_022542CC (void)
 {
     UnkStruct_ov23_022542D8 * v0;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov23_022542D8));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
@@ -119,7 +119,7 @@ void ov23_022542D8 (UnkStruct_ov23_022542D8 * param0, UnkStruct_0203CDB0 * param
 
 void ov23_0225430C (UnkStruct_ov23_022542D8 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 const u32 ov23_02254314 (UnkStruct_ov23_022542D8 * param0)
@@ -274,7 +274,7 @@ UnkStruct_ov23_02254594 * ov23_02254588 (void)
 {
     UnkStruct_ov23_02254594 * v0;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov23_02254594));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 
@@ -297,7 +297,7 @@ void ov23_022545C4 (UnkStruct_ov23_02254594 * param0, const u8 param1, const u8 
 
 void ov23_022545D0 (UnkStruct_ov23_02254594 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 const u32 ov23_022545D8 (UnkStruct_ov23_02254594 * param0)

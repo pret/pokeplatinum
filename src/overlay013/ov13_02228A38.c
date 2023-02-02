@@ -25,14 +25,14 @@ struct UnkStruct_ov13_02228A50_t {
 
 UnkStruct_ov13_02228A50 * ov13_02228A38 (u32 param0)
 {
-    UnkStruct_ov13_02228A50 * v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov13_02228A50));
+    UnkStruct_ov13_02228A50 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov13_02228A50));
     memset(v0, 0, sizeof(UnkStruct_ov13_02228A50));
     return v0;
 }
 
 void ov13_02228A50 (UnkStruct_ov13_02228A50 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 UnkStruct_ov16_0226DC24 * ov13_02228A58 (UnkStruct_ov13_02228A50 * param0)

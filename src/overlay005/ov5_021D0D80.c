@@ -30,9 +30,9 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -175,25 +175,25 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
         sub_020531A0(v1);
 
         if (v1->unk_74->unk_00_20) {
-            HandleLoadOverlay(FS_OVERLAY_ID(overlay6), 2);
+            Overlay_LoadByID(FS_OVERLAY_ID(overlay6), 2);
 
             switch (ov5_021D1178(v1)) {
             case 0:
-                HandleLoadOverlay(FS_OVERLAY_ID(overlay8), 2);
+                Overlay_LoadByID(FS_OVERLAY_ID(overlay8), 2);
                 break;
             case 1:
-                HandleLoadOverlay(FS_OVERLAY_ID(overlay7), 2);
+                Overlay_LoadByID(FS_OVERLAY_ID(overlay7), 2);
                 break;
             case 2:
-                HandleLoadOverlay(FS_OVERLAY_ID(overlay9), 2);
+                Overlay_LoadByID(FS_OVERLAY_ID(overlay9), 2);
                 break;
             }
         }
 
-        CreateHeap(3, 4, v1->unk_74->unk_04);
+        Heap_Create(3, 4, v1->unk_74->unk_04);
         GF_ASSERT(v1->unk_04 == NULL);
 
-        v1->unk_04 = AllocFromHeap(4, sizeof(UnkStruct_0203CDB0_sub2));
+        v1->unk_04 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0203CDB0_sub2));
         MI_CpuClear8(v1->unk_04, sizeof(UnkStruct_0203CDB0_sub2));
         v1->unk_04->unk_04 = ov5_021D1A94(v1, 4, 8);
 
@@ -206,7 +206,7 @@ static int ov5_021D0DA4 (UnkStruct_020067E8 * param0, int * param1)
         ov5_021D15B4();
         ov5_021D154C();
 
-        GX_SwapDisplay();
+        GXLayers_SwapDisplay();
         v1->unk_08 = sub_02018340(4);
         ov5_021D1444(v1->unk_08);
         sub_0205D8CC(0, 1);
@@ -351,18 +351,18 @@ static int ov5_021D0FB4 (UnkStruct_020067E8 * param0, int * param1)
             sub_0201CBA0();
             ov5_021D1AE4(v0->unk_04->unk_04);
             sub_02017798(NULL, NULL);
-            FreeToHeap(v0->unk_08);
-            FreeToHeap(v0->unk_04);
+            Heap_FreeToHeap(v0->unk_08);
+            Heap_FreeToHeap(v0->unk_04);
 
             v0->unk_04 = NULL;
 
-            DestroyHeap(4);
+            Heap_Destroy(4);
 
             if (v0->unk_74->unk_00_20) {
-                UnloadOverlayByID(FS_OVERLAY_ID(overlay6));
-                UnloadOverlayByID(FS_OVERLAY_ID(overlay8));
-                UnloadOverlayByID(FS_OVERLAY_ID(overlay7));
-                UnloadOverlayByID(FS_OVERLAY_ID(overlay9));
+                Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));
+                Overlay_UnloadByID(FS_OVERLAY_ID(overlay8));
+                Overlay_UnloadByID(FS_OVERLAY_ID(overlay7));
+                Overlay_UnloadByID(FS_OVERLAY_ID(overlay9));
             }
 
             return 1;
@@ -576,7 +576,7 @@ static void ov5_021D1414 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 void ov5_021D1434 (UnkStruct_02018340 * param0)
@@ -677,7 +677,7 @@ static void ov5_021D1444 (UnkStruct_02018340 * param0)
 
 static void ov5_021D1524 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
     sub_02019044(param0, 3);
@@ -815,7 +815,7 @@ void ov5_021D1744 (const u8 param0)
 
 static void ov5_021D1790 (UnkStruct_0203CDB0 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, Unk_02100844);
 
     param0->unk_50 = ov5_021D38B8();
@@ -922,8 +922,8 @@ static void ov5_021D1878 (UnkStruct_0203CDB0 * param0)
 
 static void ov5_021D1968 (UnkStruct_0203CDB0 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_BothDispOn();
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_TurnBothDispOn();
     param0->unk_44 = ov5_021D5878();
     ov5_021D1578(param0->unk_44);
     param0->unk_48 = ov5_021D57BC();
@@ -957,8 +957,8 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     u16 * v1;
     UnkStruct_ov5_021D1A68 * v2;
 
-    v2 = AllocFromHeap(param0, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(96, param1, param0);
+    v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021D1A68));
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(96, param1, param0);
 
     for (v0 = 0; v0 < 24; v0++) {
         v2->unk_02[v0] = 0xffff;
@@ -973,7 +973,7 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     }
 
     v2->unk_00 = v0;
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
     return v2;
 }
 
@@ -989,7 +989,7 @@ static const int ov5_021D1A6C (const UnkStruct_ov5_021D1A68 * param0)
 
 static void ov5_021D1A70 (UnkStruct_ov5_021D1A68 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static BOOL ov5_021D1A78 (UnkStruct_0203CDB0 * param0)

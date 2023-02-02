@@ -53,7 +53,7 @@ static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C * param0);
 
 UnkStruct_ov20_021D3E0C * ov20_021D3A54 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
 {
-    UnkStruct_ov20_021D3E0C * v0 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D3E0C));
+    UnkStruct_ov20_021D3E0C * v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D3E0C));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -72,7 +72,7 @@ void ov20_021D3A80 (UnkStruct_ov20_021D3E0C * param0)
         sub_02021BD4(param0->unk_5C);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov20_021D3A98 (UnkStruct_ov20_021D3E0C * param0, NARC * param1)

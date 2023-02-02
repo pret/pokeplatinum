@@ -59,7 +59,7 @@ static void ov97_0222D04C (UnkStruct_ov97_0222D04C * param0)
 
     ov97_0222D2F8((void *)param0);
 
-    Unk_ov97_0223F1A4 = (UnkStruct_ov97_0223F1A4 *)AllocFromHeap(15, sizeof(UnkStruct_ov97_0223F1A4));
+    Unk_ov97_0223F1A4 = (UnkStruct_ov97_0223F1A4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_ov97_0223F1A4));
     MI_CpuFill8(Unk_ov97_0223F1A4, 0, sizeof(UnkStruct_ov97_0223F1A4));
 
     Unk_ov97_0223F1A4->unk_24 = 50;
@@ -248,7 +248,7 @@ void ov97_0222D2C4 (int param0, int param1, void * param2, void * param3)
 
 void ov97_0222D2DC (void)
 {
-    FreeToHeapExplicit(15, Unk_ov97_0223F1A4);
+    Heap_FreeToHeapExplicit(15, Unk_ov97_0223F1A4);
     Unk_ov97_0223F1A4 = NULL;
     sub_02036978();
 }

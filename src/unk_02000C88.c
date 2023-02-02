@@ -15,7 +15,7 @@
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_02003B60.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
@@ -179,7 +179,7 @@ static void sub_02000E54 (void)
         }
 
         if (Unk_02101D28.unk_08 != 0xffffffff) {
-            HandleLoadOverlay(Unk_02101D28.unk_08, 0);
+            Overlay_LoadByID(Unk_02101D28.unk_08, 0);
         }
 
         Unk_02101D28.unk_00 = Unk_02101D28.unk_08;
@@ -195,7 +195,7 @@ static void sub_02000E54 (void)
         Unk_02101D28.unk_04 = NULL;
 
         if (Unk_02101D28.unk_00 != 0xffffffff) {
-            UnloadOverlayByID(Unk_02101D28.unk_00);
+            Overlay_UnloadByID(Unk_02101D28.unk_00);
         }
     }
 }

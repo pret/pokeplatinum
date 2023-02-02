@@ -135,7 +135,7 @@ void sub_020916B4 (UnkStruct_0208D7BC * param0)
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     G3_ViewPort(0, 0, 255, 191);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(2);
 }

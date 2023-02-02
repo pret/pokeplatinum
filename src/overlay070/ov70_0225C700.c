@@ -51,7 +51,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
 
     {
         v0 = sub_02022F24(v1);
-        *param0 = AllocFromHeap(param3, v0);
+        *param0 = Heap_AllocFromHeap(param3, v0);
         memcpy(*param0, v1, v0);
     }
 
@@ -61,7 +61,7 @@ void ov70_0225C730 (void ** param0, NARC * param1, u32 param2, u32 param3)
         NNS_G3dPlttSetPlttKey(v5, v4);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 BOOL ov70_0225C7A0 (const UnkStruct_020170F4 * param0, const UnkStruct_02017294 * param1)

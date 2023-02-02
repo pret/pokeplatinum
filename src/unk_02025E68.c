@@ -19,7 +19,7 @@ UnkStruct_02025E6C * sub_02025E6C (u32 param0)
 {
     UnkStruct_02025E6C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02025E6C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02025E6C));
     sub_02025E8C(v0);
 
     return v0;

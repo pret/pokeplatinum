@@ -99,7 +99,7 @@ UnkStruct_02012744 * sub_02012744 (int param0, int param1)
     UnkStruct_02012744 * v0;
     int v1;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02012744));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02012744));
     GF_ASSERT(v0);
 
     for (v1 = 0; v1 < 12; v1++) {
@@ -109,7 +109,7 @@ UnkStruct_02012744 * sub_02012744 (int param0, int param1)
         GF_ASSERT(v0->unk_00[v1]);
     }
 
-    v0->unk_60 = AllocFromHeap(param1, sizeof(UnkStruct_02012CE0) * param0);
+    v0->unk_60 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02012CE0) * param0);
     GF_ASSERT(v0->unk_60);
 
     v0->unk_64 = param0;
@@ -125,11 +125,11 @@ void sub_020127BC (UnkStruct_02012744 * param0)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < 12; v0++) {
-        FreeToHeap(param0->unk_00[v0]);
+        Heap_FreeToHeap(param0->unk_00[v0]);
     }
 
-    FreeToHeap(param0->unk_60);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_60);
+    Heap_FreeToHeap(param0);
 }
 
 UnkStruct_02012CE0 * sub_020127E8 (const UnkStruct_020127E8 * param0)
@@ -152,14 +152,14 @@ UnkStruct_02012CE0 * sub_020127E8 (const UnkStruct_020127E8 * param0)
     v1.unk_10 = &v1;
 
     v2 = sub_02012DE4(param0->unk_04->unk_07, param0->unk_04->unk_08, param0->unk_2C, &v1);
-    v3 = AllocFromHeapAtEnd(param0->unk_2C, sizeof(NNSG2dImageProxy) * v2);
+    v3 = Heap_AllocFromHeapAtEnd(param0->unk_2C, sizeof(NNSG2dImageProxy) * v2);
 
-    v0->unk_00 = AllocFromHeap(param0->unk_2C, sizeof(UnkStruct_02012CE0_sub1) * v2);
+    v0->unk_00 = Heap_AllocFromHeap(param0->unk_2C, sizeof(UnkStruct_02012CE0_sub1) * v2);
     v0->unk_04 = v2;
 
     sub_02012E6C(param0->unk_04, &v1, v3, param0->unk_14, param0->unk_28, param0->unk_2C);
     sub_02013088(param0, &v1, v3, v0);
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
     sub_020131B8(&v1);
 
     return v0;
@@ -171,7 +171,7 @@ void sub_02012870 (UnkStruct_02012CE0 * param0)
     GF_ASSERT(param0->unk_00);
 
     sub_020130DC(param0);
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
     sub_02012CD0(param0);
 }
 
@@ -340,7 +340,7 @@ UnkStruct_02012B20 * sub_02012B20 (const UnkStruct_0205AA50 * param0, int param1
 {
     UnkStruct_02012B20 * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02012B20));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02012B20));
 
     v0->unk_00.unk_0C = &v0->unk_00;
     v0->unk_00.unk_10 = &v0->unk_00;
@@ -352,7 +352,7 @@ UnkStruct_02012B20 * sub_02012B20 (const UnkStruct_0205AA50 * param0, int param1
 void sub_02012B48 (UnkStruct_02012B20 * param0)
 {
     sub_020131B8(&param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 int sub_02012B58 (const UnkStruct_02012B20 * param0, int param1)
@@ -374,14 +374,14 @@ UnkStruct_02012CE0 * sub_02012B60 (const UnkStruct_020127E8 * param0, const UnkS
     v0->unk_0C = param0->unk_18;
     v0->unk_10 = param0->unk_1C;
 
-    v1 = AllocFromHeapAtEnd(param0->unk_2C, sizeof(NNSG2dImageProxy) * param1->unk_14);
+    v1 = Heap_AllocFromHeapAtEnd(param0->unk_2C, sizeof(NNSG2dImageProxy) * param1->unk_14);
 
-    v0->unk_00 = AllocFromHeap(param0->unk_2C, sizeof(UnkStruct_02012CE0_sub1) * param1->unk_14);
+    v0->unk_00 = Heap_AllocFromHeap(param0->unk_2C, sizeof(UnkStruct_02012CE0_sub1) * param1->unk_14);
     v0->unk_04 = param1->unk_14;
 
     sub_02012E6C(param0->unk_04, &param1->unk_00, v1, param0->unk_14, param0->unk_28, param0->unk_2C);
     sub_02013088(param0, &param1->unk_00, v1, v0);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }
@@ -401,7 +401,7 @@ void sub_02012BE0 (UnkStruct_02012CE0 * param0, const UnkStruct_02012B20 * param
 
     v4 = sub_02021FC8(v3);
     v0 = sub_02012B58(param1, v4);
-    v1 = (char *)AllocFromHeapAtEnd(param3, v0);
+    v1 = (char *)Heap_AllocFromHeapAtEnd(param3, v0);
 
     memset(v1, 0, v0);
 
@@ -416,7 +416,7 @@ void sub_02012BE0 (UnkStruct_02012CE0 * param0, const UnkStruct_02012B20 * param
         GXS_LoadOBJ(v1, NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DSUB), v0);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 void sub_02012C60 (const UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, char * param5)
@@ -590,7 +590,7 @@ static int sub_02012EE0 (const UnkStruct_0205AA50 * param0, const UnkStruct_0201
     }
 
     v1 *= 32;
-    v0 = AllocFromHeapAtEnd(param7, v1);
+    v0 = Heap_AllocFromHeapAtEnd(param7, v1);
 
     sub_02012C60(param0, v2, v3, param1->unk_00, param1->unk_04, v0);
     DC_FlushRange(v0, v1);
@@ -612,7 +612,7 @@ static int sub_02012EE0 (const UnkStruct_0205AA50 * param0, const UnkStruct_0201
     param2->attr.plttUse = GX_TEXPLTTCOLOR0_TRNS;
     param2->attr.mappingType = param4;
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return param5 + v1;
 }
@@ -766,7 +766,7 @@ static UnkStruct_02013034 * sub_02013188 (int param0)
 {
     UnkStruct_02013034 * v0;
 
-    v0 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_02013034));
+    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_02013034));
     GF_ASSERT(v0);
 
     v0->unk_0C = NULL;
@@ -778,7 +778,7 @@ static UnkStruct_02013034 * sub_02013188 (int param0)
 static void sub_020131A4 (UnkStruct_02013034 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void sub_020131B8 (UnkStruct_02013034 * param0)

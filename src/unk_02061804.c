@@ -174,8 +174,8 @@ UnkStruct_02061830 * sub_02061804 (UnkStruct_0203CDB0 * param0, int param1, int 
 
 void sub_02061830 (UnkStruct_02061830 * param0)
 {
-    FreeToHeapExplicit(11, sub_02062878(param0));
-    FreeToHeapExplicit(11, param0);
+    Heap_FreeToHeapExplicit(11, sub_02062878(param0));
+    Heap_FreeToHeapExplicit(11, param0);
 }
 
 void sub_0206184C (UnkStruct_02061830 * param0, int param1, int param2, int param3, const UnkStruct_020619DC * param4)
@@ -216,13 +216,13 @@ static UnkStruct_02061830 * sub_020618C8 (int param0)
     UnkStruct_02061AB4 * v1;
     UnkStruct_02061830 * v2;
 
-    v2 = AllocFromHeap(11, (sizeof(UnkStruct_02061830)));
+    v2 = Heap_AllocFromHeap(11, (sizeof(UnkStruct_02061830)));
 
     GF_ASSERT(v2 != NULL);
     memset(v2, 0, (sizeof(UnkStruct_02061830)));
 
     v0 = (sizeof(UnkStruct_02061AB4)) * param0;
-    v1 = AllocFromHeap(11, v0);
+    v1 = Heap_AllocFromHeap(11, v0);
 
     GF_ASSERT(v1 != NULL);
     memset(v1, 0, v0);
@@ -629,12 +629,12 @@ void sub_02062068 (const UnkStruct_02061830 * param0, int param1, int param2, co
     GF_ASSERT(param2);
 
     v0 = (sizeof(UnkStruct_020619DC)) * param2;
-    v1 = AllocFromHeapAtEnd(11, v0);
+    v1 = Heap_AllocFromHeapAtEnd(11, v0);
 
     GF_ASSERT(v1 != NULL);
     memcpy(v1, param3, v0);
 
-    v2 = AllocFromHeapAtEnd(11, (sizeof(UnkStruct_020620C4)));
+    v2 = Heap_AllocFromHeapAtEnd(11, (sizeof(UnkStruct_020620C4)));
     GF_ASSERT(v2 != NULL);
 
     v2->unk_00 = param1;
@@ -665,8 +665,8 @@ static void sub_020620C4 (UnkStruct_020620C4 * param0)
         param0->unk_08++;
     } while (param0->unk_08 < param0->unk_04);
 
-    FreeToHeapExplicit(11, param0->unk_10);
-    FreeToHeapExplicit(11, param0);
+    Heap_FreeToHeapExplicit(11, param0->unk_10);
+    Heap_FreeToHeapExplicit(11, param0);
 }
 
 static UnkStruct_02061AB4 * sub_02062120 (const UnkStruct_02061830 * param0)

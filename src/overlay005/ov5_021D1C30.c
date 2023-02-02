@@ -181,7 +181,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
 
     {
         if (param0->unk_00_11 == 0) {
-            BOOL v0 = sub_02054AB0(GetPartyFromSavedata(param1->unk_0C));
+            BOOL v0 = sub_02054AB0(Party_GetFromSavedata(param1->unk_0C));
 
             if (sub_0206A984(sub_020507E4(param1->unk_0C)) == 1) {
                 v0 = 1;
@@ -211,7 +211,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
             v1 |= 1 << 0;
         }
 
-        if (sub_020549A0(GetPartyFromSavedata(param1->unk_0C), 127) != 0xff) {
+        if (sub_020549A0(Party_GetFromSavedata(param1->unk_0C), 127) != 0xff) {
             v1 |= 1 << 1;
         }
 
@@ -751,7 +751,7 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
         if (ov5_021E0118(param0->unk_3C, v2, param1)
 
             && sub_02025F34(v1, 3)) {
-            if (sub_020549A0(GetPartyFromSavedata(param0->unk_0C), 57) != 0xff) {
+            if (sub_020549A0(Party_GetFromSavedata(param0->unk_0C), 57) != 0xff) {
                 return 10004;
             }
         }
@@ -896,7 +896,7 @@ static BOOL ov5_021D29D8 (UnkStruct_0203CDB0 * param0, const int param1, const i
 
 static BOOL ov5_021D2ABC (UnkStruct_0203CDB0 * param0)
 {
-    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     UnkStruct_02026310 * v1 = sub_02026310(param0->unk_0C);
 
     if (ov5_021E7154(v1, v0, param0) == 1) {
@@ -954,7 +954,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 {
     int v0, v1;
     UnkStruct_02073C74 * v2;
-    Party * v3 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v3 = Party_GetFromSavedata(param0->unk_0C);
     u16 v4 = sub_0203A138(param0->unk_1C->unk_00);
 
     v1 = Party_GetCurrentCount(v3);
@@ -967,7 +967,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov5_021D2B94 (UnkStruct_0203CDB0 * param0)
 {
-    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     u16 * v1 = sub_0203A78C(sub_0203A790(param0->unk_0C));
 
     (*v1)++;

@@ -26,8 +26,8 @@ void sub_020985E4 (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
     UnkStruct_0209862C * v0;
     UnkStruct_020985E4 * v1;
 
-    v0 = AllocFromHeap(11, sizeof(UnkStruct_0209862C));
-    v1 = AllocFromHeap(11, sizeof(UnkStruct_020985E4));
+    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209862C));
+    v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_020985E4));
 
     v1->unk_04 = sub_02025E44(param1);
     v1->unk_08 = sub_02025E38(param1);
@@ -83,8 +83,8 @@ BOOL sub_0209862C (UnkStruct_020508D4 * param0)
         v1->unk_00++;
         break;
     case 5:
-        FreeToHeap(v1->unk_04);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1->unk_04);
+        Heap_FreeToHeap(v1);
         return 1;
         break;
     }

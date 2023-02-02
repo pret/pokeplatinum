@@ -109,7 +109,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
             sub_0201A8FC(&param0->unk_04[v0]);
         }
 
-        FreeToHeap(param0->unk_04);
+        Heap_FreeToHeap(param0->unk_04);
         param0->unk_04 = NULL;
     }
 
@@ -135,7 +135,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_28) {
-        FreeToHeap(param0->unk_28);
+        Heap_FreeToHeap(param0->unk_28);
     }
 
     if (param0->unk_30) {
@@ -143,7 +143,7 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_34) {
-        FreeToHeap(param0->unk_34);
+        Heap_FreeToHeap(param0->unk_34);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -249,7 +249,7 @@ static void ov19_021DAB44 (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 {
     if (param0->unk_4C == NULL) {
-        UnkStruct_ov19_021DAE2C * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DAE2C));
+        UnkStruct_ov19_021DAE2C * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DAE2C));
 
         if (v0) {
             const UnkStruct_ov19_021D5BAC * v1 = ov19_021D5E70(param0->unk_10);
@@ -266,7 +266,7 @@ static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 static void ov19_021DAC90 (UnkStruct_ov19_021DA9E0 * param0)
 {
     if (param0->unk_4C) {
-        FreeToHeap(sub_0201CED0(param0->unk_4C));
+        Heap_FreeToHeap(sub_0201CED0(param0->unk_4C));
         sub_0200DA58(param0->unk_4C);
         param0->unk_4C = NULL;
     }

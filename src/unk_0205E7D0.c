@@ -116,7 +116,7 @@ void sub_0205E884 (UnkStruct_0205E884 * param0, int param1)
 
 void sub_0205E8E0 (UnkStruct_0205E884 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_0205E8E8 (UnkStruct_0205E884 * param0)
@@ -131,7 +131,7 @@ static UnkStruct_0205E884 * sub_0205E8FC (void)
 {
     UnkStruct_0205E884 * v0;
 
-    v0 = AllocFromHeap(11, (sizeof(UnkStruct_0205E884)));
+    v0 = Heap_AllocFromHeap(11, (sizeof(UnkStruct_0205E884)));
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, (sizeof(UnkStruct_0205E884)));
 

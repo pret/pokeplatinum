@@ -154,7 +154,7 @@ static void ov5_021F48F0 (UnkStruct_ov101_021D5D90 * param0, void * param1)
     UnkStruct_021F487C * v0 = param1;
 
     sub_02073A90(v0->unk_88);
-    FreeToHeap(v0->unk_88);
+    Heap_FreeToHeap(v0->unk_88);
 }
 
 static void ov5_021F4908 (UnkStruct_ov101_021D5D90 * param0, void * param1)

@@ -14,7 +14,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -32,7 +32,7 @@ UnkStruct_0209903C * sub_02098FFC (int param0, u16 param1, u16 param2, u16 param
 {
     UnkStruct_0209903C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0209903C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0209903C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209903C));
 
     v0->unk_00 = param0;
@@ -55,7 +55,7 @@ void sub_0209903C (UnkStruct_0209903C * param0)
 {
     sub_02099118(param0);
     MI_CpuClear8(param0, sizeof(UnkStruct_0209903C));
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void sub_02099058 (UnkStruct_0209903C * param0)
@@ -78,7 +78,7 @@ static void sub_02099058 (UnkStruct_0209903C * param0)
 
     sub_020993A8(param0);
 
-    param0->unk_1C4 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0209903C_sub1));
+    param0->unk_1C4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0209903C_sub1));
     MI_CpuClear8(param0->unk_1C4, sizeof(UnkStruct_0209903C_sub1));
 }
 
@@ -86,7 +86,7 @@ static void sub_02099118 (UnkStruct_0209903C * param0)
 {
     u32 v0;
 
-    FreeToHeap(param0->unk_1C4);
+    Heap_FreeToHeap(param0->unk_1C4);
     sub_02021964(param0->unk_10);
     sub_0200A508(param0->unk_1B4[0]);
     sub_0200A700(param0->unk_1B4[1]);
@@ -119,7 +119,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
         return NULL;
     }
 
-    v3 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0209916C));
+    v3 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0209916C));
     MI_CpuClear8(v3, sizeof(UnkStruct_0209916C));
     v3->unk_00 = v1;
 
@@ -134,10 +134,10 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     sub_020099D4(param0->unk_1A4[1], param0->unk_1B4[1]->unk_00[v1], 88, 3 + param1, 0, param0->unk_00);
     sub_0200A6B8(param0->unk_1B4[1]->unk_00[v1]);
 
-    v4 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0200D0F4));
+    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0200D0F4));
 
-    v4->unk_08 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov19_021DA864));
+    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
+    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov19_021DA864));
     v4->unk_04 = v4->unk_08->unk_00;
 
     sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
@@ -193,7 +193,7 @@ void sub_02099370 (UnkStruct_0209903C * param0, UnkStruct_0209916C * param1)
     param0->unk_1C4[param1->unk_00].unk_02 = 0;
     param0->unk_1C4[param1->unk_00].unk_01 = 0;
 
-    FreeToHeap(param1);
+    Heap_FreeToHeap(param1);
 }
 
 static void sub_020993A8 (UnkStruct_0209903C * param0)

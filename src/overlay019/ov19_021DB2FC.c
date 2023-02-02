@@ -67,7 +67,7 @@ void ov19_021DB370 (UnkStruct_ov19_021DB6F0 * param0)
         }
 
         if (param0->unk_24) {
-            FreeToHeap(param0->unk_24);
+            Heap_FreeToHeap(param0->unk_24);
         }
 
         if (param0->unk_14) {
@@ -82,7 +82,7 @@ void ov19_021DB370 (UnkStruct_ov19_021DB6F0 * param0)
             sub_020237BC(param0->unk_34);
         }
 
-        FreeToHeap(param0->unk_18);
+        Heap_FreeToHeap(param0->unk_18);
         param0->unk_18 = NULL;
     }
 }

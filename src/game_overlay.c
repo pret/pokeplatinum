@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "poke_overlay.h"
+#include "game_overlay.h"
 
 typedef enum PMiOverlayRegion {
     OVERLAY_REGION_MAIN,
@@ -28,9 +28,9 @@ static BOOL GetOverlayRamBounds(const FSOverlayID param0, u32 * param1, u32 * pa
 static BOOL LoadOverlayNormal(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInit(MIProcessor param0, FSOverlayID param1);
 static BOOL LoadOverlayNoInitAsync(MIProcessor param0, FSOverlayID param1);
-void UnloadOverlayByID(const FSOverlayID param0);
-int GetOverlayLoadDestination(const FSOverlayID param0);
-BOOL HandleLoadOverlay(const FSOverlayID param0, int param1);
+void Overlay_UnloadByID(const FSOverlayID param0);
+int Overlay_GetLoadDestination(const FSOverlayID param0);
+BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 
 static UnkStruct_021BF370 Unk_021BF370;
 
@@ -42,12 +42,12 @@ static void FreeOverlayAllocation (PMiLoadedOverlay * param0)
     param0->isActive = 0;
 }
 
-void UnloadOverlayByID (const FSOverlayID overlayID)
+void Overlay_UnloadByID (const FSOverlayID overlayID)
 {
     PMiLoadedOverlay * table;
     int i;
 
-    table = GetLoadedOverlaysInRegion(GetOverlayLoadDestination(overlayID));
+    table = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(overlayID));
 
     for (i = 0; i < 8; i++) {
         if ((table[i].isActive == 1) && (table[i].id == overlayID)) {
@@ -57,7 +57,7 @@ void UnloadOverlayByID (const FSOverlayID overlayID)
     }
 }
 
-int GetOverlayLoadDestination (const FSOverlayID overlayID)
+int Overlay_GetLoadDestination (const FSOverlayID overlayID)
 {
     FSOverlayInfo info;
     u32 v2;
@@ -74,7 +74,7 @@ int GetOverlayLoadDestination (const FSOverlayID overlayID)
     return OVERLAY_REGION_MAIN;
 }
 
-BOOL HandleLoadOverlay (const FSOverlayID overlayID, int loadType)
+BOOL Overlay_LoadByID (const FSOverlayID overlayID, int loadType)
 {
     BOOL result;
     u32 dmaBak = FS_DMA_NOT_USE;
@@ -86,7 +86,7 @@ BOOL HandleLoadOverlay (const FSOverlayID overlayID, int loadType)
         return FALSE;
     }
 
-    overlayRegion = GetOverlayLoadDestination(overlayID);
+    overlayRegion = Overlay_GetLoadDestination(overlayID);
     loadedOverlays = GetLoadedOverlaysInRegion(overlayRegion);
 
     for (i = 0; i < 8; i++) {
@@ -144,7 +144,7 @@ static BOOL CanOverlayBeLoaded (const FSOverlayID param0)
         return FALSE;
     }
 
-    loadedOverlay = GetLoadedOverlaysInRegion(GetOverlayLoadDestination(param0));
+    loadedOverlay = GetLoadedOverlaysInRegion(Overlay_GetLoadDestination(param0));
 
     for (i = 0; i < 8; i++) {
         if (loadedOverlay[i].isActive == TRUE && GetOverlayRamBounds(loadedOverlay[i].id, &theirStart, &theirEnd) == TRUE) {

@@ -653,7 +653,7 @@ BOOL ov104_0223A0C4 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * par
     v1 = ov104_0222DD04(&param1->unk_00, param2, param7, ov104_0223A77C(param0->unk_0F));
     v0 = ov104_0223A118(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }
@@ -912,7 +912,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
 
     v3 = sub_02051D8C(param0->unk_04, ov104_0223A700(param0->unk_0F));
     v4 = param1->unk_08;
-    v5 = GetPartyFromSavedata(v4);
+    v5 = Party_GetFromSavedata(v4);
 
     sub_020521B8(v3, NULL, param1->unk_08, param1->unk_1C, param1->unk_0C, param1->unk_10, param1->unk_20);
 
@@ -937,7 +937,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
         sub_0205213C(v3, v6, 0);
     }
 
-    FreeToHeap(v6);
+    Heap_FreeToHeap(v6);
     sub_02052894(v3);
 
     ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->unk_04);
@@ -973,7 +973,7 @@ static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_022
         Party_AddPokemon(param0->unk_04[param3], v2);
     }
 
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 }
 
 static u32 ov104_0223A700 (u8 param0)

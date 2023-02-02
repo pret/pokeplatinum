@@ -22,7 +22,7 @@
 #include "overlay025/struct_ov25_02254560_1.h"
 
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201E3D8.h"
@@ -169,10 +169,10 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** para
 {
     UnkStruct_ov25_02253CE0 * v0;
 
-    CreateHeap(3, 7, 49152);
-    CreateHeap(3, 8, 49152);
+    Heap_Create(3, 7, 49152);
+    Heap_Create(3, 8, 49152);
 
-    v0 = AllocFromHeap(7, sizeof(UnkStruct_ov25_02253CE0));
+    v0 = Heap_AllocFromHeap(7, sizeof(UnkStruct_ov25_02253CE0));
 
     if (v0 != NULL) {
         *param1 = v0;
@@ -303,10 +303,10 @@ static void ov25_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
         *(v1->unk_34) = NULL;
 
         ov25_02253E20(v1);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         sub_0200DA58(param0);
-        DestroyHeap(7);
-        DestroyHeap(8);
+        Heap_Destroy(7);
+        Heap_Destroy(8);
     }
 }
 
@@ -524,7 +524,7 @@ static void ov25_02254170 (UnkStruct_ov25_02253CE0 * param0, int param1)
 
         for (v0 = 0; v0 < NELEMS(Unk_ov25_02255E7C); v0++) {
             if (Unk_ov25_02255E7C[v0].unk_00 == param1) {
-                HandleLoadOverlay(Unk_ov25_02255E7C[v0].unk_04, 2);
+                Overlay_LoadByID(Unk_ov25_02255E7C[v0].unk_04, 2);
                 param0->unk_14 = param1;
                 param0->unk_18 = Unk_ov25_02255E7C[v0].unk_04;
                 break;
@@ -536,7 +536,7 @@ static void ov25_02254170 (UnkStruct_ov25_02253CE0 * param0, int param1)
 static void ov25_022541BC (UnkStruct_ov25_02253CE0 * param0)
 {
     if (param0->unk_14 != -1) {
-        UnloadOverlayByID(param0->unk_18);
+        Overlay_UnloadByID(param0->unk_18);
         param0->unk_14 = -1;
     }
 }

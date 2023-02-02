@@ -39,8 +39,8 @@ int sub_02017498 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -49,7 +49,7 @@ int sub_02017498 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    CreateHeap(3, 116, (0x20000 + 0x8000));
+    Heap_Create(3, 116, (0x20000 + 0x8000));
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_02017498), 116);
     MI_CpuClear8(v0, sizeof(UnkStruct_02017498));
@@ -138,9 +138,9 @@ int sub_02017658 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02017498 * v0 = sub_0200682C(param0);
 
     sub_020176B4(v0);
-    FreeToHeap(v0->unk_00);
+    Heap_FreeToHeap(v0->unk_00);
     sub_02006830(param0);
-    DestroyHeap(116);
+    Heap_Destroy(116);
 
     return 1;
 }
@@ -148,7 +148,7 @@ int sub_02017658 (UnkStruct_020067E8 * param0, int * param1)
 static void sub_0201767C (UnkStruct_02017498 * param0)
 {
     if (param0->unk_88 == 0) {
-        param0->unk_18 = AllocFromHeap(116, 0x20000 + 32);
+        param0->unk_18 = Heap_AllocFromHeap(116, 0x20000 + 32);
         param0->unk_1C = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_18 + 31) / 32 * 32), 0x20000);
 
         sub_02099550();
@@ -162,7 +162,7 @@ static void sub_020176B4 (UnkStruct_02017498 * param0)
     if (param0->unk_88 == 1) {
         NNS_FndDestroyExpHeap(param0->unk_1C);
 
-        FreeToHeap(param0->unk_18);
+        Heap_FreeToHeap(param0->unk_18);
         sub_020995C4();
         sub_02099560();
         sub_020334CC();

@@ -18,7 +18,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -74,8 +74,8 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -83,7 +83,7 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     G2S_BlendNone();
 
     sub_02017DD4(4, 8);
-    CreateHeap(3, 42, 0x20000);
+    Heap_Create(3, 42, 0x20000);
 
     v1 = sub_02006840(param0);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov81_021D1610), 42);
@@ -106,9 +106,9 @@ int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     ov81_021D1434(v0);
 
     sub_02017798(ov81_021D0F00, v0);
-    GX_BothDispOn();
+    GXLayers_TurnBothDispOn();
     sub_02039734();
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(67, 0, 0);
 
     return 1;
@@ -152,7 +152,7 @@ int ov81_021D0EC4 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02002C28(0);
     sub_02006830(param0);
-    DestroyHeap(42);
+    Heap_Destroy(42);
 
     return 1;
 }
@@ -180,7 +180,7 @@ static void ov81_021D0F20 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov81_021D0F40 (UnkStruct_02018340 * param0)
@@ -281,12 +281,12 @@ static void ov81_021D0F40 (UnkStruct_02018340 * param0)
 
 static void ov81_021D101C (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
+    GXLayers_DisableEngineALayers();
     sub_02019044(param0, 3);
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeapExplicit(42, param0);
+    Heap_FreeToHeapExplicit(42, param0);
 }
 
 static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)

@@ -71,7 +71,7 @@ int ov115_02260440 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov115_02260440 * v1 = sub_02006840(param0);
     BOOL v2;
 
-    CreateHeap(3, 99, 0x60000);
+    Heap_Create(3, 99, 0x60000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov115_0226095C), 99);
     memset(v0, 0, sizeof(UnkStruct_ov115_0226095C));
@@ -383,7 +383,7 @@ int ov115_022608E4 (UnkStruct_020067E8 * param0, int * param1)
         ov115_02260B30(v0);
 
         sub_02006830(param0);
-        DestroyHeap(99);
+        Heap_Destroy(99);
         sub_020388F4(0, 1);
 
         if (v2 == 1) {
@@ -544,7 +544,7 @@ static void ov115_02260ADC (UnkStruct_ov115_0226095C * param0, u32 param1)
 
 static void ov115_02260B30 (UnkStruct_ov115_0226095C * param0)
 {
-    FreeToHeap(param0->unk_48.unk_04);
+    Heap_FreeToHeap(param0->unk_48.unk_04);
     param0->unk_48.unk_04 = NULL;
     param0->unk_48.unk_00 = 0;
 }

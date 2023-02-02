@@ -505,7 +505,7 @@ static void ov94_022418B8 (UnkStruct_ov94_0223FD4C * param0)
 {
     param0->unk_BAC = sub_02023790((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 90);
-    param0->unk_10E4 = AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
+    param0->unk_10E4 = Heap_AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
@@ -517,9 +517,9 @@ static void ov94_022418B8 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_02241920 (UnkStruct_ov94_0223FD4C * param0)
 {
-    FreeToHeap(param0->unk_10E4->unk_14);
-    FreeToHeap(param0->unk_10E4->unk_18);
-    FreeToHeap(param0->unk_10E4);
+    Heap_FreeToHeap(param0->unk_10E4->unk_14);
+    Heap_FreeToHeap(param0->unk_10E4->unk_18);
+    Heap_FreeToHeap(param0->unk_10E4);
     sub_020237BC(param0->unk_BAC);
     sub_020237BC(param0->unk_BB0);
 }
@@ -1063,7 +1063,7 @@ u8 * ov94_02242548 (int param0)
 {
     u32 v0, v1, v2;
     u16 * v3;
-    u8 * v4 = AllocFromHeap(62, 493 + 1);
+    u8 * v4 = Heap_AllocFromHeap(62, 493 + 1);
 
     MI_CpuClearFast(v4, 493 + 1);
 
@@ -1076,7 +1076,7 @@ u8 * ov94_02242548 (int param0)
         }
     }
 
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 
     return v4;
 }

@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0208C06C.h"
 
 #include "unk_020041CC.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "heap.h"
 #include "gx_layers.h"
 #include "unk_020277A4.h"
@@ -50,7 +50,7 @@ static int sub_0208BEBC (UnkStruct_020067E8 * param0, int * param1, int param2)
 {
     UnkStruct_0208C06C * v0;
 
-    CreateHeap(3, 102, 0x55000);
+    Heap_Create(3, 102, 0x55000);
     v0 = sub_0208BA78(param0);
     ov62_02230060(v0);
     sub_0200544C(1, (127 / 3));
@@ -132,10 +132,10 @@ static int sub_0208BF6C (UnkStruct_020067E8 * param0, int * param1)
     break;
     default:
         ov62_0222F514(v0);
-        DestroyHeap(102);
-        UnloadOverlayByID(FS_OVERLAY_ID(overlay62));
+        Heap_Destroy(102);
+        Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
         Unk_021BF67C.unk_65 = 0;
-        GX_SwapDisplay();
+        GXLayers_SwapDisplay();
 
         return 1;
     }

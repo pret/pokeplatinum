@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_0202D7A8.h"
 #include "overlay006/ov6_022475B0.h"
@@ -17,7 +17,7 @@ void ov6_022475B0 (UnkStruct_021C0794 * param0)
     int v3[2];
     int * v4;
 
-    v4 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 8, 4);
+    v4 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 8, 4);
 
     sub_0202DA10(param0, &v1, &v2);
 
@@ -42,7 +42,7 @@ void ov6_022475B0 (UnkStruct_021C0794 * param0)
         }
     }
 
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 }
 
 int ov6_02247624 (UnkStruct_021C0794 * param0)
@@ -55,10 +55,10 @@ int ov6_02247624 (UnkStruct_021C0794 * param0)
 
     GF_ASSERT(v2 != 0xffff);
 
-    v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 8, 4);
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 8, 4);
     v0 = v1[v2];
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }

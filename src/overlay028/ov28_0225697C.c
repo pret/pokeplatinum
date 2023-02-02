@@ -461,7 +461,7 @@ static const struct {
 
 BOOL ov28_0225697C (UnkStruct_ov28_0225697C ** param0, const UnkStruct_ov28_0225697C_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov28_0225697C * v0 = (UnkStruct_ov28_0225697C *)AllocFromHeap(8, sizeof(UnkStruct_ov28_0225697C));
+    UnkStruct_ov28_0225697C * v0 = (UnkStruct_ov28_0225697C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov28_0225697C));
 
     if (v0 != NULL) {
         v0->unk_00 = param1;
@@ -478,7 +478,7 @@ BOOL ov28_0225697C (UnkStruct_ov28_0225697C ** param0, const UnkStruct_ov28_0225
 void ov28_022569AC (UnkStruct_ov28_0225697C * param0)
 {
     if (param0) {
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

@@ -59,11 +59,11 @@ void sub_0201F834 (int param0, int param1)
     int v0;
 
     if (Unk_021C0764 == NULL) {
-        Unk_021C0764 = AllocFromHeap(param1, sizeof(UnkStruct_0201FD9C));
+        Unk_021C0764 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0201FD9C));
         MI_CpuClear32(Unk_021C0764, sizeof(UnkStruct_0201FD9C));
 
         Unk_021C0764->unk_04 = param0;
-        Unk_021C0764->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_0201FB20) * param0);
+        Unk_021C0764->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0201FB20) * param0);
 
         for (v0 = 0; v0 < param0; v0++) {
             sub_0201FB20(Unk_021C0764->unk_00 + v0);
@@ -84,8 +84,8 @@ void sub_0201F8B4 (void)
 {
     if (Unk_021C0764 != NULL) {
         sub_0201FA18();
-        FreeToHeap(Unk_021C0764->unk_00);
-        FreeToHeap(Unk_021C0764);
+        Heap_FreeToHeap(Unk_021C0764->unk_00);
+        Heap_FreeToHeap(Unk_021C0764);
         Unk_021C0764 = NULL;
     }
 }

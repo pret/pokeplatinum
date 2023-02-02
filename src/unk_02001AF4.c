@@ -50,7 +50,7 @@ static void sub_02002018(UnkStruct_02001AF4 * param0, u8 * param1, u8 * param2, 
 
 UnkStruct_02001AF4 * sub_02001AF4 (const UnkStruct_02081CF4 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u32 param5)
 {
-    UnkStruct_02001AF4 * v0 = (UnkStruct_02001AF4 *)AllocFromHeap(param4, sizeof(UnkStruct_02001AF4));
+    UnkStruct_02001AF4 * v0 = (UnkStruct_02001AF4 *)Heap_AllocFromHeap(param4, sizeof(UnkStruct_02001AF4));
 
     v0->unk_00 = *param0;
     v0->unk_0C = sub_020149F0(param4);
@@ -89,7 +89,7 @@ void sub_02001BC4 (UnkStruct_02001AF4 * param0, u8 * param1)
     }
 
     sub_02014A20(param0->unk_0C);
-    FreeToHeapExplicit(param0->unk_1C, param0);
+    Heap_FreeToHeapExplicit(param0->unk_1C, param0);
 }
 
 u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
@@ -436,7 +436,7 @@ void sub_02002154 (UnkStruct_02001AF4 * param0, u32 param1)
 {
     sub_0200DC9C(param0->unk_00.unk_04, 0);
     sub_0201A8FC(param0->unk_00.unk_04);
-    FreeToHeapExplicit(param1, param0->unk_00.unk_04);
+    Heap_FreeToHeapExplicit(param1, param0->unk_00.unk_04);
     sub_02013A3C((UnkStruct_02013A04 *)param0->unk_00.unk_00);
     sub_02001BC4(param0, NULL);
 }

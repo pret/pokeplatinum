@@ -25,7 +25,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
@@ -544,7 +544,7 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     v2 = sub_0200B29C(param2, param0, 102, 62);
     v0 = sub_0200B1EC(param1, v10);
 
-    GetItemNameIntoString(v5, v8, 62);
+    Item_GetNameIntoString(v5, v8, 62);
 
     for (v9 = 0; v9 < 5; v9++) {
         sub_0201ADA4(&param3[v9], 0x0);
@@ -597,7 +597,7 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
 void ov94_0223DB2C (UnkStruct_02073C74 * param0)
 {
     UnkStruct_02008A90 v0;
-    u8 * v1 = AllocFromHeap(62, (0x20 * 10 * 10));
+    u8 * v1 = Heap_AllocFromHeap(62, (0x20 * 10 * 10));
 
     sub_02075EF4(&v0, param0, 2);
 
@@ -612,7 +612,7 @@ void ov94_0223DB2C (UnkStruct_02073C74 * param0)
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
     sub_02006E84(v0.unk_00, v0.unk_04, 1, 0x20 * 13, 32, 62);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 static void ov94_0223DBBC (UnkStruct_ov94_0223FD4C * param0)

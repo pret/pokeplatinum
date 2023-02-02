@@ -28,9 +28,9 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -258,8 +258,8 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -267,7 +267,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     G2S_BlendNone();
 
     sub_02017DD4(4, 8);
-    CreateHeap(3, 12, 0x30000);
+    Heap_Create(3, 12, 0x30000);
 
     v1 = NARC_ctor(20, 12);
     v0 = sub_0207ECC0(param0);
@@ -317,7 +317,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     sub_0207F9A0(v0);
 
     if (sub_020818F8(v0) == 0) {
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
     sub_02017798(sub_0207E898, v0);
@@ -683,7 +683,7 @@ static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     sub_02006830(param0);
-    DestroyHeap(12);
+    Heap_Destroy(12);
 
     return 1;
 }
@@ -714,7 +714,7 @@ static void sub_0207E8C0 (void)
         GX_VRAM_OBJ_32_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void sub_0207E8E0 (UnkStruct_02018340 * param0)
@@ -865,15 +865,15 @@ static void sub_0207E918 (UnkStruct_02018340 * param0)
 
 static void sub_0207EA24 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
     sub_02019044(param0, 3);
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeapExplicit(12, param0);
+    Heap_FreeToHeapExplicit(12, param0);
 }
 
 void sub_0207EA74 (UnkStruct_0207F248 * param0, int param1)
@@ -885,7 +885,7 @@ void sub_0207EA74 (UnkStruct_0207F248 * param0, int param1)
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
         param0->unk_B28 = sub_0207EAD4(12);
     } else {
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         sub_0207EB64(param0->unk_B28);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
@@ -936,7 +936,7 @@ static void sub_0207EB6C (UnkStruct_0207F248 * param0, NARC * param1)
 
         v2 = (u16 *)v0->pRawData;
         memcpy(param0->unk_4A4, &v2[3 * 16], 32 * 8);
-        FreeToHeapExplicit(12, v1);
+        Heap_FreeToHeapExplicit(12, v1);
     }
 
     sub_02002E98(0, 13 * 32, 12);
@@ -1704,7 +1704,7 @@ static void sub_0207FFC8 (UnkStruct_0207F248 * param0)
     u8 v1;
 
     sub_0200E084(&param0->unk_04[32], 1);
-    v0 = AllocFromHeap(12, 8);
+    v0 = Heap_AllocFromHeap(12, 8);
 
     switch (param0->unk_5A4->unk_20) {
     case 0:
@@ -1735,7 +1735,7 @@ static void sub_0207FFC8 (UnkStruct_0207F248 * param0)
     }
 
     sub_02081CF4(param0, v0, v1);
-    FreeToHeapExplicit(12, v0);
+    Heap_FreeToHeapExplicit(12, v0);
     sub_02081E08(param0);
     sub_020826F4(param0, 0xffffffff, 1);
     sub_0200D414(param0->unk_5B0[6], 1);
@@ -1772,7 +1772,7 @@ static u8 sub_020800B4 (UnkStruct_0207F248 * param0, u8 * param1)
             param1[v4] = 0;
             v4++;
 
-            if (IsItemMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
+            if (Item_IsMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
                 param1[v4] = 5;
             } else {
                 param1[v4] = 2;
@@ -2583,23 +2583,23 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
 {
     UnkStruct_0207D3B0 * v0;
 
-    v0 = LoadItemDataOrGfx(param0->unk_5A4->unk_24, 0, 12);
+    v0 = Item_LoadDataOrGFX(param0->unk_5A4->unk_24, 0, 12);
 
     if ((param0->unk_5A4->unk_24 == 466) && (sub_02077B14(Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
         param0->unk_5A4->unk_38 = 1;
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         sub_020819B4(param0);
         return 31;
     }
 
-    if ((GetItemAttributeFromStruct(v0, 34) != 0) || (GetItemAttributeFromStruct(v0, 35) != 0)) {
-        FreeToHeap(v0);
+    if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
+        Heap_FreeToHeap(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
-    if ((GetItemAttributeFromStruct(v0, 36) != 0) && (GetItemAttributeFromStruct(v0, 37) == 0)) {
-        FreeToHeap(v0);
+    if ((Item_GetAttributeFromStruct(v0, 36) != 0) && (Item_GetAttributeFromStruct(v0, 37) == 0)) {
+        Heap_FreeToHeap(v0);
         sub_020866A0(param0, 1);
         return 6;
     }
@@ -2607,16 +2607,16 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
     if (sub_0209693C(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
-        if (GetItemAttributeFromStruct(v0, 26) != 0) {
+        if (Item_GetAttributeFromStruct(v0, 26) != 0) {
             UnkStruct_02073C74 * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
             param0->unk_5A4->unk_38 = sub_02076B94(NULL, v1, 3, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);
             param0->unk_5A4->unk_23 = 8;
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 32;
         }
 
-        if ((IsItemHerbalMedicine(param0->unk_5A4->unk_24) == 1) && (param0->unk_5A4->unk_10 != NULL)) {
+        if ((Item_IsHerbalMedicine(param0->unk_5A4->unk_24) == 1) && (param0->unk_5A4->unk_10 != NULL)) {
             UnkStruct_02073C74 * v2 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             sub_0206D90C(param0->unk_5A4->unk_10, v2, param0->unk_5A4->unk_24);
         }
@@ -2628,7 +2628,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
         param0->unk_B00 = sub_02085348;
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     return 5;
 }
 
@@ -2636,7 +2636,7 @@ static u8 sub_020811F4 (UnkStruct_0207F248 * param0)
 {
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         return 0;
-    } else if (IsItemMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
+    } else if (Item_IsMail(param0->unk_704[param0->unk_B11].unk_0C) == 1) {
         return 2;
     }
 
@@ -2674,7 +2674,7 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
     if (v2 == -1) {
         switch (sub_020811F4(param0)) {
         case 0:
-            if (IsItemMail(param0->unk_5A4->unk_24) == 1) {
+            if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
                 param0->unk_5A4->unk_23 = 6;
                 return 32;
             }
@@ -2812,7 +2812,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
             sub_0200B1B8(param0->unk_69C, 83, param0->unk_6A4);
             v0 = 11;
         } else {
-            if (IsItemMail(param0->unk_5A4->unk_24) == 1) {
+            if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
                 sub_0207D60C(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
                 sub_020814A8(param0, v2, v4, v5);
                 param0->unk_5A4->unk_23 = 6;
@@ -2949,7 +2949,7 @@ void sub_02081940 (u32 param0, u16 * param1, u16 * param2, u16 * param3)
     u16 * v2;
     u32 v3;
 
-    v1 = AllocAndReadWholeNarcMemberByIndexPair(20, 22, param0);
+    v1 = NARC_AllocAndReadWholeMemberByIndexPair(20, 22, param0);
     NNS_G2dGetUnpackedScreenData(v1, &v0);
     v2 = (u16 *)v0->rawData;
 
@@ -2959,16 +2959,16 @@ void sub_02081940 (u32 param0, u16 * param1, u16 * param2, u16 * param3)
         memcpy(&param3[v3 * 16], &v2[((6 + 6) + v3) * 32], 16 * 2);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 void sub_020819B4 (UnkStruct_0207F248 * param0)
 {
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay118), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay118), 2);
     ov118_021D0D80(param0);
 }
 
 void sub_020819CC (UnkStruct_0207F248 * param0)
 {
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay118));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay118));
 }

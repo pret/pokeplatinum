@@ -21,7 +21,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -383,16 +383,16 @@ static u8 ov13_0221FFDC (UnkStruct_ov13_022213F0 * param0)
         return 17;
     }
 
-    if ((GetItemAttribute(v0->unk_22, 36, v0->unk_0C) != 0) && (GetItemAttribute(v0->unk_22, 37, v0->unk_0C) == 0) && (param0->unk_04[v0->unk_11].unk_17_7 == 0)) {
+    if ((Item_GetAttribute(v0->unk_22, 36, v0->unk_0C) != 0) && (Item_GetAttribute(v0->unk_22, 37, v0->unk_0C) == 0) && (param0->unk_04[v0->unk_11].unk_17_7 == 0)) {
         param0->unk_2075 = 13;
         return 22;
     }
 
     if (ov16_0223E30C(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], 0, v0->unk_22) == 1) {
-        if (GetItemAttribute(v0->unk_22, 37, v0->unk_0C) != 0) {
+        if (Item_GetAttribute(v0->unk_22, 37, v0->unk_0C) != 0) {
             param0->unk_2075 = 13;
         } else {
-            if ((ov13_022213F0(param0, v0->unk_11) == 1) && (GetItemAttribute(v0->unk_22, 23, v0->unk_0C) == 0)) {
+            if ((ov13_022213F0(param0, v0->unk_11) == 1) && (Item_GetAttribute(v0->unk_22, 23, v0->unk_0C) == 0)) {
                 ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->unk_0C);
                 param0->unk_04[v0->unk_11].unk_00 = ov16_0223DFAC(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
                 v0->unk_20 = sub_02074470(param0->unk_04[v0->unk_11].unk_00, 163, NULL);
@@ -817,7 +817,7 @@ static u8 ov13_022207B8 (UnkStruct_ov13_022213F0 * param0)
 {
     ov13_022216C0(param0, 5);
 
-    if (GetItemAttribute(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) != 0) {
+    if (Item_GetAttribute(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) != 0) {
         return 24;
     }
 
@@ -1124,7 +1124,7 @@ static void ov13_02220C0C (UnkStruct_ov13_022213F0 * param0)
 
 static void ov13_02220D1C (UnkStruct_02018340 * param0)
 {
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 4);
     sub_02019044(param0, 5);
     sub_02019044(param0, 6);
@@ -1145,13 +1145,13 @@ static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
         v2 = NARC_AllocAndReadWholeMember(v0, 20, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         ov13_02225710(param0, (u16 *)v1->rawData);
-        FreeToHeap(v2);
+        Heap_FreeToHeap(v2);
 
         v2 = NARC_AllocAndReadWholeMember(v0, 21, param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
 
         ov13_02225A3C(param0, (u16 *)v1->rawData);
-        FreeToHeap(v2);
+        Heap_FreeToHeap(v2);
     }
 
     sub_02003050(param0->unk_1E4, 72, 23, param0->unk_00->unk_0C, 1, 0x20 * 16, 0);
@@ -1174,14 +1174,14 @@ static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
 
     {
         u16 * v5 = sub_02003164(param0->unk_1E4, 1);
-        u16 * v6 = AllocFromHeap(param0->unk_00->unk_0C, 0x20);
+        u16 * v6 = Heap_AllocFromHeap(param0->unk_00->unk_0C, 0x20);
 
         memcpy(v6, &v5[13 * 16], 0x20);
         memcpy(&v6[7], &v5[9 * 16 + 10], 4);
         memcpy(&v6[3], &v5[9 * 16 + 12], 4);
 
         sub_02002FBC(param0->unk_1E4, v6, 1, 13 * 16, 0x20);
-        FreeToHeap(v6);
+        Heap_FreeToHeap(v6);
     }
 }
 
@@ -1263,11 +1263,11 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
 
             v2->unk_02 = sub_02074470(param0->unk_04[v0].unk_00, 58 + v1, NULL);
             v2->unk_03 = sub_02074470(param0->unk_04[v0].unk_00, 62 + v1, NULL);
-            v2->unk_03 = GetMoveMaxPP(v2->unk_00, v2->unk_03);
-            v2->unk_04 = GetMoveAttribute(v2->unk_00, 3);
-            v2->unk_05 = GetMoveAttribute(v2->unk_00, 1);
-            v2->unk_06 = GetMoveAttribute(v2->unk_00, 4);
-            v2->unk_07 = GetMoveAttribute(v2->unk_00, 2);
+            v2->unk_03 = MoveTable_GetMoveMaxPP(v2->unk_00, v2->unk_03);
+            v2->unk_04 = MoveTable_GetMoveAttribute(v2->unk_00, 3);
+            v2->unk_05 = MoveTable_GetMoveAttribute(v2->unk_00, 1);
+            v2->unk_06 = MoveTable_GetMoveAttribute(v2->unk_00, 4);
+            v2->unk_07 = MoveTable_GetMoveAttribute(v2->unk_00, 2);
         }
     }
 }
@@ -1541,7 +1541,7 @@ static void ov13_02221654 (UnkStruct_ov13_022213F0 * param0, u8 param1)
         v2 = param0->unk_00->unk_24;
     }
 
-    v0 = GetMoveAttribute(v2, 10);
+    v0 = MoveTable_GetMoveAttribute(v2, 10);
     v3 = sub_02095734(v0) / 10;
 
     for (v1 = 0; v1 < v3; v1++) {
@@ -1591,11 +1591,11 @@ static void ov13_02221738 (UnkStruct_ov13_022213F0 * param0, u8 param1)
     u32 v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v1 = AllocAndReadWholeNarcMemberByIndexPair(72, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(72, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v1, &v0);
         sub_020198C0(param0->unk_1E0, 6 + v2, (u16 *)v0->rawData, 0, 0, 32, 24);
         sub_0201C3C0(param0->unk_1E0, 6 + v2);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 }
 
@@ -1721,7 +1721,7 @@ static u8 ov13_022219DC (UnkStruct_ov13_022213F0 * param0)
         v0 = param0->unk_04[param0->unk_00->unk_11].unk_30[param0->unk_00->unk_34].unk_00;
     }
 
-    return IsMoveHM(v0);
+    return Item_IsMoveHM(v0);
 }
 
 static void ov13_02221A04 (UnkStruct_ov13_022213F0 * param0)

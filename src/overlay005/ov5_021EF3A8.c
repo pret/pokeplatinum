@@ -31,7 +31,7 @@ UnkStruct_ov5_021EF3BC * ov5_021EF3A8 (u32 param0)
 {
     UnkStruct_ov5_021EF3BC * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov5_021EF3BC));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021EF3BC));
     ov5_021EF444(v0);
 
     return v0;
@@ -48,7 +48,7 @@ void ov5_021EF3BC (UnkStruct_ov5_021EF3BC * param0)
     }
 
     ov5_021EF444(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov5_021EF3DC (UnkStruct_ov5_021EF3BC * param0)

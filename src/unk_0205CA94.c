@@ -207,8 +207,8 @@ void sub_0205CBFC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         sub_0201972C(4, &v3, 2, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
         sub_02005748(1583);
@@ -270,7 +270,7 @@ void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_1E8 -= 32;
 
         if (v0->unk_1E8 < -255) {
-            GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
             v0->unk_1E4++;
         }
@@ -298,7 +298,7 @@ void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_1E4++;
         break;
     case 6:
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         *(v0->unk_1EC) = 1;
         sub_0205D080(param0, v0);
         break;
@@ -433,8 +433,8 @@ static void sub_0205D0B4 (UnkStruct_0205D094 * param0)
 {
     param0->unk_00 = sub_020095C4(2, &param0->unk_30, 4);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void sub_0205D0D8 (UnkStruct_0205D094 * param0, int param1, u32 param2)
@@ -467,7 +467,7 @@ static void sub_0205D0D8 (UnkStruct_0205D094 * param0, int param1, u32 param2)
     v1 = sub_02006FE8(177, 4, 0, 4, 0);
     param0->unk_04 = sub_02009508(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 static int sub_0205D1C4 (UnkStruct_02009714 * param0, UnkStruct_02009CFC ** param1, u32 param2)
@@ -477,11 +477,11 @@ static int sub_0205D1C4 (UnkStruct_02009714 * param0, UnkStruct_02009CFC ** para
     int v2;
     void * v3;
 
-    v0 = AllocFromHeapAtEnd(4, sub_02009F34());
+    v0 = Heap_AllocFromHeapAtEnd(4, sub_02009F34());
     v3 = sub_02006FE8(177, param2, 0, 4, 0);
 
     sub_02009F40(v3, v0, 4);
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 
     if (param1 != NULL) {
         v2 = sub_02009FA4(v0);
@@ -494,7 +494,7 @@ static int sub_0205D1C4 (UnkStruct_02009714 * param0, UnkStruct_02009CFC ** para
     v2 = sub_02009C80(param0, v0, v1, 4);
 
     sub_02009F8C(v0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return v2;
 }
@@ -593,7 +593,7 @@ void sub_0205D3C4 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 {
     UnkStruct_0205D3C4 * v0;
 
-    param1->unk_00 = AllocFromHeap(4, sizeof(UnkStruct_0205D3C4));
+    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D3C4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D3C4));
 
     v0 = (UnkStruct_0205D3C4 *)param1->unk_00;
@@ -609,7 +609,7 @@ void sub_0205D404 (struct UnkStruct_0205D3AC_t * param0)
 
     if (param0->unk_00 != NULL) {
         sub_02021BD4(v0->unk_0C);
-        FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(4, param0->unk_00);
 
         param0->unk_00 = NULL;
     }
@@ -642,7 +642,7 @@ void sub_0205D4A4 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 {
     UnkStruct_0205D4A4 * v0;
 
-    param1->unk_00 = AllocFromHeap(4, sizeof(UnkStruct_0205D4A4));
+    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D4A4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D4A4));
 
     v0 = (UnkStruct_0205D4A4 *)param1->unk_00;
@@ -658,7 +658,7 @@ void sub_0205D4E0 (struct UnkStruct_0205D3AC_t * param0)
 
     if (param0->unk_00 != NULL) {
         sub_02021BD4(v0->unk_0C);
-        FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(4, param0->unk_00);
 
         param0->unk_00 = NULL;
     }
@@ -681,7 +681,7 @@ void sub_0205D524 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 {
     UnkStruct_0205D3C4 * v0;
 
-    param1->unk_00 = AllocFromHeap(4, sizeof(UnkStruct_0205D3C4));
+    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D3C4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D3C4));
 
     v0 = (UnkStruct_0205D3C4 *)param1->unk_00;
@@ -697,7 +697,7 @@ void sub_0205D564 (struct UnkStruct_0205D3AC_t * param0)
 
     if (param0->unk_00 != NULL) {
         sub_02021BD4(v0->unk_0C);
-        FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(4, param0->unk_00);
         param0->unk_00 = NULL;
     }
 }
@@ -731,7 +731,7 @@ void sub_0205D5E0 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 {
     UnkStruct_0205D5E0 * v0;
 
-    param1->unk_00 = AllocFromHeap(4, sizeof(UnkStruct_0205D5E0));
+    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D5E0));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D5E0));
 
     v0 = (UnkStruct_0205D5E0 *)param1->unk_00;
@@ -749,7 +749,7 @@ void sub_0205D624 (struct UnkStruct_0205D3AC_t * param0)
 
     if (param0->unk_00 != NULL) {
         sub_02021BD4(v0->unk_0C);
-        FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(4, param0->unk_00);
 
         param0->unk_00 = NULL;
     }
@@ -811,7 +811,7 @@ void sub_0205D714 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 {
     UnkStruct_0205D5E0 * v0;
 
-    param1->unk_00 = AllocFromHeap(4, sizeof(UnkStruct_0205D5E0));
+    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D5E0));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D5E0));
 
     v0 = (UnkStruct_0205D5E0 *)param1->unk_00;
@@ -831,7 +831,7 @@ void sub_0205D768 (struct UnkStruct_0205D3AC_t * param0)
 
     if (param0->unk_00 != NULL) {
         sub_02021BD4(v0->unk_0C);
-        FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(4, param0->unk_00);
         param0->unk_00 = NULL;
     }
 }
@@ -879,7 +879,7 @@ void sub_0205D844 (UnkStruct_0205D094 * param0, struct UnkStruct_0205D3AC_t * pa
 {
     UnkStruct_0205D4A4 * v0;
 
-    param1->unk_00 = AllocFromHeap(4, sizeof(UnkStruct_0205D4A4));
+    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D4A4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D4A4));
 
     v0 = (UnkStruct_0205D4A4 *)param1->unk_00;
@@ -897,7 +897,7 @@ void sub_0205D888 (struct UnkStruct_0205D3AC_t * param0)
 
     if (param0->unk_00 != NULL) {
         sub_02021BD4(v0->unk_0C);
-        FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(4, param0->unk_00);
         param0->unk_00 = NULL;
     }
 }

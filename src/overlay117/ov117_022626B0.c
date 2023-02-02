@@ -13,7 +13,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
 #include "unk_0201C970.h"
@@ -164,7 +164,7 @@ UnkStruct_ov117_022626B0 * ov117_022626B0 (UnkStruct_ov117_02261280 * param0)
 {
     UnkStruct_ov117_022626B0 * v0;
 
-    v0 = AllocFromHeap(110, sizeof(UnkStruct_ov117_022626B0));
+    v0 = Heap_AllocFromHeap(110, sizeof(UnkStruct_ov117_022626B0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_022626B0));
     v0->unk_270 = param0->unk_00->unk_34;
 
@@ -204,10 +204,10 @@ void ov117_02262760 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022626B0
     ov117_02263AE4(param1->unk_234);
     ov117_022639BC(param0);
 
-    FreeToHeap(param1->unk_00);
-    FreeToHeap(param1->unk_24C);
-    FreeToHeap(param1->unk_250);
-    FreeToHeap(param1);
+    Heap_FreeToHeap(param1->unk_00);
+    Heap_FreeToHeap(param1->unk_24C);
+    Heap_FreeToHeap(param1->unk_250);
+    Heap_FreeToHeap(param1);
 }
 
 void ov117_02262798 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022626B0 * param1)
@@ -406,7 +406,7 @@ static void ov117_02262A70 (UnkStruct_ov117_022626B0 * param0)
 
 static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
 {
-    param0->unk_00 = AllocAndReadWholeNarcMemberByIndexPair(173, 29, 110);
+    param0->unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(173, 29, 110);
     param0->unk_04 = NNS_G3dGetTex(param0->unk_00);
 
     sub_0201CBCC(param0->unk_04);
@@ -422,8 +422,8 @@ static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
 
         GF_ASSERT(param0->unk_24C == NULL);
 
-        param0->unk_24C = AllocFromHeap(110, v0);
-        param0->unk_250 = AllocFromHeap(110, v0);
+        param0->unk_24C = Heap_AllocFromHeap(110, v0);
+        param0->unk_250 = Heap_AllocFromHeap(110, v0);
 
         MI_CpuCopy8(v1, param0->unk_24C, v0);
         MI_CpuCopy8(v1, param0->unk_250, v0);
@@ -443,7 +443,7 @@ static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
         v3 = (u8 *)param0->unk_04 + param0->unk_04->texInfo.ofsTex;
         v4 = (u32)(v3 - (u8 *)param0->unk_00);
 
-        ReallocFromHeap(param0->unk_00, v4);
+        Heap_ReallocFromHeap(param0->unk_00, v4);
     }
 }
 

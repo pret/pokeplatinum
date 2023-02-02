@@ -33,7 +33,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
@@ -186,7 +186,7 @@ int ov79_021D22AC (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02098DE8 * v0 = sub_02006840(param0);
     UnkStruct_ov79_021D2928 * v1;
 
-    CreateHeap(3, 46, 0x10000);
+    Heap_Create(3, 46, 0x10000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov79_021D2928), 46);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov79_021D2928));
@@ -211,8 +211,8 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
 
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -266,8 +266,8 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_02017798(NULL, NULL);
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -286,7 +286,7 @@ int ov79_021D2460 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
 
-    DestroyHeap(v0->unk_00);
+    Heap_Destroy(v0->unk_00);
     return 1;
 }
 
@@ -366,7 +366,7 @@ static void ov79_021D255C (void)
         GX_VRAM_TEXPLTT_0_F
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov79_021D257C (UnkStruct_ov79_021D2928 * param0)
@@ -456,7 +456,7 @@ static void ov79_021D260C (UnkStruct_ov79_021D2928 * param0)
     }
 
     sub_02019044(param0->unk_68, 4);
-    FreeToHeap(param0->unk_68);
+    Heap_FreeToHeap(param0->unk_68);
 }
 
 static void ov79_021D2634 (UnkStruct_ov79_021D2928 * param0)
@@ -570,7 +570,7 @@ static void ov79_021D2864 (UnkStruct_ov79_021D2928 * param0)
         sub_02039734();
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov79_021D2908 (UnkStruct_ov79_021D2928 * param0)

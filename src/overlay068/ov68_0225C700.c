@@ -40,7 +40,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -343,7 +343,7 @@ int ov68_0225C700 (UnkStruct_020067E8 * param0, int * param1)
 
     v1 = sub_02006840(param0);
 
-    CreateHeap(3, 122, 0x50000);
+    Heap_Create(3, 122, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov68_0225C700), 122);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
@@ -439,7 +439,7 @@ int ov68_0225C8A8 (UnkStruct_020067E8 * param0, int * param1)
     ov68_0225C960(&v0->unk_00);
 
     sub_02006830(param0);
-    DestroyHeap(122);
+    Heap_Destroy(122);
     sub_020057BC(0);
 
     return 1;
@@ -459,7 +459,7 @@ static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 
     param0->unk_1A4 = NARC_ctor(186, param2);
 
     sub_0201DBEC(32, param2);
-    GX_SetBanks(&Unk_ov68_0225DDC0);
+    GXLayers_SetBanks(&Unk_ov68_0225DDC0);
     ov68_0225C9A0(param0, v0, param2);
     ov68_0225CAB4(param0, param2);
 }
@@ -492,7 +492,7 @@ static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC 
     param0->unk_00 = sub_02018340(param2);
     Unk_021BF67C.unk_65 = 0;
 
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 
     {
         int v0;
@@ -530,7 +530,7 @@ static void ov68_0225CA8C (UnkStruct_ov68_0225C91C * param0)
         }
     }
 
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
 }
 
 static void ov68_0225CAB4 (UnkStruct_ov68_0225C91C * param0, u32 param1)
@@ -554,8 +554,8 @@ static void ov68_0225CAB4 (UnkStruct_ov68_0225C91C * param0, u32 param1)
     }
 
     sub_02039734();
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov68_0225CB44 (UnkStruct_ov68_0225C91C * param0)
@@ -652,7 +652,7 @@ static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 par
 
     ov66_0222E640(v1, v0, param2);
     sub_0200B498(param0->unk_24, param1, v0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov68_0225CCA8 (UnkUnion_ov68_0225CCA8 * param0, UnkStruct_ov68_0225CB70 * param1, UnkStruct_ov68_0225C91C * param2, UnkStruct_ov66_02231374 * param3, u32 param4)
@@ -1305,7 +1305,7 @@ static void ov68_0225D868 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         ov68_0225DC24(&param0->unk_A8);
     }
 
-    FreeToHeap(param0->unk_80);
+    Heap_FreeToHeap(param0->unk_80);
     param0->unk_80 = NULL;
 
     {

@@ -97,7 +97,7 @@ int sub_02099DFC (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02099DFC * v0;
     int v1 = 88;
 
-    CreateHeap(3, v1, 0x20000);
+    Heap_Create(3, v1, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_02099DFC), v1);
     memset(v0, 0, sizeof(UnkStruct_02099DFC));
@@ -123,8 +123,8 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F344(1, 0x0);
         sub_02017798(NULL, NULL);
         sub_020177BC(NULL, NULL);
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -133,7 +133,7 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         sub_02099F80(v0);
         sub_0209A098(v0);
         sub_02017798(sub_02099F74, (void *)v0);
-        GX_BothDispOn();
+        GXLayers_TurnBothDispOn();
         sub_0200F174(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
         break;
@@ -167,7 +167,7 @@ int sub_02099F54 (UnkStruct_020067E8 * param0, int * param1)
     int v1 = v0->unk_00;
 
     sub_02006830(param0);
-    DestroyHeap(v1);
+    Heap_Destroy(v1);
     OS_ResetSystem(0);
 
     return 1;
@@ -194,7 +194,7 @@ static void sub_02099F80 (UnkStruct_02099DFC * param0)
             GX_VRAM_TEX_NONE,
             GX_VRAM_TEXPLTT_NONE
         };
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
     }
     {
         param0->unk_14 = sub_02018340(param0->unk_00);
@@ -247,7 +247,7 @@ static void sub_0209A044 (UnkStruct_02099DFC * param0)
     sub_02019120(6, 0);
     sub_02019120(7, 0);
     sub_02019044(param0->unk_14, 0);
-    FreeToHeap(param0->unk_14);
+    Heap_FreeToHeap(param0->unk_14);
 }
 
 static void sub_0209A098 (UnkStruct_02099DFC * param0)

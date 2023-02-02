@@ -30,7 +30,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
@@ -155,8 +155,8 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -165,7 +165,7 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    CreateHeap(3, 117, 0x50000);
+    Heap_Create(3, 117, 0x50000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov61_0222C664), 117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
@@ -190,15 +190,15 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     ov61_0222C664(v0);
 
     sub_0200F174(0, 1, 1, 0x0, 6, 1, 117);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
 
     Unk_021BF67C.unk_65 = 0;
 
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
     sub_02002AC8(1);
     sub_02002AE4(0);
     sub_02002B20(0);
@@ -269,7 +269,7 @@ int ov61_0222C160 (UnkStruct_020067E8 * param0, int * param1)
     sub_020237BC(v0->unk_3C);
     sub_020237BC(v0->unk_34);
     ov61_0222C70C(v0);
-    FreeToHeap(v0->unk_04);
+    Heap_FreeToHeap(v0->unk_04);
     ov61_0222C38C(v0->unk_04);
     sub_02017798(NULL, NULL);
     sub_020177A4();
@@ -280,7 +280,7 @@ int ov61_0222C160 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002B20(0);
     sub_02039794();
     sub_02006830(param0);
-    DestroyHeap(117);
+    Heap_Destroy(117);
 
     return 1;
 }
@@ -300,8 +300,8 @@ static void ov61_0222C1FC (void * param0)
 
 static void ov61_0222C224 (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -317,7 +317,7 @@ static void ov61_0222C224 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);

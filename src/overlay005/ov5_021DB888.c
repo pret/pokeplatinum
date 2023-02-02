@@ -336,7 +336,7 @@ void ov5_021DB888 (UnkStruct_020508D4 * param0, UnkStruct_0200B358 * param1, u16
     UnkStruct_ov5_021DBA58 * v0;
     UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBA58));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBA58));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -428,7 +428,7 @@ static BOOL ov5_021DB8D8 (UnkStruct_020508D4 * param0)
         ov5_021DBA54(v3, 9);
         break;
     case 9:
-        FreeToHeap(v3);
+        Heap_FreeToHeap(v3);
         return 1;
     }
 
@@ -594,7 +594,7 @@ static void ov5_021DBC64 (UnkStruct_ov5_021DBA58 * param0, UnkStruct_0201CD38 * 
 {
     UnkStruct_ov5_021DBC64 * v0 = NULL;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBC64));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DBC64));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -621,7 +621,7 @@ static void ov5_021DBC94 (UnkStruct_0201CD38 * param0, void * param1)
 
         sub_02065758(v0->unk_04);
         sub_0200DA58(v0->unk_00);
-        FreeToHeapExplicit(4, param1);
+        Heap_FreeToHeapExplicit(4, param1);
     }
 
     return;

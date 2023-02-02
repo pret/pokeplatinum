@@ -73,7 +73,7 @@ static void ov19_021DE8E0(UnkStruct_0201CD38 * param0, void * param1);
 
 BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4)
 {
-    UnkStruct_ov19_021DE3E8 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE3E8));
+    UnkStruct_ov19_021DE3E8 * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE3E8));
 
     if (v0) {
         v0->unk_04 = param1;
@@ -97,7 +97,7 @@ BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 *
 void ov19_021DE440 (UnkStruct_ov19_021DE3E8 * param0)
 {
     ov19_021DE51C(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov19_021DE450 (UnkStruct_ov19_021DE3E8 * param0)
@@ -130,7 +130,7 @@ static void ov19_021DE450 (UnkStruct_ov19_021DE3E8 * param0)
                 param0->unk_28[v5] = 0;
             }
 
-            FreeToHeap(v3);
+            Heap_FreeToHeap(v3);
         }
     } else {
         int v6;
@@ -333,7 +333,7 @@ BOOL ov19_021DE800 (UnkStruct_ov19_021DE3E8 * param0)
 
 static void ov19_021DE858 (UnkStruct_ov19_021DE3E8 * param0, int param1, const VecFx32 * param2, int param3, int param4)
 {
-    UnkStruct_ov19_021DE858 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE858));
+    UnkStruct_ov19_021DE858 * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DE858));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -349,7 +349,7 @@ static void ov19_021DE858 (UnkStruct_ov19_021DE3E8 * param0, int param1, const V
         if (ov19_021D77C8(ov19_021DE8E0, v0, 0)) {
             param0->unk_34++;
         } else {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
     }
 }

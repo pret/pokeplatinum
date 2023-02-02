@@ -92,7 +92,7 @@ int ov6_022464A4 (const UnkStruct_ov6_022465F4 * param0)
 
 static UnkStruct_ov6_022465F4 * ov6_022464A8 (UnkStruct_0203CDB0 * param0, UnkStruct_0202E794 * param1)
 {
-    UnkStruct_ov6_022465F4 * v0 = AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
+    UnkStruct_ov6_022465F4 * v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v0);
     ov6_0224645C(v0, sub_0202E4C8(param1));
@@ -106,7 +106,7 @@ static UnkStruct_ov6_022465F4 * ov6_022464A8 (UnkStruct_0203CDB0 * param0, UnkSt
 static UnkStruct_ov6_022465F4 * ov6_022464F8 (UnkStruct_0203CDB0 * param0, UnkStruct_0202E768 * param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
-    UnkStruct_ov6_022465F4 * v1 = AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
+    UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
     ov6_0224645C(v1, sub_02025EF0(v0));
@@ -121,7 +121,7 @@ static UnkStruct_ov6_022465F4 * ov6_022464F8 (UnkStruct_0203CDB0 * param0, UnkSt
 static UnkStruct_ov6_022465F4 * ov6_02246550 (UnkStruct_0203CDB0 * param0, int param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
-    UnkStruct_ov6_022465F4 * v1 = AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
+    UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
     v1->unk_00 = param1;
@@ -153,5 +153,5 @@ UnkStruct_ov6_022465F4 * ov6_022465A0 (UnkStruct_0203CDB0 * param0, int param1, 
 
 void ov6_022465F4 (UnkStruct_ov6_022465F4 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }

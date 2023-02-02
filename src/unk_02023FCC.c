@@ -33,14 +33,14 @@ UnkStruct_02023FCC * sub_02023FCC (const UnkUnion_020225E0 * param0, u32 param1,
 
     GF_ASSERT(param1 > 0);
 
-    v0 = AllocFromHeap(param4, sizeof(UnkStruct_02023FCC));
+    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_02023FCC));
 
     if (v0) {
         v0->unk_00 = param0;
         v0->unk_04 = param1;
         v0->unk_08 = param2;
         v0->unk_0C = param3;
-        v0->unk_10 = AllocFromHeap(param4, sizeof(UnkStruct_02024028) * param1);
+        v0->unk_10 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_02024028) * param1);
 
         if (v0->unk_10) {
             u32 v1;
@@ -49,7 +49,7 @@ UnkStruct_02023FCC * sub_02023FCC (const UnkUnion_020225E0 * param0, u32 param1,
                 sub_02024028(&v0->unk_10[v1]);
             }
         } else {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             v0 = NULL;
         }
     }
@@ -68,8 +68,8 @@ void sub_02024034 (UnkStruct_02023FCC * param0)
 {
     GF_ASSERT(param0);
 
-    FreeToHeap(param0->unk_10);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_0202404C (UnkStruct_02023FCC * param0)

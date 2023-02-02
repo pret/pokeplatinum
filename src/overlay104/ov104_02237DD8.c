@@ -17,7 +17,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "unk_02002F38.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -151,7 +151,7 @@ UnkStruct_ov104_0223BFFC * ov104_02237DD8 (UnkStruct_021C0794 * param0, u16 para
     static UnkStruct_ov104_0223BFFC * v9;
     UnkStruct_020305B8 * v10;
 
-    v9 = AllocFromHeap(11, sizeof(UnkStruct_ov104_0223BFFC));
+    v9 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223BFFC));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BFFC));
 
     v9->unk_08 = sub_020304A0(param0);
@@ -205,11 +205,11 @@ UnkStruct_ov104_0223BFFC * ov104_02237DD8 (UnkStruct_021C0794 * param0, u16 para
     }
 
     for (v7 = 0; v7 < 3; v7++) {
-        v3 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(v9->unk_04), v9->unk_2C[v7]);
+        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v9->unk_04), v9->unk_2C[v7]);
         v9->unk_412[v7] = sub_02074470(v3, 6, NULL);
     }
 
-    v2 = GetPartyFromSavedata(v9->unk_04);
+    v2 = Party_GetFromSavedata(v9->unk_04);
     v6 = ov104_0223BD70(v9->unk_10, 0);
 
     for (v7 = 0; v7 < v6; v7++) {
@@ -310,7 +310,7 @@ static void ov104_02238114 (UnkStruct_ov104_0223BFFC * param0)
         ov104_0223C034(param0, param0->unk_74, v2);
     }
 
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     return;
 }
@@ -343,15 +343,15 @@ void ov104_02238210 (UnkStruct_ov104_0223BFFC * param0)
     }
 
     if (param0->unk_70 != NULL) {
-        FreeToHeap(param0->unk_70);
+        Heap_FreeToHeap(param0->unk_70);
     }
 
     if (param0->unk_74 != NULL) {
-        FreeToHeap(param0->unk_74);
+        Heap_FreeToHeap(param0->unk_74);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223BFFC));
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     param0 = NULL;
 
@@ -470,7 +470,7 @@ u16 ov104_02238464 (UnkStruct_ov104_0223BFFC * param0, u8 param1)
     v2 = ov104_02238498(param0, param1);
     v1 = ov104_0222DD04(&v0, param0->unk_78[v2], 11, 178);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return ov104_0222E10C(v0.unk_04);
 }
@@ -651,14 +651,14 @@ void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
             GX_LoadBGExtPltt(v2->pRawData, 0x4000, 0x2000);
             GX_EndLoadBGExtPltt();
 
-            FreeToHeap(v3);
+            Heap_FreeToHeap(v3);
         }
 
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         sub_0201C3C0(param1->unk_00, 2);
         NARC_dtor(v0);
     } else {
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     }
 
     return;
@@ -897,7 +897,7 @@ void ov104_02238AB4 (u8 param0, u8 param1)
         v1 = (9 * 16) * 2;
     }
 
-    v5 = AllocFromHeap(94, 0x1000 * 2);
+    v5 = Heap_AllocFromHeap(94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
     v4 = NARC_ctor(150, 94);
@@ -911,8 +911,8 @@ void ov104_02238AB4 (u8 param0, u8 param1)
     GX_EndLoadBGExtPltt();
 
     NARC_dtor(v4);
-    FreeToHeap(v5);
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v5);
+    Heap_FreeToHeap(v3);
 
     return;
 }

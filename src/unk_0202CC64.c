@@ -25,7 +25,7 @@ void sub_0202CC6C (UnkStruct_0202CC84 * param0)
 
 UnkStruct_0202CC84 * sub_0202CC84 (int param0)
 {
-    UnkStruct_0202CC84 * v0 = AllocFromHeap(param0, sizeof(UnkStruct_0202CC84));
+    UnkStruct_0202CC84 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202CC84));
 
     sub_0202CC6C(v0);
     return v0;

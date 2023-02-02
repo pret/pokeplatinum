@@ -18,7 +18,7 @@
 
 #include "unk_02002328.h"
 #include "unk_0200679C.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_02009714.h"
@@ -255,7 +255,7 @@ static void sub_0200E130 (UnkStruct_0205AA50 * param0, u16 param1)
 
     v0 = sub_02018364(param0->unk_00);
     v5 = sub_0201C290(param0);
-    v1 = AllocFromHeap(v0, (0x20 * 4 * 3));
+    v1 = Heap_AllocFromHeap(v0, (0x20 * 4 * 3));
     v2 = sub_02019F28(v5);
 
     {
@@ -275,8 +275,8 @@ static void sub_0200E130 (UnkStruct_0205AA50 * param0, u16 param1)
     sub_0200E0EC(v3, 4, 0, 12, 16 * 3, v1, 12, 16 * 3, 1, 0, 12, 16 * 3);
     sub_0201958C(param0->unk_00, v5, v1, (0x20 * 4 * 3), param1 + 18);
     sub_020027A8(param1);
-    FreeToHeap(v4);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v4);
+    Heap_FreeToHeap(v1);
 }
 
 void sub_0200E218 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3, u8 param4, u32 param5)
@@ -288,7 +288,7 @@ void sub_0200E218 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3
     u8 v4, v5;
 
     v0 = sub_02006F50(38, sub_0200DD04(param4), 0, &v1, param5);
-    v2 = AllocFromHeap(param5, 0x20 * 18);
+    v2 = Heap_AllocFromHeap(param5, 0x20 * 18);
 
     memcpy(v2, v1->pRawData, 0x20 * 18);
 
@@ -308,8 +308,8 @@ void sub_0200E218 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3
     }
 
     sub_0201958C(param0, param1, v2, 0x20 * 18, param2);
-    FreeToHeap(v0);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(v2);
 }
 
 void sub_0200E2A4 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3, u8 param4, u16 param5, u32 param6)
@@ -322,12 +322,12 @@ void sub_0200E2A4 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3
         void * v1;
         u16 * v2;
 
-        v1 = AllocAndReadWholeNarcMemberByIndexPair(36, 1, param6);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(36, 1, param6);
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         v2 = (u16 *)v0->pRawData;
 
         sub_0201972C(param1, (void *)&v2[param4 * 16], 0x20, param3 * 0x20);
-        FreeToHeapExplicit(param6, v1);
+        Heap_FreeToHeapExplicit(param6, v1);
     }
 
     if ((param4 == 0) || (param4 == 1)) {
@@ -432,11 +432,11 @@ void * sub_0200E7FC (UnkStruct_0205AA50 * param0, u32 param1)
     v1 = sub_02018364(param0->unk_00);
     v6 = sub_0201C290(param0);
     v2 = sub_02019F28(v6);
-    v0 = AllocFromHeap(v1, sizeof(UnkStruct_0200E924));
+    v0 = Heap_AllocFromHeap(v1, sizeof(UnkStruct_0200E924));
 
     memcpy(v0->unk_404, &v2[(param1 + 18) * 0x20], 0x20 * 4);
 
-    v4 = (u8 *)AllocFromHeap(v1, 0x20 * 4);
+    v4 = (u8 *)Heap_AllocFromHeap(v1, 0x20 * 4);
 
     memcpy(&v4[0x20 * 0], &v2[(param1 + 10) * 0x20], 0x20);
     memcpy(&v4[0x20 * 1], &v2[(param1 + 11) * 0x20], 0x20);
@@ -447,7 +447,7 @@ void * sub_0200E7FC (UnkStruct_0205AA50 * param0, u32 param1)
         memcpy(&v0->unk_04[0x20 * 4 * v7], v4, 0x20 * 4);
     }
 
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 
     {
         NNSG2dCharacterData * v8;
@@ -457,7 +457,7 @@ void * sub_0200E7FC (UnkStruct_0205AA50 * param0, u32 param1)
     }
 
     sub_0200E0EC(v3, 0, 0, 16, 16 * 8, v0->unk_04, 16, 16 * 8, 0, 0, 16, 16 * 8);
-    FreeToHeap(v5);
+    Heap_FreeToHeap(v5);
 
     v0->unk_00 = param0;
     v0->unk_484 = (u16)param1;
@@ -529,7 +529,7 @@ static void sub_0200EB20 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void sub_0200EB8C (UnkStruct_0201CD38 * param0, void * param1)
 {
-    FreeToHeap(param1);
+    Heap_FreeToHeap(param1);
     sub_0200DA58(param0);
 }
 
@@ -639,7 +639,7 @@ static void sub_0200EDD4 (UnkStruct_0200ED50 * param0, u8 param1, u8 param2)
     param0->unk_1C8 = ov5_021D3584(&param0->unk_00, &v0);
 
     sub_020219F8(param0->unk_00.unk_00);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void sub_0200EE24 (UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2)
@@ -675,7 +675,7 @@ static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * 
     UnkStruct_02009DC8 * v4;
     const NNSG2dImagePaletteProxy * v5;
 
-    v0 = AllocFromHeap(param0->unk_1C6, ((32 * 10 * 10) * 2));
+    v0 = Heap_AllocFromHeap(param0->unk_1C6, ((32 * 10 * 10) * 2));
 
     {
         UnkStruct_02013610 v6 = {0, 0, 10, 10};
@@ -693,7 +693,7 @@ static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * 
     DC_FlushRange(v0, ((32 * 10 * 10) * 2));
     GX_LoadOBJ(v0, v1, ((32 * 10 * 10) * 2));
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     v0 = sub_02013660(param1->unk_00, param1->unk_04, param0->unk_1C6);
     v4 = sub_02009DC8(param0->unk_194[1], 89301);
@@ -703,7 +703,7 @@ static void sub_0200EE98 (UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * 
     DC_FlushRange(v0, 32);
     GX_LoadOBJPltt(v0, v1, 32);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void sub_0200EF7C (UnkStruct_0200ED50 * param0, u8 param1, u16 param2)

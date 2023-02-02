@@ -55,7 +55,7 @@ void sub_02017110 (UnkStruct_020170F4 * param0)
     }
 
     if (param0->unk_00) {
-        FreeToHeap(param0->unk_00);
+        Heap_FreeToHeap(param0->unk_00);
     }
 
     memset(param0, 0, sizeof(UnkStruct_020170F4));
@@ -83,7 +83,7 @@ void sub_020171A0 (UnkStruct_02017248 * param0, NNSFndAllocator * param1)
         NNS_G3dFreeAnmObj(param1, param0->unk_08);
 
         if (param0->unk_10 == 0) {
-            FreeToHeap(param0->unk_00);
+            Heap_FreeToHeap(param0->unk_00);
         }
     }
 

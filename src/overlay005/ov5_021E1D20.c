@@ -172,7 +172,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
 
 void ov5_021E1F04 (UnkStruct_ov5_021E1FF4 * param0)
 {
-    param0->unk_10 = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_0205AA50));
+    param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_0205AA50));
 
     sub_0201A7E8(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
     sub_0200DAA4(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
@@ -186,14 +186,14 @@ void ov5_021E1F7C (UnkStruct_ov5_021E1FF4 * param0)
 {
     sub_0200DC9C(param0->unk_10, 0);
     sub_0201A8FC(param0->unk_10);
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_10);
 }
 
 UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (UnkStruct_0203CDB0 * param0, int param1, u8 param2)
 {
     UnkStruct_ov5_021E1FF4 * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021E1FF4));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021E1FF4));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
@@ -215,7 +215,7 @@ void ov5_021E1FF4 (UnkStruct_ov5_021E1FF4 * param0)
 {
     sub_0200B190(param0->unk_18);
     sub_0200B3F0(param0->unk_14);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 BOOL ov5_021E200C (UnkStruct_0203CDB0 * param0)

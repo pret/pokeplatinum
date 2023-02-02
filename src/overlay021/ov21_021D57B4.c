@@ -59,7 +59,7 @@ void ov21_021D5844 (UnkStruct_ov21_021D5844 * param0)
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_00);
 
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
 
     param0->unk_00 = NULL;
     param0->unk_04 = 0;

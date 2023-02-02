@@ -36,7 +36,7 @@ static void ov28_022575EC(const UnkStruct_ov28_02256E9C * param0, const UnkStruc
 
 BOOL ov28_02256E9C (UnkStruct_ov28_02256E9C ** param0, u32 param1)
 {
-    *param0 = AllocFromHeap(8, sizeof(UnkStruct_ov28_02256E9C));
+    *param0 = Heap_AllocFromHeap(8, sizeof(UnkStruct_ov28_02256E9C));
 
     if (*param0) {
         (*param0)->unk_0A = param1;
@@ -49,7 +49,7 @@ BOOL ov28_02256E9C (UnkStruct_ov28_02256E9C ** param0, u32 param1)
 
 void ov28_02256EC0 (UnkStruct_ov28_02256E9C * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov28_02256EC8 (UnkStruct_ov28_02256E9C * param0)

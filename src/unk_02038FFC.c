@@ -19,11 +19,11 @@ int sub_02038FFC (int param0)
     sub_02099550();
     sub_020995B4();
 
-    v1 = AllocFromHeap(param0, DWC_INIT_WORK_SIZE + 32);
+    v1 = Heap_AllocFromHeap(param0, DWC_INIT_WORK_SIZE + 32);
     v2 = (u8 *)(((u32)v1 + 31) / 32 * 32);
     v0 = DWC_Init(v2);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
     sub_02099560();
     sub_020995C4();
 

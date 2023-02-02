@@ -104,7 +104,7 @@ static void sub_020528D0 (UnkStruct_02018340 * param0)
         0
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     sub_02018368(&v1);
     sub_020183C4(param0, 3, &v2, 0);
     sub_02006E84(14, 6, 0, 13 * 0x20, 0x20, 11);
@@ -114,7 +114,7 @@ static void sub_02052914 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * para
 {
     UnkStruct_02052AA4 * v0;
 
-    v0 = AllocFromHeap(11, sizeof(UnkStruct_02052AA4));
+    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -178,8 +178,8 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
         sub_0200B3F0(v0->unk_20);
         sub_0200B190(v0->unk_1C);
         sub_02019044(v0->unk_08, 3);
-        FreeToHeap(v0->unk_08);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0->unk_08);
+        Heap_FreeToHeap(v0);
 
         return 1;
     }
@@ -220,7 +220,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
     case 0:
     {
         if ((v0 != NULL) && (v0->unk_0C != NULL)) {
-            sub_02077A9C(GetPartyFromSavedata(v0->unk_0C), 0);
+            sub_02077A9C(Party_GetFromSavedata(v0->unk_0C), 0);
         }
     }
 

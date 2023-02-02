@@ -31,7 +31,7 @@ static const struct {
 
 UnkStruct_0200C440 * sub_0200C440 (u32 param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_0200C440 * v0 = AllocFromHeap(param3, sizeof(UnkStruct_0200C440));
+    UnkStruct_0200C440 * v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0200C440));
 
     if (v0) {
         u32 v1;
@@ -82,10 +82,10 @@ void sub_0200C560 (UnkStruct_0200C440 * param0)
 {
     if (param0) {
         if (param0->unk_00) {
-            FreeToHeap(param0->unk_00);
+            Heap_FreeToHeap(param0->unk_00);
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

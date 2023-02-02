@@ -217,7 +217,7 @@ void sub_0202B758 (UnkStruct_0202B628 * param0, void * param1, u8 param2)
         }
     }
 
-    FreeToHeap(param1);
+    Heap_FreeToHeap(param1);
 }
 
 static void sub_0202B7A0 (UnkStruct_0202B628 * param0, UnkStruct_0202BC58 * param1)
@@ -579,7 +579,7 @@ void * sub_0202BC58 (u16 param0, u32 param1)
     UnkStruct_0202BC58 * v0;
     RTCDate v1;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0202BC58));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0202BC58));
     sub_020138A4(&v1);
 
     v0->unk_00_0 = v1.year;
@@ -593,7 +593,7 @@ void * sub_0202BC58 (u16 param0, u32 param1)
 
 static UnkStruct_0202BCC8 * sub_0202BCC8 (u32 param0)
 {
-    UnkStruct_0202BCC8 * v0 = AllocFromHeap(param0, sizeof(UnkStruct_0202BCC8));
+    UnkStruct_0202BCC8 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BCC8));
 
     memset(v0, 0, sizeof(UnkStruct_0202BCC8));
     return v0;
@@ -796,7 +796,7 @@ void * sub_0202BE2C (u32 param0, u32 param1)
 
 static UnkStruct_0202BE38 * sub_0202BE38 (u32 param0)
 {
-    UnkStruct_0202BE38 * v0 = AllocFromHeap(param0, sizeof(UnkStruct_0202BE38));
+    UnkStruct_0202BE38 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BE38));
 
     memset(v0, 0, sizeof(UnkStruct_0202BE38));
     return v0;
@@ -854,7 +854,7 @@ void * sub_0202BECC (const UnkStruct_02025E5C * param0, u16 param1, u8 param2, u
 
 void * sub_0202BF4C (u16 param0, u16 param1, u32 param2)
 {
-    UnkStruct_0202BF4C * v0 = AllocFromHeap(param2, sizeof(UnkStruct_0202BF4C));
+    UnkStruct_0202BF4C * v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202BF4C));
 
     v0->unk_00_0 = 1;
     v0->unk_02 = param0;
@@ -865,7 +865,7 @@ void * sub_0202BF4C (u16 param0, u16 param1, u32 param2)
 
 static UnkStruct_0202BFCC * sub_0202BF7C (u32 param0)
 {
-    UnkStruct_0202BFCC * v0 = AllocFromHeap(param0, sizeof(UnkStruct_0202BFCC));
+    UnkStruct_0202BFCC * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202BFCC));
 
     memset(v0, 0, sizeof(UnkStruct_0202BFCC));
     return v0;

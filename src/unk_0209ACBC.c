@@ -13,7 +13,7 @@ UnkStruct_0209ACBC * sub_0209ACBC (u32 param0)
 {
     UnkStruct_0209ACBC * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0209ACBC));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0209ACBC));
     memset(v0, 0, sizeof(UnkStruct_0209ACBC));
     v0->unk_04 = 2;
     return v0;
@@ -21,7 +21,7 @@ UnkStruct_0209ACBC * sub_0209ACBC (u32 param0)
 
 void sub_0209ACDC (UnkStruct_0209ACBC * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 u32 sub_0209ACE4 (const UnkStruct_0209ACBC * param0)

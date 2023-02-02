@@ -23,7 +23,7 @@ UnkStruct_ov104_0223D5F0 * ov104_0223D5D0 (int param0)
 {
     UnkStruct_ov104_0223D5F0 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov104_0223D5F0));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov104_0223D5F0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));
 
     v0->unk_20 = param0;
@@ -43,7 +43,7 @@ void ov104_0223D5F0 (UnkStruct_ov104_0223D5F0 * param0)
         }
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 UnkStruct_02014014 * ov104_0223D614 (UnkStruct_ov104_0223D5F0 * param0, int param1, int param2, int param3)
@@ -55,7 +55,7 @@ UnkStruct_02014014 * ov104_0223D614 (UnkStruct_ov104_0223D5F0 * param0, int para
 
     GF_ASSERT(param0->unk_00[param1] == NULL);
 
-    v1 = AllocFromHeap(param0->unk_20, 0x4800);
+    v1 = Heap_AllocFromHeap(param0->unk_20, 0x4800);
     v0 = sub_02014014(ov104_0223D720, ov104_0223D744, v1, 0x4800, 1, param0->unk_20);
     v2 = sub_02014784(v0);
 
@@ -126,7 +126,7 @@ static void ov104_0223D708 (UnkStruct_02014014 * param0)
     v0 = sub_02014730(param0);
 
     sub_0201411C(param0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static u32 ov104_0223D720 (u32 param0, BOOL param1)

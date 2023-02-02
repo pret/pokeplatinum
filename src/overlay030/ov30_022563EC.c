@@ -45,7 +45,7 @@ static void ov30_02256658(UnkStruct_ov30_022563EC * param0);
 
 BOOL ov30_022563EC (UnkStruct_ov30_022563EC ** param0, const UnkStruct_ov30_022563EC_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov30_022563EC * v0 = (UnkStruct_ov30_022563EC *)AllocFromHeap(8, sizeof(UnkStruct_ov30_022563EC));
+    UnkStruct_ov30_022563EC * v0 = (UnkStruct_ov30_022563EC *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov30_022563EC));
 
     if (v0 != NULL) {
         NNSG2dScreenData * v1;
@@ -58,7 +58,7 @@ BOOL ov30_022563EC (UnkStruct_ov30_022563EC ** param0, const UnkStruct_ov30_0225
         v0->unk_48 = ov25_02254664();
 
         if (ov30_022565F4(v0) == 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 0;
         }
 
@@ -80,7 +80,7 @@ void ov30_02256444 (UnkStruct_ov30_022563EC * param0)
             sub_0200DA58(param0->unk_30);
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

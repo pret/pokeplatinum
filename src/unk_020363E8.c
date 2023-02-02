@@ -27,7 +27,7 @@ void sub_020363E8 (int param0)
     int v0;
 
     if (!Unk_021C07D0) {
-        Unk_021C07D0 = AllocFromHeap(param0, sizeof(UnkStruct_021C07D0));
+        Unk_021C07D0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_021C07D0));
         MI_CpuFill8(Unk_021C07D0, 0, sizeof(UnkStruct_021C07D0));
     }
 
@@ -42,7 +42,7 @@ void sub_020363E8 (int param0)
 
 void sub_02036438 (void)
 {
-    FreeToHeap(Unk_021C07D0);
+    Heap_FreeToHeap(Unk_021C07D0);
     Unk_021C07D0 = NULL;
 }
 

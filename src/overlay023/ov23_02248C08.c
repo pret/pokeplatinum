@@ -23,7 +23,7 @@
 
 UnkStruct_ov23_02248D20 * ov23_02248C08 (UnkStruct_ov84_02240FA8 * param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UnkStruct_020298B0 * param5, BOOL param6)
 {
-    UnkStruct_ov23_02248D20 * v0 = (UnkStruct_ov23_02248D20 *)AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
+    UnkStruct_ov23_02248D20 * v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02248D20));
 
@@ -153,7 +153,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
                     }
                 }
 
-                FreeToHeap(param0->unk_08);
+                Heap_FreeToHeap(param0->unk_08);
                 param0->unk_08 = v7;
 
                 sub_020015CC(v0, v7);
@@ -212,8 +212,8 @@ void ov23_02248EF8 (UnkStruct_ov23_02248D20 * param0, u16 * param1, u16 * param2
 
     if (param0->unk_00) {
         sub_02014A20(param0->unk_10);
-        FreeToHeap(param0->unk_08);
+        Heap_FreeToHeap(param0->unk_08);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }

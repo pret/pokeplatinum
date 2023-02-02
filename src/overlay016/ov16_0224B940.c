@@ -170,7 +170,7 @@ void * ov16_0224B940 (UnkStruct_0207ADB4 * param0)
     UnkStruct_ov16_0224B9DC * v0;
     int v1;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov16_0224B9DC));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0224B9DC));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_ov16_0224B9DC));
 
@@ -178,7 +178,7 @@ void * ov16_0224B940 (UnkStruct_0207ADB4 * param0)
     ov16_022542B8(param0, v0);
     ov16_02251604(param0, v0);
 
-    LoadMoveTable(&v0->unk_354.unk_8A);
+    MoveTable_Load(&v0->unk_354.unk_8A);
     v0->unk_354.unk_1DCC = sub_0207D388(5);
 
     return v0;
@@ -203,8 +203,8 @@ int ov16_0224B990 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
 
 void ov16_0224B9DC (UnkStruct_ov16_0224B9DC * param0)
 {
-    FreeToHeap(param0->unk_354.unk_1DCC);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_354.unk_1DCC);
+    Heap_FreeToHeap(param0);
 }
 
 void ov16_0224B9F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3, int param4)

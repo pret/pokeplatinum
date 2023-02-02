@@ -28,7 +28,7 @@ typedef struct {
 
 void * sub_0207064C (u32 param0, UnkStruct_0203CDB0 * param1, UnkStruct_02073C74 * param2, u16 param3, s16 param4, s16 param5)
 {
-    UnkStruct_0207064C * v0 = AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
+    UnkStruct_0207064C * v0 = Heap_AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
 
     memset(v0, 0, (sizeof(UnkStruct_0207064C)));
 
@@ -69,7 +69,7 @@ BOOL sub_02070680 (UnkStruct_020508D4 * param0)
             sub_02053AFC(param0, v3.unk_00, -1, v3.unk_08, v3.unk_0C, 1);
         }
 
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 
     return 0;

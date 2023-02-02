@@ -1026,7 +1026,7 @@ BOOL sub_02004D78 (u16 param0, int param1, int param2, u32 param3, int param4)
     }
 
     if (param3 == 14) {
-        *v6 = AllocFromHeap(param4, v2);
+        *v6 = Heap_AllocFromHeap(param4, v2);
 
         if (*v6 == NULL) {
             GF_ASSERT(FALSE);
@@ -1098,7 +1098,7 @@ void sub_02004E84 (u32 param0)
 
     if (*v1 == 1) {
         *v1 = 0;
-        FreeToHeap(*v2);
+        Heap_FreeToHeap(*v2);
     }
 
     return;

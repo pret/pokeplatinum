@@ -9,8 +9,8 @@ typedef enum PMOverlayLoadType {
     OVERLAY_LOAD_ASYNC
 } PMOverlayLoadType;
 
-void UnloadOverlayByID(const FSOverlayID param0);
-int GetOverlayLoadDestination(const FSOverlayID param0);
-BOOL HandleLoadOverlay(const FSOverlayID param0, int param1);
+void Overlay_UnloadByID(const FSOverlayID param0);
+int Overlay_GetLoadDestination(const FSOverlayID param0);
+BOOL Overlay_LoadByID(const FSOverlayID param0, int param1);
 
 #endif // POKEPLATINUM_UNK_020064F0_H

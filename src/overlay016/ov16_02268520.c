@@ -11,7 +11,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 
 #include "unk_02002F38.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200C6E4.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_02268520.h"

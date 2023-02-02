@@ -164,8 +164,8 @@ void sub_02020304 (const int param0, const int param1, const int param2, const i
 
     GF_ASSERT((param1 + 1 <= param0));
 
-    v1 = AllocFromHeap(param3, sizeof(UnkStruct_02020304));
-    v1->unk_20 = AllocFromHeap(param3, sizeof(VecFx32) * param0);
+    v1 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_02020304));
+    v1->unk_20 = Heap_AllocFromHeap(param3, sizeof(VecFx32) * param0);
 
     for (v0 = 0; v0 < param0; v0++) {
         v1->unk_20[v0].x = 0;
@@ -200,8 +200,8 @@ void sub_02020304 (const int param0, const int param1, const int param2, const i
 void sub_02020390 (UnkStruct_020203AC * param0)
 {
     if (param0->unk_64 != NULL) {
-        FreeToHeap(param0->unk_64->unk_20);
-        FreeToHeap(param0->unk_64);
+        Heap_FreeToHeap(param0->unk_64->unk_20);
+        Heap_FreeToHeap(param0->unk_64);
         param0->unk_64 = NULL;
     }
 }
@@ -210,13 +210,13 @@ UnkStruct_020203AC * sub_020203AC (const int param0)
 {
     UnkStruct_020203AC * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_020203AC));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020203AC));
     return v0;
 }
 
 void sub_020203B8 (UnkStruct_020203AC * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_020203C0 (UnkStruct_020203AC const * param0, UnkStruct_020203AC * param1)

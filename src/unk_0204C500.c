@@ -57,7 +57,7 @@ BOOL sub_0204C554 (UnkStruct_0203E724 * param0)
         *v2 = 0;
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
     return 0;
 }
 
@@ -79,7 +79,7 @@ BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
         sub_0202F180(param0->unk_34->unk_0C, v2);
     }
 
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
     sub_0202EF04(v0);
 
     return 0;

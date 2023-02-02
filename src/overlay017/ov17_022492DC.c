@@ -284,7 +284,7 @@ static void * ov17_022492DC (void)
 {
     UnkStruct_ov17_022492DC * v0;
 
-    v0 = AllocFromHeap(23, sizeof(UnkStruct_ov17_022492DC));
+    v0 = Heap_AllocFromHeap(23, sizeof(UnkStruct_ov17_022492DC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022492DC));
     v0->unk_8A = -1;
 
@@ -334,7 +334,7 @@ void ov17_022493A4 (UnkStruct_ov17_022492DC * param0)
     ov17_02249D3C(param0, 1);
 
     sub_020127BC(param0->unk_18);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov17_022493C4 (UnkStruct_ov17_022492DC * param0)
@@ -350,45 +350,45 @@ static void ov17_022493DC (UnkStruct_ov17_022492DC * param0)
     NNSG2dScreenData * v1;
     void * v2;
 
-    param0->unk_C4[0] = AllocFromHeap(23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[1] = AllocFromHeap(23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[2] = AllocFromHeap(23, 6 * 12 * 0x20 * 3);
+    param0->unk_C4[0] = Heap_AllocFromHeap(23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[1] = Heap_AllocFromHeap(23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[2] = Heap_AllocFromHeap(23, 6 * 12 * 0x20 * 3);
 
-    param0->unk_D0[0] = AllocFromHeap(23, 0x800);
-    param0->unk_D0[1] = AllocFromHeap(23, 0x800);
-    param0->unk_D0[2] = AllocFromHeap(23, 0x800);
-    param0->unk_D0[3] = AllocFromHeap(23, 0x800);
+    param0->unk_D0[0] = Heap_AllocFromHeap(23, 0x800);
+    param0->unk_D0[1] = Heap_AllocFromHeap(23, 0x800);
+    param0->unk_D0[2] = Heap_AllocFromHeap(23, 0x800);
+    param0->unk_D0[3] = Heap_AllocFromHeap(23, 0x800);
 
-    param0->unk_E0[0] = AllocFromHeap(23, 0x200);
-    param0->unk_E0[1] = AllocFromHeap(23, 0x200);
+    param0->unk_E0[0] = Heap_AllocFromHeap(23, 0x200);
+    param0->unk_E0[1] = Heap_AllocFromHeap(23, 0x200);
 
     v2 = sub_02006F50(45, 9, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v2 = sub_02006F50(45, 18, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[1], (0x8000 - (0x800 * 4)));
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v2 = sub_02006F50(45, 16, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[2], 6 * 12 * 0x20 * 3);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v2 = sub_02006F6C(45, 7, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[0], 0x800);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v2 = sub_02006F6C(45, 8, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[1], 0x800);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v2 = sub_02006F6C(45, 17, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[2], 0x800);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v2 = sub_02006F6C(45, 28, 1, &v1, 23);
     MI_CpuCopy32(v1->rawData, param0->unk_D0[3], 0x800);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     sub_020030E4(45, 31, 23, 0x200, 0, param0->unk_E0[0]);
     sub_020030E4(45, 38, 23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
@@ -400,15 +400,15 @@ static void ov17_022495F8 (UnkStruct_ov17_022492DC * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        FreeToHeap(param0->unk_C4[v0]);
+        Heap_FreeToHeap(param0->unk_C4[v0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        FreeToHeap(param0->unk_D0[v0]);
+        Heap_FreeToHeap(param0->unk_D0[v0]);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        FreeToHeap(param0->unk_E0[v0]);
+        Heap_FreeToHeap(param0->unk_E0[v0]);
     }
 }
 
@@ -624,7 +624,7 @@ static UnkStruct_ov17_02249B30 * ov17_02249AAC (UnkStruct_ov17_022492DC * param0
 {
     UnkStruct_ov17_02249B30 * v0;
 
-    v0 = AllocFromHeap(23, sizeof(UnkStruct_ov17_02249B30));
+    v0 = Heap_AllocFromHeap(23, sizeof(UnkStruct_ov17_02249B30));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02249B30));
 
     if (param3 != 0xffffffff) {
@@ -652,10 +652,10 @@ static BOOL ov17_02249B30 (UnkStruct_ov17_02249B30 * param0)
 {
     if (param0->unk_00 == NULL) {
         if (param0->unk_08 != NULL) {
-            FreeToHeap(param0->unk_08);
+            Heap_FreeToHeap(param0->unk_08);
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
         return 1;
     }
 

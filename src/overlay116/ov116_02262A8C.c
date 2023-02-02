@@ -186,7 +186,7 @@ void include_unk_ov116_02267C4C (void)
 
 UnkStruct_ov116_02262A8C * ov116_02262A8C (int param0, u32 param1, UnkStruct_ov116_022649E4 * param2)
 {
-    UnkStruct_ov116_02262A8C * v0 = AllocFromHeap(106, sizeof(UnkStruct_ov116_02262A8C));
+    UnkStruct_ov116_02262A8C * v0 = Heap_AllocFromHeap(106, sizeof(UnkStruct_ov116_02262A8C));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262A8C));
 
@@ -246,7 +246,7 @@ void ov116_02262AE4 (UnkStruct_ov116_02262A8C * param0)
 
 void ov116_02262C64 (UnkStruct_ov116_02262A8C * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 BOOL ov116_02262C6C (UnkStruct_ov116_02262A8C * param0, int * param1)
@@ -292,7 +292,7 @@ void ov116_02262C84 (UnkStruct_ov116_02262A8C * param0)
 
 static void ov116_02262CB8 (UnkStruct_ov116_02262A8C * param0, int param1)
 {
-    UnkStruct_ov116_02262CB8 * v0 = AllocFromHeap(106, sizeof(UnkStruct_ov116_02262CB8));
+    UnkStruct_ov116_02262CB8 * v0 = Heap_AllocFromHeap(106, sizeof(UnkStruct_ov116_02262CB8));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262CB8));
 
@@ -352,7 +352,7 @@ static void ov116_02262D64 (UnkStruct_ov116_02262A8C * param0, int param1)
 
 static void ov116_02262DC0 (UnkStruct_ov116_02262A8C * param0)
 {
-    UnkStruct_ov116_02262DC0 * v0 = AllocFromHeap(106, sizeof(UnkStruct_ov116_02262DC0));
+    UnkStruct_ov116_02262DC0 * v0 = Heap_AllocFromHeap(106, sizeof(UnkStruct_ov116_02262DC0));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262DC0));
 
@@ -395,7 +395,7 @@ void ov116_02262E50 (UnkStruct_0201CD38 * param0, void * param1)
 
     if ((sub_0200F2AC() == 0) || (v0->unk_78->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return;
     }
 
@@ -510,7 +510,7 @@ void ov116_02262E50 (UnkStruct_0201CD38 * param0, void * param1)
 
                 v0->unk_10->unk_1E0.z = (0 * FX32_ONE);
                 sub_0200DA58(param0);
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
             }
         }
         break;
@@ -524,7 +524,7 @@ void ov116_02263158 (UnkStruct_0201CD38 * param0, void * param1)
 
     if ((sub_0200F2AC() == 0) || (v0->unk_2C->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return;
     }
 
@@ -570,7 +570,7 @@ void ov116_02263158 (UnkStruct_0201CD38 * param0, void * param1)
         } else {
             if ((++v0->unk_08) >= 10) {
                 sub_0200DA58(param0);
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
             }
         }
         break;

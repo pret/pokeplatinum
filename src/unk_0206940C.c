@@ -64,7 +64,7 @@ UnkStruct_0206942C * sub_0206940C (const int param0)
 {
     UnkStruct_0206942C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0206942C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0206942C));
 
     sub_0201CFEC(FX32_ONE * 16, FX32_ONE * 8, FX32_ONE * 16, &v0->unk_BC);
     return v0;
@@ -72,7 +72,7 @@ UnkStruct_0206942C * sub_0206940C (const int param0)
 
 void sub_0206942C (UnkStruct_0206942C * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_02069434 (UnkStruct_0206942C * param0)
@@ -534,7 +534,7 @@ BOOL sub_02069A00 (UnkStruct_020508D4 * param0)
         }
         break;
     case 4:
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         sub_02062C78(v0->unk_38);
         return 1;
         break;

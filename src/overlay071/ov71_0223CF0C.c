@@ -8,7 +8,7 @@
 #include "overlay071/struct_ov71_0223D238.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -89,7 +89,7 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
 
             if (param0->unk_224[v1] != NULL) {
                 if (NNS_G2dGetUnpackedPaletteData(param0->unk_224[v1], &param0->unk_244[v1]) == 0) {
-                    FreeToHeap(param0->unk_244[v1]);
+                    Heap_FreeToHeap(param0->unk_244[v1]);
                     GF_ASSERT(0);
                 }
             } else {
@@ -98,7 +98,7 @@ void ov71_0223CF0C (UnkStruct_ov71_0223D238 * param0, NARC * param1)
         }
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 void ov71_0223D070 (UnkStruct_ov71_0223D238 * param0, const u8 * param1)
@@ -182,7 +182,7 @@ void ov71_0223D238 (UnkStruct_ov71_0223D238 * param0)
     u8 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        FreeToHeap(param0->unk_224[v0]);
+        Heap_FreeToHeap(param0->unk_224[v0]);
     }
 
     sub_0200A4E4(param0->unk_1A0[0][0]);

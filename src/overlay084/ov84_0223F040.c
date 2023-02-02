@@ -18,7 +18,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
@@ -167,7 +167,7 @@ void ov84_0223F3AC (UnkStruct_ov84_0223B5A0 * param0, u8 param1, u8 param2)
 
     sub_0201ADDC(&param0->unk_04[5], v0->pRawData, v2, 0, 32 * 8, 16, param0->unk_427 + param0->unk_428 * param1, 3, 10, 10);
     sub_0201A9A4(&param0->unk_04[5]);
-    FreeToHeapExplicit(6, v1);
+    Heap_FreeToHeapExplicit(6, v1);
 }
 
 void ov84_0223F438 (UnkStruct_ov84_0223B5A0 * param0)
@@ -191,7 +191,7 @@ void ov84_0223F438 (UnkStruct_ov84_0223B5A0 * param0)
     }
 
     sub_0201A9A4(&param0->unk_04[5]);
-    FreeToHeapExplicit(6, v1);
+    Heap_FreeToHeapExplicit(6, v1);
 }
 
 static void ov84_0223F4E8 (UnkStruct_ov84_0223B5A0 * param0, u32 param1, u32 param2)
@@ -210,7 +210,7 @@ void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     if (param1 != 0xffff) {
         v0 = sub_02023790(130, 6);
-        GetItemDescriptionIntoString(v0, param1, 6);
+        Item_GetDescriptionIntoString(v0, param1, 6);
     } else {
         v0 = sub_0200B1EC(param0->unk_114, 94);
     }
@@ -249,14 +249,14 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     sub_0201D78C(v0, 0, v1, 96, 32, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_020237BC(v1);
 
-    v3 = GetMoveMaxPP(v2, 0);
+    v3 = MoveTable_GetMoveMaxPP(v2, 0);
     v1 = sub_0200B1EC(param0->unk_114, 90);
     sub_0200B60C(param0->unk_118, 0, v3, 2, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_020237BC(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 48, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v3 = GetMoveAttribute(v2, 2);
+    v3 = MoveTable_GetMoveAttribute(v2, 2);
 
     if (v3 <= 1) {
         v1 = sub_0200B1EC(param0->unk_114, 24);
@@ -268,7 +268,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_020237BC(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 96 + 64, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    v3 = GetMoveAttribute(v2, 4);
+    v3 = MoveTable_GetMoveAttribute(v2, 4);
 
     if (v3 == 0) {
         v1 = sub_0200B1EC(param0->unk_114, 24);
@@ -354,7 +354,7 @@ static void ov84_0223F9B0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 
     v1 = ov84_0223F994(param0, &v0);
     sub_0201ADDC(&param0->unk_04[0], v0->pRawData, 40, 0, 64, 16, 0, param1, 24, 16);
-    FreeToHeapExplicit(6, v1);
+    Heap_FreeToHeapExplicit(6, v1);
 }
 
 void ov84_0223F9F0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
@@ -374,7 +374,7 @@ void ov84_0223FA44 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 
     v1 = ov84_0223F994(param0, &v0);
     sub_0201ADDC(&param0->unk_04[0], v0->pRawData, 0, 0, 64, 16, 96, param1, 40, 16);
-    FreeToHeapExplicit(6, v1);
+    Heap_FreeToHeapExplicit(6, v1);
 }
 
 void ov84_0223FA88 (UnkStruct_ov84_0223B5A0 * param0)

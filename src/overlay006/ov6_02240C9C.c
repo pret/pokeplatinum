@@ -16,7 +16,7 @@
 #include "overlay006/struct_ov6_02242634.h"
 #include "overlay006/struct_ov6_02242634_sub2.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -212,7 +212,7 @@ static void ov6_02240D00 (UnkStruct_0203CDB0 * param0, const BOOL param1, int * 
         sub_0202DA10(param0->unk_0C, &v1, &v2);
 
         if (param1) {
-            v0 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, 8, 4);
+            v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 8, 4);
 
             if (v1 != 0xffff) {
                 (*param2) = v0[v1];
@@ -222,7 +222,7 @@ static void ov6_02240D00 (UnkStruct_0203CDB0 * param0, const BOOL param1, int * 
                 (*param3) = v0[v2];
             }
 
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
     }
 }
@@ -257,7 +257,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
             return 0;
         }
 
-        v11 = GetPartyFromSavedata(param0->unk_0C);
+        v11 = Party_GetFromSavedata(param0->unk_0C);
         v12 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
         v1 = Party_GetPokemonBySlotIndex(v11, 0);
 
@@ -411,7 +411,7 @@ BOOL ov6_0224106C (UnkStruct_0203CDB0 * param0, const int param1, UnkStruct_ov6_
             return 0;
         }
 
-        v1 = GetPartyFromSavedata(param0->unk_0C);
+        v1 = Party_GetFromSavedata(param0->unk_0C);
         v0 = Party_GetPokemonBySlotIndex(v1, 0);
         ov6_02242634(param0, v0, NULL, &v4);
         v5 = ov6_0224226C(1, v5, &v4, sub_0203A74C(sub_0203A790(param0->unk_0C)), v0);
@@ -512,7 +512,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
         }
     }
 
-    v10 = GetPartyFromSavedata(param0->unk_0C);
+    v10 = Party_GetFromSavedata(param0->unk_0C);
     v11 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
     v1 = Party_GetPokemonBySlotIndex(v10, 0);
 
@@ -636,7 +636,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C ** param1
             return 0;
         }
 
-        v10 = GetPartyFromSavedata(param0->unk_0C);
+        v10 = Party_GetFromSavedata(param0->unk_0C);
         v11 = (UnkStruct_ov6_02242634 *)sub_0203A640(param0);
         v0 = Party_GetPokemonBySlotIndex(v10, 0);
 
@@ -1192,7 +1192,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
     v0 = ov6_02242514(param2, param4, v5, param6);
 
     GF_ASSERT(v0);
-    FreeToHeap(v5);
+    Heap_FreeToHeap(v5);
 }
 
 static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStruct_ov6_022422D0 * param3, UnkStruct_02073C74 * param4, UnkStruct_ov6_02240D5C * param5)
@@ -1238,7 +1238,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
 
                     v2 = ov6_02242514(param2, param3, v3, param5);
                     GF_ASSERT(v2);
-                    FreeToHeap(v3);
+                    Heap_FreeToHeap(v3);
                     return;
                 }
             }
@@ -1250,7 +1250,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
     v2 = ov6_02242514(param2, param3, v3, param5);
 
     GF_ASSERT(v2);
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 }
 
 static BOOL ov6_02241DC4 (UnkStruct_02073C74 * param0, const int param1, const UnkStruct_ov6_022422D0 * param2, const UnkStruct_ov6_0224222C * param3, const u8 param4, const int param5, UnkStruct_ov6_02240D5C * param6)
@@ -1375,7 +1375,7 @@ void ov6_02242034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     {
         Party * v4;
 
-        v4 = GetPartyFromSavedata(param0->unk_0C);
+        v4 = Party_GetFromSavedata(param0->unk_0C);
         v0 = Party_GetPokemonBySlotIndex(v4, 0);
 
         ov6_02242634(param0, v0, NULL, &v2);
@@ -1412,7 +1412,7 @@ void ov6_022420D4 (UnkStruct_0203CDB0 * param0, u16 param1, u8 param2, UnkStruct
     {
         Party * v2;
 
-        v2 = GetPartyFromSavedata(param0->unk_0C);
+        v2 = Party_GetFromSavedata(param0->unk_0C);
         v0 = Party_GetPokemonBySlotIndex(v2, 0);
 
         ov6_02242634(param0, v0, NULL, &v1);
@@ -1636,7 +1636,7 @@ static void ov6_0224239C (const u32 param0, UnkStruct_0206C638 * param1, UnkStru
     v6 = Party_AddPokemon(param2->unk_04[1], v7);
 
     GF_ASSERT(v6);
-    FreeToHeap(v7);
+    Heap_FreeToHeap(v7);
 }
 
 static BOOL ov6_02242440 (UnkStruct_0203CDB0 * param0, UnkStruct_0206C638 ** param1)

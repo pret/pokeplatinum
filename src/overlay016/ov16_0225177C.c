@@ -27,7 +27,7 @@
 #include "overlay016/struct_ov16_0225C300.h"
 
 #include "unk_020021B0.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
@@ -328,18 +328,18 @@ void ov16_02251C94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
 void ov16_02251E1C (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
 {
-    GF_ASSERT(GetNarcMemberSizeByIndexPair(param1, param2) < 400 * 4);
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(param1, param2) < 400 * 4);
 
     param0->unk_AC = param1;
     param0->unk_B0 = param2;
     param0->unk_B4 = 0;
 
-    ReadWholeNarcMemberByIndexPair(&param0->unk_2700, param1, param2);
+    NARC_ReadWholeMemberByIndexPair(&param0->unk_2700, param1, param2);
 }
 
 void ov16_02251E5C (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
 {
-    GF_ASSERT(GetNarcMemberSizeByIndexPair(param1, param2) < 400 * 4);
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(param1, param2) < 400 * 4);
     GF_ASSERT(param0->unk_B8 < 4);
 
     param0->unk_BC[param0->unk_B8] = param0->unk_AC;
@@ -350,7 +350,7 @@ void ov16_02251E5C (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
     param0->unk_B0 = param2;
     param0->unk_B4 = 0;
 
-    ReadWholeNarcMemberByIndexPair(&param0->unk_2700, param1, param2);
+    NARC_ReadWholeMemberByIndexPair(&param0->unk_2700, param1, param2);
 }
 
 BOOL ov16_02251EF4 (UnkStruct_ov16_0224B9DC * param0)
@@ -527,7 +527,7 @@ int ov16_02252060 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, voi
     case 40:
     case 41:
     case 42:
-        return GetMoveMaxPP(v0->unk_0C[param2 - 39], v0->unk_30[param2 - 39]);
+        return MoveTable_GetMoveMaxPP(v0->unk_0C[param2 - 39], v0->unk_30[param2 - 39]);
         break;
     case 43:
         return v0->unk_34;
@@ -1076,7 +1076,7 @@ void ov16_02252A2C (UnkStruct_ov16_02252060 * param0, int param1, int param2)
     {
         int v1;
 
-        v1 = GetMoveMaxPP(param0->unk_0C[param1 - 31], param0->unk_30[param1 - 31]);
+        v1 = MoveTable_GetMoveMaxPP(param0->unk_0C[param1 - 31], param0->unk_30[param1 - 31]);
 
         if (param0->unk_2C[param1 - 31] + param2 > v1) {
             param0->unk_2C[param1 - 31] = v1;
@@ -3042,7 +3042,7 @@ BOOL ov16_02255980 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     v0 = 0;
     v1 = ov16_0223E208(param0, param2);
 
-    if ((param1->unk_2D40[param2].unk_78) && ((param1->unk_1C4[v1].unk_00_23 & sub_020787CC(param1->unk_219C[param2])) == 0) && (IsItemMail(param1->unk_2D40[param2].unk_78) == 0)) {
+    if ((param1->unk_2D40[param2].unk_78) && ((param1->unk_1C4[v1].unk_00_23 & sub_020787CC(param1->unk_219C[param2])) == 0) && (Item_IsMail(param1->unk_2D40[param2].unk_78) == 0)) {
         v0 = 1;
     }
 
@@ -3051,7 +3051,7 @@ BOOL ov16_02255980 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
 BOOL ov16_022559DC (UnkStruct_ov16_0224B9DC * param0, int param1)
 {
-    return IsItemMail(param0->unk_2D40[param1].unk_78) == 0;
+    return Item_IsMail(param0->unk_2D40[param1].unk_78) == 0;
 }
 
 BOOL ov16_022559FC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
@@ -5429,7 +5429,7 @@ BOOL ov16_02258CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
         for (v5 = 0; v5 < 4; v5++) {
             if (param1->unk_2D40[param1->unk_64].unk_0C[v5]) {
-                v4 = GetMoveMaxPP(param1->unk_2D40[param1->unk_64].unk_0C[v5], param1->unk_2D40[param1->unk_64].unk_30[v5]) - param1->unk_2D40[param1->unk_64].unk_2C[v5];
+                v4 = MoveTable_GetMoveMaxPP(param1->unk_2D40[param1->unk_64].unk_0C[v5], param1->unk_2D40[param1->unk_64].unk_30[v5]) - param1->unk_2D40[param1->unk_64].unk_2C[v5];
 
                 if (v4 > v6) {
                     v6 = v4;
@@ -5629,7 +5629,7 @@ BOOL ov16_02258CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         break;
     default:
 
-        if (IsItemBerry(param1->unk_2D40[param2].unk_78) == 1) {
+        if (Item_IsBerry(param1->unk_2D40[param2].unk_78) == 1) {
             v0 = 1;
         }
         break;
@@ -5711,7 +5711,7 @@ BOOL ov16_02259204 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
         for (v4 = 0; v4 < 4; v4++) {
             if (param1->unk_2D40[param1->unk_6C].unk_0C[v4]) {
-                v3 = GetMoveMaxPP(param1->unk_2D40[param1->unk_6C].unk_0C[v4], param1->unk_2D40[param1->unk_6C].unk_30[v4]) - param1->unk_2D40[param1->unk_6C].unk_2C[v4];
+                v3 = MoveTable_GetMoveMaxPP(param1->unk_2D40[param1->unk_6C].unk_0C[v4], param1->unk_2D40[param1->unk_6C].unk_30[v4]) - param1->unk_2D40[param1->unk_6C].unk_2C[v4];
 
                 if (v3 > v5) {
                     v5 = v3;
@@ -6169,7 +6169,7 @@ BOOL ov16_02259B9C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         }
 
         if ((param1->unk_2D40[param1->unk_118].unk_00 == 493) && (param1->unk_2D40[param1->unk_118].unk_4C) && (ov16_02255A4C(param1, param1->unk_118) == 121)) {
-            v1 = sub_02077988(GetItemAttribute(param1->unk_2D40[param1->unk_118].unk_78, 1, 5));
+            v1 = sub_02077988(Item_GetAttribute(param1->unk_2D40[param1->unk_118].unk_78, 1, 5));
 
             if (param1->unk_2D40[param1->unk_118].unk_26_0 != v1) {
                 param1->unk_2D40[param1->unk_118].unk_26_0 = v1;
@@ -6213,7 +6213,7 @@ BOOL ov16_02259B9C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                     param1->unk_2140 |= 0x4000000;
 
                     ov16_022662FC(param0, param1, param1->unk_118);
-                    FreeToHeap(v3);
+                    Heap_FreeToHeap(v3);
 
                     *param2 = (0 + 262);
                     v2 = 1;
@@ -6974,7 +6974,7 @@ s32 ov16_0225B0FC (UnkStruct_ov16_0224B9DC * param0, u16 param1, u16 param2)
     v1 = sub_0207CE78(param1, 0);
     v0 = sub_0207D3B0(param0->unk_354.unk_1DCC, v1);
 
-    return GetItemAttributeFromStruct(v0, param2);
+    return Item_GetAttributeFromStruct(v0, param2);
 }
 
 int ov16_0225B120 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)

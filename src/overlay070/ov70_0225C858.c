@@ -17,13 +17,13 @@ UnkStruct_ov70_0225C894 * ov70_0225C858 (u32 param0)
     UnkStruct_ov70_0225C894 * v0;
     void * v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov70_0225C894));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_0225C894));
     v0->unk_00 = ov63_0222BCE8(35, 42, param0);
 
     v1 = sub_02006FE8(174, 0, 0, param0, 1);
 
     ov63_0222BD50(v0->unk_00, v1);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }
@@ -31,7 +31,7 @@ UnkStruct_ov70_0225C894 * ov70_0225C858 (u32 param0)
 void ov70_0225C894 (UnkStruct_ov70_0225C894 * param0)
 {
     ov63_0222BD30(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 u16 ov70_0225C8A8 (const UnkStruct_ov70_0225C894 * param0)

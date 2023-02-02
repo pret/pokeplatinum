@@ -23,7 +23,7 @@ struct NARC {
  * @param narcIndex:      Index of NARC to read
  * @param memebrIndex:    Index of FAT member within the NARC
  */
-void ReadWholeNarcMemberByIndexPair(void * dest, int narcIndex, int memberIndex);
+void NARC_ReadWholeMemberByIndexPair(void * dest, int narcIndex, int memberIndex);
 
 /*
  * Creates a new buffer large enough to hold the content of the archive member, then reads its data.
@@ -35,8 +35,8 @@ void ReadWholeNarcMemberByIndexPair(void * dest, int narcIndex, int memberIndex)
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void * AllocAndReadWholeNarcMemberByIndexPair(int narcIndex, int memberIndex, int heapID);
-void * AllocAtEndAndReadWholeNarcMemberByIndexPair(int narcIndex, int memberIndex, int heapID);
+void * NARC_AllocAndReadWholeMemberByIndexPair(int narcIndex, int memberIndex, int heapID);
+void * NARC_AllocAtEndAndReadWholeMemberByIndexPair(int narcIndex, int memberIndex, int heapID);
 
 /*
  * Reads a portion of an archive member into an existing buffer
@@ -47,7 +47,7 @@ void * AllocAtEndAndReadWholeNarcMemberByIndexPair(int narcIndex, int memberInde
  * @param offset:         Byte offset to start reading, relative to start of member, up to the end of member
  * @param bytesToRead:    Number of bytes to read, up to the total bytesToRead of member minus offset
  */
-void ReadFromNarcMemberByIndexPair(void * dest, int narcIndex, int memberIndex, int offset, int bytesToRead);
+void NARC_ReadFromMemberByIndexPair(void * dest, int narcIndex, int memberIndex, int offset, int bytesToRead);
 
 /*
  * Creates a new buffer large enough to hold the size of the data to read, then reads the specified data slice.
@@ -61,8 +61,8 @@ void ReadFromNarcMemberByIndexPair(void * dest, int narcIndex, int memberIndex, 
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void * AllocAndReadFromNarcMemberByIndexPair(int narcIndex, int memberIndex, int heapID, int offset, int bytesToRead);
-void * AllocAtEndAndReadFromNarcMemberByIndexPair(int narcIndex, int memberIndex, int heapID, int offset, int bytesToRead);
+void * NARC_AllocAndReadFromMemberByIndexPair(int narcIndex, int memberIndex, int heapID, int offset, int bytesToRead);
+void * NARC_AllocAtEndAndReadFromMemberByIndexPair(int narcIndex, int memberIndex, int heapID, int offset, int bytesToRead);
 
 /*
  * Gets the size of a NARC member. Useful when managing the read buffer yourself and the NARC has variable
@@ -73,7 +73,7 @@ void * AllocAtEndAndReadFromNarcMemberByIndexPair(int narcIndex, int memberIndex
  *
  * @returns: Size in bytes of the member
  */
-u32 GetNarcMemberSizeByIndexPair(int narcIndex, int memberIndex);
+u32 NARC_GetMemberSizeByIndexPair(int narcIndex, int memberIndex);
 
 /*
  * Constructs a new NARC which contains an open FSFile to the corresponding archive.

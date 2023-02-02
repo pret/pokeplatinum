@@ -13,7 +13,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay115/struct_ov115_02261520.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -53,13 +53,13 @@ UnkStruct_ov6_022426B8 * ov6_022426AC (const int param0)
 {
     UnkStruct_ov6_022426B8 * v0;
 
-    v0 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_022426B8));
+    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_022426B8));
     return v0;
 }
 
 void ov6_022426B8 (UnkStruct_ov6_022426B8 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
@@ -149,8 +149,8 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
     }
 
     sub_02021964(param0->unk_38);
-    FreeToHeap(param0->unk_20);
-    FreeToHeap(param0->unk_24);
+    Heap_FreeToHeap(param0->unk_20);
+    Heap_FreeToHeap(param0->unk_24);
 }
 
 static void ov6_02242860 (UnkStruct_0201CD38 * param0, void * param1)

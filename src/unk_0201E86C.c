@@ -92,11 +92,11 @@ void sub_0201E88C (const UnkStruct_ov22_022559F8 * param0, GXOBJVRamModeChar par
     int v2;
 
     if (Unk_021C0760 == NULL) {
-        Unk_021C0760 = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_021C0760));
+        Unk_021C0760 = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_021C0760));
         MI_CpuClear32(Unk_021C0760, sizeof(UnkStruct_021C0760));
 
         Unk_021C0760->unk_04 = param0->unk_00;
-        Unk_021C0760->unk_00 = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_0201EED4) * Unk_021C0760->unk_04);
+        Unk_021C0760->unk_00 = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_0201EED4) * Unk_021C0760->unk_04);
 
         for (v0 = 0; v0 < param0->unk_00; v0++) {
             sub_0201EED4(Unk_021C0760->unk_00 + v0);
@@ -123,8 +123,8 @@ void sub_0201E958 (void)
 
         sub_0201EBA0();
 
-        FreeToHeap(Unk_021C0760->unk_00);
-        FreeToHeap(Unk_021C0760);
+        Heap_FreeToHeap(Unk_021C0760->unk_00);
+        Heap_FreeToHeap(Unk_021C0760);
 
         Unk_021C0760 = NULL;
     }
@@ -881,19 +881,19 @@ static void sub_0201F47C (u32 param0, u32 param1, int param2)
     Unk_021C0760->unk_28 = param1;
 
     if (Unk_021C0760->unk_34 != NULL) {
-        FreeToHeap(Unk_021C0760->unk_34);
+        Heap_FreeToHeap(Unk_021C0760->unk_34);
     }
 
     if (Unk_021C0760->unk_38 != NULL) {
-        FreeToHeap(Unk_021C0760->unk_38);
+        Heap_FreeToHeap(Unk_021C0760->unk_38);
     }
 
     if (Unk_021C0760->unk_24 != 0) {
-        Unk_021C0760->unk_34 = AllocFromHeap(param2, sizeof(u8) * (param0 / 8));
+        Unk_021C0760->unk_34 = Heap_AllocFromHeap(param2, sizeof(u8) * (param0 / 8));
     }
 
     if (Unk_021C0760->unk_28 != 0) {
-        Unk_021C0760->unk_38 = AllocFromHeap(param2, sizeof(u8) * (param1 / 8));
+        Unk_021C0760->unk_38 = Heap_AllocFromHeap(param2, sizeof(u8) * (param1 / 8));
     }
 
     sub_0201F460();
@@ -905,10 +905,10 @@ static void sub_0201F4E4 (u8 * param0)
         if (param0 == Unk_021C0760->unk_34) {
             Unk_021C0760->unk_24 = 0;
 
-            FreeToHeap(param0);
+            Heap_FreeToHeap(param0);
         } else {
             Unk_021C0760->unk_28 = 0;
-            FreeToHeap(param0);
+            Heap_FreeToHeap(param0);
         }
 
         param0 = NULL;

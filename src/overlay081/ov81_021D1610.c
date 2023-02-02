@@ -826,7 +826,7 @@ static void ov81_021D28C8 (UnkStruct_ov81_021D1610 * param0, u16 param1, u8 para
 
     sub_02074088(v0, param1, 1, 32, param2, 0, 0);
     sub_0200B538(param0->unk_54, param3, sub_02076B10(v0));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov81_021D2908 (UnkStruct_ov81_021D1610 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0202BE38 * param2)

@@ -67,7 +67,7 @@ static void sub_0201D6B0 (u8 param0)
 
         if (v0) {
             sub_0201DBD8(v0);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
 
         sub_0200DA58(Unk_021C04E0[param0]);
@@ -180,7 +180,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
         return 0xff;
     }
 
-    v0 = AllocFromHeap(0, sizeof(UnkStruct_0201D834));
+    v0 = Heap_AllocFromHeap(0, sizeof(UnkStruct_0201D834));
 
     v0->unk_27 = 1;
     v0->unk_28 = 0;
@@ -227,7 +227,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
         }
 
         sub_0201DBD8(v0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
 
         return 8;
     }
@@ -377,11 +377,11 @@ static u8 * sub_0201DB50 (void)
     void * v1;
     u8 * v2;
 
-    v2 = AllocFromHeap(0, 3 * 4 * 4 * 0x20);
+    v2 = Heap_AllocFromHeap(0, 3 * 4 * 4 * 0x20);
     v1 = sub_02006F50(14, 5, 0, &v0, 0);
 
     MI_CpuCopy32(v0->pRawData, v2, 3 * 4 * 4 * 0x20);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v2;
 }
@@ -407,7 +407,7 @@ void sub_0201DB8C (UnkStruct_0201D834 * param0, u16 param1, u16 param2, u16 para
 static void sub_0201DBD8 (UnkStruct_0201D834 * param0)
 {
     if (param0->unk_30) {
-        FreeToHeap(param0->unk_30);
+        Heap_FreeToHeap(param0->unk_30);
         param0->unk_30 = NULL;
     }
 }

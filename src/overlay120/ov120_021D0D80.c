@@ -48,7 +48,7 @@ int ov120_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov120_021D0F24 * v0;
     int v1 = 120;
 
-    CreateHeap(3, v1, 0x40000);
+    Heap_Create(3, v1, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov120_021D0F24), v1);
     memset(v0, 0, sizeof(UnkStruct_ov120_021D0F24));
@@ -72,8 +72,8 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
         sub_02017798(NULL, NULL);
         sub_020177BC(NULL, NULL);
 
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -84,7 +84,7 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
         ov120_021D114C(v0);
 
         sub_02017798(ov120_021D0F18, (void *)v0);
-        GX_BothDispOn();
+        GXLayers_TurnBothDispOn();
 
         v0->unk_24 = 0;
         *param1 = 1;
@@ -146,7 +146,7 @@ int ov120_021D0EFC (UnkStruct_020067E8 * param0, int * param1)
     int v1 = v0->unk_00;
 
     sub_02006830(param0);
-    DestroyHeap(v1);
+    Heap_Destroy(v1);
 
     return 1;
 }
@@ -174,7 +174,7 @@ static void ov120_021D0F24 (UnkStruct_ov120_021D0F24 * param0)
             GX_VRAM_TEXPLTT_NONE
         };
 
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
     }
 
     {
@@ -318,7 +318,7 @@ static void ov120_021D10D4 (UnkStruct_ov120_021D0F24 * param0)
     sub_02019044(param0->unk_04, 0);
     sub_02019044(param0->unk_04, 2);
 
-    FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->unk_04);
 }
 
 static void ov120_021D114C (UnkStruct_ov120_021D0F24 * param0)

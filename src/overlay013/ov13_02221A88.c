@@ -920,7 +920,7 @@ static void ov13_02222E2C (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     u32 v4;
 
     v1 = &param0->unk_206C[param1];
-    v3 = GetMoveAttribute(param2, 10);
+    v3 = MoveTable_GetMoveAttribute(param2, 10);
     v4 = sub_0209577C(v3);
     v0 = sub_0200B144(0, 26, 210, param0->unk_00->unk_0C);
     v2 = sub_0200B1EC(v0, v4);
@@ -1400,7 +1400,7 @@ static void ov13_02223B74 (UnkStruct_ov13_022213F0 * param0)
     {
         UnkStruct_ov13_022236B8 v2;
 
-        v2.unk_02 = GetMoveAttribute(param0->unk_00->unk_24, 5);
+        v2.unk_02 = MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 5);
         v2.unk_03 = v2.unk_02;
 
         ov13_0222317C(param0, &v2, 5);
@@ -1444,13 +1444,13 @@ static void ov13_02223C9C (UnkStruct_ov13_022213F0 * param0)
         ov13_02222EF8(param0, 10, v0->unk_05);
         ov13_02222F74(param0, 3, v0->unk_02, v0->unk_03);
     } else {
-        u32 v1 = GetMoveAttribute(param0->unk_00->unk_24, 5);
+        u32 v1 = MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 5);
 
         ov13_022220CC(param0, param0->unk_00->unk_24, 1, Unk_ov13_02228EB0[4], 0, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov13_02222DCC(param0, 8, param0->unk_00->unk_24);
-        ov13_02222BB4(param0, 6, GetMoveAttribute(param0->unk_00->unk_24, 4));
-        ov13_02222CE4(param0, 7, GetMoveAttribute(param0->unk_00->unk_24, 2));
-        ov13_02222EF8(param0, 10, GetMoveAttribute(param0->unk_00->unk_24, 1));
+        ov13_02222BB4(param0, 6, MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 4));
+        ov13_02222CE4(param0, 7, MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 2));
+        ov13_02222EF8(param0, 10, MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 1));
         ov13_02222F74(param0, 3, v1, v1);
     }
 
@@ -1481,7 +1481,7 @@ static void ov13_02223E68 (UnkStruct_ov13_022213F0 * param0)
         ov13_0222317C(param0, v0, 1 + v1);
     }
 
-    if (GetItemAttribute(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) == 0) {
+    if (Item_GetAttribute(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) == 0) {
         ov13_022221C8(param0, 94);
     }
 
@@ -1531,7 +1531,7 @@ static void ov13_02223F7C (UnkStruct_ov13_022213F0 * param0)
         ov13_02222E2C(param0, 5, v2->unk_00);
         ov13_02222F74(param0, 3, v2->unk_02, v2->unk_03);
     } else {
-        u32 v3 = GetMoveAttribute(param0->unk_00->unk_24, 5);
+        u32 v3 = MoveTable_GetMoveAttribute(param0->unk_00->unk_24, 5);
 
         ov13_022220CC(param0, param0->unk_00->unk_24, 1, Unk_ov13_02228EB0[4], 0, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov13_02222E2C(param0, 5, param0->unk_00->unk_24);
@@ -1565,36 +1565,36 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
     u8 v6;
 
     v1 = param0->unk_00;
-    v2 = LoadItemDataOrGfx(v1->unk_22, 0, v1->unk_0C);
+    v2 = Item_LoadDataOrGFX(v1->unk_22, 0, v1->unk_0C);
     v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
     v4 = sub_02074470(v0, 163, NULL);
     v5 = 0;
 
-    if (GetItemAttributeFromStruct(v2, 15) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 15) != 0) {
         v5 |= 0x1;
     }
 
-    if (GetItemAttributeFromStruct(v2, 16) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 16) != 0) {
         v5 |= 0x2;
     }
 
-    if (GetItemAttributeFromStruct(v2, 17) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 17) != 0) {
         v5 |= 0x4;
     }
 
-    if (GetItemAttributeFromStruct(v2, 18) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 18) != 0) {
         v5 |= 0x8;
     }
 
-    if (GetItemAttributeFromStruct(v2, 19) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 19) != 0) {
         v5 |= 0x10;
     }
 
-    if (GetItemAttributeFromStruct(v2, 20) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 20) != 0) {
         v5 |= 0x20;
     }
 
-    if (GetItemAttributeFromStruct(v2, 21) != 0) {
+    if (Item_GetAttributeFromStruct(v2, 21) != 0) {
         v5 |= 0x40;
     }
 
@@ -1609,7 +1609,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
         sub_0200B60C(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         sub_020237BC(v3);
-    } else if ((GetItemAttributeFromStruct(v2, 36) != 0) || (GetItemAttributeFromStruct(v2, 37) != 0)) {
+    } else if ((Item_GetAttributeFromStruct(v2, 36) != 0) || (Item_GetAttributeFromStruct(v2, 37) != 0)) {
         sub_0200B1B8(param0->unk_1FA4, 87, param0->unk_1FAC);
     } else if (v5 == 0x1) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 92);
@@ -1653,7 +1653,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
         sub_020237BC(v3);
     }
 
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 }
 
 void ov13_0222449C (UnkStruct_ov13_022213F0 * param0)

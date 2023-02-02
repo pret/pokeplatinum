@@ -18,13 +18,13 @@ UnkStruct_ov5_021E2310 * ov5_021E22B0 (int param0, int param1)
 {
     UnkStruct_ov5_021E2310 * v0;
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
     GX_ResetBankForBG();
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2310));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E2310));
     MI_CpuClear32(v0, sizeof(UnkStruct_ov5_021E2310));
 
     {
@@ -55,6 +55,6 @@ void ov5_021E2310 (UnkStruct_ov5_021E2310 ** param0)
 {
     ov5_021E20E8(&(*param0)->unk_00, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
     GX_SetBankForBG(GX_VRAM_BG_128_C);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
-    FreeToHeapExplicit(4, *param0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 1);
+    Heap_FreeToHeapExplicit(4, *param0);
 }

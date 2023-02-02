@@ -78,7 +78,7 @@ UnkStruct_0202818C * sub_0202818C (int param0)
 {
     UnkStruct_0202818C * v0;
 
-    v0 = AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202818C));
+    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202818C));
     sub_02028124(v0);
 
     return v0;
@@ -101,7 +101,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     sub_02028124(param0);
 
     param0->unk_07 = param1;
-    v9 = GetPartyFromSavedata(param3);
+    v9 = Party_GetFromSavedata(param3);
     v8 = sub_02025E38(param3);
 
     sub_020021B0(param0->unk_08, sub_02025EF0(v8));

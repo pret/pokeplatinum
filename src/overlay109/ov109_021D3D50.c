@@ -29,7 +29,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -181,13 +181,13 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        CreateHeap(3, 95, 0x80000);
+        Heap_Create(3, 95, 0x80000);
 
         v1 = NARC_ctor(86, 95);
         GF_ASSERT(v1);
@@ -330,7 +330,7 @@ int ov109_021D3F9C (UnkStruct_020067E8 * param0, int * param1)
 
     ov109_021D4294(v1);
     sub_02006830(param0);
-    DestroyHeap(95);
+    Heap_Destroy(95);
 
     return 1;
 }
@@ -393,7 +393,7 @@ static void ov109_021D40D0 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov109_021D40F0 (UnkStruct_02018340 * param0)
@@ -549,8 +549,8 @@ static void ov109_021D4294 (UnkStruct_ov109_021D5140 * param0)
     int v0;
 
     ov109_021D5824(param0);
-    FreeToHeap(param0->unk_1C.unk_0C);
-    FreeToHeap(param0->unk_41C);
+    Heap_FreeToHeap(param0->unk_1C.unk_0C);
+    Heap_FreeToHeap(param0->unk_41C);
 
     for (v0 = 0; v0 < 5; v0++) {
         sub_020237BC(param0->unk_3C[v0]);
@@ -567,7 +567,7 @@ static void ov109_021D42CC (UnkStruct_02018340 * param0)
     sub_02019044(param0, 4);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov109_021D4300 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
@@ -672,8 +672,8 @@ static void ov109_021D4518 (UnkStruct_ov109_021D5140 * param0)
             v1.unk_08.y = FX32_ONE * (32 + 32 * v0) + (256 * FX32_ONE);
         }
     }
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov109_021D45F4 (UnkStruct_ov109_021D5140 * param0)
@@ -1690,10 +1690,10 @@ static void ov109_021D57E0 (NNSG2dCharacterData * param0[2], NNSG2dPaletteData *
 
 static void ov109_021D5824 (UnkStruct_ov109_021D5140 * param0)
 {
-    FreeToHeap(param0->unk_3A8[0]);
-    FreeToHeap(param0->unk_3A8[1]);
-    FreeToHeap(param0->unk_398[0]);
-    FreeToHeap(param0->unk_398[1]);
+    Heap_FreeToHeap(param0->unk_3A8[0]);
+    Heap_FreeToHeap(param0->unk_3A8[1]);
+    Heap_FreeToHeap(param0->unk_398[0]);
+    Heap_FreeToHeap(param0->unk_398[1]);
 }
 
 static int ov109_021D5854 (UnkStruct_ov109_021D5140 * param0)

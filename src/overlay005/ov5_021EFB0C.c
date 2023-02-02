@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055130.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -86,7 +86,7 @@ UnkStruct_ov5_021EFB30 * ov5_021EFB0C (void)
     u8 v0;
     UnkStruct_ov5_021EFB30 * v1;
 
-    v1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EFB30));
+    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EFB30));
 
     for (v0 = 0; v0 < 21; v0++) {
         v1->unk_00[v0].unk_00 = 0;
@@ -98,7 +98,7 @@ UnkStruct_ov5_021EFB30 * ov5_021EFB0C (void)
 
 void ov5_021EFB30 (UnkStruct_ov5_021EFB30 ** param0)
 {
-    FreeToHeap(*param0);
+    Heap_FreeToHeap(*param0);
     *param0 = NULL;
 }
 
@@ -477,13 +477,13 @@ int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
         v4 = sub_0202D84C(v0, v3);
 
         if ((GAME_VERSION == 10) || (GAME_VERSION == 12)) {
-            v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, Unk_ov5_021FF5A8[v4->unk_05], 4);
+            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, Unk_ov5_021FF5A8[v4->unk_05], 4);
         } else {
-            v1 = AllocAtEndAndReadWholeNarcMemberByIndexPair(106, dummy[v4->unk_05], 4);
+            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, dummy[v4->unk_05], 4);
         }
 
         v2 = v1[v4->unk_04];
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
 
         return v2;
     }

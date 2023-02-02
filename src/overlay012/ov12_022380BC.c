@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "overlay012/struct_ov12_022380DC.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
 #include "unk_02073C2C.h"
@@ -193,7 +193,7 @@ void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
     param0->unk_08[param0->unk_00]->unk_04 = v0.unk_00;
     param0->unk_08[param0->unk_00]->unk_08 = v0.unk_04;
 
-    ReadWholeNarcMemberByIndexPair(&v4, 121, v3);
+    NARC_ReadWholeMemberByIndexPair(&v4, 121, v3);
     param0->unk_08[param0->unk_00]->unk_0C = v4;
     v2 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->unk_08[param0->unk_00]->unk_0C;
 

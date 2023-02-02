@@ -24,7 +24,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -406,7 +406,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
     if (param0->unk_114D == 3) {
         int v1 = ov13_02227244(param0);
-        u32 v2 = GetItemAttribute(v0->unk_1C, 7, v0->unk_0C);
+        u32 v2 = Item_GetAttribute(v0->unk_1C, 7, v0->unk_0C);
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
             UnkStruct_02073C74 * v3;
@@ -724,7 +724,7 @@ static void ov13_02226ED0 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02226F9C (UnkStruct_02018340 * param0)
 {
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 4);
     sub_02019044(param0, 5);
     sub_02019044(param0, 6);
@@ -748,7 +748,7 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         v3 = (u16 *)v1->rawData;
         ov13_02228128(param0, v3);
-        FreeToHeap(v2);
+        Heap_FreeToHeap(v2);
     }
 
     NARC_dtor(v0);

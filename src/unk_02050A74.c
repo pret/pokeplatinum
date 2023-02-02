@@ -105,7 +105,7 @@ static UnkStruct_02050ACC * sub_02050ACC (UnkStruct_ov6_02240D5C * param0, int p
 {
     UnkStruct_02050ACC * v0;
 
-    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050ACC));
+    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050ACC));
     v0->unk_00 = param3;
 
     if (param3 != NULL) {
@@ -122,7 +122,7 @@ static UnkStruct_02050ACC * sub_02050ACC (UnkStruct_ov6_02240D5C * param0, int p
 static void sub_02050AF0 (UnkStruct_02050ACC * param0)
 {
     sub_020520A4(param0->unk_10);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static BOOL sub_02050B04 (UnkStruct_02050ACC * param0)
@@ -183,7 +183,7 @@ static BOOL sub_02050B30 (UnkStruct_020508D4 * param0)
         }
 
         if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
-            sub_02097284(GetPartyFromSavedata(v0->unk_0C));
+            sub_02097284(Party_GetFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);
@@ -315,7 +315,7 @@ static UnkStruct_02050DD4 * sub_02050DD4 (UnkStruct_ov6_02240D5C * param0, int p
 {
     UnkStruct_02050DD4 * v0;
 
-    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050DD4));
+    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02050DD4));
     v0->unk_0C = param3;
 
     if (param3 != NULL) {
@@ -333,7 +333,7 @@ static UnkStruct_02050DD4 * sub_02050DD4 (UnkStruct_ov6_02240D5C * param0, int p
 static void sub_02050DFC (UnkStruct_02050DD4 * param0)
 {
     sub_020520A4(param0->unk_10);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_02050E10 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
@@ -401,7 +401,7 @@ static BOOL sub_02050EE0 (UnkStruct_020508D4 * param0)
         }
 
         if (sub_0206A984(sub_020507E4(v0->unk_0C))) {
-            sub_02097284(GetPartyFromSavedata(v0->unk_0C));
+            sub_02097284(Party_GetFromSavedata(v0->unk_0C));
         }
 
         sub_020518B0(v0, v1->unk_10);
@@ -512,7 +512,7 @@ static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
             }
         } else {
             UnkStruct_020797DC * v7 = sub_02024420(v0->unk_0C);
-            Party * v8 = GetPartyFromSavedata(v0->unk_0C);
+            Party * v8 = Party_GetFromSavedata(v0->unk_0C);
 
             if ((sub_020799A0(v7) == 18) && (Party_GetCurrentCount(v8) == 6)) {
                 sub_0203E8E0(param0, 8822, NULL, NULL);

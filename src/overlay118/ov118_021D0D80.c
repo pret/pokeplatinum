@@ -65,7 +65,7 @@ void ov118_021D0D80 (UnkStruct_0207F248 * param0)
 {
     GF_ASSERT(param0->unk_B24 == NULL);
 
-    param0->unk_B24 = AllocFromHeap(12, sizeof(UnkStruct_ov118_021D0FDC));
+    param0->unk_B24 = Heap_AllocFromHeap(12, sizeof(UnkStruct_ov118_021D0FDC));
     MI_CpuClear8(param0->unk_B24, sizeof(UnkStruct_ov118_021D0FDC));
     param0->unk_B24->unk_14 = param0->unk_B11;
 }
@@ -110,7 +110,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         v0->unk_00++;
         break;
     case 4:
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         ov118_021D1028(v0);
         v0->unk_00++;
         break;
@@ -168,7 +168,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 
 static void ov118_021D0F70 (UnkStruct_0207F248 * param0)
 {
-    FreeToHeap(param0->unk_B24);
+    Heap_FreeToHeap(param0->unk_B24);
     param0->unk_B24 = NULL;
 }
 
@@ -195,7 +195,7 @@ static void ov118_021D0FDC (UnkStruct_ov118_021D0FDC * param0)
 
     sub_02014000();
 
-    v0 = AllocFromHeap(12, 0x4800);
+    v0 = Heap_AllocFromHeap(12, 0x4800);
     param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, 12);
     v1 = sub_02014784(param0->unk_18);
 
@@ -258,7 +258,7 @@ static void ov118_021D110C (UnkStruct_ov118_021D0FDC * param0)
 
     v0 = sub_02014730(param0->unk_18);
     sub_0201411C(param0->unk_18);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static u32 ov118_021D1128 (u32 param0, BOOL param1)

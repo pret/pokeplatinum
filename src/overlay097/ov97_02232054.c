@@ -32,7 +32,7 @@ void ov97_02232054 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 void ov97_02232074 (UnkStruct_02018340 * param0)

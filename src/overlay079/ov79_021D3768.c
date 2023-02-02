@@ -37,7 +37,7 @@ void ov79_021D3768 (UnkStruct_ov79_021D3820 * param0, UnkStruct_ov79_021D38D0 * 
 
     ov79_021D3870(param0, param2);
     ov79_021D38D0(param0, param1, param2);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 }

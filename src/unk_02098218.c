@@ -19,7 +19,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
@@ -66,7 +66,7 @@ static int sub_02098218 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    CreateHeap(3, 71, 0x40000);
+    Heap_Create(3, 71, 0x40000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov119_021D0FD0), 71);
     memset(v1, 0, sizeof(UnkStruct_ov119_021D0FD0));
@@ -165,10 +165,10 @@ static int sub_02098388 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_020242C4(v0->unk_04.unk_34);
 
-    GX_EngineAToggleLayers(1, 0);
-    GX_EngineAToggleLayers(2, 0);
-    GX_EngineAToggleLayers(3, 0);
-    GX_EngineBToggleLayers(4, 0);
+    GXLayers_EngineAToggleLayers(1, 0);
+    GXLayers_EngineAToggleLayers(2, 0);
+    GXLayers_EngineAToggleLayers(3, 0);
+    GXLayers_EngineBToggleLayers(4, 0);
 
     sub_02002FA0(v0->unk_04.unk_04, 0);
     sub_02002FA0(v0->unk_04.unk_04, 2);
@@ -181,7 +181,7 @@ static int sub_02098388 (UnkStruct_020067E8 * param0, int * param1)
     sub_02019044(v0->unk_04.unk_00, 3);
     sub_02019044(v0->unk_04.unk_00, 4);
 
-    FreeToHeap(v0->unk_04.unk_00);
+    Heap_FreeToHeap(v0->unk_04.unk_00);
     sub_0201DC3C();
     sub_02007B6C(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
@@ -190,7 +190,7 @@ static int sub_02098388 (UnkStruct_020067E8 * param0, int * param1)
     ov119_021D1844(&v0->unk_04);
 
     sub_02006830(param0);
-    DestroyHeap(71);
+    Heap_Destroy(71);
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
@@ -274,7 +274,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         v0->unk_00++;
         break;
     case 6:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 1;
     }
 
@@ -286,7 +286,7 @@ void sub_020985AC (UnkStruct_020508D4 * param0, void * param1)
     UnkStruct_0209843C * v0;
     UnkStruct_0203E2FC * v1;
 
-    v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0209843C));
+    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0209843C));
     memset(v0, 0, sizeof(UnkStruct_0209843C));
 
     v1 = (UnkStruct_0203E2FC *)param1;

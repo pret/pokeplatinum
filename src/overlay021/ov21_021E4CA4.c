@@ -227,7 +227,7 @@ static UnkStruct_ov21_021E4D90 * ov21_021E4D24 (int param0, UnkStruct_ov21_021D0
 {
     UnkStruct_ov21_021E4D90 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E4D90));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E4D90));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4D90));
@@ -244,7 +244,7 @@ static UnkStruct_ov21_021E4DA4 * ov21_021E4D64 (int param0, UnkStruct_ov21_021D0
     UnkStruct_ov21_021E4DA4 * v0;
     UnkStruct_ov21_021E68F4 * v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E4DA4));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021E4DA4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4DA4));
@@ -262,13 +262,13 @@ static UnkStruct_ov21_021D4660 * ov21_021E4D8C (int param0, UnkStruct_ov21_021D0
 static void ov21_021E4D90 (UnkStruct_ov21_021E4D90 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021E4DA4 (UnkStruct_ov21_021E4DA4 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021E4DB8 (UnkStruct_ov21_021D4660 * param0)
@@ -288,7 +288,7 @@ static int ov21_021E4DC0 (UnkStruct_ov21_021E6A68 * param0, void * param1)
     int v2;
     int v3 = ov21_021D37BC(v0->unk_04);
 
-    v1 = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021E51DC));
+    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021E51DC));
     memset(v1, 0, sizeof(UnkStruct_ov21_021E51DC));
 
     ov21_021E5128(v1, v0, param0->unk_04);
@@ -345,7 +345,7 @@ static int ov21_021E4E84 (UnkStruct_ov21_021E6A68 * param0, void * param1)
     UnkStruct_ov21_021E51DC * v1 = param0->unk_08;
 
     ov21_021E5200(v1);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return 1;
 }
@@ -359,7 +359,7 @@ static int ov21_021E4E98 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021E5004));
+        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021E5004));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021E5004));
         param1->unk_00++;
         break;
@@ -428,7 +428,7 @@ static int ov21_021E4F78 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
         param1->unk_00++;
         break;
     case 3:
-        FreeToHeap(param1->unk_08);
+        Heap_FreeToHeap(param1->unk_08);
         param1->unk_00++;
         break;
     case 4:
@@ -498,8 +498,8 @@ static BOOL ov21_021E50EC (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E5128 (UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E4D90 * param1, int param2)
 {
-    param0->unk_04 = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 3);
-    param0->unk_10 = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 2);
+    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 3);
+    param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 2);
 
     ov21_021D154C(&param0->unk_04[0], 67 - 14, 67 + 14, 64 - 42, 64 + 42);
 
@@ -539,10 +539,10 @@ static void ov21_021E5200 (UnkStruct_ov21_021E51DC * param0)
 {
     sub_02024034(param0->unk_00);
     sub_02024034(param0->unk_14);
-    FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->unk_04);
 
     param0->unk_04 = NULL;
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -790,14 +790,14 @@ static void ov21_021E5538 (UnkStruct_ov21_021E4DA4 * param0, int param1)
     v0 = ov21_021D27B8(param0->unk_00, 71, 1, &v1, param1);
 
     sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0201C3C0(param0->unk_00->unk_00, 6);
 
     ov21_021D2724(param0->unk_00, 35, param0->unk_00->unk_00, 7, 0, 0, 1, param1);
     v0 = ov21_021D27B8(param0->unk_00, 72, 1, &v1, param1);
 
     sub_020198C0(param0->unk_00->unk_00, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0201C3C0(param0->unk_00->unk_00, 7);
     sub_02019184(param0->unk_00->unk_00, 7, 0, -48);
     sub_02019184(param0->unk_00->unk_00, 7, 3, -16);
@@ -1316,7 +1316,7 @@ static void ov21_021E5E80 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E5E98 (UnkStruct_ov21_021E5004 * param0)
 {
-    FreeToHeap(param0->unk_68);
+    Heap_FreeToHeap(param0->unk_68);
     param0->unk_68 = NULL;
     param0->unk_6C = NULL;
 }

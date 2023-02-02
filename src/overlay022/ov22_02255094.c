@@ -22,7 +22,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -74,14 +74,14 @@ void ov22_02255094 (void)
 
     Unk_021BF67C.unk_65 = 1;
 
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4 (void)
 {
     Unk_021BF67C.unk_65 = 0;
 
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
     ov22_02255738();
     ov22_0225572C();
 
@@ -113,16 +113,16 @@ void ov22_02255134 (UnkStruct_ov22_0225A0E4 * param0)
     ov22_02255784(param0);
     ov22_02255984(param0);
 
-    FreeToHeap(param0->unk_40);
+    Heap_FreeToHeap(param0->unk_40);
 
     ov22_02255C90(param0);
     ov22_02255A98(param0);
     ov22_022559E0(param0);
 
     NARC_dtor(param0->unk_5C);
-    FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->unk_04);
     param0->unk_04 = NULL;
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -352,10 +352,10 @@ void ov22_022554F8 (UnkStruct_ov22_0225A0E4 * param0)
     ov22_02255784(param0);
     ov22_02255C90(param0);
 
-    FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->unk_04);
     param0->unk_04 = NULL;
 
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_10);
     param0->unk_10 = NULL;
 }
 
@@ -411,7 +411,7 @@ void ov22_022555D4 (UnkStruct_ov22_0225A0E4 * param0, int param1)
 void ov22_022555FC (UnkStruct_ov22_0225A0E4 * param0)
 {
     ov22_02255984(param0);
-    FreeToHeap(param0->unk_40);
+    Heap_FreeToHeap(param0->unk_40);
     NARC_dtor(param0->unk_5C);
     ov22_02255A98(param0);
 }
@@ -442,7 +442,7 @@ static void ov22_02255634 (void)
         GX_VRAM_TEXPLTT_0123_E
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov22_02255654 (void)
@@ -450,7 +450,7 @@ static void ov22_02255654 (void)
     NNS_G3dInit();
     G3X_InitMtxStack();
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
@@ -481,10 +481,10 @@ static void ov22_022556DC (void)
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
     NNS_G2dInitOamManagerModule();
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
-    GX_EngineAToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ), 1);
-    GX_EngineBToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ), 1);
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
+    GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ), 1);
+    GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ), 1);
 }
 
 static void ov22_0225572C (void)
@@ -495,8 +495,8 @@ static void ov22_0225572C (void)
 
 static void ov22_02255738 (void)
 {
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     NNS_G2dInitOamManagerModule();
 }
@@ -504,10 +504,10 @@ static void ov22_02255738 (void)
 static void ov22_02255748 (UnkStruct_ov22_0225A0E4 * param0, const UnkStruct_ov22_022550D4 * param1)
 {
     param0->unk_00 = sub_02015064(param1);
-    param0->unk_04 = AllocFromHeap(param1->unk_0C, sizeof(UnkStruct_02015128 *) * (100 + 18));
+    param0->unk_04 = Heap_AllocFromHeap(param1->unk_0C, sizeof(UnkStruct_02015128 *) * (100 + 18));
     param0->unk_08 = (100 + 18);
     param0->unk_0C = 0;
-    param0->unk_10 = AllocFromHeap(param1->unk_0C, sizeof(UnkStruct_020151A4 *) * (1 + 18));
+    param0->unk_10 = Heap_AllocFromHeap(param1->unk_0C, sizeof(UnkStruct_020151A4 *) * (1 + 18));
     param0->unk_14 = (1 + 18);
     param0->unk_18 = 0;
     param0->unk_1C = 1;
@@ -683,14 +683,14 @@ static void ov22_02255984 (UnkStruct_ov22_0225A0E4 * param0)
 static void ov22_022559B4 (UnkStruct_ov22_0225A0E4 * param0)
 {
     param0->unk_34 = sub_0202298C((((100 + 18)) + 1), 14);
-    param0->unk_38 = AllocFromHeap(14, sizeof(NNSG2dCharacterData *) * (((100 + 18)) + 1));
+    param0->unk_38 = Heap_AllocFromHeap(14, sizeof(NNSG2dCharacterData *) * (((100 + 18)) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * (((100 + 18)) + 1));
     param0->unk_3C = (((100 + 18)) + 1);
 }
 
 static void ov22_022559E0 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    FreeToHeap(param0->unk_38);
+    Heap_FreeToHeap(param0->unk_38);
     sub_020229D8(param0->unk_34);
     param0->unk_3C = 0;
 }
@@ -804,7 +804,7 @@ static void ov22_02255BF4 (UnkStruct_ov22_0225A0E4 * param0, int param1)
 
 static void ov22_02255C14 (UnkStruct_ov22_0225A0E4 * param0)
 {
-    FreeToHeap(param0->unk_30);
+    Heap_FreeToHeap(param0->unk_30);
     param0->unk_30 = NULL;
 }
 
@@ -832,12 +832,12 @@ static void ov22_02255C90 (UnkStruct_ov22_0225A0E4 * param0)
 
 static void ov22_02255CB8 (UnkStruct_ov22_02255CB8 * param0, int param1, int param2, int param3)
 {
-    param0->unk_00 = AllocFromHeap(param3, sizeof(UnkStruct_ov22_022557A0) * param1);
+    param0->unk_00 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov22_022557A0) * param1);
     memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_022557A0) * param1);
     param0->unk_10 = sub_0202298C(param1, param3);
     param0->unk_04 = param1;
 
-    param0->unk_08 = AllocFromHeap(param3, sizeof(UnkStruct_ov22_02255800) * param2);
+    param0->unk_08 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov22_02255800) * param2);
     memset(param0->unk_08, 0, sizeof(UnkStruct_ov22_02255800) * param2);
     param0->unk_14 = sub_0202298C(param2, param3);
     param0->unk_0C = param2;
@@ -855,8 +855,8 @@ static void ov22_02255D0C (UnkStruct_ov22_02255CB8 * param0)
         param0->unk_14 = NULL;
     }
 
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
     param0->unk_00 = NULL;
-    FreeToHeap(param0->unk_08);
+    Heap_FreeToHeap(param0->unk_08);
     param0->unk_08 = NULL;
 }

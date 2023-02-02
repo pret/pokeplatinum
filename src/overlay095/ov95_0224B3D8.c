@@ -27,7 +27,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
@@ -133,7 +133,7 @@ static void ov95_0224BD5C(UnkStruct_0201CD38 * param0, void * param1);
 
 void * ov95_0224B3D8 (UnkStruct_ov95_02247628 * param0)
 {
-    UnkStruct_ov95_0224B4D4 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224B4D4));
+    UnkStruct_ov95_0224B4D4 * v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_0224B4D4));
 
     if (v0) {
         int v1;
@@ -181,7 +181,7 @@ void ov95_0224B438 (void * param0)
 
         NARC_dtor(v0->unk_84);
         sub_02007B6C(v0->unk_10);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 }
 
@@ -284,13 +284,13 @@ static int ov95_0224B520 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
         0
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     sub_02018368(&v1);
 
     sub_020183C4(param0->unk_58, 1, &v2, 0);
     sub_020183C4(param0->unk_58, 2, &v3, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
 
@@ -323,8 +323,8 @@ static int ov95_0224B520 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
 
     ov95_0224BAE8(param0);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2, 16, 0);
     sub_0200F174(3, 1, 1, 0x0, 16, 1, 58);
@@ -560,7 +560,7 @@ static void ov95_0224BB8C (UnkStruct_ov95_0224B4D4 * param0)
 
 static void ov95_0224BBB0 (UnkStruct_ov95_0224B4D4 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov95_0224BBB0 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BBB0));
+    UnkStruct_ov95_0224BBB0 * v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BBB0));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -606,7 +606,7 @@ static void ov95_0224BC30 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 ** param1)
 {
-    UnkStruct_ov95_0224BC6C * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BC6C));
+    UnkStruct_ov95_0224BC6C * v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BC6C));
 
     if (v0) {
         v0->unk_04 = 0;
@@ -628,7 +628,7 @@ static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 
         *param1 = sub_0200D9E8(ov95_0224BD5C, v0, 0);
 
         if (*param1 == NULL) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
     } else {
         *param1 = NULL;
@@ -641,7 +641,7 @@ static void ov95_0224BCE8 (UnkStruct_0201CD38 * param0)
         UnkStruct_ov95_0224BC6C * v0 = sub_0201CED0(param0);
 
         *(v0->unk_00) = NULL;
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         sub_0200DA58(param0);
     }
 }

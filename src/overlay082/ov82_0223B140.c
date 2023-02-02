@@ -35,7 +35,7 @@ int ov82_0223B164 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov83_0223C344 * v0 = NULL;
     UnkStruct_ov82_0223B164 * v1 = (UnkStruct_ov82_0223B164 *)sub_02006840(param0);
 
-    CreateHeap(3, 55, 0x20000);
+    Heap_Create(3, 55, 0x20000);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov83_0223C344), 55);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov83_0223C344));
 
@@ -99,7 +99,7 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         v0 = v1->unk_00;
 
-        FreeToHeap(v1->unk_0C);
+        Heap_FreeToHeap(v1->unk_0C);
         MI_CpuClear8(v1, sizeof(UnkStruct_ov83_0223C344));
         sub_02006830(param0);
 
@@ -107,7 +107,7 @@ int ov82_0223B24C (UnkStruct_020067E8 * param0, int * param1)
             ov4_021D1F18();
         }
 
-        DestroyHeap(v0);
+        Heap_Destroy(v0);
 
         if (v2->unk_20 == 0) {
             return 1;

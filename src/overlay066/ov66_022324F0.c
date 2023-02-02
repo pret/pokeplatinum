@@ -157,7 +157,7 @@ void ov66_022324F0 (u32 param0, UnkStruct_021C0794 * param1, u32 param2, const U
     GF_ASSERT(Unk_ov66_0225B6C0 == NULL);
     GF_ASSERT(param2 < PPW_LOBBY_MAX_BINARY_SIZE);
 
-    Unk_ov66_0225B6C0 = AllocFromHeap(param0, sizeof(UnkStruct_ov66_022336C4));
+    Unk_ov66_0225B6C0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov66_022336C4));
     memset(Unk_ov66_0225B6C0, 0, sizeof(UnkStruct_ov66_022336C4));
 
     Unk_ov66_0225B6C0->unk_00 = param1;
@@ -180,7 +180,7 @@ void ov66_02232598 (void)
     ov66_02233920(Unk_ov66_0225B6C0);
     ov66_02233788(Unk_ov66_0225B6C0);
 
-    FreeToHeap(Unk_ov66_0225B6C0);
+    Heap_FreeToHeap(Unk_ov66_0225B6C0);
     Unk_ov66_0225B6C0 = NULL;
 }
 
@@ -257,7 +257,7 @@ asm PPW_LOBBY_ERROR ov66_022326DC (void)
     ldr r0, [r0, #0]
     cmp r0, #0
     bne _022326EA
-    bl GF_AssertFail
+    bl ErrorHandling_AssertFail
  _022326EA:
     ldr r0, = Unk_ov66_0225B6C0
     ldr r1, [r0, #0]
@@ -1210,14 +1210,14 @@ static BOOL ov66_022336C4 (UnkStruct_ov66_022336C4 * param0)
 
 static void ov66_02233758 (UnkStruct_ov66_022336C4 * param0, u32 param1, u32 param2)
 {
-    Unk_ov66_0225B6C0->unk_24 = AllocFromHeap(param2, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
+    Unk_ov66_0225B6C0->unk_24 = Heap_AllocFromHeap(param2, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
     memset(Unk_ov66_0225B6C0->unk_24, 0, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
     Unk_ov66_0225B6C0->unk_28 = param1;
 }
 
 static void ov66_02233788 (UnkStruct_ov66_022336C4 * param0)
 {
-    FreeToHeap(Unk_ov66_0225B6C0->unk_24);
+    Heap_FreeToHeap(Unk_ov66_0225B6C0->unk_24);
 }
 
 static void ov66_0223379C (UnkStruct_ov66_022336C4 * param0, s32 param1, const void * param2)
@@ -1320,7 +1320,7 @@ static void ov66_022338C8 (UnkStruct_ov66_022336C4 * param0, u32 param1, u32 par
         }
 
         param0->unk_11C[v0].unk_00 = 0;
-        param0->unk_11C[v0].unk_04 = AllocFromHeap(param3, sizeof(s32) * v1);
+        param0->unk_11C[v0].unk_04 = Heap_AllocFromHeap(param3, sizeof(s32) * v1);
         param0->unk_11C[v0].unk_02 = v1;
 
         ov66_02233950(param0, v0);
@@ -1333,7 +1333,7 @@ static void ov66_02233920 (UnkStruct_ov66_022336C4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         GF_ASSERT(param0->unk_11C[v0].unk_04 != NULL);
-        FreeToHeap(param0->unk_11C[v0].unk_04);
+        Heap_FreeToHeap(param0->unk_11C[v0].unk_04);
         param0->unk_11C[v0].unk_04 = NULL;
     }
 }
@@ -1919,14 +1919,14 @@ static u32 ov66_022342CC (const PPW_LobbySchedule * param0, PPW_LOBBY_TIME_EVENT
 
 static void ov66_022342F4 (UnkStruct_ov66_022342F4 * param0, u32 param1, u32 param2)
 {
-    param0->unk_00 = AllocFromHeap(param2, sizeof(PPW_LobbyVipRecord) * param1);
+    param0->unk_00 = Heap_AllocFromHeap(param2, sizeof(PPW_LobbyVipRecord) * param1);
     param0->unk_04 = param1;
     param0->unk_06 = 0;
 }
 
 static void ov66_0223430C (UnkStruct_ov66_022342F4 * param0)
 {
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
     param0->unk_00 = NULL;
 }
 

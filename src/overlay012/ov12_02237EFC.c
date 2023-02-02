@@ -44,7 +44,7 @@ UnkStruct_ov12_02237F98 * ov12_02237EFC (int param0, UnkStruct_ov12_02237EFC * p
     UnkStruct_ov12_02237F98 * v0;
 
     v0 = NULL;
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov12_02237F98));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -105,10 +105,10 @@ void ov12_02237F74 (UnkStruct_ov12_02237F98 * param0)
             continue;
         }
 
-        FreeToHeap(param0->unk_08[v0]);
+        Heap_FreeToHeap(param0->unk_08[v0]);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov12_02237F98 (UnkStruct_ov12_02237F98 * param0)
@@ -140,7 +140,7 @@ UnkStruct_ov12_02238004 * ov12_02237FC8 (int param0, UnkStruct_ov12_02237F38 * p
 
     v0 == NULL;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov12_02238004));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov12_02238004));
 
     if (v0 == NULL) {
         GF_ASSERT(0);

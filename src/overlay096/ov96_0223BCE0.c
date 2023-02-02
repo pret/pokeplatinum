@@ -22,7 +22,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -187,10 +187,10 @@ int ov96_0223BCE0 (UnkStruct_ov96_0223BF40 * param0, int param1)
     ov96_0223BE38(param0->unk_04);
     ov96_0223BF40(param0);
     ov96_0223C1FC(param0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
     sub_02038438(param0->unk_00->unk_0C);
     ov96_0223D948(param0);
 
@@ -272,7 +272,7 @@ static void ov96_0223BE38 (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 0, &v0, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         sub_02019EBC(param0, 0);
     }
 
@@ -294,7 +294,7 @@ static void ov96_0223BE38 (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 1, &v1, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     {
@@ -315,7 +315,7 @@ static void ov96_0223BE38 (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 4, &v2, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         sub_02019EBC(param0, 4);
     }
 
@@ -337,7 +337,7 @@ static void ov96_0223BE38 (UnkStruct_02018340 * param0)
         };
 
         sub_020183C4(param0, 5, &v3, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
     sub_02019690(0, 32, 0, 68);

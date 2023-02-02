@@ -93,7 +93,7 @@ UnkStruct_0201CD38 * sub_0200DA3C(UnkFuncPtr_0201CE28 param0, void * param1, u32
 
 BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_02254560_1 * param1, NNSG2dOamManagerInstance * param2, UnkStruct_ov25_0225424C * param3)
 {
-    *param0 = AllocFromHeap(7, sizeof(UnkStruct_ov25_02254560));
+    *param0 = Heap_AllocFromHeap(7, sizeof(UnkStruct_ov25_02254560));
 
     if (*param0 != NULL) {
         UnkStruct_ov25_02254560 * v0 = *param0;
@@ -103,7 +103,7 @@ BOOL ov25_02254560 (UnkStruct_ov25_02254560 ** param0, const UnkStruct_ov25_0225
         v0->unk_1CC = ov25_02255540(v0->unk_1C8, 7);
 
         if (v0->unk_1CC == NULL) {
-            FreeToHeap(*param0);
+            Heap_FreeToHeap(*param0);
             *param0 = NULL;
             return 0;
         }
@@ -160,7 +160,7 @@ static void ov25_02254684 (UnkStruct_ov25_02254560 * param0)
     if (v1) {
         MI_CpuCopy32(v0->pRawData, param0->unk_200, 8 * 0x40);
         DC_FlushRange(param0->unk_200, 8 * 0x40);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 }
 
@@ -203,14 +203,14 @@ void ov25_02254754 (UnkStruct_ov25_02254560 * param0)
         }
 
         if (param0->unk_1F8) {
-            FreeToHeap(param0->unk_1F8);
+            Heap_FreeToHeap(param0->unk_1F8);
         }
 
         if (param0->unk_1D0) {
             sub_0200DA58(param0->unk_1D0);
         }
 
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 
@@ -318,8 +318,8 @@ static void ov25_02254820 (UnkStruct_0201CD38 * param0, void * param1)
     GX_SetBankForSubOBJ(GX_VRAM_SUB_OBJ_16_I);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    GX_DisableEngineBLayers();
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_DisableEngineBLayers();
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_020183C4(v2->unk_1F8, 4, &v0, 0);
     sub_020183C4(v2->unk_1F8, 5, &v1, 0);
 

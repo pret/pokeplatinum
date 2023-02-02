@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -168,7 +168,7 @@ void sub_0208C210 (UnkStruct_02018340 * param0, int param1, NARC * param2, int p
     NNSG2dPaletteData * v4;
 
     v0 = NARC_GetMemberSize(param2, param4);
-    v1 = AllocFromHeapAtEnd(param1, v0);
+    v1 = Heap_AllocFromHeapAtEnd(param1, v0);
 
     NARC_ReadWholeMember(param2, param4, (void *)v1);
 
@@ -205,7 +205,7 @@ void sub_0208C210 (UnkStruct_02018340 * param0, int param1, NARC * param2, int p
         sub_0201972C(param5, v4->pRawData, param7, param8);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 void * sub_0208C2F4 (NARC * param0, int param1, int param2, NNSG2dScreenData ** param3, int param4)
@@ -214,7 +214,7 @@ void * sub_0208C2F4 (NARC * param0, int param1, int param2, NNSG2dScreenData ** 
     void * v1;
 
     v0 = NARC_GetMemberSize(param0, param2);
-    v1 = AllocFromHeap(param4, v0);
+    v1 = Heap_AllocFromHeap(param4, v0);
 
     NARC_ReadWholeMember(param0, param2, v1);
     NNS_G2dGetUnpackedScreenData(v1, param3);

@@ -18,7 +18,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
@@ -151,14 +151,14 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
-    CreateHeap(3, 25, 0x28000);
+    Heap_Create(3, 25, 0x28000);
 
     v1 = NARC_ctor(51, 25);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov71_0223B620), 25);
@@ -393,8 +393,8 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
     ov71_0223B668(v0);
     ov71_0223D238(&v0->unk_30E4);
 
-    FreeToHeap(v0->unk_30B8);
-    FreeToHeap(v0->unk_335C);
+    Heap_FreeToHeap(v0->unk_30B8);
+    Heap_FreeToHeap(v0->unk_335C);
 
     ov71_0223C6D4(v0->unk_04);
     ov71_0223BBDC(v0->unk_00);
@@ -402,7 +402,7 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E530();
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(25);
+    Heap_Destroy(25);
     sub_0200544C(1, 127);
 
     return 1;
@@ -444,7 +444,7 @@ static void ov71_0223B688 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov71_0223B6A8 (const u8 param0, const u8 param1, NARC * param2)
@@ -487,7 +487,7 @@ static void ov71_0223B6A8 (const u8 param0, const u8 param1, NARC * param2)
             GXS_LoadBGPltt(&v2[16], 2 * 16, 2 * 16 * 3);
             GXS_LoadBGPltt(&v2[16 * 15], 2 * 16 * 15, 2 * 16);
 
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
     }
 }
@@ -523,7 +523,7 @@ static void ov71_0223B768 (const u8 param0, NARC * param1)
     GX_LoadBGPltt(v1->pRawData, 0, 2 * 16);
     GXS_LoadBGPltt(v1->pRawData, 0, 2 * 16);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov71_0223B820 (const u8 param0, NARC * param1)
@@ -538,7 +538,7 @@ static void ov71_0223B820 (const u8 param0, NARC * param1)
     DC_FlushRange(&v1[2 * 16 * param0], 2 * 16);
     GXS_LoadBGPltt(&v1[2 * 16 * param0], 2 * 16 * 4, 2 * 16);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov71_0223B858 (UnkStruct_02018340 * param0)
@@ -672,7 +672,7 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
 
         DC_FlushRange(v1->pRawData, 2 * 16 * 16);
         GXS_LoadBGPltt(v1->pRawData, 0, 2 * 16 * 16);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     ov71_0223B6A8(param0->unk_B4->unk_03, param0->unk_B4->unk_04_3, param1);
@@ -685,7 +685,7 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
 
         DC_FlushRange(v3->pRawData, 16 * 2 * 16);
         GX_LoadBGPltt(v3->pRawData, 0, 16 * 2 * 16);
-        FreeToHeap(v2);
+        Heap_FreeToHeap(v2);
     }
 
     ov71_0223B768(param0->unk_B4->unk_00, param1);
@@ -761,14 +761,14 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
 
 static void ov71_0223BBDC (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 7);
     sub_02019044(param0, 6);
     sub_02019044(param0, 5);
     sub_02019044(param0, 2);
     sub_02019044(param0, 3);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)

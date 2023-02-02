@@ -94,7 +94,7 @@ void * ov97_022376C4 (UnkStruct_020067E8 * param0, int param1, int param2, int p
 {
     void * v0;
 
-    CreateHeap(3, param1, param3);
+    Heap_Create(3, param1, param3);
     v0 = sub_0200681C(param0, param2, param1);
 
     memset(v0, 0, param2);
@@ -391,9 +391,9 @@ void ov97_02237B0C (int param0, int param1, int param2, int param3, int param4, 
     sub_020093B4(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
 
     if (param5 == 0) {
-        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     } else {
-        GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     }
 
     sub_02017798(ov97_02237E58, NULL);
@@ -658,7 +658,7 @@ static void ov97_022380C8 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
         break;
     }
 
-    ov97_02237B0C(16, sub_0207CE78(v0, 1), sub_0207CE78(v0, 2), GetItemIconCellArchiveIndex(), GetItemIconCellAnimationArchiveIndex(), 1);
+    ov97_02237B0C(16, sub_0207CE78(v0, 1), sub_0207CE78(v0, 2), Item_GetIndexOfIconNCER(), Item_GetIndexOfIconNANR(), 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
 
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 0);
@@ -687,7 +687,7 @@ void ov97_02238194 (UnkStruct_02018340 * param0, UnkStruct_0202DF40 * param1)
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 
         sub_02019574(param0, 5, v3->rawData, 32 * 24 * 2);
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
     }
 
     sub_02019E2C(param0, 5, 0, 0, 32, 24, 8 + v0);
@@ -730,11 +730,11 @@ void ov97_0223829C (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
     u16 v3, v4;
     int v5;
 
-    v0 = AllocFromHeap(param2, sizeof(MATHCRC16Table));
+    v0 = Heap_AllocFromHeap(param2, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
     v3 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(UnkStruct_ov97_0222D250));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     OS_GetMacAddress((u8 *)v2);
 
@@ -747,12 +747,12 @@ void ov97_0223829C (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
         v4 = v2[v5];
     }
 
-    v1 = AllocFromHeap(param2, sizeof(CRYPTORC4Context));
+    v1 = Heap_AllocFromHeap(param2, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v2, 8);
     CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(UnkUnion_ov97_0222D2B0), param1);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * param1, int param2)
@@ -764,11 +764,11 @@ void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
     u16 v4, v5;
     int v6;
 
-    v0 = AllocFromHeap(param2, sizeof(MATHCRC16Table));
+    v0 = Heap_AllocFromHeap(param2, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
     v4 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(UnkStruct_ov97_0222D250));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     v2 = sub_02033F3C(0);
     memcpy(v3, v2->bssid, WM_SIZE_BSSID);
@@ -782,12 +782,12 @@ void ov97_02238324 (UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * p
         v5 = v3[v6];
     }
 
-    v1 = AllocFromHeap(param2, sizeof(CRYPTORC4Context));
+    v1 = Heap_AllocFromHeap(param2, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v3, 8);
     CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(UnkUnion_ov97_0222D2B0), param1);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 void ov97_022383C4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)

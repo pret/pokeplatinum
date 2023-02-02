@@ -18,10 +18,10 @@ static UnkStruct_021C0700 * Unk_021C0700;
 void sub_0201DBEC (u32 param0, int param1)
 {
     GF_ASSERT(Unk_021C0700 == NULL);
-    Unk_021C0700 = AllocFromHeap(param1, sizeof(UnkStruct_021C0700));
+    Unk_021C0700 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_021C0700));
     GF_ASSERT(Unk_021C0700);
 
-    Unk_021C0700->unk_08 = (NNSGfdVramTransferTask *)AllocFromHeap(param1, sizeof(NNSGfdVramTransferTask) * param0);
+    Unk_021C0700->unk_08 = (NNSGfdVramTransferTask *)Heap_AllocFromHeap(param1, sizeof(NNSGfdVramTransferTask) * param0);
     Unk_021C0700->unk_00 = param0;
     Unk_021C0700->unk_04 = 0;
 
@@ -32,8 +32,8 @@ void sub_0201DC3C (void)
 {
     GF_ASSERT(Unk_021C0700 != NULL);
 
-    FreeToHeap(Unk_021C0700->unk_08);
-    FreeToHeap(Unk_021C0700);
+    Heap_FreeToHeap(Unk_021C0700->unk_08);
+    Heap_FreeToHeap(Unk_021C0700);
 
     Unk_021C0700 = NULL;
 }
@@ -63,7 +63,7 @@ NNSG2dCellTransferState * sub_0201DCC8 (int param0, int param1)
 {
     NNSG2dCellTransferState * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(NNSG2dCellTransferState) * param0);
+    v0 = Heap_AllocFromHeap(param1, sizeof(NNSG2dCellTransferState) * param0);
     NNS_G2dInitCellTransferStateManager(v0, param0, sub_0201DCF8);
 
     return v0;
@@ -76,7 +76,7 @@ void sub_0201DCE8 (void)
 
 void sub_0201DCF0 (NNSG2dCellTransferState * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static BOOL sub_0201DCF8 (NNS_GFD_DST_TYPE param0, u32 param1, void * param2, u32 param3)

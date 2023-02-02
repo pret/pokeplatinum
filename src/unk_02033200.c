@@ -76,16 +76,16 @@ void sub_02033200 (UnkStruct_02025E6C * param0, BOOL param1)
         return;
     }
 
-    Unk_021C07C0 = (UnkStruct_021C07C0 *)AllocFromHeap(15, sizeof(UnkStruct_021C07C0));
+    Unk_021C07C0 = (UnkStruct_021C07C0 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07C0));
     MI_CpuClear8(Unk_021C07C0, sizeof(UnkStruct_021C07C0));
 
-    Unk_021C07C0->unk_14E8 = AllocFromHeap(15, sub_02031C50());
+    Unk_021C07C0->unk_14E8 = Heap_AllocFromHeap(15, sub_02031C50());
     MI_CpuClear8(Unk_021C07C0->unk_14E8, sub_02031C50());
 
-    Unk_021C07C0->unk_1500 = AllocFromHeap(15, sub_0202602C());
+    Unk_021C07C0->unk_1500 = Heap_AllocFromHeap(15, sub_0202602C());
     MI_CpuClear8(Unk_021C07C0->unk_1500, sub_0202602C());
 
-    Unk_021C07C0->unk_1508 = (u32)AllocFromHeap(15, WM_SIZE_USER_GAMEINFO + 32);
+    Unk_021C07C0->unk_1508 = (u32)Heap_AllocFromHeap(15, WM_SIZE_USER_GAMEINFO + 32);
     Unk_021C07C0->unk_150C = (u16 *)(32 - (Unk_021C07C0->unk_1508 % 32) + Unk_021C07C0->unk_1508);
 
     Unk_021C07C0->unk_1504 = 0x333;
@@ -388,10 +388,10 @@ void sub_02033794 (BOOL param0)
 
 static void sub_020337C0 (void)
 {
-    FreeToHeap(Unk_021C07C0->unk_1500);
-    FreeToHeap(Unk_021C07C0->unk_14E8);
-    FreeToHeap((void *)Unk_021C07C0->unk_1508);
-    FreeToHeap(Unk_021C07C0);
+    Heap_FreeToHeap(Unk_021C07C0->unk_1500);
+    Heap_FreeToHeap(Unk_021C07C0->unk_14E8);
+    Heap_FreeToHeap((void *)Unk_021C07C0->unk_1508);
+    Heap_FreeToHeap(Unk_021C07C0);
 
     Unk_021C07C0 = NULL;
 }

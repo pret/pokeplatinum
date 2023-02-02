@@ -6,7 +6,7 @@
 
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -30,7 +30,7 @@ void ov24_02253CE0 (UnkStruct_02018340 * param0)
         0
     };
 
-    CreateHeap(3, 8, 0x18000);
+    Heap_Create(3, 8, 0x18000);
 
     GXS_SetGraphicsMode(GX_BGMODE_0);
 #ifdef SDK_ARM9
@@ -59,7 +59,7 @@ void ov24_02253CE0 (UnkStruct_02018340 * param0)
 void ov24_02253DA4 (UnkStruct_02018340 * param0)
 {
     sub_02019044(param0, 4);
-    DestroyHeap(8);
+    Heap_Destroy(8);
 }
 
 BOOL ov24_02253DB4 (UnkStruct_02018340 * param0)

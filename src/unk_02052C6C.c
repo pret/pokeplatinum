@@ -83,12 +83,12 @@ static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
         sub_0202DF94(v0);
     }
 
-    v1 = GetPartyFromSavedata(param0->unk_0C);
+    v1 = Party_GetFromSavedata(param0->unk_0C);
 
     sub_020138A4(&v2);
     sub_0202DFA8(v0, v1, &v2);
     sub_02024458(param0->unk_0C, v0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
@@ -107,7 +107,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (!sub_020509B4(v2)) {
-            CreateHeap(3, 4, 0x20000);
+            Heap_Create(3, 4, 0x20000);
             sub_02052F28(v2, v3);
             sub_0200F174(3, 1, 1, 0x0, 8, 1, 32);
             (*v4)++;
@@ -132,7 +132,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
     {
         int v6;
 
-        sub_02097284(GetPartyFromSavedata(v2->unk_0C));
+        sub_02097284(Party_GetFromSavedata(v2->unk_0C));
         sub_02024804();
         v6 = sub_020246E0(v2->unk_0C);
         sub_02052C6C(v2, v3->unk_00);
@@ -168,8 +168,8 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         break;
     case 9:
         if (!sub_020509B4(v2)) {
-            FreeToHeap(v3);
-            DestroyHeap(4);
+            Heap_FreeToHeap(v3);
+            Heap_Destroy(4);
             OS_ResetSystem(0);
             return 1;
         }
@@ -190,7 +190,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     Party * v7;
 
     v0 = sub_02050A60(param0);
-    v5 = AllocFromHeap(32, sizeof(UnkStruct_0205300C));
+    v5 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0205300C));
     v3 = sub_020507E4(v0->unk_0C);
     v4 = sub_02025E38(v0->unk_0C);
     v1 = sub_0203A730(sub_0203A790(v0->unk_0C));
@@ -198,7 +198,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
 
     v5->unk_00 = sub_0206A954(v3);
     v5->unk_04.unk_00 = sub_02025E38(v0->unk_0C);
-    v5->unk_04.unk_04 = GetPartyFromSavedata(v0->unk_0C);
+    v5->unk_04.unk_04 = Party_GetFromSavedata(v0->unk_0C);
     v5->unk_04.unk_08 = sub_02025E5C(v0->unk_0C);
     v5->unk_10.unk_00 = sub_02025F30(sub_02025E38(v0->unk_0C));
     v5->unk_10.unk_04 = sub_0206A954(v3);
@@ -208,7 +208,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
         sub_02055C2C(v0);
     }
 
-    v7 = GetPartyFromSavedata(v0->unk_0C);
+    v7 = Party_GetFromSavedata(v0->unk_0C);
 
     sub_02054AC4(v7);
     sub_0203D178(v1);
@@ -263,7 +263,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     param1->unk_30 = NULL;
 
     sub_0201A7A0(&param1->unk_1C);
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 

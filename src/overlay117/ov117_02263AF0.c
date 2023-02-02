@@ -34,7 +34,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
@@ -2263,7 +2263,7 @@ asm void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
     ldr r0, [r6, r0]
     cmp r0, #0
     beq _0226617A
-    bl GF_AssertFail
+    bl ErrorHandling_AssertFail
  _0226617A:
     ldr r0, [sp, #0x2c]
     mov r1, #0xa

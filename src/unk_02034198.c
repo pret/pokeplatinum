@@ -148,7 +148,7 @@ static BOOL sub_02034198 (BOOL param0, int param1)
 
         sub_020363E8(15);
 
-        Unk_021C07C8 = (u32)AllocFromHeap(15, sizeof(UnkStruct_021C07CC) + 32);
+        Unk_021C07C8 = (u32)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07CC) + 32);
         Unk_021C07CC = (UnkStruct_021C07CC *)(32 - (Unk_021C07C8 % 32) + Unk_021C07C8);
 
         MI_CpuClear8(Unk_021C07CC, sizeof(UnkStruct_021C07CC));
@@ -162,10 +162,10 @@ static BOOL sub_02034198 (BOOL param0, int param1)
         Unk_021C07CC->unk_684 = Unk_021C07CC->unk_688 * v3;
         Unk_021C07CC->unk_6A5 = 0;
         Unk_021C07CC->unk_6A6 = 38;
-        Unk_021C07CC->unk_490 = AllocFromHeap(15, Unk_021C07CC->unk_688 * 2);
-        Unk_021C07CC->unk_494 = AllocFromHeap(15, Unk_021C07CC->unk_688);
-        Unk_021C07CC->unk_48C = AllocFromHeap(15, Unk_021C07CC->unk_684);
-        Unk_021C07CC->unk_488 = AllocFromHeap(15, Unk_021C07CC->unk_684);
+        Unk_021C07CC->unk_490 = Heap_AllocFromHeap(15, Unk_021C07CC->unk_688 * 2);
+        Unk_021C07CC->unk_494 = Heap_AllocFromHeap(15, Unk_021C07CC->unk_688);
+        Unk_021C07CC->unk_48C = Heap_AllocFromHeap(15, Unk_021C07CC->unk_684);
+        Unk_021C07CC->unk_488 = Heap_AllocFromHeap(15, Unk_021C07CC->unk_684);
 
         if (sub_0203895C() == 10) {
             sub_020325EC(&Unk_021C07CC->unk_580, 100, &Unk_021C07CC->unk_498);
@@ -454,13 +454,13 @@ void sub_020348C4 (void)
         sub_0200DA58(Unk_021C07CC->unk_57C);
         Unk_021C07CC->unk_57C = NULL;
 
-        FreeToHeap(Unk_021C07CC->unk_490);
-        FreeToHeap(Unk_021C07CC->unk_494);
-        FreeToHeap(Unk_021C07CC->unk_48C);
-        FreeToHeap(Unk_021C07CC->unk_488);
+        Heap_FreeToHeap(Unk_021C07CC->unk_490);
+        Heap_FreeToHeap(Unk_021C07CC->unk_494);
+        Heap_FreeToHeap(Unk_021C07CC->unk_48C);
+        Heap_FreeToHeap(Unk_021C07CC->unk_488);
         sub_02032638(&Unk_021C07CC->unk_5A0);
         sub_02032638(&Unk_021C07CC->unk_580);
-        FreeToHeap((void *)Unk_021C07C8);
+        Heap_FreeToHeap((void *)Unk_021C07C8);
 
         Unk_021C07CC = NULL;
         Unk_021C07C8 = 0;

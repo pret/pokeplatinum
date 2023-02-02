@@ -713,7 +713,7 @@ void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, UnkStruct_0202A93C * param
 
         v5 += sub_020973D4(v0, 10);
 
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     if ((v9 >= 2) && (param3 > 1)) {

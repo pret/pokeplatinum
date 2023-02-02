@@ -25,96 +25,96 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
     UnkStruct_0207D3B0 * v0;
     s32 v1[8];
 
-    v0 = LoadItemDataOrGfx(param1, 0, param3);
+    v0 = Item_LoadDataOrGFX(param1, 0, param3);
 
-    if (GetItemAttributeFromStruct(v0, 14) != 1) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 14) != 1) {
+        Heap_FreeToHeap(v0);
         return 0;
     }
 
     v1[0] = sub_02074470(param0, 160, NULL);
 
-    if (GetItemAttributeFromStruct(v0, 15) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 15) != 0) {
         if ((v1[0] & 0x7) != 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 16) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 16) != 0) {
         if ((v1[0] & (0x8 | 0x80)) != 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 17) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 17) != 0) {
         if ((v1[0] & 0x10) != 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 18) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 18) != 0) {
         if ((v1[0] & 0x20) != 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 19) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 19) != 0) {
         if ((v1[0] & 0x40) != 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
     v1[0] = sub_02074470(param0, 163, NULL);
 
-    if (((GetItemAttributeFromStruct(v0, 23) != 0) || (GetItemAttributeFromStruct(v0, 24) != 0)) && (GetItemAttributeFromStruct(v0, 25) == 0)) {
+    if (((Item_GetAttributeFromStruct(v0, 23) != 0) || (Item_GetAttributeFromStruct(v0, 24) != 0)) && (Item_GetAttributeFromStruct(v0, 25) == 0)) {
         if (v1[0] == 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
-    } else if (GetItemAttributeFromStruct(v0, 38) != 0) {
+    } else if (Item_GetAttributeFromStruct(v0, 38) != 0) {
         if ((v1[0] != 0) && (v1[0] < sub_02074470(param0, 164, NULL))) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 25) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 25) != 0) {
         if (sub_02074470(param0, 161, NULL) < 100) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 26) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 26) != 0) {
         if (sub_02076B94(NULL, param0, 3, param1, NULL) != 0) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if ((GetItemAttributeFromStruct(v0, 34) != 0) || (GetItemAttributeFromStruct(v0, 35) != 0)) {
-        if ((sub_02074470(param0, 62 + param2, NULL) < 3) && (GetMoveMaxPP(sub_02074470(param0, 54 + param2, NULL), 0) >= 5)) {
-            FreeToHeap(v0);
+    if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
+        if ((sub_02074470(param0, 62 + param2, NULL) < 3) && (MoveTable_GetMoveMaxPP(sub_02074470(param0, 54 + param2, NULL), 0) >= 5)) {
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 36) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 36) != 0) {
         if (sub_02096F34(param0, param2) == 1) {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 37) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
             if (sub_02096F34(param0, v1[0]) == 1) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         }
@@ -128,134 +128,134 @@ u8 sub_02096420 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u32 param3
     v1[5] = sub_02074470(param0, 18, NULL);
 
     if (sub_02074470(param0, 5, NULL) != 292) {
-        if (GetItemAttributeFromStruct(v0, 39) != 0) {
-            v1[6] = GetItemAttributeFromStruct(v0, 48);
+        if (Item_GetAttributeFromStruct(v0, 39) != 0) {
+            v1[6] = Item_GetAttributeFromStruct(v0, 48);
 
             if (v1[6] > 0) {
                 if ((v1[0] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                    FreeToHeap(v0);
+                    Heap_FreeToHeap(v0);
                     return 1;
                 }
             } else if (v1[6] < 0) {
                 if (v1[0] > 0) {
-                    FreeToHeap(v0);
+                    Heap_FreeToHeap(v0);
                     return 1;
                 }
 
                 if (sub_02097144(param0, v0) == 1) {
-                    FreeToHeap(v0);
+                    Heap_FreeToHeap(v0);
                     return 1;
                 }
             }
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 40) != 0) {
-        v1[6] = GetItemAttributeFromStruct(v0, 49);
+    if (Item_GetAttributeFromStruct(v0, 40) != 0) {
+        v1[6] = Item_GetAttributeFromStruct(v0, 49);
 
         if (v1[6] > 0) {
             if ((v1[1] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[1] > 0) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 41) != 0) {
-        v1[6] = GetItemAttributeFromStruct(v0, 50);
+    if (Item_GetAttributeFromStruct(v0, 41) != 0) {
+        v1[6] = Item_GetAttributeFromStruct(v0, 50);
 
         if (v1[6] > 0) {
             if ((v1[2] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[2] > 0) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 42) != 0) {
-        v1[6] = GetItemAttributeFromStruct(v0, 51);
+    if (Item_GetAttributeFromStruct(v0, 42) != 0) {
+        v1[6] = Item_GetAttributeFromStruct(v0, 51);
 
         if (v1[6] > 0) {
             if ((v1[3] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[3] > 0) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 43) != 0) {
-        v1[6] = GetItemAttributeFromStruct(v0, 52);
+    if (Item_GetAttributeFromStruct(v0, 43) != 0) {
+        v1[6] = Item_GetAttributeFromStruct(v0, 52);
 
         if (v1[6] > 0) {
             if ((v1[4] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[4] > 0) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 44) != 0) {
-        v1[6] = GetItemAttributeFromStruct(v0, 53);
+    if (Item_GetAttributeFromStruct(v0, 44) != 0) {
+        v1[6] = Item_GetAttributeFromStruct(v0, 53);
 
         if (v1[6] > 0) {
             if ((v1[5] < 100) && ((v1[0] + v1[1] + v1[2] + v1[3] + v1[4] + v1[5]) < 510)) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         } else if (v1[6] < 0) {
             if (v1[5] > 0) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
 
             if (sub_02097144(param0, v0) == 1) {
-                FreeToHeap(v0);
+                Heap_FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return 0;
 }
@@ -273,10 +273,10 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     u8 v2;
     u8 v3;
 
-    v0 = LoadItemDataOrGfx(param1, 0, param4);
+    v0 = Item_LoadDataOrGFX(param1, 0, param4);
 
-    if (GetItemAttributeFromStruct(v0, 14) != 1) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 14) != 1) {
+        Heap_FreeToHeap(v0);
         return 0;
     }
 
@@ -286,27 +286,27 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     v1[0] = sub_02074470(param0, 160, NULL);
     v1[1] = v1[0];
 
-    if (GetItemAttributeFromStruct(v0, 15) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 15) != 0) {
         v1[1] &= (0x7 ^ 0xffffffff);
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 16) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 16) != 0) {
         v1[1] &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 17) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 17) != 0) {
         v1[1] &= (0x10 ^ 0xffffffff);
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 18) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 18) != 0) {
         v1[1] &= (0x20 ^ 0xffffffff);
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 19) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 19) != 0) {
         v1[1] &= (0x40 ^ 0xffffffff);
         v3 = 1;
     }
@@ -319,16 +319,16 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     v1[0] = sub_02074470(param0, 163, NULL);
     v1[1] = sub_02074470(param0, 164, NULL);
 
-    if (((GetItemAttributeFromStruct(v0, 23) != 0) || (GetItemAttributeFromStruct(v0, 24) != 0)) && (GetItemAttributeFromStruct(v0, 25) != 0)) {
+    if (((Item_GetAttributeFromStruct(v0, 23) != 0) || (Item_GetAttributeFromStruct(v0, 24) != 0)) && (Item_GetAttributeFromStruct(v0, 25) != 0)) {
         if (v1[0] == 0) {
-            sub_020970AC(param0, v1[0], v1[1], GetItemAttributeFromStruct(v0, 54));
+            sub_020970AC(param0, v1[0], v1[1], Item_GetAttributeFromStruct(v0, 54));
             v2 = 1;
         }
 
         v3 = 1;
-    } else if (GetItemAttributeFromStruct(v0, 38) != 0) {
+    } else if (Item_GetAttributeFromStruct(v0, 38) != 0) {
         if (v1[0] < v1[1]) {
-            sub_020970AC(param0, v1[0], v1[1], GetItemAttributeFromStruct(v0, 54));
+            sub_020970AC(param0, v1[0], v1[1], Item_GetAttributeFromStruct(v0, 54));
             v2 = 1;
         }
 
@@ -337,7 +337,7 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
 
     v1[2] = sub_02074470(param0, 161, NULL);
 
-    if (GetItemAttributeFromStruct(v0, 25) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 25) != 0) {
         if (v1[2] < 100) {
             sub_0207536C(param0, 8, sub_02075A70(param0));
             sub_0207418C(param0);
@@ -353,17 +353,17 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 26) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 26) != 0) {
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 34) != 0) {
+    if (Item_GetAttributeFromStruct(v0, 34) != 0) {
         if (sub_02097004(param0, param2, 1) == 1) {
             v2 = 1;
         }
 
         v3 = 1;
-    } else if (GetItemAttributeFromStruct(v0, 35) != 0) {
+    } else if (Item_GetAttributeFromStruct(v0, 35) != 0) {
         if (sub_02097004(param0, param2, 3) == 1) {
             v2 = 1;
         }
@@ -371,15 +371,15 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         v3 = 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 36) != 0) {
-        if (sub_02096F84(param0, param2, GetItemAttributeFromStruct(v0, 55)) == 1) {
+    if (Item_GetAttributeFromStruct(v0, 36) != 0) {
+        if (sub_02096F84(param0, param2, Item_GetAttributeFromStruct(v0, 55)) == 1) {
             v2 = 1;
         }
 
         v3 = 1;
-    } else if (GetItemAttributeFromStruct(v0, 37) != 0) {
+    } else if (Item_GetAttributeFromStruct(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (sub_02096F84(param0, v1[0], GetItemAttributeFromStruct(v0, 55)) == 1) {
+            if (sub_02096F84(param0, v1[0], Item_GetAttributeFromStruct(v0, 55)) == 1) {
                 v2 = 1;
             }
         }
@@ -395,8 +395,8 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     v1[5] = sub_02074470(param0, 18, NULL);
 
     if (sub_02074470(param0, 5, NULL) != 292) {
-        if (GetItemAttributeFromStruct(v0, 39) != 0) {
-            v1[7] = GetItemAttributeFromStruct(v0, 48);
+        if (Item_GetAttributeFromStruct(v0, 39) != 0) {
+            v1[7] = Item_GetAttributeFromStruct(v0, 48);
             v1[6] = sub_020970EC(v1[0], (v1[1] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
 
             if (v1[6] != -1) {
@@ -412,8 +412,8 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 40) != 0) {
-        v1[7] = GetItemAttributeFromStruct(v0, 49);
+    if (Item_GetAttributeFromStruct(v0, 40) != 0) {
+        v1[7] = Item_GetAttributeFromStruct(v0, 49);
         v1[6] = sub_020970EC(v1[1], (v1[0] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
@@ -428,8 +428,8 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 41) != 0) {
-        v1[7] = GetItemAttributeFromStruct(v0, 50);
+    if (Item_GetAttributeFromStruct(v0, 41) != 0) {
+        v1[7] = Item_GetAttributeFromStruct(v0, 50);
         v1[6] = sub_020970EC(v1[2], (v1[0] + v1[1] + v1[3] + v1[4] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
@@ -444,8 +444,8 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 42) != 0) {
-        v1[7] = GetItemAttributeFromStruct(v0, 51);
+    if (Item_GetAttributeFromStruct(v0, 42) != 0) {
+        v1[7] = Item_GetAttributeFromStruct(v0, 51);
         v1[6] = sub_020970EC(v1[3], (v1[0] + v1[1] + v1[2] + v1[4] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
@@ -460,8 +460,8 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 43) != 0) {
-        v1[7] = GetItemAttributeFromStruct(v0, 52);
+    if (Item_GetAttributeFromStruct(v0, 43) != 0) {
+        v1[7] = Item_GetAttributeFromStruct(v0, 52);
         v1[6] = sub_020970EC(v1[4], (v1[0] + v1[1] + v1[2] + v1[3] + v1[5]), v1[7]);
 
         if (v1[6] != -1) {
@@ -476,8 +476,8 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 44) != 0) {
-        v1[7] = GetItemAttributeFromStruct(v0, 53);
+    if (Item_GetAttributeFromStruct(v0, 44) != 0) {
+        v1[7] = Item_GetAttributeFromStruct(v0, 53);
         v1[6] = sub_020970EC(v1[5], (v1[0] + v1[1] + v1[2] + v1[3] + v1[4]), v1[7]);
 
         if (v1[6] != -1) {
@@ -493,36 +493,36 @@ u8 sub_02096954 (UnkStruct_02073C74 * param0, u16 param1, u16 param2, u16 param3
     }
 
     if ((v2 == 0) && (v3 == 1)) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 0;
     }
 
     v1[0] = sub_02074470(param0, 9, NULL);
 
     if (v1[0] < 100) {
-        if (GetItemAttributeFromStruct(v0, 45) != 0) {
-            if (sub_020971D0(param0, v1[0], GetItemAttributeFromStruct(v0, 56), param3, param4) == 0) {
-                FreeToHeap(v0);
+        if (Item_GetAttributeFromStruct(v0, 45) != 0) {
+            if (sub_020971D0(param0, v1[0], Item_GetAttributeFromStruct(v0, 56), param3, param4) == 0) {
+                Heap_FreeToHeap(v0);
                 return v2;
             }
         }
     } else if ((v1[0] >= 100) && (v1[0] < 200)) {
-        if (GetItemAttributeFromStruct(v0, 46) != 0) {
-            if (sub_020971D0(param0, v1[0], GetItemAttributeFromStruct(v0, 57), param3, param4) == 0) {
-                FreeToHeap(v0);
+        if (Item_GetAttributeFromStruct(v0, 46) != 0) {
+            if (sub_020971D0(param0, v1[0], Item_GetAttributeFromStruct(v0, 57), param3, param4) == 0) {
+                Heap_FreeToHeap(v0);
                 return v2;
             }
         }
     } else if ((v1[0] >= 200) && (v1[0] <= 255)) {
-        if (GetItemAttributeFromStruct(v0, 47) != 0) {
-            if (sub_020971D0(param0, v1[0], GetItemAttributeFromStruct(v0, 58), param3, param4) == 0) {
-                FreeToHeap(v0);
+        if (Item_GetAttributeFromStruct(v0, 47) != 0) {
+            if (sub_020971D0(param0, v1[0], Item_GetAttributeFromStruct(v0, 58), param3, param4) == 0) {
+                Heap_FreeToHeap(v0);
                 return v2;
             }
         }
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     return v2;
 }
 
@@ -548,7 +548,7 @@ static u8 sub_02096F34 (UnkStruct_02073C74 * param0, u32 param1)
     v1 = (u8)sub_02074470(param0, 58 + param1, NULL);
     v2 = (u8)sub_02074470(param0, 62 + param1, NULL);
 
-    if (v1 < GetMoveMaxPP(v0, v2)) {
+    if (v1 < MoveTable_GetMoveMaxPP(v0, v2)) {
         return 1;
     }
 
@@ -568,7 +568,7 @@ static u8 sub_02096F84 (UnkStruct_02073C74 * param0, u32 param1, u32 param2)
     }
 
     v1 = (u8)sub_02074470(param0, 58 + param1, NULL);
-    v2 = (u8)GetMoveMaxPP(v0, sub_02074470(param0, 62 + param1, NULL));
+    v2 = (u8)MoveTable_GetMoveMaxPP(v0, sub_02074470(param0, 62 + param1, NULL));
 
     if (v1 < v2) {
         if (param2 == 127) {
@@ -603,12 +603,12 @@ static u8 sub_02097004 (UnkStruct_02073C74 * param0, u32 param1, u32 param2)
 
     v0 = (u16)sub_02074470(param0, 54 + param1, NULL);
 
-    if (GetMoveMaxPP(v0, 0) < 5) {
+    if (MoveTable_GetMoveMaxPP(v0, 0) < 5) {
         return 0;
     }
 
     v1 = (u8)sub_02074470(param0, 58 + param1, NULL);
-    v3 = (u8)GetMoveMaxPP(v0, v2);
+    v3 = (u8)MoveTable_GetMoveMaxPP(v0, v2);
 
     if (v2 + param2 > 3) {
         v2 = 3;
@@ -616,7 +616,7 @@ static u8 sub_02097004 (UnkStruct_02073C74 * param0, u32 param1, u32 param2)
         v2 = v2 + param2;
     }
 
-    v1 = v1 + GetMoveMaxPP(v0, v2) - v3;
+    v1 = v1 + MoveTable_GetMoveMaxPP(v0, v2) - v3;
 
     sub_02074B30(param0, 62 + param1, &v2);
     sub_02074B30(param0, 58 + param1, &v1);
@@ -686,24 +686,24 @@ static u8 sub_02097144 (UnkStruct_02073C74 * param0, UnkStruct_0207D3B0 * param1
     }
 
     if (v0 < 100) {
-        if (GetItemAttributeFromStruct(param1, 45) != 0) {
-            if (GetItemAttributeFromStruct(param1, 56) > 0) {
+        if (Item_GetAttributeFromStruct(param1, 45) != 0) {
+            if (Item_GetAttributeFromStruct(param1, 56) > 0) {
                 return 1;
             }
         }
 
         return 0;
     } else if ((v0 >= 100) && (v0 < 200)) {
-        if (GetItemAttributeFromStruct(param1, 46) != 0) {
-            if (GetItemAttributeFromStruct(param1, 57) > 0) {
+        if (Item_GetAttributeFromStruct(param1, 46) != 0) {
+            if (Item_GetAttributeFromStruct(param1, 57) > 0) {
                 return 1;
             }
         }
 
         return 0;
     } else if ((v0 >= 200) && (v0 < 255)) {
-        if (GetItemAttributeFromStruct(param1, 47) != 0) {
-            if (GetItemAttributeFromStruct(param1, 58) > 0) {
+        if (Item_GetAttributeFromStruct(param1, 47) != 0) {
+            if (Item_GetAttributeFromStruct(param1, 58) > 0) {
                 return 1;
             }
         }
@@ -725,7 +725,7 @@ static u8 sub_020971D0 (UnkStruct_02073C74 * param0, s32 param1, s32 param2, u16
     }
 
     if (param2 > 0) {
-        if (GetItemAttribute(sub_02074470(param0, 6, NULL), 1, param4) == 53) {
+        if (Item_GetAttribute(sub_02074470(param0, 6, NULL), 1, param4) == 53) {
             param2 = param2 * 150 / 100;
         }
 

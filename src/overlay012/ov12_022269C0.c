@@ -56,7 +56,7 @@ static void ov12_022269C4 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         ov12_02220220(v0->unk_04, param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         break;
     }
 }
@@ -65,7 +65,7 @@ void ov12_022269EC (UnkStruct_ov12_0221FCDC * param0)
 {
     UnkStruct_ov12_022269C4 * v0;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov12_022269C4));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov12_022269C4));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
@@ -83,7 +83,7 @@ static void ov12_02226A14 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         ov12_02220230(v0->unk_04, param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         break;
     }
 }
@@ -92,7 +92,7 @@ void ov12_02226A3C (UnkStruct_ov12_0221FCDC * param0)
 {
     UnkStruct_ov12_02226A14 * v0;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov12_02226A14));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov12_02226A14));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
@@ -110,7 +110,7 @@ static void ov12_02226A64 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         sub_0200DA58(param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         break;
     }
 }
@@ -119,7 +119,7 @@ void ov12_02226A88 (UnkStruct_ov12_0221FCDC * param0)
 {
     UnkStruct_ov12_02226A64 * v0;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov12_02226A64));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov12_02226A64));
 
     v0->unk_00 = 0;
     v0->unk_04 = param0;
@@ -148,7 +148,7 @@ static void ov12_02226AAC (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_ov12_0221FCDC * v1 = v0->unk_04;
 
         sub_0200D0F4(v0->unk_10);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         ov12_02220220(v1, param0);
     }
     break;
@@ -160,7 +160,7 @@ void ov12_02226B1C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     UnkStruct_ov12_02226AAC * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov12_02226AAC));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov12_02226AAC));
 
     GF_ASSERT(v0 != NULL);
 

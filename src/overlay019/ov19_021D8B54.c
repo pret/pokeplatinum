@@ -194,12 +194,12 @@ static void ov19_021D8E00 (UnkStruct_ov19_021D8E00 * param0)
 void ov19_021D8E84 (UnkStruct_ov19_021D8E00 * param0)
 {
     if (param0->unk_14) {
-        FreeToHeap(param0->unk_14);
+        Heap_FreeToHeap(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18) {
-        FreeToHeap(param0->unk_18);
+        Heap_FreeToHeap(param0->unk_18);
         param0->unk_18 = NULL;
     }
 
@@ -536,7 +536,7 @@ BOOL ov19_021D9530 (UnkStruct_ov19_021D8E00 * param0)
 
 static void ov19_021D9554 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_02022550 * param1, fx32 param2, s32 param3, u32 param4)
 {
-    UnkStruct_ov19_021D9554 * v0 = AllocFromHeap(10, sizeof(UnkStruct_ov19_021D9554));
+    UnkStruct_ov19_021D9554 * v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D9554));
 
     if (v0) {
         VecFx32 v1;
@@ -560,7 +560,7 @@ static void ov19_021D9554 (UnkStruct_ov19_021D8E00 * param0, UnkStruct_02022550 
             param0->unk_788 = 1;
             return;
         } else {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
     }
 }

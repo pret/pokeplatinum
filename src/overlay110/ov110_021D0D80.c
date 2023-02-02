@@ -25,7 +25,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -109,13 +109,13 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    CreateHeap(3, 114, 0x20000);
+    Heap_Create(3, 114, 0x20000);
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov110_021D0F78), 114);
     memset(v1, 0, sizeof(UnkStruct_ov110_021D0F78));
 
@@ -192,7 +192,7 @@ int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(114);
+    Heap_Destroy(114);
 
     return 1;
 }
@@ -285,7 +285,7 @@ static void ov110_021D1078 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     return;
 }
 
@@ -370,8 +370,8 @@ static void ov110_021D1098 (UnkStruct_02018340 * param0)
 
     G2_SetBG0Priority(0);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 
     return;
 }
@@ -395,13 +395,13 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
 
 static void ov110_021D11CC (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
     sub_02019044(param0, 0);
     sub_02019044(param0, 2);
     sub_02019044(param0, 6);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return;
 }
@@ -463,7 +463,7 @@ static void ov110_021D128C (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return;
 }
@@ -1198,7 +1198,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     cmp r4, #0
     beq _021D1978
     add r0, r4, #0
-    bl FreeToHeap
+    bl Heap_FreeToHeap
  _021D1978:
     add r0, r5, #0
     mov r1, #0

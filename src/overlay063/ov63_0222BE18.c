@@ -56,11 +56,11 @@ UnkStruct_ov63_0222BE18 * ov63_0222BE18 (u32 param0, u32 param1)
 {
     UnkStruct_ov63_0222BE18 * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov63_0222BE18));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov63_0222BE18));
     GF_ASSERT(v0);
 
     v0->unk_04 = param0;
-    v0->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_ov63_0222BEC0) * v0->unk_04);
+    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov63_0222BEC0) * v0->unk_04);
     GF_ASSERT(v0->unk_00);
 
     memset(v0->unk_00, 0, sizeof(UnkStruct_ov63_0222BEC0) * v0->unk_04);
@@ -71,8 +71,8 @@ UnkStruct_ov63_0222BE18 * ov63_0222BE18 (u32 param0, u32 param1)
 void ov63_0222BE58 (UnkStruct_ov63_0222BE18 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0);
 }
 
 void ov63_0222BE70 (UnkStruct_ov63_0222BE18 * param0, const UnkStruct_ov63_0222CCB8 * param1)

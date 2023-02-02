@@ -18,9 +18,9 @@ typedef enum MoveAttribute {
     MOVEATTRIBUTE_CONTEST_TYPE,
 } MoveAttribute;
 
-void LoadMoveTable(void * dest);
-u32 GetMoveAttribute(int moveID, int attrno);
-u8 GetMoveMaxPP(u16 moveID, u8 ppUps);
-u32 GetMoveTableAttribute(MoveTable * moveTable, int attribute);
+void MoveTable_Load(void * dest);
+u32 MoveTable_GetMoveAttribute(int moveID, int attrno);
+u8 MoveTable_GetMoveMaxPP(u16 moveID, u8 ppUps);
+u32 MoveTable_GetAttribute(MoveTable * moveTable, int attribute);
 
 #endif // POKEPLATINUM_UNK_020790B0_H

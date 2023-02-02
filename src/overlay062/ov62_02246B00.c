@@ -32,7 +32,7 @@ UnkStruct_ov62_02246B00 * ov62_02246B00 (int param0, int param1, int param2[], U
     int v0;
     UnkStruct_ov62_02246B00 * v1 = NULL;
 
-    v1 = AllocFromHeap(param0, sizeof(UnkStruct_ov62_02246B00));
+    v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov62_02246B00));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
     v1->unk_18 = sub_02023790(param1 + 1, param0);
@@ -53,7 +53,7 @@ void ov62_02246B4C (UnkStruct_ov62_02246B00 * param0)
     GF_ASSERT(param0 != NULL);
 
     sub_020237BC(param0->unk_18);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov62_02246B70 (UnkStruct_ov62_02246BF4 * param0, int param1)

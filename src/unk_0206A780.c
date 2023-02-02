@@ -7,7 +7,7 @@
 #include "overlay104/struct_ov104_0223F9E0.h"
 #include "overlay104/struct_ov104_02241308.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
 #include "unk_020218BC.h"
@@ -50,7 +50,7 @@ UnkStruct_0206A844 * sub_0206A780 (int param0)
     UnkStruct_0206A844 * v2;
     NARC * v3;
 
-    v2 = AllocFromHeap(param0, sizeof(UnkStruct_0206A844));
+    v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0206A844));
     MI_CpuClear8(v2, sizeof(UnkStruct_0206A844));
 
     ov5_021D3190(&v2->unk_00, &v0, 2, 11);
@@ -81,7 +81,7 @@ void sub_0206A844 (UnkStruct_0206A844 * param0)
     }
 
     ov5_021D375C(&param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_0206A870 (UnkStruct_0206A844 * param0)

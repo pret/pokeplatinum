@@ -61,7 +61,7 @@ UnkStruct_ov104_0223ADA0 * ov104_022339B4 (UnkStruct_021C0794 * param0, u16 para
     u32 v6;
     static UnkStruct_ov104_0223ADA0 * v7;
 
-    v7 = AllocFromHeap(11, sizeof(UnkStruct_ov104_0223ADA0));
+    v7 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223ADA0));
     MI_CpuClear8(v7, sizeof(UnkStruct_ov104_0223ADA0));
 
     v7->unk_4F4 = sub_0202FF58(param0);
@@ -191,7 +191,7 @@ static void ov104_02233BAC (UnkStruct_ov104_0223ADA0 * param0)
         v4 = sub_02073C74(11);
         ov104_0222DF40(&param0->unk_280[v0], v4, ov104_0223ADA0(param0));
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D4, v4);
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -279,7 +279,7 @@ static void ov104_02233F1C (UnkStruct_ov104_0223ADA0 * param0)
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D4, v1);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         v6[v0] = (u16)sub_02030030(param0->unk_4F4, 7, v0, NULL);
@@ -298,7 +298,7 @@ static void ov104_02233F1C (UnkStruct_ov104_0223ADA0 * param0)
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D8, v1);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return;
 }
@@ -312,16 +312,16 @@ void ov104_022340D0 (UnkStruct_ov104_0223ADA0 * param0)
     }
 
     if (param0->unk_4D4 != NULL) {
-        FreeToHeap(param0->unk_4D4);
+        Heap_FreeToHeap(param0->unk_4D4);
     }
 
     if (param0->unk_4D8 != NULL) {
-        FreeToHeap(param0->unk_4D8);
+        Heap_FreeToHeap(param0->unk_4D8);
     }
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223ADA0));
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
     param0 = NULL;
 
     return;
@@ -462,7 +462,7 @@ u16 ov104_02234440 (UnkStruct_ov104_0223ADA0 * param0, u8 param1)
     v2 = param0->unk_06 + (param1 * 7);
     v1 = ov104_0222DD04(&v0, param0->unk_18[v2], 11, 178);
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return ov104_0222E10C(v0.unk_04);
 }
@@ -512,7 +512,7 @@ void ov104_0223449C (UnkStruct_ov104_0223ADA0 * param0)
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D8, v3);
     }
 
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 
     return;
 }
@@ -597,7 +597,7 @@ void ov104_0223470C (UnkStruct_ov104_0223ADA0 * param0)
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D8, v3);
     }
 
-    FreeToHeap(v3);
+    Heap_FreeToHeap(v3);
 
     for (v0 = 0; v0 < v2; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_4D8, v0);

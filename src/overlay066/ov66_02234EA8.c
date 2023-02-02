@@ -7,7 +7,7 @@
 #include "overlay069/struct_ov69_0225C980.h"
 #include "overlay092/struct_ov92_021D1530.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_020996D0.h"
@@ -71,7 +71,7 @@ static void ov66_02234F2C (NARC * param0, u32 param1, u16 param2, u8 param3, fx3
             v0 = 1;
         }
 
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 
     if (v0 == 0) {
@@ -93,6 +93,6 @@ static void ov66_02234F2C (NARC * param0, u32 param1, u16 param2, u8 param3, fx3
             *param4 = v6[0].unk_02;
         }
 
-        FreeToHeap(v5);
+        Heap_FreeToHeap(v5);
     }
 }

@@ -13,7 +13,7 @@
 #include "overlay104/struct_ov104_02241308.h"
 
 #include "unk_02002F38.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200C6E4.h"
 #include "gx_layers.h"
 #include "item.h"
@@ -73,7 +73,7 @@ void ov13_02227BDC (UnkStruct_ov13_02227244 * param0)
     ov13_02227F7C(param0);
     ov13_02228070(param0);
 
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov13_02227C08 (UnkStruct_ov13_02227244 * param0)
@@ -101,8 +101,8 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
         sub_0200CDC4(param0->unk_08, 3, v0, param0->unk_30C, v2, sub_0207CE78(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
     }
 
-    sub_0200CE24(v0, param0->unk_30C, v2, GetItemIconCellArchiveIndex(), 0, 46263);
-    sub_0200CE54(v0, param0->unk_30C, v2, GetItemIconCellAnimationArchiveIndex(), 0, 46263);
+    sub_0200CE24(v0, param0->unk_30C, v2, Item_GetIndexOfIconNCER(), 0, 46263);
+    sub_0200CE54(v0, param0->unk_30C, v2, Item_GetIndexOfIconNANR(), 0, 46263);
     NARC_dtor(v2);
 }
 

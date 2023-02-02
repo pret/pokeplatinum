@@ -9,7 +9,7 @@
 #include "overlay005/struct_ov5_021D57B4.h"
 #include "overlay005/struct_ov5_021D5894.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "unk_0201CED8.h"
@@ -51,7 +51,7 @@ UnkStruct_ov5_021E1608 * ov5_021E15F4 (const u8 param0)
 {
     UnkStruct_ov5_021E1608 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov5_021E1608));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021E1608));
     ov5_021E1610(v0);
 
     return v0;
@@ -59,7 +59,7 @@ UnkStruct_ov5_021E1608 * ov5_021E15F4 (const u8 param0)
 
 void ov5_021E1608 (UnkStruct_ov5_021E1608 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
     param0 = NULL;
 }
 
@@ -106,7 +106,7 @@ void ov5_021E16CC (NARC * param0, const int param1, UnkStruct_ov5_021EF76C * con
     int v2;
 
     if (param1 != 0) {
-        v0 = AllocFromHeapAtEnd(4, param1);
+        v0 = Heap_AllocFromHeapAtEnd(4, param1);
         NARC_ReadFile(param0, param1, v0);
         v1 = param1 / sizeof(UnkStruct_ov5_021E16CC);
     } else {
@@ -148,7 +148,7 @@ void ov5_021E16CC (NARC * param0, const int param1, UnkStruct_ov5_021EF76C * con
     }
 
     if (v0 != NULL) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 }
 

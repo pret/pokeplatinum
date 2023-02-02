@@ -259,7 +259,7 @@ static UnkStruct_ov21_021D8788 * ov21_021D86E8 (int param0, UnkStruct_ov21_021D0
     UnkStruct_ov21_021D8788 * v0;
     UnkStruct_ov21_021E68F4 * v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D8788));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D8788));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D8788));
@@ -277,7 +277,7 @@ static UnkStruct_ov21_021D879C * ov21_021D8724 (int param0, UnkStruct_ov21_021D0
     UnkStruct_ov21_021D879C * v0;
     UnkStruct_ov21_021E68F4 * v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D879C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D879C));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D879C));
@@ -292,7 +292,7 @@ static UnkStruct_ov21_021D4660 * ov21_021D874C (int param0, UnkStruct_ov21_021D0
     UnkStruct_ov21_021D4660 * v0;
     int v1 = ov21_021D87C8();
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D4660) * v1);
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D4660) * v1);
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4660) * v1);
@@ -305,13 +305,13 @@ static UnkStruct_ov21_021D4660 * ov21_021D874C (int param0, UnkStruct_ov21_021D0
 static void ov21_021D8788 (UnkStruct_ov21_021D8788 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021D879C (UnkStruct_ov21_021D879C * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021D87B0 (UnkStruct_ov21_021D4660 * param0)
@@ -319,7 +319,7 @@ static void ov21_021D87B0 (UnkStruct_ov21_021D4660 * param0)
     GF_ASSERT(param0);
 
     ov21_021D4660(&param0[0]);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static int ov21_021D87C8 (void)
@@ -332,7 +332,7 @@ static int ov21_021D87CC (UnkStruct_ov21_021E6A68 * param0, void * param1)
     UnkStruct_ov21_021D8788 * v0 = param1;
     UnkStruct_ov21_021D87CC * v1;
 
-    v1 = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021D87CC));
+    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021D87CC));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021D87CC));
@@ -444,7 +444,7 @@ static int ov21_021D8928 (UnkStruct_ov21_021E6A68 * param0, void * param1)
     UnkStruct_ov21_021D87CC * v0 = param0->unk_08;
     UnkStruct_ov21_021D8788 * v1 = param1;
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     param0->unk_08 = NULL;
 
     return 1;
@@ -460,7 +460,7 @@ static int ov21_021D893C (void * param0, UnkStruct_ov21_021E6B20 * param1, const
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021D9320));
+        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021D9320));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021D9320));
         param1->unk_00++;
         break;
@@ -526,7 +526,7 @@ static int ov21_021D89F4 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
         param1->unk_00++;
         break;
     case 3:
-        FreeToHeap(param1->unk_08);
+        Heap_FreeToHeap(param1->unk_08);
         param1->unk_08 = NULL;
         param1->unk_00++;
         break;
@@ -598,7 +598,7 @@ static void ov21_021D8BC4 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D8BEC (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D879C * param1)
 {
-    FreeToHeap(param0->unk_5C);
+    Heap_FreeToHeap(param0->unk_5C);
     param0->unk_5C = NULL;
     param0->unk_60 = NULL;
 }
@@ -794,7 +794,7 @@ static void ov21_021D8F98 (UnkStruct_ov21_021D879C * param0, int param1, int par
     v0 = ov21_021D27B8(param0->unk_00, 43, 1, &v1, param2);
 
     sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     v2 = 6;
 
@@ -822,7 +822,7 @@ static void ov21_021D8F98 (UnkStruct_ov21_021D879C * param0, int param1, int par
     v0 = ov21_021D27B8(param0->unk_00, v4, 1, &v1, param2);
 
     sub_020198C0(param0->unk_00->unk_00, 3, v1->rawData, v2, v3, v1->screenWidth / 8, v1->screenHeight / 8);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0201C3C0(param0->unk_00->unk_00, 3);
 }
 

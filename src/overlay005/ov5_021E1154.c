@@ -153,7 +153,7 @@ static BOOL ov5_021E120C (UnkStruct_020508D4 * param0)
 
 static void * ov5_021E132C (int param0)
 {
-    void * v0 = AllocFromHeapAtEnd(4, param0);
+    void * v0 = Heap_AllocFromHeapAtEnd(4, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -163,5 +163,5 @@ static void * ov5_021E132C (int param0)
 
 static void ov5_021E1350 (void * param0)
 {
-    FreeToHeapExplicit(4, param0);
+    Heap_FreeToHeapExplicit(4, param0);
 }

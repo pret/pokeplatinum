@@ -1264,14 +1264,14 @@ void ov17_02246ECC (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0223BE58 * 
     int v0;
     UnkStruct_ov17_02246F9C * v1;
 
-    v1 = AllocFromHeap(21, sizeof(UnkStruct_ov17_02246F9C));
+    v1 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = param0->unk_00->unk_00.unk_117; v0 < 4; v0++) {
         ov17_02246F24(param0, v1, v0);
         ov17_02246F9C(param0, v1, v0, &param1->unk_00[v0], &param1->unk_08[v0]);
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246F9C * param1, int param2)
@@ -1284,8 +1284,8 @@ static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
         param1->unk_00[v0].unk_00 = sub_02074470(param0->unk_00->unk_00.unk_00[param2], 54 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {
-            param1->unk_00[v0].unk_0A = GetMoveAttribute(param1->unk_00[v0].unk_00, 10);
-            param1->unk_00[v0].unk_0B = GetMoveAttribute(param1->unk_00[v0].unk_00, 11);
+            param1->unk_00[v0].unk_0A = MoveTable_GetMoveAttribute(param1->unk_00[v0].unk_00, 10);
+            param1->unk_00[v0].unk_0B = MoveTable_GetMoveAttribute(param1->unk_00[v0].unk_00, 11);
         } else {
             param1->unk_00[v0].unk_00 = 0;
         }

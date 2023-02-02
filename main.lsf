@@ -21,10 +21,10 @@ Static main
 	Object src/unk_020041CC.o
 	Object src/unk_02005474.o
 	Object src/unk_02006224.o
-	Object src/poke_overlay.o
+	Object src/game_overlay.o
 	Object src/unk_0200679C.o
 	Object src/unk_020067E8.o
-	Object src/filesystem.o
+	Object src/narc.o
 	Object src/unk_02006E3C.o
 	Object src/unk_0200762C.o
 	Object src/unk_020093B4.o

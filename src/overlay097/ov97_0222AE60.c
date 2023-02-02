@@ -380,9 +380,9 @@ static BOOL ov97_0222B07C (UnkStruct_0222AE60 * param0)
         ov97_0223795C(param0->unk_00, &v0, v1->unk_00, v1->unk_04, v1->unk_10);
 
         sub_02019E2C(param0->unk_00, 1, sub_0201C29C(v0.unk_10), sub_0201C2A0(v0.unk_10), sub_0201C294(v0.unk_10), sub_0201C298(v0.unk_10), 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
 
         param0->unk_134 = 30;
         param0->unk_12C = 18;
@@ -400,9 +400,9 @@ static BOOL ov97_0222B07C (UnkStruct_0222AE60 * param0)
         }
         break;
     case 19:
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         param0->unk_12C = 15;
         break;
     }
@@ -458,7 +458,7 @@ static void ov97_0222B2EC (UnkStruct_0222AE60 * param0)
         GX_BG0_AS_2D
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     sub_02018368(&v1);
 
     ov97_022376FC(param0->unk_00, 0, 2, 0xF000, 0x0);
@@ -922,7 +922,7 @@ static void ov97_0222BC9C (UnkStruct_020067E8 * param0)
     sub_02019044(v1->unk_00, 0);
     sub_02019044(v1->unk_00, 1);
     sub_02019044(v1->unk_00, 2);
-    FreeToHeap(v1->unk_00);
+    Heap_FreeToHeap(v1->unk_00);
     sub_02017798(NULL, NULL);
 }
 
@@ -984,7 +984,7 @@ static int ov97_0222BD70 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_0222AE60 * v0;
 
-    CreateHeap(3, 81, 0x40000);
+    Heap_Create(3, 81, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_0222AE60), 81);
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
@@ -1213,7 +1213,7 @@ static int ov97_0222C150 (UnkStruct_020067E8 * param0, int * param1)
     ov97_0222C094(v0);
 
     sub_02006830(param0);
-    DestroyHeap(81);
+    Heap_Destroy(81);
 
     ov97_02238400(0);
 

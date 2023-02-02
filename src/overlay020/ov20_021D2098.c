@@ -22,7 +22,7 @@
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -110,7 +110,7 @@ static void ov20_021D2DD8(UnkStruct_0201CD38 * param0, void * param1);
 
 UnkStruct_ov20_021D2128 * ov20_021D2098 (const UnkStruct_ov20_021D16E8 * param0, const UnkStruct_020998EC * param1)
 {
-    UnkStruct_ov20_021D2128 * v0 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2128));
+    UnkStruct_ov20_021D2128 * v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2128));
 
     if (v0) {
         int v1;
@@ -156,8 +156,8 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
         sub_0200A878();
         sub_02021964(param0->unk_24);
 
-        FreeToHeap(param0->unk_20);
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0->unk_20);
+        Heap_FreeToHeap(param0);
     }
 }
 
@@ -216,7 +216,7 @@ void ov20_021D21A0 (UnkStruct_ov20_021D2128 * param0, int param1)
     };
 
     if (param1 < NELEMS(v0)) {
-        UnkStruct_ov20_021D2238 * v1 = AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2238));
+        UnkStruct_ov20_021D2238 * v1 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2238));
 
         if (v1) {
             int v2;
@@ -274,7 +274,7 @@ static void ov20_021D2238 (UnkStruct_ov20_021D2238 * param0)
 {
     sub_0200DA58(param0->unk_00->unk_08[param0->unk_10]);
     param0->unk_00->unk_08[param0->unk_10] = NULL;
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
@@ -282,8 +282,8 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov20_021D2238 * v0 = param1;
     NARC * v1;
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
@@ -310,8 +310,8 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     v0->unk_00->unk_254 = ov20_021D4728(v0->unk_00, v0->unk_04, v0->unk_08);
     ov20_021D4774(v0->unk_00->unk_254, v1);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     GX_DispOn();
 
     NARC_dtor(v1);
@@ -360,11 +360,11 @@ static void ov20_021D2414 (UnkStruct_0201CD38 * param0, void * param1)
 
             for (v2 = 0; v2 < 2; v2++) {
                 if (v1->unk_234[v2] != NULL) {
-                    FreeToHeap(v1->unk_234[v2]);
+                    Heap_FreeToHeap(v1->unk_234[v2]);
                 }
 
                 if (v1->unk_23C[v2] != NULL) {
-                    FreeToHeap(v1->unk_23C[v2]);
+                    Heap_FreeToHeap(v1->unk_23C[v2]);
                 }
             }
 
@@ -480,7 +480,7 @@ static void ov20_021D24EC (UnkStruct_ov20_021D2238 * param0)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     sub_02018368(&v1);
 
     sub_020183C4(v7->unk_20, 0, &v2, 0);

@@ -50,7 +50,7 @@ static void ov95_0224A358(UnkStruct_02018340 * param0, int param1, int param2);
 
 void * ov95_02249F90 (UnkStruct_ov95_02247628 * param0)
 {
-    UnkStruct_ov95_02249FF8 * v0 = AllocFromHeap(58, sizeof(UnkStruct_ov95_02249FF8));
+    UnkStruct_ov95_02249FF8 * v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_02249FF8));
 
     if (v0) {
         int v1;
@@ -71,7 +71,7 @@ void ov95_02249FB4 (void * param0)
         int v1;
 
         ov95_0224A320(v0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 }
 
@@ -219,7 +219,7 @@ static void ov95_0224A10C (UnkStruct_ov95_02249FF8 * param0)
         0
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     sub_02018368(&v1);
 
@@ -259,8 +259,8 @@ static void ov95_0224A10C (UnkStruct_ov95_02249FF8 * param0)
 
     ov95_0224A358(param0->unk_0C, UnkEnum_ov95_0224A020_00, UnkEnum_ov95_0224A020_02);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov95_0224A320 (UnkStruct_ov95_02249FF8 * param0)

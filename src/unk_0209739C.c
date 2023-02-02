@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0209739C.h"
 
@@ -40,7 +40,7 @@ void sub_020973B0 (NARC * param0)
 
 UnkStruct_020973A8 * sub_020973B8 (u32 param0, u32 param1)
 {
-    return AllocAndReadWholeNarcMemberByIndexPair(68, 0 + param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(68, 0 + param0, param1);
 }
 
 UnkStruct_020973A8 * sub_020973C8 (u32 param0, u32 param1)

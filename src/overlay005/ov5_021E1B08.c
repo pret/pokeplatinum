@@ -26,7 +26,7 @@ static BOOL ov5_021E1CB0(UnkStruct_0203CDB0 * param0);
 
 void * ov5_021E1B08 (u32 param0)
 {
-    void * v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov5_021E1B20));
+    void * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021E1B20));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021E1B20));
     return v0;
@@ -38,7 +38,7 @@ void ov5_021E1B20 (UnkStruct_ov5_021E1B20 * param0)
         sub_0201A8FC(&param0->unk_00);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov5_021E1B38 (UnkStruct_ov5_021E1B20 * param0, u16 param1, u16 param2)

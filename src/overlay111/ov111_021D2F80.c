@@ -67,8 +67,8 @@ void ov111_021D2F80 (UnkStruct_ov111_021D2F80 * param0)
         sub_0200A5C8(param0->unk_1A0[v0][1]);
     }
 
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     return;
 }

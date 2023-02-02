@@ -19,7 +19,7 @@
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -54,7 +54,7 @@ int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov100_021D4DD8 * v0;
 
-    CreateHeap(3, 111, 0xC0000);
+    Heap_Create(3, 111, 0xC0000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
@@ -164,9 +164,9 @@ int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
     ov100_021D111C(&v0->unk_0C);
     Unk_021BF67C.unk_65 = 0;
 
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
     sub_02006830(param0);
-    DestroyHeap(111);
+    Heap_Destroy(111);
     sub_02005454(0);
 
     return 1;
@@ -219,8 +219,8 @@ static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
 {
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
@@ -241,19 +241,19 @@ static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
     ov100_021D0FA0(param0);
 
     G3X_AlphaBlend(1);
-    GF_ExpHeap_FndInitAllocator(&param0->unk_1C, 111, 32);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_1C, 111, 32);
 }
 
 static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_02019044(param0->unk_0C, 0);
     sub_02019044(param0->unk_0C, 1);
     sub_02019044(param0->unk_0C, 2);
@@ -262,7 +262,7 @@ static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
     sub_02019044(param0->unk_0C, 5);
     sub_02019044(param0->unk_0C, 6);
     sub_02019044(param0->unk_0C, 7);
-    FreeToHeap(param0->unk_0C);
+    Heap_FreeToHeap(param0->unk_0C);
 
     sub_02002FA0(param0->unk_10, 0);
     sub_02002FA0(param0->unk_10, 1);
@@ -282,7 +282,7 @@ static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
 
 static void ov100_021D1208 (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
+    GXLayers_DisableEngineALayers();
 
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -309,7 +309,7 @@ static void ov100_021D1208 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        GX_SetBanks(&v1);
+        GXLayers_SetBanks(&v1);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -437,17 +437,17 @@ static void ov100_021D1208 (UnkStruct_02018340 * param0)
 
     sub_02019690(4, 32, 0, 111);
     sub_02019690(5, 32, 0, 111);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov100_021D13B4 (void * param0)

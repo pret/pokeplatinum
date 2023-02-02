@@ -67,7 +67,7 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
 
     GF_ASSERT(param1 < 4);
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov6_02246204));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02246204));
     memset(v0, 0, sizeof(UnkStruct_ov6_02246204));
 
     v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
@@ -89,10 +89,10 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
 
 void ov6_02246204 (UnkStruct_ov6_02246204 * param0)
 {
-    FreeToHeap(param0->unk_00);
-    FreeToHeap(param0->unk_04);
-    FreeToHeap(param0->unk_08);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->unk_08);
+    Heap_FreeToHeap(param0);
 }
 
 u32 ov6_02246224 (const UnkStruct_ov6_02246204 * param0)
@@ -107,7 +107,7 @@ u32 ov6_0224622C (const UnkStruct_ov6_02246204 * param0)
 
 void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2)
 {
-    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
 
     sub_0207A128(v0, param2, param1->unk_04);
     sub_0202F180(param0->unk_0C, param1->unk_04);
@@ -115,7 +115,7 @@ void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
 
 void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, UnkStruct_02073C74 * param4, UnkStruct_02073C74 * param5)
 {
-    Party * v0 = GetPartyFromSavedata(param0->unk_0C);
+    Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     UnkStruct_02073C74 * v1;
     UnkStruct_02023790 * v2;
     u32 v3;

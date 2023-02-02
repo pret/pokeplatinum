@@ -55,7 +55,7 @@ UnkStruct_0207D3C0 * sub_0207D3C0 (int param0)
 {
     UnkStruct_0207D3C0 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0207D3C0));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207D3C0));
     sub_0207D3D8(v0);
 
     return v0;
@@ -83,7 +83,7 @@ void sub_0207D404 (UnkStruct_0207D3C0 * param0, u32 param1)
 
 static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4)
 {
-    u32 v0 = GetItemAttribute(param1, 5, param4);
+    u32 v0 = Item_GetAttribute(param1, 5, param4);
 
     switch (v0) {
     case 7:
@@ -486,7 +486,7 @@ UnkStruct_0207D99C * sub_0207D99C (u32 param0)
 {
     UnkStruct_0207D99C * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_0207D99C));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207D99C));
     MI_CpuClear16(v0, sizeof(UnkStruct_0207D99C));
 
     return v0;

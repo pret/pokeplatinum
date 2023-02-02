@@ -41,7 +41,7 @@ static BOOL sub_0206C120(UnkStruct_020508D4 * param0);
 
 void sub_0206C0E8 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_0206C0E8 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C0E8));
+    UnkStruct_0206C0E8 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206C0E8));
 
     v0->unk_00 = ov6_022426AC(11);
     v0->unk_04 = ov6_02242A10(11, param0);
@@ -135,7 +135,7 @@ static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
         sub_02070428(v0, 0);
         ov6_02242A8C(v1->unk_04);
         ov6_022426B8(v1->unk_00);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
 
         return 1;
     }

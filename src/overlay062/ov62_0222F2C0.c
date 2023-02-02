@@ -20,7 +20,7 @@
 #include "unk_02002328.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200AC5C.h"
@@ -54,8 +54,8 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
 {
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     sub_0201DBEC(4, 102);
@@ -104,7 +104,7 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
             NNS_G2dGetUnpackedPaletteData(v1, &v0);
             sub_02002FBC(param0->unk_14.unk_14, v0->pRawData, 2, 14 * 16, 32);
             sub_02002FBC(param0->unk_14.unk_14, v0->pRawData, 3, 14 * 16, 32);
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
         }
     }
 
@@ -145,14 +145,14 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
 
 void ov62_0222F514 (UnkStruct_0208C06C * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_02019044(param0->unk_14.unk_10, 0);
     sub_02019044(param0->unk_14.unk_10, 1);
     sub_02019044(param0->unk_14.unk_10, 2);
@@ -161,7 +161,7 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
     sub_02019044(param0->unk_14.unk_10, 5);
     sub_02019044(param0->unk_14.unk_10, 6);
     sub_02019044(param0->unk_14.unk_10, 7);
-    FreeToHeap(param0->unk_14.unk_10);
+    Heap_FreeToHeap(param0->unk_14.unk_10);
     sub_02002FA0(param0->unk_14.unk_14, 0);
     sub_02002FA0(param0->unk_14.unk_14, 1);
     sub_02002FA0(param0->unk_14.unk_14, 2);
@@ -192,11 +192,11 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
 
         for (v2 = 0; v2 < 4; v2++) {
             if (param0->unk_87C[v2] != NULL) {
-                FreeToHeap(param0->unk_87C[v2]);
+                Heap_FreeToHeap(param0->unk_87C[v2]);
             }
 
             if (param0->unk_88C[v2] != NULL) {
-                FreeToHeap(param0->unk_88C[v2]);
+                Heap_FreeToHeap(param0->unk_88C[v2]);
             }
         }
     }
@@ -232,7 +232,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov62_02248820[] = {
 
 static void ov62_0222F670 (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
+    GXLayers_DisableEngineALayers();
 
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -259,7 +259,7 @@ static void ov62_0222F670 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        GX_SetBanks(&v1);
+        GXLayers_SetBanks(&v1);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -289,16 +289,16 @@ static void ov62_0222F670 (UnkStruct_02018340 * param0)
         sub_02019EBC(param0, 7);
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     ov62_0222F824(1);
 
@@ -309,7 +309,7 @@ static void ov62_0222F670 (UnkStruct_02018340 * param0)
 void ov62_0222F824 (int param0)
 {
     Unk_021BF67C.unk_65 = param0;
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 }
 
 void ov62_0222F834 (UnkStruct_0208C06C * param0)

@@ -69,7 +69,7 @@ BOOL ov6_02247120 (UnkStruct_020508D4 * param0)
         v0 = Unk_ov6_022495CC[v2->unk_00](param0, v1, v2);
 
         if (v0 == 2) {
-            FreeToHeap(v2);
+            Heap_FreeToHeap(v2);
         }
     } while (v0 == 1);
 
@@ -190,7 +190,7 @@ BOOL ov6_022472E8 (UnkStruct_020508D4 * param0)
 
         if (v0 == 2) {
             ov6_0224732C(v1, v2);
-            FreeToHeap(v2);
+            Heap_FreeToHeap(v2);
             return 1;
         }
     } while (v0 == 1);
@@ -309,7 +309,7 @@ BOOL ov6_022474AC (UnkStruct_020508D4 * param0)
         v0 = Unk_ov6_022495F0[v2->unk_00](param0, v1, v2);
 
         if (v0 == 2) {
-            FreeToHeap(v2);
+            Heap_FreeToHeap(v2);
         }
     } while (v0 == 1);
 
@@ -368,7 +368,7 @@ BOOL ov6_02247554 (UnkStruct_020508D4 * param0)
         v0 = Unk_ov6_022495F0[v2->unk_00](param0, v1, v2);
 
         if (v0 == 2) {
-            FreeToHeap(v2);
+            Heap_FreeToHeap(v2);
         }
     } while (v0 == 1);
 
@@ -377,7 +377,7 @@ BOOL ov6_02247554 (UnkStruct_020508D4 * param0)
 
 static void * ov6_02247590 (u32 param0, u32 param1)
 {
-    void * v0 = AllocFromHeapAtEnd(param0, param1);
+    void * v0 = Heap_AllocFromHeapAtEnd(param0, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

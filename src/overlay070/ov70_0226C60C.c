@@ -41,7 +41,7 @@ UnkStruct_ov70_0226C6F8 * ov70_0226C60C (u32 param0, UnkStruct_ov70_0225DEE8 * p
     u32 v1, v2, v3;
     u32 v4, v5, v6, v7, v8, v9;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov70_0226C6F8));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_0226C6F8));
     memset(v0, 0, sizeof(UnkStruct_ov70_0226C6F8));
 
     v0->unk_00 = param1;
@@ -101,7 +101,7 @@ void ov70_0226C6F8 (UnkStruct_ov70_0226C6F8 * param0)
     ov70_0226CF38(param0->unk_14);
     ov70_0226C39C(param0->unk_10);
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov70_0226C718 (UnkStruct_ov70_0226C6F8 * param0)

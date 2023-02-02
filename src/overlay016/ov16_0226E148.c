@@ -7,7 +7,7 @@
 #include "overlay016/struct_ov16_02268A14_decl.h"
 
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_0201CCF0.h"
@@ -28,7 +28,7 @@ UnkStruct_0201CD38 * ov16_0226E148 (UnkStruct_0207ADB4 * param0)
     UnkStruct_ov16_0226E148 * v0;
     UnkStruct_0201CD38 * v1;
 
-    v0 = AllocFromHeap(5, sizeof(UnkStruct_ov16_0226E148));
+    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226E148));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
 
     v0->unk_00 = param0;
@@ -43,7 +43,7 @@ void ov16_0226E174 (UnkStruct_0201CD38 * param0)
 
     v0 = sub_0201CED0(param0);
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0200DA58(param0);
 }
 

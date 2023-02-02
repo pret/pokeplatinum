@@ -220,7 +220,7 @@ static void ov12_0222EC18 (UnkStruct_0201CD38 * param0, void * param1)
             }
 
             ov12_02220220(v0->unk_00.unk_04, param0);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return;
         }
     }
@@ -374,7 +374,7 @@ static void ov12_0222EE50 (UnkStruct_0201CD38 * param0, void * param1)
             sub_0200D330(v0->unk_1C[1]);
             ov12_02226858(v0->unk_38[1]);
             ov12_02220220(v0->unk_00.unk_04, param0);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return;
         }
         break;
@@ -525,7 +525,7 @@ static void ov12_0222F208 (UnkStruct_0201CD38 * param0, void * param1)
     default:
         sub_02007DEC(v0->unk_1C.unk_08, 44, 0);
         ov12_02220220(v0->unk_00.unk_04, param0);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         break;
     }
 }
@@ -650,7 +650,7 @@ static void ov12_0222F464 (UnkStruct_0201CD38 * param0, void * param1)
         G2_SetWnd0Position(0, 0, 0, 0);
         ov12_02220220(v0->unk_20.unk_04, param0);
         sub_02007DEC(v0->unk_1C, 23, v0->unk_18);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         break;
     }
 }

@@ -261,6 +261,6 @@ void sub_0201D640 (int param0)
 {
     GF_ASSERT(Unk_021BFB10 == NULL);
 
-    Unk_021BFB10 = AllocFromHeap(param0, sizeof(UnkStruct_021BFB10));
+    Unk_021BFB10 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_021BFB10));
     MATH_CRC16CCITTInitTable(&Unk_021BFB10->unk_00);
 }

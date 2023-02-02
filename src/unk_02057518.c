@@ -82,7 +82,7 @@ BOOL sub_02057524 (void * param0, UnkStruct_0203CDB0 * param1, BOOL param2)
     Unk_021C0848->unk_04 = NULL;
 
     if (param2) {
-        Unk_021C0848->unk_04 = AllocFromHeap(15, ov23_02249918());
+        Unk_021C0848->unk_04 = Heap_AllocFromHeap(15, ov23_02249918());
         ov23_0224991C(Unk_021C0848->unk_04);
     }
 
@@ -157,7 +157,7 @@ void sub_020576CC (BOOL param0)
     if (Unk_021C0848) {
         for (v1 = 0; v1 < 5; v1++) {
             if (Unk_021C0848->unk_27C[v1]) {
-                FreeToHeap(Unk_021C0848->unk_27C[v1]);
+                Heap_FreeToHeap(Unk_021C0848->unk_27C[v1]);
                 Unk_021C0848->unk_27C[v1] = NULL;
             }
         }
@@ -174,10 +174,10 @@ void sub_020576CC (BOOL param0)
 
         if (Unk_021C0848->unk_04) {
             ov23_02249938(Unk_021C0848->unk_04);
-            FreeToHeap(Unk_021C0848->unk_04);
+            Heap_FreeToHeap(Unk_021C0848->unk_04);
         }
 
-        FreeToHeap(Unk_021C0848);
+        Heap_FreeToHeap(Unk_021C0848);
         Unk_021C0848 = NULL;
     }
 }

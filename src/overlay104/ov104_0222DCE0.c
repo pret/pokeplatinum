@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "unk_020021B0.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
@@ -119,12 +119,12 @@ static const u16 Unk_ov104_0223F298[][2] = {
 
 UnkStruct_0204B184 * ov104_0222DCE0 (u16 param0, int param1, int param2)
 {
-    return AllocAndReadWholeNarcMemberByIndexPair(param2, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(param2, param0, param1);
 }
 
 void ov104_0222DCF4 (UnkStruct_0204B1E8 * param0, int param1, int param2)
 {
-    ReadWholeNarcMemberByIndexPair(param0, param2, param1);
+    NARC_ReadWholeMemberByIndexPair(param0, param2, param1);
 }
 
 UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int param1, int param2, int param3)
@@ -437,7 +437,7 @@ void ov104_0222E278 (UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, 
     UnkStruct_0204B184 * v0;
 
     v0 = ov104_0222DD04(&param0->unk_00, param1, param2, param3);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return;
 }
@@ -597,7 +597,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
             v3[v0] = v6.unk_0C;
         }
 
-        FreeToHeap(v5);
+        Heap_FreeToHeap(v5);
         v5 = ov104_0222DD04(&v4, param2, 11, 178);
         ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
 
@@ -606,7 +606,7 @@ void ov104_0222E4BC (u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_
         }
     }
 
-    FreeToHeap(v5);
+    Heap_FreeToHeap(v5);
     ov104_0222E330(param4, param3, param5, NULL, param6, param0, 11, 179);
 
     return;

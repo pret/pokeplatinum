@@ -37,7 +37,7 @@ static BOOL sub_0209B3C4(UnkStruct_020508D4 * param0);
 void sub_0209B344 (UnkStruct_020508D4 * param0, u16 * param1)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_0209B3AC * v1 = AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
+    UnkStruct_0209B3AC * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209B3AC));
 
     v1->unk_00 = v0;
     v1->unk_04 = sub_0200B358(32);
@@ -59,7 +59,7 @@ static void sub_0209B3AC (UnkStruct_0209B3AC * param0)
 {
     sub_020974EC(param0->unk_10);
     sub_0200B3F0(param0->unk_04);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static BOOL sub_0209B3C4 (UnkStruct_020508D4 * param0)

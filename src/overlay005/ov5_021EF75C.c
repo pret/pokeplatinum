@@ -5,7 +5,7 @@
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5778_decl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "unk_0201C970.h"
 #include "overlay005/ov5_021D37AC.h"
@@ -69,16 +69,16 @@ static void ov5_021EF75C (void * param0, NNSG3dResTex * param1)
     v0 = (u8 *)param1 + param1->texInfo.ofsTex;
     v1 = (u32)(v0 - (u8 *)param0);
 
-    ReallocFromHeap(param0, v1);
+    Heap_ReallocFromHeap(param0, v1);
 }
 
 UnkStruct_ov5_021EF76C * ov5_021EF76C (const int param0, UnkStruct_ov5_021D3CAC * param1)
 {
     UnkStruct_ov5_021EF76C * v0;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021EF76C));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EF76C));
 
-    v0->unk_C20 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021EF7A0));
+    v0->unk_C20 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021EF7A0));
     v0->unk_C20->unk_00 = param0;
     v0->unk_C20->unk_04 = param1;
     v0->unk_C20->unk_0C = 0;
@@ -91,16 +91,16 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
     NARC * v0;
     UnkStruct_ov5_021EF7A0 * v1 = param0->unk_C20;
 
-    ReadWholeNarcMemberByIndexPair(&param0->unk_C18, 42, v1->unk_00);
+    NARC_ReadWholeMemberByIndexPair(&param0->unk_C18, 42, v1->unk_00);
 
-    param0->unk_C24 = AllocAndReadWholeNarcMemberByIndexPair(43, param0->unk_C18.unk_00, 4);
+    param0->unk_C24 = NARC_AllocAndReadWholeMemberByIndexPair(43, param0->unk_C18.unk_00, 4);
     v1->unk_08 = param0->unk_C24[0];
 
     GF_ASSERT(v1->unk_08 < 768);
 
     param0->unk_C0C = NULL;
-    param0->unk_C04 = AllocAndReadWholeNarcMemberByIndexPair(44, param0->unk_C18.unk_02, 4);
-    param0->unk_C08 = AllocAndReadWholeNarcMemberByIndexPair(71, param0->unk_C18.unk_00, 4);
+    param0->unk_C04 = NARC_AllocAndReadWholeMemberByIndexPair(44, param0->unk_C18.unk_02, 4);
+    param0->unk_C08 = NARC_AllocAndReadWholeMemberByIndexPair(71, param0->unk_C18.unk_00, 4);
     param0->unk_C0C = NNS_G3dGetTex((NNSG3dResFileHeader *)param0->unk_C04);
 
     if (v1->unk_08 != 0) {
@@ -205,7 +205,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
         ov5_021D56D4(v12, param0->unk_C14);
     }
 
-    FreeToHeap(param0->unk_C20);
+    Heap_FreeToHeap(param0->unk_C20);
     param0->unk_C20 = NULL;
 }
 
@@ -232,18 +232,18 @@ void ov5_021EFA10 (UnkStruct_ov5_021EF76C ** param0)
 
     for (v0 = 0; v0 < 768; v0++) {
         if ((*param0)->unk_04[v0] != NULL) {
-            FreeToHeap((*param0)->unk_04[v0]);
+            Heap_FreeToHeap((*param0)->unk_04[v0]);
         }
     }
 
-    FreeToHeap((*param0)->unk_C24);
-    FreeToHeap((*param0)->unk_C04);
+    Heap_FreeToHeap((*param0)->unk_C24);
+    Heap_FreeToHeap((*param0)->unk_C04);
 
     (*param0)->unk_C04 = NULL;
-    FreeToHeap((*param0)->unk_C08);
+    Heap_FreeToHeap((*param0)->unk_C08);
 
     (*param0)->unk_C08 = NULL;
-    FreeToHeap((*param0));
+    Heap_FreeToHeap((*param0));
 
     (*param0) = NULL;
 }

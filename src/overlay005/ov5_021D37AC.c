@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "overlay005/ov5_021D37AC.h"
 
@@ -145,7 +145,7 @@ UnkStruct_ov5_021D3CAC * ov5_021D38B8 (void)
     int v0;
     UnkStruct_ov5_021D3CAC * v1;
 
-    v1 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D3CAC));
+    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021D3CAC));
 
     for (v0 = 0; v0 < 16; v0++) {
         v1->unk_10[v0].unk_04 = 0;
@@ -167,7 +167,7 @@ UnkStruct_ov5_021D3CAC * ov5_021D38B8 (void)
         v1->unk_290[v0].unk_0C = 0;
     }
 
-    GF_ExpHeap_FndInitAllocator(&v1->unk_00, 4, 4);
+    Heap_FndInitAllocatorForExpHeap(&v1->unk_00, 4, 4);
 
     v1->unk_2B0 = NARC_ctor(110, 4);
     v1->unk_2B4 = NARC_ctor(111, 4);
@@ -422,7 +422,7 @@ void ov5_021D3CAC (UnkStruct_ov5_021D3CAC * param0)
             if (param0->unk_10[v0].unk_04 == 1) {
                 NNS_G3dFreeAnmObj(&param0->unk_00, param0->unk_10[v0].unk_00);
                 param0->unk_10[v0].unk_00 = NULL;
-                FreeToHeap(param0->unk_10[v0].unk_14);
+                Heap_FreeToHeap(param0->unk_10[v0].unk_14);
             }
 
             param0->unk_10[v0].unk_04 = 0;
@@ -443,7 +443,7 @@ void ov5_021D3CE4 (UnkStruct_ov5_021D3CE4 * param0, UnkStruct_ov5_021D3CAC * par
         if (param0->unk_04 == 1) {
             NNS_G3dFreeAnmObj(&param1->unk_00, param0->unk_00);
             param0->unk_00 = NULL;
-            FreeToHeap(param0->unk_14);
+            Heap_FreeToHeap(param0->unk_14);
         }
 
         param0->unk_04 = 0;
@@ -481,7 +481,7 @@ void ov5_021D3D7C (UnkStruct_ov5_021D3CAC * param0)
 
     NARC_dtor(param0->unk_2B0);
     NARC_dtor(param0->unk_2B4);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     param0 = NULL;
 }
@@ -827,7 +827,7 @@ UnkStruct_ov5_021D41B4 * ov5_021D4194 (void)
     UnkStruct_ov5_021D41B4 * v2;
 
     v1 = sizeof(UnkStruct_ov5_021D41B4);
-    v2 = AllocFromHeap(4, v1);
+    v2 = Heap_AllocFromHeap(4, v1);
 
     MI_CpuClearFast(v2, v1);
 
@@ -840,7 +840,7 @@ void ov5_021D41B4 (UnkStruct_ov5_021D41B4 ** param0)
         return;
     }
 
-    FreeToHeap((*param0));
+    Heap_FreeToHeap((*param0));
     (*param0) = NULL;
 }
 

@@ -46,7 +46,7 @@ void ov6_02246C24 (UnkStruct_0203CDB0 * param0, const u8 param1)
     v0 = sub_020552B4(param0, v3, &v1, &v2);
 
     if (v0) {
-        UnkStruct_ov6_02246C24 * v4 = AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
+        UnkStruct_ov6_02246C24 * v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
 
         v4->unk_0C = param1;
         v4->unk_0D = 0;
@@ -159,7 +159,7 @@ static BOOL ov6_02246C9C (UnkStruct_020508D4 * param0)
         }
         break;
     case 5:
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
         return 1;
     }
 

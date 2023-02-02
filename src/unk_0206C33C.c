@@ -298,7 +298,7 @@ void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
     sub_0202D980(v1, 2, sub_02074470(v0, 175, NULL));
     sub_0202D980(v1, 3, sub_02074470(v0, 0, NULL));
     sub_0202D980(v1, 5, sub_02074470(v0, 164, NULL));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     v3 = sub_0202D8BC(v2);
     sub_0206C538(v2, param1, v3);

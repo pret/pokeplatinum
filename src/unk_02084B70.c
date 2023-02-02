@@ -56,167 +56,167 @@ static u8 sub_02084B70 (u16 param0)
     UnkStruct_0207D3B0 * v0;
     s32 v1;
 
-    v0 = LoadItemDataOrGfx(param0, 0, 12);
+    v0 = Item_LoadDataOrGFX(param0, 0, 12);
 
-    if (GetItemAttributeFromStruct(v0, 14) != 1) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 14) != 1) {
+        Heap_FreeToHeap(v0);
         return 28;
     }
 
-    if ((GetItemAttributeFromStruct(v0, 27) != 0) || (GetItemAttributeFromStruct(v0, 28) != 0) || (GetItemAttributeFromStruct(v0, 29) != 0) || (GetItemAttributeFromStruct(v0, 30) != 0) || (GetItemAttributeFromStruct(v0, 31) != 0) || (GetItemAttributeFromStruct(v0, 32) != 0) || (GetItemAttributeFromStruct(v0, 33) != 0)) {
-        FreeToHeap(v0);
+    if ((Item_GetAttributeFromStruct(v0, 27) != 0) || (Item_GetAttributeFromStruct(v0, 28) != 0) || (Item_GetAttributeFromStruct(v0, 29) != 0) || (Item_GetAttributeFromStruct(v0, 30) != 0) || (Item_GetAttributeFromStruct(v0, 31) != 0) || (Item_GetAttributeFromStruct(v0, 32) != 0) || (Item_GetAttributeFromStruct(v0, 33) != 0)) {
+        Heap_FreeToHeap(v0);
         return 0;
     }
 
-    if (GetItemAttributeFromStruct(v0, 24) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 24) != 0) {
+        Heap_FreeToHeap(v0);
         return 1;
     }
 
-    if (GetItemAttributeFromStruct(v0, 25) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 25) != 0) {
+        Heap_FreeToHeap(v0);
         return 2;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 15);
-    v1 += (GetItemAttributeFromStruct(v0, 16) << 1);
-    v1 += (GetItemAttributeFromStruct(v0, 17) << 2);
-    v1 += (GetItemAttributeFromStruct(v0, 18) << 3);
-    v1 += (GetItemAttributeFromStruct(v0, 19) << 4);
-    v1 += (GetItemAttributeFromStruct(v0, 20) << 5);
+    v1 = Item_GetAttributeFromStruct(v0, 15);
+    v1 += (Item_GetAttributeFromStruct(v0, 16) << 1);
+    v1 += (Item_GetAttributeFromStruct(v0, 17) << 2);
+    v1 += (Item_GetAttributeFromStruct(v0, 18) << 3);
+    v1 += (Item_GetAttributeFromStruct(v0, 19) << 4);
+    v1 += (Item_GetAttributeFromStruct(v0, 20) << 5);
 
     switch (v1) {
     case 0x1:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 3;
     case 0x2:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 4;
     case 0x4:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 5;
     case 0x8:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 6;
     case 0x10:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 7;
     case 0x20:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 8;
     case 0x3f:
-        if (GetItemAttributeFromStruct(v0, 38) != 0) {
-            FreeToHeap(v0);
+        if (Item_GetAttributeFromStruct(v0, 38) != 0) {
+            Heap_FreeToHeap(v0);
             return 11;
         } else {
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
             return 9;
         }
     }
 
-    if (GetItemAttributeFromStruct(v0, 21) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 21) != 0) {
+        Heap_FreeToHeap(v0);
         return 10;
     }
 
-    if (GetItemAttributeFromStruct(v0, 38) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 38) != 0) {
+        Heap_FreeToHeap(v0);
         return 11;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 48);
+    v1 = Item_GetAttributeFromStruct(v0, 48);
 
     if (v1 > 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 12;
     }
 
     if (v1 < 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 18;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 49);
+    v1 = Item_GetAttributeFromStruct(v0, 49);
 
     if (v1 > 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 13;
     }
 
     if (v1 < 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 19;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 50);
+    v1 = Item_GetAttributeFromStruct(v0, 50);
 
     if (v1 > 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 14;
     }
 
     if (v1 < 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 20;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 51);
+    v1 = Item_GetAttributeFromStruct(v0, 51);
 
     if (v1 > 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 15;
     }
 
     if (v1 < 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 21;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 52);
+    v1 = Item_GetAttributeFromStruct(v0, 52);
 
     if (v1 > 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 16;
     }
 
     if (v1 < 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 22;
     }
 
-    v1 = GetItemAttributeFromStruct(v0, 53);
+    v1 = Item_GetAttributeFromStruct(v0, 53);
 
     if (v1 > 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 17;
     }
 
     if (v1 < 0) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 23;
     }
 
-    if (GetItemAttributeFromStruct(v0, 26) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 26) != 0) {
+        Heap_FreeToHeap(v0);
         return 24;
     }
 
-    if (GetItemAttributeFromStruct(v0, 34) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 34) != 0) {
+        Heap_FreeToHeap(v0);
         return 25;
     }
 
-    if (GetItemAttributeFromStruct(v0, 35) != 0) {
-        FreeToHeap(v0);
+    if (Item_GetAttributeFromStruct(v0, 35) != 0) {
+        Heap_FreeToHeap(v0);
         return 26;
     }
 
-    if ((GetItemAttributeFromStruct(v0, 36) != 0) || (GetItemAttributeFromStruct(v0, 37) != 0)) {
-        FreeToHeap(v0);
+    if ((Item_GetAttributeFromStruct(v0, 36) != 0) || (Item_GetAttributeFromStruct(v0, 37) != 0)) {
+        Heap_FreeToHeap(v0);
         return 27;
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     return 28;
 }
 
@@ -544,7 +544,7 @@ static int sub_02085704 (void * param0)
 
 BOOL sub_020857A8 (u16 param0)
 {
-    if (GetItemAttribute(param0, 24, 12) != 0) {
+    if (Item_GetAttribute(param0, 24, 12) != 0) {
         return 1;
     }
 
@@ -944,7 +944,7 @@ u8 sub_02086104 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1)
         }
     }
 
-    if (sub_02077FB4(param1, GetTMOrHMNumberFromItemID(param0->unk_5A4->unk_24)) == 0) {
+    if (sub_02077FB4(param1, Item_GetTMOrHMNumberFromID(param0->unk_5A4->unk_24)) == 0) {
         return 0xff;
     }
 
@@ -1143,11 +1143,11 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * para
     v0 = 0;
     sub_02074B30(param1, 62 + param2, &v0);
 
-    v0 = GetMoveMaxPP(param0->unk_5A4->unk_26, 0);
+    v0 = MoveTable_GetMoveMaxPP(param0->unk_5A4->unk_26, 0);
     sub_02074B30(param1, 58 + param2, &v0);
 
     if (param0->unk_5A4->unk_24 != 0) {
-        if (IsMoveHM(param0->unk_5A4->unk_26) == 0) {
+        if (Item_IsMoveHM(param0->unk_5A4->unk_26) == 0) {
             sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
         }
 

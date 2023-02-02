@@ -24,7 +24,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
@@ -174,7 +174,7 @@ static void ov7_0224CD28 (UnkStruct_ov7_0224D008 * param0, u16 * param1)
     }
 
     param0->unk_294 = v0;
-    param0->unk_290 = AllocFromHeap(11, param0->unk_294 * 2);
+    param0->unk_290 = Heap_AllocFromHeap(11, param0->unk_294 * 2);
 
     for (v0 = 0; v0 < param0->unk_294; v0++) {
         param0->unk_290[v0] = param1[v0];
@@ -183,7 +183,7 @@ static void ov7_0224CD28 (UnkStruct_ov7_0224D008 * param0, u16 * param1)
 
 static UnkStruct_ov7_0224D008 * ov7_0224CD88 (void)
 {
-    UnkStruct_ov7_0224D008 * v0 = AllocFromHeap(11, sizeof(UnkStruct_ov7_0224D008));
+    UnkStruct_ov7_0224D008 * v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov7_0224D008));
 
     memset(v0, 0, sizeof(UnkStruct_ov7_0224D008));
     return v0;
@@ -433,8 +433,8 @@ static u8 ov7_0224D250 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
         }
 
         sub_0200C560(param1->unk_2B4);
-        FreeToHeap(param1->unk_290);
-        FreeToHeap(param1);
+        Heap_FreeToHeap(param1->unk_290);
+        Heap_FreeToHeap(param1);
 
         return 1;
     }
@@ -511,7 +511,7 @@ static void ov7_0224D474 (UnkStruct_ov7_0224D008 * param0)
 
 static void ov7_0224D548 (UnkStruct_ov7_0224D008 * param0)
 {
-    param0->unk_2A0 = GX_EngineAGetLayers();
+    param0->unk_2A0 = GXLayers_EngineAGetLayers();
     param0->unk_29C[0] = sub_0201A008(param0->unk_00, 0);
     param0->unk_29C[1] = sub_0201A008(param0->unk_00, 1);
     param0->unk_29C[2] = sub_0201A008(param0->unk_00, 2);
@@ -522,10 +522,10 @@ static void ov7_0224D548 (UnkStruct_ov7_0224D008 * param0)
     sub_02019060(2, 1);
     sub_02019060(3, 0);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
 static void ov7_0224D5D8 (UnkStruct_ov7_0224D008 * param0)
@@ -534,7 +534,7 @@ static void ov7_0224D5D8 (UnkStruct_ov7_0224D008 * param0)
     sub_02019060(1, param0->unk_29C[1]);
     sub_02019060(2, param0->unk_29C[2]);
     sub_02019060(3, param0->unk_29C[3]);
-    GX_EngineASetLayers(param0->unk_2A0);
+    GXLayers_EngineASetLayers(param0->unk_2A0);
 }
 
 static u8 ov7_0224D620 (UnkStruct_ov7_0224D008 * param0)
@@ -672,10 +672,10 @@ static void ov7_0224D85C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
         if (v0->unk_2A9 == 0) {
             v1 = sub_02023790(130, 11);
-            GetItemDescriptionIntoString(v1, (u16)param1, 11);
+            Item_GetDescriptionIntoString(v1, (u16)param1, 11);
         } else if (v0->unk_2A9 == 3) {
             v1 = sub_02023790(130, 11);
-            GetItemDescriptionIntoString(v1, (u16)param1, 11);
+            Item_GetDescriptionIntoString(v1, (u16)param1, 11);
         } else if (v0->unk_2A9 == 1) {
             UnkStruct_0200B144 * v2;
 
@@ -1137,7 +1137,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
                 sub_0200B77C(param0->unk_8C, 0, param0->unk_2AA);
             }
 
-            sub_0200B7B4(param0->unk_8C, 1, GetItemAttribute(param0->unk_2AA, 5, 11));
+            sub_0200B7B4(param0->unk_8C, 1, Item_GetAttribute(param0->unk_2AA, 5, 11));
         } else if (param0->unk_2A9 == 3) {
             if (param0->unk_2AC == 1) {
                 sub_0200B70C(param0->unk_8C, 0, param0->unk_2AA);
@@ -1146,7 +1146,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
             }
 
             v0 = sub_0200B1EC(param0->unk_88, 6);
-            sub_0200B7B4(param0->unk_8C, 1, GetItemAttribute(param0->unk_2AA, 5, 11));
+            sub_0200B7B4(param0->unk_8C, 1, Item_GetAttribute(param0->unk_2AA, 5, 11));
         } else {
             if (param0->unk_2A9 == 1) {
                 ov7_0224E834(param0, param0->unk_2AA, 0);
@@ -1299,7 +1299,7 @@ static void ov7_0224E834 (UnkStruct_ov7_0224D008 * param0, u16 param1, u16 param
 static u32 ov7_0224E890 (UnkStruct_ov7_0224D008 * param0, u16 param1)
 {
     if (param0->unk_2A9 == 0) {
-        return GetItemAttribute(param1, 0, 11);
+        return Item_GetAttribute(param1, 0, 11);
     } else if (param0->unk_2A9 == 3) {
         return ov7_0224E8CC(param0, param1);
     } else if (param0->unk_2A9 == 1) {
@@ -1477,7 +1477,7 @@ static void ov7_0224EAD0 (UnkStruct_ov7_0224D008 * param0)
         param0->unk_25C[v0] = ov5_021D3104(&param0->unk_94, &Unk_ov7_0224F358[v0]);
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov7_0224EB14 (UnkStruct_ov7_0224D008 * param0)

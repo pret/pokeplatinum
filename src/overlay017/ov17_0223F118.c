@@ -25,7 +25,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
@@ -78,9 +78,9 @@ static const struct {
 
 static void NitroStaticInit (void)
 {
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay11), 2);
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay12), 2);
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay22), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay11), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
 UnkStruct_0207C690 * ov17_0223F140 (int param0)
@@ -93,7 +93,7 @@ UnkStruct_0207C690 * ov17_0223F140 (int param0)
 
 static void ov17_0223F15C (void)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
@@ -211,7 +211,7 @@ void ov17_0223F334 (UnkStruct_02095C48 * param0, int param1)
         param0->unk_00.unk_118[v1].unk_02 = ov17_02252A70(param0->unk_00.unk_E8[v1], v0);
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 void ov17_0223F374 (UnkStruct_02095C48 * param0)
@@ -407,7 +407,7 @@ UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, UnkStruct_02002F38 * param1
 {
     UnkStruct_ov17_0223F744 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov17_0223F744));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));
 
     v0->unk_04 = param1;
@@ -424,7 +424,7 @@ void ov17_0223F744 (UnkStruct_ov17_0223F744 * param0)
     GF_ASSERT(param0->unk_00 != NULL);
 
     sub_0200DA58(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 BOOL ov17_0223F760 (void)

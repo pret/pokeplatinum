@@ -39,7 +39,7 @@ UnkStruct_ov105_02245EA8 * ov105_02245E54 (UnkStruct_ov105_02245AAC * param0, in
 {
     UnkStruct_ov105_02245EA8 * v0;
 
-    v0 = AllocFromHeap(param3, sizeof(UnkStruct_ov105_02245EA8));
+    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov105_02245EA8));
     memset(v0, 0, sizeof(UnkStruct_ov105_02245EA8));
 
     v0->unk_00 = 0;
@@ -56,7 +56,7 @@ UnkStruct_ov105_02245EA8 * ov105_02245E54 (UnkStruct_ov105_02245AAC * param0, in
 void * ov105_02245EA8 (UnkStruct_ov105_02245EA8 * param0)
 {
     sub_02021BD4(param0->unk_0C);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return NULL;
 }

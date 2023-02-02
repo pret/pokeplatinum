@@ -44,7 +44,7 @@
 #include "overlay019/struct_ov19_021D6104.h"
 
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -284,8 +284,8 @@ int ov19_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov19_021D5DF8 * v0;
 
-    CreateHeap(3, 9, 16384);
-    CreateHeap(3, 10, 245760);
+    Heap_Create(3, 9, 16384);
+    Heap_Create(3, 10, 245760);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov19_021D5DF8), 9);
 
@@ -340,8 +340,8 @@ int ov19_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
     ov19_021D64A0(v0->unk_114);
     ov19_021D4D58(v0);
 
-    DestroyHeap(9);
-    DestroyHeap(10);
+    Heap_Destroy(9);
+    Heap_Destroy(10);
 
     return 1;
 }
@@ -547,7 +547,7 @@ static int ov19_021D0FF0 (UnkStruct_ov19_021D5DF8 * param0)
 
 static BOOL ov19_021D1238 (UnkStruct_ov19_021D5DF8 * param0, int * param1)
 {
-    if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
+    if (Item_IsMail(ov19_021D5E74(&param0->unk_00))) {
         *param1 = 30;
         return 1;
     }
@@ -1225,7 +1225,7 @@ static void ov19_021D2308 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 
             break;
         case UnkEnum_021DFB94_47:
-            if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
+            if (Item_IsMail(ov19_021D5E74(&param0->unk_00))) {
                 sub_02005748(1523);
                 ov19_021D5408(&param0->unk_00, 24);
                 ov19_021D6594(param0->unk_114, 24);
@@ -1243,7 +1243,7 @@ static void ov19_021D2308 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             ov19_021D0EB0(param0, ov19_021D4390);
             break;
         case UnkEnum_021DFB94_49:
-            if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
+            if (Item_IsMail(ov19_021D5E74(&param0->unk_00))) {
                 sub_02005748(1523);
                 ov19_021D5408(&param0->unk_00, 24);
                 ov19_021D6594(param0->unk_114, 24);
@@ -2211,7 +2211,7 @@ static BOOL ov19_021D357C (UnkStruct_ov19_021D5DF8 * param0, int * param1)
     {
         u16 v0 = ov19_021D5E74(&param0->unk_00);
 
-        if (IsItemMail(ov19_021D5E74(&param0->unk_00))) {
+        if (Item_IsMail(ov19_021D5E74(&param0->unk_00))) {
             *param1 = 30;
             return 0;
         }
@@ -2530,7 +2530,7 @@ static void ov19_021D3B34 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
             ov19_021D64A0(param0->unk_114);
-            DestroyHeap(10);
+            Heap_Destroy(10);
             sub_02079AF4(param0->unk_120, sub_0207999C(param0->unk_120), param0->unk_128->unk_18);
             param0->unk_210 = sub_020067E8(&Unk_020F2DAC, param0->unk_128, 9);
             (*param1)++;
@@ -2541,7 +2541,7 @@ static void ov19_021D3B34 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             u32 v0 = sub_0207999C(param0->unk_120);
 
             sub_02006814(param0->unk_210);
-            CreateHeap(3, 10, 245760);
+            Heap_Create(3, 10, 245760);
             sub_02079B24(param0->unk_120, v0, param0->unk_128->unk_18);
 
             ov19_021D4F40(param0->unk_120, &param0->unk_00.unk_40);
@@ -2562,7 +2562,7 @@ static void ov19_021D3C28 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
             ov19_021D64A0(param0->unk_114);
-            DestroyHeap(10);
+            Heap_Destroy(10);
             ov19_021D1C84(param0);
             param0->unk_210 = sub_020067E8(&Unk_020F410C, &(param0->unk_12C), 9);
             (*param1)++;
@@ -2573,7 +2573,7 @@ static void ov19_021D3C28 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             u32 v0 = sub_0207999C(param0->unk_120);
 
             sub_02006814(param0->unk_210);
-            CreateHeap(3, 10, 245760);
+            Heap_Create(3, 10, 245760);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
                 ov19_021D3CFC(&(param0->unk_00), param0);
@@ -2625,12 +2625,12 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             UnkStruct_0207D3C0 * v2;
 
             ov19_021D64A0(param0->unk_114);
-            DestroyHeap(10);
+            Heap_Destroy(10);
 
             v2 = sub_0207D990(param0->unk_11C);
             param0->unk_214 = sub_0207D824(v2, v0, 9);
             sub_0207CB2C(param0->unk_214, param0->unk_11C, 1, NULL);
-            HandleLoadOverlay(FS_OVERLAY_ID(overlay84), 2);
+            Overlay_LoadByID(FS_OVERLAY_ID(overlay84), 2);
             param0->unk_210 = sub_020067E8(&Unk_ov84_02241130, param0->unk_214, 9);
             (*param1)++;
         }
@@ -2640,8 +2640,8 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             v1 = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
 
             sub_02006814(param0->unk_210);
-            FreeToHeap(param0->unk_214);
-            UnloadOverlayByID(FS_OVERLAY_ID(overlay84));
+            Heap_FreeToHeap(param0->unk_214);
+            Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
             if ((v1 == 112) && (sub_02074570(param0->unk_00.unk_4C.unk_00, 5, NULL) != 487)) {
                 (void)0;
@@ -2651,7 +2651,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
                 ov19_021D0F14(param0);
             }
 
-            CreateHeap(3, 10, 245760);
+            Heap_Create(3, 10, 245760);
             ov19_021D61B0(&(param0->unk_114), &param0->unk_00, param0);
             ov19_021D6594(param0->unk_114, 0);
             (*param1)++;
@@ -2705,7 +2705,7 @@ static void ov19_021D3FB0 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     case 0:
         v0 = ov19_021D5E74(&param0->unk_00);
 
-        if (IsItemMail(v0)) {
+        if (Item_IsMail(v0)) {
             sub_02005748(1523);
             ov19_021D5408(&param0->unk_00, 24);
             ov19_021D6594(param0->unk_114, 24);
@@ -2782,7 +2782,7 @@ static void ov19_021D4184 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
     case 0:
         v0 = ov19_021D5F88(&param0->unk_00);
 
-        if (IsItemMail(v0)) {
+        if (Item_IsMail(v0)) {
             sub_02005748(1523);
             ov19_021D5408(&param0->unk_00, 24);
             ov19_021D6594(param0->unk_114, 24);
@@ -3313,7 +3313,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
 {
     param0->unk_120 = sub_02024420(param1->unk_00);
     param0->unk_11C = param1->unk_00;
-    param0->unk_124 = GetPartyFromSavedata(param1->unk_00);
+    param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
     param0->unk_1A4 = sub_02025E44(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
@@ -3322,7 +3322,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_194 = sub_0200B144(0, 26, 202, 9);
     param0->unk_198 = sub_0200B144(0, 26, 610, 9);
     param0->unk_19C = sub_0200B358(9);
-    param0->unk_1A0 = AllocFromHeap(9, sub_02073C70());
+    param0->unk_1A0 = Heap_AllocFromHeap(9, sub_02073C70());
 
     GF_ASSERT(param0->unk_19C);
     param0->unk_128 = sub_0208712C(9, 2, 0, 8, param0->unk_1A4);
@@ -3354,7 +3354,7 @@ static void ov19_021D4D58 (UnkStruct_ov19_021D5DF8 * param0)
     sub_02024034(param0->unk_17C);
 
     if (param0->unk_1A0) {
-        FreeToHeap(param0->unk_1A0);
+        Heap_FreeToHeap(param0->unk_1A0);
     }
 
     sub_0200B3F0(param0->unk_19C);
@@ -3369,7 +3369,7 @@ static void ov19_021D4D58 (UnkStruct_ov19_021D5DF8 * param0)
     ov19_021D4E7C(&(param0->unk_00.unk_40));
     ov19_021D4F18(&(param0->unk_00.unk_A4));
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov19_021D4DE4 (UnkStruct_ov19_021D4DE4 * param0, int param1)
@@ -3407,14 +3407,14 @@ static void ov19_021D4DF0 (UnkStruct_ov19_021D5DF8 * param0)
 
 static void ov19_021D4E30 (UnkStruct_ov19_021D5594 * param0)
 {
-    param0->unk_00 = AllocFromHeap(9, (5 * 6) * sub_02076AF4());
+    param0->unk_00 = Heap_AllocFromHeap(9, (5 * 6) * sub_02076AF4());
     param0->unk_08 = 0;
     param0->unk_0B = 0;
 }
 
 static void ov19_021D4E50 (UnkStruct_ov19_021D5594 * param0)
 {
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
 }
 
 static void ov19_021D4E5C (UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1)
@@ -4174,7 +4174,7 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_02073C74_
     }
 
     if (v0->unk_06 != 0) {
-        GetItemNameIntoString(v0->unk_1C, v0->unk_06, 9);
+        Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
         sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }
@@ -4281,7 +4281,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     v0->unk_06 = param1;
 
     if (v0->unk_06 != 0) {
-        GetItemNameIntoString(v0->unk_1C, v0->unk_06, 9);
+        Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
         sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }

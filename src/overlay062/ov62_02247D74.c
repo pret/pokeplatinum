@@ -57,7 +57,7 @@ static void ov62_02247DB4 (UnkStruct_0208C06C * param0)
 {
     sub_0201ACF4(&param0->unk_8A4);
     sub_0201A8FC(&param0->unk_8A4);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
@@ -141,7 +141,7 @@ static void ov62_02247F7C (UnkStruct_0208C06C * param0)
 
 static BOOL ov62_02247FA8 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_ov62_02247F7C * v0 = AllocFromHeap(102, sizeof(UnkStruct_ov62_02247F7C));
+    UnkStruct_ov62_02247F7C * v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02247F7C));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02247F7C));
     param0->unk_860 = v0;
@@ -209,10 +209,10 @@ static BOOL ov62_02248114 (UnkStruct_0208C06C * param0)
         ov62_02247E9C(param0);
         ov62_02247D74(param0, 0);
         sub_0200710C(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         param0->unk_08++;
         break;
     case 1:
@@ -220,8 +220,8 @@ static BOOL ov62_02248114 (UnkStruct_0208C06C * param0)
 
         if (ov62_022315E0(&v0->unk_00, &v0->unk_04, 0, 2)) {
             ov62_02247DD8(param0, 282, param0->unk_86C);
-            GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-            GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
+            GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+            GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             param0->unk_08++;
         }
 
@@ -322,7 +322,7 @@ static BOOL ov62_02248324 (UnkStruct_0208C06C * param0)
             sub_02003A2C(param0->unk_14.unk_14, 2, 0xC, 16, param0->unk_14.unk_44);
             ov62_0222FB44(param0, 1, 1, param0->unk_10);
             ov62_0222FB60(param0, 5);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         } else {
             sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             sub_02003A2C(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);

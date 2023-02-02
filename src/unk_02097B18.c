@@ -20,9 +20,9 @@
 
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
@@ -83,7 +83,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov76_0223DE00 * v0;
     UnkStruct_02097F18 * v1;
 
-    CreateHeap(3, 53, 0x80000);
+    Heap_Create(3, 53, 0x80000);
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
@@ -229,14 +229,14 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
 
     v0 = sub_0200682C(param0);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     sub_02019044(v0->unk_D4.unk_10, 1);
     sub_02019044(v0->unk_D4.unk_10, 2);
     sub_02019044(v0->unk_D4.unk_10, 3);
@@ -244,14 +244,14 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
     sub_02019044(v0->unk_D4.unk_10, 5);
     sub_02019044(v0->unk_D4.unk_10, 6);
     sub_02019044(v0->unk_D4.unk_10, 7);
-    FreeToHeap(v0->unk_D4.unk_10);
+    Heap_FreeToHeap(v0->unk_D4.unk_10);
     sub_02002FA0(v0->unk_D4.unk_14, 0);
     sub_02002FA0(v0->unk_D4.unk_14, 1);
     sub_02002FA0(v0->unk_D4.unk_14, 2);
     sub_02002FA0(v0->unk_D4.unk_14, 3);
     sub_02002F54(v0->unk_D4.unk_14);
     sub_02097F20(v0->unk_00, v0->unk_3C4[0]);
-    FreeToHeap(v0->unk_428);
+    Heap_FreeToHeap(v0->unk_428);
     ov76_0223B678(v0);
     sub_02024034(v0->unk_D4.unk_F8);
     sub_02007B6C(v0->unk_D4.unk_D0);
@@ -274,9 +274,9 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
         }
     }
 
-    DestroyHeap(53);
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay11));
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
+    Heap_Destroy(53);
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 
     return 1;
 }
@@ -330,7 +330,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
             int v3;
             int v4;
 
-            v1->unk_1C = GetPartyFromSavedata(v0->unk_10);
+            v1->unk_1C = Party_GetFromSavedata(v0->unk_10);
             v4 = Party_GetCurrentCount(v1->unk_1C);
             v1->unk_00 = v4;
 
@@ -417,9 +417,9 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         v0->unk_14 = 6;
         break;
     case 6:
-        FreeToHeap(v0->unk_0C);
-        FreeToHeap(v0->unk_08);
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0->unk_0C);
+        Heap_FreeToHeap(v0->unk_08);
+        Heap_FreeToHeap(v0);
         return 1;
     }
 
@@ -428,15 +428,15 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
 
 void sub_020980DC (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
 {
-    UnkStruct_02097F38 * v0 = AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
+    UnkStruct_02097F38 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
     v0->unk_10 = param1;
-    v0->unk_08 = AllocFromHeap(11, sizeof(UnkStruct_02097F18));
+    v0->unk_08 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
     v0->unk_08->unk_24 = sub_02025E44(param1);
     v0->unk_08->unk_28 = param1;
-    v0->unk_0C = AllocFromHeap(11, sizeof(UnkStruct_02098C44));
+    v0->unk_0C = Heap_AllocFromHeap(11, sizeof(UnkStruct_02098C44));
     memset(v0->unk_0C, 0, sizeof(UnkStruct_02098C44));
 
     sub_02050944(param0, sub_02097F38, v0);

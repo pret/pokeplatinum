@@ -32,7 +32,7 @@ UnkStruct_02030A80 * sub_02030A80 (int param0)
 {
     UnkStruct_02030A80 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02030A80));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02030A80));
     MI_CpuClear8(v0, sizeof(UnkStruct_02030A80));
 
     return v0;
@@ -40,7 +40,7 @@ UnkStruct_02030A80 * sub_02030A80 (int param0)
 
 void sub_02030A98 (UnkStruct_02030A80 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)

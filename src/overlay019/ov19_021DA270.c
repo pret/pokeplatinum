@@ -11,7 +11,7 @@
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay019/struct_ov19_021DCD18.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_020218BC.h"
@@ -48,7 +48,7 @@ BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * 
             NNS_G2dLoadPalette(v1, 6 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v0);
         }
 
-        FreeToHeap(v2);
+        Heap_FreeToHeap(v2);
     }
 
     param0->unk_08 = sub_02007204(param4, 21, 1, &(param0->unk_10), 10);
@@ -70,22 +70,22 @@ BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * 
 void ov19_021DA384 (UnkStruct_ov19_021DA384 * param0)
 {
     if (param0->unk_08 != NULL) {
-        FreeToHeap(param0->unk_08);
+        Heap_FreeToHeap(param0->unk_08);
         param0->unk_08 = NULL;
     }
 
     if (param0->unk_00 != NULL) {
-        FreeToHeap(param0->unk_00);
+        Heap_FreeToHeap(param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_14 != NULL) {
-        FreeToHeap(param0->unk_14);
+        Heap_FreeToHeap(param0->unk_14);
         param0->unk_14 = NULL;
     }
 
     if (param0->unk_18 != NULL) {
-        FreeToHeap(param0->unk_18);
+        Heap_FreeToHeap(param0->unk_18);
         param0->unk_18 = NULL;
     }
 

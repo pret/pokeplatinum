@@ -25,7 +25,7 @@ UnkStruct_ov82_0223B164 * sub_02099604 (int param0, UnkStruct_021C0794 * param1,
 {
     UnkStruct_ov82_0223B164 * v0;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov82_0223B164));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov82_0223B164));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov82_0223B164));
 
     v0->unk_0C = param1;

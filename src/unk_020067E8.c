@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0208BE5C.h"
 
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 
@@ -21,7 +21,7 @@ UnkStruct_020067E8 * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * par
 {
     UnkStruct_020067E8 * v0;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_020067E8));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_020067E8));
 
     v0->unk_00 = *param0;
     v0->unk_10 = 0;
@@ -36,12 +36,12 @@ UnkStruct_020067E8 * sub_020067E8 (const UnkStruct_0208BE5C * param0, void * par
 
 void sub_02006814 (UnkStruct_020067E8 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void * sub_0200681C (UnkStruct_020067E8 * param0, int param1, int param2)
 {
-    param0->unk_1C = AllocFromHeap(param2, param1);
+    param0->unk_1C = Heap_AllocFromHeap(param2, param1);
     return param0->unk_1C;
 }
 
@@ -52,7 +52,7 @@ void * sub_0200682C (UnkStruct_020067E8 * param0)
 
 void sub_02006830 (UnkStruct_020067E8 * param0)
 {
-    FreeToHeap(param0->unk_1C);
+    Heap_FreeToHeap(param0->unk_1C);
     param0->unk_1C = NULL;
 }
 
@@ -68,7 +68,7 @@ BOOL sub_02006844 (UnkStruct_020067E8 * param0)
     switch (param0->unk_10) {
     case 0:
         if (param0->unk_00.unk_0C != 0xffffffff) {
-            HandleLoadOverlay(param0->unk_00.unk_0C, 2);
+            Overlay_LoadByID(param0->unk_00.unk_0C, 2);
         }
 
         param0->unk_10 = 1;
@@ -93,7 +93,7 @@ BOOL sub_02006844 (UnkStruct_020067E8 * param0)
 
         if (v0 == 1) {
             if (param0->unk_00.unk_0C != 0xffffffff) {
-                UnloadOverlayByID(param0->unk_00.unk_0C);
+                Overlay_UnloadByID(param0->unk_00.unk_0C);
             }
 
             return 1;

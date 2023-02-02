@@ -24,9 +24,9 @@
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
@@ -231,8 +231,8 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -241,7 +241,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    CreateHeap(3, 23, 0xa0000);
+    Heap_Create(3, 23, 0xa0000);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov17_0224DF54), 23);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224DF54));
 
@@ -260,7 +260,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002F70(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), 23);
     sub_02002F70(v0->unk_14.unk_90, 3, 0x200, 23);
 
-    v0->unk_1050.unk_00 = AllocFromHeap(23, 0x200);
+    v0->unk_1050.unk_00 = Heap_AllocFromHeap(23, 0x200);
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = sub_02018340(23);
 
@@ -325,9 +325,9 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_04 = sub_0200D9E8(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;
 
-    GX_BothDispOn();
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_TurnBothDispOn();
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
 
@@ -416,8 +416,8 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
         sub_0201A8FC(&v0->unk_14.unk_64[v1]);
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(v0->unk_14.unk_60, 1);
     sub_02019044(v0->unk_14.unk_60, 2);
     sub_02019044(v0->unk_14.unk_60, 3);
@@ -434,7 +434,7 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
     sub_02007B6C(v0->unk_14.unk_44);
     sub_020127BC(v0->unk_14.unk_94);
     sub_02002C60(2);
-    FreeToHeap(v0->unk_1050.unk_00);
+    Heap_FreeToHeap(v0->unk_1050.unk_00);
     sub_02002FA0(v0->unk_14.unk_90, 0);
     sub_02002FA0(v0->unk_14.unk_90, 1);
     sub_02002FA0(v0->unk_14.unk_90, 2);
@@ -443,7 +443,7 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
     sub_020237BC(v0->unk_14.unk_8C);
     sub_0200B3F0(v0->unk_14.unk_88);
     sub_0200B190(v0->unk_14.unk_84);
-    FreeToHeap(v0->unk_14.unk_60);
+    Heap_FreeToHeap(v0->unk_14.unk_60);
     sub_0200DA58(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_10);
@@ -452,12 +452,12 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    DestroyHeap(23);
+    Heap_Destroy(23);
     sub_02095A24();
     sub_02039794();
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay11));
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay12));
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay22));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
 
     return 1;
 }
@@ -573,7 +573,7 @@ static void ov17_0223E1FC (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov17_0223E250 (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
+    GXLayers_DisableEngineALayers();
 
     {
         UnkStruct_02099F80 v0 = {
@@ -589,7 +589,7 @@ static void ov17_0223E250 (UnkStruct_02018340 * param0)
             GX_VRAM_TEXPLTT_01_FG
         };
 
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
 
         MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
         MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
@@ -671,7 +671,7 @@ static void ov17_0223E250 (UnkStruct_02018340 * param0)
         sub_02019184(param0, 3, 3, 0);
 
         G2_SetBG0Priority(2);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     }
 
     {
@@ -839,7 +839,7 @@ static void ov17_0223E778 (UnkStruct_ov17_0224DF54 * param0)
 
     GF_ASSERT(param0->unk_0C == NULL);
 
-    v0 = AllocFromHeap(23, 0x4800);
+    v0 = Heap_AllocFromHeap(23, 0x4800);
     param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, 23);
 
     v1 = sub_02014784(param0->unk_0C);
@@ -855,7 +855,7 @@ static void ov17_0223E7E0 (UnkStruct_ov17_0224DF54 * param0)
 
     v0 = sub_02014730(param0->unk_0C);
     sub_0201411C(param0->unk_0C);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     param0->unk_0C = NULL;
 }

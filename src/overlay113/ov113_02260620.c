@@ -604,7 +604,7 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
     sub_020237BC(v4);
     sub_020237BC(v2);
     sub_020237BC(v3);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 void ov113_02260714 (UnkStruct_0205AA50 param0[], u32 param1)

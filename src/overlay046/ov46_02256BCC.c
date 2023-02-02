@@ -53,7 +53,7 @@ static void ov46_022570C4(UnkStruct_ov46_02256BCC * param0, BOOL param1);
 
 BOOL ov46_02256BCC (UnkStruct_ov46_02256BCC ** param0, const UnkStruct_ov46_02256BCC_1 * param1, UnkStruct_02018340 * param2)
 {
-    UnkStruct_ov46_02256BCC * v0 = (UnkStruct_ov46_02256BCC *)AllocFromHeap(8, sizeof(UnkStruct_ov46_02256BCC));
+    UnkStruct_ov46_02256BCC * v0 = (UnkStruct_ov46_02256BCC *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov46_02256BCC));
 
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);
@@ -77,7 +77,7 @@ void ov46_02256C0C (UnkStruct_ov46_02256BCC * param0)
 {
     if (param0 != NULL) {
         ov46_02256CF4(param0);
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

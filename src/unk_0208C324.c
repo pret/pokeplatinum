@@ -26,7 +26,7 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_0200AC5C.h"
@@ -149,8 +149,8 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -160,7 +160,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     G2S_BlendNone();
 
     sub_02017DD4(4, 8);
-    CreateHeap(3, 19, 0x40000);
+    Heap_Create(3, 19, 0x40000);
 
     v1 = NARC_ctor(39, 19);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_0208D7BC), 19);
@@ -193,7 +193,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     sub_020920C0(v0);
     sub_020917E0(v0);
     sub_02017798(sub_0208C604, v0);
-    GX_BothDispOn();
+    GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     sub_020397E4();
     NARC_dtor(v1);
@@ -298,7 +298,7 @@ static int sub_0208C5A0 (UnkStruct_020067E8 * param0, int * param1)
     G2_BlendNone();
 
     sub_02006830(param0);
-    DestroyHeap(19);
+    Heap_Destroy(19);
 
     return 1;
 }
@@ -330,7 +330,7 @@ static void sub_0208C638 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void sub_0208C658 (UnkStruct_02018340 * param0)
@@ -455,8 +455,8 @@ static void sub_0208C658 (UnkStruct_02018340 * param0)
 
 static void sub_0208C76C (UnkStruct_02018340 * param0)
 {
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -464,7 +464,7 @@ static void sub_0208C76C (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
 
-    FreeToHeapExplicit(19, param0);
+    Heap_FreeToHeapExplicit(19, param0);
 }
 
 static void sub_0208C7AC (UnkStruct_0208D7BC * param0, NARC * param1)
@@ -771,7 +771,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
         sub_02005748(1501);
 
         if (param0->unk_6A5_0 != 4) {
-            if ((IsMoveHM(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
+            if ((Item_IsMoveHM(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
                 sub_0200D3EC(param0->unk_41C[18], 0);
                 sub_0208E46C(param0);
                 sub_020914F8(param0);
@@ -934,7 +934,7 @@ static int sub_0208CF78 (UnkStruct_0208D7BC * param0)
         param0->unk_250.unk_4A = (u8)sub_02074470(v1, 24, NULL);
 
         if (param0->unk_24C->unk_11 == 2) {
-            FreeToHeap(v1);
+            Heap_FreeToHeap(v1);
         }
 
         sub_02002E98(0, 14 * 32, 19);
@@ -1016,7 +1016,7 @@ static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 *
 
     sub_020774C8(param1, v0);
     sub_0208D200(param0, v0, param2);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void sub_0208D200 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74 * param1, UnkStruct_0208D1D4 * param2)
@@ -1083,7 +1083,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74 * para
         param2->unk_34[v1] = (u16)sub_02074470(param1, 54 + v1, NULL);
         param2->unk_3C[v1] = (u8)sub_02074470(param1, 58 + v1, NULL);
         v2 = (u8)sub_02074470(param1, 62 + v1, NULL);
-        param2->unk_40[v1] = GetMoveMaxPP(param2->unk_34[v1], v2);
+        param2->unk_40[v1] = MoveTable_GetMoveMaxPP(param2->unk_34[v1], v2);
     }
 
     param2->unk_45 = (u8)sub_02074470(param1, 19, NULL);
@@ -1350,12 +1350,12 @@ static void sub_0208D948 (UnkStruct_0208D7BC * param0)
             v2 = 3 + param0->unk_6A4;
         }
 
-        v1 = AllocAndReadWholeNarcMemberByIndexPair(39, v2, 19);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(39, v2, 19);
         NNS_G2dGetUnpackedScreenData(v1, &v0);
 
         sub_020198C0(param0->unk_00, 3, v0->rawData, 0, 0, 32, 32);
         sub_0201C3C0(param0->unk_00, 3);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 
     if (param0->unk_6A4 == 0) {
@@ -1946,7 +1946,7 @@ static void sub_0208E498 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0208E46C(param0);
 
     if (param1 != 0xffffffff) {
-        v0 = GetMoveAttribute(param1, 10);
+        v0 = MoveTable_GetMoveAttribute(param1, 10);
         v2 = sub_02095734(v0) / 10;
 
         for (v1 = 0; v1 < v2; v1++) {

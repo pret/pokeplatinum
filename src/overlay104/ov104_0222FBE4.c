@@ -55,7 +55,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_020041CC.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -1229,7 +1229,7 @@ static void ov104_0223056C (u16 param0, UnkStruct_ov104_0223C634 * param1, const
 {
     UnkStruct_ov104_02232B78 * v0;
 
-    v0 = AllocFromHeap(param5, sizeof(UnkStruct_ov104_02232B78));
+    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov104_02232B78));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_02232B78));
 
     v0->unk_14 = param1;
@@ -1462,7 +1462,7 @@ static void ov104_0223088C (UnkStruct_ov104_0222E930 * param0, int param1, int p
 
     GF_ASSERT(param2 <= 7);
 
-    v1 = AllocFromHeap(v0->unk_34, sizeof(s16) * param2);
+    v1 = Heap_AllocFromHeap(v0->unk_34, sizeof(s16) * param2);
     v2 = ov104_0222FC00(param0);
 
     for (v3 = 0; v3 < 3; v3++) {
@@ -1470,7 +1470,7 @@ static void ov104_0223088C (UnkStruct_ov104_0222E930 * param0, int param1, int p
     }
 
     ov104_0223D860(v0->unk_00, v2, 1, v1, 3);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 }
 
 static BOOL ov104_022308E0 (UnkStruct_ov104_0222E930 * param0)
@@ -1684,7 +1684,7 @@ static BOOL ov104_02230B50 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov6_02240D5C * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 
-    v1 = AllocFromHeap(11, sizeof(UnkStruct_ov6_02240D5C));
+    v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov6_02240D5C));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov6_02240D5C));
 
     sub_0202F298(v2->unk_08, 11, &v0, v1, 0);
@@ -2005,7 +2005,7 @@ static BOOL ov104_02231050 (UnkStruct_ov104_0222E930 * param0)
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    sub_02097284(GetPartyFromSavedata(v0->unk_08));
+    sub_02097284(Party_GetFromSavedata(v0->unk_08));
     return 0;
 }
 
@@ -2309,7 +2309,7 @@ static void ov104_022313FC (UnkStruct_0201CD38 * param0, void * param1)
 
         ov104_0223F258(v4->unk_600);
 
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
         sub_0200DA58(param0);
 
         return;
@@ -2390,7 +2390,7 @@ static BOOL ov104_02231720 (UnkStruct_ov104_02231148 * param0)
         MI_CpuClear8(&v0, sizeof(UnkStruct_ov104_0223F1B4));
 
         param0->unk_10 = 0;
-        param0->unk_24 = AllocFromHeap(94, sizeof(UnkStruct_ov104_022313FC));
+        param0->unk_24 = Heap_AllocFromHeap(94, sizeof(UnkStruct_ov104_022313FC));
         param0->unk_24->unk_604 = 1;
         param0->unk_24->unk_600 = ov104_0223F1B4(((u32) & reg_G2_BG2PA), &v0, 94);
 
@@ -2450,7 +2450,7 @@ static BOOL ov104_02231864 (UnkStruct_ov104_02231148 * param0)
         MI_CpuClear8(&v0, sizeof(UnkStruct_ov104_0223F1B4));
 
         param0->unk_10 = 0;
-        param0->unk_24 = AllocFromHeap(94, sizeof(UnkStruct_ov104_022313FC));
+        param0->unk_24 = Heap_AllocFromHeap(94, sizeof(UnkStruct_ov104_022313FC));
         param0->unk_24->unk_604 = 2;
         param0->unk_24->unk_600 = ov104_0223F1B4(((u32) & reg_G2_BG2PA), &v0, 94);
 
@@ -2531,7 +2531,7 @@ static BOOL ov104_02231A28 (UnkStruct_ov104_0222E930 * param0)
 
     sub_02004550(5, 1119, 1);
 
-    v1 = AllocFromHeap(11, sizeof(UnkStruct_ov104_02231148));
+    v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_02231148));
     v1->unk_14 = sub_0209B978(param0->unk_00->unk_00);
     v1->unk_04 = 0;
     v1->unk_08 = param0->unk_78[0];
@@ -2555,7 +2555,7 @@ static BOOL ov104_02231AA8 (UnkStruct_ov104_0222E930 * param0)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 
     return !v0;
@@ -2754,7 +2754,7 @@ static BOOL ov104_02231D1C (UnkStruct_ov104_0222E930 * param0)
     u16 v9 = ov104_0222EA48(param0);
 
     v2 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = GetPartyFromSavedata(v2->unk_08);
+    v0 = Party_GetFromSavedata(v2->unk_08);
     v1 = Party_GetPokemonBySlotIndex(v0, v4);
     v8 = 8;
     v9 = (GX_RGB(0, 0, 0));

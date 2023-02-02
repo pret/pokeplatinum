@@ -47,7 +47,7 @@ UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 p
 
     GF_ASSERT(param1 > 0);
 
-    v0 = AllocFromHeap(param4, sizeof(UnkStruct_ov25_02255B34));
+    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov25_02255B34));
 
     if (v0) {
         v0->unk_08 = param4;
@@ -55,7 +55,7 @@ UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 p
         v0->unk_00 = param0;
         v0->unk_0C = param1;
         v0->unk_10 = param3;
-        v0->unk_14 = AllocFromHeap(param4, sizeof(UnkStruct_ov25_02255C80) * param1);
+        v0->unk_14 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov25_02255C80) * param1);
 
         if (v0->unk_14) {
             u32 v1;
@@ -64,7 +64,7 @@ UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 p
                 ov25_02255C80(&v0->unk_14[v1]);
             }
         } else {
-            FreeToHeapExplicit(param4, v0);
+            Heap_FreeToHeapExplicit(param4, v0);
             v0 = NULL;
         }
     }
@@ -75,8 +75,8 @@ UnkStruct_ov25_02255B34 * ov25_02255ACC (const UnkUnion_020225E0 * param0, u32 p
 void ov25_02255B34 (UnkStruct_ov25_02255B34 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeapExplicit(param0->unk_08, param0->unk_14);
-    FreeToHeapExplicit(param0->unk_08, param0);
+    Heap_FreeToHeapExplicit(param0->unk_08, param0->unk_14);
+    Heap_FreeToHeapExplicit(param0->unk_08, param0);
 }
 
 void ov25_02255B50 (UnkStruct_ov25_02255B34 * param0)

@@ -15,7 +15,7 @@
 #include "overlay016/struct_ov16_022431BC_3.h"
 
 #include "unk_020021B0.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -220,8 +220,8 @@ BOOL sub_02079280 (int param0, int param1, int param2)
 
     v4 = 0;
 
-    v1 = GetNarcMemberSizeByIndexPair(59, 0);
-    ReadFromNarcMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
+    v1 = NARC_GetMemberSizeByIndexPair(59, 0);
+    NARC_ReadFromMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
     v0 = NARC_ctor(59, param2);
 
     while (v2 != v1) {
@@ -251,8 +251,8 @@ void sub_020792F8 (int param0, int param1, UnkStruct_02023790 * param2, int para
     u16 v2;
     u16 v3[2];
 
-    v1 = GetNarcMemberSizeByIndexPair(59, 0);
-    ReadFromNarcMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
+    v1 = NARC_GetMemberSizeByIndexPair(59, 0);
+    NARC_ReadFromMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
     v0 = NARC_ctor(59, param3);
 
     while (v2 != v1) {
@@ -275,12 +275,12 @@ void sub_020792F8 (int param0, int param1, UnkStruct_02023790 * param2, int para
 
 void sub_0207938C (int param0, UnkStruct_0207A9CC * param1)
 {
-    ReadWholeNarcMemberByIndexPair(param1, 57, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, 57, param0);
 }
 
 void sub_0207939C (int param0, void * param1)
 {
-    ReadWholeNarcMemberByIndexPair(param1, 58, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, 58, param0);
 }
 
 u8 sub_020793AC (int param0)
@@ -301,7 +301,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
 
     Party_InitWithCapacity(param0->unk_04[param1], 6);
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
     v7 = sub_02073C74(param2);
 
     sub_0207939C(param0->unk_18[param1], v0);
@@ -443,7 +443,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
     break;
     }
 
-    FreeToHeap(v0);
-    FreeToHeap(v7);
+    Heap_FreeToHeap(v0);
+    Heap_FreeToHeap(v7);
     sub_0201D2DC(v5);
 }

@@ -18,6 +18,6 @@ void sub_0207A128(Party * party, int slot, UnkStruct_02073C74 * param2);
 BOOL Party_SwapSlots(Party * party, int slotA, int slotB);
 void Party_cpy(const Party * src, Party * dest);
 BOOL Party_HasSpecies(const Party * party, int species);
-Party * GetPartyFromSavedata(UnkStruct_021C0794 * party);
+Party * Party_GetFromSavedata(UnkStruct_021C0794 * party);
 
 #endif // POKEPLATINUM_UNK_02079FEC_H

@@ -8,7 +8,7 @@
 
 #include "library/spl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02014000.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_022237EC.h"

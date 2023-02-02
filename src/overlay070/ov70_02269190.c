@@ -16,7 +16,7 @@
 #include "overlay063/struct_ov63_0222CC3C.h"
 
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020170BC.h"
 #include "heap.h"
@@ -635,7 +635,7 @@ UnkStruct_ov70_02269204 * ov70_02269190 (UnkStruct_ov66_0222DFF8 * param0, UnkSt
 {
     UnkStruct_ov70_02269204 * v0;
 
-    v0 = AllocFromHeap(param4, sizeof(UnkStruct_ov70_02269204));
+    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov70_02269204));
     memset(v0, 0, sizeof(UnkStruct_ov70_02269204));
 
     v0->unk_00 = param0;
@@ -648,7 +648,7 @@ UnkStruct_ov70_02269204 * ov70_02269190 (UnkStruct_ov66_0222DFF8 * param0, UnkSt
 
         v1 = NARC_ctor(186, param4);
 
-        GF_ExpHeap_FndInitAllocator(&v0->unk_1081C, param5, 4);
+        Heap_FndInitAllocatorForExpHeap(&v0->unk_1081C, param5, 4);
 
         ov70_02269540(v0, v1, param5);
         ov70_022695E0(v0, v1, param5);
@@ -668,7 +668,7 @@ void ov70_02269204 (UnkStruct_ov70_02269204 * param0)
         ov70_02269700(param0);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov70_02269220 (UnkStruct_ov70_02269204 * param0)
@@ -814,7 +814,7 @@ static void ov70_022695C4 (UnkStruct_ov70_02269204 * param0)
     int v0;
 
     for (v0 = 0; v0 < 15; v0++) {
-        FreeToHeap(param0->unk_10550[v0].unk_00);
+        Heap_FreeToHeap(param0->unk_10550[v0].unk_00);
     }
 }
 
@@ -844,7 +844,7 @@ static void ov70_02269608 (UnkStruct_ov70_02269204 * param0)
 
         v3 = NNS_G3dPlttReleasePlttKey(v4);
         NNS_GfdFreePlttVram(v3);
-        FreeToHeap(param0->unk_10640[v0]);
+        Heap_FreeToHeap(param0->unk_10640[v0]);
     }
 }
 

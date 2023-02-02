@@ -19,7 +19,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
@@ -257,8 +257,8 @@ static void ov94_0223C720 (UnkStruct_02018340 * param0)
     sub_02019690(0, 32, 0, 62);
     sub_02019690(4, 32, 0, 62);
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov94_0223C830 (UnkStruct_02018340 * param0)
@@ -272,9 +272,9 @@ static void ov94_0223C830 (UnkStruct_02018340 * param0)
 
 static void ov94_0223C85C (UnkStruct_ov94_0223FD4C * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     sub_02021CAC(param0->unk_E20, 0);
 }
 
@@ -374,9 +374,9 @@ static void ov94_0223CB34 (UnkStruct_ov94_0223FD4C * param0)
 static int ov94_0223CB50 (UnkStruct_ov94_0223FD4C * param0)
 {
     if (param0->unk_10F0) {
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
         ov94_0223C4C0(param0, 7, 11);
 

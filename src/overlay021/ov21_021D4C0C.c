@@ -39,13 +39,13 @@ UnkStruct_ov21_021D4C0C * ov21_021D4C0C (const UnkStruct_ov21_021D1FA4 * param0)
 {
     UnkStruct_ov21_021D4C0C * v0;
 
-    v0 = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_ov21_021D4C0C));
+    v0 = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_ov21_021D4C0C));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4C0C));
 
     v0->unk_00 = sub_02012744(param0->unk_08, param0->unk_0C);
-    v0->unk_0C = AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_ov21_021D4CA0) * param0->unk_08);
+    v0->unk_0C = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_ov21_021D4CA0) * param0->unk_08);
 
     GF_ASSERT(v0->unk_0C);
     memset(v0->unk_0C, 0, sizeof(UnkStruct_ov21_021D4CA0) * param0->unk_08);
@@ -63,12 +63,12 @@ void ov21_021D4C6C (UnkStruct_ov21_021D4C0C * param0)
     GF_ASSERT(param0);
 
     ov21_021D4D3C(param0);
-    FreeToHeap(param0->unk_0C);
+    Heap_FreeToHeap(param0->unk_0C);
     sub_020127BC(param0->unk_00);
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021D4C0C));
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 UnkStruct_ov21_021D4CA0 * ov21_021D4CA0 (const UnkStruct_ov21_021D4CB8 * param0)

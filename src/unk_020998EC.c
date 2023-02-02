@@ -3167,7 +3167,7 @@ UnkStruct_020998EC * sub_020998EC (u32 param0, const UnkStruct_0209747C * param1
     UnkStruct_020998EC * v0;
     int v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_020998EC));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020998EC));
     v0->unk_00 = param1;
     v0->unk_04 = sub_02014D38(param0);
 
@@ -3185,7 +3185,7 @@ void sub_0209992C (UnkStruct_020998EC * param0)
 {
     if (param0) {
         sub_02014D70(param0->unk_04);
-        FreeToHeap(param0);
+        Heap_FreeToHeap(param0);
     }
 }
 

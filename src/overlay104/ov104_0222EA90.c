@@ -411,12 +411,12 @@ void ov104_0222EBA4 (UnkStruct_ov104_0223C4CC * param0, void ** param1, int para
 
 static void ov104_0222EBBC (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    *param1 = AllocFromHeap(94, 32);
+    *param1 = Heap_AllocFromHeap(94, 32);
 }
 
 static void ov104_0222EBCC (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    FreeToHeap(*param1);
+    Heap_FreeToHeap(*param1);
 }
 
 static void ov104_0222EBD8 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
@@ -426,7 +426,7 @@ static void ov104_0222EBD8 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
     sub_02019060(0, 1);
     sub_02019060(2, 2);
     sub_02019060(3, 3);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
 }
@@ -454,7 +454,7 @@ static void ov104_0222EC20 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
     sub_02019060(3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
 }

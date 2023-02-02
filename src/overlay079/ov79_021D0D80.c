@@ -19,7 +19,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
@@ -83,7 +83,7 @@ int ov79_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov79_021D0E1C * v0 = NULL;
     UnkStruct_0203D9B8 * v1 = sub_02006840(param0);
 
-    CreateHeap(3, 45, 0x20000);
+    Heap_Create(3, 45, 0x20000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov79_021D0E1C), 45);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov79_021D0E1C));
@@ -118,7 +118,7 @@ int ov79_021D0DDC (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_20->unk_06 = v0->unk_82;
 
     sub_02006830(param0);
-    DestroyHeap(v0->unk_00);
+    Heap_Destroy(v0->unk_00);
 
     return 1;
 }
@@ -130,8 +130,8 @@ static int ov79_021D0E1C (UnkStruct_ov79_021D0E1C * param0)
 
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -185,8 +185,8 @@ static int ov79_021D0E1C (UnkStruct_ov79_021D0E1C * param0)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_02017798(NULL, NULL);
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
         break;
@@ -478,7 +478,7 @@ static void ov79_021D130C (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov79_021D132C (UnkStruct_ov79_021D0E1C * param0)
@@ -613,7 +613,7 @@ static void ov79_021D13A4 (UnkStruct_ov79_021D0E1C * param0)
         sub_02019044(param0->unk_24, v0);
     }
 
-    FreeToHeap(param0->unk_24);
+    Heap_FreeToHeap(param0->unk_24);
 }
 
 static void ov79_021D13C4 (UnkStruct_ov79_021D0E1C * param0)

@@ -97,7 +97,7 @@ BOOL sub_02095B5C (UnkStruct_02095C48 * param0, int param1, const UnkStruct_0202
     int v2;
 
     v1 = sub_02029C64();
-    v0 = AllocFromHeap(20, v1 + 1);
+    v0 = Heap_AllocFromHeap(20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
@@ -107,7 +107,7 @@ BOOL sub_02095B5C (UnkStruct_02095C48 * param0, int param1, const UnkStruct_0202
         v2 = 0;
     }
 
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     return v2;
 }
 

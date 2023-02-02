@@ -91,7 +91,7 @@ int ov61_0222B008 (UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_022411
     param0->unk_14C = -1;
     param0->unk_3E8 = 23004;
     param0->unk_3EC = 23004;
-    param0->unk_3B4 = AllocFromHeap(param1->unk_04, ov61_0222DE8C(-1));
+    param0->unk_3B4 = Heap_AllocFromHeap(param1->unk_04, ov61_0222DE8C(-1));
 
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
@@ -121,9 +121,9 @@ void ov61_0222B0F0 (UnkStruct_ov62_022349A8 * param0)
     sub_020237BC(param0->unk_3FC);
     sub_0200B3F0(param0->unk_3F8);
     sub_0200B190(param0->unk_3F4);
-    FreeToHeap(param0->unk_3B4);
+    Heap_FreeToHeap(param0->unk_3B4);
     ov61_0222BC40();
-    FreeToHeap(param0->unk_18C);
+    Heap_FreeToHeap(param0->unk_18C);
 }
 
 static int ov61_0222B138 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B138 * param1)
@@ -786,7 +786,7 @@ static void * ov61_0222BBF0 (int param0)
     void * v2;
     int v3 = 0x2000;
 
-    v0 = AllocFromHeap(param0, v3);
+    v0 = Heap_AllocFromHeap(param0, v3);
     v2 = v0;
     v1 = (void *)((u32)v0 + v3);
     v0 = OS_InitAlloc(OS_ARENA_MAIN, v0, v1, 1);

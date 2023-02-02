@@ -51,10 +51,10 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     u8 v16;
     u32 v17, v18, v19;
 
-    v8 = Party_GetCurrentCount(GetPartyFromSavedata(v0->unk_0C));
+    v8 = Party_GetCurrentCount(Party_GetFromSavedata(v0->unk_0C));
 
     for (v11 = 0, v12 = 0, v9 = 0; v9 < v8; v9++) {
-        v1 = Party_GetPokemonBySlotIndex(GetPartyFromSavedata(v0->unk_0C), v9);
+        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v9);
 
         if (sub_02074470(v1, 76, NULL) == 0) {
             v15 = (sub_02074470(v1, 7, NULL) & 0xffff);

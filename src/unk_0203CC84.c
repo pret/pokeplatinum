@@ -19,7 +19,7 @@
 #include "overlay005/struct_ov5_021D1CAC.h"
 
 #include "unk_02000C88.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_02034198.h"
@@ -118,7 +118,7 @@ void sub_0203CD00 (UnkStruct_0203CDB0 * param0)
 {
     GF_ASSERT(param0->unk_00->unk_04 == NULL);
     GF_ASSERT(param0->unk_00->unk_00 == NULL);
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay5), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay5), 2);
 
     param0->unk_68 = 0;
     param0->unk_00->unk_08 = 0;
@@ -161,14 +161,14 @@ static UnkStruct_0203CDB0 * sub_0203CDB0 (UnkStruct_020067E8 * param0)
     UnkStruct_0203CC84 * v0;
     UnkStruct_0203CDB0 * v1;
 
-    CreateHeap(3, 11, 0x1c000);
-    CreateHeap(3, 32, 0x4000);
-    CreateHeap(0, 91, 0x300);
+    Heap_Create(3, 11, 0x1c000);
+    Heap_Create(3, 32, 0x4000);
+    Heap_Create(0, 91, 0x300);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_0203CDB0), 11);
     MI_CpuClear8(v1, sizeof(UnkStruct_0203CDB0));
 
-    v1->unk_00 = AllocFromHeap(11, sizeof(UnkStruct_0203CDB0_sub1));
+    v1->unk_00 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203CDB0_sub1));
     v1->unk_00->unk_00 = NULL;
     v1->unk_00->unk_04 = NULL;
     v1->unk_00->unk_08 = 0;
@@ -200,16 +200,16 @@ static void sub_0203CE6C (UnkStruct_020067E8 * param0)
 
     sub_02039DE4(v0->unk_2C);
     sub_0203A398(v0);
-    FreeToHeap(v0->unk_98);
+    Heap_FreeToHeap(v0->unk_98);
     sub_0206942C(v0->unk_94);
     sub_0209ACDC(v0->unk_B4);
     sub_0209C388(v0->unk_BC);
 
-    FreeToHeap(v0->unk_00);
+    Heap_FreeToHeap(v0->unk_00);
     sub_02006830(param0);
-    DestroyHeap(91);
-    DestroyHeap(11);
-    DestroyHeap(32);
+    Heap_Destroy(91);
+    Heap_Destroy(11);
+    Heap_Destroy(32);
 }
 
 static void sub_0203CECC (UnkStruct_020067E8 ** param0)
@@ -237,7 +237,7 @@ BOOL sub_0203CEEC (UnkStruct_0203CDB0 * param0)
         sub_0203CECC(&param0->unk_00->unk_00);
 
         if (param0->unk_00->unk_00 == NULL) {
-            UnloadOverlayByID(FS_OVERLAY_ID(overlay5));
+            Overlay_UnloadByID(FS_OVERLAY_ID(overlay5));
         }
     } else if (param0->unk_00->unk_04) {
         sub_0203CECC(&param0->unk_00->unk_04);

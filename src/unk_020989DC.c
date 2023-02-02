@@ -105,12 +105,12 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
     u8 v5 = 0, v6 = 0, v7 = 0;
     u8 v8 = 0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_0203D9B8));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203D9B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
     v0->unk_08 = sub_0202AB28(param0);
     v0->unk_0C = sub_02025E38(param0);
-    v0->unk_10 = GetPartyFromSavedata(param0);
+    v0->unk_10 = Party_GetFromSavedata(param0);
     v0->unk_14 = sub_0207D990(param0);
     v0->unk_18 = sub_02025E44(param0);
 
@@ -149,7 +149,7 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
     }
 
     sub_0200B3F0(v3);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     v0->unk_00 = v6;
     v0->unk_03 = 5;
@@ -160,7 +160,7 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
 void sub_02098AF0 (UnkStruct_0203D9B8 * param0)
 {
     int v0;
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static BOOL sub_02098AF8 (UnkStruct_020067E8 ** param0)
@@ -181,7 +181,7 @@ static int sub_02098B1C (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02098BE4 * v0 = NULL;
     void * v1 = sub_02006840(param0);
 
-    CreateHeap(3, 44, 0x1000);
+    Heap_Create(3, 44, 0x1000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_02098BE4), 44);
     MI_CpuClear8(v0, sizeof(UnkStruct_02098BE4));
@@ -234,7 +234,7 @@ static int  sub_02098BC4 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02098BE4(v0);
     sub_02006830(param0);
-    DestroyHeap(v0->unk_00);
+    Heap_Destroy(v0->unk_00);
 
     return 1;
 }
@@ -289,7 +289,7 @@ static int sub_02098C44 (UnkStruct_02098BE4 * param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    v0 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098C44));
+    v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098C44));
     MI_CpuClear8(v0, sizeof(UnkStruct_02098C44));
     v0->unk_00 = param0->unk_0C->unk_10;
     v0->unk_04 = param0->unk_0C->unk_14;
@@ -319,13 +319,13 @@ static int sub_02098CB0 (UnkStruct_02098BE4 * param0)
     v1 = (UnkStruct_02098C44 *)param0->unk_10;
     v0 = v1->unk_22;
     param0->unk_08 = v0;
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_10);
 
     if (v0 == 7) {
         return 0;
     }
 
-    v2 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098D38));
+    v2 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098D38));
 
     v2->unk_00 = param0->unk_0C->unk_10;
     v2->unk_04 = param0->unk_0C->unk_18;
@@ -360,7 +360,7 @@ static int sub_02098D38 (UnkStruct_02098BE4 * param0)
 
     param0->unk_08 = v0->unk_14;
 
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(param0->unk_10);
 
     if (v1 == 1) {
         return 0;
@@ -384,7 +384,7 @@ static int sub_02098D7C (UnkStruct_02098BE4 * param0)
     };
     UnkStruct_02098DE8 * v1;
 
-    v1 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098DE8));
+    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098DE8));
     MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
 
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
@@ -409,8 +409,8 @@ static int sub_02098DE8 (UnkStruct_02098BE4 * param0)
 
     v0 = (UnkStruct_02098DE8 *)param0->unk_10;
 
-    FreeToHeap(v0->unk_04);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0->unk_04);
+    Heap_FreeToHeap(v0);
 
     return 6;
 }
@@ -424,7 +424,7 @@ static int sub_02098E0C (UnkStruct_02098BE4 * param0)
         4, 8
     };
 
-    v1 = AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098D38));
+    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098D38));
     v2 = sub_0202AC70(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
 
     v1->unk_00 = param0->unk_0C->unk_10;
@@ -458,8 +458,8 @@ static int sub_02098E88 (UnkStruct_02098BE4 * param0)
     }
 
     v1 = (UnkStruct_02098D38 *)param0->unk_10;
-    FreeToHeap(v1->unk_24);
-    FreeToHeap(param0->unk_10);
+    Heap_FreeToHeap(v1->unk_24);
+    Heap_FreeToHeap(param0->unk_10);
 
     return 0;
 }

@@ -53,14 +53,14 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
     sub_0201D78C(v2, 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_020237BC(v0);
     sub_0201A9A4(v2);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 static void ov62_02234A90 (UnkStruct_0208C06C * param0)
 {
     sub_0201ACF4(&param0->unk_8A4);
     sub_0201A8FC(&param0->unk_8A4);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)
@@ -280,7 +280,7 @@ BOOL ov62_02235008 (UnkStruct_0208C06C * param0)
     switch (param0->unk_08) {
     case 0:
 
-        v0 = AllocFromHeap(102, sizeof(UnkStruct_ov62_02235008));
+        v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02235008));
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov62_02235008));
         param0->unk_860 = v0;
         v0->unk_50 = 16;
@@ -359,7 +359,7 @@ BOOL ov62_02235008 (UnkStruct_0208C06C * param0)
             sub_0208B8B8(param0->unk_6F0, v9 + (15 + 1), v10);
             sub_0208B9E0(param0->unk_6F0, 0);
             ov62_0222FF7C(param0);
-            FreeToHeap(v0);
+            Heap_FreeToHeap(v0);
         }
         return 1;
     }

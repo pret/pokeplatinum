@@ -45,9 +45,9 @@ UnkStruct_ov5_021EF300 * ov5_021EF28C (const u8 param0, const u8 param1)
     u8 v0;
     UnkStruct_ov5_021EF300 * v1;
 
-    v1 = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021EF300));
+    v1 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021EF300));
 
-    v1->unk_04 = AllocFromHeap(param1, sizeof(UnkStruct_ov5_021EF250) * param0);
+    v1->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021EF250) * param0);
     v1->unk_00 = param0;
 
     for (v0 = 0; v0 < param0; v0++) {
@@ -69,8 +69,8 @@ void ov5_021EF2CC (const u8 param0, const int param1, const int param2, const in
 
 void ov5_021EF300 (UnkStruct_ov5_021EF300 * param0)
 {
-    FreeToHeap(param0->unk_04);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0);
 }
 
 BOOL ov5_021EF314 (const int param0, const int param1, const UnkStruct_ov5_021EF300 * param2, u8 * param3)

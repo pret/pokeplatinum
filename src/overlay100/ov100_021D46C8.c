@@ -336,7 +336,7 @@ void ov100_021D4C94 (UnkStruct_ov100_021D46C8 * param0, int param1)
 void ov100_021D4DC8 (int param0)
 {
     Unk_021BF67C.unk_65 = param0;
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 }
 
 void ov100_021D4DD8 (UnkStruct_ov100_021D4DD8 * param0, int param1)

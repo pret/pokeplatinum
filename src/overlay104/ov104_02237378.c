@@ -136,7 +136,7 @@ BOOL ov104_0223740C (UnkStruct_ov104_0222E930 * param0)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
-    v2 = AllocFromHeap(11, sizeof(UnkStruct_ov104_02238240));
+    v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_02238240));
 
     MI_CpuClear8(v2, sizeof(UnkStruct_ov104_02238240));
     v2->unk_00 = v3->unk_08;
@@ -283,7 +283,7 @@ static void ov104_0223770C (void * param0)
     UnkStruct_ov104_02238240 * v1 = param0;
 
     ov104_02238240(v1->unk_3C, param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return;
 }
@@ -374,7 +374,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
         *v20 = v3->unk_13;
         break;
     case 18:
-        v2 = GetPartyFromSavedata(v14->unk_08);
+        v2 = Party_GetFromSavedata(v14->unk_08);
 
         for (v11 = 0; v11 < 3; v11++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_2C[v11]);
@@ -538,7 +538,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
         *v20 = ov104_02239014(v3);
         break;
     case 46:
-        GX_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         break;
     case 47:
         *v20 = v3->unk_1F;

@@ -24,7 +24,7 @@ typedef struct {
     u16 isFlyAllowed : 1;
 } MapHeader;
 
-u32 HeaderIdBoundsCheck(u32 param0);
+u32 MapHeader_IDBoundsCheck(u32 param0);
 const u16 sub_0203A038(u32 param0);
 const u16 sub_0203A04C(u32 param0);
 const u16 MapHeader_GetMapMatrixID(u32 param0);

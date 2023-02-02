@@ -115,8 +115,8 @@ UnkStruct_02009508 * sub_02009508 (const UnkStruct_02009508_1 * param0, int para
         v1++;
     }
 
-    v2 = AllocFromHeap(param1, sizeof(UnkStruct_02009508));
-    v2->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_ov19_021DA864) * v1);
+    v2 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02009508));
+    v2->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov19_021DA864) * v1);
     v2->unk_04 = v1;
 
     for (v0 = 0; v0 < v2->unk_04; v0++) {
@@ -131,10 +131,10 @@ void sub_020095A8 (UnkStruct_02009508 * param0)
     GF_ASSERT(param0);
 
     if (param0->unk_00) {
-        FreeToHeap(param0->unk_00);
+        Heap_FreeToHeap(param0->unk_00);
     }
 
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 UnkStruct_020218BC * sub_020095C4 (int param0, UnkStruct_0200C738 * param1, int param2)

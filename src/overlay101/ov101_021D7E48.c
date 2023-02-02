@@ -51,7 +51,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
 
 UnkStruct_ov101_021D7E48 * ov101_021D7E48 (u32 param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9, u32 param10)
 {
-    UnkStruct_ov101_021D7E48 * v0 = AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48)));
+    UnkStruct_ov101_021D7E48 * v0 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48)));
 
     GF_ASSERT(v0 != NULL);
 
@@ -73,10 +73,10 @@ UnkStruct_ov101_021D7E48 * ov101_021D7E48 (u32 param0, u32 param1, u32 param2, u
     v0->unk_1A4 = sub_02009714(param4, 1, param0);
     v0->unk_1A8 = sub_02009714(param5, 2, param0);
     v0->unk_1AC = sub_02009714(param6, 3, param0);
-    v0->unk_1B0 = AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
-    v0->unk_1B4 = AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
-    v0->unk_1B8 = AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);
-    v0->unk_1BC = AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param6);
+    v0->unk_1B0 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
+    v0->unk_1B4 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
+    v0->unk_1B8 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);
+    v0->unk_1BC = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param6);
 
     {
         u32 v1;
@@ -133,15 +133,15 @@ void ov101_021D7FB4 (UnkStruct_ov101_021D7E48 * param0)
     sub_02009754(param0->unk_1A4);
     sub_02009754(param0->unk_1A8);
     sub_02009754(param0->unk_1AC);
-    FreeToHeap(param0->unk_1B0);
-    FreeToHeap(param0->unk_1B4);
-    FreeToHeap(param0->unk_1B8);
-    FreeToHeap(param0->unk_1BC);
+    Heap_FreeToHeap(param0->unk_1B0);
+    Heap_FreeToHeap(param0->unk_1B4);
+    Heap_FreeToHeap(param0->unk_1B8);
+    Heap_FreeToHeap(param0->unk_1BC);
     sub_0201DC3C();
     sub_0201DCF0(param0->unk_19C);
     sub_020219C0(param0->unk_0C);
     sub_02021964(param0->unk_0C);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov101_021D80D4 (UnkStruct_ov101_021D7E48 * param0)

@@ -101,7 +101,7 @@ void sub_02002C60 (int param0)
         }
 
         if (v0 == NELEMS(Unk_020E4CD4)) {
-            FreeToHeap(Unk_02101D48->unk_84[param0]);
+            Heap_FreeToHeap(Unk_02101D48->unk_84[param0]);
             Unk_02101D48->unk_84[param0] = NULL;
         }
     }

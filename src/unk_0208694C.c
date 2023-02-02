@@ -37,7 +37,7 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -898,13 +898,13 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        CreateHeap(3, 18, 0x20000 + 0x8000);
+        Heap_Create(3, 18, 0x20000 + 0x8000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
@@ -936,7 +936,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
 
         {
             Unk_021BF67C.unk_65 = 1;
-            GX_SwapDisplay();
+            GXLayers_SwapDisplay();
         }
 
         NARC_dtor(v1);
@@ -1143,7 +1143,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
         v4 = sub_02073C74(18);
         sub_02073D80(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
     }
 
     if ((v0->unk_158 == 0) || (sub_0200220C(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
@@ -1171,11 +1171,11 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_02021964(v0->unk_188);
     sub_0200A878();
-    FreeToHeapExplicit(18, v0->unk_510);
+    Heap_FreeToHeapExplicit(18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
-        FreeToHeapExplicit(18, v0->unk_518);
-        FreeToHeapExplicit(18, v0->unk_520);
+        Heap_FreeToHeapExplicit(18, v0->unk_518);
+        Heap_FreeToHeapExplicit(18, v0->unk_520);
     }
 
     sub_02019044(v0->unk_160, 7);
@@ -1200,11 +1200,11 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B3F0(v0->unk_168);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(18);
+    Heap_Destroy(18);
 
     {
         Unk_021BF67C.unk_65 = 0;
-        GX_SwapDisplay();
+        GXLayers_SwapDisplay();
     }
 
     return 1;
@@ -1214,7 +1214,7 @@ UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param
 {
     UnkStruct_0208737C * v0;
 
-    v0 = (UnkStruct_0208737C *)AllocFromHeap(param0, sizeof(UnkStruct_0208737C));
+    v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(param0, sizeof(UnkStruct_0208737C));
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -1237,7 +1237,7 @@ void sub_0208716C (UnkStruct_0208737C * param0)
     GF_ASSERT((param0) != NULL);
 
     sub_020237BC(param0->unk_18);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void sub_02087190 (void * param0)
@@ -1273,7 +1273,7 @@ static void sub_020871CC (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void sub_020871EC (UnkStruct_02018340 * param0)
@@ -1386,14 +1386,14 @@ static void sub_020871EC (UnkStruct_02018340 * param0)
 
 static void sub_0208732C (int param0)
 {
-    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
-    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, param0);
-    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG2, param0);
-    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG3, 0);
-    GX_EngineAToggleLayers(GX_BLEND_PLANEMASK_OBJ, param0);
-    GX_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
-    GX_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
-    GX_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, param0);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG2, param0);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_OBJ, param0);
+    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG0, param0);
+    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
+    GXLayers_EngineBToggleLayers(GX_BLEND_PLANEMASK_OBJ, 0);
 }
 
 static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1)
@@ -1422,7 +1422,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         v1 = sub_02073C74(18);
         sub_02073D80(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         sub_0200B538(param0->unk_168, 0, sub_02076B10(v1));
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 
     if (v0->unk_44 != 0) {
@@ -1489,7 +1489,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
 
             sub_02073D80(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             sub_0200B538(param0->unk_168, 0, sub_02076B10(v4));
-            FreeToHeap(v4);
+            Heap_FreeToHeap(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;
             sub_02023D28(v0, param0->unk_D8);
@@ -1515,7 +1515,7 @@ static void sub_0208765C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * para
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeapExplicit(18, param0);
+    Heap_FreeToHeapExplicit(18, param0);
 }
 
 static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)
@@ -1667,8 +1667,8 @@ static void sub_02087A10 (UnkStruct_02087A10 * param0)
         sub_02087BE4(param0, &v1);
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1)

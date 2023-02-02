@@ -25,8 +25,8 @@ UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
 {
     UnkStruct_ov22_02254DE0 * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov22_02254DE0));
-    v0->unk_00 = AllocFromHeap(param1, sizeof(UnkStruct_ov22_02255040) * param0);
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02254DE0));
+    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02255040) * param0);
     memset(v0->unk_00, 0, sizeof(UnkStruct_ov22_02255040) * param0);
     v0->unk_04 = param0;
 
@@ -35,8 +35,8 @@ UnkStruct_ov22_02254DE0 * ov22_02254DE0 (int param0, int param1)
 
 void ov22_02254E0C (UnkStruct_ov22_02254DE0 * param0)
 {
-    FreeToHeap(param0->unk_00);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0);
     param0 = NULL;
 }
 

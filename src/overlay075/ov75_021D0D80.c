@@ -34,7 +34,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200A784.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
@@ -134,7 +134,7 @@ int ov75_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_020978D8 * v0;
     UnkStruct_ov75_021D1184 * v1 = (UnkStruct_ov75_021D1184 *)sub_0200682C(param0);
 
-    CreateHeap(3, 41, 0x20000);
+    Heap_Create(3, 41, 0x20000);
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov75_021D1184), 41);
     memset(v1, 0, sizeof(UnkStruct_ov75_021D1184));
 
@@ -174,7 +174,7 @@ int ov75_021D0E10 (UnkStruct_020067E8 * param0, int * param1)
     v1 = v0->unk_00;
 
     sub_02006830(param0);
-    DestroyHeap(v1);
+    Heap_Destroy(v1);
 
     return 1;
 }
@@ -387,8 +387,8 @@ static int ov75_021D1184 (UnkStruct_ov75_021D1184 * param0)
     case 0:
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -404,7 +404,7 @@ static int ov75_021D1184 (UnkStruct_ov75_021D1184 * param0)
         }
 
         sub_02017798(ov75_021D131C, param0);
-        GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         sub_0200F338(0);
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 28, 4);
@@ -449,8 +449,8 @@ static int ov75_021D1184 (UnkStruct_ov75_021D1184 * param0)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         sub_02017798(NULL, NULL);
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -571,7 +571,7 @@ static void ov75_021D1460 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov75_021D1480 (UnkStruct_ov75_021D1184 * param0)
@@ -698,7 +698,7 @@ static void ov75_021D1564 (UnkStruct_ov75_021D1184 * param0)
     sub_02019044(param0->unk_18, 2);
     sub_02019044(param0->unk_18, 1);
     sub_02019044(param0->unk_18, 0);
-    FreeToHeap(param0->unk_18);
+    Heap_FreeToHeap(param0->unk_18);
 }
 
 static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
@@ -720,16 +720,16 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
     sub_0200DD0C(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
 
     v1 = NARC_GetMemberSize(v5, v6);
-    v2 = AllocFromHeapAtEnd(param0->unk_00, v1);
+    v2 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, v6, (void *)v2);
 
     NNS_G2dGetUnpackedCharacterData(v2, &v3);
     sub_0201958C(param0->unk_18, 1, v3->pRawData, v3->szByte, 0);
     sub_0201958C(param0->unk_18, 4, v3->pRawData, v3->szByte, 0);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v8);
-    v2 = AllocFromHeapAtEnd(param0->unk_00, v1);
+    v2 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, v8, (void *)v2);
 
     NNS_G2dGetUnpackedPaletteData(v2, &v4);
@@ -754,15 +754,15 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
     sub_020039B0(param0->unk_30, 2, 0, 16 * 3, 16, 0x0);
     sub_02003858(param0->unk_30, 1);
     sub_02003694(param0->unk_30);
-    FreeToHeap(v2);
+    Heap_FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v7);
-    param0->unk_34 = AllocFromHeap(param0->unk_00, v1);
+    param0->unk_34 = Heap_AllocFromHeap(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, v7, (void *)param0->unk_34);
     NNS_G2dGetUnpackedScreenData(param0->unk_34, &(param0->unk_3C));
 
     v1 = NARC_GetMemberSize(v5, 36);
-    param0->unk_38 = AllocFromHeap(param0->unk_00, v1);
+    param0->unk_38 = Heap_AllocFromHeap(param0->unk_00, v1);
     NARC_ReadWholeMember(v5, 36, (void *)param0->unk_38);
     NNS_G2dGetUnpackedScreenData(param0->unk_38, &(param0->unk_40));
 
@@ -785,8 +785,8 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
 
 static void ov75_021D1868 (UnkStruct_ov75_021D1184 * param0)
 {
-    FreeToHeap(param0->unk_38);
-    FreeToHeap(param0->unk_34);
+    Heap_FreeToHeap(param0->unk_38);
+    Heap_FreeToHeap(param0->unk_34);
     sub_02002FA0(param0->unk_30, 2);
     sub_02002FA0(param0->unk_30, 0);
     sub_02002F54(param0->unk_30);

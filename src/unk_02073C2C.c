@@ -62,7 +62,7 @@
 #include "unk_020021B0.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
 #include "unk_0200C6E4.h"
@@ -270,7 +270,7 @@ UnkStruct_02073C74 * sub_02073C74 (u32 param0)
 {
     UnkStruct_02073C74 * v0;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_02073C74));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02073C74));
     sub_02073C2C(v0);
 
     return v0;
@@ -364,7 +364,7 @@ void sub_02073D80 (UnkStruct_02073C74 * param0, int param1, int param2, int para
     v1 = sub_0202818C(0);
 
     sub_02074B30(param0, 170, v1);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     v0 = 0;
     sub_02074B30(param0, 162, (u8 *)&v0);
@@ -572,7 +572,7 @@ void sub_020741B8 (UnkStruct_02073C74 * param0)
     v19 = sub_02074470(param0, 18, 0);
     v22 = sub_02074470(param0, 112, 0);
     v20 = sub_02074470(param0, 5, 0);
-    v26 = AllocFromHeap(0, sizeof(UnkStruct_02075874));
+    v26 = Heap_AllocFromHeap(0, sizeof(UnkStruct_02075874));
 
     sub_02078208(v20, v22, v26);
 
@@ -608,7 +608,7 @@ void sub_020741B8 (UnkStruct_02073C74 * param0)
     v7 = sub_02075C0C(sub_02075BCC(param0), v7, 0x5);
 
     sub_02074B30(param0, 169, (u8 *)&v7);
-    FreeToHeap(v26);
+    Heap_FreeToHeap(v26);
 
     if ((v1 == 0) && (v0 != 0)) {
         (void)0;
@@ -904,7 +904,7 @@ static u32 sub_020745D0 (UnkStruct_02073C74_sub1 * param0, int param1, void * pa
     case 67:
     case 68:
     case 69:
-        v0 = GetMoveMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
+        v0 = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
         break;
     case 70:
         v0 = v3->unk_10_0;
@@ -1122,7 +1122,7 @@ static u32 sub_020745D0 (UnkStruct_02073C74_sub1 * param0, int param1, void * pa
     case 177:
     case 178:
         if ((v2->unk_00 == 493) && (v2->unk_0D == 121)) {
-            v0 = sub_02077988(GetItemAttribute(v2->unk_02, 1, 0));
+            v0 = sub_02077988(Item_GetAttribute(v2->unk_02, 1, 0));
         } else {
             v0 = sub_020759CC(v2->unk_00, v3->unk_18_3, 6 + (param1 - 177));
         }
@@ -1777,8 +1777,8 @@ static void sub_02075454 (UnkStruct_02073C74_sub1 * param0, int param1, int para
     case 59:
     case 60:
     case 61:
-        if ((v3->unk_08[param1 - 58] + param2) > GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
-            v3->unk_08[param1 - 58] = GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
+        if ((v3->unk_08[param1 - 58] + param2) > MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
+            v3->unk_08[param1 - 58] = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
         } else {
             v3->unk_08[param1 - 58] += param2;
         }
@@ -1979,7 +1979,7 @@ UnkStruct_02075874 * sub_02075874 (int param0, int param1, int param2)
 {
     UnkStruct_02075874 * v0;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_02075874));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02075874));
     sub_02078208(param0, param1, v0);
 
     return v0;
@@ -1989,7 +1989,7 @@ UnkStruct_02075874 * sub_02075894 (int param0, int param1)
 {
     UnkStruct_02075874 * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_02075874));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02075874));
     sub_020781F8(param0, v0);
 
     return v0;
@@ -2109,7 +2109,7 @@ u32 sub_020758B0 (UnkStruct_02075874 * param0, int param1)
 void sub_020759B8 (UnkStruct_02075874 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 u32 sub_020759CC (int param0, int param1, int param2)
@@ -2190,7 +2190,7 @@ u32 sub_02075AD0 (int param0, int param1)
 void sub_02075AE4 (int param0, u32 * param1)
 {
     GF_ASSERT(param0 < 8);
-    ReadWholeNarcMemberByIndexPair(param1, 3, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, 3, param0);
 }
 
 u32 sub_02075B00 (int param0, int param1)
@@ -2201,11 +2201,11 @@ u32 sub_02075B00 (int param0, int param1)
     GF_ASSERT(param0 < 8);
     GF_ASSERT(param1 <= 101);
 
-    v1 = AllocFromHeap(0, 101 * 4);
+    v1 = Heap_AllocFromHeap(0, 101 * 4);
     sub_02075AE4(param0, v1);
 
     v0 = v1[param1];
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
 
     return v0;
 }
@@ -2376,7 +2376,7 @@ void sub_02075C74 (UnkStruct_02073C74 * param0, u8 param1, u16 param2)
     }
 
     v1 = sub_02074470(param0, 6, NULL);
-    v5 = GetItemAttribute(v1, 1, 0);
+    v5 = Item_GetAttribute(v1, 1, 0);
     v4 = 0;
     v2 = sub_02074470(param0, 9, NULL);
 
@@ -2953,7 +2953,7 @@ u8 sub_02076648 (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
         break;
     }
 
-    ReadWholeNarcMemberByIndexPair(&v2, v0, v1);
+    NARC_ReadWholeMemberByIndexPair(&v2, v0, v1);
 
     return v2;
 }
@@ -3044,7 +3044,7 @@ static u8 sub_020767BC (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
         break;
     }
 
-    ReadWholeNarcMemberByIndexPair(&v2, v0, v1);
+    NARC_ReadWholeMemberByIndexPair(&v2, v0, v1);
 
     return v2;
 }
@@ -3219,7 +3219,7 @@ u16 sub_02076B94 (Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 pa
     v6 = sub_02074470(param1, 0, NULL);
     v8 = sub_02074470(param1, 20, NULL);
     v9 = (v6 & 0xffff0000) >> 16;
-    v7 = GetItemAttribute(v1, 1, 0);
+    v7 = Item_GetAttribute(v1, 1, 0);
 
     if (v0 != 64) {
         if ((v7 == 64) && (param2 != 3)) {
@@ -3231,7 +3231,7 @@ u16 sub_02076B94 (Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 pa
         param4 = &v11;
     }
 
-    v10 = AllocFromHeap(0, sizeof(UnkStruct_0207821C));
+    v10 = Heap_AllocFromHeap(0, sizeof(UnkStruct_0207821C));
     sub_0207821C(v0, v10);
 
     switch (param2) {
@@ -3431,7 +3431,7 @@ u16 sub_02076B94 (Party * param0, UnkStruct_02073C74 * param1, u8 param2, u16 pa
         break;
     }
 
-    FreeToHeap(v10);
+    Heap_FreeToHeap(v10);
     return v4;
 }
 
@@ -3479,7 +3479,7 @@ void sub_02077020 (UnkStruct_02073C74_sub1 * param0)
     int v4;
     u16 v5;
     u8 v6;
-    u16 * v7 = AllocFromHeap(0, 44);
+    u16 * v7 = Heap_AllocFromHeap(0, 44);
 
     v0 = sub_02073D20(param0);
     v2 = sub_02074570(param0, 5, 0);
@@ -3505,7 +3505,7 @@ void sub_02077020 (UnkStruct_02073C74_sub1 * param0)
         v1++;
     }
 
-    FreeToHeap(v7);
+    Heap_FreeToHeap(v7);
     sub_02073D48(param0, v0);
 }
 
@@ -3568,7 +3568,7 @@ void sub_02077144 (UnkStruct_02073C74_sub1 * param0, u16 param1)
     }
 
     v1[3] = param1;
-    v2[3] = GetMoveAttribute(param1, 5);
+    v2[3] = MoveTable_GetMoveAttribute(param1, 5);
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -3589,7 +3589,7 @@ void sub_020771F8 (UnkStruct_02073C74 * param0, u16 param1, u8 param2)
     v1 = 0;
     sub_02074B30(param0, 62 + param2, &v1);
 
-    v0 = GetMoveMaxPP(param1, 0);
+    v0 = MoveTable_GetMoveMaxPP(param1, 0);
     sub_02074B30(param0, 58 + param2, (u8 *)&v0);
 
     return;
@@ -3608,7 +3608,7 @@ void sub_02077238 (UnkStruct_02073C74_sub1 * param0, u16 param1, u8 param2)
     sub_02074C60(param0, 54 + param2, (u8 *)&param1);
 
     v1 = sub_02074570(param0, 62 + param2, NULL);
-    v0 = GetMoveMaxPP(param1, v1);
+    v0 = MoveTable_GetMoveMaxPP(param1, v1);
 
     sub_02074C60(param0, 58 + param2, (u8 *)&v0);
 }
@@ -3619,7 +3619,7 @@ u16 sub_0207727C (UnkStruct_02073C74 * param0, int * param1, u16 * param2)
     u16 v1;
     int v2;
     u8 v3;
-    u16 * v4 = AllocFromHeap(0, 44);
+    u16 * v4 = Heap_AllocFromHeap(0, 44);
 
     v1 = sub_02074470(param0, 5, NULL);
     v2 = sub_02074470(param0, 112, NULL);
@@ -3628,7 +3628,7 @@ u16 sub_0207727C (UnkStruct_02073C74 * param0, int * param1, u16 * param2)
     sub_02077D28(v1, v2, v4);
 
     if (v4[param1[0]] == 0xffff) {
-        FreeToHeap(v4);
+        Heap_FreeToHeap(v4);
         return 0x0;
     }
 
@@ -3636,7 +3636,7 @@ u16 sub_0207727C (UnkStruct_02073C74 * param0, int * param1, u16 * param2)
         param1[0]++;
 
         if (v4[param1[0]] == 0xffff) {
-            FreeToHeap(v4);
+            Heap_FreeToHeap(v4);
             return 0x0;
         }
     }
@@ -3648,7 +3648,7 @@ u16 sub_0207727C (UnkStruct_02073C74 * param0, int * param1, u16 * param2)
         v0 = sub_020770C4(param0, param2[0]);
     }
 
-    FreeToHeap(v4);
+    Heap_FreeToHeap(v4);
 
     return v0;
 }
@@ -3737,7 +3737,7 @@ void sub_020774C8 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02073C74 * param1
     v1 = sub_0202818C(0);
 
     sub_02074B30(param1, 170, v1);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
     sub_02074B30(param1, 162, (u8 *)&v0);
 
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -3774,7 +3774,7 @@ u16 sub_020775A4 (u16 param0)
 {
     u16 v0;
 
-    ReadFromNarcMemberByIndexPair(&v0, 109, 0, param0 * 2, 2);
+    NARC_ReadFromMemberByIndexPair(&v0, 109, 0, param0 * 2, 2);
 
     return v0;
 }
@@ -3784,7 +3784,7 @@ u16 sub_020775C4 (u16 param0)
     u16 v0 = 0;
 
     if (param0 <= 210) {
-        ReadFromNarcMemberByIndexPair(&v0, 145, 0, param0 * 2, 2);
+        NARC_ReadFromMemberByIndexPair(&v0, 145, 0, param0 * 2, 2);
     }
 
     return v0;
@@ -3829,7 +3829,7 @@ s8 sub_02077648 (u32 param0, int param1)
 int sub_02077660 (int param0, int param1, u16 * param2)
 {
     int v0;
-    u16 * v1 = AllocFromHeap(0, 44);
+    u16 * v1 = Heap_AllocFromHeap(0, 44);
 
     sub_02077D28(param0, param1, v1);
 
@@ -3840,7 +3840,7 @@ int sub_02077660 (int param0, int param1, u16 * param2)
         v0++;
     }
 
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v1);
     return v0;
 }
 
@@ -4033,7 +4033,7 @@ void sub_02077930 (UnkStruct_02073C74_sub1 * param0)
     v2 = sub_02074570(param0, 6, NULL);
 
     if ((v0 == 493) && (v1 == 121)) {
-        v3 = sub_02077988(GetItemAttribute(v2, 1, 0));
+        v3 = sub_02077988(Item_GetAttribute(v2, 1, 0));
         sub_02074C60(param0, 112, &v3);
     }
 }
@@ -4326,7 +4326,7 @@ BOOL sub_02077C20 (UnkStruct_02073C74 * param0, int param1, int param2)
 void sub_02077D28 (int param0, int param1, u16 * param2)
 {
     param0 = sub_02078740(param0, param1);
-    ReadWholeNarcMemberByIndexPair(param2, 33, param0);
+    NARC_ReadWholeMemberByIndexPair(param2, 33, param0);
 }
 
 void sub_02077D3C (UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7)
@@ -4561,23 +4561,23 @@ void sub_020780C4 (UnkStruct_02073C74 * param0, u32 param1)
 
     sub_0207822C(&param0->unk_00.unk_08, sizeof(UnkStruct_02075454) * 4, param0->unk_00.unk_06);
     sub_0207822C(&param0->unk_08, sizeof(UnkStruct_02073C74_sub2), param0->unk_00.unk_00);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void sub_020781F8 (int param0, UnkStruct_02075874 * param1)
 {
-    ReadWholeNarcMemberByIndexPair(param1, 2, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, 2, param0);
 }
 
 static void sub_02078208 (int param0, int param1, UnkStruct_02075874 * param2)
 {
     param0 = sub_02078740(param0, param1);
-    ReadWholeNarcMemberByIndexPair(param2, 2, param0);
+    NARC_ReadWholeMemberByIndexPair(param2, 2, param0);
 }
 
 static void sub_0207821C (int param0, UnkStruct_0207821C * param1)
 {
-    ReadWholeNarcMemberByIndexPair(param1, 34, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, 34, param0);
 }
 
 static void sub_0207822C (void * param0, u32 param1, u32 param2)

@@ -71,7 +71,7 @@ const UnkStruct_0208BE5C Unk_ov57_021D0F70 = {
 
 static int ov57_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
-    CreateHeap(3, 77, 131072);
+    Heap_Create(3, 77, 131072);
     sub_02001028();
 
     return 1;
@@ -87,7 +87,7 @@ static int ov57_021D0D98 (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
 {
-    DestroyHeap(77);
+    Heap_Destroy(77);
     sub_02000EC4(0xffffffff, &Unk_020F6824);
 
     return 1;
@@ -95,7 +95,7 @@ static int ov57_021D0DAC (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0DC8 (UnkStruct_020067E8 * param0, int * param1)
 {
-    CreateHeap(3, 77, 131072);
+    Heap_Create(3, 77, 131072);
     sub_02001028();
 
     return 1;
@@ -113,14 +113,14 @@ static int ov57_021D0DE0 (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0E00 (UnkStruct_020067E8 * param0, int * param1)
 {
-    DestroyHeap(77);
+    Heap_Destroy(77);
     sub_02000EC4(0xffffffff, &Unk_020EA10C);
     return 1;
 }
 
 static int ov57_021D0E1C (UnkStruct_020067E8 * param0, int * param1)
 {
-    CreateHeap(3, 77, 131072);
+    Heap_Create(3, 77, 131072);
     sub_02001028();
 
     return 1;
@@ -137,7 +137,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
     if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
         sub_02025DE8(sub_02025CD8(v0));
         sub_02025CE4(v1);
-        sub_02077B8C(GetPartyFromSavedata(v0));
+        sub_02077B8C(Party_GetFromSavedata(v0));
     }
 
     sub_02017434(sub_02025E5C(v0));
@@ -146,7 +146,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
 
 static int ov57_021D0E90 (UnkStruct_020067E8 * param0, int * param1)
 {
-    DestroyHeap(77);
+    Heap_Destroy(77);
     sub_02000EC4(0xffffffff, &Unk_020EA11C);
     return 1;
 }

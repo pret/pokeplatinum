@@ -40,7 +40,7 @@ static void ov100_021D1758(UnkStruct_020203AC * param0, VecFx32 * param1);
 
 void * ov100_021D13E4 (UnkStruct_ov100_021D4DD8 * param0)
 {
-    UnkStruct_ov100_021D1808 * v0 = AllocFromHeap(111, sizeof(UnkStruct_ov100_021D1808));
+    UnkStruct_ov100_021D1808 * v0 = Heap_AllocFromHeap(111, sizeof(UnkStruct_ov100_021D1808));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D1808));
 
@@ -192,11 +192,11 @@ BOOL ov100_021D16C4 (void * param0)
         ov100_021D4AA4(&v0->unk_1A4.unk_00[1], &v0->unk_7C4->unk_1C, 2);
         ov100_021D4AA4(&v0->unk_1A4.unk_00[2], &v0->unk_7C4->unk_1C, 2);
         ov100_021D4AA4(&v0->unk_1A4.unk_498, &v0->unk_7C4->unk_1C, 0);
-        GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+        GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         v0->unk_00++;
         break;
     default:
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
         return 0;
     }
 

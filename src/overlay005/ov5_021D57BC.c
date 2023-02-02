@@ -18,7 +18,7 @@ UnkStruct_ov5_021D57D8 * ov5_021D57BC (void)
 {
     UnkStruct_ov5_021D57D8 * v0;
 
-    v0 = AllocFromHeap(4, sizeof(UnkStruct_ov5_021D57D8));
+    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021D57D8));
     MI_CpuClear32(v0, sizeof(UnkStruct_ov5_021D57D8));
 
     return v0;
@@ -26,7 +26,7 @@ UnkStruct_ov5_021D57D8 * ov5_021D57BC (void)
 
 void ov5_021D57D8 (UnkStruct_ov5_021D57D8 ** param0)
 {
-    FreeToHeapExplicit(4, *param0);
+    Heap_FreeToHeapExplicit(4, *param0);
     *param0 = NULL;
 }
 

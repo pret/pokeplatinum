@@ -269,7 +269,7 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
     Party * v3;
 
     v1 = 40;
-    v3 = GetPartyFromSavedata(param0->unk_00);
+    v3 = Party_GetFromSavedata(param0->unk_00);
 
     param0->unk_6A[0] = param1;
     param0->unk_6A[1] = param2;

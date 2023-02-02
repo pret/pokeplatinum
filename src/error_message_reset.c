@@ -91,7 +91,7 @@ static void VBlankIntr (void)
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void PrintErrorMessageAndReset (void)
+void ErrorMessageReset_PrintErrorAndReset (void)
 {
     UnkStruct_02018340 * bgConfig;
     UnkStruct_0205AA50 window;
@@ -107,7 +107,7 @@ void PrintErrorMessageAndReset (void)
     sErrorMessagePrinterLock = TRUE;
 
     OS_InitArenaHiAndLo(OS_ARENA_MAIN);
-    InitHeapSystem(sErrorMessageHeapParams, NELEMS(sErrorMessageHeapParams), NELEMS(sErrorMessageHeapParams), 0);
+    Heap_InitSystem(sErrorMessageHeapParams, NELEMS(sErrorMessageHeapParams), NELEMS(sErrorMessageHeapParams), 0);
 
     v4 = 3;
 
@@ -121,22 +121,22 @@ void PrintErrorMessageAndReset (void)
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
     Unk_021BF67C.unk_65 = 0;
-    GX_SwapDisplay();
+    GXLayers_SwapDisplay();
 
     G2_BlendNone();
     G2S_BlendNone();
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    GX_SetBanks(&sErrorMessageBanksConfig);
+    GXLayers_SetBanks(&sErrorMessageBanksConfig);
     bgConfig = sub_02018340(v5);
 
     sub_02018368(&sErrorMessageBgModeSet);
@@ -160,7 +160,7 @@ void PrintErrorMessageAndReset (void)
     sub_0201D738(&window, 0, errorString, 0, 0, 0, NULL);
     sub_020237BC(errorString);
 
-    GX_BothDispOn();
+    GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
@@ -192,7 +192,7 @@ void PrintErrorMessageAndReset (void)
 
     sub_0201A8FC(&window);
     sub_0200B190(errorMsgData);
-    FreeToHeap(bgConfig);
+    Heap_FreeToHeap(bgConfig);
 
     OS_ResetSystem(0);
 }

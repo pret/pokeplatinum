@@ -40,9 +40,9 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -408,13 +408,13 @@ int ov65_0223648C (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_0207DE04 * v1 = sub_02006840(param0);
     BOOL v2;
 
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay63), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 
     v2 = sub_020389B8();
     GF_ASSERT(v2 == 1);
 
-    CreateHeap(3, 96, 0x18000);
-    CreateHeap(3, 97, 0xa000);
+    Heap_Create(3, 96, 0x18000);
+    Heap_Create(3, 97, 0xa000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov65_022367A8), 96);
 
@@ -523,9 +523,9 @@ int ov65_0223668C (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0201DC3C();
     sub_02006830(param0);
-    DestroyHeap(97);
-    DestroyHeap(96);
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay63));
+    Heap_Destroy(97);
+    Heap_Destroy(96);
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 
     return 1;
 }
@@ -630,7 +630,7 @@ static void ov65_02236820 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
@@ -716,13 +716,13 @@ static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
         sub_02019EBC(param0->unk_00, 2);
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 
     v0 = NARC_ctor(92, param1);
 
@@ -747,12 +747,12 @@ static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
 
 static void ov65_022369F0 (UnkStruct_ov65_02236840 * param0)
 {
-    FreeToHeap(param0->unk_244);
-    FreeToHeap(param0->unk_250);
+    Heap_FreeToHeap(param0->unk_244);
+    Heap_FreeToHeap(param0->unk_250);
     sub_02019044(param0->unk_00, 2);
     sub_02019044(param0->unk_00, 1);
     sub_02019044(param0->unk_00, 0);
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
 }
 
 static void ov65_02236A28 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)

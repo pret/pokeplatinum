@@ -52,7 +52,7 @@ asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
    bne _022499DC
    add r0, r7, #0
    mov r1, #0xc8
-   bl AllocFromHeap
+   bl Heap_AllocFromHeap
    str r0, [sp, #4]
    ldr r0, [sp]
    ldr r1, [sp, #4]
@@ -93,7 +93,7 @@ asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
  _02249A3A:
    cmp r0, #0xa
    blo _02249A42
-   bl GF_AssertFail
+   bl ErrorHandling_AssertFail
  _02249A42:
    add r4, r4, #1
    add r7, r7, #2
@@ -116,7 +116,7 @@ asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
    mov r0, #0
    strb r0, [r5, r4]
    ldr r0, [sp, #4]
-   bl FreeToHeap
+   bl Heap_FreeToHeap
    add sp, #8
    pop {r3, r4, r5, r6, r7, pc}
 }
@@ -128,7 +128,7 @@ asm void ov98_02249A80 (void)
    add r0, r1, #0
    mov r1, #0xc8
    mov r5, #1
-   bl AllocFromHeap
+   bl Heap_AllocFromHeap
    add r4, r0, #0
    add r0, r6, #0
    add r1, r4, #0
@@ -153,7 +153,7 @@ asm void ov98_02249A80 (void)
    bne _02249AA6
  _02249AB8:
    add r0, r4, #0
-   bl FreeToHeap
+   bl Heap_FreeToHeap
    add r0, r5, #0
    pop {r4, r5, r6, pc}
    nop
@@ -176,7 +176,7 @@ asm void ov98_02249ACC (void)
    cmp r0, #0
    bne _02249AEC
    bne _02249AFA
-   bl GF_AssertFail
+   bl ErrorHandling_AssertFail
    b _02249AFA
  _02249AEC:
    add r4, r4, #1

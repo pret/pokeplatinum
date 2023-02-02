@@ -148,7 +148,7 @@ int ov73_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov73_021D1058 * v0;
     int v1 = 82;
 
-    CreateHeap(3, v1, 0x40000);
+    Heap_Create(3, v1, 0x40000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov73_021D1058), v1);
     memset(v0, 0, sizeof(UnkStruct_ov73_021D1058));
@@ -166,8 +166,8 @@ int ov73_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_8A = 0;
     v0->unk_8B = 0;
     v0->unk_90 = 0;
-    v0->unk_B8 = AllocFromHeap(v1, 0x20);
-    v0->unk_BC = AllocFromHeap(v1, 0x20);
+    v0->unk_B8 = Heap_AllocFromHeap(v1, 0x20);
+    v0->unk_BC = Heap_AllocFromHeap(v1, 0x20);
 
     return 1;
 }
@@ -185,8 +185,8 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
         sub_02017798(NULL, NULL);
         sub_020177BC(NULL, NULL);
 
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
@@ -197,7 +197,7 @@ int ov73_021D0E20 (UnkStruct_020067E8 * param0, int * param1)
         ov73_021D1318(v0);
 
         sub_02017798(ov73_021D0FF0, (void *)v0);
-        GX_BothDispOn();
+        GXLayers_TurnBothDispOn();
 
         *param1 = 1;
         break;
@@ -251,8 +251,8 @@ int ov73_021D0F7C (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov73_021D1058 * v0 = sub_0200682C(param0);
     int v1 = v0->unk_00;
 
-    FreeToHeap(v0->unk_B8);
-    FreeToHeap(v0->unk_BC);
+    Heap_FreeToHeap(v0->unk_B8);
+    Heap_FreeToHeap(v0->unk_BC);
 
     sub_02025EE0(sub_02025E38(v0->unk_04), v0->unk_70->unk_18);
     sub_02025F2C(sub_02025E38(v0->unk_04), v0->unk_70->unk_04);
@@ -266,7 +266,7 @@ int ov73_021D0F7C (UnkStruct_020067E8 * param0, int * param1)
     sub_0208716C(v0->unk_70);
     sub_0208716C(v0->unk_74);
     sub_02006830(param0);
-    DestroyHeap(v1);
+    Heap_Destroy(v1);
     sub_02000EC4(FS_OVERLAY_ID(overlay57), &Unk_ov57_021D0F80);
 
     return 1;
@@ -322,7 +322,7 @@ static void ov73_021D1058 (UnkStruct_ov73_021D1058 * param0)
             GX_VRAM_TEXPLTT_NONE
         };
 
-        GX_SetBanks(&v0);
+        GXLayers_SetBanks(&v0);
     }
 
     {
@@ -455,7 +455,7 @@ static void ov73_021D1238 (UnkStruct_ov73_021D1058 * param0)
     sub_02019044(param0->unk_18, 6);
     sub_02019044(param0->unk_18, 7);
 
-    FreeToHeap(param0->unk_18);
+    Heap_FreeToHeap(param0->unk_18);
 }
 
 static void ov73_021D12C4 (UnkStruct_ov73_021D1058 * param0)
@@ -1123,7 +1123,7 @@ static void ov73_021D1B80 (UnkStruct_ov73_021D1058 * param0)
 
     sub_02075FB4(&v0, 427, 0, 2, 0, 0, 0);
 
-    v1 = AllocFromHeap(param0->unk_00, (10 * 10) * 2);
+    v1 = Heap_AllocFromHeap(param0->unk_00, (10 * 10) * 2);
 
     {
         int v8;
@@ -1155,9 +1155,9 @@ static void ov73_021D1B80 (UnkStruct_ov73_021D1058 * param0)
     sub_02019690(v5, 32, 0, param0->unk_00);
     sub_0201958C(param0->unk_18, v5, v2, (10 * 10) * 0x20, 1);
     sub_0201972C(v5, v3, (2 * 16), (2 * 16) * v7);
-    FreeToHeap(v3);
-    FreeToHeap(v2);
-    FreeToHeap(v1);
+    Heap_FreeToHeap(v3);
+    Heap_FreeToHeap(v2);
+    Heap_FreeToHeap(v1);
 }
 
 static void ov73_021D1CE0 (UnkStruct_ov73_021D1058 * param0)

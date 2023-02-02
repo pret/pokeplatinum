@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "heap.h"
 #include "overlay005/ov5_021F067C.h"
 
@@ -39,13 +39,13 @@ UnkStruct_ov5_021F06D8 * ov5_021F067C (u32 param0, u32 param1, u32 param2, u32 p
     v1 = param2 + v0 + (sizeof(UnkStruct_ov5_021F06D8));
 
     {
-        BOOL v3 = CreateHeap(param0, param1, v1);
+        BOOL v3 = Heap_Create(param0, param1, v1);
 
         GF_ASSERT(v3 == 1);
     }
 
     param2 = v1 - param2;
-    v2 = AllocFromHeap(param1, param2);
+    v2 = Heap_AllocFromHeap(param1, param2);
 
     GF_ASSERT(v2 != NULL);
     memset(v2, 0, param2);
@@ -78,8 +78,8 @@ void ov5_021F06D8 (UnkStruct_ov5_021F06D8 * param0)
     {
         u32 v2 = param0->unk_04;
 
-        FreeToHeap(param0);
-        DestroyHeap(v2);
+        Heap_FreeToHeap(param0);
+        Heap_Destroy(v2);
     }
 }
 
@@ -140,9 +140,9 @@ static void * ov5_021F07B4 (UnkStruct_ov5_021F06D8 * param0, u32 param1, int par
     void * v0;
 
     if (param2 == 0) {
-        v0 = AllocFromHeap(param0->unk_04, param1);
+        v0 = Heap_AllocFromHeap(param0->unk_04, param1);
     } else {
-        v0 = AllocFromHeapAtEnd(param0->unk_04, param1);
+        v0 = Heap_AllocFromHeapAtEnd(param0->unk_04, param1);
     }
 
     GF_ASSERT(v0 != NULL);
@@ -151,7 +151,7 @@ static void * ov5_021F07B4 (UnkStruct_ov5_021F06D8 * param0, u32 param1, int par
 
 static void ov5_021F07D4 (void * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static UnkStruct_ov5_021F0814 * ov5_021F07DC (UnkStruct_ov5_021F06D8 * param0, u32 param1)

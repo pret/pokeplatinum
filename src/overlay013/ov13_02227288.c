@@ -352,7 +352,7 @@ static void ov13_02227910 (UnkStruct_ov13_02227244 * param0, u32 param1)
     v0 = &param0->unk_2C[2];
     v1 = sub_02023790(130, param0->unk_00->unk_0C);
 
-    GetItemDescriptionIntoString(v1, param0->unk_3C[param0->unk_114D][param1].unk_00, param0->unk_00->unk_0C);
+    Item_GetDescriptionIntoString(v1, param0->unk_3C[param0->unk_114D][param1].unk_00, param0->unk_00->unk_0C);
     sub_0201D78C(v0, 0, v1, 4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_020237BC(v1);
     sub_0201A9A4(v0);

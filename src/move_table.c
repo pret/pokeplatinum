@@ -3,24 +3,24 @@
 
 #include "struct_defs/struct_020790C4.h"
 
-#include "filesystem.h"
+#include "narc.h"
 #include "move_table.h"
 
 static void LoadMoveEntry(int moveID, MoveTable * moveTable);
 
-void LoadMoveTable (void * dest) {
-    ReadFromNarcMemberByIndexPair(dest, 9, 0, 0, sizeof(MoveTable) * (467 + 1));
+void MoveTable_Load (void * dest) {
+    NARC_ReadFromMemberByIndexPair(dest, 9, 0, 0, sizeof(MoveTable) * (467 + 1));
 }
 
-u32 GetMoveAttribute (int moveID, int attrno)
+u32 MoveTable_GetMoveAttribute (int moveID, int attrno)
 {
     MoveTable moveData;
 
     LoadMoveEntry(moveID, &moveData);
-    return GetMoveTableAttribute(&moveData, attrno);
+    return MoveTable_GetAttribute(&moveData, attrno);
 }
 
-u8 GetMoveMaxPP (u16 moveID, u8 ppUps)
+u8 MoveTable_GetMoveMaxPP (u16 moveID, u8 ppUps)
 {
     u8 pp;
 
@@ -28,13 +28,13 @@ u8 GetMoveMaxPP (u16 moveID, u8 ppUps)
         ppUps = 3;
     }
 
-    pp = GetMoveAttribute(moveID, 5);
+    pp = MoveTable_GetMoveAttribute(moveID, 5);
     pp += (pp * 20 * ppUps) / 100;
 
     return pp;
 }
 
-u32 GetMoveTableAttribute (MoveTable * moveTable, int attribute)
+u32 MoveTable_GetAttribute (MoveTable * moveTable, int attribute)
 {
     u32 ret;
 
@@ -82,5 +82,5 @@ u32 GetMoveTableAttribute (MoveTable * moveTable, int attribute)
 
 static void LoadMoveEntry (int moveID, MoveTable * moveTable)
 {
-    ReadWholeNarcMemberByIndexPair(moveTable, 9, moveID);
+    NARC_ReadWholeMemberByIndexPair(moveTable, 9, moveID);
 }

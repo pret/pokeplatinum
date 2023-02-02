@@ -9,7 +9,7 @@
 
 UnkStruct_ov116_02262A44 * ov116_02262A44 (int param0, UnkStruct_ov116_022649E4 * param1)
 {
-    UnkStruct_ov116_02262A44 * v0 = AllocFromHeap(106, sizeof(UnkStruct_ov116_02262A44));
+    UnkStruct_ov116_02262A44 * v0 = Heap_AllocFromHeap(106, sizeof(UnkStruct_ov116_02262A44));
 
     memset(v0, 0, sizeof(UnkStruct_ov116_02262A44));
 
@@ -22,7 +22,7 @@ UnkStruct_ov116_02262A44 * ov116_02262A44 (int param0, UnkStruct_ov116_022649E4 
 
 void ov116_02262A6C (UnkStruct_ov116_02262A44 * param0)
 {
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 BOOL ov116_02262A74 (UnkStruct_ov116_02262A44 * param0)

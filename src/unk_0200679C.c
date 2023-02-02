@@ -15,7 +15,7 @@ UnkStruct_0201CD38 * sub_0200679C (UnkFuncPtr_0201CE28 param0, int param1, u32 p
     void * v0;
 
     if (param1) {
-        v0 = AllocFromHeap(param3, param1);
+        v0 = Heap_AllocFromHeap(param3, param1);
 
         if (v0 == NULL) {
             return NULL;
@@ -36,7 +36,7 @@ void sub_020067D0 (UnkStruct_0201CD38 * param0)
     v0 = sub_0201CED0(param0);
 
     if (v0 != NULL) {
-        FreeToHeap(v0);
+        Heap_FreeToHeap(v0);
     }
 
     sub_0200DA58(param0);

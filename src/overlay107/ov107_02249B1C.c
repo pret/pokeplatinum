@@ -39,7 +39,7 @@ UnkStruct_ov107_02249B8C * ov107_02249B1C (UnkStruct_ov107_02249954 * param0, u3
     UnkStruct_ov107_02249B8C * v0;
     VecFx32 v1;
 
-    v0 = AllocFromHeap(100, sizeof(UnkStruct_ov107_02249B8C));
+    v0 = Heap_AllocFromHeap(100, sizeof(UnkStruct_ov107_02249B8C));
     memset(v0, 0, sizeof(UnkStruct_ov107_02249B8C));
 
     v0->unk_00 = param5;
@@ -61,7 +61,7 @@ void * ov107_02249B8C (UnkStruct_ov107_02249B8C * param0)
     }
 
     sub_02021BD4(param0->unk_04);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return NULL;
 }

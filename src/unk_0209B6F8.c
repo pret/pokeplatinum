@@ -20,7 +20,7 @@
 #include "overlay104/struct_ov104_0223D3B0_sub1.h"
 #include "overlay104/struct_ov104_0223D8F0.h"
 
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
 #include "unk_0209B6F8.h"
@@ -142,7 +142,7 @@ int sub_0209B75C (UnkStruct_020067E8 * param0, int * param1)
             }
 
             if ((v0->unk_08 != NULL) && (v0->unk_10 == 1)) {
-                FreeToHeap(v0->unk_08);
+                Heap_FreeToHeap(v0->unk_08);
             }
 
             v0->unk_04 = NULL;
@@ -225,16 +225,16 @@ static void sub_0209B8E8 (UnkStruct_0209B75C * param0)
 
 static void sub_0209B924 (void)
 {
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay104), 2);
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay105), 2);
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay63), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay105), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
 }
 
 static void sub_0209B94C (void)
 {
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay104));
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay105));
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay63));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay105));
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
 
 UnkStruct_ov104_02230BE4 * sub_0209B970 (UnkStruct_0209B75C * param0)

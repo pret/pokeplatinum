@@ -421,7 +421,7 @@ UnkStruct_ov66_0222DFF8 * ov66_0222DDF0 (UnkStruct_021C0794 * param0, u32 param1
 {
     UnkStruct_ov66_0222DFF8 * v0;
 
-    v0 = AllocFromHeap(param1, sizeof(UnkStruct_ov66_0222DFF8));
+    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov66_0222DFF8));
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DFF8));
 
     v0->unk_00 = param0;
@@ -490,12 +490,12 @@ void ov66_0222DEEC (UnkStruct_ov66_0222DFF8 * param0)
         ov66_022317AC(param0->unk_04.unk_00);
 
         for (v2 = 0; v2 < 4; v2++) {
-            FreeToHeap(param0->unk_04.unk_E4[v2]);
+            Heap_FreeToHeap(param0->unk_04.unk_E4[v2]);
         }
     }
 
     ov66_02232598();
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 void ov66_0222DF58 (UnkStruct_ov66_0222DFF8 * param0)
@@ -1753,7 +1753,7 @@ void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
         v2 = sub_0202C250(sub_02025EF0(v1), v0->unk_38, 112, 22);
 
         sub_0202B758(v3, v2, 4);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 }
 
@@ -1774,7 +1774,7 @@ void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
         v2 = sub_0202C250(sub_02025EF0(v1), v0->unk_38, 112, 23);
 
         sub_0202B758(v3, v2, 4);
-        FreeToHeap(v1);
+        Heap_FreeToHeap(v1);
     }
 }
 
@@ -2321,7 +2321,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
 
     {
         v0 = sub_02025E38(param1);
-        v1 = GetPartyFromSavedata(param1);
+        v1 = Party_GetFromSavedata(param1);
         v3 = sub_02027560(param1);
         v2 = sub_0202C878(param1);
         v4 = sub_02025CD8(param1);
@@ -2556,20 +2556,20 @@ static void ov66_0222FBF0 (UnkStruct_ov66_0222FBF0 * param0, u32 param1)
 
 static void ov66_0222FC00 (UnkStruct_ov66_0222FBF0 * param0)
 {
-    FreeToHeap(param0->unk_00);
+    Heap_FreeToHeap(param0->unk_00);
 }
 
 static void ov66_0222FC0C (UnkStruct_ov66_0222FBF0 * param0, const UnkStruct_ov66_0222F6C4 * param1, u32 param2)
 {
     UnkStruct_ov66_0222E71C * v0;
 
-    v0 = AllocFromHeap(param2, sizeof(UnkStruct_ov66_0222E71C));
+    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_0222E71C));
 
     MI_CpuCopyFast(&param1->unk_20, v0, sizeof(UnkStruct_ov66_0222E71C));
     MI_CpuCopy8(param1->unk_10, v0->unk_08, sizeof(u16) * (7 + 1));
 
     ov66_0222E640(v0, param0->unk_00, param2);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 }
 
 static void ov66_0222FC4C (UnkStruct_ov66_0222FBC8 * param0)

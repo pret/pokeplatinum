@@ -36,9 +36,9 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
-#include "poke_overlay.h"
+#include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
@@ -295,9 +295,9 @@ int ov108_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_ov108_02241DB0 * v1;
     UnkStruct_ov104_02238240 * v2;
 
-    HandleLoadOverlay(FS_OVERLAY_ID(overlay104), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     ov108_02242344();
-    CreateHeap(3, 103, 0x20000);
+    Heap_Create(3, 103, 0x20000);
 
     v1 = sub_0200681C(param0, sizeof(UnkStruct_ov108_02241DB0), 103);
     memset(v1, 0, sizeof(UnkStruct_ov108_02241DB0));
@@ -428,8 +428,8 @@ int ov108_02241D70 (UnkStruct_020067E8 * param0, int * param1)
     ov108_02242238(v1);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
-    DestroyHeap(103);
-    UnloadOverlayByID(FS_OVERLAY_ID(overlay104));
+    Heap_Destroy(103);
+    Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
     return 1;
 }
@@ -805,8 +805,8 @@ static void ov108_02242344 (void)
     sub_02017798(NULL, NULL);
     sub_020177BC(NULL, NULL);
 
-    GX_DisableEngineALayers();
-    GX_DisableEngineBLayers();
+    GXLayers_DisableEngineALayers();
+    GXLayers_DisableEngineBLayers();
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
@@ -909,13 +909,13 @@ static void ov108_022426B0 (UnkStruct_ov108_02241DB0 * param0)
 
 static void ov108_022426D4 (UnkStruct_02018340 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GX_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
     sub_02019044(param0, 3);
     sub_02019044(param0, 1);
     sub_02019044(param0, 4);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 
     return;
 }
@@ -950,7 +950,7 @@ static void ov108_02242740 (void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
     return;
 }
 
@@ -1032,7 +1032,7 @@ static void ov108_02242760 (UnkStruct_02018340 * param0)
     }
 
     G2_SetBG0Priority(0);
-    GX_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
 
     return;
 }
@@ -1076,7 +1076,7 @@ static void ov108_022428C0 (void)
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 7));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 7));
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     return;
 }

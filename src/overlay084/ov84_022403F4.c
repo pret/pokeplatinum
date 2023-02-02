@@ -174,8 +174,8 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov84_022411B0[] = {
 
 void ov84_022403F4 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_0201DBEC(32, 6);
     ov84_02240424(param0);
     ov84_022404C0(param0);
@@ -249,7 +249,7 @@ static void ov84_022404C0 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0200CE24(param0->unk_D8, param0->unk_DC, param0->unk_D4, 30, 0, 49404);
     sub_0200CE24(param0->unk_D8, param0->unk_DC, param0->unk_D4, 9, 0, 49405);
     sub_0200CE24(param0->unk_D8, param0->unk_DC, param0->unk_D4, 35, 0, 49406);
-    sub_0200CE0C(param0->unk_D8, param0->unk_DC, 16, GetItemIconCellArchiveIndex(), 0, 49407);
+    sub_0200CE0C(param0->unk_D8, param0->unk_DC, 16, Item_GetIndexOfIconNCER(), 0, 49407);
     sub_0200CE0C(param0->unk_D8, param0->unk_DC, 62, 5, 0, 49408);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 0, 0, 49401);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 23, 0, 49402);
@@ -257,7 +257,7 @@ static void ov84_022404C0 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 29, 0, 49404);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 8, 0, 49405);
     sub_0200CE54(param0->unk_D8, param0->unk_DC, param0->unk_D4, 34, 0, 49406);
-    sub_0200CE3C(param0->unk_D8, param0->unk_DC, 16, GetItemIconCellAnimationArchiveIndex(), 0, 49407);
+    sub_0200CE3C(param0->unk_D8, param0->unk_DC, 16, Item_GetIndexOfIconNANR(), 0, 49407);
     sub_0200CE3C(param0->unk_D8, param0->unk_DC, 62, 6, 0, 49408);
     sub_0207C9EC(param0->unk_D8, param0->unk_DC, 49409, 49409);
 }
@@ -443,8 +443,8 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
     }
 
     v0 = GetMoveFromTMOrHMItemID(param1);
-    v1 = GetMoveAttribute(v0, 3);
-    v2 = GetMoveAttribute(v0, 1);
+    v1 = MoveTable_GetMoveAttribute(v0, 3);
+    v2 = MoveTable_GetMoveAttribute(v0, 1);
 
     sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
     sub_0200D41C(param0->unk_E0[10], sub_0207C92C(v1) + 6);

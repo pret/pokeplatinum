@@ -254,7 +254,7 @@ static UnkStruct_ov21_021D95B8 * ov21_021D9534 (int param0, UnkStruct_ov21_021D0
     UnkStruct_ov21_021D95B8 * v0;
     UnkStruct_ov21_021E68F4 * v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D95B8));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D95B8));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D95B8));
@@ -272,7 +272,7 @@ static UnkStruct_ov21_021D95CC * ov21_021D957C (int param0, UnkStruct_ov21_021D0
     UnkStruct_ov21_021D95CC * v0;
     UnkStruct_ov21_021E68F4 * v1;
 
-    v0 = AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D95CC));
+    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021D95CC));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D95CC));
@@ -290,13 +290,13 @@ static UnkStruct_ov21_021D4660 * ov21_021D95B4 (int param0, UnkStruct_ov21_021D0
 static void ov21_021D95B8 (UnkStruct_ov21_021D95B8 * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021D95CC (UnkStruct_ov21_021D95CC * param0)
 {
     GF_ASSERT(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov21_021D95E0 (UnkStruct_ov21_021D4660 * param0)
@@ -315,7 +315,7 @@ static int ov21_021D95E8 (UnkStruct_ov21_021E6A68 * param0, void * param1)
     UnkStruct_ov21_021D9B24 * v1;
     int v2;
 
-    v1 = AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021D9B24));
+    v1 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov21_021D9B24));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021D9B24));
@@ -423,7 +423,7 @@ static int ov21_021D9780 (UnkStruct_ov21_021E6A68 * param0, void * param1)
 
     ov21_021D9B24(v0);
     ov21_021DB3C8(v0);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
 
     param0->unk_08 = NULL;
     return 1;
@@ -439,7 +439,7 @@ static int ov21_021D97A0 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
 
     switch (param1->unk_00) {
     case 0:
-        param1->unk_08 = AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021DC96C));
+        param1->unk_08 = Heap_AllocFromHeap(param1->unk_04, sizeof(UnkStruct_ov21_021DC96C));
         memset(param1->unk_08, 0, sizeof(UnkStruct_ov21_021DC96C));
         param1->unk_00++;
         break;
@@ -566,7 +566,7 @@ static int ov21_021D9960 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
         param1->unk_00++;
         break;
     case 3:
-        FreeToHeap(param1->unk_08);
+        Heap_FreeToHeap(param1->unk_08);
         param1->unk_08 = NULL;
         param1->unk_00++;
         break;
@@ -604,7 +604,7 @@ static void ov21_021D9A74 (UnkStruct_ov21_021D95CC * param0, const UnkStruct_ov2
     v0 = ov21_021D27B8(param0->unk_00, 75, 1, &v1, param2);
 
     sub_020198C0(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
-    FreeToHeap(v0);
+    Heap_FreeToHeap(v0);
     sub_0201C3C0(param0->unk_00->unk_00, 6);
 }
 
@@ -696,7 +696,7 @@ static void ov21_021D9BB0 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
 
 static void ov21_021D9BEC (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D95B8 * param1, int param2)
 {
-    param0->unk_04 = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 6);
+    param0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 6);
 
     ov21_021D154C(&param0->unk_04[1], 48 - (32 / 2), 48 + (32 / 2), 224 - (64 / 2), 224 + (64 / 2));
     ov21_021D154C(&param0->unk_04[0], 16 - (32 / 2), 16 + (32 / 2), 212 - (48 / 2), 212 + (48 / 2));
@@ -757,7 +757,7 @@ static void ov21_021D9CB8 (UnkStruct_ov21_021D9B24 * param0, int param1)
 static void ov21_021D9D00 (UnkStruct_ov21_021D9B24 * param0)
 {
     sub_02024034(param0->unk_00);
-    FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->unk_04);
     param0->unk_04 = NULL;
 }
 
@@ -784,7 +784,7 @@ static void ov21_021D9D18 (u32 param0, u32 param1, void * param2)
 static void ov21_021D9D50 (UnkStruct_ov21_021D9B24 * param0)
 {
     sub_02024034(param0->unk_08);
-    FreeToHeap(param0->unk_0C);
+    Heap_FreeToHeap(param0->unk_0C);
 
     param0->unk_0C = NULL;
 }
@@ -803,7 +803,7 @@ static void ov21_021D9D78 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 6);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 6);
 
     for (v0 = 0; v0 < 3; v0++) {
         v3 = 48 + (v0 * (48 - 16));
@@ -886,7 +886,7 @@ static void ov21_021D9EB4 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 10);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 10);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -986,7 +986,7 @@ static void ov21_021DA018 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 11);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 11);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1100,7 +1100,7 @@ static void ov21_021DA1C8 (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 10);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 10);
 
     for (v0 = 0; v0 < 4; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1219,7 +1219,7 @@ static void ov21_021DA38C (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
     int v0, v1;
     int v2, v3;
 
-    param0->unk_0C = AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 15);
+    param0->unk_0C = Heap_AllocFromHeap(param2, sizeof(UnkUnion_020225E0) * 15);
 
     for (v0 = 0; v0 < 5; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1440,7 +1440,7 @@ static void ov21_021DA6B0 (UnkStruct_ov21_021D9B24 * param0, int param1)
     int v4;
     int v5;
 
-    param0->unk_1C = AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1551,7 +1551,7 @@ static void ov21_021DA888 (UnkStruct_ov21_021D9B24 * param0, int param1)
     int v4;
     int v5;
 
-    param0->unk_1C = AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1679,7 +1679,7 @@ static void ov21_021DAAD4 (UnkStruct_ov21_021D9B24 * param0, int param1)
     int v6;
     int v7;
 
-    param0->unk_1C = AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1831,7 +1831,7 @@ static void ov21_021DAD74 (UnkStruct_ov21_021D9B24 * param0, int param1)
     int v6, v7;
     int v8;
 
-    param0->unk_1C = AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (3 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -1992,7 +1992,7 @@ static void ov21_021DB02C (UnkStruct_ov21_021D9B24 * param0, int param1)
     int v4;
     int v5;
 
-    param0->unk_1C = AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (4 * 6));
+    param0->unk_1C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov21_021D4FE4) * (4 * 6));
 
     for (v0 = 0; v0 < 6; v0++) {
         v3 = 16 + (v0 * (48 - 16));
@@ -2184,7 +2184,7 @@ static void ov21_021DB38C (UnkStruct_ov21_021D9B24 * param0, UnkStruct_ov21_021D
 
 static void ov21_021DB3C8 (UnkStruct_ov21_021D9B24 * param0)
 {
-    FreeToHeap(param0->unk_1C);
+    Heap_FreeToHeap(param0->unk_1C);
     ov21_021D4EFC(param0->unk_18);
     param0->unk_18 = NULL;
     param0->unk_1C = NULL;

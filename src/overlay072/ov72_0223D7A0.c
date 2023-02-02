@@ -34,7 +34,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
-#include "filesystem.h"
+#include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
@@ -126,13 +126,13 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F344(1, 0x0);
         sub_02017798(NULL, NULL);
         sub_020177A4();
-        GX_DisableEngineALayers();
-        GX_DisableEngineBLayers();
+        GXLayers_DisableEngineALayers();
+        GXLayers_DisableEngineBLayers();
 
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        CreateHeap(3, 39, 0x40000);
+        Heap_Create(3, 39, 0x40000);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
@@ -246,7 +246,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     sub_02017798(NULL, NULL);
-    DestroyHeap(39);
+    Heap_Destroy(39);
 
     return 1;
 }
@@ -275,7 +275,7 @@ static void ov72_0223DA70 (void)
         GX_VRAM_TEXPLTT_NONE
     };
 
-    GX_SetBanks(&v0);
+    GXLayers_SetBanks(&v0);
 }
 
 static void ov72_0223DA90 (UnkStruct_02018340 * param0)
@@ -445,7 +445,7 @@ static void ov72_0223DC6C (UnkStruct_02018340 * param0)
     sub_02019044(param0, 2);
     sub_02019044(param0, 1);
     sub_02019044(param0, 0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)
@@ -552,8 +552,8 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
         }
     }
 
-    GX_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GX_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void * ov72_0223E060 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, u8 param3, const u32 param4)

@@ -76,7 +76,7 @@ void ov23_022499E8 (UnkStruct_0203CDB0 * param0)
     sub_0205965C(param0);
 
     v0 = sub_0205964C();
-    CreateHeap(3, 33, 0xe800);
+    Heap_Create(3, 33, 0xe800);
 
     if (!sub_0206ADDC(sub_020507E4(v0->unk_18->unk_0C))) {
         sub_02036894();
@@ -667,7 +667,7 @@ static void ov23_0224A1A0 (void)
     ov23_02242D08();
 
     sub_020367D0();
-    DestroyHeap(33);
+    Heap_Destroy(33);
 
     v0->unk_41 = 0;
 

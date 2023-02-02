@@ -69,7 +69,7 @@ static int sub_0209B288(UnkStruct_0209AD84 * param0);
 void sub_0209ACF4 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_0209AD84 * v1 = AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
+    UnkStruct_0209AD84 * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
 
     v1->unk_00 = v0;
     v1->unk_04 = sub_02023790(400, 32);
@@ -98,7 +98,7 @@ static void sub_0209AD84 (UnkStruct_0209AD84 * param0)
     sub_0200B3F0(param0->unk_0C);
     sub_0200B190(param0->unk_10);
     sub_0209ADBC(param0);
-    FreeToHeap(param0);
+    Heap_FreeToHeap(param0);
 }
 
 static void sub_0209ADBC (UnkStruct_0209AD84 * param0)
