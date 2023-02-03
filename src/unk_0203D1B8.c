@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E50_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -85,7 +84,7 @@
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B37C.h"
-#include "unk_0202B594.h"
+#include "coins.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202C858.h"
 #include "unk_0202CD50.h"
@@ -1594,11 +1593,11 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_020509B4(v0) == 0) {
-            UnkStruct_02025E50 * v5 = sub_02025E50(v0->unk_0C);
+            u16 * v5 = sub_02025E50(v0->unk_0C);
             s64 v6 = sub_020138EC();
 
-            sub_0206DD38(v0, sub_0202B5B4(v5), v2->unk_00, sub_0201398C(v2->unk_04, v6) / 60);
-            sub_0202B59C(sub_02025E50(v0->unk_0C), v2->unk_00);
+            sub_0206DD38(v0, Coins_GetValue(v5), v2->unk_00, sub_0201398C(v2->unk_04, v6) / 60);
+            Coins_SetValue(sub_02025E50(v0->unk_0C), v2->unk_00);
 
             v4 = sub_0206B394(v1);
 
@@ -1622,7 +1621,7 @@ void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
     UnkStruct_0203E35C * v2 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
-    v2->unk_00 = sub_0202B5B4(sub_02025E50(v0->unk_0C));
+    v2->unk_00 = Coins_GetValue(sub_02025E50(v0->unk_0C));
     v2->unk_04 = sub_020138EC();
     v2->unk_0C.unk_08 = sub_0202CD88(v0->unk_0C);
     v2->unk_0C.unk_0C = 0;

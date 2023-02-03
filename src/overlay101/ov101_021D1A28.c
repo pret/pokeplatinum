@@ -6,7 +6,6 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E50_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "overlay101/const_ov101_021D9580.h"

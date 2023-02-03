@@ -17,7 +17,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_020298BC.h"
-#include "unk_0202B594.h"
+#include "coins.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
 #include "unk_0207CB08.h"
@@ -101,7 +101,7 @@ u8 sub_0207CBAC (UnkStruct_0207CB08 * param0)
 
 static u32 sub_0207CBB4 (UnkStruct_021C0794 * param0)
 {
-    return sub_0202B5B4(sub_02025E50(param0));
+    return Coins_GetValue(sub_02025E50(param0));
 }
 
 static u32 sub_0207CBC0 (UnkStruct_021C0794 * param0)

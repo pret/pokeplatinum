@@ -33,7 +33,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
-#include "unk_0202B594.h"
+#include "coins.h"
 #include "unk_0202D05C.h"
 #include "overlay005/ov5_021DC018.h"
 
@@ -909,7 +909,7 @@ void ov5_021DD098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
     v1 = sub_0200B358(4);
     v2 = sub_02023790(16, 4);
     v3 = sub_0200B1EC(v0, 197);
-    v4 = sub_0202B5B4(sub_02025E50(param0->unk_0C));
+    v4 = Coins_GetValue(sub_02025E50(param0->unk_0C));
 
     sub_0200B60C(v1, 0, v4, 5, 1, 1);
     sub_0200C388(v1, v2, v3);

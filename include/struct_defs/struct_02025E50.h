@@ -1,8 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_02025E50_H
-#define POKEPLATINUM_STRUCT_02025E50_H
-
-typedef struct UnkStruct_02025E50_t {
-    u16 unk_00;
-} UnkStruct_02025E50;
-
-#endif // POKEPLATINUM_STRUCT_02025E50_H
