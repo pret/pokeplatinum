@@ -16,7 +16,7 @@ typedef struct {
     UnkStruct_ov83_022401AC unk_58;
     UnkStruct_ov83_0223DB4C unk_6C;
     UnkStruct_ov83_0223D2E8 unk_90[4];
-    UnkStruct_0202A93C * unk_100;
+    Poffin * unk_100;
     u32 unk_104[4];
     UnkStruct_ov83_0223DB4C_sub1 unk_114[4];
     u8 unk_124[4];

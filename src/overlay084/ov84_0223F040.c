@@ -30,7 +30,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "move_table.h"
 #include "item.h"
 #include "overlay084/ov84_0223B5A0.h"
@@ -700,7 +700,7 @@ void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
     sub_020237BC(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 109);
-    sub_0200B60C(param0->unk_118, 0, sub_0202AC98(sub_0202AB28(param0->unk_C4->unk_00)), 3, 1, 1);
+    sub_0200B60C(param0->unk_118, 0, sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_C4->unk_00)), 3, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_020237BC(v1);
 

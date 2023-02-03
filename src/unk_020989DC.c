@@ -25,7 +25,7 @@
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "unk_02073C2C.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
@@ -98,7 +98,7 @@ const UnkStruct_0208BE5C Unk_020F6890 = {
 UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
 {
     UnkStruct_0203D9B8 * v0;
-    UnkStruct_0202A93C * v1;
+    Poffin * v1;
     UnkStruct_020989DC * v2;
     UnkStruct_0200B358 * v3;
     u8 v4[7];
@@ -108,13 +108,13 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
     v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203D9B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
-    v0->unk_08 = sub_0202AB28(param0);
+    v0->unk_08 = Poffin_GetSavedataBlock(param0);
     v0->unk_0C = sub_02025E38(param0);
     v0->unk_10 = Party_GetFromSavedata(param0);
     v0->unk_14 = sub_0207D990(param0);
     v0->unk_18 = sub_02025E44(param0);
 
-    v1 = sub_0202A93C(param1);
+    v1 = Poffin_malloc(param1);
     v3 = sub_0200B368(1, 32, param1);
 
     for (v5 = 0; v5 < 100; v5++) {
@@ -124,12 +124,12 @@ UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
             continue;
         }
 
-        sub_0202AA9C(v1, v4);
+        Poffin_StoreAttributesToArray(v1, v4);
 
         v2 = &(v0->unk_1C[v6]);
 
         v2->unk_00 = v5;
-        v2->unk_01 = sub_0202AABC(v1);
+        v2->unk_01 = Poffin_CalcLevel(v1);
         v2->unk_02 = v4[0];
         v2->unk_03 = v4[6];
 
@@ -419,7 +419,7 @@ static int sub_02098E0C (UnkStruct_02098BE4 * param0)
 {
     u8 v0;
     UnkStruct_02098D38 * v1;
-    UnkStruct_0202A93C * v2;
+    Poffin * v2;
     static const u8 v3[] = {
         4, 8
     };
@@ -451,7 +451,7 @@ static int sub_02098E88 (UnkStruct_02098BE4 * param0)
 {
     u8 v0;
     UnkStruct_02098D38 * v1;
-    UnkStruct_0202A93C * v2;
+    Poffin * v2;
 
     if (!sub_02098AF8(&param0->unk_14)) {
         return 7;
@@ -464,7 +464,7 @@ static int sub_02098E88 (UnkStruct_02098BE4 * param0)
     return 0;
 }
 
-UnkEnum_02098EAC sub_02098EAC (UnkStruct_0202A93C * param0, u8 param1)
+UnkEnum_02098EAC sub_02098EAC (Poffin * param0, u8 param1)
 {
     u8 v0[7];
     u8 v1, v2, v3;
@@ -477,7 +477,7 @@ UnkEnum_02098EAC sub_02098EAC (UnkStruct_0202A93C * param0, u8 param1)
         return 2;
     }
 
-    sub_0202AA9C(param0, v0);
+    Poffin_StoreAttributesToArray(param0, v0);
 
     v1 = v0[0];
     v2 = v0[v4 + 1];
@@ -494,7 +494,7 @@ UnkEnum_02098EAC sub_02098EAC (UnkStruct_0202A93C * param0, u8 param1)
     }
 }
 
-void sub_02098EF8 (UnkStruct_0202A93C * param0, UnkStruct_02073C74 * param1)
+void sub_02098EF8 (Poffin * param0, UnkStruct_02073C74 * param1)
 {
     u8 v0, v1;
     u8 v2, v3;
@@ -508,7 +508,7 @@ void sub_02098EF8 (UnkStruct_0202A93C * param0, UnkStruct_02073C74 * param1)
     v4 = Unk_020F685C[v2][0];
     v5 = Unk_020F685C[v2][1];
 
-    sub_0202AA9C(param0, v8);
+    Poffin_StoreAttributesToArray(param0, v8);
 
     for (v0 = 0; v0 < 6; v0++) {
         v7[v0] = sub_02074470(param1, 19 + v0, NULL);

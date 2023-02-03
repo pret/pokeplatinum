@@ -10,9 +10,9 @@ typedef struct {
         struct {
             u8 val1_01 : 1;
             u8 unk_04_val1_1 : 1;
-            u8 val1_03 : 1;
-            u8 val1_04 : 1;
-            u8 val1_05 : 1;
+            u8 sweetness : 1;
+            u8 bitterness : 1;
+            u8 sourness : 1;
             u8 unk_04_val1_5 : 1;
             u8 unk_04_val1_6 : 1;
             u8 unk_04_val1_7 : 1;

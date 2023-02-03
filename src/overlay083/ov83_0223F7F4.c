@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0201E3BC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "unk_0209739C.h"
 #include "overlay083/ov83_0223F7F4.h"
 
@@ -667,7 +667,7 @@ static int ov83_0223FFA8 (u32 param0, u32 param1)
     return v0;
 }
 
-void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, UnkStruct_0202A93C * param1, const UnkStruct_ov83_0223FE50 * param2, u32 param3, u32 param4)
+void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, Poffin * param1, const UnkStruct_ov83_0223FE50 * param2, u32 param3, u32 param4)
 {
     UnkStruct_020973A8 * v0;
     int v1, v2;
@@ -784,7 +784,7 @@ void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, UnkStruct_0202A93C * param
     }
 
     param0->unk_04 = sub_0202A9E4(param1, v16, v7, v10);
-    param0->unk_08 = sub_0202AABC(param1);
+    param0->unk_08 = Poffin_CalcLevel(param1);
 }
 
 void ov83_022401AC (UnkStruct_ov83_0223FDB0 * param0, UnkStruct_ov83_0223FE50 * param1, int param2)

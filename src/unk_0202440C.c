@@ -33,7 +33,7 @@
 #include "unk_02028124.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B37C.h"
 #include "unk_0202B604.h"
@@ -80,7 +80,7 @@ const UnkStruct_020251A4 Unk_020E5894[] = {
     {0xD, 0x0, (UnkFuncPtr_020E5894)sub_02026030, (UnkFuncPtr_020E5894_1)sub_02026040},
     {0xE, 0x0, (UnkFuncPtr_020E5894)sub_02029C58, (UnkFuncPtr_020E5894_1)sub_02029BFC},
     {0xF, 0x0, (UnkFuncPtr_020E5894)sub_0202843C, (UnkFuncPtr_020E5894_1)sub_02028444},
-    {0x10, 0x0, (UnkFuncPtr_020E5894)sub_0202AB34, (UnkFuncPtr_020E5894_1)sub_0202AB3C},
+    {0x10, 0x0, (UnkFuncPtr_020E5894)Poffin_GetSizeOfSavedataBlock, (UnkFuncPtr_020E5894_1)sub_0202AB3C},
     {0x11, 0x0, (UnkFuncPtr_020E5894)sub_0202B37C, (UnkFuncPtr_020E5894_1)sub_0202B3A8},
     {0x12, 0x0, (UnkFuncPtr_020E5894)sub_0202B604, (UnkFuncPtr_020E5894_1)sub_0202B618},
     {0x13, 0x0, (UnkFuncPtr_020E5894)sub_0202C7FC, (UnkFuncPtr_020E5894_1)sub_0202C804},

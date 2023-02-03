@@ -24,7 +24,7 @@
 #include "unk_020218BC.h"
 #include "unk_0202440C.h"
 #include "unk_020279FC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
@@ -75,7 +75,7 @@ static void ov83_0223C7FC(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223C90C(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223C82C(UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B784 * param1);
 static void ov83_0223C87C(UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B784 * param1);
-static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 * param0, UnkStruct_0202A93C * param1, int param2);
+static BOOL ov83_0223C8B0(UnkStruct_ov83_0223C344 * param0, Poffin * param1, int param2);
 
 static const UnkStruct_ov83_0224024C Unk_ov83_0224024C[] = {
     {ov83_0223B78C, 0x1},
@@ -518,7 +518,7 @@ static int ov83_0223BB40 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
 
 static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B784 * param1, int * param2)
 {
-    UnkStruct_0202A93C * v0;
+    Poffin * v0;
     BOOL v1;
 
     ov83_0223EDA4(&param1->unk_6D8, &param1->unk_1494);
@@ -599,9 +599,9 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         break;
     case 4:
         if (ov83_0223D570(param1->unk_148C) == 0) {
-            v0 = sub_0202A93C(param1->unk_00);
+            v0 = Poffin_malloc(param1->unk_00);
             ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->unk_00);
-            v1 = ov83_0223D508(28, v0, sub_0202A910(), param1->unk_148C);
+            v1 = ov83_0223D508(28, v0, Poffin_sizeof(), param1->unk_148C);
             Heap_FreeToHeap(v0);
 
             if (v1 == 1) {
@@ -1061,7 +1061,7 @@ static void ov83_0223C82C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223
 {
     int v0;
 
-    param1->unk_1494.unk_100 = sub_0202A93C(param1->unk_00);
+    param1->unk_1494.unk_100 = Poffin_malloc(param1->unk_00);
     param1->unk_1494.unk_144 = ov83_0223D570(param1->unk_148C);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1086,7 +1086,7 @@ static void ov83_0223C87C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223
     }
 }
 
-static BOOL ov83_0223C8B0 (UnkStruct_ov83_0223C344 * param0, UnkStruct_0202A93C * param1, int param2)
+static BOOL ov83_0223C8B0 (UnkStruct_ov83_0223C344 * param0, Poffin * param1, int param2)
 {
     int v0;
     u16 v1;
@@ -1104,7 +1104,7 @@ static BOOL ov83_0223C8B0 (UnkStruct_ov83_0223C344 * param0, UnkStruct_0202A93C 
     }
 
     if (param0->unk_26 == 0) {
-        v2 = sub_0202A974(param1, 0);
+        v2 = Poffin_GetAttribute(param1, 0);
         sub_0206CFCC(v4, v2);
     }
 

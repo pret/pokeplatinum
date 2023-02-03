@@ -84,7 +84,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
 #include "unk_0202C858.h"
@@ -3808,7 +3808,7 @@ static u32 ov65_022319B8 (UnkStruct_ov65_0222EBE0 * param0)
         return 3;
     }
 
-    if (sub_0202AC98(sub_0202AB28(param0->unk_160)) >= 100) {
+    if (sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_160)) >= 100) {
         return 2;
     }
 

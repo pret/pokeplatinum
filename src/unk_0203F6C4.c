@@ -96,7 +96,7 @@
 #include "unk_02028124.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
-#include "unk_0202A910.h"
+#include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
 #include "unk_0202C9F4.h"
@@ -4381,7 +4381,7 @@ static BOOL sub_02042368 (UnkStruct_0203E724 * param0)
         return 0;
     }
 
-    if (sub_0202AC98(sub_0202AB28(param0->unk_34->unk_0C)) >= 100) {
+    if (sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_34->unk_0C)) >= 100) {
         *v0 = 2;
         return 0;
     }
@@ -7501,7 +7501,7 @@ static BOOL sub_02045AE8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045B18 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0202A93C * v0;
+    Poffin * v0;
     int v1;
     UnkStruct_0202AB28 * v2;
     u8 v3[5];
@@ -7517,9 +7517,9 @@ static BOOL sub_02045B18 (UnkStruct_0203E724 * param0)
     }
 
     v4 = inline_02049538(param0);
-    v0 = sub_0202A93C(4);
+    v0 = Poffin_malloc(4);
     v1 = sub_0202A9E4(v0, v3, v4, 0);
-    v2 = sub_0202AB28(param0->unk_34->unk_0C);
+    v2 = Poffin_GetSavedataBlock(param0->unk_34->unk_0C);
     v5 = sub_0202AB74(v2, v0);
 
     Heap_FreeToHeap(v0);
@@ -7539,7 +7539,7 @@ static BOOL sub_02045BA8 (UnkStruct_0203E724 * param0)
     u16 * v1;
 
     v1 = inline_0204FCAC(param0);
-    v0 = sub_0202AB28(param0->unk_34->unk_0C);
+    v0 = Poffin_GetSavedataBlock(param0->unk_34->unk_0C);
 
     if (sub_0202AB54(v0) == 0xFFFF) {
         *v1 = 0;
@@ -7556,7 +7556,7 @@ static BOOL sub_02045BE4 (UnkStruct_0203E724 * param0)
     u16 * v1;
 
     v1 = inline_0204FCAC(param0);
-    v0 = sub_0202AB28(param0->unk_34->unk_0C);
+    v0 = Poffin_GetSavedataBlock(param0->unk_34->unk_0C);
     *v1 = sub_0202ACC0(v0);
 
     return 0;

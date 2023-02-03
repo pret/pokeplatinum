@@ -37,7 +37,7 @@ void ov83_0223FE50(UnkStruct_ov83_0223FDB0 * param0, UnkStruct_ov83_0223FE50 * p
 void ov83_0223FEC0(UnkStruct_ov83_0223FDB0 * param0, UnkStruct_ov83_0223FE50 * param1, int param2);
 void ov83_0223FF44(UnkStruct_ov83_0223FDB0 * param0, UnkStruct_ov83_0223FCE8 * param1, int param2);
 void ov83_0223FFA0(UnkStruct_ov83_0223FDB0 * param0);
-void ov83_0223FFD4(UnkStruct_ov83_0223FDB0 * param0, UnkStruct_0202A93C * param1, const UnkStruct_ov83_0223FE50 * param2, u32 param3, u32 param4);
+void ov83_0223FFD4(UnkStruct_ov83_0223FDB0 * param0, Poffin * param1, const UnkStruct_ov83_0223FE50 * param2, u32 param3, u32 param4);
 void ov83_022401AC(UnkStruct_ov83_0223FDB0 * param0, UnkStruct_ov83_0223FE50 * param1, int param2);
 
 #endif // POKEPLATINUM_OV83_0223F7F4_H

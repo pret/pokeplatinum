@@ -112,7 +112,7 @@ Static main
 	Object src/unk_02028124.o
 	Object src/unk_0202854C.o
 	Object src/unk_020298BC.o
-	Object src/unk_0202A910.o
+	Object src/poffin.o
 	Object src/unk_0202ACE0.o
 	Object src/unk_0202B37C.o
 	Object src/coins.o
