@@ -82,6 +82,8 @@
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 
+#include "constants/species.h"
+
 typedef struct UnkStruct_ov21_021D0F60_t {
     BOOL unk_00;
     int unk_04;
@@ -793,7 +795,7 @@ void ov21_021D1858 (UnkStruct_ov21_021D22F8 * param0, int param1, int param2)
 void ov21_021D1890 (UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5)
 {
     switch (param2) {
-    case 201:
+    case SPECIES_UNOWN:
         ov21_021D1A34(param0, param1, param3, param4, param5, 0, 0);
         break;
     case 412:

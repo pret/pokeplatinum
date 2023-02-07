@@ -6,7 +6,7 @@
 
 u32 sub_02079D40(const UnkStruct_02073C74_sub1 * param0);
 u32 sub_02079D80(UnkStruct_02073C74 * param0);
-u32 sub_02079D8C(u32 param0, u32 param1, u32 param2);
+u32 sub_02079D8C(u32 species, u32 param1, u32 param2);
 u16 sub_02079E44(const UnkStruct_02073C74_sub1 * param0);
 const u8 sub_02079EDC(u32 param0, u32 param1, u32 param2);
 const u8 sub_02079F84(const UnkStruct_02073C74_sub1 * param0);

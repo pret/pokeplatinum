@@ -74,7 +74,7 @@ void sub_02075EF4(UnkStruct_02008A90 * param0, UnkStruct_02073C74 * param1, u8 p
 void sub_02075F00(UnkStruct_02008A90 * param0, UnkStruct_02073C74 * param1, u8 param2);
 void sub_02075F0C(UnkStruct_02008A90 * param0, UnkStruct_02073C74_sub1 * param1, u8 param2, int param3);
 void sub_02075FB4(UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u32 param6);
-u8 sub_020761E8(u16 param0, u8 param1);
+u8 sub_020761E8(u16 species, u8 param1);
 u8 sub_020765AC(UnkStruct_02073C74 * param0, u8 param1);
 u8 sub_020765B8(UnkStruct_02073C74 * param0, u8 param1);
 u8 sub_020765C4(UnkStruct_02073C74_sub1 * param0, u8 param1, int param2);

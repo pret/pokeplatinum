@@ -12,6 +12,8 @@
 #include "unk_02073C2C.h"
 #include "unk_020986CC.h"
 
+#include "constants/species.h"
+
 typedef struct UnkStruct_02026324_t {
     u32 unk_00;
     u32 unk_04[16];
@@ -570,7 +572,7 @@ static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, UnkStruct_020
     int v0;
 
     switch (param1) {
-    case 201:
+    case SPECIES_UNOWN:
         v0 = sub_02076AF8(param2);
         sub_0202643C(param0, v0);
         break;
@@ -1200,7 +1202,7 @@ u32 sub_0202756C (const UnkStruct_02026324 * param0, int param1, int param2)
     inline_02026DD0(param0);
 
     switch (param1) {
-    case 201:
+    case SPECIES_UNOWN:
         if (param2 < sub_020270DC(param0)) {
             return sub_020270AC(param0, param2);
         }
@@ -1257,7 +1259,7 @@ u32 sub_020276C8 (const UnkStruct_02026324 * param0, int param1)
     inline_02026DD0(param0);
 
     switch (param1) {
-    case 201:
+    case SPECIES_UNOWN:
         return sub_020270DC(param0);
     case 422:
         return sub_02027130(param0);

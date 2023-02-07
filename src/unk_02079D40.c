@@ -7,6 +7,8 @@
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
 
+#include "constants/species.h"
+
 const u8 Unk_020F0780[] = {
 	0x0,
 	0x1,
@@ -574,61 +576,61 @@ u32 sub_02079D80 (UnkStruct_02073C74 * param0)
     return sub_02079D40((const UnkStruct_02073C74_sub1 *)sub_02076B10(param0));
 }
 
-u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
+u32 sub_02079D8C (u32 species, u32 param1, u32 param2)
 {
     if (param1 == 1) {
-        if (param0 == 490) {
+        if (species == SPECIES_MANAPHY) {
             return 502;
         } else {
             return 501;
         }
     }
 
-    param2 = sub_020761E8(param0, param2);
+    param2 = sub_020761E8(species, param2);
 
     if (param2 != 0) {
-        if (param0 == 386) {
+        if (species == SPECIES_DEOXYS) {
             return 503 + param2 - 1;
         }
 
-        if (param0 == 201) {
+        if (species == SPECIES_UNOWN) {
             return 507 + param2 - 1;
         }
 
-        if (param0 == 412) {
+        if (species == SPECIES_BURMY) {
             return 534 + param2 - 1;
         }
 
-        if (param0 == 413) {
+        if (species == SPECIES_WORMADAM) {
             return 536 + param2 - 1;
         }
 
-        if (param0 == 422) {
+        if (species == SPECIES_SHELLOS) {
             return 538 + param2 - 1;
         }
 
-        if (param0 == 423) {
+        if (species == SPECIES_GASTRODON) {
             return 539 + param2 - 1;
         }
 
-        if (param0 == 487) {
+        if (species == SPECIES_GIRATINA) {
             return 540 + param2 - 1;
         }
 
-        if (param0 == 492) {
+        if (species == SPECIES_SHAYMIN) {
             return 541 + param2 - 1;
         }
 
-        if (param0 == 479) {
+        if (species == SPECIES_ARCEUS) {
             return 542 + param2 - 1;
         }
     }
 
-    if (param0 > 493) {
-        param0 = 0;
+    if (species > NATIONAL_DEX_COUNT) {
+        species = 0;
     }
 
-    return 7 + param0;
+    return 7 + species;
 }
 
 u16 sub_02079E44 (const UnkStruct_02073C74_sub1 * param0)
@@ -638,7 +640,7 @@ u16 sub_02079E44 (const UnkStruct_02073C74_sub1 * param0)
     v0 = sub_02074570((UnkStruct_02073C74_sub1 *)param0, 174, NULL);
 
     switch (v0) {
-    case 201:
+    case SPECIES_UNOWN:
         return sub_02076B00((UnkStruct_02073C74_sub1 *)param0);
     case 386:
     case 412:

@@ -81,6 +81,8 @@
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_022392E4.h"
 
+#include "constants/species.h"
+
 FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct {
@@ -628,7 +630,7 @@ static u8 ov97_02234208 (int param0, u32 param1, int param2)
     v0 = 0;
 
     switch (param0) {
-    case 201:
+    case SPECIES_UNOWN:
         v0 = (((param1 & 0x3000000) >> 18) | ((param1 & 0x30000) >> 12) | ((param1 & 0x300) >> 6) | (param1 & 0x3)) % 28;
         break;
     case 386:

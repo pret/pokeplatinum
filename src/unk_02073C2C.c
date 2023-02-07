@@ -83,6 +83,8 @@
 #include "item.h"
 #include "unk_02092494.h"
 
+#include "constants/species.h"
+
 static const s8 Unk_020F0695[][5] = {
     { 0x0, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0x0, 0x0, 0x0, -0x1 },
@@ -166,7 +168,7 @@ u32 sub_02075E64(u32 param0);
 void sub_02075EF4(UnkStruct_02008A90 * param0, UnkStruct_02073C74 * param1, u8 param2);
 void sub_02075F0C(UnkStruct_02008A90 * param0, UnkStruct_02073C74_sub1 * param1, u8 param2, int param3);
 void sub_02075FB4(UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u32 param6);
-u8 sub_020761E8(u16 param0, u8 param1);
+u8 sub_020761E8(u16 species, u8 param1);
 u8 sub_020765AC(UnkStruct_02073C74 * param0, u8 param1);
 u8 sub_020765C4(UnkStruct_02073C74_sub1 * param0, u8 param1, int param2);
 u8 sub_02076648(u16 param0, u8 param1, u8 param2, u8 param3, u32 param4);
@@ -2565,55 +2567,55 @@ void sub_02075F0C (UnkStruct_02008A90 * param0, UnkStruct_02073C74_sub1 * param1
     sub_02073D48(param1, v0);
 }
 
-void sub_02075FB4 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u32 param6)
+void sub_02075FB4 (UnkStruct_02008A90 * param0, u16 species, u8 param2, u8 param3, u8 param4, u8 param5, u32 param6)
 {
     param0->unk_06 = 0;
     param0->unk_08 = 0;
     param0->unk_0C = 0;
-    param5 = sub_020761E8(param1, param5);
+    param5 = sub_020761E8(species, param5);
 
-    switch (param1) {
-    case 412:
+    switch (species) {
+    case SPECIES_BURMY:
         param0->unk_00 = 117;
         param0->unk_02 = 72 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 166 + param4 + param5 * 2;
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         param0->unk_00 = 117;
         param0->unk_02 = 78 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 172 + param4 + param5 * 2;
         break;
-    case 422:
+    case SPECIES_SHELLOS:
         param0->unk_00 = 117;
         param0->unk_02 = 84 + param3 + param5;
         param0->unk_04 = 178 + param4 + param5 * 2;
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         param0->unk_00 = 117;
         param0->unk_02 = 88 + param3 + param5;
         param0->unk_04 = 182 + param4 + param5 * 2;
         break;
-    case 421:
+    case SPECIES_CHERRIM:
         param0->unk_00 = 117;
         param0->unk_02 = 92 + param3 + param5;
         param0->unk_04 = 186 + (param4 * 2) + param5;
         break;
-    case 493:
+    case SPECIES_ARCEUS:
         param0->unk_00 = 117;
         param0->unk_02 = 96 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 190 + param4 + param5 * 2;
         break;
-    case 351:
+    case SPECIES_CASTFORM:
         param0->unk_00 = 117;
         param0->unk_02 = 64 + (param3 * 2) + param5;
         param0->unk_04 = 158 + (param4 * 4) + param5;
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         param0->unk_00 = 117;
         param0->unk_02 = 0 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 154 + param4;
         break;
-    case 201:
+    case SPECIES_UNOWN:
         param0->unk_00 = 117;
         param0->unk_02 = 8 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 156 + param4;
@@ -2658,15 +2660,15 @@ void sub_02075FB4 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3
     }
 }
 
-u8 sub_020761E8 (u16 param0, u8 param1)
+u8 sub_020761E8 (u16 species, u8 param1)
 {
-    switch (param0) {
-    case 412:
+    switch (species) {
+    case SPECIES_BURMY:
         if (param1 > 2) {
             param1 = 0;
         }
         break;
-    case 413:
+    case SPECIES_WORMADAM:
 
         if (param1 > 2) {
             param1 = 0;
@@ -2702,7 +2704,7 @@ u8 sub_020761E8 (u16 param0, u8 param1)
             param1 = 0;
         }
         break;
-    case 201:
+    case SPECIES_UNOWN:
         if (param1 >= 28) {
             param1 = 0;
         }
@@ -2741,12 +2743,12 @@ static void sub_02076300 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8
     param5 = sub_020761E8(param1, param5);
 
     switch (param1) {
-    case 412:
+    case SPECIES_BURMY:
         param0->unk_00 = 166;
         param0->unk_02 = 72 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 146 + param4 + param5 * 2;
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         param0->unk_00 = 166;
         param0->unk_02 = 78 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 152 + param4 + param5 * 2;
@@ -2776,12 +2778,12 @@ static void sub_02076300 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8
         param0->unk_02 = 64 + (param3 * 2) + param5;
         param0->unk_04 = 138 + (param4 * 4) + param5;
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         param0->unk_00 = 166;
         param0->unk_02 = 0 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 134 + param4;
         break;
-    case 201:
+    case SPECIES_UNOWN:
         param0->unk_00 = 166;
         param0->unk_02 = 8 + (param3 / 2) + param5 * 2;
         param0->unk_04 = 136 + param4;
@@ -2891,11 +2893,11 @@ u8 sub_02076648 (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
     param3 = sub_020761E8(param0, param3);
 
     switch (param0) {
-    case 412:
+    case SPECIES_BURMY:
         v0 = 121;
         v1 = 72 + (param2 / 2) + param3 * 2;
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         v0 = 121;
         v1 = 78 + (param2 / 2) + param3 * 2;
         break;
@@ -2919,11 +2921,11 @@ u8 sub_02076648 (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
         v0 = 121;
         v1 = 64 + param2 * 2 + param3;
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         v0 = 121;
         v1 = 0 + (param2 / 2) + param3 * 2;
         break;
-    case 201:
+    case SPECIES_UNOWN:
         v0 = 121;
         v1 = 8 + (param2 / 2) + param3 * 2;
         break;
@@ -2967,11 +2969,11 @@ static u8 sub_020767BC (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
     param3 = sub_020761E8(param0, param3);
 
     switch (param0) {
-    case 412:
+    case SPECIES_BURMY:
         v0 = 168;
         v1 = 72 + (param2 / 2) + param3 * 2;
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         v0 = 168;
         v1 = 78 + (param2 / 2) + param3 * 2;
         break;
@@ -2995,11 +2997,11 @@ static u8 sub_020767BC (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
         v0 = 168;
         v1 = 64 + param2 * 2 + param3;
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         v0 = 168;
         v1 = 0 + (param2 / 2) + param3 * 2;
         break;
-    case 201:
+    case SPECIES_UNOWN:
         v0 = 168;
         v1 = 8 + (param2 / 2) + param3 * 2;
         break;
@@ -5108,12 +5110,12 @@ static void * sub_0207825C (UnkStruct_02073C74_sub1 * param0, u32 param1, u8 par
 static int sub_02078740 (int param0, int param1)
 {
     switch (param0) {
-    case 386:
+    case SPECIES_DEOXYS:
         if ((param1) && (param1 <= 3)) {
             param0 = (496 - 1) + param1;
         }
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         if ((param1) && (param1 <= 2)) {
             param0 = (499 - 1) + param1;
         }
