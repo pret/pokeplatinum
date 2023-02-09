@@ -848,7 +848,7 @@ static void sub_0205AD80 (UnkStruct_0205A0D8 * param0)
     Party_InitWithCapacity(param0->unk_50, 3);
 
     for (v1 = 0; v1 < 3; v1++) {
-        Party_AddPokemon(param0->unk_50, (UnkStruct_02073C74 *)(&param0->unk_48[v1 * v0]));
+        Party_AddPokemon(param0->unk_50, (Pokemon *)(&param0->unk_48[v1 * v0]));
     }
 }
 
@@ -867,7 +867,7 @@ static void sub_0205ADAC (UnkStruct_0205A0D8 * param0)
     Party_InitWithCapacity(param0->unk_50, 3);
 
     for (v3 = 0; v3 < 3; v3++) {
-        Party_AddPokemon(param0->unk_50, (UnkStruct_02073C74 *)(&param0->unk_4C[v3 * v0]));
+        Party_AddPokemon(param0->unk_50, (Pokemon *)(&param0->unk_4C[v3 * v0]));
     }
 }
 
@@ -887,7 +887,7 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
         sub_0201ADA4(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
-            v2 = sub_02074470((UnkStruct_02073C74 *)(&param0->unk_48[v1 * v3]), 5, NULL);
+            v2 = sub_02074470((Pokemon *)(&param0->unk_48[v1 * v3]), 5, NULL);
 
             sub_0200B1B8(v4, v2, param0->unk_0C);
             sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);

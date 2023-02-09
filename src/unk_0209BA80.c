@@ -265,7 +265,7 @@ void sub_0209BC3C (int param0, int param1, void * param2, void * param3)
 BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     Party * v3;
 
     v1 = 40;

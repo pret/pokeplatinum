@@ -73,19 +73,19 @@ static int (* Unk_ov94_0224682C[])(UnkStruct_ov94_0223FD4C * wk) = {
 
 int ov94_0223DC04 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
 
     ov94_0223DFDC(param0);
     ov94_0223DD1C(param0->unk_04);
     ov94_0223DE04(param0);
     ov94_0223DED8(param0);
     ov94_0223DE7C(param0);
-    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], sub_02076B10((UnkStruct_02073C74 *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
+    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], sub_02076B10((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
 
-    v0 = (UnkStruct_02073C74 *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
+    v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
 
     ov94_0223DA78(param0->unk_B90, &param0->unk_FCC[5], param0->unk_250[param0->unk_11C].unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_0223DB2C((UnkStruct_02073C74 *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
+    ov94_0223DB2C((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
     ov94_0223E358(param0->unk_B90, &param0->unk_FCC[7]);
     ov94_0223E240(param0);
 

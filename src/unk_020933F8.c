@@ -98,7 +98,7 @@ static void sub_020944E8(UnkStruct_02095C48 * param0);
 static void sub_0209451C(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_02094EB4(UnkStruct_02095C48 * param0, int param1, UnkStruct_ov6_02248DD8 * param2);
 static void sub_02094B30(UnkStruct_0201CD38 * param0, void * param1);
-static int sub_02093B2C(UnkStruct_02073C74 * param0, int param1);
+static int sub_02093B2C(Pokemon * param0, int param1);
 static void sub_020939E0(UnkStruct_02095C48 * param0, int param1, int param2);
 
 
@@ -546,7 +546,7 @@ void sub_02093AD4 (UnkStruct_02095C48 * param0)
     Heap_Destroy(20);
 }
 
-static int sub_02093B2C (UnkStruct_02073C74 * param0, int param1)
+static int sub_02093B2C (Pokemon * param0, int param1)
 {
     int v0, v1, v2;
 
@@ -1145,7 +1145,7 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 *
 
 void sub_02094680 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 * param2, u32 param3)
 {
-    UnkStruct_02073C74_sub1 * v0;
+    BoxPokemon * v0;
     int v1;
 
     v1 = sub_02095904(param1);

@@ -82,6 +82,8 @@
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
 
+#include "constants/species.h"
+
 typedef struct UnkStruct_ov21_021D0F60_t {
     BOOL unk_00;
     int unk_04;
@@ -790,55 +792,55 @@ void ov21_021D1858 (UnkStruct_ov21_021D22F8 * param0, int param1, int param2)
     }
 }
 
-void ov21_021D1890 (UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5)
+void ov21_021D1890 (UnkStruct_ov21_021D13FC * param0, UnkStruct_ov21_021D3320 * param1, int species, int param3, int param4, int param5)
 {
-    switch (param2) {
-    case 201:
+    switch (species) {
+    case SPECIES_UNOWN:
         ov21_021D1A34(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 412:
+    case SPECIES_BURMY:
         ov21_021D1B08(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         ov21_021D1B4C(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 422:
+    case SPECIES_SHELLOS:
         ov21_021D1A78(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         ov21_021D1AC0(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         ov21_021D1B94(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 492:
+    case SPECIES_SHAYMIN:
         ov21_021D1BD8(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 487:
+    case SPECIES_GIRATINA:
         ov21_021D1C30(param0, param1, param3, param4, param5, 0, 0);
         break;
-    case 479:
+    case SPECIES_ROTOM:
         ov21_021D1C88(param0, param1, param3, param4, param5, 0, 0);
         break;
     default:
-        ov21_021D19D8(param0, param1, param2, param3, param4, param5, 0, 0);
+        ov21_021D19D8(param0, param1, species, param3, param4, param5, 0, 0);
         break;
     }
 }
 
-u32 ov21_021D19D8 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6, int param7)
+u32 ov21_021D19D8 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int species, int param3, int param4, int param5, int param6, int param7)
 {
     int v0;
     u32 v1 = 0;
 
-    if (param2 == 327) {
+    if (species == SPECIES_SPINDA) {
         v1 = ov21_021D33F8(param1);
     }
 
-    v0 = ov21_021D334C(param1, param2, param6);
+    v0 = ov21_021D334C(param1, species, param6);
 
     if (v0 != -1) {
-        ov21_021D2188(param0, param2, v0, param3, 0, 0, v1, param4, param5, param7);
+        ov21_021D2188(param0, species, v0, param3, 0, 0, v1, param4, param5, param7);
     }
 
     return v0;
@@ -851,7 +853,7 @@ u32 ov21_021D1A34 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     v0 = ov21_021D335C(param1, param5);
 
     if (v0 != -1) {
-        ov21_021D2188(param0, 201, 2, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_UNOWN, 2, param2, 0, v0, 0, param3, param4, param6);
     }
 
     return v0;
@@ -864,7 +866,7 @@ u32 ov21_021D1A78 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     v0 = ov21_021D3374(param1, param5);
 
     if (v0 != -1) {
-        ov21_021D2188(param0, 422, 0, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_SHELLOS, 0, param2, 0, v0, 0, param3, param4, param6);
     }
 
     return v0;
@@ -877,7 +879,7 @@ u32 ov21_021D1AC0 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     v0 = ov21_021D338C(param1, param5);
 
     if (v0 != -1) {
-        ov21_021D2188(param0, 423, 0, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_GASTRODON, 0, param2, 0, v0, 0, param3, param4, param6);
     }
 
     return v0;
@@ -890,7 +892,7 @@ u32 ov21_021D1B08 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     v0 = ov21_021D33A4(param1, param5);
 
     if (v0 != -1) {
-        ov21_021D2188(param0, 412, 0, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_BURMY, 0, param2, 0, v0, 0, param3, param4, param6);
     }
 
     return v0;
@@ -903,7 +905,7 @@ u32 ov21_021D1B4C (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     v0 = ov21_021D33BC(param1, param5);
 
     if (v0 != -1) {
-        ov21_021D2188(param0, 413, 1, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_WORMADAM, 1, param2, 0, v0, 0, param3, param4, param6);
     }
 
     return v0;
@@ -916,7 +918,7 @@ u32 ov21_021D1B94 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     v0 = ov21_021D3404(param1, param5);
 
     if (v0 != 15) {
-        ov21_021D2188(param0, 386, 1, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_DEOXYS, 1, param2, 0, v0, 0, param3, param4, param6);
     }
 
     return v0;
@@ -927,11 +929,11 @@ u32 ov21_021D1BD8 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     int v0;
     int v1;
 
-    v1 = ov21_021D341C(param1, 492);
+    v1 = ov21_021D341C(param1, SPECIES_SHAYMIN);
 
     if (v1 > param5) {
-        v0 = ov21_021D3410(param1, 492, param5);
-        ov21_021D2188(param0, 492, 1, param2, 0, v0, 0, param3, param4, param6);
+        v0 = ov21_021D3410(param1, SPECIES_SHAYMIN, param5);
+        ov21_021D2188(param0, SPECIES_SHAYMIN, 1, param2, 0, v0, 0, param3, param4, param6);
     } else {
         v0 = -1;
     }
@@ -944,11 +946,11 @@ u32 ov21_021D1C30 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     int v0;
     int v1;
 
-    v1 = ov21_021D341C(param1, 487);
+    v1 = ov21_021D341C(param1, SPECIES_GIRATINA);
 
     if (v1 > param5) {
-        v0 = ov21_021D3410(param1, 487, param5);
-        ov21_021D2188(param0, 487, 1, param2, 0, v0, 0, param3, param4, param6);
+        v0 = ov21_021D3410(param1, SPECIES_GIRATINA, param5);
+        ov21_021D2188(param0, SPECIES_GIRATINA, 1, param2, 0, v0, 0, param3, param4, param6);
     } else {
         v0 = -1;
     }
@@ -961,12 +963,12 @@ u32 ov21_021D1C88 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     int v0;
     int v1;
 
-    v1 = ov21_021D341C(param1, 479);
+    v1 = ov21_021D341C(param1, SPECIES_ROTOM);
 
     if (v1 > param5) {
-        v0 = ov21_021D3410(param1, 479, param5);
+        v0 = ov21_021D3410(param1, SPECIES_ROTOM, param5);
 
-        ov21_021D2188(param0, 479, 1, param2, 0, v0, 0, param3, param4, param6);
+        ov21_021D2188(param0, SPECIES_ROTOM, 1, param2, 0, v0, 0, param3, param4, param6);
     } else {
         v0 = -1;
     }

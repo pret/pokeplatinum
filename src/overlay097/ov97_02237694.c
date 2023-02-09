@@ -573,7 +573,7 @@ static int ov97_02237EA8 (int param0)
     return 0;
 }
 
-static void ov97_02237EF8 (UnkStruct_02022550 * param0, UnkStruct_02073C74 * param1, int param2, int param3, u8 * param4, UnkStruct_02008A90 * param5)
+static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int species, int param3, u8 * param4, UnkStruct_02008A90 * param5)
 {
     int v0, v1;
     u32 v2;
@@ -582,10 +582,10 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, UnkStruct_02073C74 * par
     v0 = sub_02075D6C(param1);
     v1 = sub_02075E0C(param1);
 
-    sub_02075FB4(param5, param2, v0, 2, v1, param3, 0);
+    sub_02075FB4(param5, species, v0, 2, v1, param3, 0);
 
     v2 = sub_02074470(param1, 0, NULL);
-    sub_020136A4(param5->unk_00, param5->unk_02, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, param2);
+    sub_020136A4(param5->unk_00, param5->unk_02, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, species);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
@@ -614,13 +614,13 @@ static void ov97_02237FB4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
 
 static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStruct_0202DF40 * param2)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
 
     ov97_02237B0C(54, 10, 0, 11, 12, 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
 
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 1);
-    v0 = (UnkStruct_02073C74 *)&param2->unk_04.val1.unk_04;
+    v0 = (Pokemon *)&param2->unk_04.val1.unk_04;
 
     switch (param1) {
     case 1:

@@ -9,7 +9,7 @@
 #include "unk_02073C2C.h"
 
 typedef struct UnkStruct_02024440_t {
-    UnkStruct_02073C74 unk_00[6];
+    Pokemon unk_00[6];
     u32 unk_288[20];
     s64 unk_2D8[20];
     s64 unk_378;
@@ -37,7 +37,7 @@ void sub_0202EF04 (UnkStruct_02024440 * param0)
 {
     int v0;
 
-    MI_CpuClearFast(param0->unk_00, sizeof(UnkStruct_02073C74) * 6);
+    MI_CpuClearFast(param0->unk_00, sizeof(Pokemon) * 6);
 
     for (v0 = 0; v0 < 6; v0++) {
         sub_02073C2C(&param0->unk_00[v0]);
@@ -74,9 +74,9 @@ static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4 (UnkStruct_02024440 * param0, UnkStruct_02073C74_sub1 * param1, int param2)
+void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon *boxMon, int param2)
 {
-    sub_020774C8(param1, &param0->unk_00[param2]);
+    sub_020774C8(boxMon, &param0->unk_00[param2]);
 }
 
 void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
@@ -90,7 +90,7 @@ void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
     OS_GetMacAddress(param0->unk_380);
 }
 
-void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, UnkStruct_02073C74 * param2)
+void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, Pokemon * param2)
 {
     GF_ASSERT(param1 < 6);
     *param2 = param0->unk_00[param1];
@@ -101,7 +101,7 @@ int sub_0202F028 (const UnkStruct_02024440 * param0)
     int v0, v1;
 
     for (v1 = 0, v0 = 0; v0 < 6; v0++) {
-        if (sub_02074470((UnkStruct_02073C74 *)&param0->unk_00[v0], 172, NULL)) {
+        if (sub_02074470((Pokemon *)&param0->unk_00[v0], 172, NULL)) {
             v1++;
         }
     }

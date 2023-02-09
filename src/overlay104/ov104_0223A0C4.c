@@ -813,7 +813,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
 {
     int v0;
     int v1;
-    u32 v2;
+    u32 personality;
     u8 v3;
     UnkStruct_0204B1E8 v4;
 
@@ -843,13 +843,13 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
 
     if (param4 == 0) {
         do {
-            v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param3, v2) == 1));
+            personality = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
+        } while ((v4.unk_0B != GetNatureFromPersonality(personality)) || (sub_02075E38(param3, personality) == 1));
 
-        param1->unk_10 = v2;
+        param1->unk_10 = personality;
     } else {
         param1->unk_10 = param4;
-        v2 = param4;
+        personality = param4;
     }
 
     param1->unk_14_val1_0 = param5;
@@ -897,7 +897,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     param1->unk_21 = v3;
     sub_0200B274(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
 
-    return v2;
+    return personality;
 }
 
 UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_02230BE4 * param1)
@@ -908,7 +908,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     UnkStruct_ov6_02240D5C * v3;
     UnkStruct_021C0794 * v4;
     Party * v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v6;
 
     v3 = sub_02051D8C(param0->unk_04, ov104_0223A700(param0->unk_0F));
     v4 = param1->unk_08;
@@ -963,7 +963,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
 static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     ov104_0222E284(param0, &param1->unk_00, param2, param3, param4);
     v2 = sub_02073C74(param4);

@@ -63,6 +63,8 @@
 #include "unk_02073C2C.h"
 #include "unk_0208694C.h"
 
+#include "constants/species.h"
+
 FS_EXTERN_OVERLAY(overlay57);
 
 typedef struct {
@@ -1121,7 +1123,7 @@ static void ov73_021D1B80 (UnkStruct_ov73_021D1058 * param0)
     int v6 = 8;
     int v7 = 10;
 
-    sub_02075FB4(&v0, 427, 0, 2, 0, 0, 0);
+    sub_02075FB4(&v0, SPECIES_BUNEARY, 0, 2, 0, 0, 0);
 
     v1 = Heap_AllocFromHeap(param0->unk_00, (10 * 10) * 2);
 

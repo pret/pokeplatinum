@@ -22,7 +22,7 @@ void sub_020997D0 (UnkStruct_020997B8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-u16 * sub_020997D8 (UnkStruct_02073C74 * param0, u32 param1)
+u16 * sub_020997D8 (Pokemon * param0, u32 param1)
 {
     u16 * v0;
     u16 * v1;

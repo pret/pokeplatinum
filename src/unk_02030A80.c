@@ -28,6 +28,8 @@
 #include "unk_02073C2C.h"
 #include "unk_020996D0.h"
 
+#include "constants/species.h"
+
 UnkStruct_02030A80 * sub_02030A80 (int param0)
 {
     UnkStruct_02030A80 * v0;
@@ -61,8 +63,8 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 
     param0->unk_10 = sub_02025F20(v0);
     param0->unk_14 = sub_02025F30(v0);
-    param0->unk_1C = v4;
-    param0->unk_1B_1 = v5;
+    param0->species = v4;
+    param0->formId = v5;
     param0->unk_1B_0 = v6;
     param0->unk_17 = sub_0202C8C0(v1);
     param0->unk_18 = sub_0202C8C4(v1);
@@ -99,20 +101,20 @@ u32 sub_02030BAC (const UnkStruct_02030A80 * param0)
 
 int sub_02030BBC (const UnkStruct_02030A80 * param0)
 {
-    if (param0->unk_1C >= 495) {
+    if (param0->species >= 495) {
         return 0;
     }
 
-    return param0->unk_1C;
+    return param0->species;
 }
 
 int sub_02030BCC (const UnkStruct_02030A80 * param0)
 {
-    if (param0->unk_1C >= 495) {
+    if (param0->species >= MAX_SPECIES) {
         return 0;
     }
 
-    return sub_020761E8(param0->unk_1C, param0->unk_1B_1);
+    return SanitizeFormId(param0->species, param0->formId);
 }
 
 int sub_02030BEC (const UnkStruct_02030A80 * param0)

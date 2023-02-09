@@ -16,8 +16,8 @@ UnkStruct_ov6_02240D5C * ov104_0223B810(UnkStruct_ov104_0223BA10 * param0, UnkSt
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 * param0);
 BOOL ov104_0223BA14(u8 param0);
 void ov104_0223BA24(Party * param0);
-void ov104_0223BA7C(UnkStruct_ov104_0223BA10 * param0, UnkStruct_02073C74 * param1);
-void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, Party * param1, UnkStruct_02073C74 * param2);
+void ov104_0223BA7C(UnkStruct_ov104_0223BA10 * param0, Pokemon * param1);
+void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, Party * param1, Pokemon * param2);
 void ov104_0223BAB8(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 * param0);
 void ov104_0223BB84(UnkStruct_02018340 * param0, UnkStruct_ov104_0223BA10 * param1, u32 param2);

@@ -70,7 +70,7 @@ static void sub_02013260 (int param0, int param1, int param2, int param3, NNSG2d
     }
 }
 
-static BOOL sub_020132F8 (int param0)
+static BOOL sub_020132F8 (int species)
 {
     int v0;
     int v1;
@@ -85,7 +85,7 @@ static BOOL sub_020132F8 (int param0)
             break;
         }
 
-        if (v1 == param0) {
+        if (v1 == species) {
             return 1;
         }
     }
@@ -93,7 +93,7 @@ static BOOL sub_020132F8 (int param0)
     return 0;
 }
 
-static void sub_02013338 (int param0, int param1, int param2, int param3, int param4, int param5, int param6, void * param7, u32 param8, BOOL param9, int param10, int param11)
+static void sub_02013338 (int param0, int param1, int param2, int param3, int param4, int param5, int param6, void * param7, u32 param8, BOOL param9, int param10, int species)
 {
     BOOL v0;
     NNSG2dCharacterData * v1 = NULL;
@@ -101,7 +101,7 @@ static void sub_02013338 (int param0, int param1, int param2, int param3, int pa
     sub_0201322C(param0, param1, param2, &v1);
     sub_020093A0(v1->pRawData, param0);
 
-    v0 = sub_020132F8(param11);
+    v0 = sub_020132F8(species);
 
     if ((param10 == 2) && (v0 == 1)) {
         sub_020091D8(v1->pRawData, param8, param9);
@@ -110,7 +110,7 @@ static void sub_02013338 (int param0, int param1, int param2, int param3, int pa
     sub_02013260(param3, param4, param5, param6, v1, param7);
 }
 
-static void * sub_02013388 (int param0, int param1, int param2, int param3, int param4, int param5, int param6, u32 param7, BOOL param8, int param9, int param10)
+static void * sub_02013388 (int param0, int param1, int param2, int param3, int param4, int param5, int param6, u32 param7, BOOL param8, int param9, int species)
 {
     void * v0;
     int v1;
@@ -118,7 +118,7 @@ static void * sub_02013388 (int param0, int param1, int param2, int param3, int 
     v1 = ((param5 * param6) * ((8 / 2) * 8));
     v0 = Heap_AllocFromHeap(param2, v1);
 
-    sub_02013338(param0, param1, param2, param3, param4, param5, param6, v0, param7, param8, param9, param10);
+    sub_02013338(param0, param1, param2, param3, param4, param5, param6, v0, param7, param8, param9, species);
 
     return v0;
 }
@@ -286,7 +286,7 @@ void * sub_02013660 (int param0, int param1, int param2)
     return v2;
 }
 
-void sub_020136A4 (int param0, int param1, int param2, int param3, int param4, int param5, int param6, void * param7, u32 param8, BOOL param9, int param10, int param11)
+void sub_020136A4 (int param0, int param1, int param2, int param3, int param4, int param5, int param6, void * param7, u32 param8, BOOL param9, int param10, int species)
 {
     int v0;
     int v1;
@@ -304,7 +304,7 @@ void sub_020136A4 (int param0, int param1, int param2, int param3, int param4, i
     v1 = NELEMS(v4);
     v2 = 0;
 
-    v3 = sub_02013388(param0, param1, param2, param3, param4, param5, param6, param8, param9, param10, param11);
+    v3 = sub_02013388(param0, param1, param2, param3, param4, param5, param6, param8, param9, param10, species);
 
     for (v0 = 0; v0 < v1; v0++) {
         sub_02013560(param5, param6, &v4[v0], &v2, v3, param7);
@@ -313,12 +313,12 @@ void sub_020136A4 (int param0, int param1, int param2, int param3, int param4, i
     Heap_FreeToHeap(v3);
 }
 
-void sub_02013720 (int param0, int param1, int param2, const UnkStruct_02013610 * param3, void * param4, u32 param5, BOOL param6, int param7, int param8)
+void sub_02013720 (int param0, int param1, int param2, const UnkStruct_02013610 * param3, void * param4, u32 param5, BOOL param6, int param7, int species)
 {
-    sub_020136A4(param0, param1, param2, param3->unk_00, param3->unk_04, param3->unk_08, param3->unk_0C, param4, param5, param6, param7, param8);
+    sub_020136A4(param0, param1, param2, param3->unk_00, param3->unk_04, param3->unk_08, param3->unk_0C, param4, param5, param6, param7, species);
 }
 
-void sub_02013750 (int param0, int param1, int param2, void * param3, u32 param4, BOOL param5, int param6, int param7)
+void sub_02013750 (int param0, int param1, int param2, void * param3, u32 param4, BOOL param5, int param6, int species)
 {
     const UnkStruct_02013610 v0 = {
         0x0,
@@ -327,5 +327,5 @@ void sub_02013750 (int param0, int param1, int param2, void * param3, u32 param4
         0xA
     };
 
-    sub_02013720(param0, param1, param2, &v0, param3, param4, param5, param6, param7);
+    sub_02013720(param0, param1, param2, &v0, param3, param4, param5, param6, species);
 }

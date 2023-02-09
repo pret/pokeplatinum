@@ -122,7 +122,7 @@ static void sub_020298D8 (UnkStruct_020298D8 * param0, u8 * param1, u8 * param2,
     *param3 = v2;
 }
 
-static void sub_0202992C (UnkStruct_0202A138 * param0, UnkStruct_02073C74 * param1, u8 param2, u8 param3, s8 param4)
+static void sub_0202992C (UnkStruct_0202A138 * param0, Pokemon * param1, u8 param2, u8 param3, s8 param4)
 {
     param0->unk_08 = sub_02074470(param1, 5, NULL);
     sub_02074470(param1, 117, param0->unk_0A);
@@ -136,7 +136,7 @@ static void sub_0202992C (UnkStruct_0202A138 * param0, UnkStruct_02073C74 * para
     param0->unk_30 = param4;
 }
 
-static void sub_02029990 (UnkStruct_0202A138 * param0, UnkStruct_02073C74 * param1, UnkStruct_020298D8 * param2)
+static void sub_02029990 (UnkStruct_0202A138 * param0, Pokemon * param1, UnkStruct_020298D8 * param2)
 {
     u8 v0, v1;
     s8 v2;
@@ -151,7 +151,7 @@ static void sub_020299C0 (UnkStruct_0202A138 * param0, const UnkStruct_02023790 
     param0->unk_34 = param2;
 }
 
-static void sub_020299D8 (const UnkStruct_0202A138 * param0, UnkStruct_02073C74 * param1)
+static void sub_020299D8 (const UnkStruct_0202A138 * param0, Pokemon * param1)
 {
     sub_02073D80(param1, param0->unk_08, 0, 0, 1, param0->unk_00, 1, param0->unk_04);
     sub_02074B30(param1, 117, param0->unk_0A);
@@ -302,7 +302,7 @@ static void sub_02029BB0 (UnkStruct_02029D04 * param0)
     }
 }
 
-static void sub_02029BD8 (UnkStruct_02073C74 * param0, u8 * param1, u8 * param2)
+static void sub_02029BD8 (Pokemon * param0, u8 * param1, u8 * param2)
 {
     u8 v0 = sub_020765B8(param0, 2);
 
@@ -575,7 +575,7 @@ void sub_02029F84 (UnkStruct_02029C68 * param0)
     inline_02029BFC(param0);
 }
 
-void sub_02029FAC (UnkStruct_02029C68 * param0, UnkStruct_02073C74 * param1, UnkStruct_020298D8 * param2)
+void sub_02029FAC (UnkStruct_02029C68 * param0, Pokemon * param1, UnkStruct_020298D8 * param2)
 {
     GF_ASSERT(inline_02029CA8(param0));
     sub_02029990(&param0->unk_04, param1, param2);
@@ -706,7 +706,7 @@ void sub_0202A25C (UnkStruct_02029C88 * param0)
     inline_02029BFC_1(param0);
 }
 
-void sub_0202A284 (UnkStruct_02029C88 * param0, UnkStruct_02073C74 * param1, UnkStruct_020298D8 * param2)
+void sub_0202A284 (UnkStruct_02029C88 * param0, Pokemon * param1, UnkStruct_020298D8 * param2)
 {
     GF_ASSERT(inline_02029CD0(param0));
     sub_02029990(&param0->unk_08, param1, param2);
@@ -747,7 +747,7 @@ void sub_0202A390 (UnkStruct_02029C88 * param0, const UnkStruct_02029C88 * param
     memcpy(param0, param1, sizeof(UnkStruct_02029C88));
 }
 
-void sub_0202A3B0 (UnkStruct_02029C88 * param0, UnkStruct_02073C74 * param1, s8 param2)
+void sub_0202A3B0 (UnkStruct_02029C88 * param0, Pokemon * param1, s8 param2)
 {
     u8 v0;
     u8 v1;
@@ -821,7 +821,7 @@ u32 sub_0202A544 (const UnkStruct_02029C88 * param0)
     return sub_0202A5FC(&param0->unk_08);
 }
 
-void sub_0202A560 (const UnkStruct_02029C88 * param0, UnkStruct_02073C74 * param1)
+void sub_0202A560 (const UnkStruct_02029C88 * param0, Pokemon * param1)
 {
     GF_ASSERT(inline_02029CD0(param0));
     sub_020299D8(&param0->unk_08, param1);
@@ -878,7 +878,7 @@ u8 sub_0202A614 (const UnkStruct_0202A138 * param0)
     return param0->unk_32;
 }
 
-void sub_0202A61C (const UnkStruct_0202A138 * param0, UnkStruct_02073C74 * param1)
+void sub_0202A61C (const UnkStruct_0202A138 * param0, Pokemon * param1)
 {
     sub_020299D8(param0, param1);
 }

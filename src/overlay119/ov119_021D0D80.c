@@ -308,13 +308,13 @@ void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, i
     sub_0201A954(param1);
 }
 
-int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 * param2, int param3)
+int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, int param3)
 {
     int v0;
     UnkStruct_02023790 * v1;
     UnkStruct_02023790 * v2;
     UnkStruct_0200B358 * v3;
-    UnkStruct_02073C74_sub1 * v4;
+    BoxPokemon * v4;
     UnkStruct_0200B144 * v5;
 
     sub_0201ADA4(param0, 15);
@@ -754,7 +754,7 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
 {
     UnkStruct_02008A90 v0;
     UnkStruct_02007C10 v1[10];
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     int v3;
     int v4;
 

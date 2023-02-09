@@ -4,6 +4,6 @@
 typedef struct {
     u16 unk_00[4];
     u8 unk_08[4];
-} UnkStruct_ov97_02236380_sub2;
+} PokemonGBASubstruct1;
 
 #endif // POKEPLATINUM_STRUCT_OV97_02236380_SUB2_H

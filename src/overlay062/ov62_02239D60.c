@@ -59,6 +59,8 @@
 #include "overlay062/ov62_02239D60.h"
 #include "overlay062/ov62_0224112C.h"
 
+#include "constants/species.h"
+
 typedef struct {
     int unk_00;
     UnkStruct_02030A80 * unk_04;
@@ -1184,33 +1186,33 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
     u8 v4;
     u32 v5 = v0->unk_04.unk_DC[v0->unk_1B0];
     u32 v6 = v0->unk_04.unk_158[v0->unk_1B0];
-    u16 v7 = v0->unk_04.unk_28[v0->unk_1B0];
+    u16 species = v0->unk_04.unk_28[v0->unk_1B0];
     u32 v8 = v0->unk_04.unk_64[v0->unk_1B0];
     u32 v9;
     int v10 = 2;
 
-    if (v7 == 0) {
+    if (species == SPECIES_NONE) {
         v0->unk_32C = NULL;
         return;
     }
 
     if (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) == 1) {
-        if (v7 == 490) {
+        if (species == SPECIES_MANAPHY) {
             v6 = 1;
         } else {
             v6 = 0;
         }
 
-        v7 = 494;
+        species = SPECIES_EGG;
     }
 
-    v1 = sub_02075894(v7, 102);
-    v3 = sub_02075DAC(v7, v8);
+    v1 = sub_02075894(species, 102);
+    v3 = sub_02075DAC(species, v8);
     v4 = sub_02075E38(v5, v8);
-    v9 = sub_02076648(v7, v3, v10, v6, v8);
+    v9 = sub_02076648(species, v3, v10, v6, v8);
     v9 = 0;
 
-    sub_02075FB4(&v2, v7, v3, v10, v4, v6, v8);
+    sub_02075FB4(&v2, species, v3, v10, v4, v6, v8);
     v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
     sub_020759B8(v1);
 }

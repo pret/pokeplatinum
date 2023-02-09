@@ -1071,7 +1071,7 @@ void ov104_02232C80 (UnkStruct_ov63_0222CCB8 * param0, UnkStruct_ov63_0222BEC0 *
     }
 }
 
-void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, UnkStruct_02073C74 * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
     UnkStruct_0200C6E4 * v0 = param0->unk_34.unk_00;
     UnkStruct_0200C704 * v1 = param0->unk_34.unk_04;
@@ -1117,14 +1117,14 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, UnkStruct_02073C74 * par
     }
 
     {
-        u32 v9, v10;
+        u32 v9, species;
 
         v4 = Heap_AllocFromHeap(param2, (10 * 10 * ((8 / 2) * 8)));
         v9 = sub_02074470(param1, 0, NULL);
-        v10 = sub_02074470(param1, 5, NULL);
+        species = sub_02074470(param1, 5, NULL);
 
         sub_02075EF4(&v3, param1, 2);
-        sub_020136A4(v3.unk_00, v3.unk_02, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        sub_020136A4(v3.unk_00, v3.unk_02, param2, 0, 0, 10, 10, v4, v9, 0, 2, species);
     }
 
     {
@@ -1204,7 +1204,7 @@ void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
     sub_0200D080(param0->unk_34.unk_04, 2000);
 }
 
-UnkStruct_0200D0F4 * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, UnkStruct_02073C74 * param1, int param2, int param3, int param4)
+UnkStruct_0200D0F4 * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
 {
     UnkStruct_0200D0F4 * v0;
     UnkStruct_ov104_0223F9E0 v1;

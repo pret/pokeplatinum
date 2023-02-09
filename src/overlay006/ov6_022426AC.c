@@ -62,7 +62,7 @@ void ov6_022426B8 (UnkStruct_ov6_022426B8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
+void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int species)
 {
     int v0;
     NARC * v1;
@@ -73,7 +73,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
         int v2;
         u8 v3;
 
-        v3 = sub_020759F0(param1, 18);
+        v3 = sub_020759F0(species, 18);
 
         switch (v3) {
         case 0:
@@ -93,7 +93,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
             }
         }
 
-        sub_02075FB4(&param0->unk_28, param1, v2, 2, 0, NULL, NULL);
+        sub_02075FB4(&param0->unk_28, species, v2, 2, 0, NULL, NULL);
     }
 
     param0->unk_38 = sub_020095C4(1, &param0->unk_3C, 4);

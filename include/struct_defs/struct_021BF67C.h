@@ -35,7 +35,7 @@ typedef struct {
     u16 unk_62;
     u8 unk_64;
     u8 unk_65;
-    u8 unk_66;
+    u8 gameId;
     u8 unk_67;
     u8 unk_68;
     u8 padding_69[3];

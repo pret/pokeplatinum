@@ -59,7 +59,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
 {
     UnkStruct_02008A90 v0;
     UnkStruct_02008A90 * v1;
-    int v2;
+    int species;
     int v3;
     int v4;
     int v5;
@@ -73,7 +73,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
 
     sub_020089B0(param0->unk_18[param0->unk_00]);
 
-    v2 = param0->unk_28[param0->unk_04];
+    species = param0->unk_28[param0->unk_04];
     v3 = param0->unk_30[param0->unk_04];
     v5 = param0->unk_34[param0->unk_04];
     v6 = param0->unk_38[param0->unk_04];
@@ -93,7 +93,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
         }
     }
 
-    sub_02075FB4(&v0, v2, v3, v4, v5, v6, v7);
+    sub_02075FB4(&v0, species, v3, v4, v5, v6, v7);
 
     v1 = sub_02008A90(param0->unk_18[param0->unk_00]);
     *v1 = v0;
@@ -104,7 +104,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     param0->unk_08[param0->unk_00]->unk_04 = v1->unk_00;
     param0->unk_08[param0->unk_00]->unk_08 = v1->unk_04;
 
-    v11 = param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(v2, v3, v4, v6, v7);
+    v11 = param0->unk_08[param0->unk_00]->unk_0C = sub_02076648(species, v3, v4, v6, v7);
     v8 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1);
 
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
@@ -112,9 +112,9 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     if (v4 == 2) {
         NARC * v13 = NARC_ctor(147, param3);
 
-        sub_02078A80(v13, &v9, v2);
-        sub_02078AA4(v13, &v10, v2);
-        sub_02078AC8(v13, &v12, v2);
+        sub_02078A80(v13, &v9, species);
+        sub_02078AA4(v13, &v10, species);
+        sub_02078AC8(v13, &v12, species);
         NARC_dtor(v13);
 
         sub_02007DEC(param0->unk_18[param0->unk_00], 46, v12);

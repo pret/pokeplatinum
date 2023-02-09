@@ -77,7 +77,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
 
         {
             Party * v0 = Party_GetFromSavedata(sub_020245A4());
-            UnkStruct_02073C74 * v1;
+            Pokemon * v1;
             int v2;
             int v3;
             int v4;
@@ -91,7 +91,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
                 if (sub_02074470(v1, 76, NULL) == 0) {
                     param0->unk_04.unk_04[v4].unk_04 = sub_02074470(v1, 5, NULL);
                     param0->unk_04.unk_04[v4].unk_08 = sub_02074470(v1, 112, NULL);
-                    param0->unk_04.unk_04[v4].unk_00 = sub_02079D40((const UnkStruct_02073C74_sub1 *)v1);
+                    param0->unk_04.unk_04[v4].unk_00 = sub_02079D40((const BoxPokemon *)v1);
                     v3 = ov33_0225630C(sub_02074470(v1, 9, NULL));
 
                     switch (v3) {

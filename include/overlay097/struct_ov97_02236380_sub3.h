@@ -14,6 +14,6 @@ typedef struct {
     u8 unk_09;
     u8 unk_0A;
     u8 unk_0B;
-} UnkStruct_ov97_02236380_sub3;
+} PokemonGBASubstruct2;
 
 #endif // POKEPLATINUM_STRUCT_OV97_02236380_SUB3_H

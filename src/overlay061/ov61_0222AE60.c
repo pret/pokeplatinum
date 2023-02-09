@@ -86,6 +86,6 @@ void ov61_0222AFCC (UnkStruct_021C0794 * param0, const UnkStruct_02030A80 * para
     param2->unk_01 = param1->unk_1A;
     param2->unk_02 = param1->unk_15;
     param2->unk_03 = param1->unk_16;
-    param2->unk_04 = param1->unk_1C;
+    param2->unk_04 = param1->species;
     param2->unk_06_0 = param1->unk_1B_0;
 }

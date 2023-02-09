@@ -32,7 +32,7 @@ void sub_0202DF94 (UnkStruct_0202DF8C * param0)
 void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCDate * param2)
 {
     UnkStruct_0202DFA8 * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     UnkStruct_02023790 * v2;
     int v3, v4, v5;
     BOOL v6;
@@ -149,7 +149,7 @@ void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, Un
     param1 = inline_0202E1A8(param0, param1);
     v0 = &(param0->unk_00[param1].unk_00[param2]);
 
-    param3->unk_10 = v0->unk_00;
+    param3->species = v0->unk_00;
     param3->unk_12 = v0->unk_02;
     param3->unk_08 = v0->unk_04;
     param3->unk_0C = v0->unk_08;

@@ -63,7 +63,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_0200B358 * unk_1F0;
     UnkStruct_02023790 * unk_1F4;
     UnkStruct_02023790 * unk_1F8;
-    UnkStruct_02073C74 * unk_1FC;
+    Pokemon * unk_1FC;
     u8 unk_200[3200];
 } UnkStruct_ov87_021D106C;
 
@@ -215,7 +215,7 @@ static BOOL ov87_021D12C0 (UnkStruct_ov87_021D106C * param0, int * param1)
             sub_02021F58(param0->unk_1C4[v1], 0);
             sub_020063D4(1);
 
-            sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
+            sub_02005844(v0->unk_20[v1].species, v0->unk_20[v1].unk_13);
         } else {
             sub_02021FE0(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
             sub_02021F58(param0->unk_1C4[v1], v1 + 1);
@@ -408,10 +408,10 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
         sub_0201D738(v2, 0, v1->unk_00, 0, 0, 0xff, NULL);
         sub_0200B1B8(param0->unk_1E4, 5, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 72, 0, 0xff, NULL);
-        sub_0200B1B8(param0->unk_1E8, v1->unk_10, param0->unk_1F4);
+        sub_0200B1B8(param0->unk_1E8, v1->species, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 94, 0, 0xff, NULL);
 
-        switch (sub_02075DAC(v1->unk_10, v1->unk_08)) {
+        switch (sub_02075DAC(v1->species, v1->unk_08)) {
         case 0:
             sub_0200B1B8(param0->unk_1E4, 3, param0->unk_1F4);
             break;
@@ -551,10 +551,10 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
     v2 = param0->unk_04;
 
     for (v3 = 0; v3 < v2->unk_14; v3++) {
-        sub_02073D80(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, 32, 1, v2->unk_20[v3].unk_08, 1, v2->unk_20[v3].unk_0C);
+        sub_02073D80(param0->unk_1FC, v2->unk_20[v3].species, v2->unk_20[v3].unk_12, 32, 1, v2->unk_20[v3].unk_08, 1, v2->unk_20[v3].unk_0C);
         sub_02074B30(param0->unk_1FC, 112, (void *)(&(v2->unk_20[v3].unk_13)));
         sub_02075EF4(&v1, param0->unk_1FC, 2);
-        sub_02013720(v1.unk_00, v1.unk_02, 61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
+        sub_02013720(v1.unk_00, v1.unk_02, 61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].species);
 
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));
         GX_LoadOBJ(param0->unk_200, 3200 * v3, 3200);
@@ -563,7 +563,7 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
 
         if (v3 == v2->unk_18) {
             sub_020063D4(1);
-            sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
+            sub_02005844(v2->unk_20[v3].species, v2->unk_20[v3].unk_13);
             sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
             sub_02021FE0(param0->unk_1C4[v3], GX_OAM_MODE_XLU);

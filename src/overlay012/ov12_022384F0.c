@@ -3,31 +3,33 @@
 
 #include "overlay012/ov12_022384F0.h"
 
-BOOL ov12_022384F0 (u32 param0, u32 param1)
+#include "constants/species.h"
+
+BOOL IsFormSymmetrical (u32 species, u32 formId)
 {
-    switch (param0) {
-    case 120:
-    case 125:
-    case 159:
-    case 201:
-    case 215:
-    case 315:
-    case 335:
-    case 359:
-    case 406:
-    case 407:
-    case 467:
-    case 389:
-    case 468:
-    case 99:
-        return 0;
-    case 492:
-        if (param1 == 1) {
-            return 0;
+    switch (species) {
+    case SPECIES_STARYU:
+    case SPECIES_ELECTABUZZ:
+    case SPECIES_CROCONAW:
+    case SPECIES_UNOWN:
+    case SPECIES_SNEASEL:
+    case SPECIES_ROSELIA:
+    case SPECIES_ZANGOOSE:
+    case SPECIES_ABSOL:
+    case SPECIES_BUDEW:
+    case SPECIES_ROSERADE:
+    case SPECIES_MAGMORTAR:
+    case SPECIES_TORTERRA:
+    case SPECIES_TOGEKISS:
+    case SPECIES_KINGLER:
+        return FALSE;
+    case SPECIES_SHAYMIN:
+        if (formId == 1) {
+            return FALSE;
         }
 
         break;
     }
 
-    return 1;
+    return TRUE;
 }

@@ -6,7 +6,7 @@
 typedef struct Party {
     int capacity;
     int currentCount;
-    UnkStruct_02073C74 pokemon[6];
+    Pokemon pokemon[6];
 } Party;
 
 #endif // POKEPLATINUM_STRUCT_PARTY_H

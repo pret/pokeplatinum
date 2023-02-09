@@ -7,10 +7,10 @@
 #include "struct_defs/struct_02075454_3.h"
 
 typedef struct UnkStruct_0207825C_16_t {
-    UnkStruct_02075454_2 unk_00;
-    UnkStruct_02075454_3 unk_20;
-    UnkStruct_02075454 unk_40;
-    UnkStruct_02075454_1 unk_60;
+    PokemonSubstruct2 unk_00;
+    PokemonSubstruct3 unk_20;
+    PokemonSubstruct0 unk_40;
+    PokemonSubstruct1 unk_60;
 } UnkStruct_0207825C_16;
 
 #endif // POKEPLATINUM_STRUCT_0207825C_16_H

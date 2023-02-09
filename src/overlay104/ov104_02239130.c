@@ -45,7 +45,7 @@ static BOOL ov104_02239464(UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4
 BOOL ov104_02239130 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_0202440C * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     UnkStruct_0204AFC4 * v2;
     int v3, v4;
     u16 v5, v6;

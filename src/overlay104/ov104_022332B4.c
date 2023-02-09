@@ -252,7 +252,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
     int v0[18];
     UnkStruct_ov104_0223C4CC * v1;
     UnkStruct_02023790 * v2;
-    UnkStruct_02073C74 * v3;
+    Pokemon * v3;
     UnkStruct_ov104_0223ADA0 * v4;
     u8 v5, v6;
     u32 v7, v8, v9;

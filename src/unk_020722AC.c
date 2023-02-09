@@ -1004,7 +1004,7 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
 {
     UnkStruct_02072EB8 * v0;
     Party * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     v0 = &(param0->unk_1C[param0->unk_18]);
 

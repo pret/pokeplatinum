@@ -31,8 +31,8 @@ UnkStruct_02022550 * ov95_022475E4(UnkStruct_ov95_02247628 * param0, UnkStruct_o
 UnkStruct_02018340 * ov95_02247628(UnkStruct_ov95_02247628 * param0);
 UnkStruct_0200B358 * ov95_0224762C(UnkStruct_ov95_02247628 * param0);
 UnkStruct_0200B144 * ov95_02247630(UnkStruct_ov95_02247628 * param0);
-const UnkStruct_02073C74_sub1 * ov95_02247634(UnkStruct_ov95_02247628 * param0);
-const UnkStruct_02073C74_sub1 * ov95_0224763C(UnkStruct_ov95_02247628 * param0);
+const BoxPokemon * ov95_02247634(UnkStruct_ov95_02247628 * param0);
+const BoxPokemon * ov95_0224763C(UnkStruct_ov95_02247628 * param0);
 u32 ov95_02247644(UnkStruct_ov95_02247628 * param0);
 u16 ov95_0224764C(UnkStruct_ov95_02247628 * param0);
 u16 ov95_02247654(UnkStruct_ov95_02247628 * param0);

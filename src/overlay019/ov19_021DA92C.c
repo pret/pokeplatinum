@@ -34,6 +34,8 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA92C.h"
 
+#include "constants/species.h"
+
 typedef struct {
     u16 unk_00;
     u16 unk_02;
@@ -166,7 +168,7 @@ void ov19_021DAA90 (UnkStruct_ov19_021DA9E0 * param0)
 {
     UnkStruct_02008A90 v0;
 
-    sub_02075FB4(&v0, 1, 0, 0, 0, 0, 0);
+    sub_02075FB4(&v0, SPECIES_BULBASAUR, 0, 0, 0, 0, 0);
     param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
 }
 

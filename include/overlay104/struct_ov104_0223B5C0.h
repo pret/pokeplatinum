@@ -39,7 +39,7 @@ typedef struct {
     u8 unk_984[2][512];
     u16 unk_D84[2];
     u8 unk_D88;
-    UnkStruct_02073C74 * unk_D8C;
+    Pokemon * unk_D8C;
     u8 unk_D90;
     u32 unk_D94;
 } UnkStruct_ov104_0223B5C0;

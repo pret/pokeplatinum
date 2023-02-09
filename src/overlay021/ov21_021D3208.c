@@ -20,6 +20,8 @@
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D3208.h"
 
+#include "constants/species.h"
+
 static void ov21_021D39A4(u16 * param0, int * param1, const UnkStruct_02026324 * param2, const u16 * param3, int param4);
 static void ov21_021D39E4(u16 * param0, int * param1, const u16 * param2, int param3, const u16 * param4, int param5, BOOL param6, const UnkStruct_02026324 * param7);
 static void ov21_021D3A60(UnkStruct_ov21_021D3A60 * param0, const UnkStruct_02026324 * param1, const u16 * param2, int param3);

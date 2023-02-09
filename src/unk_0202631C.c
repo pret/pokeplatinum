@@ -12,6 +12,8 @@
 #include "unk_02073C2C.h"
 #include "unk_020986CC.h"
 
+#include "constants/species.h"
+
 typedef struct UnkStruct_02026324_t {
     u32 unk_00;
     u32 unk_04[16];
@@ -197,29 +199,29 @@ static void sub_0202643C (UnkStruct_02026324 * param0, int param1)
     }
 }
 
-static int sub_02026464 (const UnkStruct_02026324 * param0, u32 param1)
+static int sub_02026464 (const UnkStruct_02026324 * param0, u32 species)
 {
     u32 v0;
     u32 v1;
     const u8 * v2;
 
-    GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
+    GF_ASSERT((species == SPECIES_SHELLOS) || (species == SPECIES_GASTRODON) || (species == SPECIES_SHAYMIN) || (species == SPECIES_GIRATINA));
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (sub_02026FE8(param0, species) == 0) {
         return 0;
     }
 
-    switch (param1) {
-    case 422:
+    switch (species) {
+    case SPECIES_SHELLOS:
         v2 = &param0->unk_108;
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         v2 = &param0->unk_109;
         break;
-    case 492:
+    case SPECIES_SHAYMIN:
         v2 = &param0->unk_320;
         break;
-    case 487:
+    case SPECIES_GIRATINA:
         v2 = &param0->unk_321;
         break;
     }
@@ -234,35 +236,35 @@ static int sub_02026464 (const UnkStruct_02026324 * param0, u32 param1)
     return 2;
 }
 
-static BOOL sub_02026514 (const UnkStruct_02026324 * param0, u32 param1, u8 param2)
+static BOOL sub_02026514 (const UnkStruct_02026324 * param0, u32 species, u8 param2)
 {
     u32 v0;
     u32 v1;
     u32 v2;
     const u8 * v3;
 
-    GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
+    GF_ASSERT((species == SPECIES_SHELLOS) || (species == SPECIES_GASTRODON) || (species == SPECIES_SHAYMIN) || (species == SPECIES_GIRATINA));
 
-    if (sub_02026FE8(param0, param1) == 0) {
+    if (sub_02026FE8(param0, species) == 0) {
         return 0;
     }
 
-    switch (param1) {
-    case 422:
+    switch (species) {
+    case SPECIES_SHELLOS:
         v3 = &param0->unk_108;
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         v3 = &param0->unk_109;
         break;
-    case 492:
+    case SPECIES_SHAYMIN:
         v3 = &param0->unk_320;
         break;
-    case 487:
+    case SPECIES_GIRATINA:
         v3 = &param0->unk_321;
         break;
     }
 
-    v2 = sub_02026464(param0, param1);
+    v2 = sub_02026464(param0, species);
 
     for (v1 = 0; v1 < v2; v1++) {
         v0 = inline_02026464(v3, v1 + 1);
@@ -275,33 +277,33 @@ static BOOL sub_02026514 (const UnkStruct_02026324 * param0, u32 param1, u8 para
     return 0;
 }
 
-static void sub_020265E8 (UnkStruct_02026324 * param0, u32 param1, int param2)
+static void sub_020265E8 (UnkStruct_02026324 * param0, u32 species, int param2)
 {
     int v0;
     u8 * v1;
 
-    GF_ASSERT((param1 == 422) || (param1 == 423) || (param1 == 492) || (param1 == 487));
+    GF_ASSERT((species == SPECIES_SHELLOS) || (species == SPECIES_GASTRODON) || (species == SPECIES_SHAYMIN) || (species == SPECIES_GIRATINA));
 
-    if (sub_02026514(param0, param1, param2)) {
+    if (sub_02026514(param0, species, param2)) {
         return;
     }
 
-    switch (param1) {
-    case 422:
+    switch (species) {
+    case SPECIES_SHELLOS:
         v1 = &param0->unk_108;
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         v1 = &param0->unk_109;
         break;
-    case 492:
+    case SPECIES_SHAYMIN:
         v1 = &param0->unk_320;
         break;
-    case 487:
+    case SPECIES_GIRATINA:
         v1 = &param0->unk_321;
         break;
     }
 
-    v0 = sub_02026464(param0, param1);
+    v0 = sub_02026464(param0, species);
 
     if (v0 < 2) {
         inline_02026360(v1, param2, v0 + 1);
@@ -462,7 +464,7 @@ static BOOL sub_020268D8 (const UnkStruct_02026324 * param0, u32 param1)
     return 0;
 }
 
-static void sub_020268FC (UnkStruct_02026324 * param0, u16 param1, UnkStruct_02073C74 * param2)
+static void sub_020268FC (UnkStruct_02026324 * param0, u16 param1, Pokemon * param2)
 {
     u8 v0 = sub_02074470(param2, 112, NULL);
     u32 v1;
@@ -565,12 +567,12 @@ static void sub_02026A00 (UnkStruct_02026324 * param0, u32 param1, int param2)
     }
 }
 
-static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, UnkStruct_02073C74 * param2)
+static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon * param2)
 {
     int v0;
 
     switch (param1) {
-    case 201:
+    case SPECIES_UNOWN:
         v0 = sub_02076AF8(param2);
         sub_0202643C(param0, v0);
         break;
@@ -590,7 +592,7 @@ static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, UnkStruct_020
         v0 = sub_02074470(param2, 112, NULL);
         sub_020265E8(param0, param1, v0);
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         sub_020268FC(param0, param1, param2);
         break;
     case 492:
@@ -991,68 +993,68 @@ u32 sub_020270F8 (const UnkStruct_02026324 * param0, int param1)
 {
     inline_02026DD0(param0);
 
-    if (sub_02026464(param0, 422) <= param1) {
+    if (sub_02026464(param0, SPECIES_SHELLOS) <= param1) {
         return -1;
     }
 
-    return sub_02026C24(param0, 422, param1);
+    return sub_02026C24(param0, SPECIES_SHELLOS, param1);
 }
 
 u32 sub_02027130 (const UnkStruct_02026324 * param0)
 {
     inline_02026DD0(param0);
-    return sub_02026464(param0, 422);
+    return sub_02026464(param0, SPECIES_SHELLOS);
 }
 
 u32 sub_02027154 (const UnkStruct_02026324 * param0, int param1)
 {
     inline_02026DD0(param0);
 
-    if (sub_02026464(param0, 423) <= param1) {
+    if (sub_02026464(param0, SPECIES_GASTRODON) <= param1) {
         return -1;
     }
 
-    return sub_02026C24(param0, 423, param1);
+    return sub_02026C24(param0, SPECIES_GASTRODON, param1);
 }
 
 u32 sub_0202718C (const UnkStruct_02026324 * param0)
 {
     inline_02026DD0(param0);
-    return sub_02026464(param0, 423);
+    return sub_02026464(param0, SPECIES_GASTRODON);
 }
 
 u32 sub_020271B0 (const UnkStruct_02026324 * param0, int param1)
 {
     inline_02026DD0(param0);
 
-    if (sub_020266F8(param0, 412) <= param1) {
+    if (sub_020266F8(param0, SPECIES_BURMY) <= param1) {
         return -1;
     }
 
-    return sub_02026CFC(param0, 412, param1);
+    return sub_02026CFC(param0, SPECIES_BURMY, param1);
 }
 
 u32 sub_020271E8 (const UnkStruct_02026324 * param0)
 {
     inline_02026DD0(param0);
-    return sub_020266F8(param0, 412);
+    return sub_020266F8(param0, SPECIES_BURMY);
 }
 
 u32 sub_02027208 (const UnkStruct_02026324 * param0, int param1)
 {
     inline_02026DD0(param0);
 
-    if (sub_020266F8(param0, 413) <= param1) {
+    if (sub_020266F8(param0, SPECIES_WORMADAM) <= param1) {
         return -1;
     }
 
-    return sub_02026CFC(param0, 413, param1);
+    return sub_02026CFC(param0, SPECIES_WORMADAM, param1);
 }
 
 u32 sub_02027240 (const UnkStruct_02026324 * param0)
 {
     inline_02026DD0(param0);
-    return sub_020266F8(param0, 413);
+    return sub_020266F8(param0, SPECIES_WORMADAM);
 }
 
 u32 sub_02027264 (const UnkStruct_02026324 * param0, int param1)
@@ -1067,7 +1069,7 @@ u32 sub_02027288 (const UnkStruct_02026324 * param0)
     return sub_020268B8(param0);
 }
 
-void sub_020272A4 (UnkStruct_02026324 * param0, UnkStruct_02073C74 * param1)
+void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
 {
     u16 v0 = sub_02074470(param1, 5, NULL);
     u32 v1 = sub_02074470(param1, 0, NULL);
@@ -1095,7 +1097,7 @@ void sub_020272A4 (UnkStruct_02026324 * param0, UnkStruct_02073C74 * param1)
     inline_0202736C(param0, v0);
 }
 
-void sub_0202736C (UnkStruct_02026324 * param0, UnkStruct_02073C74 * param1)
+void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
 {
     u16 v0 = sub_02074470(param1, 5, NULL);
     u32 v1 = sub_02074470(param1, 12, NULL);
@@ -1200,49 +1202,49 @@ u32 sub_0202756C (const UnkStruct_02026324 * param0, int param1, int param2)
     inline_02026DD0(param0);
 
     switch (param1) {
-    case 201:
+    case SPECIES_UNOWN:
         if (param2 < sub_020270DC(param0)) {
             return sub_020270AC(param0, param2);
         }
         break;
-    case 422:
+    case SPECIES_SHELLOS:
         if (param2 < sub_02027130(param0)) {
             return sub_020270F8(param0, param2);
         }
         break;
-    case 423:
+    case SPECIES_GASTRODON:
         if (param2 < sub_0202718C(param0)) {
             return sub_02027154(param0, param2);
         }
         break;
-    case 412:
+    case SPECIES_BURMY:
         if (param2 < sub_020271E8(param0)) {
             return sub_020271B0(param0, param2);
         }
         break;
-    case 413:
+    case SPECIES_WORMADAM:
         if (param2 < sub_02027240(param0)) {
             return sub_02027208(param0, param2);
         }
         break;
-    case 386:
+    case SPECIES_DEOXYS:
         if (param2 < sub_02027288(param0)) {
             return sub_02027264(param0, param2);
         }
         break;
-    case 492:
-        if (param2 < sub_02026464(param0, 492)) {
-            return sub_02026C24(param0, 492, param2);
+    case SPECIES_SHAYMIN:
+        if (param2 < sub_02026464(param0, SPECIES_SHAYMIN)) {
+            return sub_02026C24(param0, SPECIES_SHAYMIN, param2);
         }
         break;
-    case 487:
-        if (param2 < sub_02026464(param0, 487)) {
-            return sub_02026C24(param0, 487, param2);
+    case SPECIES_GIRATINA:
+        if (param2 < sub_02026464(param0, SPECIES_GIRATINA)) {
+            return sub_02026C24(param0, SPECIES_GIRATINA, param2);
         }
         break;
-    case 479:
-        if (param2 < sub_02026958(param0, 479)) {
-            return sub_02026CCC(param0, 479, param2);
+    case SPECIES_ROTOM:
+        if (param2 < sub_02026958(param0, SPECIES_ROTOM)) {
+            return sub_02026CCC(param0, SPECIES_ROTOM, param2);
         }
         break;
     default:
@@ -1252,29 +1254,29 @@ u32 sub_0202756C (const UnkStruct_02026324 * param0, int param1, int param2)
     return 0;
 }
 
-u32 sub_020276C8 (const UnkStruct_02026324 * param0, int param1)
+u32 sub_020276C8 (const UnkStruct_02026324 * param0, int species)
 {
     inline_02026DD0(param0);
 
-    switch (param1) {
-    case 201:
+    switch (species) {
+    case SPECIES_UNOWN:
         return sub_020270DC(param0);
-    case 422:
+    case SPECIES_SHELLOS:
         return sub_02027130(param0);
-    case 423:
+    case SPECIES_GASTRODON:
         return sub_0202718C(param0);
-    case 412:
+    case SPECIES_BURMY:
         return sub_020271E8(param0);
-    case 413:
+    case SPECIES_WORMADAM:
         return sub_02027240(param0);
-    case 386:
+    case SPECIES_DEOXYS:
         return sub_02027288(param0);
-    case 492:
-        return sub_02026464(param0, 492);
-    case 487:
-        return sub_02026464(param0, 487);
-    case 479:
-        return sub_02026958(param0, 479);
+    case SPECIES_SHAYMIN:
+        return sub_02026464(param0, SPECIES_SHAYMIN);
+    case SPECIES_GIRATINA:
+        return sub_02026464(param0, SPECIES_GIRATINA);
+    case SPECIES_ROTOM:
+        return sub_02026958(param0, SPECIES_ROTOM);
     default:
         break;
     }

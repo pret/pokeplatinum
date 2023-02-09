@@ -37,7 +37,7 @@ typedef struct {
     int unk_3E0;
     UnkStruct_ov76_0223BBAC unk_3E4;
     UnkStruct_ov76_0223DD88_sub3 unk_418;
-    UnkStruct_02073C74 * unk_428;
+    Pokemon * unk_428;
     NARC * unk_42C;
 } UnkStruct_ov76_0223DE00;
 

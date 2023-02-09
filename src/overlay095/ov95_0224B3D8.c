@@ -48,6 +48,8 @@
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/ov95_0224B3D8.h"
 
+#include "constants/pokemon.h"
+
 enum {
     UnkEnum_ov95_0224BD5C_00 = -0x780,
     UnkEnum_ov95_0224BD5C_01 = 0x180,
@@ -371,9 +373,9 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
         break;
     case 3:
         if (ov95_0224BC00(param0)) {
-            const UnkStruct_02073C74_sub1 * v0 = ov95_0224763C(param0->unk_00);
+            const BoxPokemon * v0 = ov95_0224763C(param0->unk_00);
 
-            if (sub_02074570((UnkStruct_02073C74_sub1 *)v0, 76, NULL) == 0) {
+            if (sub_02074570((BoxPokemon *)v0, MON_DATA_76, NULL) == 0) {
                 u8 v1;
 
                 sub_02078A4C(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);
@@ -509,10 +511,10 @@ static void ov95_0224B9C0 (UnkStruct_ov95_0224B4D4 * param0)
 static UnkStruct_02007C7C * ov95_0224BA8C (UnkStruct_ov95_0224B4D4 * param0)
 {
     UnkStruct_02008A90 v0;
-    UnkStruct_02073C74_sub1 * v1;
+    BoxPokemon * v1;
     int v2;
 
-    v1 = (UnkStruct_02073C74_sub1 *)ov95_0224763C(param0->unk_00);
+    v1 = (BoxPokemon *)ov95_0224763C(param0->unk_00);
 
     sub_02075F0C(&v0, v1, 2, 0);
     sub_020789BC(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);

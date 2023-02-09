@@ -343,7 +343,7 @@ void sub_0200106C (void)
 GOTOLABEL:
             v2 = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (Unk_021BF67C.unk_66 && (Unk_02101D24 == FALSE)) {
+            if (Unk_021BF67C.gameId && (Unk_02101D24 == FALSE)) {
                 v2 |= PM_TRIGGER_CARTRIDGE;
             }
 

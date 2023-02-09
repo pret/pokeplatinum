@@ -37,7 +37,7 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
     u16 * v8;
     int v9 = 64;
     int v10, v11, v12;
-    UnkStruct_02073C74 * v13;
+    Pokemon * v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
     v6 = sub_02023790(v9, param2);

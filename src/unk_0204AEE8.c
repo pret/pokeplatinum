@@ -203,7 +203,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
 {
     int v0;
     Party * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     UnkStruct_02025E6C * v3 = sub_02025E38(param1);
 
     param0->unk_83E[0] = sub_02025F30(v3);
@@ -314,7 +314,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
 {
     int v0;
     int v1;
-    u32 v2;
+    u32 personality;
     u8 v3;
     UnkStruct_0204B1E8 v4;
 
@@ -344,13 +344,13 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
 
     if (param4 == 0) {
         do {
-            v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param3, v2) == 1));
+            personality = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
+        } while ((v4.unk_0B != GetNatureFromPersonality(personality)) || (sub_02075E38(param3, personality) == 1));
 
-        param1->unk_10 = v2;
+        param1->unk_10 = personality;
     } else {
         param1->unk_10 = param4;
-        v2 = param4;
+        personality = param4;
     }
 
     param1->unk_14_val1_0 = param5;
@@ -398,7 +398,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     param1->unk_21 = v3;
     sub_0200B274(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
 
-    return v2;
+    return personality;
 }
 
 BOOL sub_0204B3B8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param1, u16 param2, int param3, u16 * param4, u16 * param5, UnkStruct_0204B404 * param6, int param7)

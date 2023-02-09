@@ -60,19 +60,19 @@ void ov22_02257948 (UnkStruct_ov22_02257964 * param0)
     memset(param0, 0, sizeof(UnkStruct_ov22_02257964));
 }
 
-void ov22_02257964 (UnkStruct_ov22_02257964 * param0, UnkStruct_02073C74 * param1, UnkStruct_02008A90 * param2, int param3, int param4, int param5, int param6)
+void ov22_02257964 (UnkStruct_ov22_02257964 * param0, Pokemon * param1, UnkStruct_02008A90 * param2, int param3, int param4, int param5, int param6)
 {
     ov22_022590C0(&param0->unk_2C.unk_4C, param0->unk_2C.unk_10, param1, param2, param6);
     ov22_022591D0(&param0->unk_2C.unk_4C, param5);
     ov22_022591EC(&param0->unk_2C.unk_4C, param3, param4);
 }
 
-void ov22_02257998 (UnkStruct_ov22_02257964 * param0, UnkStruct_02073C74 * param1, UnkStruct_02008A90 * param2, int param3)
+void ov22_02257998 (UnkStruct_ov22_02257964 * param0, Pokemon * param1, UnkStruct_02008A90 * param2, int param3)
 {
     ov22_022590C0(&param0->unk_2C.unk_4C, param0->unk_2C.unk_10, param1, param2, param3);
 }
 
-void ov22_022579B4 (UnkStruct_ov22_02257964 * param0, UnkStruct_02073C74 * param1, UnkStruct_02008A90 * param2, int param3)
+void ov22_022579B4 (UnkStruct_ov22_02257964 * param0, Pokemon * param1, UnkStruct_02008A90 * param2, int param3)
 {
     ov22_022590D4(&param0->unk_2C.unk_4C, param0->unk_2C.unk_10, param1, param2, param3, 1);
 }

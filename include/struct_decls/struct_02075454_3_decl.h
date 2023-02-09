@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02075454_3_DECL_H
 #define POKEPLATINUM_STRUCT_02075454_3_DECL_H
 
-typedef struct UnkStruct_02075454_3_t UnkStruct_02075454_3;
+typedef struct PokemonSubstruct3_t PokemonSubstruct3;
 
 #endif // POKEPLATINUM_STRUCT_02075454_3_DECL_H

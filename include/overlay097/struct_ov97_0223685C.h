@@ -20,10 +20,10 @@ typedef struct {
     u8 unk_1B;
     u16 unk_1C;
     u16 unk_1E;
-    u8 unk_20[sizeof(UnkStruct_ov97_02236380_sub1)
-              + sizeof(UnkStruct_ov97_02236380_sub2)
-              + sizeof(UnkStruct_ov97_02236380_sub3)
-              + sizeof(UnkStruct_ov97_02236380_sub4)];
-} UnkStruct_ov97_0223685C;
+    u8 unk_20[sizeof(PokemonGBASubstruct0)
+              + sizeof(PokemonGBASubstruct1)
+              + sizeof(PokemonGBASubstruct2)
+              + sizeof(PokemonGBASubstruct3)];
+} BoxPokemonGBA;
 
 #endif // POKEPLATINUM_STRUCT_OV97_0223685C_H

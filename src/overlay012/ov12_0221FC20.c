@@ -2028,7 +2028,7 @@ static void ov12_0222128C (UnkStruct_ov12_0221FCDC * param0)
     int v4;
     int v5;
     int v6;
-    int v7;
+    int formId;
 
     param0->unk_18 += 1;
 
@@ -2042,9 +2042,9 @@ static void ov12_0222128C (UnkStruct_ov12_0221FCDC * param0)
     v4 = param0->unk_BC->unk_B0[v3]->unk_04;
     v5 = param0->unk_BC->unk_B0[v3]->unk_08;
     v0 = param0->unk_BC->unk_B0[v3]->unk_00;
-    v7 = param0->unk_BC->unk_E8[v3];
+    formId = param0->unk_BC->unk_E8[v3];
 
-    if ((ov12_0221FDD4(param0) == 1) && (ov12_022384F0(ov12_022232D0(param0, v3), v7) == 1)) {
+    if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v3), formId) == TRUE)) {
         v6 = 265;
     } else {
         v6 = 264;
@@ -2157,7 +2157,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
     int v7;
     int v8;
     int v9;
-    int v10;
+    int formId;
 
     param0->unk_18 += 1;
 
@@ -2184,7 +2184,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
     v8 = param0->unk_BC->unk_B0[v7]->unk_04;
     v9 = param0->unk_BC->unk_B0[v7]->unk_08;
     v0 = param0->unk_BC->unk_B0[v7]->unk_00;
-    v10 = param0->unk_BC->unk_E8[v7];
+    formId = param0->unk_BC->unk_E8[v7];
     {
         UnkStruct_ov104_0223F9E0 v11;
         UnkStruct_02007C7C * v12 = ov12_022232FC(param0, v7);
@@ -2225,7 +2225,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
             }
         }
 
-        if ((ov12_0221FDD4(param0) == 1) && (ov12_022384F0(ov12_022232D0(param0, v7), v10) == 1)) {
+        if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v7), formId) == TRUE)) {
             sub_0200D7D4(v1, 1);
         }
     }
@@ -4117,12 +4117,12 @@ void ov12_02223488 (UnkStruct_ov12_0221FCDC * param0)
 BOOL ov12_022234A8 (UnkStruct_ov12_0221FCDC * param0, int param1)
 {
     int v0;
-    int v1;
+    int formId;
 
     v0 = ov12_022210A8(param0, param1);
-    v1 = param0->unk_BC->unk_E8[v0];
+    formId = param0->unk_BC->unk_E8[v0];
 
-    if ((ov12_0221FDD4(param0) == 1) && (ov12_022384F0(ov12_022232D0(param0, v0), v1) == 1)) {
+    if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v0), formId) == TRUE)) {
         return 1;
     }
 

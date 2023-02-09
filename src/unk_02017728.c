@@ -307,7 +307,7 @@ void sub_02017AF4 (void)
 
 void sub_02017B70 (int param0)
 {
-    Unk_021BF67C.unk_66 = param0;
+    Unk_021BF67C.gameId = param0;
 }
 
 void sub_02017B7C (u8 param0)

@@ -6,7 +6,7 @@ typedef struct {
     u8 unk_01_0    : 2;
     u8 unk_01_2    : 1;
     u8 unk_01_3    : 5;
-    u16 unk_02;
+    u16 species;
     u32 unk_04;
     int unk_08;
     int unk_0C;

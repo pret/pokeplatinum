@@ -515,7 +515,7 @@ static void ov19_021DCE50 (UnkStruct_ov19_021DC680 * param0, fx32 param1)
 
 static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     int v1, v2, v3;
 
     v3 = (param1) ? 0 : 208;
@@ -523,7 +523,7 @@ static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
 
     for (v1 = 0; v1 < v2; v1++) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, v1);
-        ov19_021DA428(param0->unk_38, (UnkStruct_02073C74_sub1 *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
+        ov19_021DA428(param0->unk_38, (BoxPokemon *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
         sub_02021CAC(param0->unk_3C[v1].unk_00, param1);
     }
 }

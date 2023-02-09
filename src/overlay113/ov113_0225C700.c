@@ -1341,7 +1341,7 @@ static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_o
 {
     Party * v0;
     int v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     int v3;
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);

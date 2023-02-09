@@ -488,12 +488,12 @@ void ov17_02241524 (UnkStruct_ov17_0223F88C * param0, int param1)
     sub_02007DEC(param0->unk_08[param1], 37, 1);
 
     {
-        u32 v0, v1;
+        u32 species, formId;
 
-        v0 = sub_02074470(param0->unk_00->unk_00[param1], 5, NULL);
-        v1 = sub_02074470(param0->unk_00->unk_00[param1], 112, NULL);
+        species = sub_02074470(param0->unk_00->unk_00[param1], 5, NULL);
+        formId = sub_02074470(param0->unk_00->unk_00[param1], 112, NULL);
 
-        if (ov12_022384F0(v0, v1) == 1) {
+        if (IsFormSymmetrical(species, formId) == TRUE) {
             sub_02007DEC(param0->unk_08[param1], 35, 1);
         }
     }
@@ -513,12 +513,12 @@ void ov17_022415E4 (UnkStruct_ov17_0223F88C * param0)
         sub_02007DEC(param0->unk_08[v0], 37, 1);
 
         {
-            u32 v1, v2;
+            u32 species, formId;
 
-            v1 = sub_02074470(param0->unk_00->unk_00[v0], 5, NULL);
-            v2 = sub_02074470(param0->unk_00->unk_00[v0], 112, NULL);
+            species = sub_02074470(param0->unk_00->unk_00[v0], 5, NULL);
+            formId = sub_02074470(param0->unk_00->unk_00[v0], 112, NULL);
 
-            if (ov12_022384F0(v1, v2) == 1) {
+            if (IsFormSymmetrical(species, formId) == TRUE) {
                 sub_02007DEC(param0->unk_08[v0], 35, 1);
             }
         }

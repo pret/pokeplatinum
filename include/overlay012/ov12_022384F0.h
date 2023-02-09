@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_OV12_022384F0_H
 #define POKEPLATINUM_OV12_022384F0_H
 
-BOOL ov12_022384F0(u32 param0, u32 param1);
+BOOL IsFormSymmetrical(u32 species, u32 formId);
 
 #endif // POKEPLATINUM_OV12_022384F0_H

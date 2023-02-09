@@ -165,7 +165,7 @@ void ov21_021D217C (const UnkStruct_ov21_021D13FC * param0, BOOL param1)
     ov21_021D2280(param0, param1, 0);
 }
 
-void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3, int param4, u8 param5, u32 param6, int param7, int param8, int param9)
+void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int species, int param2, int param3, int param4, u8 param5, u32 param6, int param7, int param8, int param9)
 {
     UnkStruct_02008A90 v0;
     s16 v1;
@@ -175,13 +175,13 @@ void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int param1, int param2, in
     }
 
     if (param2 == -1) {
-        param2 = sub_02075DAC(param1, 0);
+        param2 = sub_02075DAC(species, 0);
     }
 
-    sub_02075FB4(&v0, param1, param2, param3, param4, param5, param6);
+    sub_02075FB4(&v0, species, param2, param3, param4, param5, param6);
 
     if (param3 == 0) {
-        v1 = sub_02076648(param1, param2, param3, param5, param6);
+        v1 = sub_02076648(species, param2, param3, param5, param6);
         v1 += 0;
     } else {
         v1 = 0;

@@ -19,6 +19,8 @@
 #include "unk_02073C2C.h"
 #include "overlay077/ov77_021D6C70.h"
 
+#include "constants/species.h"
+
 typedef struct UnkStruct_ov77_021D6CFC_t {
     UnkStruct_02007768 * unk_00;
     UnkStruct_02007C7C * unk_04[3];
@@ -115,7 +117,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
     UnkStruct_02008A90 v1;
     UnkStruct_020203AC * v2;
     void * v3;
-    int v4[3] = {389, 392, 395};
+    int starterFinalEvos[3] = {SPECIES_TORTERRA, SPECIES_INFERNAPE, SPECIES_EMPOLEON};
     int v5[3];
     int v6, v7;
     RTCTime v8;
@@ -126,7 +128,7 @@ void ov77_021D6CFC (UnkStruct_ov77_021D6CFC * param0)
     v7 = v8.second % 3;
 
     for (v0 = 0; v0 < 3; v0++) {
-        v5[v0] = v4[v7];
+        v5[v0] = starterFinalEvos[v7];
         param0->unk_1C[v0] = v7;
 
         if (v6) {

@@ -20,6 +20,8 @@
 #include "unk_020797C8.h"
 #include "party.h"
 
+#include "constants/pokemon.h"
+
 static u8 sub_02048268(u16 param0, u16 param1);
 
 BOOL sub_020480A8 (UnkStruct_0203E724 * param0)
@@ -37,8 +39,8 @@ BOOL sub_020480A8 (UnkStruct_0203E724 * param0)
 BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02073C74 * v1;
-    UnkStruct_02073C74_sub1 * v2;
+    Pokemon * v1;
+    BoxPokemon * v2;
     UnkStruct_020797DC * v3 = sub_02024420(v0->unk_0C);
     u16 * v4 = inline_0204FCAC(param0);
     u16 * v5 = inline_0204FCAC(param0);
@@ -71,11 +73,11 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     for (v13 = 0, v14 = 0, v18 = 0; v18 < 18; v18++) {
         for (v17 = 0; v17 < (5 * 6); v17++) {
             v2 = sub_02079C9C(v3, v18, v17);
-            v19 = sub_02074570(v2, 5, NULL);
+            v19 = sub_02074570(v2, MON_DATA_SPECIES, NULL);
 
             if (v19) {
-                if (sub_02074570(v2, 76, NULL) == 0) {
-                    v15 = (sub_02074570(v2, 7, NULL) & 0xffff);
+                if (sub_02074570(v2, MON_DATA_76, NULL) == 0) {
+                    v15 = (sub_02074570(v2, MON_DATA_7, NULL) & 0xffff);
 
                     v16 = sub_02048268(v7, v15);
 

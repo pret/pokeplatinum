@@ -513,4 +513,8 @@
 
 #define MAX_SPECIES             SPECIES_BAD_EGG
 
+// Used for Pal Park
+#define GEN_3_SPECIES_IDS_BEGIN       277
+#define GEN_3_SPECIES_IDS_END         411
+
 #endif // POKEPLATINUM_CONSTANTS_SPECIES_H

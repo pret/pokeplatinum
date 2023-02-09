@@ -18,7 +18,9 @@
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
 
-static int sub_02092E8C(UnkStruct_02073C74 * param0, BOOL param1, int param2);
+#include "constants/pokemon.h"
+
+static int sub_02092E8C(Pokemon * param0, BOOL param1, int param2);
 static void sub_02092878(UnkStruct_02090800 * param0);
 static void sub_020928A0(UnkStruct_02090800 * param0, int param1);
 static void sub_020929C0(UnkStruct_02090800 * param0, int param1);
@@ -26,13 +28,13 @@ static void sub_02092B1C(UnkStruct_02090800 * param0, int param1, int param2);
 static void sub_02092C24(UnkStruct_02090800 * param0);
 static void sub_02092E10(UnkStruct_02090800 * param0);
 static void sub_02092E4C(UnkStruct_02090800 * param0);
-static void sub_020932A4(UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1, int param2);
-static void sub_020932F0(UnkStruct_02073C74_sub1 * param0, int param1, int param2);
-static void sub_02093368(UnkStruct_02073C74_sub1 * param0, int param1);
-static void sub_020933C8(UnkStruct_02073C74_sub1 * param0);
-static void sub_020933E8(UnkStruct_02073C74_sub1 * param0);
+static void sub_020932A4(BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2);
+static void sub_020932F0(BoxPokemon *boxMon, int param1, int param2);
+static void sub_02093368(BoxPokemon *boxMon, int param1);
+static void sub_020933C8(BoxPokemon *boxMon);
+static void sub_020933E8(BoxPokemon *boxMon);
 
-UnkStruct_02090800 * sub_02092494 (UnkStruct_02073C74 * param0, BOOL param1, int param2)
+UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
 {
     UnkStruct_02090800 * v0;
 
@@ -632,7 +634,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     sub_0200B1B8(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
-static int sub_02092E8C (UnkStruct_02073C74 * param0, BOOL param1, int param2)
+static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
 {
     int v0 = 0;
 
@@ -715,12 +717,12 @@ static int sub_02092E8C (UnkStruct_02073C74 * param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C (UnkStruct_02073C74 * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209304C (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
     sub_0209305C(&param0->unk_00, param1, param2, param3, param4);
 }
 
-void sub_0209305C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209305C (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
     switch (param2) {
     case 0:
@@ -728,65 +730,65 @@ void sub_0209305C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1
             param3 = (sub_02017070(2, 2));
         }
 
-        if (sub_02074570(param0, 76, NULL) == 0) {
-            sub_02093368(param0, 0);
-            sub_020932F0(param0, param3, 1);
-            sub_020933C8(param0);
+        if (sub_02074570(boxMon, MON_DATA_76, NULL) == 0) {
+            sub_02093368(boxMon, 0);
+            sub_020932F0(boxMon, param3, 1);
+            sub_020933C8(boxMon);
         } else {
-            sub_020932F0(param0, param3, 0);
-            sub_02093368(param0, 1);
+            sub_020932F0(boxMon, param3, 0);
+            sub_02093368(boxMon, 1);
         }
 
-        sub_020932A4(param0, param1, param4);
+        sub_020932A4(boxMon, param1, param4);
         break;
     case 1:
-        if (sub_02074570(param0, 76, NULL) == 0) {
-            sub_02093368(param0, 0);
-            sub_020932F0(param0, (sub_02017070(1, 1)), 1);
-            sub_020933C8(param0);
+        if (sub_02074570(boxMon, MON_DATA_76, NULL) == 0) {
+            sub_02093368(boxMon, 0);
+            sub_020932F0(boxMon, (sub_02017070(1, 1)), 1);
+            sub_020933C8(boxMon);
         } else {
-            sub_02093368(param0, 0);
-            sub_020932F0(param0, (sub_02017070(1, 1)), 1);
+            sub_02093368(boxMon, 0);
+            sub_020932F0(boxMon, (sub_02017070(1, 1)), 1);
         }
         break;
     case 2:
-        sub_02093368(param0, 0);
-        sub_020932F0(param0, (sub_02017070(0, 55)), 1);
-        sub_020933C8(param0);
+        sub_02093368(boxMon, 0);
+        sub_020932F0(boxMon, (sub_02017070(0, 55)), 1);
+        sub_020933C8(boxMon);
         break;
     case 3:
-        sub_020932F0(param0, param3, 0);
-        sub_02093368(param0, 1);
-        sub_020932A4(param0, param1, param4);
+        sub_020932F0(boxMon, param3, 0);
+        sub_02093368(boxMon, 1);
+        sub_020932A4(boxMon, param1, param4);
         break;
     case 4:
-        if (sub_0207884C(param0, param1, param4) == 1) {
-            if (sub_02074570(param0, 76, NULL) == 0) {
-                sub_02093368(param0, 0);
-                sub_020932F0(param0, param3, 1);
-                sub_020933C8(param0);
+        if (sub_0207884C(boxMon, param1, param4) == 1) {
+            if (sub_02074570(boxMon, MON_DATA_76, NULL) == 0) {
+                sub_02093368(boxMon, 0);
+                sub_020932F0(boxMon, param3, 1);
+                sub_020933C8(boxMon);
             } else {
-                sub_020932F0(param0, param3, 0);
-                sub_02093368(param0, 1);
+                sub_020932F0(boxMon, param3, 0);
+                sub_02093368(boxMon, 1);
             }
         } else {
-            if (sub_02074570(param0, 76, NULL) == 0) {
-                sub_02093368(param0, 0);
-                sub_020932F0(param0, param3, 1);
-                sub_020933C8(param0);
+            if (sub_02074570(boxMon, MON_DATA_76, NULL) == 0) {
+                sub_02093368(boxMon, 0);
+                sub_020932F0(boxMon, param3, 1);
+                sub_020933C8(boxMon);
             } else {
-                sub_02093368(param0, 0);
-                sub_020932F0(param0, param3, 1);
+                sub_02093368(boxMon, 0);
+                sub_020932F0(boxMon, param3, 1);
             }
         }
 
-        sub_020933E8(param0);
+        sub_020933E8(boxMon);
         break;
     case 5:
-        if (sub_02074570(param0, 76, NULL) == 0) {
+        if (sub_02074570(boxMon, MON_DATA_76, NULL) == 0) {
             (void)0;
         } else {
-            sub_020932F0(param0, (sub_02017070(1, 2)), 1);
+            sub_020932F0(boxMon, (sub_02017070(1, 2)), 1);
         }
         break;
     case 6:
@@ -794,86 +796,86 @@ void sub_0209305C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1
             param3 = (sub_02017070(2, 2));
         }
 
-        if (sub_0207884C(param0, param1, param4) == 0) {
+        if (sub_0207884C(boxMon, param1, param4) == 0) {
             {
                 int v0;
 
-                v0 = sub_02074570(param0, 153, NULL);
-                sub_02074C60(param0, 152, &v0);
+                v0 = sub_02074570(boxMon, MON_DATA_153, NULL);
+                SetBoxMonData(boxMon, MON_DATA_152, &v0);
 
-                v0 = sub_02074570(param0, 149, NULL);
-                sub_02074C60(param0, 146, &v0);
+                v0 = sub_02074570(boxMon, MON_DATA_149, NULL);
+                SetBoxMonData(boxMon, MON_DATA_146, &v0);
 
-                v0 = sub_02074570(param0, 150, NULL);
-                sub_02074C60(param0, 147, &v0);
+                v0 = sub_02074570(boxMon, MON_DATA_150, NULL);
+                SetBoxMonData(boxMon, MON_DATA_147, &v0);
 
-                v0 = sub_02074570(param0, 151, NULL);
-                sub_02074C60(param0, 148, &v0);
+                v0 = sub_02074570(boxMon, MON_DATA_151, NULL);
+                SetBoxMonData(boxMon, MON_DATA_148, &v0);
             }
         }
 
-        sub_020932F0(param0, param3, 1);
-        sub_020932A4(param0, param1, param4);
+        sub_020932F0(boxMon, param3, 1);
+        sub_020932A4(boxMon, param1, param4);
         break;
     }
 }
 
-static void sub_020932A4 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1, int param2)
+static void sub_020932A4 (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2)
 {
     int v0 = sub_02025F20(param1);
     int v1 = sub_02025F30(param1);
     UnkStruct_02023790 * v2 = sub_02025F04(param1, param2);
 
-    sub_02074C60(param0, 7, &v0);
-    sub_02074C60(param0, 157, &v1);
-    sub_02074C60(param0, 145, v2);
+    SetBoxMonData(boxMon, MON_DATA_7, &v0);
+    SetBoxMonData(boxMon, MON_DATA_157, &v1);
+    SetBoxMonData(boxMon, MON_DATA_145, v2);
     sub_020237BC(v2);
 }
 
-static void sub_020932F0 (UnkStruct_02073C74_sub1 * param0, int param1, int param2)
+static void sub_020932F0 (BoxPokemon *boxMon, int param1, int param2)
 {
     RTCDate v0;
 
     sub_020138A4(&v0);
 
     if (param2 == 0) {
-        sub_02074C60(param0, 152, &param1);
-        sub_02074C60(param0, 146, &v0.year);
-        sub_02074C60(param0, 147, &v0.month);
-        sub_02074C60(param0, 148, &v0.day);
+        SetBoxMonData(boxMon, MON_DATA_152, &param1);
+        SetBoxMonData(boxMon, MON_DATA_146, &v0.year);
+        SetBoxMonData(boxMon, MON_DATA_147, &v0.month);
+        SetBoxMonData(boxMon, MON_DATA_148, &v0.day);
     } else {
-        sub_02074C60(param0, 153, &param1);
-        sub_02074C60(param0, 149, &v0.year);
-        sub_02074C60(param0, 150, &v0.month);
-        sub_02074C60(param0, 151, &v0.day);
+        SetBoxMonData(boxMon, MON_DATA_153, &param1);
+        SetBoxMonData(boxMon, MON_DATA_149, &v0.year);
+        SetBoxMonData(boxMon, MON_DATA_150, &v0.month);
+        SetBoxMonData(boxMon, MON_DATA_151, &v0.day);
     }
 }
 
-static void sub_02093368 (UnkStruct_02073C74_sub1 * param0, int param1)
+static void sub_02093368 (BoxPokemon *boxMon, int param1)
 {
     int v0 = 0;
 
     if (param1 == 0) {
-        sub_02074C60(param0, 152, &v0);
-        sub_02074C60(param0, 146, &v0);
-        sub_02074C60(param0, 147, &v0);
-        sub_02074C60(param0, 148, &v0);
+        SetBoxMonData(boxMon, MON_DATA_152, &v0);
+        SetBoxMonData(boxMon, MON_DATA_146, &v0);
+        SetBoxMonData(boxMon, MON_DATA_147, &v0);
+        SetBoxMonData(boxMon, MON_DATA_148, &v0);
     } else {
-        sub_02074C60(param0, 153, &v0);
-        sub_02074C60(param0, 149, &v0);
-        sub_02074C60(param0, 150, &v0);
-        sub_02074C60(param0, 151, &v0);
+        SetBoxMonData(boxMon, MON_DATA_153, &v0);
+        SetBoxMonData(boxMon, MON_DATA_149, &v0);
+        SetBoxMonData(boxMon, MON_DATA_150, &v0);
+        SetBoxMonData(boxMon, MON_DATA_151, &v0);
     }
 }
 
-static void sub_020933C8 (UnkStruct_02073C74_sub1 * param0)
+static void sub_020933C8 (BoxPokemon *boxMon)
 {
-    int v0 = sub_02074570(param0, 161, NULL);
-    sub_02074C60(param0, 156, &v0);
+    int v0 = sub_02074570(boxMon, MON_DATA_161, NULL);
+    SetBoxMonData(boxMon, MON_DATA_156, &v0);
 }
 
-static void sub_020933E8 (UnkStruct_02073C74_sub1 * param0)
+static void sub_020933E8 (BoxPokemon *boxMon)
 {
     int v0 = 1;
-    sub_02074C60(param0, 110, &v0);
+    SetBoxMonData(boxMon, MON_DATA_110, &v0);
 }

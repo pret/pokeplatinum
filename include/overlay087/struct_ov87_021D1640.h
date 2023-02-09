@@ -8,7 +8,7 @@ typedef struct {
     UnkStruct_02023790 * unk_04;
     u32 unk_08;
     u32 unk_0C;
-    u16 unk_10;
+    u16 species;
     u8 unk_12;
     u8 unk_13;
     u16 unk_14[4];

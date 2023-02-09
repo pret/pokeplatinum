@@ -4,7 +4,7 @@
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    u16 unk_02;
+    u16 species;
     u8 unk_04;
     u8 unk_05;
     u8 padding_06[2];

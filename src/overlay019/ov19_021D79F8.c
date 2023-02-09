@@ -31,6 +31,8 @@
 #include "overlay019/ov19_021D79F8.h"
 #include "overlay019/ov19_021DA270.h"
 
+#include "constants/pokemon.h"
+
 static const struct {
     u8 unk_00;
     u8 unk_01;
@@ -383,7 +385,7 @@ static void ov19_021D7F9C (UnkStruct_ov19_021D8318 * param0, fx32 param1)
 static void ov19_021D803C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021DCD18 * param1, int param2, int param3)
 {
     const UnkStruct_020797DC * v0;
-    UnkStruct_02073C74_sub1 * v1;
+    BoxPokemon * v1;
     int v2, v3;
     u32 v4;
 
@@ -396,7 +398,7 @@ static void ov19_021D803C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
         if (param1->unk_00 == NULL) {
             v1 = sub_02079C9C(v0, param0->unk_30, v3);
 
-            if (sub_02074570(v1, 172, NULL)) {
+            if (sub_02074570(v1, MON_DATA_172, NULL)) {
                 ov19_021DA548(param0->unk_58F0, v1, param0->unk_5814[v3], param0->unk_57D8[v3], param0->unk_CD8[v3], param2, 40 + 24 * v2, 2, ov19_021D85B4(v3), v4, param1);
             }
         }
@@ -426,14 +428,14 @@ static void ov19_021D8114 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
 static void ov19_021D813C (UnkStruct_ov19_021D8318 * param0, u32 param1)
 {
     const UnkStruct_020797DC * v0;
-    UnkStruct_02073C74_sub1 * v1;
+    BoxPokemon * v1;
     u32 v2, v3;
 
     v0 = ov19_021D5E90(param0->unk_58F8);
 
     for (v2 = 0; v2 < (5 * 6); v2++) {
         v1 = sub_02079C9C(v0, param1, v2);
-        v3 = sub_02074570(v1, 5, NULL);
+        v3 = sub_02074570(v1, MON_DATA_SPECIES, NULL);
 
         if (v3) {
             param0->unk_5814[v2] = v3;
@@ -594,14 +596,14 @@ UnkStruct_ov19_021DCD18 * ov19_021D84C8 (UnkStruct_ov19_021D8318 * param0, u32 p
 void ov19_021D84E0 (UnkStruct_ov19_021D8318 * param0)
 {
     int v0, v1;
-    UnkStruct_02073C74_sub1 * v2;
+    BoxPokemon * v2;
 
     v1 = sub_0207999C(param0->unk_58F8->unk_00);
 
     for (v0 = 0; v0 < (5 * 6); v0++) {
         v2 = sub_02079C9C(param0->unk_58F8->unk_00, v1, v0);
 
-        if (sub_02074570(v2, 172, NULL)) {
+        if (sub_02074570(v2, MON_DATA_172, NULL)) {
             if (param0->unk_A8[param0->unk_02][v0].unk_00 == NULL) {
                 int v3, v4, v5;
 
@@ -655,7 +657,7 @@ static u32 ov19_021D85B4 (u32 param0)
 
 static void ov19_021D85C4 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021DA384 * param1, u32 param2, u32 param3, s32 param4, UnkStruct_ov19_021DCD18 * param5)
 {
-    UnkStruct_02073C74_sub1 * v0;
+    BoxPokemon * v0;
     u32 v1, v2, v3, v4, v5;
     u64 v6, v7;
 
@@ -665,7 +667,7 @@ static void ov19_021D85C4 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
     for (v3 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
             v0 = sub_02079C9C(param1->unk_40->unk_00, param2, v4);
-            v1 = sub_02074570((UnkStruct_02073C74_sub1 *)v0, 5, NULL);
+            v1 = sub_02074570((BoxPokemon *)v0, MON_DATA_SPECIES, NULL);
 
             if (v1 != 0) {
                 ov19_021DA428(param1, v0, 112 + param0->unk_585C + 24 * v2 + param4, 40 + 24 * v3, 2, ov19_021D85B4(v4), v5, param5);

@@ -21,6 +21,8 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
 
+#include "constants/pokemon.h"
+
 BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, NARC * param4)
 {
     NNSG2dImagePaletteProxy v0;
@@ -120,7 +122,7 @@ void ov19_021DA418 (const UnkStruct_ov19_021DCD18 * param0, UnkStruct_ov19_021DC
     MI_CpuCopy32(param0, param1, sizeof(UnkStruct_ov19_021DCD18) * param2);
 }
 
-void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * param1, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
+void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
 {
     NNSG2dCharacterData * v0;
     UnkStruct_ov19_021DA864 v1;
@@ -129,16 +131,16 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * 
     u8 v4;
     u8 v5;
 
-    v5 = sub_02073D20(param1);
+    v5 = sub_02073D20(boxMon);
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
 
-    v2 = sub_02074570(param1, 5, NULL);
-    v3 = sub_02074570(param1, 76, NULL);
-    v4 = sub_02074570(param1, 112, NULL);
-    param7->unk_28 = sub_02079D40((UnkStruct_02073C74_sub1 *)param1);
+    v2 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
+    v3 = sub_02074570(boxMon, MON_DATA_76, NULL);
+    v4 = sub_02074570(boxMon, MON_DATA_112, NULL);
+    param7->unk_28 = sub_02079D40((BoxPokemon *)boxMon);
     param7->unk_2C = sub_02079EDC(v2, v4, v3);
-    param7->unk_30 = sub_02074570(param1, 6, NULL);
-    param7->unk_2E = sub_02074570(param1, 11, NULL);
+    param7->unk_30 = sub_02074570(boxMon, MON_DATA_6, NULL);
+    param7->unk_2E = sub_02074570(boxMon, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param7->unk_04));
     NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
@@ -156,26 +158,26 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * 
 
     sub_02021E90(param7->unk_00, 2 + param7->unk_2C);
     ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
-    sub_02073D48(param1, v5);
+    sub_02073D48(boxMon, v5);
 }
 
-void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * param1, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
+void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
 {
     NNSG2dCharacterData * v0;
     UnkStruct_ov19_021DA864 v1;
     BOOL v2;
     u8 v3, v4;
 
-    v2 = sub_02073D20(param1);
-    v3 = sub_02074570(param1, 76, NULL);
-    v4 = sub_02074570(param1, 112, NULL);
+    v2 = sub_02073D20(boxMon);
+    v3 = sub_02074570(boxMon, MON_DATA_76, NULL);
+    v4 = sub_02074570(boxMon, MON_DATA_112, NULL);
 
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
 
     param10->unk_28 = param3;
     param10->unk_2C = sub_02079EDC(param2, v4, v3);
-    param10->unk_30 = sub_02074570(param1, 6, NULL);
-    param10->unk_2E = sub_02074570(param1, 11, NULL);
+    param10->unk_30 = sub_02074570(boxMon, MON_DATA_6, NULL);
+    param10->unk_2E = sub_02074570(boxMon, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param10->unk_04));
     NNS_G2dGetUnpackedCharacterData(param4, &v0);
@@ -192,7 +194,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * 
 
     sub_02021E90(param10->unk_00, 2 + param10->unk_2C);
     ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
-    sub_02073D48(param1, v2);
+    sub_02073D48(boxMon, v2);
 }
 
 void ov19_021DA63C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)

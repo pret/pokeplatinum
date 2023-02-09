@@ -26,7 +26,7 @@ void ov21_021D214C(UnkStruct_ov21_021D13FC * param0);
 void ov21_021D2164(UnkStruct_ov21_021D13FC * param0, int param1, int param2);
 UnkStruct_02007C7C * ov21_021D2170(const UnkStruct_ov21_021D13FC * param0);
 void ov21_021D217C(const UnkStruct_ov21_021D13FC * param0, BOOL param1);
-void ov21_021D2188(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3, int param4, u8 param5, u32 param6, int param7, int param8, int param9);
+void ov21_021D2188(UnkStruct_ov21_021D13FC * param0, int species, int param2, int param3, int param4, u8 param5, u32 param6, int param7, int param8, int param9);
 void ov21_021D222C(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3);
 void ov21_021D2250(UnkStruct_ov21_021D13FC * param0, int * param1, int * param2, int param3);
 UnkStruct_02007C7C * ov21_021D2274(const UnkStruct_ov21_021D13FC * param0, int param1);
