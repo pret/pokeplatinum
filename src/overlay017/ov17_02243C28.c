@@ -680,17 +680,17 @@ static void ov17_022444BC (UnkStruct_0201CD38 * param0, void * param1)
         MI_CpuClear8(&v3, sizeof(UnkStruct_ov16_02265BBC));
         MI_CpuClear8(&v4, sizeof(UnkStruct_ov16_02264408));
 
-        v6 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 5, NULL);
-        v7 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 111, NULL);
+        v6 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 5, NULL);
+        v7 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 111, NULL);
         v8 = sub_02075E0C(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D]);
-        v9 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 112, NULL);
-        v14 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 0, NULL);
+        v9 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 112, NULL);
+        v14 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 0, NULL);
 
-        v10 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v16], 5, NULL);
-        v11 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v16], 111, NULL);
+        v10 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 5, NULL);
+        v11 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 111, NULL);
         v12 = sub_02075E0C(v0->unk_00->unk_0C.unk_00->unk_00[v16]);
-        v13 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v16], 112, NULL);
-        v15 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v16], 0, NULL);
+        v13 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 112, NULL);
+        v15 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 0, NULL);
 
         v3.unk_00 = 0;
         v3.unk_01 = 0;
@@ -889,7 +889,7 @@ static void ov17_022449B8 (UnkStruct_0201CD38 * param0, void * param1)
         v1 = ov17_0223FAF8(v0->unk_00->unk_7E4);
 
         if (v1 != 0xffffffff) {
-            v0->unk_10.unk_00 = sub_02074470(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 54 + v1, NULL);
+            v0->unk_10.unk_00 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 54 + v1, NULL);
             sub_02005748(1501);
             v0->unk_0C++;
         }

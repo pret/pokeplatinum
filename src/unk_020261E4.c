@@ -10,8 +10,6 @@
 #include "unk_020261E4.h"
 #include "unk_02073C2C.h"
 
-#include "constants/pokemon.h"
-
 typedef struct UnkStruct_02026224_t {
     UnkStruct_0202818C unk_00;
     u16 unk_38[8];
@@ -53,7 +51,7 @@ UnkStruct_02026218 * sub_02026218 (UnkStruct_02026310 * param0, int param1)
     return &(param0->unk_00[param1]);
 }
 
-BoxPokemon * sub_02026220 (UnkStruct_02026218 * param0)
+BoxPokemon *sub_02026220 (UnkStruct_02026218 * param0)
 {
     return &(param0->unk_00);
 }
@@ -116,8 +114,8 @@ BOOL sub_02026280 (UnkStruct_02026310 * param0)
 {
     int v0, v1;
 
-    v0 = sub_02074570(&param0->unk_00[0].unk_00, MON_DATA_12, NULL);
-    v1 = sub_02074570(&param0->unk_00[1].unk_00, MON_DATA_12, NULL);
+    v0 = sub_02074570(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
+    v1 = sub_02074570(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
 
     if (v0 != v1) {
         return 1;

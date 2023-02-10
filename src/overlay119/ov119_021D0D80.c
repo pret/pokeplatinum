@@ -308,13 +308,13 @@ void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, i
     sub_0201A954(param1);
 }
 
-int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, int param3)
+int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon *param2, int param3)
 {
     int v0;
     UnkStruct_02023790 * v1;
     UnkStruct_02023790 * v2;
     UnkStruct_0200B358 * v3;
-    BoxPokemon * v4;
+    BoxPokemon *v4;
     UnkStruct_0200B144 * v5;
 
     sub_0201ADA4(param0, 15);
@@ -754,12 +754,12 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
 {
     UnkStruct_02008A90 v0;
     UnkStruct_02007C10 v1[10];
-    Pokemon * v2;
+    Pokemon *v2;
     int v3;
     int v4;
 
     v2 = param0->unk_00->unk_0C.unk_00;
-    v3 = sub_02074470(v2, 5, NULL);
+    v3 = GetMonData(v2, MON_DATA_SPECIES, NULL);
     v4 = sub_020765AC(v2, 2);
 
     {
@@ -779,7 +779,7 @@ void ov119_021D18C0 (UnkStruct_ov119_021D0FD0 * param0)
     int v0;
     int v1;
 
-    v0 = sub_02074470(param0->unk_00->unk_0C.unk_00, 5, NULL);
+    v0 = GetMonData(param0->unk_00->unk_0C.unk_00, 5, NULL);
     v1 = sub_02075BCC(param0->unk_00->unk_0C.unk_00);
 
     sub_02007B98(param0->unk_70, 1);

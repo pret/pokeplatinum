@@ -77,7 +77,7 @@
 #include "unk_0209A74C.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
-#include "overlay097/ov97_02236380.h"
+#include "pal_park.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_022392E4.h"
 
@@ -182,7 +182,7 @@ static void ov97_02235310(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C * param0);
 void sub_02023D8C(UnkStruct_02023790 * param0, const u16 * param1, u32 param2);
 void sub_02023D28(UnkStruct_02023790 * param0, const u16 * param1);
-void ov97_02236E90(BoxPokemonGBA * param0, BoxPokemon *boxMon);
+void ov97_02236E90(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
 
 UnkStruct_ov97_0223F434 * Unk_ov97_0223F434;
 
@@ -235,15 +235,15 @@ static int Unk_ov97_0223EAB8[] = {
     0x21
 };
 
-static BOOL IsGBASpeciesInvalid (int species)
+static BOOL IsGBASpeciesInvalid (int speciesGBA)
 {
-    if (species <= SPECIES_NONE)
+    if (speciesGBA <= SPECIES_NONE)
         return TRUE;
-    else if (species <= SPECIES_CELEBI)
+    else if (speciesGBA <= SPECIES_CELEBI)
         return FALSE;
-    else if (species < GEN_3_SPECIES_IDS_BEGIN)
+    else if (speciesGBA < SPECIESGBA_TREECKO)
         return TRUE;
-    else if (species <= GEN_3_SPECIES_IDS_END)
+    else if (speciesGBA <= SPECIESGBA_CHIMECHO)
         return FALSE;
 
     return TRUE;
@@ -391,8 +391,8 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0, v1, v2;
     u16 v3;
-    BoxPokemon * v4;
-    BoxPokemonGBA * v5;
+    BoxPokemon *v4;
+    BoxPokemonGBA *boxMonGBA;
     Pokemon v6;
     UnkStruct_02024440 * v7;
 
@@ -402,9 +402,9 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     for (v0 = 0; v0 < 6; v0++) {
         v2 = param0->unk_42C[v0].unk_04;
         v1 = param0->unk_42C[v0].unk_08;
-        v5 = &param0->unk_E8E0->unk_04[v1][v2];
+        boxMonGBA = &param0->unk_E8E0->unk_04[v1][v2];
 
-        ov97_02236E90(v5, v4);
+        ov97_02236E90(boxMonGBA, v4);
         sub_0202EFA4(v7, v4, v0);
     }
 
@@ -572,17 +572,17 @@ static void ov97_022340FC (UnkStruct_ov115_02261520 * param0, UnkStruct_ov97_022
 
 static int ov97_02234124 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), 11, NULL);
+    return PalPark_GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), MON_GBA_DATA_SPECIES, NULL);
 }
 
 static int ov97_02234148 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), 45, NULL);
+    return PalPark_GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), MON_GBA_DATA_IS_EGG, NULL);
 }
 
 static int ov97_0223416C (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), 0, NULL);
+    return PalPark_GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), MON_GBA_DATA_PERSONALITY, NULL);
 }
 
 static void ov97_02234190 (UnkUnion_02022594 * param0, int param1, int param2, int param3, int param4)
@@ -630,17 +630,17 @@ static u8 GBASpeciesToDSFormId (int species, u32 personality, int game)
     case SPECIES_DEOXYS:
         switch (game) {
         default:
-        case RUBY:
-        case SAPPHIRE:
+        case VERSION_RUBY:
+        case VERSION_SAPPHIRE:
             formId = 0;
             break;
-        case FIRERED:
+        case VERSION_FIRE_RED:
             formId = 1;
             break;
-        case LEAFGREEN:
+        case VERSION_LEAF_GREEN:
             formId = 2;
             break;
-        case EMERALD:
+        case VERSION_EMERALD:
             formId = 3;
             break;
         }
@@ -657,7 +657,7 @@ static void ov97_02234278 (int species, int param1, u32 personality, int gameId,
     u8 formId;
     NNSG2dCharacterData * v2;
 
-    species = GBAToDSSpecies(species);
+    species = PalPark_GBAToDSSpecies(species);
 
     formId = GBASpeciesToDSFormId(species, personality, gameId);
     v0 = ov97_022341B4(19, sub_02079D8C(species, param1, formId), &v2, 78);
@@ -675,12 +675,12 @@ static void ov97_022342E4 (int species, int param1, int param2, int param3, UnkS
     NNSG2dCharacterData * v1;
     UnkStruct_ov97_0223F434 * v2 = Unk_ov97_0223F434 + param3;
 
-    if (param4) {
-        if (IsGBASpeciesInvalid(species) == 0) {
-            species = GBAToDSSpecies(species);
-        } else {
-            species = 0;
-        }
+    if (param4)
+    {
+        if (IsGBASpeciesInvalid(species) == FALSE)
+            species = PalPark_GBAToDSSpecies(species);
+        else
+            species = SPECIES_NONE;
 
         v0 = sub_02079D8C(species, param1, param2);
 
@@ -690,7 +690,9 @@ static void ov97_022342E4 (int species, int param1, int param2, int param3, UnkS
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
         v2->unk_08 = param4;
         v2->unk_04 = sub_02079EDC(species, param2, param1) + 8;
-    } else {
+    }
+    else
+    {
         v2->unk_08 = NULL;
     }
 }
@@ -720,22 +722,24 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (v0 = 0; v0 < 30; v0++) {
-        if (GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 5, NULL)) {
+        if (PalPark_GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), MON_GBA_DATA_SANITY_HAS_SPECIES, NULL))
+        {
             species = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             personality = ov97_0223416C(param0, param0->unk_E8E4, v0);
             game = Unk_021BF67C.gameId;
-            formId = GBASpeciesToDSFormId(GBAToDSSpecies(species), personality, game);
+            formId = GBASpeciesToDSFormId(PalPark_GBAToDSSpecies(species), personality, game);
 
             ov97_022342E4(species, v2, formId, v0, param0->unk_20C[v0].unk_00, v6, v7);
             sub_02021CAC(param0->unk_20C[v0].unk_00, 1);
 
-            if (GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 12, NULL)) {
+            if (PalPark_GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), MON_GBA_DATA_HELD_ITEM, NULL))
                 sub_02021CAC(param0->unk_20C[v0].unk_04, 1);
-            } else {
+            else
                 sub_02021CAC(param0->unk_20C[v0].unk_04, 0);
-            }
-        } else {
+        }
+        else
+        {
             ov97_022342E4(species, v2, formId, v0, NULL, v6, v7);
             sub_02021CAC(param0->unk_20C[v0].unk_00, 0);
             sub_02021CAC(param0->unk_20C[v0].unk_04, 0);
@@ -846,22 +850,18 @@ static void ov97_0223468C (UnkStruct_ov97_02234A2C * param0)
 static BOOL ov97_0223474C (UnkStruct_ov97_02234A2C * param0, int param1)
 {
     int v0;
-    BoxPokemonGBA * v1 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
 
-    if (GetGBABoxMonData(v1, MON_GBA_DATA_SPECIES2, NULL) == 412) {
-        return 1;
-    }
-
-    return 0;
+    return PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SPECIES2, NULL) == SPECIESGBA_EGG;
 }
 
 static BOOL ov97_02234784 (UnkStruct_ov97_02234A2C * param0, int param1)
 {
-    int v0, v1, v2;
-    BoxPokemonGBA * v3 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
+    int i, v1, v2;
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v2 = GetGBABoxMonData(v3, 13 + v0, NULL);
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        v2 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_MOVE1 + i, NULL);
 
         for (v1 = 0; v1 < sizeof(Unk_ov97_0223EA98) / sizeof(int); v1++) {
             if (Unk_ov97_0223EA98[v1] == v2) {
@@ -1025,8 +1025,8 @@ u16 Unk_ov97_0223EAD8[] = {
 
 static BOOL ov97_022347D8 (UnkStruct_ov97_02234A2C * param0, int param1)
 {
-    BoxPokemonGBA * v0 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
-    int v1 = GetGBABoxMonData(v0, MON_GBA_DATA_HELD_ITEM, NULL);
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
+    int v1 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_HELD_ITEM, NULL);
     int v2;
 
     for (v2 = 0; Unk_ov97_0223EAD8[v2]; v2++) {
@@ -1040,10 +1040,10 @@ static BOOL ov97_022347D8 (UnkStruct_ov97_02234A2C * param0, int param1)
 
 static BOOL ov97_02234828 (UnkStruct_ov97_02234A2C * param0, int param1)
 {
-    BoxPokemonGBA * v0 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
-    int species = GetGBABoxMonData(v0, MON_GBA_DATA_SPECIES, NULL);
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
+    int speciesGBA = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SPECIES, NULL);
 
-    return IsGBASpeciesInvalid(species);
+    return IsGBASpeciesInvalid(speciesGBA);
 }
 
 static int ov97_02234854 (UnkStruct_ov97_02234A2C * param0, int param1)
@@ -1154,17 +1154,16 @@ static void ov97_02234A2C (UnkStruct_ov97_02234A2C * param0, int param1)
     ov97_02233DD0(param0, &v0, 0x1);
 }
 
-static void ov97_02234AB4 (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * param1)
+static void ov97_02234AB4 (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA *boxMonGBA)
 {
     u16 * v0 = sub_02019FE4(param0->unk_20, 2);
     u8 v1;
     int v2;
 
-    if (param1) {
-        v1 = GetGBABoxMonData(param1, MON_GBA_DATA_MARKINGS, NULL);
-    } else {
+    if (boxMonGBA)
+        v1 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_MARKINGS, NULL);
+    else
         v1 = 0;
-    }
 
     for (v2 = 0; v2 < 4; v2++) {
         if (v1 & 1) {
@@ -1179,7 +1178,7 @@ static void ov97_02234AB4 (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     sub_02019448(param0->unk_20, 2);
 }
 
-static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * param1)
+static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA *boxMonGBA)
 {
     int species, v1;
     int v2, v3;
@@ -1213,15 +1212,15 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     v4.unk_1C = 8;
 
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
-    ov97_02234AB4(param0, param1);
+    ov97_02234AB4(param0, boxMonGBA);
 
-    if (param1 == NULL) {
+    if (boxMonGBA == NULL) {
         sub_0201A954(v4.unk_00);
         return;
     }
 
-    GetGBABoxMonData(param1, MON_GBA_DATA_NICKNAME, v6);
-    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(param1, MON_GBA_DATA_LANGUAGE, NULL));
+    PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_NICKNAME, v6);
+    ov97_0223936C(v6, v7, 10 + 1, PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_LANGUAGE, NULL));
 
     v4.unk_38 = v7;
     v4.unk_34 = -1;
@@ -1232,7 +1231,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
 
     v8 = sub_02023790(64, 78);
     v5 = sub_0200B144(1, 26, 412, 78);
-    species = GBAToDSSpecies(GetGBABoxMonData(param1, MON_GBA_DATA_SPECIES, NULL));
+    species = PalPark_GBAToDSSpecies(PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SPECIES, NULL));
 
     sub_0200B1B8(v5, species, v8);
 
@@ -1246,10 +1245,10 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     sub_0200B190(v5);
     sub_020237BC(v8);
 
-    v2 = GetGBABoxMonData(param1, MON_GBA_DATA_HELD_ITEM, NULL);
+    v2 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_HELD_ITEM, NULL);
 
     if (v2) {
-        v3 = sub_0207CF10(v2);
+        v3 = Item_GBAIdToItemId(v2);
         v8 = sub_02023790(64, 78);
 
         Item_GetNameIntoString(v8, v3, 78);
@@ -1263,7 +1262,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
         sub_020237BC(v8);
     }
 
-    v1 = ov97_02236E00(param1);
+    v1 = ov97_02236E00(boxMonGBA);
     v8 = sub_02023790(10, 78);
 
     sub_020238A0(v8, v1, 3, 1, 1);
@@ -1693,14 +1692,14 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
     }
 
     {
-        BoxPokemonGBA * v3;
+        BoxPokemonGBA *boxMonGBA;
         int v4, v5, v6 = 0;
 
         for (v5 = 0; v5 < 14; v5++) {
             for (v4 = 0; v4 < 30; v4++) {
-                v3 = &param0->unk_E8E0->unk_04[v5][v4];
+                boxMonGBA = &param0->unk_E8E0->unk_04[v5][v4];
 
-                if (GetGBABoxMonData(v3, MON_GBA_DATA_SANITY_HAS_SPECIES, NULL)) {
+                if (PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SANITY_HAS_SPECIES, NULL)) {
                     v6++;
                 }
             }

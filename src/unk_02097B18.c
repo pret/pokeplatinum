@@ -136,7 +136,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
                 continue;
             }
 
-            v5 = sub_02074470(v0->unk_00->unk_04[v4], 162, 0);
+            v5 = GetMonData(v0->unk_00->unk_04[v4], 162, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;
@@ -281,7 +281,7 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-Pokemon * sub_02097F00 (UnkStruct_02097F18 * param0, int param1)
+Pokemon *sub_02097F00 (UnkStruct_02097F18 * param0, int param1)
 {
     int v0 = param1;
 
@@ -386,7 +386,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     case 4:
     {
         UnkStruct_02098C44 * v7 = v0->unk_0C;
-        Pokemon * v8;
+        Pokemon *v8;
         UnkStruct_0202CA28 * v9;
         UnkStruct_0202CA64 * v10;
         UnkStruct_0202440C * v11;

@@ -14,23 +14,23 @@ void ov6_022477B8 (const UnkStruct_ov6_02242634 * param0, const BOOL param1, int
     }
 
     switch (Unk_021BF67C.gameId) {
-    case SAPPHIRE:
+    case VERSION_SAPPHIRE:
         (*param2) = param0->unk_88[0];
         (*param3) = param0->unk_88[1];
         break;
-    case RUBY:
+    case VERSION_RUBY:
         (*param2) = param0->unk_80[0];
         (*param3) = param0->unk_80[1];
         break;
-    case EMERALD:
+    case VERSION_EMERALD:
         (*param2) = param0->unk_90[0];
         (*param3) = param0->unk_90[1];
         break;
-    case FIRERED:
+    case VERSION_FIRE_RED:
         (*param2) = param0->unk_98[0];
         (*param3) = param0->unk_98[1];
         break;
-    case LEAFGREEN:
+    case VERSION_LEAF_GREEN:
         (*param2) = param0->unk_A0[0];
         (*param3) = param0->unk_A0[1];
         break;

@@ -5,7 +5,7 @@
 #include "overlay013/struct_ov13_022236B8.h"
 
 typedef struct {
-    Pokemon * unk_00;
+    Pokemon *unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;

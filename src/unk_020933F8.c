@@ -98,7 +98,7 @@ static void sub_020944E8(UnkStruct_02095C48 * param0);
 static void sub_0209451C(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_02094EB4(UnkStruct_02095C48 * param0, int param1, UnkStruct_ov6_02248DD8 * param2);
 static void sub_02094B30(UnkStruct_0201CD38 * param0, void * param1);
-static int sub_02093B2C(Pokemon * param0, int param1);
+static int sub_02093B2C(Pokemon *param0, int param1);
 static void sub_020939E0(UnkStruct_02095C48 * param0, int param1, int param2);
 
 
@@ -506,7 +506,7 @@ static void sub_020939E0 (UnkStruct_02095C48 * param0, int param1, int param2)
             param0->unk_00.unk_D8[v1] = sub_02023790(8, 20);
         }
 
-        sub_02074470(param0->unk_00.unk_00[v1], 145, param0->unk_00.unk_D8[v1]);
+        GetMonData(param0->unk_00.unk_00[v1], 145, param0->unk_00.unk_D8[v1]);
     }
 
     for (v1 = 1; v1 < 4; v1++) {
@@ -546,7 +546,7 @@ void sub_02093AD4 (UnkStruct_02095C48 * param0)
     Heap_Destroy(20);
 }
 
-static int sub_02093B2C (Pokemon * param0, int param1)
+static int sub_02093B2C (Pokemon *param0, int param1)
 {
     int v0, v1, v2;
 
@@ -555,19 +555,19 @@ static int sub_02093B2C (Pokemon * param0, int param1)
     for (v1 = 0; v1 <= 3; v1++) {
         switch (param1) {
         case 0:
-            v2 = sub_02074470(param0, 123 + v1, NULL);
+            v2 = GetMonData(param0, 123 + v1, NULL);
             break;
         case 1:
-            v2 = sub_02074470(param0, 127 + v1, NULL);
+            v2 = GetMonData(param0, 127 + v1, NULL);
             break;
         case 2:
-            v2 = sub_02074470(param0, 131 + v1, NULL);
+            v2 = GetMonData(param0, 131 + v1, NULL);
             break;
         case 3:
-            v2 = sub_02074470(param0, 135 + v1, NULL);
+            v2 = GetMonData(param0, 135 + v1, NULL);
             break;
         case 4:
-            v2 = sub_02074470(param0, 139 + v1, NULL);
+            v2 = GetMonData(param0, 139 + v1, NULL);
             break;
         default:
             GF_ASSERT(0);
@@ -1145,7 +1145,7 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 *
 
 void sub_02094680 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 * param2, u32 param3)
 {
-    BoxPokemon * v0;
+    BoxPokemon *v0;
     int v1;
 
     v1 = sub_02095904(param1);
@@ -1319,7 +1319,7 @@ BOOL sub_02094868 (UnkStruct_02095C48 * param0)
 
     v0 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
-    if (sub_02074470(param0->unk_1974, v0, NULL) == 0) {
+    if (GetMonData(param0->unk_1974, v0, NULL) == 0) {
         return 0;
     }
 
@@ -1618,7 +1618,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, UnkStruct_021C0794 * param1, u32
 
             v2 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
-            if (sub_02074470(param0->unk_1974, v2, NULL) == 0) {
+            if (GetMonData(param0->unk_1974, v2, NULL) == 0) {
                 v0 = 1;
             }
 

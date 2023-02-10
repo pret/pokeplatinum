@@ -108,7 +108,7 @@ void ov76_0223D3CC (UnkStruct_ov76_0223DE00 * param0)
 {
     int v0;
     int v1;
-    Pokemon * v2;
+    Pokemon *v2;
 
     if (param0->unk_04[param0->unk_3C4[0]].unk_00 != 0xff) {
         v2 = param0->unk_00->unk_04[param0->unk_04[param0->unk_3C4[0]].unk_00];
@@ -119,7 +119,7 @@ void ov76_0223D3CC (UnkStruct_ov76_0223DE00 * param0)
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
         v2 = param0->unk_00->unk_04[v0];
-        v1 = sub_02074470(v2, 76, NULL);
+        v1 = GetMonData(v2, MON_DATA_IS_EGG, NULL);
 
         if (v1 != 0) {
             continue;
@@ -718,7 +718,7 @@ void ov76_0223DD88 (UnkStruct_ov76_0223DE00 * param0)
 
     sub_02075EF4(&v0, param0->unk_428, 2);
 
-    v2 = sub_02074470(param0->unk_428, 5, NULL);
+    v2 = GetMonData(param0->unk_428, 5, NULL);
     v3 = sub_020765AC(param0->unk_428, 2);
 
     param0->unk_D4.unk_D8 = v3;
@@ -731,7 +731,7 @@ static void ov76_0223DE00 (UnkStruct_ov76_0223DE00 * param0)
     int v0;
     int v1;
 
-    v0 = sub_02074470(param0->unk_428, 5, NULL);
+    v0 = GetMonData(param0->unk_428, 5, NULL);
     v1 = sub_02075BCC(param0->unk_428);
 
     sub_02007B98(param0->unk_D4.unk_D4, 1);
@@ -865,7 +865,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
                 v0.unk_18 = 1;
                 v0.unk_1C = param0->unk_D4.unk_08;
                 v0.unk_20 = param0->unk_D4.unk_14;
-                v0.unk_10 = sub_02074470(param0->unk_428, 155, NULL);
+                v0.unk_10 = GetMonData(param0->unk_428, 155, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v0);
                 param0->unk_3DC++;
@@ -955,7 +955,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
                 v5.unk_18 = 1;
                 v5.unk_1C = param0->unk_D4.unk_08;
                 v5.unk_20 = param0->unk_D4.unk_14;
-                v5.unk_10 = sub_02074470(param0->unk_428, 155, NULL);
+                v5.unk_10 = GetMonData(param0->unk_428, 155, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v5);
 
@@ -1010,7 +1010,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
         }
 
         {
-            Pokemon * v8;
+            Pokemon *v8;
 
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];

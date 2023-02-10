@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 
 typedef struct {
-    BoxPokemon * unk_00;
+    BoxPokemon *unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;

@@ -243,7 +243,7 @@ u16 sub_0205E0E4 (u16 param0, u16 param1)
 
 u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1, v2;
 
     v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));
@@ -251,7 +251,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     for (v1 = 0; v1 < v2; v1++) {
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0), v1);
 
-        if (sub_02074470(v0, 76, NULL) == 0) {
+        if (GetMonData(v0, MON_DATA_IS_EGG, NULL) == 0) {
             return v1;
         }
     }
@@ -270,7 +270,7 @@ BOOL sub_0205E1F8 (UnkStruct_021C0794 * param0)
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = sub_02074470(Party_GetPokemonBySlotIndex(v4, v0), 5, NULL);
+        v6[v0] = GetMonData(Party_GetPokemonBySlotIndex(v4, v0), 5, NULL);
     }
 
     for (v0 = 0; v0 < 3; v0++) {

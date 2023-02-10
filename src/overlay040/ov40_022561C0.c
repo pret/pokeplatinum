@@ -22,8 +22,6 @@
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay040/ov40_0225645C.h"
 
-#include "constants/pokemon.h"
-
 typedef struct {
     u8 unk_00;
     u8 unk_01;
@@ -209,7 +207,7 @@ static BOOL ov40_02256388 (UnkStruct_ov40_0225621C * param0)
 static void ov40_022563D0 (UnkStruct_ov40_0225645C_1 * param0, UnkStruct_02026310 * param1)
 {
     UnkStruct_02026218 * v0;
-    BoxPokemon * v1;
+    BoxPokemon *v1;
     int v2;
     BOOL v3;
 

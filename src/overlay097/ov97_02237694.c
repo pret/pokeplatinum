@@ -573,7 +573,7 @@ static int ov97_02237EA8 (int param0)
     return 0;
 }
 
-static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int species, int param3, u8 * param4, UnkStruct_02008A90 * param5)
+static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon *param1, int species, int param3, u8 * param4, UnkStruct_02008A90 * param5)
 {
     int v0, v1;
     u32 v2;
@@ -584,7 +584,7 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int sp
 
     sub_02075FB4(param5, species, v0, 2, v1, param3, 0);
 
-    v2 = sub_02074470(param1, 0, NULL);
+    v2 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
     sub_020136A4(param5->unk_00, param5->unk_02, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, species);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
@@ -614,7 +614,7 @@ static void ov97_02237FB4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
 
 static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStruct_0202DF40 * param2)
 {
-    Pokemon * v0;
+    Pokemon *v0;
 
     ov97_02237B0C(54, 10, 0, 11, 12, 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
@@ -625,7 +625,7 @@ static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
     switch (param1) {
     case 1:
     case 13:
-        ov97_02237EF8(param0->unk_26C, v0, sub_02074470(v0, 5, 0), sub_02074470(v0, 112, 0), param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_112, 0), param0->unk_278, &param0->unk_EF8);
         break;
     case 2:
         ov97_02237EF8(param0->unk_26C, v0, 494, 0, param0->unk_278, &param0->unk_EF8);

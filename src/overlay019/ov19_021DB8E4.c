@@ -34,8 +34,6 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DB8E4.h"
 
-#include "constants/pokemon.h"
-
 typedef struct {
     UnkStruct_ov19_021DBA9C * unk_00;
     u8 unk_04;
@@ -234,7 +232,7 @@ BOOL ov19_021DBBA0 (UnkStruct_ov19_021DBA9C * param0)
 void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NNS_G2D_VRAM_TYPE param3, NNSG2dImageProxy * param4)
 {
     const UnkStruct_020797DC * v0;
-    BoxPokemon * v1;
+    BoxPokemon *v1;
     u32 v2, v3, v4, v5;
     u8 v6, v7;
     int v8;
@@ -256,7 +254,7 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
             v5 = sub_02074570(v1, MON_DATA_SPECIES, NULL);
 
             if (v5) {
-                if (sub_02074570(v1, MON_DATA_76, NULL) == 0) {
+                if (sub_02074570(v1, MON_DATA_IS_EGG, NULL) == 0) {
                     u16 v9 = sub_02074570(v1, MON_DATA_112, NULL);
 
                     v6 = sub_020759CC(v5, v9, 27);

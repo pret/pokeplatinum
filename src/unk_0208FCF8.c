@@ -535,7 +535,7 @@ static void sub_02090578 (UnkStruct_0208D7BC * param0)
     sub_0201A9A4(&param0->unk_244[5]);
 }
 
-static void sub_02090800 (UnkStruct_0205AA50 * param0, Pokemon * param1, BOOL param2)
+static void sub_02090800 (UnkStruct_0205AA50 * param0, Pokemon *param1, BOOL param2)
 {
     UnkStruct_02090800 * v0 = sub_02092494(param1, param2, 19);
 
@@ -575,7 +575,7 @@ static void sub_020908CC (UnkStruct_0208D7BC * param0)
 
         if (param0->unk_24C->unk_11 == 2) {
             {
-                Pokemon * v3 = sub_02073C74(19);
+                Pokemon *v3 = sub_02073C74(19);
 
                 sub_020774C8(v1, v3);
                 sub_02090800(&param0->unk_244[0], v3, v2);

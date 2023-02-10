@@ -28,8 +28,6 @@
 #include "unk_020797C8.h"
 #include "unk_020996D0.h"
 
-#include "constants/pokemon.h"
-
 typedef struct {
     u8 unk_00;
     u8 unk_01;

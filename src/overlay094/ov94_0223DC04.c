@@ -73,7 +73,7 @@ static int (* Unk_ov94_0224682C[])(UnkStruct_ov94_0223FD4C * wk) = {
 
 int ov94_0223DC04 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
 
     ov94_0223DFDC(param0);
     ov94_0223DD1C(param0->unk_04);

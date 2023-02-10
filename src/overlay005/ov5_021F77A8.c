@@ -40,7 +40,6 @@
 #include "unk_0207D3B8.h"
 #include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021F77A8.h"
-
 #include "constants/species.h"
 
 typedef struct {
@@ -601,8 +600,8 @@ BOOL ov5_021F7C04(UnkStruct_0203E724 * param0);
 static BOOL ov5_021F7DE8(UnkStruct_0203E724 * param0);
 static u16 ov5_021F7A3C(u16 param0);
 static u16 ov5_021F7A4C(u16 param0);
-static u8 ov5_021F7A74(Pokemon * param0, u8 param1);
-static u16 ov5_021F7B60(Pokemon * param0, u16 param1);
+static u8 ov5_021F7A74(Pokemon *param0, u8 param1);
+static u16 ov5_021F7B60(Pokemon *param0, u16 param1);
 static void ov5_021F7E10(UnkStruct_ov5_021F7ED8 * param0, UnkStruct_0200B144 * param1);
 static void ov5_021F7E18(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, UnkStruct_0205AA50 * param8, UnkStruct_0200B144 * param9);
 UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, UnkStruct_0205AA50 * param7, UnkStruct_0200B144 * param8);
@@ -687,7 +686,7 @@ asm BOOL ov5_021F77A8 (UnkStruct_0203E724 * param0)
 
 BOOL ov5_021F77E8 (UnkStruct_0203E724 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
@@ -813,13 +812,13 @@ static u16 ov5_021F7A4C (u16 param0)
     return 0;
 }
 
-static u8 ov5_021F7A74 (Pokemon * param0, u8 param1)
+static u8 ov5_021F7A74 (Pokemon *param0, u8 param1)
 {
     u16 v0;
     u32 v1, v2;
 
-    v2 = sub_02074470(param0, 5, NULL);
-    v1 = sub_02074470(param0, 112, NULL);
+    v2 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param0, MON_DATA_112, NULL);
     v0 = v2;
 
     switch (v2) {
@@ -867,17 +866,17 @@ static u8 ov5_021F7A74 (Pokemon * param0, u8 param1)
     return Unk_ov5_02200EAC[v0 - 1].unk_00[param1];
 }
 
-static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
+static u16 ov5_021F7B60 (Pokemon *param0, u16 param1)
 {
     int v0, v1, v2;
     u8 v3, v4;
     u32 v5;
     u16 v6[4];
 
-    v5 = sub_02074470(param0, 5, NULL);
+    v5 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
     for (v2 = 0; v2 < 4; v2++) {
-        v6[v2] = sub_02074470(param0, (54 + v2), NULL);
+        v6[v2] = GetMonData(param0, (54 + v2), NULL);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -907,7 +906,7 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
 {
     u8 v0, v1;
     int v2, v3, v4, v5;
-    Pokemon * v6;
+    Pokemon *v6;
     UnkStruct_0200B144 * v7;
     UnkStruct_0200B144 * v8;
     UnkStruct_0203CDB0 * v9 = param0->unk_34;
@@ -936,7 +935,7 @@ BOOL ov5_021F7C04 (UnkStruct_0203E724 * param0)
 
     if (v14 != 0xff) {
         for (v5 = 0; v5 < 4; v5++) {
-            v11[v5] = sub_02074470(v6, (54 + v5), NULL);
+            v11[v5] = GetMonData(v6, (54 + v5), NULL);
         }
 
         for (v2 = 0; v2 < 5; v2++) {

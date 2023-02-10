@@ -13,6 +13,8 @@
 #include "global/pm_version.h"
 #include "global/assert.h"
 
+#include "constants/pokemon.h"
+
 #define NELEMS(a) (sizeof(a) / sizeof(*(a)))
 #define XtOffset(pointer_type, field) ((unsigned int)&(((pointer_type)NULL)->field))
 

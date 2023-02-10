@@ -527,13 +527,13 @@ static void ov79_021D27AC (UnkStruct_ov79_021D2928 * param0)
 static void ov79_021D27D8 (UnkStruct_ov79_021D2928 * param0)
 {
     param0->unk_30.unk_00 = param0->unk_10->unk_00;
-    param0->unk_30.unk_04 = sub_02074470(param0->unk_10->unk_00, 5, NULL);
+    param0->unk_30.unk_04 = GetMonData(param0->unk_10->unk_00, 5, NULL);
     param0->unk_30.unk_07 = sub_02075D6C(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = sub_02075BCC(param0->unk_10->unk_00);
-    param0->unk_30.unk_08 = sub_020759CC(param0->unk_30.unk_04, sub_02074470(param0->unk_10->unk_00, 112, NULL), 28) ^ 1;
+    param0->unk_30.unk_08 = sub_020759CC(param0->unk_30.unk_04, GetMonData(param0->unk_10->unk_00, 112, NULL), 28) ^ 1;
     param0->unk_30.unk_0C = sub_02023790(12, param0->unk_00);
 
-    sub_02074470(param0->unk_10->unk_00, 119, param0->unk_30.unk_0C);
+    GetMonData(param0->unk_10->unk_00, 119, param0->unk_30.unk_0C);
 
     param0->unk_30.unk_09 = sub_02098EAC(param0->unk_10->unk_04, param0->unk_30.unk_06);
 }
@@ -690,7 +690,7 @@ static int ov79_021D2AF0 (UnkStruct_ov79_021D2928 * param0, UnkStruct_ov79_021D2
 {
     u32 v0;
 
-    v0 = sub_02074470(param0->unk_30.unk_00, 112, NULL);
+    v0 = GetMonData(param0->unk_30.unk_00, 112, NULL);
 
     switch (param0->unk_30.unk_09) {
     case 1:

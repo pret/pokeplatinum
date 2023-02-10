@@ -24,7 +24,7 @@ void ov119_021D1028(void);
 void ov119_021D1048(void);
 void ov119_021D1068(UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1, int param2);
 void ov119_021D10F0(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8);
-int  ov119_021D1158(UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, int param3);
+int  ov119_021D1158(UnkStruct_0205AA50 * param0, int param1, Pokemon *param2, int param3);
 void ov119_021D11E4(UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * param1, UnkStruct_0205AA50 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 void ov119_021D12CC(UnkStruct_ov119_021D0FD0 * param0);
 void ov119_021D12F8(UnkStruct_0205AA50 * param0);

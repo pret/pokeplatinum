@@ -34,8 +34,8 @@ typedef struct {
     UnkStruct_ov25_02255B34 * unk_40;
     u16 unk_44;
     u16 unk_46;
-    BoxPokemon * unk_48[6];
-    BoxPokemon * unk_60[2];
+    BoxPokemon *unk_48[6];
+    BoxPokemon *unk_60[2];
 } UnkStruct_ov44_0225621C;
 
 static void NitroStaticInit(void);
@@ -79,7 +79,7 @@ static BOOL ov44_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
 static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
     Party * v0 = Party_GetFromSavedata(ov25_02254544(param1));
-    Pokemon * v1;
+    Pokemon *v1;
     int v2;
     int v3 = 0;
 
@@ -88,13 +88,13 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, UnkStruct_ov25_0225
     for (v2 = 0; v2 < param0->unk_04.unk_30; v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if (sub_02074470(v1, 76, NULL)) {
+        if (GetMonData(v1, MON_DATA_IS_EGG, NULL)) {
             continue;
         }
 
         param0->unk_04.unk_00[v3] = sub_02079D40((const BoxPokemon *)v1);
-        param0->unk_04.unk_18[v3] = sub_02074470(v1, 5, NULL);
-        param0->unk_04.unk_24[v3] = sub_02074470(v1, 112, NULL);
+        param0->unk_04.unk_18[v3] = GetMonData(v1, MON_DATA_SPECIES, NULL);
+        param0->unk_04.unk_24[v3] = GetMonData(v1, MON_DATA_112, NULL);
         param0->unk_48[v3] = (BoxPokemon *)v1;
         v3++;
     }

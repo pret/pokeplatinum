@@ -52,7 +52,7 @@ void Party_InitWithCapacity (Party * party, int capacity)
     }
 }
 
-BOOL Party_AddPokemon (Party * party, Pokemon * pokemon)
+BOOL Party_AddPokemon (Party * party, Pokemon *pokemon)
 {
     if (party->currentCount >= party->capacity) {
         return FALSE;
@@ -91,19 +91,19 @@ int Party_GetCurrentCount (const Party * party)
     return party->currentCount;
 }
 
-Pokemon * Party_GetPokemonBySlotIndex (const Party * party, int slot)
+Pokemon *Party_GetPokemonBySlotIndex (const Party * party, int slot)
 {
     PARTY_ASSERT_SLOT(party, slot);
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128 (Party * party, int slot, Pokemon * param2)
+void sub_0207A128 (Party * party, int slot, Pokemon *param2)
 {
     int v0;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = sub_02074470(&(party->pokemon[slot]), 172, NULL) - sub_02074470(param2, 172, NULL);
+    v0 = GetMonData(&(party->pokemon[slot]), 172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
     party->pokemon[slot] = *param2;
     party->currentCount += v0;
 }
@@ -136,7 +136,7 @@ BOOL Party_HasSpecies (const Party * party, int species)
     int i;
 
     for (i = 0; i < party->currentCount; i++) {
-        if (sub_02074470((Pokemon *)&party->pokemon[i], 5, NULL) == species) {
+        if (GetMonData((Pokemon *)&party->pokemon[i], 5, NULL) == species) {
             break;
         }
     }

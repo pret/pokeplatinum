@@ -40,12 +40,12 @@ void sub_0202DA68 (UnkStruct_0202DA40 * param0, int param1)
     param0->unk_EC = param1;
 }
 
-void sub_0202DA70 (UnkStruct_0202DA40 * param0, Pokemon * param1)
+void sub_0202DA70 (UnkStruct_0202DA40 * param0, Pokemon *param1)
 {
     MI_CpuCopyFast(param0->unk_00, (void *)param1, 236);
 }
 
-void sub_0202DA7C (UnkStruct_0202DA40 * param0, Pokemon * param1, int param2)
+void sub_0202DA7C (UnkStruct_0202DA40 * param0, Pokemon *param1, int param2)
 {
     MI_CpuCopyFast((void *)param1, param0->unk_00, 236);
 }

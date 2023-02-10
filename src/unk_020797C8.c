@@ -12,8 +12,6 @@
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 
-#include "constants/pokemon.h"
-
 typedef struct UnkStruct_020797DC_t {
     u32 unk_00;
     BoxPokemon unk_04[18][30];
@@ -112,7 +110,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon *boxMon)
     return 0;
 }
 
-BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon * param3)
+BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon *param3)
 {
     sub_0207896C(param3);
     sub_02077ADC(param3, 0);
@@ -327,7 +325,7 @@ u32 sub_02079B98 (const UnkStruct_020797DC * param0, u32 param1)
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
             if (sub_02074570((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
-                if (sub_02074570((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_76, NULL) == 0) {
+                if (sub_02074570((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
                     v1++;
                 }
             }
@@ -377,7 +375,7 @@ void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int para
     sub_02024804();
 }
 
-BoxPokemon * sub_02079C9C (const UnkStruct_020797DC * param0, u32 param1, u32 param2)
+BoxPokemon *sub_02079C9C (const UnkStruct_020797DC * param0, u32 param1, u32 param2)
 {
     GF_ASSERT(((param1 < 18) || (param1 == 0xffffffff)));
     GF_ASSERT((param2 < (5 * 6)));

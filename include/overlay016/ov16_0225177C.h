@@ -101,11 +101,11 @@ void ov16_02259868(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
 void ov16_0225991C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
 int ov16_022599D0(UnkStruct_ov16_0224B9DC * param0, int param1, int param2, int param3);
 BOOL ov16_02259A28(UnkStruct_ov16_0224B9DC * param0, int param1);
-void ov16_02259A5C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, Pokemon * param2);
+void ov16_02259A5C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, Pokemon *param2);
 u8 ov16_02259AB4(UnkStruct_ov16_0224B9DC * param0, int param1);
 BOOL ov16_02259AC0(UnkStruct_ov16_0224B9DC * param0, int param1);
 BOOL ov16_02259ADC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-BOOL ov16_02259B38(UnkStruct_0207ADB4 * param0, Pokemon * param1);
+BOOL ov16_02259B38(UnkStruct_0207ADB4 * param0, Pokemon *param1);
 BOOL ov16_02259B9C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int * param2);
 void ov16_0225A1B0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
 void ov16_0225A200(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3);
@@ -127,6 +127,6 @@ int ov16_0225B45C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1,
 void ov16_0225B540(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3, int param4);
 int ov16_0225BA88(UnkStruct_0207ADB4 * param0, int param1);
 int ov16_0225BE28(UnkStruct_0207ADB4 * param0, int param1);
-int ov16_0225BE3C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, Pokemon * param2, int param3);
+int ov16_0225BE3C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, Pokemon *param2, int param3);
 
 #endif // POKEPLATINUM_OV16_0225177C_H

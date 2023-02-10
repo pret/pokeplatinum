@@ -401,11 +401,11 @@ static BOOL ov97_0222D5C8 (UnkStruct_0202DF40 * param0)
     case 1:
     case 2:
     {
-        Pokemon * v0;
+        Pokemon *v0;
         int v1;
 
         v0 = (Pokemon *)&param0->unk_04.val1.unk_04;
-        v1 = sub_02074470(v0, 152, NULL);
+        v1 = GetMonData(v0, MON_DATA_152, NULL);
 
         if (((v1 >= 3) && (v1 <= 14)) || ((v1 >= 64) && (v1 <= 71))) {
             return 1;

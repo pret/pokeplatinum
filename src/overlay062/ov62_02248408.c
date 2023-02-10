@@ -37,7 +37,7 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
     u16 * v8;
     int v9 = 64;
     int v10, v11, v12;
-    Pokemon * v13;
+    Pokemon *v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
     v6 = sub_02023790(v9, param2);
@@ -73,13 +73,13 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
         for (v11 = 0; v11 < v12; v11++) {
             v13 = Party_GetPokemonBySlotIndex(param1->unk_04[v4], v11);
 
-            if (sub_02074470(v13, 172, NULL) == 0) {
+            if (GetMonData(v13, MON_DATA_172, NULL) == 0) {
                 break;
             }
 
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
-            sub_02074470(v13, 117, v8);
+            GetMonData(v13, MON_DATA_117, v8);
             sub_020237E8(v6);
             sub_02023D28(v6, v8);
 

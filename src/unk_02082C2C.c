@@ -73,7 +73,7 @@ void sub_02082C2C (UnkStruct_0207F248 * param0)
 
 void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, NARC * param4)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_ov7_0224F358 v1;
     u32 v2;
 
@@ -84,7 +84,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
 
     sub_0200D9B4(param0->unk_5A8, param0->unk_5AC, param4, sub_02079D80(v0), 0, 4 + param1);
 
-    v2 = sub_02074470(v0, 76, NULL);
+    v2 = GetMonData(v0, MON_DATA_IS_EGG, NULL);
 
     v1.unk_00 = 4 + param1;
     v1.unk_04 = param2;
@@ -104,7 +104,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
 
 void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     NARC * v1;
     int v2, v3;
     u32 v4;
@@ -113,8 +113,8 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
     BOOL v7;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
-    v2 = sub_02074470(v0, 5, NULL);
-    v3 = sub_02074470(v0, 112, NULL);
+    v2 = GetMonData(v0, MON_DATA_SPECIES, NULL);
+    v3 = GetMonData(v0, MON_DATA_112, NULL);
     v1 = NARC_ctor(19, 12);
     v4 = NNS_G2dGetImageLocation(sub_02021F98(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = sub_0200723C(v1, sub_02079D80(v0), 0, 12, 1);

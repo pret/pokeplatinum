@@ -33,7 +33,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_02007768 * unk_18;
     UnkStruct_02007C7C * unk_1C[2];
     Party * unk_24;
-    Pokemon * unk_28;
+    Pokemon *unk_28;
     UnkStruct_020279FC * unk_2C;
     UnkStruct_0207C8C4 * unk_30;
     UnkStruct_0207C690 * unk_34;

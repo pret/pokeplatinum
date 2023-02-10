@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02097F18.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-Pokemon * sub_02097F00(UnkStruct_02097F18 * param0, int param1);
+Pokemon *sub_02097F00(UnkStruct_02097F18 * param0, int param1);
 u8 sub_02097F18(UnkStruct_02097F18 * param0);
 void sub_02097F20(UnkStruct_02097F18 * param0, u8 param1);
 u8 sub_02097F28(UnkStruct_02097F18 * param0);

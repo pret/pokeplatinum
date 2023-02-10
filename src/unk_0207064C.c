@@ -22,11 +22,11 @@ typedef struct {
     u16 unk_08;
     s16 unk_0A;
     s16 unk_0C;
-    Pokemon * unk_10;
+    Pokemon *unk_10;
     UnkStruct_0201CD38 * unk_14;
 } UnkStruct_0207064C;
 
-void * sub_0207064C (u32 param0, UnkStruct_0203CDB0 * param1, Pokemon * param2, u16 param3, s16 param4, s16 param5)
+void * sub_0207064C (u32 param0, UnkStruct_0203CDB0 * param1, Pokemon *param2, u16 param3, s16 param4, s16 param5)
 {
     UnkStruct_0207064C * v0 = Heap_AllocFromHeapAtEnd(param0, (sizeof(UnkStruct_0207064C)));
 

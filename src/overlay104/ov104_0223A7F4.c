@@ -346,7 +346,7 @@ UnkStruct_ov6_02240D5C * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkS
     u32 v1;
     u8 v2, v3;
     UnkStruct_ov6_02240D5C * v4;
-    Pokemon * v5;
+    Pokemon *v5;
     UnkStruct_ov104_0223A348_sub1 v6;
     UnkStruct_0204B184 * v7;
     UnkStruct_0200B144 * v8;
@@ -451,7 +451,7 @@ u8 ov104_0223ADA0 (UnkStruct_ov104_0223ADA0 * param0)
 void ov104_0223ADB0 (UnkStruct_ov104_0223ADA0 * param0)
 {
     int v0;
-    Pokemon * v1;
+    Pokemon *v1;
 
     ov104_0222E330(param0->unk_280, param0->unk_254, param0->unk_260, param0->unk_268, NULL, 6, 11, 179);
     sub_0207A008(param0->unk_4D4);
@@ -471,7 +471,7 @@ void ov104_0223ADB0 (UnkStruct_ov104_0223ADA0 * param0)
 void ov104_0223AE30 (UnkStruct_ov104_0223ADA0 * param0)
 {
     int v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
     UnkStruct_ov104_0223A348_sub2 v3[2];
 
     v1 = Party_GetCurrentCount(param0->unk_4D4);

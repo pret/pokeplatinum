@@ -94,7 +94,7 @@ void ov6_02248AC8 (int param0, int param1, void * param2, void * param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248AF0 (UnkStruct_02095C48 * param0, int param1, const Pokemon * param2)
+BOOL ov6_02248AF0 (UnkStruct_02095C48 * param0, int param1, const Pokemon *param2)
 {
     u8 * v0;
     int v1;

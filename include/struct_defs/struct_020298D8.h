@@ -10,7 +10,7 @@ typedef struct {
     UnkStruct_02007C7C * unk_00;
     UnkUnion_020225E0 unk_04;
     UnkStruct_ov22_022596B0 unk_08;
-    Pokemon * unk_0C;
+    Pokemon *unk_0C;
 } UnkStruct_020298D8;
 
 #endif // POKEPLATINUM_STRUCT_020298D8_H

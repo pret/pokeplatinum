@@ -6,7 +6,7 @@
 
 void sub_0207CDEC(void * param0, u16 param1, u16 param2);
 u16 sub_0207CE78(u16 param0, u16 param1);
-u16 sub_0207CF10(u16 param0);
+u16 Item_GBAIdToItemId(u16 param0);
 u16 Item_GetIndexOfIconNCER(void);
 u16 Item_GetIndexOfIconNANR(void);
 void * Item_LoadDataOrGFX(u16 param0, u16 param1, u32 param2);

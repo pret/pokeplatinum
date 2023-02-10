@@ -52,8 +52,6 @@
 #include "overlay095/ov95_0224ABC0.h"
 #include "overlay095/ov95_0224B3D8.h"
 
-#include "constants/pokemon.h"
-
 struct UnkStruct_ov95_02247628_t {
     const UnkStruct_ov6_02246254 * unk_00;
     int unk_04;
@@ -570,7 +568,7 @@ void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u3
         UnkStruct_02013610 v4 = {
             0, 0, 10, 10,
         };
-        BoxPokemon * v5;
+        BoxPokemon *v5;
         BOOL v6;
         u32 personality;
         u16 v8;
@@ -691,12 +689,12 @@ UnkStruct_0200B144 * ov95_02247630 (UnkStruct_ov95_02247628 * param0)
     return param0->unk_10;
 }
 
-const BoxPokemon * ov95_02247634 (UnkStruct_ov95_02247628 * param0)
+const BoxPokemon *ov95_02247634 (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_00->unk_00;
 }
 
-const BoxPokemon * ov95_0224763C (UnkStruct_ov95_02247628 * param0)
+const BoxPokemon *ov95_0224763C (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_00->unk_04;
 }

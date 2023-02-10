@@ -10,7 +10,7 @@ typedef struct {
     int unk_00;
     UnkStruct_0200B144 * unk_04;
     UnkStruct_0200B358 * unk_08;
-    Pokemon * unk_0C;
+    Pokemon *unk_0C;
     BOOL unk_10;
     UnkStruct_02090800_sub1 unk_14;
     UnkStruct_02090800_sub1 unk_1C;

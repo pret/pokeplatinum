@@ -21,8 +21,6 @@
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
 
-#include "constants/pokemon.h"
-
 BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_020218BC * param3, NARC * param4)
 {
     NNSG2dImagePaletteProxy v0;
@@ -135,11 +133,11 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, s32 pa
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
 
     v2 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
-    v3 = sub_02074570(boxMon, MON_DATA_76, NULL);
+    v3 = sub_02074570(boxMon, MON_DATA_IS_EGG, NULL);
     v4 = sub_02074570(boxMon, MON_DATA_112, NULL);
     param7->unk_28 = sub_02079D40((BoxPokemon *)boxMon);
     param7->unk_2C = sub_02079EDC(v2, v4, v3);
-    param7->unk_30 = sub_02074570(boxMon, MON_DATA_6, NULL);
+    param7->unk_30 = sub_02074570(boxMon, MON_DATA_HELD_ITEM, NULL);
     param7->unk_2E = sub_02074570(boxMon, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param7->unk_04));
@@ -169,14 +167,14 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, u32 pa
     u8 v3, v4;
 
     v2 = sub_02073D20(boxMon);
-    v3 = sub_02074570(boxMon, MON_DATA_76, NULL);
+    v3 = sub_02074570(boxMon, MON_DATA_IS_EGG, NULL);
     v4 = sub_02074570(boxMon, MON_DATA_112, NULL);
 
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
 
     param10->unk_28 = param3;
     param10->unk_2C = sub_02079EDC(param2, v4, v3);
-    param10->unk_30 = sub_02074570(boxMon, MON_DATA_6, NULL);
+    param10->unk_30 = sub_02074570(boxMon, MON_DATA_HELD_ITEM, NULL);
     param10->unk_2E = sub_02074570(boxMon, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param10->unk_04));

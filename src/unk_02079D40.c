@@ -8,7 +8,6 @@
 #include "unk_02079D40.h"
 
 #include "constants/species.h"
-#include "constants/pokemon.h"
 
 const u8 Unk_020F0780[] = {
 	0x0,
@@ -564,7 +563,7 @@ u32 sub_02079D40 (const BoxPokemon *boxMon)
 
     v2 = sub_02073D20((BoxPokemon *)boxMon);
     v0 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
-    v4 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_76, NULL);
+    v4 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
     v3 = sub_02079E44((BoxPokemon *)boxMon);
     v1 = sub_02079D8C(v0, v4, v3);
 
@@ -704,7 +703,7 @@ const u8 sub_02079F84 (const BoxPokemon *boxMon)
     v0 = sub_02073D20((BoxPokemon *)boxMon);
     v2 = sub_02079E44(boxMon);
     v1 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
-    v3 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_76, NULL);
+    v3 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
 
     sub_02073D48((BoxPokemon *)boxMon, v0);
 

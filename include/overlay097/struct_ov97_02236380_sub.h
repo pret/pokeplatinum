@@ -1,5 +1,34 @@
-#ifndef POKEPLATINUM_STRUCT_OV97_02236380_SUB4_H
-#define POKEPLATINUM_STRUCT_OV97_02236380_SUB4_H
+#ifndef POKEPLATINUM_STRUCT_OV97_02236380_SUB_H
+#define POKEPLATINUM_STRUCT_OV97_02236380_SUB_H
+
+typedef struct {
+    u16 unk_00;
+    u16 unk_02;
+    u32 unk_04;
+    u8 unk_08;
+    u8 unk_09;
+    u16 unk_0A;
+} PokemonGBASubstruct0;
+
+typedef struct {
+    u16 unk_00[4];
+    u8 unk_08[4];
+} PokemonGBASubstruct1;
+
+typedef struct {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    u8 unk_04;
+    u8 unk_05;
+    u8 unk_06;
+    u8 unk_07;
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+} PokemonGBASubstruct2;
 
 typedef struct {
     u32 unk_00_0 : 8;
@@ -37,4 +66,4 @@ typedef struct {
     u32 unk_08_31 : 1;
 } PokemonGBASubstruct3;
 
-#endif // POKEPLATINUM_STRUCT_OV97_02236380_SUB4_H
+#endif // POKEPLATINUM_STRUCT_OV97_02236380_SUB_H

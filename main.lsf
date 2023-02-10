@@ -1953,8 +1953,7 @@ Overlay overlay97
 	Object src/overlay097/ov97_02233814.o
 	Object src/overlay097/ov97_02233B18.o
 	Object src/overlay097/ov97_02235D18.o
-	Object src/overlay097/ov97_0223635C.o
-	Object src/overlay097/ov97_02236380.o
+	Object src/pal_park.o
 	Object src/overlay097/ov97_02237520.o
 	Object src/overlay097/ov97_02237694.o
 	Object src/overlay097/ov97_02238534.o

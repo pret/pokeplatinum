@@ -6,7 +6,7 @@ typedef struct PokemonSubstruct0_t {
     u16 unk_02;
     u32 unk_04;
     u32 unk_08;
-    u8 unk_0C;
+    u8 friendship;
     u8 unk_0D;
     u8 unk_0E;
     u8 unk_0F;

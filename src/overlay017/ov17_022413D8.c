@@ -490,8 +490,8 @@ void ov17_02241524 (UnkStruct_ov17_0223F88C * param0, int param1)
     {
         u32 species, formId;
 
-        species = sub_02074470(param0->unk_00->unk_00[param1], 5, NULL);
-        formId = sub_02074470(param0->unk_00->unk_00[param1], 112, NULL);
+        species = GetMonData(param0->unk_00->unk_00[param1], 5, NULL);
+        formId = GetMonData(param0->unk_00->unk_00[param1], 112, NULL);
 
         if (IsFormSymmetrical(species, formId) == TRUE) {
             sub_02007DEC(param0->unk_08[param1], 35, 1);
@@ -515,8 +515,8 @@ void ov17_022415E4 (UnkStruct_ov17_0223F88C * param0)
         {
             u32 species, formId;
 
-            species = sub_02074470(param0->unk_00->unk_00[v0], 5, NULL);
-            formId = sub_02074470(param0->unk_00->unk_00[v0], 112, NULL);
+            species = GetMonData(param0->unk_00->unk_00[v0], 5, NULL);
+            formId = GetMonData(param0->unk_00->unk_00[v0], 112, NULL);
 
             if (IsFormSymmetrical(species, formId) == TRUE) {
                 sub_02007DEC(param0->unk_08[v0], 35, 1);
@@ -1583,7 +1583,7 @@ void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
 
     v0 = sub_02023790(12, 21);
 
-    sub_02074470(param0->unk_0C.unk_00->unk_00[param1], 119, v0);
+    GetMonData(param0->unk_0C.unk_00->unk_00[param1], 119, v0);
 
     if (param1 == param0->unk_00->unk_00.unk_113) {
         v1 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
@@ -2127,8 +2127,8 @@ void ov17_022439C8 (UnkStruct_02095C48 * param0, int param1, int param2, UnkStru
     {
         int v0, v1;
 
-        v0 = sub_02074470(param0->unk_00.unk_00[param1], 177, NULL);
-        v1 = sub_02074470(param0->unk_00.unk_00[param1], 178, NULL);
+        v0 = GetMonData(param0->unk_00.unk_00[param1], 177, NULL);
+        v1 = GetMonData(param0->unk_00.unk_00[param1], 178, NULL);
 
         if ((v0 == 7) || (v1 == 7)) {
             param3->unk_07 = 1;

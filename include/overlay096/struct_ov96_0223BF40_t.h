@@ -47,7 +47,7 @@ struct UnkStruct_ov96_0223BF40_t {
     u16 unk_BBA;
     u16 unk_BBC;
     u16 unk_BBE;
-    BoxPokemon * unk_BC0;
+    BoxPokemon *unk_BC0;
     int unk_BC4;
     int unk_BC8;
     UnkStruct_0200B358 * unk_BCC;

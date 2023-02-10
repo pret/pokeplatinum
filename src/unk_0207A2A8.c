@@ -27,9 +27,9 @@ void sub_0207A2C0 (UnkStruct_02098700 * param0)
     sub_02098718(param0);
 }
 
-BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const UnkStruct_02098700 * param2)
+BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon *param1, const UnkStruct_02098700 * param2)
 {
-    u16 v0 = (u16)sub_02074470(param1, 5, NULL);
+    u16 v0 = (u16)GetMonData(param1, MON_DATA_SPECIES, NULL);
     int v1, v2, v3;
 
     if (param0 == NULL) {
@@ -38,11 +38,11 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
 
     v1 = sub_02026074(param0, 2);
 
-    if (sub_02074470(param1, 161, NULL) > v1) {
+    if (GetMonData(param1, MON_DATA_161, NULL) > v1) {
         return 0;
     }
 
-    if (sub_02074470(param1, 76, NULL) != 0) {
+    if (GetMonData(param1, MON_DATA_IS_EGG, NULL) != 0) {
         return 0;
     }
 
@@ -99,7 +99,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
 
 int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2, u8 * param3)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1, v2 = 0, v3, v4, v5 = 0;
     u16 v6[6], v7[6];
 
@@ -132,10 +132,10 @@ int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const UnkSt
                 return 5;
             }
 
-            v6[v4] = (u16)sub_02074470(v0, 5, NULL);
-            v7[v4] = (u16)sub_02074470(v0, 6, NULL);
+            v6[v4] = (u16)GetMonData(v0, MON_DATA_SPECIES, NULL);
+            v7[v4] = (u16)GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
 
-            v5 += sub_02074470(v0, 161, NULL);
+            v5 += GetMonData(v0, MON_DATA_161, NULL);
         }
     }
 
@@ -206,7 +206,7 @@ static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, 
 
 int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1, v2, v3, v4, v5 = 0;
     u16 v6[6], v7[6], v8[6];
     int v9;
@@ -218,8 +218,8 @@ int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const UnkSt
 
     for (v4 = 0; v4 < v2; v4++) {
         v0 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6[v4] = (u16)sub_02074470(v0, 5, NULL);
-        v7[v4] = sub_02074470(v0, 161, NULL);
+        v6[v4] = (u16)GetMonData(v0, MON_DATA_SPECIES, NULL);
+        v7[v4] = GetMonData(v0, MON_DATA_161, NULL);
 
         if (sub_0207A2D0(param0, v0, param2) == 0) {
             v6[v4] = 0;

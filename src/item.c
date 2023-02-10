@@ -14,13 +14,14 @@
 #include "heap.h"
 #include "item.h"
 
+#include "constants/items.h"
 #include "constants/moves.h"
 
 typedef struct {
     u16 dataArchiveID;
     u16 imageArchiveID;
     u16 palArchiveID;
-    u16 gen3ID;
+    u16 gbaID;
 } UnkStruct_020F0CC4;
 
 static s32 sub_0207D0B0(UnkStruct_0207D0B0 * param0, u16 param1);
@@ -743,23 +744,23 @@ u16 sub_0207CE78 (u16 param0, u16 param1)
             break;
         }
 
-        return sItemNarcIDs[param0].gen3ID;
+        return sItemNarcIDs[param0].gbaID;
     }
 
     return 0;
 }
 
-u16 sub_0207CF10 (u16 param0)
+u16 Item_GBAIdToItemId(u16 itemIdGBA)
 {
-    u16 v0;
+    u16 itemId;
 
-    for (v0 = 1; v0 <= 467; v0++) {
-        if (param0 == sItemNarcIDs[v0].gen3ID) {
-            return v0;
+    for (itemId = 1; itemId <= 467; itemId++) {
+        if (itemIdGBA == sItemNarcIDs[itemId].gbaID) {
+            return itemId;
         }
     }
 
-    return 0;
+    return ITEM_NONE;
 }
 
 u16 Item_GetIndexOfIconNCER (void)

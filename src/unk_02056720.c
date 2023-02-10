@@ -9,8 +9,6 @@
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
 
-#include "constants/pokemon.h"
-
 typedef struct UnkStruct_02056B24_t {
     u8 unk_00_0 : 1;
     u8 unk_00_1 : 1;
