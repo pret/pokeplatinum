@@ -18,7 +18,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
 
-static int sub_02092E8C(Pokemon *param0, BOOL param1, int param2);
+static int sub_02092E8C(Pokemon *mon, BOOL param1, int param2);
 static void sub_02092878(UnkStruct_02090800 * param0);
 static void sub_020928A0(UnkStruct_02090800 * param0, int param1);
 static void sub_020929C0(UnkStruct_02090800 * param0, int param1);
@@ -32,7 +32,7 @@ static void sub_02093368(BoxPokemon *boxMon, int param1);
 static void sub_020933C8(BoxPokemon *boxMon);
 static void sub_020933E8(BoxPokemon *boxMon);
 
-UnkStruct_02090800 * sub_02092494 (Pokemon *param0, BOOL param1, int param2)
+UnkStruct_02090800 * sub_02092494 (Pokemon *mon, BOOL param1, int param2)
 {
     UnkStruct_02090800 * v0;
 
@@ -40,7 +40,7 @@ UnkStruct_02090800 * sub_02092494 (Pokemon *param0, BOOL param1, int param2)
     v0->unk_00 = param2;
     v0->unk_04 = sub_0200B144(1, 26, 455, v0->unk_00);
     v0->unk_08 = sub_0200B368(9, 32, v0->unk_00);
-    v0->unk_0C = param0;
+    v0->unk_0C = mon;
     v0->unk_10 = param1;
 
     {
@@ -632,21 +632,22 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     sub_0200B1B8(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
-static int sub_02092E8C (Pokemon *param0, BOOL param1, int param2)
+static int sub_02092E8C (Pokemon *mon, BOOL param1, int param2)
 {
     int v0 = 0;
 
-    if (GetMonData(param0, MON_DATA_IS_EGG, NULL) == 0) {
-        if ((GetMonData(param0, MON_DATA_152, NULL) == 0)) {
-            if (GetMonData(param0, MON_DATA_153, NULL) == (sub_02017070(0, 55))) {
+    if (GetMonData(mon, MON_DATA_IS_EGG, NULL) == 0)
+    {
+        if ((GetMonData(mon, MON_DATA_152, NULL) == 0)) {
+            if (GetMonData(mon, MON_DATA_153, NULL) == (sub_02017070(0, 55))) {
                 v0 = 15;
-            } else if ((GetMonData(param0, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+            } else if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
                 if (param1 == 1) {
                     v0 = 7;
                 } else {
                     v0 = 8;
                 }
-            } else if (GetMonData(param0, MON_DATA_153, NULL) == (sub_02017070(1, 1))) {
+            } else if (GetMonData(mon, MON_DATA_153, NULL) == (sub_02017070(1, 1))) {
                 v0 = 2;
             } else {
                 if (param1 == 1) {
@@ -656,14 +657,14 @@ static int sub_02092E8C (Pokemon *param0, BOOL param1, int param2)
                 }
             }
         } else {
-            if ((GetMonData(param0, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
-                if (GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(1, 2)) {
+            if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+                if (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 2)) {
                     if (param1 == 1) {
                         v0 = 13;
                     } else {
                         v0 = 14;
                     }
-                } else if (GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(2, 1)) {
+                } else if (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(2, 1)) {
                     if (param1 == 1) {
                         v0 = 11;
                     } else {
@@ -677,7 +678,7 @@ static int sub_02092E8C (Pokemon *param0, BOOL param1, int param2)
                     }
                 }
             } else {
-                if ((GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(1, 1)) || (GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(1, 0)) || (GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(1, 9)) || (GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(1, 10)) || (GetMonData(param0, MON_DATA_152, NULL) == sub_02017070(1, 11))) {
+                if ((GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 1)) || (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 0)) || (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 9)) || (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 10)) || (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 11))) {
                     if (param1 == 1) {
                         v0 = 5;
                     } else {
@@ -694,8 +695,8 @@ static int sub_02092E8C (Pokemon *param0, BOOL param1, int param2)
         }
     } else {
         if (param1 == 1) {
-            if ((GetMonData(param0, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
-                if (GetMonData(param0, MON_DATA_152, NULL) == (sub_02017070(2, 1))) {
+            if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+                if (GetMonData(mon, MON_DATA_152, NULL) == (sub_02017070(2, 1))) {
                     v0 = 20;
                 } else {
                     v0 = 18;
@@ -704,7 +705,7 @@ static int sub_02092E8C (Pokemon *param0, BOOL param1, int param2)
                 v0 = 16;
             }
         } else {
-            if ((GetMonData(param0, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+            if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
                 v0 = 19;
             } else {
                 v0 = 17;
@@ -715,9 +716,9 @@ static int sub_02092E8C (Pokemon *param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C (Pokemon *param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209304C (Pokemon *mon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
-    sub_0209305C(&param0->unk_00, param1, param2, param3, param4);
+    sub_0209305C(&mon->unk_00, param1, param2, param3, param4);
 }
 
 void sub_0209305C (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)

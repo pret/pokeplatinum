@@ -10,7 +10,7 @@
 #define VERSION_SOUL_SILVER 8
 #define VERSION_DIAMOND     10
 #define VERSION_PEARL       11
-#define PLATINUM            12
+#define VERSION_PLATINUM    12
 #define VERSION_GAMECUBE    15
 
 #define JAPANESE 1

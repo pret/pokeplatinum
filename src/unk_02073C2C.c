@@ -737,10 +737,10 @@ static u32 sub_020745D0 (BoxPokemon *boxMon, int field, void * param2)
 {
     u32 ret = 0;
     u64 v1;
-    PokemonSubstruct0 * substruct0;
-    PokemonSubstruct1 * substruct1;
-    PokemonSubstruct2 * substruct2;
-    PokemonSubstruct3 * substruct3;
+    PokemonSubstruct0 *substruct0;
+    PokemonSubstruct1 *substruct1;
+    PokemonSubstruct2 *substruct2;
+    PokemonSubstruct3 *substruct3;
 
     substruct0 = (PokemonSubstruct0 *)sub_0207825C(boxMon, boxMon->personality, 0);
     substruct1 = (PokemonSubstruct1 *)sub_0207825C(boxMon, boxMon->personality, 1);
@@ -795,7 +795,7 @@ static u32 sub_020745D0 (BoxPokemon *boxMon, int field, void * param2)
             ret = substruct0->species;
         break;
     case MON_DATA_HELD_ITEM:
-        ret = substruct0->unk_02;
+        ret = substruct0->item;
         break;
     case MON_DATA_OT_ID:
         ret = substruct0->unk_04;
@@ -1123,7 +1123,7 @@ static u32 sub_020745D0 (BoxPokemon *boxMon, int field, void * param2)
     case MON_DATA_177:
     case MON_DATA_178:
         if ((substruct0->species == SPECIES_ARCEUS) && (substruct0->unk_0D == 121)) {
-            ret = sub_02077988(Item_GetAttribute(substruct0->unk_02, 1, 0));
+            ret = sub_02077988(Item_GetAttribute(substruct0->item, 1, 0));
         } else {
             ret = sub_020759CC(substruct0->species, substruct1->unk_18_3, 6 + (field - 177));
         }
@@ -1243,10 +1243,10 @@ static void SetMonSubstructData (BoxPokemon *boxMon, int field, const void * par
     u32 * v3 = (u32 *)param2;
     u16 * v4 = (u16 *)param2;
     u8 * v5 = (u8 *)param2;
-    PokemonSubstruct0 * substruct0;
-    PokemonSubstruct1 * substruct1;
-    PokemonSubstruct2 * substruct2;
-    PokemonSubstruct3 * substruct3;
+    PokemonSubstruct0 *substruct0;
+    PokemonSubstruct1 *substruct1;
+    PokemonSubstruct2 *substruct2;
+    PokemonSubstruct3 *substruct3;
 
     substruct0 = (PokemonSubstruct0 *)sub_0207825C(boxMon, boxMon->personality, 0);
     substruct1 = (PokemonSubstruct1 *)sub_0207825C(boxMon, boxMon->personality, 1);
@@ -1275,7 +1275,7 @@ static void SetMonSubstructData (BoxPokemon *boxMon, int field, const void * par
         substruct0->species = v4[0];
         break;
     case MON_DATA_HELD_ITEM:
-        substruct0->unk_02 = v4[0];
+        substruct0->item = v4[0];
         break;
     case MON_DATA_OT_ID:
         substruct0->unk_04 = v3[0];
@@ -1677,10 +1677,10 @@ static void sub_02075454 (BoxPokemon *boxMon, int param1, int param2)
 {
     int v0;
     u16 v1;
-    PokemonSubstruct0 * substruct0;
-    PokemonSubstruct1 * substruct1;
-    PokemonSubstruct2 * substruct2;
-    PokemonSubstruct3 * substruct3;
+    PokemonSubstruct0 *substruct0;
+    PokemonSubstruct1 *substruct1;
+    PokemonSubstruct2 *substruct2;
+    PokemonSubstruct3 *substruct3;
 
     substruct0 = (PokemonSubstruct0 *)sub_0207825C(boxMon, boxMon->personality, 0);
     substruct1 = (PokemonSubstruct1 *)sub_0207825C(boxMon, boxMon->personality, 1);
@@ -5381,33 +5381,34 @@ BOOL sub_02078AEC (int param0, Pokemon *param1, int param2)
     return 1;
 }
 
-void sub_02078B40 (Pokemon *param0, UnkStruct_02078B40 * param1)
+void sub_02078B40 (Pokemon *mon, UnkStruct_02078B40 * param1)
 {
-    BoxPokemon *v0;
-    PokemonSubstruct0 * substruct0;
-    PokemonSubstruct1 * substruct1;
-    PokemonSubstruct2 * substruct2;
-    PokemonSubstruct3 * substruct3;
+    BoxPokemon *boxMon;
+    PokemonSubstruct0 *substruct0;
+    PokemonSubstruct1 *substruct1;
+    PokemonSubstruct2 *substruct2;
+    PokemonSubstruct3 *substruct3;
     int v5;
     u16 v6;
 
-    if (param0->unk_00.unk_04_0 == 0) {
-        sub_02078234(&param0->unk_08, sizeof(UnkStruct_02073C74_sub2), param0->unk_00.personality);
-        sub_02078234(&param0->unk_00.unk_08, sizeof(PokemonSubstruct0) * 4, param0->unk_00.unk_06);
+    if (mon->unk_00.unk_04_0 == 0)
+    {
+        sub_02078234(&mon->unk_08, sizeof(UnkStruct_02073C74_sub2), mon->unk_00.personality);
+        sub_02078234(&mon->unk_00.unk_08, sizeof(PokemonSubstruct0) * 4, mon->unk_00.unk_06);
     }
 
-    v0 = sub_02076B10(param0);
-    substruct0 = (PokemonSubstruct0 *)sub_0207825C(v0, v0->personality, 0);
-    substruct1 = (PokemonSubstruct1 *)sub_0207825C(v0, v0->personality, 1);
-    substruct2 = (PokemonSubstruct2 *)sub_0207825C(v0, v0->personality, 2);
-    substruct3 = (PokemonSubstruct3 *)sub_0207825C(v0, v0->personality, 3);
+    boxMon = sub_02076B10(mon);
+    substruct0 = (PokemonSubstruct0 *)sub_0207825C(boxMon, boxMon->personality, 0);
+    substruct1 = (PokemonSubstruct1 *)sub_0207825C(boxMon, boxMon->personality, 1);
+    substruct2 = (PokemonSubstruct2 *)sub_0207825C(boxMon, boxMon->personality, 2);
+    substruct3 = (PokemonSubstruct3 *)sub_0207825C(boxMon, boxMon->personality, 3);
 
-    param1->unk_00 = v0->personality;
+    param1->unk_00 = boxMon->personality;
     param1->unk_04_0 = 0;
     param1->unk_04_1 = 0;
-    param1->unk_04_2 = v0->unk_04_2;
+    param1->unk_04_2 = boxMon->unk_04_2;
     param1->unk_06 = substruct0->species;
-    param1->unk_08 = substruct0->unk_02;
+    param1->unk_08 = substruct0->item;
     param1->unk_0C = substruct0->unk_04;
     param1->unk_10 = substruct0->unk_08;
     param1->unk_14 = substruct0->friendship;
@@ -5448,27 +5449,28 @@ void sub_02078B40 (Pokemon *param0, UnkStruct_02078B40 * param1)
 
     param1->unk_58 = substruct3->unk_1B;
 
-    param1->unk_5C = param0->unk_08.unk_00;
-    param1->unk_60 = param0->unk_08.unk_04;
-    param1->unk_61 = param0->unk_08.unk_05;
-    param1->unk_62 = param0->unk_08.unk_06;
-    param1->unk_64 = param0->unk_08.unk_08;
-    param1->unk_66 = param0->unk_08.unk_0A;
-    param1->unk_68 = param0->unk_08.unk_0C;
-    param1->unk_6A = param0->unk_08.unk_0E;
-    param1->unk_6C = param0->unk_08.unk_10;
-    param1->unk_6E = param0->unk_08.unk_12;
+    param1->unk_5C = mon->unk_08.unk_00;
+    param1->unk_60 = mon->unk_08.unk_04;
+    param1->unk_61 = mon->unk_08.unk_05;
+    param1->unk_62 = mon->unk_08.unk_06;
+    param1->unk_64 = mon->unk_08.unk_08;
+    param1->unk_66 = mon->unk_08.unk_0A;
+    param1->unk_68 = mon->unk_08.unk_0C;
+    param1->unk_6A = mon->unk_08.unk_0E;
+    param1->unk_6C = mon->unk_08.unk_10;
+    param1->unk_6E = mon->unk_08.unk_12;
 
-    if (param0->unk_00.unk_04_0 == 0) {
-        sub_0207822C(&param0->unk_08, sizeof(UnkStruct_02073C74_sub2), param0->unk_00.personality);
-        sub_0207822C(&param0->unk_00.unk_08, sizeof(PokemonSubstruct0) * 4, param0->unk_00.unk_06);
+    if (mon->unk_00.unk_04_0 == 0)
+    {
+        sub_0207822C(&mon->unk_08, sizeof(UnkStruct_02073C74_sub2), mon->unk_00.personality);
+        sub_0207822C(&mon->unk_00.unk_08, sizeof(PokemonSubstruct0) * 4, mon->unk_00.unk_06);
     }
 }
 
 void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon *param1)
 {
     BoxPokemon *v0;
-    PokemonSubstruct0 * v1;
+    PokemonSubstruct0 *substruct0;
     PokemonSubstruct1 * v2;
     PokemonSubstruct2 * v3;
     PokemonSubstruct3 * v4;
@@ -5477,7 +5479,7 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon *param1)
     MI_CpuClearFast(param1, sizeof(Pokemon));
 
     v0 = sub_02076B10(param1);
-    v1 = (PokemonSubstruct0 *)sub_0207825C(v0, param0->unk_00, 0);
+    substruct0 = (PokemonSubstruct0 *)sub_0207825C(v0, param0->unk_00, 0);
     v2 = (PokemonSubstruct1 *)sub_0207825C(v0, param0->unk_00, 1);
     v3 = (PokemonSubstruct2 *)sub_0207825C(v0, param0->unk_00, 2);
     v4 = (PokemonSubstruct3 *)sub_0207825C(v0, param0->unk_00, 3);
@@ -5487,19 +5489,19 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon *param1)
     v0->unk_04_1 = 0;
     v0->unk_04_2 = param0->unk_04_2;
 
-    v1->species = param0->unk_06;
-    v1->unk_02 = param0->unk_08;
-    v1->unk_04 = param0->unk_0C;
-    v1->unk_08 = param0->unk_10;
-    v1->friendship = param0->unk_14;
-    v1->unk_0D = param0->unk_15;
-    v1->unk_10 = param0->unk_16;
-    v1->unk_11 = param0->unk_17;
-    v1->unk_12 = param0->unk_18;
-    v1->unk_13 = param0->unk_19;
-    v1->unk_14 = param0->unk_1A;
-    v1->unk_15 = param0->unk_1B;
-    v1->unk_0F = param0->unk_59;
+    substruct0->species = param0->unk_06;
+    substruct0->item = param0->unk_08;
+    substruct0->unk_04 = param0->unk_0C;
+    substruct0->unk_08 = param0->unk_10;
+    substruct0->friendship = param0->unk_14;
+    substruct0->unk_0D = param0->unk_15;
+    substruct0->unk_10 = param0->unk_16;
+    substruct0->unk_11 = param0->unk_17;
+    substruct0->unk_12 = param0->unk_18;
+    substruct0->unk_13 = param0->unk_19;
+    substruct0->unk_14 = param0->unk_1A;
+    substruct0->unk_15 = param0->unk_1B;
+    substruct0->unk_0F = param0->unk_59;
 
     for (v5 = 0; v5 < 4; v5++) {
         v2->unk_00[v5] = param0->unk_1C[v5];
