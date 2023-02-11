@@ -160,7 +160,7 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
     u8 v0, v1, v2, v3;
     u16 v4, v5;
     Party * v6;
-    Pokemon *v7;
+    Pokemon * v7;
     u16 v8[6];
 
     v6 = Party_GetFromSavedata(param1);

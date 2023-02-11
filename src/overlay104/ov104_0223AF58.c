@@ -1577,7 +1577,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkS
     u32 v3;
     u8 v4, v5, v6, v7;
     UnkStruct_ov6_02240D5C * v8;
-    Pokemon *v9;
+    Pokemon * v9;
     UnkStruct_ov104_0223A348_sub1 v10;
     UnkStruct_0204B184 * v11;
     UnkStruct_02025E6C * v12;
@@ -1806,7 +1806,7 @@ u8 ov104_0223B5C0 (UnkStruct_ov104_0223B5C0 * param0)
     u32 v0;
     int v1;
     Party * v2;
-    Pokemon *v3;
+    Pokemon * v3;
 
     v2 = Party_GetFromSavedata(param0->unk_6FC);
     v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
@@ -1864,7 +1864,7 @@ static u16 ov104_0223B644 (u8 param0)
 u16 ov104_0223B64C (UnkStruct_ov104_0223B5C0 * param0)
 {
     Party * v0;
-    Pokemon *v1;
+    Pokemon * v1;
     u16 v2, v3;
 
     v0 = Party_GetFromSavedata(param0->unk_6FC);

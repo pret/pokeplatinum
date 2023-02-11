@@ -244,7 +244,7 @@ void sub_0206C404 (UnkStruct_0202D7B0 * param0, const int param1)
 
 void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     UnkStruct_0206C638 * v1;
     UnkStruct_0202D7B0 * v2;
     int v3;

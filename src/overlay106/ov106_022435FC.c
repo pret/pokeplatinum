@@ -26,7 +26,7 @@ void * ov106_02243650(UnkStruct_ov106_02243650 * param0);
 void ov106_02243664(UnkStruct_ov106_02243650 * param0, int param1);
 void ov106_02243670(UnkStruct_ov106_02243650 * param0, u16 param1, u16 param2);
 void ov106_022436B0(UnkStruct_ov106_02243650 * param0, u32 param1);
-void ov106_022436CC(UnkStruct_ov106_02243650 * param0, Pokemon *param1);
+void ov106_022436CC(UnkStruct_ov106_02243650 * param0, Pokemon * param1);
 
 UnkStruct_ov106_02243650 * ov106_022435FC (UnkStruct_ov106_02243310 * param0, u32 param1, u32 param2, u16 param3, u16 param4, const u8 * param5)
 {
@@ -91,7 +91,7 @@ void ov106_022436B0 (UnkStruct_ov106_02243650 * param0, u32 param1)
     return;
 }
 
-void ov106_022436CC (UnkStruct_ov106_02243650 * param0, Pokemon *param1)
+void ov106_022436CC (UnkStruct_ov106_02243650 * param0, Pokemon * param1)
 {
     sub_02021F24(param0->unk_10, sub_02079FC4(param1));
     return;

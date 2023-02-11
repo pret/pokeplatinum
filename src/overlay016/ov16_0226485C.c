@@ -538,7 +538,7 @@ void ov16_022651A8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
 void ov16_022651DC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C23C v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     int v3;
 
@@ -583,7 +583,7 @@ void ov16_02265330 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     int v5;
     int v6;
     Party * v7;
-    Pokemon *v8;
+    Pokemon * v8;
     u32 v9;
     int v10;
 
@@ -989,7 +989,7 @@ void ov16_02265C1C (UnkStruct_0207ADB4 * param0, int param1, u32 param2)
 void ov16_02265C38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
 {
     UnkStruct_ov16_0225C35C v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     int v3;
 
@@ -1018,7 +1018,7 @@ void ov16_02265C38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 void ov16_02265D14 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C370 v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     int v3;
 
@@ -1227,7 +1227,7 @@ void ov16_022661B0 (UnkStruct_0207ADB4 * param0, int param1)
 void ov16_022661CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
 {
     UnkStruct_ov16_0225C468 v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     int v3;
 
@@ -1723,7 +1723,7 @@ static void ov16_02266CF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v4;
     u32 v5;
     Party * v6;
-    Pokemon *v7;
+    Pokemon * v7;
 
     MI_CpuClearFast(param2, sizeof(UnkStruct_ov16_0225C840));
 

@@ -75,7 +75,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     u16 unk_10E;
     u16 unk_110;
     u16 unk_112;
-    BoxPokemon *unk_114;
+    BoxPokemon * unk_114;
     int unk_118;
     int unk_11C;
     UnkStruct_02025E6C * unk_120;
@@ -140,7 +140,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     NNSG2dCharacterData * unk_10F8;
     void * unk_10FC;
     NNSG2dPaletteData * unk_1100;
-    Pokemon *unk_1104;
+    Pokemon * unk_1104;
     UnkStruct_ov94_0223FD4C_sub2 * unk_1108;
     u16 unk_110C;
     u16 unk_110E;

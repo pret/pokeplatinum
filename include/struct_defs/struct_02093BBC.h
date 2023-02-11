@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02095C60.h"
 
 typedef struct {
-    Pokemon *unk_00;
+    Pokemon * unk_00;
     UnkStruct_02029C88 * unk_04;
     int unk_08;
     int unk_0C;

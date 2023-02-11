@@ -369,7 +369,7 @@ typedef struct {
     PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_23;
 
-void ov97_02236E90(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
+void ov97_02236E90(BoxPokemonGBA * boxMonGBA, BoxPokemon * boxMon);
 
 static u16 Unk_ov97_0223ECA0[] = {
 	0x10,
@@ -472,30 +472,30 @@ static u16 Unk_ov97_0223ECA0[] = {
 #define GBA_SUBSTRUCT_CASE(n, v1, v2, v3, v4)                               \
 case n:                                                                     \
     {                                                                       \
-    PokemonGBASubstruct *substructs0 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs1 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs2 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs3 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs4 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs5 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs6 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs7 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs8 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs9 = boxMonGBA->secure.substructs;  \
-    PokemonGBASubstruct *substructs10 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs11 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs12 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs13 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs14 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs15 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs16 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs17 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs18 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs19 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs20 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs21 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs22 = boxMonGBA->secure.substructs; \
-    PokemonGBASubstruct *substructs23 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs0 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs1 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs2 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs3 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs4 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs5 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs6 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs7 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs8 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs9 = boxMonGBA->secure.substructs;  \
+    PokemonGBASubstruct * substructs10 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs11 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs12 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs13 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs14 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs15 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs16 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs17 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs18 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs19 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs20 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs21 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs22 = boxMonGBA->secure.substructs; \
+    PokemonGBASubstruct * substructs23 = boxMonGBA->secure.substructs; \
                                                                         \
         switch (substructType)                                          \
         {                                                               \
@@ -515,9 +515,9 @@ case n:                                                                     \
         break;                                                          \
     }
 
-static PokemonGBASubstruct *GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 personality, u8 substructType)
+static PokemonGBASubstruct * GetGBASubstruct(BoxPokemonGBA * boxMonGBA, u32 personality, u8 substructType)
 {
-    PokemonGBASubstruct *substruct = NULL;
+    PokemonGBASubstruct * substruct = NULL;
 
     switch (personality % 24)
     {
@@ -550,7 +550,7 @@ static PokemonGBASubstruct *GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 person
     return substruct;
 }
 
-static void ov97_0223685C (BoxPokemonGBA *boxMonGBA)
+static void ov97_0223685C (BoxPokemonGBA * boxMonGBA)
 {
     int v0;
     u32 * v1;
@@ -563,7 +563,7 @@ static void ov97_0223685C (BoxPokemonGBA *boxMonGBA)
     }
 }
 
-static void ov97_0223687C (BoxPokemonGBA *boxMonGBA)
+static void ov97_0223687C (BoxPokemonGBA * boxMonGBA)
 {
     int v0;
     u32 * v1;
@@ -576,7 +576,7 @@ static void ov97_0223687C (BoxPokemonGBA *boxMonGBA)
     }
 }
 
-static u16 ov97_0223689C (BoxPokemonGBA *boxMonGBA)
+static u16 ov97_0223689C (BoxPokemonGBA * boxMonGBA)
 {
     int v0;
     u16 * v1;
@@ -609,14 +609,14 @@ static u16 ov97_0223689C (BoxPokemonGBA *boxMonGBA)
     return v5;
 }
 
-u32 PalPark_GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
+u32 PalPark_GetGBABoxMonData(BoxPokemonGBA * boxMonGBA, int field, u8 * param2)
 {
     int v0;
     u32 v1 = 0;
-    PokemonGBASubstruct0 *substruct0 = 0;
-    PokemonGBASubstruct1 *substruct1 = 0;
-    PokemonGBASubstruct2 *substruct2 = 0;
-    PokemonGBASubstruct3 *substruct3 = 0;
+    PokemonGBASubstruct0 * substruct0 = 0;
+    PokemonGBASubstruct1 * substruct1 = 0;
+    PokemonGBASubstruct2 * substruct2 = 0;
+    PokemonGBASubstruct3 * substruct3 = 0;
     u16 v6;
     u16 * v7;
 
@@ -871,14 +871,14 @@ u32 PalPark_GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     return v1;
 }
 
-void ov97_02236CA4 (BoxPokemonGBA *boxMonGBA, int field, const u8 * param2)
+void ov97_02236CA4 (BoxPokemonGBA * boxMonGBA, int field, const u8 * param2)
 {
     int v0;
     u32 v1;
-    PokemonGBASubstruct0 *substruct0 = 0;
-    PokemonGBASubstruct1 *substruct1 = 0;
-    PokemonGBASubstruct2 *substruct2 = 0;
-    PokemonGBASubstruct3 *substruct3 = 0;
+    PokemonGBASubstruct0 * substruct0 = 0;
+    PokemonGBASubstruct1 * substruct1 = 0;
+    PokemonGBASubstruct2 * substruct2 = 0;
+    PokemonGBASubstruct3 * substruct3 = 0;
     u16 v6;
 
     if (field > MON_GBA_DATA_ENCRYPT_SEPARATOR)
@@ -955,7 +955,7 @@ int PalPark_GBAToDSSpecies(int speciesGBA)
     return speciesGBA;
 }
 
-u32 ov97_02236E00 (BoxPokemonGBA *boxMonGBA)
+u32 ov97_02236E00 (BoxPokemonGBA * boxMonGBA)
 {
     int species;
     u32 exp;
@@ -966,7 +966,7 @@ u32 ov97_02236E00 (BoxPokemonGBA *boxMonGBA)
     return sub_02075B78(species, exp);
 }
 
-static int ov97_02236E28 (BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
+static int ov97_02236E28 (BoxPokemonGBA * boxMonGBA, BoxPokemon * boxMon)
 {
     int v0;
     int v1;
@@ -995,7 +995,7 @@ static int ov97_02236E28 (BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     return v1;
 }
 
-void ov97_02236E90 (BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
+void ov97_02236E90 (BoxPokemonGBA * boxMonGBA, BoxPokemon * boxMon)
 {
     BOOL v0;
     u32 value;

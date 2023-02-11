@@ -24,8 +24,8 @@ typedef struct {
     u32 unk_04;
     int unk_08;
     UnkStruct_ov6_02246254 unk_0C;
-    Pokemon *unk_24;
-    Pokemon *unk_28;
+    Pokemon * unk_24;
+    Pokemon * unk_28;
 } UnkStruct_0206C660;
 
 static BOOL sub_0206C680(UnkStruct_020508D4 * param0);

@@ -401,7 +401,7 @@ static BOOL ov97_0222D5C8 (UnkStruct_0202DF40 * param0)
     case 1:
     case 2:
     {
-        Pokemon *v0;
+        Pokemon * v0;
         int v1;
 
         v0 = (Pokemon *)&param0->unk_04.val1.unk_04;

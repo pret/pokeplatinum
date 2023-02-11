@@ -281,7 +281,7 @@ static int sub_02097D88 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-Pokemon *sub_02097F00 (UnkStruct_02097F18 * param0, int param1)
+Pokemon * sub_02097F00 (UnkStruct_02097F18 * param0, int param1)
 {
     int v0 = param1;
 
@@ -386,7 +386,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     case 4:
     {
         UnkStruct_02098C44 * v7 = v0->unk_0C;
-        Pokemon *v8;
+        Pokemon * v8;
         UnkStruct_0202CA28 * v9;
         UnkStruct_0202CA64 * v10;
         UnkStruct_0202440C * v11;

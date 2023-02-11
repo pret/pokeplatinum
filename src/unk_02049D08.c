@@ -164,7 +164,7 @@ BOOL sub_02049EC4 (u16 param0, UnkStruct_021C0794 * param1, u8 param2)
     u8 v0, v1, v2, v3;
     u16 v4, v5;
     Party * v6;
-    Pokemon *v7;
+    Pokemon * v7;
     UnkStruct_02049D38 v8[6];
 
     v6 = Party_GetFromSavedata(param1);
@@ -434,7 +434,7 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
     u16 v0 = 0;
     UnkStruct_02098C44 * v1 = *param1;
     Party * v2;
-    Pokemon *v3;
+    Pokemon * v3;
 
     if ((v1->unk_23 != 0) || (v1->unk_22 == 7)) {
         Heap_FreeToHeap(*param1);
@@ -461,7 +461,7 @@ int sub_0204A410 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     u16 v0 = 0, v1 = 0;
     u16 v2[4], v3[4];
     Party * v4;
-    Pokemon *v5;
+    Pokemon * v5;
 
     v4 = Party_GetFromSavedata(param1);
 
@@ -952,7 +952,7 @@ static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204A
     u8 v1;
     int v2;
     Party * v3;
-    Pokemon *v4;
+    Pokemon * v4;
 
     v3 = Party_GetFromSavedata(param0);
     v1 = 0;
@@ -994,7 +994,7 @@ static u16 sub_0204ACC8 (UnkStruct_0204AFC4 * param0)
     return 1;
 }
 
-static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon *param1)
+static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * param1)
 {
     int v0;
 
@@ -1027,7 +1027,7 @@ static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * para
     int v0 = 0;
     UnkStruct_ov104_0223A348_sub2 * v1;
     Party * v2;
-    Pokemon *v3;
+    Pokemon * v3;
 
     v1 = Heap_AllocFromHeapAtEnd(param0->unk_04, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);

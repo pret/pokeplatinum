@@ -1131,7 +1131,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     case 7:
     {
         UnkStruct_02097728 * v9;
-        Pokemon *v10;
+        Pokemon * v10;
 
         v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v2->unk_22);
         v9 = sub_0203D984(v0, v10, 11);
@@ -1330,7 +1330,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
     case 4:
     {
         Party * v7;
-        Pokemon *v8;
+        Pokemon * v8;
         u32 v9;
         u16 v10;
 
@@ -1767,7 +1767,7 @@ BOOL sub_0203C434 (UnkStruct_020508D4 * param0)
         v1->unk_25C = sub_0203D390(v0, &v1->unk_24C, v3);
         sub_0203B674(v1, sub_0203B7C0);
     } else {
-        Pokemon *v4;
+        Pokemon * v4;
         void * v5;
         void * v6;
 
@@ -1937,7 +1937,7 @@ static void sub_0203C7B8 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_0203C7B8 * v2;
     Party * v3;
-    Pokemon *v4;
+    Pokemon * v4;
     UnkStruct_0207AE68 * v5;
 
     v0 = sub_02050A60(param0);

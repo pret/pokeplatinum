@@ -73,7 +73,7 @@ void sub_02082C2C (UnkStruct_0207F248 * param0)
 
 void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, NARC * param4)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     UnkStruct_ov7_0224F358 v1;
     u32 v2;
 
@@ -104,7 +104,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
 
 void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     NARC * v1;
     int v2, v3;
     u32 v4;

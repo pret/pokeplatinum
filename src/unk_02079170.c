@@ -295,7 +295,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
     u32 v3, v4;
     u32 v5;
     u8 v6;
-    Pokemon *v7;
+    Pokemon * v7;
 
     v5 = sub_0201D2D0();
 

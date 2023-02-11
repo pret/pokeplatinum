@@ -494,7 +494,7 @@ UnkEnum_02098EAC sub_02098EAC (Poffin * param0, u8 param1)
     }
 }
 
-void sub_02098EF8 (Poffin * param0, Pokemon *param1)
+void sub_02098EF8 (Poffin * param0, Pokemon * param1)
 {
     u8 v0, v1;
     u8 v2, v3;

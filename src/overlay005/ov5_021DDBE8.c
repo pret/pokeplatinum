@@ -1402,8 +1402,8 @@ u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
     int v0;
     int v1;
     int v2;
-    Pokemon *v3;
-    Pokemon *v4;
+    Pokemon * v3;
+    Pokemon * v4;
     int v5, v6;
 
     if (param0->unk_00 & 0x1) {

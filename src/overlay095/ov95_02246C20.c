@@ -108,7 +108,7 @@ typedef void *(* UnkFuncPtr_ov95_0224BE8C)(UnkStruct_ov95_02247628 *);
 typedef BOOL (* UnkFuncPtr_ov95_0224BE8C_1)(void *, int *);
 typedef void (* UnkFuncPtr_ov95_0224BE8C_2)(void *);
 
-static BOOL ov95_02246DEC(BoxPokemon *boxMon);
+static BOOL ov95_02246DEC(BoxPokemon * boxMon);
 static void ov95_02246F0C(UnkStruct_0201CD38 * param0, void * param1);
 static void ov95_02247060(UnkStruct_0201CD38 * param0, void * param1);
 static void ov95_02247148(UnkStruct_ov95_02247004 * param0, int param1, int param2, int param3);
@@ -201,7 +201,7 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
     return 0;
 }
 
-static BOOL ov95_02246DEC (BoxPokemon *boxMon)
+static BOOL ov95_02246DEC (BoxPokemon * boxMon)
 {
     int v0 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
     int v1 = sub_02074570(boxMon, MON_DATA_112, NULL);
@@ -568,7 +568,7 @@ void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u3
         UnkStruct_02013610 v4 = {
             0, 0, 10, 10,
         };
-        BoxPokemon *v5;
+        BoxPokemon * v5;
         BOOL v6;
         u32 personality;
         u16 v8;
@@ -689,12 +689,12 @@ UnkStruct_0200B144 * ov95_02247630 (UnkStruct_ov95_02247628 * param0)
     return param0->unk_10;
 }
 
-const BoxPokemon *ov95_02247634 (UnkStruct_ov95_02247628 * param0)
+const BoxPokemon * ov95_02247634 (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_00->unk_00;
 }
 
-const BoxPokemon *ov95_0224763C (UnkStruct_ov95_02247628 * param0)
+const BoxPokemon * ov95_0224763C (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_00->unk_04;
 }

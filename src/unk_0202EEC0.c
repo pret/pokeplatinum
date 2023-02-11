@@ -74,7 +74,7 @@ static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon *boxMon, int param2)
+void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon * boxMon, int param2)
 {
     sub_020774C8(boxMon, &param0->unk_00[param2]);
 }
@@ -90,7 +90,7 @@ void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
     OS_GetMacAddress(param0->unk_380);
 }
 
-void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, Pokemon *param2)
+void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, Pokemon * param2)
 {
     GF_ASSERT(param1 < 6);
     *param2 = param0->unk_00[param1];

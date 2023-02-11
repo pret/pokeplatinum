@@ -32,7 +32,7 @@ typedef struct {
     u8 padding_1969[3];
     const UnkStruct_020279FC * unk_196C;
     UnkStruct_021C0794 * unk_1970;
-    Pokemon *unk_1974;
+    Pokemon * unk_1974;
     const UnkStruct_02025E6C * unk_1978;
     u8 unk_197C;
     u8 unk_197D;

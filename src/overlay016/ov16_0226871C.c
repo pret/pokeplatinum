@@ -343,7 +343,7 @@ static void ov16_0226AAC0(UnkStruct_ov16_02268A14 * param0);
 static void ov16_0226A698(UnkStruct_ov16_02268A14 * param0);
 static void ov16_0226A718(UnkStruct_ov16_02268A14 * param0);
 static void ov16_0226A768(UnkStruct_ov16_02268A14 * param0);
-static UnkStruct_0200D0F4 * ov16_0226A7A4(UnkStruct_ov16_02268A14 * param0, Pokemon *param1, int param2, int param3, int param4, int param5);
+static UnkStruct_0200D0F4 * ov16_0226A7A4(UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5);
 static void ov16_0226A928(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_0226B988(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_0226BA88(UnkStruct_0201CD38 * param0, void * param1);
@@ -1800,7 +1800,7 @@ static void ov16_02269668 (UnkStruct_ov16_02268A14 * param0, int param1, int par
     sub_020237BC(v3);
 
     if ((ov16_0223DF0C(param0->unk_00) & (0x20 | 0x200)) == 0) {
-        Pokemon *v7;
+        Pokemon * v7;
         UnkStruct_0200D0F4 * v8;
         int v9, v10;
 
@@ -2129,8 +2129,8 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     UnkStruct_0200B144 * v2;
     u8 v3[4];
     UnkStruct_02023790 * v4, * v5;
-    Pokemon *v6;
-    BoxPokemon *v7;
+    Pokemon * v6;
+    BoxPokemon * v7;
     UnkStruct_0200B358 * v8;
     u32 v9;
     u8 v10[6];
@@ -2485,7 +2485,7 @@ static void ov16_0226A768 (UnkStruct_ov16_02268A14 * param0)
     }
 }
 
-static UnkStruct_0200D0F4 * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon *param1, int param2, int param3, int param4, int param5)
+static UnkStruct_0200D0F4 * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_0200C6E4 * v0;
     UnkStruct_0200C704 * v1;

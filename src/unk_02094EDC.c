@@ -617,7 +617,7 @@ void sub_02095338 (UnkStruct_02095C48 * param0)
     }
 }
 
-void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon *param1, int param2)
+void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int param2)
 {
     int v0;
     u16 v1;
@@ -666,7 +666,7 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon *param1, int p
     }
 }
 
-UnkStruct_02007C7C * sub_02095484 (UnkStruct_02007768 * param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 * param4, int param5, int param6, int param7, int param8)
+UnkStruct_02007C7C * sub_02095484 (UnkStruct_02007768 * param0, int param1, Pokemon * param2, int param3, UnkStruct_ov16_0223E0C8 * param4, int param5, int param6, int param7, int param8)
 {
     UnkStruct_02008A90 v0;
     UnkStruct_02007C7C * v1;

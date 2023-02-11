@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02073C74_decl.h"
 
 typedef struct {
-    Pokemon *unk_00;
+    Pokemon * unk_00;
     Poffin * unk_04;
     u16 unk_08;
     u8 unk_0A;

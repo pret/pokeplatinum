@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov22_0225B1BC_t {
     UnkStruct_ov22_02254DE0 * unk_1F0;
     UnkStruct_ov22_02257964 unk_1F4;
     UnkStruct_ov22_0225AF68 unk_27C;
-    Pokemon *unk_298;
+    Pokemon * unk_298;
     int unk_29C;
     int unk_2A0;
     int unk_2A4;

@@ -30,7 +30,7 @@ void ov6_02246034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     UnkStruct_0202D7B0 * v3;
     UnkStruct_0206C638 * v4;
     Party * v5;
-    Pokemon *v6;
+    Pokemon * v6;
 
     v5 = param1->unk_04[1];
     v6 = Party_GetPokemonBySlotIndex(v5, 0);

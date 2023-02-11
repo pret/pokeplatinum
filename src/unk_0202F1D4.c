@@ -582,7 +582,7 @@ void sub_0202FAFC (UnkStruct_ov6_02240D5C * param0, UnkStruct_021C0794 * param1)
 static void sub_0202FCE8 (const Party * param0, UnkStruct_0202FD30 * param1)
 {
     int v0;
-    Pokemon *v1;
+    Pokemon * v1;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_0202FD30));
 
@@ -598,7 +598,7 @@ static void sub_0202FCE8 (const Party * param0, UnkStruct_0202FD30 * param1)
 static void sub_0202FD30 (UnkStruct_0202FD30 * param0, Party * param1)
 {
     int v0;
-    Pokemon *v1;
+    Pokemon * v1;
     u8 v2 = 0;
 
     v1 = sub_02073C74(11);

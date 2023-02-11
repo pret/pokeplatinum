@@ -18,11 +18,11 @@ void sub_0200B48C(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_02023
 void sub_0200B498(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_02025E6C * param2);
 void sub_0200B4BC(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2);
 void sub_0200B4E4(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2);
-void sub_0200B538(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon);
-void sub_0200B578(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon);
+void sub_0200B538(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon);
+void sub_0200B578(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon);
 void sub_0200B594(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
-void sub_0200B5CC(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon);
-void sub_0200B5EC(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon);
+void sub_0200B5CC(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon);
+void sub_0200B5EC(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon);
 void sub_0200B60C(UnkStruct_0200B358 * param0, u32 param1, s32 param2, u32 param3, int param4, int param5);
 void sub_0200B630(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200B668(UnkStruct_0200B358 * param0, u32 param1, u32 param2);

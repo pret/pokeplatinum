@@ -51,7 +51,7 @@ UnkStruct_02026218 * sub_02026218 (UnkStruct_02026310 * param0, int param1)
     return &(param0->unk_00[param1]);
 }
 
-BoxPokemon *sub_02026220 (UnkStruct_02026218 * param0)
+BoxPokemon * sub_02026220 (UnkStruct_02026218 * param0)
 {
     return &(param0->unk_00);
 }

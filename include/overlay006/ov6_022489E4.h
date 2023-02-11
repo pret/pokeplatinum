@@ -11,7 +11,7 @@
 void ov6_022489E4(int param0, int param1, void * param2, void * param3);
 BOOL ov6_02248A64(UnkStruct_02095C48 * param0);
 void ov6_02248AC8(int param0, int param1, void * param2, void * param3);
-BOOL ov6_02248AF0(UnkStruct_02095C48 * param0, int param1, const Pokemon *param2);
+BOOL ov6_02248AF0(UnkStruct_02095C48 * param0, int param1, const Pokemon * param2);
 void ov6_02248B30(int param0, int param1, void * param2, void * param3);
 BOOL ov6_02248B70(UnkStruct_02095C48 * param0, Pokemon ** param1);
 void ov6_02248BC0(int param0, int param1, void * param2, void * param3);

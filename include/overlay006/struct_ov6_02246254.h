@@ -6,8 +6,8 @@
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 
 typedef struct {
-    const BoxPokemon *unk_00;
-    const BoxPokemon *unk_04;
+    const BoxPokemon * unk_00;
+    const BoxPokemon * unk_04;
     const UnkStruct_02025E6C * unk_08;
     int unk_0C;
     int unk_10;

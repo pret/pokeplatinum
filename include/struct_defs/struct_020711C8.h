@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02073C74_decl.h"
 
 typedef struct {
-    Pokemon *unk_00;
+    Pokemon * unk_00;
     void * unk_04;
 } UnkStruct_020711C8;
 

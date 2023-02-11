@@ -193,7 +193,7 @@ typedef struct {
     UnkStruct_02023790 * unk_18;
     UnkStruct_02023790 * unk_1C;
     UnkStruct_0200B144 * unk_20;
-    Pokemon *unk_24;
+    Pokemon * unk_24;
     const UnkStruct_02025E6C * unk_28;
     int unk_2C;
     int unk_30;
@@ -302,7 +302,7 @@ static void ov86_0223D220(UnkStruct_0201CD38 * param0);
 static void ov86_0223D264(UnkStruct_ov86_0223D264 * param0, fx32 param1, fx32 param2, int param3);
 static fx32 ov86_0223D284(UnkStruct_ov86_0223D264 * param0);
 static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 * param0);
-static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon *param1, const UnkStruct_02025E6C * param2);
+static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const UnkStruct_02025E6C * param2);
 static UnkStruct_0201CD38 * ov86_0223CAE4(UnkStruct_ov86_0223C9B0 * param0, fx16 param1, fx32 param2, int param3);
 
 int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
@@ -824,7 +824,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     NNSG2dPaletteData * v8;
     void * v9;
     void * v10;
-    const Pokemon *v11;
+    const Pokemon * v11;
     int v12, v13;
 
     v2.unk_04 = NULL;
@@ -1916,7 +1916,7 @@ static BOOL ov86_0223D2A4 (UnkStruct_ov86_0223D264 * param0)
     return param0->unk_10;
 }
 
-static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon *param1, const UnkStruct_02025E6C * param2)
+static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const UnkStruct_02025E6C * param2)
 {
     BOOL v0;
     int v1 = 6;

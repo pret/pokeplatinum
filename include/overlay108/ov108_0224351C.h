@@ -10,7 +10,7 @@ void * ov108_02243594(UnkStruct_ov108_02243594 * param0);
 void ov108_022435A8(UnkStruct_ov108_02243594 * param0, int param1);
 void ov108_022435B4(UnkStruct_ov108_02243594 * param0, u16 param1, u16 param2);
 void ov108_022435F4(UnkStruct_ov108_02243594 * param0, u32 param1);
-void ov108_02243610(UnkStruct_ov108_02243594 * param0, Pokemon *param1);
+void ov108_02243610(UnkStruct_ov108_02243594 * param0, Pokemon * param1);
 void ov108_02243624(UnkStruct_ov108_02243594 * param0, u8 param1);
 
 #endif // POKEPLATINUM_OV108_0224351C_H

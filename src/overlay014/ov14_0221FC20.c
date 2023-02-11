@@ -1312,7 +1312,7 @@ static void ov14_02220D48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
     Party * v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     u8 v3;
     u8 v4, v5;
@@ -1528,7 +1528,7 @@ static void ov14_02221114 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 static void ov14_022211AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
     Party * v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     u8 v3;
     u8 v4, v5;
@@ -1565,7 +1565,7 @@ static void ov14_022211AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
 {
     Party * v0;
-    Pokemon *v1;
+    Pokemon * v1;
     int v2;
     u8 v3;
     u8 v4, v5;
@@ -2223,7 +2223,7 @@ static void ov14_02221D88 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v1;
     int v2;
     int v3;
-    Pokemon *v4;
+    Pokemon * v4;
 
     ov14_02222D24(param1, 1);
 
@@ -2249,7 +2249,7 @@ static void ov14_02221E18 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v1;
     int v2;
     int v3, v4;
-    Pokemon *v5;
+    Pokemon * v5;
 
     ov14_02222D24(param1, 1);
 
@@ -2388,7 +2388,7 @@ static void ov14_022220CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     s32 v7[4];
     u16 v8[4];
     u8 v9[6];
-    Pokemon *v10;
+    Pokemon * v10;
 
     ov14_02222D24(param1, 1);
 
@@ -3399,7 +3399,7 @@ static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     u16 v2;
     int v3;
     u32 v4;
-    Pokemon *v5;
+    Pokemon * v5;
 
     if (ov16_0223DF0C(param0) & 0x2) {
         return 0;
@@ -3457,7 +3457,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     u32 v8;
     int v9, v10;
     int v11;
-    Pokemon *v12;
+    Pokemon * v12;
 
     if (ov16_0223DF0C(param0) & 0x2) {
         v2 = 0;
@@ -3666,7 +3666,7 @@ static BOOL ov14_02223C8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     u8 v4;
     u8 v5;
     int v6, v7;
-    Pokemon *v8;
+    Pokemon * v8;
 
     if ((ov14_02223B34(param0, param1, param2, 1)) && (ov16_0223F4BC(param0) % 3 != 0)) {
         return 0;
@@ -3731,7 +3731,7 @@ static BOOL ov14_02223E10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v5;
     u32 v6;
     int v7, v8;
-    Pokemon *v9;
+    Pokemon * v9;
 
     if ((param1->unk_3064[param2] == 0) || (param1->unk_306C[param2] == 0xff)) {
         return 0;
@@ -3843,7 +3843,7 @@ static BOOL ov14_022241A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v1;
     u8 v2, v3, v4;
     int v5, v6;
-    Pokemon *v7;
+    Pokemon * v7;
 
     if ((param1->unk_2D40[param2].unk_70 & (0xe000 | 0x4000000)) || (param1->unk_2D40[param2].unk_80 & 0x400) || (ov16_022555A4(param0, param1, 2, param2, 23)) || (ov16_022555A4(param0, param1, 2, param2, 71)) || ((ov16_022555A4(param0, param1, 6, param2, 42) && ((ov16_02252060(param1, param2, 27, NULL) == 8) || ((ov16_02252060(param1, param2, 28, NULL) == 8)))))) {
         return 0;
@@ -3916,7 +3916,7 @@ int ov14_022243BC (UnkStruct_0207ADB4 * param0, int param1)
     u8 v1, v2;
     u32 v3;
     int v4, v5;
-    Pokemon *v6;
+    Pokemon * v6;
     UnkStruct_ov16_0224B9DC * v7;
 
     v7 = param0->unk_30;
@@ -3969,7 +3969,7 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
     BOOL v4;
     u8 * v5;
     Party * v6;
-    Pokemon *v7;
+    Pokemon * v7;
     UnkStruct_ov16_0224B9DC * v8;
 
     v8 = param0->unk_30;

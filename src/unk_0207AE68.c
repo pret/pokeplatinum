@@ -68,7 +68,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon *param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(UnkStruct_0201CD38 * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -98,7 +98,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon *param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     UnkStruct_02008A90 v1;
@@ -700,7 +700,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     case 14:
         if (sub_0207D730(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
-                Pokemon *v1;
+                Pokemon * v1;
                 int v2;
                 UnkStruct_0202818C * v3;
                 UnkStruct_0202CA28 v4;
@@ -947,7 +947,7 @@ static void sub_0207C460 (UnkStruct_02018340 * param0)
 static void sub_0207C498 (UnkStruct_0207AE68 * param0)
 {
     UnkStruct_02008A90 v0;
-    Pokemon *v1;
+    Pokemon * v1;
 
     sub_02075EF4(&v0, param0->unk_28, 2);
 

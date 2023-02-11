@@ -1528,7 +1528,7 @@ static void ov10_02221188 (UnkStruct_ov10_0221FB28 * param0, u8 param1, s16 para
 
 static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u16 param2, u16 param3)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     u8 v1;
     u8 v2, v3, v4;
 
@@ -2029,7 +2029,7 @@ static void ov10_02221C48 (UnkStruct_ov10_0221FB28 * param0, u8 param1)
 
 static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 param2)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     u16 v1;
     u16 v2;
 
@@ -2259,7 +2259,7 @@ static void ov10_022223E8 (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, UnkStruct_02023790 * param4, u32 param5)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     UnkStruct_0205AA50 * v1;
     UnkStruct_02023790 * v2;
 
@@ -2350,7 +2350,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 
 static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, UnkStruct_02023790 * param4, u32 param5)
 {
-    Pokemon *v0;
+    Pokemon * v0;
     UnkStruct_0205AA50 * v1;
     UnkStruct_02023790 * v2;
     u32 v3;

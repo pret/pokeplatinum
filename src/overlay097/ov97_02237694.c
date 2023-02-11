@@ -573,7 +573,7 @@ static int ov97_02237EA8 (int param0)
     return 0;
 }
 
-static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon *param1, int species, int param3, u8 * param4, UnkStruct_02008A90 * param5)
+static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int species, int param3, u8 * param4, UnkStruct_02008A90 * param5)
 {
     int v0, v1;
     u32 v2;
@@ -614,7 +614,7 @@ static void ov97_02237FB4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
 
 static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStruct_0202DF40 * param2)
 {
-    Pokemon *v0;
+    Pokemon * v0;
 
     ov97_02237B0C(54, 10, 0, 11, 12, 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));

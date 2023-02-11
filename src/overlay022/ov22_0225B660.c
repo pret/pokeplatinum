@@ -331,8 +331,8 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     UnkStruct_02023790 * v2;
     UnkStruct_02023790 * v3;
     int v4;
-    Pokemon *v5;
-    BoxPokemon *v6;
+    Pokemon * v5;
+    BoxPokemon * v6;
     UnkStruct_0200B144 * v7;
     int v8, v9;
     int v10;

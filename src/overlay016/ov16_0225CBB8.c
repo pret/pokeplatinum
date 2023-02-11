@@ -3708,7 +3708,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         int v3 = 0;
         int v4;
         Party * v5 = ov16_0223DF20(v0->unk_00, v0->unk_0D);
-        Pokemon *v6;
+        Pokemon * v6;
 
         if ((ov16_0223DF0C(v0->unk_00) & 0x2) && ((ov16_0223DF0C(v0->unk_00) & 0x8) == 0)) {
             v4 = v0->unk_0D & 1;
@@ -3992,7 +3992,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     case 21:
     {
         UnkStruct_ov16_022674C4 * v18;
-        Pokemon *v19;
+        Pokemon * v19;
         int v20;
         int v21;
 
@@ -4064,7 +4064,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_ov16_0225C300 v30;
         int v31;
         int v32 = 0;
-        Pokemon *v33;
+        Pokemon * v33;
         int v34;
 
         v28 = v0->unk_08->unk_04->unk_11 * 2;
@@ -4273,7 +4273,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                 int v5;
                 int v6, v7;
                 Party * v8;
-                Pokemon *v9, * v10;
+                Pokemon * v9, * v10;
 
                 ov16_0223B384(v0->unk_00);
 
@@ -4401,7 +4401,7 @@ static void ov16_02262258 (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov16_0225D840 * v0 = (UnkStruct_ov16_0225D840 *)param1;
     int v1;
     Party * v2;
-    Pokemon *v3;
+    Pokemon * v3;
     int v4, v5;
     u32 v6;
 
@@ -4463,7 +4463,7 @@ static void  ov16_0226232C (UnkStruct_0201CD38 * param0, void * param1)
     } else {
         {
             Party * v2;
-            Pokemon *v3;
+            Pokemon * v3;
             int v4 = v1 - 1;
 
             v2 = ov16_0223DF20(v0->unk_00, v0->unk_09);

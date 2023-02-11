@@ -9,7 +9,7 @@
 
 typedef struct {
     int unk_00;
-    Pokemon *unk_04[6];
+    Pokemon * unk_04[6];
     Party * unk_1C;
     UnkStruct_0202CA1C * unk_20;
     UnkStruct_020279FC * unk_24;

@@ -34,7 +34,7 @@ typedef struct {
     UnkStruct_0201CD38 * unk_14;
     UnkStruct_02061AB4 * unk_18;
     UnkStruct_0203CDB0 * unk_1C;
-    Pokemon *unk_20;
+    Pokemon * unk_20;
 } UnkStruct_ov6_02247100;
 
 static void * ov6_02247590(u32 param0, u32 param1);
@@ -287,7 +287,7 @@ static int(*const Unk_ov6_022495BC[])(UnkStruct_020508D4 *, UnkStruct_0203CDB0 *
     ov6_02247458
 };
 
-void * ov6_02247488 (UnkStruct_0203CDB0 * param0, Pokemon *param1, u32 param2)
+void * ov6_02247488 (UnkStruct_0203CDB0 * param0, Pokemon * param1, u32 param2)
 {
     UnkStruct_ov6_02247100 * v0 = ov6_02247590(param2, sizeof(UnkStruct_ov6_02247100));
 
@@ -346,7 +346,7 @@ static int(*const Unk_ov6_022495F0[])(UnkStruct_020508D4 *, UnkStruct_0203CDB0 *
     ov6_02247288
 };
 
-void * ov6_02247530 (UnkStruct_0203CDB0 * param0, Pokemon *param1, u32 param2)
+void * ov6_02247530 (UnkStruct_0203CDB0 * param0, Pokemon * param1, u32 param2)
 {
     UnkStruct_ov6_02247100 * v0 = ov6_02247590(param2, sizeof(UnkStruct_ov6_02247100));
 
