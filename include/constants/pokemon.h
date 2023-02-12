@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKEMON_H
-#define POKEPLATINUM_POKEMON_H
+#ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
+#define POKEPLATINUM_CONSTANTS_POKEMON_H
 
 enum {
     MON_DATA_PERSONALITY,
@@ -112,7 +112,7 @@ enum {
     MON_DATA_NATIONAL_RIBBON,
     MON_DATA_EARTH_RIBBON,
     MON_DATA_WORLD_RIBBON,
-    MON_DATA_EVENT_LEGAL,
+    MON_DATA_FATEFUL_ENCOUNTER,
     MON_DATA_111,
     MON_DATA_112,
     MON_DATA_113,
@@ -212,6 +212,25 @@ enum {
 #define NATURE_QUIRKY   24
 #define NUM_NATURES     25
 
+// Pokemon Stats
+#define STAT_HP      0
+#define STAT_ATK     1
+#define STAT_DEF     2
+#define STAT_SPEED   3
+#define STAT_SPATK   4
+#define STAT_SPDEF   5
+#define NUM_STATS    6
+
+#define STAT_ACC     6 // Only in battles.
+#define STAT_EVASION 7 // Only in battles.
+
+#define NUM_NATURE_STATS (NUM_STATS - 1) // excludes HP
+#define NUM_BATTLE_STATS (NUM_STATS + 2) // includes Accuracy and Evasion
+
+#define MIN_STAT_STAGE     0
+#define DEFAULT_STAT_STAGE 6
+#define MAX_STAT_STAGE    12
+
 #define MON_MALE       0x00
 #define MON_FEMALE     0xFE
 #define MON_GENDERLESS 0xFF
@@ -220,6 +239,4 @@ enum {
 #define MAX_SHEEN       255
 #define MAX_CONDITION   255
 
-#define MAX_MON_MOVES   4
-
-#endif // POKEPLATINUM_POKEMON_H
+#endif // POKEPLATINUM_CONSTANTS_POKEMON_H

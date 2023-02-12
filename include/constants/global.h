@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_PM_VERSION_H
-#define POKEPLATINUM_PM_VERSION_H
+#ifndef POKEPLATINUM_CONSTANTS_GLOBAL_H
+#define POKEPLATINUM_CONSTANTS_GLOBAL_H
 
 #define VERSION_SAPPHIRE    1
 #define VERSION_RUBY        2
@@ -21,7 +21,16 @@
 #define SPANISH 7
 #define KOREAN 8
 
-extern const u8 Unk_020E4C40;
-extern const u8 Unk_020E4C44;
+#define GAME_VERSION (VERSION_PLATINUM)
 
-#endif // POKEPLATINUM_PM_VERSION_H
+#define POKEMON_NAME_LENGTH 10
+#define PLAYER_NAME_LENGTH  7
+#define BOX_NAME_LENGTH     8
+
+#define BOX_ROWS            5 // Number of rows, 6 Pokémon per row
+#define BOX_COLUMNS         6 // Number of columns, 5 Pokémon per column
+#define MON_PER_BOX_COUNT   (BOX_ROWS * BOX_COLUMNS)
+
+#define MAX_MON_MOVES       4
+
+#endif

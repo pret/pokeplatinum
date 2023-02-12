@@ -216,7 +216,7 @@ static void ov105_02244DC4(UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 para
 static void ov105_02244DF0(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_02244E94(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_02244EE8(UnkStruct_ov105_02241FF4 * param0, u32 param1, s32 param2);
-static void ov105_02244F00(UnkStruct_ov105_02241FF4 * param0, u32 param1, BoxPokemon * boxMon);
+static void ov105_02244F00(UnkStruct_ov105_02241FF4 * param0, u32 param1, BoxPokemon *boxMon);
 static void ov105_02244F0C(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
 static void ov105_02244F84(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
 static void ov105_02244FF8(UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const Party * param9);
@@ -2151,7 +2151,7 @@ static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
 {
     int v0;
     Pokemon * v1;
-    BoxPokemon * v2;
+    BoxPokemon *v2;
 
     switch (param0->unk_08) {
     case 0:
@@ -2706,7 +2706,7 @@ static void ov105_02244EE8 (UnkStruct_ov105_02241FF4 * param0, u32 param1, s32 p
     return;
 }
 
-static void ov105_02244F00 (UnkStruct_ov105_02241FF4 * param0, u32 param1, BoxPokemon * boxMon)
+static void ov105_02244F00 (UnkStruct_ov105_02241FF4 * param0, u32 param1, BoxPokemon *boxMon)
 {
     sub_0200B538(param0->unk_20, param1, boxMon);
     return;

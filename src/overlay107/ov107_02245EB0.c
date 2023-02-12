@@ -199,7 +199,7 @@ static void ov107_02247F6C(UnkStruct_ov107_02246170 * param0);
 static void ov107_02248028(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 static void ov107_022480A0(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 static void ov107_022480EC(UnkStruct_ov107_02246170 * param0, u32 param1, s32 param2, u32 param3, int param4);
-static void ov107_02248104(UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon * boxMon);
+static void ov107_02248104(UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon *boxMon);
 static void ov107_02248110(UnkStruct_ov107_02246170 * param0, u32 param1);
 static void ov107_0224812C(UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
 static void ov107_02248194(UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
@@ -2340,7 +2340,7 @@ static void ov107_022480EC (UnkStruct_ov107_02246170 * param0, u32 param1, s32 p
     return;
 }
 
-static void ov107_02248104 (UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon * boxMon)
+static void ov107_02248104 (UnkStruct_ov107_02246170 * param0, u32 param1, BoxPokemon *boxMon)
 {
     sub_0200B538(param0->unk_24, param1, boxMon);
     return;

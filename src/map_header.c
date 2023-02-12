@@ -1,5 +1,4 @@
-#include <nitro.h>
-#include <string.h>
+#include "global.h"
 
 #include "map_header.h"
 

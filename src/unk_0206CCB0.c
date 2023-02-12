@@ -2698,7 +2698,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u32 v0, v1;
     u8 nature;
     Pokemon * v3;
-    BoxPokemon * v4;
+    BoxPokemon *v4;
     int v5, v6;
 
     v5 = 0xff;

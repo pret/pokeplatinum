@@ -1,5 +1,4 @@
-#include <nitro.h>
-#include <string.h>
+#include "global.h"
 
 #include "struct_decls/struct_021C0794_decl.h"
 

@@ -314,7 +314,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     UnkStruct_02023790 * v1;
     UnkStruct_02023790 * v2;
     UnkStruct_0200B358 * v3;
-    BoxPokemon * v4;
+    BoxPokemon *v4;
     UnkStruct_0200B144 * v5;
 
     sub_0201ADA4(param0, 15);

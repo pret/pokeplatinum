@@ -189,7 +189,7 @@ static u16 ov97_02235EC0 (int param0)
     }
 
     if (param0 == 13) {
-        return sizeof(UnkStruct_ov97_02236340) - 0xf80 * 8;
+        return sizeof(PokemonStorageGBA) - 0xf80 * 8;
     }
 
     return 0xf80;
@@ -472,7 +472,7 @@ int ov97_02236308 (void)
     }
 }
 
-UnkStruct_ov97_02236340 * ov97_02236340 (void)
+PokemonStorageGBA *ov97_02236340(void)
 {
     return &(Unk_ov97_0223F440->unk_6000);
 }

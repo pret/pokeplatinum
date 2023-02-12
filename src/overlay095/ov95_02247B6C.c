@@ -358,7 +358,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             sub_0200C388(v5, param0->unk_6C, param0->unk_68);
 
             {
-                const BoxPokemon * v6 = ov95_02247634(param0->unk_00);
+                const BoxPokemon *v6 = ov95_02247634(param0->unk_00);
 
                 if (sub_02074570((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
                     u8 v7;
@@ -465,7 +465,7 @@ static void ov95_02248174 (UnkStruct_ov95_02247C6C * param0)
 static UnkStruct_02007C7C * ov95_02248240 (UnkStruct_ov95_02247C6C * param0)
 {
     UnkStruct_02008A90 v0;
-    BoxPokemon * v1;
+    BoxPokemon *v1;
     int v2;
 
     v1 = (BoxPokemon *)ov95_02247634(param0->unk_00);

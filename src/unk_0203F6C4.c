@@ -8283,7 +8283,7 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
 {
     int v0;
     Pokemon * v1;
-    BoxPokemon * v2;
+    BoxPokemon *v2;
     u32 v3;
 
     v3 = 0;
@@ -8491,7 +8491,7 @@ static BOOL sub_02046A4C (UnkStruct_0203E724 * param0)
             v0 = GetMonData(v4, MON_DATA_SPECIES, NULL);
 
             if (v0 == 486) {
-                v1 = GetMonData(v4, MON_DATA_EVENT_LEGAL, NULL);
+                v1 = GetMonData(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
                 if (v1 == 1) {
                     *v5 = 1;

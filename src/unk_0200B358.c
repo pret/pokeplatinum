@@ -50,7 +50,7 @@ typedef struct UnkStruct_0200B358_t {
 
 static void sub_0200B448(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_02023790 * param2, const UnkStruct_0200B444 * param3);
 static void sub_0200B444(UnkStruct_0200B444 * param0);
-void sub_0200B578(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon);
+void sub_0200B578(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon);
 void sub_0200B594(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200B744(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200B77C(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
@@ -203,7 +203,7 @@ void sub_0200B4E4 (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C
     sub_0200B190(v1);
 }
 
-void sub_0200B538 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon)
+void sub_0200B538 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon)
 {
     UnkStruct_0200B144 * v0;
     u32 v1;
@@ -216,7 +216,7 @@ void sub_0200B538 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon)
     sub_0200B190(v0);
 }
 
-void sub_0200B578 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon)
+void sub_0200B578 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon)
 {
     u32 v0;
 
@@ -235,13 +235,13 @@ void sub_0200B594 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
     sub_0200B190(v0);
 }
 
-void sub_0200B5CC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon)
+void sub_0200B5CC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon)
 {
     sub_02074570(boxMon, MON_DATA_119, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B5EC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * boxMon)
+void sub_0200B5EC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon)
 {
     sub_02074570(boxMon, MON_DATA_145, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);

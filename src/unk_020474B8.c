@@ -217,7 +217,7 @@ BOOL sub_020477D0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047818 (UnkStruct_0203E724 * param0)
 {
-    BoxPokemon * v0;
+    BoxPokemon *v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     UnkStruct_020797DC * v2 = sub_02024420(v1->unk_0C);
     UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);

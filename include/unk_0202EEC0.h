@@ -8,7 +8,7 @@
 int sub_0202EEC0(void);
 void sub_0202EEC8(UnkStruct_02024440 * param0);
 void sub_0202EF04(UnkStruct_02024440 * param0);
-void sub_0202EFA4(UnkStruct_02024440 * param0, BoxPokemon * boxMon, int param2);
+void sub_0202EFA4(UnkStruct_02024440 * param0, BoxPokemon *boxMon, int param2);
 void sub_0202EFB8(UnkStruct_02024440 * param0, u32 param1);
 void sub_0202F000(const UnkStruct_02024440 * param0, int param1, Pokemon * param2);
 int sub_0202F028(const UnkStruct_02024440 * param0);

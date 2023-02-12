@@ -1145,7 +1145,7 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 *
 
 void sub_02094680 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 * param2, u32 param3)
 {
-    BoxPokemon * v0;
+    BoxPokemon *v0;
     int v1;
 
     v1 = sub_02095904(param1);

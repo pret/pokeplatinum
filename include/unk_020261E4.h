@@ -11,7 +11,7 @@
 int sub_020261E4(void);
 void sub_020261EC(UnkStruct_02026310 * param0);
 UnkStruct_02026218 * sub_02026218(UnkStruct_02026310 * param0, int param1);
-BoxPokemon * sub_02026220(UnkStruct_02026218 * param0);
+BoxPokemon *sub_02026220(UnkStruct_02026218 * param0);
 UnkStruct_02026224 * sub_02026224(UnkStruct_02026218 * param0);
 u32 sub_02026228(const UnkStruct_02026218 * param0);
 UnkStruct_0202818C * sub_02026230(UnkStruct_02026224 * param0);

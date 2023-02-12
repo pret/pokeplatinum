@@ -307,7 +307,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
 
     if (GetMonData(v4, MON_DATA_SPECIES, NULL) == 493) {
-        if (GetMonData(v4, MON_DATA_EVENT_LEGAL, NULL) == 1) {
+        if (GetMonData(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);
             }

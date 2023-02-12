@@ -1943,7 +1943,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
             }
         }
 
-        if (GetMonData(param1, MON_DATA_EVENT_LEGAL, NULL)) {
+        if (GetMonData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
             v1 = 6;
             break;
         }

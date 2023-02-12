@@ -26,11 +26,11 @@ static void sub_02092B1C(UnkStruct_02090800 * param0, int param1, int param2);
 static void sub_02092C24(UnkStruct_02090800 * param0);
 static void sub_02092E10(UnkStruct_02090800 * param0);
 static void sub_02092E4C(UnkStruct_02090800 * param0);
-static void sub_020932A4(BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2);
-static void sub_020932F0(BoxPokemon * boxMon, int param1, int param2);
-static void sub_02093368(BoxPokemon * boxMon, int param1);
-static void sub_020933C8(BoxPokemon * boxMon);
-static void sub_020933E8(BoxPokemon * boxMon);
+static void sub_020932A4(BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2);
+static void sub_020932F0(BoxPokemon *boxMon, int param1, int param2);
+static void sub_02093368(BoxPokemon *boxMon, int param1);
+static void sub_020933C8(BoxPokemon *boxMon);
+static void sub_020933E8(BoxPokemon *boxMon);
 
 UnkStruct_02090800 * sub_02092494 (Pokemon * mon, BOOL param1, int param2)
 {
@@ -641,7 +641,7 @@ static int sub_02092E8C (Pokemon * mon, BOOL param1, int param2)
         if ((GetMonData(mon, MON_DATA_152, NULL) == 0)) {
             if (GetMonData(mon, MON_DATA_153, NULL) == (sub_02017070(0, 55))) {
                 v0 = 15;
-            } else if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+            } else if ((GetMonData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
                 if (param1 == 1) {
                     v0 = 7;
                 } else {
@@ -657,7 +657,7 @@ static int sub_02092E8C (Pokemon * mon, BOOL param1, int param2)
                 }
             }
         } else {
-            if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+            if ((GetMonData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
                 if (GetMonData(mon, MON_DATA_152, NULL) == sub_02017070(1, 2)) {
                     if (param1 == 1) {
                         v0 = 13;
@@ -695,7 +695,7 @@ static int sub_02092E8C (Pokemon * mon, BOOL param1, int param2)
         }
     } else {
         if (param1 == 1) {
-            if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+            if ((GetMonData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
                 if (GetMonData(mon, MON_DATA_152, NULL) == (sub_02017070(2, 1))) {
                     v0 = 20;
                 } else {
@@ -705,7 +705,7 @@ static int sub_02092E8C (Pokemon * mon, BOOL param1, int param2)
                 v0 = 16;
             }
         } else {
-            if ((GetMonData(mon, MON_DATA_EVENT_LEGAL, NULL) == 1)) {
+            if ((GetMonData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
                 v0 = 19;
             } else {
                 v0 = 17;
@@ -721,7 +721,7 @@ void sub_0209304C (Pokemon * mon, UnkStruct_02025E6C * param1, int param2, int p
     sub_0209305C(&mon->unk_00, param1, param2, param3, param4);
 }
 
-void sub_0209305C (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209305C (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
     switch (param2) {
     case 0:
@@ -819,7 +819,7 @@ void sub_0209305C (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2,
     }
 }
 
-static void sub_020932A4 (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2)
+static void sub_020932A4 (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2)
 {
     int v0 = sub_02025F20(param1);
     int v1 = sub_02025F30(param1);
@@ -831,7 +831,7 @@ static void sub_020932A4 (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int 
     sub_020237BC(v2);
 }
 
-static void sub_020932F0 (BoxPokemon * boxMon, int param1, int param2)
+static void sub_020932F0 (BoxPokemon *boxMon, int param1, int param2)
 {
     RTCDate v0;
 
@@ -850,7 +850,7 @@ static void sub_020932F0 (BoxPokemon * boxMon, int param1, int param2)
     }
 }
 
-static void sub_02093368 (BoxPokemon * boxMon, int param1)
+static void sub_02093368 (BoxPokemon *boxMon, int param1)
 {
     int v0 = 0;
 
@@ -867,14 +867,14 @@ static void sub_02093368 (BoxPokemon * boxMon, int param1)
     }
 }
 
-static void sub_020933C8 (BoxPokemon * boxMon)
+static void sub_020933C8 (BoxPokemon *boxMon)
 {
     int v0 = sub_02074570(boxMon, MON_DATA_161, NULL);
     SetBoxMonData(boxMon, MON_DATA_MET_LEVEL, &v0);
 }
 
-static void sub_020933E8 (BoxPokemon * boxMon)
+static void sub_020933E8 (BoxPokemon *boxMon)
 {
     int v0 = 1;
-    SetBoxMonData(boxMon, MON_DATA_EVENT_LEGAL, &v0);
+    SetBoxMonData(boxMon, MON_DATA_FATEFUL_ENCOUNTER, &v0);
 }

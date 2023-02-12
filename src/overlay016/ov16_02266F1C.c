@@ -952,7 +952,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     UnkStruct_0200B144 * v4;
     UnkStruct_02023790 * v5, * v6;
     Pokemon * v7;
-    BoxPokemon * v8;
+    BoxPokemon *v8;
     UnkStruct_0200B358 * v9;
 
     v0 = ov16_0223DF00(param0->unk_0C);

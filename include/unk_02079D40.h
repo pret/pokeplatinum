@@ -4,12 +4,12 @@
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 
-u32 sub_02079D40(const BoxPokemon * boxMon);
+u32 sub_02079D40(const BoxPokemon *boxMon);
 u32 sub_02079D80(Pokemon * param0);
 u32 sub_02079D8C(u32 param0, u32 param1, u32 param2);
-u16 sub_02079E44(const BoxPokemon * boxMon);
+u16 sub_02079E44(const BoxPokemon *boxMon);
 const u8 sub_02079EDC(u32 param0, u32 param1, u32 param2);
-const u8 sub_02079F84(const BoxPokemon * boxMon);
+const u8 sub_02079F84(const BoxPokemon *boxMon);
 const u8 sub_02079FC4(Pokemon * param0);
 u32 sub_02079FD0(void);
 u32 sub_02079FD4(void);

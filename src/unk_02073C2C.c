@@ -82,6 +82,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_02092494.h"
+#include "pokemon.h"
 
 #include "constants/species.h"
 
@@ -114,15 +115,15 @@ static const s8 Unk_020F0695[][5] = {
 };
 
 void sub_02073C2C(Pokemon * param0);
-void sub_02073C54(BoxPokemon * boxMon);
+void sub_02073C54(BoxPokemon *boxMon);
 int sub_02073C70(void);
 Pokemon * sub_02073C74(u32 param0);
 BOOL sub_02073C88(Pokemon * param0);
 BOOL sub_02073CD4(Pokemon * param0, BOOL param1);
-BOOL sub_02073D20(BoxPokemon * boxMon);
-BOOL sub_02073D48(BoxPokemon * boxMon, BOOL param1);
+BOOL sub_02073D20(BoxPokemon *boxMon);
+BOOL sub_02073D48(BoxPokemon *boxMon, BOOL param1);
 void sub_02073D80(Pokemon * param0, int param1, int param2, int param3, int param4, u32 param5, int param6, u32 param7);
-void sub_02073E18(BoxPokemon * boxMon, int param1, int param2, int param3, int param4, u32 param5, int param6, u32 param7);
+void sub_02073E18(BoxPokemon *boxMon, int param1, int param2, int param3, int param4, u32 param5, int param6, u32 param7);
 void sub_02074044(Pokemon *, u16 param0, u8 param1, u8 param2, u8 param3);
 void sub_02074088(Pokemon *, u16 param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5);
 u32 sub_02074128(u16 param0, u8 param1, u8 param2);
@@ -131,46 +132,46 @@ void sub_0207418C(Pokemon * param0);
 void sub_020741B8(Pokemon * param0);
 u32 GetMonData(Pokemon * param0, int param1, void * param2);
 static u32 sub_020744E8(Pokemon * param0, int param1, void * param2);
-u32 sub_02074570(BoxPokemon * boxMon, int param1, void * param2);
-static u32 sub_020745D0(BoxPokemon * boxMon, int param1, void * param2);
+u32 sub_02074570(BoxPokemon *boxMon, int param1, void * param2);
+static u32 GetBoxMonData(BoxPokemon *boxMon, int param1, void * param2);
 void sub_02074B30(Pokemon * param0, int param1, const void * param2);
 static void sub_02074BC0(Pokemon * param0, int param1, const void * param2);
-void SetBoxMonData(BoxPokemon * boxMon, int param1, const void * param2);
-static void SetMonSubstructData(BoxPokemon * boxMon, int field, const void * param2);
+void SetBoxMonData(BoxPokemon *boxMon, int param1, const void * param2);
+static void SetMonSubstructData(BoxPokemon *boxMon, int field, const void * param2);
 void sub_0207536C(Pokemon * param0, int param1, int param2);
 static void sub_020753F4(Pokemon * param0, int param1, int param2);
-static void sub_02075454(BoxPokemon * boxMon, int param1, int param2);
+static void sub_02075454(BoxPokemon *boxMon, int param1, int param2);
 u32 sub_020759CC(int param0, int param1, int param2);
 u32 sub_020759F0(int param0, int param1);
 u8 sub_02075A10(Pokemon * param0);
 u32 sub_02075A70(Pokemon * param0);
-u32 sub_02075A78(BoxPokemon * boxMon);
+u32 sub_02075A78(BoxPokemon *boxMon);
 u32 sub_02075AAC(Pokemon * param0);
 u32 sub_02075AD0(int param0, int param1);
 void sub_02075AE4(int param0, u32 * param1);
 u32 sub_02075B00(int param0, int param1);
 u32 sub_02075B38(Pokemon * param0);
-u32 sub_02075B40(BoxPokemon * boxMon);
+u32 sub_02075B40(BoxPokemon *boxMon);
 u32 sub_02075B78(u16 species, u32 exp);
 u8 sub_02075BCC(Pokemon * param0);
-u8 sub_02075BD4(BoxPokemon * boxMon);
+u8 sub_02075BD4(BoxPokemon *boxMon);
 u8 GetNatureFromPersonality(u32 personality);
-u16 sub_02075C0C(u8 param0, u16 param1, u8 param2);
+u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex);
 s8 sub_02075C60(u8 param0, u8 param1);
 void sub_02075C74(Pokemon * param0, u8 param1, u16 param2);
 u8 sub_02075D6C(Pokemon * param0);
-u8 sub_02075D74(BoxPokemon * boxMon);
+u8 sub_02075D74(BoxPokemon *boxMon);
 u8 sub_02075DAC(u16 param0, u32 param1);
 u8 sub_02075E0C(Pokemon * param0);
-u8 sub_02075E14(BoxPokemon * boxMon);
+u8 sub_02075E14(BoxPokemon *boxMon);
 u8 sub_02075E38(u32 param0, u32 param1);
 u32 sub_02075E64(u32 param0);
 void sub_02075EF4(UnkStruct_02008A90 * param0, Pokemon * param1, u8 param2);
-void sub_02075F0C(UnkStruct_02008A90 * param0, BoxPokemon * boxMon, u8 param2, int param3);
+void sub_02075F0C(UnkStruct_02008A90 * param0, BoxPokemon *boxMon, u8 param2, int param3);
 void sub_02075FB4(UnkStruct_02008A90 * param0, u16 species, u8 param2, u8 param3, u8 param4, u8 param5, u32 param6);
 u8 SanitizeFormId(u16 species, u8 formId);
 u8 sub_020765AC(Pokemon * param0, u8 param1);
-u8 sub_020765C4(BoxPokemon * boxMon, u8 param1, int param2);
+u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, int param2);
 u8 sub_02076648(u16 param0, u8 param1, u8 param2, u8 param3, u32 param4);
 void sub_0207697C(UnkStruct_02008A90 * param0, u16 param1);
 UnkStruct_0200D0F4 * sub_02076994(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2, int param3, int param4, int param5, int param6, int param7, int param8);
@@ -178,60 +179,60 @@ void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 * param2);
 u32 sub_02076AF0(void);
 u32 sub_02076AF4(void);
 u8 sub_02076AF8(Pokemon * param0);
-u8 sub_02076B00(BoxPokemon * boxMon);
-BoxPokemon * sub_02076B10(Pokemon * param0);
+u8 sub_02076B00(BoxPokemon *boxMon);
+BoxPokemon *sub_02076B10(Pokemon * param0);
 u8 sub_02076B14(Pokemon * param0);
 u16 sub_02076B94(Party * param0, Pokemon * param1, u8 param2, u16 param3, int * param4);
-void sub_02077020(BoxPokemon * boxMon);
+void sub_02077020(BoxPokemon *boxMon);
 u16 sub_020770C4(Pokemon * param0, u16 param1);
-u16 sub_020770D4(BoxPokemon * boxMon, u16 param1);
+u16 sub_020770D4(BoxPokemon *boxMon, u16 param1);
 void sub_02077134(Pokemon * param0, u16 param1);
-void sub_02077144(BoxPokemon * boxMon, u16 param1);
+void sub_02077144(BoxPokemon *boxMon, u16 param1);
 void sub_020771F8(Pokemon * param0, u16 param1, u8 param2);
 void sub_02077230(Pokemon * param0, u16 param1, u8 param2);
-void sub_02077238(BoxPokemon * boxMon, u16 param1, u8 param2);
+void sub_02077238(BoxPokemon *boxMon, u16 param1, u8 param2);
 u16 sub_0207727C(Pokemon * param0, int * param1, u16 * param2);
 void sub_02077344(Pokemon * param0, int param1, int param2);
-void sub_0207734C(BoxPokemon * boxMon, int param1, int param2);
+void sub_0207734C(BoxPokemon *boxMon, int param1, int param2);
 void sub_02077408(Pokemon * param0, u32 param1);
 BOOL sub_0207749C(Pokemon * param0, u16 param1);
-void sub_020774C8(BoxPokemon * boxMon, Pokemon * param1);
+void sub_020774C8(BoxPokemon *boxMon, Pokemon * param1);
 u8 sub_02077550(Party * param0);
 u16 sub_020775A4(u16 param0);
 u16 sub_020775C4(u16 param0);
 void sub_020775EC(Pokemon * param0, Pokemon * param1);
-void sub_02077604(BoxPokemon * boxMon1, BoxPokemon * boxMon2);
-void sub_02077618(Pokemon * param0, BoxPokemon * boxMon);
+void CopyBoxPokemon(BoxPokemon *src, BoxPokemon *dest);
+void sub_02077618(Pokemon * param0, BoxPokemon *boxMon);
 s8 sub_0207762C(Pokemon * param0, int param1);
-s8 sub_02077634(BoxPokemon * boxMon, int param1);
+s8 sub_02077634(BoxPokemon *boxMon, int param1);
 s8 sub_02077648(u32 param0, int param1);
 void sub_020776B0(Party * param0);
 u8 sub_02077758(Party * param0, u8 param1);
 void sub_020777B4(Party * param0, s32 param1);
 void sub_0207782C(Party * param0);
 BOOL sub_020778D8(Pokemon * param0);
-BOOL sub_020778E0(BoxPokemon * boxMon);
+BOOL sub_020778E0(BoxPokemon *boxMon);
 BOOL sub_020778F8(Pokemon * param0);
-BOOL sub_02077900(BoxPokemon * boxMon);
+BOOL sub_02077900(BoxPokemon *boxMon);
 void sub_02077928(Pokemon * param0);
-void sub_02077930(BoxPokemon * boxMon);
+void sub_02077930(BoxPokemon *boxMon);
 u8 sub_02077988(u16 param0);
 int sub_02077A00(Pokemon * param0);
-int sub_02077A1C(BoxPokemon * boxMon);
+int sub_02077A1C(BoxPokemon *boxMon);
 void sub_02077ACC(Pokemon * param0, int param1);
-void sub_02077ADC(BoxPokemon * boxMon, int param1);
+void sub_02077ADC(BoxPokemon *boxMon, int param1);
 void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);
 void sub_02077E64(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EA4(BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
+void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
 void sub_02077EE4(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
-void sub_02077EF8(BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
+void sub_02077EF8(BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
 void sub_02077F0C(Pokemon * param0, u32 param1, int param2);
 BOOL sub_02077FB4(Pokemon * param0, u8 param1);
-BOOL sub_02077FBC(BoxPokemon * boxMon, u8 param1);
+BOOL sub_02077FBC(BoxPokemon *boxMon, u8 param1);
 BOOL sub_02077FE4(u16 param0, int param1, u8 param2);
 void sub_0207803C(Pokemon * param0);
-void sub_02078044(BoxPokemon * boxMon);
+void sub_02078044(BoxPokemon *boxMon);
 void sub_020780C4(Pokemon * param0, u32 param1);
 static void sub_020781F8(int param0, UnkStruct_02075874 * param1);
 static void sub_02078208(int param0, int param1, UnkStruct_02075874 * param2);
@@ -239,7 +240,7 @@ static void sub_0207821C(int param0, UnkStruct_0207821C * param1);
 static void sub_0207822C(void * param0, u32 param1, u32 param2);
 static void sub_02078234(void * param0, u32 param1, u32 param2);
 static u16 sub_0207823C(void * param0, u32 param1);
-static void * sub_0207825C(BoxPokemon * boxMon, u32 param1, u8 param2);
+static void * sub_0207825C(BoxPokemon *boxMon, u32 param1, u8 param2);
 static int sub_02078740(int param0, int param1);
 u32 sub_020787CC(int param0);
 int sub_020787EC(u32 param0);
@@ -257,7 +258,7 @@ void sub_02073C2C (Pokemon * param0)
     sub_0207822C(&param0->unk_08, sizeof(UnkStruct_02073C74_sub2), param0->unk_00.personality);
 }
 
-void sub_02073C54 (BoxPokemon * boxMon)
+void sub_02073C54 (BoxPokemon *boxMon)
 {
     MI_CpuClearFast(boxMon, sizeof(BoxPokemon));
     sub_0207822C(boxMon->unk_08, sizeof(PokemonSubstruct0) * 4, boxMon->unk_06);
@@ -317,7 +318,7 @@ BOOL sub_02073CD4 (Pokemon * param0, BOOL param1)
     return v0;
 }
 
-BOOL sub_02073D20 (BoxPokemon * boxMon)
+BOOL sub_02073D20 (BoxPokemon *boxMon)
 {
     BOOL v0;
 
@@ -332,7 +333,7 @@ BOOL sub_02073D20 (BoxPokemon * boxMon)
     return v0;
 }
 
-BOOL sub_02073D48 (BoxPokemon * boxMon, BOOL param1)
+BOOL sub_02073D48 (BoxPokemon *boxMon, BOOL param1)
 {
     BOOL v0;
 
@@ -377,7 +378,7 @@ void sub_02073D80 (Pokemon * param0, int param1, int param2, int param3, int par
     sub_0207418C(param0);
 }
 
-void sub_02073E18 (BoxPokemon * boxMon, int param1, int param2, int param3, int param4, u32 param5, int param6, u32 param7)
+void sub_02073E18 (BoxPokemon *boxMon, int param1, int param2, int param3, int param4, u32 param5, int param6, u32 param7)
 {
     u16 v0;
     u32 v1, v2;
@@ -487,7 +488,7 @@ void sub_02074088 (Pokemon * param0, u16 param1, u8 param2, u8 param3, u8 param4
     if ((param6) && (param6 < 29)) {
         do {
             v0 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
-            v2 = (((v0 & 0x3000000) >> 18) | ((v0 & 0x30000) >> 12) | ((v0 & 0x300) >> 6) | (v0 & 0x3)) % 28;
+            v2 = GET_UNOWN_LETTER(v0);
         } while ((nature != GetNatureFromPersonality(v0)) || (param4 != sub_02075DAC(param1, v0)) || (v2 != (param6 - 1)));
     } else {
         v0 = sub_02074128(param1, param4, nature);
@@ -587,27 +588,27 @@ void sub_020741B8 (Pokemon * param0)
     sub_02074B30(param0, 164, (u8 *)&v2);
 
     v3 = ((2 * v26->unk_01 + v9 + v15 / 4) * v21 / 100 + 5);
-    v3 = sub_02075C0C(sub_02075BCC(param0), v3, 0x1);
+    v3 = ModifyStatByNature(sub_02075BCC(param0), v3, 0x1);
 
     sub_02074B30(param0, 165, (u8 *)&v3);
 
     v4 = ((2 * v26->unk_02 + v10 + v16 / 4) * v21 / 100 + 5);
-    v4 = sub_02075C0C(sub_02075BCC(param0), v4, 0x2);
+    v4 = ModifyStatByNature(sub_02075BCC(param0), v4, 0x2);
 
     sub_02074B30(param0, 166, (u8 *)&v4);
 
     v5 = ((2 * v26->unk_03 + v11 + v17 / 4) * v21 / 100 + 5);
-    v5 = sub_02075C0C(sub_02075BCC(param0), v5, 0x3);
+    v5 = ModifyStatByNature(sub_02075BCC(param0), v5, 0x3);
 
     sub_02074B30(param0, 167, (u8 *)&v5);
 
     v6 = ((2 * v26->unk_04 + v12 + v18 / 4) * v21 / 100 + 5);
-    v6 = sub_02075C0C(sub_02075BCC(param0), v6, 0x4);
+    v6 = ModifyStatByNature(sub_02075BCC(param0), v6, 0x4);
 
     sub_02074B30(param0, 168, (u8 *)&v6);
 
     v7 = ((2 * v26->unk_05 + v13 + v19 / 4) * v21 / 100 + 5);
-    v7 = sub_02075C0C(sub_02075BCC(param0), v7, 0x5);
+    v7 = ModifyStatByNature(sub_02075BCC(param0), v7, 0x5);
 
     sub_02074B30(param0, 169, (u8 *)&v7);
     Heap_FreeToHeap(v26);
@@ -658,61 +659,61 @@ u32 GetMonData (Pokemon * param0, int param1, void * param2)
     return species;
 }
 
-static u32 sub_020744E8 (Pokemon * param0, int param1, void * param2)
+static u32 sub_020744E8 (Pokemon * mon, int field, void * param2)
 {
     u32 species = 0;
 
-    switch (param1) {
-    case 160:
-        species = param0->unk_08.unk_00;
+    switch (field) {
+    case MON_DATA_160:
+        species = mon->unk_08.unk_00;
         break;
-    case 161:
-        species = param0->unk_08.unk_04;
+    case MON_DATA_161:
+        species = mon->unk_08.unk_04;
         break;
-    case 162:
-        species = param0->unk_08.unk_05;
+    case MON_DATA_162:
+        species = mon->unk_08.unk_05;
         break;
-    case 163:
-        species = param0->unk_08.unk_06;
+    case MON_DATA_163:
+        species = mon->unk_08.unk_06;
         break;
-    case 164:
-        species = param0->unk_08.unk_08;
+    case MON_DATA_164:
+        species = mon->unk_08.unk_08;
         break;
-    case 165:
-        species = param0->unk_08.unk_0A;
+    case MON_DATA_165:
+        species = mon->unk_08.unk_0A;
         break;
-    case 166:
-        species = param0->unk_08.unk_0C;
+    case MON_DATA_166:
+        species = mon->unk_08.unk_0C;
         break;
-    case 167:
-        species = param0->unk_08.unk_0E;
+    case MON_DATA_167:
+        species = mon->unk_08.unk_0E;
         break;
-    case 168:
-        species = param0->unk_08.unk_10;
+    case MON_DATA_168:
+        species = mon->unk_08.unk_10;
         break;
-    case 169:
-        species = param0->unk_08.unk_12;
+    case MON_DATA_169:
+        species = mon->unk_08.unk_12;
         break;
-    case 170:
-        sub_020281A0(&param0->unk_08.unk_14, (UnkStruct_0202818C *)param2);
+    case MON_DATA_170:
+        sub_020281A0(&mon->unk_08.unk_14, (UnkStruct_0202818C *)param2);
         species = 1;
         break;
-    case 171:
-        sub_0202CA10(&param0->unk_08.unk_4C, (UnkStruct_0202CA28 *)param2);
+    case MON_DATA_171:
+        sub_0202CA10(&mon->unk_08.unk_4C, (UnkStruct_0202CA28 *)param2);
         species = 1;
         break;
     default:
-        species = sub_020745D0((BoxPokemon *)&param0->unk_00, param1, param2);
+        species = GetBoxMonData((BoxPokemon *)&mon->unk_00, field, param2);
         break;
     }
 
     return species;
 }
 
-u32 sub_02074570 (BoxPokemon * boxMon, int field, void * param2)
+u32 sub_02074570 (BoxPokemon *boxMon, int field, void * param2)
 {
     u16 v0;
-    u32 v1;
+    u32 value;
 
     if (boxMon->unk_04_1 == 0) {
         sub_02078234(boxMon->unk_08, sizeof(PokemonSubstruct0) * 4, boxMon->unk_06);
@@ -724,16 +725,16 @@ u32 sub_02074570 (BoxPokemon * boxMon, int field, void * param2)
         }
     }
 
-    v1 = sub_020745D0(boxMon, field, param2);
+    value = GetBoxMonData(boxMon, field, param2);
 
     if (boxMon->unk_04_1 == 0) {
         sub_0207822C(boxMon->unk_08, sizeof(PokemonSubstruct0) * 4, boxMon->unk_06);
     }
 
-    return v1;
+    return value;
 }
 
-static u32 sub_020745D0 (BoxPokemon * boxMon, int field, void * param2)
+static u32 GetBoxMonData(BoxPokemon *boxMon, int field, void * param2)
 {
     u32 ret = 0;
     u64 v1;
@@ -970,8 +971,8 @@ static u32 sub_020745D0 (BoxPokemon * boxMon, int field, void * param2)
         v1 = 1;
         ret = ((substruct1->unk_14 & (v1 << field - 78)) != 0);
         break;
-    case MON_DATA_EVENT_LEGAL:
-        ret = substruct1->unk_18_0;
+    case MON_DATA_FATEFUL_ENCOUNTER:
+        ret = substruct1->fatefulEncounter;
         break;
     case MON_DATA_111:
         ret = sub_02075DAC(substruct0->species, boxMon->personality);
@@ -1211,7 +1212,7 @@ static void sub_02074BC0 (Pokemon * param0, int field, const void * param2)
     }
 }
 
-void SetBoxMonData(BoxPokemon * boxMon, int field, const void * param2)
+void SetBoxMonData(BoxPokemon *boxMon, int field, const void * param2)
 {
     u16 v0;
 
@@ -1235,7 +1236,7 @@ void SetBoxMonData(BoxPokemon * boxMon, int field, const void * param2)
     }
 }
 
-static void SetMonSubstructData (BoxPokemon * boxMon, int field, const void * param2)
+static void SetMonSubstructData (BoxPokemon *boxMon, int field, const void * param2)
 {
     int v0;
     u64 v1;
@@ -1455,8 +1456,8 @@ static void SetMonSubstructData (BoxPokemon * boxMon, int field, const void * pa
             substruct1->unk_14 &= (v1 ^ 0xffffffff);
         }
         break;
-    case MON_DATA_EVENT_LEGAL:
-        substruct1->unk_18_0 = v5[0];
+    case MON_DATA_FATEFUL_ENCOUNTER:
+        substruct1->fatefulEncounter = v5[0];
         break;
     case MON_DATA_111:
         substruct1->unk_18_1 = sub_02075DAC(substruct0->species, boxMon->personality);
@@ -1673,7 +1674,7 @@ static void sub_020753F4 (Pokemon * param0, int param1, int param2)
     }
 }
 
-static void sub_02075454 (BoxPokemon * boxMon, int param1, int param2)
+static void sub_02075454 (BoxPokemon *boxMon, int param1, int param2)
 {
     int v0;
     u16 v1;
@@ -1911,7 +1912,7 @@ static void sub_02075454 (BoxPokemon * boxMon, int param1, int param2)
     case MON_DATA_NATIONAL_RIBBON:
     case MON_DATA_EARTH_RIBBON:
     case MON_DATA_WORLD_RIBBON:
-    case MON_DATA_EVENT_LEGAL:
+    case MON_DATA_FATEFUL_ENCOUNTER:
     case MON_DATA_111:
     case MON_DATA_112:
     case MON_DATA_113:
@@ -2162,7 +2163,7 @@ u32 sub_02075A70 (Pokemon * param0)
     return sub_02075A78(&param0->unk_00);
 }
 
-u32 sub_02075A78 (BoxPokemon * boxMon)
+u32 sub_02075A78 (BoxPokemon *boxMon)
 {
     u16 v0 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
     u16 v1 = sub_02075B40(boxMon) + 1;
@@ -2209,19 +2210,19 @@ u32 sub_02075B38 (Pokemon * param0)
     return sub_02075B40(&param0->unk_00);
 }
 
-u32 sub_02075B40 (BoxPokemon * boxMon)
+u32 sub_02075B40 (BoxPokemon *boxMon)
 {
-    int v0;
+    int species;
     u32 v1;
     BOOL v2;
 
     v2 = sub_02073D20(boxMon);
-    v0 = sub_02074570(boxMon, MON_DATA_SPECIES, 0);
+    species = sub_02074570(boxMon, MON_DATA_SPECIES, 0);
     v1 = sub_02074570(boxMon, MON_DATA_EXP, 0);
 
     sub_02073D48(boxMon, v2);
 
-    return sub_02075B78(v0, v1);
+    return sub_02075B78(species, v1);
 }
 
 u32 sub_02075B78(u16 species, u32 exp)
@@ -2259,7 +2260,7 @@ u8 sub_02075BCC (Pokemon * param0)
     return sub_02075BD4(&param0->unk_00);
 }
 
-u8 sub_02075BD4 (BoxPokemon * boxMon)
+u8 sub_02075BD4 (BoxPokemon *boxMon)
 {
     BOOL v0;
     u32 personality;
@@ -2277,62 +2278,73 @@ u8 GetNatureFromPersonality (u32 personality)
     return (u8)(personality % NUM_NATURES);
 }
 
-static const s8 Unk_020F0618[][5] = {
-    {0x0, 0x0, 0x0, 0x0, 0x0},
-    {0x1, -1, 0x0, 0x0, 0x0},
-    {0x1, 0x0, -1, 0x0, 0x0},
-    {0x1, 0x0, 0x0, -1, 0x0},
-    {0x1, 0x0, 0x0, 0x0, -1},
-    {-1, 0x1, 0x0, 0x0, 0x0},
-    {0x0, 0x0, 0x0, 0x0, 0x0},
-    {0x0, 0x1, -1, 0x0, 0x0},
-    {0x0, 0x1, 0x0, -1, 0x0},
-    {0x0, 0x1, 0x0, 0x0, -1},
-    {-1, 0x0, 0x1, 0x0, 0x0},
-    {0x0, -1, 0x1, 0x0, 0x0},
-    {0x0, 0x0, 0x0, 0x0, 0x0},
-    {0x0, 0x0, 0x1, -1, 0x0},
-    {0x0, 0x0, 0x1, 0x0, -1},
-    {-1, 0x0, 0x0, 0x1, 0x0},
-    {0x0, -1, 0x0, 0x1, 0x0},
-    {0x0, 0x0, -1, 0x1, 0x0},
-    {0x0, 0x0, 0x0, 0x0, 0x0},
-    {0x0, 0x0, 0x0, 0x1, -1},
-    {-1, 0x0, 0x0, 0x0, 0x1},
-    {0x0, -1, 0x0, 0x0, 0x1},
-    {0x0, 0x0, -1, 0x0, 0x1},
-    {0x0, 0x0, 0x0, -1, 0x1},
-    {0x0, 0x0, 0x0, 0x0, 0x0}
+static const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] = {
+                       // Attack  Defense  Speed  Sp.Atk  Sp.Def
+    [NATURE_HARDY]   = {    0,      0,      0,      0,      0   },
+    [NATURE_LONELY]  = {   +1,     -1,      0,      0,      0   },
+    [NATURE_BRAVE]   = {   +1,      0,     -1,      0,      0   },
+    [NATURE_ADAMANT] = {   +1,      0,      0,     -1,      0   },
+    [NATURE_NAUGHTY] = {   +1,      0,      0,      0,     -1   },
+    [NATURE_BOLD]    = {   -1,     +1,      0,      0,      0   },
+    [NATURE_DOCILE]  = {    0,      0,      0,      0,      0   },
+    [NATURE_RELAXED] = {    0,     +1,     -1,      0,      0   },
+    [NATURE_IMPISH]  = {    0,     +1,      0,     -1,      0   },
+    [NATURE_LAX]     = {    0,     +1,      0,      0,     -1   },
+    [NATURE_TIMID]   = {   -1,      0,     +1,      0,      0   },
+    [NATURE_HASTY]   = {    0,     -1,     +1,      0,      0   },
+    [NATURE_SERIOUS] = {    0,      0,      0,      0,      0   },
+    [NATURE_JOLLY]   = {    0,      0,     +1,     -1,      0   },
+    [NATURE_NAIVE]   = {    0,      0,     +1,      0,     -1   },
+    [NATURE_MODEST]  = {   -1,      0,      0,     +1,      0   },
+    [NATURE_MILD]    = {    0,     -1,      0,     +1,      0   },
+    [NATURE_QUIET]   = {    0,      0,     -1,     +1,      0   },
+    [NATURE_BASHFUL] = {    0,      0,      0,      0,      0   },
+    [NATURE_RASH]    = {    0,      0,      0,     +1,     -1   },
+    [NATURE_CALM]    = {   -1,      0,      0,      0,     +1   },
+    [NATURE_GENTLE]  = {    0,     -1,      0,      0,     +1   },
+    [NATURE_SASSY]   = {    0,      0,     -1,      0,     +1   },
+    [NATURE_CAREFUL] = {    0,      0,      0,     -1,     +1   },
+    [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
-u16 sub_02075C0C (u8 param0, u16 param1, u8 param2)
+u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
 {
-    u16 v0;
+// Because this is a u16 it will be unable to store the
+// result of the multiplication for any stat > 595 for a
+// positive nature and > 728 for a negative nature.
+// Neither occur in the base game, but this can happen if
+// any Nature-affected base stat is increased to a value
+// above 248. The closest by default is Shuckle at 230.
+#ifdef BUGFIX
+    u32 retVal;
+#else
+    u16 retVal;
+#endif
 
-    if ((param2 < 0x1) || (param2 > 0x5)) {
-        return param1;
-    }
+    // Don't modify HP, Accuracy, or Evasion by nature
+    if (statIndex < STAT_ATK || statIndex > NUM_NATURE_STATS)
+        return stat;
 
-    switch (Unk_020F0618[param0][param2 - 1]) {
+    switch (gNatureStatTable[nature][statIndex - 1]) {
     case 1:
-        v0 = param1 * 110;
-        v0 /= 100;
+        retVal = stat * 110;
+        retVal /= 100;
         break;
     case -1:
-        v0 = param1 * 90;
-        v0 /= 100;
+        retVal = stat * 90;
+        retVal /= 100;
         break;
     default:
-        v0 = param1;
+        retVal = stat;
         break;
     }
 
-    return v0;
+    return retVal;
 }
 
 s8 sub_02075C60 (u8 param0, u8 param1)
 {
-    return Unk_020F0618[param0][param1 - 1];
+    return gNatureStatTable[param0][param1 - 1];
 }
 
 static const s8 Unk_020F05A0[][3] = {
@@ -2416,7 +2428,7 @@ u8 sub_02075D6C (Pokemon * param0)
     return sub_02075D74((BoxPokemon *)&param0->unk_00);
 }
 
-u8 sub_02075D74 (BoxPokemon * boxMon)
+u8 sub_02075D74 (BoxPokemon *boxMon)
 {
     u16 v0;
     u32 personality;
@@ -2469,7 +2481,7 @@ u8 sub_02075E0C (Pokemon * param0)
     return sub_02075E14(&param0->unk_00);
 }
 
-u8 sub_02075E14 (BoxPokemon * boxMon)
+u8 sub_02075E14 (BoxPokemon *boxMon)
 {
     u32 v0;
     u32 personality;
@@ -2527,7 +2539,7 @@ void sub_02075F00 (UnkStruct_02008A90 * param0, Pokemon * param1, u8 param2)
     sub_02075F0C(param0, &param1->unk_00, param2, 1);
 }
 
-void sub_02075F0C (UnkStruct_02008A90 * param0, BoxPokemon * boxMon, u8 param2, int param3)
+void sub_02075F0C (UnkStruct_02008A90 * param0, BoxPokemon *boxMon, u8 param2, int param3)
 {
     BOOL v0;
     u16 species;
@@ -2834,7 +2846,7 @@ u8 sub_020765B8 (Pokemon * param0, u8 param1)
     return sub_020765C4(&param0->unk_00, param1, 1);
 }
 
-u8 sub_020765C4 (BoxPokemon * boxMon, u8 param1, int param2)
+u8 sub_020765C4 (BoxPokemon *boxMon, u8 param1, int param2)
 {
     u16 species;
     u8 v1;
@@ -3136,12 +3148,12 @@ u8 sub_02076AF8 (Pokemon * param0)
     return sub_02076B00((BoxPokemon *)&param0->unk_00);
 }
 
-u8 sub_02076B00 (BoxPokemon * boxMon)
+u8 sub_02076B00 (BoxPokemon *boxMon)
 {
     return sub_02074570(boxMon, MON_DATA_112, NULL);
 }
 
-BoxPokemon * sub_02076B10 (Pokemon * param0)
+BoxPokemon *sub_02076B10 (Pokemon * param0)
 {
     return &param0->unk_00;
 }
@@ -3450,7 +3462,7 @@ u16 sub_02076FD4 (const u16 species)
     return sub_02076F84(species);
 }
 
-void sub_02077020 (BoxPokemon * boxMon)
+void sub_02077020 (BoxPokemon *boxMon)
 {
     BOOL v0;
     int v1;
@@ -3491,11 +3503,11 @@ void sub_02077020 (BoxPokemon * boxMon)
 
 u16 sub_020770C4 (Pokemon * param0, u16 param1)
 {
-    BoxPokemon * v0 = sub_02076B10(param0);
+    BoxPokemon *v0 = sub_02076B10(param0);
     return sub_020770D4(v0, param1);
 }
 
-u16 sub_020770D4 (BoxPokemon * boxMon, u16 param1)
+u16 sub_020770D4 (BoxPokemon *boxMon, u16 param1)
 {
     int v0;
     u8 v1;
@@ -3527,11 +3539,11 @@ u16 sub_020770D4 (BoxPokemon * boxMon, u16 param1)
 
 void sub_02077134 (Pokemon * param0, u16 param1)
 {
-    BoxPokemon * v0 = sub_02076B10(param0);
+    BoxPokemon *v0 = sub_02076B10(param0);
     sub_02077144(v0, param1);
 }
 
-void sub_02077144 (BoxPokemon * boxMon, u16 param1)
+void sub_02077144 (BoxPokemon *boxMon, u16 param1)
 {
     int v0;
     u16 v1[4];
@@ -3580,7 +3592,7 @@ void sub_02077230 (Pokemon * param0, u16 param1, u8 param2)
     sub_02077238(&param0->unk_00, param1, param2);
 }
 
-void sub_02077238 (BoxPokemon * boxMon, u16 param1, u8 param2)
+void sub_02077238 (BoxPokemon *boxMon, u16 param1, u8 param2)
 {
     u8 v0;
     u8 v1;
@@ -3638,7 +3650,7 @@ void sub_02077344 (Pokemon * param0, int param1, int param2)
     sub_0207734C(&param0->unk_00, param1, param2);
 }
 
-void sub_0207734C (BoxPokemon * boxMon, int param1, int param2)
+void sub_0207734C (BoxPokemon *boxMon, int param1, int param2)
 {
     u16 v0[2];
     u8 v1[2];
@@ -3698,7 +3710,7 @@ BOOL sub_0207749C (Pokemon * param0, u16 param1)
     return v0 != 4;
 }
 
-void sub_020774C8 (BoxPokemon * boxMon, Pokemon * param1)
+void sub_020774C8 (BoxPokemon *boxMon, Pokemon * param1)
 {
     u32 v0 = 0;
     UnkStruct_0202818C * v1;
@@ -3776,13 +3788,13 @@ void sub_020775EC (Pokemon * param0, Pokemon * param1)
     return;
 }
 
-void sub_02077604 (BoxPokemon * boxMon1, BoxPokemon * boxMon2)
+void CopyBoxPokemon(BoxPokemon *src, BoxPokemon *dest)
 {
-    *boxMon2 = *boxMon1;
+    *dest = *src;
     return;
 }
 
-void sub_02077618 (Pokemon * param0, BoxPokemon * boxMon)
+void sub_02077618 (Pokemon * param0, BoxPokemon *boxMon)
 {
     *boxMon = param0->unk_00;
     return;
@@ -3793,7 +3805,7 @@ s8 sub_0207762C (Pokemon * param0, int param1)
     return sub_02077634(&param0->unk_00, param1);
 }
 
-s8 sub_02077634 (BoxPokemon * boxMon, int param1)
+s8 sub_02077634 (BoxPokemon *boxMon, int param1)
 {
     return sub_02077648(sub_02074570(boxMon, MON_DATA_PERSONALITY, NULL), param1);
 }
@@ -3973,7 +3985,7 @@ BOOL sub_020778D8 (Pokemon * param0)
     return sub_020778E0(&param0->unk_00);
 }
 
-BOOL sub_020778E0 (BoxPokemon * boxMon)
+BOOL sub_020778E0 (BoxPokemon *boxMon)
 {
     return (sub_02074570(boxMon, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
@@ -3983,7 +3995,7 @@ BOOL sub_020778F8 (Pokemon * param0)
     return sub_02077900(&param0->unk_00);
 }
 
-BOOL sub_02077900 (BoxPokemon * boxMon)
+BOOL sub_02077900 (BoxPokemon *boxMon)
 {
     u8 v0;
 
@@ -4001,7 +4013,7 @@ void sub_02077928 (Pokemon * param0)
     sub_02077930(&param0->unk_00);
 }
 
-void sub_02077930 (BoxPokemon * boxMon)
+void sub_02077930 (BoxPokemon *boxMon)
 {
     int v0;
     int v1;
@@ -4092,7 +4104,7 @@ int sub_02077A00 (Pokemon * param0)
     return v0;
 }
 
-int sub_02077A1C (BoxPokemon * boxMon)
+int sub_02077A1C (BoxPokemon *boxMon)
 {
     int v0;
     int v1;
@@ -4148,7 +4160,7 @@ void sub_02077ACC (Pokemon * param0, int param1)
     sub_0207418C(param0);
 }
 
-void sub_02077ADC (BoxPokemon * boxMon, int param1)
+void sub_02077ADC (BoxPokemon *boxMon, int param1)
 {
     int v0;
 
@@ -4171,7 +4183,7 @@ BOOL sub_02077B14 (Pokemon * param0)
     v1 = GetMonData(param0, MON_DATA_112, NULL);
     v2 = GetMonData(param0, MON_DATA_160, NULL);
     v3 = GetMonData(param0, MON_DATA_163, NULL);
-    v4 = GetMonData(param0, MON_DATA_EVENT_LEGAL, NULL);
+    v4 = GetMonData(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     sub_02013880(&v5);
 
@@ -4370,7 +4382,7 @@ void sub_02077E64 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, in
     }
 }
 
-void sub_02077EA4 (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
+void sub_02077EA4 (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
 {
     sub_0209305C(boxMon, param1, 0, param3, param5);
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
@@ -4383,7 +4395,7 @@ void sub_02077EE4 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, in
     sub_02077EF8(&param0->unk_00, param1, param2, param3, param4, param5);
 }
 
-void sub_02077EF8 (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
+void sub_02077EF8 (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
 {
     int v0;
     sub_02077EA4(boxMon, param1, param2, param3, param4, param5);
@@ -4432,7 +4444,7 @@ BOOL sub_02077FB4 (Pokemon * param0, u8 param1)
     return sub_02077FBC(&param0->unk_00, param1);
 }
 
-BOOL sub_02077FBC (BoxPokemon * boxMon, u8 param1)
+BOOL sub_02077FBC (BoxPokemon *boxMon, u8 param1)
 {
     u16 species;
     int v1;
@@ -4474,7 +4486,7 @@ void sub_0207803C (Pokemon * param0)
     sub_02078044(&param0->unk_00);
 }
 
-void sub_02078044 (BoxPokemon * boxMon)
+void sub_02078044 (BoxPokemon *boxMon)
 {
     BOOL v0;
     int v1, v2;
@@ -4583,7 +4595,7 @@ static u16 sub_0207823C (void * param0, u32 param1)
     return v2;
 }
 
-static void * sub_0207825C (BoxPokemon * boxMon, u32 param1, u8 param2)
+static void * sub_0207825C (BoxPokemon *boxMon, u32 param1, u8 param2)
 {
     void * v0;
 
@@ -5199,7 +5211,7 @@ BOOL sub_02078838 (Pokemon * param0)
     return sub_02078804(v0);
 }
 
-BOOL sub_0207884C (BoxPokemon * boxMon, UnkStruct_02025E6C * param1, int param2)
+BOOL sub_0207884C (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2)
 {
     u32 v0 = sub_02025F20(param1);
     u32 v1 = sub_02074570(boxMon, MON_DATA_OT_ID, NULL);
@@ -5266,7 +5278,7 @@ void sub_0207893C (Pokemon * param0)
     sub_02074B30(param0, 171, (UnkStruct_0202CA28 *)&v1);
 }
 
-void sub_0207896C (BoxPokemon * boxMon)
+void sub_0207896C (BoxPokemon *boxMon)
 {
     BOOL v0;
     int v1;
@@ -5383,7 +5395,7 @@ BOOL sub_02078AEC (int param0, Pokemon * param1, int param2)
 
 void sub_02078B40 (Pokemon * mon, UnkStruct_02078B40 * param1)
 {
-    BoxPokemon * boxMon;
+    BoxPokemon *boxMon;
     PokemonSubstruct0 * substruct0;
     PokemonSubstruct1 * substruct1;
     PokemonSubstruct2 * substruct2;
@@ -5435,7 +5447,7 @@ void sub_02078B40 (Pokemon * mon, UnkStruct_02078B40 * param1)
     param1->unk_2C_25 = substruct1->unk_10_25;
     param1->unk_2C_30 = substruct1->unk_10_30;
     param1->unk_2C_31 = substruct1->unk_10_31;
-    param1->unk_30_0 = substruct1->unk_18_0;
+    param1->unk_30_0 = substruct1->fatefulEncounter;
     param1->unk_30_1 = substruct1->unk_18_1;
     param1->unk_30_3 = substruct1->unk_18_3;
 
@@ -5469,7 +5481,7 @@ void sub_02078B40 (Pokemon * mon, UnkStruct_02078B40 * param1)
 
 void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon * param1)
 {
-    BoxPokemon * v0;
+    BoxPokemon *v0;
     PokemonSubstruct0 * substruct0;
     PokemonSubstruct1 * v2;
     PokemonSubstruct2 * v3;
@@ -5517,7 +5529,7 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon * param1)
     v2->unk_10_25 = param0->unk_2C_25;
     v2->unk_10_30 = param0->unk_2C_30;
     v2->unk_10_31 = param0->unk_2C_31;
-    v2->unk_18_0 = param0->unk_30_0;
+    v2->fatefulEncounter = param0->unk_30_0;
     v2->unk_18_1 = param0->unk_30_1;
     v2->unk_18_3 = param0->unk_30_3;
 

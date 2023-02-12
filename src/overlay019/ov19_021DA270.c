@@ -120,7 +120,7 @@ void ov19_021DA418 (const UnkStruct_ov19_021DCD18 * param0, UnkStruct_ov19_021DC
     MI_CpuCopy32(param0, param1, sizeof(UnkStruct_ov19_021DCD18) * param2);
 }
 
-void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * boxMon, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
+void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
 {
     NNSG2dCharacterData * v0;
     UnkStruct_ov19_021DA864 v1;
@@ -159,7 +159,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * boxMon, s32 p
     sub_02073D48(boxMon, v5);
 }
 
-void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * boxMon, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
+void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
 {
     NNSG2dCharacterData * v0;
     UnkStruct_ov19_021DA864 v1;

@@ -74,7 +74,7 @@ static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon * boxMon, int param2)
+void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon *boxMon, int param2)
 {
     sub_020774C8(boxMon, &param0->unk_00[param2]);
 }

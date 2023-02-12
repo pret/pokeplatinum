@@ -66,7 +66,7 @@ static void sub_020797DC (UnkStruct_020797DC * param0)
     param0->unk_00 = 0;
 }
 
-BOOL sub_02079868 (UnkStruct_020797DC * param0, BoxPokemon * boxMon)
+BOOL sub_02079868 (UnkStruct_020797DC * param0, BoxPokemon *boxMon)
 {
     u32 v0;
 
@@ -88,7 +88,7 @@ BOOL sub_02079868 (UnkStruct_020797DC * param0, BoxPokemon * boxMon)
     return 0;
 }
 
-BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * boxMon)
+BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon *boxMon)
 {
     u32 v0;
 
@@ -110,7 +110,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * boxMon)
     return 0;
 }
 
-BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon * param3)
+BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon *param3)
 {
     sub_0207896C(param3);
     sub_02077ADC(param3, 0);
@@ -375,7 +375,7 @@ void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int para
     sub_02024804();
 }
 
-BoxPokemon * sub_02079C9C (const UnkStruct_020797DC * param0, u32 param1, u32 param2)
+BoxPokemon *sub_02079C9C (const UnkStruct_020797DC * param0, u32 param1, u32 param2)
 {
     GF_ASSERT(((param1 < 18) || (param1 == 0xffffffff)));
     GF_ASSERT((param2 < (5 * 6)));

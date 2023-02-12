@@ -2130,7 +2130,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     u8 v3[4];
     UnkStruct_02023790 * v4, * v5;
     Pokemon * v6;
-    BoxPokemon * v7;
+    BoxPokemon *v7;
     UnkStruct_0200B358 * v8;
     u32 v9;
     u8 v10[6];

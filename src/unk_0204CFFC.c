@@ -873,7 +873,7 @@ BOOL sub_0204E12C (UnkStruct_0203E724 * param0)
             v2 = GetMonData(v3, MON_DATA_SPECIES, NULL);
 
             if (v7 == v2) {
-                if (GetMonData(v3, MON_DATA_EVENT_LEGAL, NULL) == 1) {
+                if (GetMonData(v3, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
                     *v6 = v0;
                     break;
                 }

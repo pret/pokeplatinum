@@ -34,8 +34,8 @@ typedef struct {
     UnkStruct_ov25_02255B34 * unk_40;
     u16 unk_44;
     u16 unk_46;
-    BoxPokemon * unk_48[6];
-    BoxPokemon * unk_60[2];
+    BoxPokemon *unk_48[6];
+    BoxPokemon *unk_60[2];
 } UnkStruct_ov44_0225621C;
 
 static void NitroStaticInit(void);

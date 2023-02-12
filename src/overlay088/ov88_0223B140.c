@@ -2503,7 +2503,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     sub_020775EC(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
     if (GetMonData(v1, MON_DATA_SPECIES, NULL) == 493) {
-        if (GetMonData(v1, MON_DATA_EVENT_LEGAL, NULL) || ((GetMonData(v1, MON_DATA_153, NULL) == 86) && (GetMonData(v1, MON_DATA_EVENT_LEGAL, NULL) == 0))) {
+        if (GetMonData(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((GetMonData(v1, MON_DATA_153, NULL) == 86) && (GetMonData(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             UnkStruct_020507E4 * v2 = sub_020507E4(param4->unk_10);
 
             if (sub_0206B5F8(v2) == 0) {

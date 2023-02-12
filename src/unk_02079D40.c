@@ -553,7 +553,7 @@ const u8 Unk_020F0780[] = {
 };
 
 
-u32 sub_02079D40 (const BoxPokemon * boxMon)
+u32 sub_02079D40 (const BoxPokemon *boxMon)
 {
     u32 v0;
     u32 v1;
@@ -633,7 +633,7 @@ u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
     return 7 + param0;
 }
 
-u16 sub_02079E44 (const BoxPokemon * boxMon)
+u16 sub_02079E44 (const BoxPokemon *boxMon)
 {
     u32 species;
 
@@ -693,7 +693,7 @@ const u8 sub_02079EDC (u32 param0, u32 param1, u32 param2)
     return Unk_020F0780[param0];
 }
 
-const u8 sub_02079F84 (const BoxPokemon * boxMon)
+const u8 sub_02079F84 (const BoxPokemon *boxMon)
 {
     BOOL v0;
     u32 v1;

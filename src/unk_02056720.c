@@ -286,7 +286,7 @@ void sub_02056A2C (UnkStruct_02056B24 * param0, const u8 * param1)
     param0->unk_00_2 = 1;
 }
 
-void sub_02056A48 (UnkStruct_02056B24 * param0, const BoxPokemon * boxMon)
+void sub_02056A48 (UnkStruct_02056B24 * param0, const BoxPokemon *boxMon)
 {
     int v0;
 
