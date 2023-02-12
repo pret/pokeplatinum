@@ -2213,16 +2213,16 @@ u32 sub_02075B38 (Pokemon * param0)
 u32 sub_02075B40 (BoxPokemon *boxMon)
 {
     int species;
-    u32 v1;
+    u32 exp;
     BOOL v2;
 
     v2 = sub_02073D20(boxMon);
     species = sub_02074570(boxMon, MON_DATA_SPECIES, 0);
-    v1 = sub_02074570(boxMon, MON_DATA_EXP, 0);
+    exp = sub_02074570(boxMon, MON_DATA_EXP, 0);
 
     sub_02073D48(boxMon, v2);
 
-    return sub_02075B78(species, v1);
+    return sub_02075B78(species, exp);
 }
 
 u32 sub_02075B78(u16 species, u32 exp)

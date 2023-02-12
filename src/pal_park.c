@@ -200,7 +200,7 @@ struct {
     { 0x1A4, 0x1A4 }
 };
 
-void ov97_02236E90(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
+void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
 
 static u16 Unk_ov97_0223ECA0[] = {
 	0x10,
@@ -300,7 +300,7 @@ static u16 Unk_ov97_0223ECA0[] = {
 };
 
 
-#define GBA_SUBSTRUCT_CASE(n, v1, v2, v3, v4)                               \
+#define GBA_SUBSTRUCT_CASE(n, v1, v2, v3, substruct3)                               \
 case n:                                                                     \
     {                                                                       \
     PokemonGBASubstruct * substructs0 = boxMonGBA->secure.substructs;  \
@@ -340,7 +340,7 @@ case n:                                                                     \
             substruct = &substructs ## n [v3];                          \
             break;                                                      \
         case 3:                                                         \
-            substruct = &substructs ## n [v4];                          \
+            substruct = &substructs ## n [substruct3];                          \
             break;                                                      \
         }                                                               \
         break;                                                          \
@@ -381,7 +381,7 @@ static PokemonGBASubstruct * GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 perso
     return substruct;
 }
 
-static void ov97_0223685C (BoxPokemonGBA *boxMonGBA)
+static void DecryptBoxMonGBA (BoxPokemonGBA *boxMonGBA)
 {
     int v0;
     u32 * v1;
@@ -394,7 +394,7 @@ static void ov97_0223685C (BoxPokemonGBA *boxMonGBA)
     }
 }
 
-static void ov97_0223687C (BoxPokemonGBA *boxMonGBA)
+static void EncryptBoxMonGBA (BoxPokemonGBA *boxMonGBA)
 {
     int v0;
     u32 * v1;
@@ -407,49 +407,43 @@ static void ov97_0223687C (BoxPokemonGBA *boxMonGBA)
     }
 }
 
-static u16 ov97_0223689C (BoxPokemonGBA *boxMonGBA)
+static u16 CalculateBoxMonGBAChecksum (BoxPokemonGBA *boxMonGBA)
 {
-    int v0;
-    u16 * v1;
-    u16 * v2;
-    u16 * v3;
-    u16 * v4;
-    u16 v5 = 0;
+    int i;
+    u16 * substruct0;
+    u16 * substruct1;
+    u16 * substruct2;
+    u16 * substruct3;
+    u16 checksum = 0;
 
-    v1 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
-    v2 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
-    v3 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
-    v4 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
+    substruct0 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
+    substruct1 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
+    substruct2 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
+    substruct3 = (u16 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v1[v0];
-    }
+    for (i = 0; i < 12 / 2; i++)
+        checksum += substruct0[i];
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v2[v0];
-    }
+    for (i = 0; i < 12 / 2; i++)
+        checksum += substruct1[i];
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v3[v0];
-    }
+    for (i = 0; i < 12 / 2; i++)
+        checksum += substruct2[i];
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v4[v0];
-    }
+    for (i = 0; i < 12 / 2; i++)
+        checksum += substruct3[i];
 
-    return v5;
+    return checksum;
 }
 
 u32 PalPark_GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
 {
-    int v0;
     u32 retVal = 0;
     PokemonGBASubstruct0 * substruct0 = 0;
     PokemonGBASubstruct1 * substruct1 = 0;
     PokemonGBASubstruct2 * substruct2 = 0;
     PokemonGBASubstruct3 * substruct3 = 0;
-    u16 v6;
-    u16 * v7;
+    u16 checksum;
 
     if (field > MON_GBA_DATA_ENCRYPT_SEPARATOR)
     {
@@ -458,10 +452,10 @@ u32 PalPark_GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         substruct2 = &(GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2)->type2);
         substruct3 = &(GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3)->type3);
 
-        ov97_0223685C(boxMonGBA);
-        v6 = ov97_0223689C(boxMonGBA);
+        DecryptBoxMonGBA(boxMonGBA);
+        checksum = CalculateBoxMonGBAChecksum(boxMonGBA);
 
-        if (v6 != boxMonGBA->checksum) {
+        if (checksum != boxMonGBA->checksum) {
             boxMonGBA->isBadEgg = TRUE;
             boxMonGBA->isEgg = TRUE;
             substruct3->isEgg = TRUE;
@@ -699,12 +693,12 @@ u32 PalPark_GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     }
 
     if (field > MON_GBA_DATA_ENCRYPT_SEPARATOR)
-        ov97_0223687C(boxMonGBA);
+        EncryptBoxMonGBA(boxMonGBA);
 
     return retVal;
 }
 
-void ov97_02236CA4 (BoxPokemonGBA *boxMonGBA, int field, const u8 * param2)
+void PalPark_SetGBABoxPokemonData(BoxPokemonGBA *boxMonGBA, int field, const u8 *data)
 {
     int v0;
     u32 v1;
@@ -721,14 +715,14 @@ void ov97_02236CA4 (BoxPokemonGBA *boxMonGBA, int field, const u8 * param2)
         substruct2 = &(GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2)->type2);
         substruct3 = &(GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3)->type3);
 
-        ov97_0223685C(boxMonGBA);
-        v6 = ov97_0223689C(boxMonGBA);
+        DecryptBoxMonGBA(boxMonGBA);
+        v6 = CalculateBoxMonGBAChecksum(boxMonGBA);
 
         if (v6 != boxMonGBA->checksum) {
             boxMonGBA->isBadEgg = TRUE;
             boxMonGBA->isEgg = TRUE;
             substruct3->isEgg = TRUE;
-            ov97_0223687C(boxMonGBA);
+            EncryptBoxMonGBA(boxMonGBA);
             return;
         }
     }
@@ -736,27 +730,27 @@ void ov97_02236CA4 (BoxPokemonGBA *boxMonGBA, int field, const u8 * param2)
     switch (field) {
     case MON_GBA_DATA_NICKNAME:
         for (v0 = 0; v0 < POKEMON_NAME_LENGTH; v0++) {
-            boxMonGBA->nickname[v0] = param2[v0];
+            boxMonGBA->nickname[v0] = data[v0];
         }
         break;
     case MON_GBA_DATA_LANGUAGE:
-        boxMonGBA->language = param2[0];
+        boxMonGBA->language = data[0];
         break;
     case MON_GBA_DATA_SANITY_IS_BAD_EGG:
-        boxMonGBA->isBadEgg = param2[0];
+        boxMonGBA->isBadEgg = data[0];
         break;
     case MON_GBA_DATA_SANITY_HAS_SPECIES:
-        boxMonGBA->hasSpecies = param2[0];
+        boxMonGBA->hasSpecies = data[0];
         break;
     case MON_GBA_DATA_SANITY_IS_EGG:
-        boxMonGBA->isEgg = param2[0];
+        boxMonGBA->isEgg = data[0];
         break;
     case MON_GBA_DATA_OT_NAME:
         for (v0 = 0; v0 < PLAYER_NAME_LENGTH; v0++)
-            boxMonGBA->otName[v0] = param2[v0];
+            boxMonGBA->otName[v0] = data[v0];
         break;
     case MON_GBA_DATA_SPECIES:
-        substruct0->species = param2[0] + (param2[1] << 8);
+        substruct0->species = data[0] + (data[1] << 8);
 
         if (substruct0->species)
             boxMonGBA->hasSpecies = TRUE;
@@ -767,8 +761,8 @@ void ov97_02236CA4 (BoxPokemonGBA *boxMonGBA, int field, const u8 * param2)
 
     if (field > MON_GBA_DATA_ENCRYPT_SEPARATOR)
     {
-        boxMonGBA->checksum = ov97_0223689C(boxMonGBA);
-        ov97_0223687C(boxMonGBA);
+        boxMonGBA->checksum = CalculateBoxMonGBAChecksum(boxMonGBA);
+        EncryptBoxMonGBA(boxMonGBA);
     }
 }
 
@@ -828,7 +822,7 @@ static int ov97_02236E28 (BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     return v1;
 }
 
-void ov97_02236E90 (BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
+void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 {
     BOOL v0;
     u32 value;

@@ -51,13 +51,12 @@ void Party_InitWithCapacity (Party * party, int capacity)
     }
 }
 
-BOOL Party_AddPokemon (Party * party, Pokemon * pokemon)
+BOOL Party_AddPokemon(Party * party, Pokemon * mon)
 {
-    if (party->currentCount >= party->capacity) {
+    if (party->currentCount >= party->capacity)
         return FALSE;
-    }
 
-    party->pokemon[party->currentCount] = *pokemon;
+    party->pokemon[party->currentCount] = *mon;
     party->currentCount++;
 
     return TRUE;

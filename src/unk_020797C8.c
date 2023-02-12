@@ -110,17 +110,17 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon *boxMon)
     return 0;
 }
 
-BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon *param3)
+BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon *boxMon)
 {
-    sub_0207896C(param3);
-    sub_02077ADC(param3, 0);
+    sub_0207896C(boxMon);
+    sub_02077ADC(boxMon, 0);
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
     }
 
     if ((param1 < 18) && (param2 < (5 * 6))) {
-        param0->unk_04[param1][param2] = *param3;
+        param0->unk_04[param1][param2] = *boxMon;
         sub_02024804();
         return 1;
     } else {

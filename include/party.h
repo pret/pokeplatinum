@@ -9,7 +9,7 @@ int Party_sizeof(void);
 Party * sub_02079FF4(u32 param0);
 void sub_0207A008(Party * param0);
 void Party_InitWithCapacity(Party * party, int capacity);
-BOOL Party_AddPokemon(Party * party, Pokemon * pokemon);
+BOOL Party_AddPokemon(Party * party, Pokemon * mon);
 BOOL Party_RemovePokemonBySlotIndex(Party * party, int slot);
 int Party_GetCapacity(const Party * party);
 int Party_GetCurrentCount(const Party * party);
