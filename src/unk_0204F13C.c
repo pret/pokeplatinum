@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -158,9 +158,9 @@ BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
 static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 {
     u8 v0, v1, v2, v3;
-    u16 v4, v5;
+    u16 species, v5;
     Party * v6;
-    Pokemon * v7;
+    Pokemon *v7;
     u16 v8[6];
 
     v6 = Party_GetFromSavedata(param1);
@@ -176,10 +176,10 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = GetMonData(v7, MON_DATA_SPECIES, NULL);
+        species = GetMonData(v7, MON_DATA_SPECIES, NULL);
         v5 = GetMonData(v7, MON_DATA_161, NULL);
 
-        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != 0) {
+        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != FALSE) {
             continue;
         }
 
@@ -187,12 +187,12 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
             continue;
         }
 
-        if (sub_02078804(v4) == 1) {
+        if (sub_02078804(species) == 1) {
             continue;
         }
 
         v2++;
-        v8[v0] = v4;
+        v8[v0] = species;
     }
 
     if (param0 == 2) {

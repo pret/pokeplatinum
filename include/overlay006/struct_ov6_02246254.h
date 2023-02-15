@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_020279FC.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 
 typedef struct {
     const BoxPokemon *unk_00;

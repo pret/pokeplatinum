@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0208C324_H
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_0208D7BC.h"
 #include "struct_defs/struct_02098D38.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,6 +18,6 @@ u32 sub_0208E9E0(void);
 u32 sub_0208E9E4(void);
 u32 sub_0208E9E8(void);
 u32 sub_0208E9EC(void);
-u32 sub_0208E9F0(Pokemon * param0);
+u32 sub_0208E9F0(Pokemon *param0);
 
 #endif // POKEPLATINUM_UNK_0208C324_H

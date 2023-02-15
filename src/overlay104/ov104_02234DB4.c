@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -53,7 +53,7 @@ UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 para
     UnkStruct_0203026C * v1;
     u8 v2, v3, v4;
     u16 v5, v6, v7, v8;
-    Pokemon * v9;
+    Pokemon *v9;
     static UnkStruct_ov104_0223B5C0 * v10;
 
     v10 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223B5C0));
@@ -154,7 +154,7 @@ static void ov104_022350B8 (UnkStruct_ov104_0223B5C0 * param0)
 {
     u8 v0, v1, v2, v3;
     int v4, v5;
-    Pokemon * v6;
+    Pokemon *v6;
     UnkStruct_ov104_0223A348_sub2 v7;
 
     v3 = 0;
@@ -256,7 +256,7 @@ void ov104_0223526C (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
     u32 v3[4];
     UnkStruct_0203068C * v4;
     u16 v5, v6, v7, v8, v9;
-    Pokemon * v10;
+    Pokemon *v10;
     UnkStruct_02030114 * v11 = param0->unk_6F8;
     UnkStruct_0203026C * v12 = sub_0203026C(param0->unk_6FC);
 
@@ -354,7 +354,7 @@ void ov104_022354F4 (UnkStruct_ov104_0223B5C0 * param0)
 
 void ov104_02235518 (UnkStruct_ov104_0223B5C0 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
 
     param0->unk_06 = 1;
 

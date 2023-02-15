@@ -12,8 +12,8 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_02075874_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -142,7 +142,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_0200B144 * unk_194;
     UnkStruct_0200B144 * unk_198;
     UnkStruct_0200B358 * unk_19C;
-    Pokemon * unk_1A0;
+    Pokemon *unk_1A0;
     UnkStruct_020279FC * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
@@ -2169,7 +2169,7 @@ static void ov19_021D3294 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 
 static BOOL ov19_021D34E4 (UnkStruct_ov19_021D5DF8 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1, v2, v3;
     BOOL v4;
 
@@ -3980,7 +3980,7 @@ static void ov19_021D55C4 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_ov19_021D
     BOOL v5;
 
     if (ov19_021D5E10(param1) == 0) {
-        v4 = sub_02074570(v0->unk_00, MON_DATA_112, NULL);
+        v4 = sub_02074570(v0->unk_00, MON_DATA_FORM, NULL);
         sub_02079914(param0->unk_120, 0xffffffff, v1->unk_07, v0->unk_00);
         v2 = sub_02079C9C(param0->unk_120, 0xffffffff, v1->unk_07);
 
@@ -4213,22 +4213,22 @@ static void ov19_021D59F4 (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon *boxMon,
 
     v2 = sub_02073C88(param2->unk_1A0);
 
-    v1->unk_0A = GetMonData(param2->unk_1A0, 164, NULL);
-    v1->unk_0C = GetMonData(param2->unk_1A0, 165, NULL);
-    v1->unk_0E = GetMonData(param2->unk_1A0, 166, NULL);
-    v1->unk_10 = GetMonData(param2->unk_1A0, 168, NULL);
-    v1->unk_12 = GetMonData(param2->unk_1A0, 169, NULL);
-    v1->unk_14 = GetMonData(param2->unk_1A0, 167, NULL);
-    v1->unk_16 = GetMonData(param2->unk_1A0, 19, NULL);
-    v1->unk_18 = GetMonData(param2->unk_1A0, 20, NULL);
-    v1->unk_1A = GetMonData(param2->unk_1A0, 21, NULL);
-    v1->unk_1C = GetMonData(param2->unk_1A0, 22, NULL);
-    v1->unk_1E = GetMonData(param2->unk_1A0, 23, NULL);
-    v1->unk_20[0] = GetMonData(param2->unk_1A0, 54, NULL);
-    v1->unk_20[1] = GetMonData(param2->unk_1A0, 55, NULL);
-    v1->unk_20[2] = GetMonData(param2->unk_1A0, 56, NULL);
-    v1->unk_20[3] = GetMonData(param2->unk_1A0, 57, NULL);
-    v1->unk_07 = GetMonData(param2->unk_1A0, 112, NULL);
+    v1->unk_0A = GetMonData(param2->unk_1A0, MON_DATA_164, NULL);
+    v1->unk_0C = GetMonData(param2->unk_1A0, MON_DATA_165, NULL);
+    v1->unk_0E = GetMonData(param2->unk_1A0, MON_DATA_166, NULL);
+    v1->unk_10 = GetMonData(param2->unk_1A0, MON_DATA_168, NULL);
+    v1->unk_12 = GetMonData(param2->unk_1A0, MON_DATA_169, NULL);
+    v1->unk_14 = GetMonData(param2->unk_1A0, MON_DATA_167, NULL);
+    v1->unk_16 = GetMonData(param2->unk_1A0, MON_DATA_COOL, NULL);
+    v1->unk_18 = GetMonData(param2->unk_1A0, MON_DATA_BEAUTY, NULL);
+    v1->unk_1A = GetMonData(param2->unk_1A0, MON_DATA_CUTE, NULL);
+    v1->unk_1C = GetMonData(param2->unk_1A0, MON_DATA_SMART, NULL);
+    v1->unk_1E = GetMonData(param2->unk_1A0, MON_DATA_TOUGH, NULL);
+    v1->unk_20[0] = GetMonData(param2->unk_1A0, MON_DATA_MOVE1, NULL);
+    v1->unk_20[1] = GetMonData(param2->unk_1A0, MON_DATA_MOVE2, NULL);
+    v1->unk_20[2] = GetMonData(param2->unk_1A0, MON_DATA_MOVE3, NULL);
+    v1->unk_20[3] = GetMonData(param2->unk_1A0, MON_DATA_MOVE4, NULL);
+    v1->unk_07 = GetMonData(param2->unk_1A0, MON_DATA_FORM, NULL);
 
     sub_02073CD4(param2->unk_1A0, v2);
 

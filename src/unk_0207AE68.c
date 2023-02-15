@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -68,7 +68,7 @@
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
 
-UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
+UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon *param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
 static void sub_0207B0A0(UnkStruct_0201CD38 * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
@@ -98,7 +98,7 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
+UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon *param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11)
 {
     UnkStruct_0207AE68 * v0;
     UnkStruct_02008A90 v1;
@@ -113,7 +113,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_24 = param0;
     v0->unk_28 = param1;
     v0->unk_60 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    v0->unk_86 = GetMonData(param1, MON_DATA_112, NULL);
+    v0->unk_86 = GetMonData(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
     v0->unk_5C = param11;
     v0->unk_80 = NARC_ctor(147, param11);
@@ -422,7 +422,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_0202CFEC(param0->unk_50, 22);
                 sub_02056A48(param0->unk_54, sub_02076B10(param0->unk_28));
 
-                if (GetMonData(param0->unk_28, 77, NULL) == 0) {
+                if (GetMonData(param0->unk_28, MON_DATA_77, NULL) == 0) {
                     sub_02074B30(param0->unk_28, 179, NULL);
                 }
 
@@ -700,7 +700,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     case 14:
         if (sub_0207D730(param0->unk_4C, 4, param0->unk_5C) && (Party_GetCurrentCount(param0->unk_24) < 6)) {
             {
-                Pokemon * v1;
+                Pokemon *v1;
                 int v2;
                 UnkStruct_0202818C * v3;
                 UnkStruct_0202CA28 v4;
@@ -947,7 +947,7 @@ static void sub_0207C460 (UnkStruct_02018340 * param0)
 static void sub_0207C498 (UnkStruct_0207AE68 * param0)
 {
     UnkStruct_02008A90 v0;
-    Pokemon * v1;
+    Pokemon *v1;
 
     sub_02075EF4(&v0, param0->unk_28, 2);
 

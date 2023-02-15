@@ -93,7 +93,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon *boxMon)
     u32 v0;
 
     sub_0207896C(boxMon);
-    sub_02077ADC(boxMon, 0);
+    SetBoxShayminForm(boxMon, 0);
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -113,7 +113,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon *boxMon)
 BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon *boxMon)
 {
     sub_0207896C(boxMon);
-    sub_02077ADC(boxMon, 0);
+    SetBoxShayminForm(boxMon, 0);
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;

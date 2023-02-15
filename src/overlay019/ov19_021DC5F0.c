@@ -5,8 +5,8 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -515,7 +515,7 @@ static void ov19_021DCE50 (UnkStruct_ov19_021DC680 * param0, fx32 param1)
 
 static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1, v2, v3;
 
     v3 = (param1) ? 0 : 208;

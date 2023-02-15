@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -67,7 +67,7 @@ static void sub_0200ED7C(UnkStruct_0200ED50 * param0);
 static void sub_0200EDD4(UnkStruct_0200ED50 * param0, u8 param1, u8 param2);
 static void sub_0200EE98(UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * param1);
 static void sub_0200EE24(UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2);
-static void sub_0200EE64(UnkStruct_ov5_021D30A8 * param0, Pokemon * param1);
+static void sub_0200EE64(UnkStruct_ov5_021D30A8 * param0, Pokemon *param1);
 static void sub_0200EC9C(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_0200EF7C(UnkStruct_0200ED50 * param0, u8 param1, u16 param2);
 static void sub_0200F12C(UnkStruct_0200ED50 * param0);
@@ -563,7 +563,7 @@ u8 * sub_0200EBF0 (UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3,
     return &v0->unk_1D3;
 }
 
-u8 * sub_0200EC48 (UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon * param6, int param7)
+u8 * sub_0200EC48 (UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon *param6, int param7)
 {
     UnkStruct_0200ED50 * v0 = sub_0200ED14(param0, param1, param2, param3, param7);
 
@@ -654,7 +654,7 @@ static void sub_0200EE24 (UnkStruct_ov5_021D30A8 * param0, u16 species, u8 param
     sub_02007B6C(v0);
 }
 
-static void sub_0200EE64 (UnkStruct_ov5_021D30A8 * param0, Pokemon * param1)
+static void sub_0200EE64 (UnkStruct_ov5_021D30A8 * param0, Pokemon *param1)
 {
     void * v0;
     UnkStruct_02008A90 v1;

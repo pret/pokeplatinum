@@ -4,8 +4,8 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay033/struct_ov33_02256474_decl.h"
@@ -77,7 +77,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
 
         {
             Party * v0 = Party_GetFromSavedata(sub_020245A4());
-            Pokemon * v1;
+            Pokemon *v1;
             int v2;
             int v3;
             int v4;
@@ -90,7 +90,7 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
 
                 if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
                     param0->unk_04.unk_04[v4].unk_04 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-                    param0->unk_04.unk_04[v4].unk_08 = GetMonData(v1, MON_DATA_112, NULL);
+                    param0->unk_04.unk_04[v4].unk_08 = GetMonData(v1, MON_DATA_FORM, NULL);
                     param0->unk_04.unk_04[v4].unk_00 = sub_02079D40((const BoxPokemon *)v1);
                     v3 = ov33_0225630C(GetMonData(v1, MON_DATA_FRIENDSHIP, NULL));
 

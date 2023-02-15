@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_020997B8.h"
 
@@ -22,7 +22,7 @@ void sub_020997D0 (UnkStruct_020997B8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-u16 * sub_020997D8 (Pokemon * param0, u32 param1)
+u16 * sub_020997D8 (Pokemon *param0, u32 param1)
 {
     u16 * v0;
     u16 * v1;
@@ -33,7 +33,7 @@ u16 * sub_020997D8 (Pokemon * param0, u32 param1)
     u8 v6, v7, v8;
 
     v3 = (u16)GetMonData(param0, MON_DATA_SPECIES, NULL);
-    v5 = (u8)GetMonData(param0, MON_DATA_112, NULL);
+    v5 = (u8)GetMonData(param0, MON_DATA_FORM, NULL);
     v4 = (u8)GetMonData(param0, MON_DATA_161, NULL);
 
     for (v7 = 0; v7 < 4; v7++) {

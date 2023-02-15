@@ -18,7 +18,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
 
-static int sub_02092E8C(Pokemon * mon, BOOL param1, int param2);
+static int sub_02092E8C(Pokemon *mon, BOOL param1, int param2);
 static void sub_02092878(UnkStruct_02090800 * param0);
 static void sub_020928A0(UnkStruct_02090800 * param0, int param1);
 static void sub_020929C0(UnkStruct_02090800 * param0, int param1);
@@ -32,7 +32,7 @@ static void sub_02093368(BoxPokemon *boxMon, int param1);
 static void sub_020933C8(BoxPokemon *boxMon);
 static void sub_020933E8(BoxPokemon *boxMon);
 
-UnkStruct_02090800 * sub_02092494 (Pokemon * mon, BOOL param1, int param2)
+UnkStruct_02090800 * sub_02092494 (Pokemon *mon, BOOL param1, int param2)
 {
     UnkStruct_02090800 * v0;
 
@@ -337,15 +337,15 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
     param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
-    sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, 149, NULL), 2, 2, 1);
-    sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, 150, NULL));
-    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, 151, NULL), 2, 0, 1);
-    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, 156, NULL), 3, 0, 1);
-    sub_0200BECC(param0->unk_08, 4, GetMonData(param0->unk_0C, 153, NULL));
-    sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, 146, NULL), 2, 2, 1);
-    sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, 147, NULL));
-    sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, 148, NULL), 2, 0, 1);
-    sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, 152, NULL));
+    sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
+    sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
+    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
+    sub_0200BECC(param0->unk_08, 4, GetMonData(param0->unk_0C, MON_DATA_153, NULL));
+    sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
+    sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, MON_DATA_147, NULL));
+    sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
+    sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_152, NULL));
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
     sub_020237BC(v0);
 }
@@ -357,10 +357,12 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
     param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
-    sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, 149, NULL), 2, 2, 1); sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, 150, NULL)); sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, 151, NULL), 2, 0, 1);
-    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, 156, NULL), 3, 0, 1);
+    sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
+    sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
+    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
 
-    switch (GetMonData(param0->unk_0C, 122, NULL)) {
+    switch (GetMonData(param0->unk_0C, MON_DATA_MET_GAME, NULL)) {
     default:
         sub_0200BECC(param0->unk_08, 4, (sub_02017070(1, 7)));
         break;
@@ -400,11 +402,15 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
     sub_0200B1B8(param0->unk_04, param1, v0);
 
     if (param2 == 0) {
-        sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, 146, NULL), 2, 2, 1); sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, 147, NULL)); sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, 148, NULL), 2, 0, 1);
-        sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, 152, NULL));
+        sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
+        sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, MON_DATA_147, NULL));
+        sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
+        sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_152, NULL));
     } else {
-        sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, 149, NULL), 2, 2, 1); sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, 150, NULL)); sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, 151, NULL), 2, 0, 1);
-        sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, 153, NULL));
+        sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
+        sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
+        sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+        sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_153, NULL));
     }
 
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
@@ -427,14 +433,14 @@ static void sub_02092C24 (UnkStruct_02090800 * param0)
 
     param0->unk_24.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
 
-    v0[0] = (GetMonData(param0->unk_0C, 70, NULL));
-    v0[1] = (GetMonData(param0->unk_0C, 71, NULL));
-    v0[2] = (GetMonData(param0->unk_0C, 72, NULL));
-    v0[3] = (GetMonData(param0->unk_0C, 73, NULL));
-    v0[4] = (GetMonData(param0->unk_0C, 74, NULL));
-    v0[5] = (GetMonData(param0->unk_0C, 75, NULL));
+    v0[0] = (GetMonData(param0->unk_0C, MON_DATA_HP_IV, NULL));
+    v0[1] = (GetMonData(param0->unk_0C, MON_DATA_ATK_IV, NULL));
+    v0[2] = (GetMonData(param0->unk_0C, MON_DATA_DEF_IV, NULL));
+    v0[3] = (GetMonData(param0->unk_0C, MON_DATA_SPEED_IV, NULL));
+    v0[4] = (GetMonData(param0->unk_0C, MON_DATA_SPATK_IV, NULL));
+    v0[5] = (GetMonData(param0->unk_0C, MON_DATA_SPDEF_IV, NULL));
 
-    switch ((GetMonData(param0->unk_0C, 0, NULL) % 6)) {
+    switch ((GetMonData(param0->unk_0C, MON_DATA_PERSONALITY, NULL) % 6)) {
     default:
     case 0:
         v1 = 0;
@@ -614,7 +620,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
 
 static void sub_02092E4C (UnkStruct_02090800 * param0)
 {
-    int v0 = GetMonData(param0->unk_0C, 9, NULL);
+    int v0 = GetMonData(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
     param0->unk_34.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
@@ -632,7 +638,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     sub_0200B1B8(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
-static int sub_02092E8C (Pokemon * mon, BOOL param1, int param2)
+static int sub_02092E8C (Pokemon *mon, BOOL param1, int param2)
 {
     int v0 = 0;
 
@@ -716,9 +722,9 @@ static int sub_02092E8C (Pokemon * mon, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C (Pokemon * mon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209304C (Pokemon *mon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
-    sub_0209305C(&mon->unk_00, param1, param2, param3, param4);
+    sub_0209305C(&mon->box, param1, param2, param3, param4);
 }
 
 void sub_0209305C (BoxPokemon *boxMon, UnkStruct_02025E6C * param1, int param2, int param3, int param4)

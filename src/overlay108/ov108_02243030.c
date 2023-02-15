@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -183,8 +183,8 @@ static void ov108_022432B4 (UnkStruct_ov108_02243030 * param0)
 
 static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, Party * param1, Party * param2, u8 param3)
 {
-    Pokemon * v0;
-    Pokemon * v1;
+    Pokemon *v0;
+    Pokemon *v1;
     NARC * v2;
     u32 v3;
 

@@ -5,11 +5,11 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_02095C60.h"
 
 typedef struct {
-    Pokemon * unk_00;
+    Pokemon *unk_00;
     UnkStruct_02029C88 * unk_04;
     int unk_08;
     int unk_0C;

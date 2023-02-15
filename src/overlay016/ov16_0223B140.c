@@ -266,7 +266,7 @@ BOOL ov16_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         int v1;
         int v2;
         int v3;
-        Pokemon * v4;
+        Pokemon *v4;
 
         v2 = ov16_0223ECC4(v0, &v1, &v3);
 
@@ -965,7 +965,7 @@ static void ov16_0223C210 (UnkStruct_0207ADB4 * param0)
     int v1;
     int v2;
     UnkStruct_ov16_0224B9DC * v3;
-    Pokemon * v4;
+    Pokemon *v4;
 
     v0 = ov16_0223E22C(param0);
 
@@ -1068,8 +1068,8 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
 {
     int v0, v1;
     UnkStruct_ov16_0223C2C0 v2;
-    Pokemon * v3;
-    Pokemon * v4;
+    Pokemon *v3;
+    Pokemon *v4;
 
     param0->unk_2C = param1->unk_00;
 

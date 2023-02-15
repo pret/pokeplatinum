@@ -8,8 +8,8 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -85,7 +85,7 @@ BOOL sub_0204754C (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047570 (UnkStruct_0203E724 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
@@ -203,7 +203,7 @@ BOOL sub_0204777C (UnkStruct_0203E724 * param0)
 
 BOOL sub_020477D0 (UnkStruct_0203E724 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
@@ -235,7 +235,7 @@ BOOL sub_02047818 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047874 (UnkStruct_0203E724 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
@@ -438,7 +438,7 @@ BOOL sub_02047CA0 (UnkStruct_0203E724 * param0)
 BOOL sub_02047D00 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    Pokemon * v1;
+    Pokemon *v1;
     UnkStruct_0200B358 ** v2 = sub_0203F098(v0, 15);
     u8 v3 = (*((param0)->unk_08++));
     u16 v4 = inline_02049538(param0);

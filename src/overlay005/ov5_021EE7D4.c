@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -43,7 +43,7 @@ static const UnkStruct_ov5_021FF508 Unk_ov5_021FF508[] = {
     {0x6A4, 0x1, 0xFFE6, 0x0}
 };
 
-static int ov5_021EE7D4 (Pokemon * param0)
+static int ov5_021EE7D4 (Pokemon *param0)
 {
     u16 v0;
     u16 v1, v2, v3;
@@ -102,7 +102,7 @@ static u32 ov5_021EE8A8 (u16 param0, u16 param1)
 
 u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     vu16 v1, v2;
     u16 v3;
     u32 v4;
@@ -134,7 +134,7 @@ u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
 
 void ov5_021EE9BC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     vu16 v1;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
@@ -169,7 +169,7 @@ void ov5_021EEA54 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3
 
 void ov5_021EEA84 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1;
     vu16 v2;
 

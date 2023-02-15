@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F1E88.h"
@@ -494,7 +494,7 @@ UnkEnum_02098EAC sub_02098EAC (Poffin * param0, u8 param1)
     }
 }
 
-void sub_02098EF8 (Poffin * param0, Pokemon * param1)
+void sub_02098EF8 (Poffin * param0, Pokemon *param1)
 {
     u8 v0, v1;
     u8 v2, v3;

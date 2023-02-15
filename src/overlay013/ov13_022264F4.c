@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
@@ -409,7 +409,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
         u32 v2 = Item_GetAttribute(v0->unk_1C, 7, v0->unk_0C);
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
-            Pokemon * v3;
+            Pokemon *v3;
             UnkStruct_02023790 * v4;
 
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -70,7 +70,7 @@ UnkStruct_ov104_0223BA10 * ov104_022361B4 (UnkStruct_021C0794 * param0, u16 para
 {
     u32 v0, v1;
     Party * v2;
-    Pokemon * v3;
+    Pokemon *v3;
     UnkStruct_020302DC * v4;
     u8 v5, v6;
     u16 v7, v8;
@@ -180,7 +180,7 @@ static void ov104_02236528 (UnkStruct_ov104_0223BA10 * param0)
     u8 v0;
     int v1;
     UnkStruct_ov104_0223A348_sub2 v2;
-    Pokemon * v3;
+    Pokemon *v3;
     Party * v4;
     u16 v5[6];
     u16 v6[6];
@@ -215,7 +215,7 @@ static void ov104_022365F8 (UnkStruct_ov104_0223BA10 * param0)
 {
     u16 v0;
     int v1;
-    Pokemon * v2;
+    Pokemon *v2;
     u8 v3;
     UnkStruct_ov104_0223A348_sub2 v4[6];
     u8 v5[6];
@@ -254,7 +254,7 @@ static void ov104_022366A4 (UnkStruct_ov104_0223BA10 * param0)
     u16 v2;
     u8 v3;
     int v4;
-    Pokemon * v5;
+    Pokemon *v5;
 
     v0 = Party_GetCurrentCount(param0->unk_28);
 
@@ -358,7 +358,7 @@ void ov104_02236848 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
     u32 v6[4];
     u32 v7, v8, v9;
     UnkStruct_0203068C * v10;
-    Pokemon * v11;
+    Pokemon *v11;
     UnkStruct_020302DC * v12 = param0->unk_08;
     UnkStruct_0203041C * v13 = sub_0203041C(param0->unk_04);
 
@@ -522,7 +522,7 @@ void ov104_02236C50 (UnkStruct_ov104_0223BA10 * param0)
 {
     u8 v0, v1;
     int v2, v3;
-    Pokemon * v4;
+    Pokemon *v4;
 
     if (sub_0203608C() == 0) {
         v0 = 0;
@@ -559,7 +559,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     u8 v0, v1, v2;
     u32 v3, v4;
     int v5, v6, v7, v8;
-    Pokemon * v9;
+    Pokemon *v9;
     u8 v10[20];
     int v11 = 0;
 

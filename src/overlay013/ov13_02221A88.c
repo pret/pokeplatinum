@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay013/struct_ov13_0221FC20.h"
@@ -1556,7 +1556,7 @@ void ov13_02224108 (UnkStruct_ov13_022213F0 * param0)
 
 void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_ov13_0221FC20 * v1;
     void * v2;
     UnkStruct_02023790 * v3;
@@ -1658,7 +1658,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
 
 void ov13_0222449C (UnkStruct_ov13_022213F0 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_ov13_0221FC20 * v1;
     UnkStruct_02023790 * v2;
 

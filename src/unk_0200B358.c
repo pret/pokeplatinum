@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -206,22 +206,22 @@ void sub_0200B4E4 (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C
 void sub_0200B538 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon)
 {
     UnkStruct_0200B144 * v0;
-    u32 v1;
+    u32 species;
 
     v0 = sub_0200B144(1, 26, 412, param0->unk_04);
-    v1 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
+    species = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
 
-    sub_0200B1B8(v0, v1, param0->unk_0C);
+    sub_0200B1B8(v0, species, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
     sub_0200B190(v0);
 }
 
 void sub_0200B578 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon *boxMon)
 {
-    u32 v0;
+    u32 species;
 
-    v0 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
-    sub_0200B594(param0, param1, v0);
+    species = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
+    sub_0200B594(param0, param1, species);
 }
 
 void sub_0200B594 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "overlay107/struct_ov107_02249954.h"
@@ -26,7 +26,7 @@ void * ov107_02249B8C(UnkStruct_ov107_02249B8C * param0);
 void ov107_02249BAC(UnkStruct_ov107_02249B8C * param0, int param1);
 void ov107_02249BB8(UnkStruct_ov107_02249B8C * param0, u16 param1, u16 param2);
 void ov107_02249BEC(UnkStruct_ov107_02249B8C * param0, u32 param1);
-void ov107_02249C08(UnkStruct_ov107_02249B8C * param0, Pokemon * param1);
+void ov107_02249C08(UnkStruct_ov107_02249B8C * param0, Pokemon *param1);
 void ov107_02249C1C(UnkStruct_ov107_02249B8C * param0, u8 param1);
 void ov107_02249C28(UnkStruct_ov107_02249B8C * param0, u8 param1);
 BOOL ov107_02249C40(UnkStruct_ov107_02249B8C * param0);
@@ -92,7 +92,7 @@ void ov107_02249BEC (UnkStruct_ov107_02249B8C * param0, u32 param1)
     return;
 }
 
-void ov107_02249C08 (UnkStruct_ov107_02249B8C * param0, Pokemon * param1)
+void ov107_02249C08 (UnkStruct_ov107_02249B8C * param0, Pokemon *param1)
 {
     sub_02021F24(param0->unk_04, sub_02079FC4(param1));
     return;

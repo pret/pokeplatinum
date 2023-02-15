@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay006/struct_ov6_02240D5C.h"
@@ -221,7 +221,7 @@ static u32 sub_02051C20 (u32 param0)
 
 static u32 sub_02051CD0 (Party * param0, int param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u32 v1;
     u32 v2 = 34;
 

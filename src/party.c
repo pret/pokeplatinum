@@ -51,7 +51,7 @@ void Party_InitWithCapacity (Party * party, int capacity)
     }
 }
 
-BOOL Party_AddPokemon(Party * party, Pokemon * mon)
+BOOL Party_AddPokemon(Party * party, Pokemon *mon)
 {
     if (party->currentCount >= party->capacity)
         return FALSE;
@@ -90,31 +90,31 @@ int Party_GetCurrentCount (const Party * party)
     return party->currentCount;
 }
 
-Pokemon * Party_GetPokemonBySlotIndex (const Party * party, int slot)
+Pokemon *Party_GetPokemonBySlotIndex (const Party * party, int slot)
 {
     PARTY_ASSERT_SLOT(party, slot);
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128 (Party * party, int slot, Pokemon * param2)
+void sub_0207A128 (Party * party, int slot, Pokemon *param2)
 {
     int v0;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = GetMonData(&(party->pokemon[slot]), 172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
+    v0 = GetMonData(&(party->pokemon[slot]), MON_DATA_172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
     party->pokemon[slot] = *param2;
     party->currentCount += v0;
 }
 
-BOOL Party_SwapSlots (Party * party, int slotA, int slotB)
+BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
 {
-    struct Pokemon_t * tempPokemon;
+    Pokemon *tempPokemon;
 
     PARTY_ASSERT_SLOT(party, slotA);
     PARTY_ASSERT_SLOT(party, slotB);
 
-    tempPokemon = Heap_AllocFromHeap(0, sizeof(struct Pokemon_t));
+    tempPokemon = Heap_AllocFromHeap(0, sizeof(Pokemon));
     *tempPokemon = party->pokemon[slotA];
 
     party->pokemon[slotA] = party->pokemon[slotB];
@@ -125,30 +125,28 @@ BOOL Party_SwapSlots (Party * party, int slotA, int slotB)
     return FALSE;
 }
 
-void Party_cpy (const Party * src, Party * dest)
+void Party_cpy(const Party *src, Party *dest)
 {
     *dest = *src;
 }
 
-BOOL Party_HasSpecies (const Party * party, int species)
+BOOL Party_HasSpecies(const Party *party, int species)
 {
     int i;
 
     for (i = 0; i < party->currentCount; i++)
     {
-        if (GetMonData((Pokemon *)&party->pokemon[i], 5, NULL) == species)
-        {
+        if (GetMonData((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species)
             break;
-        }
     }
 
     return i != party->currentCount;
 }
 
-Party * Party_GetFromSavedata (UnkStruct_021C0794 * param0)
+Party *Party_GetFromSavedata(UnkStruct_021C0794 *param0)
 {
-    Party * v0;
+    Party *party;
 
-    v0 = (Party *)sub_020245BC(param0, 2);
-    return v0;
+    party = (Party *)sub_020245BC(param0, 2);
+    return party;
 }

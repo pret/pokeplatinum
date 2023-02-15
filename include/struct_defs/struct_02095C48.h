@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/struct_021C0794_decl.h"
 #include "struct_decls/struct_party_decl.h"
+#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
-#include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
     UnkStruct_02095C48_sub1 unk_00;
@@ -32,7 +32,7 @@ typedef struct {
     u8 padding_1969[3];
     const UnkStruct_020279FC * unk_196C;
     UnkStruct_021C0794 * unk_1970;
-    Pokemon * unk_1974;
+    Pokemon *unk_1974;
     const UnkStruct_02025E6C * unk_1978;
     u8 unk_197C;
     u8 unk_197D;

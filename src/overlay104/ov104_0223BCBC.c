@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -33,8 +33,8 @@ static u32 ov104_0223BFD0(u8 param0);
 u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC * param0);
 BOOL ov104_0223C000(u8 param0);
 void ov104_0223C04C(UnkStruct_ov104_0223BFFC * param0);
-void ov104_0223C010(UnkStruct_ov104_0223BFFC * param0, Pokemon * param1);
-void ov104_0223C034(UnkStruct_ov104_0223BFFC * param0, Party * param1, Pokemon * param2);
+void ov104_0223C010(UnkStruct_ov104_0223BFFC * param0, Pokemon *param1);
+void ov104_0223C034(UnkStruct_ov104_0223BFFC * param0, Party * param1, Pokemon *param2);
 u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC * param0, u8 param1);
 static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC * param0);
 u16 ov104_0223C124(UnkStruct_ov104_0223BFFC * param0);
@@ -167,7 +167,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
     u32 v1;
     u8 v2, v3, v4;
     UnkStruct_ov6_02240D5C * v5;
-    Pokemon * v6;
+    Pokemon *v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
     UnkStruct_0200B144 * v9;
@@ -294,13 +294,13 @@ BOOL ov104_0223C000 (u8 param0)
     return 0;
 }
 
-void ov104_0223C010 (UnkStruct_ov104_0223BFFC * param0, Pokemon * param1)
+void ov104_0223C010 (UnkStruct_ov104_0223BFFC * param0, Pokemon *param1)
 {
     sub_02077EE4(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 
-void ov104_0223C034 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pokemon * param2)
+void ov104_0223C034 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pokemon *param2)
 {
     ov104_0223C010(param0, param2);
     Party_AddPokemon(param1, param2);
@@ -313,8 +313,8 @@ void ov104_0223C04C (UnkStruct_ov104_0223BFFC * param0)
     int v1, v2;
     u8 v3;
     Party * v4;
-    Pokemon * v5;
-    Pokemon * v6;
+    Pokemon *v5;
+    Pokemon *v6;
 
     sub_0207A008(param0->unk_74);
 

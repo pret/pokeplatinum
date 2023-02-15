@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_CONSTANTS_ITEMS_H
 #define POKEPLATINUM_CONSTANTS_ITEMS_H
 
-#define ITEM_NONE              0
+#define ITEM_NONE               0
+
+#define ITEM_112                112
 
 #endif // POKEPLATINUM_CONSTANTS_ITEMS_H

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay005/struct_ov5_021DE6BC_decl.h"
 #include "overlay005/struct_ov5_021DE79C_decl.h"
 #include "overlay005/struct_ov5_021DE928_decl.h"
@@ -1402,8 +1402,8 @@ u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
     int v0;
     int v1;
     int v2;
-    Pokemon * v3;
-    Pokemon * v4;
+    Pokemon *v3;
+    Pokemon *v4;
     int v5, v6;
 
     if (param0->unk_00 & 0x1) {

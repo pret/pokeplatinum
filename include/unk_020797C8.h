@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020797C8_H
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 void sub_020797C8(UnkStruct_020797DC * param0);

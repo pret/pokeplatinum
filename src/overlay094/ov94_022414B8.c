@@ -11,8 +11,8 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/const_ov94_02245FD4.h"
@@ -54,6 +54,8 @@
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_022414B8.h"
 #include "overlay094/ov94_02244950.h"
+
+#include "constants/species.h"
 
 typedef struct {
     int unk_00;
@@ -1086,11 +1088,11 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
     u16 * v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        sub_02077ACC((Pokemon *)(param1->unk_114), 0);
+        SetShayminForm((Pokemon *)(param1->unk_114), SHAYMIN_FORM_LAND);
 
         MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, sub_02073C70());
     } else {
-        sub_02077ADC(param1->unk_114, 0);
+        SetBoxShayminForm(param1->unk_114, 0);
         sub_020774C8(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 

@@ -10,8 +10,8 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "struct_defs/struct_02041DC8.h"
@@ -331,7 +331,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     UnkStruct_02023790 * v2;
     UnkStruct_02023790 * v3;
     int v4;
-    Pokemon * v5;
+    Pokemon *v5;
     BoxPokemon *v6;
     UnkStruct_0200B144 * v7;
     int v8, v9;

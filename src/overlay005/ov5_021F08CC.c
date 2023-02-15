@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -120,7 +120,7 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
 
             if (v2 == 1) {
                 {
-                    Pokemon * v3 = Party_GetPokemonBySlotIndex(v1->unk_10->unk_04[1], 0);
+                    Pokemon *v3 = Party_GetPokemonBySlotIndex(v1->unk_10->unk_04[1], 0);
                     sub_0206D340(v0, 1, v1->unk_04, v3);
                 }
 

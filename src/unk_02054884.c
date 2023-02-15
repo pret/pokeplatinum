@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -15,7 +15,7 @@
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
 
-BOOL sub_02054884 (Pokemon * param0)
+BOOL sub_02054884 (Pokemon *param0)
 {
     if (GetMonData(param0, MON_DATA_163, NULL) == 0) {
         return 0;
@@ -31,7 +31,7 @@ BOOL sub_02054884 (Pokemon * param0)
 BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param3, u16 param4, int param5, int param6)
 {
     BOOL v0;
-    Pokemon * v1;
+    Pokemon *v1;
     u32 v2;
     Party * v3;
     UnkStruct_02025E6C * v4;
@@ -63,7 +63,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     BOOL v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1);
     Party * v3 = Party_GetFromSavedata(param1);
-    Pokemon * v4 = sub_02073C74(32);
+    Pokemon *v4 = sub_02073C74(32);
 
     sub_02073C2C(v4);
 
@@ -84,7 +84,7 @@ void sub_02054988 (Party * param0, int param1, int param2, u16 param3)
 int sub_020549A0 (Party * param0, u16 param1)
 {
     int v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
 
     v1 = Party_GetCurrentCount(param0);
 
@@ -95,7 +95,7 @@ int sub_020549A0 (Party * param0, u16 param1)
             continue;
         }
 
-        if ((GetMonData(v2, MON_DATA_54, NULL) == param1) || (GetMonData(v2, MON_DATA_55, NULL) == param1) || (GetMonData(v2, MON_DATA_56, NULL) == param1) || (GetMonData(v2, MON_DATA_57, NULL) == param1)) {
+        if ((GetMonData(v2, MON_DATA_MOVE1, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE2, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE3, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE4, NULL) == param1)) {
             return v0;
             break;
         }
@@ -107,7 +107,7 @@ int sub_020549A0 (Party * param0, u16 param1)
 int sub_02054A10 (const Party * param0)
 {
     int v0, v1, v2;
-    Pokemon * v3;
+    Pokemon *v3;
 
     v1 = Party_GetCurrentCount(param0);
     v2 = 0;
@@ -123,10 +123,10 @@ int sub_02054A10 (const Party * param0)
     return v2;
 }
 
-Pokemon * sub_02054A40 (const Party * param0)
+Pokemon *sub_02054A40 (const Party * param0)
 {
     int v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
 
     v1 = Party_GetCurrentCount(param0);
 
@@ -142,10 +142,10 @@ Pokemon * sub_02054A40 (const Party * param0)
     return NULL;
 }
 
-Pokemon * sub_02054A74 (const Party * param0)
+Pokemon *sub_02054A74 (const Party * param0)
 {
     u16 v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
 
     v1 = Party_GetCurrentCount(param0);
 
@@ -173,7 +173,7 @@ void sub_02054AC4 (Party * param0)
 {
     int v0, v1;
     u8 v2 = 1;
-    Pokemon * v3;
+    Pokemon *v3;
 
     v1 = Party_GetCurrentCount(param0);
 
@@ -191,7 +191,7 @@ int sub_02054B04 (Party * param0, u16 param1)
     int v0 = 0;
     int v1 = 0;
     int v2, v3;
-    Pokemon * v4;
+    Pokemon *v4;
 
     v3 = Party_GetCurrentCount(param0);
 
@@ -227,7 +227,7 @@ int sub_02054B04 (Party * param0, u16 param1)
     }
 }
 
-BOOL sub_02054B94 (Pokemon * param0)
+BOOL sub_02054B94 (Pokemon *param0)
 {
     if ((GetMonData(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (GetMonData(param0, MON_DATA_163, NULL) == 1)) {
         u32 v0 = 0;

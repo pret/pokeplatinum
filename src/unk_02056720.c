@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_020244AC.h"
@@ -304,7 +304,7 @@ void sub_02056A48 (UnkStruct_02056B24 * param0, const BoxPokemon *boxMon)
 
     param0->unk_B8[v0].unk_00 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
     param0->unk_B8[v0].unk_02 = sub_02079E44(boxMon);
-    param0->unk_B8[v0].unk_04 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_112, NULL);
+    param0->unk_B8[v0].unk_04 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_FORM, NULL);
 }
 
 int sub_02056AAC (const UnkStruct_02056B24 * param0)

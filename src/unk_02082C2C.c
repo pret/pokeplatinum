@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207F248.h"
@@ -73,7 +73,7 @@ void sub_02082C2C (UnkStruct_0207F248 * param0)
 
 void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param3, NARC * param4)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_ov7_0224F358 v1;
     u32 v2;
 
@@ -104,7 +104,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
 
 void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     NARC * v1;
     int v2, v3;
     u32 v4;
@@ -114,7 +114,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
     v2 = GetMonData(v0, MON_DATA_SPECIES, NULL);
-    v3 = GetMonData(v0, MON_DATA_112, NULL);
+    v3 = GetMonData(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(19, 12);
     v4 = NNS_G2dGetImageLocation(sub_02021F98(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = sub_0200723C(v1, sub_02079D80(v0), 0, 12, 1);

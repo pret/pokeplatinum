@@ -20,7 +20,7 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay065/struct_ov65_0222EBE0_decl.h"
 
@@ -661,7 +661,7 @@ static int ov65_0222DED4 (int param0)
 static int ov65_0222DF88 (UnkStruct_ov65_0222EBE0 * param0)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_160);
-    Pokemon * v1;
+    Pokemon *v1;
     int v2 = Party_GetCurrentCount(v0);
     int v3, v4 = 0;
 
@@ -1818,7 +1818,7 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     v4 = Party_GetCurrentCount(v2);
 
     for (v5 = 0; v5 < v4; v5++) {
-        Pokemon * v6 = Party_GetPokemonBySlotIndex(v2, v5);
+        Pokemon *v6 = Party_GetPokemonBySlotIndex(v2, v5);
 
         param0->unk_04->unk_00.unk_00[v5] = GetMonData(v6, MON_DATA_SPECIES, NULL);
         param0->unk_04->unk_00.unk_0C[v5] = GetMonData(v6, MON_DATA_HELD_ITEM, NULL);

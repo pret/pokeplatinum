@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -22,6 +22,8 @@
 #include "unk_02073C2C.h"
 #include "party.h"
 #include "overlay004/ov4_021D0D80.h"
+
+#include "constants/species.h"
 
 typedef struct {
     UnkStruct_02061AB4 * unk_00;
@@ -243,7 +245,7 @@ u16 sub_0205E0E4 (u16 param0, u16 param1)
 
 u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1, v2;
 
     v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));
@@ -259,34 +261,33 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     return 0;
 }
 
-BOOL sub_0205E1F8 (UnkStruct_021C0794 * param0)
+BOOL HasAllLegendaryTitansInParty(UnkStruct_021C0794 * param0)
 {
-    int v0, v1, v2, v3 = 0;
-    Party * v4;
-    static const u16 v5[] = {377, 378, 379};
-    u16 v6[6];
+    int i, j, partyCount, titansInParty = 0;
+    Party *party;
+    static const u16 titans[] = {SPECIES_REGIROCK, SPECIES_REGICE, SPECIES_REGISTEEL};
+    u16 partySpecies[PARTY_SIZE];
 
-    v4 = Party_GetFromSavedata(param0);
-    v2 = Party_GetCurrentCount(v4);
+    party = Party_GetFromSavedata(param0);
+    partyCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = GetMonData(Party_GetPokemonBySlotIndex(v4, v0), 5, NULL);
+    for (i = 0; i < partyCount; i++) {
+        partySpecies[i] = GetMonData(Party_GetPokemonBySlotIndex(party, i), MON_DATA_SPECIES, NULL);
     }
 
-    for (v0 = 0; v0 < 3; v0++) {
-        for (v1 = 0; v1 < v2; v1++) {
-            if (v6[v1] == v5[v0]) {
-                ++v3;
+    for (i = 0; i < (int)NELEMS(titans); i++) { // Needs the cast to match, as NELEMS returns `size_t`, which is u32.
+        for (j = 0; j < partyCount; j++) {
+            if (partySpecies[j] == titans[i]) {
+                ++titansInParty;
                 break;
             }
         }
     }
 
-    if (v3 == 3) {
-        return 1;
-    }
+    if (titansInParty == NELEMS(titans))
+        return TRUE;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL sub_0205E268 (UnkStruct_020508D4 * param0)

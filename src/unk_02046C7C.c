@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "struct_defs/struct_0203E724_t.h"
@@ -97,7 +97,7 @@ static BOOL sub_02046CE0 (UnkStruct_0203E724 * param0)
 BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02023790 * v0;
-    Pokemon * v1;
+    Pokemon *v1;
     void ** v2 = sub_0203F098(param0->unk_34, 20);
     UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 v4 = inline_02049538(param0);
@@ -132,7 +132,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
 
 BOOL sub_02046E14 (UnkStruct_0203E724 * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     void ** v1 = sub_0203F098(param0->unk_34, 20);
     u16 v2 = inline_02049538(param0);
     u32 v3 = sub_0203A138(param0->unk_34->unk_1C->unk_00);

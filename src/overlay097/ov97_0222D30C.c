@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -401,7 +401,7 @@ static BOOL ov97_0222D5C8 (UnkStruct_0202DF40 * param0)
     case 1:
     case 2:
     {
-        Pokemon * v0;
+        Pokemon *v0;
         int v1;
 
         v0 = (Pokemon *)&param0->unk_04.val1.unk_04;

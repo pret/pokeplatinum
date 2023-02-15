@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV79_021D38D0_H
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 typedef struct {
-    Pokemon * unk_00;
+    Pokemon *unk_00;
     u16 unk_04;
     u8 unk_06;
     u8 unk_07;

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_decls/struct_0202CA88_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_02097F18.h"
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223BBAC.h"
@@ -37,7 +37,7 @@ typedef struct {
     int unk_3E0;
     UnkStruct_ov76_0223BBAC unk_3E4;
     UnkStruct_ov76_0223DD88_sub3 unk_418;
-    Pokemon * unk_428;
+    Pokemon *unk_428;
     NARC * unk_42C;
 } UnkStruct_ov76_0223DE00;
 

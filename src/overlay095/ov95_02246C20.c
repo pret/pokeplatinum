@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
@@ -178,9 +178,9 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             sub_0200964C(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
             v0->unk_1B0 = sub_02074570((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
-            v0->unk_1B2 = sub_02074570((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_112, NULL);
+            v0->unk_1B2 = sub_02074570((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
             v0->unk_1B4 = sub_02074570((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_SPECIES, NULL);
-            v0->unk_1B6 = sub_02074570((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_112, NULL);
+            v0->unk_1B6 = sub_02074570((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
             sub_02017798(NULL, NULL);
@@ -204,7 +204,7 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
 static BOOL ov95_02246DEC (BoxPokemon *boxMon)
 {
     int v0 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
-    int v1 = sub_02074570(boxMon, MON_DATA_112, NULL);
+    int v1 = sub_02074570(boxMon, MON_DATA_FORM, NULL);
 
     return sub_020759CC(v0, v1, 28) == 0;
 }

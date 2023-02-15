@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02075454_3.h"
 #include "struct_defs/struct_02075454.h"
 
-typedef struct BoxPokemon_t {
+typedef struct {
     u32 personality;
     u16 unk_04_0 : 1;
     u16 unk_04_1 : 1;

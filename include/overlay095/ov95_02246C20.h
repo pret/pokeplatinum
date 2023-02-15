@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"

@@ -19,8 +19,8 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/struct_02098D38.h"
 #include "overlay006/struct_ov6_02246254.h"
@@ -140,7 +140,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     NNSG2dCharacterData * unk_10F8;
     void * unk_10FC;
     NNSG2dPaletteData * unk_1100;
-    Pokemon * unk_1104;
+    Pokemon *unk_1104;
     UnkStruct_ov94_0223FD4C_sub2 * unk_1108;
     u16 unk_110C;
     u16 unk_110E;

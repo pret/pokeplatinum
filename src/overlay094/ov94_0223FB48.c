@@ -8,8 +8,8 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -745,7 +745,7 @@ static int ov94_02240688 (UnkStruct_ov94_0223FD4C * param0)
             int v1 = 0;
 
             if (ov94_022411D0(param0->unk_110)) {
-                Pokemon * v2;
+                Pokemon *v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
@@ -837,7 +837,7 @@ static int ov94_022408E8 (UnkStruct_ov94_0223FD4C * param0)
             int v1 = 0;
 
             if (ov94_022411D0(param0->unk_110)) {
-                Pokemon * v2;
+                Pokemon *v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
@@ -937,7 +937,7 @@ static int ov94_02240B70 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02240BB0 (UnkStruct_ov94_0223FD4C * param0)
 {
-    Pokemon * v0;
+    Pokemon *v0;
 
     v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
 
@@ -1099,7 +1099,7 @@ static void ov94_02240EAC (BoxPokemon *boxMon, UnkStruct_02022550 * param1, UnkS
     v0 = sub_02074570(boxMon, MON_DATA_172, NULL);
     *param3 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
 
-    v3 = sub_02074570(boxMon, MON_DATA_112, NULL);
+    v3 = sub_02074570(boxMon, MON_DATA_FORM, NULL);
     v2 = sub_02074570(boxMon, MON_DATA_IS_EGG, NULL);
     v1 = sub_02074570(boxMon, MON_DATA_HELD_ITEM, NULL);
 
@@ -1138,7 +1138,7 @@ static void ov94_02240EAC (BoxPokemon *boxMon, UnkStruct_02022550 * param1, UnkS
 static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
     u16 v0[30], v1, v2;
-    Pokemon * v3;
+    Pokemon *v3;
     BoxPokemon *v4;
     UnkStruct_020797DC * v5 = param0->unk_00->unk_0C;
     NARC * v6;
@@ -1279,7 +1279,7 @@ static int ov94_02241278 (BoxPokemon *boxMon)
 
     {
         v1 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
-        v2 = sub_02074570(boxMon, MON_DATA_112, NULL);
+        v2 = sub_02074570(boxMon, MON_DATA_FORM, NULL);
     }
 
     sub_02073D48(boxMon, v0);
@@ -1415,7 +1415,7 @@ static void ov94_02241464 (UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_0202
     }
 }
 
-BOOL ov94_02241498 (Pokemon * param0)
+BOOL ov94_02241498 (Pokemon *param0)
 {
     int v0 = GetMonData(param0, MON_DATA_HELD_ITEM, NULL);
 

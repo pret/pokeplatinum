@@ -3,8 +3,8 @@
 #include <dwc.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -26,7 +26,7 @@
 FS_EXTERN_OVERLAY(overlay95);
 
 static UnkStruct_02025E6C * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
-static Pokemon * ov94_022448AC(UnkStruct_ov94_0223FD4C * param0, int param1);
+static Pokemon *ov94_022448AC(UnkStruct_ov94_0223FD4C * param0, int param1);
 static void ov94_022448E8(UnkStruct_ov94_0223FD4C * param0);
 
 static const UnkStruct_0208BE5C Unk_ov94_0224636C = {
@@ -94,7 +94,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
             sub_02006814(param0->unk_B4);
 
             if (param0->unk_24 == 9) {
-                Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);
+                Pokemon *v1 = ov94_022448AC(param0, param0->unk_24);
                 int v2 = GetMonData(v1, MON_DATA_HELD_ITEM, NULL);
                 int v3;
                 int v4;
@@ -109,8 +109,8 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                     v0 = 4;
                 }
             } else if ((param0->unk_24 == 8) || (param0->unk_24 == 10)) {
-                Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);
-                Pokemon * v5 = sub_02073C74(62);
+                Pokemon *v1 = ov94_022448AC(param0, param0->unk_24);
+                Pokemon *v5 = sub_02073C74(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v5);
 
@@ -175,7 +175,7 @@ static UnkStruct_02025E6C * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
     return v0;
 }
 
-static Pokemon * ov94_022448AC (UnkStruct_ov94_0223FD4C * param0, int param1)
+static Pokemon *ov94_022448AC (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
     if (param1 == 9) {
         return (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
@@ -191,7 +191,7 @@ static Pokemon * ov94_022448AC (UnkStruct_ov94_0223FD4C * param0, int param1)
 
 static void ov94_022448E8 (UnkStruct_ov94_0223FD4C * param0)
 {
-    Pokemon * v0 = ov94_022448AC(param0, param0->unk_24);
+    Pokemon *v0 = ov94_022448AC(param0, param0->unk_24);
 
     if (param0->unk_124.unk_00 == 18) {
         sub_020775EC(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_124.unk_04));

@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_OV17_0224E1F4_H
 
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay017/struct_ov17_0224B09C.h"
 
 typedef struct {
-    Pokemon * unk_00;
+    Pokemon *unk_00;
     UnkStruct_02007C7C * unk_04;
     UnkStruct_ov17_0224B09C * unk_08;
     u8 unk_0C;

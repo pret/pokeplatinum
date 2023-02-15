@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"
@@ -252,7 +252,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
     int v0[18];
     UnkStruct_ov104_0223C4CC * v1;
     UnkStruct_02023790 * v2;
-    Pokemon * v3;
+    Pokemon *v3;
     UnkStruct_ov104_0223ADA0 * v4;
     u8 v5, v6;
     u32 v7, v8, v9;

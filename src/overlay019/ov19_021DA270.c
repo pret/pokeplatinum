@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -134,7 +134,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, s32 pa
 
     v2 = sub_02074570(boxMon, MON_DATA_SPECIES, NULL);
     v3 = sub_02074570(boxMon, MON_DATA_IS_EGG, NULL);
-    v4 = sub_02074570(boxMon, MON_DATA_112, NULL);
+    v4 = sub_02074570(boxMon, MON_DATA_FORM, NULL);
     param7->unk_28 = sub_02079D40((BoxPokemon *)boxMon);
     param7->unk_2C = sub_02079EDC(v2, v4, v3);
     param7->unk_30 = sub_02074570(boxMon, MON_DATA_HELD_ITEM, NULL);
@@ -168,7 +168,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon *boxMon, u32 pa
 
     v2 = sub_02073D20(boxMon);
     v3 = sub_02074570(boxMon, MON_DATA_IS_EGG, NULL);
-    v4 = sub_02074570(boxMon, MON_DATA_112, NULL);
+    v4 = sub_02074570(boxMon, MON_DATA_FORM, NULL);
 
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
 

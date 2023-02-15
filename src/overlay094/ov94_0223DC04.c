@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -73,7 +73,7 @@ static int (* Unk_ov94_0224682C[])(UnkStruct_ov94_0223FD4C * wk) = {
 
 int ov94_0223DC04 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
 
     ov94_0223DFDC(param0);
     ov94_0223DD1C(param0->unk_04);

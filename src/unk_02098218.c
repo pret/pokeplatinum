@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
@@ -120,7 +120,7 @@ static int sub_02098304 (UnkStruct_020067E8 * param0, int * param1)
         {
             int v1;
 
-            v1 = GetMonData(v0->unk_00->unk_0C.unk_00, 5, NULL);
+            v1 = GetMonData(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
 
             sub_02078A4C(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
@@ -217,7 +217,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
 
         {
-            Pokemon * v2 = v0->unk_0C.unk_00;
+            Pokemon *v2 = v0->unk_0C.unk_00;
             UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(v1));
             int v4 = 6;
             int v5 = sub_0203A138(v1->unk_1C->unk_00);
@@ -245,11 +245,11 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         UnkStruct_0203CDB0 * v8 = sub_02050A60(param0);
         int v9;
 
-        v9 = GetMonData(v0->unk_0C.unk_00, 5, 0);
+        v9 = GetMonData(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
         v0->unk_08 = sub_0208712C(11, 1, v9, 10, sub_02025E44(sub_0203D174(v8)));
-        v0->unk_08->unk_10 = GetMonData(v0->unk_0C.unk_00, 111, NULL);
-        v0->unk_08->unk_08 = GetMonData(v0->unk_0C.unk_00, 112, NULL);
+        v0->unk_08->unk_10 = GetMonData(v0->unk_0C.unk_00, MON_DATA_111, NULL);
+        v0->unk_08->unk_08 = GetMonData(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         sub_02050A38(param0, &Unk_020F2DAC, v0->unk_08);
         v0->unk_00++;
     }

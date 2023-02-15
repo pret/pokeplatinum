@@ -4,12 +4,12 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0202DFA8.h"
 #include "struct_defs/struct_0202E1F4.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay087/struct_ov87_021D1640.h"
 
 #include "unk_02023790.h"
@@ -32,7 +32,7 @@ void sub_0202DF94 (UnkStruct_0202DF8C * param0)
 void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCDate * param2)
 {
     UnkStruct_0202DFA8 * v0;
-    Pokemon * v1;
+    Pokemon *mon;
     UnkStruct_02023790 * v2;
     int v3, v4, v5;
     BOOL v6;
@@ -51,25 +51,25 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
     MI_CpuClear16(v0->unk_00, sizeof(UnkStruct_0202E1F4) * 6);
 
     for (v4 = 0, v5 = 0; v4 < v3; v4++) {
-        v1 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6 = sub_02073C88(v1);
+        mon = Party_GetPokemonBySlotIndex(param1, v4);
+        v6 = sub_02073C88(mon);
 
-        if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-            v0->unk_00[v5].unk_00 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-            v0->unk_00[v5].unk_02 = GetMonData(v1, MON_DATA_161, NULL);
-            v0->unk_00[v5].unk_03 = GetMonData(v1, MON_DATA_112, NULL);
-            v0->unk_00[v5].unk_04 = GetMonData(v1, MON_DATA_PERSONALITY, NULL);
-            v0->unk_00[v5].unk_08 = GetMonData(v1, MON_DATA_OT_ID, NULL);
-            v0->unk_00[v5].unk_32[0] = GetMonData(v1, MON_DATA_54, NULL);
-            v0->unk_00[v5].unk_32[1] = GetMonData(v1, MON_DATA_55, NULL);
-            v0->unk_00[v5].unk_32[2] = GetMonData(v1, MON_DATA_56, NULL);
-            v0->unk_00[v5].unk_32[3] = GetMonData(v1, MON_DATA_57, NULL);
+        if (GetMonData(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            v0->unk_00[v5].unk_00 = GetMonData(mon, MON_DATA_SPECIES, NULL);
+            v0->unk_00[v5].unk_02 = GetMonData(mon, MON_DATA_161, NULL);
+            v0->unk_00[v5].unk_03 = GetMonData(mon, MON_DATA_FORM, NULL);
+            v0->unk_00[v5].unk_04 = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+            v0->unk_00[v5].unk_08 = GetMonData(mon, MON_DATA_OT_ID, NULL);
+            v0->unk_00[v5].unk_32[0] = GetMonData(mon, MON_DATA_MOVE1, NULL);
+            v0->unk_00[v5].unk_32[1] = GetMonData(mon, MON_DATA_MOVE2, NULL);
+            v0->unk_00[v5].unk_32[2] = GetMonData(mon, MON_DATA_MOVE3, NULL);
+            v0->unk_00[v5].unk_32[3] = GetMonData(mon, MON_DATA_MOVE4, NULL);
 
             if (v2) {
-                GetMonData(v1, MON_DATA_119, v2);
+                GetMonData(mon, MON_DATA_119, v2);
                 sub_02023DF0(v2, v0->unk_00[v5].unk_0C, 11);
 
-                GetMonData(v1, MON_DATA_145, v2);
+                GetMonData(mon, MON_DATA_145, v2);
                 sub_02023DF0(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;
@@ -79,7 +79,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
             v5++;
         }
 
-        sub_02073CD4(v1, v6);
+        sub_02073CD4(mon, v6);
     }
 
     v0->unk_168 = param2->year;

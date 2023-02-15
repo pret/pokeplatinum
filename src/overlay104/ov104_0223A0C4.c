@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -908,7 +908,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     UnkStruct_ov6_02240D5C * v3;
     UnkStruct_021C0794 * v4;
     Party * v5;
-    Pokemon * v6;
+    Pokemon *v6;
 
     v3 = sub_02051D8C(param0->unk_04, ov104_0223A700(param0->unk_0F));
     v4 = param1->unk_08;
@@ -963,7 +963,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
 static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4)
 {
     int v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
 
     ov104_0222E284(param0, &param1->unk_00, param2, param3, param4);
     v2 = sub_02073C74(param4);

@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -1071,7 +1071,7 @@ void ov104_02232C80 (UnkStruct_ov63_0222CCB8 * param0, UnkStruct_ov63_0222BEC0 *
     }
 }
 
-void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
     UnkStruct_0200C6E4 * v0 = param0->unk_34.unk_00;
     UnkStruct_0200C704 * v1 = param0->unk_34.unk_04;
@@ -1204,7 +1204,7 @@ void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
     sub_0200D080(param0->unk_34.unk_04, 2000);
 }
 
-UnkStruct_0200D0F4 * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
+UnkStruct_0200D0F4 * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon *param1, int param2, int param3, int param4)
 {
     UnkStruct_0200D0F4 * v0;
     UnkStruct_ov104_0223F9E0 v1;

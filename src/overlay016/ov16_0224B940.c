@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay014/struct_ov14_0221FC20_decl.h"
@@ -3785,7 +3785,7 @@ static BOOL ov16_0225079C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     int v7 = 0;
                     int v8 = 0;
                     Party * v9;
-                    Pokemon * v10;
+                    Pokemon *v10;
                     UnkStruct_ov16_0225BFFC * v11;
 
                     v9 = ov16_0223DF20(param0, v1);
@@ -3821,7 +3821,7 @@ static BOOL ov16_0225079C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     int v12;
                     int v13 = 0;
                     Party * v14;
-                    Pokemon * v15;
+                    Pokemon *v15;
                     UnkStruct_ov16_0225BFFC * v16;
 
                     v14 = ov16_0223DF20(param0, v1);
@@ -3886,7 +3886,7 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                         int v4;
                         int v5 = 0;
                         Party * v6;
-                        Pokemon * v7;
+                        Pokemon *v7;
                         UnkStruct_ov16_0225BFFC * v8;
 
                         v6 = ov16_0223DF20(param0, v0);
@@ -3913,7 +3913,7 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     int v10 = 0;
                     Party * v11;
                     Party * v12;
-                    Pokemon * v13;
+                    Pokemon *v13;
                     UnkStruct_ov16_0225BFFC * v14;
 
                     v11 = ov16_0223DF20(param0, v0);
@@ -3951,7 +3951,7 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     int v15;
                     int v16 = 0;
                     Party * v17;
-                    Pokemon * v18;
+                    Pokemon *v18;
                     UnkStruct_ov16_0225BFFC * v19;
 
                     v17 = ov16_0223DF20(param0, v0);

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -41,8 +41,8 @@ u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 * param0);
 BOOL ov104_0223BA14(u8 param0);
 void ov104_0223BA24(Party * param0);
 void ov104_0223BAB8(UnkStruct_ov104_0223BA10 * param0);
-void ov104_0223BA7C(UnkStruct_ov104_0223BA10 * param0, Pokemon * param1);
-void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, Party * param1, Pokemon * param2);
+void ov104_0223BA7C(UnkStruct_ov104_0223BA10 * param0, Pokemon *param1);
+void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, Party * param1, Pokemon *param2);
 static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BC24(u16 param0);
@@ -164,7 +164,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
     u32 v1;
     u8 v2, v3, v4;
     UnkStruct_ov6_02240D5C * v5;
-    Pokemon * v6;
+    Pokemon *v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
     UnkStruct_0200B144 * v9;
@@ -283,7 +283,7 @@ void ov104_0223BA24 (Party * param0)
 {
     int v0, v1, v2;
     u32 v3;
-    Pokemon * v4;
+    Pokemon *v4;
 
     v2 = Party_GetCurrentCount(param0);
 
@@ -306,13 +306,13 @@ void ov104_0223BA24 (Party * param0)
     return;
 }
 
-void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, Pokemon * param1)
+void ov104_0223BA7C (UnkStruct_ov104_0223BA10 * param0, Pokemon *param1)
 {
     sub_02077EE4(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 
-void ov104_0223BAA0 (UnkStruct_ov104_0223BA10 * param0, Party * param1, Pokemon * param2)
+void ov104_0223BAA0 (UnkStruct_ov104_0223BA10 * param0, Party * param1, Pokemon *param2)
 {
     ov104_0223BA7C(param0, param2);
     Party_AddPokemon(param1, param2);
@@ -323,7 +323,7 @@ void ov104_0223BAB8 (UnkStruct_ov104_0223BA10 * param0)
 {
     int v0, v1;
     u8 v2;
-    Pokemon * v3;
+    Pokemon *v3;
 
     sub_0207A008(param0->unk_2C);
 

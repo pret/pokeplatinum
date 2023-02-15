@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -553,7 +553,7 @@ const u8 Unk_020F0780[] = {
 };
 
 
-u32 sub_02079D40 (const BoxPokemon *boxMon)
+u32 sub_02079D40(const BoxPokemon *boxMon)
 {
     u32 v0;
     u32 v1;
@@ -571,66 +571,48 @@ u32 sub_02079D40 (const BoxPokemon *boxMon)
     return v1;
 }
 
-u32 sub_02079D80 (Pokemon * param0)
+u32 sub_02079D80(Pokemon *mon)
 {
-    return sub_02079D40((const BoxPokemon *)sub_02076B10(param0));
+    return sub_02079D40((const BoxPokemon *)sub_02076B10(mon));
 }
 
-u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
+u32 sub_02079D8C(u32 species, u32 param1, u32 param2)
 {
     if (param1 == 1) {
-        if (param0 == 490) {
+        if (species == SPECIES_MANAPHY)
             return 502;
-        } else {
+        else
             return 501;
-        }
     }
 
-    param2 = SanitizeFormId(param0, param2);
+    param2 = SanitizeFormId(species, param2);
 
     if (param2 != 0) {
-        if (param0 == 386) {
+        if (species == SPECIES_DEOXYS)
             return 503 + param2 - 1;
-        }
-
-        if (param0 == 201) {
+        if (species == SPECIES_UNOWN)
             return 507 + param2 - 1;
-        }
-
-        if (param0 == 412) {
+        if (species == SPECIES_BURMY)
             return 534 + param2 - 1;
-        }
-
-        if (param0 == 413) {
+        if (species == SPECIES_WORMADAM)
             return 536 + param2 - 1;
-        }
-
-        if (param0 == 422) {
+        if (species == SPECIES_SHELLOS)
             return 538 + param2 - 1;
-        }
-
-        if (param0 == 423) {
+        if (species == SPECIES_GASTRODON)
             return 539 + param2 - 1;
-        }
-
-        if (param0 == 487) {
+        if (species == SPECIES_GIRATINA)
             return 540 + param2 - 1;
-        }
-
-        if (param0 == 492) {
+        if (species == SPECIES_SHAYMIN)
             return 541 + param2 - 1;
-        }
-
-        if (param0 == 479) {
+        if (species == SPECIES_ROTOM)
             return 542 + param2 - 1;
-        }
     }
 
-    if (param0 > 493) {
-        param0 = 0;
+    if (species > NATIONAL_DEX_COUNT) {
+        species = 0;
     }
 
-    return 7 + param0;
+    return 7 + species;
 }
 
 u16 sub_02079E44 (const BoxPokemon *boxMon)
@@ -650,7 +632,7 @@ u16 sub_02079E44 (const BoxPokemon *boxMon)
     case SPECIES_GIRATINA:
     case SPECIES_SHAYMIN:
     case SPECIES_ROTOM:
-        return sub_02074570((BoxPokemon *)boxMon, MON_DATA_112, NULL);
+        return sub_02074570((BoxPokemon *)boxMon, MON_DATA_FORM, NULL);
     default:
         return 0;
     }
@@ -658,61 +640,59 @@ u16 sub_02079E44 (const BoxPokemon *boxMon)
     return 0;
 }
 
-const u8 sub_02079EDC (u32 param0, u32 param1, u32 param2)
+const u8 sub_02079EDC(u32 species, u32 formId, u32 isEgg)
 {
-    if (param2 == 1) {
-        if (param0 == 490) {
-            param0 = 495;
-        } else {
-            param0 = 494;
-        }
-    } else if (param0 > 493) {
-        param0 = 0;
-    } else if (param1 != 0) {
-        if (param0 == 386) {
-            param0 = 496 + param1 - 1;
-        } else if (param0 == 201) {
-            param0 = 499 + param1 - 1;
-        } else if (param0 == 412) {
-            param0 = 527 + param1 - 1;
-        } else if (param0 == 413) {
-            param0 = 529 + param1 - 1;
-        } else if (param0 == 422) {
-            param0 = 531 + param1 - 1;
-        } else if (param0 == 423) {
-            param0 = 532 + param1 - 1;
-        } else if (param0 == 487) {
-            param0 = 533 + param1 - 1;
-        } else if (param0 == 492) {
-            param0 = 534 + param1 - 1;
-        } else if (param0 == 479) {
-            param0 = 535 + param1 - 1;
-        }
+    if (isEgg == TRUE) {
+        if (species == SPECIES_MANAPHY)
+            species = SPECIES_EGG_MANAPHY;
+        else
+            species = SPECIES_EGG;
+    } else if (species > SPECIES_ARCEUS)
+        species = SPECIES_NONE;
+    else if (formId != 0) {
+        if (species == SPECIES_DEOXYS)
+            species = SPECIES_DEOXYS_ATTACK + formId - 1;
+        else if (species == SPECIES_UNOWN)
+            species = SPECIES_UNOWN_B + formId - 1;
+        else if (species == SPECIES_BURMY)
+            species = 495 + 5 + 27 + formId - 1;
+        else if (species == SPECIES_WORMADAM)
+            species = 495 + 5 + 29 + formId - 1;
+        else if (species == SPECIES_SHELLOS)
+            species = 495 + 5 + 31 + formId - 1;
+        else if (species == SPECIES_GASTRODON)
+            species = 495 + 5 + 32 + formId - 1;
+        else if (species == SPECIES_GIRATINA)
+            species = 495 + 5 + 33 + formId - 1;
+        else if (species == SPECIES_SHAYMIN)
+            species = 495 + 5 + 34 + formId - 1;
+        else if (species == SPECIES_ROTOM)
+            species = 495 + 5 + 35 + formId - 1;
     }
 
-    return Unk_020F0780[param0];
+    return Unk_020F0780[species];
 }
 
 const u8 sub_02079F84 (const BoxPokemon *boxMon)
 {
     BOOL v0;
-    u32 v1;
+    u32 species;
     u32 v2;
-    u32 v3;
+    u32 isEgg;
 
     v0 = sub_02073D20((BoxPokemon *)boxMon);
     v2 = sub_02079E44(boxMon);
-    v1 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
-    v3 = sub_02074570((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
+    species = sub_02074570((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
+    isEgg = sub_02074570((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
 
     sub_02073D48((BoxPokemon *)boxMon, v0);
 
-    return sub_02079EDC(v1, v2, v3);
+    return sub_02079EDC(species, v2, isEgg);
 }
 
-const u8 sub_02079FC4 (Pokemon * param0)
+const u8 sub_02079FC4 (Pokemon *mon)
 {
-    return sub_02079F84((const BoxPokemon *)sub_02076B10(param0));
+    return sub_02079F84((const BoxPokemon *)sub_02076B10(mon));
 }
 
 u32 sub_02079FD0 (void)

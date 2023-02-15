@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "overlay076/const_ov76_0223EF3C.h"
 
@@ -569,7 +569,7 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
     int v2;
     int v3;
     int v4;
-    Pokemon * v5;
+    Pokemon *v5;
     UnkStruct_ov104_0223F9E0 v6;
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
@@ -597,7 +597,7 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
 
         v2 = GetMonData(v5, MON_DATA_SPECIES, NULL);
         v1 = GetMonData(v5, MON_DATA_IS_EGG, NULL);
-        v4 = GetMonData(v5, MON_DATA_112, NULL);
+        v4 = GetMonData(v5, MON_DATA_FORM, NULL);
         v3 = sub_02079EDC(v2, v4, v1);
 
         sub_02021F24(param0->unk_2FC[v0]->unk_00, v3);

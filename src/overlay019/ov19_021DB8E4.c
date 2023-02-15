@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -255,7 +255,7 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
 
             if (v5) {
                 if (sub_02074570(v1, MON_DATA_IS_EGG, NULL) == 0) {
-                    u16 v9 = sub_02074570(v1, MON_DATA_112, NULL);
+                    u16 v9 = sub_02074570(v1, MON_DATA_FORM, NULL);
 
                     v6 = sub_020759CC(v5, v9, 27);
                 } else {

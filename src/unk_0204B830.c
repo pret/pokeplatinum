@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
@@ -44,6 +44,8 @@
 #include "unk_0207D3B8.h"
 #include "unk_020923C0.h"
 #include "unk_02092494.h"
+
+#include "constants/species.h"
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
@@ -191,9 +193,9 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     Party * v3;
-    Pokemon * v4;
+    Pokemon *v4;
     BOOL v5;
-    Pokemon * v6 = NULL;
+    Pokemon *v6 = NULL;
     u32 v7, v8, v9, v10;
     u32 v11;
     int v12;
@@ -306,8 +308,8 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
 
-    if (GetMonData(v4, MON_DATA_SPECIES, NULL) == 493) {
-        if (GetMonData(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
+    if (GetMonData(v4, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (GetMonData(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == TRUE) {
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);
             }
@@ -331,7 +333,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    Pokemon * v1;
+    Pokemon *v1;
 
     *param1 = 379;
     *param2 = 7;
@@ -356,7 +358,7 @@ static void sub_0204BE3C (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    Pokemon * v1;
+    Pokemon *v1;
 
     *param1 = 379;
     *param2 = 8;

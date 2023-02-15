@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "heap.h"
@@ -463,15 +463,15 @@ static BOOL sub_020268D8 (const UnkStruct_02026324 * param0, u32 param1)
     return 0;
 }
 
-static void sub_020268FC (UnkStruct_02026324 * param0, u16 param1, Pokemon * param2)
+static void sub_020268FC(UnkStruct_02026324 *param0, u16 species, Pokemon *mon)
 {
-    u8 v0 = GetMonData(param2, MON_DATA_112, NULL);
+    u8 form = GetMonData(mon, MON_DATA_FORM, NULL);
     u32 v1;
 
-    if (param1 == 386) {
-        if (sub_020268D8(param0, v0) == 0) {
+    if (species == SPECIES_DEOXYS) {
+        if (sub_020268D8(param0, form) == 0) {
             v1 = sub_020268B8(param0);
-            sub_02026850(param0, v0, v1);
+            sub_02026850(param0, form, v1);
         }
     }
 }
@@ -566,7 +566,7 @@ static void sub_02026A00 (UnkStruct_02026324 * param0, u32 param1, int param2)
     }
 }
 
-static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon * param2)
+static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon *param2)
 {
     int v0;
 
@@ -576,34 +576,34 @@ static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon * par
         sub_0202643C(param0, v0);
         break;
     case 412:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
     case 413:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
     case 422:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 423:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case SPECIES_DEOXYS:
         sub_020268FC(param0, param1, param2);
         break;
     case 492:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 487:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 479:
-        v0 = GetMonData(param2, MON_DATA_112, NULL);
+        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
         sub_02026A00(param0, param1, v0);
         break;
     default:
@@ -1068,7 +1068,7 @@ u32 sub_02027288 (const UnkStruct_02026324 * param0)
     return sub_020268B8(param0);
 }
 
-void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
+void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon *param1)
 {
     u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
@@ -1096,7 +1096,7 @@ void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
     inline_0202736C(param0, v0);
 }
 
-void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
+void sub_0202736C (UnkStruct_02026324 * param0, Pokemon *param1)
 {
     u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = GetMonData(param1, MON_DATA_LANGUAGE, NULL);

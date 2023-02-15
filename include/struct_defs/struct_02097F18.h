@@ -3,13 +3,13 @@
 
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 typedef struct {
     int unk_00;
-    Pokemon * unk_04[6];
+    Pokemon *unk_04[6];
     Party * unk_1C;
     UnkStruct_0202CA1C * unk_20;
     UnkStruct_020279FC * unk_24;

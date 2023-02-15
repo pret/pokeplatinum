@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020564B4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay006/struct_ov6_02240D5C.h"
@@ -137,7 +137,7 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
     int v0;
     u8 v1[8];
     u16 v2;
-    Pokemon * v3;
+    Pokemon *v3;
     UnkStruct_02024440 * v4;
 
     v4 = sub_02024440(param0->unk_0C);
@@ -274,7 +274,7 @@ static void sub_02056624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
 static UnkStruct_ov6_02240D5C * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)
 {
     UnkStruct_ov6_02240D5C * v0;
-    Pokemon * v1 = sub_02073C74(32);
+    Pokemon *v1 = sub_02073C74(32);
     UnkStruct_02024440 * v2 = sub_02024440(param0->unk_0C);
     int v3 = sub_020563BC(param0);
 

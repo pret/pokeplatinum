@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -40,7 +40,7 @@
 #include "unk_02092494.h"
 #include "overlay104/ov104_0222DCE0.h"
 
-void ov104_0222E1C0(UnkStruct_021C0794 * param0, Party * param1, Pokemon * param2);
+void ov104_0222E1C0(UnkStruct_021C0794 * param0, Party * param1, Pokemon *param2);
 void ov104_0222E1D8(UnkStruct_02022550 * param0, u8 param1);
 void ov104_0222E204(UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
@@ -253,7 +253,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     return v2;
 }
 
-void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * param1, u8 param2)
+void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon *param1, u8 param2)
 {
     int v0;
     u32 v1;
@@ -348,9 +348,9 @@ u16 ov104_0222E10C (u8 param0)
     return 0x3;
 }
 
-void ov104_0222E134(UnkStruct_021C0794 * param0, Pokemon * param1);
+void ov104_0222E134(UnkStruct_021C0794 * param0, Pokemon *param1);
 
-void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
+void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon *param1)
 {
     u32 v0;
     UnkStruct_02023790 * v1;
@@ -377,7 +377,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     return;
 }
 
-void ov104_0222E1C0 (UnkStruct_021C0794 * param0, Party * param1, Pokemon * param2)
+void ov104_0222E1C0 (UnkStruct_021C0794 * param0, Party * param1, Pokemon *param2)
 {
     ov104_0222E134(param0, param2);
     Party_AddPokemon(param1, param2);
@@ -445,7 +445,7 @@ void ov104_0222E278 (UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, 
 void ov104_0222E284 (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4)
 {
     UnkStruct_02014A84 * v0;
-    Pokemon * v1;
+    Pokemon *v1;
 
     param0->unk_18[param3] = param1->unk_00;
     param0->unk_28[param3].unk_01 = param1->unk_04;

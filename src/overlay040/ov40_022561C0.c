@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay040/struct_ov40_0225645C_decl.h"
 
@@ -221,7 +221,7 @@ static void ov40_022563D0 (UnkStruct_ov40_0225645C_1 * param0, UnkStruct_0202631
 
         param0->unk_04[v2] = sub_02079D40(v1);
         param0->unk_1C[v2] = sub_02074570(v1, MON_DATA_SPECIES, NULL);
-        param0->unk_20[v2] = sub_02074570(v1, MON_DATA_112, NULL);
+        param0->unk_20[v2] = sub_02074570(v1, MON_DATA_FORM, NULL);
         param0->unk_0C[v2] = ov5_021E6590(v0);
         param0->unk_14[v2] = sub_02075D74(v1);
 

@@ -5,8 +5,8 @@
 #include "struct_decls/struct_02073C74_sub2_decl.h"
 #include "struct_defs/struct_02073C74_sub2_t.h"
 
-typedef struct Pokemon_t {
-    BoxPokemon unk_00;
+typedef struct {
+    BoxPokemon box;
     UnkStruct_02073C74_sub2 unk_08;
 } Pokemon;
 

@@ -29,7 +29,7 @@ void sub_0202EEC8 (UnkStruct_02024440 * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         sub_02073C2C(&param0->unk_00[v0]);
-        GF_ASSERT(GetMonData(&param0->unk_00[v0], 172, NULL) == 0);
+        GF_ASSERT(GetMonData(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
     }
 }
 
@@ -41,7 +41,7 @@ void sub_0202EF04 (UnkStruct_02024440 * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         sub_02073C2C(&param0->unk_00[v0]);
-        GF_ASSERT(GetMonData(&param0->unk_00[v0], 172, NULL) == 0);
+        GF_ASSERT(GetMonData(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
     }
 }
 
@@ -90,7 +90,7 @@ void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
     OS_GetMacAddress(param0->unk_380);
 }
 
-void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, Pokemon * param2)
+void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, Pokemon *param2)
 {
     GF_ASSERT(param1 < 6);
     *param2 = param0->unk_00[param1];
@@ -101,7 +101,7 @@ int sub_0202F028 (const UnkStruct_02024440 * param0)
     int v0, v1;
 
     for (v1 = 0, v0 = 0; v0 < 6; v0++) {
-        if (GetMonData((Pokemon *)&param0->unk_00[v0], 172, NULL)) {
+        if (GetMonData((Pokemon *)&param0->unk_00[v0], MON_DATA_172, NULL)) {
             v1++;
         }
     }

@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -163,7 +163,7 @@ static void sub_0208347C (UnkStruct_0207F248 * param0, int * param1)
 
 static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     int v1;
     int v2 = 17;
     UnkStruct_0203CDB0 * v3;
@@ -305,7 +305,7 @@ static void sub_020837F4 (UnkStruct_0207F248 * param0, int * param1)
 static int sub_0208384C (void * param0)
 {
     UnkStruct_0207F248 * v0 = param0;
-    Pokemon * v1;
+    Pokemon *v1;
 
     v0 = param0;
     v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
@@ -341,7 +341,7 @@ static int sub_020838F4 (void * param0)
     UnkStruct_0207F248 * v0 = param0;
 
     if (sub_0207D570(v0->unk_5A4->unk_04, v0->unk_704[v0->unk_B11].unk_0C, 1, 12) == 1) {
-        Pokemon * v1;
+        Pokemon *v1;
         u32 v2;
 
         v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
@@ -409,7 +409,7 @@ static void sub_020839FC (UnkStruct_0207F248 * param0, int * param1)
 int sub_02083A78 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    Pokemon * v1;
+    Pokemon *v1;
 
     v0 = param0;
     v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
@@ -843,7 +843,7 @@ static void sub_02084760 (UnkStruct_0207F248 * param0, int * param1)
 
 int sub_02084780 (UnkStruct_0207F248 * param0)
 {
-    Pokemon * v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     if (GetMonData(v0, MON_DATA_162, NULL) == 0) {
         sub_0200B1B8(param0->unk_69C, 129, param0->unk_6A4);

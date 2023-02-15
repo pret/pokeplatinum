@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay106/struct_ov106_02243118_decl.h"
@@ -1144,7 +1144,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
     u8 v0;
     u32 v1, v2, v3;
     UnkStruct_02023790 * v4;
-    Pokemon * v5;
+    Pokemon *v5;
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
@@ -1549,7 +1549,7 @@ void ov106_02243130 (int param0, int param1, void * param2, void * param3)
 void ov106_0224313C (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
 {
     int v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
     Party * v3;
 
     v1 = 0;

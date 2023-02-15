@@ -16,7 +16,7 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -2341,7 +2341,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     param0->unk_20.unk_04 = sub_02025F20(v0);
 
     {
-        Pokemon * v6;
+        Pokemon *v6;
         int v7;
         int v8;
 
@@ -2351,7 +2351,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
             if (v8 < v7) {
                 v6 = Party_GetPokemonBySlotIndex(v1, v8);
                 param0->unk_20.unk_20[v8] = GetMonData(v6, MON_DATA_SPECIES, NULL);
-                param0->unk_20.unk_2C[v8] = GetMonData(v6, MON_DATA_112, NULL);
+                param0->unk_20.unk_2C[v8] = GetMonData(v6, MON_DATA_FORM, NULL);
                 param0->unk_20.unk_32[v8] = GetMonData(v6, MON_DATA_IS_EGG, NULL);
             } else {
                 param0->unk_20.unk_20[v8] = 495;

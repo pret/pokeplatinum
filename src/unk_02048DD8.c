@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202E7D8.h"
@@ -131,7 +131,7 @@ BOOL sub_02048F74 (UnkStruct_0203E724 * param0)
 BOOL sub_02048F98 (UnkStruct_0203E724 * param0)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_34->unk_0C);
-    Pokemon * v1 = Party_GetPokemonBySlotIndex(v0, inline_02049538(param0));
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, inline_02049538(param0));
 
     sub_0206D60C(param0->unk_34, v1);
     return 0;
@@ -218,7 +218,7 @@ BOOL sub_0204912C (UnkStruct_0203E724 * param0)
     case 0:
     {
         Party * v1 = Party_GetFromSavedata(param0->unk_34->unk_0C);
-        Pokemon * v2 = Party_GetPokemonBySlotIndex(v1, inline_02049538(param0));
+        Pokemon *v2 = Party_GetPokemonBySlotIndex(v1, inline_02049538(param0));
 
         sub_0206CF48(v0, v2, 4);
     }
@@ -288,7 +288,7 @@ static void sub_0204922C (UnkStruct_0200B358 * param0, int param1, const u16 * p
 static void sub_02049268 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
-    Pokemon * v1 = sub_02054A74(v0);
+    Pokemon *v1 = sub_02054A74(v0);
 
     sub_0200B538(param1, 0, sub_02076B10(v1));
 }

@@ -19,7 +19,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -1528,7 +1528,7 @@ static void ov10_02221188 (UnkStruct_ov10_0221FB28 * param0, u8 param1, s16 para
 
 static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u16 param2, u16 param3)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u8 v1;
     u8 v2, v3, v4;
 
@@ -2029,7 +2029,7 @@ static void ov10_02221C48 (UnkStruct_ov10_0221FB28 * param0, u8 param1)
 
 static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 param2)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     u16 v1;
     u16 v2;
 
@@ -2056,7 +2056,7 @@ static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 
         param0->unk_214[v1 + param2].unk_0C = (u16)GetMonData(v0, MON_DATA_161, NULL);
         param0->unk_214[v1 + param2].unk_0A = (u16)GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
         param0->unk_214[v1 + param2].unk_10 = (u8)GetMonData(v0, MON_DATA_162, NULL);
-        param0->unk_214[v1 + param2].unk_11 = (u8)GetMonData(v0, MON_DATA_112, NULL);
+        param0->unk_214[v1 + param2].unk_11 = (u8)GetMonData(v0, MON_DATA_FORM, NULL);
 
         if (GetMonData(v0, MON_DATA_176, NULL) == 1) {
             param0->unk_214[v1 + param2].unk_0E = 0;
@@ -2259,7 +2259,7 @@ static void ov10_022223E8 (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, UnkStruct_02023790 * param4, u32 param5)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_0205AA50 * v1;
     UnkStruct_02023790 * v2;
 
@@ -2350,7 +2350,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 
 static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, UnkStruct_02023790 * param4, u32 param5)
 {
-    Pokemon * v0;
+    Pokemon *v0;
     UnkStruct_0205AA50 * v1;
     UnkStruct_02023790 * v2;
     u32 v3;

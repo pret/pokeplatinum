@@ -1,7 +1,7 @@
 #include "global.h"
 
 #include "data_021BF67C.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 
 #include "overlay097/struct_ov97_0223685C.h"
 
@@ -13,10 +13,11 @@
 #include "overlay097/ov97_0223635C.h"
 #include "overlay097/ov97_022392E4.h"
 
-#include "constants/gba/species.h"
 #include "constants/items.h"
-#include "constants/gba/pokemon.h"
+#include "constants/moves.h"
 #include "constants/species.h"
+#include "constants/gba/pokemon.h"
+#include "constants/gba/species.h"
 
 typedef struct {
     u8 unk_00[8];
@@ -49,155 +50,159 @@ u8 * ov97_02236378 (void)
     return v0->unk_00;
 }
 
+#define GBA_TO_DS_SPECIES(name) { GBA_##name, name }
+
 struct {
     u16 speciesGBA;
     u16 speciesDS;
-} GBAToDSSpeciesArray[] =
-{
-    { 0x115, SPECIES_TREECKO },
-    { 0x116, SPECIES_GROVYLE },
-    { 0x117, 0xFE },
-    { 0x118, 0xFF },
-    { 0x119, 0x100 },
-    { 0x11A, 0x101 },
-    { 0x11B, 0x102 },
-    { 0x11C, 0x103 },
-    { 0x11D, 0x104 },
-    { 0x11E, 0x105 },
-    { 0x11F, 0x106 },
-    { 0x120, 0x107 },
-    { 0x121, 0x108 },
-    { 0x122, 0x109 },
-    { 0x123, 0x10A },
-    { 0x124, 0x10B },
-    { 0x125, 0x10C },
-    { 0x126, 0x10D },
-    { 0x127, 0x10E },
-    { 0x128, 0x10F },
-    { 0x129, 0x110 },
-    { 0x12A, 0x111 },
-    { 0x12B, 0x112 },
-    { 0x12C, 0x113 },
-    { 0x12D, 0x122 },
-    { 0x12E, 0x123 },
-    { 0x12F, 0x124 },
-    { 0x130, 0x114 },
-    { 0x131, 0x115 },
-    { 0x132, 0x11D },
-    { 0x133, 0x11E },
-    { 0x134, 0x147 },
-    { 0x135, 0x116 },
-    { 0x136, 0x117 },
-    { 0x137, 0x11B },
-    { 0x138, 0x11C },
-    { 0x139, 0x140 },
-    { 0x13A, 0x141 },
-    { 0x13B, 0x12C },
-    { 0x13C, 0x12D },
-    { 0x13D, 0x160 },
-    { 0x13E, 0x157 },
-    { 0x13F, 0x158 },
-    { 0x140, 0x12B },
-    { 0x141, 0x144 },
-    { 0x142, 0x12E },
-    { 0x143, 0x153 },
-    { 0x144, 0x154 },
-    { 0x145, 0x172 },
-    { 0x146, 0x155 },
-    { 0x147, 0x156 },
-    { 0x148, 0x15D },
-    { 0x149, 0x15E },
-    { 0x14A, 0x13E },
-    { 0x14B, 0x13F },
-    { 0x14C, 0x148 },
-    { 0x14D, 0x149 },
-    { 0x14E, 0x14A },
-    { 0x14F, 0x128 },
-    { 0x150, 0x129 },
-    { 0x151, 0x135 },
-    { 0x152, 0x136 },
-    { 0x153, 0x142 },
-    { 0x154, 0x143 },
-    { 0x155, 0x16B },
-    { 0x156, 0x16C },
-    { 0x157, 0x16D },
-    { 0x158, 0x14B },
-    { 0x159, 0x14C },
-    { 0x15A, 0x169 },
-    { 0x15B, 0x16A },
-    { 0x15C, 0x151 },
-    { 0x15D, 0x152 },
-    { 0x15E, 0x12A },
-    { 0x15F, 0x145 },
-    { 0x160, 0x146 },
-    { 0x161, 0x137 },
-    { 0x162, 0x138 },
-    { 0x163, 0x12F },
-    { 0x164, 0x133 },
-    { 0x165, 0x134 },
-    { 0x166, 0x14D },
-    { 0x167, 0x14E },
-    { 0x168, 0x168 },
-    { 0x169, 0x163 },
-    { 0x16A, 0x164 },
-    { 0x16B, 0x13B },
-    { 0x16C, 0x11F },
-    { 0x16D, 0x120 },
-    { 0x16E, 0x121 },
-    { 0x16F, 0x13C },
-    { 0x170, 0x13D },
-    { 0x171, 0x165 },
-    { 0x172, 0x125 },
-    { 0x173, 0x126 },
-    { 0x174, 0x127 },
-    { 0x175, 0x16E },
-    { 0x176, 0x16F },
-    { 0x177, 0x170 },
-    { 0x178, 0x167 },
-    { 0x179, 0x161 },
-    { 0x17A, 0x162 },
-    { 0x17B, 0x150 },
-    { 0x17C, 0x14F },
-    { 0x17D, 0x171 },
-    { 0x17E, 0x130 },
-    { 0x17F, 0x131 },
-    { 0x180, 0x132 },
-    { 0x181, 0x15F },
-    { 0x182, 0x139 },
-    { 0x183, 0x13A },
-    { 0x184, 0x159 },
-    { 0x185, 0x15A },
-    { 0x186, 0x15B },
-    { 0x187, 0x15C },
-    { 0x188, 0x118 },
-    { 0x189, 0x119 },
-    { 0x18A, 0x11A },
-    { 0x18B, 0x173 },
-    { 0x18C, 0x174 },
-    { 0x18D, 0x175 },
-    { 0x18E, 0x176 },
-    { 0x18F, 0x177 },
-    { 0x190, 0x178 },
-    { 0x191, 0x179 },
-    { 0x192, 0x17A },
-    { 0x193, 0x17B },
-    { 0x194, 0x17E },
-    { 0x195, 0x17F },
-    { 0x196, 0x180 },
-    { 0x197, 0x17C },
-    { 0x198, 0x17D },
-    { 0x199, 0x181 },
-    { 0x19A, 0x182 },
-    { 0x19B, 0x166 },
-    { 0x19C, 0x19C },
-    { 0x19D, 0x19D },
-    { 0x19E, 0x19E },
-    { 0x19F, 0x19F },
-    { 0x1A0, 0x1A0 },
-    { 0x1A1, 0x1A1 },
-    { 0x1A2, 0x1A2 },
-    { 0x1A3, 0x1A3 },
-    { 0x1A4, 0x1A4 }
+} GBAToDSSpeciesArray[] = {
+    GBA_TO_DS_SPECIES(SPECIES_TREECKO),
+    GBA_TO_DS_SPECIES(SPECIES_GROVYLE),
+    GBA_TO_DS_SPECIES(SPECIES_SCEPTILE),
+    GBA_TO_DS_SPECIES(SPECIES_TORCHIC),
+    GBA_TO_DS_SPECIES(SPECIES_COMBUSKEN),
+    GBA_TO_DS_SPECIES(SPECIES_BLAZIKEN),
+    GBA_TO_DS_SPECIES(SPECIES_MUDKIP),
+    GBA_TO_DS_SPECIES(SPECIES_MARSHTOMP),
+    GBA_TO_DS_SPECIES(SPECIES_SWAMPERT),
+    GBA_TO_DS_SPECIES(SPECIES_POOCHYENA),
+    GBA_TO_DS_SPECIES(SPECIES_MIGHTYENA),
+    GBA_TO_DS_SPECIES(SPECIES_ZIGZAGOON),
+    GBA_TO_DS_SPECIES(SPECIES_LINOONE),
+    GBA_TO_DS_SPECIES(SPECIES_WURMPLE),
+    GBA_TO_DS_SPECIES(SPECIES_SILCOON),
+    GBA_TO_DS_SPECIES(SPECIES_BEAUTIFLY),
+    GBA_TO_DS_SPECIES(SPECIES_CASCOON),
+    GBA_TO_DS_SPECIES(SPECIES_DUSTOX),
+    GBA_TO_DS_SPECIES(SPECIES_LOTAD),
+    GBA_TO_DS_SPECIES(SPECIES_LOMBRE),
+    GBA_TO_DS_SPECIES(SPECIES_LUDICOLO),
+    GBA_TO_DS_SPECIES(SPECIES_SEEDOT),
+    GBA_TO_DS_SPECIES(SPECIES_NUZLEAF),
+    GBA_TO_DS_SPECIES(SPECIES_SHIFTRY),
+    GBA_TO_DS_SPECIES(SPECIES_NINCADA),
+    GBA_TO_DS_SPECIES(SPECIES_NINJASK),
+    GBA_TO_DS_SPECIES(SPECIES_SHEDINJA),
+    GBA_TO_DS_SPECIES(SPECIES_TAILLOW),
+    GBA_TO_DS_SPECIES(SPECIES_SWELLOW),
+    GBA_TO_DS_SPECIES(SPECIES_SHROOMISH),
+    GBA_TO_DS_SPECIES(SPECIES_BRELOOM),
+    GBA_TO_DS_SPECIES(SPECIES_SPINDA),
+    GBA_TO_DS_SPECIES(SPECIES_WINGULL),
+    GBA_TO_DS_SPECIES(SPECIES_PELIPPER),
+    GBA_TO_DS_SPECIES(SPECIES_SURSKIT),
+    GBA_TO_DS_SPECIES(SPECIES_MASQUERAIN),
+    GBA_TO_DS_SPECIES(SPECIES_WAILMER),
+    GBA_TO_DS_SPECIES(SPECIES_WAILORD),
+    GBA_TO_DS_SPECIES(SPECIES_SKITTY),
+    GBA_TO_DS_SPECIES(SPECIES_DELCATTY),
+    GBA_TO_DS_SPECIES(SPECIES_KECLEON),
+    GBA_TO_DS_SPECIES(SPECIES_BALTOY),
+    GBA_TO_DS_SPECIES(SPECIES_CLAYDOL),
+    GBA_TO_DS_SPECIES(SPECIES_NOSEPASS),
+    GBA_TO_DS_SPECIES(SPECIES_TORKOAL),
+    GBA_TO_DS_SPECIES(SPECIES_SABLEYE),
+    GBA_TO_DS_SPECIES(SPECIES_BARBOACH),
+    GBA_TO_DS_SPECIES(SPECIES_WHISCASH),
+    GBA_TO_DS_SPECIES(SPECIES_LUVDISC),
+    GBA_TO_DS_SPECIES(SPECIES_CORPHISH),
+    GBA_TO_DS_SPECIES(SPECIES_CRAWDAUNT),
+    GBA_TO_DS_SPECIES(SPECIES_FEEBAS),
+    GBA_TO_DS_SPECIES(SPECIES_MILOTIC),
+    GBA_TO_DS_SPECIES(SPECIES_CARVANHA),
+    GBA_TO_DS_SPECIES(SPECIES_SHARPEDO),
+    GBA_TO_DS_SPECIES(SPECIES_TRAPINCH),
+    GBA_TO_DS_SPECIES(SPECIES_VIBRAVA),
+    GBA_TO_DS_SPECIES(SPECIES_FLYGON),
+    GBA_TO_DS_SPECIES(SPECIES_MAKUHITA),
+    GBA_TO_DS_SPECIES(SPECIES_HARIYAMA),
+    GBA_TO_DS_SPECIES(SPECIES_ELECTRIKE),
+    GBA_TO_DS_SPECIES(SPECIES_MANECTRIC),
+    GBA_TO_DS_SPECIES(SPECIES_NUMEL),
+    GBA_TO_DS_SPECIES(SPECIES_CAMERUPT),
+    GBA_TO_DS_SPECIES(SPECIES_SPHEAL),
+    GBA_TO_DS_SPECIES(SPECIES_SEALEO),
+    GBA_TO_DS_SPECIES(SPECIES_WALREIN),
+    GBA_TO_DS_SPECIES(SPECIES_CACNEA),
+    GBA_TO_DS_SPECIES(SPECIES_CACTURNE),
+    GBA_TO_DS_SPECIES(SPECIES_SNORUNT),
+    GBA_TO_DS_SPECIES(SPECIES_GLALIE),
+    GBA_TO_DS_SPECIES(SPECIES_LUNATONE),
+    GBA_TO_DS_SPECIES(SPECIES_SOLROCK),
+    GBA_TO_DS_SPECIES(SPECIES_AZURILL),
+    GBA_TO_DS_SPECIES(SPECIES_SPOINK),
+    GBA_TO_DS_SPECIES(SPECIES_GRUMPIG),
+    GBA_TO_DS_SPECIES(SPECIES_PLUSLE),
+    GBA_TO_DS_SPECIES(SPECIES_MINUN),
+    GBA_TO_DS_SPECIES(SPECIES_MAWILE),
+    GBA_TO_DS_SPECIES(SPECIES_MEDITITE),
+    GBA_TO_DS_SPECIES(SPECIES_MEDICHAM),
+    GBA_TO_DS_SPECIES(SPECIES_SWABLU),
+    GBA_TO_DS_SPECIES(SPECIES_ALTARIA),
+    GBA_TO_DS_SPECIES(SPECIES_WYNAUT),
+    GBA_TO_DS_SPECIES(SPECIES_DUSKULL),
+    GBA_TO_DS_SPECIES(SPECIES_DUSCLOPS),
+    GBA_TO_DS_SPECIES(SPECIES_ROSELIA),
+    GBA_TO_DS_SPECIES(SPECIES_SLAKOTH),
+    GBA_TO_DS_SPECIES(SPECIES_VIGOROTH),
+    GBA_TO_DS_SPECIES(SPECIES_SLAKING),
+    GBA_TO_DS_SPECIES(SPECIES_GULPIN),
+    GBA_TO_DS_SPECIES(SPECIES_SWALOT),
+    GBA_TO_DS_SPECIES(SPECIES_TROPIUS),
+    GBA_TO_DS_SPECIES(SPECIES_WHISMUR),
+    GBA_TO_DS_SPECIES(SPECIES_LOUDRED),
+    GBA_TO_DS_SPECIES(SPECIES_EXPLOUD),
+    GBA_TO_DS_SPECIES(SPECIES_CLAMPERL),
+    GBA_TO_DS_SPECIES(SPECIES_HUNTAIL),
+    GBA_TO_DS_SPECIES(SPECIES_GOREBYSS),
+    GBA_TO_DS_SPECIES(SPECIES_ABSOL),
+    GBA_TO_DS_SPECIES(SPECIES_SHUPPET),
+    GBA_TO_DS_SPECIES(SPECIES_BANETTE),
+    GBA_TO_DS_SPECIES(SPECIES_SEVIPER),
+    GBA_TO_DS_SPECIES(SPECIES_ZANGOOSE),
+    GBA_TO_DS_SPECIES(SPECIES_RELICANTH),
+    GBA_TO_DS_SPECIES(SPECIES_ARON),
+    GBA_TO_DS_SPECIES(SPECIES_LAIRON),
+    GBA_TO_DS_SPECIES(SPECIES_AGGRON),
+    GBA_TO_DS_SPECIES(SPECIES_CASTFORM),
+    GBA_TO_DS_SPECIES(SPECIES_VOLBEAT),
+    GBA_TO_DS_SPECIES(SPECIES_ILLUMISE),
+    GBA_TO_DS_SPECIES(SPECIES_LILEEP),
+    GBA_TO_DS_SPECIES(SPECIES_CRADILY),
+    GBA_TO_DS_SPECIES(SPECIES_ANORITH),
+    GBA_TO_DS_SPECIES(SPECIES_ARMALDO),
+    GBA_TO_DS_SPECIES(SPECIES_RALTS),
+    GBA_TO_DS_SPECIES(SPECIES_KIRLIA),
+    GBA_TO_DS_SPECIES(SPECIES_GARDEVOIR),
+    GBA_TO_DS_SPECIES(SPECIES_BAGON),
+    GBA_TO_DS_SPECIES(SPECIES_SHELGON),
+    GBA_TO_DS_SPECIES(SPECIES_SALAMENCE),
+    GBA_TO_DS_SPECIES(SPECIES_BELDUM),
+    GBA_TO_DS_SPECIES(SPECIES_METANG),
+    GBA_TO_DS_SPECIES(SPECIES_METAGROSS),
+    GBA_TO_DS_SPECIES(SPECIES_REGIROCK),
+    GBA_TO_DS_SPECIES(SPECIES_REGICE),
+    GBA_TO_DS_SPECIES(SPECIES_REGISTEEL),
+    GBA_TO_DS_SPECIES(SPECIES_KYOGRE),
+    GBA_TO_DS_SPECIES(SPECIES_GROUDON),
+    GBA_TO_DS_SPECIES(SPECIES_RAYQUAZA),
+    GBA_TO_DS_SPECIES(SPECIES_LATIAS),
+    GBA_TO_DS_SPECIES(SPECIES_LATIOS),
+    GBA_TO_DS_SPECIES(SPECIES_JIRACHI),
+    GBA_TO_DS_SPECIES(SPECIES_DEOXYS),
+    GBA_TO_DS_SPECIES(SPECIES_CHIMECHO),
+
+    // The following IDs are not valid in Gen 3, but should they be migrated,
+    // would become the indicated species.
+    { 0x19C, SPECIES_BURMY },
+    { 0x19D, SPECIES_WORMADAM },
+    { 0x19E, SPECIES_MOTHIM },
+    { 0x19F, SPECIES_COMBEE },
+    { 0x1A0, SPECIES_VESPIQUEN },
+    { 0x1A1, SPECIES_PACHIRISU },
+    { 0x1A2, SPECIES_BUIZEL },
+    { 0x1A3, SPECIES_FLOATZEL },
+    { 0x1A4, SPECIES_CHERUBI }
 };
 
 void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
@@ -826,7 +831,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 {
     BOOL v0;
     u32 value;
-    int v2, v3;
+    int i, contestRibbons;
     int v4;
     u8 v5[10 + 1];
     u16 v6[12];
@@ -904,23 +909,23 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SHEEN, NULL);
     SetBoxMonData(boxMon, MON_DATA_SHEEN, (u8 *)&value);
 
-    for (v2 = 0; v2 < 4; v2++)
+    for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_MOVE1 + v2, NULL);
+        value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_MOVE1 + i, NULL);
 
-        if (value > 354) {
+        if (value > GBA_NUM_MOVES) {
             (void)0;
         }
 
-        SetBoxMonData(boxMon, MON_DATA_54 + v2, (u8 *)&value);
+        SetBoxMonData(boxMon, MON_DATA_MOVE1 + i, (u8 *)&value);
 
         value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_PP_BONUSES, NULL);
-        value = (value & (0x3 << (v2 * 2))) >> (v2 * 2);
+        value = (value & (0x3 << (i * 2))) >> (i * 2);
 
-        SetBoxMonData(boxMon, MON_DATA_62 + v2, (u8 *)&value);
+        SetBoxMonData(boxMon, MON_DATA_62 + i, (u8 *)&value);
 
-        value = sub_02074570(boxMon, 66 + v2, NULL);
-        SetBoxMonData(boxMon, MON_DATA_58 + v2, (u8 *)&value);
+        value = sub_02074570(boxMon, MON_GBA_DATA_IVS + i, NULL);
+        SetBoxMonData(boxMon, MON_DATA_58 + i, (u8 *)&value);
     }
 
     value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_HP_IV, NULL);
@@ -944,48 +949,48 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_IS_EGG, NULL);
     SetBoxMonData(boxMon, MON_DATA_IS_EGG, (u8 *)&value);
 
-    v3 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_COOL_RIBBON, NULL);
+    contestRibbons = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_COOL_RIBBON, NULL);
 
-    if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
+    if (contestRibbons <= 4) {
+        for (i = 0; i < contestRibbons; i++) {
             value = 1;
-            SetBoxMonData(boxMon, MON_DATA_78 + v2, (u8 *)&value);
+            SetBoxMonData(boxMon, MON_DATA_78 + i, (u8 *)&value);
         }
     }
 
-    v3 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_BEAUTY_RIBBON, NULL);
+    contestRibbons = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_BEAUTY_RIBBON, NULL);
 
-    if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
+    if (contestRibbons <= 4) {
+        for (i = 0; i < contestRibbons; i++) {
             value = 1;
-            SetBoxMonData(boxMon, MON_DATA_82 + v2, (u8 *)&value);
+            SetBoxMonData(boxMon, MON_DATA_82 + i, (u8 *)&value);
         }
     }
 
-    v3 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_CUTE_RIBBON, NULL);
+    contestRibbons = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_CUTE_RIBBON, NULL);
 
-    if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
+    if (contestRibbons <= 4) {
+        for (i = 0; i < contestRibbons; i++) {
             value = 1;
-            SetBoxMonData(boxMon, MON_DATA_86 + v2, (u8 *)&value);
+            SetBoxMonData(boxMon, MON_DATA_86 + i, (u8 *)&value);
         }
     }
 
-    v3 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SMART_RIBBON, NULL);
+    contestRibbons = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_SMART_RIBBON, NULL);
 
-    if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
+    if (contestRibbons <= 4) {
+        for (i = 0; i < contestRibbons; i++) {
             value = 1;
-            SetBoxMonData(boxMon, MON_DATA_90 + v2, (u8 *)&value);
+            SetBoxMonData(boxMon, MON_DATA_90 + i, (u8 *)&value);
         }
     }
 
-    v3 = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_TOUGH_RIBBON, NULL);
+    contestRibbons = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_TOUGH_RIBBON, NULL);
 
-    if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
+    if (contestRibbons <= 4) {
+        for (i = 0; i < contestRibbons; i++) {
             value = 1;
-            SetBoxMonData(boxMon, MON_DATA_94 + v2, (u8 *)&value);
+            SetBoxMonData(boxMon, MON_DATA_94 + i, (u8 *)&value);
         }
     }
 
@@ -1035,7 +1040,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         value = PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_PERSONALITY, NULL);
         value = GET_UNOWN_LETTER(value);
 
-        SetBoxMonData(boxMon, MON_DATA_112, (u8 *)&value);
+        SetBoxMonData(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
     if (sub_02074570(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
@@ -1043,20 +1048,20 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         default:
         case VERSION_RUBY:
         case VERSION_SAPPHIRE:
-            value = 0;
+            value = DEOXYS_FORM_NORMAL;
             break;
         case VERSION_FIRE_RED:
-            value = 1;
+            value = DEOXYS_FORM_ATTACK;
             break;
         case VERSION_LEAF_GREEN:
-            value = 2;
+            value = DEOXYS_FORM_DEFENSE;
             break;
         case VERSION_EMERALD:
-            value = 3;
+            value = DEOXYS_FORM_SPEED;
             break;
         }
 
-        SetBoxMonData(boxMon, MON_DATA_112, (u8 *)&value);
+        SetBoxMonData(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
     PalPark_GetGBABoxMonData(boxMonGBA, MON_GBA_DATA_NICKNAME, &v5[0]);

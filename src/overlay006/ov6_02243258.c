@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -67,7 +67,7 @@ typedef struct {
     fx32 unk_50;
     fx32 unk_54;
     fx32 unk_58;
-    Pokemon * unk_5C;
+    Pokemon *unk_5C;
     UnkStruct_0203CDB0 * unk_60;
     NNSG2dScreenData * unk_64;
     NNSG2dCharacterData * unk_68;
@@ -292,7 +292,7 @@ static void ov6_02244F8C(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02244FB4(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02244FE4(UnkStruct_0201CD38 * param0, void * param1);
 static void ov6_0224508C(UnkStruct_ov6_02243FFC * param0, UnkStruct_02008A90 * param1);
-static void * ov6_0224509C(Pokemon * param0, UnkStruct_02008A90 * param1, u32 param2);
+static void * ov6_0224509C(Pokemon *param0, UnkStruct_02008A90 * param1, u32 param2);
 static void * ov6_022450E4(UnkStruct_02008A90 * param0, u32 param1);
 static UnkStruct_02009DC8 * ov6_022450F4(UnkStruct_ov6_02243FFC * param0, NARC * param1);
 static void ov6_02245118(UnkStruct_ov6_02243FFC * param0, void * param1);
@@ -1030,7 +1030,7 @@ static void ov6_02243F74 (UnkStruct_0203CDB0 * param0, int param1)
     sub_02062D64(v0, param1);
 }
 
-UnkStruct_0201CD38 * ov6_02243F88 (UnkStruct_0203CDB0 * param0, u32 param1, Pokemon * param2, int param3)
+UnkStruct_0201CD38 * ov6_02243F88 (UnkStruct_0203CDB0 * param0, u32 param1, Pokemon *param2, int param3)
 {
     UnkStruct_0201CD38 * v0;
     UnkStruct_ov6_02243FFC * v1 = ov6_02243FDC(param0);
@@ -2062,7 +2062,7 @@ static void ov6_0224508C (UnkStruct_ov6_02243FFC * param0, UnkStruct_02008A90 * 
     sub_02075EF4(param1, param0->unk_5C, 2);
 }
 
-static void * ov6_0224509C (Pokemon * param0, UnkStruct_02008A90 * param1, u32 param2)
+static void * ov6_0224509C (Pokemon *param0, UnkStruct_02008A90 * param1, u32 param2)
 {
     void * v0 = Heap_AllocFromHeap(4, (32 * 10) * 10);
 

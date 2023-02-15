@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 
 #include "struct_defs/struct_0207F248.h"
 
@@ -30,6 +30,8 @@
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
 #include "overlay118/ov118_021D0D80.h"
+
+#include "constants/species.h"
 
 typedef struct UnkStruct_ov118_021D0FDC_t {
     int unk_00;
@@ -72,32 +74,32 @@ void ov118_021D0D80 (UnkStruct_0207F248 * param0)
 
 int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 {
-    UnkStruct_ov118_021D0FDC * v0 = param0->unk_B24;
-    Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    UnkStruct_ov118_021D0FDC *v0 = param0->unk_B24;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     switch (v0->unk_00) {
     case 0:
     {
-        v0->unk_0C = GetMonData(v1, MON_DATA_SPECIES, NULL);
+        v0->unk_0C = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
-        case 487:
-            sub_02077A00(v1);
+        case SPECIES_GIRATINA:
+            sub_02077A00(mon);
             v0->unk_08 = 65;
             v0->unk_10 = 0;
             break;
-        case 492:
-            sub_02077ACC(v1, 1);
+        case SPECIES_SHAYMIN:
+            SetShayminForm(mon, SHAYMIN_FORM_SKY);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;
-        case 479:
+        case SPECIES_ROTOM:
         default:
             GF_ASSERT(0);
             break;
         }
 
-        sub_0202736C(sub_02027560(sub_0203D174(param0->unk_5A4->unk_1C)), v1);
+        sub_0202736C(sub_02027560(sub_0203D174(param0->unk_5A4->unk_1C)), mon);
     }
         v0->unk_00++;
         break;
@@ -132,7 +134,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         v0->unk_00++;
         break;
     case 7:
-        sub_02077E3C(v1);
+        sub_02077E3C(mon);
         v0->unk_00++;
         break;
     case 8:
@@ -146,7 +148,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 
         v2 = sub_0200B1EC(param0->unk_69C, 202);
 
-        sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v1));
+        sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(mon));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v2);
         sub_020237BC(v2);
         sub_02082708(param0, 0xffffffff, 1);

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/struct_02073C74.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -154,8 +154,8 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
     u32 v6, v7, v8;
     UnkStruct_ov104_0223BFFC * v9;
     UnkStruct_ov6_02240D5C * v10;
-    Pokemon * v11;
-    Pokemon * v12;
+    Pokemon *v11;
+    Pokemon *v12;
 
     v9 = sub_0209B978(param0->unk_00->unk_00);
     v10 = v9->unk_0C;
@@ -242,7 +242,7 @@ BOOL ov104_022375F8 (UnkStruct_ov104_0222E930 * param0)
 static void ov104_02237634 (UnkStruct_ov104_02238240 * param0, UnkStruct_ov104_0223BFFC * param1)
 {
     int v0, v1;
-    Pokemon * v2;
+    Pokemon *v2;
 
     param0->unk_04 = param1->unk_10;
     param0->unk_1E = ov104_0223C124(param1);
@@ -311,7 +311,7 @@ BOOL ov104_02237734 (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_02023790 * v0;
-    Pokemon * v1;
+    Pokemon *v1;
     Party * v2;
     UnkStruct_ov104_0223BFFC * v3;
     u8 v4, v5, v6;

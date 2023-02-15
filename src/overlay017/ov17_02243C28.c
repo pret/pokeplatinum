@@ -680,17 +680,17 @@ static void ov17_022444BC (UnkStruct_0201CD38 * param0, void * param1)
         MI_CpuClear8(&v3, sizeof(UnkStruct_ov16_02265BBC));
         MI_CpuClear8(&v4, sizeof(UnkStruct_ov16_02264408));
 
-        v6 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 5, NULL);
-        v7 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 111, NULL);
+        v6 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_SPECIES, NULL);
+        v7 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_111, NULL);
         v8 = sub_02075E0C(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D]);
-        v9 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 112, NULL);
-        v14 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], 0, NULL);
+        v9 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_FORM, NULL);
+        v14 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_PERSONALITY, NULL);
 
-        v10 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 5, NULL);
-        v11 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 111, NULL);
+        v10 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_SPECIES, NULL);
+        v11 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_111, NULL);
         v12 = sub_02075E0C(v0->unk_00->unk_0C.unk_00->unk_00[v16]);
-        v13 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 112, NULL);
-        v15 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], 0, NULL);
+        v13 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_FORM, NULL);
+        v15 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_PERSONALITY, NULL);
 
         v3.unk_00 = 0;
         v3.unk_01 = 0;

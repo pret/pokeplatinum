@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02056720_H
 
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 int sub_02056720(void);
