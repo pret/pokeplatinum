@@ -4,6 +4,8 @@
 #include "overlay016/struct_ov16_0225433C_decl.h"
 #include "overlay016/struct_ov16_0225433C_t.h"
 
+#include "constants/global.h"
+
 struct UnkStruct_ov16_02252060_t {
     u16 unk_00;
     u16 unk_02;
@@ -11,7 +13,7 @@ struct UnkStruct_ov16_02252060_t {
     u16 unk_06;
     u16 unk_08;
     u16 unk_0A;
-    u16 unk_0C[4];
+    u16 moves[MAX_MON_MOVES];
     u32 unk_14_0 : 5;
     u32 unk_14_5 : 5;
     u32 unk_14_10 : 5;

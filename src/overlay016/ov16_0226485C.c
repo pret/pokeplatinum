@@ -757,9 +757,9 @@ void ov16_022656F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     v0.unk_01 = param1->unk_219C[param2];
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = param1->unk_2D40[param2].unk_0C[v1];
+        v0.unk_04[v1] = param1->unk_2D40[param2].moves[v1];
         v0.unk_0C[v1] = param1->unk_2D40[param2].unk_2C[v1];
-        v0.unk_10[v1] = MoveTable_GetMoveMaxPP(param1->unk_2D40[param2].unk_0C[v1], param1->unk_2D40[param2].unk_30[v1]);
+        v0.unk_10[v1] = MoveTable_GetMoveMaxPP(param1->unk_2D40[param2].moves[v1], param1->unk_2D40[param2].unk_30[v1]);
     }
 
     v0.unk_02 = ov16_02254A6C(param0, param1, param2, 0, 0xffffffff);
@@ -1271,7 +1271,7 @@ void ov16_022662FC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     v0.unk_20 = param1->unk_2D40[param2].unk_27;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_0E[v1] = param1->unk_2D40[param2].unk_0C[v1];
+        v0.unk_0E[v1] = param1->unk_2D40[param2].moves[v1];
         v0.unk_12[v1] = param1->unk_2D40[param2].unk_2C[v1];
     }
 

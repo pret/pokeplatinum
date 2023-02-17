@@ -1022,7 +1022,7 @@ static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, BoxPokemon *boxMon, UnkSt
 static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon *param1, UnkStruct_0208D1D4 * param2)
 {
     BoxPokemon *v0;
-    u16 v1;
+    u16 i;
     u8 v2;
     BOOL v3;
 
@@ -1079,11 +1079,11 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon *param1, UnkStruc
     param2->unk_32 = (u8)GetMonData(param1, MON_DATA_10, NULL);
     param2->unk_33 = sub_02075BCC(param1);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        param2->unk_34[v1] = (u16)GetMonData(param1, 54 + v1, NULL);
-        param2->unk_3C[v1] = (u8)GetMonData(param1, 58 + v1, NULL);
-        v2 = (u8)GetMonData(param1, 62 + v1, NULL);
-        param2->unk_40[v1] = MoveTable_GetMoveMaxPP(param2->unk_34[v1], v2);
+    for (i = 0; i < 4; i++) {
+        param2->unk_34[i] = (u16)GetMonData(param1, MON_DATA_MOVE1 + i, NULL);
+        param2->unk_3C[i] = (u8)GetMonData(param1, MON_DATA_58 + i, NULL);
+        v2 = (u8)GetMonData(param1, MON_DATA_62 + i, NULL);
+        param2->unk_40[i] = MoveTable_GetMoveMaxPP(param2->unk_34[i], v2);
     }
 
     param2->unk_45 = (u8)GetMonData(param1, MON_DATA_COOL, NULL);
@@ -1094,9 +1094,9 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon *param1, UnkStruc
     param2->unk_4A = (u8)GetMonData(param1, MON_DATA_SHEEN, NULL);
     param2->unk_4B = 5;
 
-    for (v1 = 0; v1 < 5; v1++) {
-        if (sub_0207762C(param1, v1) == 1) {
-            param2->unk_4B = v1;
+    for (i = 0; i < 5; i++) {
+        if (sub_0207762C(param1, i) == 1) {
+            param2->unk_4B = i;
             break;
         }
     }
@@ -1129,9 +1129,9 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon *param1, UnkStruc
     param2->unk_54[3] = 0;
     param0->unk_6B1 = 0;
 
-    for (v1 = 0; v1 < 80; v1++) {
-        if (GetMonData(param1, sub_020923C0(v1, 0), NULL) != 0) {
-            param2->unk_54[v1 / 32] |= (1 << (v1 & 0x1f));
+    for (i = 0; i < 80; i++) {
+        if (GetMonData(param1, sub_020923C0(i, 0), NULL) != 0) {
+            param2->unk_54[i / 32] |= (1 << (i & 0x1f));
             param0->unk_6B1++;
         }
     }

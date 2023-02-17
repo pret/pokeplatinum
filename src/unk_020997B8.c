@@ -22,28 +22,28 @@ void sub_020997D0 (UnkStruct_020997B8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-u16 * sub_020997D8 (Pokemon *param0, u32 param1)
+u16 * sub_020997D8 (Pokemon *mon, u32 param1)
 {
-    u16 * v0;
-    u16 * v1;
-    u16 v2[4];
-    u16 v3;
+    u16 *v0;
+    u16 *v1;
+    u16 v2[MAX_MON_MOVES];
+    u16 species;
     u8 v4;
-    u8 v5;
+    u8 form;
     u8 v6, v7, v8;
 
-    v3 = (u16)GetMonData(param0, MON_DATA_SPECIES, NULL);
-    v5 = (u8)GetMonData(param0, MON_DATA_FORM, NULL);
-    v4 = (u8)GetMonData(param0, MON_DATA_161, NULL);
+    species = (u16)GetMonData(mon, MON_DATA_SPECIES, NULL);
+    form = (u8)GetMonData(mon, MON_DATA_FORM, NULL);
+    v4 = (u8)GetMonData(mon, MON_DATA_161, NULL);
 
-    for (v7 = 0; v7 < 4; v7++) {
-        v2[v7] = (u16)GetMonData(param0, 54 + v7, NULL);
+    for (v7 = 0; v7 < MAX_MON_MOVES; v7++) {
+        v2[v7] = (u16)GetMonData(mon, MON_DATA_MOVE1 + v7, NULL);
     }
 
     v0 = Heap_AllocFromHeap(param1, (44 / 2) * 2);
     v1 = Heap_AllocFromHeap(param1, (44 / 2) * 2);
 
-    sub_02077D28(v3, v5, v0);
+    sub_02077D28(species, form, v0);
 
     v8 = 0;
 

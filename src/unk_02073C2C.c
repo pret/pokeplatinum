@@ -84,6 +84,7 @@
 #include "unk_02092494.h"
 #include "pokemon.h"
 
+#include "constants/moves.h"
 #include "constants/species.h"
 
 static const s8 Unk_020F0695[][5] = {
@@ -195,7 +196,7 @@ u16 sub_0207727C(Pokemon *param0, int * param1, u16 * param2);
 void sub_02077344(Pokemon *param0, int param1, int param2);
 void sub_0207734C(BoxPokemon *boxMon, int param1, int param2);
 void sub_02077408(Pokemon *param0, u32 param1);
-BOOL sub_0207749C(Pokemon *param0, u16 param1);
+BOOL MonKnowsMove(Pokemon *param0, u16 param1);
 void sub_020774C8(BoxPokemon *boxMon, Pokemon *param1);
 u8 sub_02077550(Party * param0);
 u16 sub_020775A4(u16 param0);
@@ -3317,7 +3318,7 @@ u16 sub_02076B94 (Party * param0, Pokemon *param1, u8 param2, u16 param3, int * 
                 }
                 break;
             case 20:
-                if (sub_0207749C(param1, v10->unk_00[v3].unk_02) == 1) {
+                if (MonKnowsMove(param1, v10->unk_00[v3].unk_02) == 1) {
                     v4 = v10->unk_00[v3].unk_04;
                     param4[0] = 20;
                 }
@@ -3663,43 +3664,43 @@ void sub_0207734C (BoxPokemon *boxMon, int param1, int param2)
     SetBoxMonData(boxMon, MON_DATA_62 + param2, (u8 *)&v2[0]);
 }
 
-void sub_02077408 (Pokemon *param0, u32 param1)
+void sub_02077408 (Pokemon *mon, u32 param1)
 {
-    u32 v0;
-    u16 v1;
+    u32 i;
+    u16 move;
     u8 v2;
     u8 v3;
 
-    for (v0 = param1; v0 < 3; v0++) {
-        v1 = GetMonData(param0, 54 + v0 + 1, NULL);
-        v2 = GetMonData(param0, 58 + v0 + 1, NULL);
-        v3 = GetMonData(param0, 62 + v0 + 1, NULL);
+    for (i = param1; i < 3; i++) {
+        move = GetMonData(mon, MON_DATA_MOVE1 + i + 1, NULL);
+        v2 = GetMonData(mon, MON_DATA_58 + i + 1, NULL);
+        v3 = GetMonData(mon, MON_DATA_62 + i + 1, NULL);
 
-        sub_02074B30(param0, 54 + v0, (u8 *)&v1);
-        sub_02074B30(param0, 58 + v0, (u8 *)&v2);
-        sub_02074B30(param0, 62 + v0, (u8 *)&v3);
+        sub_02074B30(mon, MON_DATA_MOVE1 + i, (u8 *)&move);
+        sub_02074B30(mon, MON_DATA_58 + i, (u8 *)&v2);
+        sub_02074B30(mon, MON_DATA_62 + i, (u8 *)&v3);
     }
 
-    v1 = 0;
+    move = MOVE_NONE;
     v2 = 0;
     v3 = 0;
 
-    sub_02074B30(param0, 57, (u8 *)&v1);
-    sub_02074B30(param0, 61, (u8 *)&v2);
-    sub_02074B30(param0, 65, (u8 *)&v3);
+    sub_02074B30(mon, MON_DATA_MOVE4, (u8 *)&move);
+    sub_02074B30(mon, MON_DATA_61, (u8 *)&v2);
+    sub_02074B30(mon, MON_DATA_65, (u8 *)&v3);
 }
 
-BOOL sub_0207749C (Pokemon *param0, u16 param1)
+BOOL MonKnowsMove (Pokemon *mon, u16 move)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (GetMonData(param0, 54 + v0, NULL) == param1) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        if (GetMonData(mon, MON_DATA_MOVE1 + i, NULL) == move) {
             break;
         }
     }
 
-    return v0 != 4;
+    return i != MAX_MON_MOVES;
 }
 
 void sub_020774C8 (BoxPokemon *boxMon, Pokemon *param1)
@@ -4239,20 +4240,19 @@ BOOL sub_02077BD8 (Party * param0, int param1, const RTCTime * param2)
     }
 }
 
-BOOL SetRotomForm (Pokemon *param0, int param1, int param2)
+BOOL SetRotomForm (Pokemon *mon, int param1, int param2)
 {
     int v0, v1;
 
-    v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v0 = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
-    if (v0 != 479) {
+    if (v0 != SPECIES_ROTOM)
         return 0;
-    }
 
-    v1 = GetMonData(param0, MON_DATA_FORM, NULL);
+    v1 = GetMonData(mon, MON_DATA_FORM, NULL);
 
     {
-        int v2, v3, v4, v5;
+        int i, v3, v4, v5;
         static const u16 v6[] = {
             0,
             315,
@@ -4264,18 +4264,18 @@ BOOL SetRotomForm (Pokemon *param0, int param1, int param2)
 
         v4 = v6[param1];
 
-        for (v2 = 0; v2 < 4; v2++) {
-            v5 = GetMonData(param0, 54 + v2, NULL);
+        for (i = 0; i < 4; i++) {
+            v5 = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
 
             for (v3 = 1; v3 < NELEMS(v6); v3++) {
                 if ((v5 != 0) && (v5 == v6[v3])) {
                     if (v4 != 0) {
-                        sub_020771F8(param0, v4, v2);
+                        sub_020771F8(mon, v4, i);
                         v4 = 0;
                         break;
                     } else {
-                        sub_02077408(param0, v2);
-                        v2--;
+                        sub_02077408(mon, i);
+                        i--;
                         break;
                     }
                 }
@@ -4283,26 +4283,26 @@ BOOL SetRotomForm (Pokemon *param0, int param1, int param2)
         }
 
         if (v4 != 0) {
-            for (v2 = 0; v2 < 4; v2++) {
-                if (GetMonData(param0, 54 + v2, NULL) == 0) {
-                    sub_020771F8(param0, v4, v2);
+            for (i = 0; i < 4; i++) {
+                if (GetMonData(mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
+                    sub_020771F8(mon, v4, i);
                     break;
                 }
             }
 
-            if (v2 == 4) {
-                sub_020771F8(param0, v4, param2);
+            if (i == 4) {
+                sub_020771F8(mon, v4, param2);
             }
         }
 
-        if (GetMonData(param0, MON_DATA_MOVE1, NULL) == 0) {
-            sub_020771F8(param0, 84, 0);
+        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == MOVE_NONE) {
+            sub_020771F8(mon, 84, 0);
         }
     }
 
-    sub_02074B30(param0, 112, &param1);
-    sub_0207803C(param0);
-    sub_0207418C(param0);
+    sub_02074B30(mon, 112, &param1);
+    sub_0207803C(mon);
+    sub_0207418C(mon);
 
     return 1;
 }

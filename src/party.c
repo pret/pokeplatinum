@@ -36,7 +36,7 @@ void sub_0207A008 (Party * param0)
     Party_InitWithCapacity(param0, 6);
 }
 
-void Party_InitWithCapacity (Party * party, int capacity)
+void Party_InitWithCapacity (Party *party, int capacity)
 {
     int i;
 
@@ -51,7 +51,7 @@ void Party_InitWithCapacity (Party * party, int capacity)
     }
 }
 
-BOOL Party_AddPokemon(Party * party, Pokemon *mon)
+BOOL Party_AddPokemon(Party *party, Pokemon *mon)
 {
     if (party->currentCount >= party->capacity)
         return FALSE;
@@ -62,7 +62,7 @@ BOOL Party_AddPokemon(Party * party, Pokemon *mon)
     return TRUE;
 }
 
-BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
+BOOL Party_RemovePokemonBySlotIndex (Party *party, int slot)
 {
     int i;
 
@@ -80,30 +80,30 @@ BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
     return TRUE;
 }
 
-int Party_GetCapacity (const Party * party)
+int Party_GetCapacity (const Party *party)
 {
     return party->capacity;
 }
 
-int Party_GetCurrentCount (const Party * party)
+int Party_GetCurrentCount (const Party *party)
 {
     return party->currentCount;
 }
 
-Pokemon *Party_GetPokemonBySlotIndex (const Party * party, int slot)
+Pokemon *Party_GetPokemonBySlotIndex (const Party *party, int slot)
 {
     PARTY_ASSERT_SLOT(party, slot);
     return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128 (Party * party, int slot, Pokemon *param2)
+void sub_0207A128 (Party *party, int slot, Pokemon *mon)
 {
     int v0;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = GetMonData(&(party->pokemon[slot]), MON_DATA_172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
-    party->pokemon[slot] = *param2;
+    v0 = GetMonData(&(party->pokemon[slot]), MON_DATA_172, NULL) - GetMonData(mon, MON_DATA_172, NULL);
+    party->pokemon[slot] = *mon;
     party->currentCount += v0;
 }
 

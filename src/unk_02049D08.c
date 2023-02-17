@@ -946,26 +946,26 @@ u16 sub_0204ABF4 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     return param0->unk_08 / 65535;
 }
 
-static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204AFC4 * param2)
+static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 field, UnkStruct_0204AFC4 * param2)
 {
     u8 v0 = 1;
     u8 v1;
-    int v2;
+    int i;
     Party * v3;
-    Pokemon *v4;
+    Pokemon *mon;
 
     v3 = Party_GetFromSavedata(param0);
     v1 = 0;
 
-    for (v2 = 0; v2 < param2->unk_0E; v2++) {
-        v4 = Party_GetPokemonBySlotIndex(v3, param2->unk_2A[v2]);
+    for (i = 0; i < param2->unk_0E; i++) {
+        mon = Party_GetPokemonBySlotIndex(v3, param2->unk_2A[i]);
 
-        if (GetMonData(v4, param1, NULL)) {
+        if (GetMonData(mon, field, NULL)) {
             continue;
         }
 
-        sub_02074B30(v4, param1, &v0);
-        sub_0206DDB8(param0, v4, param1);
+        sub_02074B30(mon, field, &v0);
+        sub_0206DDB8(param0, mon, field);
         ++v1;
     }
 
@@ -996,15 +996,15 @@ static u16 sub_0204ACC8 (UnkStruct_0204AFC4 * param0)
 
 static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon *param1)
 {
-    int v0;
+    int i;
 
     param0->unk_00_val1_0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
     param0->unk_00_val1_11 = GetMonData(param1, MON_DATA_FORM, NULL);
     param0->unk_02 = GetMonData(param1, MON_DATA_HELD_ITEM, NULL);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = GetMonData(param1, 54 + v0, NULL);
-        param0->unk_1E_val2 |= ((GetMonData(param1, 62 + v0, NULL)) << (v0 * 2));
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        param0->unk_04[i] = GetMonData(param1, MON_DATA_MOVE1 + i, NULL);
+        param0->unk_1E_val2 |= ((GetMonData(param1, MON_DATA_62 + i, NULL)) << (i * 2));
     }
 
     param0->unk_1F = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
@@ -1012,8 +1012,8 @@ static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon *param
     param0->unk_10 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
     param0->unk_14_val2 = GetMonData(param1, MON_DATA_175, NULL);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_18_val2[v0] = GetMonData(param1, 13 + v0, NULL);
+    for (i = 0; i < 6; i++) {
+        param0->unk_18_val2[i] = GetMonData(param1, MON_DATA_HP_EV + i, NULL);
     }
 
     param0->unk_20 = GetMonData(param1, MON_DATA_10, NULL);

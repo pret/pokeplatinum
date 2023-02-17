@@ -496,7 +496,7 @@ UnkEnum_02098EAC sub_02098EAC (Poffin * param0, u8 param1)
 
 void sub_02098EF8 (Poffin * param0, Pokemon *param1)
 {
-    u8 v0, v1;
+    u8 i, v1;
     u8 v2, v3;
     u8 v4, v5;
     float v6;
@@ -510,14 +510,14 @@ void sub_02098EF8 (Poffin * param0, Pokemon *param1)
 
     Poffin_StoreAttributesToArray(param0, v8);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] = GetMonData(param1, 19 + v0, NULL);
+    for (i = 0; i < 6; i++) {
+        v7[i] = GetMonData(param1, MON_DATA_COOL + i, NULL);
     }
 
     v1 = 0;
 
-    for (v0 = 1; v0 <= 6; v0++) {
-        v9[v1++] = v8[v0];
+    for (i = 1; i <= 6; i++) {
+        v9[v1++] = v8[i];
     }
 
     if (v4 != 5) {
@@ -527,14 +527,14 @@ void sub_02098EF8 (Poffin * param0, Pokemon *param1)
         v9[v5] = (u8)v6;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] += v9[v0];
+    for (i = 0; i < 6; i++) {
+        v7[i] += v9[i];
 
-        if (v7[v0] > 255) {
-            v7[v0] = 255;
+        if (v7[i] > 255) {
+            v7[i] = 255;
         }
 
-        sub_02074B30(param1, 19 + v0, &v7[v0]);
+        sub_02074B30(param1, 19 + i, &v7[i]);
     }
 
     v3 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);

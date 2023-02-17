@@ -41,16 +41,16 @@ typedef struct {
 static int sub_02097944(UnkStruct_020067E8 * param0, int * param1);
 static int sub_020979A8(UnkStruct_020067E8 * param0, int * param1);
 static int sub_02097AF8(UnkStruct_020067E8 * param0, int * param1);
-UnkStruct_02097728 * sub_02097624(UnkStruct_021C0794 * param0, int param1, u8 param2, u8 param3, int param4);
-UnkStruct_02097728 * sub_0209767C(UnkStruct_021C0794 * param0, int param1, u16 param2, int param3);
-UnkStruct_02097728 * sub_020976BC(UnkStruct_021C0794 * param0, Pokemon *param1, int param2);
-UnkStruct_02097728 * sub_020976F4(UnkStruct_021C0794 * param0, u8 param1, int param2);
+UnkStruct_02097728 *sub_02097624(UnkStruct_021C0794 * param0, int param1, u8 param2, u8 param3, int param4);
+UnkStruct_02097728 *sub_0209767C(UnkStruct_021C0794 * param0, int param1, u16 param2, int param3);
+UnkStruct_02097728 *sub_020976BC(UnkStruct_021C0794 * param0, Pokemon *mon, int param2);
+UnkStruct_02097728 *sub_020976F4(UnkStruct_021C0794 * param0, u8 param1, int param2);
 BOOL sub_02097728(UnkStruct_02097728 * param0);
 int sub_0209772C(UnkStruct_02097728 * param0, int param1, u8 param2);
-int sub_02097750(UnkStruct_02097728 * param0, Pokemon *param1);
+int sub_02097750(UnkStruct_02097728 * param0, Pokemon *mon);
 void sub_02097770(UnkStruct_02097728 * param0);
-int sub_02097788(UnkStruct_02028430 * param0, Pokemon *param1, int param2);
-int sub_020977E4(UnkStruct_02028430 * param0, u16 param1, Pokemon *param2, int param3);
+int sub_02097788(UnkStruct_02028430 * param0, Pokemon *mon, int param2);
+int sub_020977E4(UnkStruct_02028430 * param0, u16 param1, Pokemon *mon, int param3);
 UnkStruct_020978D8 * sub_02097834(const UnkStruct_0202818C * param0, int param1);
 void sub_020978D8(UnkStruct_020978D8 * param0);
 void sub_020978F0(UnkStruct_0202818C * param0, UnkStruct_020978D8 * param1);
@@ -109,7 +109,7 @@ UnkStruct_02097728 * sub_0209767C (UnkStruct_021C0794 * param0, int param1, u16 
     return v0;
 }
 
-UnkStruct_02097728 * sub_020976BC (UnkStruct_021C0794 * param0, Pokemon *param1, int param2)
+UnkStruct_02097728 *sub_020976BC(UnkStruct_021C0794 * param0, Pokemon *mon, int param2)
 {
     UnkStruct_02097728 * v0;
 
@@ -120,7 +120,7 @@ UnkStruct_02097728 * sub_020976BC (UnkStruct_021C0794 * param0, Pokemon *param1,
     v0->unk_10 = param0;
     v0->unk_14 = sub_0202818C(param2);
 
-    GetMonData(param1, MON_DATA_170, v0->unk_14);
+    GetMonData(mon, MON_DATA_170, v0->unk_14);
     return v0;
 }
 

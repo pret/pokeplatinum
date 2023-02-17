@@ -546,7 +546,7 @@ void sub_02093AD4 (UnkStruct_02095C48 * param0)
     Heap_Destroy(20);
 }
 
-static int sub_02093B2C (Pokemon *param0, int param1)
+static int sub_02093B2C (Pokemon *mon, int param1)
 {
     int v0, v1, v2;
 
@@ -555,19 +555,19 @@ static int sub_02093B2C (Pokemon *param0, int param1)
     for (v1 = 0; v1 <= 3; v1++) {
         switch (param1) {
         case 0:
-            v2 = GetMonData(param0, 123 + v1, NULL);
+            v2 = GetMonData(mon, MON_DATA_123 + v1, NULL);
             break;
         case 1:
-            v2 = GetMonData(param0, 127 + v1, NULL);
+            v2 = GetMonData(mon, MON_DATA_127 + v1, NULL);
             break;
         case 2:
-            v2 = GetMonData(param0, 131 + v1, NULL);
+            v2 = GetMonData(mon, MON_DATA_131 + v1, NULL);
             break;
         case 3:
-            v2 = GetMonData(param0, 135 + v1, NULL);
+            v2 = GetMonData(mon, MON_DATA_135 + v1, NULL);
             break;
         case 4:
-            v2 = GetMonData(param0, 139 + v1, NULL);
+            v2 = GetMonData(mon, MON_DATA_139 + v1, NULL);
             break;
         default:
             GF_ASSERT(0);

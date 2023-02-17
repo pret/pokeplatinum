@@ -19,6 +19,8 @@
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0225177C.h"
 
+#include "constants/moves.h"
+
 static const u16 Unk_ov14_0222EE90[] = {
 	0x7,
 	0x8,
@@ -405,7 +407,7 @@ static u8 ov14_0221FD44 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * 
         v2[0] = 0;
 
         for (v0 = 1; v0 < 4; v0++) {
-            if (param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v0]) {
+            if (param1->unk_2D40[param1->unk_354.unk_7B].moves[v0]) {
                 if (v1[0] == param1->unk_354.unk_04[v0]) {
                     v1[v3] = param1->unk_354.unk_04[v0];
                     v2[v3++] = v0;
@@ -486,7 +488,7 @@ static u8 ov14_0221FE38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * 
             v11 = 1;
 
             for (v12 = 1; v12 < 4; v12++) {
-                if (param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v12]) {
+                if (param1->unk_2D40[param1->unk_354.unk_7B].moves[v12]) {
                     if (v9[0] == param1->unk_354.unk_04[v12]) {
                         v9[v11] = param1->unk_354.unk_04[v12];
                         v10[v11] = v12;
@@ -531,7 +533,7 @@ static u8 ov14_0221FE38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * 
     param1->unk_354.unk_86[param1->unk_354.unk_7B] = v4[(ov16_0223F4BC(param0) % v1)];
 
     v8 = v5[param1->unk_354.unk_86[param1->unk_354.unk_7B]];
-    v7 = param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v8];
+    v7 = param1->unk_2D40[param1->unk_354.unk_7B].moves[v8];
 
     if (param1->unk_354.unk_8A[v7].unk_08 == 0x200) {
         if (ov16_0223E208(param0, param1->unk_354.unk_86[param1->unk_354.unk_7B]) == 0) {
@@ -558,7 +560,7 @@ static void ov14_02220078 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             if (param1->unk_2D40[param1->unk_354.unk_7B].unk_2C[param1->unk_354.unk_01] == 0) {
                 param1->unk_354.unk_02 = 0;
             } else {
-                param1->unk_354.unk_02 = param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[param1->unk_354.unk_01];
+                param1->unk_354.unk_02 = param1->unk_2D40[param1->unk_354.unk_7B].moves[param1->unk_354.unk_01];
             }
 
             param1->unk_354.unk_00++;
@@ -1076,7 +1078,7 @@ static void ov14_0222089C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = ov14_02222CF0(param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v0] != 0) && (param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v0]].unk_03)) {
+        if ((param1->unk_2D40[param1->unk_354.unk_7B].moves[v0] != MOVE_NONE) && (param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_354.unk_7B].moves[v0]].unk_03)) {
             break;
         }
     }
@@ -1095,7 +1097,7 @@ static void ov14_02220900 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = ov14_02222CF0(param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v0] != 0) && (param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v0]].unk_03)) {
+        if ((param1->unk_2D40[param1->unk_354.unk_7B].moves[v0] != MOVE_NONE) && (param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_354.unk_7B].moves[v0]].unk_03)) {
             break;
         }
     }
@@ -1218,7 +1220,7 @@ static void ov14_02220B34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             v5[v0] = ov16_02252060(param1, param1->unk_354.unk_7B, 10 + v0, NULL);
         }
 
-        ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[0], &v3[0], param1->unk_2D40[param1->unk_354.unk_7B].unk_78, &v5[0], ov16_02255A4C(param1, param1->unk_354.unk_7B), param1->unk_2D40[param1->unk_354.unk_7B].unk_88.unk_04_19, v4);
+        ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &param1->unk_2D40[param1->unk_354.unk_7B].moves[0], &v3[0], param1->unk_2D40[param1->unk_354.unk_7B].unk_78, &v5[0], ov16_02255A4C(param1, param1->unk_354.unk_7B), param1->unk_2D40[param1->unk_354.unk_7B].unk_88.unk_04_19, v4);
 
         for (v0 = 0; v0 < 4; v0++) {
             if (v3[v0] > v3[param1->unk_354.unk_01]) {
@@ -1464,7 +1466,7 @@ static void ov14_02221060 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = 40;
         v2 = 0;
-        v3 = param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[v0];
+        v3 = param1->unk_2D40[param1->unk_354.unk_7B].moves[v0];
         v4 = ov14_0222327C(param0, param1, param1->unk_354.unk_7B, v3);
 
         if (v3) {
@@ -1866,7 +1868,7 @@ static void ov14_02221824 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     switch (v2) {
     case 1:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param1->unk_2D40[v1].unk_0C[v0] == v3) {
+            if (param1->unk_2D40[v1].moves[v0] == v3) {
                 break;
             }
         }
@@ -1881,7 +1883,7 @@ static void ov14_02221824 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         }
 
         for (v0 = 0; v0 < 4; v0++) {
-            if (param1->unk_2D40[v1].unk_0C[v0] == v3) {
+            if (param1->unk_2D40[v1].moves[v0] == v3) {
                 break;
             }
         }
@@ -1924,7 +1926,7 @@ static void ov14_022218E4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     switch (v2) {
     case 1:
         for (v0 = 0; v0 < 4; v0++) {
-            if (param1->unk_2D40[v1].unk_0C[v0] == v3) {
+            if (param1->unk_2D40[v1].moves[v0] == v3) {
                 break;
             }
         }
@@ -1939,7 +1941,7 @@ static void ov14_022218E4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         }
 
         for (v0 = 0; v0 < 4; v0++) {
-            if (param1->unk_2D40[v1].unk_0C[v0] == v3) {
+            if (param1->unk_2D40[v1].moves[v0] == v3) {
                 break;
             }
         }
@@ -1982,7 +1984,7 @@ static void ov14_022219A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     switch (v2) {
     case 1:
         for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->unk_2D40[v1].unk_0C[v0]) && (param1->unk_354.unk_8A[param1->unk_2D40[v1].unk_0C[v0]].unk_00 == v3)) {
+            if ((param1->unk_2D40[v1].moves[v0]) && (param1->unk_354.unk_8A[param1->unk_2D40[v1].moves[v0]].unk_00 == v3)) {
                 break;
             }
         }
@@ -2025,7 +2027,7 @@ static void ov14_02221A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     switch (v2) {
     case 1:
         for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->unk_2D40[v1].unk_0C[v0]) && (param1->unk_354.unk_8A[param1->unk_2D40[v1].unk_0C[v0]].unk_00 == v3)) {
+            if ((param1->unk_2D40[v1].moves[v0]) && (param1->unk_354.unk_8A[param1->unk_2D40[v1].moves[v0]].unk_00 == v3)) {
                 break;
             }
         }
@@ -2262,7 +2264,7 @@ static void ov14_02221E18 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
         if (v3 != param1->unk_219C[v0]) {
             for (v4 = 0; v4 < 4; v4++) {
-                if (GetMonData(v5, 58 + v4, NULL) != GetMonData(v5, 66 + v4, NULL)) {
+                if (GetMonData(v5, MON_DATA_58 + v4, NULL) != GetMonData(v5, MON_DATA_66 + v4, NULL)) {
                     ov14_02222D24(param1, v2);
                     break;
                 }
@@ -2400,7 +2402,7 @@ static void ov14_022220CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v9[v0] = ov16_02252060(param1, v4, 10 + v0, NULL);
     }
 
-    v5 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &param1->unk_2D40[v4].unk_0C[0], &v7[0], param1->unk_2D40[v4].unk_78, &v9[0], ov16_02255A4C(param1, v4), param1->unk_2D40[v4].unk_88.unk_04_19, v2);
+    v5 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &param1->unk_2D40[v4].moves[0], &v7[0], param1->unk_2D40[v4].unk_78, &v9[0], ov16_02255A4C(param1, v4), param1->unk_2D40[v4].unk_88.unk_04_19, v2);
 
     for (v0 = 0; v0 < ov16_0223DF60(param0, v4); v0++) {
         if (v0 != param1->unk_219C[v4]) {
@@ -2408,11 +2410,11 @@ static void ov14_022220CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
             if ((GetMonData(v10, MON_DATA_163, NULL) != 0) && (GetMonData(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v8[v1] = GetMonData(v10, 54 + v1, NULL);
+                    v8[v1] = GetMonData(v10, MON_DATA_MOVE1 + v1, NULL);
                 }
 
                 for (v1 = 0; v1 < 6; v1++) {
-                    v9[v1] = GetMonData(v10, 70 + v1, NULL);
+                    v9[v1] = GetMonData(v10, MON_DATA_HP_IV + v1, NULL);
                 }
 
                 v6 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &v8[0], &v7[0], GetMonData(v10, MON_DATA_HELD_ITEM, NULL), &v9[0], GetMonData(v10, MON_DATA_10, NULL), 0, v2);
@@ -2462,7 +2464,7 @@ static void ov14_02222298 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v9[v0] = ov16_02252060(param1, param1->unk_354.unk_7B, 10 + v0, NULL);
     }
 
-    v6 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &param1->unk_2D40[param1->unk_354.unk_7B].unk_0C[0], &v8[0], param1->unk_2D40[param1->unk_354.unk_7B].unk_78, &v9[0], ov16_02255A4C(param1, param1->unk_354.unk_7B), param1->unk_2D40[param1->unk_354.unk_7B].unk_88.unk_04_19, v2);
+    v6 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &param1->unk_2D40[param1->unk_354.unk_7B].moves[0], &v8[0], param1->unk_2D40[param1->unk_354.unk_7B].unk_78, &v9[0], ov16_02255A4C(param1, param1->unk_354.unk_7B), param1->unk_2D40[param1->unk_354.unk_7B].unk_88.unk_04_19, v2);
     v4 = ov14_02222D34(param1, v1);
 
     if (v2 == 1) {
@@ -2655,7 +2657,7 @@ static void ov14_02222648 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 v6[v0] = ov16_02252060(param1, v7, 10 + v0, NULL);
             }
 
-            ov14_02222D7C(param0, param1, v7, &param1->unk_2D40[v7].unk_0C[0], &v4[0], param1->unk_2D40[v7].unk_78, &v6[0], ov16_02255A4C(param1, v7), param1->unk_2D40[v7].unk_88.unk_04_19, v5);
+            ov14_02222D7C(param0, param1, v7, &param1->unk_2D40[v7].moves[0], &v4[0], param1->unk_2D40[v7].unk_78, &v6[0], ov16_02255A4C(param1, v7), param1->unk_2D40[v7].unk_88.unk_04_19, v5);
 
             v7 = ov16_0223E258(param0, param1->unk_354.unk_7B);
 
@@ -3407,7 +3409,7 @@ static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if (param1->unk_2D40[param2 ^ 1].unk_27 == 25) {
         for (v0 = 0; v0 < 4; v0++) {
-            v2 = param1->unk_2D40[param2].unk_0C[v0];
+            v2 = param1->unk_2D40[param2].moves[v0];
             v3 = ov14_0222327C(param0, param1, param2, v2);
 
             if (v2) {
@@ -3425,7 +3427,7 @@ static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
             if ((GetMonData(v5, MON_DATA_163, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->unk_219C[param2])) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v2 = GetMonData(v5, 54 + v1, NULL);
+                    v2 = GetMonData(v5, MON_DATA_MOVE1 + v1, NULL);
                     v3 = ov16_0225BE3C(param0, param1, v5, v2);
 
                     if (v2) {
@@ -3470,7 +3472,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v11 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v6 = param1->unk_2D40[param2].unk_0C[v0];
+        v6 = param1->unk_2D40[param2].moves[v0];
         v7 = ov14_0222327C(param0, param1, param2, v6);
 
         if ((v6) && (param1->unk_354.unk_8A[v6].unk_03)) {
@@ -3517,7 +3519,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
         if ((GetMonData(v12, MON_DATA_163, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->unk_219C[v4]) && (v0 != param1->unk_219C[v5]) && (v0 != param1->unk_21A4[v4]) && (v0 != param1->unk_21A4[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v6 = GetMonData(v12, 54 + v1, NULL);
+                v6 = GetMonData(v12, MON_DATA_MOVE1 + v1, NULL);
                 v7 = ov16_0225BE3C(param0, param1, v12, v6);
 
                 if ((v6) && (param1->unk_354.unk_8A[v6].unk_03)) {
@@ -3556,7 +3558,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
         if ((GetMonData(v12, MON_DATA_163, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->unk_219C[v4]) && (v0 != param1->unk_219C[v5]) && (v0 != param1->unk_21A4[v4]) && (v0 != param1->unk_21A4[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v6 = GetMonData(v12, 54 + v1, NULL);
+                v6 = GetMonData(v12, MON_DATA_MOVE1 + v1, NULL);
                 v7 = ov16_0225BE3C(param0, param1, v12, v6);
 
                 if ((v6) && (param1->unk_354.unk_8A[v6].unk_03)) {
@@ -3607,7 +3609,7 @@ static BOOL ov14_02223B34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if ((param1->unk_3108 & sub_020787CC(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
-            v4 = param1->unk_2D40[param2].unk_0C[v0];
+            v4 = param1->unk_2D40[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
 
             if (v4) {
@@ -3635,7 +3637,7 @@ static BOOL ov14_02223B34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if ((param1->unk_3108 & sub_020787CC(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
-            v4 = param1->unk_2D40[param2].unk_0C[v0];
+            v4 = param1->unk_2D40[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
 
             if (v4) {
@@ -3763,7 +3765,7 @@ static BOOL ov14_02223E10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
             if (v6 & param3) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v4 = GetMonData(v9, 54 + v1, NULL);
+                    v4 = GetMonData(v9, MON_DATA_MOVE1 + v1, NULL);
                     v5 = ov16_0225BE3C(param0, param1, v9, v4);
 
                     if (v4) {

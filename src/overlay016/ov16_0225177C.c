@@ -45,6 +45,8 @@
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
 
+#include "constants/moves.h"
+
 typedef struct {
     u16 unk_00;
     s16 unk_02;
@@ -196,36 +198,36 @@ int ov16_0225BE3C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1,
 
 void ov16_0225177C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3)
 {
-    Pokemon *v0 = ov16_0223DFAC(param0, param2, param3);
-    int v1;
+    Pokemon *mon = ov16_0223DFAC(param0, param2, param3);
+    int i;
     int v2;
     UnkStruct_02098700 * v3;
 
-    param1->unk_2D40[param2].unk_00 = GetMonData(v0, MON_DATA_SPECIES, 0);
-    param1->unk_2D40[param2].unk_02 = GetMonData(v0, MON_DATA_165, 0);
-    param1->unk_2D40[param2].unk_04 = GetMonData(v0, MON_DATA_166, 0);
-    param1->unk_2D40[param2].unk_06 = GetMonData(v0, MON_DATA_167, 0);
-    param1->unk_2D40[param2].unk_08 = GetMonData(v0, MON_DATA_168, 0);
-    param1->unk_2D40[param2].unk_0A = GetMonData(v0, MON_DATA_169, 0);
+    param1->unk_2D40[param2].unk_00 = GetMonData(mon, MON_DATA_SPECIES, 0);
+    param1->unk_2D40[param2].unk_02 = GetMonData(mon, MON_DATA_165, 0);
+    param1->unk_2D40[param2].unk_04 = GetMonData(mon, MON_DATA_166, 0);
+    param1->unk_2D40[param2].unk_06 = GetMonData(mon, MON_DATA_167, 0);
+    param1->unk_2D40[param2].unk_08 = GetMonData(mon, MON_DATA_168, 0);
+    param1->unk_2D40[param2].unk_0A = GetMonData(mon, MON_DATA_169, 0);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        param1->unk_2D40[param2].unk_0C[v1] = GetMonData(v0, 54 + v1, 0);
-        param1->unk_2D40[param2].unk_2C[v1] = GetMonData(v0, 58 + v1, 0);
-        param1->unk_2D40[param2].unk_30[v1] = GetMonData(v0, 62 + v1, 0);
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        param1->unk_2D40[param2].moves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+        param1->unk_2D40[param2].unk_2C[i] = GetMonData(mon, MON_DATA_58 + i, 0);
+        param1->unk_2D40[param2].unk_30[i] = GetMonData(mon, MON_DATA_62 + i, 0);
     }
 
-    param1->unk_2D40[param2].unk_14_0 = GetMonData(v0, MON_DATA_HP_IV, 0);
-    param1->unk_2D40[param2].unk_14_5 = GetMonData(v0, MON_DATA_ATK_IV, 0);
-    param1->unk_2D40[param2].unk_14_10 = GetMonData(v0, MON_DATA_DEF_IV, 0);
-    param1->unk_2D40[param2].unk_14_15 = GetMonData(v0, MON_DATA_SPEED_IV, 0);
-    param1->unk_2D40[param2].unk_14_20 = GetMonData(v0, MON_DATA_SPATK_IV, 0);
-    param1->unk_2D40[param2].unk_14_25 = GetMonData(v0, MON_DATA_SPDEF_IV, 0);
-    param1->unk_2D40[param2].unk_14_30 = GetMonData(v0, MON_DATA_IS_EGG, 0);
-    param1->unk_2D40[param2].unk_14_31 = GetMonData(v0, MON_DATA_77, 0);
+    param1->unk_2D40[param2].unk_14_0 = GetMonData(mon, MON_DATA_HP_IV, 0);
+    param1->unk_2D40[param2].unk_14_5 = GetMonData(mon, MON_DATA_ATK_IV, 0);
+    param1->unk_2D40[param2].unk_14_10 = GetMonData(mon, MON_DATA_DEF_IV, 0);
+    param1->unk_2D40[param2].unk_14_15 = GetMonData(mon, MON_DATA_SPEED_IV, 0);
+    param1->unk_2D40[param2].unk_14_20 = GetMonData(mon, MON_DATA_SPATK_IV, 0);
+    param1->unk_2D40[param2].unk_14_25 = GetMonData(mon, MON_DATA_SPDEF_IV, 0);
+    param1->unk_2D40[param2].unk_14_30 = GetMonData(mon, MON_DATA_IS_EGG, 0);
+    param1->unk_2D40[param2].unk_14_31 = GetMonData(mon, MON_DATA_77, 0);
 
     if ((param1->unk_213C & 0x100) == 0) {
-        for (v1 = 0; v1 < 0x8; v1++) {
-            param1->unk_2D40[param2].unk_18[v1] = 6;
+        for (i = 0; i < 0x8; i++) {
+            param1->unk_2D40[param2].unk_18[i] = 6;
         }
     }
 
@@ -240,36 +242,36 @@ void ov16_0225177C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     param1->unk_2D40[param2].unk_28_8 = 0;
     param1->unk_2D40[param2].unk_28_9 = 0;
     param1->unk_2D40[param2].unk_28_10 = 0;
-    param1->unk_2D40[param2].unk_24 = GetMonData(v0, MON_DATA_177, 0);
-    param1->unk_2D40[param2].unk_25 = GetMonData(v0, MON_DATA_178, 0);
-    param1->unk_2D40[param2].unk_7E_0 = sub_02075D6C(v0);
-    param1->unk_2D40[param2].unk_26_5 = sub_02075E0C(v0);
+    param1->unk_2D40[param2].unk_24 = GetMonData(mon, MON_DATA_177, 0);
+    param1->unk_2D40[param2].unk_25 = GetMonData(mon, MON_DATA_178, 0);
+    param1->unk_2D40[param2].unk_7E_0 = sub_02075D6C(mon);
+    param1->unk_2D40[param2].unk_26_5 = sub_02075E0C(mon);
 
     if (ov16_0223DF0C(param0) & (0x20 | 0x200)) {
         param1->unk_2D40[param2].unk_27 = 0;
         param1->unk_2D40[param2].unk_6C = 0;
         param1->unk_2D40[param2].unk_78 = 0;
     } else {
-        param1->unk_2D40[param2].unk_27 = GetMonData(v0, MON_DATA_10, 0);
-        param1->unk_2D40[param2].unk_6C = GetMonData(v0, MON_DATA_160, 0);
-        param1->unk_2D40[param2].unk_78 = GetMonData(v0, MON_DATA_HELD_ITEM, 0);
+        param1->unk_2D40[param2].unk_27 = GetMonData(mon, MON_DATA_10, 0);
+        param1->unk_2D40[param2].unk_6C = GetMonData(mon, MON_DATA_160, 0);
+        param1->unk_2D40[param2].unk_78 = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     }
 
     if ((ov16_0223DF0C(param0) & (0x20 | 0x200)) && (ov16_0223E208(param0, param2) == 0)) {
         param1->unk_2D40[param2].unk_26_0 = 0;
     } else {
-        param1->unk_2D40[param2].unk_26_0 = GetMonData(v0, MON_DATA_FORM, 0);
+        param1->unk_2D40[param2].unk_26_0 = GetMonData(mon, MON_DATA_FORM, 0);
     }
 
-    param1->unk_2D40[param2].unk_34 = GetMonData(v0, MON_DATA_161, 0);
-    param1->unk_2D40[param2].unk_35 = GetMonData(v0, MON_DATA_FRIENDSHIP, 0);
-    param1->unk_2D40[param2].unk_4C = GetMonData(v0, MON_DATA_163, 0);
-    param1->unk_2D40[param2].unk_50 = GetMonData(v0, MON_DATA_164, 0);
-    param1->unk_2D40[param2].unk_64 = GetMonData(v0, MON_DATA_EXP, 0);
-    param1->unk_2D40[param2].unk_68 = GetMonData(v0, MON_DATA_PERSONALITY, 0);
-    param1->unk_2D40[param2].unk_74 = GetMonData(v0, MON_DATA_OT_ID, 0);
-    param1->unk_2D40[param2].unk_7E_4 = GetMonData(v0, MON_DATA_OT_GENDER, 0);
-    param1->unk_2D40[param2].unk_7F = GetMonData(v0, MON_DATA_POKEBALL, 0);
+    param1->unk_2D40[param2].unk_34 = GetMonData(mon, MON_DATA_161, 0);
+    param1->unk_2D40[param2].unk_35 = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
+    param1->unk_2D40[param2].unk_4C = GetMonData(mon, MON_DATA_163, 0);
+    param1->unk_2D40[param2].unk_50 = GetMonData(mon, MON_DATA_164, 0);
+    param1->unk_2D40[param2].unk_64 = GetMonData(mon, MON_DATA_EXP, 0);
+    param1->unk_2D40[param2].unk_68 = GetMonData(mon, MON_DATA_PERSONALITY, 0);
+    param1->unk_2D40[param2].unk_74 = GetMonData(mon, MON_DATA_OT_ID, 0);
+    param1->unk_2D40[param2].unk_7E_4 = GetMonData(mon, MON_DATA_OT_GENDER, 0);
+    param1->unk_2D40[param2].unk_7F = GetMonData(mon, MON_DATA_POKEBALL, 0);
 
     sub_02098988(param1->unk_2D40[param2].unk_26_0);
     v3 = sub_02098700(5);
@@ -279,8 +281,8 @@ void ov16_0225177C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
     sub_020987BC(v3);
     sub_02098718(v3);
-    GetMonData(v0, MON_DATA_117, &param1->unk_2D40[param2].unk_36[0]);
-    GetMonData(v0, MON_DATA_144, &param1->unk_2D40[param2].unk_54[0]);
+    GetMonData(mon, MON_DATA_117, &param1->unk_2D40[param2].unk_36[0]);
+    GetMonData(mon, MON_DATA_144, &param1->unk_2D40[param2].unk_54[0]);
 
     param1->unk_2D40[param2].unk_7C = 0;
     param1->unk_2D40[param2].unk_7D = 0;
@@ -300,7 +302,7 @@ void ov16_0225177C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 void ov16_02251C94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2, int param3)
 {
     Pokemon *v0 = ov16_0223DFAC(param0, param2, param3);
-    int v1;
+    int i;
     int v2;
 
     param1->unk_2D40[param2].unk_02 = GetMonData(v0, MON_DATA_165, 0);
@@ -314,11 +316,11 @@ void ov16_02251C94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     param1->unk_2D40[param2].unk_50 = GetMonData(v0, MON_DATA_164, 0);
 
     if ((param1->unk_2D40[param2].unk_70 & 0x200000) == 0) {
-        for (v1 = 0; v1 < 4; v1++) {
-            if ((param1->unk_2D40[param2].unk_88.unk_04_2 & sub_020787CC(v1)) == 0) {
-                param1->unk_2D40[param2].unk_0C[v1] = GetMonData(v0, 54 + v1, 0);
-                param1->unk_2D40[param2].unk_2C[v1] = GetMonData(v0, 58 + v1, 0);
-                param1->unk_2D40[param2].unk_30[v1] = GetMonData(v0, 62 + v1, 0);
+        for (i = 0; i < 4; i++) {
+            if ((param1->unk_2D40[param2].unk_88.unk_04_2 & sub_020787CC(i)) == 0) {
+                param1->unk_2D40[param2].moves[i] = GetMonData(v0, MON_DATA_MOVE1 + i, 0);
+                param1->unk_2D40[param2].unk_2C[i] = GetMonData(v0, MON_DATA_58 + i, 0);
+                param1->unk_2D40[param2].unk_30[i] = GetMonData(v0, MON_DATA_62 + i, 0);
             }
         }
 
@@ -462,7 +464,7 @@ int ov16_02252060 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, voi
     case 7:
     case 8:
     case 9:
-        return v0->unk_0C[param2 - 6];
+        return v0->moves[param2 - 6];
         break;
     case 10:
         return v0->unk_14_0;
@@ -527,7 +529,7 @@ int ov16_02252060 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, voi
     case 40:
     case 41:
     case 42:
-        return MoveTable_GetMoveMaxPP(v0->unk_0C[param2 - 39], v0->unk_30[param2 - 39]);
+        return MoveTable_GetMoveMaxPP(v0->moves[param2 - 39], v0->unk_30[param2 - 39]);
         break;
     case 43:
         return v0->unk_34;
@@ -755,7 +757,7 @@ void ov16_022523E8 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, co
     case 7:
     case 8:
     case 9:
-        v6->unk_0C[param2 - 6] = v2[0];
+        v6->moves[param2 - 6] = v2[0];
         break;
     case 10:
         v6->unk_14_0 = v4[0];
@@ -1076,7 +1078,7 @@ void ov16_02252A2C (UnkStruct_ov16_02252060 * param0, int param1, int param2)
     {
         int v1;
 
-        v1 = MoveTable_GetMoveMaxPP(param0->unk_0C[param1 - 31], param0->unk_30[param1 - 31]);
+        v1 = MoveTable_GetMoveMaxPP(param0->moves[param1 - 31], param0->unk_30[param1 - 31]);
 
         if (param0->unk_2C[param1 - 31] + param2 > v1) {
             param0->unk_2C[param1 - 31] = v1;
@@ -2329,7 +2331,7 @@ int ov16_02254A6C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
     v1 = ov16_02258AB8(param1, param2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((param1->unk_2D40[param2].unk_0C[v0] == 0) && (param4 & 0x1)) {
+        if ((param1->unk_2D40[param2].moves[v0] == 0) && (param4 & 0x1)) {
             param3 |= sub_020787CC(v0);
         }
 
@@ -2337,31 +2339,31 @@ int ov16_02254A6C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
             param3 |= sub_020787CC(v0);
         }
 
-        if ((param1->unk_2D40[param2].unk_0C[v0] == param1->unk_2D40[param2].unk_88.unk_20) && (param4 & 0x4)) {
+        if ((param1->unk_2D40[param2].moves[v0] == param1->unk_2D40[param2].unk_88.unk_20) && (param4 & 0x4)) {
             param3 |= sub_020787CC(v0);
         }
 
-        if ((param1->unk_2D40[param2].unk_0C[v0] == param1->unk_307C[param2]) && (param4 & 0x8) && (param1->unk_2D40[param2].unk_70 & 0x80000000)) {
+        if ((param1->unk_2D40[param2].moves[v0] == param1->unk_307C[param2]) && (param4 & 0x8) && (param1->unk_2D40[param2].unk_70 & 0x80000000)) {
             param3 |= sub_020787CC(v0);
         }
 
-        if ((param1->unk_2D40[param2].unk_88.unk_00_8) && (param4 & 0x10) && (param1->unk_354.unk_8A[param1->unk_2D40[param2].unk_0C[v0]].unk_03 == 0)) {
+        if ((param1->unk_2D40[param2].unk_88.unk_00_8) && (param4 & 0x10) && (param1->unk_354.unk_8A[param1->unk_2D40[param2].moves[v0]].unk_03 == 0)) {
             param3 |= sub_020787CC(v0);
         }
 
-        if ((ov16_02255EF4(param0, param1, param2, param1->unk_2D40[param2].unk_0C[v0])) && (param4 & 0x20)) {
+        if ((ov16_02255EF4(param0, param1, param2, param1->unk_2D40[param2].moves[v0])) && (param4 & 0x20)) {
             param3 |= sub_020787CC(v0);
         }
 
-        if ((ov16_02256044(param0, param1, param2, param1->unk_2D40[param2].unk_0C[v0])) && (param4 & 0x40)) {
+        if ((ov16_02256044(param0, param1, param2, param1->unk_2D40[param2].moves[v0])) && (param4 & 0x40)) {
             param3 |= sub_020787CC(v0);
         }
 
-        if ((ov16_02256078(param0, param1, param2, param1->unk_2D40[param2].unk_0C[v0])) && (param4 & 0x80)) {
+        if ((ov16_02256078(param0, param1, param2, param1->unk_2D40[param2].moves[v0])) && (param4 & 0x80)) {
             param3 |= sub_020787CC(v0);
         }
 
-        if ((param1->unk_2D40[param2].unk_88.unk_24) && (param1->unk_2D40[param2].unk_88.unk_24 != param1->unk_2D40[param2].unk_0C[v0])) {
+        if ((param1->unk_2D40[param2].unk_88.unk_24) && (param1->unk_2D40[param2].unk_88.unk_24 != param1->unk_2D40[param2].moves[v0])) {
             param3 |= sub_020787CC(v0);
         }
 
@@ -2369,7 +2371,7 @@ int ov16_02254A6C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
             if (ov16_02254EE0(&param1->unk_2D40[param2], param1->unk_2D40[param2].unk_88.unk_30) == 4) {
                 param1->unk_2D40[param2].unk_88.unk_30 = 0;
             } else {
-                if ((param1->unk_2D40[param2].unk_88.unk_30) && (param1->unk_2D40[param2].unk_88.unk_30 != param1->unk_2D40[param2].unk_0C[v0])) {
+                if ((param1->unk_2D40[param2].unk_88.unk_30) && (param1->unk_2D40[param2].unk_88.unk_30 != param1->unk_2D40[param2].moves[v0])) {
                     param3 |= sub_020787CC(v0);
                 }
             }
@@ -2389,7 +2391,7 @@ BOOL ov16_02254CA8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         param4->unk_01 = 10;
         param4->unk_02 = 609;
         param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->unk_2D40[param2].unk_0C[param3];
+        param4->unk_04[1] = param1->unk_2D40[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x8) & sub_020787CC(param3)) {
         param4->unk_01 = 2;
@@ -2400,26 +2402,26 @@ BOOL ov16_02254CA8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         param4->unk_01 = 10;
         param4->unk_02 = 613;
         param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->unk_2D40[param2].unk_0C[param3];
+        param4->unk_04[1] = param1->unk_2D40[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x20) & sub_020787CC(param3)) {
         param4->unk_01 = 10;
         param4->unk_02 = 616;
         param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->unk_2D40[param2].unk_0C[param3];
+        param4->unk_04[1] = param1->unk_2D40[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x40) & sub_020787CC(param3)) {
         param4->unk_01 = 10;
         param4->unk_02 = 1001;
         param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->unk_2D40[param2].unk_0C[param3];
+        param4->unk_04[1] = param1->unk_2D40[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x80) & sub_020787CC(param3)) {
         param4->unk_01 = 34;
         param4->unk_02 = 1057;
         param4->unk_04[0] = ov16_02255560(param1, param2);
         param4->unk_04[1] = 377;
-        param4->unk_04[2] = param1->unk_2D40[param2].unk_0C[param3];
+        param4->unk_04[2] = param1->unk_2D40[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x200) & sub_020787CC(param3)) {
         param4->unk_01 = 24;
@@ -2441,7 +2443,7 @@ int ov16_02254EE0 (UnkStruct_ov16_02252060 * param0, u16 param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_0C[v0] == param1) {
+        if (param0->moves[v0] == param1) {
             break;
         }
     }
@@ -2865,7 +2867,7 @@ u16 ov16_02255570 (UnkStruct_ov16_0224B9DC * param0, int param1)
     v0 = 0;
 
     if ((param0->unk_21A8[param1][3] == 1) && (param0->unk_21A8[param1][2])) {
-        v0 = param0->unk_2D40[param1].unk_0C[param0->unk_21A8[param1][2] - 1];
+        v0 = param0->unk_2D40[param1].moves[param0->unk_21A8[param1][2] - 1];
     }
 
     return v0;
@@ -3315,7 +3317,7 @@ BOOL ov16_02255EF4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
     for (v0 = 0; v0 < v1; v0++) {
         if ((v2 != ov16_0223E208(param0, v0)) && (param1->unk_2D40[v0].unk_80 & 0x2000)) {
             for (v3 = 0; v3 < 4; v3++) {
-                if (param3 == param1->unk_2D40[v0].unk_0C[v3]) {
+                if (param3 == param1->unk_2D40[v0].moves[v3]) {
                     break;
                 }
             }
@@ -3468,7 +3470,7 @@ int ov16_02256128 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param1->unk_2D40[param2].unk_0C[v0] == 0) {
+        if (param1->unk_2D40[param2].moves[v0] == MOVE_NONE) {
             break;
         }
     }
@@ -3834,7 +3836,7 @@ int ov16_02256414 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
                         for (v11 = 0; v11 < v5; v11++) {
                             if ((ov16_0223E208(param0, v4) != ov16_0223E208(param0, v11)) && (param1->unk_2D40[v11].unk_4C)) {
                                 for (v12 = 0; v12 < 4; v12++) {
-                                    v13 = param1->unk_2D40[v11].unk_0C[v12];
+                                    v13 = param1->unk_2D40[v11].moves[v12];
 
                                     if (v13) {
                                         v14 = 0;
@@ -3886,7 +3888,7 @@ int ov16_02256414 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
                                 v20 += param1->unk_2D40[v15].unk_4C;
 
                                 for (v16 = 0; v16 < 4; v16++) {
-                                    v17 = param1->unk_2D40[v15].unk_0C[v16];
+                                    v17 = param1->unk_2D40[v15].moves[v16];
 
                                     v18 = param1->unk_354.unk_8A[v17].unk_03;
 
@@ -3935,7 +3937,7 @@ int ov16_02256414 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1
                             v15 = ov16_02257028(param0, param1, v4);
                             v16 = ov16_02256128(param0, param1, v15);
 
-                            param1->unk_124 = param1->unk_2D40[v15].unk_0C[ov16_0223F4BC(param0) % v16];
+                            param1->unk_124 = param1->unk_2D40[v15].moves[ov16_0223F4BC(param0) % v16];
                             param1->unk_118 = v4;
 
                             v2 = (0 + 195);
@@ -4490,7 +4492,7 @@ BOOL ov16_022579A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
             int v4;
 
             for (v4 = 0; v4 < 4; v4++) {
-                if ((param1->unk_2D40[param2].unk_0C[v4]) && (param1->unk_2D40[param2].unk_2C[v4] == 0)) {
+                if ((param1->unk_2D40[param2].moves[v4]) && (param1->unk_2D40[param2].unk_2C[v4] == 0)) {
                     break;
                 }
             }
@@ -4498,7 +4500,7 @@ BOOL ov16_022579A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
             if (v4 != 4) {
                 ov16_02252A2C(&param1->unk_2D40[param2], 31 + v4, v3);
                 ov16_02253EC0(param0, param1, param2);
-                param1->unk_124 = param1->unk_2D40[param2].unk_0C[v4];
+                param1->unk_124 = param1->unk_2D40[param2].moves[v4];
                 v1 = (0 + 204);
                 v0 = 1;
             }
@@ -4866,7 +4868,7 @@ BOOL ov16_02258104 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
             int v4;
 
             for (v4 = 0; v4 < 4; v4++) {
-                if ((param1->unk_2D40[param2].unk_0C[v4]) && (param1->unk_2D40[param2].unk_2C[v4] == 0)) {
+                if ((param1->unk_2D40[param2].moves[v4]) && (param1->unk_2D40[param2].unk_2C[v4] == 0)) {
                     break;
                 }
             }
@@ -4874,7 +4876,7 @@ BOOL ov16_02258104 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
             if (v4 != 4) {
                 ov16_02252A2C(&param1->unk_2D40[param2], 31 + v4, v3);
                 ov16_02253EC0(param0, param1, param2);
-                param1->unk_124 = param1->unk_2D40[param2].unk_0C[v4];
+                param1->unk_124 = param1->unk_2D40[param2].moves[v4];
                 param3[0] = (0 + 204);
                 v0 = 1;
             }
@@ -5428,8 +5430,8 @@ BOOL ov16_02258CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         v6 = 0;
 
         for (v5 = 0; v5 < 4; v5++) {
-            if (param1->unk_2D40[param1->unk_64].unk_0C[v5]) {
-                v4 = MoveTable_GetMoveMaxPP(param1->unk_2D40[param1->unk_64].unk_0C[v5], param1->unk_2D40[param1->unk_64].unk_30[v5]) - param1->unk_2D40[param1->unk_64].unk_2C[v5];
+            if (param1->unk_2D40[param1->unk_64].moves[v5]) {
+                v4 = MoveTable_GetMoveMaxPP(param1->unk_2D40[param1->unk_64].moves[v5], param1->unk_2D40[param1->unk_64].unk_30[v5]) - param1->unk_2D40[param1->unk_64].unk_2C[v5];
 
                 if (v4 > v6) {
                     v6 = v4;
@@ -5440,7 +5442,7 @@ BOOL ov16_02258CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
 
         ov16_02252A2C(&param1->unk_2D40[param1->unk_64], 31 + v7, v3);
         ov16_02253EC0(param0, param1, param1->unk_64);
-        param1->unk_124 = param1->unk_2D40[param1->unk_64].unk_0C[v7];
+        param1->unk_124 = param1->unk_2D40[param1->unk_64].moves[v7];
         v1 = (0 + 204);
     }
         v0 = 1;
@@ -5710,8 +5712,8 @@ BOOL ov16_02259204 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
         v5 = 0;
 
         for (v4 = 0; v4 < 4; v4++) {
-            if (param1->unk_2D40[param1->unk_6C].unk_0C[v4]) {
-                v3 = MoveTable_GetMoveMaxPP(param1->unk_2D40[param1->unk_6C].unk_0C[v4], param1->unk_2D40[param1->unk_6C].unk_30[v4]) - param1->unk_2D40[param1->unk_6C].unk_2C[v4];
+            if (param1->unk_2D40[param1->unk_6C].moves[v4]) {
+                v3 = MoveTable_GetMoveMaxPP(param1->unk_2D40[param1->unk_6C].moves[v4], param1->unk_2D40[param1->unk_6C].unk_30[v4]) - param1->unk_2D40[param1->unk_6C].unk_2C[v4];
 
                 if (v3 > v5) {
                     v5 = v3;
@@ -5724,7 +5726,7 @@ BOOL ov16_02259204 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
             ov16_02252A2C(&param1->unk_2D40[param1->unk_6C], 31 + v6, v2);
             ov16_02253EC0(param0, param1, param1->unk_6C);
 
-            param1->unk_124 = param1->unk_2D40[param1->unk_6C].unk_0C[v6];
+            param1->unk_124 = param1->unk_2D40[param1->unk_6C].moves[v6];
             param1->unk_3118 = (0 + 204);
         }
     }
@@ -7726,7 +7728,7 @@ int ov16_0225BA88 (UnkStruct_0207ADB4 * param0, int param1)
             v19 = ov16_0223DFAC(param0, param1, v13);
 
             for (v0 = 0; v0 < 4; v0++) {
-                v8 = GetMonData(v19, 54 + v0, NULL);
+                v8 = GetMonData(v19, MON_DATA_MOVE1 + v0, NULL);
                 v9 = ov16_0225BE3C(param0, v20, v19, v8);
 
                 if (v8) {
@@ -7758,7 +7760,7 @@ int ov16_0225BA88 (UnkStruct_0207ADB4 * param0, int param1)
 
         if ((v7 != 0) && (v7 != 494) && (GetMonData(v19, MON_DATA_163, NULL)) && (v20->unk_219C[v14] != v0) && (v20->unk_219C[v15] != v0) && (v0 != v20->unk_21A4[v14]) && (v0 != v20->unk_21A4[v15])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v8 = GetMonData(v19, 54 + v1, NULL);
+                v8 = GetMonData(v19, MON_DATA_MOVE1 + v1, NULL);
                 v9 = ov16_0225BE3C(param0, v20, v19, v8);
 
                 if ((v8) && (v20->unk_354.unk_8A[v8].unk_03 != 1)) {

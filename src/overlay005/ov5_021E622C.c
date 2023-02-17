@@ -3041,21 +3041,21 @@ static void ov5_021E742C (Pokemon *param0, int param1)
     u8 v2[4];
     u32 v3, v4;
     u8 v5[6], v6;
-    u8 v7, v8, v9, v10, v11, v12, v13, v14;
+    u8 i, v8, v9, v10, v11, v12, v13, v14;
     UnkStruct_02023790 * v15 = sub_02023790(7 + 1, param1);
     Pokemon *v16 = sub_02073C74(param1);
 
     v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
-    for (v7 = 0; v7 < 4; v7++) {
-        v1[v7] = GetMonData(param0, 54 + v7, NULL);
-        v2[v7] = GetMonData(param0, 58 + v7, NULL);
+    for (i = 0; i < 4; i++) {
+        v1[i] = GetMonData(param0, MON_DATA_MOVE1 + i, NULL);
+        v2[i] = GetMonData(param0, MON_DATA_58 + i, NULL);
     }
 
     v3 = GetMonData(param0, MON_DATA_PERSONALITY, NULL);
 
-    for (v7 = 0; v7 < 6; v7++) {
-        v5[v7] = GetMonData(param0, 70 + v7, NULL);
+    for (i = 0; i < 6; i++) {
+        v5[i] = GetMonData(param0, MON_DATA_HP_IV + i, NULL);
     }
 
     v8 = GetMonData(param0, MON_DATA_LANGUAGE, NULL);
@@ -3082,13 +3082,13 @@ static void ov5_021E742C (Pokemon *param0, int param1)
 
     sub_02073D80(v16, v0, 1, 32, 1, v3, 0, 0);
 
-    for (v7 = 0; v7 < 4; v7++) {
-        sub_02074B30(v16, 54 + v7, &(v1[v7]));
-        sub_02074B30(v16, 58 + v7, &(v2[v7]));
+    for (i = 0; i < 4; i++) {
+        sub_02074B30(v16, 54 + i, &(v1[i]));
+        sub_02074B30(v16, 58 + i, &(v2[i]));
     }
 
-    for (v7 = 0; v7 < 6; v7++) {
-        sub_02074B30(v16, 70 + v7, &(v5[v7]));
+    for (i = 0; i < 6; i++) {
+        sub_02074B30(v16, 70 + i, &(v5[i]));
     }
 
     sub_02074B30(v16, 12, &v8);

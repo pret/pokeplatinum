@@ -12,15 +12,17 @@
 #include "item.h"
 #include "unk_02096420.h"
 
-static u8 sub_02096F34(Pokemon *param0, u32 param1);
-static u8 sub_02096F84(Pokemon *param0, u32 param1, u32 param2);
-static u8 sub_02097004(Pokemon *param0, u32 param1, u32 param2);
-static void sub_020970AC(Pokemon *param0, u32 param1, u32 param2, u32 param3);
-static s32 sub_020970EC(s32 param0, s32 param1, s32 param2);
-static u8 sub_020971D0(Pokemon *param0, s32 param1, s32 param2, u16 param3, u32 param4);
-static u8 sub_02097144(Pokemon *param0, UnkStruct_0207D3B0 * param1);
+#include "constants/species.h"
 
-u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
+static u8 sub_02096F34(Pokemon *mon, u32 param1);
+static u8 sub_02096F84(Pokemon *mon, u32 param1, u32 param2);
+static u8 sub_02097004(Pokemon *mon, u32 param1, u32 param2);
+static void sub_020970AC(Pokemon *mon, u32 param1, u32 param2, u32 param3);
+static s32 sub_020970EC(s32 param0, s32 param1, s32 param2);
+static u8 sub_020971D0(Pokemon *mon, s32 param1, s32 param2, u16 param3, u32 param4);
+static u8 sub_02097144(Pokemon *mon, UnkStruct_0207D3B0 * param1);
+
+u8 sub_02096420 (Pokemon *mon, u16 param1, u16 param2, u32 param3)
 {
     UnkStruct_0207D3B0 * v0;
     s32 v1[8];
@@ -32,7 +34,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
         return 0;
     }
 
-    v1[0] = GetMonData(param0, MON_DATA_160, NULL);
+    v1[0] = GetMonData(mon, MON_DATA_160, NULL);
 
     if (Item_GetAttributeFromStruct(v0, 15) != 0) {
         if ((v1[0] & 0x7) != 0) {
@@ -69,7 +71,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
         }
     }
 
-    v1[0] = GetMonData(param0, MON_DATA_163, NULL);
+    v1[0] = GetMonData(mon, MON_DATA_163, NULL);
 
     if (((Item_GetAttributeFromStruct(v0, 23) != 0) || (Item_GetAttributeFromStruct(v0, 24) != 0)) && (Item_GetAttributeFromStruct(v0, 25) == 0)) {
         if (v1[0] == 0) {
@@ -77,35 +79,35 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
             return 1;
         }
     } else if (Item_GetAttributeFromStruct(v0, 38) != 0) {
-        if ((v1[0] != 0) && (v1[0] < GetMonData(param0, MON_DATA_164, NULL))) {
+        if ((v1[0] != 0) && (v1[0] < GetMonData(mon, MON_DATA_164, NULL))) {
             Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
     if (Item_GetAttributeFromStruct(v0, 25) != 0) {
-        if (GetMonData(param0, MON_DATA_161, NULL) < 100) {
+        if (GetMonData(mon, MON_DATA_161, NULL) < 100) {
             Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
     if (Item_GetAttributeFromStruct(v0, 26) != 0) {
-        if (sub_02076B94(NULL, param0, 3, param1, NULL) != 0) {
+        if (sub_02076B94(NULL, mon, 3, param1, NULL) != 0) {
             Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
     if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
-        if ((GetMonData(param0, 62 + param2, NULL) < 3) && (MoveTable_GetMoveMaxPP(GetMonData(param0, 54 + param2, NULL), 0) >= 5)) {
+        if ((GetMonData(mon, MON_DATA_62 + param2, NULL) < 3) && (MoveTable_GetMoveMaxPP(GetMonData(mon, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
             Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
     if (Item_GetAttributeFromStruct(v0, 36) != 0) {
-        if (sub_02096F34(param0, param2) == 1) {
+        if (sub_02096F34(mon, param2) == 1) {
             Heap_FreeToHeap(v0);
             return 1;
         }
@@ -113,21 +115,21 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
 
     if (Item_GetAttributeFromStruct(v0, 37) != 0) {
         for (v1[0] = 0; v1[0] < 4; v1[0]++) {
-            if (sub_02096F34(param0, v1[0]) == 1) {
+            if (sub_02096F34(mon, v1[0]) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
         }
     }
 
-    v1[0] = GetMonData(param0, MON_DATA_HP_EV, NULL);
-    v1[1] = GetMonData(param0, MON_DATA_ATK_EV, NULL);
-    v1[2] = GetMonData(param0, MON_DATA_DEF_EV, NULL);
-    v1[3] = GetMonData(param0, MON_DATA_SPEED_EV, NULL);
-    v1[4] = GetMonData(param0, MON_DATA_SPATK_EV, NULL);
-    v1[5] = GetMonData(param0, MON_DATA_SPDEF_EV, NULL);
+    v1[0] = GetMonData(mon, MON_DATA_HP_EV, NULL);
+    v1[1] = GetMonData(mon, MON_DATA_ATK_EV, NULL);
+    v1[2] = GetMonData(mon, MON_DATA_DEF_EV, NULL);
+    v1[3] = GetMonData(mon, MON_DATA_SPEED_EV, NULL);
+    v1[4] = GetMonData(mon, MON_DATA_SPATK_EV, NULL);
+    v1[5] = GetMonData(mon, MON_DATA_SPDEF_EV, NULL);
 
-    if (GetMonData(param0, MON_DATA_SPECIES, NULL) != 292) {
+    if (GetMonData(mon, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
         if (Item_GetAttributeFromStruct(v0, 39) != 0) {
             v1[6] = Item_GetAttributeFromStruct(v0, 48);
 
@@ -142,7 +144,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
                     return 1;
                 }
 
-                if (sub_02097144(param0, v0) == 1) {
+                if (sub_02097144(mon, v0) == 1) {
                     Heap_FreeToHeap(v0);
                     return 1;
                 }
@@ -164,7 +166,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (sub_02097144(mon, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -185,7 +187,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (sub_02097144(mon, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -206,7 +208,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (sub_02097144(mon, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -227,7 +229,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (sub_02097144(mon, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -248,7 +250,7 @@ u8 sub_02096420 (Pokemon *param0, u16 param1, u16 param2, u32 param3)
                 return 1;
             }
 
-            if (sub_02097144(param0, v0) == 1) {
+            if (sub_02097144(mon, v0) == 1) {
                 Heap_FreeToHeap(v0);
                 return 1;
             }
@@ -394,7 +396,7 @@ u8 sub_02096954 (Pokemon *param0, u16 param1, u16 param2, u16 param3, u32 param4
     v1[4] = GetMonData(param0, MON_DATA_SPATK_EV, NULL);
     v1[5] = GetMonData(param0, MON_DATA_SPDEF_EV, NULL);
 
-    if (GetMonData(param0, MON_DATA_SPECIES, NULL) != 292) {
+    if (GetMonData(param0, MON_DATA_SPECIES, NULL) != SPECIES_SHEDINJA) {
         if (Item_GetAttributeFromStruct(v0, 39) != 0) {
             v1[7] = Item_GetAttributeFromStruct(v0, 48);
             v1[6] = sub_020970EC(v1[0], (v1[1] + v1[2] + v1[3] + v1[4] + v1[5]), v1[7]);
@@ -539,14 +541,14 @@ static u8 sub_02096F34 (Pokemon *param0, u32 param1)
     u8 v1;
     u8 v2;
 
-    v0 = (u16)GetMonData(param0, 54 + param1, NULL);
+    v0 = (u16)GetMonData(param0, MON_DATA_MOVE1 + param1, NULL);
 
     if (v0 == 0) {
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, 58 + param1, NULL);
-    v2 = (u8)GetMonData(param0, 62 + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
+    v2 = (u8)GetMonData(param0, MON_DATA_62 + param1, NULL);
 
     if (v1 < MoveTable_GetMoveMaxPP(v0, v2)) {
         return 1;
@@ -561,14 +563,14 @@ static u8 sub_02096F84 (Pokemon *param0, u32 param1, u32 param2)
     u8 v1;
     u8 v2;
 
-    v0 = (u16)GetMonData(param0, 54 + param1, NULL);
+    v0 = (u16)GetMonData(param0, MON_DATA_MOVE1 + param1, NULL);
 
     if (v0 == 0) {
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, 58 + param1, NULL);
-    v2 = (u8)MoveTable_GetMoveMaxPP(v0, GetMonData(param0, 62 + param1, NULL));
+    v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
+    v2 = (u8)MoveTable_GetMoveMaxPP(v0, GetMonData(param0, MON_DATA_62 + param1, NULL));
 
     if (v1 < v2) {
         if (param2 == 127) {
@@ -595,19 +597,19 @@ static u8 sub_02097004 (Pokemon *param0, u32 param1, u32 param2)
     u8 v2;
     u8 v3;
 
-    v2 = GetMonData(param0, 62 + param1, NULL);
+    v2 = GetMonData(param0, MON_DATA_62 + param1, NULL);
 
     if (v2 == 3) {
         return 0;
     }
 
-    v0 = (u16)GetMonData(param0, 54 + param1, NULL);
+    v0 = (u16)GetMonData(param0, MON_DATA_MOVE1 + param1, NULL);
 
     if (MoveTable_GetMoveMaxPP(v0, 0) < 5) {
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, 58 + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
     v3 = (u8)MoveTable_GetMoveMaxPP(v0, v2);
 
     if (v2 + param2 > 3) {

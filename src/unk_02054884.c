@@ -81,22 +81,25 @@ void sub_02054988 (Party * param0, int param1, int param2, u16 param3)
     sub_020771F8(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
 }
 
-int sub_020549A0 (Party * param0, u16 param1)
+int Party_PartyMonKnowsMove(Party *party, u16 move)
 {
-    int v0, v1;
-    Pokemon *v2;
+    int i, partyCount;
+    Pokemon *mon;
 
-    v1 = Party_GetCurrentCount(param0);
+    partyCount = Party_GetCurrentCount(party);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v2 = Party_GetPokemonBySlotIndex(param0, v0);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (GetMonData(v2, MON_DATA_IS_EGG, NULL) != 0) {
+        if (GetMonData(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
             continue;
         }
 
-        if ((GetMonData(v2, MON_DATA_MOVE1, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE2, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE3, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE4, NULL) == param1)) {
-            return v0;
+        if ((GetMonData(mon, MON_DATA_MOVE1, NULL) == move)
+         || (GetMonData(mon, MON_DATA_MOVE2, NULL) == move)
+         || (GetMonData(mon, MON_DATA_MOVE3, NULL) == move)
+         || (GetMonData(mon, MON_DATA_MOVE4, NULL) == move)) {
+            return i;
             break;
         }
     }

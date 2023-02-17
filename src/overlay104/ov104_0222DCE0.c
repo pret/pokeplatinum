@@ -289,7 +289,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon *para
         v2 = (param0->unk_1E_val2 >> (v0 * 2)) & 0x3;
         sub_02074B30(param1, 62 + v0, &v2);
 
-        v3 = (u8)GetMonData(param1, 66 + v0, NULL);
+        v3 = (u8)GetMonData(param1, MON_DATA_66 + v0, NULL);
         sub_02074B30(param1, 58 + v0, &v3);
     }
 

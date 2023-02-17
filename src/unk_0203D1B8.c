@@ -832,11 +832,11 @@ UnkStruct_02097728 * sub_0203D94C (UnkStruct_0203CDB0 * param0, int param1, u8 p
     return v0;
 }
 
-UnkStruct_02097728 * sub_0203D984 (UnkStruct_0203CDB0 * param0, Pokemon *param1, int param2)
+UnkStruct_02097728 * sub_0203D984 (UnkStruct_0203CDB0 * param0, Pokemon *mon, int param2)
 {
     UnkStruct_02097728 * v0;
 
-    v0 = sub_020976BC(sub_0203D174(param0), param1, param2);
+    v0 = sub_020976BC(sub_0203D174(param0), mon, param2);
     sub_0203D910(param0, v0);
 
     return v0;

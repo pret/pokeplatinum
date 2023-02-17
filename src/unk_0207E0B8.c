@@ -72,6 +72,8 @@
 #include "unk_02096420.h"
 #include "overlay118/ov118_021D0D80.h"
 
+#include "constants/moves.h"
+
 FS_EXTERN_OVERLAY(overlay118);
 
 typedef struct {
@@ -1088,7 +1090,7 @@ u8 sub_0207EF14 (UnkStruct_0207F248 * param0, u8 param1)
     return 1;
 }
 
-static void sub_0207F094 (UnkStruct_0207F248 * param0, Pokemon *param1, u8 param2)
+static void sub_0207F094 (UnkStruct_0207F248 * param0, Pokemon *mon, u8 param2)
 {
     u32 v0;
     u32 v1;
@@ -1102,10 +1104,10 @@ static void sub_0207F094 (UnkStruct_0207F248 * param0, Pokemon *param1, u8 param
         return;
     }
 
-    v0 = sub_0207F134(param1, param0->unk_5A4->unk_2A);
+    v0 = sub_0207F134(mon, param0->unk_5A4->unk_2A);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (GetMonData(param1, 54 + v1, NULL) == 0) {
+    for (v1 = 0; v1 < MAX_MON_MOVES; v1++) {
+        if (GetMonData(mon, MON_DATA_MOVE1 + v1, NULL) == MOVE_NONE) {
             break;
         }
     }
@@ -1743,7 +1745,7 @@ static void sub_0207FFC8 (UnkStruct_0207F248 * param0)
 
 static u8 sub_020800B4 (UnkStruct_0207F248 * param0, u8 * param1)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     u16 v1;
     u8 v2 = 0, v3, v4 = 0, v5;
 
@@ -1752,8 +1754,8 @@ static u8 sub_020800B4 (UnkStruct_0207F248 * param0, u8 * param1)
 
     if (sub_0206C0D0(param0->unk_5A4->unk_1C) == 0) {
         if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-            for (v3 = 0; v3 < 4; v3++) {
-                v1 = (u16)GetMonData(v0, 54 + v3, NULL);
+            for (v3 = 0; v3 < MAX_MON_MOVES; v3++) {
+                v1 = (u16)GetMonData(mon, MON_DATA_MOVE1 + v3, NULL);
 
                 if (v1 == 0) {
                     break;
