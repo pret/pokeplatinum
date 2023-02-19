@@ -28,7 +28,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02027B70.h"
 #include "unk_0202B37C.h"
 #include "unk_0205C980.h"
@@ -132,7 +132,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
     UnkStruct_02025CCC * v1 = sub_02025CCC(v0);
 
     ov57_021D0F30(77, v0);
-    sub_02027A68(v0, 0);
+    GameOptions_UpdateGlobalButtonMode(v0, 0);
 
     if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
         sub_02025DE8(sub_02025CD8(v0));

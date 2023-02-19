@@ -79,7 +79,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -1077,7 +1077,7 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 {
     int v0;
 
-    v0 = sub_02027B50(sub_02025E44(param1->unk_00));
+    v0 = GameOptions_GetFrameStyle(sub_02025E44(param1->unk_00));
 
     sub_02002E98(0, 7 * 0x20, param2);
     sub_0200DD0C(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
@@ -1753,7 +1753,7 @@ static BOOL ov64_0222F068 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222F09C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    param0->unk_DC = sub_02027AC0(sub_02025E44(param1->unk_00));
+    param0->unk_DC = GameOptions_GetTextSpeedReductionFactor(sub_02025E44(param1->unk_00));
     ov64_0222F414(param0, param1, param2, param3);
 }
 

@@ -21,7 +21,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
@@ -59,7 +59,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02073C2C.h"
 #include "unk_0208694C.h"
 
@@ -68,7 +68,7 @@ FS_EXTERN_OVERLAY(overlay57);
 typedef struct {
     int unk_00;
     UnkStruct_021C0794 * unk_04;
-    UnkStruct_020279FC * unk_08;
+    GameOptions * unk_08;
     int unk_0C;
     int unk_10;
     UnkStruct_020067E8 * unk_14;
@@ -731,7 +731,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             sub_020237BC(v1);
         }
 
-        param0->unk_58 = sub_0201D738(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (sub_02027AC0(param0->unk_08)), NULL);
+        param0->unk_58 = sub_0201D738(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (GameOptions_GetTextSpeedReductionFactor(param0->unk_08)), NULL);
         param0->unk_50 = 1;
         break;
     case 1:

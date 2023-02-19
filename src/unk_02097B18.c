@@ -36,7 +36,7 @@
 #include "unk_02024220.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_020508D4.h"
@@ -162,7 +162,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     {
         int v7;
 
-        v7 = sub_02027B50(v0->unk_00->unk_24);
+        v7 = GameOptions_GetFrameStyle(v0->unk_00->unk_24);
         ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
         ov76_0223C974(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
     }

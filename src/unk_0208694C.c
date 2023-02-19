@@ -20,7 +20,7 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_0208BE5C.h"
@@ -62,7 +62,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
@@ -85,7 +85,7 @@ struct UnkStruct_02087A10_t {
     int unk_0C;
     int unk_10;
     int unk_14;
-    UnkStruct_020279FC * unk_18;
+    GameOptions * unk_18;
     UnkStruct_02087A10_sub1 unk_1C;
     u16 unk_38;
     u16 unk_3A[6][13];
@@ -1210,7 +1210,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, UnkStruct_020279FC * param4)
+UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param3, GameOptions * param4)
 {
     UnkStruct_0208737C * v0;
 
@@ -1531,7 +1531,7 @@ static void sub_0208769C (UnkStruct_02087A10 * param0, NARC * param1)
     sub_0200710C(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     sub_0200710C(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
     sub_02002E98(0, 12 * 32, 18);
-    sub_0200DD0C(param0->unk_160, 4, ((32 * 8)), 10, sub_02027B50(param0->unk_18), 18);
+    sub_0200DD0C(param0->unk_160, 4, ((32 * 8)), 10, GameOptions_GetFrameStyle(param0->unk_18), 18);
     sub_02002E98(4, 12 * 32, 18);
 
     param0->unk_510 = sub_020071B4(param1, 16, 1, &param0->unk_514, 18);

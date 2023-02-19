@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "overlay088/ov88_0223E9C4.h"
 
 static void ov88_0223EE14(UnkStruct_0200112C * param0, u32 param1, u8 param2);
@@ -57,7 +57,7 @@ static const u16 Unk_ov88_0223F170[][2] = {
     {0x14, 0xA}
 };
 
-void ov88_0223E9C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, UnkStruct_020279FC * param2)
+void ov88_0223E9C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, GameOptions * param2)
 {
     int v0;
 
@@ -70,7 +70,7 @@ void ov88_0223E9C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, Un
     sub_0201A7E8(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
     sub_0201ADA4(&param1[6], 0);
 
-    sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, sub_02027B50(param2), 26);
+    sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, GameOptions_GetFrameStyle(param2), 26);
     sub_0200DAA4(param0, 0, (512 - 9), 11, 0, 26);
 
     sub_0201A7E8(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);

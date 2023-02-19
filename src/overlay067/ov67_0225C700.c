@@ -15,7 +15,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -44,7 +44,7 @@
 #include "gx_layers.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -591,11 +591,11 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     }
 
     {
-        UnkStruct_020279FC * v1;
+        GameOptions * v1;
         u8 v2;
 
         v1 = sub_02025E44(param0->unk_00);
-        v2 = sub_02027B50(v1);
+        v2 = GameOptions_GetFrameStyle(v1);
 
         sub_02002E7C(0, 12 * 32, param1);
         sub_02002E98(0, 11 * 32, param1);
@@ -650,7 +650,7 @@ static void ov67_0225D188 (UnkStruct_ov67_0225D210 * param0, UnkStruct_02018340 
     param0->unk_18 = sub_02023790(256, param10);
     param0->unk_1C = sub_02023790(256, param10);
     param0->unk_20 = param2;
-    param0->unk_28 = sub_02027AC0(sub_02025E44(param9));
+    param0->unk_28 = GameOptions_GetTextSpeedReductionFactor(sub_02025E44(param9));
     param0->unk_2C = 0;
 
     sub_0201A7E8(param1, &param0->unk_08, Unk_ov67_0225D3F4[1], param4, param5, param6, param7, 11, param8);

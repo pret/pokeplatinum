@@ -43,7 +43,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -1520,7 +1520,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 
         v1 = 0;
     } else {
         if (param0->unk_00->unk_155 == 0) {
-            v1 = sub_02027AC0(param0->unk_00->unk_196C);
+            v1 = GameOptions_GetTextSpeedReductionFactor(param0->unk_00->unk_196C);
         } else {
             v1 = 1;
         }

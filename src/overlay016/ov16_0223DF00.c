@@ -30,7 +30,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0201D738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02073C74.h"
 #include "struct_defs/struct_0207A9CC.h"
@@ -56,7 +56,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02056720.h"
@@ -131,7 +131,7 @@ u8 ov16_0223ED60(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223ED6C(UnkStruct_0207ADB4 * param0);
 int ov16_0223ED8C(UnkStruct_0207ADB4 * param0);
 void ov16_0223ED98(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_020279FC * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
+GameOptions * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
 BOOL ov16_0223EDAC(UnkStruct_0207ADB4 * param0);
 int ov16_0223EDE0(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223EDF0(UnkStruct_0207ADB4 * param0);
@@ -1027,7 +1027,7 @@ void ov16_0223ED98 (UnkStruct_0207ADB4 * param0, int param1)
     param0->unk_2410 = param1;
 }
 
-UnkStruct_020279FC * ov16_0223EDA4 (UnkStruct_0207ADB4 * param0)
+GameOptions * ov16_0223EDA4 (UnkStruct_0207ADB4 * param0)
 {
     return param0->unk_1B0;
 }
@@ -1038,12 +1038,12 @@ BOOL ov16_0223EDAC (UnkStruct_0207ADB4 * param0)
         return 1;
     }
 
-    return sub_02027AF8(param0->unk_1B0) == 0;
+    return GameOptions_GetBattleSetMode(param0->unk_1B0) == 0;
 }
 
 int ov16_0223EDE0 (UnkStruct_0207ADB4 * param0)
 {
-    return sub_02027B50(param0->unk_1B0);
+    return GameOptions_GetFrameStyle(param0->unk_1B0);
 }
 
 u8 ov16_0223EDF0 (UnkStruct_0207ADB4 * param0)
@@ -1052,12 +1052,12 @@ u8 ov16_0223EDF0 (UnkStruct_0207ADB4 * param0)
         return 1;
     }
 
-    return sub_02027AC0(param0->unk_1B0);
+    return GameOptions_GetTextSpeedReductionFactor(param0->unk_1B0);
 }
 
 int ov16_0223EE18 (UnkStruct_0207ADB4 * param0)
 {
-    return sub_02027B14(param0->unk_1B0);
+    return GameOptions_GetBattleAnimsOff(param0->unk_1B0);
 }
 
 UnkStruct_02015F84 * ov16_0223EE28 (UnkStruct_0207ADB4 * param0)

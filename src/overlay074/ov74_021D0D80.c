@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0203D8EC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -39,7 +39,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "overlay074/ov74_021D0D80.h"
 
@@ -63,7 +63,7 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     u32 unk_10_22 : 10;
     UnkStruct_02018340 * unk_14;
     UnkStruct_0203D8EC unk_18;
-    UnkStruct_020279FC * unk_1C;
+    GameOptions * unk_1C;
     UnkStruct_0200B144 * unk_20;
     void * unk_24;
     NNSG2dScreenData * unk_28;
@@ -103,21 +103,21 @@ static u32 ov74_021D1BD0(UnkStruct_ov74_021D0D80 * param0);
 int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov74_021D0D80 * v0 = NULL;
-    UnkStruct_020279FC * v1;
+    GameOptions * v1;
 
-    v1 = (UnkStruct_020279FC *)sub_02006840(param0);
+    v1 = (GameOptions *)sub_02006840(param0);
 
     Heap_Create(3, 38, 0x10000);
 
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov74_021D0D80), 38);
     memset(v0, 0, sizeof(UnkStruct_ov74_021D0D80));
 
-    v0->unk_18.unk_00_0 = sub_02027AA4(v1);
-    v0->unk_18.unk_00_6 = sub_02027AF8(v1);
-    v0->unk_18.unk_00_7 = sub_02027B14(v1);
-    v0->unk_18.unk_00_4 = sub_02027ADC(v1);
-    v0->unk_18.unk_00_8 = sub_02027B30(v1);
-    v0->unk_18.unk_00_10 = sub_02027B50(v1);
+    v0->unk_18.unk_00_0 = GameOptions_GetTextSpeed(v1);
+    v0->unk_18.unk_00_6 = GameOptions_GetBattleSetMode(v1);
+    v0->unk_18.unk_00_7 = GameOptions_GetBattleAnimsOff(v1);
+    v0->unk_18.unk_00_4 = GameOptions_GetAudioMode(v1);
+    v0->unk_18.unk_00_8 = GameOptions_GetButtonMode(v1);
+    v0->unk_18.unk_00_10 = GameOptions_GetFrameStyle(v1);
     v0->unk_00 = 38;
     v0->unk_1C = v1;
 
@@ -139,14 +139,14 @@ int ov74_021D0E58 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_18.unk_00_10 = v0->unk_5C[5].unk_02;
     }
 
-    sub_02027AAC(v0->unk_1C, v0->unk_18.unk_00_0);
-    sub_02027B00(v0->unk_1C, v0->unk_18.unk_00_6);
-    sub_02027B1C(v0->unk_1C, v0->unk_18.unk_00_7);
-    sub_02027AE4(v0->unk_1C, v0->unk_18.unk_00_4);
-    sub_02027B38(v0->unk_1C, v0->unk_18.unk_00_8);
-    sub_02027B58(v0->unk_1C, v0->unk_18.unk_00_10);
+    GameOptions_SetTextSpeed(v0->unk_1C, v0->unk_18.unk_00_0);
+    GameOptions_SetBattleSetMode(v0->unk_1C, v0->unk_18.unk_00_6);
+    GameOptions_SetBattleAnimsOff(v0->unk_1C, v0->unk_18.unk_00_7);
+    GameOptions_SetAudioMode(v0->unk_1C, v0->unk_18.unk_00_4);
+    GameOptions_SetButtonMode(v0->unk_1C, v0->unk_18.unk_00_8);
+    GameOptions_SetFrameStyle(v0->unk_1C, v0->unk_18.unk_00_10);
     sub_02004FB8(v0->unk_18.unk_00_4);
-    sub_02027A68(NULL, v0->unk_18.unk_00_8);
+    GameOptions_UpdateGlobalButtonMode(NULL, v0->unk_18.unk_00_8);
     sub_02002AC8(1);
     sub_02006830(param0);
     Heap_Destroy(v0->unk_00);
@@ -634,9 +634,9 @@ static void ov74_021D17CC (UnkStruct_ov74_021D0D80 * param0, u16 param1)
     if (param1 == 1) {
         sub_02004FB8(param0->unk_5C[param1].unk_02);
     } else if (param1 == 4) {
-        sub_02027A68(NULL, param0->unk_5C[param1].unk_02);
+        GameOptions_UpdateGlobalButtonMode(NULL, param0->unk_5C[param1].unk_02);
     } else if (param1 == 0) {
-        sub_02027AAC(param0->unk_1C, param0->unk_5C[param1].unk_02);
+        GameOptions_SetTextSpeed(param0->unk_1C, param0->unk_5C[param1].unk_02);
         ov74_021D1BE4(param0, param1, 0);
     }
 
@@ -676,7 +676,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
         sub_0201D730(param0->unk_2AC);
     }
 
-    v2 = sub_02027AC0(param0->unk_1C);
+    v2 = GameOptions_GetTextSpeedReductionFactor(param0->unk_1C);
 
     sub_0201ADA4(&(param0->unk_2C[2]), 15);
 

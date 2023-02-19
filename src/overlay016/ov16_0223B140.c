@@ -65,7 +65,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CD50.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
@@ -1728,7 +1728,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, UnkStruct_ov6_02240D5C *
     {
         int v4;
 
-        v4 = sub_02027B50(param1->unk_108);
+        v4 = GameOptions_GetFrameStyle(param1->unk_108);
 
         sub_0200E218(v0->unk_04, 1, 1, 10, v4, 5);
         sub_02003050(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);

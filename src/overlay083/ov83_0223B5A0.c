@@ -23,7 +23,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0202440C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
@@ -129,8 +129,8 @@ int ov83_0223B5B0 (UnkStruct_020067E8 * param0, int * param1)
         sub_0203632C(1);
     }
 
-    v1->unk_24 = sub_02027B50(v0->unk_10->unk_18);
-    v1->unk_28 = sub_02027AC0(v0->unk_10->unk_18);
+    v1->unk_24 = GameOptions_GetFrameStyle(v0->unk_10->unk_18);
+    v1->unk_28 = GameOptions_GetTextSpeedReductionFactor(v0->unk_10->unk_18);
     v1->unk_31C = 1;
 
     sub_02017798(ov83_0223B5A0, v0);

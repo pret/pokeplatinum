@@ -17,7 +17,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -52,7 +52,7 @@
 #include "unk_02023790.h"
 #include "unk_0202419C.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
 #include "overlay092/ov92_021D0D80.h"
@@ -85,7 +85,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_0202C878 * unk_04;
-    UnkStruct_020279FC * unk_08;
+    GameOptions * unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     UnkStruct_02018340 * unk_B810;
     UnkStruct_0205AA50 unk_B814;
@@ -951,7 +951,7 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
     sub_020070E8(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
     sub_02007130(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->unk_00);
     sub_0200710C(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->unk_00);
-    sub_0200DD0C(param0->unk_B810, 6, (512 - ((18 + 12))), 6, sub_02027B50(param0->unk_08), param0->unk_00);
+    sub_0200DD0C(param0->unk_B810, 6, (512 - ((18 + 12))), 6, GameOptions_GetFrameStyle(param0->unk_08), param0->unk_00);
     sub_0200DAA4(param0->unk_B810, 6, ((512 - ((18 + 12))) - 9), 7, 0, param0->unk_00);
     sub_02002E7C(4, 4 * (2 * 16), param0->unk_00);
     sub_02019690(6, 32, 0, param0->unk_00);
@@ -1024,7 +1024,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
         sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = sub_02023790(0x400, param0->unk_00);
         sub_0200B1B8(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = sub_0201D738(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
+        param0->unk_B868 = sub_0201D738(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, GameOptions_GetTextSpeedReductionFactor(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:

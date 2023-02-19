@@ -17,7 +17,7 @@
 
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -60,7 +60,7 @@
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202C7FC.h"
 #include "unk_0202CD50.h"
 #include "overlay072/ov72_0223D7A0.h"
@@ -151,7 +151,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
             v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((UnkStruct_021C0794 *)sub_02006840(param0));
-            v0->unk_0C = (UnkStruct_020279FC *)sub_02025E44((UnkStruct_021C0794 *)sub_02006840(param0));
+            v0->unk_0C = (GameOptions *)sub_02025E44((UnkStruct_021C0794 *)sub_02006840(param0));
         }
 
         ov72_0223DCA8(v0, v1);
@@ -461,7 +461,7 @@ static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)
     sub_0200710C(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
     sub_020070E8(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     sub_0200710C(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_0C), 39);
+    sub_0200DD0C(v0, 0, 1, 10, GameOptions_GetFrameStyle(param0->unk_0C), 39);
     sub_0200DAA4(v0, 0, 1 + (18 + 12), 11, 0, 39);
 }
 
@@ -1109,7 +1109,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     sub_0201ADA4(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
-    param0->unk_38 = sub_0201D738(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
+    param0->unk_38 = sub_0201D738(&param0->unk_338, 1, param0->unk_34, 0, 0, GameOptions_GetTextSpeedReductionFactor(param0->unk_0C), NULL);
 }
 
 static int ov72_0223E99C (int param0)

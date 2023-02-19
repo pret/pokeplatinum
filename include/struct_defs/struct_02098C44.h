@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_02098C44_H
 #define POKEPLATINUM_STRUCT_02098C44_H
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_party_decl.h"
 
 typedef struct {
     Party * unk_00;
     void * unk_04;
     void * unk_08;
-    UnkStruct_020279FC * unk_0C;
+    GameOptions * unk_0C;
     void * unk_10;
     void * unk_14;
     void * unk_18;

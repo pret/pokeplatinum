@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_02098D38_H
 #define POKEPLATINUM_STRUCT_02098D38_H
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 
 typedef struct {
     void * unk_00;
-    UnkStruct_020279FC * unk_04;
+    GameOptions * unk_04;
     const u16 * unk_08;
     u32 unk_0C;
     u8 unk_10;

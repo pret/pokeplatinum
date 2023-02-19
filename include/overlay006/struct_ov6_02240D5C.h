@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -34,7 +34,7 @@ typedef struct {
     UnkStruct_0202CC84 * unk_F0[4];
     UnkStruct_02056B24 * unk_100;
     UnkStruct_0202C878 * unk_104;
-    UnkStruct_020279FC * unk_108;
+    GameOptions * unk_108;
     UnkStruct_0206D140 * unk_10C;
     UnkStruct_ov6_02240D5C_sub1 unk_110;
     UnkStruct_0202CD88 * unk_11C;

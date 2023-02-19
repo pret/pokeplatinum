@@ -35,7 +35,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -85,7 +85,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -1314,11 +1314,11 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, UnkStruct_021C0794 
     }
 
     {
-        UnkStruct_020279FC * v1;
+        GameOptions * v1;
         u8 v2;
 
         v1 = sub_02025E44(param1);
-        v2 = sub_02027B50(v1);
+        v2 = GameOptions_GetFrameStyle(v1);
 
         sub_02002E7C(0, 5 * 32, param2);
         sub_02002E98(0, 4 * 32, param2);
@@ -1549,10 +1549,10 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     param0->unk_18 = sub_02023790(384, param3);
 
     {
-        UnkStruct_020279FC * v0;
+        GameOptions * v0;
 
         v0 = sub_02025E44(param2);
-        param0->unk_14 = sub_02027AC0(v0);
+        param0->unk_14 = GameOptions_GetTextSpeedReductionFactor(v0);
     }
 }
 

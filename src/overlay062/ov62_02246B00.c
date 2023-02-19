@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "overlay062/struct_ov62_02246B00.h"
 #include "overlay062/struct_ov62_02246BF4.h"
 #include "overlay062/struct_ov62_02246BF4_sub1.h"
@@ -27,7 +27,7 @@
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 * param0, int param1, s16 param2, s16 param3);
 
-UnkStruct_ov62_02246B00 * ov62_02246B00 (int param0, int param1, int param2[], UnkStruct_020279FC * param3)
+UnkStruct_ov62_02246B00 * ov62_02246B00 (int param0, int param1, int param2[], GameOptions * param3)
 {
     int v0;
     UnkStruct_ov62_02246B00 * v1 = NULL;

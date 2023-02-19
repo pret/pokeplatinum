@@ -9,7 +9,7 @@
 
 #include "constdata/const_020F2DBC.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_0208BE5C.h"
@@ -159,7 +159,7 @@ static int sub_0208927C (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], UnkStruct_020279FC * param3, u32 param4, u32 param5)
+UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], GameOptions * param3, u32 param4, u32 param5)
 {
     int v0;
     UnkStruct_02089438 * v1 = NULL;
@@ -181,7 +181,7 @@ UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], UnkStru
     return v1;
 }
 
-UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], UnkStruct_020279FC * param3, u32 param4, u32 param5)
+UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], GameOptions * param3, u32 param4, u32 param5)
 {
     UnkStruct_02089438 * v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
 
@@ -190,7 +190,7 @@ UnkStruct_02089438 * sub_02089400 (int param0, int param1, int param2[], UnkStru
     return v0;
 }
 
-UnkStruct_02089438 * sub_0208941C (int param0, int param1, int param2[], UnkStruct_020279FC * param3, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 * sub_0208941C (int param0, int param1, int param2[], GameOptions * param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     UnkStruct_02089438 * v0 = sub_020893B4(param0, param1, param2, param3, param4, param5);
 

@@ -48,7 +48,7 @@
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_0203CC84.h"
 #include "unk_0203D1B8.h"
@@ -224,8 +224,8 @@ void sub_020722AC (void * param0, int * param1)
     v0->unk_00 = 43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
-    v0->unk_16 = sub_02027AC0(sub_02025E44(v1));
-    v0->unk_14 = sub_02027B50(sub_02025E44(v1));
+    v0->unk_16 = GameOptions_GetTextSpeedReductionFactor(sub_02025E44(v1));
+    v0->unk_14 = GameOptions_GetFrameStyle(sub_02025E44(v1));
 
     sub_02072ED0(v0->unk_1C, 20, v0->unk_00);
     sub_02072F30(v0, v1, v0->unk_00);

@@ -40,7 +40,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
@@ -308,7 +308,7 @@ static void ov94_0223FD4C (UnkStruct_ov94_0223FD4C * param0)
     sub_02007130(v1, 2, 0, 0, 16 * 3 * 2, 62);
     sub_02007130(v1, 5, 4, 0, 16 * 8 * 2, 62);
     sub_02002E98(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_00->unk_24), 62);
+    sub_0200DD0C(v0, 0, 1, 10, GameOptions_GetFrameStyle(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_020070E8(v1, 12, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     sub_0200710C(v1, 24, v0, 1, 0, 32 * 24 * 2, 1, 62);

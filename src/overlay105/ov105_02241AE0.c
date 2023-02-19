@@ -27,7 +27,7 @@
 #include "constdata/const_020F410C.h"
 
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02081CF4.h"
@@ -64,7 +64,7 @@
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
@@ -125,7 +125,7 @@ struct UnkStruct_ov105_02241FF4_t {
     UnkStruct_0207C690 * unk_124;
     UnkStruct_02007768 * unk_128;
     UnkStruct_02007C7C * unk_12C[3];
-    UnkStruct_020279FC * unk_138;
+    GameOptions * unk_138;
     UnkStruct_021C0794 * unk_13C;
     UnkStruct_02098D38 * unk_140;
     UnkStruct_ov105_02245AAC unk_144;
@@ -776,7 +776,7 @@ static void ov105_0224227C (UnkStruct_ov105_02241FF4 * param0)
     }
 
     ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], GameOptions_GetFrameStyle(param0->unk_138));
     ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
 
     param0->unk_10 = ov105_02244D14(param0, 0);
@@ -826,7 +826,7 @@ static void ov105_022424CC (UnkStruct_ov105_02241FF4 * param0)
     int v0;
 
     ov105_02245528(param0, 0);
-    ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], GameOptions_GetFrameStyle(param0->unk_138));
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
         param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, ((NELEMS(Unk_ov105_02246340)) - 1), 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
@@ -1650,7 +1650,7 @@ static BOOL ov105_02243A3C (UnkStruct_ov105_02241FF4 * param0)
         v3 = ov105_022461A0(param0->unk_30C);
 
         ov105_02244FF8(param0, &param0->unk_50[2], v3, 0, 0, 15, 2, 0, 0, param0->unk_320);
-        ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], GameOptions_GetFrameStyle(param0->unk_138));
 
         param0->unk_10 = ov105_02244D14(param0, 13);
         param0->unk_08++;
@@ -1851,7 +1851,7 @@ static BOOL ov105_02243E84 (UnkStruct_ov105_02241FF4 * param0)
         sub_0201A9A4(&param0->unk_50[2]);
         sub_02007DC8(param0->unk_12C[0]);
 
-        ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], GameOptions_GetFrameStyle(param0->unk_138));
         param0->unk_10 = ov105_02244D14(param0, 10);
         ov105_02246074(param0->unk_30C, 0);
 
@@ -2174,9 +2174,9 @@ static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
         v2 = sub_02076B10(v1);
 
         ov105_02244F00(param0, 2, v2);
-        ov105_0224628C(&param0->unk_50[5], sub_02027B50(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], GameOptions_GetFrameStyle(param0->unk_138));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, sub_02027AC0(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
+        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, GameOptions_GetTextSpeedReductionFactor(sub_02025E44(param0->unk_13C)), 1, 2, 15, 1);
 
         sub_0201A9A4(&param0->unk_50[5]);
 

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E234.h"
@@ -277,7 +277,7 @@ static void sub_02052F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 
 static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
 {
-    UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
+    GameOptions * v0 = sub_02025E44(param0->unk_0C);
 
     param1->unk_2C = sub_0200B010(26, 213, 15, 32);
 

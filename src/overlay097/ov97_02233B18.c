@@ -23,7 +23,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02073C74.h"
@@ -69,7 +69,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202EEC0.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -137,7 +137,7 @@ typedef struct {
     int unk_0C;
     UnkStruct_021C0794 * unk_10;
     UnkStruct_02025E6C * unk_14;
-    UnkStruct_020279FC * unk_18;
+    GameOptions * unk_18;
     int unk_1C;
     UnkStruct_02018340 * unk_20;
     int unk_24;
@@ -1807,7 +1807,7 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_10 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
     v0->unk_14 = sub_02025E38(v0->unk_10);
     v0->unk_18 = sub_02025E44(v0->unk_10);
-    v0->unk_1C = sub_02027B50(v0->unk_18);
+    v0->unk_1C = GameOptions_GetFrameStyle(v0->unk_18);
     v0->unk_12668 = sub_02023790(256, 78);
     v0->unk_1266C = sub_02023790(256, 78);
 

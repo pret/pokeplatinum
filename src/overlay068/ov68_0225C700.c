@@ -23,7 +23,7 @@
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -62,7 +62,7 @@
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02030EA4.h"
 #include "unk_020393C8.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -146,7 +146,7 @@ static void ov68_0225C91C(UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 *
 static void ov68_0225C960(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C * param0);
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC * param1, u32 param2);
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C * param0, GameOptions * param1, u32 param2);
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225CAB4(UnkStruct_ov68_0225C91C * param0, u32 param1);
 static void ov68_0225CB44(UnkStruct_ov68_0225C91C * param0);
@@ -453,7 +453,7 @@ static void ov68_0225C914 (void * param0)
 
 static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 * param1, u32 param2)
 {
-    UnkStruct_020279FC * v0;
+    GameOptions * v0;
 
     v0 = sub_02025E44(param1);
     param0->unk_1A4 = NARC_ctor(186, param2);
@@ -485,7 +485,7 @@ static void ov68_0225C98C (UnkStruct_ov68_0225C91C * param0)
     sub_0201DCAC();
 }
 
-static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC * param1, u32 param2)
+static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, GameOptions * param1, u32 param2)
 {
     sub_02018368(&Unk_ov68_0225DD48);
 
@@ -507,7 +507,7 @@ static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC 
     sub_02002E98(0, 4 * 0x20, param2);
 
     {
-        u8 v1 = sub_02027B50(param1);
+        u8 v1 = GameOptions_GetFrameStyle(param1);
         sub_0200DD0C(param0->unk_00, 1, 1, 5, v1, param2);
     }
 
@@ -921,10 +921,10 @@ static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225
     param0->unk_18 = sub_02023790(256, param3);
 
     {
-        UnkStruct_020279FC * v0;
+        GameOptions * v0;
 
         v0 = sub_02025E44(param2);
-        param0->unk_04 = sub_02027AC0(v0);
+        param0->unk_04 = GameOptions_GetTextSpeedReductionFactor(v0);
     }
 }
 

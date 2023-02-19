@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_02230BE4_H
 #define POKEPLATINUM_STRUCT_OV104_02230BE4_H
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
@@ -10,7 +10,7 @@
 
 typedef struct {
     void * unk_00;
-    const UnkStruct_020279FC * unk_04;
+    const GameOptions * unk_04;
     UnkStruct_021C0794 * unk_08;
     UnkStruct_0202B628 * unk_0C;
     UnkStruct_0207D99C * unk_10;

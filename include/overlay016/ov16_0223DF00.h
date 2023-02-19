@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -96,7 +96,7 @@ u8 ov16_0223ED60(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223ED6C(UnkStruct_0207ADB4 * param0);
 int ov16_0223ED8C(UnkStruct_0207ADB4 * param0);
 void ov16_0223ED98(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_020279FC * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
+GameOptions * ov16_0223EDA4(UnkStruct_0207ADB4 * param0);
 BOOL ov16_0223EDAC(UnkStruct_0207ADB4 * param0);
 int ov16_0223EDE0(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223EDF0(UnkStruct_0207ADB4 * param0);

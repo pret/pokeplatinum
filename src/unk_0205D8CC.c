@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002328.h"
@@ -12,7 +12,7 @@
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0205D8CC.h"
 
 void sub_0205D8CC (u32 param0, u32 param1)
@@ -34,9 +34,9 @@ void sub_0205D8F4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, u32
     }
 }
 
-void sub_0205D944 (UnkStruct_0205AA50 * param0, const UnkStruct_020279FC * param1)
+void sub_0205D944 (UnkStruct_0205AA50 * param0, const GameOptions * param1)
 {
-    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), 1024 - (18 + 12), 10, sub_02027B50(param1), 4);
+    sub_0200DD0C(param0->unk_00, sub_0201C290(param0), 1024 - (18 + 12), 10, GameOptions_GetFrameStyle(param1), 4);
     sub_0205D988(param0);
     sub_0200E060(param0, 0, 1024 - (18 + 12), 10);
 }
@@ -46,7 +46,7 @@ void sub_0205D988 (UnkStruct_0205AA50 * param0)
     sub_0201ADA4(param0, 15);
 }
 
-u8 sub_0205D994 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, const UnkStruct_020279FC * param2, u8 param3)
+u8 sub_0205D994 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, const GameOptions * param2, u8 param3)
 {
     u8 v0;
 
@@ -54,7 +54,7 @@ u8 sub_0205D994 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, const
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0 = sub_0201D738(param0, 1, param1, 0, 0, sub_02027AC0(param2), NULL);
+    v0 = sub_0201D738(param0, 1, param1, 0, 0, GameOptions_GetTextSpeedReductionFactor(param2), NULL);
     return v0;
 }
 

@@ -19,7 +19,7 @@
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0203E880.h"
 #include "unk_0205D8CC.h"
 #include "overlay005/ov5_021DD42C.h"
@@ -111,7 +111,7 @@ void ov5_021DD530 (UnkStruct_0203E724 * param0, UnkStruct_0200B358 * param1, u8 
 
 static u8 ov5_021DD574 (UnkStruct_0203E724 * param0)
 {
-    return sub_02027AC0(sub_02025E44(param0->unk_34->unk_0C));
+    return GameOptions_GetTextSpeedReductionFactor(sub_02025E44(param0->unk_34->unk_0C));
 }
 
 static void ov5_021DD588 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * param1)

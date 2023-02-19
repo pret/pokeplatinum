@@ -31,7 +31,7 @@
 #include "overlay084/const_ov84_02241130.h"
 #include "constdata/const_020F2DAC.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -79,7 +79,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02028124.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
@@ -773,7 +773,7 @@ void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
     return v0;
 }
 
-static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, UnkStruct_020279FC * param1)
+static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, GameOptions * param1)
 {
     FS_EXTERN_OVERLAY(overlay74);
 
@@ -790,7 +790,7 @@ static void sub_0203D8DC (UnkStruct_0203CDB0 * param0, UnkStruct_020279FC * para
 void * sub_0203D8EC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8EC * v0;
-    UnkStruct_020279FC * v1;
+    GameOptions * v1;
 
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0203D8EC));
     v1 = sub_02025E44(sub_0203D174(param0));
@@ -1617,7 +1617,7 @@ static BOOL sub_0203E35C (UnkStruct_020508D4 * param0)
 void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
 {
     UnkStruct_0203CDB0 * v0 = sub_02050A60(param0);
-    UnkStruct_020279FC * v1 = sub_02025E44(v0->unk_0C);
+    GameOptions * v1 = sub_02025E44(v0->unk_0C);
     UnkStruct_0203E35C * v2 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0203E35C));
 
     v2->unk_0C.unk_00 = &v2->unk_00;
@@ -1625,7 +1625,7 @@ void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
     v2->unk_04 = sub_020138EC();
     v2->unk_0C.unk_08 = sub_0202CD88(v0->unk_0C);
     v2->unk_0C.unk_0C = 0;
-    v2->unk_0C.unk_10 = sub_02027B50(v1);
+    v2->unk_0C.unk_10 = GameOptions_GetFrameStyle(v1);
     v2->unk_0C.unk_04 = sub_0203E484(v0->unk_0C, param1);
 
     sub_0202CFEC(sub_0202CD88(v0->unk_0C), 5);

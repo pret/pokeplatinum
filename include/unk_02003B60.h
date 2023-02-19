@@ -2,12 +2,12 @@
 #define POKEPLATINUM_UNK_02003B60_H
 
 #include "struct_decls/struct_02003D54_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 
 #include <nnsys.h>
 
-void sub_02003B60(UnkStruct_0202CC84 * param0, UnkStruct_020279FC * param1);
+void sub_02003B60(UnkStruct_0202CC84 * param0, GameOptions * param1);
 void sub_02003BD8(void);
 void sub_02003D0C(int param0);
 UnkStruct_02003D54 * sub_02003D54(void);

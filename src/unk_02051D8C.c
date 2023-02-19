@@ -17,7 +17,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_02055BA8.h"
 #include "struct_defs/struct_0205EC34.h"
@@ -37,7 +37,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02027F84.h"
 #include "unk_0202C858.h"
 #include "unk_0202CC64.h"
@@ -105,7 +105,7 @@ UnkStruct_ov6_02240D5C * sub_02051D8C (int param0, u32 param1)
 
     v1->unk_E0 = sub_0207D3C0(param0);
     v1->unk_E8 = sub_02026324(param0);
-    v1->unk_108 = sub_020279FC(param0);
+    v1->unk_108 = GameOptions_AllocAndInit(param0);
     v1->unk_10C = sub_0206D140(param0);
     v1->unk_E4 = NULL;
     v1->unk_190 = NULL;
@@ -158,7 +158,7 @@ UnkStruct_ov6_02240D5C * sub_02051F38 (int param0, int param1)
 UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
-    UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
+    GameOptions * v1 = sub_02025E44(param1->unk_0C);
     UnkStruct_0200B144 * v2;
     UnkStruct_02023790 * v3;
     UnkStruct_ov6_02240D5C * v4;
@@ -174,7 +174,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
     sub_0200B190(v2);
     sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
     sub_0205281C(v4, param1);
-    sub_02027A10(v1, v4->unk_108);
+    GameOptions_Copy(v1, v4->unk_108);
 
     v4->unk_138 = sub_02055BA8(param1);
     sub_0207D570(v4->unk_E0, 4, 20, param0);
@@ -257,7 +257,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     UnkStruct_02026324 * v3 = sub_02027560(param2);
     UnkStruct_0202CC84 * v4 = sub_0202CC98(param2);
-    UnkStruct_020279FC * v5 = sub_02025E44(param2);
+    GameOptions * v5 = sub_02025E44(param2);
     UnkStruct_0203A790 * v6 = sub_0203A790(param2);
 
     if (param1 != NULL) {
@@ -277,7 +277,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     sub_02052164(param0, v1, 0);
     sub_0207D3EC(v2, param0->unk_E0);
     sub_02026338(v3, param0->unk_E8);
-    sub_02027A10(v5, param0->unk_108);
+    GameOptions_Copy(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
 
     param0->unk_EC = sub_02024420(param2);
@@ -312,7 +312,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v6 = sub_0202CC98(param1->unk_0C);
-    UnkStruct_020279FC * v7 = sub_02025E44(param1->unk_0C);
+    GameOptions * v7 = sub_02025E44(param1->unk_0C);
     UnkStruct_02073C74 * v8;
 
     param0->unk_128 = 6;
@@ -338,7 +338,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     Heap_FreeToHeap(v8);
     sub_0207D3EC(v4, param0->unk_E0);
     sub_02026338(v5, param0->unk_E8);
-    sub_02027A10(v7, param0->unk_108);
+    GameOptions_Copy(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
 
     param0->unk_EC = sub_02024420(param1->unk_0C);
@@ -362,7 +362,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v2 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v3 = sub_0202CC98(param1->unk_0C);
-    UnkStruct_020279FC * v4 = sub_02025E44(param1->unk_0C);
+    GameOptions * v4 = sub_02025E44(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
     int v6, v7, v8;
     UnkStruct_02073C74 * v9;
@@ -408,7 +408,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
 
     sub_0207D3EC(v1, param0->unk_E0);
     sub_02026338(v2, param0->unk_E8);
-    sub_02027A10(v4, param0->unk_108);
+    GameOptions_Copy(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
 
     param0->unk_EC = sub_02024420(param1->unk_0C);

@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -64,7 +64,7 @@
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
 #include "unk_020363E8.h"
@@ -110,7 +110,7 @@ typedef struct {
     int unk_72C;
     int unk_730;
     UnkStruct_02095C60 * unk_734;
-    const UnkStruct_020279FC * unk_738;
+    const GameOptions * unk_738;
     u32 unk_73C;
     UnkStruct_02023790 * unk_740;
     UnkStruct_0200B358 * unk_744;
@@ -155,8 +155,8 @@ static void ov22_02256B04(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B24(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B44(UnkStruct_ov22_02259C58 * param0, void * param1);
 static void ov22_02256B78(UnkStruct_ov22_02259C58 * param0, void * param1);
-static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const UnkStruct_020279FC * param1);
-static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4);
+static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const GameOptions * param1);
+static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const GameOptions * param4);
 static void ov22_02256C38(UnkStruct_ov22_02255D44 * param0);
 static void ov22_02256C48(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
 static void ov22_02256C70(UnkStruct_0201CD38 * param0, void * param1);
@@ -935,7 +935,7 @@ static void ov22_02256B78 (UnkStruct_ov22_02259C58 * param0, void * param1)
     }
 }
 
-static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const UnkStruct_020279FC * param1)
+static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const GameOptions * param1)
 {
     UnkStruct_ov22_02256BAC v0;
 
@@ -951,7 +951,7 @@ static void ov22_02256BAC (UnkStruct_ov22_02255D44 * param0, const UnkStruct_020
     ov22_0225A428(&param0->unk_5C4, &v0, (1 | 2 | 4 | 8));
 }
 
-static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4)
+static void ov22_02256BF4 (UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const GameOptions * param4)
 {
     UnkStruct_ov22_02256BAC v0;
     BOOL v1;
@@ -1344,7 +1344,7 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_02023790 * v1;
-    int v2 = sub_02027B50(param0->unk_738);
+    int v2 = GameOptions_GetFrameStyle(param0->unk_738);
 
     sub_02002E98(0, 7 * 32, 14);
     sub_0201A7E8(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
@@ -1399,7 +1399,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     sub_0200C388(param0->unk_744, param0->unk_740, v3);
 
     if (param0->unk_734->unk_16 == 0) {
-        v2 = sub_02027AC0(param0->unk_738);
+        v2 = GameOptions_GetTextSpeedReductionFactor(param0->unk_738);
     } else {
         v2 = 1;
     }

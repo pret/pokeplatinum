@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0203D9B8_H
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -19,7 +19,7 @@ typedef struct {
     UnkStruct_02025E6C * unk_0C;
     Party * unk_10;
     UnkStruct_0207D3C0 * unk_14;
-    UnkStruct_020279FC * unk_18;
+    GameOptions * unk_18;
     UnkStruct_020989DC unk_1C[100];
 } UnkStruct_0203D9B8;
 

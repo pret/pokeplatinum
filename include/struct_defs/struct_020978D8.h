@@ -3,14 +3,14 @@
 
 #include "struct_defs/struct_02014A84.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/union_02028328.h"
 
 typedef struct {
     u16 unk_00;
     u8 unk_02;
     u8 unk_03;
-    UnkStruct_020279FC * unk_04;
+    GameOptions * unk_04;
     u32 unk_08;
     u8 unk_0C;
     u8 unk_0D;

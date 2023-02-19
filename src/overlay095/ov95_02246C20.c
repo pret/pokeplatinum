@@ -40,7 +40,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
 #include "overlay095/ov95_02246C20.h"
@@ -726,7 +726,7 @@ u16 ov95_02247668 (UnkStruct_ov95_02247628 * param0)
 
 int ov95_02247674 (UnkStruct_ov95_02247628 * param0)
 {
-    return sub_02027B50(param0->unk_00->unk_14);
+    return GameOptions_GetFrameStyle(param0->unk_00->unk_14);
 }
 
 int ov95_02247680 (UnkStruct_ov95_02247628 * param0)

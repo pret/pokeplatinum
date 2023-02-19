@@ -18,7 +18,7 @@
 
 #include "overlay077/const_ov77_021D742C.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0202DBAC.h"
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/struct_0203CC84.h"
@@ -51,7 +51,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
@@ -366,7 +366,7 @@ typedef struct {
     UnkStruct_021C0794 * unk_08;
     UnkStruct_02026324 * unk_0C;
     UnkStruct_02025E6C * unk_10;
-    UnkStruct_020279FC * unk_14;
+    GameOptions * unk_14;
     UnkStruct_0205AA50 unk_18;
     UnkStruct_0205AA50 unk_28;
     UnkStruct_0205AA50 unk_38;
@@ -558,7 +558,7 @@ static void ov97_0222C254 (UnkStruct_ov97_0222C388 * param0)
     sub_02002E7C(0, 0 * 32, param0->unk_00);
     sub_0200DAA4(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
 
-    v0 = sub_02027B50(param0->unk_14);
+    v0 = GameOptions_GetFrameStyle(param0->unk_14);
 
     sub_0200DD0C(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
     sub_02006E84(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C60.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -35,13 +35,13 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02095AF0.h"
 #include "overlay022/ov22_022597BC.h"
 #include "overlay022/ov22_0225A428.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC * param0, UnkStruct_02018340 * param1);
-static void ov22_0225A718(UnkStruct_02018340 * param0, const UnkStruct_020279FC * param1);
+static void ov22_0225A718(UnkStruct_02018340 * param0, const GameOptions * param1);
 static void ov22_0225A748(UnkStruct_0205AA50 ** param0, UnkStruct_02018340 * param1, int param2, int param3, int param4, int param5, int param6, BOOL param7);
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC * param0);
 static void ov22_0225A7C0(UnkStruct_0205AA50 * param0);
@@ -102,8 +102,8 @@ void ov22_0225A428 (UnkStruct_ov22_0225A428 * param0, UnkStruct_ov22_02256BAC * 
 
     ov22_0225A718(param1->unk_00, param1->unk_0C);
 
-    param0->unk_13C = sub_02027B50(param1->unk_0C);
-    param0->unk_140 = sub_02027AC0(param1->unk_0C);
+    param0->unk_13C = GameOptions_GetFrameStyle(param1->unk_0C);
+    param0->unk_140 = GameOptions_GetTextSpeedReductionFactor(param1->unk_0C);
     param0->unk_138 |= param2;
 }
 
@@ -202,9 +202,9 @@ static void ov22_0225A6E0 (UnkStruct_ov22_022597BC * param0, UnkStruct_02018340 
     ov22_022597BC(param0, &v0);
 }
 
-static void ov22_0225A718 (UnkStruct_02018340 * param0, const UnkStruct_020279FC * param1)
+static void ov22_0225A718 (UnkStruct_02018340 * param0, const GameOptions * param1)
 {
-    int v0 = sub_02027B50(param1);
+    int v0 = GameOptions_GetFrameStyle(param1);
 
     sub_0200DD0C(param0, 5, 1, 1, v0, 14);
     sub_02002E98(4, 2 * 32, 14);

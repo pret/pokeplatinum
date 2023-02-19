@@ -33,7 +33,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
 #include "unk_020933F8.h"
@@ -245,7 +245,7 @@ static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
-        v1 = sub_02027AC0(param0->unk_00->unk_196C);
+        v1 = GameOptions_GetTextSpeedReductionFactor(param0->unk_00->unk_196C);
     } else {
         v1 = 1;
     }
@@ -291,7 +291,7 @@ void ov17_022509AC (UnkStruct_ov17_0224FCA0 * param0)
     sub_02003050(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
     sub_02003050(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
-    v0 = sub_02027B50(param0->unk_00->unk_196C);
+    v0 = GameOptions_GetFrameStyle(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
     sub_02003050(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
@@ -330,7 +330,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
     sub_02003050(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
     sub_02003050(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
-    v0 = sub_02027B50(param0->unk_00->unk_196C);
+    v0 = GameOptions_GetFrameStyle(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
     sub_02003050(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);

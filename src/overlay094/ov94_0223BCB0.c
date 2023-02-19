@@ -41,7 +41,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
@@ -493,7 +493,7 @@ void ov94_0223C4C8 (UnkStruct_ov94_0223FD4C * param0)
 
 int ov94_0223C4D4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    return sub_02027AC0(param0->unk_00->unk_24);
+    return GameOptions_GetTextSpeedReductionFactor(param0->unk_00->unk_24);
 }
 
 static void ov94_0223C4E0 (UnkStruct_ov94_0223FD4C * param0)

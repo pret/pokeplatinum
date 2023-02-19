@@ -27,7 +27,7 @@
 #include "unk_02025E68.h"
 #include "unk_02026150.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202F1D4.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -493,7 +493,7 @@ void sub_0202F8AC (UnkStruct_ov6_02240D5C * param0)
         v2->unk_14C[v0] = sub_02006494(param0->unk_F0[v0]);
     }
 
-    sub_02027A10(param0->unk_108, &v1->unk_1BE8);
+    GameOptions_Copy(param0->unk_108, &v1->unk_1BE8);
 }
 
 void sub_0202FAA8 (int param0, u32 param1)
@@ -571,7 +571,7 @@ void sub_0202FAFC (UnkStruct_ov6_02240D5C * param0, UnkStruct_021C0794 * param1)
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }
 
-    sub_02027A10(sub_02025E44(param1), param0->unk_108);
+    GameOptions_Copy(sub_02025E44(param1), param0->unk_108);
     param0->unk_108->unk_02_2 = v1->unk_1BE8.unk_02_2;
 
     if (param0->unk_108->unk_02_2 >= 20) {

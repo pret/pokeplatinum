@@ -78,7 +78,7 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -520,7 +520,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         sub_0201ADA4(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         sub_0200B1B8(v0->unk_30, 2, v0->unk_C4);
-        v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
+        v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, GameOptions_GetTextSpeedReductionFactor(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 4:
@@ -570,7 +570,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         sub_0201ADA4(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
         sub_0200B1B8(v0->unk_30, 3, v0->unk_C4);
-        v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
+        v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, GameOptions_GetTextSpeedReductionFactor(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
     case 7:
@@ -921,7 +921,7 @@ static void ov113_0225D160 (UnkStruct_ov113_0225DBCC * param0, NARC * param1)
 
     {
         int v2;
-        v2 = sub_02027B50(sub_02025E44(param0->unk_04));
+        v2 = GameOptions_GetFrameStyle(sub_02025E44(param0->unk_04));
 
         sub_02003050(param0->unk_0C, 38, sub_0200DD08(v2), 118, 0, 0x20, 14 * 16);
         sub_0200DD0C(param0->unk_08, 1, 1, 14, v2, 118);

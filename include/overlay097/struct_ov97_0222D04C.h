@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -24,7 +24,7 @@
 typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_021C0794 * unk_04;
-    UnkStruct_020279FC * unk_08;
+    GameOptions * unk_08;
     UnkStruct_0200B358 * unk_0C;
     UnkStruct_0200B144 * unk_10;
     UnkStruct_02023790 * unk_14;

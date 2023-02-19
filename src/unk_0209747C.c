@@ -13,7 +13,7 @@
 #include "heap.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
 #include "unk_0209747C.h"
@@ -45,7 +45,7 @@ UnkStruct_0209747C * sub_0209747C (u32 param0, u32 param1, UnkStruct_021C0794 * 
     v0->unk_05 = 0;
     v0->unk_02 = 1;
     v0->unk_03 = 0;
-    v0->unk_08 = sub_02027B50(sub_02025E44(param2));
+    v0->unk_08 = GameOptions_GetFrameStyle(sub_02025E44(param2));
 
     if (param0 == 2) {
         sub_02014A9C(&v0->unk_14, 3);

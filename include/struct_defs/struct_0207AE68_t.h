@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -34,7 +34,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_02007C7C * unk_1C[2];
     Party * unk_24;
     UnkStruct_02073C74 * unk_28;
-    UnkStruct_020279FC * unk_2C;
+    GameOptions * unk_2C;
     UnkStruct_0207C8C4 * unk_30;
     UnkStruct_0207C690 * unk_34;
     UnkStruct_020067E8 * unk_38;

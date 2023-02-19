@@ -29,7 +29,7 @@
 #include "unk_0201D670.h"
 #include "unk_02023790.h"
 #include "unk_02025E68.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "poffin.h"
 #include "move_table.h"
 #include "item.h"
@@ -593,7 +593,7 @@ u8 ov84_022400A0 (UnkStruct_ov84_0223B5A0 * param0)
 
     sub_02002AC8(1);
     sub_02002AE4(0);
-    v0 = sub_0201D738(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, sub_02027AC0(param0->unk_D0), ov84_022400E0);
+    v0 = sub_0201D738(&param0->unk_04[6], 1, param0->unk_3F8, 0, 0, GameOptions_GetTextSpeedReductionFactor(param0->unk_D0), ov84_022400E0);
 
     return v0;
 }

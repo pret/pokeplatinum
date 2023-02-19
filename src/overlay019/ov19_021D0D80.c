@@ -27,7 +27,7 @@
 #include "constdata/const_020F2DAC.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_02042434.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02098D38.h"
@@ -55,7 +55,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_02073C2C.h"
@@ -143,7 +143,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_0200B144 * unk_198;
     UnkStruct_0200B358 * unk_19C;
     UnkStruct_02073C74 * unk_1A0;
-    UnkStruct_020279FC * unk_1A4;
+    GameOptions * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
     u32 unk_1B0;
@@ -4432,7 +4432,7 @@ const UnkStruct_0200B358 * ov19_021D5DF0 (const UnkStruct_ov19_021D5DF8 * param0
 
 int ov19_021D5DF8 (const UnkStruct_ov19_021D5DF8 * param0)
 {
-    return sub_02027B50(param0->unk_1A4);
+    return GameOptions_GetFrameStyle(param0->unk_1A4);
 }
 
 u32 ov19_021D5E08 (const UnkStruct_ov19_021D4DF0 * param0)

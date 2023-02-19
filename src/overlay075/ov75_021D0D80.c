@@ -49,7 +49,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_02079D40.h"
 #include "overlay075/ov75_021D0D80.h"
@@ -146,8 +146,8 @@ int ov75_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_12 = v1->unk_1C->unk_03;
     v1->unk_17 = v1->unk_16 = v1->unk_11;
     v1->unk_1C->unk_00 = 0xFFFF;
-    v1->unk_10 = sub_02027AC0(v1->unk_1C->unk_04);
-    v1->unk_0A = sub_02027B50(v1->unk_1C->unk_04);
+    v1->unk_10 = GameOptions_GetTextSpeedReductionFactor(v1->unk_1C->unk_04);
+    v1->unk_0A = GameOptions_GetFrameStyle(v1->unk_1C->unk_04);
 
     sub_02002AC8(1);
     return 1;

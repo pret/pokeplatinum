@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_defs/struct_020279FC.h"
+#include "struct_defs/game_options.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -53,7 +53,7 @@
 #include "unk_02022594.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "overlay111/ov111_021D0D80.h"
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/ov111_021D33F4.h"
@@ -94,7 +94,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     UnkStruct_0205AA50 unk_5C[16];
     UnkStruct_02002F38 * unk_15C;
     UnkStruct_0200C440 * unk_160;
-    UnkStruct_020279FC * unk_164;
+    GameOptions * unk_164;
     UnkStruct_021C0794 * unk_168;
     UnkStruct_ov111_021D2F80 unk_16C;
     UnkStruct_ov111_021D33F4 * unk_35C[4];
@@ -481,7 +481,7 @@ static BOOL ov111_021D0FC8 (UnkStruct_ov111_021D0F7C * param0)
             ov111_021D3468(param0->unk_390[v0], (20 + v0));
         }
 
-        ov111_021D35C0(&param0->unk_5C[15], sub_02027B50(param0->unk_164));
+        ov111_021D35C0(&param0->unk_5C[15], GameOptions_GetFrameStyle(param0->unk_164));
         ov111_021D24D4(param0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 1);
         param0->unk_12 = (4 - 1);

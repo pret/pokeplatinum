@@ -29,7 +29,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "unk_02023790.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -215,7 +215,7 @@ static void ov94_0223DE04 (UnkStruct_ov94_0223FD4C * param0)
     UnkStruct_02018340 * v0 = param0->unk_04;
 
     sub_02002E98(0, 13 * 0x20, 62);
-    sub_0200DD0C(v0, 0, 1, 10, sub_02027B50(param0->unk_00->unk_24), 62);
+    sub_0200DD0C(v0, 0, 1, 10, GameOptions_GetFrameStyle(param0->unk_00->unk_24), 62);
     sub_0200DAA4(v0, 0, (1 + (18 + 12)), 11, 0, 62);
     sub_02006E3C(104, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     sub_02006E84(104, 7, 0, 0, 16 * 3 * 2, 62);

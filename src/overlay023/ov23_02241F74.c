@@ -29,7 +29,7 @@
 #include "heap.h"
 #include "unk_02023790.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202854C.h"
 #include "unk_02030EE0.h"
 #include "unk_020329E0.h"
@@ -127,7 +127,7 @@ static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
 static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, UnkStruct_0203CDB0 * param1)
 {
-    u8 v0 = sub_02027AC0(sub_02025E44(param1->unk_0C));
+    u8 v0 = GameOptions_GetTextSpeedReductionFactor(sub_02025E44(param1->unk_0C));
     int v1;
 
     Unk_ov23_02257748 = param0;

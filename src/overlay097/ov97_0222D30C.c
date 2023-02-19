@@ -62,7 +62,7 @@
 #include "unk_02023790.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
-#include "unk_020279FC.h"
+#include "game_options.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_02034198.h"
@@ -941,7 +941,7 @@ static BOOL ov97_0222DFD4 (UnkStruct_020067E8 * param0, UnkStruct_ov97_0222D04C 
     sub_02002E7C(0, 0 * 32, 86);
     sub_02002E7C(0, 1 * 32, 86);
 
-    v0 = sub_02027B50(param1->unk_08);
+    v0 = GameOptions_GetFrameStyle(param1->unk_08);
 
     sub_0200DD0C(param1->unk_00, 0, 1, 2, v0, 86);
     sub_0200DAA4(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, 86);
