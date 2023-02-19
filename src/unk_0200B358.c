@@ -249,7 +249,7 @@ void sub_0200B5EC (UnkStruct_0200B358 * param0, u32 param1, UnkStruct_02073C74_s
 
 void sub_0200B60C (UnkStruct_0200B358 * param0, u32 param1, s32 param2, u32 param3, int param4, int param5)
 {
-    PLString_ToInteger(param0->unk_0C, param2, param3, param4, param5);
+    PLString_FromInteger(param0->unk_0C, param2, param3, param4, param5);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 

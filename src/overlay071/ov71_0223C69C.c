@@ -536,7 +536,7 @@ static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const 
 {
     u32 v0;
 
-    PLString_ToInteger(param4, param5, param6, param7, 1);
+    PLString_FromInteger(param4, param5, param6, param7, 1);
     v0 = sub_02002D7C(0, param4, 0);
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }

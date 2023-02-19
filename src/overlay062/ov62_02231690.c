@@ -1154,7 +1154,7 @@ void ov62_02232594 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
             v5 = PLString_AllocFromHeap(255, 102);
             v6 = sub_0200B1EC(param1->unk_14.unk_34, 99);
 
-            PLString_ToInteger(v5, (v0 + 1), 2, 1, 1);
+            PLString_FromInteger(v5, (v0 + 1), 2, 1, 1);
             PLString_ImportChars(v4, param1->unk_8B4.unk_1D58[v0]->unk_00.unk_00);
             ov62_022349A8(param1, v4);
 
@@ -1459,7 +1459,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r0, [sp, #0x34]
     ldr r1, [sp, #0x24]
     ldr r2, [sp, #0x28]
-    bl PLString_ToU64
+    bl PLString_FromU64
     mov r0, #1
     str r0, [sp]
     ldr r1, [sp, #0x20]
@@ -1901,7 +1901,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r0, [sp, #0x48]
     ldr r1, [sp, #0x24]
     ldr r2, [sp, #0x28]
-    bl PLString_ToU64
+    bl PLString_FromU64
     mov r0, #1
     str r0, [sp]
     ldr r1, [sp, #0x20]
@@ -2115,7 +2115,7 @@ int ov62_02233064 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
             v8 = PLString_AllocFromHeap(255, 102);
             v9 = sub_0200B1EC(param1->unk_14.unk_34, 99);
 
-            PLString_ToInteger(v8, (v5 + v4 + 1), 2, 1, 1);
+            PLString_FromInteger(v8, (v5 + v4 + 1), 2, 1, 1);
             PLString_ImportChars(v7, param1->unk_8B4.unk_1D58[v5 + v4]->unk_00.unk_00);
             ov62_022349A8(param1, v7);
 
@@ -2885,7 +2885,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
                 v7 = sub_0200B1EC(param1->unk_14.unk_34, 9);
                 v8 = PLString_AllocFromHeap(255, 102);
 
-                PLString_ToInteger(v6, v13, 4, 0, 1);
+                PLString_FromInteger(v6, v13, 4, 0, 1);
                 sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
                 sub_0200C388(v9, v8, v7);
                 sub_0201ADA4(v10, 0x0);
@@ -2929,9 +2929,9 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
 
             v8 = PLString_AllocFromHeap(255, 102);
 
-            PLString_ToInteger(v17, v16[0], 5, 2, 1);
-            PLString_ToInteger(v18, v16[1], 5, 2, 1);
-            PLString_ToInteger(v19, v16[2], 2, 2, 1);
+            PLString_FromInteger(v17, v16[0], 5, 2, 1);
+            PLString_FromInteger(v18, v16[1], 5, 2, 1);
+            PLString_FromInteger(v19, v16[2], 2, 2, 1);
             sub_0200B48C(v9, 2, v17, 0, 1, GAME_LANGUAGE);
             sub_0200B48C(v9, 1, v18, 0, 1, GAME_LANGUAGE);
             sub_0200B48C(v9, 0, v19, 0, 1, GAME_LANGUAGE);

@@ -907,7 +907,7 @@ void sub_02089F80 (UnkStruct_02089688 * param0)
         }
 
         v1 = param0->unk_00[v0].unk_00 - 1;
-        PLString_ToInteger(v2, v1, 1, 1, 1);
+        PLString_FromInteger(v2, v1, 1, 1, 1);
         PLString_Concatenate(param0->unk_38C.unk_1C, v2);
     }
 

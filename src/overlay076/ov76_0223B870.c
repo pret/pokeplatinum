@@ -1010,7 +1010,7 @@ void ov76_0223CC8C (UnkStruct_ov76_0223DE00 * param0)
         v4 = PLString_AllocFromHeap(100, 53);
         v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
-        PLString_ToInteger(v4, v3, 3, 1, 1);
+        PLString_FromInteger(v4, v3, 3, 1, 1);
         sub_0201D78C(v5, 0, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A954(v5);
         PLString_FreeToHeap(v4);
@@ -1041,7 +1041,7 @@ void ov76_0223CD20 (UnkStruct_ov76_0223DE00 * param0, int param1)
     v4 = PLString_AllocFromHeap(100, 53);
     v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
-    PLString_ToInteger(v4, v3, 3, 1, 1);
+    PLString_FromInteger(v4, v3, 3, 1, 1);
     sub_0201D78C(v5, 1, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A954(v5);
     PLString_FreeToHeap(v4);

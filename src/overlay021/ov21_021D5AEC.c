@@ -752,10 +752,10 @@ static void ov21_021D63DC (UnkStruct_ov21_021D13FC * param0, int param1, int par
     sub_0200B1B8(v1, 1, v0);
     sub_0201D78C(&param0->unk_04, 0, v0, 128, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    PLString_ToInteger(v0, param2, 3, 2, 1);
+    PLString_FromInteger(v0, param2, 3, 2, 1);
     sub_0201D78C(&param0->unk_04, 0, v0, 48, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    PLString_ToInteger(v0, param3, 3, 2, 1);
+    PLString_FromInteger(v0, param3, 3, 2, 1);
     sub_0201D78C(&param0->unk_04, 0, v0, 180, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     PLString_FreeToHeap(v0);
@@ -770,7 +770,7 @@ static void ov21_021D64B0 (UnkStruct_ov21_021D13FC * param0, int param1, int par
 
     sub_0200B1B8(v1, 109, v0);
     sub_0201D78C(&param0->unk_04, 0, v0, 8, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_ToInteger(v0, param2, 3, 2, 1);
+    PLString_FromInteger(v0, param2, 3, 2, 1);
     sub_0201D78C(&param0->unk_04, 0, v0, 48, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     PLString_FreeToHeap(v0);
     sub_0200B190(v1);
@@ -1310,7 +1310,7 @@ static void ov21_021D6DF4 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
     v1 = ov21_021D4D6C(param1->unk_14C, 15, 2);
 
-    PLString_ToInteger(v2, param4, 3, 2, 1);
+    PLString_FromInteger(v2, param4, 3, 2, 1);
     sub_0201D78C(v1, 2, v2, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     sub_0200B1B8(v3, 99, v2);
     sub_0201D78C(v1, 2, v2, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);

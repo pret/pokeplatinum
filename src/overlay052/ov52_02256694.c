@@ -453,7 +453,7 @@ static void ov52_02256C64 (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
     for (v2 = 0; v2 < 4; v2++) {
         sub_0200B1B8(param0->unk_58, v0[v2], param0->unk_5C);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 8, 32 + 16 * v2, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
-        PLString_ToInteger(param0->unk_5C, param1->unk_00[v2], 2, 2, 1);
+        PLString_FromInteger(param0->unk_5C, param1->unk_00[v2], 2, 2, 1);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 160, 32 + 16 * v2, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     }
 

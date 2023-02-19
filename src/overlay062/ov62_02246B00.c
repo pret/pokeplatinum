@@ -339,7 +339,7 @@ void ov62_022470A8 (UnkStruct_ov62_02246BF4 * param0)
 
         param0->unk_2CC += v1;
 
-        PLString_ToInteger(v2, v1, 1, 1, 1);
+        PLString_FromInteger(v2, v1, 1, 1, 1);
         PLString_Concatenate(param0->unk_2A8.unk_18, v2);
     }
 

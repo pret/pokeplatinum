@@ -1270,7 +1270,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
     v1 = ov97_02236E00(param1);
     v8 = PLString_AllocFromHeap(10, 78);
 
-    PLString_ToInteger(v8, v1, 3, 1, 1);
+    PLString_FromInteger(v8, v1, 3, 1, 1);
 
     v4.unk_3C = v8;
     v4.unk_34 = -1;

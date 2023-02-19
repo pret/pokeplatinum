@@ -4491,7 +4491,7 @@ static void ov115_02265688 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
 static void ov115_02265700 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_02261ADC * param1, u32 param2)
 {
     {
-        PLString_ToInteger(param0->unk_5C, param2, 2, 2, 1);
+        PLString_FromInteger(param0->unk_5C, param2, 2, 2, 1);
         sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
@@ -4520,7 +4520,7 @@ static void ov115_022657A8 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
 {
     if (param0->unk_98 != 3) {
         {
-            PLString_ToInteger(param0->unk_5C, param2, 2, 2, 1);
+            PLString_FromInteger(param0->unk_5C, param2, 2, 2, 1);
             sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);

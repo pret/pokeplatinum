@@ -1640,7 +1640,7 @@ void ov96_0223D8D8 (UnkStruct_0205AA50 * param0, PLString * param1, int param2, 
 static void ov96_0223D90C (UnkStruct_0205AA50 * param0, PLString * param1, int param2, int param3)
 {
     sub_0201ADA4(param0, 0xf0f);
-    PLString_ToInteger(param1, param2, param3, 2, 1);
+    PLString_FromInteger(param1, param2, param3, 2, 1);
     ov96_0223D8D8(param0, param1, 0, 1, 1, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 }
 

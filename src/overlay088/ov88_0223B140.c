@@ -1374,7 +1374,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
         ov88_0223EC78(&param0[28 + param1], v0, 9, 0xff, 6, 0);
 
         v3 = sub_02074470(Party_GetPokemonBySlotIndex(param2, param3), 161, NULL);
-        PLString_ToInteger(v0, v3, 3, 0, 1);
+        PLString_FromInteger(v0, v3, 3, 0, 1);
         ov88_0223EC78(&param0[28 + param1], v0, 9, 0, 24 + 6, 0);
         PLString_FreeToHeap(v0);
     } else {

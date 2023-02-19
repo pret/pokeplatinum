@@ -4717,9 +4717,9 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         v1 = sub_0200B1EC(param1->unk_14.unk_34, 295);
         v2 = PLString_AllocFromHeap(255, 102);
 
-        PLString_ToInteger(v8, v7[0], 5, 2, 1);
-        PLString_ToInteger(v9, v7[1], 5, 2, 1);
-        PLString_ToInteger(v10, v7[2], 2, 2, 1);
+        PLString_FromInteger(v8, v7[0], 5, 2, 1);
+        PLString_FromInteger(v9, v7[1], 5, 2, 1);
+        PLString_FromInteger(v10, v7[2], 2, 2, 1);
         sub_0200B48C(v3, 2, v8, 0, 1, GAME_LANGUAGE);
         sub_0200B48C(v3, 1, v9, 0, 1, GAME_LANGUAGE);
         sub_0200B48C(v3, 0, v10, 0, 1, GAME_LANGUAGE);

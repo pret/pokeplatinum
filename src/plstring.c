@@ -80,7 +80,7 @@ PLString * PLString_CloneUpTo (const PLString * string, u32 size)
     return newString;
 }
 
-void PLString_ToInteger (PLString * string, int integer, u32 numDigits, int mode, int digitSetToUse)
+void PLString_FromInteger (PLString * string, int integer, u32 numDigits, int mode, int digitSetToUse)
 {
     static const u32 POWERS_OF_TEN[] = {
         1,
@@ -162,8 +162,8 @@ void PLString_ToInteger (PLString * string, int integer, u32 numDigits, int mode
     GF_ASSERT(0);
 }
 
-// Functionally identical to PLString_ToInteger, but for a U64 input
-void PLString_ToU64 (PLString * string, u64 number, u32 numDigits, int mode, int digitSetToUse)
+// Functionally identical to PLString_FromInteger, but for a U64 input
+void PLString_FromU64 (PLString * string, u64 number, u32 numDigits, int mode, int digitSetToUse)
 {
     static const u64 POWERS_OF_TEN[] = {
         1,
