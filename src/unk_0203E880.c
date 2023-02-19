@@ -455,8 +455,8 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
         v3->unk_38[0] = sub_0203EAB8(v4, v3->unk_0A);
         v3->unk_09 = 1;
         v3->unk_40 = sub_0200B368(8, 64, 11);
-        v3->unk_44 = PLString_New(1024, 11);
-        v3->unk_48 = PLString_New(1024, 11);
+        v3->unk_44 = PLString_Init(1024, 11);
+        v3->unk_48 = PLString_Init(1024, 11);
         v3->unk_04++;
     case 1:
         for (v0 = 0; v0 < 2; v0++) {

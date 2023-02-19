@@ -558,7 +558,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     v5 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
     v3 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
     v4 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((15 & 0xff) << 0)));
-    v6 = PLString_New(256, param0->unk_00);
+    v6 = PLString_Init(256, param0->unk_00);
 
     sub_0200B1B8(param0->unk_20, 0, v6);
 
@@ -681,7 +681,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
     sub_0201ADA4(&(param0->unk_2C[2]), 15);
 
     v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
-    v1 = PLString_New(256, param0->unk_00);
+    v1 = PLString_Init(256, param0->unk_00);
 
     sub_0200B1B8(param0->unk_20, param1, v1);
 

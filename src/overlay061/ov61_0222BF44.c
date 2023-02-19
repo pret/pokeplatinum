@@ -182,8 +182,8 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_24 = sub_0200B144(0, 26, 671, 117);
     v0->unk_28 = sub_0200B144(0, 26, 674, 117);
     v0->unk_2C = sub_0200B144(0, 26, 695, 117);
-    v0->unk_34 = PLString_New((90 * 2), 117);
-    v0->unk_3C = PLString_New((16 * 8 * 2), 117);
+    v0->unk_34 = PLString_Init((90 * 2), 117);
+    v0->unk_3C = PLString_Init((16 * 8 * 2), 117);
     v0->unk_38 = sub_0200B1EC(v0->unk_24, 31);
 
     ov61_0222C3B0(v0);
@@ -507,7 +507,7 @@ void ov61_0222C760 (UnkStruct_0205AA50 * param0, PLString * param1, int param2, 
 
 static void ov61_0222C794 (UnkStruct_ov61_0222C664 * param0, int param1)
 {
-    PLString * v0 = PLString_New((16 * 8 * 2), 117);
+    PLString * v0 = PLString_Init((16 * 8 * 2), 117);
 
     sub_0200B1B8(param0->unk_2C, param1, v0);
     sub_0200C388(param0->unk_20, param0->unk_3C, v0);

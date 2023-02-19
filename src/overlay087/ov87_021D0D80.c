@@ -170,8 +170,8 @@ static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C 
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_20[v0].unk_00 = PLString_New(12, 60);
-        param0->unk_20[v0].unk_04 = PLString_New(8, 60);
+        param0->unk_20[v0].unk_00 = PLString_Init(12, 60);
+        param0->unk_20[v0].unk_04 = PLString_Init(8, 60);
     }
 
     param0->unk_1C = UnkEnum_ov87_021D12C0_0;

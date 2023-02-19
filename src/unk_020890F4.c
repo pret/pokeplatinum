@@ -167,7 +167,7 @@ UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], UnkStru
     v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
-    v1->unk_1C = PLString_New(param1 + 1, param0);
+    v1->unk_1C = PLString_Init(param1 + 1, param0);
     v1->unk_20 = param3;
 
     for (v0 = 0; v0 < 4; v0++) {

@@ -804,8 +804,8 @@ static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 {
     param0->unk_04 = sub_0200B358(param2);
     param0->unk_08 = sub_0200B144(0, 26, 674, param2);
-    param0->unk_0C = PLString_New(256, param2);
-    param0->unk_10 = PLString_New(256, param2);
+    param0->unk_0C = PLString_Init(256, param2);
+    param0->unk_10 = PLString_Init(256, param2);
     param0->unk_14 = 0xff;
     param0->unk_16 = sub_02027AC0(sub_02025E44(param1->unk_08));
 }
@@ -913,7 +913,7 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     }
 
     sub_0201ADA4(&param0->unk_1F0, 15);
-    v0 = PLString_New(256, param4);
+    v0 = PLString_Init(256, param4);
 
     sub_0200B1B8(param0->unk_08, param2, v0);
     sub_0200C388(param0->unk_04, param0->unk_0C, v0);
@@ -973,8 +973,8 @@ static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     PLString * v0;
     PLString * v1;
 
-    v0 = PLString_New(256, param3);
-    v1 = PLString_New(256, param3);
+    v0 = PLString_Init(256, param3);
+    v1 = PLString_Init(256, param3);
 
     ov65_0223726C(param0, param1, param2, 0, param3);
     ov65_02237284(param0, param1, param2, 1, param3);
@@ -1026,8 +1026,8 @@ static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_0223
     u8 v2;
     u8 v3;
 
-    v0 = PLString_New(256, param4);
-    v1 = PLString_New(256, param4);
+    v0 = PLString_Init(256, param4);
+    v1 = PLString_Init(256, param4);
 
     ov65_0223726C(param1, param2, param3, 0, param4);
 

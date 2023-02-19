@@ -492,12 +492,12 @@ static void sub_0208C884 (UnkStruct_0208D7BC * param0)
     param0->unk_68C = sub_0200B144(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
     param0->unk_690 = sub_0200B358(19);
-    param0->unk_250.unk_00 = PLString_New(12, 19);
-    param0->unk_250.unk_04 = PLString_New(12, 19);
-    param0->unk_250.unk_08 = PLString_New(8, 19);
-    param0->unk_694 = PLString_New(128, 19);
+    param0->unk_250.unk_00 = PLString_Init(12, 19);
+    param0->unk_250.unk_04 = PLString_Init(12, 19);
+    param0->unk_250.unk_08 = PLString_Init(8, 19);
+    param0->unk_694 = PLString_Init(128, 19);
     param0->unk_69C = sub_0200B144(0, 26, 647, 19);
-    param0->unk_698 = PLString_New(7 + 1, 19);
+    param0->unk_698 = PLString_Init(7 + 1, 19);
 
     if (param0->unk_24C->unk_08 != NULL) {
         PLString_FillWithChars(param0->unk_698, param0->unk_24C->unk_08);

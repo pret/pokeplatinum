@@ -447,7 +447,7 @@ static BOOL ov97_022308B4 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 
 {
     PLString * v0;
 
-    v0 = PLString_New(36 + 1, param0->unk_00);
+    v0 = PLString_Init(36 + 1, param0->unk_00);
 
     PLString_FillWithCharsLimit(v0, param0->unk_2C14[param0->unk_2C20]->unk_104.unk_00, 36);
     sub_0201D78C(param1, 1, v0, 0, 0, 0xff, param2, NULL);
@@ -497,7 +497,7 @@ static BOOL ov97_022309E4 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 
 {
     PLString * v0;
 
-    v0 = PLString_New(250 + 1, 87);
+    v0 = PLString_Init(250 + 1, 87);
 
     PLString_FillWithCharsLimit(v0, param0->unk_2C14[param0->unk_2C20]->unk_154, 250);
     sub_0201D78C(param1, 1, v0, 0, 0, 0xff, param2, NULL);

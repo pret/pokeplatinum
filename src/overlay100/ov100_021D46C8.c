@@ -35,7 +35,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     int v0;
     UnkStruct_0200B144 * v1;
     PLString * v2;
-    PLString * v3 = PLString_New(511, 111);
+    PLString * v3 = PLString_Init(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;

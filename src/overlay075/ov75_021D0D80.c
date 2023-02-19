@@ -280,7 +280,7 @@ static int ov75_021D0FA0 (UnkStruct_ov75_021D1184 * param0)
         sub_0200E060(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         sub_0201ADA4(&(param0->unk_44[5]), ((15 << 4) | 15));
 
-        v0 = PLString_New((19 * 2 * 2), param0->unk_00);
+        v0 = PLString_Init((19 * 2 * 2), param0->unk_00);
 
         sub_0200B1B8(param0->unk_20, 2, v0);
         sub_0201D78C(&param0->unk_44[5], 1, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
@@ -338,7 +338,7 @@ static int ov75_021D108C (UnkStruct_ov75_021D1184 * param0)
         sub_0200E060(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         sub_0201ADA4(&(param0->unk_44[5]), ((15 << 4) | 15));
 
-        v1 = PLString_New((19 * 2 * 2), param0->unk_00);
+        v1 = PLString_Init((19 * 2 * 2), param0->unk_00);
         sub_0200B1B8(param0->unk_20, 3, v1);
         param0->unk_0F = sub_0201D78C(&param0->unk_44[5], 1, v1, 0, 0, param0->unk_10, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
 
@@ -849,7 +849,7 @@ static void ov75_021D19C8 (UnkStruct_ov75_021D1184 * param0)
 
         param0->unk_20 = sub_0200B144(1, 26, 409, param0->unk_00);
 
-        v2 = PLString_New(8 * 2, param0->unk_00);
+        v2 = PLString_Init(8 * 2, param0->unk_00);
 
         for (v0 = 0; v0 < 2; v0++) {
             PLString_Clear(v2);

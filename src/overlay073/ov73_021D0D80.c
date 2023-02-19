@@ -720,9 +720,9 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         sub_02002AE4(0);
 
         {
-            PLString * v1 = PLString_New(0x400, param0->unk_00);
+            PLString * v1 = PLString_Init(0x400, param0->unk_00);
 
-            param0->unk_5C = PLString_New(0x400, param0->unk_00);
+            param0->unk_5C = PLString_Init(0x400, param0->unk_00);
 
             sub_0200B1B8(param0->unk_4C, param1, v1);
             sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
@@ -848,7 +848,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
     switch (param0->unk_54) {
     case 0:
         sub_02019120(0, 0);
-        param0->unk_5C = PLString_New(0x400, param0->unk_00);
+        param0->unk_5C = PLString_Init(0x400, param0->unk_00);
         sub_0200B1B8(param0->unk_4C, param1, param0->unk_5C);
 
         if (param2 == 1) {

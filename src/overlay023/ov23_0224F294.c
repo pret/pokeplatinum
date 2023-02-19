@@ -441,8 +441,8 @@ void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1
     v0->unk_0C = param1;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = PLString_New((50 * 2), 4);
-    v0->unk_6C = PLString_New((50 * 2), 4);
+    v0->unk_68 = PLString_Init((50 * 2), 4);
+    v0->unk_6C = PLString_Init((50 * 2), 4);
     v0->unk_70 = sub_0200B358(4);
     v0->unk_04 = sub_0200D9E8(ov23_0224F914, v0, 10000);
 
@@ -1435,8 +1435,8 @@ void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1
     v0->unk_0C = param1;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = PLString_New((50 * 2), 4);
-    v0->unk_6C = PLString_New((50 * 2), 4);
+    v0->unk_68 = PLString_Init((50 * 2), 4);
+    v0->unk_6C = PLString_Init((50 * 2), 4);
     v0->unk_70 = sub_0200B358(4);
 
     sub_020594FC();
@@ -1862,8 +1862,8 @@ void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * para
     v0->unk_25C = 0;
     v0->unk_48 = NULL;
     v0->unk_60 = NULL;
-    v0->unk_68 = PLString_New((50 * 2), 4);
-    v0->unk_6C = PLString_New((50 * 2), 4);
+    v0->unk_68 = PLString_Init((50 * 2), 4);
+    v0->unk_6C = PLString_Init((50 * 2), 4);
     v0->unk_70 = sub_0200B358(4);
 
     ov23_02250CD4(v0);

@@ -465,7 +465,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
     UnkStruct_0200B358 * v2;
 
     v2 = sub_0200B358(param2);
-    v1 = PLString_New(200, param2);
+    v1 = PLString_Init(200, param2);
     v0 = sub_0200B1EC(param1, 7);
 
     if (param3[param4].unk_08 == 1) {
@@ -492,7 +492,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
     UnkStruct_0200B358 * v2;
 
     v2 = sub_0200B358(param2);
-    v1 = PLString_New(200, param2);
+    v1 = PLString_Init(200, param2);
     v0 = sub_0200B1EC(param1, 12);
 
     if (param3[param4].unk_08 == 1) {
@@ -528,7 +528,7 @@ static void ov7_0224C620 (UnkStruct_ov7_0224C620 * param0, UnkStruct_02018340 * 
         param0->unk_10[v0] = sub_0200B1EC(param2, 16 + v0);
     }
 
-    param0->unk_0C = PLString_New(32, param3);
+    param0->unk_0C = PLString_Init(32, param3);
     sub_0201ADA4(param0->unk_04, 15);
     param0->unk_00 = 1;
 }
@@ -615,7 +615,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, UnkStruct_02018340 * 
     sub_0201A7E8(param1, param0->unk_04, 3, 17, 1, 14, 16, 13, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
     param0->unk_124 = sub_0200B358(param2);
-    param0->unk_128 = PLString_New(32, param2);
+    param0->unk_128 = PLString_Init(32, param2);
 
     v1 = sub_0200B1EC(param5, 16);
 

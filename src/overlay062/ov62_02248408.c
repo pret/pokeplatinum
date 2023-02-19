@@ -40,8 +40,8 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
     UnkStruct_02073C74 * v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
-    v6 = PLString_New(v9, param2);
-    v7 = PLString_New(v9, param2);
+    v6 = PLString_Init(v9, param2);
+    v7 = PLString_Init(v9, param2);
     v8 = Heap_AllocFromHeap(param2, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {

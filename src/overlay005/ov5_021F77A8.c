@@ -1027,7 +1027,7 @@ static void ov5_021F7E18 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * 
     }
 
     for (v0 = 0; v0 < ((NELEMS(Unk_ov5_02200CE4)) + 1); v0++) {
-        param1->unk_1C[v0] = PLString_New((40 * 2), 4);
+        param1->unk_1C[v0] = PLString_Init((40 * 2), 4);
     }
 
     *param1->unk_CC = 0xeeee;
@@ -1082,7 +1082,7 @@ static void ov5_021F7FF8 (UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        PLString * v2 = PLString_New((40 * 2), 4);
+        PLString * v2 = PLString_Init((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_B8, param1, v2);
         sub_0200C388(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);

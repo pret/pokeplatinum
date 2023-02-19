@@ -768,7 +768,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
     param0->unk_10 = sub_0200B144(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
     param0->unk_14 = sub_0200B358(param0->unk_00->unk_0C);
-    param0->unk_18 = PLString_New(512, param0->unk_00->unk_0C);
+    param0->unk_18 = PLString_Init(512, param0->unk_00->unk_0C);
 }
 
 static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)

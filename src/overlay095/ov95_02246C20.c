@@ -151,7 +151,7 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_00 = sub_02006840(param0);
             v0->unk_04 = 0;
             v0->unk_08 = sub_02018340(57);
-            v0->unk_14 = PLString_New(400, 57);
+            v0->unk_14 = PLString_Init(400, 57);
             v0->unk_10 = sub_0200B144(0, 26, 350, 57);
             v0->unk_0C = sub_0200B358(57);
 

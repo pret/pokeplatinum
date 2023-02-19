@@ -847,7 +847,7 @@ static void ov84_0223BDB4 (UnkStruct_ov84_0223B5A0 * param0)
     param0->unk_118 = sub_0200B358(6);
     param0->unk_11C = sub_0200B144(0, 26, 392, 6);
     param0->unk_120 = sub_0200B144(0, 26, 647, 6);
-    param0->unk_3F8 = PLString_New(256, 6);
+    param0->unk_3F8 = PLString_Init(256, 6);
 }
 
 static void ov84_0223BE24 (UnkStruct_ov84_0223B5A0 * param0)
@@ -1012,7 +1012,7 @@ static void ov84_0223C158 (UnkStruct_ov84_0223B5A0 * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 165; v0++) {
-        param0->unk_164[v0] = PLString_New(18, 6);
+        param0->unk_164[v0] = PLString_Init(18, 6);
     }
 }
 

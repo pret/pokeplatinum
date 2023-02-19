@@ -693,7 +693,7 @@ static void ov79_021D1568 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_2C = sub_0200B144(0, 26, 463, param0->unk_00);
     param0->unk_28 = sub_020158A8(param0->unk_00);
     param0->unk_30.unk_00 = sub_0200B368(2, 64, param0->unk_00);
-    param0->unk_30.unk_04 = PLString_New(64, param0->unk_00);
+    param0->unk_30.unk_04 = PLString_Init(64, param0->unk_00);
     param0->unk_30.unk_08 = sub_0200B1EC(param0->unk_2C, 6);
     param0->unk_30.unk_0C = sub_0200B1EC(param0->unk_2C, 22);
     param0->unk_30.unk_10 = sub_0200B1EC(param0->unk_2C, 4);

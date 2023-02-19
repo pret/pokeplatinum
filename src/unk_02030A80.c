@@ -82,7 +82,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 
 PLString * sub_02030B94 (const UnkStruct_02030A80 * param0, int param1)
 {
-    PLString * v0 = PLString_New((7 * 2) + 1, param1);
+    PLString * v0 = PLString_Init((7 * 2) + 1, param1);
 
     PLString_FillWithCharsLimit(v0, param0->unk_00, (7 * 2) + 1);
     return v0;
@@ -174,7 +174,7 @@ PLString * sub_02030C28 (const UnkStruct_02030A80 * param0, UnkStruct_02014A84 *
 
         return NULL;
     } else {
-        PLString * v3 = PLString_New(40, param2);
+        PLString * v3 = PLString_Init(40, param2);
 
         PLString_FillWithCharsLimit(v3, param0->unk_20_val2, 40);
         return v3;

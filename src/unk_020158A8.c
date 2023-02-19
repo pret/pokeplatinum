@@ -21,7 +21,7 @@ UnkStruct_020158A8 * sub_020158A8 (int param0)
     v0->unk_00 = sub_0200B144(0, 26, 465, param0);
 
     for (v1 = 0; v1 < 29; v1++) {
-        v0->unk_04[v1] = PLString_New(22, param0);
+        v0->unk_04[v1] = PLString_Init(22, param0);
         sub_0200B1B8(v0->unk_00, v1, v0->unk_04[v1]);
     }
 

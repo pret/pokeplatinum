@@ -1300,7 +1300,7 @@ static void ov88_0223C860 (UnkStruct_0205AA50 * param0, Party * param1, int para
 {
     PLString * v0;
 
-    v0 = PLString_New(20, 26);
+    v0 = PLString_Init(20, 26);
 
     sub_02074470(Party_GetPokemonBySlotIndex(param1, param2), 119, v0);
     sub_0201ADA4(param0, 0);
@@ -1368,7 +1368,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
     }
 
     if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
-        v0 = PLString_New(10, 26);
+        v0 = PLString_Init(10, 26);
         sub_0201ADA4(&param0[28 + param1], 0);
         sub_0200B1B8(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, 0xff, 6, 0);
@@ -1386,7 +1386,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
     v2 = sub_02074470(Party_GetPokemonBySlotIndex(param2, param3), 6, NULL);
     sub_0201ADA4(&param0[32 + param1], 0);
 
-    v1 = PLString_New(20, 26);
+    v1 = PLString_Init(20, 26);
     Item_GetNameIntoString(v1, v2, 26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, 0, 3, 0);
     PLString_Free(v1);
@@ -1924,7 +1924,7 @@ static int ov88_0223D69C (UnkStruct_02095E80 * param0)
 
     {
         UnkStruct_0200B144 * v3;
-        PLString * v4 = PLString_New(100, 26);
+        PLString * v4 = PLString_Init(100, 26);
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {

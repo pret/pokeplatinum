@@ -1295,7 +1295,7 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     v2->unk_04 = param4;
     v2->unk_08 = param6;
     v2->unk_0C = sub_0208712C(11, param1, param2, param3, sub_02025E44(v1->unk_0C));
-    v2->unk_10 = PLString_New(12, 11);
+    v2->unk_10 = PLString_Init(12, 11);
 
     switch (param1) {
     case 1:

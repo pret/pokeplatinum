@@ -553,7 +553,7 @@ static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
     sub_0200C578(param0->unk_CC, 2, v0, 0, 5);
 
     v1 = sub_0200B1EC(param0->unk_C4, 6);
-    v2 = PLString_New((2 + 1) * 2, 36);
+    v2 = PLString_Init((2 + 1) * 2, 36);
 
     sub_0200B60C(param0->unk_C8, 0, param0->unk_1F8->unk_08 + 1, 2, 2, 1);
     sub_0200C388(param0->unk_C8, v2, v1);
@@ -649,7 +649,7 @@ static void ov85_02241B9C (UnkStruct_ov85_022417E4 * param0)
     v3 = sub_020973D4(param0->unk_1FC, 0);
     v3 = (((v3 * 1000) / 254 + 5) / 10);
     v1 = sub_0200B1EC(param0->unk_C4, 9);
-    v2 = PLString_New(32, 36);
+    v2 = PLString_Init(32, 36);
 
     sub_0200B60C(param0->unk_C8, 0, v3 / 10, 2, 0, 1);
     sub_0200B60C(param0->unk_C8, 1, v3 % 10, 1, 0, 1);

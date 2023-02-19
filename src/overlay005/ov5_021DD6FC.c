@@ -229,7 +229,7 @@ UnkStruct_ov5_021DD9C8 * ov5_021DD98C (UnkStruct_02018340 * param0)
     UnkStruct_ov5_021DD9C8 * v0;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DD9C8));
-    v0->unk_40 = PLString_New(22, 4);
+    v0->unk_40 = PLString_Init(22, 4);
 
     ov5_021DD894(v0, param0);
     ov5_021DD718(v0);

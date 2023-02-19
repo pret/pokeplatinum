@@ -166,7 +166,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
 
     v4 = sub_02051D8C(param0, 0x400);
     v2 = sub_0200B144(1, 26, 553, param0);
-    v3 = PLString_New(8, param0);
+    v3 = PLString_Init(8, param0);
 
     sub_0200B1B8(v2, sub_02025F30(v0) ^ 1, v3);
     sub_02025EC0(v4->unk_D0[0], PLString_GetBuffer(v3));

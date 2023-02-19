@@ -209,7 +209,7 @@ void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     PLString * v0;
 
     if (param1 != 0xffff) {
-        v0 = PLString_New(130, 6);
+        v0 = PLString_Init(130, 6);
         Item_GetDescriptionIntoString(v0, param1, 6);
     } else {
         v0 = sub_0200B1EC(param0->unk_114, 94);
@@ -305,7 +305,7 @@ void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u3
         sub_0201D78C(&param0->unk_04[0], 0, param0->unk_3FC, ((17 * 8 - 2) - 6 - 1 - 6 * 3), param2, 0xff, param3, NULL);
     }
 
-    v0 = PLString_New(10, 6);
+    v0 = PLString_Init(10, 6);
 
     sub_0200B60C(param0->unk_118, 0, param1, 3, 0, 1);
     sub_0200C388(param0->unk_118, v0, param0->unk_400);
@@ -451,7 +451,7 @@ void ov84_0223FB70 (UnkStruct_ov84_0223B5A0 * param0, u8 * param1, u8 param2)
         sub_0201ADA4(&param0->unk_04[v5], 15);
 
         v2 = sub_0200B1EC(param0->unk_114, 42);
-        v3 = PLString_New((14 * 2 * 2), 6);
+        v3 = PLString_Init((14 * 2 * 2), 6);
         v1 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
         ov84_0223F4E8(param0, v1->unk_06 + v1->unk_04 - 1, 0);
@@ -500,7 +500,7 @@ void ov84_0223FE18 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0201ADA4(&param0->unk_04[1], 0);
 
     v0 = sub_0200B1EC(param0->unk_114, 45);
-    v1 = PLString_New(130, 6);
+    v1 = PLString_Init(130, 6);
 
     ov84_0223F4E8(param0, param0->unk_47B - 1, 0);
 
@@ -524,7 +524,7 @@ void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0201ADA4(&param0->unk_04[3], 15);
 
     v1 = sub_0200B1EC(param0->unk_114, 52);
-    v2 = PLString_New(14 * 2 * 2, 6);
+    v2 = PLString_Init(14 * 2 * 2, 6);
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     ov84_0223F4E8(param0, v0->unk_06 + v0->unk_04 - 1, 0);

@@ -322,7 +322,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 
     v5 = sub_0200B144(0, 26, 357, 71);
     v3 = sub_0200B358(71);
     v1 = sub_0200B1EC(v5, param1);
-    v2 = PLString_New(255, 71);
+    v2 = PLString_Init(255, 71);
     v4 = sub_02076B10(param2);
 
     sub_0200B538(v3, 0, v4);

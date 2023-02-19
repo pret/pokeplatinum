@@ -675,8 +675,8 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_08 = param1;
     v0->unk_28 = sub_0200B358(11);
     v0->unk_2C = sub_0200B144(0, 26, 11, 11);
-    v0->unk_0C = PLString_New((100 * 2), 11);
-    v0->unk_10 = PLString_New((100 * 2), 11);
+    v0->unk_0C = PLString_Init((100 * 2), 11);
+    v0->unk_10 = PLString_Init((100 * 2), 11);
 
     sub_0201A7A0(&v0->unk_14);
     sub_0201A7A0(&v0->unk_54);
@@ -1022,8 +1022,8 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     case 0:
         v1->unk_18 = sub_0200B358(4);
         v1->unk_1C = sub_0200B144(0, 26, 11, 4);
-        v1->unk_00 = PLString_New((100 * 2), 4);
-        v1->unk_04 = PLString_New((100 * 2), 4);
+        v1->unk_00 = PLString_Init((100 * 2), 4);
+        v1->unk_04 = PLString_Init((100 * 2), 4);
 
         sub_0200B1B8(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));

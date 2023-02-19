@@ -436,7 +436,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
 
             v13 = sub_0200B1EC(v12, 9);
             v14 = sub_0200B1EC(v12, 10);
-            v15 = PLString_New(6, 4);
+            v15 = PLString_Init(6, 4);
 
             sub_0201D738(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
             v16 = sub_0200B358(4);

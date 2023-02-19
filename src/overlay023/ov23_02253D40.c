@@ -87,8 +87,8 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018
         v0 = 230;
     }
 
-    v1->unk_00 = PLString_New(v0, param1);
-    v1->unk_04 = PLString_New(v0, param1);
+    v1->unk_00 = PLString_Init(v0, param1);
+    v1->unk_04 = PLString_Init(v0, param1);
     v1->unk_28 = sub_0200B358(param1);
     v1->unk_2C = param0;
     v1->unk_24 = sub_0200B144(1, 26, param0, param1);

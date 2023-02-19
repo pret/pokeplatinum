@@ -900,7 +900,7 @@ static void sub_02072ED0 (UnkStruct_02072EB8 * param0, u8 param1, int param2)
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].unk_08 = PLString_New(8, param2);
+        param0[v0].unk_08 = PLString_Init(8, param2);
         sub_02072EB8(param0, v0);
     }
 }
@@ -1035,7 +1035,7 @@ static void sub_02073130 (UnkStruct_02072334 * param0)
 
     param0->unk_10C = sub_0200B144(1, 26, 408, param0->unk_00);
     param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
-    param0->unk_110.unk_04 = PLString_New(128, param0->unk_00);
+    param0->unk_110.unk_04 = PLString_Init(128, param0->unk_00);
     param0->unk_110.unk_08 = sub_0200B1EC(param0->unk_10C, 4);
     param0->unk_110.unk_0C = sub_0200B1EC(param0->unk_10C, 0);
 

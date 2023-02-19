@@ -113,7 +113,7 @@ void sub_0209A74C (int param0)
     sub_0201975C(4, 27681);
 
     v2 = sub_0200B144(1, 26, 5, param0);
-    v3 = PLString_New(384, param0);
+    v3 = PLString_Init(384, param0);
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
@@ -187,7 +187,7 @@ void sub_0209A8E0 (int param0)
     sub_0201975C(4, 0x6c21);
 
     v2 = sub_0200B144(1, 26, 5, param0);
-    v3 = PLString_New(0x180, param0);
+    v3 = PLString_Init(0x180, param0);
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);

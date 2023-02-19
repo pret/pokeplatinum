@@ -118,8 +118,8 @@ void * ov95_02247B6C (UnkStruct_ov95_02247628 * param0)
         v0->unk_54 = ov95_02247628(param0);
         v0->unk_0C = sub_0200762C(58);
         v0->unk_10 = NULL;
-        v0->unk_68 = PLString_New(300, 58);
-        v0->unk_6C = PLString_New(300, 58);
+        v0->unk_68 = PLString_Init(300, 58);
+        v0->unk_6C = PLString_Init(300, 58);
         v0->unk_78 = NULL;
         v0->unk_7C = NULL;
         v0->unk_80 = NARC_ctor(147, 58);

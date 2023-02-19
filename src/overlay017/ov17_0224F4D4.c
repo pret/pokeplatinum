@@ -197,7 +197,7 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_10.unk_B4 = sub_0200B144(0, 26, 218, 24);
     v0->unk_10.unk_B8 = sub_0200B358(24);
-    v0->unk_10.unk_BC = PLString_New((2 * 160), 24);
+    v0->unk_10.unk_BC = PLString_Init((2 * 160), 24);
     v0->unk_10.unk_C4 = sub_02012744(10, 24);
 
     ov17_0224FE60(v0);

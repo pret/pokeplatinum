@@ -664,7 +664,7 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
     PLString * v1;
 
     if (param1 > 0) {
-        v0 = PLString_New(4, param3);
+        v0 = PLString_Init(4, param3);
         PLString_FromInt(v0, param1, 3, 2, 1);
     } else {
         v0 = ov21_021D1CE0(100, param3);

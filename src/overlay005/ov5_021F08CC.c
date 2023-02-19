@@ -510,8 +510,8 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
     param0->unk_48 = sub_0200B144(1, 26, 213, 4);
-    param0->unk_2C = PLString_New(0x400, 4);
-    param0->unk_30 = PLString_New(0x400, 4);
+    param0->unk_2C = PLString_Init(0x400, 4);
+    param0->unk_30 = PLString_Init(0x400, 4);
     param0->unk_34 = sub_0200B368(8, 64, 4);
 }
 

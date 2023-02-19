@@ -112,8 +112,8 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1E8 = sub_0200B144(1, 26, 412, 61);
         v0->unk_1EC = sub_0200B144(1, 26, 647, 61);
         v0->unk_1F0 = sub_0200B358(61);
-        v0->unk_1F4 = PLString_New(256, 61);
-        v0->unk_1F8 = PLString_New(256, 61);
+        v0->unk_1F4 = PLString_Init(256, 61);
+        v0->unk_1F8 = PLString_Init(256, 61);
         v0->unk_1FC = sub_02073C74(61);
 
         sub_02017798(ov87_021D11AC, v0);

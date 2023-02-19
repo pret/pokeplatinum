@@ -3420,7 +3420,7 @@ static void ov19_021D4E50 (UnkStruct_ov19_021D5594 * param0)
 static void ov19_021D4E5C (UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1)
 {
     param1->unk_00 = sub_0207999C(param0);
-    param1->unk_04 = PLString_New(20, 9);
+    param1->unk_04 = PLString_Init(20, 9);
     ov19_021D4F40(param0, param1);
 }
 
@@ -3431,11 +3431,11 @@ static void ov19_021D4E7C (UnkStruct_ov19_021D4F5C * param0)
 
 static void ov19_021D4E88 (UnkStruct_ov19_021D5BAC * param0)
 {
-    param0->unk_14 = PLString_New(12, 9);
-    param0->unk_18 = PLString_New(12, 9);
-    param0->unk_1C = PLString_New(18, 9);
-    param0->unk_20 = PLString_New(12, 9);
-    param0->unk_24 = PLString_New(16, 9);
+    param0->unk_14 = PLString_Init(12, 9);
+    param0->unk_18 = PLString_Init(12, 9);
+    param0->unk_1C = PLString_Init(18, 9);
+    param0->unk_20 = PLString_Init(12, 9);
+    param0->unk_24 = PLString_Init(16, 9);
 }
 
 static void ov19_021D4EC0 (UnkStruct_ov19_021D5BAC * param0)
@@ -3457,8 +3457,8 @@ static void ov19_021D4EE4 (UnkStruct_ov19_021D4EE4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_02[v0] = 0;
-        param0->unk_08[v0].unk_28 = PLString_New(12, 9);
-        param0->unk_08[v0].unk_2C = PLString_New(12, 9);
+        param0->unk_08[v0].unk_28 = PLString_Init(12, 9);
+        param0->unk_08[v0].unk_2C = PLString_Init(12, 9);
     }
 }
 

@@ -147,7 +147,7 @@ static void ov5_021DC018 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DC1A4 * 
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = PLString_New((40 * 2), 4);
+        param1->unk_1C[v0] = PLString_Init((40 * 2), 4);
     }
 
     *param1->unk_A0 = 0xeeee;
@@ -216,7 +216,7 @@ static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        PLString * v2 = PLString_New((40 * 2), 4);
+        PLString * v2 = PLString_Init((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -440,7 +440,7 @@ static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        PLString * v2 = PLString_New((40 * 2), 4);
+        PLString * v2 = PLString_Init((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -609,8 +609,8 @@ static void ov5_021DCA28 (UnkStruct_ov5_021DC1A4 * param0)
 
 static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param2)
 {
-    PLString * v0 = PLString_New((40 * 2), 4);
-    PLString * v1 = PLString_New((40 * 2), 4);
+    PLString * v0 = PLString_Init((40 * 2), 4);
+    PLString * v1 = PLString_Init((40 * 2), 4);
 
     sub_0201ADA4(param0->unk_18, 15);
     sub_0200B1B8(param0->unk_8C, param1, v0);
@@ -665,8 +665,8 @@ void ov5_021DCB24 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * para
 
 static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2, u8 param3)
 {
-    PLString * v0 = PLString_New((40 * 2), 4);
-    PLString * v1 = PLString_New((40 * 2), 4);
+    PLString * v0 = PLString_Init((40 * 2), 4);
+    PLString * v1 = PLString_Init((40 * 2), 4);
 
     sub_0200B1B8(param0->unk_8C, param1, v0);
     sub_0200C388(param0->unk_90, v1, v0);
@@ -858,7 +858,7 @@ void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
 
     v0 = sub_0200B144(0, 26, 543, 4);
     v1 = sub_0200B358(4);
-    v2 = PLString_New(16, 4);
+    v2 = PLString_Init(16, 4);
     v3 = sub_0200B1EC(v0, 19);
     v4 = sub_02025F74(sub_02025E38(param0->unk_0C));
 
@@ -907,7 +907,7 @@ void ov5_021DD098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
 
     v0 = sub_0200B144(0, 26, 361, 4);
     v1 = sub_0200B358(4);
-    v2 = PLString_New(16, 4);
+    v2 = PLString_Init(16, 4);
     v3 = sub_0200B1EC(v0, 197);
     v4 = Coins_GetValue(sub_02025E50(param0->unk_0C));
 
@@ -950,7 +950,7 @@ void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
 
     v0 = sub_0200B144(0, 26, 361, 4);
     v1 = sub_0200B358(4);
-    v2 = PLString_New(16, 4);
+    v2 = PLString_Init(16, 4);
     v3 = sub_0200B1EC(v0, 230);
     v4 = sub_0202D230(sub_0202D750(param0->unk_0C), 0, 0);
 

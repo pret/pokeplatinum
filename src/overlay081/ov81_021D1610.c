@@ -889,7 +889,7 @@ static void ov81_021D29B4 (UnkStruct_ov81_021D1610 * param0, UnkStruct_0205AA50 
 
 static void ov81_021D2A60 (UnkStruct_ov81_021D1610 * param0, u16 * param1, u8 param2, u8 param3)
 {
-    PLString * v0 = PLString_New(32, 42);
+    PLString * v0 = PLString_Init(32, 42);
 
     PLString_FillWithChars(v0, param1);
     sub_0200B48C(param0->unk_54, param3, v0, param2, 1, GAME_LANGUAGE);

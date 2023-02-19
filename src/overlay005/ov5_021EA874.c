@@ -457,8 +457,8 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_38 = sub_0200B358(4);
     param0->unk_3C = sub_0200B144(0, 26, 675, 4);
-    param0->unk_0C = PLString_New(110, 4);
-    param0->unk_08 = PLString_New(110, 4);
+    param0->unk_0C = PLString_Init(110, 4);
+    param0->unk_08 = PLString_Init(110, 4);
 }
 
 static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)

@@ -334,11 +334,11 @@ static void ov94_0223D53C (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
 
-    param0->unk_BAC = PLString_New((90 * 2), 62);
+    param0->unk_BAC = PLString_Init((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 39);
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_BB4[v0] = PLString_New((10 * 2), 62);
+        param0->unk_BB4[v0] = PLString_Init((10 * 2), 62);
     }
 }
 
@@ -526,8 +526,8 @@ static u32 Unk_ov94_022467FC[] = {
 void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, UnkStruct_0205AA50 param3[], UnkStruct_02073C74_sub1 * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
 {
     PLString * v0, * v1, * v2, * v3;
-    PLString * v4 = PLString_New((10 + 1) * 2, 62);
-    PLString * v5 = PLString_New((8 + 1) * 2, 62);
+    PLString * v4 = PLString_Init((10 + 1) * 2, 62);
+    PLString * v5 = PLString_Init((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
     sub_02074570(param4, 119, v4);
@@ -574,8 +574,8 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
     PLString * v0, * v1;
     PLString * v2, * v3;
 
-    v0 = PLString_New((7 + 1) * 2, 62);
-    v3 = PLString_New((7 + 1) * 2, 62);
+    v0 = PLString_Init((7 + 1) * 2, 62);
+    v3 = PLString_Init((7 + 1) * 2, 62);
 
     v1 = sub_0200B1EC(param0, 48);
     PLString_FillWithChars(v0, param2);

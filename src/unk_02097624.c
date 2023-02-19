@@ -228,7 +228,7 @@ UnkStruct_020978D8 * sub_02097834 (const UnkStruct_0202818C * param0, int param1
 
     v1->unk_00 = 0;
     v1->unk_08 = sub_02028308(param0);
-    v1->unk_10 = PLString_New(8, param1);
+    v1->unk_10 = PLString_Init(8, param1);
 
     PLString_FillWithChars(v1->unk_10, sub_0202830C((UnkStruct_0202818C *)param0));
 

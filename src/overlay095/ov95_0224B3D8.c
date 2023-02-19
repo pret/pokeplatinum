@@ -143,8 +143,8 @@ void * ov95_0224B3D8 (UnkStruct_ov95_02247628 * param0)
         v0->unk_58 = ov95_02247628(param0);
         v0->unk_10 = sub_0200762C(58);
         v0->unk_14 = NULL;
-        v0->unk_6C = PLString_New(300, 58);
-        v0->unk_70 = PLString_New(300, 58);
+        v0->unk_6C = PLString_Init(300, 58);
+        v0->unk_70 = PLString_Init(300, 58);
         v0->unk_7C = NULL;
         v0->unk_80 = NULL;
         v0->unk_74 = NULL;

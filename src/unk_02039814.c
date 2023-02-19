@@ -154,8 +154,8 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0201975C(4, 0x6c21);
 
     v2 = sub_0200B144(1, 26, 214, param0);
-    v3 = PLString_New(0x180, param0);
-    v4 = PLString_New(0x180, param0);
+    v3 = PLString_Init(0x180, param0);
+    v4 = PLString_Init(0x180, param0);
     sub_0201D710();
     v5 = sub_0200B358(param0);
 

@@ -855,8 +855,8 @@ static void ov23_02251F94 (UnkStruct_0203CDB0 * param0)
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
     v1->unk_2AA = 0;
-    v1->unk_68 = PLString_New((50 * 2), 4);
-    v1->unk_6C = PLString_New((50 * 2), 4);
+    v1->unk_68 = PLString_Init((50 * 2), 4);
+    v1->unk_6C = PLString_Init((50 * 2), 4);
     v1->unk_70 = sub_0200B358(4);
     v1->unk_08 = sub_0206A780(4);
 

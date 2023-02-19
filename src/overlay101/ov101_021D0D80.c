@@ -444,7 +444,7 @@ void ov101_021D13C8 (UnkStruct_ov101_021D13C8 * param0)
         sub_0201A8D4(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
     }
 
-    v1->unk_18 = PLString_New(256, 79);
+    v1->unk_18 = PLString_Init(256, 79);
 }
 
 void ov101_021D1458 (UnkStruct_ov101_021D13C8 * param0)

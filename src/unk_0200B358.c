@@ -86,7 +86,7 @@ UnkStruct_0200B358 * sub_0200B368 (u32 param0, u32 param1, u32 param2)
 
         v2->unk_00 = param0;
         v2->unk_04 = param2;
-        v2->unk_0C = PLString_New(param1, param2);
+        v2->unk_0C = PLString_Init(param1, param2);
 
         if (v2->unk_0C == NULL) {
             break;
@@ -100,7 +100,7 @@ UnkStruct_0200B358 * sub_0200B368 (u32 param0, u32 param1, u32 param2)
 
         for (v1 = 0; v1 < param0; v1++) {
             sub_0200B444(&(v2->unk_08[v1].unk_00));
-            v2->unk_08[v1].unk_04 = PLString_New(param1, param2);
+            v2->unk_08[v1].unk_04 = PLString_Init(param1, param2);
 
             if (v2->unk_08[v1].unk_04 == NULL) {
                 break;
@@ -796,7 +796,7 @@ void sub_0200C054 (UnkStruct_0200B358 * param0, UnkStruct_021C0794 * param1, int
 
     v0 = sub_0202B47C(v3, param2);
     v1 = sub_0202B488(v3, param2);
-    v2 = PLString_New(64, 4);
+    v2 = PLString_Init(64, 4);
 
     PLString_FillWithChars(v2, sub_0202B42C(v3, param2, param4));
     sub_0200B48C(param0, param3, v2, v0, 1, v1);

@@ -1137,11 +1137,11 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
 
     param0->unk_20 = sub_0200B144(1, 26, 201, 100);
     param0->unk_24 = sub_0200B358(100);
-    param0->unk_28 = PLString_New(600, 100);
-    param0->unk_2C = PLString_New(600, 100);
+    param0->unk_28 = PLString_Init(600, 100);
+    param0->unk_2C = PLString_Init(600, 100);
 
     for (v13 = 0; v13 < 3; v13++) {
-        param0->unk_30[v13] = PLString_New(32, 100);
+        param0->unk_30[v13] = PLString_Init(32, 100);
     }
 
     sub_02002E7C(0, 13 * 32, 100);
@@ -2359,7 +2359,7 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
     PLString * v2;
 
     v1 = sub_02025E38(param0->unk_14C);
-    v2 = PLString_New((7 + 1), 100);
+    v2 = PLString_Init((7 + 1), 100);
 
     PLString_FillWithChars(v2, sub_02025EF0(v1));
 

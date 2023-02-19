@@ -27,7 +27,7 @@ UnkStruct_020149F0 * sub_020149F0 (u32 param0)
 
     if (v1) {
         v1->unk_00 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
-        v1->unk_04 = PLString_New(4, param0);
+        v1->unk_04 = PLString_Init(4, param0);
         PLString_FillWithChars(v1->unk_04, v0);
     }
 

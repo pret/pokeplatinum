@@ -533,7 +533,7 @@ void ov23_0224AAB0 (void)
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
         UnkStruct_02025E6C * v0 = sub_02025E6C(15);
-        PLString * v1 = PLString_New(20, 15);
+        PLString * v1 = PLString_Init(20, 15);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);

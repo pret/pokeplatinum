@@ -412,7 +412,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     ov113_0225D9FC(v0);
     ov113_0225DBCC(v0);
 
-    v0->unk_C4 = PLString_New(256, 118);
+    v0->unk_C4 = PLString_Init(256, 118);
     v0->unk_1C = sub_0200C6E4(118);
 
     sub_0200C73C(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, (16 + 16));

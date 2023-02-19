@@ -238,7 +238,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_80 = sub_0200B144(0, 26, 9, 110);
     v0->unk_84 = sub_0200B358(110);
-    v0->unk_88 = PLString_New((2 * 160), 110);
+    v0->unk_88 = PLString_Init((2 * 160), 110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 
     ov117_02265210(v0, &v0->unk_1468);

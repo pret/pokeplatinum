@@ -650,7 +650,7 @@ static void ov91_021D11B8 (UnkStruct_ov91_021D0ED8 * param0)
 {
     param0->unk_F8 = sub_0200B144(0, 26, 645, 67);
     param0->unk_FC = sub_0200B358(67);
-    param0->unk_100 = PLString_New(256, 67);
+    param0->unk_100 = PLString_Init(256, 67);
 }
 
 static void ov91_021D11F0 (UnkStruct_ov91_021D0ED8 * param0)

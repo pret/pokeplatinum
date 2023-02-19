@@ -217,7 +217,7 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C.unk_44 = sub_0200B144(0, 26, 211, 21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = sub_0200B358(21);
-    v0->unk_0C.unk_4C = PLString_New((3 * 160), 21);
+    v0->unk_0C.unk_4C = PLString_Init((3 * 160), 21);
 
     {
         NARC * v1;

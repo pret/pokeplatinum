@@ -46,7 +46,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
     v0 = &param0->unk_00[param0->unk_2AA8];
     v3 = Party_GetCurrentCount(param1);
-    v2 = PLString_New(11, 0);
+    v2 = PLString_Init(11, 0);
 
     MI_CpuClear16(v0->unk_00, sizeof(UnkStruct_0202E1F4) * 6);
 

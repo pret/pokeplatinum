@@ -151,7 +151,7 @@ void * ov6_02247A90 (void * param0)
     sub_0200DC48(&v0->unk_00, 1, 1, 11);
     sub_0201ADA4(&v0->unk_00, 15);
 
-    v3 = PLString_New(100, 11);
+    v3 = PLString_Init(100, 11);
     v2 = sub_0200B1EC(v0->unk_10, 0);
 
     sub_0200B498(v0->unk_14, 0, sub_02025E38(v8));

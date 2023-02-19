@@ -624,7 +624,7 @@ static void ov90_021D13D8 (UnkStruct_ov90_021D0ECC * param0)
 
     param0->unk_28.unk_00 = sub_0200B144(0, 26, 22, param0->unk_00);
     param0->unk_28.unk_04 = sub_0200B368(2, ((18 + 1) * 4), param0->unk_00);
-    param0->unk_28.unk_08 = PLString_New(((18 + 1) * 4), param0->unk_00);
+    param0->unk_28.unk_08 = PLString_Init(((18 + 1) * 4), param0->unk_00);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_28.unk_24[v0] = sub_0200B1EC(param0->unk_28.unk_00, 9 + v0);
@@ -745,7 +745,7 @@ static void ov90_021D1750 (UnkStruct_ov90_021D0ECC * param0)
 
         MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
 
-        v2->unk_00 = PLString_New(8, param0->unk_00);
+        v2->unk_00 = PLString_Init(8, param0->unk_00);
 
         if (v2->unk_07) {
             PLString_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);

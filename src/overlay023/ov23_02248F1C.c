@@ -508,15 +508,15 @@ static void ov23_02249724 (UnkStruct_ov23_02249724 * param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_00[v0] = PLString_New((50 * 2), 4);
+        param0->unk_00[v0] = PLString_Init((50 * 2), 4);
     }
 
     param0->unk_8C = 0;
     param0->unk_90 = 0;
-    param0->unk_80 = PLString_New((50 * 2), 4);
+    param0->unk_80 = PLString_Init((50 * 2), 4);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_84[v0] = PLString_New((20 * 2 * 2), 4);
+        param0->unk_84[v0] = PLString_Init((20 * 2 * 2), 4);
     }
 }
 

@@ -432,7 +432,7 @@ UnkStruct_0202EE10 * sub_0202EE10 (UnkStruct_0202E8C0 * param0, int param1, int 
 
         v1->unk_04[v1->unk_00].unk_00 = v2->unk_00[v0].unk_00;
         v1->unk_04[v1->unk_00].unk_04 = v2->unk_00[v0].unk_04;
-        v1->unk_04[v1->unk_00].unk_08 = PLString_New(7 + 1, param2);
+        v1->unk_04[v1->unk_00].unk_08 = PLString_Init(7 + 1, param2);
         PLString_FillWithChars(v1->unk_04[v1->unk_00].unk_08, v2->unk_00[v0].unk_08);
         ++v1->unk_00;
     }

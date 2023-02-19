@@ -1221,7 +1221,7 @@ UnkStruct_0208737C * sub_0208712C (int param0, int param1, int param2, int param
     v0->unk_0C = param3;
     v0->unk_14 = 0;
     v0->unk_1C[0] = 0xffff;
-    v0->unk_18 = PLString_New(32, param0);
+    v0->unk_18 = PLString_Init(32, param0);
     v0->unk_44 = 0;
     v0->unk_48 = NULL;
     v0->unk_10 = 0;
@@ -1470,7 +1470,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
     if (v1->unk_44 != 0) {
         int v2, v3;
 
-        v0 = PLString_New(200, 18);
+        v0 = PLString_Init(200, 18);
         param0->unk_180 = NULL;
         v2 = sub_0207999C(v1->unk_48);
         v3 = sub_020799A0(v1->unk_48);
@@ -2090,7 +2090,7 @@ static void sub_02088554 (UnkStruct_0205AA50 * param0, const u16 * param1, int p
     u16 v3[2];
     PLString * v4;
 
-    v4 = PLString_New(2, 18);
+    v4 = PLString_Init(2, 18);
 
     while (param1[v0] != 0xffff) {
         if ((param1[v0] == 0xd001) || (param1[v0] == (0xd001 + 1)) || (param1[v0] == (0xd001 + 2))) {
@@ -2147,7 +2147,7 @@ static void sub_02088678 (UnkStruct_0205AA50 * param0, const u16 * param1, u8 * 
         GXS_LoadOBJ(param2, Unk_020F24D8[v1] * 0x20, 0x20 * 4 * 2);
     }
 
-    v4 = PLString_New(20 + 1, 18);
+    v4 = PLString_Init(20 + 1, 18);
 
     for (v1 = 0; v1 < 3; v1++) {
         v0[0] = param1[v1];

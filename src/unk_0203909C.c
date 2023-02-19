@@ -138,7 +138,7 @@ void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int para
         }
     }
 
-    v4 = PLString_New(120, param3);
+    v4 = PLString_Init(120, param3);
 
     PLString_FillWithChars(v4, sub_02032F54(param1));
     sub_0202AF50(v0, param2, v4);

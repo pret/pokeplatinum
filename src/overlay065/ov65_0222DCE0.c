@@ -1427,10 +1427,10 @@ static void ov65_0222EBE0 (UnkStruct_ov65_0222EBE0 * param0)
     int v0;
     int v1;
 
-    param0->unk_174 = PLString_New((190 * 2), 54);
-    param0->unk_17C = PLString_New((190 * 2), 54);
-    param0->unk_170 = PLString_New((190 * 2), 54);
-    param0->unk_178 = PLString_New((90 * 2), 54);
+    param0->unk_174 = PLString_Init((190 * 2), 54);
+    param0->unk_17C = PLString_Init((190 * 2), 54);
+    param0->unk_170 = PLString_Init((190 * 2), 54);
+    param0->unk_178 = PLString_Init((90 * 2), 54);
     param0->unk_3A8 = 0;
 }
 
@@ -6716,7 +6716,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     sub_0201A7A0(&v3);
     sub_0201A870(param0->unk_15C, &v3, 8, 2, 0, 0);
 
-    v4 = PLString_New(64, param2);
+    v4 = PLString_Init(64, param2);
     sub_0200B1B8(param0->unk_168, 73, v4);
 
     {

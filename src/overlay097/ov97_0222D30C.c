@@ -886,7 +886,7 @@ static void ov97_0222DF10 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * par
     PLString * v0;
     UnkStruct_ov97_0222D04C * v1 = sub_0200682C(param0);
 
-    v0 = PLString_New(36 + 1, 86);
+    v0 = PLString_Init(36 + 1, 86);
 
     PLString_FillWithCharsLimit(v0, param2, 36);
     sub_0201ADA4(param1, sub_02002DF8(0, 6));

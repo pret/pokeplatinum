@@ -3035,7 +3035,7 @@ static void ov5_021E742C (UnkStruct_02073C74 * param0, int param1)
     u32 v3, v4;
     u8 v5[6], v6;
     u8 v7, v8, v9, v10, v11, v12, v13, v14;
-    PLString * v15 = PLString_New(7 + 1, param1);
+    PLString * v15 = PLString_Init(7 + 1, param1);
     UnkStruct_02073C74 * v16 = sub_02073C74(param1);
 
     v0 = sub_02074470(param0, 5, NULL);

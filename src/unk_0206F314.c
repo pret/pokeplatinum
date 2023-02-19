@@ -539,7 +539,7 @@ static void sub_0206FA08 (UnkStruct_0206F7F8 * param0)
 
     param0->unk_2C.unk_00 = sub_0200B144(0, 26, 532, param0->unk_00);
     param0->unk_2C.unk_04 = sub_0200B368(2, (38 * 2), param0->unk_00);
-    param0->unk_2C.unk_08 = PLString_New((38 * 2), param0->unk_00);
+    param0->unk_2C.unk_08 = PLString_Init((38 * 2), param0->unk_00);
     param0->unk_2C.unk_0C = sub_0200B1EC(param0->unk_2C.unk_00, 13);
     param0->unk_2C.unk_10 = sub_0200B1EC(param0->unk_2C.unk_00, 22);
     param0->unk_2C.unk_14 = sub_0200B1EC(param0->unk_2C.unk_00, 36);

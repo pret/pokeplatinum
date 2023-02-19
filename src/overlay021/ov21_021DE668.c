@@ -432,7 +432,7 @@ static void ov21_021DEB58 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
 
 void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
-    PLString * v0 = PLString_New(64, param2);
+    PLString * v0 = PLString_Init(64, param2);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
 
     sub_0200B1B8(v1, 9, v0);
@@ -450,7 +450,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
 static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
-    PLString * v0 = PLString_New(64, param1);
+    PLString * v0 = PLString_Init(64, param1);
     UnkStruct_0200B144 * v1;
     int v2;
 
@@ -465,7 +465,7 @@ static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
 static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
-    PLString * v0 = PLString_New(64, param1);
+    PLString * v0 = PLString_Init(64, param1);
     UnkStruct_0200B144 * v1;
     int v2;
 

@@ -135,8 +135,8 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_110 = sub_0200B144(1, 26, 16, 114);
     v1->unk_114 = sub_0200B358(114);
-    v1->unk_118 = PLString_New(800, 114);
-    v1->unk_11C = PLString_New(800, 114);
+    v1->unk_118 = PLString_Init(800, 114);
+    v1->unk_11C = PLString_Init(800, 114);
 
     sub_02002E7C(0, 13 * 32, 114);
     sub_02002E98(0, 12 * 32, 114);

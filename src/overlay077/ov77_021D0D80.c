@@ -1268,7 +1268,7 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
         sub_02019690(4, 32, 0, param1);
 
         v4 = sub_0200B144(1, 26, 609, param1);
-        v5 = PLString_New(64, param1);
+        v5 = PLString_Init(64, param1);
 
         sub_0201A8D4(param0, &param2->unk_22C, &Unk_ov77_021D72D0);
         sub_0201AE78(&param2->unk_22C, 0, 0, 0, 28 * 8, 2 * 8);

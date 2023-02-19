@@ -15,7 +15,7 @@ PLString * sub_0200B29C (UnkStruct_0200B358 * param0, UnkStruct_0200B144 * param
     PLString * v0 = NULL;
     PLString * v1;
 
-    v1 = PLString_New(1024, 0);
+    v1 = PLString_Init(1024, 0);
 
     if (v1) {
         PLString * v2 = sub_0200B1EC(param1, param2);
@@ -37,7 +37,7 @@ PLString * sub_0200B2EC (u32 param0, u32 param1)
     UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, 647, param1);
 
     if (v0) {
-        PLString * v1 = PLString_New(16, param1);
+        PLString * v1 = PLString_Init(16, param1);
 
         if (v1) {
             sub_0200B1B8(v0, param0, v1);

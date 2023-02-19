@@ -106,8 +106,8 @@ int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->unk_04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
     v0->unk_08 = sub_02025E44(v0->unk_04);
-    v0->unk_114 = PLString_New(100, 108);
-    v0->unk_118 = PLString_New(100, 108);
+    v0->unk_114 = PLString_Init(100, 108);
+    v0->unk_118 = PLString_Init(100, 108);
     sub_02004550(17, 1175, 1);
     v0->unk_8C = 0;
 

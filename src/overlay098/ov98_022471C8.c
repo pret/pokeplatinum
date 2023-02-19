@@ -331,8 +331,8 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_30 = sub_0200B144(0, 26, 695, 109);
     v0->unk_28 = sub_0200B144(0, 26, 412, 109);
     v0->unk_34 = sub_0200B144(0, 26, 358, 109);
-    v0->unk_38 = PLString_New((90 * 2), 109);
-    v0->unk_40 = PLString_New((16 * 8 * 2), 109);
+    v0->unk_38 = PLString_Init((90 * 2), 109);
+    v0->unk_40 = PLString_Init((16 * 8 * 2), 109);
     v0->unk_3C = sub_0200B1EC(v0->unk_24, 31);
 
     ov98_02247704(v0);
@@ -2647,7 +2647,7 @@ void ov98_022498CC (UnkStruct_0205AA50 * param0, PLString * param1, int param2, 
 
 static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
 {
-    PLString * v0 = PLString_New((16 * 8 * 2), 109);
+    PLString * v0 = PLString_Init((16 * 8 * 2), 109);
 
     sub_0200B1B8(param0->unk_30, param1, v0);
     sub_0200C388(param0->unk_20, param0->unk_40, v0);

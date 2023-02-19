@@ -297,7 +297,7 @@ static void ov94_0223DFDC (UnkStruct_ov94_0223FD4C * param0)
     UnkStruct_0200B144 * v1;
     UnkStruct_ov94_0223BA88 * v2 = &param0->unk_250[param0->unk_11C];
 
-    param0->unk_BAC = PLString_New((90 * 2), 62);
+    param0->unk_BAC = PLString_Init((90 * 2), 62);
 
     sub_0200C41C(param0->unk_B8C);
 

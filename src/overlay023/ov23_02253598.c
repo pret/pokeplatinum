@@ -490,8 +490,8 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
     const int v12 = 100;
 
     v0 = sub_0200B358(4);
-    v1 = PLString_New(40, 4);
-    v2 = PLString_New(40, 4);
+    v1 = PLString_Init(40, 4);
+    v2 = PLString_Init(40, 4);
 
     sub_0200B498(v0, 1, param2);
     sub_0200B1B8(param1, 12, v1);

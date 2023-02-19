@@ -73,7 +73,7 @@ BOOL ov43_02256544 (UnkStruct_ov43_02256544 ** param0, const UnkStruct_ov43_0225
         v0->unk_30 = ov25_02254664();
         v0->unk_B4 = sub_0200B144(1, 26, 624, 8);
         v0->unk_B8 = sub_0200B144(1, 26, 456, 8);
-        v0->unk_BC = PLString_New(128, 8);
+        v0->unk_BC = PLString_Init(128, 8);
         ov43_022565B4(v0);
         *param0 = v0;
 

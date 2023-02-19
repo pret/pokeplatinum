@@ -43,8 +43,8 @@ BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_20 = param7;
     param0->unk_10 = param5;
     param0->unk_14 = sub_0200B144(0, 26, 18, 10);
-    param0->unk_30 = PLString_New(64, 10);
-    param0->unk_34 = PLString_New(64, 10);
+    param0->unk_30 = PLString_Init(64, 10);
+    param0->unk_34 = PLString_Init(64, 10);
     param0->unk_1C = 0;
     param0->unk_1E = 0;
     param0->unk_18 = NULL;

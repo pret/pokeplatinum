@@ -1190,7 +1190,7 @@ static void ov13_02220F08 (UnkStruct_ov13_022213F0 * param0)
     param0->unk_1FA4 = sub_0200B144(0, 26, 3, param0->unk_00->unk_0C);
     param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
     param0->unk_1FA8 = sub_0200B358(param0->unk_00->unk_0C);
-    param0->unk_1FAC = PLString_New(512, param0->unk_00->unk_0C);
+    param0->unk_1FAC = PLString_Init(512, param0->unk_00->unk_0C);
 }
 
 static void ov13_02220F60 (UnkStruct_ov13_022213F0 * param0)

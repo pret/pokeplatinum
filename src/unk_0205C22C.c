@@ -492,7 +492,7 @@ void sub_0205C820 (UnkStruct_02061830 * param0, UnkStruct_0205C22C * param1)
 
 static void sub_0205C8DC (UnkStruct_0205C924 * param0)
 {
-    param0->unk_00 = PLString_New(7 + 1, 89);
+    param0->unk_00 = PLString_Init(7 + 1, 89);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 

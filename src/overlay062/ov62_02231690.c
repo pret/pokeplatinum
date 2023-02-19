@@ -1042,12 +1042,12 @@ static void ov62_022323CC (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C 
         v2 = ov62_02231690(102);
 
         if (v5 != 0) {
-            v0 = PLString_New(255, 102);
+            v0 = PLString_Init(255, 102);
             v1 = sub_0200B1EC(param1->unk_14.unk_34, 23);
             sub_0200BE08(v2, 0, v4, v5);
             sub_0200C388(v2, v0, v1);
         } else {
-            v0 = PLString_New(255, 102);
+            v0 = PLString_Init(255, 102);
             v1 = sub_0200B1EC(param1->unk_14.unk_34, 22);
             sub_0200BDD0(v2, 0, v4);
             sub_0200C388(v2, v0, v1);
@@ -1150,8 +1150,8 @@ void ov62_02232594 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param
         int v7;
 
         for (v0 = 0; v0 < param0->unk_10; v0++) {
-            v4 = PLString_New(255, 102);
-            v5 = PLString_New(255, 102);
+            v4 = PLString_Init(255, 102);
+            v5 = PLString_Init(255, 102);
             v6 = sub_0200B1EC(param1->unk_14.unk_34, 99);
 
             PLString_FromInt(v5, (v0 + 1), 2, 1, 1);
@@ -2111,8 +2111,8 @@ int ov62_02233064 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1
         }
 
         for (v4 = 0; v4 < param0->unk_10; v4++) {
-            v7 = PLString_New(255, 102);
-            v8 = PLString_New(255, 102);
+            v7 = PLString_Init(255, 102);
+            v8 = PLString_Init(255, 102);
             v9 = sub_0200B1EC(param1->unk_14.unk_34, 99);
 
             PLString_FromInt(v8, (v5 + v4 + 1), 2, 1, 1);
@@ -2851,7 +2851,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         v6 = sub_02030B94(v11, 102);
         ov62_022349A8(param1, v6);
         v7 = sub_0200B1EC(param1->unk_14.unk_34, 7);
-        v8 = PLString_New(255, 102);
+        v8 = PLString_Init(255, 102);
 
         sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v9, v8, v7);
@@ -2881,9 +2881,9 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
 
             if (v13 != 0) {
                 v10 = &param0->unk_3C[2];
-                v6 = PLString_New(255, 102);
+                v6 = PLString_Init(255, 102);
                 v7 = sub_0200B1EC(param1->unk_14.unk_34, 9);
-                v8 = PLString_New(255, 102);
+                v8 = PLString_Init(255, 102);
 
                 PLString_FromInt(v6, v13, 4, 0, 1);
                 sub_0200B48C(v9, 0, v6, 0, 1, GAME_LANGUAGE);
@@ -2906,9 +2906,9 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
             u64 v14 = sub_0202FE98(param0->unk_04, 4, 0);
             u64 v15 = v14;
             u32 v16[3];
-            PLString * v17 = PLString_New(255, 102);
-            PLString * v18 = PLString_New(255, 102);
-            PLString * v19 = PLString_New(255, 102);
+            PLString * v17 = PLString_Init(255, 102);
+            PLString * v18 = PLString_Init(255, 102);
+            PLString * v19 = PLString_Init(255, 102);
 
             v10 = &param0->unk_3C[4];
             v16[0] = v15 % 100000;
@@ -2927,7 +2927,7 @@ static void ov62_02233B50 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
                 }
             }
 
-            v8 = PLString_New(255, 102);
+            v8 = PLString_Init(255, 102);
 
             PLString_FromInt(v17, v16[0], 5, 2, 1);
             PLString_FromInt(v18, v16[1], 5, 2, 1);
@@ -3731,7 +3731,7 @@ void ov62_022349A8 (UnkStruct_0208C06C * param0, PLString * param1)
     PLString * v1;
     int v2 = 64;
 
-    v1 = PLString_New(v2, v0->unk_144);
+    v1 = PLString_Init(v2, v0->unk_144);
 
     if (sub_02002DB4(0, param1, v1) == 0) {
         ov62_022349E4(param1, v0->unk_144);

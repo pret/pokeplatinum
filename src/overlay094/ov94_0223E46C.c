@@ -385,7 +385,7 @@ static void ov94_0223E9B8 (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
 
-    param0->unk_BAC = PLString_New((90 * 2), 62);
+    param0->unk_BAC = PLString_Init((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 41);
     param0->unk_10E4 = Heap_AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 

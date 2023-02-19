@@ -2627,8 +2627,8 @@ static PLString * ov5_021E5240 (u32 param0, u32 param1)
 
     v1 = sub_0200B144(1, 26, 359, param1);
     v0 = sub_0200B358(param1);
-    v2 = PLString_New(128, param1);
-    v3 = PLString_New(128, param1);
+    v2 = PLString_Init(128, param1);
+    v3 = PLString_Init(128, param1);
     sub_0200B1B8(v1, 0, v3);
     sub_0200BA08(v0, 0, param0);
     sub_0200C388(v0, v2, v3);

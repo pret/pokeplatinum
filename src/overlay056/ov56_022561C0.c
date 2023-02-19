@@ -797,7 +797,7 @@ static PLString * ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStr
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
-            v1 = PLString_New(10, 89);
+            v1 = PLString_Init(10, 89);
 
             PLString_FillWithChars(v1, sub_02027FBC(param0, v3));
             sub_0200B48C(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));

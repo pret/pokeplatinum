@@ -97,7 +97,7 @@ int ov61_0222B008 (UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_022411
 
     param0->unk_3F4 = sub_0200B144(0, 26, 695, param1->unk_04);
     param0->unk_3F8 = sub_0200B358(param1->unk_04);
-    param0->unk_3FC = PLString_New((16 * 8 * 2), param1->unk_04);
+    param0->unk_3FC = PLString_Init((16 * 8 * 2), param1->unk_04);
     param0->unk_18C = ov61_0222BBF0(param1->unk_04);
     param0->unk_0C.unk_00 = param1->unk_00;
     param0->unk_0C.unk_04 = GAME_VERSION;

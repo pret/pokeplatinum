@@ -97,7 +97,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         return 0;
     case 6:
     {
-        PLString * v14 = PLString_New(64, 32);
+        PLString * v14 = PLString_Init(64, 32);
         UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
         sub_02025EF4(v15, v14);

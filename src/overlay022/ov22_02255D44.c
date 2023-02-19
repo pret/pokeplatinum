@@ -1371,7 +1371,7 @@ static void ov22_02257368 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v0 = sub_0200B144(0, 26, 385, 13);
     v2 = sub_0200B1EC(v0, param1);
-    v1 = PLString_New(256, 13);
+    v1 = PLString_Init(256, 13);
 
     sub_0200C388(param0->unk_744, v1, v2);
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -1394,7 +1394,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v1 = sub_0200B144(0, 26, 385, 13);
     v3 = sub_0200B1EC(v1, param1);
-    param0->unk_740 = PLString_New(256, 13);
+    param0->unk_740 = PLString_Init(256, 13);
 
     sub_0200C388(param0->unk_744, param0->unk_740, v3);
 

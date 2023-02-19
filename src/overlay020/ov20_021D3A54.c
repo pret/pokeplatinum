@@ -163,7 +163,7 @@ static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     sub_0201A7E8(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
-    v1 = PLString_New(4, 35);
+    v1 = PLString_Init(4, 35);
 
     sub_0201ADA4(&v0, 15);
 

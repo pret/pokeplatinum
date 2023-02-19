@@ -459,7 +459,7 @@ static void sub_0206CD7C (UnkStruct_021C0794 * param0, int param1, int param2, c
 
 static void sub_0206CD94 (UnkStruct_0200B358 * param0, int param1, const u16 * param2, int param3, int param4, int param5)
 {
-    PLString * v0 = PLString_New(64, 4);
+    PLString * v0 = PLString_Init(64, 4);
 
     PLString_FillWithChars(v0, param2);
     sub_0200B48C(param0, param1, v0, param3, param5, param4);
@@ -473,7 +473,7 @@ static void sub_0206CDD0 (UnkStruct_0200B358 * param0, int param1, const UnkStru
 
 static void sub_0206CE08 (int param0, u16 * param1, UnkStruct_02073C74 * param2)
 {
-    PLString * v0 = PLString_New(64, param0);
+    PLString * v0 = PLString_Init(64, param0);
 
     sub_02074470(param2, 119, v0);
     PLString_Dump(v0, param1, 10 + 1);
@@ -509,7 +509,7 @@ static void sub_0206CED0 (int param0, UnkStruct_02073C74 * param1, u8 * param2, 
     *param2 = sub_02074470(param1, 77, NULL);
 
     if (*param2) {
-        PLString * v0 = PLString_New(64, param0);
+        PLString * v0 = PLString_Init(64, param0);
 
         sub_02074470(param1, 119, v0);
         PLString_Dump(v0, param3, 10 + 1);
@@ -2006,7 +2006,7 @@ static int sub_0206E7AC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     int v0;
     UnkStruct_0206E768 * v1 = ov6_02246498(param2);
-    PLString * v2 = PLString_New(64, 4);
+    PLString * v2 = PLString_Init(64, 4);
 
     sub_0206CDD0(param1, 0, param2);
     PLString_FillWithChars(v2, v1->unk_00.unk_06);
@@ -2741,7 +2741,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     UnkStruct_0202D7B0 * v1;
     u16 v2, v3;
     u32 v4, v5;
-    PLString * v6 = PLString_New(22, 4);
+    PLString * v6 = PLString_Init(22, 4);
     UnkStruct_02025E6C * v7 = sub_02025E38(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
@@ -2825,7 +2825,7 @@ static int sub_0206EEBC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
     {
         u16 v6;
-        PLString * v7 = PLString_New(7 + 1, 4);
+        PLString * v7 = PLString_Init(7 + 1, 4);
         int v8 = sub_0202A1C0(v0);
 
         sub_0202A1A0(v0, v7);

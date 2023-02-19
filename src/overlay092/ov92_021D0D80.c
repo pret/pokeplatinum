@@ -974,7 +974,7 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
     sub_0201975C(2, 0x0);
 
     {
-        PLString * v0 = PLString_New(16, param0->unk_00);
+        PLString * v0 = PLString_Init(16, param0->unk_00);
         sub_02002BB8(2, param0->unk_00);
 
         {
@@ -1022,7 +1022,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
     switch (param0->unk_B864) {
     case 0:
         sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
-        param0->unk_B86C = PLString_New(0x400, param0->unk_00);
+        param0->unk_B86C = PLString_Init(0x400, param0->unk_00);
         sub_0200B1B8(param0->unk_B860, param1, param0->unk_B86C);
         param0->unk_B868 = sub_0201D738(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
         param0->unk_B864 = 1;
@@ -1110,8 +1110,8 @@ static void ov92_021D1DB4 (UnkStruct_ov92_021D1B24 * param0)
 
 static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
 {
-    PLString * v0 = PLString_New(0x400, param0->unk_00);
-    PLString * v1 = PLString_New(0x400, param0->unk_00);
+    PLString * v0 = PLString_Init(0x400, param0->unk_00);
+    PLString * v1 = PLString_Init(0x400, param0->unk_00);
 
     sub_0201A8D4(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
     sub_0201AE78(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
@@ -1133,8 +1133,8 @@ static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
 
 static void ov92_021D1EBC (UnkStruct_ov92_021D1B24 * param0, int param1, int param2)
 {
-    PLString * v0 = PLString_New(64, param0->unk_00);
-    PLString * v1 = PLString_New(64, param0->unk_00);
+    PLString * v0 = PLString_Init(64, param0->unk_00);
+    PLString * v1 = PLString_Init(64, param0->unk_00);
 
     sub_0201A8D4(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
     sub_0201AE78(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
@@ -1162,7 +1162,7 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
 {
     if (param0->unk_BB28 == 0) {
         {
-            PLString * v0 = PLString_New(0x400, param0->unk_00);
+            PLString * v0 = PLString_Init(0x400, param0->unk_00);
 
             sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
             sub_0200B1B8(param0->unk_B860, 14, v0);
@@ -1204,8 +1204,8 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
             }
 
             if (v8 != param0->unk_0C.unk_00) {
-                PLString * v12 = PLString_New(64, param0->unk_00);
-                PLString * v13 = PLString_New(64, param0->unk_00);
+                PLString * v12 = PLString_Init(64, param0->unk_00);
+                PLString * v13 = PLString_Init(64, param0->unk_00);
 
                 sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
                 ov92_021D27E8(param0->unk_0C.unk_04[v8].unk_2A, param0->unk_0C.unk_04[v8].unk_2C, v12, v13, param0->unk_00);

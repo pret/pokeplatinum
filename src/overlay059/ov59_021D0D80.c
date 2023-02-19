@@ -522,7 +522,7 @@ static void ov59_021D1250 (UnkStruct_020961E8 * param0, NARC * param1)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_2C[v0] = PLString_New(7 + 1, 51);
+        param0->unk_2C[v0] = PLString_Init(7 + 1, 51);
         param0->unk_3C8[v0][0] = NULL;
         param0->unk_3C8[v0][1] = NULL;
         param0->unk_4AC8[v0][0].val1 = 0;
@@ -530,8 +530,8 @@ static void ov59_021D1250 (UnkStruct_020961E8 * param0, NARC * param1)
         param0->unk_3F0[v0] = 0;
     }
 
-    param0->unk_44 = PLString_New((90 * 2), 51);
-    param0->unk_48 = PLString_New((20 * 2), 51);
+    param0->unk_44 = PLString_Init((90 * 2), 51);
+    param0->unk_48 = PLString_Init((20 * 2), 51);
     param0->unk_3A8 = 0;
 
     sub_0200B1B8(param0->unk_28, 17, param0->unk_48);
@@ -1574,7 +1574,7 @@ static void ov59_021D2628 (UnkStruct_020961E8 * param0, int param1, int param2)
 {
     PLString * v0;
 
-    v0 = PLString_New((90 * 2), 51);
+    v0 = PLString_Init((90 * 2), 51);
 
     sub_0200B1B8(param0->unk_28, param1, v0);
     sub_0200C388(param0->unk_24, param0->unk_44, v0);

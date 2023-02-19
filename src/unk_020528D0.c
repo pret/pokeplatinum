@@ -189,8 +189,8 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
 
 static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8 param3)
 {
-    PLString * v0 = PLString_New(1024, 11);
-    PLString * v1 = PLString_New(1024, 11);
+    PLString * v0 = PLString_Init(1024, 11);
+    PLString * v1 = PLString_Init(1024, 11);
 
     sub_0201ADA4(&param0->unk_0C, 0);
     sub_0200B1B8(param0->unk_1C, param1, v0);

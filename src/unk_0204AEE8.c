@@ -114,8 +114,8 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
     UnkStruct_0200B358 * v5;
     UnkStruct_0200B144 * v6;
 
-    v2 = PLString_New(12 + 2, 4);
-    v3 = PLString_New(2, 4);
+    v2 = PLString_Init(12 + 2, 4);
+    v3 = PLString_Init(2, 4);
     v4 = sub_02027560(param0);
     v6 = sub_0200B144(1, 26, 412, 4);
     v5 = sub_0200B368(18 + 1, 12 + 2, 4);

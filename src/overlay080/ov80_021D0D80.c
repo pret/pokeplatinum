@@ -224,7 +224,7 @@ static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
         param0->unk_1C = param0->unk_24;
         param0->unk_80 = sub_0200B144(1, 26, 433, param0->unk_04);
         param0->unk_84 = sub_0200B144(1, 26, 615, param0->unk_04);
-        param0->unk_88 = PLString_New(22, param0->unk_04);
+        param0->unk_88 = PLString_Init(22, param0->unk_04);
         param0->unk_30 = sub_02039EBC(param0->unk_04);
         param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->unk_04);
         break;

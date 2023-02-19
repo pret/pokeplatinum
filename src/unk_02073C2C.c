@@ -5226,7 +5226,7 @@ BOOL sub_0207884C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1
     u32 v2 = sub_02025F30(param1);
     u32 v3 = sub_02074570(param0, 157, NULL);
     PLString * v4 = sub_02025F04(param1, param2);
-    PLString * v5 = PLString_New(8, param2);
+    PLString * v5 = PLString_Init(8, param2);
     BOOL v6 = 0;
 
     sub_02074570(param0, 145, v5);

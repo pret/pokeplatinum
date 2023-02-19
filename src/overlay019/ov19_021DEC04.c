@@ -108,7 +108,7 @@ BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_374 = sub_020071D0(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
             v0->unk_70 = sub_0200B144(1, 26, 647, 10);
-            v0->unk_74 = PLString_New(32, 10);
+            v0->unk_74 = PLString_Init(32, 10);
             v0->unk_380 = NULL;
             *param0 = v0;
             return 1;

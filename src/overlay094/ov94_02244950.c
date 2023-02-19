@@ -319,8 +319,8 @@ static void ov94_02244F00 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_02244F2C (UnkStruct_ov94_0223FD4C * param0)
 {
-    param0->unk_BAC = PLString_New((90 * 2), 62);
-    param0->unk_BDC = PLString_New((16 * 8 * 2), 62);
+    param0->unk_BAC = PLString_Init((90 * 2), 62);
+    param0->unk_BDC = PLString_Init((16 * 8 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 31);
 }
 
@@ -958,7 +958,7 @@ void ov94_02245934 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    PLString * v0 = PLString_New((16 * 8 * 2), 62);
+    PLString * v0 = PLString_Init((16 * 8 * 2), 62);
 
     sub_0200B1B8(param0->unk_B9C, param1, v0);
     sub_0200C388(param0->unk_B8C, param0->unk_BDC, v0);

@@ -536,7 +536,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
             PLString * v8;
 
             v6 = sub_0200B358(11);
-            v7 = PLString_New(8, 11);
+            v7 = PLString_Init(8, 11);
             v8 = sub_0200B1EC(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
             sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
@@ -677,7 +677,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     PLString_Free(v5);
 
     v3 = sub_0200B358(11);
-    v4 = PLString_New(32, 11);
+    v4 = PLString_Init(32, 11);
     v5 = sub_0200B1EC(v2, 11);
 
     if (v6 == 0) {

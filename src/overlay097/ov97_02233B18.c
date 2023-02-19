@@ -1234,7 +1234,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
 
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
-    v8 = PLString_New(64, 78);
+    v8 = PLString_Init(64, 78);
     v5 = sub_0200B144(1, 26, 412, 78);
     v0 = ov97_02236DD0(ov97_02236924(param1, 11, NULL));
 
@@ -1254,7 +1254,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
 
     if (v2) {
         v3 = sub_0207CF10(v2);
-        v8 = PLString_New(64, 78);
+        v8 = PLString_Init(64, 78);
 
         Item_GetNameIntoString(v8, v3, 78);
 
@@ -1268,7 +1268,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
     }
 
     v1 = ov97_02236E00(param1);
-    v8 = PLString_New(10, 78);
+    v8 = PLString_Init(10, 78);
 
     PLString_FromInt(v8, v1, 3, 1, 1);
 
@@ -1633,7 +1633,7 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
 
     v1 = sub_0200B358(78);
-    v2 = PLString_New(7 + 1, 78);
+    v2 = PLString_Init(7 + 1, 78);
 
     PLString_FillWithChars(v2, v3);
     sub_0200B48C(v1, 1, v2, 0, 1, GAME_LANGUAGE);
@@ -1808,8 +1808,8 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_14 = sub_02025E38(v0->unk_10);
     v0->unk_18 = sub_02025E44(v0->unk_10);
     v0->unk_1C = sub_02027B50(v0->unk_18);
-    v0->unk_12668 = PLString_New(256, 78);
-    v0->unk_1266C = PLString_New(256, 78);
+    v0->unk_12668 = PLString_Init(256, 78);
+    v0->unk_1266C = PLString_Init(256, 78);
 
     sub_02004550(9, 1174, 1);
 

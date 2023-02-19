@@ -776,8 +776,8 @@ static void ov64_0222DFD0 (UnkStruct_ov64_0222DFD0 * param0)
 static void ov64_0222E040 (UnkStruct_ov64_0222E060 * param0, void * param1, u32 param2)
 {
     param0->unk_00 = param1;
-    param0->unk_2C.unk_00 = PLString_New(128, param2);
-    param0->unk_2C.unk_04 = PLString_New(128, param2);
+    param0->unk_2C.unk_00 = PLString_Init(128, param2);
+    param0->unk_2C.unk_04 = PLString_Init(128, param2);
 }
 
 static void ov64_0222E060 (UnkStruct_ov64_0222E060 * param0)
@@ -1085,8 +1085,8 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     sub_0201A7A0(&param0->unk_220);
     sub_0201A7E8(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, (((1 + 9) + (18 + 12))));
 
-    param0->unk_230 = PLString_New(128, param2);
-    param0->unk_234 = PLString_New(128, param2);
+    param0->unk_230 = PLString_Init(128, param2);
+    param0->unk_234 = PLString_Init(128, param2);
 }
 
 static void ov64_0222E6B4 (UnkStruct_ov64_0222E21C * param0)
@@ -1703,7 +1703,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 {
     PLString * v0;
 
-    v0 = PLString_New(128, param3);
+    v0 = PLString_Init(128, param3);
 
     sub_0201ADA4(&param0->unk_1C, 15);
     sub_0200B1B8(param1->unk_218, param2, v0);
@@ -2597,7 +2597,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
     sub_0201ADA4(&param0->unk_C4, 15);
 
-    v0 = PLString_New(128, param3);
+    v0 = PLString_Init(128, param3);
 
     sub_0200B1B8(param1->unk_218, param2, v0);
     sub_0200C388(param1->unk_214, param0->unk_D4, v0);
@@ -2806,7 +2806,7 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
 
     v4 = ((Unk_ov64_02232324[param4].unk_00.unk_00) * 8) + 0;
     v5 = ((Unk_ov64_02232324[param4].unk_00.unk_02) * 8) + -24;
-    v3 = PLString_New(128, param7);
+    v3 = PLString_Init(128, param7);
 
     PLString_FillWithChars(v3, sub_0202AEF0(param5, param6));
     sub_0201D78C(&param0->unk_08, 0, v3, v4, v5, 0xff, v6[v0], NULL);

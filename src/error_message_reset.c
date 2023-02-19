@@ -149,7 +149,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0201975C(4, 0x6c21);
 
     errorMsgData = sub_0200B144(1, 26, 214, v5);
-    errorString = PLString_New(0x180, v5);
+    errorString = PLString_Init(0x180, v5);
 
     sub_0201D710();
 

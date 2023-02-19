@@ -296,7 +296,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     v0.z = 0;
     sub_02021C50(param0->unk_1FC, &v0);
 
-    v7 = PLString_New(12, 13);
+    v7 = PLString_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);
 
     v3 = sub_02002D7C(0, v7, 0);
@@ -309,7 +309,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     v4 = sub_0202A1F4(param0->unk_00);
     sub_0200BE48(v5, 0, v4);
 
-    v7 = PLString_New(200, 13);
+    v7 = PLString_Init(200, 13);
     v6 = sub_0200B1EC(v8, 45);
     sub_0200C388(v5, v7, v6);
 
@@ -341,7 +341,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = sub_0200B358(13);
-    v2 = PLString_New(200, 13);
+    v2 = PLString_Init(200, 13);
 
     sub_0200BBDC(v1, 0, sub_020958B8(param0->unk_08));
     sub_0200BBA8(v1, 1, sub_02095888(v0));

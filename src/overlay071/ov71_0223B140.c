@@ -410,8 +410,8 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
 {
-    param0->unk_336C = PLString_New(3 + 1, 25);
-    param0->unk_3370 = PLString_New(5, 25);
+    param0->unk_336C = PLString_Init(3 + 1, 25);
+    param0->unk_3370 = PLString_Init(5, 25);
 
     {
         UnkStruct_0200B144 * v0;

@@ -701,7 +701,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
-            v0 = PLString_New(255, 102);
+            v0 = PLString_Init(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             sub_0200C388(v3, v0, v4);
@@ -717,7 +717,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
-            v0 = PLString_New(255, 102);
+            v0 = PLString_Init(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             sub_0200C388(v3, v0, v4);

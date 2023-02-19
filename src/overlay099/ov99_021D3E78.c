@@ -296,7 +296,7 @@ UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1
         v0->unk_14 = 0;
         v0->unk_18 = 0;
         v0->unk_1C = 0;
-        v0->unk_30 = PLString_New(256, 75);
+        v0->unk_30 = PLString_Init(256, 75);
         v0->unk_24 = sub_0201A778(75, 1);
 
         sub_0201A7E8(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);

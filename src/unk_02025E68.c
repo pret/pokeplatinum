@@ -78,7 +78,7 @@ void sub_02025EF4 (const UnkStruct_02025E6C * param0, PLString * param1)
 
 PLString * sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
 {
-    PLString * v0 = PLString_New(7 + 1, param1);
+    PLString * v0 = PLString_Init(7 + 1, param1);
 
     sub_02025EF4(param0, v0);
     return v0;

@@ -423,7 +423,7 @@ static void ov21_021E0FBC (UnkStruct_ov21_021E0D7C * param0, int param1)
 
 static void ov21_021E10D0 (UnkStruct_ov21_021E0D7C * param0, const UnkStruct_ov21_021E0D68 * param1, int param2)
 {
-    PLString * v0 = PLString_New(64, param2);
+    PLString * v0 = PLString_Init(64, param2);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
     int v2 = ov21_021D37BC(param1->unk_04);
     int v3;

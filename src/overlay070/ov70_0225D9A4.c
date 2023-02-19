@@ -1546,7 +1546,7 @@ static void ov70_0225E9C8 (UnkStruct_ov70_0225E9C8 * param0, UnkStruct_ov70_0225
     sub_0201A7E8(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 2, 19, 27, 4, 4, ((((1 + (18 + 12)) + ((18 + 12) + 24)) + 9)));
     sub_0201ADA4(&param0->unk_00, 15);
 
-    param0->unk_18 = PLString_New(384, param3);
+    param0->unk_18 = PLString_Init(384, param3);
 
     {
         UnkStruct_020279FC * v0;
@@ -2029,8 +2029,8 @@ static void ov70_0225F208 (UnkStruct_ov70_0225F208 * param0, u32 param1)
         param0->unk_04[v0] = sub_0200B144(1, 26, v1[v0], param1);
     }
 
-    param0->unk_14 = PLString_New(480, param1);
-    param0->unk_18 = PLString_New(480, param1);
+    param0->unk_14 = PLString_Init(480, param1);
+    param0->unk_18 = PLString_Init(480, param1);
 }
 
 static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)

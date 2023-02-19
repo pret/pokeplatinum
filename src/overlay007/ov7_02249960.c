@@ -215,7 +215,7 @@ static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        Unk_ov7_0224F5A0->unk_00[v0] = PLString_New((70 * 2), 4);
+        Unk_ov7_0224F5A0->unk_00[v0] = PLString_Init((70 * 2), 4);
     }
 }
 

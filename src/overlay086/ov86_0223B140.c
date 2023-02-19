@@ -316,8 +316,8 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_0C = sub_02006840(param0);
     v0->unk_1C50 = sub_0200B144(0, 26, 351, 63);
-    v0->unk_1C48 = PLString_New(500, 63);
-    v0->unk_1C4C = PLString_New(500, 63);
+    v0->unk_1C48 = PLString_Init(500, 63);
+    v0->unk_1C4C = PLString_Init(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
     v0->unk_1C54 = NARC_ctor(147, 63);
 

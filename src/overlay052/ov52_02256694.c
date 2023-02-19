@@ -69,7 +69,7 @@ BOOL ov52_02256694 (UnkStruct_ov52_02256694 ** param0, const UnkStruct_ov52_0225
         v0->unk_04 = ov25_02254674();
         v0->unk_30 = ov25_02254664();
         v0->unk_58 = sub_0200B144(1, 26, 461, 8);
-        v0->unk_5C = PLString_New(96, 8);
+        v0->unk_5C = PLString_Init(96, 8);
         ov52_0225670C(v0, param1);
         *param0 = v0;
 

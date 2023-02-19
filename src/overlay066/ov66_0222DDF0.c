@@ -1004,8 +1004,8 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
             PLString * v2;
             PLString * v3;
 
-            v3 = PLString_New((7 + 1) * 4, param2);
-            v2 = PLString_New((7 + 1) * 4, param2);
+            v3 = PLString_Init((7 + 1) * 4, param2);
+            v2 = PLString_Init((7 + 1) * 4, param2);
             sub_02025EF4(param1, v2);
             v0 = sub_02002DB4(0, v2, v3);
 

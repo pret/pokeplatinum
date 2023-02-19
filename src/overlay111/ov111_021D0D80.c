@@ -1161,8 +1161,8 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
 
     param0->unk_38 = sub_0200B144(1, 26, 540, 115);
     param0->unk_3C = sub_0200B358(115);
-    param0->unk_40 = PLString_New(600, 115);
-    param0->unk_44 = PLString_New(600, 115);
+    param0->unk_40 = PLString_Init(600, 115);
+    param0->unk_44 = PLString_Init(600, 115);
 
     sub_02002E7C(0, 13 * 32, 115);
     sub_02002E7C(4, 13 * 32, 115);
