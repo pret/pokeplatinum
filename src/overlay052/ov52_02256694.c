@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -39,7 +39,7 @@ struct UnkStruct_ov52_02256694_t {
     UnkStruct_ov25_022558C4 * unk_34[4];
     UnkStruct_ov25_02255958 unk_44;
     UnkStruct_0200B144 * unk_58;
-    UnkStruct_02023790 * unk_5C;
+    PLString * unk_5C;
 };
 
 static void ov52_0225670C(UnkStruct_ov52_02256694 * param0, const UnkStruct_ov52_02256694_1 * param1);
@@ -69,7 +69,7 @@ BOOL ov52_02256694 (UnkStruct_ov52_02256694 ** param0, const UnkStruct_ov52_0225
         v0->unk_04 = ov25_02254674();
         v0->unk_30 = ov25_02254664();
         v0->unk_58 = sub_0200B144(1, 26, 461, 8);
-        v0->unk_5C = sub_02023790(96, 8);
+        v0->unk_5C = PLString_AllocFromHeap(96, 8);
         ov52_0225670C(v0, param1);
         *param0 = v0;
 
@@ -82,7 +82,7 @@ BOOL ov52_02256694 (UnkStruct_ov52_02256694 ** param0, const UnkStruct_ov52_0225
 void ov52_022566EC (UnkStruct_ov52_02256694 * param0)
 {
     if (param0 != NULL) {
-        sub_020237BC(param0->unk_5C);
+        PLString_FreeToHeap(param0->unk_5C);
         sub_0200B190(param0->unk_58);
         ov52_0225677C(param0);
         Heap_FreeToHeap(param0);
@@ -453,7 +453,7 @@ static void ov52_02256C64 (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
     for (v2 = 0; v2 < 4; v2++) {
         sub_0200B1B8(param0->unk_58, v0[v2], param0->unk_5C);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 8, 32 + 16 * v2, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
-        sub_020238A0(param0->unk_5C, param1->unk_00[v2], 2, 2, 1);
+        PLString_ToInteger(param0->unk_5C, param1->unk_00[v2], 2, 2, 1);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 160, 32 + 16 * v2, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     }
 

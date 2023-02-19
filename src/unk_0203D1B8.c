@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -71,7 +71,7 @@
 #include "unk_02017498.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
@@ -228,7 +228,7 @@ typedef struct {
     int unk_04;
     u16 * unk_08;
     UnkStruct_0208737C * unk_0C;
-    UnkStruct_02023790 * unk_10;
+    PLString * unk_10;
 } UnkStruct_0203DE98;
 
 typedef struct {
@@ -1217,11 +1217,11 @@ static BOOL sub_0203DE98 (UnkStruct_020508D4 * param0)
         break;
     case 3:
         if (v2->unk_0C->unk_00 == 1) {
-            if (sub_02023BE0(v2->unk_0C->unk_18, v2->unk_10) == 0) {
+            if (PLString_IsPrefixOf(v2->unk_0C->unk_18, v2->unk_10) == 0) {
                 v2->unk_0C->unk_14 = 1;
             }
         } else if (v2->unk_0C->unk_00 == 5) {
-            const u16 * v3 = sub_02023E2C(v2->unk_0C->unk_18);
+            const u16 * v3 = PLString_GetCharData(v2->unk_0C->unk_18);
             UnkStruct_0202B4A0 * v4 = sub_0202B4A0(v1->unk_0C);
 
             if (sub_0202B4D8(v4, v3)) {
@@ -1238,7 +1238,7 @@ static BOOL sub_0203DE98 (UnkStruct_020508D4 * param0)
         }
 
         sub_0208716C(v2->unk_0C);
-        sub_020237BC(v2->unk_10);
+        PLString_FreeToHeap(v2->unk_10);
         Heap_FreeToHeap(v2);
 
         return 1;
@@ -1295,7 +1295,7 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     v2->unk_04 = param4;
     v2->unk_08 = param6;
     v2->unk_0C = sub_0208712C(11, param1, param2, param3, sub_02025E44(v1->unk_0C));
-    v2->unk_10 = sub_02023790(12, 11);
+    v2->unk_10 = PLString_AllocFromHeap(12, 11);
 
     switch (param1) {
     case 1:
@@ -1304,15 +1304,15 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v2->unk_0C->unk_08 = sub_02074470(v0, 112, NULL);
 
         if (param5 != NULL) {
-            sub_02023D28(v2->unk_10, param5);
+            PLString_ImportChars(v2->unk_10, param5);
         }
         break;
     case 5:
-        sub_02023D28(v2->unk_10, param5);
+        PLString_ImportChars(v2->unk_10, param5);
         break;
     default:
         if (param5 != NULL) {
-            sub_02023D28(v2->unk_0C->unk_18, param5);
+            PLString_ImportChars(v2->unk_0C->unk_18, param5);
         }
         break;
     }

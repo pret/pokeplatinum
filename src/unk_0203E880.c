@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -28,7 +28,7 @@
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A9C8.h"
@@ -71,8 +71,8 @@ struct UnkStruct_0203EF60_t {
     u16 * unk_34;
     UnkStruct_0203E724 * unk_38[2];
     UnkStruct_0200B358 * unk_40;
-    UnkStruct_02023790 * unk_44;
-    UnkStruct_02023790 * unk_48;
+    PLString * unk_44;
+    PLString * unk_48;
     void * unk_4C;
     UnkStruct_0203E8B0 unk_50[2];
     u16 unk_88[14];
@@ -455,8 +455,8 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
         v3->unk_38[0] = sub_0203EAB8(v4, v3->unk_0A);
         v3->unk_09 = 1;
         v3->unk_40 = sub_0200B368(8, 64, 11);
-        v3->unk_44 = sub_02023790(1024, 11);
-        v3->unk_48 = sub_02023790(1024, 11);
+        v3->unk_44 = PLString_AllocFromHeap(1024, 11);
+        v3->unk_48 = PLString_AllocFromHeap(1024, 11);
         v3->unk_04++;
     case 1:
         for (v0 = 0; v0 < 2; v0++) {
@@ -479,8 +479,8 @@ static BOOL sub_0203E950 (UnkStruct_020508D4 * param0)
         if (v3->unk_09 <= 0) {
             v1 = v3->unk_A4;
             sub_0200B3F0(v3->unk_40);
-            sub_020237BC(v3->unk_44);
-            sub_020237BC(v3->unk_48);
+            PLString_FreeToHeap(v3->unk_44);
+            PLString_FreeToHeap(v3->unk_48);
             v3->unk_00 = 0;
             Heap_FreeToHeap(v3);
 

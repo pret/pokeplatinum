@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206A844.h"
@@ -37,8 +37,8 @@ typedef struct {
     UnkStruct_02001AF4 * unk_5C;
     UnkFuncPtr_ov23_022515D8 unk_60;
     UnkFuncPtr_ov23_022515D8 unk_64;
-    UnkStruct_02023790 * unk_68;
-    UnkStruct_02023790 * unk_6C;
+    PLString * unk_68;
+    PLString * unk_6C;
     UnkStruct_0200B358 * unk_70;
     UnkStruct_ov5_021D30A8 unk_74;
     UnkStruct_0200D0F4 * unk_23C[8];

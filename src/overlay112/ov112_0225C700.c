@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0223177C_decl.h"
 
@@ -45,7 +45,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020393C8.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -97,7 +97,7 @@ typedef struct {
     u16 unk_02;
     u16 unk_04;
     u16 unk_06;
-    UnkStruct_02023790 * unk_08;
+    PLString * unk_08;
     UnkStruct_0205AA50 unk_0C;
     UnkStruct_ov112_0225D180 unk_1C;
 } UnkStruct_ov112_0225D44C;
@@ -105,7 +105,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov112_0225D44C unk_00[3];
     UnkStruct_0205AA50 unk_60[3];
-    UnkStruct_02023790 * unk_90;
+    PLString * unk_90;
     void * unk_94;
     NNSG2dPaletteData * unk_98;
 } UnkStruct_ov112_0225D2D0;
@@ -177,7 +177,7 @@ static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 * param0, UnkStruct_ov66_022
 static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 * param0);
 static void ov112_0225D408(UnkStruct_ov112_0225D44C * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2, u32 param3);
 static void ov112_0225D44C(UnkStruct_ov112_0225D44C * param0);
-static void ov112_0225D460(UnkStruct_ov112_0225D44C * param0, const UnkStruct_02023790 * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4);
+static void ov112_0225D460(UnkStruct_ov112_0225D44C * param0, const PLString * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4);
 static void ov112_0225D4DC(UnkStruct_ov112_0225D44C * param0);
 static BOOL ov112_0225D4E4(UnkStruct_ov112_0225D44C * param0);
 static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C * param0, UnkStruct_0205AA50 * param1);
@@ -977,7 +977,7 @@ static void ov112_0225D1EC (UnkStruct_ov112_0225D2D0 * param0, UnkStruct_ov112_0
         sub_0201A9A4(&param0->unk_60[v0]);
     }
 
-    param0->unk_90 = sub_02023790(256, param2);
+    param0->unk_90 = PLString_AllocFromHeap(256, param2);
     param0->unk_94 = sub_020071EC(param1->unk_1A4, 0, &param0->unk_98, param2);
 
     sub_0201972C(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
@@ -990,7 +990,7 @@ static void ov112_0225D2D0 (UnkStruct_ov112_0225D2D0 * param0)
     int v0;
 
     Heap_FreeToHeap(param0->unk_94);
-    sub_020237BC(param0->unk_90);
+    PLString_FreeToHeap(param0->unk_90);
 
     for (v0 = 0; v0 < 3; v0++) {
         sub_0201A8FC(&param0->unk_60[v0]);
@@ -1056,7 +1056,7 @@ static void ov112_0225D408 (UnkStruct_ov112_0225D44C * param0, UnkStruct_ov112_0
 {
     param0->unk_00 = 0;
     param0->unk_02 = 0;
-    param0->unk_08 = sub_02023790(256, param3);
+    param0->unk_08 = PLString_AllocFromHeap(256, param3);
     param0->unk_01 = 7 + param2;
 
     sub_0201A7E8(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
@@ -1064,13 +1064,13 @@ static void ov112_0225D408 (UnkStruct_ov112_0225D44C * param0, UnkStruct_ov112_0
 
 static void ov112_0225D44C (UnkStruct_ov112_0225D44C * param0)
 {
-    sub_020237BC(param0->unk_08);
+    PLString_FreeToHeap(param0->unk_08);
     sub_0201A8FC(&param0->unk_0C);
 }
 
-static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const UnkStruct_02023790 * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4)
+static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const PLString * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4)
 {
-    sub_02023810(param0->unk_08, param1);
+    PLString_CopyInto(param0->unk_08, param1);
 
     param0->unk_00 = 1;
     param0->unk_02 = 0;
@@ -1151,7 +1151,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     str r0, [sp, #0x38]
     ldr r1, [sp, #0x1c]
     mov r0, #0x80
-    bl sub_02023790
+    bl PLString_AllocFromHeap
     str r0, [sp, #0x34]
     mov r0, #0
     str r0, [sp, #0x3c]
@@ -1199,10 +1199,10 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     str r0, [sp, #0x30]
     ldr r0, [sp, #0x34]
     ldrb r6, [r5, #8]
-    bl sub_02023C3C
+    bl PLString_GetTerminatorIndex
     ldr r1, [sp, #0x1c]
     add r0, r0, #1
-    bl sub_02023790
+    bl PLString_AllocFromHeap
     add r4, r0, #0
     ldr r0, [sp, #0x30]
     mov r7, #0
@@ -1264,7 +1264,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     blo _0225D620
  _0225D68A:
     add r0, r4, #0
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x14]
     bl sub_0201A9A4
     ldr r0, [sp, #0x28]
@@ -1286,7 +1286,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     cmp r0, #4
     blt _0225D5BC
     ldr r0, [sp, #0x34]
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x38]
     bl sub_0200B190
     add sp, #0x40

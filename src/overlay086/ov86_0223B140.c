@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
@@ -57,7 +57,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_0202CBE4.h"
 #include "unk_02073C2C.h"
@@ -98,8 +98,8 @@ typedef struct {
     UnkStruct_0201CD38 * unk_1C30;
     UnkStruct_0201CD38 * unk_1C34[4];
     UnkStruct_0200B358 * unk_1C44;
-    UnkStruct_02023790 * unk_1C48;
-    UnkStruct_02023790 * unk_1C4C;
+    PLString * unk_1C48;
+    PLString * unk_1C4C;
     UnkStruct_0200B144 * unk_1C50;
     NARC * unk_1C54;
 } UnkStruct_ov86_0223B3C8;
@@ -190,8 +190,8 @@ typedef struct {
     UnkStruct_02018340 * unk_0C;
     UnkStruct_0205AA50 * unk_10;
     UnkStruct_0200B358 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C;
+    PLString * unk_18;
+    PLString * unk_1C;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_02073C74 * unk_24;
     const UnkStruct_02025E6C * unk_28;
@@ -316,8 +316,8 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_0C = sub_02006840(param0);
     v0->unk_1C50 = sub_0200B144(0, 26, 351, 63);
-    v0->unk_1C48 = sub_02023790(500, 63);
-    v0->unk_1C4C = sub_02023790(500, 63);
+    v0->unk_1C48 = PLString_AllocFromHeap(500, 63);
+    v0->unk_1C4C = PLString_AllocFromHeap(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
     v0->unk_1C54 = NARC_ctor(147, 63);
 
@@ -377,8 +377,8 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
         ov86_0223B8C4(v0);
 
         sub_0200B3F0(v0->unk_1C44);
-        sub_020237BC(v0->unk_1C48);
-        sub_020237BC(v0->unk_1C4C);
+        PLString_FreeToHeap(v0->unk_1C48);
+        PLString_FreeToHeap(v0->unk_1C4C);
         sub_0200B190(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
         sub_02006830(param0);
@@ -1962,7 +1962,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, UnkStruct_02073C74 *
             sub_02025EF4(param2, param0->unk_1C48);
             sub_02074470(param1, 145, param0->unk_1C4C);
 
-            if (sub_02023BE0(param0->unk_1C48, param0->unk_1C4C)) {
+            if (PLString_IsPrefixOf(param0->unk_1C48, param0->unk_1C4C)) {
                 v1 = 2;
                 break;
             }

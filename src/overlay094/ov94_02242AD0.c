@@ -27,7 +27,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_020279FC.h"
@@ -358,12 +358,12 @@ static void ov94_02242D74 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_02242D84 (UnkStruct_ov94_0223FD4C * param0)
 {
-    param0->unk_BAC = sub_02023790((90 * 2), 62);
+    param0->unk_BAC = PLString_AllocFromHeap((90 * 2), 62);
 }
 
 static void ov94_02242D98 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_020237BC(param0->unk_BAC);
+    PLString_FreeToHeap(param0->unk_BAC);
 }
 
 static int ov94_02242DA8 (UnkStruct_ov94_0223FD4C * param0)

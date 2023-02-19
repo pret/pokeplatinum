@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02017E74.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02034198.h"
 #include "unk_020366A0.h"
 #include "error_message_reset.h"
@@ -96,7 +96,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     UnkStruct_02018340 * bgConfig;
     UnkStruct_0205AA50 window;
     UnkStruct_0200B144 * errorMsgData;
-    UnkStruct_02023790 * errorString;
+    PLString * errorString;
     int v4;
     int v5 = 0;
 
@@ -149,7 +149,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0201975C(4, 0x6c21);
 
     errorMsgData = sub_0200B144(1, 26, 214, v5);
-    errorString = sub_02023790(0x180, v5);
+    errorString = PLString_AllocFromHeap(0x180, v5);
 
     sub_0201D710();
 
@@ -158,7 +158,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0200DC48(&window, 0, (512 - 9), 2);
     sub_0200B1B8(errorMsgData, v4, errorString);
     sub_0201D738(&window, 0, errorString, 0, 0, 0, NULL);
-    sub_020237BC(errorString);
+    PLString_FreeToHeap(errorString);
 
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);

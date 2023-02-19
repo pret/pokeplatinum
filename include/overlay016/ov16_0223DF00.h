@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
@@ -69,7 +69,7 @@ u16 * ov16_0223E0B0(UnkStruct_0207ADB4 * param0);
 u16 * ov16_0223E0BC(UnkStruct_0207ADB4 * param0);
 UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(UnkStruct_0207ADB4 * param0);
 UnkStruct_0200B358 * ov16_0223E0D0(UnkStruct_0207ADB4 * param0);
-UnkStruct_02023790 * ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
+PLString * ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
 u16 ov16_0223E0D8(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_0207A9CC * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_02025E6C * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);

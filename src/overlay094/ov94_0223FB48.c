@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -39,7 +39,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -476,8 +476,8 @@ static void ov94_02240190 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_022401E0 (UnkStruct_ov94_0223FD4C * param0)
 {
-    param0->unk_BA4 = sub_02023790((9 * 2), 62);
-    param0->unk_BAC = sub_02023790((90 * 2), 62);
+    param0->unk_BA4 = PLString_AllocFromHeap((9 * 2), 62);
+    param0->unk_BAC = PLString_AllocFromHeap((90 * 2), 62);
 
     if (param0->unk_24 == 5) {
         param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 21);
@@ -497,10 +497,10 @@ static void ov94_022401E0 (UnkStruct_ov94_0223FD4C * param0)
 static void ov94_02240268 (UnkStruct_ov94_0223FD4C * param0)
 {
     Heap_FreeToHeap(param0->unk_1108);
-    sub_020237BC(param0->unk_BA4);
-    sub_020237BC(param0->unk_BAC);
-    sub_020237BC(param0->unk_BA8);
-    sub_020237BC(param0->unk_BB0);
+    PLString_FreeToHeap(param0->unk_BA4);
+    PLString_FreeToHeap(param0->unk_BAC);
+    PLString_FreeToHeap(param0->unk_BA8);
+    PLString_FreeToHeap(param0->unk_BB0);
 }
 
 static int ov94_022402A8 (UnkStruct_ov94_0223FD4C * param0)
@@ -1017,7 +1017,7 @@ static int ov94_02240D28 (UnkStruct_ov94_0223FD4C * param0)
 static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, int param5)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     v1 = sub_0200B1EC(param0->unk_B90, param1);
     sub_0200C388(param0->unk_B8C, param0->unk_BAC, v1);
@@ -1033,7 +1033,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
     param0->unk_BE0 = sub_0201D738(v0, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 }
 
 void * ov94_02240DD0 (NARC * param0, u32 param1, NNSG2dCharacterData ** param2, u32 param3)

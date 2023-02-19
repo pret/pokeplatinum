@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020149F0_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 
@@ -10,11 +10,11 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 
 struct UnkStruct_020149F0_t {
     u32 unk_00;
-    UnkStruct_02023790 * unk_04;
+    PLString * unk_04;
 };
 
 UnkStruct_020149F0 * sub_020149F0 (u32 param0)
@@ -27,8 +27,8 @@ UnkStruct_020149F0 * sub_020149F0 (u32 param0)
 
     if (v1) {
         v1->unk_00 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
-        v1->unk_04 = sub_02023790(4, param0);
-        sub_02023D28(v1->unk_04, v0);
+        v1->unk_04 = PLString_AllocFromHeap(4, param0);
+        PLString_ImportChars(v1->unk_04, v0);
     }
 
     return v1;
@@ -40,7 +40,7 @@ void sub_02014A20 (UnkStruct_020149F0 * param0)
 
     if (param0) {
         if (param0->unk_04) {
-            sub_020237BC(param0->unk_04);
+            PLString_FreeToHeap(param0->unk_04);
         }
 
         Heap_FreeToHeap(param0);

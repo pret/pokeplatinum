@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 
 #include "unk_0200AC5C.h"
 #include "unk_02013A04.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 
 static UnkStruct_02013A04 * sub_02013AAC(UnkStruct_02013A04 * param0, u32 * param1);
 
@@ -51,14 +51,14 @@ void sub_02013A4C (UnkStruct_02013A04 * param0, const UnkStruct_0200B144 * param
     }
 }
 
-void sub_02013A6C (UnkStruct_02013A04 * param0, const UnkStruct_02023790 * param1, u32 param2)
+void sub_02013A6C (UnkStruct_02013A04 * param0, const PLString * param1, u32 param2)
 {
     u32 v0;
 
     param0 = sub_02013AAC(param0, &v0);
 
     if (param0) {
-        param0->unk_00 = sub_02023868(param1, v0);
+        param0->unk_00 = PLString_CloneUpTo(param1, v0);
         param0->unk_04 = param2;
     }
 }
@@ -108,7 +108,7 @@ void sub_02013AE8 (UnkStruct_02013A04 * param0)
             break;
         }
 
-        sub_020237BC((UnkStruct_02023790 *)(v0->unk_00));
+        PLString_FreeToHeap((PLString *)(v0->unk_00));
 
         v0->unk_00 = NULL;
         v0++;

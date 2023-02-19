@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02025E68_H
 #define POKEPLATINUM_UNK_02025E68_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 int sub_02025E68(void);
@@ -10,10 +10,10 @@ void sub_02025E80(const UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1
 void sub_02025E8C(UnkStruct_02025E6C * param0);
 BOOL sub_02025EA8(const UnkStruct_02025E6C * param0);
 void sub_02025EC0(UnkStruct_02025E6C * param0, const u16 * param1);
-void sub_02025EE0(UnkStruct_02025E6C * param0, const UnkStruct_02023790 * param1);
+void sub_02025EE0(UnkStruct_02025E6C * param0, const PLString * param1);
 const u16 * sub_02025EF0(const UnkStruct_02025E6C * param0);
-void sub_02025EF4(const UnkStruct_02025E6C * param0, UnkStruct_02023790 * param1);
-UnkStruct_02023790 * sub_02025F04(const UnkStruct_02025E6C * param0, int param1);
+void sub_02025EF4(const UnkStruct_02025E6C * param0, PLString * param1);
+PLString * sub_02025F04(const UnkStruct_02025E6C * param0, int param1);
 void sub_02025F1C(UnkStruct_02025E6C * param0, u32 param1);
 u32 sub_02025F20(const UnkStruct_02025E6C * param0);
 u16 sub_02025F24(const UnkStruct_02025E6C * param0);

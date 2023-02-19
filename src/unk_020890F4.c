@@ -26,7 +26,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_020890F4.h"
@@ -167,7 +167,7 @@ UnkStruct_02089438 * sub_020893B4 (int param0, int param1, int param2[], UnkStru
     v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
-    v1->unk_1C = sub_02023790(param1 + 1, param0);
+    v1->unk_1C = PLString_AllocFromHeap(param1 + 1, param0);
     v1->unk_20 = param3;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -204,7 +204,7 @@ void sub_02089438 (UnkStruct_02089438 * param0)
     GF_ASSERT(param0->unk_1C != NULL);
     GF_ASSERT(param0 != NULL);
 
-    sub_020237BC(param0->unk_1C);
+    PLString_FreeToHeap(param0->unk_1C);
     Heap_FreeToHeap(param0);
 }
 

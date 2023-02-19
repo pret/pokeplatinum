@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
 
 #include "struct_defs/struct_02015958.h"
@@ -98,7 +98,7 @@ static void ov83_0223E09C(UnkStruct_ov83_0223E138 * param0, u32 param1);
 static void ov83_0223E138(UnkStruct_ov83_0223E138 * param0);
 static void ov83_0223E15C(UnkStruct_ov83_0223E138 * param0, u32 param1, NARC * param2);
 static void ov83_0223E208(UnkStruct_ov83_0223E138 * param0);
-static void ov83_0223E21C(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3);
+static void ov83_0223E21C(UnkStruct_0205AA50 * param0, PLString * param1, int param2, int param3);
 static void ov83_0223E77C(UnkStruct_ov83_0223E824 * param0, u32 param1);
 static void ov83_0223E824(UnkStruct_ov83_0223E824 * param0);
 static void ov83_0223E844(UnkStruct_ov83_0223E824 * param0, u32 param1, NARC * param2);
@@ -118,7 +118,7 @@ static void ov83_0223F670(UnkStruct_ov83_0223F670 * param0);
 static void ov83_0223F6B4(UnkStruct_ov83_0223F670 * param0);
 static void ov83_0223F6CC(UnkStruct_ov83_0223F670 * param0, int param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7);
 
-static int ov83_0223D6A8 (int param0, const UnkStruct_02023790 * param1, int param2)
+static int ov83_0223D6A8 (int param0, const PLString * param1, int param2)
 {
     u32 v0;
 
@@ -678,7 +678,7 @@ static void ov83_0223E208 (UnkStruct_ov83_0223E138 * param0)
     Heap_FreeToHeap(param0->unk_28);
 }
 
-static void ov83_0223E21C (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3)
+static void ov83_0223E21C (UnkStruct_0205AA50 * param0, PLString * param1, int param2, int param3)
 {
     sub_0201D78C(param0, 1, param1, param2, param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 }
@@ -1211,7 +1211,7 @@ void ov83_0223EC70 (UnkStruct_ov83_0223E824 * param0)
 
 void ov83_0223EC8C (UnkStruct_ov83_0223E824 * param0, u32 param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     int v1;
 
     ov83_0223E9D0(param0);

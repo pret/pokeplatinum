@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -111,7 +111,7 @@ void ov17_0223F1E0 (UnkStruct_0207C690 * param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8 (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C704 * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const UnkStruct_02023790 * param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8 (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C704 * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const PLString * param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
@@ -188,10 +188,10 @@ void ov17_0223F2F8 (UnkStruct_ov17_0223F2E4 * param0, int param1, int param2, in
     sub_020128C4(param0->unk_00, param1, param2);
 }
 
-UnkStruct_02023790 * ov17_0223F310 (u32 param0, u32 param1)
+PLString * ov17_0223F310 (u32 param0, u32 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     v0 = sub_0200B144(1, 26, 207, param1);
     v1 = sub_0200B1EC(v0, param0);

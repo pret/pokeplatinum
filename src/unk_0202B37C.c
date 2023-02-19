@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202B4A0.h"
@@ -9,7 +9,7 @@
 
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_0202B37C.h"
 
@@ -75,16 +75,16 @@ const u16 * sub_0202B42C (const UnkStruct_0202B4A0 * param0, int param1, int par
     return param0->unk_00[param1].unk_10;
 }
 
-void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, UnkStruct_02023790 * param3)
+void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, PLString * param3)
 {
     u16 * v0;
 
     if (param2 == 0) {
         v0 = param0->unk_00[param1].unk_00;
-        sub_02023DF0(param3, v0, 7 + 1);
+        PLString_ExportCharsUpTo(param3, v0, 7 + 1);
     } else {
         v0 = param0->unk_00[param1].unk_10;
-        sub_02023DF0(param3, v0, 7 + 1);
+        PLString_ExportCharsUpTo(param3, v0, 7 + 1);
     }
 }
 

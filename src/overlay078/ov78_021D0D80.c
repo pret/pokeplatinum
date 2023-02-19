@@ -20,7 +20,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200C738.h"
@@ -68,7 +68,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202419C.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
@@ -164,7 +164,7 @@ typedef struct {
     UnkStruct_0205AA50 * unk_98;
     UnkStruct_0205AA50 * unk_9C[3];
     int unk_A8;
-    UnkStruct_02023790 * unk_AC;
+    PLString * unk_AC;
     UnkStruct_ov61_0222C884 unk_B0;
     UnkStruct_02001AF4 * unk_B8;
     UnkStruct_0200C738 unk_BC;
@@ -206,7 +206,7 @@ static void ov78_021D12EC(UnkStruct_02018340 * param0);
 static void ov78_021D1308(UnkStruct_ov78_021D107C * param0, int param1);
 static void ov78_021D13A0(UnkStruct_ov78_021D107C * param0);
 static u8 ov78_021D1FB4(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5);
-static u8 ov78_021D201C(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, UnkStruct_02023790 ** param6);
+static u8 ov78_021D201C(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, PLString ** param6);
 static void ov78_021D2090(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D27CC(UnkStruct_ov78_021D107C * param0, int param1);
 static void ov78_021D2884(UnkStruct_ov78_021D107C * param0);
@@ -1242,7 +1242,7 @@ static void ov78_021D1E44 (UnkStruct_ov78_021D107C * param0, int param1)
 static u8 ov78_021D1FB4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u8 v2;
 
     v0 = sub_0200B144(0, 26, param2, param1);
@@ -1253,13 +1253,13 @@ static u8 ov78_021D1FB4 (UnkStruct_0205AA50 * param0, int param1, int param2, in
     v2 = sub_0201D78C(param0, 1, v1, 0, 0, param5, param4, NULL);
     sub_0200E060(param0, 0, 512, 0);
 
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0200B190(v0);
 
     return v2;
 }
 
-static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, UnkStruct_02023790 ** param6)
+static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, PLString ** param6)
 {
     UnkStruct_0200B144 * v0;
     u8 v1;
@@ -1281,7 +1281,7 @@ static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, in
 
 static void ov78_021D2090 (UnkStruct_ov78_021D107C * param0)
 {
-    sub_020237BC(param0->unk_AC);
+    PLString_FreeToHeap(param0->unk_AC);
     param0->unk_AC = NULL;
 }
 
@@ -1723,7 +1723,7 @@ static void ov78_021D2884 (UnkStruct_ov78_021D107C * param0)
 static void ov78_021D28A8 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     v0 = sub_0200B144(0, 26, param2, param1);
     GF_ASSERT(v0);
@@ -1731,7 +1731,7 @@ static void ov78_021D28A8 (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
     sub_0201ADA4(param0, (((param4) >> 0) & 0xff));
     sub_0201D78C(param0, 0, v1, 1, 0, 0xff, param4, NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0200B190(v0);
 }
 

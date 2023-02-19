@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
@@ -53,7 +53,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
@@ -202,9 +202,9 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_64;
     UnkStruct_0200B144 * unk_68;
     UnkStruct_0200B358 * unk_6C;
-    UnkStruct_02023790 * unk_70;
-    UnkStruct_02023790 * unk_74;
-    UnkStruct_02023790 * unk_78[2];
+    PLString * unk_70;
+    PLString * unk_74;
+    PLString * unk_78[2];
     u16 unk_80[8];
     UnkStruct_02018340 * unk_90;
     UnkStruct_0205AA50 unk_94[2];
@@ -786,11 +786,11 @@ static void ov108_02242238 (UnkStruct_ov108_02241DB0 * param0)
 
     sub_0200B190(param0->unk_68);
     sub_0200B3F0(param0->unk_6C);
-    sub_020237BC(param0->unk_70);
-    sub_020237BC(param0->unk_74);
+    PLString_FreeToHeap(param0->unk_70);
+    PLString_FreeToHeap(param0->unk_74);
 
     for (v1 = 0; v1 < 2; v1++) {
-        sub_020237BC(param0->unk_78[v1]);
+        PLString_FreeToHeap(param0->unk_78[v1]);
     }
 
     ov108_02243660(param0->unk_94);
@@ -829,11 +829,11 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
 
     param0->unk_68 = sub_0200B144(1, 26, 536, 103);
     param0->unk_6C = sub_0200B358(103);
-    param0->unk_70 = sub_02023790(600, 103);
-    param0->unk_74 = sub_02023790(600, 103);
+    param0->unk_70 = PLString_AllocFromHeap(600, 103);
+    param0->unk_74 = PLString_AllocFromHeap(600, 103);
 
     for (v5 = 0; v5 < 2; v5++) {
-        param0->unk_78[v5] = sub_02023790(32, 103);
+        param0->unk_78[v5] = PLString_AllocFromHeap(32, 103);
     }
 
     sub_02002E7C(0, 13 * 32, 103);

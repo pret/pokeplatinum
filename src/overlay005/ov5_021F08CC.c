@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_0202CD50.h"
 #include "unk_020508D4.h"
@@ -66,8 +66,8 @@ typedef struct {
     UnkStruct_0203CDB0 * unk_20;
     UnkStruct_ov101_021D5D90 * unk_24;
     u8 unk_28;
-    UnkStruct_02023790 * unk_2C;
-    UnkStruct_02023790 * unk_30;
+    PLString * unk_2C;
+    PLString * unk_30;
     UnkStruct_0200B358 * unk_34;
     UnkStruct_0205AA50 unk_38;
     UnkStruct_0200B144 * unk_48;
@@ -510,16 +510,16 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
     param0->unk_48 = sub_0200B144(1, 26, 213, 4);
-    param0->unk_2C = sub_02023790(0x400, 4);
-    param0->unk_30 = sub_02023790(0x400, 4);
+    param0->unk_2C = PLString_AllocFromHeap(0x400, 4);
+    param0->unk_30 = PLString_AllocFromHeap(0x400, 4);
     param0->unk_34 = sub_0200B368(8, 64, 4);
 }
 
 static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 {
     sub_0200B3F0(param0->unk_34);
-    sub_020237BC(param0->unk_2C);
-    sub_020237BC(param0->unk_30);
+    PLString_FreeToHeap(param0->unk_2C);
+    PLString_FreeToHeap(param0->unk_30);
     sub_0200B190(param0->unk_48);
 }
 

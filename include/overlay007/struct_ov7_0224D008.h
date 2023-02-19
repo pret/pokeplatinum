@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -48,7 +48,7 @@ typedef struct {
     u8 unk_295;
     u8 unk_296;
     u8 unk_297;
-    UnkStruct_02023790 * unk_298;
+    PLString * unk_298;
     u8 unk_29C[4];
     int unk_2A0;
     u8 unk_2A4;

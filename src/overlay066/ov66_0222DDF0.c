@@ -9,7 +9,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02014FB0_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -51,7 +51,7 @@
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -1001,11 +1001,11 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
         sub_02025EC0(param1, param0->unk_08);
 
         {
-            UnkStruct_02023790 * v2;
-            UnkStruct_02023790 * v3;
+            PLString * v2;
+            PLString * v3;
 
-            v3 = sub_02023790((7 + 1) * 4, param2);
-            v2 = sub_02023790((7 + 1) * 4, param2);
+            v3 = PLString_AllocFromHeap((7 + 1) * 4, param2);
+            v2 = PLString_AllocFromHeap((7 + 1) * 4, param2);
             sub_02025EF4(param1, v2);
             v0 = sub_02002DB4(0, v2, v3);
 
@@ -1013,8 +1013,8 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
                 v1 = 1;
             }
 
-            sub_020237BC(v3);
-            sub_020237BC(v2);
+            PLString_FreeToHeap(v3);
+            PLString_FreeToHeap(v2);
         }
     } else {
         v1 = 1;
@@ -1022,13 +1022,13 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
 
     if (v1) {
         UnkStruct_0200B144 * v4;
-        UnkStruct_02023790 * v5;
+        PLString * v5;
 
         v4 = sub_0200B144(1, 26, 673, param2);
         v5 = sub_0200B1EC(v4, 64);
 
         sub_02025EE0(param1, v5);
-        sub_020237BC(v5);
+        PLString_FreeToHeap(v5);
         sub_0200B190(v4);
     }
 
@@ -2328,13 +2328,13 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     }
 
     {
-        UnkStruct_02023790 * v5;
+        PLString * v5;
 
         v5 = sub_02025F04(v0, param2);
 
-        sub_02023DF0(v5, param0->unk_20.unk_08, 7 + 1);
-        sub_02023DF0(v5, param0->unk_00, 7 + 1);
-        sub_020237BC(v5);
+        PLString_ExportCharsUpTo(v5, param0->unk_20.unk_08, 7 + 1);
+        PLString_ExportCharsUpTo(v5, param0->unk_00, 7 + 1);
+        PLString_FreeToHeap(v5);
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;

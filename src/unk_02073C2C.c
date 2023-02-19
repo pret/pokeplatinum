@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_02073C74_sub2_decl.h"
@@ -72,7 +72,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
@@ -1005,12 +1005,12 @@ static u32 sub_020745D0 (UnkStruct_02073C74_sub1 * param0, int param1, void * pa
         v0 = v3->unk_10_31;
     case 119:
         if (param0->unk_04_2) {
-            UnkStruct_02023790 * v7 = sub_0200B32C(495, 0);
+            PLString * v7 = sub_0200B32C(495, 0);
 
-            sub_02023810((UnkStruct_02023790 *)param2, v7);
-            sub_020237BC(v7);
+            PLString_CopyInto((PLString *)param2, v7);
+            PLString_FreeToHeap(v7);
         } else {
-            sub_02023D28((UnkStruct_02023790 *)param2, v4->unk_00);
+            PLString_ImportChars((PLString *)param2, v4->unk_00);
         }
         break;
     case 121:
@@ -1055,7 +1055,7 @@ static u32 sub_020745D0 (UnkStruct_02073C74_sub1 * param0, int param1, void * pa
         break;
     }
     case 145:
-        sub_02023D28((UnkStruct_02023790 *)param2, v5->unk_00);
+        PLString_ImportChars((PLString *)param2, v5->unk_00);
         break;
     case 146:
         v0 = v5->unk_10;
@@ -1487,12 +1487,12 @@ static void sub_02074CD8 (UnkStruct_02073C74_sub1 * param0, int param1, const vo
         u16 v12[10 + 1];
 
         sub_0200B274(v6->unk_00, 0, &v11[0]);
-        sub_02023DF0((UnkStruct_02023790 *)param2, &v12[0], NELEMS(v12));
+        PLString_ExportCharsUpTo((PLString *)param2, &v12[0], NELEMS(v12));
 
         v7->unk_10_31 = sub_0200220C(v11, v12);
     }
     case 119:
-        sub_02023DF0((UnkStruct_02023790 *)param2, v8->unk_00, NELEMS(v8->unk_00));
+        PLString_ExportCharsUpTo((PLString *)param2, v8->unk_00, NELEMS(v8->unk_00));
         break;
     case 121:
         v8->unk_16 = v5[0];
@@ -1535,7 +1535,7 @@ static void sub_02074CD8 (UnkStruct_02073C74_sub1 * param0, int param1, const vo
         }
         break;
     case 145:
-        sub_02023DF0((UnkStruct_02023790 *)param2, v9->unk_00, NELEMS(v9->unk_00));
+        PLString_ExportCharsUpTo((PLString *)param2, v9->unk_00, NELEMS(v9->unk_00));
         break;
     case 146:
         v9->unk_10 = v5[0];
@@ -1607,12 +1607,12 @@ static void sub_02074CD8 (UnkStruct_02073C74_sub1 * param0, int param1, const vo
         break;
     case 179:
     {
-        UnkStruct_02023790 * v13;
+        PLString * v13;
 
         v13 = sub_0200B32C(v6->unk_00, 0);
 
-        sub_02023DF0(v13, v8->unk_00, NELEMS(v8->unk_00));
-        sub_020237BC(v13);
+        PLString_ExportCharsUpTo(v13, v8->unk_00, NELEMS(v8->unk_00));
+        PLString_FreeToHeap(v13);
     }
     break;
     }
@@ -5225,18 +5225,18 @@ BOOL sub_0207884C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1
     u32 v1 = sub_02074570(param0, 7, NULL);
     u32 v2 = sub_02025F30(param1);
     u32 v3 = sub_02074570(param0, 157, NULL);
-    UnkStruct_02023790 * v4 = sub_02025F04(param1, param2);
-    UnkStruct_02023790 * v5 = sub_02023790(8, param2);
+    PLString * v4 = sub_02025F04(param1, param2);
+    PLString * v5 = PLString_AllocFromHeap(8, param2);
     BOOL v6 = 0;
 
     sub_02074570(param0, 145, v5);
 
-    if ((v0 == v1) && (v2 == v3) && (sub_02023BE0(v4, v5) == 0)) {
+    if ((v0 == v1) && (v2 == v3) && (PLString_IsPrefixOf(v4, v5) == 0)) {
         v6 = 1;
     }
 
-    sub_020237BC(v5);
-    sub_020237BC(v4);
+    PLString_FreeToHeap(v5);
+    PLString_FreeToHeap(v4);
 
     return v6;
 }

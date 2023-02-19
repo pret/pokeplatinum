@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "poffin.h"
@@ -93,7 +93,7 @@ void ov84_0223F238 (UnkStruct_ov84_0223B5A0 * param0)
     u16 v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_020237BC(param0->unk_404[v0]);
+        PLString_FreeToHeap(param0->unk_404[v0]);
     }
 }
 
@@ -110,7 +110,7 @@ void ov84_0223F25C (UnkStruct_ov84_0223B5A0 * param0)
     }
 }
 
-static void ov84_0223F2C0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_02023790 * param1, u16 param2)
+static void ov84_0223F2C0 (UnkStruct_ov84_0223B5A0 * param0, PLString * param1, u16 param2)
 {
     u32 v0;
 
@@ -121,8 +121,8 @@ static void ov84_0223F2C0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_02023790 
 void ov84_0223F2FC (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_ov84_0223C920 * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v1;
+    PLString * v2;
     u16 v3;
 
     sub_0201ADA4(&param0->unk_04[2], 0);
@@ -206,23 +206,23 @@ static void ov84_0223F508 (UnkStruct_ov84_0223B5A0 * param0, u32 param1, u32 par
 
 void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
 
     if (param1 != 0xffff) {
-        v0 = sub_02023790(130, 6);
+        v0 = PLString_AllocFromHeap(130, 6);
         Item_GetDescriptionIntoString(v0, param1, 6);
     } else {
         v0 = sub_0200B1EC(param0->unk_114, 94);
     }
 
     sub_0201D78C(&param0->unk_04[1], 0, v0, 40, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u16 v2;
     u16 v3;
 
@@ -231,29 +231,29 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     v1 = sub_0200B1EC(param0->unk_114, 98);
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 86);
     sub_0201D78C(v0, 0, v1, 0, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 89);
     sub_0201D78C(v0, 0, v1, 96, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 87);
     sub_0201D78C(v0, 0, v1, 96, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 88);
     sub_0201D78C(v0, 0, v1, 96, 32, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v3 = MoveTable_GetMoveMaxPP(v2, 0);
     v1 = sub_0200B1EC(param0->unk_114, 90);
     sub_0200B60C(param0->unk_118, 0, v3, 2, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 48, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     v3 = MoveTable_GetMoveAttribute(v2, 2);
@@ -266,7 +266,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     sub_0200B60C(param0->unk_118, 0, v3, 3, 0, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 96 + 64, 16, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     v3 = MoveTable_GetMoveAttribute(v2, 4);
 
@@ -278,7 +278,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     sub_0200B60C(param0->unk_118, 0, v3, 3, 0, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0201D78C(v0, 0, param0->unk_3F8, 96 + 64, 32, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
@@ -290,13 +290,13 @@ void ov84_0223F7D4 (UnkStruct_ov84_0223B5A0 * param0)
 
 void ov84_0223F800 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    sub_020237BC(param0->unk_3FC);
-    sub_020237BC(param0->unk_400);
+    PLString_FreeToHeap(param0->unk_3FC);
+    PLString_FreeToHeap(param0->unk_400);
 }
 
 void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     u32 v1;
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
@@ -305,7 +305,7 @@ void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u3
         sub_0201D78C(&param0->unk_04[0], 0, param0->unk_3FC, ((17 * 8 - 2) - 6 - 1 - 6 * 3), param2, 0xff, param3, NULL);
     }
 
-    v0 = sub_02023790(10, 6);
+    v0 = PLString_AllocFromHeap(10, 6);
 
     sub_0200B60C(param0->unk_118, 0, param1, 3, 0, 1);
     sub_0200C388(param0->unk_118, v0, param0->unk_400);
@@ -313,7 +313,7 @@ void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u3
     v1 = sub_02002D7C(0, v0, 0);
 
     sub_0201D78C(&param0->unk_04[0], 0, v0, (17 * 8 - 2) - v1, param2, 0xff, param3, NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2)
@@ -359,11 +359,11 @@ static void ov84_0223F9B0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 
 void ov84_0223F9F0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 {
-    UnkStruct_02023790 * v0 = sub_0200B1EC(param0->unk_114, 41);
+    PLString * v0 = sub_0200B1EC(param0->unk_114, 41);
 
     sub_0201AE78(&param0->unk_04[0], 0, 0, param1, 17 * 8, 16);
     sub_0201D78C(&param0->unk_04[0], 0, v0, 0, param1, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov84_0223FA44 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
@@ -398,7 +398,7 @@ void ov84_0223FB50 (UnkStruct_ov84_0223B5A0 * param0)
     u16 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_020237BC(param0->unk_124[v0]);
+        PLString_FreeToHeap(param0->unk_124[v0]);
     }
 }
 
@@ -406,8 +406,8 @@ void ov84_0223FB70 (UnkStruct_ov84_0223B5A0 * param0, u8 * param1, u8 param2)
 {
     UnkStruct_02081CF4 v0;
     UnkStruct_ov84_0223BE5C * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
+    PLString * v2;
+    PLString * v3;
     u16 v4;
     u16 v5;
 
@@ -451,14 +451,14 @@ void ov84_0223FB70 (UnkStruct_ov84_0223B5A0 * param0, u8 * param1, u8 param2)
         sub_0201ADA4(&param0->unk_04[v5], 15);
 
         v2 = sub_0200B1EC(param0->unk_114, 42);
-        v3 = sub_02023790((14 * 2 * 2), 6);
+        v3 = PLString_AllocFromHeap((14 * 2 * 2), 6);
         v1 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
         ov84_0223F4E8(param0, v1->unk_06 + v1->unk_04 - 1, 0);
         sub_0200C388(param0->unk_118, v3, v2);
         sub_0201D738(&param0->unk_04[v5], 1, v3, 0, 0, 0xff, NULL);
-        sub_020237BC(v3);
-        sub_020237BC(v2);
+        PLString_FreeToHeap(v3);
+        PLString_FreeToHeap(v2);
         sub_0201A9A4(&param0->unk_04[v5]);
     }
 
@@ -494,28 +494,28 @@ void ov84_0223FD84 (UnkStruct_ov84_0223B5A0 * param0)
 
 void ov84_0223FE18 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    UnkStruct_02023790 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v0;
+    PLString * v1;
 
     sub_0201ADA4(&param0->unk_04[1], 0);
 
     v0 = sub_0200B1EC(param0->unk_114, 45);
-    v1 = sub_02023790(130, 6);
+    v1 = PLString_AllocFromHeap(130, 6);
 
     ov84_0223F4E8(param0, param0->unk_47B - 1, 0);
 
     sub_0200C388(param0->unk_118, v1, v0);
     sub_0201D78C(&param0->unk_04[1], 0, v1, 40, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_04[1]);
-    sub_020237BC(v1);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v1);
+    PLString_FreeToHeap(v0);
 }
 
 void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_ov84_0223BE5C * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v1;
+    PLString * v2;
     u16 v3;
 
     sub_0200DC48(&param0->unk_04[9], 1, 1024 - 9, 14);
@@ -524,7 +524,7 @@ void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0201ADA4(&param0->unk_04[3], 15);
 
     v1 = sub_0200B1EC(param0->unk_114, 52);
-    v2 = sub_02023790(14 * 2 * 2, 6);
+    v2 = PLString_AllocFromHeap(14 * 2 * 2, 6);
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
 
     ov84_0223F4E8(param0, v0->unk_06 + v0->unk_04 - 1, 0);
@@ -532,14 +532,14 @@ void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0200C388(param0->unk_118, v2, v1);
     sub_0201D738(&param0->unk_04[3], 1, v2, 0, 0, 0xff, NULL);
     sub_0201A9A4(&param0->unk_04[3]);
-    sub_020237BC(v2);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v2);
+    PLString_FreeToHeap(v1);
 }
 
 void ov84_0223FF44 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u32 v2;
 
     v0 = &param0->unk_04[9];
@@ -550,7 +550,7 @@ void ov84_0223FF44 (UnkStruct_ov84_0223B5A0 * param0)
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_0201D738(v0, 0, param0->unk_3F8, 16, 8, 0xff, NULL);
     sub_0201A9A4(v0);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 }
 
 void ov84_0223FFC0 (UnkStruct_ov84_0223B5A0 * param0)
@@ -565,7 +565,7 @@ void ov84_0223FFC0 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_0223FFF0 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_ov84_0223BE5C * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u16 v2;
 
     sub_0200E060(&param0->unk_04[6], 1, 1024 - 9 - (18 + 12), 12);
@@ -582,7 +582,7 @@ void ov84_0223FFF0 (UnkStruct_ov84_0223B5A0 * param0)
 
     sub_0200B60C(param0->unk_118, 1, param0->unk_488, 3, 0, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     param0->unk_426 = ov84_022400A0(param0);
 }
@@ -623,7 +623,7 @@ void ov84_02240120 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u32 v2;
 
     v0 = &param0->unk_04[7];
@@ -639,7 +639,7 @@ void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
     sub_0200B60C(param0->unk_118, 0, param0->unk_488, 2, 2, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
     sub_0201D738(v0, 0, param0->unk_3F8, 0, 8, 0xff, NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 81);
 
@@ -650,13 +650,13 @@ void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     sub_0201D738(v0, 0, param0->unk_3F8, (12 * 8) - v2, 8, 0xff, NULL);
     sub_0201A9A4(v0);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 }
 
 void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u32 v2;
 
     v0 = &param0->unk_04[8];
@@ -668,7 +668,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
         v1 = sub_0200B1EC(param0->unk_114, 78);
 
         sub_0201D738(v0, 0, v1, 0, 0, 0xff, NULL);
-        sub_020237BC(v1);
+        PLString_FreeToHeap(v1);
     } else {
         sub_0201AE78(v0, 15, 0, 16, (10 * 8), 16);
     }
@@ -682,13 +682,13 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     sub_0201D738(v0, 0, param0->unk_3F8, (10 * 8) - v2, 16, 0xff, NULL);
     sub_0201A9A4(v0);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 }
 
 void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u32 v2;
 
     v0 = &param0->unk_04[10];
@@ -697,12 +697,12 @@ void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
 
     v1 = sub_0200B1EC(param0->unk_114, 108);
     sub_0201D738(v0, 0, v1, 0, 0, 0xff, NULL);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v1 = sub_0200B1EC(param0->unk_114, 109);
     sub_0200B60C(param0->unk_118, 0, sub_0202AC98(Poffin_GetSavedataBlock(param0->unk_C4->unk_00)), 3, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);
     sub_0201D738(v0, 0, param0->unk_3F8, 11 * 8 - v2, 16, 0xff, NULL);

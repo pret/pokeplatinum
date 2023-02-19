@@ -3,7 +3,7 @@
 #include <nnsys/g3d/glbstate.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -18,7 +18,7 @@
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -533,14 +533,14 @@ void ov23_0224AAB0 (void)
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
         UnkStruct_02025E6C * v0 = sub_02025E6C(15);
-        UnkStruct_02023790 * v1 = sub_02023790(20, 15);
+        PLString * v1 = PLString_AllocFromHeap(20, 15);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);
 
         sub_02025EE0(v0, v1);
         sub_020360D0(91, v0);
-        sub_020237BC(v1);
+        PLString_FreeToHeap(v1);
         Heap_FreeToHeap(v0);
     }
 }
@@ -555,7 +555,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
     int v1;
     const UnkStruct_02025E6C * v2 = param2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     u8 v4 = param0;
 
     if (v0) {
@@ -563,7 +563,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 
         v3 = sub_02025F04(v2, 15);
 
-        if (sub_02023C3C(v3) != 0) {
+        if (PLString_GetTerminatorIndex(v3) != 0) {
             v0->unk_14A[param0].unk_20 = param0;
         }
 
@@ -575,7 +575,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
         }
 
         sub_02035AC4(93, &v4, 1);
-        sub_020237BC(v3);
+        PLString_FreeToHeap(v3);
 
         v0->unk_2C2 = 1;
     } else {

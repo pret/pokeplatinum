@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_0223E140_H
 #define POKEPLATINUM_OV23_0223E140_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 
@@ -33,7 +33,7 @@ void ov23_02241364(void);
 void ov23_022413A0(int param0, int param1, void * param2, void * param3);
 void ov23_0224142C(int param0, int param1, void * param2, void * param3);
 int ov23_022414D0(void);
-BOOL ov23_022415B8(UnkStruct_02023790 * param0);
+BOOL ov23_022415B8(PLString * param0);
 void ov23_0224160C(void);
 BOOL ov23_0224162C(int param0);
 void ov23_02241648(int param0);

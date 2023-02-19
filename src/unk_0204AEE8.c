@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -24,7 +24,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
@@ -109,13 +109,13 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
 {
     u8 v0;
     u16 v1;
-    UnkStruct_02023790 * v2, * v3;
+    PLString * v2, * v3;
     UnkStruct_02026324 * v4;
     UnkStruct_0200B358 * v5;
     UnkStruct_0200B144 * v6;
 
-    v2 = sub_02023790(12 + 2, 4);
-    v3 = sub_02023790(2, 4);
+    v2 = PLString_AllocFromHeap(12 + 2, 4);
+    v3 = PLString_AllocFromHeap(2, 4);
     v4 = sub_02027560(param0);
     v6 = sub_0200B144(1, 26, 412, 4);
     v5 = sub_0200B368(18 + 1, 12 + 2, 4);
@@ -133,8 +133,8 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
     }
 
     sub_0200B190(v6);
-    sub_020237BC(v3);
-    sub_020237BC(v2);
+    PLString_FreeToHeap(v3);
+    PLString_FreeToHeap(v2);
 
     return v5;
 }
@@ -283,7 +283,7 @@ static UnkStruct_0204B184 * sub_0204B184 (UnkStruct_ov104_0223A348 * param0, u16
 {
     UnkStruct_0204B184 * v0;
     UnkStruct_0200B144 * v1 = sub_0200B144(1, 26, 21, param2);
-    UnkStruct_02023790 * v2;
+    PLString * v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
 
@@ -296,8 +296,8 @@ static UnkStruct_0204B184 * sub_0204B184 (UnkStruct_ov104_0223A348 * param0, u16
 
     v2 = sub_0200B1EC(v1, param1);
 
-    sub_02023DF0(v2, &param0->unk_00.unk_08[0], 8);
-    sub_020237BC(v2);
+    PLString_ExportCharsUpTo(v2, &param0->unk_00.unk_08[0], 8);
+    PLString_FreeToHeap(v2);
     sub_0200B190(v1);
 
     return v0;

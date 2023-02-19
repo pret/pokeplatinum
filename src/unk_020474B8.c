@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -17,7 +17,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -40,7 +40,7 @@
 
 #include <nitro/code16.h>
 
-static UnkStruct_02023790 * sub_02047998(u16 param0, u32 param1);
+static PLString * sub_02047998(u16 param0, u32 param1);
 
 BOOL sub_020474B8 (UnkStruct_0203E724 * param0)
 {
@@ -278,18 +278,18 @@ BOOL sub_02047930 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4 = sub_0203E838(param0);
     u8 v5 = (*((param0)->unk_08++));
-    UnkStruct_02023790 * v6 = sub_02047998(v3, 4);
+    PLString * v6 = sub_02047998(v3, 4);
 
     sub_0200B48C(*v1, v2, v6, v4, v5, GAME_LANGUAGE);
-    sub_020237BC(v6);
+    PLString_FreeToHeap(v6);
 
     return 0;
 }
 
-static UnkStruct_02023790 * sub_02047998 (u16 param0, u32 param1)
+static PLString * sub_02047998 (u16 param0, u32 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     v0 = sub_0200B144(1, 26, 412, param1);
     v1 = sub_0200B1EC(v0, param0);
@@ -303,10 +303,10 @@ BOOL sub_020479C0 (UnkStruct_0203E724 * param0)
     UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B054(sub_020507E4(param0->unk_34->unk_0C));
-    UnkStruct_02023790 * v3 = sub_02047998(v2, 4);
+    PLString * v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
 
     return 0;
 }
@@ -316,10 +316,10 @@ BOOL sub_02047A10 (UnkStruct_0203E724 * param0)
     UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B064(sub_020507E4(param0->unk_34->unk_0C));
-    UnkStruct_02023790 * v3 = sub_02047998(v2, 4);
+    PLString * v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
 
     return 0;
 }
@@ -329,10 +329,10 @@ BOOL sub_02047A60 (UnkStruct_0203E724 * param0)
     UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = sub_0206B08C(sub_020507E4(param0->unk_34->unk_0C));
-    UnkStruct_02023790 * v3 = sub_02047998(v2, 4);
+    PLString * v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
 
     return 0;
 }
@@ -372,14 +372,14 @@ BOOL sub_02047B20 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047B58 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(22, 4);
+    PLString * v0 = PLString_AllocFromHeap(22, 4);
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
     sub_02071D10(v3, 4, v0);
     sub_0200B48C(*v1, v2, v0, 0, 1, GAME_LANGUAGE);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 
     return 0;
 }
@@ -390,10 +390,10 @@ BOOL sub_02047BB8 (UnkStruct_0203E724 * param0)
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
-    UnkStruct_02023790 * v4 = sub_0209742C(v2 - 149, 32);
+    PLString * v4 = sub_0209742C(v2 - 149, 32);
 
     sub_0200B48C(*v0, v1, v4, 0, (v3 < 2 ? 1 : 0), GAME_LANGUAGE);
-    sub_020237BC(v4);
+    PLString_FreeToHeap(v4);
 
     return 0;
 }
@@ -421,16 +421,16 @@ BOOL sub_02047C68 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047CA0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
 
-    v0 = sub_02023790(10 + 1, 11);
+    v0 = PLString_AllocFromHeap(10 + 1, 11);
 
-    sub_02023D28(v0, sub_02027894(sub_0202783C(param0->unk_34->unk_0C)));
+    PLString_ImportChars(v0, sub_02027894(sub_0202783C(param0->unk_34->unk_0C)));
     sub_0200B48C(*v2, v3, v0, 0, 0, Unk_020E4C44);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 
     return 0;
 }

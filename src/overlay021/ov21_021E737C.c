@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -39,7 +39,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02079D40.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
@@ -710,7 +710,7 @@ static void ov21_021E7CF4 (UnkStruct_ov21_021E7714 * param0)
 
 static void ov21_021E7CF8 (UnkStruct_ov21_021E747C * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param1);
+    PLString * v0 = PLString_AllocFromHeap(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 44, v0);
@@ -724,16 +724,16 @@ static void ov21_021E7CF8 (UnkStruct_ov21_021E747C * param0, int param1)
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 32, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0200B1B8(v1, 10, v0);
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 152, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0200B190(v1);
 }
 
 static void ov21_021E7DA8 (UnkStruct_ov21_021E747C * param0, const UnkStruct_ov21_021E7468 * param1, int param2)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param2);
+    PLString * v0 = PLString_AllocFromHeap(32, param2);
     UnkStruct_0200B144 * v1;
     int v2 = ov21_021D37BC(param1->unk_00);
-    UnkStruct_02023790 * v3 = sub_0200B32C(v2, param2);
+    PLString * v3 = sub_0200B32C(v2, param2);
     int v4;
 
     v4 = sub_020989C4();
@@ -747,7 +747,7 @@ static void ov21_021E7DA8 (UnkStruct_ov21_021E747C * param0, const UnkStruct_ov2
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v5, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
     sub_0200B190(v1);
 
     v1 = sub_0200B144(0, 26, 697, param2);
@@ -765,7 +765,7 @@ static void ov21_021E7DA8 (UnkStruct_ov21_021E747C * param0, const UnkStruct_ov2
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v6, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0200B190(v1);
 }
 

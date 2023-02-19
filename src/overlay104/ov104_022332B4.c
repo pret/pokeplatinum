@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
@@ -251,7 +251,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
 {
     int v0[18];
     UnkStruct_ov104_0223C4CC * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v2;
     UnkStruct_02073C74 * v3;
     UnkStruct_ov104_0223ADA0 * v4;
     u8 v5, v6;

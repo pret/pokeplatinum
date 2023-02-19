@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -60,7 +60,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
@@ -112,9 +112,9 @@ struct UnkStruct_ov107_02246170_t {
     u16 unk_1E;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
-    UnkStruct_02023790 * unk_28;
-    UnkStruct_02023790 * unk_2C;
-    UnkStruct_02023790 * unk_30[3];
+    PLString * unk_28;
+    PLString * unk_2C;
+    PLString * unk_30[3];
     u16 unk_3C[8];
     UnkStruct_02018340 * unk_4C;
     UnkStruct_0205AA50 unk_50[12];
@@ -1093,12 +1093,12 @@ static void ov107_02246D84 (UnkStruct_ov107_02246170 * param0)
 
     sub_0200B190(param0->unk_20);
     sub_0200B3F0(param0->unk_24);
-    sub_020237BC(param0->unk_28);
-    sub_020237BC(param0->unk_2C);
+    PLString_FreeToHeap(param0->unk_28);
+    PLString_FreeToHeap(param0->unk_2C);
     sub_0200C560(param0->unk_144);
 
     for (v1 = 0; v1 < 3; v1++) {
-        sub_020237BC(param0->unk_30[v1]);
+        PLString_FreeToHeap(param0->unk_30[v1]);
     }
 
     ov107_02249D5C(param0->unk_50, 1);
@@ -1137,11 +1137,11 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
 
     param0->unk_20 = sub_0200B144(1, 26, 201, 100);
     param0->unk_24 = sub_0200B358(100);
-    param0->unk_28 = sub_02023790(600, 100);
-    param0->unk_2C = sub_02023790(600, 100);
+    param0->unk_28 = PLString_AllocFromHeap(600, 100);
+    param0->unk_2C = PLString_AllocFromHeap(600, 100);
 
     for (v13 = 0; v13 < 3; v13++) {
-        param0->unk_30[v13] = sub_02023790(32, 100);
+        param0->unk_30[v13] = PLString_AllocFromHeap(32, 100);
     }
 
     sub_02002E7C(0, 13 * 32, 100);
@@ -2356,12 +2356,12 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 {
     u32 v0;
     const UnkStruct_02025E6C * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v2;
 
     v1 = sub_02025E38(param0->unk_14C);
-    v2 = sub_02023790((7 + 1), 100);
+    v2 = PLString_AllocFromHeap((7 + 1), 100);
 
-    sub_02023D28(v2, sub_02025EF0(v1));
+    PLString_ImportChars(v2, sub_02025EF0(v1));
 
     if (sub_02025F30(v1) == 0) {
         v0 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -2370,7 +2370,7 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
     }
 
     sub_0201D78C(param1, param4, v2, param2, param3, 0xff, v0, NULL);
-    sub_020237BC(v2);
+    PLString_FreeToHeap(v2);
 
     return;
 }

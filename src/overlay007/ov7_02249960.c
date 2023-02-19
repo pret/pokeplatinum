@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
@@ -30,7 +30,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020329E0.h"
@@ -48,7 +48,7 @@ typedef void (* UnkFuncPtr_ov7_02249C2C)(UnkStruct_0201CD38 *, void *);
 typedef void (* UnkFuncPtr_ov7_02249C2C_1)(UnkStruct_ov7_02249C2C *);
 
 typedef struct UnkStruct_ov7_02249C2C_t {
-    UnkStruct_02023790 * unk_00[8];
+    PLString * unk_00[8];
     UnkStruct_0205AA50 unk_20;
     UnkStruct_0205AA50 unk_30;
     UnkStruct_0205AA50 unk_40;
@@ -215,7 +215,7 @@ static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        Unk_ov7_0224F5A0->unk_00[v0] = sub_02023790((70 * 2), 4);
+        Unk_ov7_0224F5A0->unk_00[v0] = PLString_AllocFromHeap((70 * 2), 4);
     }
 }
 
@@ -224,7 +224,7 @@ static void ov7_02249B98 (void)
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_020237BC(Unk_ov7_0224F5A0->unk_00[v0]);
+        PLString_FreeToHeap(Unk_ov7_0224F5A0->unk_00[v0]);
     }
 
     Heap_FreeToHeap(Unk_ov7_0224F5A0->unk_7C);

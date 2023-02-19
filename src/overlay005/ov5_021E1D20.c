@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -139,7 +139,7 @@ static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
 
 static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     int v1, v2;
     int v3;
     int v4;
@@ -149,7 +149,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
     v0 = sub_0200B29C(param0->unk_14, param0->unk_18, Unk_ov5_021F9CCC[0], param0->unk_04);
 
     sub_0201D738(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 
     for (v4 = 1; v4 < NELEMS(Unk_ov5_021F9CCC); v4++) {
         if ((Unk_ov5_021F9CCC[v4] == 3) && (param0->unk_1C.unk_00 == 0)) {
@@ -160,13 +160,13 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
         v0 = sub_0200B1EC(param0->unk_18, Unk_ov5_021F9CCC[v4]);
 
         sub_0201D738(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
-        sub_020237BC(v0);
+        PLString_FreeToHeap(v0);
 
         v0 = sub_0200B29C(param0->unk_14, param0->unk_18, Unk_ov5_021F9CBC[v4 - 1], param0->unk_04);
         v1 = 13 * 8 - sub_02002D7C(0, v0, sub_02002DF8(0, 2));
 
         sub_0201D738(param0->unk_10, 0, v0, v1, v2, 0xff, NULL);
-        sub_020237BC(v0);
+        PLString_FreeToHeap(v0);
     }
 }
 

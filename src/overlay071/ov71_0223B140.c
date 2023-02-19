@@ -31,7 +31,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020393C8.h"
 #include "overlay071/ov71_0223B140.h"
 #include "overlay071/ov71_0223C69C.h"
@@ -410,8 +410,8 @@ int ov71_0223B5B8 (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
 {
-    param0->unk_336C = sub_02023790(3 + 1, 25);
-    param0->unk_3370 = sub_02023790(5, 25);
+    param0->unk_336C = PLString_AllocFromHeap(3 + 1, 25);
+    param0->unk_3370 = PLString_AllocFromHeap(5, 25);
 
     {
         UnkStruct_0200B144 * v0;
@@ -425,8 +425,8 @@ static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
 
 static void ov71_0223B668 (UnkStruct_ov71_0223B620 * param0)
 {
-    sub_020237BC(param0->unk_336C);
-    sub_020237BC(param0->unk_3370);
+    PLString_FreeToHeap(param0->unk_336C);
+    PLString_FreeToHeap(param0->unk_3370);
 }
 
 static void ov71_0223B688 (void)

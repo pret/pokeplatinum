@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0202E1F4.h"
 #include "overlay087/struct_ov87_021D1640.h"
 
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202DF8C.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -33,7 +33,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 {
     UnkStruct_0202DFA8 * v0;
     UnkStruct_02073C74 * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v2;
     int v3, v4, v5;
     BOOL v6;
 
@@ -46,7 +46,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
     v0 = &param0->unk_00[param0->unk_2AA8];
     v3 = Party_GetCurrentCount(param1);
-    v2 = sub_02023790(11, 0);
+    v2 = PLString_AllocFromHeap(11, 0);
 
     MI_CpuClear16(v0->unk_00, sizeof(UnkStruct_0202E1F4) * 6);
 
@@ -67,10 +67,10 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
             if (v2) {
                 sub_02074470(v1, 119, v2);
-                sub_02023DF0(v2, v0->unk_00[v5].unk_0C, 11);
+                PLString_ExportCharsUpTo(v2, v0->unk_00[v5].unk_0C, 11);
 
                 sub_02074470(v1, 145, v2);
-                sub_02023DF0(v2, v0->unk_00[v5].unk_22, 8);
+                PLString_ExportCharsUpTo(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;
                 v0->unk_00[v5].unk_22[0] = 0xffff;
@@ -93,7 +93,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
     param0->unk_2AAC++;
 
     if (v2) {
-        sub_020237BC(v2);
+        PLString_FreeToHeap(v2);
     }
 }
 
@@ -155,8 +155,8 @@ void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, Un
     param3->unk_0C = v0->unk_08;
     param3->unk_13 = v0->unk_03;
 
-    sub_02023D28(param3->unk_00, v0->unk_0C);
-    sub_02023D28(param3->unk_04, v0->unk_22);
+    PLString_ImportChars(param3->unk_00, v0->unk_0C);
+    PLString_ImportChars(param3->unk_04, v0->unk_22);
 
     for (v1 = 0; v1 < 4; v1++) {
         param3->unk_14[v1] = v0->unk_32[v1];

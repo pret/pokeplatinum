@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
@@ -1309,7 +1309,7 @@ u16  ov20_021D1FA8 (const UnkStruct_ov20_021D16E8 * param0, int param1)
     }
 }
 
-UnkStruct_02023790 * ov20_021D1FC0 (const UnkStruct_ov20_021D16E8 * param0, u32 param1)
+PLString * ov20_021D1FC0 (const UnkStruct_ov20_021D16E8 * param0, u32 param1)
 {
     return sub_02014BA0(&(param0->unk_08), param1);
 }
@@ -1338,7 +1338,7 @@ u32 ov20_021D1FE4 (const UnkStruct_ov20_021D16E8 * param0)
     }
 }
 
-void ov20_021D2008 (const UnkStruct_ov20_021D16E8 * param0, u32 param1, UnkStruct_02023790 * param2)
+void ov20_021D2008 (const UnkStruct_ov20_021D16E8 * param0, u32 param1, PLString * param2)
 {
     if (param0->unk_65 == 0) {
         sub_02099CA8(param0->unk_18, param0->unk_50, param1, param2);

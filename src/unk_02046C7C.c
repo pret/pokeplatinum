@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -14,7 +14,7 @@
 #include "struct_defs/struct_02093800.h"
 
 #include "unk_0200B358.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
@@ -96,7 +96,7 @@ static BOOL sub_02046CE0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     UnkStruct_02073C74 * v1;
     void ** v2 = sub_0203F098(param0->unk_34, 20);
     UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
@@ -125,7 +125,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
 
     *v2 = sub_02093800(&v8);
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 
     return 0;
 }

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_0208A3F4.h"
 
@@ -703,7 +703,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     int v4;
     int v5;
     UnkStruct_0200B144 * v6;
@@ -744,7 +744,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     param0->unk_2C0.unk_90[param1] = sub_020127E8(&v2);
 
     sub_02012AC0(param0->unk_2C0.unk_90[param1], param4);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
     sub_0200B190(v6);
     sub_0201A8FC(&v7);
 }
@@ -762,7 +762,7 @@ void sub_0208B1C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int
 void sub_0208B230 (UnkStruct_0205AA50 * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     sub_0201ADA4(param0, 15);
 
@@ -773,6 +773,6 @@ void sub_0208B230 (UnkStruct_0205AA50 * param0, int param1)
     sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0200B190(v0);
 }

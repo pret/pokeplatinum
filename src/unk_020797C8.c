@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02073C74_sub1.h"
 
 #include "unk_0200AC5C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
@@ -264,27 +264,27 @@ void sub_02079AC4 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, UnkStruct_02023790 * param2)
+void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, PLString * param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
     }
 
     if (param1 < 18) {
-        sub_02023D28(param2, param0->unk_10E4[param1]);
+        PLString_ImportChars(param2, param0->unk_10E4[param1]);
     } else {
         GF_ASSERT(0);
     }
 }
 
-void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const UnkStruct_02023790 * param2)
+void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const PLString * param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
     }
 
     if (param1 < 18) {
-        sub_02023DF0(param2, param0->unk_10E4[param1], 20);
+        PLString_ExportCharsUpTo(param2, param0->unk_10E4[param1], 20);
         sub_02024804();
     }
 }

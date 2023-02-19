@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_0203A6DC.h"
 #include "unk_0203A7D8.h"
@@ -189,8 +189,8 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
 
 static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8 param3)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(1024, 11);
-    UnkStruct_02023790 * v1 = sub_02023790(1024, 11);
+    PLString * v0 = PLString_AllocFromHeap(1024, 11);
+    PLString * v1 = PLString_AllocFromHeap(1024, 11);
 
     sub_0201ADA4(&param0->unk_0C, 0);
     sub_0200B1B8(param0->unk_1C, param1, v0);
@@ -202,8 +202,8 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
     }
 
     sub_0201D78C(&param0->unk_0C, 0, v1, param2, param3, 0xff, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v0);
+    PLString_FreeToHeap(v1);
 
     return;
 }

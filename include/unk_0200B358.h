@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0200B358_H
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"

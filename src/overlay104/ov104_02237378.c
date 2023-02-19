@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -310,7 +310,7 @@ BOOL ov104_02237734 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     UnkStruct_02073C74 * v1;
     Party * v2;
     UnkStruct_ov104_0223BFFC * v3;

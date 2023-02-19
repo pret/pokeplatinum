@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02025E6C.h"
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 
 int sub_02025E68 (void)
@@ -61,9 +61,9 @@ void sub_02025EC0 (UnkStruct_02025E6C * param0, const u16 * param1)
     sub_020021B0(param0->unk_00, param1);
 }
 
-void sub_02025EE0 (UnkStruct_02025E6C * param0, const UnkStruct_02023790 * param1)
+void sub_02025EE0 (UnkStruct_02025E6C * param0, const PLString * param1)
 {
-    sub_02023DF0(param1, param0->unk_00, 7 + 1);
+    PLString_ExportCharsUpTo(param1, param0->unk_00, 7 + 1);
 }
 
 const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
@@ -71,14 +71,14 @@ const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
     return param0->unk_00;
 }
 
-void sub_02025EF4 (const UnkStruct_02025E6C * param0, UnkStruct_02023790 * param1)
+void sub_02025EF4 (const UnkStruct_02025E6C * param0, PLString * param1)
 {
-    sub_02023D28(param1, param0->unk_00);
+    PLString_ImportChars(param1, param0->unk_00);
 }
 
-UnkStruct_02023790 * sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
+PLString * sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(7 + 1, param1);
+    PLString * v0 = PLString_AllocFromHeap(7 + 1, param1);
 
     sub_02025EF4(param0, v0);
     return v0;

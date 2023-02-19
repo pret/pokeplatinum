@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02095EAC_decl.h"
 
@@ -53,7 +53,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
@@ -533,15 +533,15 @@ static void ov58_021D12C4 (UnkStruct_02095EAC * param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_14[v0] = sub_02023790(7 + 1, 39);
+        param0->unk_14[v0] = PLString_AllocFromHeap(7 + 1, 39);
         param0->unk_43E6[v0].unk_08_3 = 0;
         param0->unk_4418[v0].unk_02 = 0;
         param0->unk_398[v0][0] = NULL;
         param0->unk_398[v0][1] = NULL;
     }
 
-    param0->unk_28 = sub_02023790(10, 39);
-    param0->unk_2C = sub_02023790((40 * 2), 39);
+    param0->unk_28 = PLString_AllocFromHeap(10, 39);
+    param0->unk_2C = PLString_AllocFromHeap((40 * 2), 39);
     param0->unk_43DA = 0;
     param0->unk_43DB = 1;
     param0->unk_9458 = 1;
@@ -575,11 +575,11 @@ static void ov58_021D13B4 (UnkStruct_02095EAC * param0)
     sub_02015938(param0->unk_9454);
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_020237BC(param0->unk_14[v0]);
+        PLString_FreeToHeap(param0->unk_14[v0]);
     }
 
-    sub_020237BC(param0->unk_2C);
-    sub_020237BC(param0->unk_28);
+    PLString_FreeToHeap(param0->unk_2C);
+    PLString_FreeToHeap(param0->unk_28);
 }
 
 static void ov58_021D13F0 (UnkStruct_02018340 * param0)
@@ -1713,13 +1713,13 @@ static int ov58_021D2A54 (UnkStruct_02095EAC * param0)
 
 static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
 
-    v0 = sub_02023790((40 * 2), 39);
+    v0 = PLString_AllocFromHeap((40 * 2), 39);
 
     sub_0200B1B8(param0->unk_10, param1, v0);
     sub_0200C388(param0->unk_0C, param0->unk_2C, v0);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 
     sub_0201ADA4(&param0->unk_33C, 0xf0f);
     sub_0200E060(&param0->unk_33C, 0, 1, 10);

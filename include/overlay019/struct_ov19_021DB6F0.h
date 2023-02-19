@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -25,8 +25,8 @@ typedef struct {
     void * unk_24;
     NNSG2dCharacterData * unk_28;
     const UnkStruct_0200B358 * unk_2C;
-    UnkStruct_02023790 * unk_30;
-    UnkStruct_02023790 * unk_34;
+    PLString * unk_30;
+    PLString * unk_34;
 } UnkStruct_ov19_021DB6F0;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DB6F0_H

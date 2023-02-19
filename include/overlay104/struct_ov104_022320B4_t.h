@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
@@ -20,8 +20,8 @@ struct UnkStruct_ov104_022320B4_t {
     UnkStruct_0200B144 * unk_3C;
     u8 * unk_40;
     UnkStruct_0200B358 * unk_44;
-    UnkStruct_02023790 * unk_48;
-    UnkStruct_02023790 * unk_4C;
+    PLString * unk_48;
+    PLString * unk_4C;
     u8 unk_50;
     s8 unk_51;
     u16 unk_52;

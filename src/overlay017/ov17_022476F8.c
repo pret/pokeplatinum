@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -26,7 +26,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "overlay017/ov17_022476F8.h"
@@ -206,7 +206,7 @@ static void ov17_0224792C (UnkStruct_ov17_02247A48 * param0, int param1, const U
 
 static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -222,7 +222,7 @@ static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 
     sub_0201ADA4(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_C4 = sub_0201D738(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_40, 0, 0, v1, NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov17_02247A08 (UnkStruct_ov17_02247A48 * param0, u32 param1, const UnkStruct_ov17_0224792C * param2)

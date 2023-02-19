@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -55,7 +55,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -532,18 +532,18 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     for (v4 = 0; v4 < v5; v4++) {
         if (v1->unk_30[v4] == 3) {
             UnkStruct_0200B358 * v6;
-            UnkStruct_02023790 * v7;
-            UnkStruct_02023790 * v8;
+            PLString * v7;
+            PLString * v8;
 
             v6 = sub_0200B358(11);
-            v7 = sub_02023790(8, 11);
+            v7 = PLString_AllocFromHeap(8, 11);
             v8 = sub_0200B1EC(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
             sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
             sub_0200C388(v6, v7, v8);
             sub_02013A6C(v1->unk_24, v7, v1->unk_30[v4]);
-            sub_020237BC(v8);
-            sub_020237BC(v7);
+            PLString_FreeToHeap(v8);
+            PLString_FreeToHeap(v7);
             sub_0200B3F0(v6);
         } else {
             sub_02013A4C(
@@ -645,8 +645,8 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_0200B144 * v2;
     UnkStruct_0200B358 * v3;
-    UnkStruct_02023790 * v4;
-    UnkStruct_02023790 * v5;
+    PLString * v4;
+    PLString * v5;
     u8 v6;
 
     v0 = sub_02050A60(param0);
@@ -674,10 +674,10 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     }
 
     sub_0201D738(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
-    sub_020237BC(v5);
+    PLString_FreeToHeap(v5);
 
     v3 = sub_0200B358(11);
-    v4 = sub_02023790(32, 11);
+    v4 = PLString_AllocFromHeap(32, 11);
     v5 = sub_0200B1EC(v2, 11);
 
     if (v6 == 0) {
@@ -692,8 +692,8 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
 
     sub_0200C388(v3, v4, v5);
     sub_0201D738(&v1->unk_10, 0, v4, 0, 16, 0xff, NULL);
-    sub_020237BC(v4);
-    sub_020237BC(v5);
+    PLString_FreeToHeap(v4);
+    PLString_FreeToHeap(v5);
     sub_0200B3F0(v3);
     sub_0200B190(v2);
     sub_0201A9A4(&v1->unk_10);

@@ -11,7 +11,7 @@
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202DF8C.h"
 #include "overlay087/ov87_021D0D80.h"
 #include "overlay087/ov87_021D106C.h"
@@ -170,8 +170,8 @@ static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C 
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_20[v0].unk_00 = sub_02023790(12, 60);
-        param0->unk_20[v0].unk_04 = sub_02023790(8, 60);
+        param0->unk_20[v0].unk_00 = PLString_AllocFromHeap(12, 60);
+        param0->unk_20[v0].unk_04 = PLString_AllocFromHeap(8, 60);
     }
 
     param0->unk_1C = UnkEnum_ov87_021D12C0_0;
@@ -184,8 +184,8 @@ static void ov87_021D1000 (UnkStruct_ov87_021D12C0 * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_020237BC(param0->unk_20[v0].unk_00);
-        sub_020237BC(param0->unk_20[v0].unk_04);
+        PLString_FreeToHeap(param0->unk_20[v0].unk_00);
+        PLString_FreeToHeap(param0->unk_20[v0].unk_04);
     }
 }
 

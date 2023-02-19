@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -15,7 +15,7 @@
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -190,7 +190,7 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
     int v0;
     u32 v1, v2;
     UnkStruct_0202E91C * v3;
-    UnkStruct_02023790 * v4;
+    PLString * v4;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0);
     u32 * v6;
 
@@ -205,12 +205,12 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
         v2 = 0;
 
         v3->unk_00[v0].unk_00 = v1;
-        sub_02023DF0(v4, v3->unk_00[v0].unk_08, 7 + 1);
+        PLString_ExportCharsUpTo(v4, v3->unk_00[v0].unk_08, 7 + 1);
         v3->unk_00[v0].unk_04 = v6[v0];
     }
 
     Heap_FreeToHeap(v6);
-    sub_020237BC(v4);
+    PLString_FreeToHeap(v4);
     sub_02025C84(28);
 
     return v3;
@@ -432,8 +432,8 @@ UnkStruct_0202EE10 * sub_0202EE10 (UnkStruct_0202E8C0 * param0, int param1, int 
 
         v1->unk_04[v1->unk_00].unk_00 = v2->unk_00[v0].unk_00;
         v1->unk_04[v1->unk_00].unk_04 = v2->unk_00[v0].unk_04;
-        v1->unk_04[v1->unk_00].unk_08 = sub_02023790(7 + 1, param2);
-        sub_02023D28(v1->unk_04[v1->unk_00].unk_08, v2->unk_00[v0].unk_08);
+        v1->unk_04[v1->unk_00].unk_08 = PLString_AllocFromHeap(7 + 1, param2);
+        PLString_ImportChars(v1->unk_04[v1->unk_00].unk_08, v2->unk_00[v0].unk_08);
         ++v1->unk_00;
     }
 
@@ -446,7 +446,7 @@ void sub_0202EE8C (UnkStruct_0202EE10 * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_04[v0].unk_08 != NULL) {
-            sub_020237BC(param0->unk_04[v0].unk_08);
+            PLString_FreeToHeap(param0->unk_04[v0].unk_08);
         }
     }
 

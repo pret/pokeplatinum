@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -44,7 +44,7 @@
 #include "unk_0201E190.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -1262,13 +1262,13 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
 
     {
         UnkStruct_0200B144 * v4;
-        UnkStruct_02023790 * v5;
+        PLString * v5;
         u32 v6;
 
         sub_02019690(4, 32, 0, param1);
 
         v4 = sub_0200B144(1, 26, 609, param1);
-        v5 = sub_02023790(64, param1);
+        v5 = PLString_AllocFromHeap(64, param1);
 
         sub_0201A8D4(param0, &param2->unk_22C, &Unk_ov77_021D72D0);
         sub_0201AE78(&param2->unk_22C, 0, 0, 0, 28 * 8, 2 * 8);
@@ -1277,7 +1277,7 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
         v6 = sub_02002EEC(0, v5, 1, param2->unk_22C.unk_07 * 8);
 
         sub_0201D7E0(&param2->unk_22C, 0, v5, v6, 0, 0, (u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | (((0 & 0xff) << 0))), 1, 0, NULL);
-        sub_020237BC(v5);
+        PLString_FreeToHeap(v5);
         sub_0200B190(v4);
 
         {

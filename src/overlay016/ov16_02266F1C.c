@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 
@@ -34,7 +34,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -950,7 +950,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5, * v6;
+    PLString * v5, * v6;
     UnkStruct_02073C74 * v7;
     UnkStruct_02073C74_sub1 * v8;
     UnkStruct_0200B358 * v9;
@@ -958,7 +958,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
     v9 = ov16_0223E0D0(param0->unk_0C);
-    v5 = sub_02023790((12 + (5 * 2)), 5);
+    v5 = PLString_AllocFromHeap((12 + (5 * 2)), 5);
     v6 = sub_0200B1EC(v4, 964);
     v7 = ov16_0223DFAC(param0->unk_0C, param0->unk_24, param0->unk_26);
     v8 = sub_02076B10(v7);
@@ -987,8 +987,8 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     }
 
     sub_0201A8FC(&v3);
-    sub_020237BC(v5);
-    sub_020237BC(v6);
+    PLString_FreeToHeap(v5);
+    PLString_FreeToHeap(v6);
 }
 
 static void ov16_022679C8 (UnkStruct_ov16_022674C4 * param0)
@@ -1163,7 +1163,7 @@ static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5;
+    PLString * v5;
 
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
@@ -1196,7 +1196,7 @@ static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     }
 
     sub_0201A8FC(&v3);
-    sub_020237BC(v5);
+    PLString_FreeToHeap(v5);
 }
 
 static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
@@ -1206,13 +1206,13 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5, * v6;
+    PLString * v5, * v6;
     UnkStruct_0200B358 * v7;
 
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
     v7 = ov16_0223E0D0(param0->unk_0C);
-    v5 = sub_02023790(30, 5);
+    v5 = PLString_AllocFromHeap(30, 5);
 
     if (param1 & (1 << 10)) {
         v6 = sub_0200B1EC(v4, 951);
@@ -1243,8 +1243,8 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     }
 
     sub_0201A8FC(&v3);
-    sub_020237BC(v5);
-    sub_020237BC(v6);
+    PLString_FreeToHeap(v5);
+    PLString_FreeToHeap(v6);
 }
 
 static s32 ov16_02267EDC (UnkStruct_ov16_022674C4 * param0, int param1)

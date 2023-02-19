@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CC84.h"
@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 
 FS_EXTERN_OVERLAY(overlay77);
@@ -42,7 +42,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_02023790 * unk_10;
+    PLString * unk_10;
     UnkStruct_02018340 * unk_14;
     UnkStruct_0200B144 * unk_18;
     UnkStruct_0205AA50 unk_1C;
@@ -338,12 +338,12 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
         sub_0201AE78(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
-        param0->unk_10 = sub_02023790(0x400, param0->unk_00);
+        param0->unk_10 = PLString_AllocFromHeap(0x400, param0->unk_00);
         sub_0200B1B8(param0->unk_18, param1, param0->unk_10);
         param0->unk_0C = sub_0201D738(&param0->unk_1C, 1, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
-            sub_020237BC(param0->unk_10);
+            PLString_FreeToHeap(param0->unk_10);
             param0->unk_08++;
         }
 
@@ -351,7 +351,7 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
         break;
     case 1:
         if (!(sub_0201D724(param0->unk_0C))) {
-            sub_020237BC(param0->unk_10);
+            PLString_FreeToHeap(param0->unk_10);
             param0->unk_08++;
         }
         break;

@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "overlay019/ov19_021DB2FC.h"
 
 static void ov19_021DB4B4(UnkStruct_02018340 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
@@ -43,8 +43,8 @@ BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_20 = param7;
     param0->unk_10 = param5;
     param0->unk_14 = sub_0200B144(0, 26, 18, 10);
-    param0->unk_30 = sub_02023790(64, 10);
-    param0->unk_34 = sub_02023790(64, 10);
+    param0->unk_30 = PLString_AllocFromHeap(64, 10);
+    param0->unk_34 = PLString_AllocFromHeap(64, 10);
     param0->unk_1C = 0;
     param0->unk_1E = 0;
     param0->unk_18 = NULL;
@@ -75,11 +75,11 @@ void ov19_021DB370 (UnkStruct_ov19_021DB6F0 * param0)
         }
 
         if (param0->unk_30) {
-            sub_020237BC(param0->unk_30);
+            PLString_FreeToHeap(param0->unk_30);
         }
 
         if (param0->unk_34) {
-            sub_020237BC(param0->unk_34);
+            PLString_FreeToHeap(param0->unk_34);
         }
 
         Heap_FreeToHeap(param0->unk_18);

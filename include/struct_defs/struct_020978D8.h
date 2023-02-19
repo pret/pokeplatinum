@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020978D8_H
 
 #include "struct_defs/struct_02014A84.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/union_02028328.h"
 
@@ -16,7 +16,7 @@ typedef struct {
     u8 unk_0D;
     u8 unk_0E;
     u8 unk_0F;
-    UnkStruct_02023790 * unk_10;
+    PLString * unk_10;
     UnkUnion_02028328 unk_14[3];
     UnkStruct_02014A84 unk_1A[3];
 } UnkStruct_020978D8;

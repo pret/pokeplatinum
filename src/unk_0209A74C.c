@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0209A74C.h"
 
 static const UnkStruct_02099F80 Unk_020F8AF8 = {
@@ -78,7 +78,7 @@ void sub_0209A74C (int param0)
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     int v4 = 0;
 
     sub_0200F344(0, 0);
@@ -113,7 +113,7 @@ void sub_0209A74C (int param0)
     sub_0201975C(4, 27681);
 
     v2 = sub_0200B144(1, 26, 5, param0);
-    v3 = sub_02023790(384, param0);
+    v3 = PLString_AllocFromHeap(384, param0);
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
@@ -121,7 +121,7 @@ void sub_0209A74C (int param0)
     sub_0200DC48(&v1, 0, 512 - 9, 2);
     sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
@@ -153,7 +153,7 @@ void sub_0209A8E0 (int param0)
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     int v4 = 1;
 
     sub_0200F344(0, 0);
@@ -187,7 +187,7 @@ void sub_0209A8E0 (int param0)
     sub_0201975C(4, 0x6c21);
 
     v2 = sub_0200B144(1, 26, 5, param0);
-    v3 = sub_02023790(0x180, param0);
+    v3 = PLString_AllocFromHeap(0x180, param0);
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
@@ -195,7 +195,7 @@ void sub_0209A8E0 (int param0)
     sub_0200DC48(&v1, 0, (512 - 9), 2);
     sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);

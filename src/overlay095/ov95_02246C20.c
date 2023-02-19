@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
 #include "overlay095/struct_ov95_022472C4_decl.h"
@@ -39,7 +39,7 @@
 #include "unk_0201CCF0.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -58,7 +58,7 @@ struct UnkStruct_ov95_02247628_t {
     UnkStruct_02018340 * unk_08;
     UnkStruct_0200B358 * unk_0C;
     UnkStruct_0200B144 * unk_10;
-    UnkStruct_02023790 * unk_14;
+    PLString * unk_14;
     UnkStruct_020218BC * unk_18;
     UnkStruct_0200C738 unk_1C;
     UnkStruct_0201CD38 * unk_1A8;
@@ -151,7 +151,7 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_00 = sub_02006840(param0);
             v0->unk_04 = 0;
             v0->unk_08 = sub_02018340(57);
-            v0->unk_14 = sub_02023790(400, 57);
+            v0->unk_14 = PLString_AllocFromHeap(400, 57);
             v0->unk_10 = sub_0200B144(0, 26, 350, 57);
             v0->unk_0C = sub_0200B358(57);
 
@@ -221,7 +221,7 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     sub_02039794();
     sub_0200B3F0(v1->unk_0C);
     sub_0200B190(v1->unk_10);
-    sub_020237BC(v1->unk_14);
+    PLString_FreeToHeap(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
     sub_02021964(v1->unk_18);
     sub_0200A878();

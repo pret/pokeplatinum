@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -26,7 +26,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
@@ -278,11 +278,11 @@ static BOOL sub_020491F4 (UnkStruct_0203CDB0 * param0, int param1)
 
 static void sub_0204922C (UnkStruct_0200B358 * param0, int param1, const u16 * param2, int param3, int param4, int param5)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(64, 4);
+    PLString * v0 = PLString_AllocFromHeap(64, 4);
 
-    sub_02023D28(v0, param2);
+    PLString_ImportChars(v0, param2);
     sub_0200B48C(param0, param1, v0, param3, param5, param4);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 static void sub_02049268 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
@@ -323,15 +323,15 @@ static void sub_020492D4 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
 
 static void sub_02049308 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E81C * v2 = sub_0202E81C(v1);
 
-    v0 = sub_02023790(64, 4);
+    v0 = PLString_AllocFromHeap(64, 4);
 
-    sub_02023D28(v0, v2->unk_06);
+    PLString_ImportChars(v0, v2->unk_06);
     sub_0200B48C(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 static BOOL sub_02049348 (UnkStruct_0203CDB0 * param0)

@@ -2,11 +2,11 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "heap.h"
 #include "error_handling.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "overlay098/ov98_022499C8.h"
 
 static const char Unk_ov98_02249D1C[] = "w";
@@ -28,7 +28,7 @@ static const struct {
     {0x12a, '9'},
 };
 
-asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
+asm void ov98_022499C8 (PLString * param0, char * param1, int param2)
 {
    push {r3, r4, r5, r6, r7, lr}
    sub sp, #8
@@ -57,7 +57,7 @@ asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
    ldr r0, [sp]
    ldr r1, [sp, #4]
    mov r2, #0x64
-   bl sub_02023DF0
+   bl PLString_ExportCharsUpTo
    ldr r7, [sp, #4]
    mov r6, #0
  _02249A06:
@@ -133,7 +133,7 @@ asm void ov98_02249A80 (void)
    add r0, r6, #0
    add r1, r4, #0
    mov r2, #0x64
-   bl sub_02023DF0
+   bl PLString_ExportCharsUpTo
    ldrh r1, [r4]
    ldr r0, = 0xFFFF
    cmp r1, r0

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -31,7 +31,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -57,7 +57,7 @@ typedef struct {
     UnkStruct_0203E234 unk_04;
     UnkStruct_0203E274 unk_10;
     UnkStruct_0205AA50 unk_1C;
-    UnkStruct_02023790 * unk_2C;
+    PLString * unk_2C;
     void * unk_30;
     int unk_34;
     int unk_38;
@@ -295,7 +295,7 @@ static BOOL sub_02052FFC (UnkStruct_0205300C * param0)
 
 static void sub_0205300C (UnkStruct_0205300C * param0)
 {
-    sub_020237BC(param0->unk_2C);
+    PLString_FreeToHeap(param0->unk_2C);
     sub_0200EBA0(param0->unk_30);
     sub_0205D988(&param0->unk_1C);
 }
@@ -322,7 +322,7 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 static void sub_02053098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1)
 {
     if (param1->unk_2C) {
-        sub_020237BC(param1->unk_2C);
+        PLString_FreeToHeap(param1->unk_2C);
     }
 
     if (sub_0201A7CC(&param1->unk_1C)) {

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -47,7 +47,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02024358.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
@@ -543,14 +543,14 @@ static void ov97_0222B4FC (UnkStruct_0222AE60 * param0, int param1, int param2)
 static void ov97_0222B53C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, u32 param3, u32 param4, int param5)
 {
     int v0, v1;
-    UnkStruct_02023790 * v2;
+    PLString * v2;
 
     v2 = sub_0200B29C(param2, param1, param4, 81);
     v0 = sub_02002D7C(0, v2, sub_02002DF8(0, 2));
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
     sub_0201D78C(param0, 0, v2, v1, param5, 0xff, param3, NULL);
-    sub_020237BC(v2);
+    PLString_FreeToHeap(v2);
 }
 
 static void ov97_0222B590 (UnkStruct_0200B358 * param0, int param1)
@@ -571,7 +571,7 @@ static void ov97_0222B590 (UnkStruct_0200B358 * param0, int param1)
 static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3)
 {
     int v0, v1, v2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     UnkStruct_0200B358 * v4;
     UnkStruct_0200B144 * v5;
     UnkStruct_0222AE60 * v6 = (UnkStruct_0222AE60 *)param0;
@@ -595,7 +595,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
 
         v3 = sub_0200B29C(v4, v5, Unk_ov97_0223DF40[v0], 81);
         sub_0201D78C(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
-        sub_020237BC(v3);
+        PLString_FreeToHeap(v3);
     }
 
     sub_0200B498(v4, 0, v6->unk_0C);

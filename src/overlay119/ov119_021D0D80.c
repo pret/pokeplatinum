@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 
@@ -50,7 +50,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02073C2C.h"
@@ -311,8 +311,8 @@ void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, i
 int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 * param2, int param3)
 {
     int v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v1;
+    PLString * v2;
     UnkStruct_0200B358 * v3;
     UnkStruct_02073C74_sub1 * v4;
     UnkStruct_0200B144 * v5;
@@ -322,7 +322,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 
     v5 = sub_0200B144(0, 26, 357, 71);
     v3 = sub_0200B358(71);
     v1 = sub_0200B1EC(v5, param1);
-    v2 = sub_02023790(255, 71);
+    v2 = PLString_AllocFromHeap(255, 71);
     v4 = sub_02076B10(param2);
 
     sub_0200B538(v3, 0, v4);
@@ -331,8 +331,8 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 
     v0 = sub_0201D738(param0, 1, v2, 0, 0, param3, NULL);
 
     sub_0200B190(v5);
-    sub_020237BC(v2);
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v2);
+    PLString_FreeToHeap(v1);
     sub_0200B3F0(v3);
 
     return v0;
@@ -349,13 +349,13 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
 
     {
         int v1;
-        UnkStruct_02023790 * v2;
+        PLString * v2;
         UnkStruct_0200B144 * v3 = sub_0200B144(0, 26, 357, 71);
 
         for (v1 = 0; v1 < 2; v1++) {
             v2 = sub_0200B1EC(v3, 2 + v1);
             sub_02013A6C(param0->unk_04.unk_44, v2, v1);
-            sub_020237BC(v2);
+            PLString_FreeToHeap(v2);
         }
 
         sub_0200B190(v3);

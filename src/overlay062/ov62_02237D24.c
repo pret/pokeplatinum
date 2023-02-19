@@ -4,7 +4,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -41,7 +41,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
@@ -1242,7 +1242,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_02023790 * v2;
+    PLString * v2;
     int v3;
 
     v1 = &v0->unk_D0[0];
@@ -1253,7 +1253,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
     v3 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
-    sub_020237BC(v2);
+    PLString_FreeToHeap(v2);
     sub_0201A9A4(v1);
 }
 
@@ -1400,7 +1400,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x18]
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl PLString_AllocFromHeap
     add r7, r0, #0
     ldr r0, [r5, #0x48]
     mov r1, #0x38
@@ -1408,7 +1408,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x1c]
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl PLString_AllocFromHeap
     add r4, r0, #0
     mov r0, #0x8b
     lsl r0, r0, #2
@@ -1479,11 +1479,11 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x20]
     bl sub_0201A9A4
     add r0, r4, #0
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x1c]
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     add r0, r7, #0
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x18]
     bl sub_0200B3F0
  _0223984A:
@@ -1535,7 +1535,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     str r0, [sp, #0x18]
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl PLString_AllocFromHeap
     add r7, r0, #0
     ldr r0, [r5, #0x48]
     mov r1, #0x38
@@ -1543,7 +1543,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     str r0, [sp, #0x1c]
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl PLString_AllocFromHeap
     add r4, r0, #0
     mov r0, #0x8e
     lsl r0, r0, #2
@@ -1614,11 +1614,11 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     ldr r0, [sp, #0x20]
     bl sub_0201A9A4
     add r0, r4, #0
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x1c]
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     add r0, r7, #0
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x18]
     bl sub_0200B3F0
  _0223997A:
@@ -1871,7 +1871,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     add r0, r4, #0
     bl sub_0201A9A4
     ldr r0, [sp, #0x2c]
-    bl sub_020237BC
+    bl PLString_FreeToHeap
     ldr r0, [sp, #0x1c]
     add r7, r7, #1
     add r1, r0, #0

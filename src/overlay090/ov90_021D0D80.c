@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -49,7 +49,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
@@ -59,19 +59,19 @@
 typedef struct {
     UnkStruct_0200B144 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_02023790 * unk_08;
-    UnkStruct_02023790 * unk_0C;
-    UnkStruct_02023790 * unk_10;
-    UnkStruct_02023790 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C;
-    UnkStruct_02023790 * unk_20;
-    UnkStruct_02023790 * unk_24[6];
-    UnkStruct_02023790 * unk_3C[2];
+    PLString * unk_08;
+    PLString * unk_0C;
+    PLString * unk_10;
+    PLString * unk_14;
+    PLString * unk_18;
+    PLString * unk_1C;
+    PLString * unk_20;
+    PLString * unk_24[6];
+    PLString * unk_3C[2];
 } UnkStruct_ov90_021D0ECC_sub1;
 
 typedef struct {
-    UnkStruct_02023790 * unk_00;
+    PLString * unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -120,7 +120,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1750(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D18BC(UnkStruct_ov90_021D0ECC * param0);
-static void ov90_021D17F8(UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02023790 * param2, u8 param3, u8 param4, u8 param5);
+static void ov90_021D17F8(UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, PLString * param2, u8 param3, u8 param4, u8 param5);
 static void ov90_021D1984(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1A48(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC * param0);
@@ -624,7 +624,7 @@ static void ov90_021D13D8 (UnkStruct_ov90_021D0ECC * param0)
 
     param0->unk_28.unk_00 = sub_0200B144(0, 26, 22, param0->unk_00);
     param0->unk_28.unk_04 = sub_0200B368(2, ((18 + 1) * 4), param0->unk_00);
-    param0->unk_28.unk_08 = sub_02023790(((18 + 1) * 4), param0->unk_00);
+    param0->unk_28.unk_08 = PLString_AllocFromHeap(((18 + 1) * 4), param0->unk_00);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_28.unk_24[v0] = sub_0200B1EC(param0->unk_28.unk_00, 9 + v0);
@@ -644,20 +644,20 @@ static void ov90_021D146C (UnkStruct_ov90_021D0ECC * param0)
 {
     int v0 = 0;
 
-    sub_020237BC(param0->unk_28.unk_3C[1]);
-    sub_020237BC(param0->unk_28.unk_3C[0]);
-    sub_020237BC(param0->unk_28.unk_20);
-    sub_020237BC(param0->unk_28.unk_1C);
-    sub_020237BC(param0->unk_28.unk_18);
-    sub_020237BC(param0->unk_28.unk_0C);
-    sub_020237BC(param0->unk_28.unk_14);
-    sub_020237BC(param0->unk_28.unk_10);
+    PLString_FreeToHeap(param0->unk_28.unk_3C[1]);
+    PLString_FreeToHeap(param0->unk_28.unk_3C[0]);
+    PLString_FreeToHeap(param0->unk_28.unk_20);
+    PLString_FreeToHeap(param0->unk_28.unk_1C);
+    PLString_FreeToHeap(param0->unk_28.unk_18);
+    PLString_FreeToHeap(param0->unk_28.unk_0C);
+    PLString_FreeToHeap(param0->unk_28.unk_14);
+    PLString_FreeToHeap(param0->unk_28.unk_10);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_020237BC(param0->unk_28.unk_24[v0]);
+        PLString_FreeToHeap(param0->unk_28.unk_24[v0]);
     }
 
-    sub_020237BC(param0->unk_28.unk_08);
+    PLString_FreeToHeap(param0->unk_28.unk_08);
     sub_0200B3F0(param0->unk_28.unk_04);
     sub_0200B190(param0->unk_28.unk_00);
 }
@@ -745,12 +745,12 @@ static void ov90_021D1750 (UnkStruct_ov90_021D0ECC * param0)
 
         MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
 
-        v2->unk_00 = sub_02023790(8, param0->unk_00);
+        v2->unk_00 = PLString_AllocFromHeap(8, param0->unk_00);
 
         if (v2->unk_07) {
-            sub_02023810(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
+            PLString_CopyInto(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
         } else {
-            sub_02023D28(v2->unk_00, v1[v0].unk_00);
+            PLString_ImportChars(v2->unk_00, v1[v0].unk_00);
         }
     }
 
@@ -762,11 +762,11 @@ static void ov90_021D17DC (UnkStruct_ov90_021D0ECC * param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 30; v0++) {
-        sub_020237BC(param0->unk_BC[v0].unk_00);
+        PLString_FreeToHeap(param0->unk_BC[v0].unk_00);
     }
 }
 
-static void ov90_021D17F8 (UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02023790 * param2, u8 param3, u8 param4, u8 param5)
+static void ov90_021D17F8 (UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, PLString * param2, u8 param3, u8 param4, u8 param5)
 {
     UnkStruct_ov90_021D17F8 * v0;
     int v1, v2, v3, v4, v5;
@@ -807,7 +807,7 @@ static void ov90_021D18BC (UnkStruct_ov90_021D0ECC * param0)
     int v1;
 
     sub_0202D708(param0->unk_24, &v0);
-    sub_020237E8(param0->unk_28.unk_08);
+    PLString_Zero(param0->unk_28.unk_08);
     sub_0200B60C(param0->unk_28.unk_04, 0, v0.unk_00, 2, 0, 1);
     sub_0200B60C(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
     sub_0200C388(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_10);
@@ -846,14 +846,14 @@ static void ov90_021D1984 (UnkStruct_ov90_021D0ECC * param0)
 
 static void ov90_021D1A48 (UnkStruct_ov90_021D0ECC * param0)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     UnkStruct_ov90_021D17F8 * v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
     v0 = sub_02014B34(&v1->unk_08, param0->unk_00);
 
     sub_0201ADA4(&param0->unk_6C[2], (((0 << 4) | 0)));
     sub_0201D78C(&param0->unk_6C[2], 0, v0, 0, 4, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 static void ov90_021D1A9C (UnkStruct_ov90_021D0ECC * param0)

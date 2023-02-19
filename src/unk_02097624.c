@@ -15,7 +15,7 @@
 #include "unk_020067E8.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
@@ -228,9 +228,9 @@ UnkStruct_020978D8 * sub_02097834 (const UnkStruct_0202818C * param0, int param1
 
     v1->unk_00 = 0;
     v1->unk_08 = sub_02028308(param0);
-    v1->unk_10 = sub_02023790(8, param1);
+    v1->unk_10 = PLString_AllocFromHeap(8, param1);
 
-    sub_02023D28(v1->unk_10, sub_0202830C((UnkStruct_0202818C *)param0));
+    PLString_ImportChars(v1->unk_10, sub_0202830C((UnkStruct_0202818C *)param0));
 
     v1->unk_0F = sub_02028314(param0);
     v1->unk_0D = sub_02028320(param0);
@@ -250,7 +250,7 @@ UnkStruct_020978D8 * sub_02097834 (const UnkStruct_0202818C * param0, int param1
 void sub_020978D8 (UnkStruct_020978D8 * param0)
 {
     if (param0->unk_10 != NULL) {
-        sub_020237BC(param0->unk_10);
+        PLString_FreeToHeap(param0->unk_10);
     }
 
     Heap_FreeToHeap(param0);

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208B878.h"
@@ -40,10 +40,10 @@ void ov62_02232394(UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C * param1
 void ov62_022323B8(UnkStruct_ov62_022323B8 * param0, int param1);
 void ov62_022324A0(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, const UnkStruct_ov62_02248CDC * param2);
 void ov62_02232594(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, UnkStruct_0200B144 * param2, const UnkStruct_ov62_02248CDC * param3);
-void ov62_02232778(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, UnkStruct_0200B144 * param2, const UnkStruct_ov62_02248CDC * param3, int param4, int param5, UnkStruct_02023790 * param6);
-void ov62_02232AAC(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, const UnkStruct_ov62_02248CDC * param2, UnkStruct_02023790 * param3[20][2]);
-int ov62_02232BB4(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, UnkStruct_02023790 * param2[20][2]);
-int ov62_02232C78(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, int param2, int param3, UnkStruct_02023790 * param4);
+void ov62_02232778(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, UnkStruct_0200B144 * param2, const UnkStruct_ov62_02248CDC * param3, int param4, int param5, PLString * param6);
+void ov62_02232AAC(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, const UnkStruct_ov62_02248CDC * param2, PLString * param3[20][2]);
+int ov62_02232BB4(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, PLString * param2[20][2]);
+int ov62_02232C78(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1, int param2, int param3, PLString * param4);
 int ov62_02232F68(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1);
 int ov62_02233064(UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * param1);
 void ov62_022331C8(UnkStruct_ov62_02233310 * param0, s16 param1);
@@ -84,7 +84,7 @@ int ov62_02233FEC(UnkStruct_ov62_02233F74 * param0);
 void ov62_02234214(UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C * param1);
 void ov62_02234228(UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C * param1);
 void ov62_0223427C(UnkStruct_ov62_02233F74 * param0, int param1);
-int ov62_0223429C(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1);
+int ov62_0223429C(UnkStruct_0205AA50 * param0, PLString * param1);
 void ov62_022342BC(UnkStruct_0208C06C * param0);
 BOOL ov62_022342CC(UnkStruct_0208C06C * param0);
 void ov62_02234314(void);
@@ -100,6 +100,6 @@ int ov62_022345B8(UnkStruct_0208C06C * param0, int param1, int param2, int param
 void ov62_022348B8(UnkStruct_0208C06C * param0, int param1, int param2, int param3);
 void ov62_022348FC(UnkStruct_0208C06C * param0);
 BOOL ov62_02234970(UnkStruct_0208C06C * param0, u64 param1);
-void ov62_022349A8(UnkStruct_0208C06C * param0, UnkStruct_02023790 * param1);
+void ov62_022349A8(UnkStruct_0208C06C * param0, PLString * param1);
 
 #endif // POKEPLATINUM_OV62_02231690_H

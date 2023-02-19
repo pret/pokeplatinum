@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_02073C74.h"
@@ -13,7 +13,7 @@
 #include "unk_0201378C.h"
 #include "unk_02017038.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
@@ -326,15 +326,15 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
         return;
     }
 
-    param0->unk_14.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
+    param0->unk_14.unk_04 = PLString_AllocFromHeap(((2 * 18) * 2), param0->unk_00);
     sub_0200B1B8(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
+    PLString * v0 = PLString_AllocFromHeap((((2 * 18) * 2) * 8), param0->unk_00);
 
-    param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
+    param0->unk_1C.unk_04 = PLString_AllocFromHeap((((2 * 18) * 2) * 8), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, sub_02074470(param0->unk_0C, 149, NULL), 2, 2, 1);
@@ -347,14 +347,14 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
     sub_0200B60C(param0->unk_08, 7, sub_02074470(param0->unk_0C, 148, NULL), 2, 0, 1);
     sub_0200BECC(param0->unk_08, 8, sub_02074470(param0->unk_0C, 152, NULL));
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    PLString * v0 = PLString_AllocFromHeap((((2 * 18) * 2) * 4), param0->unk_00);
 
-    param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_1C.unk_04 = PLString_AllocFromHeap((((2 * 18) * 2) * 4), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, sub_02074470(param0->unk_0C, 149, NULL), 2, 2, 1); sub_0200C2E0(param0->unk_08, 1, sub_02074470(param0->unk_0C, 150, NULL)); sub_0200B60C(param0->unk_08, 2, sub_02074470(param0->unk_0C, 151, NULL), 2, 0, 1);
@@ -388,14 +388,14 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
     }
 
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
+    PLString * v0 = PLString_AllocFromHeap((((2 * 18) * 2) * 5), param0->unk_00);
 
-    param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
+    param0->unk_1C.unk_04 = PLString_AllocFromHeap((((2 * 18) * 2) * 5), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
 
@@ -408,7 +408,7 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
     }
 
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 static const u16 Unk_020F5578[6][5] = {
@@ -425,7 +425,7 @@ static void sub_02092C24 (UnkStruct_02090800 * param0)
     int v0[6], v1, v2;
     int v3, v4;
 
-    param0->unk_24.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
+    param0->unk_24.unk_04 = PLString_AllocFromHeap(((2 * 18) * 2), param0->unk_00);
 
     v0[0] = (sub_02074470(param0->unk_0C, 70, NULL));
     v0[1] = (sub_02074470(param0->unk_0C, 71, NULL));
@@ -599,7 +599,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
 {
     int v0, v1, v2;
 
-    param0->unk_2C.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
+    param0->unk_2C.unk_04 = PLString_AllocFromHeap(((2 * 18) * 2), param0->unk_00);
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -617,7 +617,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     int v0 = sub_02074470(param0->unk_0C, 9, NULL);
     int v1;
 
-    param0->unk_34.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_34.unk_04 = PLString_AllocFromHeap((((2 * 18) * 2) * 4), param0->unk_00);
 
     if (v0 <= 5) {
         v1 = 105;
@@ -822,12 +822,12 @@ static void sub_020932A4 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C *
 {
     int v0 = sub_02025F20(param1);
     int v1 = sub_02025F30(param1);
-    UnkStruct_02023790 * v2 = sub_02025F04(param1, param2);
+    PLString * v2 = sub_02025F04(param1, param2);
 
     sub_02074C60(param0, 7, &v0);
     sub_02074C60(param0, 157, &v1);
     sub_02074C60(param0, 145, v2);
-    sub_020237BC(v2);
+    PLString_FreeToHeap(v2);
 }
 
 static void sub_020932F0 (UnkStruct_02073C74_sub1 * param0, int param1, int param2)

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020797C8_H
 #define POKEPLATINUM_UNK_020797C8_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
@@ -18,8 +18,8 @@ u32 sub_02079A50(const UnkStruct_020797DC * param0);
 void sub_02079A94(UnkStruct_020797DC * param0, u32 param1);
 u32 sub_02079AA8(const UnkStruct_020797DC * param0, u32 param1);
 void sub_02079AC4(UnkStruct_020797DC * param0, u32 param1, u32 param2);
-void sub_02079AF4(const UnkStruct_020797DC * param0, u32 param1, UnkStruct_02023790 * param2);
-void sub_02079B24(UnkStruct_020797DC * param0, u32 param1, const UnkStruct_02023790 * param2);
+void sub_02079AF4(const UnkStruct_020797DC * param0, u32 param1, PLString * param2);
+void sub_02079B24(UnkStruct_020797DC * param0, u32 param1, const PLString * param2);
 u32 sub_02079B54(const UnkStruct_020797DC * param0, u32 param1);
 u32 sub_02079B98(const UnkStruct_020797DC * param0, u32 param1);
 u32 sub_02079BEC(const UnkStruct_020797DC * param0);

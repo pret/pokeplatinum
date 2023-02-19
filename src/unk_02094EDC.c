@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -23,7 +23,7 @@
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020298BC.h"
 #include "unk_02073C2C.h"
 #include "unk_020933F8.h"
@@ -632,7 +632,7 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, UnkStruct_02073C74 * p
     }
 
     {
-        UnkStruct_02023790 * v3, * v4;
+        PLString * v3, * v4;
         UnkStruct_0200B144 * v5;
 
         v5 = sub_0200B144(1, 26, 205, param2);
@@ -642,8 +642,8 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, UnkStruct_02073C74 * p
         sub_02074B30(param1, 119, v3);
         sub_02074B30(param1, 145, v4);
 
-        sub_020237BC(v3);
-        sub_020237BC(v4);
+        PLString_FreeToHeap(v3);
+        PLString_FreeToHeap(v4);
         sub_0200B190(v5);
     }
 

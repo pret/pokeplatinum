@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
@@ -46,7 +46,7 @@
 #include "unk_0201E86C.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02073C2C.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"
@@ -760,13 +760,13 @@ static void ov21_021E9968 (UnkStruct_0205AA50 * param0, int param1, int param2)
 
 static void ov21_021E998C (UnkStruct_0205AA50 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(64, param1);
+    PLString * v0 = PLString_AllocFromHeap(64, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 110, v0);
     sub_0201D78C(param0, 0, v0, 32, 0, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0200B190(v1);
 }
 

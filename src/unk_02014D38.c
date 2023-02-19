@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02006E3C.h"
@@ -10,7 +10,7 @@
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 
 static const u16 Unk_020E5522[] = {
@@ -168,7 +168,7 @@ void sub_02014D70 (UnkStruct_02014D38 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, UnkStruct_02023790 * param2)
+void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, PLString * param2)
 {
     u32 v0, v1;
 
@@ -176,7 +176,7 @@ void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, UnkStruct_02023790 *
     sub_0200B1B8(param0->unk_04[v0], v1, param2);
 }
 
-void sub_02014DB8 (u16 param0, UnkStruct_02023790 * param1)
+void sub_02014DB8 (u16 param0, PLString * param1)
 {
     if (param0 != 0xffff) {
         u32 v0, v1;
@@ -185,7 +185,7 @@ void sub_02014DB8 (u16 param0, UnkStruct_02023790 * param1)
         v0 = Unk_020E550C[v0];
         sub_0200AF20(26, v0, v1, 0, param1);
     } else {
-        sub_020237E8(param1);
+        PLString_Zero(param1);
     }
 }
 

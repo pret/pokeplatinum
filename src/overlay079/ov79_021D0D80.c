@@ -35,7 +35,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
@@ -693,7 +693,7 @@ static void ov79_021D1568 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_2C = sub_0200B144(0, 26, 463, param0->unk_00);
     param0->unk_28 = sub_020158A8(param0->unk_00);
     param0->unk_30.unk_00 = sub_0200B368(2, 64, param0->unk_00);
-    param0->unk_30.unk_04 = sub_02023790(64, param0->unk_00);
+    param0->unk_30.unk_04 = PLString_AllocFromHeap(64, param0->unk_00);
     param0->unk_30.unk_08 = sub_0200B1EC(param0->unk_2C, 6);
     param0->unk_30.unk_0C = sub_0200B1EC(param0->unk_2C, 22);
     param0->unk_30.unk_10 = sub_0200B1EC(param0->unk_2C, 4);
@@ -719,22 +719,22 @@ static void ov79_021D1618 (UnkStruct_ov79_021D0E1C * param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_020237BC(param0->unk_30.unk_20[v0]);
+        PLString_FreeToHeap(param0->unk_30.unk_20[v0]);
 
         if (v0 >= 5) {
             break;
         }
 
-        sub_020237BC(param0->unk_30.unk_38[v0]);
+        PLString_FreeToHeap(param0->unk_30.unk_38[v0]);
     }
 
-    sub_020237BC(param0->unk_30.unk_1C);
-    sub_020237BC(param0->unk_30.unk_18);
-    sub_020237BC(param0->unk_30.unk_14);
-    sub_020237BC(param0->unk_30.unk_10);
-    sub_020237BC(param0->unk_30.unk_0C);
-    sub_020237BC(param0->unk_30.unk_08);
-    sub_020237BC(param0->unk_30.unk_04);
+    PLString_FreeToHeap(param0->unk_30.unk_1C);
+    PLString_FreeToHeap(param0->unk_30.unk_18);
+    PLString_FreeToHeap(param0->unk_30.unk_14);
+    PLString_FreeToHeap(param0->unk_30.unk_10);
+    PLString_FreeToHeap(param0->unk_30.unk_0C);
+    PLString_FreeToHeap(param0->unk_30.unk_08);
+    PLString_FreeToHeap(param0->unk_30.unk_04);
     sub_0200B3F0(param0->unk_30.unk_00);
     sub_020158F4(param0->unk_28);
     sub_0200B190(param0->unk_2C);

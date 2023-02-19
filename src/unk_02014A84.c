@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
 
@@ -13,7 +13,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_0201D0C8.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 
 static u32 sub_02014C00(u32 param0, u32 param1);
 
@@ -88,9 +88,9 @@ void sub_02014AC4 (UnkStruct_02014A84 * param0, int param1)
     }
 }
 
-UnkStruct_02023790 * sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
+PLString * sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     UnkStruct_0200B358 * v1;
     UnkStruct_0200B144 * v2;
     int v3;
@@ -114,7 +114,7 @@ UnkStruct_02023790 * sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1
     return v0;
 }
 
-UnkStruct_02023790 * sub_02014BA0 (const UnkStruct_02014A84 * param0, u32 param1)
+PLString * sub_02014BA0 (const UnkStruct_02014A84 * param0, u32 param1)
 {
     return sub_0200B010(26, Unk_020E5498[param0->unk_00], param0->unk_02, param1);
 }
@@ -141,7 +141,7 @@ BOOL sub_02014BD0 (const UnkStruct_02014A84 * param0)
 
 static u32 sub_02014C00 (u32 param0, u32 param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     const u16 * v1;
     u32 v2;
 
@@ -149,7 +149,7 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
     GF_ASSERT(param1 < sub_02014CD4(param0));
 
     v0 = sub_0200B010(26, Unk_020E5498[param0], param1, 0);
-    v1 = sub_02023E2C(v0);
+    v1 = PLString_GetCharData(v0);
     v2 = 0;
 
     while (*v1 != 0xffff) {
@@ -164,7 +164,7 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
         }
     }
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     return v2;
 }
 

@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -51,7 +51,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
@@ -148,7 +148,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, UnkStruct_02073C74 * param1, 
     v0->unk_66 = 2;
     v0->unk_08 = sub_0200B144(1, 26, 368, param11);
     v0->unk_0C = sub_0200B358(param11);
-    v0->unk_10 = sub_02023790((2 * 160), param11);
+    v0->unk_10 = PLString_AllocFromHeap((2 * 160), param11);
     v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(UnkStruct_02098D38));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(UnkStruct_02098D38));
@@ -982,7 +982,7 @@ static void sub_0207C520 (void * param0)
 
 static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
 
     v0 = sub_0200B1EC(param0->unk_08, param1);
 

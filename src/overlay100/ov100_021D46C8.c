@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_020985E4.h"
 #include "overlay100/struct_ov100_021D46C8.h"
@@ -24,7 +24,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "overlay100/ov100_021D44C0.h"
@@ -34,23 +34,23 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
 {
     int v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3 = sub_02023790(511, 111);
+    PLString * v2;
+    PLString * v3 = PLString_AllocFromHeap(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
     v2 = sub_0200B1EC(v1, param2);
 
     if (param2 == 22) {
-        UnkStruct_02023790 * v5 = sub_02025F04(param1->unk_08, 111);
+        PLString * v5 = sub_02025F04(param1->unk_08, 111);
         UnkStruct_0200B358 * v6 = sub_0200B358(111);
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v6, v3, v2);
-        sub_020237BC(v5);
+        PLString_FreeToHeap(v5);
         sub_0200B3F0(v6);
     } else {
-        sub_02023810(v3, v2);
+        PLString_CopyInto(v3, v2);
     }
 
     v4 = sub_02027AC0(param1->unk_04);
@@ -60,8 +60,8 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     sub_0201A954(&param0->unk_30);
 
     sub_0200E060(&param0->unk_30, 0, 500, 15);
-    sub_020237BC(v2);
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v2);
+    PLString_FreeToHeap(v3);
 
     param0->unk_40 = v0;
 

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"
@@ -58,7 +58,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202C7FC.h"
@@ -100,7 +100,7 @@ static void ov72_0223E3A8(UnkStruct_02022550 ** param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 * param0, int param1);
 static void ov72_0223E430(UnkStruct_02018340 * param0, UnkStruct_02015920 * param1);
 static void ov72_0223E9B4(u8 * param0, u8 * param1);
-static void * ov72_0223E060(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, u8 param3, const u32 param4);
+static void * ov72_0223E060(UnkStruct_0205AA50 * param0, PLString * param1, int param2, u8 param3, const u32 param4);
 static void ov72_0223EA18(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223EAD8(UnkStruct_ov72_0223EAD8 * param0);
 static void ov72_0223E5E0(UnkStruct_0205AA50 * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
@@ -403,14 +403,14 @@ static void ov72_0223DB98 (UnkStruct_ov72_0223DB98 * param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_18[v0] = sub_02023790(7 + 1, 39);
+        param0->unk_18[v0] = PLString_AllocFromHeap(7 + 1, 39);
         param0->unk_4391[v0].unk_10_4 = 0;
         param0->unk_43E6[v0].unk_02 = 0;
     }
 
-    param0->unk_2C = sub_02023790((10 * 2), 39);
-    param0->unk_30 = sub_02023790((20 * 2), 39);
-    param0->unk_34 = sub_02023790((40 * 2), 39);
+    param0->unk_2C = PLString_AllocFromHeap((10 * 2), 39);
+    param0->unk_30 = PLString_AllocFromHeap((20 * 2), 39);
+    param0->unk_34 = PLString_AllocFromHeap((40 * 2), 39);
     param0->unk_437E = 0;
     param0->unk_370 = 1;
 
@@ -429,12 +429,12 @@ static void ov72_0223DC34 (UnkStruct_ov72_0223DB98 * param0)
     sub_02015938(param0->unk_5D00);
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_020237BC(param0->unk_18[v0]);
+        PLString_FreeToHeap(param0->unk_18[v0]);
     }
 
-    sub_020237BC(param0->unk_34);
-    sub_020237BC(param0->unk_30);
-    sub_020237BC(param0->unk_2C);
+    PLString_FreeToHeap(param0->unk_34);
+    PLString_FreeToHeap(param0->unk_30);
+    PLString_FreeToHeap(param0->unk_2C);
 }
 
 static void ov72_0223DC6C (UnkStruct_02018340 * param0)
@@ -556,7 +556,7 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void * ov72_0223E060 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, u8 param3, const u32 param4)
+static void * ov72_0223E060 (UnkStruct_0205AA50 * param0, PLString * param1, int param2, u8 param3, const u32 param4)
 {
     int v0, v1;
 
@@ -1099,13 +1099,13 @@ static void ov72_0223E914 (UnkStruct_ov72_0223DB98 * param0)
 
 static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
 
-    v0 = sub_02023790((40 * 2), 39);
+    v0 = PLString_AllocFromHeap((40 * 2), 39);
 
     sub_0200B1B8(param0->unk_14, param1, v0);
     sub_0200C388(param0->unk_10, param0->unk_34, v0);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0201ADA4(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 

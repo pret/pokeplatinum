@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020298BC_H
 #define POKEPLATINUM_UNK_020298BC_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_020298D8.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
@@ -42,12 +42,12 @@ void sub_02029FD0(UnkStruct_02029C68 * param0, const UnkStruct_ov22_02255040 * p
 void sub_0202A084(UnkStruct_02029C68 * param0, u8 param1);
 void sub_0202A0A0(UnkStruct_02029C68 * param0, u16 param1);
 void sub_0202A0CC(UnkStruct_02029C68 * param0, const UnkStruct_02029C68 * param1);
-void sub_0202A0EC(UnkStruct_02029C68 * param0, const UnkStruct_02023790 * param1, int param2);
+void sub_0202A0EC(UnkStruct_02029C68 * param0, const PLString * param1, int param2);
 BOOL sub_0202A110(const UnkStruct_02029C68 * param0, int param1);
 const UnkStruct_0202A138 * sub_0202A138(const UnkStruct_02029C68 * param0);
 const UnkStruct_0202A150 * sub_0202A150(const UnkStruct_02029C68 * param0, int param1);
 u16 sub_0202A184(const UnkStruct_02029C68 * param0);
-void sub_0202A1A0(const UnkStruct_02029C68 * param0, UnkStruct_02023790 * param1);
+void sub_0202A1A0(const UnkStruct_02029C68 * param0, PLString * param1);
 u32 sub_0202A1C0(const UnkStruct_02029C68 * param0);
 u8 sub_0202A1DC(const UnkStruct_02029C68 * param0);
 u16 sub_0202A1F4(const UnkStruct_02029C68 * param0);
@@ -63,17 +63,17 @@ void sub_0202A390(UnkStruct_02029C88 * param0, const UnkStruct_02029C88 * param1
 void sub_0202A3B0(UnkStruct_02029C88 * param0, UnkStruct_02073C74 * param1, s8 param2);
 void sub_0202A3EC(UnkStruct_02029C88 * param0, u32 param1, u8 param2, u8 param3, u8 param4, s8 param5);
 BOOL sub_0202A488(const UnkStruct_02029C88 * param0, int param1);
-void sub_0202A4B4(UnkStruct_02029C88 * param0, const UnkStruct_02023790 * param1, int param2);
+void sub_0202A4B4(UnkStruct_02029C88 * param0, const PLString * param1, int param2);
 const UnkStruct_0202A138 * sub_0202A4D8(const UnkStruct_02029C88 * param0);
 const UnkStruct_0202A150 * sub_0202A4F0(const UnkStruct_02029C88 * param0, int param1);
-void sub_0202A524(const UnkStruct_02029C88 * param0, UnkStruct_02023790 * param1);
+void sub_0202A524(const UnkStruct_02029C88 * param0, PLString * param1);
 u32 sub_0202A544(const UnkStruct_02029C88 * param0);
 void sub_0202A560(const UnkStruct_02029C88 * param0, UnkStruct_02073C74 * param1);
 u8 sub_0202A580(const UnkStruct_02029C88 * param0, int param1);
 u8 sub_0202A5B8(const UnkStruct_02029C88 * param0);
 u32 sub_0202A5D0(const UnkStruct_02029C88 * param0);
 u16 sub_0202A5E8(const UnkStruct_0202A138 * param0);
-void sub_0202A5EC(const UnkStruct_0202A138 * param0, UnkStruct_02023790 * param1);
+void sub_0202A5EC(const UnkStruct_0202A138 * param0, PLString * param1);
 u32 sub_0202A5FC(const UnkStruct_0202A138 * param0);
 s8 sub_0202A604(const UnkStruct_0202A138 * param0);
 u8 sub_0202A60C(const UnkStruct_0202A138 * param0);

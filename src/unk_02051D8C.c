@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -30,7 +30,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0201378C.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -160,17 +160,17 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     UnkStruct_ov6_02240D5C * v4;
     UnkStruct_02073C74 * v5;
 
     v4 = sub_02051D8C(param0, 0x400);
     v2 = sub_0200B144(1, 26, 553, param0);
-    v3 = sub_02023790(8, param0);
+    v3 = PLString_AllocFromHeap(8, param0);
 
     sub_0200B1B8(v2, sub_02025F30(v0) ^ 1, v3);
-    sub_02025EC0(v4->unk_D0[0], sub_02023E2C(v3));
-    sub_020237BC(v3);
+    sub_02025EC0(v4->unk_D0[0], PLString_GetCharData(v3));
+    PLString_FreeToHeap(v3);
     sub_0200B190(v2);
     sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
     sub_0205281C(v4, param1);

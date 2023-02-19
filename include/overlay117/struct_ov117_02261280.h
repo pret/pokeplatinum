@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -48,7 +48,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     UnkStruct_0205AA50 unk_30[5];
     UnkStruct_0200B144 * unk_80;
     UnkStruct_0200B358 * unk_84;
-    UnkStruct_02023790 * unk_88;
+    PLString * unk_88;
     UnkStruct_02002F38 * unk_8C;
     UnkStruct_02012744 * unk_90;
     UnkStruct_0201CD38 * unk_94;

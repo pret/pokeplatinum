@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
@@ -97,7 +97,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0205AA50 unk_00;
-    UnkStruct_02023790 * unk_10;
+    PLString * unk_10;
     u16 unk_14;
     u16 unk_16;
 } UnkStruct_02068EFC;
@@ -934,7 +934,7 @@ static BOOL sub_02068EFC (UnkStruct_02068870 * param0)
     UnkStruct_02068EFC * v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = sub_02023790(128, 11);
+    v0->unk_10 = PLString_AllocFromHeap(128, 11);
 
     sub_0207CC10(param0->unk_00->unk_0C, v0->unk_10, sub_0207D3FC(sub_0207D990(param0->unk_00->unk_0C)), 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);
@@ -974,7 +974,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
     case 2:
         sub_02062C78(v0->unk_38);
         sub_0201A8FC(&v1->unk_00);
-        sub_020237BC(v1->unk_10);
+        PLString_FreeToHeap(v1->unk_10);
         Heap_FreeToHeap(v1);
 
         return 1;
@@ -1196,7 +1196,7 @@ static void sub_020692E4 (UnkStruct_02068870 * param0, u32 param1)
     UnkStruct_02068EFC * v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = sub_02023790(128, 11);
+    v0->unk_10 = PLString_AllocFromHeap(128, 11);
 
     sub_0207CD34(sub_02025E38(param0->unk_00->unk_0C), v0->unk_10, param0->unk_28, param1, 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);

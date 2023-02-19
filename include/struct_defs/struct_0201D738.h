@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_0201D738_H
 #define POKEPLATINUM_STRUCT_0201D738_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 
 typedef struct {
     union {
         const u16 * unk_00_val1;
-        const UnkStruct_02023790 * unk_00_val2;
+        const PLString * unk_00_val2;
     };
     UnkStruct_0205AA50 * unk_04;
     u8 unk_08;

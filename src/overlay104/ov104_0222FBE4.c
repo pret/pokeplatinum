@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -69,7 +69,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -211,7 +211,7 @@ static BOOL ov104_02230E20(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_02230E40(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_02230EB8(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_02230ED8(UnkStruct_ov104_0222E930 * param0);
-static UnkStruct_02023790 * ov104_02230E90(u16 param0, u32 param1);
+static PLString * ov104_02230E90(u16 param0, u32 param1);
 static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_02230F6C(UnkStruct_ov104_0222E930 * param0);
@@ -1867,18 +1867,18 @@ BOOL ov104_02230E40 (UnkStruct_ov104_0222E930 * param0)
     u16 v1 = ov104_0222FC00(param0);
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    UnkStruct_02023790 * v4 = ov104_02230E90(v1, 11);
+    PLString * v4 = ov104_02230E90(v1, 11);
 
     sub_0200B48C(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
-    sub_020237BC(v4);
+    PLString_FreeToHeap(v4);
 
     return 0;
 }
 
-static UnkStruct_02023790 * ov104_02230E90 (u16 param0, u32 param1)
+static PLString * ov104_02230E90 (u16 param0, u32 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     v0 = sub_0200B144(1, 26, 412, param1);
     v1 = sub_0200B1EC(v0, param0);

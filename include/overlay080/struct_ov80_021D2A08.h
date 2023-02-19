@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "overlay080/struct_ov80_021D259C.h"
@@ -39,7 +39,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     UnkStruct_ov80_021D259C unk_44[5];
     UnkStruct_0200B144 * unk_80;
     UnkStruct_0200B144 * unk_84;
-    UnkStruct_02023790 * unk_88;
+    PLString * unk_88;
     int unk_8C;
     int unk_90;
     UnkStruct_ov80_021D2AF4 * unk_94;

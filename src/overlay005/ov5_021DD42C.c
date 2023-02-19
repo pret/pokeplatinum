@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -17,7 +17,7 @@
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0203E880.h"
@@ -25,8 +25,8 @@
 #include "overlay005/ov5_021DD42C.h"
 
 typedef struct {
-    UnkStruct_02023790 * unk_00;
-    UnkStruct_02023790 * unk_04;
+    PLString * unk_00;
+    PLString * unk_04;
     UnkStruct_0200B358 * unk_08;
     UnkStruct_0205AA50 * unk_0C;
     u8 * unk_10;
@@ -116,8 +116,8 @@ static u8 ov5_021DD574 (UnkStruct_0203E724 * param0)
 
 static void ov5_021DD588 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * param1)
 {
-    param1->unk_00 = *((UnkStruct_02023790 **)(sub_0203F098(param0, 16)));
-    param1->unk_04 = *((UnkStruct_02023790 **)(sub_0203F098(param0, 17)));
+    param1->unk_00 = *((PLString **)(sub_0203F098(param0, 16)));
+    param1->unk_04 = *((PLString **)(sub_0203F098(param0, 17)));
     param1->unk_08 = *((UnkStruct_0200B358 **)(sub_0203F098(param0, 15)));
     param1->unk_0C = sub_0203F098(param0, 1);
     param1->unk_10 = sub_0203F098(param0, 6);
@@ -126,8 +126,8 @@ static void ov5_021DD588 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * 
 
 static void ov5_021DD5D0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov5_021DD648 * param2)
 {
-    param2->unk_00 = *((UnkStruct_02023790 **)(sub_0203F098(param0, 16)));
-    param2->unk_04 = *((UnkStruct_02023790 **)(sub_0203F098(param0, 17)));
+    param2->unk_00 = *((PLString **)(sub_0203F098(param0, 16)));
+    param2->unk_04 = *((PLString **)(sub_0203F098(param0, 17)));
     param2->unk_08 = param1;
     param2->unk_0C = sub_0203F098(param0, 1);
     param2->unk_10 = sub_0203F098(param0, 6);
@@ -154,7 +154,7 @@ static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const UnkStruct_0200B
 static void ov5_021DD664 (UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
     UnkStruct_02014A84 v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
 
     sub_02014A84(&v0);
     sub_02014CE0(&v0, param1, param2);
@@ -163,8 +163,8 @@ static void ov5_021DD664 (UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param
 
     v1 = sub_02014B34(&v0, 32);
 
-    sub_02023810(param0->unk_00, v1);
-    sub_020237BC(v1);
+    PLString_CopyInto(param0->unk_00, v1);
+    PLString_FreeToHeap(v1);
 }
 
 static void ov5_021DD6B4 (UnkStruct_ov5_021DD648 * param0, int param1, int param2, int param3, int param4)

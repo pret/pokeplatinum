@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "overlay017/const_ov17_022536B4.h"
 
@@ -42,7 +42,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
@@ -1513,7 +1513,7 @@ void ov17_02242DA8 (UnkStruct_ov17_02246F24 * param0)
 
 static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 * param4, const void * param5, int param6)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     u32 v1;
 
     if (param6 == 1) {
@@ -1543,7 +1543,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 
         (void)0;
     }
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov17_02242E5C (UnkStruct_ov17_02246F24 * param0, u32 param1, const UnkStruct_ov17_022449B8 * param2, const void * param3)
@@ -1578,10 +1578,10 @@ int ov17_02242ECC (UnkStruct_ov17_02246F24 * param0)
 
 void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     u32 v1;
 
-    v0 = sub_02023790(12, 21);
+    v0 = PLString_AllocFromHeap(12, 21);
 
     sub_02074470(param0->unk_0C.unk_00->unk_00[param1], 119, v0);
 
@@ -1594,7 +1594,7 @@ void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
     ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, 0, v1, 0, 33005, 0, 0, 0, 0, 15);
     ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], 0, v1, 0, 33005, 0, 0, 0, 0, 15);
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov17_02242FA4 (UnkStruct_ov17_02246F24 * param0)

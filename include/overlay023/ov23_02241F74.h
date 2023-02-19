@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV23_02241F74_H
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
@@ -18,8 +18,8 @@ UnkStruct_ov23_02253E2C * ov23_022421BC(void);
 UnkStruct_ov23_02253E2C * ov23_022421CC(void);
 UnkStruct_ov23_02253E2C * ov23_022421DC(void);
 void ov23_022421EC(void);
-BOOL ov23_0224223C(UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, UnkStruct_02023790 * param3);
-BOOL ov23_022422A8(UnkStruct_02025E6C * param0, int param1, int param2, UnkStruct_02023790 * param3);
+BOOL ov23_0224223C(UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, PLString * param3);
+BOOL ov23_022422A8(UnkStruct_02025E6C * param0, int param1, int param2, PLString * param3);
 BOOL ov23_0224240C(int param0, int param1);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void * param2, void * param3);
@@ -39,7 +39,7 @@ void ov23_02242C78(void);
 void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(UnkStruct_0203CDB0 * param0);
-BOOL ov23_02242D60(UnkStruct_02023790 * param0);
+BOOL ov23_02242D60(PLString * param0);
 UnkStruct_02029894 * ov23_02242E10(UnkStruct_021C0794 * param0);
 int ov23_02242E28(void);
 int ov23_02242E40(void);

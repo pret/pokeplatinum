@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -32,7 +32,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -126,7 +126,7 @@ typedef struct {
     u16 unk_1C;
     void * unk_20;
     UnkStruct_0205AA50 unk_24;
-    UnkStruct_02023790 * unk_34;
+    PLString * unk_34;
     u8 unk_38;
     UnkStruct_02001AF4 * unk_3C;
 } UnkStruct_02053FAC;
@@ -1184,7 +1184,7 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_0205DA04(v1->unk_38) == 1) {
-            sub_020237BC(v1->unk_34);
+            PLString_FreeToHeap(v1->unk_34);
             sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
             v1->unk_3C = sub_02002100(v0->unk_08, &Unk_020EC3A0, 1024 - (18 + 12) - 9, 11, 11);
             v1->unk_00 = 2;

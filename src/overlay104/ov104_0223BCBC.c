@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -171,7 +171,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
     UnkStruct_0200B144 * v9;
-    UnkStruct_02023790 * v10;
+    PLString * v10;
     UnkStruct_02025E6C * v11;
     Party * v12;
     Party * v13;

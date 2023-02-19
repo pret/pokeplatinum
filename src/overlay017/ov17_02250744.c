@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02095C48.h"
@@ -32,7 +32,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -241,7 +241,7 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
 
 static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -258,7 +258,7 @@ static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 
 
     param0->unk_10.unk_388 = sub_0201D738(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 }
 
 void ov17_02250968 (UnkStruct_ov17_0224FCA0 * param0, u32 param1, const UnkStruct_ov17_022508E4 * param2)
@@ -336,10 +336,10 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
     sub_02003050(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
 
     {
-        UnkStruct_02023790 * v2;
+        PLString * v2;
         int v3, v4;
 
-        v2 = sub_02023790(12, 24);
+        v2 = PLString_AllocFromHeap(12, 24);
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
@@ -350,7 +350,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
             sub_0201D78C(&param0->unk_10.unk_24[5 + v3], 0, param0->unk_00->unk_00.unk_D8[v4], 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
-        sub_020237BC(v2);
+        PLString_FreeToHeap(v2);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);

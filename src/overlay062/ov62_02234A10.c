@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -22,7 +22,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0208B284.h"
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -39,7 +39,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C * param0);
 
 static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     int v1;
     UnkStruct_0205AA50 * v2 = &param0->unk_8A4;
 
@@ -51,7 +51,7 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
     v1 = ov62_0223429C(v2, v0);
 
     sub_0201D78C(v2, 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0201A9A4(v2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }

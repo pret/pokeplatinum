@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -40,7 +40,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D3208.h"
@@ -743,7 +743,7 @@ static void ov21_021D63C0 (UnkStruct_ov21_021D71A8 * param0)
 
 static void ov21_021D63DC (UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param1);
+    PLString * v0 = PLString_AllocFromHeap(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 0, v0);
@@ -752,27 +752,27 @@ static void ov21_021D63DC (UnkStruct_ov21_021D13FC * param0, int param1, int par
     sub_0200B1B8(v1, 1, v0);
     sub_0201D78C(&param0->unk_04, 0, v0, 128, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    sub_020238A0(v0, param2, 3, 2, 1);
+    PLString_ToInteger(v0, param2, 3, 2, 1);
     sub_0201D78C(&param0->unk_04, 0, v0, 48, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    sub_020238A0(v0, param3, 3, 2, 1);
+    PLString_ToInteger(v0, param3, 3, 2, 1);
     sub_0201D78C(&param0->unk_04, 0, v0, 180, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0200B190(v1);
     sub_0201C3C0(param0->unk_00, 1);
 }
 
 static void ov21_021D64B0 (UnkStruct_ov21_021D13FC * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param1);
+    PLString * v0 = PLString_AllocFromHeap(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 109, v0);
     sub_0201D78C(&param0->unk_04, 0, v0, 8, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020238A0(v0, param2, 3, 2, 1);
+    PLString_ToInteger(v0, param2, 3, 2, 1);
     sub_0201D78C(&param0->unk_04, 0, v0, 48, 170, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
     sub_0200B190(v1);
     sub_0201C3C0(param0->unk_00, 1);
 }
@@ -1295,7 +1295,7 @@ static void ov21_021D6DF4 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 {
     UnkStruct_ov21_021D4CB8 v0;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_02023790 * v2 = sub_02023790(32, param2);
+    PLString * v2 = PLString_AllocFromHeap(32, param2);
     UnkStruct_0200B144 * v3 = sub_0200B144(0, 26, 697, param2);
 
     v0.unk_00 = param1->unk_14C;
@@ -1310,7 +1310,7 @@ static void ov21_021D6DF4 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
     v1 = ov21_021D4D6C(param1->unk_14C, 15, 2);
 
-    sub_020238A0(v2, param4, 3, 2, 1);
+    PLString_ToInteger(v2, param4, 3, 2, 1);
     sub_0201D78C(v1, 2, v2, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     sub_0200B1B8(v3, 99, v2);
     sub_0201D78C(v1, 2, v2, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
@@ -1324,7 +1324,7 @@ static void ov21_021D6DF4 (UnkStruct_ov21_021D71A8 * param0, UnkStruct_ov21_021D
 
     ov21_021D4DA0(v1);
 
-    sub_020237BC(v2);
+    PLString_FreeToHeap(v2);
     sub_0200B190(v3);
 }
 

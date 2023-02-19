@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -85,7 +85,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
@@ -2532,8 +2532,8 @@ static BOOL sub_020403EC (UnkStruct_0203E724 * param0)
 static BOOL sub_020404A4 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0;
-    UnkStruct_02023790 ** v1;
-    UnkStruct_02023790 ** v2;
+    PLString ** v1;
+    PLString ** v2;
     UnkStruct_0200B358 ** v3;
     u16 v4;
     u16 v5;
@@ -2622,8 +2622,8 @@ static BOOL sub_020405DC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     u8 * v1 = sub_0203F098(v0, 3);
-    UnkStruct_02023790 ** v2 = sub_0203F098(v0, 17);
-    UnkStruct_02023790 ** v3 = sub_0203F098(v0, 16);
+    PLString ** v2 = sub_0203F098(v0, 17);
+    PLString ** v3 = sub_0203F098(v0, 16);
     UnkStruct_0200B358 ** v4 = sub_0203F098(v0, 15);
     u8 v5 = (*((param0)->unk_08++));
     u16 v6 = sub_0203E838(param0);
@@ -4944,7 +4944,7 @@ static BOOL sub_02042E64 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     u16 * v1 = sub_0203F098(v0, 8);
-    UnkStruct_02023790 ** v2 = sub_0203F098(v0, 16);
+    PLString ** v2 = sub_0203F098(v0, 16);
     u8 * v3 = sub_0203F098(v0, 6);
     u8 * v4 = sub_0203F098(v0, 3);
     u16 v5 = inline_02049538(param0);
@@ -7762,8 +7762,8 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     u16 v5 = inline_02049538(param0);
     UnkStruct_0200B358 * v6 = sub_0200B358(32);
     UnkStruct_0200B144 * v7 = sub_0200B144(0, 26, 372, 32);
-    UnkStruct_02023790 * v8;
-    UnkStruct_02023790 * v9;
+    PLString * v8;
+    PLString * v9;
 
     sub_0200BE48(v6, 0, v2);
     sub_0200BE48(v6, 1, v3);
@@ -7772,10 +7772,10 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
 
     v8 = sub_0200B29C(v6, v7, 1, 32);
     v9 = sub_0200B1EC(v7, 0);
-    *v1 = (sub_02023BE0(v8, v9) == 0);
+    *v1 = (PLString_IsPrefixOf(v8, v9) == 0);
 
-    sub_020237BC(v8);
-    sub_020237BC(v9);
+    PLString_FreeToHeap(v8);
+    PLString_FreeToHeap(v9);
     sub_0200B190(v7);
     sub_0200B3F0(v6);
 
@@ -7928,7 +7928,7 @@ static BOOL sub_020461E0 (UnkStruct_0203E724 * param0)
 static BOOL sub_02046294 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02023790 ** v1 = sub_0203F098(v0, 16);
+    PLString ** v1 = sub_0203F098(v0, 16);
     UnkStruct_0205AA50 * v2 = sub_0203F098(v0, 1);
 
     ov8_0224B67C(v0, v2, param0->unk_2C, *v1);

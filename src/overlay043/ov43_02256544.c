@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -44,7 +44,7 @@ struct UnkStruct_ov43_02256544_t {
     UnkStruct_0205AA50 unk_A4;
     UnkStruct_0200B144 * unk_B4;
     UnkStruct_0200B144 * unk_B8;
-    UnkStruct_02023790 * unk_BC;
+    PLString * unk_BC;
 };
 
 static void ov43_022565B4(UnkStruct_ov43_02256544 * param0);
@@ -73,7 +73,7 @@ BOOL ov43_02256544 (UnkStruct_ov43_02256544 ** param0, const UnkStruct_ov43_0225
         v0->unk_30 = ov25_02254664();
         v0->unk_B4 = sub_0200B144(1, 26, 624, 8);
         v0->unk_B8 = sub_0200B144(1, 26, 456, 8);
-        v0->unk_BC = sub_02023790(128, 8);
+        v0->unk_BC = PLString_AllocFromHeap(128, 8);
         ov43_022565B4(v0);
         *param0 = v0;
 
@@ -180,7 +180,7 @@ static void ov43_02256640 (UnkStruct_ov43_02256544 * param0)
 void ov43_02256680 (UnkStruct_ov43_02256544 * param0)
 {
     if (param0 != NULL) {
-        sub_020237BC(param0->unk_BC);
+        PLString_FreeToHeap(param0->unk_BC);
         sub_0200B190(param0->unk_B4);
         sub_0200B190(param0->unk_B8);
         ov43_02256640(param0);

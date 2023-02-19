@@ -45,7 +45,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -292,7 +292,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_14.unk_84 = sub_0200B144(0, 26, 206, 23);
     v0->unk_14.unk_88 = sub_0200B358(23);
-    v0->unk_14.unk_8C = sub_02023790((2 * 160), 23);
+    v0->unk_14.unk_8C = PLString_AllocFromHeap((2 * 160), 23);
     v0->unk_14.unk_94 = sub_02012744((3 * 3), 23);
 
     {
@@ -440,7 +440,7 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
     sub_02002FA0(v0->unk_14.unk_90, 2);
     sub_02002FA0(v0->unk_14.unk_90, 3);
     sub_02002F54(v0->unk_14.unk_90);
-    sub_020237BC(v0->unk_14.unk_8C);
+    PLString_FreeToHeap(v0->unk_14.unk_8C);
     sub_0200B3F0(v0->unk_14.unk_88);
     sub_0200B190(v0->unk_14.unk_84);
     Heap_FreeToHeap(v0->unk_14.unk_60);

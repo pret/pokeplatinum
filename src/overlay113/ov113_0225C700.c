@@ -17,7 +17,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -74,7 +74,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
@@ -118,7 +118,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_0200B144 * unk_30;
     UnkStruct_0205AA50 unk_34[8];
     UnkStruct_0205AA50 unk_B4;
-    UnkStruct_02023790 * unk_C4;
+    PLString * unk_C4;
     u8 unk_C8;
     UnkStruct_020203AC * unk_CC;
     fx32 unk_D0;
@@ -181,9 +181,9 @@ static void ov113_0225E068(UnkStruct_ov113_0225DBCC * param0, int param1);
 static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC * param0, int param1);
 static void ov113_0225E118(UnkStruct_ov113_0225DBCC * param0);
 static int ov113_0225DE98(UnkStruct_ov113_0225DBCC * param0);
-static void ov113_0225E15C(UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0225E250 * param1, const UnkStruct_02023790 * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
+static void ov113_0225E15C(UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0225E250 * param1, const PLString * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
 static void ov113_0225E250(UnkStruct_ov113_0225E250 * param0);
-static void ov113_0225E264(const UnkStruct_02023790 * param0, int param1, int * param2, int * param3);
+static void ov113_0225E264(const PLString * param0, int param1, int * param2, int * param3);
 static void ov113_0225E294(UnkStruct_ov113_0225DBCC * param0);
 static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC * param0, int param1);
 
@@ -412,7 +412,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     ov113_0225D9FC(v0);
     ov113_0225DBCC(v0);
 
-    v0->unk_C4 = sub_02023790(256, 118);
+    v0->unk_C4 = PLString_AllocFromHeap(256, 118);
     v0->unk_1C = sub_0200C6E4(118);
 
     sub_0200C73C(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, (16 + 16));
@@ -647,7 +647,7 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
     sub_02015938(v0->unk_24);
     ov113_0225E378(&v0->unk_194);
 
-    sub_020237BC(v0->unk_C4);
+    PLString_FreeToHeap(v0->unk_C4);
     sub_02002C60(2);
     sub_020127BC(v0->unk_10);
     sub_0200B190(v0->unk_30);
@@ -1011,12 +1011,12 @@ static void ov113_0225D484 (UnkStruct_ov113_0225DBCC * param0)
     }
 
     {
-        UnkStruct_02023790 * v2;
+        PLString * v2;
 
         v2 = sub_0200B1EC(param0->unk_30, 1);
         ov113_0225E15C(param0, &param0->unk_19C0, v2, 2, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), 0, 10003, 0x1c * 8, 176, 1);
         sub_020129D0(param0->unk_19C0.unk_00, 1);
-        sub_020237BC(v2);
+        PLString_FreeToHeap(v2);
     }
 }
 
@@ -1513,7 +1513,7 @@ static void ov113_0225E118 (UnkStruct_ov113_0225DBCC * param0)
     }
 }
 
-static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0225E250 * param1, const UnkStruct_02023790 * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
+static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0225E250 * param1, const PLString * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
@@ -1574,7 +1574,7 @@ static void ov113_0225E250 (UnkStruct_ov113_0225E250 * param0)
     sub_0201EE28(&param0->unk_04);
 }
 
-static void ov113_0225E264 (const UnkStruct_02023790 * param0, int param1, int * param2, int * param3)
+static void ov113_0225E264 (const PLString * param0, int param1, int * param2, int * param3)
 {
     int v0, v1;
 

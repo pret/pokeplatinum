@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay021/struct_ov21_021D0D80_1.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
@@ -70,6 +70,6 @@ u32 ov21_021D1B94(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D332
 u32 ov21_021D1BD8(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6);
 u32 ov21_021D1C30(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6);
 u32 ov21_021D1C88(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6);
-UnkStruct_02023790 * ov21_021D1CE0(int param0, int param1);
+PLString * ov21_021D1CE0(int param0, int param1);
 
 #endif // POKEPLATINUM_OV21_021D0D80_H

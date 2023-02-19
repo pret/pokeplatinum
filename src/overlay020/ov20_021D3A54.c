@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020998EC.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
@@ -108,7 +108,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     int v0, v1, v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5;
+    PLString * v5;
     u32 v6, v7;
 
     v4 = sub_0200B144(1, 26, 436, 35);
@@ -140,7 +140,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         sub_0201D78C(&v3, 0, v5, v7, 0, 0xff, v6, NULL);
         sub_0201A9F4(&v3);
         sub_0201ACCC(&v3);
-        sub_020237BC(v5);
+        PLString_FreeToHeap(v5);
         sub_0201A8FC(&v3);
 
         param2 += 18;
@@ -155,7 +155,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
 static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2)
 {
     UnkStruct_0205AA50 v0;
-    UnkStruct_02023790 * v1;
+    PLString * v1;
     u32 v2, v3, v4, v5, v6;
 
     GF_ASSERT(param2 < (1024 - 200));
@@ -163,7 +163,7 @@ static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     sub_0201A7E8(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
-    v1 = sub_02023790(4, 35);
+    v1 = PLString_AllocFromHeap(4, 35);
 
     sub_0201ADA4(&v0, 15);
 
@@ -185,7 +185,7 @@ static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     sub_0201ACCC(&v0);
     sub_0201A9F4(&v0);
 
-    sub_020237BC(v1);
+    PLString_FreeToHeap(v1);
     sub_0201A8FC(&v0);
 
     return param2;
@@ -202,7 +202,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     };
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    PLString * v3;
     int v4, v5;
 
     v2 = sub_0200B144(1, 26, 436, 35);
@@ -222,7 +222,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         param2 += 16;
     }
 
-    sub_020237BC(v3);
+    PLString_FreeToHeap(v3);
     sub_0200B190(v2);
 
     return param2;

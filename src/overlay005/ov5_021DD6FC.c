@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "map_header.h"
 #include "unk_02071CFC.h"
 #include "overlay005/ov5_021DD6FC.h"
@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov5_021DD9C8_t {
     NNSG2dCharacterData * unk_34;
     void * unk_38;
     UnkStruct_0200B144 * unk_3C;
-    UnkStruct_02023790 * unk_40;
+    PLString * unk_40;
 } UnkStruct_ov5_021DD9C8;
 
 static void ov5_021DD718(UnkStruct_ov5_021DD9C8 * param0);
@@ -46,7 +46,7 @@ static void ov5_021DD894(UnkStruct_ov5_021DD9C8 * param0, UnkStruct_02018340 * p
 static void ov5_021DD8A4(UnkStruct_0201CD38 * param0, void * param1);
 static void ov5_021DD7A0(UnkStruct_ov5_021DD9C8 * param0, const int param1);
 static void ov5_021DD980(UnkStruct_ov5_021DD9C8 * param0);
-static void ov5_021DD954(UnkStruct_ov5_021DD9C8 * param0, const UnkStruct_02023790 * param1);
+static void ov5_021DD954(UnkStruct_ov5_021DD9C8 * param0, const PLString * param1);
 
 static void ov5_021DD6FC (void * param0, u16 param1, u16 param2)
 {
@@ -210,7 +210,7 @@ static void ov5_021DD8A4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov5_021DD954 (UnkStruct_ov5_021DD9C8 * param0, const UnkStruct_02023790 * param1)
+static void ov5_021DD954 (UnkStruct_ov5_021DD9C8 * param0, const PLString * param1)
 {
     u32 v0;
 
@@ -229,7 +229,7 @@ UnkStruct_ov5_021DD9C8 * ov5_021DD98C (UnkStruct_02018340 * param0)
     UnkStruct_ov5_021DD9C8 * v0;
 
     v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DD9C8));
-    v0->unk_40 = sub_02023790(22, 4);
+    v0->unk_40 = PLString_AllocFromHeap(22, 4);
 
     ov5_021DD894(v0, param0);
     ov5_021DD718(v0);
@@ -242,7 +242,7 @@ void ov5_021DD9C8 (UnkStruct_ov5_021DD9C8 * param0)
 {
     sub_0200B190(param0->unk_3C);
     sub_0201A8FC(&param0->unk_20);
-    sub_020237BC(param0->unk_40);
+    PLString_FreeToHeap(param0->unk_40);
     Heap_FreeToHeap(param0);
 
     param0 = NULL;

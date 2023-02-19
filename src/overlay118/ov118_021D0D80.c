@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
 #include "struct_defs/struct_0207F248.h"
@@ -20,7 +20,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_0203CC84.h"
@@ -142,13 +142,13 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         break;
     case 9:
     {
-        UnkStruct_02023790 * v2;
+        PLString * v2;
 
         v2 = sub_0200B1EC(param0->unk_69C, 202);
 
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v1));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v2);
-        sub_020237BC(v2);
+        PLString_FreeToHeap(v2);
         sub_02082708(param0, 0xffffffff, 1);
     }
         v0->unk_00++;

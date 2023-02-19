@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/struct_plstring_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_020279FC.h"
@@ -23,7 +23,7 @@
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "plstring.h"
 #include "unk_020279FC.h"
 #include "overlay088/ov88_0223E9C4.h"
 
@@ -119,7 +119,7 @@ void ov88_0223EC04 (UnkStruct_0205AA50 * param0)
     sub_0201A8FC(&param0[25]);
 }
 
-void ov88_0223EC78 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, u32 param3, int param4, int param5)
+void ov88_0223EC78 (UnkStruct_0205AA50 * param0, PLString * param1, int param2, u32 param3, int param4, int param5)
 {
     int v0 = 0;
 
@@ -137,7 +137,7 @@ void ov88_0223EC78 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, in
 
 int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruct_0200B144 * param3, UnkStruct_0200B358 * param4)
 {
-    UnkStruct_02023790 * v0;
+    PLString * v0;
     int v1;
 
     v0 = sub_0200B29C(param4, param3, param1, 26);
@@ -150,7 +150,7 @@ int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruc
 
     sub_0201ADA4(param0, 15);
     v1 = sub_0201D78C(param0, param2, v0, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-    sub_020237BC(v0);
+    PLString_FreeToHeap(v0);
 
     return v1;
 }
