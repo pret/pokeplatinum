@@ -318,7 +318,7 @@ static void ov13_02221C54 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
 
     v0 = &param0->unk_206C[param1];
     v1 = &param0->unk_04[param3];
-    v2 = PLString_AllocFromHeap(12, param0->unk_00->unk_0C);
+    v2 = PLString_New(12, param0->unk_00->unk_0C);
     v3 = sub_0200B1EC(param0->unk_1FA4, Unk_ov13_02228EC4[param3]);
 
     sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v1->unk_00));
@@ -330,8 +330,8 @@ static void ov13_02221C54 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         sub_0201D78C(v0, param2, v2, param4, param5, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))), NULL);
     }
 
-    PLString_FreeToHeap(v3);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v3);
+    PLString_Free(v2);
 
     if ((v1->unk_16_7 == 0) && (v1->unk_17_7 == 0)) {
         if (v1->unk_17_0 == 0) {
@@ -344,7 +344,7 @@ static void ov13_02221C54 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
                 sub_0201D78C(v0, 0, v3, v4, param5, 0xff, ((u32)(((10 & 0xff) << 16) | ((11 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             }
 
-            PLString_FreeToHeap(v3);
+            PLString_Free(v3);
         } else if (v1->unk_17_0 == 1) {
             v3 = sub_0200B1EC(param0->unk_1FA4, 17);
             v4 = sub_0201C294(v0) * 8 - sub_02002D7C(0, v3, 0);
@@ -355,7 +355,7 @@ static void ov13_02221C54 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
                 sub_0201D78C(v0, 0, v3, v4, param5, 0xff, ((u32)(((12 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             }
 
-            PLString_FreeToHeap(v3);
+            PLString_Free(v3);
         }
     }
 
@@ -419,14 +419,14 @@ static void ov13_02221FA8 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     PLString * v2;
 
     v0 = &param0->unk_04[param2];
-    v1 = PLString_AllocFromHeap(16, param0->unk_00->unk_0C);
+    v1 = PLString_New(16, param0->unk_00->unk_0C);
     v2 = sub_0200B1EC(param0->unk_1FA4, 8);
 
     sub_0200B6A0(param0->unk_1FA8, 0, v0->unk_18);
     sub_0200C388(param0->unk_1FA8, v1, v2);
     sub_0201D78C(&param0->unk_206C[param1], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v2);
+    PLString_Free(v1);
     sub_0201A9A4(&param0->unk_206C[param1]);
 }
 
@@ -441,16 +441,16 @@ static void ov13_02222030 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     if (v0->unk_1A == 0) {
         v1 = sub_0200B1EC(param0->unk_1FA4, 20);
     } else {
-        v1 = PLString_AllocFromHeap(18, param0->unk_00->unk_0C);
+        v1 = PLString_New(18, param0->unk_00->unk_0C);
         v2 = sub_0200B1EC(param0->unk_1FA4, 9);
 
         sub_0200B70C(param0->unk_1FA8, 0, v0->unk_1A);
         sub_0200C388(param0->unk_1FA8, v1, v2);
-        PLString_FreeToHeap(v2);
+        PLString_Free(v2);
     }
 
     sub_0201D78C(&param0->unk_206C[param1], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(&param0->unk_206C[param1]);
 }
 
@@ -462,7 +462,7 @@ static void ov13_022220CC (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     u32 v3;
 
     v0 = &param0->unk_206C[param2];
-    v1 = PLString_AllocFromHeap(16, param0->unk_00->unk_0C);
+    v1 = PLString_New(16, param0->unk_00->unk_0C);
     v2 = sub_0200B1EC(param0->unk_1FA4, param3);
 
     sub_0200B630(param0->unk_1FA8, 0, param1);
@@ -475,8 +475,8 @@ static void ov13_022220CC (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     }
 
     sub_0201D78C(v0, param4, v1, v3, param5, 0xff, param6, NULL);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v2);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -487,7 +487,7 @@ static void ov13_02222170 (UnkStruct_ov13_022213F0 * param0, u16 param1, u8 para
     v0 = sub_0200B1EC(param0->unk_1FA4, 14);
 
     sub_0201D78C(&param0->unk_206C[param1], 0, v0, param2, param3, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0201A9A4(&param0->unk_206C[param1]);
 }
 
@@ -501,7 +501,7 @@ static void ov13_022221C8 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v0 = sub_0200B1EC(param0->unk_1FA4, param1);
 
     sub_0201D78C(&param0->unk_204C[0], 1, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0201A9A4(&param0->unk_204C[0]);
 }
 
@@ -516,7 +516,7 @@ static void ov13_0222222C (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v2 = sub_02002D7C(2, v1, 0);
 
     sub_0201D78C(v0, 2, v1, (sub_0201C294(v0) * 8 - v2) / 2, 6, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -533,24 +533,24 @@ static void ov13_02222290 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 23);
 
     sub_0201D78C(&param0->unk_206C[19], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 24);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_16_0, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
     sub_0201D78C(&param0->unk_206C[11 + v4], 0, v2, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 25);
 
     sub_0201D78C(&param0->unk_206C[20], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 26);
-    v2 = PLString_AllocFromHeap((6 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((6 + 1) * 2, param0->unk_00->unk_0C);
 
     if (v0->unk_16_0 < 100) {
         sub_0200B60C(
@@ -565,8 +565,8 @@ static void ov13_02222290 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v3 = sub_0201C294(&param0->unk_206C[12 + v4]) * 8 - sub_02002D7C(0, v2, 0);
 
     sub_0201D78C(&param0->unk_206C[12 + v4], 0, v2, v3, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(&param0->unk_206C[19]);
     sub_0201A9A4(&param0->unk_206C[11 + v4]);
     sub_0201A9A4(&param0->unk_206C[20]);
@@ -587,10 +587,10 @@ static void ov13_02222464 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 32);
 
     sub_0201D78C(&param0->unk_206C[14], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 33);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_06, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -599,8 +599,8 @@ static void ov13_02222464 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v5 = sub_0201C294(&param0->unk_206C[5 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[5 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(&param0->unk_206C[14]);
     sub_0201A9A4(&param0->unk_206C[5 + v3]);
 }
@@ -619,10 +619,10 @@ static void ov13_02222560 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 34);
 
     sub_0201D78C(&param0->unk_206C[15], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 35);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_08, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -631,8 +631,8 @@ static void ov13_02222560 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v5 = sub_0201C294(&param0->unk_206C[6 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[6 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(&param0->unk_206C[15]);
     sub_0201A9A4(&param0->unk_206C[6 + v3]);
 }
@@ -651,10 +651,10 @@ static void ov13_0222265C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 40);
 
     sub_0201D78C(&param0->unk_206C[16], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 41);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_0A, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -663,8 +663,8 @@ static void ov13_0222265C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v5 = sub_0201C294(&param0->unk_206C[7 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[7 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
 
     sub_0201A9A4(&param0->unk_206C[16]);
     sub_0201A9A4(&param0->unk_206C[7 + v3]);
@@ -684,10 +684,10 @@ static void ov13_0222275C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 36);
 
     sub_0201D78C(&param0->unk_206C[17], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 37);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_0C, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -696,8 +696,8 @@ static void ov13_0222275C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v5 = sub_0201C294(&param0->unk_206C[8 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[8 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(&param0->unk_206C[17]);
     sub_0201A9A4(&param0->unk_206C[8 + v3]);
 }
@@ -716,10 +716,10 @@ static void ov13_0222285C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 38);
 
     sub_0201D78C(&param0->unk_206C[18], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 39);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_0E, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -728,8 +728,8 @@ static void ov13_0222285C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v5 = sub_0201C294(&param0->unk_206C[9 + v3]) * 8 - v4;
 
     sub_0201D78C(&param0->unk_206C[9 + v3], 0, v2, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(&param0->unk_206C[18]);
     sub_0201A9A4(&param0->unk_206C[9 + v3]);
 }
@@ -748,17 +748,17 @@ static void ov13_0222295C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 28);
 
     sub_0201D78C(&param0->unk_206C[13], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 31);
     v3 = sub_02002D7C(0, v1, 0);
     v5 = (sub_0201C294(&param0->unk_206C[4]) * 8 - v3) / 2;
 
     sub_0201D78C(&param0->unk_206C[4 + v6], 0, v1, v5, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 29);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_10, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -766,17 +766,17 @@ static void ov13_0222295C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v4 = sub_02002D7C(0, v2, 0);
 
     sub_0201D78C(&param0->unk_206C[4 + v6], 0, v2, v5 - v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 30);
-    v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, v0->unk_12, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
     sub_0201D78C(&param0->unk_206C[4 + v6], 0, v2, v5 + v3, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(&param0->unk_206C[13]);
     sub_0201A9A4(&param0->unk_206C[4 + v6]);
 }
@@ -794,7 +794,7 @@ static void ov13_02222AF4 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v2 = sub_0200B1EC(v1, v0->unk_18);
 
     sub_0201D78C(&param0->unk_206C[2 + v3], 0, v2, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
     sub_0200B190(v1);
     sub_0201A9A4(&param0->unk_206C[2 + v3]);
 }
@@ -808,7 +808,7 @@ static void ov13_02222B6C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 51);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -828,10 +828,10 @@ static void ov13_02222BB4 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v1, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-        PLString_FreeToHeap(v1);
+        PLString_Free(v1);
     } else {
         v1 = sub_0200B1EC(param0->unk_1FA4, 52);
-        v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+        v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
         sub_0200B60C(param0->unk_1FA8, 0, param2, 3, 0, 1);
         sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -840,8 +840,8 @@ static void ov13_02222BB4 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v2, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-        PLString_FreeToHeap(v1);
-        PLString_FreeToHeap(v2);
+        PLString_Free(v1);
+        PLString_Free(v2);
     }
 
     sub_0201A9A4(v0);
@@ -856,7 +856,7 @@ static void ov13_02222C9C (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v1 = sub_0200B1EC(param0->unk_1FA4, 48);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -876,10 +876,10 @@ static void ov13_02222CE4 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v1, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-        PLString_FreeToHeap(v1);
+        PLString_Free(v1);
     } else {
         v1 = sub_0200B1EC(param0->unk_1FA4, 49);
-        v2 = PLString_AllocFromHeap((3 + 1) * 2, param0->unk_00->unk_0C);
+        v2 = PLString_New((3 + 1) * 2, param0->unk_00->unk_0C);
 
         sub_0200B60C(param0->unk_1FA8, 0, param2, 3, 0, 1);
         sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -888,8 +888,8 @@ static void ov13_02222CE4 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         v4 = sub_0201C294(v0) * 8 - v3;
 
         sub_0201D78C(v0, 0, v2, v4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-        PLString_FreeToHeap(v1);
-        PLString_FreeToHeap(v2);
+        PLString_Free(v1);
+        PLString_Free(v2);
     }
 
     sub_0201A9A4(v0);
@@ -906,7 +906,7 @@ static void ov13_02222DCC (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v2 = sub_0200B1EC(v0, param2);
 
     sub_0201D78C(v1, 0, v2, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
     sub_0200B190(v0);
     sub_0201A9A4(v1);
 }
@@ -926,7 +926,7 @@ static void ov13_02222E2C (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v2 = sub_0200B1EC(v0, v4);
 
     sub_0201D78C(v1, 0, v2, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
 
     sub_0200B190(v0);
     sub_0201A9A4(v1);
@@ -945,7 +945,7 @@ static void ov13_02222E94 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v3 = (sub_0201C294(v0) * 8 - v2) / 2;
 
     sub_0201D78C(v0, 0, v1, v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -972,7 +972,7 @@ static void ov13_02222EF8 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
         sub_0201D78C(v0, 0, v1, v2, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -990,10 +990,10 @@ static void ov13_02222F74 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v5 = (sub_0201C294(v0) * 8 - v3) / 2;
 
     sub_0201D78C(v0, 0, v1, v5, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 44);
-    v2 = PLString_AllocFromHeap((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((2 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, param2, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
@@ -1001,17 +1001,17 @@ static void ov13_02222F74 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v4 = sub_02002D7C(0, v2, 0);
 
     sub_0201D78C(v0, 0, v2, v5 - v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 45);
-    v2 = PLString_AllocFromHeap((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((2 + 1) * 2, param0->unk_00->unk_0C);
 
     sub_0200B60C(param0->unk_1FA8, 0, param3, 3, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
     sub_0201D78C(v0, 0, v2, v5 + v3, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(v0);
 }
 
@@ -1032,7 +1032,7 @@ static void ov13_022230A8 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v2 = sub_02002D7C(2, v1, 0);
 
     sub_0201D78C(v0, 2, v1, (12 * 8 - v2) / 2, 6, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -1052,7 +1052,7 @@ void ov13_02223118 (UnkStruct_ov13_022213F0 * param0)
     v1 = sub_0200B1EC(param0->unk_1FA4, 60);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -1064,24 +1064,24 @@ static void ov13_0222317C (UnkStruct_ov13_022213F0 * param0, UnkStruct_ov13_0222
     u32 v3;
 
     v0 = &param0->unk_206C[param2];
-    v2 = PLString_AllocFromHeap((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((2 + 1) * 2, param0->unk_00->unk_0C);
     v1 = sub_0200B1EC(param0->unk_1FA4, 43);
 
     sub_0201D78C(v0, 0, v1, 40, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 46);
     v3 = sub_02002D7C(0, v1, 0);
 
     sub_0201D78C(v0, 0, v1, 80, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 45);
 
     sub_0200B60C(param0->unk_1FA8, 0, param1->unk_03, 2, 0, 1);
     sub_0200C388(param0->unk_1FA8, v2, v1);
     sub_0201D78C(v0, 0, v2, 80 + v3, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 44);
 
@@ -1091,8 +1091,8 @@ static void ov13_0222317C (UnkStruct_ov13_022213F0 * param0, UnkStruct_ov13_0222
     v3 = sub_02002D7C(0, v2, 0);
 
     sub_0201D78C(v0, 0, v2, 80 - v3, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(v0);
 }
 
@@ -1104,11 +1104,11 @@ static void ov13_022232C8 (UnkStruct_ov13_022213F0 * param0, UnkStruct_ov13_0222
     u32 v3;
 
     v0 = &param0->unk_206C[param2];
-    v2 = PLString_AllocFromHeap((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = PLString_New((2 + 1) * 2, param0->unk_00->unk_0C);
     v1 = sub_0200B1EC(param0->unk_1FA4, 43);
     v3 = sub_02002D7C(0, v1, 0);
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201AE78(v0, 0, 40 + v3, 24, 80 - (40 + v3), 16);
 
     v1 = sub_0200B1EC(param0->unk_1FA4, 44);
@@ -1119,8 +1119,8 @@ static void ov13_022232C8 (UnkStruct_ov13_022213F0 * param0, UnkStruct_ov13_0222
     v3 = sub_02002D7C(0, v2, 0);
 
     sub_0201D78C(v0, 0, v2, 80 - v3, 24, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0201A9A4(v0);
 }
 
@@ -1204,12 +1204,12 @@ static void ov13_02223550 (UnkStruct_ov13_022213F0 * param0, u32 param1)
 
     v0 = &param0->unk_206C[0];
     v1 = &param0->unk_04[param1];
-    v2 = PLString_AllocFromHeap(12, param0->unk_00->unk_0C);
+    v2 = PLString_New(12, param0->unk_00->unk_0C);
     v3 = sub_0200B1EC(param0->unk_1FA4, Unk_ov13_02228EC4[param1]);
 
     sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v1->unk_00));
     sub_0200C388(param0->unk_1FA8, v2, v3);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
 
     v3 = NULL;
 
@@ -1234,7 +1234,7 @@ static void ov13_02223550 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v7 = (sub_0201C294(v0) * 8 - v4 - v5 - v6) / 2;
 
     sub_0201D78C(v0, 2, v2, v7, 8, 0xff, ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((9 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
 
     if (v3 != NULL) {
         if (v1->unk_17_0 == 0) {
@@ -1245,7 +1245,7 @@ static void ov13_02223550 (UnkStruct_ov13_022213F0 * param0, u32 param1)
                 v0, 0, v3, v7 + v4 + v6, 8, 0xff, ((u32)(((12 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     }
 
     sub_0201A9A4(v0);
@@ -1520,7 +1520,7 @@ static void ov13_02223F7C (UnkStruct_ov13_022213F0 * param0)
             sub_0201D78C(&param0->unk_206C[4], 0, v0, v1, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
-        PLString_FreeToHeap(v0);
+        PLString_Free(v0);
         sub_0201A9A4(&param0->unk_206C[4]);
     }
 
@@ -1602,55 +1602,55 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
         v3 = sub_0200B1EC(param0->unk_1FA4, 88);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (param0->unk_04[v1->unk_11].unk_10 != v4) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 82);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200B60C(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if ((Item_GetAttributeFromStruct(v2, 36) != 0) || (Item_GetAttributeFromStruct(v2, 37) != 0)) {
         sub_0200B1B8(param0->unk_1FA4, 87, param0->unk_1FAC);
     } else if (v5 == 0x1) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 92);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (v5 == 0x2) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 83);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (v5 == 0x4) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 85);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (v5 == 0x8) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 86);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (v5 == 0x10) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 84);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (v5 == 0x20) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 90);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else if (v5 == 0x40) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 91);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     } else {
         v3 = sub_0200B1EC(param0->unk_1FA4, 89);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     }
 
     Heap_FreeToHeap(v2);
@@ -1669,5 +1669,5 @@ void ov13_0222449C (UnkStruct_ov13_022213F0 * param0)
     sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
     sub_0200B630(param0->unk_1FA8, 1, 373);
     sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v2);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
 }

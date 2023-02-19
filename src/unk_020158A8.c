@@ -21,7 +21,7 @@ UnkStruct_020158A8 * sub_020158A8 (int param0)
     v0->unk_00 = sub_0200B144(0, 26, 465, param0);
 
     for (v1 = 0; v1 < 29; v1++) {
-        v0->unk_04[v1] = PLString_AllocFromHeap(22, param0);
+        v0->unk_04[v1] = PLString_New(22, param0);
         sub_0200B1B8(v0->unk_00, v1, v0->unk_04[v1]);
     }
 
@@ -33,7 +33,7 @@ void sub_020158F4 (UnkStruct_020158A8 * param0)
     int v0;
 
     for (v0 = (29 - 1); v0 >= 0; v0--) {
-        PLString_FreeToHeap(param0->unk_04[v0]);
+        PLString_Free(param0->unk_04[v0]);
     }
 
     sub_0200B190(param0->unk_00);

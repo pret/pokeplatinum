@@ -701,12 +701,12 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
-            v0 = PLString_AllocFromHeap(255, 102);
+            v0 = PLString_New(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             sub_0200C388(v3, v0, v4);
-            PLString_FreeToHeap(v4);
-            PLString_FreeToHeap(v5);
+            PLString_Free(v4);
+            PLString_Free(v5);
             sub_0200B3F0(v3);
         }
     } else if (param2 == 41) {
@@ -717,12 +717,12 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
-            v0 = PLString_AllocFromHeap(255, 102);
+            v0 = PLString_New(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             sub_0200C388(v3, v0, v4);
-            PLString_FreeToHeap(v4);
-            PLString_FreeToHeap(v5);
+            PLString_Free(v4);
+            PLString_Free(v5);
             sub_0200B3F0(v3);
         }
     } else {
@@ -733,7 +733,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
     sub_0201A870(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0201A8FC(&v2);
 }
 
@@ -810,7 +810,7 @@ void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     sub_0201A870(param1->unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0201A8FC(&v2);
 }
 

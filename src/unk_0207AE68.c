@@ -148,7 +148,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, UnkStruct_02073C74 * param1, 
     v0->unk_66 = 2;
     v0->unk_08 = sub_0200B144(1, 26, 368, param11);
     v0->unk_0C = sub_0200B358(param11);
-    v0->unk_10 = PLString_AllocFromHeap((2 * 160), param11);
+    v0->unk_10 = PLString_New((2 * 160), param11);
     v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(UnkStruct_02098D38));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(UnkStruct_02098D38));

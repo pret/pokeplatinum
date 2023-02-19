@@ -125,7 +125,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
 
     *v2 = sub_02093800(&v8);
 
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 0;
 }

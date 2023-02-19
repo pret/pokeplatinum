@@ -642,8 +642,8 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, UnkStruct_02073C74 * p
         sub_02074B30(param1, 119, v3);
         sub_02074B30(param1, 145, v4);
 
-        PLString_FreeToHeap(v3);
-        PLString_FreeToHeap(v4);
+        PLString_Free(v3);
+        PLString_Free(v4);
         sub_0200B190(v5);
     }
 

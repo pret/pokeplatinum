@@ -314,12 +314,12 @@ static BOOL sub_0209A688 (UnkStruct_0209A3D0 * param0, u32 param1, int param2, i
         sub_0201AE78(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
-        param0->unk_14 = PLString_AllocFromHeap(0x400, param0->unk_00);
+        param0->unk_14 = PLString_New(0x400, param0->unk_00);
         sub_0200B1B8(param0->unk_1C, param1, param0->unk_14);
         param0->unk_10 = sub_0201D738(&param0->unk_20, 1, param0->unk_14, 0, 0, param3, NULL);
 
         if (param3 == 0) {
-            PLString_FreeToHeap(param0->unk_14);
+            PLString_Free(param0->unk_14);
             param0->unk_0C++;
         }
 
@@ -327,7 +327,7 @@ static BOOL sub_0209A688 (UnkStruct_0209A3D0 * param0, u32 param1, int param2, i
         break;
     case 1:
         if (!(sub_0201D724(param0->unk_10))) {
-            PLString_FreeToHeap(param0->unk_14);
+            PLString_Free(param0->unk_14);
             param0->unk_0C++;
         }
         break;

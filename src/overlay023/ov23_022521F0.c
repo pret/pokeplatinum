@@ -508,8 +508,8 @@ int ov23_02252C70 (void * param0)
 
 static void ov23_02252C78 (UnkStruct_ov23_02250CD4 * param0)
 {
-    PLString_FreeToHeap(param0->unk_68);
-    PLString_FreeToHeap(param0->unk_6C);
+    PLString_Free(param0->unk_68);
+    PLString_Free(param0->unk_6C);
     sub_0200B3F0(param0->unk_70);
     Heap_FreeToHeap(param0);
 }
@@ -932,8 +932,8 @@ void ov23_022534A0 (UnkStruct_0203CDB0 * param0)
     v4->unk_0C = param0;
     v4->unk_2AC = v7;
     v4->unk_288 = v6;
-    v4->unk_68 = PLString_AllocFromHeap((50 * 2), 4);
-    v4->unk_6C = PLString_AllocFromHeap((50 * 2), 4);
+    v4->unk_68 = PLString_New((50 * 2), 4);
+    v4->unk_6C = PLString_New((50 * 2), 4);
     v4->unk_70 = sub_0200B358(4);
     v4->unk_2AA = 0;
 

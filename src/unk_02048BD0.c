@@ -97,7 +97,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         return 0;
     case 6:
     {
-        PLString * v14 = PLString_AllocFromHeap(64, 32);
+        PLString * v14 = PLString_New(64, 32);
         UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
         sub_02025EF4(v15, v14);
@@ -105,7 +105,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         sub_0202B470(v1, 0, sub_02025F30(v15));
         sub_0202B494(v1, 0, GAME_LANGUAGE);
         sub_0202B40C(v1, 0, sub_0201D35C());
-        PLString_FreeToHeap(v14);
+        PLString_Free(v14);
         sub_0202B384(v1, 0, 1);
         sub_0206D424(param0->unk_34);
     }

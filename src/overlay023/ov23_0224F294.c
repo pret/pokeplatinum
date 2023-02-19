@@ -441,8 +441,8 @@ void ov23_0224F758 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1
     v0->unk_0C = param1;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = PLString_AllocFromHeap((50 * 2), 4);
-    v0->unk_6C = PLString_AllocFromHeap((50 * 2), 4);
+    v0->unk_68 = PLString_New((50 * 2), 4);
+    v0->unk_6C = PLString_New((50 * 2), 4);
     v0->unk_70 = sub_0200B358(4);
     v0->unk_04 = sub_0200D9E8(ov23_0224F914, v0, 10000);
 
@@ -502,7 +502,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
                 PLString * v6 = sub_02025F04(v5, 4);
 
                 sub_02013A6C(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
-                PLString_FreeToHeap(v6);
+                PLString_Free(v6);
             } else {
                 sub_02013A4C(param0->unk_40, v3, Unk_ov23_02256924[v4].unk_00, Unk_ov23_02256924[v4].unk_04);
             }
@@ -1435,8 +1435,8 @@ void ov23_02250A50 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1
     v0->unk_0C = param1;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = PLString_AllocFromHeap((50 * 2), 4);
-    v0->unk_6C = PLString_AllocFromHeap((50 * 2), 4);
+    v0->unk_68 = PLString_New((50 * 2), 4);
+    v0->unk_6C = PLString_New((50 * 2), 4);
     v0->unk_70 = sub_0200B358(4);
 
     sub_020594FC();
@@ -1475,8 +1475,8 @@ static void ov23_02250B34 (UnkStruct_0201CD38 * param0, UnkStruct_ov23_02250CD4 
         sub_02002154(param1->unk_5C, 4);
     }
 
-    PLString_FreeToHeap(param1->unk_68);
-    PLString_FreeToHeap(param1->unk_6C);
+    PLString_Free(param1->unk_68);
+    PLString_Free(param1->unk_6C);
     sub_0200B3F0(param1->unk_70);
 
     ov23_02254044(ov23_022421AC());
@@ -1780,11 +1780,11 @@ void ov23_02251044 (void * param0, u32 param1)
     }
 
     if (v0->unk_68) {
-        PLString_FreeToHeap(v0->unk_68);
+        PLString_Free(v0->unk_68);
     }
 
     if (v0->unk_6C) {
-        PLString_FreeToHeap(v0->unk_6C);
+        PLString_Free(v0->unk_6C);
     }
 
     if (v0->unk_70) {
@@ -1862,8 +1862,8 @@ void * ov23_022511B0 (UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * para
     v0->unk_25C = 0;
     v0->unk_48 = NULL;
     v0->unk_60 = NULL;
-    v0->unk_68 = PLString_AllocFromHeap((50 * 2), 4);
-    v0->unk_6C = PLString_AllocFromHeap((50 * 2), 4);
+    v0->unk_68 = PLString_New((50 * 2), 4);
+    v0->unk_6C = PLString_New((50 * 2), 4);
     v0->unk_70 = sub_0200B358(4);
 
     ov23_02250CD4(v0);

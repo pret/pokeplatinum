@@ -63,7 +63,7 @@ void sub_02025EC0 (UnkStruct_02025E6C * param0, const u16 * param1)
 
 void sub_02025EE0 (UnkStruct_02025E6C * param0, const PLString * param1)
 {
-    PLString_ExportCharsUpTo(param1, param0->unk_00, 7 + 1);
+    PLString_Dump(param1, param0->unk_00, 7 + 1);
 }
 
 const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
@@ -73,12 +73,12 @@ const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
 
 void sub_02025EF4 (const UnkStruct_02025E6C * param0, PLString * param1)
 {
-    PLString_ImportChars(param1, param0->unk_00);
+    PLString_FillWithChars(param1, param0->unk_00);
 }
 
 PLString * sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
 {
-    PLString * v0 = PLString_AllocFromHeap(7 + 1, param1);
+    PLString * v0 = PLString_New(7 + 1, param1);
 
     sub_02025EF4(param0, v0);
     return v0;

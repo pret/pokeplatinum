@@ -301,7 +301,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         sub_02074B30(v6, 157, &v17);
 
         v4 = v6;
-        PLString_FreeToHeap(v15);
+        PLString_Free(v15);
     }
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
@@ -435,7 +435,7 @@ static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v2 = sub_0202605C(v1, 32);
     sub_0200B48C(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
 }
 
 static void sub_0204BFB8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)

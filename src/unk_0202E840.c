@@ -205,12 +205,12 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
         v2 = 0;
 
         v3->unk_00[v0].unk_00 = v1;
-        PLString_ExportCharsUpTo(v4, v3->unk_00[v0].unk_08, 7 + 1);
+        PLString_Dump(v4, v3->unk_00[v0].unk_08, 7 + 1);
         v3->unk_00[v0].unk_04 = v6[v0];
     }
 
     Heap_FreeToHeap(v6);
-    PLString_FreeToHeap(v4);
+    PLString_Free(v4);
     sub_02025C84(28);
 
     return v3;
@@ -432,8 +432,8 @@ UnkStruct_0202EE10 * sub_0202EE10 (UnkStruct_0202E8C0 * param0, int param1, int 
 
         v1->unk_04[v1->unk_00].unk_00 = v2->unk_00[v0].unk_00;
         v1->unk_04[v1->unk_00].unk_04 = v2->unk_00[v0].unk_04;
-        v1->unk_04[v1->unk_00].unk_08 = PLString_AllocFromHeap(7 + 1, param2);
-        PLString_ImportChars(v1->unk_04[v1->unk_00].unk_08, v2->unk_00[v0].unk_08);
+        v1->unk_04[v1->unk_00].unk_08 = PLString_New(7 + 1, param2);
+        PLString_FillWithChars(v1->unk_04[v1->unk_00].unk_08, v2->unk_00[v0].unk_08);
         ++v1->unk_00;
     }
 
@@ -446,7 +446,7 @@ void sub_0202EE8C (UnkStruct_0202EE10 * param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_04[v0].unk_08 != NULL) {
-            PLString_FreeToHeap(param0->unk_04[v0].unk_08);
+            PLString_Free(param0->unk_04[v0].unk_08);
         }
     }
 

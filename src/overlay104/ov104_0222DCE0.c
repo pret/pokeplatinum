@@ -144,8 +144,8 @@ UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int
 
     v2 = sub_0200B1EC(v1, param1);
 
-    PLString_ExportCharsUpTo(v2, &param0->unk_08[0], 8);
-    PLString_FreeToHeap(v2);
+    PLString_Dump(v2, &param0->unk_08[0], 8);
+    PLString_Free(v2);
     sub_0200B190(v1);
 
     return v0;
@@ -325,7 +325,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_020
         v8 = sub_0200B1EC(v7, param0->unk_00_val1_0);
 
         sub_02074B30(param1, 119, v8);
-        PLString_FreeToHeap(v8);
+        PLString_Free(v8);
         sub_0200B190(v7);
     } else {
         sub_02074B30(param1, 117, param0->unk_22);
@@ -371,7 +371,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1)
     sub_02074B30(param1, 145, v1);
     sub_02074B30(param1, 7, &v0);
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0200B190(v2);
 
     return;

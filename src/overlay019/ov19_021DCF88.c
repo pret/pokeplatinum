@@ -323,7 +323,7 @@ BOOL ov19_021DCF88 (UnkStruct_ov19_021DCF88 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_04 = param2;
             v0->unk_0C = param4;
             v0->unk_14 = NULL;
-            v0->unk_84 = PLString_AllocFromHeap(32, 10);
+            v0->unk_84 = PLString_New(32, 10);
             v0->unk_10 = param2->unk_9C.unk_00;
             v0->unk_98 = NULL;
             v0->unk_A0 = NULL;
@@ -404,7 +404,7 @@ void ov19_021DD078 (UnkStruct_ov19_021DCF88 * param0)
         }
 
         if (param0->unk_84 != NULL) {
-            PLString_FreeToHeap(param0->unk_84);
+            PLString_Free(param0->unk_84);
         }
 
         for (v0 = 0; v0 < 8; v0++) {

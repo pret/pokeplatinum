@@ -149,7 +149,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0201975C(4, 0x6c21);
 
     errorMsgData = sub_0200B144(1, 26, 214, v5);
-    errorString = PLString_AllocFromHeap(0x180, v5);
+    errorString = PLString_New(0x180, v5);
 
     sub_0201D710();
 
@@ -158,7 +158,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0200DC48(&window, 0, (512 - 9), 2);
     sub_0200B1B8(errorMsgData, v4, errorString);
     sub_0201D738(&window, 0, errorString, 0, 0, 0, NULL);
-    PLString_FreeToHeap(errorString);
+    PLString_Free(errorString);
 
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);

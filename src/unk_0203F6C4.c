@@ -7772,10 +7772,10 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
 
     v8 = sub_0200B29C(v6, v7, 1, 32);
     v9 = sub_0200B1EC(v7, 0);
-    *v1 = (PLString_IsPrefixOf(v8, v9) == 0);
+    *v1 = (PLString_Compare(v8, v9) == 0);
 
-    PLString_FreeToHeap(v8);
-    PLString_FreeToHeap(v9);
+    PLString_Free(v8);
+    PLString_Free(v9);
     sub_0200B190(v7);
     sub_0200B3F0(v6);
 

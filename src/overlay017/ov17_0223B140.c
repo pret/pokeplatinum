@@ -217,7 +217,7 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C.unk_44 = sub_0200B144(0, 26, 211, 21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = sub_0200B358(21);
-    v0->unk_0C.unk_4C = PLString_AllocFromHeap((3 * 160), 21);
+    v0->unk_0C.unk_4C = PLString_New((3 * 160), 21);
 
     {
         NARC * v1;
@@ -363,7 +363,7 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002FA0(v0->unk_0C.unk_50, 3);
     sub_02002F54(v0->unk_0C.unk_50);
 
-    PLString_FreeToHeap(v0->unk_0C.unk_4C);
+    PLString_Free(v0->unk_0C.unk_4C);
     sub_0200B3F0(v0->unk_0C.unk_48);
     sub_0200B190(v0->unk_0C.unk_38);
     sub_0200B190(v0->unk_0C.unk_3C);

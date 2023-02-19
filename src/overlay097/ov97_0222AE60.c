@@ -550,7 +550,7 @@ static void ov97_0222B53C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
     v1 = sub_0201C294(param0) * 8 - (v0 + 32);
 
     sub_0201D78C(param0, 0, v2, v1, param5, 0xff, param3, NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
 }
 
 static void ov97_0222B590 (UnkStruct_0200B358 * param0, int param1)
@@ -595,7 +595,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
 
         v3 = sub_0200B29C(v4, v5, Unk_ov97_0223DF40[v0], 81);
         sub_0201D78C(param2->unk_10, 0, v3, 32, v0 * 16, 0xff, v7, NULL);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     }
 
     sub_0200B498(v4, 0, v6->unk_0C);

@@ -122,11 +122,11 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_44) {
-        PLString_FreeToHeap(param0->unk_44);
+        PLString_Free(param0->unk_44);
     }
 
     if (param0->unk_48) {
-        PLString_FreeToHeap(param0->unk_48);
+        PLString_Free(param0->unk_48);
     }
 
     if (param0->unk_24) {

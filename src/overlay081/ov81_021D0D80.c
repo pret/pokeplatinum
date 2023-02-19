@@ -320,14 +320,14 @@ static void ov81_021D1130 (UnkStruct_ov81_021D1610 * param0)
 {
     param0->unk_50 = sub_0200B144(0, 26, 366, 42);
     param0->unk_54 = sub_0200B358(42);
-    param0->unk_58 = PLString_AllocFromHeap(128, 42);
+    param0->unk_58 = PLString_New(128, 42);
 }
 
 static void ov81_021D115C (UnkStruct_ov81_021D1610 * param0)
 {
     sub_0200B190(param0->unk_50);
     sub_0200B3F0(param0->unk_54);
-    PLString_FreeToHeap(param0->unk_58);
+    PLString_Free(param0->unk_58);
 }
 
 static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)

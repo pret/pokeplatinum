@@ -1435,8 +1435,8 @@ static void ov114_0225D084 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
     param0->unk_00 = sub_0200B144(0, 26, 411, param1);
     param0->unk_04 = sub_0200B368(8, 64, param1);
-    param0->unk_08 = PLString_AllocFromHeap(128, param1);
-    param0->unk_0C = PLString_AllocFromHeap(128, param1);
+    param0->unk_08 = PLString_New(128, param1);
+    param0->unk_0C = PLString_New(128, param1);
 
     sub_02002E98(0, 12 * 0x20, param1);
     sub_02002E98(4, 12 * 0x20, param1);
@@ -1444,8 +1444,8 @@ static void ov114_0225D084 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 
 static void ov114_0225D0D8 (UnkStruct_ov114_0225D084 * param0)
 {
-    PLString_FreeToHeap(param0->unk_0C);
-    PLString_FreeToHeap(param0->unk_08);
+    PLString_Free(param0->unk_0C);
+    PLString_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_04);
     sub_0200B190(param0->unk_00);
 }
@@ -1557,7 +1557,7 @@ static void ov114_0225D290 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0
         sub_0201A7E8(param1->unk_00, &param0->unk_00[v2], v1, 2, v3, 27, 4, 12, ((1 + (18 + 12))));
         sub_0201ADA4(&param0->unk_00[v2], 0);
 
-        param0->unk_24[v2] = PLString_AllocFromHeap(128, param4);
+        param0->unk_24[v2] = PLString_New(128, param4);
     }
 
     param0->unk_34 = param3;
@@ -1569,7 +1569,7 @@ static void ov114_0225D338 (UnkStruct_ov114_0225D338 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         ov114_0225D400(param0, v0);
-        PLString_FreeToHeap(param0->unk_24[v0]);
+        PLString_Free(param0->unk_24[v0]);
         sub_0201A8FC(&param0->unk_00[v0]);
     }
 
@@ -2310,7 +2310,7 @@ static void ov114_0225E1A4 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
     sub_0201A7E8(param1->unk_00, &param0->unk_00, 1, 6, 11, 20, 10, 8, 513);
     sub_0201ADA4(&param0->unk_00, 0);
 
-    param0->unk_14 = PLString_AllocFromHeap(128, param5);
+    param0->unk_14 = PLString_New(128, param5);
     ov114_0225D180(param2, param3);
     ov114_0225D190(param2, param0->unk_14, 16);
     param0->unk_10 = param3;
@@ -2323,7 +2323,7 @@ static void ov114_0225E1A4 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
 static void ov114_0225E234 (UnkStruct_ov114_0225E1A4 * param0)
 {
     sub_0201A8FC(&param0->unk_00);
-    PLString_FreeToHeap(param0->unk_14);
+    PLString_Free(param0->unk_14);
 }
 
 static void ov114_0225E244 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0225CEF0 * param1, u32 param2)

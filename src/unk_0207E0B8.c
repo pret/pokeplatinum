@@ -664,14 +664,14 @@ static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201DC3C();
 
     for (v1 = 0; v1 < 6; v1++) {
-        PLString_FreeToHeap(v0->unk_704[v1].unk_00);
+        PLString_Free(v0->unk_704[v1].unk_00);
     }
 
-    PLString_FreeToHeap(v0->unk_6A4);
-    PLString_FreeToHeap(v0->unk_6A8);
+    PLString_Free(v0->unk_6A4);
+    PLString_Free(v0->unk_6A8);
 
     for (v1 = 0; v1 < 20; v1++) {
-        PLString_FreeToHeap(v0->unk_6AC[v1]);
+        PLString_Free(v0->unk_6AC[v1]);
     }
 
     sub_0200B190(v0->unk_69C);
@@ -2126,7 +2126,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
 
             sub_0200B60C(param0->unk_6A0, 0, v2, 3, 0, 1);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
-            PLString_FreeToHeap(v1);
+            PLString_Free(v1);
         }
             sub_02082708(param0, 0xffffffff, 1);
             param0->unk_B0E = 23;
@@ -2468,7 +2468,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B60C(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
-            PLString_FreeToHeap(v1);
+            PLString_Free(v1);
             sub_02082708(param0, 0xffffffff, 1);
 
             v2 = sub_0202BE00((u8)param0->unk_B14[3], 0, 12);

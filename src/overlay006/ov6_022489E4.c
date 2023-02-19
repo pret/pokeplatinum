@@ -254,8 +254,8 @@ void ov6_02248CBC (int param0, int param1, void * param2, void * param3)
     v2 = v4[1];
     v5 = (u16 *)(&v4[v3]);
 
-    PLString_Zero(v0->unk_00.unk_D8[v1]);
-    PLString_ImportChars(v0->unk_00.unk_D8[v1], v5);
+    PLString_Clear(v0->unk_00.unk_D8[v1]);
+    PLString_FillWithChars(v0->unk_00.unk_D8[v1], v5);
 
     v0->unk_568++;
 }
@@ -270,7 +270,7 @@ BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const PLString * par
     v0 = 8 * sizeof(u16);
     v1 = 4;
 
-    PLString_ExportCharsUpTo(param2, v4, 8);
+    PLString_Dump(param2, v4, 8);
 
     v2 = Heap_AllocFromHeap(20, v0 + v1);
     MI_CpuCopy8(v4, &v2[v1], v0);

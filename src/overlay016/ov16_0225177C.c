@@ -546,7 +546,7 @@ int ov16_02252060 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, voi
     }
     break;
     case 46:
-        PLString_ImportChars((PLString *)param3, v0->unk_36);
+        PLString_FillWithChars((PLString *)param3, v0->unk_36);
         break;
     case 47:
         return v0->unk_4C;

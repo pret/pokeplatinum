@@ -194,7 +194,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
     }
 
     v0->unk_00 = *param0;
-    v0->unk_00.unk_00_val1 = PLString_GetCharData(v0->unk_00.unk_00_val2);
+    v0->unk_00.unk_00_val1 = PLString_GetBuffer(v0->unk_00.unk_00_val2);
     v0->unk_1C = param2;
 
     Unk_021C04D8 = 0;

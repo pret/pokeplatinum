@@ -280,7 +280,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
             ov104_0223E29C(param0, &v0->unk_7C, v10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
 
             sub_020129D0(v0->unk_7C.unk_00, 0);
-            PLString_FreeToHeap(v10);
+            PLString_Free(v10);
             sub_0200B190(v9);
         }
 

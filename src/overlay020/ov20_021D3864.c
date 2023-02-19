@@ -92,7 +92,7 @@ static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_022
 
     sub_0201D78C(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
     sub_0201ACCC(&v0);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A8FC(&v0);
 }
 

@@ -322,7 +322,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 
     v5 = sub_0200B144(0, 26, 357, 71);
     v3 = sub_0200B358(71);
     v1 = sub_0200B1EC(v5, param1);
-    v2 = PLString_AllocFromHeap(255, 71);
+    v2 = PLString_New(255, 71);
     v4 = sub_02076B10(param2);
 
     sub_0200B538(v3, 0, v4);
@@ -331,8 +331,8 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 
     v0 = sub_0201D738(param0, 1, v2, 0, 0, param3, NULL);
 
     sub_0200B190(v5);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v2);
+    PLString_Free(v1);
     sub_0200B3F0(v3);
 
     return v0;
@@ -355,7 +355,7 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
         for (v1 = 0; v1 < 2; v1++) {
             v2 = sub_0200B1EC(v3, 2 + v1);
             sub_02013A6C(param0->unk_04.unk_44, v2, v1);
-            PLString_FreeToHeap(v2);
+            PLString_Free(v2);
         }
 
         sub_0200B190(v3);

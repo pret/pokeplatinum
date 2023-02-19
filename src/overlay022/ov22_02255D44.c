@@ -1158,7 +1158,7 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
         v2 = sub_02025F04(param2, 13);
         v3 = sub_02025F30(param2);
         sub_0202A0EC(param0, v2, v3);
-        PLString_FreeToHeap(v2);
+        PLString_Free(v2);
     }
 
     v1 = 0;
@@ -1206,7 +1206,7 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
         v4 = sub_02025F04(param3, 13);
         v5 = sub_02025F30(param3);
         sub_0202A4B4(param0, v4, v5);
-        PLString_FreeToHeap(v4);
+        PLString_Free(v4);
     }
 
     ov22_02257778(v2, &param1->unk_00.unk_14, 1);
@@ -1356,7 +1356,7 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
     v1 = sub_0200B1EC(v0, param1);
 
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0200B190(v0);
     sub_0201A954(param0->unk_718);
 }
@@ -1371,12 +1371,12 @@ static void ov22_02257368 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v0 = sub_0200B144(0, 26, 385, 13);
     v2 = sub_0200B1EC(v0, param1);
-    v1 = PLString_AllocFromHeap(256, 13);
+    v1 = PLString_New(256, 13);
 
     sub_0200C388(param0->unk_744, v1, v2);
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v1);
+    PLString_Free(v2);
     sub_0200B190(v0);
     sub_0201A954(param0->unk_718);
 }
@@ -1394,7 +1394,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v1 = sub_0200B144(0, 26, 385, 13);
     v3 = sub_0200B1EC(v1, param1);
-    param0->unk_740 = PLString_AllocFromHeap(256, 13);
+    param0->unk_740 = PLString_New(256, 13);
 
     sub_0200C388(param0->unk_744, param0->unk_740, v3);
 
@@ -1406,7 +1406,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v0 = sub_0201D78C(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
     sub_0200B190(v1);
     sub_0201A954(param0->unk_718);
 
@@ -1415,7 +1415,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
 static void ov22_02257498 (UnkStruct_ov22_02255D44 * param0)
 {
-    PLString_FreeToHeap(param0->unk_740);
+    PLString_Free(param0->unk_740);
     param0->unk_740 = NULL;
 }
 

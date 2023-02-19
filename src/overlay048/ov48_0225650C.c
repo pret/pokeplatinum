@@ -168,7 +168,7 @@ static void ov48_02256650 (UnkStruct_ov48_0225650C * param0, u32 param1)
         sub_0201A9F4(&v0);
         sub_0201ACCC(&v0);
         sub_0201A8FC(&v0);
-        PLString_FreeToHeap(v1);
+        PLString_Free(v1);
     }
 }
 

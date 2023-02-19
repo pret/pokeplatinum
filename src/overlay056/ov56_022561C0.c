@@ -797,11 +797,11 @@ static PLString * ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStr
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
-            v1 = PLString_AllocFromHeap(10, 89);
+            v1 = PLString_New(10, 89);
 
-            PLString_ImportChars(v1, sub_02027FBC(param0, v3));
+            PLString_FillWithChars(v1, sub_02027FBC(param0, v3));
             sub_0200B48C(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));
-            PLString_FreeToHeap(v1);
+            PLString_Free(v1);
         }
 
         v0 = sub_0200B29C(param2, param3, 208, 89);
@@ -823,14 +823,14 @@ static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStru
     }
 
     if (v0->unk_00[*v2].unk_04 != NULL) {
-        PLString_FreeToHeap(v0->unk_00[*v2].unk_04);
+        PLString_Free(v0->unk_00[*v2].unk_04);
     }
 
     if (v0->unk_00[*v2].unk_08 != NULL) {
-        PLString_FreeToHeap(v0->unk_00[*v2].unk_08);
+        PLString_Free(v0->unk_00[*v2].unk_08);
     }
 
-    PLString_ImportChars(v0->unk_00[*v2].unk_00, sub_02025EF0(param3));
+    PLString_FillWithChars(v0->unk_00[*v2].unk_00, sub_02025EF0(param3));
 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;

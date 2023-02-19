@@ -163,8 +163,8 @@ static void ov5_021DD664 (UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param
 
     v1 = sub_02014B34(&v0, 32);
 
-    PLString_CopyInto(param0->unk_00, v1);
-    PLString_FreeToHeap(v1);
+    PLString_Copy(param0->unk_00, v1);
+    PLString_Free(v1);
 }
 
 static void ov5_021DD6B4 (UnkStruct_ov5_021DD648 * param0, int param1, int param2, int param3, int param4)

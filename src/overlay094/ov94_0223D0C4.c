@@ -334,11 +334,11 @@ static void ov94_0223D53C (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
 
-    param0->unk_BAC = PLString_AllocFromHeap((90 * 2), 62);
+    param0->unk_BAC = PLString_New((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 39);
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_BB4[v0] = PLString_AllocFromHeap((10 * 2), 62);
+        param0->unk_BB4[v0] = PLString_New((10 * 2), 62);
     }
 }
 
@@ -347,11 +347,11 @@ static void ov94_0223D57C (UnkStruct_ov94_0223FD4C * param0)
     int v0;
 
     for (v0 = 0; v0 < 10; v0++) {
-        PLString_FreeToHeap(param0->unk_BB4[v0]);
+        PLString_Free(param0->unk_BB4[v0]);
     }
 
-    PLString_FreeToHeap(param0->unk_BAC);
-    PLString_FreeToHeap(param0->unk_BB0);
+    PLString_Free(param0->unk_BAC);
+    PLString_Free(param0->unk_BB0);
 }
 
 static int ov94_0223D5B0 (UnkStruct_ov94_0223FD4C * param0)
@@ -514,7 +514,7 @@ static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
     param0->unk_BE0 = sub_0201D738(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 }
 
 static u32 Unk_ov94_022467FC[] = {
@@ -526,8 +526,8 @@ static u32 Unk_ov94_022467FC[] = {
 void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, UnkStruct_0205AA50 param3[], UnkStruct_02073C74_sub1 * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
 {
     PLString * v0, * v1, * v2, * v3;
-    PLString * v4 = PLString_AllocFromHeap((10 + 1) * 2, 62);
-    PLString * v5 = PLString_AllocFromHeap((8 + 1) * 2, 62);
+    PLString * v4 = PLString_New((10 + 1) * 2, 62);
+    PLString * v5 = PLString_New((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
     sub_02074570(param4, 119, v4);
@@ -561,12 +561,12 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     ov94_02245900(&param3[3], v3, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param3[4], v5, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 
-    PLString_FreeToHeap(v3);
-    PLString_FreeToHeap(v5);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v4);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v3);
+    PLString_Free(v5);
+    PLString_Free(v2);
+    PLString_Free(v1);
+    PLString_Free(v4);
+    PLString_Free(v0);
 }
 
 void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u16 * param2, UnkStruct_02073C74 * param3, UnkStruct_0205AA50 param4[])
@@ -574,11 +574,11 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
     PLString * v0, * v1;
     PLString * v2, * v3;
 
-    v0 = PLString_AllocFromHeap((7 + 1) * 2, 62);
-    v3 = PLString_AllocFromHeap((7 + 1) * 2, 62);
+    v0 = PLString_New((7 + 1) * 2, 62);
+    v3 = PLString_New((7 + 1) * 2, 62);
 
     v1 = sub_0200B1EC(param0, 48);
-    PLString_ImportChars(v0, param2);
+    PLString_FillWithChars(v0, param2);
 
     v2 = sub_0200B1EC(param0, 172);
     sub_02074470(param3, 145, v3);
@@ -588,10 +588,10 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
     ov94_02245900(&param4[0], v2, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param4[1], v3, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v0);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v1);
+    PLString_Free(v0);
+    PLString_Free(v2);
+    PLString_Free(v3);
 }
 
 void ov94_0223DB2C (UnkStruct_02073C74 * param0)

@@ -81,10 +81,10 @@ void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, PLString
 
     if (param2 == 0) {
         v0 = param0->unk_00[param1].unk_00;
-        PLString_ExportCharsUpTo(param3, v0, 7 + 1);
+        PLString_Dump(param3, v0, 7 + 1);
     } else {
         v0 = param0->unk_00[param1].unk_10;
-        PLString_ExportCharsUpTo(param3, v0, 7 + 1);
+        PLString_Dump(param3, v0, 7 + 1);
     }
 }
 

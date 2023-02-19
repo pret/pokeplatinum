@@ -215,7 +215,7 @@ static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        Unk_ov7_0224F5A0->unk_00[v0] = PLString_AllocFromHeap((70 * 2), 4);
+        Unk_ov7_0224F5A0->unk_00[v0] = PLString_New((70 * 2), 4);
     }
 }
 
@@ -224,7 +224,7 @@ static void ov7_02249B98 (void)
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        PLString_FreeToHeap(Unk_ov7_0224F5A0->unk_00[v0]);
+        PLString_Free(Unk_ov7_0224F5A0->unk_00[v0]);
     }
 
     Heap_FreeToHeap(Unk_ov7_0224F5A0->unk_7C);

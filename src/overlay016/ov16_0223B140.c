@@ -625,7 +625,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     v0->unk_0C = sub_0200B144(1, 26, 368, 5);
     v0->unk_10 = sub_0200B144(1, 26, 0, 5);
     v0->unk_14 = sub_0200B358(5);
-    v0->unk_18 = PLString_AllocFromHeap((2 * 160), 5);
+    v0->unk_18 = PLString_New((2 * 160), 5);
 
     MI_CpuCopy16(sub_02003164(v0->unk_28, 0), &v0->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(sub_02003164(v0->unk_28, 2), &v0->unk_2304[0], 0x20 * 7);
@@ -1747,12 +1747,12 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, UnkStruct_ov6_02240D5C *
         PLString * v6;
 
         v5 = sub_0200B144(1, 26, 368, 5);
-        v6 = PLString_AllocFromHeap(0x100, 5);
+        v6 = PLString_New(0x100, 5);
 
         sub_0200B1B8(v5, 923, v6);
         sub_0201D738(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
-        PLString_FreeToHeap(v6);
+        PLString_Free(v6);
         sub_0200B190(v5);
     }
 

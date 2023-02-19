@@ -79,8 +79,8 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     sub_02025E8C(v0->unk_08);
     v1 = ov6_022462E4(param0, 4 + param1);
 
-    PLString_ExportCharsUpTo(v1, v2, 128);
-    PLString_FreeToHeap(v1);
+    PLString_Dump(v1, v2, 128);
+    PLString_Free(v1);
     sub_02025EC0(v0->unk_08, v2);
     sub_02025F2C(v0->unk_08, v0->unk_00->unk_40);
 
@@ -167,7 +167,7 @@ static void ov6_0224630C (UnkStruct_02073C74 * param0, UnkStruct_ov6_0224630C * 
     v0 = ov6_022462E4(param4, param3);
 
     sub_02074B30(param0, 119, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     v1 = 1;
 
@@ -188,7 +188,7 @@ static void ov6_0224630C (UnkStruct_02073C74 * param0, UnkStruct_ov6_0224630C * 
     v0 = ov6_022462E4(param4, 4 + param3);
 
     sub_02074B30(param0, 145, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_02074B30(param0, 157, &param1->unk_40);
     sub_02074B30(param0, 12, &param1->unk_48);
 

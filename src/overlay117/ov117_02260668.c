@@ -238,7 +238,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_80 = sub_0200B144(0, 26, 9, 110);
     v0->unk_84 = sub_0200B358(110);
-    v0->unk_88 = PLString_AllocFromHeap((2 * 160), 110);
+    v0->unk_88 = PLString_New((2 * 160), 110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 
     ov117_02265210(v0, &v0->unk_1468);
@@ -474,7 +474,7 @@ int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002FA0(v0->unk_8C, 2);
     sub_02002FA0(v0->unk_8C, 3);
     sub_02002F54(v0->unk_8C);
-    PLString_FreeToHeap(v0->unk_88);
+    PLString_Free(v0->unk_88);
     sub_0200B3F0(v0->unk_84);
     sub_0200B190(v0->unk_80);
     Heap_FreeToHeap(v0->unk_2C);
@@ -852,7 +852,7 @@ static void ov117_02261368 (UnkStruct_ov117_02261280 * param0)
 
     v0 = sub_0200B1EC(param0->unk_80, 3);
     sub_0201D78C(&param0->unk_30[4], 0, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     sub_0201A9A4(&param0->unk_30[4]);
 }

@@ -271,7 +271,7 @@ void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, PLString * par
     }
 
     if (param1 < 18) {
-        PLString_ImportChars(param2, param0->unk_10E4[param1]);
+        PLString_FillWithChars(param2, param0->unk_10E4[param1]);
     } else {
         GF_ASSERT(0);
     }
@@ -284,7 +284,7 @@ void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const PLString * par
     }
 
     if (param1 < 18) {
-        PLString_ExportCharsUpTo(param2, param0->unk_10E4[param1], 20);
+        PLString_Dump(param2, param0->unk_10E4[param1], 20);
         sub_02024804();
     }
 }

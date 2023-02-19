@@ -103,7 +103,7 @@ const u16 * sub_02027870 (const UnkStruct_0202783C * param0)
 
 void sub_0202787C (UnkStruct_0202783C * param0, PLString * param1)
 {
-    PLString_ExportCharsUpTo(param1, param0->unk_6A4, 7 + 1);
+    PLString_Dump(param1, param0->unk_6A4, 7 + 1);
 }
 
 const u16 * sub_02027894 (const UnkStruct_0202783C * param0)
@@ -113,7 +113,7 @@ const u16 * sub_02027894 (const UnkStruct_0202783C * param0)
 
 void sub_020278A0 (UnkStruct_0202783C * param0, PLString * param1)
 {
-    PLString_ExportCharsUpTo(param1, param0->unk_6B4, 10 + 1);
+    PLString_Dump(param1, param0->unk_6B4, 10 + 1);
 }
 
 void sub_020278B8 (UnkStruct_0202783C * param0)

@@ -128,7 +128,7 @@ void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int para
     if (param4 == 0) {
         v4 = sub_02025F04(v2, param3);
         sub_0202AF0C(v0, param2, v4);
-        PLString_FreeToHeap(v4);
+        PLString_Free(v4);
         sub_0202AE2C(v0, param2, 8, sub_02025F30(v2));
         sub_0202AE2C(v0, param2, 0, sub_02025F20(v2));
     } else if (param4 == 1) {
@@ -138,11 +138,11 @@ void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int para
         }
     }
 
-    v4 = PLString_AllocFromHeap(120, param3);
+    v4 = PLString_New(120, param3);
 
-    PLString_ImportChars(v4, sub_02032F54(param1));
+    PLString_FillWithChars(v4, sub_02032F54(param1));
     sub_0202AF50(v0, param2, v4);
-    PLString_FreeToHeap(v4);
+    PLString_Free(v4);
     sub_0202AE2C(v0, param2, 7, sub_02025F8C(v2));
     sub_02033114(param0);
 }

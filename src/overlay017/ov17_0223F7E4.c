@@ -767,8 +767,8 @@ static void ov17_0223FBD4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int par
     ov17_02240138(param0, &param0->unk_40[0], v0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33008, 128, (8 * 0x10 - 1), 1, NULL);
     ov17_02240138(param0, &param0->unk_40[1], v1, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33008, 128, (8 * 0x14 - 1), 1, NULL);
 
-    PLString_FreeToHeap(v0);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v0);
+    PLString_Free(v1);
     sub_02002FEC(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->unk_10F);
 }
 
@@ -867,7 +867,7 @@ static void ov17_0223FF38 (UnkStruct_ov17_0223F7E4 * param0, int param1, int par
     v2 = sub_0200B1EC(param0->unk_04->unk_38, 53);
 
     ov17_02240138(param0, &param0->unk_40[0 + v0], v2, 2, ((u32)(((1 & 0xff) << 16) | ((9 & 0xff) << 8) | ((0xa & 0xff) << 0))), 0, 33008, 128, (0x14 * 8 + 4), 1, NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
 
     param0->unk_128 = ov17_022412C0(param0->unk_04->unk_18, param0->unk_04->unk_1C, param0->unk_04->unk_00->unk_10E);
 }
@@ -1470,7 +1470,7 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
         v2 = sub_0200B2EC(param1[v1], 21);
 
         ov17_02240BF4(param0, v2, 2, &v0->unk_00[v1], ((u32)(((1 & 0xff) << 16) | ((7 & 0xff) << 8) | ((8 & 0xff) << 0))));
-        PLString_FreeToHeap(v2);
+        PLString_Free(v2);
         sub_02095750(v0->unk_12C[v1], &v6, &v7);
 
         v3 = sub_0200B1EC(param0->unk_04->unk_40, v6);
@@ -1479,14 +1479,14 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
         ov17_02240BF4(param0, v3, 0, &v0->unk_50[v1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov17_02240BF4(param0, v4, 0, &v0->unk_A0[v1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 
-        PLString_FreeToHeap(v3);
-        PLString_FreeToHeap(v4);
+        PLString_Free(v3);
+        PLString_Free(v4);
     }
 
     for (v1 = 0; v1 < (1 + 2); v1++) {
         v5 = ov17_0223F310(param0->unk_04->unk_00->unk_C0[v1].unk_00, 21);
         ov17_02240BF4(param0, v5, 2, &v0->unk_F0[v1], ((u32)(((1 & 0xff) << 16) | ((9 & 0xff) << 8) | ((0xa & 0xff) << 0))));
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
     }
 
     {

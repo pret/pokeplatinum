@@ -72,8 +72,8 @@ void sub_0209ACF4 (UnkStruct_020508D4 * param0)
     UnkStruct_0209AD84 * v1 = Heap_AllocFromHeap(32, sizeof(UnkStruct_0209AD84));
 
     v1->unk_00 = v0;
-    v1->unk_04 = PLString_AllocFromHeap(400, 32);
-    v1->unk_08 = PLString_AllocFromHeap(400, 32);
+    v1->unk_04 = PLString_New(400, 32);
+    v1->unk_08 = PLString_New(400, 32);
     v1->unk_0C = sub_0200B358(32);
     v1->unk_10 = sub_0200B144(1, 26, 420, 32);
     v1->unk_14 = sub_020149F0(32);
@@ -93,8 +93,8 @@ static void sub_0209AD84 (UnkStruct_0209AD84 * param0)
 {
     sub_020974EC(param0->unk_50);
     sub_02014A20(param0->unk_14);
-    PLString_FreeToHeap(param0->unk_04);
-    PLString_FreeToHeap(param0->unk_08);
+    PLString_Free(param0->unk_04);
+    PLString_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_0C);
     sub_0200B190(param0->unk_10);
     sub_0209ADBC(param0);

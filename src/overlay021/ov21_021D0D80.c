@@ -664,8 +664,8 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
     PLString * v1;
 
     if (param1 > 0) {
-        v0 = PLString_AllocFromHeap(4, param3);
-        PLString_FromInteger(v0, param1, 3, 2, 1);
+        v0 = PLString_New(4, param3);
+        PLString_FromInt(v0, param1, 3, 2, 1);
     } else {
         v0 = ov21_021D1CE0(100, param3);
     }
@@ -674,7 +674,7 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
     sub_0201D78C(param0, 2, v0, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     sub_0201D78C(param0, 2, v1, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     ov21_021D5600(v1);
 }

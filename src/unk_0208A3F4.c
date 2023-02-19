@@ -744,7 +744,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     param0->unk_2C0.unk_90[param1] = sub_020127E8(&v2);
 
     sub_02012AC0(param0->unk_2C0.unk_90[param1], param4);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
     sub_0200B190(v6);
     sub_0201A8FC(&v7);
 }
@@ -773,6 +773,6 @@ void sub_0208B230 (UnkStruct_0205AA50 * param0, int param1)
     sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0200B190(v0);
 }

@@ -3420,31 +3420,31 @@ static void ov19_021D4E50 (UnkStruct_ov19_021D5594 * param0)
 static void ov19_021D4E5C (UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1)
 {
     param1->unk_00 = sub_0207999C(param0);
-    param1->unk_04 = PLString_AllocFromHeap(20, 9);
+    param1->unk_04 = PLString_New(20, 9);
     ov19_021D4F40(param0, param1);
 }
 
 static void ov19_021D4E7C (UnkStruct_ov19_021D4F5C * param0)
 {
-    PLString_FreeToHeap(param0->unk_04);
+    PLString_Free(param0->unk_04);
 }
 
 static void ov19_021D4E88 (UnkStruct_ov19_021D5BAC * param0)
 {
-    param0->unk_14 = PLString_AllocFromHeap(12, 9);
-    param0->unk_18 = PLString_AllocFromHeap(12, 9);
-    param0->unk_1C = PLString_AllocFromHeap(18, 9);
-    param0->unk_20 = PLString_AllocFromHeap(12, 9);
-    param0->unk_24 = PLString_AllocFromHeap(16, 9);
+    param0->unk_14 = PLString_New(12, 9);
+    param0->unk_18 = PLString_New(12, 9);
+    param0->unk_1C = PLString_New(18, 9);
+    param0->unk_20 = PLString_New(12, 9);
+    param0->unk_24 = PLString_New(16, 9);
 }
 
 static void ov19_021D4EC0 (UnkStruct_ov19_021D5BAC * param0)
 {
-    PLString_FreeToHeap(param0->unk_14);
-    PLString_FreeToHeap(param0->unk_18);
-    PLString_FreeToHeap(param0->unk_1C);
-    PLString_FreeToHeap(param0->unk_20);
-    PLString_FreeToHeap(param0->unk_24);
+    PLString_Free(param0->unk_14);
+    PLString_Free(param0->unk_18);
+    PLString_Free(param0->unk_1C);
+    PLString_Free(param0->unk_20);
+    PLString_Free(param0->unk_24);
 }
 
 static void ov19_021D4EE4 (UnkStruct_ov19_021D4EE4 * param0)
@@ -3457,8 +3457,8 @@ static void ov19_021D4EE4 (UnkStruct_ov19_021D4EE4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_02[v0] = 0;
-        param0->unk_08[v0].unk_28 = PLString_AllocFromHeap(12, 9);
-        param0->unk_08[v0].unk_2C = PLString_AllocFromHeap(12, 9);
+        param0->unk_08[v0].unk_28 = PLString_New(12, 9);
+        param0->unk_08[v0].unk_2C = PLString_New(12, 9);
     }
 }
 
@@ -3467,8 +3467,8 @@ static void ov19_021D4F18 (UnkStruct_ov19_021D4EE4 * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        PLString_FreeToHeap(param0->unk_08[v0].unk_28);
-        PLString_FreeToHeap(param0->unk_08[v0].unk_2C);
+        PLString_Free(param0->unk_08[v0].unk_28);
+        PLString_Free(param0->unk_08[v0].unk_2C);
     }
 }
 
@@ -4169,8 +4169,8 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_02073C74_
     if (v0->unk_0F == 0) {
         sub_0200B1B8(param2->unk_190, v0->unk_04, v0->unk_18);
     } else {
-        PLString_CopyInto(v0->unk_18, v0->unk_14);
-        PLString_Zero(v0->unk_14);
+        PLString_Copy(v0->unk_18, v0->unk_14);
+        PLString_Clear(v0->unk_14);
     }
 
     if (v0->unk_06 != 0) {
@@ -4203,12 +4203,12 @@ static void ov19_021D59F4 (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_02073C74_
     v1->unk_08 = v0->unk_0A;
 
     if (v1->unk_06) {
-        PLString_CopyInto(v1->unk_28, v0->unk_18);
+        PLString_Copy(v1->unk_28, v0->unk_18);
     } else {
-        PLString_CopyInto(v1->unk_28, v0->unk_14);
+        PLString_Copy(v1->unk_28, v0->unk_14);
     }
 
-    PLString_CopyInto(v1->unk_2C, v0->unk_20);
+    PLString_Copy(v1->unk_2C, v0->unk_20);
     sub_020774C8(param1, param2->unk_1A0);
 
     v2 = sub_02073C88(param2->unk_1A0);

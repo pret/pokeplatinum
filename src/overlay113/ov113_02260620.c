@@ -588,7 +588,7 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
     sub_0200B48C(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
     v2 = sub_0200B1EC(param0, 0);
-    v3 = PLString_AllocFromHeap(v5, 118);
+    v3 = PLString_New(v5, 118);
 
     sub_0200C388(param1, v3, v2);
     sub_0201ADA4(&param2[v7], 0x0);
@@ -601,9 +601,9 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
 
     sub_0201D78C(&param2[v7], 0, v3, 0, 0, 0, v9, NULL);
     sub_0201A954(&param2[v7]);
-    PLString_FreeToHeap(v4);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v4);
+    PLString_Free(v2);
+    PLString_Free(v3);
     Heap_FreeToHeap(v1);
 }
 

@@ -40,8 +40,8 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
     UnkStruct_02073C74 * v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
-    v6 = PLString_AllocFromHeap(v9, param2);
-    v7 = PLString_AllocFromHeap(v9, param2);
+    v6 = PLString_New(v9, param2);
+    v7 = PLString_New(v9, param2);
     v8 = Heap_AllocFromHeap(param2, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {
@@ -53,16 +53,16 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
 
         if (v10 == -1) {
             ov62_0224856C(v7, param2);
-            PLString_ExportCharsUpTo(v7, param1->unk_28[v4].unk_14, 8);
+            PLString_Dump(v7, param1->unk_28[v4].unk_14, 8);
             continue;
         }
 
-        PLString_Zero(v6);
-        PLString_ImportChars(v6, param1->unk_28[v4].unk_14);
+        PLString_Clear(v6);
+        PLString_FillWithChars(v6, param1->unk_28[v4].unk_14);
 
         if (sub_02002DB4(0, v6, v7) == 0) {
             ov62_0224856C(v7, param2);
-            PLString_ExportCharsUpTo(v7, param1->unk_28[v4].unk_14, 8);
+            PLString_Dump(v7, param1->unk_28[v4].unk_14, 8);
             continue;
         }
     }
@@ -80,8 +80,8 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
             sub_02074470(v13, 117, v8);
-            PLString_Zero(v6);
-            PLString_ImportChars(v6, v8);
+            PLString_Clear(v6);
+            PLString_FillWithChars(v6, v8);
 
             if (sub_02002DB4(0, v6, v7) == 0) {
                 sub_02074B30(v13, 179, NULL);
@@ -90,8 +90,8 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
         }
     }
 
-    PLString_FreeToHeap(v6);
-    PLString_FreeToHeap(v7);
+    PLString_Free(v6);
+    PLString_Free(v7);
     Heap_FreeToHeap(v8);
 }
 
@@ -99,7 +99,7 @@ static void ov62_0224856C (PLString * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
 
-    PLString_Zero(param0);
+    PLString_Clear(param0);
 
     v0 = sub_0200B144(1, 26, 10, param1);
 

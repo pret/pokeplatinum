@@ -281,7 +281,7 @@ BOOL sub_02047930 (UnkStruct_0203E724 * param0)
     PLString * v6 = sub_02047998(v3, 4);
 
     sub_0200B48C(*v1, v2, v6, v4, v5, GAME_LANGUAGE);
-    PLString_FreeToHeap(v6);
+    PLString_Free(v6);
 
     return 0;
 }
@@ -306,7 +306,7 @@ BOOL sub_020479C0 (UnkStruct_0203E724 * param0)
     PLString * v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
 
     return 0;
 }
@@ -319,7 +319,7 @@ BOOL sub_02047A10 (UnkStruct_0203E724 * param0)
     PLString * v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
 
     return 0;
 }
@@ -332,7 +332,7 @@ BOOL sub_02047A60 (UnkStruct_0203E724 * param0)
     PLString * v3 = sub_02047998(v2, 4);
 
     sub_0200B48C(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
 
     return 0;
 }
@@ -372,14 +372,14 @@ BOOL sub_02047B20 (UnkStruct_0203E724 * param0)
 
 BOOL sub_02047B58 (UnkStruct_0203E724 * param0)
 {
-    PLString * v0 = PLString_AllocFromHeap(22, 4);
+    PLString * v0 = PLString_New(22, 4);
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
     u8 v2 = (*((param0)->unk_08++));
     u16 v3 = inline_02049538(param0);
 
     sub_02071D10(v3, 4, v0);
     sub_0200B48C(*v1, v2, v0, 0, 1, GAME_LANGUAGE);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 0;
 }
@@ -393,7 +393,7 @@ BOOL sub_02047BB8 (UnkStruct_0203E724 * param0)
     PLString * v4 = sub_0209742C(v2 - 149, 32);
 
     sub_0200B48C(*v0, v1, v4, 0, (v3 < 2 ? 1 : 0), GAME_LANGUAGE);
-    PLString_FreeToHeap(v4);
+    PLString_Free(v4);
 
     return 0;
 }
@@ -426,11 +426,11 @@ BOOL sub_02047CA0 (UnkStruct_0203E724 * param0)
     UnkStruct_0200B358 ** v2 = sub_0203F098(v1, 15);
     u8 v3 = (*((param0)->unk_08++));
 
-    v0 = PLString_AllocFromHeap(10 + 1, 11);
+    v0 = PLString_New(10 + 1, 11);
 
-    PLString_ImportChars(v0, sub_02027894(sub_0202783C(param0->unk_34->unk_0C)));
+    PLString_FillWithChars(v0, sub_02027894(sub_0202783C(param0->unk_34->unk_0C)));
     sub_0200B48C(*v2, v3, v0, 0, 0, Unk_020E4C44);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 0;
 }

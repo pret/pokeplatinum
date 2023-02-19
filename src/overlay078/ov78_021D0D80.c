@@ -1253,7 +1253,7 @@ static u8 ov78_021D1FB4 (UnkStruct_0205AA50 * param0, int param1, int param2, in
     v2 = sub_0201D78C(param0, 1, v1, 0, 0, param5, param4, NULL);
     sub_0200E060(param0, 0, 512, 0);
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0200B190(v0);
 
     return v2;
@@ -1281,7 +1281,7 @@ static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, in
 
 static void ov78_021D2090 (UnkStruct_ov78_021D107C * param0)
 {
-    PLString_FreeToHeap(param0->unk_AC);
+    PLString_Free(param0->unk_AC);
     param0->unk_AC = NULL;
 }
 
@@ -1731,7 +1731,7 @@ static void ov78_021D28A8 (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
     sub_0201ADA4(param0, (((param4) >> 0) & 0xff));
     sub_0201D78C(param0, 0, v1, 1, 0, 0xff, param4, NULL);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0200B190(v0);
 }
 

@@ -819,8 +819,8 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v4->unk_00 = 7;
     v1 = sub_0200B29C(v2, v3, 76, param0->unk_00);
 
-    PLString_ExportCharsUpTo((const PLString *)v1, v4->unk_104.unk_00, 36);
-    PLString_FreeToHeap(v1);
+    PLString_Dump((const PLString *)v1, v4->unk_104.unk_00, 36);
+    PLString_Free(v1);
 
     v4->unk_104.unk_48 = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
     v4->unk_104.unk_4C = 1;
@@ -832,8 +832,8 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
 
     v1 = sub_0200B29C(v2, v3, 75, param0->unk_00);
 
-    PLString_ExportCharsUpTo((const PLString *)v1, v4->unk_154, 250);
-    PLString_FreeToHeap(v1);
+    PLString_Dump((const PLString *)v1, v4->unk_154, 250);
+    PLString_Free(v1);
 
     v4->unk_348 = 0;
     v4->unk_34A[0] = 490;

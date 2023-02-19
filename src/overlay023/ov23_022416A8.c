@@ -500,7 +500,7 @@ BOOL ov23_02241D58 (PLString * param0)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257744->unk_468[v0] != 0) {
             v1 = sub_0200B358(4);
-            v2 = PLString_AllocFromHeap((50 * 2), 4);
+            v2 = PLString_New((50 * 2), 4);
 
             sub_0200BACC(v1, 2, Unk_ov23_02257744->unk_468[v0]);
             sub_0200C324(v1, 2);
@@ -514,7 +514,7 @@ BOOL ov23_02241D58 (PLString * param0)
     }
 
     if (v2) {
-        PLString_FreeToHeap(v2);
+        PLString_Free(v2);
     }
 
     if (v1) {

@@ -113,7 +113,7 @@ void sub_0209A74C (int param0)
     sub_0201975C(4, 27681);
 
     v2 = sub_0200B144(1, 26, 5, param0);
-    v3 = PLString_AllocFromHeap(384, param0);
+    v3 = PLString_New(384, param0);
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
@@ -121,7 +121,7 @@ void sub_0209A74C (int param0)
     sub_0200DC48(&v1, 0, 512 - 9, 2);
     sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
@@ -187,7 +187,7 @@ void sub_0209A8E0 (int param0)
     sub_0201975C(4, 0x6c21);
 
     v2 = sub_0200B144(1, 26, 5, param0);
-    v3 = PLString_AllocFromHeap(0x180, param0);
+    v3 = PLString_New(0x180, param0);
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
@@ -195,7 +195,7 @@ void sub_0209A8E0 (int param0)
     sub_0200DC48(&v1, 0, (512 - 9), 2);
     sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);

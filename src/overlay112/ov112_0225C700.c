@@ -990,7 +990,7 @@ static void ov112_0225D2D0 (UnkStruct_ov112_0225D2D0 * param0)
     int v0;
 
     Heap_FreeToHeap(param0->unk_94);
-    PLString_FreeToHeap(param0->unk_90);
+    PLString_Free(param0->unk_90);
 
     for (v0 = 0; v0 < 3; v0++) {
         sub_0201A8FC(&param0->unk_60[v0]);
@@ -1064,13 +1064,13 @@ static void ov112_0225D408 (UnkStruct_ov112_0225D44C * param0, UnkStruct_ov112_0
 
 static void ov112_0225D44C (UnkStruct_ov112_0225D44C * param0)
 {
-    PLString_FreeToHeap(param0->unk_08);
+    PLString_Free(param0->unk_08);
     sub_0201A8FC(&param0->unk_0C);
 }
 
 static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const PLString * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4)
 {
-    PLString_CopyInto(param0->unk_08, param1);
+    PLString_Copy(param0->unk_08, param1);
 
     param0->unk_00 = 1;
     param0->unk_02 = 0;
@@ -1195,11 +1195,11 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r2, [sp, #0x34]
     bl sub_0200B1B8
     ldr r0, [sp, #0x34]
-    bl sub_02023C5C
+    bl PLString_CountLines
     str r0, [sp, #0x30]
     ldr r0, [sp, #0x34]
     ldrb r6, [r5, #8]
-    bl PLString_GetTerminatorIndex
+    bl PLString_GetLength
     ldr r1, [sp, #0x1c]
     add r0, r0, #1
     bl PLString_AllocFromHeap
@@ -1212,7 +1212,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r1, [sp, #0x34]
     add r0, r4, #0
     add r2, r7, #0
-    bl sub_02023C9C
+    bl PLString_FillWithLine
     ldrb r0, [r5, #9]
     cmp r0, #0
     beq _0225D63A

@@ -1217,11 +1217,11 @@ static BOOL sub_0203DE98 (UnkStruct_020508D4 * param0)
         break;
     case 3:
         if (v2->unk_0C->unk_00 == 1) {
-            if (PLString_IsPrefixOf(v2->unk_0C->unk_18, v2->unk_10) == 0) {
+            if (PLString_Compare(v2->unk_0C->unk_18, v2->unk_10) == 0) {
                 v2->unk_0C->unk_14 = 1;
             }
         } else if (v2->unk_0C->unk_00 == 5) {
-            const u16 * v3 = PLString_GetCharData(v2->unk_0C->unk_18);
+            const u16 * v3 = PLString_GetBuffer(v2->unk_0C->unk_18);
             UnkStruct_0202B4A0 * v4 = sub_0202B4A0(v1->unk_0C);
 
             if (sub_0202B4D8(v4, v3)) {
@@ -1238,7 +1238,7 @@ static BOOL sub_0203DE98 (UnkStruct_020508D4 * param0)
         }
 
         sub_0208716C(v2->unk_0C);
-        PLString_FreeToHeap(v2->unk_10);
+        PLString_Free(v2->unk_10);
         Heap_FreeToHeap(v2);
 
         return 1;
@@ -1295,7 +1295,7 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     v2->unk_04 = param4;
     v2->unk_08 = param6;
     v2->unk_0C = sub_0208712C(11, param1, param2, param3, sub_02025E44(v1->unk_0C));
-    v2->unk_10 = PLString_AllocFromHeap(12, 11);
+    v2->unk_10 = PLString_New(12, 11);
 
     switch (param1) {
     case 1:
@@ -1304,15 +1304,15 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v2->unk_0C->unk_08 = sub_02074470(v0, 112, NULL);
 
         if (param5 != NULL) {
-            PLString_ImportChars(v2->unk_10, param5);
+            PLString_FillWithChars(v2->unk_10, param5);
         }
         break;
     case 5:
-        PLString_ImportChars(v2->unk_10, param5);
+        PLString_FillWithChars(v2->unk_10, param5);
         break;
     default:
         if (param5 != NULL) {
-            PLString_ImportChars(v2->unk_0C->unk_18, param5);
+            PLString_FillWithChars(v2->unk_0C->unk_18, param5);
         }
         break;
     }

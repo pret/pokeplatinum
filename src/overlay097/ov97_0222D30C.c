@@ -124,8 +124,8 @@ typedef struct {
     f32 unk_04;
 } UnkStruct_ov97_0222EDC0;
 
-void PLString_ExportCharsUpTo(const PLString * param0, u16 * param1, u32 param2);
-void PLString_ImportCharsUpTo(PLString * param0, const u16 * param1, u32 param2);
+void PLString_Dump(const PLString * param0, u16 * param1, u32 param2);
+void PLString_FillWithCharsLimit(PLString * param0, const u16 * param1, u32 param2);
 UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_0222D474(UnkStruct_020067E8 * param0);
@@ -871,7 +871,7 @@ static void ov97_0222DE78 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * par
     v1->unk_6C = sub_0201D78C(param1, 1, v0, 0, 0, v1->unk_68, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     if (v1->unk_14 == NULL) {
-        PLString_FreeToHeap(v0);
+        PLString_Free(v0);
     }
 
     sub_0200E060(param1, 0, 1, 2);
@@ -886,13 +886,13 @@ static void ov97_0222DF10 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * par
     PLString * v0;
     UnkStruct_ov97_0222D04C * v1 = sub_0200682C(param0);
 
-    v0 = PLString_AllocFromHeap(36 + 1, 86);
+    v0 = PLString_New(36 + 1, 86);
 
-    PLString_ImportCharsUpTo(v0, param2, 36);
+    PLString_FillWithCharsLimit(v0, param2, 36);
     sub_0201ADA4(param1, sub_02002DF8(0, 6));
     sub_0201D78C(param1, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0200DC48(param1, 0, (1 + (18 + 12)), 3);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 }
 
 static void ov97_0222DF70 (UnkStruct_020067E8 * param0, int * param1, int (* param2)(UnkStruct_020067E8 *))
@@ -1060,7 +1060,7 @@ static int ov97_0222E228 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * para
         sub_0200B190(v1);
     } else {
         if (sub_0201D724(v2->unk_6C) == 0) {
-            PLString_FreeToHeap(v2->unk_14);
+            PLString_Free(v2->unk_14);
             v2->unk_14 = NULL;
             v2->unk_68 = 0;
             return v2->unk_74;

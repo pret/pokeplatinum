@@ -1083,7 +1083,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
 
         sub_0201D7E0(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
         sub_0201ACCC(param0->unk_24);
-        PLString_FreeToHeap(v1);
+        PLString_Free(v1);
     }
 
     sub_02019184(v0, 7, 0, 0);

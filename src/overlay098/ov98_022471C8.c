@@ -331,8 +331,8 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_30 = sub_0200B144(0, 26, 695, 109);
     v0->unk_28 = sub_0200B144(0, 26, 412, 109);
     v0->unk_34 = sub_0200B144(0, 26, 358, 109);
-    v0->unk_38 = PLString_AllocFromHeap((90 * 2), 109);
-    v0->unk_40 = PLString_AllocFromHeap((16 * 8 * 2), 109);
+    v0->unk_38 = PLString_New((90 * 2), 109);
+    v0->unk_40 = PLString_New((16 * 8 * 2), 109);
     v0->unk_3C = sub_0200B1EC(v0->unk_24, 31);
 
     ov98_02247704(v0);
@@ -428,9 +428,9 @@ int ov98_02247440 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B190(v0->unk_2C);
     sub_0200B190(v0->unk_24);
     sub_0200B3F0(v0->unk_20);
-    PLString_FreeToHeap(v0->unk_3C);
-    PLString_FreeToHeap(v0->unk_40);
-    PLString_FreeToHeap(v0->unk_38);
+    PLString_Free(v0->unk_3C);
+    PLString_Free(v0->unk_40);
+    PLString_Free(v0->unk_38);
     ov98_02247ACC(v0);
     Heap_FreeToHeap(v0->unk_04);
     ov98_022476D0(v0->unk_04);
@@ -934,11 +934,11 @@ static void ov98_02247F08 (UnkStruct_ov98_02247704 * param0)
 
     v0 = sub_0200B1EC(param0->unk_34, 42);
     sub_0201D738(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[0][0] + 12, Unk_ov98_02249D60[0][1], 0xff, NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     v0 = sub_0200B1EC(param0->unk_34, 43);
     sub_0201D738(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], 0xff, NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_02014A58(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
     sub_0201A954(&param0->unk_D4);
 }
@@ -997,7 +997,7 @@ asm static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     mov r1, #0x2c
     bl sub_0200B1EC
     str r0, [sp, #0xc]
-    bl PLString_GetTerminatorIndex
+    bl PLString_GetLength
     mov r1, #0x6d
     bl PLString_AllocFromHeap
     add r6, r0, #0
@@ -1016,7 +1016,7 @@ asm static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     ldr r1, [sp, #0xc]
     add r0, r6, #0
     add r2, r4, #0
-    bl sub_02023C9C
+    bl PLString_FillWithLine
     str r5, [sp]
     mov r0, #0xff
     str r0, [sp, #4]
@@ -1071,7 +1071,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #0x2c
     bl sub_0200B1EC
     str r0, [sp, #0x14]
-    bl sub_02023C5C
+    bl PLString_CountLines
     add r1, r5, #0
     mov r2, #0
     add r1, #0xac
@@ -1123,7 +1123,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #0xf
     bl sub_0201ADA4
     ldr r0, [sp, #0x14]
-    bl PLString_GetTerminatorIndex
+    bl PLString_GetLength
     mov r1, #0x6d
     bl PLString_AllocFromHeap
     add r7, r0, #0
@@ -1137,7 +1137,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     ldr r1, [sp, #0x14]
     add r0, r7, #0
     add r2, r6, #0
-    bl sub_02023C9C
+    bl PLString_FillWithLine
     str r4, [sp]
     mov r0, #0xff
     str r0, [sp, #4]
@@ -2466,7 +2466,7 @@ static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, UnkStruct_0200B144 
     v0 = sub_0200B1EC(param1, param2);
 
     sub_0200C388(param0->unk_20, param0->unk_38, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0201ADA4(&param0->unk_48, 0xf0f);
     sub_0200E060(&param0->unk_48, 0, 1, 10);
 
@@ -2647,7 +2647,7 @@ void ov98_022498CC (UnkStruct_0205AA50 * param0, PLString * param1, int param2, 
 
 static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
 {
-    PLString * v0 = PLString_AllocFromHeap((16 * 8 * 2), 109);
+    PLString * v0 = PLString_New((16 * 8 * 2), 109);
 
     sub_0200B1B8(param0->unk_30, param1, v0);
     sub_0200C388(param0->unk_20, param0->unk_40, v0);
@@ -2658,7 +2658,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     param0->unk_44 = sub_0201D738(&param0->unk_68, 1, param0->unk_40, 0, 0, 0, NULL);
     param0->unk_44 = 0xff;
 
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 }
 
 static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int param2)

@@ -279,7 +279,7 @@ static BOOL ov5_021EAB58 (UnkStruct_ov5_021EAE78 * param0)
 
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(v0, v5)) {
-                PLString_ImportChars(param0->unk_08, sub_0202AEF0(v0, v5));
+                PLString_FillWithChars(param0->unk_08, sub_0202AEF0(v0, v5));
                 sub_02013A6C(param0->unk_00, param0->unk_08, v5);
             }
         }
@@ -457,16 +457,16 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_38 = sub_0200B358(4);
     param0->unk_3C = sub_0200B144(0, 26, 675, 4);
-    param0->unk_0C = PLString_AllocFromHeap(110, 4);
-    param0->unk_08 = PLString_AllocFromHeap(110, 4);
+    param0->unk_0C = PLString_New(110, 4);
+    param0->unk_08 = PLString_New(110, 4);
 }
 
 static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 {
     sub_0200B190(param0->unk_3C);
     sub_0200B3F0(param0->unk_38);
-    PLString_FreeToHeap(param0->unk_0C);
-    PLString_FreeToHeap(param0->unk_08);
+    PLString_Free(param0->unk_0C);
+    PLString_Free(param0->unk_08);
 
     if (sub_0201A7CC(&param0->unk_10)) {
         sub_0201A8FC(&param0->unk_10);

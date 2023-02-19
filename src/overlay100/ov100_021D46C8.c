@@ -35,7 +35,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     int v0;
     UnkStruct_0200B144 * v1;
     PLString * v2;
-    PLString * v3 = PLString_AllocFromHeap(511, 111);
+    PLString * v3 = PLString_New(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
@@ -47,10 +47,10 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v6, v3, v2);
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
         sub_0200B3F0(v6);
     } else {
-        PLString_CopyInto(v3, v2);
+        PLString_Copy(v3, v2);
     }
 
     v4 = sub_02027AC0(param1->unk_04);
@@ -60,8 +60,8 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     sub_0201A954(&param0->unk_30);
 
     sub_0200E060(&param0->unk_30, 0, 500, 15);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v2);
+    PLString_Free(v3);
 
     param0->unk_40 = v0;
 

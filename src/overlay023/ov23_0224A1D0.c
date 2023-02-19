@@ -533,14 +533,14 @@ void ov23_0224AAB0 (void)
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
         UnkStruct_02025E6C * v0 = sub_02025E6C(15);
-        PLString * v1 = PLString_AllocFromHeap(20, 15);
+        PLString * v1 = PLString_New(20, 15);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);
 
         sub_02025EE0(v0, v1);
         sub_020360D0(91, v0);
-        PLString_FreeToHeap(v1);
+        PLString_Free(v1);
         Heap_FreeToHeap(v0);
     }
 }
@@ -563,7 +563,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 
         v3 = sub_02025F04(v2, 15);
 
-        if (PLString_GetTerminatorIndex(v3) != 0) {
+        if (PLString_GetLength(v3) != 0) {
             v0->unk_14A[param0].unk_20 = param0;
         }
 
@@ -575,7 +575,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
         }
 
         sub_02035AC4(93, &v4, 1);
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
 
         v0->unk_2C2 = 1;
     } else {

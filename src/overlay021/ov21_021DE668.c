@@ -432,7 +432,7 @@ static void ov21_021DEB58 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
 
 void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
-    PLString * v0 = PLString_AllocFromHeap(64, param2);
+    PLString * v0 = PLString_New(64, param2);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
 
     sub_0200B1B8(v1, 9, v0);
@@ -440,7 +440,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
     sub_0200B1B8(v1, 10, v0);
     sub_0201D78C(param0, 0, v0, 152, 104, 0, param4, NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0200B190(v1);
 
     ov21_021DEC2C(param0, param2, param1, param4);
@@ -450,7 +450,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
 static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
-    PLString * v0 = PLString_AllocFromHeap(64, param1);
+    PLString * v0 = PLString_New(64, param1);
     UnkStruct_0200B144 * v1;
     int v2;
 
@@ -459,13 +459,13 @@ static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
     sub_0200B1B8(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0200B190(v1);
 }
 
 static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
-    PLString * v0 = PLString_AllocFromHeap(64, param1);
+    PLString * v0 = PLString_New(64, param1);
     UnkStruct_0200B144 * v1;
     int v2;
 
@@ -474,7 +474,7 @@ static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
     sub_0200B1B8(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0200B190(v1);
 }
 

@@ -444,7 +444,7 @@ void ov101_021D13C8 (UnkStruct_ov101_021D13C8 * param0)
         sub_0201A8D4(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
     }
 
-    v1->unk_18 = PLString_AllocFromHeap(256, 79);
+    v1->unk_18 = PLString_New(256, 79);
 }
 
 void ov101_021D1458 (UnkStruct_ov101_021D13C8 * param0)
@@ -459,7 +459,7 @@ void ov101_021D1458 (UnkStruct_ov101_021D13C8 * param0)
 
     sub_0200B190(v1->unk_00);
     sub_0200B3F0(v1->unk_04);
-    PLString_FreeToHeap(v1->unk_18);
+    PLString_Free(v1->unk_18);
 }
 
 void ov101_021D148C (UnkStruct_ov101_021D13C8 * param0, u32 param1)

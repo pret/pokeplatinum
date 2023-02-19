@@ -1427,10 +1427,10 @@ static void ov65_0222EBE0 (UnkStruct_ov65_0222EBE0 * param0)
     int v0;
     int v1;
 
-    param0->unk_174 = PLString_AllocFromHeap((190 * 2), 54);
-    param0->unk_17C = PLString_AllocFromHeap((190 * 2), 54);
-    param0->unk_170 = PLString_AllocFromHeap((190 * 2), 54);
-    param0->unk_178 = PLString_AllocFromHeap((90 * 2), 54);
+    param0->unk_174 = PLString_New((190 * 2), 54);
+    param0->unk_17C = PLString_New((190 * 2), 54);
+    param0->unk_170 = PLString_New((190 * 2), 54);
+    param0->unk_178 = PLString_New((90 * 2), 54);
     param0->unk_3A8 = 0;
 }
 
@@ -1438,10 +1438,10 @@ static void ov65_0222EC2C (UnkStruct_ov65_0222EBE0 * param0)
 {
     int v0;
 
-    PLString_FreeToHeap(param0->unk_178);
-    PLString_FreeToHeap(param0->unk_174);
-    PLString_FreeToHeap(param0->unk_17C);
-    PLString_FreeToHeap(param0->unk_170);
+    PLString_Free(param0->unk_178);
+    PLString_Free(param0->unk_174);
+    PLString_Free(param0->unk_17C);
+    PLString_Free(param0->unk_170);
 }
 
 static void ov65_0222EC5C (UnkStruct_02018340 * param0)
@@ -2313,7 +2313,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     u32 v6;
 
     if (!sub_0201A7CC(&param0->unk_340)) {
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
         return;
     }
 
@@ -2328,7 +2328,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     sub_0201D78C(&param0->unk_340, 0, v5, 32, 0, 0xff, v0, NULL);
-    PLString_FreeToHeap(v5);
+    PLString_Free(v5);
 
     v6 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
     v3 = ov65_0223484C(v6, &v0);
@@ -2345,7 +2345,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
                 v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0)));
             }
 
-            PLString_ImportChars(param0->unk_170, sub_0202AEF0(param0->unk_00, ov4_021D2388()));
+            PLString_FillWithChars(param0->unk_170, sub_0202AEF0(param0->unk_00, ov4_021D2388()));
         }
     } else {
         sub_0200B1B8(param0->unk_168, v3, param0->unk_170);
@@ -6312,7 +6312,7 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
             sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, v3, v4, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
     }
 
     {
@@ -6716,7 +6716,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     sub_0201A7A0(&v3);
     sub_0201A870(param0->unk_15C, &v3, 8, 2, 0, 0);
 
-    v4 = PLString_AllocFromHeap(64, param2);
+    v4 = PLString_New(64, param2);
     sub_0200B1B8(param0->unk_168, 73, v4);
 
     {
@@ -6724,7 +6724,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
         sub_0201D78C(&v3, 2, v4, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
 
-    PLString_FreeToHeap(v4);
+    PLString_Free(v4);
 
     v5 = sub_02012B20(&v3, param2);
     v6 = sub_02012B58(v5, NNS_G2D_VRAM_TYPE_2DSUB);

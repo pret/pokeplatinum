@@ -418,7 +418,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             sub_0200B5CC(param0->unk_14, 0, sub_02076B10(v3));
             sub_0200B630(param0->unk_14, 1, 373);
             sub_0200C388(param0->unk_14, param0->unk_18, v4);
-            PLString_FreeToHeap(v4);
+            PLString_Free(v4);
 
             ov13_022279F4(param0);
             param0->unk_114B = 8;
@@ -441,7 +441,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 v6 = sub_0200B1EC(v5, 36);
                 sub_0200B498(param0->unk_14, 0, v0->unk_04);
                 sub_0200C388(param0->unk_14, param0->unk_18, v6);
-                PLString_FreeToHeap(v6);
+                PLString_Free(v6);
                 sub_0200B190(v5);
                 ov13_022279F4(param0);
                 param0->unk_114B = 8;
@@ -768,7 +768,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
     param0->unk_10 = sub_0200B144(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
     param0->unk_14 = sub_0200B358(param0->unk_00->unk_0C);
-    param0->unk_18 = PLString_AllocFromHeap(512, param0->unk_00->unk_0C);
+    param0->unk_18 = PLString_New(512, param0->unk_00->unk_0C);
 }
 
 static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
@@ -776,7 +776,7 @@ static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
     sub_0200B190(param0->unk_10);
     sub_0200C560(param0->unk_0C);
     sub_0200B3F0(param0->unk_14);
-    PLString_FreeToHeap(param0->unk_18);
+    PLString_Free(param0->unk_18);
 }
 
 static void ov13_02227118 (UnkStruct_ov13_02227244 * param0, u8 param1)

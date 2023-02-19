@@ -413,7 +413,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     sub r0, r1, r0
     lsr r7, r0, #1
     add r0, r5, #0
-    bl sub_02023C5C
+    bl PLString_CountLines
     lsl r1, r0, #4
     mov r0, #0xc0
     sub r0, r0, r1

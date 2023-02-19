@@ -166,11 +166,11 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
 
     v4 = sub_02051D8C(param0, 0x400);
     v2 = sub_0200B144(1, 26, 553, param0);
-    v3 = PLString_AllocFromHeap(8, param0);
+    v3 = PLString_New(8, param0);
 
     sub_0200B1B8(v2, sub_02025F30(v0) ^ 1, v3);
-    sub_02025EC0(v4->unk_D0[0], PLString_GetCharData(v3));
-    PLString_FreeToHeap(v3);
+    sub_02025EC0(v4->unk_D0[0], PLString_GetBuffer(v3));
+    PLString_Free(v3);
     sub_0200B190(v2);
     sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
     sub_0205281C(v4, param1);

@@ -114,8 +114,8 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
     UnkStruct_0200B358 * v5;
     UnkStruct_0200B144 * v6;
 
-    v2 = PLString_AllocFromHeap(12 + 2, 4);
-    v3 = PLString_AllocFromHeap(2, 4);
+    v2 = PLString_New(12 + 2, 4);
+    v3 = PLString_New(2, 4);
     v4 = sub_02027560(param0);
     v6 = sub_0200B144(1, 26, 412, 4);
     v5 = sub_0200B368(18 + 1, 12 + 2, 4);
@@ -133,8 +133,8 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
     }
 
     sub_0200B190(v6);
-    PLString_FreeToHeap(v3);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v3);
+    PLString_Free(v2);
 
     return v5;
 }
@@ -296,8 +296,8 @@ static UnkStruct_0204B184 * sub_0204B184 (UnkStruct_ov104_0223A348 * param0, u16
 
     v2 = sub_0200B1EC(v1, param1);
 
-    PLString_ExportCharsUpTo(v2, &param0->unk_00.unk_08[0], 8);
-    PLString_FreeToHeap(v2);
+    PLString_Dump(v2, &param0->unk_00.unk_08[0], 8);
+    PLString_Free(v2);
     sub_0200B190(v1);
 
     return v0;

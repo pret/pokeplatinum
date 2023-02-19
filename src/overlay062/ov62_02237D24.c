@@ -1253,7 +1253,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
     v3 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
     sub_0201A9A4(v1);
 }
 
@@ -1441,7 +1441,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     add r1, r7, #0
     bl sub_0200C388
     add r0, r7, #0
-    bl sub_02023C5C
+    bl PLString_CountLines
     mov r5, #0
     str r0, [sp, #0x14]
     cmp r0, #0
@@ -1451,7 +1451,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     add r0, r4, #0
     add r1, r7, #0
     add r2, r5, #0
-    bl sub_02023C9C
+    bl PLString_FillWithLine
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
@@ -1576,7 +1576,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     add r1, r7, #0
     bl sub_0200C388
     add r0, r7, #0
-    bl sub_02023C5C
+    bl PLString_CountLines
     mov r5, #0
     str r0, [sp, #0x14]
     cmp r0, #0
@@ -1586,7 +1586,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     add r0, r4, #0
     add r1, r7, #0
     add r2, r5, #0
-    bl sub_02023C9C
+    bl PLString_FillWithLine
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0

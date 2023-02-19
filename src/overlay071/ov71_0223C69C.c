@@ -86,7 +86,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     sub_0201AE78(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
     v1 = sub_0200B144(0, 26, 616, 25);
-    v2 = PLString_AllocFromHeap(32, 25);
+    v2 = PLString_New(32, 25);
 
     for (v0 = 0; v0 < 7; v0++) {
         if ((v0 != 3) || (v0 == 3) && (param1->unk_04_3)) {
@@ -96,11 +96,11 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     }
 
     {
-        PLString * v3 = PLString_AllocFromHeap(32, 25);
+        PLString * v3 = PLString_New(32, 25);
         UnkStruct_0200B358 * v4 = sub_0200B368(6, 32, 25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
-        PLString_ImportChars(v2, param1->unk_08);
+        PLString_FillWithChars(v2, param1->unk_08);
         ov71_0223CDB0(&param0[1], (8 * 17), 0, 0, v2);
 
         {
@@ -161,11 +161,11 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
             sub_0201D78C(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
 
-        PLString_FreeToHeap(v3);
+        PLString_Free(v3);
         sub_0200B3F0(v4);
     }
 
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
     sub_0200B190(v1);
 }
 
@@ -536,7 +536,7 @@ static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const 
 {
     u32 v0;
 
-    PLString_FromInteger(param4, param5, param6, param7, 1);
+    PLString_FromInt(param4, param5, param6, param7, 1);
     v0 = sub_02002D7C(0, param4, 0);
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
@@ -566,8 +566,8 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     {
         u32 v1;
         UnkStruct_0200B144 * v2 = sub_0200B144(0, 26, 616, 25);
-        PLString * v3 = PLString_AllocFromHeap(32, 25);
-        PLString * v4 = PLString_AllocFromHeap(32, 25);
+        PLString * v3 = PLString_New(32, 25);
+        PLString * v4 = PLString_New(32, 25);
         UnkStruct_0200B358 * v5 = sub_0200B368((1 + 1), 32, 25);
 
         sub_0200B60C(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
@@ -578,8 +578,8 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
         sub_0201D78C(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 
         sub_0200B190(v2);
-        PLString_FreeToHeap(v3);
-        PLString_FreeToHeap(v4);
+        PLString_Free(v3);
+        PLString_Free(v4);
         sub_0200B3F0(v5);
     }
 }

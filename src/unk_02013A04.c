@@ -58,7 +58,7 @@ void sub_02013A6C (UnkStruct_02013A04 * param0, const PLString * param1, u32 par
     param0 = sub_02013AAC(param0, &v0);
 
     if (param0) {
-        param0->unk_00 = PLString_CloneUpTo(param1, v0);
+        param0->unk_00 = PLString_Clone(param1, v0);
         param0->unk_04 = param2;
     }
 }
@@ -108,7 +108,7 @@ void sub_02013AE8 (UnkStruct_02013A04 * param0)
             break;
         }
 
-        PLString_FreeToHeap((PLString *)(v0->unk_00));
+        PLString_Free((PLString *)(v0->unk_00));
 
         v0->unk_00 = NULL;
         v0++;

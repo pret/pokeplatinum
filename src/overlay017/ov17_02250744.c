@@ -258,7 +258,7 @@ static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 
 
     param0->unk_10.unk_388 = sub_0201D738(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 }
 
 void ov17_02250968 (UnkStruct_ov17_0224FCA0 * param0, u32 param1, const UnkStruct_ov17_022508E4 * param2)
@@ -339,7 +339,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
         PLString * v2;
         int v3, v4;
 
-        v2 = PLString_AllocFromHeap(12, 24);
+        v2 = PLString_New(12, 24);
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
@@ -350,7 +350,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
             sub_0201D78C(&param0->unk_10.unk_24[5 + v3], 0, param0->unk_00->unk_00.unk_D8[v4], 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
 
-        PLString_FreeToHeap(v2);
+        PLString_Free(v2);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);

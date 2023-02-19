@@ -120,7 +120,7 @@ BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_34 = sub_020071D0(param5, 2, 1, &(param0->unk_38), 10);
     param0->unk_2C = sub_020071D0(param5, 3, 1, &(param0->unk_30), 10);
     param0->unk_44 = sub_0200C440(2, 13, 4, 10);
-    param0->unk_4BFC = PLString_AllocFromHeap(500, 10);
+    param0->unk_4BFC = PLString_New(500, 10);
     param0->unk_10 = NULL;
     param0->unk_3C.unk_00 = param0->unk_18->pRawData;
     param0->unk_3C.unk_04 = 32;
@@ -184,7 +184,7 @@ void ov19_021DBAD0 (UnkStruct_ov19_021DBA9C * param0)
     }
 
     if (param0->unk_4BFC) {
-        PLString_FreeToHeap(param0->unk_4BFC);
+        PLString_Free(param0->unk_4BFC);
     }
 
     if (param0->unk_10) {

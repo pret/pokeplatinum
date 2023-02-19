@@ -131,12 +131,12 @@ void sub_0200ADAC (const UnkStruct_0200AC5C * param0, u32 param1, PLString * par
             MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
 
             inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
-            PLString_ImportCharsUpTo(param2, v1, v0.unk_04);
+            PLString_FillWithCharsLimit(param2, v1, v0.unk_04);
             Heap_FreeToHeap(v1);
         }
     } else {
         GF_ASSERT(0);
-        PLString_Zero(param2);
+        PLString_Clear(param2);
     }
 }
 
@@ -158,10 +158,10 @@ PLString * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1, u32 para
             MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
             inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
 
-            v3 = PLString_AllocFromHeap(v0.unk_04, param2);
+            v3 = PLString_New(v0.unk_04, param2);
 
             if (v3) {
-                PLString_ImportCharsUpTo(v3, v1, v0.unk_04);
+                PLString_FillWithCharsLimit(v3, v1, v0.unk_04);
             }
 
             Heap_FreeToHeap(v1);
@@ -171,7 +171,7 @@ PLString * sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1, u32 para
         return NULL;
     } else {
         GF_ASSERT(0);
-        return PLString_AllocFromHeap(4, param2);
+        return PLString_New(4, param2);
     }
 }
 
@@ -206,12 +206,12 @@ void sub_0200AF48 (NARC * param0, u32 param1, u32 param2, u32 param3, PLString *
         if (v2) {
             NARC_ReadFromMember(param0, param1, v1.unk_00, v3, v2);
             inline_0200AC6C_1(v2, v1.unk_04, param2, v0.unk_02);
-            PLString_ImportCharsUpTo(param4, v2, v1.unk_04);
+            PLString_FillWithCharsLimit(param4, v2, v1.unk_04);
             Heap_FreeToHeap(v2);
         }
     } else {
         GF_ASSERT(0);
-        PLString_Zero(param4);
+        PLString_Clear(param4);
     }
 }
 
@@ -226,7 +226,7 @@ PLString * sub_0200B010 (u32 param0, u32 param1, u32 param2, u32 param3)
         v1 = sub_0200B044(v0, param1, param2, param3);
         NARC_dtor(v0);
     } else {
-        v1 = PLString_AllocFromHeap(4, param3);
+        v1 = PLString_New(4, param3);
     }
 
     return v1;
@@ -245,7 +245,7 @@ PLString * sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
         NARC_ReadFromMember(param0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v1);
         inline_0200AC6C(&v1, param2, v0.unk_02);
 
-        v2 = PLString_AllocFromHeap(v1.unk_04, param3);
+        v2 = PLString_New(v1.unk_04, param3);
 
         if (v2) {
             u16 * v3;
@@ -257,7 +257,7 @@ PLString * sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
             if (v3) {
                 NARC_ReadFromMember(param0, param1, v1.unk_00, v4, v3);
                 inline_0200AC6C_1(v3, v1.unk_04, param2, v0.unk_02);
-                PLString_ImportCharsUpTo(v2, v3, v1.unk_04);
+                PLString_FillWithCharsLimit(v2, v3, v1.unk_04);
                 Heap_FreeToHeap(v3);
             }
         }
@@ -265,7 +265,7 @@ PLString * sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
         return v2;
     } else {
         GF_ASSERT(0);
-        return PLString_AllocFromHeap(4, param3);
+        return PLString_New(4, param3);
     }
 }
 

@@ -453,8 +453,8 @@ UnkStruct_02095C48 * sub_02093800 (const UnkStruct_02093800 * param0)
 
     {
         sub_020775EC(param0->unk_08, v0->unk_00.unk_00[0]);
-        v0->unk_00.unk_D8[0] = PLString_AllocFromHeap(8, 20);
-        PLString_CopyInto(v0->unk_00.unk_D8[0], param0->unk_0C);
+        v0->unk_00.unk_D8[0] = PLString_New(8, 20);
+        PLString_Copy(v0->unk_00.unk_D8[0], param0->unk_0C);
 
         v0->unk_00.unk_F8[0] = sub_02025F30(param0->unk_10);
         v0->unk_00.unk_FC[0] = 0;
@@ -503,7 +503,7 @@ static void sub_020939E0 (UnkStruct_02095C48 * param0, int param1, int param2)
 
     for (v1 = 1; v1 < 4; v1++) {
         if (param0->unk_00.unk_D8[v1] == NULL) {
-            param0->unk_00.unk_D8[v1] = PLString_AllocFromHeap(8, 20);
+            param0->unk_00.unk_D8[v1] = PLString_New(8, 20);
         }
 
         sub_02074470(param0->unk_00.unk_00[v1], 145, param0->unk_00.unk_D8[v1]);
@@ -536,7 +536,7 @@ void sub_02093AD4 (UnkStruct_02095C48 * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         Heap_FreeToHeap(param0->unk_00.unk_00[v0]);
-        PLString_FreeToHeap(param0->unk_00.unk_D8[v0]);
+        PLString_Free(param0->unk_00.unk_D8[v0]);
         Heap_FreeToHeap(param0->unk_00.unk_E8[v0]);
         Heap_FreeToHeap(param0->unk_14C[v0]);
     }
@@ -767,7 +767,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
 
                 for (v1 = 0; v1 < v0->unk_00.unk_117; v1++) {
                     v2 = sub_02032EE8(v1);
-                    PLString_Zero(v0->unk_00.unk_D8[v1]);
+                    PLString_Clear(v0->unk_00.unk_D8[v1]);
                     sub_02025EF4(v2, v0->unk_00.unk_D8[v1]);
                 }
             }

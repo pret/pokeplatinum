@@ -508,15 +508,15 @@ static void ov23_02249724 (UnkStruct_ov23_02249724 * param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_00[v0] = PLString_AllocFromHeap((50 * 2), 4);
+        param0->unk_00[v0] = PLString_New((50 * 2), 4);
     }
 
     param0->unk_8C = 0;
     param0->unk_90 = 0;
-    param0->unk_80 = PLString_AllocFromHeap((50 * 2), 4);
+    param0->unk_80 = PLString_New((50 * 2), 4);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_84[v0] = PLString_AllocFromHeap((20 * 2 * 2), 4);
+        param0->unk_84[v0] = PLString_New((20 * 2 * 2), 4);
     }
 }
 
@@ -525,13 +525,13 @@ static void ov23_02249778 (UnkStruct_ov23_02249724 * param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        PLString_FreeToHeap(param0->unk_00[v0]);
+        PLString_Free(param0->unk_00[v0]);
     }
 
-    PLString_FreeToHeap(param0->unk_80);
+    PLString_Free(param0->unk_80);
 
     for (v0 = 0; v0 < 2; v0++) {
-        PLString_FreeToHeap(param0->unk_84[v0]);
+        PLString_Free(param0->unk_84[v0]);
     }
 }
 
@@ -539,7 +539,7 @@ static int ov23_022497B0 (UnkStruct_ov23_02249724 * param0, PLString * param1)
 {
     int v0, v1, v2;
 
-    PLString_ExportCharsUpTo(param1, param0->unk_94, (20 * 2 * 2));
+    PLString_Dump(param1, param0->unk_94, (20 * 2 * 2));
 
     v1 = 0;
     v0 = 0;
@@ -556,12 +556,12 @@ static int ov23_022497B0 (UnkStruct_ov23_02249724 * param0, PLString * param1)
     GF_ASSERT(v1 < 2);
 
     if (v1 == 0) {
-        PLString_CopyInto(param0->unk_84[0], param1);
+        PLString_Copy(param0->unk_84[0], param1);
         return 1;
     } else {
         param0->unk_94[v2] = 0xffff;
-        PLString_ImportChars(param0->unk_84[0], param0->unk_94);
-        PLString_ImportChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
+        PLString_FillWithChars(param0->unk_84[0], param0->unk_94);
+        PLString_FillWithChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
     }
 
     return 2;
@@ -585,7 +585,7 @@ static int ov23_02249844 (UnkStruct_ov23_02249724 * param0, PLString * param1)
     }
 
     for (v1 = 0; v1 < v2; v1++) {
-        PLString_CopyInto(param0->unk_00[param0->unk_8C], param0->unk_84[v1]);
+        PLString_Copy(param0->unk_00[param0->unk_8C], param0->unk_84[v1]);
         param0->unk_8C++;
 
         if (param0->unk_8C == 32) {

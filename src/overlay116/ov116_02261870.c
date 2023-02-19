@@ -403,7 +403,7 @@ void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
         v1 = sub_0200B1EC(v0, 0);
 
         sub_0201D738(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
-        PLString_FreeToHeap(v1);
+        PLString_Free(v1);
         sub_0200B190(v0);
     }
 
@@ -541,7 +541,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
                 sub_0201D7E0(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
             }
 
-            PLString_FreeToHeap(v11);
+            PLString_Free(v11);
         }
 
         sub_0201A954(v3);

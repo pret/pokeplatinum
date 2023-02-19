@@ -37,10 +37,10 @@ void ov61_0222AE88 (UnkStruct_021C0794 * param0, const UnkStruct_020797DC * para
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));
 
-    v0 = PLString_AllocFromHeap(20 * 3, param4);
+    v0 = PLString_New(20 * 3, param4);
     sub_02079AF4(param1, param2, v0);
-    PLString_ExportCharsUpTo(v0, param3->unk_00, 20);
-    PLString_FreeToHeap(v0);
+    PLString_Dump(v0, param3->unk_00, 20);
+    PLString_Free(v0);
 
     for (v1 = 0; v1 < 30; v1++) {
         param3->unk_28[v1] = sub_02079C08(param1, param2, v1, 5, NULL);

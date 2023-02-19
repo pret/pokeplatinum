@@ -35,14 +35,14 @@ void sub_02026040 (UnkStruct_02026030 * param0)
 
 void sub_0202604C (const UnkStruct_0202610C * param0, PLString * param1)
 {
-    PLString_ImportCharsUpTo(param1, param0->unk_00, (11 + 1));
+    PLString_FillWithCharsLimit(param1, param0->unk_00, (11 + 1));
 }
 
 PLString * sub_0202605C (const UnkStruct_0202610C * param0, int param1)
 {
-    PLString * v0 = PLString_AllocFromHeap((11 + 1) * 2, param1);
+    PLString * v0 = PLString_New((11 + 1) * 2, param1);
 
-    PLString_ImportChars(v0, param0->unk_00);
+    PLString_FillWithChars(v0, param0->unk_00);
     return v0;
 }
 

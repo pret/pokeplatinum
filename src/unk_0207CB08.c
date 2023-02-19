@@ -167,7 +167,7 @@ BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, PLString * param1, u16 param2, u
     }
 
     sub_0200C388(v1, param1, v2);
-    PLString_FreeToHeap(v2);
+    PLString_Free(v2);
     sub_0200B3F0(v1);
     sub_0200B190(v0);
 
@@ -202,7 +202,7 @@ void sub_0207CD34 (void * param0, PLString * param1, u16 param2, u32 param3, u32
         v2 = sub_0200B1EC(v0, 36);
         sub_0200B498(v1, 0, param0);
         sub_0200C388(v1, param1, v2);
-        PLString_FreeToHeap(v2);
+        PLString_Free(v2);
         sub_0200B3F0(v1);
         sub_0200B190(v0);
     }

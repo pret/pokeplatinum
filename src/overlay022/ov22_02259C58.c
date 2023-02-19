@@ -529,7 +529,7 @@ static UnkStruct_0205AA50 * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32
         sub_0201D78C(v2, 2, v1, v3, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), NULL);
     }
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0200B190(v0);
 
     return v2;

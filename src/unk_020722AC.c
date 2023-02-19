@@ -891,7 +891,7 @@ static void sub_02072EB8 (UnkStruct_02072EB8 * param0, u8 param1)
     param0->unk_03 = 0;
 
     if (param0->unk_08 != NULL) {
-        PLString_Zero(param0->unk_08);
+        PLString_Clear(param0->unk_08);
     }
 }
 
@@ -900,7 +900,7 @@ static void sub_02072ED0 (UnkStruct_02072EB8 * param0, u8 param1, int param2)
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].unk_08 = PLString_AllocFromHeap(8, param2);
+        param0[v0].unk_08 = PLString_New(8, param2);
         sub_02072EB8(param0, v0);
     }
 }
@@ -911,7 +911,7 @@ static void sub_02072F04 (UnkStruct_02072EB8 * param0, u8 param1)
 
     for (v0 = 0; v0 < param1; v0++) {
         if (param0[v0].unk_08 != NULL) {
-            PLString_FreeToHeap(param0[v0].unk_08);
+            PLString_Free(param0[v0].unk_08);
         }
     }
 }
@@ -950,7 +950,7 @@ static void sub_02072F30 (UnkStruct_02072334 * param0, UnkStruct_021C0794 * para
         v7->unk_05 = sub_02028314(v6);
         v7->unk_06 = sub_0207D310(v7->unk_05);
 
-        PLString_ImportChars(v7->unk_08, sub_0202830C(v6));
+        PLString_FillWithChars(v7->unk_08, sub_0202830C(v6));
 
         v7->unk_02 = param0->unk_19;
         v8->unk_03 = v7->unk_00;
@@ -1035,7 +1035,7 @@ static void sub_02073130 (UnkStruct_02072334 * param0)
 
     param0->unk_10C = sub_0200B144(1, 26, 408, param0->unk_00);
     param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
-    param0->unk_110.unk_04 = PLString_AllocFromHeap(128, param0->unk_00);
+    param0->unk_110.unk_04 = PLString_New(128, param0->unk_00);
     param0->unk_110.unk_08 = sub_0200B1EC(param0->unk_10C, 4);
     param0->unk_110.unk_0C = sub_0200B1EC(param0->unk_10C, 0);
 
@@ -1049,12 +1049,12 @@ static void sub_020731A4 (UnkStruct_02072334 * param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        PLString_FreeToHeap(param0->unk_110.unk_10[v0]);
+        PLString_Free(param0->unk_110.unk_10[v0]);
     }
 
-    PLString_FreeToHeap(param0->unk_110.unk_0C);
-    PLString_FreeToHeap(param0->unk_110.unk_08);
-    PLString_FreeToHeap(param0->unk_110.unk_04);
+    PLString_Free(param0->unk_110.unk_0C);
+    PLString_Free(param0->unk_110.unk_08);
+    PLString_Free(param0->unk_110.unk_04);
     sub_0200B3F0(param0->unk_110.unk_00);
     sub_0200B190(param0->unk_10C);
 }
@@ -1095,7 +1095,7 @@ static void sub_020732C4 (UnkStruct_02072334 * param0, int param1, u8 param2, u8
     sub_02002AE4(0);
 
     if (param1 == 0) {
-        PLString_Zero(param0->unk_110.unk_04);
+        PLString_Clear(param0->unk_110.unk_04);
         sub_0200B48C(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
         sub_0200C388(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
 

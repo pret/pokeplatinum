@@ -1870,7 +1870,7 @@ BOOL ov104_02230E40 (UnkStruct_ov104_0222E930 * param0)
     PLString * v4 = ov104_02230E90(v1, 11);
 
     sub_0200B48C(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
-    PLString_FreeToHeap(v4);
+    PLString_Free(v4);
 
     return 0;
 }

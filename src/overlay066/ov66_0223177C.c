@@ -593,7 +593,7 @@ static void ov66_02231E94 (UnkStruct_ov66_02231E94 * param0, u32 param1)
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
-            param0->unk_00[v0].unk_10[v1] = PLString_AllocFromHeap((7 + 1), param1);
+            param0->unk_00[v0].unk_10[v1] = PLString_New((7 + 1), param1);
         }
     }
 
@@ -607,7 +607,7 @@ static void ov66_02231EEC (UnkStruct_ov66_02231E94 * param0)
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
-            PLString_FreeToHeap(param0->unk_00[v0].unk_10[v1]);
+            PLString_Free(param0->unk_00[v0].unk_10[v1]);
         }
     }
 
@@ -743,7 +743,7 @@ static BOOL ov66_02232068 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     v0 = sub_0200B1EC(param3, 7);
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }
@@ -759,7 +759,7 @@ static BOOL ov66_022320BC (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     v0 = sub_0200B1EC(param3, 8);
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }
@@ -805,7 +805,7 @@ static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     }
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }
@@ -821,7 +821,7 @@ static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     v0 = sub_0200B1EC(param3, 9);
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }
@@ -845,7 +845,7 @@ static BOOL ov66_022322B8 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     v0 = sub_0200B1EC(param3, 10 + (4 - param0->unk_04[0]));
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }
@@ -880,7 +880,7 @@ static BOOL ov66_02232330 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     v0 = sub_0200B1EC(param3, v1);
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }
@@ -929,7 +929,7 @@ static BOOL ov66_022323C4 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     }
 
     sub_0200C388(param2, param4, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 
     return 1;
 }

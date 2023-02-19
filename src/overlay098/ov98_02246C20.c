@@ -106,8 +106,8 @@ int ov98_02246C20 (UnkStruct_020067E8 * param0, int * param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->unk_04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
     v0->unk_08 = sub_02025E44(v0->unk_04);
-    v0->unk_114 = PLString_AllocFromHeap(100, 108);
-    v0->unk_118 = PLString_AllocFromHeap(100, 108);
+    v0->unk_114 = PLString_New(100, 108);
+    v0->unk_118 = PLString_New(100, 108);
     sub_02004550(17, 1175, 1);
     v0->unk_8C = 0;
 
@@ -176,8 +176,8 @@ int ov98_02246DC0 (UnkStruct_020067E8 * param0, int * param1)
 
     ov98_02246E54(v0);
 
-    PLString_FreeToHeap(v0->unk_118);
-    PLString_FreeToHeap(v0->unk_114);
+    PLString_Free(v0->unk_118);
+    PLString_Free(v0->unk_114);
     sub_02006830(param0);
     Heap_Destroy(108);
     Heap_Destroy(91);
@@ -398,7 +398,7 @@ asm void ov98_02246FFC (UnkStruct_ov98_02246E88 * param0)
     lsl r0, r0, #4
     ldr r0, [r5, r0]
     ldr r1, [r4, #0x1c]
-    bl PLString_IsPrefixOf
+    bl PLString_Compare
     cmp r0, #0
     beq _0224703E
     add r0, r5, #0
@@ -415,7 +415,7 @@ asm void ov98_02246FFC (UnkStruct_ov98_02246E88 * param0)
     lsl r0, r0, #4
     ldr r0, [r5, r0]
     ldr r1, [r4, #0x1c]
-    bl PLString_CopyInto
+    bl PLString_Copy
     add r0, r5, #0
     mov r1, #2
     bl ov98_02246FAC

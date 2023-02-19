@@ -160,8 +160,8 @@ void sub_02079170 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_021C0794 * p
                 sub_020021B0(&param0->unk_28[v1].unk_14[0], v4);
             } else {
                 v3 = sub_0200B1EC(v2, param0->unk_18[v1]);
-                PLString_ExportCharsUpTo(v3, &param0->unk_28[v1].unk_14[0], 8);
-                PLString_FreeToHeap(v3);
+                PLString_Dump(v3, &param0->unk_28[v1].unk_14[0], 8);
+                PLString_Free(v3);
             }
 
             sub_020793B8(param0, v1, param2);
@@ -269,7 +269,7 @@ void sub_020792F8 (int param0, int param1, PLString * param2, int param3)
     NARC_dtor(v0);
 
     if (v2 == v1) {
-        PLString_Zero(param2);
+        PLString_Clear(param2);
     }
 }
 

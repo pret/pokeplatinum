@@ -1004,8 +1004,8 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
             PLString * v2;
             PLString * v3;
 
-            v3 = PLString_AllocFromHeap((7 + 1) * 4, param2);
-            v2 = PLString_AllocFromHeap((7 + 1) * 4, param2);
+            v3 = PLString_New((7 + 1) * 4, param2);
+            v2 = PLString_New((7 + 1) * 4, param2);
             sub_02025EF4(param1, v2);
             v0 = sub_02002DB4(0, v2, v3);
 
@@ -1013,8 +1013,8 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
                 v1 = 1;
             }
 
-            PLString_FreeToHeap(v3);
-            PLString_FreeToHeap(v2);
+            PLString_Free(v3);
+            PLString_Free(v2);
         }
     } else {
         v1 = 1;
@@ -1028,7 +1028,7 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
         v5 = sub_0200B1EC(v4, 64);
 
         sub_02025EE0(param1, v5);
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
         sub_0200B190(v4);
     }
 
@@ -2332,9 +2332,9 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
 
         v5 = sub_02025F04(v0, param2);
 
-        PLString_ExportCharsUpTo(v5, param0->unk_20.unk_08, 7 + 1);
-        PLString_ExportCharsUpTo(v5, param0->unk_00, 7 + 1);
-        PLString_FreeToHeap(v5);
+        PLString_Dump(v5, param0->unk_20.unk_08, 7 + 1);
+        PLString_Dump(v5, param0->unk_00, 7 + 1);
+        PLString_Free(v5);
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;

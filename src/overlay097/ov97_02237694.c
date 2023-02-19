@@ -258,7 +258,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
                 param0->unk_0C = 0;
             }
 
-            PLString_FreeToHeap(v1);
+            PLString_Free(v1);
 
             if (param0->unk_14 == NULL) {
                 sub_0200B3F0(v2);

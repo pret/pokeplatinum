@@ -760,13 +760,13 @@ static void ov21_021E9968 (UnkStruct_0205AA50 * param0, int param1, int param2)
 
 static void ov21_021E998C (UnkStruct_0205AA50 * param0, int param1)
 {
-    PLString * v0 = PLString_AllocFromHeap(64, param1);
+    PLString * v0 = PLString_New(64, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 110, v0);
     sub_0201D78C(param0, 0, v0, 32, 0, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0200B190(v1);
 }
 

@@ -147,7 +147,7 @@ static void sub_02029990 (UnkStruct_0202A138 * param0, UnkStruct_02073C74 * para
 
 static void sub_020299C0 (UnkStruct_0202A138 * param0, const PLString * param1, int param2)
 {
-    PLString_ExportCharsUpTo(param1, param0->unk_20, 8);
+    PLString_Dump(param1, param0->unk_20, 8);
     param0->unk_34 = param2;
 }
 
@@ -855,7 +855,7 @@ u16 sub_0202A5E8 (const UnkStruct_0202A138 * param0)
 
 void sub_0202A5EC (const UnkStruct_0202A138 * param0, PLString * param1)
 {
-    PLString_ImportChars(param1, param0->unk_20);
+    PLString_FillWithChars(param1, param0->unk_20);
 }
 
 u32 sub_0202A5FC (const UnkStruct_0202A138 * param0)

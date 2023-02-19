@@ -492,7 +492,7 @@ void sub_0205C820 (UnkStruct_02061830 * param0, UnkStruct_0205C22C * param1)
 
 static void sub_0205C8DC (UnkStruct_0205C924 * param0)
 {
-    param0->unk_00 = PLString_AllocFromHeap(7 + 1, 89);
+    param0->unk_00 = PLString_New(7 + 1, 89);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
@@ -519,11 +519,11 @@ static void sub_0205C924 (UnkStruct_0205C924 * param0)
     Heap_FreeToHeap(param0->unk_00);
 
     if (param0->unk_04 != NULL) {
-        PLString_FreeToHeap(param0->unk_04);
+        PLString_Free(param0->unk_04);
     }
 
     if (param0->unk_08 != NULL) {
-        PLString_FreeToHeap(param0->unk_08);
+        PLString_Free(param0->unk_08);
     }
 }
 

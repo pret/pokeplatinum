@@ -319,16 +319,16 @@ static void ov94_02244F00 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_02244F2C (UnkStruct_ov94_0223FD4C * param0)
 {
-    param0->unk_BAC = PLString_AllocFromHeap((90 * 2), 62);
-    param0->unk_BDC = PLString_AllocFromHeap((16 * 8 * 2), 62);
+    param0->unk_BAC = PLString_New((90 * 2), 62);
+    param0->unk_BDC = PLString_New((16 * 8 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 31);
 }
 
 static void ov94_02244F64 (UnkStruct_ov94_0223FD4C * param0)
 {
-    PLString_FreeToHeap(param0->unk_BB0);
-    PLString_FreeToHeap(param0->unk_BDC);
-    PLString_FreeToHeap(param0->unk_BAC);
+    PLString_Free(param0->unk_BB0);
+    PLString_Free(param0->unk_BDC);
+    PLString_Free(param0->unk_BAC);
 }
 
 static int ov94_02244F8C (UnkStruct_ov94_0223FD4C * param0)
@@ -913,7 +913,7 @@ void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, UnkStruct_0200B144 * param
     v0 = sub_0200B1EC(param1, param2);
 
     sub_0200C388(param0->unk_B8C, param0->unk_BAC, v0);
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
     sub_0201ADA4(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 
@@ -958,7 +958,7 @@ void ov94_02245934 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    PLString * v0 = PLString_AllocFromHeap((16 * 8 * 2), 62);
+    PLString * v0 = PLString_New((16 * 8 * 2), 62);
 
     sub_0200B1B8(param0->unk_B9C, param1, v0);
     sub_0200C388(param0->unk_B8C, param0->unk_BDC, v0);
@@ -968,7 +968,7 @@ static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
 
     param0->unk_BE0 = sub_0201D738(&param0->unk_F8C, 1, param0->unk_BDC, 0, 0, 0, NULL);
 
-    PLString_FreeToHeap(v0);
+    PLString_Free(v0);
 }
 
 static void ov94_022459B4 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)

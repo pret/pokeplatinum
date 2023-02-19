@@ -97,7 +97,7 @@ int ov61_0222B008 (UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_022411
 
     param0->unk_3F4 = sub_0200B144(0, 26, 695, param1->unk_04);
     param0->unk_3F8 = sub_0200B358(param1->unk_04);
-    param0->unk_3FC = PLString_AllocFromHeap((16 * 8 * 2), param1->unk_04);
+    param0->unk_3FC = PLString_New((16 * 8 * 2), param1->unk_04);
     param0->unk_18C = ov61_0222BBF0(param1->unk_04);
     param0->unk_0C.unk_00 = param1->unk_00;
     param0->unk_0C.unk_04 = GAME_VERSION;
@@ -118,7 +118,7 @@ void ov61_0222B0F0 (UnkStruct_ov62_022349A8 * param0)
 
     param0->unk_3C4 = 0;
 
-    PLString_FreeToHeap(param0->unk_3FC);
+    PLString_Free(param0->unk_3FC);
     sub_0200B3F0(param0->unk_3F8);
     sub_0200B190(param0->unk_3F4);
     Heap_FreeToHeap(param0->unk_3B4);
@@ -759,7 +759,7 @@ static void ov61_0222BB60 (UnkStruct_ov62_022349A8 * param0, int param1, int par
     sub_0200B60C(param0->unk_3F8, 0, param2, 5, 2, 1);
     v1 = sub_0200B1EC(param0->unk_3F4, v0);
     sub_0200C388(param0->unk_3F8, param0->unk_3FC, v1);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     ov61_0222BB54(param0, param0->unk_3FC);
 }
 

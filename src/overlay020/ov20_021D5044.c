@@ -54,7 +54,7 @@ u32 ov20_021D5044 (void)
 void ov20_021D5048 (u32 param0, PLString * param1)
 {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
-    PLString_ImportCharsUpTo(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
+    PLString_FillWithCharsLimit(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
 }
 
 void ov20_021D506C (u32 param0, u32 * param1, u32 * param2)

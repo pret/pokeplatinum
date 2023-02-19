@@ -29,7 +29,7 @@ static void ov21_021D5764(int param0, int param1, int * param2, int * param3, in
 
 void ov21_021D5600 (PLString * param0)
 {
-    PLString_FreeToHeap(param0);
+    PLString_Free(param0);
 }
 
 int ov21_021D5608 (int param0)
@@ -210,7 +210,7 @@ static PLString * ov21_021D5724 (int param0, int param1, int param2)
     UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, param0, param2);
 
     if (v0) {
-        PLString * v1 = PLString_AllocFromHeap(256, param2);
+        PLString * v1 = PLString_New(256, param2);
 
         if (v1) {
             sub_0200B1B8(v0, param1, v1);

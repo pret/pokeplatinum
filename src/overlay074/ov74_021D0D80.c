@@ -314,7 +314,7 @@ static int ov74_021D122C (UnkStruct_ov74_021D0D80 * param0)
 
         for (v0 = 0; v0 < 7; v0++) {
             for (v1 = 0; v1 < param0->unk_5C[v0].unk_00; v1++) {
-                PLString_FreeToHeap(param0->unk_5C[v0].unk_04[v1]);
+                PLString_Free(param0->unk_5C[v0].unk_04[v1]);
             }
         }
 
@@ -558,7 +558,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     v5 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
     v3 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
     v4 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((15 & 0xff) << 0)));
-    v6 = PLString_AllocFromHeap(256, param0->unk_00);
+    v6 = PLString_New(256, param0->unk_00);
 
     sub_0200B1B8(param0->unk_20, 0, v6);
 
@@ -568,7 +568,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     v1 = 4;
 
     for (v2 = 0; v2 < 7; v2++) {
-        PLString_Zero(v6);
+        PLString_Clear(v6);
         sub_0200B1B8(param0->unk_20, v8[v2], v6);
         sub_0201D78C(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
     }
@@ -582,7 +582,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     sub_0201A954(&param0->unk_2C[0]);
     sub_0201A954(&param0->unk_2C[1]);
 
-    PLString_FreeToHeap(v6);
+    PLString_Free(v6);
 }
 
 static void ov74_021D1720 (UnkStruct_ov74_021D0D80 * param0)
@@ -681,7 +681,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
     sub_0201ADA4(&(param0->unk_2C[2]), 15);
 
     v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
-    v1 = PLString_AllocFromHeap(256, param0->unk_00);
+    v1 = PLString_New(256, param0->unk_00);
 
     sub_0200B1B8(param0->unk_20, param1, v1);
 
@@ -692,7 +692,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
         sub_0201A9A4(&param0->unk_2C[2]);
     }
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
 }
 
 static BOOL ov74_021D1A08 (const UnkStruct_ov74_021D0D80 * param0)

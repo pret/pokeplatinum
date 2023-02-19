@@ -187,7 +187,7 @@ static void ov23_0225437C (UnkStruct_ov23_022542D8 * param0)
             sub_0201ADA4(&param0->unk_14, 15);
             v8 = sub_0200B1EC(v5, 0);
             sub_0201D738(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
-            PLString_FreeToHeap(v8);
+            PLString_Free(v8);
         }
 
         for (v6 = 0; v6 < v3 + 1; v6++) {
@@ -436,7 +436,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
 
             v13 = sub_0200B1EC(v12, 9);
             v14 = sub_0200B1EC(v12, 10);
-            v15 = PLString_AllocFromHeap(6, 4);
+            v15 = PLString_New(6, 4);
 
             sub_0201D738(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
             v16 = sub_0200B358(4);
@@ -447,9 +447,9 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             sub_0201D738(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
             sub_0200B3F0(v16);
-            PLString_FreeToHeap(v13);
-            PLString_FreeToHeap(v14);
-            PLString_FreeToHeap(v15);
+            PLString_Free(v13);
+            PLString_Free(v14);
+            PLString_Free(v15);
 
             sub_0200B190(v12);
         }

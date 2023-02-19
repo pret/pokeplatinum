@@ -185,7 +185,7 @@ void sub_02014DB8 (u16 param0, PLString * param1)
         v0 = Unk_020E550C[v0];
         sub_0200AF20(26, v0, v1, 0, param1);
     } else {
-        PLString_Zero(param1);
+        PLString_Clear(param1);
     }
 }
 

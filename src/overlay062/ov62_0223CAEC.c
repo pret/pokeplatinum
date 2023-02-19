@@ -350,7 +350,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v1);
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
     }
 }
 
@@ -402,7 +402,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v1);
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
     }
 }
 
@@ -726,7 +726,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bl sub_0200B274
     ldr r0, [sp, #0x1c]
     add r1, sp, #0x2c
-    bl PLString_ImportChars
+    bl PLString_FillWithChars
     b _0223D312
  _0223D308:
     ldr r0, [r5, #0x48]
@@ -1160,7 +1160,7 @@ static BOOL ov62_0223DC6C (UnkStruct_0208C06C * param0)
         ov62_022332FC(&param0->unk_14.unk_48C);
 
         if (v0->unk_748) {
-            PLString_FreeToHeap(v0->unk_748);
+            PLString_Free(v0->unk_748);
         }
 
         ov62_022334FC(&param0->unk_14.unk_48C, param0);
@@ -1255,7 +1255,7 @@ static BOOL ov62_0223DE6C (UnkStruct_0208C06C * param0)
         ov62_022332FC(&param0->unk_14.unk_48C);
 
         if (v0->unk_748) {
-            PLString_FreeToHeap(v0->unk_748);
+            PLString_Free(v0->unk_748);
         }
 
         ov62_022334FC(&param0->unk_14.unk_48C, param0);

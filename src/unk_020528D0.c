@@ -189,8 +189,8 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
 
 static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8 param3)
 {
-    PLString * v0 = PLString_AllocFromHeap(1024, 11);
-    PLString * v1 = PLString_AllocFromHeap(1024, 11);
+    PLString * v0 = PLString_New(1024, 11);
+    PLString * v1 = PLString_New(1024, 11);
 
     sub_0201ADA4(&param0->unk_0C, 0);
     sub_0200B1B8(param0->unk_1C, param1, v0);
@@ -202,8 +202,8 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
     }
 
     sub_0201D78C(&param0->unk_0C, 0, v1, param2, param3, 0xff, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0))), NULL);
-    PLString_FreeToHeap(v0);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v0);
+    PLString_Free(v1);
 
     return;
 }

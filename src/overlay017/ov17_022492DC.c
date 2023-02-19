@@ -544,8 +544,8 @@ static void ov17_02249828 (UnkStruct_ov17_022492DC * param0)
     ov17_02249BC4(param0, &param0->unk_1C[0], v0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x10 - 1), 1);
     ov17_02249BC4(param0, &param0->unk_1C[1], v1, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x14 - 1), 1);
 
-    PLString_FreeToHeap(v0);
-    PLString_FreeToHeap(v1);
+    PLString_Free(v0);
+    PLString_Free(v1);
     sub_0200B190(v4);
 }
 
@@ -576,10 +576,10 @@ static void ov17_022498F4 (UnkStruct_ov17_022492DC * param0)
     ov17_02249BC4(param0, &param0->unk_1C[4], v2, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 48, 64, 1);
     ov17_02249BC4(param0, &param0->unk_1C[5], v3, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 208, 64, 1);
 
-    PLString_FreeToHeap(v0);
-    PLString_FreeToHeap(v1);
-    PLString_FreeToHeap(v2);
-    PLString_FreeToHeap(v3);
+    PLString_Free(v0);
+    PLString_Free(v1);
+    PLString_Free(v2);
+    PLString_Free(v3);
 }
 
 static int ov17_02249A0C (UnkStruct_ov17_022492DC * param0, int param1)

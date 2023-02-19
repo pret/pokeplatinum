@@ -140,7 +140,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         sub_0201D78C(&v3, 0, v5, v7, 0, 0xff, v6, NULL);
         sub_0201A9F4(&v3);
         sub_0201ACCC(&v3);
-        PLString_FreeToHeap(v5);
+        PLString_Free(v5);
         sub_0201A8FC(&v3);
 
         param2 += 18;
@@ -163,7 +163,7 @@ static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     sub_0201A7E8(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
-    v1 = PLString_AllocFromHeap(4, 35);
+    v1 = PLString_New(4, 35);
 
     sub_0201ADA4(&v0, 15);
 
@@ -185,7 +185,7 @@ static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     sub_0201ACCC(&v0);
     sub_0201A9F4(&v0);
 
-    PLString_FreeToHeap(v1);
+    PLString_Free(v1);
     sub_0201A8FC(&v0);
 
     return param2;
@@ -222,7 +222,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         param2 += 16;
     }
 
-    PLString_FreeToHeap(v3);
+    PLString_Free(v3);
     sub_0200B190(v2);
 
     return param2;

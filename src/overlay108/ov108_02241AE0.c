@@ -786,11 +786,11 @@ static void ov108_02242238 (UnkStruct_ov108_02241DB0 * param0)
 
     sub_0200B190(param0->unk_68);
     sub_0200B3F0(param0->unk_6C);
-    PLString_FreeToHeap(param0->unk_70);
-    PLString_FreeToHeap(param0->unk_74);
+    PLString_Free(param0->unk_70);
+    PLString_Free(param0->unk_74);
 
     for (v1 = 0; v1 < 2; v1++) {
-        PLString_FreeToHeap(param0->unk_78[v1]);
+        PLString_Free(param0->unk_78[v1]);
     }
 
     ov108_02243660(param0->unk_94);
@@ -829,11 +829,11 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
 
     param0->unk_68 = sub_0200B144(1, 26, 536, 103);
     param0->unk_6C = sub_0200B358(103);
-    param0->unk_70 = PLString_AllocFromHeap(600, 103);
-    param0->unk_74 = PLString_AllocFromHeap(600, 103);
+    param0->unk_70 = PLString_New(600, 103);
+    param0->unk_74 = PLString_New(600, 103);
 
     for (v5 = 0; v5 < 2; v5++) {
-        param0->unk_78[v5] = PLString_AllocFromHeap(32, 103);
+        param0->unk_78[v5] = PLString_New(32, 103);
     }
 
     sub_02002E7C(0, 13 * 32, 103);

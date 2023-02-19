@@ -492,15 +492,15 @@ static void sub_0208C884 (UnkStruct_0208D7BC * param0)
     param0->unk_68C = sub_0200B144(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
     param0->unk_690 = sub_0200B358(19);
-    param0->unk_250.unk_00 = PLString_AllocFromHeap(12, 19);
-    param0->unk_250.unk_04 = PLString_AllocFromHeap(12, 19);
-    param0->unk_250.unk_08 = PLString_AllocFromHeap(8, 19);
-    param0->unk_694 = PLString_AllocFromHeap(128, 19);
+    param0->unk_250.unk_00 = PLString_New(12, 19);
+    param0->unk_250.unk_04 = PLString_New(12, 19);
+    param0->unk_250.unk_08 = PLString_New(8, 19);
+    param0->unk_694 = PLString_New(128, 19);
     param0->unk_69C = sub_0200B144(0, 26, 647, 19);
-    param0->unk_698 = PLString_AllocFromHeap(7 + 1, 19);
+    param0->unk_698 = PLString_New(7 + 1, 19);
 
     if (param0->unk_24C->unk_08 != NULL) {
-        PLString_ImportChars(param0->unk_698, param0->unk_24C->unk_08);
+        PLString_FillWithChars(param0->unk_698, param0->unk_24C->unk_08);
     }
 }
 
@@ -511,11 +511,11 @@ static void sub_0208C950 (UnkStruct_0208D7BC * param0)
     sub_0200B190(param0->unk_688);
     sub_0200C560(param0->unk_684);
     sub_0200B3F0(param0->unk_690);
-    PLString_FreeToHeap(param0->unk_250.unk_00);
-    PLString_FreeToHeap(param0->unk_250.unk_04);
-    PLString_FreeToHeap(param0->unk_250.unk_08);
-    PLString_FreeToHeap(param0->unk_694);
-    PLString_FreeToHeap(param0->unk_698);
+    PLString_Free(param0->unk_250.unk_00);
+    PLString_Free(param0->unk_250.unk_04);
+    PLString_Free(param0->unk_250.unk_08);
+    PLString_Free(param0->unk_694);
+    PLString_Free(param0->unk_698);
 }
 
 static int sub_0208C9C8 (UnkStruct_0208D7BC * param0)

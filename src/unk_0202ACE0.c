@@ -145,7 +145,7 @@ u16 * sub_0202AEF0 (UnkStruct_0202B370 * param0, int param1)
 void sub_0202AF0C (UnkStruct_0202B370 * param0, int param1, PLString * param2)
 {
     GF_ASSERT(param1 < 32);
-    PLString_ExportCharsUpTo(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
+    PLString_Dump(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
 }
 
 u16 * sub_0202AF34 (UnkStruct_0202B370 * param0, int param1)
@@ -157,7 +157,7 @@ u16 * sub_0202AF34 (UnkStruct_0202B370 * param0, int param1)
 void sub_0202AF50 (UnkStruct_0202B370 * param0, int param1, PLString * param2)
 {
     GF_ASSERT(param1 < 32);
-    PLString_ExportCharsUpTo(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
+    PLString_Dump(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
 }
 
 BOOL sub_0202AF78 (UnkStruct_0202B370 * param0, int param1)

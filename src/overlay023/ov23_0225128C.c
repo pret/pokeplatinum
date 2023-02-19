@@ -665,8 +665,8 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
 
 static void ov23_02251BB4 (UnkStruct_0201CD38 * param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    PLString_FreeToHeap(param1->unk_68);
-    PLString_FreeToHeap(param1->unk_6C);
+    PLString_Free(param1->unk_68);
+    PLString_Free(param1->unk_6C);
     sub_0200B3F0(param1->unk_70);
 
     if (param1->unk_260 != NULL) {
@@ -855,8 +855,8 @@ static void ov23_02251F94 (UnkStruct_0203CDB0 * param0)
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
     v1->unk_2AA = 0;
-    v1->unk_68 = PLString_AllocFromHeap((50 * 2), 4);
-    v1->unk_6C = PLString_AllocFromHeap((50 * 2), 4);
+    v1->unk_68 = PLString_New((50 * 2), 4);
+    v1->unk_6C = PLString_New((50 * 2), 4);
     v1->unk_70 = sub_0200B358(4);
     v1->unk_08 = sub_0206A780(4);
 

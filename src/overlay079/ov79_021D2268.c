@@ -504,7 +504,7 @@ static void ov79_021D2768 (UnkStruct_ov79_021D2928 * param0)
 
     param0->unk_18 = sub_0200B144(0, 26, 462, param0->unk_00);
     param0->unk_1C.unk_00 = sub_0200B368(1, 64, param0->unk_00);
-    param0->unk_1C.unk_04 = PLString_AllocFromHeap(64, param0->unk_00);
+    param0->unk_1C.unk_04 = PLString_New(64, param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_1C.unk_08[v0] = sub_0200B1EC(param0->unk_18, v0);
@@ -516,10 +516,10 @@ static void ov79_021D27AC (UnkStruct_ov79_021D2928 * param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        PLString_FreeToHeap(param0->unk_1C.unk_08[v0]);
+        PLString_Free(param0->unk_1C.unk_08[v0]);
     }
 
-    PLString_FreeToHeap(param0->unk_1C.unk_04);
+    PLString_Free(param0->unk_1C.unk_04);
     sub_0200B3F0(param0->unk_1C.unk_00);
     sub_0200B190(param0->unk_18);
 }
@@ -531,7 +531,7 @@ static void ov79_021D27D8 (UnkStruct_ov79_021D2928 * param0)
     param0->unk_30.unk_07 = sub_02075D6C(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = sub_02075BCC(param0->unk_10->unk_00);
     param0->unk_30.unk_08 = sub_020759CC(param0->unk_30.unk_04, sub_02074470(param0->unk_10->unk_00, 112, NULL), 28) ^ 1;
-    param0->unk_30.unk_0C = PLString_AllocFromHeap(12, param0->unk_00);
+    param0->unk_30.unk_0C = PLString_New(12, param0->unk_00);
 
     sub_02074470(param0->unk_10->unk_00, 119, param0->unk_30.unk_0C);
 
@@ -540,7 +540,7 @@ static void ov79_021D27D8 (UnkStruct_ov79_021D2928 * param0)
 
 static void ov79_021D2858 (UnkStruct_ov79_021D2928 * param0)
 {
-    PLString_FreeToHeap(param0->unk_30.unk_0C);
+    PLString_Free(param0->unk_30.unk_0C);
 }
 
 static void ov79_021D2864 (UnkStruct_ov79_021D2928 * param0)
@@ -736,7 +736,7 @@ static int ov79_021D2B94 (UnkStruct_ov79_021D2928 * param0)
 {
     sub_0200E060(&param0->unk_6C, 1, 1, 14);
     sub_0201ADA4(&param0->unk_6C, ((15 << 4) | 15));
-    PLString_Zero(param0->unk_1C.unk_04);
+    PLString_Clear(param0->unk_1C.unk_04);
     sub_0200B48C(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
     sub_0200C388(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
 

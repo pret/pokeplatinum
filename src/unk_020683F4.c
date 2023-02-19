@@ -934,7 +934,7 @@ static BOOL sub_02068EFC (UnkStruct_02068870 * param0)
     UnkStruct_02068EFC * v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = PLString_AllocFromHeap(128, 11);
+    v0->unk_10 = PLString_New(128, 11);
 
     sub_0207CC10(param0->unk_00->unk_0C, v0->unk_10, sub_0207D3FC(sub_0207D990(param0->unk_00->unk_0C)), 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);
@@ -974,7 +974,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
     case 2:
         sub_02062C78(v0->unk_38);
         sub_0201A8FC(&v1->unk_00);
-        PLString_FreeToHeap(v1->unk_10);
+        PLString_Free(v1->unk_10);
         Heap_FreeToHeap(v1);
 
         return 1;
@@ -1196,7 +1196,7 @@ static void sub_020692E4 (UnkStruct_02068870 * param0, u32 param1)
     UnkStruct_02068EFC * v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = PLString_AllocFromHeap(128, 11);
+    v0->unk_10 = PLString_New(128, 11);
 
     sub_0207CD34(sub_02025E38(param0->unk_00->unk_0C), v0->unk_10, param0->unk_28, param1, 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);

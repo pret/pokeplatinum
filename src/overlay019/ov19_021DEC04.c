@@ -108,7 +108,7 @@ BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_374 = sub_020071D0(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
             v0->unk_70 = sub_0200B144(1, 26, 647, 10);
-            v0->unk_74 = PLString_AllocFromHeap(32, 10);
+            v0->unk_74 = PLString_New(32, 10);
             v0->unk_380 = NULL;
             *param0 = v0;
             return 1;
@@ -126,7 +126,7 @@ void ov19_021DECAC (UnkStruct_ov19_021DEC04 * param0)
         sub_0200B190(param0->unk_70);
         ov19_021DF7D0(param0);
         ov19_021DF03C(param0);
-        PLString_FreeToHeap(param0->unk_74);
+        PLString_Free(param0->unk_74);
         Heap_FreeToHeap(param0);
     }
 }
@@ -531,7 +531,7 @@ static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
             sub_0201D78C(v0, 0, v1->unk_2C, inline_ov19_021DF3AC(v0, 0, v1->unk_2C), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
             for (v5 = 0; v5 < 7; v5++) {
-                PLString_FromInteger(param0->unk_74, v6[v5], 3, 0, 1);
+                PLString_FromInt(param0->unk_74, v6[v5], 3, 0, 1);
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
             }
         } else {

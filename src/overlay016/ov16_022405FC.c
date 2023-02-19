@@ -9788,7 +9788,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     sub_0200B5CC(v5, 0, sub_02076B10(param2));
     sub_0200B60C(v5, 1, sub_02074470(param2, 161, NULL), 3, 0, 1);
     sub_0200C388(v5, v7, v6);
-    PLString_FreeToHeap(v6);
+    PLString_Free(v6);
     sub_0201A7A0(&v9);
     sub_0201A870(v8, &v9, 12, 4, 0, 0);
     sub_0201D78C(&v9, 0, v7, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
