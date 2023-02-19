@@ -105,7 +105,7 @@ UnkStruct_ov6_02240D5C * sub_02051D8C (int param0, u32 param1)
 
     v1->unk_E0 = sub_0207D3C0(param0);
     v1->unk_E8 = sub_02026324(param0);
-    v1->unk_108 = GameOptions_AllocAndInit(param0);
+    v1->unk_108 = GameOptions_Init(param0);
     v1->unk_10C = sub_0206D140(param0);
     v1->unk_E4 = NULL;
     v1->unk_190 = NULL;
