@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02023790_H
-#define POKEPLATINUM_UNK_02023790_H
+#ifndef POKEPLATINUM_PLSTRING_H
+#define POKEPLATINUM_PLSTRING_H
 
 #include "struct_decls/struct_plstring_decl.h"
 
@@ -25,4 +25,4 @@ BOOL sub_02023EF8(PLString * string);
 void sub_02023F10(PLString * string0, PLString * string1);
 void PLString_SanitizeAtIndex(PLString * string, int index);
 
-#endif // POKEPLATINUM_UNK_02023790_H
+#endif // POKEPLATINUM_PLSTRING_H
