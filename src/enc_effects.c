@@ -213,7 +213,9 @@ static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battle
         // Checking for a double battle here introduces a bug: it implicitly
         // overrides the behavior for any given Special Trainer.
         // Suppose, for example, that the Gym Leader fight against Roark was
-        // a Double Battle. 
+        // a Double Battle. This check would catch that fight, and then the
+        // returned effect would be ENCFX_DOUBLE_BATTLE_TRAINER, instead
+        // of ENCFX_OREBURGH_GYM_LEADER.
         if (fightType & FIGHT_TYPE_DOUBLE) {
             if (encEffects == ENCFX_SUNYSHORE_GYM_LEADER) {
                 return ENCFX_DOUBLE_BATTLE_GYM_LEADER;
