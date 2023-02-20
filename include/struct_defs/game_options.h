@@ -18,19 +18,19 @@ typedef struct {
                                 ///< `NNS_SndSetMonoFlag` on startup and
                                 ///< whenever any options are reloaded.
 
-    u16 battleAnimsOff : 1;     ///< Boolean flag toggle. If flipped on, then
-                                ///< in-battle animations will be disabled.
-                                ///< US Platinum refers to this as "Battle Scene",
-                                ///< with options for "On" and "Off"; 0 is "On",
-                                ///< 1 is "Off".
-
-    u16 battleSetMode  : 1;     ///< Boolean flag toggle. If flipped on, then
+    u16 battleStyle  : 1;       ///< Boolean flag toggle. If flipped on, then
                                 ///< players will NOT be allowed to switch out
                                 ///< their active Pokemon for another after
                                 ///< fainting an enemy Pokemon. US Platinum
                                 ///< refers to this as "Battle Style", with
                                 ///< options for "Switch" and "Set"; 0 is
                                 ///< "Switch", 1 is "Set".
+
+    u16 battleScene    : 1;     ///< Boolean flag toggle. If flipped on, then
+                                ///< in-battle animations will be disabled.
+                                ///< US Platinum refers to this as "Battle Scene",
+                                ///< with options for "On" and "Off"; 0 is "On",
+                                ///< 1 is "Off".
 
     u16 buttonMode     : 2;     ///< Controls how unmapped NDS buttons are
                                 ///< treated by the player input system. NDS

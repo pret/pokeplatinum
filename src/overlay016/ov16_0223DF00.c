@@ -1038,7 +1038,7 @@ BOOL ov16_0223EDAC (UnkStruct_0207ADB4 * param0)
         return 1;
     }
 
-    return GameOptions_GetBattleSetMode(param0->unk_1B0) == 0;
+    return GameOptions_GetBattleStyle(param0->unk_1B0) == 0;
 }
 
 int ov16_0223EDE0 (UnkStruct_0207ADB4 * param0)
@@ -1057,7 +1057,7 @@ u8 ov16_0223EDF0 (UnkStruct_0207ADB4 * param0)
 
 int ov16_0223EE18 (UnkStruct_0207ADB4 * param0)
 {
-    return GameOptions_GetBattleAnimsOff(param0->unk_1B0);
+    return GameOptions_GetBattleScene(param0->unk_1B0);
 }
 
 UnkStruct_02015F84 * ov16_0223EE28 (UnkStruct_0207ADB4 * param0)

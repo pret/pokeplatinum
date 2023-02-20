@@ -19,112 +19,108 @@ GameOptions * GameOptions_Init (u32 heapID)
     return newOptions;
 }
 
-void GameOptions_Copy (const GameOptions * src, GameOptions * dest)
+void GameOptions_Copy (const GameOptions * src, GameOptions * dst)
 {
-    MI_CpuCopy8(src, dest, sizeof(GameOptions));
+    MI_CpuCopy8(src, dst, sizeof(GameOptions));
 }
 
 void GameOptions_SetDefaultValues (GameOptions * options)
 {
     MI_CpuFill8(options, 0, sizeof(GameOptions));
 
-    options->textSpeed      = 1;
-    options->audioMode      = 0;
-    options->battleAnimsOff = 0;
-    options->battleSetMode  = 0;
-    options->buttonMode     = 0;
-    options->frameStyle     = 0;
+    options->textSpeed      = TEXTSPEED_MID;
+    options->audioMode      = AUDIOMODE_STEREO;
+    options->battleScene    = BATTLESCENE_ON;
+    options->battleStyle    = BATTLESTYLE_SHIFT;
+    options->buttonMode     = BUTTONMODE_NORMAL;
+    options->frameStyle     = FRAMESTYLE_01;
 }
 
-void GameOptions_UpdateGlobalButtonMode (UnkStruct_021C0794 * saveData, int newButtonMode)
+void GameOptions_UpdateGlobalButtonMode (UnkStruct_021C0794 * saveData, ButtonMode newButtonMode)
 {
     if (saveData != NULL) {
         newButtonMode = GameOptions_GetButtonMode(sub_02025E44(saveData));
     }
 
     switch (newButtonMode) {
-    case 1:
-        Unk_021BF67C.unk_34 = 1;
-        break;
-    case 2:
-        Unk_021BF67C.unk_34 = 3;
-        break;
-    case 0:
-    default:
-        Unk_021BF67C.unk_34 = 0;
-        break;
+        case BUTTONMODE_START_IS_X:
+            Unk_021BF67C.unk_34 = 1;
+            break;
+        case BUTTONMODE_L_IS_A:
+            Unk_021BF67C.unk_34 = 3;
+            break;
+        default:
+            Unk_021BF67C.unk_34 = 0;
+            break;
     }
 }
 
-int GameOptions_GetTextSpeed (const GameOptions * options)
+TextSpeed GameOptions_GetTextSpeed (const GameOptions * options)
 {
     return options->textSpeed;
 }
 
-void GameOptions_SetTextSpeed (GameOptions * options, int newVal)
+void GameOptions_SetTextSpeed (GameOptions * options, TextSpeed newVal)
 {
     options->textSpeed = newVal;
 }
 
 u8 GameOptions_GetTextSpeedReductionFactor (const GameOptions * options)
 {
-    int rawTextSpeedValue = GameOptions_GetTextSpeed(options);
-
-    if (rawTextSpeedValue == 0) {
-        return 8;
-    } else if (rawTextSpeedValue == 1) {
-        return 4;
-    } else {
-        return 1;
+    TextSpeed rawTextSpeedValue = GameOptions_GetTextSpeed(options);
+    switch (rawTextSpeedValue) {
+        case TEXTSPEED_SLOW:        return 8;
+        case TEXTSPEED_MID:         return 4;
+        default:                    return 1;
     }
 }
 
-int GameOptions_GetAudioMode (const GameOptions * options)
+AudioMode GameOptions_GetAudioMode (const GameOptions * options)
 {
     return options->audioMode;
 }
 
-void GameOptions_SetAudioMode (GameOptions * options, int newVal)
+void GameOptions_SetAudioMode (GameOptions * options, AudioMode newVal)
 {
     options->audioMode = newVal;
 }
 
-int GameOptions_GetBattleAnimsOff (const GameOptions * options)
+BattleScene GameOptions_GetBattleScene (const GameOptions * options)
 {
-    return options->battleAnimsOff;
+    return options->battleScene;
 }
 
-void GameOptions_SetBattleAnimsOff (GameOptions * options, int newVal)
+void GameOptions_SetBattleScene (GameOptions * options, BattleScene newVal)
 {
-    options->battleAnimsOff = newVal;
+    options->battleScene = newVal;
 }
 
-int GameOptions_GetBattleSetMode (const GameOptions * options)
+BattleStyle GameOptions_GetBattleStyle (const GameOptions * options)
 {
-    return options->battleSetMode;
+    return options->battleStyle;
 }
 
-void GameOptions_SetBattleSetMode (GameOptions * options, int newVal)
+void GameOptions_SetBattleStyle (GameOptions * options, BattleStyle newVal)
 {
-    options->battleSetMode = newVal;
+    options->battleStyle = newVal;
 }
 
-int GameOptions_GetButtonMode (const GameOptions * options)
+ButtonMode GameOptions_GetButtonMode (const GameOptions * options)
 {
     return options->buttonMode;
 }
 
-void GameOptions_SetButtonMode (GameOptions * options, int newVal)
+void GameOptions_SetButtonMode (GameOptions * options, ButtonMode newVal)
 {
     options->buttonMode = newVal;
 }
 
-int GameOptions_GetFrameStyle (const GameOptions * options)
+FrameStyle GameOptions_GetFrameStyle (const GameOptions * options)
 {
     return options->frameStyle;
 }
 
-void GameOptions_SetFrameStyle (GameOptions * options, int newVal)
+void GameOptions_SetFrameStyle (GameOptions * options, FrameStyle newVal)
 {
     options->frameStyle = newVal;
 }

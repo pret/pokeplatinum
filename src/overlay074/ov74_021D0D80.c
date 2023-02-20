@@ -113,8 +113,8 @@ int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_ov74_021D0D80));
 
     v0->unk_18.unk_00_0 = GameOptions_GetTextSpeed(v1);
-    v0->unk_18.unk_00_6 = GameOptions_GetBattleSetMode(v1);
-    v0->unk_18.unk_00_7 = GameOptions_GetBattleAnimsOff(v1);
+    v0->unk_18.unk_00_6 = GameOptions_GetBattleStyle(v1);
+    v0->unk_18.unk_00_7 = GameOptions_GetBattleScene(v1);
     v0->unk_18.unk_00_4 = GameOptions_GetAudioMode(v1);
     v0->unk_18.unk_00_8 = GameOptions_GetButtonMode(v1);
     v0->unk_18.unk_00_10 = GameOptions_GetFrameStyle(v1);
