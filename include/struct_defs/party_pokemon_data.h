@@ -1,10 +1,10 @@
-#ifndef POKEPLATINUM_STRUCT_02073C74_SUB2_T_H
-#define POKEPLATINUM_STRUCT_02073C74_SUB2_T_H
+#ifndef POKEPLATINUM_PARTY_POKEMON_DATA_T_H
+#define POKEPLATINUM_PARTY_POKEMON_DATA_T_H
 
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 
-struct UnkStruct_02073C74_sub2_t {
+struct PartyPokemonData_t {
     u32 unk_00;
     u8 unk_04;
     u8 unk_05;
@@ -19,4 +19,4 @@ struct UnkStruct_02073C74_sub2_t {
     UnkStruct_0202CA28 unk_4C;
 };
 
-#endif // POKEPLATINUM_STRUCT_02073C74_SUB2_T_H
+#endif // POKEPLATINUM_PARTY_POKEMON_DATA_T_H

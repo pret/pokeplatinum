@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_PARTY_POKEMON_DATA_DECL_H
+#define POKEPLATINUM_PARTY_POKEMON_DATA_DECL_H
+
+typedef struct PartyPokemonData_t PartyPokemonData;
+
+#endif // POKEPLATINUM_PARTY_POKEMON_DATA_DECL_H
