@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "heap.h"

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"

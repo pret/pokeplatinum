@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_defs/struct_0209C370.h"

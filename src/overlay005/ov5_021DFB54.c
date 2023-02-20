@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"

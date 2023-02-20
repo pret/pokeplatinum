@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV94_0223FB48_H
 #define POKEPLATINUM_OV94_0223FB48_H
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"

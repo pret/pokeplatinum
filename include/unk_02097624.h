@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02097624_H
 
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_defs/struct_02097728.h"
 #include "struct_decls/struct_021C0794_decl.h"
 

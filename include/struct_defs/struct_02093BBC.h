@@ -5,7 +5,7 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_defs/struct_02095C60.h"
 
 typedef struct {

@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008900.h"

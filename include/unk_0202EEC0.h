@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0202EEC0_H
 
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/box_pokemon.h"
 
 int sub_0202EEC0(void);

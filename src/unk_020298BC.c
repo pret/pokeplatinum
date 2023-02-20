@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02079FEC_H
 #define POKEPLATINUM_UNK_02079FEC_H
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 

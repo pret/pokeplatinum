@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F1E88.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020711C8_H
 #define POKEPLATINUM_STRUCT_020711C8_H
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 
 typedef struct {
     Pokemon * unk_00;

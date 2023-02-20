@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV6_02246184_H
 
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/struct_ov6_02246254.h"
 

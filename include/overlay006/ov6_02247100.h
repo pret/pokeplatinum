@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 
 void * ov6_02247100(UnkStruct_0203CDB0 * param0, u32 param1);
 BOOL ov6_02247120(UnkStruct_020508D4 * param0);

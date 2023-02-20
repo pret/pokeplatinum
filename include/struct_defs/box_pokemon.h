@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_02073C74_SUB1_H
-#define POKEPLATINUM_STRUCT_02073C74_SUB1_H
+#ifndef POKEPLATINUM_BOX_POKEMON_H
+#define POKEPLATINUM_BOX_POKEMON_H
 
 #include "struct_defs/struct_02075454_1.h"
 #include "struct_defs/struct_02075454_2.h"
@@ -19,4 +19,4 @@ typedef struct BoxPokemon_t {
               + sizeof(UnkStruct_02075454_3)];
 } BoxPokemon;
 
-#endif // POKEPLATINUM_STRUCT_02073C74_SUB1_H
+#endif // POKEPLATINUM_BOX_POKEMON_H

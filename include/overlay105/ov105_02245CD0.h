@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_decls/pokemon.h"
 
 void ov105_02245CD0(void);
 void ov105_02245D50(UnkStruct_02007768 * param0);
