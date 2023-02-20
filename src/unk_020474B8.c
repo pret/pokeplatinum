@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 

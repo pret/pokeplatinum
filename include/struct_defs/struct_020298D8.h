@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "overlay022/struct_ov22_022596B0.h"
 
 typedef struct {

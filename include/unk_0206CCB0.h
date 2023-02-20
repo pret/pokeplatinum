@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
 

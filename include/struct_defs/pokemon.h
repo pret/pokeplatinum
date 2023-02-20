@@ -5,7 +5,7 @@
 #include "struct_decls/party_pokemon_data.h"
 #include "struct_defs/party_pokemon_data.h"
 
-typedef struct Pokemon_t {
+typedef struct Pokemon {
     BoxPokemon unk_00;
     PartyPokemonData unk_08;
 } Pokemon;

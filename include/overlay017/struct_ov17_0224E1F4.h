@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV17_0224E1F4_H
 
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "overlay017/struct_ov17_0224B09C.h"
 
 typedef struct {

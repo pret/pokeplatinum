@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0202BC58.h"
 #include "struct_defs/struct_0202BCC8.h"

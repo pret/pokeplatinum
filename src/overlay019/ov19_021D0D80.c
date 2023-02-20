@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_02075874_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"

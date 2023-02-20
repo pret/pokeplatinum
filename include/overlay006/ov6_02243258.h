@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 
 UnkStruct_0201CD38 * ov6_02243F88(UnkStruct_0203CDB0 * param0, u32 param1, Pokemon * param2, int param3);
 int ov6_02243FBC(UnkStruct_0201CD38 * param0);

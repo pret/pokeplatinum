@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV16_0225177C_H
 #define POKEPLATINUM_OV16_0225177C_H
 
-#include "struct_decls/pokemon.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
 #include "overlay016/struct_ov16_02252060_decl.h"
