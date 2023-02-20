@@ -170,7 +170,7 @@ static const EncEffectsDataPair ENCOUNTER_EFFECTS[ENCFX_NUM_ENTRIES] = {
 static u32 EncEffects_GetEffectsForTrainerClass(u32 param0);
 static u32 EncEffects_GetEffectsForWildMon(Party * param0, int param1);
 static u32 EncEffects_GetEffectsForBattle(const UnkStruct_ov6_02240D5C * param0);
-static u32 EncEffects_GetCutinFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
+static u32 EncEffects_GetCutInFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
 static u32 EncEffects_GetBGMFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
 
 
