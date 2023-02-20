@@ -605,7 +605,7 @@ static void ov16_0225C47C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 {
     UnkStruct_ov16_022662FC * v0 = (UnkStruct_ov16_022662FC *)&param1->unk_90[0];
     int v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     v2 = ov16_0223DFAC(param0, param1->unk_190, v0->unk_01_0);
 
@@ -667,7 +667,7 @@ static void ov16_0225C5B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 static void ov16_0225C5E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_02266498 * v0 = (UnkStruct_ov16_02266498 *)&param1->unk_90[0];
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     int v2, v3, v4;
     u32 v5;
 
@@ -954,7 +954,7 @@ static void ov16_0225CA74 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 {
     UnkStruct_ov16_02266A38 * v0 = (UnkStruct_ov16_02266A38 *)&param1->unk_90[0];
     Party * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     int v3;
     int v4;
     int v5 = 0;

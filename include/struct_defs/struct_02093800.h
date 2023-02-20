@@ -16,7 +16,7 @@ typedef struct {
     u8 unk_04;
     u8 unk_05;
     u8 padding_06[2];
-    UnkStruct_02073C74 * unk_08;
+    Pokemon * unk_08;
     const UnkStruct_02023790 * unk_0C;
     const UnkStruct_02025E6C * unk_10;
     UnkStruct_0202A750 * unk_14;

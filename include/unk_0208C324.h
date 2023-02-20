@@ -18,6 +18,6 @@ u32 sub_0208E9E0(void);
 u32 sub_0208E9E4(void);
 u32 sub_0208E9E8(void);
 u32 sub_0208E9EC(void);
-u32 sub_0208E9F0(UnkStruct_02073C74 * param0);
+u32 sub_0208E9F0(Pokemon * param0);
 
 #endif // POKEPLATINUM_UNK_0208C324_H

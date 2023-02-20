@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
-#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_defs/struct_02090800.h"
 
@@ -18,7 +18,7 @@
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
 
-static int sub_02092E8C(UnkStruct_02073C74 * param0, BOOL param1, int param2);
+static int sub_02092E8C(Pokemon * param0, BOOL param1, int param2);
 static void sub_02092878(UnkStruct_02090800 * param0);
 static void sub_020928A0(UnkStruct_02090800 * param0, int param1);
 static void sub_020929C0(UnkStruct_02090800 * param0, int param1);
@@ -32,7 +32,7 @@ static void sub_02093368(UnkStruct_02073C74_sub1 * param0, int param1);
 static void sub_020933C8(UnkStruct_02073C74_sub1 * param0);
 static void sub_020933E8(UnkStruct_02073C74_sub1 * param0);
 
-UnkStruct_02090800 * sub_02092494 (UnkStruct_02073C74 * param0, BOOL param1, int param2)
+UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
 {
     UnkStruct_02090800 * v0;
 
@@ -632,7 +632,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     sub_0200B1B8(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
-static int sub_02092E8C (UnkStruct_02073C74 * param0, BOOL param1, int param2)
+static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
 {
     int v0 = 0;
 
@@ -715,7 +715,7 @@ static int sub_02092E8C (UnkStruct_02073C74 * param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C (UnkStruct_02073C74 * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209304C (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
     sub_0209305C(&param0->unk_00, param1, param2, param3, param4);
 }

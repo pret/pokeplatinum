@@ -140,7 +140,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     NNSG2dCharacterData * unk_10F8;
     void * unk_10FC;
     NNSG2dPaletteData * unk_1100;
-    UnkStruct_02073C74 * unk_1104;
+    Pokemon * unk_1104;
     UnkStruct_ov94_0223FD4C_sub2 * unk_1108;
     u16 unk_110C;
     u16 unk_110E;

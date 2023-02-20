@@ -10,7 +10,7 @@ void sub_02081BC0(UnkStruct_0207F248 * param0);
 void sub_02081CAC(UnkStruct_0207F248 * param0, u16 param1, u8 param2);
 void sub_02081CF4(UnkStruct_0207F248 * param0, const u8 * param1, u8 param2);
 void sub_02081E08(UnkStruct_0207F248 * param0);
-void sub_02081ED8(UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1, u32 param2);
+void sub_02081ED8(UnkStruct_0207F248 * param0, Pokemon * param1, u32 param2);
 void sub_02081F2C(UnkStruct_0207F248 * param0, u8 param1);
 void sub_02081FFC(UnkStruct_0207F248 * param0, u8 param1);
 void sub_02082058(UnkStruct_0207F248 * param0, u8 param1);

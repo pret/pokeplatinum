@@ -32,7 +32,7 @@ void sub_0202DF94 (UnkStruct_0202DF8C * param0)
 void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCDate * param2)
 {
     UnkStruct_0202DFA8 * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     UnkStruct_02023790 * v2;
     int v3, v4, v5;
     BOOL v6;

@@ -203,7 +203,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
 {
     int v0;
     Party * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     UnkStruct_02025E6C * v3 = sub_02025E38(param1);
 
     param0->unk_83E[0] = sub_02025F30(v3);

@@ -569,7 +569,7 @@ u32 sub_02079D40 (const UnkStruct_02073C74_sub1 * param0)
     return v1;
 }
 
-u32 sub_02079D80 (UnkStruct_02073C74 * param0)
+u32 sub_02079D80 (Pokemon * param0)
 {
     return sub_02079D40((const UnkStruct_02073C74_sub1 *)sub_02076B10(param0));
 }
@@ -708,7 +708,7 @@ const u8 sub_02079F84 (const UnkStruct_02073C74_sub1 * param0)
     return sub_02079EDC(v1, v2, v3);
 }
 
-const u8 sub_02079FC4 (UnkStruct_02073C74 * param0)
+const u8 sub_02079FC4 (Pokemon * param0)
 {
     return sub_02079F84((const UnkStruct_02073C74_sub1 *)sub_02076B10(param0));
 }

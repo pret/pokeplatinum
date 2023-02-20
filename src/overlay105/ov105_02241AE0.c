@@ -228,7 +228,7 @@ static BOOL ov105_02245518(UnkStruct_ov105_02241FF4 * param0);
 static void ov105_02245528(UnkStruct_ov105_02241FF4 * param0, u8 param1);
 static u8 ov105_02245538(UnkStruct_ov105_02241FF4 * param0, u8 param1, u8 param2);
 static u32 ov105_02245584(UnkStruct_ov105_02241FF4 * param0, u32 param1);
-static void ov105_022455C4(UnkStruct_ov105_02241FF4 * param0, u8 param1, UnkStruct_02073C74 * param2, int param3, int param4, int param5);
+static void ov105_022455C4(UnkStruct_ov105_02241FF4 * param0, u8 param1, Pokemon * param2, int param3, int param4, int param5);
 BOOL ov105_02245620(UnkStruct_ov105_02241FF4 * param0, u16 param1, u16 param2);
 void ov105_02245684(UnkStruct_ov105_02241FF4 * param0, u16 param1);
 void ov105_0224569C(int param0, int param1, void * param2, void * param3);
@@ -2150,7 +2150,7 @@ static BOOL ov105_022443DC (UnkStruct_ov105_02241FF4 * param0)
 static BOOL ov105_02244424 (UnkStruct_ov105_02241FF4 * param0)
 {
     int v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     UnkStruct_02073C74_sub1 * v2;
 
     switch (param0->unk_08) {
@@ -2767,7 +2767,7 @@ static void ov105_02244FF8 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     u8 v0;
     u32 v1, v2, v3;
     UnkStruct_02023790 * v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param9, param2);
@@ -2802,7 +2802,7 @@ static void ov105_022450DC (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     u32 v1, v2;
     UnkStruct_0200B144 * v3;
     UnkStruct_02023790 * v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
     u16 v6[(10 + 1)];
 
     sub_0201ADA4(param1, param6);
@@ -3081,7 +3081,7 @@ static u32 ov105_02245584 (UnkStruct_ov105_02241FF4 * param0, u32 param1)
     return param1;
 }
 
-static void ov105_022455C4 (UnkStruct_ov105_02241FF4 * param0, u8 param1, UnkStruct_02073C74 * param2, int param3, int param4, int param5)
+static void ov105_022455C4 (UnkStruct_ov105_02241FF4 * param0, u8 param1, Pokemon * param2, int param3, int param4, int param5)
 {
     u32 v0, v1;
 
@@ -3159,7 +3159,7 @@ void ov105_0224569C (int param0, int param1, void * param2, void * param3)
 void ov105_022456A8 (UnkStruct_ov105_02241FF4 * param0, u16 param1, u16 param2)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     v1 = 0;
 

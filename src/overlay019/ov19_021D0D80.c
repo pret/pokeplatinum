@@ -142,7 +142,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_0200B144 * unk_194;
     UnkStruct_0200B144 * unk_198;
     UnkStruct_0200B358 * unk_19C;
-    UnkStruct_02073C74 * unk_1A0;
+    Pokemon * unk_1A0;
     UnkStruct_020279FC * unk_1A4;
     int (* unk_1A8)(struct UnkStruct_ov19_021D5DF8_t * param0);
     void (* unk_1AC)(struct UnkStruct_ov19_021D5DF8_t * param0, u32 * param1);
@@ -2169,7 +2169,7 @@ static void ov19_021D3294 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
 
 static BOOL ov19_021D34E4 (UnkStruct_ov19_021D5DF8 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     int v1, v2, v3;
     BOOL v4;
 
@@ -3989,7 +3989,7 @@ static void ov19_021D55C4 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_ov19_021D
         }
     } else {
         if (v0->unk_0B) {
-            Party_AddPokemon(param0->unk_124, (UnkStruct_02073C74 *)(v0->unk_00));
+            Party_AddPokemon(param0->unk_124, (Pokemon *)(v0->unk_00));
         } else {
             sub_020774C8(v0->unk_00, param0->unk_1A0);
             Party_AddPokemon(param0->unk_124, param0->unk_1A0);

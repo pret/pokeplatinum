@@ -137,8 +137,8 @@ static void ov22_02256940(void * param0);
 static void ov22_022566C0(UnkStruct_ov22_02255D44 * param0);
 static void ov22_022566EC(UnkStruct_ov22_02255D44 * param0);
 static void ov22_022566F4(UnkStruct_ov22_02255D44 * param0);
-static void ov22_02256708(UnkStruct_ov22_02255D44 * param0, UnkStruct_02073C74 * param1, int param2, BOOL param3);
-static void ov22_02256790(UnkStruct_ov22_02255D44 * param0, UnkStruct_02073C74 * param1, int param2);
+static void ov22_02256708(UnkStruct_ov22_02255D44 * param0, Pokemon * param1, int param2, BOOL param3);
+static void ov22_02256790(UnkStruct_ov22_02255D44 * param0, Pokemon * param1, int param2);
 static void ov22_022567D8(UnkStruct_ov22_02255D44 * param0);
 static void ov22_022567FC(UnkStruct_ov22_02255D44 * param0);
 static void ov22_022568B8(UnkStruct_ov22_02255D44 * param0);
@@ -699,7 +699,7 @@ static void ov22_022566F4 (UnkStruct_ov22_02255D44 * param0)
     ov22_022550B4();
 }
 
-static void ov22_02256708 (UnkStruct_ov22_02255D44 * param0, UnkStruct_02073C74 * param1, int param2, BOOL param3)
+static void ov22_02256708 (UnkStruct_ov22_02255D44 * param0, Pokemon * param1, int param2, BOOL param3)
 {
     UnkStruct_ov22_0225B388 v0;
 
@@ -731,7 +731,7 @@ static void ov22_02256708 (UnkStruct_ov22_02255D44 * param0, UnkStruct_02073C74 
     ov22_02257C88(&param0->unk_458, 0, 14);
 }
 
-static void ov22_02256790 (UnkStruct_ov22_02255D44 * param0, UnkStruct_02073C74 * param1, int param2)
+static void ov22_02256790 (UnkStruct_ov22_02255D44 * param0, Pokemon * param1, int param2)
 {
     int v0, v1;
     UnkStruct_ov22_022596B0 v2;

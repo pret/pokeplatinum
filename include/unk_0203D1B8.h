@@ -53,7 +53,7 @@ void * sub_0203D8AC(UnkStruct_0203CDB0 * param0);
 void * sub_0203D8EC(UnkStruct_0203CDB0 * param0);
 UnkStruct_02097728 * sub_0203D920(UnkStruct_0203CDB0 * param0, int param1, u8 param2, u8 param3, int param4);
 UnkStruct_02097728 * sub_0203D94C(UnkStruct_0203CDB0 * param0, int param1, u8 param2, int param3);
-UnkStruct_02097728 * sub_0203D984(UnkStruct_0203CDB0 * param0, UnkStruct_02073C74 * param1, int param2);
+UnkStruct_02097728 * sub_0203D984(UnkStruct_0203CDB0 * param0, Pokemon * param1, int param2);
 UnkStruct_0203D9B8 * sub_0203D9B8(UnkStruct_0203CDB0 * param0, int param1);
 void sub_0203D9D8(UnkStruct_0203CDB0 * param0, UnkStruct_ov90_021D0D80 * param1);
 void sub_0203DAC0(UnkStruct_020508D4 * param0, u16 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4);

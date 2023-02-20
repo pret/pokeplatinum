@@ -108,7 +108,7 @@ void ov76_0223D3CC (UnkStruct_ov76_0223DE00 * param0)
 {
     int v0;
     int v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     if (param0->unk_04[param0->unk_3C4[0]].unk_00 != 0xff) {
         v2 = param0->unk_00->unk_04[param0->unk_04[param0->unk_3C4[0]].unk_00];
@@ -1010,7 +1010,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
         }
 
         {
-            UnkStruct_02073C74 * v8;
+            Pokemon * v8;
 
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];

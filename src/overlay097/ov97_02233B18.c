@@ -26,7 +26,7 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02073C74_sub1.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -397,7 +397,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     u16 v3;
     UnkStruct_02073C74_sub1 * v4;
     UnkStruct_ov97_0223685C * v5;
-    UnkStruct_02073C74 v6;
+    Pokemon v6;
     UnkStruct_02024440 * v7;
 
     v7 = sub_02024440(param0->unk_10);

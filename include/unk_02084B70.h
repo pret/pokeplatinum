@@ -9,7 +9,7 @@ int sub_02085348(void * param0);
 BOOL sub_020857A8(u16 param0);
 int sub_02085804(UnkStruct_0207F248 * param0);
 int sub_02085EF4(UnkStruct_0207F248 * param0);
-u8 sub_02086104(UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1);
+u8 sub_02086104(UnkStruct_0207F248 * param0, Pokemon * param1);
 int sub_0208615C(UnkStruct_0207F248 * param0);
 int sub_020862F8(UnkStruct_0207F248 * param0);
 int sub_020863A0(UnkStruct_0207F248 * param0);

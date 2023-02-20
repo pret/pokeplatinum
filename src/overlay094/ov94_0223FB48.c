@@ -745,7 +745,7 @@ static int ov94_02240688 (UnkStruct_ov94_0223FD4C * param0)
             int v1 = 0;
 
             if (ov94_022411D0(param0->unk_110)) {
-                UnkStruct_02073C74 * v2;
+                Pokemon * v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
@@ -837,7 +837,7 @@ static int ov94_022408E8 (UnkStruct_ov94_0223FD4C * param0)
             int v1 = 0;
 
             if (ov94_022411D0(param0->unk_110)) {
-                UnkStruct_02073C74 * v2;
+                Pokemon * v2;
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
@@ -937,9 +937,9 @@ static int ov94_02240B70 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02240BB0 (UnkStruct_ov94_0223FD4C * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
 
-    v0 = (UnkStruct_02073C74 *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
+    v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
 
     if (ov94_02241498(v0) && (param0->unk_110 != 18)) {
         if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1138,7 +1138,7 @@ static void ov94_02240EAC (UnkStruct_02073C74_sub1 * param0, UnkStruct_02022550 
 static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
     u16 v0[30], v1, v2;
-    UnkStruct_02073C74 * v3;
+    Pokemon * v3;
     UnkStruct_02073C74_sub1 * v4;
     UnkStruct_020797DC * v5 = param0->unk_00->unk_0C;
     NARC * v6;
@@ -1392,7 +1392,7 @@ static void ov94_022413BC (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223
 
     ov94_022425A8(param0, param1);
 
-    v2 = sub_02076B10((UnkStruct_02073C74 *)param1->unk_250[param1->unk_11C].unk_00.unk_00);
+    v2 = sub_02076B10((Pokemon *)param1->unk_250[param1->unk_11C].unk_00.unk_00);
 
     v1.unk_00 = sub_02074570(v2, 5, NULL);
     v1.unk_02 = sub_02074570(v2, 111, NULL) + 1;
@@ -1415,7 +1415,7 @@ static void ov94_02241464 (UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_0202
     }
 }
 
-BOOL ov94_02241498 (UnkStruct_02073C74 * param0)
+BOOL ov94_02241498 (Pokemon * param0)
 {
     int v0 = sub_02074470(param0, 6, NULL);
 

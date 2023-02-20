@@ -661,7 +661,7 @@ static int ov65_0222DED4 (int param0)
 static int ov65_0222DF88 (UnkStruct_ov65_0222EBE0 * param0)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_160);
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     int v2 = Party_GetCurrentCount(v0);
     int v3, v4 = 0;
 
@@ -1818,7 +1818,7 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     v4 = Party_GetCurrentCount(v2);
 
     for (v5 = 0; v5 < v4; v5++) {
-        UnkStruct_02073C74 * v6 = Party_GetPokemonBySlotIndex(v2, v5);
+        Pokemon * v6 = Party_GetPokemonBySlotIndex(v2, v5);
 
         param0->unk_04->unk_00.unk_00[v5] = sub_02074470(v6, 5, NULL);
         param0->unk_04->unk_00.unk_0C[v5] = sub_02074470(v6, 6, NULL);

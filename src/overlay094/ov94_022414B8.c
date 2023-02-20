@@ -1086,12 +1086,12 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
     u16 * v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        sub_02077ACC((UnkStruct_02073C74 *)(param1->unk_114), 0);
+        sub_02077ACC((Pokemon *)(param1->unk_114), 0);
 
         MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, sub_02073C70());
     } else {
         sub_02077ADC(param1->unk_114, 0);
-        sub_020774C8(param1->unk_114, (UnkStruct_02073C74 *)param0->unk_00.unk_00);
+        sub_020774C8(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
     sub_020021D0(param0->unk_10C, sub_02025EF0(param1->unk_00->unk_1C), 8);

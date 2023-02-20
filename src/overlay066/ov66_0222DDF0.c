@@ -2341,7 +2341,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     param0->unk_20.unk_04 = sub_02025F20(v0);
 
     {
-        UnkStruct_02073C74 * v6;
+        Pokemon * v6;
         int v7;
         int v8;
 

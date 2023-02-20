@@ -191,16 +191,16 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     Party * v3;
-    UnkStruct_02073C74 * v4;
+    Pokemon * v4;
     BOOL v5;
-    UnkStruct_02073C74 * v6 = NULL;
+    Pokemon * v6 = NULL;
     u32 v7, v8, v9, v10;
     u32 v11;
     int v12;
     u8 * v13;
     u8 * v14;
 
-    v4 = (UnkStruct_02073C74 *)&v0->val1.unk_04;
+    v4 = (Pokemon *)&v0->val1.unk_04;
     v14 = (u8 *)&v0->val1.unk_F0;
     v12 = sub_02074470(v4, 152, NULL);
     v8 = sub_02074470(v4, 0, NULL);
@@ -331,12 +331,12 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     *param1 = 379;
     *param2 = 7;
 
-    v1 = (UnkStruct_02073C74 *)&v0->val1.unk_04;
+    v1 = (Pokemon *)&v0->val1.unk_04;
 
     sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
     sub_0200B578(param0->unk_04, 1, sub_02076B10(v1));
@@ -356,12 +356,12 @@ static void sub_0204BE3C (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     *param1 = 379;
     *param2 = 8;
 
-    v1 = (UnkStruct_02073C74 *)v0->val2.unk_04;
+    v1 = (Pokemon *)v0->val2.unk_04;
 
     sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
     sub_0200B538(param0->unk_04, 1, sub_02076B10(v1));

@@ -2743,7 +2743,7 @@ static BOOL ov104_02231D10 (UnkStruct_ov104_0222E930 * param0)
 static BOOL ov104_02231D1C (UnkStruct_ov104_0222E930 * param0)
 {
     Party * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     UnkStruct_ov104_02230BE4 * v2;
     UnkStruct_ov104_0223C4CC * v3 = ov104_0222E924(param0->unk_00);
     u16 v4 = ov104_0222FC00(param0);

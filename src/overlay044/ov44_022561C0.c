@@ -79,7 +79,7 @@ static BOOL ov44_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
 static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
 {
     Party * v0 = Party_GetFromSavedata(ov25_02254544(param1));
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     int v2;
     int v3 = 0;
 

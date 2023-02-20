@@ -29,8 +29,8 @@ typedef struct {
     int unk_30;
     int unk_34;
     UnkStruct_02025E6C * unk_38;
-    UnkStruct_02073C74 * unk_3C;
-    UnkStruct_02073C74 * unk_40;
+    Pokemon * unk_3C;
+    Pokemon * unk_40;
 } UnkStruct_ov88_0223C370;
 
 #endif // POKEPLATINUM_STRUCT_OV88_0223C370_H

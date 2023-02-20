@@ -409,7 +409,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
         u32 v2 = Item_GetAttribute(v0->unk_1C, 7, v0->unk_0C);
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
-            UnkStruct_02073C74 * v3;
+            Pokemon * v3;
             UnkStruct_02023790 * v4;
 
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);

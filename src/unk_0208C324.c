@@ -95,7 +95,7 @@ static void sub_0208C884(UnkStruct_0208D7BC * param0);
 static void sub_0208C950(UnkStruct_0208D7BC * param0);
 static void sub_0208D1A4(UnkStruct_0208D7BC * param0);
 static void sub_0208D1D4(UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 * param1, UnkStruct_0208D1D4 * param2);
-static void sub_0208D200(UnkStruct_0208D7BC * param0, UnkStruct_02073C74 * param1, UnkStruct_0208D1D4 * param2);
+static void sub_0208D200(UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStruct_0208D1D4 * param2);
 static void sub_0208D678(UnkStruct_0208D7BC * param0);
 static void sub_0208D618(UnkStruct_0208D7BC * param0);
 static void sub_0208D7EC(UnkStruct_0208D7BC * param0, u8 param1);
@@ -882,7 +882,7 @@ static int sub_0208CF78 (UnkStruct_0208D7BC * param0)
 {
     if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         UnkStruct_02073C74_sub1 * v0;
-        UnkStruct_02073C74 * v1;
+        Pokemon * v1;
         u8 v2;
 
         if (param0->unk_24C->unk_11 == 2) {
@@ -1012,14 +1012,14 @@ static void sub_0208D1A4 (UnkStruct_0208D7BC * param0)
 
 static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 * param1, UnkStruct_0208D1D4 * param2)
 {
-    UnkStruct_02073C74 * v0 = sub_02073C74(19);
+    Pokemon * v0 = sub_02073C74(19);
 
     sub_020774C8(param1, v0);
     sub_0208D200(param0, v0, param2);
     Heap_FreeToHeap(v0);
 }
 
-static void sub_0208D200 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74 * param1, UnkStruct_0208D1D4 * param2)
+static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStruct_0208D1D4 * param2)
 {
     UnkStruct_02073C74_sub1 * v0;
     u16 v1;
@@ -1512,11 +1512,11 @@ static BOOL sub_0208DBF4 (UnkStruct_0208D7BC * param0)
 
 static s8 sub_0208DC1C (UnkStruct_0208D7BC * param0, s8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     s8 v1;
 
     v1 = (s8)param0->unk_24C->unk_14;
-    v0 = (UnkStruct_02073C74 *)param0->unk_24C->unk_00;
+    v0 = (Pokemon *)param0->unk_24C->unk_00;
 
     while (TRUE) {
         v1 += param1;
@@ -1525,7 +1525,7 @@ static s8 sub_0208DC1C (UnkStruct_0208D7BC * param0, s8 param1)
             return -1;
         }
 
-        v0 = (UnkStruct_02073C74 *)((u32)param0->unk_24C->unk_00 + sub_02076AF0() * v1);
+        v0 = (Pokemon *)((u32)param0->unk_24C->unk_00 + sub_02076AF0() * v1);
 
         if (sub_02074470(v0, 5, NULL) != 0) {
             if (sub_02074470(v0, 76, NULL) != 0) {
@@ -1543,7 +1543,7 @@ static s8 sub_0208DC1C (UnkStruct_0208D7BC * param0, s8 param1)
 
 static s8 sub_0208DC84 (UnkStruct_0208D7BC * param0, s8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     s8 v1;
 
     v1 = (s8)param0->unk_24C->unk_14;
@@ -2216,7 +2216,7 @@ u32 sub_0208E9EC (void)
     return 62;
 }
 
-u32 sub_0208E9F0 (UnkStruct_02073C74 * param0)
+u32 sub_0208E9F0 (Pokemon * param0)
 {
     u32 v0 = sub_02074470(param0, 160, NULL);
 

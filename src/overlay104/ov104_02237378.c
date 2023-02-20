@@ -154,8 +154,8 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
     u32 v6, v7, v8;
     UnkStruct_ov104_0223BFFC * v9;
     UnkStruct_ov6_02240D5C * v10;
-    UnkStruct_02073C74 * v11;
-    UnkStruct_02073C74 * v12;
+    Pokemon * v11;
+    Pokemon * v12;
 
     v9 = sub_0209B978(param0->unk_00->unk_00);
     v10 = v9->unk_0C;
@@ -242,7 +242,7 @@ BOOL ov104_022375F8 (UnkStruct_ov104_0222E930 * param0)
 static void ov104_02237634 (UnkStruct_ov104_02238240 * param0, UnkStruct_ov104_0223BFFC * param1)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     param0->unk_04 = param1->unk_10;
     param0->unk_1E = ov104_0223C124(param1);
@@ -311,7 +311,7 @@ BOOL ov104_02237734 (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_02023790 * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     Party * v2;
     UnkStruct_ov104_0223BFFC * v3;
     u8 v4, v5, v6;

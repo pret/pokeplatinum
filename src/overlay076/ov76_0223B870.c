@@ -569,7 +569,7 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
     int v2;
     int v3;
     int v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
     UnkStruct_ov104_0223F9E0 v6;
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {

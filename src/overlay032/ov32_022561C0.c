@@ -199,7 +199,7 @@ static BOOL ov32_02256394 (UnkStruct_ov32_0225621C * param0)
 
 static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     int v1;
     BOOL v2;
 

@@ -9,7 +9,7 @@
 #include "overlay006/struct_ov6_02248BE8.h"
 
 typedef struct {
-    UnkStruct_02073C74 * unk_00[4];
+    Pokemon * unk_00[4];
     UnkStruct_ov6_02248BE8 unk_10[4];
     UnkStruct_020954F0 unk_C0[3];
     UnkStruct_02023790 * unk_D8[4];

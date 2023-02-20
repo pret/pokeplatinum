@@ -217,7 +217,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         UnkStruct_0203CDB0 * v1 = sub_02050A60(param0);
 
         {
-            UnkStruct_02073C74 * v2 = v0->unk_0C.unk_00;
+            Pokemon * v2 = v0->unk_0C.unk_00;
             UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(v1));
             int v4 = 6;
             int v5 = sub_0203A138(v1->unk_1C->unk_00);

@@ -3524,7 +3524,7 @@ static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
 {
     int v0, v1;
     Party * v2, * v3;
-    UnkStruct_02073C74 * v4, * v5;
+    Pokemon * v4, * v5;
 
     v2 = param0->unk_24;
     v3 = (Party *)sub_0209C188(param0->unk_D0, param1);
@@ -3600,7 +3600,7 @@ static BOOL ov109_021D3C08 (UnkStruct_ov109_021D0F70 * param0, fx32 param1, int 
 static BOOL ov109_021D3C94 (Party * param0)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     v1 = Party_GetCurrentCount(param0);
 

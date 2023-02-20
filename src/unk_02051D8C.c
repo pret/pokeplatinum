@@ -162,7 +162,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
     UnkStruct_0200B144 * v2;
     UnkStruct_02023790 * v3;
     UnkStruct_ov6_02240D5C * v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
 
     v4 = sub_02051D8C(param0, 0x400);
     v2 = sub_0200B144(1, 26, 553, param0);
@@ -224,7 +224,7 @@ void sub_020520A4 (UnkStruct_ov6_02240D5C * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_0205213C (UnkStruct_ov6_02240D5C * param0, UnkStruct_02073C74 * param1, int param2)
+void sub_0205213C (UnkStruct_ov6_02240D5C * param0, Pokemon * param1, int param2)
 {
     int v0;
 
@@ -313,7 +313,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v6 = sub_0202CC98(param1->unk_0C);
     UnkStruct_020279FC * v7 = sub_02025E44(param1->unk_0C);
-    UnkStruct_02073C74 * v8;
+    Pokemon * v8;
 
     param0->unk_128 = 6;
     param0->unk_12C = 9;
@@ -365,7 +365,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_020279FC * v4 = sub_02025E44(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
     int v6, v7, v8;
-    UnkStruct_02073C74 * v9;
+    Pokemon * v9;
 
     param0->unk_128 = 6;
     param0->unk_12C = 9;

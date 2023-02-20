@@ -515,7 +515,7 @@ static void ov19_021DCE50 (UnkStruct_ov19_021DC680 * param0, fx32 param1)
 
 static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     int v1, v2, v3;
 
     v3 = (param1) ? 0 : 208;

@@ -11,7 +11,7 @@ typedef struct {
     UnkStruct_02002F38 * unk_04;
     UnkStruct_02007768 * unk_08;
     int unk_0C;
-    UnkStruct_02073C74 * unk_10;
+    Pokemon * unk_10;
     int unk_14;
 } UnkStruct_ov21_021E8E0C;
 

@@ -69,7 +69,7 @@ static int ov94_0223D640(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_0223D664(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_0223D6B8(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_0223D754(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_0223D88C(UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, UnkStruct_02073C74 * param5);
+static void ov94_0223D88C(UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, Pokemon * param5);
 
 static int (* Unk_ov94_02246808[])(UnkStruct_ov94_0223FD4C *) = {
     ov94_0223D5B0,
@@ -85,20 +85,20 @@ static int (* Unk_ov94_02246808[])(UnkStruct_ov94_0223FD4C *) = {
 
 int ov94_0223D0C4 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
 
     ov94_0223D53C(param0);
     ov94_0223D1D4(param0->unk_04);
     ov94_0223D2E8(param0);
     ov94_0223D438(param0);
     ov94_0223D3DC(param0);
-    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], sub_02076B10((UnkStruct_02073C74 *)param0->unk_12C.unk_00.unk_00), &param0->unk_12C.unk_EC);
+    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00), &param0->unk_12C.unk_EC);
 
-    v0 = (UnkStruct_02073C74 *)param0->unk_12C.unk_00.unk_00;
+    v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
     ov94_0223DA78(param0->unk_B90, &param0->unk_FCC[5], param0->unk_12C.unk_10C, v0, &param0->unk_FCC[10]);
     ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.unk_00, param0->unk_12C.unk_F0.unk_02, ov94_02242970(param0->unk_12C.unk_F0.unk_03, param0->unk_12C.unk_F0.unk_04, 0));
-    ov94_0223DB2C((UnkStruct_02073C74 *)param0->unk_12C.unk_00.unk_00);
+    ov94_0223DB2C((Pokemon *)param0->unk_12C.unk_00.unk_00);
 
     sub_0200F174(3, 1, 1, 0x0, 6, 1, 62);
 
@@ -363,7 +363,7 @@ static int ov94_0223D5B0 (UnkStruct_ov94_0223FD4C * param0)
 static int ov94_0223D5B8 (UnkStruct_ov94_0223FD4C * param0)
 {
     if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
-        ov94_0223D88C(param0, 5, 1, 0, 0xf0f, (UnkStruct_02073C74 *)param0->unk_12C.unk_00.unk_00);
+        ov94_0223D88C(param0, 5, 1, 0, 0xf0f, (Pokemon *)param0->unk_12C.unk_00.unk_00);
         ov94_0223C3F4(param0, 3, 7);
         sub_02005748(1500);
     } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
@@ -447,7 +447,7 @@ static int ov94_0223D754 (UnkStruct_ov94_0223FD4C * param0)
         sub_0200DC9C(&param0->unk_F9C[0], 0);
 
         {
-            UnkStruct_02073C74 * v0 = (UnkStruct_02073C74 *)param0->unk_12C.unk_00.unk_00;
+            Pokemon * v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
             if (ov94_02241498(v0)) {
                 if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -502,7 +502,7 @@ static int ov94_0223D858 (UnkStruct_ov94_0223FD4C * param0)
     return 3;
 }
 
-static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, UnkStruct_02073C74 * param5)
+static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, Pokemon * param5)
 {
     UnkStruct_02023790 * v0;
 
@@ -569,7 +569,7 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     sub_020237BC(v0);
 }
 
-void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u16 * param2, UnkStruct_02073C74 * param3, UnkStruct_0205AA50 param4[])
+void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u16 * param2, Pokemon * param3, UnkStruct_0205AA50 param4[])
 {
     UnkStruct_02023790 * v0, * v1;
     UnkStruct_02023790 * v2, * v3;
@@ -594,7 +594,7 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
     sub_020237BC(v3);
 }
 
-void ov94_0223DB2C (UnkStruct_02073C74 * param0)
+void ov94_0223DB2C (Pokemon * param0)
 {
     UnkStruct_02008A90 v0;
     u8 * v1 = Heap_AllocFromHeap(62, (0x20 * 10 * 10));

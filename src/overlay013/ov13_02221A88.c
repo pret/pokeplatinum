@@ -1556,7 +1556,7 @@ void ov13_02224108 (UnkStruct_ov13_022213F0 * param0)
 
 void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_ov13_0221FC20 * v1;
     void * v2;
     UnkStruct_02023790 * v3;
@@ -1658,7 +1658,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
 
 void ov13_0222449C (UnkStruct_ov13_022213F0 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_ov13_0221FC20 * v1;
     UnkStruct_02023790 * v2;
 

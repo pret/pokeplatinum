@@ -238,7 +238,7 @@ void sub_02081CF4 (UnkStruct_0207F248 * param0, const u8 * param1, u8 param2)
 
 void sub_02081E08 (UnkStruct_0207F248 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_02023790 * v1;
 
     if (param0->unk_5A4->unk_20 == 15) {
@@ -269,7 +269,7 @@ static void sub_02081EAC (UnkStruct_0207F248 * param0, u8 param1)
     sub_0200C578(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
 }
 
-void sub_02081ED8 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1, u32 param2)
+void sub_02081ED8 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 param2)
 {
     UnkStruct_02023790 * v0;
 
@@ -283,7 +283,7 @@ void sub_02081ED8 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1, u32
 void sub_02081F2C (UnkStruct_0207F248 * param0, u8 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     v0 = &param0->unk_04[0 + param1 * 5];
 
@@ -432,7 +432,7 @@ void sub_020822F4 (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_0208232C (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
     sub_0201ADA4(&param0->unk_04[1 + param1 * 5], 0);
@@ -456,7 +456,7 @@ void sub_0208232C (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_020823C4 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u8 v1;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
@@ -484,7 +484,7 @@ void sub_020823C4 (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_0208245C (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u8 v1;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
@@ -500,7 +500,7 @@ void sub_0208245C (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_020824C0 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u8 v1;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
@@ -742,7 +742,7 @@ static void sub_02082964 (UnkStruct_0207F248 * param0, u8 param1, u8 param2)
 
 void sub_020829DC (UnkStruct_0207F248 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_02023790 * v1;
     u32 v2;
     u16 v3[6];

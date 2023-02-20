@@ -221,7 +221,7 @@ static u32 sub_02051C20 (u32 param0)
 
 static u32 sub_02051CD0 (Party * param0, int param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u32 v1;
     u32 v2 = 34;
 

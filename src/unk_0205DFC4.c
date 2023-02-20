@@ -243,7 +243,7 @@ u16 sub_0205E0E4 (u16 param0, u16 param1)
 
 u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u16 v1, v2;
 
     v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));

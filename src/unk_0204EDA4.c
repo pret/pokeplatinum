@@ -20,7 +20,7 @@
 #include "party.h"
 #include "unk_020997B8.h"
 
-static void sub_0204EE90(UnkStruct_0203E724 * param0, u16 param1, UnkStruct_02073C74 * param2, u16 * param3);
+static void sub_0204EE90(UnkStruct_0203E724 * param0, u16 param1, Pokemon * param2, u16 * param3);
 
 BOOL sub_0204EDA4 (UnkStruct_0203E724 * param0)
 {
@@ -61,7 +61,7 @@ BOOL sub_0204EE38 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204EE3C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u16 * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 v3 = inline_02049538(param0);
@@ -74,7 +74,7 @@ BOOL sub_0204EE3C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static void sub_0204EE90 (UnkStruct_0203E724 * param0, u16 param1, UnkStruct_02073C74 * param2, u16 * param3)
+static void sub_0204EE90 (UnkStruct_0203E724 * param0, u16 param1, Pokemon * param2, u16 * param3)
 {
     void ** v0 = sub_0203F098(param0->unk_34, 19);
     UnkStruct_020997B8 * v1;
@@ -100,7 +100,7 @@ BOOL sub_0204EEFC (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204EF00 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u16 v1 = inline_02049538(param0);
     u16 * v2;
 
@@ -114,7 +114,7 @@ BOOL sub_0204EF00 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204EF40 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
     u16 * v3;
