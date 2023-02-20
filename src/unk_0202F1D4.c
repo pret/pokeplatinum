@@ -601,7 +601,7 @@ static void sub_0202FD30 (UnkStruct_0202FD30 * param0, Party * param1)
     Pokemon * v1;
     u8 v2 = 0;
 
-    v1 = sub_02073C74(11);
+    v1 = AllocMonZeroed(11);
 
     Party_InitWithCapacity(param1, param0->unk_00);
 

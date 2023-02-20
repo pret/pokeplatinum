@@ -6186,7 +6186,7 @@ BOOL ov16_02259B9C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param
                     int v4;
                     int v5;
 
-                    v3 = sub_02073C74(5);
+                    v3 = AllocMonZeroed(5);
 
                     if (ov16_0223DF0C(param0) & 0x2) {
                         v4 = param1->unk_21A8[param1->unk_118][1];

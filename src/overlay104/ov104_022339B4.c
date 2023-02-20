@@ -188,7 +188,7 @@ static void ov104_02233BAC (UnkStruct_ov104_0223ADA0 * param0)
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        v4 = sub_02073C74(11);
+        v4 = AllocMonZeroed(11);
         ov104_0222DF40(&param0->unk_280[v0], v4, ov104_0223ADA0(param0));
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D4, v4);
         Heap_FreeToHeap(v4);
@@ -272,7 +272,7 @@ static void ov104_02233F1C (UnkStruct_ov104_0223ADA0 * param0)
 
     ov104_0222E330(v4, v6, v5, v7, NULL, 4, 11, 179);
 
-    v1 = sub_02073C74(11);
+    v1 = AllocMonZeroed(11);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov104_0222DF40(&v4[v0], v1, ov104_0223ADA0(param0));
@@ -291,7 +291,7 @@ static void ov104_02233F1C (UnkStruct_ov104_0223ADA0 * param0)
 
     ov104_0222E330(v4, v6, v5, v7, NULL, 4, 11, 179);
 
-    v1 = sub_02073C74(11);
+    v1 = AllocMonZeroed(11);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov104_0222DF40(&v4[v0], v1, ov104_0223ADA0(param0));
@@ -499,7 +499,7 @@ void ov104_0223449C (UnkStruct_ov104_0223ADA0 * param0)
 
     sub_0207A008(param0->unk_4D4);
 
-    v3 = sub_02073C74(11);
+    v3 = AllocMonZeroed(11);
 
     for (v0 = 0; v0 < v1; v0++) {
         ov104_0222DF40(&param0->unk_280[param0->unk_4DC[v0]], v3, ov104_0223ADA0(param0));
@@ -590,7 +590,7 @@ void ov104_0223470C (UnkStruct_ov104_0223ADA0 * param0)
 
     sub_0207A008(param0->unk_4D8);
 
-    v3 = sub_02073C74(11);
+    v3 = AllocMonZeroed(11);
 
     for (v0 = 0; v0 < v2; v0++) {
         ov104_0222DF40(&param0->unk_3F0[v0], v3, ov104_0223ADA0(param0));

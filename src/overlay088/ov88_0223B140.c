@@ -2496,8 +2496,8 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 {
     Pokemon * v0, * v1;
 
-    v0 = sub_02073C74(26);
-    v1 = sub_02073C74(26);
+    v0 = AllocMonZeroed(26);
+    v1 = AllocMonZeroed(26);
 
     sub_020775EC(Party_GetPokemonBySlotIndex(param0, param2), v0);
     sub_020775EC(Party_GetPokemonBySlotIndex(param1, param3), v1);

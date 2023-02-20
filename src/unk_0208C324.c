@@ -887,7 +887,7 @@ static int sub_0208CF78 (UnkStruct_0208D7BC * param0)
 
         if (param0->unk_24C->unk_11 == 2) {
             v0 = sub_0208DD48(param0);
-            v1 = sub_02073C74(19);
+            v1 = AllocMonZeroed(19);
             sub_020774C8(v0, v1);
         } else {
             v1 = sub_0208DD48(param0);
@@ -1012,7 +1012,7 @@ static void sub_0208D1A4 (UnkStruct_0208D7BC * param0)
 
 static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, BoxPokemon * param1, UnkStruct_0208D1D4 * param2)
 {
-    Pokemon * v0 = sub_02073C74(19);
+    Pokemon * v0 = AllocMonZeroed(19);
 
     sub_020774C8(param1, v0);
     sub_0208D200(param0, v0, param2);

@@ -24,7 +24,7 @@
 void sub_02073C2C(Pokemon * param0);
 void sub_02073C54(BoxPokemon * param0);
 int sub_02073C70(void);
-Pokemon * sub_02073C74(u32 param0);
+Pokemon * AllocMonZeroed(u32 param0);
 BOOL sub_02073C88(Pokemon * param0);
 BOOL sub_02073CD4(Pokemon * param0, BOOL param1);
 BOOL sub_02073D20(BoxPokemon * param0);

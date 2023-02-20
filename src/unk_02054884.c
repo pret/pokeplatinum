@@ -38,7 +38,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
 
     v4 = sub_02025E38(param1);
     v3 = Party_GetFromSavedata(param1);
-    v1 = sub_02073C74(param0);
+    v1 = AllocMonZeroed(param0);
 
     sub_02073C2C(v1);
     sub_02073D80(v1, param2, param3, 32, 0, 0, 0, 0);
@@ -63,7 +63,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     BOOL v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1);
     Party * v3 = Party_GetFromSavedata(param1);
-    Pokemon * v4 = sub_02073C74(32);
+    Pokemon * v4 = AllocMonZeroed(32);
 
     sub_02073C2C(v4);
 

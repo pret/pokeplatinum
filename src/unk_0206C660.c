@@ -97,8 +97,8 @@ void sub_0206C740 (UnkStruct_020508D4 * param0, UnkStruct_ov6_02246204 * param1,
     v0->unk_04 = 0;
     v0->unk_00 = param1;
     v0->unk_08 = param2;
-    v0->unk_24 = sub_02073C74(param3);
-    v0->unk_28 = sub_02073C74(param3);
+    v0->unk_24 = AllocMonZeroed(param3);
+    v0->unk_28 = AllocMonZeroed(param3);
 
     sub_02050944(param0, sub_0206C680, v0);
 }

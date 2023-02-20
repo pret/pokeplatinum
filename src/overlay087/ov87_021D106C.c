@@ -114,7 +114,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1F0 = sub_0200B358(61);
         v0->unk_1F4 = sub_02023790(256, 61);
         v0->unk_1F8 = sub_02023790(256, 61);
-        v0->unk_1FC = sub_02073C74(61);
+        v0->unk_1FC = AllocMonZeroed(61);
 
         sub_02017798(ov87_021D11AC, v0);
     }

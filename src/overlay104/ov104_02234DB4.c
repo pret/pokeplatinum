@@ -63,7 +63,7 @@ UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 para
     v10->unk_6FC = param0;
     v10->unk_00 = 11;
     v10->unk_264 = sub_02079FF4(11);
-    v10->unk_D8C = sub_02073C74(11);
+    v10->unk_D8C = AllocMonZeroed(11);
 
     v0 = v10->unk_6F8;
     v1 = sub_0203026C(param0);

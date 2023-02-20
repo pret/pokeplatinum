@@ -1131,7 +1131,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
     u8 v4;
     Pokemon * v5;
 
-    v5 = sub_02073C74(11);
+    v5 = AllocMonZeroed(11);
     sub_02073C2C(v5);
 
     v2 = 0;
@@ -1202,7 +1202,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
     BOOL v2;
     Pokemon * v3;
 
-    v3 = sub_02073C74(11);
+    v3 = AllocMonZeroed(11);
     sub_02073C2C(v3);
     v0 = 1;
 
@@ -1620,7 +1620,7 @@ static void ov6_0224239C (const u32 param0, UnkStruct_0206C638 * param1, UnkStru
     BOOL v6;
     Pokemon * v7;
 
-    v7 = sub_02073C74(4);
+    v7 = AllocMonZeroed(4);
     v0 = sub_0202D93C(param1, 4);
     v1 = sub_0202D93C(param1, 6);
     v2 = sub_0202D93C(param1, 2);
