@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_BOX_POKEMON_H
 #define POKEPLATINUM_BOX_POKEMON_H
 
-#include "struct_defs/struct_02075454_1.h"
-#include "struct_defs/struct_02075454_2.h"
-#include "struct_defs/struct_02075454_3.h"
-#include "struct_defs/struct_02075454.h"
+#include "struct_defs/pokemon_substruct_1.h"
+#include "struct_defs/pokemon_substruct_2.h"
+#include "struct_defs/pokemon_substruct_3.h"
+#include "struct_defs/pokemon_substruct_0.h"
 
 typedef struct BoxPokemon_t {
     u32 unk_00;
@@ -13,10 +13,10 @@ typedef struct BoxPokemon_t {
     u16 unk_04_2 : 1;
     u16 unk_04_3 : 13;
     u16 unk_06;
-    u8 unk_08[sizeof(UnkStruct_02075454)
-              + sizeof(UnkStruct_02075454_1)
-              + sizeof(UnkStruct_02075454_2)
-              + sizeof(UnkStruct_02075454_3)];
+    u8 unk_08[sizeof(PokemonSubstruct0)
+              + sizeof(PokemonSubstruct1)
+              + sizeof(PokemonSubstruct2)
+              + sizeof(PokemonSubstruct3)];
 } BoxPokemon;
 
 #endif // POKEPLATINUM_BOX_POKEMON_H
