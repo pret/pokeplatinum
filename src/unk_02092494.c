@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_02073C74_sub1.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
 #include "unk_0200AC5C.h"
@@ -26,11 +26,11 @@ static void sub_02092B1C(UnkStruct_02090800 * param0, int param1, int param2);
 static void sub_02092C24(UnkStruct_02090800 * param0);
 static void sub_02092E10(UnkStruct_02090800 * param0);
 static void sub_02092E4C(UnkStruct_02090800 * param0);
-static void sub_020932A4(UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1, int param2);
-static void sub_020932F0(UnkStruct_02073C74_sub1 * param0, int param1, int param2);
-static void sub_02093368(UnkStruct_02073C74_sub1 * param0, int param1);
-static void sub_020933C8(UnkStruct_02073C74_sub1 * param0);
-static void sub_020933E8(UnkStruct_02073C74_sub1 * param0);
+static void sub_020932A4(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2);
+static void sub_020932F0(BoxPokemon * param0, int param1, int param2);
+static void sub_02093368(BoxPokemon * param0, int param1);
+static void sub_020933C8(BoxPokemon * param0);
+static void sub_020933E8(BoxPokemon * param0);
 
 UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
 {
@@ -720,7 +720,7 @@ void sub_0209304C (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, in
     sub_0209305C(&param0->unk_00, param1, param2, param3, param4);
 }
 
-void sub_0209305C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
     switch (param2) {
     case 0:
@@ -818,7 +818,7 @@ void sub_0209305C (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1
     }
 }
 
-static void sub_020932A4 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C * param1, int param2)
+static void sub_020932A4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2)
 {
     int v0 = sub_02025F20(param1);
     int v1 = sub_02025F30(param1);
@@ -830,7 +830,7 @@ static void sub_020932A4 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C *
     sub_020237BC(v2);
 }
 
-static void sub_020932F0 (UnkStruct_02073C74_sub1 * param0, int param1, int param2)
+static void sub_020932F0 (BoxPokemon * param0, int param1, int param2)
 {
     RTCDate v0;
 
@@ -849,7 +849,7 @@ static void sub_020932F0 (UnkStruct_02073C74_sub1 * param0, int param1, int para
     }
 }
 
-static void sub_02093368 (UnkStruct_02073C74_sub1 * param0, int param1)
+static void sub_02093368 (BoxPokemon * param0, int param1)
 {
     int v0 = 0;
 
@@ -866,13 +866,13 @@ static void sub_02093368 (UnkStruct_02073C74_sub1 * param0, int param1)
     }
 }
 
-static void sub_020933C8 (UnkStruct_02073C74_sub1 * param0)
+static void sub_020933C8 (BoxPokemon * param0)
 {
     int v0 = sub_02074570(param0, 161, NULL);
     sub_02074C60(param0, 156, &v0);
 }
 
-static void sub_020933E8 (UnkStruct_02073C74_sub1 * param0)
+static void sub_020933E8 (BoxPokemon * param0)
 {
     int v0 = 1;
     sub_02074C60(param0, 110, &v0);

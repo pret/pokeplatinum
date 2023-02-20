@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -92,7 +92,7 @@ BOOL sub_02047570 (UnkStruct_0203E724 * param0)
     u16 v4 = inline_02049538(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v4);
-    sub_0200B538(*v2, v3, (UnkStruct_02073C74_sub1 *)v0);
+    sub_0200B538(*v2, v3, (BoxPokemon *)v0);
 
     return 0;
 }
@@ -210,14 +210,14 @@ BOOL sub_020477D0 (UnkStruct_0203E724 * param0)
     u16 v4 = inline_02049538(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v4);
-    sub_0200B5CC(*v2, v3, (UnkStruct_02073C74_sub1 *)v0);
+    sub_0200B5CC(*v2, v3, (BoxPokemon *)v0);
 
     return 0;
 }
 
 BOOL sub_02047818 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02073C74_sub1 * v0;
+    BoxPokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
     UnkStruct_020797DC * v2 = sub_02024420(v1->unk_0C);
     UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);

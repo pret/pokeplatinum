@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "data_021BF67C.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 
 #include "overlay097/struct_ov97_02236380_sub1.h"
 #include "overlay097/struct_ov97_02236380_sub2.h"
@@ -336,7 +336,7 @@ typedef struct {
     UnkStruct_ov97_02236380_sub1 unk_24;
 } UnkStruct_ov97_02236380_23;
 
-void ov97_02236E90(UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1);
+void ov97_02236E90(UnkStruct_ov97_0223685C * param0, BoxPokemon * param1);
 
 static u16 Unk_ov97_0223ECA0[] = {
 	0x10,
@@ -1318,7 +1318,7 @@ u32 ov97_02236E00 (UnkStruct_ov97_0223685C * param0)
     return sub_02075B78(v0, v1);
 }
 
-static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1)
+static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, BoxPokemon * param1)
 {
     int v0;
     int v1;
@@ -1347,7 +1347,7 @@ static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_s
     return v1;
 }
 
-void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1)
+void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, BoxPokemon * param1)
 {
     BOOL v0;
     u32 v1;

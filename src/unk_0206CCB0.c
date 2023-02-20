@@ -15,7 +15,7 @@
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
@@ -2698,7 +2698,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u32 v0, v1;
     u8 v2;
     Pokemon * v3;
-    UnkStruct_02073C74_sub1 * v4;
+    BoxPokemon * v4;
     int v5, v6;
 
     v5 = 0xff;

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
 
@@ -678,7 +678,7 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
     int v0 = ov19_021D5F9C(param0->unk_08);
     const UnkStruct_ov19_021D5FAC * v1 = ov19_021D5FAC(param0->unk_08, v0);
     UnkStruct_02022550 * v2 = param0->unk_20[v0];
-    UnkStruct_02073C74_sub1 * v3 = (UnkStruct_02073C74_sub1 *)(v1->unk_00);
+    BoxPokemon * v3 = (BoxPokemon *)(v1->unk_00);
     NNSG2dCharacterData * v4;
 
     if (ov19_021D5E34(param0->unk_08)) {

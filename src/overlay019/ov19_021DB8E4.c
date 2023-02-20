@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -232,7 +232,7 @@ BOOL ov19_021DBBA0 (UnkStruct_ov19_021DBA9C * param0)
 void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NNS_G2D_VRAM_TYPE param3, NNSG2dImageProxy * param4)
 {
     const UnkStruct_020797DC * v0;
-    UnkStruct_02073C74_sub1 * v1;
+    BoxPokemon * v1;
     u32 v2, v3, v4, v5;
     u8 v6, v7;
     int v8;

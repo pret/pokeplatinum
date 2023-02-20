@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_02073C74_sub1.h"
+#include "struct_defs/box_pokemon.h"
 
 #include "unk_0201378C.h"
 #include "unk_0202EEC0.h"
@@ -74,7 +74,7 @@ static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4 (UnkStruct_02024440 * param0, UnkStruct_02073C74_sub1 * param1, int param2)
+void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon * param1, int param2)
 {
     sub_020774C8(param1, &param0->unk_00[param2]);
 }

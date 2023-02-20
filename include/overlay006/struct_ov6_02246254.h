@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_020279FC.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 
 typedef struct {
-    const UnkStruct_02073C74_sub1 * unk_00;
-    const UnkStruct_02073C74_sub1 * unk_04;
+    const BoxPokemon * unk_00;
+    const BoxPokemon * unk_04;
     const UnkStruct_02025E6C * unk_08;
     int unk_0C;
     int unk_10;

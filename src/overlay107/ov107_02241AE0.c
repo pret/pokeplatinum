@@ -19,7 +19,7 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay107/struct_ov107_02241D6C_decl.h"
@@ -364,7 +364,7 @@ static void ov107_022448E8(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 static void ov107_02244944(UnkStruct_ov107_02241D6C * param0);
 static void ov107_02244A1C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 static void ov107_02244A74(UnkStruct_ov107_02241D6C * param0, u32 param1, s32 param2, u32 param3, int param4);
-static void ov107_02244A8C(UnkStruct_ov107_02241D6C * param0, u32 param1, UnkStruct_02073C74_sub1 * param2);
+static void ov107_02244A8C(UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPokemon * param2);
 static void ov107_02244A98(UnkStruct_ov107_02241D6C * param0, u32 param1);
 static void ov107_02244AB4(UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
 static void ov107_02244B24(UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4);
@@ -3056,7 +3056,7 @@ static void ov107_02244A74 (UnkStruct_ov107_02241D6C * param0, u32 param1, s32 p
     return;
 }
 
-static void ov107_02244A8C (UnkStruct_ov107_02241D6C * param0, u32 param1, UnkStruct_02073C74_sub1 * param2)
+static void ov107_02244A8C (UnkStruct_ov107_02241D6C * param0, u32 param1, BoxPokemon * param2)
 {
     sub_0200B538(param0->unk_24, param1, param2);
     return;

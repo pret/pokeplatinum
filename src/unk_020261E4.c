@@ -4,7 +4,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202818C.h"
-#include "struct_defs/struct_02073C74_sub1.h"
+#include "struct_defs/box_pokemon.h"
 
 #include "unk_020244AC.h"
 #include "unk_020261E4.h"
@@ -19,7 +19,7 @@ typedef struct UnkStruct_02026224_t {
 } UnkStruct_02026224;
 
 typedef struct UnkStruct_02026218_t {
-    UnkStruct_02073C74_sub1 unk_00;
+    BoxPokemon unk_00;
     UnkStruct_02026224 unk_08;
     u32 unk_68;
 } UnkStruct_02026218;
@@ -51,7 +51,7 @@ UnkStruct_02026218 * sub_02026218 (UnkStruct_02026310 * param0, int param1)
     return &(param0->unk_00[param1]);
 }
 
-UnkStruct_02073C74_sub1 * sub_02026220 (UnkStruct_02026218 * param0)
+BoxPokemon * sub_02026220 (UnkStruct_02026218 * param0)
 {
     return &(param0->unk_00);
 }

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -523,7 +523,7 @@ static void ov19_021DCEB8 (UnkStruct_ov19_021DC680 * param0, BOOL param1)
 
     for (v1 = 0; v1 < v2; v1++) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, v1);
-        ov19_021DA428(param0->unk_38, (UnkStruct_02073C74_sub1 *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
+        ov19_021DA428(param0->unk_38, (BoxPokemon *)v0, Unk_ov19_021E0234[v1].unk_00 + param0->unk_34, Unk_ov19_021E0234[v1].unk_02 + v3, 1, 4 + v1, 1048 + 32 * v1, &param0->unk_3C[v1]);
         sub_02021CAC(param0->unk_3C[v1].unk_00, param1);
     }
 }

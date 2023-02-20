@@ -3,12 +3,12 @@
 
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 
 int sub_0202EEC0(void);
 void sub_0202EEC8(UnkStruct_02024440 * param0);
 void sub_0202EF04(UnkStruct_02024440 * param0);
-void sub_0202EFA4(UnkStruct_02024440 * param0, UnkStruct_02073C74_sub1 * param1, int param2);
+void sub_0202EFA4(UnkStruct_02024440 * param0, BoxPokemon * param1, int param2);
 void sub_0202EFB8(UnkStruct_02024440 * param0, u32 param1);
 void sub_0202F000(const UnkStruct_02024440 * param0, int param1, Pokemon * param2);
 int sub_0202F028(const UnkStruct_02024440 * param0);

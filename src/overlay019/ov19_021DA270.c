@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -120,7 +120,7 @@ void ov19_021DA418 (const UnkStruct_ov19_021DCD18 * param0, UnkStruct_ov19_021DC
     MI_CpuCopy32(param0, param1, sizeof(UnkStruct_ov19_021DCD18) * param2);
 }
 
-void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * param1, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
+void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 param2, s32 param3, u32 param4, u32 param5, u32 param6, UnkStruct_ov19_021DCD18 * param7)
 {
     NNSG2dCharacterData * v0;
     UnkStruct_ov19_021DA864 v1;
@@ -135,7 +135,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * 
     v2 = sub_02074570(param1, 5, NULL);
     v3 = sub_02074570(param1, 76, NULL);
     v4 = sub_02074570(param1, 112, NULL);
-    param7->unk_28 = sub_02079D40((UnkStruct_02073C74_sub1 *)param1);
+    param7->unk_28 = sub_02079D40((BoxPokemon *)param1);
     param7->unk_2C = sub_02079EDC(v2, v4, v3);
     param7->unk_30 = sub_02074570(param1, 6, NULL);
     param7->unk_2E = sub_02074570(param1, 11, NULL);
@@ -159,7 +159,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * 
     sub_02073D48(param1, v5);
 }
 
-void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, UnkStruct_02073C74_sub1 * param1, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
+void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
 {
     NNSG2dCharacterData * v0;
     UnkStruct_ov19_021DA864 v1;

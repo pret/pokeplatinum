@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_BOX_POKEMON_DECL_H
+#define POKEPLATINUM_BOX_POKEMON_DECL_H
+
+typedef struct BoxPokemon_t BoxPokemon;
+
+#endif // POKEPLATINUM_BOX_POKEMON_DECL_H

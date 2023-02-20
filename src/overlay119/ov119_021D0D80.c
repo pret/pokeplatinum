@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008A90.h"
@@ -314,7 +314,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     UnkStruct_02023790 * v1;
     UnkStruct_02023790 * v2;
     UnkStruct_0200B358 * v3;
-    UnkStruct_02073C74_sub1 * v4;
+    BoxPokemon * v4;
     UnkStruct_0200B144 * v5;
 
     sub_0201ADA4(param0, 15);

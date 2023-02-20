@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D5594_H
 #define POKEPLATINUM_STRUCT_OV19_021D5594_H
 
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 
 typedef struct {
-    UnkStruct_02073C74_sub1 * unk_00;
+    BoxPokemon * unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;

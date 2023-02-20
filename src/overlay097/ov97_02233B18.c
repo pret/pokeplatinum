@@ -27,7 +27,7 @@
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_02073C74_sub1.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -179,7 +179,7 @@ static void ov97_02235310(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C * param0);
 void sub_02023D8C(UnkStruct_02023790 * param0, const u16 * param1, u32 param2);
 void sub_02023D28(UnkStruct_02023790 * param0, const u16 * param1);
-void ov97_02236E90(UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1);
+void ov97_02236E90(UnkStruct_ov97_0223685C * param0, BoxPokemon * param1);
 
 UnkStruct_ov97_0223F434 * Unk_ov97_0223F434;
 
@@ -395,7 +395,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0, v1, v2;
     u16 v3;
-    UnkStruct_02073C74_sub1 * v4;
+    BoxPokemon * v4;
     UnkStruct_ov97_0223685C * v5;
     Pokemon v6;
     UnkStruct_02024440 * v7;

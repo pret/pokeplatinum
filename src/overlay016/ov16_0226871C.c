@@ -19,7 +19,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_0226DC24_decl.h"
 #include "overlay016/struct_ov16_0226DEEC_decl.h"
@@ -2130,7 +2130,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
     u8 v3[4];
     UnkStruct_02023790 * v4, * v5;
     Pokemon * v6;
-    UnkStruct_02073C74_sub1 * v7;
+    BoxPokemon * v7;
     UnkStruct_0200B358 * v8;
     u32 v9;
     u8 v10[6];

@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -42,7 +42,7 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
     switch (param0->unk_24) {
     case 7:
-        param0->unk_E8.unk_00 = (UnkStruct_02073C74_sub1 *)sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_00 = (BoxPokemon *)sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
         param0->unk_E8.unk_04 = param0->unk_E8.unk_00;
         param0->unk_120 = ov94_02244870(&param0->unk_12C);
         param0->unk_E8.unk_08 = param0->unk_120;
@@ -50,7 +50,7 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
         param0->unk_E8.unk_10 = 2;
         break;
     case 8:
-        param0->unk_E8.unk_04 = (UnkStruct_02073C74_sub1 *)sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_04 = (BoxPokemon *)sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
         param0->unk_E8.unk_00 = param0->unk_E8.unk_04;
         param0->unk_120 = ov94_02244870(&param0->unk_12C);
         param0->unk_E8.unk_08 = param0->unk_120;
@@ -69,7 +69,7 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     case 9:
         sub_0202DA70(param0->unk_00->unk_00, param0->unk_1104);
         param0->unk_E8.unk_00 = sub_02076B10(param0->unk_1104);
-        param0->unk_E8.unk_04 = (UnkStruct_02073C74_sub1 *)sub_02076B10((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
+        param0->unk_E8.unk_04 = (BoxPokemon *)sub_02076B10((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
         param0->unk_120 = ov94_02244870(&param0->unk_250[param0->unk_11C]);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;

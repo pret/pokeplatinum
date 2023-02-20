@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F410C.h"
@@ -94,7 +94,7 @@ static void sub_0208C604(void * param0);
 static void sub_0208C884(UnkStruct_0208D7BC * param0);
 static void sub_0208C950(UnkStruct_0208D7BC * param0);
 static void sub_0208D1A4(UnkStruct_0208D7BC * param0);
-static void sub_0208D1D4(UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 * param1, UnkStruct_0208D1D4 * param2);
+static void sub_0208D1D4(UnkStruct_0208D7BC * param0, BoxPokemon * param1, UnkStruct_0208D1D4 * param2);
 static void sub_0208D200(UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStruct_0208D1D4 * param2);
 static void sub_0208D678(UnkStruct_0208D7BC * param0);
 static void sub_0208D618(UnkStruct_0208D7BC * param0);
@@ -881,7 +881,7 @@ static int sub_0208CF0C (UnkStruct_0208D7BC * param0)
 static int sub_0208CF78 (UnkStruct_0208D7BC * param0)
 {
     if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        UnkStruct_02073C74_sub1 * v0;
+        BoxPokemon * v0;
         Pokemon * v1;
         u8 v2;
 
@@ -1010,7 +1010,7 @@ static void sub_0208D1A4 (UnkStruct_0208D7BC * param0)
     }
 }
 
-static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 * param1, UnkStruct_0208D1D4 * param2)
+static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, BoxPokemon * param1, UnkStruct_0208D1D4 * param2)
 {
     Pokemon * v0 = sub_02073C74(19);
 
@@ -1021,7 +1021,7 @@ static void sub_0208D1D4 (UnkStruct_0208D7BC * param0, UnkStruct_02073C74_sub1 *
 
 static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStruct_0208D1D4 * param2)
 {
-    UnkStruct_02073C74_sub1 * v0;
+    BoxPokemon * v0;
     u16 v1;
     u8 v2;
     BOOL v3;
@@ -1573,11 +1573,11 @@ static s8 sub_0208DC84 (UnkStruct_0208D7BC * param0, s8 param1)
 
 static s8 sub_0208DCE0 (UnkStruct_0208D7BC * param0, s8 param1)
 {
-    UnkStruct_02073C74_sub1 * v0;
+    BoxPokemon * v0;
     s8 v1;
 
     v1 = (s8)param0->unk_24C->unk_14;
-    v0 = (UnkStruct_02073C74_sub1 *)param0->unk_24C->unk_00;
+    v0 = (BoxPokemon *)param0->unk_24C->unk_00;
 
     while (TRUE) {
         v1 += param1;
@@ -1586,7 +1586,7 @@ static s8 sub_0208DCE0 (UnkStruct_0208D7BC * param0, s8 param1)
             return -1;
         }
 
-        v0 = (UnkStruct_02073C74_sub1 *)((u32)param0->unk_24C->unk_00 + sub_02076AF4() * v1);
+        v0 = (BoxPokemon *)((u32)param0->unk_24C->unk_00 + sub_02076AF4() * v1);
 
         if (sub_02074570(v0, 5, NULL) != 0) {
             if (sub_02074570(v0, 76, NULL) != 0) {

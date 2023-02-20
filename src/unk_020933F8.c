@@ -16,7 +16,7 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F55EC.h"
@@ -1145,7 +1145,7 @@ void sub_02094648 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 *
 
 void sub_02094680 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 * param2, u32 param3)
 {
-    UnkStruct_02073C74_sub1 * v0;
+    BoxPokemon * v0;
     int v1;
 
     v1 = sub_02095904(param1);

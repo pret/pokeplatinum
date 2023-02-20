@@ -34,7 +34,7 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_decls/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -8282,7 +8282,7 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
 {
     int v0;
     Pokemon * v1;
-    UnkStruct_02073C74_sub1 * v2;
+    BoxPokemon * v2;
     u32 v3;
 
     v3 = 0;
