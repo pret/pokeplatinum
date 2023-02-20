@@ -6,7 +6,7 @@
 
 #include "overlay006/struct_ov6_02240D5C.h"
 
-#include "unk_02051B50.h"
+#include "enc_effects.h"
 #include "unk_02054884.h"
 #include "unk_02073C2C.h"
 #include "overlay005/ov5_021DDBE8.h"
@@ -51,6 +51,8 @@
 #define FRONTIER_ENC            0x001D      // Frontier / Wi-Fi Battles
 #define DOUBLE_ENC              0x001E      // 2v2s, wild battles with partner
 #define CATCHALL_ENC            0xFFFF      // catch-all?
+
+#define PAL_PARK_ZONE_ID        251         // pal park; important for certain wild legends
 
 typedef struct {
     u16 cutinVFX;
@@ -112,7 +114,7 @@ enum {
     ENCFX_NUM_ENTRIES
 };
 
-static const EncEffectsPair Unk_020EC208[ENCFX_NUM_ENTRIES] = {
+static const EncEffectsDataPair ENCOUNTER_EFFECTS[ENCFX_NUM_ENTRIES] = {
     // Gym leaders
     {OREBURGH_GYM_ENC,      SEQ_BA_GYM},            // Roark
     {ETERNA_GYM_ENC,        SEQ_BA_GYM},            // Gardenia
@@ -168,8 +170,8 @@ static const EncEffectsPair Unk_020EC208[ENCFX_NUM_ENTRIES] = {
 static u32 EncEffects_GetEffectsForTrainerClass(u32 param0);
 static u32 EncEffects_GetEffectsForWildMon(Party * param0, int param1);
 static u32 EncEffects_GetEffectsForBattle(const UnkStruct_ov6_02240D5C * param0);
-static u32 sub_02051BBC(u32 param0, const UnkStruct_ov6_02240D5C * param1);
-static u32 sub_02051BE8(u32 param0, const UnkStruct_ov6_02240D5C * param1);
+static u32 EncEffects_GetCutinFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
+static u32 EncEffects_GetBGMFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
 
 
 // Fight type flag definitions
@@ -187,6 +189,7 @@ static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battle
     u32 encEffects;
 
     if (fightType & FIGHT_TYPE_TRAINER) {
+        // param passed here is the trainer class, unk_28 should be some kind of trainer data struct
         encEffects = EncEffects_GetEffectsForTrainerClass(battleData->unk_28[1].unk_01);
 
         if (fightType & FIGHT_TYPE_FRONTIER) {
@@ -226,50 +229,48 @@ static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battle
         return encEffects;
     }
 
+    // this is passing the enemy's party (which, for a wild mon, is just 1 member)
+    // and the area where the battle is occurring
     encEffects = EncEffects_GetEffectsForWildMon(battleData->unk_04[1], battleData->unk_134);
 
-    if (encEffects < 34) {
+    if (encEffects < ENCFX_GENERIC_POKEMON) {
         return encEffects;
     }
 
-    if (v0 & 0x2) {
-        return 30;
+    if (fightType & FIGHT_TYPE_DOUBLE) {
+        return ENCFX_DOUBLE_BATTLE_POKEMON;
     }
 
     return encEffects;
 }
 
-static u32 sub_02051BBC (u32 param0, const UnkStruct_ov6_02240D5C * param1)
+static u32 EncEffects_GetCutInFromEffects (u32 effectID, const UnkStruct_ov6_02240D5C * battleData)
 {
-    GF_ASSERT(param0 < 35);
+    GF_ASSERT(effectID < ENCFX_NUM_ENTRIES);
 
-    if (Unk_020EC208[param0].unk_00 == 0xffff) {
-        return ov5_021DEEC8(param1);
+    if (ENCOUNTER_EFFECTS[effectID].cutinVFX == CATCHALL_ENC) {
+        return ov5_021DEEC8(battleData);
     } else {
-        return Unk_020EC208[param0].unk_00;
+        return ENCOUNTER_EFFECTS[effectID].cutinVFX;
     }
 }
 
-static u32 sub_02051BE8 (u32 param0, const UnkStruct_ov6_02240D5C * param1)
+static u32 EncEffects_GetBGMFromEffects (u32 effectID, const UnkStruct_ov6_02240D5C * param1)
 {
-    GF_ASSERT(param0 < 35);
-    return Unk_020EC208[param0].unk_02;
+    GF_ASSERT(effectID < ENCFX_NUM_ENTRIES);
+    return ENCOUNTER_EFFECTS[effectID].bgmSEQID;
 }
 
-u32 sub_02051C00 (const UnkStruct_ov6_02240D5C * param0)
+u32 EncEffects_GetCutInEffectForBattle (const UnkStruct_ov6_02240D5C * battleData)
 {
-    u32 v0;
-
-    v0 = EncEffects_GetEffectsForBattle(param0);
-    return sub_02051BBC(v0, param0);
+    u32 encEffects = EncEffects_GetEffectsForBattle(battleData);
+    return EncEffects_GetCutInFromEffects(encEffects, battleData);
 }
 
-u32 sub_02051C10 (const UnkStruct_ov6_02240D5C * param0)
+u32 EncEffects_GetBGMForBattle (const UnkStruct_ov6_02240D5C * battleData)
 {
-    u32 v0;
-
-    v0 = EncEffects_GetEffectsForBattle(param0);
-    return sub_02051BE8(v0, param0);
+    u32 encEffects = EncEffects_GetEffectsForBattle(battleData);
+    return EncEffects_GetBGMFromEffects(encEffects, battleData);
 }
 
 static u32 EncEffects_GetEffectsForTrainerClass (u32 trainerClass)
@@ -317,62 +318,47 @@ static u32 EncEffects_GetEffectsForTrainerClass (u32 trainerClass)
     }
 }
 
-static u32 EncEffects_GetEffectsForWildMon (Party * param0, int param1)
+// the party passed in here is actually the *enemy* party
+// that tripped me up for a little bit
+static u32 EncEffects_GetEffectsForWildMon (Party * party, int zoneID)
 {
-    UnkStruct_02073C74 * v0;
-    u32 v1;
-    u32 v2 = 34;
+    UnkStruct_02073C74 * enemyMon = sub_02054A40(party);    // This gets the first living pokemon in a party
+    u32 monDexID = sub_02074470(enemyMon, 5, NULL);         // This gets the dex ID for a pokemon, 5 seems like a magic num?
 
-    v0 = sub_02054A40(param0);
-    v1 = sub_02074470(v0, 5, NULL);
+    switch (monDexID) {
+        case 492:       return ENCFX_SHAYMIN;
+        case 488:       return ENCFX_CRESSELIA;
+        case 487:       return ENCFX_GIRATINA;
 
-    switch (v1) {
-    case 492:
-        v2 = 14;
-        break;
-    case 488:
-        v2 = 20;
-        break;
-    case 487:
-        v2 = 22;
-        break;
-    case 379:
-    case 378:
-    case 377:
-        if (param1 != 251) {
-            v2 = 23;
-        }
-        break;
-    case 486:
-    case 485:
-    case 491:
-    case 479:
-        v2 = 19;
-        break;
-    case 481:
-        v2 = 17;
-        break;
-    case 480:
-    case 482:
-        v2 = 16;
-        break;
-    case 483:
-    case 484:
-        v2 = 15;
-        break;
-    case 493:
-        v2 = 18;
-        break;
-    case 146:
-    case 144:
-    case 145:
-        if (param1 != 251) {
-            v2 = 21;
-        }
-        break;
-    default:
-        break;
+        case 377:       // Regirock
+        case 378:       // Regice
+        case 379:       // Registeel
+            // Only use the special effects if this is outside the Pal Park
+            return (zoneID != PAL_PARK_ZONE_ID) ? ENCFX_REGIROCK_REGICE_REGISTEEL : ENCFX_GENERIC_POKEMON;
+        
+        case 486:       // Regigigas
+        case 485:       // Heatran
+        case 491:       // Darkrai
+        case 479:       // Rotom
+            return ENCFX_REGIGIGAS_HEATRAN;
+        
+        case 481:       return ENCFX_MESPRIT;
+        case 480:       // Uxie
+        case 482:       // Azelf
+            return ENCFX_UXIE_AZELF;
+        
+        case 483:       // Dialga
+        case 484:       // Palkia
+            return ENCFX_DIALGA_PALKIA;
+        
+        case 493:       return ENCFX_ARCEUS;
+
+        case 144:       // Articuno
+        case 145:       // Zapdos
+        case 146:       // Moltres
+            // Only use the special effects if this is outside the Pal Park
+            return (zoneID != PAL_PARK_ZONE_ID) ?  ENCFX_ARTICUNO_ZAPDOS_MOLTRES : ENCFX_GENERIC_POKEMON;
+        
+        default:        return ENCFX_GENERIC_POKEMON;
     }
-
-    return v2;
 }

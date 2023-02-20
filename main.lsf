@@ -213,7 +213,7 @@ Static main
 	Object src/unk_020507CC.o
 	Object src/unk_020508D4.o
 	Object src/unk_02050A74.o
-	Object src/unk_02051B50.o
+	Object src/enc_effects.o
 	Object src/unk_02051D8C.o
 	Object src/unk_020528D0.o
 	Object src/unk_02052C6C.o
