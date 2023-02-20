@@ -326,9 +326,11 @@ static u32 EncEffects_GetEffectsForWildMon (Party * party, int zoneID)
     u32 monDexID = sub_02074470(enemyMon, 5, NULL);         // This gets the dex ID for a pokemon, 5 seems like a magic num?
 
     switch (monDexID) {
-        case 492:       return ENCFX_SHAYMIN;
-        case 488:       return ENCFX_CRESSELIA;
-        case 487:       return ENCFX_GIRATINA;
+        case 144:       // Articuno
+        case 145:       // Zapdos
+        case 146:       // Moltres
+            // Only use the special effects if this is outside the Pal Park
+            return (zoneID != PAL_PARK_ZONE_ID) ?  ENCFX_ARTICUNO_ZAPDOS_MOLTRES : ENCFX_GENERIC_POKEMON;
 
         case 377:       // Regirock
         case 378:       // Regice
@@ -336,28 +338,26 @@ static u32 EncEffects_GetEffectsForWildMon (Party * party, int zoneID)
             // Only use the special effects if this is outside the Pal Park
             return (zoneID != PAL_PARK_ZONE_ID) ? ENCFX_REGIROCK_REGICE_REGISTEEL : ENCFX_GENERIC_POKEMON;
         
-        case 486:       // Regigigas
-        case 485:       // Heatran
-        case 491:       // Darkrai
         case 479:       // Rotom
+        case 485:       // Heatran
+        case 486:       // Regigigas
+        case 491:       // Darkrai
             return ENCFX_REGIGIGAS_HEATRAN;
         
-        case 481:       return ENCFX_MESPRIT;
         case 480:       // Uxie
         case 482:       // Azelf
             return ENCFX_UXIE_AZELF;
+        case 481:       return ENCFX_MESPRIT;
+
         
         case 483:       // Dialga
         case 484:       // Palkia
             return ENCFX_DIALGA_PALKIA;
-        
-        case 493:       return ENCFX_ARCEUS;
 
-        case 144:       // Articuno
-        case 145:       // Zapdos
-        case 146:       // Moltres
-            // Only use the special effects if this is outside the Pal Park
-            return (zoneID != PAL_PARK_ZONE_ID) ?  ENCFX_ARTICUNO_ZAPDOS_MOLTRES : ENCFX_GENERIC_POKEMON;
+        case 487:       return ENCFX_GIRATINA;
+        case 488:       return ENCFX_CRESSELIA;
+        case 492:       return ENCFX_SHAYMIN;
+        case 493:       return ENCFX_ARCEUS;
         
         default:        return ENCFX_GENERIC_POKEMON;
     }
