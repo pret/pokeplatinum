@@ -39,8 +39,8 @@ void sub_020261EC (UnkStruct_02026310 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026310));
 
-    sub_02073C54(&param0->unk_00[0].unk_00);
-    sub_02073C54(&param0->unk_00[1].unk_00);
+    ZeroBoxMonData(&param0->unk_00[0].unk_00);
+    ZeroBoxMonData(&param0->unk_00[1].unk_00);
 
     param0->unk_D8 = 0;
     param0->unk_DC = 0;
@@ -147,7 +147,7 @@ void sub_020262C0 (UnkStruct_02026224 * param0)
 
 void sub_020262F4 (UnkStruct_02026218 * param0)
 {
-    sub_02073C54(&param0->unk_00);
+    ZeroBoxMonData(&param0->unk_00);
     param0->unk_68 = 0;
     sub_020262C0(&param0->unk_08);
 }

@@ -4113,7 +4113,7 @@ static void ov19_021D5834 (UnkStruct_ov19_021D5DF8 * param0)
     v1 = &v0->unk_08;
     v2 = &v0->unk_14;
 
-    sub_02073C54(v2->unk_00);
+    ZeroBoxMonData(v2->unk_00);
     v1->unk_0B = 1;
     ov19_021D52F4(param0);
 }

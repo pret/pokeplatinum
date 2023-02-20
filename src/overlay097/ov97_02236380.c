@@ -1356,7 +1356,7 @@ void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, BoxPokemon * param1)
     u8 v5[10 + 1];
     u16 v6[12];
 
-    sub_02073C54(param1);
+    ZeroBoxMonData(param1);
 
     v0 = sub_02073D20(param1);
     v1 = ov97_02236924(param0, 0, NULL);

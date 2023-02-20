@@ -40,7 +40,7 @@ static void sub_020797DC (UnkStruct_020797DC * param0)
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            sub_02073C54(&(param0->unk_04[v0][v1]));
+            ZeroBoxMonData(&(param0->unk_04[v0][v1]));
         }
     }
 
@@ -137,7 +137,7 @@ void sub_02079968 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 
     if ((param2 < (5 * 6)) && (param1 < 18)) {
-        sub_02073C54(&(param0->unk_04[param1][param2]));
+        ZeroBoxMonData(&(param0->unk_04[param1][param2]));
         sub_02024804();
     } else {
         GF_ASSERT(0);

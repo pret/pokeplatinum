@@ -2122,7 +2122,7 @@ static int ov5_021E6444 (Party * param0, UnkStruct_02026218 * param1, UnkStruct_
     }
 
     Party_AddPokemon(param0, v0);
-    sub_02073C54(v1);
+    ZeroBoxMonData(v1);
     sub_02026258(param1, 0);
     Heap_FreeToHeap(v0);
 
