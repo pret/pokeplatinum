@@ -23,7 +23,7 @@
 
 void ZeroMonData(Pokemon * param0);
 void ZeroBoxMonData(BoxPokemon * param0);
-int sub_02073C70(void);
+int SizeOfStructPokemon(void);
 Pokemon * AllocMonZeroed(u32 param0);
 BOOL sub_02073C88(Pokemon * param0);
 BOOL sub_02073CD4(Pokemon * param0, BOOL param1);

@@ -113,7 +113,7 @@ static const s8 Unk_020F0695[][5] = {
 
 void ZeroMonData(Pokemon * param0);
 void ZeroBoxMonData(BoxPokemon * param0);
-int sub_02073C70(void);
+int SizeOfStructPokemon(void);
 Pokemon * AllocMonZeroed(u32 param0);
 BOOL sub_02073C88(Pokemon * param0);
 BOOL sub_02073CD4(Pokemon * param0, BOOL param1);
@@ -260,7 +260,7 @@ void ZeroBoxMonData (BoxPokemon * boxMon)
     sub_0207822C(boxMon->unk_08, sizeof(PokemonSubstruct0) * 4, boxMon->unk_06);
 }
 
-int sub_02073C70 (void)
+int SizeOfStructPokemon (void)
 {
     return sizeof(Pokemon);
 }

@@ -3322,7 +3322,7 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_194 = sub_0200B144(0, 26, 202, 9);
     param0->unk_198 = sub_0200B144(0, 26, 610, 9);
     param0->unk_19C = sub_0200B358(9);
-    param0->unk_1A0 = Heap_AllocFromHeap(9, sub_02073C70());
+    param0->unk_1A0 = Heap_AllocFromHeap(9, SizeOfStructPokemon());
 
     GF_ASSERT(param0->unk_19C);
     param0->unk_128 = sub_0208712C(9, 2, 0, 8, param0->unk_1A4);
