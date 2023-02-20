@@ -167,11 +167,11 @@ static const EncEffectsDataPair ENCOUNTER_EFFECTS[ENCFX_NUM_ENTRIES] = {
     {CATCHALL_ENC,          SEQ_BA_POKE}            // Generic wild Pokemon
 };
 
-static u32 EncEffects_GetEffectsForTrainerClass(u32 param0);
-static u32 EncEffects_GetEffectsForWildMon(Party * param0, int param1);
-static u32 EncEffects_GetEffectsForBattle(const UnkStruct_ov6_02240D5C * param0);
-static u32 EncEffects_GetCutInFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
-static u32 EncEffects_GetBGMFromEffects(u32 param0, const UnkStruct_ov6_02240D5C * param1);
+static u32 EncEffects_GetEffectsForTrainerClass(u32 trainerClass);
+static u32 EncEffects_GetEffectsForWildMon(Party * wildParty, int zoneID);
+static u32 EncEffects_GetEffectsForBattle(const UnkStruct_ov6_02240D5C * battleData);
+static u32 EncEffects_GetCutInFromEffects(u32 effectsID, const UnkStruct_ov6_02240D5C * battleData);
+static u32 EncEffects_GetBGMFromEffects(u32 effectsID, const UnkStruct_ov6_02240D5C * battleData);
 
 
 // Fight type flag definitions
@@ -185,19 +185,19 @@ static u32 EncEffects_GetBGMFromEffects(u32 param0, const UnkStruct_ov6_02240D5C
 
 static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battleData)
 {
-    u32 fightType = battleData->unk_00;
+    u32 fightTypeFlags = battleData->unk_00;
     u32 encEffects;
 
-    if (fightType & FIGHT_TYPE_TRAINER) {
+    if (fightTypeFlags & FIGHT_TYPE_TRAINER) {
         // param passed here is the trainer class, unk_28 should be some kind of trainer data struct
         encEffects = EncEffects_GetEffectsForTrainerClass(battleData->unk_28[1].unk_01);
 
-        if (fightType & FIGHT_TYPE_FRONTIER) {
+        if (fightTypeFlags & FIGHT_TYPE_FRONTIER) {
             if (encEffects == ENCFX_FRONTIER_BRAIN) {
                 return encEffects;
             }
 
-            if (fightType & FIGHT_TYPE_DOUBLE) {
+            if (fightTypeFlags & FIGHT_TYPE_DOUBLE) {
                 return ENCFX_DOUBLE_BATTLE_TRAINER;
             }
 
@@ -216,7 +216,7 @@ static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battle
         // a Double Battle. This check would catch that fight, and then the
         // returned effect would be ENCFX_DOUBLE_BATTLE_TRAINER, instead
         // of ENCFX_OREBURGH_GYM_LEADER.
-        if (fightType & FIGHT_TYPE_DOUBLE) {
+        if (fightTypeFlags & FIGHT_TYPE_DOUBLE) {
             if (encEffects == ENCFX_SUNYSHORE_GYM_LEADER) {
                 return ENCFX_DOUBLE_BATTLE_GYM_LEADER;
             }
@@ -224,7 +224,7 @@ static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battle
             return ENCFX_DOUBLE_BATTLE_TRAINER;
         }
 
-        if (fightType & FIGHT_TYPE_LINK) {
+        if (fightTypeFlags & FIGHT_TYPE_LINK) {
             return ENCFX_LINK_WIFI_BATTLE;
         }
 
@@ -239,28 +239,28 @@ static u32 EncEffects_GetEffectsForBattle (const UnkStruct_ov6_02240D5C * battle
         return encEffects;
     }
 
-    if (fightType & FIGHT_TYPE_DOUBLE) {
+    if (fightTypeFlags & FIGHT_TYPE_DOUBLE) {
         return ENCFX_DOUBLE_BATTLE_POKEMON;
     }
 
     return encEffects;
 }
 
-static u32 EncEffects_GetCutInFromEffects (u32 effectID, const UnkStruct_ov6_02240D5C * battleData)
+static u32 EncEffects_GetCutInFromEffects (u32 effectsID, const UnkStruct_ov6_02240D5C * battleData)
 {
-    GF_ASSERT(effectID < ENCFX_NUM_ENTRIES);
+    GF_ASSERT(effectsID < ENCFX_NUM_ENTRIES);
 
-    if (ENCOUNTER_EFFECTS[effectID].cutinVFX == CATCHALL_ENC) {
+    if (ENCOUNTER_EFFECTS[effectsID].cutinVFX == CATCHALL_ENC) {
         return ov5_021DEEC8(battleData);
     } else {
-        return ENCOUNTER_EFFECTS[effectID].cutinVFX;
+        return ENCOUNTER_EFFECTS[effectsID].cutinVFX;
     }
 }
 
-static u32 EncEffects_GetBGMFromEffects (u32 effectID, const UnkStruct_ov6_02240D5C * param1)
+static u32 EncEffects_GetBGMFromEffects (u32 effectsID, const UnkStruct_ov6_02240D5C * battleID)
 {
-    GF_ASSERT(effectID < ENCFX_NUM_ENTRIES);
-    return ENCOUNTER_EFFECTS[effectID].bgmSEQID;
+    GF_ASSERT(effectsID < ENCFX_NUM_ENTRIES);
+    return ENCOUNTER_EFFECTS[effectsID].bgmSEQID;
 }
 
 u32 EncEffects_GetCutInEffectForBattle (const UnkStruct_ov6_02240D5C * battleData)
@@ -322,9 +322,9 @@ static u32 EncEffects_GetEffectsForTrainerClass (u32 trainerClass)
 
 // the party passed in here is actually the *enemy* party
 // that tripped me up for a little bit
-static u32 EncEffects_GetEffectsForWildMon (Party * party, int zoneID)
+static u32 EncEffects_GetEffectsForWildMon (Party * wildParty, int zoneID)
 {
-    UnkStruct_02073C74 * enemyMon = sub_02054A40(party);    // This gets the first living pokemon in a party
+    UnkStruct_02073C74 * enemyMon = sub_02054A40(wildParty);    // This gets the first living pokemon in a party
     u32 monDexID = sub_02074470(enemyMon, 5, NULL);         // This gets the dex ID for a pokemon, 5 seems like a magic num?
 
     switch (monDexID) {
