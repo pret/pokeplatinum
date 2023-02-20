@@ -44,16 +44,6 @@ void GameOptions_SetDefaultValues(GameOptions * options);
  */
 void GameOptions_UpdateGlobalButtonMode(UnkStruct_021C0794 * saveData, int newButtonMode);
 
-/*
- * Translates the textSpeed property within a GameOptions struct into a
- * reduction factor which should be applied to the text rendering speed.
- * 
- * As configured, the translation is:
- *   - textSpeed = 0 -> reduce rendering speed to 1/8th
- *   - textSpeed = 1 -> reduce rendering speed to 1/4th
- *   - textSpeed > 1 -> do not reduce rendering speed
- */
-
 /**
  * Translates the `textSpeed` property within a struct into a reduction factor
  * to be applied to the text rendering speed in message boxes.
