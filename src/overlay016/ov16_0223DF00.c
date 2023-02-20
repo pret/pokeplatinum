@@ -2274,7 +2274,7 @@ static void ov16_02240460 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
     Pokemon * v0;
 
     v0 = ov16_0223DFAC(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B5CC(param0->unk_14, param1, &v0->unk_00);
+    sub_0200B5CC(param0->unk_14, param1, &v0->box);
 }
 
 static void ov16_02240484 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
@@ -2326,7 +2326,7 @@ static void ov16_02240510 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
     Pokemon * v0;
 
     v0 = ov16_0223DFAC(param0, param2 & 0xff, (param2 & 0xff00) >> 8);
-    sub_0200B538(param0->unk_14, param1, &v0->unk_00);
+    sub_0200B538(param0->unk_14, param1, &v0->box);
 }
 
 static void ov16_02240534 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)

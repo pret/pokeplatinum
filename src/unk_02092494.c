@@ -717,7 +717,7 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
 
 void sub_0209304C (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
 {
-    sub_0209305C(&param0->unk_00, param1, param2, param3, param4);
+    sub_0209305C(&param0->box, param1, param2, param3, param4);
 }
 
 void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)

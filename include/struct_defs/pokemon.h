@@ -6,7 +6,7 @@
 #include "struct_defs/party_pokemon_data.h"
 
 typedef struct Pokemon {
-    BoxPokemon unk_00;
+    BoxPokemon box;
     PartyPokemonData unk_08;
 } Pokemon;
 
