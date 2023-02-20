@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 
-struct PartyPokemonData_t {
+struct PartyPokemon_t {
     u32 unk_00;
     u8 unk_04;
     u8 unk_05;

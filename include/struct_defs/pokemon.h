@@ -2,12 +2,12 @@
 #define POKEPLATINUM_STRUCT_POKEMON_H
 
 #include "struct_defs/box_pokemon.h"
-#include "struct_decls/party_pokemon_data.h"
-#include "struct_defs/party_pokemon_data.h"
+#include "struct_decls/party_pokemon.h"
+#include "struct_defs/party_pokemon.h"
 
-typedef struct Pokemon {
+typedef struct {
     BoxPokemon box;
-    PartyPokemonData unk_08;
+    PartyPokemon party;
 } Pokemon;
 
 #endif // POKEPLATINUM_STRUCT_POKEMON_H
