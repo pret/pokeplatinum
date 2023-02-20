@@ -104,7 +104,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
 
     if (v1 < 6) {
         v4 = AllocMonZeroed(11);
-        sub_02073C2C(v4);
+        ZeroMonData(v4);
 
         v0 = sub_02017070(1, v8);
         ov5_021E6CF0(v4, v7, 1, v6, 3, v0);

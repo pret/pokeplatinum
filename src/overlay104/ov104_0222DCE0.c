@@ -261,7 +261,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * par
     u16 v5;
     u32 v6;
 
-    sub_02073C2C(param1);
+    ZeroMonData(param1);
 
     if (param2 == 120) {
         v4 = 50;

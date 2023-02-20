@@ -28,7 +28,7 @@ void sub_0202EEC8 (UnkStruct_02024440 * param0)
     MI_CpuClearFast(param0, sizeof(UnkStruct_02024440));
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02073C2C(&param0->unk_00[v0]);
+        ZeroMonData(&param0->unk_00[v0]);
         GF_ASSERT(sub_02074470(&param0->unk_00[v0], 172, NULL) == 0);
     }
 }
@@ -40,7 +40,7 @@ void sub_0202EF04 (UnkStruct_02024440 * param0)
     MI_CpuClearFast(param0->unk_00, sizeof(Pokemon) * 6);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_02073C2C(&param0->unk_00[v0]);
+        ZeroMonData(&param0->unk_00[v0]);
         GF_ASSERT(sub_02074470(&param0->unk_00[v0], 172, NULL) == 0);
     }
 }

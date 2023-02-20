@@ -48,7 +48,7 @@ void Party_InitWithCapacity (Party * party, int capacity)
     party->capacity = capacity;
 
     for (i = 0; i < 6; i++) {
-        sub_02073C2C(&party->pokemon[i]);
+        ZeroMonData(&party->pokemon[i]);
     }
 }
 
@@ -75,7 +75,7 @@ BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
         party->pokemon[i] = party->pokemon[i + 1];
     }
 
-    sub_02073C2C(&party->pokemon[i]);
+    ZeroMonData(&party->pokemon[i]);
     party->currentCount--;
 
     return TRUE;

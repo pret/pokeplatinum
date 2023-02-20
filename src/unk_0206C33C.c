@@ -291,7 +291,7 @@ void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
     v4 = sub_02025E38(param0);
     v0 = AllocMonZeroed(4);
 
-    sub_02073C2C(v0);
+    ZeroMonData(v0);
     sub_02073D80(v0, v5, v6, 32, 0, 0, 1, sub_02025F24(v4));
     sub_0202D980(v1, 7, 0);
     sub_0202D980(v1, 8, 1);

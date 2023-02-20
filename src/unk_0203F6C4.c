@@ -6903,7 +6903,7 @@ static void sub_020451B4 (UnkStruct_0203CDB0 * param0, u16 param1)
     UnkStruct_02026324 * v0 = sub_02027560(param0->unk_0C);
     Pokemon * v1 = AllocMonZeroed(32);
 
-    sub_02073C2C(v1);
+    ZeroMonData(v1);
     sub_02073D80(v1, param1, 50, 32, 0, 0, 0, 0);
     sub_020272A4(v0, v1);
     Heap_FreeToHeap(v1);
