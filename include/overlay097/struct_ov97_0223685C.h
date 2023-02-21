@@ -24,6 +24,6 @@ typedef struct {
               + sizeof(UnkStruct_ov97_02236380_sub2)
               + sizeof(UnkStruct_ov97_02236380_sub3)
               + sizeof(UnkStruct_ov97_02236380_sub4)];
-} UnkStruct_ov97_0223685C;
+} BoxPokemonGBA;
 
 #endif // POKEPLATINUM_STRUCT_OV97_0223685C_H

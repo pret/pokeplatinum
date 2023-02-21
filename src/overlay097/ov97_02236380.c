@@ -336,7 +336,7 @@ typedef struct {
     UnkStruct_ov97_02236380_sub1 unk_24;
 } UnkStruct_ov97_02236380_23;
 
-void ov97_02236E90(UnkStruct_ov97_0223685C * param0, BoxPokemon * param1);
+void ov97_02236E90(BoxPokemonGBA * param0, BoxPokemon * param1);
 
 static u16 Unk_ov97_0223ECA0[] = {
 	0x10,
@@ -435,7 +435,7 @@ static u16 Unk_ov97_0223ECA0[] = {
 	0x16D
 };
 
-static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param2)
+static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 {
     u32 v0 = 0;
     UnkStruct_ov97_02236380 * v1;
@@ -901,7 +901,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
     return v0;
 }
 
-static void ov97_0223685C (UnkStruct_ov97_0223685C * param0)
+static void ov97_0223685C (BoxPokemonGBA * param0)
 {
     int v0;
     u32 * v1;
@@ -914,7 +914,7 @@ static void ov97_0223685C (UnkStruct_ov97_0223685C * param0)
     }
 }
 
-static void ov97_0223687C (UnkStruct_ov97_0223685C * param0)
+static void ov97_0223687C (BoxPokemonGBA * param0)
 {
     int v0;
     u32 * v1;
@@ -927,7 +927,7 @@ static void ov97_0223687C (UnkStruct_ov97_0223685C * param0)
     }
 }
 
-static u16 ov97_0223689C (UnkStruct_ov97_0223685C * param0)
+static u16 ov97_0223689C (BoxPokemonGBA * param0)
 {
     int v0;
     u16 * v1;
@@ -960,7 +960,7 @@ static u16 ov97_0223689C (UnkStruct_ov97_0223685C * param0)
     return v5;
 }
 
-u32 ov97_02236924 (UnkStruct_ov97_0223685C * param0, int param1, u8 * param2)
+u32 ov97_02236924 (BoxPokemonGBA * param0, int param1, u8 * param2)
 {
     int v0;
     u32 v1 = 0;
@@ -1222,7 +1222,7 @@ u32 ov97_02236924 (UnkStruct_ov97_0223685C * param0, int param1, u8 * param2)
     return v1;
 }
 
-void ov97_02236CA4 (UnkStruct_ov97_0223685C * param0, int param1, const u8 * param2)
+void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
 {
     int v0;
     u32 v1;
@@ -1307,7 +1307,7 @@ int ov97_02236DD0 (int param0)
     return param0;
 }
 
-u32 ov97_02236E00 (UnkStruct_ov97_0223685C * param0)
+u32 ov97_02236E00 (BoxPokemonGBA * param0)
 {
     int v0;
     u32 v1;
@@ -1318,7 +1318,7 @@ u32 ov97_02236E00 (UnkStruct_ov97_0223685C * param0)
     return sub_02075B78(v0, v1);
 }
 
-static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, BoxPokemon * param1)
+static int ov97_02236E28 (BoxPokemonGBA * param0, BoxPokemon * param1)
 {
     int v0;
     int v1;
@@ -1347,7 +1347,7 @@ static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, BoxPokemon * param1)
     return v1;
 }
 
-void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, BoxPokemon * param1)
+void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
 {
     BOOL v0;
     u32 v1;

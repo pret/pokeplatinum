@@ -5,7 +5,7 @@
 
 typedef struct {
     u8 unk_00;
-    UnkStruct_ov97_0223685C unk_04[14][30];
+    BoxPokemonGBA unk_04[14][30];
     u8 unk_8344[14][9];
     u8 unk_83C2[14];
 } UnkStruct_ov97_02236340;
