@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV97_0223685C_H
-#define POKEPLATINUM_STRUCT_OV97_0223685C_H
+#ifndef POKEPLATINUM_BOX_POKEMON_GBA_H
+#define POKEPLATINUM_BOX_POKEMON_GBA_H
 
 #include "overlay097/struct_ov97_02236380_sub1.h"
 #include "overlay097/struct_ov97_02236380_sub2.h"
@@ -26,4 +26,4 @@ typedef struct {
               + sizeof(UnkStruct_ov97_02236380_sub4)];
 } BoxPokemonGBA;
 
-#endif // POKEPLATINUM_STRUCT_OV97_0223685C_H
+#endif // POKEPLATINUM_BOX_POKEMON_GBA_H

@@ -8,7 +8,7 @@
 #include "overlay097/struct_ov97_02236380_sub2.h"
 #include "overlay097/struct_ov97_02236380_sub3.h"
 #include "overlay097/struct_ov97_02236380_sub4.h"
-#include "overlay097/struct_ov97_0223685C.h"
+#include "overlay097/box_pokemon_gba.h"
 
 #include "unk_02073C2C.h"
 #include "item.h"
