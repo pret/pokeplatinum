@@ -165,171 +165,171 @@ UnkStruct_ov97_0223ED5C Unk_ov97_0223ED5C[] = {
 };
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_1;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_2;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_3;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_4;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_5;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_6;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_7;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_8;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_9;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_10;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_11;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_12;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_13;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_14;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_15;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_16;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_17;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_18;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_19;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_20;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_21;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_22;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_23;
 
 void ov97_02236E90(BoxPokemonGBA * param0, BoxPokemon * param1);
@@ -904,7 +904,7 @@ static void ov97_0223685C (BoxPokemonGBA * param0)
 
     v1 = (u32 *)&param0->secure;
 
-    for (v0 = 0; v0 < (sizeof(UnkStruct_ov97_02236380_sub1) + sizeof(UnkStruct_ov97_02236380_sub2) + sizeof(UnkStruct_ov97_02236380_sub3) + sizeof(UnkStruct_ov97_02236380_sub4)) / 4; v0++) {
+    for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
         v1[v0] ^= param0->otId;
         v1[v0] ^= param0->personality;
     }
@@ -917,7 +917,7 @@ static void ov97_0223687C (BoxPokemonGBA * param0)
 
     v1 = (u32 *)&param0->secure;
 
-    for (v0 = 0; v0 < (sizeof(UnkStruct_ov97_02236380_sub1) + sizeof(UnkStruct_ov97_02236380_sub2) + sizeof(UnkStruct_ov97_02236380_sub3) + sizeof(UnkStruct_ov97_02236380_sub4)) / 4; v0++) {
+    for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
         v1[v0] ^= param0->personality;
         v1[v0] ^= param0->otId;
     }
@@ -960,18 +960,18 @@ u32 ov97_02236924 (BoxPokemonGBA * param0, int param1, u8 * param2)
 {
     int v0;
     u32 v1 = 0;
-    UnkStruct_ov97_02236380_sub1 * v2 = 0;
-    UnkStruct_ov97_02236380_sub2 * v3 = 0;
-    UnkStruct_ov97_02236380_sub3 * v4 = 0;
-    UnkStruct_ov97_02236380_sub4 * v5 = 0;
+    PokemonGBASubstruct0 * v2 = 0;
+    PokemonGBASubstruct1 * v3 = 0;
+    PokemonGBASubstruct2 * v4 = 0;
+    PokemonGBASubstruct3 * v5 = 0;
     u16 v6;
     u16 * v7;
 
     if (param1 > 10) {
-        v2 = (UnkStruct_ov97_02236380_sub1 *)ov97_02236380(param0, param0->personality, 0);
-        v3 = (UnkStruct_ov97_02236380_sub2 *)ov97_02236380(param0, param0->personality, 1);
-        v4 = (UnkStruct_ov97_02236380_sub3 *)ov97_02236380(param0, param0->personality, 2);
-        v5 = (UnkStruct_ov97_02236380_sub4 *)ov97_02236380(param0, param0->personality, 3);
+        v2 = (PokemonGBASubstruct0 *)ov97_02236380(param0, param0->personality, 0);
+        v3 = (PokemonGBASubstruct1 *)ov97_02236380(param0, param0->personality, 1);
+        v4 = (PokemonGBASubstruct2 *)ov97_02236380(param0, param0->personality, 2);
+        v5 = (PokemonGBASubstruct3 *)ov97_02236380(param0, param0->personality, 3);
 
         ov97_0223685C(param0);
         v6 = ov97_0223689C(param0);
@@ -1222,17 +1222,17 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
 {
     int v0;
     u32 v1;
-    UnkStruct_ov97_02236380_sub1 * v2 = 0;
-    UnkStruct_ov97_02236380_sub2 * v3 = 0;
-    UnkStruct_ov97_02236380_sub3 * v4 = 0;
-    UnkStruct_ov97_02236380_sub4 * v5 = 0;
+    PokemonGBASubstruct0 * v2 = 0;
+    PokemonGBASubstruct1 * v3 = 0;
+    PokemonGBASubstruct2 * v4 = 0;
+    PokemonGBASubstruct3 * v5 = 0;
     u16 v6;
 
     if (param1 > 10) {
-        v2 = (UnkStruct_ov97_02236380_sub1 *)ov97_02236380(param0, param0->personality, 0);
-        v3 = (UnkStruct_ov97_02236380_sub2 *)ov97_02236380(param0, param0->personality, 1);
-        v4 = (UnkStruct_ov97_02236380_sub3 *)ov97_02236380(param0, param0->personality, 2);
-        v5 = (UnkStruct_ov97_02236380_sub4 *)ov97_02236380(param0, param0->personality, 3);
+        v2 = (PokemonGBASubstruct0 *)ov97_02236380(param0, param0->personality, 0);
+        v3 = (PokemonGBASubstruct1 *)ov97_02236380(param0, param0->personality, 1);
+        v4 = (PokemonGBASubstruct2 *)ov97_02236380(param0, param0->personality, 2);
+        v5 = (PokemonGBASubstruct3 *)ov97_02236380(param0, param0->personality, 3);
 
         ov97_0223685C(param0);
         v6 = ov97_0223689C(param0);

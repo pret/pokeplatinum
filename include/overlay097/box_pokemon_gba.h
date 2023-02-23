@@ -8,12 +8,12 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     u16 unk_0A;
-} UnkStruct_ov97_02236380_sub1;
+} PokemonGBASubstruct0;
 
 typedef struct {
     u16 unk_00[4];
     u8 unk_08[4];
-} UnkStruct_ov97_02236380_sub2;
+} PokemonGBASubstruct1;
 
 typedef struct {
     u8 unk_00;
@@ -28,7 +28,7 @@ typedef struct {
     u8 unk_09;
     u8 unk_0A;
     u8 unk_0B;
-} UnkStruct_ov97_02236380_sub3;
+} PokemonGBASubstruct2;
 
 typedef struct {
     u32 unk_00_0 : 8;
@@ -64,7 +64,7 @@ typedef struct {
     u32 unk_08_26 : 1;
     u32 unk_08_27 : 4;
     u32 unk_08_31 : 1;
-} UnkStruct_ov97_02236380_sub4;
+} PokemonGBASubstruct3;
 
 typedef struct BoxPokemonGBA {
     u32 personality;
@@ -79,10 +79,10 @@ typedef struct BoxPokemonGBA {
     u8 markings;
     u16 checksum;
     u16 unknown;
-    u8 secure[sizeof(UnkStruct_ov97_02236380_sub1)
-              + sizeof(UnkStruct_ov97_02236380_sub2)
-              + sizeof(UnkStruct_ov97_02236380_sub3)
-              + sizeof(UnkStruct_ov97_02236380_sub4)];
+    u8 secure[sizeof(PokemonGBASubstruct0)
+            + sizeof(PokemonGBASubstruct1)
+            + sizeof(PokemonGBASubstruct2)
+            + sizeof(PokemonGBASubstruct3)];
 } BoxPokemonGBA;
 
 #endif // POKEPLATINUM_BOX_POKEMON_GBA_H
