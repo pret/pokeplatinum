@@ -3607,8 +3607,8 @@ static BOOL ov109_021D3C94 (Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (sub_02074470(v2, 76, NULL)) {
-            if (sub_02074470(v2, 3, NULL)) {
+        if (GetMonData(v2, 76, NULL)) {
+            if (GetMonData(v2, 3, NULL)) {
                 return 1;
             }
         }

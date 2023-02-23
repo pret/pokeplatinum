@@ -977,7 +977,7 @@ static void ov16_0223C210 (UnkStruct_0207ADB4 * param0)
     for (v1 = 0; v1 < param0->unk_44; v1++) {
         v2 = ov16_0225B45C(param0, v3, 2, v1);
         v4 = ov16_0223DFAC(param0, v1, v2);
-        ov16_0225C038(param0, param0->unk_34[v1], sub_02074470(v4, 155, NULL), v2);
+        ov16_0225C038(param0, param0->unk_34[v1], GetMonData(v4, 155, NULL), v2);
     }
 
     ov16_0223DECC();
@@ -1165,7 +1165,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                     for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
-                        if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                        if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                             break;
                         }
                     }
@@ -1192,7 +1192,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                     for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
-                        if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                        if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                             break;
                         }
                     }
@@ -1220,11 +1220,11 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                         v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0 & 1], v1);
 
                         if (v0 > 1) {
-                            if ((ov16_0225B45C(param0, param0->unk_30, 2, v0 & 1) != v1) && (sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                            if ((ov16_0225B45C(param0, param0->unk_30, 2, v0 & 1) != v1) && (GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                                 break;
                             }
                         } else {
-                            if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                            if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                                 break;
                             }
                         }
@@ -1248,7 +1248,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                     for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
                         v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
-                        if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                        if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                             break;
                         }
                     }
@@ -1280,11 +1280,11 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                     v3 = ov16_0223DFAC(param0, v0, v1);
 
                     if (v0 == 2) {
-                        if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL)) && (v8 != v1)) {
+                        if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL)) && (v8 != v1)) {
                             break;
                         }
                     } else {
-                        if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                        if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                             break;
                         }
                     }
@@ -1317,7 +1317,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
             for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
-                if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                     break;
                 }
             }
@@ -1346,11 +1346,11 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
                 v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0 & 1], v1);
 
                 if (v0 > 1) {
-                    if ((ov16_0225B45C(param0, param0->unk_30, 2, v0 & 1) != v1) && (sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                    if ((ov16_0225B45C(param0, param0->unk_30, 2, v0 & 1) != v1) && (GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                         break;
                     }
                 } else {
-                    if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                    if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                         break;
                     }
                 }
@@ -1377,7 +1377,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
             for (v1 = 0; v1 < Party_GetCurrentCount(param0->unk_68[v0]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->unk_68[v0], v1);
 
-                if ((sub_02074470(v3, 5, NULL)) && (sub_02074470(v3, 76, NULL) == 0) && (sub_02074470(v3, 163, NULL))) {
+                if ((GetMonData(v3, 5, NULL)) && (GetMonData(v3, 76, NULL) == 0) && (GetMonData(v3, 163, NULL))) {
                     break;
                 }
             }
@@ -1391,7 +1391,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
 
     if (param0->unk_2C & 0x200) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_68[1], 0);
-        sub_02074470(v3, 144, (u8 *)&param0->unk_AC[1].unk_14);
+        GetMonData(v3, 144, (u8 *)&param0->unk_AC[1].unk_14);
     }
 
     if (param0->unk_2C & 0x1) {

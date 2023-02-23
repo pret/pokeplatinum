@@ -4135,7 +4135,7 @@ static BOOL sub_02041F14 (UnkStruct_0203E724 * param0)
     sub_0200DAA4(param0->unk_34->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     *v1 = sub_0200EC48(param0->unk_34->unk_08, 3, 10, 5, 11, 1024 - (18 + 12) - 9, v0, 4);
-    sub_020451B4(param0->unk_34, sub_02074470(v0, 5, NULL));
+    sub_020451B4(param0->unk_34, GetMonData(v0, 5, NULL));
 
     return 0;
 }
@@ -4599,8 +4599,8 @@ static BOOL sub_02042718 (UnkStruct_0203E724 * param0)
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v2->unk_0C), v3);
 
-    sub_02074470(v1, 117, v0);
-    sub_0203DFE8(param0->unk_28, 1, sub_02074470(v1, 5, NULL), 10, v3, v0, inline_0204FCAC(param0));
+    GetMonData(v1, 117, v0);
+    sub_0203DFE8(param0->unk_28, 1, GetMonData(v1, 5, NULL), 10, v3, v0, inline_0204FCAC(param0));
 
     return 1;
 }
@@ -6735,12 +6735,12 @@ static BOOL sub_02044E40 (UnkStruct_0203E724 * param0)
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v2);
 
-    v3[0] = sub_02074470(v0, 13, NULL);
-    v3[1] = sub_02074470(v0, 14, NULL);
-    v3[2] = sub_02074470(v0, 15, NULL);
-    v3[3] = sub_02074470(v0, 16, NULL);
-    v3[4] = sub_02074470(v0, 17, NULL);
-    v3[5] = sub_02074470(v0, 18, NULL);
+    v3[0] = GetMonData(v0, 13, NULL);
+    v3[1] = GetMonData(v0, 14, NULL);
+    v3[2] = GetMonData(v0, 15, NULL);
+    v3[3] = GetMonData(v0, 16, NULL);
+    v3[4] = GetMonData(v0, 17, NULL);
+    v3[5] = GetMonData(v0, 18, NULL);
     *v1 = (v3[0] + v3[1] + v3[2] + v3[3] + v3[4] + v3[5]);
 
     return 0;
@@ -6774,8 +6774,8 @@ static BOOL sub_02044F24 (UnkStruct_0203E724 * param0)
     u16 v4, v5;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v3);
-    v4 = sub_02074470(v0, 5, NULL);
-    v5 = sub_02074470(v0, 112, NULL);
+    v4 = GetMonData(v0, 5, NULL);
+    v5 = GetMonData(v0, 112, NULL);
     *v1 = ov5_021F0E90(v4, v5);
     *v2 = ov5_021F0E84(v4);
 
@@ -7023,7 +7023,7 @@ static BOOL sub_02045384 (UnkStruct_0203E724 * param0)
 
     for (v2 = 0; v2 < v4; v2++) {
         v5 = Party_GetPokemonBySlotIndex(v1, v2);
-        v3 = sub_02074470(v5, 5, NULL);
+        v3 = GetMonData(v5, 5, NULL);
 
         if (v3 == 386) {
             sub_02074B30(v5, 112, &v0);
@@ -7048,9 +7048,9 @@ static BOOL sub_02045404 (UnkStruct_0203E724 * param0)
 
     for (v1 = 0; v1 < v9; v1++) {
         v0 = Party_GetPokemonBySlotIndex(v8, v1);
-        v2 = sub_02074470(v0, 5, NULL);
-        v6 = sub_02074470(v0, 111, NULL);
-        v5 = sub_02074470(v0, 76, NULL);
+        v2 = GetMonData(v0, 5, NULL);
+        v6 = GetMonData(v0, 111, NULL);
+        v5 = GetMonData(v0, 76, NULL);
 
         if ((v2 == 415) && (v5 == 0)) {
             if (v6 == 0) {
@@ -8297,8 +8297,8 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
         for (v0 = 0; v0 < v5; v0++) {
             v1 = Party_GetPokemonBySlotIndex(v4, v0);
 
-            if ((sub_02074470(v1, 5, NULL) == 479) && (sub_02074470(v1, 76, NULL) == 0)) {
-                v3 |= 1 << sub_02074470(v1, 112, NULL);
+            if ((GetMonData(v1, 5, NULL) == 479) && (GetMonData(v1, 76, NULL) == 0)) {
+                v3 |= 1 << GetMonData(v1, 112, NULL);
             }
         }
     }
@@ -8465,7 +8465,7 @@ static BOOL sub_020469D0 (UnkStruct_0203E724 * param0)
         for (v3 = 0; v3 < v4; v3++) {
             v5 = Party_GetPokemonBySlotIndex(v1, v3);
 
-            if ((sub_02074470(v5, 76, NULL) == 0) && (sub_02074470(v5, 5, NULL) == 487)) {
+            if ((GetMonData(v5, 76, NULL) == 0) && (GetMonData(v5, 5, NULL) == 487)) {
                 sub_0202736C(sub_02027560(v0->unk_0C), v5);
             }
         }
@@ -8486,11 +8486,11 @@ static BOOL sub_02046A4C (UnkStruct_0203E724 * param0)
     for (v3 = 0; v3 < v2; v3++) {
         v4 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v3);
 
-        if (sub_02074470(v4, 76, NULL) == 0) {
-            v0 = sub_02074470(v4, 5, NULL);
+        if (GetMonData(v4, 76, NULL) == 0) {
+            v0 = GetMonData(v4, 5, NULL);
 
             if (v0 == 486) {
-                v1 = sub_02074470(v4, 110, NULL);
+                v1 = GetMonData(v4, 110, NULL);
 
                 if (v1 == 1) {
                     *v5 = 1;

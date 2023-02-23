@@ -112,9 +112,9 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
 
     for (v0 = param2, v1 = 0; v0 < Party_GetCurrentCount(v9); v0++) {
         v10 = Party_GetPokemonBySlotIndex(v9, v0);
-        v4 = sub_02074470(v10, 5, NULL);
-        v6 = sub_02074470(v10, 76, NULL);
-        v7 = sub_02074470(v10, 112, NULL);
+        v4 = GetMonData(v10, 5, NULL);
+        v6 = GetMonData(v10, 76, NULL);
+        v7 = GetMonData(v10, 112, NULL);
         v5 = sub_02079D80(v10);
         v2 = sub_02079EDC(v4, v7, v6);
 

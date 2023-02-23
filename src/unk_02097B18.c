@@ -136,7 +136,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
                 continue;
             }
 
-            v5 = sub_02074470(v0->unk_00->unk_04[v4], 162, 0);
+            v5 = GetMonData(v0->unk_00->unk_04[v4], 162, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;

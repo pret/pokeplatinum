@@ -1541,7 +1541,7 @@ static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u16
         if (v3 > v1) {
             v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
-            if ((sub_02074470(v0, 5, NULL) == 0) || (sub_02074470(v0, 76, NULL) != 0)) {
+            if ((GetMonData(v0, 5, NULL) == 0) || (GetMonData(v0, 76, NULL) != 0)) {
                 continue;
             }
 
@@ -2044,21 +2044,21 @@ static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
         param0->unk_214[v1 + param2].unk_00 = sub_02079D80(v0);
-        param0->unk_214[v1 + param2].unk_04 = (u16)sub_02074470(v0, 5, NULL);
+        param0->unk_214[v1 + param2].unk_04 = (u16)GetMonData(v0, 5, NULL);
 
         if (param0->unk_214[v1 + param2].unk_04 == 0) {
             continue;
         }
 
-        param0->unk_214[v1 + param2].unk_0F = (u16)sub_02074470(v0, 76, NULL);
-        param0->unk_214[v1 + param2].unk_06 = (u16)sub_02074470(v0, 163, NULL);
-        param0->unk_214[v1 + param2].unk_08 = (u16)sub_02074470(v0, 164, NULL);
-        param0->unk_214[v1 + param2].unk_0C = (u16)sub_02074470(v0, 161, NULL);
-        param0->unk_214[v1 + param2].unk_0A = (u16)sub_02074470(v0, 6, NULL);
-        param0->unk_214[v1 + param2].unk_10 = (u8)sub_02074470(v0, 162, NULL);
-        param0->unk_214[v1 + param2].unk_11 = (u8)sub_02074470(v0, 112, NULL);
+        param0->unk_214[v1 + param2].unk_0F = (u16)GetMonData(v0, 76, NULL);
+        param0->unk_214[v1 + param2].unk_06 = (u16)GetMonData(v0, 163, NULL);
+        param0->unk_214[v1 + param2].unk_08 = (u16)GetMonData(v0, 164, NULL);
+        param0->unk_214[v1 + param2].unk_0C = (u16)GetMonData(v0, 161, NULL);
+        param0->unk_214[v1 + param2].unk_0A = (u16)GetMonData(v0, 6, NULL);
+        param0->unk_214[v1 + param2].unk_10 = (u8)GetMonData(v0, 162, NULL);
+        param0->unk_214[v1 + param2].unk_11 = (u8)GetMonData(v0, 112, NULL);
 
-        if (sub_02074470(v0, 176, NULL) == 1) {
+        if (GetMonData(v0, 176, NULL) == 1) {
             param0->unk_214[v1 + param2].unk_0E = 0;
         } else {
             param0->unk_214[v1 + param2].unk_0E = 1;

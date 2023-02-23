@@ -3794,8 +3794,8 @@ static BOOL ov16_0225079C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     for (v5 = 0; v5 < Party_GetCurrentCount(v9); v5++) {
                         v10 = Party_GetPokemonBySlotIndex(v9, v5);
 
-                        if ((sub_02074470(v10, 174, NULL) != 0) && (sub_02074470(v10, 174, NULL) != 494)) {
-                            if (v6 = sub_02074470(v10, 163, NULL)) {
+                        if ((GetMonData(v10, 174, NULL) != 0) && (GetMonData(v10, 174, NULL) != 494)) {
+                            if (v6 = GetMonData(v10, 163, NULL)) {
                                 v8++;
 
                                 if (param1->unk_219C[v1 ^ 2] != v5) {
@@ -3830,8 +3830,8 @@ static BOOL ov16_0225079C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     for (v12 = 0; v12 < Party_GetCurrentCount(v14); v12++) {
                         v15 = Party_GetPokemonBySlotIndex(v14, v12);
 
-                        if ((sub_02074470(v15, 174, NULL) != 0) && (sub_02074470(v15, 174, NULL) != 494)) {
-                            v13 += sub_02074470(v15, 163, NULL);
+                        if ((GetMonData(v15, 174, NULL) != 0) && (GetMonData(v15, 174, NULL) != 494)) {
+                            v13 += GetMonData(v15, 163, NULL);
                         }
                     }
 
@@ -3895,8 +3895,8 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                         for (v4 = 0; v4 < Party_GetCurrentCount(v6); v4++) {
                             v7 = Party_GetPokemonBySlotIndex(v6, v4);
 
-                            if ((sub_02074470(v7, 174, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 494)) {
-                                v5 += sub_02074470(v7, 163, NULL);
+                            if ((GetMonData(v7, 174, NULL) != 0) && (GetMonData(v7, 174, NULL) != 494)) {
+                                v5 += GetMonData(v7, 163, NULL);
                             }
                         }
 
@@ -3923,16 +3923,16 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     for (v9 = 0; v9 < Party_GetCurrentCount(v11); v9++) {
                         v13 = Party_GetPokemonBySlotIndex(v11, v9);
 
-                        if ((sub_02074470(v13, 174, NULL) != 0) && (sub_02074470(v13, 174, NULL) != 494)) {
-                            v10 += sub_02074470(v13, 163, NULL);
+                        if ((GetMonData(v13, 174, NULL) != 0) && (GetMonData(v13, 174, NULL) != 494)) {
+                            v10 += GetMonData(v13, 163, NULL);
                         }
                     }
 
                     for (v9 = 0; v9 < Party_GetCurrentCount(v12); v9++) {
                         v13 = Party_GetPokemonBySlotIndex(v12, v9);
 
-                        if ((sub_02074470(v13, 174, NULL) != 0) && (sub_02074470(v13, 174, NULL) != 494)) {
-                            v10 += sub_02074470(v13, 163, NULL);
+                        if ((GetMonData(v13, 174, NULL) != 0) && (GetMonData(v13, 174, NULL) != 494)) {
+                            v10 += GetMonData(v13, 163, NULL);
                         }
                     }
 
@@ -3960,8 +3960,8 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     for (v15 = 0; v15 < Party_GetCurrentCount(v17); v15++) {
                         v18 = Party_GetPokemonBySlotIndex(v17, v15);
 
-                        if ((sub_02074470(v18, 174, NULL) != 0) && (sub_02074470(v18, 174, NULL) != 494)) {
-                            v16 += sub_02074470(v18, 163, NULL);
+                        if ((GetMonData(v18, 174, NULL) != 0) && (GetMonData(v18, 174, NULL) != 494)) {
+                            v16 += GetMonData(v18, 163, NULL);
                         }
                     }
 

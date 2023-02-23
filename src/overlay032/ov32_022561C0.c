@@ -210,13 +210,13 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
         v2 = sub_02073C88(v0);
 
         param0->unk_04[v1].unk_00 = sub_02079D40((const BoxPokemon *)v0);
-        param0->unk_04[v1].unk_04 = sub_02074470(v0, 5, NULL);
-        param0->unk_04[v1].unk_06 = sub_02074470(v0, 163, NULL);
-        param0->unk_04[v1].unk_08 = sub_02074470(v0, 164, NULL);
-        param0->unk_04[v1].unk_0A = sub_02074470(v0, 6, NULL);
-        param0->unk_04[v1].unk_0C = (sub_02074470(v0, 160, NULL) != 0);
-        param0->unk_04[v1].unk_0E = sub_02074470(v0, 76, NULL);
-        param0->unk_04[v1].unk_0F = sub_02074470(v0, 112, NULL);
+        param0->unk_04[v1].unk_04 = GetMonData(v0, 5, NULL);
+        param0->unk_04[v1].unk_06 = GetMonData(v0, 163, NULL);
+        param0->unk_04[v1].unk_08 = GetMonData(v0, 164, NULL);
+        param0->unk_04[v1].unk_0A = GetMonData(v0, 6, NULL);
+        param0->unk_04[v1].unk_0C = (GetMonData(v0, 160, NULL) != 0);
+        param0->unk_04[v1].unk_0E = GetMonData(v0, 76, NULL);
+        param0->unk_04[v1].unk_0F = GetMonData(v0, 112, NULL);
 
         sub_02073CD4(v0, v2);
     }

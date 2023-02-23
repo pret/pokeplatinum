@@ -112,8 +112,8 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
 
     v0->unk_24 = param0;
     v0->unk_28 = param1;
-    v0->unk_60 = sub_02074470(param1, 5, NULL);
-    v0->unk_86 = sub_02074470(param1, 112, NULL);
+    v0->unk_60 = GetMonData(param1, 5, NULL);
+    v0->unk_86 = GetMonData(param1, 112, NULL);
     v0->unk_62 = param2;
     v0->unk_5C = param11;
     v0->unk_80 = NARC_ctor(147, param11);
@@ -422,7 +422,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_0202CFEC(param0->unk_50, 22);
                 sub_02056A48(param0->unk_54, sub_02076B10(param0->unk_28));
 
-                if (sub_02074470(param0->unk_28, 77, NULL) == 0) {
+                if (GetMonData(param0->unk_28, 77, NULL) == 0) {
                     sub_02074B30(param0->unk_28, 179, NULL);
                 }
 
@@ -588,7 +588,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 27:
         sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
-        sub_0200B630(param0->unk_0C, 1, sub_02074470(param0->unk_28, 54 + param0->unk_6E, NULL));
+        sub_0200B630(param0->unk_0C, 1, GetMonData(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, 1200);
         param0->unk_66 = 30;
         param0->unk_64++;

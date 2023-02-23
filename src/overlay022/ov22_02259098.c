@@ -42,7 +42,7 @@ void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
 
 void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, UnkStruct_02008A90 * param3, int param4, BOOL param5)
 {
-    int v0 = sub_02074470(param2, 5, NULL);
+    int v0 = GetMonData(param2, 5, NULL);
 
     sub_02075F00(param3, param2, 2);
     param0->unk_00 = sub_02007C34(param1, param3, 192, 56, 0, 0, NULL, NULL);

@@ -88,13 +88,13 @@ static BOOL ov44_0225621C (UnkStruct_ov44_0225621C * param0, UnkStruct_ov25_0225
     for (v2 = 0; v2 < param0->unk_04.unk_30; v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if (sub_02074470(v1, 76, NULL)) {
+        if (GetMonData(v1, 76, NULL)) {
             continue;
         }
 
         param0->unk_04.unk_00[v3] = sub_02079D40((const BoxPokemon *)v1);
-        param0->unk_04.unk_18[v3] = sub_02074470(v1, 5, NULL);
-        param0->unk_04.unk_24[v3] = sub_02074470(v1, 112, NULL);
+        param0->unk_04.unk_18[v3] = GetMonData(v1, 5, NULL);
+        param0->unk_04.unk_24[v3] = GetMonData(v1, 112, NULL);
         param0->unk_48[v3] = (BoxPokemon *)v1;
         v3++;
     }

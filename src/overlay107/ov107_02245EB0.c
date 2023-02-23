@@ -1699,7 +1699,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #6
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
@@ -1748,7 +1748,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #0xa
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
@@ -1774,7 +1774,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #0xa5
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -1803,7 +1803,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #0xa6
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -1831,7 +1831,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #0xa8
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -1860,7 +1860,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #0xa9
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -1889,7 +1889,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     add r0, r6, #0
     mov r1, #0xa7
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #1
     str r0, [sp]
@@ -1950,7 +1950,7 @@ asm static void ov107_02247AD0 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     ldr r1, [sp, #0x38]
     mov r2, #0
     add r7, r3, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     ldr r0, [r4, #0x24]
     add r1, r5, #0
@@ -1979,7 +1979,7 @@ asm static void ov107_02247AD0 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     ldr r0, [sp, #0x34]
     ldr r1, [sp, #0x3c]
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #0
     str r0, [sp]
@@ -1990,7 +1990,7 @@ asm static void ov107_02247AD0 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     ldr r0, [sp, #0x34]
     ldr r1, [sp, #0x40]
     mov r2, #0
-    bl sub_02074470
+    bl GetMonData
     add r2, r0, #0
     mov r0, #0
     str r0, [sp]
@@ -2045,9 +2045,9 @@ static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v2);
 
-        sub_0200C5BC(param0->unk_144, sub_02074470(v3, 163, NULL), 3, 1, param1, v0 + (64 * v2), 1);
+        sub_0200C5BC(param0->unk_144, GetMonData(v3, 163, NULL), 3, 1, param1, v0 + (64 * v2), 1);
         sub_0200C578(param0->unk_144, 0, param1, 24 + v0 + (64 * v2), 1);
-        sub_0200C5BC(param0->unk_144, sub_02074470(v3, 164, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
+        sub_0200C5BC(param0->unk_144, GetMonData(v3, 164, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
     }
 
     sub_0201A9A4(param1);
@@ -2076,9 +2076,9 @@ static void ov107_02247C64 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
     for (v4 = 0; v4 < v3; v4++) {
         v5 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v4);
-        sub_0200C648(param0->unk_144, 1, sub_02074470(v5, 161, NULL), 3, 0, param1, v1 + (64 * v4), 1);
+        sub_0200C648(param0->unk_144, 1, GetMonData(v5, 161, NULL), 3, 0, param1, v1 + (64 * v4), 1);
 
-        v0 = sub_02074470(v5, 111, NULL);
+        v0 = GetMonData(v5, 111, NULL);
         ov107_022481FC(param0, param1, v2 + (64 * v4), 1, 0, v0);
     }
 
@@ -3598,15 +3598,15 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     }
 
     if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
-        v0 = sub_02075AD0(sub_02074470(v1, 5, NULL), 50);
+        v0 = sub_02075AD0(GetMonData(v1, 5, NULL), 50);
         sub_02074B30(v1, 8, &v0);
         sub_0207418C(v1);
     } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
-        v0 = sub_02075AD0(sub_02074470(v1, 5, NULL), 55);
+        v0 = sub_02075AD0(GetMonData(v1, 5, NULL), 55);
         sub_02074B30(v1, 8, &v0);
         sub_0207418C(v1);
     } else {
-        v0 = sub_02075AD0(sub_02074470(v1, 5, NULL), 45);
+        v0 = sub_02075AD0(GetMonData(v1, 5, NULL), 45);
         sub_02074B30(v1, 8, &v0);
         sub_0207418C(v1);
     }
@@ -3655,7 +3655,7 @@ static void ov107_022492A8 (UnkStruct_ov107_02246170 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v0);
-        v2 = ov104_0222E240(sub_02074470(v3, 163, NULL), sub_02074470(v3, 164, NULL));
+        v2 = ov104_0222E240(GetMonData(v3, 163, NULL), GetMonData(v3, 164, NULL));
 
         if (param0->unk_368[v0] != NULL) {
             ov107_02249C1C(param0->unk_368[v0], v2);

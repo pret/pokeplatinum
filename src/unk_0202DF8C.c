@@ -54,22 +54,22 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
         v1 = Party_GetPokemonBySlotIndex(param1, v4);
         v6 = sub_02073C88(v1);
 
-        if (sub_02074470(v1, 76, NULL) == 0) {
-            v0->unk_00[v5].unk_00 = sub_02074470(v1, 5, NULL);
-            v0->unk_00[v5].unk_02 = sub_02074470(v1, 161, NULL);
-            v0->unk_00[v5].unk_03 = sub_02074470(v1, 112, NULL);
-            v0->unk_00[v5].unk_04 = sub_02074470(v1, 0, NULL);
-            v0->unk_00[v5].unk_08 = sub_02074470(v1, 7, NULL);
-            v0->unk_00[v5].unk_32[0] = sub_02074470(v1, 54, NULL);
-            v0->unk_00[v5].unk_32[1] = sub_02074470(v1, 55, NULL);
-            v0->unk_00[v5].unk_32[2] = sub_02074470(v1, 56, NULL);
-            v0->unk_00[v5].unk_32[3] = sub_02074470(v1, 57, NULL);
+        if (GetMonData(v1, 76, NULL) == 0) {
+            v0->unk_00[v5].unk_00 = GetMonData(v1, 5, NULL);
+            v0->unk_00[v5].unk_02 = GetMonData(v1, 161, NULL);
+            v0->unk_00[v5].unk_03 = GetMonData(v1, 112, NULL);
+            v0->unk_00[v5].unk_04 = GetMonData(v1, 0, NULL);
+            v0->unk_00[v5].unk_08 = GetMonData(v1, 7, NULL);
+            v0->unk_00[v5].unk_32[0] = GetMonData(v1, 54, NULL);
+            v0->unk_00[v5].unk_32[1] = GetMonData(v1, 55, NULL);
+            v0->unk_00[v5].unk_32[2] = GetMonData(v1, 56, NULL);
+            v0->unk_00[v5].unk_32[3] = GetMonData(v1, 57, NULL);
 
             if (v2) {
-                sub_02074470(v1, 119, v2);
+                GetMonData(v1, 119, v2);
                 sub_02023DF0(v2, v0->unk_00[v5].unk_0C, 11);
 
-                sub_02074470(v1, 145, v2);
+                GetMonData(v1, 145, v2);
                 sub_02023DF0(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;

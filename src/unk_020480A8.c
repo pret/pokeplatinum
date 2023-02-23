@@ -56,8 +56,8 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     for (v11 = 0, v12 = 0, v9 = 0; v9 < v8; v9++) {
         v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v9);
 
-        if (sub_02074470(v1, 76, NULL) == 0) {
-            v15 = (sub_02074470(v1, 7, NULL) & 0xffff);
+        if (GetMonData(v1, 76, NULL) == 0) {
+            v15 = (GetMonData(v1, 7, NULL) & 0xffff);
 
             v16 = sub_02048268(v7, v15);
 

@@ -845,7 +845,7 @@ int sub_02084780 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
-    if (sub_02074470(v0, 162, NULL) == 0) {
+    if (GetMonData(v0, 162, NULL) == 0) {
         sub_0200B1B8(param0->unk_69C, 129, param0->unk_6A4);
         sub_02021CAC(param0->unk_5B0[22 + param0->unk_B11], 1);
     } else {

@@ -927,8 +927,8 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v5, param0->unk_2A[v0]), v6);
 
-        if (sub_02074470(v6, 161, NULL) > v1) {
-            v2 = sub_02075AD0(sub_02074470(v6, 5, NULL), v1);
+        if (GetMonData(v6, 161, NULL) > v1) {
+            v2 = sub_02075AD0(GetMonData(v6, 5, NULL), v1);
 
             sub_02074B30(v6, 8, &v2);
             sub_0207418C(v6);

@@ -147,7 +147,7 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
         param1->unk_30[v0] = 0;
         sub_0202F000(v4, v0, v3);
 
-        v2 = sub_02074470(v3, 5, NULL);
+        v2 = GetMonData(v3, 5, NULL);
 
         param1->unk_00[v0].unk_00 = v2;
         sub_02056400(v2, v1);
@@ -160,8 +160,8 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
 
         param1->unk_00[v0].unk_03 = v1[3];
         param1->unk_00[v0].unk_04 = v1[2];
-        param1->unk_00[v0].unk_06 = sub_02074470(v3, 177, NULL);
-        param1->unk_00[v0].unk_07 = sub_02074470(v3, 178, NULL);
+        param1->unk_00[v0].unk_06 = GetMonData(v3, 177, NULL);
+        param1->unk_00[v0].unk_07 = GetMonData(v3, 178, NULL);
     }
 
     Heap_FreeToHeap(v3);

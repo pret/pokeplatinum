@@ -2179,7 +2179,7 @@ static BOOL ov19_021D34E4 (UnkStruct_ov19_021D5DF8 * param0)
         v0 = Party_GetPokemonBySlotIndex(param0->unk_124, v1);
         v4 = sub_02073C88(v0);
 
-        if ((sub_02074470(v0, 173, NULL) == 0) && (sub_02074470(v0, 163, NULL) != 0)) {
+        if ((GetMonData(v0, 173, NULL) == 0) && (GetMonData(v0, 163, NULL) != 0)) {
             v2++;
         }
 
@@ -4213,22 +4213,22 @@ static void ov19_021D59F4 (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
 
     v2 = sub_02073C88(param2->unk_1A0);
 
-    v1->unk_0A = sub_02074470(param2->unk_1A0, 164, NULL);
-    v1->unk_0C = sub_02074470(param2->unk_1A0, 165, NULL);
-    v1->unk_0E = sub_02074470(param2->unk_1A0, 166, NULL);
-    v1->unk_10 = sub_02074470(param2->unk_1A0, 168, NULL);
-    v1->unk_12 = sub_02074470(param2->unk_1A0, 169, NULL);
-    v1->unk_14 = sub_02074470(param2->unk_1A0, 167, NULL);
-    v1->unk_16 = sub_02074470(param2->unk_1A0, 19, NULL);
-    v1->unk_18 = sub_02074470(param2->unk_1A0, 20, NULL);
-    v1->unk_1A = sub_02074470(param2->unk_1A0, 21, NULL);
-    v1->unk_1C = sub_02074470(param2->unk_1A0, 22, NULL);
-    v1->unk_1E = sub_02074470(param2->unk_1A0, 23, NULL);
-    v1->unk_20[0] = sub_02074470(param2->unk_1A0, 54, NULL);
-    v1->unk_20[1] = sub_02074470(param2->unk_1A0, 55, NULL);
-    v1->unk_20[2] = sub_02074470(param2->unk_1A0, 56, NULL);
-    v1->unk_20[3] = sub_02074470(param2->unk_1A0, 57, NULL);
-    v1->unk_07 = sub_02074470(param2->unk_1A0, 112, NULL);
+    v1->unk_0A = GetMonData(param2->unk_1A0, 164, NULL);
+    v1->unk_0C = GetMonData(param2->unk_1A0, 165, NULL);
+    v1->unk_0E = GetMonData(param2->unk_1A0, 166, NULL);
+    v1->unk_10 = GetMonData(param2->unk_1A0, 168, NULL);
+    v1->unk_12 = GetMonData(param2->unk_1A0, 169, NULL);
+    v1->unk_14 = GetMonData(param2->unk_1A0, 167, NULL);
+    v1->unk_16 = GetMonData(param2->unk_1A0, 19, NULL);
+    v1->unk_18 = GetMonData(param2->unk_1A0, 20, NULL);
+    v1->unk_1A = GetMonData(param2->unk_1A0, 21, NULL);
+    v1->unk_1C = GetMonData(param2->unk_1A0, 22, NULL);
+    v1->unk_1E = GetMonData(param2->unk_1A0, 23, NULL);
+    v1->unk_20[0] = GetMonData(param2->unk_1A0, 54, NULL);
+    v1->unk_20[1] = GetMonData(param2->unk_1A0, 55, NULL);
+    v1->unk_20[2] = GetMonData(param2->unk_1A0, 56, NULL);
+    v1->unk_20[3] = GetMonData(param2->unk_1A0, 57, NULL);
+    v1->unk_07 = GetMonData(param2->unk_1A0, 112, NULL);
 
     sub_02073CD4(param2->unk_1A0, v2);
 
@@ -4703,7 +4703,7 @@ static u32 ov19_021D5FD0 (UnkStruct_ov19_021D4DF0 * param0, int param1, void * p
         }
     }
 
-    return sub_02074470(param0->unk_4C.unk_00, param1, param2);
+    return GetMonData(param0->unk_4C.unk_00, param1, param2);
 }
 
 static u32 ov19_021D6014 (UnkStruct_ov19_021D4DF0 * param0, int param1, void * param2)
@@ -4711,6 +4711,6 @@ static u32 ov19_021D6014 (UnkStruct_ov19_021D4DF0 * param0, int param1, void * p
     if (ov19_021D5E10(param0) == 0) {
         return sub_02074570(param0->unk_4C.unk_00, param1, param2);
     } else {
-        return sub_02074470(param0->unk_08.unk_00, param1, param2);
+        return GetMonData(param0->unk_08.unk_00, param1, param2);
     }
 }

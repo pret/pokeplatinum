@@ -176,10 +176,10 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = sub_02074470(v7, 5, NULL);
-        v5 = sub_02074470(v7, 161, NULL);
+        v4 = GetMonData(v7, 5, NULL);
+        v5 = GetMonData(v7, 161, NULL);
 
-        if (sub_02074470(v7, 76, NULL) != 0) {
+        if (GetMonData(v7, 76, NULL) != 0) {
             continue;
         }
 

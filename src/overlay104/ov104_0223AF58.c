@@ -1810,7 +1810,7 @@ u8 ov104_0223B5C0 (UnkStruct_ov104_0223B5C0 * param0)
 
     v2 = Party_GetFromSavedata(param0->unk_6FC);
     v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
-    v1 = sub_02074470(v3, 161, NULL);
+    v1 = GetMonData(v3, 161, NULL);
 
     return v1 / 10;
 }
@@ -1869,11 +1869,11 @@ u16 ov104_0223B64C (UnkStruct_ov104_0223B5C0 * param0)
 
     v0 = Party_GetFromSavedata(param0->unk_6FC);
     v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
-    v2 = sub_02074470(v1, 161, NULL);
+    v2 = GetMonData(v1, 161, NULL);
 
     if (ov104_0223B500(param0->unk_04) == 2) {
         v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[1]);
-        v3 = sub_02074470(v1, 161, NULL);
+        v3 = GetMonData(v1, 161, NULL);
 
         if (v2 > v3) {
             return v2;

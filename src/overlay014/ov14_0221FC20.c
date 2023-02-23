@@ -1337,7 +1337,7 @@ static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (sub_02074470(v1, 163, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 494)) {
+        if ((v2 != v4) && (v2 != v5) && (GetMonData(v1, 163, NULL) != 0) && (GetMonData(v1, 174, NULL) != 0) && (GetMonData(v1, 174, NULL) != 494)) {
             param1->unk_354.unk_08++;
         }
     }
@@ -1555,7 +1555,7 @@ static void ov14_022211AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (sub_02074470(v1, 163, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 494) && (sub_02074470(v1, 160, NULL) & v7)) {
+        if ((v2 != v4) && (v2 != v5) && (GetMonData(v1, 163, NULL) != 0) && (GetMonData(v1, 174, NULL) != 0) && (GetMonData(v1, 174, NULL) != 494) && (GetMonData(v1, 160, NULL) & v7)) {
             ov14_02222D24(param1, v8);
             return;
         }
@@ -1592,7 +1592,7 @@ static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (sub_02074470(v1, 163, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 0) && (sub_02074470(v1, 174, NULL) != 494) && ((sub_02074470(v1, 160, NULL) & v7) == 0)) {
+        if ((v2 != v4) && (v2 != v5) && (GetMonData(v1, 163, NULL) != 0) && (GetMonData(v1, 174, NULL) != 0) && (GetMonData(v1, 174, NULL) != 494) && ((GetMonData(v1, 160, NULL) & v7) == 0)) {
             ov14_02222D24(param1, v8);
             return;
         }
@@ -2235,7 +2235,7 @@ static void ov14_02221D88 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v4 = ov16_0223DFAC(param0, v0, v3);
 
         if (v3 != param1->unk_219C[v0]) {
-            if (sub_02074470(v4, 163, NULL) != sub_02074470(v4, 164, NULL)) {
+            if (GetMonData(v4, 163, NULL) != GetMonData(v4, 164, NULL)) {
                 ov14_02222D24(param1, v2);
                 break;
             }
@@ -2262,7 +2262,7 @@ static void ov14_02221E18 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
         if (v3 != param1->unk_219C[v0]) {
             for (v4 = 0; v4 < 4; v4++) {
-                if (sub_02074470(v5, 58 + v4, NULL) != sub_02074470(v5, 66 + v4, NULL)) {
+                if (GetMonData(v5, 58 + v4, NULL) != GetMonData(v5, 66 + v4, NULL)) {
                     ov14_02222D24(param1, v2);
                     break;
                 }
@@ -2406,16 +2406,16 @@ static void ov14_022220CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         if (v0 != param1->unk_219C[v4]) {
             v10 = ov16_0223DFAC(param0, v4, v0);
 
-            if ((sub_02074470(v10, 163, NULL) != 0) && (sub_02074470(v10, 174, NULL) != 0) && (sub_02074470(v10, 174, NULL) != 494)) {
+            if ((GetMonData(v10, 163, NULL) != 0) && (GetMonData(v10, 174, NULL) != 0) && (GetMonData(v10, 174, NULL) != 494)) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v8[v1] = sub_02074470(v10, 54 + v1, NULL);
+                    v8[v1] = GetMonData(v10, 54 + v1, NULL);
                 }
 
                 for (v1 = 0; v1 < 6; v1++) {
-                    v9[v1] = sub_02074470(v10, 70 + v1, NULL);
+                    v9[v1] = GetMonData(v10, 70 + v1, NULL);
                 }
 
-                v6 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &v8[0], &v7[0], sub_02074470(v10, 6, NULL), &v9[0], sub_02074470(v10, 10, NULL), 0, v2);
+                v6 = ov14_02222D7C(param0, param1, param1->unk_354.unk_7B, &v8[0], &v7[0], GetMonData(v10, 6, NULL), &v9[0], GetMonData(v10, 10, NULL), 0, v2);
 
                 if (v6 > v5) {
                     ov14_02222D24(param1, v3);
@@ -3423,14 +3423,14 @@ static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         for (v0 = 0; v0 < ov16_0223DF60(param0, param2); v0++) {
             v5 = ov16_0223DFAC(param0, param2, v0);
 
-            if ((sub_02074470(v5, 163, NULL) != 0) && (sub_02074470(v5, 174, NULL) != 0) && (sub_02074470(v5, 174, NULL) != 494) && (v0 != param1->unk_219C[param2])) {
+            if ((GetMonData(v5, 163, NULL) != 0) && (GetMonData(v5, 174, NULL) != 0) && (GetMonData(v5, 174, NULL) != 494) && (v0 != param1->unk_219C[param2])) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v2 = sub_02074470(v5, 54 + v1, NULL);
+                    v2 = GetMonData(v5, 54 + v1, NULL);
                     v3 = ov16_0225BE3C(param0, param1, v5, v2);
 
                     if (v2) {
                         v4 = 0;
-                        ov16_022552D4(param1, v2, v3, sub_02074470(v5, 10, NULL), ov16_02255A4C(param1, param2 ^ 1), ov16_02258AB8(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
+                        ov16_022552D4(param1, v2, v3, GetMonData(v5, 10, NULL), ov16_02255A4C(param1, param2 ^ 1), ov16_02258AB8(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
 
                         if (v4 & 0x2) {
                             if ((ov16_0223F4BC(param0) % 3) < 2) {
@@ -3515,16 +3515,16 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v0 = v9; v0 < v10; v0++) {
         v12 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((sub_02074470(v12, 163, NULL) != 0) && (sub_02074470(v12, 174, NULL) != 0) && (sub_02074470(v12, 174, NULL) != 494) && (v0 != param1->unk_219C[v4]) && (v0 != param1->unk_219C[v5]) && (v0 != param1->unk_21A4[v4]) && (v0 != param1->unk_21A4[v5])) {
+        if ((GetMonData(v12, 163, NULL) != 0) && (GetMonData(v12, 174, NULL) != 0) && (GetMonData(v12, 174, NULL) != 494) && (v0 != param1->unk_219C[v4]) && (v0 != param1->unk_219C[v5]) && (v0 != param1->unk_21A4[v4]) && (v0 != param1->unk_21A4[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v6 = sub_02074470(v12, 54 + v1, NULL);
+                v6 = GetMonData(v12, 54 + v1, NULL);
                 v7 = ov16_0225BE3C(param0, param1, v12, v6);
 
                 if ((v6) && (param1->unk_354.unk_8A[v6].unk_03)) {
                     v8 = 0;
 
                     if (param1->unk_2D40[v2].unk_4C) {
-                        ov16_022552D4(param1, v6, v7, sub_02074470(v12, 10, NULL), ov16_02255A4C(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, GetMonData(v12, 10, NULL), ov16_02255A4C(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3537,7 +3537,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     v8 = 0;
 
                     if (param1->unk_2D40[v3].unk_4C) {
-                        ov16_022552D4(param1, v6, v7, sub_02074470(v12, 10, NULL), ov16_02255A4C(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, GetMonData(v12, 10, NULL), ov16_02255A4C(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3554,16 +3554,16 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v0 = v9; v0 < v10; v0++) {
         v12 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((sub_02074470(v12, 163, NULL) != 0) && (sub_02074470(v12, 174, NULL) != 0) && (sub_02074470(v12, 174, NULL) != 494) && (v0 != param1->unk_219C[v4]) && (v0 != param1->unk_219C[v5]) && (v0 != param1->unk_21A4[v4]) && (v0 != param1->unk_21A4[v5])) {
+        if ((GetMonData(v12, 163, NULL) != 0) && (GetMonData(v12, 174, NULL) != 0) && (GetMonData(v12, 174, NULL) != 494) && (v0 != param1->unk_219C[v4]) && (v0 != param1->unk_219C[v5]) && (v0 != param1->unk_21A4[v4]) && (v0 != param1->unk_21A4[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v6 = sub_02074470(v12, 54 + v1, NULL);
+                v6 = GetMonData(v12, 54 + v1, NULL);
                 v7 = ov16_0225BE3C(param0, param1, v12, v6);
 
                 if ((v6) && (param1->unk_354.unk_8A[v6].unk_03)) {
                     v8 = 0;
 
                     if (param1->unk_2D40[v2].unk_4C) {
-                        ov16_022552D4(param1, v6, v7, sub_02074470(v12, 10, NULL), ov16_02255A4C(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, GetMonData(v12, 10, NULL), ov16_02255A4C(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3576,7 +3576,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                     v8 = 0;
 
                     if (param1->unk_2D40[v3].unk_4C) {
-                        ov16_022552D4(param1, v6, v7, sub_02074470(v12, 10, NULL), ov16_02255A4C(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, GetMonData(v12, 10, NULL), ov16_02255A4C(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3710,8 +3710,8 @@ static BOOL ov14_02223C8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v0 = v6; v0 < v7; v0++) {
         v8 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((sub_02074470(v8, 163, NULL) != 0) && (sub_02074470(v8, 174, NULL) != 0) && (sub_02074470(v8, 174, NULL) != 494) && (v0 != param1->unk_219C[v1]) && (v0 != param1->unk_219C[v2]) && (v0 != param1->unk_21A4[v1]) && (v0 != param1->unk_21A4[v2])) {
-            v4 = sub_02074470(v8, 10, NULL);
+        if ((GetMonData(v8, 163, NULL) != 0) && (GetMonData(v8, 174, NULL) != 0) && (GetMonData(v8, 174, NULL) != 494) && (v0 != param1->unk_219C[v1]) && (v0 != param1->unk_219C[v2]) && (v0 != param1->unk_21A4[v1]) && (v0 != param1->unk_21A4[v2])) {
+            v4 = GetMonData(v8, 10, NULL);
 
             if ((v5 == v4) && (ov16_0223F4BC(param0) & 1)) {
                 param1->unk_21A4[param2] = v0;
@@ -3755,20 +3755,20 @@ static BOOL ov14_02223E10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v0 = v7; v0 < v8; v0++) {
         v9 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((sub_02074470(v9, 163, NULL) != 0) && (sub_02074470(v9, 174, NULL) != 0) && (sub_02074470(v9, 174, NULL) != 494) && (v0 != param1->unk_219C[v2]) && (v0 != param1->unk_219C[v3]) && (v0 != param1->unk_21A4[v2]) && (v0 != param1->unk_21A4[v3])) {
+        if ((GetMonData(v9, 163, NULL) != 0) && (GetMonData(v9, 174, NULL) != 0) && (GetMonData(v9, 174, NULL) != 494) && (v0 != param1->unk_219C[v2]) && (v0 != param1->unk_219C[v3]) && (v0 != param1->unk_21A4[v2]) && (v0 != param1->unk_21A4[v3])) {
             v6 = 0;
             v5 = ov14_0222327C(param0, param1, param1->unk_306C[param2], param1->unk_3064[param2]);
 
-            ov16_022552D4(param1, param1->unk_3064[param2], v5, ov16_02255A4C(param1, param1->unk_306C[param2]), sub_02074470(v9, 10, NULL), ov16_0225B0FC(param1, sub_02074470(v9, 6, NULL), 1), sub_02074470(v9, 177, NULL), sub_02074470(v9, 178, NULL), &v6);
+            ov16_022552D4(param1, param1->unk_3064[param2], v5, ov16_02255A4C(param1, param1->unk_306C[param2]), GetMonData(v9, 10, NULL), ov16_0225B0FC(param1, GetMonData(v9, 6, NULL), 1), GetMonData(v9, 177, NULL), GetMonData(v9, 178, NULL), &v6);
 
             if (v6 & param3) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v4 = sub_02074470(v9, 54 + v1, NULL);
+                    v4 = GetMonData(v9, 54 + v1, NULL);
                     v5 = ov16_0225BE3C(param0, param1, v9, v4);
 
                     if (v4) {
                         v6 = 0;
-                        ov16_022552D4(param1, v4, v5, sub_02074470(v9, 10, NULL), ov16_02255A4C(param1, param1->unk_306C[param2]), ov16_02258AB8(param1, param1->unk_306C[param2]), ov16_02252060(param1, param1->unk_306C[param2], 27, NULL), ov16_02252060(param1, param1->unk_306C[param2], 28, NULL), &v6);
+                        ov16_022552D4(param1, v4, v5, GetMonData(v9, 10, NULL), ov16_02255A4C(param1, param1->unk_306C[param2]), ov16_02258AB8(param1, param1->unk_306C[param2]), ov16_02252060(param1, param1->unk_306C[param2], 27, NULL), ov16_02252060(param1, param1->unk_306C[param2], 28, NULL), &v6);
 
                         if (v6 & 0x2) {
                             if ((ov16_0223F4BC(param0) % param4) == 0) {
@@ -3864,7 +3864,7 @@ static BOOL ov14_022241A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     for (v0 = v5; v0 < v6; v0++) {
         v7 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((sub_02074470(v7, 163, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 494) && (v0 != param1->unk_219C[v2]) && (v0 != param1->unk_219C[v3]) && (v0 != param1->unk_21A4[v2]) && (v0 != param1->unk_21A4[v3])) {
+        if ((GetMonData(v7, 163, NULL) != 0) && (GetMonData(v7, 174, NULL) != 0) && (GetMonData(v7, 174, NULL) != 494) && (v0 != param1->unk_219C[v2]) && (v0 != param1->unk_219C[v3]) && (v0 != param1->unk_21A4[v2]) && (v0 != param1->unk_21A4[v3])) {
             v1++;
         }
     }
@@ -3940,7 +3940,7 @@ int ov14_022243BC (UnkStruct_0207ADB4 * param0, int param1)
                     for (v0 = v4; v0 < v5; v0++) {
                         v6 = ov16_0223DFAC(param0, param1, v0);
 
-                        if ((sub_02074470(v6, 163, NULL) != 0) && (v0 != v7->unk_219C[v1]) && (v0 != v7->unk_219C[v2]) && (v0 != v7->unk_21A4[v1]) && (v0 != v7->unk_21A4[v2])) {
+                        if ((GetMonData(v6, 163, NULL) != 0) && (v0 != v7->unk_219C[v1]) && (v0 != v7->unk_219C[v2]) && (v0 != v7->unk_21A4[v1]) && (v0 != v7->unk_21A4[v2])) {
                             break;
                         }
                     }
@@ -3990,7 +3990,7 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
     for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
 
-        if ((sub_02074470(v7, 163, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 0) && (sub_02074470(v7, 174, NULL) != 494)) {
+        if ((GetMonData(v7, 163, NULL) != 0) && (GetMonData(v7, 174, NULL) != 0) && (GetMonData(v7, 174, NULL) != 494)) {
             v1++;
         }
     }

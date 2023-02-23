@@ -1417,8 +1417,8 @@ u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
 
     v3 = sub_02054A40(param0->unk_04[0]);
     v4 = sub_02054A40(param0->unk_04[1]);
-    v5 = sub_02074470(v3, 161, NULL);
-    v6 = sub_02074470(v4, 161, NULL);
+    v5 = GetMonData(v3, 161, NULL);
+    v6 = GetMonData(v4, 161, NULL);
     v0 = v6 - v5;
 
     switch (param0->unk_12C) {

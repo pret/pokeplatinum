@@ -37,7 +37,7 @@ u32 sub_02074128(u16 param0, u8 param1, u8 param2);
 void sub_02074158(Pokemon * param0, u16 param1, u8 param2, u32 param3, u32 param4);
 void sub_0207418C(Pokemon * param0);
 void sub_020741B8(Pokemon * param0);
-u32 sub_02074470(Pokemon * param0, int param1, void * param2);
+u32 GetMonData(Pokemon * param0, int param1, void * param2);
 u32 sub_02074570(BoxPokemon * param0, int param1, void * param2);
 void sub_02074B30(Pokemon * param0, int param1, const void * param2);
 void sub_02074C60(BoxPokemon * param0, int param1, const void * param2);

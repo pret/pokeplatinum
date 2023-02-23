@@ -124,12 +124,12 @@ static void sub_020298D8 (UnkStruct_020298D8 * param0, u8 * param1, u8 * param2,
 
 static void sub_0202992C (UnkStruct_0202A138 * param0, Pokemon * param1, u8 param2, u8 param3, s8 param4)
 {
-    param0->unk_08 = sub_02074470(param1, 5, NULL);
-    sub_02074470(param1, 117, param0->unk_0A);
+    param0->unk_08 = GetMonData(param1, 5, NULL);
+    GetMonData(param1, 117, param0->unk_0A);
 
-    param0->unk_00 = sub_02074470(param1, 0, NULL);
-    param0->unk_04 = sub_02074470(param1, 7, NULL);
-    param0->unk_33 = sub_02074470(param1, 112, NULL);
+    param0->unk_00 = GetMonData(param1, 0, NULL);
+    param0->unk_04 = GetMonData(param1, 7, NULL);
+    param0->unk_33 = GetMonData(param1, 112, NULL);
 
     param0->unk_31 = param2;
     param0->unk_32 = param3;

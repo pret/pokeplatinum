@@ -749,7 +749,7 @@ static int ov94_02240688 (UnkStruct_ov94_0223FD4C * param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (sub_02074470(v2, 162, NULL)) {
+                if (GetMonData(v2, 162, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 14;
                 }
@@ -841,7 +841,7 @@ static int ov94_022408E8 (UnkStruct_ov94_0223FD4C * param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
 
-                if (sub_02074470(v2, 162, NULL)) {
+                if (GetMonData(v2, 162, NULL)) {
                     v1 = 1;
                     param0->unk_2C = 11;
                 }
@@ -1172,7 +1172,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
             ov94_02240E50(v4, &param0->unk_1108->unk_00[v1]);
             ov94_02240EAC(v4, param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
-            if (sub_02074470(v3, 162, NULL)) {
+            if (GetMonData(v3, 162, NULL)) {
                 sub_02021CAC(param0->unk_F18[v1], 1);
             } else {
                 sub_02021CAC(param0->unk_F18[v1], 0);
@@ -1417,7 +1417,7 @@ static void ov94_02241464 (UnkStruct_ov94_0223BA88_sub2 * param0, UnkStruct_0202
 
 BOOL ov94_02241498 (Pokemon * param0)
 {
-    int v0 = sub_02074470(param0, 6, NULL);
+    int v0 = GetMonData(param0, 6, NULL);
 
     if (Item_IsMail(v0)) {
         return 1;

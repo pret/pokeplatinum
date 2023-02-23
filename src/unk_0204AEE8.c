@@ -210,7 +210,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     v1 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_83E[1 + v0] = sub_02074470(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), 5, NULL);
+        param0->unk_83E[1 + v0] = GetMonData(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), 5, NULL);
     }
 
     param0->unk_83E[3] = sub_0202D3B4(param0->unk_74, 3, 0);

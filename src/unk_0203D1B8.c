@@ -1089,7 +1089,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         break;
     case 5:
     {
-        int v3 = sub_02074470(v2->unk_04.unk_40, 6, NULL);
+        int v3 = GetMonData(v2->unk_04.unk_40, 6, NULL);
         int v4;
         int v5;
 
@@ -1300,8 +1300,8 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     switch (param1) {
     case 1:
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v2->unk_04);
-        v2->unk_0C->unk_10 = sub_02074470(v0, 111, NULL);
-        v2->unk_0C->unk_08 = sub_02074470(v0, 112, NULL);
+        v2->unk_0C->unk_10 = GetMonData(v0, 111, NULL);
+        v2->unk_0C->unk_08 = GetMonData(v0, 112, NULL);
 
         if (param5 != NULL) {
             sub_02023D28(v2->unk_10, param5);

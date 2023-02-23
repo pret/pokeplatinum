@@ -325,8 +325,8 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     for (v0 = 0; v0 < Party_GetCurrentCount(v3); v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v3, v0), v8);
 
-        if ((sub_02074470(v8, 161, NULL) != param2) && (param2 != 0)) {
-            v1 = sub_02075AD0(sub_02074470(v8, 5, NULL), param2);
+        if ((GetMonData(v8, 161, NULL) != param2) && (param2 != 0)) {
+            v1 = sub_02075AD0(GetMonData(v8, 5, NULL), param2);
 
             sub_02074B30(v8, 8, &v1);
             sub_0207418C(v8);

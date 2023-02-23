@@ -202,9 +202,9 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     v4 = (Pokemon *)&v0->val1.unk_04;
     v14 = (u8 *)&v0->val1.unk_F0;
-    v12 = sub_02074470(v4, 152, NULL);
-    v8 = sub_02074470(v4, 0, NULL);
-    v7 = sub_02074470(v4, 7, NULL);
+    v12 = GetMonData(v4, 152, NULL);
+    v8 = GetMonData(v4, 0, NULL);
+    v7 = GetMonData(v4, 7, NULL);
     v9 = sub_0201D30C((u32)OS_GetTick());
 
     if (v8 == 0x0) {
@@ -221,7 +221,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     v10 = sub_02075D6C(v4);
 
     sub_02074B30(v4, 111, (u8 *)&v10);
-    v10 = sub_02074470(v4, 70, 0) + sub_02074470(v4, 71, 0) + sub_02074470(v4, 72, 0) + sub_02074470(v4, 73, 0) + sub_02074470(v4, 74, 0) + sub_02074470(v4, 75, 0);
+    v10 = GetMonData(v4, 70, 0) + GetMonData(v4, 71, 0) + GetMonData(v4, 72, 0) + GetMonData(v4, 73, 0) + GetMonData(v4, 74, 0) + GetMonData(v4, 75, 0);
 
     if (v10 == 0) {
         v8 = sub_0201D2E8();
@@ -248,43 +248,43 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     v13 = sub_0202D79C(param0->unk_0C);
 
-    if (sub_02074470(v4, 46, 0)) {
+    if (GetMonData(v4, 46, 0)) {
         v13[sub_02092444(73)] = v14[0];
     }
 
-    if (sub_02074470(v4, 47, 0)) {
+    if (GetMonData(v4, 47, 0)) {
         v13[sub_02092444(74)] = v14[1];
     }
 
-    if (sub_02074470(v4, 48, 0)) {
+    if (GetMonData(v4, 48, 0)) {
         v13[sub_02092444(75)] = v14[2];
     }
 
-    if (sub_02074470(v4, 49, 0)) {
+    if (GetMonData(v4, 49, 0)) {
         v13[sub_02092444(76)] = v14[3];
     }
 
-    if (sub_02074470(v4, 50, 0)) {
+    if (GetMonData(v4, 50, 0)) {
         v13[sub_02092444(77)] = v14[4];
     }
 
-    if (sub_02074470(v4, 51, 0)) {
+    if (GetMonData(v4, 51, 0)) {
         v13[sub_02092444(78)] = v14[5];
     }
 
-    if (sub_02074470(v4, 52, 0)) {
+    if (GetMonData(v4, 52, 0)) {
         v13[sub_02092444(79)] = v14[6];
     }
 
-    if (sub_02074470(v4, 103, 0)) {
+    if (GetMonData(v4, 103, 0)) {
         v13[sub_02092444(25)] = v14[7];
     }
 
-    if (sub_02074470(v4, 104, 0)) {
+    if (GetMonData(v4, 104, 0)) {
         v13[sub_02092444(26)] = v14[8];
     }
 
-    if (sub_02074470(v4, 105, 0)) {
+    if (GetMonData(v4, 105, 0)) {
         v13[sub_02092444(27)] = v14[9];
     }
 
@@ -306,8 +306,8 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
 
-    if (sub_02074470(v4, 5, NULL) == 493) {
-        if (sub_02074470(v4, 110, NULL) == 1) {
+    if (GetMonData(v4, 5, NULL) == 493) {
+        if (GetMonData(v4, 110, NULL) == 1) {
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);
             }

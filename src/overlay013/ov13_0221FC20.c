@@ -395,7 +395,7 @@ static u8 ov13_0221FFDC (UnkStruct_ov13_022213F0 * param0)
             if ((ov13_022213F0(param0, v0->unk_11) == 1) && (Item_GetAttribute(v0->unk_22, 23, v0->unk_0C) == 0)) {
                 ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->unk_0C);
                 param0->unk_04[v0->unk_11].unk_00 = ov16_0223DFAC(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
-                v0->unk_20 = sub_02074470(param0->unk_04[v0->unk_11].unk_00, 163, NULL);
+                v0->unk_20 = GetMonData(param0->unk_04[v0->unk_11].unk_00, 163, NULL);
                 v0->unk_20 -= param0->unk_04[v0->unk_11].unk_10;
                 param0->unk_2075 = 25;
             } else {
@@ -888,7 +888,7 @@ static u8 ov13_022208A4 (UnkStruct_ov13_022213F0 * param0)
         ov13_02224144(param0);
 
         if (param0->unk_2076 == 5) {
-            param0->unk_207C[0] = (u16)sub_02074470(param0->unk_04[v0->unk_11].unk_00, 58 + v0->unk_34, NULL);
+            param0->unk_207C[0] = (u16)GetMonData(param0->unk_04[v0->unk_11].unk_00, 58 + v0->unk_34, NULL);
             param0->unk_2078 = 2;
         } else {
             param0->unk_04[v0->unk_11].unk_17_3 = sub_0208E9F0(param0->unk_04[v0->unk_11].unk_00);
@@ -898,7 +898,7 @@ static u8 ov13_022208A4 (UnkStruct_ov13_022213F0 * param0)
                 ov13_022234A8(param0, v0->unk_11);
             }
 
-            param0->unk_207A = sub_02074470(param0->unk_04[v0->unk_11].unk_00, 163, NULL);
+            param0->unk_207A = GetMonData(param0->unk_04[v0->unk_11].unk_00, 163, NULL);
             param0->unk_2078 = 4;
         }
 
@@ -955,7 +955,7 @@ static u8 ov13_02220A4C (UnkStruct_ov13_022213F0 * param0)
                 continue;
             }
 
-            param0->unk_207C[v1] = (u16)sub_02074470(param0->unk_04[v0->unk_11].unk_00, 58 + v1, NULL);
+            param0->unk_207C[v1] = (u16)GetMonData(param0->unk_04[v0->unk_11].unk_00, 58 + v1, NULL);
         }
 
         ov13_02224144(param0);
@@ -1207,24 +1207,24 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param0->unk_00->unk_00); v0++) {
         param0->unk_04[v0].unk_00 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_00, v0);
-        param0->unk_04[v0].unk_04 = sub_02074470(param0->unk_04[v0].unk_00, 5, NULL);
+        param0->unk_04[v0].unk_04 = GetMonData(param0->unk_04[v0].unk_00, 5, NULL);
 
         if (param0->unk_04[v0].unk_04 == 0) {
             continue;
         }
 
-        param0->unk_04[v0].unk_06 = sub_02074470(param0->unk_04[v0].unk_00, 165, NULL);
-        param0->unk_04[v0].unk_08 = sub_02074470(param0->unk_04[v0].unk_00, 166, NULL);
-        param0->unk_04[v0].unk_0A = sub_02074470(param0->unk_04[v0].unk_00, 167, NULL);
-        param0->unk_04[v0].unk_0C = sub_02074470(param0->unk_04[v0].unk_00, 168, NULL);
-        param0->unk_04[v0].unk_0E = sub_02074470(param0->unk_04[v0].unk_00, 169, NULL);
-        param0->unk_04[v0].unk_10 = sub_02074470(param0->unk_04[v0].unk_00, 163, NULL);
-        param0->unk_04[v0].unk_12 = sub_02074470(param0->unk_04[v0].unk_00, 164, NULL);
-        param0->unk_04[v0].unk_14 = (u8)sub_02074470(param0->unk_04[v0].unk_00, 177, NULL);
-        param0->unk_04[v0].unk_15 = (u8)sub_02074470(param0->unk_04[v0].unk_00, 178, NULL);
-        param0->unk_04[v0].unk_16_0 = (u8)sub_02074470(param0->unk_04[v0].unk_00, 161, NULL);
+        param0->unk_04[v0].unk_06 = GetMonData(param0->unk_04[v0].unk_00, 165, NULL);
+        param0->unk_04[v0].unk_08 = GetMonData(param0->unk_04[v0].unk_00, 166, NULL);
+        param0->unk_04[v0].unk_0A = GetMonData(param0->unk_04[v0].unk_00, 167, NULL);
+        param0->unk_04[v0].unk_0C = GetMonData(param0->unk_04[v0].unk_00, 168, NULL);
+        param0->unk_04[v0].unk_0E = GetMonData(param0->unk_04[v0].unk_00, 169, NULL);
+        param0->unk_04[v0].unk_10 = GetMonData(param0->unk_04[v0].unk_00, 163, NULL);
+        param0->unk_04[v0].unk_12 = GetMonData(param0->unk_04[v0].unk_00, 164, NULL);
+        param0->unk_04[v0].unk_14 = (u8)GetMonData(param0->unk_04[v0].unk_00, 177, NULL);
+        param0->unk_04[v0].unk_15 = (u8)GetMonData(param0->unk_04[v0].unk_00, 178, NULL);
+        param0->unk_04[v0].unk_16_0 = (u8)GetMonData(param0->unk_04[v0].unk_00, 161, NULL);
 
-        if (sub_02074470(param0->unk_04[v0].unk_00, 176, NULL) == 1) {
+        if (GetMonData(param0->unk_04[v0].unk_00, 176, NULL) == 1) {
             param0->unk_04[v0].unk_16_7 = 0;
         } else {
             param0->unk_04[v0].unk_16_7 = 1;
@@ -1232,10 +1232,10 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
 
         param0->unk_04[v0].unk_17_0 = sub_02075D6C(param0->unk_04[v0].unk_00);
         param0->unk_04[v0].unk_17_3 = sub_0208E9F0(param0->unk_04[v0].unk_00);
-        param0->unk_04[v0].unk_17_7 = (u8)sub_02074470(param0->unk_04[v0].unk_00, 76, NULL);
-        param0->unk_04[v0].unk_18 = (u16)sub_02074470(param0->unk_04[v0].unk_00, 10, NULL);
-        param0->unk_04[v0].unk_1A = (u16)sub_02074470(param0->unk_04[v0].unk_00, 6, NULL);
-        param0->unk_04[v0].unk_1C = sub_02074470(param0->unk_04[v0].unk_00, 8, NULL);
+        param0->unk_04[v0].unk_17_7 = (u8)GetMonData(param0->unk_04[v0].unk_00, 76, NULL);
+        param0->unk_04[v0].unk_18 = (u16)GetMonData(param0->unk_04[v0].unk_00, 10, NULL);
+        param0->unk_04[v0].unk_1A = (u16)GetMonData(param0->unk_04[v0].unk_00, 6, NULL);
+        param0->unk_04[v0].unk_1C = GetMonData(param0->unk_04[v0].unk_00, 8, NULL);
         param0->unk_04[v0].unk_20 = sub_02075AD0(param0->unk_04[v0].unk_04, param0->unk_04[v0].unk_16_0);
 
         if (param0->unk_04[v0].unk_16_0 == 100) {
@@ -1244,25 +1244,25 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
             param0->unk_04[v0].unk_24 = sub_02075AD0(param0->unk_04[v0].unk_04, param0->unk_04[v0].unk_16_0 + 1);
         }
 
-        param0->unk_04[v0].unk_28 = (u8)sub_02074470(param0->unk_04[v0].unk_00, 19, NULL);
-        param0->unk_04[v0].unk_29 = (u8)sub_02074470(param0->unk_04[v0].unk_00, 20, NULL);
-        param0->unk_04[v0].unk_2A = (u8)sub_02074470(param0->unk_04[v0].unk_00, 21, NULL);
-        param0->unk_04[v0].unk_2B = (u8)sub_02074470(param0->unk_04[v0].unk_00, 22, NULL);
-        param0->unk_04[v0].unk_2C = (u8)sub_02074470(param0->unk_04[v0].unk_00, 23, NULL);
-        param0->unk_04[v0].unk_2D = (u16)sub_02074470(param0->unk_04[v0].unk_00, 162, NULL);
-        param0->unk_04[v0].unk_2E = (u8)sub_02074470(param0->unk_04[v0].unk_00, 112, NULL);
+        param0->unk_04[v0].unk_28 = (u8)GetMonData(param0->unk_04[v0].unk_00, 19, NULL);
+        param0->unk_04[v0].unk_29 = (u8)GetMonData(param0->unk_04[v0].unk_00, 20, NULL);
+        param0->unk_04[v0].unk_2A = (u8)GetMonData(param0->unk_04[v0].unk_00, 21, NULL);
+        param0->unk_04[v0].unk_2B = (u8)GetMonData(param0->unk_04[v0].unk_00, 22, NULL);
+        param0->unk_04[v0].unk_2C = (u8)GetMonData(param0->unk_04[v0].unk_00, 23, NULL);
+        param0->unk_04[v0].unk_2D = (u16)GetMonData(param0->unk_04[v0].unk_00, 162, NULL);
+        param0->unk_04[v0].unk_2E = (u8)GetMonData(param0->unk_04[v0].unk_00, 112, NULL);
 
         for (v1 = 0; v1 < 4; v1++) {
             UnkStruct_ov13_022236B8 * v2 = &param0->unk_04[v0].unk_30[v1];
 
-            v2->unk_00 = sub_02074470(param0->unk_04[v0].unk_00, 54 + v1, NULL);
+            v2->unk_00 = GetMonData(param0->unk_04[v0].unk_00, 54 + v1, NULL);
 
             if (v2->unk_00 == 0) {
                 continue;
             }
 
-            v2->unk_02 = sub_02074470(param0->unk_04[v0].unk_00, 58 + v1, NULL);
-            v2->unk_03 = sub_02074470(param0->unk_04[v0].unk_00, 62 + v1, NULL);
+            v2->unk_02 = GetMonData(param0->unk_04[v0].unk_00, 58 + v1, NULL);
+            v2->unk_03 = GetMonData(param0->unk_04[v0].unk_00, 62 + v1, NULL);
             v2->unk_03 = MoveTable_GetMoveMaxPP(v2->unk_00, v2->unk_03);
             v2->unk_04 = MoveTable_GetMoveAttribute(v2->unk_00, 3);
             v2->unk_05 = MoveTable_GetMoveAttribute(v2->unk_00, 1);

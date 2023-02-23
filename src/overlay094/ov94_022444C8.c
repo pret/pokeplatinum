@@ -95,7 +95,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
             if (param0->unk_24 == 9) {
                 Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);
-                int v2 = sub_02074470(v1, 6, NULL);
+                int v2 = GetMonData(v1, 6, NULL);
                 int v3;
                 int v4;
 
@@ -114,8 +114,8 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
                 sub_0202DA70(param0->unk_00->unk_00, v5);
 
-                if ((sub_02074470(v1, 5, NULL) != sub_02074470(v5, 5, NULL)) || (sub_02074470(v1, 0, NULL) != sub_02074470(v5, 0, NULL))) {
-                    int v6 = sub_02074470(v1, 6, NULL);
+                if ((GetMonData(v1, 5, NULL) != GetMonData(v5, 5, NULL)) || (GetMonData(v1, 0, NULL) != GetMonData(v5, 0, NULL))) {
+                    int v6 = GetMonData(v1, 6, NULL);
                     int v7;
                     int v8;
 

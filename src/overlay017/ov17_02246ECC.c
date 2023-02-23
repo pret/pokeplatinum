@@ -1281,7 +1281,7 @@ static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
     MI_CpuClear8(param1, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param1->unk_00[v0].unk_00 = sub_02074470(param0->unk_00->unk_00.unk_00[param2], 54 + v0, NULL);
+        param1->unk_00[v0].unk_00 = GetMonData(param0->unk_00->unk_00.unk_00[param2], 54 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {
             param1->unk_00[v0].unk_0A = MoveTable_GetMoveAttribute(param1->unk_00[v0].unk_00, 10);

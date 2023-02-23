@@ -4004,11 +4004,11 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         v18->unk_25 = ov16_0226825C(ov16_0223E1F8(v0->unk_00, v20), ov16_0223DF0C(v0->unk_00));
 
         v19 = ov16_0223DFAC(v0->unk_00, v20, v21);
-        v18->unk_28 = sub_02074470(v19, 163, NULL) - v0->unk_08->unk_04->unk_20;
-        v18->unk_2C = sub_02074470(v19, 164, NULL);
+        v18->unk_28 = GetMonData(v19, 163, NULL) - v0->unk_08->unk_04->unk_20;
+        v18->unk_2C = GetMonData(v19, 164, NULL);
         v18->unk_30 = v0->unk_08->unk_04->unk_20;
 
-        if (sub_02074470(v19, 160, NULL) == 0) {
+        if (GetMonData(v19, 160, NULL) == 0) {
             v18->unk_4A = 0;
         }
 
@@ -4072,7 +4072,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         v34 = v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
         v33 = ov16_0223DFAC(v0->unk_00, v28, v34);
 
-        if (sub_02074470(v33, 160, NULL) == 0) {
+        if (GetMonData(v33, 160, NULL) == 0) {
             v27->unk_4A = 0;
         }
 
@@ -4425,7 +4425,7 @@ static void ov16_02262258 (UnkStruct_0201CD38 * param0, void * param1)
             for (v1 = 0; v1 < Party_GetCurrentCount(v2); v1++) {
                 v3 = ov16_0223DFAC(v0->unk_00, v0->unk_09, v1);
 
-                if ((sub_02074470(v3, 163, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
+                if ((GetMonData(v3, 163, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
                     break;
                 }
             }
@@ -4475,11 +4475,11 @@ static void  ov16_0226232C (UnkStruct_0201CD38 * param0, void * param1)
             } else {
                 v3 = ov16_0223DFAC(v0->unk_00, v0->unk_09, v1 - 1);
 
-                if (sub_02074470(v3, 163, NULL) == 0) {
+                if (GetMonData(v3, 163, NULL) == 0) {
                     ov16_02264730(v0->unk_00);
                 }
 
-                if (sub_02074470(v3, 174, NULL) == 494) {
+                if (GetMonData(v3, 174, NULL) == 494) {
                     ov16_02264730(v0->unk_00);
                 }
             }

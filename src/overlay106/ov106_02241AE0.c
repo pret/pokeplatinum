@@ -1148,7 +1148,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
     u16 v6[(10 + 1)];
 
     v5 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    sub_02074470(v5, 179, v6);
+    GetMonData(v5, 179, v6);
     sub_0201ADA4(param1, param6);
 
     v4 = sub_02023790((10 + 1), 98);
@@ -1565,7 +1565,7 @@ void ov106_0224313C (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
 
     param0->unk_2A0[2] = param0->unk_18;
     v2 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    param0->unk_2A0[3] = sub_02074470(v2, 161, NULL);
+    param0->unk_2A0[3] = GetMonData(v2, 161, NULL);
 
     return;
 }
