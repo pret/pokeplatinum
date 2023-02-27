@@ -55,7 +55,7 @@
 #include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/ov12_is_form_symmetrical.h"
+#include "overlay012/is_form_symmetrical.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay017/ov17_022413D8.h"
 

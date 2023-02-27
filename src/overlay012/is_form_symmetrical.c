@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay012/ov12_is_form_symmetrical.h"
+#include "overlay012/is_form_symmetrical.h"
 
 #include "constants/species.h"
 
@@ -24,10 +24,8 @@ BOOL IsFormSymmetrical (u32 species, u32 formId)
     case SPECIES_KINGLER:
         return FALSE;
     case SPECIES_SHAYMIN:
-        if (formId == 1) {
+        if (formId == 1)
             return FALSE;
-        }
-
         break;
     }
 

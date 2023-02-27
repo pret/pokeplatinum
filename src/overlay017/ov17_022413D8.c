@@ -47,7 +47,7 @@
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
-#include "overlay012/ov12_is_form_symmetrical.h"
+#include "overlay012/is_form_symmetrical.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022413D8.h"
