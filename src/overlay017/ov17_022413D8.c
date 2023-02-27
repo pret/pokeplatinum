@@ -47,7 +47,7 @@
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
-#include "overlay012/ov12_022384F0.h"
+#include "overlay012/ov12_is_form_symmetrical.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022413D8.h"
@@ -493,7 +493,7 @@ void ov17_02241524 (UnkStruct_ov17_0223F88C * param0, int param1)
         v0 = GetMonData(param0->unk_00->unk_00[param1], 5, NULL);
         v1 = GetMonData(param0->unk_00->unk_00[param1], 112, NULL);
 
-        if (ov12_022384F0(v0, v1) == 1) {
+        if (IsFormSymmetrical(v0, v1) == 1) {
             sub_02007DEC(param0->unk_08[param1], 35, 1);
         }
     }
@@ -518,7 +518,7 @@ void ov17_022415E4 (UnkStruct_ov17_0223F88C * param0)
             v1 = GetMonData(param0->unk_00->unk_00[v0], 5, NULL);
             v2 = GetMonData(param0->unk_00->unk_00[v0], 112, NULL);
 
-            if (ov12_022384F0(v1, v2) == 1) {
+            if (IsFormSymmetrical(v1, v2) == 1) {
                 sub_02007DEC(param0->unk_08[v0], 35, 1);
             }
         }
