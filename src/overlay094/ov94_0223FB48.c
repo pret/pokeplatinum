@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/box_pokemon.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 

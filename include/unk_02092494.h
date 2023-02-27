@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/box_pokemon.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
 UnkStruct_02090800 * sub_02092494(Pokemon * param0, BOOL param1, int param2);

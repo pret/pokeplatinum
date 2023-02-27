@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D5594_H
 #define POKEPLATINUM_STRUCT_OV19_021D5594_H
 
-#include "struct_decls/box_pokemon.h"
+#include "struct_defs/box_pokemon.h"
 
 typedef struct {
     BoxPokemon * unk_00;

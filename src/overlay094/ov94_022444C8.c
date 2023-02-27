@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/box_pokemon.h"
+#include "struct_defs/box_pokemon.h"
 
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"

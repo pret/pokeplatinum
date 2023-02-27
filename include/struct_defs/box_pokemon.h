@@ -6,7 +6,7 @@
 #include "struct_defs/pokemon_substruct_3.h"
 #include "struct_defs/pokemon_substruct_0.h"
 
-typedef struct BoxPokemon_t {
+typedef struct {
     u32 unk_00;
     u16 unk_04_0 : 1;
     u16 unk_04_1 : 1;

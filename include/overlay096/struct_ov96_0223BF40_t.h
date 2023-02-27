@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_decls/box_pokemon.h"
+#include "struct_defs/box_pokemon.h"
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay096/struct_ov96_0223B450.h"

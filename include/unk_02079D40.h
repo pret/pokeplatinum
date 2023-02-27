@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02079D40_H
 
 #include "struct_defs/pokemon.h"
-#include "struct_decls/box_pokemon.h"
+#include "struct_defs/box_pokemon.h"
 
 u32 sub_02079D40(const BoxPokemon * param0);
 u32 sub_02079D80(Pokemon * param0);
