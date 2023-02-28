@@ -887,7 +887,7 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
         sub_0201ADA4(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
-            v2 = GetMonData((Pokemon *)(&param0->unk_48[v1 * v3]), 5, NULL);
+            v2 = GetMonData((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
             sub_0200B1B8(v4, v2, param0->unk_0C);
             sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);

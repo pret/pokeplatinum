@@ -680,7 +680,7 @@ static void ov16_0225C5E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
         if (v0->unk_01 == 104) {
             v4 = 0;
         } else {
-            v4 = GetMonData(v1, 10, NULL);
+            v4 = GetMonData(v1, MON_DATA_10, NULL);
         }
 
         if ((v0->unk_02 != 215) || ((v0->unk_02 == 215) && (v4 != 43))) {
@@ -972,11 +972,11 @@ static void ov16_0225CA74 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
             for (v3 = 0; v3 < Party_GetCurrentCount(v1); v3++) {
                 v2 = Party_GetPokemonBySlotIndex(v1, v3);
 
-                if ((GetMonData(v2, 5, NULL)) && (GetMonData(v2, 76, NULL) == 0)) {
+                if ((GetMonData(v2, MON_DATA_SPECIES, NULL)) && (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     if (ov16_0223E208(param0, v4)) {
-                        v6 += GetMonData(v2, 163, NULL);
+                        v6 += GetMonData(v2, MON_DATA_163, NULL);
                     } else {
-                        v5 += GetMonData(v2, 163, NULL);
+                        v5 += GetMonData(v2, MON_DATA_163, NULL);
                     }
                 }
             }

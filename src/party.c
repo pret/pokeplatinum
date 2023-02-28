@@ -103,7 +103,7 @@ void sub_0207A128 (Party * party, int slot, Pokemon * param2)
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = GetMonData(&(party->pokemon[slot]), 172, NULL) - GetMonData(param2, 172, NULL);
+    v0 = GetMonData(&(party->pokemon[slot]), MON_DATA_172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
     party->pokemon[slot] = *param2;
     party->currentCount += v0;
 }
@@ -136,7 +136,7 @@ BOOL Party_HasSpecies (const Party * party, int species)
     int i;
 
     for (i = 0; i < party->currentCount; i++) {
-        if (GetMonData((Pokemon *)&party->pokemon[i], 5, NULL) == species) {
+        if (GetMonData((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species) {
             break;
         }
     }

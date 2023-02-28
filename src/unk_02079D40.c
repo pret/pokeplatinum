@@ -560,8 +560,8 @@ u32 sub_02079D40 (const BoxPokemon * param0)
     u32 v4;
 
     v2 = sub_02073D20((BoxPokemon *)param0);
-    v0 = sub_02074570((BoxPokemon *)param0, 5, NULL);
-    v4 = sub_02074570((BoxPokemon *)param0, 76, NULL);
+    v0 = sub_02074570((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
+    v4 = sub_02074570((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
     v3 = sub_02079E44((BoxPokemon *)param0);
     v1 = sub_02079D8C(v0, v4, v3);
 
@@ -635,7 +635,7 @@ u16 sub_02079E44 (const BoxPokemon * param0)
 {
     u32 v0;
 
-    v0 = sub_02074570((BoxPokemon *)param0, 174, NULL);
+    v0 = sub_02074570((BoxPokemon *)param0, MON_DATA_SPECIES_EGG, NULL);
 
     switch (v0) {
     case 201:
@@ -648,7 +648,7 @@ u16 sub_02079E44 (const BoxPokemon * param0)
     case 487:
     case 492:
     case 479:
-        return sub_02074570((BoxPokemon *)param0, 112, NULL);
+        return sub_02074570((BoxPokemon *)param0, MON_DATA_FORM, NULL);
     default:
         return 0;
     }
@@ -700,8 +700,8 @@ const u8 sub_02079F84 (const BoxPokemon * param0)
 
     v0 = sub_02073D20((BoxPokemon *)param0);
     v2 = sub_02079E44(param0);
-    v1 = sub_02074570((BoxPokemon *)param0, 5, NULL);
-    v3 = sub_02074570((BoxPokemon *)param0, 76, NULL);
+    v1 = sub_02074570((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
+    v3 = sub_02074570((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
 
     sub_02073D48((BoxPokemon *)param0, v0);
 

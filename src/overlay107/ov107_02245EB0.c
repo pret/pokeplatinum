@@ -2045,9 +2045,9 @@ static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v2);
 
-        sub_0200C5BC(param0->unk_144, GetMonData(v3, 163, NULL), 3, 1, param1, v0 + (64 * v2), 1);
+        sub_0200C5BC(param0->unk_144, GetMonData(v3, MON_DATA_163, NULL), MON_DATA_3, MON_DATA_1, param1, v0 + (64 * v2), 1);
         sub_0200C578(param0->unk_144, 0, param1, 24 + v0 + (64 * v2), 1);
-        sub_0200C5BC(param0->unk_144, GetMonData(v3, 164, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
+        sub_0200C5BC(param0->unk_144, GetMonData(v3, MON_DATA_164, NULL), MON_DATA_3, MON_DATA_PERSONALITY, param1, 32 + v0 + (64 * v2), 1);
     }
 
     sub_0201A9A4(param1);
@@ -2076,9 +2076,9 @@ static void ov107_02247C64 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
     for (v4 = 0; v4 < v3; v4++) {
         v5 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v4);
-        sub_0200C648(param0->unk_144, 1, GetMonData(v5, 161, NULL), 3, 0, param1, v1 + (64 * v4), 1);
+        sub_0200C648(param0->unk_144, 1, GetMonData(v5, MON_DATA_161, NULL), MON_DATA_3, MON_DATA_PERSONALITY, param1, v1 + (64 * v4), 1);
 
-        v0 = GetMonData(v5, 111, NULL);
+        v0 = GetMonData(v5, MON_DATA_111, NULL);
         ov107_022481FC(param0, param1, v2 + (64 * v4), 1, 0, v0);
     }
 
@@ -3598,15 +3598,15 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     }
 
     if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
-        v0 = sub_02075AD0(GetMonData(v1, 5, NULL), 50);
+        v0 = sub_02075AD0(GetMonData(v1, MON_DATA_SPECIES, NULL), 50);
         sub_02074B30(v1, 8, &v0);
         sub_0207418C(v1);
     } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
-        v0 = sub_02075AD0(GetMonData(v1, 5, NULL), 55);
+        v0 = sub_02075AD0(GetMonData(v1, MON_DATA_SPECIES, NULL), 55);
         sub_02074B30(v1, 8, &v0);
         sub_0207418C(v1);
     } else {
-        v0 = sub_02075AD0(GetMonData(v1, 5, NULL), 45);
+        v0 = sub_02075AD0(GetMonData(v1, MON_DATA_SPECIES, NULL), 45);
         sub_02074B30(v1, 8, &v0);
         sub_0207418C(v1);
     }
@@ -3655,7 +3655,7 @@ static void ov107_022492A8 (UnkStruct_ov107_02246170 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v0);
-        v2 = ov104_0222E240(GetMonData(v3, 163, NULL), GetMonData(v3, 164, NULL));
+        v2 = ov104_0222E240(GetMonData(v3, MON_DATA_163, NULL), GetMonData(v3, MON_DATA_164, NULL));
 
         if (param0->unk_368[v0] != NULL) {
             ov107_02249C1C(param0->unk_368[v0], v2);

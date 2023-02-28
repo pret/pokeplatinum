@@ -132,13 +132,13 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
     v5 = sub_02073D20(param1);
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
 
-    v2 = sub_02074570(param1, 5, NULL);
-    v3 = sub_02074570(param1, 76, NULL);
-    v4 = sub_02074570(param1, 112, NULL);
+    v2 = sub_02074570(param1, MON_DATA_SPECIES, NULL);
+    v3 = sub_02074570(param1, MON_DATA_IS_EGG, NULL);
+    v4 = sub_02074570(param1, MON_DATA_FORM, NULL);
     param7->unk_28 = sub_02079D40((BoxPokemon *)param1);
     param7->unk_2C = sub_02079EDC(v2, v4, v3);
-    param7->unk_30 = sub_02074570(param1, 6, NULL);
-    param7->unk_2E = sub_02074570(param1, 11, NULL);
+    param7->unk_30 = sub_02074570(param1, MON_DATA_HELD_ITEM, NULL);
+    param7->unk_2E = sub_02074570(param1, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param7->unk_04));
     NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
@@ -167,15 +167,15 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
     u8 v3, v4;
 
     v2 = sub_02073D20(param1);
-    v3 = sub_02074570(param1, 76, NULL);
-    v4 = sub_02074570(param1, 112, NULL);
+    v3 = sub_02074570(param1, MON_DATA_IS_EGG, NULL);
+    v4 = sub_02074570(param1, MON_DATA_FORM, NULL);
 
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
 
     param10->unk_28 = param3;
     param10->unk_2C = sub_02079EDC(param2, v4, v3);
-    param10->unk_30 = sub_02074570(param1, 6, NULL);
-    param10->unk_2E = sub_02074570(param1, 11, NULL);
+    param10->unk_30 = sub_02074570(param1, MON_DATA_HELD_ITEM, NULL);
+    param10->unk_2E = sub_02074570(param1, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param10->unk_04));
     NNS_G2dGetUnpackedCharacterData(param4, &v0);

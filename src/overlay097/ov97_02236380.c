@@ -1321,7 +1321,7 @@ static int ov97_02236E28 (BoxPokemonGBA * param0, BoxPokemon * param1)
     u16 v2;
     int v3;
 
-    v2 = sub_02074570(param1, 5, NULL);
+    v2 = sub_02074570(param1, MON_DATA_SPECIES, NULL);
     v3 = ov97_02236924(param0, 46, NULL);
     v1 = sub_020759F0(v2, 25);
 
@@ -1552,14 +1552,14 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
     v1 = sub_02075D74(param1);
     sub_02074C60(param1, 111, (u8 *)&v1);
 
-    if (sub_02074570(param1, 5, NULL) == 201) {
+    if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 201) {
         v1 = ov97_02236924(param0, 0, NULL);
         v1 = (((v1 & 0x3000000) >> 18) | ((v1 & 0x30000) >> 12) | ((v1 & 0x300) >> 6) | (v1 & 0x3)) % 28;
 
         sub_02074C60(param1, 112, (u8 *)&v1);
     }
 
-    if (sub_02074570(param1, 5, NULL) == 386) {
+    if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 386) {
         switch (Unk_021BF67C.unk_66) {
         default:
         case 2:

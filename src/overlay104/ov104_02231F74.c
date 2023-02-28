@@ -1120,8 +1120,8 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         u32 v9, v10;
 
         v4 = Heap_AllocFromHeap(param2, (10 * 10 * ((8 / 2) * 8)));
-        v9 = GetMonData(param1, 0, NULL);
-        v10 = GetMonData(param1, 5, NULL);
+        v9 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
+        v10 = GetMonData(param1, MON_DATA_SPECIES, NULL);
 
         sub_02075EF4(&v3, param1, 2);
         sub_020136A4(v3.unk_00, v3.unk_02, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);

@@ -749,12 +749,12 @@ void sub_020829DC (UnkStruct_0207F248 * param0)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
-    v3[0] = (u16)GetMonData(v0, 164, NULL);
-    v3[1] = (u16)GetMonData(v0, 165, NULL);
-    v3[2] = (u16)GetMonData(v0, 166, NULL);
-    v3[3] = (u16)GetMonData(v0, 168, NULL);
-    v3[4] = (u16)GetMonData(v0, 169, NULL);
-    v3[5] = (u16)GetMonData(v0, 167, NULL);
+    v3[0] = (u16)GetMonData(v0, MON_DATA_164, NULL);
+    v3[1] = (u16)GetMonData(v0, MON_DATA_165, NULL);
+    v3[2] = (u16)GetMonData(v0, MON_DATA_166, NULL);
+    v3[3] = (u16)GetMonData(v0, MON_DATA_168, NULL);
+    v3[4] = (u16)GetMonData(v0, MON_DATA_169, NULL);
+    v3[5] = (u16)GetMonData(v0, MON_DATA_167, NULL);
 
     sub_0201A7E8(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
     sub_0200DC48(&param0->unk_254[0], 1, 1, 14);

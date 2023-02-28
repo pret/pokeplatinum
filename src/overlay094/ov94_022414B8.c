@@ -1013,9 +1013,9 @@ static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * par
     UnkStruct_02023790 * v3 = sub_02023790(10 + 1, 62);
     int v4, v5, v6;
 
-    sub_02074570(param3, 119, v2);
+    sub_02074570(param3, MON_DATA_119, v2);
 
-    v4 = sub_02074570(param3, 111, NULL) + 1;
+    v4 = sub_02074570(param3, MON_DATA_111, NULL) + 1;
     v5 = sub_02075B40(param3);
     v0 = sub_0200B1EC(param0, 100);
 
@@ -1038,7 +1038,7 @@ static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * par
         ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[v4 - 1]);
     }
 
-    param4->unk_00 = sub_02074570(param3, 5, NULL);
+    param4->unk_00 = sub_02074570(param3, MON_DATA_SPECIES, NULL);
     param4->unk_02 = v4;
     param4->unk_03 = v5;
 

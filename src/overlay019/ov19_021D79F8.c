@@ -396,7 +396,7 @@ static void ov19_021D803C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
         if (param1->unk_00 == NULL) {
             v1 = sub_02079C9C(v0, param0->unk_30, v3);
 
-            if (sub_02074570(v1, 172, NULL)) {
+            if (sub_02074570(v1, MON_DATA_172, NULL)) {
                 ov19_021DA548(param0->unk_58F0, v1, param0->unk_5814[v3], param0->unk_57D8[v3], param0->unk_CD8[v3], param2, 40 + 24 * v2, 2, ov19_021D85B4(v3), v4, param1);
             }
         }
@@ -433,7 +433,7 @@ static void ov19_021D813C (UnkStruct_ov19_021D8318 * param0, u32 param1)
 
     for (v2 = 0; v2 < (5 * 6); v2++) {
         v1 = sub_02079C9C(v0, param1, v2);
-        v3 = sub_02074570(v1, 5, NULL);
+        v3 = sub_02074570(v1, MON_DATA_SPECIES, NULL);
 
         if (v3) {
             param0->unk_5814[v2] = v3;
@@ -601,7 +601,7 @@ void ov19_021D84E0 (UnkStruct_ov19_021D8318 * param0)
     for (v0 = 0; v0 < (5 * 6); v0++) {
         v2 = sub_02079C9C(param0->unk_58F8->unk_00, v1, v0);
 
-        if (sub_02074570(v2, 172, NULL)) {
+        if (sub_02074570(v2, MON_DATA_172, NULL)) {
             if (param0->unk_A8[param0->unk_02][v0].unk_00 == NULL) {
                 int v3, v4, v5;
 
@@ -665,7 +665,7 @@ static void ov19_021D85C4 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
     for (v3 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
             v0 = sub_02079C9C(param1->unk_40->unk_00, param2, v4);
-            v1 = sub_02074570((BoxPokemon *)v0, 5, NULL);
+            v1 = sub_02074570((BoxPokemon *)v0, MON_DATA_SPECIES, NULL);
 
             if (v1 != 0) {
                 ov19_021DA428(param1, v0, 112 + param0->unk_585C + 24 * v2 + param4, 40 + 24 * v3, 2, ov19_021D85B4(v4), v5, param5);

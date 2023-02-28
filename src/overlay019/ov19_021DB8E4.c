@@ -251,11 +251,11 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
         for (v2 = 0; v2 < 6; v2++) {
             v1 = sub_02079C9C(v0, param1, v4++);
             v7 = sub_02073D20(v1);
-            v5 = sub_02074570(v1, 5, NULL);
+            v5 = sub_02074570(v1, MON_DATA_SPECIES, NULL);
 
             if (v5) {
-                if (sub_02074570(v1, 76, NULL) == 0) {
-                    u16 v9 = sub_02074570(v1, 112, NULL);
+                if (sub_02074570(v1, MON_DATA_IS_EGG, NULL) == 0) {
+                    u16 v9 = sub_02074570(v1, MON_DATA_FORM, NULL);
 
                     v6 = sub_020759CC(v5, v9, 27);
                 } else {

@@ -137,8 +137,8 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
                 int v7;
                 int v8;
 
-                v7 = GetMonData(param0->unk_00->unk_0C.unk_00, 5, NULL);
-                v8 = GetMonData(param0->unk_00->unk_0C.unk_00, 112, NULL);
+                v7 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+                v8 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
                 sub_02005844(v7, v8);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
@@ -287,8 +287,8 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
                 int v3;
                 int v4;
 
-                v3 = GetMonData(param0->unk_00->unk_0C.unk_00, 5, NULL);
-                v4 = GetMonData(param0->unk_00->unk_0C.unk_00, 112, NULL);
+                v3 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+                v4 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
                 sub_02005844(v3, v4);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }

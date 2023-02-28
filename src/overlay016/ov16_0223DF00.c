@@ -589,7 +589,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     v6 = 0;
 
     if (Item_GetAttribute(param4, 15, 5)) {
-        v3 = GetMonData(v1, 160, NULL);
+        v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x7) {
             v3 &= (0x7 ^ 0xffffffff);
@@ -609,7 +609,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     }
 
     if (Item_GetAttribute(param4, 16, 5)) {
-        v3 = GetMonData(v1, 160, NULL);
+        v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0xf88) {
             v3 &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
@@ -626,7 +626,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     }
 
     if (Item_GetAttribute(param4, 17, 5)) {
-        v3 = GetMonData(v1, 160, NULL);
+        v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x10) {
             v3 &= (0x10 ^ 0xffffffff);
@@ -643,7 +643,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     }
 
     if (Item_GetAttribute(param4, 18, 5)) {
-        v3 = GetMonData(v1, 160, NULL);
+        v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x20) {
             v3 &= (0x20 ^ 0xffffffff);
@@ -660,7 +660,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     }
 
     if (Item_GetAttribute(param4, 19, 5)) {
-        v3 = GetMonData(v1, 160, NULL);
+        v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x40) {
             v3 &= (0x40 ^ 0xffffffff);
@@ -781,7 +781,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     if (Item_GetAttribute(param4, 36, 5)) {
         v3 = Item_GetAttribute(param4, 55, 5);
 
-        if (GetMonData(v1, 58 + param3, NULL) != GetMonData(v1, 66 + param3, NULL)) {
+        if (GetMonData(v1, MON_DATA_58 + param3, NULL) != GetMonData(v1, MON_DATA_66 + param3, NULL)){
             sub_0207536C(v1, 58 + param3, v3);
 
             if ((v4 == param2) || (v5 == param2)) {
@@ -798,7 +798,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         v3 = Item_GetAttribute(param4, 55, 5);
 
         for (param3 = 0; param3 < 4; param3++) {
-            if (GetMonData(v1, 58 + param3, NULL) != GetMonData(v1, 66 + param3, NULL)) {
+            if (GetMonData(v1, MON_DATA_58 + param3, NULL) != GetMonData(v1, MON_DATA_66 + param3, NULL)){
                 sub_0207536C(v1, 58 + param3, v3);
 
                 if ((v4 == param2) || (v5 == param2)) {
@@ -816,29 +816,29 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         v3 = 0;
 
         if (Item_GetAttribute(param4, 23, 5)) {
-            if (GetMonData(v1, 163, NULL) == 0) {
+            if (GetMonData(v1, MON_DATA_163, NULL) == 0) {
                 v3 = 1;
             }
         } else {
-            v3 = GetMonData(v1, 163, NULL);
+            v3 = GetMonData(v1, MON_DATA_163, NULL);
         }
 
-        if ((v3) && (GetMonData(v1, 163, NULL) != GetMonData(v1, 164, NULL))) {
+        if ((v3) && (GetMonData(v1, MON_DATA_163, NULL) != GetMonData(v1, MON_DATA_164, NULL))) {
             v3 = Item_GetAttribute(param4, 54, 5);
 
             switch (v3) {
             case 255:
-                v3 = GetMonData(v1, 164, NULL);
+                v3 = GetMonData(v1, MON_DATA_164, NULL);
                 break;
             case 254:
-                v3 = GetMonData(v1, 164, NULL) / 2;
+                v3 = GetMonData(v1, MON_DATA_164, NULL) / 2;
 
                 if (v3 == 0) {
                     v3 = 1;
                 }
                 break;
             case 253:
-                v3 = GetMonData(v1, 164, NULL) * 25 / 100;
+                v3 = GetMonData(v1, MON_DATA_164, NULL) * 25 / 100;
 
                 if (v3 == 0) {
                     v3 = 1;
@@ -865,34 +865,34 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     }
 
     if (Item_GetAttribute(param4, 45, 5)) {
-        if ((GetMonData(v1, 9, NULL) < 100) && (v2 == 1)) {
+        if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) < 100) && (v2 == 1)) {
             v6 = Item_GetAttribute(param4, 56, 5);
         }
     }
 
     if (Item_GetAttribute(param4, 46, 5)) {
-        if ((GetMonData(v1, 9, NULL) >= 100) && (GetMonData(v1, 9, NULL) < 200) && (v2 == 1)) {
+        if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) >= 100) && (GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) < 200) && (v2 == 1)) {
             v6 = Item_GetAttribute(param4, 57, 5);
         }
     }
 
     if (Item_GetAttribute(param4, 47, 5)) {
-        if ((GetMonData(v1, 9, NULL) >= 200) && (v2 == 1)) {
+        if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) >= 200) && (v2 == 1)) {
             v6 = Item_GetAttribute(param4, 58, 5);
         }
     }
 
     if (v6) {
         if (v6 > 0) {
-            if (GetMonData(v1, 155, NULL) == 11) {
+            if (GetMonData(v1, MON_DATA_POKEBALL, NULL) == 11) {
                 v6++;
             }
 
-            if (GetMonData(v1, 152, NULL) == ov16_0223E24C(param0)) {
+            if (GetMonData(v1, MON_DATA_152, NULL) == ov16_0223E24C(param0)) {
                 v6++;
             }
 
-            v3 = GetMonData(v1, 6, NULL);
+            v3 = GetMonData(v1, MON_DATA_HELD_ITEM, NULL);
 
             if (Item_GetAttribute(param4, 1, 5) == 53) {
                 v6 = v6 * 150 / 100;
@@ -1088,7 +1088,7 @@ void ov16_0223EE70 (UnkStruct_0207ADB4 * param0)
 
     for (v0 = 0; v0 < ov16_0223DF60(param0, 0); v0++) {
         v2 = ov16_0223DFAC(param0, 0, v0);
-        v3 = GetMonData(v2, 174, NULL);
+        v3 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
 
         if ((v3 == 412) && (param0->unk_2414[0] & sub_020787CC(v0))) {
             switch (ov16_0223E22C(param0)) {
@@ -1704,7 +1704,7 @@ void ov16_0223F938 (UnkStruct_0207ADB4 * param0, int param1)
         }
     }
 
-    if (((v0 & 0x1) == 0) && (GetMonData(v1, 174, NULL) == 412)) {
+    if (((v0 & 0x1) == 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
         sub_0202736C(param0->unk_60, v1);
     }
 }

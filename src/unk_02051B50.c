@@ -226,7 +226,7 @@ static u32 sub_02051CD0 (Party * param0, int param1)
     u32 v2 = 34;
 
     v0 = sub_02054A40(param0);
-    v1 = GetMonData(v0, 5, NULL);
+    v1 = GetMonData(v0, MON_DATA_SPECIES, NULL);
 
     switch (v1) {
     case 492:

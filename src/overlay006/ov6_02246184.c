@@ -122,7 +122,7 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     int v4;
 
     v1 = Party_GetPokemonBySlotIndex(v0, param2);
-    v3 = GetMonData(v1, 161, NULL);
+    v3 = GetMonData(v1, MON_DATA_161, NULL);
 
     ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, param0->unk_1C->unk_00);
 

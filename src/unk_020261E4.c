@@ -114,8 +114,8 @@ BOOL sub_02026280 (UnkStruct_02026310 * param0)
 {
     int v0, v1;
 
-    v0 = sub_02074570(&param0->unk_00[0].unk_00, 12, NULL);
-    v1 = sub_02074570(&param0->unk_00[1].unk_00, 12, NULL);
+    v0 = sub_02074570(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
+    v1 = sub_02074570(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
 
     if (v0 != v1) {
         return 1;

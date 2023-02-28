@@ -1341,7 +1341,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
 
         Heap_FreeToHeap(v1->unk_260);
 
-        if ((Item_IsMail(v10) == 1) && (GetMonData(v8, 6, NULL) == 0)) {
+        if ((Item_IsMail(v10) == 1) && (GetMonData(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
             UnkStruct_02097728 * v11;
             UnkStruct_0203C540 * v12;
 

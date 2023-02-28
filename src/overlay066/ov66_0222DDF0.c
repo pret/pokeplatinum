@@ -2350,9 +2350,9 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
         for (v8 = 0; v8 < 6; v8++) {
             if (v8 < v7) {
                 v6 = Party_GetPokemonBySlotIndex(v1, v8);
-                param0->unk_20.unk_20[v8] = GetMonData(v6, 5, NULL);
-                param0->unk_20.unk_2C[v8] = GetMonData(v6, 112, NULL);
-                param0->unk_20.unk_32[v8] = GetMonData(v6, 76, NULL);
+                param0->unk_20.unk_20[v8] = GetMonData(v6, MON_DATA_SPECIES, NULL);
+                param0->unk_20.unk_2C[v8] = GetMonData(v6, MON_DATA_FORM, NULL);
+                param0->unk_20.unk_32[v8] = GetMonData(v6, MON_DATA_IS_EGG, NULL);
             } else {
                 param0->unk_20.unk_20[v8] = 495;
             }

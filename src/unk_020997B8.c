@@ -32,12 +32,12 @@ u16 * sub_020997D8 (Pokemon * param0, u32 param1)
     u8 v5;
     u8 v6, v7, v8;
 
-    v3 = (u16)GetMonData(param0, 5, NULL);
-    v5 = (u8)GetMonData(param0, 112, NULL);
-    v4 = (u8)GetMonData(param0, 161, NULL);
+    v3 = (u16)GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v5 = (u8)GetMonData(param0, MON_DATA_FORM, NULL);
+    v4 = (u8)GetMonData(param0, MON_DATA_161, NULL);
 
     for (v7 = 0; v7 < 4; v7++) {
-        v2[v7] = (u16)GetMonData(param0, 54 + v7, NULL);
+        v2[v7] = (u16)GetMonData(param0, MON_DATA_MOVE1 + v7, NULL);
     }
 
     v0 = Heap_AllocFromHeap(param1, (44 / 2) * 2);

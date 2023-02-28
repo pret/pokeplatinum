@@ -220,8 +220,8 @@ static void ov40_022563D0 (UnkStruct_ov40_0225645C_1 * param0, UnkStruct_0202631
         v3 = sub_02073D20(v1);
 
         param0->unk_04[v2] = sub_02079D40(v1);
-        param0->unk_1C[v2] = sub_02074570(v1, 5, NULL);
-        param0->unk_20[v2] = sub_02074570(v1, 112, NULL);
+        param0->unk_1C[v2] = sub_02074570(v1, MON_DATA_SPECIES, NULL);
+        param0->unk_20[v2] = sub_02074570(v1, MON_DATA_FORM, NULL);
         param0->unk_0C[v2] = ov5_021E6590(v0);
         param0->unk_14[v2] = sub_02075D74(v1);
 

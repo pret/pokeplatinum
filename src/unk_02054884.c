@@ -17,11 +17,11 @@
 
 BOOL sub_02054884 (Pokemon * param0)
 {
-    if (GetMonData(param0, 163, NULL) == 0) {
+    if (GetMonData(param0, MON_DATA_163, NULL) == 0) {
         return 0;
     }
 
-    if (GetMonData(param0, 76, NULL)) {
+    if (GetMonData(param0, MON_DATA_IS_EGG, NULL)) {
         return 0;
     }
 
@@ -91,11 +91,11 @@ int sub_020549A0 (Party * param0, u16 param1)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v2, 76, NULL) != 0) {
+        if (GetMonData(v2, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 
-        if ((GetMonData(v2, 54, NULL) == param1) || (GetMonData(v2, 55, NULL) == param1) || (GetMonData(v2, 56, NULL) == param1) || (GetMonData(v2, 57, NULL) == param1)) {
+        if ((GetMonData(v2, MON_DATA_MOVE1, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE2, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE3, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE4, NULL) == param1)) {
             return v0;
             break;
         }
@@ -152,7 +152,7 @@ Pokemon * sub_02054A74 (const Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v2, 76, NULL) == 0) {
+        if (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0) {
             return v2;
         }
     }
@@ -180,7 +180,7 @@ void sub_02054AC4 (Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v3, 76, NULL) == 0) {
+        if (GetMonData(v3, MON_DATA_IS_EGG, NULL) == 0) {
             sub_02074B30(v3, 25, &v2);
         }
     }
@@ -199,8 +199,8 @@ int sub_02054B04 (Party * param0, u16 param1)
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
         if (sub_02054884(v4)) {
-            if (GetMonData(v4, 160, NULL) & (0x80 | 0x8)) {
-                u32 v5 = GetMonData(v4, 163, NULL);
+            if (GetMonData(v4, MON_DATA_160, NULL) & (0x80 | 0x8)) {
+                u32 v5 = GetMonData(v4, MON_DATA_163, NULL);
 
                 if (v5 > 1) {
                     v5--;
@@ -229,7 +229,7 @@ int sub_02054B04 (Party * param0, u16 param1)
 
 BOOL sub_02054B94 (Pokemon * param0)
 {
-    if ((GetMonData(param0, 160, NULL) & (0x80 | 0x8)) && (GetMonData(param0, 163, NULL) == 1)) {
+    if ((GetMonData(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (GetMonData(param0, MON_DATA_163, NULL) == 1)) {
         u32 v0 = 0;
 
         sub_02074B30(param0, 160, &v0);

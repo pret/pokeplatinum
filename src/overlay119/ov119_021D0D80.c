@@ -759,7 +759,7 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
     int v4;
 
     v2 = param0->unk_00->unk_0C.unk_00;
-    v3 = GetMonData(v2, 5, NULL);
+    v3 = GetMonData(v2, MON_DATA_SPECIES, NULL);
     v4 = sub_020765AC(v2, 2);
 
     {
@@ -779,7 +779,7 @@ void ov119_021D18C0 (UnkStruct_ov119_021D0FD0 * param0)
     int v0;
     int v1;
 
-    v0 = GetMonData(param0->unk_00->unk_0C.unk_00, 5, NULL);
+    v0 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
     v1 = sub_02075BCC(param0->unk_00->unk_0C.unk_00);
 
     sub_02007B98(param0->unk_70, 1);

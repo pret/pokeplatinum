@@ -816,8 +816,8 @@ static u8 ov5_021F7A74 (Pokemon * param0, u8 param1)
     u16 v0;
     u32 v1, v2;
 
-    v2 = GetMonData(param0, 5, NULL);
-    v1 = GetMonData(param0, 112, NULL);
+    v2 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param0, MON_DATA_FORM, NULL);
     v0 = v2;
 
     switch (v2) {
@@ -872,7 +872,7 @@ static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
     u32 v5;
     u16 v6[4];
 
-    v5 = GetMonData(param0, 5, NULL);
+    v5 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
     for (v2 = 0; v2 < 4; v2++) {
         v6[v2] = GetMonData(param0, (54 + v2), NULL);

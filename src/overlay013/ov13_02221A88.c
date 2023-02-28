@@ -1567,7 +1567,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
     v1 = param0->unk_00;
     v2 = Item_LoadDataOrGFX(v1->unk_22, 0, v1->unk_0C);
     v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
-    v4 = GetMonData(v0, 163, NULL);
+    v4 = GetMonData(v0, MON_DATA_163, NULL);
     v5 = 0;
 
     if (Item_GetAttributeFromStruct(v2, 15) != 0) {

@@ -551,23 +551,23 @@ void sub_020741B8 (Pokemon * param0)
 
     v27 = sub_02073C88(param0);
 
-    v21 = GetMonData(param0, 161, 0);
-    v0 = GetMonData(param0, 164, 0);
-    v1 = GetMonData(param0, 163, 0);
-    v8 = GetMonData(param0, 70, 0);
-    v14 = GetMonData(param0, 13, 0);
-    v9 = GetMonData(param0, 71, 0);
-    v15 = GetMonData(param0, 14, 0);
-    v10 = GetMonData(param0, 72, 0);
-    v16 = GetMonData(param0, 15, 0);
-    v11 = GetMonData(param0, 73, 0);
-    v17 = GetMonData(param0, 16, 0);
-    v12 = GetMonData(param0, 74, 0);
-    v18 = GetMonData(param0, 17, 0);
-    v13 = GetMonData(param0, 75, 0);
-    v19 = GetMonData(param0, 18, 0);
-    v22 = GetMonData(param0, 112, 0);
-    v20 = GetMonData(param0, 5, 0);
+    v21 = GetMonData(param0, MON_DATA_161, 0);
+    v0 = GetMonData(param0, MON_DATA_164, 0);
+    v1 = GetMonData(param0, MON_DATA_163, 0);
+    v8 = GetMonData(param0, MON_DATA_HP_IV, 0);
+    v14 = GetMonData(param0, MON_DATA_HP_EV, 0);
+    v9 = GetMonData(param0, MON_DATA_ATK_IV, 0);
+    v15 = GetMonData(param0, MON_DATA_ATK_EV, 0);
+    v10 = GetMonData(param0, MON_DATA_DEF_IV, 0);
+    v16 = GetMonData(param0, MON_DATA_DEF_EV, 0);
+    v11 = GetMonData(param0, MON_DATA_SPEED_IV, 0);
+    v17 = GetMonData(param0, MON_DATA_SPEED_EV, 0);
+    v12 = GetMonData(param0, MON_DATA_SPATK_IV, 0);
+    v18 = GetMonData(param0, MON_DATA_SPATK_EV, 0);
+    v13 = GetMonData(param0, MON_DATA_SPDEF_IV, 0);
+    v19 = GetMonData(param0, MON_DATA_SPDEF_EV, 0);
+    v22 = GetMonData(param0, MON_DATA_FORM, 0);
+    v20 = GetMonData(param0, MON_DATA_SPECIES, 0);
     v26 = Heap_AllocFromHeap(0, sizeof(UnkStruct_02075874));
 
     sub_02078208(v20, v22, v26);
@@ -745,32 +745,32 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
     default:
         v0 = 0;
         break;
-    case 0:
+    case MON_DATA_PERSONALITY:
         v0 = param0->unk_00;
         break;
-    case 1:
+    case MON_DATA_1:
         v0 = param0->unk_04_0;
         break;
-    case 2:
+    case MON_DATA_2:
         v0 = param0->unk_04_1;
         break;
-    case 3:
+    case MON_DATA_3:
         v0 = param0->unk_04_2;
         break;
-    case 4:
+    case MON_DATA_4:
         v0 = param0->unk_06;
         break;
-    case 172:
+    case MON_DATA_172:
         v0 = (v2->unk_00 != 0);
         break;
-    case 173:
+    case MON_DATA_173:
         if (param0->unk_04_2) {
             v0 = param0->unk_04_2;
         } else {
             v0 = v3->unk_10_30;
         }
         break;
-    case 174:
+    case MON_DATA_SPECIES_EGG:
         v0 = v2->unk_00;
 
         if (v0 == 0) {
@@ -779,210 +779,210 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
             v0 = 494;
         }
         break;
-    case 161:
+    case MON_DATA_161:
         v0 = sub_02075B78(v2->unk_00, v2->unk_08);
         break;
-    case 5:
+    case MON_DATA_SPECIES:
         if (param0->unk_04_2) {
             v0 = 494;
         } else {
             v0 = v2->unk_00;
         }
         break;
-    case 6:
+    case MON_DATA_HELD_ITEM:
         v0 = v2->unk_02;
         break;
-    case 7:
+    case MON_DATA_OT_ID:
         v0 = v2->unk_04;
         break;
-    case 8:
+    case MON_DATA_EXP:
         v0 = v2->unk_08;
         break;
-    case 9:
+    case MON_DATA_FRIENDSHIP:
         v0 = v2->unk_0C;
         break;
-    case 10:
+    case MON_DATA_10:
         v0 = v2->unk_0D;
         break;
-    case 11:
+    case MON_DATA_11:
         v0 = v2->unk_0E;
         break;
-    case 12:
+    case MON_DATA_LANGUAGE:
         v0 = v2->unk_0F;
         break;
-    case 13:
+    case MON_DATA_HP_EV:
         v0 = v2->unk_10;
         break;
-    case 14:
+    case MON_DATA_ATK_EV:
         v0 = v2->unk_11;
         break;
-    case 15:
+    case MON_DATA_DEF_EV:
         v0 = v2->unk_12;
         break;
-    case 16:
+    case MON_DATA_SPEED_EV:
         v0 = v2->unk_13;
         break;
-    case 17:
+    case MON_DATA_SPATK_EV:
         v0 = v2->unk_14;
         break;
-    case 18:
+    case MON_DATA_SPDEF_EV:
         v0 = v2->unk_15;
         break;
-    case 19:
+    case MON_DATA_COOL:
         v0 = v2->unk_16;
         break;
-    case 20:
+    case MON_DATA_BEAUTY:
         v0 = v2->unk_17;
         break;
-    case 21:
+    case MON_DATA_CUTE:
         v0 = v2->unk_18;
         break;
-    case 22:
+    case MON_DATA_SMART:
         v0 = v2->unk_19;
         break;
-    case 23:
+    case MON_DATA_TOUGH:
         v0 = v2->unk_1A;
         break;
-    case 24:
+    case MON_DATA_SHEEN:
         v0 = v2->unk_1B;
         break;
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 43:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-    case 48:
-    case 49:
-    case 50:
-    case 51:
-    case 52:
-    case 53:
+    case MON_DATA_25:
+    case MON_DATA_26:
+    case MON_DATA_27:
+    case MON_DATA_28:
+    case MON_DATA_29:
+    case MON_DATA_30:
+    case MON_DATA_31:
+    case MON_DATA_32:
+    case MON_DATA_33:
+    case MON_DATA_34:
+    case MON_DATA_35:
+    case MON_DATA_36:
+    case MON_DATA_37:
+    case MON_DATA_38:
+    case MON_DATA_39:
+    case MON_DATA_40:
+    case MON_DATA_41:
+    case MON_DATA_42:
+    case MON_DATA_43:
+    case MON_DATA_44:
+    case MON_DATA_45:
+    case MON_DATA_46:
+    case MON_DATA_47:
+    case MON_DATA_48:
+    case MON_DATA_49:
+    case MON_DATA_50:
+    case MON_DATA_51:
+    case MON_DATA_52:
+    case MON_DATA_53:
         v1 = 1;
         v0 = ((v2->unk_1C & (v1 << param1 - 25)) != 0);
         break;
-    case 54:
-    case 55:
-    case 56:
-    case 57:
+    case MON_DATA_MOVE1:
+    case MON_DATA_MOVE2:
+    case MON_DATA_MOVE3:
+    case MON_DATA_MOVE4:
         v0 = v3->unk_00[param1 - 54];
         break;
-    case 58:
-    case 59:
-    case 60:
-    case 61:
+    case MON_DATA_58:
+    case MON_DATA_59:
+    case MON_DATA_60:
+    case MON_DATA_61:
         v0 = v3->unk_08[param1 - 58];
         break;
-    case 62:
-    case 63:
-    case 64:
-    case 65:
+    case MON_DATA_62:
+    case MON_DATA_63:
+    case MON_DATA_64:
+    case MON_DATA_65:
         v0 = v3->unk_0C[param1 - 62];
         break;
-    case 66:
-    case 67:
-    case 68:
-    case 69:
+    case MON_DATA_66:
+    case MON_DATA_67:
+    case MON_DATA_68:
+    case MON_DATA_69:
         v0 = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
         break;
-    case 70:
+    case MON_DATA_HP_IV:
         v0 = v3->unk_10_0;
         break;
-    case 71:
+    case MON_DATA_ATK_IV:
         v0 = v3->unk_10_5;
         break;
-    case 72:
+    case MON_DATA_DEF_IV:
         v0 = v3->unk_10_10;
         break;
-    case 73:
+    case MON_DATA_SPEED_IV:
         v0 = v3->unk_10_15;
         break;
-    case 74:
+    case MON_DATA_SPATK_IV:
         v0 = v3->unk_10_20;
         break;
-    case 75:
+    case MON_DATA_SPDEF_IV:
         v0 = v3->unk_10_25;
         break;
-    case 76:
+    case MON_DATA_IS_EGG:
         if (param0->unk_04_2) {
             v0 = param0->unk_04_2;
         } else {
             v0 = v3->unk_10_30;
         }
         break;
-    case 77:
+    case MON_DATA_77:
         v0 = v3->unk_10_31;
         break;
-    case 78:
-    case 79:
-    case 80:
-    case 81:
-    case 82:
-    case 83:
-    case 84:
-    case 85:
-    case 86:
-    case 87:
-    case 88:
-    case 89:
-    case 90:
-    case 91:
-    case 92:
-    case 93:
-    case 94:
-    case 95:
-    case 96:
-    case 97:
-    case 98:
-    case 99:
-    case 100:
-    case 101:
-    case 102:
-    case 103:
-    case 104:
-    case 105:
-    case 106:
-    case 107:
-    case 108:
-    case 109:
+    case MON_DATA_78:
+    case MON_DATA_79:
+    case MON_DATA_80:
+    case MON_DATA_81:
+    case MON_DATA_82:
+    case MON_DATA_83:
+    case MON_DATA_84:
+    case MON_DATA_85:
+    case MON_DATA_86:
+    case MON_DATA_87:
+    case MON_DATA_88:
+    case MON_DATA_89:
+    case MON_DATA_90:
+    case MON_DATA_91:
+    case MON_DATA_92:
+    case MON_DATA_93:
+    case MON_DATA_94:
+    case MON_DATA_95:
+    case MON_DATA_96:
+    case MON_DATA_97:
+    case MON_DATA_CHAMPION_RIBBON:
+    case MON_DATA_WINNING_RIBBON:
+    case MON_DATA_VICTORY_RIBBON:
+    case MON_DATA_ARTIST_RIBBON:
+    case MON_DATA_EFFORT_RIBBON:
+    case MON_DATA_MARINE_RIBBON:
+    case MON_DATA_LAND_RIBBON:
+    case MON_DATA_SKY_RIBBON:
+    case MON_DATA_COUNTRY_RIBBON:
+    case MON_DATA_NATIONAL_RIBBON:
+    case MON_DATA_EARTH_RIBBON:
+    case MON_DATA_WORLD_RIBBON:
         v1 = 1;
         v0 = ((v3->unk_14 & (v1 << param1 - 78)) != 0);
         break;
-    case 110:
+    case MON_DATA_FATEFUL_ENCOUNTER:
         v0 = v3->unk_18_0;
         break;
-    case 111:
+    case MON_DATA_111:
         v0 = sub_02075DAC(v2->unk_00, param0->unk_00);
         v3->unk_18_1 = v0;
         param0->unk_06 = sub_0207823C(&param0->unk_08, sizeof(PokemonSubstruct0) * 4);
         break;
-    case 112:
+    case MON_DATA_FORM:
         v0 = v3->unk_18_3;
         break;
-    case 113:
+    case MON_DATA_113:
         v0 = v3->unk_19;
         break;
-    case 114:
+    case MON_DATA_114:
         v0 = v3->unk_1A;
         break;
-    case 117:
+    case MON_DATA_117:
         if (param0->unk_04_2) {
             sub_0200B274(495, 0, param2);
         } else {
@@ -997,9 +997,9 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
             }
         }
         break;
-    case 120:
+    case MON_DATA_120:
         v0 = v3->unk_10_31;
-    case 119:
+    case MON_DATA_119:
         if (param0->unk_04_2) {
             UnkStruct_02023790 * v7 = sub_0200B32C(495, 0);
 
@@ -1009,37 +1009,37 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
             sub_02023D28((UnkStruct_02023790 *)param2, v4->unk_00);
         }
         break;
-    case 121:
+    case MON_DATA_121:
         v0 = v4->unk_16;
         break;
-    case 122:
+    case MON_DATA_MET_GAME:
         v0 = v4->unk_17;
         break;
-    case 123:
-    case 124:
-    case 125:
-    case 126:
-    case 127:
-    case 128:
-    case 129:
-    case 130:
-    case 131:
-    case 132:
-    case 133:
-    case 134:
-    case 135:
-    case 136:
-    case 137:
-    case 138:
-    case 139:
-    case 140:
-    case 141:
-    case 142:
-    case 143:
+    case MON_DATA_123:
+    case MON_DATA_124:
+    case MON_DATA_125:
+    case MON_DATA_126:
+    case MON_DATA_127:
+    case MON_DATA_128:
+    case MON_DATA_129:
+    case MON_DATA_130:
+    case MON_DATA_131:
+    case MON_DATA_132:
+    case MON_DATA_133:
+    case MON_DATA_134:
+    case MON_DATA_135:
+    case MON_DATA_136:
+    case MON_DATA_137:
+    case MON_DATA_138:
+    case MON_DATA_139:
+    case MON_DATA_140:
+    case MON_DATA_141:
+    case MON_DATA_142:
+    case MON_DATA_143:
         v1 = 1;
         v0 = ((v4->unk_18 & (v1 << param1 - 123)) != 0);
         break;
-    case 144:
+    case MON_DATA_144:
     {
         u16 * v8 = param2;
 
@@ -1050,80 +1050,80 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         v8[v0] = 0xffff;
         break;
     }
-    case 145:
+    case MON_DATA_145:
         sub_02023D28((UnkStruct_02023790 *)param2, v5->unk_00);
         break;
-    case 146:
+    case MON_DATA_146:
         v0 = v5->unk_10;
         break;
-    case 147:
+    case MON_DATA_147:
         v0 = v5->unk_11;
         break;
-    case 148:
+    case MON_DATA_148:
         v0 = v5->unk_12;
         break;
-    case 149:
+    case MON_DATA_149:
         v0 = v5->unk_13;
         break;
-    case 150:
+    case MON_DATA_150:
         v0 = v5->unk_14;
         break;
-    case 151:
+    case MON_DATA_151:
         v0 = v5->unk_15;
         break;
-    case 152:
-    case 115:
+    case MON_DATA_152:
+    case MON_DATA_115:
         if ((v5->unk_16 == 3002) && (v3->unk_1C)) {
             v0 = v3->unk_1C;
         } else {
             v0 = v5->unk_16;
         }
         break;
-    case 153:
-    case 116:
+    case MON_DATA_153:
+    case MON_DATA_116:
         if ((v5->unk_18 == 3002) && (v3->unk_1E)) {
             v0 = v3->unk_1E;
         } else {
             v0 = v5->unk_18;
         }
         break;
-    case 154:
+    case MON_DATA_POKERUS:
         v0 = v5->unk_1A;
         break;
-    case 155:
+    case MON_DATA_POKEBALL:
         v0 = v5->unk_1B;
         break;
-    case 156:
+    case MON_DATA_MET_LEVEL:
         v0 = v5->unk_1C_0;
         break;
-    case 157:
+    case MON_DATA_OT_GENDER:
         v0 = v5->unk_1C_7;
         break;
-    case 158:
+    case MON_DATA_158:
         v0 = v5->unk_1D;
         break;
-    case 159:
+    case MON_DATA_159:
         v0 = v5->unk_1E;
         break;
-    case 175:
+    case MON_DATA_175:
         v0 = (v3->unk_10_0 << 0) | (v3->unk_10_5 << 5) | (v3->unk_10_10 << 10) | (v3->unk_10_15 << 15) | (v3->unk_10_20 << 20) | (v3->unk_10_25 << 25);
         break;
-    case 176:
+    case MON_DATA_176:
         if (((v2->unk_00 == 29) || (v2->unk_00 == 32)) && (v3->unk_10_31 == 0)) {
             v0 = 0;
         } else {
             v0 = 1;
         }
         break;
-    case 177:
-    case 178:
+    case MON_DATA_177:
+    case MON_DATA_178:
         if ((v2->unk_00 == 493) && (v2->unk_0D == 121)) {
             v0 = sub_02077988(Item_GetAttribute(v2->unk_02, 1, 0));
         } else {
             v0 = sub_020759CC(v2->unk_00, v3->unk_18_3, 6 + (param1 - 177));
         }
         break;
-    case 179:
+    case MON_DATA_179:
         sub_0200B274(v2->unk_00, 0, param2);
         break;
     }
@@ -1249,112 +1249,112 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
     v9 = (PokemonSubstruct3 *)sub_0207825C(param0, param0->unk_00, 3);
 
     switch (param1) {
-    case 0:
+    case MON_DATA_PERSONALITY:
         param0->unk_00 = v3[0];
         break;
-    case 1:
+    case MON_DATA_1:
         GF_ASSERT(0);
         param0->unk_04_0 = v5[0];
         break;
-    case 2:
+    case MON_DATA_2:
         GF_ASSERT(0);
         param0->unk_04_1 = v5[0];
         break;
-    case 3:
+    case MON_DATA_3:
         param0->unk_04_2 = v5[0];
         break;
-    case 4:
+    case MON_DATA_4:
         param0->unk_06 = v4[0];
         break;
-    case 5:
+    case MON_DATA_SPECIES:
         v6->unk_00 = v4[0];
         break;
-    case 6:
+    case MON_DATA_HELD_ITEM:
         v6->unk_02 = v4[0];
         break;
-    case 7:
+    case MON_DATA_OT_ID:
         v6->unk_04 = v3[0];
         break;
-    case 8:
+    case MON_DATA_EXP:
         v6->unk_08 = v3[0];
         break;
-    case 9:
+    case MON_DATA_FRIENDSHIP:
         v6->unk_0C = v5[0];
         break;
-    case 10:
+    case MON_DATA_10:
         v6->unk_0D = v5[0];
         break;
-    case 11:
+    case MON_DATA_11:
         v6->unk_0E = v5[0];
         break;
-    case 12:
+    case MON_DATA_LANGUAGE:
         v6->unk_0F = v5[0];
         break;
-    case 13:
+    case MON_DATA_HP_EV:
         v6->unk_10 = v5[0];
         break;
-    case 14:
+    case MON_DATA_ATK_EV:
         v6->unk_11 = v5[0];
         break;
-    case 15:
+    case MON_DATA_DEF_EV:
         v6->unk_12 = v5[0];
         break;
-    case 16:
+    case MON_DATA_SPEED_EV:
         v6->unk_13 = v5[0];
         break;
-    case 17:
+    case MON_DATA_SPATK_EV:
         v6->unk_14 = v5[0];
         break;
-    case 18:
+    case MON_DATA_SPDEF_EV:
         v6->unk_15 = v5[0];
         break;
-    case 19:
+    case MON_DATA_COOL:
         v6->unk_16 = v5[0];
         break;
-    case 20:
+    case MON_DATA_BEAUTY:
         v6->unk_17 = v5[0];
         break;
-    case 21:
+    case MON_DATA_CUTE:
         v6->unk_18 = v5[0];
         break;
-    case 22:
+    case MON_DATA_SMART:
         v6->unk_19 = v5[0];
         break;
-    case 23:
+    case MON_DATA_TOUGH:
         v6->unk_1A = v5[0];
         break;
-    case 24:
+    case MON_DATA_SHEEN:
         v6->unk_1B = v5[0];
         break;
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 43:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-    case 48:
-    case 49:
-    case 50:
-    case 51:
-    case 52:
-    case 53:
+    case MON_DATA_25:
+    case MON_DATA_26:
+    case MON_DATA_27:
+    case MON_DATA_28:
+    case MON_DATA_29:
+    case MON_DATA_30:
+    case MON_DATA_31:
+    case MON_DATA_32:
+    case MON_DATA_33:
+    case MON_DATA_34:
+    case MON_DATA_35:
+    case MON_DATA_36:
+    case MON_DATA_37:
+    case MON_DATA_38:
+    case MON_DATA_39:
+    case MON_DATA_40:
+    case MON_DATA_41:
+    case MON_DATA_42:
+    case MON_DATA_43:
+    case MON_DATA_44:
+    case MON_DATA_45:
+    case MON_DATA_46:
+    case MON_DATA_47:
+    case MON_DATA_48:
+    case MON_DATA_49:
+    case MON_DATA_50:
+    case MON_DATA_51:
+    case MON_DATA_52:
+    case MON_DATA_53:
         v1 = 1 << (param1 - 25);
 
         if (v5[0]) {
@@ -1363,85 +1363,85 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
             v6->unk_1C &= (v1 ^ 0xffffffff);
         }
         break;
-    case 54:
-    case 55:
-    case 56:
-    case 57:
+    case MON_DATA_MOVE1:
+    case MON_DATA_MOVE2:
+    case MON_DATA_MOVE3:
+    case MON_DATA_MOVE4:
         v7->unk_00[param1 - 54] = v4[0];
         break;
-    case 58:
-    case 59:
-    case 60:
-    case 61:
+    case MON_DATA_58:
+    case MON_DATA_59:
+    case MON_DATA_60:
+    case MON_DATA_61:
         v7->unk_08[param1 - 58] = v5[0];
         break;
-    case 62:
-    case 63:
-    case 64:
-    case 65:
+    case MON_DATA_62:
+    case MON_DATA_63:
+    case MON_DATA_64:
+    case MON_DATA_65:
         v7->unk_0C[param1 - 62] = v5[0];
         break;
-    case 66:
-    case 67:
-    case 68:
-    case 69:
+    case MON_DATA_66:
+    case MON_DATA_67:
+    case MON_DATA_68:
+    case MON_DATA_69:
         break;
-    case 70:
+    case MON_DATA_HP_IV:
         v7->unk_10_0 = v5[0];
         break;
-    case 71:
+    case MON_DATA_ATK_IV:
         v7->unk_10_5 = v5[0];
         break;
-    case 72:
+    case MON_DATA_DEF_IV:
         v7->unk_10_10 = v5[0];
         break;
-    case 73:
+    case MON_DATA_SPEED_IV:
         v7->unk_10_15 = v5[0];
         break;
-    case 74:
+    case MON_DATA_SPATK_IV:
         v7->unk_10_20 = v5[0];
         break;
-    case 75:
+    case MON_DATA_SPDEF_IV:
         v7->unk_10_25 = v5[0];
         break;
-    case 76:
+    case MON_DATA_IS_EGG:
         v7->unk_10_30 = v5[0];
         break;
-    case 77:
+    case MON_DATA_77:
         v7->unk_10_31 = v5[0];
         break;
-    case 78:
-    case 79:
-    case 80:
-    case 81:
-    case 82:
-    case 83:
-    case 84:
-    case 85:
-    case 86:
-    case 87:
-    case 88:
-    case 89:
-    case 90:
-    case 91:
-    case 92:
-    case 93:
-    case 94:
-    case 95:
-    case 96:
-    case 97:
-    case 98:
-    case 99:
-    case 100:
-    case 101:
-    case 102:
-    case 103:
-    case 104:
-    case 105:
-    case 106:
-    case 107:
-    case 108:
-    case 109:
+    case MON_DATA_78:
+    case MON_DATA_79:
+    case MON_DATA_80:
+    case MON_DATA_81:
+    case MON_DATA_82:
+    case MON_DATA_83:
+    case MON_DATA_84:
+    case MON_DATA_85:
+    case MON_DATA_86:
+    case MON_DATA_87:
+    case MON_DATA_88:
+    case MON_DATA_89:
+    case MON_DATA_90:
+    case MON_DATA_91:
+    case MON_DATA_92:
+    case MON_DATA_93:
+    case MON_DATA_94:
+    case MON_DATA_95:
+    case MON_DATA_96:
+    case MON_DATA_97:
+    case MON_DATA_CHAMPION_RIBBON:
+    case MON_DATA_WINNING_RIBBON:
+    case MON_DATA_VICTORY_RIBBON:
+    case MON_DATA_ARTIST_RIBBON:
+    case MON_DATA_EFFORT_RIBBON:
+    case MON_DATA_MARINE_RIBBON:
+    case MON_DATA_LAND_RIBBON:
+    case MON_DATA_SKY_RIBBON:
+    case MON_DATA_COUNTRY_RIBBON:
+    case MON_DATA_NATIONAL_RIBBON:
+    case MON_DATA_EARTH_RIBBON:
+    case MON_DATA_WORLD_RIBBON:
         v1 = 1 << (param1 - 78);
 
         if (v5[0]) {
@@ -1450,34 +1450,34 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
             v7->unk_14 &= (v1 ^ 0xffffffff);
         }
         break;
-    case 110:
+    case MON_DATA_FATEFUL_ENCOUNTER:
         v7->unk_18_0 = v5[0];
         break;
-    case 111:
+    case MON_DATA_111:
         v7->unk_18_1 = sub_02075DAC(v6->unk_00, param0->unk_00);
         break;
-    case 112:
+    case MON_DATA_FORM:
         v7->unk_18_3 = v5[0];
         break;
-    case 113:
+    case MON_DATA_113:
         v7->unk_19 = v5[0];
         break;
-    case 114:
+    case MON_DATA_114:
         v7->unk_1A = v4[0];
         break;
-    case 118:
+    case MON_DATA_118:
     {
         u16 v10[10 + 1];
 
         sub_0200B274(v6->unk_00, 0, &v10[0]);
         v7->unk_10_31 = sub_0200220C(v10, &v4[0]);
     }
-    case 117:
+    case MON_DATA_117:
         for (v0 = 0; v0 < NELEMS(v8->unk_00); v0++) {
             v8->unk_00[v0] = v4[v0];
         }
         break;
-    case 120:
+    case MON_DATA_120:
     {
         u16 v11[10 + 1];
         u16 v12[10 + 1];
@@ -1487,36 +1487,36 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
 
         v7->unk_10_31 = sub_0200220C(v11, v12);
     }
-    case 119:
+    case MON_DATA_119:
         sub_02023DF0((UnkStruct_02023790 *)param2, v8->unk_00, NELEMS(v8->unk_00));
         break;
-    case 121:
+    case MON_DATA_121:
         v8->unk_16 = v5[0];
         break;
-    case 122:
+    case MON_DATA_MET_GAME:
         v8->unk_17 = v5[0];
         break;
-    case 123:
-    case 124:
-    case 125:
-    case 126:
-    case 127:
-    case 128:
-    case 129:
-    case 130:
-    case 131:
-    case 132:
-    case 133:
-    case 134:
-    case 135:
-    case 136:
-    case 137:
-    case 138:
-    case 139:
-    case 140:
-    case 141:
-    case 142:
-    case 143:
+    case MON_DATA_123:
+    case MON_DATA_124:
+    case MON_DATA_125:
+    case MON_DATA_126:
+    case MON_DATA_127:
+    case MON_DATA_128:
+    case MON_DATA_129:
+    case MON_DATA_130:
+    case MON_DATA_131:
+    case MON_DATA_132:
+    case MON_DATA_133:
+    case MON_DATA_134:
+    case MON_DATA_135:
+    case MON_DATA_136:
+    case MON_DATA_137:
+    case MON_DATA_138:
+    case MON_DATA_139:
+    case MON_DATA_140:
+    case MON_DATA_141:
+    case MON_DATA_142:
+    case MON_DATA_143:
         v1 = 1 << (param1 - 123);
 
         if (v5[0]) {
@@ -1525,34 +1525,34 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
             v8->unk_18 &= (v1 ^ 0xffffffffffffffff);
         }
         break;
-    case 144:
+    case MON_DATA_144:
         for (v0 = 0; v0 < NELEMS(v9->unk_00); v0++) {
             v9->unk_00[v0] = v4[v0];
         }
         break;
-    case 145:
+    case MON_DATA_145:
         sub_02023DF0((UnkStruct_02023790 *)param2, v9->unk_00, NELEMS(v9->unk_00));
         break;
-    case 146:
+    case MON_DATA_146:
         v9->unk_10 = v5[0];
         break;
-    case 147:
+    case MON_DATA_147:
         v9->unk_11 = v5[0];
         break;
-    case 148:
+    case MON_DATA_148:
         v9->unk_12 = v5[0];
         break;
-    case 149:
+    case MON_DATA_149:
         v9->unk_13 = v5[0];
         break;
-    case 150:
+    case MON_DATA_150:
         v9->unk_14 = v5[0];
         break;
-    case 151:
+    case MON_DATA_151:
         v9->unk_15 = v5[0];
         break;
-    case 152:
-    case 115:
+    case MON_DATA_152:
+    case MON_DATA_115:
         if ((v4[0] == 0) || (sub_0201708C(v4[0]) == 1)) {
             v9->unk_16 = v4[0];
             v7->unk_1C = v4[0];
@@ -1561,8 +1561,8 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
             v7->unk_1C = v4[0];
         }
         break;
-    case 153:
-    case 116:
+    case MON_DATA_153:
+    case MON_DATA_116:
         if ((v4[0] == 0) || (sub_0201708C(v4[0]) == 1)) {
             v9->unk_18 = v4[0];
             v7->unk_1E = v4[0];
@@ -1571,25 +1571,25 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
             v7->unk_1E = v4[0];
         }
         break;
-    case 154:
+    case MON_DATA_POKERUS:
         v9->unk_1A = v5[0];
         break;
-    case 155:
+    case MON_DATA_POKEBALL:
         v9->unk_1B = v5[0];
         break;
-    case 156:
+    case MON_DATA_MET_LEVEL:
         v9->unk_1C_0 = v5[0];
         break;
-    case 157:
+    case MON_DATA_OT_GENDER:
         v9->unk_1C_7 = v5[0];
         break;
-    case 158:
+    case MON_DATA_158:
         v9->unk_1D = v5[0];
         break;
-    case 159:
+    case MON_DATA_159:
         v9->unk_1E = v4[0];
         break;
-    case 175:
+    case MON_DATA_175:
         v7->unk_10_0 = (v3[0] >> 0) & 0x1f;
         v7->unk_10_5 = (v3[0] >> 5) & 0x1f;
         v7->unk_10_10 = (v3[0] >> 10) & 0x1f;
@@ -1597,11 +1597,11 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         v7->unk_10_20 = (v3[0] >> 20) & 0x1f;
         v7->unk_10_25 = (v3[0] >> 25) & 0x1f;
         break;
-    case 176:
-    case 177:
-    case 178:
+    case MON_DATA_176:
+    case MON_DATA_177:
+    case MON_DATA_178:
         break;
-    case 179:
+    case MON_DATA_179:
     {
         UnkStruct_02023790 * v13;
 
@@ -1683,14 +1683,14 @@ static void sub_02075454 (BoxPokemon * param0, int param1, int param2)
     v5 = (PokemonSubstruct3 *)sub_0207825C(param0, param0->unk_00, 3);
 
     switch (param1) {
-    case 8:
+    case MON_DATA_EXP:
         if ((v2->unk_08 + param2) > sub_02075AD0(v2->unk_00, 100)) {
             v2->unk_08 = sub_02075AD0(v2->unk_00, 100);
         } else {
             v2->unk_08 += param2;
         }
         break;
-    case 9:
+    case MON_DATA_FRIENDSHIP:
     {
         int v6;
 
@@ -1709,262 +1709,262 @@ static void sub_02075454 (BoxPokemon * param0, int param1, int param2)
         v2->unk_0C = v6;
     }
     break;
-    case 13:
+    case MON_DATA_HP_EV:
         v2->unk_10 += param2;
         break;
-    case 14:
+    case MON_DATA_ATK_EV:
         v2->unk_11 += param2;
         break;
-    case 15:
+    case MON_DATA_DEF_EV:
         v2->unk_12 += param2;
         break;
-    case 16:
+    case MON_DATA_SPEED_EV:
         v2->unk_13 += param2;
         break;
-    case 17:
+    case MON_DATA_SPATK_EV:
         v2->unk_14 += param2;
         break;
-    case 18:
+    case MON_DATA_SPDEF_EV:
         v2->unk_15 += param2;
         break;
-    case 19:
+    case MON_DATA_COOL:
         if ((v2->unk_16 + param2) > 255) {
             v2->unk_16 = 255;
         } else {
             v2->unk_16 += param2;
         }
         break;
-    case 20:
+    case MON_DATA_BEAUTY:
         if ((v2->unk_17 + param2) > 255) {
             v2->unk_17 = 255;
         } else {
             v2->unk_17 += param2;
         }
         break;
-    case 21:
+    case MON_DATA_CUTE:
         if ((v2->unk_18 + param2) > 255) {
             v2->unk_18 = 255;
         } else {
             v2->unk_18 += param2;
         }
         break;
-    case 22:
+    case MON_DATA_SMART:
         if ((v2->unk_19 + param2) > 255) {
             v2->unk_19 = 255;
         } else {
             v2->unk_19 += param2;
         }
         break;
-    case 23:
+    case MON_DATA_TOUGH:
         if ((v2->unk_1A + param2) > 255) {
             v2->unk_1A = 255;
         } else {
             v2->unk_1A += param2;
         }
         break;
-    case 24:
+    case MON_DATA_SHEEN:
         if ((v2->unk_1B + param2) > 255) {
             v2->unk_1B = 255;
         } else {
             v2->unk_1B += param2;
         }
         break;
-    case 58:
-    case 59:
-    case 60:
-    case 61:
+    case MON_DATA_58:
+    case MON_DATA_59:
+    case MON_DATA_60:
+    case MON_DATA_61:
         if ((v3->unk_08[param1 - 58] + param2) > MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
             v3->unk_08[param1 - 58] = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
         } else {
             v3->unk_08[param1 - 58] += param2;
         }
         break;
-    case 62:
-    case 63:
-    case 64:
-    case 65:
+    case MON_DATA_62:
+    case MON_DATA_63:
+    case MON_DATA_64:
+    case MON_DATA_65:
         if ((v3->unk_0C[param1 - 62] + param2) > 3) {
             v3->unk_0C[param1 - 62] = 3;
         } else {
             v3->unk_0C[param1 - 62] += param2;
         }
         break;
-    case 66:
-    case 67:
-    case 68:
-    case 69:
+    case MON_DATA_66:
+    case MON_DATA_67:
+    case MON_DATA_68:
+    case MON_DATA_69:
         break;
-    case 70:
+    case MON_DATA_HP_IV:
         if ((v3->unk_10_0 + param2) > 31) {
             v3->unk_10_0 = 31;
         } else {
             v3->unk_10_0 += param2;
         }
         break;
-    case 71:
+    case MON_DATA_ATK_IV:
         if ((v3->unk_10_5 + param2) > 31) {
             v3->unk_10_5 = 31;
         } else {
             v3->unk_10_5 += param2;
         }
         break;
-    case 72:
+    case MON_DATA_DEF_IV:
         if ((v3->unk_10_10 + param2) > 31) {
             v3->unk_10_10 = 31;
         } else {
             v3->unk_10_10 += param2;
         }
         break;
-    case 73:
+    case MON_DATA_SPEED_IV:
         if ((v3->unk_10_15 + param2) > 31) {
             v3->unk_10_15 = 31;
         } else {
             v3->unk_10_15 += param2;
         }
         break;
-    case 74:
+    case MON_DATA_SPATK_IV:
         if ((v3->unk_10_20 + param2) > 31) {
             v3->unk_10_20 = 31;
         } else {
             v3->unk_10_20 += param2;
         }
         break;
-    case 75:
+    case MON_DATA_SPDEF_IV:
         if ((v3->unk_10_25 + param2) > 31) {
             v3->unk_10_25 = 31;
         } else {
             v3->unk_10_25 += param2;
         }
         break;
-    case 0:
-    case 1:
-    case 2:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 10:
-    case 11:
-    case 12:
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 43:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-    case 48:
-    case 49:
-    case 50:
-    case 51:
-    case 52:
-    case 53:
-    case 54:
-    case 55:
-    case 56:
-    case 57:
-    case 76:
-    case 77:
-    case 78:
-    case 79:
-    case 80:
-    case 81:
-    case 82:
-    case 83:
-    case 84:
-    case 85:
-    case 86:
-    case 87:
-    case 88:
-    case 89:
-    case 90:
-    case 91:
-    case 92:
-    case 93:
-    case 94:
-    case 95:
-    case 96:
-    case 97:
-    case 98:
-    case 99:
-    case 100:
-    case 101:
-    case 102:
-    case 103:
-    case 104:
-    case 105:
-    case 106:
-    case 107:
-    case 108:
-    case 109:
-    case 110:
-    case 111:
-    case 112:
-    case 113:
-    case 114:
-    case 117:
-    case 119:
-    case 120:
-    case 121:
-    case 122:
-    case 123:
-    case 124:
-    case 125:
-    case 126:
-    case 127:
-    case 128:
-    case 129:
-    case 130:
-    case 131:
-    case 132:
-    case 133:
-    case 134:
-    case 135:
-    case 136:
-    case 137:
-    case 138:
-    case 139:
-    case 140:
-    case 141:
-    case 142:
-    case 143:
-    case 144:
-    case 145:
-    case 146:
-    case 147:
-    case 148:
-    case 149:
-    case 150:
-    case 151:
-    case 152:
-    case 153:
-    case 154:
-    case 155:
-    case 156:
-    case 157:
-    case 158:
-    case 159:
-    case 175:
-    case 176:
-    case 177:
-    case 178:
-    case 179:
+    case MON_DATA_PERSONALITY:
+    case MON_DATA_1:
+    case MON_DATA_2:
+    case MON_DATA_4:
+    case MON_DATA_SPECIES:
+    case MON_DATA_HELD_ITEM:
+    case MON_DATA_OT_ID:
+    case MON_DATA_10:
+    case MON_DATA_11:
+    case MON_DATA_LANGUAGE:
+    case MON_DATA_25:
+    case MON_DATA_26:
+    case MON_DATA_27:
+    case MON_DATA_28:
+    case MON_DATA_29:
+    case MON_DATA_30:
+    case MON_DATA_31:
+    case MON_DATA_32:
+    case MON_DATA_33:
+    case MON_DATA_34:
+    case MON_DATA_35:
+    case MON_DATA_36:
+    case MON_DATA_37:
+    case MON_DATA_38:
+    case MON_DATA_39:
+    case MON_DATA_40:
+    case MON_DATA_41:
+    case MON_DATA_42:
+    case MON_DATA_43:
+    case MON_DATA_44:
+    case MON_DATA_45:
+    case MON_DATA_46:
+    case MON_DATA_47:
+    case MON_DATA_48:
+    case MON_DATA_49:
+    case MON_DATA_50:
+    case MON_DATA_51:
+    case MON_DATA_52:
+    case MON_DATA_53:
+    case MON_DATA_MOVE1:
+    case MON_DATA_MOVE2:
+    case MON_DATA_MOVE3:
+    case MON_DATA_MOVE4:
+    case MON_DATA_IS_EGG:
+    case MON_DATA_77:
+    case MON_DATA_78:
+    case MON_DATA_79:
+    case MON_DATA_80:
+    case MON_DATA_81:
+    case MON_DATA_82:
+    case MON_DATA_83:
+    case MON_DATA_84:
+    case MON_DATA_85:
+    case MON_DATA_86:
+    case MON_DATA_87:
+    case MON_DATA_88:
+    case MON_DATA_89:
+    case MON_DATA_90:
+    case MON_DATA_91:
+    case MON_DATA_92:
+    case MON_DATA_93:
+    case MON_DATA_94:
+    case MON_DATA_95:
+    case MON_DATA_96:
+    case MON_DATA_97:
+    case MON_DATA_CHAMPION_RIBBON:
+    case MON_DATA_WINNING_RIBBON:
+    case MON_DATA_VICTORY_RIBBON:
+    case MON_DATA_ARTIST_RIBBON:
+    case MON_DATA_EFFORT_RIBBON:
+    case MON_DATA_MARINE_RIBBON:
+    case MON_DATA_LAND_RIBBON:
+    case MON_DATA_SKY_RIBBON:
+    case MON_DATA_COUNTRY_RIBBON:
+    case MON_DATA_NATIONAL_RIBBON:
+    case MON_DATA_EARTH_RIBBON:
+    case MON_DATA_WORLD_RIBBON:
+    case MON_DATA_FATEFUL_ENCOUNTER:
+    case MON_DATA_111:
+    case MON_DATA_FORM:
+    case MON_DATA_113:
+    case MON_DATA_114:
+    case MON_DATA_117:
+    case MON_DATA_119:
+    case MON_DATA_120:
+    case MON_DATA_121:
+    case MON_DATA_MET_GAME:
+    case MON_DATA_123:
+    case MON_DATA_124:
+    case MON_DATA_125:
+    case MON_DATA_126:
+    case MON_DATA_127:
+    case MON_DATA_128:
+    case MON_DATA_129:
+    case MON_DATA_130:
+    case MON_DATA_131:
+    case MON_DATA_132:
+    case MON_DATA_133:
+    case MON_DATA_134:
+    case MON_DATA_135:
+    case MON_DATA_136:
+    case MON_DATA_137:
+    case MON_DATA_138:
+    case MON_DATA_139:
+    case MON_DATA_140:
+    case MON_DATA_141:
+    case MON_DATA_142:
+    case MON_DATA_143:
+    case MON_DATA_144:
+    case MON_DATA_145:
+    case MON_DATA_146:
+    case MON_DATA_147:
+    case MON_DATA_148:
+    case MON_DATA_149:
+    case MON_DATA_150:
+    case MON_DATA_151:
+    case MON_DATA_152:
+    case MON_DATA_153:
+    case MON_DATA_POKERUS:
+    case MON_DATA_POKEBALL:
+    case MON_DATA_MET_LEVEL:
+    case MON_DATA_OT_GENDER:
+    case MON_DATA_158:
+    case MON_DATA_159:
+    case MON_DATA_175:
+    case MON_DATA_176:
+    case MON_DATA_177:
+    case MON_DATA_178:
+    case MON_DATA_179:
     default:
         GF_ASSERT(0);
         break;
@@ -2147,11 +2147,11 @@ u8 sub_02075A10 (Pokemon * param0)
     BOOL v6;
 
     v6 = sub_02073C88(param0);
-    v0 = GetMonData(param0, 5, NULL);
-    v1 = GetMonData(param0, 161, NULL);
+    v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param0, MON_DATA_161, NULL);
     v2 = sub_02075AD0(v0, v1);
     v4 = sub_02075AD0(v0, v1 + 1);
-    v3 = GetMonData(param0, 8, NULL);
+    v3 = GetMonData(param0, MON_DATA_EXP, NULL);
 
     sub_02073CD4(param0, v6);
     v5 = ((v3 - v2) * 100) / (v4 - v2);
@@ -2166,16 +2166,16 @@ u32 sub_02075A70 (Pokemon * param0)
 
 u32 sub_02075A78 (BoxPokemon * param0)
 {
-    u16 v0 = sub_02074570(param0, 5, NULL);
+    u16 v0 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
     u16 v1 = sub_02075B40(param0) + 1;
-    u32 v2 = sub_02074570(param0, 8, NULL);
+    u32 v2 = sub_02074570(param0, MON_DATA_EXP, NULL);
 
     return sub_02075AD0(v0, v1) - v2;
 }
 
 u32 sub_02075AAC (Pokemon * param0)
 {
-    return sub_02075AD0(GetMonData(param0, 5, NULL), GetMonData(param0, 161, NULL));
+    return sub_02075AD0(GetMonData(param0, MON_DATA_SPECIES, NULL), GetMonData(param0, MON_DATA_161, NULL));
 }
 
 u32 sub_02075AD0 (int param0, int param1)
@@ -2218,8 +2218,8 @@ u32 sub_02075B40 (BoxPokemon * param0)
     BOOL v2;
 
     v2 = sub_02073D20(param0);
-    v0 = sub_02074570(param0, 5, 0);
-    v1 = sub_02074570(param0, 8, 0);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES, 0);
+    v1 = sub_02074570(param0, MON_DATA_EXP, 0);
 
     sub_02073D48(param0, v2);
 
@@ -2267,7 +2267,7 @@ u8 sub_02075BD4 (BoxPokemon * param0)
     u32 v1;
 
     v0 = sub_02073D20(param0);
-    v1 = sub_02074570(param0, 0, 0);
+    v1 = sub_02074570(param0, MON_DATA_PERSONALITY, 0);
 
     sub_02073D48(param0, v0);
 
@@ -2365,16 +2365,16 @@ void sub_02075C74 (Pokemon * param0, u8 param1, u16 param2)
         }
     }
 
-    v0 = GetMonData(param0, 174, NULL);
+    v0 = GetMonData(param0, MON_DATA_SPECIES_EGG, NULL);
 
     if ((v0 == 0) || (v0 == 494)) {
         return;
     }
 
-    v1 = GetMonData(param0, 6, NULL);
+    v1 = GetMonData(param0, MON_DATA_HELD_ITEM, NULL);
     v5 = Item_GetAttribute(v1, 1, 0);
     v4 = 0;
-    v2 = GetMonData(param0, 9, NULL);
+    v2 = GetMonData(param0, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 >= 100) {
         v4++;
@@ -2386,11 +2386,11 @@ void sub_02075C74 (Pokemon * param0, u8 param1, u16 param2)
 
     v3 = Unk_020F05A0[param1][v4];
 
-    if ((v3 > 0) && (GetMonData(param0, 155, NULL) == 11)) {
+    if ((v3 > 0) && (GetMonData(param0, MON_DATA_POKEBALL, NULL) == 11)) {
         v3++;
     }
 
-    if ((v3 > 0) && (GetMonData(param0, 152, NULL) == param2)) {
+    if ((v3 > 0) && (GetMonData(param0, MON_DATA_152, NULL) == param2)) {
         v3++;
     }
 
@@ -2425,8 +2425,8 @@ u8 sub_02075D74 (BoxPokemon * param0)
     int v2;
 
     v2 = sub_02073D20(param0);
-    v0 = sub_02074570(param0, 5, 0);
-    v1 = sub_02074570(param0, 0, 0);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES, 0);
+    v1 = sub_02074570(param0, MON_DATA_PERSONALITY, 0);
 
     sub_02073D48(param0, v2);
 
@@ -2476,8 +2476,8 @@ u8 sub_02075E14 (BoxPokemon * param0)
     u32 v0;
     u32 v1;
 
-    v0 = sub_02074570(param0, 7, 0);
-    v1 = sub_02074570(param0, 0, 0);
+    v0 = sub_02074570(param0, MON_DATA_OT_ID, 0);
+    v1 = sub_02074570(param0, MON_DATA_PERSONALITY, 0);
 
     return sub_02075E38(v0, v1);
 }
@@ -2537,19 +2537,19 @@ void sub_02075F0C (UnkStruct_02008A90 * param0, BoxPokemon * param1, u8 param2, 
     u32 v5;
 
     v0 = sub_02073D20(param1);
-    v1 = sub_02074570(param1, 174, NULL);
+    v1 = sub_02074570(param1, MON_DATA_SPECIES_EGG, NULL);
     v2 = sub_02075D74(param1);
     v3 = sub_02075E14(param1);
-    v5 = sub_02074570(param1, 0, NULL);
+    v5 = sub_02074570(param1, MON_DATA_PERSONALITY, NULL);
 
     if (v1 == 494) {
-        if (sub_02074570(param1, 5, NULL) == 490) {
+        if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 490) {
             v4 = 1;
         } else {
             v4 = 0;
         }
     } else {
-        v4 = sub_02074570(param1, 112, NULL);
+        v4 = sub_02074570(param1, MON_DATA_FORM, NULL);
     }
 
     if (param3 == 1) {
@@ -2857,18 +2857,18 @@ u8 sub_020765C4 (BoxPokemon * param0, u8 param1, int param2)
     u8 v2;
     u32 v3;
 
-    v0 = sub_02074570(param0, 174, NULL);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES_EGG, NULL);
     v1 = sub_02075D74(param0);
-    v3 = sub_02074570(param0, 0, NULL);
+    v3 = sub_02074570(param0, MON_DATA_PERSONALITY, NULL);
 
     if (v0 == 494) {
-        if (sub_02074570(param0, 5, NULL) == 490) {
+        if (sub_02074570(param0, MON_DATA_SPECIES, NULL) == 490) {
             v2 = 1;
         } else {
             v2 = 0;
         }
     } else {
-        v2 = sub_02074570(param0, 112, NULL);
+        v2 = sub_02074570(param0, MON_DATA_FORM, NULL);
     }
 
     if (param2 == 1) {
@@ -3154,7 +3154,7 @@ u8 sub_02076AF8 (Pokemon * param0)
 
 u8 sub_02076B00 (BoxPokemon * param0)
 {
-    return sub_02074570(param0, 112, NULL);
+    return sub_02074570(param0, MON_DATA_FORM, NULL);
 }
 
 BoxPokemon * sub_02076B10 (Pokemon * param0)
@@ -3170,9 +3170,9 @@ u8 sub_02076B14 (Pokemon * param0)
     u32 v3;
     int v4;
 
-    v0 = GetMonData(param0, 5, NULL);
-    v1 = GetMonData(param0, 161, NULL) + 1;
-    v2 = GetMonData(param0, 8, NULL);
+    v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param0, MON_DATA_161, NULL) + 1;
+    v2 = GetMonData(param0, MON_DATA_EXP, NULL);
     v4 = sub_020759F0(v0, 21);
     v3 = sub_02075B00(v4, 100);
 
@@ -3210,10 +3210,10 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
     UnkStruct_0207821C * v10;
     int v11;
 
-    v0 = GetMonData(param1, 5, NULL);
-    v1 = GetMonData(param1, 6, NULL);
-    v6 = GetMonData(param1, 0, NULL);
-    v8 = GetMonData(param1, 20, NULL);
+    v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param1, MON_DATA_HELD_ITEM, NULL);
+    v6 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
+    v8 = GetMonData(param1, MON_DATA_BEAUTY, NULL);
     v9 = (v6 & 0xffff0000) >> 16;
     v7 = Item_GetAttribute(v1, 1, 0);
 
@@ -3232,8 +3232,8 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
 
     switch (param2) {
     case 0:
-        v2 = GetMonData(param1, 161, NULL);
-        v5 = GetMonData(param1, 9, NULL);
+        v2 = GetMonData(param1, MON_DATA_161, NULL);
+        v5 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
 
         for (v3 = 0; v3 < 7; v3++) {
             switch (v10->unk_00[v3].unk_00) {
@@ -3263,7 +3263,7 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
                 break;
             case 8:
                 if (v10->unk_00[v3].unk_02 <= v2) {
-                    if ((GetMonData(param1, 165, NULL)) > (GetMonData(param1, 166, NULL))) {
+                    if ((GetMonData(param1, MON_DATA_165, NULL)) > (GetMonData(param1, MON_DATA_166, NULL))) {
                         v4 = v10->unk_00[v3].unk_04;
                         param4[0] = 8;
                     }
@@ -3271,7 +3271,7 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
                 break;
             case 9:
                 if (v10->unk_00[v3].unk_02 <= v2) {
-                    if ((GetMonData(param1, 165, NULL)) == (GetMonData(param1, 166, NULL))) {
+                    if ((GetMonData(param1, MON_DATA_165, NULL)) == (GetMonData(param1, MON_DATA_166, NULL))) {
                         v4 = v10->unk_00[v3].unk_04;
                         param4[0] = 9;
                     }
@@ -3279,7 +3279,7 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
                 break;
             case 10:
                 if (v10->unk_00[v3].unk_02 <= v2) {
-                    if ((GetMonData(param1, 165, NULL)) < (GetMonData(param1, 166, NULL))) {
+                    if ((GetMonData(param1, MON_DATA_165, NULL)) < (GetMonData(param1, MON_DATA_166, NULL))) {
                         v4 = v10->unk_00[v3].unk_04;
                         param4[0] = 10;
                     }
@@ -3343,13 +3343,13 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
                 }
                 break;
             case 22:
-                if ((GetMonData(param1, 111, NULL) == 0) && (v10->unk_00[v3].unk_02 <= v2)) {
+                if ((GetMonData(param1, MON_DATA_111, NULL) == 0) && (v10->unk_00[v3].unk_02 <= v2)) {
                     v4 = v10->unk_00[v3].unk_04;
                     param4[0] = 22;
                 }
                 break;
             case 23:
-                if ((GetMonData(param1, 111, NULL) == 1) && (v10->unk_00[v3].unk_02 <= v2)) {
+                if ((GetMonData(param1, MON_DATA_111, NULL) == 1) && (v10->unk_00[v3].unk_02 <= v2)) {
                     v4 = v10->unk_00[v3].unk_04;
                     param4[0] = 23;
                 }
@@ -3408,13 +3408,13 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
                 break;
             }
 
-            if ((v10->unk_00[v3].unk_00 == 16) && (GetMonData(param1, 111, NULL) == 0) && (v10->unk_00[v3].unk_02 == param3)) {
+            if ((v10->unk_00[v3].unk_00 == 16) && (GetMonData(param1, MON_DATA_111, NULL) == 0) && (v10->unk_00[v3].unk_02 == param3)) {
                 v4 = v10->unk_00[v3].unk_04;
                 param4[0] = 0;
                 break;
             }
 
-            if ((v10->unk_00[v3].unk_00 == 17) && (GetMonData(param1, 111, NULL) == 1) && (v10->unk_00[v3].unk_02 == param3)) {
+            if ((v10->unk_00[v3].unk_00 == 17) && (GetMonData(param1, MON_DATA_111, NULL) == 1) && (v10->unk_00[v3].unk_02 == param3)) {
                 v4 = v10->unk_00[v3].unk_04;
                 param4[0] = 0;
                 break;
@@ -3478,8 +3478,8 @@ void sub_02077020 (BoxPokemon * param0)
     u16 * v7 = Heap_AllocFromHeap(0, 44);
 
     v0 = sub_02073D20(param0);
-    v2 = sub_02074570(param0, 5, 0);
-    v4 = sub_02074570(param0, 112, 0);
+    v2 = sub_02074570(param0, MON_DATA_SPECIES, 0);
+    v4 = sub_02074570(param0, MON_DATA_FORM, 0);
     v6 = sub_02075B40(param0);
 
     sub_02077D28(v2, v4, v7);
@@ -3524,7 +3524,7 @@ u16 sub_020770D4 (BoxPokemon * param0, u16 param1)
     v4 = sub_02073D20(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((v2 = sub_02074570(param0, 54 + v0, NULL)) == 0) {
+        if ((v2 = sub_02074570(param0, MON_DATA_MOVE1 + v0, NULL)) == 0){
             sub_02077238(param0, param1, v0);
             v3 = param1;
             break;
@@ -3617,9 +3617,9 @@ u16 sub_0207727C (Pokemon * param0, int * param1, u16 * param2)
     u8 v3;
     u16 * v4 = Heap_AllocFromHeap(0, 44);
 
-    v1 = GetMonData(param0, 5, NULL);
-    v2 = GetMonData(param0, 112, NULL);
-    v3 = GetMonData(param0, 161, NULL);
+    v1 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v2 = GetMonData(param0, MON_DATA_FORM, NULL);
+    v3 = GetMonData(param0, MON_DATA_161, NULL);
 
     sub_02077D28(v1, v2, v4);
 
@@ -3706,7 +3706,7 @@ BOOL sub_0207749C (Pokemon * param0, u16 param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (GetMonData(param0, 54 + v0, NULL) == param1) {
+        if (GetMonData(param0, MON_DATA_MOVE1 + v0, NULL) == param1){
             break;
         }
     }
@@ -3754,8 +3754,8 @@ u8 sub_02077550 (Party * param0)
     for (v2 = 0; v2 < v3; v2++) {
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
-        if ((GetMonData(v4, 5, NULL)) && (GetMonData(v4, 76, NULL) == 0)) {
-            v1 = GetMonData(v4, 161, NULL);
+        if ((GetMonData(v4, MON_DATA_SPECIES, NULL)) && (GetMonData(v4, MON_DATA_IS_EGG, NULL) == 0)) {
+            v1 = GetMonData(v4, MON_DATA_161, NULL);
 
             if (v1 > v0) {
                 v0 = v1;
@@ -3811,7 +3811,7 @@ s8 sub_0207762C (Pokemon * param0, int param1)
 
 s8 sub_02077634 (BoxPokemon * param0, int param1)
 {
-    return sub_02077648(sub_02074570(param0, 0, NULL), param1);
+    return sub_02077648(sub_02074570(param0, MON_DATA_PERSONALITY, NULL), param1);
 }
 
 s8 sub_02077648 (u32 param0, int param1)
@@ -3856,7 +3856,7 @@ void sub_020776B0 (Party * param0)
             v4 = sub_0201D2E8() % v3;
             v2 = Party_GetPokemonBySlotIndex(param0, v4);
 
-            if ((GetMonData(v2, 5, NULL)) && (GetMonData(v2, 76, NULL) == 0)) {
+            if ((GetMonData(v2, MON_DATA_SPECIES, NULL)) && (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                 break;
             } else {
                 v4 = v3;
@@ -3893,7 +3893,7 @@ u8 sub_02077758 (Party * param0, u8 param1)
             if (param1 & 1) {
                 v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
-                if (GetMonData(v3, 154, NULL)) {
+                if (GetMonData(v3, MON_DATA_POKERUS, NULL)) {
                     v2 |= v1;
                 }
             }
@@ -3905,7 +3905,7 @@ u8 sub_02077758 (Party * param0, u8 param1)
     } else {
         v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v3, 154, NULL)) {
+        if (GetMonData(v3, MON_DATA_POKERUS, NULL)) {
             v2++;
         }
     }
@@ -3925,8 +3925,8 @@ void sub_020777B4 (Party * param0, s32 param1)
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v3, 5, NULL)) {
-            v2 = GetMonData(v3, 154, NULL);
+        if (GetMonData(v3, MON_DATA_SPECIES, NULL)) {
+            v2 = GetMonData(v3, MON_DATA_POKERUS, NULL);
 
             if (v2 & 0xf) {
                 if (((v2 & 0xf) < param1) || (param1 > 4)) {
@@ -3958,14 +3958,14 @@ void sub_0207782C (Party * param0)
         for (v0 = 0; v0 < v1; v0++) {
             v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
-            if (GetMonData(v3, 5, NULL)) {
-                v2 = GetMonData(v3, 154, NULL);
+            if (GetMonData(v3, MON_DATA_SPECIES, NULL)) {
+                v2 = GetMonData(v3, MON_DATA_POKERUS, NULL);
 
                 if (v2 & 0xf) {
                     if (v0 != 0) {
                         v3 = Party_GetPokemonBySlotIndex(param0, v0 - 1);
 
-                        if ((GetMonData(v3, 154, NULL) & 0xf0) == 0) {
+                        if ((GetMonData(v3, MON_DATA_POKERUS, NULL) & 0xf0) == 0) {
                             sub_02074B30(v3, 154, (u8 *)&v2);
                         }
                     }
@@ -3973,7 +3973,7 @@ void sub_0207782C (Party * param0)
                     if (v0 < v1 - 1) {
                         v3 = Party_GetPokemonBySlotIndex(param0, v0 + 1);
 
-                        if ((GetMonData(v3, 154, NULL) & 0xf0) == 0) {
+                        if ((GetMonData(v3, MON_DATA_POKERUS, NULL) & 0xf0) == 0) {
                             sub_02074B30(v3, 154, (u8 *)&v2);
                             v0++;
                         }
@@ -3991,7 +3991,7 @@ BOOL sub_020778D8 (Pokemon * param0)
 
 BOOL sub_020778E0 (BoxPokemon * param0)
 {
-    return (sub_02074570(param0, 154, NULL) & 0xf) != 0;
+    return (sub_02074570(param0, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
 
 BOOL sub_020778F8 (Pokemon * param0)
@@ -4003,7 +4003,7 @@ BOOL sub_02077900 (BoxPokemon * param0)
 {
     u8 v0;
 
-    v0 = sub_02074570(param0, 154, NULL);
+    v0 = sub_02074570(param0, MON_DATA_POKERUS, NULL);
 
     if (v0 & 0xf) {
         return 0;
@@ -4024,9 +4024,9 @@ void sub_02077930 (BoxPokemon * param0)
     int v2;
     int v3;
 
-    v0 = sub_02074570(param0, 5, NULL);
-    v1 = sub_02074570(param0, 10, NULL);
-    v2 = sub_02074570(param0, 6, NULL);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
+    v1 = sub_02074570(param0, MON_DATA_10, NULL);
+    v2 = sub_02074570(param0, MON_DATA_HELD_ITEM, NULL);
 
     if ((v0 == 493) && (v1 == 121)) {
         v3 = sub_02077988(Item_GetAttribute(v2, 1, 0));
@@ -4114,8 +4114,8 @@ int sub_02077A1C (BoxPokemon * param0)
     int v1;
     int v2;
 
-    v0 = sub_02074570(param0, 5, NULL);
-    v1 = sub_02074570(param0, 6, NULL);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
+    v1 = sub_02074570(param0, MON_DATA_HELD_ITEM, NULL);
 
     if (v0 == 487) {
         v2 = (v1 == 112) ? 1 : 0;
@@ -4133,7 +4133,7 @@ void sub_02077A64 (Pokemon * param0)
 {
     int v0 = 1;
 
-    if (GetMonData(param0, 5, NULL) == 487) {
+    if (GetMonData(param0, MON_DATA_SPECIES, NULL) == 487) {
         sub_02074C60(&param0->box, 112, &v0);
         sub_02078044(&param0->box);
         sub_0207418C(param0);
@@ -4168,7 +4168,7 @@ void sub_02077ADC (BoxPokemon * param0, int param1)
 {
     int v0;
 
-    v0 = sub_02074570(param0, 5, NULL);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
 
     if (v0 == 492) {
         GF_ASSERT(param1 <= 1);
@@ -4183,11 +4183,11 @@ BOOL sub_02077B14 (Pokemon * param0)
     u32 v0, v1, v2, v3, v4;
     RTCTime v5;
 
-    v0 = GetMonData(param0, 5, NULL);
-    v1 = GetMonData(param0, 112, NULL);
-    v2 = GetMonData(param0, 160, NULL);
-    v3 = GetMonData(param0, 163, NULL);
-    v4 = GetMonData(param0, 110, NULL);
+    v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param0, MON_DATA_FORM, NULL);
+    v2 = GetMonData(param0, MON_DATA_160, NULL);
+    v3 = GetMonData(param0, MON_DATA_163, NULL);
+    v4 = GetMonData(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
     sub_02013880(&v5);
 
@@ -4208,8 +4208,8 @@ void sub_02077B8C (Party * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v4 = Party_GetPokemonBySlotIndex(param0, v0);
-        v2 = GetMonData(v4, 5, NULL);
-        v3 = GetMonData(v4, 112, NULL);
+        v2 = GetMonData(v4, MON_DATA_SPECIES, NULL);
+        v3 = GetMonData(v4, MON_DATA_FORM, NULL);
 
         if ((v2 == 492) && (v3 == 1)) {
             sub_02077ACC(v4, v5);
@@ -4255,13 +4255,13 @@ BOOL sub_02077C20 (Pokemon * param0, int param1, int param2)
 {
     int v0, v1;
 
-    v0 = GetMonData(param0, 5, NULL);
+    v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
     if (v0 != 479) {
         return 0;
     }
 
-    v1 = GetMonData(param0, 112, NULL);
+    v1 = GetMonData(param0, MON_DATA_FORM, NULL);
 
     {
         int v2, v3, v4, v5;
@@ -4277,7 +4277,7 @@ BOOL sub_02077C20 (Pokemon * param0, int param1, int param2)
         v4 = v6[param1];
 
         for (v2 = 0; v2 < 4; v2++) {
-            v5 = GetMonData(param0, 54 + v2, NULL);
+            v5 = GetMonData(param0, MON_DATA_MOVE1 + v2, NULL);
 
             for (v3 = 1; v3 < NELEMS(v6); v3++) {
                 if ((v5 != 0) && (v5 == v6[v3])) {
@@ -4296,7 +4296,7 @@ BOOL sub_02077C20 (Pokemon * param0, int param1, int param2)
 
         if (v4 != 0) {
             for (v2 = 0; v2 < 4; v2++) {
-                if (GetMonData(param0, 54 + v2, NULL) == 0) {
+                if (GetMonData(param0, MON_DATA_MOVE1 + v2, NULL) == 0){
                     sub_020771F8(param0, v4, v2);
                     break;
                 }
@@ -4307,7 +4307,7 @@ BOOL sub_02077C20 (Pokemon * param0, int param1, int param2)
             }
         }
 
-        if (GetMonData(param0, 54, NULL) == 0) {
+        if (GetMonData(param0, MON_DATA_MOVE1, NULL) == 0) {
             sub_020771F8(param0, 84, 0);
         }
     }
@@ -4365,8 +4365,8 @@ BOOL sub_02077E3C (Pokemon * param0)
 {
     int v0, v1;
 
-    v0 = GetMonData(param0, 5, NULL);
-    v1 = GetMonData(param0, 112, NULL);
+    v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v1 = GetMonData(param0, MON_DATA_FORM, NULL);
 
     return sub_02005844(v0, v1);
 }
@@ -4378,7 +4378,7 @@ void sub_02077E64 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, in
     sub_02077EA4(&param0->box, param1, param2, param3, param4, param5);
 
     if (param2 == 14) {
-        v0 = GetMonData(param0, 164, NULL);
+        v0 = GetMonData(param0, MON_DATA_164, NULL);
         sub_02074B30(param0, 163, &v0);
 
         v0 = 0;
@@ -4424,8 +4424,8 @@ void sub_02077F0C (Pokemon * param0, u32 param1, int param2)
     }
 
     v1 = sub_0201D2E8() % 100;
-    v2 = GetMonData(param0, 5, NULL);
-    v3 = GetMonData(param0, 112, NULL);
+    v2 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+    v3 = GetMonData(param0, MON_DATA_FORM, NULL);
     v5 = sub_020759CC(v2, v3, 16);
     v6 = sub_020759CC(v2, v3, 17);
 
@@ -4453,8 +4453,8 @@ BOOL sub_02077FBC (BoxPokemon * param0, u8 param1)
     u16 v0;
     int v1;
 
-    v0 = sub_02074570(param0, 174, NULL);
-    v1 = sub_02074570(param0, 112, NULL);
+    v0 = sub_02074570(param0, MON_DATA_SPECIES_EGG, NULL);
+    v1 = sub_02074570(param0, MON_DATA_FORM, NULL);
 
     return sub_02077FE4(v0, v1, param1);
 }
@@ -4498,9 +4498,9 @@ void sub_02078044 (BoxPokemon * param0)
     u32 v5;
 
     v0 = sub_02073D20(param0);
-    v1 = sub_02074570(param0, 5, NULL);
-    v5 = sub_02074570(param0, 0, NULL);
-    v2 = sub_02074570(param0, 112, NULL);
+    v1 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
+    v5 = sub_02074570(param0, MON_DATA_PERSONALITY, NULL);
+    v2 = sub_02074570(param0, MON_DATA_FORM, NULL);
     v3 = sub_020759CC(v1, v2, 24);
     v4 = sub_020759CC(v1, v2, 25);
 
@@ -5211,21 +5211,21 @@ u16 sub_02078824 (u8 param0)
 
 BOOL sub_02078838 (Pokemon * param0)
 {
-    u16 v0 = (u16)GetMonData(param0, 5, NULL);
+    u16 v0 = (u16)GetMonData(param0, MON_DATA_SPECIES, NULL);
     return sub_02078804(v0);
 }
 
 BOOL sub_0207884C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2)
 {
     u32 v0 = sub_02025F20(param1);
-    u32 v1 = sub_02074570(param0, 7, NULL);
+    u32 v1 = sub_02074570(param0, MON_DATA_OT_ID, NULL);
     u32 v2 = sub_02025F30(param1);
-    u32 v3 = sub_02074570(param0, 157, NULL);
+    u32 v3 = sub_02074570(param0, MON_DATA_OT_GENDER, NULL);
     UnkStruct_02023790 * v4 = sub_02025F04(param1, param2);
     UnkStruct_02023790 * v5 = sub_02023790(8, param2);
     BOOL v6 = 0;
 
-    sub_02074570(param0, 145, v5);
+    sub_02074570(param0, MON_DATA_145, v5);
 
     if ((v0 == v1) && (v2 == v3) && (sub_02023BE0(v4, v5) == 0)) {
         v6 = 1;
@@ -5290,7 +5290,7 @@ void sub_0207896C (BoxPokemon * param0)
     v0 = sub_02073D20(param0);
 
     for (v1 = 0; v1 < 4; v1++) {
-        if (sub_02074570(param0, 54 + v1, NULL)) {
+        if (sub_02074570(param0, MON_DATA_MOVE1 + v1, NULL)){
             u8 v2 = sub_02074570(param0, 66 + v1, NULL);
 
             sub_02074C60(param0, 58 + v1, &v2);

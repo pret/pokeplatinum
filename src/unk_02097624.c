@@ -120,7 +120,7 @@ UnkStruct_02097728 * sub_020976BC (UnkStruct_021C0794 * param0, Pokemon * param1
     v0->unk_10 = param0;
     v0->unk_14 = sub_0202818C(param2);
 
-    GetMonData(param1, 170, v0->unk_14);
+    GetMonData(param1, MON_DATA_170, v0->unk_14);
     return v0;
 }
 
@@ -187,7 +187,7 @@ int sub_02097788 (UnkStruct_02028430 * param0, Pokemon * param1, int param2)
 
     v2 = sub_0202818C(param2);
 
-    GetMonData(param1, 170, v2);
+    GetMonData(param1, MON_DATA_170, v2);
     sub_02028480(param0, 0, v0, v2);
     sub_02028124(v2);
     sub_02074B30(param1, 170, v2);

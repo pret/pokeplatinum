@@ -530,12 +530,12 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     UnkStruct_02023790 * v5 = sub_02023790((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
-    sub_02074570(param4, 119, v4);
+    sub_02074570(param4, MON_DATA_119, v4);
 
     v10 = param5->unk_00;
     v6 = param5->unk_02;
     v7 = param5->unk_03;
-    v8 = sub_02074570(param4, 6, NULL);
+    v8 = sub_02074570(param4, MON_DATA_HELD_ITEM, NULL);
     v3 = sub_0200B1EC(param0, 70);
     v1 = sub_0200B1EC(param0, Unk_ov94_02245FD8[v6]);
 
@@ -581,7 +581,7 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
     sub_02023D28(v0, param2);
 
     v2 = sub_0200B1EC(param0, 172);
-    GetMonData(param3, 145, v3);
+    GetMonData(param3, MON_DATA_145, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param1[1], v0, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
@@ -602,8 +602,8 @@ void ov94_0223DB2C (Pokemon * param0)
     sub_02075EF4(&v0, param0, 2);
 
     {
-        int v2 = GetMonData(param0, 0, NULL);
-        int v3 = GetMonData(param0, 5, NULL);
+        int v2 = GetMonData(param0, MON_DATA_PERSONALITY, NULL);
+        int v3 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
         sub_020136A4(v0.unk_00, v0.unk_02, 62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }

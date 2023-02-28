@@ -78,7 +78,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
     switch (v0->unk_00) {
     case 0:
     {
-        v0->unk_0C = GetMonData(v1, 5, NULL);
+        v0->unk_0C = GetMonData(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
         case 487:

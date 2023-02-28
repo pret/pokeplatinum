@@ -290,11 +290,11 @@ void ov104_0223BA24 (Party * param0)
     for (v0 = 0; v0 < v2; v0++) {
         v4 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v4, 172, NULL) == 0) {
+        if (GetMonData(v4, MON_DATA_172, NULL) == 0) {
             continue;
         }
 
-        if (GetMonData(v4, 163, NULL) == 0) {
+        if (GetMonData(v4, MON_DATA_163, NULL) == 0) {
             v3 = 1;
             sub_02074B30(v4, 163, &v3);
         }
