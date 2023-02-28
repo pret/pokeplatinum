@@ -337,14 +337,14 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
     param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
-    sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), MON_DATA_2, MON_DATA_2, 1);
+    sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
-    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), MON_DATA_2, MON_DATA_PERSONALITY, 1);
-    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), MON_DATA_3, MON_DATA_PERSONALITY, 1);
+    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
     sub_0200BECC(param0->unk_08, 4, GetMonData(param0->unk_0C, MON_DATA_153, NULL));
-    sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), MON_DATA_2, MON_DATA_2, 1);
+    sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, MON_DATA_147, NULL));
-    sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), MON_DATA_2, MON_DATA_PERSONALITY, 1);
+    sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
     sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_152, NULL));
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
     sub_020237BC(v0);
@@ -359,8 +359,8 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
     sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
-    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), MON_DATA_2, MON_DATA_PERSONALITY, 1);
-    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), MON_DATA_3, MON_DATA_PERSONALITY, 1);
+    sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
+    sub_0200B60C(param0->unk_08, 3, GetMonData(param0->unk_0C, MON_DATA_MET_LEVEL, NULL), 3, 0, 1);
 
     switch (GetMonData(param0->unk_0C, MON_DATA_MET_GAME, NULL)) {
     default:
@@ -404,12 +404,12 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
     if (param2 == 0) {
         sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
         sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, MON_DATA_147, NULL));
-        sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), MON_DATA_2, MON_DATA_PERSONALITY, 1);
+        sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
         sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_152, NULL));
     } else {
         sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
         sub_0200C2E0(param0->unk_08, 6, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
-        sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_151, NULL), MON_DATA_2, MON_DATA_PERSONALITY, 1);
+        sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
         sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_153, NULL));
     }
 

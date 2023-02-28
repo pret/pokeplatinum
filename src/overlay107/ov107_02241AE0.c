@@ -2359,9 +2359,9 @@ static void ov107_02243CFC (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA5
         v4 = 0;
     }
 
-    sub_0200C5BC(param0->unk_1C4, GetMonData(v7, MON_DATA_163, NULL), MON_DATA_3, MON_DATA_1, param1, v1, v2);
+    sub_0200C5BC(param0->unk_1C4, GetMonData(v7, MON_DATA_163, NULL), 3, 1, param1, v1, v2);
     sub_0200C578(param0->unk_1C4, 0, param1, v5, v6);
-    sub_0200C5BC(param0->unk_1C4, GetMonData(v7, MON_DATA_164, NULL), MON_DATA_3, MON_DATA_PERSONALITY, param1, v3, v4);
+    sub_0200C5BC(param0->unk_1C4, GetMonData(v7, MON_DATA_164, NULL), 3, 0, param1, v3, v4);
 
     return;
 }
@@ -2409,7 +2409,7 @@ static void ov107_02243DE4 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA5
         v4 = 0;
     }
 
-    sub_0200C648(param0->unk_1C4, 1, GetMonData(v7, MON_DATA_161, NULL), MON_DATA_3, MON_DATA_PERSONALITY, param1, v1, v2);
+    sub_0200C648(param0->unk_1C4, 1, GetMonData(v7, MON_DATA_161, NULL), 3, 0, param1, v1, v2);
     v0 = GetMonData(v7, MON_DATA_111, NULL);
     ov107_02244B8C(param0, param1, v3, v4, 0, v0);
 

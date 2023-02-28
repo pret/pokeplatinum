@@ -313,7 +313,7 @@ BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
     v4 = GetMonData(v1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v2 > 0) {
-        if (Item_GetAttribute(GetMonData(v1, MON_DATA_HELD_ITEM, NULL), MON_DATA_1, 11) == 53) {
+        if (Item_GetAttribute(GetMonData(v1, MON_DATA_HELD_ITEM, NULL), 1, 11) == 53) {
             v2 = v2 * 150 / 100;
         }
 

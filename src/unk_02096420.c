@@ -725,7 +725,7 @@ static u8 sub_020971D0 (Pokemon * param0, s32 param1, s32 param2, u16 param3, u3
     }
 
     if (param2 > 0) {
-        if (Item_GetAttribute(GetMonData(param0, MON_DATA_HELD_ITEM, NULL), MON_DATA_1, param4) == 53) {
+        if (Item_GetAttribute(GetMonData(param0, MON_DATA_HELD_ITEM, NULL), 1, param4) == 53) {
             param2 = param2 * 150 / 100;
         }
 

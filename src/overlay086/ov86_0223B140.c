@@ -864,12 +864,12 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         param0->unk_2E0[v12] = GetMonData((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = GetMonData((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[0], param0->unk_310, GetMonData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), MON_DATA_1, MON_DATA_2, param0->unk_2E0[v12]);
+        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[0], param0->unk_310, GetMonData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[1], param0->unk_310, GetMonData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), MON_DATA_1, MON_DATA_2, param0->unk_2E0[v12]);
+        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[1], param0->unk_310, GetMonData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);

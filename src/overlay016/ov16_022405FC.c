@@ -8541,7 +8541,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_0200F344(1, 0x0);
 
                 v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
-                v16 = sub_0208712C(5, 1, GetMonData(v3, MON_DATA_SPECIES, NULL), MON_DATA_10, ov16_0223EDA4(v2->unk_00));
+                v16 = sub_0208712C(5, 1, GetMonData(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->unk_00));
                 v2->unk_50[1] = v16;
 
                 if (ov16_0223DF60(v2->unk_00, 0) < 6) {
@@ -9786,7 +9786,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     }
 
     sub_0200B5CC(v5, 0, sub_02076B10(param2));
-    sub_0200B60C(v5, 1, GetMonData(param2, MON_DATA_161, NULL), MON_DATA_3, MON_DATA_PERSONALITY, 1);
+    sub_0200B60C(v5, 1, GetMonData(param2, MON_DATA_161, NULL), 3, 0, 1);
     sub_0200C388(v5, v7, v6);
     sub_020237BC(v6);
     sub_0201A7A0(&v9);

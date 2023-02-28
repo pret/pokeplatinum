@@ -7731,7 +7731,7 @@ int ov16_0225BA88 (UnkStruct_0207ADB4 * param0, int param1)
 
                 if (v8) {
                     v16 = 0;
-                    ov16_022552D4(v20, v8, v9, GetMonData(v19, MON_DATA_10, NULL), ov16_02255A4C(v20, v2), ov16_02258AB8(v20, v2), ov16_02252060(v20, v2, MON_DATA_27, NULL), ov16_02252060(v20, v2, MON_DATA_28, NULL), &v16);
+                    ov16_022552D4(v20, v8, v9, GetMonData(v19, MON_DATA_10, NULL), ov16_02255A4C(v20, v2), ov16_02258AB8(v20, v2), ov16_02252060(v20, v2, 27, NULL), ov16_02252060(v20, v2, 28, NULL), &v16);
 
                     if (v16 & 0x2) {
                         break;
