@@ -913,7 +913,7 @@ static void ov97_0223685C (BoxPokemonGBA * param0)
     }
 }
 
-static void ov97_0223687C (BoxPokemonGBA * param0)
+static void GBAEncryptBoxMon (BoxPokemonGBA * param0)
 {
     int v0;
     u32 * v1;
@@ -1216,7 +1216,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     }
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR)
-        ov97_0223687C(boxMonGBA);
+        GBAEncryptBoxMon(boxMonGBA);
 
     return retVal;
 }
@@ -1244,7 +1244,7 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
             param0->isBadEgg = 1;
             param0->isEgg = 1;
             v5->isEgg = 1;
-            ov97_0223687C(param0);
+            GBAEncryptBoxMon(param0);
             return;
         }
     }
@@ -1285,7 +1285,7 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
 
     if (param1 > 10) {
         param0->checksum = ov97_0223689C(param0);
-        ov97_0223687C(param0);
+        GBAEncryptBoxMon(param0);
     }
 }
 
