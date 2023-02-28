@@ -1854,7 +1854,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
 
             if (v3->unk_510 == 0) {
                 v3->unk_E8E0 = ov97_02236340();
-                v3->unk_E8E4 = v3->unk_E8E0->unk_00;
+                v3->unk_E8E4 = v3->unk_E8E0->currentBox;
             } else {
                 v3->unk_04 = 1;
             }
