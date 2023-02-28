@@ -592,7 +592,7 @@ static int ov88_0223B914 (UnkStruct_02095E80 * param0)
                     v1 = GetMonData(v4, MON_DATA_FORM, NULL);
 
                     if (v1 != 0) {
-                        sub_02077ACC(v4, 0);
+                        SetShayminForm(v4, 0);
                     }
                 }
             }

@@ -555,7 +555,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
                 SetRotomForm(v0, 0, 0);
                 break;
             case 492:
-                sub_02077ACC(v0, 0);
+                SetShayminForm(v0, 0);
                 break;
             }
         }
@@ -612,7 +612,7 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
             SetRotomForm(v0, 0, 0);
             break;
         case 492:
-            sub_02077ACC(v0, 0);
+            SetShayminForm(v0, 0);
             break;
         }
     }

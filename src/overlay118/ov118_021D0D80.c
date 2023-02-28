@@ -87,7 +87,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
             v0->unk_10 = 0;
             break;
         case 492:
-            sub_02077ACC(v1, 1);
+            SetShayminForm(v1, 1);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;

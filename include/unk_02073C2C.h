@@ -130,7 +130,7 @@ int sub_02077A00(Pokemon * param0);
 int sub_02077A1C(BoxPokemon * param0);
 void sub_02077A64(Pokemon * param0);
 void sub_02077A9C(Party * param0, int param1);
-void sub_02077ACC(Pokemon * param0, int param1);
+void SetShayminForm(Pokemon * param0, int param1);
 void sub_02077ADC(BoxPokemon * param0, int param1);
 BOOL sub_02077B14(Pokemon * param0);
 void sub_02077B8C(Party * param0);

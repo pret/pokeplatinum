@@ -1086,7 +1086,7 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
     u16 * v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        sub_02077ACC((Pokemon *)(param1->unk_114), 0);
+        SetShayminForm((Pokemon *)(param1->unk_114), 0);
 
         MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, SizeOfStructPokemon());
     } else {

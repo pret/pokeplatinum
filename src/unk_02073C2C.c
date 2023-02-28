@@ -216,7 +216,7 @@ void sub_02077930(BoxPokemon * param0);
 u8 sub_02077988(u16 param0);
 int sub_02077A00(Pokemon * param0);
 int sub_02077A1C(BoxPokemon * param0);
-void sub_02077ACC(Pokemon * param0, int param1);
+void SetShayminForm(Pokemon * param0, int param1);
 void sub_02077ADC(BoxPokemon * param0, int param1);
 void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);
@@ -4158,7 +4158,7 @@ void sub_02077A9C (Party * param0, int param1)
     }
 }
 
-void sub_02077ACC (Pokemon * param0, int param1)
+void SetShayminForm (Pokemon * param0, int param1)
 {
     sub_02077ADC(&param0->box, param1);
     sub_0207418C(param0);
@@ -4212,7 +4212,7 @@ void sub_02077B8C (Party * param0)
         v3 = GetMonData(v4, MON_DATA_FORM, NULL);
 
         if ((v2 == 492) && (v3 == 1)) {
-            sub_02077ACC(v4, v5);
+            SetShayminForm(v4, v5);
         }
     }
 }
