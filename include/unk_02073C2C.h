@@ -135,7 +135,7 @@ void sub_02077ADC(BoxPokemon * param0, int param1);
 BOOL sub_02077B14(Pokemon * param0);
 void sub_02077B8C(Party * param0);
 BOOL sub_02077BD8(Party * param0, int param1, const RTCTime * param2);
-BOOL sub_02077C20(Pokemon * param0, int param1, int param2);
+BOOL SetRotomForm(Pokemon * param0, int param1, int param2);
 void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);
 void sub_02077DB4(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7, u8 param8);

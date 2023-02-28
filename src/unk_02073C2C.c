@@ -4251,7 +4251,7 @@ BOOL sub_02077BD8 (Party * param0, int param1, const RTCTime * param2)
     }
 }
 
-BOOL sub_02077C20 (Pokemon * param0, int param1, int param2)
+BOOL SetRotomForm (Pokemon * param0, int param1, int param2)
 {
     int v0, v1;
 

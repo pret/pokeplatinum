@@ -552,7 +552,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
                 sub_02077A00(v0);
                 break;
             case 479:
-                sub_02077C20(v0, 0, 0);
+                SetRotomForm(v0, 0, 0);
                 break;
             case 492:
                 sub_02077ACC(v0, 0);
@@ -609,7 +609,7 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
             sub_02077A00(v0);
             break;
         case 479:
-            sub_02077C20(v0, 0, 0);
+            SetRotomForm(v0, 0, 0);
             break;
         case 492:
             sub_02077ACC(v0, 0);
@@ -682,7 +682,7 @@ BOOL ov5_021F6F44 (UnkStruct_0203E724 * param0)
     v5 = Party_GetFromSavedata(v6->unk_0C);
     v4 = Party_GetPokemonBySlotIndex(v5, v7);
 
-    sub_02077C20(v4, v10, v8);
+    SetRotomForm(v4, v10, v8);
     sub_0202736C(sub_02027560(v6->unk_0C), v4);
 
     return 0;
