@@ -232,7 +232,7 @@ static int Unk_ov97_0223EAB8[] = {
     0x21
 };
 
-static BOOL ov97_02233B18 (int param0)
+static BOOL IsGBASpeciesInvalid (int param0)
 {
     if (param0 <= 0) {
         return 1;
@@ -680,7 +680,7 @@ static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkSt
     UnkStruct_ov97_0223F434 * v2 = Unk_ov97_0223F434 + param3;
 
     if (param4) {
-        if (ov97_02233B18(param0) == 0) {
+        if (IsGBASpeciesInvalid(param0) == 0) {
             param0 = ov97_02236DD0(param0);
         } else {
             param0 = 0;
@@ -1047,7 +1047,7 @@ static BOOL ov97_02234828 (UnkStruct_ov97_02234A2C * param0, int param1)
     BoxPokemonGBA * v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
     int v1 = GetGBABoxMonData(v0, 11, NULL);
 
-    return ov97_02233B18(v1);
+    return IsGBASpeciesInvalid(v1);
 }
 
 static int ov97_02234854 (UnkStruct_ov97_02234A2C * param0, int param1)
