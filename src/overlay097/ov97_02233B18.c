@@ -419,7 +419,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
         v1 = param0->unk_42C[v0].unk_08;
 
         if ((v2 != -1) && (v1 != 14)) {
-            ov97_02236CA4(&(param0->unk_E8E0->unk_04[v1][v2]), 11, (u8 *)&v3);
+            SetGBABoxMonData(&(param0->unk_E8E0->unk_04[v1][v2]), 11, (u8 *)&v3);
         }
     }
 }

@@ -1221,7 +1221,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     return retVal;
 }
 
-void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
+void SetGBABoxMonData (BoxPokemonGBA * boxMon, int field, const u8 * dataArg)
 {
     int v0;
     u32 v1;
@@ -1231,61 +1231,61 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
     PokemonGBASubstruct3 * v5 = 0;
     u16 v6;
 
-    if (param1 > 10) {
-        v2 = (PokemonGBASubstruct0 *)ov97_02236380(param0, param0->personality, 0);
-        v3 = (PokemonGBASubstruct1 *)ov97_02236380(param0, param0->personality, 1);
-        v4 = (PokemonGBASubstruct2 *)ov97_02236380(param0, param0->personality, 2);
-        v5 = (PokemonGBASubstruct3 *)ov97_02236380(param0, param0->personality, 3);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
+        v2 = (PokemonGBASubstruct0 *)ov97_02236380(boxMon, boxMon->personality, 0);
+        v3 = (PokemonGBASubstruct1 *)ov97_02236380(boxMon, boxMon->personality, 1);
+        v4 = (PokemonGBASubstruct2 *)ov97_02236380(boxMon, boxMon->personality, 2);
+        v5 = (PokemonGBASubstruct3 *)ov97_02236380(boxMon, boxMon->personality, 3);
 
-        GBADecryptBoxMon(param0);
-        v6 = ov97_0223689C(param0);
+        GBADecryptBoxMon(boxMon);
+        v6 = ov97_0223689C(boxMon);
 
-        if (v6 != param0->checksum) {
-            param0->isBadEgg = 1;
-            param0->isEgg = 1;
+        if (v6 != boxMon->checksum) {
+            boxMon->isBadEgg = 1;
+            boxMon->isEgg = 1;
             v5->isEgg = 1;
-            GBAEncryptBoxMon(param0);
+            GBAEncryptBoxMon(boxMon);
             return;
         }
     }
 
-    switch (param1) {
-    case 2:
+    switch (field) {
+    case GBA_MON_DATA_NICKNAME:
         for (v0 = 0; v0 < 10; v0++) {
-            param0->nickname[v0] = param2[v0];
+            boxMon->nickname[v0] = dataArg[v0];
         }
         break;
-    case 3:
-        param0->language = param2[0];
+    case GBA_MON_DATA_LANGUAGE:
+        boxMon->language = dataArg[0];
         break;
-    case 4:
-        param0->isBadEgg = param2[0];
+    case GBA_MON_DATA_SANITY_IS_BAD_EGG:
+        boxMon->isBadEgg = dataArg[0];
         break;
-    case 5:
-        param0->hasSpecies = param2[0];
+    case GBA_MON_DATA_SANITY_HAS_SPECIES:
+        boxMon->hasSpecies = dataArg[0];
         break;
-    case 6:
-        param0->isEgg = param2[0];
+    case GBA_MON_DATA_SANITY_IS_EGG:
+        boxMon->isEgg = dataArg[0];
         break;
-    case 7:
+    case GBA_MON_DATA_OT_NAME:
         for (v0 = 0; v0 < 7; v0++) {
-            param0->otName[v0] = param2[v0];
+            boxMon->otName[v0] = dataArg[v0];
         }
         break;
-    case 11:
-        v2->species = param2[0] + (param2[1] << 8);
+    case GBA_MON_DATA_SPECIES:
+        v2->species = dataArg[0] + (dataArg[1] << 8);
 
         if (v2->species) {
-            param0->hasSpecies = 1;
+            boxMon->hasSpecies = 1;
         } else {
-            param0->hasSpecies = 0;
+            boxMon->hasSpecies = 0;
         }
         break;
     }
 
-    if (param1 > 10) {
-        param0->checksum = ov97_0223689C(param0);
-        GBAEncryptBoxMon(param0);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
+        boxMon->checksum = ov97_0223689C(boxMon);
+        GBAEncryptBoxMon(boxMon);
     }
 }
 
