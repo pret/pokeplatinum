@@ -1153,7 +1153,7 @@ static void ov97_02234A2C (UnkStruct_ov97_02234A2C * param0, int param1)
     v0.unk_2C = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     v0.unk_20 = 0xA0;
 
-    ov97_0223936C(param0->unk_E8E0->unk_8344[param1], v1, 8 + 1, ov97_02235DBC());
+    ov97_0223936C(param0->unk_E8E0->boxNames[param1], v1, 8 + 1, ov97_02235DBC());
     v0.unk_38 = v1;
     ov97_02233DD0(param0, &v0, 0x1);
 }

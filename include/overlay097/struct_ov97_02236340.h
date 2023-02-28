@@ -8,7 +8,7 @@
 typedef struct {
     u8 currentBox;
     BoxPokemonGBA unk_04[14][30];
-    u8 unk_8344[14][9];
+    u8 boxNames[14][9];
     u8 unk_83C2[14];
 } PokemonStorageGBA;
 
