@@ -59,7 +59,7 @@ u32 sub_02075B78(u16 param0, u32 param1);
 u32 sub_02075B9C(UnkStruct_02075874 * param0, u16 param1, u32 param2);
 u8 sub_02075BCC(Pokemon * param0);
 u8 sub_02075BD4(BoxPokemon * param0);
-u8 sub_02075BFC(u32 param0);
+u8 GetNatureFromPersonality(u32 param0);
 s8 sub_02075C60(u8 param0, u8 param1);
 void sub_02075C74(Pokemon * param0, u8 param1, u16 param2);
 u8 sub_02075D6C(Pokemon * param0);

@@ -393,7 +393,7 @@ void ov16_0225CBDC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v4->unk_2C = param2->unk_01_3;
     v4->unk_18 = param2->unk_08;
     v4->unk_1C = param1->unk_191;
-    v4->unk_24 = sub_02075BFC(param2->unk_04);
+    v4->unk_24 = GetNatureFromPersonality(param2->unk_04);
     v4->unk_28 = param2->unk_01_2;
 
     if ((v4->unk_13 == 2) && (ov16_0223EBEC(param0) & 0x40)) {
@@ -446,7 +446,7 @@ void ov16_0225CE1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v1->unk_82 = param1->unk_191;
     v1->unk_88 = param2->unk_08;
     v1->unk_8C = param2->unk_0C;
-    v1->unk_8D = sub_02075BFC(param2->unk_04);
+    v1->unk_8D = GetNatureFromPersonality(param2->unk_04);
     v1->unk_8E = param2->unk_10;
     v1->unk_92 = param2->unk_01_2;
     v1->unk_94 = 0;
@@ -496,7 +496,7 @@ void ov16_0225CF70 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v2->unk_82 = param1->unk_191;
     v2->unk_88 = param2->unk_08;
     v2->unk_8C = param2->unk_0C;
-    v2->unk_8D = sub_02075BFC(param2->unk_04);
+    v2->unk_8D = GetNatureFromPersonality(param2->unk_04);
     v2->unk_8E = param2->unk_10;
     v2->unk_92 = param2->unk_01_2;
     v2->unk_94 = param2->unk_14;

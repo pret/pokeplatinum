@@ -345,7 +345,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     if (param4 == 0) {
         do {
             v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param3, v2) == 1));
+        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param3, v2) == 1));
 
         param1->unk_10 = v2;
     } else {

@@ -2289,12 +2289,12 @@ void ov5_021E6720 (UnkStruct_02026310 * param0)
         BoxPokemon * v5 = ov5_021E622C(param0, v2);
 
         v0 = sub_02074570(v5, MON_DATA_PERSONALITY, NULL);
-        v3 = sub_02075BFC(v0);
+        v3 = GetNatureFromPersonality(v0);
 
         while (TRUE) {
             v1 = sub_0201D35C();
 
-            if ((v3 == sub_02075BFC(v1)) && (v1 != 0)) {
+            if ((v3 == GetNatureFromPersonality(v1)) && (v1 != 0)) {
                 break;
             }
 

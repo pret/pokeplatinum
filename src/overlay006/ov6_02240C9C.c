@@ -1177,7 +1177,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
                     v1 = sub_02075E64(param3);
                 }
             } else if (param4->unk_0E == 28) {
-                v8 = sub_02075BFC(v1);
+                v8 = GetNatureFromPersonality(v1);
 
                 if (v8 == v4) {
                     break;

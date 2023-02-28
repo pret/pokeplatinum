@@ -2704,7 +2704,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v5 = 0xff;
     v6 = 0xff;
     v0 = (sub_0201D2E8() % 0xffff);
-    v2 = sub_02075BFC(v0);
+    v2 = GetNatureFromPersonality(v0);
 
     sub_0200B6D8(param1, 0, v2);
 

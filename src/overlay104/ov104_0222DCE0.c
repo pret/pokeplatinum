@@ -197,7 +197,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     if (param3 == 0) {
         do {
             v2 = (sub_0201D2E8() | sub_0201D2E8() << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param2, v2) == 1));
+        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param2, v2) == 1));
 
         param0->unk_10 = v2;
     } else {

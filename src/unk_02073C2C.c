@@ -152,7 +152,7 @@ u32 sub_02075B40(BoxPokemon * param0);
 u32 sub_02075B78(u16 param0, u32 param1);
 u8 sub_02075BCC(Pokemon * param0);
 u8 sub_02075BD4(BoxPokemon * param0);
-u8 sub_02075BFC(u32 param0);
+u8 GetNatureFromPersonality(u32 param0);
 u16 sub_02075C0C(u8 param0, u16 param1, u8 param2);
 s8 sub_02075C60(u8 param0, u8 param1);
 void sub_02075C74(Pokemon * param0, u8 param1, u16 param2);
@@ -467,7 +467,7 @@ void sub_02074044 (Pokemon * param0, u16 param1, u8 param2, u8 param3, u8 param4
 
     do {
         v0 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
-    } while (param4 != sub_02075BFC(v0));
+    } while (param4 != GetNatureFromPersonality(v0));
 
     sub_02073D80(param0, param1, param2, param3, 1, v0, 0, 0);
 }
@@ -482,7 +482,7 @@ void sub_02074088 (Pokemon * param0, u16 param1, u8 param2, u8 param3, u8 param4
         do {
             v0 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
             v2 = (((v0 & 0x3000000) >> 18) | ((v0 & 0x30000) >> 12) | ((v0 & 0x300) >> 6) | (v0 & 0x3)) % 28;
-        } while ((param5 != sub_02075BFC(v0)) || (param4 != sub_02075DAC(param1, v0)) || (v2 != (param6 - 1)));
+        } while ((param5 != GetNatureFromPersonality(v0)) || (param4 != sub_02075DAC(param1, v0)) || (v2 != (param6 - 1)));
     } else {
         v0 = sub_02074128(param1, param4, param5);
     }
@@ -2271,10 +2271,10 @@ u8 sub_02075BD4 (BoxPokemon * param0)
 
     sub_02073D48(param0, v0);
 
-    return sub_02075BFC(v1);
+    return GetNatureFromPersonality(v1);
 }
 
-u8 sub_02075BFC (u32 param0)
+u8 GetNatureFromPersonality (u32 param0)
 {
     return (u8)(param0 % 25);
 }
@@ -3818,7 +3818,7 @@ s8 sub_02077648 (u32 param0, int param1)
 {
     u8 v0;
 
-    v0 = sub_02075BFC(param0);
+    v0 = GetNatureFromPersonality(param0);
     return Unk_020F0695[v0][param1];
 }
 
