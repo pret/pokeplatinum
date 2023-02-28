@@ -7146,7 +7146,7 @@ static BOOL sub_02045628 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = sub_0203F118(param0->unk_34, sub_0203E838(param0));
 
-    *v0 = sub_0205E1F8(param0->unk_34->unk_0C);
+    *v0 = HasAllLegendaryTitansInParty(param0->unk_34->unk_0C);
     return 0;
 }
 

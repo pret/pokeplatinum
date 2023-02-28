@@ -259,7 +259,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     return 0;
 }
 
-BOOL sub_0205E1F8 (UnkStruct_021C0794 * param0)
+BOOL HasAllLegendaryTitansInParty (UnkStruct_021C0794 * param0)
 {
     int v0, v1, v2, v3 = 0;
     Party * v4;
