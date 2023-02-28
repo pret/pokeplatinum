@@ -335,7 +335,7 @@ typedef struct {
     PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_23;
 
-void ov97_02236E90(BoxPokemonGBA * param0, BoxPokemon * param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA * param0, BoxPokemon * param1);
 
 static u16 Unk_ov97_0223ECA0[] = {
 	0x10,
@@ -1346,7 +1346,7 @@ static int ov97_02236E28 (BoxPokemonGBA * param0, BoxPokemon * param1)
     return v1;
 }
 
-void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
+void BoxMonGBAToBoxMon (BoxPokemonGBA * param0, BoxPokemon * param1)
 {
     BOOL v0;
     u32 v1;

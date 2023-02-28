@@ -179,7 +179,7 @@ static void ov97_02235310(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C * param0);
 void sub_02023D8C(UnkStruct_02023790 * param0, const u16 * param1, u32 param2);
 void sub_02023D28(UnkStruct_02023790 * param0, const u16 * param1);
-void ov97_02236E90(BoxPokemonGBA * param0, BoxPokemon * param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA * param0, BoxPokemon * param1);
 
 UnkStruct_ov97_0223F434 * Unk_ov97_0223F434;
 
@@ -408,7 +408,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
         v1 = param0->unk_42C[v0].unk_08;
         v5 = &param0->unk_E8E0->boxes[v1][v2];
 
-        ov97_02236E90(v5, v4);
+        BoxMonGBAToBoxMon(v5, v4);
         sub_0202EFA4(v7, v4, v0);
     }
 
