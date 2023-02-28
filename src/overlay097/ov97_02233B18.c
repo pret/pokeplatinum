@@ -576,17 +576,17 @@ static void ov97_022340FC (UnkStruct_ov115_02261520 * param0, UnkStruct_ov97_022
 
 static int ov97_02234124 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
 {
-    return ov97_02236924(&(param0->unk_E8E0->unk_04[param1][param2]), 11, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), 11, NULL);
 }
 
 static int ov97_02234148 (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
 {
-    return ov97_02236924(&(param0->unk_E8E0->unk_04[param1][param2]), 45, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), 45, NULL);
 }
 
 static int ov97_0223416C (UnkStruct_ov97_02234A2C * param0, int param1, int param2)
 {
-    return ov97_02236924(&(param0->unk_E8E0->unk_04[param1][param2]), 0, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param1][param2]), 0, NULL);
 }
 
 static void ov97_02234190 (UnkUnion_02022594 * param0, int param1, int param2, int param3, int param4)
@@ -724,7 +724,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (v0 = 0; v0 < 30; v0++) {
-        if (ov97_02236924(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 5, NULL)) {
+        if (GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 5, NULL)) {
             v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
@@ -734,7 +734,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
             ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
             sub_02021CAC(param0->unk_20C[v0].unk_00, 1);
 
-            if (ov97_02236924(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 12, NULL)) {
+            if (GetGBABoxMonData(&(param0->unk_E8E0->unk_04[param0->unk_E8E4][v0]), 12, NULL)) {
                 sub_02021CAC(param0->unk_20C[v0].unk_04, 1);
             } else {
                 sub_02021CAC(param0->unk_20C[v0].unk_04, 0);
@@ -852,7 +852,7 @@ static BOOL ov97_0223474C (UnkStruct_ov97_02234A2C * param0, int param1)
     int v0;
     BoxPokemonGBA * v1 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
 
-    if (ov97_02236924(v1, 65, NULL) == 412) {
+    if (GetGBABoxMonData(v1, 65, NULL) == 412) {
         return 1;
     }
 
@@ -865,7 +865,7 @@ static BOOL ov97_02234784 (UnkStruct_ov97_02234A2C * param0, int param1)
     BoxPokemonGBA * v3 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2 = ov97_02236924(v3, 13 + v0, NULL);
+        v2 = GetGBABoxMonData(v3, 13 + v0, NULL);
 
         for (v1 = 0; v1 < sizeof(Unk_ov97_0223EA98) / sizeof(int); v1++) {
             if (Unk_ov97_0223EA98[v1] == v2) {
@@ -1030,7 +1030,7 @@ u16 Unk_ov97_0223EAD8[] = {
 static BOOL ov97_022347D8 (UnkStruct_ov97_02234A2C * param0, int param1)
 {
     BoxPokemonGBA * v0 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
-    int v1 = ov97_02236924(v0, 12, NULL);
+    int v1 = GetGBABoxMonData(v0, 12, NULL);
     int v2;
 
     for (v2 = 0; Unk_ov97_0223EAD8[v2]; v2++) {
@@ -1045,7 +1045,7 @@ static BOOL ov97_022347D8 (UnkStruct_ov97_02234A2C * param0, int param1)
 static BOOL ov97_02234828 (UnkStruct_ov97_02234A2C * param0, int param1)
 {
     BoxPokemonGBA * v0 = &param0->unk_E8E0->unk_04[param0->unk_E8E4][param1];
-    int v1 = ov97_02236924(v0, 11, NULL);
+    int v1 = GetGBABoxMonData(v0, 11, NULL);
 
     return ov97_02233B18(v1);
 }
@@ -1165,7 +1165,7 @@ static void ov97_02234AB4 (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     int v2;
 
     if (param1) {
-        v1 = ov97_02236924(param1, 8, NULL);
+        v1 = GetGBABoxMonData(param1, 8, NULL);
     } else {
         v1 = 0;
     }
@@ -1224,8 +1224,8 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
         return;
     }
 
-    ov97_02236924(param1, 2, v6);
-    ov97_0223936C(v6, v7, 10 + 1, ov97_02236924(param1, 3, NULL));
+    GetGBABoxMonData(param1, 2, v6);
+    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(param1, 3, NULL));
 
     v4.unk_38 = v7;
     v4.unk_34 = -1;
@@ -1236,7 +1236,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
 
     v8 = sub_02023790(64, 78);
     v5 = sub_0200B144(1, 26, 412, 78);
-    v0 = ov97_02236DD0(ov97_02236924(param1, 11, NULL));
+    v0 = ov97_02236DD0(GetGBABoxMonData(param1, 11, NULL));
 
     sub_0200B1B8(v5, v0, v8);
 
@@ -1250,7 +1250,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     sub_0200B190(v5);
     sub_020237BC(v8);
 
-    v2 = ov97_02236924(param1, 12, NULL);
+    v2 = GetGBABoxMonData(param1, 12, NULL);
 
     if (v2) {
         v3 = sub_0207CF10(v2);
@@ -1704,7 +1704,7 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
             for (v4 = 0; v4 < 30; v4++) {
                 v3 = &param0->unk_E8E0->unk_04[v5][v4];
 
-                if (ov97_02236924(v3, 5, NULL)) {
+                if (GetGBABoxMonData(v3, 5, NULL)) {
                     v6++;
                 }
             }
