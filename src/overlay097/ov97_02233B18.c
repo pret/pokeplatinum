@@ -617,7 +617,7 @@ static void ov97_022341EC (u32 param0, NNSG2dCharacterData ** param1, void * par
     NNS_G2dGetUnpackedBGCharacterData(param2, param1);
 }
 
-static u8 ov97_02234208 (int param0, u32 param1, int param2)
+static u8 GBASpeciesToDSFormId (int param0, u32 param1, int param2)
 {
     u8 v0;
 
@@ -659,7 +659,7 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
 
     param0 = ov97_02236DD0(param0);
 
-    v1 = ov97_02234208(param0, param2, param3);
+    v1 = GBASpeciesToDSFormId(param0, param2, param3);
     v0 = ov97_022341B4(19, sub_02079D8C(param0, param1, v1), &v2, 78);
 
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
@@ -725,7 +725,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
             v3 = Unk_021BF67C.unk_66;
-            v4 = ov97_02234208(ov97_02236DD0(v1), v5, v3);
+            v4 = GBASpeciesToDSFormId(ov97_02236DD0(v1), v5, v3);
 
             ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
             sub_02021CAC(param0->unk_20C[v0].unk_00, 1);
