@@ -3,7 +3,7 @@
 
 typedef struct PokemonSubstruct0_t {
     u16 species;
-    u16 unk_02;
+    u16 item;
     u32 unk_04;
     u32 unk_08;
     u8 unk_0C;

@@ -792,7 +792,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         }
         break;
     case MON_DATA_HELD_ITEM:
-        v0 = v2->unk_02;
+        v0 = v2->item;
         break;
     case MON_DATA_OT_ID:
         v0 = v2->unk_04;
@@ -1120,7 +1120,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
     case MON_DATA_177:
     case MON_DATA_178:
         if ((v2->species == SPECIES_ARCEUS) && (v2->unk_0D == 121)) {
-            v0 = sub_02077988(Item_GetAttribute(v2->unk_02, 1, 0));
+            v0 = sub_02077988(Item_GetAttribute(v2->item, 1, 0));
         } else {
             v0 = sub_020759CC(v2->species, v3->unk_18_3, 6 + (param1 - 177));
         }
@@ -1272,7 +1272,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         v6->species = v4[0];
         break;
     case MON_DATA_HELD_ITEM:
-        v6->unk_02 = v4[0];
+        v6->item = v4[0];
         break;
     case MON_DATA_OT_ID:
         v6->unk_04 = v3[0];
@@ -5425,7 +5425,7 @@ void sub_02078B40 (Pokemon * param0, UnkStruct_02078B40 * param1)
     param1->unk_04_1 = 0;
     param1->unk_04_2 = v0->unk_04_2;
     param1->unk_06 = v1->species;
-    param1->unk_08 = v1->unk_02;
+    param1->unk_08 = v1->item;
     param1->unk_0C = v1->unk_04;
     param1->unk_10 = v1->unk_08;
     param1->unk_14 = v1->unk_0C;
@@ -5506,7 +5506,7 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon * param1)
     v0->unk_04_2 = param0->unk_04_2;
 
     v1->species = param0->unk_06;
-    v1->unk_02 = param0->unk_08;
+    v1->item = param0->unk_08;
     v1->unk_04 = param0->unk_0C;
     v1->unk_08 = param0->unk_10;
     v1->unk_0C = param0->unk_14;
