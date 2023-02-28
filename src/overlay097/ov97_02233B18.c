@@ -81,6 +81,9 @@
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_022392E4.h"
 
+#include "constants/species.h"
+#include "constants/gba/species.h"
+
 FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct {
@@ -232,25 +235,18 @@ static int Unk_ov97_0223EAB8[] = {
     0x21
 };
 
-static BOOL IsGBASpeciesInvalid (int param0)
+static BOOL IsGBASpeciesInvalid (int speciesGBA)
 {
-    if (param0 <= 0) {
-        return 1;
-    }
+    if (speciesGBA <= SPECIES_NONE)
+        return TRUE;
+    else if (speciesGBA <= SPECIES_CELEBI)
+        return FALSE;
+    else if (speciesGBA < GBA_SPECIES_TREECKO)
+        return TRUE;
+    else if (speciesGBA <= GBA_SPECIES_CHIMECHO)
+        return FALSE;
 
-    if (param0 <= 251) {
-        return 0;
-    }
-
-    if (param0 < 277) {
-        return 1;
-    }
-
-    if (param0 <= 411) {
-        return 0;
-    }
-
-    return 1;
+    return TRUE;
 }
 
 static void ov97_02233B44 (UnkStruct_ov97_02234A2C * param0)

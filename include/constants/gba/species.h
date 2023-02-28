@@ -1,6 +1,9 @@
 #ifndef POKEPLATINUM_CONSTANTS_GBA_SPECIES_H
 #define POKEPLATINUM_CONSTANTS_GBA_SPECIES_H
 
+// IDs up to 251 (Celebi) are the same as Gen 4's species.
+// IDs between 252 and 276 correspond to Gen 3's SPECIES_OLD_UNOWN B to Z.
+
 #define GBA_SPECIES_TREECKO      277
 #define GBA_SPECIES_GROVYLE      278
 #define GBA_SPECIES_SCEPTILE     279
