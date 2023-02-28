@@ -900,7 +900,7 @@ static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
     return v0;
 }
 
-static void ov97_0223685C (BoxPokemonGBA * param0)
+static void GBADecryptBoxMon (BoxPokemonGBA * param0)
 {
     int v0;
     u32 * v1;
@@ -975,7 +975,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         substruct2 = (PokemonGBASubstruct2 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 2);
         substruct3 = (PokemonGBASubstruct3 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 3);
 
-        ov97_0223685C(boxMonGBA);
+        GBADecryptBoxMon(boxMonGBA);
         checksum = ov97_0223689C(boxMonGBA);
 
         if (checksum != boxMonGBA->checksum) {
@@ -1237,7 +1237,7 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
         v4 = (PokemonGBASubstruct2 *)ov97_02236380(param0, param0->personality, 2);
         v5 = (PokemonGBASubstruct3 *)ov97_02236380(param0, param0->personality, 3);
 
-        ov97_0223685C(param0);
+        GBADecryptBoxMon(param0);
         v6 = ov97_0223689C(param0);
 
         if (v6 != param0->checksum) {
