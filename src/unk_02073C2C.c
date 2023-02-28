@@ -801,7 +801,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         v0 = v2->unk_08;
         break;
     case MON_DATA_FRIENDSHIP:
-        v0 = v2->unk_0C;
+        v0 = v2->friendship;
         break;
     case MON_DATA_10:
         v0 = v2->unk_0D;
@@ -1281,7 +1281,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         v6->unk_08 = v3[0];
         break;
     case MON_DATA_FRIENDSHIP:
-        v6->unk_0C = v5[0];
+        v6->friendship = v5[0];
         break;
     case MON_DATA_10:
         v6->unk_0D = v5[0];
@@ -1696,7 +1696,7 @@ static void sub_02075454 (BoxPokemon * param0, int param1, int param2)
     {
         int v6;
 
-        v6 = v2->unk_0C;
+        v6 = v2->friendship;
 
         if ((v6 + param2) > 255) {
             v6 = 255;
@@ -1708,7 +1708,7 @@ static void sub_02075454 (BoxPokemon * param0, int param1, int param2)
             v6 += param2;
         }
 
-        v2->unk_0C = v6;
+        v2->friendship = v6;
     }
     break;
     case MON_DATA_HP_EV:
@@ -5428,7 +5428,7 @@ void sub_02078B40 (Pokemon * param0, UnkStruct_02078B40 * param1)
     param1->unk_08 = v1->item;
     param1->unk_0C = v1->unk_04;
     param1->unk_10 = v1->unk_08;
-    param1->unk_14 = v1->unk_0C;
+    param1->unk_14 = v1->friendship;
     param1->unk_15 = v1->unk_0D;
     param1->unk_16 = v1->unk_10;
     param1->unk_17 = v1->unk_11;
@@ -5509,7 +5509,7 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon * param1)
     v1->item = param0->unk_08;
     v1->unk_04 = param0->unk_0C;
     v1->unk_08 = param0->unk_10;
-    v1->unk_0C = param0->unk_14;
+    v1->friendship = param0->unk_14;
     v1->unk_0D = param0->unk_15;
     v1->unk_10 = param0->unk_16;
     v1->unk_11 = param0->unk_17;
