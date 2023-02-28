@@ -11,6 +11,8 @@
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_022392E4.h"
 
+#include "constants/species.h"
+#include "constants/gba/pokemon.h"
 
 typedef struct {
     u16 unk_00;
@@ -956,266 +958,266 @@ static u16 ov97_0223689C (BoxPokemonGBA * param0)
     return v5;
 }
 
-u32 GetGBABoxMonData (BoxPokemonGBA * param0, int param1, u8 * param2)
+u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
 {
-    int v0;
-    u32 v1 = 0;
-    PokemonGBASubstruct0 * v2 = 0;
-    PokemonGBASubstruct1 * v3 = 0;
-    PokemonGBASubstruct2 * v4 = 0;
-    PokemonGBASubstruct3 * v5 = 0;
-    u16 v6;
-    u16 * v7;
+    u32 retVal = 0;
+    PokemonGBASubstruct0 * substruct0 = 0;
+    PokemonGBASubstruct1 * substruct1 = 0;
+    PokemonGBASubstruct2 * substruct2 = 0;
+    PokemonGBASubstruct3 * substruct3 = 0;
+    u16 checksum;
 
-    if (param1 > 10) {
-        v2 = (PokemonGBASubstruct0 *)ov97_02236380(param0, param0->personality, 0);
-        v3 = (PokemonGBASubstruct1 *)ov97_02236380(param0, param0->personality, 1);
-        v4 = (PokemonGBASubstruct2 *)ov97_02236380(param0, param0->personality, 2);
-        v5 = (PokemonGBASubstruct3 *)ov97_02236380(param0, param0->personality, 3);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR)
+    {
+        substruct0 = (PokemonGBASubstruct0 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 0);
+        substruct1 = (PokemonGBASubstruct1 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 1);
+        substruct2 = (PokemonGBASubstruct2 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 2);
+        substruct3 = (PokemonGBASubstruct3 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 3);
 
-        ov97_0223685C(param0);
-        v6 = ov97_0223689C(param0);
+        ov97_0223685C(boxMonGBA);
+        checksum = ov97_0223689C(boxMonGBA);
 
-        if (v6 != param0->checksum) {
-            param0->isBadEgg = 1;
-            param0->isEgg = 1;
-            v5->unk_04_30 = 1;
+        if (checksum != boxMonGBA->checksum) {
+            boxMonGBA->isBadEgg = TRUE;
+            boxMonGBA->isEgg = TRUE;
+            substruct3->isEgg = TRUE;
         }
     }
 
-    switch (param1) {
-    case 0:
-        v1 = param0->personality;
+    switch (field) {
+    case GBA_MON_DATA_PERSONALITY:
+        retVal = boxMonGBA->personality;
         break;
-    case 1:
-        v1 = param0->otId;
+    case GBA_MON_DATA_OT_ID:
+        retVal = boxMonGBA->otId;
         break;
-    case 2:
-        if (param0->isBadEgg) {
-            v1 = 0;
-        } else {
-            for (v1 = 0; v1 < 10; v1++) {
-                param2[v1] = param0->nickname[v1];
+    case GBA_MON_DATA_NICKNAME:
+        if (boxMonGBA->isBadEgg)
+            retVal = 0;
+        else {
+            for (retVal = 0; retVal < 10; retVal++) {
+                param2[retVal] = boxMonGBA->nickname[retVal];
             }
         }
 
-        param2[v1] = 0xff;
+        param2[retVal] = 0xff;
         break;
-    case 3:
-        v1 = param0->language;
+    case GBA_MON_DATA_LANGUAGE:
+        retVal = boxMonGBA->language;
         break;
-    case 4:
-        v1 = param0->isBadEgg;
+    case GBA_MON_DATA_SANITY_IS_BAD_EGG:
+        retVal = boxMonGBA->isBadEgg;
         break;
-    case 5:
-        v1 = param0->hasSpecies;
+    case GBA_MON_DATA_SANITY_HAS_SPECIES:
+        retVal = boxMonGBA->hasSpecies;
         break;
-    case 6:
-        v1 = param0->isEgg;
+    case GBA_MON_DATA_SANITY_IS_EGG:
+        retVal = boxMonGBA->isEgg;
         break;
-    case 7:
-        for (v1 = 0; v1 < 7; v1++) {
-            param2[v1] = param0->otName[v1];
-        }
+    case GBA_MON_DATA_OT_NAME:
+        for (retVal = 0; retVal < 7; retVal++)
+            param2[retVal] = boxMonGBA->otName[retVal];
 
-        param2[v1] = 0xffff;
+        param2[retVal] = 0xffff;
         break;
-    case 8:
-        v1 = param0->markings;
+    case GBA_MON_DATA_MARKINGS:
+        retVal = boxMonGBA->markings;
         break;
-    case 9:
-        v1 = param0->checksum;
+    case GBA_MON_DATA_CHECKSUM:
+        retVal = boxMonGBA->checksum;
         break;
-    case 10:
-        v1 = param0->unknown;
+    case GBA_MON_DATA_ENCRYPT_SEPARATOR:
+        retVal = boxMonGBA->unknown;
         break;
-    case 11:
-        if (param0->isBadEgg) {
-            v1 = 412;
-        } else {
-            v1 = v2->unk_00;
-        }
+    case GBA_MON_DATA_SPECIES:
+        if (boxMonGBA->isBadEgg)
+            retVal = 412;
+        else
+            retVal = substruct0->species;
         break;
-    case 12:
-        v1 = v2->unk_02;
+    case GBA_MON_DATA_HELD_ITEM:
+        retVal = substruct0->heldItem;
         break;
-    case 25:
-        v1 = v2->unk_04;
+    case GBA_MON_DATA_EXP:
+        retVal = substruct0->experience;
         break;
-    case 21:
-        v1 = v2->unk_08;
+    case GBA_MON_DATA_PP_BONUSES:
+        retVal = substruct0->ppBonuses;
         break;
-    case 32:
-        v1 = v2->unk_09;
+    case GBA_MON_DATA_FRIENDSHIP:
+        retVal = substruct0->friendship;
         break;
-    case 13:
-    case 14:
-    case 15:
-    case 16:
-        v1 = v3->unk_00[param1 - 13];
+    case GBA_MON_DATA_MOVE1:
+    case GBA_MON_DATA_MOVE2:
+    case GBA_MON_DATA_MOVE3:
+    case GBA_MON_DATA_MOVE4:
+        retVal = substruct1->moves[field - GBA_MON_DATA_MOVE1];
         break;
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-        v1 = v3->unk_08[param1 - 17];
+    case GBA_MON_DATA_PP1:
+    case GBA_MON_DATA_PP2:
+    case GBA_MON_DATA_PP3:
+    case GBA_MON_DATA_PP4:
+        retVal = substruct1->pp[field - GBA_MON_DATA_PP1];
         break;
-    case 26:
-        v1 = v4->unk_00;
+    case GBA_MON_DATA_HP_EV:
+        retVal = substruct2->hpEV;
         break;
-    case 27:
-        v1 = v4->unk_01;
+    case GBA_MON_DATA_ATK_EV:
+        retVal = substruct2->attackEV;
         break;
-    case 28:
-        v1 = v4->unk_02;
+    case GBA_MON_DATA_DEF_EV:
+        retVal = substruct2->defenseEV;
         break;
-    case 29:
-        v1 = v4->unk_03;
+    case GBA_MON_DATA_SPEED_EV:
+        retVal = substruct2->speedEV;
         break;
-    case 30:
-        v1 = v4->unk_04;
+    case GBA_MON_DATA_SPATK_EV:
+        retVal = substruct2->spAttackEV;
         break;
-    case 31:
-        v1 = v4->unk_05;
+    case GBA_MON_DATA_SPDEF_EV:
+        retVal = substruct2->spDefenseEV;
         break;
-    case 22:
-        v1 = v4->unk_06;
+    case GBA_MON_DATA_COOL:
+        retVal = substruct2->cool;
         break;
-    case 23:
-        v1 = v4->unk_07;
+    case GBA_MON_DATA_BEAUTY:
+        retVal = substruct2->beauty;
         break;
-    case 24:
-        v1 = v4->unk_08;
+    case GBA_MON_DATA_CUTE:
+        retVal = substruct2->cute;
         break;
-    case 33:
-        v1 = v4->unk_09;
+    case GBA_MON_DATA_SMART:
+        retVal = substruct2->smart;
         break;
-    case 47:
-        v1 = v4->unk_0A;
+    case GBA_MON_DATA_TOUGH:
+        retVal = substruct2->tough;
         break;
-    case 48:
-        v1 = v4->unk_0B;
+    case GBA_MON_DATA_SHEEN:
+        retVal = substruct2->sheen;
         break;
-    case 34:
-        v1 = v5->unk_00_0;
+    case GBA_MON_DATA_POKERUS:
+        retVal = substruct3->pokerus;
         break;
-    case 35:
-        v1 = v5->unk_00_8;
+    case GBA_MON_DATA_MET_LOCATION:
+        retVal = substruct3->metLocation;
         break;
-    case 36:
-        v1 = v5->unk_00_16;
+    case GBA_MON_DATA_MET_LEVEL:
+        retVal = substruct3->metLevel;
         break;
-    case 37:
-        v1 = v5->unk_00_23;
+    case GBA_MON_DATA_MET_GAME:
+        retVal = substruct3->metGame;
         break;
-    case 38:
-        v1 = v5->unk_00_27;
+    case GBA_MON_DATA_POKEBALL:
+        retVal = substruct3->pokeball;
         break;
-    case 49:
-        v1 = v5->unk_00_31;
+    case GBA_MON_DATA_OT_GENDER:
+        retVal = substruct3->otGender;
         break;
-    case 39:
-        v1 = v5->unk_04_0;
+    case GBA_MON_DATA_HP_IV:
+        retVal = substruct3->hpIV;
         break;
-    case 40:
-        v1 = v5->unk_04_5;
+    case GBA_MON_DATA_ATK_IV:
+        retVal = substruct3->attackIV;
         break;
-    case 41:
-        v1 = v5->unk_04_10;
+    case GBA_MON_DATA_DEF_IV:
+        retVal = substruct3->defenseIV;
         break;
-    case 42:
-        v1 = v5->unk_04_15;
+    case GBA_MON_DATA_SPEED_IV:
+        retVal = substruct3->speedIV;
         break;
-    case 43:
-        v1 = v5->unk_04_20;
+    case GBA_MON_DATA_SPATK_IV:
+        retVal = substruct3->spAttackIV;
         break;
-    case 44:
-        v1 = v5->unk_04_25;
+    case GBA_MON_DATA_SPDEF_IV:
+        retVal = substruct3->spDefenseIV;
         break;
-    case 45:
-        v1 = v5->unk_04_30;
+    case GBA_MON_DATA_IS_EGG:
+        retVal = substruct3->isEgg;
         break;
-    case 46:
-        v1 = v5->unk_04_31;
+    case GBA_MON_DATA_ABILITY_NUM:
+        retVal = substruct3->abilityNum;
         break;
-    case 50:
-        v1 = v5->unk_08_0;
+    case GBA_MON_DATA_COOL_RIBBON:
+        retVal = substruct3->coolRibbon;
         break;
-    case 51:
-        v1 = v5->unk_08_3;
+    case GBA_MON_DATA_BEAUTY_RIBBON:
+        retVal = substruct3->beautyRibbon;
         break;
-    case 52:
-        v1 = v5->unk_08_6;
+    case GBA_MON_DATA_CUTE_RIBBON:
+        retVal = substruct3->cuteRibbon;
         break;
-    case 53:
-        v1 = v5->unk_08_9;
+    case GBA_MON_DATA_SMART_RIBBON:
+        retVal = substruct3->smartRibbon;
         break;
-    case 54:
-        v1 = v5->unk_08_12;
+    case GBA_MON_DATA_TOUGH_RIBBON:
+        retVal = substruct3->toughRibbon;
         break;
-    case 67:
-        v1 = v5->unk_08_15;
+    case GBA_MON_DATA_CHAMPION_RIBBON:
+        retVal = substruct3->championRibbon;
         break;
-    case 68:
-        v1 = v5->unk_08_16;
+    case GBA_MON_DATA_WINNING_RIBBON:
+        retVal = substruct3->winningRibbon;
         break;
-    case 69:
-        v1 = v5->unk_08_17;
+    case GBA_MON_DATA_VICTORY_RIBBON:
+        retVal = substruct3->victoryRibbon;
         break;
-    case 70:
-        v1 = v5->unk_08_18;
+    case GBA_MON_DATA_ARTIST_RIBBON:
+        retVal = substruct3->artistRibbon;
         break;
-    case 71:
-        v1 = v5->unk_08_19;
+    case GBA_MON_DATA_EFFORT_RIBBON:
+        retVal = substruct3->effortRibbon;
         break;
-    case 72:
-        v1 = v5->unk_08_20;
+    case GBA_MON_DATA_MARINE_RIBBON:
+        retVal = substruct3->marineRibbon;
         break;
-    case 73:
-        v1 = v5->unk_08_21;
+    case GBA_MON_DATA_LAND_RIBBON:
+        retVal = substruct3->landRibbon;
         break;
-    case 74:
-        v1 = v5->unk_08_22;
+    case GBA_MON_DATA_SKY_RIBBON:
+        retVal = substruct3->skyRibbon;
         break;
-    case 75:
-        v1 = v5->unk_08_23;
+    case GBA_MON_DATA_COUNTRY_RIBBON:
+        retVal = substruct3->countryRibbon;
         break;
-    case 76:
-        v1 = v5->unk_08_24;
+    case GBA_MON_DATA_NATIONAL_RIBBON:
+        retVal = substruct3->nationalRibbon;
         break;
-    case 77:
-        v1 = v5->unk_08_25;
+    case GBA_MON_DATA_EARTH_RIBBON:
+        retVal = substruct3->earthRibbon;
         break;
-    case 78:
-        v1 = v5->unk_08_26;
+    case GBA_MON_DATA_WORLD_RIBBON:
+        retVal = substruct3->worldRibbon;
         break;
-    case 79:
-        v1 = v5->unk_08_27;
+    case GBA_MON_DATA_UNUSED_RIBBONS:
+        retVal = substruct3->unusedRibbons;
         break;
-    case 80:
-        v1 = v5->unk_08_31;
+    case GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER:
+        retVal = substruct3->modernFatefulEncounter;
         break;
-    case 65:
-        v1 = v2->unk_00;
+    case GBA_MON_DATA_SPECIES_OR_EGG:
+        retVal = substruct0->species;
 
-        if (v1 == 0) {
+        if (retVal == SPECIES_NONE)
             break;
-        }
 
-        if ((v5->unk_04_30) || (param0->isBadEgg)) {
-            v1 = 412;
-        }
+        if ((substruct3->isEgg) || (boxMonGBA->isBadEgg))
+            retVal = 412;
+
         break;
-    case 66:
-        v1 = (v5->unk_04_0 << 0) | (v5->unk_04_5 << 5) | (v5->unk_04_10 << 10) | (v5->unk_04_15 << 15) | (v5->unk_04_20 << 20) | (v5->unk_04_25 << 25);
+    case GBA_MON_DATA_IVS:
+        retVal = substruct3->hpIV
+              | (substruct3->attackIV << 5)
+              | (substruct3->defenseIV << 10)
+              | (substruct3->speedIV << 15)
+              | (substruct3->spAttackIV << 20)
+              | (substruct3->spDefenseIV << 25);
         break;
     }
 
-    if (param1 > 10) {
-        ov97_0223687C(param0);
-    }
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR)
+        ov97_0223687C(boxMonGBA);
 
-    return v1;
+    return retVal;
 }
 
 void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
@@ -1240,7 +1242,7 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
         if (v6 != param0->checksum) {
             param0->isBadEgg = 1;
             param0->isEgg = 1;
-            v5->unk_04_30 = 1;
+            v5->isEgg = 1;
             ov97_0223687C(param0);
             return;
         }
@@ -1270,9 +1272,9 @@ void ov97_02236CA4 (BoxPokemonGBA * param0, int param1, const u8 * param2)
         }
         break;
     case 11:
-        v2->unk_00 = param2[0] + (param2[1] << 8);
+        v2->species = param2[0] + (param2[1] << 8);
 
-        if (v2->unk_00) {
+        if (v2->species) {
             param0->hasSpecies = 1;
         } else {
             param0->hasSpecies = 0;

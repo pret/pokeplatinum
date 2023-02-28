@@ -2,68 +2,75 @@
 #define POKEPLATINUM_BOX_POKEMON_GBA_H
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
-    u32 unk_04;
-    u8 unk_08;
-    u8 unk_09;
-    u16 unk_0A;
+    u16 species;
+    u16 heldItem;
+    u32 experience;
+    u8 ppBonuses;
+    u8 friendship;
+    u16 filler;
 } PokemonGBASubstruct0;
 
 typedef struct {
-    u16 unk_00[4];
-    u8 unk_08[4];
+    u16 moves[4];
+    u8 pp[4];
 } PokemonGBASubstruct1;
 
 typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    u8 unk_07;
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A;
-    u8 unk_0B;
+    u8 hpEV;
+    u8 attackEV;
+    u8 defenseEV;
+    u8 speedEV;
+    u8 spAttackEV;
+    u8 spDefenseEV;
+    u8 cool;
+    u8 beauty;
+    u8 cute;
+    u8 smart;
+    u8 tough;
+    u8 sheen;
 } PokemonGBASubstruct2;
 
 typedef struct {
-    u32 unk_00_0 : 8;
-    u32 unk_00_8 : 8;
-    u32 unk_00_16 : 7;
-    u32 unk_00_23 : 4;
-    u32 unk_00_27 : 4;
-    u32 unk_00_31 : 1;
-    u32 unk_04_0 : 5;
-    u32 unk_04_5 : 5;
-    u32 unk_04_10 : 5;
-    u32 unk_04_15 : 5;
-    u32 unk_04_20 : 5;
-    u32 unk_04_25 : 5;
-    u32 unk_04_30 : 1;
-    u32 unk_04_31 : 1;
-    u32 unk_08_0 : 3;
-    u32 unk_08_3 : 3;
-    u32 unk_08_6 : 3;
-    u32 unk_08_9 : 3;
-    u32 unk_08_12 : 3;
-    u32 unk_08_15 : 1;
-    u32 unk_08_16 : 1;
-    u32 unk_08_17 : 1;
-    u32 unk_08_18 : 1;
-    u32 unk_08_19 : 1;
-    u32 unk_08_20 : 1;
-    u32 unk_08_21 : 1;
-    u32 unk_08_22 : 1;
-    u32 unk_08_23 : 1;
-    u32 unk_08_24 : 1;
-    u32 unk_08_25 : 1;
-    u32 unk_08_26 : 1;
-    u32 unk_08_27 : 4;
-    u32 unk_08_31 : 1;
+    u32 pokerus:8;
+    u32 metLocation:8;
+    u32 metLevel:7;
+    u32 metGame:4;
+    u32 pokeball:4;
+    u32 otGender:1;
+    u32 hpIV:5;
+    u32 attackIV:5;
+    u32 defenseIV:5;
+    u32 speedIV:5;
+    u32 spAttackIV:5;
+    u32 spDefenseIV:5;
+    u32 isEgg:1;
+    u32 abilityNum:1;
+    u32 coolRibbon:3;               // Stores the highest contest rank achieved in the Cool category.
+    u32 beautyRibbon:3;             // Stores the highest contest rank achieved in the Beauty category.
+    u32 cuteRibbon:3;               // Stores the highest contest rank achieved in the Cute category.
+    u32 smartRibbon:3;              // Stores the highest contest rank achieved in the Smart category.
+    u32 toughRibbon:3;              // Stores the highest contest rank achieved in the Tough category.
+    u32 championRibbon:1;           // Given when defeating the Champion in both RSE and FRLG.
+    u32 winningRibbon:1;            // Given at the Battle Tower's Level 50 challenge by winning a set of seven battles that extends the current streak to 56 or more.
+    u32 victoryRibbon:1;            // Given at the Battle Tower's Level 100 challenge by winning a set of seven battles that extends the current streak to 56 or more.
+    u32 artistRibbon:1;             // Given at the Contest Hall by winning a Master Rank contest with at least 800 points, and agreeing to have the Pokémon's portrait placed in the museum after being offered.
+    u32 effortRibbon:1;             // Given at Slateport's market to Pokémon with maximum EVs.
+    u32 marineRibbon:1;             // Never distributed.
+    u32 landRibbon:1;               // Never distributed.
+    u32 skyRibbon:1;                // Never distributed.
+    u32 countryRibbon:1;            // Distributed during Pokémon Festa '04 and '05 to tournament winners.
+    u32 nationalRibbon:1;           // Given to purified Shadow Pokémon in Colosseum/XD.
+    u32 earthRibbon:1;              // Given to teams that have beaten Mt. Battle's 100-battle challenge in Colosseum/XD.
+    u32 worldRibbon:1;              // Distributed during Pokémon Festa '04 and '05 to tournament winners.
+    u32 unusedRibbons:4;            // Discarded in Gen 4.
+
+    // The functionality of this bit changed in FRLG:
+    // In RS, this bit does nothing, is never set, & is accidentally unset when hatching Eggs.
+    // In FRLG & Emerald, this controls Mew & Deoxys obedience and whether they can be traded.
+    // If set, a Pokémon is a fateful encounter in FRLG's summary screen if hatched & for all Pokémon in Gen 4+ summary screens.
+    // Set for in-game event island legendaries, events distributed after a certain date, & Pokémon from XD: Gale of Darkness.
+    // Not to be confused with METLOC_FATEFUL_ENCOUNTER.
+    u32 modernFatefulEncounter:1;
 } PokemonGBASubstruct3;
 
 typedef struct BoxPokemonGBA {
