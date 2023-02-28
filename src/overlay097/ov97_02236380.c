@@ -13,6 +13,7 @@
 
 #include "constants/species.h"
 #include "constants/gba/pokemon.h"
+#include "constants/gba/species.h"
 
 typedef struct {
     u16 unk_00;
@@ -1031,7 +1032,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         break;
     case GBA_MON_DATA_SPECIES:
         if (boxMonGBA->isBadEgg)
-            retVal = 412;
+            retVal = GBA_SPECIES_EGG;
         else
             retVal = substruct0->species;
         break;
@@ -1201,7 +1202,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
             break;
 
         if ((substruct3->isEgg) || (boxMonGBA->isBadEgg))
-            retVal = 412;
+            retVal = GBA_SPECIES_EGG;
 
         break;
     case GBA_MON_DATA_IVS:
