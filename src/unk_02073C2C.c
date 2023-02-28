@@ -217,7 +217,7 @@ u8 sub_02077988(u16 param0);
 int sub_02077A00(Pokemon * param0);
 int sub_02077A1C(BoxPokemon * param0);
 void SetShayminForm(Pokemon * param0, int param1);
-void sub_02077ADC(BoxPokemon * param0, int param1);
+void SetBoxShayminForm(BoxPokemon * param0, int param1);
 void sub_02077D28(int param0, int param1, u16 * param2);
 void sub_02077D3C(UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7);
 void sub_02077E64(Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5);
@@ -4160,11 +4160,11 @@ void sub_02077A9C (Party * param0, int param1)
 
 void SetShayminForm (Pokemon * param0, int param1)
 {
-    sub_02077ADC(&param0->box, param1);
+    SetBoxShayminForm(&param0->box, param1);
     sub_0207418C(param0);
 }
 
-void sub_02077ADC (BoxPokemon * param0, int param1)
+void SetBoxShayminForm (BoxPokemon * param0, int param1)
 {
     int v0;
 

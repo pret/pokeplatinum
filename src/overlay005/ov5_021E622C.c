@@ -2037,7 +2037,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     }
 
     sub_02077618(v1, v5);
-    sub_02077ADC(v5, 0);
+    SetBoxShayminForm(v5, 0);
     sub_02026258(param2, 0);
     Party_RemovePokemonBySlotIndex(param0, param1);
 
