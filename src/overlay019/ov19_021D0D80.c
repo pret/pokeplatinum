@@ -4266,7 +4266,7 @@ static void ov19_021D5BAC (UnkStruct_ov19_021D4DF0 * param0)
     v1 = param0->unk_74.unk_22;
     v0->unk_0B = v1;
 
-    sub_02074C60(v0->unk_00, 11, &(v1));
+    SetBoxMonData(v0->unk_00, 11, &(v1));
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
         sub_02024804();
@@ -4291,7 +4291,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
         sub_02079C50(param2->unk_120, 0xffffffff, v1, 6, &param1);
     }
 
-    sub_02074C60(v0->unk_00, 6, &param1);
+    SetBoxMonData(v0->unk_00, 6, &param1);
 
     {
         int v2 = sub_02074570(v0->unk_00, MON_DATA_SPECIES, NULL);

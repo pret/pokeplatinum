@@ -371,7 +371,7 @@ void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int para
         param1 = param0->unk_00;
     }
 
-    sub_02074C60((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
+    SetBoxMonData((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
     sub_02024804();
 }
 

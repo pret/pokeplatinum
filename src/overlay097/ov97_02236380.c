@@ -1360,12 +1360,12 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
     v0 = sub_02073D20(param1);
     v1 = GetGBABoxMonData(param0, 0, NULL);
 
-    sub_02074C60(param1, 0, (u8 *)&v1);
+    SetBoxMonData(param1, 0, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 11, NULL);
     v1 = ov97_02236DD0(v1);
 
-    sub_02074C60(param1, 5, (u8 *)&v1);
+    SetBoxMonData(param1, 5, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 12, NULL);
 
@@ -1373,61 +1373,61 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
         v1 = sub_0207CF10(v1);
     }
 
-    sub_02074C60(param1, 6, (u8 *)&v1);
+    SetBoxMonData(param1, 6, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 1, NULL);
-    sub_02074C60(param1, 7, (u8 *)&v1);
+    SetBoxMonData(param1, 7, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 25, NULL);
-    sub_02074C60(param1, 8, (u8 *)&v1);
+    SetBoxMonData(param1, 8, (u8 *)&v1);
 
     v1 = 70;
-    sub_02074C60(param1, 9, (u8 *)&v1);
+    SetBoxMonData(param1, 9, (u8 *)&v1);
 
     v1 = ov97_02236E28(param0, param1);
-    sub_02074C60(param1, 10, (u8 *)&v1);
+    SetBoxMonData(param1, 10, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 8, NULL);
-    sub_02074C60(param1, 11, (u8 *)&v1);
+    SetBoxMonData(param1, 11, (u8 *)&v1);
 
     v4 = GetGBABoxMonData(param0, 3, NULL);
-    sub_02074C60(param1, 12, (u8 *)&v4);
+    SetBoxMonData(param1, 12, (u8 *)&v4);
 
     v1 = GetGBABoxMonData(param0, 26, NULL);
-    sub_02074C60(param1, 13, (u8 *)&v1);
+    SetBoxMonData(param1, 13, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 27, NULL);
-    sub_02074C60(param1, 14, (u8 *)&v1);
+    SetBoxMonData(param1, 14, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 28, NULL);
-    sub_02074C60(param1, 15, (u8 *)&v1);
+    SetBoxMonData(param1, 15, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 29, NULL);
-    sub_02074C60(param1, 16, (u8 *)&v1);
+    SetBoxMonData(param1, 16, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 30, NULL);
-    sub_02074C60(param1, 17, (u8 *)&v1);
+    SetBoxMonData(param1, 17, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 31, NULL);
-    sub_02074C60(param1, 18, (u8 *)&v1);
+    SetBoxMonData(param1, 18, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 22, NULL);
-    sub_02074C60(param1, 19, (u8 *)&v1);
+    SetBoxMonData(param1, 19, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 23, NULL);
-    sub_02074C60(param1, 20, (u8 *)&v1);
+    SetBoxMonData(param1, 20, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 24, NULL);
-    sub_02074C60(param1, 21, (u8 *)&v1);
+    SetBoxMonData(param1, 21, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 33, NULL);
-    sub_02074C60(param1, 22, (u8 *)&v1);
+    SetBoxMonData(param1, 22, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 47, NULL);
-    sub_02074C60(param1, 23, (u8 *)&v1);
+    SetBoxMonData(param1, 23, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 48, NULL);
-    sub_02074C60(param1, 24, (u8 *)&v1);
+    SetBoxMonData(param1, 24, (u8 *)&v1);
 
     for (v2 = 0; v2 < 4; v2++) {
         v1 = GetGBABoxMonData(param0, 13 + v2, NULL);
@@ -1436,44 +1436,44 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
             (void)0;
         }
 
-        sub_02074C60(param1, 54 + v2, (u8 *)&v1);
+        SetBoxMonData(param1, 54 + v2, (u8 *)&v1);
 
         v1 = GetGBABoxMonData(param0, 21, NULL);
         v1 = (v1 & (0x3 << (v2 * 2))) >> (v2 * 2);
 
-        sub_02074C60(param1, 62 + v2, (u8 *)&v1);
+        SetBoxMonData(param1, 62 + v2, (u8 *)&v1);
 
         v1 = sub_02074570(param1, 66 + v2, NULL);
-        sub_02074C60(param1, 58 + v2, (u8 *)&v1);
+        SetBoxMonData(param1, 58 + v2, (u8 *)&v1);
     }
 
     v1 = GetGBABoxMonData(param0, 39, NULL);
-    sub_02074C60(param1, 70, (u8 *)&v1);
+    SetBoxMonData(param1, 70, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 40, NULL);
-    sub_02074C60(param1, 71, (u8 *)&v1);
+    SetBoxMonData(param1, 71, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 41, NULL);
-    sub_02074C60(param1, 72, (u8 *)&v1);
+    SetBoxMonData(param1, 72, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 42, NULL);
-    sub_02074C60(param1, 73, (u8 *)&v1);
+    SetBoxMonData(param1, 73, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 43, NULL);
-    sub_02074C60(param1, 74, (u8 *)&v1);
+    SetBoxMonData(param1, 74, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 44, NULL);
-    sub_02074C60(param1, 75, (u8 *)&v1);
+    SetBoxMonData(param1, 75, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 45, NULL);
-    sub_02074C60(param1, 76, (u8 *)&v1);
+    SetBoxMonData(param1, 76, (u8 *)&v1);
 
     v3 = GetGBABoxMonData(param0, 50, NULL);
 
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 78 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 78 + v2, (u8 *)&v1);
         }
     }
 
@@ -1482,7 +1482,7 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 82 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 82 + v2, (u8 *)&v1);
         }
     }
 
@@ -1491,7 +1491,7 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 86 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 86 + v2, (u8 *)&v1);
         }
     }
 
@@ -1500,7 +1500,7 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 90 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 90 + v2, (u8 *)&v1);
         }
     }
 
@@ -1509,57 +1509,57 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 94 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 94 + v2, (u8 *)&v1);
         }
     }
 
     v1 = GetGBABoxMonData(param0, 67, NULL);
-    sub_02074C60(param1, 98, (u8 *)&v1);
+    SetBoxMonData(param1, 98, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 68, NULL);
-    sub_02074C60(param1, 99, (u8 *)&v1);
+    SetBoxMonData(param1, 99, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 69, NULL);
-    sub_02074C60(param1, 100, (u8 *)&v1);
+    SetBoxMonData(param1, 100, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 70, NULL);
-    sub_02074C60(param1, 101, (u8 *)&v1);
+    SetBoxMonData(param1, 101, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 71, NULL);
-    sub_02074C60(param1, 102, (u8 *)&v1);
+    SetBoxMonData(param1, 102, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 72, NULL);
-    sub_02074C60(param1, 103, (u8 *)&v1);
+    SetBoxMonData(param1, 103, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 73, NULL);
-    sub_02074C60(param1, 104, (u8 *)&v1);
+    SetBoxMonData(param1, 104, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 74, NULL);
-    sub_02074C60(param1, 105, (u8 *)&v1);
+    SetBoxMonData(param1, 105, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 75, NULL);
-    sub_02074C60(param1, 106, (u8 *)&v1);
+    SetBoxMonData(param1, 106, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 76, NULL);
-    sub_02074C60(param1, 107, (u8 *)&v1);
+    SetBoxMonData(param1, 107, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 77, NULL);
-    sub_02074C60(param1, 108, (u8 *)&v1);
+    SetBoxMonData(param1, 108, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 78, NULL);
-    sub_02074C60(param1, 109, (u8 *)&v1);
+    SetBoxMonData(param1, 109, (u8 *)&v1);
 
     v1 = GetGBABoxMonData(param0, 80, NULL);
-    sub_02074C60(param1, 110, (u8 *)&v1);
+    SetBoxMonData(param1, 110, (u8 *)&v1);
 
     v1 = sub_02075D74(param1);
-    sub_02074C60(param1, 111, (u8 *)&v1);
+    SetBoxMonData(param1, 111, (u8 *)&v1);
 
     if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 201) {
         v1 = GetGBABoxMonData(param0, 0, NULL);
         v1 = (((v1 & 0x3000000) >> 18) | ((v1 & 0x30000) >> 12) | ((v1 & 0x300) >> 6) | (v1 & 0x3)) % 28;
 
-        sub_02074C60(param1, 112, (u8 *)&v1);
+        SetBoxMonData(param1, 112, (u8 *)&v1);
     }
 
     if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 386) {
@@ -1580,40 +1580,40 @@ void ov97_02236E90 (BoxPokemonGBA * param0, BoxPokemon * param1)
             break;
         }
 
-        sub_02074C60(param1, 112, (u8 *)&v1);
+        SetBoxMonData(param1, 112, (u8 *)&v1);
     }
 
     GetGBABoxMonData(param0, 2, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 12, v4);
 
-    sub_02074C60(param1, 118, &v6[0]);
+    SetBoxMonData(param1, 118, &v6[0]);
 
     if (GetGBABoxMonData(param0, 3, NULL) != Unk_020E4C44) {
         v1 = 1;
-        sub_02074C60(param1, 77, &v1);
+        SetBoxMonData(param1, 77, &v1);
     }
 
     v1 = GetGBABoxMonData(param0, 37, NULL);
-    sub_02074C60(param1, 122, &v1);
+    SetBoxMonData(param1, 122, &v1);
 
     GetGBABoxMonData(param0, 7, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 8, v4);
 
-    sub_02074C60(param1, 144, &v6[0]);
+    SetBoxMonData(param1, 144, &v6[0]);
 
     v1 = GetGBABoxMonData(param0, 35, NULL);
-    sub_02074C60(param1, 153, &v1);
+    SetBoxMonData(param1, 153, &v1);
 
     v1 = GetGBABoxMonData(param0, 34, NULL);
-    sub_02074C60(param1, 154, &v1);
+    SetBoxMonData(param1, 154, &v1);
 
     v1 = GetGBABoxMonData(param0, 38, NULL);
-    sub_02074C60(param1, 155, &v1);
+    SetBoxMonData(param1, 155, &v1);
 
     v1 = GetGBABoxMonData(param0, 36, NULL);
-    sub_02074C60(param1, 156, &v1);
+    SetBoxMonData(param1, 156, &v1);
 
     v1 = GetGBABoxMonData(param0, 49, NULL);
-    sub_02074C60(param1, 157, &v1);
+    SetBoxMonData(param1, 157, &v1);
     sub_02073D48(param1, v0);
 }

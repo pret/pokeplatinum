@@ -135,7 +135,7 @@ u32 sub_02074570(BoxPokemon * param0, int param1, void * param2);
 static u32 sub_020745D0(BoxPokemon * param0, int param1, void * param2);
 void sub_02074B30(Pokemon * param0, int param1, const void * param2);
 static void sub_02074BC0(Pokemon * param0, int param1, const void * param2);
-void sub_02074C60(BoxPokemon * param0, int param1, const void * param2);
+void SetBoxMonData(BoxPokemon * param0, int param1, const void * param2);
 static void sub_02074CD8(BoxPokemon * param0, int param1, const void * param2);
 void sub_0207536C(Pokemon * param0, int param1, int param2);
 static void sub_020753F4(Pokemon * param0, int param1, int param2);
@@ -387,7 +387,7 @@ void sub_02073E18 (BoxPokemon * param0, int param1, int param2, int param3, int 
         param5 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
     }
 
-    sub_02074C60(param0, 0, (u8 *)&param5);
+    SetBoxMonData(param0, 0, (u8 *)&param5);
 
     if (param6 == 2) {
         do {
@@ -397,50 +397,50 @@ void sub_02073E18 (BoxPokemon * param0, int param1, int param2, int param3, int 
         param7 = 0;
     }
 
-    sub_02074C60(param0, 7, (u8 *)&param7);
-    sub_02074C60(param0, 12, (u8 *)&Unk_020E4C44);
-    sub_02074C60(param0, 5, (u8 *)&param1);
-    sub_02074C60(param0, 179, NULL);
+    SetBoxMonData(param0, 7, (u8 *)&param7);
+    SetBoxMonData(param0, 12, (u8 *)&Unk_020E4C44);
+    SetBoxMonData(param0, 5, (u8 *)&param1);
+    SetBoxMonData(param0, 179, NULL);
 
     v1 = sub_02075AD0(param1, param2);
-    sub_02074C60(param0, 8, (u8 *)&v1);
+    SetBoxMonData(param0, 8, (u8 *)&v1);
 
     v1 = sub_020759F0(param1, 20);
-    sub_02074C60(param0, 9, (u8 *)&v1);
+    SetBoxMonData(param0, 9, (u8 *)&v1);
 
-    sub_02074C60(param0, 156, (u8 *)&param2);
-    sub_02074C60(param0, 122, (u8 *)&Unk_020E4C40);
+    SetBoxMonData(param0, 156, (u8 *)&param2);
+    SetBoxMonData(param0, 122, (u8 *)&Unk_020E4C40);
 
     v1 = 4;
-    sub_02074C60(param0, 155, (u8 *)&v1);
+    SetBoxMonData(param0, 155, (u8 *)&v1);
 
     if (param3 < 32) {
-        sub_02074C60(param0, 70, (u8 *)&param3);
-        sub_02074C60(param0, 71, (u8 *)&param3);
-        sub_02074C60(param0, 72, (u8 *)&param3);
-        sub_02074C60(param0, 73, (u8 *)&param3);
-        sub_02074C60(param0, 74, (u8 *)&param3);
-        sub_02074C60(param0, 75, (u8 *)&param3);
+        SetBoxMonData(param0, 70, (u8 *)&param3);
+        SetBoxMonData(param0, 71, (u8 *)&param3);
+        SetBoxMonData(param0, 72, (u8 *)&param3);
+        SetBoxMonData(param0, 73, (u8 *)&param3);
+        SetBoxMonData(param0, 74, (u8 *)&param3);
+        SetBoxMonData(param0, 75, (u8 *)&param3);
     } else {
         v1 = sub_0201D2E8();
         v2 = (v1 & (0x1f << 0)) >> 0;
-        sub_02074C60(param0, 70, (u8 *)&v2);
+        SetBoxMonData(param0, 70, (u8 *)&v2);
 
         v2 = (v1 & (0x1f << 5)) >> 5;
-        sub_02074C60(param0, 71, (u8 *)&v2);
+        SetBoxMonData(param0, 71, (u8 *)&v2);
 
         v2 = (v1 & (0x1f << 10)) >> 10;
-        sub_02074C60(param0, 72, (u8 *)&v2);
+        SetBoxMonData(param0, 72, (u8 *)&v2);
 
         v1 = sub_0201D2E8();
         v2 = (v1 & (0x1f << 0)) >> 0;
-        sub_02074C60(param0, 73, (u8 *)&v2);
+        SetBoxMonData(param0, 73, (u8 *)&v2);
 
         v2 = (v1 & (0x1f << 5)) >> 5;
-        sub_02074C60(param0, 74, (u8 *)&v2);
+        SetBoxMonData(param0, 74, (u8 *)&v2);
 
         v2 = (v1 & (0x1f << 10)) >> 10;
-        sub_02074C60(param0, 75, (u8 *)&v2);
+        SetBoxMonData(param0, 75, (u8 *)&v2);
     }
 
     v1 = sub_020759F0(param1, 24);
@@ -448,17 +448,17 @@ void sub_02073E18 (BoxPokemon * param0, int param1, int param2, int param3, int 
 
     if (v2 != 0) {
         if (param5 & 1) {
-            sub_02074C60(param0, 10, (u8 *)&v2);
+            SetBoxMonData(param0, 10, (u8 *)&v2);
         } else {
-            sub_02074C60(param0, 10, (u8 *)&v1);
+            SetBoxMonData(param0, 10, (u8 *)&v1);
         }
     } else {
-        sub_02074C60(param0, 10, (u8 *)&v1);
+        SetBoxMonData(param0, 10, (u8 *)&v1);
     }
 
     v1 = sub_02075D74(param0);
 
-    sub_02074C60(param0, 111, (u8 *)&v1);
+    SetBoxMonData(param0, 111, (u8 *)&v1);
     sub_02077020(param0);
     sub_02073D48(param0, v3);
 }
@@ -1208,7 +1208,7 @@ static void sub_02074BC0 (Pokemon * param0, int param1, const void * param2)
     }
 }
 
-void sub_02074C60 (BoxPokemon * param0, int param1, const void * param2)
+void SetBoxMonData (BoxPokemon * param0, int param1, const void * param2)
 {
     u16 v0;
 
@@ -3570,9 +3570,9 @@ void sub_02077144 (BoxPokemon * param0, u16 param1)
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02074C60(param0, 54 + v0, (u8 *)&v1[v0]);
-        sub_02074C60(param0, 58 + v0, (u8 *)&v2[v0]);
-        sub_02074C60(param0, 62 + v0, (u8 *)&v3[v0]);
+        SetBoxMonData(param0, 54 + v0, (u8 *)&v1[v0]);
+        SetBoxMonData(param0, 58 + v0, (u8 *)&v2[v0]);
+        SetBoxMonData(param0, 62 + v0, (u8 *)&v3[v0]);
     }
 
     sub_02073D48(param0, v4);
@@ -3603,12 +3603,12 @@ void sub_02077238 (BoxPokemon * param0, u16 param1, u8 param2)
     u8 v0;
     u8 v1;
 
-    sub_02074C60(param0, 54 + param2, (u8 *)&param1);
+    SetBoxMonData(param0, 54 + param2, (u8 *)&param1);
 
     v1 = sub_02074570(param0, 62 + param2, NULL);
     v0 = MoveTable_GetMoveMaxPP(param1, v1);
 
-    sub_02074C60(param0, 58 + param2, (u8 *)&v0);
+    SetBoxMonData(param0, 58 + param2, (u8 *)&v0);
 }
 
 u16 sub_0207727C (Pokemon * param0, int * param1, u16 * param2)
@@ -3669,12 +3669,12 @@ void sub_0207734C (BoxPokemon * param0, int param1, int param2)
     v1[1] = sub_02074570(param0, 58 + param2, NULL);
     v2[1] = sub_02074570(param0, 62 + param2, NULL);
 
-    sub_02074C60(param0, 54 + param1, (u8 *)&v0[1]);
-    sub_02074C60(param0, 58 + param1, (u8 *)&v1[1]);
-    sub_02074C60(param0, 62 + param1, (u8 *)&v2[1]);
-    sub_02074C60(param0, 54 + param2, (u8 *)&v0[0]);
-    sub_02074C60(param0, 58 + param2, (u8 *)&v1[0]);
-    sub_02074C60(param0, 62 + param2, (u8 *)&v2[0]);
+    SetBoxMonData(param0, 54 + param1, (u8 *)&v0[1]);
+    SetBoxMonData(param0, 58 + param1, (u8 *)&v1[1]);
+    SetBoxMonData(param0, 62 + param1, (u8 *)&v2[1]);
+    SetBoxMonData(param0, 54 + param2, (u8 *)&v0[0]);
+    SetBoxMonData(param0, 58 + param2, (u8 *)&v1[0]);
+    SetBoxMonData(param0, 62 + param2, (u8 *)&v2[0]);
 }
 
 void sub_02077408 (Pokemon * param0, u32 param1)
@@ -4032,7 +4032,7 @@ void sub_02077930 (BoxPokemon * param0)
 
     if ((v0 == 493) && (v1 == 121)) {
         v3 = sub_02077988(Item_GetAttribute(v2, 1, 0));
-        sub_02074C60(param0, 112, &v3);
+        SetBoxMonData(param0, 112, &v3);
     }
 }
 
@@ -4122,7 +4122,7 @@ int sub_02077A1C (BoxPokemon * param0)
     if (v0 == 487) {
         v2 = (v1 == 112) ? 1 : 0;
 
-        sub_02074C60(param0, 112, &v2);
+        SetBoxMonData(param0, 112, &v2);
         sub_02078044(param0);
 
         return v2;
@@ -4136,7 +4136,7 @@ void sub_02077A64 (Pokemon * param0)
     int v0 = 1;
 
     if (GetMonData(param0, MON_DATA_SPECIES, NULL) == 487) {
-        sub_02074C60(&param0->box, 112, &v0);
+        SetBoxMonData(&param0->box, 112, &v0);
         sub_02078044(&param0->box);
         sub_0207418C(param0);
     }
@@ -4175,7 +4175,7 @@ void SetBoxShayminForm (BoxPokemon * param0, int param1)
     if (v0 == 492) {
         GF_ASSERT(param1 <= 1);
 
-        sub_02074C60(param0, 112, &param1);
+        SetBoxMonData(param0, 112, &param1);
         sub_02078044(param0);
     }
 }
@@ -4391,9 +4391,9 @@ void sub_02077E64 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, in
 void sub_02077EA4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
 {
     sub_0209305C(param0, param1, 0, param3, param5);
-    sub_02074C60(param0, 122, &Unk_020E4C40);
-    sub_02074C60(param0, 155, &param2);
-    sub_02074C60(param0, 158, &param4);
+    SetBoxMonData(param0, 122, &Unk_020E4C40);
+    SetBoxMonData(param0, 155, &param2);
+    SetBoxMonData(param0, 158, &param4);
 }
 
 void sub_02077EE4 (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4, int param5)
@@ -4508,12 +4508,12 @@ void sub_02078044 (BoxPokemon * param0)
 
     if (v4 != 0) {
         if (v5 & 1) {
-            sub_02074C60(param0, 10, (u8 *)&v4);
+            SetBoxMonData(param0, 10, (u8 *)&v4);
         } else {
-            sub_02074C60(param0, 10, (u8 *)&v3);
+            SetBoxMonData(param0, 10, (u8 *)&v3);
         }
     } else {
-        sub_02074C60(param0, 10, (u8 *)&v3);
+        SetBoxMonData(param0, 10, (u8 *)&v3);
     }
 
     sub_02073D48(param0, v0);
@@ -5295,7 +5295,7 @@ void sub_0207896C (BoxPokemon * param0)
         if (sub_02074570(param0, MON_DATA_MOVE1 + v1, NULL)) {
             u8 v2 = sub_02074570(param0, 66 + v1, NULL);
 
-            sub_02074C60(param0, 58 + v1, &v2);
+            SetBoxMonData(param0, 58 + v1, &v2);
         }
     }
 

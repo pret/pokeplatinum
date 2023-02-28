@@ -2152,7 +2152,7 @@ int ov5_021E6520 (BoxPokemon * param0, u32 param1)
     v3 = sub_02074570(v1, MON_DATA_EXP, NULL);
     v3 += param1;
 
-    sub_02074C60(v1, 8, (u8 *)&v3);
+    SetBoxMonData(v1, 8, (u8 *)&v3);
     v2 = sub_02075B40(v1);
     Heap_FreeToHeap(v0);
 
