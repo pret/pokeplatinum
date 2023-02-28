@@ -7,9 +7,9 @@
 
 typedef struct {
     u8 currentBox;
-    BoxPokemonGBA unk_04[14][30];
-    u8 boxNames[14][9];
-    u8 unk_83C2[14];
+    BoxPokemonGBA unk_04[GBA_TOTAL_BOXES_COUNT][30];
+    u8 boxNames[GBA_TOTAL_BOXES_COUNT][9];
+    u8 boxWallpapers[GBA_TOTAL_BOXES_COUNT];
 } PokemonStorageGBA;
 
 #endif // POKEPLATINUM_STRUCT_OV97_02236340_H
