@@ -2492,7 +2492,7 @@ static BOOL ov19_021D3AC8 (BoxPokemon * param0, u16 param1)
         int v2;
 
         for (v2 = 0; v2 < 4; v2++) {
-            if (sub_02074570(param0, MON_DATA_MOVE1 + v2, NULL) == param1){
+            if (sub_02074570(param0, MON_DATA_MOVE1 + v2, NULL) == param1) {
                 v0 = 1;
                 break;
             }

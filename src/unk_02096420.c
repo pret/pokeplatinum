@@ -98,7 +98,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
     }
 
     if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
-        if ((GetMonData(param0, MON_DATA_62 + param2, NULL) < 3) && (MoveTable_GetMoveMaxPP(GetMonData(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)){
+        if ((GetMonData(param0, MON_DATA_62 + param2, NULL) < 3) && (MoveTable_GetMoveMaxPP(GetMonData(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
             Heap_FreeToHeap(v0);
             return 1;
         }

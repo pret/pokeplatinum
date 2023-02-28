@@ -2262,7 +2262,7 @@ static void ov14_02221E18 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
         if (v3 != param1->unk_219C[v0]) {
             for (v4 = 0; v4 < 4; v4++) {
-                if (GetMonData(v5, MON_DATA_58 + v4, NULL) != GetMonData(v5, MON_DATA_66 + v4, NULL)){
+                if (GetMonData(v5, MON_DATA_58 + v4, NULL) != GetMonData(v5, MON_DATA_66 + v4, NULL)) {
                     ov14_02222D24(param1, v2);
                     break;
                 }

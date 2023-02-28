@@ -184,7 +184,7 @@ static void ov102_021D0F80 (void * param0)
     sub_0201C2B8(v0->unk_10);
 }
 
-#define BGCONTSET(frame, scr, cgx, scrsiz, bufsiz){                   \
+#define BGCONTSET(frame, scr, cgx, scrsiz, bufsiz) {                   \
         v2.unk_12 = scr;                                      \
         v2.unk_13 = cgx;                                      \
         v2.unk_08 = bufsiz;                                   \

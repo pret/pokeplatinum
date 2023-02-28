@@ -1105,7 +1105,7 @@ static void sub_0207F094 (UnkStruct_0207F248 * param0, Pokemon * param1, u8 para
     v0 = sub_0207F134(param1, param0->unk_5A4->unk_2A);
 
     for (v1 = 0; v1 < 4; v1++) {
-        if (GetMonData(param1, MON_DATA_MOVE1 + v1, NULL) == 0){
+        if (GetMonData(param1, MON_DATA_MOVE1 + v1, NULL) == 0) {
             break;
         }
     }

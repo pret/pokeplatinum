@@ -3524,7 +3524,7 @@ u16 sub_020770D4 (BoxPokemon * param0, u16 param1)
     v4 = sub_02073D20(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((v2 = sub_02074570(param0, MON_DATA_MOVE1 + v0, NULL)) == 0){
+        if ((v2 = sub_02074570(param0, MON_DATA_MOVE1 + v0, NULL)) == 0) {
             sub_02077238(param0, param1, v0);
             v3 = param1;
             break;
@@ -3706,7 +3706,7 @@ BOOL sub_0207749C (Pokemon * param0, u16 param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (GetMonData(param0, MON_DATA_MOVE1 + v0, NULL) == param1){
+        if (GetMonData(param0, MON_DATA_MOVE1 + v0, NULL) == param1) {
             break;
         }
     }
@@ -4296,7 +4296,7 @@ BOOL SetRotomForm (Pokemon * param0, int param1, int param2)
 
         if (v4 != 0) {
             for (v2 = 0; v2 < 4; v2++) {
-                if (GetMonData(param0, MON_DATA_MOVE1 + v2, NULL) == 0){
+                if (GetMonData(param0, MON_DATA_MOVE1 + v2, NULL) == 0) {
                     sub_020771F8(param0, v4, v2);
                     break;
                 }
@@ -5290,7 +5290,7 @@ void sub_0207896C (BoxPokemon * param0)
     v0 = sub_02073D20(param0);
 
     for (v1 = 0; v1 < 4; v1++) {
-        if (sub_02074570(param0, MON_DATA_MOVE1 + v1, NULL)){
+        if (sub_02074570(param0, MON_DATA_MOVE1 + v1, NULL)) {
             u8 v2 = sub_02074570(param0, 66 + v1, NULL);
 
             sub_02074C60(param0, 58 + v1, &v2);
