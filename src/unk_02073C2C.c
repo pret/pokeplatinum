@@ -168,7 +168,7 @@ u32 sub_02075E64(u32 param0);
 void sub_02075EF4(UnkStruct_02008A90 * param0, Pokemon * param1, u8 param2);
 void sub_02075F0C(UnkStruct_02008A90 * param0, BoxPokemon * param1, u8 param2, int param3);
 void sub_02075FB4(UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3, u8 param4, u8 param5, u32 param6);
-u8 sub_020761E8(u16 param0, u8 param1);
+u8 SanitizeFormId(u16 param0, u8 param1);
 u8 sub_020765AC(Pokemon * param0, u8 param1);
 u8 sub_020765C4(BoxPokemon * param0, u8 param1, int param2);
 u8 sub_02076648(u16 param0, u8 param1, u8 param2, u8 param3, u32 param4);
@@ -2568,7 +2568,7 @@ void sub_02075FB4 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3
     param0->unk_06 = 0;
     param0->unk_08 = 0;
     param0->unk_0C = 0;
-    param5 = sub_020761E8(param1, param5);
+    param5 = SanitizeFormId(param1, param5);
 
     switch (param1) {
     case 412:
@@ -2656,7 +2656,7 @@ void sub_02075FB4 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8 param3
     }
 }
 
-u8 sub_020761E8 (u16 param0, u8 param1)
+u8 SanitizeFormId (u16 param0, u8 param1)
 {
     switch (param0) {
     case 412:
@@ -2736,7 +2736,7 @@ static void sub_02076300 (UnkStruct_02008A90 * param0, u16 param1, u8 param2, u8
     param0->unk_08 = 0;
     param0->unk_0C = 0;
 
-    param5 = sub_020761E8(param1, param5);
+    param5 = SanitizeFormId(param1, param5);
 
     switch (param1) {
     case 412:
@@ -2886,7 +2886,7 @@ u8 sub_02076648 (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
     int v1;
     u8 v2;
 
-    param3 = sub_020761E8(param0, param3);
+    param3 = SanitizeFormId(param0, param3);
 
     switch (param0) {
     case 412:
@@ -2962,7 +2962,7 @@ static u8 sub_020767BC (u16 param0, u8 param1, u8 param2, u8 param3, u32 param4)
     int v1;
     u8 v2;
 
-    param3 = sub_020761E8(param0, param3);
+    param3 = SanitizeFormId(param0, param3);
 
     switch (param0) {
     case 412:

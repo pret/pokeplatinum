@@ -875,7 +875,7 @@ static u16 ov5_021F7B60 (Pokemon * param0, u16 param1)
     v5 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
     for (v2 = 0; v2 < 4; v2++) {
-        v6[v2] = GetMonData(param0, (54 + v2), NULL);
+        v6[v2] = GetMonData(param0, MON_DATA_MOVE1 + v2, NULL);
     }
 
     for (v0 = 0; v0 < 5; v0++) {

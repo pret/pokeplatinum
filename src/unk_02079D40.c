@@ -584,7 +584,7 @@ u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
         }
     }
 
-    param2 = sub_020761E8(param0, param2);
+    param2 = SanitizeFormId(param0, param2);
 
     if (param2 != 0) {
         if (param0 == 386) {

@@ -112,7 +112,7 @@ int sub_02030BCC (const UnkStruct_02030A80 * param0)
         return 0;
     }
 
-    return sub_020761E8(param0->unk_1C, param0->unk_1B_1);
+    return SanitizeFormId(param0->unk_1C, param0->unk_1B_1);
 }
 
 int sub_02030BEC (const UnkStruct_02030A80 * param0)
