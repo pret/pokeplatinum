@@ -339,7 +339,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
     if (Item_GetAttributeFromStruct(v0, 25) != 0) {
         if (v1[2] < 100) {
-            sub_0207536C(param0, 8, sub_02075A70(param0));
+            sub_0207536C(param0, MON_DATA_EXP, sub_02075A70(param0));
             sub_0207418C(param0);
 
             if (v1[0] == 0) {
