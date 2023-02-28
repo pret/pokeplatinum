@@ -161,7 +161,7 @@ typedef struct {
     int unk_50C;
     int unk_510;
     u32 unk_514[14580];
-    UnkStruct_ov97_02236340 * unk_E8E0;
+    PokemonStorageGBA * unk_E8E0;
     int unk_E8E4;
     int unk_E8E8;
     UnkStruct_02015920 * unk_E8EC;
