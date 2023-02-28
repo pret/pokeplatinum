@@ -976,7 +976,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         param0->unk_06 = sub_0207823C(&param0->unk_08, sizeof(PokemonSubstruct0) * 4);
         break;
     case MON_DATA_FORM:
-        v0 = v3->unk_18_3;
+        v0 = v3->form;
         break;
     case MON_DATA_113:
         v0 = v3->unk_19;
@@ -1122,7 +1122,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         if ((v2->species == SPECIES_ARCEUS) && (v2->unk_0D == 121)) {
             v0 = sub_02077988(Item_GetAttribute(v2->item, 1, 0));
         } else {
-            v0 = sub_020759CC(v2->species, v3->unk_18_3, 6 + (param1 - 177));
+            v0 = sub_020759CC(v2->species, v3->form, 6 + (param1 - 177));
         }
         break;
     case MON_DATA_179:
@@ -1459,7 +1459,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         v7->unk_18_1 = sub_02075DAC(v6->species, param0->unk_00);
         break;
     case MON_DATA_FORM:
-        v7->unk_18_3 = v5[0];
+        v7->form = v5[0];
         break;
     case MON_DATA_113:
         v7->unk_19 = v5[0];
@@ -5454,7 +5454,7 @@ void sub_02078B40 (Pokemon * param0, UnkStruct_02078B40 * param1)
     param1->unk_2C_31 = v2->unk_10_31;
     param1->unk_30_0 = v2->fatefulEncounter;
     param1->unk_30_1 = v2->unk_18_1;
-    param1->unk_30_3 = v2->unk_18_3;
+    param1->unk_30_3 = v2->form;
 
     for (v5 = 0; v5 < 10 + 1; v5++) {
         param1->unk_32[v5] = v3->unk_00[v5];
@@ -5535,7 +5535,7 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon * param1)
     v2->unk_10_31 = param0->unk_2C_31;
     v2->fatefulEncounter = param0->unk_30_0;
     v2->unk_18_1 = param0->unk_30_1;
-    v2->unk_18_3 = param0->unk_30_3;
+    v2->form = param0->unk_30_3;
 
     for (v5 = 0; v5 < 10 + 1; v5++) {
         v3->unk_00[v5] = param0->unk_32[v5];
