@@ -968,7 +968,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         v0 = ((v3->unk_14 & (v1 << param1 - 78)) != 0);
         break;
     case MON_DATA_FATEFUL_ENCOUNTER:
-        v0 = v3->unk_18_0;
+        v0 = v3->fatefulEncounter;
         break;
     case MON_DATA_111:
         v0 = sub_02075DAC(v2->species, param0->unk_00);
@@ -1453,7 +1453,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         }
         break;
     case MON_DATA_FATEFUL_ENCOUNTER:
-        v7->unk_18_0 = v5[0];
+        v7->fatefulEncounter = v5[0];
         break;
     case MON_DATA_111:
         v7->unk_18_1 = sub_02075DAC(v6->species, param0->unk_00);
@@ -5452,7 +5452,7 @@ void sub_02078B40 (Pokemon * param0, UnkStruct_02078B40 * param1)
     param1->unk_2C_25 = v2->unk_10_25;
     param1->unk_2C_30 = v2->unk_10_30;
     param1->unk_2C_31 = v2->unk_10_31;
-    param1->unk_30_0 = v2->unk_18_0;
+    param1->unk_30_0 = v2->fatefulEncounter;
     param1->unk_30_1 = v2->unk_18_1;
     param1->unk_30_3 = v2->unk_18_3;
 
@@ -5533,7 +5533,7 @@ void sub_02078E0C (UnkStruct_02078B40 * param0, Pokemon * param1)
     v2->unk_10_25 = param0->unk_2C_25;
     v2->unk_10_30 = param0->unk_2C_30;
     v2->unk_10_31 = param0->unk_2C_31;
-    v2->unk_18_0 = param0->unk_30_0;
+    v2->fatefulEncounter = param0->unk_30_0;
     v2->unk_18_1 = param0->unk_30_1;
     v2->unk_18_3 = param0->unk_30_3;
 

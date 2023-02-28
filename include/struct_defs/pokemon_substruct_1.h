@@ -14,7 +14,7 @@ typedef struct PokemonSubstruct1_t {
     u32 unk_10_30 : 1;
     u32 unk_10_31 : 1;
     u32 unk_14;
-    u8 unk_18_0 : 1;
+    u8 fatefulEncounter:1;
     u8 unk_18_1 : 2;
     u8 unk_18_3 : 5;
     u8 unk_19;
