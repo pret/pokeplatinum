@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02087A10_decl.h"
 

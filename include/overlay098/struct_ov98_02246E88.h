@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV98_02246E88_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay096/struct_ov96_0223B574.h"

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 #include "string/strbuf.h"
 #include "overlay020/ov20_021D5044.h"

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"

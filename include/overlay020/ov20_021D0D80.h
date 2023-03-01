@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV20_021D0D80_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 
 int ov20_021D0D80(UnkStruct_020067E8 * param0, int * param1);

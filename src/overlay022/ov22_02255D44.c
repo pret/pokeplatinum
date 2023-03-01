@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"

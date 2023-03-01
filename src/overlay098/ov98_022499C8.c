@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 #include "heap.h"
 #include "error_handling.h"

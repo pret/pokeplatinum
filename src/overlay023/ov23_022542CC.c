@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"

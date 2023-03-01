@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"

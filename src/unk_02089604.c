@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 #include "struct_defs/struct_02089688.h"
 

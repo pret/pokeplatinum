@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0207CDEC_H
 #define POKEPLATINUM_UNK_0207CDEC_H
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_0207D3B0_decl.h"
 
 void sub_0207CDEC(void * param0, u16 param1, u16 param2);

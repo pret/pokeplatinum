@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02014A84_H
 
 #include "struct_defs/struct_02014A84.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 void sub_02014A84(UnkStruct_02014A84 * param0);
 void sub_02014A9C(UnkStruct_02014A84 * param0, u32 param1);

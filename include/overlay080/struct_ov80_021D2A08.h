@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "overlay080/struct_ov80_021D259C.h"

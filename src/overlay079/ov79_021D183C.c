@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"

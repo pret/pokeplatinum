@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"

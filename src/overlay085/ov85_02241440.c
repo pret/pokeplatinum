@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_020973A8_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"

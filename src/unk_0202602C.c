@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02026030_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 

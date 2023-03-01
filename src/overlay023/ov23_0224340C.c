@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"

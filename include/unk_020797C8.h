@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020797C8_H
 #define POKEPLATINUM_UNK_020797C8_H
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 

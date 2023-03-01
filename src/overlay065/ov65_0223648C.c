@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"

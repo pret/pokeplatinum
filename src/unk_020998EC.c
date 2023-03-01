@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02014D38_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"

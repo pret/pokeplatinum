@@ -1,7 +1,9 @@
 #ifndef POKEPLATINUM_STRBUF_H
 #define POKEPLATINUM_STRBUF_H
 
-#include "struct_decls/struct_strbuf_decl.h"
+typedef u16 CharCode;
+
+typedef struct Strbuf_t Strbuf;
 
 /**
  * Control codes for how to pad numeric strings with leading zeroes

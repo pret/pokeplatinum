@@ -1,15 +1,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_strbuf_decl.h"
-
 #include "heap.h"
 #include "string/strbuf.h"
 #include "string/charcode.h"
 
-#define IS_COMPRESSED_MASK      0xf100
-#define COMPRESSION_MASK        0x01ff
-#define COMPRESSED_TERMINATOR   0x01ff
+#define COMPRESSED_LEADER       0xf100
+#define COMPRESSED_CODE_MASK    0x01ff
+#define COMPRESSED_CODE_BITS    9
+#define COMPRESSED_EOM          0x01ff
+#define CHARCODE_VALID_BITS     15
 
 // basic strbuf validation function
 #define CHECKSUM_BUF_IS_ALLOCED 0xb6f8d2ec
@@ -46,7 +46,7 @@ Strbuf * Strbuf_Init (u32 size, u32 heapID)
 {
     Strbuf * newString = Heap_AllocFromHeap(
         heapID,
-        STRBUF_HEADER_SIZE + (sizeof(PLCHAR) * size)
+        STRBUF_HEADER_SIZE + (sizeof(CharCode) * size)
     );
 
     if (newString) {
@@ -321,11 +321,11 @@ int Strbuf_Compare (const Strbuf * str1, const Strbuf * str2)
     for (int i = 0; str1->buffer[i] == str2->buffer[i]; i++) {
         // Both strings matched on a terminator; the strings match
         if (str1->buffer[i] == CHAR_EOM) {
-            return FALSE;
+            return 0;
         }
     }
 
-    return TRUE;
+    return 1;
 }
 
 u32 Strbuf_GetLength (const Strbuf * string)
@@ -480,42 +480,41 @@ void Strbuf_Append (Strbuf * dst, CharCode c)
 
 BOOL Strbuf_IsCompressed (Strbuf * string)
 {
-    return string->len > 0 && string->buffer[0] == IS_COMPRESSED_MASK;
+    return string->len > 0 && string->buffer[0] == COMPRESSED_LEADER;
 }
 
 void Strbuf_ConcatCompressed (Strbuf * dst, Strbuf * src)
 {
     if (Strbuf_IsCompressed(src)) {
-        u16 * dstBuffer = &dst->buffer[dst->len];
-        u16 * srcBuffer = &src->buffer[1];
-        s32 srcShift = 0;
+        CharCode * dstChar = &dst->buffer[dst->len];
+        CharCode * srcChar = &src->buffer[1];
+        s32 srcBit = 0;
         s32 len = 0;
 
         do {
-            // iterate through compressed characters one-by-one
-            CharCode c = (*srcBuffer >> srcShift) & COMPRESSION_MASK;
-            srcShift += 9;
-
-            if (srcShift >= 15) {
-                ++srcBuffer;
-                srcShift -= 15;
-                if (srcShift) {
-                    c |= (*srcBuffer << (9 - srcShift)) & COMPRESSION_MASK;
+            // Compress the individual characters from the string
+            CharCode c = (*srcChar >> srcBit) & COMPRESSED_CODE_MASK;
+            srcBit += COMPRESSED_CODE_BITS;
+            if (srcBit >= CHARCODE_VALID_BITS) {
+                ++srcChar;
+                srcBit -= CHARCODE_VALID_BITS;
+                if (srcBit) {
+                    c |= (*srcChar << (COMPRESSED_CODE_BITS - srcBit)) & COMPRESSED_CODE_MASK;
                 }
             }
 
-            // if we come up with a compressed terminator, then we're done
-            if (c == COMPRESSED_TERMINATOR) {
+            // If we come up with a compressed terminator, then we're done
+            if (c == COMPRESSED_EOM) {
                 break;
             }
 
-            // append the compressed character from src
-            *dstBuffer++ = c;
+            // Append the compressed character from src
+            *dstChar++ = c;
             ++len;
         } while (TRUE);
 
         // terminate the string
-        *dstBuffer = CHAR_EOM;
+        *dstChar = CHAR_EOM;
         dst->len += len;
     } else {
         Strbuf_Concat(dst, src);

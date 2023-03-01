@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"

@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_02002328.h"
 #include "struct_defs/struct_0201D834.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 void sub_02002B7C(void);
 void sub_02002BB8(int param0, u32 param1);

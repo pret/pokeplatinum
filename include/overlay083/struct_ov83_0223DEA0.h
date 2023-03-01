@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 typedef struct {
     UnkStruct_0200B144 * unk_00;

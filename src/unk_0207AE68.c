@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"

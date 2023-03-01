@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02025E68_H
 #define POKEPLATINUM_UNK_02025E68_H
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 int sub_02025E68(void);

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV66_0223177C_H
 #define POKEPLATINUM_OV66_0223177C_H
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay066/struct_ov66_0223177C_decl.h"
 #include "overlay066/struct_ov66_0223185C.h"

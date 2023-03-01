@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"

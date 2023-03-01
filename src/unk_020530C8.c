@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"

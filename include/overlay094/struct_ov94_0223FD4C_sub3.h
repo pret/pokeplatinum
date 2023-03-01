@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV94_0223FD4C_SUB3_H
 #define POKEPLATINUM_STRUCT_OV94_0223FD4C_SUB3_H
 
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 
 typedef struct {
     Strbuf ** unk_00;

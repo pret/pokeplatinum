@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV71_0223C69C_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_strbuf_decl.h"
+#include "string/strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 
