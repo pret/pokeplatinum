@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D4728.h"
@@ -63,7 +63,7 @@ typedef struct {
 
 static void ov20_021D4874(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
-static void ov20_021D498C(UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const PLString * param2, int param3);
+static void ov20_021D498C(UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const Strbuf * param2, int param3);
 static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 * param0);
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3);
@@ -225,7 +225,7 @@ static const s16 Unk_ov20_021D52EC[] = {
     22, (22 + 56 * 1) - 1, (22 + 56 * 2) - 2, (22 + 56 * 3) - 1,
 };
 
-asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const PLString * param2, int param3)
+asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const Strbuf * param2, int param3)
 {
     push {r4, r5, r6, r7, lr}
     sub sp, #0x24

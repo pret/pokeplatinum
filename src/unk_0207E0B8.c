@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_0207D3B0_decl.h"
 
@@ -49,7 +49,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02024220.h"
 #include "unk_0202602C.h"
 #include "unk_020279FC.h"
@@ -2118,7 +2118,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
 
         case 1:
         {
-            PLString * v1;
+            Strbuf * v1;
             int v2;
 
             v1 = sub_0200B1EC(param0->unk_69C, 184);
@@ -2458,7 +2458,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
     case 3:
         if (sub_02080F3C(param0, param0->unk_B11, 1) == 1) {
             UnkStruct_02073C74 * v0;
-            PLString * v1;
+            Strbuf * v1;
             void * v2;
             UnkStruct_0203CDB0 * v3;
 

@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay099/ov99_021D1A54.h"
 #include "overlay099/ov99_021D2C08.h"
@@ -1069,7 +1069,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
     sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {
-        PLString * v1;
+        Strbuf * v1;
         int v2;
 
         param0->unk_24 = sub_0201A778(75, 1);

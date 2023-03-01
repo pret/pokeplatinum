@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -37,7 +37,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "party.h"
@@ -410,7 +410,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
             UnkStruct_02073C74 * v3;
-            PLString * v4;
+            Strbuf * v4;
 
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);
             v4 = sub_0200B1EC(param0->unk_10, 46);
@@ -435,7 +435,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 return 13;
             } else {
                 UnkStruct_0200B144 * v5;
-                PLString * v6;
+                Strbuf * v6;
 
                 v5 = sub_0200B144(1, 26, 213, v0->unk_0C);
                 v6 = sub_0200B1EC(v5, 36);

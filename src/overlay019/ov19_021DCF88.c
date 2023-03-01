@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DCF88_decl.h"
 
@@ -25,7 +25,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020797C8.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -84,7 +84,7 @@ struct UnkStruct_ov19_021DCF88_t {
     UnkStruct_02022550 * unk_54[10];
     int unk_7C;
     int unk_80;
-    PLString * unk_84;
+    Strbuf * unk_84;
     UnkStruct_0205AA50 unk_88;
     void * unk_98;
     NNSG2dCellDataBank * unk_9C;

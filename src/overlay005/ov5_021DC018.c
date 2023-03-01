@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
@@ -30,7 +30,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "coins.h"
@@ -42,7 +42,7 @@ struct UnkStruct_ov5_021DC1A4_t {
     UnkStruct_0201CD38 * unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0205AA50 * unk_18;
-    PLString * unk_1C[28];
+    Strbuf * unk_1C[28];
     UnkStruct_0200B144 * unk_8C;
     UnkStruct_0200B358 * unk_90;
     u8 unk_94;
@@ -216,7 +216,7 @@ static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        PLString * v2 = PLString_Init((40 * 2), 4);
+        Strbuf * v2 = PLString_Init((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -243,7 +243,7 @@ static u32 ov5_021DC300 (UnkStruct_ov5_021DC1A4 * param0)
             break;
         }
 
-        v1 = sub_02002F04(0, (PLString *)param0->unk_BC[v0].unk_00);
+        v1 = sub_02002F04(0, (Strbuf *)param0->unk_BC[v0].unk_00);
 
         if (v2 < v1) {
             v2 = v1;
@@ -440,7 +440,7 @@ static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        PLString * v2 = PLString_Init((40 * 2), 4);
+        Strbuf * v2 = PLString_Init((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -473,7 +473,7 @@ static u32 ov5_021DC7A8 (UnkStruct_ov5_021DC1A4 * param0)
             break;
         }
 
-        v1 = sub_02002F04(0, (PLString *)param0->unk_1C4[v0].unk_00);
+        v1 = sub_02002F04(0, (Strbuf *)param0->unk_1C4[v0].unk_00);
 
         if (v2 < v1) {
             v2 = v1;
@@ -609,8 +609,8 @@ static void ov5_021DCA28 (UnkStruct_ov5_021DC1A4 * param0)
 
 static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param2)
 {
-    PLString * v0 = PLString_Init((40 * 2), 4);
-    PLString * v1 = PLString_Init((40 * 2), 4);
+    Strbuf * v0 = PLString_Init((40 * 2), 4);
+    Strbuf * v1 = PLString_Init((40 * 2), 4);
 
     sub_0201ADA4(param0->unk_18, 15);
     sub_0200B1B8(param0->unk_8C, param1, v0);
@@ -665,8 +665,8 @@ void ov5_021DCB24 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * para
 
 static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2, u8 param3)
 {
-    PLString * v0 = PLString_Init((40 * 2), 4);
-    PLString * v1 = PLString_Init((40 * 2), 4);
+    Strbuf * v0 = PLString_Init((40 * 2), 4);
+    Strbuf * v1 = PLString_Init((40 * 2), 4);
 
     sub_0200B1B8(param0->unk_8C, param1, v0);
     sub_0200C388(param0->unk_90, v1, v0);
@@ -824,7 +824,7 @@ UnkStruct_0205AA50 * ov5_021DCEB0 (UnkStruct_0203CDB0 * param0, u8 param1, u8 pa
 
     {
         UnkStruct_0200B144 * v1;
-        PLString * v2;
+        Strbuf * v2;
 
         v1 = sub_0200B144(0, 26, 543, 4);
         v2 = sub_0200B1EC(v1, 18);
@@ -849,8 +849,8 @@ void ov5_021DCF6C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
-    PLString * v3;
+    Strbuf * v2;
+    Strbuf * v3;
     u32 v4;
     u32 v5;
 
@@ -898,8 +898,8 @@ void ov5_021DD098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
-    PLString * v3;
+    Strbuf * v2;
+    Strbuf * v3;
     u32 v4;
     u32 v5;
 
@@ -941,8 +941,8 @@ void ov5_021DD1A4 (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
-    PLString * v3;
+    Strbuf * v2;
+    Strbuf * v3;
     u16 v4;
     u32 v5;
 

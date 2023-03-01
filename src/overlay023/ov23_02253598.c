@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -30,7 +30,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -477,8 +477,8 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
 static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
 {
     UnkStruct_0200B358 * v0;
-    PLString * v1;
-    PLString * v2;
+    Strbuf * v1;
+    Strbuf * v2;
     int v3, v4;
     const int v5 = 17;
     const int v6 = 39;

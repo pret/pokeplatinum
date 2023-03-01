@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02039814.h"
 
 void sub_02039834(int param0, int param1, int param2);
@@ -87,8 +87,8 @@ void sub_02039834 (int param0, int param1, int param2)
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    PLString * v3;
-    PLString * v4;
+    Strbuf * v3;
+    Strbuf * v4;
     UnkStruct_0200B358 * v5;
     int v6;
 

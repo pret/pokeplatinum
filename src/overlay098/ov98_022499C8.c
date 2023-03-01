@@ -2,11 +2,11 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "heap.h"
 #include "error_handling.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay098/ov98_022499C8.h"
 
 static const char Unk_ov98_02249D1C[] = "w";
@@ -28,7 +28,7 @@ static const struct {
     {0x12a, '9'},
 };
 
-asm void ov98_022499C8 (PLString * param0, char * param1, int param2)
+asm void ov98_022499C8 (Strbuf * param0, char * param1, int param2)
 {
    push {r3, r4, r5, r6, r7, lr}
    sub sp, #8

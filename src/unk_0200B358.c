@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
@@ -19,7 +19,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D0C8.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
@@ -38,17 +38,17 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0200B444 unk_00;
-    PLString * unk_04;
+    Strbuf * unk_04;
 } UnkStruct_0200B358_sub1;
 
 typedef struct UnkStruct_0200B358_t {
     u32 unk_00;
     u32 unk_04;
     UnkStruct_0200B358_sub1 * unk_08;
-    PLString * unk_0C;
+    Strbuf * unk_0C;
 } UnkStruct_0200B358;
 
-static void sub_0200B448(UnkStruct_0200B358 * param0, u32 param1, const PLString * param2, const UnkStruct_0200B444 * param3);
+static void sub_0200B448(UnkStruct_0200B358 * param0, u32 param1, const Strbuf * param2, const UnkStruct_0200B444 * param3);
 static void sub_0200B444(UnkStruct_0200B444 * param0);
 void sub_0200B578(UnkStruct_0200B358 * param0, u32 param1, UnkStruct_02073C74_sub1 * param2);
 void sub_0200B594(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
@@ -150,7 +150,7 @@ static void sub_0200B444 (UnkStruct_0200B444 * param0)
     return;
 }
 
-static void sub_0200B448 (UnkStruct_0200B358 * param0, u32 param1, const PLString * param2, const UnkStruct_0200B444 * param3)
+static void sub_0200B448 (UnkStruct_0200B358 * param0, u32 param1, const Strbuf * param2, const UnkStruct_0200B444 * param3)
 {
     GF_ASSERT(param1 < param0->unk_00);
 
@@ -163,7 +163,7 @@ static void sub_0200B448 (UnkStruct_0200B358 * param0, u32 param1, const PLStrin
     }
 }
 
-void sub_0200B48C (UnkStruct_0200B358 * param0, u32 param1, const PLString * param2, u32 param3, BOOL param4, u32 param5)
+void sub_0200B48C (UnkStruct_0200B358 * param0, u32 param1, const Strbuf * param2, u32 param3, BOOL param4, u32 param5)
 {
     sub_0200B448(param0, param1, param2, NULL);
 }
@@ -791,7 +791,7 @@ void sub_0200C01C (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
 void sub_0200C054 (UnkStruct_0200B358 * param0, UnkStruct_021C0794 * param1, int param2, int param3, int param4)
 {
     int v0, v1;
-    PLString * v2;
+    Strbuf * v2;
     UnkStruct_0202B4A0 * v3 = sub_0202B4A0(param1);
 
     v0 = sub_0202B47C(v3, param2);
@@ -952,7 +952,7 @@ void sub_0200C338 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C388 (const UnkStruct_0200B358 * param0, PLString * param1, const PLString * param2)
+void sub_0200C388 (const UnkStruct_0200B358 * param0, Strbuf * param1, const Strbuf * param2)
 {
     const u16 * v0;
     u16 * v1;

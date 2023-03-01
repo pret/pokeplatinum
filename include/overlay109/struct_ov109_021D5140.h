@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209BDF8.h"
@@ -35,10 +35,10 @@ typedef struct UnkStruct_ov109_021D5140_t {
     UnkStruct_0201CD38 * unk_30;
     UnkStruct_0200B358 * unk_34;
     UnkStruct_0200B144 * unk_38;
-    PLString * unk_3C[5];
-    PLString * unk_50;
-    PLString * unk_54;
-    PLString * unk_58;
+    Strbuf * unk_3C[5];
+    Strbuf * unk_50;
+    Strbuf * unk_54;
+    Strbuf * unk_58;
     int unk_5C;
     UnkStruct_020218BC * unk_60;
     UnkStruct_0200C738 unk_64;

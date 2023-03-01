@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -30,7 +30,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0201378C.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -160,7 +160,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
     UnkStruct_0200B144 * v2;
-    PLString * v3;
+    Strbuf * v3;
     UnkStruct_ov6_02240D5C * v4;
     UnkStruct_02073C74 * v5;
 

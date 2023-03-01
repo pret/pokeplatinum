@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -65,7 +65,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -99,7 +99,7 @@ typedef struct {
     u32 unk_30;
     int unk_34;
     u16 * unk_38;
-    PLString * unk_3C;
+    Strbuf * unk_3C;
     UnkStruct_0200B358 * unk_40;
     int unk_44;
     int unk_48;
@@ -168,8 +168,8 @@ typedef struct {
     UnkStruct_ov97_02233B8C unk_E8F0;
     UnkStruct_ov97_0223F434 unk_E8FC[30];
     void (* unk_12664)(void);
-    PLString * unk_12668;
-    PLString * unk_1266C;
+    Strbuf * unk_12668;
+    Strbuf * unk_1266C;
 } UnkStruct_ov97_02234A2C;
 
 static void ov97_02234A2C(UnkStruct_ov97_02234A2C * param0, int param1);
@@ -177,8 +177,8 @@ static void ov97_022349E0(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02234ECC(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02235310(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C * param0);
-void PLString_FillWithCharsLimit(PLString * param0, const u16 * param1, u32 param2);
-void PLString_FillWithChars(PLString * param0, const u16 * param1);
+void PLString_FillWithCharsLimit(Strbuf * param0, const u16 * param1, u32 param2);
+void PLString_FillWithChars(Strbuf * param0, const u16 * param1);
 void ov97_02236E90(UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1);
 
 UnkStruct_ov97_0223F434 * Unk_ov97_0223F434;
@@ -424,12 +424,12 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     }
 }
 
-static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, PLString * param1, int param2)
+static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, Strbuf * param1, int param2)
 {
     int v0, v1;
 
     if (param2 & 0x1) {
-        v0 = sub_02002D7C(1, (const PLString *)param1, 0);
+        v0 = sub_02002D7C(1, (const Strbuf *)param1, 0);
         v1 = param0->unk_10 * 8;
         return (v1 - v0) / 2;
     } else {
@@ -439,11 +439,11 @@ static int ov97_02233DAC (UnkStruct_ov97_02233DAC * param0, PLString * param1, i
 
 static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_02233DAC * param1, int param2)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_0200B358 * v1;
     UnkStruct_0200B144 * v2;
     int v3, v4, v5;
-    PLString * v6;
+    Strbuf * v6;
 
     if (param1->unk_44 == 0) {
         v5 = 0xff;
@@ -1191,7 +1191,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
     UnkStruct_0200B144 * v5;
     u8 v6[10 + 1];
     u16 v7[10 + 1];
-    PLString * v8;
+    Strbuf * v8;
 
     memset(&v4, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1627,7 +1627,7 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 {
     UnkStruct_ov97_02233DAC v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
+    Strbuf * v2;
     u16 v3[7 + 1];
 
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());

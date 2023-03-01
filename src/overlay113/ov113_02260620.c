@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
@@ -19,7 +19,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
@@ -548,9 +548,9 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
 {
     const UnkStruct_ov66_0222E71C * v0;
     UnkStruct_02025E6C * v1;
-    PLString * v2;
-    PLString * v3;
-    PLString * v4;
+    Strbuf * v2;
+    Strbuf * v3;
+    Strbuf * v4;
     int v5 = 64;
     int v6;
     u32 v7, v8;

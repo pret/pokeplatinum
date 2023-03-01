@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV98_02246E88_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay096/struct_ov96_0223B574.h"
@@ -34,8 +34,8 @@ typedef struct {
     u32 unk_10C;
     u8 unk_110;
     u8 unk_111[3];
-    PLString * unk_114;
-    PLString * unk_118;
+    Strbuf * unk_114;
+    Strbuf * unk_118;
     BOOL unk_11C;
 } UnkStruct_ov98_02246E88;
 

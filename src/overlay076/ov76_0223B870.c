@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
 #include "overlay076/const_ov76_0223EF3C.h"
@@ -47,7 +47,7 @@
 #include "unk_0201E86C.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
@@ -149,7 +149,7 @@ void ov76_0223B96C (UnkStruct_ov76_0223DE00 * param0, BOOL param1)
 void ov76_0223B98C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_020127E8 v0;
-    PLString * v1;
+    Strbuf * v1;
     int v2;
     int v3;
     UnkStruct_0200B144 * v4;
@@ -503,7 +503,7 @@ void ov76_0223BF74 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, in
 
     {
         int v9;
-        PLString * v10;
+        Strbuf * v10;
         UnkStruct_0200B144 * v11 = sub_0200B144(0, 26, 8, 53);
 
         for (v9 = 0; v9 < v7; v9++) {
@@ -938,7 +938,7 @@ void ov76_0223C974 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1, in
 void ov76_0223CA30 (UnkStruct_0205AA50 * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     if (param1 == 0xFFFF) {
         sub_0201ADA4(param0, 15);
@@ -991,7 +991,7 @@ void ov76_0223CC8C (UnkStruct_ov76_0223DE00 * param0)
     int v1;
     int v2;
     int v3;
-    PLString * v4;
+    Strbuf * v4;
     UnkStruct_0205AA50 * v5;
 
     for (v0 = 3; v0 < 11; v0++) {
@@ -1023,7 +1023,7 @@ void ov76_0223CD20 (UnkStruct_ov76_0223DE00 * param0, int param1)
     int v1;
     int v2;
     int v3;
-    PLString * v4;
+    Strbuf * v4;
     UnkStruct_0205AA50 * v5;
 
     v5 = &param0->unk_D4.unk_18[param1 + 3];
@@ -1060,7 +1060,7 @@ void ov76_0223CDA4 (UnkStruct_ov76_0223DE00 * param0)
 void ov76_0223CDC4 (UnkStruct_0205AA50 * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     if (param1 == 0xFFFF) {
         sub_0201ADA4(param0, 15);

@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -44,7 +44,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_020298BC.h"
@@ -89,15 +89,15 @@ typedef struct {
     UnkStruct_0205AA50 * unk_04;
     u32 unk_08;
     u32 unk_0C;
-    PLString * unk_10;
+    Strbuf * unk_10;
 } UnkStruct_ov7_0224C3EC;
 
 typedef struct {
     u32 unk_00;
     UnkStruct_0205AA50 * unk_04;
     UnkStruct_0200B358 * unk_08;
-    PLString * unk_0C;
-    PLString * unk_10[3];
+    Strbuf * unk_0C;
+    Strbuf * unk_10[3];
 } UnkStruct_ov7_0224C620;
 
 typedef struct {
@@ -105,10 +105,10 @@ typedef struct {
     UnkStruct_0205AA50 * unk_04;
     UnkStruct_0200112C * unk_08;
     UnkStruct_02013A04 unk_0C[23];
-    PLString * unk_C4[23];
+    Strbuf * unk_C4[23];
     s32 unk_120;
     UnkStruct_0200B358 * unk_124;
-    PLString * unk_128;
+    Strbuf * unk_128;
     u16 unk_12C;
     u16 unk_12E;
     void * unk_130;
@@ -161,7 +161,7 @@ static void ov7_0224C3E0(UnkStruct_ov7_0224BEFC * param0);
 static void ov7_0224C338(UnkStruct_ov7_0224BEFC * param0);
 static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3);
 static void ov7_0224C444(UnkStruct_ov7_0224C3EC * param0);
-static void ov7_0224C468(UnkStruct_ov7_0224C3EC * param0, PLString * param1, u32 param2);
+static void ov7_0224C468(UnkStruct_ov7_0224C3EC * param0, Strbuf * param1, u32 param2);
 static BOOL ov7_0224C4B8(UnkStruct_ov7_0224C3EC * param0);
 static void ov7_0224C4E0(UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4);
 static void ov7_0224C580(UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4);
@@ -219,7 +219,7 @@ void ov7_0224BEFC (UnkStruct_ov7_0224BEFC * param0)
 
 BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
 {
-    PLString * v0;
+    Strbuf * v0;
     BOOL v1;
 
     switch (param0->unk_00) {
@@ -432,7 +432,7 @@ static void ov7_0224C444 (UnkStruct_ov7_0224C3EC * param0)
     param0->unk_00 = 0;
 }
 
-static void ov7_0224C468 (UnkStruct_ov7_0224C3EC * param0, PLString * param1, u32 param2)
+static void ov7_0224C468 (UnkStruct_ov7_0224C3EC * param0, Strbuf * param1, u32 param2)
 {
     GF_ASSERT(param0->unk_10 == NULL);
 
@@ -460,8 +460,8 @@ static BOOL ov7_0224C4B8 (UnkStruct_ov7_0224C3EC * param0)
 
 static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4)
 {
-    PLString * v0;
-    PLString * v1;
+    Strbuf * v0;
+    Strbuf * v1;
     UnkStruct_0200B358 * v2;
 
     v2 = sub_0200B358(param2);
@@ -487,8 +487,8 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
 
 static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4)
 {
-    PLString * v0;
-    PLString * v1;
+    Strbuf * v0;
+    Strbuf * v1;
     UnkStruct_0200B358 * v2;
 
     v2 = sub_0200B358(param2);
@@ -574,7 +574,7 @@ static void ov7_0224C6DC (UnkStruct_ov7_0224C620 * param0, u32 param1, u32 param
 static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, UnkStruct_02018340 * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4, UnkStruct_0200B144 * param5, void * param6, UnkFuncPtr_ov7_0224C768 param7, UnkStruct_020218BC * param8)
 {
     int v0;
-    PLString * v1;
+    Strbuf * v1;
     UnkStruct_ov19_021DA864 v2;
     UnkStruct_ov83_0223D9A8 v3;
     static const u8 v4[2] = {

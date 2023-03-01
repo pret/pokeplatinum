@@ -1,8 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_PLSTRING_DECL_H
-#define POKEPLATINUM_STRUCT_PLSTRING_DECL_H
-
-typedef u16 PLChar;
-
-typedef struct PLString_t PLString;
-
-#endif // POKEPLATINUM_STRUCT_PLSTRING_DECL_H

@@ -50,7 +50,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"

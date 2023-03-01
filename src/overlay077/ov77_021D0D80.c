@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -44,7 +44,7 @@
 #include "unk_0201E190.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -1262,7 +1262,7 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
 
     {
         UnkStruct_0200B144 * v4;
-        PLString * v5;
+        Strbuf * v5;
         u32 v6;
 
         sub_02019690(4, 32, 0, param1);

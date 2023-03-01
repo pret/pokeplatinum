@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -26,7 +26,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
@@ -278,7 +278,7 @@ static BOOL sub_020491F4 (UnkStruct_0203CDB0 * param0, int param1)
 
 static void sub_0204922C (UnkStruct_0200B358 * param0, int param1, const u16 * param2, int param3, int param4, int param5)
 {
-    PLString * v0 = PLString_Init(64, 4);
+    Strbuf * v0 = PLString_Init(64, 4);
 
     PLString_FillWithChars(v0, param2);
     sub_0200B48C(param0, param1, v0, param3, param5, param4);
@@ -323,7 +323,7 @@ static void sub_020492D4 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
 
 static void sub_02049308 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E81C * v2 = sub_0202E81C(v1);
 

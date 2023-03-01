@@ -11,7 +11,7 @@
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202DF8C.h"
 #include "overlay087/ov87_021D0D80.h"
 #include "overlay087/ov87_021D106C.h"

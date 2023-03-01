@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -22,7 +22,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202602C.h"
@@ -289,7 +289,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     if (v0->val1.unk_00 == 0) {
-        PLString * v15 = sub_02025F04(v1, 32);
+        Strbuf * v15 = sub_02025F04(v1, 32);
         u32 v16 = sub_02025F20(v1);
         u32 v17 = sub_02025F30(v1);
 
@@ -426,7 +426,7 @@ static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
     const UnkStruct_0202610C * v1 = (const UnkStruct_0202610C *)v0;
-    PLString * v2;
+    Strbuf * v2;
 
     *param1 = 379;
     *param2 = 10;

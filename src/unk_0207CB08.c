@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -14,7 +14,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020298BC.h"
 #include "coins.h"
@@ -136,11 +136,11 @@ static u32 sub_0207CC00 (UnkStruct_021C0794 * param0)
     return (u32)sub_0202D230(sub_0202D750(param0), 0, 0);
 }
 
-BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, PLString * param1, u16 param2, u32 param3)
+BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, Strbuf * param1, u16 param2, u32 param3)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
+    Strbuf * v2;
 
     v0 = sub_0200B144(0, 26, 7, param3);
     v1 = sub_0200B358(param3);
@@ -174,11 +174,11 @@ BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, PLString * param1, u16 param2, u
     return 1;
 }
 
-void sub_0207CD34 (void * param0, PLString * param1, u16 param2, u32 param3, u32 param4)
+void sub_0207CD34 (void * param0, Strbuf * param1, u16 param2, u32 param3, u32 param4)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
+    Strbuf * v2;
 
     switch (param3) {
     case 1:

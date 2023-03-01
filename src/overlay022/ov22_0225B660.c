@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -31,7 +31,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02073C2C.h"
@@ -282,8 +282,8 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     int v3;
     u16 v4;
     UnkStruct_0200B358 * v5;
-    PLString * v6;
-    PLString * v7;
+    Strbuf * v6;
+    Strbuf * v7;
     UnkStruct_0200B144 * v8;
 
     v8 = sub_0200B144(0, 26, 385, 13);
@@ -328,8 +328,8 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 {
     int v0;
     UnkStruct_0200B358 * v1;
-    PLString * v2;
-    PLString * v3;
+    Strbuf * v2;
+    Strbuf * v3;
     int v4;
     UnkStruct_02073C74 * v5;
     UnkStruct_02073C74_sub1 * v6;

@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -49,7 +49,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_02027F84.h"
@@ -140,7 +140,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 * param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 * param0, UnkStruct_02025E6C * param1, UnkStruct_02014A84 * param2, u32 param3);
-static PLString * ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4);
+static Strbuf * ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4);
 static void ov56_02256D64(UnkStruct_02018340 * param0, NNSG2dScreenData * param1, UnkStruct_ov56_022562EC * param2, int param3, int param4, int * param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 * param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 * param0);
@@ -781,10 +781,10 @@ static void ov56_02256D64 (UnkStruct_02018340 * param0, NNSG2dScreenData * param
     sub_02019460(param0, 7, sub_02019FE4(param0, 7), 32 * 24 * 2, 0);
 }
 
-static PLString * ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4)
+static Strbuf * ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4)
 {
-    PLString * v0 = NULL;
-    PLString * v1;
+    Strbuf * v0 = NULL;
+    Strbuf * v1;
     int v2 = 0;
 
     if (param1 != sub_02025F20(param4)) {

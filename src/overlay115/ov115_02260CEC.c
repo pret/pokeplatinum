@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
@@ -68,7 +68,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E68.h"
@@ -272,7 +272,7 @@ typedef struct {
     UnkStruct_02012CE0 * unk_48;
     UnkStruct_02012B20 * unk_4C;
     UnkStruct_0201EE28 unk_50;
-    PLString * unk_5C;
+    Strbuf * unk_5C;
     UnkStruct_02009DC8 * unk_60;
     UnkStruct_ov115_02261304 unk_64;
     UnkStruct_ov115_02261304 unk_7C;
@@ -293,8 +293,8 @@ typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0200B358 * unk_04;
     UnkStruct_0200B144 * unk_08;
-    PLString * unk_0C;
-    PLString * unk_10;
+    Strbuf * unk_0C;
+    Strbuf * unk_10;
     u16 unk_14;
     u16 unk_16;
     UnkStruct_0207C690 * unk_18;
@@ -1437,7 +1437,7 @@ static void ov115_022617D8 (UnkStruct_ov115_022615B0 * param0, u32 param1)
 
 static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_02261ADC * param1, const UnkStruct_ov115_02262F50 * param2, u32 param3, u32 param4, NARC * param5, u32 param6)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_ov115_02261520 v1;
 
     memset(param0, 0, sizeof(UnkStruct_ov115_022617E8));
@@ -1459,7 +1459,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
         s32 v3, v4;
         UnkStruct_0205AA50 v5;
         u32 v6;
-        PLString * v7;
+        Strbuf * v7;
         u32 v8;
         u32 v9;
         u32 v10;

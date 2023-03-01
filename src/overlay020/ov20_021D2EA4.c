@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0201D0C8.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D2EA4.h"
@@ -38,7 +38,7 @@ typedef struct {
 } UnkStruct_ov20_021D34CC;
 
 typedef struct {
-    PLString * unk_00;
+    Strbuf * unk_00;
     const u16 * unk_04;
     int unk_08;
 } UnkStruct_ov20_021D33C8;
@@ -54,7 +54,7 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     UnkStruct_02022550 * unk_40;
     UnkStruct_02022550 * unk_44;
     UnkStruct_0200B144 * unk_48;
-    PLString * unk_4C;
+    Strbuf * unk_4C;
     UnkStruct_020149F0 * unk_50;
     UnkStruct_ov20_021D34CC unk_54[2];
     u32 unk_5C;
@@ -70,7 +70,7 @@ static void ov20_021D3184(UnkStruct_ov20_021D30F8 * param0);
 static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 * param0);
 static void ov20_021D33C8(UnkStruct_ov20_021D33C8 * param0, UnkStruct_ov20_021D30F8 * param1);
 static void ov20_021D33F4(UnkStruct_ov20_021D33C8 * param0);
-static int ov20_021D3400(UnkStruct_ov20_021D33C8 * param0, PLString * param1);
+static int ov20_021D3400(UnkStruct_ov20_021D33C8 * param0, Strbuf * param1);
 static void ov20_021D34CC(const UnkStruct_ov20_021D34CC * param0, UnkStruct_ov20_021D34CC * param1);
 static void ov20_021D34E0(const UnkStruct_ov20_021D34CC * param0, UnkStruct_ov20_021D34CC * param1);
 static void ov20_021D34F4(UnkStruct_0205AA50 * param0, const UnkStruct_ov20_021D34CC * param1);
@@ -267,7 +267,7 @@ void ov20_021D3228 (UnkStruct_ov20_021D30F8 * param0)
 
 static u32 ov20_021D32D0 (UnkStruct_ov20_021D30F8 * param0)
 {
-    PLString * v0 = ov20_021D1FC0(param0->unk_04, 35);
+    Strbuf * v0 = ov20_021D1FC0(param0->unk_04, 35);
     int v1, v2, v3;
     BOOL v4;
     u16 v5;
@@ -330,7 +330,7 @@ static void ov20_021D33F4 (UnkStruct_ov20_021D33C8 * param0)
     PLString_Free(param0->unk_00);
 }
 
-static int ov20_021D3400 (UnkStruct_ov20_021D33C8 * param0, PLString * param1)
+static int ov20_021D3400 (UnkStruct_ov20_021D33C8 * param0, Strbuf * param1)
 {
     const u16 * v0 = param0->unk_04;
     int v1;
@@ -436,7 +436,7 @@ void ov20_021D3578 (UnkStruct_ov20_021D30F8 * param0, u32 param1)
 
     {
         UnkStruct_0200B358 * v0 = sub_0200B368(2, 60, 0);
-        PLString * v1 = PLString_Init(300, 0);
+        Strbuf * v1 = PLString_Init(300, 0);
 
         sub_0200B7B4(v0, 0, 0);
         sub_0200B1B8(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020973A8_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -36,7 +36,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -493,7 +493,7 @@ static void ov85_02241860 (UnkStruct_0205AA50 * param0)
 static void ov85_02241878 (UnkStruct_ov85_022417E4 * param0, u32 param1, u32 param2, u32 param3)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u32 v2;
 
     v0 = &param0->unk_04[param1];
@@ -544,8 +544,8 @@ static void ov85_0224196C (UnkStruct_ov85_022417E4 * param0)
 static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
-    PLString * v2;
+    Strbuf * v1;
+    Strbuf * v2;
 
     v0 = &param0->unk_04[1];
 
@@ -571,7 +571,7 @@ static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
 static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     v0 = &param0->unk_04[11];
 
@@ -587,7 +587,7 @@ static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
 static void ov85_02241AA8 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     v0 = &param0->unk_04[9];
     sub_0201ADA4(v0, 0);
@@ -601,7 +601,7 @@ static void ov85_02241AA8 (UnkStruct_ov85_022417E4 * param0)
 static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u32 v2;
 
     v0 = &param0->unk_04[10];
@@ -624,7 +624,7 @@ static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
 static void ov85_02241B50 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     v0 = &param0->unk_04[7];
     sub_0201ADA4(v0, 0);
@@ -638,8 +638,8 @@ static void ov85_02241B50 (UnkStruct_ov85_022417E4 * param0)
 static void ov85_02241B9C (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
-    PLString * v2;
+    Strbuf * v1;
+    Strbuf * v2;
     u32 v3;
 
     v0 = &param0->unk_04[8];

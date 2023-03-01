@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "overlay094/const_ov94_02245FD4.h"
 
@@ -34,7 +34,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
@@ -1082,7 +1082,7 @@ static int ov94_0223F970 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223F9A4 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     sub_0200B1B8(param0->unk_B90, param1, param0->unk_BAC);
     sub_0201ADA4(&param0->unk_F5C, 0xf0f);
@@ -1093,7 +1093,7 @@ static void ov94_0223F9A4 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
 static void ov94_0223F9FC (UnkStruct_0205AA50 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2)
 {
-    PLString * v0, * v1, * v2;
+    Strbuf * v0, * v1, * v2;
 
     v0 = sub_0200B1EC(param2, 59);
     ov94_02245900(&param0[0], v0, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));

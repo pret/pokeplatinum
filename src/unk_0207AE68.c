@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -51,7 +51,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
@@ -982,7 +982,7 @@ static void sub_0207C520 (void * param0)
 
 static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     v0 = sub_0200B1EC(param0->unk_08, param1);
 

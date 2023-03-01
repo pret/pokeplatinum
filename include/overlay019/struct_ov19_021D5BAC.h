@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D5BAC_H
 #define POKEPLATINUM_STRUCT_OV19_021D5BAC_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 typedef struct {
     void * unk_00;
@@ -15,11 +15,11 @@ typedef struct {
     u8 unk_0E;
     u8 unk_0F;
     u8 padding_10[4];
-    PLString * unk_14;
-    PLString * unk_18;
-    PLString * unk_1C;
-    PLString * unk_20;
-    PLString * unk_24;
+    Strbuf * unk_14;
+    Strbuf * unk_18;
+    Strbuf * unk_1C;
+    Strbuf * unk_20;
+    Strbuf * unk_24;
 } UnkStruct_ov19_021D5BAC;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D5BAC_H

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -77,7 +77,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "error_handling.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -176,7 +176,7 @@ static void ov65_022343CC(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
 static void ov65_0223449C(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
 static void ov65_02234628(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);
-static void ov65_022346C4(UnkStruct_ov65_0222EBE0 * param0, PLString * param1, u32 param2, u32 param3);
+static void ov65_022346C4(UnkStruct_ov65_0222EBE0 * param0, Strbuf * param1, u32 param2, u32 param3);
 static void ov65_02234708(UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
 static void ov65_02234788(UnkStruct_ov65_0222EBE0 * param0, u8 param1, u8 param2, u8 param3, u8 param4);
 static u32 ov65_0223484C(u32 param0, int * param1);
@@ -2309,7 +2309,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     int v0, v1, v2;
     int v3;
     UnkStruct_02025E6C * v4 = sub_02025E38(param0->unk_160);
-    PLString * v5 = sub_02025F04(v4, 54);
+    Strbuf * v5 = sub_02025F04(v4, 54);
     u32 v6;
 
     if (!sub_0201A7CC(&param0->unk_340)) {
@@ -6295,7 +6295,7 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     int v0;
     int v1;
     UnkStruct_0203068C * v2;
-    PLString * v3;
+    Strbuf * v3;
 
     v2 = sub_0203068C(param0->unk_160);
     v0 = param0->unk_BE0.unk_71 - 1;
@@ -6416,7 +6416,7 @@ static void ov65_02234694 (UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 par
     ov65_02234708(param0, param1, v0, param4, param5);
 }
 
-static void ov65_022346C4 (UnkStruct_ov65_0222EBE0 * param0, PLString * param1, u32 param2, u32 param3)
+static void ov65_022346C4 (UnkStruct_ov65_0222EBE0 * param0, Strbuf * param1, u32 param2, u32 param3)
 {
     UnkStruct_0203068C * v0;
     BOOL v1;
@@ -6647,7 +6647,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     int v1;
     UnkStruct_ov19_021DA864 v2;
     UnkStruct_0205AA50 v3;
-    PLString * v4;
+    Strbuf * v4;
     UnkStruct_02012B20 * v5;
     int v6;
     UnkStruct_020127E8 v7;

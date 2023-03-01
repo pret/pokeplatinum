@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 
@@ -50,7 +50,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02073C2C.h"
@@ -311,8 +311,8 @@ void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, i
 int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, UnkStruct_02073C74 * param2, int param3)
 {
     int v0;
-    PLString * v1;
-    PLString * v2;
+    Strbuf * v1;
+    Strbuf * v2;
     UnkStruct_0200B358 * v3;
     UnkStruct_02073C74_sub1 * v4;
     UnkStruct_0200B144 * v5;
@@ -349,7 +349,7 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
 
     {
         int v1;
-        PLString * v2;
+        Strbuf * v2;
         UnkStruct_0200B144 * v3 = sub_0200B144(0, 26, 357, 71);
 
         for (v1 = 0; v1 < 2; v1++) {

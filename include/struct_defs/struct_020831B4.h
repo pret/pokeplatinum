@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_020831B4_H
 
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 typedef struct {
-    PLString * unk_00;
+    Strbuf * unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;

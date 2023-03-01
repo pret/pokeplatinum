@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -44,7 +44,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "error_handling.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02034198.h"
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02263AF0.h"
@@ -2012,7 +2012,7 @@ static BOOL ov117_02265C3C (UnkStruct_ov117_02265C3C * param0, UnkStruct_ov117_0
     return 1;
 }
 
-void ov117_02265DB8 (UnkStruct_02018340 * param0, UnkStruct_0200C704 * param1, UnkStruct_02012744 * param2, UnkStruct_ov117_02265EB0 * param3, const PLString * param4, int param5, u32 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8 (UnkStruct_02018340 * param0, UnkStruct_0200C704 * param1, UnkStruct_02012744 * param2, UnkStruct_ov117_02265EB0 * param3, const Strbuf * param4, int param5, u32 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;

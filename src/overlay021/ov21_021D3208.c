@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 
 #include "overlay021/struct_ov21_021D3208.h"
@@ -13,7 +13,7 @@
 
 #include "unk_02006E3C.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_02098700.h"
@@ -556,7 +556,7 @@ int ov21_021D3908 (const UnkStruct_ov21_021D3320 * param0)
     return param0->unk_173C;
 }
 
-PLString * ov21_021D3914 (const UnkStruct_ov21_021D3320 * param0)
+Strbuf * ov21_021D3914 (const UnkStruct_ov21_021D3320 * param0)
 {
     return param0->unk_1754;
 }

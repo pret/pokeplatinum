@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_020158A8.h"
 
 #include "unk_0200AC5C.h"
 #include "unk_020158A8.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 
 UnkStruct_020158A8 * sub_020158A8 (int param0)
 {
@@ -40,7 +40,7 @@ void sub_020158F4 (UnkStruct_020158A8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-const PLString * sub_02015918 (UnkStruct_020158A8 * param0, int param1)
+const Strbuf * sub_02015918 (UnkStruct_020158A8 * param0, int param1)
 {
-    return (const PLString *)param0->unk_04[param1];
+    return (const Strbuf *)param0->unk_04[param1];
 }

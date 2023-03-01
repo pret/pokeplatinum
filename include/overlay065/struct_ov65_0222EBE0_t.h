@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -41,10 +41,10 @@ struct UnkStruct_ov65_0222EBE0_t {
     UnkStruct_0200B358 * unk_164;
     UnkStruct_0200B144 * unk_168;
     UnkStruct_0200B144 * unk_16C;
-    PLString * unk_170;
-    PLString * unk_174;
-    PLString * unk_178;
-    PLString * unk_17C;
+    Strbuf * unk_170;
+    Strbuf * unk_174;
+    Strbuf * unk_178;
+    Strbuf * unk_17C;
     int unk_180;
     UnkStruct_02001AF4 * unk_184;
     void * unk_188;

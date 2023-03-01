@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -22,7 +22,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0208B284.h"
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -39,7 +39,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C * param0);
 
 static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
     UnkStruct_0205AA50 * v2 = &param0->unk_8A4;
 

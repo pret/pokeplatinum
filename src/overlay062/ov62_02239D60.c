@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02075874_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -42,7 +42,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_0202440C.h"
 #include "unk_02030A80.h"
@@ -83,7 +83,7 @@ typedef struct {
     UnkStruct_ov62_02239DBC_sub1 unk_380;
     UnkStruct_ov61_0222BCF8_sub1_sub1 * unk_38C[20];
     UnkStruct_ov61_0222BCF8_sub1_sub1 unk_3DC[20];
-    PLString * unk_2E0C[20][2];
+    Strbuf * unk_2E0C[20][2];
     UnkStruct_ov62_02248CDC unk_2EAC;
     UnkStruct_ov62_022323B8 unk_2ED8;
     int unk_2F64;
@@ -910,7 +910,7 @@ static void ov62_0223AB14 (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    PLString * v5;
+    Strbuf * v5;
 
     for (v3 = 0; v3 < NELEMS(Unk_ov62_02248DC4); v3++) {
         v1 = &v0->unk_234[v3];
@@ -958,7 +958,7 @@ static void ov62_0223AC0C (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
+    Strbuf * v2;
 
     v1 = &v0->unk_1B4[2];
     v2 = sub_0200B1EC(param0->unk_14.unk_34, param1);
@@ -973,9 +973,9 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
-    PLString * v3;
-    PLString * v4;
+    Strbuf * v2;
+    Strbuf * v3;
+    Strbuf * v4;
     UnkStruct_0200B358 * v5;
     int v6 = 28 + v0->unk_380.unk_00;
 
@@ -1002,7 +1002,7 @@ static void ov62_0223AD20 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
+    Strbuf * v2;
     int v3;
 
     v1 = &v0->unk_1B4[1];
@@ -1041,7 +1041,7 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
+    Strbuf * v2;
     int v3;
     int v4;
     u16 v5[255];
@@ -1476,7 +1476,7 @@ static void ov62_0223B6AC (UnkStruct_0208C06C * param0)
     int v3;
     int v4;
     int v5[] = {121, 59};
-    PLString * v6;
+    Strbuf * v6;
 
     for (v3 = 0; v3 < 2; v3++) {
         v1 = &v0->unk_234[v3];
@@ -1498,7 +1498,7 @@ static void ov62_0223B768 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
+    Strbuf * v2;
     int v3;
 
     v1 = &v0->unk_234[0];
@@ -1520,7 +1520,7 @@ static void ov62_0223B7C0 (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    PLString * v5;
+    Strbuf * v5;
 
     for (v3 = 0; v3 < 1; v3++) {
         v1 = &v0->unk_234[v3];
@@ -1573,7 +1573,7 @@ static void ov62_0223B888 (UnkStruct_0208C06C * param0)
     int v4;
     int v5;
     int v6[] = {27, 19, 26};
-    PLString * v7;
+    Strbuf * v7;
 
     for (v3 = 0; v3 < NELEMS(Unk_ov62_02248D50); v3++) {
         v1 = &v0->unk_1B4[v3];

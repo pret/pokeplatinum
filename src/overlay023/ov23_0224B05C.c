@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
@@ -2031,7 +2031,7 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-BOOL ov23_0224D020 (PLString * param0)
+BOOL ov23_0224D020 (Strbuf * param0)
 {
     int v0, v1;
     UnkStruct_02025E6C * v2;

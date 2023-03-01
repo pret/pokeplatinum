@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay111/struct_ov111_021D0F7C_decl.h"
 #include "overlay111/struct_ov111_021D33F4_decl.h"
@@ -51,7 +51,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "overlay111/ov111_021D0D80.h"
@@ -87,8 +87,8 @@ struct UnkStruct_ov111_021D0F7C_t {
     void * unk_34;
     UnkStruct_0200B144 * unk_38;
     UnkStruct_0200B358 * unk_3C;
-    PLString * unk_40;
-    PLString * unk_44;
+    Strbuf * unk_40;
+    Strbuf * unk_44;
     u16 unk_48[8];
     UnkStruct_02018340 * unk_58;
     UnkStruct_0205AA50 unk_5C[16];

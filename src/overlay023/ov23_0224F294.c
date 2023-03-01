@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -42,7 +42,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
@@ -499,7 +499,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
         for (v4 = 0; v4 < NELEMS(Unk_ov23_02256924); v4++) {
             if (v4 == v1) {
                 const UnkStruct_02025E6C * v5 = sub_02025E38(sub_0203D174(param0->unk_0C));
-                PLString * v6 = sub_02025F04(v5, 4);
+                Strbuf * v6 = sub_02025F04(v5, 4);
 
                 sub_02013A6C(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
                 PLString_Free(v6);

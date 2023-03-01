@@ -4,7 +4,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202F1D4.h"
 #include "unk_020366A0.h"
@@ -47,7 +47,7 @@ static int ov61_0222B190(UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B1
 static int ov61_0222B6D8(UnkStruct_ov62_022349A8 * param0);
 static int ov61_0222B860(UnkStruct_ov62_022349A8 * param0);
 static int ov61_0222BBE8(UnkStruct_ov62_022349A8 * param0);
-static void ov61_0222BB54(UnkStruct_ov62_022349A8 * param0, PLString * param1);
+static void ov61_0222BB54(UnkStruct_ov62_022349A8 * param0, Strbuf * param1);
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 * param0, int param1, int param2);
 static int ov61_0222B960(UnkStruct_ov62_022349A8 * param0);
 static void * ov61_0222BBF0(int param0);
@@ -740,7 +740,7 @@ BOOL ov61_0222BB48 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov62_0223CAA4 **
     return param0->unk_17C.unk_00;
 }
 
-static void ov61_0222BB54 (UnkStruct_ov62_022349A8 * param0, PLString * param1)
+static void ov61_0222BB54 (UnkStruct_ov62_022349A8 * param0, Strbuf * param1)
 {
     param0->unk_04(param0->unk_08, param1);
 }
@@ -748,7 +748,7 @@ static void ov61_0222BB54 (UnkStruct_ov62_022349A8 * param0, PLString * param1)
 static void ov61_0222BB60 (UnkStruct_ov62_022349A8 * param0, int param1, int param2)
 {
     int v0;
-    PLString * v1;
+    Strbuf * v1;
 
     if (param1 != -1) {
         v0 = 0 + param1;

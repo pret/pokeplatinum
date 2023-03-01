@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -24,7 +24,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
@@ -109,7 +109,7 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
 {
     u8 v0;
     u16 v1;
-    PLString * v2, * v3;
+    Strbuf * v2, * v3;
     UnkStruct_02026324 * v4;
     UnkStruct_0200B358 * v5;
     UnkStruct_0200B144 * v6;
@@ -283,7 +283,7 @@ static UnkStruct_0204B184 * sub_0204B184 (UnkStruct_ov104_0223A348 * param0, u16
 {
     UnkStruct_0204B184 * v0;
     UnkStruct_0200B144 * v1 = sub_0200B144(1, 26, 21, param2);
-    PLString * v2;
+    Strbuf * v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
 

@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
@@ -68,7 +68,7 @@
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
@@ -9735,7 +9735,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     UnkStruct_02002F38 * v3;
     UnkStruct_0200B144 * v4;
     UnkStruct_0200B358 * v5;
-    PLString * v6, * v7;
+    Strbuf * v6, * v7;
     UnkStruct_02018340 * v8;
     UnkStruct_0205AA50 v9;
     int v10;

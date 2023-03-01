@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_02073C74_sub1.h"
 
 #include "unk_0200AC5C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
@@ -264,7 +264,7 @@ void sub_02079AC4 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, PLString * param2)
+void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, Strbuf * param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -277,7 +277,7 @@ void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, PLString * par
     }
 }
 
-void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const PLString * param2)
+void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const Strbuf * param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;

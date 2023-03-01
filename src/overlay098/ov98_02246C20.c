@@ -19,7 +19,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "error_handling.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02030CE8.h"
 #include "unk_02033200.h"

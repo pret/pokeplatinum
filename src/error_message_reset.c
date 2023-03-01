@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_02017E74.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02034198.h"
 #include "unk_020366A0.h"
 #include "error_message_reset.h"
@@ -96,7 +96,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     UnkStruct_02018340 * bgConfig;
     UnkStruct_0205AA50 window;
     UnkStruct_0200B144 * errorMsgData;
-    PLString * errorString;
+    Strbuf * errorString;
     int v4;
     int v5 = 0;
 

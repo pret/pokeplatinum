@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
@@ -14,7 +14,7 @@
 
 #include "unk_0200B358.h"
 #include "unk_0201D15C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202B37C.h"
@@ -97,7 +97,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         return 0;
     case 6:
     {
-        PLString * v14 = PLString_Init(64, 32);
+        Strbuf * v14 = PLString_Init(64, 32);
         UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
         sub_02025EF4(v15, v14);

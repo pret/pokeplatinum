@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -60,7 +60,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
@@ -257,9 +257,9 @@ struct UnkStruct_ov107_02241D6C_t {
     UnkStruct_0200B144 * unk_1C;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
-    PLString * unk_28;
-    PLString * unk_2C;
-    PLString * unk_30[3];
+    Strbuf * unk_28;
+    Strbuf * unk_2C;
+    Strbuf * unk_30[3];
     u16 unk_3C[8];
     UnkStruct_02018340 * unk_4C;
     UnkStruct_0205AA50 unk_50[18];
@@ -3072,7 +3072,7 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA5
 {
     u32 v0;
     const UnkStruct_02025E6C * v1;
-    PLString * v2;
+    Strbuf * v2;
 
     v1 = sub_02025E38(param0->unk_1CC);
     v2 = PLString_Init((7 + 1), 100);

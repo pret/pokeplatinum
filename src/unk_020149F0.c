@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020149F0_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 
@@ -10,11 +10,11 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 
 struct UnkStruct_020149F0_t {
     u32 unk_00;
-    PLString * unk_04;
+    Strbuf * unk_04;
 };
 
 UnkStruct_020149F0 * sub_020149F0 (u32 param0)

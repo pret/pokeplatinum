@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -26,7 +26,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "overlay017/ov17_022476F8.h"
@@ -206,7 +206,7 @@ static void ov17_0224792C (UnkStruct_ov17_02247A48 * param0, int param1, const U
 
 static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {

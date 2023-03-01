@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02095C48.h"
@@ -32,7 +32,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "unk_02079D40.h"
@@ -241,7 +241,7 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
 
 static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -336,7 +336,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
     sub_02003050(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
 
     {
-        PLString * v2;
+        Strbuf * v2;
         int v3, v4;
 
         v2 = PLString_Init(12, 24);

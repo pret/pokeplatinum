@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "poffin.h"
@@ -110,7 +110,7 @@ void ov84_0223F25C (UnkStruct_ov84_0223B5A0 * param0)
     }
 }
 
-static void ov84_0223F2C0 (UnkStruct_ov84_0223B5A0 * param0, PLString * param1, u16 param2)
+static void ov84_0223F2C0 (UnkStruct_ov84_0223B5A0 * param0, Strbuf * param1, u16 param2)
 {
     u32 v0;
 
@@ -121,8 +121,8 @@ static void ov84_0223F2C0 (UnkStruct_ov84_0223B5A0 * param0, PLString * param1, 
 void ov84_0223F2FC (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_ov84_0223C920 * v0;
-    PLString * v1;
-    PLString * v2;
+    Strbuf * v1;
+    Strbuf * v2;
     u16 v3;
 
     sub_0201ADA4(&param0->unk_04[2], 0);
@@ -206,7 +206,7 @@ static void ov84_0223F508 (UnkStruct_ov84_0223B5A0 * param0, u32 param1, u32 par
 
 void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     if (param1 != 0xffff) {
         v0 = PLString_Init(130, 6);
@@ -222,7 +222,7 @@ void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u16 v2;
     u16 v3;
 
@@ -296,7 +296,7 @@ void ov84_0223F800 (UnkStruct_ov84_0223B5A0 * param0)
 
 void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u32 param3)
 {
-    PLString * v0;
+    Strbuf * v0;
     u32 v1;
 
     if (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) {
@@ -359,7 +359,7 @@ static void ov84_0223F9B0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 
 void ov84_0223F9F0 (UnkStruct_ov84_0223B5A0 * param0, u32 param1)
 {
-    PLString * v0 = sub_0200B1EC(param0->unk_114, 41);
+    Strbuf * v0 = sub_0200B1EC(param0->unk_114, 41);
 
     sub_0201AE78(&param0->unk_04[0], 0, 0, param1, 17 * 8, 16);
     sub_0201D78C(&param0->unk_04[0], 0, v0, 0, param1, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -406,8 +406,8 @@ void ov84_0223FB70 (UnkStruct_ov84_0223B5A0 * param0, u8 * param1, u8 param2)
 {
     UnkStruct_02081CF4 v0;
     UnkStruct_ov84_0223BE5C * v1;
-    PLString * v2;
-    PLString * v3;
+    Strbuf * v2;
+    Strbuf * v3;
     u16 v4;
     u16 v5;
 
@@ -494,8 +494,8 @@ void ov84_0223FD84 (UnkStruct_ov84_0223B5A0 * param0)
 
 void ov84_0223FE18 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    PLString * v0;
-    PLString * v1;
+    Strbuf * v0;
+    Strbuf * v1;
 
     sub_0201ADA4(&param0->unk_04[1], 0);
 
@@ -514,8 +514,8 @@ void ov84_0223FE18 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_ov84_0223BE5C * v0;
-    PLString * v1;
-    PLString * v2;
+    Strbuf * v1;
+    Strbuf * v2;
     u16 v3;
 
     sub_0200DC48(&param0->unk_04[9], 1, 1024 - 9, 14);
@@ -539,7 +539,7 @@ void ov84_0223FE94 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_0223FF44 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u32 v2;
 
     v0 = &param0->unk_04[9];
@@ -565,7 +565,7 @@ void ov84_0223FFC0 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_0223FFF0 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_ov84_0223BE5C * v0;
-    PLString * v1;
+    Strbuf * v1;
     u16 v2;
 
     sub_0200E060(&param0->unk_04[6], 1, 1024 - 9 - (18 + 12), 12);
@@ -623,7 +623,7 @@ void ov84_02240120 (UnkStruct_ov84_0223B5A0 * param0)
 void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u32 v2;
 
     v0 = &param0->unk_04[7];
@@ -656,7 +656,7 @@ void ov84_02240148 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u32 v2;
 
     v0 = &param0->unk_04[8];
@@ -688,7 +688,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 void ov84_02240328 (UnkStruct_ov84_0223B5A0 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    PLString * v1;
+    Strbuf * v1;
     u32 v2;
 
     v0 = &param0->unk_04[10];

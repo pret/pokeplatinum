@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020279FC.h"
@@ -38,7 +38,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "overlay074/ov74_021D0D80.h"
@@ -48,7 +48,7 @@
 typedef struct UnkStruct_ov74_021D1720_t {
     u16 unk_00;
     u16 unk_02;
-    PLString * unk_04[20];
+    Strbuf * unk_04[20];
 } UnkStruct_ov74_021D1720;
 
 typedef struct UnkStruct_ov74_021D0D80_t {
@@ -549,8 +549,8 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     u32 v0, v1;
     u16 v2;
     u32 v3, v4, v5;
-    PLString * v6;
-    PLString * v7;
+    Strbuf * v6;
+    Strbuf * v7;
     static const u8 v8[7] = {
         3, 6, 4, 5, 7, 8, 42,
     };
@@ -669,7 +669,7 @@ static void ov74_021D17CC (UnkStruct_ov74_021D0D80 * param0, u16 param1)
 static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL param2)
 {
     u32 v0;
-    PLString * v1;
+    Strbuf * v1;
     u8 v2;
 
     if (ov74_021D1A08(param0) == 0) {

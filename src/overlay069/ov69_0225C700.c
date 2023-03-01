@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -66,7 +66,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
@@ -251,7 +251,7 @@ typedef struct {
     u32 unk_00;
     u32 unk_04;
     u32 unk_08;
-    PLString * unk_0C;
+    Strbuf * unk_0C;
     UnkStruct_0205AA50 unk_10;
     UnkStruct_02015920 * unk_20;
 } UnkStruct_ov69_0225DDC8;
@@ -259,8 +259,8 @@ typedef struct {
 typedef struct {
     UnkStruct_0200B144 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    PLString * unk_08;
-    PLString * unk_0C;
+    Strbuf * unk_08;
+    Strbuf * unk_0C;
 } UnkStruct_ov69_0225EF54;
 
 typedef struct {
@@ -406,10 +406,10 @@ static u16 ov69_0225EEEC(u32 param0);
 static u16 ov69_0225EF04(u32 param0);
 static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 * param0, u32 param1);
 static void ov69_0225EF54(UnkStruct_ov69_0225EF54 * param0);
-static PLString * ov69_0225EF74(UnkStruct_ov69_0225EF54 * param0, u32 param1);
-static PLString * ov69_0225EF90(UnkStruct_ov69_0225EF54 * param0, u32 param1);
-static PLString * ov69_0225EFB8(UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 param2);
-static void ov69_0225EF84(UnkStruct_ov69_0225EF54 * param0, u32 param1, PLString * param2);
+static Strbuf * ov69_0225EF74(UnkStruct_ov69_0225EF54 * param0, u32 param1);
+static Strbuf * ov69_0225EF90(UnkStruct_ov69_0225EF54 * param0, u32 param1);
+static Strbuf * ov69_0225EFB8(UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 param2);
+static void ov69_0225EF84(UnkStruct_ov69_0225EF54 * param0, u32 param1, Strbuf * param2);
 static u32 ov69_0225EFEC(const UnkStruct_ov66_02231560 * param0);
 
 static const u32 Unk_ov69_0225F028[3] = {
@@ -1851,7 +1851,7 @@ static void ov69_0225DBB4 (UnkStruct_ov69_0225DC48 * param0, UnkStruct_ov69_0225
     sub_0201ADA4(&param0->unk_1C, 15);
 
     {
-        PLString * v0;
+        Strbuf * v0;
 
         v0 = ov69_0225EF74(param2, 1);
 
@@ -2046,7 +2046,7 @@ static void ov69_0225DEC0 (UnkStruct_ov69_0225E084 * param0, UnkStruct_ov69_0225
     }
 
     {
-        PLString * v1;
+        Strbuf * v1;
 
         sub_0201A7E8(param1->unk_00, &param0->unk_1A8, 4, 2, 19, 27, 4, 11, ((10 + (18 + 12))));
         sub_0201ADA4(&param0->unk_1A8, 15);
@@ -2497,7 +2497,7 @@ static void ov69_0225E61C (UnkStruct_ov69_0225E084 * param0)
 
 static void ov69_0225E644 (UnkStruct_ov69_0225E084 * param0, u32 param1, const UnkStruct_ov69_0225E0C0 * param2, UnkStruct_ov69_0225EF54 * param3)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_0205AA50 * v1;
     u32 v2;
 
@@ -2958,18 +2958,18 @@ static void ov69_0225EF54 (UnkStruct_ov69_0225EF54 * param0)
     PLString_Free(param0->unk_0C);
 }
 
-static PLString * ov69_0225EF74 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
+static Strbuf * ov69_0225EF74 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
     sub_0200B1B8(param0->unk_00, param1, param0->unk_08);
     return param0->unk_08;
 }
 
-static void ov69_0225EF84 (UnkStruct_ov69_0225EF54 * param0, u32 param1, PLString * param2)
+static void ov69_0225EF84 (UnkStruct_ov69_0225EF54 * param0, u32 param1, Strbuf * param2)
 {
     sub_0200B1B8(param0->unk_00, param1, param2);
 }
 
-static PLString * ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
+static Strbuf * ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
     sub_0200B1B8(param0->unk_00, 3, param0->unk_0C);
     sub_0200BDD0(param0->unk_04, 0, param1);
@@ -2978,7 +2978,7 @@ static PLString * ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
     return param0->unk_08;
 }
 
-static PLString * ov69_0225EFB8 (UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 param2)
+static Strbuf * ov69_0225EFB8 (UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 param2)
 {
     sub_0200C41C(param0->unk_04);
     sub_0200B1B8(param0->unk_00, 3, param0->unk_0C);

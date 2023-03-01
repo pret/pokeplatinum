@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -55,7 +55,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_02030108.h"
@@ -101,9 +101,9 @@ struct UnkStruct_ov106_02243118_t {
     u8 unk_1F;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
-    PLString * unk_28;
-    PLString * unk_2C;
-    PLString * unk_30[2];
+    Strbuf * unk_28;
+    Strbuf * unk_2C;
+    Strbuf * unk_30[2];
     u16 unk_38[8];
     UnkStruct_02018340 * unk_48;
     UnkStruct_0205AA50 unk_4C[4];
@@ -1143,7 +1143,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 {
     u8 v0;
     u32 v1, v2, v3;
-    PLString * v4;
+    Strbuf * v4;
     UnkStruct_02073C74 * v5;
     u16 v6[(10 + 1)];
 
@@ -1163,7 +1163,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 static void ov106_02242B38 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA50 * param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     int v0, v1;
-    PLString * v2;
+    Strbuf * v2;
     UnkStruct_0200B144 * v3;
 
     sub_0201ADA4(param1, param4);

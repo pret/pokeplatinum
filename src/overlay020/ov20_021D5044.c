@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay020/ov20_021D5044.h"
 
 static const struct {
@@ -51,7 +51,7 @@ u32 ov20_021D5044 (void)
     return NELEMS(Unk_ov20_021D5320);
 }
 
-void ov20_021D5048 (u32 param0, PLString * param1)
+void ov20_021D5048 (u32 param0, Strbuf * param1)
 {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     PLString_FillWithCharsLimit(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);

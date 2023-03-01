@@ -36,7 +36,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"

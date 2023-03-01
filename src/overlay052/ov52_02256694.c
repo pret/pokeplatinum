@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -39,7 +39,7 @@ struct UnkStruct_ov52_02256694_t {
     UnkStruct_ov25_022558C4 * unk_34[4];
     UnkStruct_ov25_02255958 unk_44;
     UnkStruct_0200B144 * unk_58;
-    PLString * unk_5C;
+    Strbuf * unk_5C;
 };
 
 static void ov52_0225670C(UnkStruct_ov52_02256694 * param0, const UnkStruct_ov52_02256694_1 * param1);

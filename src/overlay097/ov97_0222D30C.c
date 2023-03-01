@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -59,7 +59,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -124,8 +124,8 @@ typedef struct {
     f32 unk_04;
 } UnkStruct_ov97_0222EDC0;
 
-void PLString_Dump(const PLString * param0, u16 * param1, u32 param2);
-void PLString_FillWithCharsLimit(PLString * param0, const u16 * param1, u32 param2);
+void PLString_Dump(const Strbuf * param0, u16 * param1, u32 param2);
+void PLString_FillWithCharsLimit(Strbuf * param0, const u16 * param1, u32 param2);
 UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_0222D474(UnkStruct_020067E8 * param0);
@@ -854,7 +854,7 @@ static void ov97_0222DDD0 (UnkStruct_020067E8 * param0, int param1, u32 param2)
 
 static void ov97_0222DE78 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * param1, u32 param2)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_ov97_0222D04C * v1 = sub_0200682C(param0);
 
     v1->unk_10 = sub_0200B144(1, 26, 421, 86);
@@ -883,7 +883,7 @@ static void ov97_0222DE78 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * par
 
 static void ov97_0222DF10 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * param1, u16 * param2)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_ov97_0222D04C * v1 = sub_0200682C(param0);
 
     v0 = PLString_Init(36 + 1, 86);

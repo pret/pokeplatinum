@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -46,7 +46,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_02028124.h"
@@ -70,7 +70,7 @@ typedef struct {
     u8 unk_04;
     u8 unk_05;
     u16 unk_06;
-    PLString * unk_08;
+    Strbuf * unk_08;
 } UnkStruct_02072EB8;
 
 typedef struct {
@@ -80,10 +80,10 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0200B358 * unk_00;
-    PLString * unk_04;
-    PLString * unk_08;
-    PLString * unk_0C;
-    PLString * unk_10[6];
+    Strbuf * unk_04;
+    Strbuf * unk_08;
+    Strbuf * unk_0C;
+    Strbuf * unk_10[6];
 } UnkStruct_02072334_sub1;
 
 typedef struct {
@@ -1031,7 +1031,7 @@ static void sub_02073130 (UnkStruct_02072334 * param0)
 {
     UnkStruct_0200B144 * v0;
     int v1;
-    PLString * v2;
+    Strbuf * v2;
 
     param0->unk_10C = sub_0200B144(1, 26, 408, param0->unk_00);
     param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
@@ -1084,7 +1084,7 @@ static void sub_02073294 (UnkStruct_02072334 * param0)
 
 static void sub_020732C4 (UnkStruct_02072334 * param0, int param1, u8 param2, u8 param3, int param4)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     if (param4) {
         sub_0200E060(&param0->unk_184, 1, (1024 - (18 + 12)), 10);

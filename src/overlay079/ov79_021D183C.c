@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D183C.h"
 
@@ -81,7 +81,7 @@ static void ov79_021D183C (UnkStruct_020989DC * param0)
     param0->unk_07 = param0->unk_06 = 0xFF;
 }
 
-static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, PLString * param1, u8 param2, u8 param3)
+static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, Strbuf * param1, u8 param2, u8 param3)
 {
     u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
 

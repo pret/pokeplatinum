@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02095EAC_decl.h"
 
@@ -53,7 +53,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
@@ -1713,7 +1713,7 @@ static int ov58_021D2A54 (UnkStruct_02095EAC * param0)
 
 static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     v0 = PLString_Init((40 * 2), 39);
 

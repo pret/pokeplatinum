@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020279FC.h"
@@ -21,7 +21,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02023FCC.h"
 #include "overlay062/ov62_02246B00.h"
 
@@ -320,7 +320,7 @@ void ov62_022470A8 (UnkStruct_ov62_02246BF4 * param0)
 {
     int v0;
     u32 v1 = 0;
-    PLString * v2 = PLString_Init(100, 102);
+    Strbuf * v2 = PLString_Init(100, 102);
 
     param0->unk_2C8 = 1;
     param0->unk_2CC = 0;

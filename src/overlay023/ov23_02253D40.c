@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 
@@ -22,12 +22,12 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay023/ov23_02253D40.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
-    PLString * unk_00;
-    PLString * unk_04;
+    Strbuf * unk_00;
+    Strbuf * unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_02018340 * unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
@@ -154,9 +154,9 @@ static void ov23_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static PLString * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
+static Strbuf * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
 {
-    PLString * v0 = param0->unk_00;
+    Strbuf * v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
         sub_0200C388(param0->unk_28, param0->unk_04, param0->unk_00);
@@ -169,7 +169,7 @@ static PLString * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
 
 static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStruct_ov23_02253F60 param2, int param3)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     ov23_02253FA4(param0, 0);
     ov23_022421EC();

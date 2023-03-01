@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202B604.h"

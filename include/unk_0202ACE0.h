@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202ACE0_H
 #define POKEPLATINUM_UNK_0202ACE0_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -14,9 +14,9 @@ u32 sub_0202AD2C(UnkStruct_0202B370 * param0, int param1, int param2);
 void sub_0202AE2C(UnkStruct_0202B370 * param0, int param1, int param2, u32 param3);
 DWCFriendData * sub_0202AED8(UnkStruct_0202B370 * param0, int param1);
 u16 * sub_0202AEF0(UnkStruct_0202B370 * param0, int param1);
-void sub_0202AF0C(UnkStruct_0202B370 * param0, int param1, PLString * param2);
+void sub_0202AF0C(UnkStruct_0202B370 * param0, int param1, Strbuf * param2);
 u16 * sub_0202AF34(UnkStruct_0202B370 * param0, int param1);
-void sub_0202AF50(UnkStruct_0202B370 * param0, int param1, PLString * param2);
+void sub_0202AF50(UnkStruct_0202B370 * param0, int param1, Strbuf * param2);
 BOOL sub_0202AF78(UnkStruct_0202B370 * param0, int param1);
 int sub_0202AF94(UnkStruct_0202B370 * param0);
 int sub_0202AFB4(UnkStruct_0202B370 * param0);

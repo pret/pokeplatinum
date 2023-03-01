@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_PLSTRING_H
-#define POKEPLATINUM_PLSTRING_H
+#ifndef POKEPLATINUM_STRBUF_H
+#define POKEPLATINUM_STRBUF_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 /**
  * Control codes for how to pad numeric strings with leading zeroes
@@ -12,20 +12,28 @@
  * - Right-justified, padded with spaces: "             1000000"
  * - Right-justified, padded with zeroes: "00000000000001000000"
  */
-typedef enum {
-    NUMBER_PADDING_MODE_NONE,       ///< Left-justified strings; no padding
-    NUMBER_PADDING_MODE_SPACES,     ///< Right-justified strings, pad with spaces
-    NUMBER_PADDING_MODE_ZEROES      ///< Right-justified strings, pad with zeroes
-} NUMBER_PADDING_MODE;
+enum NumberPaddingMode {
+    ///< Left-justified strings; no padding
+    NUMBER_PADDING_MODE_NONE,
+
+    ///< Right-justified strings, pad with spaces
+    NUMBER_PADDING_MODE_SPACES,
+
+    ///< Right-justified strings, pad with zeroes
+    NUMBER_PADDING_MODE_ZEROES
+};
 
 /**
  * Control codes for which character-width should be used when translating
  * numeric values into byte-data.
  */
-typedef enum {
-    CHARACTER_WIDTH_FULL,           ///< Use full-width characters
-    CHARACTER_WIDTH_HALF            ///< Use half-width characters
-} CHARACTER_WIDTH;
+enum CharacterWidth {
+    ///< Use full-width characters
+    CHARACTER_WIDTH_FULL,
+
+    ///< Use half-width characters
+    CHARACTER_WIDTH_HALF
+};
 
 /**
  * Initialize a new string buffer.
@@ -35,14 +43,14 @@ typedef enum {
  * 
  * @return              A pointer to the new buffer
  */
-PLString * PLString_Init(u32 size, u32 heapID);
+Strbuf * Strbuf_Init(u32 size, u32 heapID);
 
 /**
  * Free up an existing string buffer.
  * 
  * @param string        The buffer to be freed back to the heap
  */
-void PLString_Free(PLString * string);
+void Strbuf_Free(Strbuf * string);
 
 /**
  * Clear out an existing string buffer.
@@ -51,12 +59,12 @@ void PLString_Free(PLString * string);
  * 
  * @param string        The buffer to be cleared
  */
-void PLString_Clear(PLString * string);
+void Strbuf_Clear(Strbuf * string);
 
 /**
  * Copies an existing string buffer's content into another existing buffer.
  * 
- * Acts as a wrapper for `memcpy()` on PLString structs. Any content in the
+ * Acts as a wrapper for `memcpy()` on Strbuf structs. Any content in the
  * destination buffer will be overwritten.
  * 
  * If the destination buffer's allocation is too small to receive all of the
@@ -65,7 +73,7 @@ void PLString_Clear(PLString * string);
  * @param[out] dst           The destination buffer
  * @param      src           The source buffer to be copied
  */
-void PLString_Copy(PLString * dst, const PLString * src);
+void Strbuf_Copy(Strbuf * dst, const Strbuf * src);
 
 /**
  * Creates a new string buffer and fills it with content from an existing one.
@@ -75,12 +83,12 @@ void PLString_Copy(PLString * dst, const PLString * src);
  * 
  * @return              A pointer to the new buffer
  */
-PLString * PLString_Clone(const PLString * src, u32 heapID);
+Strbuf * Strbuf_Clone(const Strbuf * src, u32 heapID);
 
 /**
  * Fills an existing string buffer with a signed numeric value.
  * 
- * Acts as a wrapper for `itoa()` on PLString structs. The destination buffer
+ * Acts as a wrapper for `itoa()` on Strbuf structs. The destination buffer
  * will be cleared before new content is added. If the desired number to be
  * written is too long for the destination buffer, then this function is a
  * no-op. This version supports negative inputs, and will precede negative
@@ -94,12 +102,12 @@ PLString * PLString_Clone(const PLString * src, u32 heapID);
  * @see        NUMBER_PADDING_MODE
  * @see        CHARACTER_WIDTH
  */
-void PLString_FromInt(PLString * dst, int num, u32 len, NUMBER_PADDING_MODE paddingMode, CHARACTER_WIDTH charWidth);
+void Strbuf_FromInt(Strbuf * dst, int num, u32 len, enum NumberPaddingMode paddingMode, enum CharacterWidth charWidth);
 
 /**
  * Fills an existing string buffer with an unsigned numeric value.
  * 
- * Acts as a wrapper for `itoa()` on PLString structs. The destination buffer
+ * Acts as a wrapper for `itoa()` on Strbuf structs. The destination buffer
  * will be cleared before new content is added. If the desired number to be
  * written is too long for the destination buffer, then this function is a
  * no-op. This version does NOT support negative inputs.
@@ -112,7 +120,7 @@ void PLString_FromInt(PLString * dst, int num, u32 len, NUMBER_PADDING_MODE padd
  * @see        NUMBER_PADDING_MODE
  * @see        CHARACTER_WIDTH
  */
-void PLString_FromInt64(PLString * dst, u64 num, u32 len, NUMBER_PADDING_MODE paddingMode, CHARACTER_WIDTH charWidth);
+void Strbuf_FromInt64(Strbuf * dst, u64 num, u32 len, enum NumberPaddingMode paddingMode, enum CharacterWidth charWidth);
 
 /**
  * Converts a numeric string buffer into an unsigned numeric value.
@@ -121,16 +129,16 @@ void PLString_FromInt64(PLString * dst, u64 num, u32 len, NUMBER_PADDING_MODE pa
  * @param[out] successful   `TRUE` if the conversion was successful
  * @return                  Unsigned number parsed from the source buffer
  */
-u64 PLString_ToInt64(const PLString * src, BOOL * successful);
+u64 Strbuf_ToInt64(const Strbuf * src, BOOL * successful);
 
 /**
  * Compare two strings' content byte-for-byte.
  * 
- * @param this
- * @param that 
+ * @param str1
+ * @param str2 
  * @return 0 if the strings are equal, 1 if they are not
  */
-int PLString_Compare(const PLString * this, const PLString * that);
+int Strbuf_Compare(const Strbuf * str1, const Strbuf * str2);
 
 /**
  * Returns the length of a string buffer's content (NOT its allocated size)
@@ -138,7 +146,7 @@ int PLString_Compare(const PLString * this, const PLString * that);
  * @param string
  * @return The length of the input string's content
  */
-u32 PLString_GetLength(const PLString * string);
+u32 Strbuf_GetLength(const Strbuf * string);
 
 /**
  * Counts the number of lines present within a string buffer's content
@@ -146,7 +154,7 @@ u32 PLString_GetLength(const PLString * string);
  * @param string 
  * @return Number of lines within the string
  */
-u32 PLString_CountLines(const PLString * string);
+u32 Strbuf_CountLines(const Strbuf * string);
 
 /**
  * Fills the destination buffer with content from the `i`^th line of the
@@ -157,7 +165,7 @@ u32 PLString_CountLines(const PLString * string);
  * @param      src      The source string, multi-line
  * @param      i        Which line should be filled into `dst`
  */
-void PLString_FillWithLine(PLString * dst, const PLString * src, u32 i);
+void Strbuf_FillWithLine(Strbuf * dst, const Strbuf * src, u32 i);
 
 /**
  * Fill the destination buffer with content from a raw `char` array.
@@ -167,7 +175,7 @@ void PLString_FillWithLine(PLString * dst, const PLString * src, u32 i);
  * @param[out] dst      The destination buffer
  * @param      src      The source string, as a character array
  */
-void PLString_FillWithChars(PLString * dst, const PLChar * src);
+void Strbuf_FillWithChars(Strbuf * dst, const CharCode * src);
 
 /**
  * Fill the destination with up to `limit` characters from a raw `char` array.
@@ -178,7 +186,7 @@ void PLString_FillWithChars(PLString * dst, const PLChar * src);
  * @param      src      The source string, as a character array
  * @param      limit    No more than this many characters should be copied
  */
-void PLString_FillWithCharsLimit(PLString * dst, const PLChar * src, u32 limit);
+void Strbuf_FillWithCharsLimit(Strbuf * dst, const CharCode * src, u32 limit);
 
 /**
  * Dumps the contents of a string buffer into a `char` buffer of length `len`.
@@ -189,7 +197,7 @@ void PLString_FillWithCharsLimit(PLString * dst, const PLChar * src, u32 limit);
  * @param[out] dst      The destination `char` buffer
  * @param      len      The size of `dst`
  */
-void PLString_Dump(const PLString * src, PLChar * dst, u32 len);
+void Strbuf_Dump(const Strbuf * src, CharCode * dst, u32 len);
 
 /**
  * Returns the backing content of a string buffer.
@@ -197,7 +205,7 @@ void PLString_Dump(const PLString * src, PLChar * dst, u32 len);
  * @param string 
  * @return The string's content
  */
-const PLChar * PLString_GetBuffer(const PLString * string);
+const CharCode * Strbuf_GetBuffer(const Strbuf * string);
 
 /**
  * Concatenates the content from `src` after the content of `dst`. If `dst`'s
@@ -209,7 +217,7 @@ const PLChar * PLString_GetBuffer(const PLString * string);
  * @param[out] dst      The destination buffer
  * @param      src      The string to concatenate after `dst`
  */
-void PLString_Concat(PLString * dst, const PLString * src);
+void Strbuf_Concat(Strbuf * dst, const Strbuf * src);
 
 /**
  * Appends a single character to the end of `dst`. If `dst`'s allocation is
@@ -219,7 +227,7 @@ void PLString_Concat(PLString * dst, const PLString * src);
  * @param[out] dst      The destination buffer
  * @param      c        The character to append to `dst`
  */
-void PLString_Append(PLString * dst, PLChar c);
+void Strbuf_Append(Strbuf * dst, CharCode c);
 
 /**
  * Checks if a string is marked as compressed.
@@ -227,7 +235,7 @@ void PLString_Append(PLString * dst, PLChar c);
  * @param string
  * @return `TRUE` if the string is marked as compressed; `FALSE` otherwise.
  */
-BOOL PLString_IsCompressed(PLString * string);
+BOOL Strbuf_IsCompressed(Strbuf * string);
 
 /**
  * Concatenates `src` onto `dst`, accounting for `src` being a compressed
@@ -237,7 +245,7 @@ BOOL PLString_IsCompressed(PLString * string);
  * @param      src      The string to concatenate after `dst`
  * @see        PLString_Concat
  */
-void PLString_ConcatCompressed(PLString * dst, PLString * src);
+void Strbuf_ConcatCompressed(Strbuf * dst, Strbuf * src);
 
 /**
  * Capitalizes the `i`^th character in a given string. `i` is zero-indexed,
@@ -246,6 +254,6 @@ void PLString_ConcatCompressed(PLString * dst, PLString * src);
  * @param[out] string   The input string to be modified
  * @param      i        Index of the character to be capitalized
  */
-void PLString_CapitalizeAt(PLString * string, int i);
+void Strbuf_CapitalizeAt(Strbuf * string, int i);
 
-#endif // POKEPLATINUM_PLSTRING_H
+#endif // POKEPLATINUM_STRBUF_H

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -32,8 +32,8 @@ typedef struct {
     void * unk_34;
     NNSG2dCellDataBank * unk_38;
     UnkStruct_02022550 * unk_3C[2];
-    PLString * unk_44;
-    PLString * unk_48;
+    Strbuf * unk_44;
+    Strbuf * unk_48;
     UnkStruct_0201CD38 * unk_4C;
     u8 padding_50[4];
 } UnkStruct_ov19_021DA9E0;

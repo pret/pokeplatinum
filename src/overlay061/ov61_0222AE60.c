@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -13,7 +13,7 @@
 #include "overlay062/struct_ov62_02239DA4.h"
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_020298BC.h"
 #include "unk_020797C8.h"
@@ -32,7 +32,7 @@ void ov61_0222AE80 (const UnkStruct_ov61_0222AE80 * param0, UnkStruct_02029C68 *
 
 void ov61_0222AE88 (UnkStruct_021C0794 * param0, const UnkStruct_020797DC * param1, int param2, UnkStruct_ov62_02239DA4 * param3, int param4)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));

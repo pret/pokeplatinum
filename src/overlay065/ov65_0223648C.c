@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -60,7 +60,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
@@ -114,8 +114,8 @@ typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0200B358 * unk_04;
     UnkStruct_0200B144 * unk_08;
-    PLString * unk_0C;
-    PLString * unk_10;
+    Strbuf * unk_0C;
+    Strbuf * unk_10;
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
@@ -902,7 +902,7 @@ static void ov65_02236E44 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 
 static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2, u8 param3, u32 param4)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
 
     if (param0->unk_14 != 0xff) {
@@ -970,8 +970,8 @@ static void ov65_02236F38 (UnkStruct_ov65_02236840 * param0)
 
 static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, int param2, u32 param3)
 {
-    PLString * v0;
-    PLString * v1;
+    Strbuf * v0;
+    Strbuf * v1;
 
     v0 = PLString_Init(256, param3);
     v1 = PLString_Init(256, param3);
@@ -1021,8 +1021,8 @@ static void ov65_02237034 (UnkStruct_ov65_022367A8 * param0, const UnkStruct_020
 
 static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_02236840 * param1, const UnkStruct_0207DE04 * param2, int param3, u32 param4)
 {
-    PLString * v0;
-    PLString * v1;
+    Strbuf * v0;
+    Strbuf * v1;
     u8 v2;
     u8 v3;
 

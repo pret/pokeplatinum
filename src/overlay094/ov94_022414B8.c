@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
@@ -43,7 +43,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
@@ -328,7 +328,7 @@ int ov94_02241568 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
 static void ov94_0224158C (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     v0 = sub_0200B1EC(param0->unk_B90, param1);
 
@@ -842,7 +842,7 @@ static u32 Unk_ov94_02246920[] = {
 
 void ov94_02242158 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, int param2, int param3, int param4, u32 param5)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     if (param2 != 0) {
         v0 = sub_0200B1EC(param1, param2);
@@ -853,7 +853,7 @@ void ov94_02242158 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, in
 
 void ov94_0224218C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B144 * param2, int param3, int param4, int param5, u32 param6)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     if (param3 != 0) {
         v0 = sub_0200B1EC(param1, param3);
@@ -886,7 +886,7 @@ const int Unk_ov94_02245FD8[] = {
 
 void ov94_02242204 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, int param2, int param3, int param4, int param5, u32 param6)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     if ((param3 == 0) && (param2 == 3)) {
         return;
@@ -960,7 +960,7 @@ asm void ov94_022422B8 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1
 
 void ov94_022422D4 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, UnkStruct_0205AA50 param3[], int param4, int param5, int param6)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
 
     v0 = sub_0200B1EC(param0, 97);
@@ -984,7 +984,7 @@ void ov94_022422D4 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
 
 void ov94_02242368 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, UnkStruct_0205AA50 param3[], int param4, int param5, int param6)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1;
 
     v0 = sub_0200B1EC(param0, 97);
@@ -1008,9 +1008,9 @@ void ov94_02242368 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
 
 static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], UnkStruct_02073C74_sub1 * param3, UnkStruct_ov94_0223BA88_sub2 * param4)
 {
-    PLString * v0, * v1;
-    PLString * v2 = PLString_AllocFromHeap(10 + 1, 62);
-    PLString * v3 = PLString_AllocFromHeap(10 + 1, 62);
+    Strbuf * v0, * v1;
+    Strbuf * v2 = PLString_AllocFromHeap(10 + 1, 62);
+    Strbuf * v3 = PLString_AllocFromHeap(10 + 1, 62);
     int v4, v5, v6;
 
     sub_02074570(param3, 119, v2);

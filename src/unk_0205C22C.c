@@ -22,7 +22,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E68.h"
 #include "unk_02027F84.h"

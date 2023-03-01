@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -16,7 +16,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
 #include "unk_02034198.h"
@@ -486,11 +486,11 @@ int ov23_02241D38 (int param0)
     return 0;
 }
 
-BOOL ov23_02241D58 (PLString * param0)
+BOOL ov23_02241D58 (Strbuf * param0)
 {
     int v0;
     UnkStruct_0200B358 * v1 = NULL;
-    PLString * v2 = NULL;
+    Strbuf * v2 = NULL;
     BOOL v3 = 0;
 
     if (!Unk_ov23_02257744) {

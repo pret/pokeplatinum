@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -59,7 +59,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
@@ -1744,7 +1744,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, UnkStruct_ov6_02240D5C *
 
     {
         UnkStruct_0200B144 * v5;
-        PLString * v6;
+        Strbuf * v6;
 
         v5 = sub_0200B144(1, 26, 368, 5);
         v6 = PLString_Init(0x100, 5);

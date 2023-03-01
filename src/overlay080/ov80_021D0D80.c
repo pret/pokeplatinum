@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02039C80.h"
 #include "unk_0208C098.h"
 #include "overlay080/ov80_021D0D80.h"

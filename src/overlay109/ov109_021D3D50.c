@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -51,7 +51,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
@@ -91,7 +91,7 @@ static int ov109_021D5360(void);
 static int ov109_021D548C(void);
 static u32 ov109_021D54A8(void);
 static void ov109_021D5488(UnkStruct_ov109_021D5140 * param0);
-static void ov109_021D46D8(UnkStruct_0205AA50 * param0, PLString * param1, int param2);
+static void ov109_021D46D8(UnkStruct_0205AA50 * param0, Strbuf * param1, int param2);
 static void ov109_021D48EC(UnkStruct_ov109_021D5140 * param0, int param1);
 static void ov109_021D5668(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D577C(UnkStruct_ov109_021D5140 * param0, NARC * param1);
@@ -694,7 +694,7 @@ static void ov109_021D45F4 (UnkStruct_ov109_021D5140 * param0)
     }
 }
 
-static void ov109_021D46D8 (UnkStruct_0205AA50 * param0, PLString * param1, int param2)
+static void ov109_021D46D8 (UnkStruct_0205AA50 * param0, Strbuf * param1, int param2)
 {
     int v0 = sub_02002D7C(1, param1, 0);
     int v1 = (26 * 8 - v0) / 2;
@@ -1465,7 +1465,7 @@ static int ov109_021D5360 (void)
 static BOOL ov109_021D537C (UnkStruct_0205AA50 * param0, int param1, u32 param2, UnkStruct_ov109_021D5140 * param3)
 {
     int v0, v1 = sub_0203608C();
-    PLString * v2 = NULL;
+    Strbuf * v2 = NULL;
 
     if (!ov109_021D54CC(param3)) {
         return 0;
@@ -1574,7 +1574,7 @@ static BOOL ov109_021D54CC (UnkStruct_ov109_021D5140 * param0)
 
 static void ov109_021D55A8 (UnkStruct_ov109_021D5140 * param0, int param1, int param2)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     v0 = PLString_Init((90 * 2), 95);
 

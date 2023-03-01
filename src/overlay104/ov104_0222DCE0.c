@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202C858.h"
@@ -131,7 +131,7 @@ UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int
 {
     UnkStruct_0204B184 * v0;
     UnkStruct_0200B144 * v1 = sub_0200B144(1, 26, 21, param2);
-    PLString * v2;
+    Strbuf * v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348_sub1));
 
@@ -319,7 +319,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_020
 
     if (param0->unk_14_val1_30) {
         UnkStruct_0200B144 * v7;
-        PLString * v8;
+        Strbuf * v8;
 
         v7 = sub_0200B144(1, 26, 412, 4);
         v8 = sub_0200B1EC(v7, param0->unk_00_val1_0);
@@ -353,7 +353,7 @@ void ov104_0222E134(UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1);
 void ov104_0222E134 (UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1)
 {
     u32 v0;
-    PLString * v1;
+    Strbuf * v1;
     UnkStruct_0200B144 * v2;
     int v3;
     int v4 = 0;

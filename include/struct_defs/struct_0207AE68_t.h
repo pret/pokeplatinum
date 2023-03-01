@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -28,7 +28,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_0205AA50 * unk_04;
     UnkStruct_0200B144 * unk_08;
     UnkStruct_0200B358 * unk_0C;
-    PLString * unk_10;
+    Strbuf * unk_10;
     UnkStruct_02002F38 * unk_14;
     UnkStruct_02007768 * unk_18;
     UnkStruct_02007C7C * unk_1C[2];

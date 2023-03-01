@@ -24,7 +24,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "overlay083/ov83_0223C958.h"
 #include "overlay083/ov83_0223D6A8.h"

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -41,7 +41,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02020AEC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
 #include "unk_0202C858.h"
@@ -73,7 +73,7 @@ struct UnkStruct_ov5_021F6704_t {
     UnkStruct_0201CD38 * unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0205AA50 * unk_18;
-    PLString * unk_1C[120];
+    Strbuf * unk_1C[120];
     UnkStruct_0200B144 * unk_1FC;
     UnkStruct_0200B358 * unk_200;
     u8 unk_204;
@@ -303,7 +303,7 @@ static void ov5_021F6830 (UnkStruct_ov5_021F6704 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        PLString * v2 = PLString_Init((40 * 2), 4);
+        Strbuf * v2 = PLString_Init((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_1FC, param1, v2);
         sub_0200C388(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);

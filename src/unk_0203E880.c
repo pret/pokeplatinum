@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -28,7 +28,7 @@
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "map_header.h"
 #include "unk_0203A378.h"
 #include "unk_0203A9C8.h"
@@ -71,8 +71,8 @@ struct UnkStruct_0203EF60_t {
     u16 * unk_34;
     UnkStruct_0203E724 * unk_38[2];
     UnkStruct_0200B358 * unk_40;
-    PLString * unk_44;
-    PLString * unk_48;
+    Strbuf * unk_44;
+    Strbuf * unk_48;
     void * unk_4C;
     UnkStruct_0203E8B0 unk_50[2];
     u16 unk_88[14];

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -55,7 +55,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -532,8 +532,8 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     for (v4 = 0; v4 < v5; v4++) {
         if (v1->unk_30[v4] == 3) {
             UnkStruct_0200B358 * v6;
-            PLString * v7;
-            PLString * v8;
+            Strbuf * v7;
+            Strbuf * v8;
 
             v6 = sub_0200B358(11);
             v7 = PLString_Init(8, 11);
@@ -645,8 +645,8 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_0200B144 * v2;
     UnkStruct_0200B358 * v3;
-    PLString * v4;
-    PLString * v5;
+    Strbuf * v4;
+    Strbuf * v5;
     u8 v6;
 
     v0 = sub_02050A60(param0);

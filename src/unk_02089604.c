@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_02089688.h"
 
@@ -13,7 +13,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_02089604.h"
@@ -895,7 +895,7 @@ void sub_02089F80 (UnkStruct_02089688 * param0)
 {
     int v0;
     u32 v1 = 0;
-    PLString * v2 = PLString_Init(100, 101);
+    Strbuf * v2 = PLString_Init(100, 101);
 
     param0->unk_240[1].unk_00 = 1;
     param0->unk_240[1].unk_14.unk_04 = 0;

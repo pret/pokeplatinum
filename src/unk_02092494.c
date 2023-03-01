@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_02073C74.h"
@@ -13,7 +13,7 @@
 #include "unk_0201378C.h"
 #include "unk_02017038.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
@@ -332,7 +332,7 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
 
 static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 {
-    PLString * v0 = PLString_Init((((2 * 18) * 2) * 8), param0->unk_00);
+    Strbuf * v0 = PLString_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
     param0->unk_1C.unk_04 = PLString_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
@@ -352,7 +352,7 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 
 static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 {
-    PLString * v0 = PLString_Init((((2 * 18) * 2) * 4), param0->unk_00);
+    Strbuf * v0 = PLString_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
     param0->unk_1C.unk_04 = PLString_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
@@ -393,7 +393,7 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 
 static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
 {
-    PLString * v0 = PLString_Init((((2 * 18) * 2) * 5), param0->unk_00);
+    Strbuf * v0 = PLString_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
     param0->unk_1C.unk_04 = PLString_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
@@ -822,7 +822,7 @@ static void sub_020932A4 (UnkStruct_02073C74_sub1 * param0, UnkStruct_02025E6C *
 {
     int v0 = sub_02025F20(param1);
     int v1 = sub_02025F30(param1);
-    PLString * v2 = sub_02025F04(param1, param2);
+    Strbuf * v2 = sub_02025F04(param1, param2);
 
     sub_02074C60(param0, 7, &v0);
     sub_02074C60(param0, 157, &v1);

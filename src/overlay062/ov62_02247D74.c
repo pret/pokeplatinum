@@ -4,7 +4,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_02030A80.h"
@@ -20,7 +20,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02030A80.h"
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -62,13 +62,13 @@ static void ov62_02247DB4 (UnkStruct_0208C06C * param0)
 
 static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
 {
-    PLString * v0;
+    Strbuf * v0;
     UnkStruct_0205AA50 * v1 = &param0->unk_8A4;
 
     if (param1 == 282) {
         UnkStruct_0200B358 * v2;
-        PLString * v3;
-        PLString * v4;
+        Strbuf * v3;
+        Strbuf * v4;
         UnkStruct_02030A80 * v5 = param0->unk_88C[param2];
 
         v2 = ov62_02231690(102);
@@ -97,7 +97,7 @@ static void ov62_02247E9C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02247F7C * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
+    Strbuf * v2;
     int v3 = 1;
     int v4;
 

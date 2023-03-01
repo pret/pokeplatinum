@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -52,7 +52,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E68.h"
@@ -846,7 +846,7 @@ static void ov117_02261280 (UnkStruct_ov117_02261280 * param0)
 
 static void ov117_02261368 (UnkStruct_ov117_02261280 * param0)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     sub_0200DC48(&param0->unk_30[4], 1, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6);
 
@@ -867,7 +867,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
 {
     int v0, v1;
     UnkStruct_02025E6C * v2;
-    PLString * v3;
+    Strbuf * v3;
     int v4;
     u32 v5;
     int v6, v7;

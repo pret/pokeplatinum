@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -34,7 +34,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_022492DC.h"
 
@@ -150,7 +150,7 @@ static void ov17_0224A038(UnkStruct_0201CD38 * param0, void * param1);
 static void ov17_0224A088(UnkStruct_0201CD38 * param0, void * param1);
 static void ov17_0224A0C8(UnkStruct_0201CD38 * param0, void * param1);
 static void ov17_022498F4(UnkStruct_ov17_022492DC * param0);
-static void ov17_02249BC4(UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_02249BC4 * param1, const PLString * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
+static void ov17_02249BC4(UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_02249BC4 * param1, const Strbuf * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
 static void ov17_02249CD0(UnkStruct_ov17_022492DC * param0);
 static void ov17_02249CFC(UnkStruct_ov17_022492DC * param0, int param1);
 static void ov17_02249828(UnkStruct_ov17_022492DC * param0);
@@ -531,7 +531,7 @@ static void ov17_0224981C (UnkStruct_ov17_022492DC * param0, int param1, int par
 
 static void ov17_02249828 (UnkStruct_ov17_022492DC * param0)
 {
-    PLString * v0, * v1;
+    Strbuf * v0, * v1;
     u32 v2, v3;
     UnkStruct_0200B144 * v4;
 
@@ -556,7 +556,7 @@ static void ov17_022498E8 (UnkStruct_ov17_022492DC * param0, int param1, int par
 
 static void ov17_022498F4 (UnkStruct_ov17_022492DC * param0)
 {
-    PLString * v0, * v1, * v2, * v3;
+    Strbuf * v0, * v1, * v2, * v3;
     UnkStruct_0200B144 * v4;
 
     v4 = param0->unk_04->unk_84;
@@ -680,7 +680,7 @@ static void ov17_02249B54 (UnkStruct_ov17_02249B30 * param0)
     }
 }
 
-static void ov17_02249BC4 (UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_02249BC4 * param1, const PLString * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
+static void ov17_02249BC4 (UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_02249BC4 * param1, const Strbuf * param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;

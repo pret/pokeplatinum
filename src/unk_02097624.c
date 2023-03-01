@@ -15,7 +15,7 @@
 #include "unk_020067E8.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"

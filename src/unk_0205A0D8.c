@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
@@ -32,7 +32,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202602C.h"
 #include "unk_0202D778.h"
@@ -61,8 +61,8 @@ typedef struct {
     UnkStruct_02098D38 * unk_00;
     UnkStruct_02098C44 * unk_04;
     UnkFuncPtr_0205AB10 * unk_08;
-    PLString * unk_0C;
-    PLString * unk_10;
+    Strbuf * unk_0C;
+    Strbuf * unk_10;
     UnkStruct_0205AA50 unk_14;
     UnkStruct_0203CDB0 * unk_24;
     UnkStruct_0200B358 * unk_28;
@@ -98,8 +98,8 @@ typedef struct {
 } UnkStruct_0205AD20;
 
 typedef struct {
-    PLString * unk_00;
-    PLString * unk_04;
+    Strbuf * unk_00;
+    Strbuf * unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0200B358 * unk_18;
     UnkStruct_0200B144 * unk_1C;
@@ -119,7 +119,7 @@ static BOOL sub_0205AD34(UnkStruct_0205A0D8 * param0);
 static BOOL sub_0205AD70(UnkStruct_0205A0D8 * param0);
 static void sub_0205ADAC(UnkStruct_0205A0D8 * param0);
 static void sub_0205AD80(UnkStruct_0205A0D8 * param0);
-static int sub_0205AA50(UnkStruct_0205A0D8 * param0, const PLString * param1);
+static int sub_0205AA50(UnkStruct_0205A0D8 * param0, const Strbuf * param1);
 static void sub_0205AAA0(UnkStruct_0205A0D8 * param0, BOOL param1);
 static void sub_0205AF18(UnkStruct_0205A0D8 * param0, int param1);
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 * param0);
@@ -621,7 +621,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const PLString * param1)
+static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const Strbuf * param1)
 {
     UnkStruct_0205AA50 * v0 = &(param0->unk_14);
 
@@ -632,7 +632,7 @@ static int sub_0205AA50 (UnkStruct_0205A0D8 * param0, const PLString * param1)
         sub_0205D988(v0);
     }
 
-    return sub_0205D994(v0, (PLString *)param1, sub_02025E44(param0->unk_24->unk_0C), 1);
+    return sub_0205D994(v0, (Strbuf *)param1, sub_02025E44(param0->unk_24->unk_0C), 1);
 }
 
 static void sub_0205AAA0 (UnkStruct_0205A0D8 * param0, BOOL param1)

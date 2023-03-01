@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
 #include "struct_defs/struct_020954F0.h"
@@ -10,7 +10,7 @@
 #include "overlay006/struct_ov6_02248DD8.h"
 
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202CC64.h"
 #include "unk_02034198.h"
 #include "unk_02073C2C.h"
@@ -260,7 +260,7 @@ void ov6_02248CBC (int param0, int param1, void * param2, void * param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const PLString * param2)
+BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const Strbuf * param2)
 {
     int v0, v1;
     u8 * v2;

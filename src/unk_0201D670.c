@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "functypes/funcptr_0201CE28.h"
 #include "struct_defs/struct_0201D670.h"
@@ -18,7 +18,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 
 static int sub_0201D9E8(UnkStruct_0201D834 * param0);
 static void sub_0201D97C(UnkStruct_0201CD38 * param0, void * param1);
@@ -99,7 +99,7 @@ void sub_0201D730 (u8 param0)
     sub_0201D6B0(param0);
 }
 
-u8 sub_0201D738 (UnkStruct_0205AA50 * param0, u32 param1, const PLString * param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6)
+u8 sub_0201D738 (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf * param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6)
 {
     UnkStruct_0201D738 v0;
 
@@ -123,7 +123,7 @@ u8 sub_0201D738 (UnkStruct_0205AA50 * param0, u32 param1, const PLString * param
     return sub_0201D834(&v0, param5, param6);
 }
 
-u8 sub_0201D78C (UnkStruct_0205AA50 * param0, u32 param1, const PLString * param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7)
+u8 sub_0201D78C (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf * param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7)
 {
     UnkStruct_0201D738 v0;
 
@@ -147,7 +147,7 @@ u8 sub_0201D78C (UnkStruct_0205AA50 * param0, u32 param1, const PLString * param
     return sub_0201D834(&v0, param5, param7);
 }
 
-u8 sub_0201D7E0 (UnkStruct_0205AA50 * param0, u32 param1, const PLString * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
+u8 sub_0201D7E0 (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf * param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
 {
     UnkStruct_0201D738 v0;
 

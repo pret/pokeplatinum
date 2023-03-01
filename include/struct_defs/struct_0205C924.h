@@ -2,12 +2,12 @@
 #define POKEPLATINUM_STRUCT_0205C924_H
 
 #include "struct_defs/struct_02014A84.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 typedef struct {
-    PLString * unk_00;
-    PLString * unk_04;
-    PLString * unk_08;
+    Strbuf * unk_00;
+    Strbuf * unk_04;
+    Strbuf * unk_08;
     u32 unk_0C;
     int unk_10;
     UnkStruct_02014A84 unk_14;

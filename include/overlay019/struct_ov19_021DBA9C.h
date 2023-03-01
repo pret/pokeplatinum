@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -42,7 +42,7 @@ typedef struct {
     u8 unk_4BE4[18];
     u8 padding_4BF6[2];
     UnkStruct_0200B144 * unk_4BF8;
-    PLString * unk_4BFC;
+    Strbuf * unk_4BFC;
 } UnkStruct_ov19_021DBA9C;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DBA9C_H

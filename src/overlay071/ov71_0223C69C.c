@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
@@ -15,12 +15,12 @@
 #include "unk_0200B358.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202CBE4.h"
 #include "overlay071/ov71_0223C69C.h"
 
-static void ov71_0223CD64(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, PLString * param4, const u32 param5, const u8 param6, const int param7);
-static void ov71_0223CDB0(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, const PLString * param4);
+static void ov71_0223CD64(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf * param4, const u32 param5, const u8 param6, const int param7);
+static void ov71_0223CDB0(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf * param4);
 
 static const UnkStruct_ov61_0222C884 Unk_ov71_0223D670[] = {
     {0x7, 0x2, 0x4, 0x11, 0x2, 0xF, 0x6F},
@@ -75,7 +75,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
 {
     u8 v0;
     UnkStruct_0200B144 * v1;
-    PLString * v2;
+    Strbuf * v2;
 
     sub_0201AE78(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
     sub_0201AE78(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
@@ -96,7 +96,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     }
 
     {
-        PLString * v3 = PLString_Init(32, 25);
+        Strbuf * v3 = PLString_Init(32, 25);
         UnkStruct_0200B358 * v4 = sub_0200B368(6, 32, 25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
@@ -532,7 +532,7 @@ void ov71_0223CD44 (UnkStruct_0205AA50 * param0, const u8 param1, const u8 param
     }
 }
 
-static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, PLString * param4, const u32 param5, const u8 param6, const int param7)
+static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf * param4, const u32 param5, const u8 param6, const int param7)
 {
     u32 v0;
 
@@ -541,7 +541,7 @@ static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const 
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
-static void ov71_0223CDB0 (UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, const PLString * param4)
+static void ov71_0223CDB0 (UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf * param4)
 {
     u32 v0;
 
@@ -549,7 +549,7 @@ static void ov71_0223CDB0 (UnkStruct_0205AA50 * param0, const u32 param1, const 
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
-void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1, PLString * param2)
+void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1, Strbuf * param2)
 {
     int v0;
 
@@ -566,8 +566,8 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     {
         u32 v1;
         UnkStruct_0200B144 * v2 = sub_0200B144(0, 26, 616, 25);
-        PLString * v3 = PLString_Init(32, 25);
-        PLString * v4 = PLString_Init(32, 25);
+        Strbuf * v3 = PLString_Init(32, 25);
+        Strbuf * v4 = PLString_Init(32, 25);
         UnkStruct_0200B358 * v5 = sub_0200B368((1 + 1), 32, 25);
 
         sub_0200B60C(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
@@ -584,7 +584,7 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     }
 }
 
-void ov71_0223CECC (UnkStruct_0205AA50 * param0, const BOOL param1, PLString * param2)
+void ov71_0223CECC (UnkStruct_0205AA50 * param0, const BOOL param1, Strbuf * param2)
 {
     if (param1) {
         sub_0201D78C(param0, 0, param2, (207 - 2), 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);

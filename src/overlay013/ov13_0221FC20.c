@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -34,7 +34,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "party.h"
@@ -1602,7 +1602,7 @@ static void ov13_02221738 (UnkStruct_ov13_022213F0 * param0, u8 param1)
 static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
 {
     UnkStruct_ov13_02221ED0 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     v0 = &param0->unk_04[param0->unk_00->unk_11];
 

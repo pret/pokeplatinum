@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -139,7 +139,7 @@ static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
 
 static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
 {
-    PLString * v0;
+    Strbuf * v0;
     int v1, v2;
     int v3;
     int v4;

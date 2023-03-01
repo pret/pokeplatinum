@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV71_0223B620_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 #include "overlay071/struct_ov71_0223C444.h"
@@ -35,8 +35,8 @@ typedef struct {
     void * unk_335C;
     NNSG2dScreenData * unk_3360;
     UnkStruct_ov71_0223C444 unk_3364;
-    PLString * unk_336C;
-    PLString * unk_3370;
+    Strbuf * unk_336C;
+    Strbuf * unk_3370;
     u8 unk_3374[8];
     u8 unk_337C;
     u8 unk_337D;

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"
@@ -459,7 +459,7 @@ static void ov21_021E65FC (UnkStruct_ov21_021E6274 * param0)
 
 static void ov21_021E6600 (UnkStruct_ov21_021E6118 * param0, int param1)
 {
-    PLString * v0 = PLString_Init(32, param1);
+    Strbuf * v0 = PLString_Init(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 43, v0);
@@ -479,10 +479,10 @@ static void ov21_021E6600 (UnkStruct_ov21_021E6118 * param0, int param1)
 
 static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1, int param2)
 {
-    PLString * v0 = PLString_Init(32, param2);
+    Strbuf * v0 = PLString_Init(32, param2);
     UnkStruct_0200B144 * v1;
     int v2 = ov21_021D37BC(param1->unk_04);
-    PLString * v3 = sub_0200B32C(v2, param2);
+    Strbuf * v3 = sub_0200B32C(v2, param2);
     int v4;
 
     v4 = sub_020989D0();

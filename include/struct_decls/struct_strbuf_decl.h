@@ -1,0 +1,8 @@
+#ifndef POKEPLATINUM_STRUCT_STRBUF_DECL_H
+#define POKEPLATINUM_STRUCT_STRBUF_DECL_H
+
+typedef u16 CharCode;
+
+typedef struct Strbuf_t Strbuf;
+
+#endif // POKEPLATINUM_STRUCT_STRBUF_DECL_H

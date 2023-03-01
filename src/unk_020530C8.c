@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -32,7 +32,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -126,7 +126,7 @@ typedef struct {
     u16 unk_1C;
     void * unk_20;
     UnkStruct_0205AA50 unk_24;
-    PLString * unk_34;
+    Strbuf * unk_34;
     u8 unk_38;
     UnkStruct_02001AF4 * unk_3C;
 } UnkStruct_02053FAC;

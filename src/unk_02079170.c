@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -19,7 +19,7 @@
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020277A4.h"
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
@@ -29,7 +29,7 @@
 void sub_02079170(UnkStruct_ov6_02240D5C * param0, const UnkStruct_021C0794 * param1, int param2);
 u32 sub_02079220(int param0, int param1);
 BOOL sub_02079280(int param0, int param1, int param2);
-void sub_020792F8(int param0, int param1, PLString * param2, int param3);
+void sub_020792F8(int param0, int param1, Strbuf * param2, int param3);
 void sub_0207938C(int param0, UnkStruct_0207A9CC * param1);
 void sub_0207939C(int param0, void * param1);
 u8 sub_020793AC(int param0);
@@ -148,7 +148,7 @@ void sub_02079170 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_021C0794 * p
     UnkStruct_0207A9CC v0;
     int v1;
     UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 618, param2);
-    PLString * v3;
+    Strbuf * v3;
     const u16 * v4 = sub_02027870(sub_02027848(param1));
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -244,7 +244,7 @@ BOOL sub_02079280 (int param0, int param1, int param2)
     return v4;
 }
 
-void sub_020792F8 (int param0, int param1, PLString * param2, int param3)
+void sub_020792F8 (int param0, int param1, Strbuf * param2, int param3)
 {
     NARC * v0;
     int v1;

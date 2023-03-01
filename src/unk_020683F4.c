@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
@@ -97,7 +97,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0205AA50 unk_00;
-    PLString * unk_10;
+    Strbuf * unk_10;
     u16 unk_14;
     u16 unk_16;
 } UnkStruct_02068EFC;

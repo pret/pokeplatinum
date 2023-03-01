@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -3097,7 +3097,7 @@ static void ov23_022414D4 (void)
     }
 }
 
-BOOL ov23_022415B8 (PLString * param0)
+BOOL ov23_022415B8 (Strbuf * param0)
 {
     int v0;
     UnkStruct_02025E6C * v1;

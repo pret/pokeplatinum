@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -54,7 +54,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
@@ -70,7 +70,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_08[15];
     UnkStruct_0200B144 * unk_F8;
     UnkStruct_0200B358 * unk_FC;
-    PLString * unk_100;
+    Strbuf * unk_100;
     UnkStruct_0200112C * unk_104;
     UnkStruct_02013A04 * unk_108;
     UnkStruct_02001AF4 * unk_10C;
@@ -868,7 +868,7 @@ static void ov91_021D1580 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
 
 static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 param2, u8 param3, u8 param4)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     v0 = sub_0200B1EC(param0->unk_F8, param1);
     sub_0200B60C(param0->unk_FC, 0, param2, param3, param4, 1);
@@ -1103,7 +1103,7 @@ static void ov91_021D1BBC (UnkStruct_ov91_021D0ED8 * param0, u16 param1)
 
 static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     switch (param1) {
     case 0:

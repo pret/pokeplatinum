@@ -18,7 +18,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0209B6F8.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"

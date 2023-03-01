@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0202E1F4.h"
 #include "overlay087/struct_ov87_021D1640.h"
 
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202DF8C.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -33,7 +33,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 {
     UnkStruct_0202DFA8 * v0;
     UnkStruct_02073C74 * v1;
-    PLString * v2;
+    Strbuf * v2;
     int v3, v4, v5;
     BOOL v6;
 

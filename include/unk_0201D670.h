@@ -5,7 +5,7 @@
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0201D834.h"
 #include "functypes/funcptr_0201D834.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 
 void sub_0201D670(const UnkStruct_0201D670 * param0);

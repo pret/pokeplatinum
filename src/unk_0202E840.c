@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -15,7 +15,7 @@
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -190,7 +190,7 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
     int v0;
     u32 v1, v2;
     UnkStruct_0202E91C * v3;
-    PLString * v4;
+    Strbuf * v4;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0);
     u32 * v6;
 

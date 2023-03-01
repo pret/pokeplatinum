@@ -4,14 +4,14 @@
 
 #include "assert.h"
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202B370.h"
 #include "struct_defs/struct_0202B370_sub1.h"
 
 #include "unk_0201378C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_0202ACE0.h"
 #include "unk_02038FFC.h"
@@ -142,7 +142,7 @@ u16 * sub_0202AEF0 (UnkStruct_0202B370 * param0, int param1)
     return param0->unk_1C0[param1].unk_10;
 }
 
-void sub_0202AF0C (UnkStruct_0202B370 * param0, int param1, PLString * param2)
+void sub_0202AF0C (UnkStruct_0202B370 * param0, int param1, Strbuf * param2)
 {
     GF_ASSERT(param1 < 32);
     PLString_Dump(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
@@ -154,7 +154,7 @@ u16 * sub_0202AF34 (UnkStruct_0202B370 * param0, int param1)
     return param0->unk_1C0[param1].unk_00;
 }
 
-void sub_0202AF50 (UnkStruct_0202B370 * param0, int param1, PLString * param2)
+void sub_0202AF50 (UnkStruct_0202B370 * param0, int param1, Strbuf * param2)
 {
     GF_ASSERT(param1 < 32);
     PLString_Dump(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));

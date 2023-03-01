@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
@@ -29,7 +29,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02079D40.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -54,7 +54,7 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dAnimBankData * unk_68;
     UnkStruct_0200B144 * unk_6C;
     UnkStruct_0200B144 * unk_70;
-    PLString * unk_74;
+    Strbuf * unk_74;
     UnkStruct_0205AA50 unk_78[7];
     u8 unk_E8[640];
     NNSG2dScreenData * unk_368;
@@ -78,7 +78,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF250(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF270(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 * param0);
-static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const PLString * param2);
+static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const Strbuf * param2);
 static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF394(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 * param0, int param1);
@@ -469,7 +469,7 @@ static void ov19_021DF2A8 (UnkStruct_ov19_021DEC04 * param0)
     }
 }
 
-static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const PLString * param2)
+static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf * param2)
 {
     return ((param0->unk_07 * 8) - sub_02002D7C(param1, param2, 0)) / 2;
 }

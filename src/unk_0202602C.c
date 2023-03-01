@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02026030_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_02026030_t.h"
 
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_0202602C.h"
 
@@ -33,14 +33,14 @@ void sub_02026040 (UnkStruct_02026030 * param0)
     memset(param0, 0, sizeof(UnkStruct_02026030));
 }
 
-void sub_0202604C (const UnkStruct_0202610C * param0, PLString * param1)
+void sub_0202604C (const UnkStruct_0202610C * param0, Strbuf * param1)
 {
     PLString_FillWithCharsLimit(param1, param0->unk_00, (11 + 1));
 }
 
-PLString * sub_0202605C (const UnkStruct_0202610C * param0, int param1)
+Strbuf * sub_0202605C (const UnkStruct_0202610C * param0, int param1)
 {
-    PLString * v0 = PLString_Init((11 + 1) * 2, param1);
+    Strbuf * v0 = PLString_Init((11 + 1) * 2, param1);
 
     PLString_FillWithChars(v0, param0->unk_00);
     return v0;

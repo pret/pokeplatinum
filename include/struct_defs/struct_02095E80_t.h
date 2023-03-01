@@ -15,7 +15,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -68,9 +68,9 @@ struct UnkStruct_02095E80_t {
     UnkStruct_0200B358 * unk_17C;
     UnkStruct_0200B358 * unk_180;
     UnkStruct_0200B144 * unk_184;
-    PLString * unk_188;
-    PLString * unk_18C;
-    PLString * unk_190;
+    Strbuf * unk_188;
+    Strbuf * unk_18C;
+    Strbuf * unk_190;
     UnkStruct_020218BC * unk_194;
     UnkStruct_0200C738 unk_198;
     UnkStruct_02009714 * unk_324[4];

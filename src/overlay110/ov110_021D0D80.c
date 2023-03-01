@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -35,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
@@ -59,8 +59,8 @@ typedef struct {
     UnkStruct_0205AA50 unk_10[16];
     UnkStruct_0200B144 * unk_110;
     UnkStruct_0200B358 * unk_114;
-    PLString * unk_118;
-    PLString * unk_11C;
+    Strbuf * unk_118;
+    Strbuf * unk_11C;
     UnkStruct_02002F38 * unk_120;
     const UnkStruct_020279FC * unk_124;
     UnkStruct_021C0794 * unk_128;
@@ -1230,7 +1230,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
     UnkStruct_0200B144 * v0;
-    PLString * v1;
+    Strbuf * v1;
 
     v0 = sub_0200B144(1, 26, 412, 114);
     v1 = sub_0200B1EC(v0, param0->unk_08);

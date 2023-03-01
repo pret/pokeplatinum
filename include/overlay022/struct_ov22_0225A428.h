@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay022/struct_ov22_022597BC.h"
 #include "overlay022/struct_ov22_0225A914.h"
@@ -20,7 +20,7 @@ typedef struct {
     int unk_138;
     int unk_13C;
     u32 unk_140;
-    PLString * unk_144;
+    Strbuf * unk_144;
 } UnkStruct_ov22_0225A428;
 
 #endif // POKEPLATINUM_STRUCT_OV22_0225A428_H

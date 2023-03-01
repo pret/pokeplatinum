@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -55,7 +55,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
@@ -83,7 +83,7 @@ typedef struct {
     int unk_50;
     int unk_54;
     int unk_58;
-    PLString * unk_5C;
+    Strbuf * unk_5C;
     void * unk_60;
     UnkStruct_0200B358 * unk_64;
     UnkStruct_02015920 * unk_68;
@@ -720,7 +720,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         sub_02002AE4(0);
 
         {
-            PLString * v1 = PLString_Init(0x400, param0->unk_00);
+            Strbuf * v1 = PLString_Init(0x400, param0->unk_00);
 
             param0->unk_5C = PLString_Init(0x400, param0->unk_00);
 
@@ -2128,7 +2128,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 }
 
                 {
-                    PLString * v10 = sub_0200B1EC(param0->unk_4C, v9);
+                    Strbuf * v10 = sub_0200B1EC(param0->unk_4C, v9);
 
                     PLString_Copy(param0->unk_74->unk_18, v10);
                     PLString_Free(v10);

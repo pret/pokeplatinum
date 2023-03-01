@@ -4,7 +4,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -41,7 +41,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
@@ -1242,7 +1242,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    PLString * v2;
+    Strbuf * v2;
     int v3;
 
     v1 = &v0->unk_D0[0];

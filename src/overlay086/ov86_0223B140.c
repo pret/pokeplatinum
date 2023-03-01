@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
@@ -57,7 +57,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202CBE4.h"
 #include "unk_02073C2C.h"
@@ -98,8 +98,8 @@ typedef struct {
     UnkStruct_0201CD38 * unk_1C30;
     UnkStruct_0201CD38 * unk_1C34[4];
     UnkStruct_0200B358 * unk_1C44;
-    PLString * unk_1C48;
-    PLString * unk_1C4C;
+    Strbuf * unk_1C48;
+    Strbuf * unk_1C4C;
     UnkStruct_0200B144 * unk_1C50;
     NARC * unk_1C54;
 } UnkStruct_ov86_0223B3C8;
@@ -190,8 +190,8 @@ typedef struct {
     UnkStruct_02018340 * unk_0C;
     UnkStruct_0205AA50 * unk_10;
     UnkStruct_0200B358 * unk_14;
-    PLString * unk_18;
-    PLString * unk_1C;
+    Strbuf * unk_18;
+    Strbuf * unk_1C;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_02073C74 * unk_24;
     const UnkStruct_02025E6C * unk_28;

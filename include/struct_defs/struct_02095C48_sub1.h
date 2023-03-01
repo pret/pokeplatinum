@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02095C48_SUB1_H
 #define POKEPLATINUM_STRUCT_02095C48_SUB1_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_defs/struct_020954F0.h"
@@ -12,7 +12,7 @@ typedef struct {
     UnkStruct_02073C74 * unk_00[4];
     UnkStruct_ov6_02248BE8 unk_10[4];
     UnkStruct_020954F0 unk_C0[3];
-    PLString * unk_D8[4];
+    Strbuf * unk_D8[4];
     UnkStruct_02029C88 * unk_E8[4];
     u8 unk_F8[4];
     u8 unk_FC[4];

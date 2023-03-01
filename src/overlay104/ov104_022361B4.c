@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -28,7 +28,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202CD50.h"
 #include "unk_020302D0.h"
@@ -801,8 +801,8 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
 static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3)
 {
     UnkStruct_0200B144 * v0;
-    PLString * v1 = PLString_Init((10 * 2), param0->unk_34);
-    PLString * v2 = PLString_Init((10 * 2), param0->unk_34);
+    Strbuf * v1 = PLString_Init((10 * 2), param0->unk_34);
+    Strbuf * v2 = PLString_Init((10 * 2), param0->unk_34);
 
     v0 = sub_0200B144(0, 26, 199, 11);
 

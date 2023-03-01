@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02006E3C.h"
@@ -10,7 +10,7 @@
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 
 static const u16 Unk_020E5522[] = {
@@ -168,7 +168,7 @@ void sub_02014D70 (UnkStruct_02014D38 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, PLString * param2)
+void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, Strbuf * param2)
 {
     u32 v0, v1;
 
@@ -176,7 +176,7 @@ void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, PLString * param2)
     sub_0200B1B8(param0->unk_04[v0], v1, param2);
 }
 
-void sub_02014DB8 (u16 param0, PLString * param1)
+void sub_02014DB8 (u16 param0, Strbuf * param1)
 {
     if (param0 != 0xffff) {
         u32 v0, v1;

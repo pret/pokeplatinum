@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02025E68.h"
 #include "overlay114/ov114_0225C700.h"
@@ -397,7 +397,7 @@ void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
 
     {
         UnkStruct_0200B144 * v0;
-        PLString * v1;
+        Strbuf * v1;
 
         v0 = sub_0200B144(0, 26, 410, 106);
         v1 = sub_0200B1EC(v0, 0);
@@ -459,7 +459,7 @@ void ov116_02262034 (UnkStruct_ov116_0226139C * param0, int param1)
     }
 }
 
-static int ov116_0226208C (UnkStruct_0205AA50 * param0, PLString * param1)
+static int ov116_0226208C (UnkStruct_0205AA50 * param0, Strbuf * param1)
 {
     int v0 = sub_02002D7C(0, param1, 0);
     int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
@@ -529,7 +529,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
         sub_0201ADA4(v3, 0xFF);
 
         {
-            PLString * v11;
+            Strbuf * v11;
             int v12;
 
             v11 = sub_02025F04(v9, 106);

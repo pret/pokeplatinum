@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D4C0C_H
 #define POKEPLATINUM_OV21_021D4C0C_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
@@ -18,6 +18,6 @@ UnkStruct_0205AA50 * ov21_021D4D6C(UnkStruct_ov21_021D4C0C * param0, int param1,
 void ov21_021D4DA0(UnkStruct_0205AA50 * param0);
 u32 ov21_021D4DAC(UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, int param4, int param5);
 void ov21_021D4E10(UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3);
-void ov21_021D4E80(UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, PLString * param2, int param3, int param4);
+void ov21_021D4E80(UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, Strbuf * param2, int param3, int param4);
 
 #endif // POKEPLATINUM_OV21_021D4C0C_H

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CC84.h"
@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020244AC.h"
 
 FS_EXTERN_OVERLAY(overlay77);
@@ -42,7 +42,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    PLString * unk_10;
+    Strbuf * unk_10;
     UnkStruct_02018340 * unk_14;
     UnkStruct_0200B144 * unk_18;
     UnkStruct_0205AA50 unk_1C;

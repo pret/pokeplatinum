@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay019/ov19_021DB2FC.h"
 
 static void ov19_021DB4B4(UnkStruct_02018340 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5);

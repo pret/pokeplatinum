@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV23_0224340C_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 
@@ -45,8 +45,8 @@ void ov23_022445E8(int param0, int param1, void * param2, void * param3);
 void ov23_0224461C(int param0, int param1, void * param2, void * param3);
 void ov23_02244638(void);
 void ov23_0224467C(int param0, int param1, void * param2, void * param3);
-BOOL ov23_022446B0(PLString * param0);
-BOOL ov23_02244784(PLString * param0);
+BOOL ov23_022446B0(Strbuf * param0);
+BOOL ov23_02244784(Strbuf * param0);
 void ov23_02244858(int param0, BOOL param1);
 int ov23_02245408(void);
 void ov23_0224540C(int param0, int param1, void * param2, void * param3);

@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "functypes/funcptr_0207F248.h"
@@ -39,9 +39,9 @@ typedef struct {
     UnkStruct_0200C440 * unk_698;
     UnkStruct_0200B144 * unk_69C;
     UnkStruct_0200B358 * unk_6A0;
-    PLString * unk_6A4;
-    PLString * unk_6A8;
-    PLString * unk_6AC[20];
+    Strbuf * unk_6A4;
+    Strbuf * unk_6A8;
+    Strbuf * unk_6AC[20];
     UnkStruct_02013A04 * unk_6FC;
     UnkStruct_02001AF4 * unk_700;
     UnkStruct_020831B4 unk_704[6];

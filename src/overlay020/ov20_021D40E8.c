@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -19,7 +19,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D40E8.h"
@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_02022550 * unk_30;
     UnkStruct_02022550 * unk_34;
     UnkStruct_02022550 * unk_38;
-    PLString * unk_3C;
+    Strbuf * unk_3C;
     UnkStruct_ov20_021D4FF0 unk_40;
     UnkStruct_ov20_021D4E8C unk_60;
     u32 unk_80;

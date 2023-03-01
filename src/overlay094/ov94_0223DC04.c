@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -28,7 +28,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -59,7 +59,7 @@ static void ov94_0223E240(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_0223E358(UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[]);
 static void ov94_0223E300(UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4);
 static void ov94_0223E3B0(UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B144 * param2, UnkStruct_ov94_0223BA88_sub3 * param3);
-static void ov94_0223E424(UnkStruct_0205AA50 * param0, PLString * param1, PLString * param2);
+static void ov94_0223E424(UnkStruct_0205AA50 * param0, Strbuf * param1, Strbuf * param2);
 
 static int (* Unk_ov94_0224682C[])(UnkStruct_ov94_0223FD4C * wk) = {
     ov94_0223E09C,
@@ -436,7 +436,7 @@ static int ov94_0223E2E0 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223E300 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     sub_0200B1B8(param0->unk_B90, param1, param0->unk_BAC);
     sub_0201ADA4(&param0->unk_F5C, 0xf0f);
@@ -447,7 +447,7 @@ static void ov94_0223E300 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
 static void ov94_0223E358 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[])
 {
-    PLString * v0, * v1;
+    Strbuf * v0, * v1;
 
     v0 = sub_0200B1EC(param0, 74);
     v1 = sub_0200B1EC(param0, 78);
@@ -468,7 +468,7 @@ static void ov94_0223E3B0 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
     ov94_0224226C(param0 + 1, param1, ov94_02242970(param3->unk_03, param3->unk_04, 0), 0, 19, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), 0, 8);
 }
 
-static void ov94_0223E424 (UnkStruct_0205AA50 * param0, PLString * param1, PLString * param2)
+static void ov94_0223E424 (UnkStruct_0205AA50 * param0, Strbuf * param1, Strbuf * param2)
 {
     sub_0201ADA4(param0, 0x0);
 

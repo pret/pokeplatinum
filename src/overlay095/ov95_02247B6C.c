@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_sub1_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
@@ -39,7 +39,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -58,8 +58,8 @@ typedef struct {
     UnkStruct_ov95_02247568 unk_44;
     UnkStruct_02018340 * unk_54;
     UnkStruct_0205AA50 unk_58;
-    PLString * unk_68;
-    PLString * unk_6C;
+    Strbuf * unk_68;
+    Strbuf * unk_6C;
     UnkStruct_ov95_0224773C * unk_70;
     UnkStruct_ov95_02247958 * unk_74;
     UnkStruct_0201CD38 * unk_78;

@@ -26,7 +26,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "item.h"

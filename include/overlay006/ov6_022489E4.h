@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV6_022489E4_H
 #define POKEPLATINUM_OV6_022489E4_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -19,7 +19,7 @@ BOOL ov6_02248BE8(UnkStruct_02095C48 * param0, int param1, const UnkStruct_ov6_0
 void ov6_02248C28(int param0, int param1, void * param2, void * param3);
 BOOL ov6_02248C68(UnkStruct_02095C48 * param0, int param1, const UnkStruct_020954F0 * param2);
 void ov6_02248CBC(int param0, int param1, void * param2, void * param3);
-BOOL ov6_02248CE8(UnkStruct_02095C48 * param0, int param1, const PLString * param2);
+BOOL ov6_02248CE8(UnkStruct_02095C48 * param0, int param1, const Strbuf * param2);
 void ov6_02248D38(int param0, int param1, void * param2, void * param3);
 BOOL ov6_02248D64(UnkStruct_02095C48 * param0, int param1, void * param2);
 void ov6_02248DA0(int param0, int param1, void * param2, void * param3);

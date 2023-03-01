@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay099/ov99_021D3E78.h"
 
 static const struct {
@@ -275,7 +275,7 @@ struct UnkStruct_ov99_021D3E78_t {
     UnkStruct_0205AA50 * unk_24;
     UnkStruct_0205AA50 * unk_28;
     UnkStruct_0200B144 * unk_2C;
-    PLString * unk_30;
+    Strbuf * unk_30;
     UnkStruct_0201CD38 * unk_34;
 };
 

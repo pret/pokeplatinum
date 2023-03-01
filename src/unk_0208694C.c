@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02073C74_decl.h"
 #include "struct_decls/struct_02087A10_decl.h"
 
@@ -61,7 +61,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
@@ -100,10 +100,10 @@ struct UnkStruct_02087A10_t {
     UnkStruct_0200B144 * unk_16C;
     UnkStruct_0200B144 * unk_170;
     UnkStruct_0200B144 * unk_174;
-    PLString * unk_178;
-    PLString * unk_17C;
-    PLString * unk_180;
-    PLString * unk_184;
+    Strbuf * unk_178;
+    Strbuf * unk_17C;
+    Strbuf * unk_180;
+    Strbuf * unk_184;
     UnkStruct_020218BC * unk_188;
     UnkStruct_0200C738 unk_18C;
     UnkStruct_02009714 * unk_318[4];
@@ -181,9 +181,9 @@ static void sub_02087FC0(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param
 static void sub_02088350(UnkStruct_02087A10 * param0);
 static void sub_02088514(u16 * param0);
 static void sub_02088554(UnkStruct_0205AA50 * param0, const u16 * param1, int param2, int param3, int param4, int param5, u32 param6, u8 * param7);
-static void sub_02088678(UnkStruct_0205AA50 * param0, const u16 * param1, u8 * param2, PLString * param3);
+static void sub_02088678(UnkStruct_0205AA50 * param0, const u16 * param1, u8 * param2, Strbuf * param3);
 static void sub_02088844(u16 param0[][13], const int param1);
-static void sub_02088754(UnkStruct_0205AA50 * param0, u16 * param1, int param2, u16 * param3, u8 * param4, PLString * param5);
+static void sub_02088754(UnkStruct_0205AA50 * param0, u16 * param1, int param2, u16 * param3, u8 * param4, Strbuf * param5);
 static int sub_02088898(UnkStruct_02087A10 * param0, u16 param1, int param2);
 static int sub_02088D08(int param0, int param1, int param2, int param3, u16 * param4, int param5);
 static int sub_02088C9C(int param0, int param1, u16 * param2, int param3);
@@ -199,11 +199,11 @@ static void sub_0208732C(int param0);
 static void sub_02087544(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1);
 static void sub_02087BE4(UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 * param1);
 static void sub_02086E6C(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1);
-static void sub_02087F48(UnkStruct_0205AA50 * param0, int param1, PLString * param2);
+static void sub_02087F48(UnkStruct_0205AA50 * param0, int param1, Strbuf * param2);
 static void sub_02088FD0(UnkStruct_02087A10 * param0);
 static int sub_02086D38(UnkStruct_02087A10 * param0, int param1);
 static int sub_02086F14(u16 * param0);
-static void * sub_02088654(UnkStruct_0205AA50 * param0, PLString * param1, u8 param2, u32 param3);
+static void * sub_02088654(UnkStruct_0205AA50 * param0, Strbuf * param1, u8 param2, u32 param3);
 static BOOL sub_0208903C(UnkStruct_02087A10 * param0);
 
 static const int Unk_020F2984[][4] = {
@@ -1087,7 +1087,7 @@ static int sub_02086D38 (UnkStruct_02087A10 * param0, int param1)
 static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * param1)
 {
     if (param0->unk_00 == 0) {
-        PLString * v0;
+        Strbuf * v0;
 
         if (param0->unk_04 == 0) {
             v0 = sub_0200B1EC(param0->unk_170, 0 + sub_0201D2E8() % 18);
@@ -1099,7 +1099,7 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
         PLString_Free(v0);
         PLString_Dump(param1->unk_18, param1->unk_1C, 10);
     } else if (param0->unk_00 == 3) {
-        PLString * v1;
+        Strbuf * v1;
 
         v1 = sub_0200B1EC(param0->unk_170, 88 + (sub_0201D2E8() % 2));
 
@@ -1464,7 +1464,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
 
 static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1)
 {
-    PLString * v0 = NULL;
+    Strbuf * v0 = NULL;
     UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param1);
 
     if (v1->unk_44 != 0) {
@@ -1823,14 +1823,14 @@ static void sub_02087D64 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * para
     }
 }
 
-static void sub_02087F48 (UnkStruct_0205AA50 * param0, int param1, PLString * param2)
+static void sub_02087F48 (UnkStruct_0205AA50 * param0, int param1, Strbuf * param2)
 {
     sub_0200E060(param0, 0, ((32 * 8)), 10);
     sub_0201D738(param0, 1, param2, 0, 0, 0, NULL);
     sub_0201A954(param0);
 }
 
-static void sub_02087F78 (UnkStruct_0205AA50 * param0, int param1, PLString * param2)
+static void sub_02087F78 (UnkStruct_0205AA50 * param0, int param1, Strbuf * param2)
 {
     int v0 = 16;
     int v1 = sub_02002D7C(0, param2, 0);
@@ -2088,7 +2088,7 @@ static void sub_02088554 (UnkStruct_0205AA50 * param0, const u16 * param1, int p
 {
     int v0 = 0, v1, v2;
     u16 v3[2];
-    PLString * v4;
+    Strbuf * v4;
 
     v4 = PLString_Init(2, 18);
 
@@ -2125,17 +2125,17 @@ static const u8 Unk_020F24D8[] = {
     0x58
 };
 
-static void * sub_02088654 (UnkStruct_0205AA50 * param0, PLString * param1, u8 param2, const u32 param3)
+static void * sub_02088654 (UnkStruct_0205AA50 * param0, Strbuf * param1, u8 param2, const u32 param3)
 {
     sub_0201D78C(param0, param2, param1, 0, 0, 0xff, param3, NULL);
     return param0->unk_0C;
 }
 
-static void sub_02088678 (UnkStruct_0205AA50 * param0, const u16 * param1, u8 * param2, PLString * param3)
+static void sub_02088678 (UnkStruct_0205AA50 * param0, const u16 * param1, u8 * param2, Strbuf * param3)
 {
     u16 v0[20 + 1], v1, v2;
     void * v3;
-    PLString * v4;
+    Strbuf * v4;
 
     sub_0201ADA4(&param0[3], 0);
     v3 = sub_02088654(&param0[3], param3, 2, (u32)(((0xd & 0xff) << 16) | ((0xe & 0xff) << 8) | ((0xf & 0xff) << 0)));
@@ -2165,7 +2165,7 @@ static void sub_02088678 (UnkStruct_0205AA50 * param0, const u16 * param1, u8 * 
     PLString_Free(v4);
 }
 
-static void sub_02088754 (UnkStruct_0205AA50 * param0, u16 * param1, int param2, u16 * param3, u8 * param4, PLString * param5)
+static void sub_02088754 (UnkStruct_0205AA50 * param0, u16 * param1, int param2, u16 * param3, u8 * param4, Strbuf * param5)
 {
     int v0, v1;
     const u16 * v2 = NULL;

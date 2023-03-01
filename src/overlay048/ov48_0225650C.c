@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -157,7 +157,7 @@ static void ov48_022565A8 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov48_02256650 (UnkStruct_ov48_0225650C * param0, u32 param1)
 {
     UnkStruct_0205AA50 v0;
-    PLString * v1;
+    Strbuf * v1;
 
     v1 = sub_0200B010(26, 459, 0, 8);
 

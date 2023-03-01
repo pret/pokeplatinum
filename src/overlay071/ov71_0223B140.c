@@ -31,7 +31,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_020393C8.h"
 #include "overlay071/ov71_0223B140.h"
 #include "overlay071/ov71_0223C69C.h"

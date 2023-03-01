@@ -3,7 +3,7 @@
 #include <nnsys/g3d/glbstate.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -18,7 +18,7 @@
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -533,7 +533,7 @@ void ov23_0224AAB0 (void)
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
         UnkStruct_02025E6C * v0 = sub_02025E6C(15);
-        PLString * v1 = PLString_Init(20, 15);
+        Strbuf * v1 = PLString_Init(20, 15);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);
@@ -555,7 +555,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
     int v1;
     const UnkStruct_02025E6C * v2 = param2;
-    PLString * v3;
+    Strbuf * v3;
     u8 v4 = param0;
 
     if (v0) {

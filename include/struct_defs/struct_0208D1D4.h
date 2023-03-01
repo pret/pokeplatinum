@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_0208D1D4_H
 #define POKEPLATINUM_STRUCT_0208D1D4_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 typedef struct {
-    PLString * unk_00;
-    PLString * unk_04;
-    PLString * unk_08;
+    Strbuf * unk_00;
+    Strbuf * unk_04;
+    Strbuf * unk_08;
     u16 unk_0C;
     u16 unk_0E;
     u8 unk_10;

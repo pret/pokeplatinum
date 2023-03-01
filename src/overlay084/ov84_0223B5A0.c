@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 
 #include "overlay084/const_ov84_02241130.h"
 
@@ -50,7 +50,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "plstring.h"
+#include "string/strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
@@ -146,7 +146,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 * param0);
 static int ov84_0223DA04(UnkStruct_ov84_0223B5A0 * param0);
 static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 * param0);
 static BOOL ov84_0223DBF4(UnkStruct_ov84_0223B5A0 * param0, u16 param1);
-static PLString * ov84_0223DC9C(UnkStruct_ov84_0223B5A0 * param0, u16 param1);
+static Strbuf * ov84_0223DC9C(UnkStruct_ov84_0223B5A0 * param0, u16 param1);
 static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 * param0);
 static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 * param0);
 static void ov84_0223DCF8(UnkStruct_ov84_0223B5A0 * param0);
@@ -874,12 +874,12 @@ u16 ov84_0223BE5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2)
     return v0->unk_00[param1].unk_02;
 }
 
-static void ov84_0223BE84 (UnkStruct_0200B144 * param0, PLString * param1, u16 param2, u32 param3)
+static void ov84_0223BE84 (UnkStruct_0200B144 * param0, Strbuf * param1, u16 param2, u32 param3)
 {
     sub_0200B1B8(param0, param2, param1);
 }
 
-static void ov84_0223BE94 (UnkStruct_0200B144 * param0, PLString * param1, u16 param2, u32 param3)
+static void ov84_0223BE94 (UnkStruct_0200B144 * param0, Strbuf * param1, u16 param2, u32 param3)
 {
     sub_0200B1B8(param0, GetMoveFromTMOrHMItemID(param2), param1);
 }
@@ -2217,7 +2217,7 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
         }
 
         if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) || Unk_021BF67C.unk_60) {
-            PLString * v1 = sub_0200B1EC(param0->unk_114, 60);
+            Strbuf * v1 = sub_0200B1EC(param0->unk_114, 60);
 
             sub_0201ADA4(&param0->unk_04[6], 15);
             sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
@@ -2283,7 +2283,7 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
 
 static BOOL ov84_0223DBF4 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 {
-    PLString * v0;
+    Strbuf * v0;
 
     sub_0200B498(param0->unk_118, 0, param0->unk_CC);
     sub_0200B70C(param0->unk_118, 1, param1);
@@ -2307,7 +2307,7 @@ static BOOL ov84_0223DBF4 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     return 1;
 }
 
-static PLString * ov84_0223DC9C (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
+static Strbuf * ov84_0223DC9C (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 {
     s32 v0;
     u8 * v1;
@@ -2478,7 +2478,7 @@ static int ov84_0223E01C (UnkStruct_ov84_0223B5A0 * param0)
     switch (v0) {
     case 0:
     {
-        PLString * v1 = sub_0200B1EC(param0->unk_114, 53);
+        Strbuf * v1 = sub_0200B1EC(param0->unk_114, 53);
 
         if (param0->unk_488 == 1) {
             sub_0200B70C(param0->unk_118, 0, param0->unk_C4->unk_66);
@@ -2596,7 +2596,7 @@ static int ov84_0223E27C (UnkStruct_ov84_0223B5A0 * param0)
 
         if (v0 == 1) {
             if (Item_GetAttribute(param0->unk_C4->unk_66, 3, 6) != 0) {
-                PLString * v1;
+                Strbuf * v1;
 
                 sub_0201ADA4(&param0->unk_04[6], 15);
                 sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
@@ -2658,7 +2658,7 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
         u8 v0 = ov84_0223C5B8(param0);
 
         if (v0 == 1) {
-            PLString * v1;
+            Strbuf * v1;
 
             ov84_02240248(param0, 0);
             sub_0201ADA4(&param0->unk_04[6], 15);
@@ -2726,7 +2726,7 @@ static int ov84_0223E5C4 (UnkStruct_ov84_0223B5A0 * param0)
         return 18;
     }
     if (ov84_0223D1F4(param0) == 1) {
-        PLString * v0;
+        Strbuf * v0;
 
         ov84_02240D3C(param0, 0);
         sub_0200DC9C(&param0->unk_04[7], 1);
@@ -2756,7 +2756,7 @@ static int ov84_0223E5C4 (UnkStruct_ov84_0223B5A0 * param0)
         return 18;
     }
     if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
-        PLString * v1;
+        Strbuf * v1;
 
         ov84_02240D3C(param0, 0);
         sub_0200DC9C(&param0->unk_04[7], 1);
@@ -2818,7 +2818,7 @@ static int ov84_0223E7CC (UnkStruct_ov84_0223B5A0 * param0)
     switch (v0) {
     case 0:
     {
-        PLString * v1 = sub_0200B1EC(param0->unk_114, 77);
+        Strbuf * v1 = sub_0200B1EC(param0->unk_114, 77);
 
         if (param0->unk_488 > 1) {
             sub_0200B77C(param0->unk_118, 0, param0->unk_C4->unk_66);

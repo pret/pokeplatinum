@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D3208_H
 #define POKEPLATINUM_OV21_021D3208_H
 
-#include "struct_decls/struct_plstring_decl.h"
+#include "struct_decls/struct_strbuf_decl.h"
 #include "overlay021/struct_ov21_021D3208.h"
 #include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D37DC.h"
@@ -50,7 +50,7 @@ int ov21_021D38B0(const UnkStruct_ov21_021D3320 * param0, int param1);
 void ov21_021D38C0(UnkStruct_ov21_021D3320 * param0);
 int ov21_021D38FC(const UnkStruct_ov21_021D3320 * param0);
 int ov21_021D3908(const UnkStruct_ov21_021D3320 * param0);
-PLString * ov21_021D3914(const UnkStruct_ov21_021D3320 * param0);
+Strbuf * ov21_021D3914(const UnkStruct_ov21_021D3320 * param0);
 u32 ov21_021D3920(const UnkStruct_ov21_021D3320 * param0);
 BOOL ov21_021D392C(const UnkStruct_ov21_021D3320 * param0, int param1);
 BOOL ov21_021D3954(const UnkStruct_ov21_021D3320 * param0);
