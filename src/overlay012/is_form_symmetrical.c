@@ -24,8 +24,9 @@ BOOL IsFormSymmetrical (u32 species, u32 formId)
     case SPECIES_KINGLER:
         return FALSE;
     case SPECIES_SHAYMIN:
-        if (formId == 1)
+        if (formId == 1) {
             return FALSE;
+        }
         break;
     }
 

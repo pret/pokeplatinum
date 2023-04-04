@@ -115,8 +115,8 @@ static const s8 Unk_020F0695[][5] = {
 
 void ZeroMonData(Pokemon * param0);
 void ZeroBoxMonData(BoxPokemon * param0);
-int SizeOfStructPokemon(void);
-Pokemon * AllocMonZeroed(u32 param0);
+int PokemonStructSize(void);
+Pokemon * CallocMon(u32 param0);
 BOOL sub_02073C88(Pokemon * param0);
 BOOL sub_02073CD4(Pokemon * param0, BOOL param1);
 BOOL sub_02073D20(BoxPokemon * param0);
@@ -262,12 +262,12 @@ void ZeroBoxMonData (BoxPokemon * boxMon)
     sub_0207822C(boxMon->unk_08, sizeof(PokemonSubstruct0) * 4, boxMon->unk_06);
 }
 
-int SizeOfStructPokemon (void)
+int PokemonStructSize (void)
 {
     return sizeof(Pokemon);
 }
 
-Pokemon * AllocMonZeroed (u32 param0)
+Pokemon * CallocMon (u32 param0)
 {
     Pokemon * mon = Heap_AllocFromHeap(param0, sizeof(Pokemon));
     ZeroMonData(mon);
@@ -4531,7 +4531,7 @@ void sub_020780C4 (Pokemon * param0, u32 param1)
     PokemonSubstruct2 * v7;
     PokemonSubstruct3 * v8;
 
-    v0 = AllocMonZeroed(0);
+    v0 = CallocMon(0);
 
     sub_020775EC(param0, v0);
 

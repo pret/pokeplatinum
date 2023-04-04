@@ -178,7 +178,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
 
     v4->unk_138 = sub_02055BA8(param1);
     sub_0207D570(v4->unk_E0, 4, 20, param0);
-    v5 = AllocMonZeroed(param0);
+    v5 = CallocMon(param0);
 
     sub_02073D80(v5, sub_0206B08C(sub_020507E4(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->unk_04[0], v5);
@@ -319,7 +319,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     param0->unk_12C = 9;
 
     sub_02052184(param0, v2, 0);
-    v8 = AllocMonZeroed(11);
+    v8 = CallocMon(11);
     Party_InitWithCapacity(param0->unk_04[0], Party_GetCurrentCount(v3));
 
     for (v0 = 0; v0 < Party_GetCurrentCount(v3); v0++) {
@@ -388,7 +388,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
         if (v10 == 0) {
             sub_02052164(param0, param2, 0);
         } else {
-            v9 = AllocMonZeroed(11);
+            v9 = CallocMon(11);
             Party_InitWithCapacity(param0->unk_04[0], v10);
 
             for (v8 = 0; v8 < v10; v8++) {

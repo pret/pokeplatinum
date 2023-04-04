@@ -302,7 +302,7 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
     Party_InitWithCapacity(param0->unk_04[param1], 6);
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
-    v7 = AllocMonZeroed(param2);
+    v7 = CallocMon(param2);
 
     sub_0207939C(param0->unk_18[param1], v0);
 

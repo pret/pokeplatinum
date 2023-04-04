@@ -7,7 +7,7 @@ typedef struct {
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
-    u16 filler;
+    u16 padding;
 } PokemonGBASubstruct0;
 
 typedef struct {

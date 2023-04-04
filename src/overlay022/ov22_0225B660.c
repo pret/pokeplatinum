@@ -350,7 +350,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0202A524(param0->unk_04, v2);
     sub_0200B48C(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
-    v5 = AllocMonZeroed(13);
+    v5 = CallocMon(13);
     sub_0202A560(param0->unk_04, v5);
     v6 = sub_02076B10(v5);
     sub_0200B5CC(v1, 4, v6);

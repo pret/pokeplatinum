@@ -705,7 +705,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 UnkStruct_0202818C * v3;
                 UnkStruct_0202CA28 v4;
 
-                v1 = AllocMonZeroed(param0->unk_5C);
+                v1 = CallocMon(param0->unk_5C);
                 sub_020775EC(param0->unk_28, v1);
 
                 v2 = 292;
@@ -952,7 +952,7 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     sub_02075EF4(&v0, param0->unk_28, 2);
 
     param0->unk_1C[0] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
-    v1 = AllocMonZeroed(param0->unk_5C);
+    v1 = CallocMon(param0->unk_5C);
 
     sub_020775EC(param0->unk_28, v1);
     sub_02074B30(v1, 5, (u8 *)&param0->unk_62);

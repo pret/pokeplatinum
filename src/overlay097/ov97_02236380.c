@@ -1201,7 +1201,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         if (retVal == SPECIES_NONE)
             break;
 
-        if ((substruct3->isEgg) || (boxMonGBA->isBadEgg))
+        if (substruct3->isEgg || boxMonGBA->isBadEgg)
             retVal = GBA_SPECIES_EGG;
 
         break;

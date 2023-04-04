@@ -237,14 +237,15 @@ static int Unk_ov97_0223EAB8[] = {
 
 static BOOL IsGBASpeciesInvalid (int speciesGBA)
 {
-    if (speciesGBA <= SPECIES_NONE)
+    if (speciesGBA <= SPECIES_NONE) {
         return TRUE;
-    else if (speciesGBA <= SPECIES_CELEBI)
+    } else if (speciesGBA <= SPECIES_CELEBI) {
         return FALSE;
-    else if (speciesGBA < GBA_SPECIES_TREECKO)
+    } else if (speciesGBA < GBA_SPECIES_TREECKO) {
         return TRUE;
-    else if (speciesGBA <= GBA_SPECIES_CHIMECHO)
+    } else if (speciesGBA <= GBA_SPECIES_CHIMECHO) {
         return FALSE;
+    }
 
     return TRUE;
 }

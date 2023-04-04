@@ -243,7 +243,7 @@ static UnkStruct_ov22_0225B1BC * ov22_0225B1BC (const UnkStruct_ov22_0225B4E4 * 
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->unk_68;
-    v0->unk_298 = AllocMonZeroed(param0->unk_68);
+    v0->unk_298 = CallocMon(param0->unk_68);
     sub_0202A61C(param0->unk_00, v0->unk_298);
 
     ov22_0225B2D4(v0, param0);
@@ -273,7 +273,7 @@ static UnkStruct_ov22_0225B1BC * ov22_0225B258 (const UnkStruct_ov22_0225B4E4 * 
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->unk_68;
-    v0->unk_298 = AllocMonZeroed(param0->unk_68);
+    v0->unk_298 = CallocMon(param0->unk_68);
 
     sub_0202A61C(param0->unk_00, v0->unk_298);
 

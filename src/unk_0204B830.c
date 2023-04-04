@@ -293,7 +293,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         u32 v16 = sub_02025F20(v1);
         u32 v17 = sub_02025F30(v1);
 
-        v6 = AllocMonZeroed(32);
+        v6 = CallocMon(32);
 
         sub_020775EC(v4, v6);
         sub_02074B30(v6, 145, v15);

@@ -794,7 +794,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
             param0->unk_36 = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
-                Pokemon * v1 = AllocMonZeroed(62);
+                Pokemon * v1 = CallocMon(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v1);
                 sub_0200B5CC(param0->unk_B8C, 0, sub_02076B10(v1));
@@ -814,7 +814,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
             param0->unk_36 = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
-                Pokemon * v2 = AllocMonZeroed(62);
+                Pokemon * v2 = CallocMon(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v2);
                 sub_0200B5CC(param0->unk_B8C, 0, sub_02076B10(v2));
@@ -1250,7 +1250,7 @@ static int ov94_02243AE8 (UnkStruct_ov94_0223FD4C * param0)
 static void ov94_02243B08 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
     if (param0->unk_110 != 18) {
-        Pokemon * v0 = AllocMonZeroed(62);
+        Pokemon * v0 = CallocMon(62);
 
         sub_020774C8(sub_02079C9C(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);

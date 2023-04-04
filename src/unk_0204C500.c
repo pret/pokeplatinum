@@ -48,7 +48,7 @@ BOOL sub_0204C500 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C554 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02024440 * v0 = sub_02024440(param0->unk_34->unk_0C);
-    Pokemon * v1 = AllocMonZeroed(32);
+    Pokemon * v1 = CallocMon(32);
     u16 * v2 = inline_0204FCAC(param0);
 
     if (sub_0202F028(v0) == 6) {
@@ -65,7 +65,7 @@ BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_02024440 * v0 = sub_02024440(param0->unk_34->unk_0C);
     UnkStruct_020797DC * v1 = sub_02024420(param0->unk_34->unk_0C);
-    Pokemon * v2 = AllocMonZeroed(32);
+    Pokemon * v2 = CallocMon(32);
     UnkStruct_02025E6C * v3 = sub_02025E38(param0->unk_34->unk_0C);
     UnkStruct_02026324 * v4 = sub_02027560(param0->unk_34->unk_0C);
     BOOL v5;

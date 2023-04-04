@@ -4289,7 +4289,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                         v7 = v0->unk_09;
                     }
 
-                    v9 = AllocMonZeroed(5);
+                    v9 = CallocMon(5);
 
                     for (v3 = 0; v3 < 6; v3++) {
                         Party_AddPokemon(v0->unk_04->unk_00, v9);

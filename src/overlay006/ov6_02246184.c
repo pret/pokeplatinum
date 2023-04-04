@@ -73,7 +73,7 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
     v0->unk_10 = param0;
     v0->unk_0C = param1;
-    v0->unk_04 = AllocMonZeroed(param0);
+    v0->unk_04 = CallocMon(param0);
     v0->unk_08 = sub_02025E6C(param0);
 
     sub_02025E8C(v0->unk_08);
