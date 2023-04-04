@@ -968,8 +968,7 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
     PokemonGBASubstruct3 * substruct3 = 0;
     u16 checksum;
 
-    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR)
-    {
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
         substruct0 = (PokemonGBASubstruct0 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 0);
         substruct1 = (PokemonGBASubstruct1 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 1);
         substruct2 = (PokemonGBASubstruct2 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 2);
@@ -1215,8 +1214,9 @@ u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
         break;
     }
 
-    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR)
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
         GBAEncryptBoxMon(boxMonGBA);
+    }
 
     return retVal;
 }
