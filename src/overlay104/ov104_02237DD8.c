@@ -303,7 +303,7 @@ static void ov104_02238114 (UnkStruct_ov104_0223BFFC * param0)
 
     ov104_0222E330(v4, v6, v5, NULL, v7, 4, 11, 179);
 
-    v2 = CallocMon(11);
+    v2 = AllocMonZeroed(11);
 
     for (v1 = 0; v1 < 4; v1++) {
         ov104_0222DF40(&v4[v1], v2, ov104_0223BFFC(param0));

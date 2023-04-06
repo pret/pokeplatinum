@@ -141,7 +141,7 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
     UnkStruct_02024440 * v4;
 
     v4 = sub_02024440(param0->unk_0C);
-    v3 = CallocMon(4);
+    v3 = AllocMonZeroed(4);
 
     for (v0 = 0; v0 < 6; v0++) {
         param1->unk_30[v0] = 0;
@@ -274,7 +274,7 @@ static void sub_02056624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
 static UnkStruct_ov6_02240D5C * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)
 {
     UnkStruct_ov6_02240D5C * v0;
-    Pokemon * v1 = CallocMon(32);
+    Pokemon * v1 = AllocMonZeroed(32);
     UnkStruct_02024440 * v2 = sub_02024440(param0->unk_0C);
     int v3 = sub_020563BC(param0);
 

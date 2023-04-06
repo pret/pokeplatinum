@@ -103,7 +103,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
     v1 = Party_GetCurrentCount(v3);
 
     if (v1 < 6) {
-        v4 = CallocMon(11);
+        v4 = AllocMonZeroed(11);
         ZeroMonData(v4);
 
         v0 = sub_02017070(1, v8);

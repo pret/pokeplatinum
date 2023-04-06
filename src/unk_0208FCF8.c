@@ -575,7 +575,7 @@ static void sub_020908CC (UnkStruct_0208D7BC * param0)
 
         if (param0->unk_24C->unk_11 == 2) {
             {
-                Pokemon * v3 = CallocMon(19);
+                Pokemon * v3 = AllocMonZeroed(19);
 
                 sub_020774C8(v1, v3);
                 sub_02090800(&param0->unk_244[0], v3, v2);

@@ -38,7 +38,7 @@ static const UnkStruct_0208BE5C Unk_ov94_0224636C = {
 
 int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    param0->unk_1104 = CallocMon(62);
+    param0->unk_1104 = AllocMonZeroed(62);
 
     switch (param0->unk_24) {
     case 7:
@@ -110,7 +110,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                 }
             } else if ((param0->unk_24 == 8) || (param0->unk_24 == 10)) {
                 Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);
-                Pokemon * v5 = CallocMon(62);
+                Pokemon * v5 = AllocMonZeroed(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v5);
 

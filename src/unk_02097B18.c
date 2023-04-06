@@ -94,7 +94,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     v1 = sub_02006840(param0);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(147, 53);
-    v0->unk_428 = CallocMon(53);
+    v0->unk_428 = AllocMonZeroed(53);
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 

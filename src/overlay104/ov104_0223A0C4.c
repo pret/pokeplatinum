@@ -919,7 +919,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     v3->unk_128 = 18;
     v3->unk_12C = 18;
 
-    v6 = CallocMon(param0->unk_04);
+    v6 = AllocMonZeroed(param0->unk_04);
     v1 = 50;
 
     Party_InitWithCapacity(v3->unk_04[0], param0->unk_0E);
@@ -966,7 +966,7 @@ static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_022
     Pokemon * v2;
 
     ov104_0222E284(param0, &param1->unk_00, param2, param3, param4);
-    v2 = CallocMon(param4);
+    v2 = AllocMonZeroed(param4);
 
     for (v0 = 0; v0 < param2; v0++) {
         ov104_0222DF40(&param1->unk_30[v0], v2, 120);
