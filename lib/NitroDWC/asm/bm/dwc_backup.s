@@ -919,7 +919,7 @@ _020A3400: .word Unk_021C3A54
 
 	.global Unk_020F9534
 Unk_020F9534: ; 0x020F9534
-	.incbin "incbin/arm9_rodata.bin", 0x148F4, 0x4
+	.word 0x0
 
 
 

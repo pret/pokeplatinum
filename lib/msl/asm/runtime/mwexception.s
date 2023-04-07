@@ -339,9 +339,9 @@ __rethrow: ; 0x020E4500
 
 	.global Unk_02101D0C
 Unk_02101D0C: ; 0x02101D0C
-	.incbin "incbin/arm9_data.bin", 0x302C, 0x3030 - 0x302C
+	.word sub_020E4144
 
 	.global Unk_02101D10
 Unk_02101D10: ; 0x02101D10
-	.incbin "incbin/arm9_data.bin", 0x3030, 0x4
+	.word sub_020E4150
 

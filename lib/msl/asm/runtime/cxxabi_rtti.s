@@ -100,7 +100,8 @@ Unk_02101C84: ; 0x02101C84
 
 	.global Unk_02101C90
 Unk_02101C90: ; 0x02101C90
-	.incbin "incbin/arm9_data.bin", 0x2FB0, 0x2FC0 - 0x2FB0
+	.ascii "St9type_info"
+	.space 0x4
 
 	.global Unk_02101CA0
 Unk_02101CA0: ; 0x02101CA0
@@ -118,9 +119,10 @@ Unk_02101CB0: ; 0x02101CB0
 
 	.global Unk_02101CC0
 Unk_02101CC0: ; 0x02101CC0
-	.incbin "incbin/arm9_data.bin", 0x2FE0, 0x3004 - 0x2FE0
+	.asciz "N10__cxxabiv117__class_type_infoE"
+	.space 0x2
 
 	.global Unk_02101CE4
 Unk_02101CE4: ; 0x02101CE4
-	.incbin "incbin/arm9_data.bin", 0x3004, 0x25
+	.asciz "N10__cxxabiv120__si_class_type_infoE"
 

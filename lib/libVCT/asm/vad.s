@@ -201,7 +201,9 @@ _022054E0: .word ov4_02205270
 
 	.global Unk_ov4_0221A114
 Unk_ov4_0221A114: ; 0x0221A114
-	.incbin "incbin/overlay4_data.bin", 0x4294, 0x10
+	.space 0x8
+	.word 0xF
+	.word 0x3FC
 
 
 

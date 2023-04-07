@@ -2075,21 +2075,24 @@ _021FA358:
 
 	.global Unk_ov4_02219714
 Unk_ov4_02219714: ; 0x02219714
-	.incbin "incbin/overlay4_data.bin", 0x3894, 0x38AC - 0x3894
+	.ascii "gti2EndReliableMessage"
+	.space 0x2
 
 	.global Unk_ov4_0221972C
 Unk_ov4_0221972C: ; 0x0221972C
-	.incbin "incbin/overlay4_data.bin", 0x38AC, 0x38B4 - 0x38AC
+	.ascii "time"
+	.space 0x4
 
 	.global Unk_ov4_02219734
 Unk_ov4_02219734: ; 0x02219734
-	.incbin "incbin/overlay4_data.bin", 0x38B4, 0x38B8 - 0x38B4
+	.byte 0xFE, 0xFE, 0x0, 0x0
 
 	.global Unk_ov4_02219738
 Unk_ov4_02219738: ; 0x02219738
-	.incbin "incbin/overlay4_data.bin", 0x38B8, 0x38C0 - 0x38B8
+	.asciz "len > 0"
 
 	.global Unk_ov4_02219740
 Unk_ov4_02219740: ; 0x02219740
-	.incbin "incbin/overlay4_data.bin", 0x38C0, 0xD
+	.ascii "gt2Message.c"
+	.space 0x4
 

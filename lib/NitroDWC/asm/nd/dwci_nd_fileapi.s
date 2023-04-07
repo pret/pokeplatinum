@@ -876,15 +876,17 @@ _02225210: .word ov60_02227184
 
 	.global Unk_ov60_02228CCC
 Unk_ov60_02228CCC: ; 0x02228CCC
-	.incbin "incbin/overlay60_rodata.bin", 0x80, 0x8C - 0x80
+	.ascii "bGlzdA**"
+	.space 0x4
 
 	.global Unk_ov60_02228CD8
 Unk_ov60_02228CD8: ; 0x02228CD8
-	.incbin "incbin/overlay60_rodata.bin", 0x8C, 0x98 - 0x8C
+	.ascii "Y291bnQ*"
+	.space 0x4
 
 	.global Unk_ov60_02228CE4
 Unk_ov60_02228CE4: ; 0x02228CE4
-	.incbin "incbin/overlay60_rodata.bin", 0x98, 0xD
+	.asciz "Y29udGVudHM*"
 
 
 
@@ -897,71 +899,87 @@ Unk_ov60_02229C20: ; 0x02229C20
 
 	.global Unk_ov60_02229C24
 Unk_ov60_02229C24: ; 0x02229C24
-	.incbin "incbin/overlay60_data.bin", 0xDE4, 0xDF4 - 0xDE4
+	.ascii "HTTPSTATUSCODE"
+	.space 0x2
 
 	.global Unk_ov60_02229C34
 Unk_ov60_02229C34: ; 0x02229C34
-	.incbin "incbin/overlay60_data.bin", 0xDF4, 0xE00 - 0xDF4
+	.ascii "returncd"
+	.space 0x4
 
 	.global Unk_ov60_02229C40
 Unk_ov60_02229C40: ; 0x02229C40
-	.incbin "incbin/overlay60_data.bin", 0xE00, 0xE0C - 0xE00
+	.ascii "User-Agent"
+	.space 0x2
 
 	.global Unk_ov60_02229C4C
 Unk_ov60_02229C4C: ; 0x02229C4C
-	.incbin "incbin/overlay60_data.bin", 0xE0C, 0xE14 - 0xE0C
+	.ascii "gamecd"
+	.space 0x2
 
 	.global Unk_ov60_02229C54
 Unk_ov60_02229C54: ; 0x02229C54
-	.incbin "incbin/overlay60_data.bin", 0xE14, 0xE20 - 0xE14
+	.ascii "rhgamecd"
+	.space 0x4
 
 	.global Unk_ov60_02229C60
 Unk_ov60_02229C60: ; 0x02229C60
-	.incbin "incbin/overlay60_data.bin", 0xE20, 0xE28 - 0xE20
+	.ascii "passwd"
+	.space 0x2
 
 	.global Unk_ov60_02229C68
 Unk_ov60_02229C68: ; 0x02229C68
-	.incbin "incbin/overlay60_data.bin", 0xE28, 0xE30 - 0xE28
+	.asciz "token"
+	.space 0x2
 
 	.global Unk_ov60_02229C70
 Unk_ov60_02229C70: ; 0x02229C70
-	.incbin "incbin/overlay60_data.bin", 0xE30, 0xE38 - 0xE30
+	.ascii "userid"
+	.space 0x2
 
 	.global Unk_ov60_02229C78
 Unk_ov60_02229C78: ; 0x02229C78
-	.incbin "incbin/overlay60_data.bin", 0xE38, 0xE40 - 0xE38
+	.ascii "macadr"
+	.space 0x2
 
 	.global Unk_ov60_02229C80
 Unk_ov60_02229C80: ; 0x02229C80
-	.incbin "incbin/overlay60_data.bin", 0xE40, 0xE48 - 0xE40
+	.ascii "action"
+	.space 0x2
 
 	.global Unk_ov60_02229C88
 Unk_ov60_02229C88: ; 0x02229C88
-	.incbin "incbin/overlay60_data.bin", 0xE48, 0xE50 - 0xE48
+	.asciz "attr1"
+	.space 0x2
 
 	.global Unk_ov60_02229C90
 Unk_ov60_02229C90: ; 0x02229C90
-	.incbin "incbin/overlay60_data.bin", 0xE50, 0xE58 - 0xE50
+	.asciz "attr2"
+	.space 0x2
 
 	.global Unk_ov60_02229C98
 Unk_ov60_02229C98: ; 0x02229C98
-	.incbin "incbin/overlay60_data.bin", 0xE58, 0xE60 - 0xE58
+	.asciz "attr3"
+	.space 0x2
 
 	.global Unk_ov60_02229CA0
 Unk_ov60_02229CA0: ; 0x02229CA0
-	.incbin "incbin/overlay60_data.bin", 0xE60, 0xE68 - 0xE60
+	.ascii "apinfo"
+	.space 0x2
 
 	.global Unk_ov60_02229CA8
 Unk_ov60_02229CA8: ; 0x02229CA8
-	.incbin "incbin/overlay60_data.bin", 0xE68, 0xE70 - 0xE68
+	.ascii "offset"
+	.space 0x2
 
 	.global Unk_ov60_02229CB0
 Unk_ov60_02229CB0: ; 0x02229CB0
-	.incbin "incbin/overlay60_data.bin", 0xE70, 0xE74 - 0xE70
+	.asciz "num"
 
 	.global Unk_ov60_02229CB4
 Unk_ov60_02229CB4: ; 0x02229CB4
-	.incbin "incbin/overlay60_data.bin", 0xE74, 0xC
+	.ascii "contents"
+	.space 0x4
 
 
 

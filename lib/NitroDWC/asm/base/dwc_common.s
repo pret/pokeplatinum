@@ -216,7 +216,7 @@ _021D8C00:
 
 	.global Unk_ov4_02217460
 Unk_ov4_02217460: ; 0x02217460
-	.incbin "incbin/overlay4_data.bin", 0x15E0, 0x9
+	.asciz "%c%s%c%s"
 
 
 

@@ -336,19 +336,26 @@ _0222FD38: .word Unk_ov18_022532D0
 
 	.global Unk_ov18_02249D28
 Unk_ov18_02249D28: ; 0x02249D28
-	.incbin "incbin/overlay18_data.bin", 0x5C8, 0x5DC - 0x5C8
+	.asciz "dwc:/move/child.srl"
 
 	.global Unk_ov18_02249D3C
 Unk_ov18_02249D3C: ; 0x02249D3C
-	.incbin "incbin/overlay18_data.bin", 0x5DC, 0x5F4 - 0x5DC
+	.ascii "dwc:/move/banner.plt"
+	.space 0x4
 
 	.global Unk_ov18_02249D54
 Unk_ov18_02249D54: ; 0x02249D54
-	.incbin "incbin/overlay18_data.bin", 0x5F4, 0x60C - 0x5F4
+	.asciz "dwc:/move/banner.char"
+	.space 0x2
 
 	.global Unk_ov18_02249D6C
 Unk_ov18_02249D6C: ; 0x02249D6C
-	.incbin "incbin/overlay18_data.bin", 0x60C, 0x1C
+	.word Unk_ov18_02249D28
+	.space 0x8
+	.word Unk_ov18_02249D54
+	.word Unk_ov18_02249D3C
+	.word 0x159
+	.space 0x4
 
 
 

@@ -590,7 +590,7 @@ _02226B68: .word 0x0222A020
 
 	.global Unk_ov60_02228D74
 Unk_ov60_02228D74: ; 0x02228D74
-	.incbin "incbin/overlay60_rodata.bin", 0x128, 0x15
+	.asciz "--t9Sf4yfjf1RtvDu3AA"
 
 
 
@@ -599,9 +599,10 @@ Unk_ov60_02228D74: ; 0x02228D74
 
 	.global Unk_ov60_02229CD0
 Unk_ov60_02229CD0: ; 0x02229CD0
-	.incbin "incbin/overlay60_data.bin", 0xE90, 0xE98 - 0xE90
+	.asciz "http://"
 
 	.global Unk_ov60_02229CD8
 Unk_ov60_02229CD8: ; 0x02229CD8
-	.incbin "incbin/overlay60_data.bin", 0xE98, 0xC
+	.ascii "https://"
+	.space 0x4
 

@@ -2833,79 +2833,88 @@ _022014FC:
 
 	.global Unk_ov4_02219FAC
 Unk_ov4_02219FAC: ; 0x02219FAC
-	.incbin "incbin/overlay4_data.bin", 0x412C, 0x4130 - 0x412C
+	.word Unk_ov4_02219FC0
 
 	.global Unk_ov4_02219FB0
 Unk_ov4_02219FB0: ; 0x02219FB0
-	.incbin "incbin/overlay4_data.bin", 0x4130, 0x4140 - 0x4130
+	.ascii "SBReleaseStr"
+	.space 0x4
 
 	.global Unk_ov4_02219FC0
 Unk_ov4_02219FC0: ; 0x02219FC0
-	.incbin "incbin/overlay4_data.bin", 0x4140, 0x4150 - 0x4140
+	.asciz "Query Error: "
+	.space 0x2
 
 	.global Unk_ov4_02219FD0
 Unk_ov4_02219FD0: ; 0x02219FD0
-	.incbin "incbin/overlay4_data.bin", 0x4150, 0x4160 - 0x4150
+	.ascii "AllKeysPresent"
+	.space 0x2
 
 	.global Unk_ov4_02219FE0
 Unk_ov4_02219FE0: ; 0x02219FE0
-	.incbin "incbin/overlay4_data.bin", 0x4160, 0x4174 - 0x4160
+	.ascii "SBServerListInit"
+	.space 0x4
 
 	.global Unk_ov4_02219FF4
 Unk_ov4_02219FF4: ; 0x02219FF4
-	.incbin "incbin/overlay4_data.bin", 0x4174, 0x4188 - 0x4174
+	.ascii "ProcessAdHocData"
+	.space 0x4
 
 	.global Unk_ov4_0221A008
 Unk_ov4_0221A008: ; 0x0221A008
-	.incbin "incbin/overlay4_data.bin", 0x4188, 0x419C - 0x4188
+	.asciz "ProcessMainListData"
 
 	.global Unk_ov4_0221A01C
 Unk_ov4_0221A01C: ; 0x0221A01C
-	.incbin "incbin/overlay4_data.bin", 0x419C, 0x41B8 - 0x419C
+	.asciz "SBServerListConnectAndQuery"
 
 	.global Unk_ov4_0221A038
 Unk_ov4_0221A038: ; 0x0221A038
-	.incbin "incbin/overlay4_data.bin", 0x41B8, 0x41BC - 0x41B8
+	.space 0x4
 
 	.global Unk_ov4_0221A03C
 Unk_ov4_0221A03C: ; 0x0221A03C
-	.incbin "incbin/overlay4_data.bin", 0x41BC, 0x41C8 - 0x41BC
+	.asciz "val != NULL"
 
 	.global Unk_ov4_0221A048
 Unk_ov4_0221A048: ; 0x0221A048
-	.incbin "incbin/overlay4_data.bin", 0x41C8, 0x41D8 - 0x41C8
+	.asciz "sb_serverlist.c"
 
 	.global Unk_ov4_0221A058
 Unk_ov4_0221A058: ; 0x0221A058
-	.incbin "incbin/overlay4_data.bin", 0x41D8, 0x41E8 - 0x41D8
+	.asciz "slist != NULL"
+	.space 0x2
 
 	.global Unk_ov4_0221A068
 Unk_ov4_0221A068: ; 0x0221A068
-	.incbin "incbin/overlay4_data.bin", 0x41E8, 0x41FC - 0x41E8
+	.ascii "callback != NULL"
+	.space 0x4
 
 	.global Unk_ov4_0221A07C
 Unk_ov4_0221A07C: ; 0x0221A07C
-	.incbin "incbin/overlay4_data.bin", 0x41FC, 0x4218 - 0x41FC
+	.asciz "%s.ms%d.gs.nintendowifi.net"
 
 	.global Unk_ov4_0221A098
 Unk_ov4_0221A098: ; 0x0221A098
-	.incbin "incbin/overlay4_data.bin", 0x4218, 0x4238 - 0x4218
+	.asciz "slist->state == sl_disconnected"
 
 	.global Unk_ov4_0221A0B8
 Unk_ov4_0221A0B8: ; 0x0221A0B8
-	.incbin "incbin/overlay4_data.bin", 0x4238, 0x423C - 0x4238
+	.word 0x30
 
 	.global Unk_ov4_0221A0BC
 Unk_ov4_0221A0BC: ; 0x0221A0BC
-	.incbin "incbin/overlay4_data.bin", 0x423C, 0x4244 - 0x423C
+	.word 0xFFFFFFFF
+	.word 0x0
 
 	.global Unk_ov4_0221A0C4
 Unk_ov4_0221A0C4: ; 0x0221A0C4
-	.incbin "incbin/overlay4_data.bin", 0x4244, 0x4250 - 0x4244
+	.ascii "inlen >= 0"
+	.space 0x2
 
 	.global Unk_ov4_0221A0D0
 Unk_ov4_0221A0D0: ; 0x0221A0D0
-	.incbin "incbin/overlay4_data.bin", 0x4250, 0x18
+	.asciz "slist->inbufferlen >= 0"
 
 
 

@@ -849,15 +849,15 @@ _021EB224: .word 0x55555556
 
 	.global Unk_ov4_02215980
 Unk_ov4_02215980: ; 0x02215980
-	.incbin "incbin/overlay4_rodata.bin", 0x118, 0x11C - 0x118
+	.asciz "[]_"
 
 	.global Unk_ov4_02215984
 Unk_ov4_02215984: ; 0x02215984
-	.incbin "incbin/overlay4_rodata.bin", 0x11C, 0x120 - 0x11C
+	.asciz "-_="
 
 	.global Unk_ov4_02215988
 Unk_ov4_02215988: ; 0x02215988
-	.incbin "incbin/overlay4_rodata.bin", 0x120, 0x4
+	.asciz "+/="
 
 
 
@@ -866,28 +866,32 @@ Unk_ov4_02215988: ; 0x02215988
 
 	.global Unk_ov4_022178D8
 Unk_ov4_022178D8: ; 0x022178D8
-	.incbin "incbin/overlay4_data.bin", 0x1A58, 0x1A5C - 0x1A58
+	.word 0x1
 
 	.global Unk_ov4_022178DC
 Unk_ov4_022178DC: ; 0x022178DC
-	.incbin "incbin/overlay4_data.bin", 0x1A5C, 0x1A64 - 0x1A5C
+	.ascii "time"
+	.space 0x4
 
 	.global Unk_ov4_022178E4
 Unk_ov4_022178E4: ; 0x022178E4
-	.incbin "incbin/overlay4_data.bin", 0x1A64, 0x1A74 - 0x1A64
+	.ascii "current_time"
+	.space 0x4
 
 	.global Unk_ov4_022178F4
 Unk_ov4_022178F4: ; 0x022178F4
-	.incbin "incbin/overlay4_data.bin", 0x1A74, 0x1A94 - 0x1A74
+	.ascii "OS_IsTickAvailable() == TRUE"
+	.space 0x4
 
 	.global Unk_ov4_02217914
 Unk_ov4_02217914: ; 0x02217914
-	.incbin "incbin/overlay4_data.bin", 0x1A94, 0x1AA0 - 0x1A94
+	.asciz "nonport.c"
+	.space 0x2
 
 	.global Unk_ov4_02217920
 Unk_ov4_02217920: ; 0x02217920
-	.incbin "incbin/overlay4_data.bin", 0x1AA0, 0xA
-
+	.asciz "localhost"
+	.space 0x2
 
 
 	.bss

@@ -27,5 +27,5 @@ _020C2744: .word Unk_0210115C
 
 	.global Unk_0210115C
 Unk_0210115C: ; 0x0210115C
-	.incbin "incbin/arm9_data.bin", 0x247C, 0x4
+	.word 0xFFFFFFFF
 

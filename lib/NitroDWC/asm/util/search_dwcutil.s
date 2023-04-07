@@ -362,16 +362,21 @@ _0223DD70: .word Unk_ov18_02249574
 
 	.global Unk_ov18_02249574
 Unk_ov18_02249574: ; 0x02249574
-	.incbin "incbin/overlay18_rodata.bin", 0x3140, 0x3144 - 0x3140
+	.byte 0x0, 0x50, 0xF2, 0x1
 
 	.global Unk_ov18_02249578
 Unk_ov18_02249578: ; 0x02249578
-	.incbin "incbin/overlay18_rodata.bin", 0x3144, 0x314C - 0x3144
+	.space 0x8
 
 	.global Unk_ov18_02249580
 Unk_ov18_02249580: ; 0x02249580
-	.incbin "incbin/overlay18_rodata.bin", 0x314C, 0x44
-
+	.space 0x4
+	.byte 0x0, 0x4, 0xFF, 0x3F
+	.space 0x2
+	.short 0xFFFF
+	.short 0xFFFF
+	.short 0xFFFF
+	.space 0x34
 
 
 	.bss

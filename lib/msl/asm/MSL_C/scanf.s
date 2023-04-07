@@ -1447,12 +1447,15 @@ sscanf: ; 0x020D8A08
 
 	.global Unk_020E4560
 Unk_020E4560: ; 0x020E4560
-	.incbin "incbin/arm9_exception.bin", 0x8, 0x8
+	.byte 0x0, 0xFF, 0x1, 0xB0
+	.space 0x4
 
 
 	.rodata
 
 	.global Unk_020FE964
 Unk_020FE964: ; 0x020FE964
-	.incbin "incbin/arm9_rodata.bin", 0x19D24, 0x28
+	.space 0x4
+	.byte 0xFF, 0xFF, 0xFF, 0x7F
+	.space 0x20
 

@@ -5743,19 +5743,19 @@ Unk_02000C58: ; 0x02000C58
 
 	.global Unk_ov4_0221A190
 Unk_ov4_0221A190: ; 0x0221A190
-	.incbin "incbin/overlay4_data.bin", 0x4310, 0x4314 - 0x4310
+	.incbin "incbin/network.bin", 0x0, 0x4
 
 	.global Unk_ov4_0221A194
 Unk_ov4_0221A194: ; 0x0221A194
-	.incbin "incbin/overlay4_data.bin", 0x4314, 0x431C - 0x4314
+	.incbin "incbin/network.bin", 0x4, 0xC - 0x4
 
 	.global Unk_ov4_0221A19C
 Unk_ov4_0221A19C: ; 0x0221A19C
-	.incbin "incbin/overlay4_data.bin", 0x431C, 0x4328 - 0x431C
+	.incbin "incbin/network.bin", 0xC, 0x18 - 0xC
 
 	.global Unk_ov4_0221A1A8
 Unk_ov4_0221A1A8: ; 0x0221A1A8
-	.incbin "incbin/overlay4_data.bin", 0x4328, 0xB
+	.incbin "incbin/network.bin", 0x18, 0xB
 
 
 

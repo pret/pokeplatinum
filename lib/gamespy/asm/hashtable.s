@@ -452,69 +452,83 @@ _021EA7B0: .word Unk_ov4_02217870
 
 	.global Unk_ov4_0221780C
 Unk_ov4_0221780C: ; 0x0221780C
-	.incbin "incbin/overlay4_data.bin", 0x198C, 0x1998 - 0x198C
+	.ascii "TableMap"
+	.space 0x4
 
 	.global Unk_ov4_02217818
 Unk_ov4_02217818: ; 0x02217818
-	.incbin "incbin/overlay4_data.bin", 0x1998, 0x19A4 - 0x1998
+	.asciz "TableNew2"
+	.space 0x2
 
 	.global Unk_ov4_02217824
 Unk_ov4_02217824: ; 0x02217824
-	.incbin "incbin/overlay4_data.bin", 0x19A4, 0x19B0 - 0x19A4
+	.asciz "TableFree"
+	.space 0x2
 
 	.global Unk_ov4_02217830
 Unk_ov4_02217830: ; 0x02217830
-	.incbin "incbin/overlay4_data.bin", 0x19B0, 0x19BC - 0x19B0
+	.ascii "TableEnter"
+	.space 0x2
 
 	.global Unk_ov4_0221783C
 Unk_ov4_0221783C: ; 0x0221783C
-	.incbin "incbin/overlay4_data.bin", 0x19BC, 0x19C8 - 0x19BC
+	.ascii "TableCount"
+	.space 0x2
 
 	.global Unk_ov4_02217848
 Unk_ov4_02217848: ; 0x02217848
-	.incbin "incbin/overlay4_data.bin", 0x19C8, 0x19D4 - 0x19C8
+	.asciz "TableRemove"
 
 	.global Unk_ov4_02217854
 Unk_ov4_02217854: ; 0x02217854
-	.incbin "incbin/overlay4_data.bin", 0x19D4, 0x19E0 - 0x19D4
+	.asciz "TableLookup"
 
 	.global Unk_ov4_02217860
 Unk_ov4_02217860: ; 0x02217860
-	.incbin "incbin/overlay4_data.bin", 0x19E0, 0x19F0 - 0x19E0
+	.ascii "TableMapSafe"
+	.space 0x4
 
 	.global Unk_ov4_02217870
 Unk_ov4_02217870: ; 0x02217870
-	.incbin "incbin/overlay4_data.bin", 0x19F0, 0x1A00 - 0x19F0
+	.asciz "TableMapSafe2"
+	.space 0x2
 
 	.global Unk_ov4_02217880
 Unk_ov4_02217880: ; 0x02217880
-	.incbin "incbin/overlay4_data.bin", 0x1A00, 0x1A08 - 0x1A00
+	.ascii "hashFn"
+	.space 0x2
 
 	.global Unk_ov4_02217888
 Unk_ov4_02217888: ; 0x02217888
-	.incbin "incbin/overlay4_data.bin", 0x1A08, 0x1A14 - 0x1A08
+	.asciz "hashtable.c"
 
 	.global Unk_ov4_02217894
 Unk_ov4_02217894: ; 0x02217894
-	.incbin "incbin/overlay4_data.bin", 0x1A14, 0x1A1C - 0x1A14
+	.ascii "compFn"
+	.space 0x2
 
 	.global Unk_ov4_0221789C
 Unk_ov4_0221789C: ; 0x0221789C
-	.incbin "incbin/overlay4_data.bin", 0x1A1C, 0x1A28 - 0x1A1C
+	.ascii "elemSize"
+	.space 0x4
 
 	.global Unk_ov4_022178A8
 Unk_ov4_022178A8: ; 0x022178A8
-	.incbin "incbin/overlay4_data.bin", 0x1A28, 0x1A34 - 0x1A28
+	.ascii "nBuckets"
+	.space 0x4
 
 	.global Unk_ov4_022178B4
 Unk_ov4_022178B4: ; 0x022178B4
-	.incbin "incbin/overlay4_data.bin", 0x1A34, 0x1A3C - 0x1A34
+	.asciz "table"
+	.space 0x2
 
 	.global Unk_ov4_022178BC
 Unk_ov4_022178BC: ; 0x022178BC
-	.incbin "incbin/overlay4_data.bin", 0x1A3C, 0x1A4C - 0x1A3C
+	.ascii "table->buckets"
+	.space 0x2
 
 	.global Unk_ov4_022178CC
 Unk_ov4_022178CC: ; 0x022178CC
-	.incbin "incbin/overlay4_data.bin", 0x1A4C, 0x3
+	.ascii "fn"
+	.space 0x2
 

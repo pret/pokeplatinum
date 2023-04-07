@@ -42,6 +42,16 @@
 .public ov18_0223654C
 .public ov18_02236578
 .public ov18_02236BE0
+.public ov18_0223DFD0
+.public ov18_0223DFEC
+.public ov18_0223E008
+.public ov18_0223E028
+.public ov18_0223E048
+.public ov18_0223E08C
+.public ov18_0223E0CC
+.public ov18_0223E10C
+.public ov18_0223E150
+.public ov18_0223E194
 .public ov18_0223E834
 .public ov18_0223E994
 .public ov18_0223FC48

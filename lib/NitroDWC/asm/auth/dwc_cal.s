@@ -427,97 +427,115 @@ _021D4474: .word Unk_ov4_022160C0
 
 	.global Unk_ov4_02215FD0
 Unk_ov4_02215FD0: ; 0x02215FD0
-	.incbin "incbin/overlay4_data.bin", 0x150, 0x158 - 0x150
+	.asciz "%013llu"
 
 	.global Unk_ov4_02215FD8
 Unk_ov4_02215FD8: ; 0x02215FD8
-	.incbin "incbin/overlay4_data.bin", 0x158, 0x160 - 0x158
+	.ascii "%03u"
+	.word 0x0
 
 	.global Unk_ov4_02215FE0
 Unk_ov4_02215FE0: ; 0x02215FE0
-	.incbin "incbin/overlay4_data.bin", 0x160, 0x168 - 0x160
+	.ascii "%02x"
+	.word 0x0
 
 	.global Unk_ov4_02215FE8
 Unk_ov4_02215FE8: ; 0x02215FE8
-	.incbin "incbin/overlay4_data.bin", 0x168, 0x174 - 0x168
+	.ascii "%02x%02x"
+	.word 0x0
 
 	.global Unk_ov4_02215FF4
 Unk_ov4_02215FF4: ; 0x02215FF4
-	.incbin "incbin/overlay4_data.bin", 0x174, 0x190 - 0x174
+	.ascii "%02d%02d%02d%02d%02d%02d"
+	.word 0x0
 
 	.global Unk_ov4_02216010
 Unk_ov4_02216010: ; 0x02216010
-	.incbin "incbin/overlay4_data.bin", 0x190, 0x1A0 - 0x190
+	.asciz "%02d:0000000-00"
 
 	.global Unk_ov4_02216020
 Unk_ov4_02216020: ; 0x02216020
-	.incbin "incbin/overlay4_data.bin", 0x1A0, 0x1AC - 0x1A0
+	.ascii "%03d%03d"
+	.word 0x0
 
 	.global Unk_ov4_0221602C
 Unk_ov4_0221602C: ; 0x0221602C
-	.incbin "incbin/overlay4_data.bin", 0x1AC, 0x1B4 - 0x1AC
+	.asciz "sdkver"
+	.byte 0x0
 
 	.global Unk_ov4_02216034
 Unk_ov4_02216034: ; 0x02216034
-	.incbin "incbin/overlay4_data.bin", 0x1B4, 0x1BC - 0x1B4
+	.asciz "userid"
+	.byte 0x0
 
 	.global Unk_ov4_0221603C
 Unk_ov4_0221603C: ; 0x0221603C
-	.incbin "incbin/overlay4_data.bin", 0x1BC, 0x1C4 - 0x1BC
+	.asciz "passwd"
+	.byte 0x0
 
 	.global Unk_ov4_02216044
 Unk_ov4_02216044: ; 0x02216044
-	.incbin "incbin/overlay4_data.bin", 0x1C4, 0x1CC - 0x1C4
+	.asciz "bssid"
+	.short 0x0
 
 	.global Unk_ov4_0221604C
 Unk_ov4_0221604C: ; 0x0221604C
-	.incbin "incbin/overlay4_data.bin", 0x1CC, 0x1D4 - 0x1CC
+	.asciz "apinfo"
+	.byte 0x0
 
 	.global Unk_ov4_02216054
 Unk_ov4_02216054: ; 0x02216054
-	.incbin "incbin/overlay4_data.bin", 0x1D4, 0x1DC - 0x1D4
+	.asciz "gamecd"
+	.byte 0x0
 
 	.global Unk_ov4_0221605C
 Unk_ov4_0221605C: ; 0x0221605C
-	.incbin "incbin/overlay4_data.bin", 0x1DC, 0x1E4 - 0x1DC
+	.asciz "makercd"
 
 	.global Unk_ov4_02216064
 Unk_ov4_02216064: ; 0x02216064
-	.incbin "incbin/overlay4_data.bin", 0x1E4, 0x1EC - 0x1E4
+	.asciz "unitcd"
+	.byte 0x0
 
 	.global Unk_ov4_0221606C
 Unk_ov4_0221606C: ; 0x0221606C
-	.incbin "incbin/overlay4_data.bin", 0x1EC, 0x1F4 - 0x1EC
+	.asciz "macadr"
+	.byte 0x0
 
 	.global Unk_ov4_02216074
 Unk_ov4_02216074: ; 0x02216074
-	.incbin "incbin/overlay4_data.bin", 0x1F4, 0x1FC - 0x1F4
+	.ascii "lang"
+	.word 0x0
 
 	.global Unk_ov4_0221607C
 Unk_ov4_0221607C: ; 0x0221607C
-	.incbin "incbin/overlay4_data.bin", 0x1FC, 0x204 - 0x1FC
+	.asciz "birth"
+	.short 0x0
 
 	.global Unk_ov4_02216084
 Unk_ov4_02216084: ; 0x02216084
-	.incbin "incbin/overlay4_data.bin", 0x204, 0x20C - 0x204
+	.asciz "devtime"
 
 	.global Unk_ov4_0221608C
 Unk_ov4_0221608C: ; 0x0221608C
-	.incbin "incbin/overlay4_data.bin", 0x20C, 0x214 - 0x20C
+	.asciz "devname"
 
 	.global Unk_ov4_02216094
 Unk_ov4_02216094: ; 0x02216094
-	.incbin "incbin/overlay4_data.bin", 0x214, 0x21C - 0x214
+	.ascii "ssid"
+	.word 0x0
 
 	.global Unk_ov4_0221609C
 Unk_ov4_0221609C: ; 0x0221609C
-	.incbin "incbin/overlay4_data.bin", 0x21C, 0x234 - 0x21C
+	.ascii "Nitro WiFi SDK/%d.%d"
+	.word 0x0
 
 	.global Unk_ov4_022160B4
 Unk_ov4_022160B4: ; 0x022160B4
-	.incbin "incbin/overlay4_data.bin", 0x234, 0x240 - 0x234
+	.asciz "User-Agent"
+	.byte 0x0
 
 	.global Unk_ov4_022160C0
 Unk_ov4_022160C0: ; 0x022160C0
-	.incbin "incbin/overlay4_data.bin", 0x240, 0xE
+	.asciz "HTTP_X_GAMECD"
 

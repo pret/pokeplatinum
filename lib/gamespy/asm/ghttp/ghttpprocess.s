@@ -1571,15 +1571,16 @@ _02223D70:
 
 	.global Unk_ov60_02228C64
 Unk_ov60_02228C64: ; 0x02228C64
-	.incbin "incbin/overlay60_rodata.bin", 0x18, 0x1C - 0x18
+	.word 0x2000
 
 	.global Unk_ov60_02228C68
 Unk_ov60_02228C68: ; 0x02228C68
-	.incbin "incbin/overlay60_rodata.bin", 0x1C, 0x20 - 0x1C
+	.word 0x1000
 
 	.global Unk_ov60_02228C6C
 Unk_ov60_02228C6C: ; 0x02228C6C
-	.incbin "incbin/overlay60_rodata.bin", 0x20, 0xB
+	.ascii "2147483647"
+	.space 0x2
 
 
 

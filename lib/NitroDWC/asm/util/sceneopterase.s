@@ -336,7 +336,7 @@ _02230B80: .word ov18_022309D8
 
 	.global Unk_ov18_02249F70
 Unk_ov18_02249F70: ; 0x02249F70
-	.incbin "incbin/overlay18_data.bin", 0x810, 0x14
+	.asciz "char/yb5Multi.nsc.l"
 
 
 

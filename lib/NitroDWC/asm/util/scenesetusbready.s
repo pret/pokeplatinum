@@ -787,27 +787,32 @@ _0223D000: .word ov18_0223CBEC
 
 	.global Unk_ov18_0224A520
 Unk_ov18_0224A520: ; 0x0224A520
-	.incbin "incbin/overlay18_data.bin", 0xDC0, 0xDD8 - 0xDC0
+	.ascii "char/jbBgStep2.ncg.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A538
 Unk_ov18_0224A538: ; 0x0224A538
-	.incbin "incbin/overlay18_data.bin", 0xDD8, 0xDF0 - 0xDD8
+	.ascii "char/ybBgStep2.ncl.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A550
 Unk_ov18_0224A550: ; 0x0224A550
-	.incbin "incbin/overlay18_data.bin", 0xDF0, 0xE04 - 0xDF0
+	.asciz "char/xb3Multi.nsc.l"
 
 	.global Unk_ov18_0224A564
 Unk_ov18_0224A564: ; 0x0224A564
-	.incbin "incbin/overlay18_data.bin", 0xE04, 0xE1C - 0xE04
+	.ascii "char/jbBgStep3.ncg.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A57C
 Unk_ov18_0224A57C: ; 0x0224A57C
-	.incbin "incbin/overlay18_data.bin", 0xE1C, 0xE34 - 0xE1C
+	.ascii "char/ybBgStep3.ncl.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A594
 Unk_ov18_0224A594: ; 0x0224A594
-	.incbin "incbin/overlay18_data.bin", 0xE34, 0x12
+	.asciz "char/jb4Usb.nsc.l"
+	.space 0x2
 
 
 

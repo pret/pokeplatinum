@@ -663,57 +663,69 @@ _021F7F50: .word 0x00000197
 
 	.global Unk_ov4_0221959C
 Unk_ov4_0221959C: ; 0x0221959C
-	.incbin "incbin/overlay4_data.bin", 0x371C, 0x3730 - 0x371C
+	.ascii "gti2DumpCallback"
+	.space 0x4
 
 	.global Unk_ov4_022195B0
 Unk_ov4_022195B0: ; 0x022195B0
-	.incbin "incbin/overlay4_data.bin", 0x3730, 0x3744 - 0x3730
+	.ascii "gti2PingCallback"
+	.space 0x4
 
 	.global Unk_ov4_022195C4
 Unk_ov4_022195C4: ; 0x022195C4
-	.incbin "incbin/overlay4_data.bin", 0x3744, 0x3758 - 0x3744
+	.ascii "gti2ClosedCallback"
+	.space 0x2
 
 	.global Unk_ov4_022195D8
 Unk_ov4_022195D8: ; 0x022195D8
-	.incbin "incbin/overlay4_data.bin", 0x3758, 0x3770 - 0x3758
+	.ascii "gti2ReceivedCallback"
+	.space 0x4
 
 	.global Unk_ov4_022195F0
 Unk_ov4_022195F0: ; 0x022195F0
-	.incbin "incbin/overlay4_data.bin", 0x3770, 0x3788 - 0x3770
+	.asciz "gti2ConnectedCallback"
+	.space 0x2
 
 	.global Unk_ov4_02219608
 Unk_ov4_02219608: ; 0x02219608
-	.incbin "incbin/overlay4_data.bin", 0x3788, 0x37A0 - 0x3788
+	.ascii "gti2SendFilterCallback"
+	.space 0x2
 
 	.global Unk_ov4_02219620
 Unk_ov4_02219620: ; 0x02219620
-	.incbin "incbin/overlay4_data.bin", 0x37A0, 0x37B8 - 0x37A0
+	.asciz "gti2SocketErrorCallback"
 
 	.global Unk_ov4_02219638
 Unk_ov4_02219638: ; 0x02219638
-	.incbin "incbin/overlay4_data.bin", 0x37B8, 0x37D4 - 0x37B8
+	.asciz "gti2ReceiveFilterCallback"
+	.space 0x2
 
 	.global Unk_ov4_02219654
 Unk_ov4_02219654: ; 0x02219654
-	.incbin "incbin/overlay4_data.bin", 0x37D4, 0x37F0 - 0x37D4
+	.ascii "gti2ConnectAttemptCallback"
+	.space 0x2
 
 	.global Unk_ov4_02219670
 Unk_ov4_02219670: ; 0x02219670
-	.incbin "incbin/overlay4_data.bin", 0x37F0, 0x3810 - 0x37F0
+	.asciz "gti2UnrecognizedMessageCallback"
 
 	.global Unk_ov4_02219690
 Unk_ov4_02219690: ; 0x02219690
-	.incbin "incbin/overlay4_data.bin", 0x3810, 0x3818 - 0x3810
+	.ascii "socket"
+	.space 0x2
 
 	.global Unk_ov4_02219698
 Unk_ov4_02219698: ; 0x02219698
-	.incbin "incbin/overlay4_data.bin", 0x3818, 0x3828 - 0x3818
+	.asciz "gt2Callback.c"
+	.space 0x2
 
 	.global Unk_ov4_022196A8
 Unk_ov4_022196A8: ; 0x022196A8
-	.incbin "incbin/overlay4_data.bin", 0x3828, 0x3840 - 0x3828
+	.ascii "socket && connection"
+	.space 0x4
 
 	.global Unk_ov4_022196C0
 Unk_ov4_022196C0: ; 0x022196C0
-	.incbin "incbin/overlay4_data.bin", 0x3840, 0xB
+	.ascii "connection"
+	.space 0x2
 

@@ -2127,75 +2127,75 @@ _0222DAD8: .word Unk_ov18_0225329C
 
 	.global Unk_ov18_02248D28
 Unk_ov18_02248D28: ; 0x02248D28
-	.incbin "incbin/overlay18_rodata.bin", 0x28F4, 0x28F8 - 0x28F4
+	.incbin "incbin/keyboard.bin", 0x0, 0x4
 
 	.global Unk_ov18_02248D2C
 Unk_ov18_02248D2C: ; 0x02248D2C
-	.incbin "incbin/overlay18_rodata.bin", 0x28F8, 0x28FC - 0x28F8
+	.incbin "incbin/keyboard.bin", 0x4, 0x8 - 0x4
 
 	.global Unk_ov18_02248D30
 Unk_ov18_02248D30: ; 0x02248D30
-	.incbin "incbin/overlay18_rodata.bin", 0x28FC, 0x2900 - 0x28FC
+	.incbin "incbin/keyboard.bin", 0x8, 0xC - 0x8
 
 	.global Unk_ov18_02248D34
 Unk_ov18_02248D34: ; 0x02248D34
-	.incbin "incbin/overlay18_rodata.bin", 0x2900, 0x2904 - 0x2900
+	.incbin "incbin/keyboard.bin", 0xC, 0x10 - 0xC
 
 	.global Unk_ov18_02248D38
 Unk_ov18_02248D38: ; 0x02248D38
-	.incbin "incbin/overlay18_rodata.bin", 0x2904, 0x2908 - 0x2904
+	.incbin "incbin/keyboard.bin", 0x10, 0x14 - 0x10
 
 	.global Unk_ov18_02248D3C
 Unk_ov18_02248D3C: ; 0x02248D3C
-	.incbin "incbin/overlay18_rodata.bin", 0x2908, 0x290C - 0x2908
+	.incbin "incbin/keyboard.bin", 0x14, 0x18 - 0x14
 
 	.global Unk_ov18_02248D40
 Unk_ov18_02248D40: ; 0x02248D40
-	.incbin "incbin/overlay18_rodata.bin", 0x290C, 0x2910 - 0x290C
+	.incbin "incbin/keyboard.bin", 0x18, 0x1C - 0x18
 
 	.global Unk_ov18_02248D44
 Unk_ov18_02248D44: ; 0x02248D44
-	.incbin "incbin/overlay18_rodata.bin", 0x2910, 0x2914 - 0x2910
+	.incbin "incbin/keyboard.bin", 0x1C, 0x20 - 0x1C
 
 	.global Unk_ov18_02248D48
 Unk_ov18_02248D48: ; 0x02248D48
-	.incbin "incbin/overlay18_rodata.bin", 0x2914, 0x2919 - 0x2914
+	.incbin "incbin/keyboard.bin", 0x20, 0x21 - 0x20
 
 	.global Unk_ov18_02248D4D
 Unk_ov18_02248D4D: ; 0x02248D4D
-	.incbin "incbin/overlay18_rodata.bin", 0x2919, 0x291E - 0x2919
+	.incbin "incbin/keyboard.bin", 0x21, 0x2A - 0x21
 
 	.global Unk_ov18_02248D52
 Unk_ov18_02248D52: ; 0x02248D52
-	.incbin "incbin/overlay18_rodata.bin", 0x291E, 0x2924 - 0x291E
+	.incbin "incbin/keyboard.bin", 0x2A, 0x30 - 0x2A
 
 	.global Unk_ov18_02248D58
 Unk_ov18_02248D58: ; 0x02248D58
-	.incbin "incbin/overlay18_rodata.bin", 0x2924, 0x292C - 0x2924
+	.incbin "incbin/keyboard.bin", 0x30, 0x38 - 0x30
 
 	.global Unk_ov18_02248D60
 Unk_ov18_02248D60: ; 0x02248D60
-	.incbin "incbin/overlay18_rodata.bin", 0x292C, 0x293C - 0x292C
+	.incbin "incbin/keyboard.bin", 0x38, 0x48 - 0x38
 
 	.global Unk_ov18_02248D70
 Unk_ov18_02248D70: ; 0x02248D70
-	.incbin "incbin/overlay18_rodata.bin", 0x293C, 0x294C - 0x293C
+	.incbin "incbin/keyboard.bin", 0x48, 0x58 - 0x48
 
 	.global Unk_ov18_02248D80
 Unk_ov18_02248D80: ; 0x02248D80
-	.incbin "incbin/overlay18_rodata.bin", 0x294C, 0x2A08 - 0x294C
+	.incbin "incbin/keyboard.bin", 0x58, 0x114 - 0x58
 
 	.global Unk_ov18_02248E3C
 Unk_ov18_02248E3C: ; 0x02248E3C
-	.incbin "incbin/overlay18_rodata.bin", 0x2A08, 0x2ADC - 0x2A08
+	.incbin "incbin/keyboard.bin", 0x114, 0x1E8 - 0x114
 
 	.global Unk_ov18_02248F10
 Unk_ov18_02248F10: ; 0x02248F10
-	.incbin "incbin/overlay18_rodata.bin", 0x2ADC, 0x2BB0 - 0x2ADC
+	.incbin "incbin/keyboard.bin", 0x1E8, 0x2BC - 0x1E8
 
 	.global Unk_ov18_02248FE4
 Unk_ov18_02248FE4: ; 0x02248FE4
-	.incbin "incbin/overlay18_rodata.bin", 0x2BB0, 0x5
+	.incbin "incbin/keyboard.bin", 0x2BC, 0x8
 
 
 
@@ -2204,40 +2204,335 @@ Unk_ov18_02248FE4: ; 0x02248FE4
 
 	.global Unk_ov18_02249B48
 Unk_ov18_02249B48: ; 0x02249B48
-	.incbin "incbin/overlay18_data.bin", 0x3E8, 0x3F4 - 0x3E8
+	.word Unk_ov18_02249CF8
+	.word Unk_ov18_02249C98
+	.word Unk_ov18_02249CC8
 
 	.global Unk_ov18_02249B54
 Unk_ov18_02249B54: ; 0x02249B54
-	.incbin "incbin/overlay18_data.bin", 0x3F4, 0x400 - 0x3F4
+	.word Unk_ov18_02249B70
+	.word Unk_ov18_02249BD2
+	.word Unk_ov18_02249C34
 
 	.global Unk_ov18_02249B60
 Unk_ov18_02249B60: ; 0x02249B60
-	.incbin "incbin/overlay18_data.bin", 0x400, 0x410 - 0x400
+	.space 0xC
+	.word 0x2
 
 	.global Unk_ov18_02249B70
 Unk_ov18_02249B70: ; 0x02249B70
-	.incbin "incbin/overlay18_data.bin", 0x410, 0x472 - 0x410
+	.ascii "1"
+	.space 0x1
+	.ascii "2"
+	.space 0x1
+	.ascii "3"
+	.space 0x1
+	.ascii "4"
+	.space 0x1
+	.ascii "5"
+	.space 0x1
+	.ascii "6"
+	.space 0x1
+	.ascii "7"
+	.space 0x1
+	.ascii "8"
+	.space 0x1
+	.ascii "9"
+	.space 0x1
+	.ascii "0"
+	.space 0x1
+	.ascii "-"
+	.space 0x1
+	.ascii "="
+	.space 0x1
+	.ascii "q"
+	.space 0x1
+	.ascii "w"
+	.space 0x1
+	.ascii "e"
+	.space 0x1
+	.ascii "r"
+	.space 0x1
+	.ascii "t"
+	.space 0x1
+	.ascii "y"
+	.space 0x1
+	.ascii "u"
+	.space 0x1
+	.ascii "i"
+	.space 0x1
+	.ascii "o"
+	.space 0x1
+	.ascii "p"
+	.space 0x1
+	.ascii "["
+	.space 0x1
+	.ascii "]"
+	.space 0x1
+	.ascii "a"
+	.space 0x1
+	.ascii "s"
+	.space 0x1
+	.ascii "d"
+	.space 0x1
+	.ascii "f"
+	.space 0x1
+	.ascii "g"
+	.space 0x1
+	.ascii "h"
+	.space 0x1
+	.ascii "j"
+	.space 0x1
+	.ascii "k"
+	.space 0x1
+	.ascii "l"
+	.space 0x1
+	.ascii ";"
+	.space 0x1
+	.ascii "'"
+	.space 0x1
+	.ascii "`"
+	.space 0x1
+	.ascii "z"
+	.space 0x1
+	.ascii "x"
+	.space 0x1
+	.ascii "c"
+	.space 0x1
+	.ascii "v"
+	.space 0x1
+	.ascii "b"
+	.space 0x1
+	.ascii "n"
+	.space 0x1
+	.ascii "m"
+	.space 0x1
+	.ascii ","
+	.space 0x1
+	.ascii "."
+	.space 0x1
+	.ascii "/"
+	.space 0x1
+	.byte 0x5C
+	.space 0x1
+	.ascii " "
+	.space 0x3
 
 	.global Unk_ov18_02249BD2
 Unk_ov18_02249BD2: ; 0x02249BD2
-	.incbin "incbin/overlay18_data.bin", 0x472, 0x4D4 - 0x472
+	.ascii "!"
+	.space 0x1
+	.ascii "@"
+	.space 0x1
+	.ascii "#"
+	.space 0x1
+	.ascii "$"
+	.space 0x1
+	.ascii "%"
+	.space 0x1
+	.ascii "^"
+	.space 0x1
+	.ascii "&"
+	.space 0x1
+	.ascii "*"
+	.space 0x1
+	.ascii "("
+	.space 0x1
+	.ascii ")"
+	.space 0x1
+	.ascii "_"
+	.space 0x1
+	.ascii "+"
+	.space 0x1
+	.ascii "Q"
+	.space 0x1
+	.ascii "W"
+	.space 0x1
+	.ascii "E"
+	.space 0x1
+	.ascii "R"
+	.space 0x1
+	.ascii "T"
+	.space 0x1
+	.ascii "Y"
+	.space 0x1
+	.ascii "U"
+	.space 0x1
+	.ascii "I"
+	.space 0x1
+	.ascii "O"
+	.space 0x1
+	.ascii "P"
+	.space 0x1
+	.ascii "{"
+	.space 0x1
+	.ascii "}"
+	.space 0x1
+	.ascii "A"
+	.space 0x1
+	.ascii "S"
+	.space 0x1
+	.ascii "D"
+	.space 0x1
+	.ascii "F"
+	.space 0x1
+	.ascii "G"
+	.space 0x1
+	.ascii "H"
+	.space 0x1
+	.ascii "J"
+	.space 0x1
+	.ascii "K"
+	.space 0x1
+	.ascii "L"
+	.space 0x1
+	.ascii ":"
+	.space 0x1
+	.byte 0x22
+	.space 0x1
+	.ascii "~"
+	.space 0x1
+	.ascii "Z"
+	.space 0x1
+	.ascii "X"
+	.space 0x1
+	.ascii "C"
+	.space 0x1
+	.ascii "V"
+	.space 0x1
+	.ascii "B"
+	.space 0x1
+	.ascii "N"
+	.space 0x1
+	.ascii "M"
+	.space 0x1
+	.ascii "<"
+	.space 0x1
+	.ascii ">"
+	.space 0x1
+	.ascii "?"
+	.space 0x1
+	.ascii "|"
+	.space 0x1
+	.ascii " "
+	.space 0x3
 
 	.global Unk_ov18_02249C34
 Unk_ov18_02249C34: ; 0x02249C34
-	.incbin "incbin/overlay18_data.bin", 0x4D4, 0x538 - 0x4D4
+	.ascii "1"
+	.space 0x1
+	.ascii "2"
+	.space 0x1
+	.ascii "3"
+	.space 0x1
+	.ascii "4"
+	.space 0x1
+	.ascii "5"
+	.space 0x1
+	.ascii "6"
+	.space 0x1
+	.ascii "7"
+	.space 0x1
+	.ascii "8"
+	.space 0x1
+	.ascii "9"
+	.space 0x1
+	.ascii "0"
+	.space 0x1
+	.ascii "-"
+	.space 0x1
+	.ascii "="
+	.space 0x1
+	.ascii "Q"
+	.space 0x1
+	.ascii "W"
+	.space 0x1
+	.ascii "E"
+	.space 0x1
+	.ascii "R"
+	.space 0x1
+	.ascii "T"
+	.space 0x1
+	.ascii "Y"
+	.space 0x1
+	.ascii "U"
+	.space 0x1
+	.ascii "I"
+	.space 0x1
+	.ascii "O"
+	.space 0x1
+	.ascii "P"
+	.space 0x1
+	.ascii "["
+	.space 0x1
+	.ascii "]"
+	.space 0x1
+	.ascii "A"
+	.space 0x1
+	.ascii "S"
+	.space 0x1
+	.ascii "D"
+	.space 0x1
+	.ascii "F"
+	.space 0x1
+	.ascii "G"
+	.space 0x1
+	.ascii "H"
+	.space 0x1
+	.ascii "J"
+	.space 0x1
+	.ascii "K"
+	.space 0x1
+	.ascii "L"
+	.space 0x1
+	.ascii ";"
+	.space 0x1
+	.ascii "'"
+	.space 0x1
+	.ascii "`"
+	.space 0x1
+	.ascii "Z"
+	.space 0x1
+	.ascii "X"
+	.space 0x1
+	.ascii "C"
+	.space 0x1
+	.ascii "V"
+	.space 0x1
+	.ascii "B"
+	.space 0x1
+	.ascii "N"
+	.space 0x1
+	.ascii "M"
+	.space 0x1
+	.ascii ","
+	.space 0x1
+	.ascii "."
+	.space 0x1
+	.ascii "/"
+	.space 0x1
+	.byte 0x5C
+	.space 0x1
+	.ascii " "
+	.space 0x5
 
 	.global Unk_ov18_02249C98
 Unk_ov18_02249C98: ; 0x02249C98
-	.incbin "incbin/overlay18_data.bin", 0x538, 0x568 - 0x538
+	.ascii "!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"
+	.byte 0x22
+	.asciz "~ZXCVBNM<>?|"
 
 	.global Unk_ov18_02249CC8
 Unk_ov18_02249CC8: ; 0x02249CC8
-	.incbin "incbin/overlay18_data.bin", 0x568, 0x598 - 0x568
+	.ascii "1234567890-=QWERTYUIOP[]ASDFGHJKL;'`ZXCVBNM,./"
+	.byte 0x5C
+	.space 0x1
 
 	.global Unk_ov18_02249CF8
 Unk_ov18_02249CF8: ; 0x02249CF8
-	.incbin "incbin/overlay18_data.bin", 0x598, 0x30
-
+	.ascii "1234567890-=qwertyuiop[]asdfghjkl;'`zxcvbnm,./"
+	.byte 0x5C
+	.space 0x1
 
 
 	.bss

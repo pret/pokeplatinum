@@ -127,91 +127,128 @@ _0222BC88: .word Unk_ov18_02253294
 
 	.global Unk_ov18_02249914
 Unk_ov18_02249914: ; 0x02249914
-	.incbin "incbin/overlay18_data.bin", 0x1B4, 0x1C8 - 0x1B4
+	.ascii "char/jb2HlAp.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_02249928
 Unk_ov18_02249928: ; 0x02249928
-	.incbin "incbin/overlay18_data.bin", 0x1C8, 0x1DC - 0x1C8
+	.ascii "char/jb4HlIp.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_0224993C
 Unk_ov18_0224993C: ; 0x0224993C
-	.incbin "incbin/overlay18_data.bin", 0x1DC, 0x1F0 - 0x1DC
+	.asciz "char/jb4HlWep.nsc.l"
 
 	.global Unk_ov18_02249950
 Unk_ov18_02249950: ; 0x02249950
-	.incbin "incbin/overlay18_data.bin", 0x1F0, 0x204 - 0x1F0
+	.asciz "char/jb4HlUsb.nsc.l"
 
 	.global Unk_ov18_02249964
 Unk_ov18_02249964: ; 0x02249964
-	.incbin "incbin/overlay18_data.bin", 0x204, 0x21C - 0x204
+	.ascii "char/jb4HlDns1.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_0224997C
 Unk_ov18_0224997C: ; 0x0224997C
-	.incbin "incbin/overlay18_data.bin", 0x21C, 0x234 - 0x21C
+	.ascii "char/jb4HlSsid.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_02249994
 Unk_ov18_02249994: ; 0x02249994
-	.incbin "incbin/overlay18_data.bin", 0x234, 0x24C - 0x234
+	.ascii "char/jb5HlMove.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_022499AC
 Unk_ov18_022499AC: ; 0x022499AC
-	.incbin "incbin/overlay18_data.bin", 0x24C, 0x264 - 0x24C
+	.ascii "char/jb2HlWiFi.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_022499C4
 Unk_ov18_022499C4: ; 0x022499C4
-	.incbin "incbin/overlay18_data.bin", 0x264, 0x27C - 0x264
+	.ascii "char/jb5HlInfo.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_022499DC
 Unk_ov18_022499DC: ; 0x022499DC
-	.incbin "incbin/overlay18_data.bin", 0x27C, 0x294 - 0x27C
+	.ascii "char/jb4HlMask.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_022499F4
 Unk_ov18_022499F4: ; 0x022499F4
-	.incbin "incbin/overlay18_data.bin", 0x294, 0x2AC - 0x294
+	.ascii "char/jb4HlSet2.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_02249A0C
 Unk_ov18_02249A0C: ; 0x02249A0C
-	.incbin "incbin/overlay18_data.bin", 0x2AC, 0x2C4 - 0x2AC
+	.ascii "char/jb4HlDns0.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_02249A24
 Unk_ov18_02249A24: ; 0x02249A24
-	.incbin "incbin/overlay18_data.bin", 0x2C4, 0x2DC - 0x2C4
+	.ascii "char/jb4HlSet3.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_02249A3C
 Unk_ov18_02249A3C: ; 0x02249A3C
-	.incbin "incbin/overlay18_data.bin", 0x2DC, 0x2F4 - 0x2DC
+	.ascii "char/jb4HlSet1.nsc.l"
+	.space 0x4
 
 	.global Unk_ov18_02249A54
 Unk_ov18_02249A54: ; 0x02249A54
-	.incbin "incbin/overlay18_data.bin", 0x2F4, 0x30C - 0x2F4
+	.asciz "char/jb3HlList1.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_02249A6C
 Unk_ov18_02249A6C: ; 0x02249A6C
-	.incbin "incbin/overlay18_data.bin", 0x30C, 0x324 - 0x30C
+	.asciz "char/jb3HlList2.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_02249A84
 Unk_ov18_02249A84: ; 0x02249A84
-	.incbin "incbin/overlay18_data.bin", 0x324, 0x33C - 0x324
+	.asciz "char/jb3HlList3.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_02249A9C
 Unk_ov18_02249A9C: ; 0x02249A9C
-	.incbin "incbin/overlay18_data.bin", 0x33C, 0x354 - 0x33C
+	.asciz "char/jb5HlErase.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_02249AB4
 Unk_ov18_02249AB4: ; 0x02249AB4
-	.incbin "incbin/overlay18_data.bin", 0x354, 0x36C - 0x354
+	.ascii "char/jb5HlOption.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_02249ACC
 Unk_ov18_02249ACC: ; 0x02249ACC
-	.incbin "incbin/overlay18_data.bin", 0x36C, 0x384 - 0x36C
+	.asciz "char/jb4HlGateway.nsc.l"
 
 	.global Unk_ov18_02249AE4
 Unk_ov18_02249AE4: ; 0x02249AE4
-	.incbin "incbin/overlay18_data.bin", 0x384, 0x3D4 - 0x384
+	.word Unk_ov18_022499AC
+	.word Unk_ov18_02249914
+	.word Unk_ov18_02249A54
+	.word Unk_ov18_02249A6C
+	.word Unk_ov18_02249A84
+	.word Unk_ov18_02249A3C
+	.word Unk_ov18_022499F4
+	.word Unk_ov18_02249A24
+	.word Unk_ov18_02249950
+	.word Unk_ov18_0224997C
+	.word Unk_ov18_0224993C
+	.word Unk_ov18_02249928
+	.word Unk_ov18_022499DC
+	.word Unk_ov18_02249ACC
+	.word Unk_ov18_02249A0C
+	.word Unk_ov18_02249964
+	.word Unk_ov18_02249AB4
+	.word Unk_ov18_022499C4
+	.word Unk_ov18_02249A9C
+	.word Unk_ov18_02249994
 
 	.global Unk_ov18_02249B34
 Unk_ov18_02249B34: ; 0x02249B34
-	.incbin "incbin/overlay18_data.bin", 0x3D4, 0x12
+	.asciz "char/jbBgHl.ncg.l"
+	.space 0x2
 
 
 

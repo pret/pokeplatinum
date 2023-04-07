@@ -7,13 +7,13 @@
 
 	.global Unk_020FE99C
 Unk_020FE99C: ; 0x020FE99C
-	.incbin "incbin/arm9_rodata.bin", 0x19D5C, 0x19E5C - 0x19D5C
+	.incbin "incbin/wctype.bin", 0x0, 0x100
 
 	.global Unk_020FEA9C
 Unk_020FEA9C: ; 0x020FEA9C
-	.incbin "incbin/arm9_rodata.bin", 0x19E5C, 0x19F5C - 0x19E5C
+	.incbin "incbin/wctype.bin", 0x100, 0x200 - 0x100
 
 	.global Unk_020FEB9C
 Unk_020FEB9C: ; 0x020FEB9C
-	.incbin "incbin/arm9_rodata.bin", 0x19F5C, 0x100
+	.incbin "incbin/wctype.bin", 0x200, 0x100
 

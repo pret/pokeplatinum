@@ -1460,147 +1460,190 @@ Unk_ov4_022160D0: ; 0x022160D0
 
 	.global Unk_ov4_02216100
 Unk_ov4_02216100: ; 0x02216100
-	.incbin "incbin/overlay4_data.bin", 0x280, 0x298 - 0x280
+	.asciz "ALLOC http->lowrecvbuf"
+	.byte 0x0
 
 	.global Unk_ov4_02216118
 Unk_ov4_02216118: ; 0x02216118
-	.incbin "incbin/overlay4_data.bin", 0x298, 0x2B0 - 0x298
+	.asciz "ALLOC http->lowsendbuf"
+	.byte 0x0
 
 	.global Unk_ov4_02216130
 Unk_ov4_02216130: ; 0x02216130
-	.incbin "incbin/overlay4_data.bin", 0x2B0, 0x2BC - 0x2B0
+	.asciz "Connection"
+	.byte 0x0
 
 	.global Unk_ov4_0221613C
 Unk_ov4_0221613C: ; 0x0221613C
-	.incbin "incbin/overlay4_data.bin", 0x2BC, 0x2C4 - 0x2BC
+	.asciz "close"
+	.short 0x0
 
 	.global Unk_ov4_02216144
 Unk_ov4_02216144: ; 0x02216144
-	.incbin "incbin/overlay4_data.bin", 0x2C4, 0x2CC - 0x2C4
+	.byte 0xD, 0xA
+	.byte 0xD, 0xA
+	.word 0x0
 
 	.global Unk_ov4_0221614C
 Unk_ov4_0221614C: ; 0x0221614C
-	.incbin "incbin/overlay4_data.bin", 0x2CC, 0x2D0 - 0x2CC
+	.ascii "%d"
+	.short 0x0
 
 	.global Unk_ov4_02216150
 Unk_ov4_02216150: ; 0x02216150
-	.incbin "incbin/overlay4_data.bin", 0x2D0, 0x2E0 - 0x2D0
+	.ascii "Content-Length"
+	.short 0x0
 
 	.global Unk_ov4_02216160
 Unk_ov4_02216160: ; 0x02216160
-	.incbin "incbin/overlay4_data.bin", 0x2E0, 0x2F4 - 0x2E0
+	.ascii "Content-Length: "
+	.word 0x0
 
 	.global Unk_ov4_02216174
 Unk_ov4_02216174: ; 0x02216174
-	.incbin "incbin/overlay4_data.bin", 0x2F4, 0x2F8 - 0x2F4
+	.byte 0xD, 0xA
+	.short 0x0
 
 	.global Unk_ov4_02216178
 Unk_ov4_02216178: ; 0x02216178
-	.incbin "incbin/overlay4_data.bin", 0x2F8, 0x310 - 0x2F8
+	.asciz "FREE http->lowrecvbuf"
+	.short 0x0
 
 	.global Unk_ov4_02216190
 Unk_ov4_02216190: ; 0x02216190
-	.incbin "incbin/overlay4_data.bin", 0x310, 0x328 - 0x310
+	.asciz "FREE http->lowsendbuf"
+	.short 0x0
 
 	.global Unk_ov4_022161A8
 Unk_ov4_022161A8: ; 0x022161A8
-	.incbin "incbin/overlay4_data.bin", 0x328, 0x37C - 0x328
+	.ascii "POST /%s HTTP/1.0"
+	.byte 0xD, 0xA
+	.ascii "Content-type: application/x-www-form-urlencoded"
+	.byte 0xD, 0xA
+	.ascii "Host: %s"
+	.byte 0xD, 0xA
+	.byte 0xD, 0xA
+	.word 0x0
 
 	.global Unk_ov4_022161FC
 Unk_ov4_022161FC: ; 0x022161FC
-	.incbin "incbin/overlay4_data.bin", 0x37C, 0x39C - 0x37C
+	.ascii "GET /%s HTTP/1.0"
+	.byte 0xD, 0xA
+	.ascii "Host: %s"
+	.byte 0xD, 0xA
+	.byte 0xD, 0xA
+	.short 0x0
 
 	.global Unk_ov4_0221621C
 Unk_ov4_0221621C: ; 0x0221621C
-	.incbin "incbin/overlay4_data.bin", 0x39C, 0x3A8 - 0x39C
+	.ascii "%s: %s"
+	.byte 0xD, 0xA
+	.word 0x0
 
 	.global Unk_ov4_02216228
 Unk_ov4_02216228: ; 0x02216228
-	.incbin "incbin/overlay4_data.bin", 0x3A8, 0x3AC - 0x3A8
+	.asciz "%s="
 
 	.global Unk_ov4_0221622C
 Unk_ov4_0221622C: ; 0x0221622C
-	.incbin "incbin/overlay4_data.bin", 0x3AC, 0x3B4 - 0x3AC
+	.ascii "&%s="
+	.word 0x0
 
 	.global Unk_ov4_02216234
 Unk_ov4_02216234: ; 0x02216234
-	.incbin "incbin/overlay4_data.bin", 0x3B4, 0x3B8 - 0x3B4
+	.ascii "%s"
+	.short 0x0
 
 	.global Unk_ov4_02216238
 Unk_ov4_02216238: ; 0x02216238
-	.incbin "incbin/overlay4_data.bin", 0x3B8, 0x3CC - 0x3B8
+	.asciz "ALLOC buf->buffer"
+	.short 0x0
 
 	.global Unk_ov4_0221624C
 Unk_ov4_0221624C: ; 0x0221624C
-	.incbin "incbin/overlay4_data.bin", 0x3CC, 0x3E0 - 0x3CC
+	.ascii "FREE buf->buffer"
+	.word 0x0
 
 	.global Unk_ov4_02216260
 Unk_ov4_02216260: ; 0x02216260
-	.incbin "incbin/overlay4_data.bin", 0x3E0, 0x3F0 - 0x3E0
+	.ascii "ALLOC newptr"
+	.word 0x0
 
 	.global Unk_ov4_02216270
 Unk_ov4_02216270: ; 0x02216270
-	.incbin "incbin/overlay4_data.bin", 0x3F0, 0x3F8 - 0x3F0
+	.asciz "http://"
 
 	.global Unk_ov4_02216278
 Unk_ov4_02216278: ; 0x02216278
-	.incbin "incbin/overlay4_data.bin", 0x3F8, 0x404 - 0x3F8
+	.ascii "https://"
+	.word 0x0
 
 	.global Unk_ov4_02216284
 Unk_ov4_02216284: ; 0x02216284
-	.incbin "incbin/overlay4_data.bin", 0x404, 0x408 - 0x404
+	.asciz ":"
+	.short 0x0
 
 	.global Unk_ov4_02216288
 Unk_ov4_02216288: ; 0x02216288
-	.incbin "incbin/overlay4_data.bin", 0x408, 0x40C - 0x408
+	.asciz "/"
+	.short 0x0
 
 	.global Unk_ov4_0221628C
 Unk_ov4_0221628C: ; 0x0221628C
-	.incbin "incbin/overlay4_data.bin", 0x40C, 0x42C - 0x40C
+	.ascii "ALLOC result->entry[i].label"
+	.word 0x0
 
 	.global Unk_ov4_022162AC
 Unk_ov4_022162AC: ; 0x022162AC
-	.incbin "incbin/overlay4_data.bin", 0x42C, 0x44C - 0x42C
+	.ascii "ALLOC result->entry[i].value"
+	.word 0x0
 
 	.global Unk_ov4_022162CC
 Unk_ov4_022162CC: ; 0x022162CC
-	.incbin "incbin/overlay4_data.bin", 0x44C, 0x468 - 0x44C
+	.asciz "FREE result->entry[i].label"
 
 	.global Unk_ov4_022162E8
 Unk_ov4_022162E8: ; 0x022162E8
-	.incbin "incbin/overlay4_data.bin", 0x468, 0x484 - 0x468
+	.asciz "FREE result->entry[i].value"
 
 	.global Unk_ov4_02216304
 Unk_ov4_02216304: ; 0x02216304
-	.incbin "incbin/overlay4_data.bin", 0x484, 0x488 - 0x484
+	.asciz " "
+	.short 0x0
 
 	.global Unk_ov4_02216308
 Unk_ov4_02216308: ; 0x02216308
-	.incbin "incbin/overlay4_data.bin", 0x488, 0x494 - 0x488
+	.ascii "httpresult"
+	.short 0x0
 
 	.global Unk_ov4_02216314
 Unk_ov4_02216314: ; 0x02216314
-	.incbin "incbin/overlay4_data.bin", 0x494, 0x498 - 0x494
+	.asciz "200"
 
 	.global Unk_ov4_02216318
 Unk_ov4_02216318: ; 0x02216318
-	.incbin "incbin/overlay4_data.bin", 0x498, 0x49C - 0x498
+	.ascii ": "
+	.short 0x0
 
 	.global Unk_ov4_0221631C
 Unk_ov4_0221631C: ; 0x0221631C
-	.incbin "incbin/overlay4_data.bin", 0x49C, 0x4A0 - 0x49C
+	.asciz "="
+	.short 0x0
 
 	.global Unk_ov4_02216320
 Unk_ov4_02216320: ; 0x02216320
-	.incbin "incbin/overlay4_data.bin", 0x4A0, 0x4A4 - 0x4A0
+	.asciz "&"
+	.short 0x0
 
 	.global Unk_ov4_02216324
 Unk_ov4_02216324: ; 0x02216324
-	.incbin "incbin/overlay4_data.bin", 0x4A4, 0x4C0 - 0x4A4
+	.asciz "FREE array_entry[i].label"
+	.short 0x0
 
 	.global Unk_ov4_02216340
 Unk_ov4_02216340: ; 0x02216340
-	.incbin "incbin/overlay4_data.bin", 0x4C0, 0x1C
+	.asciz "FREE array_entry[i].value"
+	.short 0x0
 
 
 

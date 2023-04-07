@@ -389,15 +389,17 @@ _0223A1CC: .word ov18_02239FA4
 
 	.global Unk_ov18_0224A364
 Unk_ov18_0224A364: ; 0x0224A364
-	.incbin "incbin/overlay18_data.bin", 0xC04, 0xC1C - 0xC04
+	.ascii "char/jbBgStep3.ncg.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A37C
 Unk_ov18_0224A37C: ; 0x0224A37C
-	.incbin "incbin/overlay18_data.bin", 0xC1C, 0xC34 - 0xC1C
+	.ascii "char/ybBgStep3.ncl.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A394
 Unk_ov18_0224A394: ; 0x0224A394
-	.incbin "incbin/overlay18_data.bin", 0xC34, 0x14
+	.asciz "char/xb4Multi.nsc.l"
 
 
 

@@ -631,5 +631,5 @@ _02211D98: .word 0x0221A3A5
 
 	.global Unk_ov4_0221A3A4
 Unk_ov4_0221A3A4: ; 0x0221A3A4
-	.incbin "incbin/overlay4_data.bin", 0x4524, 0x5C
+	.incbin "incbin/sha1.bin", 0x0, 0x5C
 

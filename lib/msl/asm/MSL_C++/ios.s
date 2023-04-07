@@ -139,11 +139,15 @@ sub_020DFB04: ; 0x020DFB04
 
 	.global Unk_020E4590
 Unk_020E4590: ; 0x020E4590
-	.incbin "incbin/arm9_exception.bin", 0x38, 0x10
+	.byte 0x20, 0x3, 0x50, 0x58, 0x0, 0xE, 0x0, 0x82
+	.byte 0x0, 0xD0, 0xFA, 0xD
+	.word 0x2
 
 	.global Unk_020E45A0
 Unk_020E45A0: ; 0x020E45A0
-	.incbin "incbin/arm9_exception.bin", 0x48, 0x14
+	.byte 0x40, 0x81, 0x50, 0x0, 0x40, 0x0, 0x16, 0x28
+	.short 0x1E00, 0x8F00, 0x5800, 0x8D00
+	.space 0x4
 
 
 	.data
@@ -151,41 +155,58 @@ Unk_020E45A0: ; 0x020E45A0
 
 	.global Unk_021019C8
 Unk_021019C8: ; 0x021019C8
-	.incbin "incbin/arm9_data.bin", 0x2CE8, 0x2CF0 - 0x2CE8
+	.word 0x02101CB8
+	.word Unk_021019EC
 
 	.global Unk_021019D0
 Unk_021019D0: ; 0x021019D0
-	.incbin "incbin/arm9_data.bin", 0x2CF0, 0x2CF8 - 0x2CF0
+	.word 0x02101CB8
+	.word Unk_02101A50
 
 	.global Unk_021019D8
 Unk_021019D8: ; 0x021019D8
-	.incbin "incbin/arm9_data.bin", 0x2CF8, 0x2D00 - 0x2CF8
+	.word 0x02101CB8
+	.word Unk_02101A2C
 
 	.global Unk_021019E0
 Unk_021019E0: ; 0x021019E0
-	.incbin "incbin/arm9_data.bin", 0x2D00, 0x2D0C - 0x2D00
+	.word 0x02101CA8
+	.word Unk_02101A7C
+	.word Unk_021019D0
 
 	.global Unk_021019EC
 Unk_021019EC: ; 0x021019EC
-	.incbin "incbin/arm9_data.bin", 0x2D0C, 0x2D1C - 0x2D0C
+	.ascii "St9exception"
+	.space 0x4
 
 	.global Unk_021019FC
 Unk_021019FC: ; 0x021019FC
-	.incbin "incbin/arm9_data.bin", 0x2D1C, 0x2D34 - 0x2D1C
+	.space 0x4
+	.word Unk_021019D0
+	.word sub_020DFA54
+	.word sub_020DFA40
+	.space 0x8
 
 	.global Unk_02101A14
 Unk_02101A14: ; 0x02101A14
-	.incbin "incbin/arm9_data.bin", 0x2D34, 0x2D4C - 0x2D34
+	.space 0x4
+	.word Unk_021019E0
+	.word sub_020DFB04
+	.word sub_020DFAF0
+	.word sub_020DFA58
+	.word sub_020DFA80
 
 	.global Unk_02101A2C
 Unk_02101A2C: ; 0x02101A2C
-	.incbin "incbin/arm9_data.bin", 0x2D4C, 0x2D70 - 0x2D4C
+	.asciz "NSt6detail14default_deleteIA0_cEE"
+	.space 0x2
 
 	.global Unk_02101A50
 Unk_02101A50: ; 0x02101A50
-	.incbin "incbin/arm9_data.bin", 0x2D70, 0x2D9C - 0x2D70
+	.ascii "NSt3tr16detail25shared_ptr_deleter_commonE"
+	.space 0x2
 
 	.global Unk_02101A7C
 Unk_02101A7C: ; 0x02101A7C
-	.incbin "incbin/arm9_data.bin", 0x2D9C, 0x48
+	.asciz "NSt3tr16detail18shared_ptr_deleterIcNSt6detail14default_deleteIA0_cEEEE"
 

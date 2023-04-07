@@ -520,15 +520,23 @@ _0223FC44: .word Unk_ov18_022495FC
 
 	.global Unk_ov18_022495FC
 Unk_ov18_022495FC: ; 0x022495FC
-	.incbin "incbin/overlay18_rodata.bin", 0x31C8, 0x31D0 - 0x31C8
+	.space 0x8
 
 	.global Unk_ov18_02249604
 Unk_ov18_02249604: ; 0x02249604
-	.incbin "incbin/overlay18_rodata.bin", 0x31D0, 0x31DC - 0x31D0
+	.ascii "NWCUSBAP"
+	.space 0x4
 
 	.global Unk_ov18_02249610
 Unk_ov18_02249610: ; 0x02249610
-	.incbin "incbin/overlay18_rodata.bin", 0x31DC, 0x44
+	.space 0x4
+	.byte 0x0, 0x4, 0xFF, 0x3F
+	.space 0x2
+	.short 0xFFFF, 0xFFFF, 0xFFFF
+	.short 0x2, 0x20
+	.space 0x20
+	.word 0x8
+	.space 0xC
 
 
 

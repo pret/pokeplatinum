@@ -179,7 +179,7 @@ _02233814: .word ov18_02233738
 
 	.global Unk_ov18_0224A124
 Unk_ov18_0224A124: ; 0x0224A124
-	.incbin "incbin/overlay18_data.bin", 0x9C4, 0x14
+	.asciz "char/xb4Multi.nsc.l"
 
 
 

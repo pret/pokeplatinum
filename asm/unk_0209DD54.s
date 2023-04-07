@@ -2715,9 +2715,11 @@ _020A05B8: .word 0x04000504
 
 	.global Unk_02100DA0
 Unk_02100DA0: ; 0x02100DA0
-	.incbin "incbin/arm9_data.bin", 0x20C0, 0x20C8 - 0x20C0
+	.word sub_020A0500
+	.word sub_020A0444
 
 	.global Unk_02100DA8
 Unk_02100DA8: ; 0x02100DA8
-	.incbin "incbin/arm9_data.bin", 0x20C8, 0x8
+	.word sub_020A0358
+	.word sub_020A0398
 

@@ -944,107 +944,142 @@ _02241444: .word Unk_ov18_0225339C
 
 	.global Unk_ov18_0224A648
 Unk_ov18_0224A648: ; 0x0224A648
-	.incbin "incbin/overlay18_data.bin", 0xEE8, 0xEFC - 0xEE8
+	.ascii "MB_COMM_PSTATE_END"
+	.space 0x2
 
 	.global Unk_ov18_0224A65C
 Unk_ov18_0224A65C: ; 0x0224A65C
-	.incbin "incbin/overlay18_data.bin", 0xEFC, 0xF10 - 0xEFC
+	.asciz "MB_COMM_PSTATE_NONE"
 
 	.global Unk_ov18_0224A670
 Unk_ov18_0224A670: ; 0x0224A670
-	.incbin "incbin/overlay18_data.bin", 0xF10, 0xF28 - 0xF10
+	.ascii "MB_COMM_PSTATE_ERROR"
+	.space 0x4
 
 	.global Unk_ov18_0224A688
 Unk_ov18_0224A688: ; 0x0224A688
-	.incbin "incbin/overlay18_data.bin", 0xF28, 0xF40 - 0xF28
+	.ascii "MB_COMM_PSTATE_KICKED"
+	.space 0x3
 
 	.global Unk_ov18_0224A6A0
 Unk_ov18_0224A6A0: ; 0x0224A6A0
-	.incbin "incbin/overlay18_data.bin", 0xF40, 0xF58 - 0xF40
+	.asciz "DWCi_MOV_MBP_STATE_STOP"
 
 	.global Unk_ov18_0224A6B8
 Unk_ov18_0224A6B8: ; 0x0224A6B8
-	.incbin "incbin/overlay18_data.bin", 0xF58, 0xF70 - 0xF58
+	.space 0x18
 
 	.global Unk_ov18_0224A6D0
 Unk_ov18_0224A6D0: ; 0x0224A6D0
-	.incbin "incbin/overlay18_data.bin", 0xF70, 0xF90 - 0xF70
+	.word Unk_ov18_0224A6A0
+	.word Unk_ov18_0224A72C
+	.word Unk_ov18_0224A760
+	.word Unk_ov18_0224A914
+	.word Unk_ov18_0224A894
+	.word Unk_ov18_0224A824
+	.word Unk_ov18_0224A7B4
+	.word Unk_ov18_0224A798
 
 	.global Unk_ov18_0224A6F0
 Unk_ov18_0224A6F0: ; 0x0224A6F0
-	.incbin "incbin/overlay18_data.bin", 0xF90, 0xFCC - 0xF90
+	.word Unk_ov18_0224A65C
+	.word Unk_ov18_0224A8B4
+	.word Unk_ov18_0224A744
+	.word Unk_ov18_0224A808
+	.word Unk_ov18_0224A688
+	.word Unk_ov18_0224A840
+	.word Unk_ov18_0224A85C
+	.word Unk_ov18_0224A8D4
+	.word Unk_ov18_0224A878
+	.word Unk_ov18_0224A8F4
+	.word Unk_ov18_0224A77C
+	.word Unk_ov18_0224A7D0
+	.word Unk_ov18_0224A648
+	.word Unk_ov18_0224A670
+	.word Unk_ov18_0224A7EC
 
 	.global Unk_ov18_0224A72C
 Unk_ov18_0224A72C: ; 0x0224A72C
-	.incbin "incbin/overlay18_data.bin", 0xFCC, 0xFE4 - 0xFCC
+	.asciz "DWCi_MOV_MBP_STATE_IDLE"
 
 	.global Unk_ov18_0224A744
 Unk_ov18_0224A744: ; 0x0224A744
-	.incbin "incbin/overlay18_data.bin", 0xFE4, 0x1000 - 0xFE4
+	.ascii "MB_COMM_PSTATE_CONNECTED"
+	.space 0x4
 
 	.global Unk_ov18_0224A760
 Unk_ov18_0224A760: ; 0x0224A760
-	.incbin "incbin/overlay18_data.bin", 0x1000, 0x101C - 0x1000
+	.ascii "DWCi_MOV_MBP_STATE_ENTRY"
+	.space 0x4
 
 	.global Unk_ov18_0224A77C
 Unk_ov18_0224A77C: ; 0x0224A77C
-	.incbin "incbin/overlay18_data.bin", 0x101C, 0x1038 - 0x101C
+	.ascii "MB_COMM_PSTATE_REQUESTED"
+	.space 0x4
 
 	.global Unk_ov18_0224A798
 Unk_ov18_0224A798: ; 0x0224A798
-	.incbin "incbin/overlay18_data.bin", 0x1038, 0x1054 - 0x1038
+	.ascii "DWCi_MOV_MBP_STATE_ERROR"
+	.space 0x4
 
 	.global Unk_ov18_0224A7B4
 Unk_ov18_0224A7B4: ; 0x0224A7B4
-	.incbin "incbin/overlay18_data.bin", 0x1054, 0x1070 - 0x1054
+	.asciz "DWCi_MOV_MBP_STATE_CANCEL"
+	.space 0x2
 
 	.global Unk_ov18_0224A7D0
 Unk_ov18_0224A7D0: ; 0x0224A7D0
-	.incbin "incbin/overlay18_data.bin", 0x1070, 0x108C - 0x1070
+	.ascii "MB_COMM_PSTATE_MEMBER_FULL"
+	.space 0x2
 
 	.global Unk_ov18_0224A7EC
 Unk_ov18_0224A7EC: ; 0x0224A7EC
-	.incbin "incbin/overlay18_data.bin", 0x108C, 0x10A8 - 0x108C
+	.asciz "MB_COMM_PSTATE_WAIT_TO_SEND"
 
 	.global Unk_ov18_0224A808
 Unk_ov18_0224A808: ; 0x0224A808
-	.incbin "incbin/overlay18_data.bin", 0x10A8, 0x10C4 - 0x10A8
+	.asciz "MB_COMM_PSTATE_DISCONNECTED"
 
 	.global Unk_ov18_0224A824
 Unk_ov18_0224A824: ; 0x0224A824
-	.incbin "incbin/overlay18_data.bin", 0x10C4, 0x10E0 - 0x10C4
+	.asciz "DWCi_MOV_MBP_STATE_COMPLETE"
 
 	.global Unk_ov18_0224A840
 Unk_ov18_0224A840: ; 0x0224A840
-	.incbin "incbin/overlay18_data.bin", 0x10E0, 0x10FC - 0x10E0
+	.asciz "MB_COMM_PSTATE_REQ_ACCEPTED"
 
 	.global Unk_ov18_0224A85C
 Unk_ov18_0224A85C: ; 0x0224A85C
-	.incbin "incbin/overlay18_data.bin", 0x10FC, 0x1118 - 0x10FC
+	.asciz "MB_COMM_PSTATE_SEND_PROCEED"
 
 	.global Unk_ov18_0224A878
 Unk_ov18_0224A878: ; 0x0224A878
-	.incbin "incbin/overlay18_data.bin", 0x1118, 0x1134 - 0x1118
+	.asciz "MB_COMM_PSTATE_BOOT_REQUEST"
 
 	.global Unk_ov18_0224A894
 Unk_ov18_0224A894: ; 0x0224A894
-	.incbin "incbin/overlay18_data.bin", 0x1134, 0x1154 - 0x1134
+	.ascii "DWCi_MOV_MBP_STATE_REBOOTING"
+	.space 0x4
 
 	.global Unk_ov18_0224A8B4
 Unk_ov18_0224A8B4: ; 0x0224A8B4
-	.incbin "incbin/overlay18_data.bin", 0x1154, 0x1174 - 0x1154
+	.ascii "MB_COMM_PSTATE_INIT_COMPLETE"
+	.space 0x4
 
 	.global Unk_ov18_0224A8D4
 Unk_ov18_0224A8D4: ; 0x0224A8D4
-	.incbin "incbin/overlay18_data.bin", 0x1174, 0x1194 - 0x1174
+	.ascii "MB_COMM_PSTATE_SEND_COMPLETE"
+	.space 0x4
 
 	.global Unk_ov18_0224A8F4
 Unk_ov18_0224A8F4: ; 0x0224A8F4
-	.incbin "incbin/overlay18_data.bin", 0x1194, 0x11B4 - 0x1194
+	.ascii "MB_COMM_PSTATE_BOOT_STARTABLE"
+	.space 0x3
 
 	.global Unk_ov18_0224A914
 Unk_ov18_0224A914: ; 0x0224A914
-	.incbin "incbin/overlay18_data.bin", 0x11B4, 0x1F
+	.ascii "DWCi_MOV_MBP_STATE_DATASENDING"
+	.space 0x2
 
 
 

@@ -205,7 +205,9 @@ _0223C46C: .word ov18_0223BBAC
 
 	.global Unk_ov18_02249560
 Unk_ov18_02249560: ; 0x02249560
-	.incbin "incbin/overlay18_rodata.bin", 0x312C, 0xC
+	.word 0x2B
+	.word 0x2B
+	.word 0x49
 
 
 
@@ -214,5 +216,6 @@ Unk_ov18_02249560: ; 0x02249560
 
 	.global Unk_ov18_0224A4F8
 Unk_ov18_0224A4F8: ; 0x0224A4F8
-	.incbin "incbin/overlay18_data.bin", 0xD98, 0x13
+	.ascii "char/xb4None.nsc.l"
+	.space 0x2
 

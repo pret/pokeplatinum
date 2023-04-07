@@ -663,85 +663,103 @@ _021EA1F4:
 
 	.global Unk_ov4_022176CC
 Unk_ov4_022176CC: ; 0x022176CC
-	.incbin "incbin/overlay4_data.bin", 0x184C, 0x1858 - 0x184C
+	.ascii "ArrayMap"
+	.space 0x4
 
 	.global Unk_ov4_022176D8
 Unk_ov4_022176D8: ; 0x022176D8
-	.incbin "incbin/overlay4_data.bin", 0x1858, 0x1864 - 0x1858
+	.ascii "ArrayNth"
+	.space 0x4
 
 	.global Unk_ov4_022176E4
 Unk_ov4_022176E4: ; 0x022176E4
-	.incbin "incbin/overlay4_data.bin", 0x1864, 0x1870 - 0x1864
+	.ascii "ArrayNew"
+	.space 0x4
 
 	.global Unk_ov4_022176F0
 Unk_ov4_022176F0: ; 0x022176F0
-	.incbin "incbin/overlay4_data.bin", 0x1870, 0x187C - 0x1870
+	.asciz "ArrayFree"
+	.space 0x2
 
 	.global Unk_ov4_022176FC
 Unk_ov4_022176FC: ; 0x022176FC
-	.incbin "incbin/overlay4_data.bin", 0x187C, 0x1888 - 0x187C
+	.asciz "ArrayGrow"
+	.space 0x2
 
 	.global Unk_ov4_02217708
 Unk_ov4_02217708: ; 0x02217708
-	.incbin "incbin/overlay4_data.bin", 0x1888, 0x1894 - 0x1888
+	.asciz "ArrayAppend"
 
 	.global Unk_ov4_02217714
 Unk_ov4_02217714: ; 0x02217714
-	.incbin "incbin/overlay4_data.bin", 0x1894, 0x18A4 - 0x1894
+	.asciz "ArrayRemoveAt"
+	.space 0x2
 
 	.global Unk_ov4_02217724
 Unk_ov4_02217724: ; 0x02217724
-	.incbin "incbin/overlay4_data.bin", 0x18A4, 0x18B4 - 0x18A4
+	.asciz "ArrayDeleteAt"
+	.space 0x2
 
 	.global Unk_ov4_02217734
 Unk_ov4_02217734: ; 0x02217734
-	.incbin "incbin/overlay4_data.bin", 0x18B4, 0x18C4 - 0x18B4
+	.asciz "ArrayInsertAt"
+	.space 0x2
 
 	.global Unk_ov4_02217744
 Unk_ov4_02217744: ; 0x02217744
-	.incbin "incbin/overlay4_data.bin", 0x18C4, 0x18D4 - 0x18C4
+	.ascii "ArrayReplaceAt"
+	.space 0x2
 
 	.global Unk_ov4_02217754
 Unk_ov4_02217754: ; 0x02217754
-	.incbin "incbin/overlay4_data.bin", 0x18D4, 0x18E8 - 0x18D4
+	.asciz "ArrayMapBackwards"
+	.space 0x2
 
 	.global Unk_ov4_02217768
 Unk_ov4_02217768: ; 0x02217768
-	.incbin "incbin/overlay4_data.bin", 0x18E8, 0x18FC - 0x18E8
+	.asciz "ArrayInsertSorted"
+	.space 0x2
 
 	.global Unk_ov4_0221777C
 Unk_ov4_0221777C: ; 0x0221777C
-	.incbin "incbin/overlay4_data.bin", 0x18FC, 0x1910 - 0x18FC
+	.ascii "ArrayMapBackwards2"
+	.space 0x2
 
 	.global Unk_ov4_02217790
 Unk_ov4_02217790: ; 0x02217790
-	.incbin "incbin/overlay4_data.bin", 0x1910, 0x191C - 0x1910
+	.asciz "array->list"
 
 	.global Unk_ov4_0221779C
 Unk_ov4_0221779C: ; 0x0221779C
-	.incbin "incbin/overlay4_data.bin", 0x191C, 0x1928 - 0x191C
+	.ascii "darray.c"
+	.space 0x4
 
 	.global Unk_ov4_022177A8
 Unk_ov4_022177A8: ; 0x022177A8
-	.incbin "incbin/overlay4_data.bin", 0x1928, 0x1930 - 0x1928
+	.asciz "array"
+	.space 0x2
 
 	.global Unk_ov4_022177B0
 Unk_ov4_022177B0: ; 0x022177B0
-	.incbin "incbin/overlay4_data.bin", 0x1930, 0x193C - 0x1930
+	.ascii "elemSize"
+	.space 0x4
 
 	.global Unk_ov4_022177BC
 Unk_ov4_022177BC: ; 0x022177BC
-	.incbin "incbin/overlay4_data.bin", 0x193C, 0x195C - 0x193C
+	.ascii "(n >= 0) && (n < array->count)"
+	.space 0x2
 
 	.global Unk_ov4_022177DC
 Unk_ov4_022177DC: ; 0x022177DC
-	.incbin "incbin/overlay4_data.bin", 0x195C, 0x197C - 0x195C
+	.asciz "(n >= 0) && (n <= array->count)"
 
 	.global Unk_ov4_022177FC
 Unk_ov4_022177FC: ; 0x022177FC
-	.incbin "incbin/overlay4_data.bin", 0x197C, 0x1988 - 0x197C
+	.ascii "comparator"
+	.space 0x2
 
 	.global Unk_ov4_02217808
 Unk_ov4_02217808: ; 0x02217808
-	.incbin "incbin/overlay4_data.bin", 0x1988, 0x3
+	.ascii "fn"
+	.space 0x2
 

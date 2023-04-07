@@ -1611,31 +1611,36 @@ _02234DB0: .word ov18_02233D18
 
 	.global Unk_ov18_022491A8
 Unk_ov18_022491A8: ; 0x022491A8
-	.incbin "incbin/overlay18_rodata.bin", 0x2D74, 0x2D75 - 0x2D74
+	.byte 0x2
 
 	.global Unk_ov18_022491A9
 Unk_ov18_022491A9: ; 0x022491A9
-	.incbin "incbin/overlay18_rodata.bin", 0x2D75, 0x2D8B - 0x2D75
+	.asciz "char/ybBgStep31.ncl.l"
 
 	.global Unk_ov18_022491BF
 Unk_ov18_022491BF: ; 0x022491BF
-	.incbin "incbin/overlay18_rodata.bin", 0x2D8B, 0x2DA4 - 0x2D8B
+	.asciz "char/xb4ApListBack.nsc.l"
 
 	.global Unk_ov18_022491D8
 Unk_ov18_022491D8: ; 0x022491D8
-	.incbin "incbin/overlay18_rodata.bin", 0x2DA4, 0x2DCC - 0x2DA4
+	.short 0x7, 0x32, 0xD0, 0x4C, 0x7, 0x4E
+	.short 0xD0, 0x68, 0x7, 0x6A, 0xD0, 0x84, 0x7, 0x86
+	.short 0xD0, 0xA0, 0x85, 0x1B, 0xFD, 0x2C
 
 	.global Unk_ov18_02249200
 Unk_ov18_02249200: ; 0x02249200
-	.incbin "incbin/overlay18_rodata.bin", 0x2DCC, 0x2DF4 - 0x2DCC
+	.short 0x4, 0x2E
+	.short 0xDB, 0x3F, 0x4, 0x4A, 0xDB, 0x5B, 0x4, 0x66
+	.short 0xDB, 0x77, 0x4, 0x82, 0xDB, 0x93, 0x82, 0x18
+	.short 0xF0, 0x2C
 
 	.global Unk_ov18_02249228
 Unk_ov18_02249228: ; 0x02249228
-	.incbin "incbin/overlay18_rodata.bin", 0x2DF4, 0x2DF8 - 0x2DF4
+	.asciz ".-3"
 
 	.global Unk_ov18_0224922C
 Unk_ov18_0224922C: ; 0x0224922C
-	.incbin "incbin/overlay18_rodata.bin", 0x2DF8, 0x4
+	.byte 0x18, 0x17, 0x16, 0x15
 
 
 
@@ -1644,7 +1649,7 @@ Unk_ov18_0224922C: ; 0x0224922C
 
 	.global Unk_ov18_0224A138
 Unk_ov18_0224A138: ; 0x0224A138
-	.incbin "incbin/overlay18_data.bin", 0x9D8, 0x15
+	.asciz "char/jb4ApList.nsc.l"
 
 
 

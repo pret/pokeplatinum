@@ -118,5 +118,5 @@ _022257F4:
 
 	.global Unk_ov60_02228CF4
 Unk_ov60_02228CF4: ; 0x02228CF4
-	.incbin "incbin/overlay60_rodata.bin", 0xA8, 0x80
+	.incbin "incbin/dwci_nd_string.bin", 0x0, 0x80
 

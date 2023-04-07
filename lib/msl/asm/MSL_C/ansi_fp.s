@@ -1481,7 +1481,8 @@ _020DF7D0: .word 0x7FEFFFFF
 
 	.global Unk_020E4588
 Unk_020E4588: ; 0x020E4588
-	.incbin "incbin/arm9_exception.bin", 0x30, 0x8
+	.short 0xFF00, 0x2005
+	.space 0x4
 
 
 	.data
@@ -1489,93 +1490,110 @@ Unk_020E4588: ; 0x020E4588
 
 	.global Unk_0210188C
 Unk_0210188C: ; 0x0210188C
-	.incbin "incbin/arm9_data.bin", 0x2BAC, 0x2BEC - 0x2BAC
+	.incbin "incbin/ansi_fp.bin", 0x0, 0x40
 
 	.global Unk_021018CC
 Unk_021018CC: ; 0x021018CC
-	.incbin "incbin/arm9_data.bin", 0x2BEC, 0x2C1C - 0x2BEC
+	.asciz "542101086242752217003726400434970855712890625"
+	.space 0x2
 
 	.global Unk_021018FC
 Unk_021018FC: ; 0x021018FC
-	.incbin "incbin/arm9_data.bin", 0x2C1C, 0x2C44 - 0x2C1C
+	.ascii "11102230246251565404236316680908203125"
+	.space 0x2
 
 	.global Unk_02101924
 Unk_02101924: ; 0x02101924
-	.incbin "incbin/arm9_data.bin", 0x2C44, 0x2C5C - 0x2C44
+	.asciz "23283064365386962890625"
 
 	.global Unk_0210193C
 Unk_0210193C: ; 0x0210193C
-	.incbin "incbin/arm9_data.bin", 0x2C5C, 0x2C6C - 0x2C5C
+	.ascii "152587890625"
+	.space 0x4
 
 	.global Unk_0210194C
 Unk_0210194C: ; 0x0210194C
-	.incbin "incbin/arm9_data.bin", 0x2C6C, 0x2C74 - 0x2C6C
+	.ascii "390625"
+	.space 0x2
 
 	.global Unk_02101954
 Unk_02101954: ; 0x02101954
-	.incbin "incbin/arm9_data.bin", 0x2C74, 0x2C7C - 0x2C74
+	.asciz "78125"
+	.space 0x2
 
 	.global Unk_0210195C
 Unk_0210195C: ; 0x0210195C
-	.incbin "incbin/arm9_data.bin", 0x2C7C, 0x2C84 - 0x2C7C
+	.asciz "15625"
+	.space 0x2
 
 	.global Unk_02101964
 Unk_02101964: ; 0x02101964
-	.incbin "incbin/arm9_data.bin", 0x2C84, 0x2C8C - 0x2C84
+	.ascii "3125"
+	.space 0x4
 
 	.global Unk_0210196C
 Unk_0210196C: ; 0x0210196C
-	.incbin "incbin/arm9_data.bin", 0x2C8C, 0x2C90 - 0x2C8C
+	.asciz "625"
 
 	.global Unk_02101970
 Unk_02101970: ; 0x02101970
-	.incbin "incbin/arm9_data.bin", 0x2C90, 0x2C94 - 0x2C90
+	.asciz "125"
 
 	.global Unk_02101974
 Unk_02101974: ; 0x02101974
-	.incbin "incbin/arm9_data.bin", 0x2C94, 0x2C98 - 0x2C94
+	.ascii "25"
+	.space 0x2
 
 	.global Unk_02101978
 Unk_02101978: ; 0x02101978
-	.incbin "incbin/arm9_data.bin", 0x2C98, 0x2C9C - 0x2C98
+	.asciz "5"
+	.space 0x2
 
 	.global Unk_0210197C
 Unk_0210197C: ; 0x0210197C
-	.incbin "incbin/arm9_data.bin", 0x2C9C, 0x2CA0 - 0x2C9C
+	.asciz "1"
+	.space 0x2
 
 	.global Unk_02101980
 Unk_02101980: ; 0x02101980
-	.incbin "incbin/arm9_data.bin", 0x2CA0, 0x2CA4 - 0x2CA0
+	.asciz "2"
+	.space 0x2
 
 	.global Unk_02101984
 Unk_02101984: ; 0x02101984
-	.incbin "incbin/arm9_data.bin", 0x2CA4, 0x2CA8 - 0x2CA4
+	.asciz "4"
+	.space 0x2
 
 	.global Unk_02101988
 Unk_02101988: ; 0x02101988
-	.incbin "incbin/arm9_data.bin", 0x2CA8, 0x2CAC - 0x2CA8
+	.asciz "8"
+	.space 0x2
 
 	.global Unk_0210198C
 Unk_0210198C: ; 0x0210198C
-	.incbin "incbin/arm9_data.bin", 0x2CAC, 0x2CB0 - 0x2CAC
+	.ascii "16"
+	.space 0x2
 
 	.global Unk_02101990
 Unk_02101990: ; 0x02101990
-	.incbin "incbin/arm9_data.bin", 0x2CB0, 0x2CB4 - 0x2CB0
+	.ascii "32"
+	.space 0x2
 
 	.global Unk_02101994
 Unk_02101994: ; 0x02101994
-	.incbin "incbin/arm9_data.bin", 0x2CB4, 0x2CB8 - 0x2CB4
+	.ascii "64"
+	.space 0x2
 
 	.global Unk_02101998
 Unk_02101998: ; 0x02101998
-	.incbin "incbin/arm9_data.bin", 0x2CB8, 0x2CBC - 0x2CB8
+	.asciz "128"
 
 	.global Unk_0210199C
 Unk_0210199C: ; 0x0210199C
-	.incbin "incbin/arm9_data.bin", 0x2CBC, 0x2CC0 - 0x2CBC
+	.asciz "256"
 
 	.global Unk_021019A0
 Unk_021019A0: ; 0x021019A0
-	.incbin "incbin/arm9_data.bin", 0x2CC0, 0x25
+	.ascii "179769313486231580793728714053034151"
+	.space 0x4
 

@@ -247,15 +247,15 @@ ov18_022443EC: ; 0x022443EC
 
 	.global Unk_ov18_0224971C
 Unk_ov18_0224971C: ; 0x0224971C
-	.incbin "incbin/overlay18_rodata.bin", 0x32E8, 0x32EC - 0x32E8
+	.byte 0x0, 0xF0, 0x0, 0x10
 
 	.global Unk_ov18_02249720
 Unk_ov18_02249720: ; 0x02249720
-	.incbin "incbin/overlay18_rodata.bin", 0x32EC, 0x32F0 - 0x32EC
+	.byte 0x11, 0x10, 0x01, 0x0
 
 	.global Unk_ov18_02249724
 Unk_ov18_02249724: ; 0x02249724
-	.incbin "incbin/overlay18_rodata.bin", 0x32F0, 0x4
+	.byte 0xF0, 0x0, 0x10, 0x0
 
 
 

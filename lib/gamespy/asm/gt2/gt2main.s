@@ -318,19 +318,23 @@ _021F87EC: .word 0x000001AA
 
 	.global Unk_ov4_022196CC
 Unk_ov4_022196CC: ; 0x022196CC
-	.incbin "incbin/overlay4_data.bin", 0x384C, 0x3864 - 0x384C
+	.ascii "gt2SetConnectionData"
+	.space 0x4
 
 	.global Unk_ov4_022196E4
 Unk_ov4_022196E4: ; 0x022196E4
-	.incbin "incbin/overlay4_data.bin", 0x3864, 0x387C - 0x3864
+	.ascii "gt2GetConnectionData"
+	.space 0x4
 
 	.global Unk_ov4_022196FC
 Unk_ov4_022196FC: ; 0x022196FC
-	.incbin "incbin/overlay4_data.bin", 0x387C, 0x3888 - 0x387C
+	.asciz "gt2Main.c"
+	.space 0x2
 
 	.global Unk_ov4_02219708
 Unk_ov4_02219708: ; 0x02219708
-	.incbin "incbin/overlay4_data.bin", 0x3888, 0xB
+	.ascii "connection"
+	.space 0x2
 
 
 

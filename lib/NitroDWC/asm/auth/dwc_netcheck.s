@@ -1316,111 +1316,130 @@ _021D6A84: .word Unk_ov4_0221A438
 
 	.global Unk_ov4_0221635C
 Unk_ov4_0221635C: ; 0x0221635C
-	.incbin "incbin/overlay4_data.bin", 0x4DC, 0x4E0 - 0x4DC
+	.word Unk_ov4_02216360
 
 	.global Unk_ov4_02216360
 Unk_ov4_02216360: ; 0x02216360
-	.incbin "incbin/overlay4_data.bin", 0x4E0, 0x504 - 0x4E0
+	.asciz "http://conntest.nintendowifi.net/"
+	.short 0x0
 
 	.global Unk_ov4_02216384
 Unk_ov4_02216384: ; 0x02216384
-	.incbin "incbin/overlay4_data.bin", 0x504, 0x518 - 0x504
+	.asciz "ALLOC DWCnetcheck"
+	.short 0x0
 
 	.global Unk_ov4_02216398
 Unk_ov4_02216398: ; 0x02216398
-	.incbin "incbin/overlay4_data.bin", 0x518, 0x528 - 0x518
+	.asciz "ALLOC DWChttp"
+	.short 0x0
 
 	.global Unk_ov4_022163A8
 Unk_ov4_022163A8: ; 0x022163A8
-	.incbin "incbin/overlay4_data.bin", 0x528, 0x538 - 0x528
+	.ascii "FREE DWChttp"
+	.word 0x0
 
 	.global Unk_ov4_022163B8
 Unk_ov4_022163B8: ; 0x022163B8
-	.incbin "incbin/overlay4_data.bin", 0x538, 0x554 - 0x538
+	.asciz "FREE DWCnetcheck->body_302"
+	.byte 0x0
 
 	.global Unk_ov4_022163D4
 Unk_ov4_022163D4: ; 0x022163D4
-	.incbin "incbin/overlay4_data.bin", 0x554, 0x574 - 0x554
+	.asciz "FREE DWCnetcheck->body_wayport"
+	.byte 0x0
 
 	.global Unk_ov4_022163F4
 Unk_ov4_022163F4: ; 0x022163F4
-	.incbin "incbin/overlay4_data.bin", 0x574, 0x588 - 0x574
+	.ascii "FREE DWCnetcheck"
+	.word 0x0
 
 	.global Unk_ov4_02216408
 Unk_ov4_02216408: ; 0x02216408
-	.incbin "incbin/overlay4_data.bin", 0x588, 0x5A4 - 0x588
+	.asciz "ALLOC DWCnetcheck->body_302"
 
 	.global Unk_ov4_02216424
 Unk_ov4_02216424: ; 0x02216424
-	.incbin "incbin/overlay4_data.bin", 0x5A4, 0x5B0 - 0x5A4
+	.asciz "ALLOC url"
+	.short 0x0
 
 	.global Unk_ov4_02216430
 Unk_ov4_02216430: ; 0x02216430
-	.incbin "incbin/overlay4_data.bin", 0x5B0, 0x5C0 - 0x5B0
+	.asciz "ALLOC data_len"
+	.byte 0x0
 
 	.global Unk_ov4_02216440
 Unk_ov4_02216440: ; 0x02216440
-	.incbin "incbin/overlay4_data.bin", 0x5C0, 0x5D0 - 0x5C0
+	.asciz "ALLOC wait_len"
+	.byte 0x0
 
 	.global Unk_ov4_02216450
 Unk_ov4_02216450: ; 0x02216450
-	.incbin "incbin/overlay4_data.bin", 0x5D0, 0x5F0 - 0x5D0
+	.asciz "ALLOC DWCnetcheck->body_wayport"
 
 	.global Unk_ov4_02216470
 Unk_ov4_02216470: ; 0x02216470
-	.incbin "incbin/overlay4_data.bin", 0x5F0, 0x5FC - 0x5F0
+	.asciz "httpresult"
+	.byte 0x0
 
 	.global Unk_ov4_0221647C
 Unk_ov4_0221647C: ; 0x0221647C
-	.incbin "incbin/overlay4_data.bin", 0x5FC, 0x61C - 0x5FC
+	.asciz "https://nas.nintendowifi.net/ac"
 
 	.global Unk_ov4_0221649C
 Unk_ov4_0221649C: ; 0x0221649C
-	.incbin "incbin/overlay4_data.bin", 0x61C, 0x624 - 0x61C
+	.asciz "action"
+	.byte 0x0
 
 	.global Unk_ov4_022164A4
 Unk_ov4_022164A4: ; 0x022164A4
-	.incbin "incbin/overlay4_data.bin", 0x624, 0x62C - 0x624
+	.asciz "message"
 
 	.global Unk_ov4_022164AC
 Unk_ov4_022164AC: ; 0x022164AC
-	.incbin "incbin/overlay4_data.bin", 0x62C, 0x63C - 0x62C
+	.asciz "HotSpotResponse"
 
 	.global Unk_ov4_022164BC
 Unk_ov4_022164BC: ; 0x022164BC
-	.incbin "incbin/overlay4_data.bin", 0x63C, 0x644 - 0x63C
+	.asciz "parse"
+	.short 0x0
 
 	.global Unk_ov4_022164C4
 Unk_ov4_022164C4: ; 0x022164C4
-	.incbin "incbin/overlay4_data.bin", 0x644, 0x64C - 0x644
+	.ascii "HTML"
+	.word 0x0
 
 	.global Unk_ov4_022164CC
 Unk_ov4_022164CC: ; 0x022164CC
-	.incbin "incbin/overlay4_data.bin", 0x64C, 0x658 - 0x64C
+	.ascii "returncd"
+	.word 0x0
 
 	.global Unk_ov4_022164D8
 Unk_ov4_022164D8: ; 0x022164D8
-	.incbin "incbin/overlay4_data.bin", 0x658, 0x65C - 0x658
+	.asciz "url"
 
 	.global Unk_ov4_022164DC
 Unk_ov4_022164DC: ; 0x022164DC
-	.incbin "incbin/overlay4_data.bin", 0x65C, 0x664 - 0x65C
+	.ascii "data"
+	.word 0x0
 
 	.global Unk_ov4_022164E4
 Unk_ov4_022164E4: ; 0x022164E4
-	.incbin "incbin/overlay4_data.bin", 0x664, 0x66C - 0x664
+	.ascii "wait"
+	.word 0x0
 
 	.global Unk_ov4_022164EC
 Unk_ov4_022164EC: ; 0x022164EC
-	.incbin "incbin/overlay4_data.bin", 0x66C, 0x678 - 0x66C
+	.ascii "FREE url"
+	.word 0x0
 
 	.global Unk_ov4_022164F8
 Unk_ov4_022164F8: ; 0x022164F8
-	.incbin "incbin/overlay4_data.bin", 0x678, 0x684 - 0x678
+	.asciz "FREE data"
+	.short 0x0
 
 	.global Unk_ov4_02216504
 Unk_ov4_02216504: ; 0x02216504
-	.incbin "incbin/overlay4_data.bin", 0x684, 0xA
+	.asciz "FREE wait"
 
 
 

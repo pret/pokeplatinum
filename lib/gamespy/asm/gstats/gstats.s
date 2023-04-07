@@ -1075,55 +1075,55 @@ _021F7124: .word Unk_ov4_02219448
 
 	.global Unk_ov4_0221598C
 Unk_ov4_0221598C: ; 0x0221598C
-	.incbin "incbin/overlay4_rodata.bin", 0x124, 0x12C - 0x124
+	.incbin "incbin/gstats.bin", 0x0, 0x8
 
 	.global Unk_ov4_02215994
 Unk_ov4_02215994: ; 0x02215994
-	.incbin "incbin/overlay4_rodata.bin", 0x12C, 0x13C - 0x12C
+	.incbin "incbin/gstats.bin", 0x8, 0x18 - 0x8
 
 	.global Unk_ov4_022159A4
 Unk_ov4_022159A4: ; 0x022159A4
-	.incbin "incbin/overlay4_rodata.bin", 0x13C, 0x14C - 0x13C
+	.incbin "incbin/gstats.bin", 0x18, 0x28 - 0x18
 
 	.global Unk_ov4_022159B4
 Unk_ov4_022159B4: ; 0x022159B4
-	.incbin "incbin/overlay4_rodata.bin", 0x14C, 0x16A - 0x14C
+	.incbin "incbin/gstats.bin", 0x28, 0x46 - 0x28
 
 	.global Unk_ov4_022159D2
 Unk_ov4_022159D2: ; 0x022159D2
-	.incbin "incbin/overlay4_rodata.bin", 0x16A, 0x189 - 0x16A
+	.incbin "incbin/gstats.bin", 0x46, 0x65 - 0x46
 
 	.global Unk_ov4_022159F1
 Unk_ov4_022159F1: ; 0x022159F1
-	.incbin "incbin/overlay4_rodata.bin", 0x189, 0x1AC - 0x189
+	.incbin "incbin/gstats.bin", 0x65, 0x88 - 0x65
 
 	.global Unk_ov4_02215A14
 Unk_ov4_02215A14: ; 0x02215A14
-	.incbin "incbin/overlay4_rodata.bin", 0x1AC, 0x1D0 - 0x1AC
+	.incbin "incbin/gstats.bin", 0x88, 0xAC - 0x88
 
 	.global Unk_ov4_02215A38
 Unk_ov4_02215A38: ; 0x02215A38
-	.incbin "incbin/overlay4_rodata.bin", 0x1D0, 0x1F9 - 0x1D0
+	.incbin "incbin/gstats.bin", 0xAC, 0xD5 - 0xAC
 
 	.global Unk_ov4_02215A61
 Unk_ov4_02215A61: ; 0x02215A61
-	.incbin "incbin/overlay4_rodata.bin", 0x1F9, 0x223 - 0x1F9
+	.incbin "incbin/gstats.bin", 0xD5, 0xFF - 0xD5
 
 	.global Unk_ov4_02215A8B
 Unk_ov4_02215A8B: ; 0x02215A8B
-	.incbin "incbin/overlay4_rodata.bin", 0x223, 0x24F - 0x223
+	.incbin "incbin/gstats.bin", 0xFF, 0x12B - 0xFF
 
 	.global Unk_ov4_02215AB7
 Unk_ov4_02215AB7: ; 0x02215AB7
-	.incbin "incbin/overlay4_rodata.bin", 0x24F, 0x280 - 0x24F
+	.incbin "incbin/gstats.bin", 0x12B, 0x15C - 0x12B
 
 	.global Unk_ov4_02215AE8
 Unk_ov4_02215AE8: ; 0x02215AE8
-	.incbin "incbin/overlay4_rodata.bin", 0x280, 0x2BF - 0x280
+	.incbin "incbin/gstats.bin", 0x15C, 0x19B - 0x15C
 
 	.global Unk_ov4_02215B27
 Unk_ov4_02215B27: ; 0x02215B27
-	.incbin "incbin/overlay4_rodata.bin", 0x2BF, 0x101
+	.incbin "incbin/gstats.bin", 0x19B, 0x101
 
 
 
@@ -1132,103 +1132,134 @@ Unk_ov4_02215B27: ; 0x02215B27
 
 	.global Unk_ov4_02219358
 Unk_ov4_02219358: ; 0x02219358
-	.incbin "incbin/overlay4_data.bin", 0x34D8, 0x34DC - 0x34D8
+	.word 0xFFFFFFFF
 
 	.global Unk_ov4_0221935C
 Unk_ov4_0221935C: ; 0x0221935C
-	.incbin "incbin/overlay4_data.bin", 0x34DC, 0x34E0 - 0x34DC
+	.ascii " N"
+	.space 0x2
 
 	.global Unk_ov4_02219360
 Unk_ov4_02219360: ; 0x02219360
-	.incbin "incbin/overlay4_data.bin", 0x34E0, 0x34E4 - 0x34E0
+	.word Unk_ov4_022193A4
 
 	.global Unk_ov4_02219364
 Unk_ov4_02219364: ; 0x02219364
-	.incbin "incbin/overlay4_data.bin", 0x34E4, 0x3500 - 0x34E4
+	.word ov4_021F5E18
+	.word ov4_021F5E44
+	.word ov4_021F5ED8
+	.word ov4_021F5F5C
+	.word ov4_021F5FDC
+	.word ov4_021F6060
+	.word ov4_021F6104
 
 	.global Unk_ov4_02219380
 Unk_ov4_02219380: ; 0x02219380
-	.incbin "incbin/overlay4_data.bin", 0x3500, 0x3524 - 0x3500
+	.word ov4_021F6DC4
+	.word ov4_021F6E2C
+	.word ov4_021F6E9C
+	.word ov4_021F6EF8
+	.word ov4_021F6F54
+	.word ov4_021F6FB4
+	.word ov4_021F7010
+	.word ov4_021F706C
+	.word ov4_021F70CC
 
 	.global Unk_ov4_022193A4
 Unk_ov4_022193A4: ; 0x022193A4
-	.incbin "incbin/overlay4_data.bin", 0x3524, 0x3534 - 0x3524
+	.space 0x1
+	.asciz "ameSpy3D"
+	.space 0x6
 
 	.global Unk_ov4_022193B4
 Unk_ov4_022193B4: ; 0x022193B4
-	.incbin "incbin/overlay4_data.bin", 0x3534, 0x3544 - 0x3534
+	.space 0x1
+	.ascii "rojectAphex"
+	.space 0x4
 
 	.global Unk_ov4_022193C4
 Unk_ov4_022193C4: ; 0x022193C4
-	.incbin "incbin/overlay4_data.bin", 0x3544, 0x3548 - 0x3544
+	.space 0x4
 
 	.global Unk_ov4_022193C8
 Unk_ov4_022193C8: ; 0x022193C8
-	.incbin "incbin/overlay4_data.bin", 0x3548, 0x354C - 0x3548
+	.word 0x5C
 
 	.global Unk_ov4_022193CC
 Unk_ov4_022193CC: ; 0x022193CC
-	.incbin "incbin/overlay4_data.bin", 0x354C, 0x3554 - 0x354C
+	.ascii "pauthr"
+	.space 0x2
 
 	.global Unk_ov4_022193D4
 Unk_ov4_022193D4: ; 0x022193D4
-	.incbin "incbin/overlay4_data.bin", 0x3554, 0x3558 - 0x3554
+	.asciz "lid"
 
 	.global Unk_ov4_022193D8
 Unk_ov4_022193D8: ; 0x022193D8
-	.incbin "incbin/overlay4_data.bin", 0x3558, 0x3560 - 0x3558
+	.ascii "errmsg"
+	.space 0x2
 
 	.global Unk_ov4_022193E0
 Unk_ov4_022193E0: ; 0x022193E0
-	.incbin "incbin/overlay4_data.bin", 0x3560, 0x3568 - 0x3560
+	.asciz "getpidr"
 
 	.global Unk_ov4_022193E8
 Unk_ov4_022193E8: ; 0x022193E8
-	.incbin "incbin/overlay4_data.bin", 0x3568, 0x3570 - 0x3568
+	.ascii "getpdr"
+	.space 0x2
 
 	.global Unk_ov4_022193F0
 Unk_ov4_022193F0: ; 0x022193F0
-	.incbin "incbin/overlay4_data.bin", 0x3570, 0x3574 - 0x3570
+	.asciz "pid"
 
 	.global Unk_ov4_022193F4
 Unk_ov4_022193F4: ; 0x022193F4
-	.incbin "incbin/overlay4_data.bin", 0x3574, 0x3578 - 0x3574
+	.asciz "mod"
 
 	.global Unk_ov4_022193F8
 Unk_ov4_022193F8: ; 0x022193F8
-	.incbin "incbin/overlay4_data.bin", 0x3578, 0x3580 - 0x3578
+	.ascii "length"
+	.space 0x2
 
 	.global Unk_ov4_02219400
 Unk_ov4_02219400: ; 0x02219400
-	.incbin "incbin/overlay4_data.bin", 0x3580, 0x3588 - 0x3580
+	.ascii "\\data\\"
+	.space 0x2
 
 	.global Unk_ov4_02219408
 Unk_ov4_02219408: ; 0x02219408
-	.incbin "incbin/overlay4_data.bin", 0x3588, 0x3590 - 0x3588
+	.ascii "setpdr"
+	.space 0x2
 
 	.global Unk_ov4_02219410
 Unk_ov4_02219410: ; 0x02219410
-	.incbin "incbin/overlay4_data.bin", 0x3590, 0x359C - 0x3590
+	.ascii "\\pauthr\\"
+	.space 0x4
 
 	.global Unk_ov4_0221941C
 Unk_ov4_0221941C: ; 0x0221941C
-	.incbin "incbin/overlay4_data.bin", 0x359C, 0x35A8 - 0x359C
+	.asciz "\\getpidr\\"
+	.space 0x2
 
 	.global Unk_ov4_02219428
 Unk_ov4_02219428: ; 0x02219428
-	.incbin "incbin/overlay4_data.bin", 0x35A8, 0x35B4 - 0x35A8
+	.ascii "\\getpdr\\"
+	.space 0x4
 
 	.global Unk_ov4_02219434
 Unk_ov4_02219434: ; 0x02219434
-	.incbin "incbin/overlay4_data.bin", 0x35B4, 0x35C0 - 0x35B4
+	.ascii "\\setpdr\\"
+	.space 0x4
 
 	.global Unk_ov4_02219440
 Unk_ov4_02219440: ; 0x02219440
-	.incbin "incbin/overlay4_data.bin", 0x35C0, 0x35C8 - 0x35C0
+	.ascii "%s_t%d"
+	.space 0x2
 
 	.global Unk_ov4_02219448
 Unk_ov4_02219448: ; 0x02219448
-	.incbin "incbin/overlay4_data.bin", 0x35C8, 0x6
+	.asciz "%s_%d"
+	.space 0x2
 
 
 

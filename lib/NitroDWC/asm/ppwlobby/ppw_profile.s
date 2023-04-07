@@ -1204,17 +1204,18 @@ _02242BFC:
 
 	.global Unk_ov66_02259100
 Unk_ov66_02259100: ; 0x02259100
-	.incbin "incbin/overlay66_data.bin", 0x3E0, 0x3E1 - 0x3E0
+	.byte 0x1
 
 	.global Unk_ov66_02259101
 Unk_ov66_02259101: ; 0x02259101
-	.incbin "incbin/overlay66_data.bin", 0x3E1, 0x3E4 - 0x3E1
+	.space 0x3
 
 	.global Unk_ov66_02259104
 Unk_ov66_02259104: ; 0x02259104
-	.incbin "incbin/overlay66_data.bin", 0x3E4, 0x3EC - 0x3E4
+	.word ov66_0224239C
+	.space 0x4
 
 	.global Unk_ov66_0225910C
 Unk_ov66_0225910C: ; 0x0225910C
-	.incbin "incbin/overlay66_data.bin", 0x3EC, 0x1A
+	.asciz "tree::insert length error"
 

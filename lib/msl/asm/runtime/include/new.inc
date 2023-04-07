@@ -6,3 +6,4 @@
 .public sub_020E3F50
 .public sub_020E3F94
 .public __throw
+.public Unk_021019C8

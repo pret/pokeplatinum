@@ -950,7 +950,9 @@ ov66_022588F4: ; 0x022588F4
 
 	.global Unk_ov66_02258CE4
 Unk_ov66_02258CE4: ; 0x02258CE4
-	.incbin "incbin/overlay66_rodata.bin", 0x3CC, 0x24
+	.asciz "0123456789abcdef"
+	.asciz "0123456789abcdef"
+	.space 0x2
 
 
 	.data
@@ -958,7 +960,30 @@ Unk_ov66_02258CE4: ; 0x02258CE4
 
 	.global Unk_ov66_0225B528
 Unk_ov66_0225B528: ; 0x0225B528
-	.incbin "incbin/overlay66_data.bin", 0x2808, 0x188
+	.word 0x0
+	.word 0x2
+	.space 0x9C
+	.ascii "&hash="
+	.space 0x2
+	.ascii "error:"
+	.space 0x2
+	.ascii "http://gamestats2.gs.nintendowifi.net/"
+	.space 0x2
+	.ascii "http://sdkdev.gamespy.com/games/"
+	.space 0x4
+	.ascii "http://ishikawa.servebeer.com/games/"
+	.space 0x4
+	.ascii "&data="
+	.space 0x2
+	.ascii "%d"
+	.space 0x2
+	.asciz "?pid="
+	.space 0x2
+	.asciz "%s%s%s?pid=%d&hash=%s&data="
+	.ascii "0000000000000000000000000000000000000000"
+	.space 0x8
+
+
 
 
 	.bss

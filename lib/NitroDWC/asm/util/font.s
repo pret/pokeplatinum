@@ -621,12 +621,11 @@ _02244C28: .word Unk_ov18_022533C0
 
 	.global Unk_ov18_02249728
 Unk_ov18_02249728: ; 0x02249728
-	.incbin "incbin/overlay18_rodata.bin", 0x32F4, 0x32F8 - 0x32F4
+	.byte 0x0, 0x0, 0x80, 0x1
 
 	.global Unk_ov18_0224972C
 Unk_ov18_0224972C: ; 0x0224972C
-	.incbin "incbin/overlay18_rodata.bin", 0x32F8, 0x8
-
+	.short 0x20, 0x18, 0x20, 0xC
 
 
 	.data
@@ -634,23 +633,25 @@ Unk_ov18_0224972C: ; 0x0224972C
 
 	.global Unk_ov18_0224B210
 Unk_ov18_0224B210: ; 0x0224B210
-	.incbin "incbin/overlay18_data.bin", 0x1AB0, 0x1AB8 - 0x1AB0
+	.word Unk_ov18_0224B230
+	.word Unk_ov18_0224B220
 
 	.global Unk_ov18_0224B218
 Unk_ov18_0224B218: ; 0x0224B218
-	.incbin "incbin/overlay18_data.bin", 0x1AB8, 0x1AC0 - 0x1AB8
+	.word Unk_ov18_0224B240
+	.word Unk_ov18_0224B220
 
 	.global Unk_ov18_0224B220
 Unk_ov18_0224B220: ; 0x0224B220
-	.incbin "incbin/overlay18_data.bin", 0x1AC0, 0x1AD0 - 0x1AC0
+	.asciz "msg/lc_s.NFTR.l"
 
 	.global Unk_ov18_0224B230
 Unk_ov18_0224B230: ; 0x0224B230
-	.incbin "incbin/overlay18_data.bin", 0x1AD0, 0x1AE0 - 0x1AD0
+	.asciz "msg/kc_m.NFTR.l"
 
 	.global Unk_ov18_0224B240
 Unk_ov18_0224B240: ; 0x0224B240
-	.incbin "incbin/overlay18_data.bin", 0x1AE0, 0x10
+	.asciz "msg/lc_m.NFTR.l"
 
 
 

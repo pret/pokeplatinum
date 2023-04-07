@@ -44,5 +44,6 @@ ov18_02244C50: ; 0x02244C50
 
 	.global Unk_ov18_02249734
 Unk_ov18_02249734: ; 0x02249734
-	.incbin "incbin/overlay18_rodata.bin", 0x3300, 0x8
+	.word 0x0
+	.word 0xC00100
 
