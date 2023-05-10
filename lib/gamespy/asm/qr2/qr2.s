@@ -1721,7 +1721,8 @@ _021FD4DC: .word Unk_ov4_022199F4
 
 	.global Unk_ov4_02215C28
 Unk_ov4_02215C28: ; 0x02215C28
-	.incbin "incbin/overlay4_rodata.bin", 0x3C0, 0x8
+	.byte 0xFD, 0xFC, 0x1E, 0x66, 0x6A, 0xB2
+	.space 0x2
 
 
 
@@ -1730,84 +1731,96 @@ Unk_ov4_02215C28: ; 0x02215C28
 
 	.global Unk_ov4_022197F0
 Unk_ov4_022197F0: ; 0x022197F0
-	.incbin "incbin/overlay4_data.bin", 0x3970, 0x3974 - 0x3970
+	.word Unk_ov4_022197F4
 
 	.global Unk_ov4_022197F4
 Unk_ov4_022197F4: ; 0x022197F4
-	.incbin "incbin/overlay4_data.bin", 0x3974, 0x3A84 - 0x3974
+	.word 0xFFFFFFFF
+	.space 0x10C
 
 	.global Unk_ov4_02219904
 Unk_ov4_02219904: ; 0x02219904
-	.incbin "incbin/overlay4_data.bin", 0x3A84, 0x3AA4 - 0x3A84
+	.asciz "%s.master.gs.nintendowifi.net"
+	.space 0x2
 
 	.global Unk_ov4_02219924
 Unk_ov4_02219924: ; 0x02219924
-	.incbin "incbin/overlay4_data.bin", 0x3AA4, 0x3ADC - 0x3AA4
+	.asciz "No challenge value was received from the master server."
 
 	.global Unk_ov4_0221995C
 Unk_ov4_0221995C: ; 0x0221995C
-	.incbin "incbin/overlay4_data.bin", 0x3ADC, 0x3AE0 - 0x3ADC
+	.ascii "%d"
+	.space 0x2
 
 	.global Unk_ov4_02219960
 Unk_ov4_02219960: ; 0x02219960
-	.incbin "incbin/overlay4_data.bin", 0x3AE0, 0x3AF0 - 0x3AE0
+	.asciz "255.255.255.255"
 
 	.global Unk_ov4_02219970
 Unk_ov4_02219970: ; 0x02219970
-	.incbin "incbin/overlay4_data.bin", 0x3AF0, 0x3AFC - 0x3AF0
+	.ascii "%08X%04X"
+	.space 0x4
 
 	.global Unk_ov4_0221997C
 Unk_ov4_0221997C: ; 0x0221997C
-	.incbin "incbin/overlay4_data.bin", 0x3AFC, 0x3B04 - 0x3AFC
+	.asciz "unknown"
 
 	.global Unk_ov4_02219984
 Unk_ov4_02219984: ; 0x02219984
-	.incbin "incbin/overlay4_data.bin", 0x3B04, 0x3B08 - 0x3B04
+	.space 0x4
 
 	.global Unk_ov4_02219988
 Unk_ov4_02219988: ; 0x02219988
-	.incbin "incbin/overlay4_data.bin", 0x3B08, 0x3B10 - 0x3B08
+	.ascii "%s%d"
+	.space 0x4
 
 	.global Unk_ov4_02219990
 Unk_ov4_02219990: ; 0x02219990
-	.incbin "incbin/overlay4_data.bin", 0x3B10, 0x3B24 - 0x3B10
+	.ascii "final\\\\queryid\\1.1"
+	.space 0x2
 
 	.global Unk_ov4_022199A4
 Unk_ov4_022199A4: ; 0x022199A4
-	.incbin "incbin/overlay4_data.bin", 0x3B24, 0x3B30 - 0x3B24
+	.asciz "localip%d"
+	.space 0x2
 
 	.global Unk_ov4_022199B0
 Unk_ov4_022199B0: ; 0x022199B0
-	.incbin "incbin/overlay4_data.bin", 0x3B30, 0x3B3C - 0x3B30
+	.asciz "localport"
+	.space 0x2
 
 	.global Unk_ov4_022199BC
 Unk_ov4_022199BC: ; 0x022199BC
-	.incbin "incbin/overlay4_data.bin", 0x3B3C, 0x3B44 - 0x3B3C
+	.ascii "natneg"
+	.space 0x2
 
 	.global Unk_ov4_022199C4
 Unk_ov4_022199C4: ; 0x022199C4
-	.incbin "incbin/overlay4_data.bin", 0x3B44, 0x3B48 - 0x3B44
+	.word 0x31
 
 	.global Unk_ov4_022199C8
 Unk_ov4_022199C8: ; 0x022199C8
-	.incbin "incbin/overlay4_data.bin", 0x3B48, 0x3B4C - 0x3B48
+	.word 0x30
 
 	.global Unk_ov4_022199CC
 Unk_ov4_022199CC: ; 0x022199CC
-	.incbin "incbin/overlay4_data.bin", 0x3B4C, 0x3B5C - 0x3B4C
+	.ascii "statechanged"
+	.space 0x4
 
 	.global Unk_ov4_022199DC
 Unk_ov4_022199DC: ; 0x022199DC
-	.incbin "incbin/overlay4_data.bin", 0x3B5C, 0x3B68 - 0x3B5C
+	.ascii "gamename"
+	.space 0x4
 
 	.global Unk_ov4_022199E8
 Unk_ov4_022199E8: ; 0x022199E8
-	.incbin "incbin/overlay4_data.bin", 0x3B68, 0x3B74 - 0x3B68
+	.ascii "publicip"
+	.space 0x4
 
 	.global Unk_ov4_022199F4
 Unk_ov4_022199F4: ; 0x022199F4
-	.incbin "incbin/overlay4_data.bin", 0x3B74, 0xB
-
+	.ascii "publicport"
+	.space 0x2
 
 
 	.bss

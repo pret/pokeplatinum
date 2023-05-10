@@ -154,59 +154,59 @@ _021D6CA0: .word DWCnastimediffvalid
 
 	.global Unk_ov4_02216510
 Unk_ov4_02216510: ; 0x02216510
-	.incbin "incbin/overlay4_data.bin", 0x690, 0x694 - 0x690
+	.asciz "Jun"
 
 	.global Unk_ov4_02216514
 Unk_ov4_02216514: ; 0x02216514
-	.incbin "incbin/overlay4_data.bin", 0x694, 0x698 - 0x694
+	.asciz "Jul"
 
 	.global Unk_ov4_02216518
 Unk_ov4_02216518: ; 0x02216518
-	.incbin "incbin/overlay4_data.bin", 0x698, 0x69C - 0x698
+	.asciz "Dec"
 
 	.global Unk_ov4_0221651C
 Unk_ov4_0221651C: ; 0x0221651C
-	.incbin "incbin/overlay4_data.bin", 0x69C, 0x6A0 - 0x69C
+	.asciz "Sep"
 
 	.global Unk_ov4_02216520
 Unk_ov4_02216520: ; 0x02216520
-	.incbin "incbin/overlay4_data.bin", 0x6A0, 0x6A4 - 0x6A0
+	.asciz "Aug"
 
 	.global Unk_ov4_02216524
 Unk_ov4_02216524: ; 0x02216524
-	.incbin "incbin/overlay4_data.bin", 0x6A4, 0x6A8 - 0x6A4
+	.asciz "Nov"
 
 	.global Unk_ov4_02216528
 Unk_ov4_02216528: ; 0x02216528
-	.incbin "incbin/overlay4_data.bin", 0x6A8, 0x6AC - 0x6A8
+	.asciz "Oct"
 
 	.global Unk_ov4_0221652C
 Unk_ov4_0221652C: ; 0x0221652C
-	.incbin "incbin/overlay4_data.bin", 0x6AC, 0x6B0 - 0x6AC
+	.asciz "May"
 
 	.global Unk_ov4_02216530
 Unk_ov4_02216530: ; 0x02216530
-	.incbin "incbin/overlay4_data.bin", 0x6B0, 0x6B4 - 0x6B0
+	.asciz "Apr"
 
 	.global Unk_ov4_02216534
 Unk_ov4_02216534: ; 0x02216534
-	.incbin "incbin/overlay4_data.bin", 0x6B4, 0x6B8 - 0x6B4
+	.asciz "Mar"
 
 	.global Unk_ov4_02216538
 Unk_ov4_02216538: ; 0x02216538
-	.incbin "incbin/overlay4_data.bin", 0x6B8, 0x6BC - 0x6B8
+	.asciz "Feb"
 
 	.global Unk_ov4_0221653C
 Unk_ov4_0221653C: ; 0x0221653C
-	.incbin "incbin/overlay4_data.bin", 0x6BC, 0x6C0 - 0x6BC
+	.asciz "Jan"
 
 	.global Unk_ov4_02216540
 Unk_ov4_02216540: ; 0x02216540
-	.incbin "incbin/overlay4_data.bin", 0x6C0, 0x6F0 - 0x6C0
+	.incbin "incbin/dwc_nastime.bin", 0x0, 0x30
 
 	.global Unk_ov4_02216570
 Unk_ov4_02216570: ; 0x02216570
-	.incbin "incbin/overlay4_data.bin", 0x6F0, 0x1E
+	.asciz "Fri, 03 Mar 2006 01:28:13 GMT"
 
 
 

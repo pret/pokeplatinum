@@ -1110,7 +1110,7 @@ _022227F4: .word Unk_ov60_022298A8
 
 	.global Unk_ov60_02228C60
 Unk_ov60_02228C60: ; 0x02228C60
-	.incbin "incbin/overlay60_rodata.bin", 0x14, 0x4
+	.asciz "%00"
 
 
 

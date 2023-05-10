@@ -754,49 +754,52 @@ ov66_02241A94: ; 0x02241A94
 
 	.global Unk_ov66_022590D8
 Unk_ov66_022590D8: ; 0x022590D8
-	.incbin "incbin/overlay66_data.bin", 0x3B8, 0x3B9 - 0x3B8
+	.space 0x1
 
 	.global Unk_ov66_022590D9
 Unk_ov66_022590D9: ; 0x022590D9
-	.incbin "incbin/overlay66_data.bin", 0x3B9, 0x3BA - 0x3B9
+	.space 0x1
 
 	.global Unk_ov66_022590DA
 Unk_ov66_022590DA: ; 0x022590DA
-	.incbin "incbin/overlay66_data.bin", 0x3BA, 0x3BC - 0x3BA
+	.space 0x2
 
 	.global Unk_ov66_022590DC
 Unk_ov66_022590DC: ; 0x022590DC
-	.incbin "incbin/overlay66_data.bin", 0x3BC, 0x3C0 - 0x3BC
+	.ascii "  "
+	.space 0x2
 
 	.global Unk_ov66_022590E0
 Unk_ov66_022590E0: ; 0x022590E0
-	.incbin "incbin/overlay66_data.bin", 0x3C0, 0x3C4 - 0x3C0
+	.word 0x20
 
 	.global Unk_ov66_022590E4
 Unk_ov66_022590E4: ; 0x022590E4
-	.incbin "incbin/overlay66_data.bin", 0x3C4, 0x3C8 - 0x3C4
+	.word 0x42
 
 	.global Unk_ov66_022590E8
 Unk_ov66_022590E8: ; 0x022590E8
-	.incbin "incbin/overlay66_data.bin", 0x3C8, 0x3CC - 0x3C8
+	.word 0x53
 
 	.global Unk_ov66_022590EC
 Unk_ov66_022590EC: ; 0x022590EC
-	.incbin "incbin/overlay66_data.bin", 0x3CC, 0x3D0 - 0x3CC
+	.word 0x0
 
 	.global Unk_ov66_022590F0
 Unk_ov66_022590F0: ; 0x022590F0
-	.incbin "incbin/overlay66_data.bin", 0x3D0, 0x3D4 - 0x3D0
+	.ascii "%x"
+	.space 0x2
 
 	.global Unk_ov66_022590F4
 Unk_ov66_022590F4: ; 0x022590F4
-	.incbin "incbin/overlay66_data.bin", 0x3D4, 0x3D8 - 0x3D4
+	.word 0x41
 
 	.global Unk_ov66_022590F8
 Unk_ov66_022590F8: ; 0x022590F8
-	.incbin "incbin/overlay66_data.bin", 0x3D8, 0x3DC - 0x3D8
+	.word 0x5F
 
 	.global Unk_ov66_022590FC
 Unk_ov66_022590FC: ; 0x022590FC
-	.incbin "incbin/overlay66_data.bin", 0x3DC, 0x3
+	.ascii "%s"
+	.space 0x2
 

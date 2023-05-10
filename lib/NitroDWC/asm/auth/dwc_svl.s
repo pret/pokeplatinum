@@ -458,51 +458,59 @@ _021D72DC: .word Unk_ov4_0221661C
 
 	.global Unk_ov4_02216590
 Unk_ov4_02216590: ; 0x02216590
-	.incbin "incbin/overlay4_data.bin", 0x710, 0x720 - 0x710
+	.asciz "ALLOC intwork"
+	.short 0x0
 
 	.global Unk_ov4_022165A0
 Unk_ov4_022165A0: ; 0x022165A0
-	.incbin "incbin/overlay4_data.bin", 0x720, 0x730 - 0x720
+	.ascii "FREE intwork"
+	.word 0x0
 
 	.global Unk_ov4_022165B0
 Unk_ov4_022165B0: ; 0x022165B0
-	.incbin "incbin/overlay4_data.bin", 0x730, 0x750 - 0x730
+	.asciz "https://nas.nintendowifi.net/ac"
 
 	.global Unk_ov4_022165D0
 Unk_ov4_022165D0: ; 0x022165D0
-	.incbin "incbin/overlay4_data.bin", 0x750, 0x758 - 0x750
+	.asciz "action"
+	.byte 0x0
 
 	.global Unk_ov4_022165D8
 Unk_ov4_022165D8: ; 0x022165D8
-	.incbin "incbin/overlay4_data.bin", 0x758, 0x760 - 0x758
+	.asciz "SVCLOC"
+	.byte 0x0
 
 	.global Unk_ov4_022165E0
 Unk_ov4_022165E0: ; 0x022165E0
-	.incbin "incbin/overlay4_data.bin", 0x760, 0x764 - 0x760
+	.asciz "svc"
 
 	.global Unk_ov4_022165E4
 Unk_ov4_022165E4: ; 0x022165E4
-	.incbin "incbin/overlay4_data.bin", 0x764, 0x76C - 0x764
+	.ascii "Date"
+	.word 0x0
 
 	.global Unk_ov4_022165EC
 Unk_ov4_022165EC: ; 0x022165EC
-	.incbin "incbin/overlay4_data.bin", 0x76C, 0x778 - 0x76C
+	.asciz "httpresult"
+	.byte 0x0
 
 	.global Unk_ov4_022165F8
 Unk_ov4_022165F8: ; 0x022165F8
-	.incbin "incbin/overlay4_data.bin", 0x778, 0x784 - 0x778
+	.ascii "returncd"
+	.word 0x0
 
 	.global Unk_ov4_02216604
 Unk_ov4_02216604: ; 0x02216604
-	.incbin "incbin/overlay4_data.bin", 0x784, 0x78C - 0x784
+	.asciz "svchost"
 
 	.global Unk_ov4_0221660C
 Unk_ov4_0221660C: ; 0x0221660C
-	.incbin "incbin/overlay4_data.bin", 0x78C, 0x79C - 0x78C
+	.ascii "servicetoken"
+	.word 0x0
 
 	.global Unk_ov4_0221661C
 Unk_ov4_0221661C: ; 0x0221661C
-	.incbin "incbin/overlay4_data.bin", 0x79C, 0xB
+	.asciz "statusdata"
 
 
 

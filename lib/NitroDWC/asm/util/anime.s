@@ -144,7 +144,7 @@ _0222AF08: .word 0xFE00FF00
 
 	.global Unk_ov18_02248C8C
 Unk_ov18_02248C8C: ; 0x02248C8C
-	.incbin "incbin/overlay18_rodata.bin", 0x2858, 0x3
+	.byte 0xE, 0x4, 0x5, 0x0
 
 
 

@@ -1439,27 +1439,34 @@ _020E3EA4: .word Unk_02101B80
 
 	.global Unk_020E45CC
 Unk_020E45CC: ; 0x020E45CC
-	.incbin "incbin/arm9_exception.bin", 0x74, 0x8
+	.byte 0x0, 0x3, 0x1, 0xB0
+	.space 0x4
 
 	.global Unk_020E45D4
 Unk_020E45D4: ; 0x020E45D4
-	.incbin "incbin/arm9_exception.bin", 0x7C, 0x10
+	.byte 0x0, 0xFF, 0x1, 0xC8
+	.byte 0x58, 0x1D, 0xB8, 0x1A, 0x1, 0x8C, 0x50, 0x1A, 0x0, 0x8E
+	.space 0x2
 
 	.global Unk_020E45E4
 Unk_020E45E4: ; 0x020E45E4
-	.incbin "incbin/arm9_exception.bin", 0x8C, 0x8
+	.byte 0x0, 0x3, 0x1, 0x98
+	.space 0x4
 
 	.global Unk_020E45EC
 Unk_020E45EC: ; 0x020E45EC
-	.incbin "incbin/arm9_exception.bin", 0x94, 0x14
+	.byte 0x40, 0x81, 0x70, 0x0, 0x30, 0x0, 0x16, 0x20, 0xB0, 0x24, 0x0, 0x8C
+	.space 0x4
+	.byte 0x38, 0x8, 0x8D, 0x8
 
 	.global Unk_020E4600
 Unk_020E4600: ; 0x020E4600
-	.incbin "incbin/arm9_exception.bin", 0xA8, 0x8
+	.byte 0x0, 0xF, 0x30, 0x38, 0x80, 0xE, 0x0, 0x8E
 
 	.global Unk_020E4608
 Unk_020E4608: ; 0x020E4608
-	.incbin "incbin/arm9_exception.bin", 0xB0, 0x8
+	.byte 0x0, 0xFF, 0x1, 0xC8
+	.space 0x4
 
 
 	.data
@@ -1467,25 +1474,35 @@ Unk_020E4608: ; 0x020E4608
 
 	.global Unk_02101B74
 Unk_02101B74: ; 0x02101B74
-	.incbin "incbin/arm9_data.bin", 0x2E94, 0x2EA0 - 0x2E94
+	.word 0x02101CA8
+	.word Unk_02101B90
+	.word Unk_021019C8
 
 	.global Unk_02101B80
 Unk_02101B80: ; 0x02101B80
-	.incbin "incbin/arm9_data.bin", 0x2EA0, 0x2EB0 - 0x2EA0
+	.asciz "bad_exception"
+	.space 0x2
 
 	.global Unk_02101B90
 Unk_02101B90: ; 0x02101B90
-	.incbin "incbin/arm9_data.bin", 0x2EB0, 0x2EC4 - 0x2EB0
+	.asciz "St13bad_exception"
+	.space 0x2
 
 	.global Unk_02101BA4
 Unk_02101BA4: ; 0x02101BA4
-	.incbin "incbin/arm9_data.bin", 0x2EC4, 0x2ED8 - 0x2EC4
+	.space 0x4
+	.word Unk_02101B74
+	.word sub_020E3AD8
+	.word sub_020E3E88
+	.word sub_020E3E9C
 
 	.global Unk_02101BB8
 Unk_02101BB8: ; 0x02101BB8
-	.incbin "incbin/arm9_data.bin", 0x2ED8, 0x2EF0 - 0x2ED8
+	.asciz "!std::bad_exception!!"
+	.space 0x2
 
 	.global Unk_02101BD0
 Unk_02101BD0: ; 0x02101BD0
-	.incbin "incbin/arm9_data.bin", 0x2EF0, 0x26
+	.asciz "!std::exception!!std::bad_exception!!"
+	.space 0x2
 

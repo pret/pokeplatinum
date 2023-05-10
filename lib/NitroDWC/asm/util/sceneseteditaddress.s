@@ -972,31 +972,42 @@ _022365B8: .word ov18_02235B78
 
 	.global Unk_ov18_0224925C
 Unk_ov18_0224925C: ; 0x0224925C
-	.incbin "incbin/overlay18_rodata.bin", 0x2E28, 0x2E2C - 0x2E28
+	.asciz "255"
 
 	.global Unk_ov18_02249260
 Unk_ov18_02249260: ; 0x02249260
-	.incbin "incbin/overlay18_rodata.bin", 0x2E2C, 0x2E30 - 0x2E2C
+	.short 0xB
+	.short 0x10
 
 	.global Unk_ov18_02249264
 Unk_ov18_02249264: ; 0x02249264
-	.incbin "incbin/overlay18_rodata.bin", 0x2E30, 0x2E36 - 0x2E30
+	.asciz "?@ABC"
+	.space 0x2
 
 	.global Unk_ov18_0224926A
 Unk_ov18_0224926A: ; 0x0224926A
-	.incbin "incbin/overlay18_rodata.bin", 0x2E36, 0x2E40 - 0x2E36
+	.word 0x29
+	.space 0x4
 
 	.global Unk_ov18_02249274
 Unk_ov18_02249274: ; 0x02249274
-	.incbin "incbin/overlay18_rodata.bin", 0x2E40, 0x2E54 - 0x2E40
+	.word ov18_0223E08C
+	.word ov18_0223E0CC
+	.word ov18_0223E10C
+	.word ov18_0223E150
+	.word ov18_0223E194
 
 	.global Unk_ov18_02249288
 Unk_ov18_02249288: ; 0x02249288
-	.incbin "incbin/overlay18_rodata.bin", 0x2E54, 0x2E68 - 0x2E54
+	.word ov18_0223DFD0
+	.word ov18_0223DFEC
+	.word ov18_0223E008
+	.word ov18_0223E028
+	.word ov18_0223E048
 
 	.global Unk_ov18_0224929C
 Unk_ov18_0224929C: ; 0x0224929C
-	.incbin "incbin/overlay18_rodata.bin", 0x2E68, 0xC
+	.byte 0x31, 0x3D, 0x49, 0x5A, 0x66, 0x72, 0x83, 0x8F, 0x9B, 0xAC, 0xB8, 0xC4
 
 
 
@@ -1005,27 +1016,32 @@ Unk_ov18_0224929C: ; 0x0224929C
 
 	.global Unk_ov18_0224A1C0
 Unk_ov18_0224A1C0: ; 0x0224A1C0
-	.incbin "incbin/overlay18_data.bin", 0xA60, 0xA64 - 0xA60
+	.asciz "  0"
 
 	.global Unk_ov18_0224A1C4
 Unk_ov18_0224A1C4: ; 0x0224A1C4
-	.incbin "incbin/overlay18_data.bin", 0xA64, 0xA78 - 0xA64
+	.ascii "char/ybObjKb.ncl.l"
+	.space 0x2
 
 	.global Unk_ov18_0224A1D8
 Unk_ov18_0224A1D8: ; 0x0224A1D8
-	.incbin "incbin/overlay18_data.bin", 0xA78, 0xA90 - 0xA78
+	.ascii "char/jbBgStep3.ncg.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A1F0
 Unk_ov18_0224A1F0: ; 0x0224A1F0
-	.incbin "incbin/overlay18_data.bin", 0xA90, 0xAA8 - 0xA90
+	.ascii "char/ybBgStep3.ncl.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A208
 Unk_ov18_0224A208: ; 0x0224A208
-	.incbin "incbin/overlay18_data.bin", 0xAA8, 0xAC0 - 0xAA8
+	.ascii "char/xb4EditAddr.nsc.l"
+	.space 0x2
 
 	.global Unk_ov18_0224A220
 Unk_ov18_0224A220: ; 0x0224A220
-	.incbin "incbin/overlay18_data.bin", 0xAC0, 0x15
+	.ascii "char/ybObjMain.ncl.l"
+	.space 0x4
 
 
 

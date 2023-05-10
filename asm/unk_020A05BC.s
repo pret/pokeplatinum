@@ -1360,5 +1360,6 @@ _020A19EC: .word Unk_02100DB0
 
 	.global Unk_02100DB0
 Unk_02100DB0: ; 0x02100DB0
-	.incbin "incbin/arm9_data.bin", 0x20D0, 0x6
+	.word 0x10000000
+	.space 0x2
 

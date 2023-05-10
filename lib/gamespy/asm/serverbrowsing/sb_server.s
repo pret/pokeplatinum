@@ -700,7 +700,8 @@ _021FE88C: .word Unk_ov4_0221B750
 
 	.global Unk_ov4_02215C30
 Unk_ov4_02215C30: ; 0x02215C30
-	.incbin "incbin/overlay4_rodata.bin", 0x3C8, 0x8
+	.word Unk_ov4_02219F5C
+	.word Unk_ov4_02219F54
 
 
 
@@ -709,39 +710,44 @@ Unk_ov4_02215C30: ; 0x02215C30
 
 	.global Unk_ov4_02219F54
 Unk_ov4_02219F54: ; 0x02219F54
-	.incbin "incbin/overlay4_data.bin", 0x40D4, 0x40DC - 0x40D4
+	.asciz "final"
+	.space 0x2
 
 	.global Unk_ov4_02219F5C
 Unk_ov4_02219F5C: ; 0x02219F5C
-	.incbin "incbin/overlay4_data.bin", 0x40DC, 0x40E4 - 0x40DC
+	.asciz "queryid"
 
 	.global Unk_ov4_02219F64
 Unk_ov4_02219F64: ; 0x02219F64
-	.incbin "incbin/overlay4_data.bin", 0x40E4, 0x40FC - 0x40E4
+	.asciz "SBServerGetStringValueA"
 
 	.global Unk_ov4_02219F7C
 Unk_ov4_02219F7C: ; 0x02219F7C
-	.incbin "incbin/overlay4_data.bin", 0x40FC, 0x4100 - 0x40FC
+	.ascii "%d"
+	.space 0x2
 
 	.global Unk_ov4_02219F80
 Unk_ov4_02219F80: ; 0x02219F80
-	.incbin "incbin/overlay4_data.bin", 0x4100, 0x4108 - 0x4100
+	.ascii "server"
+	.space 0x2
 
 	.global Unk_ov4_02219F88
 Unk_ov4_02219F88: ; 0x02219F88
-	.incbin "incbin/overlay4_data.bin", 0x4108, 0x4114 - 0x4108
+	.asciz "sb_server.c"
 
 	.global Unk_ov4_02219F94
 Unk_ov4_02219F94: ; 0x02219F94
-	.incbin "incbin/overlay4_data.bin", 0x4114, 0x411C - 0x4114
+	.ascii "ping"
+	.space 0x4
 
 	.global Unk_ov4_02219F9C
 Unk_ov4_02219F9C: ; 0x02219F9C
-	.incbin "incbin/overlay4_data.bin", 0x411C, 0x4120 - 0x411C
+	.space 0x4
 
 	.global Unk_ov4_02219FA0
 Unk_ov4_02219FA0: ; 0x02219FA0
-	.incbin "incbin/overlay4_data.bin", 0x4120, 0x5
+	.ascii "%s%d"
+	.space 0x4
 
 
 

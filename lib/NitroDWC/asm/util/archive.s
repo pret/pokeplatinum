@@ -348,7 +348,7 @@ ov18_02243860: ; 0x02243860
 
 	.global Unk_ov18_02249718
 Unk_ov18_02249718: ; 0x02249718
-	.incbin "incbin/overlay18_rodata.bin", 0x32E4, 0x4
+	.asciz "dwc"
 
 
 
@@ -357,19 +357,23 @@ Unk_ov18_02249718: ; 0x02249718
 
 	.global Unk_ov18_0224B1E4
 Unk_ov18_0224B1E4: ; 0x0224B1E4
-	.incbin "incbin/overlay18_data.bin", 0x1A84, 0x1A9C - 0x1A84
+	.ascii "rom:/dwc/utility.bin"
+	.space 0x4
 
 	.global Unk_ov18_0224B1FC
 Unk_ov18_0224B1FC: ; 0x0224B1FC
-	.incbin "incbin/overlay18_data.bin", 0x1A9C, 0x1AA4 - 0x1A9C
+	.ascii "%s:/"
+	.space 0x4
 
 	.global Unk_ov18_0224B204
 Unk_ov18_0224B204: ; 0x0224B204
-	.incbin "incbin/overlay18_data.bin", 0x1AA4, 0x1AAC - 0x1AA4
+	.ascii "rom:/"
+	.space 0x3
 
 	.global Unk_ov18_0224B20C
 Unk_ov18_0224B20C: ; 0x0224B20C
-	.incbin "incbin/overlay18_data.bin", 0x1AAC, 0x3
+	.ascii ".l"
+	.space 0x2
 
 
 

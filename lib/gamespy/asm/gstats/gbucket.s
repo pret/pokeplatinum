@@ -458,27 +458,32 @@ _021F6334: .word 0x00000153
 
 	.global Unk_ov4_02219308
 Unk_ov4_02219308: ; 0x02219308
-	.incbin "incbin/overlay4_data.bin", 0x3488, 0x3490 - 0x3488
+	.ascii "DoFind"
+	.space 0x2
 
 	.global Unk_ov4_02219310
 Unk_ov4_02219310: ; 0x02219310
-	.incbin "incbin/overlay4_data.bin", 0x3490, 0x349C - 0x3490
+	.asciz "BucketNew"
+	.space 0x2
 
 	.global Unk_ov4_0221931C
 Unk_ov4_0221931C: ; 0x0221931C
-	.incbin "incbin/overlay4_data.bin", 0x349C, 0x34AC - 0x349C
+	.ascii "BucketConcat"
+	.space 0x4
 
 	.global Unk_ov4_0221932C
 Unk_ov4_0221932C: ; 0x0221932C
-	.incbin "incbin/overlay4_data.bin", 0x34AC, 0x34B0 - 0x34AC
+	.asciz "set"
 
 	.global Unk_ov4_02219330
 Unk_ov4_02219330: ; 0x02219330
-	.incbin "incbin/overlay4_data.bin", 0x34B0, 0x34BC - 0x34B0
+	.asciz "gbucket.c"
+	.space 0x2
 
 	.global Unk_ov4_0221933C
 Unk_ov4_0221933C: ; 0x0221933C
-	.incbin "incbin/overlay4_data.bin", 0x34BC, 0x1C
+	.ascii "pbucket->type == bt_string"
+	.space 0x2
 
 
 

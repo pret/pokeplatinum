@@ -703,13 +703,15 @@ ov4_021FE080: ; 0x021FE080
 
 	.global Unk_ov4_02219F30
 Unk_ov4_02219F30: ; 0x02219F30
-	.incbin "incbin/overlay4_data.bin", 0x40B0, 0x40C0 - 0x40B0
+	.asciz "\\basic\\\\info\\"
+	.space 0x2
 
 	.global Unk_ov4_02219F40
 Unk_ov4_02219F40: ; 0x02219F40
-	.incbin "incbin/overlay4_data.bin", 0x40C0, 0x40CC - 0x40C0
+	.ascii "\\status\\"
+	.space 0x4
 
 	.global Unk_ov4_02219F4C
 Unk_ov4_02219F4C: ; 0x02219F4C
-	.incbin "incbin/overlay4_data.bin", 0x40CC, 0x8
+	.asciz "\\final\\"
 

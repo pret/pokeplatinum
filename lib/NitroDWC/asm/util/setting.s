@@ -920,7 +920,7 @@ ov18_0223E8BC: ; 0x0223E8BC
 
 	.global Unk_ov18_022495C4
 Unk_ov18_022495C4: ; 0x022495C4
-	.incbin "incbin/overlay18_rodata.bin", 0x3190, 0x4
+	.space 0x4
 
 
 
@@ -929,7 +929,8 @@ Unk_ov18_022495C4: ; 0x022495C4
 
 	.global Unk_ov18_0224A5A8
 Unk_ov18_0224A5A8: ; 0x0224A5A8
-	.incbin "incbin/overlay18_data.bin", 0xE48, 0xD
+	.ascii "%3d%3d%3d%3d"
+	.space 0x4
 
 
 

@@ -483,7 +483,7 @@ _02232344: .word ov18_02231DD0
 
 	.global Unk_ov18_0224A07C
 Unk_ov18_0224A07C: ; 0x0224A07C
-	.incbin "incbin/overlay18_data.bin", 0x91C, 0x14
+	.asciz "char/yb5Multi.nsc.l"
 
 
 

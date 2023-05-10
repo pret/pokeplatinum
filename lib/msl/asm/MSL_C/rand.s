@@ -37,5 +37,5 @@ _020D76E0: .word Unk_02101818
 
 	.global Unk_02101818
 Unk_02101818: ; 0x02101818
-	.incbin "incbin/arm9_data.bin", 0x2B38, 0x4
+	.word 0x1
 

@@ -130,7 +130,7 @@ _0223EA24: .word NNS_SndMain
 
 	.global Unk_ov18_0224A5B8
 Unk_ov18_0224A5B8: ; 0x0224A5B8
-	.incbin "incbin/overlay18_data.bin", 0xE58, 0x18
+	.asciz "sound/sound_data.sdat.l"
 
 
 

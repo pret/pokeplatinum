@@ -1578,87 +1578,87 @@ _0222F02C: .word Unk_ov18_022532A0
 
 	.global Unk_ov18_02248FEC
 Unk_ov18_02248FEC: ; 0x02248FEC
-	.incbin "incbin/overlay18_rodata.bin", 0x2BB8, 0x2BBC - 0x2BB8
+	.incbin "incbin/keyboard10.bin", 0x0, 0x4
 
 	.global Unk_ov18_02248FF0
 Unk_ov18_02248FF0: ; 0x02248FF0
-	.incbin "incbin/overlay18_rodata.bin", 0x2BBC, 0x2BC0 - 0x2BBC
+	.incbin "incbin/keyboard10.bin", 0x4, 0x8 - 0x4
 
 	.global Unk_ov18_02248FF4
 Unk_ov18_02248FF4: ; 0x02248FF4
-	.incbin "incbin/overlay18_rodata.bin", 0x2BC0, 0x2BC4 - 0x2BC0
+	.incbin "incbin/keyboard10.bin", 0x8, 0xC - 0x8
 
 	.global Unk_ov18_02248FF8
 Unk_ov18_02248FF8: ; 0x02248FF8
-	.incbin "incbin/overlay18_rodata.bin", 0x2BC4, 0x2BC8 - 0x2BC4
+	.incbin "incbin/keyboard10.bin", 0xC, 0x10 - 0xC
 
 	.global Unk_ov18_02248FFC
 Unk_ov18_02248FFC: ; 0x02248FFC
-	.incbin "incbin/overlay18_rodata.bin", 0x2BC8, 0x2BCC - 0x2BC8
+	.incbin "incbin/keyboard10.bin", 0x10, 0x14 - 0x10
 
 	.global Unk_ov18_02249000
 Unk_ov18_02249000: ; 0x02249000
-	.incbin "incbin/overlay18_rodata.bin", 0x2BCC, 0x2BD0 - 0x2BCC
+	.incbin "incbin/keyboard10.bin", 0x14, 0x18 - 0x14
 
 	.global Unk_ov18_02249004
 Unk_ov18_02249004: ; 0x02249004
-	.incbin "incbin/overlay18_rodata.bin", 0x2BD0, 0x2BD4 - 0x2BD0
+	.incbin "incbin/keyboard10.bin", 0x18, 0x1C - 0x18
 
 	.global Unk_ov18_02249008
 Unk_ov18_02249008: ; 0x02249008
-	.incbin "incbin/overlay18_rodata.bin", 0x2BD4, 0x2BD8 - 0x2BD4
+	.incbin "incbin/keyboard10.bin", 0x1C, 0x20 - 0x1C
 
 	.global Unk_ov18_0224900C
 Unk_ov18_0224900C: ; 0x0224900C
-	.incbin "incbin/overlay18_rodata.bin", 0x2BD8, 0x2BDC - 0x2BD8
+	.incbin "incbin/keyboard10.bin", 0x20, 0x24 - 0x20
 
 	.global Unk_ov18_02249010
 Unk_ov18_02249010: ; 0x02249010
-	.incbin "incbin/overlay18_rodata.bin", 0x2BDC, 0x2BE0 - 0x2BDC
+	.incbin "incbin/keyboard10.bin", 0x24, 0x28 - 0x24
 
 	.global Unk_ov18_02249014
 Unk_ov18_02249014: ; 0x02249014
-	.incbin "incbin/overlay18_rodata.bin", 0x2BE0, 0x2BE5 - 0x2BE0
+	.incbin "incbin/keyboard10.bin", 0x28, 0x2D - 0x28
 
 	.global Unk_ov18_02249019
 Unk_ov18_02249019: ; 0x02249019
-	.incbin "incbin/overlay18_rodata.bin", 0x2BE5, 0x2BEA - 0x2BE5
+	.incbin "incbin/keyboard10.bin", 0x2D, 0x32 - 0x2D
 
 	.global Unk_ov18_0224901E
 Unk_ov18_0224901E: ; 0x0224901E
-	.incbin "incbin/overlay18_rodata.bin", 0x2BEA, 0x2BF0 - 0x2BEA
+	.incbin "incbin/keyboard10.bin", 0x32, 0x38 - 0x32
 
 	.global Unk_ov18_02249024
 Unk_ov18_02249024: ; 0x02249024
-	.incbin "incbin/overlay18_rodata.bin", 0x2BF0, 0x2BF8 - 0x2BF0
+	.incbin "incbin/keyboard10.bin", 0x38, 0x40 - 0x38
 
 	.global Unk_ov18_0224902C
 Unk_ov18_0224902C: ; 0x0224902C
-	.incbin "incbin/overlay18_rodata.bin", 0x2BF8, 0x2C00 - 0x2BF8
+	.incbin "incbin/keyboard10.bin", 0x40, 0x48 - 0x40
 
 	.global Unk_ov18_02249034
 Unk_ov18_02249034: ; 0x02249034
-	.incbin "incbin/overlay18_rodata.bin", 0x2C00, 0x2C08 - 0x2C00
+	.incbin "incbin/keyboard10.bin", 0x48, 0x50 - 0x48
 
 	.global Unk_ov18_0224903C
 Unk_ov18_0224903C: ; 0x0224903C
-	.incbin "incbin/overlay18_rodata.bin", 0x2C08, 0x2C22 - 0x2C08
+	.incbin "incbin/keyboard10.bin", 0x50, 0x6A - 0x50
 
 	.global Unk_ov18_02249056
 Unk_ov18_02249056: ; 0x02249056
-	.incbin "incbin/overlay18_rodata.bin", 0x2C22, 0x2C4A - 0x2C22
+	.incbin "incbin/keyboard10.bin", 0x6A, 0x92 - 0x6A
 
 	.global Unk_ov18_0224907E
 Unk_ov18_0224907E: ; 0x0224907E
-	.incbin "incbin/overlay18_rodata.bin", 0x2C4A, 0x2C82 - 0x2C4A
+	.incbin "incbin/keyboard10.bin", 0x92, 0xCA - 0x92
 
 	.global Unk_ov18_022490B6
 Unk_ov18_022490B6: ; 0x022490B6
-	.incbin "incbin/overlay18_rodata.bin", 0x2C82, 0x2CBC - 0x2C82
+	.incbin "incbin/keyboard10.bin", 0xCA, 0x104 - 0xCA
 
 	.global Unk_ov18_022490F0
 Unk_ov18_022490F0: ; 0x022490F0
-	.incbin "incbin/overlay18_rodata.bin", 0x2CBC, 0xB
+	.incbin "incbin/keyboard10.bin", 0x104, 0xC
 
 
 

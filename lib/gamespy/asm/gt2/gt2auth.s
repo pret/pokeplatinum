@@ -231,17 +231,21 @@ _021F73EC:
 
 	.global Unk_ov4_02219450
 Unk_ov4_02219450: ; 0x02219450
-	.incbin "incbin/overlay4_data.bin", 0x35D0, 0x35E4 - 0x35D0
+	.ascii "gti2GetChallenge"
+	.space 0x4
 
 	.global Unk_ov4_02219464
 Unk_ov4_02219464: ; 0x02219464
-	.incbin "incbin/overlay4_data.bin", 0x35E4, 0x3608 - 0x35E4
+	.ascii "3b8dd8995f7c40a9a5c5b7dd5b481341"
+	.space 0x4
 
 	.global Unk_ov4_02219488
 Unk_ov4_02219488: ; 0x02219488
-	.incbin "incbin/overlay4_data.bin", 0x3608, 0x3610 - 0x3608
+	.ascii "buffer"
+	.space 0x2
 
 	.global Unk_ov4_02219490
 Unk_ov4_02219490: ; 0x02219490
-	.incbin "incbin/overlay4_data.bin", 0x3610, 0xA
+	.asciz "gt2Auth.c"
+	.space 0x2
 

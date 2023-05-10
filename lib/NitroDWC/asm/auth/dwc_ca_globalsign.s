@@ -7,17 +7,22 @@
 
 	.global Unk_ov4_02217270
 Unk_ov4_02217270: ; 0x02217270
-	.incbin "incbin/overlay4_data.bin", 0x13F0, 0x13F4 - 0x13F0
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_02217274
 Unk_ov4_02217274: ; 0x02217274
-	.incbin "incbin/overlay4_data.bin", 0x13F4, 0x1408 - 0x13F4
+	.word Unk_ov4_02217288
+	.word 0x100
+	.word Unk_ov4_022172B8
+	.word 0x3
+	.word Unk_ov4_02217270
 
 	.global Unk_ov4_02217288
 Unk_ov4_02217288: ; 0x02217288
-	.incbin "incbin/overlay4_data.bin", 0x1408, 0x1438 - 0x1408
+	.asciz "GlobalSign Root CA - R2, GlobalSign, GlobalSign"
 
 	.global Unk_ov4_022172B8
 Unk_ov4_022172B8: ; 0x022172B8
-	.incbin "incbin/overlay4_data.bin", 0x1438, 0x100
+	.incbin "incbin/dwc_ca_globalsign.bin", 0x0, 0x100
 

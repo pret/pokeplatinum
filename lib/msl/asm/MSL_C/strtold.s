@@ -1421,7 +1421,8 @@ _020DA454: .word strtod
 
 	.global Unk_020E4568
 Unk_020E4568: ; 0x020E4568
-	.incbin "incbin/arm9_exception.bin", 0x10, 0x8
+	.byte 0x0, 0xFF, 0x1, 0xD0
+	.space 0x4
 
 
 	.rodata
@@ -1429,9 +1430,9 @@ Unk_020E4568: ; 0x020E4568
 
 	.global Unk_020FE98C
 Unk_020FE98C: ; 0x020FE98C
-	.incbin "incbin/arm9_rodata.bin", 0x19D4C, 0x19D51 - 0x19D4C
+	.asciz "NAN("
 
 	.global Unk_020FE991
 Unk_020FE991: ; 0x020FE991
-	.incbin "incbin/arm9_rodata.bin", 0x19D51, 0x9
+	.asciz "INFINITY"
 

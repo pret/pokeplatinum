@@ -412,13 +412,13 @@ _0221149C: .word Unk_ov4_0221A264
 
 	.global Unk_ov4_0221A224
 Unk_ov4_0221A224: ; 0x0221A224
-	.incbin "incbin/overlay4_data.bin", 0x43A4, 0x43E4 - 0x43A4
+	.incbin "incbin/md5.bin", 0x0, 0x40
 
 	.global Unk_ov4_0221A264
 Unk_ov4_0221A264: ; 0x0221A264
-	.incbin "incbin/overlay4_data.bin", 0x43E4, 0x4424 - 0x43E4
+	.incbin "incbin/md5.bin", 0x40, 0x80 - 0x40
 
 	.global Unk_ov4_0221A2A4
 Unk_ov4_0221A2A4: ; 0x0221A2A4
-	.incbin "incbin/overlay4_data.bin", 0x4424, 0x100
+	.incbin "incbin/md5.bin", 0x80, 0x100
 

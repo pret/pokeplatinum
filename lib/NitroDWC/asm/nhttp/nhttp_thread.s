@@ -1559,11 +1559,16 @@ _0222879C: .word Unk_ov60_0222A014
 
 	.global Unk_ov60_02228D8C
 Unk_ov60_02228D8C: ; 0x02228D8C
-	.incbin "incbin/overlay60_rodata.bin", 0x140, 0x168 - 0x140
+	.ascii "Content-Disposition: form-data; name="
+	.byte 0x22
+	.space 0x2
 
 	.global Unk_ov60_02228DB4
 Unk_ov60_02228DB4: ; 0x02228DB4
-	.incbin "incbin/overlay60_rodata.bin", 0x168, 0x4C
+	.ascii "Content-Type: application/octet-stream"
+	.byte 0xD, 0xA
+	.ascii "Content-Transfer-Encoding: binary"
+	.byte 0xD, 0xA
 
 
 
@@ -1572,87 +1577,106 @@ Unk_ov60_02228DB4: ; 0x02228DB4
 
 	.global Unk_ov60_02229CF4
 Unk_ov60_02229CF4: ; 0x02229CF4
-	.incbin "incbin/overlay60_data.bin", 0xEB4, 0xEBC - 0xEB4
+	.ascii "GET "
+	.space 0x4
 
 	.global Unk_ov60_02229CFC
 Unk_ov60_02229CFC: ; 0x02229CFC
-	.incbin "incbin/overlay60_data.bin", 0xEBC, 0xEC4 - 0xEBC
+	.ascii "POST "
+	.space 0x3
 
 	.global Unk_ov60_02229D04
 Unk_ov60_02229D04: ; 0x02229D04
-	.incbin "incbin/overlay60_data.bin", 0xEC4, 0xECC - 0xEC4
+	.ascii "HEAD "
+	.space 0x3
 
 	.global Unk_ov60_02229D0C
 Unk_ov60_02229D0C: ; 0x02229D0C
-	.incbin "incbin/overlay60_data.bin", 0xECC, 0xED0 - 0xECC
+	.word 0x2F
 
 	.global Unk_ov60_02229D10
 Unk_ov60_02229D10: ; 0x02229D10
-	.incbin "incbin/overlay60_data.bin", 0xED0, 0xEDC - 0xED0
+	.ascii " HTTP/1.1"
+	.byte 0xD, 0xA
+	.space 0x1
 
 	.global Unk_ov60_02229D1C
 Unk_ov60_02229D1C: ; 0x02229D1C
-	.incbin "incbin/overlay60_data.bin", 0xEDC, 0xEE4 - 0xEDC
+	.ascii "Host: "
+	.space 0x2
 
 	.global Unk_ov60_02229D24
 Unk_ov60_02229D24: ; 0x02229D24
-	.incbin "incbin/overlay60_data.bin", 0xEE4, 0xEE8 - 0xEE4
+	.byte 0xD, 0xA
+	.space 0x2
 
 	.global Unk_ov60_02229D28
 Unk_ov60_02229D28: ; 0x02229D28
-	.incbin "incbin/overlay60_data.bin", 0xEE8, 0xEEC - 0xEE8
+	.ascii ": "
+	.space 0x2
 
 	.global Unk_ov60_02229D2C
 Unk_ov60_02229D2C: ; 0x02229D2C
-	.incbin "incbin/overlay60_data.bin", 0xEEC, 0xF1C - 0xEEC
+	.ascii "Content-Type: multipart/form-data; boundary="
+	.space 0x4
 
 	.global Unk_ov60_02229D5C
 Unk_ov60_02229D5C: ; 0x02229D5C
-	.incbin "incbin/overlay60_data.bin", 0xF1C, 0xF50 - 0xF1C
+	.ascii "Content-Type: application/x-www-form-urlencoded"
+	.byte 0xD, 0xA
+	.space 0x3
 
 	.global Unk_ov60_02229D90
 Unk_ov60_02229D90: ; 0x02229D90
-	.incbin "incbin/overlay60_data.bin", 0xF50, 0xF64 - 0xF50
+	.ascii "Content-Length: "
+	.space 0x4
 
 	.global Unk_ov60_02229DA4
 Unk_ov60_02229DA4: ; 0x02229DA4
-	.incbin "incbin/overlay60_data.bin", 0xF64, 0xF68 - 0xF64
+	.byte 0x22, 0xD, 0xA, 0x0
 
 	.global Unk_ov60_02229DA8
 Unk_ov60_02229DA8: ; 0x02229DA8
-	.incbin "incbin/overlay60_data.bin", 0xF68, 0xF70 - 0xF68
+	.ascii "--"
+	.byte 0xD, 0xA
+	.space 0x4
 
 	.global Unk_ov60_02229DB0
 Unk_ov60_02229DB0: ; 0x02229DB0
-	.incbin "incbin/overlay60_data.bin", 0xF70, 0xF74 - 0xF70
+	.word 0x3D
 
 	.global Unk_ov60_02229DB4
 Unk_ov60_02229DB4: ; 0x02229DB4
-	.incbin "incbin/overlay60_data.bin", 0xF74, 0xF78 - 0xF74
+	.word 0x26
 
 	.global Unk_ov60_02229DB8
 Unk_ov60_02229DB8: ; 0x02229DB8
-	.incbin "incbin/overlay60_data.bin", 0xF78, 0xF80 - 0xF78
+	.ascii "HTTP/"
+	.space 0x3
 
 	.global Unk_ov60_02229DC0
 Unk_ov60_02229DC0: ; 0x02229DC0
-	.incbin "incbin/overlay60_data.bin", 0xF80, 0xF90 - 0xF80
+	.ascii "Content-Length"
+	.space 0x2
 
 	.global Unk_ov60_02229DD0
 Unk_ov60_02229DD0: ; 0x02229DD0
-	.incbin "incbin/overlay60_data.bin", 0xF90, 0xF9C - 0xF90
+	.ascii "Connection"
+	.space 0x2
 
 	.global Unk_ov60_02229DDC
 Unk_ov60_02229DDC: ; 0x02229DDC
-	.incbin "incbin/overlay60_data.bin", 0xF9C, 0xFA8 - 0xF9C
+	.ascii "Keep-Alive"
+	.space 0x2
 
 	.global Unk_ov60_02229DE8
 Unk_ov60_02229DE8: ; 0x02229DE8
-	.incbin "incbin/overlay60_data.bin", 0xFA8, 0xFBC - 0xFA8
+	.ascii "Transfer-Encoding"
+	.space 0x3
 
 	.global Unk_ov60_02229DFC
 Unk_ov60_02229DFC: ; 0x02229DFC
-	.incbin "incbin/overlay60_data.bin", 0xFBC, 0x8
+	.asciz "chunked"
 
 
 

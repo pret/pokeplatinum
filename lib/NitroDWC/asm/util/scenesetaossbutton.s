@@ -473,15 +473,17 @@ _02233620: .word ov18_022333C4
 
 	.global Unk_ov18_0224A0E0
 Unk_ov18_0224A0E0: ; 0x0224A0E0
-	.incbin "incbin/overlay18_data.bin", 0x980, 0x998 - 0x980
+	.ascii "char/jbBgStep3.ncg.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A0F8
 Unk_ov18_0224A0F8: ; 0x0224A0F8
-	.incbin "incbin/overlay18_data.bin", 0x998, 0x9B0 - 0x998
+	.ascii "char/ybBgStep3.ncl.l"
+	.space 0x4
 
 	.global Unk_ov18_0224A110
 Unk_ov18_0224A110: ; 0x0224A110
-	.incbin "incbin/overlay18_data.bin", 0x9B0, 0x14
+	.asciz "char/xb4Multi.nsc.l"
 
 
 

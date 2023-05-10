@@ -388,7 +388,7 @@ _020C9178: .word Unk_02101174
 
 	.global Unk_02101170
 Unk_02101170: ; 0x02101170
-	.incbin "incbin/arm9_data.bin", 0x2490, 0x2494 - 0x2490
+	.word 0x80
 
 	.global Unk_02101174
 Unk_02101174: ; 0x02101174
@@ -443,5 +443,5 @@ Unk_02101174: ; 0x02101174
 
 	.global Unk_02101234
 Unk_02101234: ; 0x02101234
-	.incbin "incbin/arm9_data.bin", 0x2554, 0x100
+	.incbin "incbin/hash1.bin", 0x0, 0x100
 

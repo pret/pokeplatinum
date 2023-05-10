@@ -510,27 +510,27 @@ _0222B57C: .word Unk_ov18_02248CA0
 
 	.global Unk_ov18_02248C90
 Unk_ov18_02248C90: ; 0x02248C90
-	.incbin "incbin/overlay18_rodata.bin", 0x285C, 0x2860 - 0x285C
+	.incbin "incbin/button.bin", 0x0, 0x4
 
 	.global Unk_ov18_02248C94
 Unk_ov18_02248C94: ; 0x02248C94
-	.incbin "incbin/overlay18_rodata.bin", 0x2860, 0x2864 - 0x2860
+	.incbin "incbin/button.bin", 0x4, 0x8 - 0x4
 
 	.global Unk_ov18_02248C98
 Unk_ov18_02248C98: ; 0x02248C98
-	.incbin "incbin/overlay18_rodata.bin", 0x2864, 0x286C - 0x2864
+	.incbin "incbin/button.bin", 0x8, 0x10 - 0x8
 
 	.global Unk_ov18_02248CA0
 Unk_ov18_02248CA0: ; 0x02248CA0
-	.incbin "incbin/overlay18_rodata.bin", 0x286C, 0x287A - 0x286C
+	.incbin "incbin/button.bin", 0x10, 0x1E - 0x10
 
 	.global Unk_ov18_02248CAE
 Unk_ov18_02248CAE: ; 0x02248CAE
-	.incbin "incbin/overlay18_rodata.bin", 0x287A, 0x2888 - 0x287A
+	.incbin "incbin/button.bin", 0x1E, 0x2C - 0x1E
 
 	.global Unk_ov18_02248CBC
 Unk_ov18_02248CBC: ; 0x02248CBC
-	.incbin "incbin/overlay18_rodata.bin", 0x2888, 0x7
+	.incbin "incbin/button.bin", 0x2C, 0x8
 
 
 

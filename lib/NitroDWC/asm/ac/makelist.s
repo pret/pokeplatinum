@@ -323,15 +323,15 @@ _021E77FC:
 
 	.global Unk_ov4_02215898
 Unk_ov4_02215898: ; 0x02215898
-	.incbin "incbin/overlay4_rodata.bin", 0x30, 0x38 - 0x30
+	.ascii "Wayport2"
 
 	.global Unk_ov4_022158A0
 Unk_ov4_022158A0: ; 0x022158A0
-	.incbin "incbin/overlay4_rodata.bin", 0x38, 0x40 - 0x38
+	.ascii "FREESPOT"
 
 	.global Unk_ov4_022158A8
 Unk_ov4_022158A8: ; 0x022158A8
-	.incbin "incbin/overlay4_rodata.bin", 0x40, 0xC
+	.asciz "NINTENDOWFC"
 
 
 
@@ -340,5 +340,5 @@ Unk_ov4_022158A8: ; 0x022158A8
 
 	.global Unk_ov4_0221760C
 Unk_ov4_0221760C: ; 0x0221760C
-	.incbin "incbin/overlay4_data.bin", 0x178C, 0x9
+	.asciz "NWCUSBAP"
 

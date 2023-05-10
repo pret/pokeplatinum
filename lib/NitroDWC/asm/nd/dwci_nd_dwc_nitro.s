@@ -139,7 +139,7 @@ _0222462C: .word Unk_ov60_02229C08
 
 	.global Unk_ov60_02228CBC
 Unk_ov60_02228CBC: ; 0x02228CBC
-	.incbin "incbin/overlay60_rodata.bin", 0x70, 0xD
+	.ascii "00:0000000-00"
 
 
 
@@ -148,7 +148,8 @@ Unk_ov60_02228CBC: ; 0x02228CBC
 
 	.global Unk_ov60_02229C08
 Unk_ov60_02229C08: ; 0x02229C08
-	.incbin "incbin/overlay60_data.bin", 0xDC8, 0x18
+	.ascii "Nitro WiFi SDK/%d.%d"
+	.space 0x4
 
 
 

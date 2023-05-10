@@ -194,5 +194,6 @@ _02225514: .word Unk_ov60_02229CC0
 
 	.global Unk_ov60_02229CC0
 Unk_ov60_02229CC0: ; 0x02229CC0
-	.incbin "incbin/overlay60_data.bin", 0xE80, 0x10
+	.ascii "Content-Length"
+	.space 0x2
 

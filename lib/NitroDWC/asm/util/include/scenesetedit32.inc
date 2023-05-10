@@ -36,6 +36,8 @@
 .public ov18_022358B0
 .public ov18_02236BE0
 .public ov18_0223C21C
+.public ov18_0223DE08
+.public ov18_0223DE38
 .public ov18_0223E068
 .public ov18_0223E994
 .public ov18_0223FC48

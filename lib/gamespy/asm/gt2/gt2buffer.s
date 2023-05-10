@@ -181,41 +181,47 @@ _021F7638: .word Unk_ov4_02219578
 
 	.global Unk_ov4_0221949C
 Unk_ov4_0221949C: ; 0x0221949C
-	.incbin "incbin/overlay4_data.bin", 0x361C, 0x3630 - 0x361C
+	.asciz "gti2BufferShorten"
+	.space 0x2
 
 	.global Unk_ov4_022194B0
 Unk_ov4_022194B0: ; 0x022194B0
-	.incbin "incbin/overlay4_data.bin", 0x3630, 0x3644 - 0x3630
+	.asciz "gti2BufferWriteData"
 
 	.global Unk_ov4_022194C4
 Unk_ov4_022194C4: ; 0x022194C4
-	.incbin "incbin/overlay4_data.bin", 0x3644, 0x3658 - 0x3644
+	.asciz "gti2BufferWriteByte"
 
 	.global Unk_ov4_022194D8
 Unk_ov4_022194D8: ; 0x022194D8
-	.incbin "incbin/overlay4_data.bin", 0x3658, 0x3670 - 0x3658
+	.asciz "gti2BufferWriteUShort"
+	.space 0x2
 
 	.global Unk_ov4_022194F0
 Unk_ov4_022194F0: ; 0x022194F0
-	.incbin "incbin/overlay4_data.bin", 0x3670, 0x368C - 0x3670
+	.ascii "buffer->len < buffer->size"
+	.space 0x2
 
 	.global Unk_ov4_0221950C
 Unk_ov4_0221950C: ; 0x0221950C
-	.incbin "incbin/overlay4_data.bin", 0x368C, 0x3698 - 0x368C
+	.asciz "gt2Buffer.c"
 
 	.global Unk_ov4_02219518
 Unk_ov4_02219518: ; 0x02219518
-	.incbin "incbin/overlay4_data.bin", 0x3698, 0x36BC - 0x3698
+	.asciz "(buffer->len + 2) <= buffer->size"
+	.space 0x2
 
 	.global Unk_ov4_0221953C
 Unk_ov4_0221953C: ; 0x0221953C
-	.incbin "incbin/overlay4_data.bin", 0x36BC, 0x36E0 - 0x36BC
+	.asciz "(buffer->len + len) <= buffer->size"
 
 	.global Unk_ov4_02219560
 Unk_ov4_02219560: ; 0x02219560
-	.incbin "incbin/overlay4_data.bin", 0x36E0, 0x36F8 - 0x36E0
+	.ascii "start <= buffer->len"
+	.space 0x4
 
 	.global Unk_ov4_02219578
 Unk_ov4_02219578: ; 0x02219578
-	.incbin "incbin/overlay4_data.bin", 0x36F8, 0x23
+	.ascii "shortenBy <= (buffer->len - start)"
+	.space 0x2
 

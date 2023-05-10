@@ -3447,121 +3447,144 @@ ov66_0224B3F8: ; 0x0224B3F8
 
 	.global Unk_ov66_022592C8
 Unk_ov66_022592C8: ; 0x022592C8
-	.incbin "incbin/overlay66_data.bin", 0x5A8, 0x5B8 - 0x5A8
+	.ascii "ciAddCallback_"
+	.space 0x2
 
 	.global Unk_ov66_022592D8
 Unk_ov66_022592D8: ; 0x022592D8
-	.incbin "incbin/overlay66_data.bin", 0x5B8, 0x5C8 - 0x5B8
+	.ascii "ciCallCallback"
+	.space 0x2
 
 	.global Unk_ov66_022592E8
 Unk_ov66_022592E8: ; 0x022592E8
-	.incbin "incbin/overlay66_data.bin", 0x5C8, 0x5D8 - 0x5C8
+	.asciz "ciCallCallbacks"
 
 	.global Unk_ov66_022592F8
 Unk_ov66_022592F8: ; 0x022592F8
-	.incbin "incbin/overlay66_data.bin", 0x5D8, 0x5EC - 0x5D8
+	.ascii "ciFreeCallbackData"
+	.space 0x2
 
 	.global Unk_ov66_0225930C
 Unk_ov66_0225930C: ; 0x0225930C
-	.incbin "incbin/overlay66_data.bin", 0x5EC, 0x600 - 0x5EC
+	.ascii "ciCleanupCallbacks"
+	.space 0x2
 
 	.global Unk_ov66_02259320
 Unk_ov66_02259320: ; 0x02259320
-	.incbin "incbin/overlay66_data.bin", 0x600, 0x618 - 0x600
+	.ascii "ciGetCallbackIndexByID"
+	.space 0x2
 
 	.global Unk_ov66_02259338
 Unk_ov66_02259338: ; 0x02259338
-	.incbin "incbin/overlay66_data.bin", 0x618, 0x638 - 0x618
+	.asciz "ciCallbacksArrayElementFreeFn"
+	.space 0x2
 
 	.global Unk_ov66_02259358
 Unk_ov66_02259358: ; 0x02259358
-	.incbin "incbin/overlay66_data.bin", 0x638, 0x648 - 0x638
+	.ascii "data != NULL"
+	.space 0x4
 
 	.global Unk_ov66_02259368
 Unk_ov66_02259368: ; 0x02259368
-	.incbin "incbin/overlay66_data.bin", 0x648, 0x658 - 0x648
+	.asciz "chatCallbacks.c"
 
 	.global Unk_ov66_02259378
 Unk_ov66_02259378: ; 0x02259378
-	.incbin "incbin/overlay66_data.bin", 0x658, 0x668 - 0x658
+	.asciz "data->type >= 0"
 
 	.global Unk_ov66_02259388
 Unk_ov66_02259388: ; 0x02259388
-	.incbin "incbin/overlay66_data.bin", 0x668, 0x684 - 0x668
+	.asciz "data->type < CALLBACK_NUM"
+	.space 0x2
 
 	.global Unk_ov66_022593A4
 Unk_ov66_022593A4: ; 0x022593A4
-	.incbin "incbin/overlay66_data.bin", 0x684, 0x69C - 0x684
+	.ascii "data->callback != NULL"
+	.space 0x2
 
 	.global Unk_ov66_022593BC
 Unk_ov66_022593BC: ; 0x022593BC
-	.incbin "incbin/overlay66_data.bin", 0x69C, 0x6BC - 0x69C
+	.ascii "data->callbackParams != NULL"
+	.space 0x4
 
 	.global Unk_ov66_022593DC
 Unk_ov66_022593DC: ; 0x022593DC
-	.incbin "incbin/overlay66_data.bin", 0x6BC, 0x6CC - 0x6BC
+	.asciz "data->ID >= 0"
+	.space 0x2
 
 	.global Unk_ov66_022593EC
 Unk_ov66_022593EC: ; 0x022593EC
-	.incbin "incbin/overlay66_data.bin", 0x6CC, 0x6D0 - 0x6CC
+	.word 0x30
 
 	.global Unk_ov66_022593F0
 Unk_ov66_022593F0: ; 0x022593F0
-	.incbin "incbin/overlay66_data.bin", 0x6D0, 0x6E0 - 0x6D0
+	.ascii "chat != NULL"
+	.space 0x4
 
 	.global Unk_ov66_02259400
 Unk_ov66_02259400: ; 0x02259400
-	.incbin "incbin/overlay66_data.bin", 0x6E0, 0x6EC - 0x6E0
+	.asciz "type >= 0"
+	.space 0x2
 
 	.global Unk_ov66_0225940C
 Unk_ov66_0225940C: ; 0x0225940C
-	.incbin "incbin/overlay66_data.bin", 0x6EC, 0x700 - 0x6EC
+	.asciz "type < CALLBACK_NUM"
 
 	.global Unk_ov66_02259420
 Unk_ov66_02259420: ; 0x02259420
-	.incbin "incbin/overlay66_data.bin", 0x700, 0x724 - 0x700
+	.ascii "connection->callbackList != NULL"
+	.space 0x4
 
 	.global Unk_ov66_02259444
 Unk_ov66_02259444: ; 0x02259444
-	.incbin "incbin/overlay66_data.bin", 0x724, 0x738 - 0x724
+	.ascii "callback != NULL"
+	.space 0x4
 
 	.global Unk_ov66_02259458
 Unk_ov66_02259458: ; 0x02259458
-	.incbin "incbin/overlay66_data.bin", 0x738, 0x750 - 0x738
+	.ascii "callbackParams != NULL"
+	.space 0x2
 
 	.global Unk_ov66_02259470
 Unk_ov66_02259470: ; 0x02259470
-	.incbin "incbin/overlay66_data.bin", 0x750, 0x768 - 0x750
+	.ascii "callbackParamsSize > 0"
+	.space 0x2
 
 	.global Unk_ov66_02259488
 Unk_ov66_02259488: ; 0x02259488
-	.incbin "incbin/overlay66_data.bin", 0x768, 0x770 - 0x768
+	.asciz "ID >= 0"
 
 	.global Unk_ov66_02259490
 Unk_ov66_02259490: ; 0x02259490
-	.incbin "incbin/overlay66_data.bin", 0x770, 0x790 - 0x770
+	.ascii "srcParams-> numChannels >= 0"
+	.space 0x4
 
 	.global Unk_ov66_022594B0
 Unk_ov66_022594B0: ; 0x022594B0
-	.incbin "incbin/overlay66_data.bin", 0x790, 0x7AC - 0x790
+	.asciz "srcParams->numUsers != NULL"
 
 	.global Unk_ov66_022594CC
 Unk_ov66_022594CC: ; 0x022594CC
-	.incbin "incbin/overlay66_data.bin", 0x7AC, 0x7C8 - 0x7AC
+	.asciz "srcParams-> numUsers >= 0"
+	.space 0x2
 
 	.global Unk_ov66_022594E8
 Unk_ov66_022594E8: ; 0x022594E8
-	.incbin "incbin/overlay66_data.bin", 0x7C8, 0x7E4 - 0x7C8
+	.ascii "srcParams->modes != NULL"
+	.space 0x4
 
 	.global Unk_ov66_02259504
 Unk_ov66_02259504: ; 0x02259504
-	.incbin "incbin/overlay66_data.bin", 0x7E4, 0x800 - 0x7E4
+	.ascii "srcParams-> numBans >= 0"
+	.space 0x4
 
 	.global Unk_ov66_02259520
 Unk_ov66_02259520: ; 0x02259520
-	.incbin "incbin/overlay66_data.bin", 0x800, 0x824 - 0x800
+	.ascii "srcParams-> numSuggestedNicks >= 0"
+	.space 0x2
 
 	.global Unk_ov66_02259544
 Unk_ov66_02259544: ; 0x02259544
-	.incbin "incbin/overlay66_data.bin", 0x824, 0x15
+	.ascii "srcParams-> num >= 0"
+	.space 0x4
 

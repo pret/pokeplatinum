@@ -475,16 +475,16 @@ _02236BDC: .word Unk_ov18_02253328
 
 	.global Unk_ov18_022492A8
 Unk_ov18_022492A8: ; 0x022492A8
-	.incbin "incbin/overlay18_rodata.bin", 0x2E74, 0x2E7C - 0x2E74
+	.byte 0x0, 0x1, 0x1, 0x1, 0x1, 0x1, 0x0, 0x0
 
 	.global Unk_ov18_022492B0
 Unk_ov18_022492B0: ; 0x022492B0
-	.incbin "incbin/overlay18_rodata.bin", 0x2E7C, 0x2E84 - 0x2E7C
+	.short 0xD, 0x3C, 0xE6, 0x5E
 
 	.global Unk_ov18_022492B8
 Unk_ov18_022492B8: ; 0x022492B8
-	.incbin "incbin/overlay18_rodata.bin", 0x2E84, 0x1C
-
+	.short 0x62, 0x22, 0x62, 0x22, 0x3D, 0x22
+	.short 0x65, 0x22, 0x6C, 0x22, 0x34, 0x22, 0x4E, 0x22
 
 
 	.data
@@ -492,11 +492,12 @@ Unk_ov18_022492B8: ; 0x022492B8
 
 	.global Unk_ov18_0224A238
 Unk_ov18_0224A238: ; 0x0224A238
-	.incbin "incbin/overlay18_data.bin", 0xAD8, 0xAEC - 0xAD8
+	.asciz "char/jb4Error.nsc.l"
 
 	.global Unk_ov18_0224A24C
 Unk_ov18_0224A24C: ; 0x0224A24C
-	.incbin "incbin/overlay18_data.bin", 0xAEC, 0x6
+	.short 0x25, 0x64
+	.space 0x4
 
 
 

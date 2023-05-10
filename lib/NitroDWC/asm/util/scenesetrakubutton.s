@@ -719,11 +719,11 @@ _02239B30: .word ov18_022398D0
 
 	.global Unk_ov18_0224A328
 Unk_ov18_0224A328: ; 0x0224A328
-	.incbin "incbin/overlay18_data.bin", 0xBC8, 0xBDC - 0xBC8
+	.asciz "char/xb4Multi.nsc.l"
 
 	.global Unk_ov18_0224A33C
 Unk_ov18_0224A33C: ; 0x0224A33C
-	.incbin "incbin/overlay18_data.bin", 0xBDC, 0x14
+	.asciz "char/xb4Multi.nsc.l"
 
 
 

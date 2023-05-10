@@ -1032,91 +1032,113 @@ _021D3E58: .word Unk_ov4_0221A414
 
 	.global Unk_ov4_02215EA0
 Unk_ov4_02215EA0: ; 0x02215EA0
-	.incbin "incbin/overlay4_data.bin", 0x20, 0x3C - 0x20
+	.word Unk_ov4_02215EBC
+	.word 0x0
+	.word 0x1000
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x4E20
 
 	.global Unk_ov4_02215EBC
 Unk_ov4_02215EBC: ; 0x02215EBC
-	.incbin "incbin/overlay4_data.bin", 0x3C, 0x64 - 0x3C
+	.ascii "https://nas.test.nintendowifi.net/ac"
+	.word 0x0
 
 	.global Unk_ov4_02215EE4
 Unk_ov4_02215EE4: ; 0x02215EE4
-	.incbin "incbin/overlay4_data.bin", 0x64, 0x74 - 0x64
+	.asciz "ALLOC DWCauth"
+	.short 0x0
 
 	.global Unk_ov4_02215EF4
 Unk_ov4_02215EF4: ; 0x02215EF4
-	.incbin "incbin/overlay4_data.bin", 0x74, 0x84 - 0x74
+	.ascii "FREE DWCauth"
+	.word 0x0
 
 	.global Unk_ov4_02215F04
 Unk_ov4_02215F04: ; 0x02215F04
-	.incbin "incbin/overlay4_data.bin", 0x84, 0xA4 - 0x84
+	.asciz "https://nas.nintendowifi.net/ac"
 
 	.global Unk_ov4_02215F24
 Unk_ov4_02215F24: ; 0x02215F24
-	.incbin "incbin/overlay4_data.bin", 0xA4, 0xB4 - 0xA4
+	.ascii "ALLOC bmwork"
+	.word 0x0
 
 	.global Unk_ov4_02215F34
 Unk_ov4_02215F34: ; 0x02215F34
-	.incbin "incbin/overlay4_data.bin", 0xB4, 0xC0 - 0xB4
+	.asciz "FREE bmwork"
 
 	.global Unk_ov4_02215F40
 Unk_ov4_02215F40: ; 0x02215F40
-	.incbin "incbin/overlay4_data.bin", 0xC0, 0xC8 - 0xC0
+	.ascii "Date"
+	.word 0x0
 
 	.global Unk_ov4_02215F48
 Unk_ov4_02215F48: ; 0x02215F48
-	.incbin "incbin/overlay4_data.bin", 0xC8, 0xD4 - 0xC8
+	.ascii "httpresult"
+	.short 0x0
 
 	.global Unk_ov4_02215F54
 Unk_ov4_02215F54: ; 0x02215F54
-	.incbin "incbin/overlay4_data.bin", 0xD4, 0xE0 - 0xD4
+	.ascii "returncd"
+	.word 0x0
 
 	.global Unk_ov4_02215F60
 Unk_ov4_02215F60: ; 0x02215F60
-	.incbin "incbin/overlay4_data.bin", 0xE0, 0xE8 - 0xE0
+	.asciz "token"
+	.short 0x0
 
 	.global Unk_ov4_02215F68
 Unk_ov4_02215F68: ; 0x02215F68
-	.incbin "incbin/overlay4_data.bin", 0xE8, 0xF0 - 0xE8
+	.asciz "locator"
 
 	.global Unk_ov4_02215F70
 Unk_ov4_02215F70: ; 0x02215F70
-	.incbin "incbin/overlay4_data.bin", 0xF0, 0xFC - 0xF0
+	.asciz "challenge"
+	.short 0x0
 
 	.global Unk_ov4_02215F7C
 Unk_ov4_02215F7C: ; 0x02215F7C
-	.incbin "incbin/overlay4_data.bin", 0xFC, 0x108 - 0xFC
+	.ascii "datetime"
+	.word 0x0
 
 	.global Unk_ov4_02215F88
 Unk_ov4_02215F88: ; 0x02215F88
-	.incbin "incbin/overlay4_data.bin", 0x108, 0x114 - 0x108
+	.ascii "Set-Cookie"
+	.short 0x0
 
 	.global Unk_ov4_02215F94
 Unk_ov4_02215F94: ; 0x02215F94
-	.incbin "incbin/overlay4_data.bin", 0x114, 0x120 - 0x114
+	.ascii "acctcreate"
+	.short 0x0
 
 	.global Unk_ov4_02215FA0
 Unk_ov4_02215FA0: ; 0x02215FA0
-	.incbin "incbin/overlay4_data.bin", 0x120, 0x128 - 0x120
+	.ascii "action"
+	.short 0x0
 
 	.global Unk_ov4_02215FA8
 Unk_ov4_02215FA8: ; 0x02215FA8
-	.incbin "incbin/overlay4_data.bin", 0x128, 0x130 - 0x128
+	.asciz "login"
+	.short 0x0
 
 	.global Unk_ov4_02215FB0
 Unk_ov4_02215FB0: ; 0x02215FB0
-	.incbin "incbin/overlay4_data.bin", 0x130, 0x138 - 0x130
+	.ascii "gsbrcd"
+	.short 0x0
 
 	.global Unk_ov4_02215FB8
 Unk_ov4_02215FB8: ; 0x02215FB8
-	.incbin "incbin/overlay4_data.bin", 0x138, 0x13C - 0x138
+	.word 0x59
 
 	.global Unk_ov4_02215FBC
 Unk_ov4_02215FBC: ; 0x02215FBC
-	.incbin "incbin/overlay4_data.bin", 0x13C, 0x144 - 0x13C
+	.asciz "iswfc"
+	.short 0x0
 
 	.global Unk_ov4_02215FC4
 Unk_ov4_02215FC4: ; 0x02215FC4
-	.incbin "incbin/overlay4_data.bin", 0x144, 0x9
+	.asciz "ingamesn"
 
 
 

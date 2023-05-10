@@ -1121,19 +1121,21 @@ _021FBD18:
 
 	.global NNMagicData
 NNMagicData: ; 0x022197A8
-	.incbin "incbin/overlay4_data.bin", 0x3928, 0x3930 - 0x3928
+	.byte 0xFD, 0xFC, 0x1E, 0x66, 0x6A, 0xB2
+	.space 0x2
 
 	.global Unk_ov4_022197B0
 Unk_ov4_022197B0: ; 0x022197B0
-	.incbin "incbin/overlay4_data.bin", 0x3930, 0x3938 - 0x3930
+	.asciz "%s.%s"
+	.space 0x2
 
 	.global Unk_ov4_022197B8
 Unk_ov4_022197B8: ; 0x022197B8
-	.incbin "incbin/overlay4_data.bin", 0x3938, 0x3954 - 0x3938
+	.asciz "natneg1.gs.nintendowifi.net"
 
 	.global Unk_ov4_022197D4
 Unk_ov4_022197D4: ; 0x022197D4
-	.incbin "incbin/overlay4_data.bin", 0x3954, 0x1C
+	.asciz "natneg2.gs.nintendowifi.net"
 
 
 

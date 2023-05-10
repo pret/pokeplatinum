@@ -203,31 +203,36 @@ _021FAE7C: .word Unk_ov4_022197A4
 
 	.global Unk_ov4_02219750
 Unk_ov4_02219750: ; 0x02219750
-	.incbin "incbin/overlay4_data.bin", 0x38D0, 0x38E4 - 0x38D0
+	.ascii "gt2StringToAddress"
+	.space 0x2
 
 	.global Unk_ov4_02219764
 Unk_ov4_02219764: ; 0x02219764
-	.incbin "incbin/overlay4_data.bin", 0x38E4, 0x38EC - 0x38E4
+	.asciz "%s:%d"
+	.space 0x2
 
 	.global Unk_ov4_0221976C
 Unk_ov4_0221976C: ; 0x0221976C
-	.incbin "incbin/overlay4_data.bin", 0x38EC, 0x38F0 - 0x38EC
+	.ascii "%s"
+	.space 0x2
 
 	.global Unk_ov4_02219770
 Unk_ov4_02219770: ; 0x02219770
-	.incbin "incbin/overlay4_data.bin", 0x38F0, 0x38F4 - 0x38F0
+	.asciz ":%d"
 
 	.global Unk_ov4_02219774
 Unk_ov4_02219774: ; 0x02219774
-	.incbin "incbin/overlay4_data.bin", 0x38F4, 0x3914 - 0x38F4
+	.ascii "len < GTI2_STACK_HOSTLEN_MAX"
+	.space 0x4
 
 	.global Unk_ov4_02219794
 Unk_ov4_02219794: ; 0x02219794
-	.incbin "incbin/overlay4_data.bin", 0x3914, 0x3924 - 0x3914
+	.ascii "gt2Utility.c"
+	.space 0x4
 
 	.global Unk_ov4_022197A4
 Unk_ov4_022197A4: ; 0x022197A4
-	.incbin "incbin/overlay4_data.bin", 0x3924, 0x1
+	.space 0x1
 
 
 

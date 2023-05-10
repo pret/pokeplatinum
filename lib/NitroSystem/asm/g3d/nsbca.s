@@ -1604,5 +1604,5 @@ _020B53D4: .word 0x020F981B
 
 	.global Unk_020F9818
 Unk_020F9818: ; 0x020F9818
-	.incbin "incbin/arm9_rodata.bin", 0x14BD8, 0x24
+	.incbin "incbin/nsbca.bin", 0x0, 0x24
 

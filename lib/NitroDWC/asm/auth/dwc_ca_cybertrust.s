@@ -7,7 +7,8 @@
 
 	.global Unk_ov4_02216670
 Unk_ov4_02216670: ; 0x02216670
-	.incbin "incbin/overlay4_data.bin", 0x7F0, 0x7F4 - 0x7F0
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_02216674
 Unk_ov4_02216674: ; 0x02216674
@@ -19,57 +20,75 @@ Unk_ov4_02216674: ; 0x02216674
 
 	.global Unk_ov4_02216688
 Unk_ov4_02216688: ; 0x02216688
-	.incbin "incbin/overlay4_data.bin", 0x808, 0x83C - 0x808
+	.asciz "BE, GlobalSign nv-sa, Root CA, GlobalSign Root CA"
+	.short 0x0
 
 	.global Unk_ov4_022166BC
 Unk_ov4_022166BC: ; 0x022166BC
-	.incbin "incbin/overlay4_data.bin", 0x83C, 0x93C - 0x83C
+	.incbin "incbin/dwc_ca_cybertrust.bin", 0x0, 0x100
 
 	.global Unk_ov4_022167BC
 Unk_ov4_022167BC: ; 0x022167BC
-	.incbin "incbin/overlay4_data.bin", 0x93C, 0x940 - 0x93C
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_022167C0
 Unk_ov4_022167C0: ; 0x022167C0
-	.incbin "incbin/overlay4_data.bin", 0x940, 0x954 - 0x940
+	.word Unk_ov4_022167D4
+	.word 0x100
+	.word Unk_ov4_0221680C
+	.word 0x3
+	.word Unk_ov4_022167BC
 
 	.global Unk_ov4_022167D4
 Unk_ov4_022167D4: ; 0x022167D4
-	.incbin "incbin/overlay4_data.bin", 0x954, 0x98C - 0x954
+	.ascii "IE, Baltimore, CyberTrust, Baltimore CyberTrust Root"
+	.word 0x0
 
 	.global Unk_ov4_0221680C
 Unk_ov4_0221680C: ; 0x0221680C
-	.incbin "incbin/overlay4_data.bin", 0x98C, 0xA8C - 0x98C
+	.incbin "incbin/dwc_ca_cybertrust.bin", 0x100, 0x200 - 0x100
 
 	.global Unk_ov4_0221690C
 Unk_ov4_0221690C: ; 0x0221690C
-	.incbin "incbin/overlay4_data.bin", 0xA8C, 0xA90 - 0xA8C
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_02216910
 Unk_ov4_02216910: ; 0x02216910
-	.incbin "incbin/overlay4_data.bin", 0xA90, 0xAA4 - 0xA90
+	.word Unk_ov4_02216924
+	.word 0x80
+	.word Unk_ov4_02216974
+	.word 0x3
+	.word Unk_ov4_0221690C
 
 	.global Unk_ov4_02216924
 Unk_ov4_02216924: ; 0x02216924
-	.incbin "incbin/overlay4_data.bin", 0xAA4, 0xAF4 - 0xAA4
+	.asciz "US, GTE Corporation, GTE CyberTrust Solutions, Inc., GTE CyberTrust Global Root"
 
 	.global Unk_ov4_02216974
 Unk_ov4_02216974: ; 0x02216974
-	.incbin "incbin/overlay4_data.bin", 0xAF4, 0xB74 - 0xAF4
+	.incbin "incbin/dwc_ca_cybertrust.bin", 0x200, 0x280 - 0x200
 
 	.global Unk_ov4_022169F4
 Unk_ov4_022169F4: ; 0x022169F4
-	.incbin "incbin/overlay4_data.bin", 0xB74, 0xB78 - 0xB74
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_022169F8
 Unk_ov4_022169F8: ; 0x022169F8
-	.incbin "incbin/overlay4_data.bin", 0xB78, 0xB8C - 0xB78
+	.word Unk_ov4_02216A0C
+	.word 0x80
+	.word Unk_ov4_02216A38
+	.word 0x3
+	.word Unk_ov4_022169F4
 
 	.global Unk_ov4_02216A0C
 Unk_ov4_02216A0C: ; 0x02216A0C
-	.incbin "incbin/overlay4_data.bin", 0xB8C, 0xBB8 - 0xB8C
+	.ascii "US, GTE Corporation, GTE CyberTrust Root"
+	.word 0x0
 
 	.global Unk_ov4_02216A38
 Unk_ov4_02216A38: ; 0x02216A38
-	.incbin "incbin/overlay4_data.bin", 0xBB8, 0x80
+	.incbin "incbin/dwc_ca_cybertrust.bin", 0x280, 0x80
 

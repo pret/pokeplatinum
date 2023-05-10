@@ -666,7 +666,7 @@ _0222DCD8: .word 0x0222E76A
 
 	.global Unk_ov61_0222E638
 Unk_ov61_0222E638: ; 0x0222E638
-	.incbin "incbin/overlay61_data.bin", 0x38, 0x1
+	.space 0x1
 
 
 	.bss

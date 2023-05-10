@@ -31,3 +31,4 @@
 .public sub_020E4458
 .public sub_020E4488
 .public __throw
+.public Unk_021019C8

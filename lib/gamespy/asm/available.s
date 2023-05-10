@@ -276,11 +276,12 @@ _021E99E8: .word Unk_ov4_0221AE50
 
 	.global Unk_ov4_022176A4
 Unk_ov4_022176A4: ; 0x022176A4
-	.incbin "incbin/overlay4_data.bin", 0x1824, 0x1848 - 0x1824
+	.ascii "%s.available.gs.nintendowifi.net"
+	.space 0x4
 
 	.global Unk_ov4_022176C8
 Unk_ov4_022176C8: ; 0x022176C8
-	.incbin "incbin/overlay4_data.bin", 0x1848, 0x4
+	.byte 0xFE, 0xFD, 0x9, 0x0
 
 
 

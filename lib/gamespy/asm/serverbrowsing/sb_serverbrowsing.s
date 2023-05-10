@@ -508,5 +508,5 @@ ServerBrowserGetMyPublicIPAddr: ; 0x021FEEC0
 
 	.global Unk_ov4_02219FA8
 Unk_ov4_02219FA8: ; 0x02219FA8
-	.incbin "incbin/overlay4_data.bin", 0x4128, 0x4
+	.asciz "\\%s"
 

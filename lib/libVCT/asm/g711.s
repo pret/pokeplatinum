@@ -121,5 +121,7 @@ _022038D4:
 
 	.global Unk_ov4_0221A0EC
 Unk_ov4_0221A0EC: ; 0x0221A0EC
-	.incbin "incbin/overlay4_data.bin", 0x426C, 0x20
+	.word 0x3F
+	.word 0x7F, 0xFF, 0x1FF, 0x3FF
+	.word 0x7FF, 0xFFF, 0x1FFF
 

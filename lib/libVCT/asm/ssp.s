@@ -1233,27 +1233,29 @@ _02205124: .word 0x0221C70C
 
 	.global Unk_ov4_02215D28
 Unk_ov4_02215D28: ; 0x02215D28
-	.incbin "incbin/overlay4_rodata.bin", 0x4C0, 0x4C8 - 0x4C0
+	.byte 0x1, 0x8, 0x4, 0xA
+	.space 0x4
 
 	.global Unk_ov4_02215D30
 Unk_ov4_02215D30: ; 0x02215D30
-	.incbin "incbin/overlay4_rodata.bin", 0x4C8, 0x4D0 - 0x4C8
+	.byte 0x7, 0xC, 0x2, 0x3, 0x9, 0x2
+	.space 0x2
 
 	.global Unk_ov4_02215D38
 Unk_ov4_02215D38: ; 0x02215D38
-	.incbin "incbin/overlay4_rodata.bin", 0x4D0, 0x512 - 0x4D0
+	.incbin "incbin/ssp.bin", 0x0, 0x42
 
 	.global Unk_ov4_02215D7A
 Unk_ov4_02215D7A: ; 0x02215D7A
-	.incbin "incbin/overlay4_rodata.bin", 0x512, 0x554 - 0x512
+	.incbin "incbin/ssp.bin", 0x42, 0x84 - 0x42
 
 	.global Unk_ov4_02215DBC
 Unk_ov4_02215DBC: ; 0x02215DBC
-	.incbin "incbin/overlay4_rodata.bin", 0x554, 0x596 - 0x554
+	.incbin "incbin/ssp.bin", 0x84, 0xC6 - 0x84
 
 	.global Unk_ov4_02215DFE
 Unk_ov4_02215DFE: ; 0x02215DFE
-	.incbin "incbin/overlay4_rodata.bin", 0x596, 0x42
+	.incbin "incbin/ssp.bin", 0xC6, 0x42
 
 
 
@@ -1262,7 +1264,8 @@ Unk_ov4_02215DFE: ; 0x02215DFE
 
 	.global Unk_ov4_0221A10C
 Unk_ov4_0221A10C: ; 0x0221A10C
-	.incbin "incbin/overlay4_data.bin", 0x428C, 0x8
+	.byte 0xF7, 0xB5, 0xEF, 0x0
+	.space 0x4
 
 
 

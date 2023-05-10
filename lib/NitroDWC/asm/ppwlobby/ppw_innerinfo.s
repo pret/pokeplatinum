@@ -5085,7 +5085,14 @@ _0224117C:
 
 	.global Unk_ov66_02258C8C
 Unk_ov66_02258C8C: ; 0x02258C8C
-	.incbin "incbin/overlay66_rodata.bin", 0x374, 0x20
+	.word 0x0
+	.word 0x0
+	.word 0x1
+	.word 0x0
+	.word 0x1
+	.word 0x1
+	.word 0x1
+	.word 0x14
 
 
 	.data
@@ -5093,35 +5100,36 @@ Unk_ov66_02258C8C: ; 0x02258C8C
 
 	.global Unk_ov66_02259098
 Unk_ov66_02259098: ; 0x02259098
-	.incbin "incbin/overlay66_data.bin", 0x378, 0x379 - 0x378
+	.space 0x1
 
 	.global Unk_ov66_02259099
 Unk_ov66_02259099: ; 0x02259099
-	.incbin "incbin/overlay66_data.bin", 0x379, 0x37C - 0x379
+	.space 0x3
 
 	.global Unk_ov66_0225909C
 Unk_ov66_0225909C: ; 0x0225909C
-	.incbin "incbin/overlay66_data.bin", 0x37C, 0x380 - 0x37C
+	.space 0x4
 
 	.global Unk_ov66_022590A0
 Unk_ov66_022590A0: ; 0x022590A0
-	.incbin "incbin/overlay66_data.bin", 0x380, 0x384 - 0x380
+	.space 0x4
 
 	.global Unk_ov66_022590A4
 Unk_ov66_022590A4: ; 0x022590A4
-	.incbin "incbin/overlay66_data.bin", 0x384, 0x388 - 0x384
+	.space 0x4
 
 	.global Unk_ov66_022590A8
 Unk_ov66_022590A8: ; 0x022590A8
-	.incbin "incbin/overlay66_data.bin", 0x388, 0x38C - 0x388
+	.space 0x4
 
 	.global Unk_ov66_022590AC
 Unk_ov66_022590AC: ; 0x022590AC
-	.incbin "incbin/overlay66_data.bin", 0x38C, 0x3A4 - 0x38C
+	.ascii "deque:: length error"
+	.space 0x4
 
 	.global Unk_ov66_022590C4
 Unk_ov66_022590C4: ; 0x022590C4
-	.incbin "incbin/overlay66_data.bin", 0x3A4, 0x14
+	.asciz "cdeque length error"
 
 
 	.bss

@@ -453,7 +453,7 @@ _021E91B0: .word Unk_ov4_0221AE40
 
 	.global Unk_ov4_0221597C
 Unk_ov4_0221597C: ; 0x0221597C
-	.incbin "incbin/overlay4_rodata.bin", 0x114, 0x4
+	.ascii "!SDW"
 
 
 

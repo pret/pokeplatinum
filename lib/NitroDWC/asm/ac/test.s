@@ -379,9 +379,9 @@ ov4_021E856C: ; 0x021E856C
 
 	.global Unk_ov4_022158E8
 Unk_ov4_022158E8: ; 0x022158E8
-	.incbin "incbin/overlay4_rodata.bin", 0x80, 0x48
+	.incbin "incbin/test.bin", 0x0, 0x48
 	.word Unk_ov4_02217618
-	.incbin "incbin/overlay4_rodata.bin", 0xCC, 0xC
+	.word 0x4, 0x0, 0x0
 
 
 
@@ -390,5 +390,5 @@ Unk_ov4_022158E8: ; 0x022158E8
 
 	.global Unk_ov4_02217618
 Unk_ov4_02217618: ; 0x02217618
-	.incbin "incbin/overlay4_data.bin", 0x1798, 0xC
+	.asciz "NINTENDO-DS"
 

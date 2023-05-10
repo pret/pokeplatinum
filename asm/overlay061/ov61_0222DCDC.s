@@ -354,9 +354,11 @@ _0222E0B4: .word 0x000059DB
 
 	.global Unk_ov61_0222E63C
 Unk_ov61_0222E63C: ; 0x0222E63C
-	.incbin "incbin/overlay61_data.bin", 0x3C, 0x58 - 0x3C
+	.ascii "pkgdsprod.nintendo.co.jp"
+	.space 0x4
 
 	.global Unk_ov61_0222E658
 Unk_ov61_0222E658: ; 0x0222E658
-	.incbin "incbin/overlay61_data.bin", 0x58, 0x3
+	.ascii "--"
+	.space 0x2
 

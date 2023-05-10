@@ -237,5 +237,6 @@ _022241DC:
 
 	.global Unk_ov60_02228C78
 Unk_ov60_02228C78: ; 0x02228C78
-	.incbin "incbin/overlay60_rodata.bin", 0x2C, 0x41
+	.ascii "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.-"
+	.space 0x4
 

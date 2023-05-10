@@ -7362,51 +7362,51 @@ _0222AD30: .word Unk_ov18_02251D10
 
 	.global Unk_ov18_0224645C
 Unk_ov18_0224645C: ; 0x0224645C
-	.incbin "incbin/overlay18_rodata.bin", 0x28, 0x30 - 0x28
+	.incbin "incbin/atermset.bin", 0x0, 0x8
 
 	.global Unk_ov18_02246464
 Unk_ov18_02246464: ; 0x02246464
-	.incbin "incbin/overlay18_rodata.bin", 0x30, 0x58 - 0x30
+	.incbin "incbin/atermset.bin", 0x8, 0x30 - 0x8
 
 	.global Unk_ov18_0224648C
 Unk_ov18_0224648C: ; 0x0224648C
-	.incbin "incbin/overlay18_rodata.bin", 0x58, 0x458 - 0x58
+	.incbin "incbin/atermset.bin", 0x30, 0x430 - 0x30
 
 	.global Unk_ov18_0224688C
 Unk_ov18_0224688C: ; 0x0224688C
-	.incbin "incbin/overlay18_rodata.bin", 0x458, 0x858 - 0x458
+	.incbin "incbin/atermset.bin", 0x430, 0x830 - 0x430
 
 	.global Unk_ov18_02246C8C
 Unk_ov18_02246C8C: ; 0x02246C8C
-	.incbin "incbin/overlay18_rodata.bin", 0x858, 0xC58 - 0x858
+	.incbin "incbin/atermset.bin", 0x830, 0xC30 - 0x830
 
 	.global Unk_ov18_0224708C
 Unk_ov18_0224708C: ; 0x0224708C
-	.incbin "incbin/overlay18_rodata.bin", 0xC58, 0x1058 - 0xC58
+	.incbin "incbin/atermset.bin", 0xC30, 0x1030 - 0xC30
 
 	.global Unk_ov18_0224748C
 Unk_ov18_0224748C: ; 0x0224748C
-	.incbin "incbin/overlay18_rodata.bin", 0x1058, 0x1458 - 0x1058
+	.incbin "incbin/atermset.bin", 0x1030, 0x1430 - 0x1030
 
 	.global Unk_ov18_0224788C
 Unk_ov18_0224788C: ; 0x0224788C
-	.incbin "incbin/overlay18_rodata.bin", 0x1458, 0x1858 - 0x1458
+	.incbin "incbin/atermset.bin", 0x1430, 0x1830 - 0x1430
 
 	.global Unk_ov18_02247C8C
 Unk_ov18_02247C8C: ; 0x02247C8C
-	.incbin "incbin/overlay18_rodata.bin", 0x1858, 0x1C58 - 0x1858
+	.incbin "incbin/atermset.bin", 0x1830, 0x1C30 - 0x1830
 
 	.global Unk_ov18_0224808C
 Unk_ov18_0224808C: ; 0x0224808C
-	.incbin "incbin/overlay18_rodata.bin", 0x1C58, 0x2058 - 0x1C58
+	.incbin "incbin/atermset.bin", 0x1C30, 0x2030 - 0x1C30
 
 	.global Unk_ov18_0224848C
 Unk_ov18_0224848C: ; 0x0224848C
-	.incbin "incbin/overlay18_rodata.bin", 0x2058, 0x2458 - 0x2058
+	.incbin "incbin/atermset.bin", 0x2030, 0x2430 - 0x2030
 
 	.global Unk_ov18_0224888C
 Unk_ov18_0224888C: ; 0x0224888C
-	.incbin "incbin/overlay18_rodata.bin", 0x2458, 0x400
+	.incbin "incbin/atermset.bin", 0x2430, 0x400
 
 
 
@@ -7415,43 +7415,62 @@ Unk_ov18_0224888C: ; 0x0224888C
 
 	.global Unk_ov18_02249838
 Unk_ov18_02249838: ; 0x02249838
-	.incbin "incbin/overlay18_data.bin", 0xD8, 0xDC - 0xD8
+	.word Unk_ov18_02252244 + 0x8
 
 	.global Unk_ov18_0224983C
 Unk_ov18_0224983C: ; 0x0224983C
-	.incbin "incbin/overlay18_data.bin", 0xDC, 0xE0 - 0xDC
+	.word 0x1
 
 	.global Unk_ov18_02249840
 Unk_ov18_02249840: ; 0x02249840
-	.incbin "incbin/overlay18_data.bin", 0xE0, 0xE4 - 0xE0
+	.word 0x800
 
 	.global Unk_ov18_02249844
 Unk_ov18_02249844: ; 0x02249844
-	.incbin "incbin/overlay18_data.bin", 0xE4, 0xE8 - 0xE4
+	.word 0xFFFFFFFF
 
 	.global Unk_ov18_02249848
 Unk_ov18_02249848: ; 0x02249848
-	.incbin "incbin/overlay18_data.bin", 0xE8, 0xEC - 0xE8
+	.word 0x40
 
 	.global Unk_ov18_0224984C
 Unk_ov18_0224984C: ; 0x0224984C
-	.incbin "incbin/overlay18_data.bin", 0xEC, 0x144 - 0xEC
+	.word 0x01000000
+	.word ov18_02227BC8
+	.word ov18_02227BF8
+	.space 0x4
+	.short 0xA8C0
+	.short 0xB000
+	.word 0xFFFFFF
+	.short 0xA8C0
+	.short 0xC800
+	.short 0xA8C0
+	.short 0x2000
+	.space 0x4
+	.word 0x1000
+	.word 0x1000
+	.space 0x1C
+	.word Unk_ov18_022498AC
+	.word 0x4
+	.space 0x8
 
 	.global Unk_ov18_022498A4
 Unk_ov18_022498A4: ; 0x022498A4
-	.incbin "incbin/overlay18_data.bin", 0x144, 0x14C - 0x144
+	.ascii "******"
+	.space 0x2
 
 	.global Unk_ov18_022498AC
 Unk_ov18_022498AC: ; 0x022498AC
-	.incbin "incbin/overlay18_data.bin", 0x14C, 0x158 - 0x14C
+	.asciz "NINTENDO-DS"
 
 	.global Unk_ov18_022498B8
 Unk_ov18_022498B8: ; 0x022498B8
-	.incbin "incbin/overlay18_data.bin", 0x158, 0x198 - 0x158
+	.word 0x80
+	.space 0x3C
 
 	.global Unk_ov18_022498F8
 Unk_ov18_022498F8: ; 0x022498F8
-	.incbin "incbin/overlay18_data.bin", 0x198, 0x5
+	.asciz "WARP"
 
 
 

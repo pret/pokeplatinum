@@ -160,7 +160,7 @@ _0222F208: .word ov18_022450D0
 
 	.global Unk_ov18_022490FC
 Unk_ov18_022490FC: ; 0x022490FC
-	.incbin "incbin/overlay18_rodata.bin", 0x2CC8, 0xC
+	.asciz "NINTENDO-DS"
 
 
 

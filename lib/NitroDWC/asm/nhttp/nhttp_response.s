@@ -212,5 +212,6 @@ ov60_02226E8C: ; 0x02226E8C
 
 	.global Unk_ov60_02229CE4
 Unk_ov60_02229CE4: ; 0x02229CE4
-	.incbin "incbin/overlay60_data.bin", 0xEA4, 0x10
+	.ascii "HTTPSTATUSCODE"
+	.space 0x2
 

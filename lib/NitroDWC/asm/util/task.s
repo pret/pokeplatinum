@@ -275,7 +275,7 @@ _02246430: .word Unk_ov18_02253424
 
 	.global Unk_ov18_0224973C
 Unk_ov18_0224973C: ; 0x0224973C
-	.incbin "incbin/overlay18_rodata.bin", 0x3308, 0x2
+	.byte 0x80, 0x20, 0x0, 0x0
 
 
 

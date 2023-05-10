@@ -132,13 +132,13 @@ _0222BE2C: .word 0xFE00FF00
 
 	.global Unk_ov18_02248D1C
 Unk_ov18_02248D1C: ; 0x02248D1C
-	.incbin "incbin/overlay18_rodata.bin", 0x28E8, 0x28EC - 0x28E8
+	.short 0xE5
+	.short 0x26
 
 	.global Unk_ov18_02248D20
 Unk_ov18_02248D20: ; 0x02248D20
-	.incbin "incbin/overlay18_rodata.bin", 0x28EC, 0x8
-
-
+	.byte 0x18, 0x17, 0x16, 0x15
+	.byte 0x5F, 0x5E, 0x5D, 0x5C
 
 	.bss
 

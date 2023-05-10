@@ -441,19 +441,19 @@ _0223079C: .word Unk_ov18_022532DC
 
 	.global Unk_ov18_02249108
 Unk_ov18_02249108: ; 0x02249108
-	.incbin "incbin/overlay18_rodata.bin", 0x2CD4, 0x2CD6 - 0x2CD4
+	.byte 0x1, 0x2
 
 	.global Unk_ov18_0224910A
 Unk_ov18_0224910A: ; 0x0224910A
-	.incbin "incbin/overlay18_rodata.bin", 0x2CD6, 0x2CE6 - 0x2CD6
+	.short 0x8, 0x20, 0xAC, 0xA0, 0xB4, 0x20, 0xF8, 0xA0
 
 	.global Unk_ov18_0224911A
 Unk_ov18_0224911A: ; 0x0224911A
-	.incbin "incbin/overlay18_rodata.bin", 0x2CE6, 0x2CF6 - 0x2CE6
+	.short 0x6, 0x1E, 0x9E, 0x92, 0xB2, 0x1E, 0xEA, 0x92
 
 	.global Unk_ov18_0224912A
 Unk_ov18_0224912A: ; 0x0224912A
-	.incbin "incbin/overlay18_rodata.bin", 0x2CF6, 0x16
+	.asciz "char/ybBgStep11.ncl.l"
 
 
 
@@ -462,15 +462,18 @@ Unk_ov18_0224912A: ; 0x0224912A
 
 	.global Unk_ov18_02249F2C
 Unk_ov18_02249F2C: ; 0x02249F2C
-	.incbin "incbin/overlay18_data.bin", 0x7CC, 0x7E4 - 0x7CC
+	.ascii "char/jbBgStep1.ncg.l"
+	.space 0x4
 
 	.global Unk_ov18_02249F44
 Unk_ov18_02249F44: ; 0x02249F44
-	.incbin "incbin/overlay18_data.bin", 0x7E4, 0x7FC - 0x7E4
+	.ascii "char/jbBgStep1.ncl.l"
+	.space 0x4
 
 	.global Unk_ov18_02249F5C
 Unk_ov18_02249F5C: ; 0x02249F5C
-	.incbin "incbin/overlay18_data.bin", 0x7FC, 0x13
+	.ascii "char/jb2Menu.nsc.l"
+	.space 0x2
 
 
 

@@ -7,65 +7,89 @@
 
 	.global Unk_ov4_02216DD8
 Unk_ov4_02216DD8: ; 0x02216DD8
-	.incbin "incbin/overlay4_data.bin", 0xF58, 0xF5C - 0xF58
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_02216DDC
 Unk_ov4_02216DDC: ; 0x02216DDC
-	.incbin "incbin/overlay4_data.bin", 0xF5C, 0xF70 - 0xF5C
+	.word Unk_ov4_02216E70
+	.word 0x80
+	.word Unk_ov4_02216DF0
+	.word 0x3
+	.word Unk_ov4_02216DD8
 
 	.global Unk_ov4_02216DF0
 Unk_ov4_02216DF0: ; 0x02216DF0
-	.incbin "incbin/overlay4_data.bin", 0xF70, 0xFF0 - 0xF70
+	.incbin "incbin/dwc_ca_verisign.bin", 0x0, 0x80
 
 	.global Unk_ov4_02216E70
 Unk_ov4_02216E70: ; 0x02216E70
-	.incbin "incbin/overlay4_data.bin", 0xFF0, 0x1084 - 0xFF0
+	.asciz "US, VeriSign, Inc., Class 3 Public Primary Certification Authority - G2, (c) 1998 VeriSign, Inc. - For authorized use only, VeriSign Trust Network"
+	.byte 0x0
 
 	.global Unk_ov4_02216F04
 Unk_ov4_02216F04: ; 0x02216F04
-	.incbin "incbin/overlay4_data.bin", 0x1084, 0x1088 - 0x1084
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_02216F08
 Unk_ov4_02216F08: ; 0x02216F08
-	.incbin "incbin/overlay4_data.bin", 0x1088, 0x109C - 0x1088
+	.word Unk_ov4_02216F1C
+	.word 0x100
+	.word Unk_ov4_02216FB8
+	.word 0x3
+	.word Unk_ov4_02216F04
+
 
 	.global Unk_ov4_02216F1C
 Unk_ov4_02216F1C: ; 0x02216F1C
-	.incbin "incbin/overlay4_data.bin", 0x109C, 0x1138 - 0x109C
+	.asciz "US, VeriSign, Inc., VeriSign Trust Network, (c) 1999 VeriSign, Inc. - For authorized use only, VeriSign Class 3 Public Primary Certification Authority - G3"
 
 	.global Unk_ov4_02216FB8
 Unk_ov4_02216FB8: ; 0x02216FB8
-	.incbin "incbin/overlay4_data.bin", 0x1138, 0x1238 - 0x1138
+	.incbin "incbin/dwc_ca_verisign.bin", 0x80, 0x100
 
 	.global Unk_ov4_022170B8
 Unk_ov4_022170B8: ; 0x022170B8
-	.incbin "incbin/overlay4_data.bin", 0x1238, 0x123C - 0x1238
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_022170BC
 Unk_ov4_022170BC: ; 0x022170BC
-	.incbin "incbin/overlay4_data.bin", 0x123C, 0x1250 - 0x123C
+	.word Unk_ov4_022170D0
+	.word 0x80
+	.word Unk_ov4_02217114
+	.word 0x3
+	.word Unk_ov4_022170B8
 
 	.global Unk_ov4_022170D0
 Unk_ov4_022170D0: ; 0x022170D0
-	.incbin "incbin/overlay4_data.bin", 0x1250, 0x1294 - 0x1250
+	.asciz "US, VeriSign, Inc., Class 3 Public Primary Certification Authority"
+	.byte 0x0
 
 	.global Unk_ov4_02217114
 Unk_ov4_02217114: ; 0x02217114
-	.incbin "incbin/overlay4_data.bin", 0x1294, 0x1314 - 0x1294
+	.incbin "incbin/dwc_ca_verisign.bin", 0x180, 0x80
 
 	.global Unk_ov4_02217194
 Unk_ov4_02217194: ; 0x02217194
-	.incbin "incbin/overlay4_data.bin", 0x1314, 0x1318 - 0x1314
+	.short 0x1
+	.short 0x1
 
 	.global Unk_ov4_02217198
 Unk_ov4_02217198: ; 0x02217198
-	.incbin "incbin/overlay4_data.bin", 0x1318, 0x132C - 0x1318
+	.word Unk_ov4_022171AC
+	.word 0x7D
+	.word Unk_ov4_022171F0
+	.word 0x3
+	.word Unk_ov4_02217194
 
 	.global Unk_ov4_022171AC
 Unk_ov4_022171AC: ; 0x022171AC
-	.incbin "incbin/overlay4_data.bin", 0x132C, 0x1370 - 0x132C
+	.asciz "US, RSA Data Security, Inc., Secure Server Certification Authority"
+	.byte 0x0
 
 	.global Unk_ov4_022171F0
 Unk_ov4_022171F0: ; 0x022171F0
-	.incbin "incbin/overlay4_data.bin", 0x1370, 0x7D
+	.incbin "incbin/dwc_ca_verisign.bin", 0x200, 0x7D
 

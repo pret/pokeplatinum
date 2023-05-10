@@ -385,5 +385,5 @@ _02228C44:
 
 	.global Unk_ov60_02228E00
 Unk_ov60_02228E00: ; 0x02228E00
-	.incbin "incbin/overlay60_rodata.bin", 0x1B4, 0x24
+	.incbin "incbin/nhttp_token.bin", 0x0, 0x24
 

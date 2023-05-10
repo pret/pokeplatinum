@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/hash2.inc"
 
-	
+
 
 	.text
 
@@ -312,15 +312,33 @@ _020C95AC: .word DGT_Hash2GetDigest
 
 	.global Unk_020FE4E8
 Unk_020FE4E8: ; 0x020FE4E8
-	.incbin "incbin/arm9_rodata.bin", 0x198A8, 0x198C4 - 0x198A8
+	.word 0x14
+	.word 0x40
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
 
 	.global Unk_020FE504
 Unk_020FE504: ; 0x020FE504
-	.incbin "incbin/arm9_rodata.bin", 0x198C4, 0x198E0 - 0x198C4
+	.word 0x14
+	.word 0x40
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
 
 	.global Unk_020FE520
 Unk_020FE520: ; 0x020FE520
-	.incbin "incbin/arm9_rodata.bin", 0x198E0, 0x1C
+	.word 0x14
+	.word 0x40
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
+	.word 0x0
 
 
 
@@ -329,19 +347,25 @@ Unk_020FE520: ; 0x020FE520
 
 	.global Unk_02101334
 Unk_02101334: ; 0x02101334
-	.incbin "incbin/arm9_data.bin", 0x2654, 0x2658 - 0x2654
+	.word 0x61
 
 	.global Unk_02101338
 Unk_02101338: ; 0x02101338
-	.incbin "incbin/arm9_data.bin", 0x2658, 0x265C - 0x2658
+	.word DGTi_hash2_arm4_small
 
 	.global Unk_0210133C
 Unk_0210133C: ; 0x0210133C
-	.incbin "incbin/arm9_data.bin", 0x265C, 0x266C - 0x265C
+	.word Unk_021013A0
+	.word Unk_021013B8
+	.word Unk_02101370
+	.word Unk_02101388
 
 	.global Unk_0210134C
 Unk_0210134C: ; 0x0210134C
-	.incbin "incbin/arm9_data.bin", 0x266C, 0x267C - 0x266C
+	.word Unk_0210136C
+	.word Unk_021013D0
+	.word Unk_02101334
+	.word Unk_0210140C
 
 	.global Unk_0210135C
 Unk_0210135C: ; 0x0210135C
@@ -352,29 +376,29 @@ Unk_0210135C: ; 0x0210135C
 
 	.global Unk_0210136C
 Unk_0210136C: ; 0x0210136C
-	.incbin "incbin/arm9_data.bin", 0x268C, 0x2690 - 0x268C
+	.incbin "incbin/hash2.bin", 0x0, 0x4
 
 	.global Unk_02101370
 Unk_02101370: ; 0x02101370
-	.incbin "incbin/arm9_data.bin", 0x2690, 0x26A8 - 0x2690
+	.incbin "incbin/hash2.bin", 0x4, 0x1C - 0x4
 
 	.global Unk_02101388
 Unk_02101388: ; 0x02101388
-	.incbin "incbin/arm9_data.bin", 0x26A8, 0x26C0 - 0x26A8
+	.incbin "incbin/hash2.bin", 0x1C, 0x34 - 0x1C
 
 	.global Unk_021013A0
 Unk_021013A0: ; 0x021013A0
-	.incbin "incbin/arm9_data.bin", 0x26C0, 0x26D8 - 0x26C0
+	.incbin "incbin/hash2.bin", 0x34, 0x4C - 0x34
 
 	.global Unk_021013B8
 Unk_021013B8: ; 0x021013B8
-	.incbin "incbin/arm9_data.bin", 0x26D8, 0x26F0 - 0x26D8
+	.incbin "incbin/hash2.bin", 0x4C, 0x64 - 0x4C
 
 	.global Unk_021013D0
 Unk_021013D0: ; 0x021013D0
-	.incbin "incbin/arm9_data.bin", 0x26F0, 0x272C - 0x26F0
+	.incbin "incbin/hash2.bin", 0x64, 0xA0 - 0x64
 
 	.global Unk_0210140C
 Unk_0210140C: ; 0x0210140C
-	.incbin "incbin/arm9_data.bin", 0x272C, 0x41
+	.incbin "incbin/hash2.bin", 0xA0, 0x41
 

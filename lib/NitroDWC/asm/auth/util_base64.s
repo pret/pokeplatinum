@@ -223,9 +223,9 @@ _021D75CC:
 
 	.global Unk_ov4_02216628
 Unk_ov4_02216628: ; 0x02216628
-	.incbin "incbin/overlay4_data.bin", 0x7A8, 0x7AC - 0x7A8
+	.word Unk_ov4_0221662C
 
 	.global Unk_ov4_0221662C
 Unk_ov4_0221662C: ; 0x0221662C
-	.incbin "incbin/overlay4_data.bin", 0x7AC, 0x41
+	.asciz "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.-"
 

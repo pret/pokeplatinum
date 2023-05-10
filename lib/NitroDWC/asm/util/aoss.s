@@ -4504,7 +4504,7 @@ ov18_02226908: ; 0x02226908
 
 	.global Unk_ov18_02246458
 Unk_ov18_02246458: ; 0x02246458
-	.incbin "incbin/overlay18_rodata.bin", 0x24, 0x4
+	.byte 0xFF, 0xFF, 0xFF, 0xFF
 
 
 
@@ -4513,27 +4513,34 @@ Unk_ov18_02246458: ; 0x02246458
 
 	.global Unk_ov18_02249790
 Unk_ov18_02249790: ; 0x02249790
-	.incbin "incbin/overlay18_data.bin", 0x30, 0x34 - 0x30
+	.word 0x809
 
 	.global Unk_ov18_02249794
 Unk_ov18_02249794: ; 0x02249794
-	.incbin "incbin/overlay18_data.bin", 0x34, 0x38 - 0x34
+	.word 0xFFFFFFFF
 
 	.global Unk_ov18_02249798
 Unk_ov18_02249798: ; 0x02249798
-	.incbin "incbin/overlay18_data.bin", 0x38, 0x3C - 0x38
+	.word 0xFFFFFFFF
 
 	.global Unk_ov18_0224979C
 Unk_ov18_0224979C: ; 0x0224979C
-	.incbin "incbin/overlay18_data.bin", 0x3C, 0x94 - 0x3C
+	.word 0x01000000
+	.word ov18_02226680
+	.word ov18_02226698
+	.space 0x18
+	.word 0x1000
+	.word 0x1000
+	.space 0x2C
 
 	.global Unk_ov18_022497F4
 Unk_ov18_022497F4: ; 0x022497F4
-	.incbin "incbin/overlay18_data.bin", 0x94, 0xA0 - 0x94
+	.ascii "ESSID-AOSS"
+	.space 0x2
 
 	.global Unk_ov18_02249800
 Unk_ov18_02249800: ; 0x02249800
-	.incbin "incbin/overlay18_data.bin", 0xA0, 0x6
+	.asciz "MELCO"
 
 
 

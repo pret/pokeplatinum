@@ -547,11 +547,11 @@ _0223D8D8: .word Unk_ov18_0225337C
 
 	.global Unk_ov18_0224956C
 Unk_ov18_0224956C: ; 0x0224956C
-	.incbin "incbin/overlay18_rodata.bin", 0x3138, 0x313C - 0x3138
+	.byte 0x10, 0xF, 0xE, 0x0
 
 	.global Unk_ov18_02249570
 Unk_ov18_02249570: ; 0x02249570
-	.incbin "incbin/overlay18_rodata.bin", 0x313C, 0x3
+	.byte 0x55, 0x36, 0x1E, 0x0
 
 
 

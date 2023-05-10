@@ -470,13 +470,13 @@ _020D9114:
 
 	.global Unk_0210181C
 Unk_0210181C: ; 0x0210181C
-	.incbin "incbin/arm9_data.bin", 0x2B3C, 0x2B40 - 0x2B3C
+	.space 0x4
 
 	.global Unk_02101820
 Unk_02101820: ; 0x02101820
-	.incbin "incbin/arm9_data.bin", 0x2B40, 0x2B44 - 0x2B40
+	.word Unk_0210181C
 
 	.global Unk_02101824
 Unk_02101824: ; 0x02101824
-	.incbin "incbin/arm9_data.bin", 0x2B44, 0x4
+	.word Unk_0210181C
 

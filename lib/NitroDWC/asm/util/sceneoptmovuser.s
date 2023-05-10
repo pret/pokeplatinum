@@ -326,7 +326,8 @@ _02232C6C: .word Unk_ov18_02253304
 
 	.global Unk_ov18_0224A0B8
 Unk_ov18_0224A0B8: ; 0x0224A0B8
-	.incbin "incbin/overlay18_data.bin", 0x958, 0x13
+	.ascii "char/jb5Move.nsc.l"
+	.space 0x2
 
 
 

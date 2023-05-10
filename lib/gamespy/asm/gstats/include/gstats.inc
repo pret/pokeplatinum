@@ -16,6 +16,13 @@
 .public ov4_021EAD04
 .public ov4_021EAE04
 .public ov4_021F5D7C
+.public ov4_021F5E18
+.public ov4_021F5E44
+.public ov4_021F5ED8
+.public ov4_021F5F5C
+.public ov4_021F5FDC
+.public ov4_021F6060
+.public ov4_021F6104
 .public CloseStatsConnection
 .public ov4_021F6518
 .public ov4_021F6560
@@ -36,3 +43,4 @@
 .public ov4_021F6DC4
 .public ov4_021F6E2C
 .public ov4_021F6E9C
+

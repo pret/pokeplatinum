@@ -3971,107 +3971,144 @@ _02246284:
 
 	.global Unk_ov66_02259128
 Unk_ov66_02259128: ; 0x02259128
-	.incbin "incbin/overlay66_data.bin", 0x408, 0x409 - 0x408
+	.byte 0x0
 
 	.global Unk_ov66_02259129
 Unk_ov66_02259129: ; 0x02259129
-	.incbin "incbin/overlay66_data.bin", 0x409, 0x40A - 0x409
+	.byte 0x1
 
 	.global Unk_ov66_0225912A
 Unk_ov66_0225912A: ; 0x0225912A
-	.incbin "incbin/overlay66_data.bin", 0x40A, 0x40B - 0x40A
+	.byte 0x0
 
 	.global Unk_ov66_0225912B
 Unk_ov66_0225912B: ; 0x0225912B
-	.incbin "incbin/overlay66_data.bin", 0x40B, 0x40C - 0x40B
+	.byte 0x1
 
 	.global Unk_ov66_0225912C
 Unk_ov66_0225912C: ; 0x0225912C
-	.incbin "incbin/overlay66_data.bin", 0x40C, 0x40D - 0x40C
+	.byte 0x0
 
 	.global Unk_ov66_0225912D
 Unk_ov66_0225912D: ; 0x0225912D
-	.incbin "incbin/overlay66_data.bin", 0x40D, 0x410 - 0x40D
+	.byte 0x0
 
 	.global Unk_ov66_02259130
 Unk_ov66_02259130: ; 0x02259130
-	.incbin "incbin/overlay66_data.bin", 0x410, 0x428 - 0x410
+	.word 0x0
+	.word 0x0
+	.word ov66_02243C90
+	.word ov66_02245E7C
+	.word ov66_022451C0
+	.word ov66_02243C74
 
 	.global Unk_ov66_02259148
 Unk_ov66_02259148: ; 0x02259148
-	.incbin "incbin/overlay66_data.bin", 0x428, 0x440 - 0x428
+	.word 0x0
+	.word 0x0
+	.word ov66_02245EA0
+	.word ov66_02245EA4
+	.word ov66_022451C0
+	.word ov66_02243C74
 
 	.global Unk_ov66_02259160
 Unk_ov66_02259160: ; 0x02259160
-	.incbin "incbin/overlay66_data.bin", 0x440, 0x458 - 0x440
+	.word 0x0
+	.word 0x0
+	.word ov66_02245EC8
+	.word ov66_02245ECC
+	.word ov66_022451C0
+	.word ov66_02243C74
 
 	.global Unk_ov66_02259178
 Unk_ov66_02259178: ; 0x02259178
-	.incbin "incbin/overlay66_data.bin", 0x458, 0x470 - 0x458
+	.word 0x0
+	.word 0x0
+	.word ov66_02245EF0
+	.word ov66_02245EF4
+	.word ov66_022451C0
+	.word ov66_02243C74
 
 	.global Unk_ov66_02259190
 Unk_ov66_02259190: ; 0x02259190
-	.incbin "incbin/overlay66_data.bin", 0x470, 0x488 - 0x470
+	.word 0x0
+	.word 0x0
+	.word ov66_02245F18
+	.word ov66_02245F1C
+	.word ov66_022451C0
+	.word ov66_02243C74
 
 	.global Unk_ov66_022591A8
 Unk_ov66_022591A8: ; 0x022591A8
-	.incbin "incbin/overlay66_data.bin", 0x488, 0x4A0 - 0x488
+	.word 0x0
+	.word 0x0
+	.word ov66_02245F40
+	.word ov66_02245F44
+	.word ov66_022451C0
+	.word ov66_02243C74
 
 	.global Unk_ov66_022591C0
 Unk_ov66_022591C0: ; 0x022591C0
-	.incbin "incbin/overlay66_data.bin", 0x4A0, 0x4A8 - 0x4A0
+	.ascii "SERVER"
+	.space 0x2
 
 	.global Unk_ov66_022591C8
 Unk_ov66_022591C8: ; 0x022591C8
-	.incbin "incbin/overlay66_data.bin", 0x4A8, 0x4B8 - 0x4A8
+	.ascii "Excess Flood"
+	.space 0x4
 
 	.global Unk_ov66_022591D8
 Unk_ov66_022591D8: ; 0x022591D8
-	.incbin "incbin/overlay66_data.bin", 0x4B8, 0x4BC - 0x4B8
+	.ascii " :"
+	.space 0x2
 
 	.global Unk_ov66_022591DC
 Unk_ov66_022591DC: ; 0x022591DC
-	.incbin "incbin/overlay66_data.bin", 0x4BC, 0x4C4 - 0x4BC
+	.ascii "normal"
+	.space 0x2
 
 	.global Unk_ov66_022591E4
 Unk_ov66_022591E4: ; 0x022591E4
-	.incbin "incbin/overlay66_data.bin", 0x4C4, 0x4CC - 0x4C4
+	.asciz "voice"
+	.space 0x2
 
 	.global Unk_ov66_022591EC
 Unk_ov66_022591EC: ; 0x022591EC
-	.incbin "incbin/overlay66_data.bin", 0x4CC, 0x4D0 - 0x4CC
+	.asciz "ops"
 
 	.global Unk_ov66_022591F0
 Unk_ov66_022591F0: ; 0x022591F0
-	.incbin "incbin/overlay66_data.bin", 0x4D0, 0x4DC - 0x4D0
+	.ascii "voice+ops"
+	.space 0x3
 
 	.global Unk_ov66_022591FC
 Unk_ov66_022591FC: ; 0x022591FC
-	.incbin "incbin/overlay66_data.bin", 0x4DC, 0x4E4 - 0x4DC
+	.asciz "invalid"
 
 	.global Unk_ov66_02259204
 Unk_ov66_02259204: ; 0x02259204
-	.incbin "incbin/overlay66_data.bin", 0x4E4, 0x4E8 - 0x4E4
+	.space 0x4
 
 	.global Unk_ov66_02259208
 Unk_ov66_02259208: ; 0x02259208
-	.incbin "incbin/overlay66_data.bin", 0x4E8, 0x4F0 - 0x4E8
+	.asciz "DWCUser"
 
 	.global Unk_ov66_02259210
 Unk_ov66_02259210: ; 0x02259210
-	.incbin "incbin/overlay66_data.bin", 0x4F0, 0x4F8 - 0x4F0
+	.asciz "DWCName"
 
 	.global Unk_ov66_02259218
 Unk_ov66_02259218: ; 0x02259218
-	.incbin "incbin/overlay66_data.bin", 0x4F8, 0x4FC - 0x4F8
+	.word 0x2E
 
 	.global Unk_ov66_0225921C
 Unk_ov66_0225921C: ; 0x0225921C
-	.incbin "incbin/overlay66_data.bin", 0x4FC, 0x51C - 0x4FC
+	.ascii "peerchat.gs.nintendowifi.net"
+	.space 0x4
 
 	.global Unk_ov66_0225923C
 Unk_ov66_0225923C: ; 0x0225923C
-	.incbin "incbin/overlay66_data.bin", 0x51C, 0x1A
+	.asciz "tree::insert length error"
 
 
 	.bss

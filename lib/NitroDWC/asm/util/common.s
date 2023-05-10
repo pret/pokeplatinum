@@ -201,23 +201,23 @@ _0222B90C: .word Unk_ov18_02248CD4
 
 	.global Unk_ov18_02248CC4
 Unk_ov18_02248CC4: ; 0x02248CC4
-	.incbin "incbin/overlay18_rodata.bin", 0x2890, 0x2898 - 0x2890
+	.incbin "incbin/common.bin", 0x0, 0x8
 
 	.global Unk_ov18_02248CCC
 Unk_ov18_02248CCC: ; 0x02248CCC
-	.incbin "incbin/overlay18_rodata.bin", 0x2898, 0x28A0 - 0x2898
+	.incbin "incbin/common.bin", 0x8, 0x10 - 0x8
 
 	.global Unk_ov18_02248CD4
 Unk_ov18_02248CD4: ; 0x02248CD4
-	.incbin "incbin/overlay18_rodata.bin", 0x28A0, 0x28BC - 0x28A0
+	.incbin "incbin/common.bin", 0x10, 0x2C - 0x10
 
 	.global Unk_ov18_02248CF0
 Unk_ov18_02248CF0: ; 0x02248CF0
-	.incbin "incbin/overlay18_rodata.bin", 0x28BC, 0x28D8 - 0x28BC
+	.incbin "incbin/common.bin", 0x2C, 0x48 - 0x2C
 
 	.global Unk_ov18_02248D0C
 Unk_ov18_02248D0C: ; 0x02248D0C
-	.incbin "incbin/overlay18_rodata.bin", 0x28D8, 0x8
+	.incbin "incbin/common.bin", 0x48, 0x8
 
 
 

@@ -61,7 +61,9 @@ sub_020DFB60: ; 0x020DFB60
 
 	.global Unk_02101AC4
 Unk_02101AC4: ; 0x02101AC4
-	.incbin "incbin/arm9_data.bin", 0x2DE4, 0x2DF0 - 0x2DE4
+	.word 0x02101CA8
+	.word Unk_02101ADC
+	.word Unk_021019C8
 
 	.global Unk_02101AD0
 Unk_02101AD0: ; 0x02101AD0
@@ -71,11 +73,12 @@ Unk_02101AD0: ; 0x02101AD0
 
 	.global Unk_02101ADC
 Unk_02101ADC: ; 0x02101ADC
-	.incbin "incbin/arm9_data.bin", 0x2DFC, 0x2E0C - 0x2DFC
+	.asciz "St11logic_error"
 
 	.global Unk_02101AEC
 Unk_02101AEC: ; 0x02101AEC
-	.incbin "incbin/arm9_data.bin", 0x2E0C, 0x2E20 - 0x2E0C
+	.ascii "St12length_error"
+	.space 0x4
 
 	.global Unk_02101B00
 Unk_02101B00: ; 0x02101B00

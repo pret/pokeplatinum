@@ -448,19 +448,23 @@ _021E8B9C:
 
 	.global Unk_ov4_02215940
 Unk_ov4_02215940: ; 0x02215940
-	.incbin "incbin/overlay4_rodata.bin", 0xD8, 0xDB - 0xD8
+	.ascii "aaa"
 
 	.global Unk_ov4_02215943
 Unk_ov4_02215943: ; 0x02215943
-	.incbin "incbin/overlay4_rodata.bin", 0xDB, 0xF4 - 0xDB
+	.byte 0x17, 0x14, 0x11, 0xD, 0xB
+	.byte 0x6, 0xF, 0xE, 0x9, 0x15, 0xC, 0x4, 0x2, 0x1, 0x12, 0x10, 0x5, 0x3, 0x13, 0xA, 0x7
+	.short 0x8, 0x16
 
 	.global Unk_ov4_0221595C
 Unk_ov4_0221595C: ; 0x0221595C
-	.incbin "incbin/overlay4_rodata.bin", 0xF4, 0x104 - 0xF4
+	.byte 0x5, 0x1, 0xC, 0x4, 0x2, 0x3, 0xA, 0x0, 0xB, 0x7, 0x9, 0x8
+	.word 0x6
 
 	.global Unk_ov4_0221596C
 Unk_ov4_0221596C: ; 0x0221596C
-	.incbin "incbin/overlay4_rodata.bin", 0x104, 0x10
+	.byte 0xA, 0xD, 0xE, 0x8, 0x9, 0x3, 0x6, 0x0, 0xC, 0x5, 0x2, 0x7
+	.byte 0xB, 0x1, 0xF, 0x4
 
 
 
@@ -469,41 +473,47 @@ Unk_ov4_0221596C: ; 0x0221596C
 
 	.global Unk_ov4_02217624
 Unk_ov4_02217624: ; 0x02217624
-	.incbin "incbin/overlay4_data.bin", 0x17A4, 0x17A8 - 0x17A4
+	.word Unk_ov4_02217670
 
 	.global Unk_ov4_02217628
 Unk_ov4_02217628: ; 0x02217628
-	.incbin "incbin/overlay4_data.bin", 0x17A8, 0x17AC - 0x17A8
+	.word Unk_ov4_02217634
 
 	.global Unk_ov4_0221762C
 Unk_ov4_0221762C: ; 0x0221762C
-	.incbin "incbin/overlay4_data.bin", 0x17AC, 0x17B0 - 0x17AC
+	.word Unk_ov4_02217654
 
 	.global Unk_ov4_02217630
 Unk_ov4_02217630: ; 0x02217630
-	.incbin "incbin/overlay4_data.bin", 0x17B0, 0x17B4 - 0x17B0
+	.word Unk_ov4_02217644
 
 	.global Unk_ov4_02217634
 Unk_ov4_02217634: ; 0x02217634
-	.incbin "incbin/overlay4_data.bin", 0x17B4, 0x17C4 - 0x17B4
+	.asciz "gwi'6&fs=0Nf~"
+	.space 0x2
 
 	.global Unk_ov4_02217644
 Unk_ov4_02217644: ; 0x02217644
-	.incbin "incbin/overlay4_data.bin", 0x17C4, 0x17D4 - 0x17C4
+	.asciz "%(egEr)ag(s&m"
+	.space 0x2
 
 	.global Unk_ov4_02217654
 Unk_ov4_02217654: ; 0x02217654
-	.incbin "incbin/overlay4_data.bin", 0x17D4, 0x17F0 - 0x17D4
+	.ascii "952uybjnpmu903bia@bk5m[-"
+	.space 0x4
 
 	.global Unk_ov4_02217670
 Unk_ov4_02217670: ; 0x02217670
-	.incbin "incbin/overlay4_data.bin", 0x17F0, 0x180C - 0x17F0
+	.ascii "38g6zxjk20gvmv]6^=j&%vY1"
+	.space 0x4
 
 	.global Unk_ov4_0221768C
 Unk_ov4_0221768C: ; 0x0221768C
-	.incbin "incbin/overlay4_data.bin", 0x180C, 0x1818 - 0x180C
+	.ascii "NDWCSHAP"
+	.space 0x4
 
 	.global Unk_ov4_02217698
 Unk_ov4_02217698: ; 0x02217698
-	.incbin "incbin/overlay4_data.bin", 0x1818, 0x9
+	.ascii "NWCUSBAP"
+	.space 0x4
 

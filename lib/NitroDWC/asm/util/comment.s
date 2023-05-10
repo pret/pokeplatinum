@@ -98,7 +98,7 @@ _0222B69C: .word Unk_ov18_0225324C
 
 	.global Unk_ov18_02249900
 Unk_ov18_02249900: ; 0x02249900
-	.incbin "incbin/overlay18_data.bin", 0x1A0, 0x12
+	.asciz "char/jtNull.nsc.l"
 
 
 

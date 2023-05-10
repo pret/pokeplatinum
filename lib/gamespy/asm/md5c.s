@@ -56,5 +56,6 @@ ov4_021EA7F4: ; 0x021EA7F4
 
 	.global Unk_ov4_022178D0
 Unk_ov4_022178D0: ; 0x022178D0
-	.incbin "incbin/overlay4_data.bin", 0x1A50, 0x8
+	.ascii "%02x"
+	.space 0x4
 

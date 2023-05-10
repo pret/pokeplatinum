@@ -3886,7 +3886,7 @@ Unk_02000C70: ; 0x02000C70
 
 	.global Unk_ov4_02215E40
 Unk_ov4_02215E40: ; 0x02215E40
-	.incbin "incbin/overlay4_rodata.bin", 0x5D8, 0x7
+	.byte 0x15, 0x3, 0x0, 0x0, 0x2, 0x1, 0x29, 0x0
 
 
 
@@ -3895,59 +3895,59 @@ Unk_ov4_02215E40: ; 0x02215E40
 
 	.global Unk_ov4_0221A1B4
 Unk_ov4_0221A1B4: ; 0x0221A1B4
-	.incbin "incbin/overlay4_data.bin", 0x4334, 0x4338 - 0x4334
+	.incbin "incbin/ssl.bin", 0x0, 0x4
 
 	.global Unk_ov4_0221A1B8
 Unk_ov4_0221A1B8: ; 0x0221A1B8
-	.incbin "incbin/overlay4_data.bin", 0x4338, 0x433C - 0x4338
+	.incbin "incbin/ssl.bin", 0x4, 0x8 - 0x4
 
 	.global Unk_ov4_0221A1BC
 Unk_ov4_0221A1BC: ; 0x0221A1BC
-	.incbin "incbin/overlay4_data.bin", 0x433C, 0x4340 - 0x433C
+	.incbin "incbin/ssl.bin", 0x8, 0xC - 0x8
 
 	.global Unk_ov4_0221A1C0
 Unk_ov4_0221A1C0: ; 0x0221A1C0
-	.incbin "incbin/overlay4_data.bin", 0x4340, 0x4344 - 0x4340
+	.incbin "incbin/ssl.bin", 0xC, 0x10 - 0xC
 
 	.global Unk_ov4_0221A1C4
 Unk_ov4_0221A1C4: ; 0x0221A1C4
-	.incbin "incbin/overlay4_data.bin", 0x4344, 0x435C - 0x4344
+	.incbin "incbin/ssl.bin", 0x10, 0x28 - 0x10
 
 	.global Unk_ov4_0221A1DC
 Unk_ov4_0221A1DC: ; 0x0221A1DC
-	.incbin "incbin/overlay4_data.bin", 0x435C, 0x4364 - 0x435C
+	.incbin "incbin/ssl.bin", 0x28, 0x30 - 0x28
 
 	.global Unk_ov4_0221A1E4
 Unk_ov4_0221A1E4: ; 0x0221A1E4
-	.incbin "incbin/overlay4_data.bin", 0x4364, 0x4370 - 0x4364
+	.incbin "incbin/ssl.bin", 0x30, 0x3C - 0x30
 
 	.global Unk_ov4_0221A1F0
 Unk_ov4_0221A1F0: ; 0x0221A1F0
-	.incbin "incbin/overlay4_data.bin", 0x4370, 0x437C - 0x4370
+	.incbin "incbin/ssl.bin", 0x3C, 0x48 - 0x3C
 
 	.global Unk_ov4_0221A1FC
 Unk_ov4_0221A1FC: ; 0x0221A1FC
-	.incbin "incbin/overlay4_data.bin", 0x437C, 0x4388 - 0x437C
+	.incbin "incbin/ssl.bin", 0x48, 0x54 - 0x48
 
 	.global Unk_ov4_0221A208
 Unk_ov4_0221A208: ; 0x0221A208
-	.incbin "incbin/overlay4_data.bin", 0x4388, 0x438C - 0x4388
+	.incbin "incbin/ssl.bin", 0x54, 0x58 - 0x54
 
 	.global Unk_ov4_0221A20C
 Unk_ov4_0221A20C: ; 0x0221A20C
-	.incbin "incbin/overlay4_data.bin", 0x438C, 0x4390 - 0x438C
+	.incbin "incbin/ssl.bin", 0x58, 0x5C - 0x58
 
 	.global Unk_ov4_0221A210
 Unk_ov4_0221A210: ; 0x0221A210
-	.incbin "incbin/overlay4_data.bin", 0x4390, 0x4394 - 0x4390
+	.incbin "incbin/ssl.bin", 0x5C, 0x60 - 0x5C
 
 	.global Unk_ov4_0221A214
 Unk_ov4_0221A214: ; 0x0221A214
-	.incbin "incbin/overlay4_data.bin", 0x4394, 0x439C - 0x4394
+	.incbin "incbin/ssl.bin", 0x60, 0x68 - 0x60
 
 	.global Unk_ov4_0221A21C
 Unk_ov4_0221A21C: ; 0x0221A21C
-	.incbin "incbin/overlay4_data.bin", 0x439C, 0x5
+	.incbin "incbin/ssl.bin", 0x68, 0x5
 
 
 

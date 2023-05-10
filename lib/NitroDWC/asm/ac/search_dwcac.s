@@ -604,5 +604,5 @@ _021E80AC: .word Unk_ov4_022158B4
 
 	.global Unk_ov4_022158B4
 Unk_ov4_022158B4: ; 0x022158B4
-	.incbin "incbin/overlay4_rodata.bin", 0x4C, 0x34
+	.incbin "incbin/search_dwcac.bin", 0x0, 0x34
 

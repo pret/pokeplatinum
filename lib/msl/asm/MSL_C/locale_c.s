@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-
+	.include "include/locale_c.inc"
 	
 
 	.data
@@ -7,23 +7,28 @@
 
 	.global Unk_021015BC
 Unk_021015BC: ; 0x021015BC
-	.incbin "incbin/arm9_data.bin", 0x28DC, 0x28E0 - 0x28DC
+	.space 0x4
 
 	.global Unk_021015C0
 Unk_021015C0: ; 0x021015C0
-	.incbin "incbin/arm9_data.bin", 0x28E0, 0x28E4 - 0x28E0
+	.byte 0x25, 0x54
+	.space 0x2
 
 	.global Unk_021015C4
 Unk_021015C4: ; 0x021015C4
-	.incbin "incbin/arm9_data.bin", 0x28E4, 0x28EC - 0x28E4
+	.asciz "AM|PM"
+	.space 0x2
 
 	.global Unk_021015CC
 Unk_021015CC: ; 0x021015CC
-	.incbin "incbin/arm9_data.bin", 0x28EC, 0x28F4 - 0x28EC
+	.word __mbtowc_noconv
+	.word __wctomb_noconv
 
 	.global Unk_021015D4
 Unk_021015D4: ; 0x021015D4
-	.incbin "incbin/arm9_data.bin", 0x28F4, 0x2900 - 0x28F4
+	.word 0x20
+	.word 0x6E
+	.space 0x4
 	.word Unk_02101604
 
 	.global Unk_021015E4
@@ -39,11 +44,12 @@ Unk_021015E4: ; 0x021015E4
 
 	.global Unk_02101604
 Unk_02101604: ; 0x02101604
-	.incbin "incbin/arm9_data.bin", 0x2924, 0x29E4 - 0x2924
+	.incbin "incbin/locale_c.bin", 0x0, 0xC0
 
 	.global Unk_021016C4
 Unk_021016C4: ; 0x021016C4
-	.incbin "incbin/arm9_data.bin", 0x29E4, 0x29F0 - 0x29E4
+	.ascii "%m/%d/%y"
+	.space 0x4
 
 	.global Unk_021016D0
 Unk_021016D0: ; 0x021016D0
@@ -53,17 +59,20 @@ Unk_021016D0: ; 0x021016D0
 
 	.global Unk_021016DC
 Unk_021016DC: ; 0x021016DC
-	.incbin "incbin/arm9_data.bin", 0x29FC, 0x2A08 - 0x29FC
+	.asciz "%I:%M:%S %p"
 
 	.global Unk_021016E8
 Unk_021016E8: ; 0x021016E8
-	.incbin "incbin/arm9_data.bin", 0x2A08, 0x2A18 - 0x2A08
+	.ascii "%a %b %e %T %Y"
+	.space 0x2
 
 	.global Unk_021016F8
 Unk_021016F8: ; 0x021016F8
-	.incbin "incbin/arm9_data.bin", 0x2A18, 0x2A70 - 0x2A18
+	.ascii "Sun|Sunday|Mon|Monday|Tue|Tuesday|Wed|Wednesday|Thu|Thursday|Fri|Friday|Sat|Saturday"
+	.space 0x4
 
 	.global Unk_02101750
 Unk_02101750: ; 0x02101750
-	.incbin "incbin/arm9_data.bin", 0x2A70, 0x86
+	.asciz "Jan|January|Feb|February|Mar|March|Apr|April|May|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December"
+	.space 0x2
 

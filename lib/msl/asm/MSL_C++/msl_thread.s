@@ -84,7 +84,9 @@ _020DFC68: .word sub_020DFB48
 
 	.global Unk_020E45B4
 Unk_020E45B4: ; 0x020E45B4
-	.incbin "incbin/arm9_exception.bin", 0x5C, 0x18
+	.short 0x700, 0x4840
+	.short 0x2258, 0x18, 0x14, 0xA27, 0x9000, 0xDFA, 0xA602, 0xC
+	.word sub_020DF9BC
 
 
 	.data
@@ -92,9 +94,10 @@ Unk_020E45B4: ; 0x020E45B4
 
 	.global Unk_02101B28
 Unk_02101B28: ; 0x02101B28
-	.incbin "incbin/arm9_data.bin", 0x2E48, 0x2E5C - 0x2E48
+	.asciz "vector length error"
 
 	.global Unk_02101B3C
 Unk_02101B3C: ; 0x02101B3C
-	.incbin "incbin/arm9_data.bin", 0x2E5C, 0x37
+	.ascii "!std::exception!!std::logic_error!!std::length_error!!"
+	.space 0x2
 

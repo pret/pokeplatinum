@@ -2533,52 +2533,58 @@ sprintf: ; 0x020D7510
 
 	.global Unk_020E4558
 Unk_020E4558: ; 0x020E4558
-	.incbin "incbin/arm9_exception.bin", 0x0, 0x8
+	.byte 0x20, 0xFF, 0x9, 0x60
+	.space 0x4
 
 	.data
 
 
 	.global Unk_021017D8
 Unk_021017D8: ; 0x021017D8
-	.incbin "incbin/arm9_data.bin", 0x2AF8, 0x2B00 - 0x2AF8
+	.asciz "0x0p0"
+	.space 0x2
 
 	.global Unk_021017E0
 Unk_021017E0: ; 0x021017E0
-	.incbin "incbin/arm9_data.bin", 0x2B00, 0x2B08 - 0x2B00
+	.ascii "-INF"
+	.space 0x4
 
 	.global Unk_021017E8
 Unk_021017E8: ; 0x021017E8
-	.incbin "incbin/arm9_data.bin", 0x2B08, 0x2B10 - 0x2B08
+	.ascii "-inf"
+	.space 0x4
 
 	.global Unk_021017F0
 Unk_021017F0: ; 0x021017F0
-	.incbin "incbin/arm9_data.bin", 0x2B10, 0x2B14 - 0x2B10
+	.asciz "INF"
 
 	.global Unk_021017F4
 Unk_021017F4: ; 0x021017F4
-	.incbin "incbin/arm9_data.bin", 0x2B14, 0x2B18 - 0x2B14
+	.asciz "inf"
 
 	.global Unk_021017F8
 Unk_021017F8: ; 0x021017F8
-	.incbin "incbin/arm9_data.bin", 0x2B18, 0x2B20 - 0x2B18
+	.ascii "-NAN"
+	.space 0x4
 
 	.global Unk_02101800
 Unk_02101800: ; 0x02101800
-	.incbin "incbin/arm9_data.bin", 0x2B20, 0x2B28 - 0x2B20
+	.ascii "-nan"
+	.space 0x4
 
 	.global Unk_02101808
 Unk_02101808: ; 0x02101808
-	.incbin "incbin/arm9_data.bin", 0x2B28, 0x2B2C - 0x2B28
+	.asciz "NAN"
 
 	.global Unk_0210180C
 Unk_0210180C: ; 0x0210180C
-	.incbin "incbin/arm9_data.bin", 0x2B2C, 0x2B30 - 0x2B2C
+	.asciz "nan"
 
 	.global Unk_02101810
 Unk_02101810: ; 0x02101810
-	.incbin "incbin/arm9_data.bin", 0x2B30, 0x2B34 - 0x2B30
+	.space 0x4
 
 	.global Unk_02101814
 Unk_02101814: ; 0x02101814
-	.incbin "incbin/arm9_data.bin", 0x2B34, 0x1
+	.space 0x1
 
