@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay104/struct_ov104_0223ADA0.h"
@@ -141,7 +141,7 @@ void ov104_0222ED2C (int param0, int param1, void * param2, void * param3)
 BOOL ov104_0222ED44 (UnkStruct_ov104_0223B5C0 * param0)
 {
     Party * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     int v2, v3;
     u16 * v4;
     int v5, v6;
@@ -280,12 +280,12 @@ void ov104_0222EE38 (int param0, int param1, void * param2, void * param3)
 BOOL ov104_0222EE60 (UnkStruct_ov104_0223B5C0 * param0)
 {
     int v0, v1, v2, v3, v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
     Party * v6;
 
     v1 = 0;
     v3 = 512;
-    v4 = sub_02073C70();
+    v4 = PokemonStructSize();
     v6 = Party_GetFromSavedata(param0->unk_6FC);
     v5 = Party_GetPokemonBySlotIndex(v6, param0->unk_260[0]);
 
@@ -313,7 +313,7 @@ void ov104_0222EEA8 (int param0, int param1, void * param2, void * param3)
         return;
     }
 
-    v2 = sub_02073C70();
+    v2 = PokemonStructSize();
     MI_CpuCopy8(&v4[0], v3->unk_D8C, v2);
 
     return;
@@ -470,7 +470,7 @@ BOOL ov104_0222EFCC (UnkStruct_ov104_0223ADA0 * param0)
 void ov104_0222F03C (int param0, int param1, void * param2, void * param3)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     UnkStruct_ov104_0223ADA0 * v3 = param3;
     const u16 * v4 = param2;
 
@@ -661,7 +661,7 @@ BOOL ov104_0222F238 (UnkStruct_ov104_0223ADA0 * param0)
     int v4, v5;
     u32 v6[2];
     u8 v7[2];
-    UnkStruct_02073C74 * v8;
+    Pokemon * v8;
 
     v5 = 60;
     v3 = param0->unk_504;
@@ -670,8 +670,8 @@ BOOL ov104_0222F238 (UnkStruct_ov104_0223ADA0 * param0)
 
     for (v1 = 0; v1 < v0; v1++) {
         v8 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v1);
-        v7[v1] = sub_02074470(v8, 71, NULL);
-        v6[v1] = sub_02074470(v8, 0, NULL);
+        v7[v1] = GetMonData(v8, MON_DATA_ATK_IV, NULL);
+        v6[v1] = GetMonData(v8, MON_DATA_PERSONALITY, NULL);
     }
 
     for (v1 = 0; v1 < v0; v1++) {
@@ -708,7 +708,7 @@ void ov104_0222F31C (int param0, int param1, void * param2, void * param3)
     u8 v2;
     u32 v3[2];
     u8 v4[2];
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
     UnkStruct_ov104_0223ADA0 * v6 = param3;
     const u16 * v7 = param2;
 
@@ -884,7 +884,7 @@ BOOL ov104_0222F4B8 (UnkStruct_ov104_0223BA10 * param0)
 
 void ov104_0222F530 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     int v1, v2;
     UnkStruct_ov104_0223BA10 * v3 = param3;
     const u16 * v4 = param2;
@@ -1076,12 +1076,12 @@ BOOL ov104_0222F758 (UnkStruct_ov104_0223BA10 * param0)
 {
     int v0, v1, v2, v3, v4;
     u8 v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v6;
 
     v1 = 0;
     v3 = 512;
     v5 = ov104_0223B7A8(param0->unk_10, 0);
-    v4 = sub_02073C70();
+    v4 = PokemonStructSize();
 
     for (v0 = 0; v0 < v5; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param0->unk_28, v0);
@@ -1101,7 +1101,7 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
 {
     u8 v0;
     int v1, v2, v3;
-    UnkStruct_02073C74 * v4;
+    Pokemon * v4;
     UnkStruct_ov104_0223BA10 * v5 = param3;
     const u8 * v6 = param2;
 
@@ -1113,8 +1113,8 @@ void ov104_0222F7BC (int param0, int param1, void * param2, void * param3)
     }
 
     v0 = ov104_0223B7A8(v5->unk_10, 0);
-    v3 = sub_02073C70();
-    v4 = sub_02073C74(11);
+    v3 = PokemonStructSize();
+    v4 = AllocMonZeroed(11);
 
     for (v1 = 0; v1 < v0; v1++) {
         MI_CpuCopy8(&v6[v3 * v1], v4, v3);
@@ -1375,12 +1375,12 @@ BOOL ov104_0222FAD0 (UnkStruct_ov104_0223BFFC * param0)
 {
     int v0, v1, v2, v3, v4;
     u8 v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v6;
 
     v1 = 0;
     v3 = 512;
     v5 = ov104_0223BD70(param0->unk_10, 0);
-    v4 = sub_02073C70();
+    v4 = PokemonStructSize();
 
     for (v0 = 0; v0 < v5; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param0->unk_70, v0);
@@ -1400,7 +1400,7 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
 {
     u8 v0;
     int v1, v2, v3;
-    UnkStruct_02073C74 * v4;
+    Pokemon * v4;
     UnkStruct_ov104_0223BFFC * v5 = param3;
     const u8 * v6 = param2;
 
@@ -1412,8 +1412,8 @@ void ov104_0222FB34 (int param0, int param1, void * param2, void * param3)
     }
 
     v0 = ov104_0223BD70(v5->unk_10, 0);
-    v3 = sub_02073C70();
-    v4 = sub_02073C74(11);
+    v3 = PokemonStructSize();
+    v4 = AllocMonZeroed(11);
 
     for (v1 = 0; v1 < v0; v1++) {
         MI_CpuCopy8(&v6[v3 * v1], v4, v3);

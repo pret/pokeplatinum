@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0207A9CC.h"
@@ -295,14 +295,14 @@ static void sub_020793B8 (UnkStruct_ov6_02240D5C * param0, int param1, int param
     u32 v3, v4;
     u32 v5;
     u8 v6;
-    UnkStruct_02073C74 * v7;
+    Pokemon * v7;
 
     v5 = sub_0201D2D0();
 
     Party_InitWithCapacity(param0->unk_04[param1], 6);
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
-    v7 = sub_02073C74(param2);
+    v7 = AllocMonZeroed(param2);
 
     sub_0207939C(param0->unk_18[param1], v0);
 

@@ -11,8 +11,8 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/pokemon.h"
+#include "struct_defs/box_pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/const_ov94_02245FD4.h"
@@ -77,7 +77,7 @@ static int ov94_02241B2C(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241BAC(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_022420E4(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02242138(UnkStruct_ov94_0223FD4C * param0);
-static void ov94_022423FC(UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], UnkStruct_02073C74_sub1 * param3, UnkStruct_ov94_0223BA88_sub2 * param4);
+static void ov94_022423FC(UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], BoxPokemon * param3, UnkStruct_ov94_0223BA88_sub2 * param4);
 static int ov94_02241DA0(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241D64(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02241D08(UnkStruct_ov94_0223FD4C * param0);
@@ -1006,16 +1006,16 @@ void ov94_02242368 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     sub_020237BC(v0);
 }
 
-static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], UnkStruct_02073C74_sub1 * param3, UnkStruct_ov94_0223BA88_sub2 * param4)
+static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], BoxPokemon * param3, UnkStruct_ov94_0223BA88_sub2 * param4)
 {
     UnkStruct_02023790 * v0, * v1;
     UnkStruct_02023790 * v2 = sub_02023790(10 + 1, 62);
     UnkStruct_02023790 * v3 = sub_02023790(10 + 1, 62);
     int v4, v5, v6;
 
-    sub_02074570(param3, 119, v2);
+    sub_02074570(param3, MON_DATA_119, v2);
 
-    v4 = sub_02074570(param3, 111, NULL) + 1;
+    v4 = sub_02074570(param3, MON_DATA_111, NULL) + 1;
     v5 = sub_02075B40(param3);
     v0 = sub_0200B1EC(param0, 100);
 
@@ -1038,7 +1038,7 @@ static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * par
         ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[v4 - 1]);
     }
 
-    param4->unk_00 = sub_02074570(param3, 5, NULL);
+    param4->unk_00 = sub_02074570(param3, MON_DATA_SPECIES, NULL);
     param4->unk_02 = v4;
     param4->unk_03 = v5;
 
@@ -1086,12 +1086,12 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
     u16 * v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        sub_02077ACC((UnkStruct_02073C74 *)(param1->unk_114), 0);
+        SetShayminForm((Pokemon *)(param1->unk_114), 0);
 
-        MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, sub_02073C70());
+        MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, PokemonStructSize());
     } else {
-        sub_02077ADC(param1->unk_114, 0);
-        sub_020774C8(param1->unk_114, (UnkStruct_02073C74 *)param0->unk_00.unk_00);
+        SetBoxShayminForm(param1->unk_114, 0);
+        sub_020774C8(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
     sub_020021D0(param0->unk_10C, sub_02025EF0(param1->unk_00->unk_1C), 8);

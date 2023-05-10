@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
@@ -162,7 +162,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
     UnkStruct_0200B144 * v2;
     UnkStruct_02023790 * v3;
     UnkStruct_ov6_02240D5C * v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
 
     v4 = sub_02051D8C(param0, 0x400);
     v2 = sub_0200B144(1, 26, 553, param0);
@@ -178,7 +178,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
 
     v4->unk_138 = sub_02055BA8(param1);
     sub_0207D570(v4->unk_E0, 4, 20, param0);
-    v5 = sub_02073C74(param0);
+    v5 = AllocMonZeroed(param0);
 
     sub_02073D80(v5, sub_0206B08C(sub_020507E4(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->unk_04[0], v5);
@@ -224,7 +224,7 @@ void sub_020520A4 (UnkStruct_ov6_02240D5C * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_0205213C (UnkStruct_ov6_02240D5C * param0, UnkStruct_02073C74 * param1, int param2)
+void sub_0205213C (UnkStruct_ov6_02240D5C * param0, Pokemon * param1, int param2)
 {
     int v0;
 
@@ -313,20 +313,20 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v6 = sub_0202CC98(param1->unk_0C);
     UnkStruct_020279FC * v7 = sub_02025E44(param1->unk_0C);
-    UnkStruct_02073C74 * v8;
+    Pokemon * v8;
 
     param0->unk_128 = 6;
     param0->unk_12C = 9;
 
     sub_02052184(param0, v2, 0);
-    v8 = sub_02073C74(11);
+    v8 = AllocMonZeroed(11);
     Party_InitWithCapacity(param0->unk_04[0], Party_GetCurrentCount(v3));
 
     for (v0 = 0; v0 < Party_GetCurrentCount(v3); v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v3, v0), v8);
 
-        if ((sub_02074470(v8, 161, NULL) != param2) && (param2 != 0)) {
-            v1 = sub_02075AD0(sub_02074470(v8, 5, NULL), param2);
+        if ((GetMonData(v8, MON_DATA_161, NULL) != param2) && (param2 != 0)) {
+            v1 = sub_02075AD0(GetMonData(v8, MON_DATA_SPECIES, NULL), param2);
 
             sub_02074B30(v8, 8, &v1);
             sub_0207418C(v8);
@@ -365,7 +365,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     UnkStruct_020279FC * v4 = sub_02025E44(param1->unk_0C);
     const UnkStruct_0202610C * v5 = param1->unk_B0;
     int v6, v7, v8;
-    UnkStruct_02073C74 * v9;
+    Pokemon * v9;
 
     param0->unk_128 = 6;
     param0->unk_12C = 9;
@@ -388,7 +388,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
         if (v10 == 0) {
             sub_02052164(param0, param2, 0);
         } else {
-            v9 = sub_02073C74(11);
+            v9 = AllocMonZeroed(11);
             Party_InitWithCapacity(param0->unk_04[0], v10);
 
             for (v8 = 0; v8 < v10; v8++) {

@@ -6,10 +6,10 @@
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 typedef struct {
-    UnkStruct_02073C74 * unk_00;
+    Pokemon * unk_00;
     UnkStruct_02029C68 * unk_04;
     const UnkStruct_02029D04 * unk_08;
     const UnkStruct_020279FC * unk_0C;

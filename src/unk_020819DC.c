@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -238,7 +238,7 @@ void sub_02081CF4 (UnkStruct_0207F248 * param0, const u8 * param1, u8 param2)
 
 void sub_02081E08 (UnkStruct_0207F248 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_02023790 * v1;
 
     if (param0->unk_5A4->unk_20 == 15) {
@@ -269,7 +269,7 @@ static void sub_02081EAC (UnkStruct_0207F248 * param0, u8 param1)
     sub_0200C578(param0->unk_698, 0, &param0->unk_04[2 + param1 * 5], 28, 2);
 }
 
-void sub_02081ED8 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1, u32 param2)
+void sub_02081ED8 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 param2)
 {
     UnkStruct_02023790 * v0;
 
@@ -283,7 +283,7 @@ void sub_02081ED8 (UnkStruct_0207F248 * param0, UnkStruct_02073C74 * param1, u32
 void sub_02081F2C (UnkStruct_0207F248 * param0, u8 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     v0 = &param0->unk_04[0 + param1 * 5];
 
@@ -432,7 +432,7 @@ void sub_020822F4 (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_0208232C (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
     sub_0201ADA4(&param0->unk_04[1 + param1 * 5], 0);
@@ -456,7 +456,7 @@ void sub_0208232C (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_020823C4 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u8 v1;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
@@ -484,7 +484,7 @@ void sub_020823C4 (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_0208245C (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u8 v1;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
@@ -500,7 +500,7 @@ void sub_0208245C (UnkStruct_0207F248 * param0, u8 param1)
 
 void sub_020824C0 (UnkStruct_0207F248 * param0, u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u8 v1;
 
     sub_0201ADA4(&param0->unk_04[0 + param1 * 5], 0);
@@ -742,19 +742,19 @@ static void sub_02082964 (UnkStruct_0207F248 * param0, u8 param1, u8 param2)
 
 void sub_020829DC (UnkStruct_0207F248 * param0)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_02023790 * v1;
     u32 v2;
     u16 v3[6];
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
-    v3[0] = (u16)sub_02074470(v0, 164, NULL);
-    v3[1] = (u16)sub_02074470(v0, 165, NULL);
-    v3[2] = (u16)sub_02074470(v0, 166, NULL);
-    v3[3] = (u16)sub_02074470(v0, 168, NULL);
-    v3[4] = (u16)sub_02074470(v0, 169, NULL);
-    v3[5] = (u16)sub_02074470(v0, 167, NULL);
+    v3[0] = (u16)GetMonData(v0, MON_DATA_164, NULL);
+    v3[1] = (u16)GetMonData(v0, MON_DATA_165, NULL);
+    v3[2] = (u16)GetMonData(v0, MON_DATA_166, NULL);
+    v3[3] = (u16)GetMonData(v0, MON_DATA_168, NULL);
+    v3[4] = (u16)GetMonData(v0, MON_DATA_169, NULL);
+    v3[5] = (u16)GetMonData(v0, MON_DATA_167, NULL);
 
     sub_0201A7E8(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
     sub_0200DC48(&param0->unk_254[0], 1, 1, 14);

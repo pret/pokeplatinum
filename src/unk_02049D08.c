@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -164,7 +164,7 @@ BOOL sub_02049EC4 (u16 param0, UnkStruct_021C0794 * param1, u8 param2)
     u8 v0, v1, v2, v3;
     u16 v4, v5;
     Party * v6;
-    UnkStruct_02073C74 * v7;
+    Pokemon * v7;
     UnkStruct_02049D38 v8[6];
 
     v6 = Party_GetFromSavedata(param1);
@@ -176,14 +176,14 @@ BOOL sub_02049EC4 (u16 param0, UnkStruct_021C0794 * param1, u8 param2)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = sub_02074470(v7, 5, NULL);
-        v5 = sub_02074470(v7, 6, NULL);
+        v4 = GetMonData(v7, MON_DATA_SPECIES, NULL);
+        v5 = GetMonData(v7, MON_DATA_HELD_ITEM, NULL);
 
         if (param2 == 0) {
             v5 = 0;
         }
 
-        if (sub_02074470(v7, 76, NULL) != 0) {
+        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 
@@ -434,7 +434,7 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
     u16 v0 = 0;
     UnkStruct_02098C44 * v1 = *param1;
     Party * v2;
-    UnkStruct_02073C74 * v3;
+    Pokemon * v3;
 
     if ((v1->unk_23 != 0) || (v1->unk_22 == 7)) {
         Heap_FreeToHeap(*param1);
@@ -447,8 +447,8 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         param0->unk_2A[v0] = v1->unk_2C[v0] - 1;
         v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
-        param0->unk_2E[v0] = sub_02074470(v3, 5, NULL);
-        param0->unk_36[v0] = sub_02074470(v3, 6, NULL);
+        param0->unk_2E[v0] = GetMonData(v3, MON_DATA_SPECIES, NULL);
+        param0->unk_36[v0] = GetMonData(v3, MON_DATA_HELD_ITEM, NULL);
     }
 
     Heap_FreeToHeap(*param1);
@@ -461,14 +461,14 @@ int sub_0204A410 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     u16 v0 = 0, v1 = 0;
     u16 v2[4], v3[4];
     Party * v4;
-    UnkStruct_02073C74 * v5;
+    Pokemon * v5;
 
     v4 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         v5 = Party_GetPokemonBySlotIndex(v4, param0->unk_2A[v0]);
-        v2[v0] = sub_02074470(v5, 5, NULL);
-        v3[v0] = sub_02074470(v5, 6, NULL);
+        v2[v0] = GetMonData(v5, MON_DATA_SPECIES, NULL);
+        v3[v0] = GetMonData(v5, MON_DATA_HELD_ITEM, NULL);
 
         if (v0 == 0) {
             continue;
@@ -952,7 +952,7 @@ static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204A
     u8 v1;
     int v2;
     Party * v3;
-    UnkStruct_02073C74 * v4;
+    Pokemon * v4;
 
     v3 = Party_GetFromSavedata(param0);
     v1 = 0;
@@ -960,7 +960,7 @@ static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204A
     for (v2 = 0; v2 < param2->unk_0E; v2++) {
         v4 = Party_GetPokemonBySlotIndex(v3, param2->unk_2A[v2]);
 
-        if (sub_02074470(v4, param1, NULL)) {
+        if (GetMonData(v4, param1, NULL)) {
             continue;
         }
 
@@ -994,32 +994,32 @@ static u16 sub_0204ACC8 (UnkStruct_0204AFC4 * param0)
     return 1;
 }
 
-static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_02073C74 * param1)
+static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * param1)
 {
     int v0;
 
-    param0->unk_00_val1_0 = sub_02074470(param1, 5, NULL);
-    param0->unk_00_val1_11 = sub_02074470(param1, 112, NULL);
-    param0->unk_02 = sub_02074470(param1, 6, NULL);
+    param0->unk_00_val1_0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
+    param0->unk_00_val1_11 = GetMonData(param1, MON_DATA_FORM, NULL);
+    param0->unk_02 = GetMonData(param1, MON_DATA_HELD_ITEM, NULL);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = sub_02074470(param1, 54 + v0, NULL);
-        param0->unk_1E_val2 |= ((sub_02074470(param1, 62 + v0, NULL)) << (v0 * 2));
+        param0->unk_04[v0] = GetMonData(param1, MON_DATA_MOVE1 + v0, NULL);
+        param0->unk_1E_val2 |= ((GetMonData(param1, MON_DATA_62 + v0, NULL))<< (v0 * 2));
     }
 
-    param0->unk_1F = sub_02074470(param1, 12, NULL);
-    param0->unk_0C = sub_02074470(param1, 7, NULL);
-    param0->unk_10 = sub_02074470(param1, 0, NULL);
-    param0->unk_14_val2 = sub_02074470(param1, 175, NULL);
+    param0->unk_1F = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
+    param0->unk_0C = GetMonData(param1, MON_DATA_OT_ID, NULL);
+    param0->unk_10 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
+    param0->unk_14_val2 = GetMonData(param1, MON_DATA_175, NULL);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_18_val2[v0] = sub_02074470(param1, 13 + v0, NULL);
+        param0->unk_18_val2[v0] = GetMonData(param1, MON_DATA_HP_EV + v0, NULL);
     }
 
-    param0->unk_20 = sub_02074470(param1, 10, NULL);
-    param0->unk_21 = sub_02074470(param1, 9, NULL);
+    param0->unk_20 = GetMonData(param1, MON_DATA_10, NULL);
+    param0->unk_21 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
 
-    sub_02074470(param1, 117, param0->unk_22);
+    GetMonData(param1, MON_DATA_117, param0->unk_22);
 }
 
 static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1, int param2)
@@ -1027,7 +1027,7 @@ static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * para
     int v0 = 0;
     UnkStruct_ov104_0223A348_sub2 * v1;
     Party * v2;
-    UnkStruct_02073C74 * v3;
+    Pokemon * v3;
 
     v1 = Heap_AllocFromHeapAtEnd(param0->unk_04, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov104_0223A348_sub2) * 3);

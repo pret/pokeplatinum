@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0207F248.h"
 
@@ -73,12 +73,12 @@ void ov118_021D0D80 (UnkStruct_0207F248 * param0)
 int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 {
     UnkStruct_ov118_021D0FDC * v0 = param0->unk_B24;
-    UnkStruct_02073C74 * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
+    Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     switch (v0->unk_00) {
     case 0:
     {
-        v0->unk_0C = sub_02074470(v1, 5, NULL);
+        v0->unk_0C = GetMonData(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
         case 487:
@@ -87,7 +87,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
             v0->unk_10 = 0;
             break;
         case 492:
-            sub_02077ACC(v1, 1);
+            SetShayminForm(v1, 1);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;

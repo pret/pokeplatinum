@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0202BC58.h"
 #include "struct_defs/struct_0202BCC8.h"
@@ -822,7 +822,7 @@ static void ov81_021D285C (UnkStruct_ov81_021D1610 * param0, UnkStruct_0205AA50 
 
 static void ov81_021D28C8 (UnkStruct_ov81_021D1610 * param0, u16 param1, u8 param2, u8 param3)
 {
-    UnkStruct_02073C74 * v0 = sub_02073C74(42);
+    Pokemon * v0 = AllocMonZeroed(42);
 
     sub_02074088(v0, param1, 1, 32, param2, 0, 0);
     sub_0200B538(param0->unk_54, param3, sub_02076B10(v0));

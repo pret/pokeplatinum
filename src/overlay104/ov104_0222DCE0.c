@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -40,7 +40,7 @@
 #include "unk_02092494.h"
 #include "overlay104/ov104_0222DCE0.h"
 
-void ov104_0222E1C0(UnkStruct_021C0794 * param0, Party * param1, UnkStruct_02073C74 * param2);
+void ov104_0222E1C0(UnkStruct_021C0794 * param0, Party * param1, Pokemon * param2);
 void ov104_0222E1D8(UnkStruct_02022550 * param0, u8 param1);
 void ov104_0222E204(UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
@@ -197,7 +197,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     if (param3 == 0) {
         do {
             v2 = (sub_0201D2E8() | sub_0201D2E8() << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param2, v2) == 1));
+        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param2, v2) == 1));
 
         param0->unk_10 = v2;
     } else {
@@ -253,7 +253,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     return v2;
 }
 
-void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_02073C74 * param1, u8 param2)
+void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * param1, u8 param2)
 {
     int v0;
     u32 v1;
@@ -261,7 +261,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_020
     u16 v5;
     u32 v6;
 
-    sub_02073C2C(param1);
+    ZeroMonData(param1);
 
     if (param2 == 120) {
         v4 = 50;
@@ -289,7 +289,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, UnkStruct_020
         v2 = (param0->unk_1E_val2 >> (v0 * 2)) & 0x3;
         sub_02074B30(param1, 62 + v0, &v2);
 
-        v3 = (u8)sub_02074470(param1, 66 + v0, NULL);
+        v3 = (u8)GetMonData(param1, MON_DATA_66 + v0, NULL);
         sub_02074B30(param1, 58 + v0, &v3);
     }
 
@@ -348,9 +348,9 @@ u16 ov104_0222E10C (u8 param0)
     return 0x3;
 }
 
-void ov104_0222E134(UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1);
+void ov104_0222E134(UnkStruct_021C0794 * param0, Pokemon * param1);
 
-void ov104_0222E134 (UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1)
+void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
 {
     u32 v0;
     UnkStruct_02023790 * v1;
@@ -359,7 +359,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1)
     int v4 = 0;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0);
 
-    v0 = sub_02074470(param1, 7, NULL);
+    v0 = GetMonData(param1, MON_DATA_OT_ID, NULL);
     sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
 
     v3 = sub_0203A138(562);
@@ -377,7 +377,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, UnkStruct_02073C74 * param1)
     return;
 }
 
-void ov104_0222E1C0 (UnkStruct_021C0794 * param0, Party * param1, UnkStruct_02073C74 * param2)
+void ov104_0222E1C0 (UnkStruct_021C0794 * param0, Party * param1, Pokemon * param2)
 {
     ov104_0222E134(param0, param2);
     Party_AddPokemon(param1, param2);
@@ -445,7 +445,7 @@ void ov104_0222E278 (UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, 
 void ov104_0222E284 (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4)
 {
     UnkStruct_02014A84 * v0;
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     param0->unk_18[param3] = param1->unk_00;
     param0->unk_28[param3].unk_01 = param1->unk_04;

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -114,7 +114,7 @@ static void ov21_021E9208(UnkStruct_02009714 ** param0, int param1);
 static void ov21_021E9228(UnkStruct_02009714 ** param0);
 static void ov21_021E9240(UnkStruct_ov21_021D22F8 * param0, UnkStruct_ov21_021D4C0C * param1, int param2, int param3, int param4);
 static void ov21_021E92B0(UnkStruct_ov21_021D22F8 * param0);
-static UnkStruct_02007C7C * ov21_021E99E0(UnkStruct_02007768 * param0, UnkStruct_02073C74 * param1, int param2, int param3, int param4);
+static UnkStruct_02007C7C * ov21_021E99E0(UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4);
 static void ov21_021E92C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E9344(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1, int param2, NARC * param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov21_021E93C4(UnkStruct_02009DC8 ** param0, UnkStruct_02009714 ** param1);
@@ -153,8 +153,8 @@ UnkStruct_ov21_021E8D48 * ov21_021E8D48 (const UnkStruct_ov21_021E8E0C * param0)
         u32 v1;
         u32 v2;
 
-        v1 = sub_02074470(param0->unk_10, 5, NULL);
-        v2 = sub_02074470(param0->unk_10, 112, NULL);
+        v1 = GetMonData(param0->unk_10, MON_DATA_SPECIES, NULL);
+        v2 = GetMonData(param0->unk_10, MON_DATA_FORM, NULL);
 
         if (v1 == 487) {
             sub_02098988(v2);
@@ -205,8 +205,8 @@ static void ov21_021E8E0C (UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov2
     NARC * v1 = NARC_ctor(69, param1->unk_0C);
     int v2;
 
-    param0->unk_220 = sub_02074470(param1->unk_10, 5, NULL);
-    v2 = sub_02074470(param1->unk_10, 112, NULL);
+    param0->unk_220 = GetMonData(param1->unk_10, MON_DATA_SPECIES, NULL);
+    v2 = GetMonData(param1->unk_10, MON_DATA_FORM, NULL);
 
     param0->unk_00 = param1->unk_00;
     param0->unk_19C = sub_020095C4(32, &param0->unk_10, param1->unk_0C);
@@ -770,7 +770,7 @@ static void ov21_021E998C (UnkStruct_0205AA50 * param0, int param1)
     sub_0200B190(v1);
 }
 
-static UnkStruct_02007C7C * ov21_021E99E0 (UnkStruct_02007768 * param0, UnkStruct_02073C74 * param1, int param2, int param3, int param4)
+static UnkStruct_02007C7C * ov21_021E99E0 (UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4)
 {
     UnkStruct_02008A90 v0;
 

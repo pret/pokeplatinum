@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"
@@ -252,7 +252,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
     int v0[18];
     UnkStruct_ov104_0223C4CC * v1;
     UnkStruct_02023790 * v2;
-    UnkStruct_02073C74 * v3;
+    Pokemon * v3;
     UnkStruct_ov104_0223ADA0 * v4;
     u8 v5, v6;
     u32 v7, v8, v9;
@@ -305,9 +305,9 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         *v15 = v4->unk_3F0[v13].unk_04[v14];
         break;
     case 17:
-        v3 = sub_02073C74(11);
+        v3 = AllocMonZeroed(11);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
-        *v15 = sub_02074470(v3, 177, NULL);
+        *v15 = GetMonData(v3, MON_DATA_177, NULL);
         Heap_FreeToHeap(v3);
         break;
     case 18:
@@ -317,13 +317,13 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
             v0[v10] = 0;
         }
 
-        v3 = sub_02073C74(11);
+        v3 = AllocMonZeroed(11);
 
         for (v10 = 0; v10 < v5; v10++) {
             ov104_0222DF40(&v4->unk_3F0[v10], v3, ov104_0223ADA0(v4));
 
-            v7 = sub_02074470(v3, 177, NULL);
-            v8 = sub_02074470(v3, 178, NULL);
+            v7 = GetMonData(v3, MON_DATA_177, NULL);
+            v8 = GetMonData(v3, MON_DATA_178, NULL);
 
             if (v7 == v8) {
                 v8 = 0xff;

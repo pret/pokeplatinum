@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -85,7 +85,7 @@ void ov6_02248AC8 (int param0, int param1, void * param2, void * param3)
     int v2;
     u8 * v3;
 
-    v1 = sub_02073C70();
+    v1 = PokemonStructSize();
     v3 = param2;
     v2 = v3[v1];
 
@@ -94,13 +94,13 @@ void ov6_02248AC8 (int param0, int param1, void * param2, void * param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248AF0 (UnkStruct_02095C48 * param0, int param1, const UnkStruct_02073C74 * param2)
+BOOL ov6_02248AF0 (UnkStruct_02095C48 * param0, int param1, const Pokemon * param2)
 {
     u8 * v0;
     int v1;
     int v2;
 
-    v1 = sub_02073C70();
+    v1 = PokemonStructSize();
     v0 = Heap_AllocFromHeap(20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
@@ -122,7 +122,7 @@ void ov6_02248B30 (int param0, int param1, void * param2, void * param3)
     u8 * v3;
     int v4;
 
-    v1 = sub_02073C70();
+    v1 = PokemonStructSize();
     v2 = v1 * 4;
     v3 = param2;
 
@@ -133,14 +133,14 @@ void ov6_02248B30 (int param0, int param1, void * param2, void * param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248B70 (UnkStruct_02095C48 * param0, UnkStruct_02073C74 ** param1)
+BOOL ov6_02248B70 (UnkStruct_02095C48 * param0, Pokemon ** param1)
 {
     u8 * v0;
     int v1, v2;
     int v3;
     int v4;
 
-    v1 = sub_02073C70();
+    v1 = PokemonStructSize();
     v2 = v1 * 4;
     v0 = param0->unk_569;
 

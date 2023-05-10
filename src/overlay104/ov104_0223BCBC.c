@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -33,8 +33,8 @@ static u32 ov104_0223BFD0(u8 param0);
 u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC * param0);
 BOOL ov104_0223C000(u8 param0);
 void ov104_0223C04C(UnkStruct_ov104_0223BFFC * param0);
-void ov104_0223C010(UnkStruct_ov104_0223BFFC * param0, UnkStruct_02073C74 * param1);
-void ov104_0223C034(UnkStruct_ov104_0223BFFC * param0, Party * param1, UnkStruct_02073C74 * param2);
+void ov104_0223C010(UnkStruct_ov104_0223BFFC * param0, Pokemon * param1);
+void ov104_0223C034(UnkStruct_ov104_0223BFFC * param0, Party * param1, Pokemon * param2);
 u16 ov104_0223C0BC(UnkStruct_ov104_0223BFFC * param0, u8 param1);
 static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC * param0);
 u16 ov104_0223C124(UnkStruct_ov104_0223BFFC * param0);
@@ -167,7 +167,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
     u32 v1;
     u8 v2, v3, v4;
     UnkStruct_ov6_02240D5C * v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
     UnkStruct_0200B144 * v9;
@@ -202,7 +202,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
         v4 = 2;
     }
 
-    v6 = sub_02073C74(11);
+    v6 = AllocMonZeroed(11);
 
     for (v0 = 0; v0 < v2; v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v12, (v4 + v0)), v6);
@@ -222,7 +222,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
         v5->unk_28[v0].unk_0C = ov104_0223C0D0(param0);
     }
 
-    v6 = sub_02073C74(11);
+    v6 = AllocMonZeroed(11);
 
     for (v0 = 0; v0 < v3; v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v13, v0), v6);
@@ -245,7 +245,7 @@ UnkStruct_ov6_02240D5C * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkS
         ov104_0222E284(v5, &v7, v3, 3, 11);
         Party_InitWithCapacity(v5->unk_04[3], ov104_0223BDA4(param0->unk_10, 0));
 
-        v6 = sub_02073C74(11);
+        v6 = AllocMonZeroed(11);
 
         for (v0 = 0; v0 < v3; v0++) {
             sub_020775EC(Party_GetPokemonBySlotIndex(v13, (v3 + v0)), v6);
@@ -294,13 +294,13 @@ BOOL ov104_0223C000 (u8 param0)
     return 0;
 }
 
-void ov104_0223C010 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_02073C74 * param1)
+void ov104_0223C010 (UnkStruct_ov104_0223BFFC * param0, Pokemon * param1)
 {
     sub_02077EE4(param1, sub_02025E38(param0->unk_04), 4, 0, 0, 11);
     return;
 }
 
-void ov104_0223C034 (UnkStruct_ov104_0223BFFC * param0, Party * param1, UnkStruct_02073C74 * param2)
+void ov104_0223C034 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pokemon * param2)
 {
     ov104_0223C010(param0, param2);
     Party_AddPokemon(param1, param2);
@@ -313,13 +313,13 @@ void ov104_0223C04C (UnkStruct_ov104_0223BFFC * param0)
     int v1, v2;
     u8 v3;
     Party * v4;
-    UnkStruct_02073C74 * v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v5;
+    Pokemon * v6;
 
     sub_0207A008(param0->unk_74);
 
     v3 = ov104_0223BDA4(param0->unk_10, 1);
-    v5 = sub_02073C74(11);
+    v5 = AllocMonZeroed(11);
 
     for (v1 = 0; v1 < v3; v1++) {
         ov104_0222DF40(&param0->unk_330[v1], v5, ov104_0223BFFC(param0));

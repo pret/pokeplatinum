@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
@@ -191,20 +191,20 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     Party * v3;
-    UnkStruct_02073C74 * v4;
+    Pokemon * v4;
     BOOL v5;
-    UnkStruct_02073C74 * v6 = NULL;
+    Pokemon * v6 = NULL;
     u32 v7, v8, v9, v10;
     u32 v11;
     int v12;
     u8 * v13;
     u8 * v14;
 
-    v4 = (UnkStruct_02073C74 *)&v0->val1.unk_04;
+    v4 = (Pokemon *)&v0->val1.unk_04;
     v14 = (u8 *)&v0->val1.unk_F0;
-    v12 = sub_02074470(v4, 152, NULL);
-    v8 = sub_02074470(v4, 0, NULL);
-    v7 = sub_02074470(v4, 7, NULL);
+    v12 = GetMonData(v4, MON_DATA_152, NULL);
+    v8 = GetMonData(v4, MON_DATA_PERSONALITY, NULL);
+    v7 = GetMonData(v4, MON_DATA_OT_ID, NULL);
     v9 = sub_0201D30C((u32)OS_GetTick());
 
     if (v8 == 0x0) {
@@ -221,7 +221,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     v10 = sub_02075D6C(v4);
 
     sub_02074B30(v4, 111, (u8 *)&v10);
-    v10 = sub_02074470(v4, 70, 0) + sub_02074470(v4, 71, 0) + sub_02074470(v4, 72, 0) + sub_02074470(v4, 73, 0) + sub_02074470(v4, 74, 0) + sub_02074470(v4, 75, 0);
+    v10 = GetMonData(v4, MON_DATA_HP_IV, 0) + GetMonData(v4, MON_DATA_ATK_IV, 0) + GetMonData(v4, MON_DATA_DEF_IV, 0) + GetMonData(v4, MON_DATA_SPEED_IV, 0) + GetMonData(v4, MON_DATA_SPATK_IV, 0) + GetMonData(v4, MON_DATA_SPDEF_IV, 0);
 
     if (v10 == 0) {
         v8 = sub_0201D2E8();
@@ -248,43 +248,43 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     v13 = sub_0202D79C(param0->unk_0C);
 
-    if (sub_02074470(v4, 46, 0)) {
+    if (GetMonData(v4, MON_DATA_46, 0)) {
         v13[sub_02092444(73)] = v14[0];
     }
 
-    if (sub_02074470(v4, 47, 0)) {
+    if (GetMonData(v4, MON_DATA_47, 0)) {
         v13[sub_02092444(74)] = v14[1];
     }
 
-    if (sub_02074470(v4, 48, 0)) {
+    if (GetMonData(v4, MON_DATA_48, 0)) {
         v13[sub_02092444(75)] = v14[2];
     }
 
-    if (sub_02074470(v4, 49, 0)) {
+    if (GetMonData(v4, MON_DATA_49, 0)) {
         v13[sub_02092444(76)] = v14[3];
     }
 
-    if (sub_02074470(v4, 50, 0)) {
+    if (GetMonData(v4, MON_DATA_50, 0)) {
         v13[sub_02092444(77)] = v14[4];
     }
 
-    if (sub_02074470(v4, 51, 0)) {
+    if (GetMonData(v4, MON_DATA_51, 0)) {
         v13[sub_02092444(78)] = v14[5];
     }
 
-    if (sub_02074470(v4, 52, 0)) {
+    if (GetMonData(v4, MON_DATA_52, 0)) {
         v13[sub_02092444(79)] = v14[6];
     }
 
-    if (sub_02074470(v4, 103, 0)) {
+    if (GetMonData(v4, MON_DATA_MARINE_RIBBON, 0)) {
         v13[sub_02092444(25)] = v14[7];
     }
 
-    if (sub_02074470(v4, 104, 0)) {
+    if (GetMonData(v4, MON_DATA_LAND_RIBBON, 0)) {
         v13[sub_02092444(26)] = v14[8];
     }
 
-    if (sub_02074470(v4, 105, 0)) {
+    if (GetMonData(v4, MON_DATA_SKY_RIBBON, 0)) {
         v13[sub_02092444(27)] = v14[9];
     }
 
@@ -293,7 +293,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         u32 v16 = sub_02025F20(v1);
         u32 v17 = sub_02025F30(v1);
 
-        v6 = sub_02073C74(32);
+        v6 = AllocMonZeroed(32);
 
         sub_020775EC(v4, v6);
         sub_02074B30(v6, 145, v15);
@@ -306,8 +306,8 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
 
-    if (sub_02074470(v4, 5, NULL) == 493) {
-        if (sub_02074470(v4, 110, NULL) == 1) {
+    if (GetMonData(v4, MON_DATA_SPECIES, NULL) == 493) {
+        if (GetMonData(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
             if (sub_0206B5F8(v2) == 0) {
                 sub_0206B608(v2, 1);
             }
@@ -331,12 +331,12 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     *param1 = 379;
     *param2 = 7;
 
-    v1 = (UnkStruct_02073C74 *)&v0->val1.unk_04;
+    v1 = (Pokemon *)&v0->val1.unk_04;
 
     sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
     sub_0200B578(param0->unk_04, 1, sub_02076B10(v1));
@@ -356,12 +356,12 @@ static void sub_0204BE3C (UnkStruct_0203CDB0 * param0, void * param1)
 static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
 
     *param1 = 379;
     *param2 = 8;
 
-    v1 = (UnkStruct_02073C74 *)v0->val2.unk_04;
+    v1 = (Pokemon *)v0->val2.unk_04;
 
     sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
     sub_0200B538(param0->unk_04, 1, sub_02076B10(v1));

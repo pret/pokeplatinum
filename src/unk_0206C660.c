@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -24,8 +24,8 @@ typedef struct {
     u32 unk_04;
     int unk_08;
     UnkStruct_ov6_02246254 unk_0C;
-    UnkStruct_02073C74 * unk_24;
-    UnkStruct_02073C74 * unk_28;
+    Pokemon * unk_24;
+    Pokemon * unk_28;
 } UnkStruct_0206C660;
 
 static BOOL sub_0206C680(UnkStruct_020508D4 * param0);
@@ -97,8 +97,8 @@ void sub_0206C740 (UnkStruct_020508D4 * param0, UnkStruct_ov6_02246204 * param1,
     v0->unk_04 = 0;
     v0->unk_00 = param1;
     v0->unk_08 = param2;
-    v0->unk_24 = sub_02073C74(param3);
-    v0->unk_28 = sub_02073C74(param3);
+    v0->unk_24 = AllocMonZeroed(param3);
+    v0->unk_28 = AllocMonZeroed(param3);
 
     sub_02050944(param0, sub_0206C680, v0);
 }

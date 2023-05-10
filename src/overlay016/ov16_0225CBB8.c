@@ -15,7 +15,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
@@ -393,7 +393,7 @@ void ov16_0225CBDC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v4->unk_2C = param2->unk_01_3;
     v4->unk_18 = param2->unk_08;
     v4->unk_1C = param1->unk_191;
-    v4->unk_24 = sub_02075BFC(param2->unk_04);
+    v4->unk_24 = GetNatureFromPersonality(param2->unk_04);
     v4->unk_28 = param2->unk_01_2;
 
     if ((v4->unk_13 == 2) && (ov16_0223EBEC(param0) & 0x40)) {
@@ -446,7 +446,7 @@ void ov16_0225CE1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v1->unk_82 = param1->unk_191;
     v1->unk_88 = param2->unk_08;
     v1->unk_8C = param2->unk_0C;
-    v1->unk_8D = sub_02075BFC(param2->unk_04);
+    v1->unk_8D = GetNatureFromPersonality(param2->unk_04);
     v1->unk_8E = param2->unk_10;
     v1->unk_92 = param2->unk_01_2;
     v1->unk_94 = 0;
@@ -496,7 +496,7 @@ void ov16_0225CF70 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v2->unk_82 = param1->unk_191;
     v2->unk_88 = param2->unk_08;
     v2->unk_8C = param2->unk_0C;
-    v2->unk_8D = sub_02075BFC(param2->unk_04);
+    v2->unk_8D = GetNatureFromPersonality(param2->unk_04);
     v2->unk_8E = param2->unk_10;
     v2->unk_92 = param2->unk_01_2;
     v2->unk_94 = param2->unk_14;
@@ -3708,7 +3708,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         int v3 = 0;
         int v4;
         Party * v5 = ov16_0223DF20(v0->unk_00, v0->unk_0D);
-        UnkStruct_02073C74 * v6;
+        Pokemon * v6;
 
         if ((ov16_0223DF0C(v0->unk_00) & 0x2) && ((ov16_0223DF0C(v0->unk_00) & 0x8) == 0)) {
             v4 = v0->unk_0D & 1;
@@ -3992,7 +3992,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     case 21:
     {
         UnkStruct_ov16_022674C4 * v18;
-        UnkStruct_02073C74 * v19;
+        Pokemon * v19;
         int v20;
         int v21;
 
@@ -4004,11 +4004,11 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         v18->unk_25 = ov16_0226825C(ov16_0223E1F8(v0->unk_00, v20), ov16_0223DF0C(v0->unk_00));
 
         v19 = ov16_0223DFAC(v0->unk_00, v20, v21);
-        v18->unk_28 = sub_02074470(v19, 163, NULL) - v0->unk_08->unk_04->unk_20;
-        v18->unk_2C = sub_02074470(v19, 164, NULL);
+        v18->unk_28 = GetMonData(v19, MON_DATA_163, NULL) - v0->unk_08->unk_04->unk_20;
+        v18->unk_2C = GetMonData(v19, MON_DATA_164, NULL);
         v18->unk_30 = v0->unk_08->unk_04->unk_20;
 
-        if (sub_02074470(v19, 160, NULL) == 0) {
+        if (GetMonData(v19, MON_DATA_160, NULL) == 0) {
             v18->unk_4A = 0;
         }
 
@@ -4064,7 +4064,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_ov16_0225C300 v30;
         int v31;
         int v32 = 0;
-        UnkStruct_02073C74 * v33;
+        Pokemon * v33;
         int v34;
 
         v28 = v0->unk_08->unk_04->unk_11 * 2;
@@ -4072,7 +4072,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         v34 = v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
         v33 = ov16_0223DFAC(v0->unk_00, v28, v34);
 
-        if (sub_02074470(v33, 160, NULL) == 0) {
+        if (GetMonData(v33, MON_DATA_160, NULL) == 0) {
             v27->unk_4A = 0;
         }
 
@@ -4273,7 +4273,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                 int v5;
                 int v6, v7;
                 Party * v8;
-                UnkStruct_02073C74 * v9, * v10;
+                Pokemon * v9, * v10;
 
                 ov16_0223B384(v0->unk_00);
 
@@ -4289,7 +4289,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                         v7 = v0->unk_09;
                     }
 
-                    v9 = sub_02073C74(5);
+                    v9 = AllocMonZeroed(5);
 
                     for (v3 = 0; v3 < 6; v3++) {
                         Party_AddPokemon(v0->unk_04->unk_00, v9);
@@ -4401,7 +4401,7 @@ static void ov16_02262258 (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov16_0225D840 * v0 = (UnkStruct_ov16_0225D840 *)param1;
     int v1;
     Party * v2;
-    UnkStruct_02073C74 * v3;
+    Pokemon * v3;
     int v4, v5;
     u32 v6;
 
@@ -4425,7 +4425,7 @@ static void ov16_02262258 (UnkStruct_0201CD38 * param0, void * param1)
             for (v1 = 0; v1 < Party_GetCurrentCount(v2); v1++) {
                 v3 = ov16_0223DFAC(v0->unk_00, v0->unk_09, v1);
 
-                if ((sub_02074470(v3, 163, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
+                if ((GetMonData(v3, MON_DATA_163, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
                     break;
                 }
             }
@@ -4463,7 +4463,7 @@ static void  ov16_0226232C (UnkStruct_0201CD38 * param0, void * param1)
     } else {
         {
             Party * v2;
-            UnkStruct_02073C74 * v3;
+            Pokemon * v3;
             int v4 = v1 - 1;
 
             v2 = ov16_0223DF20(v0->unk_00, v0->unk_09);
@@ -4475,11 +4475,11 @@ static void  ov16_0226232C (UnkStruct_0201CD38 * param0, void * param1)
             } else {
                 v3 = ov16_0223DFAC(v0->unk_00, v0->unk_09, v1 - 1);
 
-                if (sub_02074470(v3, 163, NULL) == 0) {
+                if (GetMonData(v3, MON_DATA_163, NULL) == 0) {
                     ov16_02264730(v0->unk_00);
                 }
 
-                if (sub_02074470(v3, 174, NULL) == 494) {
+                if (GetMonData(v3, MON_DATA_SPECIES_EGG, NULL) == 494) {
                     ov16_02264730(v0->unk_00);
                 }
             }

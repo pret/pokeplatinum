@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "overlay022/struct_ov22_02254DE0.h"
@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov22_0225B1BC_t {
     UnkStruct_ov22_02254DE0 * unk_1F0;
     UnkStruct_ov22_02257964 unk_1F4;
     UnkStruct_ov22_0225AF68 unk_27C;
-    UnkStruct_02073C74 * unk_298;
+    Pokemon * unk_298;
     int unk_29C;
     int unk_2A0;
     int unk_2A4;
@@ -243,7 +243,7 @@ static UnkStruct_ov22_0225B1BC * ov22_0225B1BC (const UnkStruct_ov22_0225B4E4 * 
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->unk_68;
-    v0->unk_298 = sub_02073C74(param0->unk_68);
+    v0->unk_298 = AllocMonZeroed(param0->unk_68);
     sub_0202A61C(param0->unk_00, v0->unk_298);
 
     ov22_0225B2D4(v0, param0);
@@ -273,7 +273,7 @@ static UnkStruct_ov22_0225B1BC * ov22_0225B258 (const UnkStruct_ov22_0225B4E4 * 
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
     v0->unk_29C = param0->unk_68;
-    v0->unk_298 = sub_02073C74(param0->unk_68);
+    v0->unk_298 = AllocMonZeroed(param0->unk_68);
 
     sub_0202A61C(param0->unk_00, v0->unk_298);
 

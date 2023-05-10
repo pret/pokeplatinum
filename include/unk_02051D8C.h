@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_defs/struct_0209C370.h"
@@ -17,7 +17,7 @@ UnkStruct_ov6_02240D5C * sub_02051F24(int param0, int param1);
 UnkStruct_ov6_02240D5C * sub_02051F38(int param0, int param1);
 UnkStruct_ov6_02240D5C * sub_02051F4C(int param0, const UnkStruct_0203CDB0 * param1);
 void sub_020520A4(UnkStruct_ov6_02240D5C * param0);
-void sub_0205213C(UnkStruct_ov6_02240D5C * param0, UnkStruct_02073C74 * param1, int param2);
+void sub_0205213C(UnkStruct_ov6_02240D5C * param0, Pokemon * param1, int param2);
 void sub_02052164(UnkStruct_ov6_02240D5C * param0, const Party * param1, int param2);
 void sub_02052184(UnkStruct_ov6_02240D5C * param0, const UnkStruct_02025E6C * param1, int param2);
 void sub_020521A4(UnkStruct_ov6_02240D5C * param0, const UnkStruct_0202CC84 * param1, int param2);

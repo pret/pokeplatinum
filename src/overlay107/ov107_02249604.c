@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -47,7 +47,7 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param
 {
     int v0;
     NARC * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     sub_0201DBEC(32, 100);
     ov107_02249A3C();

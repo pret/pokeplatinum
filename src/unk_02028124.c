@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -96,7 +96,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     u32 v5, v6, v7;
     UnkStruct_02025E6C * v8;
     Party * v9;
-    UnkStruct_02073C74 * v10;
+    Pokemon * v10;
 
     sub_02028124(param0);
 
@@ -112,9 +112,9 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
 
     for (v0 = param2, v1 = 0; v0 < Party_GetCurrentCount(v9); v0++) {
         v10 = Party_GetPokemonBySlotIndex(v9, v0);
-        v4 = sub_02074470(v10, 5, NULL);
-        v6 = sub_02074470(v10, 76, NULL);
-        v7 = sub_02074470(v10, 112, NULL);
+        v4 = GetMonData(v10, MON_DATA_SPECIES, NULL);
+        v6 = GetMonData(v10, MON_DATA_IS_EGG, NULL);
+        v7 = GetMonData(v10, MON_DATA_FORM, NULL);
         v5 = sub_02079D80(v10);
         v2 = sub_02079EDC(v4, v7, v6);
 

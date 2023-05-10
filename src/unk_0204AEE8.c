@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -203,14 +203,14 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
 {
     int v0;
     Party * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     UnkStruct_02025E6C * v3 = sub_02025E38(param1);
 
     param0->unk_83E[0] = sub_02025F30(v3);
     v1 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_83E[1 + v0] = sub_02074470(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), 5, NULL);
+        param0->unk_83E[1 + v0] = GetMonData(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);
     }
 
     param0->unk_83E[3] = sub_0202D3B4(param0->unk_74, 3, 0);
@@ -345,7 +345,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     if (param4 == 0) {
         do {
             v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param3, v2) == 1));
+        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param3, v2) == 1));
 
         param1->unk_10 = v2;
     } else {

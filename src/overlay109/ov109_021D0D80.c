@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -3524,7 +3524,7 @@ static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
 {
     int v0, v1;
     Party * v2, * v3;
-    UnkStruct_02073C74 * v4, * v5;
+    Pokemon * v4, * v5;
 
     v2 = param0->unk_24;
     v3 = (Party *)sub_0209C188(param0->unk_D0, param1);
@@ -3600,15 +3600,15 @@ static BOOL ov109_021D3C08 (UnkStruct_ov109_021D0F70 * param0, fx32 param1, int 
 static BOOL ov109_021D3C94 (Party * param0)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     v1 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (sub_02074470(v2, 76, NULL)) {
-            if (sub_02074470(v2, 3, NULL)) {
+        if (GetMonData(v2, MON_DATA_IS_EGG, NULL)) {
+            if (GetMonData(v2, MON_DATA_3, NULL)) {
                 return 1;
             }
         }

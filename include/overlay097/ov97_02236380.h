@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV97_02236380_H
 #define POKEPLATINUM_OV97_02236380_H
 
-#include "overlay097/struct_ov97_0223685C.h"
+#include "overlay097/box_pokemon_gba.h"
 
-u32 ov97_02236924(UnkStruct_ov97_0223685C * param0, int param1, u8 * param2);
-void ov97_02236CA4(UnkStruct_ov97_0223685C * param0, int param1, const u8 * param2);
+u32 GetGBABoxMonData(BoxPokemonGBA * boxMon, int field, u8 * data);
+void SetGBABoxMonData(BoxPokemonGBA * boxMon, int field, const u8 * dataArg);
 int ov97_02236DD0(int param0);
-u32 ov97_02236E00(UnkStruct_ov97_0223685C * param0);
+u32 ov97_02236E00(BoxPokemonGBA * param0);
 
 #endif // POKEPLATINUM_OV97_02236380_H

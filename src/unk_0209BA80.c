@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_02039A58.h"
@@ -265,7 +265,7 @@ void sub_0209BC3C (int param0, int param1, void * param2, void * param3)
 BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     Party * v3;
 
     v1 = 40;
@@ -282,13 +282,13 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
     } else {
         v2 = Party_GetPokemonBySlotIndex(v3, param1);
 
-        param0->unk_76[0] = sub_02074470(v2, 5, NULL);
-        param0->unk_7E[0] = sub_02074470(v2, 6, NULL);
+        param0->unk_76[0] = GetMonData(v2, MON_DATA_SPECIES, NULL);
+        param0->unk_7E[0] = GetMonData(v2, MON_DATA_HELD_ITEM, NULL);
 
         v2 = Party_GetPokemonBySlotIndex(v3, param2);
 
-        param0->unk_76[1] = sub_02074470(v2, 5, NULL);
-        param0->unk_7E[1] = sub_02074470(v2, 6, NULL);
+        param0->unk_76[1] = GetMonData(v2, MON_DATA_SPECIES, NULL);
+        param0->unk_7E[1] = GetMonData(v2, MON_DATA_HELD_ITEM, NULL);
     }
 
     param0->unk_08[0] = param0->unk_76[0];

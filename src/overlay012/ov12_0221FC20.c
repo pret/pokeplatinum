@@ -55,7 +55,7 @@
 #include "overlay012/ov12_02226998.h"
 #include "overlay012/ov12_02235254.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/ov12_022384F0.h"
+#include "overlay012/is_form_symmetrical.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay017/ov17_022413D8.h"
 
@@ -2044,7 +2044,7 @@ static void ov12_0222128C (UnkStruct_ov12_0221FCDC * param0)
     v0 = param0->unk_BC->unk_B0[v3]->unk_00;
     v7 = param0->unk_BC->unk_E8[v3];
 
-    if ((ov12_0221FDD4(param0) == 1) && (ov12_022384F0(ov12_022232D0(param0, v3), v7) == 1)) {
+    if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v3), v7) == 1)) {
         v6 = 265;
     } else {
         v6 = 264;
@@ -2225,7 +2225,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
             }
         }
 
-        if ((ov12_0221FDD4(param0) == 1) && (ov12_022384F0(ov12_022232D0(param0, v7), v10) == 1)) {
+        if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v7), v10) == 1)) {
             sub_0200D7D4(v1, 1);
         }
     }
@@ -4122,7 +4122,7 @@ BOOL ov12_022234A8 (UnkStruct_ov12_0221FCDC * param0, int param1)
     v0 = ov12_022210A8(param0, param1);
     v1 = param0->unk_BC->unk_E8[v0];
 
-    if ((ov12_0221FDD4(param0) == 1) && (ov12_022384F0(ov12_022232D0(param0, v0), v1) == 1)) {
+    if ((ov12_0221FDD4(param0) == 1) && (IsFormSymmetrical(ov12_022232D0(param0, v0), v1) == 1)) {
         return 1;
     }
 

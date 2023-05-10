@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
@@ -244,7 +244,7 @@ void sub_0206C404 (UnkStruct_0202D7B0 * param0, const int param1)
 
 void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     UnkStruct_0206C638 * v1;
     UnkStruct_0202D7B0 * v2;
     int v3;
@@ -289,15 +289,15 @@ void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
     sub_0202D980(v1, 6, v6);
 
     v4 = sub_02025E38(param0);
-    v0 = sub_02073C74(4);
+    v0 = AllocMonZeroed(4);
 
-    sub_02073C2C(v0);
+    ZeroMonData(v0);
     sub_02073D80(v0, v5, v6, 32, 0, 0, 1, sub_02025F24(v4));
     sub_0202D980(v1, 7, 0);
     sub_0202D980(v1, 8, 1);
-    sub_0202D980(v1, 2, sub_02074470(v0, 175, NULL));
-    sub_0202D980(v1, 3, sub_02074470(v0, 0, NULL));
-    sub_0202D980(v1, 5, sub_02074470(v0, 164, NULL));
+    sub_0202D980(v1, 2, GetMonData(v0, MON_DATA_175, NULL));
+    sub_0202D980(v1, 3, GetMonData(v0, MON_DATA_PERSONALITY, NULL));
+    sub_0202D980(v1, 5, GetMonData(v0, MON_DATA_164, NULL));
     Heap_FreeToHeap(v0);
 
     v3 = sub_0202D8BC(v2);

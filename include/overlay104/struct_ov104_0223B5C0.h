@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_0223B5C0_H
 
 #include "struct_decls/struct_02030114_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223A348.h"
@@ -39,7 +39,7 @@ typedef struct {
     u8 unk_984[2][512];
     u16 unk_D84[2];
     u8 unk_D88;
-    UnkStruct_02073C74 * unk_D8C;
+    Pokemon * unk_D8C;
     u8 unk_D90;
     u32 unk_D94;
 } UnkStruct_ov104_0223B5C0;

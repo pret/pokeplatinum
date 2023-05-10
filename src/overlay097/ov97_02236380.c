@@ -2,19 +2,18 @@
 #include <string.h>
 
 #include "data_021BF67C.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/box_pokemon.h"
 
-#include "overlay097/struct_ov97_02236380_sub1.h"
-#include "overlay097/struct_ov97_02236380_sub2.h"
-#include "overlay097/struct_ov97_02236380_sub3.h"
-#include "overlay097/struct_ov97_02236380_sub4.h"
-#include "overlay097/struct_ov97_0223685C.h"
+#include "overlay097/box_pokemon_gba.h"
 
 #include "unk_02073C2C.h"
 #include "item.h"
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_022392E4.h"
 
+#include "constants/species.h"
+#include "constants/gba/pokemon.h"
+#include "constants/gba/species.h"
 
 typedef struct {
     u16 unk_00;
@@ -169,174 +168,174 @@ UnkStruct_ov97_0223ED5C Unk_ov97_0223ED5C[] = {
 };
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_1;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_2;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_3;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_4;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub1 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct0 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_5;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_6;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_7;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_8;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_9;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_10;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub2 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct1 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_11;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_12;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_13;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub4 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct3 unk_24;
 } UnkStruct_ov97_02236380_14;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub4 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct3 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_15;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_16;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub3 unk_00;
-    UnkStruct_ov97_02236380_sub4 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct2 unk_00;
+    PokemonGBASubstruct3 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_17;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_18;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub1 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct0 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_19;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub3 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct2 unk_24;
 } UnkStruct_ov97_02236380_20;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub2 unk_0C;
-    UnkStruct_ov97_02236380_sub3 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct1 unk_0C;
+    PokemonGBASubstruct2 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_21;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub1 unk_18;
-    UnkStruct_ov97_02236380_sub2 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct0 unk_18;
+    PokemonGBASubstruct1 unk_24;
 } UnkStruct_ov97_02236380_22;
 
 typedef struct {
-    UnkStruct_ov97_02236380_sub4 unk_00;
-    UnkStruct_ov97_02236380_sub3 unk_0C;
-    UnkStruct_ov97_02236380_sub2 unk_18;
-    UnkStruct_ov97_02236380_sub1 unk_24;
+    PokemonGBASubstruct3 unk_00;
+    PokemonGBASubstruct2 unk_0C;
+    PokemonGBASubstruct1 unk_18;
+    PokemonGBASubstruct0 unk_24;
 } UnkStruct_ov97_02236380_23;
 
-void ov97_02236E90(UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA * param0, BoxPokemon * param1);
 
 static u16 Unk_ov97_0223ECA0[] = {
 	0x10,
@@ -435,7 +434,7 @@ static u16 Unk_ov97_0223ECA0[] = {
 	0x16D
 };
 
-static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param2)
+static u32 ov97_02236380 (BoxPokemonGBA * param0, u32 param1, u8 param2)
 {
     u32 v0 = 0;
     UnkStruct_ov97_02236380 * v1;
@@ -465,7 +464,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
 
     switch (param1 % 24) {
     case 0:
-        v1 = (UnkStruct_ov97_02236380 *)param0->unk_20;
+        v1 = (UnkStruct_ov97_02236380 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -483,7 +482,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 1:
-        v2 = (UnkStruct_ov97_02236380_1 *)param0->unk_20;
+        v2 = (UnkStruct_ov97_02236380_1 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -501,7 +500,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 2:
-        v3 = (UnkStruct_ov97_02236380_2 *)param0->unk_20;
+        v3 = (UnkStruct_ov97_02236380_2 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -519,7 +518,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 3:
-        v4 = (UnkStruct_ov97_02236380_3 *)param0->unk_20;
+        v4 = (UnkStruct_ov97_02236380_3 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -537,7 +536,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 4:
-        v5 = (UnkStruct_ov97_02236380_4 *)param0->unk_20;
+        v5 = (UnkStruct_ov97_02236380_4 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -555,7 +554,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 5:
-        v6 = (UnkStruct_ov97_02236380_5 *)param0->unk_20;
+        v6 = (UnkStruct_ov97_02236380_5 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -573,7 +572,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 6:
-        v7 = (UnkStruct_ov97_02236380_6 *)param0->unk_20;
+        v7 = (UnkStruct_ov97_02236380_6 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -591,7 +590,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 7:
-        v8 = (UnkStruct_ov97_02236380_7 *)param0->unk_20;
+        v8 = (UnkStruct_ov97_02236380_7 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -609,7 +608,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 8:
-        v9 = (UnkStruct_ov97_02236380_8 *)param0->unk_20;
+        v9 = (UnkStruct_ov97_02236380_8 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -627,7 +626,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 9:
-        v10 = (UnkStruct_ov97_02236380_9 *)param0->unk_20;
+        v10 = (UnkStruct_ov97_02236380_9 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -645,7 +644,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 10:
-        v11 = (UnkStruct_ov97_02236380_10 *)param0->unk_20;
+        v11 = (UnkStruct_ov97_02236380_10 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -663,7 +662,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 11:
-        v12 = (UnkStruct_ov97_02236380_11 *)param0->unk_20;
+        v12 = (UnkStruct_ov97_02236380_11 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -681,7 +680,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 12:
-        v13 = (UnkStruct_ov97_02236380_12 *)param0->unk_20;
+        v13 = (UnkStruct_ov97_02236380_12 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -699,7 +698,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 13:
-        v14 = (UnkStruct_ov97_02236380_13 *)param0->unk_20;
+        v14 = (UnkStruct_ov97_02236380_13 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -717,7 +716,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 14:
-        v15 = (UnkStruct_ov97_02236380_14 *)param0->unk_20;
+        v15 = (UnkStruct_ov97_02236380_14 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -735,7 +734,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 15:
-        v16 = (UnkStruct_ov97_02236380_15 *)param0->unk_20;
+        v16 = (UnkStruct_ov97_02236380_15 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -753,7 +752,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 16:
-        v17 = (UnkStruct_ov97_02236380_16 *)param0->unk_20;
+        v17 = (UnkStruct_ov97_02236380_16 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -771,7 +770,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 17:
-        v18 = (UnkStruct_ov97_02236380_17 *)param0->unk_20;
+        v18 = (UnkStruct_ov97_02236380_17 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -789,7 +788,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 18:
-        v19 = (UnkStruct_ov97_02236380_18 *)param0->unk_20;
+        v19 = (UnkStruct_ov97_02236380_18 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -807,7 +806,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 19:
-        v20 = (UnkStruct_ov97_02236380_19 *)param0->unk_20;
+        v20 = (UnkStruct_ov97_02236380_19 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -825,7 +824,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 20:
-        v21 = (UnkStruct_ov97_02236380_20 *)param0->unk_20;
+        v21 = (UnkStruct_ov97_02236380_20 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -843,7 +842,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 21:
-        v22 = (UnkStruct_ov97_02236380_21 *)param0->unk_20;
+        v22 = (UnkStruct_ov97_02236380_21 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -861,7 +860,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 22:
-        v23 = (UnkStruct_ov97_02236380_22 *)param0->unk_20;
+        v23 = (UnkStruct_ov97_02236380_22 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -879,7 +878,7 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
         }
         break;
     case 23:
-        v24 = (UnkStruct_ov97_02236380_23 *)param0->unk_20;
+        v24 = (UnkStruct_ov97_02236380_23 *)param0->secure;
 
         switch (param2) {
         case 0:
@@ -901,33 +900,33 @@ static u32 ov97_02236380 (UnkStruct_ov97_0223685C * param0, u32 param1, u8 param
     return v0;
 }
 
-static void ov97_0223685C (UnkStruct_ov97_0223685C * param0)
+static void GBADecryptBoxMon (BoxPokemonGBA * param0)
 {
     int v0;
     u32 * v1;
 
-    v1 = (u32 *)&param0->unk_20;
+    v1 = (u32 *)&param0->secure;
 
-    for (v0 = 0; v0 < (sizeof(UnkStruct_ov97_02236380_sub1) + sizeof(UnkStruct_ov97_02236380_sub2) + sizeof(UnkStruct_ov97_02236380_sub3) + sizeof(UnkStruct_ov97_02236380_sub4)) / 4; v0++) {
-        v1[v0] ^= param0->unk_04;
-        v1[v0] ^= param0->unk_00;
+    for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
+        v1[v0] ^= param0->otId;
+        v1[v0] ^= param0->personality;
     }
 }
 
-static void ov97_0223687C (UnkStruct_ov97_0223685C * param0)
+static void GBAEncryptBoxMon (BoxPokemonGBA * param0)
 {
     int v0;
     u32 * v1;
 
-    v1 = (u32 *)&param0->unk_20;
+    v1 = (u32 *)&param0->secure;
 
-    for (v0 = 0; v0 < (sizeof(UnkStruct_ov97_02236380_sub1) + sizeof(UnkStruct_ov97_02236380_sub2) + sizeof(UnkStruct_ov97_02236380_sub3) + sizeof(UnkStruct_ov97_02236380_sub4)) / 4; v0++) {
-        v1[v0] ^= param0->unk_00;
-        v1[v0] ^= param0->unk_04;
+    for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
+        v1[v0] ^= param0->personality;
+        v1[v0] ^= param0->otId;
     }
 }
 
-static u16 ov97_0223689C (UnkStruct_ov97_0223685C * param0)
+static u16 ov97_0223689C (BoxPokemonGBA * param0)
 {
     int v0;
     u16 * v1;
@@ -936,10 +935,10 @@ static u16 ov97_0223689C (UnkStruct_ov97_0223685C * param0)
     u16 * v4;
     u16 v5 = 0;
 
-    v1 = (u16 *)ov97_02236380(param0, param0->unk_00, 0);
-    v2 = (u16 *)ov97_02236380(param0, param0->unk_00, 1);
-    v3 = (u16 *)ov97_02236380(param0, param0->unk_00, 2);
-    v4 = (u16 *)ov97_02236380(param0, param0->unk_00, 3);
+    v1 = (u16 *)ov97_02236380(param0, param0->personality, 0);
+    v2 = (u16 *)ov97_02236380(param0, param0->personality, 1);
+    v3 = (u16 *)ov97_02236380(param0, param0->personality, 2);
+    v4 = (u16 *)ov97_02236380(param0, param0->personality, 3);
 
     for (v0 = 0; v0 < 12 / 2; v0++) {
         v5 += v1[v0];
@@ -960,333 +959,333 @@ static u16 ov97_0223689C (UnkStruct_ov97_0223685C * param0)
     return v5;
 }
 
-u32 ov97_02236924 (UnkStruct_ov97_0223685C * param0, int param1, u8 * param2)
+u32 GetGBABoxMonData (BoxPokemonGBA *boxMonGBA, int field, u8 * param2)
 {
-    int v0;
-    u32 v1 = 0;
-    UnkStruct_ov97_02236380_sub1 * v2 = 0;
-    UnkStruct_ov97_02236380_sub2 * v3 = 0;
-    UnkStruct_ov97_02236380_sub3 * v4 = 0;
-    UnkStruct_ov97_02236380_sub4 * v5 = 0;
-    u16 v6;
-    u16 * v7;
+    u32 retVal = 0;
+    PokemonGBASubstruct0 * substruct0 = 0;
+    PokemonGBASubstruct1 * substruct1 = 0;
+    PokemonGBASubstruct2 * substruct2 = 0;
+    PokemonGBASubstruct3 * substruct3 = 0;
+    u16 checksum;
 
-    if (param1 > 10) {
-        v2 = (UnkStruct_ov97_02236380_sub1 *)ov97_02236380(param0, param0->unk_00, 0);
-        v3 = (UnkStruct_ov97_02236380_sub2 *)ov97_02236380(param0, param0->unk_00, 1);
-        v4 = (UnkStruct_ov97_02236380_sub3 *)ov97_02236380(param0, param0->unk_00, 2);
-        v5 = (UnkStruct_ov97_02236380_sub4 *)ov97_02236380(param0, param0->unk_00, 3);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
+        substruct0 = (PokemonGBASubstruct0 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 0);
+        substruct1 = (PokemonGBASubstruct1 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 1);
+        substruct2 = (PokemonGBASubstruct2 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 2);
+        substruct3 = (PokemonGBASubstruct3 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 3);
 
-        ov97_0223685C(param0);
-        v6 = ov97_0223689C(param0);
+        GBADecryptBoxMon(boxMonGBA);
+        checksum = ov97_0223689C(boxMonGBA);
 
-        if (v6 != param0->unk_1C) {
-            param0->unk_13_0 = 1;
-            param0->unk_13_2 = 1;
-            v5->unk_04_30 = 1;
+        if (checksum != boxMonGBA->checksum) {
+            boxMonGBA->isBadEgg = TRUE;
+            boxMonGBA->isEgg = TRUE;
+            substruct3->isEgg = TRUE;
         }
     }
 
-    switch (param1) {
-    case 0:
-        v1 = param0->unk_00;
+    switch (field) {
+    case GBA_MON_DATA_PERSONALITY:
+        retVal = boxMonGBA->personality;
         break;
-    case 1:
-        v1 = param0->unk_04;
+    case GBA_MON_DATA_OT_ID:
+        retVal = boxMonGBA->otId;
         break;
-    case 2:
-        if (param0->unk_13_0) {
-            v1 = 0;
-        } else {
-            for (v1 = 0; v1 < 10; v1++) {
-                param2[v1] = param0->unk_08[v1];
+    case GBA_MON_DATA_NICKNAME:
+        if (boxMonGBA->isBadEgg)
+            retVal = 0;
+        else {
+            for (retVal = 0; retVal < 10; retVal++) {
+                param2[retVal] = boxMonGBA->nickname[retVal];
             }
         }
 
-        param2[v1] = 0xff;
+        param2[retVal] = 0xff;
         break;
-    case 3:
-        v1 = param0->unk_12;
+    case GBA_MON_DATA_LANGUAGE:
+        retVal = boxMonGBA->language;
         break;
-    case 4:
-        v1 = param0->unk_13_0;
+    case GBA_MON_DATA_SANITY_IS_BAD_EGG:
+        retVal = boxMonGBA->isBadEgg;
         break;
-    case 5:
-        v1 = param0->unk_13_1;
+    case GBA_MON_DATA_SANITY_HAS_SPECIES:
+        retVal = boxMonGBA->hasSpecies;
         break;
-    case 6:
-        v1 = param0->unk_13_2;
+    case GBA_MON_DATA_SANITY_IS_EGG:
+        retVal = boxMonGBA->isEgg;
         break;
-    case 7:
-        for (v1 = 0; v1 < 7; v1++) {
-            param2[v1] = param0->unk_14[v1];
-        }
+    case GBA_MON_DATA_OT_NAME:
+        for (retVal = 0; retVal < 7; retVal++)
+            param2[retVal] = boxMonGBA->otName[retVal];
 
-        param2[v1] = 0xffff;
+        param2[retVal] = 0xffff;
         break;
-    case 8:
-        v1 = param0->unk_1B;
+    case GBA_MON_DATA_MARKINGS:
+        retVal = boxMonGBA->markings;
         break;
-    case 9:
-        v1 = param0->unk_1C;
+    case GBA_MON_DATA_CHECKSUM:
+        retVal = boxMonGBA->checksum;
         break;
-    case 10:
-        v1 = param0->unk_1E;
+    case GBA_MON_DATA_ENCRYPT_SEPARATOR:
+        retVal = boxMonGBA->unknown;
         break;
-    case 11:
-        if (param0->unk_13_0) {
-            v1 = 412;
-        } else {
-            v1 = v2->unk_00;
-        }
+    case GBA_MON_DATA_SPECIES:
+        if (boxMonGBA->isBadEgg)
+            retVal = GBA_SPECIES_EGG;
+        else
+            retVal = substruct0->species;
         break;
-    case 12:
-        v1 = v2->unk_02;
+    case GBA_MON_DATA_HELD_ITEM:
+        retVal = substruct0->heldItem;
         break;
-    case 25:
-        v1 = v2->unk_04;
+    case GBA_MON_DATA_EXP:
+        retVal = substruct0->experience;
         break;
-    case 21:
-        v1 = v2->unk_08;
+    case GBA_MON_DATA_PP_BONUSES:
+        retVal = substruct0->ppBonuses;
         break;
-    case 32:
-        v1 = v2->unk_09;
+    case GBA_MON_DATA_FRIENDSHIP:
+        retVal = substruct0->friendship;
         break;
-    case 13:
-    case 14:
-    case 15:
-    case 16:
-        v1 = v3->unk_00[param1 - 13];
+    case GBA_MON_DATA_MOVE1:
+    case GBA_MON_DATA_MOVE2:
+    case GBA_MON_DATA_MOVE3:
+    case GBA_MON_DATA_MOVE4:
+        retVal = substruct1->moves[field - GBA_MON_DATA_MOVE1];
         break;
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-        v1 = v3->unk_08[param1 - 17];
+    case GBA_MON_DATA_PP1:
+    case GBA_MON_DATA_PP2:
+    case GBA_MON_DATA_PP3:
+    case GBA_MON_DATA_PP4:
+        retVal = substruct1->pp[field - GBA_MON_DATA_PP1];
         break;
-    case 26:
-        v1 = v4->unk_00;
+    case GBA_MON_DATA_HP_EV:
+        retVal = substruct2->hpEV;
         break;
-    case 27:
-        v1 = v4->unk_01;
+    case GBA_MON_DATA_ATK_EV:
+        retVal = substruct2->attackEV;
         break;
-    case 28:
-        v1 = v4->unk_02;
+    case GBA_MON_DATA_DEF_EV:
+        retVal = substruct2->defenseEV;
         break;
-    case 29:
-        v1 = v4->unk_03;
+    case GBA_MON_DATA_SPEED_EV:
+        retVal = substruct2->speedEV;
         break;
-    case 30:
-        v1 = v4->unk_04;
+    case GBA_MON_DATA_SPATK_EV:
+        retVal = substruct2->spAttackEV;
         break;
-    case 31:
-        v1 = v4->unk_05;
+    case GBA_MON_DATA_SPDEF_EV:
+        retVal = substruct2->spDefenseEV;
         break;
-    case 22:
-        v1 = v4->unk_06;
+    case GBA_MON_DATA_COOL:
+        retVal = substruct2->cool;
         break;
-    case 23:
-        v1 = v4->unk_07;
+    case GBA_MON_DATA_BEAUTY:
+        retVal = substruct2->beauty;
         break;
-    case 24:
-        v1 = v4->unk_08;
+    case GBA_MON_DATA_CUTE:
+        retVal = substruct2->cute;
         break;
-    case 33:
-        v1 = v4->unk_09;
+    case GBA_MON_DATA_SMART:
+        retVal = substruct2->smart;
         break;
-    case 47:
-        v1 = v4->unk_0A;
+    case GBA_MON_DATA_TOUGH:
+        retVal = substruct2->tough;
         break;
-    case 48:
-        v1 = v4->unk_0B;
+    case GBA_MON_DATA_SHEEN:
+        retVal = substruct2->sheen;
         break;
-    case 34:
-        v1 = v5->unk_00_0;
+    case GBA_MON_DATA_POKERUS:
+        retVal = substruct3->pokerus;
         break;
-    case 35:
-        v1 = v5->unk_00_8;
+    case GBA_MON_DATA_MET_LOCATION:
+        retVal = substruct3->metLocation;
         break;
-    case 36:
-        v1 = v5->unk_00_16;
+    case GBA_MON_DATA_MET_LEVEL:
+        retVal = substruct3->metLevel;
         break;
-    case 37:
-        v1 = v5->unk_00_23;
+    case GBA_MON_DATA_MET_GAME:
+        retVal = substruct3->metGame;
         break;
-    case 38:
-        v1 = v5->unk_00_27;
+    case GBA_MON_DATA_POKEBALL:
+        retVal = substruct3->pokeball;
         break;
-    case 49:
-        v1 = v5->unk_00_31;
+    case GBA_MON_DATA_OT_GENDER:
+        retVal = substruct3->otGender;
         break;
-    case 39:
-        v1 = v5->unk_04_0;
+    case GBA_MON_DATA_HP_IV:
+        retVal = substruct3->hpIV;
         break;
-    case 40:
-        v1 = v5->unk_04_5;
+    case GBA_MON_DATA_ATK_IV:
+        retVal = substruct3->attackIV;
         break;
-    case 41:
-        v1 = v5->unk_04_10;
+    case GBA_MON_DATA_DEF_IV:
+        retVal = substruct3->defenseIV;
         break;
-    case 42:
-        v1 = v5->unk_04_15;
+    case GBA_MON_DATA_SPEED_IV:
+        retVal = substruct3->speedIV;
         break;
-    case 43:
-        v1 = v5->unk_04_20;
+    case GBA_MON_DATA_SPATK_IV:
+        retVal = substruct3->spAttackIV;
         break;
-    case 44:
-        v1 = v5->unk_04_25;
+    case GBA_MON_DATA_SPDEF_IV:
+        retVal = substruct3->spDefenseIV;
         break;
-    case 45:
-        v1 = v5->unk_04_30;
+    case GBA_MON_DATA_IS_EGG:
+        retVal = substruct3->isEgg;
         break;
-    case 46:
-        v1 = v5->unk_04_31;
+    case GBA_MON_DATA_ABILITY_NUM:
+        retVal = substruct3->abilityNum;
         break;
-    case 50:
-        v1 = v5->unk_08_0;
+    case GBA_MON_DATA_COOL_RIBBON:
+        retVal = substruct3->coolRibbon;
         break;
-    case 51:
-        v1 = v5->unk_08_3;
+    case GBA_MON_DATA_BEAUTY_RIBBON:
+        retVal = substruct3->beautyRibbon;
         break;
-    case 52:
-        v1 = v5->unk_08_6;
+    case GBA_MON_DATA_CUTE_RIBBON:
+        retVal = substruct3->cuteRibbon;
         break;
-    case 53:
-        v1 = v5->unk_08_9;
+    case GBA_MON_DATA_SMART_RIBBON:
+        retVal = substruct3->smartRibbon;
         break;
-    case 54:
-        v1 = v5->unk_08_12;
+    case GBA_MON_DATA_TOUGH_RIBBON:
+        retVal = substruct3->toughRibbon;
         break;
-    case 67:
-        v1 = v5->unk_08_15;
+    case GBA_MON_DATA_CHAMPION_RIBBON:
+        retVal = substruct3->championRibbon;
         break;
-    case 68:
-        v1 = v5->unk_08_16;
+    case GBA_MON_DATA_WINNING_RIBBON:
+        retVal = substruct3->winningRibbon;
         break;
-    case 69:
-        v1 = v5->unk_08_17;
+    case GBA_MON_DATA_VICTORY_RIBBON:
+        retVal = substruct3->victoryRibbon;
         break;
-    case 70:
-        v1 = v5->unk_08_18;
+    case GBA_MON_DATA_ARTIST_RIBBON:
+        retVal = substruct3->artistRibbon;
         break;
-    case 71:
-        v1 = v5->unk_08_19;
+    case GBA_MON_DATA_EFFORT_RIBBON:
+        retVal = substruct3->effortRibbon;
         break;
-    case 72:
-        v1 = v5->unk_08_20;
+    case GBA_MON_DATA_MARINE_RIBBON:
+        retVal = substruct3->marineRibbon;
         break;
-    case 73:
-        v1 = v5->unk_08_21;
+    case GBA_MON_DATA_LAND_RIBBON:
+        retVal = substruct3->landRibbon;
         break;
-    case 74:
-        v1 = v5->unk_08_22;
+    case GBA_MON_DATA_SKY_RIBBON:
+        retVal = substruct3->skyRibbon;
         break;
-    case 75:
-        v1 = v5->unk_08_23;
+    case GBA_MON_DATA_COUNTRY_RIBBON:
+        retVal = substruct3->countryRibbon;
         break;
-    case 76:
-        v1 = v5->unk_08_24;
+    case GBA_MON_DATA_NATIONAL_RIBBON:
+        retVal = substruct3->nationalRibbon;
         break;
-    case 77:
-        v1 = v5->unk_08_25;
+    case GBA_MON_DATA_EARTH_RIBBON:
+        retVal = substruct3->earthRibbon;
         break;
-    case 78:
-        v1 = v5->unk_08_26;
+    case GBA_MON_DATA_WORLD_RIBBON:
+        retVal = substruct3->worldRibbon;
         break;
-    case 79:
-        v1 = v5->unk_08_27;
+    case GBA_MON_DATA_UNUSED_RIBBONS:
+        retVal = substruct3->unusedRibbons;
         break;
-    case 80:
-        v1 = v5->unk_08_31;
+    case GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER:
+        retVal = substruct3->modernFatefulEncounter;
         break;
-    case 65:
-        v1 = v2->unk_00;
+    case GBA_MON_DATA_SPECIES_OR_EGG:
+        retVal = substruct0->species;
 
-        if (v1 == 0) {
+        if (retVal == SPECIES_NONE)
             break;
-        }
 
-        if ((v5->unk_04_30) || (param0->unk_13_0)) {
-            v1 = 412;
-        }
+        if (substruct3->isEgg || boxMonGBA->isBadEgg)
+            retVal = GBA_SPECIES_EGG;
+
         break;
-    case 66:
-        v1 = (v5->unk_04_0 << 0) | (v5->unk_04_5 << 5) | (v5->unk_04_10 << 10) | (v5->unk_04_15 << 15) | (v5->unk_04_20 << 20) | (v5->unk_04_25 << 25);
+    case GBA_MON_DATA_IVS:
+        retVal = substruct3->hpIV
+              | (substruct3->attackIV << 5)
+              | (substruct3->defenseIV << 10)
+              | (substruct3->speedIV << 15)
+              | (substruct3->spAttackIV << 20)
+              | (substruct3->spDefenseIV << 25);
         break;
     }
 
-    if (param1 > 10) {
-        ov97_0223687C(param0);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
+        GBAEncryptBoxMon(boxMonGBA);
     }
 
-    return v1;
+    return retVal;
 }
 
-void ov97_02236CA4 (UnkStruct_ov97_0223685C * param0, int param1, const u8 * param2)
+void SetGBABoxMonData (BoxPokemonGBA * boxMon, int field, const u8 * dataArg)
 {
     int v0;
     u32 v1;
-    UnkStruct_ov97_02236380_sub1 * v2 = 0;
-    UnkStruct_ov97_02236380_sub2 * v3 = 0;
-    UnkStruct_ov97_02236380_sub3 * v4 = 0;
-    UnkStruct_ov97_02236380_sub4 * v5 = 0;
+    PokemonGBASubstruct0 * v2 = 0;
+    PokemonGBASubstruct1 * v3 = 0;
+    PokemonGBASubstruct2 * v4 = 0;
+    PokemonGBASubstruct3 * v5 = 0;
     u16 v6;
 
-    if (param1 > 10) {
-        v2 = (UnkStruct_ov97_02236380_sub1 *)ov97_02236380(param0, param0->unk_00, 0);
-        v3 = (UnkStruct_ov97_02236380_sub2 *)ov97_02236380(param0, param0->unk_00, 1);
-        v4 = (UnkStruct_ov97_02236380_sub3 *)ov97_02236380(param0, param0->unk_00, 2);
-        v5 = (UnkStruct_ov97_02236380_sub4 *)ov97_02236380(param0, param0->unk_00, 3);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
+        v2 = (PokemonGBASubstruct0 *)ov97_02236380(boxMon, boxMon->personality, 0);
+        v3 = (PokemonGBASubstruct1 *)ov97_02236380(boxMon, boxMon->personality, 1);
+        v4 = (PokemonGBASubstruct2 *)ov97_02236380(boxMon, boxMon->personality, 2);
+        v5 = (PokemonGBASubstruct3 *)ov97_02236380(boxMon, boxMon->personality, 3);
 
-        ov97_0223685C(param0);
-        v6 = ov97_0223689C(param0);
+        GBADecryptBoxMon(boxMon);
+        v6 = ov97_0223689C(boxMon);
 
-        if (v6 != param0->unk_1C) {
-            param0->unk_13_0 = 1;
-            param0->unk_13_2 = 1;
-            v5->unk_04_30 = 1;
-            ov97_0223687C(param0);
+        if (v6 != boxMon->checksum) {
+            boxMon->isBadEgg = 1;
+            boxMon->isEgg = 1;
+            v5->isEgg = 1;
+            GBAEncryptBoxMon(boxMon);
             return;
         }
     }
 
-    switch (param1) {
-    case 2:
+    switch (field) {
+    case GBA_MON_DATA_NICKNAME:
         for (v0 = 0; v0 < 10; v0++) {
-            param0->unk_08[v0] = param2[v0];
+            boxMon->nickname[v0] = dataArg[v0];
         }
         break;
-    case 3:
-        param0->unk_12 = param2[0];
+    case GBA_MON_DATA_LANGUAGE:
+        boxMon->language = dataArg[0];
         break;
-    case 4:
-        param0->unk_13_0 = param2[0];
+    case GBA_MON_DATA_SANITY_IS_BAD_EGG:
+        boxMon->isBadEgg = dataArg[0];
         break;
-    case 5:
-        param0->unk_13_1 = param2[0];
+    case GBA_MON_DATA_SANITY_HAS_SPECIES:
+        boxMon->hasSpecies = dataArg[0];
         break;
-    case 6:
-        param0->unk_13_2 = param2[0];
+    case GBA_MON_DATA_SANITY_IS_EGG:
+        boxMon->isEgg = dataArg[0];
         break;
-    case 7:
+    case GBA_MON_DATA_OT_NAME:
         for (v0 = 0; v0 < 7; v0++) {
-            param0->unk_14[v0] = param2[v0];
+            boxMon->otName[v0] = dataArg[v0];
         }
         break;
-    case 11:
-        v2->unk_00 = param2[0] + (param2[1] << 8);
+    case GBA_MON_DATA_SPECIES:
+        v2->species = dataArg[0] + (dataArg[1] << 8);
 
-        if (v2->unk_00) {
-            param0->unk_13_1 = 1;
+        if (v2->species) {
+            boxMon->hasSpecies = 1;
         } else {
-            param0->unk_13_1 = 0;
+            boxMon->hasSpecies = 0;
         }
         break;
     }
 
-    if (param1 > 10) {
-        param0->unk_1C = ov97_0223689C(param0);
-        ov97_0223687C(param0);
+    if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
+        boxMon->checksum = ov97_0223689C(boxMon);
+        GBAEncryptBoxMon(boxMon);
     }
 }
 
@@ -1307,26 +1306,26 @@ int ov97_02236DD0 (int param0)
     return param0;
 }
 
-u32 ov97_02236E00 (UnkStruct_ov97_0223685C * param0)
+u32 ov97_02236E00 (BoxPokemonGBA * param0)
 {
     int v0;
     u32 v1;
 
-    v0 = ov97_02236DD0(ov97_02236924(param0, 11, 0));
-    v1 = ov97_02236924(param0, 25, 0);
+    v0 = ov97_02236DD0(GetGBABoxMonData(param0, 11, 0));
+    v1 = GetGBABoxMonData(param0, 25, 0);
 
     return sub_02075B78(v0, v1);
 }
 
-static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1)
+static int ov97_02236E28 (BoxPokemonGBA * param0, BoxPokemon * param1)
 {
     int v0;
     int v1;
     u16 v2;
     int v3;
 
-    v2 = sub_02074570(param1, 5, NULL);
-    v3 = ov97_02236924(param0, 46, NULL);
+    v2 = sub_02074570(param1, MON_DATA_SPECIES, NULL);
+    v3 = GetGBABoxMonData(param0, 46, NULL);
     v1 = sub_020759F0(v2, 25);
 
     if (v1) {
@@ -1347,7 +1346,7 @@ static int ov97_02236E28 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_s
     return v1;
 }
 
-void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * param1)
+void BoxMonGBAToBoxMon (BoxPokemonGBA * param0, BoxPokemon * param1)
 {
     BOOL v0;
     u32 v1;
@@ -1356,214 +1355,214 @@ void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * 
     u8 v5[10 + 1];
     u16 v6[12];
 
-    sub_02073C54(param1);
+    ZeroBoxMonData(param1);
 
     v0 = sub_02073D20(param1);
-    v1 = ov97_02236924(param0, 0, NULL);
+    v1 = GetGBABoxMonData(param0, 0, NULL);
 
-    sub_02074C60(param1, 0, (u8 *)&v1);
+    SetBoxMonData(param1, 0, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 11, NULL);
+    v1 = GetGBABoxMonData(param0, 11, NULL);
     v1 = ov97_02236DD0(v1);
 
-    sub_02074C60(param1, 5, (u8 *)&v1);
+    SetBoxMonData(param1, 5, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 12, NULL);
+    v1 = GetGBABoxMonData(param0, 12, NULL);
 
     if (v1) {
         v1 = sub_0207CF10(v1);
     }
 
-    sub_02074C60(param1, 6, (u8 *)&v1);
+    SetBoxMonData(param1, 6, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 1, NULL);
-    sub_02074C60(param1, 7, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 1, NULL);
+    SetBoxMonData(param1, 7, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 25, NULL);
-    sub_02074C60(param1, 8, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 25, NULL);
+    SetBoxMonData(param1, 8, (u8 *)&v1);
 
     v1 = 70;
-    sub_02074C60(param1, 9, (u8 *)&v1);
+    SetBoxMonData(param1, 9, (u8 *)&v1);
 
     v1 = ov97_02236E28(param0, param1);
-    sub_02074C60(param1, 10, (u8 *)&v1);
+    SetBoxMonData(param1, 10, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 8, NULL);
-    sub_02074C60(param1, 11, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 8, NULL);
+    SetBoxMonData(param1, 11, (u8 *)&v1);
 
-    v4 = ov97_02236924(param0, 3, NULL);
-    sub_02074C60(param1, 12, (u8 *)&v4);
+    v4 = GetGBABoxMonData(param0, 3, NULL);
+    SetBoxMonData(param1, 12, (u8 *)&v4);
 
-    v1 = ov97_02236924(param0, 26, NULL);
-    sub_02074C60(param1, 13, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 26, NULL);
+    SetBoxMonData(param1, 13, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 27, NULL);
-    sub_02074C60(param1, 14, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 27, NULL);
+    SetBoxMonData(param1, 14, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 28, NULL);
-    sub_02074C60(param1, 15, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 28, NULL);
+    SetBoxMonData(param1, 15, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 29, NULL);
-    sub_02074C60(param1, 16, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 29, NULL);
+    SetBoxMonData(param1, 16, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 30, NULL);
-    sub_02074C60(param1, 17, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 30, NULL);
+    SetBoxMonData(param1, 17, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 31, NULL);
-    sub_02074C60(param1, 18, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 31, NULL);
+    SetBoxMonData(param1, 18, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 22, NULL);
-    sub_02074C60(param1, 19, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 22, NULL);
+    SetBoxMonData(param1, 19, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 23, NULL);
-    sub_02074C60(param1, 20, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 23, NULL);
+    SetBoxMonData(param1, 20, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 24, NULL);
-    sub_02074C60(param1, 21, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 24, NULL);
+    SetBoxMonData(param1, 21, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 33, NULL);
-    sub_02074C60(param1, 22, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 33, NULL);
+    SetBoxMonData(param1, 22, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 47, NULL);
-    sub_02074C60(param1, 23, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 47, NULL);
+    SetBoxMonData(param1, 23, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 48, NULL);
-    sub_02074C60(param1, 24, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 48, NULL);
+    SetBoxMonData(param1, 24, (u8 *)&v1);
 
     for (v2 = 0; v2 < 4; v2++) {
-        v1 = ov97_02236924(param0, 13 + v2, NULL);
+        v1 = GetGBABoxMonData(param0, 13 + v2, NULL);
 
         if (v1 > 354) {
             (void)0;
         }
 
-        sub_02074C60(param1, 54 + v2, (u8 *)&v1);
+        SetBoxMonData(param1, 54 + v2, (u8 *)&v1);
 
-        v1 = ov97_02236924(param0, 21, NULL);
+        v1 = GetGBABoxMonData(param0, 21, NULL);
         v1 = (v1 & (0x3 << (v2 * 2))) >> (v2 * 2);
 
-        sub_02074C60(param1, 62 + v2, (u8 *)&v1);
+        SetBoxMonData(param1, 62 + v2, (u8 *)&v1);
 
         v1 = sub_02074570(param1, 66 + v2, NULL);
-        sub_02074C60(param1, 58 + v2, (u8 *)&v1);
+        SetBoxMonData(param1, 58 + v2, (u8 *)&v1);
     }
 
-    v1 = ov97_02236924(param0, 39, NULL);
-    sub_02074C60(param1, 70, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 39, NULL);
+    SetBoxMonData(param1, 70, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 40, NULL);
-    sub_02074C60(param1, 71, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 40, NULL);
+    SetBoxMonData(param1, 71, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 41, NULL);
-    sub_02074C60(param1, 72, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 41, NULL);
+    SetBoxMonData(param1, 72, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 42, NULL);
-    sub_02074C60(param1, 73, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 42, NULL);
+    SetBoxMonData(param1, 73, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 43, NULL);
-    sub_02074C60(param1, 74, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 43, NULL);
+    SetBoxMonData(param1, 74, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 44, NULL);
-    sub_02074C60(param1, 75, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 44, NULL);
+    SetBoxMonData(param1, 75, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 45, NULL);
-    sub_02074C60(param1, 76, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 45, NULL);
+    SetBoxMonData(param1, 76, (u8 *)&v1);
 
-    v3 = ov97_02236924(param0, 50, NULL);
+    v3 = GetGBABoxMonData(param0, 50, NULL);
 
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 78 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 78 + v2, (u8 *)&v1);
         }
     }
 
-    v3 = ov97_02236924(param0, 51, NULL);
+    v3 = GetGBABoxMonData(param0, 51, NULL);
 
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 82 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 82 + v2, (u8 *)&v1);
         }
     }
 
-    v3 = ov97_02236924(param0, 52, NULL);
+    v3 = GetGBABoxMonData(param0, 52, NULL);
 
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 86 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 86 + v2, (u8 *)&v1);
         }
     }
 
-    v3 = ov97_02236924(param0, 53, NULL);
+    v3 = GetGBABoxMonData(param0, 53, NULL);
 
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 90 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 90 + v2, (u8 *)&v1);
         }
     }
 
-    v3 = ov97_02236924(param0, 54, NULL);
+    v3 = GetGBABoxMonData(param0, 54, NULL);
 
     if (v3 <= 4) {
         for (v2 = 0; v2 < v3; v2++) {
             v1 = 1;
-            sub_02074C60(param1, 94 + v2, (u8 *)&v1);
+            SetBoxMonData(param1, 94 + v2, (u8 *)&v1);
         }
     }
 
-    v1 = ov97_02236924(param0, 67, NULL);
-    sub_02074C60(param1, 98, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 67, NULL);
+    SetBoxMonData(param1, 98, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 68, NULL);
-    sub_02074C60(param1, 99, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 68, NULL);
+    SetBoxMonData(param1, 99, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 69, NULL);
-    sub_02074C60(param1, 100, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 69, NULL);
+    SetBoxMonData(param1, 100, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 70, NULL);
-    sub_02074C60(param1, 101, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 70, NULL);
+    SetBoxMonData(param1, 101, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 71, NULL);
-    sub_02074C60(param1, 102, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 71, NULL);
+    SetBoxMonData(param1, 102, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 72, NULL);
-    sub_02074C60(param1, 103, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 72, NULL);
+    SetBoxMonData(param1, 103, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 73, NULL);
-    sub_02074C60(param1, 104, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 73, NULL);
+    SetBoxMonData(param1, 104, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 74, NULL);
-    sub_02074C60(param1, 105, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 74, NULL);
+    SetBoxMonData(param1, 105, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 75, NULL);
-    sub_02074C60(param1, 106, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 75, NULL);
+    SetBoxMonData(param1, 106, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 76, NULL);
-    sub_02074C60(param1, 107, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 76, NULL);
+    SetBoxMonData(param1, 107, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 77, NULL);
-    sub_02074C60(param1, 108, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 77, NULL);
+    SetBoxMonData(param1, 108, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 78, NULL);
-    sub_02074C60(param1, 109, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 78, NULL);
+    SetBoxMonData(param1, 109, (u8 *)&v1);
 
-    v1 = ov97_02236924(param0, 80, NULL);
-    sub_02074C60(param1, 110, (u8 *)&v1);
+    v1 = GetGBABoxMonData(param0, 80, NULL);
+    SetBoxMonData(param1, 110, (u8 *)&v1);
 
     v1 = sub_02075D74(param1);
-    sub_02074C60(param1, 111, (u8 *)&v1);
+    SetBoxMonData(param1, 111, (u8 *)&v1);
 
-    if (sub_02074570(param1, 5, NULL) == 201) {
-        v1 = ov97_02236924(param0, 0, NULL);
+    if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 201) {
+        v1 = GetGBABoxMonData(param0, 0, NULL);
         v1 = (((v1 & 0x3000000) >> 18) | ((v1 & 0x30000) >> 12) | ((v1 & 0x300) >> 6) | (v1 & 0x3)) % 28;
 
-        sub_02074C60(param1, 112, (u8 *)&v1);
+        SetBoxMonData(param1, 112, (u8 *)&v1);
     }
 
-    if (sub_02074570(param1, 5, NULL) == 386) {
+    if (sub_02074570(param1, MON_DATA_SPECIES, NULL) == 386) {
         switch (Unk_021BF67C.unk_66) {
         default:
         case 2:
@@ -1581,40 +1580,40 @@ void ov97_02236E90 (UnkStruct_ov97_0223685C * param0, UnkStruct_02073C74_sub1 * 
             break;
         }
 
-        sub_02074C60(param1, 112, (u8 *)&v1);
+        SetBoxMonData(param1, 112, (u8 *)&v1);
     }
 
-    ov97_02236924(param0, 2, &v5[0]);
+    GetGBABoxMonData(param0, 2, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 12, v4);
 
-    sub_02074C60(param1, 118, &v6[0]);
+    SetBoxMonData(param1, 118, &v6[0]);
 
-    if (ov97_02236924(param0, 3, NULL) != Unk_020E4C44) {
+    if (GetGBABoxMonData(param0, 3, NULL) != Unk_020E4C44) {
         v1 = 1;
-        sub_02074C60(param1, 77, &v1);
+        SetBoxMonData(param1, 77, &v1);
     }
 
-    v1 = ov97_02236924(param0, 37, NULL);
-    sub_02074C60(param1, 122, &v1);
+    v1 = GetGBABoxMonData(param0, 37, NULL);
+    SetBoxMonData(param1, 122, &v1);
 
-    ov97_02236924(param0, 7, &v5[0]);
+    GetGBABoxMonData(param0, 7, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 8, v4);
 
-    sub_02074C60(param1, 144, &v6[0]);
+    SetBoxMonData(param1, 144, &v6[0]);
 
-    v1 = ov97_02236924(param0, 35, NULL);
-    sub_02074C60(param1, 153, &v1);
+    v1 = GetGBABoxMonData(param0, 35, NULL);
+    SetBoxMonData(param1, 153, &v1);
 
-    v1 = ov97_02236924(param0, 34, NULL);
-    sub_02074C60(param1, 154, &v1);
+    v1 = GetGBABoxMonData(param0, 34, NULL);
+    SetBoxMonData(param1, 154, &v1);
 
-    v1 = ov97_02236924(param0, 38, NULL);
-    sub_02074C60(param1, 155, &v1);
+    v1 = GetGBABoxMonData(param0, 38, NULL);
+    SetBoxMonData(param1, 155, &v1);
 
-    v1 = ov97_02236924(param0, 36, NULL);
-    sub_02074C60(param1, 156, &v1);
+    v1 = GetGBABoxMonData(param0, 36, NULL);
+    SetBoxMonData(param1, 156, &v1);
 
-    v1 = ov97_02236924(param0, 49, NULL);
-    sub_02074C60(param1, 157, &v1);
+    v1 = GetGBABoxMonData(param0, 49, NULL);
+    SetBoxMonData(param1, 157, &v1);
     sub_02073D48(param1, v0);
 }

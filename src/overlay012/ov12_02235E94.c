@@ -369,7 +369,7 @@ UnkStruct_ov12_02235FE0 * ov12_02236004 (int param0, const UnkStruct_ov12_022360
 void ov12_02236030 (UnkStruct_ov12_02235FE0 * param0, const UnkStruct_ov12_02236030 * param1)
 {
     param0->unk_04 = *param1;
-    param0->unk_9C = sub_02074470(param0->unk_04.unk_08, 162, NULL);
+    param0->unk_9C = GetMonData(param0->unk_04.unk_08, MON_DATA_162, NULL);
 
     GF_ASSERT(param0->unk_9C < 12 + 1);
 
@@ -379,11 +379,11 @@ void ov12_02236030 (UnkStruct_ov12_02235FE0 * param0, const UnkStruct_ov12_02236
         if (param0->unk_04.unk_04 != 0) {
             param0->unk_98 = param0->unk_04.unk_04;
         } else {
-            param0->unk_98 = sub_02074470(param0->unk_04.unk_08, 155, NULL);
+            param0->unk_98 = GetMonData(param0->unk_04.unk_08, MON_DATA_POKEBALL, NULL);
         }
     } else {
         param0->unk_94 = 1;
-        sub_02074470(param0->unk_04.unk_08, 171, &param0->unk_A0);
+        GetMonData(param0->unk_04.unk_08, MON_DATA_171, &param0->unk_A0);
     }
 }
 

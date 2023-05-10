@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "overlay077/const_ov77_021D742C.h"
@@ -401,11 +401,11 @@ static BOOL ov97_0222D5C8 (UnkStruct_0202DF40 * param0)
     case 1:
     case 2:
     {
-        UnkStruct_02073C74 * v0;
+        Pokemon * v0;
         int v1;
 
-        v0 = (UnkStruct_02073C74 *)&param0->unk_04.val1.unk_04;
-        v1 = sub_02074470(v0, 152, NULL);
+        v0 = (Pokemon *)&param0->unk_04.val1.unk_04;
+        v1 = GetMonData(v0, MON_DATA_152, NULL);
 
         if (((v1 >= 3) && (v1 <= 14)) || ((v1 >= 64) && (v1 <= 71))) {
             return 1;

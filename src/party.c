@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02073C74.h"
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_party.h"
 
 #include "heap.h"
@@ -48,11 +48,11 @@ void Party_InitWithCapacity (Party * party, int capacity)
     party->capacity = capacity;
 
     for (i = 0; i < 6; i++) {
-        sub_02073C2C(&party->pokemon[i]);
+        ZeroMonData(&party->pokemon[i]);
     }
 }
 
-BOOL Party_AddPokemon (Party * party, UnkStruct_02073C74 * pokemon)
+BOOL Party_AddPokemon (Party * party, Pokemon * pokemon)
 {
     if (party->currentCount >= party->capacity) {
         return FALSE;
@@ -75,7 +75,7 @@ BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
         party->pokemon[i] = party->pokemon[i + 1];
     }
 
-    sub_02073C2C(&party->pokemon[i]);
+    ZeroMonData(&party->pokemon[i]);
     party->currentCount--;
 
     return TRUE;
@@ -91,31 +91,31 @@ int Party_GetCurrentCount (const Party * party)
     return party->currentCount;
 }
 
-UnkStruct_02073C74 * Party_GetPokemonBySlotIndex (const Party * party, int slot)
+Pokemon * Party_GetPokemonBySlotIndex (const Party * party, int slot)
 {
     PARTY_ASSERT_SLOT(party, slot);
-    return (UnkStruct_02073C74 *)&party->pokemon[slot];
+    return (Pokemon *)&party->pokemon[slot];
 }
 
-void sub_0207A128 (Party * party, int slot, UnkStruct_02073C74 * param2)
+void sub_0207A128 (Party * party, int slot, Pokemon * param2)
 {
     int v0;
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = sub_02074470(&(party->pokemon[slot]), 172, NULL) - sub_02074470(param2, 172, NULL);
+    v0 = GetMonData(&(party->pokemon[slot]), MON_DATA_172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
     party->pokemon[slot] = *param2;
     party->currentCount += v0;
 }
 
 BOOL Party_SwapSlots (Party * party, int slotA, int slotB)
 {
-    struct UnkStruct_02073C74_t * tempPokemon;
+    Pokemon * tempPokemon;
 
     PARTY_ASSERT_SLOT(party, slotA);
     PARTY_ASSERT_SLOT(party, slotB);
 
-    tempPokemon = Heap_AllocFromHeap(0, sizeof(struct UnkStruct_02073C74_t));
+    tempPokemon = Heap_AllocFromHeap(0, sizeof(Pokemon));
     *tempPokemon = party->pokemon[slotA];
 
     party->pokemon[slotA] = party->pokemon[slotB];
@@ -136,7 +136,7 @@ BOOL Party_HasSpecies (const Party * party, int species)
     int i;
 
     for (i = 0; i < party->currentCount; i++) {
-        if (sub_02074470((UnkStruct_02073C74 *)&party->pokemon[i], 5, NULL) == species) {
+        if (GetMonData((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species) {
             break;
         }
     }

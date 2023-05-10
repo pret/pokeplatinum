@@ -4,8 +4,8 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/pokemon.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay032/struct_ov32_02256470_decl.h"
@@ -199,7 +199,7 @@ static BOOL ov32_02256394 (UnkStruct_ov32_0225621C * param0)
 
 static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     int v1;
     BOOL v2;
 
@@ -209,14 +209,14 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
         v2 = sub_02073C88(v0);
 
-        param0->unk_04[v1].unk_00 = sub_02079D40((const UnkStruct_02073C74_sub1 *)v0);
-        param0->unk_04[v1].unk_04 = sub_02074470(v0, 5, NULL);
-        param0->unk_04[v1].unk_06 = sub_02074470(v0, 163, NULL);
-        param0->unk_04[v1].unk_08 = sub_02074470(v0, 164, NULL);
-        param0->unk_04[v1].unk_0A = sub_02074470(v0, 6, NULL);
-        param0->unk_04[v1].unk_0C = (sub_02074470(v0, 160, NULL) != 0);
-        param0->unk_04[v1].unk_0E = sub_02074470(v0, 76, NULL);
-        param0->unk_04[v1].unk_0F = sub_02074470(v0, 112, NULL);
+        param0->unk_04[v1].unk_00 = sub_02079D40((const BoxPokemon *)v0);
+        param0->unk_04[v1].unk_04 = GetMonData(v0, MON_DATA_SPECIES, NULL);
+        param0->unk_04[v1].unk_06 = GetMonData(v0, MON_DATA_163, NULL);
+        param0->unk_04[v1].unk_08 = GetMonData(v0, MON_DATA_164, NULL);
+        param0->unk_04[v1].unk_0A = GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_04[v1].unk_0C = (GetMonData(v0, MON_DATA_160, NULL) != 0);
+        param0->unk_04[v1].unk_0E = GetMonData(v0, MON_DATA_IS_EGG, NULL);
+        param0->unk_04[v1].unk_0F = GetMonData(v0, MON_DATA_FORM, NULL);
 
         sub_02073CD4(v0, v2);
     }

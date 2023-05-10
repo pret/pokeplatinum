@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0202631C_H
 
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 int sub_0202631C(void);
@@ -34,8 +34,8 @@ u32 sub_02027208(const UnkStruct_02026324 * param0, int param1);
 u32 sub_02027240(const UnkStruct_02026324 * param0);
 u32 sub_02027264(const UnkStruct_02026324 * param0, int param1);
 u32 sub_02027288(const UnkStruct_02026324 * param0);
-void sub_020272A4(UnkStruct_02026324 * param0, UnkStruct_02073C74 * param1);
-void sub_0202736C(UnkStruct_02026324 * param0, UnkStruct_02073C74 * param1);
+void sub_020272A4(UnkStruct_02026324 * param0, Pokemon * param1);
+void sub_0202736C(UnkStruct_02026324 * param0, Pokemon * param1);
 void sub_02027454(UnkStruct_02026324 * param0);
 BOOL sub_02027474(const UnkStruct_02026324 * param0);
 BOOL sub_02027494(const UnkStruct_02026324 * param0);

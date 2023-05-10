@@ -10,8 +10,8 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/pokemon.h"
+#include "struct_defs/box_pokemon.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "struct_defs/struct_02041DC8.h"
@@ -331,8 +331,8 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     UnkStruct_02023790 * v2;
     UnkStruct_02023790 * v3;
     int v4;
-    UnkStruct_02073C74 * v5;
-    UnkStruct_02073C74_sub1 * v6;
+    Pokemon * v5;
+    BoxPokemon * v6;
     UnkStruct_0200B144 * v7;
     int v8, v9;
     int v10;
@@ -350,7 +350,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0202A524(param0->unk_04, v2);
     sub_0200B48C(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
-    v5 = sub_02073C74(13);
+    v5 = AllocMonZeroed(13);
     sub_0202A560(param0->unk_04, v5);
     v6 = sub_02076B10(v5);
     sub_0200B5CC(v1, 4, v6);

@@ -47,7 +47,7 @@
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
-#include "overlay012/ov12_022384F0.h"
+#include "overlay012/is_form_symmetrical.h"
 #include "overlay017/ov17_0223B140.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022413D8.h"
@@ -490,10 +490,10 @@ void ov17_02241524 (UnkStruct_ov17_0223F88C * param0, int param1)
     {
         u32 v0, v1;
 
-        v0 = sub_02074470(param0->unk_00->unk_00[param1], 5, NULL);
-        v1 = sub_02074470(param0->unk_00->unk_00[param1], 112, NULL);
+        v0 = GetMonData(param0->unk_00->unk_00[param1], MON_DATA_SPECIES, NULL);
+        v1 = GetMonData(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
 
-        if (ov12_022384F0(v0, v1) == 1) {
+        if (IsFormSymmetrical(v0, v1) == 1) {
             sub_02007DEC(param0->unk_08[param1], 35, 1);
         }
     }
@@ -515,10 +515,10 @@ void ov17_022415E4 (UnkStruct_ov17_0223F88C * param0)
         {
             u32 v1, v2;
 
-            v1 = sub_02074470(param0->unk_00->unk_00[v0], 5, NULL);
-            v2 = sub_02074470(param0->unk_00->unk_00[v0], 112, NULL);
+            v1 = GetMonData(param0->unk_00->unk_00[v0], MON_DATA_SPECIES, NULL);
+            v2 = GetMonData(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
 
-            if (ov12_022384F0(v1, v2) == 1) {
+            if (IsFormSymmetrical(v1, v2) == 1) {
                 sub_02007DEC(param0->unk_08[v0], 35, 1);
             }
         }
@@ -1583,7 +1583,7 @@ void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
 
     v0 = sub_02023790(12, 21);
 
-    sub_02074470(param0->unk_0C.unk_00->unk_00[param1], 119, v0);
+    GetMonData(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_119, v0);
 
     if (param1 == param0->unk_00->unk_00.unk_113) {
         v1 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
@@ -2127,8 +2127,8 @@ void ov17_022439C8 (UnkStruct_02095C48 * param0, int param1, int param2, UnkStru
     {
         int v0, v1;
 
-        v0 = sub_02074470(param0->unk_00.unk_00[param1], 177, NULL);
-        v1 = sub_02074470(param0->unk_00.unk_00[param1], 178, NULL);
+        v0 = GetMonData(param0->unk_00.unk_00[param1], MON_DATA_177, NULL);
+        v1 = GetMonData(param0->unk_00.unk_00[param1], MON_DATA_178, NULL);
 
         if ((v0 == 7) || (v1 == 7)) {
             param3->unk_07 = 1;

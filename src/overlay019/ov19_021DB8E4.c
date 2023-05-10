@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -232,7 +232,7 @@ BOOL ov19_021DBBA0 (UnkStruct_ov19_021DBA9C * param0)
 void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NNS_G2D_VRAM_TYPE param3, NNSG2dImageProxy * param4)
 {
     const UnkStruct_020797DC * v0;
-    UnkStruct_02073C74_sub1 * v1;
+    BoxPokemon * v1;
     u32 v2, v3, v4, v5;
     u8 v6, v7;
     int v8;
@@ -251,11 +251,11 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
         for (v2 = 0; v2 < 6; v2++) {
             v1 = sub_02079C9C(v0, param1, v4++);
             v7 = sub_02073D20(v1);
-            v5 = sub_02074570(v1, 5, NULL);
+            v5 = sub_02074570(v1, MON_DATA_SPECIES, NULL);
 
             if (v5) {
-                if (sub_02074570(v1, 76, NULL) == 0) {
-                    u16 v9 = sub_02074570(v1, 112, NULL);
+                if (sub_02074570(v1, MON_DATA_IS_EGG, NULL) == 0) {
+                    u16 v9 = sub_02074570(v1, MON_DATA_FORM, NULL);
 
                     v6 = sub_020759CC(v5, v9, 27);
                 } else {

@@ -19,8 +19,8 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/pokemon.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/struct_02098D38.h"
 #include "overlay006/struct_ov6_02246254.h"
@@ -75,7 +75,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     u16 unk_10E;
     u16 unk_110;
     u16 unk_112;
-    UnkStruct_02073C74_sub1 * unk_114;
+    BoxPokemon * unk_114;
     int unk_118;
     int unk_11C;
     UnkStruct_02025E6C * unk_120;
@@ -140,7 +140,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     NNSG2dCharacterData * unk_10F8;
     void * unk_10FC;
     NNSG2dPaletteData * unk_1100;
-    UnkStruct_02073C74 * unk_1104;
+    Pokemon * unk_1104;
     UnkStruct_ov94_0223FD4C_sub2 * unk_1108;
     u16 unk_110C;
     u16 unk_110E;

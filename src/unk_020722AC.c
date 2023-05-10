@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -1004,7 +1004,7 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
 {
     UnkStruct_02072EB8 * v0;
     Party * v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     v0 = &(param0->unk_1C[param0->unk_18]);
 

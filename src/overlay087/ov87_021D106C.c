@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "overlay087/struct_ov87_021D0D80_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -63,7 +63,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_0200B358 * unk_1F0;
     UnkStruct_02023790 * unk_1F4;
     UnkStruct_02023790 * unk_1F8;
-    UnkStruct_02073C74 * unk_1FC;
+    Pokemon * unk_1FC;
     u8 unk_200[3200];
 } UnkStruct_ov87_021D106C;
 
@@ -114,7 +114,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1F0 = sub_0200B358(61);
         v0->unk_1F4 = sub_02023790(256, 61);
         v0->unk_1F8 = sub_02023790(256, 61);
-        v0->unk_1FC = sub_02073C74(61);
+        v0->unk_1FC = AllocMonZeroed(61);
 
         sub_02017798(ov87_021D11AC, v0);
     }

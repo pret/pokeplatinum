@@ -5,13 +5,13 @@
 #include "struct_decls/struct_02026224_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_defs/struct_0202818C.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 int sub_020261E4(void);
 void sub_020261EC(UnkStruct_02026310 * param0);
 UnkStruct_02026218 * sub_02026218(UnkStruct_02026310 * param0, int param1);
-UnkStruct_02073C74_sub1 * sub_02026220(UnkStruct_02026218 * param0);
+BoxPokemon * sub_02026220(UnkStruct_02026218 * param0);
 UnkStruct_02026224 * sub_02026224(UnkStruct_02026218 * param0);
 u32 sub_02026228(const UnkStruct_02026218 * param0);
 UnkStruct_0202818C * sub_02026230(UnkStruct_02026224 * param0);

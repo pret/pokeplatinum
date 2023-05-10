@@ -18,7 +18,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -1341,7 +1341,7 @@ static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_o
 {
     Party * v0;
     int v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     int v3;
 
     MI_CpuClear8(param2, sizeof(UnkStruct_ov113_02260818) * 6);
@@ -1351,10 +1351,10 @@ static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_o
 
     for (v3 = 0; v3 < v1; v3++) {
         v2 = Party_GetPokemonBySlotIndex(v0, v3);
-        param2[v3].unk_02 = sub_02074470(v2, 174, NULL);
-        param2[v3].unk_04 = sub_02074470(v2, 0, NULL);
-        param2[v3].unk_08 = sub_02074470(v2, 112, NULL);
-        param2[v3].unk_00 = ov113_0226072C(param0, sub_02074470(v2, 7, NULL));
+        param2[v3].unk_02 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
+        param2[v3].unk_04 = GetMonData(v2, MON_DATA_PERSONALITY, NULL);
+        param2[v3].unk_08 = GetMonData(v2, MON_DATA_FORM, NULL);
+        param2[v3].unk_00 = ov113_0226072C(param0, GetMonData(v2, MON_DATA_OT_ID, NULL));
     }
 }
 

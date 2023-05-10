@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/union_02022594_020225E0.h"
@@ -35,14 +35,14 @@ void ov22_02259098 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_02008A90 * param
     sub_020093A0((u8 *)v1->pRawData, param1->unk_00);
 }
 
-void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, UnkStruct_02073C74 * param2, UnkStruct_02008A90 * param3, int param4)
+void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, UnkStruct_02008A90 * param3, int param4)
 {
     ov22_022590D4(param0, param1, param2, param3, param4, 0);
 }
 
-void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, UnkStruct_02073C74 * param2, UnkStruct_02008A90 * param3, int param4, BOOL param5)
+void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, UnkStruct_02008A90 * param3, int param4, BOOL param5)
 {
-    int v0 = sub_02074470(param2, 5, NULL);
+    int v0 = GetMonData(param2, MON_DATA_SPECIES, NULL);
 
     sub_02075F00(param3, param2, 2);
     param0->unk_00 = sub_02007C34(param1, param3, 192, 56, 0, 0, NULL, NULL);

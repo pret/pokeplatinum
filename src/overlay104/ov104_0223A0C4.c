@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -844,7 +844,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     if (param4 == 0) {
         do {
             v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != sub_02075BFC(v2)) || (sub_02075E38(param3, v2) == 1));
+        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param3, v2) == 1));
 
         param1->unk_10 = v2;
     } else {
@@ -908,7 +908,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     UnkStruct_ov6_02240D5C * v3;
     UnkStruct_021C0794 * v4;
     Party * v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v6;
 
     v3 = sub_02051D8C(param0->unk_04, ov104_0223A700(param0->unk_0F));
     v4 = param1->unk_08;
@@ -919,7 +919,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     v3->unk_128 = 18;
     v3->unk_12C = 18;
 
-    v6 = sub_02073C74(param0->unk_04);
+    v6 = AllocMonZeroed(param0->unk_04);
     v1 = 50;
 
     Party_InitWithCapacity(v3->unk_04[0], param0->unk_0E);
@@ -927,8 +927,8 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v5, param0->unk_2A[v0]), v6);
 
-        if (sub_02074470(v6, 161, NULL) > v1) {
-            v2 = sub_02075AD0(sub_02074470(v6, 5, NULL), v1);
+        if (GetMonData(v6, MON_DATA_161, NULL) > v1) {
+            v2 = sub_02075AD0(GetMonData(v6, MON_DATA_SPECIES, NULL), v1);
 
             sub_02074B30(v6, 8, &v2);
             sub_0207418C(v6);
@@ -963,10 +963,10 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
 static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
 
     ov104_0222E284(param0, &param1->unk_00, param2, param3, param4);
-    v2 = sub_02073C74(param4);
+    v2 = AllocMonZeroed(param4);
 
     for (v0 = 0; v0 < param2; v0++) {
         ov104_0222DF40(&param1->unk_30[v0], v2, 120);

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -43,20 +43,20 @@ static const UnkStruct_ov5_021FF508 Unk_ov5_021FF508[] = {
     {0x6A4, 0x1, 0xFFE6, 0x0}
 };
 
-static int ov5_021EE7D4 (UnkStruct_02073C74 * param0)
+static int ov5_021EE7D4 (Pokemon * param0)
 {
     u16 v0;
     u16 v1, v2, v3;
     u16 v4, v5, v6;
     u16 v7, v8;
 
-    v0 = sub_02074470(param0, 0, NULL) & 0xffff;
-    v1 = sub_02074470(param0, 70, NULL) & 0xf;
-    v2 = sub_02074470(param0, 71, NULL) & 0xf;
-    v3 = sub_02074470(param0, 72, NULL) & 0xf;
-    v4 = sub_02074470(param0, 73, NULL) & 0xf;
-    v5 = sub_02074470(param0, 74, NULL) & 0xf;
-    v6 = sub_02074470(param0, 75, NULL) & 0xf;
+    v0 = GetMonData(param0, MON_DATA_PERSONALITY, NULL) & 0xffff;
+    v1 = GetMonData(param0, MON_DATA_HP_IV, NULL) & 0xf;
+    v2 = GetMonData(param0, MON_DATA_ATK_IV, NULL) & 0xf;
+    v3 = GetMonData(param0, MON_DATA_DEF_IV, NULL) & 0xf;
+    v4 = GetMonData(param0, MON_DATA_SPEED_IV, NULL) & 0xf;
+    v5 = GetMonData(param0, MON_DATA_SPATK_IV, NULL) & 0xf;
+    v6 = GetMonData(param0, MON_DATA_SPDEF_IV, NULL) & 0xf;
     v7 = ((v2 ^ v3) * v1) ^ (v0 & 0xff);
     v8 = ((v5 ^ v6) * v4) ^ (v0 >> 8);
 
@@ -102,14 +102,14 @@ static u32 ov5_021EE8A8 (u16 param0, u16 param1)
 
 u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     vu16 v1, v2;
     u16 v3;
     u32 v4;
     u32 v5;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
-    v3 = sub_02074470(v0, 5, NULL);
+    v3 = GetMonData(v0, MON_DATA_SPECIES, NULL);
     v1 = ov5_021EE7D4(v0);
     v4 = ov5_021EE8A8(v3, v1);
     v2 = sub_0206B0B4(sub_020507E4(param0->unk_0C));
@@ -134,7 +134,7 @@ u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
 
 void ov5_021EE9BC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     vu16 v1;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
@@ -169,12 +169,12 @@ void ov5_021EEA54 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3
 
 void ov5_021EEA84 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3)
 {
-    UnkStruct_02073C74 * v0;
+    Pokemon * v0;
     u16 v1;
     vu16 v2;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param3);
-    v1 = sub_02074470(v0, 5, NULL);
+    v1 = GetMonData(v0, MON_DATA_SPECIES, NULL);
     v2 = ov5_021EE7D4(v0);
 
     ov5_021EE9E8(param0, param1, param2, v1, v2);

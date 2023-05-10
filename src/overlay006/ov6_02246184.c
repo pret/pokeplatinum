@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
@@ -50,14 +50,14 @@ typedef struct {
 
 typedef struct UnkStruct_ov6_02246204_t {
     UnkStruct_ov6_0224630C * unk_00;
-    UnkStruct_02073C74 * unk_04;
+    Pokemon * unk_04;
     UnkStruct_02025E6C * unk_08;
     u32 unk_0C;
     u32 unk_10;
 };
 
 static UnkStruct_02023790 * ov6_022462E4(u32 param0, u32 param1);
-static void ov6_0224630C(UnkStruct_02073C74 * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5);
+static void ov6_0224630C(Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5);
 
 UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
 {
@@ -73,7 +73,7 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
     v0->unk_10 = param0;
     v0->unk_0C = param1;
-    v0->unk_04 = sub_02073C74(param0);
+    v0->unk_04 = AllocMonZeroed(param0);
     v0->unk_08 = sub_02025E6C(param0);
 
     sub_02025E8C(v0->unk_08);
@@ -113,16 +113,16 @@ void ov6_02246234 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     sub_0202F180(param0->unk_0C, param1->unk_04);
 }
 
-void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, UnkStruct_02073C74 * param4, UnkStruct_02073C74 * param5)
+void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1, int param2, UnkStruct_ov6_02246254 * param3, Pokemon * param4, Pokemon * param5)
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
-    UnkStruct_02073C74 * v1;
+    Pokemon * v1;
     UnkStruct_02023790 * v2;
     u32 v3;
     int v4;
 
     v1 = Party_GetPokemonBySlotIndex(v0, param2);
-    v3 = sub_02074470(v1, 161, NULL);
+    v3 = GetMonData(v1, MON_DATA_161, NULL);
 
     ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, param0->unk_1C->unk_00);
 
@@ -156,7 +156,7 @@ static UnkStruct_02023790 * ov6_022462E4 (u32 param0, u32 param1)
     return v0;
 }
 
-static void ov6_0224630C (UnkStruct_02073C74 * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5)
+static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     UnkStruct_02023790 * v0;
     u8 v1;

@@ -1009,7 +1009,7 @@ Overlay overlay12
 	Object src/overlay012/ov12_02237E54.o
 	Object src/overlay012/ov12_02237EFC.o
 	Object src/overlay012/ov12_022380BC.o
-	Object src/overlay012/ov12_022384F0.o
+	Object src/overlay012/is_form_symmetrical.o
 }
 
 Overlay overlay13

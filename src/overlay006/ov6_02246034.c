@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
@@ -30,17 +30,17 @@ void ov6_02246034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     UnkStruct_0202D7B0 * v3;
     UnkStruct_0206C638 * v4;
     Party * v5;
-    UnkStruct_02073C74 * v6;
+    Pokemon * v6;
 
     v5 = param1->unk_04[1];
     v6 = Party_GetPokemonBySlotIndex(v5, 0);
     v3 = sub_0202D834(param0->unk_0C);
-    v2 = sub_02074470(v6, 5, NULL);
+    v2 = GetMonData(v6, MON_DATA_SPECIES, NULL);
     v4 = ov6_02246148(v3, v2);
 
     if (v4 != NULL) {
-        v0 = (u16)(sub_02074470(v6, 163, NULL));
-        v1 = (u8)(sub_02074470(v6, 160, NULL));
+        v0 = (u16)(GetMonData(v6, MON_DATA_163, NULL));
+        v1 = (u8)(GetMonData(v6, MON_DATA_160, NULL));
 
         if (((param1->unk_14 == 0x1) && (v0 == 0))) {
             sub_0202D914(&v4);

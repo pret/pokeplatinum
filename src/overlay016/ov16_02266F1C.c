@@ -14,8 +14,8 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/pokemon.h"
+#include "struct_defs/box_pokemon.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -951,8 +951,8 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
     UnkStruct_02023790 * v5, * v6;
-    UnkStruct_02073C74 * v7;
-    UnkStruct_02073C74_sub1 * v8;
+    Pokemon * v7;
+    BoxPokemon * v8;
     UnkStruct_0200B358 * v9;
 
     v0 = ov16_0223DF00(param0->unk_0C);

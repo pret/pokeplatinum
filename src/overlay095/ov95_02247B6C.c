@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_sub1_decl.h"
+#include "struct_defs/box_pokemon.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
 #include "overlay095/struct_ov95_02247958_decl.h"
@@ -358,9 +358,9 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             sub_0200C388(v5, param0->unk_6C, param0->unk_68);
 
             {
-                const UnkStruct_02073C74_sub1 * v6 = ov95_02247634(param0->unk_00);
+                const BoxPokemon * v6 = ov95_02247634(param0->unk_00);
 
-                if (sub_02074570((UnkStruct_02073C74_sub1 *)v6, 76, NULL) == 0) {
+                if (sub_02074570((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
                     u8 v7;
 
                     sub_02007B98(param0->unk_10, 1);
@@ -465,10 +465,10 @@ static void ov95_02248174 (UnkStruct_ov95_02247C6C * param0)
 static UnkStruct_02007C7C * ov95_02248240 (UnkStruct_ov95_02247C6C * param0)
 {
     UnkStruct_02008A90 v0;
-    UnkStruct_02073C74_sub1 * v1;
+    BoxPokemon * v1;
     int v2;
 
-    v1 = (UnkStruct_02073C74_sub1 *)ov95_02247634(param0->unk_00);
+    v1 = (BoxPokemon *)ov95_02247634(param0->unk_00);
 
     sub_02075F0C(&v0, v1, 2, 0);
     sub_020789BC(param0->unk_80, param0->unk_14, ov95_0224764C(param0->unk_00), 1);

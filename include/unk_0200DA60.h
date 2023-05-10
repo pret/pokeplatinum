@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 
 void sub_0200DA60(UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3, u32 param4);
 u32 sub_0200DAA0(void);
@@ -24,6 +24,6 @@ void * sub_0200E7FC(UnkStruct_0205AA50 * param0, u32 param1);
 void sub_0200EBA0(void * param0);
 void sub_0200EBC8(void * param0);
 u8 * sub_0200EBF0(UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, u16 param6, u8 param7, int param8);
-u8 * sub_0200EC48(UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, UnkStruct_02073C74 * param6, int param7);
+u8 * sub_0200EC48(UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 param5, Pokemon * param6, int param7);
 
 #endif // POKEPLATINUM_UNK_0200DA60_H

@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_02087A10_decl.h"
 
 #include "constdata/const_020F2DAC.h"
@@ -1139,9 +1139,9 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
     if (v0->unk_00 == 1) {
         u16 v3[10 + 1];
-        UnkStruct_02073C74 * v4;
+        Pokemon * v4;
 
-        v4 = sub_02073C74(18);
+        v4 = AllocMonZeroed(18);
         sub_02073D80(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
         Heap_FreeToHeap(v4);
     }
@@ -1417,9 +1417,9 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
     MI_CpuFill16(param0->unk_D8, 0x1, 32 * 2);
 
     if (param0->unk_00 == 1) {
-        UnkStruct_02073C74 * v1;
+        Pokemon * v1;
 
-        v1 = sub_02073C74(18);
+        v1 = AllocMonZeroed(18);
         sub_02073D80(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         sub_0200B538(param0->unk_168, 0, sub_02076B10(v1));
         Heap_FreeToHeap(v1);
@@ -1485,7 +1485,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
-            UnkStruct_02073C74 * v4 = sub_02073C74(18);
+            Pokemon * v4 = AllocMonZeroed(18);
 
             sub_02073D80(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             sub_0200B538(param0->unk_168, 0, sub_02076B10(v4));

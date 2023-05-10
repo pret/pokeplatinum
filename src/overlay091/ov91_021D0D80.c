@@ -1158,7 +1158,7 @@ static u16 ov91_021D1DD0 (UnkStruct_ov91_021D0ED8 * param0)
 
 static u16 ov91_021D1DE0 (UnkStruct_ov91_021D0ED8 * param0)
 {
-    return (u16)sub_02074470(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, NULL);
+    return (u16)GetMonData(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, NULL);
 }
 
 static void ov91_021D1DF8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
@@ -1196,7 +1196,7 @@ static u8 ov91_021D1EA0 (UnkStruct_ov91_021D0ED8 * param0)
     u8 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (sub_02074470(param0->unk_00->unk_00, 54 + v0, NULL) == 0) {
+        if (GetMonData(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
             break;
         }
     }

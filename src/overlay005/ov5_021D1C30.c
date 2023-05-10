@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_02073C74_decl.h"
+#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
@@ -953,7 +953,7 @@ static BOOL ov5_021D2B2C (UnkStruct_0203CDB0 * param0)
 static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 {
     int v0, v1;
-    UnkStruct_02073C74 * v2;
+    Pokemon * v2;
     Party * v3 = Party_GetFromSavedata(param0->unk_0C);
     u16 v4 = sub_0203A138(param0->unk_1C->unk_00);
 
