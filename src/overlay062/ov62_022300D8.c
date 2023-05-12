@@ -638,7 +638,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
     UnkStruct_0200B144 * v5;
     UnkStruct_0205AA50 v6;
@@ -684,12 +684,12 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
 
 void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * param1, int param2, const UnkStruct_020F3DCC * param3)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1;
     UnkStruct_0205AA50 v2;
     UnkStruct_0200B358 * v3;
-    UnkStruct_02023790 * v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v4;
+    Strbuf* v5;
 
     v1 = param0->unk_14.unk_34;
 
@@ -758,7 +758,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
     UnkStruct_0200B144 * v5;
     UnkStruct_0205AA50 v6;
@@ -799,7 +799,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
 
 void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1;
     UnkStruct_0205AA50 v2;
 

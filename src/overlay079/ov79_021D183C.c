@@ -81,7 +81,7 @@ static void ov79_021D183C (UnkStruct_020989DC * param0)
     param0->unk_07 = param0->unk_06 = 0xFF;
 }
 
-static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, UnkStruct_02023790 * param1, u8 param2, u8 param3)
+static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, Strbuf *param1, u8 param2, u8 param3)
 {
     u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
 

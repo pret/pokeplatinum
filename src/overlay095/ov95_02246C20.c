@@ -58,7 +58,7 @@ struct UnkStruct_ov95_02247628_t {
     UnkStruct_02018340 * unk_08;
     UnkStruct_0200B358 * unk_0C;
     UnkStruct_0200B144 * unk_10;
-    UnkStruct_02023790 * unk_14;
+    Strbuf* unk_14;
     UnkStruct_020218BC * unk_18;
     UnkStruct_0200C738 unk_1C;
     UnkStruct_0201CD38 * unk_1A8;

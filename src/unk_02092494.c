@@ -332,7 +332,7 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
 
 static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
+    Strbuf* v0 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
 
     param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
 
@@ -352,7 +352,7 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 
 static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    Strbuf* v0 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
 
     param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
 
@@ -395,7 +395,7 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 
 static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
+    Strbuf* v0 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
 
     param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
 
@@ -828,7 +828,7 @@ static void sub_020932A4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int 
 {
     int v0 = sub_02025F20(param1);
     int v1 = sub_02025F30(param1);
-    UnkStruct_02023790 * v2 = sub_02025F04(param1, param2);
+    Strbuf* v2 = sub_02025F04(param1, param2);
 
     SetBoxMonData(param0, 7, &v0);
     SetBoxMonData(param0, 157, &v1);

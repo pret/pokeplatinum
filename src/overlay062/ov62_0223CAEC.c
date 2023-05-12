@@ -69,7 +69,7 @@ typedef struct {
     UnkStruct_ov62_0223DF10 * unk_71C;
     UnkStruct_ov62_0223D518_sub1 unk_720;
     UnkStruct_0200B144 * unk_744;
-    UnkStruct_02023790 * unk_748;
+    Strbuf* unk_748;
     UnkStruct_ov62_02249380 unk_74C[3][20];
     UnkStruct_ov62_02248CDC unk_B0C;
 } UnkStruct_ov62_0223D518;
@@ -337,7 +337,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
 
     for (v3 = 0; v3 < 2; v3++) {
         v1 = &v0->unk_84[v3];
@@ -373,7 +373,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
     int v6;
 
     if (v0->unk_1C == 0) {
@@ -413,7 +413,7 @@ static void ov62_0223D100 (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
     int v6;
 
     if (v0->unk_1C == 0) {

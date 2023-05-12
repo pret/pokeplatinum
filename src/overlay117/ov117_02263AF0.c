@@ -2012,7 +2012,7 @@ static BOOL ov117_02265C3C (UnkStruct_ov117_02265C3C * param0, UnkStruct_ov117_0
     return 1;
 }
 
-void ov117_02265DB8 (UnkStruct_02018340 * param0, UnkStruct_0200C704 * param1, UnkStruct_02012744 * param2, UnkStruct_ov117_02265EB0 * param3, const UnkStruct_02023790 * param4, int param5, u32 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8 (UnkStruct_02018340 * param0, UnkStruct_0200C704 * param1, UnkStruct_02012744 * param2, UnkStruct_ov117_02265EB0 * param3, const Strbuf *param4, int param5, u32 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;

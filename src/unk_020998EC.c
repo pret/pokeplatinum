@@ -3385,7 +3385,7 @@ u32 sub_02099CA0 (const UnkStruct_020998EC * param0, u32 param1)
     return param0->unk_08[param1];
 }
 
-void sub_02099CA8 (const UnkStruct_020998EC * param0, u32 param1, u32 param2, UnkStruct_02023790 * param3)
+void sub_02099CA8 (const UnkStruct_020998EC * param0, u32 param1, u32 param2, Strbuf *param3)
 {
     u32 v0 = param0->unk_38[param1];
     sub_02014D90(param0->unk_04, param0->unk_68[v0 + param2], param3);
@@ -3402,7 +3402,7 @@ u32 sub_02099CDC (const UnkStruct_020998EC * param0, u32 param1)
     return param0->unk_C18[param1];
 }
 
-void sub_02099CEC (const UnkStruct_020998EC * param0, u32 param1, u32 param2, UnkStruct_02023790 * param3)
+void sub_02099CEC (const UnkStruct_020998EC * param0, u32 param1, u32 param2, Strbuf *param3)
 {
     if (param0->unk_C18[param1]) {
         u16 v0 = sub_02099D14(param0, param1, param2);

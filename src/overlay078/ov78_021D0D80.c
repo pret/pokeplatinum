@@ -164,7 +164,7 @@ typedef struct {
     UnkStruct_0205AA50 * unk_98;
     UnkStruct_0205AA50 * unk_9C[3];
     int unk_A8;
-    UnkStruct_02023790 * unk_AC;
+    Strbuf* unk_AC;
     UnkStruct_ov61_0222C884 unk_B0;
     UnkStruct_02001AF4 * unk_B8;
     UnkStruct_0200C738 unk_BC;
@@ -206,7 +206,7 @@ static void ov78_021D12EC(UnkStruct_02018340 * param0);
 static void ov78_021D1308(UnkStruct_ov78_021D107C * param0, int param1);
 static void ov78_021D13A0(UnkStruct_ov78_021D107C * param0);
 static u8 ov78_021D1FB4(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5);
-static u8 ov78_021D201C(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, UnkStruct_02023790 ** param6);
+static u8 ov78_021D201C(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6);
 static void ov78_021D2090(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D27CC(UnkStruct_ov78_021D107C * param0, int param1);
 static void ov78_021D2884(UnkStruct_ov78_021D107C * param0);
@@ -1242,7 +1242,7 @@ static void ov78_021D1E44 (UnkStruct_ov78_021D107C * param0, int param1)
 static u8 ov78_021D1FB4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u8 v2;
 
     v0 = sub_0200B144(0, 26, param2, param1);
@@ -1259,7 +1259,7 @@ static u8 ov78_021D1FB4 (UnkStruct_0205AA50 * param0, int param1, int param2, in
     return v2;
 }
 
-static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, UnkStruct_02023790 ** param6)
+static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6)
 {
     UnkStruct_0200B144 * v0;
     u8 v1;
@@ -1723,7 +1723,7 @@ static void ov78_021D2884 (UnkStruct_ov78_021D107C * param0)
 static void ov78_021D28A8 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = sub_0200B144(0, 26, param2, param1);
     GF_ASSERT(v0);

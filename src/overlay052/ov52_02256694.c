@@ -39,7 +39,7 @@ struct UnkStruct_ov52_02256694_t {
     UnkStruct_ov25_022558C4 * unk_34[4];
     UnkStruct_ov25_02255958 unk_44;
     UnkStruct_0200B144 * unk_58;
-    UnkStruct_02023790 * unk_5C;
+    Strbuf* unk_5C;
 };
 
 static void ov52_0225670C(UnkStruct_ov52_02256694 * param0, const UnkStruct_ov52_02256694_1 * param1);

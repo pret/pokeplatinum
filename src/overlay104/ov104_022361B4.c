@@ -801,8 +801,8 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
 static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1 = sub_02023790((10 * 2), param0->unk_34);
-    UnkStruct_02023790 * v2 = sub_02023790((10 * 2), param0->unk_34);
+    Strbuf* v1 = sub_02023790((10 * 2), param0->unk_34);
+    Strbuf* v2 = sub_02023790((10 * 2), param0->unk_34);
 
     v0 = sub_0200B144(0, 26, 199, 11);
 

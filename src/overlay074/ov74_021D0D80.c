@@ -48,7 +48,7 @@
 typedef struct UnkStruct_ov74_021D1720_t {
     u16 unk_00;
     u16 unk_02;
-    UnkStruct_02023790 * unk_04[20];
+    Strbuf* unk_04[20];
 } UnkStruct_ov74_021D1720;
 
 typedef struct UnkStruct_ov74_021D0D80_t {
@@ -549,8 +549,8 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     u32 v0, v1;
     u16 v2;
     u32 v3, v4, v5;
-    UnkStruct_02023790 * v6;
-    UnkStruct_02023790 * v7;
+    Strbuf* v6;
+    Strbuf* v7;
     static const u8 v8[7] = {
         3, 6, 4, 5, 7, 8, 42,
     };
@@ -669,7 +669,7 @@ static void ov74_021D17CC (UnkStruct_ov74_021D0D80 * param0, u16 param1)
 static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL param2)
 {
     u32 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u8 v2;
 
     if (ov74_021D1A08(param0) == 0) {

@@ -40,7 +40,7 @@ void sub_020158F4 (UnkStruct_020158A8 * param0)
     Heap_FreeToHeap(param0);
 }
 
-const UnkStruct_02023790 * sub_02015918 (UnkStruct_020158A8 * param0, int param1)
+const Strbuf* sub_02015918 (UnkStruct_020158A8 * param0, int param1)
 {
-    return (const UnkStruct_02023790 *)param0->unk_04[param1];
+    return (const Strbuf *)param0->unk_04[param1];
 }

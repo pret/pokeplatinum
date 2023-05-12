@@ -54,7 +54,7 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dAnimBankData * unk_68;
     UnkStruct_0200B144 * unk_6C;
     UnkStruct_0200B144 * unk_70;
-    UnkStruct_02023790 * unk_74;
+    Strbuf* unk_74;
     UnkStruct_0205AA50 unk_78[7];
     u8 unk_E8[640];
     NNSG2dScreenData * unk_368;
@@ -78,7 +78,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF250(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF270(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 * param0);
-static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const UnkStruct_02023790 * param2);
+static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2);
 static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF394(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 * param0, int param1);
@@ -469,7 +469,7 @@ static void ov19_021DF2A8 (UnkStruct_ov19_021DEC04 * param0)
     }
 }
 
-static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const UnkStruct_02023790 * param2)
+static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2)
 {
     return ((param0->unk_07 * 8) - sub_02002D7C(param1, param2, 0)) / 2;
 }

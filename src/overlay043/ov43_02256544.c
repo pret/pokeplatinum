@@ -44,7 +44,7 @@ struct UnkStruct_ov43_02256544_t {
     UnkStruct_0205AA50 unk_A4;
     UnkStruct_0200B144 * unk_B4;
     UnkStruct_0200B144 * unk_B8;
-    UnkStruct_02023790 * unk_BC;
+    Strbuf* unk_BC;
 };
 
 static void ov43_022565B4(UnkStruct_ov43_02256544 * param0);

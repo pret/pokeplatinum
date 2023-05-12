@@ -31,10 +31,10 @@ struct UnkStruct_020961E8_t {
     UnkStruct_0201CD38 * unk_20;
     UnkStruct_0200B358 * unk_24;
     UnkStruct_0200B144 * unk_28;
-    UnkStruct_02023790 * unk_2C[5];
-    UnkStruct_02023790 * unk_40;
-    UnkStruct_02023790 * unk_44;
-    UnkStruct_02023790 * unk_48;
+    Strbuf* unk_2C[5];
+    Strbuf* unk_40;
+    Strbuf* unk_44;
+    Strbuf* unk_48;
     int unk_4C;
     UnkStruct_020218BC * unk_50;
     UnkStruct_0200C738 unk_54;

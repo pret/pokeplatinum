@@ -1001,8 +1001,8 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
         sub_02025EC0(param1, param0->unk_08);
 
         {
-            UnkStruct_02023790 * v2;
-            UnkStruct_02023790 * v3;
+            Strbuf* v2;
+            Strbuf* v3;
 
             v3 = sub_02023790((7 + 1) * 4, param2);
             v2 = sub_02023790((7 + 1) * 4, param2);
@@ -1022,7 +1022,7 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
 
     if (v1) {
         UnkStruct_0200B144 * v4;
-        UnkStruct_02023790 * v5;
+        Strbuf* v5;
 
         v4 = sub_0200B144(1, 26, 673, param2);
         v5 = sub_0200B1EC(v4, 64);
@@ -2328,7 +2328,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     }
 
     {
-        UnkStruct_02023790 * v5;
+        Strbuf* v5;
 
         v5 = sub_02025F04(v0, param2);
 

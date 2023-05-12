@@ -499,7 +499,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
         for (v4 = 0; v4 < NELEMS(Unk_ov23_02256924); v4++) {
             if (v4 == v1) {
                 const UnkStruct_02025E6C * v5 = sub_02025E38(sub_0203D174(param0->unk_0C));
-                UnkStruct_02023790 * v6 = sub_02025F04(v5, 4);
+                Strbuf* v6 = sub_02025F04(v5, 4);
 
                 sub_02013A6C(param0->unk_40, v6, Unk_ov23_02256924[v4].unk_04);
                 sub_020237BC(v6);

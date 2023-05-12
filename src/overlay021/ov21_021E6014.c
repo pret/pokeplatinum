@@ -459,7 +459,7 @@ static void ov21_021E65FC (UnkStruct_ov21_021E6274 * param0)
 
 static void ov21_021E6600 (UnkStruct_ov21_021E6118 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param1);
+    Strbuf* v0 = sub_02023790(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 43, v0);
@@ -479,10 +479,10 @@ static void ov21_021E6600 (UnkStruct_ov21_021E6118 * param0, int param1)
 
 static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1, int param2)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param2);
+    Strbuf* v0 = sub_02023790(32, param2);
     UnkStruct_0200B144 * v1;
     int v2 = ov21_021D37BC(param1->unk_04);
-    UnkStruct_02023790 * v3 = sub_0200B32C(v2, param2);
+    Strbuf* v3 = sub_0200B32C(v2, param2);
     int v4;
 
     v4 = sub_020989D0();

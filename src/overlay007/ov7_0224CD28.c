@@ -595,7 +595,7 @@ static u32 ov7_0224D698 (UnkStruct_ov7_0224D008 * param0, u16 param1)
 static void ov7_0224D6BC (UnkStruct_ov7_0224D008 * param0)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_ov84_02240FA8 v2;
     u32 v3;
     u32 v4;
@@ -668,7 +668,7 @@ static void ov7_0224D85C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     sub_0201ADA4(&v0->unk_08[1], 0);
 
     if (param1 != 0xfffffffe) {
-        UnkStruct_02023790 * v1;
+        Strbuf* v1;
 
         if (v0->unk_2A9 == 0) {
             v1 = sub_02023790(130, 11);
@@ -727,8 +727,8 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     UnkStruct_ov7_0224D008 * v0 = (UnkStruct_ov7_0224D008 *)sub_02001504(param0, 19);
 
     if (param1 != 0xfffffffe) {
-        UnkStruct_02023790 * v1;
-        UnkStruct_02023790 * v2;
+        Strbuf* v1;
+        Strbuf* v2;
         u32 v3;
         u32 v4;
         u16 v5 = (u16)param1;
@@ -759,7 +759,7 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     if (param1 == 0xfffffffe) {
-        UnkStruct_02023790 * v6 = sub_0200B1EC(v0->unk_88, 8);
+        Strbuf* v6 = sub_0200B1EC(v0->unk_88, 8);
 
         sub_0201AE78(&v0->unk_08[0], 15, 0, param2, 19 * 8, 16);
         sub_0201D78C(&v0->unk_08[0], 0, v6, 0, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -769,8 +769,8 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
 {
-    UnkStruct_02023790 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v0;
+    Strbuf* v1;
     u32 v2;
     u32 v3;
 
@@ -850,7 +850,7 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
 
     default:
     {
-        UnkStruct_02023790 * v3;
+        Strbuf* v3;
         u32 v4;
 
         param0->unk_26C[0] = (u16)sub_02021D34(param0->unk_25C[0]);
@@ -937,8 +937,8 @@ static u8 ov7_0224DE94 (UnkStruct_ov7_0224D008 * param0)
 
 static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
 {
-    UnkStruct_02023790 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v0;
+    Strbuf* v1;
     u16 v2;
 
     if (param0->unk_2A9 == 0) {
@@ -1007,7 +1007,7 @@ static u8 ov7_0224DFB0 (UnkStruct_ov7_0224D008 * param0)
 
 static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     BOOL v1;
 
     if (param0->unk_2A9 == 0) {
@@ -1076,8 +1076,8 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
 
 static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
 {
-    UnkStruct_02023790 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v0;
+    Strbuf* v1;
     u32 v2;
 
     sub_0201ADA4(&param0->unk_08[3], 15);
@@ -1126,7 +1126,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
     switch (sub_02002114(param0->unk_80, 11)) {
     case 0:
     {
-        UnkStruct_02023790 * v0;
+        Strbuf* v0;
 
         if (param0->unk_2A9 == 0) {
             v0 = sub_0200B1EC(param0->unk_88, 6);
@@ -1233,7 +1233,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 
         if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
             if (sub_0207D570(param0->unk_274, 12, 1, 11) == 1) {
-                UnkStruct_02023790 * v0 = sub_0200B1EC(param0->unk_88, 10);
+                Strbuf* v0 = sub_0200B1EC(param0->unk_88, 10);
 
                 sub_0200C388(param0->unk_8C, param0->unk_298, v0);
                 sub_020237BC(v0);
@@ -1409,7 +1409,7 @@ static u8 ov7_0224E950 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
     sub_0205D944(&param1->unk_08[1], param1->unk_278);
 
     {
-        UnkStruct_02023790 * v1 = sub_0200B1EC(param1->unk_88, 2);
+        Strbuf* v1 = sub_0200B1EC(param1->unk_88, 2);
 
         sub_0200C388(param1->unk_8C, param1->unk_298, v1);
         sub_020237BC(v1);
@@ -1434,7 +1434,7 @@ static u8 ov7_0224EA2C (UnkStruct_ov7_0224D008 * param0)
 
 static void ov7_0224EA54 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     if (param1->unk_2A9 == 3) {
         v0 = sub_0200B1EC(param1->unk_88, 31);
@@ -1572,7 +1572,7 @@ static u8 ov7_0224EC9C (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
     sub_0205D944(&param1->unk_08[1], param1->unk_278);
 
     {
-        UnkStruct_02023790 * v0 = sub_0200B1EC(param1->unk_88, 2);
+        Strbuf* v0 = sub_0200B1EC(param1->unk_88, 2);
 
         sub_0200C388(param1->unk_8C, param1->unk_298, v0);
         sub_020237BC(v0);

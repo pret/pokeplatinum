@@ -139,7 +139,7 @@ static int ov5_021E1E10 (const UnkStruct_ov5_021E1D20 * param0)
 
 static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1, v2;
     int v3;
     int v4;

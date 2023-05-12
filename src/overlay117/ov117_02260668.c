@@ -846,7 +846,7 @@ static void ov117_02261280 (UnkStruct_ov117_02261280 * param0)
 
 static void ov117_02261368 (UnkStruct_ov117_02261280 * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0200DC48(&param0->unk_30[4], 1, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6);
 
@@ -867,7 +867,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
 {
     int v0, v1;
     UnkStruct_02025E6C * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
     u32 v5;
     int v6, v7;

@@ -398,10 +398,10 @@ static void ov102_021D1274 (UnkStruct_ov102_021D0F8C * param0)
 
 static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(0x200, param0->unk_00);
+    Strbuf* v0 = sub_02023790(0x200, param0->unk_00);
 
     {
-        UnkStruct_02023790 * v1 = sub_02023790(0x200, param0->unk_00);
+        Strbuf* v1 = sub_02023790(0x200, param0->unk_00);
 
         sub_0200B1B8(param0->unk_34, 0, v1);
         sub_0200B498(param0->unk_38, 0, param0->unk_0C);

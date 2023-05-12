@@ -141,7 +141,7 @@ void ov13_02227350 (UnkStruct_ov13_02227244 * param0, u32 param1)
 static void ov13_02227374 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
     u32 v3;
 
@@ -171,7 +171,7 @@ static void ov13_022273CC (UnkStruct_ov13_02227244 * param0)
     ov13_02227374(param0, 3, 6, 2, 8, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))));
 
     if (param0->unk_00->unk_20 != 0) {
-        UnkStruct_02023790 * v1 = sub_0200B1EC(param0->unk_10, 8);
+        Strbuf* v1 = sub_0200B1EC(param0->unk_10, 8);
 
         sub_0201D78C(&param0->unk_2C[4], 2, v1, 0, 6, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
         sub_020237BC(v1);
@@ -191,7 +191,7 @@ static const u32 Unk_ov13_02229AB0[][2] = {
 static void ov13_022274A8 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
     u32 v3;
 
@@ -217,7 +217,7 @@ static void ov13_022274A8 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 par
 
 static void ov13_0222754C (UnkStruct_ov13_02227244 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0205AA50 * v1;
 
     v1 = &param0->unk_2C[param3];
@@ -269,7 +269,7 @@ void ov13_02227650 (UnkStruct_ov13_02227244 * param0)
 void ov13_02227698 (UnkStruct_ov13_02227244 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
     u32 v3;
 
@@ -331,7 +331,7 @@ static void ov13_02227888 (UnkStruct_ov13_02227244 * param0)
 static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_2C[0];
     v1 = sub_0200B1EC(param0->unk_10, Unk_ov13_02229AB0[0][0]);
@@ -347,7 +347,7 @@ static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
 static void ov13_02227910 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_2C[2];
     v1 = sub_02023790(130, param0->unk_00->unk_0C);

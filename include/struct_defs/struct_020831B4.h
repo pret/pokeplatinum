@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 typedef struct {
-    UnkStruct_02023790 * unk_00;
+    Strbuf* unk_00;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;

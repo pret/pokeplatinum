@@ -190,7 +190,7 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
     int v0;
     u32 v1, v2;
     UnkStruct_0202E91C * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0);
     u32 * v6;
 

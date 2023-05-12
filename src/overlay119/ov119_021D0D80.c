@@ -311,8 +311,8 @@ void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, i
 int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, int param3)
 {
     int v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v1;
+    Strbuf* v2;
     UnkStruct_0200B358 * v3;
     BoxPokemon * v4;
     UnkStruct_0200B144 * v5;
@@ -349,7 +349,7 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
 
     {
         int v1;
-        UnkStruct_02023790 * v2;
+        Strbuf* v2;
         UnkStruct_0200B144 * v3 = sub_0200B144(0, 26, 357, 71);
 
         for (v1 = 0; v1 < 2; v1++) {

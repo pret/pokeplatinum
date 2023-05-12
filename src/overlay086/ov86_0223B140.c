@@ -98,8 +98,8 @@ typedef struct {
     UnkStruct_0201CD38 * unk_1C30;
     UnkStruct_0201CD38 * unk_1C34[4];
     UnkStruct_0200B358 * unk_1C44;
-    UnkStruct_02023790 * unk_1C48;
-    UnkStruct_02023790 * unk_1C4C;
+    Strbuf* unk_1C48;
+    Strbuf* unk_1C4C;
     UnkStruct_0200B144 * unk_1C50;
     NARC * unk_1C54;
 } UnkStruct_ov86_0223B3C8;
@@ -190,8 +190,8 @@ typedef struct {
     UnkStruct_02018340 * unk_0C;
     UnkStruct_0205AA50 * unk_10;
     UnkStruct_0200B358 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C;
+    Strbuf* unk_18;
+    Strbuf* unk_1C;
     UnkStruct_0200B144 * unk_20;
     Pokemon * unk_24;
     const UnkStruct_02025E6C * unk_28;

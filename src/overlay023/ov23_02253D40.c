@@ -26,8 +26,8 @@
 #include "overlay023/ov23_02253D40.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
-    UnkStruct_02023790 * unk_00;
-    UnkStruct_02023790 * unk_04;
+    Strbuf* unk_00;
+    Strbuf* unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_02018340 * unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
@@ -154,9 +154,9 @@ static void ov23_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static UnkStruct_02023790 * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
+static Strbuf* ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
 {
-    UnkStruct_02023790 * v0 = param0->unk_00;
+    Strbuf* v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
         sub_0200C388(param0->unk_28, param0->unk_04, param0->unk_00);
@@ -169,7 +169,7 @@ static UnkStruct_02023790 * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
 
 static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStruct_ov23_02253F60 param2, int param3)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     ov23_02253FA4(param0, 0);
     ov23_022421EC();

@@ -513,7 +513,7 @@ static void ov22_0225A338 (UnkStruct_ov22_02259C58 * param0, int param1, int par
 static UnkStruct_0205AA50 * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32 param2, u32 param3, int param4, int param5)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_0205AA50 * v2;
 
     v0 = sub_0200B144(0, param1, param2, 13);

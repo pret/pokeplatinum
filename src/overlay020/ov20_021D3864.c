@@ -80,7 +80,7 @@ void ov20_021D3898 (UnkStruct_ov20_021D3980 * param0, NARC * param1)
 static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2)
 {
     UnkStruct_0205AA50 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
 
     sub_0201A8D4(param0, &v0, param1);

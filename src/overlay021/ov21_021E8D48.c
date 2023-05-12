@@ -760,7 +760,7 @@ static void ov21_021E9968 (UnkStruct_0205AA50 * param0, int param1, int param2)
 
 static void ov21_021E998C (UnkStruct_0205AA50 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(64, param1);
+    Strbuf* v0 = sub_02023790(64, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 110, v0);

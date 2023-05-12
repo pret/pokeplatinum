@@ -1273,7 +1273,7 @@ UnkStruct_02014A84 * sub_0205C028 (UnkStruct_0205B43C * param0)
 void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruct_02025E6C * param3, UnkStruct_02014EC4 * param4)
 {
     UnkStruct_02025E6C * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 635, 4);
     int v3, v4;
 

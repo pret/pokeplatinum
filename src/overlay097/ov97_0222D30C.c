@@ -124,8 +124,8 @@ typedef struct {
     f32 unk_04;
 } UnkStruct_ov97_0222EDC0;
 
-void sub_02023DF0(const UnkStruct_02023790 * param0, u16 * param1, u32 param2);
-void sub_02023D8C(UnkStruct_02023790 * param0, const u16 * param1, u32 param2);
+void sub_02023DF0(const Strbuf *param0, u16 * param1, u32 param2);
+void sub_02023D8C(Strbuf *param0, const u16 * param1, u32 param2);
 UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_0222D474(UnkStruct_020067E8 * param0);
@@ -854,7 +854,7 @@ static void ov97_0222DDD0 (UnkStruct_020067E8 * param0, int param1, u32 param2)
 
 static void ov97_0222DE78 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * param1, u32 param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_ov97_0222D04C * v1 = sub_0200682C(param0);
 
     v1->unk_10 = sub_0200B144(1, 26, 421, 86);
@@ -883,7 +883,7 @@ static void ov97_0222DE78 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * par
 
 static void ov97_0222DF10 (UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * param1, u16 * param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_ov97_0222D04C * v1 = sub_0200682C(param0);
 
     v0 = sub_02023790(36 + 1, 86);

@@ -108,7 +108,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     int v0, v1, v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
     u32 v6, v7;
 
     v4 = sub_0200B144(1, 26, 436, 35);
@@ -155,7 +155,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
 static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2)
 {
     UnkStruct_0205AA50 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2, v3, v4, v5, v6;
 
     GF_ASSERT(param2 < (1024 - 200));
@@ -202,7 +202,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     };
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4, v5;
 
     v2 = sub_0200B144(1, 26, 436, 35);

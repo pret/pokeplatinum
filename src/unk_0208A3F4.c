@@ -703,7 +703,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
     int v5;
     UnkStruct_0200B144 * v6;
@@ -762,7 +762,7 @@ void sub_0208B1C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int
 void sub_0208B230 (UnkStruct_0205AA50 * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     sub_0201ADA4(param0, 15);
 

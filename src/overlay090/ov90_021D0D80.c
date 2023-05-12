@@ -59,19 +59,19 @@
 typedef struct {
     UnkStruct_0200B144 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_02023790 * unk_08;
-    UnkStruct_02023790 * unk_0C;
-    UnkStruct_02023790 * unk_10;
-    UnkStruct_02023790 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C;
-    UnkStruct_02023790 * unk_20;
-    UnkStruct_02023790 * unk_24[6];
-    UnkStruct_02023790 * unk_3C[2];
+    Strbuf* unk_08;
+    Strbuf* unk_0C;
+    Strbuf* unk_10;
+    Strbuf* unk_14;
+    Strbuf* unk_18;
+    Strbuf* unk_1C;
+    Strbuf* unk_20;
+    Strbuf* unk_24[6];
+    Strbuf* unk_3C[2];
 } UnkStruct_ov90_021D0ECC_sub1;
 
 typedef struct {
-    UnkStruct_02023790 * unk_00;
+    Strbuf* unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -120,7 +120,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1750(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D18BC(UnkStruct_ov90_021D0ECC * param0);
-static void ov90_021D17F8(UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02023790 * param2, u8 param3, u8 param4, u8 param5);
+static void ov90_021D17F8(UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, Strbuf *param2, u8 param3, u8 param4, u8 param5);
 static void ov90_021D1984(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1A48(UnkStruct_ov90_021D0ECC * param0);
 static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC * param0);
@@ -766,7 +766,7 @@ static void ov90_021D17DC (UnkStruct_ov90_021D0ECC * param0)
     }
 }
 
-static void ov90_021D17F8 (UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02023790 * param2, u8 param3, u8 param4, u8 param5)
+static void ov90_021D17F8 (UnkStruct_ov90_021D17F8 * param0, UnkStruct_0205AA50 * param1, Strbuf *param2, u8 param3, u8 param4, u8 param5)
 {
     UnkStruct_ov90_021D17F8 * v0;
     int v1, v2, v3, v4, v5;
@@ -846,7 +846,7 @@ static void ov90_021D1984 (UnkStruct_ov90_021D0ECC * param0)
 
 static void ov90_021D1A48 (UnkStruct_ov90_021D0ECC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_ov90_021D17F8 * v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
     v0 = sub_02014B34(&v1->unk_08, param0->unk_00);

@@ -533,7 +533,7 @@ void ov23_0224AAB0 (void)
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
         UnkStruct_02025E6C * v0 = sub_02025E6C(15);
-        UnkStruct_02023790 * v1 = sub_02023790(20, 15);
+        Strbuf* v1 = sub_02023790(20, 15);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);
@@ -555,7 +555,7 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
     int v1;
     const UnkStruct_02025E6C * v2 = param2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     u8 v4 = param0;
 
     if (v0) {

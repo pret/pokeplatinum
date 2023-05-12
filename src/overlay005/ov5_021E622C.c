@@ -2185,7 +2185,7 @@ int ov5_021E6590 (UnkStruct_02026218 * param0)
 u8 ov5_021E65B0 (UnkStruct_02026218 * param0, UnkStruct_0200B358 * param1)
 {
     int v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u16 v2[10 + 1];
     BoxPokemon * v3 = sub_02026220(param0);
 
@@ -2603,7 +2603,7 @@ void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, UnkStruct_02025E6C *
     u8 v0, v1, v2;
     u16 v3;
     u8 v4 = sub_020759F0(param1, 19);
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
 
     sub_02073D80(param0, param1, 1, 32, 0, 0, 0, 0);
 
@@ -2628,7 +2628,7 @@ void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, UnkStruct_02025E6C *
     if (param4 == 4) {
         u32 v6 = sub_02025F20(param3);
         u32 v7 = sub_02025F30(param3);
-        UnkStruct_02023790 * v8 = sub_02025F04(param3, 32);
+        Strbuf* v8 = sub_02025F04(param3, 32);
 
         sub_02074B30(param0, 145, v8);
         sub_02074B30(param0, 7, &v6);
@@ -2644,7 +2644,7 @@ void ov5_021E6DE8 (Pokemon * param0, u16 param1, UnkStruct_02026310 * param2, u3
     u8 v0;
     u16 v1;
     u32 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     u8 v4 = sub_020759F0(param1, 19);
 
     v2 = sub_02026248(param2);
@@ -3035,7 +3035,7 @@ static void ov5_021E742C (Pokemon * param0, int param1)
     u32 v3, v4;
     u8 v5[6], v6;
     u8 v7, v8, v9, v10, v11, v12, v13, v14;
-    UnkStruct_02023790 * v15 = sub_02023790(7 + 1, param1);
+    Strbuf* v15 = sub_02023790(7 + 1, param1);
     Pokemon * v16 = AllocMonZeroed(param1);
 
     v0 = GetMonData(param0, MON_DATA_SPECIES, NULL);

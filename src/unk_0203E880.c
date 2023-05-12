@@ -71,8 +71,8 @@ struct UnkStruct_0203EF60_t {
     u16 * unk_34;
     UnkStruct_0203E724 * unk_38[2];
     UnkStruct_0200B358 * unk_40;
-    UnkStruct_02023790 * unk_44;
-    UnkStruct_02023790 * unk_48;
+    Strbuf* unk_44;
+    Strbuf* unk_48;
     void * unk_4C;
     UnkStruct_0203E8B0 unk_50[2];
     u16 unk_88[14];

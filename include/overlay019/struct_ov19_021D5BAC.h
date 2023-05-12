@@ -15,11 +15,11 @@ typedef struct {
     u8 unk_0E;
     u8 unk_0F;
     u8 padding_10[4];
-    UnkStruct_02023790 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C;
-    UnkStruct_02023790 * unk_20;
-    UnkStruct_02023790 * unk_24;
+    Strbuf* unk_14;
+    Strbuf* unk_18;
+    Strbuf* unk_1C;
+    Strbuf* unk_20;
+    Strbuf* unk_24;
 } UnkStruct_ov19_021D5BAC;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D5BAC_H

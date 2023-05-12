@@ -359,7 +359,7 @@ static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2,
 
 static void ov88_0223B320 (UnkStruct_02095E80 * param0)
 {
-    UnkStruct_02023790 * v0, * v1, * v2;
+    Strbuf* v0, * v1, * v2;
     UnkStruct_02025E6C * v3, * v4;
 
     v3 = sub_02032EE8(sub_0203608C());
@@ -525,7 +525,7 @@ static void ov88_0223B748 (UnkStruct_0205AA50 * param0, UnkStruct_0200B358 * par
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        UnkStruct_02023790 * v1 = sub_0200B29C(param1, param2, 1 + param4 + v0, 26);
+        Strbuf* v1 = sub_0200B29C(param1, param2, 1 + param4 + v0, 26);
 
         ov88_0223EC78(&param0[v0], v1, 8, 0, 1, 0);
         sub_020237BC(v1);
@@ -1298,7 +1298,7 @@ static int ov88_0223C800 (int param0, Pokemon * param1, u8 * param2, UnkStruct_0
 
 static void ov88_0223C860 (UnkStruct_0205AA50 * param0, Party * param1, int param2, int param3, int param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_02023790(20, 26);
 
@@ -1324,7 +1324,7 @@ static int ov88_0223C8AC (UnkStruct_ov88_0223C8AC * param0, Party * param1, int 
 
 static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * param2, int param3, UnkStruct_02095E80 * param4)
 {
-    UnkStruct_02023790 * v0, * v1;
+    Strbuf* v0, * v1;
     u16 v2, v3;
     int v4;
     Pokemon * v5;
@@ -1924,7 +1924,7 @@ static int ov88_0223D69C (UnkStruct_02095E80 * param0)
 
     {
         UnkStruct_0200B144 * v3;
-        UnkStruct_02023790 * v4 = sub_02023790(100, 26);
+        Strbuf* v4 = sub_02023790(100, 26);
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {

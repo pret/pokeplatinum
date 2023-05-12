@@ -202,9 +202,9 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_64;
     UnkStruct_0200B144 * unk_68;
     UnkStruct_0200B358 * unk_6C;
-    UnkStruct_02023790 * unk_70;
-    UnkStruct_02023790 * unk_74;
-    UnkStruct_02023790 * unk_78[2];
+    Strbuf* unk_70;
+    Strbuf* unk_74;
+    Strbuf* unk_78[2];
     u16 unk_80[8];
     UnkStruct_02018340 * unk_90;
     UnkStruct_0205AA50 unk_94[2];

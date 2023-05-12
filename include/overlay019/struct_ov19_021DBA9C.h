@@ -42,7 +42,7 @@ typedef struct {
     u8 unk_4BE4[18];
     u8 padding_4BF6[2];
     UnkStruct_0200B144 * unk_4BF8;
-    UnkStruct_02023790 * unk_4BFC;
+    Strbuf* unk_4BFC;
 } UnkStruct_ov19_021DBA9C;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DBA9C_H

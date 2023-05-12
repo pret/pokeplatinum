@@ -119,7 +119,7 @@ void ov88_0223EC04 (UnkStruct_0205AA50 * param0)
     sub_0201A8FC(&param0[25]);
 }
 
-void ov88_0223EC78 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, u32 param3, int param4, int param5)
+void ov88_0223EC78 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u32 param3, int param4, int param5)
 {
     int v0 = 0;
 
@@ -137,7 +137,7 @@ void ov88_0223EC78 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, in
 
 int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruct_0200B144 * param3, UnkStruct_0200B358 * param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1;
 
     v0 = sub_0200B29C(param4, param3, param1, 26);

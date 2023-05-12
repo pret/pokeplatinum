@@ -44,7 +44,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov6_02247A0C;
 
-static int ov6_02247CF4(const UnkStruct_02023790 * param0, int param1, int param2, int param3);
+static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3);
 static BOOL ov6_02247A34(UnkStruct_020508D4 * param0);
 
 static const UnkStruct_ov6_022496F4 Unk_ov6_022496F4[] = {
@@ -133,7 +133,7 @@ void * ov6_02247A90 (void * param0)
 {
     UnkStruct_ov6_02247A90 * v0;
     UnkStruct_02018340 * v1;
-    UnkStruct_02023790 * v2, * v3;
+    Strbuf* v2, * v3;
     int v4, v5, v6, v7;
     UnkStruct_021C0794 * v8;
 
@@ -212,7 +212,7 @@ void ov6_02247CC8 (void * param0)
     Heap_FreeToHeap(v0);
 }
 
-static int ov6_02247CF4 (const UnkStruct_02023790 * param0, int param1, int param2, int param3)
+static int ov6_02247CF4 (const Strbuf *param0, int param1, int param2, int param3)
 {
     int v0, v1;
 

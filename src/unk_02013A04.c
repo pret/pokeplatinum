@@ -51,7 +51,7 @@ void sub_02013A4C (UnkStruct_02013A04 * param0, const UnkStruct_0200B144 * param
     }
 }
 
-void sub_02013A6C (UnkStruct_02013A04 * param0, const UnkStruct_02023790 * param1, u32 param2)
+void sub_02013A6C (UnkStruct_02013A04 * param0, const Strbuf *param1, u32 param2)
 {
     u32 v0;
 
@@ -108,7 +108,7 @@ void sub_02013AE8 (UnkStruct_02013A04 * param0)
             break;
         }
 
-        sub_020237BC((UnkStruct_02023790 *)(v0->unk_00));
+        sub_020237BC((Strbuf *)(v0->unk_00));
 
         v0->unk_00 = NULL;
         v0++;

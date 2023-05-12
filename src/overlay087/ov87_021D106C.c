@@ -61,8 +61,8 @@ typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_0200B144 * unk_1E8;
     UnkStruct_0200B144 * unk_1EC;
     UnkStruct_0200B358 * unk_1F0;
-    UnkStruct_02023790 * unk_1F4;
-    UnkStruct_02023790 * unk_1F8;
+    Strbuf* unk_1F4;
+    Strbuf* unk_1F8;
     Pokemon * unk_1FC;
     u8 unk_200[3200];
 } UnkStruct_ov87_021D106C;

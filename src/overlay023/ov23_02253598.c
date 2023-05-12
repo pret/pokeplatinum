@@ -477,8 +477,8 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
 static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
 {
     UnkStruct_0200B358 * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v1;
+    Strbuf* v2;
     int v3, v4;
     const int v5 = 17;
     const int v6 = 39;

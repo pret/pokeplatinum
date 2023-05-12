@@ -63,7 +63,7 @@ typedef struct {
 
 static void ov20_021D4874(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
-static void ov20_021D498C(UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const UnkStruct_02023790 * param2, int param3);
+static void ov20_021D498C(UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const Strbuf *param2, int param3);
 static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 * param0);
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3);
@@ -225,7 +225,7 @@ static const s16 Unk_ov20_021D52EC[] = {
     22, (22 + 56 * 1) - 1, (22 + 56 * 2) - 2, (22 + 56 * 3) - 1,
 };
 
-asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const UnkStruct_02023790 * param2, int param3)
+asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 * param1, const Strbuf *param2, int param3)
 {
     push {r4, r5, r6, r7, lr}
     sub sp, #0x24

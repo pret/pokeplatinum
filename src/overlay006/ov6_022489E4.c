@@ -260,7 +260,7 @@ void ov6_02248CBC (int param0, int param1, void * param2, void * param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const UnkStruct_02023790 * param2)
+BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const Strbuf *param2)
 {
     int v0, v1;
     u8 * v2;

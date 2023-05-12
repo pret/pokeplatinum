@@ -548,9 +548,9 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
 {
     const UnkStruct_ov66_0222E71C * v0;
     UnkStruct_02025E6C * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v2;
+    Strbuf* v3;
+    Strbuf* v4;
     int v5 = 64;
     int v6;
     u32 v7, v8;

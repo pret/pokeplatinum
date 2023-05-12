@@ -790,7 +790,7 @@ void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
     return NULL;
 }
 
-void Item_GetNameIntoString (UnkStruct_02023790 * dest, u16 itemID, u32 heapID)
+void Item_GetNameIntoString (Strbuf* dest, u16 itemID, u32 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 392, heapID);
 
@@ -798,7 +798,7 @@ void Item_GetNameIntoString (UnkStruct_02023790 * dest, u16 itemID, u32 heapID)
     sub_0200B190(msgData);
 }
 
-void Item_GetDescriptionIntoString (UnkStruct_02023790 * dest, u16 itemID, u16 heapID)
+void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 391, heapID);
 

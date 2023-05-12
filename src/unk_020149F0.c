@@ -14,7 +14,7 @@
 
 struct UnkStruct_020149F0_t {
     u32 unk_00;
-    UnkStruct_02023790 * unk_04;
+    Strbuf* unk_04;
 };
 
 UnkStruct_020149F0 * sub_020149F0 (u32 param0)

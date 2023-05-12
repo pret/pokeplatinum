@@ -41,10 +41,10 @@ struct UnkStruct_ov65_0222EBE0_t {
     UnkStruct_0200B358 * unk_164;
     UnkStruct_0200B144 * unk_168;
     UnkStruct_0200B144 * unk_16C;
-    UnkStruct_02023790 * unk_170;
-    UnkStruct_02023790 * unk_174;
-    UnkStruct_02023790 * unk_178;
-    UnkStruct_02023790 * unk_17C;
+    Strbuf* unk_170;
+    Strbuf* unk_174;
+    Strbuf* unk_178;
+    Strbuf* unk_17C;
     int unk_180;
     UnkStruct_02001AF4 * unk_184;
     void * unk_188;

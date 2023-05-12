@@ -87,8 +87,8 @@ struct UnkStruct_ov111_021D0F7C_t {
     void * unk_34;
     UnkStruct_0200B144 * unk_38;
     UnkStruct_0200B358 * unk_3C;
-    UnkStruct_02023790 * unk_40;
-    UnkStruct_02023790 * unk_44;
+    Strbuf* unk_40;
+    Strbuf* unk_44;
     u16 unk_48[8];
     UnkStruct_02018340 * unk_58;
     UnkStruct_0205AA50 unk_5C[16];

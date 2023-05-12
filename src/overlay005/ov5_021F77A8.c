@@ -567,7 +567,7 @@ struct UnkStruct_ov5_021F7ED8_t {
     UnkStruct_0201CD38 * unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0205AA50 * unk_18;
-    UnkStruct_02023790 * unk_1C[39];
+    Strbuf* unk_1C[39];
     UnkStruct_0200B144 * unk_B8;
     UnkStruct_0200B358 * unk_BC;
     u8 unk_C0;
@@ -1082,7 +1082,7 @@ static void ov5_021F7FF8 (UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param
     void * v1;
 
     {
-        UnkStruct_02023790 * v2 = sub_02023790((40 * 2), 4);
+        Strbuf* v2 = sub_02023790((40 * 2), 4);
 
         sub_0200B1B8(param0->unk_B8, param1, v2);
         sub_0200C388(param0->unk_BC, param0->unk_1C[param0->unk_C7], v2);

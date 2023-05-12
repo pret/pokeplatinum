@@ -1017,7 +1017,7 @@ static int ov94_02240D28 (UnkStruct_ov94_0223FD4C * param0)
 static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, int param5)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v1 = sub_0200B1EC(param0->unk_B90, param1);
     sub_0200C388(param0->unk_B8C, param0->unk_BAC, v1);

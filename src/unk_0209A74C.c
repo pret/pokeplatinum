@@ -78,7 +78,7 @@ void sub_0209A74C (int param0)
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4 = 0;
 
     sub_0200F344(0, 0);
@@ -153,7 +153,7 @@ void sub_0209A8E0 (int param0)
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4 = 1;
 
     sub_0200F344(0, 0);

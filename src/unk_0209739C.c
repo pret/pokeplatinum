@@ -78,10 +78,10 @@ u32 sub_020973D4 (UnkStruct_020973A8 * param0, u32 param1)
     return 0;
 }
 
-UnkStruct_02023790 * sub_0209742C (u16 param0, u32 param1)
+Strbuf* sub_0209742C (u16 param0, u32 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = sub_0200B144(1, 26, 424, param1);
     v1 = sub_0200B1EC(v0, param0);
@@ -90,10 +90,10 @@ UnkStruct_02023790 * sub_0209742C (u16 param0, u32 param1)
     return v1;
 }
 
-UnkStruct_02023790 * sub_02097454 (u16 param0, u16 param1)
+Strbuf* sub_02097454 (u16 param0, u16 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = sub_0200B144(1, 26, 423, param1);
     v1 = sub_0200B1EC(v0, param0);

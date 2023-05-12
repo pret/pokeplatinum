@@ -56,13 +56,13 @@ typedef struct UnkStruct_ov6_02246204_t {
     u32 unk_10;
 };
 
-static UnkStruct_02023790 * ov6_022462E4(u32 param0, u32 param1);
+static Strbuf* ov6_022462E4(u32 param0, u32 param1);
 static void ov6_0224630C(Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5);
 
 UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
 {
     UnkStruct_ov6_02246204 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u16 v2[128];
 
     GF_ASSERT(param1 < 4);
@@ -117,7 +117,7 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
 {
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     Pokemon * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     u32 v3;
     int v4;
 
@@ -146,9 +146,9 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     }
 }
 
-static UnkStruct_02023790 * ov6_022462E4 (u32 param0, u32 param1)
+static Strbuf* ov6_022462E4 (u32 param0, u32 param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 370, param0);
 
     v0 = sub_0200B1EC(v1, param1);
@@ -158,7 +158,7 @@ static UnkStruct_02023790 * ov6_022462E4 (u32 param0, u32 param1)
 
 static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u8 v1;
     u32 v2;
 

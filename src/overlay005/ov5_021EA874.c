@@ -46,8 +46,8 @@
 typedef struct {
     UnkStruct_02013A04 * unk_00;
     UnkStruct_0200112C * unk_04;
-    UnkStruct_02023790 * unk_08;
-    UnkStruct_02023790 * unk_0C;
+    Strbuf* unk_08;
+    Strbuf* unk_0C;
     UnkStruct_0205AA50 unk_10;
     UnkStruct_0205AA50 unk_20;
     UnkStruct_0203CDB0 * unk_30;
@@ -150,7 +150,7 @@ static BOOL ov5_021EA9BC (UnkStruct_ov5_021EAE78 * param0)
 static BOOL ov5_021EA9F8 (UnkStruct_ov5_021EAE78 * param0)
 {
     DWCFriendData * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     int v2;
     int v3 = sub_02002114(param0->unk_44, 4);
 
@@ -191,7 +191,7 @@ static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
 {
     UnkStruct_02025E6C * v0;
     DWCFriendData * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3;
     int v4 = sub_02002114(param0->unk_44, 4);
 
@@ -223,7 +223,7 @@ static BOOL ov5_021EAB28 (UnkStruct_ov5_021EAE78 * param0)
 {
     UnkStruct_02025E6C * v0;
     DWCFriendData * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3;
     int v4 = sub_02002114(param0->unk_44, 4);
 
@@ -361,7 +361,7 @@ static BOOL ov5_021EAD38 (UnkStruct_ov5_021EAE78 * param0)
     UnkStruct_0202B370 * v0 = sub_0202B370(param0->unk_34);
     UnkStruct_02025E6C * v1;
     DWCFriendData * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4 = sub_02002114(param0->unk_44, 4);
 
     if (v4 == 0xffffffff) {

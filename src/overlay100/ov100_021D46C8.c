@@ -34,15 +34,15 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
 {
     int v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3 = sub_02023790(511, 111);
+    Strbuf* v2;
+    Strbuf* v3 = sub_02023790(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
     v2 = sub_0200B1EC(v1, param2);
 
     if (param2 == 22) {
-        UnkStruct_02023790 * v5 = sub_02025F04(param1->unk_08, 111);
+        Strbuf* v5 = sub_02025F04(param1->unk_08, 111);
         UnkStruct_0200B358 * v6 = sub_0200B358(111);
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);

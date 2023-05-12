@@ -47,7 +47,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0200B144 * unk_0C;
     UnkStruct_0200B144 * unk_10;
     UnkStruct_0200B358 * unk_14;
-    UnkStruct_02023790 * unk_18;
+    Strbuf* unk_18;
     UnkStruct_0201CD38 * unk_1C;
     UnkStruct_0201CD38 * unk_20;
     UnkStruct_0201CD38 * unk_24;

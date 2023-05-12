@@ -46,9 +46,9 @@ static void ov22_0225A748(UnkStruct_0205AA50 ** param0, UnkStruct_02018340 * par
 static void ov22_0225A7B8(UnkStruct_ov22_022597BC * param0);
 static void ov22_0225A7C0(UnkStruct_0205AA50 * param0);
 static s32 ov22_0225A7CC(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6);
-static s32 ov22_0225A814(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, UnkStruct_02023790 ** param7);
+static s32 ov22_0225A814(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7);
 static s32 ov22_0225A860(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7);
-static s32 ov22_0225A8B4(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, UnkStruct_02023790 ** param8);
+static s32 ov22_0225A8B4(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
 static void ov22_0225A914(UnkStruct_ov22_0225A914 * param0, UnkStruct_020218BC * param1, UnkStruct_02009714 ** param2, int param3, NARC * param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 * param0, int param1);
 static void ov22_0225AA10(UnkStruct_ov22_0225A914 * param0, UnkStruct_02009714 ** param1);
@@ -246,7 +246,7 @@ static s32 ov22_0225A7CC (UnkStruct_0205AA50 * param0, int param1, int param2, i
     return v0;
 }
 
-static s32 ov22_0225A814 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, UnkStruct_02023790 ** param7)
+static s32 ov22_0225A814 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7)
 {
     s32 v0;
 
@@ -260,7 +260,7 @@ static s32 ov22_0225A814 (UnkStruct_0205AA50 * param0, int param1, int param2, i
 static s32 ov22_0225A860 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     s32 v2;
 
     v0 = sub_0200B144(0, param1, param2, 13);
@@ -275,7 +275,7 @@ static s32 ov22_0225A860 (UnkStruct_0205AA50 * param0, int param1, int param2, i
     return v2;
 }
 
-static s32 ov22_0225A8B4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, UnkStruct_02023790 ** param8)
+static s32 ov22_0225A8B4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
 {
     UnkStruct_0200B144 * v0;
     s32 v1;

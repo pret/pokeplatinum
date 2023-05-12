@@ -410,7 +410,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
             Pokemon * v3;
-            UnkStruct_02023790 * v4;
+            Strbuf* v4;
 
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);
             v4 = sub_0200B1EC(param0->unk_10, 46);
@@ -435,7 +435,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 return 13;
             } else {
                 UnkStruct_0200B144 * v5;
-                UnkStruct_02023790 * v6;
+                Strbuf* v6;
 
                 v5 = sub_0200B144(1, 26, 213, v0->unk_0C);
                 v6 = sub_0200B1EC(v5, 36);

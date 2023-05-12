@@ -97,7 +97,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0205AA50 unk_00;
-    UnkStruct_02023790 * unk_10;
+    Strbuf* unk_10;
     u16 unk_14;
     u16 unk_16;
 } UnkStruct_02068EFC;

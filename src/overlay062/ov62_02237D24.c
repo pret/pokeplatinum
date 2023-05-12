@@ -1242,7 +1242,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3;
 
     v1 = &v0->unk_D0[0];

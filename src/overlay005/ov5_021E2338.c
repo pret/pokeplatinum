@@ -2618,12 +2618,12 @@ static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
     return v2;
 }
 
-static UnkStruct_02023790 * ov5_021E5240 (u32 param0, u32 param1)
+static Strbuf* ov5_021E5240 (u32 param0, u32 param1)
 {
     UnkStruct_0200B358 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v2;
+    Strbuf* v3;
 
     v1 = sub_0200B144(1, 26, 359, param1);
     v0 = sub_0200B358(param1);
@@ -2648,7 +2648,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
     VecFx32 v4;
     int v5;
     int v6;
-    UnkStruct_02023790 * v7;
+    Strbuf* v7;
 
     switch (param0->unk_00) {
     case 0:
@@ -3107,7 +3107,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         sub_02021CAC(v0->unk_2CC[3], 1);
 
         {
-            UnkStruct_02023790 * v9;
+            Strbuf* v9;
 
             sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
 

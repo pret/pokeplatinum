@@ -28,7 +28,7 @@ static const struct {
     {0x12a, '9'},
 };
 
-asm void ov98_022499C8 (UnkStruct_02023790 * param0, char * param1, int param2)
+asm void ov98_022499C8 (Strbuf *param0, char * param1, int param2)
 {
    push {r3, r4, r5, r6, r7, lr}
    sub sp, #8

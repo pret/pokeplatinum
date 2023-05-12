@@ -136,11 +136,11 @@ static u32 sub_0207CC00 (UnkStruct_021C0794 * param0)
     return (u32)sub_0202D230(sub_0202D750(param0), 0, 0);
 }
 
-BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, UnkStruct_02023790 * param1, u16 param2, u32 param3)
+BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, Strbuf *param1, u16 param2, u32 param3)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     v0 = sub_0200B144(0, 26, 7, param3);
     v1 = sub_0200B358(param3);
@@ -174,11 +174,11 @@ BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, UnkStruct_02023790 * param1, u16
     return 1;
 }
 
-void sub_0207CD34 (void * param0, UnkStruct_02023790 * param1, u16 param2, u32 param3, u32 param4)
+void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 param4)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     switch (param3) {
     case 1:

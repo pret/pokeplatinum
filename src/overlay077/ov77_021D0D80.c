@@ -1262,7 +1262,7 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
 
     {
         UnkStruct_0200B144 * v4;
-        UnkStruct_02023790 * v5;
+        Strbuf* v5;
         u32 v6;
 
         sub_02019690(4, 32, 0, param1);

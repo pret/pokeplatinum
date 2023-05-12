@@ -2118,7 +2118,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
 
         case 1:
         {
-            UnkStruct_02023790 * v1;
+            Strbuf* v1;
             int v2;
 
             v1 = sub_0200B1EC(param0->unk_69C, 184);
@@ -2458,7 +2458,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
     case 3:
         if (sub_02080F3C(param0, param0->unk_B11, 1) == 1) {
             Pokemon * v0;
-            UnkStruct_02023790 * v1;
+            Strbuf* v1;
             void * v2;
             UnkStruct_0203CDB0 * v3;
 

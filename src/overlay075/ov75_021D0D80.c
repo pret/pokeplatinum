@@ -92,7 +92,7 @@ typedef struct {
     UnkStruct_02018340 * unk_18;
     UnkStruct_020978D8 * unk_1C;
     UnkStruct_0200B144 * unk_20;
-    UnkStruct_02023790 * unk_24[3];
+    Strbuf* unk_24[3];
     UnkStruct_02002F38 * unk_30;
     void * unk_34;
     void * unk_38;
@@ -273,7 +273,7 @@ static int ov75_021D0E80 (UnkStruct_ov75_021D1184 * param0)
 
 static int ov75_021D0FA0 (UnkStruct_ov75_021D1184 * param0)
 {
-    UnkStruct_02023790 * v0 = NULL;
+    Strbuf* v0 = NULL;
 
     switch (param0->unk_08) {
     case 0:
@@ -329,7 +329,7 @@ static int ov75_021D1064 (UnkStruct_ov75_021D1184 * param0)
 static int ov75_021D108C (UnkStruct_ov75_021D1184 * param0)
 {
     int v0;
-    UnkStruct_02023790 * v1 = NULL;
+    Strbuf* v1 = NULL;
 
     switch (param0->unk_08) {
     case 0:
@@ -829,7 +829,7 @@ static void ov75_021D19A8 (UnkStruct_ov75_021D1184 * param0)
 static void ov75_021D19C8 (UnkStruct_ov75_021D1184 * param0)
 {
     int v0 = 0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (!sub_02014BBC(&param0->unk_1C->unk_1A[v0])) {
@@ -844,7 +844,7 @@ static void ov75_021D19C8 (UnkStruct_ov75_021D1184 * param0)
     }
 
     if (param0->unk_0C == 1) {
-        UnkStruct_02023790 * v2;
+        Strbuf* v2;
         int v3;
 
         param0->unk_20 = sub_0200B144(1, 26, 409, param0->unk_00);

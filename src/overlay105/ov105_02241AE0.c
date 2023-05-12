@@ -112,9 +112,9 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_1B;
     UnkStruct_0200B144 * unk_1C;
     UnkStruct_0200B358 * unk_20;
-    UnkStruct_02023790 * unk_24;
-    UnkStruct_02023790 * unk_28;
-    UnkStruct_02023790 * unk_2C[4];
+    Strbuf* unk_24;
+    Strbuf* unk_28;
+    Strbuf* unk_2C[4];
     u16 unk_3C[8];
     UnkStruct_02018340 * unk_4C;
     UnkStruct_0205AA50 unk_50[10];
@@ -2716,7 +2716,7 @@ static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
 {
     u32 v0;
     const UnkStruct_02025E6C * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     v1 = sub_02025E38(param0->unk_13C);
     v2 = sub_02023790((7 + 1), 93);
@@ -2740,7 +2740,7 @@ static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
 static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4)
 {
     u32 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_02025E6C * v2;
 
     v2 = sub_02032EE8(1 - sub_0203608C());
@@ -2766,7 +2766,7 @@ static void ov105_02244FF8 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
 {
     u8 v0;
     u32 v1, v2, v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     Pokemon * v5;
     u16 v6[(10 + 1)];
 
@@ -2801,7 +2801,7 @@ static void ov105_022450DC (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     u8 v0;
     u32 v1, v2;
     UnkStruct_0200B144 * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     Pokemon * v5;
     u16 v6[(10 + 1)];
 

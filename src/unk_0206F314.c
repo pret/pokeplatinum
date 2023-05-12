@@ -52,15 +52,15 @@
 typedef struct {
     UnkStruct_0200B144 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_02023790 * unk_08;
-    UnkStruct_02023790 * unk_0C;
-    UnkStruct_02023790 * unk_10;
-    UnkStruct_02023790 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C[7];
-    UnkStruct_02023790 * unk_38[6];
-    UnkStruct_02023790 * unk_50[6];
-    UnkStruct_02023790 * unk_68[3];
+    Strbuf* unk_08;
+    Strbuf* unk_0C;
+    Strbuf* unk_10;
+    Strbuf* unk_14;
+    Strbuf* unk_18;
+    Strbuf* unk_1C[7];
+    Strbuf* unk_38[6];
+    Strbuf* unk_50[6];
+    Strbuf* unk_68[3];
 } UnkStruct_0206F7F8_sub1;
 
 typedef struct {

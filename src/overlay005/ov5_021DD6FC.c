@@ -36,7 +36,7 @@ typedef struct UnkStruct_ov5_021DD9C8_t {
     NNSG2dCharacterData * unk_34;
     void * unk_38;
     UnkStruct_0200B144 * unk_3C;
-    UnkStruct_02023790 * unk_40;
+    Strbuf* unk_40;
 } UnkStruct_ov5_021DD9C8;
 
 static void ov5_021DD718(UnkStruct_ov5_021DD9C8 * param0);
@@ -46,7 +46,7 @@ static void ov5_021DD894(UnkStruct_ov5_021DD9C8 * param0, UnkStruct_02018340 * p
 static void ov5_021DD8A4(UnkStruct_0201CD38 * param0, void * param1);
 static void ov5_021DD7A0(UnkStruct_ov5_021DD9C8 * param0, const int param1);
 static void ov5_021DD980(UnkStruct_ov5_021DD9C8 * param0);
-static void ov5_021DD954(UnkStruct_ov5_021DD9C8 * param0, const UnkStruct_02023790 * param1);
+static void ov5_021DD954(UnkStruct_ov5_021DD9C8 * param0, const Strbuf *param1);
 
 static void ov5_021DD6FC (void * param0, u16 param1, u16 param2)
 {
@@ -210,7 +210,7 @@ static void ov5_021DD8A4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov5_021DD954 (UnkStruct_ov5_021DD9C8 * param0, const UnkStruct_02023790 * param1)
+static void ov5_021DD954 (UnkStruct_ov5_021DD9C8 * param0, const Strbuf *param1)
 {
     u32 v0;
 

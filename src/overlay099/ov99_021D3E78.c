@@ -275,7 +275,7 @@ struct UnkStruct_ov99_021D3E78_t {
     UnkStruct_0205AA50 * unk_24;
     UnkStruct_0205AA50 * unk_28;
     UnkStruct_0200B144 * unk_2C;
-    UnkStruct_02023790 * unk_30;
+    Strbuf* unk_30;
     UnkStruct_0201CD38 * unk_34;
 };
 

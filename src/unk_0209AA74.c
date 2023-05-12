@@ -80,7 +80,7 @@ void sub_0209AA74 (int param0, int param1)
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
 
     if (param1 == 0) {

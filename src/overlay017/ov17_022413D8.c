@@ -1513,7 +1513,7 @@ void ov17_02242DA8 (UnkStruct_ov17_02246F24 * param0)
 
 static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 * param4, const void * param5, int param6)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u32 v1;
 
     if (param6 == 1) {
@@ -1578,7 +1578,7 @@ int ov17_02242ECC (UnkStruct_ov17_02246F24 * param0)
 
 void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u32 v1;
 
     v0 = sub_02023790(12, 21);

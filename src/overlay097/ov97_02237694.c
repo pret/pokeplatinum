@@ -223,7 +223,7 @@ void ov97_02237868 (UnkStruct_ov97_02237808 * param0, int param1, int param2)
 static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
 {
     int v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_0200B358 * v2;
     UnkStruct_0200B144 * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;

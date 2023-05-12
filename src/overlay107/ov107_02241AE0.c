@@ -257,9 +257,9 @@ struct UnkStruct_ov107_02241D6C_t {
     UnkStruct_0200B144 * unk_1C;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
-    UnkStruct_02023790 * unk_28;
-    UnkStruct_02023790 * unk_2C;
-    UnkStruct_02023790 * unk_30[3];
+    Strbuf* unk_28;
+    Strbuf* unk_2C;
+    Strbuf* unk_30[3];
     u16 unk_3C[8];
     UnkStruct_02018340 * unk_4C;
     UnkStruct_0205AA50 unk_50[18];
@@ -3072,7 +3072,7 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA5
 {
     u32 v0;
     const UnkStruct_02025E6C * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     v1 = sub_02025E38(param0->unk_1CC);
     v2 = sub_02023790((7 + 1), 100);

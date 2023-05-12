@@ -532,8 +532,8 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     for (v4 = 0; v4 < v5; v4++) {
         if (v1->unk_30[v4] == 3) {
             UnkStruct_0200B358 * v6;
-            UnkStruct_02023790 * v7;
-            UnkStruct_02023790 * v8;
+            Strbuf* v7;
+            Strbuf* v8;
 
             v6 = sub_0200B358(11);
             v7 = sub_02023790(8, 11);
@@ -645,8 +645,8 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_0200B144 * v2;
     UnkStruct_0200B358 * v3;
-    UnkStruct_02023790 * v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v4;
+    Strbuf* v5;
     u8 v6;
 
     v0 = sub_02050A60(param0);

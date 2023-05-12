@@ -28,7 +28,7 @@ struct UnkStruct_0207AE68_t {
     UnkStruct_0205AA50 * unk_04;
     UnkStruct_0200B144 * unk_08;
     UnkStruct_0200B358 * unk_0C;
-    UnkStruct_02023790 * unk_10;
+    Strbuf* unk_10;
     UnkStruct_02002F38 * unk_14;
     UnkStruct_02007768 * unk_18;
     UnkStruct_02007C7C * unk_1C[2];

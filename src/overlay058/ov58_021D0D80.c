@@ -1713,7 +1713,7 @@ static int ov58_021D2A54 (UnkStruct_02095EAC * param0)
 
 static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_02023790((40 * 2), 39);
 

@@ -24,10 +24,10 @@ static const u8 Unk_ov21_021E9CC4[6] = {
 
 static inline int inline_ov21_021D5764(int param0);
 static inline BOOL inline_ov21_021D5764_1(int param0, int param1);
-static UnkStruct_02023790 * ov21_021D5724(int param0, int param1, int param2);
+static Strbuf* ov21_021D5724(int param0, int param1, int param2);
 static void ov21_021D5764(int param0, int param1, int * param2, int * param3, int * param4);
 
-void ov21_021D5600 (UnkStruct_02023790 * param0)
+void ov21_021D5600 (Strbuf *param0)
 {
     sub_020237BC(param0);
 }
@@ -47,7 +47,7 @@ static const u32 Unk_ov21_021E9CCC[] = {
     0x2CC
 };
 
-asm UnkStruct_02023790 * ov21_021D561C (int param0, int param1, int param2)
+asm Strbuf* ov21_021D561C (int param0, int param1, int param2)
 {
     push {r4, r5, r6, lr}
     sub sp, #0x28
@@ -96,7 +96,7 @@ static const u32 Unk_ov21_021E9CE4[] = {
     0x2D2
 };
 
-asm UnkStruct_02023790 * ov21_021D566C (int param0, int param1, int param2)
+asm Strbuf* ov21_021D566C (int param0, int param1, int param2)
 {
     push {r4, r5, r6, lr}
     sub sp, #0x28
@@ -144,7 +144,7 @@ static const u32 Unk_ov21_021E9CFC[] = {
     0x2C0
 };
 
-asm UnkStruct_02023790 * ov21_021D56BC (int param0, int param1, int param2, int param3)
+asm Strbuf* ov21_021D56BC (int param0, int param1, int param2, int param3)
 {
     push {r4, r5, r6, lr}
     sub sp, #0x28
@@ -205,12 +205,12 @@ static inline BOOL inline_ov21_021D5764_1 (int param0, int param1)
     return 1;
 }
 
-static UnkStruct_02023790 * ov21_021D5724 (int param0, int param1, int param2)
+static Strbuf* ov21_021D5724 (int param0, int param1, int param2)
 {
     UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, param0, param2);
 
     if (v0) {
-        UnkStruct_02023790 * v1 = sub_02023790(256, param2);
+        Strbuf* v1 = sub_02023790(256, param2);
 
         if (v1) {
             sub_0200B1B8(v0, param1, v1);

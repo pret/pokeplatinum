@@ -68,9 +68,9 @@ struct UnkStruct_02095E80_t {
     UnkStruct_0200B358 * unk_17C;
     UnkStruct_0200B358 * unk_180;
     UnkStruct_0200B144 * unk_184;
-    UnkStruct_02023790 * unk_188;
-    UnkStruct_02023790 * unk_18C;
-    UnkStruct_02023790 * unk_190;
+    Strbuf* unk_188;
+    Strbuf* unk_18C;
+    Strbuf* unk_190;
     UnkStruct_020218BC * unk_194;
     UnkStruct_0200C738 unk_198;
     UnkStruct_02009714 * unk_324[4];

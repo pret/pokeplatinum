@@ -42,7 +42,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_02023790 * unk_10;
+    Strbuf* unk_10;
     UnkStruct_02018340 * unk_14;
     UnkStruct_0200B144 * unk_18;
     UnkStruct_0205AA50 unk_1C;

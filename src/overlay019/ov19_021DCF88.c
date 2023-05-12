@@ -84,7 +84,7 @@ struct UnkStruct_ov19_021DCF88_t {
     UnkStruct_02022550 * unk_54[10];
     int unk_7C;
     int unk_80;
-    UnkStruct_02023790 * unk_84;
+    Strbuf* unk_84;
     UnkStruct_0205AA50 unk_88;
     void * unk_98;
     NNSG2dCellDataBank * unk_9C;

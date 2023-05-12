@@ -83,7 +83,7 @@ typedef struct {
     int unk_50;
     int unk_54;
     int unk_58;
-    UnkStruct_02023790 * unk_5C;
+    Strbuf* unk_5C;
     void * unk_60;
     UnkStruct_0200B358 * unk_64;
     UnkStruct_02015920 * unk_68;
@@ -720,7 +720,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         sub_02002AE4(0);
 
         {
-            UnkStruct_02023790 * v1 = sub_02023790(0x400, param0->unk_00);
+            Strbuf* v1 = sub_02023790(0x400, param0->unk_00);
 
             param0->unk_5C = sub_02023790(0x400, param0->unk_00);
 
@@ -2128,7 +2128,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 }
 
                 {
-                    UnkStruct_02023790 * v10 = sub_0200B1EC(param0->unk_4C, v9);
+                    Strbuf* v10 = sub_0200B1EC(param0->unk_4C, v9);
 
                     sub_02023810(param0->unk_74->unk_18, v10);
                     sub_020237BC(v10);

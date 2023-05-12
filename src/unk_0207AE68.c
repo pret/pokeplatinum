@@ -982,7 +982,7 @@ static void sub_0207C520 (void * param0)
 
 static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_0200B1EC(param0->unk_08, param1);
 

@@ -206,7 +206,7 @@ static void ov17_0224792C (UnkStruct_ov17_02247A48 * param0, int param1, const U
 
 static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {

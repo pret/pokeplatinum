@@ -35,7 +35,7 @@
 #include "unk_02071CFC.h"
 #include "overlay080/ov80_021D2AF4.h"
 
-void sub_02071D10(const int param0, const u32 param1, UnkStruct_02023790 * param2);
+void sub_02071D10(const int param0, const u32 param1, Strbuf *param2);
 
 typedef struct {
     int unk_00;
@@ -578,7 +578,7 @@ static void ov80_021D1AB0 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     }
 
     if (param0->unk_00 == 1) {
-        UnkStruct_02023790 * v3 = sub_0200B1EC(param0->unk_84, 0);
+        Strbuf* v3 = sub_0200B1EC(param0->unk_84, 0);
 
         sub_0201D78C(param1, 0, v3, 0, 6, 0xff, v1, NULL);
         sub_020237BC(v3);
@@ -591,8 +591,8 @@ static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
 {
     u32 v0;
     u32 v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v2;
+    Strbuf* v3;
 
     if (param2 == NULL) {
         sub_0201ADA4(param1, 0);
@@ -670,7 +670,7 @@ static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_ov80_021D
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     u32 v1;
     u32 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
 
     param0->unk_90 = param2;
     param0->unk_94 = param1;
@@ -701,7 +701,7 @@ static void ov80_021D1D6C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
 {
     u32 v0;
     u32 v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     sub_02019964(param0->unk_28, 5, 10, 0, 12, 2, param0->unk_CC->rawData, 0, 7, param0->unk_CC->screenWidth / 8, param0->unk_CC->screenHeight / 8);
 

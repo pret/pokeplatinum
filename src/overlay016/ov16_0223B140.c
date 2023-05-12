@@ -1744,7 +1744,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, UnkStruct_ov6_02240D5C *
 
     {
         UnkStruct_0200B144 * v5;
-        UnkStruct_02023790 * v6;
+        Strbuf* v6;
 
         v5 = sub_0200B144(1, 26, 368, 5);
         v6 = sub_02023790(0x100, 5);

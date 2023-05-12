@@ -168,7 +168,7 @@ void sub_02014D70 (UnkStruct_02014D38 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, UnkStruct_02023790 * param2)
+void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, Strbuf *param2)
 {
     u32 v0, v1;
 
@@ -176,7 +176,7 @@ void sub_02014D90 (UnkStruct_02014D38 * param0, u16 param1, UnkStruct_02023790 *
     sub_0200B1B8(param0->unk_04[v0], v1, param2);
 }
 
-void sub_02014DB8 (u16 param0, UnkStruct_02023790 * param1)
+void sub_02014DB8 (u16 param0, Strbuf *param1)
 {
     if (param0 != 0xffff) {
         u32 v0, v1;

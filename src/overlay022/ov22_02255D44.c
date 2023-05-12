@@ -112,7 +112,7 @@ typedef struct {
     UnkStruct_02095C60 * unk_734;
     const UnkStruct_020279FC * unk_738;
     u32 unk_73C;
-    UnkStruct_02023790 * unk_740;
+    Strbuf* unk_740;
     UnkStruct_0200B358 * unk_744;
 } UnkStruct_ov22_02255D44;
 
@@ -1148,7 +1148,7 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
 {
     UnkStruct_ov22_02259560 * v0;
     int v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3;
 
     sub_02029F84(param0);
@@ -1194,7 +1194,7 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
     int v1;
     UnkStruct_ov22_02256FD8 * v2;
     UnkStruct_ov22_02259560 * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     int v5;
 
     v2 = Heap_AllocFromHeap(13, sizeof(UnkStruct_ov22_02256FD8));
@@ -1343,7 +1343,7 @@ static u32 ov22_02257278 (UnkStruct_ov22_02255D44 * param0)
 static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     int v2 = sub_02027B50(param0->unk_738);
 
     sub_02002E98(0, 7 * 32, 14);
@@ -1364,8 +1364,8 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
 static void ov22_02257368 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v1;
+    Strbuf* v2;
 
     sub_0201ADA4(param0->unk_718, 15);
 
@@ -1386,7 +1386,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     u32 v0;
     UnkStruct_0200B144 * v1;
     u32 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
 
     GF_ASSERT(param0->unk_740 == NULL);
 

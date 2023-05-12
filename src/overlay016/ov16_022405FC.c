@@ -9735,7 +9735,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     UnkStruct_02002F38 * v3;
     UnkStruct_0200B144 * v4;
     UnkStruct_0200B358 * v5;
-    UnkStruct_02023790 * v6, * v7;
+    Strbuf* v6, * v7;
     UnkStruct_02018340 * v8;
     UnkStruct_0205AA50 v9;
     int v10;

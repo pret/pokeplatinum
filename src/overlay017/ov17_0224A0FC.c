@@ -643,7 +643,7 @@ void ov17_0224A650 (UnkStruct_ov17_0224A1EC * param0)
 void ov17_0224A674 (UnkStruct_ov17_0224A1EC * param0)
 {
     int v0;
-    UnkStruct_02023790 * v1, * v2, * v3;
+    Strbuf* v1, * v2, * v3;
 
     v1 = sub_0200B1EC(param0->unk_84, 5);
     v2 = sub_0200B1EC(param0->unk_84, 6);
@@ -1932,7 +1932,7 @@ static void ov17_0224C0C0 (UnkStruct_ov17_0224DF54 * param0, int param1, const U
 
 static void ov17_0224C244 (UnkStruct_ov17_0224DF54 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224C0C0 * param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -2100,7 +2100,7 @@ int ov17_0224C57C (int param0)
 void ov17_0224C5A0 (UnkStruct_ov17_0224DF54 * param0, u32 param1, const UnkStruct_ov17_0224C0C0 * param2)
 {
     u32 v0, v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     GF_ASSERT(param1 < NELEMS(Unk_ov17_0225470C));
 

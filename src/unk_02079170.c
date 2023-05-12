@@ -29,7 +29,7 @@
 void sub_02079170(UnkStruct_ov6_02240D5C * param0, const UnkStruct_021C0794 * param1, int param2);
 u32 sub_02079220(int param0, int param1);
 BOOL sub_02079280(int param0, int param1, int param2);
-void sub_020792F8(int param0, int param1, UnkStruct_02023790 * param2, int param3);
+void sub_020792F8(int param0, int param1, Strbuf *param2, int param3);
 void sub_0207938C(int param0, UnkStruct_0207A9CC * param1);
 void sub_0207939C(int param0, void * param1);
 u8 sub_020793AC(int param0);
@@ -148,7 +148,7 @@ void sub_02079170 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_021C0794 * p
     UnkStruct_0207A9CC v0;
     int v1;
     UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 618, param2);
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     const u16 * v4 = sub_02027870(sub_02027848(param1));
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -244,7 +244,7 @@ BOOL sub_02079280 (int param0, int param1, int param2)
     return v4;
 }
 
-void sub_020792F8 (int param0, int param1, UnkStruct_02023790 * param2, int param3)
+void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
 {
     NARC * v0;
     int v1;

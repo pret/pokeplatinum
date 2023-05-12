@@ -806,7 +806,7 @@ static int ov97_0222C948 (UnkStruct_020067E8 * param0, int * param1)
 static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
 {
     RTCDate v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_0200B358 * v2;
     UnkStruct_0200B144 * v3;
     UnkStruct_0202DBAC * v4 = &param0->unk_3180;
@@ -819,7 +819,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v4->unk_00 = 7;
     v1 = sub_0200B29C(v2, v3, 76, param0->unk_00);
 
-    sub_02023DF0((const UnkStruct_02023790 *)v1, v4->unk_104.unk_00, 36);
+    sub_02023DF0((const Strbuf *)v1, v4->unk_104.unk_00, 36);
     sub_020237BC(v1);
 
     v4->unk_104.unk_48 = (ov97_02237E4C(10) | ov97_02237E4C(11) | ov97_02237E4C(12));
@@ -832,7 +832,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
 
     v1 = sub_0200B29C(v2, v3, 75, param0->unk_00);
 
-    sub_02023DF0((const UnkStruct_02023790 *)v1, v4->unk_154, 250);
+    sub_02023DF0((const Strbuf *)v1, v4->unk_154, 250);
     sub_020237BC(v1);
 
     v4->unk_348 = 0;

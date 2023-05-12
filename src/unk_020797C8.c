@@ -264,7 +264,7 @@ void sub_02079AC4 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, UnkStruct_02023790 * param2)
+void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, Strbuf *param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -277,7 +277,7 @@ void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, UnkStruct_0202
     }
 }
 
-void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const UnkStruct_02023790 * param2)
+void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const Strbuf *param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;

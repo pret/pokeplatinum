@@ -33,14 +33,14 @@ void sub_02026040 (UnkStruct_02026030 * param0)
     memset(param0, 0, sizeof(UnkStruct_02026030));
 }
 
-void sub_0202604C (const UnkStruct_0202610C * param0, UnkStruct_02023790 * param1)
+void sub_0202604C (const UnkStruct_0202610C * param0, Strbuf *param1)
 {
     sub_02023D8C(param1, param0->unk_00, (11 + 1));
 }
 
-UnkStruct_02023790 * sub_0202605C (const UnkStruct_0202610C * param0, int param1)
+Strbuf* sub_0202605C (const UnkStruct_0202610C * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((11 + 1) * 2, param1);
+    Strbuf* v0 = sub_02023790((11 + 1) * 2, param1);
 
     sub_02023D28(v0, param0->unk_00);
     return v0;

@@ -61,7 +61,7 @@ void sub_02025EC0 (UnkStruct_02025E6C * param0, const u16 * param1)
     sub_020021B0(param0->unk_00, param1);
 }
 
-void sub_02025EE0 (UnkStruct_02025E6C * param0, const UnkStruct_02023790 * param1)
+void sub_02025EE0 (UnkStruct_02025E6C * param0, const Strbuf *param1)
 {
     sub_02023DF0(param1, param0->unk_00, 7 + 1);
 }
@@ -71,14 +71,14 @@ const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
     return param0->unk_00;
 }
 
-void sub_02025EF4 (const UnkStruct_02025E6C * param0, UnkStruct_02023790 * param1)
+void sub_02025EF4 (const UnkStruct_02025E6C * param0, Strbuf *param1)
 {
     sub_02023D28(param1, param0->unk_00);
 }
 
-UnkStruct_02023790 * sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
+Strbuf* sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(7 + 1, param1);
+    Strbuf* v0 = sub_02023790(7 + 1, param1);
 
     sub_02025EF4(param0, v0);
     return v0;

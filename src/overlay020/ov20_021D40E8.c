@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_02022550 * unk_30;
     UnkStruct_02022550 * unk_34;
     UnkStruct_02022550 * unk_38;
-    UnkStruct_02023790 * unk_3C;
+    Strbuf* unk_3C;
     UnkStruct_ov20_021D4FF0 unk_40;
     UnkStruct_ov20_021D4E8C unk_60;
     u32 unk_80;

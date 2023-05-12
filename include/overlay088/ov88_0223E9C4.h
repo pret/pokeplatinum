@@ -13,7 +13,7 @@
 
 void ov88_0223E9C4(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, UnkStruct_020279FC * param2);
 void ov88_0223EC04(UnkStruct_0205AA50 * param0);
-void ov88_0223EC78(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, u32 param3, int param4, int param5);
+void ov88_0223EC78(UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u32 param3, int param4, int param5);
 int ov88_0223ECBC(UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruct_0200B144 * param3, UnkStruct_0200B358 * param4);
 u32  ov88_0223ED2C(UnkStruct_02018340 * param0, UnkStruct_02001AF4 ** param1, int * param2);
 void ov88_0223ED80(UnkStruct_0205AA50 * param0);

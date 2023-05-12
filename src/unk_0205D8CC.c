@@ -46,7 +46,7 @@ void sub_0205D988 (UnkStruct_0205AA50 * param0)
     sub_0201ADA4(param0, 15);
 }
 
-u8 sub_0205D994 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, const UnkStruct_020279FC * param2, u8 param3)
+u8 sub_0205D994 (UnkStruct_0205AA50 * param0, Strbuf *param1, const UnkStruct_020279FC * param2, u8 param3)
 {
     u8 v0;
 
@@ -58,7 +58,7 @@ u8 sub_0205D994 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, const
     return v0;
 }
 
-u8 sub_0205D9CC (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, u8 param4, int param5)
+u8 sub_0205D9CC (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, u8 param4, int param5)
 {
     sub_02002AC8(param4);
     sub_02002AE4(param5);

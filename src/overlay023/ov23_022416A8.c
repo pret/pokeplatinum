@@ -486,11 +486,11 @@ int ov23_02241D38 (int param0)
     return 0;
 }
 
-BOOL ov23_02241D58 (UnkStruct_02023790 * param0)
+BOOL ov23_02241D58 (Strbuf *param0)
 {
     int v0;
     UnkStruct_0200B358 * v1 = NULL;
-    UnkStruct_02023790 * v2 = NULL;
+    Strbuf* v2 = NULL;
     BOOL v3 = 0;
 
     if (!Unk_ov23_02257744) {

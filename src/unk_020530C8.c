@@ -126,7 +126,7 @@ typedef struct {
     u16 unk_1C;
     void * unk_20;
     UnkStruct_0205AA50 unk_24;
-    UnkStruct_02023790 * unk_34;
+    Strbuf* unk_34;
     u8 unk_38;
     UnkStruct_02001AF4 * unk_3C;
 } UnkStruct_02053FAC;

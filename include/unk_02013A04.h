@@ -8,7 +8,7 @@
 UnkStruct_02013A04 * sub_02013A04(u32 param0, u32 param1);
 void sub_02013A3C(UnkStruct_02013A04 * param0);
 void sub_02013A4C(UnkStruct_02013A04 * param0, const UnkStruct_0200B144 * param1, u32 param2, u32 param3);
-void sub_02013A6C(UnkStruct_02013A04 * param0, const UnkStruct_02023790 * param1, u32 param2);
+void sub_02013A6C(UnkStruct_02013A04 * param0, const Strbuf *param1, u32 param2);
 void sub_02013A90(UnkStruct_02013A04 * param0, const UnkStruct_02013A04 * param1);
 void sub_02013AE8(UnkStruct_02013A04 * param0);
 

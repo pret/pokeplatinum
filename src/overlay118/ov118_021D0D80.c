@@ -142,7 +142,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         break;
     case 9:
     {
-        UnkStruct_02023790 * v2;
+        Strbuf* v2;
 
         v2 = sub_0200B1EC(param0->unk_69C, 202);
 

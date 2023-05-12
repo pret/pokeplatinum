@@ -950,7 +950,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5, * v6;
+    Strbuf* v5, * v6;
     Pokemon * v7;
     BoxPokemon * v8;
     UnkStruct_0200B358 * v9;
@@ -1163,7 +1163,7 @@ static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
 
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
@@ -1206,7 +1206,7 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
     UnkStruct_0200B144 * v4;
-    UnkStruct_02023790 * v5, * v6;
+    Strbuf* v5, * v6;
     UnkStruct_0200B358 * v7;
 
     v0 = ov16_0223DF00(param0->unk_0C);

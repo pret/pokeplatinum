@@ -96,7 +96,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     UnkStruct_02018340 * bgConfig;
     UnkStruct_0205AA50 window;
     UnkStruct_0200B144 * errorMsgData;
-    UnkStruct_02023790 * errorString;
+    Strbuf* errorString;
     int v4;
     int v5 = 0;
 

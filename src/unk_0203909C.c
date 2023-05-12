@@ -118,7 +118,7 @@ void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int para
     DWCFriendData * v1 = sub_0202AED8(v0, param2);
     UnkStruct_02025E6C * v2 = sub_02032EE8(param1);
     DWCFriendData * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
 
     if (param4 != 2) {
         v3 = sub_02032F1C(param1);

@@ -62,13 +62,13 @@ static void ov62_02247DB4 (UnkStruct_0208C06C * param0)
 
 static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0205AA50 * v1 = &param0->unk_8A4;
 
     if (param1 == 282) {
         UnkStruct_0200B358 * v2;
-        UnkStruct_02023790 * v3;
-        UnkStruct_02023790 * v4;
+        Strbuf* v3;
+        Strbuf* v4;
         UnkStruct_02030A80 * v5 = param0->unk_88C[param2];
 
         v2 = ov62_02231690(102);
@@ -97,7 +97,7 @@ static void ov62_02247E9C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02247F7C * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3 = 1;
     int v4;
 

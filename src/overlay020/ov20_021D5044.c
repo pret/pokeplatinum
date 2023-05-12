@@ -51,7 +51,7 @@ u32 ov20_021D5044 (void)
     return NELEMS(Unk_ov20_021D5320);
 }
 
-void ov20_021D5048 (u32 param0, UnkStruct_02023790 * param1)
+void ov20_021D5048 (u32 param0, Strbuf *param1)
 {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
     sub_02023D8C(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);

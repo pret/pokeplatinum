@@ -660,8 +660,8 @@ BOOL ov21_021D157C (UnkStruct_ov21_021D157C * param0)
 
 void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_02023790 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v0;
+    Strbuf* v1;
 
     if (param1 > 0) {
         v0 = sub_02023790(4, param3);
@@ -974,9 +974,9 @@ u32 ov21_021D1C88 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     return v0;
 }
 
-UnkStruct_02023790 * ov21_021D1CE0 (int param0, int param1)
+Strbuf* ov21_021D1CE0 (int param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     v0 = sub_0200B1EC(v1, param0);

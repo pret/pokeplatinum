@@ -282,8 +282,8 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     int v3;
     u16 v4;
     UnkStruct_0200B358 * v5;
-    UnkStruct_02023790 * v6;
-    UnkStruct_02023790 * v7;
+    Strbuf* v6;
+    Strbuf* v7;
     UnkStruct_0200B144 * v8;
 
     v8 = sub_0200B144(0, 26, 385, 13);
@@ -328,8 +328,8 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 {
     int v0;
     UnkStruct_0200B358 * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v2;
+    Strbuf* v3;
     int v4;
     Pokemon * v5;
     BoxPokemon * v6;

@@ -187,7 +187,7 @@ typedef struct {
     u32 unk_40;
     UnkStruct_0205AA50 * unk_44;
     UnkStruct_0200B144 * unk_48;
-    UnkStruct_02023790 * unk_4C;
+    Strbuf* unk_4C;
 } UnkStruct_ov8_0224B67C;
 
 typedef struct {
@@ -2969,7 +2969,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov8_0224B67C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, UnkStruct_02023790 * param3)
+BOOL ov8_0224B67C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, Strbuf *param3)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071BD0 * v1;

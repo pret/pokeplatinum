@@ -14,7 +14,7 @@ u32  sub_0202B400(UnkStruct_0202B4A0 * param0, int param1);
 void sub_0202B40C(UnkStruct_0202B4A0 * param0, int param1, u32 param2);
 u32  sub_0202B428(UnkStruct_0202B4A0 * param0);
 const u16 * sub_0202B42C(const UnkStruct_0202B4A0 * param0, int param1, int param2);
-void  sub_0202B444(UnkStruct_0202B4A0 * param0, int param1, int param2, UnkStruct_02023790 * param3);
+void  sub_0202B444(UnkStruct_0202B4A0 * param0, int param1, int param2, Strbuf *param3);
 void sub_0202B470(UnkStruct_0202B4A0 * param0, int param1, int param2);
 int sub_0202B47C(const UnkStruct_0202B4A0 * param0, int param1);
 int sub_0202B488(const UnkStruct_0202B4A0 * param0, int param1);

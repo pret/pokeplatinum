@@ -26,10 +26,10 @@ struct UnkStruct_ov72_0223DB98_t {
     UnkStruct_020279FC * unk_0C;
     UnkStruct_0200B358 * unk_10;
     UnkStruct_0200B144 * unk_14;
-    UnkStruct_02023790 * unk_18[5];
-    UnkStruct_02023790 * unk_2C;
-    UnkStruct_02023790 * unk_30;
-    UnkStruct_02023790 * unk_34;
+    Strbuf* unk_18[5];
+    Strbuf* unk_2C;
+    Strbuf* unk_30;
+    Strbuf* unk_34;
     int unk_38;
     UnkStruct_020218BC * unk_3C;
     UnkStruct_0200C738 unk_40;

@@ -97,7 +97,7 @@ typedef struct {
     u16 unk_02;
     u16 unk_04;
     u16 unk_06;
-    UnkStruct_02023790 * unk_08;
+    Strbuf* unk_08;
     UnkStruct_0205AA50 unk_0C;
     UnkStruct_ov112_0225D180 unk_1C;
 } UnkStruct_ov112_0225D44C;
@@ -105,7 +105,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov112_0225D44C unk_00[3];
     UnkStruct_0205AA50 unk_60[3];
-    UnkStruct_02023790 * unk_90;
+    Strbuf* unk_90;
     void * unk_94;
     NNSG2dPaletteData * unk_98;
 } UnkStruct_ov112_0225D2D0;
@@ -177,7 +177,7 @@ static BOOL ov112_0225D304(UnkStruct_ov112_0225D2D0 * param0, UnkStruct_ov66_022
 static void ov112_0225D3E0(UnkStruct_ov112_0225D2D0 * param0);
 static void ov112_0225D408(UnkStruct_ov112_0225D44C * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2, u32 param3);
 static void ov112_0225D44C(UnkStruct_ov112_0225D44C * param0);
-static void ov112_0225D460(UnkStruct_ov112_0225D44C * param0, const UnkStruct_02023790 * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4);
+static void ov112_0225D460(UnkStruct_ov112_0225D44C * param0, const Strbuf *param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4);
 static void ov112_0225D4DC(UnkStruct_ov112_0225D44C * param0);
 static BOOL ov112_0225D4E4(UnkStruct_ov112_0225D44C * param0);
 static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C * param0, UnkStruct_0205AA50 * param1);
@@ -1068,7 +1068,7 @@ static void ov112_0225D44C (UnkStruct_ov112_0225D44C * param0)
     sub_0201A8FC(&param0->unk_0C);
 }
 
-static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const UnkStruct_02023790 * param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4)
+static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4)
 {
     sub_02023810(param0->unk_08, param1);
 

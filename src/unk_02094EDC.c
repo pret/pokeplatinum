@@ -632,7 +632,7 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
     }
 
     {
-        UnkStruct_02023790 * v3, * v4;
+        Strbuf* v3, * v4;
         UnkStruct_0200B144 * v5;
 
         v5 = sub_0200B144(1, 26, 205, param2);

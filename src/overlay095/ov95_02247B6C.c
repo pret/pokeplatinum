@@ -58,8 +58,8 @@ typedef struct {
     UnkStruct_ov95_02247568 unk_44;
     UnkStruct_02018340 * unk_54;
     UnkStruct_0205AA50 unk_58;
-    UnkStruct_02023790 * unk_68;
-    UnkStruct_02023790 * unk_6C;
+    Strbuf* unk_68;
+    Strbuf* unk_6C;
     UnkStruct_ov95_0224773C * unk_70;
     UnkStruct_ov95_02247958 * unk_74;
     UnkStruct_0201CD38 * unk_78;

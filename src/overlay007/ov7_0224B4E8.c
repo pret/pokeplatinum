@@ -44,10 +44,10 @@ typedef struct {
     UnkStruct_02013A04 * unk_08;
     UnkStruct_02013A04 * unk_0C;
     UnkStruct_0203CDB0 * unk_10;
-    UnkStruct_02023790 * unk_14;
-    UnkStruct_02023790 * unk_18;
-    UnkStruct_02023790 * unk_1C;
-    UnkStruct_02023790 * unk_20;
+    Strbuf* unk_14;
+    Strbuf* unk_18;
+    Strbuf* unk_1C;
+    Strbuf* unk_20;
     UnkStruct_0205AA50 unk_24;
     UnkStruct_0205AA50 unk_34;
     UnkStruct_0205AA50 unk_44;
@@ -324,8 +324,8 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 {
     UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1 = param0->unk_64;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v2;
+    Strbuf* v3;
     UnkStruct_0205AA50 * v4;
     int v5, v6, v7, v8;
     const int v9 = 16;

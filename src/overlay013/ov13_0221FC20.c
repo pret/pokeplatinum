@@ -1602,7 +1602,7 @@ static void ov13_02221738 (UnkStruct_ov13_022213F0 * param0, u8 param1)
 static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
 {
     UnkStruct_ov13_02221ED0 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_04[param0->unk_00->unk_11];
 

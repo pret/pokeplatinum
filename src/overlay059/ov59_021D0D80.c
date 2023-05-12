@@ -91,7 +91,7 @@ static void ov59_021D26D8(UnkStruct_020961E8 * param0);
 static int ov59_021D23FC(void);
 static int ov59_021D2528(void);
 static void ov59_021D2524(UnkStruct_020961E8 * param0);
-static void ov59_021D1784(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2);
+static void ov59_021D1784(UnkStruct_0205AA50 * param0, Strbuf *param1, int param2);
 static void ov59_021D19B0(UnkStruct_020961E8 * param0, int param1);
 static void ov59_021D26E8(UnkStruct_020961E8 * param0);
 static void ov59_021D27FC(UnkStruct_020961E8 * param0, NARC * param1);
@@ -706,7 +706,7 @@ static void ov59_021D16A0 (UnkStruct_020961E8 * param0, UnkStruct_020067E8 * par
     }
 }
 
-static void ov59_021D1784 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2)
+static void ov59_021D1784 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2)
 {
     int v0 = sub_02002D7C(1, param1, 0);
     int v1 = (26 * 8 - v0) / 2;
@@ -1471,7 +1471,7 @@ static int ov59_021D23FC (void)
 static BOOL ov59_021D2418 (UnkStruct_0205AA50 * param0, int param1, u32 param2, UnkStruct_020961E8 * param3)
 {
     int v0, v1 = sub_0203608C();
-    UnkStruct_02023790 * v2 = NULL;
+    Strbuf* v2 = NULL;
 
     if (!ov59_021D254C(param3)) {
         return 0;
@@ -1572,7 +1572,7 @@ static BOOL ov59_021D254C (UnkStruct_020961E8 * param0)
 
 static void ov59_021D2628 (UnkStruct_020961E8 * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_02023790((90 * 2), 51);
 

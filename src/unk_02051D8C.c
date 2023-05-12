@@ -160,7 +160,7 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
     UnkStruct_0200B144 * v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     UnkStruct_ov6_02240D5C * v4;
     Pokemon * v5;
 

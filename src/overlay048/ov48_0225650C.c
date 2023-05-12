@@ -157,7 +157,7 @@ static void ov48_022565A8 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov48_02256650 (UnkStruct_ov48_0225650C * param0, u32 param1)
 {
     UnkStruct_0205AA50 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v1 = sub_0200B010(26, 459, 0, 8);
 

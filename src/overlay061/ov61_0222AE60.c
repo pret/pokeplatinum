@@ -32,7 +32,7 @@ void ov61_0222AE80 (const UnkStruct_ov61_0222AE80 * param0, UnkStruct_02029C68 *
 
 void ov61_0222AE88 (UnkStruct_021C0794 * param0, const UnkStruct_020797DC * param1, int param2, UnkStruct_ov62_02239DA4 * param3, int param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1;
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));

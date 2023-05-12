@@ -39,7 +39,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C * param0);
 
 static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1;
     UnkStruct_0205AA50 * v2 = &param0->unk_8A4;
 

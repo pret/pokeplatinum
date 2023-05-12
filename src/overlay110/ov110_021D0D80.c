@@ -59,8 +59,8 @@ typedef struct {
     UnkStruct_0205AA50 unk_10[16];
     UnkStruct_0200B144 * unk_110;
     UnkStruct_0200B358 * unk_114;
-    UnkStruct_02023790 * unk_118;
-    UnkStruct_02023790 * unk_11C;
+    Strbuf* unk_118;
+    Strbuf* unk_11C;
     UnkStruct_02002F38 * unk_120;
     const UnkStruct_020279FC * unk_124;
     UnkStruct_021C0794 * unk_128;
@@ -1230,7 +1230,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = sub_0200B144(1, 26, 412, 114);
     v1 = sub_0200B1EC(v0, param0->unk_08);

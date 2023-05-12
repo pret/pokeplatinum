@@ -1069,7 +1069,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
     sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {
-        UnkStruct_02023790 * v1;
+        Strbuf* v1;
         int v2;
 
         param0->unk_24 = sub_0201A778(75, 1);

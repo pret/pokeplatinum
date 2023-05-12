@@ -263,7 +263,7 @@ void sub_0208FEA4 (UnkStruct_0208D7BC * param0)
 void sub_0208FF3C (UnkStruct_0208D7BC * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_04[33];
 
@@ -285,7 +285,7 @@ void sub_0208FF3C (UnkStruct_0208D7BC * param0)
 
 void sub_0208FFE0 (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0201ADA4(&param0->unk_04[32], 0);
 
@@ -356,7 +356,7 @@ static void sub_02090158 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u
 
 static void sub_02090184 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u8 param3, u8 param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_0200B1EC(param0->unk_688, param1);
     sub_0200B60C(param0->unk_690, 0, param2, param3, param4, 1);
@@ -564,7 +564,7 @@ static void sub_02090800 (UnkStruct_0205AA50 * param0, Pokemon * param1, BOOL pa
 
 static void sub_020908CC (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0201A9A4(&param0->unk_04[1]);
     sub_0201ADA4(&param0->unk_244[0], 0);
@@ -627,7 +627,7 @@ static void sub_0209093C (UnkStruct_0208D7BC * param0)
 
     {
         UnkStruct_0200B144 * v1;
-        UnkStruct_02023790 * v2;
+        Strbuf* v2;
 
         sub_0200B6A0(param0->unk_690, 0, param0->unk_250.unk_32);
 
@@ -772,7 +772,7 @@ static void sub_02090EC8 (UnkStruct_0208D7BC * param0)
 
 void sub_02090F84 (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u8 v1;
     u8 v2;
 
@@ -827,7 +827,7 @@ void sub_020910E4 (UnkStruct_0208D7BC * param0)
 static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
     u16 v3;
     u8 v4, v5;

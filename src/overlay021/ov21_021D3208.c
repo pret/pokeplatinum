@@ -556,7 +556,7 @@ int ov21_021D3908 (const UnkStruct_ov21_021D3320 * param0)
     return param0->unk_173C;
 }
 
-UnkStruct_02023790 * ov21_021D3914 (const UnkStruct_ov21_021D3320 * param0)
+Strbuf* ov21_021D3914 (const UnkStruct_ov21_021D3320 * param0)
 {
     return param0->unk_1754;
 }

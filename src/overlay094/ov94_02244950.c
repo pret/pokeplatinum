@@ -71,7 +71,7 @@ static int ov94_022451DC(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_022451EC(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02245540(UnkStruct_ov94_0223FD4C * param0);
 static int ov94_02245564(UnkStruct_ov94_0223FD4C * param0);
-static int ov94_02245894(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, u32 param4, int param5);
+static int ov94_02245894(UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, u32 param4, int param5);
 
 static int (* Unk_ov94_02246A40[])(UnkStruct_ov94_0223FD4C *) = {
     ov94_02244F8C,
@@ -908,7 +908,7 @@ static int ov94_022457F0 (UnkStruct_ov94_0223FD4C * param0)
 
 void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, UnkStruct_0200B144 * param1, int param2, int param3, u16 param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_0200B1EC(param1, param2);
 
@@ -921,7 +921,7 @@ void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, UnkStruct_0200B144 * param
     param0->unk_10E0 = 0;
 }
 
-static int ov94_02245894 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, u32 param4, int param5)
+static int ov94_02245894 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, u32 param4, int param5)
 {
     int v0 = 0, v1;
 
@@ -939,13 +939,13 @@ static int ov94_02245894 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * para
     return param2;
 }
 
-void ov94_022458CC (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, int param4, u32 param5)
+void ov94_022458CC (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 1);
     sub_0201D78C(param0, 1, param1, param2, param3, 0, param5, NULL);
 }
 
-void ov94_02245900 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, int param4, u32 param5)
+void ov94_02245900 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov94_02245894(param0, param1, param2, param4, param5, 0);
     sub_0201D78C(param0, 0, param1, param2, param3, 0, param5, NULL);
@@ -958,7 +958,7 @@ void ov94_02245934 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((16 * 8 * 2), 62);
+    Strbuf* v0 = sub_02023790((16 * 8 * 2), 62);
 
     sub_0200B1B8(param0->unk_B9C, param1, v0);
     sub_0200C388(param0->unk_B8C, param0->unk_BDC, v0);

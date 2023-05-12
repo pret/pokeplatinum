@@ -223,7 +223,7 @@ static u8 sub_02084B70 (u16 param0)
 static void sub_02084E58 (UnkStruct_0207F248 * param0, u16 param1, u32 param2)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
@@ -477,7 +477,7 @@ static int sub_020855C4 (void * param0)
 {
     UnkStruct_0207F248 * v0;
     Pokemon * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     u32 v3;
     u32 v4;
 
@@ -571,7 +571,7 @@ static u8 sub_020857C0 (UnkStruct_0207F248 * param0, u8 param1)
 int sub_02085804 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
     u8 v3;
 
@@ -661,7 +661,7 @@ static int sub_02085A70 (void * param0)
 {
     UnkStruct_0207F248 * v0;
     Pokemon * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     u32 v3;
     u32 v4;
 
@@ -714,7 +714,7 @@ static int sub_02085C50 (void * param0)
 {
     UnkStruct_0207F248 * v0;
     Pokemon * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     v0 = param0;
 
@@ -828,7 +828,7 @@ static int sub_02085C50 (void * param0)
 int sub_02085EF4 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     param0->unk_B00 = sub_02085C50;
     param0->unk_B13 = 3;
@@ -856,7 +856,7 @@ int sub_02085EF4 (UnkStruct_0207F248 * param0)
 static int sub_02085FB4 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 59);
@@ -874,7 +874,7 @@ static int sub_02085FB4 (void * param0)
 static int sub_02086008 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 55);
@@ -893,7 +893,7 @@ static int sub_02086008 (void * param0)
 static int sub_02086060 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 58);
@@ -911,7 +911,7 @@ static int sub_02086060 (void * param0)
 static int sub_020860AC (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 52);
@@ -958,7 +958,7 @@ u8 sub_02086104 (UnkStruct_0207F248 * param0, Pokemon * param1)
 int sub_0208615C (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -1015,7 +1015,7 @@ int sub_0208615C (UnkStruct_0207F248 * param0)
 int sub_020862F8 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
     sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
@@ -1038,7 +1038,7 @@ int sub_020862F8 (UnkStruct_0207F248 * param0)
 int sub_020863A0 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -1062,7 +1062,7 @@ int sub_020863A0 (UnkStruct_0207F248 * param0)
 static int sub_02086438 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 59);
@@ -1080,7 +1080,7 @@ static int sub_02086438 (void * param0)
 static int sub_0208648C (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 55);
@@ -1099,7 +1099,7 @@ static int sub_0208648C (void * param0)
 static int sub_020864E4 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 58);
@@ -1117,7 +1117,7 @@ static int sub_020864E4 (void * param0)
 static int sub_02086538 (void * param0)
 {
     UnkStruct_0207F248 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = param0;
     v1 = sub_0200B1EC(v0->unk_69C, 52);
@@ -1158,7 +1158,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
 static u8 sub_02086614 (UnkStruct_0207F248 * param0, u8 param1)
 {
     Pokemon * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u16 v2;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);

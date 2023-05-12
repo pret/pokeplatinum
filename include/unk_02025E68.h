@@ -10,10 +10,10 @@ void sub_02025E80(const UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1
 void sub_02025E8C(UnkStruct_02025E6C * param0);
 BOOL sub_02025EA8(const UnkStruct_02025E6C * param0);
 void sub_02025EC0(UnkStruct_02025E6C * param0, const u16 * param1);
-void sub_02025EE0(UnkStruct_02025E6C * param0, const UnkStruct_02023790 * param1);
+void sub_02025EE0(UnkStruct_02025E6C * param0, const Strbuf *param1);
 const u16 * sub_02025EF0(const UnkStruct_02025E6C * param0);
-void sub_02025EF4(const UnkStruct_02025E6C * param0, UnkStruct_02023790 * param1);
-UnkStruct_02023790 * sub_02025F04(const UnkStruct_02025E6C * param0, int param1);
+void sub_02025EF4(const UnkStruct_02025E6C * param0, Strbuf *param1);
+Strbuf* sub_02025F04(const UnkStruct_02025E6C * param0, int param1);
 void sub_02025F1C(UnkStruct_02025E6C * param0, u32 param1);
 u32 sub_02025F20(const UnkStruct_02025E6C * param0);
 u16 sub_02025F24(const UnkStruct_02025E6C * param0);

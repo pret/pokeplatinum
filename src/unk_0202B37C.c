@@ -75,7 +75,7 @@ const u16 * sub_0202B42C (const UnkStruct_0202B4A0 * param0, int param1, int par
     return param0->unk_00[param1].unk_10;
 }
 
-void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, UnkStruct_02023790 * param3)
+void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, Strbuf *param3)
 {
     u16 * v0;
 

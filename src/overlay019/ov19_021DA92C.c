@@ -400,7 +400,7 @@ static void ov19_021DAE2C (UnkStruct_ov19_021DAE2C * param0)
 
 static void ov19_021DAE60 (UnkStruct_0205AA50 * param0, UnkStruct_ov19_021DA9E0 * param1, u32 param2, u32 param3)
 {
-    const UnkStruct_02023790 * v0;
+    const Strbuf* v0;
     u32 v1;
 
     v1 = (param3 * 16) + 0;

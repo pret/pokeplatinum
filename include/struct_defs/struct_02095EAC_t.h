@@ -25,9 +25,9 @@ struct UnkStruct_02095EAC_t {
     UnkStruct_0203DDFC * unk_08;
     UnkStruct_0200B358 * unk_0C;
     UnkStruct_0200B144 * unk_10;
-    UnkStruct_02023790 * unk_14[5];
-    UnkStruct_02023790 * unk_28;
-    UnkStruct_02023790 * unk_2C;
+    Strbuf* unk_14[5];
+    Strbuf* unk_28;
+    Strbuf* unk_2C;
     int unk_30;
     UnkStruct_020218BC * unk_34;
     UnkStruct_0200C738 unk_38;

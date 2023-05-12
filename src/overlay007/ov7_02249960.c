@@ -48,7 +48,7 @@ typedef void (* UnkFuncPtr_ov7_02249C2C)(UnkStruct_0201CD38 *, void *);
 typedef void (* UnkFuncPtr_ov7_02249C2C_1)(UnkStruct_ov7_02249C2C *);
 
 typedef struct UnkStruct_ov7_02249C2C_t {
-    UnkStruct_02023790 * unk_00[8];
+    Strbuf* unk_00[8];
     UnkStruct_0205AA50 unk_20;
     UnkStruct_0205AA50 unk_30;
     UnkStruct_0205AA50 unk_40;

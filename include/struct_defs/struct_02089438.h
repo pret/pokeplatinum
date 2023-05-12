@@ -8,7 +8,7 @@ typedef struct {
     int unk_00;
     int unk_04[5];
     int unk_18;
-    UnkStruct_02023790 * unk_1C;
+    Strbuf* unk_1C;
     UnkStruct_020279FC * unk_20;
     int unk_24;
     u32 unk_28;

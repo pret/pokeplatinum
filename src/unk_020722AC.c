@@ -70,7 +70,7 @@ typedef struct {
     u8 unk_04;
     u8 unk_05;
     u16 unk_06;
-    UnkStruct_02023790 * unk_08;
+    Strbuf* unk_08;
 } UnkStruct_02072EB8;
 
 typedef struct {
@@ -80,10 +80,10 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0200B358 * unk_00;
-    UnkStruct_02023790 * unk_04;
-    UnkStruct_02023790 * unk_08;
-    UnkStruct_02023790 * unk_0C;
-    UnkStruct_02023790 * unk_10[6];
+    Strbuf* unk_04;
+    Strbuf* unk_08;
+    Strbuf* unk_0C;
+    Strbuf* unk_10[6];
 } UnkStruct_02072334_sub1;
 
 typedef struct {
@@ -1031,7 +1031,7 @@ static void sub_02073130 (UnkStruct_02072334 * param0)
 {
     UnkStruct_0200B144 * v0;
     int v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     param0->unk_10C = sub_0200B144(1, 26, 408, param0->unk_00);
     param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
@@ -1084,7 +1084,7 @@ static void sub_02073294 (UnkStruct_02072334 * param0)
 
 static void sub_020732C4 (UnkStruct_02072334 * param0, int param1, u8 param2, u8 param3, int param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     if (param4) {
         sub_0200E060(&param0->unk_184, 1, (1024 - (18 + 12)), 10);
