@@ -7,74 +7,82 @@
 #include "unk_02023790.h"
 
 struct Strbuf_t {
-    u16 unk_00;
-    u16 unk_02;
-    u32 unk_04;
-    u16 unk_08[1];
+    u16 maxsize;
+    u16 size;
+    u32 magic;
+    u16 data[1];
 };
 
-Strbuf* sub_02023790 (u32 param0, u32 param1)
+#define SIZEOF_STRBUF_HEADER    (sizeof(Strbuf) - sizeof(u16))
+#define STRBUF_MAGIC            (0xB6F8D2EC)
+
+static inline void Strbuf_Check(const Strbuf *strbuf)
 {
-    Strbuf* v0;
+    GF_ASSERT(strbuf != NULL);
+    GF_ASSERT(strbuf->magic == STRBUF_MAGIC);
+}
 
-    v0 = Heap_AllocFromHeap(param1, (sizeof(Strbuf) - sizeof(u16)) + sizeof(u16) * param0);
+Strbuf* sub_02023790(u32 size, u32 heapID)  // Strbuf_Init
+{
+    Strbuf *strbuf;
 
-    if (v0) {
-        v0->unk_04 = 0xb6f8d2ec;
-        v0->unk_00 = param0;
-        v0->unk_02 = 0;
-        v0->unk_08[0] = 0xffff;
+    strbuf = Heap_AllocFromHeap(heapID, SIZEOF_STRBUF_HEADER + sizeof(u16) * size);
+
+    if (strbuf) {
+        strbuf->magic = STRBUF_MAGIC;
+        strbuf->maxsize = size;
+        strbuf->size = 0;
+        strbuf->data[0] = 0xffff;
     }
 
-    return v0;
+    return strbuf;
 }
 
-void sub_020237BC (Strbuf *param0)
+void sub_020237BC(Strbuf *strbuf)  // Strbuf_Free
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(strbuf);
 
-    param0->unk_04 = 0xb6f8d2ec + 1;
-    Heap_FreeToHeap(param0);
+    strbuf->magic = STRBUF_MAGIC + 1;
+    Heap_FreeToHeap(strbuf);
 }
 
-void sub_020237E8 (Strbuf *param0)
+void sub_020237E8(Strbuf *strbuf)  // Strbuf_Clear
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(strbuf);
 
-    param0->unk_02 = 0;
-    param0->unk_08[0] = 0xffff;
+    strbuf->size = 0;
+    strbuf->data[0] = 0xffff;
 }
 
-void sub_02023810 (Strbuf *param0, const Strbuf *param1)
+void sub_02023810(Strbuf *dst, const Strbuf *src)    // Strbuf_Copy
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
-    GF_ASSERT((param1) != NULL); GF_ASSERT((param1)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(dst);
+    Strbuf_Check(src);
 
-    if (param0->unk_00 > param1->unk_02) {
-        memcpy(param0->unk_08, param1->unk_08, (param1->unk_02 + 1) * sizeof(u16));
-        param0->unk_02 = param1->unk_02;
+    if (dst->maxsize > src->size) {
+        memcpy(dst->data, src->data, (src->size + 1) * sizeof(u16));
+        dst->size = src->size;
         return;
     }
 
     GF_ASSERT(0);
 }
 
-Strbuf* sub_02023868 (const Strbuf *param0, u32 param1)
+Strbuf* sub_02023868(const Strbuf *src, u32 heapID) // Strbuf_Clone
 {
-    Strbuf* v0;
+    Strbuf_Check(src);
 
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf *strbuf = sub_02023790(src->size + 1, heapID);
 
-    v0 = sub_02023790(param0->unk_02 + 1, param1);
-
-    if (v0) {
-        sub_02023810(v0, param0);
+    if (strbuf) {
+        sub_02023810(strbuf, src);
     }
 
-    return v0;
+    return strbuf;
 }
 
-void sub_020238A0 (Strbuf *param0, int param1, u32 param2, int param3, int param4)
+// Strbuf_From32
+void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, int charWidth)
 {
     static const u32 v0[] = {
         1,
@@ -113,46 +121,47 @@ void sub_020238A0 (Strbuf *param0, int param1, u32 param2, int param3, int param
         0x129,
         0x12a
     };
+    
+    Strbuf_Check(dst);
 
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    v1 = (num < 0);
 
-    v1 = (param1 < 0);
-
-    if (param0->unk_00 > (param2 + v1)) {
+    if (dst->maxsize > (maxDigits + v1)) {
         u32 v4, v5, v6;
-        const u16 * v7 = (param4 == 0) ? v2 : v3;
+        const u16 * v7 = (charWidth == 0) ? v2 : v3;
 
-        sub_020237E8(param0);
+        sub_020237E8(dst);
 
         if (v1) {
-            param1 *= -1;
-            param0->unk_08[param0->unk_02++] = (param4 == 0) ? 0xf1 : 0x1be;
+            num *= -1;
+            dst->data[dst->size++] = (charWidth == 0) ? 0xf1 : 0x1be;
         }
 
-        for (v6 = v0[param2 - 1]; v6 > 0; v6 /= 10) {
-            v5 = (u16)(param1 / v6);
-            v4 = (u32)(param1 - (v6 * v5));
+        for (v6 = v0[maxDigits - 1]; v6 > 0; v6 /= 10) {
+            v5 = (u16)(num / v6);
+            v4 = (u32)(num - (v6 * v5));
 
-            if (param3 == 2) {
-                param0->unk_08[param0->unk_02++] = (v5 < 10) ? v7[v5] : 0xe2;
+            if (paddingMode == 2) {
+                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
             } else if ((v5 != 0) || (v6 == 1)) {
-                param3 = 2;
-                param0->unk_08[param0->unk_02++] = (v5 < 10) ? v7[v5] : 0xe2;
-            } else if (param3 == 1) {
-                param0->unk_08[param0->unk_02++] = (param4 == 0) ? 0x1 : 0x1e2;
+                paddingMode = 2;
+                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
+            } else if (paddingMode == 1) {
+                dst->data[dst->size++] = (charWidth == 0) ? 0x1 : 0x1e2;
             }
 
-            param1 = v4;
+            num = v4;
         }
 
-        param0->unk_08[param0->unk_02] = 0xffff;
+        dst->data[dst->size] = 0xffff;
         return;
     }
 
     GF_ASSERT(0);
 }
 
-void sub_020239D4 (Strbuf *param0, u64 param1, u32 param2, int param3, int param4)
+// Strbuf_From64
+void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int charWidth)
 {
     static const u64 v0[] = {
         1,
@@ -201,46 +210,47 @@ void sub_020239D4 (Strbuf *param0, u64 param1, u32 param2, int param3, int param
         0x129,
         0x12a
     };
+    
+    Strbuf_Check(dst);
 
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    v1 = (num < 0);
 
-    v1 = (param1 < 0);
-
-    if (param0->unk_00 > (param2 + v1)) {
+    if (dst->maxsize > (maxDigits + v1)) {
         u64 v4, v5, v6;
-        const u16 * v7 = (param4 == 0) ? v2 : v3;
+        const u16 * v7 = (charWidth == 0) ? v2 : v3;
 
-        sub_020237E8(param0);
+        sub_020237E8(dst);
 
         if (v1) {
-            param1 *= -1;
-            param0->unk_08[param0->unk_02++] = (param4 == 0) ? 0xf1 : 0x1be;
+            num *= -1;
+            dst->data[dst->size++] = (charWidth == 0) ? 0xf1 : 0x1be;
         }
 
-        for (v6 = v0[param2 - 1]; v6 > 0; v6 /= 10) {
-            v5 = (u64)(param1 / v6);
-            v4 = (u64)(param1 - (v6 * v5));
+        for (v6 = v0[maxDigits - 1]; v6 > 0; v6 /= 10) {
+            v5 = (u64)(num / v6);
+            v4 = (u64)(num - (v6 * v5));
 
-            if (param3 == 2) {
-                param0->unk_08[param0->unk_02++] = (v5 < 10) ? v7[v5] : 0xe2;
+            if (paddingMode == 2) {
+                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
             } else if ((v5 != 0) || (v6 == 1)) {
-                param3 = 2;
-                param0->unk_08[param0->unk_02++] = (v5 < 10) ? v7[v5] : 0xe2;
-            } else if (param3 == 1) {
-                param0->unk_08[param0->unk_02++] = (param4 == 0) ? 0x1 : 0x1de;
+                paddingMode = 2;
+                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
+            } else if (paddingMode == 1) {
+                dst->data[dst->size++] = (charWidth == 0) ? 0x1 : 0x1de;
             }
 
-            param1 = v4;
+            num = v4;
         }
 
-        param0->unk_08[param0->unk_02] = 0xffff;
+        dst->data[dst->size] = 0xffff;
         return;
     }
 
     GF_ASSERT(0);
 }
 
-u64 sub_02023B38 (const Strbuf *param0, BOOL * param1)
+// Strbuf_ToInt
+u64 sub_02023B38(const Strbuf *src, BOOL *success)
 {
     u64 v0 = 0, v1 = 0, v2 = 1;
     int v3;
@@ -248,19 +258,19 @@ u64 sub_02023B38 (const Strbuf *param0, BOOL * param1)
     u16 v5 = 0xa2;
     u16 v6 = 0x121;
 
-    if (param0->unk_02 > 18) {
+    if (src->size > 18) {
         return 0;
     }
 
-    for (v3 = (param0->unk_02 - 1); v3 >= 0; v3--) {
-        v4 = param0->unk_08[v3];
+    for (v3 = (src->size - 1); v3 >= 0; v3--) {
+        v4 = src->data[v3];
         v0 = v4 - v5;
 
         if (v0 >= 10) {
             v0 = v4 - v6;
 
             if (v0 >= 10) {
-                *param1 = 0;
+                *success = 0;
                 return v1;
             }
         }
@@ -270,20 +280,21 @@ u64 sub_02023B38 (const Strbuf *param0, BOOL * param1)
         v2 *= 10;
     }
 
-    *param1 = 1;
+    *success = 1;
     return v1;
 }
 
-int sub_02023BE0 (const Strbuf *param0, const Strbuf *param1)
+// Strbuf_Compare
+int sub_02023BE0(const Strbuf *strbuf1, const Strbuf *strbuf2)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
-    GF_ASSERT((param1) != NULL); GF_ASSERT((param1)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(strbuf1);    
+    Strbuf_Check(strbuf2);
 
     {
         int v0;
 
-        for (v0 = 0; param0->unk_08[v0] == param1->unk_08[v0]; v0++) {
-            if (param0->unk_08[v0] == 0xffff) {
+        for (v0 = 0; strbuf1->data[v0] == strbuf2->data[v0]; v0++) {
+            if (strbuf1->data[v0] == 0xffff) {
                 return 0;
             }
         }
@@ -292,22 +303,24 @@ int sub_02023BE0 (const Strbuf *param0, const Strbuf *param1)
     }
 }
 
-u32 sub_02023C3C (const Strbuf *param0)
+// Strbuf_Size
+u32 sub_02023C3C(const Strbuf *strbuf)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
-    return param0->unk_02;
+    Strbuf_Check(strbuf);
+    return strbuf->size;
 }
 
-u32 sub_02023C5C (const Strbuf *param0)
+// Strbuf_NumLines
+u32 sub_02023C5C(const Strbuf *strbuf)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(strbuf);
 
     {
         int v0;
         u32 v1;
 
-        for (v0 = 0, v1 = 1; v0 < param0->unk_02; v0++) {
-            if (param0->unk_08[v0] == 0xe000) {
+        for (v0 = 0, v1 = 1; v0 < strbuf->size; v0++) {
+            if (strbuf->data[v0] == 0xe000) {
                 v1++;
             }
         }
@@ -316,18 +329,19 @@ u32 sub_02023C5C (const Strbuf *param0)
     }
 }
 
-void sub_02023C9C (Strbuf *param0, const Strbuf *param1, u32 param2)
+// Strbuf_CopyLineNum
+void sub_02023C9C(Strbuf *dst, const Strbuf *src, u32 linenum)
 {
-    GF_ASSERT((param1) != NULL); GF_ASSERT((param1)->unk_04 == 0xb6f8d2ec);;
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(src);
+    Strbuf_Check(dst);
 
     {
         int v0 = 0;
 
-        if (param2) {
-            for (v0 = 0; v0 < param1->unk_02; v0++) {
-                if (param1->unk_08[v0] == 0xe000) {
-                    if (--param2 == 0) {
+        if (linenum) {
+            for (v0 = 0; v0 < src->size; v0++) {
+                if (src->data[v0] == 0xe000) {
+                    if (--linenum == 0) {
                         v0++;
                         break;
                     }
@@ -335,55 +349,57 @@ void sub_02023C9C (Strbuf *param0, const Strbuf *param1, u32 param2)
             }
         }
 
-        sub_020237E8(param0);
+        sub_020237E8(dst);
 
-        for ( ; v0 < param1->unk_02; v0++) {
-            if (param1->unk_08[v0] == 0xe000) {
+        for ( ; v0 < src->size; v0++) {
+            if (src->data[v0] == 0xe000) {
                 break;
             }
 
-            sub_02023EB0(param0, param1->unk_08[v0]);
+            sub_02023EB0(dst, src->data[v0]);
         }
     }
 }
 
-void sub_02023D28 (Strbuf *param0, const u16 * param1)
+// Strbuf_CopyChars
+void sub_02023D28(Strbuf *dst, const u16 *src)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(dst);
 
-    param0->unk_02 = 0;
+    dst->size = 0;
 
-    while (*param1 != 0xffff) {
-        if (param0->unk_02 >= (param0->unk_00 - 1)) {
+    while (*src != 0xffff) {
+        if (dst->size >= (dst->maxsize - 1)) {
             GF_ASSERT(0);
             break;
         }
 
-        param0->unk_08[param0->unk_02++] = *param1++;
+        dst->data[dst->size++] = *src++;
     }
 
-    param0->unk_08[param0->unk_02] = 0xffff;
+    dst->data[dst->size] = 0xffff;
 }
 
-void sub_02023D8C (Strbuf *param0, const u16 * param1, u32 param2)
+// Strbuf_CopyNumChars
+void sub_02023D8C(Strbuf *dst, const u16 *src, u32 num)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(dst);
 
-    if (param2 <= param0->unk_00) {
+    if (num <= dst->maxsize) {
         u32 v0;
 
-        memcpy(param0->unk_08, param1, param2 * sizeof(u16));
+        memcpy(dst->data, src, num * sizeof(u16));
 
-        for (v0 = 0; v0 < param2; v0++) {
-            if (param0->unk_08[v0] == 0xffff) {
+        for (v0 = 0; v0 < num; v0++) {
+            if (dst->data[v0] == 0xffff) {
                 break;
             }
         }
 
-        param0->unk_02 = v0;
+        dst->size = v0;
 
-        if (v0 == param2) {
-            param0->unk_08[param2 - 1] = 0xffff;
+        if (v0 == num) {
+            dst->data[num - 1] = 0xffff;
         }
 
         return;
@@ -392,62 +408,69 @@ void sub_02023D8C (Strbuf *param0, const u16 * param1, u32 param2)
     GF_ASSERT(0);
 }
 
-void sub_02023DF0 (const Strbuf *param0, u16 * param1, u32 param2)
+// Strbuf_ToChars
+void sub_02023DF0(const Strbuf *src, u16 *dst, u32 dstsize)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(src);
 
-    if ((param0->unk_02 + 1) <= param2) {
-        memcpy(param1, param0->unk_08, (param0->unk_02 + 1) * sizeof(u16));
+    if ((src->size + 1) <= dstsize) {
+        memcpy(dst, src->data, (src->size + 1) * sizeof(u16));
         return;
     }
 
     GF_ASSERT(0);
 }
 
-const u16 * sub_02023E2C (const Strbuf *param0)
+// Strbuf_GetData
+const u16* sub_02023E2C(const Strbuf *src)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
-    return param0->unk_08;
+    Strbuf_Check(src);
+
+    return src->data;
 }
 
-void sub_02023E4C (Strbuf *param0, const Strbuf *param1)
+// Strbuf_Concat
+void sub_02023E4C(Strbuf *dst, const Strbuf *src)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
-    GF_ASSERT((param1) != NULL); GF_ASSERT((param1)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(dst);
+    Strbuf_Check(src);
 
-    if ((param0->unk_02 + param1->unk_02 + 1) <= param0->unk_00) {
-        memcpy(&(param0->unk_08[param0->unk_02]), param1->unk_08, (param1->unk_02 + 1) * sizeof(u16));
-        param0->unk_02 += param1->unk_02;
+    if ((dst->size + src->size + 1) <= dst->maxsize) {
+        memcpy(&(dst->data[dst->size]), src->data, (src->size + 1) * sizeof(u16));
+        dst->size += src->size;
         return;
     }
 
     GF_ASSERT(0);
 }
 
-void sub_02023EB0 (Strbuf *param0, u16 param1)
+// Strbuf_Append
+void sub_02023EB0(Strbuf *dst, u16 c)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(dst);
 
-    if ((param0->unk_02 + 1) < param0->unk_00) {
-        param0->unk_08[param0->unk_02++] = param1;
-        param0->unk_08[param0->unk_02] = 0xffff;
+    if ((dst->size + 1) < dst->maxsize) {
+        dst->data[dst->size++] = c;
+        dst->data[dst->size] = 0xffff;
         return;
     }
 
     GF_ASSERT(0);
 }
 
-BOOL sub_02023EF8 (Strbuf *param0)
+// Strbuf_IsCompressed
+BOOL sub_02023EF8(Strbuf *strbuf)
 {
-    return (param0->unk_02 > 0) && (param0->unk_08[0] == 0xF100);
+    return (strbuf->size > 0) && (strbuf->data[0] == 0xF100); // COMPRESSED_LEADER
 }
 
-void sub_02023F10 (Strbuf *param0, Strbuf *param1)
+// Strbuf_ConcatCompressed
+void sub_02023F10(Strbuf *strbuf1, Strbuf *strbuf2)
 {
-    if (sub_02023EF8(param1)) {
+    if (sub_02023EF8(strbuf2)) {
         u32 v0;
-        u16 * v1 = &param0->unk_08[param0->unk_02];
-        u16 * v2 = &param1->unk_08[1];
+        u16 * v1 = &strbuf1->data[strbuf1->size];
+        u16 * v2 = &strbuf2->data[1];
         s32 v3 = 0;
         s32 v4 = 0;
 
@@ -475,21 +498,22 @@ void sub_02023F10 (Strbuf *param0, Strbuf *param1)
         } while (TRUE);
 
         *v1 = 0xffff;
-        param0->unk_02 += v4;
+        strbuf1->size += v4;
     } else {
-        sub_02023E4C(param0, param1);
+        sub_02023E4C(strbuf1, strbuf2);
     }
 }
 
-void sub_02023F8C (Strbuf *param0, int param1)
+// Strbuf_Capitalize
+void sub_02023F8C(Strbuf *strbuf, int i)
 {
-    GF_ASSERT((param0) != NULL); GF_ASSERT((param0)->unk_04 == 0xb6f8d2ec);;
+    Strbuf_Check(strbuf);
 
-    if (param0->unk_02 > param1) {
-        u16 v0 = param0->unk_08[param1];
+    if (strbuf->size > i) {
+        u16 v0 = strbuf->data[i];
 
         if ((v0 >= 0x145) && (v0 <= 0x15e)) {
-            param0->unk_08[param1] -= 0x145 - 0x12b;
+            strbuf->data[i] -= 0x145 - 0x12b;
         }
     }
 }
