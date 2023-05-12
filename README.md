@@ -1,6 +1,6 @@
 # Pokémon Platinum
 
-This is a WIP disassembly of Pokémon Platinum.
+This is a WIP decompilation of Pokémon Platinum. For instructions on how to set up the repository, please read [INSTALL.md](INSTALL.md).
 
 This repository builds the following ROMs:
 
