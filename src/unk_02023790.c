@@ -10,10 +10,10 @@ struct Strbuf_t {
     u16 maxsize;
     u16 size;
     u32 magic;
-    u16 data[1];
+    Charcode data[1];
 };
 
-#define SIZEOF_STRBUF_HEADER    (sizeof(Strbuf) - sizeof(u16))
+#define SIZEOF_STRBUF_HEADER    (sizeof(Strbuf) - sizeof(Charcode))
 #define STRBUF_MAGIC            (0xB6F8D2EC)
 
 static inline void Strbuf_Check(const Strbuf *strbuf)
@@ -26,7 +26,7 @@ Strbuf* sub_02023790(u32 size, u32 heapID)  // Strbuf_Init
 {
     Strbuf *strbuf;
 
-    strbuf = Heap_AllocFromHeap(heapID, SIZEOF_STRBUF_HEADER + sizeof(u16) * size);
+    strbuf = Heap_AllocFromHeap(heapID, SIZEOF_STRBUF_HEADER + (size * sizeof(Charcode)));
 
     if (strbuf) {
         strbuf->magic = STRBUF_MAGIC;
@@ -60,7 +60,7 @@ void sub_02023810(Strbuf *dst, const Strbuf *src)    // Strbuf_Copy
     Strbuf_Check(src);
 
     if (dst->maxsize > src->size) {
-        memcpy(dst->data, src->data, (src->size + 1) * sizeof(u16));
+        memcpy(dst->data, src->data, (src->size + 1) * sizeof(Charcode));
         dst->size = src->size;
         return;
     }
@@ -81,10 +81,10 @@ Strbuf* sub_02023868(const Strbuf *src, u32 heapID) // Strbuf_Clone
     return strbuf;
 }
 
-// Strbuf_From32
-void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, int charWidth)
+// Strbuf_FormatInt
+void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, BOOL whichCharset)
 {
-    static const u32 v0[] = {
+    static const u32 sPowersOfTen[] = {
         1,
         10,
         100,
@@ -96,8 +96,7 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, int char
         100000000,
         1000000000
     };
-    int v1;
-    static const u16 v2[] = {
+    static const Charcode sDigits_JP[] = {
         0xa2,
         0xa3,
         0xa4,
@@ -109,7 +108,7 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, int char
         0xaa,
         0xab
     };
-    static const u16 v3[] = {
+    static const Charcode sDigits_EN[] = {
         0x121,
         0x122,
         0x123,
@@ -121,36 +120,36 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, int char
         0x129,
         0x12a
     };
-    
+
     Strbuf_Check(dst);
 
-    v1 = (num < 0);
+    BOOL negative = (num < 0);
 
-    if (dst->maxsize > (maxDigits + v1)) {
-        u32 v4, v5, v6;
-        const u16 * v7 = (charWidth == 0) ? v2 : v3;
+    if (dst->maxsize > (maxDigits + negative)) {
+        const Charcode *digitSet = (whichCharset == 0) ? sDigits_JP : sDigits_EN;
 
         sub_020237E8(dst);
 
-        if (v1) {
+        if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (charWidth == 0) ? 0xf1 : 0x1be;
+            dst->data[dst->size++] = (whichCharset == 0) ? 0xf1 : 0x1be;       // Minus sign, full vs half
         }
 
-        for (v6 = v0[maxDigits - 1]; v6 > 0; v6 /= 10) {
-            v5 = (u16)(num / v6);
-            v4 = (u32)(num - (v6 * v5));
+        u32 div = sPowersOfTen[maxDigits - 1];
+        while (div != 0) {
+            u16 digit = (u16)(num / div);
+            num -= div * digit;
 
             if (paddingMode == 2) {
-                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
-            } else if ((v5 != 0) || (v6 == 1)) {
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0x00E2;
+            } else if (digit != 0 || div == 1) {
                 paddingMode = 2;
-                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0x00E2;
             } else if (paddingMode == 1) {
-                dst->data[dst->size++] = (charWidth == 0) ? 0x1 : 0x1e2;
+                dst->data[dst->size++] = (whichCharset == 0) ? 0x0001 : 0x01E2;
             }
 
-            num = v4;
+            div /= 10;
         }
 
         dst->data[dst->size] = 0xffff;
@@ -160,10 +159,10 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, int char
     GF_ASSERT(0);
 }
 
-// Strbuf_From64
-void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int charWidth)
+// Strbuf_FormatU64
+void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int whichCharset)
 {
-    static const u64 v0[] = {
+    static const u64 sPowersOfTen[] = {
         1,
         10,
         100,
@@ -185,8 +184,7 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int char
         1000000000000000000,
         10000000000000000000
     };
-    int v1;
-    static const u16 v2[] = {
+    static const Charcode sDigits_JP[] = {
         0xa2,
         0xa3,
         0xa4,
@@ -198,7 +196,7 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int char
         0xaa,
         0xab
     };
-    static const u16 v3[] = {
+    static const Charcode sDigits_EN[] = {
         0x121,
         0x122,
         0x123,
@@ -210,36 +208,36 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int char
         0x129,
         0x12a
     };
-    
+
     Strbuf_Check(dst);
 
-    v1 = (num < 0);
+    BOOL negative = (num < 0);
 
-    if (dst->maxsize > (maxDigits + v1)) {
-        u64 v4, v5, v6;
-        const u16 * v7 = (charWidth == 0) ? v2 : v3;
+    if (dst->maxsize > (maxDigits + negative)) {
+        const Charcode *digitSet = (whichCharset == 0) ? sDigits_JP : sDigits_EN;
 
         sub_020237E8(dst);
 
-        if (v1) {
+        if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (charWidth == 0) ? 0xf1 : 0x1be;
+            dst->data[dst->size++] = (whichCharset == 0) ? 0xf1 : 0x1be;
         }
 
-        for (v6 = v0[maxDigits - 1]; v6 > 0; v6 /= 10) {
-            v5 = (u64)(num / v6);
-            v4 = (u64)(num - (v6 * v5));
+        u64 div = sPowersOfTen[maxDigits - 1];
+        while (div != 0) {
+            u64 digit = num / div;
+            num -= div * digit;
 
             if (paddingMode == 2) {
-                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
-            } else if ((v5 != 0) || (v6 == 1)) {
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0xe2;
+            } else if ((digit != 0) || (div == 1)) {
                 paddingMode = 2;
-                dst->data[dst->size++] = (v5 < 10) ? v7[v5] : 0xe2;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0xe2;
             } else if (paddingMode == 1) {
-                dst->data[dst->size++] = (charWidth == 0) ? 0x1 : 0x1de;
+                dst->data[dst->size++] = (whichCharset == 0) ? 0x1 : 0x1de;
             }
 
-            num = v4;
+            div /= 10;
         }
 
         dst->data[dst->size] = 0xffff;
@@ -252,58 +250,49 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int char
 // Strbuf_ToInt
 u64 sub_02023B38(const Strbuf *src, BOOL *success)
 {
-    u64 v0 = 0, v1 = 0, v2 = 1;
-    int v3;
-    u16 v4;
-    u16 v5 = 0xa2;
-    u16 v6 = 0x121;
-
+    u64 ret = 0, pow = 1;
     if (src->size > 18) {
         return 0;
     }
 
-    for (v3 = (src->size - 1); v3 >= 0; v3--) {
-        v4 = src->data[v3];
-        v0 = v4 - v5;
+    for (int i = (src->size - 1); i >= 0; i--) {
+        // JP 0
+        u64 digit = src->data[i] - 0x00A2;
+        if (digit >= 10) {
+            // EN 0
+            digit = src->data[i] - 0x0121;
 
-        if (v0 >= 10) {
-            v0 = v4 - v6;
-
-            if (v0 >= 10) {
+            if (digit >= 10) {
                 *success = 0;
-                return v1;
+                return ret;
             }
         }
 
-        v0 = v0 * v2;
-        v1 += v0;
-        v2 *= 10;
+        digit *= pow;
+        ret += digit;
+        pow *= 10;
     }
 
     *success = 1;
-    return v1;
+    return ret;
 }
 
 // Strbuf_Compare
-int sub_02023BE0(const Strbuf *strbuf1, const Strbuf *strbuf2)
+int sub_02023BE0(const Strbuf *str1, const Strbuf *str2)
 {
-    Strbuf_Check(strbuf1);    
-    Strbuf_Check(strbuf2);
+    Strbuf_Check(str1);
+    Strbuf_Check(str2);
 
-    {
-        int v0;
-
-        for (v0 = 0; strbuf1->data[v0] == strbuf2->data[v0]; v0++) {
-            if (strbuf1->data[v0] == 0xffff) {
-                return 0;
-            }
+    for (int i = 0; str1->data[i] == str2->data[i]; i++) {
+        if (str1->data[i] == 0xffff) {
+            return 0;
         }
-
-        return 1;
     }
+
+    return 1;
 }
 
-// Strbuf_Size
+// Strbuf_Length
 u32 sub_02023C3C(const Strbuf *strbuf)
 {
     Strbuf_Check(strbuf);
@@ -315,18 +304,14 @@ u32 sub_02023C5C(const Strbuf *strbuf)
 {
     Strbuf_Check(strbuf);
 
-    {
-        int v0;
-        u32 v1;
-
-        for (v0 = 0, v1 = 1; v0 < strbuf->size; v0++) {
-            if (strbuf->data[v0] == 0xe000) {
-                v1++;
-            }
+    int i, count;
+    for (i = 0, count = 1; i < strbuf->size; i++) {
+        if (strbuf->data[i] == 0xe000) {
+            count++;
         }
-
-        return v1;
     }
+
+    return count;
 }
 
 // Strbuf_CopyLineNum
@@ -335,34 +320,30 @@ void sub_02023C9C(Strbuf *dst, const Strbuf *src, u32 linenum)
     Strbuf_Check(src);
     Strbuf_Check(dst);
 
-    {
-        int v0 = 0;
+    int i = 0;
 
-        if (linenum) {
-            for (v0 = 0; v0 < src->size; v0++) {
-                if (src->data[v0] == 0xe000) {
-                    if (--linenum == 0) {
-                        v0++;
-                        break;
-                    }
-                }
-            }
-        }
-
-        sub_020237E8(dst);
-
-        for ( ; v0 < src->size; v0++) {
-            if (src->data[v0] == 0xe000) {
+    if (linenum) {
+        for (i = 0; i < src->size; i++) {
+            if (src->data[i] == 0xe000 && --linenum == 0) {
+                i++;
                 break;
             }
-
-            sub_02023EB0(dst, src->data[v0]);
         }
+    }
+
+    sub_020237E8(dst);
+
+    for ( ; i < src->size; i++) {
+        if (src->data[i] == 0xe000) {
+            break;
+        }
+
+        sub_02023EB0(dst, src->data[i]);
     }
 }
 
 // Strbuf_CopyChars
-void sub_02023D28(Strbuf *dst, const u16 *src)
+void sub_02023D28(Strbuf *dst, const Charcode *src)
 {
     Strbuf_Check(dst);
 
@@ -381,24 +362,22 @@ void sub_02023D28(Strbuf *dst, const u16 *src)
 }
 
 // Strbuf_CopyNumChars
-void sub_02023D8C(Strbuf *dst, const u16 *src, u32 num)
+void sub_02023D8C(Strbuf *dst, const Charcode *src, u32 num)
 {
     Strbuf_Check(dst);
 
     if (num <= dst->maxsize) {
-        u32 v0;
+        memcpy(dst->data, src, num * sizeof(Charcode));
 
-        memcpy(dst->data, src, num * sizeof(u16));
-
-        for (v0 = 0; v0 < num; v0++) {
-            if (dst->data[v0] == 0xffff) {
+        u32 i;
+        for (i = 0; i < num; i++) {
+            if (dst->data[i] == 0xffff) {
                 break;
             }
         }
 
-        dst->size = v0;
-
-        if (v0 == num) {
+        dst->size = i;
+        if (i == num) {
             dst->data[num - 1] = 0xffff;
         }
 
@@ -409,12 +388,12 @@ void sub_02023D8C(Strbuf *dst, const u16 *src, u32 num)
 }
 
 // Strbuf_ToChars
-void sub_02023DF0(const Strbuf *src, u16 *dst, u32 dstsize)
+void sub_02023DF0(const Strbuf *src, Charcode *dst, u32 dstsize)
 {
     Strbuf_Check(src);
 
     if ((src->size + 1) <= dstsize) {
-        memcpy(dst, src->data, (src->size + 1) * sizeof(u16));
+        memcpy(dst, src->data, (src->size + 1) * sizeof(Charcode));
         return;
     }
 
@@ -422,7 +401,7 @@ void sub_02023DF0(const Strbuf *src, u16 *dst, u32 dstsize)
 }
 
 // Strbuf_GetData
-const u16* sub_02023E2C(const Strbuf *src)
+const Charcode* sub_02023E2C(const Strbuf *src)
 {
     Strbuf_Check(src);
 
@@ -436,7 +415,7 @@ void sub_02023E4C(Strbuf *dst, const Strbuf *src)
     Strbuf_Check(src);
 
     if ((dst->size + src->size + 1) <= dst->maxsize) {
-        memcpy(&(dst->data[dst->size]), src->data, (src->size + 1) * sizeof(u16));
+        memcpy(dst->data + dst->size, src->data, (src->size + 1) * sizeof(Charcode));
         dst->size += src->size;
         return;
     }
@@ -445,7 +424,7 @@ void sub_02023E4C(Strbuf *dst, const Strbuf *src)
 }
 
 // Strbuf_Append
-void sub_02023EB0(Strbuf *dst, u16 c)
+void sub_02023EB0(Strbuf *dst, Charcode c)
 {
     Strbuf_Check(dst);
 
@@ -458,62 +437,58 @@ void sub_02023EB0(Strbuf *dst, u16 c)
     GF_ASSERT(0);
 }
 
-// Strbuf_IsCompressed
+// Strbuf_IsTrainerName
 BOOL sub_02023EF8(Strbuf *strbuf)
 {
-    return (strbuf->size > 0) && (strbuf->data[0] == 0xF100); // COMPRESSED_LEADER
+    return strbuf->size > 0 && strbuf->data[0] == 0xF100;
 }
 
-// Strbuf_ConcatCompressed
-void sub_02023F10(Strbuf *strbuf1, Strbuf *strbuf2)
+// Strbuf_HandleTrainerName
+void sub_02023F10(Strbuf *dst, Strbuf *src)
 {
-    if (sub_02023EF8(strbuf2)) {
-        u32 v0;
-        u16 * v1 = &strbuf1->data[strbuf1->size];
-        u16 * v2 = &strbuf2->data[1];
-        s32 v3 = 0;
-        s32 v4 = 0;
+    if (sub_02023EF8(src)) {
+        Charcode *dst_c = &dst->data[dst->size];
+        Charcode *src_c = &src->data[1];
+        s32 bit = 0;
+        s32 outsize = 0;
+        Charcode cur = 0;
 
-        do {
-            u16 v5;
+        while (TRUE) {
+            cur = (*src_c >> bit) & 0x1FF;
+            bit += 9;
 
-            v5 = (*v2 >> v3) & 0x1FF;
-            v3 += 9;
+            if (bit >= 15) {
+                src_c++;
+                bit -= 15;
 
-            if (v3 >= 15) {
-                ++v2;
-                v3 -= 15;
-
-                if (v3) {
-                    v5 |= (*v2 << (9 - v3)) & 0x1FF;
+                if (bit) {
+                    cur |= (*src_c << (9 - bit)) & 0x1FF;
                 }
             }
 
-            if (v5 == 0x1FF) {
+            if (cur == 0x1FF) {
                 break;
             }
 
-            *v1++ = v5;
-            ++v4;
-        } while (TRUE);
+            *dst_c++ = cur;
+            outsize++;
+        }
 
-        *v1 = 0xffff;
-        strbuf1->size += v4;
+        *dst_c = 0xffff;
+        dst->size += outsize;
     } else {
-        sub_02023E4C(strbuf1, strbuf2);
+        sub_02023E4C(dst, src);
     }
 }
 
-// Strbuf_Capitalize
+// Strbuf_UpperChar
 void sub_02023F8C(Strbuf *strbuf, int i)
 {
     Strbuf_Check(strbuf);
 
     if (strbuf->size > i) {
-        u16 v0 = strbuf->data[i];
-
-        if ((v0 >= 0x145) && (v0 <= 0x15e)) {
-            strbuf->data[i] -= 0x145 - 0x12b;
+        if (strbuf->data[i] >= 0x145 && strbuf->data[i] <= 0x15e) {
+            strbuf->data[i] -= 26;
         }
     }
 }
