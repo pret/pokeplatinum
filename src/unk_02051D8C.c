@@ -30,7 +30,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0201378C.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -166,11 +166,11 @@ UnkStruct_ov6_02240D5C * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * pa
 
     v4 = sub_02051D8C(param0, 0x400);
     v2 = sub_0200B144(1, 26, 553, param0);
-    v3 = sub_02023790(8, param0);
+    v3 = Strbuf_Init(8, param0);
 
     sub_0200B1B8(v2, sub_02025F30(v0) ^ 1, v3);
-    sub_02025EC0(v4->unk_D0[0], sub_02023E2C(v3));
-    sub_020237BC(v3);
+    sub_02025EC0(v4->unk_D0[0], Strbuf_GetData(v3));
+    Strbuf_Free(v3);
     sub_0200B190(v2);
     sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
     sub_0205281C(v4, param1);

@@ -24,7 +24,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "overlay100/ov100_021D44C0.h"
@@ -35,7 +35,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     int v0;
     UnkStruct_0200B144 * v1;
     Strbuf* v2;
-    Strbuf* v3 = sub_02023790(511, 111);
+    Strbuf* v3 = Strbuf_Init(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
@@ -47,10 +47,10 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v6, v3, v2);
-        sub_020237BC(v5);
+        Strbuf_Free(v5);
         sub_0200B3F0(v6);
     } else {
-        sub_02023810(v3, v2);
+        Strbuf_Copy(v3, v2);
     }
 
     v4 = sub_02027AC0(param1->unk_04);
@@ -60,8 +60,8 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     sub_0201A954(&param0->unk_30);
 
     sub_0200E060(&param0->unk_30, 0, 500, 15);
-    sub_020237BC(v2);
-    sub_020237BC(v3);
+    Strbuf_Free(v2);
+    Strbuf_Free(v3);
 
     param0->unk_40 = v0;
 

@@ -26,7 +26,7 @@
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
@@ -278,11 +278,11 @@ static BOOL sub_020491F4 (UnkStruct_0203CDB0 * param0, int param1)
 
 static void sub_0204922C (UnkStruct_0200B358 * param0, int param1, const u16 * param2, int param3, int param4, int param5)
 {
-    Strbuf* v0 = sub_02023790(64, 4);
+    Strbuf* v0 = Strbuf_Init(64, 4);
 
-    sub_02023D28(v0, param2);
+    Strbuf_CopyChars(v0, param2);
     sub_0200B48C(param0, param1, v0, param3, param5, param4);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void sub_02049268 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
@@ -327,11 +327,11 @@ static void sub_02049308 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
     UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E81C * v2 = sub_0202E81C(v1);
 
-    v0 = sub_02023790(64, 4);
+    v0 = Strbuf_Init(64, 4);
 
-    sub_02023D28(v0, v2->unk_06);
+    Strbuf_CopyChars(v0, v2->unk_06);
     sub_0200B48C(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static BOOL sub_02049348 (UnkStruct_0203CDB0 * param0)

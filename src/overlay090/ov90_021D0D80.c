@@ -49,7 +49,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
@@ -624,7 +624,7 @@ static void ov90_021D13D8 (UnkStruct_ov90_021D0ECC * param0)
 
     param0->unk_28.unk_00 = sub_0200B144(0, 26, 22, param0->unk_00);
     param0->unk_28.unk_04 = sub_0200B368(2, ((18 + 1) * 4), param0->unk_00);
-    param0->unk_28.unk_08 = sub_02023790(((18 + 1) * 4), param0->unk_00);
+    param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->unk_00);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_28.unk_24[v0] = sub_0200B1EC(param0->unk_28.unk_00, 9 + v0);
@@ -644,20 +644,20 @@ static void ov90_021D146C (UnkStruct_ov90_021D0ECC * param0)
 {
     int v0 = 0;
 
-    sub_020237BC(param0->unk_28.unk_3C[1]);
-    sub_020237BC(param0->unk_28.unk_3C[0]);
-    sub_020237BC(param0->unk_28.unk_20);
-    sub_020237BC(param0->unk_28.unk_1C);
-    sub_020237BC(param0->unk_28.unk_18);
-    sub_020237BC(param0->unk_28.unk_0C);
-    sub_020237BC(param0->unk_28.unk_14);
-    sub_020237BC(param0->unk_28.unk_10);
+    Strbuf_Free(param0->unk_28.unk_3C[1]);
+    Strbuf_Free(param0->unk_28.unk_3C[0]);
+    Strbuf_Free(param0->unk_28.unk_20);
+    Strbuf_Free(param0->unk_28.unk_1C);
+    Strbuf_Free(param0->unk_28.unk_18);
+    Strbuf_Free(param0->unk_28.unk_0C);
+    Strbuf_Free(param0->unk_28.unk_14);
+    Strbuf_Free(param0->unk_28.unk_10);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_020237BC(param0->unk_28.unk_24[v0]);
+        Strbuf_Free(param0->unk_28.unk_24[v0]);
     }
 
-    sub_020237BC(param0->unk_28.unk_08);
+    Strbuf_Free(param0->unk_28.unk_08);
     sub_0200B3F0(param0->unk_28.unk_04);
     sub_0200B190(param0->unk_28.unk_00);
 }
@@ -745,12 +745,12 @@ static void ov90_021D1750 (UnkStruct_ov90_021D0ECC * param0)
 
         MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
 
-        v2->unk_00 = sub_02023790(8, param0->unk_00);
+        v2->unk_00 = Strbuf_Init(8, param0->unk_00);
 
         if (v2->unk_07) {
-            sub_02023810(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
+            Strbuf_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
         } else {
-            sub_02023D28(v2->unk_00, v1[v0].unk_00);
+            Strbuf_CopyChars(v2->unk_00, v1[v0].unk_00);
         }
     }
 
@@ -762,7 +762,7 @@ static void ov90_021D17DC (UnkStruct_ov90_021D0ECC * param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 30; v0++) {
-        sub_020237BC(param0->unk_BC[v0].unk_00);
+        Strbuf_Free(param0->unk_BC[v0].unk_00);
     }
 }
 
@@ -807,7 +807,7 @@ static void ov90_021D18BC (UnkStruct_ov90_021D0ECC * param0)
     int v1;
 
     sub_0202D708(param0->unk_24, &v0);
-    sub_020237E8(param0->unk_28.unk_08);
+    Strbuf_Clear(param0->unk_28.unk_08);
     sub_0200B60C(param0->unk_28.unk_04, 0, v0.unk_00, 2, 0, 1);
     sub_0200B60C(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
     sub_0200C388(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_10);
@@ -853,7 +853,7 @@ static void ov90_021D1A48 (UnkStruct_ov90_021D0ECC * param0)
 
     sub_0201ADA4(&param0->unk_6C[2], (((0 << 4) | 0)));
     sub_0201D78C(&param0->unk_6C[2], 0, v0, 0, 4, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void ov90_021D1A9C (UnkStruct_ov90_021D0ECC * param0)

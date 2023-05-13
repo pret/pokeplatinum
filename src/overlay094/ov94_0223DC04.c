@@ -28,7 +28,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -297,7 +297,7 @@ static void ov94_0223DFDC (UnkStruct_ov94_0223FD4C * param0)
     UnkStruct_0200B144 * v1;
     UnkStruct_ov94_0223BA88 * v2 = &param0->unk_250[param0->unk_11C];
 
-    param0->unk_BAC = sub_02023790((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
 
     sub_0200C41C(param0->unk_B8C);
 
@@ -317,9 +317,9 @@ static void ov94_0223E074 (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
 
-    sub_020237BC(param0->unk_BB4[0]);
-    sub_020237BC(param0->unk_BB4[1]);
-    sub_020237BC(param0->unk_BAC);
+    Strbuf_Free(param0->unk_BB4[0]);
+    Strbuf_Free(param0->unk_BB4[1]);
+    Strbuf_Free(param0->unk_BAC);
 }
 
 static int ov94_0223E09C (UnkStruct_ov94_0223FD4C * param0)
@@ -455,8 +455,8 @@ static void ov94_0223E358 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param
     ov94_02245900(&param1[0], v0, 0, 2, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param1[1], v1, 0, 2, 1, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 
-    sub_020237BC(v0);
-    sub_020237BC(v1);
+    Strbuf_Free(v0);
+    Strbuf_Free(v1);
 }
 
 static void ov94_0223E3B0 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B144 * param2, UnkStruct_ov94_0223BA88_sub3 * param3)

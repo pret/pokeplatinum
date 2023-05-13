@@ -10,7 +10,7 @@
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 
 static const u16 Unk_020E5522[] = {
@@ -185,7 +185,7 @@ void sub_02014DB8 (u16 param0, Strbuf *param1)
         v0 = Unk_020E550C[v0];
         sub_0200AF20(26, v0, v1, 0, param1);
     } else {
-        sub_020237E8(param1);
+        Strbuf_Clear(param1);
     }
 }
 

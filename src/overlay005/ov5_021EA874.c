@@ -28,7 +28,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
@@ -279,7 +279,7 @@ static BOOL ov5_021EAB58 (UnkStruct_ov5_021EAE78 * param0)
 
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(v0, v5)) {
-                sub_02023D28(param0->unk_08, sub_0202AEF0(v0, v5));
+                Strbuf_CopyChars(param0->unk_08, sub_0202AEF0(v0, v5));
                 sub_02013A6C(param0->unk_00, param0->unk_08, v5);
             }
         }
@@ -457,16 +457,16 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_38 = sub_0200B358(4);
     param0->unk_3C = sub_0200B144(0, 26, 675, 4);
-    param0->unk_0C = sub_02023790(110, 4);
-    param0->unk_08 = sub_02023790(110, 4);
+    param0->unk_0C = Strbuf_Init(110, 4);
+    param0->unk_08 = Strbuf_Init(110, 4);
 }
 
 static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 {
     sub_0200B190(param0->unk_3C);
     sub_0200B3F0(param0->unk_38);
-    sub_020237BC(param0->unk_0C);
-    sub_020237BC(param0->unk_08);
+    Strbuf_Free(param0->unk_0C);
+    Strbuf_Free(param0->unk_08);
 
     if (sub_0201A7CC(&param0->unk_10)) {
         sub_0201A8FC(&param0->unk_10);

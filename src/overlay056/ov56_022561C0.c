@@ -49,7 +49,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_02027F84.h"
@@ -797,11 +797,11 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
-            v1 = sub_02023790(10, 89);
+            v1 = Strbuf_Init(10, 89);
 
-            sub_02023D28(v1, sub_02027FBC(param0, v3));
+            Strbuf_CopyChars(v1, sub_02027FBC(param0, v3));
             sub_0200B48C(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));
-            sub_020237BC(v1);
+            Strbuf_Free(v1);
         }
 
         v0 = sub_0200B29C(param2, param3, 208, 89);
@@ -823,14 +823,14 @@ static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStru
     }
 
     if (v0->unk_00[*v2].unk_04 != NULL) {
-        sub_020237BC(v0->unk_00[*v2].unk_04);
+        Strbuf_Free(v0->unk_00[*v2].unk_04);
     }
 
     if (v0->unk_00[*v2].unk_08 != NULL) {
-        sub_020237BC(v0->unk_00[*v2].unk_08);
+        Strbuf_Free(v0->unk_00[*v2].unk_08);
     }
 
-    sub_02023D28(v0->unk_00[*v2].unk_00, sub_02025EF0(param3));
+    Strbuf_CopyChars(v0->unk_00[*v2].unk_00, sub_02025EF0(param3));
 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;

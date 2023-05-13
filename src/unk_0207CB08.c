@@ -14,7 +14,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020298BC.h"
 #include "coins.h"
@@ -167,7 +167,7 @@ BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, Strbuf *param1, u16 param2, u32 
     }
 
     sub_0200C388(v1, param1, v2);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0200B3F0(v1);
     sub_0200B190(v0);
 
@@ -202,7 +202,7 @@ void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 pa
         v2 = sub_0200B1EC(v0, 36);
         sub_0200B498(v1, 0, param0);
         sub_0200C388(v1, param1, v2);
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
         sub_0200B3F0(v1);
         sub_0200B190(v0);
     }

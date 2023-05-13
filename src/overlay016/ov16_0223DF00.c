@@ -53,7 +53,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
@@ -1758,7 +1758,7 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
 
                 sub_0201ADA4(v0, 0xff);
                 v1 = sub_0201D738(v0, 1, v2, 0, 0, param4, ov16_022405A4);
-                sub_020237BC(v2);
+                Strbuf_Free(v2);
             }
         } else {
             {
@@ -1792,7 +1792,7 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
                 sub_0201ADA4(v0, 0xff);
 
                 v1 = sub_0201D738(v0, 1, v4, 0, 0, param4, ov16_022405A4);
-                sub_020237BC(v4);
+                Strbuf_Free(v4);
                 sub_0200B190(v3);
             }
         }
@@ -2367,7 +2367,7 @@ static void ov16_02240584 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * par
     v0 = sub_0200B1EC(param1, param2->unk_02);
 
     sub_0200C388(param0->unk_14, param0->unk_18, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static BOOL ov16_022405A4 (UnkStruct_0201D738 * param0, u16 param1)

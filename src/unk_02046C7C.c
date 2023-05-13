@@ -14,7 +14,7 @@
 #include "struct_defs/struct_02093800.h"
 
 #include "unk_0200B358.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202631C.h"
@@ -125,7 +125,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
 
     *v2 = sub_02093800(&v8);
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     return 0;
 }

@@ -35,7 +35,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 
 typedef struct {
     UnkStruct_0205AA50 unk_00;
@@ -280,7 +280,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
             ov104_0223E29C(param0, &v0->unk_7C, v10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
 
             sub_020129D0(v0->unk_7C.unk_00, 0);
-            sub_020237BC(v10);
+            Strbuf_Free(v10);
             sub_0200B190(v9);
         }
 

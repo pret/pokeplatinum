@@ -14,7 +14,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200AC5C.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202F180.h"
@@ -79,8 +79,8 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     sub_02025E8C(v0->unk_08);
     v1 = ov6_022462E4(param0, 4 + param1);
 
-    sub_02023DF0(v1, v2, 128);
-    sub_020237BC(v1);
+    Strbuf_ToChars(v1, v2, 128);
+    Strbuf_Free(v1);
     sub_02025EC0(v0->unk_08, v2);
     sub_02025F2C(v0->unk_08, v0->unk_00->unk_40);
 
@@ -167,7 +167,7 @@ static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32
     v0 = ov6_022462E4(param4, param3);
 
     sub_02074B30(param0, 119, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     v1 = 1;
 
@@ -188,7 +188,7 @@ static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32
     v0 = ov6_022462E4(param4, 4 + param3);
 
     sub_02074B30(param0, 145, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_02074B30(param0, 157, &param1->unk_40);
     sub_02074B30(param0, 12, &param1->unk_48);
 

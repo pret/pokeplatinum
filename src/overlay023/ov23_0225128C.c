@@ -31,7 +31,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202854C.h"
 #include "unk_020329E0.h"
@@ -665,8 +665,8 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
 
 static void ov23_02251BB4 (UnkStruct_0201CD38 * param0, UnkStruct_ov23_02250CD4 * param1)
 {
-    sub_020237BC(param1->unk_68);
-    sub_020237BC(param1->unk_6C);
+    Strbuf_Free(param1->unk_68);
+    Strbuf_Free(param1->unk_6C);
     sub_0200B3F0(param1->unk_70);
 
     if (param1->unk_260 != NULL) {
@@ -855,8 +855,8 @@ static void ov23_02251F94 (UnkStruct_0203CDB0 * param0)
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
     v1->unk_2AA = 0;
-    v1->unk_68 = sub_02023790((50 * 2), 4);
-    v1->unk_6C = sub_02023790((50 * 2), 4);
+    v1->unk_68 = Strbuf_Init((50 * 2), 4);
+    v1->unk_6C = Strbuf_Init((50 * 2), 4);
     v1->unk_70 = sub_0200B358(4);
     v1->unk_08 = sub_0206A780(4);
 

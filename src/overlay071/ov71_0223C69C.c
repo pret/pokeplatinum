@@ -15,7 +15,7 @@
 #include "unk_0200B358.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202CBE4.h"
 #include "overlay071/ov71_0223C69C.h"
 
@@ -86,7 +86,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     sub_0201AE78(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
     v1 = sub_0200B144(0, 26, 616, 25);
-    v2 = sub_02023790(32, 25);
+    v2 = Strbuf_Init(32, 25);
 
     for (v0 = 0; v0 < 7; v0++) {
         if ((v0 != 3) || (v0 == 3) && (param1->unk_04_3)) {
@@ -96,11 +96,11 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     }
 
     {
-        Strbuf* v3 = sub_02023790(32, 25);
+        Strbuf* v3 = Strbuf_Init(32, 25);
         UnkStruct_0200B358 * v4 = sub_0200B368(6, 32, 25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
-        sub_02023D28(v2, param1->unk_08);
+        Strbuf_CopyChars(v2, param1->unk_08);
         ov71_0223CDB0(&param0[1], (8 * 17), 0, 0, v2);
 
         {
@@ -161,11 +161,11 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
             sub_0201D78C(&param0[6], 0, v2, v8, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         }
 
-        sub_020237BC(v3);
+        Strbuf_Free(v3);
         sub_0200B3F0(v4);
     }
 
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0200B190(v1);
 }
 
@@ -224,7 +224,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     add r7, r0, #0
     mov r0, #0x20
     mov r1, #0x19
-    bl sub_02023790
+    bl Strbuf_Init
     add r5, r0, #0
     mov r4, #7
  _0223CAA4:
@@ -254,7 +254,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     blo _0223CAA4
     mov r0, #0x20
     mov r1, #0x19
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x14]
     mov r0, #6
     mov r1, #0x20
@@ -512,11 +512,11 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     str r1, [sp, #0xc]
     bl sub_0201D78C
     ldr r0, [sp, #0x14]
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r4, #0
     bl sub_0200B3F0
     add r0, r5, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r7, #0
     bl sub_0200B190
     add sp, #0x18
@@ -536,7 +536,7 @@ static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const 
 {
     u32 v0;
 
-    sub_020238A0(param4, param5, param6, param7, 1);
+    Strbuf_FormatInt(param4, param5, param6, param7, 1);
     v0 = sub_02002D7C(0, param4, 0);
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
@@ -566,8 +566,8 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     {
         u32 v1;
         UnkStruct_0200B144 * v2 = sub_0200B144(0, 26, 616, 25);
-        Strbuf* v3 = sub_02023790(32, 25);
-        Strbuf* v4 = sub_02023790(32, 25);
+        Strbuf* v3 = Strbuf_Init(32, 25);
+        Strbuf* v4 = Strbuf_Init(32, 25);
         UnkStruct_0200B358 * v5 = sub_0200B368((1 + 1), 32, 25);
 
         sub_0200B60C(v5, 0, sub_0202CC58(param1->unk_18), 3, 1, 1);
@@ -578,8 +578,8 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
         sub_0201D78C(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 
         sub_0200B190(v2);
-        sub_020237BC(v3);
-        sub_020237BC(v4);
+        Strbuf_Free(v3);
+        Strbuf_Free(v4);
         sub_0200B3F0(v5);
     }
 }

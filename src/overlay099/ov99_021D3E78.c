@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay099/ov99_021D3E78.h"
 
 static const struct {
@@ -296,7 +296,7 @@ UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1
         v0->unk_14 = 0;
         v0->unk_18 = 0;
         v0->unk_1C = 0;
-        v0->unk_30 = sub_02023790(256, 75);
+        v0->unk_30 = Strbuf_Init(256, 75);
         v0->unk_24 = sub_0201A778(75, 1);
 
         sub_0201A7E8(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
@@ -318,7 +318,7 @@ void ov99_021D3F38 (UnkStruct_ov99_021D3E78 * param0)
         sub_0200DA58(param0->unk_34);
     }
 
-    sub_020237BC(param0->unk_30);
+    Strbuf_Free(param0->unk_30);
     sub_0201A8FC(param0->unk_24);
     sub_0201A8FC(param0->unk_28);
     Heap_FreeToHeap(param0->unk_24);

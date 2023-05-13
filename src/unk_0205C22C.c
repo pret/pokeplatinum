@@ -22,7 +22,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E68.h"
 #include "unk_02027F84.h"
@@ -492,7 +492,7 @@ void sub_0205C820 (UnkStruct_02061830 * param0, UnkStruct_0205C22C * param1)
 
 static void sub_0205C8DC (UnkStruct_0205C924 * param0)
 {
-    param0->unk_00 = sub_02023790(7 + 1, 89);
+    param0->unk_00 = Strbuf_Init(7 + 1, 89);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
@@ -519,11 +519,11 @@ static void sub_0205C924 (UnkStruct_0205C924 * param0)
     Heap_FreeToHeap(param0->unk_00);
 
     if (param0->unk_04 != NULL) {
-        sub_020237BC(param0->unk_04);
+        Strbuf_Free(param0->unk_04);
     }
 
     if (param0->unk_08 != NULL) {
-        sub_020237BC(param0->unk_08);
+        Strbuf_Free(param0->unk_08);
     }
 }
 

@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
 #include "overlay023/ov23_02241F74.h"
@@ -187,7 +187,7 @@ static void ov23_0225437C (UnkStruct_ov23_022542D8 * param0)
             sub_0201ADA4(&param0->unk_14, 15);
             v8 = sub_0200B1EC(v5, 0);
             sub_0201D738(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
-            sub_020237BC(v8);
+            Strbuf_Free(v8);
         }
 
         for (v6 = 0; v6 < v3 + 1; v6++) {
@@ -436,7 +436,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
 
             v13 = sub_0200B1EC(v12, 9);
             v14 = sub_0200B1EC(v12, 10);
-            v15 = sub_02023790(6, 4);
+            v15 = Strbuf_Init(6, 4);
 
             sub_0201D738(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
             v16 = sub_0200B358(4);
@@ -447,9 +447,9 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             sub_0201D738(&param0->unk_18, 0, v15, 0, 16, 0xff, NULL);
 
             sub_0200B3F0(v16);
-            sub_020237BC(v13);
-            sub_020237BC(v14);
-            sub_020237BC(v15);
+            Strbuf_Free(v13);
+            Strbuf_Free(v14);
+            Strbuf_Free(v15);
 
             sub_0200B190(v12);
         }

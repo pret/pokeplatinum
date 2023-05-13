@@ -18,7 +18,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 
 static int sub_0201D9E8(UnkStruct_0201D834 * param0);
 static void sub_0201D97C(UnkStruct_0201CD38 * param0, void * param1);
@@ -194,7 +194,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
     }
 
     v0->unk_00 = *param0;
-    v0->unk_00.unk_00_val1 = sub_02023E2C(v0->unk_00.unk_00_val2);
+    v0->unk_00.unk_00_val1 = Strbuf_GetData(v0->unk_00.unk_00_val2);
     v0->unk_1C = param2;
 
     Unk_021C04D8 = 0;

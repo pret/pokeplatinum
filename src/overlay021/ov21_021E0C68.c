@@ -33,7 +33,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D3208.h"
@@ -423,7 +423,7 @@ static void ov21_021E0FBC (UnkStruct_ov21_021E0D7C * param0, int param1)
 
 static void ov21_021E10D0 (UnkStruct_ov21_021E0D7C * param0, const UnkStruct_ov21_021E0D68 * param1, int param2)
 {
-    Strbuf* v0 = sub_02023790(64, param2);
+    Strbuf* v0 = Strbuf_Init(64, param2);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
     int v2 = ov21_021D37BC(param1->unk_04);
     int v3;
@@ -442,7 +442,7 @@ static void ov21_021E10D0 (UnkStruct_ov21_021E0D7C * param0, const UnkStruct_ov2
     v4 /= 2;
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 176 - v4, 72, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200B190(v1);
 
     ov21_021E1188(param0, param2, v2, param1->unk_18, param1->unk_1C);

@@ -28,7 +28,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
@@ -361,14 +361,14 @@ static void ov94_0223CAC8 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223CB0C (UnkStruct_ov94_0223FD4C * param0)
 {
-    param0->unk_BAC = sub_02023790((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 39);
 }
 
 static void ov94_0223CB34 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_020237BC(param0->unk_BAC);
-    sub_020237BC(param0->unk_BB0);
+    Strbuf_Free(param0->unk_BAC);
+    Strbuf_Free(param0->unk_BB0);
 }
 
 static int ov94_0223CB50 (UnkStruct_ov94_0223FD4C * param0)
@@ -617,7 +617,7 @@ void ov94_0223D030 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, in
 
     sub_0201ADA4(param0, param3);
     sub_0201D738(param0, 1, v0, 0, 0, 0, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 void ov94_0223D068 (UnkStruct_ov94_0223FD4C * param0)

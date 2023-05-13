@@ -20,7 +20,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay021/ov21_021D4C0C.h"
 
 typedef struct UnkStruct_ov21_021D4C0C_t {
@@ -156,7 +156,7 @@ u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1
     sub_0201D78C(param1, 2, v1, param4, param5, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     v2 = sub_02002D7C(2, v1, 0);
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 
     return v2;
@@ -179,7 +179,7 @@ void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param
     v3 /= 2;
 
     sub_0201D78C(param1, 2, v1, v3, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 }
 

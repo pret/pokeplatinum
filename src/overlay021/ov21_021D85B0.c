@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D3208.h"
@@ -709,11 +709,11 @@ static void ov21_021D8DD4 (UnkStruct_ov21_021D879C * param0, int param1, int par
 
     {
         u32 v3 = 24 + (208 - sub_02002EB4(0, v1, 0)) / 2;
-        u32 v4 = 8 + (32 - sub_02023C5C(v1) * 16) / 2;
+        u32 v4 = 8 + (32 - Strbuf_NumLines(v1) * 16) / 2;
         sub_0201D78C(&v0->unk_04, 0, v1, v3, v4, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 }
 
 static void ov21_021D8E68 (UnkStruct_ov21_021D879C * param0, int param1)
@@ -727,11 +727,11 @@ static void ov21_021D8E68 (UnkStruct_ov21_021D879C * param0, int param1)
 
     {
         u32 v2 = 24 + (208 - sub_02002EB4(0, v1, 0)) / 2;
-        u32 v3 = 8 + (32 - sub_02023C5C(v1) * 16) / 2;
+        u32 v3 = 8 + (32 - Strbuf_NumLines(v1) * 16) / 2;
         sub_0201D78C(&v0->unk_04, 0, v1, v2, v3, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 }
 
 static void ov21_021D8ED4 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D879C * param1, const UnkStruct_ov21_021D8788 * param2, int param3)
@@ -842,7 +842,7 @@ static void ov21_021D9054 (UnkStruct_ov21_021D879C * param0, int param1, int par
         sub_0201D78C(&v0->unk_04, 0, v1, v3, 52, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 }
 
 static void ov21_021D90B4 (UnkStruct_ov21_021D879C * param0, int param1, int param2)
@@ -894,7 +894,7 @@ static void ov21_021D90B4 (UnkStruct_ov21_021D879C * param0, int param1, int par
         sub_0201D78C(&v0->unk_04, 0, v1, v4, 77, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 }
 
 static void ov21_021D915C (UnkStruct_ov21_021D879C * param0, int param1, int param2, int param3)
@@ -970,7 +970,7 @@ static void ov21_021D915C (UnkStruct_ov21_021D879C * param0, int param1, int par
         sub_0201D78C(&v0->unk_04, 0, v1, v4, param3, 0, ((u32)(((4 & 0xff) << 16) | ((3 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 }
 
 static void ov21_021D9234 (UnkStruct_ov21_021D879C * param0, int param1, int param2)
@@ -1091,7 +1091,7 @@ static void ov21_021D93F4 (UnkStruct_ov21_021D879C * param0, int param1)
         sub_0201D78C(&v0->unk_04, 0, v1, v3, 128, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_02019060(1, 0);
     sub_02019060(2, 1);
 }

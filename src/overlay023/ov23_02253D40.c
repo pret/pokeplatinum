@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay023/ov23_02253D40.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
@@ -87,8 +87,8 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018
         v0 = 230;
     }
 
-    v1->unk_00 = sub_02023790(v0, param1);
-    v1->unk_04 = sub_02023790(v0, param1);
+    v1->unk_00 = Strbuf_Init(v0, param1);
+    v1->unk_04 = Strbuf_Init(v0, param1);
     v1->unk_28 = sub_0200B358(param1);
     v1->unk_2C = param0;
     v1->unk_24 = sub_0200B144(1, 26, param0, param1);
@@ -109,8 +109,8 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018
 
 void ov23_02253DD8 (UnkStruct_ov23_02253E2C * param0)
 {
-    sub_020237BC(param0->unk_00);
-    sub_020237BC(param0->unk_04);
+    Strbuf_Free(param0->unk_00);
+    Strbuf_Free(param0->unk_04);
     sub_0200B3F0(param0->unk_28);
     sub_0200B190(param0->unk_24);
     Heap_FreeToHeap(param0);

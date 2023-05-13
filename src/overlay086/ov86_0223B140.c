@@ -57,7 +57,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202CBE4.h"
 #include "unk_02073C2C.h"
@@ -316,8 +316,8 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_0C = sub_02006840(param0);
     v0->unk_1C50 = sub_0200B144(0, 26, 351, 63);
-    v0->unk_1C48 = sub_02023790(500, 63);
-    v0->unk_1C4C = sub_02023790(500, 63);
+    v0->unk_1C48 = Strbuf_Init(500, 63);
+    v0->unk_1C4C = Strbuf_Init(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
     v0->unk_1C54 = NARC_ctor(147, 63);
 
@@ -377,8 +377,8 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
         ov86_0223B8C4(v0);
 
         sub_0200B3F0(v0->unk_1C44);
-        sub_020237BC(v0->unk_1C48);
-        sub_020237BC(v0->unk_1C4C);
+        Strbuf_Free(v0->unk_1C48);
+        Strbuf_Free(v0->unk_1C4C);
         sub_0200B190(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
         sub_02006830(param0);
@@ -1292,10 +1292,10 @@ static void ov86_0223C47C (UnkStruct_ov86_0223C3E4 * param0, int param1)
 {
     int v0, v1, v2;
 
-    v1 = sub_02023C5C(param0->unk_1C);
+    v1 = Strbuf_NumLines(param0->unk_1C);
 
     for (v0 = 0; v0 < v1; v0++) {
-        sub_02023C9C(param0->unk_18, param0->unk_1C, v0);
+        Strbuf_CopyLineNum(param0->unk_18, param0->unk_1C, v0);
         v2 = (136 - sub_02002D7C(0, param0->unk_18, 0)) / 2;
         sub_0201D78C(param0->unk_10, 0, param0->unk_18, param0->unk_2C + v2, param1 + v0 * 16, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
@@ -1962,7 +1962,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
             sub_02025EF4(param2, param0->unk_1C48);
             GetMonData(param1, MON_DATA_145, param0->unk_1C4C);
 
-            if (sub_02023BE0(param0->unk_1C48, param0->unk_1C4C)) {
+            if (Strbuf_Compare(param0->unk_1C48, param0->unk_1C4C)) {
                 v1 = 2;
                 break;
             }

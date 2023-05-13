@@ -13,7 +13,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_02089604.h"
@@ -895,7 +895,7 @@ void sub_02089F80 (UnkStruct_02089688 * param0)
 {
     int v0;
     u32 v1 = 0;
-    Strbuf* v2 = sub_02023790(100, 101);
+    Strbuf* v2 = Strbuf_Init(100, 101);
 
     param0->unk_240[1].unk_00 = 1;
     param0->unk_240[1].unk_14.unk_04 = 0;
@@ -907,11 +907,11 @@ void sub_02089F80 (UnkStruct_02089688 * param0)
         }
 
         v1 = param0->unk_00[v0].unk_00 - 1;
-        sub_020238A0(v2, v1, 1, 1, 1);
-        sub_02023E4C(param0->unk_38C.unk_1C, v2);
+        Strbuf_FormatInt(v2, v1, 1, 1, 1);
+        Strbuf_Concat(param0->unk_38C.unk_1C, v2);
     }
 
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_02089808(param0, 3);
 }
 

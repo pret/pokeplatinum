@@ -6,7 +6,7 @@
 
 #include "heap.h"
 #include "error_handling.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay098/ov98_022499C8.h"
 
 static const char Unk_ov98_02249D1C[] = "w";
@@ -57,7 +57,7 @@ asm void ov98_022499C8 (Strbuf *param0, char * param1, int param2)
    ldr r0, [sp]
    ldr r1, [sp, #4]
    mov r2, #0x64
-   bl sub_02023DF0
+   bl Strbuf_ToChars
    ldr r7, [sp, #4]
    mov r6, #0
  _02249A06:
@@ -133,7 +133,7 @@ asm void ov98_02249A80 (void)
    add r0, r6, #0
    add r1, r4, #0
    mov r2, #0x64
-   bl sub_02023DF0
+   bl Strbuf_ToChars
    ldrh r1, [r4]
    ldr r0, = 0xFFFF
    cmp r1, r0

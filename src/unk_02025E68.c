@@ -7,7 +7,7 @@
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 
 int sub_02025E68 (void)
@@ -63,7 +63,7 @@ void sub_02025EC0 (UnkStruct_02025E6C * param0, const u16 * param1)
 
 void sub_02025EE0 (UnkStruct_02025E6C * param0, const Strbuf *param1)
 {
-    sub_02023DF0(param1, param0->unk_00, 7 + 1);
+    Strbuf_ToChars(param1, param0->unk_00, 7 + 1);
 }
 
 const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
@@ -73,12 +73,12 @@ const u16 * sub_02025EF0 (const UnkStruct_02025E6C * param0)
 
 void sub_02025EF4 (const UnkStruct_02025E6C * param0, Strbuf *param1)
 {
-    sub_02023D28(param1, param0->unk_00);
+    Strbuf_CopyChars(param1, param0->unk_00);
 }
 
 Strbuf* sub_02025F04 (const UnkStruct_02025E6C * param0, int param1)
 {
-    Strbuf* v0 = sub_02023790(7 + 1, param1);
+    Strbuf* v0 = Strbuf_Init(7 + 1, param1);
 
     sub_02025EF4(param0, v0);
     return v0;

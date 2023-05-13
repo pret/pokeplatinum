@@ -16,7 +16,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
 #include "unk_02034198.h"
@@ -500,7 +500,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (Unk_ov23_02257744->unk_468[v0] != 0) {
             v1 = sub_0200B358(4);
-            v2 = sub_02023790((50 * 2), 4);
+            v2 = Strbuf_Init((50 * 2), 4);
 
             sub_0200BACC(v1, 2, Unk_ov23_02257744->unk_468[v0]);
             sub_0200C324(v1, 2);
@@ -514,7 +514,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
     }
 
     if (v2) {
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
     }
 
     if (v1) {

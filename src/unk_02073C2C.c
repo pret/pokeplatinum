@@ -72,7 +72,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
@@ -1005,10 +1005,10 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         if (param0->unk_04_2) {
             Strbuf* v7 = sub_0200B32C(495, 0);
 
-            sub_02023810((Strbuf *)param2, v7);
-            sub_020237BC(v7);
+            Strbuf_Copy((Strbuf *)param2, v7);
+            Strbuf_Free(v7);
         } else {
-            sub_02023D28((Strbuf *)param2, v4->unk_00);
+            Strbuf_CopyChars((Strbuf *)param2, v4->unk_00);
         }
         break;
     case MON_DATA_121:
@@ -1053,7 +1053,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         break;
     }
     case MON_DATA_145:
-        sub_02023D28((Strbuf *)param2, v5->unk_00);
+        Strbuf_CopyChars((Strbuf *)param2, v5->unk_00);
         break;
     case MON_DATA_146:
         v0 = v5->unk_10;
@@ -1485,12 +1485,12 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         u16 v12[10 + 1];
 
         sub_0200B274(v6->species, 0, &v11[0]);
-        sub_02023DF0((Strbuf *)param2, &v12[0], NELEMS(v12));
+        Strbuf_ToChars((Strbuf *)param2, &v12[0], NELEMS(v12));
 
         v7->unk_10_31 = sub_0200220C(v11, v12);
     }
     case MON_DATA_119:
-        sub_02023DF0((Strbuf *)param2, v8->unk_00, NELEMS(v8->unk_00));
+        Strbuf_ToChars((Strbuf *)param2, v8->unk_00, NELEMS(v8->unk_00));
         break;
     case MON_DATA_121:
         v8->unk_16 = v5[0];
@@ -1533,7 +1533,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         }
         break;
     case MON_DATA_145:
-        sub_02023DF0((Strbuf *)param2, v9->unk_00, NELEMS(v9->unk_00));
+        Strbuf_ToChars((Strbuf *)param2, v9->unk_00, NELEMS(v9->unk_00));
         break;
     case MON_DATA_146:
         v9->unk_10 = v5[0];
@@ -1609,8 +1609,8 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
 
         v13 = sub_0200B32C(v6->species, 0);
 
-        sub_02023DF0(v13, v8->unk_00, NELEMS(v8->unk_00));
-        sub_020237BC(v13);
+        Strbuf_ToChars(v13, v8->unk_00, NELEMS(v8->unk_00));
+        Strbuf_Free(v13);
     }
     break;
     }
@@ -5224,17 +5224,17 @@ BOOL sub_0207884C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2)
     u32 v2 = sub_02025F30(param1);
     u32 v3 = sub_02074570(param0, MON_DATA_OT_GENDER, NULL);
     Strbuf* v4 = sub_02025F04(param1, param2);
-    Strbuf* v5 = sub_02023790(8, param2);
+    Strbuf* v5 = Strbuf_Init(8, param2);
     BOOL v6 = 0;
 
     sub_02074570(param0, MON_DATA_145, v5);
 
-    if ((v0 == v1) && (v2 == v3) && (sub_02023BE0(v4, v5) == 0)) {
+    if ((v0 == v1) && (v2 == v3) && (Strbuf_Compare(v4, v5) == 0)) {
         v6 = 1;
     }
 
-    sub_020237BC(v5);
-    sub_020237BC(v4);
+    Strbuf_Free(v5);
+    Strbuf_Free(v4);
 
     return v6;
 }

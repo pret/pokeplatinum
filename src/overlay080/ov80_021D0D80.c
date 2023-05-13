@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02039C80.h"
 #include "unk_0208C098.h"
 #include "overlay080/ov80_021D0D80.h"
@@ -224,7 +224,7 @@ static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
         param0->unk_1C = param0->unk_24;
         param0->unk_80 = sub_0200B144(1, 26, 433, param0->unk_04);
         param0->unk_84 = sub_0200B144(1, 26, 615, param0->unk_04);
-        param0->unk_88 = sub_02023790(22, param0->unk_04);
+        param0->unk_88 = Strbuf_Init(22, param0->unk_04);
         param0->unk_30 = sub_02039EBC(param0->unk_04);
         param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->unk_04);
         break;
@@ -268,7 +268,7 @@ static void ov80_021D0FF4 (UnkStruct_ov80_021D2A08 * param0)
     Heap_FreeToHeap(param0->unk_28);
     ov80_021D2E10(param0->unk_40);
     sub_02039EF0(param0->unk_30);
-    sub_020237BC(param0->unk_88);
+    Strbuf_Free(param0->unk_88);
     sub_0200B190(param0->unk_84);
     sub_0200B190(param0->unk_80);
 }

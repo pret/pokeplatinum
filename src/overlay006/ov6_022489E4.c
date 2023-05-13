@@ -10,7 +10,7 @@
 #include "overlay006/struct_ov6_02248DD8.h"
 
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202CC64.h"
 #include "unk_02034198.h"
 #include "unk_02073C2C.h"
@@ -254,8 +254,8 @@ void ov6_02248CBC (int param0, int param1, void * param2, void * param3)
     v2 = v4[1];
     v5 = (u16 *)(&v4[v3]);
 
-    sub_020237E8(v0->unk_00.unk_D8[v1]);
-    sub_02023D28(v0->unk_00.unk_D8[v1], v5);
+    Strbuf_Clear(v0->unk_00.unk_D8[v1]);
+    Strbuf_CopyChars(v0->unk_00.unk_D8[v1], v5);
 
     v0->unk_568++;
 }
@@ -270,7 +270,7 @@ BOOL ov6_02248CE8 (UnkStruct_02095C48 * param0, int param1, const Strbuf *param2
     v0 = 8 * sizeof(u16);
     v1 = 4;
 
-    sub_02023DF0(param2, v4, 8);
+    Strbuf_ToChars(param2, v4, 8);
 
     v2 = Heap_AllocFromHeap(20, v0 + v1);
     MI_CpuCopy8(v4, &v2[v1], v0);

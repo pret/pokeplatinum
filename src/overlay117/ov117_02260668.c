@@ -52,7 +52,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E68.h"
@@ -238,7 +238,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_80 = sub_0200B144(0, 26, 9, 110);
     v0->unk_84 = sub_0200B358(110);
-    v0->unk_88 = sub_02023790((2 * 160), 110);
+    v0->unk_88 = Strbuf_Init((2 * 160), 110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 
     ov117_02265210(v0, &v0->unk_1468);
@@ -474,7 +474,7 @@ int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002FA0(v0->unk_8C, 2);
     sub_02002FA0(v0->unk_8C, 3);
     sub_02002F54(v0->unk_8C);
-    sub_020237BC(v0->unk_88);
+    Strbuf_Free(v0->unk_88);
     sub_0200B3F0(v0->unk_84);
     sub_0200B190(v0->unk_80);
     Heap_FreeToHeap(v0->unk_2C);
@@ -852,7 +852,7 @@ static void ov117_02261368 (UnkStruct_ov117_02261280 * param0)
 
     v0 = sub_0200B1EC(param0->unk_80, 3);
     sub_0201D78C(&param0->unk_30[4], 0, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     sub_0201A9A4(&param0->unk_30[4]);
 }
@@ -1054,7 +1054,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     add r3, r5, r3
     bl ov117_02265DB8
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r5, #0
     add r0, #0x80
     ldr r0, [r0, #0]
@@ -1139,9 +1139,9 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     cmp r0, #6
     blt _02261740
     ldr r0, [sp, #0x30]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x38]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, = 0x15A8
     add r0, r5, r0
     bl ov117_02265EC8

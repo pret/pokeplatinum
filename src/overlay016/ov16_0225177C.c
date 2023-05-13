@@ -29,7 +29,7 @@
 #include "unk_020021B0.h"
 #include "narc.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020366A0.h"
 #include "unk_02073C2C.h"
@@ -546,7 +546,7 @@ int ov16_02252060 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2, voi
     }
     break;
     case 46:
-        sub_02023D28((Strbuf *)param3, v0->unk_36);
+        Strbuf_CopyChars((Strbuf *)param3, v0->unk_36);
         break;
     case 47:
         return v0->unk_4C;

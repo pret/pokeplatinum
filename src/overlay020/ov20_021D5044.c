@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02023790_decl.h"
 
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay020/ov20_021D5044.h"
 
 static const struct {
@@ -54,7 +54,7 @@ u32 ov20_021D5044 (void)
 void ov20_021D5048 (u32 param0, Strbuf *param1)
 {
     GF_ASSERT(param0 < NELEMS(Unk_ov20_021D5320));
-    sub_02023D8C(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
+    Strbuf_CopyNumChars(param1, &(Unk_ov20_021D5320[param0].unk_00), 2);
 }
 
 void ov20_021D506C (u32 param0, u32 * param1, u32 * param2)

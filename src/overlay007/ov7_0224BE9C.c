@@ -44,7 +44,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_020298BC.h"
@@ -227,7 +227,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
         ov7_0224C3EC(&param0->unk_1B8, param0->unk_14, param0->unk_18, param0->unk_1B4);
         v0 = sub_0200B1EC(param0->unk_1AC, 4);
         ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-        sub_020237BC(v0);
+        Strbuf_Free(v0);
         param0->unk_00 = 11;
         param0->unk_04 = 1;
         break;
@@ -235,7 +235,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
         if (ov7_0224CC88(param0->unk_0C, Unk_ov7_0224F1B4, 22)) {
             v0 = sub_0200B1EC(param0->unk_1AC, 5);
             ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-            sub_020237BC(v0);
+            Strbuf_Free(v0);
             param0->unk_00 = 11;
             param0->unk_04 = 12;
         } else {
@@ -250,7 +250,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
         ov7_0224CA0C(&param0->unk_1E8);
         v0 = sub_0200B1EC(param0->unk_1AC, 6);
         ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-        sub_020237BC(v0);
+        Strbuf_Free(v0);
         param0->unk_00 = 10;
         param0->unk_04 = 4;
         break;
@@ -270,7 +270,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
         } else if (v1 == 0xfffffffe) {
             v0 = sub_0200B1EC(param0->unk_1AC, 11);
             ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-            sub_020237BC(v0);
+            Strbuf_Free(v0);
             param0->unk_00 = 11;
             param0->unk_04 = 12;
             sub_02005748(1500);
@@ -287,7 +287,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
             if (ov7_0224CCB8(param0->unk_10, Unk_ov7_0224F1B4, param0->unk_1E8.unk_12C, param0->unk_18) == 0) {
                 v0 = sub_0200B1EC(param0->unk_1AC, 9);
                 ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-                sub_020237BC(v0);
+                Strbuf_Free(v0);
                 param0->unk_00 = 11;
                 param0->unk_04 = 3;
                 ov7_0224CC6C(&param0->unk_348);
@@ -297,7 +297,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
             if (ov7_0224CCE4(param0->unk_0C, Unk_ov7_0224F1B4, param0->unk_1E8.unk_12C) == 0) {
                 v0 = sub_0200B1EC(param0->unk_1AC, 10);
                 ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-                sub_020237BC(v0);
+                Strbuf_Free(v0);
                 ov7_0224CC6C(&param0->unk_348);
                 param0->unk_00 = 11;
                 param0->unk_04 = 3;
@@ -307,7 +307,7 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
             v0 = sub_0200B1EC(param0->unk_1AC, 8);
 
             ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-            sub_020237BC(v0);
+            Strbuf_Free(v0);
             ov7_0224CC6C(&param0->unk_348);
 
             param0->unk_00 = 11;
@@ -332,14 +332,14 @@ BOOL ov7_0224BF2C (UnkStruct_ov7_0224BEFC * param0)
     case 8:
         v0 = sub_0200B1EC(param0->unk_1AC, 13);
         ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-        sub_020237BC(v0);
+        Strbuf_Free(v0);
         param0->unk_00 = 11;
         param0->unk_04 = 9;
         break;
     case 9:
         v0 = sub_0200B1EC(param0->unk_1AC, 5);
         ov7_0224C468(&param0->unk_1B8, v0, param0->unk_18);
-        sub_020237BC(v0);
+        Strbuf_Free(v0);
         param0->unk_00 = 11;
         param0->unk_04 = 12;
         break;
@@ -438,7 +438,7 @@ static void ov7_0224C468 (UnkStruct_ov7_0224C3EC * param0, Strbuf *param1, u32 p
 
     sub_0201ADA4(param0->unk_04, 15);
 
-    param0->unk_10 = sub_02023868(param1, param2);
+    param0->unk_10 = Strbuf_Clone(param1, param2);
     param0->unk_0C = sub_0201D78C(param0->unk_04, 1, param0->unk_10, 0, 0, param0->unk_08, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     sub_0201A954(param0->unk_04);
@@ -448,7 +448,7 @@ static BOOL ov7_0224C4B8 (UnkStruct_ov7_0224C3EC * param0)
 {
     if (sub_0201D724(param0->unk_0C) == 0) {
         if (param0->unk_10 != NULL) {
-            sub_020237BC(param0->unk_10);
+            Strbuf_Free(param0->unk_10);
             param0->unk_10 = NULL;
         }
 
@@ -465,7 +465,7 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
     UnkStruct_0200B358 * v2;
 
     v2 = sub_0200B358(param2);
-    v1 = sub_02023790(200, param2);
+    v1 = Strbuf_Init(200, param2);
     v0 = sub_0200B1EC(param1, 7);
 
     if (param3[param4].unk_08 == 1) {
@@ -481,8 +481,8 @@ static void ov7_0224C4E0 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
     ov7_0224C468(param0, v1, param2);
 
     sub_0200B3F0(v2);
-    sub_020237BC(v1);
-    sub_020237BC(v0);
+    Strbuf_Free(v1);
+    Strbuf_Free(v0);
 }
 
 static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * param1, u32 param2, const UnkStruct_ov7_0224F1B4 * param3, u32 param4)
@@ -492,7 +492,7 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
     UnkStruct_0200B358 * v2;
 
     v2 = sub_0200B358(param2);
-    v1 = sub_02023790(200, param2);
+    v1 = Strbuf_Init(200, param2);
     v0 = sub_0200B1EC(param1, 12);
 
     if (param3[param4].unk_08 == 1) {
@@ -508,8 +508,8 @@ static void ov7_0224C580 (UnkStruct_ov7_0224C3EC * param0, UnkStruct_0200B144 * 
     ov7_0224C468(param0, v1, param2);
 
     sub_0200B3F0(v2);
-    sub_020237BC(v1);
-    sub_020237BC(v0);
+    Strbuf_Free(v1);
+    Strbuf_Free(v0);
 }
 
 static void ov7_0224C620 (UnkStruct_ov7_0224C620 * param0, UnkStruct_02018340 * param1, UnkStruct_0200B144 * param2, u32 param3)
@@ -528,7 +528,7 @@ static void ov7_0224C620 (UnkStruct_ov7_0224C620 * param0, UnkStruct_02018340 * 
         param0->unk_10[v0] = sub_0200B1EC(param2, 16 + v0);
     }
 
-    param0->unk_0C = sub_02023790(32, param3);
+    param0->unk_0C = Strbuf_Init(32, param3);
     sub_0201ADA4(param0->unk_04, 15);
     param0->unk_00 = 1;
 }
@@ -542,10 +542,10 @@ static void ov7_0224C698 (UnkStruct_ov7_0224C620 * param0)
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020237BC(param0->unk_10[v0]);
+        Strbuf_Free(param0->unk_10[v0]);
     }
 
-    sub_020237BC(param0->unk_0C);
+    Strbuf_Free(param0->unk_0C);
     sub_0200B3F0(param0->unk_08);
     sub_0201ACF4(param0->unk_04);
     sub_0201A8FC(param0->unk_04);
@@ -615,7 +615,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, UnkStruct_02018340 * 
     sub_0201A7E8(param1, param0->unk_04, 3, 17, 1, 14, 16, 13, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
     param0->unk_124 = sub_0200B358(param2);
-    param0->unk_128 = sub_02023790(32, param2);
+    param0->unk_128 = Strbuf_Init(32, param2);
 
     v1 = sub_0200B1EC(param5, 16);
 
@@ -623,7 +623,7 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, UnkStruct_02018340 * 
         sub_0200BFAC(param0->unk_124, 0, param3[v0].unk_00);
         sub_0200C388(param0->unk_124, param0->unk_128, v1);
 
-        param0->unk_C4[v0] = sub_02023868(param0->unk_128, param2);
+        param0->unk_C4[v0] = Strbuf_Clone(param0->unk_128, param2);
         param0->unk_0C[v0].unk_00 = param0->unk_C4[v0];
         param0->unk_0C[v0].unk_04 = v0;
     }
@@ -633,8 +633,8 @@ static void ov7_0224C768 (UnkStruct_ov7_0224C768 * param0, UnkStruct_02018340 * 
     param0->unk_0C[param4].unk_04 = param4;
 
     sub_0200B3F0(param0->unk_124);
-    sub_020237BC(param0->unk_128);
-    sub_020237BC(v1);
+    Strbuf_Free(param0->unk_128);
+    Strbuf_Free(v1);
 
     v5.unk_0C = param0->unk_04;
     v5.unk_10 = param0->unk_120;
@@ -681,7 +681,7 @@ static void ov7_0224C934 (UnkStruct_ov7_0224C768 * param0)
     ov7_0224CB40(param0);
 
     for (v0 = 0; v0 < param0->unk_120; v0++) {
-        sub_020237BC(param0->unk_C4[v0]);
+        Strbuf_Free(param0->unk_C4[v0]);
     }
 
     sub_02001384(param0->unk_08, NULL, NULL);

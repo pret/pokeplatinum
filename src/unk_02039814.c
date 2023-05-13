@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02039814.h"
 
 void sub_02039834(int param0, int param1, int param2);
@@ -154,8 +154,8 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0201975C(4, 0x6c21);
 
     v2 = sub_0200B144(1, 26, 214, param0);
-    v3 = sub_02023790(0x180, param0);
-    v4 = sub_02023790(0x180, param0);
+    v3 = Strbuf_Init(0x180, param0);
+    v4 = Strbuf_Init(0x180, param0);
     sub_0201D710();
     v5 = sub_0200B358(param0);
 
@@ -168,7 +168,7 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0200C388(v5, v3, v4);
 
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
 
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);

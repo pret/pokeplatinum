@@ -33,7 +33,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02034198.h"
 #include "unk_02057518.h"
 #include "unk_0205D8CC.h"
@@ -508,15 +508,15 @@ static void ov23_02249724 (UnkStruct_ov23_02249724 * param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_00[v0] = sub_02023790((50 * 2), 4);
+        param0->unk_00[v0] = Strbuf_Init((50 * 2), 4);
     }
 
     param0->unk_8C = 0;
     param0->unk_90 = 0;
-    param0->unk_80 = sub_02023790((50 * 2), 4);
+    param0->unk_80 = Strbuf_Init((50 * 2), 4);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_84[v0] = sub_02023790((20 * 2 * 2), 4);
+        param0->unk_84[v0] = Strbuf_Init((20 * 2 * 2), 4);
     }
 }
 
@@ -525,13 +525,13 @@ static void ov23_02249778 (UnkStruct_ov23_02249724 * param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        sub_020237BC(param0->unk_00[v0]);
+        Strbuf_Free(param0->unk_00[v0]);
     }
 
-    sub_020237BC(param0->unk_80);
+    Strbuf_Free(param0->unk_80);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020237BC(param0->unk_84[v0]);
+        Strbuf_Free(param0->unk_84[v0]);
     }
 }
 
@@ -539,7 +539,7 @@ static int ov23_022497B0 (UnkStruct_ov23_02249724 * param0, Strbuf *param1)
 {
     int v0, v1, v2;
 
-    sub_02023DF0(param1, param0->unk_94, (20 * 2 * 2));
+    Strbuf_ToChars(param1, param0->unk_94, (20 * 2 * 2));
 
     v1 = 0;
     v0 = 0;
@@ -556,12 +556,12 @@ static int ov23_022497B0 (UnkStruct_ov23_02249724 * param0, Strbuf *param1)
     GF_ASSERT(v1 < 2);
 
     if (v1 == 0) {
-        sub_02023810(param0->unk_84[0], param1);
+        Strbuf_Copy(param0->unk_84[0], param1);
         return 1;
     } else {
         param0->unk_94[v2] = 0xffff;
-        sub_02023D28(param0->unk_84[0], param0->unk_94);
-        sub_02023D28(param0->unk_84[1], &param0->unk_94[v2 + 1]);
+        Strbuf_CopyChars(param0->unk_84[0], param0->unk_94);
+        Strbuf_CopyChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
     }
 
     return 2;
@@ -585,7 +585,7 @@ static int ov23_02249844 (UnkStruct_ov23_02249724 * param0, Strbuf *param1)
     }
 
     for (v1 = 0; v1 < v2; v1++) {
-        sub_02023810(param0->unk_00[param0->unk_8C], param0->unk_84[v1]);
+        Strbuf_Copy(param0->unk_00[param0->unk_8C], param0->unk_84[v1]);
         param0->unk_8C++;
 
         if (param0->unk_8C == 32) {

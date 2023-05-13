@@ -69,7 +69,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -1870,7 +1870,7 @@ BOOL ov104_02230E40 (UnkStruct_ov104_0222E930 * param0)
     Strbuf* v4 = ov104_02230E90(v1, 11);
 
     sub_0200B48C(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
-    sub_020237BC(v4);
+    Strbuf_Free(v4);
 
     return 0;
 }

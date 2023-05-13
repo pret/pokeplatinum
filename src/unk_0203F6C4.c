@@ -85,7 +85,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
@@ -7772,10 +7772,10 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
 
     v8 = sub_0200B29C(v6, v7, 1, 32);
     v9 = sub_0200B1EC(v7, 0);
-    *v1 = (sub_02023BE0(v8, v9) == 0);
+    *v1 = (Strbuf_Compare(v8, v9) == 0);
 
-    sub_020237BC(v8);
-    sub_020237BC(v9);
+    Strbuf_Free(v8);
+    Strbuf_Free(v9);
     sub_0200B190(v7);
     sub_0200B3F0(v6);
 

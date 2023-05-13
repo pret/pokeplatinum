@@ -65,7 +65,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
@@ -180,8 +180,8 @@ static void ov97_022349E0(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02234ECC(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02235310(UnkStruct_ov97_02234A2C * param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C * param0);
-void sub_02023D8C(Strbuf *param0, const u16 * param1, u32 param2);
-void sub_02023D28(Strbuf *param0, const u16 * param1);
+void Strbuf_CopyNumChars(Strbuf *param0, const u16 * param1, u32 param2);
+void Strbuf_CopyChars(Strbuf *param0, const u16 * param1);
 void BoxMonGBAToBoxMon(BoxPokemonGBA * param0, BoxPokemon * param1);
 
 UnkStruct_ov97_0223F434 * Unk_ov97_0223F434;
@@ -465,13 +465,13 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
             v1 = sub_0200B358(78);
         }
 
-        sub_020237E8(param0->unk_12668);
+        Strbuf_Clear(param0->unk_12668);
 
         v0 = param0->unk_12668;
         v6 = sub_0200B1EC(v2, param1->unk_34);
 
         sub_0200C388(v1, param0->unk_12668, v6);
-        sub_020237BC(v6);
+        Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
         param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
@@ -486,7 +486,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
 
     if (param1->unk_38) {
         v0 = param0->unk_1266C;
-        sub_02023D8C(v0, param1->unk_38, 64);
+        Strbuf_CopyNumChars(v0, param1->unk_38, 64);
         v3 = ov97_02233DAC(param1, v0, param2);
         param1->unk_48 = sub_0201D78C(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
         param1->unk_38 = NULL;
@@ -1231,7 +1231,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
 
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
-    v8 = sub_02023790(64, 78);
+    v8 = Strbuf_Init(64, 78);
     v5 = sub_0200B144(1, 26, 412, 78);
     v0 = ov97_02236DD0(GetGBABoxMonData(param1, 11, NULL));
 
@@ -1245,13 +1245,13 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
     sub_0200B190(v5);
-    sub_020237BC(v8);
+    Strbuf_Free(v8);
 
     v2 = GetGBABoxMonData(param1, 12, NULL);
 
     if (v2) {
         v3 = sub_0207CF10(v2);
-        v8 = sub_02023790(64, 78);
+        v8 = Strbuf_Init(64, 78);
 
         Item_GetNameIntoString(v8, v3, 78);
 
@@ -1261,13 +1261,13 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
         v4.unk_1C = 2 * 8;
 
         ov97_02233DD0(param0, &v4, 0x4 | 0x2);
-        sub_020237BC(v8);
+        Strbuf_Free(v8);
     }
 
     v1 = ov97_02236E00(param1);
-    v8 = sub_02023790(10, 78);
+    v8 = Strbuf_Init(10, 78);
 
-    sub_020238A0(v8, v1, 3, 1, 1);
+    Strbuf_FormatInt(v8, v1, 3, 1, 1);
 
     v4.unk_3C = v8;
     v4.unk_34 = -1;
@@ -1276,7 +1276,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
 
     ov97_02233DD0(param0, &v4, 0x2);
 
-    sub_020237BC(v8);
+    Strbuf_Free(v8);
     sub_02005844(v0, 0);
 }
 
@@ -1630,9 +1630,9 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
     ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
 
     v1 = sub_0200B358(78);
-    v2 = sub_02023790(7 + 1, 78);
+    v2 = Strbuf_Init(7 + 1, 78);
 
-    sub_02023D28(v2, v3);
+    Strbuf_CopyChars(v2, v3);
     sub_0200B48C(v1, 1, v2, 0, 1, GAME_LANGUAGE);
 
     ov97_02234ECC(param0);
@@ -1642,7 +1642,7 @@ static void ov97_02235344 (UnkStruct_ov97_02234A2C * param0)
 
     ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
 
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0200B3F0(v1);
 
     ov97_02235310(param0);
@@ -1805,8 +1805,8 @@ static int ov97_02235624 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_14 = sub_02025E38(v0->unk_10);
     v0->unk_18 = sub_02025E44(v0->unk_10);
     v0->unk_1C = sub_02027B50(v0->unk_18);
-    v0->unk_12668 = sub_02023790(256, 78);
-    v0->unk_1266C = sub_02023790(256, 78);
+    v0->unk_12668 = Strbuf_Init(256, 78);
+    v0->unk_1266C = Strbuf_Init(256, 78);
 
     sub_02004550(9, 1174, 1);
 
@@ -2159,8 +2159,8 @@ static int ov97_02235CC8 (UnkStruct_020067E8 * param0, int * param1)
 
     UnkStruct_ov97_02234A2C * v0 = sub_0200682C(param0);
 
-    sub_020237BC(v0->unk_12668);
-    sub_020237BC(v0->unk_1266C);
+    Strbuf_Free(v0->unk_12668);
+    Strbuf_Free(v0->unk_1266C);
     Heap_FreeToHeap(v0->unk_20);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
     sub_02006830(param0);

@@ -34,7 +34,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -958,7 +958,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
     v9 = ov16_0223E0D0(param0->unk_0C);
-    v5 = sub_02023790((12 + (5 * 2)), 5);
+    v5 = Strbuf_Init((12 + (5 * 2)), 5);
     v6 = sub_0200B1EC(v4, 964);
     v7 = ov16_0223DFAC(param0->unk_0C, param0->unk_24, param0->unk_26);
     v8 = sub_02076B10(v7);
@@ -987,8 +987,8 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     }
 
     sub_0201A8FC(&v3);
-    sub_020237BC(v5);
-    sub_020237BC(v6);
+    Strbuf_Free(v5);
+    Strbuf_Free(v6);
 }
 
 static void ov16_022679C8 (UnkStruct_ov16_022674C4 * param0)
@@ -1196,7 +1196,7 @@ static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     }
 
     sub_0201A8FC(&v3);
-    sub_020237BC(v5);
+    Strbuf_Free(v5);
 }
 
 static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
@@ -1212,7 +1212,7 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
     v7 = ov16_0223E0D0(param0->unk_0C);
-    v5 = sub_02023790(30, 5);
+    v5 = Strbuf_Init(30, 5);
 
     if (param1 & (1 << 10)) {
         v6 = sub_0200B1EC(v4, 951);
@@ -1243,8 +1243,8 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     }
 
     sub_0201A8FC(&v3);
-    sub_020237BC(v5);
-    sub_020237BC(v6);
+    Strbuf_Free(v5);
+    Strbuf_Free(v6);
 }
 
 static s32 ov16_02267EDC (UnkStruct_ov16_022674C4 * param0, int param1)

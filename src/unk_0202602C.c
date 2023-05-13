@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_02026030_t.h"
 
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_0202602C.h"
 
@@ -35,14 +35,14 @@ void sub_02026040 (UnkStruct_02026030 * param0)
 
 void sub_0202604C (const UnkStruct_0202610C * param0, Strbuf *param1)
 {
-    sub_02023D8C(param1, param0->unk_00, (11 + 1));
+    Strbuf_CopyNumChars(param1, param0->unk_00, (11 + 1));
 }
 
 Strbuf* sub_0202605C (const UnkStruct_0202610C * param0, int param1)
 {
-    Strbuf* v0 = sub_02023790((11 + 1) * 2, param1);
+    Strbuf* v0 = Strbuf_Init((11 + 1) * 2, param1);
 
-    sub_02023D28(v0, param0->unk_00);
+    Strbuf_CopyChars(v0, param0->unk_00);
     return v0;
 }
 

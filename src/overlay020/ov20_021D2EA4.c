@@ -27,7 +27,7 @@
 #include "unk_0201D0C8.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D2EA4.h"
@@ -87,7 +87,7 @@ UnkStruct_ov20_021D30F8 * ov20_021D2EA4 (UnkStruct_ov20_021D2128 * param0, const
     v0->unk_3C = NULL;
     v0->unk_40 = NULL;
     v0->unk_44 = NULL;
-    v0->unk_4C = sub_02023790(128, 35);
+    v0->unk_4C = Strbuf_Init(128, 35);
     v0->unk_48 = sub_0200B144(0, 26, 437, 35);
     v0->unk_50 = sub_020149F0(35);
 
@@ -117,7 +117,7 @@ void ov20_021D2EF0 (UnkStruct_ov20_021D30F8 * param0)
     }
 
     if (param0->unk_4C) {
-        sub_020237BC(param0->unk_4C);
+        Strbuf_Free(param0->unk_4C);
     }
 
     sub_0201A8FC(&param0->unk_0C);
@@ -308,7 +308,7 @@ static u32 ov20_021D32D0 (UnkStruct_ov20_021D30F8 * param0)
     }
 
     ov20_021D33F4(&param0->unk_64);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     return v3;
 }
@@ -316,7 +316,7 @@ static u32 ov20_021D32D0 (UnkStruct_ov20_021D30F8 * param0)
 static void ov20_021D33C8 (UnkStruct_ov20_021D33C8 * param0, UnkStruct_ov20_021D30F8 * param1)
 {
     param0->unk_00 = ov20_021D1FC0(param1->unk_04, 35);
-    param0->unk_04 = sub_02023E2C(param0->unk_00);
+    param0->unk_04 = Strbuf_GetData(param0->unk_00);
 
     if (*(param0->unk_04) == 0xfffe) {
         param0->unk_08 = 1;
@@ -327,7 +327,7 @@ static void ov20_021D33C8 (UnkStruct_ov20_021D33C8 * param0, UnkStruct_ov20_021D
 
 static void ov20_021D33F4 (UnkStruct_ov20_021D33C8 * param0)
 {
-    sub_020237BC(param0->unk_00);
+    Strbuf_Free(param0->unk_00);
 }
 
 static int ov20_021D3400 (UnkStruct_ov20_021D33C8 * param0, Strbuf *param1)
@@ -354,7 +354,7 @@ static int ov20_021D3400 (UnkStruct_ov20_021D33C8 * param0, Strbuf *param1)
             }
         }
 
-        sub_02023D8C(param1, v0, (param0->unk_04 - v0) + 1);
+        Strbuf_CopyNumChars(param1, v0, (param0->unk_04 - v0) + 1);
         return 0;
     case 1:
         param0->unk_04 = sub_0201D0C8(param0->unk_04);
@@ -436,14 +436,14 @@ void ov20_021D3578 (UnkStruct_ov20_021D30F8 * param0, u32 param1)
 
     {
         UnkStruct_0200B358 * v0 = sub_0200B368(2, 60, 0);
-        Strbuf* v1 = sub_02023790(300, 0);
+        Strbuf* v1 = Strbuf_Init(300, 0);
 
         sub_0200B7B4(v0, 0, 0);
         sub_0200B1B8(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
         sub_0200C388(v0, v1, param0->unk_4C);
         sub_0201D78C(&param0->unk_1C, 1, v1, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
 
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         sub_0200B3F0(v0);
     }
     break;

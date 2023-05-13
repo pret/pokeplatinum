@@ -74,7 +74,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
@@ -412,7 +412,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     ov113_0225D9FC(v0);
     ov113_0225DBCC(v0);
 
-    v0->unk_C4 = sub_02023790(256, 118);
+    v0->unk_C4 = Strbuf_Init(256, 118);
     v0->unk_1C = sub_0200C6E4(118);
 
     sub_0200C73C(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, (16 + 16));
@@ -647,7 +647,7 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
     sub_02015938(v0->unk_24);
     ov113_0225E378(&v0->unk_194);
 
-    sub_020237BC(v0->unk_C4);
+    Strbuf_Free(v0->unk_C4);
     sub_02002C60(2);
     sub_020127BC(v0->unk_10);
     sub_0200B190(v0->unk_30);
@@ -1016,7 +1016,7 @@ static void ov113_0225D484 (UnkStruct_ov113_0225DBCC * param0)
         v2 = sub_0200B1EC(param0->unk_30, 1);
         ov113_0225E15C(param0, &param0->unk_19C0, v2, 2, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), 0, 10003, 0x1c * 8, 176, 1);
         sub_020129D0(param0->unk_19C0.unk_00, 1);
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
     }
 }
 

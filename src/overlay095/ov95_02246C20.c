@@ -39,7 +39,7 @@
 #include "unk_0201CCF0.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -151,7 +151,7 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_00 = sub_02006840(param0);
             v0->unk_04 = 0;
             v0->unk_08 = sub_02018340(57);
-            v0->unk_14 = sub_02023790(400, 57);
+            v0->unk_14 = Strbuf_Init(400, 57);
             v0->unk_10 = sub_0200B144(0, 26, 350, 57);
             v0->unk_0C = sub_0200B358(57);
 
@@ -221,7 +221,7 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     sub_02039794();
     sub_0200B3F0(v1->unk_0C);
     sub_0200B190(v1->unk_10);
-    sub_020237BC(v1->unk_14);
+    Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
     sub_02021964(v1->unk_18);
     sub_0200A878();

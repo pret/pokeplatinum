@@ -9,7 +9,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
 #include "error_handling.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020986CC.h"
 #include "overlay021/ov21_021D5600.h"
 
@@ -29,7 +29,7 @@ static void ov21_021D5764(int param0, int param1, int * param2, int * param3, in
 
 void ov21_021D5600 (Strbuf *param0)
 {
-    sub_020237BC(param0);
+    Strbuf_Free(param0);
 }
 
 int ov21_021D5608 (int param0)
@@ -210,7 +210,7 @@ static Strbuf* ov21_021D5724 (int param0, int param1, int param2)
     UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, param0, param2);
 
     if (v0) {
-        Strbuf* v1 = sub_02023790(256, param2);
+        Strbuf* v1 = Strbuf_Init(256, param2);
 
         if (v1) {
             sub_0200B1B8(v0, param1, v1);

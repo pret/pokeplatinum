@@ -42,7 +42,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202CD50.h"
@@ -647,8 +647,8 @@ static void ov67_0225D188 (UnkStruct_ov67_0225D210 * param0, UnkStruct_02018340 
 {
     param0->unk_00 = sub_0200B358(param10);
     param0->unk_04 = sub_0200B144(0, 26, param3, param10);
-    param0->unk_18 = sub_02023790(256, param10);
-    param0->unk_1C = sub_02023790(256, param10);
+    param0->unk_18 = Strbuf_Init(256, param10);
+    param0->unk_1C = Strbuf_Init(256, param10);
     param0->unk_20 = param2;
     param0->unk_28 = sub_02027AC0(sub_02025E44(param9));
     param0->unk_2C = 0;
@@ -723,8 +723,8 @@ static void ov67_0225D330 (UnkStruct_ov67_0225D210 * param0)
     }
 
     sub_0201A8FC(&param0->unk_08);
-    sub_020237BC(param0->unk_1C);
-    sub_020237BC(param0->unk_18);
+    Strbuf_Free(param0->unk_1C);
+    Strbuf_Free(param0->unk_18);
     sub_0200B190(param0->unk_04);
     sub_0200B3F0(param0->unk_00);
 }

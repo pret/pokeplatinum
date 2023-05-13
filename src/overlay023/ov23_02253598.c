@@ -30,7 +30,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
@@ -133,11 +133,11 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     str r0, [sp, #0x1c]
     mov r0, #0x1e
     mov r1, #4
-    bl sub_02023790
+    bl Strbuf_Init
     add r4, r0, #0
     mov r0, #0x1e
     mov r1, #4
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x18]
     ldr r0, [sp, #0xc]
     mov r1, #0
@@ -312,9 +312,9 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     cmp r0, #7
     blt _02253768
     add r0, r4, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x18]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x1c]
     bl sub_0200B3F0
     add sp, #0x20
@@ -490,8 +490,8 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
     const int v12 = 100;
 
     v0 = sub_0200B358(4);
-    v1 = sub_02023790(40, 4);
-    v2 = sub_02023790(40, 4);
+    v1 = Strbuf_Init(40, 4);
+    v2 = Strbuf_Init(40, 4);
 
     sub_0200B498(v0, 1, param2);
     sub_0200B1B8(param1, 12, v1);
@@ -532,8 +532,8 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
         }
     }
 
-    sub_020237BC(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
     sub_0200B3F0(v0);
 }
 

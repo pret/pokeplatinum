@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -73,7 +73,7 @@ BOOL ov43_02256544 (UnkStruct_ov43_02256544 ** param0, const UnkStruct_ov43_0225
         v0->unk_30 = ov25_02254664();
         v0->unk_B4 = sub_0200B144(1, 26, 624, 8);
         v0->unk_B8 = sub_0200B144(1, 26, 456, 8);
-        v0->unk_BC = sub_02023790(128, 8);
+        v0->unk_BC = Strbuf_Init(128, 8);
         ov43_022565B4(v0);
         *param0 = v0;
 
@@ -180,7 +180,7 @@ static void ov43_02256640 (UnkStruct_ov43_02256544 * param0)
 void ov43_02256680 (UnkStruct_ov43_02256544 * param0)
 {
     if (param0 != NULL) {
-        sub_020237BC(param0->unk_BC);
+        Strbuf_Free(param0->unk_BC);
         sub_0200B190(param0->unk_B4);
         sub_0200B190(param0->unk_B8);
         ov43_02256640(param0);

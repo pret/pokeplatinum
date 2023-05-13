@@ -44,7 +44,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "error_handling.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02034198.h"
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02263AF0.h"
@@ -2313,7 +2313,7 @@ asm void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
     ldr r2, [r2, #0]
     bl ov117_02265DB8
     ldr r0, [sp, #0x34]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x30]
     sub r6, #0x14
     sub r4, #0x28

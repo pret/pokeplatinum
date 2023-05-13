@@ -34,7 +34,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "party.h"
@@ -1190,7 +1190,7 @@ static void ov13_02220F08 (UnkStruct_ov13_022213F0 * param0)
     param0->unk_1FA4 = sub_0200B144(0, 26, 3, param0->unk_00->unk_0C);
     param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
     param0->unk_1FA8 = sub_0200B358(param0->unk_00->unk_0C);
-    param0->unk_1FAC = sub_02023790(512, param0->unk_00->unk_0C);
+    param0->unk_1FAC = Strbuf_Init(512, param0->unk_00->unk_0C);
 }
 
 static void ov13_02220F60 (UnkStruct_ov13_022213F0 * param0)
@@ -1198,7 +1198,7 @@ static void ov13_02220F60 (UnkStruct_ov13_022213F0 * param0)
     sub_0200B190(param0->unk_1FA4);
     sub_0200C560(param0->unk_1FA0);
     sub_0200B3F0(param0->unk_1FA8);
-    sub_020237BC(param0->unk_1FAC);
+    Strbuf_Free(param0->unk_1FAC);
 }
 
 static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
@@ -1615,7 +1615,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
             sub_0200BA74(param0->unk_1FA8, 0, ov16_0223E120(param0->unk_00->unk_08, v2));
         }
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         return 0;
     }
 
@@ -1623,7 +1623,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         v1 = sub_0200B1EC(param0->unk_1FA4, 77);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0->unk_00));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         return 0;
     }
 
@@ -1631,7 +1631,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         v1 = sub_0200B1EC(param0->unk_1FA4, 76);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0->unk_00));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         return 0;
     }
 
@@ -1646,7 +1646,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
 
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0->unk_00));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         return 0;
     }
 
@@ -1656,7 +1656,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
 
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0->unk_00));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         return 0;
     }
 

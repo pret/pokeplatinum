@@ -45,7 +45,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
@@ -646,7 +646,7 @@ static void ov62_022417C0 (UnkStruct_0208C06C * param0, int param1)
 
             sub_0201D78C(v11, 0, v10, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
             sub_0201A9A4(v11);
-            sub_020237BC(v10);
+            Strbuf_Free(v10);
         }
     }
 }
@@ -675,7 +675,7 @@ static void ov62_022418DC (UnkStruct_0208C06C * param0, int param1)
 
     sub_0201D78C(v1, 0, v2, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
     sub_0201A9A4(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 }
 
 static void ov62_02241954 (UnkStruct_0208C06C * param0, int param1)
@@ -691,14 +691,14 @@ static void ov62_02241954 (UnkStruct_0208C06C * param0, int param1)
     if (param1 == 0xffff) {
         v2 = sub_0200B1EC(param0->unk_14.unk_34, 125);
     } else {
-        v2 = sub_02023790(255, 102);
+        v2 = Strbuf_Init(255, 102);
         sub_0200B274(param1, 102, v3);
-        sub_02023D28(v2, v3);
+        Strbuf_CopyChars(v2, v3);
     }
 
     sub_0201D78C(v1, 0, v2, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
     sub_0201A9A4(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 }
 
 static void ov62_022419D4 (UnkStruct_0208C06C * param0, int param1, int param2)
@@ -718,24 +718,24 @@ static void ov62_022419D4 (UnkStruct_0208C06C * param0, int param1, int param2)
         v4 = ov62_02231690(102);
 
         if (param2 != 0) {
-            v2 = sub_02023790(255, 102);
+            v2 = Strbuf_Init(255, 102);
             v3 = sub_0200B1EC(param0->unk_14.unk_34, 23);
             sub_0200BE08(v4, 0, param1, param2);
             sub_0200C388(v4, v2, v3);
         } else {
-            v2 = sub_02023790(255, 102);
+            v2 = Strbuf_Init(255, 102);
             v3 = sub_0200B1EC(param0->unk_14.unk_34, 22);
             sub_0200BDD0(v4, 0, param1);
             sub_0200C388(v4, v2, v3);
         }
 
-        sub_020237BC(v3);
+        Strbuf_Free(v3);
         sub_0200B3F0(v4);
     }
 
     sub_0201D78C(v1, 0, v2, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
     sub_0201A9A4(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 }
 
 static void ov62_02241AA4 (UnkStruct_0208C06C * param0, int param1)
@@ -788,7 +788,7 @@ static void ov62_02241AA4 (UnkStruct_0208C06C * param0, int param1)
 
             sub_0201D78C(v11, 0, v10, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
             sub_0201A9A4(v11);
-            sub_020237BC(v10);
+            Strbuf_Free(v10);
         }
     }
 }
@@ -835,7 +835,7 @@ static void ov62_02241C38 (UnkStruct_0208C06C * param0)
     v3 = sub_0200B1EC(param0->unk_14.unk_34, 126);
     sub_0201D78C(v4, 0, v3, 0, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
     sub_0201A9A4(v4);
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
 
     v2 = 256;
     v4 = &v0->unk_6D4[0];
@@ -850,7 +850,7 @@ static void ov62_02241C38 (UnkStruct_0208C06C * param0)
     }
 
     sub_0201A9A4(v4);
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
 
     v0->unk_798 = 1;
     v0->unk_794 = 1;
@@ -1319,7 +1319,7 @@ asm static void ov62_022422C0 (UnkStruct_0208C06C * param0)
     add r0, r4, #0
     bl sub_0201A9A4
     ldr r0, [sp, #0x2c]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x1c]
     add r7, r7, #1
     add r1, r0, #0
@@ -3135,11 +3135,11 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
         v4 = sub_0200B1EC(param1->unk_14.unk_34, 7);
         v5 = sub_02030B94(param1->unk_88C[param2], 102);
         ov62_022349A8(param1, v5);
-        v0 = sub_02023790(255, 102);
+        v0 = Strbuf_Init(255, 102);
         sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v3, v0, v4);
-        sub_020237BC(v4);
-        sub_020237BC(v5);
+        Strbuf_Free(v4);
+        Strbuf_Free(v5);
         sub_0200B3F0(v3);
     }
 
@@ -3147,7 +3147,7 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
     sub_0201A870(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0201A8FC(&v2);
 }
 
@@ -3169,14 +3169,14 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         UnkStruct_02030A80 * v6 = v2->unk_80.unk_00;
 
         v3 = ov62_02231690(102);
-        v0 = sub_02023790(255, 102);
+        v0 = Strbuf_Init(255, 102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = sub_0200B1EC(param0->unk_14.unk_34, param1);
         sub_0200B48C(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v3, v0, v5);
-        sub_020237BC(v4);
-        sub_020237BC(v5);
+        Strbuf_Free(v4);
+        Strbuf_Free(v5);
         sub_0200B3F0(v3);
     } else {
         v0 = sub_0200B1EC(param0->unk_14.unk_34, param1);
@@ -3185,7 +3185,7 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
     sub_0201ADA4(v1, 0xCC);
     sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
@@ -3201,14 +3201,14 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         UnkStruct_02030A80 * v6 = v2->unk_80.unk_00;
 
         v3 = ov62_02231690(102);
-        v0 = sub_02023790(255, 102);
+        v0 = Strbuf_Init(255, 102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = sub_0200B1EC(param0->unk_14.unk_34, param1);
         sub_0200B48C(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v3, v0, v5);
-        sub_020237BC(v4);
-        sub_020237BC(v5);
+        Strbuf_Free(v4);
+        Strbuf_Free(v5);
         sub_0200B3F0(v3);
     } else if (param1 == 102) {
         UnkStruct_0200B358 * v7;
@@ -3217,14 +3217,14 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         UnkStruct_02030A80 * v10 = param0->unk_88C[param2];
 
         v7 = ov62_02231690(102);
-        v0 = sub_02023790(255, 102);
+        v0 = Strbuf_Init(255, 102);
         v8 = sub_02030B94(v10, 102);
         ov62_022349A8(param0, v8);
         v9 = sub_0200B1EC(param0->unk_14.unk_34, param1);
         sub_0200B48C(v7, 0, v8, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v7, v0, v9);
-        sub_020237BC(v8);
-        sub_020237BC(v9);
+        Strbuf_Free(v8);
+        Strbuf_Free(v9);
         sub_0200B3F0(v7);
     } else {
         v0 = sub_0200B1EC(param0->unk_14.unk_34, param1);
@@ -3233,7 +3233,7 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
     sub_0201ADA4(v1, 0xCC);
     sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void ov62_02244BE4 (UnkStruct_0208C06C * param0)
@@ -3712,7 +3712,7 @@ static void ov62_022455E4 (UnkStruct_0208C06C * param0, int param1)
     v2 = sub_0200B1EC(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
     sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }
 
@@ -3747,7 +3747,7 @@ static void ov62_0224568C (UnkStruct_0208C06C * param0)
     v4 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v4, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0201A9A4(v1);
 
     v3 += (10 * 2);
@@ -3762,7 +3762,7 @@ static void ov62_0224568C (UnkStruct_0208C06C * param0)
     v4 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v4, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }
 
@@ -4704,9 +4704,9 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         u64 v5 = param0->unk_4B0;
         u64 v6 = v5;
         u32 v7[3];
-        Strbuf* v8 = sub_02023790(255, 102);
-        Strbuf* v9 = sub_02023790(255, 102);
-        Strbuf* v10 = sub_02023790(255, 102);
+        Strbuf* v8 = Strbuf_Init(255, 102);
+        Strbuf* v9 = Strbuf_Init(255, 102);
+        Strbuf* v10 = Strbuf_Init(255, 102);
 
         v4 = &param1->unk_8A4;
         v7[0] = v6 % 100000;
@@ -4715,11 +4715,11 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         v6 /= 100000;
         v7[2] = v6;
         v1 = sub_0200B1EC(param1->unk_14.unk_34, 295);
-        v2 = sub_02023790(255, 102);
+        v2 = Strbuf_Init(255, 102);
 
-        sub_020238A0(v8, v7[0], 5, 2, 1);
-        sub_020238A0(v9, v7[1], 5, 2, 1);
-        sub_020238A0(v10, v7[2], 2, 2, 1);
+        Strbuf_FormatInt(v8, v7[0], 5, 2, 1);
+        Strbuf_FormatInt(v9, v7[1], 5, 2, 1);
+        Strbuf_FormatInt(v10, v7[2], 2, 2, 1);
         sub_0200B48C(v3, 2, v8, 0, 1, GAME_LANGUAGE);
         sub_0200B48C(v3, 1, v9, 0, 1, GAME_LANGUAGE);
         sub_0200B48C(v3, 0, v10, 0, 1, GAME_LANGUAGE);
@@ -4727,11 +4727,11 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         sub_0201ADA4(v4, 0xCC);
         sub_0201D78C(v4, 0, v2, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v4);
-        sub_020237BC(v8);
-        sub_020237BC(v9);
-        sub_020237BC(v10);
-        sub_020237BC(v1);
-        sub_020237BC(v2);
+        Strbuf_Free(v8);
+        Strbuf_Free(v9);
+        Strbuf_Free(v10);
+        Strbuf_Free(v1);
+        Strbuf_Free(v2);
         sub_0200C41C(v3);
     }
 

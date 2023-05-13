@@ -10,7 +10,7 @@
 #include "unk_0200AC5C.h"
 #include "unk_02013A04.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 
 static UnkStruct_02013A04 * sub_02013AAC(UnkStruct_02013A04 * param0, u32 * param1);
 
@@ -58,7 +58,7 @@ void sub_02013A6C (UnkStruct_02013A04 * param0, const Strbuf *param1, u32 param2
     param0 = sub_02013AAC(param0, &v0);
 
     if (param0) {
-        param0->unk_00 = sub_02023868(param1, v0);
+        param0->unk_00 = Strbuf_Clone(param1, v0);
         param0->unk_04 = param2;
     }
 }
@@ -108,7 +108,7 @@ void sub_02013AE8 (UnkStruct_02013A04 * param0)
             break;
         }
 
-        sub_020237BC((Strbuf *)(v0->unk_00));
+        Strbuf_Free((Strbuf *)(v0->unk_00));
 
         v0->unk_00 = NULL;
         v0++;

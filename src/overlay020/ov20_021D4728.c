@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D4728.h"
@@ -211,9 +211,9 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     bl Heap_FreeToHeap
  _021D496C:
     add r0, r4, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     mov r0, #2
     bl sub_02002C60
     add sp, #0x18
@@ -233,11 +233,11 @@ asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 *
     add r0, r2, #0
     str r2, [sp, #0x14]
     add r7, r3, #0
-    bl sub_02023C5C
+    bl Strbuf_NumLines
     str r0, [sp, #0x1c]
     mov r0, #0x20
     mov r1, #0x23
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     ldr r0, [sp, #0x1c]
     mov r1, #2
@@ -254,7 +254,7 @@ asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 *
     ldr r1, [sp, #0x14]
     ldr r2, [sp, #0x20]
     add r0, r6, #0
-    bl sub_02023C9C
+    bl Strbuf_CopyLineNum
     mov r0, #2
     add r1, r6, #0
     mov r2, #0
@@ -292,7 +292,7 @@ asm static void ov20_021D498C (UnkStruct_0205AA50 * param0, UnkStruct_02018340 *
     blo _021D49BE
  _021D4A10:
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x24
     pop {r4, r5, r6, r7, pc}
     nop

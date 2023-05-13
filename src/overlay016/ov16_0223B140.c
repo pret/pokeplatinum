@@ -59,7 +59,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020241F0.h"
 #include "unk_02024220.h"
@@ -625,7 +625,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     v0->unk_0C = sub_0200B144(1, 26, 368, 5);
     v0->unk_10 = sub_0200B144(1, 26, 0, 5);
     v0->unk_14 = sub_0200B358(5);
-    v0->unk_18 = sub_02023790((2 * 160), 5);
+    v0->unk_18 = Strbuf_Init((2 * 160), 5);
 
     MI_CpuCopy16(sub_02003164(v0->unk_28, 0), &v0->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(sub_02003164(v0->unk_28, 2), &v0->unk_2304[0], 0x20 * 7);
@@ -1747,12 +1747,12 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, UnkStruct_ov6_02240D5C *
         Strbuf* v6;
 
         v5 = sub_0200B144(1, 26, 368, 5);
-        v6 = sub_02023790(0x100, 5);
+        v6 = Strbuf_Init(0x100, 5);
 
         sub_0200B1B8(v5, 923, v6);
         sub_0201D738(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
-        sub_020237BC(v6);
+        Strbuf_Free(v6);
         sub_0200B190(v5);
     }
 

@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
@@ -168,7 +168,7 @@ static void ov48_02256650 (UnkStruct_ov48_0225650C * param0, u32 param1)
         sub_0201A9F4(&v0);
         sub_0201ACCC(&v0);
         sub_0201A8FC(&v0);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
     }
 }
 

@@ -13,7 +13,7 @@
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
 #include "unk_0201D0C8.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 
 static u32 sub_02014C00(u32 param0, u32 param1);
 
@@ -149,7 +149,7 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
     GF_ASSERT(param1 < sub_02014CD4(param0));
 
     v0 = sub_0200B010(26, Unk_020E5498[param0], param1, 0);
-    v1 = sub_02023E2C(v0);
+    v1 = Strbuf_GetData(v0);
     v2 = 0;
 
     while (*v1 != 0xffff) {
@@ -164,7 +164,7 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
         }
     }
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     return v2;
 }
 

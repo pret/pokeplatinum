@@ -50,7 +50,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_02073C2C.h"
@@ -664,8 +664,8 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
     Strbuf* v1;
 
     if (param1 > 0) {
-        v0 = sub_02023790(4, param3);
-        sub_020238A0(v0, param1, 3, 2, 1);
+        v0 = Strbuf_Init(4, param3);
+        Strbuf_FormatInt(v0, param1, 3, 2, 1);
     } else {
         v0 = ov21_021D1CE0(100, param3);
     }
@@ -674,7 +674,7 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
     sub_0201D78C(param0, 2, v0, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     sub_0201D78C(param0, 2, v1, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     ov21_021D5600(v1);
 }

@@ -23,7 +23,7 @@
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "overlay088/ov88_0223E9C4.h"
 
@@ -150,7 +150,7 @@ int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruc
 
     sub_0201ADA4(param0, 15);
     v1 = sub_0201D78C(param0, param2, v0, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     return v1;
 }

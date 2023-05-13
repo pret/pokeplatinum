@@ -88,7 +88,7 @@ Static main
 	Object src/unk_0202298C.o
 	Object src/unk_0202309C.o
 	Object src/unk_020232E0.o
-	Object src/unk_02023790.o
+	Object src/strbuf.o
 	Object src/unk_02023FCC.o
 	Object src/unk_0202414C.o
 	Object src/unk_0202419C.o

@@ -27,7 +27,7 @@
 #include "unk_02018340.h"
 #include "unk_0201CCF0.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202CD50.h"
 #include "unk_020508D4.h"
@@ -510,16 +510,16 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
     param0->unk_48 = sub_0200B144(1, 26, 213, 4);
-    param0->unk_2C = sub_02023790(0x400, 4);
-    param0->unk_30 = sub_02023790(0x400, 4);
+    param0->unk_2C = Strbuf_Init(0x400, 4);
+    param0->unk_30 = Strbuf_Init(0x400, 4);
     param0->unk_34 = sub_0200B368(8, 64, 4);
 }
 
 static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
 {
     sub_0200B3F0(param0->unk_34);
-    sub_020237BC(param0->unk_2C);
-    sub_020237BC(param0->unk_30);
+    Strbuf_Free(param0->unk_2C);
+    Strbuf_Free(param0->unk_30);
     sub_0200B190(param0->unk_48);
 }
 

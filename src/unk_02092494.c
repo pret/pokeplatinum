@@ -13,7 +13,7 @@
 #include "unk_0201378C.h"
 #include "unk_02017038.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
 #include "unk_02092494.h"
@@ -326,15 +326,15 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
         return;
     }
 
-    param0->unk_14.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
+    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
     sub_0200B1B8(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 {
-    Strbuf* v0 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
+    Strbuf* v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
-    param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 8), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
@@ -347,14 +347,14 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
     sub_0200B60C(param0->unk_08, 7, GetMonData(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
     sub_0200BECC(param0->unk_08, 8, GetMonData(param0->unk_0C, MON_DATA_152, NULL));
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 {
-    Strbuf* v0 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    Strbuf* v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
-    param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
@@ -390,14 +390,14 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
     }
 
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
 {
-    Strbuf* v0 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
+    Strbuf* v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
-    param0->unk_1C.unk_04 = sub_02023790((((2 * 18) * 2) * 5), param0->unk_00);
+    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
     sub_0200B1B8(param0->unk_04, param1, v0);
 
@@ -414,7 +414,7 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
     }
 
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static const u16 Unk_020F5578[6][5] = {
@@ -431,7 +431,7 @@ static void sub_02092C24 (UnkStruct_02090800 * param0)
     int v0[6], v1, v2;
     int v3, v4;
 
-    param0->unk_24.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
+    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
 
     v0[0] = (GetMonData(param0->unk_0C, MON_DATA_HP_IV, NULL));
     v0[1] = (GetMonData(param0->unk_0C, MON_DATA_ATK_IV, NULL));
@@ -605,7 +605,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
 {
     int v0, v1, v2;
 
-    param0->unk_2C.unk_04 = sub_02023790(((2 * 18) * 2), param0->unk_00);
+    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -623,7 +623,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
     int v0 = GetMonData(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
-    param0->unk_34.unk_04 = sub_02023790((((2 * 18) * 2) * 4), param0->unk_00);
+    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
     if (v0 <= 5) {
         v1 = 105;
@@ -833,7 +833,7 @@ static void sub_020932A4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int 
     SetBoxMonData(param0, 7, &v0);
     SetBoxMonData(param0, 157, &v1);
     SetBoxMonData(param0, 145, v2);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 }
 
 static void sub_020932F0 (BoxPokemon * param0, int param1, int param2)

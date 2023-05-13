@@ -17,7 +17,7 @@
 #include "unk_02014A84.h"
 #include "unk_02015064.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_020298BC.h"
 #include "unk_02073C2C.h"
@@ -147,7 +147,7 @@ static void sub_02029990 (UnkStruct_0202A138 * param0, Pokemon * param1, UnkStru
 
 static void sub_020299C0 (UnkStruct_0202A138 * param0, const Strbuf *param1, int param2)
 {
-    sub_02023DF0(param1, param0->unk_20, 8);
+    Strbuf_ToChars(param1, param0->unk_20, 8);
     param0->unk_34 = param2;
 }
 
@@ -855,7 +855,7 @@ u16 sub_0202A5E8 (const UnkStruct_0202A138 * param0)
 
 void sub_0202A5EC (const UnkStruct_0202A138 * param0, Strbuf *param1)
 {
-    sub_02023D28(param1, param0->unk_20);
+    Strbuf_CopyChars(param1, param0->unk_20);
 }
 
 u32 sub_0202A5FC (const UnkStruct_0202A138 * param0)

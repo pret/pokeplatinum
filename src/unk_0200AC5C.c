@@ -9,7 +9,7 @@
 #include "narc.h"
 #include "unk_0200AC5C.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 
 typedef struct {
     u32 unk_00;
@@ -131,12 +131,12 @@ void sub_0200ADAC (const UnkStruct_0200AC5C * param0, u32 param1, Strbuf *param2
             MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
 
             inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
-            sub_02023D8C(param2, v1, v0.unk_04);
+            Strbuf_CopyNumChars(param2, v1, v0.unk_04);
             Heap_FreeToHeap(v1);
         }
     } else {
         GF_ASSERT(0);
-        sub_020237E8(param2);
+        Strbuf_Clear(param2);
     }
 }
 
@@ -158,10 +158,10 @@ Strbuf* sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1, u32 param2)
             MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
             inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
 
-            v3 = sub_02023790(v0.unk_04, param2);
+            v3 = Strbuf_Init(v0.unk_04, param2);
 
             if (v3) {
-                sub_02023D8C(v3, v1, v0.unk_04);
+                Strbuf_CopyNumChars(v3, v1, v0.unk_04);
             }
 
             Heap_FreeToHeap(v1);
@@ -171,7 +171,7 @@ Strbuf* sub_0200AE5C (const UnkStruct_0200AC5C * param0, u32 param1, u32 param2)
         return NULL;
     } else {
         GF_ASSERT(0);
-        return sub_02023790(4, param2);
+        return Strbuf_Init(4, param2);
     }
 }
 
@@ -206,12 +206,12 @@ void sub_0200AF48 (NARC * param0, u32 param1, u32 param2, u32 param3, Strbuf *pa
         if (v2) {
             NARC_ReadFromMember(param0, param1, v1.unk_00, v3, v2);
             inline_0200AC6C_1(v2, v1.unk_04, param2, v0.unk_02);
-            sub_02023D8C(param4, v2, v1.unk_04);
+            Strbuf_CopyNumChars(param4, v2, v1.unk_04);
             Heap_FreeToHeap(v2);
         }
     } else {
         GF_ASSERT(0);
-        sub_020237E8(param4);
+        Strbuf_Clear(param4);
     }
 }
 
@@ -226,7 +226,7 @@ Strbuf* sub_0200B010 (u32 param0, u32 param1, u32 param2, u32 param3)
         v1 = sub_0200B044(v0, param1, param2, param3);
         NARC_dtor(v0);
     } else {
-        v1 = sub_02023790(4, param3);
+        v1 = Strbuf_Init(4, param3);
     }
 
     return v1;
@@ -245,7 +245,7 @@ Strbuf* sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
         NARC_ReadFromMember(param0, param1, inline_0200ACF0(param2), sizeof(UnkStruct_0200AC6C), &v1);
         inline_0200AC6C(&v1, param2, v0.unk_02);
 
-        v2 = sub_02023790(v1.unk_04, param3);
+        v2 = Strbuf_Init(v1.unk_04, param3);
 
         if (v2) {
             u16 * v3;
@@ -257,7 +257,7 @@ Strbuf* sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
             if (v3) {
                 NARC_ReadFromMember(param0, param1, v1.unk_00, v4, v3);
                 inline_0200AC6C_1(v3, v1.unk_04, param2, v0.unk_02);
-                sub_02023D8C(v2, v3, v1.unk_04);
+                Strbuf_CopyNumChars(v2, v3, v1.unk_04);
                 Heap_FreeToHeap(v3);
             }
         }
@@ -265,7 +265,7 @@ Strbuf* sub_0200B044 (NARC * param0, u32 param1, u32 param2, u32 param3)
         return v2;
     } else {
         GF_ASSERT(0);
-        return sub_02023790(4, param3);
+        return Strbuf_Init(4, param3);
     }
 }
 

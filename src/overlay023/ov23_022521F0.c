@@ -27,7 +27,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_020329E0.h"
@@ -508,8 +508,8 @@ int ov23_02252C70 (void * param0)
 
 static void ov23_02252C78 (UnkStruct_ov23_02250CD4 * param0)
 {
-    sub_020237BC(param0->unk_68);
-    sub_020237BC(param0->unk_6C);
+    Strbuf_Free(param0->unk_68);
+    Strbuf_Free(param0->unk_6C);
     sub_0200B3F0(param0->unk_70);
     Heap_FreeToHeap(param0);
 }
@@ -932,8 +932,8 @@ void ov23_022534A0 (UnkStruct_0203CDB0 * param0)
     v4->unk_0C = param0;
     v4->unk_2AC = v7;
     v4->unk_288 = v6;
-    v4->unk_68 = sub_02023790((50 * 2), 4);
-    v4->unk_6C = sub_02023790((50 * 2), 4);
+    v4->unk_68 = Strbuf_Init((50 * 2), 4);
+    v4->unk_6C = Strbuf_Init((50 * 2), 4);
     v4->unk_70 = sub_0200B358(4);
     v4->unk_2AA = 0;
 

@@ -34,7 +34,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02095AF0.h"
 #include "overlay022/ov22_022597BC.h"
@@ -158,7 +158,7 @@ s32 ov22_0225A660 (UnkStruct_ov22_0225A428 * param0, int param1, int param2, int
 
 void ov22_0225A6A0 (UnkStruct_ov22_0225A428 * param0)
 {
-    sub_020237BC(param0->unk_144);
+    Strbuf_Free(param0->unk_144);
     param0->unk_144 = NULL;
 }
 
@@ -269,7 +269,7 @@ static s32 ov22_0225A860 (UnkStruct_0205AA50 * param0, int param1, int param2, i
     v1 = sub_0200B1EC(v0, param3);
     v2 = sub_0201D78C(param0, 1, v1, param4, param5, param7, param6, NULL);
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 
     return v2;

@@ -54,7 +54,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
@@ -650,14 +650,14 @@ static void ov91_021D11B8 (UnkStruct_ov91_021D0ED8 * param0)
 {
     param0->unk_F8 = sub_0200B144(0, 26, 645, 67);
     param0->unk_FC = sub_0200B358(67);
-    param0->unk_100 = sub_02023790(256, 67);
+    param0->unk_100 = Strbuf_Init(256, 67);
 }
 
 static void ov91_021D11F0 (UnkStruct_ov91_021D0ED8 * param0)
 {
     sub_0200B190(param0->unk_F8);
     sub_0200B3F0(param0->unk_FC);
-    sub_020237BC(param0->unk_100);
+    Strbuf_Free(param0->unk_100);
 }
 
 static int ov91_021D1214 (UnkStruct_ov91_021D0ED8 * param0)
@@ -873,7 +873,7 @@ static void ov91_021D1618 (UnkStruct_ov91_021D0ED8 * param0, u32 param1, u32 par
     v0 = sub_0200B1EC(param0->unk_F8, param1);
     sub_0200B60C(param0->unk_FC, 0, param2, param3, param4, 1);
     sub_0200C388(param0->unk_FC, param0->unk_100, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void ov91_021D1664 (UnkStruct_ov91_021D0ED8 * param0)
@@ -1148,7 +1148,7 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
     v0 = sub_0200B1EC(param0->unk_F8, Unk_ov91_021D282C[param0->unk_00->unk_15][param1]);
     sub_0200C388(param0->unk_FC, param0->unk_100, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static u16 ov91_021D1DD0 (UnkStruct_ov91_021D0ED8 * param0)

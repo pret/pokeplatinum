@@ -10,7 +10,7 @@
 
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_020277A4.h"
 #include "unk_02027B70.h"
@@ -103,7 +103,7 @@ const u16 * sub_02027870 (const UnkStruct_0202783C * param0)
 
 void sub_0202787C (UnkStruct_0202783C * param0, Strbuf *param1)
 {
-    sub_02023DF0(param1, param0->unk_6A4, 7 + 1);
+    Strbuf_ToChars(param1, param0->unk_6A4, 7 + 1);
 }
 
 const u16 * sub_02027894 (const UnkStruct_0202783C * param0)
@@ -113,7 +113,7 @@ const u16 * sub_02027894 (const UnkStruct_0202783C * param0)
 
 void sub_020278A0 (UnkStruct_0202783C * param0, Strbuf *param1)
 {
-    sub_02023DF0(param1, param0->unk_6B4, 10 + 1);
+    Strbuf_ToChars(param1, param0->unk_6B4, 10 + 1);
 }
 
 void sub_020278B8 (UnkStruct_0202783C * param0)

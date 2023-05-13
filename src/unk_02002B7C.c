@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "unk_0201D670.h"
 #include "unk_020232E0.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 
 typedef struct {
     UnkStruct_02002328 unk_00;
@@ -141,17 +141,17 @@ u32 sub_02002D48 (int param0, const u16 * param1, u32 param2)
 u32 sub_02002D7C (int param0, const Strbuf *param1, u32 param2)
 {
     GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_02023620(Unk_02101D48->unk_94[param0], sub_02023E2C(param1), param2);
+    return sub_02023620(Unk_02101D48->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
 u32 sub_02002DB4 (int param0, Strbuf *param1, Strbuf *param2)
 {
     GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
 
-    sub_020237E8(param2);
-    sub_02023F10(param2, param1);
+    Strbuf_Clear(param2);
+    Strbuf_ConcatTrainerName(param2, param1);
 
-    return sub_0202366C(Unk_02101D48->unk_94[param0], sub_02023E2C(param2));
+    return sub_0202366C(Unk_02101D48->unk_94[param0], Strbuf_GetData(param2));
 }
 
 u8 sub_02002DF8 (u8 param0, u8 param1)
@@ -201,7 +201,7 @@ void sub_02002E98 (u32 param0, u32 param1, u32 param2)
 u32 sub_02002EB4 (int param0, const Strbuf *param1, u32 param2)
 {
     GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_020236D0(Unk_02101D48->unk_94[param0], sub_02023E2C(param1), param2);
+    return sub_020236D0(Unk_02101D48->unk_94[param0], Strbuf_GetData(param1), param2);
 }
 
 u32 sub_02002EEC (int param0, const Strbuf *param1, u32 param2, u32 param3)
@@ -214,5 +214,5 @@ u32 sub_02002EEC (int param0, const Strbuf *param1, u32 param2, u32 param3)
 u32 sub_02002F04 (int param0, const Strbuf *param1)
 {
     GF_ASSERT(Unk_02101D48->unk_94[param0] != NULL);
-    return sub_02023738(Unk_02101D48->unk_94[param0], sub_02023E2C(param1));
+    return sub_02023738(Unk_02101D48->unk_94[param0], Strbuf_GetData(param1));
 }

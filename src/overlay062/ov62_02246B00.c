@@ -21,7 +21,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200C6E4.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "overlay062/ov62_02246B00.h"
 
@@ -35,7 +35,7 @@ UnkStruct_ov62_02246B00 * ov62_02246B00 (int param0, int param1, int param2[], U
     v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov62_02246B00));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
-    v1->unk_18 = sub_02023790(param1 + 1, param0);
+    v1->unk_18 = Strbuf_Init(param1 + 1, param0);
     v1->unk_1C = param3;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -52,7 +52,7 @@ void ov62_02246B4C (UnkStruct_ov62_02246B00 * param0)
     GF_ASSERT(param0->unk_18 != NULL);
     GF_ASSERT(param0 != NULL);
 
-    sub_020237BC(param0->unk_18);
+    Strbuf_Free(param0->unk_18);
     Heap_FreeToHeap(param0);
 }
 
@@ -320,7 +320,7 @@ void ov62_022470A8 (UnkStruct_ov62_02246BF4 * param0)
 {
     int v0;
     u32 v1 = 0;
-    Strbuf* v2 = sub_02023790(100, 102);
+    Strbuf* v2 = Strbuf_Init(100, 102);
 
     param0->unk_2C8 = 1;
     param0->unk_2CC = 0;
@@ -339,11 +339,11 @@ void ov62_022470A8 (UnkStruct_ov62_02246BF4 * param0)
 
         param0->unk_2CC += v1;
 
-        sub_020238A0(v2, v1, 1, 1, 1);
-        sub_02023E4C(param0->unk_2A8.unk_18, v2);
+        Strbuf_FormatInt(v2, v1, 1, 1, 1);
+        Strbuf_Concat(param0->unk_2A8.unk_18, v2);
     }
 
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     ov62_02246D60(param0, 3);
 }
 

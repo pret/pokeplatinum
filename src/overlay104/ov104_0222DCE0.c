@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202C858.h"
@@ -144,8 +144,8 @@ UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int
 
     v2 = sub_0200B1EC(v1, param1);
 
-    sub_02023DF0(v2, &param0->unk_08[0], 8);
-    sub_020237BC(v2);
+    Strbuf_ToChars(v2, &param0->unk_08[0], 8);
+    Strbuf_Free(v2);
     sub_0200B190(v1);
 
     return v0;
@@ -325,7 +325,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * par
         v8 = sub_0200B1EC(v7, param0->unk_00_val1_0);
 
         sub_02074B30(param1, 119, v8);
-        sub_020237BC(v8);
+        Strbuf_Free(v8);
         sub_0200B190(v7);
     } else {
         sub_02074B30(param1, 117, param0->unk_22);
@@ -371,7 +371,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     sub_02074B30(param1, 145, v1);
     sub_02074B30(param1, 7, &v0);
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v2);
 
     return;
