@@ -1,8 +1,7 @@
-#ifndef POKEPLATINUM_UNK_02023790_H
-#define POKEPLATINUM_UNK_02023790_H
+#ifndef POKEPLATINUM_STRBUF_H
+#define POKEPLATINUM_STRBUF_H
 
-#include "struct_decls/struct_02023790_decl.h"
-
+typedef struct Strbuf_t Strbuf;
 typedef u16 Charcode;
 
 Strbuf* sub_02023790(u32 param0, u32 param1);
@@ -27,4 +26,4 @@ BOOL sub_02023EF8(Strbuf *param0);
 void sub_02023F10(Strbuf *param0, Strbuf *param1);
 void sub_02023F8C(Strbuf *param0, int param1);
 
-#endif // POKEPLATINUM_UNK_02023790_H
+#endif // POKEPLATINUM_STRBUF_H

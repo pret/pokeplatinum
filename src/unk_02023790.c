@@ -1,8 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
-
+#include "charcode.h"
 #include "heap.h"
 #include "unk_02023790.h"
 
@@ -32,7 +31,7 @@ Strbuf* sub_02023790(u32 size, u32 heapID)  // Strbuf_Init
         strbuf->magic = STRBUF_MAGIC;
         strbuf->maxsize = size;
         strbuf->size = 0;
-        strbuf->data[0] = 0xffff;
+        strbuf->data[0] = EOS;
     }
 
     return strbuf;
@@ -51,7 +50,7 @@ void sub_020237E8(Strbuf *strbuf)  // Strbuf_Clear
     Strbuf_Check(strbuf);
 
     strbuf->size = 0;
-    strbuf->data[0] = 0xffff;
+    strbuf->data[0] = EOS;
 }
 
 void sub_02023810(Strbuf *dst, const Strbuf *src)    // Strbuf_Copy
@@ -97,28 +96,28 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, BOOL whi
         1000000000
     };
     static const Charcode sDigits_JP[] = {
-        0xa2,
-        0xa3,
-        0xa4,
-        0xa5,
-        0xa6,
-        0xa7,
-        0xa8,
-        0xa9,
-        0xaa,
-        0xab
+        JP_0,
+        JP_1,
+        JP_2,
+        JP_3,
+        JP_4,
+        JP_5,
+        JP_6,
+        JP_7,
+        JP_8,
+        JP_9,
     };
     static const Charcode sDigits_EN[] = {
-        0x121,
-        0x122,
-        0x123,
-        0x124,
-        0x125,
-        0x126,
-        0x127,
-        0x128,
-        0x129,
-        0x12a
+        EN_0,
+        EN_1,
+        EN_2,
+        EN_3,
+        EN_4,
+        EN_5,
+        EN_6,
+        EN_7,
+        EN_8,
+        EN_9,
     };
 
     Strbuf_Check(dst);
@@ -132,7 +131,7 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, BOOL whi
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (whichCharset == 0) ? 0xf1 : 0x1be;       // Minus sign, full vs half
+            dst->data[dst->size++] = (whichCharset == 0) ? JP_MINUS : EN_MINUS;
         }
 
         u32 div = sPowersOfTen[maxDigits - 1];
@@ -141,18 +140,18 @@ void sub_020238A0(Strbuf *dst, int num, u32 maxDigits, int paddingMode, BOOL whi
             num -= div * digit;
 
             if (paddingMode == 2) {
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0x00E2;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : JP_QUESTION;
             } else if (digit != 0 || div == 1) {
                 paddingMode = 2;
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0x00E2;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : JP_QUESTION;
             } else if (paddingMode == 1) {
-                dst->data[dst->size++] = (whichCharset == 0) ? 0x0001 : 0x01E2;
+                dst->data[dst->size++] = (whichCharset == 0) ? JP_SPACE : NUM_SPACE;
             }
 
             div /= 10;
         }
 
-        dst->data[dst->size] = 0xffff;
+        dst->data[dst->size] = EOS;
         return;
     }
 
@@ -185,28 +184,28 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int whic
         10000000000000000000
     };
     static const Charcode sDigits_JP[] = {
-        0xa2,
-        0xa3,
-        0xa4,
-        0xa5,
-        0xa6,
-        0xa7,
-        0xa8,
-        0xa9,
-        0xaa,
-        0xab
+        JP_0,
+        JP_1,
+        JP_2,
+        JP_3,
+        JP_4,
+        JP_5,
+        JP_6,
+        JP_7,
+        JP_8,
+        JP_9,
     };
     static const Charcode sDigits_EN[] = {
-        0x121,
-        0x122,
-        0x123,
-        0x124,
-        0x125,
-        0x126,
-        0x127,
-        0x128,
-        0x129,
-        0x12a
+        EN_0,
+        EN_1,
+        EN_2,
+        EN_3,
+        EN_4,
+        EN_5,
+        EN_6,
+        EN_7,
+        EN_8,
+        EN_9,
     };
 
     Strbuf_Check(dst);
@@ -220,7 +219,7 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int whic
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (whichCharset == 0) ? 0xf1 : 0x1be;
+            dst->data[dst->size++] = (whichCharset == 0) ? JP_MINUS : EN_MINUS;
         }
 
         u64 div = sPowersOfTen[maxDigits - 1];
@@ -229,18 +228,18 @@ void sub_020239D4(Strbuf *dst, u64 num, u32 maxDigits, int paddingMode, int whic
             num -= div * digit;
 
             if (paddingMode == 2) {
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0xe2;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : JP_QUESTION;
             } else if ((digit != 0) || (div == 1)) {
                 paddingMode = 2;
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : 0xe2;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : JP_QUESTION;
             } else if (paddingMode == 1) {
-                dst->data[dst->size++] = (whichCharset == 0) ? 0x1 : 0x1de;
+                dst->data[dst->size++] = (whichCharset == 0) ? JP_SPACE : EN_SPACE;
             }
 
             div /= 10;
         }
 
-        dst->data[dst->size] = 0xffff;
+        dst->data[dst->size] = EOS;
         return;
     }
 
@@ -256,11 +255,9 @@ u64 sub_02023B38(const Strbuf *src, BOOL *success)
     }
 
     for (int i = (src->size - 1); i >= 0; i--) {
-        // JP 0
-        u64 digit = src->data[i] - 0x00A2;
+        u64 digit = src->data[i] - JP_0;
         if (digit >= 10) {
-            // EN 0
-            digit = src->data[i] - 0x0121;
+            digit = src->data[i] - EN_0;
 
             if (digit >= 10) {
                 *success = 0;
@@ -284,7 +281,7 @@ int sub_02023BE0(const Strbuf *str1, const Strbuf *str2)
     Strbuf_Check(str2);
 
     for (int i = 0; str1->data[i] == str2->data[i]; i++) {
-        if (str1->data[i] == 0xffff) {
+        if (str1->data[i] == EOS) {
             return 0;
         }
     }
@@ -306,7 +303,7 @@ u32 sub_02023C5C(const Strbuf *strbuf)
 
     int i, count;
     for (i = 0, count = 1; i < strbuf->size; i++) {
-        if (strbuf->data[i] == 0xe000) {
+        if (strbuf->data[i] == CR) {
             count++;
         }
     }
@@ -324,7 +321,7 @@ void sub_02023C9C(Strbuf *dst, const Strbuf *src, u32 linenum)
 
     if (linenum) {
         for (i = 0; i < src->size; i++) {
-            if (src->data[i] == 0xe000 && --linenum == 0) {
+            if (src->data[i] == CR && --linenum == 0) {
                 i++;
                 break;
             }
@@ -334,7 +331,7 @@ void sub_02023C9C(Strbuf *dst, const Strbuf *src, u32 linenum)
     sub_020237E8(dst);
 
     for ( ; i < src->size; i++) {
-        if (src->data[i] == 0xe000) {
+        if (src->data[i] == CR) {
             break;
         }
 
@@ -349,7 +346,7 @@ void sub_02023D28(Strbuf *dst, const Charcode *src)
 
     dst->size = 0;
 
-    while (*src != 0xffff) {
+    while (*src != EOS) {
         if (dst->size >= (dst->maxsize - 1)) {
             GF_ASSERT(0);
             break;
@@ -358,7 +355,7 @@ void sub_02023D28(Strbuf *dst, const Charcode *src)
         dst->data[dst->size++] = *src++;
     }
 
-    dst->data[dst->size] = 0xffff;
+    dst->data[dst->size] = EOS;
 }
 
 // Strbuf_CopyNumChars
@@ -371,14 +368,14 @@ void sub_02023D8C(Strbuf *dst, const Charcode *src, u32 num)
 
         u32 i;
         for (i = 0; i < num; i++) {
-            if (dst->data[i] == 0xffff) {
+            if (dst->data[i] == EOS) {
                 break;
             }
         }
 
         dst->size = i;
         if (i == num) {
-            dst->data[num - 1] = 0xffff;
+            dst->data[num - 1] = EOS;
         }
 
         return;
@@ -430,51 +427,55 @@ void sub_02023EB0(Strbuf *dst, Charcode c)
 
     if ((dst->size + 1) < dst->maxsize) {
         dst->data[dst->size++] = c;
-        dst->data[dst->size] = 0xffff;
+        dst->data[dst->size] = EOS;
         return;
     }
 
     GF_ASSERT(0);
 }
 
+#define COMPRESSED_LEADER       (0xF100)
+#define COMPRESSED_MASK         (0x01FF)
+#define COMPRESSED_EOS          (0x01FF) // 0xFFFF & 0x01FF
+
 // Strbuf_IsTrainerName
 BOOL sub_02023EF8(Strbuf *strbuf)
 {
-    return strbuf->size > 0 && strbuf->data[0] == 0xF100;
+    return strbuf->size > 0 && strbuf->data[0] == COMPRESSED_LEADER;
 }
 
 // Strbuf_HandleTrainerName
 void sub_02023F10(Strbuf *dst, Strbuf *src)
 {
     if (sub_02023EF8(src)) {
-        Charcode *dst_c = &dst->data[dst->size];
-        Charcode *src_c = &src->data[1];
+        Charcode *dstC = &dst->data[dst->size];
+        Charcode *srcC = &src->data[1];
         s32 bit = 0;
         s32 outsize = 0;
         Charcode cur = 0;
 
         while (TRUE) {
-            cur = (*src_c >> bit) & 0x1FF;
+            cur = (*srcC >> bit) & COMPRESSED_MASK;
             bit += 9;
 
             if (bit >= 15) {
-                src_c++;
+                srcC++;
                 bit -= 15;
 
                 if (bit) {
-                    cur |= (*src_c << (9 - bit)) & 0x1FF;
+                    cur |= (*srcC << (9 - bit)) & COMPRESSED_MASK;
                 }
             }
 
-            if (cur == 0x1FF) {
+            if (cur == COMPRESSED_EOS) {
                 break;
             }
 
-            *dst_c++ = cur;
+            *dstC++ = cur;
             outsize++;
         }
 
-        *dst_c = 0xffff;
+        *dstC = EOS;
         dst->size += outsize;
     } else {
         sub_02023E4C(dst, src);
@@ -487,7 +488,7 @@ void sub_02023F8C(Strbuf *strbuf, int i)
     Strbuf_Check(strbuf);
 
     if (strbuf->size > i) {
-        if (strbuf->data[i] >= 0x145 && strbuf->data[i] <= 0x15e) {
+        if (strbuf->data[i] >= EN_a && strbuf->data[i] <= EN_z) {
             strbuf->data[i] -= 26;
         }
     }
