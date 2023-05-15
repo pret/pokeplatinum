@@ -61,13 +61,6 @@
 
 FS_EXTERN_OVERLAY(overlay56);
 
-struct Strbuf_t {
-    u16 unk_00;
-    u16 unk_02;
-    u32 unk_04;
-    u16 unk_08[1];
-};
-
 typedef struct {
     u16 unk_00;
     u16 unk_02;

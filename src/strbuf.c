@@ -5,13 +5,6 @@
 #include "heap.h"
 #include "strbuf.h"
 
-struct Strbuf_t {
-    u16 maxSize;
-    u16 size;
-    u32 integrity;
-    charcode_t data[1];
-};
-
 #define SIZEOF_STRBUF_HEADER (sizeof(Strbuf) - sizeof(charcode_t))
 #define STRBUF_MAGIC_NUMBER (0xB6F8D2EC)
 
