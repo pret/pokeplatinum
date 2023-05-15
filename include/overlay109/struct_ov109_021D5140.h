@@ -35,10 +35,10 @@ typedef struct UnkStruct_ov109_021D5140_t {
     UnkStruct_0201CD38 * unk_30;
     UnkStruct_0200B358 * unk_34;
     UnkStruct_0200B144 * unk_38;
-    UnkStruct_02023790 * unk_3C[5];
-    UnkStruct_02023790 * unk_50;
-    UnkStruct_02023790 * unk_54;
-    UnkStruct_02023790 * unk_58;
+    Strbuf* unk_3C[5];
+    Strbuf* unk_50;
+    Strbuf* unk_54;
+    Strbuf* unk_58;
     int unk_5C;
     UnkStruct_020218BC * unk_60;
     UnkStruct_0200C738 unk_64;

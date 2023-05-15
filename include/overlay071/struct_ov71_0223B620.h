@@ -35,8 +35,8 @@ typedef struct {
     void * unk_335C;
     NNSG2dScreenData * unk_3360;
     UnkStruct_ov71_0223C444 unk_3364;
-    UnkStruct_02023790 * unk_336C;
-    UnkStruct_02023790 * unk_3370;
+    Strbuf* unk_336C;
+    Strbuf* unk_3370;
     u8 unk_3374[8];
     u8 unk_337C;
     u8 unk_337D;

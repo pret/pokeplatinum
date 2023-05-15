@@ -27,7 +27,7 @@
 #include "unk_0201CCF0.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "unk_0207C908.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -122,11 +122,11 @@ void ov19_021DA9E0 (UnkStruct_ov19_021DA9E0 * param0)
     }
 
     if (param0->unk_44) {
-        sub_020237BC(param0->unk_44);
+        Strbuf_Free(param0->unk_44);
     }
 
     if (param0->unk_48) {
-        sub_020237BC(param0->unk_48);
+        Strbuf_Free(param0->unk_48);
     }
 
     if (param0->unk_24) {
@@ -400,7 +400,7 @@ static void ov19_021DAE2C (UnkStruct_ov19_021DAE2C * param0)
 
 static void ov19_021DAE60 (UnkStruct_0205AA50 * param0, UnkStruct_ov19_021DA9E0 * param1, u32 param2, u32 param3)
 {
-    const UnkStruct_02023790 * v0;
+    const Strbuf* v0;
     u32 v1;
 
     v1 = (param3 * 16) + 0;

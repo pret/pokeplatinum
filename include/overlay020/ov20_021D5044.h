@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 u32 ov20_021D5044(void);
-void ov20_021D5048(u32 param0, UnkStruct_02023790 * param1);
+void ov20_021D5048(u32 param0, Strbuf *param1);
 void ov20_021D506C(u32 param0, u32 * param1, u32 * param2);
 int ov20_021D5098(u32 param0);
 int ov20_021D50B4(u32 param0);

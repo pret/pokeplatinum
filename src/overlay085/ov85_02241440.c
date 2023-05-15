@@ -36,7 +36,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -493,7 +493,7 @@ static void ov85_02241860 (UnkStruct_0205AA50 * param0)
 static void ov85_02241878 (UnkStruct_ov85_022417E4 * param0, u32 param1, u32 param2, u32 param3)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
 
     v0 = &param0->unk_04[param1];
@@ -501,7 +501,7 @@ static void ov85_02241878 (UnkStruct_ov85_022417E4 * param0, u32 param1, u32 par
     v2 = sub_02002D7C(0, v1, 0);
 
     sub_0201D78C(v0, 0, v1, (sub_0201C294(v0) * 8 - v2) / 2, 0, 0xff, param3, NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
 
@@ -544,8 +544,8 @@ static void ov85_0224196C (UnkStruct_ov85_022417E4 * param0)
 static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v1;
+    Strbuf* v2;
 
     v0 = &param0->unk_04[1];
 
@@ -553,25 +553,25 @@ static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
     sub_0200C578(param0->unk_CC, 2, v0, 0, 5);
 
     v1 = sub_0200B1EC(param0->unk_C4, 6);
-    v2 = sub_02023790((2 + 1) * 2, 36);
+    v2 = Strbuf_Init((2 + 1) * 2, 36);
 
     sub_0200B60C(param0->unk_C8, 0, param0->unk_1F8->unk_08 + 1, 2, 2, 1);
     sub_0200C388(param0->unk_C8, v2, v1);
     sub_0201D78C(v0, 0, v2, 16, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
 
     v1 = sub_0209742C(param0->unk_1F8->unk_08, 36);
 
     sub_0201D78C(v0, 0, v1, 40, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
 
 static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_04[11];
 
@@ -580,28 +580,28 @@ static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
     v1 = sub_02097454(param0->unk_1F8->unk_08, 36);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
 
 static void ov85_02241AA8 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_04[9];
     sub_0201ADA4(v0, 0);
     v1 = sub_0200B1EC(param0->unk_C4, 10);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
 
 static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
 
     v0 = &param0->unk_04[10];
@@ -617,29 +617,29 @@ static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
     v1 = sub_0200B1EC(param0->unk_C4, 11 + v2);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
 
 static void ov85_02241B50 (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_04[7];
     sub_0201ADA4(v0, 0);
     v1 = sub_0200B1EC(param0->unk_C4, 8);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A9A4(v0);
 }
 
 static void ov85_02241B9C (UnkStruct_ov85_022417E4 * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v1;
+    Strbuf* v2;
     u32 v3;
 
     v0 = &param0->unk_04[8];
@@ -649,14 +649,14 @@ static void ov85_02241B9C (UnkStruct_ov85_022417E4 * param0)
     v3 = sub_020973D4(param0->unk_1FC, 0);
     v3 = (((v3 * 1000) / 254 + 5) / 10);
     v1 = sub_0200B1EC(param0->unk_C4, 9);
-    v2 = sub_02023790(32, 36);
+    v2 = Strbuf_Init(32, 36);
 
     sub_0200B60C(param0->unk_C8, 0, v3 / 10, 2, 0, 1);
     sub_0200B60C(param0->unk_C8, 1, v3 % 10, 1, 0, 1);
     sub_0200C388(param0->unk_C8, v2, v1);
     sub_0201D78C(v0, 0, v2, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
     sub_0201A9A4(v0);
 }
 

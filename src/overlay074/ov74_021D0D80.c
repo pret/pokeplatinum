@@ -38,7 +38,7 @@
 #include "unk_0201D670.h"
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "overlay074/ov74_021D0D80.h"
@@ -48,7 +48,7 @@
 typedef struct UnkStruct_ov74_021D1720_t {
     u16 unk_00;
     u16 unk_02;
-    UnkStruct_02023790 * unk_04[20];
+    Strbuf* unk_04[20];
 } UnkStruct_ov74_021D1720;
 
 typedef struct UnkStruct_ov74_021D0D80_t {
@@ -314,7 +314,7 @@ static int ov74_021D122C (UnkStruct_ov74_021D0D80 * param0)
 
         for (v0 = 0; v0 < 7; v0++) {
             for (v1 = 0; v1 < param0->unk_5C[v0].unk_00; v1++) {
-                sub_020237BC(param0->unk_5C[v0].unk_04[v1]);
+                Strbuf_Free(param0->unk_5C[v0].unk_04[v1]);
             }
         }
 
@@ -549,8 +549,8 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     u32 v0, v1;
     u16 v2;
     u32 v3, v4, v5;
-    UnkStruct_02023790 * v6;
-    UnkStruct_02023790 * v7;
+    Strbuf* v6;
+    Strbuf* v7;
     static const u8 v8[7] = {
         3, 6, 4, 5, 7, 8, 42,
     };
@@ -558,7 +558,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     v5 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
     v3 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
     v4 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((15 & 0xff) << 0)));
-    v6 = sub_02023790(256, param0->unk_00);
+    v6 = Strbuf_Init(256, param0->unk_00);
 
     sub_0200B1B8(param0->unk_20, 0, v6);
 
@@ -568,7 +568,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     v1 = 4;
 
     for (v2 = 0; v2 < 7; v2++) {
-        sub_020237E8(v6);
+        Strbuf_Clear(v6);
         sub_0200B1B8(param0->unk_20, v8[v2], v6);
         sub_0201D78C(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
     }
@@ -582,7 +582,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     sub_0201A954(&param0->unk_2C[0]);
     sub_0201A954(&param0->unk_2C[1]);
 
-    sub_020237BC(v6);
+    Strbuf_Free(v6);
 }
 
 static void ov74_021D1720 (UnkStruct_ov74_021D0D80 * param0)
@@ -669,7 +669,7 @@ static void ov74_021D17CC (UnkStruct_ov74_021D0D80 * param0, u16 param1)
 static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL param2)
 {
     u32 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u8 v2;
 
     if (ov74_021D1A08(param0) == 0) {
@@ -681,7 +681,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
     sub_0201ADA4(&(param0->unk_2C[2]), 15);
 
     v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
-    v1 = sub_02023790(256, param0->unk_00);
+    v1 = Strbuf_Init(256, param0->unk_00);
 
     sub_0200B1B8(param0->unk_20, param1, v1);
 
@@ -692,7 +692,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
         sub_0201A9A4(&param0->unk_2C[2]);
     }
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 }
 
 static BOOL ov74_021D1A08 (const UnkStruct_ov74_021D0D80 * param0)

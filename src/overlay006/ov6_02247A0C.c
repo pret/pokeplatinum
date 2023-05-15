@@ -20,7 +20,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202F108.h"
 #include "unk_0203CC84.h"
@@ -44,7 +44,7 @@ typedef struct {
     int unk_04;
 } UnkStruct_ov6_02247A0C;
 
-static int ov6_02247CF4(const UnkStruct_02023790 * param0, int param1, int param2, int param3);
+static int ov6_02247CF4(const Strbuf *param0, int param1, int param2, int param3);
 static BOOL ov6_02247A34(UnkStruct_020508D4 * param0);
 
 static const UnkStruct_ov6_022496F4 Unk_ov6_022496F4[] = {
@@ -133,7 +133,7 @@ void * ov6_02247A90 (void * param0)
 {
     UnkStruct_ov6_02247A90 * v0;
     UnkStruct_02018340 * v1;
-    UnkStruct_02023790 * v2, * v3;
+    Strbuf* v2, * v3;
     int v4, v5, v6, v7;
     UnkStruct_021C0794 * v8;
 
@@ -151,7 +151,7 @@ void * ov6_02247A90 (void * param0)
     sub_0200DC48(&v0->unk_00, 1, 1, 11);
     sub_0201ADA4(&v0->unk_00, 15);
 
-    v3 = sub_02023790(100, 11);
+    v3 = Strbuf_Init(100, 11);
     v2 = sub_0200B1EC(v0->unk_10, 0);
 
     sub_0200B498(v0->unk_14, 0, sub_02025E38(v8));
@@ -160,26 +160,26 @@ void * ov6_02247A90 (void * param0)
     v4 = ov6_02247CF4(v3, 0, 1, (15 * 8));
 
     sub_0201D738(&v0->unk_00, 0, v3, v4, (8 * 0), 0xff, NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 
     v2 = sub_0200B1EC(v0->unk_10, 1);
     v4 = ov6_02247CF4(v2, 0, 1, ((15 * 8)));
 
     sub_0201D738(&v0->unk_00, 0, v2, v4, (8 * 2), 0xff, NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 
     for (v6 = 0; v6 < 5; v6++) {
         v2 = sub_0200B1EC(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 0, Unk_ov6_022496F4[v6].unk_04);
         sub_0201D738(&v0->unk_00, 0, v2, v4, Unk_ov6_022496F4[v6].unk_06, 0xff, NULL);
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
     }
 
     for (v6 = 0; v6 < 4; v6++) {
         v2 = sub_0200B1EC(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 2, Unk_ov6_022496D4[v6].unk_04);
         sub_0201D738(&v0->unk_00, 0, v2, v4, Unk_ov6_022496D4[v6].unk_06, 0xff, NULL);
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
     }
 
     for (v7 = 0; v7 < 5; v7++) {
@@ -190,11 +190,11 @@ void * ov6_02247A90 (void * param0)
             sub_0200C388(v0->unk_14, v3, v2);
             v4 = ov6_02247CF4(v3, 0, 2, Unk_ov6_0224971C[v7][v6].unk_04);
             sub_0201D738(&v0->unk_00, 0, v3, v4, Unk_ov6_0224971C[v7][v6].unk_06, 0xff, NULL);
-            sub_020237BC(v2);
+            Strbuf_Free(v2);
         }
     }
 
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
     sub_0201A954(&v0->unk_00);
 
     return v0;
@@ -212,7 +212,7 @@ void ov6_02247CC8 (void * param0)
     Heap_FreeToHeap(v0);
 }
 
-static int ov6_02247CF4 (const UnkStruct_02023790 * param0, int param1, int param2, int param3)
+static int ov6_02247CF4 (const Strbuf *param0, int param1, int param2, int param3)
 {
     int v0, v1;
 

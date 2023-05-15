@@ -54,11 +54,11 @@ struct UnkStruct_ov96_0223BF40_t {
     UnkStruct_0200B144 * unk_BD0;
     UnkStruct_0200B144 * unk_BD4;
     UnkStruct_0200B144 * unk_BD8;
-    UnkStruct_02023790 * unk_BDC;
-    UnkStruct_02023790 * unk_BE0;
-    UnkStruct_02023790 * unk_BE4;
-    UnkStruct_02023790 * unk_BE8;
-    UnkStruct_02023790 * unk_BEC;
+    Strbuf* unk_BDC;
+    Strbuf* unk_BE0;
+    Strbuf* unk_BE4;
+    Strbuf* unk_BE8;
+    Strbuf* unk_BEC;
     int unk_BF0;
     UnkStruct_020218BC * unk_BF4;
     UnkStruct_0200C738 unk_BF8;

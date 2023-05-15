@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02023790_DECL_H
 #define POKEPLATINUM_STRUCT_02023790_DECL_H
 
-typedef struct UnkStruct_02023790_t UnkStruct_02023790;
+typedef struct Strbuf Strbuf;
 
 #endif // POKEPLATINUM_STRUCT_02023790_DECL_H

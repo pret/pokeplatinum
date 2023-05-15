@@ -20,7 +20,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D3864.h"
 
@@ -80,7 +80,7 @@ void ov20_021D3898 (UnkStruct_ov20_021D3980 * param0, NARC * param1)
 static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2)
 {
     UnkStruct_0205AA50 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
 
     sub_0201A8D4(param0, &v0, param1);
@@ -92,7 +92,7 @@ static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_022
 
     sub_0201D78C(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
     sub_0201ACCC(&v0);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0201A8FC(&v0);
 }
 

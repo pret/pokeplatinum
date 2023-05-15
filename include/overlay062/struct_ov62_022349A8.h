@@ -41,7 +41,7 @@ typedef struct {
     int unk_3F0;
     UnkStruct_0200B144 * unk_3F4;
     UnkStruct_0200B358 * unk_3F8;
-    UnkStruct_02023790 * unk_3FC;
+    Strbuf* unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;
     u8 unk_40D;
     u8 unk_40E;

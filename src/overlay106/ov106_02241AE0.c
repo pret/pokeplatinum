@@ -55,7 +55,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_02030108.h"
@@ -101,9 +101,9 @@ struct UnkStruct_ov106_02243118_t {
     u8 unk_1F;
     UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
-    UnkStruct_02023790 * unk_28;
-    UnkStruct_02023790 * unk_2C;
-    UnkStruct_02023790 * unk_30[2];
+    Strbuf* unk_28;
+    Strbuf* unk_2C;
+    Strbuf* unk_30[2];
     u16 unk_38[8];
     UnkStruct_02018340 * unk_48;
     UnkStruct_0205AA50 unk_4C[4];
@@ -766,12 +766,12 @@ static void ov106_022423E8 (UnkStruct_ov106_02243118 * param0)
 
     sub_0200B190(param0->unk_20);
     sub_0200B3F0(param0->unk_24);
-    sub_020237BC(param0->unk_28);
-    sub_020237BC(param0->unk_2C);
+    Strbuf_Free(param0->unk_28);
+    Strbuf_Free(param0->unk_2C);
     sub_0200C560(param0->unk_B0);
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020237BC(param0->unk_30[v0]);
+        Strbuf_Free(param0->unk_30[v0]);
     }
 
     ov106_02243710(param0->unk_4C);
@@ -822,11 +822,11 @@ static void ov106_02242500 (UnkStruct_ov106_02243118 * param0)
 
     param0->unk_20 = sub_0200B144(1, 26, 549, 98);
     param0->unk_24 = sub_0200B358(98);
-    param0->unk_28 = sub_02023790(600, 98);
-    param0->unk_2C = sub_02023790(600, 98);
+    param0->unk_28 = Strbuf_Init(600, 98);
+    param0->unk_2C = Strbuf_Init(600, 98);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_30[v0] = sub_02023790(32, 98);
+        param0->unk_30[v0] = Strbuf_Init(32, 98);
     }
 
     sub_02002E7C(0, 13 * 32, 98);
@@ -1143,7 +1143,7 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 {
     u8 v0;
     u32 v1, v2, v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     Pokemon * v5;
     u16 v6[(10 + 1)];
 
@@ -1151,10 +1151,10 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
     GetMonData(v5, MON_DATA_179, v6);
     sub_0201ADA4(param1, param6);
 
-    v4 = sub_02023790((10 + 1), 98);
-    sub_02023D28(v4, v6);
+    v4 = Strbuf_Init((10 + 1), 98);
+    Strbuf_CopyChars(v4, v6);
     sub_0201D78C(param1, param7, v4, param2, param3, 0, (u32)((((param4) & 0xff) << 16) | (((param5) & 0xff) << 8) | (((param6) & 0xff) << 0)), NULL);
-    sub_020237BC(v4);
+    Strbuf_Free(v4);
     sub_0201A954(param1);
 
     return;
@@ -1163,25 +1163,25 @@ static void ov106_02242AC4 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 static void ov106_02242B38 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA50 * param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     int v0, v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     UnkStruct_0200B144 * v3;
 
     sub_0201ADA4(param1, param4);
 
     v3 = sub_0200B144(1, 26, 624, 98);
-    v2 = sub_02023790((10 + 1), 98);
+    v2 = Strbuf_Init((10 + 1), 98);
 
     for (v0 = 0; v0 < 5; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
             if (ov104_0223B5A4(v0 * 4 + v1) != 0xfe) {
-                sub_020237E8(v2);
+                Strbuf_Clear(v2);
                 sub_0200B1B8(v3, ov104_0223B5A4(v0 * 4 + v1), v2);
                 sub_0201D78C(param1, param5, v2, 1 + (64 * v1), 16 + (36 * v0), 0, (u32)((((param2) & 0xff) << 16) | (((param3) & 0xff) << 8) | (((param4) & 0xff) << 0)), NULL);
             }
         }
     }
 
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0200B190(v3);
     sub_0201A954(param1);
 

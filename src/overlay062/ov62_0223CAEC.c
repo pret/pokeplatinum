@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_02025E08.h"
 #include "unk_0202CBE4.h"
@@ -69,7 +69,7 @@ typedef struct {
     UnkStruct_ov62_0223DF10 * unk_71C;
     UnkStruct_ov62_0223D518_sub1 unk_720;
     UnkStruct_0200B144 * unk_744;
-    UnkStruct_02023790 * unk_748;
+    Strbuf* unk_748;
     UnkStruct_ov62_02249380 unk_74C[3][20];
     UnkStruct_ov62_02248CDC unk_B0C;
 } UnkStruct_ov62_0223D518;
@@ -337,7 +337,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
 
     for (v3 = 0; v3 < 2; v3++) {
         v1 = &v0->unk_84[v3];
@@ -350,7 +350,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v1);
-        sub_020237BC(v5);
+        Strbuf_Free(v5);
     }
 }
 
@@ -373,7 +373,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
     int v6;
 
     if (v0->unk_1C == 0) {
@@ -402,7 +402,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(v1);
-        sub_020237BC(v5);
+        Strbuf_Free(v5);
     }
 }
 
@@ -413,7 +413,7 @@ static void ov62_0223D100 (UnkStruct_0208C06C * param0)
     int v2 = 1;
     int v3;
     int v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v5;
     int v6;
 
     if (v0->unk_1C == 0) {
@@ -548,7 +548,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r4, [r5, r0]
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x14]
     mov r0, #0x66
     bl ov62_02231690
@@ -598,7 +598,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r0, #0x24
     bl sub_0201A9A4
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r4, #0
     add r0, #0x34
     mov r1, #0
@@ -632,7 +632,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r0, #0x34
     bl sub_0201A9A4
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, = 0x88C
     mov r1, #0x66
     ldr r0, [r5, r0]
@@ -687,7 +687,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r7, r0, #0
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x1c]
     ldr r2, [sp, #0x24]
     add r0, r6, #0
@@ -718,7 +718,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     beq _0223D308
     mov r0, #0xff
     mov r1, #0x66
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x1c]
     ldr r0, [sp, #0x10]
     mov r1, #0x66
@@ -726,7 +726,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bl sub_0200B274
     ldr r0, [sp, #0x1c]
     add r1, sp, #0x2c
-    bl sub_02023D28
+    bl Strbuf_CopyChars
     b _0223D312
  _0223D308:
     ldr r0, [r5, #0x48]
@@ -773,13 +773,13 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r0, r4, #0
     bl sub_0201A9A4
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x1c]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x14]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x18]
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
     bl sub_0200C41C
     add r0, r6, #0
@@ -1160,7 +1160,7 @@ static BOOL ov62_0223DC6C (UnkStruct_0208C06C * param0)
         ov62_022332FC(&param0->unk_14.unk_48C);
 
         if (v0->unk_748) {
-            sub_020237BC(v0->unk_748);
+            Strbuf_Free(v0->unk_748);
         }
 
         ov62_022334FC(&param0->unk_14.unk_48C, param0);
@@ -1255,7 +1255,7 @@ static BOOL ov62_0223DE6C (UnkStruct_0208C06C * param0)
         ov62_022332FC(&param0->unk_14.unk_48C);
 
         if (v0->unk_748) {
-            sub_020237BC(v0->unk_748);
+            Strbuf_Free(v0->unk_748);
         }
 
         ov62_022334FC(&param0->unk_14.unk_48C, param0);

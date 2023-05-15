@@ -38,7 +38,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -334,11 +334,11 @@ static void ov94_0223D53C (UnkStruct_ov94_0223FD4C * param0)
 {
     int v0;
 
-    param0->unk_BAC = sub_02023790((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
     param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 39);
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_BB4[v0] = sub_02023790((10 * 2), 62);
+        param0->unk_BB4[v0] = Strbuf_Init((10 * 2), 62);
     }
 }
 
@@ -347,11 +347,11 @@ static void ov94_0223D57C (UnkStruct_ov94_0223FD4C * param0)
     int v0;
 
     for (v0 = 0; v0 < 10; v0++) {
-        sub_020237BC(param0->unk_BB4[v0]);
+        Strbuf_Free(param0->unk_BB4[v0]);
     }
 
-    sub_020237BC(param0->unk_BAC);
-    sub_020237BC(param0->unk_BB0);
+    Strbuf_Free(param0->unk_BAC);
+    Strbuf_Free(param0->unk_BB0);
 }
 
 static int ov94_0223D5B0 (UnkStruct_ov94_0223FD4C * param0)
@@ -504,7 +504,7 @@ static int ov94_0223D858 (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int param2, int param3, u16 param4, Pokemon * param5)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0200B538(param0->unk_B8C, 0, sub_02076B10(param5));
     v0 = sub_0200B1EC(param0->unk_B90, param1);
@@ -514,7 +514,7 @@ static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 
     param0->unk_BE0 = sub_0201D738(&param0->unk_F5C, 1, param0->unk_BAC, 0, 0, param2, NULL);
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static u32 Unk_ov94_022467FC[] = {
@@ -525,9 +525,9 @@ static u32 Unk_ov94_022467FC[] = {
 
 void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, UnkStruct_0205AA50 param3[], BoxPokemon * param4, UnkStruct_ov94_0223BA88_sub2 * param5)
 {
-    UnkStruct_02023790 * v0, * v1, * v2, * v3;
-    UnkStruct_02023790 * v4 = sub_02023790((10 + 1) * 2, 62);
-    UnkStruct_02023790 * v5 = sub_02023790((8 + 1) * 2, 62);
+    Strbuf* v0, * v1, * v2, * v3;
+    Strbuf* v4 = Strbuf_Init((10 + 1) * 2, 62);
+    Strbuf* v5 = Strbuf_Init((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
     sub_02074570(param4, MON_DATA_119, v4);
@@ -561,24 +561,24 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     ov94_02245900(&param3[3], v3, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param3[4], v5, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 
-    sub_020237BC(v3);
-    sub_020237BC(v5);
-    sub_020237BC(v2);
-    sub_020237BC(v1);
-    sub_020237BC(v4);
-    sub_020237BC(v0);
+    Strbuf_Free(v3);
+    Strbuf_Free(v5);
+    Strbuf_Free(v2);
+    Strbuf_Free(v1);
+    Strbuf_Free(v4);
+    Strbuf_Free(v0);
 }
 
 void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u16 * param2, Pokemon * param3, UnkStruct_0205AA50 param4[])
 {
-    UnkStruct_02023790 * v0, * v1;
-    UnkStruct_02023790 * v2, * v3;
+    Strbuf* v0, * v1;
+    Strbuf* v2, * v3;
 
-    v0 = sub_02023790((7 + 1) * 2, 62);
-    v3 = sub_02023790((7 + 1) * 2, 62);
+    v0 = Strbuf_Init((7 + 1) * 2, 62);
+    v3 = Strbuf_Init((7 + 1) * 2, 62);
 
     v1 = sub_0200B1EC(param0, 48);
-    sub_02023D28(v0, param2);
+    Strbuf_CopyChars(v0, param2);
 
     v2 = sub_0200B1EC(param0, 172);
     GetMonData(param3, MON_DATA_145, v3);
@@ -588,10 +588,10 @@ void ov94_0223DA78 (UnkStruct_0200B144 * param0, UnkStruct_0205AA50 param1[], u1
     ov94_02245900(&param4[0], v2, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param4[1], v3, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 
-    sub_020237BC(v1);
-    sub_020237BC(v0);
-    sub_020237BC(v2);
-    sub_020237BC(v3);
+    Strbuf_Free(v1);
+    Strbuf_Free(v0);
+    Strbuf_Free(v2);
+    Strbuf_Free(v3);
 }
 
 void ov94_0223DB2C (Pokemon * param0)

@@ -28,7 +28,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_24[9];
     UnkStruct_0200B144 * unk_B4;
     UnkStruct_0200B358 * unk_B8;
-    UnkStruct_02023790 * unk_BC;
+    Strbuf* unk_BC;
     UnkStruct_02002F38 * unk_C0;
     UnkStruct_02012744 * unk_C4;
     UnkStruct_ov16_0223E0C8 unk_C8[4];

@@ -22,7 +22,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202602C.h"
@@ -289,7 +289,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     if (v0->val1.unk_00 == 0) {
-        UnkStruct_02023790 * v15 = sub_02025F04(v1, 32);
+        Strbuf* v15 = sub_02025F04(v1, 32);
         u32 v16 = sub_02025F20(v1);
         u32 v17 = sub_02025F30(v1);
 
@@ -301,7 +301,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         sub_02074B30(v6, 157, &v17);
 
         v4 = v6;
-        sub_020237BC(v15);
+        Strbuf_Free(v15);
     }
 
     sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
@@ -426,7 +426,7 @@ static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0->unk_00);
     const UnkStruct_0202610C * v1 = (const UnkStruct_0202610C *)v0;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     *param1 = 379;
     *param2 = 10;
@@ -435,7 +435,7 @@ static void sub_0204BF60 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
     v2 = sub_0202605C(v1, 32);
     sub_0200B48C(param0->unk_04, 1, v2, 0, 1, GAME_LANGUAGE);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 }
 
 static void sub_0204BFB8 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)

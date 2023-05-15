@@ -7,7 +7,7 @@
 typedef struct {
     union {
         const u16 * unk_00_val1;
-        const UnkStruct_02023790 * unk_00_val2;
+        const Strbuf* unk_00_val2;
     };
     UnkStruct_0205AA50 * unk_04;
     u8 unk_08;

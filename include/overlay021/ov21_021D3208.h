@@ -50,7 +50,7 @@ int ov21_021D38B0(const UnkStruct_ov21_021D3320 * param0, int param1);
 void ov21_021D38C0(UnkStruct_ov21_021D3320 * param0);
 int ov21_021D38FC(const UnkStruct_ov21_021D3320 * param0);
 int ov21_021D3908(const UnkStruct_ov21_021D3320 * param0);
-UnkStruct_02023790 * ov21_021D3914(const UnkStruct_ov21_021D3320 * param0);
+Strbuf* ov21_021D3914(const UnkStruct_ov21_021D3320 * param0);
 u32 ov21_021D3920(const UnkStruct_ov21_021D3320 * param0);
 BOOL ov21_021D392C(const UnkStruct_ov21_021D3320 * param0, int param1);
 BOOL ov21_021D3954(const UnkStruct_ov21_021D3320 * param0);

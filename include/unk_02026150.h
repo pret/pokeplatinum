@@ -6,7 +6,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 const UnkStruct_0202610C * sub_02026150(UnkStruct_021C0794 * param0, int param1);
-void sub_0202616C(UnkStruct_021C0794 * param0, int param1, UnkStruct_02023790 * param2, int param3);
+void sub_0202616C(UnkStruct_021C0794 * param0, int param1, Strbuf *param2, int param3);
 const UnkStruct_0202610C * sub_020261A8(void);
 int sub_020261B0(const UnkStruct_0202610C * param0);
 

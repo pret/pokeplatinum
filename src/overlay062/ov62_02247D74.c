@@ -20,7 +20,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02030A80.h"
 #include "overlay062/ov62_0222F2C0.h"
 #include "overlay062/ov62_022300D8.h"
@@ -62,17 +62,17 @@ static void ov62_02247DB4 (UnkStruct_0208C06C * param0)
 
 static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0205AA50 * v1 = &param0->unk_8A4;
 
     if (param1 == 282) {
         UnkStruct_0200B358 * v2;
-        UnkStruct_02023790 * v3;
-        UnkStruct_02023790 * v4;
+        Strbuf* v3;
+        Strbuf* v4;
         UnkStruct_02030A80 * v5 = param0->unk_88C[param2];
 
         v2 = ov62_02231690(102);
-        v0 = sub_02023790(255, 102);
+        v0 = Strbuf_Init(255, 102);
         v3 = sub_02030B94(v5, 102);
 
         ov62_022349A8(param0, v3);
@@ -80,8 +80,8 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
 
         sub_0200B48C(v2, 0, v3, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v2, v0, v4);
-        sub_020237BC(v3);
-        sub_020237BC(v4);
+        Strbuf_Free(v3);
+        Strbuf_Free(v4);
         sub_0200B3F0(v2);
     } else {
         v0 = sub_0200B1EC(param0->unk_14.unk_34, param1);
@@ -90,14 +90,14 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
     sub_0201ADA4(v1, 0xCC);
     sub_0201D78C(v1, 0, v0, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((12 & 0xff) << 0))), NULL);
     sub_0201A9A4(v1);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void ov62_02247E9C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02247F7C * v0 = param0->unk_860;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3 = 1;
     int v4;
 
@@ -111,7 +111,7 @@ static void ov62_02247E9C (UnkStruct_0208C06C * param0)
     v4 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0201A9A4(v1);
 
     v3 += (10 * 2);
@@ -125,7 +125,7 @@ static void ov62_02247E9C (UnkStruct_0208C06C * param0)
     v4 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
     sub_0201A9A4(v1);
 }
 

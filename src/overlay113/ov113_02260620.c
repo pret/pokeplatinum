@@ -19,7 +19,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
@@ -548,9 +548,9 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
 {
     const UnkStruct_ov66_0222E71C * v0;
     UnkStruct_02025E6C * v1;
-    UnkStruct_02023790 * v2;
-    UnkStruct_02023790 * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v2;
+    Strbuf* v3;
+    Strbuf* v4;
     int v5 = 64;
     int v6;
     u32 v7, v8;
@@ -588,7 +588,7 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
     sub_0200B48C(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
     v2 = sub_0200B1EC(param0, 0);
-    v3 = sub_02023790(v5, 118);
+    v3 = Strbuf_Init(v5, 118);
 
     sub_0200C388(param1, v3, v2);
     sub_0201ADA4(&param2[v7], 0x0);
@@ -601,9 +601,9 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
 
     sub_0201D78C(&param2[v7], 0, v3, 0, 0, 0, v9, NULL);
     sub_0201A954(&param2[v7]);
-    sub_020237BC(v4);
-    sub_020237BC(v2);
-    sub_020237BC(v3);
+    Strbuf_Free(v4);
+    Strbuf_Free(v2);
+    Strbuf_Free(v3);
     Heap_FreeToHeap(v1);
 }
 

@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0202B370_sub1.h"
 
 #include "unk_0201378C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_0202ACE0.h"
 #include "unk_02038FFC.h"
@@ -142,10 +142,10 @@ u16 * sub_0202AEF0 (UnkStruct_0202B370 * param0, int param1)
     return param0->unk_1C0[param1].unk_10;
 }
 
-void sub_0202AF0C (UnkStruct_0202B370 * param0, int param1, UnkStruct_02023790 * param2)
+void sub_0202AF0C (UnkStruct_0202B370 * param0, int param1, Strbuf *param2)
 {
     GF_ASSERT(param1 < 32);
-    sub_02023DF0(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
+    Strbuf_ToChars(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
 }
 
 u16 * sub_0202AF34 (UnkStruct_0202B370 * param0, int param1)
@@ -154,10 +154,10 @@ u16 * sub_0202AF34 (UnkStruct_0202B370 * param0, int param1)
     return param0->unk_1C0[param1].unk_00;
 }
 
-void sub_0202AF50 (UnkStruct_0202B370 * param0, int param1, UnkStruct_02023790 * param2)
+void sub_0202AF50 (UnkStruct_0202B370 * param0, int param1, Strbuf *param2)
 {
     GF_ASSERT(param1 < 32);
-    sub_02023DF0(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
+    Strbuf_ToChars(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
 }
 
 BOOL sub_0202AF78 (UnkStruct_0202B370 * param0, int param1)

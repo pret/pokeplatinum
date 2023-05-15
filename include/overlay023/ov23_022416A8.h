@@ -22,7 +22,7 @@ BOOL ov23_02241CF4(int param0);
 BOOL ov23_02241D04(int param0, int param1);
 int ov23_02241D18(int param0);
 int ov23_02241D38(int param0);
-BOOL ov23_02241D58(UnkStruct_02023790 * param0);
+BOOL ov23_02241D58(Strbuf *param0);
 int ov23_02241DF8(MATHRandContext16 * param0);
 void ov23_02241E6C(void);
 void ov23_02241ED0(void);

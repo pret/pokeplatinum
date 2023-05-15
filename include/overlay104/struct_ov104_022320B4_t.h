@@ -20,8 +20,8 @@ struct UnkStruct_ov104_022320B4_t {
     UnkStruct_0200B144 * unk_3C;
     u8 * unk_40;
     UnkStruct_0200B358 * unk_44;
-    UnkStruct_02023790 * unk_48;
-    UnkStruct_02023790 * unk_4C;
+    Strbuf* unk_48;
+    Strbuf* unk_4C;
     u8 unk_50;
     s8 unk_51;
     u16 unk_52;

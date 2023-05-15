@@ -34,7 +34,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02030A80.h"
 #include "unk_0208C010.h"
 #include "overlay062/ov62_0222F2C0.h"
@@ -638,7 +638,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
     UnkStruct_0200B144 * v5;
     UnkStruct_0205AA50 v6;
@@ -684,12 +684,12 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
 
 void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * param1, int param2, const UnkStruct_020F3DCC * param3)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1;
     UnkStruct_0205AA50 v2;
     UnkStruct_0200B358 * v3;
-    UnkStruct_02023790 * v4;
-    UnkStruct_02023790 * v5;
+    Strbuf* v4;
+    Strbuf* v5;
 
     v1 = param0->unk_14.unk_34;
 
@@ -701,12 +701,12 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
-            v0 = sub_02023790(255, 102);
+            v0 = Strbuf_Init(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             sub_0200C388(v3, v0, v4);
-            sub_020237BC(v4);
-            sub_020237BC(v5);
+            Strbuf_Free(v4);
+            Strbuf_Free(v5);
             sub_0200B3F0(v3);
         }
     } else if (param2 == 41) {
@@ -717,12 +717,12 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
-            v0 = sub_02023790(255, 102);
+            v0 = Strbuf_Init(255, 102);
 
             sub_0200B48C(v3, 0, v5, 0, 1, GAME_LANGUAGE);
             sub_0200C388(v3, v0, v4);
-            sub_020237BC(v4);
-            sub_020237BC(v5);
+            Strbuf_Free(v4);
+            Strbuf_Free(v5);
             sub_0200B3F0(v3);
         }
     } else {
@@ -733,7 +733,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
     sub_0201A870(param0->unk_14.unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0201A8FC(&v2);
 }
 
@@ -758,7 +758,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4;
     UnkStruct_0200B144 * v5;
     UnkStruct_0205AA50 v6;
@@ -799,7 +799,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
 
 void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * param1, int param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1;
     UnkStruct_0205AA50 v2;
 
@@ -810,7 +810,7 @@ void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     sub_0201A870(param1->unk_10, &v2, 20, 2, 0, 0);
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0201A8FC(&v2);
 }
 

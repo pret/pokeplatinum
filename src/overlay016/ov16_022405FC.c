@@ -68,7 +68,7 @@
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
@@ -9735,7 +9735,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     UnkStruct_02002F38 * v3;
     UnkStruct_0200B144 * v4;
     UnkStruct_0200B358 * v5;
-    UnkStruct_02023790 * v6, * v7;
+    Strbuf* v6, * v7;
     UnkStruct_02018340 * v8;
     UnkStruct_0205AA50 v9;
     int v10;
@@ -9788,7 +9788,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     sub_0200B5CC(v5, 0, sub_02076B10(param2));
     sub_0200B60C(v5, 1, GetMonData(param2, MON_DATA_161, NULL), 3, 0, 1);
     sub_0200C388(v5, v7, v6);
-    sub_020237BC(v6);
+    Strbuf_Free(v6);
     sub_0201A7A0(&v9);
     sub_0201A870(v8, &v9, 12, 4, 0, 0);
     sub_0201D78C(&v9, 0, v7, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);

@@ -17,7 +17,7 @@
 #include "unk_02014A84.h"
 #include "unk_02015064.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_020298BC.h"
 #include "unk_02073C2C.h"
@@ -145,9 +145,9 @@ static void sub_02029990 (UnkStruct_0202A138 * param0, Pokemon * param1, UnkStru
     sub_0202992C(param0, param1, v0, v1, v2);
 }
 
-static void sub_020299C0 (UnkStruct_0202A138 * param0, const UnkStruct_02023790 * param1, int param2)
+static void sub_020299C0 (UnkStruct_0202A138 * param0, const Strbuf *param1, int param2)
 {
-    sub_02023DF0(param1, param0->unk_20, 8);
+    Strbuf_ToChars(param1, param0->unk_20, 8);
     param0->unk_34 = param2;
 }
 
@@ -618,7 +618,7 @@ void sub_0202A0CC (UnkStruct_02029C68 * param0, const UnkStruct_02029C68 * param
     memcpy(param0, param1, sizeof(UnkStruct_02029C68));
 }
 
-void sub_0202A0EC (UnkStruct_02029C68 * param0, const UnkStruct_02023790 * param1, int param2)
+void sub_0202A0EC (UnkStruct_02029C68 * param0, const Strbuf *param1, int param2)
 {
     GF_ASSERT(inline_02029CA8(param0));
     sub_020299C0(&param0->unk_04, param1, param2);
@@ -653,7 +653,7 @@ u16 sub_0202A184 (const UnkStruct_02029C68 * param0)
     return sub_0202A5E8(&param0->unk_04);
 }
 
-void sub_0202A1A0 (const UnkStruct_02029C68 * param0, UnkStruct_02023790 * param1)
+void sub_0202A1A0 (const UnkStruct_02029C68 * param0, Strbuf *param1)
 {
     GF_ASSERT(inline_02029CA8(param0));
     sub_0202A5EC(&param0->unk_04, param1);
@@ -788,7 +788,7 @@ BOOL sub_0202A488 (const UnkStruct_02029C88 * param0, int param1)
     return 0;
 }
 
-void sub_0202A4B4 (UnkStruct_02029C88 * param0, const UnkStruct_02023790 * param1, int param2)
+void sub_0202A4B4 (UnkStruct_02029C88 * param0, const Strbuf *param1, int param2)
 {
     GF_ASSERT(inline_02029CD0(param0));
     sub_020299C0(&param0->unk_08, param1, param2);
@@ -809,7 +809,7 @@ const UnkStruct_0202A150 * sub_0202A4F0 (const UnkStruct_02029C88 * param0, int 
     return &param0->unk_44[param1];
 }
 
-void sub_0202A524 (const UnkStruct_02029C88 * param0, UnkStruct_02023790 * param1)
+void sub_0202A524 (const UnkStruct_02029C88 * param0, Strbuf *param1)
 {
     GF_ASSERT(inline_02029CD0(param0));
     sub_0202A5EC(&param0->unk_08, param1);
@@ -853,9 +853,9 @@ u16 sub_0202A5E8 (const UnkStruct_0202A138 * param0)
     return param0->unk_08;
 }
 
-void sub_0202A5EC (const UnkStruct_0202A138 * param0, UnkStruct_02023790 * param1)
+void sub_0202A5EC (const UnkStruct_0202A138 * param0, Strbuf *param1)
 {
-    sub_02023D28(param1, param0->unk_20);
+    Strbuf_CopyChars(param1, param0->unk_20);
 }
 
 u32 sub_0202A5FC (const UnkStruct_0202A138 * param0)

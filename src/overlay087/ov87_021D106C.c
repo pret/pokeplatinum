@@ -41,7 +41,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "overlay087/ov87_021D106C.h"
 
@@ -61,8 +61,8 @@ typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_0200B144 * unk_1E8;
     UnkStruct_0200B144 * unk_1EC;
     UnkStruct_0200B358 * unk_1F0;
-    UnkStruct_02023790 * unk_1F4;
-    UnkStruct_02023790 * unk_1F8;
+    Strbuf* unk_1F4;
+    Strbuf* unk_1F8;
     Pokemon * unk_1FC;
     u8 unk_200[3200];
 } UnkStruct_ov87_021D106C;
@@ -112,8 +112,8 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1E8 = sub_0200B144(1, 26, 412, 61);
         v0->unk_1EC = sub_0200B144(1, 26, 647, 61);
         v0->unk_1F0 = sub_0200B358(61);
-        v0->unk_1F4 = sub_02023790(256, 61);
-        v0->unk_1F8 = sub_02023790(256, 61);
+        v0->unk_1F4 = Strbuf_Init(256, 61);
+        v0->unk_1F8 = Strbuf_Init(256, 61);
         v0->unk_1FC = AllocMonZeroed(61);
 
         sub_02017798(ov87_021D11AC, v0);
@@ -127,8 +127,8 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
     if (param0) {
         sub_02017798(NULL, NULL);
         Heap_FreeToHeap(param0->unk_1FC);
-        sub_020237BC(param0->unk_1F8);
-        sub_020237BC(param0->unk_1F4);
+        Strbuf_Free(param0->unk_1F8);
+        Strbuf_Free(param0->unk_1F4);
         sub_0200B3F0(param0->unk_1F0);
         sub_0200B190(param0->unk_1EC);
         sub_0200B190(param0->unk_1E8);
@@ -419,7 +419,7 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
             sub_0200B1B8(param0->unk_1E4, 4, param0->unk_1F4);
             break;
         default:
-            sub_020237E8(param0->unk_1F4);
+            Strbuf_Clear(param0->unk_1F4);
             break;
         }
 

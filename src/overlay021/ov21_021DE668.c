@@ -35,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"
@@ -432,7 +432,7 @@ static void ov21_021DEB58 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
 
 void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(64, param2);
+    Strbuf* v0 = Strbuf_Init(64, param2);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
 
     sub_0200B1B8(v1, 9, v0);
@@ -440,7 +440,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
     sub_0200B1B8(v1, 10, v0);
     sub_0201D78C(param0, 0, v0, 152, 104, 0, param4, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200B190(v1);
 
     ov21_021DEC2C(param0, param2, param1, param4);
@@ -450,7 +450,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
 static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(64, param1);
+    Strbuf* v0 = Strbuf_Init(64, param1);
     UnkStruct_0200B144 * v1;
     int v2;
 
@@ -459,13 +459,13 @@ static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
     sub_0200B1B8(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200B190(v1);
 }
 
 static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(64, param1);
+    Strbuf* v0 = Strbuf_Init(64, param1);
     UnkStruct_0200B144 * v1;
     int v2;
 
@@ -474,13 +474,13 @@ static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, 
 
     sub_0200B1B8(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200B190(v1);
 }
 
 static void ov21_021DECD4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
-    UnkStruct_02023790 * v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
+    Strbuf* v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
     u32 v1 = sub_02002EB4(0, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
@@ -793,7 +793,7 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 UnkStruct_0205AA50 * ov21_021DF30C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = ov21_021D4D6C(param0, 18, 2);
     v1 = ov21_021D566C(param1, GAME_LANGUAGE, param2);

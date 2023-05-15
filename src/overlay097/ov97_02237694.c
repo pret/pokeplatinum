@@ -49,7 +49,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02033200.h"
 #include "unk_02073C2C.h"
@@ -223,7 +223,7 @@ void ov97_02237868 (UnkStruct_ov97_02237808 * param0, int param1, int param2)
 static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
 {
     int v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     UnkStruct_0200B358 * v2;
     UnkStruct_0200B144 * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;
@@ -258,7 +258,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
                 param0->unk_0C = 0;
             }
 
-            sub_020237BC(v1);
+            Strbuf_Free(v1);
 
             if (param0->unk_14 == NULL) {
                 sub_0200B3F0(v2);

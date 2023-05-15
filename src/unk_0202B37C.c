@@ -9,7 +9,7 @@
 
 #include "unk_020021B0.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_0202B37C.h"
 
@@ -75,16 +75,16 @@ const u16 * sub_0202B42C (const UnkStruct_0202B4A0 * param0, int param1, int par
     return param0->unk_00[param1].unk_10;
 }
 
-void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, UnkStruct_02023790 * param3)
+void sub_0202B444 (UnkStruct_0202B4A0 * param0, int param1, int param2, Strbuf *param3)
 {
     u16 * v0;
 
     if (param2 == 0) {
         v0 = param0->unk_00[param1].unk_00;
-        sub_02023DF0(param3, v0, 7 + 1);
+        Strbuf_ToChars(param3, v0, 7 + 1);
     } else {
         v0 = param0->unk_00[param1].unk_10;
-        sub_02023DF0(param3, v0, 7 + 1);
+        Strbuf_ToChars(param3, v0, 7 + 1);
     }
 }
 

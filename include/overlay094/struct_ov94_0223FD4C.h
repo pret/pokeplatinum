@@ -94,12 +94,12 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_0200B144 * unk_B98;
     UnkStruct_0200B144 * unk_B9C;
     UnkStruct_0200B144 * unk_BA0;
-    UnkStruct_02023790 * unk_BA4;
-    UnkStruct_02023790 * unk_BA8;
-    UnkStruct_02023790 * unk_BAC;
-    UnkStruct_02023790 * unk_BB0;
-    UnkStruct_02023790 * unk_BB4[10];
-    UnkStruct_02023790 * unk_BDC;
+    Strbuf* unk_BA4;
+    Strbuf* unk_BA8;
+    Strbuf* unk_BAC;
+    Strbuf* unk_BB0;
+    Strbuf* unk_BB4[10];
+    Strbuf* unk_BDC;
     int unk_BE0;
     UnkStruct_020218BC * unk_BE4;
     UnkStruct_0200C738 unk_BE8;

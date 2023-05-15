@@ -9,8 +9,8 @@
 
 UnkStruct_02014D38 * sub_02014D38(u32 param0);
 void sub_02014D70(UnkStruct_02014D38 * param0);
-void sub_02014D90(UnkStruct_02014D38 * param0, u16 param1, UnkStruct_02023790 * param2);
-void sub_02014DB8(u16 param0, UnkStruct_02023790 * param1);
+void sub_02014D90(UnkStruct_02014D38 * param0, u16 param1, Strbuf *param2);
+void sub_02014DB8(u16 param0, Strbuf *param1);
 u16  sub_02014DFC(u32 param0, u32 param1);
 BOOL sub_02014E4C(u16 param0, u32 * param1, u32 * param2);
 u32 sub_02014E8C(void);

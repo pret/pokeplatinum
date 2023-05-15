@@ -18,7 +18,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "move_table.h"
 #include "unk_0207A274.h"
@@ -263,7 +263,7 @@ void sub_0208FEA4 (UnkStruct_0208D7BC * param0)
 void sub_0208FF3C (UnkStruct_0208D7BC * param0)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = &param0->unk_04[33];
 
@@ -276,7 +276,7 @@ void sub_0208FF3C (UnkStruct_0208D7BC * param0)
 
         sub_0200B60C(param0->unk_690, 0, param0->unk_250.unk_12_0, 3, 0, 1);
         sub_0200C388(param0->unk_690, param0->unk_694, v1);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         sub_0201D78C(v0, 0, param0->unk_694, 16, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -285,7 +285,7 @@ void sub_0208FF3C (UnkStruct_0208D7BC * param0)
 
 void sub_0208FFE0 (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0201ADA4(&param0->unk_04[32], 0);
 
@@ -293,7 +293,7 @@ void sub_0208FFE0 (UnkStruct_0208D7BC * param0)
         sub_0200B70C(param0->unk_690, 0, param0->unk_250.unk_0E);
         v0 = sub_0200B1EC(param0->unk_688, 5);
         sub_0200C388(param0->unk_690, param0->unk_694, v0);
-        sub_020237BC(v0);
+        Strbuf_Free(v0);
     } else {
         sub_0200B1B8(param0->unk_688, 6, param0->unk_694);
     }
@@ -312,7 +312,7 @@ void sub_02090064 (UnkStruct_0208D7BC * param0, u32 param1)
 
 static BOOL sub_02090098 (UnkStruct_0208D7BC * param0)
 {
-    if ((param0->unk_250.unk_14 == param0->unk_24C->unk_0C) && (param0->unk_250.unk_44 == param0->unk_24C->unk_10) && (sub_02023BE0(param0->unk_250.unk_08, param0->unk_698) == 0)) {
+    if ((param0->unk_250.unk_14 == param0->unk_24C->unk_0C) && (param0->unk_250.unk_44 == param0->unk_24C->unk_10) && (Strbuf_Compare(param0->unk_250.unk_08, param0->unk_698) == 0)) {
         return 1;
     }
 
@@ -356,12 +356,12 @@ static void sub_02090158 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u
 
 static void sub_02090184 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u8 param3, u8 param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_0200B1EC(param0->unk_688, param1);
     sub_0200B60C(param0->unk_690, 0, param2, param3, param4, 1);
     sub_0200C388(param0->unk_690, param0->unk_694, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void sub_020901D0 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u32 param3, u32 param4, u16 param5, u16 param6, u8 param7, u8 param8, u8 param9)
@@ -564,7 +564,7 @@ static void sub_02090800 (UnkStruct_0205AA50 * param0, Pokemon * param1, BOOL pa
 
 static void sub_020908CC (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0201A9A4(&param0->unk_04[1]);
     sub_0201ADA4(&param0->unk_244[0], 0);
@@ -627,13 +627,13 @@ static void sub_0209093C (UnkStruct_0208D7BC * param0)
 
     {
         UnkStruct_0200B144 * v1;
-        UnkStruct_02023790 * v2;
+        Strbuf* v2;
 
         sub_0200B6A0(param0->unk_690, 0, param0->unk_250.unk_32);
 
         v2 = sub_0200B1EC(param0->unk_688, 125);
         sub_0200C388(param0->unk_690, param0->unk_694, v2);
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
         sub_020900D8(param0, &param0->unk_244[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
         v1 = sub_0200B144(1, 26, 612, 19);
@@ -772,7 +772,7 @@ static void sub_02090EC8 (UnkStruct_0208D7BC * param0)
 
 void sub_02090F84 (UnkStruct_0208D7BC * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u8 v1;
     u8 v2;
 
@@ -782,7 +782,7 @@ void sub_02090F84 (UnkStruct_0208D7BC * param0)
 
     sub_0200B60C(param0->unk_690, 0, param0->unk_6B1, 3, 0, 1);
     sub_0200C388(param0->unk_690, param0->unk_694, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     v2 = sub_02002D7C(0, param0->unk_694, 0);
     v1 = 7 * 8 - v2;
@@ -794,13 +794,13 @@ void sub_02090F84 (UnkStruct_0208D7BC * param0)
     v1 -= v2;
 
     sub_0201D78C(&param0->unk_244[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     v0 = sub_0200B1EC(param0->unk_688, 184);
 
     sub_0200B60C(param0->unk_690, 0, param0->unk_6AF + param0->unk_6B0 * 4 + 1, 3, 0, 1);
     sub_0200C388(param0->unk_690, param0->unk_694, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     v2 = sub_02002D7C(0, param0->unk_694, 0);
     v1 -= v2;
@@ -827,7 +827,7 @@ void sub_020910E4 (UnkStruct_0208D7BC * param0)
 static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
 {
     UnkStruct_0205AA50 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
     u16 v3;
     u8 v4, v5;

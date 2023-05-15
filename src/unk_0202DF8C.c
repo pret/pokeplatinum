@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0202E1F4.h"
 #include "overlay087/struct_ov87_021D1640.h"
 
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202DF8C.h"
 #include "unk_02073C2C.h"
 #include "party.h"
@@ -33,7 +33,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 {
     UnkStruct_0202DFA8 * v0;
     Pokemon * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3, v4, v5;
     BOOL v6;
 
@@ -46,7 +46,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
     v0 = &param0->unk_00[param0->unk_2AA8];
     v3 = Party_GetCurrentCount(param1);
-    v2 = sub_02023790(11, 0);
+    v2 = Strbuf_Init(11, 0);
 
     MI_CpuClear16(v0->unk_00, sizeof(UnkStruct_0202E1F4) * 6);
 
@@ -67,10 +67,10 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
             if (v2) {
                 GetMonData(v1, MON_DATA_119, v2);
-                sub_02023DF0(v2, v0->unk_00[v5].unk_0C, 11);
+                Strbuf_ToChars(v2, v0->unk_00[v5].unk_0C, 11);
 
                 GetMonData(v1, MON_DATA_145, v2);
-                sub_02023DF0(v2, v0->unk_00[v5].unk_22, 8);
+                Strbuf_ToChars(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;
                 v0->unk_00[v5].unk_22[0] = 0xffff;
@@ -93,7 +93,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
     param0->unk_2AAC++;
 
     if (v2) {
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
     }
 }
 
@@ -155,8 +155,8 @@ void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, Un
     param3->unk_0C = v0->unk_08;
     param3->unk_13 = v0->unk_03;
 
-    sub_02023D28(param3->unk_00, v0->unk_0C);
-    sub_02023D28(param3->unk_04, v0->unk_22);
+    Strbuf_CopyChars(param3->unk_00, v0->unk_0C);
+    Strbuf_CopyChars(param3->unk_04, v0->unk_22);
 
     for (v1 = 0; v1 < 4; v1++) {
         param3->unk_14[v1] = v0->unk_32[v1];

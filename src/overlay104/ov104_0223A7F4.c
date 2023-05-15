@@ -350,7 +350,7 @@ UnkStruct_ov6_02240D5C * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkS
     UnkStruct_ov104_0223A348_sub1 v6;
     UnkStruct_0204B184 * v7;
     UnkStruct_0200B144 * v8;
-    UnkStruct_02023790 * v9;
+    Strbuf* v9;
     UnkStruct_02025E6C * v10;
 
     v2 = ov104_0223AA50(param0->unk_04);

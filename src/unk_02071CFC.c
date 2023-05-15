@@ -11,7 +11,7 @@
 #include "map_header.h"
 #include "unk_02071CFC.h"
 
-u32 sub_02071CFC (UnkStruct_0200B144 * param0, const int param1, UnkStruct_02023790 * param2)
+u32 sub_02071CFC (UnkStruct_0200B144 * param0, const int param1, Strbuf *param2)
 {
     u32 v0;
 
@@ -21,7 +21,7 @@ u32 sub_02071CFC (UnkStruct_0200B144 * param0, const int param1, UnkStruct_02023
     return v0;
 }
 
-void sub_02071D10 (const int param0, const u32 param1, UnkStruct_02023790 * param2)
+void sub_02071D10 (const int param0, const u32 param1, Strbuf *param2)
 {
     int v0;
     UnkStruct_0200B144 * v1;

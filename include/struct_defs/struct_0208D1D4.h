@@ -4,9 +4,9 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 typedef struct {
-    UnkStruct_02023790 * unk_00;
-    UnkStruct_02023790 * unk_04;
-    UnkStruct_02023790 * unk_08;
+    Strbuf* unk_00;
+    Strbuf* unk_04;
+    Strbuf* unk_08;
     u16 unk_0C;
     u16 unk_0E;
     u8 unk_10;

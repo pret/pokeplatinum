@@ -25,7 +25,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020797C8.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -84,7 +84,7 @@ struct UnkStruct_ov19_021DCF88_t {
     UnkStruct_02022550 * unk_54[10];
     int unk_7C;
     int unk_80;
-    UnkStruct_02023790 * unk_84;
+    Strbuf* unk_84;
     UnkStruct_0205AA50 unk_88;
     void * unk_98;
     NNSG2dCellDataBank * unk_9C;
@@ -323,7 +323,7 @@ BOOL ov19_021DCF88 (UnkStruct_ov19_021DCF88 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_04 = param2;
             v0->unk_0C = param4;
             v0->unk_14 = NULL;
-            v0->unk_84 = sub_02023790(32, 10);
+            v0->unk_84 = Strbuf_Init(32, 10);
             v0->unk_10 = param2->unk_9C.unk_00;
             v0->unk_98 = NULL;
             v0->unk_A0 = NULL;
@@ -404,7 +404,7 @@ void ov19_021DD078 (UnkStruct_ov19_021DCF88 * param0)
         }
 
         if (param0->unk_84 != NULL) {
-            sub_020237BC(param0->unk_84);
+            Strbuf_Free(param0->unk_84);
         }
 
         for (v0 = 0; v0 < 8; v0++) {

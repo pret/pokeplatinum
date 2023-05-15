@@ -34,8 +34,8 @@ typedef struct {
     u32 unk_10C;
     u8 unk_110;
     u8 unk_111[3];
-    UnkStruct_02023790 * unk_114;
-    UnkStruct_02023790 * unk_118;
+    Strbuf* unk_114;
+    Strbuf* unk_118;
     BOOL unk_11C;
 } UnkStruct_ov98_02246E88;
 

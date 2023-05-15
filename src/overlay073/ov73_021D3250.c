@@ -27,7 +27,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020241F0.h"
 
 typedef struct {
@@ -382,7 +382,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     mov r0, #1
     ldr r1, [r4, #0]
     lsl r0, r0, #0xa
-    bl sub_02023790
+    bl Strbuf_Init
     add r5, r0, #0
     ldr r0, [r4, #8]
     add r1, r7, #0
@@ -413,7 +413,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     sub r0, r1, r0
     lsr r7, r0, #1
     add r0, r5, #0
-    bl sub_02023C5C
+    bl Strbuf_NumLines
     lsl r1, r0, #4
     mov r0, #0xc0
     sub r0, r0, r1
@@ -430,7 +430,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     str r1, [sp, #0xc]
     bl sub_0201D78C
     add r0, r5, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r4, #0
     add r0, #0x10
     bl sub_0201A954

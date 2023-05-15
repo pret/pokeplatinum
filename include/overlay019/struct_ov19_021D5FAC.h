@@ -21,8 +21,8 @@ typedef struct {
     u16 unk_1C;
     u16 unk_1E;
     u16 unk_20[4];
-    UnkStruct_02023790 * unk_28;
-    UnkStruct_02023790 * unk_2C;
+    Strbuf* unk_28;
+    Strbuf* unk_2C;
 } UnkStruct_ov19_021D5FAC;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021D5FAC_H

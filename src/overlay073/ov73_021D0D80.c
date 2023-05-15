@@ -55,7 +55,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
@@ -83,7 +83,7 @@ typedef struct {
     int unk_50;
     int unk_54;
     int unk_58;
-    UnkStruct_02023790 * unk_5C;
+    Strbuf* unk_5C;
     void * unk_60;
     UnkStruct_0200B358 * unk_64;
     UnkStruct_02015920 * unk_68;
@@ -720,15 +720,15 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         sub_02002AE4(0);
 
         {
-            UnkStruct_02023790 * v1 = sub_02023790(0x400, param0->unk_00);
+            Strbuf* v1 = Strbuf_Init(0x400, param0->unk_00);
 
-            param0->unk_5C = sub_02023790(0x400, param0->unk_00);
+            param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
 
             sub_0200B1B8(param0->unk_4C, param1, v1);
             sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
             sub_0200B48C(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
             sub_0200C388(param0->unk_64, param0->unk_5C, v1);
-            sub_020237BC(v1);
+            Strbuf_Free(v1);
         }
 
         param0->unk_58 = sub_0201D738(&param0->unk_1C, 1, param0->unk_5C, 0, 0, (sub_02027AC0(param0->unk_08)), NULL);
@@ -736,7 +736,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         break;
     case 1:
         if (!(sub_0201D724(param0->unk_58))) {
-            sub_020237BC(param0->unk_5C);
+            Strbuf_Free(param0->unk_5C);
             param0->unk_50 = 2;
         }
         break;
@@ -848,14 +848,14 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
     switch (param0->unk_54) {
     case 0:
         sub_02019120(0, 0);
-        param0->unk_5C = sub_02023790(0x400, param0->unk_00);
+        param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
         sub_0200B1B8(param0->unk_4C, param1, param0->unk_5C);
 
         if (param2 == 1) {
             v1 = Unk_ov72_021D37D4;
 
             {
-                u32 v2 = sub_02023C5C(param0->unk_5C);
+                u32 v2 = Strbuf_NumLines(param0->unk_5C);
 
                 v1.unk_02 = 12 - v2;
                 v1.unk_04 = v2 * 2;
@@ -868,7 +868,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             v1 = Unk_ov72_021D37E4;
 
             if (param2 == 2) {
-                u32 v3 = sub_02023C5C(param0->unk_5C);
+                u32 v3 = Strbuf_NumLines(param0->unk_5C);
 
                 v1.unk_02 = param3 + param4 / 2 - v3;
                 v1.unk_04 = v3 * 2;
@@ -882,7 +882,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             sub_0201D78C(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         }
 
-        sub_020237BC(param0->unk_5C);
+        Strbuf_Free(param0->unk_5C);
         param0->unk_54 = 1;
         break;
     case 1:
@@ -2044,7 +2044,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 break;
             case 2:
             case 0xfffffffe:
-                sub_020237E8(param0->unk_70->unk_18);
+                Strbuf_Clear(param0->unk_70->unk_18);
                 param0->unk_10 = 63;
                 param0->unk_0C = 81;
                 break;
@@ -2128,10 +2128,10 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 }
 
                 {
-                    UnkStruct_02023790 * v10 = sub_0200B1EC(param0->unk_4C, v9);
+                    Strbuf* v10 = sub_0200B1EC(param0->unk_4C, v9);
 
-                    sub_02023810(param0->unk_74->unk_18, v10);
-                    sub_020237BC(v10);
+                    Strbuf_Copy(param0->unk_74->unk_18, v10);
+                    Strbuf_Free(v10);
                 }
             }
                 param0->unk_0C = 91;
@@ -2176,7 +2176,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 break;
             case 2:
             case 0xfffffffe:
-                sub_020237E8(param0->unk_74->unk_18);
+                Strbuf_Clear(param0->unk_74->unk_18);
                 param0->unk_0C = 88;
                 break;
             }

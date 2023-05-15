@@ -3097,7 +3097,7 @@ static void ov23_022414D4 (void)
     }
 }
 
-BOOL ov23_022415B8 (UnkStruct_02023790 * param0)
+BOOL ov23_022415B8 (Strbuf *param0)
 {
     int v0;
     UnkStruct_02025E6C * v1;

@@ -50,7 +50,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -81,9 +81,9 @@ typedef struct {
     UnkStruct_0200B144 * unk_2C;
     UnkStruct_0200B144 * unk_30;
     UnkStruct_0200B144 * unk_34;
-    UnkStruct_02023790 * unk_38;
-    UnkStruct_02023790 * unk_3C;
-    UnkStruct_02023790 * unk_40;
+    Strbuf* unk_38;
+    Strbuf* unk_3C;
+    Strbuf* unk_40;
     int unk_44;
     UnkStruct_0205AA50 unk_48;
     UnkStruct_0205AA50 unk_58;
@@ -169,8 +169,8 @@ static int ov98_02249798(UnkStruct_ov98_02247704 * param0);
 static int ov98_022497F8(UnkStruct_ov98_02247704 * param0);
 static void ov98_02249714(UnkStruct_ov98_02247704 * param0, UnkStruct_0200B144 * param1, int param2, int param3, u16 param4);
 static int ov98_0224977C(int param0);
-static int ov98_02249894(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, u32 param4, int param5);
-void ov98_022498CC(UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, int param4, u32 param5);
+static int ov98_02249894(UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, u32 param4, int param5);
+void ov98_022498CC(UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, int param4, u32 param5);
 static void ov98_02249900(UnkStruct_ov98_02247704 * param0, int param1);
 static void ov98_02249964(UnkStruct_ov98_02247704 * param0, int param1, int param2);
 static void ov98_022499A0(UnkStruct_0200112C * param0, u32 param1, u8 param2);
@@ -331,8 +331,8 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_30 = sub_0200B144(0, 26, 695, 109);
     v0->unk_28 = sub_0200B144(0, 26, 412, 109);
     v0->unk_34 = sub_0200B144(0, 26, 358, 109);
-    v0->unk_38 = sub_02023790((90 * 2), 109);
-    v0->unk_40 = sub_02023790((16 * 8 * 2), 109);
+    v0->unk_38 = Strbuf_Init((90 * 2), 109);
+    v0->unk_40 = Strbuf_Init((16 * 8 * 2), 109);
     v0->unk_3C = sub_0200B1EC(v0->unk_24, 31);
 
     ov98_02247704(v0);
@@ -428,9 +428,9 @@ int ov98_02247440 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200B190(v0->unk_2C);
     sub_0200B190(v0->unk_24);
     sub_0200B3F0(v0->unk_20);
-    sub_020237BC(v0->unk_3C);
-    sub_020237BC(v0->unk_40);
-    sub_020237BC(v0->unk_38);
+    Strbuf_Free(v0->unk_3C);
+    Strbuf_Free(v0->unk_40);
+    Strbuf_Free(v0->unk_38);
     ov98_02247ACC(v0);
     Heap_FreeToHeap(v0->unk_04);
     ov98_022476D0(v0->unk_04);
@@ -928,17 +928,17 @@ static u32 Unk_ov98_02249D60[][2] = {
 
 static void ov98_02247F08 (UnkStruct_ov98_02247704 * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0201ADA4(&param0->unk_D4, 0xf0f);
 
     v0 = sub_0200B1EC(param0->unk_34, 42);
     sub_0201D738(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[0][0] + 12, Unk_ov98_02249D60[0][1], 0xff, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     v0 = sub_0200B1EC(param0->unk_34, 43);
     sub_0201D738(&param0->unk_D4, 0, v0, Unk_ov98_02249D60[1][0] + 12, Unk_ov98_02249D60[1][1], 0xff, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_02014A58(param0->unk_E4, &param0->unk_D4, Unk_ov98_02249D60[param0->unk_B0][0], Unk_ov98_02249D60[param0->unk_B0][1]);
     sub_0201A954(&param0->unk_D4);
 }
@@ -997,9 +997,9 @@ asm static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     mov r1, #0x2c
     bl sub_0200B1EC
     str r0, [sp, #0xc]
-    bl sub_02023C3C
+    bl Strbuf_Length
     mov r1, #0x6d
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     add r0, r7, #0
     add r0, #0xac
@@ -1016,7 +1016,7 @@ asm static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     ldr r1, [sp, #0xc]
     add r0, r6, #0
     add r2, r4, #0
-    bl sub_02023C9C
+    bl Strbuf_CopyLineNum
     str r5, [sp]
     mov r0, #0xff
     str r0, [sp, #4]
@@ -1037,9 +1037,9 @@ asm static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
     blt _02248306
  _02248336:
     ldr r0, [sp, #0xc]
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r7, #0xc4
     add r0, r7, #0
     bl sub_0201A954
@@ -1071,7 +1071,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #0x2c
     bl sub_0200B1EC
     str r0, [sp, #0x14]
-    bl sub_02023C5C
+    bl Strbuf_NumLines
     add r1, r5, #0
     mov r2, #0
     add r1, #0xac
@@ -1123,9 +1123,9 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     mov r1, #0xf
     bl sub_0201ADA4
     ldr r0, [sp, #0x14]
-    bl sub_02023C3C
+    bl Strbuf_Length
     mov r1, #0x6d
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     add r0, r5, #0
     mov r6, #0
@@ -1137,7 +1137,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     ldr r1, [sp, #0x14]
     add r0, r7, #0
     add r2, r6, #0
-    bl sub_02023C9C
+    bl Strbuf_CopyLineNum
     str r4, [sp]
     mov r0, #0xff
     str r0, [sp, #4]
@@ -1153,9 +1153,9 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     cmp r6, #6
     blt _02248400
     ldr r0, [sp, #0x14]
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r5, #0
     add r0, #0xc4
     mov r1, #1
@@ -2461,12 +2461,12 @@ static int ov98_022496EC (UnkStruct_ov98_02247704 * param0)
 
 static void ov98_02249714 (UnkStruct_ov98_02247704 * param0, UnkStruct_0200B144 * param1, int param2, int param3, u16 param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     v0 = sub_0200B1EC(param1, param2);
 
     sub_0200C388(param0->unk_20, param0->unk_38, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0201ADA4(&param0->unk_48, 0xf0f);
     sub_0200E060(&param0->unk_48, 0, 1, 10);
 
@@ -2620,7 +2620,7 @@ asm static int ov98_022497F8 (UnkStruct_ov98_02247704 * param0)
     nop
 }
 
-static int ov98_02249894 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, u32 param4, int param5)
+static int ov98_02249894 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, u32 param4, int param5)
 {
     int v0 = 0, v1;
 
@@ -2639,7 +2639,7 @@ static int ov98_02249894 (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * para
     return param2;
 }
 
-void ov98_022498CC (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, int param2, int param3, int param4, u32 param5)
+void ov98_022498CC (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, int param3, int param4, u32 param5)
 {
     param2 = ov98_02249894(param0, param1, param2, param4, param5, 1);
     sub_0201D78C(param0, 1, param1, param2, param3, 0, param5, NULL);
@@ -2647,7 +2647,7 @@ void ov98_022498CC (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1, in
 
 static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790((16 * 8 * 2), 109);
+    Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 109);
 
     sub_0200B1B8(param0->unk_30, param1, v0);
     sub_0200C388(param0->unk_20, param0->unk_40, v0);
@@ -2658,7 +2658,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
     param0->unk_44 = sub_0201D738(&param0->unk_68, 1, param0->unk_40, 0, 0, 0, NULL);
     param0->unk_44 = 0xff;
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static void ov98_02249964 (UnkStruct_ov98_02247704 * param0, int param1, int param2)

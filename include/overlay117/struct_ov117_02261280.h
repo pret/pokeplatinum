@@ -48,7 +48,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     UnkStruct_0205AA50 unk_30[5];
     UnkStruct_0200B144 * unk_80;
     UnkStruct_0200B358 * unk_84;
-    UnkStruct_02023790 * unk_88;
+    Strbuf* unk_88;
     UnkStruct_02002F38 * unk_8C;
     UnkStruct_02012744 * unk_90;
     UnkStruct_0201CD38 * unk_94;

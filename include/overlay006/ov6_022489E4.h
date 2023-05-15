@@ -19,7 +19,7 @@ BOOL ov6_02248BE8(UnkStruct_02095C48 * param0, int param1, const UnkStruct_ov6_0
 void ov6_02248C28(int param0, int param1, void * param2, void * param3);
 BOOL ov6_02248C68(UnkStruct_02095C48 * param0, int param1, const UnkStruct_020954F0 * param2);
 void ov6_02248CBC(int param0, int param1, void * param2, void * param3);
-BOOL ov6_02248CE8(UnkStruct_02095C48 * param0, int param1, const UnkStruct_02023790 * param2);
+BOOL ov6_02248CE8(UnkStruct_02095C48 * param0, int param1, const Strbuf *param2);
 void ov6_02248D38(int param0, int param1, void * param2, void * param3);
 BOOL ov6_02248D64(UnkStruct_02095C48 * param0, int param1, void * param2);
 void ov6_02248DA0(int param0, int param1, void * param2, void * param3);

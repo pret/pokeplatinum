@@ -14,7 +14,7 @@
 
 #include "unk_0200B358.h"
 #include "unk_0201D15C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202B37C.h"
@@ -97,7 +97,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         return 0;
     case 6:
     {
-        UnkStruct_02023790 * v14 = sub_02023790(64, 32);
+        Strbuf* v14 = Strbuf_Init(64, 32);
         UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
         sub_02025EF4(v15, v14);
@@ -105,7 +105,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         sub_0202B470(v1, 0, sub_02025F30(v15));
         sub_0202B494(v1, 0, GAME_LANGUAGE);
         sub_0202B40C(v1, 0, sub_0201D35C());
-        sub_020237BC(v14);
+        Strbuf_Free(v14);
         sub_0202B384(v1, 0, 1);
         sub_0206D424(param0->unk_34);
     }

@@ -18,7 +18,7 @@ typedef struct {
     UnkStruct_02098700 * unk_1748;
     u32 unk_174C;
     u32 unk_1750;
-    UnkStruct_02023790 * unk_1754;
+    Strbuf* unk_1754;
     int unk_1758;
     u16 unk_175C;
     u16 unk_175E;

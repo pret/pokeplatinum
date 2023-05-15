@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"
@@ -459,7 +459,7 @@ static void ov21_021E65FC (UnkStruct_ov21_021E6274 * param0)
 
 static void ov21_021E6600 (UnkStruct_ov21_021E6118 * param0, int param1)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param1);
+    Strbuf* v0 = Strbuf_Init(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     sub_0200B1B8(v1, 43, v0);
@@ -473,16 +473,16 @@ static void ov21_021E6600 (UnkStruct_ov21_021E6118 * param0, int param1)
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 32, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0200B1B8(v1, 9, v0);
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 152, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200B190(v1);
 }
 
 static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov21_021E6104 * param1, int param2)
 {
-    UnkStruct_02023790 * v0 = sub_02023790(32, param2);
+    Strbuf* v0 = Strbuf_Init(32, param2);
     UnkStruct_0200B144 * v1;
     int v2 = ov21_021D37BC(param1->unk_04);
-    UnkStruct_02023790 * v3 = sub_0200B32C(v2, param2);
+    Strbuf* v3 = sub_0200B32C(v2, param2);
     int v4;
 
     v4 = sub_020989D0();
@@ -496,7 +496,7 @@ static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov2
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v5, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
     sub_0200B190(v1);
 
     v1 = sub_0200B144(0, 26, 697, param2);
@@ -514,7 +514,7 @@ static void ov21_021E66B0 (UnkStruct_ov21_021E6118 * param0, const UnkStruct_ov2
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v6, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200B190(v1);
 }
 

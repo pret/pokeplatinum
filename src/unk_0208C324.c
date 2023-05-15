@@ -43,7 +43,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
@@ -492,15 +492,15 @@ static void sub_0208C884 (UnkStruct_0208D7BC * param0)
     param0->unk_68C = sub_0200B144(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
     param0->unk_690 = sub_0200B358(19);
-    param0->unk_250.unk_00 = sub_02023790(12, 19);
-    param0->unk_250.unk_04 = sub_02023790(12, 19);
-    param0->unk_250.unk_08 = sub_02023790(8, 19);
-    param0->unk_694 = sub_02023790(128, 19);
+    param0->unk_250.unk_00 = Strbuf_Init(12, 19);
+    param0->unk_250.unk_04 = Strbuf_Init(12, 19);
+    param0->unk_250.unk_08 = Strbuf_Init(8, 19);
+    param0->unk_694 = Strbuf_Init(128, 19);
     param0->unk_69C = sub_0200B144(0, 26, 647, 19);
-    param0->unk_698 = sub_02023790(7 + 1, 19);
+    param0->unk_698 = Strbuf_Init(7 + 1, 19);
 
     if (param0->unk_24C->unk_08 != NULL) {
-        sub_02023D28(param0->unk_698, param0->unk_24C->unk_08);
+        Strbuf_CopyChars(param0->unk_698, param0->unk_24C->unk_08);
     }
 }
 
@@ -511,11 +511,11 @@ static void sub_0208C950 (UnkStruct_0208D7BC * param0)
     sub_0200B190(param0->unk_688);
     sub_0200C560(param0->unk_684);
     sub_0200B3F0(param0->unk_690);
-    sub_020237BC(param0->unk_250.unk_00);
-    sub_020237BC(param0->unk_250.unk_04);
-    sub_020237BC(param0->unk_250.unk_08);
-    sub_020237BC(param0->unk_694);
-    sub_020237BC(param0->unk_698);
+    Strbuf_Free(param0->unk_250.unk_00);
+    Strbuf_Free(param0->unk_250.unk_04);
+    Strbuf_Free(param0->unk_250.unk_08);
+    Strbuf_Free(param0->unk_694);
+    Strbuf_Free(param0->unk_698);
 }
 
 static int sub_0208C9C8 (UnkStruct_0208D7BC * param0)

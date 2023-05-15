@@ -1663,7 +1663,7 @@ void ov23_0224467C (int param0, int param1, void * param2, void * param3)
     }
 }
 
-BOOL ov23_022446B0 (UnkStruct_02023790 * param0)
+BOOL ov23_022446B0 (Strbuf *param0)
 {
     int v0, v1;
     UnkStruct_02025E6C * v2;
@@ -1708,7 +1708,7 @@ BOOL ov23_022446B0 (UnkStruct_02023790 * param0)
     return 0;
 }
 
-BOOL ov23_02244784 (UnkStruct_02023790 * param0)
+BOOL ov23_02244784 (Strbuf *param0)
 {
     int v0, v1;
     UnkStruct_02025E6C * v2;

@@ -293,7 +293,7 @@ BOOL ov104_02235BAC (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02235BC0 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     Pokemon * v1;
     Party * v2;
     UnkStruct_ov104_0223BA10 * v3;

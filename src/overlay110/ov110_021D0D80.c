@@ -35,7 +35,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
@@ -59,8 +59,8 @@ typedef struct {
     UnkStruct_0205AA50 unk_10[16];
     UnkStruct_0200B144 * unk_110;
     UnkStruct_0200B358 * unk_114;
-    UnkStruct_02023790 * unk_118;
-    UnkStruct_02023790 * unk_11C;
+    Strbuf* unk_118;
+    Strbuf* unk_11C;
     UnkStruct_02002F38 * unk_120;
     const UnkStruct_020279FC * unk_124;
     UnkStruct_021C0794 * unk_128;
@@ -135,8 +135,8 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_110 = sub_0200B144(1, 26, 16, 114);
     v1->unk_114 = sub_0200B358(114);
-    v1->unk_118 = sub_02023790(800, 114);
-    v1->unk_11C = sub_02023790(800, 114);
+    v1->unk_118 = Strbuf_Init(800, 114);
+    v1->unk_11C = Strbuf_Init(800, 114);
 
     sub_02002E7C(0, 13 * 32, 114);
     sub_02002E98(0, 12 * 32, 114);
@@ -184,8 +184,8 @@ int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0200B190(v1->unk_110);
     sub_0200B3F0(v1->unk_114);
-    sub_020237BC(v1->unk_118);
-    sub_020237BC(v1->unk_11C);
+    Strbuf_Free(v1->unk_118);
+    Strbuf_Free(v1->unk_11C);
 
     ov110_021D216C(v1->unk_10, ov110_021D1208(v1->unk_06));
     ov110_021D11CC(v1->unk_0C);
@@ -1230,14 +1230,14 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     v0 = sub_0200B144(1, 26, 412, 114);
     v1 = sub_0200B1EC(v0, param0->unk_08);
 
     sub_0200B190(v0);
     sub_0200B48C(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
 
     return;
 }

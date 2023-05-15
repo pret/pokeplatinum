@@ -76,7 +76,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_0202309C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
@@ -113,8 +113,8 @@ typedef struct {
 } UnkStruct_ov64_022300E4;
 
 typedef struct {
-    UnkStruct_02023790 * unk_00;
-    UnkStruct_02023790 * unk_04;
+    Strbuf* unk_00;
+    Strbuf* unk_04;
 } UnkStruct_ov64_0222E060_sub1;
 
 typedef struct {
@@ -148,8 +148,8 @@ typedef struct {
     UnkStruct_0200B144 * unk_218;
     NARC * unk_21C;
     UnkStruct_0205AA50 unk_220;
-    UnkStruct_02023790 * unk_230;
-    UnkStruct_02023790 * unk_234;
+    Strbuf* unk_230;
+    Strbuf* unk_234;
     u32 unk_238;
     UnkStruct_ov19_021DA864 unk_23C;
     UnkStruct_02009DC8 * unk_260[4];
@@ -166,7 +166,7 @@ typedef struct {
     UnkStruct_02001AF4 * unk_2C;
     u32 unk_30;
     u32 unk_34;
-    UnkStruct_02023790 * unk_38;
+    Strbuf* unk_38;
 } UnkStruct_ov64_0222F038;
 
 typedef struct {
@@ -191,7 +191,7 @@ typedef struct {
     UnkStruct_ov63_0222AE60 * unk_B0;
     UnkStruct_0205AA50 unk_B4;
     UnkStruct_0205AA50 unk_C4;
-    UnkStruct_02023790 * unk_D4;
+    Strbuf* unk_D4;
     u32 unk_D8;
     u32 unk_DC;
     UnkStruct_0205AA50 unk_E0;
@@ -265,8 +265,8 @@ static void ov64_0222DFD0(UnkStruct_ov64_0222DFD0 * param0);
 static void ov64_0222E040(UnkStruct_ov64_0222E060 * param0, void * param1, u32 param2);
 static void ov64_0222E060(UnkStruct_ov64_0222E060 * param0);
 static void ov64_0222E074(UnkStruct_ov64_0222E060 * param0, u8 param1, u8 param2);
-static void ov64_0222E07C(UnkStruct_ov64_0222E060 * param0, const UnkStruct_02023790 * param1, const UnkStruct_02023790 * param2);
-static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 * param0, UnkStruct_02023790 * param1, UnkStruct_02023790 * param2);
+static void ov64_0222E07C(UnkStruct_ov64_0222E060 * param0, const Strbuf *param1, const Strbuf *param2);
+static u32 ov64_0222E09C(UnkStruct_ov64_0222E060 * param0, Strbuf *param1, Strbuf *param2);
 static void ov64_0222E158(UnkStruct_ov64_0222E060 * param0, const u16 * param1);
 static void ov64_0222E160(UnkStruct_ov64_0222E060 * param0, u32 param1);
 static void ov64_0222E164(UnkStruct_ov64_0222E060 * param0);
@@ -394,7 +394,7 @@ static void ov64_02231BE0(UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E
 static void ov64_02231D58(UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3);
 static void ov64_02231E94(UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3);
 static void ov64_02232038(UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov64_0223221C * param1);
-static void ov64_022320B8(UnkStruct_ov64_02230F98 * param0, u32 param1, u32 param2, UnkStruct_ov64_0222E060 * param3, UnkStruct_ov64_0222E21C * param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkStruct_02023790 * param9, UnkStruct_02023790 * param10);
+static void ov64_022320B8(UnkStruct_ov64_02230F98 * param0, u32 param1, u32 param2, UnkStruct_ov64_0222E060 * param3, UnkStruct_ov64_0222E21C * param4, u32 param5, u32 param6, u32 param7, u32 param8, Strbuf *param9, Strbuf *param10);
 static void ov64_02232138(UnkStruct_ov64_02230904 * param0, s32 param1);
 static BOOL ov64_0223217C(UnkStruct_ov64_0222E060 * param0, u32 param1);
 
@@ -776,14 +776,14 @@ static void ov64_0222DFD0 (UnkStruct_ov64_0222DFD0 * param0)
 static void ov64_0222E040 (UnkStruct_ov64_0222E060 * param0, void * param1, u32 param2)
 {
     param0->unk_00 = param1;
-    param0->unk_2C.unk_00 = sub_02023790(128, param2);
-    param0->unk_2C.unk_04 = sub_02023790(128, param2);
+    param0->unk_2C.unk_00 = Strbuf_Init(128, param2);
+    param0->unk_2C.unk_04 = Strbuf_Init(128, param2);
 }
 
 static void ov64_0222E060 (UnkStruct_ov64_0222E060 * param0)
 {
-    sub_020237BC(param0->unk_2C.unk_00);
-    sub_020237BC(param0->unk_2C.unk_04);
+    Strbuf_Free(param0->unk_2C.unk_00);
+    Strbuf_Free(param0->unk_2C.unk_04);
 }
 
 static void ov64_0222E074 (UnkStruct_ov64_0222E060 * param0, u8 param1, u8 param2)
@@ -792,18 +792,18 @@ static void ov64_0222E074 (UnkStruct_ov64_0222E060 * param0, u8 param1, u8 param
     param0->unk_06 = param2;
 }
 
-static void ov64_0222E07C (UnkStruct_ov64_0222E060 * param0, const UnkStruct_02023790 * param1, const UnkStruct_02023790 * param2)
+static void ov64_0222E07C (UnkStruct_ov64_0222E060 * param0, const Strbuf *param1, const Strbuf *param2)
 {
     if (param1) {
-        sub_02023810(param0->unk_2C.unk_00, param1);
+        Strbuf_Copy(param0->unk_2C.unk_00, param1);
     }
 
     if (param2) {
-        sub_02023810(param0->unk_2C.unk_04, param2);
+        Strbuf_Copy(param0->unk_2C.unk_04, param2);
     }
 }
 
-static u32 ov64_0222E09C (UnkStruct_ov64_0222E060 * param0, UnkStruct_02023790 * param1, UnkStruct_02023790 * param2)
+static u32 ov64_0222E09C (UnkStruct_ov64_0222E060 * param0, Strbuf *param1, Strbuf *param2)
 {
     int v0;
     UnkStruct_0202B370 * v1;
@@ -823,7 +823,7 @@ static u32 ov64_0222E09C (UnkStruct_ov64_0222E060 * param0, UnkStruct_02023790 *
         v2 = sub_0202AF78(v1, v0);
 
         if (v2 == 0) {
-            v4 = sub_02023B38(param1, &v3);
+            v4 = Strbuf_AtoI(param1, &v3);
 
             if ((v3 == 1) && (v4 != v5)) {
                 v7 = sub_0202AD28(v1);
@@ -1085,14 +1085,14 @@ static void ov64_0222E620 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     sub_0201A7A0(&param0->unk_220);
     sub_0201A7E8(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, (((1 + 9) + (18 + 12))));
 
-    param0->unk_230 = sub_02023790(128, param2);
-    param0->unk_234 = sub_02023790(128, param2);
+    param0->unk_230 = Strbuf_Init(128, param2);
+    param0->unk_234 = Strbuf_Init(128, param2);
 }
 
 static void ov64_0222E6B4 (UnkStruct_ov64_0222E21C * param0)
 {
-    sub_020237BC(param0->unk_230);
-    sub_020237BC(param0->unk_234);
+    Strbuf_Free(param0->unk_230);
+    Strbuf_Free(param0->unk_234);
     sub_0201A8FC(&param0->unk_220);
 }
 
@@ -1343,11 +1343,11 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
 
             v2 = sub_02025E6C(param3);
 
-            sub_02025EC0(v2, sub_02023E2C(param1->unk_2C.unk_00));
+            sub_02025EC0(v2, Strbuf_GetData(param1->unk_2C.unk_00));
             sub_0200B498(param2->unk_214, 0, v2);
             Heap_FreeToHeap(v2);
 
-            v1 = sub_02023B38(param1->unk_2C.unk_04, &v0);
+            v1 = Strbuf_AtoI(param1->unk_2C.unk_04, &v0);
 
             if (v0) {
                 ov64_0222E7F8(param2, v1);
@@ -1497,7 +1497,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     bl sub_0201ADA4
     ldr r1, [sp, #0x1c]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     ldr r1, [sp, #0x14]
     str r0, [r1, #0x38]
     ldr r0, [r5, #0]
@@ -1507,11 +1507,11 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     str r0, [r1, #0x34]
     ldr r1, [sp, #0x1c]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     add r4, r0, #0
     ldr r1, [sp, #0x1c]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x24]
     ldr r0, [r5, #0]
     bl sub_02025E38
@@ -1579,9 +1579,9 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     cmp r0, #4
     blt _0222ED5A
     add r0, r4, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x24]
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x1c]
     mov r1, #0x19
     str r0, [sp]
@@ -1601,7 +1601,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
 
 static void ov64_0222EE00 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2)
 {
-    sub_020237BC(param0->unk_38);
+    Strbuf_Free(param0->unk_38);
     sub_0201A8FC(&param0->unk_04);
     sub_0201A8FC(&param0->unk_1C);
     Heap_FreeToHeap(param0->unk_14);
@@ -1701,9 +1701,9 @@ static void ov64_0222EF64 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E21C * param1, u32 param2, u32 param3)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
-    v0 = sub_02023790(128, param3);
+    v0 = Strbuf_Init(128, param3);
 
     sub_0201ADA4(&param0->unk_1C, 15);
     sub_0200B1B8(param1->unk_218, param2, v0);
@@ -1713,7 +1713,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
 
     sub_0200E060(&param0->unk_1C, 1, (1 + 9), 8);
     sub_0201A9A4(&param0->unk_1C);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static BOOL ov64_0222F038 (const UnkStruct_ov64_0222F038 * param0)
@@ -2048,7 +2048,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     bl sub_0201ADA4
     ldr r1, [sp, #0x18]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     add r4, r0, #0
     mov r0, #0x63
     lsl r0, r0, #2
@@ -2074,7 +2074,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     add r0, #0xb8
     bl sub_0201D78C
     add r0, r4, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x14]
     add r0, #0xe4
     bl sub_0201A7A0
@@ -2160,7 +2160,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     bl sub_0201ADA4
     ldr r1, [sp, #0x18]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     ldr r1, [sp, #0x14]
     add r1, #0xd8
     str r0, [r1, #0]
@@ -2193,7 +2193,7 @@ static void ov64_0222F5F4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
     sub_02021BD4(param0->unk_104);
     sub_0201A8FC(&param0->unk_C4);
-    sub_020237BC(param0->unk_D4);
+    Strbuf_Free(param0->unk_D4);
 
     for (v0 = 0; v0 < 2; v0++) {
         sub_02013A3C(param0->unk_F0[v0]);
@@ -2593,11 +2593,11 @@ static void ov64_0222FE5C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E21C * param1, u32 param2, u32 param3)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     sub_0201ADA4(&param0->unk_C4, 15);
 
-    v0 = sub_02023790(128, param3);
+    v0 = Strbuf_Init(128, param3);
 
     sub_0200B1B8(param1->unk_218, param2, v0);
     sub_0200C388(param1->unk_214, param0->unk_D4, v0);
@@ -2606,7 +2606,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
     sub_0200E060(&param0->unk_C4, 1, (1 + 9), 8);
     sub_0201A9A4(&param0->unk_C4);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 static BOOL ov64_0222FEFC (const UnkStruct_ov64_0222F0C4 * param0)
@@ -2787,7 +2787,7 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
     int v0;
     int v1;
     UnkStruct_ov64_022302EC v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
     int v4, v5;
     static const u32 v6[] = {((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)))};
 
@@ -2806,11 +2806,11 @@ static void ov64_022302EC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov63_0222
 
     v4 = ((Unk_ov64_02232324[param4].unk_00.unk_00) * 8) + 0;
     v5 = ((Unk_ov64_02232324[param4].unk_00.unk_02) * 8) + -24;
-    v3 = sub_02023790(128, param7);
+    v3 = Strbuf_Init(128, param7);
 
-    sub_02023D28(v3, sub_0202AEF0(param5, param6));
+    Strbuf_CopyChars(v3, sub_0202AEF0(param5, param6));
     sub_0201D78C(&param0->unk_08, 0, v3, v4, v5, 0xff, v6[v0], NULL);
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
 }
 
 static void ov64_022303CC (UnkStruct_ov64_02230074 * param0, UnkStruct_ov64_0222E21C * param1, const UnkStruct_ov64_022300E4 * param2, u32 param3)
@@ -2927,9 +2927,9 @@ static UnkStruct_0208737C * ov64_022305DC (UnkStruct_ov64_02230444 * param0, Unk
     if (param1->unk_34.unk_04 == 1) {
         {
             if (sub_0201E17C(*param1->unk_34.unk_00) == 0) {
-                sub_02023D28(v0->unk_18, param1->unk_34.unk_00);
+                Strbuf_CopyChars(v0->unk_18, param1->unk_34.unk_00);
             } else {
-                sub_020237E8(v0->unk_18);
+                Strbuf_Clear(v0->unk_18);
             }
         }
 
@@ -3021,11 +3021,11 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     bl sub_0201ADA4
     mov r0, #0x80
     add r1, r7, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     mov r0, #0x80
     add r1, r7, #0
-    bl sub_02023790
+    bl Strbuf_Init
     str r0, [sp, #0x20]
     ldr r0, [sp, #0x14]
     ldr r0, [r0, #0]
@@ -3125,9 +3125,9 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     bl sub_0201D78C
  _022307DA:
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     ldr r0, [sp, #0x20]
-    bl sub_020237BC
+    bl Strbuf_Free
     mov r0, #0x19
     add r3, r5, #0
     str r7, [sp]
@@ -3620,11 +3620,11 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x2c]
     ldr r1, [sp, #0x24]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     ldr r1, [sp, #0x24]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     mov r1, #0
     str r4, [sp]
@@ -4041,9 +4041,9 @@ asm static void ov64_02231164 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     lsr r3, r3, #0x18
     bl sub_02019E2C
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x50
     pop {r3, r4, r5, r6, r7, pc}
 }
@@ -4061,11 +4061,11 @@ asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     str r4, [sp]
     mov r0, #0x19
@@ -4186,9 +4186,9 @@ asm static void ov64_02231528 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #2
     bl ov64_02231080
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -4207,11 +4207,11 @@ asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     str r4, [sp]
     mov r0, #0x1a
@@ -4614,9 +4614,9 @@ asm static void ov64_02231664 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #3
     bl ov64_02231080
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
@@ -4634,11 +4634,11 @@ asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     str r4, [sp]
     mov r0, #0x1b
@@ -4834,9 +4834,9 @@ asm static void ov64_02231A00 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #4
     bl ov64_02231080
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -4855,11 +4855,11 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x28]
     ldr r1, [sp, #0x24]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     ldr r1, [sp, #0x24]
     mov r0, #0x80
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     str r4, [sp]
     mov r0, #0x1c
@@ -4900,7 +4900,7 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     add r3, r1, #0
     bl sub_0201D78C
     ldr r0, [sp, #0x2c]
-    bl sub_020237BC
+    bl Strbuf_Free
     mov r2, #7
     ldrsb r2, [r5, r2]
     ldr r0, [sp, #0x28]
@@ -5006,9 +5006,9 @@ asm static void ov64_02231BE0 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #5
     bl ov64_02231080
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x30
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -5027,11 +5027,11 @@ asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     mov r0, #0x80
     add r1, r6, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     str r4, [sp]
     mov r0, #0x1d
@@ -5153,9 +5153,9 @@ asm static void ov64_02231D58 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #6
     bl ov64_02231080
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
 }
@@ -5175,11 +5175,11 @@ asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     str r0, [sp, #0x24]
     mov r0, #0x80
     add r1, r7, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r6, r0, #0
     mov r0, #0x80
     add r1, r7, #0
-    bl sub_02023790
+    bl Strbuf_Init
     add r7, r0, #0
     str r4, [sp]
     mov r0, #0x2b
@@ -5341,9 +5341,9 @@ asm static void ov64_02231E94 (UnkStruct_ov64_02230F98 * param0, UnkStruct_ov64_
     mov r1, #1
     bl ov64_02231080
     add r0, r6, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add r0, r7, #0
-    bl sub_020237BC
+    bl Strbuf_Free
     add sp, #0x28
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -5357,7 +5357,7 @@ static void ov64_02232038 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
     sub_0201C3C0(param0->unk_00, Unk_ov64_02232258[3]);
 }
 
-asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32 param2, UnkStruct_ov64_0222E060 * param3, UnkStruct_ov64_0222E21C * param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkStruct_02023790 * param9, UnkStruct_02023790 * param10)
+asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32 param2, UnkStruct_ov64_0222E060 * param3, UnkStruct_ov64_0222E21C * param4, u32 param5, u32 param6, u32 param7, u32 param8, Strbuf *param9, Strbuf *param10)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x18

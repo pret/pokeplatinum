@@ -53,7 +53,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "unk_020933F8.h"
@@ -643,7 +643,7 @@ void ov17_0224A650 (UnkStruct_ov17_0224A1EC * param0)
 void ov17_0224A674 (UnkStruct_ov17_0224A1EC * param0)
 {
     int v0;
-    UnkStruct_02023790 * v1, * v2, * v3;
+    Strbuf* v1, * v2, * v3;
 
     v1 = sub_0200B1EC(param0->unk_84, 5);
     v2 = sub_0200B1EC(param0->unk_84, 6);
@@ -660,9 +660,9 @@ void ov17_0224A674 (UnkStruct_ov17_0224A1EC * param0)
         sub_020129D0(param0->unk_96C[2][v0].unk_00, 0);
     }
 
-    sub_020237BC(v1);
-    sub_020237BC(v2);
-    sub_020237BC(v3);
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
+    Strbuf_Free(v3);
 }
 
 void ov17_0224A7B8 (UnkStruct_ov17_0224A1EC * param0)
@@ -1932,7 +1932,7 @@ static void ov17_0224C0C0 (UnkStruct_ov17_0224DF54 * param0, int param1, const U
 
 static void ov17_0224C244 (UnkStruct_ov17_0224DF54 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224C0C0 * param4)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -1948,7 +1948,7 @@ static void ov17_0224C244 (UnkStruct_ov17_0224DF54 * param0, UnkStruct_0200B144 
     sub_0201ADA4(&param0->unk_14.unk_64[0], 0xff);
 
     param0->unk_14.unk_A18 = sub_0201D738(&param0->unk_14.unk_64[0], 1, param0->unk_14.unk_8C, 0, 0, v1, NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 void ov17_0224C2CC (UnkStruct_ov17_0224DF54 * param0, u32 param1, const UnkStruct_ov17_0224C0C0 * param2)
@@ -2100,7 +2100,7 @@ int ov17_0224C57C (int param0)
 void ov17_0224C5A0 (UnkStruct_ov17_0224DF54 * param0, u32 param1, const UnkStruct_ov17_0224C0C0 * param2)
 {
     u32 v0, v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
 
     GF_ASSERT(param1 < NELEMS(Unk_ov17_0225470C));
 
@@ -2120,7 +2120,7 @@ void ov17_0224C5A0 (UnkStruct_ov17_0224DF54 * param0, u32 param1, const UnkStruc
     sub_0200C388(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
     sub_0201ADA4(&param0->unk_14.unk_64[1], 0xff);
     sub_0201D738(&param0->unk_14.unk_64[1], 1, param0->unk_14.unk_8C, 0, 0, 0, NULL);
-    sub_020237BC(v2);
+    Strbuf_Free(v2);
 
     param0->unk_1B25 = 1;
 }

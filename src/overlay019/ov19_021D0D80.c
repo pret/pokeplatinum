@@ -50,7 +50,7 @@
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02023FCC.h"
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
@@ -3420,31 +3420,31 @@ static void ov19_021D4E50 (UnkStruct_ov19_021D5594 * param0)
 static void ov19_021D4E5C (UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1)
 {
     param1->unk_00 = sub_0207999C(param0);
-    param1->unk_04 = sub_02023790(20, 9);
+    param1->unk_04 = Strbuf_Init(20, 9);
     ov19_021D4F40(param0, param1);
 }
 
 static void ov19_021D4E7C (UnkStruct_ov19_021D4F5C * param0)
 {
-    sub_020237BC(param0->unk_04);
+    Strbuf_Free(param0->unk_04);
 }
 
 static void ov19_021D4E88 (UnkStruct_ov19_021D5BAC * param0)
 {
-    param0->unk_14 = sub_02023790(12, 9);
-    param0->unk_18 = sub_02023790(12, 9);
-    param0->unk_1C = sub_02023790(18, 9);
-    param0->unk_20 = sub_02023790(12, 9);
-    param0->unk_24 = sub_02023790(16, 9);
+    param0->unk_14 = Strbuf_Init(12, 9);
+    param0->unk_18 = Strbuf_Init(12, 9);
+    param0->unk_1C = Strbuf_Init(18, 9);
+    param0->unk_20 = Strbuf_Init(12, 9);
+    param0->unk_24 = Strbuf_Init(16, 9);
 }
 
 static void ov19_021D4EC0 (UnkStruct_ov19_021D5BAC * param0)
 {
-    sub_020237BC(param0->unk_14);
-    sub_020237BC(param0->unk_18);
-    sub_020237BC(param0->unk_1C);
-    sub_020237BC(param0->unk_20);
-    sub_020237BC(param0->unk_24);
+    Strbuf_Free(param0->unk_14);
+    Strbuf_Free(param0->unk_18);
+    Strbuf_Free(param0->unk_1C);
+    Strbuf_Free(param0->unk_20);
+    Strbuf_Free(param0->unk_24);
 }
 
 static void ov19_021D4EE4 (UnkStruct_ov19_021D4EE4 * param0)
@@ -3457,8 +3457,8 @@ static void ov19_021D4EE4 (UnkStruct_ov19_021D4EE4 * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_02[v0] = 0;
-        param0->unk_08[v0].unk_28 = sub_02023790(12, 9);
-        param0->unk_08[v0].unk_2C = sub_02023790(12, 9);
+        param0->unk_08[v0].unk_28 = Strbuf_Init(12, 9);
+        param0->unk_08[v0].unk_2C = Strbuf_Init(12, 9);
     }
 }
 
@@ -3467,8 +3467,8 @@ static void ov19_021D4F18 (UnkStruct_ov19_021D4EE4 * param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020237BC(param0->unk_08[v0].unk_28);
-        sub_020237BC(param0->unk_08[v0].unk_2C);
+        Strbuf_Free(param0->unk_08[v0].unk_28);
+        Strbuf_Free(param0->unk_08[v0].unk_2C);
     }
 }
 
@@ -4169,8 +4169,8 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     if (v0->unk_0F == 0) {
         sub_0200B1B8(param2->unk_190, v0->unk_04, v0->unk_18);
     } else {
-        sub_02023810(v0->unk_18, v0->unk_14);
-        sub_020237E8(v0->unk_14);
+        Strbuf_Copy(v0->unk_18, v0->unk_14);
+        Strbuf_Clear(v0->unk_14);
     }
 
     if (v0->unk_06 != 0) {
@@ -4203,12 +4203,12 @@ static void ov19_021D59F4 (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     v1->unk_08 = v0->unk_0A;
 
     if (v1->unk_06) {
-        sub_02023810(v1->unk_28, v0->unk_18);
+        Strbuf_Copy(v1->unk_28, v0->unk_18);
     } else {
-        sub_02023810(v1->unk_28, v0->unk_14);
+        Strbuf_Copy(v1->unk_28, v0->unk_14);
     }
 
-    sub_02023810(v1->unk_2C, v0->unk_20);
+    Strbuf_Copy(v1->unk_2C, v0->unk_20);
     sub_020774C8(param1, param2->unk_1A0);
 
     v2 = sub_02073C88(param2->unk_1A0);

@@ -62,7 +62,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020279FC.h"
 #include "unk_020298BC.h"
@@ -112,7 +112,7 @@ typedef struct {
     UnkStruct_02095C60 * unk_734;
     const UnkStruct_020279FC * unk_738;
     u32 unk_73C;
-    UnkStruct_02023790 * unk_740;
+    Strbuf* unk_740;
     UnkStruct_0200B358 * unk_744;
 } UnkStruct_ov22_02255D44;
 
@@ -1148,7 +1148,7 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
 {
     UnkStruct_ov22_02259560 * v0;
     int v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v2;
     int v3;
 
     sub_02029F84(param0);
@@ -1158,7 +1158,7 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
         v2 = sub_02025F04(param2, 13);
         v3 = sub_02025F30(param2);
         sub_0202A0EC(param0, v2, v3);
-        sub_020237BC(v2);
+        Strbuf_Free(v2);
     }
 
     v1 = 0;
@@ -1194,7 +1194,7 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
     int v1;
     UnkStruct_ov22_02256FD8 * v2;
     UnkStruct_ov22_02259560 * v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     int v5;
 
     v2 = Heap_AllocFromHeap(13, sizeof(UnkStruct_ov22_02256FD8));
@@ -1206,7 +1206,7 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
         v4 = sub_02025F04(param3, 13);
         v5 = sub_02025F30(param3);
         sub_0202A4B4(param0, v4, v5);
-        sub_020237BC(v4);
+        Strbuf_Free(v4);
     }
 
     ov22_02257778(v2, &param1->unk_00.unk_14, 1);
@@ -1343,7 +1343,7 @@ static u32 ov22_02257278 (UnkStruct_ov22_02255D44 * param0)
 static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     int v2 = sub_02027B50(param0->unk_738);
 
     sub_02002E98(0, 7 * 32, 14);
@@ -1356,7 +1356,7 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
     v1 = sub_0200B1EC(v0, param1);
 
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
     sub_0201A954(param0->unk_718);
 }
@@ -1364,19 +1364,19 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
 static void ov22_02257368 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
-    UnkStruct_02023790 * v2;
+    Strbuf* v1;
+    Strbuf* v2;
 
     sub_0201ADA4(param0->unk_718, 15);
 
     v0 = sub_0200B144(0, 26, 385, 13);
     v2 = sub_0200B1EC(v0, param1);
-    v1 = sub_02023790(256, 13);
+    v1 = Strbuf_Init(256, 13);
 
     sub_0200C388(param0->unk_744, v1, v2);
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
     sub_0200B190(v0);
     sub_0201A954(param0->unk_718);
 }
@@ -1386,7 +1386,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     u32 v0;
     UnkStruct_0200B144 * v1;
     u32 v2;
-    UnkStruct_02023790 * v3;
+    Strbuf* v3;
 
     GF_ASSERT(param0->unk_740 == NULL);
 
@@ -1394,7 +1394,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v1 = sub_0200B144(0, 26, 385, 13);
     v3 = sub_0200B1EC(v1, param1);
-    param0->unk_740 = sub_02023790(256, 13);
+    param0->unk_740 = Strbuf_Init(256, 13);
 
     sub_0200C388(param0->unk_744, param0->unk_740, v3);
 
@@ -1406,7 +1406,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     v0 = sub_0201D78C(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
-    sub_020237BC(v3);
+    Strbuf_Free(v3);
     sub_0200B190(v1);
     sub_0201A954(param0->unk_718);
 
@@ -1415,7 +1415,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
 static void ov22_02257498 (UnkStruct_ov22_02255D44 * param0)
 {
-    sub_020237BC(param0->unk_740);
+    Strbuf_Free(param0->unk_740);
     param0->unk_740 = NULL;
 }
 

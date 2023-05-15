@@ -40,7 +40,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_02073C2C.h"
@@ -217,7 +217,7 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C.unk_44 = sub_0200B144(0, 26, 211, 21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = sub_0200B358(21);
-    v0->unk_0C.unk_4C = sub_02023790((3 * 160), 21);
+    v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), 21);
 
     {
         NARC * v1;
@@ -363,7 +363,7 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002FA0(v0->unk_0C.unk_50, 3);
     sub_02002F54(v0->unk_0C.unk_50);
 
-    sub_020237BC(v0->unk_0C.unk_4C);
+    Strbuf_Free(v0->unk_0C.unk_4C);
     sub_0200B3F0(v0->unk_0C.unk_48);
     sub_0200B190(v0->unk_0C.unk_38);
     sub_0200B190(v0->unk_0C.unk_3C);

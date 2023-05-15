@@ -42,7 +42,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_02073C2C.h"
 #include "unk_0208C098.h"
@@ -1513,7 +1513,7 @@ void ov17_02242DA8 (UnkStruct_ov17_02246F24 * param0)
 
 static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 * param4, const void * param5, int param6)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u32 v1;
 
     if (param6 == 1) {
@@ -1543,7 +1543,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 
         (void)0;
     }
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 void ov17_02242E5C (UnkStruct_ov17_02246F24 * param0, u32 param1, const UnkStruct_ov17_022449B8 * param2, const void * param3)
@@ -1578,10 +1578,10 @@ int ov17_02242ECC (UnkStruct_ov17_02246F24 * param0)
 
 void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     u32 v1;
 
-    v0 = sub_02023790(12, 21);
+    v0 = Strbuf_Init(12, 21);
 
     GetMonData(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_119, v0);
 
@@ -1594,7 +1594,7 @@ void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
     ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_1C8[param1], v0, 0, v1, 0, 33005, 0, 0, 0, 0, 15);
     ov17_0223F1E8(21, param0->unk_0C.unk_24, param0->unk_0C.unk_1C, param0->unk_0C.unk_54, &param0->unk_0C.unk_180[param1], param0->unk_00->unk_00.unk_D8[param1], 0, v1, 0, 33005, 0, 0, 0, 0, 15);
 
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 }
 
 void ov17_02242FA4 (UnkStruct_ov17_02246F24 * param0)

@@ -28,7 +28,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_0202CD50.h"
 #include "unk_020302D0.h"
@@ -801,8 +801,8 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
 static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1 = sub_02023790((10 * 2), param0->unk_34);
-    UnkStruct_02023790 * v2 = sub_02023790((10 * 2), param0->unk_34);
+    Strbuf* v1 = Strbuf_Init((10 * 2), param0->unk_34);
+    Strbuf* v2 = Strbuf_Init((10 * 2), param0->unk_34);
 
     v0 = sub_0200B144(0, 26, 199, 11);
 
@@ -818,8 +818,8 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA5
     sub_0200C388(param0->unk_44, v2, v1);
     sub_0201D738(param1, 0, v2, 0, 0, 0, NULL);
 
-    sub_020237BC(v1);
-    sub_020237BC(v2);
+    Strbuf_Free(v1);
+    Strbuf_Free(v2);
     sub_0200B190(v0);
 
     sub_0201A954(param1);

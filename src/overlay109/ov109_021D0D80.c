@@ -62,7 +62,7 @@
 #include "unk_0201E3D8.h"
 #include "gx_layers.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02025E68.h"
 #include "unk_0202B604.h"
@@ -276,7 +276,7 @@ typedef struct {
     UnkStruct_ov109_021D17EC unk_34;
     UnkStruct_ov109_021D1048 unk_44[5];
     UnkStruct_02025E6C * unk_58[5];
-    UnkStruct_02023790 * unk_6C[5];
+    Strbuf* unk_6C[5];
 } UnkStruct_ov109_021D0F70_sub1;
 
 typedef struct UnkStruct_ov109_021D0F70_t {
@@ -363,8 +363,8 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 * param0, u32 param1, u32 pa
 static void ov109_021D2788(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D27AC(UnkStruct_ov109_021D0F70 * param0, int param1);
 static void ov109_021D27F0(UnkStruct_ov109_021D0F70 * param0);
-static void ov109_021D2820(UnkStruct_ov109_021D0F70 * param0, UnkStruct_02023790 * param1, int param2, u32 param3);
-static void ov109_021D2874(UnkStruct_ov109_021D0F70 * param0, UnkStruct_02023790 * param1, int param2, int param3);
+static void ov109_021D2820(UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, u32 param3);
+static void ov109_021D2874(UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, int param3);
 static void ov109_021D28A0(UnkStruct_ov109_021D0F70 * param0, int param1);
 static void ov109_021D28C4(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D293C(UnkStruct_ov109_021D0F70 * param0);
@@ -2031,10 +2031,10 @@ static void ov109_021D24F8 (UnkStruct_ov109_021D0F70 * param0)
         sub_0201A8D4(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
     }
 
-    v1->unk_6C = sub_02023790(0x100, 95);
+    v1->unk_6C = Strbuf_Init(0x100, 95);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_2C.unk_6C[v0] = sub_02023790(7 + 1, 95);
+        param0->unk_2C.unk_6C[v0] = Strbuf_Init(7 + 1, 95);
     }
 
     ov109_021D27AC(param0, param0->unk_CC->unk_08);
@@ -2054,10 +2054,10 @@ static void ov109_021D25E8 (UnkStruct_ov109_021D0F70 * param0)
 
     sub_0200B190(v1->unk_04);
     sub_0200B3F0(v1->unk_08);
-    sub_020237BC(v1->unk_6C);
+    Strbuf_Free(v1->unk_6C);
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_020237BC(param0->unk_2C.unk_6C[v0]);
+        Strbuf_Free(param0->unk_2C.unk_6C[v0]);
     }
 }
 
@@ -2076,18 +2076,18 @@ static void ov109_021D2634 (UnkStruct_ov109_021D0F70 * param0, u32 param1)
 
 static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const UnkStruct_02025E6C * param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     UnkStruct_0205AA50 * v2 = &v1->unk_0C[0];
 
     sub_0200B498(v1->unk_08, 1, sub_02032EE8(sub_0203608C()));
     sub_0200B498(v1->unk_08, 2, param2);
 
-    v0 = sub_02023790(0x100, 95);
+    v0 = Strbuf_Init(0x100, 95);
 
     sub_0200B1B8(v1->unk_04, param1, v0);
     sub_0200C388(v1->unk_08, v1->unk_6C, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     sub_0201ADA4(v2, 15);
     sub_0201D738(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
@@ -2096,17 +2096,17 @@ static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const
 
 static void ov109_021D2714 (UnkStruct_ov109_021D0F70 * param0, u32 param1, u32 param2)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;
     UnkStruct_0205AA50 * v2 = &v1->unk_0C[0];
 
     sub_0200B70C(v1->unk_08, 0, param2);
 
-    v0 = sub_02023790(0x100, 95);
+    v0 = Strbuf_Init(0x100, 95);
 
     sub_0200B1B8(v1->unk_04, param1, v0);
     sub_0200C388(v1->unk_08, v1->unk_6C, v0);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
     sub_0200E060(v2, 1, (1 + 9), 14);
     sub_0201ADA4(v2, 15);
     sub_0201D738(v2, 1, v1->unk_6C, 0, 0, 0xff, NULL);
@@ -2147,7 +2147,7 @@ static void ov109_021D27F0 (UnkStruct_ov109_021D0F70 * param0)
     }
 }
 
-asm static void ov109_021D2820 (UnkStruct_ov109_021D0F70 * param0, UnkStruct_02023790 * param1, int param2, u32 param3)
+asm static void ov109_021D2820 (UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, u32 param3)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x10
@@ -2185,7 +2185,7 @@ asm static void ov109_021D2820 (UnkStruct_ov109_021D0F70 * param0, UnkStruct_020
     pop {r3, r4, r5, r6, r7, pc}
 }
 
-static void ov109_021D2874 (UnkStruct_ov109_021D0F70 * param0, UnkStruct_02023790 * param1, int param2, int param3)
+static void ov109_021D2874 (UnkStruct_ov109_021D0F70 * param0, Strbuf *param1, int param2, int param3)
 {
     u32 v0 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
 

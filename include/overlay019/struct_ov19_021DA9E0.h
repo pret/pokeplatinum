@@ -32,8 +32,8 @@ typedef struct {
     void * unk_34;
     NNSG2dCellDataBank * unk_38;
     UnkStruct_02022550 * unk_3C[2];
-    UnkStruct_02023790 * unk_44;
-    UnkStruct_02023790 * unk_48;
+    Strbuf* unk_44;
+    Strbuf* unk_48;
     UnkStruct_0201CD38 * unk_4C;
     u8 padding_50[4];
 } UnkStruct_ov19_021DA9E0;

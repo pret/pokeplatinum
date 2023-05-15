@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02098FFC.h"
 #include "overlay079/ov79_021D183C.h"
 
@@ -81,7 +81,7 @@ static void ov79_021D183C (UnkStruct_020989DC * param0)
     param0->unk_07 = param0->unk_06 = 0xFF;
 }
 
-static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, UnkStruct_02023790 * param1, u8 param2, u8 param3)
+static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, Strbuf *param1, u8 param2, u8 param3)
 {
     u32 v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
 
@@ -351,7 +351,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     ov79_021D1D20(v0, &v0->unk_20->unk_1C[param1]);
-    sub_020237E8(v0->unk_30.unk_04);
+    Strbuf_Clear(v0->unk_30.unk_04);
 
     v4 = v0->unk_20->unk_1C[param1].unk_03;
 
@@ -411,7 +411,7 @@ static void ov79_021D1FA8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
 void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
 {
-    sub_020237E8(param0->unk_30.unk_04);
+    Strbuf_Clear(param0->unk_30.unk_04);
     sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_14);
 
@@ -420,7 +420,7 @@ void ov79_021D1FBC (UnkStruct_ov79_021D0E1C * param0)
 
 void ov79_021D2008 (UnkStruct_ov79_021D0E1C * param0)
 {
-    sub_020237E8(param0->unk_30.unk_04);
+    Strbuf_Clear(param0->unk_30.unk_04);
     sub_0200B48C(param0->unk_30.unk_00, 0, sub_02015918(param0->unk_28, param0->unk_20->unk_1C[param0->unk_1A].unk_02), 2, 1, GAME_LANGUAGE);
     sub_0200C388(param0->unk_30.unk_00, param0->unk_30.unk_04, param0->unk_30.unk_18);
 

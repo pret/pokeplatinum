@@ -22,12 +22,12 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay023/ov23_02253D40.h"
 
 typedef struct UnkStruct_ov23_02253E2C_t {
-    UnkStruct_02023790 * unk_00;
-    UnkStruct_02023790 * unk_04;
+    Strbuf* unk_00;
+    Strbuf* unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_02018340 * unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
@@ -87,8 +87,8 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018
         v0 = 230;
     }
 
-    v1->unk_00 = sub_02023790(v0, param1);
-    v1->unk_04 = sub_02023790(v0, param1);
+    v1->unk_00 = Strbuf_Init(v0, param1);
+    v1->unk_04 = Strbuf_Init(v0, param1);
     v1->unk_28 = sub_0200B358(param1);
     v1->unk_2C = param0;
     v1->unk_24 = sub_0200B144(1, 26, param0, param1);
@@ -109,8 +109,8 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018
 
 void ov23_02253DD8 (UnkStruct_ov23_02253E2C * param0)
 {
-    sub_020237BC(param0->unk_00);
-    sub_020237BC(param0->unk_04);
+    Strbuf_Free(param0->unk_00);
+    Strbuf_Free(param0->unk_04);
     sub_0200B3F0(param0->unk_28);
     sub_0200B190(param0->unk_24);
     Heap_FreeToHeap(param0);
@@ -154,9 +154,9 @@ static void ov23_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static UnkStruct_02023790 * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
+static Strbuf* ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
 {
-    UnkStruct_02023790 * v0 = param0->unk_00;
+    Strbuf* v0 = param0->unk_00;
 
     if (param0->unk_44_1) {
         sub_0200C388(param0->unk_28, param0->unk_04, param0->unk_00);
@@ -169,7 +169,7 @@ static UnkStruct_02023790 * ov23_02253E6C (UnkStruct_ov23_02253E2C * param0)
 
 static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStruct_ov23_02253F60 param2, int param3)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
 
     ov23_02253FA4(param0, 0);
     ov23_022421EC();

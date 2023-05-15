@@ -31,7 +31,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02025E68.h"
 #include "overlay114/ov114_0225C700.h"
@@ -397,13 +397,13 @@ void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
 
     {
         UnkStruct_0200B144 * v0;
-        UnkStruct_02023790 * v1;
+        Strbuf* v1;
 
         v0 = sub_0200B144(0, 26, 410, 106);
         v1 = sub_0200B1EC(v0, 0);
 
         sub_0201D738(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
         sub_0200B190(v0);
     }
 
@@ -459,7 +459,7 @@ void ov116_02262034 (UnkStruct_ov116_0226139C * param0, int param1)
     }
 }
 
-static int ov116_0226208C (UnkStruct_0205AA50 * param0, UnkStruct_02023790 * param1)
+static int ov116_0226208C (UnkStruct_0205AA50 * param0, Strbuf *param1)
 {
     int v0 = sub_02002D7C(0, param1, 0);
     int v1 = (sub_0201C294(param0) * 8 - v0) / 2;
@@ -529,7 +529,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
         sub_0201ADA4(v3, 0xFF);
 
         {
-            UnkStruct_02023790 * v11;
+            Strbuf* v11;
             int v12;
 
             v11 = sub_02025F04(v9, 106);
@@ -541,7 +541,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
                 sub_0201D7E0(v3, 0, v11, v12, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), 0, 0, NULL);
             }
 
-            sub_020237BC(v11);
+            Strbuf_Free(v11);
         }
 
         sub_0201A954(v3);

@@ -50,7 +50,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_02073C2C.h"
@@ -660,12 +660,12 @@ BOOL ov21_021D157C (UnkStruct_ov21_021D157C * param0)
 
 void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_02023790 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v0;
+    Strbuf* v1;
 
     if (param1 > 0) {
-        v0 = sub_02023790(4, param3);
-        sub_020238A0(v0, param1, 3, 2, 1);
+        v0 = Strbuf_Init(4, param3);
+        Strbuf_FormatInt(v0, param1, 3, 2, 1);
     } else {
         v0 = ov21_021D1CE0(100, param3);
     }
@@ -674,7 +674,7 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 
     sub_0201D78C(param0, 2, v0, 22, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     sub_0201D78C(param0, 2, v1, 49, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    sub_020237BC(v0);
+    Strbuf_Free(v0);
 
     ov21_021D5600(v1);
 }
@@ -974,9 +974,9 @@ u32 ov21_021D1C88 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
     return v0;
 }
 
-UnkStruct_02023790 * ov21_021D1CE0 (int param0, int param1)
+Strbuf* ov21_021D1CE0 (int param0, int param1)
 {
-    UnkStruct_02023790 * v0;
+    Strbuf* v0;
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
     v0 = sub_0200B1EC(v1, param0);

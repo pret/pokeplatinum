@@ -51,7 +51,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "overlay111/ov111_021D0D80.h"
@@ -87,8 +87,8 @@ struct UnkStruct_ov111_021D0F7C_t {
     void * unk_34;
     UnkStruct_0200B144 * unk_38;
     UnkStruct_0200B358 * unk_3C;
-    UnkStruct_02023790 * unk_40;
-    UnkStruct_02023790 * unk_44;
+    Strbuf* unk_40;
+    Strbuf* unk_44;
     u16 unk_48[8];
     UnkStruct_02018340 * unk_58;
     UnkStruct_0205AA50 unk_5C[16];
@@ -1124,8 +1124,8 @@ static void ov111_021D1C0C (UnkStruct_ov111_021D0F7C * param0)
     sub_02015760(param0->unk_34);
     sub_0200B190(param0->unk_38);
     sub_0200B3F0(param0->unk_3C);
-    sub_020237BC(param0->unk_40);
-    sub_020237BC(param0->unk_44);
+    Strbuf_Free(param0->unk_40);
+    Strbuf_Free(param0->unk_44);
     sub_0200C560(param0->unk_160);
     Heap_FreeToHeap(param0->unk_3F0);
     Heap_FreeToHeap(param0->unk_3F8);
@@ -1161,8 +1161,8 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
 
     param0->unk_38 = sub_0200B144(1, 26, 540, 115);
     param0->unk_3C = sub_0200B358(115);
-    param0->unk_40 = sub_02023790(600, 115);
-    param0->unk_44 = sub_02023790(600, 115);
+    param0->unk_40 = Strbuf_Init(600, 115);
+    param0->unk_44 = Strbuf_Init(600, 115);
 
     sub_02002E7C(0, 13 * 32, 115);
     sub_02002E7C(4, 13 * 32, 115);

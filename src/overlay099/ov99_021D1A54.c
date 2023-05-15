@@ -24,7 +24,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "gx_layers.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay099/ov99_021D0D80.h"
 #include "overlay099/ov99_021D1A54.h"
 #include "overlay099/ov99_021D2C08.h"
@@ -1069,7 +1069,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
     sub_020038B0(param0->unk_0C, 0, 2, 0x0, 0, 1);
 
     {
-        UnkStruct_02023790 * v1;
+        Strbuf* v1;
         int v2;
 
         param0->unk_24 = sub_0201A778(75, 1);
@@ -1083,7 +1083,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
 
         sub_0201D7E0(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);
         sub_0201ACCC(param0->unk_24);
-        sub_020237BC(v1);
+        Strbuf_Free(v1);
     }
 
     sub_02019184(v0, 7, 0, 0);

@@ -29,7 +29,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02079D40.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -54,7 +54,7 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dAnimBankData * unk_68;
     UnkStruct_0200B144 * unk_6C;
     UnkStruct_0200B144 * unk_70;
-    UnkStruct_02023790 * unk_74;
+    Strbuf* unk_74;
     UnkStruct_0205AA50 unk_78[7];
     u8 unk_E8[640];
     NNSG2dScreenData * unk_368;
@@ -78,7 +78,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF250(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF270(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 * param0);
-static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const UnkStruct_02023790 * param2);
+static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2);
 static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF394(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 * param0, int param1);
@@ -108,7 +108,7 @@ BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_374 = sub_020071D0(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
             v0->unk_70 = sub_0200B144(1, 26, 647, 10);
-            v0->unk_74 = sub_02023790(32, 10);
+            v0->unk_74 = Strbuf_Init(32, 10);
             v0->unk_380 = NULL;
             *param0 = v0;
             return 1;
@@ -126,7 +126,7 @@ void ov19_021DECAC (UnkStruct_ov19_021DEC04 * param0)
         sub_0200B190(param0->unk_70);
         ov19_021DF7D0(param0);
         ov19_021DF03C(param0);
-        sub_020237BC(param0->unk_74);
+        Strbuf_Free(param0->unk_74);
         Heap_FreeToHeap(param0);
     }
 }
@@ -469,7 +469,7 @@ static void ov19_021DF2A8 (UnkStruct_ov19_021DEC04 * param0)
     }
 }
 
-static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const UnkStruct_02023790 * param2)
+static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2)
 {
     return ((param0->unk_07 * 8) - sub_02002D7C(param1, param2, 0)) / 2;
 }
@@ -531,7 +531,7 @@ static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
             sub_0201D78C(v0, 0, v1->unk_2C, inline_ov19_021DF3AC(v0, 0, v1->unk_2C), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
             for (v5 = 0; v5 < 7; v5++) {
-                sub_020238A0(param0->unk_74, v6[v5], 3, 0, 1);
+                Strbuf_FormatInt(param0->unk_74, v6[v5], 3, 0, 1);
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
             }
         } else {

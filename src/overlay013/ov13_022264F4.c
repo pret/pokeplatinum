@@ -37,7 +37,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "unk_02022594.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_02073C2C.h"
 #include "unk_020797C8.h"
 #include "party.h"
@@ -410,7 +410,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
             Pokemon * v3;
-            UnkStruct_02023790 * v4;
+            Strbuf* v4;
 
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);
             v4 = sub_0200B1EC(param0->unk_10, 46);
@@ -418,7 +418,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             sub_0200B5CC(param0->unk_14, 0, sub_02076B10(v3));
             sub_0200B630(param0->unk_14, 1, 373);
             sub_0200C388(param0->unk_14, param0->unk_18, v4);
-            sub_020237BC(v4);
+            Strbuf_Free(v4);
 
             ov13_022279F4(param0);
             param0->unk_114B = 8;
@@ -435,13 +435,13 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 return 13;
             } else {
                 UnkStruct_0200B144 * v5;
-                UnkStruct_02023790 * v6;
+                Strbuf* v6;
 
                 v5 = sub_0200B144(1, 26, 213, v0->unk_0C);
                 v6 = sub_0200B1EC(v5, 36);
                 sub_0200B498(param0->unk_14, 0, v0->unk_04);
                 sub_0200C388(param0->unk_14, param0->unk_18, v6);
-                sub_020237BC(v6);
+                Strbuf_Free(v6);
                 sub_0200B190(v5);
                 ov13_022279F4(param0);
                 param0->unk_114B = 8;
@@ -768,7 +768,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
     param0->unk_10 = sub_0200B144(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
     param0->unk_14 = sub_0200B358(param0->unk_00->unk_0C);
-    param0->unk_18 = sub_02023790(512, param0->unk_00->unk_0C);
+    param0->unk_18 = Strbuf_Init(512, param0->unk_00->unk_0C);
 }
 
 static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
@@ -776,7 +776,7 @@ static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
     sub_0200B190(param0->unk_10);
     sub_0200C560(param0->unk_0C);
     sub_0200B3F0(param0->unk_14);
-    sub_020237BC(param0->unk_18);
+    Strbuf_Free(param0->unk_18);
 }
 
 static void ov13_02227118 (UnkStruct_ov13_02227244 * param0, u8 param1)

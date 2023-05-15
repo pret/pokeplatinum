@@ -47,7 +47,7 @@
 #include "unk_0201E86C.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
@@ -149,7 +149,7 @@ void ov76_0223B96C (UnkStruct_ov76_0223DE00 * param0, BOOL param1)
 void ov76_0223B98C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_020127E8 v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     int v2;
     int v3;
     UnkStruct_0200B144 * v4;
@@ -183,7 +183,7 @@ void ov76_0223B98C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2, in
     param0->unk_D4.unk_164[param1] = sub_020127E8(&v0);
 
     sub_02012AC0(param0->unk_D4.unk_164[param1], param4);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v4);
     sub_0201A8FC(&v5);
 }
@@ -503,14 +503,14 @@ void ov76_0223BF74 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, in
 
     {
         int v9;
-        UnkStruct_02023790 * v10;
+        Strbuf* v10;
         UnkStruct_0200B144 * v11 = sub_0200B144(0, 26, 8, 53);
 
         for (v9 = 0; v9 < v7; v9++) {
             v10 = sub_0200B1EC(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
 
             sub_02013A6C(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
-            sub_020237BC(v10);
+            Strbuf_Free(v10);
         }
 
         sub_0200B190(v11);
@@ -938,7 +938,7 @@ void ov76_0223C974 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1, in
 void ov76_0223CA30 (UnkStruct_0205AA50 * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     if (param1 == 0xFFFF) {
         sub_0201ADA4(param0, 15);
@@ -952,7 +952,7 @@ void ov76_0223CA30 (UnkStruct_0205AA50 * param0, int param1)
     sub_0201ADA4(param0, 15);
     sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 }
 
@@ -991,7 +991,7 @@ void ov76_0223CC8C (UnkStruct_ov76_0223DE00 * param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     UnkStruct_0205AA50 * v5;
 
     for (v0 = 3; v0 < 11; v0++) {
@@ -1007,13 +1007,13 @@ void ov76_0223CC8C (UnkStruct_ov76_0223DE00 * param0)
 
         sub_0201ADA4(v5, 0x0);
 
-        v4 = sub_02023790(100, 53);
+        v4 = Strbuf_Init(100, 53);
         v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
-        sub_020238A0(v4, v3, 3, 1, 1);
+        Strbuf_FormatInt(v4, v3, 3, 1, 1);
         sub_0201D78C(v5, 0, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A954(v5);
-        sub_020237BC(v4);
+        Strbuf_Free(v4);
     }
 }
 
@@ -1023,7 +1023,7 @@ void ov76_0223CD20 (UnkStruct_ov76_0223DE00 * param0, int param1)
     int v1;
     int v2;
     int v3;
-    UnkStruct_02023790 * v4;
+    Strbuf* v4;
     UnkStruct_0205AA50 * v5;
 
     v5 = &param0->unk_D4.unk_18[param1 + 3];
@@ -1038,13 +1038,13 @@ void ov76_0223CD20 (UnkStruct_ov76_0223DE00 * param0, int param1)
 
     sub_0201ADA4(v5, 0x0);
 
-    v4 = sub_02023790(100, 53);
+    v4 = Strbuf_Init(100, 53);
     v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
-    sub_020238A0(v4, v3, 3, 1, 1);
+    Strbuf_FormatInt(v4, v3, 3, 1, 1);
     sub_0201D78C(v5, 1, v4, (-1 + 8), 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A954(v5);
-    sub_020237BC(v4);
+    Strbuf_Free(v4);
 }
 
 void ov76_0223CDA4 (UnkStruct_ov76_0223DE00 * param0)
@@ -1060,7 +1060,7 @@ void ov76_0223CDA4 (UnkStruct_ov76_0223DE00 * param0)
 void ov76_0223CDC4 (UnkStruct_0205AA50 * param0, int param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
 
     if (param1 == 0xFFFF) {
         sub_0201ADA4(param0, 15);
@@ -1074,7 +1074,7 @@ void ov76_0223CDC4 (UnkStruct_0205AA50 * param0, int param1)
     sub_0201ADA4(param0, 15);
     sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 }
 

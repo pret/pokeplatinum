@@ -14,7 +14,7 @@
 UnkStruct_0200B358 * sub_0200B358(u32 param0);
 UnkStruct_0200B358 * sub_0200B368(u32 param0, u32 param1, u32 param2);
 void sub_0200B3F0(UnkStruct_0200B358 * param0);
-void sub_0200B48C(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_02023790 * param2, u32 param3, BOOL param4, u32 param5);
+void sub_0200B48C(UnkStruct_0200B358 * param0, u32 param1, const Strbuf *param2, u32 param3, BOOL param4, u32 param5);
 void sub_0200B498(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_02025E6C * param2);
 void sub_0200B4BC(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2);
 void sub_0200B4E4(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2);
@@ -83,7 +83,7 @@ void sub_0200C2A8(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200C2E0(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200C324(UnkStruct_0200B358 * param0, u32 param1);
 void sub_0200C338(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
-void sub_0200C388(const UnkStruct_0200B358 * param0, UnkStruct_02023790 * param1, const UnkStruct_02023790 * param2);
+void sub_0200C388(const UnkStruct_0200B358 * param0, Strbuf *param1, const Strbuf *param2);
 void sub_0200C41C(UnkStruct_0200B358 * param0);
 
 #endif // POKEPLATINUM_UNK_0200B358_H

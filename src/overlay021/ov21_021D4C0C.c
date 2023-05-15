@@ -20,7 +20,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
-#include "unk_02023790.h"
+#include "strbuf.h"
 #include "overlay021/ov21_021D4C0C.h"
 
 typedef struct UnkStruct_ov21_021D4C0C_t {
@@ -146,7 +146,7 @@ void ov21_021D4DA0 (UnkStruct_0205AA50 * param0)
 u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, int param4, int param5)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     u32 v2;
 
     v0 = sub_0200B144(0, 26, param2, param0->unk_14);
@@ -156,7 +156,7 @@ u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1
     sub_0201D78C(param1, 2, v1, param4, param5, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     v2 = sub_02002D7C(2, v1, 0);
 
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 
     return v2;
@@ -165,7 +165,7 @@ u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1
 void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_02023790 * v1;
+    Strbuf* v1;
     int v2;
     int v3;
 
@@ -179,11 +179,11 @@ void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param
     v3 /= 2;
 
     sub_0201D78C(param1, 2, v1, v3, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
-    sub_020237BC(v1);
+    Strbuf_Free(v1);
     sub_0200B190(v0);
 }
 
-void ov21_021D4E80 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, UnkStruct_02023790 * param2, int param3, int param4)
+void ov21_021D4E80 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, Strbuf *param2, int param3, int param4)
 {
     sub_0201D78C(param1, 2, param2, param3, param4, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
 }

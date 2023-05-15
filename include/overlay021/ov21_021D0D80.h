@@ -70,6 +70,6 @@ u32 ov21_021D1B94(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D332
 u32 ov21_021D1BD8(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6);
 u32 ov21_021D1C30(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6);
 u32 ov21_021D1C88(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, int param4, int param5, int param6);
-UnkStruct_02023790 * ov21_021D1CE0(int param0, int param1);
+Strbuf* ov21_021D1CE0(int param0, int param1);
 
 #endif // POKEPLATINUM_OV21_021D0D80_H
