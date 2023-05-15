@@ -20,7 +20,7 @@ struct Strbuf {
 
     /// The underlying character buffer.
     ///
-    /// UB: This is meant to be a flexible array, but is purposefully defined
+    /// UB: This is meant to be a flexible array, but is purposely defined
     /// incorrectly in order to match the original byte-code. The correct
     /// definition method would be as `data[]`.
     charcode_t data[1];
