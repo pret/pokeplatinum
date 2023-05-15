@@ -8,17 +8,17 @@
 struct Strbuf_t {
     u16 maxSize;
     u16 size;
-    u32 checksum;
+    u32 integrity;
     charcode_t data[1];
 };
 
-#define SIZEOF_STRBUF_HEADER    (sizeof(Strbuf) - sizeof(charcode_t))
-#define STRBUF_CHECKSUM         (0xB6F8D2EC)
+#define SIZEOF_STRBUF_HEADER (sizeof(Strbuf) - sizeof(charcode_t))
+#define STRBUF_MAGIC_NUMBER (0xB6F8D2EC)
 
 static inline void Strbuf_Check(const Strbuf *strbuf)
 {
     GF_ASSERT(strbuf != NULL);
-    GF_ASSERT(strbuf->checksum == STRBUF_CHECKSUM);
+    GF_ASSERT(strbuf->integrity == STRBUF_MAGIC_NUMBER);
 }
 
 Strbuf* Strbuf_Init(u32 size, u32 heapID)
@@ -28,7 +28,7 @@ Strbuf* Strbuf_Init(u32 size, u32 heapID)
     strbuf = Heap_AllocFromHeap(heapID, SIZEOF_STRBUF_HEADER + (size * sizeof(charcode_t)));
 
     if (strbuf) {
-        strbuf->checksum = STRBUF_CHECKSUM;
+        strbuf->integrity = STRBUF_MAGIC_NUMBER;
         strbuf->maxSize = size;
         strbuf->size = 0;
         strbuf->data[0] = CHAR_EOS;
@@ -41,7 +41,7 @@ void Strbuf_Free(Strbuf *strbuf)
 {
     Strbuf_Check(strbuf);
 
-    strbuf->checksum = STRBUF_CHECKSUM + 1;
+    strbuf->integrity = STRBUF_MAGIC_NUMBER + 1;
     Heap_FreeToHeap(strbuf);
 }
 
@@ -80,7 +80,7 @@ Strbuf* Strbuf_Clone(const Strbuf *src, u32 heapID)
     return strbuf;
 }
 
-void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, BOOL whichCharset)
+void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
     static const u32 sPowersOfTen[] = {
         1,
@@ -124,13 +124,13 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
     BOOL negative = (num < 0);
 
     if (dst->maxSize > (maxDigits + negative)) {
-        const charcode_t *digitSet = (whichCharset == 0) ? sDigits_JP : sDigits_EN;
+        const charcode_t *digitSet = (charsetMode == CHARSET_MODE_JP) ? sDigits_JP : sDigits_EN;
 
         Strbuf_Clear(dst);
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (whichCharset == 0) ? CHAR_JP_MINUS : CHAR_EN_MINUS;
+            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_MINUS : CHAR_EN_MINUS;
         }
 
         u32 div = sPowersOfTen[maxDigits - 1];
@@ -145,7 +145,7 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
                 paddingMode = PADDING_MODE_ZEROES;
                 dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QUESTION;
             } else if (paddingMode == PADDING_MODE_SPACES) {
-                dst->data[dst->size++] = (whichCharset == 0) ? CHAR_JP_SPACE : CHAR_NUM_SPACE;
+                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_SPACE : CHAR_NUM_SPACE;
             }
 
             div /= 10;
@@ -158,7 +158,7 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, BOOL whichCharset)
+void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
     static const u64 sPowersOfTen[] = {
         1,
@@ -212,13 +212,13 @@ void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode padd
     BOOL negative = (num < 0);
 
     if (dst->maxSize > (maxDigits + negative)) {
-        const charcode_t *digitSet = (whichCharset == 0) ? sDigits_JP : sDigits_EN;
+        const charcode_t *digitSet = (charsetMode == CHARSET_MODE_JP) ? sDigits_JP : sDigits_EN;
 
         Strbuf_Clear(dst);
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (whichCharset == 0) ? CHAR_JP_MINUS : CHAR_EN_MINUS;
+            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_MINUS : CHAR_EN_MINUS;
         }
 
         u64 div = sPowersOfTen[maxDigits - 1];
@@ -232,7 +232,7 @@ void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode padd
                 paddingMode = PADDING_MODE_ZEROES;
                 dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QUESTION;
             } else if (paddingMode == PADDING_MODE_SPACES) {
-                dst->data[dst->size++] = (whichCharset == 0) ? CHAR_JP_SPACE : CHAR_EN_SPACE;
+                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_SPACE : CHAR_EN_SPACE;
             }
 
             div /= 10;
@@ -422,9 +422,9 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
     GF_ASSERT(FALSE);
 }
 
-#define COMPRESSED_LEADER       (0xF100)
-#define COMPRESSED_MASK         (0x01FF)
-#define COMPRESSED_EOS          (0x01FF) // 0xFFFF & 0x01FF
+#define COMPRESSED_LEADER   (0xF100)
+#define COMPRESSED_MASK     (0x01FF)
+#define COMPRESSED_EOS      (0x01FF) // 0xFFFF & 0x01FF
 
 BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
 {
@@ -433,23 +433,29 @@ BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
 
 void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)
 {
+    // Trainer names are expressed using a format with a designating leader
+    // code followed by compression algorithm that trims individual characters
+    // from 16 bits to 10 bits.
+    //
+    // TODO: This process could do with some more documentation, i.e. why this
+    // is done.
     if (Strbuf_IsTrainerName(src)) {
         charcode_t *dstChar = &dst->data[dst->size];
         charcode_t *srcChar = &src->data[1];
-        s32 bit = 0;
+        s32 shift = 0;
         s32 charsAdded = 0;
         charcode_t curChar = 0;
 
         while (TRUE) {
-            curChar = (*srcChar >> bit) & COMPRESSED_MASK;
-            bit += 9;
+            curChar = (*srcChar >> shift) & COMPRESSED_MASK;
+            shift += 9;
 
-            if (bit >= 15) {
+            if (shift >= 15) {
                 srcChar++;
-                bit -= 15;
+                shift -= 15;
 
-                if (bit) {
-                    curChar |= (*srcChar << (9 - bit)) & COMPRESSED_MASK;
+                if (shift) {
+                    curChar |= (*srcChar << (9 - shift)) & COMPRESSED_MASK;
                 }
             }
 

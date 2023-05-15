@@ -18,13 +18,21 @@ enum PaddingMode {
     PADDING_MODE_ZEROES,
 };
 
+/*
+ * Control codes for which charset to use when formatting a string.
+ */
+enum CharsetMode {
+    CHARSET_MODE_JP,
+    CHARSET_MODE_EN,
+};
+
 Strbuf* Strbuf_Init(u32 size, u32 heapID);
 void Strbuf_Free(Strbuf *strbuf);
 void Strbuf_Clear(Strbuf *strbuf);
 void Strbuf_Copy(Strbuf *dst, const Strbuf *src);
 Strbuf* Strbuf_Clone(const Strbuf *src, u32 heapID);
-void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode mode, BOOL whichCharset);
-void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode mode, BOOL whichCharset);
+void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
+void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
 u64 Strbuf_AtoI(const Strbuf *src, BOOL *success);
 int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2);
 u32 Strbuf_Length(const Strbuf *strbuf);
