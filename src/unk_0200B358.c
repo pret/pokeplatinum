@@ -976,11 +976,11 @@ void sub_0200C388 (const UnkStruct_0200B358 * param0, Strbuf *param1, const Strb
                 v0 = sub_0201D0C8(v0);
 
                 while (v3 < v0) {
-                    Strbuf_Append(param1, *v3++);
+                    Strbuf_AppendChar(param1, *v3++);
                 }
             }
         } else {
-            Strbuf_Append(param1, *v0++);
+            Strbuf_AppendChar(param1, *v0++);
         }
     }
 }
