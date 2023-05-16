@@ -41,7 +41,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_02073C2C.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020923C0.h"
 #include "unk_02092494.h"
 
@@ -369,7 +369,7 @@ static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204BE84 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, v1->val3.unk_00, 1, 32);
@@ -377,7 +377,7 @@ static BOOL sub_0204BE84 (UnkStruct_0203CDB0 * param0, void * param1)
 
 static void sub_0204BEAC (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
     u16 v2;
     u16 v3 = v1->val3.unk_00;
@@ -399,7 +399,7 @@ static void sub_0204BED4 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204BF14 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_00->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = v1->val3.unk_00;
 
@@ -550,7 +550,7 @@ static void sub_0204C128 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C138 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 454, 1, 32);
@@ -558,7 +558,7 @@ static BOOL sub_0204C138 (UnkStruct_0203CDB0 * param0, void * param1)
 
 static void sub_0204C15C (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     u16 v3;
@@ -582,7 +582,7 @@ static void sub_0204C190 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_00->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 454;
 
@@ -594,7 +594,7 @@ static void sub_0204C1CC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C1FC (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 452, 1, 32);
@@ -602,7 +602,7 @@ static BOOL sub_0204C1FC (UnkStruct_0203CDB0 * param0, void * param1)
 
 static void sub_0204C220 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     u16 v3;
@@ -630,7 +630,7 @@ static void sub_0204C264 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_00->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 452;
 
@@ -642,7 +642,7 @@ static void sub_0204C2A0 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C2D0 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 467, 1, 32);
@@ -650,7 +650,7 @@ static BOOL sub_0204C2D0 (UnkStruct_0203CDB0 * param0, void * param1)
 
 static void sub_0204C2F4 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     u16 v3;
@@ -674,7 +674,7 @@ static void sub_0204C328 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_00->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 467;
 
@@ -686,7 +686,7 @@ static void sub_0204C364 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static BOOL sub_0204C394 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
 
     return sub_0207D55C(v0, 455, 1, 32);
@@ -694,7 +694,7 @@ static BOOL sub_0204C394 (UnkStruct_0203CDB0 * param0, void * param1)
 
 static void sub_0204C3B8 (UnkStruct_0203CDB0 * param0, void * param1)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     u16 v3;
@@ -718,7 +718,7 @@ static void sub_0204C3EC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 
 static void sub_0204C428 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
 {
-    UnkStruct_0207D3C0 * v0 = sub_0207D990(param0->unk_00->unk_0C);
+    Bag * v0 = sub_0207D990(param0->unk_00->unk_0C);
     UnkUnion_0204C4D0 * v1 = sub_0204B844(param0->unk_00);
     u16 v2 = 455;
 

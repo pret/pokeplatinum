@@ -42,7 +42,7 @@
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay013/ov13_022264F4.h"
 #include "overlay013/ov13_02227288.h"
 #include "overlay013/ov13_02227A4C.h"

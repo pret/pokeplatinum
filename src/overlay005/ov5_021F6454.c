@@ -58,7 +58,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_02073C2C.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F6454.h"

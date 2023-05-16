@@ -52,7 +52,7 @@
 #include "unk_02057518.h"
 #include "unk_0205E7D0.h"
 #include "unk_0206A780.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022416A8.h"
@@ -1329,7 +1329,7 @@ static BOOL ov23_022507D8 (UnkStruct_0201CD38 * param0, void * param1)
 
         if (v1 == 3) {
             int v3 = sub_02028938(Unk_ov23_022577B8->unk_05);
-            UnkStruct_0207D3C0 * v4 = sub_0207D990(v0->unk_0C->unk_0C);
+            Bag * v4 = sub_0207D990(v0->unk_0C->unk_0C);
 
             sub_02005748(1500);
 

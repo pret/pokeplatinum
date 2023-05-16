@@ -86,7 +86,7 @@
 #include "unk_020507CC.h"
 #include "unk_0205C980.h"
 #include "unk_02073C2C.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208694C.h"
 #include "unk_020890F4.h"
 #include "overlay063/ov63_0222AE60.h"

@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020972FC.h"
 #include "overlay082/ov82_0223B140.h"
 #include "overlay082/ov82_0223B2E0.h"
@@ -164,7 +164,7 @@ static int ov82_0223B470 (UnkStruct_ov83_0223C344 * param0)
 {
     u8 v0;
     u8 v1, v2, v3, v4;
-    UnkStruct_0207D3C0 * v5 = param0->unk_10->unk_14;
+    Bag * v5 = param0->unk_10->unk_14;
 
     FS_EXTERN_OVERLAY(overlay85);
 

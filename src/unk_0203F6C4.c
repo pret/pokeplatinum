@@ -189,7 +189,7 @@
 #include "unk_02079170.h"
 #include "unk_020797C8.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0207DA28.h"
 #include "unk_02096420.h"
 #include "unk_02097B18.h"

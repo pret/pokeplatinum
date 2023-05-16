@@ -59,7 +59,7 @@
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "overlay084/ov84_0223B5A0.h"
 #include "overlay084/ov84_0223F040.h"

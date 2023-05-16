@@ -64,7 +64,7 @@
 #include "unk_0207A274.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208694C.h"
 #include "unk_0208C324.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -2622,7 +2622,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
         break;
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
-            UnkStruct_0207D3C0 * v2;
+            Bag * v2;
 
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(10);

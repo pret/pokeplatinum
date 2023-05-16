@@ -113,7 +113,7 @@
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208694C.h"
 #include "unk_0208C324.h"
 #include "unk_0209747C.h"
@@ -300,7 +300,7 @@ void sub_0203D1E4 (UnkStruct_0203CDB0 * param0, void * param1)
 
 void * sub_0203D20C (UnkStruct_0203CDB0 * param0, UnkStruct_020684D0 * param1)
 {
-    UnkStruct_0207D3C0 * v0;
+    Bag * v0;
     void * v1;
 
     v0 = sub_0207D990(param0->unk_0C);
@@ -325,7 +325,7 @@ void * sub_0203D264 (UnkStruct_0203CDB0 * param0, int param1)
     static const u8 * v1;
     static const u8 v2[] = {4, 0xff};
     static const u8 v3[] = {0, 0xff};
-    UnkStruct_0207D3C0 * v4 = sub_0207D990(param0->unk_0C);
+    Bag * v4 = sub_0207D990(param0->unk_0C);
 
     switch (param1) {
     case 0:

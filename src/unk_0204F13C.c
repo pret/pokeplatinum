@@ -46,7 +46,7 @@
 #include "unk_02073C2C.h"
 #include "party.h"
 #include "unk_0207A274.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C324.h"
 #include "unk_02099500.h"
 

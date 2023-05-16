@@ -59,7 +59,7 @@
 #include "party.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_020989DC.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021DFB54.h"

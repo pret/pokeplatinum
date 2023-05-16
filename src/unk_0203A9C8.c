@@ -96,7 +96,7 @@
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C324.h"
 #include "unk_020972FC.h"
 #include "unk_0209747C.h"
@@ -1144,7 +1144,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     break;
     case 3:
     {
-        UnkStruct_0207D3C0 * v11;
+        Bag * v11;
         void * v12;
         u32 * v13;
 
@@ -1685,7 +1685,7 @@ static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_0207D3C0 * v2;
+    Bag * v2;
     u8 v3;
     u8 v4, v5, v6;
 

@@ -28,7 +28,7 @@
 #include "poffin.h"
 #include "unk_02073C2C.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C324.h"
 #include "unk_020989DC.h"
 #include "overlay079/ov79_021D0D80.h"

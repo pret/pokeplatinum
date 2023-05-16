@@ -32,7 +32,7 @@
 #include "unk_02057518.h"
 #include "unk_0205F180.h"
 #include "unk_0206940C.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
 #include "overlay005/ov5_021D1C30.h"
