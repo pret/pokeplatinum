@@ -46,7 +46,7 @@ typedef struct UnkStruct_0207D99C_t {
     UnkStruct_0207D99C_sub2 unk_14;
 } UnkStruct_0207D99C;
 
-static u32 sub_0207D40C(Bag * param0, u16 param1, ItemSlot ** param2, u32 * param3, u32 param4);
+static u32 Bag_GetItemPocket(Bag * bag, u16 item_id, ItemSlot ** slot_p, u32 * count_p, u32 heap_id);
 
 int bag (void)
 {
@@ -58,17 +58,17 @@ Bag * sub_0207D3C0 (int param0)
     Bag * v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(Bag));
-    sub_0207D3D8(v0);
+    Sav2_Bag_init(v0);
 
     return v0;
 }
 
-void sub_0207D3D8 (Bag * param0)
+void Sav2_Bag_init (Bag * param0)
 {
     MI_CpuClear16(param0, sizeof(Bag));
 }
 
-void sub_0207D3EC (const Bag * param0, Bag * param1)
+void Sav2_Bag_copy (const Bag * param0, Bag * param1)
 {
     MI_CpuCopy8(param0, param1, sizeof(Bag));
 }
@@ -83,49 +83,50 @@ void Bag_SetRegisteredItem (Bag * bag, u32 newRegisteredItem)
     bag->registeredItem = newRegisteredItem;
 }
 
-static u32 sub_0207D40C (Bag * param0, u16 param1, ItemSlot ** param2, u32 * param3, u32 param4)
+static u32 Bag_GetItemPocket (Bag * bag, u16 item_id, ItemSlot ** slot_p, u32 * count_p, u32 heap_id)
 {
-    u32 v0 = Item_GetAttribute(param1, 5, param4);
+    u32 pocket = Item_GetAttribute(item_id, 5, heap_id);
 
-    switch (v0) {
-    case 7:
-        *param2 = param0->keyItems;
-        *param3 = 50;
-        break;
-    case 0:
-        *param2 = param0->items;
-        *param3 = 165;
-        break;
-    case 4:
-        *param2 = param0->berries;
-        *param3 = 64;
-        break;
-    case 1:
-        *param2 = param0->medicine;
-        *param3 = 40;
-        break;
-    case 2:
-        *param2 = param0->balls;
-        *param3 = 15;
-        break;
-    case 6:
-        *param2 = param0->battleItems;
-        *param3 = 30;
-        break;
-    case 5:
-        *param2 = param0->mail;
-        *param3 = 12;
-        break;
-    case 3:
-        *param2 = param0->TMsHMs;
-        *param3 = 100;
-        break;
+    switch (pocket)
+    {
+        case POCKET_KEY_ITEMS:
+            *slot_p = bag->keyItems;
+            *count_p = NUM_BAG_KEY_ITEMS;
+            break;
+        case POCKET_ITEMS:
+            *slot_p = bag->items;
+            *count_p = NUM_BAG_ITEMS;
+            break;
+        case POCKET_BERRIES:
+            *slot_p = bag->berries;
+            *count_p = NUM_BAG_BERRIES;
+            break;
+        case POCKET_MEDICINE:
+            *slot_p = bag->medicine;
+            *count_p = NUM_BAG_MEDICINE;
+            break;
+        case POCKET_BALLS:
+            *slot_p = bag->balls;
+            *count_p = NUM_BAG_BALLS;
+            break;
+        case POCKET_BATTLE_ITEMS:
+            *slot_p = bag->battleItems;
+            *count_p = NUM_BAG_BATTLE_ITEMS;
+            break;
+        case POCKET_MAIL:
+            *slot_p = bag->mail;
+            *count_p = NUM_BAG_MAIL;
+            break;
+        case POCKET_TMHMS:
+            *slot_p = bag->TMsHMs;
+            *count_p = NUM_BAG_TMS_HMS;
+            break;
     }
 
-    return v0;
+    return pocket;
 }
 
-static ItemSlot * sub_0207D4B4 (ItemSlot * param0, u32 param1, u16 param2, u16 param3, u16 param4)
+static ItemSlot * Pocket_GetItemSlotForAdd (ItemSlot * param0, u32 param1, u16 param2, u16 param3, u16 param4)
 {
     u32 v0;
     u32 v1 = 0xffffffff;
@@ -159,13 +160,13 @@ static ItemSlot * sub_0207D518 (Bag * param0, u16 param1, u16 param2, u32 param3
     u32 v1;
     u32 v2;
 
-    v2 = sub_0207D40C(param0, param1, &v0, &v1, param3);
+    v2 = Bag_GetItemPocket(param0, param1, &v0, &v1, param3);
 
     if (v2 == 3) {
-        return sub_0207D4B4(v0, v1, param1, param2, 99);
+        return Pocket_GetItemSlotForAdd(v0, v1, param1, param2, 99);
     }
 
-    return sub_0207D4B4(v0, v1, param1, param2, 999);
+    return Pocket_GetItemSlotForAdd(v0, v1, param1, param2, 999);
 }
 
 BOOL sub_0207D55C (Bag * param0, u16 param1, u16 param2, u32 param3)
@@ -192,7 +193,7 @@ BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
         u32 v1;
         u32 v2;
 
-        v1 = sub_0207D40C(param0, param1, &v0, &v2, param3);
+        v1 = Bag_GetItemPocket(param0, param1, &v0, &v2, param3);
 
         if ((v1 == 4) || (v1 == 3)) {
             sub_0207D7CC(v0, v2);
@@ -224,7 +225,7 @@ static ItemSlot * sub_0207D5E8 (Bag * param0, u16 param1, u16 param2, u32 param3
     ItemSlot * v0;
     u32 v1;
 
-    sub_0207D40C(param0, param1, &v0, &v1, param3);
+    Bag_GetItemPocket(param0, param1, &v0, &v1, param3);
     return sub_0207D5B8(v0, v1, param1, param2);
 }
 
@@ -245,7 +246,7 @@ BOOL sub_0207D60C (Bag * param0, u16 param1, u16 param2, u32 param3)
     {
         u32 v1;
 
-        sub_0207D40C(param0, param1, &v0, &v1, param3);
+        Bag_GetItemPocket(param0, param1, &v0, &v1, param3);
         sub_0207D780(v0, v1);
     }
 

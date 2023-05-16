@@ -67,7 +67,7 @@ const UnkStruct_020251A4 Unk_020E5894[] = {
     {0x0, 0x0, (UnkFuncPtr_020E5894)sub_02025CB0, (UnkFuncPtr_020E5894_1)sub_02025CB4},
     {0x1, 0x0, (UnkFuncPtr_020E5894)sub_02025E08, (UnkFuncPtr_020E5894_1)sub_02025E0C},
     {0x2, 0x0, (UnkFuncPtr_020E5894)Party_sizeof, (UnkFuncPtr_020E5894_1)sub_0207A008},
-    {0x3, 0x0, (UnkFuncPtr_020E5894)bag, (UnkFuncPtr_020E5894_1)sub_0207D3D8},
+    {0x3, 0x0, (UnkFuncPtr_020E5894)bag, (UnkFuncPtr_020E5894_1)Sav2_Bag_init},
     {0x4, 0x0, (UnkFuncPtr_020E5894)sub_020507CC, (UnkFuncPtr_020E5894_1)sub_020507D4},
     {0x5, 0x0, (UnkFuncPtr_020E5894)sub_02056720, (UnkFuncPtr_020E5894_1)sub_02056728},
     {0x6, 0x0, (UnkFuncPtr_020E5894)sub_0203A6DC, (UnkFuncPtr_020E5894_1)sub_0203A6F8},

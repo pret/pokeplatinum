@@ -737,7 +737,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     }
 
     sub_02015760(v0->unk_1AC);
-    sub_0207D3EC(v0->unk_58, v1->unk_E0);
+    Sav2_Bag_copy(v0->unk_58, v1->unk_E0);
     Heap_FreeToHeap(v0->unk_58);
     sub_02026338(v0->unk_60, v1->unk_E8);
     Heap_FreeToHeap(v0->unk_60);
@@ -1091,7 +1091,7 @@ static void ov16_0223C2C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov6_02240D5C *
     param0->unk_2408 = param1->unk_164;
     param0->unk_58 = sub_0207D3C0(5);
 
-    sub_0207D3EC(param1->unk_E0, param0->unk_58);
+    Sav2_Bag_copy(param1->unk_E0, param0->unk_58);
     param0->unk_60 = sub_02026324(5);
     sub_02026338(param1->unk_E8, param0->unk_60);
 

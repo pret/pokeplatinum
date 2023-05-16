@@ -8,8 +8,8 @@
 
 int bag(void);
 Bag * sub_0207D3C0(int param0);
-void sub_0207D3D8(Bag * param0);
-void sub_0207D3EC(const Bag * param0, Bag * param1);
+void Sav2_Bag_init(Bag * param0);
+void Sav2_Bag_copy(const Bag * param0, Bag * param1);
 u32 Bag_GetRegisteredItem(const Bag * param0);
 void Bag_SetRegisteredItem(Bag * param0, u32 param1);
 BOOL sub_0207D55C(Bag * param0, u16 param1, u16 param2, u32 param3);
