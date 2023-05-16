@@ -683,15 +683,15 @@ const u16 sBerryItemIDs[] = {
 
 void sub_0207CDEC (void * param0, u16 param1, u16 param2)
 {
-    UnkStruct_0207CDEC * v0;
-    UnkStruct_0207CDEC v1;
+    ItemSlot * v0;
+    ItemSlot v1;
     s16 v2;
 
     if (param1 == param2) {
         return;
     }
 
-    v0 = (UnkStruct_0207CDEC *)param0;
+    v0 = (ItemSlot *)param0;
     v1 = v0[param1];
 
     if (param2 > param1) {

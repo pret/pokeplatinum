@@ -15,14 +15,14 @@
 #include "constants/items.h"
 
 typedef struct Bag_t {
-    UnkStruct_0207CDEC items[NUM_BAG_ITEMS];
-    UnkStruct_0207CDEC keyItems[NUM_BAG_KEY_ITEMS];
-    UnkStruct_0207CDEC TMsHMs[NUM_BAG_TMS_HMS];
-    UnkStruct_0207CDEC mail[NUM_BAG_MAIL];
-    UnkStruct_0207CDEC medicine[NUM_BAG_MEDICINE];
-    UnkStruct_0207CDEC berries[NUM_BAG_BERRIES];
-    UnkStruct_0207CDEC balls[NUM_BAG_BALLS];
-    UnkStruct_0207CDEC battleItems[NUM_BAG_BATTLE_ITEMS];
+    ItemSlot items[NUM_BAG_ITEMS];
+    ItemSlot keyItems[NUM_BAG_KEY_ITEMS];
+    ItemSlot TMsHMs[NUM_BAG_TMS_HMS];
+    ItemSlot mail[NUM_BAG_MAIL];
+    ItemSlot medicine[NUM_BAG_MEDICINE];
+    ItemSlot berries[NUM_BAG_BERRIES];
+    ItemSlot balls[NUM_BAG_BALLS];
+    ItemSlot battleItems[NUM_BAG_BATTLE_ITEMS];
     u32 registeredItem;
 } Bag;
 
@@ -46,7 +46,7 @@ typedef struct UnkStruct_0207D99C_t {
     UnkStruct_0207D99C_sub2 unk_14;
 } UnkStruct_0207D99C;
 
-static u32 sub_0207D40C(Bag * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4);
+static u32 sub_0207D40C(Bag * param0, u16 param1, ItemSlot ** param2, u32 * param3, u32 param4);
 
 int bag (void)
 {
@@ -83,7 +83,7 @@ void Bag_SetRegisteredItem (Bag * bag, u32 newRegisteredItem)
     bag->registeredItem = newRegisteredItem;
 }
 
-static u32 sub_0207D40C (Bag * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4)
+static u32 sub_0207D40C (Bag * param0, u16 param1, ItemSlot ** param2, u32 * param3, u32 param4)
 {
     u32 v0 = Item_GetAttribute(param1, 5, param4);
 
@@ -125,7 +125,7 @@ static u32 sub_0207D40C (Bag * param0, u16 param1, UnkStruct_0207CDEC ** param2,
     return v0;
 }
 
-static UnkStruct_0207CDEC * sub_0207D4B4 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u16 param3, u16 param4)
+static ItemSlot * sub_0207D4B4 (ItemSlot * param0, u32 param1, u16 param2, u16 param3, u16 param4)
 {
     u32 v0;
     u32 v1 = 0xffffffff;
@@ -153,9 +153,9 @@ static UnkStruct_0207CDEC * sub_0207D4B4 (UnkStruct_0207CDEC * param0, u32 param
     return &param0[v1];
 }
 
-static UnkStruct_0207CDEC * sub_0207D518 (Bag * param0, u16 param1, u16 param2, u32 param3)
+static ItemSlot * sub_0207D518 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0;
+    ItemSlot * v0;
     u32 v1;
     u32 v2;
 
@@ -179,7 +179,7 @@ BOOL sub_0207D55C (Bag * param0, u16 param1, u16 param2, u32 param3)
 
 BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D518(param0, param1, param2, param3);
+    ItemSlot * v0 = sub_0207D518(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
@@ -202,7 +202,7 @@ BOOL sub_0207D570 (Bag * param0, u16 param1, u16 param2, u32 param3)
     return 1;
 }
 
-static UnkStruct_0207CDEC * sub_0207D5B8 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u16 param3)
+static ItemSlot * sub_0207D5B8 (ItemSlot * param0, u32 param1, u16 param2, u16 param3)
 {
     u32 v0;
 
@@ -219,9 +219,9 @@ static UnkStruct_0207CDEC * sub_0207D5B8 (UnkStruct_0207CDEC * param0, u32 param
     return NULL;
 }
 
-static UnkStruct_0207CDEC * sub_0207D5E8 (Bag * param0, u16 param1, u16 param2, u32 param3)
+static ItemSlot * sub_0207D5E8 (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0;
+    ItemSlot * v0;
     u32 v1;
 
     sub_0207D40C(param0, param1, &v0, &v1, param3);
@@ -230,7 +230,7 @@ static UnkStruct_0207CDEC * sub_0207D5E8 (Bag * param0, u16 param1, u16 param2, 
 
 BOOL sub_0207D60C (Bag * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5E8(param0, param1, param2, param3);
+    ItemSlot * v0 = sub_0207D5E8(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
@@ -252,9 +252,9 @@ BOOL sub_0207D60C (Bag * param0, u16 param1, u16 param2, u32 param3)
     return 1;
 }
 
-BOOL sub_0207D658 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u16 param3, u32 param4)
+BOOL sub_0207D658 (ItemSlot * param0, u32 param1, u16 param2, u16 param3, u32 param4)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5B8(param0, param1, param2, param3);
+    ItemSlot * v0 = sub_0207D5B8(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
@@ -282,7 +282,7 @@ BOOL sub_0207D688 (Bag * param0, u16 param1, u16 param2, u32 param3)
 
 BOOL sub_0207D69C (Bag * param0, u32 param1)
 {
-    UnkStruct_0207CDEC * v0;
+    ItemSlot * v0;
     u32 v1;
     u32 v2;
 
@@ -334,7 +334,7 @@ BOOL sub_0207D69C (Bag * param0, u32 param1)
 
 u16 sub_0207D730 (Bag * param0, u16 param1, u32 param2)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5E8(param0, param1, 1, param2);
+    ItemSlot * v0 = sub_0207D5E8(param0, param1, 1, param2);
 
     if (v0 == NULL) {
         return 0;
@@ -343,9 +343,9 @@ u16 sub_0207D730 (Bag * param0, u16 param1, u32 param2)
     return v0->unk_02;
 }
 
-u16 sub_0207D748 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u32 param3)
+u16 sub_0207D748 (ItemSlot * param0, u32 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5B8(param0, param1, param2, 1);
+    ItemSlot * v0 = sub_0207D5B8(param0, param1, param2, 1);
 
     if (v0 == NULL) {
         return 0;
@@ -354,9 +354,9 @@ u16 sub_0207D748 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u32 param
     return v0->unk_02;
 }
 
-static void sub_0207D75C (UnkStruct_0207CDEC * param0, UnkStruct_0207CDEC * param1)
+static void sub_0207D75C (ItemSlot * param0, ItemSlot * param1)
 {
-    UnkStruct_0207CDEC v0;
+    ItemSlot v0;
 
     v0 = *param0;
 
@@ -364,7 +364,7 @@ static void sub_0207D75C (UnkStruct_0207CDEC * param0, UnkStruct_0207CDEC * para
     *param1 = v0;
 }
 
-void sub_0207D780 (UnkStruct_0207CDEC * param0, const u32 param1)
+void sub_0207D780 (ItemSlot * param0, const u32 param1)
 {
     u32 v0, v1;
 
@@ -377,7 +377,7 @@ void sub_0207D780 (UnkStruct_0207CDEC * param0, const u32 param1)
     }
 }
 
-void sub_0207D7CC (UnkStruct_0207CDEC * param0, const u32 param1)
+void sub_0207D7CC (ItemSlot * param0, const u32 param1)
 {
     u32 v0, v1;
 
@@ -429,9 +429,9 @@ void * sub_0207D824 (Bag * param0, const u8 * param1, u32 param2)
     return v0;
 }
 
-UnkStruct_0207CDEC * sub_0207D910 (Bag * param0, u16 param1, u16 param2)
+ItemSlot * sub_0207D910 (Bag * param0, u16 param1, u16 param2)
 {
-    UnkStruct_0207CDEC * v0;
+    ItemSlot * v0;
     u16 v1;
 
     switch (param1) {

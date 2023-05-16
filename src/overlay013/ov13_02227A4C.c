@@ -46,7 +46,7 @@ static const u8 Unk_ov13_02229BB0[] = {
 
 void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
 {
-    UnkStruct_0207CDEC * v0;
+    ItemSlot * v0;
     u32 v1, v2, v3;
     s32 v4;
 

@@ -316,7 +316,7 @@ void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u3
     Strbuf_Free(v0);
 }
 
-void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2)
+void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, ItemSlot * param1, u32 param2)
 {
     u16 v0 = param1->unk_00;
 
@@ -331,7 +331,7 @@ void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param
     }
 }
 
-void ov84_0223F94C (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2)
+void ov84_0223F94C (UnkStruct_ov84_0223B5A0 * param0, ItemSlot * param1, u32 param2)
 {
     sub_0200C648(param0->unk_110, 2, sub_0207D344(param1->unk_00) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
     ov84_0223F81C(param0, param1->unk_02, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
