@@ -73,7 +73,7 @@ Strbuf* ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
 u16 ov16_0223E0D8(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_0207A9CC * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_02025E6C * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_0207D3C0 * ov16_0223E1AC(UnkStruct_0207ADB4 * param0);
+Bag * ov16_0223E1AC(UnkStruct_0207ADB4 * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(UnkStruct_0207ADB4 * param0);
 u32 ov16_0223E1B4(UnkStruct_0207ADB4 * param0, int param1);
 int ov16_0223E1C4(UnkStruct_0207ADB4 * param0, int param1);

@@ -4,6 +4,6 @@
 typedef struct {
     u16 unk_00;
     u16 unk_02;
-} UnkStruct_0207CDEC;
+} ItemSlot;
 
 #endif // POKEPLATINUM_STRUCT_0207CDEC_H

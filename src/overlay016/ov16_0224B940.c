@@ -24,7 +24,7 @@
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_022405FC.h"

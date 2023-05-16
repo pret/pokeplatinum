@@ -295,7 +295,7 @@ Static main
 	Object src/unk_0207C908.o
 	Object src/unk_0207CB08.o
 	Object src/item.o
-	Object src/unk_0207D3B8.o
+	Object src/bag.o
 	Object src/unk_0207DA28.o
 	Object src/unk_0207DFAC.o
 	Object src/unk_0207E060.o

@@ -40,7 +40,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_0205D8CC.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021EA874.h"
 
 typedef struct {

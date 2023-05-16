@@ -56,7 +56,7 @@
 #include "unk_0206A780.h"
 #include "party.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_02097624.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D431C.h"
@@ -123,7 +123,7 @@ typedef struct {
     UnkStruct_0206A844 * unk_1A4;
     UnkStruct_02097728 * unk_1A8;
     UnkStruct_02028430 * unk_1AC;
-    UnkStruct_0207D3C0 * unk_1B0;
+    Bag * unk_1B0;
     UnkStruct_02098C44 * unk_1B4;
 } UnkStruct_02072334;
 

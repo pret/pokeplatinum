@@ -5,7 +5,7 @@
 #include "overlay013/struct_ov13_02227244.h"
 
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay013/ov13_02227A4C.h"
 
 u8 ov13_02227A4C (UnkStruct_ov13_02227244 * param0)
@@ -46,7 +46,7 @@ static const u8 Unk_ov13_02229BB0[] = {
 
 void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
 {
-    UnkStruct_0207CDEC * v0;
+    ItemSlot * v0;
     u32 v1, v2, v3;
     s32 v4;
 

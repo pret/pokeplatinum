@@ -6,14 +6,17 @@ tools/mwccarm/**
 
 # SDK
 tools/bin/**
+tools/cw/**
 
 # Build folder
 build/**
 sub/build/**
 
-# CLion folders
+# IDE folders
 .idea/
 cmake-build-debug/
+.vscode/
+.vs/
 
 # ROM
 *.srl
@@ -79,8 +82,6 @@ cmake-build-*
 *.d
 
 diff.txt
-
-.vscode/
 
 temp_asm/
 asm_old/

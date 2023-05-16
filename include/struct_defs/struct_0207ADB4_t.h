@@ -57,7 +57,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_ov16_0225BFFC * unk_34[4];
     int unk_44;
     UnkStruct_02025E6C * unk_48[4];
-    UnkStruct_0207D3C0 * unk_58;
+    Bag * unk_58;
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 * unk_60;
     UnkStruct_020797DC * unk_64;

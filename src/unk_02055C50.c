@@ -28,7 +28,7 @@
 #include "unk_020655F4.h"
 #include "unk_020677F4.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021DFB54.h"
 

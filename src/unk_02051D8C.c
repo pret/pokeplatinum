@@ -59,7 +59,7 @@
 #include "unk_0206CCB0.h"
 #include "unk_02073C2C.h"
 #include "party.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C324.h"
 
 static void sub_0205281C(UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * param1);
@@ -254,7 +254,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param2);
     Party * v1 = Party_GetFromSavedata(param2);
-    UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
+    Bag * v2 = sub_0207D990(param2);
     UnkStruct_02026324 * v3 = sub_02027560(param2);
     UnkStruct_0202CC84 * v4 = sub_0202CC98(param2);
     UnkStruct_020279FC * v5 = sub_02025E44(param2);
@@ -275,7 +275,7 @@ void sub_020521B8 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
 
     sub_02052184(param0, v0, 0);
     sub_02052164(param0, v1, 0);
-    sub_0207D3EC(v2, param0->unk_E0);
+    Sav2_Bag_copy(v2, param0->unk_E0);
     sub_02026338(v3, param0->unk_E8);
     sub_02027A10(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
@@ -309,7 +309,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     u32 v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1->unk_0C);
     Party * v3 = Party_GetFromSavedata(param1->unk_0C);
-    UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
+    Bag * v4 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v6 = sub_0202CC98(param1->unk_0C);
     UnkStruct_020279FC * v7 = sub_02025E44(param1->unk_0C);
@@ -336,7 +336,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
     }
 
     Heap_FreeToHeap(v8);
-    sub_0207D3EC(v4, param0->unk_E0);
+    Sav2_Bag_copy(v4, param0->unk_E0);
     sub_02026338(v5, param0->unk_E8);
     sub_02027A10(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
@@ -359,7 +359,7 @@ void sub_02052348 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
 void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * param1, const Party * param2, const u8 * param3)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
-    UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
+    Bag * v1 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v2 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v3 = sub_0202CC98(param1->unk_0C);
     UnkStruct_020279FC * v4 = sub_02025E44(param1->unk_0C);
@@ -406,7 +406,7 @@ void sub_020524E4 (UnkStruct_ov6_02240D5C * param0, const UnkStruct_0203CDB0 * p
         }
     }
 
-    sub_0207D3EC(v1, param0->unk_E0);
+    Sav2_Bag_copy(v1, param0->unk_E0);
     sub_02026338(v2, param0->unk_E8);
     sub_02027A10(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
@@ -443,13 +443,13 @@ void sub_020526E8 (const UnkStruct_ov6_02240D5C * param0, UnkStruct_0203CDB0 * p
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
-    UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
+    Bag * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
     u16 * v4 = sub_0203A784(sub_0203A790(param1->unk_0C));
 
     sub_02025E80(param0->unk_D0[0], v0);
     Party_cpy(param0->unk_04[0], v1);
-    sub_0207D3EC(param0->unk_E0, v2);
+    Sav2_Bag_copy(param0->unk_E0, v2);
     sub_02026338(param0->unk_E8, v3);
 
     *v4 = param0->unk_168;
@@ -459,7 +459,7 @@ void sub_02052754 (const UnkStruct_ov6_02240D5C * param0, UnkStruct_0203CDB0 * p
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
-    UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
+    Bag * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
 
     sub_02026338(param0->unk_E8, v3);

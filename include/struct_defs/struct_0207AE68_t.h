@@ -42,7 +42,7 @@ struct UnkStruct_0207AE68_t {
     void * unk_40;
     UnkStruct_02015F84 * unk_44;
     UnkStruct_02026324 * unk_48;
-    UnkStruct_0207D3C0 * unk_4C;
+    Bag * unk_4C;
     UnkStruct_0202CD88 * unk_50;
     UnkStruct_02056B24 * unk_54;
     void * unk_58;

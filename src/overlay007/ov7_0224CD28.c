@@ -61,7 +61,7 @@
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"
 #include "item.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
 #include "unk_0209AC14.h"
@@ -1548,7 +1548,7 @@ static void ov7_0224EC38 (UnkStruct_020508D4 * param0)
     ov7_0224D21C(v1);
 
     {
-        UnkStruct_0207D3C0 * v2;
+        Bag * v2;
 
         v2 = sub_0207D990(v0->unk_0C);
         v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);

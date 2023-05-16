@@ -12,7 +12,7 @@
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
-#include "unk_0207D3B8.h"
+#include "bag.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay082/ov82_0223B140.h"
 #include "overlay082/ov82_0223B2E0.h"
