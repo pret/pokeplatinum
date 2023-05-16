@@ -606,7 +606,7 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov84_0223B9AC (UnkStruct_ov84_0223B5A0 * param0)
 {
-    param0->unk_C8 = sub_0207D990(param0->unk_C4->unk_00);
+    param0->bag = sub_0207D990(param0->unk_C4->unk_00);
     param0->unk_CC = sub_02025E38(param0->unk_C4->unk_00);
     param0->unk_D0 = sub_02025E44(param0->unk_C4->unk_00);
 }
@@ -1154,7 +1154,7 @@ static void ov84_0223C3B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
     if (v1->unk_08 == 7) {
         if ((param1 != 0xfffffffd) && (param1 != 0xfffffffe)) {
-            if (sub_0207D3FC(v0->unk_C8) == v1->unk_00[param1].unk_00) {
+            if (Bag_GetRegisteredItem(v0->bag) == v1->unk_00[param1].unk_00) {
                 ov84_0223FA44(v0, param2);
             }
         }
@@ -2023,7 +2023,7 @@ static void ov84_0223D5AC (UnkStruct_ov84_0223B5A0 * param0)
             }
         }
         if (Item_GetAttributeFromStruct(v0, 4) != 0) {
-            if (sub_0207D3FC(param0->unk_C8) == param0->unk_C4->unk_66) {
+            if (Bag_GetRegisteredItem(param0->bag) == param0->unk_C4->unk_66) {
                 v3[v1] = 7;
             } else {
                 v3[v1] = 6;
@@ -2546,7 +2546,7 @@ static int ov84_0223E18C (UnkStruct_ov84_0223B5A0 * param0)
 
 static int ov84_0223E1E4 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    sub_0207D404(param0->unk_C8, param0->unk_C4->unk_66);
+    Bag_SetRegisteredItem(param0->bag, param0->unk_C4->unk_66);
     sub_020013AC(param0->unk_15C);
     ov84_0223FD84(param0);
     sub_0201A9A4(&param0->unk_04[1]);
@@ -2557,7 +2557,7 @@ static int ov84_0223E1E4 (UnkStruct_ov84_0223B5A0 * param0)
 
 static int ov84_0223E220 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    sub_0207D404(param0->unk_C8, 0);
+    Bag_SetRegisteredItem(param0->bag, 0);
     sub_020013AC(param0->unk_15C);
     ov84_0223FD84(param0);
     sub_0201A9A4(&param0->unk_04[1]);

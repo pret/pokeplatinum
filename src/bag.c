@@ -15,15 +15,15 @@
 #include "constants/items.h"
 
 typedef struct Bag_t {
-    UnkStruct_0207CDEC unk_00[NUM_BAG_ITEMS];
-    UnkStruct_0207CDEC unk_294[NUM_BAG_KEY_ITEMS];
-    UnkStruct_0207CDEC unk_35C[NUM_BAG_TMS_HMS];
-    UnkStruct_0207CDEC unk_4EC[NUM_BAG_MAIL];
-    UnkStruct_0207CDEC unk_51C[NUM_BAG_MEDICINE];
-    UnkStruct_0207CDEC unk_5BC[NUM_BAG_BERRIES];
-    UnkStruct_0207CDEC unk_6BC[NUM_BAG_BALLS];
-    UnkStruct_0207CDEC unk_6F8[NUM_BAG_BATTLE_ITEMS];
-    u32 unk_770;
+    UnkStruct_0207CDEC items[NUM_BAG_ITEMS];
+    UnkStruct_0207CDEC keyItems[NUM_BAG_KEY_ITEMS];
+    UnkStruct_0207CDEC TMsHMs[NUM_BAG_TMS_HMS];
+    UnkStruct_0207CDEC mail[NUM_BAG_MAIL];
+    UnkStruct_0207CDEC medicine[NUM_BAG_MEDICINE];
+    UnkStruct_0207CDEC berries[NUM_BAG_BERRIES];
+    UnkStruct_0207CDEC balls[NUM_BAG_BALLS];
+    UnkStruct_0207CDEC battleItems[NUM_BAG_BATTLE_ITEMS];
+    u32 registeredItem;
 } Bag;
 
 typedef struct {
@@ -73,14 +73,14 @@ void sub_0207D3EC (const Bag * param0, Bag * param1)
     MI_CpuCopy8(param0, param1, sizeof(Bag));
 }
 
-u32 sub_0207D3FC (const Bag * param0)
+u32 Bag_GetRegisteredItem (const Bag * bag)
 {
-    return param0->unk_770;
+    return bag->registeredItem;
 }
 
-void sub_0207D404 (Bag * param0, u32 param1)
+void Bag_SetRegisteredItem (Bag * bag, u32 newRegisteredItem)
 {
-    param0->unk_770 = param1;
+    bag->registeredItem = newRegisteredItem;
 }
 
 static u32 sub_0207D40C (Bag * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4)
@@ -89,35 +89,35 @@ static u32 sub_0207D40C (Bag * param0, u16 param1, UnkStruct_0207CDEC ** param2,
 
     switch (v0) {
     case 7:
-        *param2 = param0->unk_294;
+        *param2 = param0->keyItems;
         *param3 = 50;
         break;
     case 0:
-        *param2 = param0->unk_00;
+        *param2 = param0->items;
         *param3 = 165;
         break;
     case 4:
-        *param2 = param0->unk_5BC;
+        *param2 = param0->berries;
         *param3 = 64;
         break;
     case 1:
-        *param2 = param0->unk_51C;
+        *param2 = param0->medicine;
         *param3 = 40;
         break;
     case 2:
-        *param2 = param0->unk_6BC;
+        *param2 = param0->balls;
         *param3 = 15;
         break;
     case 6:
-        *param2 = param0->unk_6F8;
+        *param2 = param0->battleItems;
         *param3 = 30;
         break;
     case 5:
-        *param2 = param0->unk_4EC;
+        *param2 = param0->mail;
         *param3 = 12;
         break;
     case 3:
-        *param2 = param0->unk_35C;
+        *param2 = param0->TMsHMs;
         *param3 = 100;
         break;
     }
@@ -288,35 +288,35 @@ BOOL sub_0207D69C (Bag * param0, u32 param1)
 
     switch (param1) {
     case 7:
-        v0 = param0->unk_294;
+        v0 = param0->keyItems;
         v1 = 50;
         break;
     case 0:
-        v0 = param0->unk_00;
+        v0 = param0->items;
         v1 = 165;
         break;
     case 4:
-        v0 = param0->unk_5BC;
+        v0 = param0->berries;
         v1 = 64;
         break;
     case 1:
-        v0 = param0->unk_51C;
+        v0 = param0->medicine;
         v1 = 40;
         break;
     case 2:
-        v0 = param0->unk_6BC;
+        v0 = param0->balls;
         v1 = 15;
         break;
     case 6:
-        v0 = param0->unk_6F8;
+        v0 = param0->battleItems;
         v1 = 30;
         break;
     case 5:
-        v0 = param0->unk_4EC;
+        v0 = param0->mail;
         v1 = 12;
         break;
     case 3:
-        v0 = param0->unk_35C;
+        v0 = param0->TMsHMs;
         v1 = 100;
         break;
     default:
@@ -400,28 +400,28 @@ void * sub_0207D824 (Bag * param0, const u8 * param1, u32 param2)
     for (v1 = 0; param1[v1] != 0xff; v1++) {
         switch (param1[v1]) {
         case 7:
-            sub_0207CB48(v0, param0->unk_294, 7, v1);
+            sub_0207CB48(v0, param0->keyItems, 7, v1);
             break;
         case 0:
-            sub_0207CB48(v0, param0->unk_00, 0, v1);
+            sub_0207CB48(v0, param0->items, 0, v1);
             break;
         case 4:
-            sub_0207CB48(v0, param0->unk_5BC, 4, v1);
+            sub_0207CB48(v0, param0->berries, 4, v1);
             break;
         case 1:
-            sub_0207CB48(v0, param0->unk_51C, 1, v1);
+            sub_0207CB48(v0, param0->medicine, 1, v1);
             break;
         case 2:
-            sub_0207CB48(v0, param0->unk_6BC, 2, v1);
+            sub_0207CB48(v0, param0->balls, 2, v1);
             break;
         case 6:
-            sub_0207CB48(v0, param0->unk_6F8, 6, v1);
+            sub_0207CB48(v0, param0->battleItems, 6, v1);
             break;
         case 5:
-            sub_0207CB48(v0, param0->unk_4EC, 5, v1);
+            sub_0207CB48(v0, param0->mail, 5, v1);
             break;
         case 3:
-            sub_0207CB48(v0, param0->unk_35C, 3, v1);
+            sub_0207CB48(v0, param0->TMsHMs, 3, v1);
             break;
         }
     }
@@ -436,35 +436,35 @@ UnkStruct_0207CDEC * sub_0207D910 (Bag * param0, u16 param1, u16 param2)
 
     switch (param1) {
     case 7:
-        v0 = param0->unk_294;
+        v0 = param0->keyItems;
         v1 = 50;
         break;
     case 0:
-        v0 = param0->unk_00;
+        v0 = param0->items;
         v1 = 165;
         break;
     case 4:
-        v0 = param0->unk_5BC;
+        v0 = param0->berries;
         v1 = 64;
         break;
     case 1:
-        v0 = param0->unk_51C;
+        v0 = param0->medicine;
         v1 = 40;
         break;
     case 2:
-        v0 = param0->unk_6BC;
+        v0 = param0->balls;
         v1 = 15;
         break;
     case 6:
-        v0 = param0->unk_6F8;
+        v0 = param0->battleItems;
         v1 = 30;
         break;
     case 5:
-        v0 = param0->unk_4EC;
+        v0 = param0->mail;
         v1 = 12;
         break;
     case 3:
-        v0 = param0->unk_35C;
+        v0 = param0->TMsHMs;
         v1 = 100;
         break;
     }

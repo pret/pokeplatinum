@@ -936,7 +936,7 @@ static BOOL sub_02068EFC (UnkStruct_02068870 * param0)
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, 11);
 
-    sub_0207CC10(param0->unk_00->unk_0C, v0->unk_10, sub_0207D3FC(sub_0207D990(param0->unk_00->unk_0C)), 11);
+    sub_0207CC10(param0->unk_00->unk_0C, v0->unk_10, Bag_GetRegisteredItem(sub_0207D990(param0->unk_00->unk_0C)), 11);
     sub_02050904(param0->unk_00, sub_02068F48, v0);
 
     return 0;
@@ -1153,7 +1153,7 @@ BOOL sub_02069238 (UnkStruct_0203CDB0 * param0)
         return 0;
     }
 
-    v3 = (u16)sub_0207D3FC(sub_0207D990(param0->unk_0C));
+    v3 = (u16)Bag_GetRegisteredItem(sub_0207D990(param0->unk_0C));
     v4 = (u16)Item_GetAttribute(v3, 6, 11);
     v2 = (UnkFuncPtr_02069238)sub_020683F4(2, v4);
     v1 = (UnkFuncPtr_020EF79C)sub_020683F4(1, v4);
