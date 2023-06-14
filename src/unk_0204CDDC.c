@@ -12,6 +12,8 @@
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
 
+#include "constants/species.h"
+
 BOOL sub_0204CF68(UnkStruct_0203E724 * param0);
 BOOL sub_0204CF8C(UnkStruct_0203E724 * param0);
 BOOL sub_0204CFC4(UnkStruct_0203E724 * param0);
@@ -31,84 +33,84 @@ BOOL sub_0204CDF0 (UnkStruct_0203E724 * param0)
 }
 
 static const u16 Unk_020EBF84[6][10] = {
-    {0x0, 0x5, 0x15, 0x6, 0x1A, 0xD, 0x19, 0x1F, 0x10, 0x21},
-    {0x2, 0x13, 0x14, 0x18, 0x11, 0x0, 0x17, 0x1D, 0x1C, 0xF},
-    {0x9, 0x8, 0x3, 0x6, 0x16, 0x1E, 0x11, 0x7, 0xE, 0x20},
-    {0xC, 0x12, 0x15, 0xD, 0x1F, 0x8, 0x19, 0x18, 0x1B, 0x7},
-    {0x5, 0x3, 0x1A, 0x13, 0x14, 0x1, 0xB, 0x10, 0x16, 0xF},
-    {0xC, 0x1E, 0x2, 0x14, 0x1D, 0x4, 0x9, 0x1B, 0xE, 0xA}
+    {0x0, 0x5, 0x15, 0x6, 0x1A, 0xD, 0x19, 0x1F, 0x10, 0x21}, // Chimchar, Monferno, Infernape
+    {0x2, 0x13, 0x14, 0x18, 0x11, 0x0, 0x17, 0x1D, 0x1C, 0xF}, // Piplup, Prinplup, Empoleon
+    {0x9, 0x8, 0x3, 0x6, 0x16, 0x1E, 0x11, 0x7, 0xE, 0x20}, // Turtwig, Grotle, Torterra
+    {0xC, 0x12, 0x15, 0xD, 0x1F, 0x8, 0x19, 0x18, 0x1B, 0x7}, // Psyduck, Buneary, Drifloon
+    {0x5, 0x3, 0x1A, 0x13, 0x14, 0x1, 0xB, 0x10, 0x16, 0xF}, // Pikachu, Clefairy, Pachirisu, Happiny
+    {0xC, 0x1E, 0x2, 0x14, 0x1D, 0x4, 0x9, 0x1B, 0xE, 0xA} // Jigglypuff, Torchic, Skitty, Shroomish
 };
 
-BOOL sub_0204CE1C (UnkStruct_0203E724 * param0)
+BOOL sub_0204CE1C (UnkStruct_0203E724 * ctx)
 {
-    u8 v0, v1;
-    u16 v2;
-    u16 * v3 = inline_0204FCAC(param0);
-    u16 v4 = inline_02049538(param0);
+    u8 i, j;
+    u16 rand;
+    u16 * ret_ptr = inline_0204FCAC(ctx);
+    u16 species = inline_02049538(ctx);
 
-    v2 = sub_0201D2E8() % 100;
+    rand = sub_0201D2E8() % 100;
 
-    if (v2 < 15) {
-        v0 = 0;
-    } else if (v2 < (15 + 15)) {
-        v0 = 1;
-    } else if (v2 < (15 + 15 + 15)) {
-        v0 = 2;
-    } else if (v2 < (15 + 15 + 15 + 15)) {
-        v0 = 3;
-    } else if (v2 < (15 + 15 + 15 + 15 + 10)) {
-        v0 = 4;
-    } else if (v2 < (15 + 15 + 15 + 15 + 10 + 10)) {
-        v0 = 5;
-    } else if (v2 < (15 + 15 + 15 + 15 + 10 + 10 + 8)) {
-        v0 = 6;
-    } else if (v2 < (15 + 15 + 15 + 15 + 10 + 10 + 8 + 5)) {
-        v0 = 7;
-    } else if (v2 < (15 + 15 + 15 + 15 + 10 + 10 + 8 + 5 + 5)) {
-        v0 = 8;
+    if (rand < 15) {
+        j = 0;
+    } else if (rand < (15 + 15)) {
+        j = 1;
+    } else if (rand < (15 + 15 + 15)) {
+        j = 2;
+    } else if (rand < (15 + 15 + 15 + 15)) {
+        j = 3;
+    } else if (rand < (15 + 15 + 15 + 15 + 10)) {
+        j = 4;
+    } else if (rand < (15 + 15 + 15 + 15 + 10 + 10)) {
+        j = 5;
+    } else if (rand < (15 + 15 + 15 + 15 + 10 + 10 + 8)) {
+        j = 6;
+    } else if (rand < (15 + 15 + 15 + 15 + 10 + 10 + 8 + 5)) {
+        j = 7;
+    } else if (rand < (15 + 15 + 15 + 15 + 10 + 10 + 8 + 5 + 5)) {
+        j = 8;
     } else {
-        v0 = 9;
+        j = 9;
     }
 
-    switch (v4) {
-    case 390:
-    case 391:
-    case 392:
-        v1 = 0;
+    switch (species) {
+    case SPECIES_CHIMCHAR:
+    case SPECIES_MONFERNO:
+    case SPECIES_INFERNAPE:
+        i = 0;
         break;
-    case 393:
-    case 394:
-    case 395:
-        v1 = 1;
+    case SPECIES_PIPLUP:
+    case SPECIES_PRINPLUP:
+    case SPECIES_EMPOLEON:
+        i = 1;
         break;
-    case 387:
-    case 388:
-    case 389:
-        v1 = 2;
+    case SPECIES_TURTWIG:
+    case SPECIES_GROTLE:
+    case SPECIES_TORTERRA:
+        i = 2;
         break;
-    case 54:
-    case 427:
-    case 425:
-        v1 = 3;
+    case SPECIES_PSYDUCK:
+    case SPECIES_BUNEARY:
+    case SPECIES_DRIFLOON:
+        i = 3;
         break;
-    case 25:
-    case 35:
-    case 417:
-    case 440:
-        v1 = 4;
+    case SPECIES_PIKACHU:
+    case SPECIES_CLEFAIRY:
+    case SPECIES_PACHIRISU:
+    case SPECIES_HAPPINY:
+        i = 4;
         break;
-    case 39:
-    case 255:
-    case 300:
-    case 285:
-        v1 = 5;
+    case SPECIES_JIGGLYPUFF:
+    case SPECIES_TORCHIC:
+    case SPECIES_SKITTY:
+    case SPECIES_SHROOMISH:
+        i = 5;
         break;
 
     default:
-        v1 = 0;
+        i = 0;
     }
 
-    *v3 = Unk_020EBF84[v1][v0];
+    *ret_ptr = Unk_020EBF84[i][j];
 
     return 0;
 }
