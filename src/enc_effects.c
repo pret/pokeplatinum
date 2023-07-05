@@ -48,7 +48,7 @@ enum EncEffectsPairID {
     ENCEFF_UXIE_AZELF,
     ENCEFF_MESPRIT,
     ENCEFF_ARCEUS,
-    ENCEFF_MINOR_LEGENDARIES,   // Regigigas, Heatran, Darkrai
+    ENCEFF_MINOR_LEGENDARIES, // Regigigas, Heatran, Darkrai
     ENCEFF_CRESSELIA,
     ENCEFF_KANTO_BIRDS,
     ENCEFF_GIRATINA,
