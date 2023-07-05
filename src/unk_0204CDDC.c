@@ -45,7 +45,7 @@ BOOL sub_0204CE1C (UnkStruct_0203E724 * ctx)
 {
     u8 i, j;
     u16 rand;
-    u16 * ret_ptr = inline_0204FCAC(ctx);
+    u16 *result = inline_0204FCAC(ctx);
     u16 species = inline_02049538(ctx);
 
     rand = sub_0201D2E8() % 100;
@@ -110,7 +110,7 @@ BOOL sub_0204CE1C (UnkStruct_0203E724 * ctx)
         i = 0;
     }
 
-    *ret_ptr = Unk_020EBF84[i][j];
+    *result = Unk_020EBF84[i][j];
 
     return 0;
 }
