@@ -110,10 +110,10 @@ static const EncEffectsPair sEncEffectsTable[35] = {
 };
 
 static u32 EncEffects_GetEffectPair(const UnkStruct_ov6_02240D5C *battleParams);
-static u32 EncEffects_CutInEffectForPair(u32 param0, const UnkStruct_ov6_02240D5C * param1);
-static u32 EncEffects_BGMForPair(u32 param0, const UnkStruct_ov6_02240D5C * param1);
-static u32 EncEffects_TrainerClassEffect(u32 param0);
-static u32 EncEffects_WildPokemonEffect(Party * param0, int param1);
+static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams);
+static u32 EncEffects_BGMForPair(u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams);
+static u32 EncEffects_TrainerClassEffect(u32 trainerClass);
+static u32 EncEffects_WildPokemonEffect(Party *wildParty, int zoneHeaderID);
 
 inline BOOL EncEffects_Galactic(u32 effect)
 {
@@ -177,24 +177,24 @@ static u32 EncEffects_GetEffectPair (const UnkStruct_ov6_02240D5C *battleParams)
     return pokemonEffect;
 }
 
-static u32 EncEffects_CutInEffectForPair (u32 effectID, const UnkStruct_ov6_02240D5C *battleParams)
+static u32 EncEffects_CutInEffectForPair (u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams)
 {
-    GF_ASSERT(effectID < ENCEFF_MAX);
+    GF_ASSERT(effectPairID < ENCEFF_MAX);
 
     // If the cut-in effect specifies, determine what effect to use
     // based on the encounter locale.
-    if (sEncEffectsTable[effectID].cutInEffect == ENCEFF_CUTIN_USE_LOCAL) {
+    if (sEncEffectsTable[effectPairID].cutInEffect == ENCEFF_CUTIN_USE_LOCAL) {
         return CutInEffects_ForBattle(battleParams);
     }
     
-    return sEncEffectsTable[effectID].cutInEffect;
+    return sEncEffectsTable[effectPairID].cutInEffect;
 }
 
-static u32 EncEffects_BGMForPair (u32 effectID, const UnkStruct_ov6_02240D5C *battleParams)
+static u32 EncEffects_BGMForPair (u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams)
 {
-    GF_ASSERT(effectID < ENCEFF_MAX);
+    GF_ASSERT(effectPairID < ENCEFF_MAX);
 
-    return sEncEffectsTable[effectID].sdatBGMusic;
+    return sEncEffectsTable[effectPairID].sdatBGMusic;
 }
 
 u32 EncEffects_CutInEffect (const UnkStruct_ov6_02240D5C *battleParams)
