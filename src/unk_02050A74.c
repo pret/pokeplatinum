@@ -31,7 +31,7 @@
 #include "unk_020507CC.h"
 #include "unk_020508D4.h"
 #include "unk_02050A74.h"
-#include "unk_02051B50.h"
+#include "enc_effects.h"
 #include "unk_02051D8C.h"
 #include "unk_020528D0.h"
 #include "unk_020530C8.h"
@@ -341,12 +341,12 @@ void sub_02050E10 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     if (sub_0206AE5C(sub_020507E4(param0->unk_0C))) {
         UnkStruct_02050ACC * v0;
 
-        v0 = sub_02050ACC(param1, sub_02051C00(param1), sub_02051C10(param1), NULL);
+        v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
         sub_02050904(param0, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 * v1;
 
-        v1 = sub_02050DD4(param1, sub_02051C00(param1), sub_02051C10(param1), NULL);
+        v1 = sub_02050DD4(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
         sub_02050904(param0, sub_02050EE0, v1);
     }
 }
@@ -356,12 +356,12 @@ void sub_02050E78 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1, Unk
     if (sub_0206AE5C(sub_020507E4(param0->unk_0C))) {
         UnkStruct_02050ACC * v0;
 
-        v0 = sub_02050ACC(param2, sub_02051C00(param2), sub_02051C10(param2), NULL);
+        v0 = sub_02050ACC(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
         sub_02050924(param1, sub_02051074, v0);
     } else {
         UnkStruct_02050DD4 * v1;
 
-        v1 = sub_02050DD4(param2, sub_02051C00(param2), sub_02051C10(param2), NULL);
+        v1 = sub_02050DD4(param2, EncEffects_CutInEffect(param2), EncEffects_BGM(param2), NULL);
         sub_02050924(param1, sub_02050EE0, v1);
     }
 }
@@ -548,7 +548,7 @@ void sub_0205120C (UnkStruct_020508D4 * param0, int * param1)
     ov6_02242034(v2, v1);
 
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 6));
-    sub_02050C4C(param0, v1, sub_02051C00(v1), sub_02051C10(v1), param1);
+    sub_02050C4C(param0, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param1);
 }
 
 void sub_02051270 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * param3, BOOL param4)
@@ -570,7 +570,7 @@ void sub_02051270 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     }
 
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 6));
-    sub_02050C4C(param0, v1, sub_02051C00(v1), sub_02051C10(v1), param3);
+    sub_02050C4C(param0, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
 void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * param3, BOOL param4)
@@ -599,7 +599,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     }
 
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 6));
-    sub_02050C4C(param0, v1, sub_02051C00(v1), sub_02051C10(v1), param3);
+    sub_02050C4C(param0, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
 static BOOL sub_0205136C (UnkStruct_020508D4 * param0)
@@ -661,7 +661,7 @@ void sub_02051450 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
 {
     UnkStruct_02050ACC * v0;
 
-    v0 = sub_02050ACC(param1, sub_02051C00(param1), sub_02051C10(param1), NULL);
+    v0 = sub_02050ACC(param1, EncEffects_CutInEffect(param1), EncEffects_BGM(param1), NULL);
     sub_02050904(param0, sub_0205136C, v0);
 }
 
@@ -683,7 +683,7 @@ void sub_02051480 (UnkStruct_020508D4 * param0, int param1, int param2, int * pa
 
     sub_02079170(v1, v2->unk_0C, param2);
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 7));
-    sub_02050C4C(param0, v1, sub_02051C00(v1), sub_02051C10(v1), param3);
+    sub_02050C4C(param0, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
 
 static BOOL sub_020514E8 (UnkStruct_020508D4 * param0)
@@ -734,7 +734,7 @@ void sub_02051590 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v2 = sub_02050A60(param0);
 
     v1 = sub_02051F4C(11, v2);
-    v0 = sub_02050ACC(v1, sub_02051C00(v1), sub_02051C10(v1), NULL);
+    v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
     sub_02050944(param0, sub_020514E8, v0);
 }
@@ -774,7 +774,7 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
     sub_02079170(v2, v3->unk_0C, param4);
     sub_0202CF28(sub_0202CD88(v3->unk_0C), (1 + 7));
-    sub_02050C4C(param0, v2, sub_02051C00(v2), sub_02051C10(v2), param5);
+    sub_02050C4C(param0, v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), param5);
 }
 
 void sub_0205167C (UnkStruct_020508D4 * param0, const u8 * param1, int param2)
@@ -786,7 +786,7 @@ void sub_0205167C (UnkStruct_020508D4 * param0, const u8 * param1, int param2)
     v2 = sub_02051D8C(11, param2);
     sub_020526CC(v2, v0, param1);
 
-    v1 = sub_02050ACC(v2, sub_02051C00(v2), sub_02051C10(v2), NULL);
+    v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
     sub_02050944(param0, sub_02050CA8, v1);
 }
 
@@ -844,7 +844,7 @@ void sub_020516F4 (UnkStruct_020508D4 * param0, int param1, int param2, int para
 
     v2->unk_18A = v5;
 
-    v1 = sub_02050ACC(v2, sub_02051C00(v2), sub_02051C10(v2), NULL);
+    v1 = sub_02050ACC(v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), NULL);
     v1->unk_0C = param1;
 
     sub_02050944(param0, sub_02050D4C, v1);
@@ -885,7 +885,7 @@ void sub_020517E8 (UnkStruct_0203CDB0 * param0, const u8 * param1, int param2)
     sub_0202F1F8(param0->unk_0C, 11, &v2);
 
     v1->unk_18A = sub_020516C8(param0->unk_B0, param2);
-    v0 = sub_02050ACC(v1, sub_02051C00(v1), sub_02051C10(v1), NULL);
+    v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
     sub_02050904(param0, sub_02051790, v0);
 }
@@ -902,7 +902,7 @@ void sub_0205184C (UnkStruct_0203CDB0 * param0, const Party * param1, int param2
     sub_0202F1F8(param0->unk_0C, 11, &v2);
 
     v1->unk_18A = sub_020516C8(param0->unk_B0, param2);
-    v0 = sub_02050ACC(v1, sub_02051C00(v1), sub_02051C10(v1), NULL);
+    v0 = sub_02050ACC(v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), NULL);
 
     sub_02050904(param0, sub_02051790, v0);
 }
@@ -1026,5 +1026,5 @@ void sub_02051ABC (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     v1->unk_12C = 23;
 
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 6));
-    sub_02050C4C(param0, v1, sub_02051C00(v1), sub_02051C10(v1), param3);
+    sub_02050C4C(param0, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }

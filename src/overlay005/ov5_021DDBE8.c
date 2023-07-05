@@ -1397,7 +1397,7 @@ static void ov5_021DEE84 (UnkStruct_ov5_021DED04 * param0)
     param0->unk_E0 = NULL;
 }
 
-u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
+u32 CutInEffects_ForBattle (const UnkStruct_ov6_02240D5C * param0)
 {
     int v0;
     int v1;
@@ -1415,8 +1415,8 @@ u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
         v2 = 0;
     }
 
-    v3 = sub_02054A40(param0->unk_04[0]);
-    v4 = sub_02054A40(param0->unk_04[1]);
+    v3 = Party_FirstBattler(param0->unk_04[0]);
+    v4 = Party_FirstBattler(param0->unk_04[1]);
     v5 = GetMonData(v3, MON_DATA_161, NULL);
     v6 = GetMonData(v4, MON_DATA_161, NULL);
     v0 = v6 - v5;

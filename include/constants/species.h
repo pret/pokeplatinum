@@ -257,7 +257,7 @@
 #define SPECIES_HO_OH           250
 #define SPECIES_CELEBI          251
 
-#define JOHTO_DEX_COUNT         (KANTO_DEX_COUNT - SPECIES_CELEBI)
+#define JOHTO_DEX_COUNT         (SPECIES_CELEBI - KANTO_DEX_COUNT)
 
 #define SPECIES_TREECKO         252
 #define SPECIES_GROVYLE         253
@@ -395,7 +395,7 @@
 #define SPECIES_JIRACHI         385
 #define SPECIES_DEOXYS          386
 
-#define HOENN_DEX_COUNT         (JOHTO_DEX_COUNT - SPECIES_DEOXYS)
+#define HOENN_DEX_COUNT         (SPECIES_DEOXYS - JOHTO_DEX_COUNT)
 
 #define SPECIES_TURTWIG         387
 #define SPECIES_GROTLE          388
@@ -505,7 +505,7 @@
 #define SPECIES_SHAYMIN         492
 #define SPECIES_ARCEUS          493
 
-#define SINNOH_DEX_COUNT        (HOENN_DEX_COUNT - SPECIES_ARCEUS)
+#define SINNOH_DEX_COUNT        (SPECIES_ARCEUS - HOENN_DEX_COUNT)
 #define NATIONAL_DEX_COUNT      SPECIES_ARCEUS
 
 #define SPECIES_EGG             494

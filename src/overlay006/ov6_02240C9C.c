@@ -267,7 +267,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
             if (!sub_0202D9D8(sub_0202D834(param0->unk_0C))) {
                 Pokemon * v16;
 
-                v16 = sub_02054A40(v11);
+                v16 = Party_FirstBattler(v11);
 
                 v14.unk_04 = 1;
                 v14.unk_0C = GetMonData(v16, MON_DATA_161, NULL);
@@ -646,7 +646,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C ** param1
             if (!sub_0202D9D8(sub_0202D834(param0->unk_0C))) {
                 Pokemon * v15;
 
-                v15 = sub_02054A40(v10);
+                v15 = Party_FirstBattler(v10);
 
                 v13.unk_04 = 1;
                 v13.unk_0C = GetMonData(v15, MON_DATA_161, NULL);
