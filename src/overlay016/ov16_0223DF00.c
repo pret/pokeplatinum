@@ -33,9 +33,9 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "struct_defs/struct_0207ADB4_t.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
 #include "overlay016/struct_ov16_0225C300.h"
 #include "overlay016/struct_ov16_022674C4.h"
@@ -106,7 +106,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(UnkStruct_0207ADB4 * param0);
 UnkStruct_0200B358 * ov16_0223E0D0(UnkStruct_0207ADB4 * param0);
 Strbuf* ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
 u16 ov16_0223E0D8(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_0207A9CC * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
+TrainerData * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_02025E6C * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_0207D3C0 * ov16_0223E1AC(UnkStruct_0207ADB4 * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(UnkStruct_0207ADB4 * param0);
@@ -126,7 +126,7 @@ u32 ov16_0223EBEC(UnkStruct_0207ADB4 * param0);
 int ov16_0223EBF8(UnkStruct_0207ADB4 * param0);
 int ov16_0223EC04(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223EC58(UnkStruct_0207ADB4 * param0, int param1, u8 param2);
-u16 ov16_0223ECC4(UnkStruct_ov6_02240D5C * param0, int * param1, int * param2);
+u16 ov16_0223ECC4(BattleParams * param0, int * param1, int * param2);
 u8 ov16_0223ED60(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223ED6C(UnkStruct_0207ADB4 * param0);
 int ov16_0223ED8C(UnkStruct_0207ADB4 * param0);
@@ -426,7 +426,7 @@ u16 ov16_0223E0D8 (UnkStruct_0207ADB4 * param0, int param1)
     }
 }
 
-UnkStruct_0207A9CC * ov16_0223E120 (UnkStruct_0207ADB4 * param0, int param1)
+TrainerData * ov16_0223E120 (UnkStruct_0207ADB4 * param0, int param1)
 {
     if ((param0->unk_2C & 0x8) || ((param0->unk_2C & 0x10) && (ov16_0223E1F8(param0, param1) & 0x1))) {
         return &param0->unk_AC[param1];
@@ -975,7 +975,7 @@ u8 ov16_0223EC58 (UnkStruct_0207ADB4 * param0, int param1, u8 param2)
     return 0;
 }
 
-u16 ov16_0223ECC4 (UnkStruct_ov6_02240D5C * param0, int * param1, int * param2)
+u16 ov16_0223ECC4 (BattleParams * param0, int * param1, int * param2)
 {
     Pokemon * v0;
     u16 v1;
@@ -995,9 +995,9 @@ u16 ov16_0223ECC4 (UnkStruct_ov6_02240D5C * param0, int * param1, int * param2)
         }
 
         if (param1[0] < 6) {
-            v0 = Party_GetPokemonBySlotIndex(param0->unk_04[0], param1[0]);
+            v0 = Party_GetPokemonBySlotIndex(param0->parties[0], param1[0]);
 
-            if ((v1 = sub_02076B94(param0->unk_04[0], v0, 0, param0->unk_13C, param2))) {
+            if ((v1 = sub_02076B94(param0->parties[0], v0, 0, param0->unk_13C, param2))) {
                 return v1;
             }
         }
@@ -2341,7 +2341,7 @@ static void ov16_02240538 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
 
 static void ov16_02240544 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
 {
-    UnkStruct_0207A9CC * v0;
+    TrainerData * v0;
 
     v0 = ov16_0223E120(param0, param2);
     sub_0200B9D0(param0->unk_14, param1, v0);
@@ -2349,7 +2349,7 @@ static void ov16_02240544 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
 
 static void ov16_0224055C (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
 {
-    UnkStruct_0207A9CC * v0;
+    TrainerData * v0;
 
     v0 = ov16_0223E120(param0, param2);
     sub_0200BA74(param0->unk_14, param1, v0);

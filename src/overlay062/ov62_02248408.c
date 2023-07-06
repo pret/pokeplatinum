@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_0202F41C.h"
 #include "struct_defs/pokemon.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "unk_02002B7C.h"
 #include "unk_0200AC5C.h"
@@ -28,7 +28,7 @@ static void ov62_0224856C(Strbuf *param0, int param1);
 
 extern UnkStruct_0202F264 * Unk_021C07A4;
 
-void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1, int param2)
+void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int param2)
 {
     UnkStruct_0202F298 * v0 = &param0->unk_E8;
     UnkStruct_0202F41C * v1 = &param0->unk_84;
@@ -46,32 +46,32 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, UnkStruct_ov6_02240D5C * param1
 
     for (v4 = 0; v4 < v2; v4++) {
         for (v10 = 8 - 1; v10 > -1; v10--) {
-            if (param1->unk_28[v4].unk_14[v10] == 0xffff) {
+            if (param1->trainerData[v4].unk_14[v10] == 0xffff) {
                 break;
             }
         }
 
         if (v10 == -1) {
             ov62_0224856C(v7, param2);
-            Strbuf_ToChars(v7, param1->unk_28[v4].unk_14, 8);
+            Strbuf_ToChars(v7, param1->trainerData[v4].unk_14, 8);
             continue;
         }
 
         Strbuf_Clear(v6);
-        Strbuf_CopyChars(v6, param1->unk_28[v4].unk_14);
+        Strbuf_CopyChars(v6, param1->trainerData[v4].unk_14);
 
         if (sub_02002DB4(0, v6, v7) == 0) {
             ov62_0224856C(v7, param2);
-            Strbuf_ToChars(v7, param1->unk_28[v4].unk_14, 8);
+            Strbuf_ToChars(v7, param1->trainerData[v4].unk_14, 8);
             continue;
         }
     }
 
     for (v4 = 0; v4 < v2; v4++) {
-        v12 = Party_GetCurrentCount(param1->unk_04[v4]);
+        v12 = Party_GetCurrentCount(param1->parties[v4]);
 
         for (v11 = 0; v11 < v12; v11++) {
-            v13 = Party_GetPokemonBySlotIndex(param1->unk_04[v4], v11);
+            v13 = Party_GetPokemonBySlotIndex(param1->parties[v4], v11);
 
             if (GetMonData(v13, MON_DATA_172, NULL) == 0) {
                 break;

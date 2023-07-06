@@ -33,7 +33,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay012/struct_ov12_02237F38.h"
@@ -621,11 +621,11 @@ void ov16_0225D360 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
         v0->unk_0C = 0;
     } else {
         {
-            UnkStruct_0207A9CC * v1;
+            TrainerData * v1;
 
             v1 = ov16_0223E120(param0, param1->unk_190);
             v0->unk_0B = 0;
-            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->unk_190, v1->unk_01));
+            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->unk_190, v1->class));
         }
     }
 

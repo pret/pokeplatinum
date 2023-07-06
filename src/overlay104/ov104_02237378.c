@@ -14,7 +14,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0208BE5C.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
@@ -153,14 +153,14 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
     int v1, v2, v3, v4, v5;
     u32 v6, v7, v8;
     UnkStruct_ov104_0223BFFC * v9;
-    UnkStruct_ov6_02240D5C * v10;
+    BattleParams * v10;
     Pokemon * v11;
     Pokemon * v12;
 
     v9 = sub_0209B978(param0->unk_00->unk_00);
     v10 = v9->unk_0C;
 
-    v9->unk_1D = ov104_02238538(v9, v10->unk_04[0], v10->unk_04[2], v10->unk_18C);
+    v9->unk_1D = ov104_02238538(v9, v10->parties[0], v10->parties[2], v10->unk_18C);
     v9->unk_28 = sub_02052868(v10->unk_14);
 
     if (v9->unk_13 == 27) {
@@ -171,14 +171,14 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
         v3 = 2;
     }
 
-    ov104_02239054(v10->unk_04[v2], v9->unk_70, 0, 0);
-    ov104_02239054(v10->unk_04[v2], v9->unk_70, 1, 1);
+    ov104_02239054(v10->parties[v2], v9->unk_70, 0, 0);
+    ov104_02239054(v10->parties[v2], v9->unk_70, 1, 1);
 
     if (ov104_0223BA14(v9->unk_10) == 0) {
-        ov104_02239054(v10->unk_04[v2], v9->unk_70, 2, 2);
+        ov104_02239054(v10->parties[v2], v9->unk_70, 2, 2);
     } else {
-        ov104_02239054(v10->unk_04[v3], v9->unk_70, 0, 2);
-        ov104_02239054(v10->unk_04[v3], v9->unk_70, 1, 3);
+        ov104_02239054(v10->parties[v3], v9->unk_70, 0, 2);
+        ov104_02239054(v10->parties[v3], v9->unk_70, 1, 3);
     }
 
     if (v9->unk_13 == 17) {
@@ -226,7 +226,7 @@ BOOL ov104_02237460 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_022375F8 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_ov6_02240D5C * v0;
+    BattleParams * v0;
     UnkStruct_ov104_0223BFFC * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 

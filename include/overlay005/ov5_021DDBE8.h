@@ -22,7 +22,7 @@
 #include "overlay005/struct_ov5_021DEA98_decl.h"
 #include "overlay005/struct_ov5_021DEC18_decl.h"
 #include "overlay005/struct_ov5_021DED04_decl.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include <nitro/fx/fx.h>
 
@@ -77,7 +77,7 @@ BOOL ov5_021DECB8(UnkStruct_ov5_021DEC18 * param0);
 UnkStruct_ov5_021DED04 * ov5_021DECEC(void);
 void ov5_021DED04(UnkStruct_ov5_021DED04 * param0);
 void ov5_021DED20(UnkStruct_ov5_021DDC28 * param0, UnkStruct_ov5_021DED04 * param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
-u32 ov5_021DEEC8(const UnkStruct_ov6_02240D5C * param0);
+u32 CutInEffects_ForBattle(const BattleParams * param0);
 void ov5_021DEF8C(int * param0);
 void ov5_021DEFA0(UnkStruct_0203CDB0 * param0);
 void ov5_021DF038(void);

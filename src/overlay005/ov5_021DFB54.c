@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay005/struct_ov5_021F8E3C.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "unk_02005474.h"
 #include "unk_0200D9E8.h"
@@ -893,7 +893,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
 
             if (sub_0205DD0C(v7) == 1) {
                 UnkStruct_0203CDB0 * v8 = sub_02050A60(param0);
-                UnkStruct_ov6_02240D5C * v9;
+                BattleParams * v9;
 
                 if (ov6_022413E4(v8, &v9) == 1) {
                     sub_0205EFF0(v0->unk_0C, 1);

@@ -15,7 +15,7 @@
 #include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02078B40.h"
 #include "struct_defs/struct_party.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "unk_02006224.h"
 #include "unk_02017728.h"
@@ -94,7 +94,7 @@ void * sub_0202F27C (void)
     return &v0[sizeof(u32)];
 }
 
-BOOL sub_0202F298 (UnkStruct_021C0794 * param0, int param1, int * param2, UnkStruct_ov6_02240D5C * param3, int param4)
+BOOL sub_0202F298 (UnkStruct_021C0794 * param0, int param1, int * param2, BattleParams * param3, int param4)
 {
     UnkStruct_0202F298 * v0;
     UnkStruct_0202F41C * v1;
@@ -438,7 +438,7 @@ u8 sub_0202F884 (int param0, int param1)
     return Unk_021C07A4->unk_E8.unk_150.unk_00[param0][param1];
 }
 
-void sub_0202F8AC (UnkStruct_ov6_02240D5C * param0)
+void sub_0202F8AC (BattleParams * param0)
 {
     int v0;
     UnkStruct_0202F298 * v1;
@@ -451,12 +451,12 @@ void sub_0202F8AC (UnkStruct_ov6_02240D5C * param0)
     v1 = &Unk_021C07A4->unk_E8;
     v2 = &v1->unk_00;
 
-    v2->unk_00 = param0->unk_00;
+    v2->unk_00 = param0->battleType;
     v2->unk_04 = param0->unk_14;
     v2->unk_E8 = param0->unk_128;
     v2->unk_EC = param0->unk_12C;
     v2->unk_F0 = param0->unk_130;
-    v2->unk_F4 = param0->unk_134;
+    v2->unk_F4 = param0->mapHeaderID;
     v2->unk_F8 = param0->unk_138;
     v2->unk_FC = param0->unk_13C;
     v2->unk_100 = param0->unk_140;
@@ -474,7 +474,7 @@ void sub_0202F8AC (UnkStruct_ov6_02240D5C * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         v2->unk_08[v0] = param0->unk_18[v0];
-        v2->unk_18[v0] = param0->unk_28[v0];
+        v2->unk_18[v0] = param0->trainerData[v0];
 
         if (param0->unk_154[v0] == 0) {
             v2->unk_114[v0] = 0x140;
@@ -487,7 +487,7 @@ void sub_0202F8AC (UnkStruct_ov6_02240D5C * param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0202FCE8(param0->unk_04[v0], &v1->unk_1150[v0]);
+        sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
         sub_02025E80(param0->unk_D0[v0], &v1->unk_1B68[v0]);
 
         v2->unk_14C[v0] = sub_02006494(param0->unk_F0[v0]);
@@ -533,16 +533,16 @@ BOOL sub_0202FAC0 (void)
     return 1;
 }
 
-void sub_0202FAFC (UnkStruct_ov6_02240D5C * param0, UnkStruct_021C0794 * param1)
+void sub_0202FAFC (BattleParams * param0, UnkStruct_021C0794 * param1)
 {
     int v0;
     UnkStruct_0202F298 * v1 = &Unk_021C07A4->unk_E8;
 
-    param0->unk_00 = v1->unk_00.unk_00;
+    param0->battleType = v1->unk_00.unk_00;
     param0->unk_128 = v1->unk_00.unk_E8;
     param0->unk_12C = v1->unk_00.unk_EC;
     param0->unk_130 = v1->unk_00.unk_F0;
-    param0->unk_134 = v1->unk_00.unk_F4;
+    param0->mapHeaderID = v1->unk_00.unk_F4;
     param0->unk_138 = v1->unk_00.unk_F8;
     param0->unk_13C = v1->unk_00.unk_FC;
     param0->unk_140 = v1->unk_00.unk_100;
@@ -561,11 +561,11 @@ void sub_0202FAFC (UnkStruct_ov6_02240D5C * param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_18[v0] = v1->unk_00.unk_08[v0];
-        param0->unk_28[v0] = v1->unk_00.unk_18[v0];
+        param0->trainerData[v0] = v1->unk_00.unk_18[v0];
         param0->unk_154[v0] = v1->unk_00.unk_114[v0];
         param0->unk_178[v0] = v1->unk_00.unk_134[v0];
 
-        sub_0202FD30(&v1->unk_1150[v0], param0->unk_04[v0]);
+        sub_0202FD30(&v1->unk_1150[v0], param0->parties[v0]);
         sub_02025E80(&v1->unk_1B68[v0], param0->unk_D0[v0]);
 
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
@@ -650,7 +650,7 @@ UnkStruct_0202F41C * sub_0202FE04 (void)
     return &Unk_021C07A4->unk_84;
 }
 
-void sub_0202FE20 (UnkStruct_02030A80 * param0, UnkStruct_0202F41C * param1, UnkStruct_0202F298 * param2, UnkStruct_ov6_02240D5C * param3, UnkStruct_021C0794 * param4)
+void sub_0202FE20 (UnkStruct_02030A80 * param0, UnkStruct_0202F41C * param1, UnkStruct_0202F298 * param2, BattleParams * param3, UnkStruct_021C0794 * param4)
 {
     GF_ASSERT(Unk_021C07A4 != NULL);
 

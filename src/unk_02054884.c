@@ -123,7 +123,7 @@ int sub_02054A10 (const Party * param0)
     return v2;
 }
 
-Pokemon * sub_02054A40 (const Party * param0)
+Pokemon * Party_FirstBattler (const Party * param0)
 {
     int v0, v1;
     Pokemon * v2;

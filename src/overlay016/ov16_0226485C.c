@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/pokemon.h"
+
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -499,7 +501,7 @@ void ov16_02265124 (UnkStruct_0207ADB4 * param0, int param1)
     UnkStruct_ov16_02265124 v0;
 
     v0.unk_00 = 8;
-    v0.unk_02 = param0->unk_AC[param1].unk_01;
+    v0.unk_02 = param0->unk_AC[param1].class;
     v0.unk_01 = param0->unk_A8[param1];
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265124));
@@ -528,7 +530,7 @@ void ov16_022651A8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
     UnkStruct_ov16_022651A8 v0;
 
     v0.unk_00 = 11;
-    v0.unk_02 = param0->unk_AC[param1].unk_01;
+    v0.unk_02 = param0->unk_AC[param1].class;
     v0.unk_01 = param0->unk_A8[param1];
     v0.unk_04 = param2;
 

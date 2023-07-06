@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/pokemon.h"
+
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -11,7 +13,7 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 
 #include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
@@ -435,12 +437,12 @@ void sub_0200B998 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200B9D0 (UnkStruct_0200B358 * param0, u32 param1, UnkStruct_0207A9CC * param2)
+void sub_0200B9D0 (UnkStruct_0200B358 * param0, u32 param1, TrainerData * param2)
 {
     UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, 619, param0->unk_04);
 
     if (v0) {
-        sub_0200B1B8(v0, param2->unk_01, param0->unk_0C);
+        sub_0200B1B8(v0, param2->class, param0->unk_0C);
         sub_0200B448(param0, param1, param0->unk_0C, NULL);
         sub_0200B190(v0);
     }
@@ -468,7 +470,7 @@ void sub_0200BA40 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200BA74 (UnkStruct_0200B358 * param0, u32 param1, UnkStruct_0207A9CC * param2)
+void sub_0200BA74 (UnkStruct_0200B358 * param0, u32 param1, TrainerData * param2)
 {
     Strbuf_CopyChars(param0->unk_0C, &param2->unk_14[0]);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);

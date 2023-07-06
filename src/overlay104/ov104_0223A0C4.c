@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 #include "struct_defs/struct_0204B404.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223A348.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
@@ -629,10 +629,10 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
 	}
 };
 
-void sub_02052894(UnkStruct_ov6_02240D5C * param0);
+void sub_02052894(BattleParams * param0);
 BOOL ov104_0223A0C4(UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param1, u16 param2, int param3, u16 * param4, u16 * param5, UnkStruct_0204B404 * param6, int param7);
 void ov104_0223A30C(UnkStruct_021C0794 * param0, UnkStruct_ov104_0223A348 * param1, const u8 param2);
-UnkStruct_ov6_02240D5C * ov104_0223A580(UnkStruct_0204AFC4 * param0, UnkStruct_ov104_02230BE4 * param1);
+BattleParams * ov104_0223A580(UnkStruct_0204AFC4 * param0, UnkStruct_ov104_02230BE4 * param1);
 void ov104_0223A734(UnkStruct_0204AFC4 * param0, u16 param1);
 u16 ov104_0223A750(UnkStruct_0204AFC4 * param0, const u16 * param1);
 int ov104_0223A768(u8 param0);
@@ -642,7 +642,7 @@ static BOOL ov104_0223A118(UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * par
 static void ov104_0223A348(UnkStruct_ov104_0223A348 * param0, const u8 param1);
 static u32 ov104_0223A3A8(UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_sub2 * param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8);
 static u32 ov104_0223A700(u8 param0);
-static void ov104_0223A6AC(UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4);
+static void ov104_0223A6AC(BattleParams * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4);
 static int ov104_0223A7AC(u8 param0);
 
 BOOL ov104_0223A0C4 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param1, u16 param2, int param3, u16 * param4, u16 * param5, UnkStruct_0204B404 * param6, int param7)
@@ -900,12 +900,12 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     return v2;
 }
 
-UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_02230BE4 * param1)
+BattleParams * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_02230BE4 * param1)
 {
     int v0;
     u8 v1;
     u32 v2;
-    UnkStruct_ov6_02240D5C * v3;
+    BattleParams * v3;
     UnkStruct_021C0794 * v4;
     Party * v5;
     Pokemon * v6;
@@ -922,7 +922,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     v6 = AllocMonZeroed(param0->unk_04);
     v1 = 50;
 
-    Party_InitWithCapacity(v3->unk_04[0], param0->unk_0E);
+    Party_InitWithCapacity(v3->parties[0], param0->unk_0E);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v5, param0->unk_2A[v0]), v6);
@@ -943,7 +943,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     ov104_0223A6AC(v3, &(param0->unk_78[0]), param0->unk_0E, 1, param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
-        v3->unk_28[v0].unk_0C = (0x1 | 0x2 | 0x4);
+        v3->trainerData[v0].unk_0C = (0x1 | 0x2 | 0x4);
     }
 
     switch (param0->unk_0F) {
@@ -960,7 +960,7 @@ UnkStruct_ov6_02240D5C * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_
     return v3;
 }
 
-static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4)
+static void ov104_0223A6AC (BattleParams * param0, UnkStruct_ov104_0223A348 * param1, int param2, int param3, int param4)
 {
     int v0, v1;
     Pokemon * v2;
@@ -970,7 +970,7 @@ static void ov104_0223A6AC (UnkStruct_ov6_02240D5C * param0, UnkStruct_ov104_022
 
     for (v0 = 0; v0 < param2; v0++) {
         ov104_0222DF40(&param1->unk_30[v0], v2, 120);
-        Party_AddPokemon(param0->unk_04[param3], v2);
+        Party_AddPokemon(param0->parties[param3], v2);
     }
 
     Heap_FreeToHeap(v2);

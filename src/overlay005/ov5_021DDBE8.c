@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
+
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -31,7 +33,7 @@
 #include "overlay005/struct_ov5_021DE47C.h"
 #include "overlay005/struct_ov5_021DE5A4.h"
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay083/struct_ov83_0223D9A8.h"
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay097/struct_ov97_0222DB78.h"
@@ -1397,7 +1399,7 @@ static void ov5_021DEE84 (UnkStruct_ov5_021DED04 * param0)
     param0->unk_E0 = NULL;
 }
 
-u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
+u32 CutInEffects_ForBattle (const BattleParams * param0)
 {
     int v0;
     int v1;
@@ -1406,17 +1408,19 @@ u32 ov5_021DEEC8 (const UnkStruct_ov6_02240D5C * param0)
     Pokemon * v4;
     int v5, v6;
 
-    if (param0->unk_00 & 0x1) {
+    if (param0->battleType & BATTLE_TYPE_TRAINER) {
         v2 = 1;
-    } else if ((param0->unk_00 & (0x100 | 0x20 | 0x200 | 0x400)) || (param0->unk_00 == 0x0)) {
+    // Implicitly, this must be a wild battle
+    } else if ((param0->battleType & BATTLE_TYPE_SPECIAL_WILD)
+            || (param0->battleType == BATTLE_TYPE_SINGLES)) {
         v2 = 0;
     } else {
         GF_ASSERT(0);
         v2 = 0;
     }
 
-    v3 = sub_02054A40(param0->unk_04[0]);
-    v4 = sub_02054A40(param0->unk_04[1]);
+    v3 = Party_FirstBattler(param0->parties[0]);
+    v4 = Party_FirstBattler(param0->parties[1]);
     v5 = GetMonData(v3, MON_DATA_161, NULL);
     v6 = GetMonData(v4, MON_DATA_161, NULL);
     v0 = v6 - v5;

@@ -62,7 +62,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098D38.h"
 #include "struct_defs/struct_020997B8.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/struct_ov90_021D0D80.h"
@@ -267,7 +267,7 @@ const UnkStruct_0208BE5C Unk_020EA358 = {
     FS_OVERLAY_ID(overlay16)
 };
 
-void sub_0203D1D4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
+void sub_0203D1D4 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 {
     sub_0203CD84(param0, &Unk_020EA358, param1);
 }
