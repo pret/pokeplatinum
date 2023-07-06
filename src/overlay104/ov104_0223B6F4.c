@@ -10,7 +10,7 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223BA10.h"
@@ -35,7 +35,7 @@ static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
 u8 ov104_0223B7A8(u8 param0, BOOL param1);
 u8 ov104_0223B7DC(u8 param0, BOOL param1);
-UnkStruct_ov6_02240D5C * ov104_0223B810(UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov104_02230BE4 * param1);
+BattleParams * ov104_0223B810(UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov104_02230BE4 * param1);
 static u32 ov104_0223B9E4(u8 param0);
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 * param0);
 BOOL ov104_0223BA14(u8 param0);
@@ -46,7 +46,7 @@ void ov104_0223BAA0(UnkStruct_ov104_0223BA10 * param0, Party * param1, Pokemon *
 static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BC24(u16 param0);
-void sub_02052894(UnkStruct_ov6_02240D5C * param0);
+void sub_02052894(BattleParams * param0);
 void ov104_0223BB84(UnkStruct_02018340 * param0, UnkStruct_ov104_0223BA10 * param1, u32 param2);
 static void ov104_0223BBC4(u16 * param0, u16 param1);
 
@@ -158,12 +158,12 @@ u8 ov104_0223B7DC (u8 param0, BOOL param1)
     return 3;
 }
 
-UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov104_02230BE4 * param1)
+BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov104_02230BE4 * param1)
 {
     int v0;
     u32 v1;
     u8 v2, v3, v4;
-    UnkStruct_ov6_02240D5C * v5;
+    BattleParams * v5;
     Pokemon * v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
@@ -181,7 +181,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
     v5->unk_128 = 21;
     v5->unk_12C = 21;
 
-    Party_InitWithCapacity(v5->unk_04[0], v2);
+    Party_InitWithCapacity(v5->parties[0], v2);
 
     if (sub_0203608C() == 0) {
         v4 = 0;
@@ -204,10 +204,10 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
 
     Heap_FreeToHeap(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
-    Party_InitWithCapacity(v5->unk_04[1], ov104_0223B7DC(param0->unk_10, 0));
+    Party_InitWithCapacity(v5->parties[1], ov104_0223B7DC(param0->unk_10, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
-        v5->unk_28[v0].unk_0C = ov104_0223BB10(param0);
+        v5->trainerData[v0].unk_0C = ov104_0223BB10(param0);
     }
 
     v6 = AllocMonZeroed(11);
@@ -231,7 +231,7 @@ UnkStruct_ov6_02240D5C * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkS
         Heap_FreeToHeap(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);
-        Party_InitWithCapacity(v5->unk_04[3], ov104_0223B7DC(param0->unk_10, 0));
+        Party_InitWithCapacity(v5->parties[3], ov104_0223B7DC(param0->unk_10, 0));
 
         v6 = AllocMonZeroed(11);
 

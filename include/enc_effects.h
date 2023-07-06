@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_ENC_EFFECTS_H
 #define POKEPLATINUM_ENC_EFFECTS_H
 
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 enum EncEffectCutIn {
     ENCEFF_CUTIN_LEADER_ROARK = 12,
@@ -38,7 +38,7 @@ enum EncEffectCutIn {
  * @param battleParams 
  * @return Cut-in effect ID
  */
-u32 EncEffects_CutInEffect(const UnkStruct_ov6_02240D5C *battleParams);
+u32 EncEffects_CutInEffect(const BattleParams *battleParams);
 
 /**
  * Get the SEQ ID pointing to this encounter's background music.
@@ -46,6 +46,6 @@ u32 EncEffects_CutInEffect(const UnkStruct_ov6_02240D5C *battleParams);
  * @param battleParams 
  * @return SEQ ID
  */
-u32 EncEffects_BGM(const UnkStruct_ov6_02240D5C *battleParams);
+u32 EncEffects_BGM(const BattleParams *battleParams);
 
 #endif // POKEPLATINUM_ENC_EFFECTS_H

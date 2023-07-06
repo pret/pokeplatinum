@@ -31,7 +31,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02075874.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "struct_defs/struct_0207ADB4_t.h"
 #include "struct_defs/struct_0208737C.h"
 #include "overlay012/struct_ov12_02237728.h"
@@ -3094,7 +3094,7 @@ static u32 ov16_022431BC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     void * v1;
     u32 v2;
     u8 v3 = 0;
-    UnkStruct_0207A9CC v4;
+    TrainerData v4;
 
     v1 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_022431BC_3) * 6);
 
@@ -3138,11 +3138,11 @@ static u32 ov16_022431BC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     }
 
     if ((param0->unk_2C & 0x10) || (param0->unk_2C == ((0x2 | 0x1) | 0x8 | 0x40))) {
-        v2 = v3 * 4 * param1->unk_2168 * Unk_ov16_02270B20[v4.unk_01];
+        v2 = v3 * 4 * param1->unk_2168 * Unk_ov16_02270B20[v4.class];
     } else if (param0->unk_2C & 0x2) {
-        v2 = v3 * 4 * param1->unk_2168 * 2 * Unk_ov16_02270B20[v4.unk_01];
+        v2 = v3 * 4 * param1->unk_2168 * 2 * Unk_ov16_02270B20[v4.class];
     } else {
-        v2 = v3 * 4 * param1->unk_2168 * Unk_ov16_02270B20[v4.unk_01];
+        v2 = v3 * 4 * param1->unk_2168 * Unk_ov16_02270B20[v4.class];
     }
 
     Heap_FreeToHeap(v1);

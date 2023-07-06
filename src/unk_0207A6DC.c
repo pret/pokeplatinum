@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
+
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -11,7 +13,7 @@
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207A81C.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "struct_defs/struct_0207ACB4.h"
 #include "struct_defs/struct_0207AD40.h"
 
@@ -149,14 +151,14 @@ static int sub_0207A76C (void)
 
 static int sub_0207A774 (void)
 {
-    return sizeof(UnkStruct_0207A9CC);
+    return sizeof(TrainerData);
 }
 
 static u8 * sub_0207A778 (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
 
-    if (v0->unk_00->unk_00 & 0x80) {
+    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
         return (u8 *)v0->unk_00->unk_D0[param0 * 2];
     } else {
         return (u8 *)v0->unk_00->unk_D0[param0];
@@ -167,10 +169,10 @@ static u8 * sub_0207A798 (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
 
-    if (v0->unk_00->unk_00 & 0x80) {
-        return (u8 *)&v0->unk_00->unk_28[param0 * 2];
+    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)&v0->unk_00->trainerData[param0 * 2];
     } else {
-        return (u8 *)&v0->unk_00->unk_28[param0];
+        return (u8 *)&v0->unk_00->trainerData[param0];
     }
 }
 
@@ -178,10 +180,10 @@ static u8 * sub_0207A7B8 (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
 
-    if (v0->unk_00->unk_00 & 0x80) {
-        return (u8 *)v0->unk_00->unk_04[param0 * 2];
+    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
+        return (u8 *)v0->unk_00->parties[param0 * 2];
     } else {
-        return (u8 *)v0->unk_00->unk_04[param0];
+        return (u8 *)v0->unk_00->parties[param0];
     }
 }
 
@@ -189,7 +191,7 @@ static u8 * sub_0207A7D4 (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
 
-    if (v0->unk_00->unk_00 & 0x80) {
+    if (v0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
         return (u8 *)v0->unk_00->unk_F0[param0 * 2];
     } else {
         return (u8 *)v0->unk_00->unk_F0[param0];
@@ -199,25 +201,25 @@ static u8 * sub_0207A7D4 (int param0, void * param1, int param2)
 static u8 * sub_0207A7F4 (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
-    return (u8 *)&v0->unk_00->unk_28[1];
+    return (u8 *)&v0->unk_00->trainerData[1];
 }
 
 static u8 * sub_0207A7FC (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
-    return (u8 *)&v0->unk_00->unk_28[3];
+    return (u8 *)&v0->unk_00->trainerData[3];
 }
 
 static u8 * sub_0207A804 (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
-    return (u8 *)v0->unk_00->unk_04[1];
+    return (u8 *)v0->unk_00->parties[1];
 }
 
 static u8 * sub_0207A80C (int param0, void * param1, int param2)
 {
     UnkStruct_0207A778 * v0 = param1;
-    return (u8 *)v0->unk_00->unk_04[3];
+    return (u8 *)v0->unk_00->parties[3];
 }
 
 static u8 * sub_0207A814 (int param0, void * param1, int param2)
@@ -345,14 +347,14 @@ static void sub_0207A9BC (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207A9CC (UnkStruct_0207A778 * param0)
 {
-    UnkStruct_0207A9CC * v0;
+    TrainerData * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_0207A9CC *)&param0->unk_20[0];
-    *v0 = param0->unk_00->unk_28[0];
+    v0 = (TrainerData *)&param0->unk_20[0];
+    *v0 = param0->unk_00->trainerData[0];
 
     return 1;
 }
@@ -367,7 +369,7 @@ BOOL sub_0207A9F8 (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(26, (void *)&param0->unk_20[0], sizeof(UnkStruct_0207A9CC));
+    return sub_0203597C(26, (void *)&param0->unk_20[0], sizeof(TrainerData));
 }
 
 static void sub_0207AA28 (int param0, int param1, void * param2, void * param3)
@@ -385,7 +387,7 @@ BOOL sub_0207AA38 (UnkStruct_0207A778 * param0)
     }
 
     v0 = (Party *)&param0->unk_20[0];
-    Party_cpy(param0->unk_00->unk_04[0], v0);
+    Party_cpy(param0->unk_00->parties[0], v0);
 
     return 1;
 }
@@ -448,7 +450,7 @@ BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
 
     v0 = (UnkStruct_02027F8C *)&param0->unk_20[0];
 
-    if (param0->unk_00->unk_00 & 0x80) {
+    if (param0->unk_00->battleType & BATTLE_TYPE_FRONTIER) {
         v1 = param0->unk_00->unk_D0[sub_0203608C() * 2];
     } else {
         v1 = param0->unk_00->unk_D0[sub_0203608C()];
@@ -488,14 +490,14 @@ static void sub_0207AB8C (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207AB9C (UnkStruct_0207A778 * param0, int param1)
 {
-    UnkStruct_0207A9CC * v0;
+    TrainerData * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_0207A9CC *)&param0->unk_20[0];
-    *v0 = param0->unk_00->unk_28[param1];
+    v0 = (TrainerData *)&param0->unk_20[0];
+    *v0 = param0->unk_00->trainerData[param1];
 
     return 1;
 }
@@ -511,9 +513,9 @@ BOOL sub_0207ABD0 (UnkStruct_0207A778 * param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return sub_0203597C(29, (void *)&param0->unk_20[0], sizeof(UnkStruct_0207A9CC));
+        return sub_0203597C(29, (void *)&param0->unk_20[0], sizeof(TrainerData));
     } else {
-        return sub_0203597C(30, (void *)&param0->unk_20[0], sizeof(UnkStruct_0207A9CC));
+        return sub_0203597C(30, (void *)&param0->unk_20[0], sizeof(TrainerData));
     }
 }
 
@@ -532,7 +534,7 @@ BOOL sub_0207AC28 (UnkStruct_0207A778 * param0, int param1)
     }
 
     v0 = (Party *)&param0->unk_20[0];
-    Party_cpy(param0->unk_00->unk_04[param1], v0);
+    Party_cpy(param0->unk_00->parties[param1], v0);
 
     return 1;
 }

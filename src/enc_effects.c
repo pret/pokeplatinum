@@ -10,7 +10,7 @@
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "enc_effects.h"
 #include "unk_02054884.h"
@@ -109,11 +109,11 @@ static const EncEffectsPair sEncEffectsTable[35] = {
     [ENCEFF_NORMAL_WILD]        = {ENCEFF_CUTIN_USE_LOCAL,         SEQ_BATTLE_WILD_POKEMON}
 };
 
-static u32 EncEffects_GetEffectPair(const UnkStruct_ov6_02240D5C *battleParams);
-static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams);
-static u32 EncEffects_BGMForPair(u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams);
+static u32 EncEffects_GetEffectPair(const BattleParams *battleParams);
+static u32 EncEffects_CutInEffectForPair(u32 effectPairID, const BattleParams *battleParams);
+static u32 EncEffects_BGMForPair(u32 effectPairID, const BattleParams *battleParams);
 static u32 EncEffects_TrainerClassEffect(u32 trainerClass);
-static u32 EncEffects_WildPokemonEffect(Party *wildParty, int zoneHeaderID);
+static u32 EncEffects_WildPokemonEffect(Party *wildParty, int mapHeaderID);
 
 inline BOOL EncEffects_Galactic(u32 effect)
 {
@@ -122,12 +122,12 @@ inline BOOL EncEffects_Galactic(u32 effect)
             || (effect == ENCEFF_GALACTIC_CYRUS);
 }
 
-static u32 EncEffects_GetEffectPair (const UnkStruct_ov6_02240D5C *battleParams)
+static u32 EncEffects_GetEffectPair (const BattleParams *battleParams)
 {
-    u32 battleType = battleParams->unk_00;
+    u32 battleType = battleParams->battleType;
 
     if (battleType & BATTLE_TYPE_TRAINER) {
-        u32 trainerEffect = EncEffects_TrainerClassEffect(battleParams->unk_28[1].unk_01);
+        u32 trainerEffect = EncEffects_TrainerClassEffect(battleParams->trainerData[1].class);
 
         if (battleType & BATTLE_TYPE_FRONTIER) {
             if (trainerEffect == ENCEFF_FRONTIER_BRAIN) {
@@ -164,7 +164,7 @@ static u32 EncEffects_GetEffectPair (const UnkStruct_ov6_02240D5C *battleParams)
         return trainerEffect;
     }
 
-    u32 pokemonEffect = EncEffects_WildPokemonEffect(battleParams->unk_04[1], battleParams->unk_134);
+    u32 pokemonEffect = EncEffects_WildPokemonEffect(battleParams->parties[1], battleParams->mapHeaderID);
 
     if (pokemonEffect < ENCEFF_NORMAL_WILD) {
         return pokemonEffect;
@@ -177,7 +177,7 @@ static u32 EncEffects_GetEffectPair (const UnkStruct_ov6_02240D5C *battleParams)
     return pokemonEffect;
 }
 
-static u32 EncEffects_CutInEffectForPair (u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams)
+static u32 EncEffects_CutInEffectForPair (u32 effectPairID, const BattleParams *battleParams)
 {
     GF_ASSERT(effectPairID < ENCEFF_MAX);
 
@@ -190,19 +190,19 @@ static u32 EncEffects_CutInEffectForPair (u32 effectPairID, const UnkStruct_ov6_
     return sEncEffectsTable[effectPairID].cutInEffect;
 }
 
-static u32 EncEffects_BGMForPair (u32 effectPairID, const UnkStruct_ov6_02240D5C *battleParams)
+static u32 EncEffects_BGMForPair (u32 effectPairID, const BattleParams *battleParams)
 {
     GF_ASSERT(effectPairID < ENCEFF_MAX);
 
     return sEncEffectsTable[effectPairID].sdatBGMusic;
 }
 
-u32 EncEffects_CutInEffect (const UnkStruct_ov6_02240D5C *battleParams)
+u32 EncEffects_CutInEffect (const BattleParams *battleParams)
 {
     return EncEffects_CutInEffectForPair(EncEffects_GetEffectPair(battleParams), battleParams);
 }
 
-u32 EncEffects_BGM (const UnkStruct_ov6_02240D5C *battleParams)
+u32 EncEffects_BGM (const BattleParams *battleParams)
 {
     return EncEffects_BGMForPair(EncEffects_GetEffectPair(battleParams), battleParams);
 }
@@ -280,7 +280,7 @@ static u32 EncEffects_TrainerClassEffect (u32 trainerClass)
     return result;
 }
 
-static u32 EncEffects_WildPokemonEffect (Party *wildParty, int zoneHeaderID)
+static u32 EncEffects_WildPokemonEffect (Party *wildParty, int mapHeaderID)
 {
     u32 result = ENCEFF_NORMAL_WILD;
 
@@ -300,7 +300,7 @@ static u32 EncEffects_WildPokemonEffect (Party *wildParty, int zoneHeaderID)
         case SPECIES_REGISTEEL:
         case SPECIES_REGICE:
         case SPECIES_REGIROCK:
-            if (zoneHeaderID != ZONE_ID_PAL_PARK) {
+            if (mapHeaderID != ZONE_ID_PAL_PARK) {
                 result = ENCEFF_REGI_TRIO;
             }
             break;
@@ -327,7 +327,7 @@ static u32 EncEffects_WildPokemonEffect (Party *wildParty, int zoneHeaderID)
         case SPECIES_MOLTRES:
         case SPECIES_ARTICUNO:
         case SPECIES_ZAPDOS:
-            if (zoneHeaderID != ZONE_ID_PAL_PARK) {
+            if (mapHeaderID != ZONE_ID_PAL_PARK) {
                 result = ENCEFF_KANTO_BIRDS;
             }
             break;

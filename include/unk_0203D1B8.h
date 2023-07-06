@@ -20,10 +20,10 @@
 #include "struct_defs/struct_02098D38.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_decls/struct_021C0794_decl.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 
-void sub_0203D1D4(UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1);
+void sub_0203D1D4(UnkStruct_0203CDB0 * param0, BattleParams * param1);
 void sub_0203D1E4(UnkStruct_0203CDB0 * param0, void * param1);
 void * sub_0203D20C(UnkStruct_0203CDB0 * param0, UnkStruct_020684D0 * param1);
 void * sub_0203D264(UnkStruct_0203CDB0 * param0, int param1);

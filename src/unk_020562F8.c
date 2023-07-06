@@ -9,7 +9,7 @@
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0203CDB0.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "narc.h"
 #include "unk_0201378C.h"
@@ -42,9 +42,9 @@ struct UnkStruct_020564B4_t {
 };
 
 static void sub_0205642C(UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1);
-static void sub_02056624(UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1, UnkStruct_020564B4 * param2);
+static void sub_02056624(UnkStruct_0203CDB0 * param0, BattleParams * param1, UnkStruct_020564B4 * param2);
 static BOOL sub_02056554(UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1, int param2, int param3);
-static UnkStruct_ov6_02240D5C * sub_0205664C(UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1);
+static BattleParams * sub_0205664C(UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1);
 static sub_020564B4(UnkStruct_020564B4 * param0);
 static void sub_020564D0(UnkStruct_020564B4 * param0);
 static BOOL sub_020564F4(UnkStruct_020564B4 * param0);
@@ -92,12 +92,12 @@ BOOL sub_02056374 (UnkStruct_0203CDB0 * param0, int param1, int param2)
     }
 }
 
-UnkStruct_ov6_02240D5C * sub_0205639C (UnkStruct_0203CDB0 * param0)
+BattleParams * sub_0205639C (UnkStruct_0203CDB0 * param0)
 {
     return sub_0205664C(param0, &Unk_021C07FC);
 }
 
-void sub_020563AC (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
+void sub_020563AC (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 {
     sub_02056624(param0, param1, &Unk_021C07FC);
 }
@@ -258,7 +258,7 @@ static BOOL sub_02056554 (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
     return 0;
 }
 
-static void sub_02056624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1, UnkStruct_020564B4 * param2)
+static void sub_02056624 (UnkStruct_0203CDB0 * param0, BattleParams * param1, UnkStruct_020564B4 * param2)
 {
     switch (param1->unk_14) {
     case 0x4:
@@ -271,9 +271,9 @@ static void sub_02056624 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * 
     }
 }
 
-static UnkStruct_ov6_02240D5C * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)
+static BattleParams * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)
 {
-    UnkStruct_ov6_02240D5C * v0;
+    BattleParams * v0;
     Pokemon * v1 = AllocMonZeroed(32);
     UnkStruct_02024440 * v2 = sub_02024440(param0->unk_0C);
     int v3 = sub_020563BC(param0);

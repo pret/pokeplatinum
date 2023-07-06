@@ -23,7 +23,7 @@
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
@@ -71,7 +71,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0206D140 * unk_9C;
     u16 unk_A0[4];
     u8 unk_A8[4];
-    UnkStruct_0207A9CC unk_AC[4];
+    TrainerData unk_AC[4];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 * unk_198;
     UnkStruct_ov16_0226D160 * unk_19C[2];
@@ -86,7 +86,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_02015F84 * unk_1C4;
     NNSG2dCellTransferState * unk_1C8;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
-    UnkStruct_ov6_02240D5C_sub1 unk_20C;
+    BattleParams_sub1 unk_20C;
     UnkStruct_0202CD88 * unk_218;
     u8 * unk_21C;
     u16 * unk_220;

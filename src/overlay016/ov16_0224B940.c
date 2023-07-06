@@ -1,6 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/pokemon.h"
+#include "constants/sdat.h"
+#include "constants/trainer.h"
+
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -9,7 +13,7 @@
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "overlay014/struct_ov14_0221FC20_t.h"
 #include "overlay016/struct_ov16_0224B9DC_t.h"
 #include "overlay016/struct_ov16_0224DDA8.h"
@@ -3979,50 +3983,48 @@ static BOOL ov16_02250A48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if (((v3 == 0x1) && (v2 & 0x1) && ((v2 & 0x4) == 0)) || ((v3 == 0x1) && (v2 & 0x80) && ((v2 & 0x4) == 0))) {
         {
-            UnkStruct_0207A9CC * v20;
+            TrainerData *v20 = ov16_0223E120(param0, 1);
 
-            v20 = ov16_0223E120(param0, 1);
-
-            switch (v20->unk_01) {
-            case 62:
-            case 74:
-            case 75:
-            case 76:
-            case 77:
-            case 78:
-            case 64:
-            case 79:
-                sub_0200549C(1129);
-                break;
-            case 97:
-            case 99:
-            case 100:
-            case 101:
-            case 102:
-                sub_0200549C(1203);
-                break;
-            case 69:
-                sub_0200549C(1130);
-                break;
-            case 72:
-            case 87:
-            case 88:
-            case 73:
-            case 89:
-                sub_0200549C(1131);
-                break;
-            case 86:
-                sub_0200549C(1132);
-                break;
-            case 65:
-            case 66:
-            case 67:
-            case 68:
-                sub_0200549C(1133);
-                break;
-            default:
-                sub_0200549C(1128);
-                break;
+            switch (v20->class) {
+                case TRAINER_CLASS_LEADER_ROARK:
+                case TRAINER_CLASS_LEADER_GARDENIA:
+                case TRAINER_CLASS_LEADER_WAKE:
+                case TRAINER_CLASS_LEADER_MAYLENE:
+                case TRAINER_CLASS_LEADER_FANTINA:
+                case TRAINER_CLASS_LEADER_CANDICE:
+                case TRAINER_CLASS_LEADER_BYRON:
+                case TRAINER_CLASS_LEADER_VOLKNER:
+                    sub_0200549C(SEQ_VICTORY_GYM_LEADER);
+                    break;
+                case TRAINER_CLASS_TOWER_TYCOON:
+                case TRAINER_CLASS_HALL_MATRON:
+                case TRAINER_CLASS_FACTORY_HEAD:
+                case TRAINER_CLASS_ARCADE_STAR:
+                case TRAINER_CLASS_CASTLE_VALET:
+                    sub_0200549C(SEQ_VICTORY_FRONTIER_BRAIN);
+                    break;
+                case TRAINER_CLASS_CHAMPION_CYNTHIA:
+                    sub_0200549C(SEQ_VICTORY_CHAMPION);
+                    break;
+                case TRAINER_CLASS_COMMANDER_MARS:
+                case TRAINER_CLASS_COMMANDER_JUPITER:
+                case TRAINER_CLASS_COMMANDER_SATURN:
+                case TRAINER_CLASS_GALACTIC_GRUNT_MALE:
+                case TRAINER_CLASS_GALACTIC_GRUNT_FEMALE:
+                    sub_0200549C(SEQ_VICTORY_GALACTIC_GRUNT);
+                    break;
+                case TRAINER_CLASS_GALACTIC_BOSS:
+                    sub_0200549C(SEQ_VICTORY_CYRUS);
+                    break;
+                case TRAINER_CLASS_ELITE_FOUR_AARON:
+                case TRAINER_CLASS_ELITE_FOUR_BERTHA:
+                case TRAINER_CLASS_ELITE_FOUR_FLINT:
+                case TRAINER_CLASS_ELITE_FOUR_LUCIAN:
+                    sub_0200549C(SEQ_VICTORY_ELITE_FOUR);
+                    break;
+                default:
+                    sub_0200549C(SEQ_VICTORY_TRAINER);
+                    break;
             }
         }
         ov16_0223F460(param0, 2);

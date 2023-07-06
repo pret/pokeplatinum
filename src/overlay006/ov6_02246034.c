@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0206C638.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "unk_0202D7A8.h"
 #include "unk_020507CC.h"
@@ -22,7 +22,7 @@
 static void ov6_02246110(UnkStruct_0202D7B0 * param0, const int param1);
 static UnkStruct_0206C638 * ov6_02246148(UnkStruct_0202D7B0 * param0, const int param1);
 
-void ov6_02246034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
+void ov6_02246034 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 {
     u16 v0;
     u8 v1;
@@ -32,7 +32,7 @@ void ov6_02246034 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
     Party * v5;
     Pokemon * v6;
 
-    v5 = param1->unk_04[1];
+    v5 = param1->parties[1];
     v6 = Party_GetPokemonBySlotIndex(v5, 0);
     v3 = sub_0202D834(param0->unk_0C);
     v2 = GetMonData(v6, MON_DATA_SPECIES, NULL);

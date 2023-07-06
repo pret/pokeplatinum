@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "enums.h"
@@ -40,10 +40,10 @@ void sub_0200B8C8(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200B928(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200B960(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200B998(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
-void sub_0200B9D0(UnkStruct_0200B358 * param0, u32 param1, UnkStruct_0207A9CC * param2);
+void sub_0200B9D0(UnkStruct_0200B358 * param0, u32 param1, TrainerData * param2);
 void sub_0200BA08(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BA40(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
-void sub_0200BA74(UnkStruct_0200B358 * param0, u32 param1, UnkStruct_0207A9CC * param2);
+void sub_0200BA74(UnkStruct_0200B358 * param0, u32 param1, TrainerData * param2);
 void sub_0200BA94(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BACC(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BB04(UnkStruct_0200B358 * param0, u32 param1, u32 param2);

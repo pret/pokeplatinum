@@ -9,7 +9,7 @@
 #include "constdata/const_020EA358.h"
 
 #include "struct_defs/struct_0204AFC4.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
@@ -189,7 +189,7 @@ BOOL ov104_02239300 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02239314 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_ov6_02240D5C * v0;
+    BattleParams * v0;
     UnkStruct_0204AFC4 * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 
@@ -207,7 +207,7 @@ BOOL ov104_02239314 (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_02239364 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_0204AFC4 * v0;
-    UnkStruct_ov6_02240D5C * v1;
+    BattleParams * v1;
     u16 * v2;
 
     v0 = sub_0209B978(param0->unk_00->unk_00);

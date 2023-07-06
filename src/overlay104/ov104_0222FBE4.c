@@ -33,7 +33,7 @@
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay061/struct_ov61_0222C884.h"
 #include "overlay063/struct_ov63_0222CE44.h"
 #include "overlay104/funcptr_ov104_0222E930.h"
@@ -1681,11 +1681,11 @@ static int ov104_02230A2C (u16 param0, u16 param1)
 static BOOL ov104_02230B50 (UnkStruct_ov104_0222E930 * param0)
 {
     int v0;
-    UnkStruct_ov6_02240D5C * v1;
+    BattleParams * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 
-    v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov6_02240D5C));
-    MI_CpuClear8(v1, sizeof(UnkStruct_ov6_02240D5C));
+    v1 = Heap_AllocFromHeap(11, sizeof(BattleParams));
+    MI_CpuClear8(v1, sizeof(BattleParams));
 
     sub_0202F298(v2->unk_08, 11, &v0, v1, 0);
     sub_02004550(5, 1119, 1);

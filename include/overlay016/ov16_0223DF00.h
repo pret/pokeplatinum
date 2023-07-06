@@ -20,11 +20,11 @@
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_defs/struct_0207A9CC.h"
+#include "struct_defs/trainer_data.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 #include "struct_decls/struct_0207D99C_decl.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -71,7 +71,7 @@ UnkStruct_ov16_0223E0C8 * ov16_0223E0C8(UnkStruct_0207ADB4 * param0);
 UnkStruct_0200B358 * ov16_0223E0D0(UnkStruct_0207ADB4 * param0);
 Strbuf* ov16_0223E0D4(UnkStruct_0207ADB4 * param0);
 u16 ov16_0223E0D8(UnkStruct_0207ADB4 * param0, int param1);
-UnkStruct_0207A9CC * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
+TrainerData * ov16_0223E120(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_02025E6C * ov16_0223E16C(UnkStruct_0207ADB4 * param0, int param1);
 UnkStruct_0207D3C0 * ov16_0223E1AC(UnkStruct_0207ADB4 * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(UnkStruct_0207ADB4 * param0);
@@ -91,7 +91,7 @@ u32 ov16_0223EBEC(UnkStruct_0207ADB4 * param0);
 int ov16_0223EBF8(UnkStruct_0207ADB4 * param0);
 int ov16_0223EC04(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223EC58(UnkStruct_0207ADB4 * param0, int param1, u8 param2);
-u16 ov16_0223ECC4(UnkStruct_ov6_02240D5C * param0, int * param1, int * param2);
+u16 ov16_0223ECC4(BattleParams * param0, int * param1, int * param2);
 u8 ov16_0223ED60(UnkStruct_0207ADB4 * param0);
 u8 ov16_0223ED6C(UnkStruct_0207ADB4 * param0);
 int ov16_0223ED8C(UnkStruct_0207ADB4 * param0);
