@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV6_02240D5C_H
-#define POKEPLATINUM_STRUCT_OV6_02240D5C_H
+#ifndef POKEPLATINUM_BATTLE_PARAMS_H
+#define POKEPLATINUM_BATTLE_PARAMS_H
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -68,4 +68,4 @@ typedef struct {
     u32 unk_19C;
 } BattleParams;
 
-#endif // POKEPLATINUM_STRUCT_OV6_02240D5C_H
+#endif // POKEPLATINUM_BATTLE_PARAMS_H
