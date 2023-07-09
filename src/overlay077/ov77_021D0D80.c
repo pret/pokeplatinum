@@ -4,11 +4,11 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/narc.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -32,7 +32,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"
@@ -1261,24 +1261,24 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
     sub_0201975C(4, 0x0);
 
     {
-        UnkStruct_0200B144 * v4;
+        MessageFormatter * v4;
         Strbuf* v5;
         u32 v6;
 
         sub_02019690(4, 32, 0, param1);
 
-        v4 = sub_0200B144(1, 26, 609, param1);
+        v4 = MessageFormatter_Init(1, 26, 609, param1);
         v5 = Strbuf_Init(64, param1);
 
         sub_0201A8D4(param0, &param2->unk_22C, &Unk_ov77_021D72D0);
         sub_0201AE78(&param2->unk_22C, 0, 0, 0, 28 * 8, 2 * 8);
-        sub_0200B1B8(v4, 0, v5);
+        MessageFormatter_LoadStrbuf(v4, 0, v5);
 
         v6 = sub_02002EEC(0, v5, 1, param2->unk_22C.unk_07 * 8);
 
         sub_0201D7E0(&param2->unk_22C, 0, v5, v6, 0, 0, (u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | (((0 & 0xff) << 0))), 1, 0, NULL);
         Strbuf_Free(v5);
-        sub_0200B190(v4);
+        MessageFormatter_Free(v4);
 
         {
             u16 v7 = 0x15;

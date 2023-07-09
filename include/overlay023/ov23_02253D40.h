@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_02253D40_H
 #define POKEPLATINUM_OV23_02253D40_H
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
@@ -13,7 +13,7 @@ UnkStruct_ov23_02253E2C * ov23_02253D48(int param0, int param1, UnkStruct_020183
 void ov23_02253DD8(UnkStruct_ov23_02253E2C * param0);
 void ov23_02253DFC(UnkStruct_ov23_02253E2C * param0, int param1, int param2);
 void ov23_02253E2C(UnkStruct_ov23_02253E2C * param0, UnkStruct_02018340 * param1, u16 param2, u16 param3);
-UnkStruct_0200B144 * ov23_02253E3C(UnkStruct_ov23_02253E2C * param0);
+MessageFormatter * ov23_02253E3C(UnkStruct_ov23_02253E2C * param0);
 int ov23_02253F40(UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3);
 int ov23_02253F60(UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3);
 int ov23_02253F78(UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3, int param4);

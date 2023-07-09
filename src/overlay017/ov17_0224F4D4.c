@@ -23,7 +23,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -195,7 +195,7 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
 
     ov17_0224FDDC();
 
-    v0->unk_10.unk_B4 = sub_0200B144(0, 26, 218, 24);
+    v0->unk_10.unk_B4 = MessageFormatter_Init(0, 26, 218, 24);
     v0->unk_10.unk_B8 = sub_0200B358(24);
     v0->unk_10.unk_BC = Strbuf_Init((2 * 160), 24);
     v0->unk_10.unk_C4 = sub_02012744(10, 24);
@@ -319,7 +319,7 @@ int ov17_0224F86C (UnkStruct_020067E8 * param0, int * param1)
 
     Strbuf_Free(v0->unk_10.unk_BC);
     sub_0200B3F0(v0->unk_10.unk_B8);
-    sub_0200B190(v0->unk_10.unk_B4);
+    MessageFormatter_Free(v0->unk_10.unk_B4);
 
     Heap_FreeToHeap(v0->unk_10.unk_20);
     sub_0200DA58(v0->unk_04);

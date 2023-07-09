@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV12_022237EC_H
 #define POKEPLATINUM_OV12_022237EC_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02014014_decl.h"
 
 #include "library/spl.h"

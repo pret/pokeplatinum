@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021F067C_H
 #define POKEPLATINUM_OV5_021F067C_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "overlay005/struct_ov5_021F06D8_decl.h"
 
 UnkStruct_ov5_021F06D8 * ov5_021F067C(u32 param0, u32 param1, u32 param2, u32 param3);

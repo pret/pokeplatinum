@@ -3,7 +3,7 @@
 
 #include <nitro/rtc.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"

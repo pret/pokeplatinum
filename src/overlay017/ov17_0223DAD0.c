@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
@@ -30,7 +30,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -290,7 +290,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_14.unk_44 = sub_0200762C(23);
     ov17_0223E450();
 
-    v0->unk_14.unk_84 = sub_0200B144(0, 26, 206, 23);
+    v0->unk_14.unk_84 = MessageFormatter_Init(0, 26, 206, 23);
     v0->unk_14.unk_88 = sub_0200B358(23);
     v0->unk_14.unk_8C = Strbuf_Init((2 * 160), 23);
     v0->unk_14.unk_94 = sub_02012744((3 * 3), 23);
@@ -442,7 +442,7 @@ int ov17_0223DF0C (UnkStruct_020067E8 * param0, int * param1)
     sub_02002F54(v0->unk_14.unk_90);
     Strbuf_Free(v0->unk_14.unk_8C);
     sub_0200B3F0(v0->unk_14.unk_88);
-    sub_0200B190(v0->unk_14.unk_84);
+    MessageFormatter_Free(v0->unk_14.unk_84);
     Heap_FreeToHeap(v0->unk_14.unk_60);
     sub_0200DA58(v0->unk_04);
 

@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0205B4F8.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
@@ -1274,7 +1274,7 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruc
 {
     UnkStruct_02025E6C * v0;
     Strbuf* v1;
-    UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 635, 4);
+    MessageFormatter * v2 = MessageFormatter_Init(1, 26, 635, 4);
     int v3, v4;
 
     param2--;
@@ -1286,7 +1286,7 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruc
     }
 
     if (v0 == NULL) {
-        sub_0200B190(v2);
+        MessageFormatter_Free(v2);
         return;
     }
 
@@ -1329,11 +1329,11 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruc
         v4 = 217;
     }
 
-    v1 = sub_0200B1EC(v2, v4);
+    v1 = MessageFormatter_AllocStrbuf(v2, v4);
 
     sub_0200B48C(param0, 2, v1, 0, 1, v3);
     Heap_FreeToHeap(v1);
-    sub_0200B190(v2);
+    MessageFormatter_Free(v2);
 }
 
 void sub_0205C12C (UnkStruct_02014A84 * param0)

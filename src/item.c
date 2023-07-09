@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/message_formatter.h"
+#include "struct_decls/strbuf.h"
 
 #include "struct_defs/struct_0207CDEC.h"
 #include "struct_defs/struct_0207D3B0.h"
@@ -10,7 +10,7 @@
 #include "struct_defs/struct_0207D0B0.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "heap.h"
 #include "item.h"
 
@@ -792,18 +792,18 @@ void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
 
 void Item_GetNameIntoString (Strbuf* dest, u16 itemID, u32 heapID)
 {
-    UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 392, heapID);
+    MessageFormatter * msgData = MessageFormatter_Init(1, 26, 392, heapID);
 
-    sub_0200B1B8(msgData, itemID, dest);
-    sub_0200B190(msgData);
+    MessageFormatter_LoadStrbuf(msgData, itemID, dest);
+    MessageFormatter_Free(msgData);
 }
 
 void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
 {
-    UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 391, heapID);
+    MessageFormatter * msgData = MessageFormatter_Init(1, 26, 391, heapID);
 
-    sub_0200B1B8(msgData, itemID, dest);
-    sub_0200B190(msgData);
+    MessageFormatter_LoadStrbuf(msgData, itemID, dest);
+    MessageFormatter_Free(msgData);
 }
 
 s32 Item_GetAttribute (u16 itemID, u16 attributeID, u32 heapID)

@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_0207CDEC.h"
 
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -138,72 +138,72 @@ static u32 sub_0207CC00 (UnkStruct_021C0794 * param0)
 
 BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, Strbuf *param1, u16 param2, u32 param3)
 {
-    UnkStruct_0200B144 * v0;
+    MessageFormatter * v0;
     UnkStruct_0200B358 * v1;
     Strbuf* v2;
 
-    v0 = sub_0200B144(0, 26, 7, param3);
+    v0 = MessageFormatter_Init(0, 26, 7, param3);
     v1 = sub_0200B358(param3);
 
     if (param2 == 0) {
-        v2 = sub_0200B1EC(v0, 99);
+        v2 = MessageFormatter_AllocStrbuf(v0, 99);
     } else if (param2 == 432) {
-        v2 = sub_0200B1EC(v0, 97);
+        v2 = MessageFormatter_AllocStrbuf(v0, 97);
         sub_0200B60C(v1, 0, sub_0207CC00(param0), 4, 0, 1);
     } else if (param2 == 434) {
-        v2 = sub_0200B1EC(v0, 92);
+        v2 = MessageFormatter_AllocStrbuf(v0, 92);
         sub_0200B60C(v1, 0, sub_0207CBC0(param0), 4, 0, 1);
     } else if (param2 == 435) {
-        v2 = sub_0200B1EC(v0, 93);
+        v2 = MessageFormatter_AllocStrbuf(v0, 93);
         sub_0200B60C(v1, 0, sub_0207CBE0(param0), 3, 0, 1);
         sub_0200B60C(v1, 1, sub_0207CBF0(param0), 2, 0, 1);
     } else if (param2 == 444) {
-        v2 = sub_0200B1EC(v0, 57);
+        v2 = MessageFormatter_AllocStrbuf(v0, 57);
         sub_0200B60C(v1, 0, sub_0207CBB4(param0), 5, 0, 1);
     } else {
         sub_0200B3F0(v1);
-        sub_0200B190(v0);
+        MessageFormatter_Free(v0);
         return 0;
     }
 
     sub_0200C388(v1, param1, v2);
     Strbuf_Free(v2);
     sub_0200B3F0(v1);
-    sub_0200B190(v0);
+    MessageFormatter_Free(v0);
 
     return 1;
 }
 
 void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 param4)
 {
-    UnkStruct_0200B144 * v0;
+    MessageFormatter * v0;
     UnkStruct_0200B358 * v1;
     Strbuf* v2;
 
     switch (param3) {
     case 1:
-        v0 = sub_0200B144(1, 26, 7, param4);
-        sub_0200B1B8(v0, 56, param1);
-        sub_0200B190(v0);
+        v0 = MessageFormatter_Init(1, 26, 7, param4);
+        MessageFormatter_LoadStrbuf(v0, 56, param1);
+        MessageFormatter_Free(v0);
         break;
     case 2:
-        v0 = sub_0200B144(1, 26, 7, param4);
-        sub_0200B1B8(v0, 111, param1);
-        sub_0200B190(v0);
+        v0 = MessageFormatter_Init(1, 26, 7, param4);
+        MessageFormatter_LoadStrbuf(v0, 111, param1);
+        MessageFormatter_Free(v0);
         break;
     case 3:
-        v0 = sub_0200B144(1, 26, 7, param4);
-        sub_0200B1B8(v0, 112, param1);
-        sub_0200B190(v0);
+        v0 = MessageFormatter_Init(1, 26, 7, param4);
+        MessageFormatter_LoadStrbuf(v0, 112, param1);
+        MessageFormatter_Free(v0);
         break;
     default:
-        v0 = sub_0200B144(1, 26, 213, param4);
+        v0 = MessageFormatter_Init(1, 26, 213, param4);
         v1 = sub_0200B358(param4);
-        v2 = sub_0200B1EC(v0, 36);
+        v2 = MessageFormatter_AllocStrbuf(v0, 36);
         sub_0200B498(v1, 0, param0);
         sub_0200C388(v1, param1, v2);
         Strbuf_Free(v2);
         sub_0200B3F0(v1);
-        sub_0200B190(v0);
+        MessageFormatter_Free(v0);
     }
 }

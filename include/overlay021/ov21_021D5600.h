@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D5600_H
 #define POKEPLATINUM_OV21_021D5600_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 void ov21_021D5600(Strbuf *param0);
 int ov21_021D5608(int param0);

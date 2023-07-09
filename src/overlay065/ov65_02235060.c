@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 

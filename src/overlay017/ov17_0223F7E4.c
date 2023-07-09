@@ -5,14 +5,14 @@
 #include "assert.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "overlay017/struct_ov17_02252B48_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -32,7 +32,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B29C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -761,8 +761,8 @@ static void ov17_0223FBD4 (UnkStruct_ov17_0223F7E4 * param0, int param1, int par
 
     v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
     v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
-    v0 = sub_0200B1EC(param0->unk_04->unk_38, v2);
-    v1 = sub_0200B1EC(param0->unk_04->unk_38, v3);
+    v0 = MessageFormatter_AllocStrbuf(param0->unk_04->unk_38, v2);
+    v1 = MessageFormatter_AllocStrbuf(param0->unk_04->unk_38, v3);
 
     ov17_02240138(param0, &param0->unk_40[0], v0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33008, 128, (8 * 0x10 - 1), 1, NULL);
     ov17_02240138(param0, &param0->unk_40[1], v1, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33008, 128, (8 * 0x14 - 1), 1, NULL);
@@ -864,7 +864,7 @@ static void ov17_0223FF38 (UnkStruct_ov17_0223F7E4 * param0, int param1, int par
         ov17_02240138(param0, &param0->unk_40[0 + v0], NULL, 2, ((u32)(((1 & 0xff) << 16) | ((9 & 0xff) << 8) | ((0xa & 0xff) << 0))), 0, 33008, Unk_ov17_0225325C[v0][0], Unk_ov17_0225325C[v0][1], 1, &v3->unk_F0[v0]);
     }
 
-    v2 = sub_0200B1EC(param0->unk_04->unk_38, 53);
+    v2 = MessageFormatter_AllocStrbuf(param0->unk_04->unk_38, 53);
 
     ov17_02240138(param0, &param0->unk_40[0 + v0], v2, 2, ((u32)(((1 & 0xff) << 16) | ((9 & 0xff) << 8) | ((0xa & 0xff) << 0))), 0, 33008, 128, (0x14 * 8 + 4), 1, NULL);
     Strbuf_Free(v2);
@@ -1473,8 +1473,8 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
         Strbuf_Free(v2);
         sub_02095750(v0->unk_12C[v1], &v6, &v7);
 
-        v3 = sub_0200B1EC(param0->unk_04->unk_40, v6);
-        v4 = sub_0200B1EC(param0->unk_04->unk_40, v7);
+        v3 = MessageFormatter_AllocStrbuf(param0->unk_04->unk_40, v6);
+        v4 = MessageFormatter_AllocStrbuf(param0->unk_04->unk_40, v7);
 
         ov17_02240BF4(param0, v3, 0, &v0->unk_50[v1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov17_02240BF4(param0, v4, 0, &v0->unk_A0[v1], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));

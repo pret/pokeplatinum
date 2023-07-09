@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRBUF_H
 #define POKEPLATINUM_STRBUF_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 typedef u16 charcode_t;
 

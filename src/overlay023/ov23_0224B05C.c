@@ -4,11 +4,11 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
@@ -1016,7 +1016,7 @@ static int ov23_0224BD1C (int param0, BOOL param1)
 static UnkStruct_02001AF4 * ov23_0224BD90 (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
 {
     UnkStruct_02081CF4 v0;
-    UnkStruct_0200B144 * v1 = ov23_02253E3C(ov23_0224219C());
+    MessageFormatter * v1 = ov23_02253E3C(ov23_0224219C());
     UnkStruct_02013A04 * v2;
 
     v2 = sub_02013A04(2, param4);

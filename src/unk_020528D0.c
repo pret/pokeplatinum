@@ -3,10 +3,10 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
@@ -22,7 +22,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -50,7 +50,7 @@ typedef struct {
     UnkStruct_0203CDB0 * unk_04;
     UnkStruct_02018340 * unk_08;
     UnkStruct_0205AA50 unk_0C;
-    UnkStruct_0200B144 * unk_1C;
+    MessageFormatter * unk_1C;
     UnkStruct_0200B358 * unk_20;
 } UnkStruct_02052AA4;
 
@@ -128,7 +128,7 @@ static void sub_02052914 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * para
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = sub_0200B144(1, 26, 373, 11);
+    v0->unk_1C = MessageFormatter_Init(1, 26, 373, 11);
     v0->unk_20 = sub_0200B358(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
@@ -176,7 +176,7 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
         sub_0200E084(&v0->unk_0C, 0);
         sub_0201A8FC(&v0->unk_0C);
         sub_0200B3F0(v0->unk_20);
-        sub_0200B190(v0->unk_1C);
+        MessageFormatter_Free(v0->unk_1C);
         sub_02019044(v0->unk_08, 3);
         Heap_FreeToHeap(v0->unk_08);
         Heap_FreeToHeap(v0);
@@ -193,7 +193,7 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
     Strbuf* v1 = Strbuf_Init(1024, 11);
 
     sub_0201ADA4(&param0->unk_0C, 0);
-    sub_0200B1B8(param0->unk_1C, param1, v0);
+    MessageFormatter_LoadStrbuf(param0->unk_1C, param1, v0);
     sub_0200C388(param0->unk_20, v1, v0);
 
     {

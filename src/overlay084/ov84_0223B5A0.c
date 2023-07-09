@@ -5,9 +5,9 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "overlay084/const_ov84_02241130.h"
 
@@ -34,7 +34,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -590,9 +590,9 @@ int ov84_0223B900 (UnkStruct_020067E8 * param0, int * param1)
     ov84_0223C178(v0);
 
     Strbuf_Free(v0->unk_3F8);
-    sub_0200B190(v0->unk_120);
-    sub_0200B190(v0->unk_11C);
-    sub_0200B190(v0->unk_114);
+    MessageFormatter_Free(v0->unk_120);
+    MessageFormatter_Free(v0->unk_11C);
+    MessageFormatter_Free(v0->unk_114);
     sub_0200C560(v0->unk_110);
     sub_0200B3F0(v0->unk_118);
     NARC_dtor(v0->unk_D4);
@@ -842,11 +842,11 @@ static void ov84_0223BC1C (UnkStruct_ov84_0223B5A0 * param0)
 
 static void ov84_0223BDB4 (UnkStruct_ov84_0223B5A0 * param0)
 {
-    param0->unk_114 = sub_0200B144(0, 26, 7, 6);
+    param0->unk_114 = MessageFormatter_Init(0, 26, 7, 6);
     param0->unk_110 = sub_0200C440(1, 2, 0, 6);
     param0->unk_118 = sub_0200B358(6);
-    param0->unk_11C = sub_0200B144(0, 26, 392, 6);
-    param0->unk_120 = sub_0200B144(0, 26, 647, 6);
+    param0->unk_11C = MessageFormatter_Init(0, 26, 392, 6);
+    param0->unk_120 = MessageFormatter_Init(0, 26, 647, 6);
     param0->unk_3F8 = Strbuf_Init(256, 6);
 }
 
@@ -874,14 +874,14 @@ u16 ov84_0223BE5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2)
     return v0->unk_00[param1].unk_02;
 }
 
-static void ov84_0223BE84 (UnkStruct_0200B144 * param0, Strbuf *param1, u16 param2, u32 param3)
+static void ov84_0223BE84 (MessageFormatter * param0, Strbuf *param1, u16 param2, u32 param3)
 {
-    sub_0200B1B8(param0, param2, param1);
+    MessageFormatter_LoadStrbuf(param0, param2, param1);
 }
 
-static void ov84_0223BE94 (UnkStruct_0200B144 * param0, Strbuf *param1, u16 param2, u32 param3)
+static void ov84_0223BE94 (MessageFormatter * param0, Strbuf *param1, u16 param2, u32 param3)
 {
-    sub_0200B1B8(param0, GetMoveFromTMOrHMItemID(param2), param1);
+    MessageFormatter_LoadStrbuf(param0, GetMoveFromTMOrHMItemID(param2), param1);
 }
 
 static void ov84_0223BEAC (UnkStruct_ov84_0223B5A0 * param0)
@@ -2200,9 +2200,9 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
         sub_0200B630(param0->unk_118, 0, v0);
 
         if (Item_IsMoveHM(v0) == 1) {
-            sub_0200B1B8(param0->unk_114, 59, param0->unk_3F8);
+            MessageFormatter_LoadStrbuf(param0->unk_114, 59, param0->unk_3F8);
         } else {
-            sub_0200B1B8(param0->unk_114, 58, param0->unk_3F8);
+            MessageFormatter_LoadStrbuf(param0->unk_114, 58, param0->unk_3F8);
         }
     }
         sub_0201ADA4(&param0->unk_04[6], 15);
@@ -2217,7 +2217,7 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
         }
 
         if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) || Unk_021BF67C.unk_60) {
-            Strbuf* v1 = sub_0200B1EC(param0->unk_114, 60);
+            Strbuf* v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 60);
 
             sub_0201ADA4(&param0->unk_04[6], 15);
             sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
@@ -2289,11 +2289,11 @@ static BOOL ov84_0223DBF4 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     sub_0200B70C(param0->unk_118, 1, param1);
 
     if (param1 == 68) {
-        v0 = sub_0200B1EC(param0->unk_114, 64);
+        v0 = MessageFormatter_AllocStrbuf(param0->unk_114, 64);
         ov84_0223BA04(param0, 1);
         param0->unk_488 = 0;
     } else if (param1 == 69) {
-        v0 = sub_0200B1EC(param0->unk_114, 63);
+        v0 = MessageFormatter_AllocStrbuf(param0->unk_114, 63);
         ov84_0223BA04(param0, 2);
         param0->unk_488 = 0;
     } else if ((param1 == 77) || (param1 == 76) || (param1 == 79)) {
@@ -2314,7 +2314,7 @@ static Strbuf* ov84_0223DC9C (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     if (sub_0202D9D8(ov84_0223B9E4(param0)) == 0) {
         param0->unk_488 = 0;
-        return sub_0200B1EC(param0->unk_114, 62);
+        return MessageFormatter_AllocStrbuf(param0->unk_114, 62);
     }
 
     v0 = Item_GetAttribute(param1, 2, 6);
@@ -2322,7 +2322,7 @@ static Strbuf* ov84_0223DC9C (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     param0->unk_488 = 1;
     sub_02005748(1536);
 
-    return sub_0200B1EC(param0->unk_114, 61);
+    return MessageFormatter_AllocStrbuf(param0->unk_114, 61);
 }
 
 static void ov84_0223DCF8 (UnkStruct_ov84_0223B5A0 * param0)
@@ -2478,7 +2478,7 @@ static int ov84_0223E01C (UnkStruct_ov84_0223B5A0 * param0)
     switch (v0) {
     case 0:
     {
-        Strbuf* v1 = sub_0200B1EC(param0->unk_114, 53);
+        Strbuf* v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 53);
 
         if (param0->unk_488 == 1) {
             sub_0200B70C(param0->unk_118, 0, param0->unk_C4->unk_66);
@@ -2602,7 +2602,7 @@ static int ov84_0223E27C (UnkStruct_ov84_0223B5A0 * param0)
                 sub_0200E060(&param0->unk_04[6], 0, 1024 - 9 - (18 + 12), 12);
                 sub_0200B70C(param0->unk_118, 0, param0->unk_C4->unk_66);
 
-                v1 = sub_0200B1EC(param0->unk_114, 46);
+                v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 46);
 
                 sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
@@ -2669,7 +2669,7 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
             param0->unk_48C = Item_GetAttribute(param0->unk_C4->unk_66, 0, 6);
 
             if ((Item_GetAttribute(param0->unk_C4->unk_66, 3, 6) != 0) || (param0->unk_48C == 0)) {
-                v1 = sub_0200B1EC(param0->unk_114, 74);
+                v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 74);
                 sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
 
@@ -2681,7 +2681,7 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
             param0->unk_48C >>= 1;
 
             if (sub_0207D748(param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_00, param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09 - 3, param0->unk_C4->unk_66, 6) == 1) {
-                v1 = sub_0200B1EC(param0->unk_114, 76);
+                v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 76);
                 sub_0200B60C(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
                 sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
                 Strbuf_Free(v1);
@@ -2690,7 +2690,7 @@ static int ov84_0223E3BC (UnkStruct_ov84_0223B5A0 * param0)
                 return 19;
             }
 
-            v1 = sub_0200B1EC(param0->unk_114, 75);
+            v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 75);
             sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
             Strbuf_Free(v1);
 
@@ -2731,7 +2731,7 @@ static int ov84_0223E5C4 (UnkStruct_ov84_0223B5A0 * param0)
         ov84_02240D3C(param0, 0);
         sub_0200DC9C(&param0->unk_04[7], 1);
         sub_0201ADA4(&param0->unk_04[6], 15);
-        v0 = sub_0200B1EC(param0->unk_114, 76);
+        v0 = MessageFormatter_AllocStrbuf(param0->unk_114, 76);
         sub_0200B60C(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
         sub_0200C388(param0->unk_118, param0->unk_3F8, v0);
         Strbuf_Free(v0);
@@ -2762,7 +2762,7 @@ static int ov84_0223E5C4 (UnkStruct_ov84_0223B5A0 * param0)
         sub_0200DC9C(&param0->unk_04[7], 1);
         sub_0201ADA4(&param0->unk_04[6], 15);
 
-        v1 = sub_0200B1EC(param0->unk_114, 76);
+        v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 76);
 
         sub_0200B60C(param0->unk_118, 0, param0->unk_488 * param0->unk_48C, 6, 0, 1);
         sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
@@ -2818,7 +2818,7 @@ static int ov84_0223E7CC (UnkStruct_ov84_0223B5A0 * param0)
     switch (v0) {
     case 0:
     {
-        Strbuf* v1 = sub_0200B1EC(param0->unk_114, 77);
+        Strbuf* v1 = MessageFormatter_AllocStrbuf(param0->unk_114, 77);
 
         if (param0->unk_488 > 1) {
             sub_0200B77C(param0->unk_118, 0, param0->unk_C4->unk_66);

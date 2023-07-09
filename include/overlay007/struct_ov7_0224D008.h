@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -29,7 +29,7 @@ typedef struct {
     UnkStruct_02013A04 * unk_7C;
     UnkStruct_02001AF4 * unk_80;
     UnkStruct_02013A04 * unk_84;
-    UnkStruct_0200B144 * unk_88;
+    MessageFormatter * unk_88;
     UnkStruct_0200B358 * unk_8C;
     UnkStruct_020203AC * unk_90;
     UnkStruct_ov5_021D30A8 unk_94;

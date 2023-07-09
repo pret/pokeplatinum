@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -17,7 +17,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -159,7 +159,7 @@ static void ov48_02256650 (UnkStruct_ov48_0225650C * param0, u32 param1)
     UnkStruct_0205AA50 v0;
     Strbuf* v1;
 
-    v1 = sub_0200B010(26, 459, 0, 8);
+    v1 = MessageData_AllocStrbufFromNARC(26, 459, 0, 8);
 
     if (v1) {
         sub_0201A7E8(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);

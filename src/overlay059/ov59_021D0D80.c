@@ -4,10 +4,10 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020961E8_decl.h"
 
@@ -34,7 +34,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
@@ -194,7 +194,7 @@ int ov59_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_08 = (UnkStruct_0203DE34 *)sub_02006840(param0);
         v0->unk_4A9C = v0->unk_08->unk_00;
         v0->unk_24 = sub_0200B358(51);
-        v0->unk_28 = sub_0200B144(0, 26, 533, 51);
+        v0->unk_28 = MessageFormatter_Init(0, 26, 533, 51);
 
         sub_02017DD4(4, 8);
 
@@ -321,7 +321,7 @@ int ov59_021D0FF4 (UnkStruct_020067E8 * param0, int * param1)
     sub_02037B58(2);
     sub_02036AC4();
     sub_0205C2C8(v0->unk_08->unk_04);
-    sub_0200B190(v0->unk_28);
+    MessageFormatter_Free(v0->unk_28);
     sub_0200B3F0(v0->unk_24);
 
     ov59_021D131C(v0);
@@ -534,7 +534,7 @@ static void ov59_021D1250 (UnkStruct_020961E8 * param0, NARC * param1)
     param0->unk_48 = Strbuf_Init((20 * 2), 51);
     param0->unk_3A8 = 0;
 
-    sub_0200B1B8(param0->unk_28, 17, param0->unk_48);
+    MessageFormatter_LoadStrbuf(param0->unk_28, 17, param0->unk_48);
     ov59_021D27FC(param0, param1);
 
     param0->unk_40C = sub_0205CA4C(51);
@@ -1049,7 +1049,7 @@ static int ov59_021D1D14 (UnkStruct_020961E8 * param0, int param1)
 
 void ov59_021D1D40 (UnkStruct_020961E8 * param0)
 {
-    sub_0200B1B8(param0->unk_28, 18, param0->unk_48);
+    MessageFormatter_LoadStrbuf(param0->unk_28, 18, param0->unk_48);
     ov59_021D1784(&param0->unk_36C, param0->unk_48, 0);
     sub_02021D6C(param0->unk_28C[0], 37);
 
@@ -1576,7 +1576,7 @@ static void ov59_021D2628 (UnkStruct_020961E8 * param0, int param1, int param2)
 
     v0 = Strbuf_Init((90 * 2), 51);
 
-    sub_0200B1B8(param0->unk_28, param1, v0);
+    MessageFormatter_LoadStrbuf(param0->unk_28, param1, v0);
     sub_0200C388(param0->unk_24, param0->unk_44, v0);
     Strbuf_Free(v0);
     sub_0201ADA4(&param0->unk_34C, 0xf0f);

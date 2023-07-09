@@ -5,11 +5,11 @@
 #include "enums.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -35,7 +35,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -236,7 +236,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200964C(sub_0200C738(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
     ov117_02261574(v0);
 
-    v0->unk_80 = sub_0200B144(0, 26, 9, 110);
+    v0->unk_80 = MessageFormatter_Init(0, 26, 9, 110);
     v0->unk_84 = sub_0200B358(110);
     v0->unk_88 = Strbuf_Init((2 * 160), 110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
@@ -476,7 +476,7 @@ int ov117_02260C10 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002F54(v0->unk_8C);
     Strbuf_Free(v0->unk_88);
     sub_0200B3F0(v0->unk_84);
-    sub_0200B190(v0->unk_80);
+    MessageFormatter_Free(v0->unk_80);
     Heap_FreeToHeap(v0->unk_2C);
     ov117_02260F64(v0);
     sub_0200DA58(v0->unk_94);
@@ -850,7 +850,7 @@ static void ov117_02261368 (UnkStruct_ov117_02261280 * param0)
 
     sub_0200DC48(&param0->unk_30[4], 1, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6);
 
-    v0 = sub_0200B1EC(param0->unk_80, 3);
+    v0 = MessageFormatter_AllocStrbuf(param0->unk_80, 3);
     sub_0201D78C(&param0->unk_30[4], 0, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
 
@@ -1015,7 +1015,7 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     add r0, #0x80
     ldr r0, [r0, #0]
     mov r1, #2
-    bl sub_0200B1EC
+    bl MessageFormatter_AllocStrbuf
     add r6, r0, #0
     mov r0, #0
     add r1, r6, #0
@@ -1059,13 +1059,13 @@ asm static void ov117_0226168C (UnkStruct_ov117_02261280 * param0, NARC * param1
     add r0, #0x80
     ldr r0, [r0, #0]
     mov r1, #0
-    bl sub_0200B1EC
+    bl MessageFormatter_AllocStrbuf
     str r0, [sp, #0x30]
     add r0, r5, #0
     add r0, #0x80
     ldr r0, [r0, #0]
     mov r1, #1
-    bl sub_0200B1EC
+    bl MessageFormatter_AllocStrbuf
     str r0, [sp, #0x38]
     mov r0, #0
     str r0, [sp, #0x34]

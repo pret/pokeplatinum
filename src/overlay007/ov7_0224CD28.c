@@ -4,10 +4,10 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/message_formatter.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -28,7 +28,7 @@
 #include "unk_02006E3C.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -322,7 +322,7 @@ static void ov7_0224D008 (UnkStruct_ov7_0224D008 * param0)
 
 static void ov7_0224D018 (UnkStruct_ov7_0224D008 * param0)
 {
-    param0->unk_88 = sub_0200B144(0, 26, 543, 11);
+    param0->unk_88 = MessageFormatter_Init(0, 26, 543, 11);
     param0->unk_8C = sub_0200B358(11);
 }
 
@@ -407,7 +407,7 @@ static u8 ov7_0224D250 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
 
         sub_0200E084(&param1->unk_08[1], 0);
         sub_0201A8FC(&param1->unk_08[1]);
-        sub_0200B190(param1->unk_88);
+        MessageFormatter_Free(param1->unk_88);
         sub_0200B3F0(param1->unk_8C);
         Strbuf_Free(param1->unk_298);
 
@@ -594,21 +594,21 @@ static u32 ov7_0224D698 (UnkStruct_ov7_0224D008 * param0, u16 param1)
 
 static void ov7_0224D6BC (UnkStruct_ov7_0224D008 * param0)
 {
-    UnkStruct_0200B144 * v0;
+    MessageFormatter * v0;
     Strbuf* v1;
     UnkStruct_ov84_02240FA8 v2;
     u32 v3;
     u32 v4;
-    UnkStruct_0200B144 * v5;
+    MessageFormatter * v5;
     BOOL v6 = 0;
 
     if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
-        v0 = sub_0200B144(0, 26, 392, 11);
-        v5 = sub_0200B144(0, 26, 647, 11);
+        v0 = MessageFormatter_Init(0, 26, 392, 11);
+        v5 = MessageFormatter_Init(0, 26, 647, 11);
     } else if (param0->unk_2A9 == 1) {
-        v0 = sub_0200B144(0, 26, 626, 11);
+        v0 = MessageFormatter_Init(0, 26, 626, 11);
     } else {
-        v0 = sub_0200B144(0, 26, 12, 11);
+        v0 = MessageFormatter_Init(0, 26, 12, 11);
     }
 
     param0->unk_7C = sub_02013A04(param0->unk_294 + 1, 11);
@@ -617,13 +617,13 @@ static void ov7_0224D6BC (UnkStruct_ov7_0224D008 * param0)
         v4 = ov7_0224D698(param0, param0->unk_290[v3]);
 
         if ((v4 <= 420) && (v4 >= 328)) {
-            v1 = sub_0200B1EC(v5, GetMoveFromTMOrHMItemID(v4));
+            v1 = MessageFormatter_AllocStrbuf(v5, GetMoveFromTMOrHMItemID(v4));
             sub_02013A6C(param0->unk_7C, v1, param0->unk_290[v3]);
             Strbuf_Free(v1);
 
             v6 = 1;
         } else {
-            v1 = sub_0200B1EC(v0, v4);
+            v1 = MessageFormatter_AllocStrbuf(v0, v4);
             sub_02013A6C(param0->unk_7C, v1, param0->unk_290[v3]);
             Strbuf_Free(v1);
         }
@@ -635,10 +635,10 @@ static void ov7_0224D6BC (UnkStruct_ov7_0224D008 * param0)
         sub_02013A4C(param0->unk_7C, param0->unk_88, 8, 0xfffffffe);
     }
 
-    sub_0200B190(v0);
+    MessageFormatter_Free(v0);
 
     if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
-        sub_0200B190(v5);
+        MessageFormatter_Free(v5);
     }
 
     v2 = Unk_ov7_0224F308;
@@ -677,18 +677,18 @@ static void ov7_0224D85C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
             v1 = Strbuf_Init(130, 11);
             Item_GetDescriptionIntoString(v1, (u16)param1, 11);
         } else if (v0->unk_2A9 == 1) {
-            UnkStruct_0200B144 * v2;
+            MessageFormatter * v2;
 
-            v2 = sub_0200B144(0, 26, 626, 11);
-            v1 = sub_0200B1EC(v2, 139 + param1 - 1);
-            sub_0200B190(v2);
+            v2 = MessageFormatter_Init(0, 26, 626, 11);
+            v1 = MessageFormatter_AllocStrbuf(v2, 139 + param1 - 1);
+            MessageFormatter_Free(v2);
         } else {
-            UnkStruct_0200B144 * v3;
+            MessageFormatter * v3;
 
-            v3 = sub_0200B144(0, 26, 542, 11);
-            v1 = sub_0200B1EC(v3, sub_020981F4((u8)param1));
+            v3 = MessageFormatter_Init(0, 26, 542, 11);
+            v1 = MessageFormatter_AllocStrbuf(v3, sub_020981F4((u8)param1));
 
-            sub_0200B190(v3);
+            MessageFormatter_Free(v3);
         }
 
         sub_0201D78C(&v0->unk_08[1], 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -743,9 +743,9 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         v1 = Strbuf_Init(12, 11);
 
         if (v0->unk_2A9 == 3) {
-            v2 = sub_0200B1EC(v0->unk_88, 32);
+            v2 = MessageFormatter_AllocStrbuf(v0->unk_88, 32);
         } else {
-            v2 = sub_0200B1EC(v0->unk_88, 9);
+            v2 = MessageFormatter_AllocStrbuf(v0->unk_88, 9);
         }
 
         sub_0200B60C(v0->unk_8C, 0, v3, 4, 1, 1);
@@ -759,7 +759,7 @@ static void ov7_0224D9B8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     }
 
     if (param1 == 0xfffffffe) {
-        Strbuf* v6 = sub_0200B1EC(v0->unk_88, 8);
+        Strbuf* v6 = MessageFormatter_AllocStrbuf(v0->unk_88, 8);
 
         sub_0201AE78(&v0->unk_08[0], 15, 0, param2, 19 * 8, 16);
         sub_0201D78C(&v0->unk_08[0], 0, v6, 0, param2, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -784,7 +784,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
         }
 
         v0 = Strbuf_Init(16, 11);
-        v1 = sub_0200B1EC(param0->unk_88, 38);
+        v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 38);
         v2 = ov7_0224E8F4(param0);
 
         sub_0200B60C(param0->unk_8C, 0, v2, 6, 1, 1);
@@ -798,7 +798,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
             sub_0201ADA4(&param0->unk_08[2], 15);
             sub_0200DC48(&param0->unk_08[2], 1, (1 + (18 + 12)), 11);
 
-            v1 = sub_0200B1EC(param0->unk_88, 18);
+            v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 18);
 
             sub_0201D738(&param0->unk_08[2], 0, v1, 0, 0, 0xff, NULL);
             Strbuf_Free(v1);
@@ -807,7 +807,7 @@ static void ov7_0224DAF8 (UnkStruct_ov7_0224D008 * param0, u8 param1)
         }
 
         v0 = Strbuf_Init(16, 11);
-        v1 = sub_0200B1EC(param0->unk_88, 19);
+        v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 19);
         v2 = ov7_0224E8F4(param0);
 
         sub_0200B60C(param0->unk_8C, 0, v2, 6, 1, 1);
@@ -873,9 +873,9 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
 
         if (v4 < param0->unk_2B0) {
             if (param0->unk_2A9 == 3) {
-                v3 = sub_0200B1EC(param0->unk_88, 37);
+                v3 = MessageFormatter_AllocStrbuf(param0->unk_88, 37);
             } else {
-                v3 = sub_0200B1EC(param0->unk_88, 3);
+                v3 = MessageFormatter_AllocStrbuf(param0->unk_88, 3);
             }
 
             sub_0200C388(param0->unk_8C, param0->unk_298, v3);
@@ -900,9 +900,9 @@ static u8 ov7_0224DC84 (UnkStruct_ov7_0224D008 * param0)
         ov7_0224E834(param0, param0->unk_2AA, 0);
 
         if (param0->unk_2A9 == 3) {
-            v3 = sub_0200B1EC(param0->unk_88, 33);
+            v3 = MessageFormatter_AllocStrbuf(param0->unk_88, 33);
         } else {
-            v3 = sub_0200B1EC(param0->unk_88, 4);
+            v3 = MessageFormatter_AllocStrbuf(param0->unk_88, 4);
         }
 
         sub_0200C388(param0->unk_8C, param0->unk_298, v3);
@@ -955,7 +955,7 @@ static void ov7_0224DED4 (UnkStruct_ov7_0224D008 * param0)
     sub_0200DC48(&param0->unk_08[4], 1, (1 + (18 + 12)), 11);
 
     v0 = Strbuf_Init((12 * 2), 11);
-    v1 = sub_0200B1EC(param0->unk_88, 20);
+    v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 20);
 
     sub_0200B60C(param0->unk_8C, 0, v2, 3, 1, 1);
     sub_0200C388(param0->unk_8C, v0, v1);
@@ -1028,13 +1028,13 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
         param0->unk_2AC = 0;
 
         if (param0->unk_2A9 == 0) {
-            v0 = sub_0200B1EC(param0->unk_88, 7);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 7);
         } else if (param0->unk_2A9 == 3) {
-            v0 = sub_0200B1EC(param0->unk_88, 7);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 7);
         } else if (param0->unk_2A9 == 1) {
-            v0 = sub_0200B1EC(param0->unk_88, 12);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 12);
         } else {
-            v0 = sub_0200B1EC(param0->unk_88, 14);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 14);
         }
 
         sub_0200C388(param0->unk_8C, param0->unk_298, v0);
@@ -1055,15 +1055,15 @@ static u8 ov7_0224E098 (UnkStruct_ov7_0224D008 * param0)
         sub_0200B630(param0->unk_8C, 3, v2);
 
         if (param0->unk_2A9 == 3) {
-            v0 = sub_0200B1EC(param0->unk_88, 36);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 36);
         } else {
-            v0 = sub_0200B1EC(param0->unk_88, 27);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 27);
         }
     } else {
         if (param0->unk_2A9 == 3) {
-            v0 = sub_0200B1EC(param0->unk_88, 35);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 35);
         } else {
-            v0 = sub_0200B1EC(param0->unk_88, 5);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 5);
         }
     }
 
@@ -1087,7 +1087,7 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
     }
 
     v0 = Strbuf_Init(24, 11);
-    v1 = sub_0200B1EC(param0->unk_88, 21);
+    v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 21);
 
     sub_0200B60C(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
     sub_0200C388(param0->unk_8C, v0, v1);
@@ -1095,9 +1095,9 @@ static void ov7_0224E28C (UnkStruct_ov7_0224D008 * param0, u8 param1)
     Strbuf_Free(v1);
 
     if (param0->unk_2A9 == 3) {
-        v1 = sub_0200B1EC(param0->unk_88, 34);
+        v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 34);
     } else {
-        v1 = sub_0200B1EC(param0->unk_88, 22);
+        v1 = MessageFormatter_AllocStrbuf(param0->unk_88, 22);
     }
 
     sub_0200B60C(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
@@ -1129,7 +1129,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
         Strbuf* v0;
 
         if (param0->unk_2A9 == 0) {
-            v0 = sub_0200B1EC(param0->unk_88, 6);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 6);
 
             if (param0->unk_2AC == 1) {
                 sub_0200B70C(param0->unk_8C, 0, param0->unk_2AA);
@@ -1145,12 +1145,12 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
                 sub_0200B77C(param0->unk_8C, 0, param0->unk_2AA);
             }
 
-            v0 = sub_0200B1EC(param0->unk_88, 6);
+            v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 6);
             sub_0200B7B4(param0->unk_8C, 1, Item_GetAttribute(param0->unk_2AA, 5, 11));
         } else {
             if (param0->unk_2A9 == 1) {
                 ov7_0224E834(param0, param0->unk_2AA, 0);
-                v0 = sub_0200B1EC(param0->unk_88, 11);
+                v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 11);
             } else {
                 if (param0->unk_2AC == 1) {
                     sub_0200BE64(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
@@ -1158,7 +1158,7 @@ static u8 ov7_0224E3D8 (UnkStruct_ov7_0224D008 * param0)
                     sub_0200BE98(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
                 }
 
-                v0 = sub_0200B1EC(param0->unk_88, 13);
+                v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 13);
             }
         }
 
@@ -1233,7 +1233,7 @@ static u8 ov7_0224E6B8 (UnkStruct_ov7_0224D008 * param0)
 
         if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
             if (sub_0207D570(param0->unk_274, 12, 1, 11) == 1) {
-                Strbuf* v0 = sub_0200B1EC(param0->unk_88, 10);
+                Strbuf* v0 = MessageFormatter_AllocStrbuf(param0->unk_88, 10);
 
                 sub_0200C388(param0->unk_8C, param0->unk_298, v0);
                 Strbuf_Free(v0);
@@ -1409,7 +1409,7 @@ static u8 ov7_0224E950 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
     sub_0205D944(&param1->unk_08[1], param1->unk_278);
 
     {
-        Strbuf* v1 = sub_0200B1EC(param1->unk_88, 2);
+        Strbuf* v1 = MessageFormatter_AllocStrbuf(param1->unk_88, 2);
 
         sub_0200C388(param1->unk_8C, param1->unk_298, v1);
         Strbuf_Free(v1);
@@ -1437,9 +1437,9 @@ static void ov7_0224EA54 (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * 
     Strbuf* v0;
 
     if (param1->unk_2A9 == 3) {
-        v0 = sub_0200B1EC(param1->unk_88, 31);
+        v0 = MessageFormatter_AllocStrbuf(param1->unk_88, 31);
     } else {
-        v0 = sub_0200B1EC(param1->unk_88, 1);
+        v0 = MessageFormatter_AllocStrbuf(param1->unk_88, 1);
     }
 
     sub_0200C388(param1->unk_8C, param1->unk_298, v0);
@@ -1572,7 +1572,7 @@ static u8 ov7_0224EC9C (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * pa
     sub_0205D944(&param1->unk_08[1], param1->unk_278);
 
     {
-        Strbuf* v0 = sub_0200B1EC(param1->unk_88, 2);
+        Strbuf* v0 = MessageFormatter_AllocStrbuf(param1->unk_88, 2);
 
         sub_0200C388(param1->unk_8C, param1->unk_298, v0);
         Strbuf_Free(v0);

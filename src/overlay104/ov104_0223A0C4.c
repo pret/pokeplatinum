@@ -17,7 +17,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0202D05C.h"
@@ -895,7 +895,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     }
 
     param1->unk_21 = v3;
-    sub_0200B274(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
+    MessageFormatter_LoadSpeciesName(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
 
     return v2;
 }

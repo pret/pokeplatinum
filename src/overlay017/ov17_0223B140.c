@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 
@@ -27,7 +27,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -211,10 +211,10 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C.unk_20 = ov12_0221FCDC(21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = sub_0200B144(0, 26, 204, 21);
-    v0->unk_0C.unk_3C = sub_0200B144(0, 26, 205, 21);
-    v0->unk_0C.unk_40 = sub_0200B144(0, 26, 210, 21);
-    v0->unk_0C.unk_44 = sub_0200B144(0, 26, 211, 21);
+    v0->unk_0C.unk_38 = MessageFormatter_Init(0, 26, 204, 21);
+    v0->unk_0C.unk_3C = MessageFormatter_Init(0, 26, 205, 21);
+    v0->unk_0C.unk_40 = MessageFormatter_Init(0, 26, 210, 21);
+    v0->unk_0C.unk_44 = MessageFormatter_Init(0, 26, 211, 21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = sub_0200B358(21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), 21);
@@ -365,10 +365,10 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
 
     Strbuf_Free(v0->unk_0C.unk_4C);
     sub_0200B3F0(v0->unk_0C.unk_48);
-    sub_0200B190(v0->unk_0C.unk_38);
-    sub_0200B190(v0->unk_0C.unk_3C);
-    sub_0200B190(v0->unk_0C.unk_40);
-    sub_0200B190(v0->unk_0C.unk_44);
+    MessageFormatter_Free(v0->unk_0C.unk_38);
+    MessageFormatter_Free(v0->unk_0C.unk_3C);
+    MessageFormatter_Free(v0->unk_0C.unk_40);
+    MessageFormatter_Free(v0->unk_0C.unk_44);
 
     Heap_FreeToHeap(v0->unk_0C.unk_24);
     sub_0200DA58(v0->unk_04);

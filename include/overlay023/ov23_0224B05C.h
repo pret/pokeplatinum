@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_0224B05C_H
 #define POKEPLATINUM_OV23_0224B05C_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"

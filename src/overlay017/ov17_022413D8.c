@@ -5,12 +5,12 @@
 #include "assert.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/narc.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "overlay017/const_ov17_022536B4.h"
 
@@ -33,7 +33,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -1511,7 +1511,7 @@ void ov17_02242DA8 (UnkStruct_ov17_02246F24 * param0)
     sub_0201A954(&param0->unk_0C.unk_28[0]);
 }
 
-static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 * param4, const void * param5, int param6)
+static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, MessageFormatter * param1, u32 param2, int param3, const UnkStruct_ov17_022449B8 * param4, const void * param5, int param6)
 {
     Strbuf* v0;
     u32 v1;
@@ -1526,7 +1526,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, UnkStruct_0200B144 
         }
     }
 
-    v0 = sub_0200B1EC(param1, param2);
+    v0 = MessageFormatter_AllocStrbuf(param1, param2);
     ov17_0224290C(param0, param3, param4, param5);
 
     sub_0200C388(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);

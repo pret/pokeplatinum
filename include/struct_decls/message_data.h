@@ -1,0 +1,6 @@
+#ifndef POKEPLATINUM_STRUCT_MESSAGE_DATA_H
+#define POKEPLATINUM_STRUCT_MESSAGE_DATA_H
+
+typedef struct MessageData_t MessageData;
+
+#endif // POKEPLATINUM_STRUCT_MESSAGE_DATA_H

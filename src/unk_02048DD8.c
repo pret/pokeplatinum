@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -24,7 +24,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "strbuf.h"
 #include "unk_0202440C.h"
@@ -307,7 +307,7 @@ static void sub_020492A0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
     UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E7E4 * v2 = sub_0202E7E4(v1);
 
-    sub_0200B274(v2->unk_02, 4, v0);
+    MessageFormatter_LoadSpeciesName(v2->unk_02, 4, v0);
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 
@@ -317,7 +317,7 @@ static void sub_020492D4 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
     UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E810 * v2 = sub_0202E810(v1);
 
-    sub_0200B274(v2->unk_02, 4, v0);
+    MessageFormatter_LoadSpeciesName(v2->unk_02, 4, v0);
     sub_0204922C(param1, 0, v0, 0, GAME_LANGUAGE, 1);
 }
 

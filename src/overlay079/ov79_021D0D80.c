@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0203D9B8.h"
@@ -20,7 +20,7 @@
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -690,25 +690,25 @@ static void ov79_021D1568 (UnkStruct_ov79_021D0E1C * param0)
 
     sub_02002BB8(2, param0->unk_00);
 
-    param0->unk_2C = sub_0200B144(0, 26, 463, param0->unk_00);
+    param0->unk_2C = MessageFormatter_Init(0, 26, 463, param0->unk_00);
     param0->unk_28 = sub_020158A8(param0->unk_00);
     param0->unk_30.unk_00 = sub_0200B368(2, 64, param0->unk_00);
     param0->unk_30.unk_04 = Strbuf_Init(64, param0->unk_00);
-    param0->unk_30.unk_08 = sub_0200B1EC(param0->unk_2C, 6);
-    param0->unk_30.unk_0C = sub_0200B1EC(param0->unk_2C, 22);
-    param0->unk_30.unk_10 = sub_0200B1EC(param0->unk_2C, 4);
-    param0->unk_30.unk_14 = sub_0200B1EC(param0->unk_2C, 7);
-    param0->unk_30.unk_18 = sub_0200B1EC(param0->unk_2C, 8);
-    param0->unk_30.unk_1C = sub_0200B1EC(param0->unk_2C, 0);
+    param0->unk_30.unk_08 = MessageFormatter_AllocStrbuf(param0->unk_2C, 6);
+    param0->unk_30.unk_0C = MessageFormatter_AllocStrbuf(param0->unk_2C, 22);
+    param0->unk_30.unk_10 = MessageFormatter_AllocStrbuf(param0->unk_2C, 4);
+    param0->unk_30.unk_14 = MessageFormatter_AllocStrbuf(param0->unk_2C, 7);
+    param0->unk_30.unk_18 = MessageFormatter_AllocStrbuf(param0->unk_2C, 8);
+    param0->unk_30.unk_1C = MessageFormatter_AllocStrbuf(param0->unk_2C, 0);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_30.unk_20[v0] = sub_0200B1EC(param0->unk_2C, 11 + v0);
+        param0->unk_30.unk_20[v0] = MessageFormatter_AllocStrbuf(param0->unk_2C, 11 + v0);
 
         if (v0 >= 5) {
             break;
         }
 
-        param0->unk_30.unk_38[v0] = sub_0200B1EC(param0->unk_2C, 17 + v0);
+        param0->unk_30.unk_38[v0] = MessageFormatter_AllocStrbuf(param0->unk_2C, 17 + v0);
     }
 
     param0->unk_30.unk_4C = sub_02027AC0(param0->unk_20->unk_18);
@@ -737,7 +737,7 @@ static void ov79_021D1618 (UnkStruct_ov79_021D0E1C * param0)
     Strbuf_Free(param0->unk_30.unk_04);
     sub_0200B3F0(param0->unk_30.unk_00);
     sub_020158F4(param0->unk_28);
-    sub_0200B190(param0->unk_2C);
+    MessageFormatter_Free(param0->unk_2C);
     sub_02002C60(2);
 }
 

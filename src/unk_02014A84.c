@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "struct_defs/struct_02014A84.h"
 
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_02014A84.h"
@@ -92,7 +92,7 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
 {
     Strbuf* v0;
     UnkStruct_0200B358 * v1;
-    UnkStruct_0200B144 * v2;
+    MessageFormatter * v2;
     int v3;
 
     v1 = sub_0200B358(param1);
@@ -105,10 +105,10 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
         }
     }
 
-    v2 = sub_0200B144(1, 26, Unk_020E5498[param0->unk_00], param1);
+    v2 = MessageFormatter_Init(1, 26, Unk_020E5498[param0->unk_00], param1);
     v0 = sub_0200B29C(v1, v2, param0->unk_02, param1);
 
-    sub_0200B190(v2);
+    MessageFormatter_Free(v2);
     sub_0200B3F0(v1);
 
     return v0;
@@ -116,7 +116,7 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
 
 Strbuf* sub_02014BA0 (const UnkStruct_02014A84 * param0, u32 param1)
 {
-    return sub_0200B010(26, Unk_020E5498[param0->unk_00], param0->unk_02, param1);
+    return MessageData_AllocStrbufFromNARC(26, Unk_020E5498[param0->unk_00], param0->unk_02, param1);
 }
 
 BOOL sub_02014BBC (const UnkStruct_02014A84 * param0)
@@ -148,7 +148,7 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
     GF_ASSERT(param0 < 5);
     GF_ASSERT(param1 < sub_02014CD4(param0));
 
-    v0 = sub_0200B010(26, Unk_020E5498[param0], param1, 0);
+    v0 = MessageData_AllocStrbufFromNARC(26, Unk_020E5498[param0], param1, 0);
     v1 = Strbuf_GetData(v0);
     v2 = 0;
 

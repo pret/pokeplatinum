@@ -7,7 +7,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
@@ -46,7 +46,7 @@
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_020067E8.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -137,10 +137,10 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_02023FCC * unk_180;
     u32 unk_184;
     u32 unk_188;
-    UnkStruct_0200B144 * unk_18C;
-    UnkStruct_0200B144 * unk_190;
-    UnkStruct_0200B144 * unk_194;
-    UnkStruct_0200B144 * unk_198;
+    MessageFormatter * unk_18C;
+    MessageFormatter * unk_190;
+    MessageFormatter * unk_194;
+    MessageFormatter * unk_198;
     UnkStruct_0200B358 * unk_19C;
     Pokemon * unk_1A0;
     UnkStruct_020279FC * unk_1A4;
@@ -3317,10 +3317,10 @@ static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 
     param0->unk_1A4 = sub_02025E44(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
-    param0->unk_18C = sub_0200B144(0, 26, 19, 9);
-    param0->unk_190 = sub_0200B144(1, 26, 412, 9);
-    param0->unk_194 = sub_0200B144(0, 26, 202, 9);
-    param0->unk_198 = sub_0200B144(0, 26, 610, 9);
+    param0->unk_18C = MessageFormatter_Init(0, 26, 19, 9);
+    param0->unk_190 = MessageFormatter_Init(1, 26, 412, 9);
+    param0->unk_194 = MessageFormatter_Init(0, 26, 202, 9);
+    param0->unk_198 = MessageFormatter_Init(0, 26, 610, 9);
     param0->unk_19C = sub_0200B358(9);
     param0->unk_1A0 = Heap_AllocFromHeap(9, PokemonStructSize());
 
@@ -3358,10 +3358,10 @@ static void ov19_021D4D58 (UnkStruct_ov19_021D5DF8 * param0)
     }
 
     sub_0200B3F0(param0->unk_19C);
-    sub_0200B190(param0->unk_18C);
-    sub_0200B190(param0->unk_190);
-    sub_0200B190(param0->unk_194);
-    sub_0200B190(param0->unk_198);
+    MessageFormatter_Free(param0->unk_18C);
+    MessageFormatter_Free(param0->unk_190);
+    MessageFormatter_Free(param0->unk_194);
+    MessageFormatter_Free(param0->unk_198);
     sub_0208716C(param0->unk_128);
 
     ov19_021D4EC0(&(param0->unk_00.unk_4C));
@@ -4167,7 +4167,7 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     sub_02074570(param1, MON_DATA_119, v0->unk_14);
 
     if (v0->unk_0F == 0) {
-        sub_0200B1B8(param2->unk_190, v0->unk_04, v0->unk_18);
+        MessageFormatter_LoadStrbuf(param2->unk_190, v0->unk_04, v0->unk_18);
     } else {
         Strbuf_Copy(v0->unk_18, v0->unk_14);
         Strbuf_Clear(v0->unk_14);
@@ -4176,15 +4176,15 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     if (v0->unk_06 != 0) {
         Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
-        sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
+        MessageFormatter_LoadStrbuf(param2->unk_18C, 20, v0->unk_1C);
     }
 
     {
         u32 v3 = sub_02075BD4(param1);
 
-        sub_0200B1B8(param2->unk_194, v3, v0->unk_20);
+        MessageFormatter_LoadStrbuf(param2->unk_194, v3, v0->unk_20);
         v3 = sub_02074570(param1, MON_DATA_10, NULL);
-        sub_0200B1B8(param2->unk_198, v3, v0->unk_24);
+        MessageFormatter_LoadStrbuf(param2->unk_198, v3, v0->unk_24);
     }
 
     sub_020759B8(v2);
@@ -4283,7 +4283,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     if (v0->unk_06 != 0) {
         Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
-        sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
+        MessageFormatter_LoadStrbuf(param2->unk_18C, 20, v0->unk_1C);
     }
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
@@ -4305,7 +4305,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
 
             sub_02077A1C(v0->unk_00);
             v3 = sub_02074570(v0->unk_00, MON_DATA_10, NULL);
-            sub_0200B1B8(param2->unk_198, v3, v0->unk_24);
+            MessageFormatter_LoadStrbuf(param2->unk_198, v3, v0->unk_24);
         }
     }
 }
@@ -4355,7 +4355,7 @@ static void ov19_021D5D28 (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_ov19_021D
 
     param0->unk_112 = v0->unk_06;
 
-    sub_0200B1B8(param1->unk_18C, 20, v0->unk_1C);
+    MessageFormatter_LoadStrbuf(param1->unk_18C, 20, v0->unk_1C);
     ov19_021D5BE8(param0, v1, param1);
 }
 
@@ -4420,7 +4420,7 @@ static void ov19_021D5DD8 (UnkStruct_ov19_021D4DF0 * param0)
     param0->unk_48.unk_01 ^= 1;
 }
 
-UnkStruct_0200B144 * ov19_021D5DE8 (const UnkStruct_ov19_021D5DF8 * param0)
+MessageFormatter * ov19_021D5DE8 (const UnkStruct_ov19_021D5DF8 * param0)
 {
     return param0->unk_18C;
 }

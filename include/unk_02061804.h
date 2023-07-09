@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02061804_H
 #define POKEPLATINUM_UNK_02061804_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"

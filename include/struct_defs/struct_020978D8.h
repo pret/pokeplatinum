@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020978D8_H
 
 #include "struct_defs/struct_02014A84.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/union_02028328.h"
 

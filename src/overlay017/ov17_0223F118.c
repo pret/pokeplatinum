@@ -3,14 +3,14 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -27,7 +27,7 @@
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
@@ -190,13 +190,13 @@ void ov17_0223F2F8 (UnkStruct_ov17_0223F2E4 * param0, int param1, int param2, in
 
 Strbuf* ov17_0223F310 (u32 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageFormatter * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 207, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageFormatter_Init(1, 26, 207, param1);
+    v1 = MessageFormatter_AllocStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageFormatter_Free(v0);
     return v1;
 }
 

@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -27,8 +27,8 @@ typedef struct {
     UnkStruct_02023FCC * unk_18;
     UnkUnion_02022594 unk_1C[5];
     BOOL unk_30;
-    UnkStruct_0200B144 * unk_34;
-    UnkStruct_0200B144 * unk_38;
+    MessageFormatter * unk_34;
+    MessageFormatter * unk_38;
     UnkStruct_02012744 * unk_3C;
     int unk_40;
     int unk_44;

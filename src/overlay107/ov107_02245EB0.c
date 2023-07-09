@@ -7,13 +7,13 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/narc.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -47,7 +47,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
@@ -110,7 +110,7 @@ struct UnkStruct_ov107_02246170_t {
     u16 unk_1A;
     u16 unk_1C;
     u16 unk_1E;
-    UnkStruct_0200B144 * unk_20;
+    MessageFormatter * unk_20;
     UnkStruct_0200B358 * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
@@ -1091,7 +1091,7 @@ static void ov107_02246D84 (UnkStruct_ov107_02246170 * param0)
 
     ov107_02249954(&param0->unk_158);
 
-    sub_0200B190(param0->unk_20);
+    MessageFormatter_Free(param0->unk_20);
     sub_0200B3F0(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
@@ -1135,7 +1135,7 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
     ov107_02247220(param0);
     ov107_02247280(param0);
 
-    param0->unk_20 = sub_0200B144(1, 26, 201, 100);
+    param0->unk_20 = MessageFormatter_Init(1, 26, 201, 100);
     param0->unk_24 = sub_0200B358(100);
     param0->unk_28 = Strbuf_Init(600, 100);
     param0->unk_2C = Strbuf_Init(600, 100);
@@ -1522,7 +1522,7 @@ asm static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205A
     ldr r0, [r5, #0x20]
     ldr r2, [r5, #0x2c]
     add r1, r7, #0
-    bl sub_0200B1B8
+    bl MessageFormatter_LoadStrbuf
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     ldr r2, [r5, #0x2c]
@@ -1617,7 +1617,7 @@ asm static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205A
     ldr r0, [r5, #0x20]
     ldr r2, [r5, #0x2c]
     add r4, r3, #0
-    bl sub_0200B1B8
+    bl MessageFormatter_LoadStrbuf
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     ldr r2, [r5, #0x2c]
@@ -2112,7 +2112,7 @@ static void ov107_02247D68 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     int v0;
     void * v1;
 
-    sub_0200B1B8(param0->unk_20, param3, param0->unk_30[param1]);
+    MessageFormatter_LoadStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
 
     param0->unk_120[param1].unk_00 = (const void *)param0->unk_30[param1];
     param0->unk_120[param1].unk_04 = param2;

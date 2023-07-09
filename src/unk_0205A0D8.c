@@ -3,10 +3,10 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/pokemon.h"
@@ -24,7 +24,7 @@
 #include "struct_defs/struct_02098D38.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -66,7 +66,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_14;
     UnkStruct_0203CDB0 * unk_24;
     UnkStruct_0200B358 * unk_28;
-    UnkStruct_0200B144 * unk_2C;
+    MessageFormatter * unk_2C;
     int unk_30;
     int unk_34;
     int unk_38;
@@ -102,7 +102,7 @@ typedef struct {
     Strbuf* unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0200B358 * unk_18;
-    UnkStruct_0200B144 * unk_1C;
+    MessageFormatter * unk_1C;
     int unk_20;
     int unk_24;
     int unk_28;
@@ -273,7 +273,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 1:
-        sub_0200B1B8(v0->unk_2C, 1, v0->unk_0C);
+        MessageFormatter_LoadStrbuf(v0->unk_2C, 1, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 2;
         break;
@@ -340,7 +340,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         break;
     case 11:
         sub_02059240();
-        sub_0200B1B8(v0->unk_2C, 13, v0->unk_0C);
+        MessageFormatter_LoadStrbuf(v0->unk_2C, 13, v0->unk_0C);
 
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 12;
@@ -432,7 +432,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         break;
     case 24:
         sub_02059240();
-        sub_0200B1B8(v0->unk_2C, 19, v0->unk_0C);
+        MessageFormatter_LoadStrbuf(v0->unk_2C, 19, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 25;
         break;
@@ -450,7 +450,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
                 sub_0205AC80(v0, v0->unk_82);
                 sub_020364F0(0);
                 sub_0200B498(v0->unk_28, 0, v0->unk_74);
-                sub_0200B1B8(v0->unk_2C, 14, v0->unk_0C);
+                MessageFormatter_LoadStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
                 v0->unk_34 = 27;
@@ -478,7 +478,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
             v0->unk_83 = sub_0205AD20(v0);
 
             if (v0->unk_82 && v0->unk_83) {
-                sub_0200B1B8(v0->unk_2C, 20, v0->unk_0C);
+                MessageFormatter_LoadStrbuf(v0->unk_2C, 20, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
                 v0->unk_34 = 30;
             } else {
@@ -489,7 +489,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
     case 30:
         if (sub_0205DA04(v0->unk_30)) {
             v0->unk_89 = 0;
-            sub_0200B1B8(v0->unk_2C, 17, v0->unk_0C);
+            MessageFormatter_LoadStrbuf(v0->unk_2C, 17, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
             v0->unk_84 = 0;
             v0->unk_34 = 31;
@@ -512,7 +512,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         case 2:
             sub_0205B0B4(v0);
             v0->unk_84 = 255;
-            sub_0200B1B8(v0->unk_2C, 15, v0->unk_0C);
+            MessageFormatter_LoadStrbuf(v0->unk_2C, 15, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
             sub_020364F0(2);
             v0->unk_34 = 39;
@@ -521,7 +521,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         break;
     case 36:
         sub_0200B538(v0->unk_28, 1, sub_02076B10(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
-        sub_0200B1B8(v0->unk_2C, 18, v0->unk_0C);
+        MessageFormatter_LoadStrbuf(v0->unk_2C, 18, v0->unk_0C);
         sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
         v0->unk_34 = 37;
@@ -536,14 +536,14 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         switch (sub_0205AFE4(v0)) {
         case 2:
             sub_0205B0B4(v0);
-            sub_0200B1B8(v0->unk_2C, 17, v0->unk_0C);
+            MessageFormatter_LoadStrbuf(v0->unk_2C, 17, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
             v0->unk_34 = 31;
             break;
         case 1:
             if (v0->unk_81 == 1) {
                 sub_0205B0B4(v0);
-                sub_0200B1B8(v0->unk_2C, 14, v0->unk_0C);
+                MessageFormatter_LoadStrbuf(v0->unk_2C, 14, v0->unk_0C);
                 sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
                 sub_020364F0(2);
@@ -596,7 +596,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 42:
-        sub_0200B1B8(v0->unk_2C, 15, v0->unk_0C);
+        MessageFormatter_LoadStrbuf(v0->unk_2C, 15, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_43 = 0;
         v0->unk_34 = 43;
@@ -674,7 +674,7 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_24 = param0;
     v0->unk_08 = param1;
     v0->unk_28 = sub_0200B358(11);
-    v0->unk_2C = sub_0200B144(0, 26, 11, 11);
+    v0->unk_2C = MessageFormatter_Init(0, 26, 11, 11);
     v0->unk_0C = Strbuf_Init((100 * 2), 11);
     v0->unk_10 = Strbuf_Init((100 * 2), 11);
 
@@ -735,7 +735,7 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
         Heap_FreeToHeap(param0->unk_48);
     }
 
-    sub_0200B190(param0->unk_2C);
+    MessageFormatter_Free(param0->unk_2C);
     sub_0200B3F0(param0->unk_28);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_10);
@@ -877,9 +877,9 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
 
     if (sub_0201A7CC(v0) == 0) {
         int v1, v2, v3;
-        UnkStruct_0200B144 * v4;
+        MessageFormatter * v4;
 
-        v4 = sub_0200B144(1, 26, 412, 4);
+        v4 = MessageFormatter_Init(1, 26, 412, 4);
         v3 = sub_02076AF0();
 
         sub_0201A7E8(param0->unk_24->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
@@ -889,13 +889,13 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
         for (v1 = 0; v1 < 3; v1++) {
             v2 = GetMonData((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
-            sub_0200B1B8(v4, v2, param0->unk_0C);
+            MessageFormatter_LoadStrbuf(v4, v2, param0->unk_0C);
             sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
 
-        sub_0200B1B8(param0->unk_2C, 21, param0->unk_0C);
+        MessageFormatter_LoadStrbuf(param0->unk_2C, 21, param0->unk_0C);
         sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
-        sub_0200B190(v4);
+        MessageFormatter_Free(v4);
     }
 
     sub_0201AE78(v0, 15, 0, 0, 16, v0->unk_08 * 8);
@@ -919,7 +919,7 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
         sub_0201ADA4(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
-            sub_0200B1B8(param0->unk_2C, 22 + v1, param0->unk_0C);
+            MessageFormatter_LoadStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
             sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
     }
@@ -1021,11 +1021,11 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     switch (v1->unk_28) {
     case 0:
         v1->unk_18 = sub_0200B358(4);
-        v1->unk_1C = sub_0200B144(0, 26, 11, 4);
+        v1->unk_1C = MessageFormatter_Init(0, 26, 11, 4);
         v1->unk_00 = Strbuf_Init((100 * 2), 4);
         v1->unk_04 = Strbuf_Init((100 * 2), 4);
 
-        sub_0200B1B8(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
+        MessageFormatter_LoadStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));
         sub_0200C388(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);
@@ -1037,7 +1037,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     case 1:
         if (sub_0205DA04(v1->unk_20)) {
             if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
-                sub_0200B190(v1->unk_1C);
+                MessageFormatter_Free(v1->unk_1C);
                 sub_0200B3F0(v1->unk_18);
                 Strbuf_Free(v1->unk_00);
                 Strbuf_Free(v1->unk_04);

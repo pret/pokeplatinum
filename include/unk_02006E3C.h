@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02006E3C_H
 #define POKEPLATINUM_UNK_02006E3C_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include <nnsys.h>

@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -16,7 +16,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002B7C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -50,7 +50,7 @@ struct UnkStruct_ov5_021E1FF4_t {
     UnkStruct_02018340 * unk_0C;
     UnkStruct_0205AA50 * unk_10;
     UnkStruct_0200B358 * unk_14;
-    UnkStruct_0200B144 * unk_18;
+    MessageFormatter * unk_18;
     UnkStruct_ov5_021E1D20 unk_1C;
     int unk_2C;
     int unk_30;
@@ -157,7 +157,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
         }
 
         v2 += v3;
-        v0 = sub_0200B1EC(param0->unk_18, Unk_ov5_021F9CCC[v4]);
+        v0 = MessageFormatter_AllocStrbuf(param0->unk_18, Unk_ov5_021F9CCC[v4]);
 
         sub_0201D738(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
         Strbuf_Free(v0);
@@ -200,7 +200,7 @@ UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (UnkStruct_0203CDB0 * param0, int param1, 
     v0->unk_08 = param2;
     v0->unk_0C = param0->unk_08;
     v0->unk_14 = sub_0200B358(param1);
-    v0->unk_18 = sub_0200B144(1, 26, 534, param1);
+    v0->unk_18 = MessageFormatter_Init(1, 26, 534, param1);
 
     ov5_021E1D20(&v0->unk_1C, v0->unk_00);
     ov5_021E1D6C(v0->unk_14, &v0->unk_1C);
@@ -213,7 +213,7 @@ UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (UnkStruct_0203CDB0 * param0, int param1, 
 
 void ov5_021E1FF4 (UnkStruct_ov5_021E1FF4 * param0)
 {
-    sub_0200B190(param0->unk_18);
+    MessageFormatter_Free(param0->unk_18);
     sub_0200B3F0(param0->unk_14);
     Heap_FreeToHeap(param0);
 }

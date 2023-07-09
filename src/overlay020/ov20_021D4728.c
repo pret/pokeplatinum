@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -17,7 +17,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -146,13 +146,13 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     mov r0, #0x1a
     mov r2, #0xb
     mov r3, #0x23
-    bl sub_0200B010
+    bl MessageData_AllocStrbufFromNARC
     add r6, r0, #0
     ldr r1, = 0x1B5
     mov r0, #0x1a
     mov r2, #0xc
     mov r3, #0x23
-    bl sub_0200B010
+    bl MessageData_AllocStrbufFromNARC
     add r4, r0, #0
     mov r0, #0x23
     str r0, [sp]

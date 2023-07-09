@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -20,7 +20,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -318,14 +318,14 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 
 static void ov81_021D1130 (UnkStruct_ov81_021D1610 * param0)
 {
-    param0->unk_50 = sub_0200B144(0, 26, 366, 42);
+    param0->unk_50 = MessageFormatter_Init(0, 26, 366, 42);
     param0->unk_54 = sub_0200B358(42);
     param0->unk_58 = Strbuf_Init(128, 42);
 }
 
 static void ov81_021D115C (UnkStruct_ov81_021D1610 * param0)
 {
-    sub_0200B190(param0->unk_50);
+    MessageFormatter_Free(param0->unk_50);
     sub_0200B3F0(param0->unk_54);
     Strbuf_Free(param0->unk_58);
 }

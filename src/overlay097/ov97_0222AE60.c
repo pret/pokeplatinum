@@ -4,11 +4,11 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -35,7 +35,7 @@
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -540,7 +540,7 @@ static void ov97_0222B4FC (UnkStruct_0222AE60 * param0, int param1, int param2)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov97_0222B53C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200B358 * param2, u32 param3, u32 param4, int param5)
+static void ov97_0222B53C (UnkStruct_0205AA50 * param0, MessageFormatter * param1, UnkStruct_0200B358 * param2, u32 param3, u32 param4, int param5)
 {
     int v0, v1;
     Strbuf* v2;
@@ -573,11 +573,11 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
     int v0, v1, v2;
     Strbuf* v3;
     UnkStruct_0200B358 * v4;
-    UnkStruct_0200B144 * v5;
+    MessageFormatter * v5;
     UnkStruct_0222AE60 * v6 = (UnkStruct_0222AE60 *)param0;
     u32 v7;
 
-    v5 = sub_0200B144(1, 26, 550, 81);
+    v5 = MessageFormatter_Init(1, 26, 550, 81);
     v4 = sub_0200B358(81);
 
     if (sub_02025F30(v6->unk_0C) == 1) {
@@ -618,7 +618,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
     v6->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
 
     sub_0200B3F0(v4);
-    sub_0200B190(v5);
+    MessageFormatter_Free(v5);
 
     return 1;
 }

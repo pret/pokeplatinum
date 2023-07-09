@@ -3,10 +3,10 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -19,7 +19,7 @@
 #include "overlay006/battle_params.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -70,7 +70,7 @@ typedef struct {
     Strbuf* unk_30;
     UnkStruct_0200B358 * unk_34;
     UnkStruct_0205AA50 unk_38;
-    UnkStruct_0200B144 * unk_48;
+    MessageFormatter * unk_48;
 } UnkStruct_ov5_021F0D6C;
 
 static void ov5_021F0A04(UnkStruct_0201CD38 * param0, void * param1);
@@ -509,7 +509,7 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
-    param0->unk_48 = sub_0200B144(1, 26, 213, 4);
+    param0->unk_48 = MessageFormatter_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
     param0->unk_34 = sub_0200B368(8, 64, 4);
@@ -520,7 +520,7 @@ static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
     sub_0200B3F0(param0->unk_34);
     Strbuf_Free(param0->unk_2C);
     Strbuf_Free(param0->unk_30);
-    sub_0200B190(param0->unk_48);
+    MessageFormatter_Free(param0->unk_48);
 }
 
 static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
@@ -538,7 +538,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
     {
         UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
-        sub_0200B1B8(param0->unk_48, param1, param0->unk_30);
+        MessageFormatter_LoadStrbuf(param0->unk_48, param1, param0->unk_30);
         sub_0200C388(param0->unk_34, param0->unk_2C, param0->unk_30);
 
         param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->unk_0C), 1);

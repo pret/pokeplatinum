@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -28,7 +28,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_02018340.h"
@@ -259,35 +259,35 @@ static s32 ov22_0225A814 (UnkStruct_0205AA50 * param0, int param1, int param2, i
 
 static s32 ov22_0225A860 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7)
 {
-    UnkStruct_0200B144 * v0;
+    MessageFormatter * v0;
     Strbuf* v1;
     s32 v2;
 
-    v0 = sub_0200B144(0, param1, param2, 13);
+    v0 = MessageFormatter_Init(0, param1, param2, 13);
     GF_ASSERT(v0);
 
-    v1 = sub_0200B1EC(v0, param3);
+    v1 = MessageFormatter_AllocStrbuf(v0, param3);
     v2 = sub_0201D78C(param0, 1, v1, param4, param5, param7, param6, NULL);
 
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageFormatter_Free(v0);
 
     return v2;
 }
 
 static s32 ov22_0225A8B4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8)
 {
-    UnkStruct_0200B144 * v0;
+    MessageFormatter * v0;
     s32 v1;
 
     GF_ASSERT(*param8 == NULL);
 
-    v0 = sub_0200B144(0, param1, param2, 13);
+    v0 = MessageFormatter_Init(0, param1, param2, 13);
     GF_ASSERT(v0);
-    *param8 = sub_0200B1EC(v0, param3);
+    *param8 = MessageFormatter_AllocStrbuf(v0, param3);
     v1 = sub_0201D78C(param0, 1, *param8, param4, param5, param7, param6, NULL);
 
-    sub_0200B190(v0);
+    MessageFormatter_Free(v0);
 
     return v1;
 }

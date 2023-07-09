@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/narc.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -18,7 +18,7 @@
 
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -204,7 +204,7 @@ static void ov17_0224792C (UnkStruct_ov17_02247A48 * param0, int param1, const U
     }
 }
 
-static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
+static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, MessageFormatter * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
 {
     Strbuf* v0;
     int v1;
@@ -215,7 +215,7 @@ static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 
         v1 = 1;
     }
 
-    v0 = sub_0200B1EC(param1, param2);
+    v0 = MessageFormatter_AllocStrbuf(param1, param2);
     ov17_0224792C(param0, param3, param4);
 
     sub_0200C388(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);

@@ -14,7 +14,7 @@
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02078B40.h"
-#include "struct_defs/struct_party.h"
+#include "struct_defs/party.h"
 #include "overlay006/battle_params.h"
 
 #include "unk_02006224.h"

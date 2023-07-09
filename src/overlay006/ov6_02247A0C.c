@@ -3,10 +3,10 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -14,7 +14,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002B7C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -29,7 +29,7 @@
 
 typedef struct {
     UnkStruct_0205AA50 unk_00;
-    UnkStruct_0200B144 * unk_10;
+    MessageFormatter * unk_10;
     UnkStruct_0200B358 * unk_14;
 } UnkStruct_ov6_02247A90;
 
@@ -143,7 +143,7 @@ void * ov6_02247A90 (void * param0)
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 
-    v0->unk_10 = sub_0200B144(0, 26, 208, 11);
+    v0->unk_10 = MessageFormatter_Init(0, 26, 208, 11);
     v0->unk_14 = sub_0200B358(11);
 
     sub_0201A7E8(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
@@ -152,7 +152,7 @@ void * ov6_02247A90 (void * param0)
     sub_0201ADA4(&v0->unk_00, 15);
 
     v3 = Strbuf_Init(100, 11);
-    v2 = sub_0200B1EC(v0->unk_10, 0);
+    v2 = MessageFormatter_AllocStrbuf(v0->unk_10, 0);
 
     sub_0200B498(v0->unk_14, 0, sub_02025E38(v8));
     sub_0200C388(v0->unk_14, v3, v2);
@@ -162,21 +162,21 @@ void * ov6_02247A90 (void * param0)
     sub_0201D738(&v0->unk_00, 0, v3, v4, (8 * 0), 0xff, NULL);
     Strbuf_Free(v2);
 
-    v2 = sub_0200B1EC(v0->unk_10, 1);
+    v2 = MessageFormatter_AllocStrbuf(v0->unk_10, 1);
     v4 = ov6_02247CF4(v2, 0, 1, ((15 * 8)));
 
     sub_0201D738(&v0->unk_00, 0, v2, v4, (8 * 2), 0xff, NULL);
     Strbuf_Free(v2);
 
     for (v6 = 0; v6 < 5; v6++) {
-        v2 = sub_0200B1EC(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
+        v2 = MessageFormatter_AllocStrbuf(v0->unk_10, Unk_ov6_022496F4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 0, Unk_ov6_022496F4[v6].unk_04);
         sub_0201D738(&v0->unk_00, 0, v2, v4, Unk_ov6_022496F4[v6].unk_06, 0xff, NULL);
         Strbuf_Free(v2);
     }
 
     for (v6 = 0; v6 < 4; v6++) {
-        v2 = sub_0200B1EC(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
+        v2 = MessageFormatter_AllocStrbuf(v0->unk_10, Unk_ov6_022496D4[v6].unk_00);
         v4 = ov6_02247CF4(v2, 0, 2, Unk_ov6_022496D4[v6].unk_04);
         sub_0201D738(&v0->unk_00, 0, v2, v4, Unk_ov6_022496D4[v6].unk_06, 0xff, NULL);
         Strbuf_Free(v2);
@@ -185,7 +185,7 @@ void * ov6_02247A90 (void * param0)
     for (v7 = 0; v7 < 5; v7++) {
         for (v6 = 0; v6 < 4; v6++) {
             v5 = sub_0202F160(v8, v7, v6);
-            v2 = sub_0200B1EC(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
+            v2 = MessageFormatter_AllocStrbuf(v0->unk_10, Unk_ov6_0224971C[v7][v6].unk_00);
             sub_0200B60C(v0->unk_14, 0, v5, 4, 1, 1);
             sub_0200C388(v0->unk_14, v3, v2);
             v4 = ov6_02247CF4(v3, 0, 2, Unk_ov6_0224971C[v7][v6].unk_04);
@@ -207,7 +207,7 @@ void ov6_02247CC8 (void * param0)
     sub_0200DC9C(&v0->unk_00, 1);
     sub_0201ACF4(&v0->unk_00);
     sub_0201A8FC(&v0->unk_00);
-    sub_0200B190(v0->unk_10);
+    MessageFormatter_Free(v0->unk_10);
     sub_0200B3F0(v0->unk_14);
     Heap_FreeToHeap(v0);
 }

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV65_02235060_H
 #define POKEPLATINUM_OV65_02235060_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "overlay065/struct_ov65_02235130_decl.h"
 #include "overlay065/struct_ov65_022354D8.h"

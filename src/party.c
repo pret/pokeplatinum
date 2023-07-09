@@ -4,7 +4,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_party.h"
+#include "struct_defs/party.h"
 
 #include "heap.h"
 #include "unk_020244AC.h"

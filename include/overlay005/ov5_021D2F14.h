@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV5_021D2F14_H
 #define POKEPLATINUM_OV5_021D2F14_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay005/struct_ov5_021D30A8.h"

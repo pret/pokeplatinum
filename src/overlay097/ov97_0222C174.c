@@ -6,11 +6,11 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -36,7 +36,7 @@
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -808,12 +808,12 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     RTCDate v0;
     Strbuf* v1;
     UnkStruct_0200B358 * v2;
-    UnkStruct_0200B144 * v3;
+    MessageFormatter * v3;
     UnkStruct_0202DBAC * v4 = &param0->unk_3180;
 
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
-    v3 = sub_0200B144(1, 26, 421, param0->unk_00);
+    v3 = MessageFormatter_Init(1, 26, 421, param0->unk_00);
     v2 = sub_0200B358(param0->unk_00);
 
     v4->unk_00 = 7;
@@ -844,7 +844,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v4->unk_354 = RTC_ConvertDateToDay(&v0);
 
     sub_0200B3F0(v2);
-    sub_0200B190(v3);
+    MessageFormatter_Free(v3);
     sub_0202DB2C(param0->unk_3174, &v4->unk_00, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 

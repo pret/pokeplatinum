@@ -6,8 +6,8 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/narc.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -17,7 +17,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -54,7 +54,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -115,7 +115,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     u8 unk_28;
     u8 unk_29;
     UnkStruct_0200B358 * unk_2C;
-    UnkStruct_0200B144 * unk_30;
+    MessageFormatter * unk_30;
     UnkStruct_0205AA50 unk_34[8];
     UnkStruct_0205AA50 unk_B4;
     Strbuf* unk_C4;
@@ -402,7 +402,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002BB8(2, 118);
 
     v0->unk_2C = sub_0200B358(118);
-    v0->unk_30 = sub_0200B144(0, 26, 650, 118);
+    v0->unk_30 = MessageFormatter_Init(0, 26, 650, 118);
     v0->unk_10 = sub_02012744(4, 118);
     v0->unk_160 = NARC_ctor(187, 118);
     v0->unk_164 = NARC_ctor(70, 118);
@@ -519,7 +519,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
     case 3:
         sub_0201ADA4(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
-        sub_0200B1B8(v0->unk_30, 2, v0->unk_C4);
+        MessageFormatter_LoadStrbuf(v0->unk_30, 2, v0->unk_C4);
         v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
@@ -569,7 +569,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
     case 6:
         sub_0201ADA4(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
-        sub_0200B1B8(v0->unk_30, 3, v0->unk_C4);
+        MessageFormatter_LoadStrbuf(v0->unk_30, 3, v0->unk_C4);
         v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
@@ -650,7 +650,7 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
     Strbuf_Free(v0->unk_C4);
     sub_02002C60(2);
     sub_020127BC(v0->unk_10);
-    sub_0200B190(v0->unk_30);
+    MessageFormatter_Free(v0->unk_30);
     sub_0200B3F0(v0->unk_2C);
 
     ov113_0225DC4C(v0);
@@ -1013,7 +1013,7 @@ static void ov113_0225D484 (UnkStruct_ov113_0225DBCC * param0)
     {
         Strbuf* v2;
 
-        v2 = sub_0200B1EC(param0->unk_30, 1);
+        v2 = MessageFormatter_AllocStrbuf(param0->unk_30, 1);
         ov113_0225E15C(param0, &param0->unk_19C0, v2, 2, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((3 & 0xff) << 0)), 0, 10003, 0x1c * 8, 176, 1);
         sub_020129D0(param0->unk_19C0.unk_00, 1);
         Strbuf_Free(v2);

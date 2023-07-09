@@ -7,15 +7,15 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -46,7 +46,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -119,7 +119,7 @@ typedef struct {
 } UnkStruct_ov68_0225D128;
 
 typedef struct {
-    UnkStruct_0200B144 * unk_00[9];
+    MessageFormatter * unk_00[9];
     UnkStruct_0200B358 * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
@@ -583,7 +583,7 @@ static void ov68_0225CB70 (UnkStruct_ov68_0225CB70 * param0, UnkStruct_ov66_0222
     param0->unk_30 = param1;
 
     for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_00[v0] = sub_0200B144(0, 26, v1[v0], param2);
+        param0->unk_00[v0] = MessageFormatter_Init(0, 26, v1[v0], param2);
     }
 
     param0->unk_24 = sub_0200B358(param2);
@@ -596,7 +596,7 @@ static void ov68_0225CBC0 (UnkStruct_ov68_0225CB70 * param0)
     int v0;
 
     for (v0 = 0; v0 < 9; v0++) {
-        sub_0200B190(param0->unk_00[v0]);
+        MessageFormatter_Free(param0->unk_00[v0]);
     }
 
     sub_0200B3F0(param0->unk_24);
@@ -608,7 +608,7 @@ static Strbuf* ov68_0225CBEC (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 
 {
     GF_ASSERT(param1 < 9);
 
-    sub_0200B1B8(param0->unk_00[param1], param2, param0->unk_2C);
+    MessageFormatter_LoadStrbuf(param0->unk_00[param1], param2, param0->unk_2C);
     sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return param0->unk_28;

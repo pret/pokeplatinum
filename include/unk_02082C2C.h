@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02082C2C_H
 #define POKEPLATINUM_UNK_02082C2C_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_defs/struct_0207F248.h"
 
 void sub_02082C2C(UnkStruct_0207F248 * param0);

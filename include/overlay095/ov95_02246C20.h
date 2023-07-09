@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV95_02246C20_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -30,7 +30,7 @@ void ov95_022475C4(UnkStruct_ov19_021DA864 * param0, UnkStruct_ov95_02247568 * p
 UnkStruct_02022550 * ov95_022475E4(UnkStruct_ov95_02247628 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5);
 UnkStruct_02018340 * ov95_02247628(UnkStruct_ov95_02247628 * param0);
 UnkStruct_0200B358 * ov95_0224762C(UnkStruct_ov95_02247628 * param0);
-UnkStruct_0200B144 * ov95_02247630(UnkStruct_ov95_02247628 * param0);
+MessageFormatter * ov95_02247630(UnkStruct_ov95_02247628 * param0);
 const BoxPokemon * ov95_02247634(UnkStruct_ov95_02247628 * param0);
 const BoxPokemon * ov95_0224763C(UnkStruct_ov95_02247628 * param0);
 u32 ov95_02247644(UnkStruct_ov95_02247628 * param0);

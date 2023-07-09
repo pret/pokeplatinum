@@ -8,17 +8,17 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -63,7 +63,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -162,7 +162,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0200B358 * unk_00;
-    UnkStruct_0200B144 * unk_04[4];
+    MessageFormatter * unk_04[4];
     Strbuf* unk_14;
     Strbuf* unk_18;
 } UnkStruct_ov70_0225F208;
@@ -2026,7 +2026,7 @@ static void ov70_0225F208 (UnkStruct_ov70_0225F208 * param0, u32 param1)
     param0->unk_00 = sub_0200B368(8, 64, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = sub_0200B144(1, 26, v1[v0], param1);
+        param0->unk_04[v0] = MessageFormatter_Init(1, 26, v1[v0], param1);
     }
 
     param0->unk_14 = Strbuf_Init(480, param1);
@@ -2040,7 +2040,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
     sub_0200B3F0(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200B190(param0->unk_04[v0]);
+        MessageFormatter_Free(param0->unk_04[v0]);
     }
 
     Strbuf_Free(param0->unk_14);
@@ -2049,7 +2049,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 
 static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
-    sub_0200B1B8(param0->unk_04[param1], param2, param0->unk_18);
+    MessageFormatter_LoadStrbuf(param0->unk_04[param1], param2, param0->unk_18);
     sub_0200C388(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }

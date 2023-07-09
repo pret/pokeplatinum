@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020068C8_H
 #define POKEPLATINUM_UNK_020068C8_H
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 
 /*
  * The NARC struct wraps NitroSDK type FSFile and manages the important

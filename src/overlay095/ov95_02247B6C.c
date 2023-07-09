@@ -1,15 +1,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/narc.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/message_formatter.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/strbuf.h"
 #include "struct_defs/box_pokemon.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
@@ -28,7 +28,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message_data.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -328,7 +328,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
         break;
     case 1:
         if (++(param0->unk_08) > 10) {
-            UnkStruct_0200B144 * v0 = ov95_02247630(param0->unk_00);
+            MessageFormatter * v0 = ov95_02247630(param0->unk_00);
             UnkStruct_0200B358 * v1 = ov95_0224762C(param0->unk_00);
             int v2, v3;
 
@@ -340,7 +340,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
                 v3 = 3;
             }
 
-            sub_0200B1B8(v0, v2, param0->unk_68);
+            MessageFormatter_LoadStrbuf(v0, v2, param0->unk_68);
             sub_0200C388(v1, param0->unk_6C, param0->unk_68);
             sub_0201D738(&(param0->unk_58), 1, param0->unk_6C, 0, 0, 0xff, NULL);
             sub_0200E010(&(param0->unk_58), 109, 2);
@@ -351,10 +351,10 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
         break;
     case 2:
         if (++(param0->unk_08) > 60) {
-            UnkStruct_0200B144 * v4 = ov95_02247630(param0->unk_00);
+            MessageFormatter * v4 = ov95_02247630(param0->unk_00);
             UnkStruct_0200B358 * v5 = ov95_0224762C(param0->unk_00);
 
-            sub_0200B1B8(v4, 1, param0->unk_68);
+            MessageFormatter_LoadStrbuf(v4, 1, param0->unk_68);
             sub_0200C388(v5, param0->unk_6C, param0->unk_68);
 
             {
