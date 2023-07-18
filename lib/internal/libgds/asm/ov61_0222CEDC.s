@@ -1,5 +1,5 @@
 	.include "macros/function.inc"
-	.include "overlay061/ov61_0222CEDC.inc"
+	.include "include/ov61_0222CEDC.inc"
 
 	.extern Unk_ov61_0222E764
 
