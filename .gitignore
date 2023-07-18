@@ -1,25 +1,6 @@
-# Object files
-*.nds
-
-# Compilers
-tools/mwccarm/**
-
-# SDK
-tools/bin/**
-
-# Build folder
-build/**
-sub/build/**
-
 # CLion folders
 .idea/
 cmake-build-debug/
-
-# ROM
-*.srl
-
-# Tool executables
-*.exe
 
 # Generated files
 *.4bpp
@@ -33,17 +14,11 @@ cmake-build-debug/
 # For decomp.me
 ctx.c
 
-*.lcf.template
-*.lcf
-*.response.template
-*.response
-
 # Working files
 overlays/*/module_*.s
 overlays/*/module_*.sbin
 overlays/*/module_*.cfg
 
-*.sbin
 *.bnr
 *.nbfp
 *.nbfc
@@ -56,12 +31,8 @@ asmdiff.sh
 symbols.csv
 
 # NARCs
-*.narc
-*.arc
-files/**/*.c
+res/**/*.c
 *.o
-*.naix
-*.a
 
 # Utilities
 ntruncompbw
@@ -78,6 +49,8 @@ cmake-build-*
 # Depfiles
 *.d
 
+root.ini
+
 diff.txt
 
 .vscode/
@@ -85,9 +58,7 @@ diff.txt
 temp_asm/
 asm_old/
 
-!platinum.us/rom_header_template.sbin
 !platinum.us/banner.bnr
-!sub/*.sbin
 
 uncrustify.cfg
 compare.sh
@@ -96,3 +67,4 @@ diff/
 sdk/
 
 !tools/asmdiff/asmdiff.sh
+
