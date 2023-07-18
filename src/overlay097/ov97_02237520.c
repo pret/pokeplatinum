@@ -4,7 +4,7 @@
 #include "heap.h"
 #include "overlay097/ov97_02237520.h"
 
-#include "library/crypto.h"
+#include "crypto.h"
 
 void * ov97_0223752C(u32 param0);
 

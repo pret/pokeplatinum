@@ -23,7 +23,7 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"

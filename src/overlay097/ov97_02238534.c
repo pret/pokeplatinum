@@ -3,7 +3,7 @@
 #include <nitro/wm.h>
 #include <nitro/cht.h>
 
-#include "library/crypto.h"
+#include "crypto.h"
 
 #include "overlay097/funcptr_ov97_02238A4C.h"
 

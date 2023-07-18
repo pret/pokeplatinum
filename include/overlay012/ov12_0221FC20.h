@@ -20,7 +20,7 @@
 #include "overlay016/struct_ov16_02265BBC.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 UnkStruct_ov12_0221FCDC * ov12_0221FCDC(int param0);
 void ov12_0221FDC0(UnkStruct_ov12_0221FCDC * param0, BOOL param1);

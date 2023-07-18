@@ -9,7 +9,6 @@
 #include <stddef.h>
 
 #include "global/config.h" // MUST COME BEFORE ANY OTHER GAMEFREAK HEADERS
-//#include "constants/global.h"
 #include "global/pm_version.h"
 #include "global/assert.h"
 #include "constants/pokemon.h"

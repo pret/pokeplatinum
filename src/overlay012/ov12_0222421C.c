@@ -8,7 +8,7 @@
 
 #include "overlay012/struct_ov12_02225640.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02014000.h"
 #include "heap.h"

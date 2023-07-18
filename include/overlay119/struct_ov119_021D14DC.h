@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 typedef struct {
     UnkStruct_ov119_021D1930 unk_00;

@@ -9,7 +9,7 @@
 #include "struct_defs/struct_0207C894.h"
 #include "struct_defs/struct_0207C8C4.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02014000.h"
 #include "heap.h"

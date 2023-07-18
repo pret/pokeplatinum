@@ -6,7 +6,7 @@
 
 #include "functypes/funcptr_020146F4.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "narc.h"
 #include "unk_02014000.h"

@@ -10,7 +10,7 @@
 
 #include "struct_defs/struct_0207F248.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02005474.h"
 #include "unk_0200AC5C.h"

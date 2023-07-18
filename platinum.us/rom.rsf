@@ -8,8 +8,8 @@ Arm9
 
 Arm7
 {
-	Static sub/ichneumon_sub.sbin
-	OverlayDefs sub/ichneumon_sub_defs.sbin
+	Static $(ARM7)
+	OverlayDefs $(ARM7_DEFS)
 }
 
 Property
@@ -27,6 +27,7 @@ Property
 RomSpec
 {
 	Segment All
-	HostRoot files/
+
+	HostRoot ../res
 	File $(NITROFS_FILES)
 }
