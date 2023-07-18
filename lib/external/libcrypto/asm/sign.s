@@ -1,46 +1,8 @@
 	.include "macros/function.inc"
-	.include "overlay097/ov97_02239420.inc"
-
+	.include "include/sign.inc"
 	
-
 	.text
 
-
-	arm_func_start CRYPTO_RC4Encrypt
-CRYPTO_RC4Encrypt: ; 0x02239420
-	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
-	ldrb r7, [r0]
-	ldrb r6, [r0, #1]
-	add r0, r0, #4
-	mov lr, #0x1000000
-	add r7, lr, r7, lsl #24
-	mov r6, r6, lsl #0x18
-	ldrb sb, [r0, r7, lsr #24]
-	subs r2, r2, #1
-	bmi _02239480
-_02239448:
-	add r6, r6, sb, lsl #24
-	subs r2, r2, #1
-	ldrb r8, [r0, r6, lsr #24]
-	ldrb r5, [r1], #1
-	strb r8, [r0, r7, lsr #24]
-	strb sb, [r0, r6, lsr #24]
-	add r4, sb, r8
-	and r4, r4, #0xff
-	add r7, r7, lr
-	ldrb r4, [r0, r4]
-	ldrb sb, [r0, r7, lsr #24]
-	eor r5, r5, r4
-	strb r5, [r3], #1
-	bge _02239448
-_02239480:
-	sub r7, r7, lr
-	mov r7, r7, lsr #0x18
-	mov r6, r6, lsr #0x18
-	strb r7, [r0, #-4]
-	strb r6, [r0, #-3]
-	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end CRYPTO_RC4Encrypt
 
 	arm_func_start CRYPTO_VerifySignature
 CRYPTO_VerifySignature: ; 0x02239498
@@ -57,14 +19,14 @@ CRYPTO_VerifySignature: ; 0x02239498
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, r4
-	bl ov97_022394DC
+	bl CRYPTO_VerifySignatureWithHash
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, lr}
 	bx lr
 	arm_func_end CRYPTO_VerifySignature
 
-	arm_func_start ov97_022394DC
-ov97_022394DC: ; 0x022394DC
+	arm_func_start CRYPTO_VerifySignatureWithHash
+CRYPTO_VerifySignatureWithHash: ; 0x022394DC
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x120
 	mov r3, #0
@@ -79,12 +41,12 @@ ov97_022394DC: ; 0x022394DC
 	add r0, sp, #0x1c
 	mov r1, #0x100
 	str ip, [sp, #8]
-	bl ov97_02239918
+	bl CRYPTOi_RSA
 	mov r1, r0
 	add r0, sp, #0x1c
 	add r2, sp, #0xc
 	add r3, sp, #0x10
-	bl ov97_02239780
+	bl SkipPadding
 	cmp r0, #0
 	addeq sp, sp, #0x120
 	moveq r0, #0
@@ -98,7 +60,7 @@ ov97_022394DC: ; 0x022394DC
 	ldr r0, [sp, #0xc]
 	ldr r1, [sp, #0x10]
 	mov r3, r2
-	bl ov97_022395DC
+	bl ParseSignHash
 	cmp r0, #0
 	addeq sp, sp, #0x120
 	moveq r0, #0
@@ -131,10 +93,10 @@ _02239598:
 	bx lr
 	; .align 2, 0
 _022395D8: .word 0x00010001
-	arm_func_end ov97_022394DC
+	arm_func_end CRYPTO_VerifySignatureWithHash
 
-	arm_func_start ov97_022395DC
-ov97_022395DC: ; 0x022395DC
+	arm_func_start ParseSignHash
+ParseSignHash: ; 0x022395DC
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
@@ -144,7 +106,7 @@ ov97_022395DC: ; 0x022395DC
 	add r1, sp, #0x14
 	mov r2, #0x30
 	mov r3, #0
-	bl ov97_02239844
+	bl ASN1Skip
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -155,7 +117,7 @@ ov97_022395DC: ; 0x022395DC
 	add r1, sp, #0x14
 	mov r2, #0x30
 	mov r3, #0
-	bl ov97_02239844
+	bl ASN1Skip
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -166,7 +128,7 @@ ov97_022395DC: ; 0x022395DC
 	add r1, sp, #0x14
 	add r3, sp, #0
 	mov r2, #6
-	bl ov97_02239844
+	bl ASN1Skip
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -196,7 +158,7 @@ ov97_022395DC: ; 0x022395DC
 	add r3, sp, #0
 	mov r2, #5
 	str ip, [sp, #0x14]
-	bl ov97_02239844
+	bl ASN1Skip
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -220,7 +182,7 @@ ov97_022395DC: ; 0x022395DC
 	add r3, sp, #0
 	mov r2, #4
 	str ip, [sp, #0x14]
-	bl ov97_02239844
+	bl ASN1Skip
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -240,10 +202,10 @@ ov97_022395DC: ; 0x022395DC
 	ldmia sp!, {r4, r5, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov97_022395DC
+	arm_func_end ParseSignHash
 
-	arm_func_start ov97_02239780
-ov97_02239780: ; 0x02239780
+	arm_func_start SkipPadding
+SkipPadding: ; 0x02239780
 	stmdb sp!, {lr}
 	sub sp, sp, #4
 	cmp r1, #0xa
@@ -296,10 +258,10 @@ _02239804:
 	add sp, sp, #4
 	ldmia sp!, {lr}
 	bx lr
-	arm_func_end ov97_02239780
+	arm_func_end SkipPadding
 
-	arm_func_start ov97_02239844
-ov97_02239844: ; 0x02239844
+	arm_func_start ASN1Skip
+ASN1Skip: ; 0x02239844
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r5, [r0, #0]
 	mov r6, #0
@@ -357,10 +319,10 @@ _022398FC:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
-	arm_func_end ov97_02239844
+	arm_func_end ASN1Skip
 
-	arm_func_start ov97_02239918
-ov97_02239918: ; 0x02239918
+	arm_func_start CRYPTOi_RSA
+CRYPTOi_RSA: ; 0x02239918
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x58
 	movs r6, r0
@@ -379,36 +341,36 @@ _02239948:
 	ldmia sp!, {r4, r5, r6, r7, r8, lr}
 	bx lr
 _02239958:
-	bl ov97_0223D358
+	bl BN_CTX_new
 	mov r4, r0
 	add r0, sp, #4
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, sp, #0x18
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, sp, #0x2c
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, sp, #0x40
-	bl ov97_0223D3D8
+	bl BN_init
 	cmp r4, #0
 	mvneq r5, #1
 	beq _02239A34
 	add r2, sp, #4
 	mov r0, r8
 	mov r1, r7
-	bl ov97_0223D014
+	bl BN_bin2bn
 	cmp r0, #0
 	mvneq r5, #1
 	beq _02239A34
 	ldr r1, [sp, #0x78]
 	add r0, sp, #0x2c
-	bl ov97_0223D128
+	bl BN_set_word
 	cmp r0, #0
 	mvneq r5, #1
 	beq _02239A34
 	ldr r0, [sp, #0x70]
 	ldr r1, [sp, #0x74]
 	add r2, sp, #0x40
-	bl ov97_0223D014
+	bl BN_bin2bn
 	cmp r0, #0
 	mvneq r5, #1
 	beq _02239A34
@@ -417,12 +379,12 @@ _02239958:
 	add r2, sp, #0x2c
 	add r3, sp, #0x40
 	str r4, [sp]
-	bl ov97_0223B564
+	bl BN_mod_exp
 	cmp r0, #0
 	mvneq r5, #1
 	beq _02239A34
 	add r0, sp, #0x18
-	bl ov97_0223D534
+	bl BN_num_bits
 	add r1, r0, #7
 	mov r0, r1, asr #2
 	add r0, r1, r0, lsr #29
@@ -432,30 +394,30 @@ _02239958:
 	bgt _02239A34
 	add r0, sp, #0x18
 	mov r1, r6
-	bl ov97_0223CF98
+	bl BN_bn2bin
 	mov r5, r0
 _02239A34:
 	add r0, sp, #4
-	bl ov97_0223D4B8
+	bl BN_free
 	add r0, sp, #0x18
-	bl ov97_0223D4B8
+	bl BN_free
 	add r0, sp, #0x2c
-	bl ov97_0223D4B8
+	bl BN_free
 	add r0, sp, #0x40
-	bl ov97_0223D4B8
+	bl BN_free
 	cmp r4, #0
 	beq _02239A64
 	mov r0, r4
-	bl ov97_0223D2E8
+	bl BN_CTX_free
 _02239A64:
 	mov r0, r5
 	add sp, sp, #0x58
 	ldmia sp!, {r4, r5, r6, r7, r8, lr}
 	bx lr
-	arm_func_end ov97_02239918
+	arm_func_end CRYPTOi_RSA
 
-	arm_func_start ov97_02239A74
-ov97_02239A74: ; 0x02239A74
+	arm_func_start BN_mod_exp_mont
+BN_mod_exp_mont: ; 0x02239A74
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x7c
 	mov r4, #0
@@ -492,7 +454,7 @@ ov97_02239A74: ; 0x02239A74
 _02239AF8:
 	ldr r0, [sp, #4]
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	add sp, sp, #0x7c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -510,7 +472,7 @@ _02239B14:
 _02239B38:
 	ldr r0, [sp, #4]
 	mov r1, #1
-	bl ov97_0223D128
+	bl BN_set_word
 	add sp, sp, #0x7c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -524,7 +486,7 @@ _02239B54:
 	bne _02239B88
 	ldr r0, [sp, #4]
 	mov r1, r7
-	bl ov97_0223D1D0
+	bl BN_copy
 	add sp, sp, #0x7c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -534,13 +496,13 @@ _02239B88:
 	str r0, [sp, #0x18]
 	cmp r0, #0
 	bne _02239BBC
-	bl ov97_0223AC0C
+	bl BN_MONT_CTX_new
 	str r0, [sp, #0x18]
 	cmp r0, #0
 	beq _0223A218
 	ldr r2, [sp, #0xa0]
 	mov r1, r5
-	bl ov97_0223AC40
+	bl BN_MONT_CTX_set_word
 	cmp r0, #0
 	beq _0223A218
 _02239BBC:
@@ -551,7 +513,7 @@ _02239BBC:
 	mov r0, r6
 	mov r2, #0
 	str r4, [sp, #0x1c]
-	bl ov97_0223AFD4
+	bl BN_gen_exp_bits
 	cmp r0, #0
 	beq _0223A218
 	ldr r0, [sp, #0xa0]
@@ -597,7 +559,7 @@ _02239C54:
 	str r2, [r1, #4]
 	mov r1, sl
 	str r0, [sp, #0x14]
-	bl ov97_0223D438
+	bl bn_zexpand
 	ldr r0, [r7, #4]
 	mov r2, #0
 	cmp r0, #0
@@ -625,12 +587,12 @@ _02239CC8:
 	mla r0, r3, r0, r5
 	ldr r3, [sp, #0xa0]
 	str r0, [sp, #0x14]
-	bl ov97_0223B5C0
+	bl BN_mod
 	cmp r0, #0
 	beq _0223A218
 	ldr r0, [sp, #0x14]
 	mov r1, sl
-	bl ov97_0223D438
+	bl bn_zexpand
 _02239D0C:
 	ldr r0, [sp, #0xa0]
 	ldr r3, [r0, #0]
@@ -672,7 +634,7 @@ _02239D0C:
 	ble _02239DB0
 	ldr r0, [sp, #4]
 	mov r1, sl
-	bl ov97_0223D268
+	bl bn_expand2
 _02239DB0:
 	cmp r0, #0
 	beq _0223A218
@@ -682,7 +644,7 @@ _02239DB0:
 	movle r0, r8
 	ble _02239DD4
 	mov r0, r8
-	bl ov97_0223D268
+	bl bn_expand2
 _02239DD4:
 	cmp r0, #0
 	beq _0223A218
@@ -694,7 +656,7 @@ _02239DD4:
 	ble _02239E00
 	ldr r1, [sp, #0x24]
 	mov r0, r7
-	bl ov97_0223D268
+	bl bn_expand2
 _02239E00:
 	cmp r0, #0
 	beq _0223A218
@@ -704,7 +666,7 @@ _02239E00:
 	ble _02239E24
 	mov r1, r5
 	mov r0, r4
-	bl ov97_0223D268
+	bl bn_expand2
 _02239E24:
 	cmp r0, #0
 	beq _0223A218
@@ -715,7 +677,7 @@ _02239E24:
 	ble _02239E4C
 	ldr r1, [sp, #0x24]
 	mov r0, r6
-	bl ov97_0223D268
+	bl bn_expand2
 _02239E4C:
 	cmp r0, #0
 	beq _0223A218
@@ -734,13 +696,13 @@ _02239E4C:
 	ldr r1, [r1, #0]
 	mov r0, r6
 	mov r2, sl
-	bl ov97_0223BB94
+	bl bn_mul_normal
 	str r7, [sp]
 	ldr r0, [sp, #0x38]
 	mov r1, r6
 	mov r2, r5
 	mov r3, sl
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 	ldr r0, [sp, #0x10]
 	cmp r0, #1
 	ble _02239F54
@@ -748,13 +710,13 @@ _02239E4C:
 	mov r0, r6
 	mov r2, sl
 	mov r3, fp
-	bl ov97_0223B31C
+	bl bn_sqr_normal
 	mov r0, fp
 	mov r1, r6
 	mov r2, r5
 	mov r3, sl
 	str r7, [sp]
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 	ldr r0, [sp, #0x10]
 	mov r4, #1
 	cmp r0, #1
@@ -773,13 +735,13 @@ _02239F00:
 	ldr r1, [sb, r3, lsl #2]
 	mov r2, sl
 	mov r3, fp
-	bl ov97_0223BB94
+	bl bn_mul_normal
 	str r7, [sp]
 	ldr r0, [sb, r4, lsl #2]
 	mov r1, r6
 	mov r2, r5
 	mov r3, sl
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 	ldr r0, [sp, #0x10]
 	add r4, r4, #1
 	cmp r4, r0
@@ -860,13 +822,13 @@ _0223A054:
 	mov r1, r8
 	mov r2, sl
 	mov r3, fp
-	bl ov97_0223B31C
+	bl bn_sqr_normal
 	str r7, [sp]
 	mov r0, r8
 	mov r1, r6
 	mov r2, r5
 	mov r3, sl
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 	add r4, r4, #1
 	cmp r4, sb
 	blt _0223A054
@@ -924,13 +886,13 @@ _0223A12C:
 	mov r0, r6
 	mov r1, r8
 	mov r2, sl
-	bl ov97_0223BB94
+	bl bn_mul_normal
 	mov r0, r8
 	mov r1, r6
 	mov r2, r5
 	mov r3, sl
 	str r7, [sp]
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 	b _0223A1A4
 _0223A168:
 	ldr r0, [sp, #0x14]
@@ -939,14 +901,14 @@ _0223A168:
 	mov r0, r6
 	mov r1, r8
 	mov r2, sl
-	bl ov97_0223BB94
+	bl bn_mul_normal
 	ldr r0, [sp, #4]
 	str r7, [sp]
 	ldr r0, [r0, #0]
 	mov r1, r6
 	mov r2, r5
 	mov r3, sl
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 	b _0223A1F0
 _0223A1A4:
 	cmp sb, #0
@@ -970,7 +932,7 @@ _0223A1D4:
 	mov r1, r8
 	mov r2, r5
 	mov r3, sl
-	bl ov97_0223B1DC
+	bl bn_from_montgomery_words
 _0223A1F0:
 	ldr r0, [sp, #0xa0]
 	ldr r0, [r0, #0x108]
@@ -979,7 +941,7 @@ _0223A1F0:
 	ldr r0, [sp, #4]
 	mov r1, r0
 	str sl, [r1, #4]
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	mov r0, #1
 	str r0, [sp, #8]
 _0223A218:
@@ -1000,7 +962,7 @@ _0223A240:
 	ldr r0, [sp, #0x18]
 	cmp r0, #0
 	beq _0223A25C
-	bl ov97_0223AB90
+	bl BN_MONT_CTX_free
 _0223A25C:
 	ldr r2, [sp, #0xc]
 	ldr r1, [sp, #0xa0]
@@ -1009,10 +971,10 @@ _0223A25C:
 	add sp, sp, #0x7c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_02239A74
+	arm_func_end BN_mod_exp_mont
 
-	arm_func_start ov97_0223A278
-ov97_0223A278: ; 0x0223A278
+	arm_func_start BN_mod_exp_recp
+BN_mod_exp_recp: ; 0x0223A278
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x18c
 	mov sl, r0
@@ -1025,7 +987,7 @@ ov97_0223A278: ; 0x0223A278
 	mov r4, r3
 	str r1, [sp, #0xc]
 	ldr sb, [sp, #0x1b0]
-	bl ov97_0223D534
+	bl BN_num_bits
 	ldr r1, [r5, #4]
 	mov r8, r0
 	cmp r1, #0
@@ -1039,7 +1001,7 @@ ov97_0223A278: ; 0x0223A278
 _0223A2D4:
 	mov r0, sl
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	add sp, sp, #0x18c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -1058,7 +1020,7 @@ _0223A2F0:
 _0223A318:
 	mov r0, sl
 	mov r1, #1
-	bl ov97_0223D128
+	bl BN_set_word
 	add sp, sp, #0x18c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -1073,22 +1035,22 @@ _0223A334:
 	bne _0223A36C
 	mov r0, sl
 	mov r1, r5
-	bl ov97_0223D1D0
+	bl BN_copy
 	add sp, sp, #0x18c
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
 _0223A36C:
 	add r0, sp, #0x18
-	bl ov97_0223AB68
+	bl BN_RECP_CTX_init
 	add r0, sp, #0x18
 	mov r1, r4
 	mov r2, sb
-	bl ov97_0223AAF0
+	bl BN_RECP_CTX_set
 	cmp r0, #0
 	ble _0223A5B8
 	add r0, sp, #0x4c
-	bl ov97_0223D3D8
+	bl BN_init
 	ldr r2, [sb]
 	add r1, sb, #4
 	mov r0, #0x14
@@ -1101,7 +1063,7 @@ _0223A36C:
 	mov r1, r5
 	mov r3, sb
 	str r4, [sp, #0xc]
-	bl ov97_0223B5C0
+	bl BN_mod
 	cmp r0, #0
 	beq _0223A5B8
 	add r1, sp, #0x4c
@@ -1109,7 +1071,7 @@ _0223A36C:
 	mov r0, r6
 	mov r2, r1
 	str sb, [sp]
-	bl ov97_0223AA44
+	bl BN_mod_mul_reciprocal
 	cmp r0, #0
 	beq _0223A5B8
 	cmp r8, #0x11
@@ -1130,7 +1092,7 @@ _0223A414:
 	add r5, sp, #0x60
 _0223A42C:
 	mov r0, r5
-	bl ov97_0223D3D8
+	bl BN_init
 	sub r3, r4, #1
 	mov r2, #0x14
 	add r1, sp, #0x4c
@@ -1139,7 +1101,7 @@ _0223A42C:
 	mov r2, r6
 	add r3, sp, #0x18
 	str sb, [sp]
-	bl ov97_0223AA44
+	bl BN_mod_mul_reciprocal
 	cmp r0, #0
 	beq _0223A5B8
 	add r4, r4, #1
@@ -1152,7 +1114,7 @@ _0223A470:
 	mov r1, r5
 	str r4, [sp, #0xc]
 	sub r8, r8, #1
-	bl ov97_0223D128
+	bl BN_set_word
 	cmp r0, #0
 	beq _0223A5B8
 	mov r0, r5
@@ -1162,7 +1124,7 @@ _0223A470:
 _0223A4A0:
 	ldr r0, [sp, #4]
 	mov r1, r8
-	bl ov97_0223CE38
+	bl BN_is_bit_set
 	cmp r0, #0
 	bne _0223A4EC
 	cmp r5, #0
@@ -1172,7 +1134,7 @@ _0223A4A0:
 	mov r2, sl
 	add r3, sp, #0x18
 	str sb, [sp]
-	bl ov97_0223AA44
+	bl BN_mod_mul_reciprocal
 	cmp r0, #0
 	beq _0223A5B8
 _0223A4DC:
@@ -1190,7 +1152,7 @@ _0223A500:
 	subs r1, r8, r4
 	bmi _0223A530
 	ldr r0, [sp, #4]
-	bl ov97_0223CE38
+	bl BN_is_bit_set
 	cmp r0, #0
 	subne r0, r4, r7
 	movne r0, r6, lsl r0
@@ -1212,7 +1174,7 @@ _0223A548:
 	mov r2, sl
 	add r3, sp, #0x18
 	str sb, [sp]
-	bl ov97_0223AA44
+	bl BN_mod_mul_reciprocal
 	cmp r0, #0
 	beq _0223A5B8
 	add r4, r4, #1
@@ -1227,7 +1189,7 @@ _0223A574:
 	mov r1, sl
 	add r3, sp, #0x18
 	str sb, [sp]
-	bl ov97_0223AA44
+	bl BN_mod_mul_reciprocal
 	cmp r0, #0
 	beq _0223A5B8
 	add r0, r7, #1
@@ -1248,7 +1210,7 @@ _0223A5B8:
 	add r5, sp, #0x4c
 _0223A5D8:
 	mov r0, r5
-	bl ov97_0223D510
+	bl BN_clear_free
 	ldr r0, [sp, #0xc]
 	add r4, r4, #1
 	cmp r4, r0
@@ -1256,15 +1218,15 @@ _0223A5D8:
 	blt _0223A5D8
 _0223A5F4:
 	add r0, sp, #0x18
-	bl ov97_0223AB34
+	bl BN_RECP_CTX_free
 	ldr r0, [sp, #8]
 	add sp, sp, #0x18c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_0223A278
+	arm_func_end BN_mod_exp_recp
 
-	arm_func_start ov97_0223A60C
-ov97_0223A60C: ; 0x0223A60C
+	arm_func_start bn_div_words
+bn_div_words: ; 0x0223A60C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #4
 	movs r8, r2
@@ -1277,7 +1239,7 @@ ov97_0223A60C: ; 0x0223A60C
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bxeq lr
 	mov r0, r8
-	bl ov97_0223D568
+	bl BN_num_bits_word
 	cmp r0, #0x20
 	beq _0223A660
 	mov r1, #1
@@ -1352,10 +1314,10 @@ _0223A738:
 	bx lr
 	; .align 2, 0
 _0223A748: .word 0x0000FFFF
-	arm_func_end ov97_0223A60C
+	arm_func_end bn_div_words
 
-	arm_func_start ov97_0223A74C
-ov97_0223A74C: ; 0x0223A74C
+	arm_func_start BN_reciprocal
+BN_reciprocal: ; 0x0223A74C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x18
 	mov r8, r0
@@ -1364,13 +1326,13 @@ ov97_0223A74C: ; 0x0223A74C
 	mov r6, r2
 	mov r5, r3
 	mvn r4, #0
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, sp, #4
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	add r0, sp, #4
 	mov r1, r6
-	bl ov97_0223CEA8
+	bl BN_set_bit
 	cmp r0, #0
 	beq _0223A7B0
 	add r2, sp, #4
@@ -1378,20 +1340,20 @@ ov97_0223A74C: ; 0x0223A74C
 	mov r3, r7
 	mov r1, #0
 	str r5, [sp]
-	bl ov97_0223B5F4
+	bl BN_div
 	cmp r0, #0
 	movne r4, r6
 _0223A7B0:
 	add r0, sp, #4
-	bl ov97_0223D4B8
+	bl BN_free
 	mov r0, r4
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, r7, r8, lr}
 	bx lr
-	arm_func_end ov97_0223A74C
+	arm_func_end BN_reciprocal
 
-	arm_func_start ov97_0223A7C8
-ov97_0223A7C8: ; 0x0223A7C8
+	arm_func_start BN_div_recp
+BN_div_recp: ; 0x0223A7C8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	ldr r6, [sp, #0x30]
@@ -1427,15 +1389,15 @@ ov97_0223A7C8: ; 0x0223A7C8
 _0223A848:
 	mov r0, r8
 	mov r1, r7
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	bge _0223A888
 	mov r0, sl
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	mov r0, sb
 	mov r1, r8
-	bl ov97_0223D1D0
+	bl BN_copy
 	add sp, sp, #0xc
 	str fp, [r6]
 	mov r0, #1
@@ -1443,7 +1405,7 @@ _0223A848:
 	bx lr
 _0223A888:
 	mov r0, r8
-	bl ov97_0223D534
+	bl BN_num_bits
 	ldr r1, [r7, #0x28]
 	mov r2, r0
 	mov r0, r1, lsl #1
@@ -1462,28 +1424,28 @@ _0223A888:
 	mov r1, r7
 	mov r3, r6
 	add r0, r7, #0x14
-	bl ov97_0223A74C
+	bl BN_reciprocal
 	str r0, [r7, #0x2c]
 _0223A8E0:
 	ldr r2, [sp, #8]
 	ldr r0, [sp, #4]
 	mov r1, r8
 	sub r2, r2, r4
-	bl ov97_0223C4E0
+	bl BN_rshift
 	cmp r0, #0
 	beq _0223AA30
 	ldr r1, [sp, #4]
 	mov r0, r5
 	mov r3, r6
 	add r2, r7, #0x14
-	bl ov97_0223BCB8
+	bl BN_mul
 	cmp r0, #0
 	beq _0223AA30
 	ldr r2, [sp, #8]
 	mov r0, sl
 	mov r1, r5
 	add r2, r2, r4
-	bl ov97_0223C4E0
+	bl BN_rshift
 	cmp r0, #0
 	beq _0223AA30
 	mov r4, #0
@@ -1492,20 +1454,20 @@ _0223A8E0:
 	mov r2, sl
 	mov r3, r6
 	str r4, [sl, #0xc]
-	bl ov97_0223BCB8
+	bl BN_mul
 	cmp r0, #0
 	beq _0223AA30
 	mov r0, sb
 	mov r1, r8
 	mov r2, r5
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	beq _0223AA30
 	mov r5, r4
 	mov r0, sb
 	mov r1, r7
 	str r5, [sb, #0xc]
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	blt _0223A9DC
 	mov r4, #1
@@ -1516,17 +1478,17 @@ _0223A990:
 	mov r0, sb
 	mov r1, sb
 	mov r2, r7
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	beq _0223AA30
 	mov r0, sl
 	mov r1, r4
-	bl ov97_0223C3B8
+	bl BN_add_word
 	cmp r0, #0
 	beq _0223AA30
 	mov r0, sb
 	mov r1, r7
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	bge _0223A990
 _0223A9DC:
@@ -1559,10 +1521,10 @@ _0223AA30:
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_0223A7C8
+	arm_func_end BN_div_recp
 
-	arm_func_start ov97_0223AA44
-ov97_0223AA44: ; 0x0223AA44
+	arm_func_start BN_mod_mul_reciprocal
+BN_mod_mul_reciprocal: ; 0x0223AA44
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #8
 	ldr r4, [sp, #0x20]
@@ -1581,14 +1543,14 @@ ov97_0223AA44: ; 0x0223AA44
 	bne _0223AA9C
 	mov r0, r6
 	mov r2, r4
-	bl ov97_0223B408
+	bl BN_sqr
 	cmp r0, #0
 	bne _0223AAB8
 	b _0223AAD4
 _0223AA9C:
 	mov r0, r6
 	mov r3, r4
-	bl ov97_0223BCB8
+	bl BN_mul
 	cmp r0, #0
 	bne _0223AAB8
 	b _0223AAD4
@@ -1600,7 +1562,7 @@ _0223AAB8:
 	mov r3, r7
 	mov r0, #0
 	str r4, [sp]
-	bl ov97_0223A7C8
+	bl BN_div_recp
 	mov r5, #1
 _0223AAD4:
 	ldr r1, [r4, #0]
@@ -1610,20 +1572,20 @@ _0223AAD4:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, lr}
 	bx lr
-	arm_func_end ov97_0223AA44
+	arm_func_end BN_mod_mul_reciprocal
 
-	arm_func_start ov97_0223AAF0
-ov97_0223AAF0: ; 0x0223AAF0
+	arm_func_start BN_RECP_CTX_set
+BN_RECP_CTX_set: ; 0x0223AAF0
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	mov r5, r0
 	mov r4, r1
-	bl ov97_0223D1D0
+	bl BN_copy
 	add r0, r5, #0x14
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	mov r0, r4
-	bl ov97_0223D534
+	bl BN_num_bits
 	str r0, [r5, #0x28]
 	mov r0, #0
 	str r0, [r5, #0x2c]
@@ -1631,97 +1593,97 @@ ov97_0223AAF0: ; 0x0223AAF0
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223AAF0
+	arm_func_end BN_RECP_CTX_set
 
-	arm_func_start ov97_0223AB34
-ov97_0223AB34: ; 0x0223AB34
+	arm_func_start BN_RECP_CTX_free
+BN_RECP_CTX_free: ; 0x0223AB34
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov97_0223D4B8
+	bl BN_free
 	add r0, r4, #0x14
-	bl ov97_0223D4B8
+	bl BN_free
 	ldr r0, [r4, #0x30]
 	ands r0, r0, #1
 	ldmeqia sp!, {r4, lr}
 	bxeq lr
 	mov r0, r4
-	bl ov97_0223D5E4
+	bl CRYPTOi_MyFree
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223AB34
+	arm_func_end BN_RECP_CTX_free
 
-	arm_func_start ov97_0223AB68
-ov97_0223AB68: ; 0x0223AB68
+	arm_func_start BN_RECP_CTX_init
+BN_RECP_CTX_init: ; 0x0223AB68
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, r4, #0x14
-	bl ov97_0223D3D8
+	bl BN_init
 	mov r0, #0
 	str r0, [r4, #0x28]
 	str r0, [r4, #0x30]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223AB68
+	arm_func_end BN_RECP_CTX_init
 
-	arm_func_start ov97_0223AB90
-ov97_0223AB90: ; 0x0223AB90
+	arm_func_start BN_MONT_CTX_free
+BN_MONT_CTX_free: ; 0x0223AB90
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0xc
-	bl ov97_0223D4B8
+	bl BN_free
 	add r0, r4, #0x20
-	bl ov97_0223D4B8
+	bl BN_free
 	add r0, r4, #0x34
-	bl ov97_0223D4B8
+	bl BN_free
 	ldr r0, [r4, #0x4c]
 	ands r0, r0, #1
 	ldmeqia sp!, {r4, lr}
 	bxeq lr
 	mov r0, r4
-	bl ov97_0223D5E4
+	bl CRYPTOi_MyFree
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223AB90
+	arm_func_end BN_MONT_CTX_free
 
-	arm_func_start ov97_0223ABD0
-ov97_0223ABD0: ; 0x0223ABD0
+	arm_func_start BN_MONT_CTX_init
+BN_MONT_CTX_init: ; 0x0223ABD0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r1, #0
 	str r1, [r4, #0]
 	add r0, r4, #0xc
 	str r1, [r4, #8]
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, r4, #0x20
-	bl ov97_0223D3D8
+	bl BN_init
 	add r0, r4, #0x34
-	bl ov97_0223D3D8
+	bl BN_init
 	mov r0, #0
 	str r0, [r4, #0x4c]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223ABD0
+	arm_func_end BN_MONT_CTX_init
 
-	arm_func_start ov97_0223AC0C
-ov97_0223AC0C: ; 0x0223AC0C
+	arm_func_start BN_MONT_CTX_new
+BN_MONT_CTX_new: ; 0x0223AC0C
 	stmfd sp!, {r4, lr}
 	mov r0, #0x50
-	bl ov97_0223D62C
+	bl CRYPTOi_MyAlloc
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, lr}
 	bxeq lr
-	bl ov97_0223ABD0
+	bl BN_MONT_CTX_init
 	mov r1, #1
 	mov r0, r4
 	str r1, [r4, #0x4c]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223AC0C
+	arm_func_end BN_MONT_CTX_new
 
-	arm_func_start ov97_0223AC40
-ov97_0223AC40: ; 0x0223AC40
+	arm_func_start BN_MONT_CTX_set_word
+BN_MONT_CTX_set_word: ; 0x0223AC40
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x14
 	mov r6, r1
@@ -1735,18 +1697,18 @@ ov97_0223AC40: ; 0x0223AC40
 	bxeq lr
 	add r0, r7, #0x20
 	add r4, r7, #0xc
-	bl ov97_0223D1D0
+	bl BN_copy
 	cmp r0, #0
 	addeq sp, sp, #0x14
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, lr}
 	bxeq lr
 	add r0, sp, #0
-	bl ov97_0223D3D8
+	bl BN_init
 	mov r1, #1
 	mov r0, r6
 	str r1, [r7, #0]
-	bl ov97_0223D534
+	bl BN_num_bits
 	add r1, r0, #0x1f
 	mov r0, r1, asr #4
 	add r0, r1, r0, lsr #27
@@ -1754,7 +1716,7 @@ ov97_0223AC40: ; 0x0223AC40
 	mov r0, r4
 	mov r1, #0
 	str r2, [r7, #8]
-	bl ov97_0223D128
+	bl BN_set_word
 	cmp r0, #0
 	addeq sp, sp, #0x14
 	moveq r0, #0
@@ -1762,22 +1724,22 @@ ov97_0223AC40: ; 0x0223AC40
 	bxeq lr
 	mov r0, r4
 	mov r1, #0x20
-	bl ov97_0223CEA8
+	bl BN_set_bit
 	cmp r0, #0
 	beq _0223ADE4
 	ldr r0, [r6, #0]
 	ldr r4, [r0, #0]
 	mov r0, r4
-	bl ov97_0223B148
+	bl BN_mod_inverse_word
 	mov r1, r0
 	add r0, sp, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	cmp r0, #0
 	beq _0223ADE4
 	add r0, sp, #0
 	mov r2, #0x20
 	mov r1, r0
-	bl ov97_0223C5FC
+	bl BN_lshift
 	cmp r0, #0
 	beq _0223ADE4
 	ldr r0, [sp, #4]
@@ -1792,12 +1754,12 @@ ov97_0223AC40: ; 0x0223AC40
 _0223AD4C:
 	add r0, sp, #0
 	mov r1, #1
-	bl ov97_0223C258
+	bl BN_sub_word
 	b _0223AD70
 _0223AD5C:
 	add r0, sp, #0
 	mvn r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	cmp r0, #0
 	beq _0223ADE4
 _0223AD70:
@@ -1811,36 +1773,36 @@ _0223AD70:
 	mov r2, r4
 	ldrge r0, [r0, #4]
 	movlt r0, #0
-	bl ov97_0223A60C
+	bl bn_div_words
 	str r0, [r7, #0x48]
 	add r0, r7, #0xc
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	ldr r1, [r7, #8]
 	add r0, r7, #0xc
 	mov r1, r1, lsl #6
-	bl ov97_0223CEA8
+	bl BN_set_bit
 	cmp r0, #0
 	beq _0223ADE4
 	add r0, r7, #0xc
 	mov r1, r0
 	mov r3, r5
 	add r2, r7, #0x20
-	bl ov97_0223B5C0
+	bl BN_mod
 	ldr r1, [r7, #8]
 	add r0, r7, #0xc
-	bl ov97_0223D438
+	bl bn_zexpand
 _0223ADE4:
 	add r0, sp, #0
-	bl ov97_0223D4B8
+	bl BN_free
 	mov r0, #1
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, lr}
 	bx lr
-	arm_func_end ov97_0223AC40
+	arm_func_end BN_MONT_CTX_set_word
 
-	arm_func_start ov97_0223ADFC
-ov97_0223ADFC: ; 0x0223ADFC
+	arm_func_start BN_gen_exp_string
+BN_gen_exp_string: ; 0x0223ADFC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	mov r4, r2
@@ -1969,10 +1931,10 @@ _0223AFA0:
 	bx lr
 	; .align 2, 0
 _0223AFD0: .word Unk_ov97_0223F158
-	arm_func_end ov97_0223ADFC
+	arm_func_end BN_gen_exp_string
 
-	arm_func_start ov97_0223AFD4
-ov97_0223AFD4: ; 0x0223AFD4
+	arm_func_start BN_gen_exp_bits
+BN_gen_exp_bits: ; 0x0223AFD4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #4
 	ldr r5, [r3, #0], #4
@@ -2043,7 +2005,7 @@ _0223B0A4:
 	movle r0, r4
 	ble _0223B0DC
 	mov r0, r4
-	bl ov97_0223D268
+	bl bn_expand2
 _0223B0DC:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -2054,7 +2016,7 @@ _0223B0DC:
 	mov r1, sb
 	mov r2, r7
 	add r0, r5, #4
-	bl ov97_0223ADFC
+	bl BN_gen_exp_string
 	add r1, r0, #2
 	mov r0, r1, asr #8
 	strb r0, [r5]
@@ -2075,10 +2037,10 @@ _0223B138: .word 0x00010001
 _0223B13C: .word Unk_ov97_0223DEC4
 _0223B140: .word 0x0223DEDC
 _0223B144: .word 0x0223DED0
-	arm_func_end ov97_0223AFD4
+	arm_func_end BN_gen_exp_bits
 
-	arm_func_start ov97_0223B148
-ov97_0223B148: ; 0x0223B148
+	arm_func_start BN_mod_inverse_word
+BN_mod_inverse_word: ; 0x0223B148
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov sl, r0
 	mov r1, sl
@@ -2119,10 +2081,10 @@ _0223B1D0:
 	mov r0, r1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	bx lr
-	arm_func_end ov97_0223B148
+	arm_func_end BN_mod_inverse_word
 
-	arm_func_start ov97_0223B1DC
-ov97_0223B1DC: ; 0x0223B1DC
+	arm_func_start bn_from_montgomery_words
+bn_from_montgomery_words: ; 0x0223B1DC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	mov r7, r3
@@ -2144,7 +2106,7 @@ _0223B218:
 	mul r3, r1, fp
 	mov r1, r8
 	mov r2, r7
-	bl ov97_0223CC58
+	bl bn_mul_add_words
 	add r1, r0, r6
 	ldr r0, [r5, #0]
 	cmp r1, r6
@@ -2191,7 +2153,7 @@ _0223B2C0:
 	mov r1, sb
 	mov r2, r8
 	mov r3, r7
-	bl ov97_0223C700
+	bl bn_sub_words
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
@@ -2210,10 +2172,10 @@ _0223B2FC:
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_0223B1DC
+	arm_func_end bn_from_montgomery_words
 
-	arm_func_start ov97_0223B31C
-ov97_0223B31C: ; 0x0223B31C
+	arm_func_start bn_sqr_normal
+bn_sqr_normal: ; 0x0223B31C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #4
 	mov fp, r2
@@ -2237,7 +2199,7 @@ ov97_0223B31C: ; 0x0223B31C
 	mov r0, r4
 	mov r1, r5
 	mov r2, r7
-	bl ov97_0223CAB8
+	bl bn_mul_words
 	str r0, [r4, r7, lsl #2]
 	add r4, r4, #8
 _0223B384:
@@ -2252,7 +2214,7 @@ _0223B390:
 	mov r0, r4
 	mov r1, r5
 	mov r2, r7
-	bl ov97_0223CC58
+	bl bn_mul_add_words
 	sub r8, r8, #1
 	str r0, [r4, r7, lsl #2]
 	cmp r8, #0
@@ -2263,23 +2225,23 @@ _0223B3C4:
 	mov r1, sl
 	mov r2, sl
 	mov r3, r6
-	bl ov97_0223C814
+	bl bn_add_words
 	ldr r0, [sp]
 	mov r1, sb
 	mov r2, fp
-	bl ov97_0223C964
+	bl bn_sqr_words
 	ldr r2, [sp]
 	mov r0, sl
 	mov r1, sl
 	mov r3, r6
-	bl ov97_0223C814
+	bl bn_add_words
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_0223B31C
+	arm_func_end bn_sqr_normal
 
-	arm_func_start ov97_0223B408
-ov97_0223B408: ; 0x0223B408
+	arm_func_start BN_sqr
+BN_sqr: ; 0x0223B408
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x64
 	ldr r5, [r2, #0]
@@ -2307,7 +2269,7 @@ ov97_0223B408: ; 0x0223B408
 	ble _0223B478
 	mov r0, r7
 	mov r1, r6
-	bl ov97_0223D268
+	bl bn_expand2
 _0223B478:
 	cmp r0, #0
 	addeq sp, sp, #0x64
@@ -2323,7 +2285,7 @@ _0223B478:
 	ldr r1, [r8]
 	add r3, sp, #0
 	mov r2, #4
-	bl ov97_0223B31C
+	bl bn_sqr_normal
 	b _0223B51C
 _0223B4B8:
 	cmp r5, #8
@@ -2332,7 +2294,7 @@ _0223B4B8:
 	ldr r1, [r8]
 	add r3, sp, #0x20
 	mov r2, #8
-	bl ov97_0223B31C
+	bl bn_sqr_normal
 	b _0223B51C
 _0223B4D8:
 	ldr r0, [r4, #8]
@@ -2341,7 +2303,7 @@ _0223B4D8:
 	ble _0223B4F4
 	mov r0, r4
 	mov r1, r6
-	bl ov97_0223D268
+	bl bn_expand2
 _0223B4F4:
 	cmp r0, #0
 	addeq sp, sp, #0x64
@@ -2352,7 +2314,7 @@ _0223B4F4:
 	ldr r1, [r8]
 	ldr r3, [r4, #0]
 	mov r2, r5
-	bl ov97_0223B31C
+	bl bn_sqr_normal
 _0223B51C:
 	cmp r6, #0
 	ble _0223B540
@@ -2368,16 +2330,16 @@ _0223B540:
 	beq _0223B554
 	mov r0, sb
 	mov r1, r7
-	bl ov97_0223D1D0
+	bl BN_copy
 _0223B554:
 	mov r0, #1
 	add sp, sp, #0x64
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, lr}
 	bx lr
-	arm_func_end ov97_0223B408
+	arm_func_end BN_sqr
 
-	arm_func_start ov97_0223B564
-ov97_0223B564: ; 0x0223B564
+	arm_func_start BN_mod_exp
+BN_mod_exp: ; 0x0223B564
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr ip, [r3, #4]
@@ -2391,21 +2353,21 @@ ov97_0223B564: ; 0x0223B564
 	mov ip, #0
 	str lr, [sp]
 	str ip, [sp, #4]
-	bl ov97_02239A74
+	bl BN_mod_exp_mont
 	add sp, sp, #0xc
 	ldmia sp!, {lr}
 	bx lr
 _0223B5A8:
 	ldr ip, [sp, #0x10]
 	str ip, [sp]
-	bl ov97_0223A278
+	bl BN_mod_exp_recp
 	add sp, sp, #0xc
 	ldmia sp!, {lr}
 	bx lr
-	arm_func_end ov97_0223B564
+	arm_func_end BN_mod_exp
 
-	arm_func_start ov97_0223B5C0
-ov97_0223B5C0: ; 0x0223B5C0
+	arm_func_start BN_mod
+BN_mod: ; 0x0223B5C0
 	stmdb sp!, {lr}
 	sub sp, sp, #4
 	mov lr, r1
@@ -2415,14 +2377,14 @@ ov97_0223B5C0: ; 0x0223B5C0
 	mov r2, lr
 	mov r3, ip
 	mov r0, #0
-	bl ov97_0223B5F4
+	bl BN_div
 	add sp, sp, #4
 	ldmia sp!, {lr}
 	bx lr
-	arm_func_end ov97_0223B5C0
+	arm_func_end BN_mod
 
-	arm_func_start ov97_0223B5F4
-ov97_0223B5F4: ; 0x0223B5F4
+	arm_func_start BN_div
+BN_div: ; 0x0223B5F4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x4c
 	mov r6, r3
@@ -2447,14 +2409,14 @@ _0223B634:
 _0223B644:
 	ldr r0, [sp, #4]
 	mov r1, r6
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	bge _0223B6A4
 	ldr r0, [sp]
 	cmp r0, #0
 	beq _0223B680
 	ldr r1, [sp, #4]
-	bl ov97_0223D1D0
+	bl BN_copy
 	cmp r0, #0
 	addeq sp, sp, #0x4c
 	moveq r0, #0
@@ -2465,7 +2427,7 @@ _0223B680:
 	beq _0223B694
 	mov r0, r8
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 _0223B694:
 	add sp, sp, #0x4c
 	mov r0, #1
@@ -2490,7 +2452,7 @@ _0223B6A4:
 	addeq r1, r5, #3
 	mlaeq r8, r1, r2, r0
 	mov r0, r6
-	bl ov97_0223D534
+	bl BN_num_bits
 	mov r1, r0, lsr #0x1f
 	rsb r0, r1, r0, lsl #27
 	add r0, r1, r0, ror #27
@@ -2499,7 +2461,7 @@ _0223B6A4:
 	ldr r0, [sp, #0x1c]
 	ldr r2, [sp, #8]
 	mov r1, r6
-	bl ov97_0223C5FC
+	bl BN_lshift
 	cmp r0, #0
 	addeq sp, sp, #0x4c
 	moveq r0, #0
@@ -2512,7 +2474,7 @@ _0223B6A4:
 	mov r4, #0
 	add r2, r2, #0x20
 	str r4, [r3, #0xc]
-	bl ov97_0223C5FC
+	bl BN_lshift
 	cmp r0, #0
 	addeq sp, sp, #0x4c
 	moveq r0, r4
@@ -2530,7 +2492,7 @@ _0223B6A4:
 	add r0, sp, #0x38
 	sub r1, r4, r1
 	str r1, [sp, #0x10]
-	bl ov97_0223D3D8
+	bl BN_init
 	ldr r0, [sp, #0x18]
 	ldr r2, [r0, #0]
 	ldr r0, [sp, #0x28]
@@ -2565,7 +2527,7 @@ _0223B6A4:
 	movle r0, r8
 	ble _0223B81C
 	mov r0, r8
-	bl ov97_0223D268
+	bl bn_expand2
 _0223B81C:
 	cmp r0, #0
 	beq _0223BB80
@@ -2589,19 +2551,19 @@ _0223B81C:
 	ldrle r0, [sp, #0x14]
 	ble _0223B878
 	ldr r0, [sp, #0x14]
-	bl ov97_0223D268
+	bl bn_expand2
 _0223B878:
 	cmp r0, #0
 	beq _0223BB80
 	ldr r1, [sp, #0x1c]
 	add r0, sp, #0x38
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	blt _0223B8CC
 	add r0, sp, #0x38
 	ldr r2, [sp, #0x1c]
 	mov r1, r0
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	beq _0223BB80
 	ldr r0, [sp, #0x20]
@@ -2654,7 +2616,7 @@ _0223B92C:
 	ldr r2, [sp, #0x24]
 	mov r0, fp
 	mov r1, r5
-	bl ov97_0223A60C
+	bl bn_div_words
 	mov r6, r0
 _0223B970:
 	ldr r0, [sp, #0x2c]
@@ -2709,7 +2671,7 @@ _0223BA20:
 	ldr r1, [r1, #0]
 	ldr r2, [sp, #0x28]
 	mov r3, r6
-	bl ov97_0223CAB8
+	bl bn_mul_words
 	ldr r1, [sp, #0x14]
 	ldr r2, [sp, #0x28]
 	ldr r3, [r1, #0]
@@ -2735,7 +2697,7 @@ _0223BA80:
 	add r0, sp, #0x38
 	mov r1, r0
 	ldr r5, [sp, #0x3c]
-	bl ov97_0223BDB8
+	bl BN_sub
 	ldr r0, [sp, #0x18]
 	ldr r1, [r0, #4]
 	ldr r0, [sp, #0x3c]
@@ -2751,7 +2713,7 @@ _0223BA80:
 	mov r1, r0
 	sub r6, r6, #1
 	ldr r5, [sp, #0x3c]
-	bl ov97_0223C17C
+	bl BN_add
 	ldr r0, [sp, #0x18]
 	ldr r1, [r0, #4]
 	ldr r0, [sp, #0x3c]
@@ -2774,7 +2736,7 @@ _0223BAF8:
 	blt _0223B92C
 _0223BB28:
 	ldr r0, [sp, #0x18]
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	ldr r0, [sp]
 	cmp r0, #0
 	beq _0223BB70
@@ -2783,7 +2745,7 @@ _0223BB28:
 	ldr r1, [sp, #0x18]
 	add r2, r2, #0x20
 	ldr r4, [r3, #0xc]
-	bl ov97_0223C4E0
+	bl BN_rshift
 	cmp r0, #0
 	addeq sp, sp, #0x4c
 	moveq r0, #0
@@ -2803,10 +2765,10 @@ _0223BB80:
 	bx lr
 	; .align 2, 0
 _0223BB90: .word 0x0000FFFF
-	arm_func_end ov97_0223B5F4
+	arm_func_end BN_div
 
-	arm_func_start ov97_0223BB94
-ov97_0223BB94: ; 0x0223BB94
+	arm_func_start bn_mul_normal
+bn_mul_normal: ; 0x0223BB94
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #4
 	ldr r5, [sp, #0x20]
@@ -2828,7 +2790,7 @@ _0223BBD0:
 	mov r1, r8
 	mov r2, r7
 	add r4, sb, r7, lsl #2
-	bl ov97_0223CAB8
+	bl bn_mul_words
 	str r0, [sb, r7, lsl #2]
 _0223BBEC:
 	sub r0, r5, #1
@@ -2840,7 +2802,7 @@ _0223BBEC:
 	mov r1, r8
 	mov r2, r7
 	add r0, sb, #4
-	bl ov97_0223CC58
+	bl bn_mul_add_words
 	sub r1, r5, #2
 	cmp r1, #0
 	addle sp, sp, #4
@@ -2851,7 +2813,7 @@ _0223BBEC:
 	mov r1, r8
 	mov r2, r7
 	add r0, sb, #8
-	bl ov97_0223CC58
+	bl bn_mul_add_words
 	sub r1, r5, #3
 	cmp r1, #0
 	addle sp, sp, #4
@@ -2862,7 +2824,7 @@ _0223BBEC:
 	mov r1, r8
 	mov r2, r7
 	add r0, sb, #0xc
-	bl ov97_0223CC58
+	bl bn_mul_add_words
 	sub r5, r5, #4
 	cmp r5, #0
 	addle sp, sp, #4
@@ -2873,23 +2835,19 @@ _0223BBEC:
 	mov r1, r8
 	mov r2, r7
 	add r0, sb, #0x10
-	bl ov97_0223CC58
+	bl bn_mul_add_words
 	str r0, [r4, #0x10]
 	add r4, r4, #0x10
 	add sb, sb, #0x10
 	add r6, r6, #0x10
 	b _0223BBEC
-	arm_func_end ov97_0223BB94
-
-	arm_func_start ov97_0223BCAC
-ov97_0223BCAC: ; 0x0223BCAC
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, lr}
 	bx lr
-	arm_func_end ov97_0223BCAC
+	arm_func_end bn_mul_normal
 
-	arm_func_start ov97_0223BCB8
-ov97_0223BCB8: ; 0x0223BCB8
+	arm_func_start BN_mul
+BN_mul: ; 0x0223BCB8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #4
 	mov sb, r1
@@ -2904,7 +2862,7 @@ ov97_0223BCB8: ; 0x0223BCB8
 _0223BCE4:
 	mov r0, sl
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	add sp, sp, #4
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -2934,7 +2892,7 @@ _0223BD3C:
 	ble _0223BD58
 	mov r0, r4
 	mov r1, r7
-	bl ov97_0223D268
+	bl bn_expand2
 _0223BD58:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -2947,24 +2905,24 @@ _0223BD58:
 	ldr r1, [sb]
 	ldr r3, [r8]
 	mov r2, r6
-	bl ov97_0223BB94
+	bl bn_mul_normal
 	mov r0, r4
 	str fp, [sl, #0xc]
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	cmp sl, r4
 	beq _0223BDA8
 	mov r0, sl
 	mov r1, r4
-	bl ov97_0223D1D0
+	bl BN_copy
 _0223BDA8:
 	mov r0, #1
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_0223BCB8
+	arm_func_end BN_mul
 
-	arm_func_start ov97_0223BDB8
-ov97_0223BDB8: ; 0x0223BDB8
+	arm_func_start BN_sub
+BN_sub: ; 0x0223BDB8
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #4
 	mov r6, r1
@@ -2993,7 +2951,7 @@ _0223BE0C:
 	mov r0, r7
 	mov r1, r6
 	mov r2, r5
-	bl ov97_0223C060
+	bl BN_uadd
 	cmp r0, #0
 	moveq r0, #0
 	add sp, sp, #4
@@ -3011,7 +2969,7 @@ _0223BE40:
 	movle r0, r7
 	ble _0223BE68
 	mov r0, r7
-	bl ov97_0223D268
+	bl bn_expand2
 _0223BE68:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -3020,13 +2978,13 @@ _0223BE68:
 	bxeq lr
 	mov r0, r6
 	mov r1, r5
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	bge _0223BEC0
 	mov r0, r7
 	mov r1, r5
 	mov r2, r6
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -3039,7 +2997,7 @@ _0223BEC0:
 	mov r0, r7
 	mov r1, r6
 	mov r2, r5
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -3052,10 +3010,10 @@ _0223BEEC:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, lr}
 	bx lr
-	arm_func_end ov97_0223BDB8
+	arm_func_end BN_sub
 
-	arm_func_start ov97_0223BEFC
-ov97_0223BEFC: ; 0x0223BEFC
+	arm_func_start BN_usub
+BN_usub: ; 0x0223BEFC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r8, r1
 	mov r7, r2
@@ -3070,7 +3028,7 @@ ov97_0223BEFC: ; 0x0223BEFC
 	cmp r6, r1
 	ble _0223BF38
 	mov r1, r6
-	bl ov97_0223D268
+	bl bn_expand2
 _0223BF38:
 	cmp r0, #0
 	moveq r0, #0
@@ -3150,14 +3108,14 @@ _0223BFF0:
 _0223C048:
 	mov r0, r4
 	str r6, [r4, #4]
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	bx lr
-	arm_func_end ov97_0223BEFC
+	arm_func_end BN_usub
 
-	arm_func_start ov97_0223C060
-ov97_0223C060: ; 0x0223C060
+	arm_func_start BN_uadd
+BN_uadd: ; 0x0223C060
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #4
 	mov r4, r1
@@ -3177,7 +3135,7 @@ ov97_0223C060: ; 0x0223C060
 	movle r0, sb
 	ble _0223C0B0
 	mov r0, sb
-	bl ov97_0223D268
+	bl bn_expand2
 _0223C0B0:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -3191,7 +3149,7 @@ _0223C0B0:
 	mov r0, r4
 	mov r1, r5
 	mov r3, r7
-	bl ov97_0223C814
+	bl bn_add_words
 	cmp r0, #0
 	add r4, r4, r7, lsl #2
 	add r5, r5, r7, lsl #2
@@ -3235,10 +3193,10 @@ _0223C16C:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, lr}
 	bx lr
-	arm_func_end ov97_0223C060
+	arm_func_end BN_uadd
 
-	arm_func_start ov97_0223C17C
-ov97_0223C17C: ; 0x0223C17C
+	arm_func_start BN_add
+BN_add: ; 0x0223C17C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	mov r4, r2
@@ -3253,13 +3211,13 @@ ov97_0223C17C: ; 0x0223C17C
 	movne r4, r0
 	mov r0, r5
 	mov r1, r4
-	bl ov97_0223CF44
+	bl BN_ucmp
 	cmp r0, #0
 	bge _0223C1EC
 	mov r0, r6
 	mov r1, r4
 	mov r2, r5
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, lr}
@@ -3271,7 +3229,7 @@ _0223C1EC:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov97_0223BEFC
+	bl BN_usub
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, lr}
@@ -3291,16 +3249,16 @@ _0223C220:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov97_0223C060
+	bl BN_uadd
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
-	arm_func_end ov97_0223C17C
+	arm_func_end BN_add
 
-	arm_func_start ov97_0223C258
-ov97_0223C258: ; 0x0223C258
+	arm_func_start BN_sub_word
+BN_sub_word: ; 0x0223C258
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	movs r4, r1
@@ -3314,7 +3272,7 @@ ov97_0223C258: ; 0x0223C258
 	beq _0223C2A4
 	mov r2, #0
 	str r2, [r5, #0xc]
-	bl ov97_0223C3B8
+	bl BN_add_word
 	mov r1, #1
 	add sp, sp, #4
 	str r1, [r5, #0xc]
@@ -3330,7 +3288,7 @@ _0223C2A4:
 	cmp r1, #1
 	bge _0223C2CC
 	mov r1, #1
-	bl ov97_0223D268
+	bl bn_expand2
 _0223C2CC:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -3397,10 +3355,10 @@ _0223C3A8:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223C258
+	arm_func_end BN_sub_word
 
-	arm_func_start ov97_0223C3B8
-ov97_0223C3B8: ; 0x0223C3B8
+	arm_func_start BN_add_word
+BN_add_word: ; 0x0223C3B8
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	movs r4, r1
@@ -3417,7 +3375,7 @@ ov97_0223C3B8: ; 0x0223C3B8
 	ble _0223C410
 	mov r2, #0
 	str r2, [r5, #0xc]
-	bl ov97_0223C258
+	bl BN_sub_word
 	mov r1, #1
 	add sp, sp, #4
 	str r1, [r5, #0xc]
@@ -3451,7 +3409,7 @@ _0223C460:
 	add r1, r1, #1
 	cmp r1, r2
 	ble _0223C478
-	bl ov97_0223D268
+	bl bn_expand2
 _0223C478:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -3480,10 +3438,10 @@ _0223C4A0:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223C3B8
+	arm_func_end BN_add_word
 
-	arm_func_start ov97_0223C4E0
-ov97_0223C4E0: ; 0x0223C4E0
+	arm_func_start BN_rshift
+BN_rshift: ; 0x0223C4E0
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r1
 	mov r1, r2, asr #4
@@ -3498,7 +3456,7 @@ ov97_0223C4E0: ; 0x0223C4E0
 	rsb r5, r4, #0x20
 	ble _0223C528
 	mov r1, #0
-	bl ov97_0223D128
+	bl BN_set_word
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, lr}
 	bx lr
@@ -3510,7 +3468,7 @@ _0223C528:
 	add r1, r1, #2
 	cmp r1, r2
 	ble _0223C548
-	bl ov97_0223D268
+	bl bn_expand2
 _0223C548:
 	cmp r0, #0
 	moveq r0, #0
@@ -3559,14 +3517,14 @@ _0223C5D8:
 	str r1, [r0, #4]
 _0223C5E8:
 	mov r0, r8
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, lr}
 	bx lr
-	arm_func_end ov97_0223C4E0
+	arm_func_end BN_rshift
 
-	arm_func_start ov97_0223C5FC
-ov97_0223C5FC: ; 0x0223C5FC
+	arm_func_start BN_lshift
+BN_lshift: ; 0x0223C5FC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r4, r1
 	mov r7, r2
@@ -3580,7 +3538,7 @@ ov97_0223C5FC: ; 0x0223C5FC
 	cmp r1, r3
 	mov r6, r2, asr #5
 	ble _0223C634
-	bl ov97_0223D268
+	bl bn_expand2
 _0223C634:
 	cmp r0, #0
 	moveq r0, #0
@@ -3633,14 +3591,14 @@ _0223C6D0:
 	add r1, r1, r6
 	add r1, r1, #1
 	str r1, [r5, #4]
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	bx lr
-	arm_func_end ov97_0223C5FC
+	arm_func_end BN_lshift
 
-	arm_func_start ov97_0223C700
-ov97_0223C700: ; 0x0223C700
+	arm_func_start bn_sub_words
+bn_sub_words: ; 0x0223C700
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	cmp r3, #0
 	movle r0, #0
@@ -3716,10 +3674,10 @@ _0223C808:
 	mov r0, r6
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	bx lr
-	arm_func_end ov97_0223C700
+	arm_func_end bn_sub_words
 
-	arm_func_start ov97_0223C814
-ov97_0223C814: ; 0x0223C814
+	arm_func_start bn_add_words
+bn_add_words: ; 0x0223C814
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	cmp r3, #0
@@ -3806,10 +3764,10 @@ _0223C954:
 	add sp, sp, #0xc
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	bx lr
-	arm_func_end ov97_0223C814
+	arm_func_end bn_add_words
 
-	arm_func_start ov97_0223C964
-ov97_0223C964: ; 0x0223C964
+	arm_func_start bn_sqr_words
+bn_sqr_words: ; 0x0223C964
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	cmp r2, #0
 	ldmleia sp!, {r4, r5, r6, r7, r8, lr}
@@ -3897,10 +3855,10 @@ _0223C980:
 	bx lr
 	; .align 2, 0
 _0223CAB4: .word 0x0000FFFF
-	arm_func_end ov97_0223C964
+	arm_func_end bn_sqr_words
 
-	arm_func_start ov97_0223CAB8
-ov97_0223CAB8: ; 0x0223CAB8
+	arm_func_start bn_mul_words
+bn_mul_words: ; 0x0223CAB8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #4
 	cmp r2, #0
@@ -4008,10 +3966,10 @@ _0223CC44:
 	bx lr
 	; .align 2, 0
 _0223CC54: .word 0x0000FFFF
-	arm_func_end ov97_0223CAB8
+	arm_func_end bn_mul_words
 
-	arm_func_start ov97_0223CC58
-ov97_0223CC58: ; 0x0223CC58
+	arm_func_start bn_mul_add_words
+bn_mul_add_words: ; 0x0223CC58
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #4
 	cmp r2, #0
@@ -4135,10 +4093,10 @@ _0223CE24:
 	bx lr
 	; .align 2, 0
 _0223CE34: .word 0x0000FFFF
-	arm_func_end ov97_0223CC58
+	arm_func_end bn_mul_add_words
 
-	arm_func_start ov97_0223CE38
-ov97_0223CE38: ; 0x0223CE38
+	arm_func_start BN_is_bit_set
+BN_is_bit_set: ; 0x0223CE38
 	stmdb sp!, {lr}
 	sub sp, sp, #4
 	cmp r1, #0
@@ -4167,10 +4125,10 @@ ov97_0223CE38: ; 0x0223CE38
 	add sp, sp, #4
 	ldmia sp!, {lr}
 	bx lr
-	arm_func_end ov97_0223CE38
+	arm_func_end BN_is_bit_set
 
-	arm_func_start ov97_0223CEA8
-ov97_0223CEA8: ; 0x0223CEA8
+	arm_func_start BN_set_bit
+BN_set_bit: ; 0x0223CEA8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r2, r1, asr #4
@@ -4186,7 +4144,7 @@ ov97_0223CEA8: ; 0x0223CEA8
 	add r1, r5, #1
 	cmp r1, r2
 	ble _0223CEE8
-	bl ov97_0223D268
+	bl bn_expand2
 _0223CEE8:
 	cmp r0, #0
 	moveq r0, #0
@@ -4214,10 +4172,10 @@ _0223CF28:
 	str r1, [r2, r5, lsl #2]
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
-	arm_func_end ov97_0223CEA8
+	arm_func_end BN_set_bit
 
-	arm_func_start ov97_0223CF44
-ov97_0223CF44: ; 0x0223CF44
+	arm_func_start BN_ucmp
+BN_ucmp: ; 0x0223CF44
 	ldr r3, [r0, #4]
 	ldr r2, [r1, #4]
 	subs r2, r3, r2
@@ -4242,15 +4200,15 @@ _0223CF88:
 _0223CF90:
 	mov r0, #0
 	bx lr
-	arm_func_end ov97_0223CF44
+	arm_func_end BN_ucmp
 
-	arm_func_start ov97_0223CF98
-ov97_0223CF98: ; 0x0223CF98
+	arm_func_start BN_bn2bin
+BN_bn2bin: ; 0x0223CF98
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	mov r5, r0
 	mov r4, r1
-	bl ov97_0223D534
+	bl BN_num_bits
 	add r1, r0, #7
 	mov r0, r1, asr #2
 	add r0, r1, r0, lsr #29
@@ -4278,17 +4236,17 @@ _0223CFD0:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223CF98
+	arm_func_end BN_bn2bin
 
-	arm_func_start ov97_0223D014
-ov97_0223D014: ; 0x0223D014
+	arm_func_start BN_bin2bn
+BN_bin2bn: ; 0x0223D014
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #4
 	movs r5, r2
 	mov r7, r0
 	mov r6, r1
 	bne _0223D034
-	bl ov97_0223D38C
+	bl BN_new
 	mov r5, r0
 _0223D034:
 	cmp r5, #0
@@ -4318,7 +4276,7 @@ _0223D034:
 	mov r1, r0, asr #5
 	mov r0, r5
 	add r1, r1, #1
-	bl ov97_0223D268
+	bl bn_expand2
 _0223D0A4:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -4350,15 +4308,15 @@ _0223D0E0:
 	bne _0223D0E0
 _0223D110:
 	mov r0, r5
-	bl ov97_0223D3EC
+	bl bn_fix_top
 	mov r0, r5
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, r6, r7, lr}
 	bx lr
-	arm_func_end ov97_0223D014
+	arm_func_end BN_bin2bn
 
-	arm_func_start ov97_0223D128
-ov97_0223D128: ; 0x0223D128
+	arm_func_start BN_set_word
+BN_set_word: ; 0x0223D128
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	mov r4, r0
@@ -4367,7 +4325,7 @@ ov97_0223D128: ; 0x0223D128
 	cmp r2, #1
 	bge _0223D14C
 	mov r1, #2
-	bl ov97_0223D268
+	bl bn_expand2
 _0223D14C:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -4388,10 +4346,10 @@ _0223D14C:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223D128
+	arm_func_end BN_set_word
 
-	arm_func_start ov97_0223D198
-ov97_0223D198: ; 0x0223D198
+	arm_func_start BN_clear
+BN_clear: ; 0x0223D198
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
@@ -4407,10 +4365,10 @@ _0223D1BC:
 	str r0, [r4, #0xc]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223D198
+	arm_func_end BN_clear
 
-	arm_func_start ov97_0223D1D0
-ov97_0223D1D0: ; 0x0223D1D0
+	arm_func_start BN_copy
+BN_copy: ; 0x0223D1D0
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	mov r5, r0
@@ -4423,7 +4381,7 @@ ov97_0223D1D0: ; 0x0223D1D0
 	ldr r2, [r5, #8]
 	cmp r1, r2
 	ble _0223D204
-	bl ov97_0223D268
+	bl bn_expand2
 _0223D204:
 	cmp r0, #0
 	addeq sp, sp, #4
@@ -4451,10 +4409,10 @@ _0223D250:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223D1D0
+	arm_func_end BN_copy
 
-	arm_func_start ov97_0223D268
-ov97_0223D268: ; 0x0223D268
+	arm_func_start bn_expand2
+bn_expand2: ; 0x0223D268
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	ldr r0, [r5, #8]
@@ -4468,7 +4426,7 @@ ov97_0223D268: ; 0x0223D268
 	bxne lr
 	add r0, r4, #1
 	mov r0, r0, lsl #2
-	bl ov97_0223D62C
+	bl CRYPTOi_MyAlloc
 	movs r6, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, lr}
@@ -4481,7 +4439,7 @@ ov97_0223D268: ; 0x0223D268
 	mov r2, r2, lsl #2
 	bl MI_CpuCopy8
 	ldr r0, [r5, #0]
-	bl ov97_0223D5E4
+	bl CRYPTOi_MyFree
 _0223D2D4:
 	str r6, [r5, #0]
 	str r4, [r5, #8]
@@ -4489,17 +4447,17 @@ _0223D2DC:
 	mov r0, r5
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
-	arm_func_end ov97_0223D268
+	arm_func_end bn_expand2
 
-	arm_func_start ov97_0223D2E8
-ov97_0223D2E8: ; 0x0223D2E8
+	arm_func_start BN_CTX_free
+BN_CTX_free: ; 0x0223D2E8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	add r4, r6, #4
 	mov r5, #0
 _0223D2F8:
 	mov r0, r4
-	bl ov97_0223D510
+	bl BN_clear_free
 	add r5, r5, #1
 	cmp r5, #0xc
 	add r4, r4, #0x14
@@ -4509,13 +4467,13 @@ _0223D2F8:
 	ldmeqia sp!, {r4, r5, r6, lr}
 	bxeq lr
 	mov r0, r6
-	bl ov97_0223D5E4
+	bl CRYPTOi_MyFree
 	ldmia sp!, {r4, r5, r6, lr}
 	bx lr
-	arm_func_end ov97_0223D2E8
+	arm_func_end BN_CTX_free
 
-	arm_func_start ov97_0223D330
-ov97_0223D330: ; 0x0223D330
+	arm_func_start BN_CTX_init
+BN_CTX_init: ; 0x0223D330
 	stmfd sp!, {r4, lr}
 	mov r1, #0
 	mov r2, #0x110
@@ -4526,31 +4484,31 @@ ov97_0223D330: ; 0x0223D330
 	str r0, [r4, #0x108]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223D330
+	arm_func_end BN_CTX_init
 
-	arm_func_start ov97_0223D358
-ov97_0223D358: ; 0x0223D358
+	arm_func_start BN_CTX_new
+BN_CTX_new: ; 0x0223D358
 	stmfd sp!, {r4, lr}
 	mov r0, #0x110
-	bl ov97_0223D62C
+	bl CRYPTOi_MyAlloc
 	movs r4, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, lr}
 	bxeq lr
-	bl ov97_0223D330
+	bl BN_CTX_init
 	mov r1, #1
 	mov r0, r4
 	str r1, [r4, #0x108]
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223D358
+	arm_func_end BN_CTX_new
 
-	arm_func_start ov97_0223D38C
-ov97_0223D38C: ; 0x0223D38C
+	arm_func_start BN_new
+BN_new: ; 0x0223D38C
 	stmdb sp!, {lr}
 	sub sp, sp, #4
 	mov r0, #0x14
-	bl ov97_0223D62C
+	bl CRYPTOi_MyAlloc
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -4566,20 +4524,20 @@ ov97_0223D38C: ; 0x0223D38C
 	add sp, sp, #4
 	ldmia sp!, {lr}
 	bx lr
-	arm_func_end ov97_0223D38C
+	arm_func_end BN_new
 
-	arm_func_start ov97_0223D3D8
-ov97_0223D3D8: ; 0x0223D3D8
+	arm_func_start BN_init
+BN_init: ; 0x0223D3D8
 	ldr ip, _0223D3E8 ; =MI_CpuFill8
 	mov r1, #0
 	mov r2, #0x14
 	bx ip
 	; .align 2, 0
 _0223D3E8: .word MI_CpuFill8
-	arm_func_end ov97_0223D3D8
+	arm_func_end BN_init
 
-	arm_func_start ov97_0223D3EC
-ov97_0223D3EC: ; 0x0223D3EC
+	arm_func_start bn_fix_top
+bn_fix_top: ; 0x0223D3EC
 	ldr r3, [r0, #4]
 	cmp r3, #0
 	bxle lr
@@ -4600,10 +4558,10 @@ _0223D410:
 	cmp r1, #0
 	bgt _0223D410
 	bx lr
-	arm_func_end ov97_0223D3EC
+	arm_func_end bn_fix_top
 
-	arm_func_start ov97_0223D438
-ov97_0223D438: ; 0x0223D438
+	arm_func_start bn_zexpand
+bn_zexpand: ; 0x0223D438
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	mov r5, r0
@@ -4616,7 +4574,7 @@ ov97_0223D438: ; 0x0223D438
 	ldr r2, [r5, #8]
 	cmp r4, r2
 	ble _0223D46C
-	bl ov97_0223D268
+	bl bn_expand2
 _0223D46C:
 	ldr r0, [r5, #0]
 	cmp r0, #0
@@ -4638,10 +4596,10 @@ _0223D498:
 	add sp, sp, #4
 	ldmia sp!, {r4, r5, lr}
 	bx lr
-	arm_func_end ov97_0223D438
+	arm_func_end bn_zexpand
 
-	arm_func_start ov97_0223D4B8
-ov97_0223D4B8: ; 0x0223D4B8
+	arm_func_start BN_free
+BN_free: ; 0x0223D4B8
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	ldmeqia sp!, {r4, lr}
@@ -4652,7 +4610,7 @@ ov97_0223D4B8: ; 0x0223D4B8
 	ldr r1, [r4, #0x10]
 	ands r1, r1, #2
 	bne _0223D4E4
-	bl ov97_0223D5E4
+	bl CRYPTOi_MyFree
 _0223D4E4:
 	ldr r0, [r4, #0x10]
 	orr r0, r0, #0x8000
@@ -4662,26 +4620,26 @@ _0223D4E4:
 	ldmeqia sp!, {r4, lr}
 	bxeq lr
 	mov r0, r4
-	bl ov97_0223D5E4
+	bl CRYPTOi_MyFree
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223D4B8
+	arm_func_end BN_free
 
-	arm_func_start ov97_0223D510
-ov97_0223D510: ; 0x0223D510
+	arm_func_start BN_clear_free
+BN_clear_free: ; 0x0223D510
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	ldmeqia sp!, {r4, lr}
 	bxeq lr
-	bl ov97_0223D198
+	bl BN_clear
 	mov r0, r4
-	bl ov97_0223D4B8
+	bl BN_free
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223D510
+	arm_func_end BN_clear_free
 
-	arm_func_start ov97_0223D534
-ov97_0223D534: ; 0x0223D534
+	arm_func_start BN_num_bits
+BN_num_bits: ; 0x0223D534
 	stmfd sp!, {r4, lr}
 	ldr r1, [r0, #4]
 	cmp r1, #0
@@ -4691,14 +4649,14 @@ ov97_0223D534: ; 0x0223D534
 	ldr r0, [r0, #0]
 	sub r4, r1, #1
 	ldr r0, [r0, r4, lsl #2]
-	bl ov97_0223D568
+	bl BN_num_bits_word
 	add r0, r0, r4, lsl #5
 	ldmia sp!, {r4, lr}
 	bx lr
-	arm_func_end ov97_0223D534
+	arm_func_end BN_num_bits
 
-	arm_func_start ov97_0223D568
-ov97_0223D568: ; 0x0223D568
+	arm_func_start BN_num_bits_word
+BN_num_bits_word: ; 0x0223D568
 	mov r1, #0x10000
 	rsb r1, r1, #0
 	ands r1, r0, r1
@@ -4726,67 +4684,8 @@ _0223D594:
 	bx lr
 	; .align 2, 0
 _0223D5C4: .word 0x0223DEE8
-	arm_func_end ov97_0223D568
+	arm_func_end BN_num_bits_word
 
-	arm_func_start CRYPTO_SetAllocator
-CRYPTO_SetAllocator: ; 0x0223D5C8
-	ldr r3, _0223D5DC ; =0x02240AF4
-	ldr r2, _0223D5E0 ; =0x02240AF8
-	str r0, [r3, #0]
-	str r1, [r2, #0]
-	bx lr
-	; .align 2, 0
-_0223D5DC: .word 0x02240AF4
-_0223D5E0: .word 0x02240AF8
-	arm_func_end CRYPTO_SetAllocator
-
-	arm_func_start ov97_0223D5E4
-ov97_0223D5E4: ; 0x0223D5E4
-	stmdb sp!, {lr}
-	sub sp, sp, #4
-	ldr r1, _0223D628 ; =0x02240AF8
-	mov r2, r0
-	ldr r1, [r1, #0]
-	cmp r1, #0
-	beq _0223D610
-	blx r1
-	add sp, sp, #4
-	ldmia sp!, {lr}
-	bx lr
-_0223D610:
-	mov r0, #0
-	mvn r1, #0
-	bl OS_FreeToHeap
-	add sp, sp, #4
-	ldmia sp!, {lr}
-	bx lr
-	; .align 2, 0
-_0223D628: .word 0x02240AF8
-	arm_func_end ov97_0223D5E4
-
-	arm_func_start ov97_0223D62C
-ov97_0223D62C: ; 0x0223D62C
-	stmdb sp!, {lr}
-	sub sp, sp, #4
-	ldr r1, _0223D670 ; =0x02240AF4
-	mov r2, r0
-	ldr r1, [r1, #0]
-	cmp r1, #0
-	beq _0223D658
-	blx r1
-	add sp, sp, #4
-	ldmia sp!, {lr}
-	bx lr
-_0223D658:
-	mov r0, #0
-	mvn r1, #0
-	bl OS_AllocFromHeap
-	add sp, sp, #4
-	ldmia sp!, {lr}
-	bx lr
-	; .align 2, 0
-_0223D670: .word 0x02240AF4
-	arm_func_end ov97_0223D62C
 
 	.rodata
 
@@ -4816,4 +4715,3 @@ Unk_ov97_0223F158: ; 0x0223F158
 	.word 0x0223DF28
 	.word 0x0223DF18
 	.word 0x0223DEF8
-
