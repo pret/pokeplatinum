@@ -10,9 +10,6 @@ is_wsl_accessing_windows() {
     fi
 }
 
-# Set up env variable pointing to CodeWarrior license file
-export LM_LICENSE_FILE=$(pwd)/tools/cw/license.dat
-
 # Bootstrap machine file pointing to the repo
 echo "[constants]" > meson/root.ini
 echo "root = '$(pwd)'" | sed s#\'/c#\'C:#g >> meson/root.ini
@@ -32,4 +29,11 @@ else
 fi
 
 # Launch meson
-meson setup build --native-file=meson/"$native_file" --native-file=meson/root.ini --cross-file=meson/"$cross_file" --cross-file=meson/root.ini
+"${MESON:-meson}" setup build --native-file=meson/"$native_file" --native-file=meson/root.ini --cross-file=meson/"$cross_file" --cross-file=meson/root.ini
+
+if [ "$native_file" = "native_wine.ini" ]; then
+cat > build/.mwconfig << EOF
+path_unix="$PWD"
+path_win="$(winepath -w "$PWD")"
+EOF
+fi

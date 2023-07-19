@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Set up env variable pointing to CodeWarrior license file
-export LM_LICENSE_FILE=$(pwd)/tools/cw/license.dat
-
 # Set up env variable to show % of completion during ninja build
 export NINJA_STATUS="[%p %f/%t] "
 
@@ -15,7 +12,7 @@ export NINJA_STATUS="
 "
 
 # Fix dependency paths on non-Windows platforms
-ninja fixdep
+#ninja fixdep
 
 export NINJA_STATUS=""
 

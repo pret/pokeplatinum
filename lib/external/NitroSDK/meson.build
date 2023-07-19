@@ -2,6 +2,7 @@ project('NitroSDK', ['c', 'nasm'])
 
 # Compiler flags
 c_args = [
+    '-wrap:ver', '2.0/sp2',
     '-O4,p',
     '-proc', 'arm946e',
     '-enum', 'int',
