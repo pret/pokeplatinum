@@ -170,9 +170,13 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         rom_rsf,
         ichneumon_sub,
         ichneumon_sub_defs,
+        fixrom_exe,
         nitrofs_files # Make sure this is always listed last
     ], 
     command : [
+        'sh', '-c',
+        '"$@" && @INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE',
+        '--',
         makerom_exe,
         '-DBUILD_DIR=@OUTDIR@',
         '-DTITLE_NAME=POKEMON PL',
@@ -186,14 +190,6 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '@OUTPUT1@'
     ],
     build_by_default : true
-)
-
-
-############################################################
-###                    RUN TARGETS                       ###
-############################################################
-fixrom_target = run_target('fixrom',
-    command: [fixrom_exe, pokeplatinum_nds,'--secure-crc', '0xF8B8', '--game-code', 'CPUE']
 )
 
 
