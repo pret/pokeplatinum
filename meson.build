@@ -192,10 +192,6 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
 ############################################################
 ###                    RUN TARGETS                       ###
 ############################################################
-fixdep_target = run_target('fixdep',
-    command: [fixdep_py, '.ninja_deps']
-)
-
 fixrom_target = run_target('fixrom',
     command: [fixrom_exe, pokeplatinum_nds,'--secure-crc', '0xF8B8', '--game-code', 'CPUE']
 )

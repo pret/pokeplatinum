@@ -8,12 +8,6 @@ cd build
 # Build rom
 ninja
 
-export NINJA_STATUS="
-"
-
-# Fix dependency paths on non-Windows platforms
-#ninja fixdep
-
 export NINJA_STATUS=""
 
 # Fix rom header secure area CRC

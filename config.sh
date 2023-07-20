@@ -34,6 +34,6 @@ fi
 if [ "$native_file" = "native_wine.ini" ]; then
 cat > build/.mwconfig << EOF
 path_unix="$PWD"
-path_win="$(winepath -w "$PWD")"
+path_win="$("${WINE:-wine}" winepath -w "$PWD")"
 EOF
 fi

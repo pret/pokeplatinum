@@ -9,13 +9,6 @@ SOURCE_DIRECTORY = os.environ["MESON_SOURCE_ROOT"]
 COMPILER_RULE_PATTERN = r'rule c_COMPILER[\r\n]+(?:\s\w+ =.+[\r\n]+){4}'
 
 
-def add_compiler_rules(fileString: str) -> str:
-    rule = re.search(COMPILER_RULE_PATTERN, fileString).group(0)
-    fileString = fileString.replace(rule, rule + rule.replace('sp2p2', 'sp2').replace('c_COMPILER', 'c_COMPILER_NitroSDK'))
-    fileString = re.sub(r'(build lib/external/NitroSDK.+?c_COMPILER\b)', r'\1_NitroSDK', fileString)
-    return fileString
-
-
 def backslash_to_forward_slash(fileString: str) -> str:
     return fileString.replace('\\\\', '/')
 
@@ -38,11 +31,9 @@ def main():
         compile_commands_string = compile_commands_in.read()
     
     # build.ninja edits
-    build_ninja_string = add_compiler_rules(build_ninja_string)
     build_ninja_string = backslash_to_forward_slash(build_ninja_string)
     build_ninja_string = fix_static_libs(build_ninja_string)
     build_ninja_string = nasm_to_asm(build_ninja_string)
-    build_ninja_string = silence_static_linking_warnings(build_ninja_string)
 
     # compile_commands.json edits
     compile_commands_string = backslash_to_forward_slash(compile_commands_string)
@@ -61,18 +52,9 @@ def nasm_to_asm(fileString: str) -> str:
     return fileString.replace('Nasm', 'ASM')
 
 
-def rename_objects(fileString: str) -> str:
-    '''Remove filepaths from object names'''
-    return re.sub(r'(?:src|asm)_(?:overlay\d+_)*(\w+\.[cs]\.[do])', r'\1', fileString)
-
-
 def relativize_pch_paths(fileString: str) -> str:
     '''Make paths to headers to be precompiled relative (for WSL)'''
     return re.sub(r'c_PCH [\w/]+?lib', r'c_PCH ../lib', fileString)
-
-
-def silence_static_linking_warnings(fileString: str) -> str:
-    return re.sub(r'mwldarm\.exe(")* \$LINK_ARGS', r'mwldarm.exe\1 $LINK_ARGS -w nocmdline', fileString)
 
 
 if __name__ == '__main__':

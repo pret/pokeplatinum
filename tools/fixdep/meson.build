@@ -1,1 +1,0 @@
-fixdep_py = find_program('fixdep.py', native: true)

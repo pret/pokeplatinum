@@ -1,5 +1,4 @@
 # Native tools
-subdir('fixdep')
 subdir('fixrom')
 subdir('postconf')
 
