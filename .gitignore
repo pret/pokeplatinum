@@ -1,3 +1,9 @@
+# Meson files
+/build/
+/meson/root.ini
+/tools/cw/build/
+/tools/cw/mwrap
+
 # CLion folders
 .idea/
 cmake-build-debug/
@@ -48,8 +54,6 @@ cmake-build-*
 
 # Depfiles
 *.d
-
-root.ini
 
 diff.txt
 
