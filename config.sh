@@ -54,4 +54,4 @@ if [ "$native_file" = "native_wine.ini" ]; then
 fi
 
 # Launch meson
-"${MESON:-meson}" setup build --native-file=meson/"$native_file" --native-file=meson/root.ini --cross-file=meson/"$cross_file" --cross-file=meson/root.ini
+"${MESON:-meson}" setup "$dir_build" --native-file=meson/"$native_file" --native-file=meson/root.ini --cross-file=meson/"$cross_file" --cross-file=meson/root.ini
