@@ -1,15 +1,15 @@
 Arm9
 {
-	Static $(BUILD_DIR)/main.sbin
-	OverlayDefs $(BUILD_DIR)/main_defs.sbin
-	OverlayTable $(BUILD_DIR)/main_table.sbin
-	Nef $(BUILD_DIR)/main.nef
+	Static main.sbin
+	OverlayDefs main_defs.sbin
+	OverlayTable main_table.sbin
+	Nef main.nef
 }
 
 Arm7
 {
-	Static $(ARM7)
-	OverlayDefs $(ARM7_DEFS)
+	Static "$(ARM7)"
+	OverlayDefs "$(ARM7_DEFS)"
 }
 
 Property
@@ -21,14 +21,15 @@ Property
 	RomSpeedType 1TROM
 	RomSize 1G
 	RomFootPadding TRUE
-	BannerFile $(BNR)
+	BannerFile "$(BNR)"
 }
 
 RomSpec
 {
 	Segment All
 
-	HostRoot $(BUILD_DIR)/res
+	Root /        # Directory in rom
+	HostRoot res  # Directory in source
 
 	File data/UTF16.dat
 	File data/arealight.narc
