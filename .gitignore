@@ -1,6 +1,5 @@
 # Meson files
 /build/
-/meson/root.ini
 /tools/cw/build/
 /tools/cw/mwrap
 /tools/cw/mwrap.exe

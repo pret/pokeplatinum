@@ -24,9 +24,11 @@ is_wsl_accessing_windows() {
     fi
 }
 
+mkdir -p "$dir_build"
+
 # Bootstrap machine file pointing to the repo
-echo "[constants]" > meson/root.ini
-echo "root = '$(pwd)'" | sed s#\'/c#\'C:#g >> meson/root.ini
+echo "[constants]" > $dir_build/root.ini
+echo "root = '$(pwd)'" | sed s#\'/c#\'C:#g >> $dir_build/root.ini
 
 # Select toolchain
 if [ "$(uname -s)" = "Linux" ]; then
@@ -42,7 +44,6 @@ else
     cross_file="cross.ini"
 fi
 
-mkdir -p "$dir_build"
 export MWCONFIG="$(realpath "$dir_build/.mwconfig")"
 
 if [ "$native_file" = "native_unix.ini" ]; then
@@ -54,4 +55,4 @@ if [ "$native_file" = "native_unix.ini" ]; then
 fi
 
 # Launch meson
-"${MESON:-meson}" setup "$dir_build" --native-file=meson/"$native_file" --native-file=meson/root.ini --cross-file=meson/"$cross_file" --cross-file=meson/root.ini
+"${MESON:-meson}" setup "$dir_build" --native-file=meson/"$native_file" --native-file=$dir_build/root.ini --cross-file=meson/"$cross_file" --cross-file=$dir_build/root.ini
