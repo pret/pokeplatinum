@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-dir_build="build"
+build="build"
 
 wrap=tools/cw
 
@@ -24,11 +24,16 @@ is_wsl_accessing_windows() {
     fi
 }
 
-mkdir -p "$dir_build"
+mkdir -p "$build"
+
+root="$PWD"
+if [ -n "$MSYSTEM" -a "$MSYSTEM" != MSYS ]; then
+    root="$(cygpath -w "$root")"
+fi
 
 # Bootstrap machine file pointing to the repo
-echo "[constants]" > $dir_build/root.ini
-echo "root = '$(pwd)'" | sed s#\'/c#\'C:#g >> $dir_build/root.ini
+echo "[constants]" > "$build/root.ini"
+echo "root = '$root'" >> "$build/root.ini"
 
 # Select toolchain
 if [ "$(uname -s)" = "Linux" ]; then
@@ -44,7 +49,7 @@ else
     cross_file="cross.ini"
 fi
 
-export MWCONFIG="$(realpath "$dir_build/.mwconfig")"
+export MWCONFIG="$(realpath "$build/.mwconfig")"
 
 if [ "$native_file" = "native_unix.ini" ]; then
     wrap_wine="$(command -v "${WINELOADER:-wine}")"
@@ -55,4 +60,4 @@ if [ "$native_file" = "native_unix.ini" ]; then
 fi
 
 # Launch meson
-"${MESON:-meson}" setup "$dir_build" --native-file=meson/"$native_file" --native-file=$dir_build/root.ini --cross-file=meson/"$cross_file" --cross-file=$dir_build/root.ini
+"${MESON:-meson}" setup "$build" --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini"
