@@ -1,0 +1,6 @@
+subdir('b_pl_stage')
+subdir('b_pl_tower')
+subdir('b_tower')
+subdir('graphic')
+subdir('skill')
+subdir('tr_ai')

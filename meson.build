@@ -8,6 +8,7 @@ project('pokeplatinum', ['c', 'nasm'],
     ]
 )
 
+fs = import('fs')
 
 ############################################################
 ###                    INCLUDE PATHS                     ###
@@ -184,7 +185,6 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '-DHEADER_TEMPLATE=@INPUT2@',
         '-DARM7=@INPUT4@',
         '-DARM7_DEFS=@INPUT5@',
-        '-DNITROFS_FILES=' + ' '.join(nitrofs_filenames),
         '@INPUT3@',
         '@OUTPUT0@',
         '@OUTPUT1@'
