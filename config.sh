@@ -32,10 +32,10 @@ echo "root = '$(pwd)'" | sed s#\'/c#\'C:#g >> meson/root.ini
 if [ "$(uname -s)" = "Linux" ]; then
     if is_wsl_accessing_windows; then
         native_file="native.ini"
-        cross_file="cross.ini"
+        cross_file="cross_unix.ini"
     else
-        native_file="native_wine.ini"
-        cross_file="cross_wine.ini"
+        native_file="native_unix.ini"
+        cross_file="cross_unix.ini"
     fi
 else
     native_file="native.ini"
@@ -45,7 +45,7 @@ fi
 mkdir -p "$dir_build"
 export MWCONFIG="$(realpath "$dir_build/.mwconfig")"
 
-if [ "$native_file" = "native_wine.ini" ]; then
+if [ "$native_file" = "native_unix.ini" ]; then
     wrap_wine="$(command -v "${WINELOADER:-wine}")"
     wrap_path_unx="$PWD"
     wrap_path_win="$("$wrap_wine" winepath -w "$wrap_path_unx")"
