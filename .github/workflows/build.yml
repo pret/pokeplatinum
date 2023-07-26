@@ -18,13 +18,13 @@ jobs:
     steps:
       - name: Update and Install Software
         run: |
-          mkdir -pm755 /etc/apt/keyrings
-          wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-          wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-$(lsb_release -cs).sources
-          dpkg --add-architecture i386
-          apt-get update -y
-          apt-get upgrade -y
-          apt-get install -y --install-recommends winehq-stable
+          sudo mkdir -pm755 /etc/apt/keyrings
+          sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-$(lsb_release -cs).sources
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install -y --install-recommends winehq-stable
 
       - name: Checkout Repo
         uses: actions/checkout@v2
