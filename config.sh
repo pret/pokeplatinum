@@ -2,6 +2,10 @@
 set -e
 
 build="build"
+if [ "$#" -ge 1 ]; then
+    build="$1"
+    shift
+fi
 
 wrap=tools/cw
 
@@ -65,4 +69,4 @@ elif is_wsl_accessing_windows; then
 fi
 
 # Launch meson
-"${MESON:-meson}" setup "$build" --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini"
+"${MESON:-meson}" setup "$build" --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini" "$@"
