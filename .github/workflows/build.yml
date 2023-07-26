@@ -22,8 +22,6 @@ jobs:
           sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
           sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
           sudo dpkg --add-architecture i386
-          sudo apt-get update -y
-          sudo apt-get upgrade -y
           sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable
           pip install --user meson
 
