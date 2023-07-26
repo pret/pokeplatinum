@@ -130,14 +130,14 @@ cd pokeplatinum
 # 3. Building
 To set up the build system, run:
 ```
-sh config.sh
+./config.sh
 ```
 
 This is only required once. If the process is successful, you will see a new 'build' folder in the repository.
 
 To build the rom, run:
 ```
-sh build.sh
+./build.sh
 ```
 
 If everything works, then the following ROM should be built:
