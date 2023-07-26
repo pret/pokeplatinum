@@ -496,7 +496,7 @@ int _tmain(int argc, _TCHAR *argv[])
     }
     int exitcode;
     waitpid(pid, &exitcode, 0);
-    if (exitcode) return exitcode;
+    if (WEXITSTATUS(exitcode)) return WEXITSTATUS(exitcode);
 #endif
 
     if (wine) free(wine);
