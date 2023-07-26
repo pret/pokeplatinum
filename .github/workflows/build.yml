@@ -24,7 +24,7 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install -y --install-recommends winehq-stable
+          sudo apt-get install -y --install-recommends gcc meson winehq-stable
 
       - name: Checkout Repo
         uses: actions/checkout@v2
