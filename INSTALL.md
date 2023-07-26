@@ -14,7 +14,7 @@ To add an environment variable:
 
 You will need to restart your computer for the changes to take effect, but if you plan to use Windows Subsystem for Linux (WSL), then you can restart later as part of the required restart when installing WSL, if you choose so.
 
-You now have the choice between two different terminals to use to build the project.
+You now have the choice between two different environments to use to build the project.
 
 ### MSYS2 (Recommended)
 
@@ -36,52 +36,42 @@ You now have the choice between two different terminals to use to build the proj
 
     Press 'Y' when prompted to confirm the installation.
 
-4. Continue with the [building instructions](#Downloading_the_repository). Make sure to always use the plain MSYS terminal, other environments will not work.
+4. Continue with the [building instructions](#Downloading_the_repository). Make sure to always use the plain MSYS environment, other environments will not work.
 
 ### Windows Subsystem for Linux
-
-Currently WSL2 has an issue with mwldarm not being able to locate it's executable. Please use WSL1 or another build environment to mitigate this issue until a solution is found.
 
 1. Open [Windows Powershell **as Administrator**](https://i.imgur.com/QKmVbP9.png), and run the following command (Right Click or Shift+Insert is paste in the Powershell).
 
     ```powershell
-    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    wsl --install -d Ubuntu
     ```
 
-2. Once the process finishes, restart your machine.
+2. Once the process finishes, you will be prompted to restart your machine. Accept.
 
-3. The next step is to choose and install a Linux distribution from the Microsoft Store. The following instructions will assume Ubuntu as the Linux distribution of choice.
+3. After rebooting, reopen PowerShell and run the following commmand to downgrade to WSL1
 
-4. Open the [Microsoft Store Linux Selection](https://aka.ms/wslstore), click Ubuntu, then click Get, which will install the Ubuntu distribution.
-    <details>
-        <summary><i>Notes...</i></summary>
+    ```powershell
+    wsl --set-version Ubuntu 1
+    ```
 
-    >   Note 1: If a dialog pops up asking for you to sign into a Microsoft Account, then just close the dialog.  
-    >   Note 2: If the link does not work, then open the Microsoft Store manually, and search for the Ubuntu app (choose the one with no version number).
-    </details>
+    This is necessary because WSL2 has very slow access to the Windows file drive, which is where we need to store the repository.
 
-#### Setting up WSL1
-Some tips before proceeding:
-- In WSL, Copy and Paste is either done via
-    - **right-click** (selection + right click to Copy, right click with no selection to Paste)
-    - **Ctrl+Shift+C/Ctrl+Shift+V** (enabled by right-clicking the title bar, going to Properties, then checking the checkbox next to "Use Ctrl+Shift+C/V as Copy/Paste").
-- Some of the commands that you'll run will ask for your WSL password and/or confirmation to perform the stated action. This is to be expected, just enter your WSL password and/or the yes action when necessary.
+4. Open **Ubuntu** (e.g. using Search).
 
-1. Open **Ubuntu** (e.g. using Search).
-2. WSL/Ubuntu will set up its own installation when it runs for the first time. Once WSL/Ubuntu finishes installing, it will ask for a username and password (to be input in).
+5. WSL/Ubuntu will set up its own installation when it runs for the first time. Once WSL/Ubuntu finishes installing, it will ask for a username and password (to be input in).
     <details>
         <summary><i>Note...</i></summary>
 
     >   When typing in the password, there will be no visible response, but the terminal will still read in input.
     </details>
 
-3. Update WSL/Ubuntu before continuing. Do this by running the following command. These commands will likely take a long time to finish:
+6. Update WSL/Ubuntu before continuing. Do this by running the following command. These commands will likely take a long time to finish:
 
     ```bash
     sudo apt update && sudo apt upgrade
     ```
 
-4. Certain packages are required to build the repository. Install these packages by running the following command:
+7. Certain packages are required to build the repository. Install these packages by running the following command:
 
     ```bash
     sudo apt install git build-essential
@@ -94,7 +84,7 @@ Some tips before proceeding:
     pip install --user meson
     ```
 
-5. Change to a directory accessible from Windows where you'll store the files, for example:
+8. Change to a directory accessible from Windows where you'll store the files, for example:
     ```bash
     cd /mnt/c/Users/$USER/Desktop
     ```
