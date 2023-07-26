@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  LM_LICENSE_FILE: "$GITHUB_WORKSPACE/tools/mwccarm/license.dat"
+  LM_LICENSE_FILE: "$GITHUB_WORKSPACE/tools/cw/license.dat"
   CALCROM_DISCORD_WEBHOOK_AVATAR_URL: "https://i.imgur.com/38BQHdd.png"
   CALCROM_DISCORD_WEBHOOK_USERNAME: OK
   CALCROM_WEBHOOK_URL: ${{ secrets.WEBHOOKURL }}
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Update and Install Software
+      - name: Install Software
         run: |
           sudo mkdir -pm755 /etc/apt/keyrings
           sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
