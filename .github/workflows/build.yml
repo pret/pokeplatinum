@@ -20,11 +20,12 @@ jobs:
         run: |
           sudo mkdir -pm755 /etc/apt/keyrings
           sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-$(lsb_release -cs).sources
+          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
           sudo dpkg --add-architecture i386
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install -y --install-recommends gcc meson winehq-stable
+          sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable
+          pip install --user meson
 
       - name: Checkout Repo
         uses: actions/checkout@v2
