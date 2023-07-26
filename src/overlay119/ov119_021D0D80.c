@@ -31,7 +31,7 @@
 #include "overlay119/struct_ov119_021D17B8.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"

@@ -1,0 +1,2 @@
+subdir('libgds')
+subdir('libspl')

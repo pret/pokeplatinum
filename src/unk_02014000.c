@@ -13,7 +13,7 @@
 #include "struct_defs/struct_02014910.h"
 #include "struct_defs/struct_02014970.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "narc.h"
 #include "unk_0200D9E8.h"

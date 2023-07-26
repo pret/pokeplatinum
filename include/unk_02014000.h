@@ -6,7 +6,7 @@
 #include "functypes/funcptr_020146F4.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
-#include "library/spl.h"
+#include "spl.h"
 #include <nnsys.h>
 #include <nitro/fx/fx.h>
 

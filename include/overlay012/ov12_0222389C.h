@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV12_0222389C_H
 
 
-#include "library/spl.h"
+#include "spl.h"
 
 void ov12_022238DC(UnkSPLStruct6 * param0);
 void ov12_022238E0(UnkSPLStruct6 * param0);

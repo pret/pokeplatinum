@@ -36,7 +36,7 @@
 #include "overlay061/ov61_0222B008.h"
 #include "overlay061/ov61_0222BC4C.h"
 #include "overlay062/ov62_02248408.h"
-#include "library/global_terminal.h"
+#include "gds.h"
 
 typedef int (* UnkFuncPtr_ov61_0222E48C)(UnkStruct_ov62_022349A8 *, UnkStruct_ov61_0222B138 *);
 
