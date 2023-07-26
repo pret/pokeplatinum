@@ -7,62 +7,46 @@ on:
 
 env:
   LM_LICENSE_FILE: "$GITHUB_WORKSPACE/tools/mwccarm/license.dat"
-  CC: gcc-10
-  CXX: g++-10
   CALCROM_DISCORD_WEBHOOK_AVATAR_URL: "https://i.imgur.com/38BQHdd.png"
   CALCROM_DISCORD_WEBHOOK_USERNAME: OK
   CALCROM_WEBHOOK_URL: ${{ secrets.WEBHOOKURL }}
-  COMPARE: 1
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Update and Install Software
         run: |
-          sudo apt -y --allow-downgrades install binutils-arm-none-eabi p7zip-full pkg-config libpugixml-dev
-          sudo dpkg --add-architecture i386
-          wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-          sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-          sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
-          sudo apt -y --allow-downgrades install --install-recommends winehq-stable
+          mkdir -pm755 /etc/apt/keyrings
+          wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+          wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-$(lsb_release -cs).sources
+          dpkg --add-architecture i386
+          apt-get update -y
+          apt-get upgrade -y
+          apt-get install -y --install-recommends winehq-stable
 
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Setup Repo
-        run: |
-          mkdir -p ~/download
-          cd ~/download
-          wget https://cdn.discordapp.com/attachments/698589325620936736/845499146982129684/mwccarm.zip
-          wget https://cdn.discordapp.com/attachments/698589325620936736/722822401963851797/NitroSDK-3_2-060901.7z
-          unzip mwccarm.zip
-          mv mwccarm $GITHUB_WORKSPACE/tools
-          7z x NitroSDK-3_2-060901.7z
-          mv NitroSDK-3_2-060901/tools/bin $GITHUB_WORKSPACE/tools
-          mv NitroSDK-3_2-060901/include/nitro/specfiles/ARM7-TS.lcf.template $GITHUB_WORKSPACE/sub/
-          mv NitroSDK-3_2-060901/include/nitro/specfiles/ARM9-TS.lcf.template $GITHUB_WORKSPACE/
-          mv NitroSDK-3_2-060901/include/nitro/specfiles/mwldarm.response.template $GITHUB_WORKSPACE/
-        working-directory: ~
+      - name: Configure Repo
+        run: ./config.sh
 
-      - name: Build Platinum
-        env:
-          GAME_LANGUAGE: ENGLISH
-          GAME_REVISION: 0
-        run: make -j${nproc}
+      - name: Build Repo
+        run: ./build.sh test
 
       - name: Webhook
         if: ${{ github.event_name == 'push' }}
+        env:
+          arm9name: build/
         run: |
-          sudo chmod 755 $GITHUB_WORKSPACE/.github/calcrom/webhook.sh
-          $GITHUB_WORKSPACE/.github/calcrom/webhook.sh pokeplatinum "$CALCROM_WEBHOOK_URL"
+          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL" "$GITHUB_WORKSPACE/build/main.nef.xMAP"
         continue-on-error: true
 
       - name: Post error archive
         if: failure()
         continue-on-error: true
-        run: find . -maxdepth 2 -type d \( -name build -or -name files \) -exec tar -czvhf failure.tar.gz {} +
+        run: tar czf failure.tar.gz build
 
       - name: Post error upload
         if: failure()
