@@ -1,4 +1,4 @@
-project('pokeplatinum', ['c', 'nasm'],
+project('pokeplatinum', ['c', 'cpp', 'nasm'],
     subproject_dir: 'lib/external',
     version: '1.0',
     meson_version: '>=1.2.0',

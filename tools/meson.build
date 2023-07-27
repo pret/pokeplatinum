@@ -1,4 +1,5 @@
 # Native tools
+subdir('csv2bin')
 subdir('fixrom')
 subdir('postconf')
 
