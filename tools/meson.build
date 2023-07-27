@@ -1,6 +1,7 @@
 # Native tools
 subdir('csv2bin')
 subdir('fixrom')
+subdir('knarc')
 subdir('postconf')
 
 # Prebuilt tools

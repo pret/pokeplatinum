@@ -1,7 +1,7 @@
 enc_data_txt    = files('enc_data.txt')
 pl_enc_data_csv = files('pl_enc_data.csv')
 
-pl_enc_data_narc = custom_target('pokeplatinum.us.nds',
+pl_enc_data_narc = custom_target('pl_enc_data.narc',
     output: 'pl_enc_data.narc',
     input: [
         enc_data_txt,
