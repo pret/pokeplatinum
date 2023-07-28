@@ -2,10 +2,10 @@ subdir('mmodel')
 
 mmodel_narc = custom_target('mmodel.narc',
     output: 'mmodel.narc',
-    input: mmodel_files,
+    input: mmodel_files_targets,
     command: [
         knarc_exe,
-        '-d', '@CURRENT_SOURCE_DIR@/mmodel',
+        '-d', '@OUTDIR@/mmodel',
         '-p', '@OUTPUT0@'
     ]
 )

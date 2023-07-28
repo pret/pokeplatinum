@@ -470,3 +470,9 @@ mmodel_files = files(
     'mmodel_00000468.bin',
     'mmodel_00000469.bin'
 )
+
+mmodel_files_targets = []
+
+foreach f : mmodel_files
+    mmodel_files_targets += fs.copyfile(f)
+endforeach
