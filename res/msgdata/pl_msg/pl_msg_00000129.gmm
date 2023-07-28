@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000129_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">For the Visual judging, you want to\ndress up your Pokémon nicely with\fAccessories matched to the theme.\rThat means you’ll be at an advantage\nif you have lots of Accessories.</language>
+	</row>
+	<row id="pl_msg_00000129_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">For the Dance competition, your\nPokémon needs to perfectly mimic\fthe dance steps of the lead dancer.</language>
+	</row>
+	<row id="pl_msg_00000129_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">For the performance aspect of\nContests, Pokémon need the right\fkinds of moves.\rBut what’s even more important is\nyour choice of the Judge.\rIf everyone performs for the same\nJudge, your Pokémon leaves less of\fan impression on that Judge.</language>
+	</row>
+	<row id="pl_msg_00000129_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the Cool Contest you gotta pull\noff a cool move!\fGets the Judges all excited!\rIf the Judge’s excitement peaks, you\nscore massive bonus points! So hot!</language>
+	</row>
+</body>

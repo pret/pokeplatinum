@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000305_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon will be restored to\nfull health.</language>
+	</row>
+	<row id="pl_msg_00000305_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be facing opponent no. {STRVAR_1 50, 0, 0}.\nAre you ready?</language>
+	</row>
+	<row id="pl_msg_00000305_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to save and\nquit the game?</language>
+	</row>
+	<row id="pl_msg_00000305_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to cancel your\nBattle Room challenge?</language>
+	</row>
+	<row id="pl_msg_00000305_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving...\nDon’t turn off the power.</language>
+	</row>
+	<row id="pl_msg_00000305_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon will be restored to\nfull health.</language>
+	</row>
+	<row id="pl_msg_00000305_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be facing opponent no. {STRVAR_1 50, 0, 0}.\nAre you ready?</language>
+	</row>
+	<row id="pl_msg_00000305_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to save and\nquit the game?</language>
+	</row>
+	<row id="pl_msg_00000305_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to cancel your\nBattle Room challenge?</language>
+	</row>
+	<row id="pl_msg_00000305_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to save the last battle\nas your Battle Video?</language>
+	</row>
+	<row id="pl_msg_00000305_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}’s battle has been saved\nas a Battle Video.\r</language>
+	</row>
+	<row id="pl_msg_00000305_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There was an error.\nThe Battle Video couldn’t be saved.\r</language>
+	</row>
+	<row id="pl_msg_00000305_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Delete your existing Battle Video and\nsave the last battle?</language>
+	</row>
+	<row id="pl_msg_00000305_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving...\nDon’t turn off the power.</language>
+	</row>
+	<row id="pl_msg_00000305_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Congratulations on your winning\nstreak, challenger!\rThe Frontier Brain has sent word\nthat he is impressed with you.\rHe recognizes your skill, and he’d\nlike to challenge you to a battle!\rAre you ready to battle the Tower\nTycoon?</language>
+	</row>
+	<row id="pl_msg_00000305_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi!\nMy name’s Palmer.\rI remember you from when you were\nin Twinleaf, {STRVAR_1 3, 0, 0}.\rYou were always playing with my son\n{STRVAR_1 3, 1, 0}, right?\rYou’ve grown up since then, and most\nimpressively, too!\rSo, I’d like you to show me.\rShow me the bond you’ve built with\nyour Pokémon.\rShow me the skill you’ve acquired\nas a Trainer!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Palmer: So, you’ve come this far!\rAs the Tower Tycoon, I’ll have to\ngive you my best effort.\rThat’s how the best Trainers show\nrespect to each other.\rBy battling all out as dedicated\nstudents of Pokémon!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bravo!\rI imagine many great Trainers will come\nto challenge me as you have just done.\rThat’s something I look forward\nto a great deal.\rYou will become even more skilled,\nthe very same way your father did.\rKeep battling Trainers from around\nthe world and keep growing greater\fin stature!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bravo!\nI feel inspired in my heart!\rIt brings back a memory of that day\nlong ago as a child...\rI went out to the lake with your father\nthat day...\rWe were attacked by a wild Pokémon.\rWe fended it off, but I don’t recall \nhow. It was that desperate.\rThat was my first step as a Trainer.\rI wonder if the professor is doing\nwell?\r...That’s enough reminiscing.\rMy young friend, the world and your\nfuture hold infinite promise.\rGo on, you can be all that you desire!\nThere is no limit to where you can go!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have cleared your seventh match!\nCongratulations!\rIn honor of your talent, we present\nyou BP!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Congratulations!\rYour victory over the Tower Tycoon\nwas an inspiration!\rIn honor of your talent, we present\nyou BP!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received {STRVAR_1 51, 1, 0} BP!\r</language>
+	</row>
+	<row id="pl_msg_00000305_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving...\nDon’t turn off the power.</language>
+	</row>
+</body>

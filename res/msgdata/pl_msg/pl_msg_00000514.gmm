@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000514_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pal Park isn’t open yet.\nWe’re still setting up.</language>
+	</row>
+	<row id="pl_msg_00000514_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re getting Pal Park ready.\nI wonder what you can do there?</language>
+	</row>
+	<row id="pl_msg_00000514_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pal Park\nA Place for New Beginnings</language>
+	</row>
+</body>

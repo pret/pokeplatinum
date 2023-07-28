@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000274_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone calls me the Ruin Maniac.\nOr they used to call me that.\fNow they call me the Digging Maniac.\rI’ll just go on chipping away at\nthe rock wall a little at a time.\rDo you know why? I’m a Ruin Maniac\nwho is fascinated by the UNOWN\fand who also loves to dig!</language>
+	</row>
+	<row id="pl_msg_00000274_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone calls me the Ruin Maniac.\nOr they used to call me that.\fNow they call me the Digging Maniac.\rI’ll just go on chipping away at\nthe rock wall a little at a time.\rDo you know why? I’m a Ruin Maniac\nwho also loves to dig!\rI need to bear down and pound my way\nthrough the bedrock now.\rI think I’m getting close to some\nexciting and mysterious UNOWN.\rIt’s going to be messy.\nYou’d better go outside.</language>
+	</row>
+</body>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000670_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Enter the Battle Room Number.\n...B Button: Cancel</language>
+	</row>
+	<row id="pl_msg_00000670_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Receiving data for Rank {STRVAR_1 51, 1, 0},\nRoom {STRVAR_1 52, 0, 0}...</language>
+	</row>
+	<row id="pl_msg_00000670_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may not challenge that Battle\nRoom until the next update.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Data has been received.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cancel your challenge?</language>
+	</row>
+	<row id="pl_msg_00000670_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Enter the Rank of the Battle Room\nto check your records.</language>
+	</row>
+	<row id="pl_msg_00000670_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Enter the Battle Room Number.</language>
+	</row>
+	<row id="pl_msg_00000670_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sending your record data...</language>
+	</row>
+	<row id="pl_msg_00000670_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your data has been sent.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to cancel your data\ndownload?</language>
+	</row>
+	<row id="pl_msg_00000670_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nintendo Wi-Fi Connection</language>
+	</row>
+	<row id="pl_msg_00000670_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Wi-Fi Battle Tower is currently\nundergoing maintenance.\rPlease try again later.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Wi-Fi Battle Tower is very\ncrowded.\rPlease try again later.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Unable to connect to the Wi-Fi\nBattle Tower.\rReturning to the reception counter.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You were disconnected from\nthe Wi-Fi Battle Tower.\rReturning to the reception counter.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That number cannot be specified for\nthe Wi-Fi Battle Tower.\r</language>
+	</row>
+	<row id="pl_msg_00000670_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Disconnecting from Nintendo Wi-Fi\nConnection...</language>
+	</row>
+	<row id="pl_msg_00000670_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You are now disconnected from Nintendo\nWi-Fi Connection.</language>
+	</row>
+</body>

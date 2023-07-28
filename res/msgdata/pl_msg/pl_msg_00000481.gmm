@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000481_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is where spirits rest.\nPlease be quiet and respectful.</language>
+	</row>
+	<row id="pl_msg_00000481_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is the Lost Tower.\rThere is a persistent fog that thickens\nthe higher you climb.\rIf you can’t use the hidden move Defog\nand you have no business here, there\fis no need to go up.</language>
+	</row>
+</body>

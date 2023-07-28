@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000636_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve got a Sphere or two?\nIf you do, I’ll trade you something.</language>
+	</row>
+	<row id="pl_msg_00000636_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Sphere will you trade me for\nmy {STRVAR_1 25, 2, 0}?</language>
+	</row>
+	<row id="pl_msg_00000636_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right!\nLet’s do this trade!</language>
+	</row>
+	<row id="pl_msg_00000636_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, now wait a second!\nYou don’t have any room for this!</language>
+	</row>
+	<row id="pl_msg_00000636_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s not the right kind of Sphere!</language>
+	</row>
+	<row id="pl_msg_00000636_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm...\nNo, this Sphere’s not big enough.</language>
+	</row>
+	<row id="pl_msg_00000636_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 2, 0}\nwas obtained!</language>
+	</row>
+	<row id="pl_msg_00000636_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You obtained a {STRVAR_1 25, 2, 0},\nsize {STRVAR_1 51, 6, 0}.</language>
+	</row>
+	<row id="pl_msg_00000636_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you need anything else?</language>
+	</row>
+	<row id="pl_msg_00000636_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll be seeing you, then!</language>
+	</row>
+	<row id="pl_msg_00000636_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ll trade your {STRVAR_1 25, 2, 0}\nfor my {STRVAR_1 25, 4, 0}?</language>
+	</row>
+	<row id="pl_msg_00000636_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right!\nLet’s trade!</language>
+	</row>
+	<row id="pl_msg_00000636_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, now wait a second! You don’t\nhave room for another Sphere!</language>
+	</row>
+	<row id="pl_msg_00000636_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GET TRAP</language>
+	</row>
+	<row id="pl_msg_00000636_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIVE TRAP</language>
+	</row>
+	<row id="pl_msg_00000636_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000636_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GET GOODS</language>
+	</row>
+	<row id="pl_msg_00000636_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIVE GOODS</language>
+	</row>
+	<row id="pl_msg_00000636_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000636_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spheres\n on hand</language>
+	</row>
+	<row id="pl_msg_00000636_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Traps on\n hand</language>
+	</row>
+	<row id="pl_msg_00000636_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Goods on\n hand</language>
+	</row>
+	<row id="pl_msg_00000636_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000636_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Required Sphere</language>
+	</row>
+	<row id="pl_msg_00000636_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Offered Sphere</language>
+	</row>
+	<row id="pl_msg_00000636_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 25, 2, 0} {STRVAR_1 51, 6, 0}</language>
+	</row>
+	<row id="pl_msg_00000636_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NOT FOR SALE</language>
+	</row>
+	<row id="pl_msg_00000636_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have any treasures? I’ll trade\nyou some Spheres for them.</language>
+	</row>
+	<row id="pl_msg_00000636_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIVE TREASURES</language>
+	</row>
+	<row id="pl_msg_00000636_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Treasures\n on hand</language>
+	</row>
+	<row id="pl_msg_00000636_00030" index="30">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00031" index="31">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00032" index="32">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00033" index="33">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00034" index="34">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00035" index="35">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00036" index="36">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00037" index="37">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00038" index="38">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00039" index="39">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000636_00040" index="40">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00041" index="41">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00042" index="42">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00043" index="43">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00044" index="44">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00045" index="45">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00046" index="46">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00047" index="47">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00048" index="48">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00049" index="49">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00050" index="50">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00051" index="51">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000636_00052" index="52">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00053" index="53">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00054" index="54">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00055" index="55">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00056" index="56">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00057" index="57">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00059" index="59">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00060" index="60">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00061" index="61">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00062" index="62">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00063" index="63">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000636_00064" index="64">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00065" index="65">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000636_00066" index="66">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00067" index="67">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00068" index="68">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00069" index="69">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00070" index="70">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00071" index="71">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00072" index="72">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00073" index="73">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00074" index="74">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00075" index="75">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00076" index="76">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00077" index="77">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00078" index="78">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00079" index="79">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00080" index="80">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00081" index="81">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00082" index="82">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00083" index="83">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00084" index="84">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00085" index="85">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00086" index="86">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00087" index="87">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00088" index="88">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00089" index="89">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00090" index="90">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000636_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Hey! {STRVAR_1 3, 0, 0}!\nIs this maybe your first time here?\rWelcome to Sinnoh’s Underground!\rHuh? Where is this, you ask?\nDoesn’t the Radar make it obvious?\rThis is a giant underground network\nof passages underneath Sinnoh.\rHuh? What am I doing down in this\nexpanse of a place?\rThat’s kind of hard to answer.\rI mean, you can do pretty much\nanything you want down here.\rFor instance, you can dig up Treasure,\nSpheres, and make a Secret Base.\rYou can play with your friends down\nhere, too.\rYou should talk to the Underground\nMan in Eterna City.\rI have to get going now.\nI’ll see you around!</language>
+	</row>
+</body>

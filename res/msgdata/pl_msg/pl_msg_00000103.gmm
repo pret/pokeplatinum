@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000103_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, it’s you! Good to see you!\nHow is your Pokédex coming along?\rCapturing every kind of Pokémon is\nno easy feat, I’ll grant you that.\rBut I’m sure you can accomplish it!\r</language>
+	</row>
+	<row id="pl_msg_00000103_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, yes!\rAn acquaintance from Kanto has sent\nme something quite interesting.\rI think you’d make better use of it\nthan I ever could.\r</language>
+	</row>
+	<row id="pl_msg_00000103_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I understand there is a Pokémon that\nevolves when it is traded while holding\fthat Up-Grade.\r</language>
+	</row>
+	<row id="pl_msg_00000103_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Incidentally, and this is an entirely\ndifferent topic...\rI’ve heard that there have been\nsightings of very rare Pokémon.\rThe legendary bird Pokémon: ARTICUNO,\nZAPDOS, and MOLTRES!\rThey’ve been spotted at various\nlocations here in Sinnoh, no less!\rWhy, you may be lucky enough to see\nthem yourself in your journeys!</language>
+	</row>
+	<row id="pl_msg_00000103_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: ARTICUNO, ZAPDOS, and MOLTRES\nare extremely rare even in Kanto.\rThere have been precious few sightings\nas it is.\rSo why would they be spotted here in\nSinnoh of all places?\rThere are still many, many mysteries\nsurrounding Pokémon, it seems!</language>
+	</row>
+	<row id="pl_msg_00000103_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, it’s you!\nHow goes it?\rWhat’s that? You’ve caught ARTICUNO,\nZAPDOS, and MOLTRES?!\rNow that is incredible!\rWell, then, allow me to examine your\nPokédex.\r</language>
+	</row>
+</body>

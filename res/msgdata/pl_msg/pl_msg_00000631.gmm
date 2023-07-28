@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000631_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Move Trap ↑{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Move Trap →{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Move Trap ↓{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Move Trap ←{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Hurl Trap ↑{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Hurl Trap →{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Hurl Trap ↓{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Hurl Trap ←{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Warp Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Hi-Warp Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Hole Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Pit Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Reverse Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Confuse Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Run Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Fade Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Slow Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Smoke Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Big Smoke Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Rock Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Rockfall Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Foam Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Bubble Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">an {COLOR 255}Alert Trap 1{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">an {COLOR 255}Alert Trap 2{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">an {COLOR 255}Alert Trap 3{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">an {COLOR 255}Alert Trap 4{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Leaf Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Flower Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">an {COLOR 255}Ember Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Fire Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Radar Trap{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a {COLOR 255}Digger Drill{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000631_00034" index="34">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00035" index="35">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00036" index="36">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00037" index="37">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00038" index="38">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00039" index="39">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00040" index="40">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00041" index="41">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00042" index="42">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00043" index="43">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00044" index="44">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00045" index="45">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00046" index="46">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00047" index="47">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00048" index="48">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00049" index="49">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00050" index="50">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00051" index="51">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00052" index="52">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00053" index="53">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00054" index="54">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00055" index="55">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00056" index="56">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00057" index="57">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00059" index="59">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00060" index="60">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00061" index="61">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00062" index="62">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00063" index="63">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00064" index="64">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00065" index="65">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00066" index="66">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00067" index="67">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+	<row id="pl_msg_00000631_00068" index="68">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語"></language>
+	</row>
+</body>

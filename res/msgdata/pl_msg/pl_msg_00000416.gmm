@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000416_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Gotta catch ’em all!\nIt’s the Catch That Pokémon Show!\rSo, let me tell you about this show’s\nfeatured Pokémon-catching Trainer.\rThe Trainer that caught our eye with\na dandy of a catch is none other\fthan the inestimable {STRVAR_1 3, 0, 0}!\rAnd what, you may ask yourself, did\n{STRVAR_1 3, 0, 0} catch?\rWhy, none other than a mighty fine\n{STRVAR_1 0, 1, 0}!\rNice one, {STRVAR_1 3, 0, 0}!\nThat’s one slick takedown!\rThe Pokémon was nabbed with an\nexpertly thrown {STRVAR_1 8, 2, 0}.\rAnd out of {STRVAR_1 52, 3, 0} thrown, it was\nthe very last one!\rLame joking aside, we’re talking about\none great Trainer in {STRVAR_1 3, 0, 0}!\r...Oh? Hang on a second...\nI’ve got a hot new update!\rWe just got told what {STRVAR_1 3, 0, 0}\nnicknamed the caught {STRVAR_1 0, 1, 0}!\rThe nickname’s {STRVAR_1 1, 4, 0}!\nYow, {STRVAR_1 3, 0, 0}!\rYou’re the last word in cool!\nYou’re so cool, you’re absolute zero!\rListen up, folks!\nYou go out and emulate {STRVAR_1 3, 0, 0}!\rGet out there and catch Pokémon\nlike there’s no tomorrow!</language>
+	</row>
+	<row id="pl_msg_00000416_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Gotta catch ’em all!\nIt’s the Catch That Pokémon Show!\rSo, let me tell you about this show’s\nfeatured Pokémon-catching Trainer.\rThe Trainer that caught our eye with\na dandy of a catch is none other\fthan the inestimable {STRVAR_1 3, 0, 0}!\rAnd what, you may ask yourself, did\n{STRVAR_1 3, 0, 0} catch?\rWhy, none other than a mighty fine\n{STRVAR_1 0, 1, 0}!\rNice one, {STRVAR_1 3, 0, 0}!\nThat’s one slick takedown!\rThe Pokémon was nabbed with an\nexpertly thrown {STRVAR_1 8, 2, 0}.\rAnd out of {STRVAR_1 52, 3, 0} thrown, it was\nthe very last one!\rLame joking aside, we’re talking about\none great Trainer in {STRVAR_1 3, 0, 0}!\r...Oh? Hang on a second...\nI’ve got a hot new update!\rIt turns out {STRVAR_1 3, 0, 0} opted not\nto nickname the {STRVAR_1 0, 1, 0}!\rYow, {STRVAR_1 3, 0, 0}!\nThat is so nihilistically cool!\rListen up, folks!\nYou go out and emulate {STRVAR_1 3, 0, 0}!\rGet out there and catch Pokémon\nlike there’s no tomorrow!</language>
+	</row>
+	<row id="pl_msg_00000416_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Gotta catch ’em all!\nIt’s the Catch That Pokémon Show!\rSo, let me tell you about this show’s\nfeatured Pokémon-catching Trainer.\rThe Trainer that caught our eye with\na dandy of a catch is none other\fthan the inestimable {STRVAR_1 3, 0, 0}!\rAnd what, you may ask yourself, did\n{STRVAR_1 3, 0, 0} catch?\rThe Pokémon was a...\n...Huh? Hold on, here...\r{STRVAR_1 3, 0, 0} blew this catch\ncompletely...\rNot one Ball out of the {STRVAR_1 52, 1, 0} thrown\ndid the job...\rAnd {STRVAR_1 3, 0, 0} ended up making\nthe quarry faint...\rOh, what a major downer...\rThis is too tragic to be a good\nnews piece...\r{STRVAR_1 3, 0, 0}!\nDon’t let it get you down!\rForget about that Pokémon!\nIt wasn’t meant to be yours!\rSinnoh is jam-packed with Pokémon\nwaiting for a Trainer like you!</language>
+	</row>
+	<row id="pl_msg_00000416_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Gotta catch ’em all!\nIt’s the Catch That Pokémon Show!\rSo, let me tell you about this show’s\nfeatured Pokémon-catching Trainer.\rThe Trainer that caught our eye with\na dandy of a catch is none other\fthan the inestimable {STRVAR_1 3, 0, 0}!\rAnd what, you may ask yourself, did\n{STRVAR_1 3, 0, 0} catch?\rThe Pokémon was a...\n...Huh? Hold on, here...\r{STRVAR_1 3, 0, 0} blew this catch\ncompletely...\rNot one Ball did the job out of\nthe {STRVAR_1 52, 1, 0} thrown...\rOh, what a major downer...\rThis is too tragic to be a good\nnews piece...\r{STRVAR_1 3, 0, 0}!\nDon’t let it get you down!\rForget about that Pokémon!\nIt wasn’t meant to be yours!\rSinnoh is jam-packed with Pokémon\nwaiting for a Trainer like you!</language>
+	</row>
+	<row id="pl_msg_00000416_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Welcome to another episode of\nWhat’s Fishing? Trainers with Rods.\rAs always, we have the Fishing Master\nas our guest speaker.\rFishing Master: Hm!\rMC: Today, we look at {STRVAR_1 3, 0, 0}’s\nattempts at fishing...\rUsing a trusty {STRVAR_1 8, 1, 0}, \n{STRVAR_1 3, 0, 0} caught a feisty\f{STRVAR_1 0, 2, 0}!\rFishing Master: Hm!\rMC: Fishing Master, how would you\nrate {STRVAR_1 3, 0, 0} as an angler?\rFishing Master: Hm! Their fishing\ntechnique is confident, yet delicate!\rNeed I say it?\nThis Trainer gets an undisputed 100!\rMC: A perfect 100!\nCongratulations, {STRVAR_1 3, 0, 0}!\rUntil next time!\nKeep on fishing!</language>
+	</row>
+	<row id="pl_msg_00000416_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Welcome to another episode of\nWhat’s Fishing? Trainers with Rods.\rAs always, we have the Fishing Master\nas our guest speaker.\rFishing Master: Hm!\rMC: Today, we look at {STRVAR_1 3, 0, 0}’s\nattempts at fishing...\r...Well, it looks like {STRVAR_1 3, 0, 0}\nhad the quarry slip away...\rFishing Master: Hm!\rMC: Fishing Master, how would you\nrate {STRVAR_1 3, 0, 0} as an angler?\rFishing Master: Hm! {STRVAR_1 3, 0, 0} puts\nno spine into their technique.\rThe lack of passion is obvious!\nThis Trainer rates only a generous 5!\rMC: Ouch! Just 5 points!\n{STRVAR_1 3, 0, 0}, try harder!\rUntil next time!\nKeep on fishing!</language>
+	</row>
+	<row id="pl_msg_00000416_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time for the Love That Group\nCorner.\rToday, we have the Group Maniac back\nas a guest speaker.\rGroup Maniac: Yeahah!\rMC: We’ve heard that {STRVAR_1 3, 0, 0}\nhas switched allegiances to a group\fnamed {STRVAR_1 61, 1, 0}.\rWhat’s your take on this startling\nnew development?\rGroup Maniac: Yeahah!\nDoes it really matter any which way?\rMC: You’re making a lot of sense!\nTune in next time!</language>
+	</row>
+	<row id="pl_msg_00000416_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: We bring you this\nbreaking news story.\rWhile traveling in the vicinity of\n{STRVAR_1 4, 0, 0}, {STRVAR_1 3, 1, 0}\fdiscovered a hidden {STRVAR_1 8, 2, 0}.\rThe methodology employed by\n{STRVAR_1 3, 1, 0} is unknown.\rEyewitnesses report {STRVAR_1 3, 1, 0}\nappeared to be very furtive.\r{STRVAR_1 3, 1, 0} reportedly scanned the\narea often, as if fearing detection.\rThis concludes this special news\nstory.</language>
+	</row>
+	<row id="pl_msg_00000416_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Your wait is over!\nIt’s the Sinnoh Shopping Champ Corner!\rToday’s shopper is {STRVAR_1 3, 2, 0}, who\nbought the item {STRVAR_1 8, 0, 0}.\rThe quantity purchased: {STRVAR_1 52, 1, 0}!\rGuest: {STRVAR_1 3, 2, 0} sure knows how to\nshop. It’s just wonderful.\rWatch! Right there!\nSee how this shopper’s fingers dance.\rNotice how quickly {STRVAR_1 3, 2, 0} picks\nindividual packs of {STRVAR_1 8, 3, 0}.\rIt’s as if this shopper is intent on\nbuying up every {STRVAR_1 8, 0, 0} there\fis in Sinnoh with those magical fingers.\rThat sense of determination really\nshines through.\rMC: I see. This {STRVAR_1 3, 2, 0} certainly\ndeserves a lot of credit.\rViewers, we hope you won’t get shown\nup by {STRVAR_1 3, 2, 0}’s shopping!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000416_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time for the Happy-Happy\nEgg Club.\rI just want to report {STRVAR_1 3, 0, 0}’s\nEgg hatched around {STRVAR_1 4, 1, 0}.\r{STRVAR_1 3, 0, 0} now has a baby\n{STRVAR_1 0, 2, 0}!\r{STRVAR_1 3, 0, 0}, congratulations!\nBe good to your new family member!\rTill next time, adieu!</language>
+	</row>
+	<row id="pl_msg_00000416_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Does changing nicknames change\nattributes? We decide for you!\rIt’s time for Rate That Name Change\nonce again!\rIn the spotlight today is the Trainer\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\r{STRVAR_1 3, 0, 0} chose the nickname\n{STRVAR_1 1, 2, 0}.\rLet’s get an expert assessment\nfrom our appraiser. How is it?\rAppraiser: ...How should I say this?\nFine, I’ll be blunt.\rThe nickname {STRVAR_1 1, 2, 0} is\nmagnificence itself!\r{STRVAR_1 1, 2, 0} will surely grow more\nattractive.\rBut, it comes at a price!\n{STRVAR_1 3, 0, 0} will be mired in bogs!\rMC: {STRVAR_1 3, 0, 0}, changing your\nPokémon’s nickname was a great idea!\rTry giving lots and lots of Poffins\nto {STRVAR_1 1, 2, 0}, too.\rOh, but beware if you ever travel to\nthe Great Marsh!\rUntil next time, farewell!</language>
+	</row>
+	<row id="pl_msg_00000416_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Does changing nicknames change\nattributes? We decide for you!\rIt’s time for Rate That Name Change\nonce again!\rIn the spotlight today is the Trainer\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\r{STRVAR_1 3, 0, 0} chose the nickname\n{STRVAR_1 1, 2, 0}.\rLet’s get an expert assessment\nfrom our appraiser. How is it?\rAppraiser: ...How should I say this?\nFine, I’ll be blunt.\rThe nickname {STRVAR_1 1, 2, 0} is\nmagnificence itself!\r{STRVAR_1 1, 2, 0} will definitely grow\nspeedier than ever before.\rBut, it comes at a price!\n{STRVAR_1 3, 0, 0} will be mired in bogs!\rMC: {STRVAR_1 3, 0, 0}, changing your\nPokémon’s nickname was a great idea!\rTry giving lots and lots of Carbos\nto {STRVAR_1 1, 2, 0}, too.\rOh, but beware if you ever travel to\nthe Great Marsh!\rUntil next time, farewell!</language>
+	</row>
+	<row id="pl_msg_00000416_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Does changing nicknames change\nattributes? We decide for you!\rIt’s time for Rate That Name Change\nonce again!\rIn the spotlight today is the Trainer\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\r{STRVAR_1 3, 0, 0} chose the nickname\n{STRVAR_1 1, 2, 0}.\rLet’s get an expert assessment\nfrom our appraiser. How is it?\rAppraiser: ...How should I say this?\nFine, I’ll be blunt.\rThe nickname {STRVAR_1 1, 2, 0} is\nmagnificence itself!\r{STRVAR_1 1, 2, 0} will most certainly\nbecome more aromatic.\rBut, it comes at a price!\n{STRVAR_1 3, 0, 0} will be mired in bogs!\rMC: {STRVAR_1 3, 0, 0}, changing your\nPokémon’s nickname was a great idea!\r{STRVAR_1 1, 2, 0} is going to become\nmore aromatic! How nice!\rOh, but beware if you ever travel to\nthe Great Marsh!\rUntil next time, farewell!</language>
+	</row>
+	<row id="pl_msg_00000416_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Does changing nicknames change\nattributes? We decide for you!\rIt’s time for Rate That Name Change\nonce again!\rIn the spotlight today is the Trainer\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\r{STRVAR_1 3, 0, 0} chose the nickname\n{STRVAR_1 1, 2, 0}.\rLet’s get an expert assessment\nfrom our appraiser. How is it?\rAppraiser: ...How should I say this?\nFine, I’ll be blunt.\rThe nickname {STRVAR_1 1, 2, 0} is\nmagnificence itself!\r{STRVAR_1 1, 2, 0} will grow stronger\nand stronger and stronger still.\rBut, it comes at a price!\n{STRVAR_1 3, 0, 0} will be mired in bogs!\rMC: {STRVAR_1 3, 0, 0}, changing your\nPokémon’s nickname was a great idea!\rTry putting {STRVAR_1 1, 2, 0} at the head\nof your team on your travels, too.\rOh, but beware if you ever travel to\nthe Great Marsh!\rUntil next time, farewell!</language>
+	</row>
+	<row id="pl_msg_00000416_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Does changing nicknames change\nattributes? We decide for you!\rIt’s time for Rate That Name Change\nonce again!\rIn the spotlight today is the Trainer\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\r{STRVAR_1 3, 0, 0} chose the nickname\n{STRVAR_1 1, 2, 0}.\rLet’s get an expert assessment\nfrom our appraiser. How is it?\rAppraiser: ...How should I say this?\nFine, I’ll be blunt.\rThe nickname {STRVAR_1 1, 2, 0} is\nmagnificence itself!\r{STRVAR_1 1, 2, 0} is going to become\nhappier as time goes on.\rBut, it comes at a price!\n{STRVAR_1 3, 0, 0} will be mired in bogs!\rMC: {STRVAR_1 3, 0, 0}, changing your\nPokémon’s nickname was a great idea!\r{STRVAR_1 1, 2, 0} is going to become\nhappier! It makes me sort of envious!\rOh, but beware if you ever travel to\nthe Great Marsh!\rUntil next time, farewell!</language>
+	</row>
+	<row id="pl_msg_00000416_00022" index="22">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00023" index="23">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: You’ve just tuned in to the\nUnderground Treasures Corner.\rWe have a Ruin Maniac with us as\nour guest again.\rRuin Maniac: Hi!\nHope you’re digging this!\rMC: Today, we bring you a report on\n{STRVAR_1 3, 0, 0}, who dug up a nice\f{STRVAR_1 25, 1, 0} underground.\rRuin Maniac: There’re plenty of\ntreasures waiting to be discovered.\rIt’s not surprising to see something\nlike that {STRVAR_1 25, 1, 0}.\rMC: May I say something? You haven’t\nhad much success with treasures...\rRuin Maniac: Now that’s a low blow.\nI’ve been digging away...\rMC: Let’s hope {STRVAR_1 3, 0, 0} will\nkeep on digging hidden treasures\funderground.\rUntil next time...\nKeep on digging!</language>
+	</row>
+	<row id="pl_msg_00000416_00025" index="25">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: We bring you this special\nnews bulletin.\rThe Trainer {STRVAR_1 3, 0, 0} was witnessed\ncatching Pokémon in the Great Marsh.\rIt is believed the Trainer visited the\narea while traveling throughout Sinnoh.\rWitnesses report {STRVAR_1 3, 0, 0} first\ncaught a snarly {STRVAR_1 0, 1, 0}.\rApparently delighted by that catch,\n{STRVAR_1 3, 0, 0} kept at the Safari Game.\rIn the end, {STRVAR_1 3, 0, 0} reportedly\ncaught {STRVAR_1 51, 2, 0} Pokémon.\rThis concludes this special news\nbulletin.</language>
+	</row>
+	<row id="pl_msg_00000416_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: We bring you this special\nnews bulletin.\rWe caught up with {STRVAR_1 3, 0, 0} who is\non an adventure in Sinnoh.\rWe’ve got reports the Trainer switched\nthe Pokémon in the active party.\rWitnesses report {STRVAR_1 3, 0, 0} took\nonly male Pokémon from PC storage.\rReports say one {STRVAR_1 0, 1, 0} was met\nwith a long stare and a friendly grin.\rThis concludes this special news\nbulletin.</language>
+	</row>
+	<row id="pl_msg_00000416_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: We bring you this special\nnews bulletin.\rWe caught up with {STRVAR_1 3, 0, 0} who is\non an adventure in Sinnoh.\rWe’ve got reports the Trainer switched\nthe Pokémon in the active party.\rWitnesses report {STRVAR_1 3, 0, 0} took\nonly female Pokémon from PC storage.\rReports say one {STRVAR_1 0, 1, 0} was met\nwith a long stare and a friendly grin.\rThis concludes this special news\nbulletin.</language>
+	</row>
+	<row id="pl_msg_00000416_00029" index="29">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000416_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time for the Planting and\nWatering Show for Berry Gardeners.\rWe bring you this show with the\nBerry Guru as our returning guest.\rBerry Guru: Ayup, ayup.\rMC: Today, we look at {STRVAR_1 3, 0, 0}’s\n{STRVAR_1 8, 1, 0} plant.\rIt appears to have been nurtured\nwith utmost care.\rBerry Guru: Ayup!\nThe plant bore {STRVAR_1 51, 2, 0} Berries!\r{STRVAR_1 3, 0, 0} has a brilliant knack for\nplanting and watering Berries.\rMC: My hat’s off to you,\n{STRVAR_1 3, 0, 0}!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000416_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time for the Planting and\nWatering Show for Berry Gardeners.\rWe bring you this show with the\nBerry Guru as our returning guest.\rBerry Guru: Ayup, ayup.\rMC: Today, we look at {STRVAR_1 3, 0, 0}’s\n{STRVAR_1 8, 1, 0} plant.\rIt appears to have been rather\nneglected...\rBerry Guru: Ayup!\nThe plant bore next to no Berries!\rMC: Can you offer any advice?\rBerry Guru: Water!\nYou’ve got to water plants often.\rWatch the color of the soil, and\ndon’t be shy about watering.\rMC: {STRVAR_1 3, 0, 0}, heed the Berry\nGuru’s sage advice!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000416_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time for the Love That Group\nCorner.\rToday, we have the Group Maniac back\nas a guest speaker.\rGroup Maniac: Yeahah!\rMC: We’ve heard that {STRVAR_1 3, 0, 0}\nhas made a new group named {STRVAR_1 61, 1, 0}.\rWhat’s your take on this startling\nnew development?\rGroup Maniac: Yeahah! Sounds A-OK to\nme. Group {STRVAR_1 61, 1, 0}!\rMC: You’re making a lot of sense!\nTune in next time!</language>
+	</row>
+	<row id="pl_msg_00000416_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s now time for the Seal Club\nShow.\rJoining us as our guest once again\nis the Seal Master.\rSeal Master: Greetings.\rMC: Today, we examine a Ball Capsule\ncrafted by {STRVAR_1 3, 0, 0}.\rSeal Master: Hmm...\nRemarkable...\rThe {STRVAR_1 8, 1, 0} placed on\nthe Capsule...\rThough appearing to have been\nrandomly applied... You can’t fool me.\rI detect a creative application in\na cleverly calculated manner.\rHm!\nAnd what’s this?!\rThe Pokémon inside...!\nIsn’t this {STRVAR_1 0, 2, 0}?!\rThe Trainer crafted this Ball Capsule\nto best highlight the Pokémon’s\femergence from the Ball!\rMC: There you have it!\nEven our Seal Master is impressed!\rTo see {STRVAR_1 3, 0, 0}’s Ball Capsules,\nchallenge the Trainer to a battle!\rLet’s meet again, same channel,\nsame time!</language>
+	</row>
+	<row id="pl_msg_00000416_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s now time for the Seal Club\nShow.\rJoining us as our guest once again\nis the Seal Master.\rSeal Master: Greetings.\rMC: Today, we examine a Ball Capsule\ncrafted by {STRVAR_1 3, 0, 0}.\rSeal Master: This is rubbish...\nSuch a foolish waste of Seals...\rIt’s true that {STRVAR_1 8, 1, 0} is\nfantastic. That’s a given.\rBut applied in such a position, its\ntrue beauty is obscured...\r...Hm?\rWait...\nIt can’t be...\rWhat is this?!\rThe Pokémon inside...!\nIsn’t this {STRVAR_1 0, 2, 0}?!\rWith this {STRVAR_1 0, 2, 0}, this\n{STRVAR_1 8, 1, 0}’s placement actually\fenhances its beauty!\rDid {STRVAR_1 3, 0, 0} position this\n{STRVAR_1 8, 1, 0} intending to use the\fCapsule on the {STRVAR_1 0, 2, 0}?\rThe cheekiness of it all!\rHow dare that {STRVAR_1 3, 0, 0} pull\nsuch an insolent ruse!\rMC: There you have it!\nEven our Seal Master is upset!\rTo see {STRVAR_1 3, 0, 0}’s Ball Capsules,\nchallenge the Trainer to a battle!\rLet’s meet again, same channel,\nsame time!</language>
+	</row>
+	<row id="pl_msg_00000416_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s now time for the Seal Club\nShow.\rJoining us as our guest once again\nis the Seal Master.\rSeal Master: Greetings.\rMC: Today, we examine a Ball Capsule\ncrafted by {STRVAR_1 3, 0, 0}.\rSeal Master: Hmm... The Trainer paid\nattention to the fundamentals in\fapplying the {STRVAR_1 8, 1, 0}.\r{STRVAR_1 3, 0, 0}’s meticulous sense\nof craftsmanship is obvious...\rAnd inside this Ball Capsule is...\nWhat’s this?! This {STRVAR_1 0, 2, 0}?!\rWahaha! That {STRVAR_1 3, 0, 0}!\nWell done, indeed!\rMC: There you have it!\nEven our Seal Master is satisfied!\rTo see {STRVAR_1 3, 0, 0}’s Ball Capsules,\nchallenge the Trainer to a battle!\rLet’s meet again, same channel,\nsame time!</language>
+	</row>
+	<row id="pl_msg_00000416_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: The time has come!\nIt’s the Capture-the-Flag Digest!\rBack as our guest is the Flag Maniac!\rFlag Maniac: Howdy-do!\rNewscaster: Today, we examine news\nof {STRVAR_1 3, 0, 0} capturing\f{STRVAR_1 3, 1, 0}’s Flag.\rFlag Maniac, how do you view this\ndevelopment?\rFlag Maniac: Beaten to the punch!\nI was after {STRVAR_1 3, 1, 0}’s Flag, too!\rBut, I’ve also got my eyes out for\n{STRVAR_1 3, 0, 0}’s Flag.\rNewscaster: That’s our Flag Maniac!\nGreed oozes from your comments!\r{STRVAR_1 3, 0, 0}, you’d better keep\na good eye on your Secret Base!\rGood-bye until next time!</language>
+	</row>
+	<row id="pl_msg_00000416_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: The time has come!\nIt’s the Capture-the-Flag Digest!\rBack as our guest is the Flag Maniac!\rFlag Maniac: Howdy-do!\rNewscaster: Today, we examine news\nof {STRVAR_1 3, 0, 0} having their Flag\ftaken by {STRVAR_1 3, 1, 0}.\rFlag Maniac, how do you view this\ndevelopment?\rFlag Maniac: Oh, it hurts!\nLosing a Flag eats at your heart!\rIt hurts me too because I’ve been\nafter {STRVAR_1 3, 0, 0}’s Flag, too!\rBut, I’ve also got my eyes out for\n{STRVAR_1 3, 1, 0}’s Flag.\rNewscaster: That’s our Flag Maniac!\nGreed oozes from your comments!\r{STRVAR_1 3, 0, 0}, here’s hoping you\nrecover your Flag!\rGood-bye until next time!</language>
+	</row>
+	<row id="pl_msg_00000416_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: Good day, ladies and\ngentlemen.\rYou are tuned in to Home &amp; Manor--\nan Exploration of Upper-Class Living.\rToday, we visited with {STRVAR_1 3, 0, 0} in\nthe Resort Area.\rWe’d heard that the Trainer was\nbequeathed a Villa!\rWe had to see for ourselves, so here\nwe are!\rThe use of space is generous, to say\nthe least. Extravagantly so, perhaps.\rThe deliberate decision to keep the\nspace free of furniture...\rThat touch speaks volumes about the\naesthetics of the owner...\r...Uh, what? ...Oh.\nYou just haven’t bought any furniture.\fI do beg your pardon.\rWell, we can look forward to how\n{STRVAR_1 3, 0, 0} will beautify this Villa!\rThis report came to you live from the\nResort Area.</language>
+	</row>
+	<row id="pl_msg_00000416_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: Good day, ladies and\ngentlemen.\rYou are tuned in to Home &amp; Manor--\nan Exploration of Upper-Class Living.\rToday, we visited with {STRVAR_1 3, 0, 0} in\nthe Trainer’s Villa.\rThis {STRVAR_1 8, 1, 0} appears to be a\nnew addition to the decor.\rIt tastefully adds to the charm of\nthis overall space. Very nice!\rI imagine one could buy a year’s supply\nof Potions for what it cost, though...\rStill, possessing such items is a status\nsymbol for Trainers who have made it.\rThere you have it: {STRVAR_1 3, 0, 0} is\na Trainer we should all aspire to be.\rThis report came to you live from the\nResort Area.</language>
+	</row>
+</body>

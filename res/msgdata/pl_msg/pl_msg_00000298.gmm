@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000298_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: !\rYou’re not getting away with this,\nTeam Galactic!\r</language>
+	</row>
+	<row id="pl_msg_00000298_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jupiter: Oh?\nAre you finished already?\rYour Pokémon aren’t bad, but you’re\nlaughably weak.\rYou honestly thought you could save\nthe Pokémon of the lake?\rAnd become the Pokémon Champion?\nDream on, little kid.\rBut, eww, it’s so cold here.\nLet’s go back to the Veilstone HQ.\r</language>
+	</row>
+	<row id="pl_msg_00000298_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? Don’t I know you?\nWe met in Eterna City.\rListen. Team Galactic is going to do\nsomething huge for everyone’s sake.\rThat’s why you should keep out of\nTeam Galactic’s way.\rDon’t come whining about poor Pokémon\nand other trivial junk like that.\rDon’t waste your time coming to our\nHQ in Veilstone.\rNow, if you’ll excuse me.\r</language>
+	</row>
+	<row id="pl_msg_00000298_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: ...\n...\rYeah, that’s right!\rI couldn’t do anything against Team\nGalactic!\r</language>
+	</row>
+	<row id="pl_msg_00000298_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Pokémon called UXIE...\nIt was suffering...\r</language>
+	</row>
+	<row id="pl_msg_00000298_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m going to get tougher...\rIt’s not about winning or losing...\nThat’s not good enough...\fI have to be stronger...\rIt’s not enough to just want to be the\nmost powerful Trainer ever...\rIt takes honest effort...\nAnd a determined heart.\r</language>
+	</row>
+</body>

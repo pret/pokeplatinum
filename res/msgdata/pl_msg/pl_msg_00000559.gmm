@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000559_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re off to hang with {STRVAR_1 3, 0, 0}\nagain, right? You two sure are tight!</language>
+	</row>
+	<row id="pl_msg_00000559_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I went on an adventure with some\nPokémon a long time ago.\rIt was only to Sandgem, the next town\nover, though. Yeah, good times...</language>
+	</row>
+</body>

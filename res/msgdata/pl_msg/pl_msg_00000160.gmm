@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000160_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, looking a little tired?\n...Oh, no, not you.\fI meant your Pokémon.\rIf you’d like, I can give a massage\nto a Pokémon. Would you like that?</language>
+	</row>
+	<row id="pl_msg_00000160_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which one needs a little love?\r</language>
+	</row>
+	<row id="pl_msg_00000160_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHey, I’m not doing anything shady...</language>
+	</row>
+	<row id="pl_msg_00000160_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giggle... OK, let’s get started.\nOK, sweetie, just relax...\r</language>
+	</row>
+	<row id="pl_msg_00000160_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} looks dreamily\ncontent...\r</language>
+	</row>
+	<row id="pl_msg_00000160_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Drop by again tomorrow if you’d like.</language>
+	</row>
+	<row id="pl_msg_00000160_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s silly! I’d break that Egg\nif I tried to massage it!</language>
+	</row>
+	<row id="pl_msg_00000160_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I was massaging your Pokémon,\nI found this.\r</language>
+	</row>
+	<row id="pl_msg_00000160_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? You want me to show you how to\nmassage Pokémon?\rTehehe...\rIt’s a secret, of course!\rCome back again tomorrow!</language>
+	</row>
+	<row id="pl_msg_00000160_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My sister’s boyfriend is the Scarf\nGuy in Pastoria City.\rThey send Mail to each other by\nletting Pokémon deliver it.</language>
+	</row>
+	<row id="pl_msg_00000160_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU: Pachi chiii!</language>
+	</row>
+</body>

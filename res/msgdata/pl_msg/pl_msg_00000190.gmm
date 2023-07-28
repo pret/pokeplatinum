@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000190_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: The room ahead is the Hall\nof Fame...\r</language>
+	</row>
+	<row id="pl_msg_00000190_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: {STRVAR_1 3, 0, 0}!\nYour last battle was splendid!\r</language>
+	</row>
+	<row id="pl_msg_00000190_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh, hello, Professor Rowan.\r</language>
+	</row>
+	<row id="pl_msg_00000190_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\rA child I enlisted for my Pokédex\nproject has come this far...\rIt’s only natural that I come and\nwitness the child’s crowning glory.\r{STRVAR_1 3, 0, 0}!\nI shouldn’t call you a child anymore.\fYou’ve grown into a real Champion!\r</language>
+	</row>
+	<row id="pl_msg_00000190_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Professor, you still enjoy\nthe enthusiasm kids bring to your\fresearch, don’t you?\r</language>
+	</row>
+	<row id="pl_msg_00000190_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, step this way,\nplease.\r</language>
+	</row>
+	<row id="pl_msg_00000190_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, step this way,\nplease.\r</language>
+	</row>
+	<row id="pl_msg_00000190_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor Rowan, please join us.\r</language>
+	</row>
+	<row id="pl_msg_00000190_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

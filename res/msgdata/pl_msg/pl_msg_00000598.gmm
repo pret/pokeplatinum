@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000598_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know there’s a sure way to\nchange the world?\rDo a headstand, and the world turns\nupside down!</language>
+	</row>
+	<row id="pl_msg_00000598_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wherever you are in the world!\rWhoever it is in the world!\rEveryone knows Pokémon!\nThat’s fabulously fantastic!</language>
+	</row>
+	<row id="pl_msg_00000598_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Po-Po-Pokémon!\rI want to become more like a PIKACHU!\nWill you battle me?</language>
+	</row>
+	<row id="pl_msg_00000598_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pi-Pikachu!\r</language>
+	</row>
+	<row id="pl_msg_00000598_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pi-Pikachu!</language>
+	</row>
+	<row id="pl_msg_00000598_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But I just had my team pampered at the\nRibbon Syndicate!\rI have to get more into the character\nof a Pokémon...</language>
+	</row>
+</body>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000093_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic is working hard to find\nnew energy sources for the future!</language>
+	</row>
+	<row id="pl_msg_00000093_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We are conducting research on new\nforms of energy!\rWe want to harness the mysterious\npower of Pokémon and use it as energy!</language>
+	</row>
+	<row id="pl_msg_00000093_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let us make progress together!\n             Team Galactic</language>
+	</row>
+</body>

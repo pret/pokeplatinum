@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000254_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000254_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I lost!</language>
+	</row>
+	<row id="pl_msg_00000254_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When Trainers lock eyes with you,\nit’s the signal to battle!</language>
+	</row>
+	<row id="pl_msg_00000254_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Floaroma Garden</language>
+	</row>
+</body>

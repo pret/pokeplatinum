@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000478_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Don’t say a word.\nJust take it.\r</language>
+	</row>
+	<row id="pl_msg_00000478_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Go to Route 209!\nGo underground!\rListen to the stone pillar!\nTalk to people underground!</language>
+	</row>
+	<row id="pl_msg_00000478_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 208\nMt. Coronet</language>
+	</row>
+	<row id="pl_msg_00000478_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 208\nHearthome City</language>
+	</row>
+	<row id="pl_msg_00000478_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berry Master’s House\nFree Berries Available</language>
+	</row>
+	<row id="pl_msg_00000478_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rAfter a Berry is planted, watch the\ncolor of the soil.\rIf the soil is dark, it means it has\nplenty of moisture.\rIf the soil is lighter in color,\nwater it with your Sprayduck.</language>
+	</row>
+</body>

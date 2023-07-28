@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000023_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 1, 0}!\nAre you catching Pokémon?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! You’ve already got {STRVAR_1 50, 0, 0} Pokémon\nwith you!\rAt that pace, your Pokédex should\nbe full in no time at all!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Um...\rI think you’d feel a lot safer if you\nwere to catch some more.\rYou know, like when you need to travel\nto faraway places.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, I know! Don’t you think it’s\nbetter to know more about Pokémon?\rSure it is!\nI know just the place.\rCome on!\nDon’t be shy. Follow me!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 1, 0}!\nHow many Pokémon have you caught?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoa! You already have {STRVAR_1 50, 0, 0} Pokémon\nwith you!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh?\nI think you should catch some more.\rIt might be more of a challenge\nraising a lot of Pokémon...\rBut it’s worth it. The more Pokémon\nyou have, the happier you’ll be.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, that’s right! Don’t you think it’s\nbetter to know more about Pokémon?\rSure it is!\nThere’s this great place for that.\rCome on! It’s all right.\nFollow me.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: That man...\nWhat is he doing?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Um...</language>
+	</row>
+	<row id="pl_msg_00000023_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: That guy...\nWhat’s he doing?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Uh, excuse...</language>
+	</row>
+	<row id="pl_msg_00000023_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WHAAAT?!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mysterious man: ...How did you know?\rHow did you unmask me as a member of\nthe International Police?!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Huh? What? I beg your pardon?\nI was just making conversation...\r</language>
+	</row>
+	<row id="pl_msg_00000023_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Huh? What? Are you kidding?\nI was just making small talk...\r</language>
+	</row>
+	<row id="pl_msg_00000023_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shady man: ...Heh. You claim you were\nonly making conversation, do you?\rBut, I know better not to believe that.\nNo, no, no.\rYou recognized right away that I was\nsomeone extraordinary.\rThat is why you spoke to me, is it not?\nYour power of observation is fearsome!\rQuite admirable, you are!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now that my cover has been blown, let\nme introduce myself.\rI am a globe-trotting elite of the\nInternational Police.\rMy name... Ah, no, I shall inform you\nonly of my code name.\rMy code name, it is Looker.\nIt is what they all call me.\rIncidentally, is the saying, “Don’t be\na thief!” familiar to you?</language>
+	</row>
+	<row id="pl_msg_00000023_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Yes, that is correct.\nTaking what belongs to others is wrong.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: No? You claim to not know it?\nHow could that be?\rPerhaps your mama has said it, but you\nhave forgotten it, like usual?\rNow listen, my friends. It is wrong to\ntake what belongs to others.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Unfortunately, there are apparently\nthose who do not heed those words.\rIn Sinnoh, in fact, there are criminals\nstealing the Pokémon of others.\rI have, therefore, been on the lookout\nfor characters arousing my suspicion.\rIncidentally, you are Trainers, yes?\nPerhaps you can make use of this?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Vs. Recorder, it is a nifty device\nfor recording a match.\rI obtained it because it is quite popular\nthese days.\rBut myself, I do not do Pokémon\nbattling very often.\rIt will be in better hands with you.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Also, I have a request.\rIf you were to see me again, I ask that\nyou not talk to me, for I am on duty.\r...Actually, yes, yes, you may speak to\nme. You must.\rNot because I am lonely, no, no!\nYou must inform me of bad guys!\fYou must inform me of any happenings!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: ...Working for the International\nPolice must be hard.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, here it is.\nIt’s the Trainers’ School.\fThe name says it all!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I saw your friend {STRVAR_1 3, 1, 0} go in\nearlier.\rHe could still be in there studying.\nOK, bye now!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: ...Working for the International\nPolice sounds hard.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, here we are.\nThis is the Trainers’ School.\fThe name says it all!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your pal {STRVAR_1 3, 1, 0} went in earlier.\nHe might still be studying in there.\rOK, see you around!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jubilife City’s built on land they\ncarved out of a mountain.\rThe people and Pokémon of Oreburgh\nCity helped out with that undertaking.</language>
+	</row>
+	<row id="pl_msg_00000023_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello! Let me ask you, have you paid\na visit to the TV station?\rIf you’ve never been, you owe it to\nyourself to make the trip.\rAnd, if you’ve been there before,\nit never hurts to visit again.\rAfter all, you can be a star!\nOr at least dream of being one!</language>
+	</row>
+	<row id="pl_msg_00000023_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, it is you! Have no fear.\nThere are no shady characters about.\rIncidentally, have you visited the\nTrainers’ School?\rDid your friend not guide you there\nearlier?</language>
+	</row>
+	<row id="pl_msg_00000023_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Hello, my friend.\nHave you visited the Trainers’ School?\rDid your friend not guide you there\nearlier?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, it is you! Have no fear.\nThere are no shady characters about.\rIncidentally, have you not obtained\na Pokétch?\rI believe a Pokétch is now free in\nexchange for some Coupons?</language>
+	</row>
+	<row id="pl_msg_00000023_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Tell me, have you not obtained\na Pokétch?\rI believe a Pokétch is now free in\nexchange for some Coupons?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, it is you! Have no fear.\nThere are no shady characters about.\rIncidentally, have you not obtained\na Gym Badge?\rI believe you receive one for defeating\nthe Gym Leader at a Pokémon Gym?</language>
+	</row>
+	<row id="pl_msg_00000023_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Tell me, have you not obtained\na Pal Pad?\rIs not a Pal Pad free to anyone visiting\nthe Pokémon Center’s basement?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, yes. I see that you have obtained\nit, a Pal Pad for yourself.\rI myself, a member of the International\nPolice, the fighters of crime around the\fworld, have one also.\rFor it is what one must have to trade\nPokémon with Trainers around the world.\rTake that Pal Pad to the Global Terminal\nfor trading on an international level!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Anyway, there appears to be no one\nshady in this Jubilife City.\rI shall therefore take my investigation\nelsewhere.\rBut, my friend, I suggest you remain\nvigilant for shady grown-ups!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, oh, oh?\rYou call yourself a Pokémon Trainer?\nAnd yet you have no Pokétch?\rThat is, Pokémon Watch, or Pokétch\nfor short!\rOh my, you are a rare case\nindeed!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You see, I invented, and now\nmanufacture, Pokétches.\rNot only that, I’m now conducting\nthe Pokétch promotional campaign!\rAll you have to do is find three\nclowns in Jubilife City.\rIf you can find them...\nI will gift you with a Pokétch!</language>
+	</row>
+	<row id="pl_msg_00000023_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The three clowns will each ask you\na skill-testing question.\rThe questions will all have to do\nwith Pokémon.\rAfter all, a Pokétch is a tool for\nPokémon Trainers.\rCollect a Coupon from each clown,\nthen come see me, OK?</language>
+	</row>
+	<row id="pl_msg_00000023_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, let me count your Coupons!\nI’ll use the Pokétch here...\rOne, two, three!\nBravo! I say, bravo!\rIn return for these Coupons,\nI present you this Pokémon Watch,\for Pokétch for short!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received a {COLOR 1}Pokétch{COLOR 0}!{YESNO 1}</language>
+	</row>
+	<row id="pl_msg_00000023_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can add apps to your Pokétch\nto make it even more versatile!\rTouch the Pokétch screen and find the\napps that are right for you!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi! I’m a Pokétch campaign clown!\nLet’s roll out my question!\rDoes a Pokémon grow by defeating\nothers and gaining Exp. Points?</language>
+	</row>
+	<row id="pl_msg_00000023_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ding-ding!\nYou’re absolutely correct!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bzzzzt!\nThat’s the wrong answer...</language>
+	</row>
+	<row id="pl_msg_00000023_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon grow stronger by defeating\nother Pokémon in battle.\rSome Pokémon even grow into an\nentirely different form in a process\fknown as evolution.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here you go!\nYour Pokétch Coupon!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon grow stronger through\nbattling.\rSome Pokémon even grow into an\nentirely different form in a process\fknown as evolution.</language>
+	</row>
+	<row id="pl_msg_00000023_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi! I’m a Pokétch campaign clown!\nLet’s roll out my question!\rJust like Pokémon types, the moves\nof Pokémon also have types?</language>
+	</row>
+	<row id="pl_msg_00000023_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ding-ding!\nYou’re absolutely correct!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bzzzzt!\nThat’s the wrong answer...</language>
+	</row>
+	<row id="pl_msg_00000023_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If the Pokémon’s type matches its\nmove’s type, that move is made much\fmore powerful!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here you go!\nYour Pokétch Coupon!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If the Pokémon’s type matches its\nmove’s type, that move is made much\fmore powerful!</language>
+	</row>
+	<row id="pl_msg_00000023_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi! I’m a Pokétch campaign clown!\nLet’s roll out my question!\rCan a Pokémon hold an item?</language>
+	</row>
+	<row id="pl_msg_00000023_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ding-ding!\nYou’re absolutely correct!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bzzzzt!\nThat’s the wrong answer...</language>
+	</row>
+	<row id="pl_msg_00000023_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon may hold a single item.\rSome items become effective as soon\nas they are held by a Pokémon.\rBerries are eaten by Pokémon as\nnecessary during battle.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here you go!\nYour Pokétch Coupon!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, there. You should stick around.\nWe’re doing a Pokétch campaign soon.\rBefore it starts, I think you should\nbrush up at the Trainers’ School.</language>
+	</row>
+	<row id="pl_msg_00000023_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon may hold a single item.\rSome items become effective as soon\nas they are held by Pokémon.\rBerries are eaten by Pokémon as\nnecessary during battle.</language>
+	</row>
+	<row id="pl_msg_00000023_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mystery man: Now, now, now, now, now!\nProfessor Rowan, you must comply.\rHand over all your research findings.\nFor free, naturally.\rFailure to comply will result in a painful\ntime for your assistant.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}.\nWell? How is the Pokédex progressing?\rHm!\nThat’s Oreburgh’s Gym Badge, I see.\rBut hadn’t I given you your first\nPokémon only recently...?\rPerhaps being a Trainer is like second\nnature to you.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mystery man: Oh, professor of Pokémon,\nmust you be so difficult?\rWe are speaking to you on business.\nBecause this is work for us.\rWhat we’re saying is--we demand\nyou comply with our demands.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Quiet, you lot!\nWhy must you be such a nuisance?\rLet me list some lessons you still\nneed to learn.\r#1: Don’t loiter about for no good\nreason.\r#2: Don’t interrupt others while they\nare attempting to converse.\r#3: If you don’t get your way, don’t\nraise your voice to be intimidating.\r#4: Don’t think you’ve grown strong\njust because you’re in a group.\r#5: What is with those outlandish\noutfits you have on?\r</language>
+	</row>
+	<row id="pl_msg_00000023_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My goodness...\nYou call yourselves adults?\rYou kids, don’t grow up to be like these\nsorry specimens.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mystery man: Eeeeeh!\nYou had to make this personal!\rYou have forced our hand into making\na show of force!\rWe will make you regret insulting\nTeam Galactic!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: You kids, give these thugs a\nlesson in civility, please.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 1, 0}!\nLet’s battle together!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 1, 0}!\nJoin me and battle these guys!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: You leave us no option.\nWe will retreat for now.\rWe shall do so because Team Galactic\nis benevolent to all.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: That lot...\nThey called themselves Team Galactic.\rWhen Pokémon evolve, they seem to\nrelease some type of energy...\rHowever, I believe that it’s a mystic\npower far beyond our control.\rBut Team Galactic seems to be studying\nthat power’s potential.\rThey want to know if it can be used as\nenergy for something...\r</language>
+	</row>
+	<row id="pl_msg_00000023_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 1, 0}, did you know?\rThe professor studies the evolution\nof Pokémon, too.\rAccording to his research, 90% of all\nPokémon are somehow tied to evolution!\rWell, maybe that’s the reason those\npeople tried to take the professor’s\fresearch data by force.\rThat’s really unforgivable!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 1, 0}, did you know\nabout this?\rThe professor studies the\nevolution of Pokémon, too.\rAccording to his research, 90% of all\nPokémon are somehow tied to evolution!\rMaybe that’s the reason those goons\ntried to take the professor’s\fresearch data.\fThey’re not allowed to do that!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: It’s all over, so you can \nrelax now.\rStill, thanks to you two, nothing came\nof that situation. I appreciate that.\rIncidentally, {STRVAR_1 3, 0, 0}.\nKudos to you for your battling skill.\rIt got me thinking. Why don’t you\ncollect all the Gym Badges of Sinnoh?\rDoing so, you will be sure to encounter\nlots of Pokémon.\rThat, of course, means your Pokédex\npages will continuously fill up.\rIn other words, it will be of great help\nto my research.\rThat said, I’ve given you your first\nPokémon and Pokédex as yours to keep.\rYou’re free to do with them as you wish.\nTake care now.\r</language>
+	</row>
+	<row id="pl_msg_00000023_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that was very good!\nNicely done! Truly excellent!\rOh, I beg your pardon, I’m from\nJubilife TV!\rI’d like you to have something for\nletting me see that smashing battle!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Contained within that Fashion Case...\rYou will find a whole spectrum of chic\nAccessories and tasteful Backdrops!\rDress up your Pokémon and watch\ntheir appeal grow!\rAnd, right now the TV station is\noffering its facilities so visitors\fcan dress up their Pokémon!\rThere are also prize giveaways, too!\nPlease do visit our TV station!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The way you look...\nYou’re obviously a Trainer!\rCan you tell me what type of Pokémon\nyou like?</language>
+	</row>
+	<row id="pl_msg_00000023_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Fire type?\nYou must have a fiery personality.\rYou’d better watch out that fire isn’t\ndoused by water, though.</language>
+	</row>
+	<row id="pl_msg_00000023_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A person that likes the Water type\nmust be somewhat cool.\rBut beware of being drained dry by\nthirsty grass.</language>
+	</row>
+	<row id="pl_msg_00000023_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You chose the Grass type?\nNo wonder you look so calm.\rI think you need to watch out you don’t\nget burned by fire.</language>
+	</row>
+	<row id="pl_msg_00000023_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did you see me on TV?\nI was in an interview!</language>
+	</row>
+	<row id="pl_msg_00000023_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you walk with your Pokémon,\nthey gradually grow friendlier.</language>
+	</row>
+	<row id="pl_msg_00000023_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, set six Poké Balls in my\nbelt...\rYeah, that’ll do it. At most, you\ncan have six Pokémon with you.</language>
+	</row>
+	<row id="pl_msg_00000023_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hiya, where’d you come from?\r...\rTwinleaf Town, huh...\nIt’s a nice place. Quiet and all.\rJubilife City is a big place, so it\nmight be a bit of a shock to you.</language>
+	</row>
+	<row id="pl_msg_00000023_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, Trainer!\nDo you know much about Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000023_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, I see!\nYou are knowledgeable!\rI imagine you wouldn’t see the need\nto visit the Trainers’ School, then.\rBut do visit if you have the time.\nYou may discover something new!</language>
+	</row>
+	<row id="pl_msg_00000023_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’re not knowledgeable...\nBut not to worry!\fThere’s the Trainers’ School.\rThe school will teach you the\nbasics of Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000023_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Past here is the Global Terminal, your\ngateway to the world!\rOh, I’m sorry, you don’t have\nany Gym Badges.\rThe Global Terminal is off-limits if you\ndon’t have a Gym Badge. Sorry!\r</language>
+	</row>
+	<row id="pl_msg_00000023_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Past here is the Global Terminal.\nIt lets you trade with the whole world!\rTrading Pokémon means connecting\nwith friends, both old and new.\rThat’s awesome!</language>
+	</row>
+	<row id="pl_msg_00000023_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m trading Pokémon with my buddy!</language>
+	</row>
+	<row id="pl_msg_00000023_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I made my Pokémon hold an item before\ntrading it.\rThat will make the other Trainer\ndouble happy!</language>
+	</row>
+	<row id="pl_msg_00000023_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jubilife City\nCity of Joy</language>
+	</row>
+	<row id="pl_msg_00000023_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jubilife Condominiums\nTenants Wanted!</language>
+	</row>
+	<row id="pl_msg_00000023_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokétch Company\nPokémon Watches for the World!</language>
+	</row>
+	<row id="pl_msg_00000023_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainers’ School\nThe First Step for Trainers!</language>
+	</row>
+	<row id="pl_msg_00000023_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jubilife TV\nThe Fun-and-Games TV Station!</language>
+	</row>
+	<row id="pl_msg_00000023_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Global Terminal\nYour Gateway to the Whole World!</language>
+	</row>
+</body>

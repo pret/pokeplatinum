@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000315_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Will we get to see GIRATINA if\nwe keep going down?\r...In the Distortion World, are we\nreally traveling downward?\r</language>
+	</row>
+	<row id="pl_msg_00000315_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MESPRIT: Piih!\r</language>
+	</row>
+</body>

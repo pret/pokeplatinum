@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000266_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Past three pillars...\nto the sleeping...\f...before 30 is surpassed...</language>
+	</row>
+	<row id="pl_msg_00000266_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Past three pillars...\noffer up...to the...\f...before 30 is surpassed...</language>
+	</row>
+</body>

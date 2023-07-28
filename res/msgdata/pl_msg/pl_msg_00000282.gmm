@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000282_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome.\nThis is Team Galactic Headqu...\rI’m sorry, this is the Galactic\nVeilstone Building.\rCosmic energy for the win!\rWouldn’t it be wonderful if we\ncould harness that boundless energy?</language>
+	</row>
+	<row id="pl_msg_00000282_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome.\nThis is Team Galactic Headqu...\rI’m sorry, this is the Galactic\nVeilstone Building.\rI’m not certain if it’s a good thing or\nnot, but we have no plans now.</language>
+	</row>
+	<row id="pl_msg_00000282_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic conducts R&amp;D around\nthe clock here.\rWe focus on the development of new\nenergy resources.</language>
+	</row>
+	<row id="pl_msg_00000282_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is where we, Team Galactic, work.\nWhat are we supposed to do?\rI’m not sure how, but we’re supposed\nto chase our dream.\rOur dream of making a wonderful\nnew world!</language>
+	</row>
+	<row id="pl_msg_00000282_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We, Team Galactic, will take everything\nthat can be taken!\rWe will eliminate everything that is\nnot needed!\rThat is Team Galactic’s policy!</language>
+	</row>
+	<row id="pl_msg_00000282_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We, Team Galactic, will take everything\nthat can be taken!\rWe will eliminate everything that is\nnot needed!\rThat is Team Galactic’s policy!\rAt least it used to be.\nThere’s nothing left now...</language>
+	</row>
+	<row id="pl_msg_00000282_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re too young for us...\nYou can join us when you’re older.</language>
+	</row>
+	<row id="pl_msg_00000282_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wonder where our boss went...</language>
+	</row>
+	<row id="pl_msg_00000282_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saturn: So, it’s you...\rI’ve heard about you and what took\nplace at the Spear Pillar.\rOur leader, Master Cyrus, hated the\nvery idea of spirit.\rHe hated spirit for being incomplete.\rAnd yet, using fiery exhortations,\nhe rallied the spirit of others.\rWhat he hated most, he used to control\nothers. Isn’t that ironic?\rThat fascinated me.\nI wanted to see what he would do.\rAnd I did. At his side.\nBut it’s over.\rA world without spirit...\nWho would want such a thing?!\rSo, what now...?\nWhat to do with Team Galactic?\rBut I’ve learned that extremism\nis never the solution...\rPerhaps we should really be searching\nfor new sources of energy.\rInstead of lying about it through our\ncommercials.</language>
+	</row>
+	<row id="pl_msg_00000282_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.</language>
+	</row>
+	<row id="pl_msg_00000282_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.\rUse the Galactic Key?</language>
+	</row>
+	<row id="pl_msg_00000282_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door opened.</language>
+	</row>
+	<row id="pl_msg_00000282_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Team Galactic credo!\nEverything belongs to Team Galactic!\rLook beyond the world--space will\nbecome Team Galactic’s!</language>
+	</row>
+</body>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000468_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\nTell me you got a little tougher!\rMe? Do you even need to ask?\nOf course I got tougher!\rCome on!\nI’ll demonstrate it to you!\r</language>
+	</row>
+	<row id="pl_msg_00000468_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Waah!\nWhat do you mean I lost?!\rWell, that’s it!\nThat’s the last time I’ll ever lose!\rI’m going to be the world’s toughest\nTrainer, and you know it!\rThe first thing to do is take on\nthe Oreburgh City Pokémon Gym!\rI’m gonna toughen up for that,\ntotally!\r</language>
+	</row>
+	<row id="pl_msg_00000468_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your favorite Pokémon should be placed\nat the top left of your party list.\rThat way, it will be the first to go out\nin a battle.</language>
+	</row>
+	<row id="pl_msg_00000468_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 203\nJubilife City</language>
+	</row>
+	<row id="pl_msg_00000468_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 203\nOreburgh City</language>
+	</row>
+	<row id="pl_msg_00000468_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips!\rIf a Pokémon is about to evolve,\nit can be instantly stopped.\rPress the B Button during evolution\nto startle the Pokémon into stopping.\rThat is how evolution can be\ncanceled.</language>
+	</row>
+	<row id="pl_msg_00000468_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips!\rPokémon moves use energy called\nPower Points, or PP for short.\rIf the PP of moves runs low, head for\nany Pokémon Center.</language>
+	</row>
+</body>

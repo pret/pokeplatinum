@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000057_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s easy to get to Iron Island.\nIt’s one boat trip from here.</language>
+	</row>
+	<row id="pl_msg_00000057_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I was lucky enough to get a\nStrength HM from Iron Island.\rBut I can’t use it for moving boulders\nuntil I beat Byron, the Gym Leader.\rI should make a note of that on the\nPokétch app Memo Pad.</language>
+	</row>
+	<row id="pl_msg_00000057_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s possible for one kind of Pokémon\nto have different abilities.\rThat’s news to me!</language>
+	</row>
+	<row id="pl_msg_00000057_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I heard this cool rumor.\rIf you can get on Nintendo Wi-Fi\nConnection, you can go to the Wi-Fi\fPlaza.\rThe access to the Wi-Fi Plaza is through\nthe basement of any Pokémon Center.</language>
+	</row>
+	<row id="pl_msg_00000057_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Come on, let’s show off our Pokémon!\nLet’s do battle, kiddo!</language>
+	</row>
+	<row id="pl_msg_00000057_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your spirit’s vibes...\nYou’ve got rock in your veins!\r</language>
+	</row>
+	<row id="pl_msg_00000057_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My guitar...\nIt lies broken and weeping...</language>
+	</row>
+	<row id="pl_msg_00000057_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon and rock ’n’ roll are all\nanyone needs to survive in this world!</language>
+	</row>
+</body>

@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000552_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hey, {STRVAR_1 3, 0, 0}?\nThe professor told me something.\rIt’s possible that either DIALGA or\nPALKIA will appear at the Spear Pillar!</language>
+	</row>
+	<row id="pl_msg_00000552_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\rYou’re friends with the elder of\nCelestic Town, aren’t you?\rShe told me that she had something\nimportant to tell you.</language>
+	</row>
+	<row id="pl_msg_00000552_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\nMay I see your Pokédex?\r...\rOh, my gosh! You’ve seen every kind\nof Pokémon in Sinnoh!\rHey, let’s go show your Pokédex to\nProf. Rowan!</language>
+	</row>
+	<row id="pl_msg_00000552_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hey, {STRVAR_1 3, 0, 0}, have you\never chatted with my kid sister?</language>
+	</row>
+	<row id="pl_msg_00000552_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Oh, {STRVAR_1 3, 0, 0}, are you\nacquainted with Bebe?\rShe lives in Hearthome City.\rEvery Trainer should make it a point\nto pay Bebe a visit.\rShe’s the administrator of the Pokémon\nStorage System.\rShe’s awesome!</language>
+	</row>
+	<row id="pl_msg_00000552_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hey! {STRVAR_1 3, 0, 0}, you’ve got\na Poké Radar?\rI’ve got one, too!\rI’ll show you how to use it.\nCome with me to Rt. 202!\r</language>
+	</row>
+	<row id="pl_msg_00000552_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\nHow’s your Poké Radar?\rWhen you use it, do you sometimes\nsee more than one patch of tall\fgrass rustling?\rI’ve heard that patches farther away\ngive you a better chance of seeing\fthe same kind of Pokémon in a row.</language>
+	</row>
+	<row id="pl_msg_00000552_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Sometimes a patch of grass\nsparkles when a Poké Radar is used.\rPeople say a different-colored\nPokémon is hiding there!\rCould that be true?</language>
+	</row>
+	<row id="pl_msg_00000552_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: So, {STRVAR_1 3, 0, 0}.\rI’m also helping the professor put\ntogether the National Pokédex.\rCatching Pokémon can be really\nchallenging, can’t it?\rBut, it’s also so much fun!</language>
+	</row>
+	<row id="pl_msg_00000552_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 0, 0}!\r{STRVAR_1 3, 0, 0}, {STRVAR_1 3, 0, 0},\n{STRVAR_1 3, 0, 0}!\rCongratulations for completing\nthe National Pokédex!</language>
+	</row>
+	<row id="pl_msg_00000552_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Is today maybe...\nYour birthday, {STRVAR_1 3, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000552_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Giggle...\nCongratulations, {STRVAR_1 3, 0, 0}!\fAnd many more happy returns!</language>
+	</row>
+	<row id="pl_msg_00000552_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Oh, it isn’t?\rI wonder what made me think that\ntoday was your birthday?</language>
+	</row>
+	<row id="pl_msg_00000552_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 0, 0}!\nI heard from the professor!\rCongratulations, Champ!</language>
+	</row>
+	<row id="pl_msg_00000552_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 0, 0}!\nThe prof told me something cool.\rHe thinks that either DIALGA or\nPALKIA will appear at the Spear Pillar!</language>
+	</row>
+	<row id="pl_msg_00000552_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hi, {STRVAR_1 3, 0, 0}!\rYou know the elder of Celestic Town,\nright?\rShe told me she had something\nto tell you.</language>
+	</row>
+	<row id="pl_msg_00000552_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 0, 0}!\nLet me take a look at your Pokédex.\r...\rAwesome! You’ve seen every kind\nof Pokémon in Sinnoh!\rYou have to show this Pokédex to\nProf. Rowan!</language>
+	</row>
+	<row id="pl_msg_00000552_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 0, 0}, have you\never seen my kid sister?</language>
+	</row>
+	<row id="pl_msg_00000552_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 0, 0}, have you\nmet Bebe?\rShe lives out in Hearthome City.\rIf you’re a Trainer, you owe it to\nyourself to visit her.\rAfter all, she’s the administrator of\nthe Pokémon Storage System.</language>
+	</row>
+	<row id="pl_msg_00000552_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey! {STRVAR_1 3, 0, 0}, you’ve got\nyourself a Poké Radar, too?\rCool!\nI’ll teach you how to use it!\fCome out to Rt. 202!\r</language>
+	</row>
+	<row id="pl_msg_00000552_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hi, {STRVAR_1 3, 0, 0}!\nHow’s your Poké Radar working out?\rWhen you use it, do you sometimes\nsee more than one patch of tall\fgrass rustling?\rDid you notice that patches farther\naway give you a better chance\fof seeing the same kind of Pokémon\rin a row?</language>
+	</row>
+	<row id="pl_msg_00000552_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Sometimes a patch of grass\nsparkles when a Poké Radar is used.\rThey say a different-colored\nPokémon is hiding there!\rI wonder if that’s true?</language>
+	</row>
+	<row id="pl_msg_00000552_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: So, {STRVAR_1 3, 0, 0}.\rI’m also helping the professor out\nwith the National Pokédex.\rCatching Pokémon can be really\nchallenging, can’t it?\rBut I also have a ton of fun doing it!</language>
+	</row>
+	<row id="pl_msg_00000552_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 0, 0}!\rWow! I don’t know what to say!\nI mean, it’s so awesome and all...\rSincerely, congratulations for\ncompleting the National Pokédex!</language>
+	</row>
+	<row id="pl_msg_00000552_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 0, 0}?\nIs it maybe your birthday today?</language>
+	</row>
+	<row id="pl_msg_00000552_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: I thought so!\nCongratulations, {STRVAR_1 3, 0, 0}!\fYou know, I’m glad we’re friends!</language>
+	</row>
+	<row id="pl_msg_00000552_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Huh?\nIt isn’t?\rNow, what made me think it was\nyour birthday? Freaky weird.</language>
+	</row>
+	<row id="pl_msg_00000552_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 0, 0}!\nThe professor told me the news!\rCongratulations, Champ!</language>
+	</row>
+	<row id="pl_msg_00000552_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: So, I was thinking...\nThose Pokémon you met, {STRVAR_1 3, 0, 0}...\rWere they the ones said to be the\ncreators of the Sinnoh region?</language>
+	</row>
+	<row id="pl_msg_00000552_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: So, I was thinking...\nThose Pokémon you met, {STRVAR_1 3, 0, 0}...\rWere they the ones said to be the\ncreators of the Sinnoh region?</language>
+	</row>
+</body>

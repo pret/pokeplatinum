@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000301_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\r</language>
+	</row>
+	<row id="pl_msg_00000301_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DARKRAI melted away into the\ndarkness...\r</language>
+	</row>
+	<row id="pl_msg_00000301_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...A voice called out from somewhere...\r???: DARKRAI...\nYour power is strong.\rThough you don’t will it, you make\npeople and Pokémon around you see\fterrible nightmares...\rThat is why you came here...\rNewmoon Island...\nThere is no one but you here...\rThere is none that can be drawn into\nyour nightmare...\rIf anyone were to fall into a nightmare,\nthe Fullmoon Island is close by...\r...\n...\r</language>
+	</row>
+	<row id="pl_msg_00000301_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...A voice called out from somewhere...\r???: DARKRAI...\nYour power is strong.\rThough you don’t will it, you make\npeople and Pokémon around you see\fterrible nightmares...\rThat is why you came here...\rNewmoon Island...\nThere is no one but you here...\rThere is none that can be drawn into\nyour nightmare...\rIf anyone were to fall into a nightmare,\nthe Fullmoon Island is close by...\r...\n...</language>
+	</row>
+</body>

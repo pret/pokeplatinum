@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000224_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Don’t you dare go into the Valley\nWindworks.\rI got ordered to keep everyone out\nif they’re not part of Team Galactic.\rYou’re giving me a look that makes\nme think you’re gonna try to get in.\rOK, then.\nYou’ll have to battle me for it!\r</language>
+	</row>
+	<row id="pl_msg_00000224_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Isn’t that just great.\nGetting owned by some kid.\rBut you can’t do a thing if I lock\nmyself in with my Works Key!\rThat’s right, the other Works Key’s\nnot here!\rMy cohorts in the flower patch have\nthe only other one!\rHahaha! In that sense, I’m no longer\nthe loser!\r</language>
+	</row>
+	<row id="pl_msg_00000224_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Ah, yes.\nIt is you, yes.\rI have heard that the Team Galactic\nappeared at this power plant.\rI have, therefore, come running.\nSo, the Team Galactic. Where are they?\r...\rYou have run them off, you say?\nYou are a Trainer, but...?\rVery well!\nI shall go investigate inside!\r</language>
+	</row>
+	<row id="pl_msg_00000224_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Magnificent! Yes, it is!\nWhat you have said, it is all true!\rSuperb! Though you are young, you are\na Trainer through and through!\rVery well!\nI shall pursue the culprits!\rI have received tips that the Team\nGalactic hideout is in Eterna City.\rTo there, I must be off!\r</language>
+	</row>
+	<row id="pl_msg_00000224_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ker-chunk!\r</language>
+	</row>
+	<row id="pl_msg_00000224_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s locked from inside!</language>
+	</row>
+	<row id="pl_msg_00000224_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s locked from inside!\rUse the Works Key?</language>
+	</row>
+	<row id="pl_msg_00000224_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ker-chunk!\rThe door to Valley Windworks opened!</language>
+	</row>
+	<row id="pl_msg_00000224_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Floooooon!\r</language>
+	</row>
+	<row id="pl_msg_00000224_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Valley Windworks\nEcological, Wind-Driven Energy</language>
+	</row>
+</body>

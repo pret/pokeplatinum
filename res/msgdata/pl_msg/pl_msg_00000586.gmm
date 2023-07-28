@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000586_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, hello! It’s been a while since\nour last customer!</language>
+	</row>
+	<row id="pl_msg_00000586_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Putting on a pair of glasses changes\nhow the world looks.\rTaking off a pair of glasses changes\nhow the world looks, too. Deep, man.\r</language>
+	</row>
+	<row id="pl_msg_00000586_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, would you like to change how\nthe world looks to your Pokémon?\r</language>
+	</row>
+	<row id="pl_msg_00000586_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Morning is the start of a new day.\rPut on the Choice Specs and make\nthe right choices.\r</language>
+	</row>
+	<row id="pl_msg_00000586_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The sunlight is bright in the day.\nHow about a pair of BlackGlasses?\r</language>
+	</row>
+	<row id="pl_msg_00000586_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At night, reflect on what you’ve\nlearned with the Wise Glasses.\r</language>
+	</row>
+	<row id="pl_msg_00000586_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choice Specs make the Pokémon use\nonly one kind of move.\rBut they also raise the Pokémon’s\nSpecial Attack stat.</language>
+	</row>
+	<row id="pl_msg_00000586_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BlackGlasses raise the power of\nDark-type moves.</language>
+	</row>
+	<row id="pl_msg_00000586_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Wise Glasses boost the power of\nspecial moves.</language>
+	</row>
+	<row id="pl_msg_00000586_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Bag is full!</language>
+	</row>
+</body>

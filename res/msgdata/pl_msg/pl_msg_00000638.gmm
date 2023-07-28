@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000638_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re holding a Flag!\nYou can’t deal with this now!\rOr, would you like to throw away\nthe Flag you’re holding?</language>
+	</row>
+	<row id="pl_msg_00000638_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000638_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Discarded the Flag.</language>
+	</row>
+	<row id="pl_msg_00000638_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000638_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000638_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Something is buried in front of you.\nBut you’re holding a Flag!</language>
+	</row>
+	<row id="pl_msg_00000638_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have the time to stop\nand chat!</language>
+	</row>
+	<row id="pl_msg_00000638_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The obtained Flag was registered\non the PC!</language>
+	</row>
+	<row id="pl_msg_00000638_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve obtained the Flag\nfrom {STRVAR_1 1, 0, 0}’s Base!</language>
+	</row>
+	<row id="pl_msg_00000638_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You already have a Flag!</language>
+	</row>
+	<row id="pl_msg_00000638_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} took away your Flag!</language>
+	</row>
+	<row id="pl_msg_00000638_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} took back the Flag!</language>
+	</row>
+	<row id="pl_msg_00000638_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Took a Flag from {STRVAR_1 1, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000638_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Took back the Flag!</language>
+	</row>
+	<row id="pl_msg_00000638_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rOne Flag has been registered,\nso your Flag became a Bronze Flag!\rYou may now display up to a dozen\ndecoration goods.\rYou may also put away one Big\nBoulder.</language>
+	</row>
+	<row id="pl_msg_00000638_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rThree Flags have been registered,\nso your Flag became a Silver Flag!\rYou may now display up to 15\ndecoration goods.\rYou may also put away five Big\nBoulders.</language>
+	</row>
+	<row id="pl_msg_00000638_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rTen Flags have been registered,\nso your Flag became a Gold Flag!\rYou may now put away ten Big\nBoulders.\rYou may now also use the Radar from\nyour PC.</language>
+	</row>
+	<row id="pl_msg_00000638_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rFifty Flags have been registered,\nso your Flag became a Platinum Flag!\rYou may now put away any number\nof Big Boulders.</language>
+	</row>
+</body>

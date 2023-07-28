@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000577_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Day-Care Man was saying Pokémon\ngrow at different rates.</language>
+	</row>
+	<row id="pl_msg_00000577_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s quite far from Solaceon Town to\nVeilstone City.\rThere’s a café along the way where\nyou can get some rest, though.</language>
+	</row>
+	<row id="pl_msg_00000577_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Hidden Machine Defog can be found\nin the Solaceon Ruins.\rBut my Pokémon can’t learn the hidden\nmove.\rI’m going to give the ruins a miss, this\ntime.</language>
+	</row>
+	<row id="pl_msg_00000577_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pikachu!\rI want to become more like a PIKACHU!\nWill you battle me?</language>
+	</row>
+	<row id="pl_msg_00000577_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pi-Pikachu!\r</language>
+	</row>
+	<row id="pl_msg_00000577_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pi-Pikachu!</language>
+	</row>
+	<row id="pl_msg_00000577_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I need to find a way to get more into\nthe character of a Pokémon...\rMaybe I should get the Day Care to\nraise me?</language>
+	</row>
+</body>

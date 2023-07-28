@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000580_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh?\nWelcome!\rYou saw the notice outside about\nus hiring, right?\rIs that a Pokédex there?\nThen you must know Professor Rowan!\rYou’re just the Pokémon-searching\nexpert we’ve been looking for!\r</language>
+	</row>
+	<row id="pl_msg_00000580_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here you are!\nGood!\rWe’ve got a deadline to meet.\nHere’s your assignment.\r</language>
+	</row>
+	<row id="pl_msg_00000580_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0}.\nI want you to bring me one.\rYou must bring it today, or we’re not\ngonna be able to run our main article.\rI’ll pay you with a Heart Scale and some\nPoké Balls for it.</language>
+	</row>
+	<row id="pl_msg_00000580_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s up? Did you bring us\nthe Pokémon we needed?\r</language>
+	</row>
+	<row id="pl_msg_00000580_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! Ohh! Ohhh!\nThat’s it! {STRVAR_1 0, 0, 0}!\rThanks!\nLet me get a closer look!\r...I see, hmhm...\nRight, right... That’s it!\rThank you!\nI can write a great article now!\rThis is for your trouble.\nIt’s not much, but thanks!\r</language>
+	</row>
+	<row id="pl_msg_00000580_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You really came through for us!\nI hope you’ll help us again tomorrow!</language>
+	</row>
+	<row id="pl_msg_00000580_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoops! What’s all this?\nYour Bag is stuffed full.\rI’ll hold on to these until\nthe next time.</language>
+	</row>
+	<row id="pl_msg_00000580_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, there you are! Here’s your\nreward for the last assignment!\rIt’s not much, but thanks!\r</language>
+	</row>
+	<row id="pl_msg_00000580_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s wrong? You still haven’t\ncaught the {STRVAR_1 0, 0, 0} we need?\rWe’re counting on you to come through\nfor us!\rI’ll pay you a Heart Scale and some\nPoké Balls for it, OK?\rBring us the {STRVAR_1 0, 0, 0} before\nthe date rolls over!</language>
+	</row>
+	<row id="pl_msg_00000580_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now, now! You failed to bring me the\nPokémon I asked for...\rThings like that can happen, but\nwe need you to come up big for us!</language>
+	</row>
+	<row id="pl_msg_00000580_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK! I’ll crank out a riveting story\nbased on this!\rOh, right! I’ll have another\nassignment for you tomorrow!</language>
+	</row>
+	<row id="pl_msg_00000580_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Sinnoh region’s newspaper is\ntiny, but it has many fans.\rThat newspaper is printed right\nhere!</language>
+	</row>
+	<row id="pl_msg_00000580_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Weekly Poké Ball Roundup”\nis the featured top story.\rIt’s a feature article on new types\nof Poké Balls.\r</language>
+	</row>
+	<row id="pl_msg_00000580_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which article would you like to read?</language>
+	</row>
+	<row id="pl_msg_00000580_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dark caves and streets unlit at\nnight are forbidding places to go.\rIf you’re threatened by the dark,\na supply of Dusk Balls is your\fbiggest ally!\rUse them in the dark for the best\nPokémon-catching performance!\rKeep the dark at bay on your travels\nwith Dusk Balls!</language>
+	</row>
+	<row id="pl_msg_00000580_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Catching Pokémon is best accomplished\nby whittling the target’s HP down as\flow as possible, then tossing a Ball.\rBut a Pokémon caught that way can’t\nbe used in battle right away.\rThat’s where the Heal Ball comes in\nhandy.\rYou can lower the target’s HP bar to\nred, put it to sleep, or paralyze it.\rThe Heal Ball instantly heals whatever\nails the Pokémon it catches!\rThat’s the Pokémon-friendly Heal Ball!\nPlease, do give it a try!</language>
+	</row>
+	<row id="pl_msg_00000580_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When attempting to catch a Pokémon,\nyou want to cut the target’s HP.\rBut a fleet-footed Pokémon could\nbolt if you take too much time.\rThe Quick Ball is the solution to\nthat dilemma.\rIt’s designed to work best when\nthrown right at the start of battle!\rThe Quick Ball: the perfect gift for\nthe impatient Trainer!</language>
+	</row>
+	<row id="pl_msg_00000580_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon of the mothering sea\naren’t like the others.\rIf you are brave enough to face such\nintimidating Pokémon, the Dive Ball is\fperfect for you.\rFor Pokémon you meet in the sea, and\nfor Pokémon caught fishing...\rThe Dive Ball is the Poké Ball you can\ncount on!</language>
+	</row>
+</body>

@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000106_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, thank goodness that you happened\nto be there!\rIf it weren’t for you, who knows how\nfar away my BUNEARY could have run...\r</language>
+	</row>
+	<row id="pl_msg_00000106_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Baby BUNEARY, back into the Poké\nBall you go!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m Keira!\nI’m a Pokémon Contest Judge.\rBe sure to drop by the Contest Hall\nso I can thank you properly!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Trainer?\rYou being here tells me you’re going\nto challenge the Gym Leader.\rWell... I hate to break it to you, but\nthat’s impossible.\rYou’re questioning why, and the answer\nis: she’s not here.\rNot to worry, though.\nWe know she’s at the Contest Hall.\rCome back another time, OK?\nI’ll be waiting right here.</language>
+	</row>
+	<row id="pl_msg_00000106_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Ta-daah!\nKept me waiting again, {STRVAR_1 3, 1, 0}!\rLet’s see how much tougher you and\nI have gotten, right here and now!\rHey, you’re a Trainer now. You’re\nexpected to be ready for a battle.\rNo whining! No waiting!\nLet’s get the show started!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Waaah!\nWhat are you saying? I lost again?!\rIt goes to show my surefire winning\nstrategy doesn’t work.\rSay, hey, {STRVAR_1 3, 1, 0}.\nRemember what I told you before?\rMake sure all your attacks hit!\nAvoid every enemy attack!\rI thought that was a wicked strategy,\nbut it doesn’t work worth beans.\rI guess I have to grind it out and\ntoughen up the team a bit at a time.\rAnyway!\nWhere to next?\rThe closest place is Solaceon Town,\nI think?\rThat’ll do! I’m off to Solaceon Town!\nSee ya, {STRVAR_1 3, 1, 0}!\rYou’ll be shocked by my growth the\nnext time we meet!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did you know?\rThey found an Egg at the Day Care in\nSolaceon Town past here.</language>
+	</row>
+	<row id="pl_msg_00000106_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did you know?\rThey find Eggs in the far-off Johto\nregion, too.</language>
+	</row>
+	<row id="pl_msg_00000106_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re a Trainer, are you?\rYou’ve got two choices of challenges,\neither the Gym or a Contest, right?</language>
+	</row>
+	<row id="pl_msg_00000106_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the Lost Tower, people unburden\nthemselves of unbearable sorrow...\rYou’ll understand what I mean if you\nvisit the Lost Tower on Route 209.</language>
+	</row>
+	<row id="pl_msg_00000106_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This place is beautiful.\nPerhaps even too much so.\rPokémon, people, and nature are in\nperfect harmony here.</language>
+	</row>
+	<row id="pl_msg_00000106_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t decide what Accessories I\nshould dress up Pokémon with.\rThere are just so many kinds.</language>
+	</row>
+	<row id="pl_msg_00000106_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I get to see Pokémon all day long,\nbut there sure are many kinds.\rHow many are there now?</language>
+	</row>
+	<row id="pl_msg_00000106_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I used a Fire Stone on my Pokémon,\nand it evolved!</language>
+	</row>
+	<row id="pl_msg_00000106_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m visiting here all the way from\nthe Hoenn region.\rI had been hoping to find the Contest\nHall, but being new, I lost my way.\rFortunately, the local people very\nkindly led me to my destination.\rI was impressed by their kindness and\ngenerosity to a complete stranger.\rNow, may I offer you the courtesy\nof showing you to the Contest Hall?</language>
+	</row>
+	<row id="pl_msg_00000106_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah.\nPlease follow me.\r</language>
+	</row>
+	<row id="pl_msg_00000106_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is the Contest Hall.\nPlease, do go inside.</language>
+	</row>
+	<row id="pl_msg_00000106_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It makes me happy knowing I’ve\nhelped another person.</language>
+	</row>
+	<row id="pl_msg_00000106_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, I do apologize.\nI should mind my own business.</language>
+	</row>
+	<row id="pl_msg_00000106_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I take my baby out in his stroller,\nI see the town in a different way.\rI notice things like stairs and bumps\nin the sidewalk.</language>
+	</row>
+	<row id="pl_msg_00000106_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Apapapu!</language>
+	</row>
+	<row id="pl_msg_00000106_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I went for a stroll in Amity Square\nwith my PACHIRISU today.\rWe came across a Pokémon feather\nwhile we walked.\rDo you think it’d make my PACHIRISU\nlook any cuter?</language>
+	</row>
+	<row id="pl_msg_00000106_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU: Kyukyuuh!</language>
+	</row>
+	<row id="pl_msg_00000106_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I have a professor friend, and this is\nwhat he told me.\rIf you leave a pair of Pokémon with the\nDay Care, sometimes Eggs are found.\rOr things that are like Eggs, anyway.\rI wonder how my pal Prof. Elm is doing\nthese days?\rHe was always a quiet sort and didn’t\nreally stand out.</language>
+	</row>
+	<row id="pl_msg_00000106_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They call me Mr. Goods.\rNo one knows my real name.\nNo, not even I do...\rI dedicate myself to seeking rarities.\nIt’s what I live for.\r</language>
+	</row>
+	<row id="pl_msg_00000106_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hm!\nHmhmhmhm?!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00026" index="26">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000106_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I was going to give you something,\nbut I just gave a rare thing away.\rI’ll find something else for you,\nso just talk to me some other time.</language>
+	</row>
+	<row id="pl_msg_00000106_00028" index="28">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000106_00029" index="29">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000106_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? Your underground PC appears\nto be full.\rI’ll hold your gift until you make\nroom for it. Tell me when, OK?</language>
+	</row>
+	<row id="pl_msg_00000106_00031" index="31">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000106_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll find something rare for you,\nso talk to me some other time.</language>
+	</row>
+	<row id="pl_msg_00000106_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYour adventure has gone global in\nscale, has it?\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve conquered all the Gyms,\nhave you?\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally conquered the Master\nRank of the Cute Contest!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally conquered the Master\nRank of the Cool Contest!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally conquered the Master\nRank of the Beauty Contest!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally conquered the Master\nRank of the Tough Contest!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally conquered the Master\nRank of the Smart Contest!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve met so very many people\nin the Underground!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve given away many items to\npeople in the Underground!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve dug up so many Fossils in\nthe Underground!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve set many Traps in the\nUnderground!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally beaten 10 Trainers in\na row at the Battle Tower!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow impressive!\rYou’ve finally beaten 50 Trainers in\na row at the Battle Tower!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nHow incredible!\rYou’ve finally beaten 100 Trainers in\na row at the Battle Tower!\rFor a Trainer like you, I have just\nthe thing!\r</language>
+	</row>
+	<row id="pl_msg_00000106_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can feel the baby stroller getting\nheavier each and every day.\rI wonder what kind of Pokémon my\nchild will become friends with first?</language>
+	</row>
+	<row id="pl_msg_00000106_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Papa! Mama!</language>
+	</row>
+	<row id="pl_msg_00000106_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I lived in total seclusion up in\nthe mountains for thirty years!\rI’m going to clean up some Contests\nwith a dance move I came up with!</language>
+	</row>
+	<row id="pl_msg_00000106_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’d like to live in Hearthome when\nI get married.\rBut my boyfriend wants to live in\nVeilstone ’cause of its Game Corner...</language>
+	</row>
+	<row id="pl_msg_00000106_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I put my Vs. Seeker through its paces\na lot.\rI battled this one intriguing Trainer\nover and over using it.\rShe asked me, “Do you like me?”\nLike, oops! Hahahahah!</language>
+	</row>
+	<row id="pl_msg_00000106_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome City\nWarm &amp; Kind</language>
+	</row>
+	<row id="pl_msg_00000106_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome City Pokémon Gym\nLeader: Fantina\fThe Alluring, Soulful Dancer!</language>
+	</row>
+	<row id="pl_msg_00000106_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Contest Hall\nCalling All Enthusiasts!</language>
+	</row>
+	<row id="pl_msg_00000106_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Fan Club\nAll Trainers Welcome</language>
+	</row>
+	<row id="pl_msg_00000106_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 208\nRt. 212</language>
+	</row>
+	<row id="pl_msg_00000106_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 209\nSolaceon Town</language>
+	</row>
+	<row id="pl_msg_00000106_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Amity Square West Gate\nStroll with Your Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000106_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Amity Square East Gate\nStroll with Your Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000106_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Poffin House\nDelicious Poffins--Smiles for All</language>
+	</row>
+</body>

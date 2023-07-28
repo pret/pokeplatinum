@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000319_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: This is it...\nGIRATINA is up ahead.\r</language>
+	</row>
+	<row id="pl_msg_00000319_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: ...So, you were already here.\r</language>
+	</row>
+	<row id="pl_msg_00000319_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Why do you seek to change the\nworld?\rIf you hate our world, you should just\ngo off somewhere alone.\rFind somewhere where you can live\nwithout seeing others.\r</language>
+	</row>
+	<row id="pl_msg_00000319_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: But...\nThat’s no justice at all!</language>
+	</row>
+	<row id="pl_msg_00000319_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: Why should I run and hide from\nthe world and have to wait quietly?\rMy aim is to rid our world of the vague\nand incomplete thing we call spirit.\rBy freeing ourselves of that, our\nworld can be made complete.\rThat is my justice!\nNo one can interfere!</language>
+	</row>
+	<row id="pl_msg_00000319_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: I won’t lose!\rNot to that shadowy Pokémon!\nNot in any worthless world!\r</language>
+	</row>
+	<row id="pl_msg_00000319_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: ...Don’t think that you can\ndefeat or capture that Pokémon.\rThis bizarre world is none other than\nthat Pokémon itself!\rCapturing it or defeating it will make\nthis world disappear!\rVery well!\nDo what you will!\rRather than repairing the world, you’re\ngoing to destroy it for me!\rDo it.\nYou inherit my legacy.\r</language>
+	</row>
+	<row id="pl_msg_00000319_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Don’t believe his lies.\rIt’s not possible that a Pokémon can\nmake the world disappear.\rThe world awaited your birth.\nNot only yours, either.\rThe Pokémon with you.\nThe people close to you.\rAll the Pokémon and people were born\nbecause they have a part in the world.\rI’m convinced of that.\rGIRATINA won’t go out of existence.\nThis Distortion World won’t disappear.\fOur world won’t disappear, either.\rLet’s go meet GIRATINA.\r...Oops. I should do something about\nyour hardworking Pokémon first.\r</language>
+	</row>
+	<row id="pl_msg_00000319_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia fully healed {STRVAR_1 3, 0, 0}’s\nPokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000319_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Now let’s go meet GIRATINA!\r</language>
+	</row>
+	<row id="pl_msg_00000319_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: GIRATINA is enraged because\nthe two worlds are endangered.\rIt has merged the Distortion World and\nour world at the Spear Pillar.\rThat’s why both worlds are becoming\ndistorted.\rBut there’s nothing to fear.\rYou can defeat GIRATINA and show the\ntight bond you share with your Pokémon.\rOr you can demonstrate how much you\nwant it to join you.\rIf you succeed in doing either,\nGIRATINA will understand.\rThe distortion of the two worlds will\nstop!</language>
+	</row>
+	<row id="pl_msg_00000319_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I know that the bond you\nshare with your Pokémon is strong!</language>
+	</row>
+	<row id="pl_msg_00000319_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+</body>

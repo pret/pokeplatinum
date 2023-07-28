@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000028_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ll try to think like a Trainer and find\nwhat Pokétch apps would be good.</language>
+	</row>
+	<row id="pl_msg_00000028_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Watch!\nThat’s Pokétch for short.\rSay it the long way and...\nWhat does Pokémon stand for again?\rAnyway, I’m the father of the\npresident of the Pokétch Company!</language>
+	</row>
+	<row id="pl_msg_00000028_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Cleffy?</language>
+	</row>
+	<row id="pl_msg_00000028_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU: Patchii?</language>
+	</row>
+</body>

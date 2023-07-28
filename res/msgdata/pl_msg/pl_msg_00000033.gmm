@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000033_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your exploits are fantastic!\rWith our TV station, we can tell\nthe whole world about you!\rIt’s merely one of many possibilities!\nHarrumph!</language>
+	</row>
+	<row id="pl_msg_00000033_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Participation for all” is our TV\nnetwork’s motto.</language>
+	</row>
+	<row id="pl_msg_00000033_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re promoting the theme “Smiles are\ndreamy.”\rIn keeping with that theme, we added\nvariety programs to our scheduling.\rPlease do tune in!</language>
+	</row>
+</body>

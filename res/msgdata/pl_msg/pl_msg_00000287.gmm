@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000287_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, to get into Master Cyrus’s\nspeech... Uh, where was it now?\rAt the Galactic Veilstone Building,\nthat much I’m sure about.\rGo in through the door beside the\nreception counter, I think it was?\rUh? What’d I do with that key anyway?\nWhere’s it gone?</language>
+	</row>
+	<row id="pl_msg_00000287_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic will set free all Pokémon,\nall of nature!\rUwahahaha!\nTeam Galactic will then own it all!</language>
+	</row>
+	<row id="pl_msg_00000287_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.</language>
+	</row>
+	<row id="pl_msg_00000287_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.\rUse the Galactic Key?</language>
+	</row>
+	<row id="pl_msg_00000287_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door opened.</language>
+	</row>
+</body>

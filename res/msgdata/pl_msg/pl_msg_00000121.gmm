@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000121_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a wrecked stone pillar up\nahead.\rI wonder what it is?\nIt’s got me very curious.</language>
+	</row>
+	<row id="pl_msg_00000121_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Ta-daah!\nKept me waiting again, {STRVAR_1 3, 1, 0}!\rLet’s see how much tougher you and\nI have gotten, right here and now!\rHey, you’re a Trainer now. You’re\nexpected to be ready for a battle.\rNo whining! No waiting!\nLet’s get the show started!\r</language>
+	</row>
+	<row id="pl_msg_00000121_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Waaah!\rIt goes to show my surefire winning\nstrategy doesn’t work.\rSay, hey, {STRVAR_1 3, 1, 0}.\nRemember what I told you before?\rMake sure all your attacks hit!\nAvoid every enemy attack!\rI thought that was a wicked strategy,\nbut it doesn’t work worth beans.\rI guess I have to grind it out and\ntoughen up the team a bit at a time.\rAnyway! I’m off to Solaceon Town!\nSee ya, {STRVAR_1 3, 1, 0}!\rYou’ll be shocked by my growth the\nnext time we meet!\r</language>
+	</row>
+</body>

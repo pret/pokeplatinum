@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000136_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Great Marsh, the home\nof Pastoria’s Safari Game!\rAll you can catch for just $500!\nWould you like to play a Safari Game?</language>
+	</row>
+	<row id="pl_msg_00000136_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That will be $500, please.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here are your Safari Balls.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\n30 Safari Balls.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ll let you know when your game\nis over.\rUntil then, enjoy yourself, please!\nOff you go on your wild excursion!\r</language>
+	</row>
+	<row id="pl_msg_00000136_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK.\nPlease come again!\r</language>
+	</row>
+	<row id="pl_msg_00000136_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have enough money.\nSorry.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m sorry, you don’t have enough\nroom to catch any more Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Great Marsh, the home\nof Pastoria’s Safari Game!\rRecently, there have been sightings\nof Pokémon that are new to the area.\rWhich brings us to...\rAll you can catch for just $500!\nWould you like to play a Safari Game?</language>
+	</row>
+	<row id="pl_msg_00000136_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You still have time left. Are you sure\nyou want to exit the Great Marsh?</language>
+	</row>
+	<row id="pl_msg_00000136_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK.\rI’ll relieve you of your remaining\nSafari Balls.\rThank you for playing.\nWe hope to see you again.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please enjoy the rest of your wild\nSafari Game adventure!\r</language>
+	</row>
+	<row id="pl_msg_00000136_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Great Marsh!\nIs this your first Safari Game?</language>
+	</row>
+	<row id="pl_msg_00000136_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you enter the Great Marsh, you\nstart with 30 Safari Balls.\rThat’s the only kind of Ball you’re\nallowed to use in the Safari Game.\rThe game is over when you run out of\nSafari Balls, or when you’ve walked\f500 steps.\rPlease do enjoy the untamed nature\nof the Great Marsh!</language>
+	</row>
+	<row id="pl_msg_00000136_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see.\nEnjoy your Safari Game!</language>
+	</row>
+	<row id="pl_msg_00000136_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy.\nYou’re playing the Safari Game?\rHow would you like to try my game out\nat the same time?\rThe rule--yep, there’s only one--is\nreal simple.\rAll you have to do is capture five or\nmore Pokémon in one Safari Game.\rIf you can do that, I’ll give you the\nPokétch app Matchup Checker.</language>
+	</row>
+	<row id="pl_msg_00000136_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000136_00017" index="17">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000136_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, how many Pokémon did you catch in\nyour Safari Game? At least five?\rAyup! You’ve done that all right!\nIsn’t that something!\rWell, here you are, then.\nThe Pokétch app Matchup Checker.\r</language>
+	</row>
+	<row id="pl_msg_00000136_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Matchup Checker app figures out\nhow Pokémon types match up.\rIt won’t help tell us how we match up\nas friends, though.</language>
+	</row>
+	<row id="pl_msg_00000136_00020" index="20">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

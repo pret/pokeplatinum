@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000372_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EVERYONE HAPPY\nWI-FI CONNECTION</language>
+	</row>
+	<row id="pl_msg_00000372_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 28, 0, 0} {STRVAR_1 28, 1, 0}\n{STRVAR_1 28, 2, 0} {STRVAR_1 28, 3, 0}</language>
+	</row>
+</body>

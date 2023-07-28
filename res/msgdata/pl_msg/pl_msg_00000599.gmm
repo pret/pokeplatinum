@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000599_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Sniff...\nI do apologize.\rThis is an exclusive establishment\nopen only to a select few.\rYou might consider it a special stage\nfor the cream of the crop.\rIf you wish to enter, I suggest you\nstart by collecting lots of Ribbons.\r</language>
+	</row>
+	<row id="pl_msg_00000599_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Sniff...\nI do apologize.\rThis is an exclusive establishment\nopen only to a select few.\rYou might consider it a special stage\nfor the cream of the crop.\rIf you wish to enter, I suggest you\nstart by collecting lots of Ribbons...\r...Wait! Oh, my gosh!\nLook at all your Ribbons!\rI truly apologize for my rudeness.\nIt’s so out of character for me!\rIf you would be so kind, we would\nbe honored to invite you...\rOh, no, no! You really must join us\nas a full-fledged member!\r{STRVAR_1 3, 0, 0} was made a member\nwithout any say in the decision!\r</language>
+	</row>
+	<row id="pl_msg_00000599_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome! We’ve looked forward to\nseeing you, {STRVAR_1 3, 0, 0}.\rI do hope you will enjoy the luxurious\natmosphere and services that only\fwe can provide.</language>
+	</row>
+	<row id="pl_msg_00000599_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome.\rMay I interest you in top-grade\nRibbons we had specially imported?\rThese Ribbons are available only\nthrough us.\r{STRVAR_1 3, 0, 0}, would you like one\nfor a Pokémon, perhaps?\rRight now, I can offer you\nthe Gorgeous Ribbon.\rFor a mere $10,000, you can be the\nproud owner of one.</language>
+	</row>
+	<row id="pl_msg_00000599_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome.\rMay I interest you in top-grade\nRibbons we had specially imported?\rThese Ribbons are available only\nthrough us.\r{STRVAR_1 3, 0, 0}, would you like one\nfor a Pokémon, perhaps?\rRight now, I can offer you\nthe Royal Ribbon.\rFor a mere $100,000, you can be\nthe proud owner of one.</language>
+	</row>
+	<row id="pl_msg_00000599_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome.\rMay I interest you in top-grade\nRibbons we had specially imported?\rThese Ribbons are available only\nthrough us.\r{STRVAR_1 3, 0, 0}, would you like one\nfor a Pokémon, perhaps?\rRight now, I can offer you\nthe Gorgeous Royal Ribbon.\rFor a mere $999,999, you can be\nthe proud owner of one.</language>
+	</row>
+	<row id="pl_msg_00000599_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome...\nOoh! That’s a Gorgeous Royal Ribbon!\r{STRVAR_1 3, 0, 0}, your {STRVAR_1 0, 2, 0}\ncertainly looks gorgeous and royal!</language>
+	</row>
+	<row id="pl_msg_00000599_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} bought\na Gorgeous Ribbon.\r</language>
+	</row>
+	<row id="pl_msg_00000599_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the Gorgeous Ribbon\non {STRVAR_1 0, 2, 0}.</language>
+	</row>
+	<row id="pl_msg_00000599_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} bought\na Royal Ribbon.\r</language>
+	</row>
+	<row id="pl_msg_00000599_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the Royal Ribbon\non {STRVAR_1 0, 2, 0}.</language>
+	</row>
+	<row id="pl_msg_00000599_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} bought\na Gorgeous Royal Ribbon.\r</language>
+	</row>
+	<row id="pl_msg_00000599_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the Gorgeous Royal\nRibbon on {STRVAR_1 0, 2, 0}.</language>
+	</row>
+	<row id="pl_msg_00000599_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, please, {STRVAR_1 3, 0, 0}.\rYou shouldn’t joke about not\nhaving money.</language>
+	</row>
+	<row id="pl_msg_00000599_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see.\nPlease do visit again.</language>
+	</row>
+	<row id="pl_msg_00000599_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Just being in here is a sign of\nstatus, just so you know.</language>
+	</row>
+	<row id="pl_msg_00000599_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wish men would pay more attention\nto the way they dress themselves...</language>
+	</row>
+	<row id="pl_msg_00000599_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A woman worthy of being seen with\nPokémon... That’s what I hope to be.</language>
+	</row>
+	<row id="pl_msg_00000599_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SKITTY: Skiii!</language>
+	</row>
+	<row id="pl_msg_00000599_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PSYDUCK: Gyaugyau!</language>
+	</row>
+</body>

@@ -1,0 +1,3644 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000662_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 3, 0, 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 3, 0, 0}\n{COLOR 2}{STRVAR_6 4, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 4, 0, 0}\n{COLOR 2}{STRVAR_6 3, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 3, 0, 0}\n{COLOR 2}{STRVAR_6 5, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 5, 0, 0}\n{COLOR 2}{STRVAR_6 3, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 3, 0, 0}\n{COLOR 2}{STRVAR_6 7, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 7, 0, 0}\n{COLOR 2}{STRVAR_6 3, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 3, 0, 0}\n{COLOR 2}{STRVAR_6 6, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 6, 0, 0}\n{COLOR 2}{STRVAR_6 3, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 3, 0, 0}\n{COLOR 2}{STRVAR_6 8, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 8, 0, 0}\n{COLOR 2}{STRVAR_6 3, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 4, 0, 0}\n{COLOR 2}{STRVAR_6 5, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 5, 0, 0}\n{COLOR 2}{STRVAR_6 4, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 4, 0, 0}\n{COLOR 2}{STRVAR_6 7, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 7, 0, 0}\n{COLOR 2}{STRVAR_6 4, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 4, 0, 0}\n{COLOR 2}{STRVAR_6 6, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 6, 0, 0}\n{COLOR 2}{STRVAR_6 4, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 4, 0, 0}\n{COLOR 2}{STRVAR_6 8, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 8, 0, 0}\n{COLOR 2}{STRVAR_6 4, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 5, 0, 0}\n{COLOR 2}{STRVAR_6 7, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 7, 0, 0}\n{COLOR 2}{STRVAR_6 5, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 5, 0, 0}\n{COLOR 2}{STRVAR_6 6, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 6, 0, 0}\n{COLOR 2}{STRVAR_6 5, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 5, 0, 0}\n{COLOR 2}{STRVAR_6 8, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 8, 0, 0}\n{COLOR 2}{STRVAR_6 5, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 7, 0, 0}\n{COLOR 2}{STRVAR_6 6, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 6, 0, 0}\n{COLOR 2}{STRVAR_6 7, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 7, 0, 0}\n{COLOR 2}{STRVAR_6 8, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 8, 0, 0}\n{COLOR 2}{STRVAR_6 7, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 6, 0, 0}\n{COLOR 2}{STRVAR_6 8, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 8, 0, 0}\n{COLOR 2}{STRVAR_6 6, 1, 0}{COLOR 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 4, 0, 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 5, 0, 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 7, 0, 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 6, 0, 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_6 8, 0, 0}\r</language>
+	</row>
+	<row id="pl_msg_00000662_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Wow, it’s that time there?\rAre you going to go out somewhere\nafter this?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Wow, it’s that time there?\rAre you getting sleepy, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Wow, it’s that time there?\rAre you maybe still feeling drowsy?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHello! Nice to meet you.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHi, {STRVAR_1 3, 1, 0}!\fIt’s good to see you again!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...This Trainer seems to be busy.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSee you again!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nAnother thing...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry! Something’s come up!\nI can’t talk now!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYes? What’s up?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHi, do you have a moment?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00048" index="48">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000662_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nDon’t worry. You don’t have to answer\fif you don’t want to.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat’s the same as me!\fThat’s pretty nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThanks for answering!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nMoving on...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIs there anything else?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat’s your favorite color?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat kind of Pokémon do you like?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow’s the weather today?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat were you doing before this?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nDo you have any plans for tomorrow?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhere would you like to go\fduring your break?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWho do you look like?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat do you most want now?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat do you find difficult?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhere would you go out to play?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhich Plaza Game are you good at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat’s popular around you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat are you good at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat can’t you give up?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat’s your hidden passion?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat will you do next?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat’s near your house?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat do you do with friends?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWho is important to you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow do people describe you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhen do you feel really happy?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat worries you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat are you working hard at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat sports are you good at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat’s your dream job?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat makes where you live special?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat is the temperature like there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat sounds can you hear around you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat does it smell like around you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat interests you most?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Red</language>
+	</row>
+	<row id="pl_msg_00000662_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blue</language>
+	</row>
+	<row id="pl_msg_00000662_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yellow</language>
+	</row>
+	<row id="pl_msg_00000662_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Green</language>
+	</row>
+	<row id="pl_msg_00000662_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tough-looking ones</language>
+	</row>
+	<row id="pl_msg_00000662_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cute ones</language>
+	</row>
+	<row id="pl_msg_00000662_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pretty ones</language>
+	</row>
+	<row id="pl_msg_00000662_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Weird ones</language>
+	</row>
+	<row id="pl_msg_00000662_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunny</language>
+	</row>
+	<row id="pl_msg_00000662_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cloudy</language>
+	</row>
+	<row id="pl_msg_00000662_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rainy</language>
+	</row>
+	<row id="pl_msg_00000662_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hail</language>
+	</row>
+	<row id="pl_msg_00000662_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sleeping</language>
+	</row>
+	<row id="pl_msg_00000662_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Went out</language>
+	</row>
+	<row id="pl_msg_00000662_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Working</language>
+	</row>
+	<row id="pl_msg_00000662_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eating</language>
+	</row>
+	<row id="pl_msg_00000662_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No plans</language>
+	</row>
+	<row id="pl_msg_00000662_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Busy</language>
+	</row>
+	<row id="pl_msg_00000662_00133" index="133">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Holiday</language>
+	</row>
+	<row id="pl_msg_00000662_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Secret</language>
+	</row>
+	<row id="pl_msg_00000662_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A warm place</language>
+	</row>
+	<row id="pl_msg_00000662_00136" index="136">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cold place</language>
+	</row>
+	<row id="pl_msg_00000662_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A crowded place</language>
+	</row>
+	<row id="pl_msg_00000662_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A deserted place</language>
+	</row>
+	<row id="pl_msg_00000662_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Older brother</language>
+	</row>
+	<row id="pl_msg_00000662_00140" index="140">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Older sister</language>
+	</row>
+	<row id="pl_msg_00000662_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Uncle</language>
+	</row>
+	<row id="pl_msg_00000662_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aunt</language>
+	</row>
+	<row id="pl_msg_00000662_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Time</language>
+	</row>
+	<row id="pl_msg_00000662_00144" index="144">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Money</language>
+	</row>
+	<row id="pl_msg_00000662_00145" index="145">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Friends</language>
+	</row>
+	<row id="pl_msg_00000662_00146" index="146">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dinner</language>
+	</row>
+	<row id="pl_msg_00000662_00147" index="147">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">School</language>
+	</row>
+	<row id="pl_msg_00000662_00148" index="148">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sports</language>
+	</row>
+	<row id="pl_msg_00000662_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Waking up early</language>
+	</row>
+	<row id="pl_msg_00000662_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Housecleaning</language>
+	</row>
+	<row id="pl_msg_00000662_00151" index="151">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A park</language>
+	</row>
+	<row id="pl_msg_00000662_00152" index="152">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A department store</language>
+	</row>
+	<row id="pl_msg_00000662_00153" index="153">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An amusement park</language>
+	</row>
+	<row id="pl_msg_00000662_00154" index="154">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A theater</language>
+	</row>
+	<row id="pl_msg_00000662_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SWALOT Plop</language>
+	</row>
+	<row id="pl_msg_00000662_00156" index="156">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MIME JR. Top</language>
+	</row>
+	<row id="pl_msg_00000662_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WOBBUFFET Pop</language>
+	</row>
+	<row id="pl_msg_00000662_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Never played</language>
+	</row>
+	<row id="pl_msg_00000662_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TV &amp; music</language>
+	</row>
+	<row id="pl_msg_00000662_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Games &amp; computers</language>
+	</row>
+	<row id="pl_msg_00000662_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">School &amp; sports</language>
+	</row>
+	<row id="pl_msg_00000662_00162" index="162">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fashion &amp; romance</language>
+	</row>
+	<row id="pl_msg_00000662_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Physical activities</language>
+	</row>
+	<row id="pl_msg_00000662_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Using my brain</language>
+	</row>
+	<row id="pl_msg_00000662_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Standing out</language>
+	</row>
+	<row id="pl_msg_00000662_00166" index="166">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Making friends</language>
+	</row>
+	<row id="pl_msg_00000662_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reading books</language>
+	</row>
+	<row id="pl_msg_00000662_00168" index="168">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Music</language>
+	</row>
+	<row id="pl_msg_00000662_00169" index="169">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Computers</language>
+	</row>
+	<row id="pl_msg_00000662_00170" index="170">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Staying up late</language>
+	</row>
+	<row id="pl_msg_00000662_00171" index="171">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fashion</language>
+	</row>
+	<row id="pl_msg_00000662_00172" index="172">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Interior design</language>
+	</row>
+	<row id="pl_msg_00000662_00173" index="173">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gourmet dining</language>
+	</row>
+	<row id="pl_msg_00000662_00174" index="174">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Life</language>
+	</row>
+	<row id="pl_msg_00000662_00175" index="175">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Plaza Game</language>
+	</row>
+	<row id="pl_msg_00000662_00176" index="176">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Footprint Stamp</language>
+	</row>
+	<row id="pl_msg_00000662_00177" index="177">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Visitor Profiles</language>
+	</row>
+	<row id="pl_msg_00000662_00178" index="178">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Plaza News</language>
+	</row>
+	<row id="pl_msg_00000662_00179" index="179">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Someone’s house</language>
+	</row>
+	<row id="pl_msg_00000662_00180" index="180">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A variety of shops</language>
+	</row>
+	<row id="pl_msg_00000662_00181" index="181">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big factory</language>
+	</row>
+	<row id="pl_msg_00000662_00182" index="182">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lots of nature</language>
+	</row>
+	<row id="pl_msg_00000662_00183" index="183">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sports</language>
+	</row>
+	<row id="pl_msg_00000662_00184" index="184">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Games</language>
+	</row>
+	<row id="pl_msg_00000662_00185" index="185">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chat</language>
+	</row>
+	<row id="pl_msg_00000662_00186" index="186">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shopping</language>
+	</row>
+	<row id="pl_msg_00000662_00187" index="187">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Family</language>
+	</row>
+	<row id="pl_msg_00000662_00188" index="188">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Friends</language>
+	</row>
+	<row id="pl_msg_00000662_00189" index="189">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Myself</language>
+	</row>
+	<row id="pl_msg_00000662_00190" index="190">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Secret</language>
+	</row>
+	<row id="pl_msg_00000662_00191" index="191">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheerful</language>
+	</row>
+	<row id="pl_msg_00000662_00192" index="192">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Funny</language>
+	</row>
+	<row id="pl_msg_00000662_00193" index="193">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Kind</language>
+	</row>
+	<row id="pl_msg_00000662_00194" index="194">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mysterious</language>
+	</row>
+	<row id="pl_msg_00000662_00195" index="195">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When playing</language>
+	</row>
+	<row id="pl_msg_00000662_00196" index="196">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When working hard</language>
+	</row>
+	<row id="pl_msg_00000662_00197" index="197">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When sleeping</language>
+	</row>
+	<row id="pl_msg_00000662_00198" index="198">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When eating</language>
+	</row>
+	<row id="pl_msg_00000662_00199" index="199">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Allowance</language>
+	</row>
+	<row id="pl_msg_00000662_00200" index="200">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">School</language>
+	</row>
+	<row id="pl_msg_00000662_00201" index="201">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fitness</language>
+	</row>
+	<row id="pl_msg_00000662_00202" index="202">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Friends</language>
+	</row>
+	<row id="pl_msg_00000662_00203" index="203">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">School</language>
+	</row>
+	<row id="pl_msg_00000662_00204" index="204">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dieting</language>
+	</row>
+	<row id="pl_msg_00000662_00205" index="205">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Romance</language>
+	</row>
+	<row id="pl_msg_00000662_00206" index="206">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Training</language>
+	</row>
+	<row id="pl_msg_00000662_00207" index="207">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team sports</language>
+	</row>
+	<row id="pl_msg_00000662_00208" index="208">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Running</language>
+	</row>
+	<row id="pl_msg_00000662_00209" index="209">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Swimming</language>
+	</row>
+	<row id="pl_msg_00000662_00210" index="210">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dancing</language>
+	</row>
+	<row id="pl_msg_00000662_00211" index="211">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pro athlete</language>
+	</row>
+	<row id="pl_msg_00000662_00212" index="212">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Inventor</language>
+	</row>
+	<row id="pl_msg_00000662_00213" index="213">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Musician</language>
+	</row>
+	<row id="pl_msg_00000662_00214" index="214">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Comedian</language>
+	</row>
+	<row id="pl_msg_00000662_00215" index="215">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Very convenient</language>
+	</row>
+	<row id="pl_msg_00000662_00216" index="216">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lots of nature</language>
+	</row>
+	<row id="pl_msg_00000662_00217" index="217">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Very quiet</language>
+	</row>
+	<row id="pl_msg_00000662_00218" index="218">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rare things/events</language>
+	</row>
+	<row id="pl_msg_00000662_00219" index="219">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hot</language>
+	</row>
+	<row id="pl_msg_00000662_00220" index="220">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Warm</language>
+	</row>
+	<row id="pl_msg_00000662_00221" index="221">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cold</language>
+	</row>
+	<row id="pl_msg_00000662_00222" index="222">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool</language>
+	</row>
+	<row id="pl_msg_00000662_00223" index="223">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Voices</language>
+	</row>
+	<row id="pl_msg_00000662_00224" index="224">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Music</language>
+	</row>
+	<row id="pl_msg_00000662_00225" index="225">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TV</language>
+	</row>
+	<row id="pl_msg_00000662_00226" index="226">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nothing</language>
+	</row>
+	<row id="pl_msg_00000662_00227" index="227">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Food</language>
+	</row>
+	<row id="pl_msg_00000662_00228" index="228">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">People</language>
+	</row>
+	<row id="pl_msg_00000662_00229" index="229">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The season</language>
+	</row>
+	<row id="pl_msg_00000662_00230" index="230">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Unpleasant stench</language>
+	</row>
+	<row id="pl_msg_00000662_00231" index="231">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The latest toys</language>
+	</row>
+	<row id="pl_msg_00000662_00232" index="232">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fashionable clothes</language>
+	</row>
+	<row id="pl_msg_00000662_00233" index="233">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tomorrow’s weather</language>
+	</row>
+	<row id="pl_msg_00000662_00234" index="234">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">New pop stars</language>
+	</row>
+	<row id="pl_msg_00000662_00235" index="235">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stop chatting</language>
+	</row>
+	<row id="pl_msg_00000662_00236" index="236">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say red.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00237" index="237">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say blue.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00238" index="238">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say yellow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00239" index="239">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say green.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00240" index="240">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI like tough-looking Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00241" index="241">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI like cute Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00242" index="242">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI like pretty Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00243" index="243">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI like weird Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00244" index="244">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s sunny here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00245" index="245">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s cloudy here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00246" index="246">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s rainy here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00247" index="247">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s hailing here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00248" index="248">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nUm... Sleeping, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00249" index="249">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nUm... I think I went out.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00250" index="250">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nUm... I think I was working.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00251" index="251">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nUm... I think I was eating.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00252" index="252">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’ve got no plans for tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00253" index="253">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’ll be busy tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00254" index="254">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a holiday tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00255" index="255">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a secret.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00256" index="256">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go to a warm place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00257" index="257">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go to a cold place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00258" index="258">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go where there are lots of\fpeople.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00259" index="259">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go where there aren’t any\fpeople.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00260" index="260">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI guess I look like my older brother.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00261" index="261">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI guess I look like my older sister.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00262" index="262">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI guess I look like my uncle.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00263" index="263">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI guess I look like my aunt.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00264" index="264">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say time.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00265" index="265">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say money.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00266" index="266">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00267" index="267">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say dinner.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00268" index="268">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell... School, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00269" index="269">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell... Sports, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00270" index="270">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell... Waking up early, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00271" index="271">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWell... Housecleaning, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00272" index="272">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go to a park.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00273" index="273">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go to a department store.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00274" index="274">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go to an amusement park.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00275" index="275">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d like to go to a theater.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00276" index="276">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say SWALOT Plop.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00277" index="277">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say MIME JR. Top.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00278" index="278">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d say WOBBUFFET Pop.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00279" index="279">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’ve never played one.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00280" index="280">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nTV and music, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00281" index="281">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nGames and computers, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00282" index="282">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSchool and sports, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00283" index="283">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nFashion and romance, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00284" index="284">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nPhysical activities, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00285" index="285">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nUsing my brain, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00286" index="286">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’m really good at standing out.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00287" index="287">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nMaking friends, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00288" index="288">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be reading books.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00289" index="289">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be music.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00290" index="290">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be computers.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00291" index="291">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be staying up late.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00292" index="292">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat’s fashion, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00293" index="293">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat’s interior design, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00294" index="294">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat’s gourmet dining, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00295" index="295">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat’s life, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00296" index="296">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA Plaza Game, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00297" index="297">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA Footprint Stamp, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00298" index="298">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nVisitor Profiles, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00299" index="299">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThe Plaza News, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00300" index="300">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI can see someone’s house.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00301" index="301">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI can see a variety of shops.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00302" index="302">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI can see a big factory.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00303" index="303">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThere’s lots of nature around here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00304" index="304">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Sports, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00305" index="305">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Games, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00306" index="306">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Chatting, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00307" index="307">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Shopping, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00308" index="308">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say family.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00309" index="309">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00310" index="310">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say myself, of course.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00311" index="311">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say that’s a secret.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00312" index="312">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Cheerful, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00313" index="313">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Funny, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00314" index="314">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Kind, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00315" index="315">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... Mysterious, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00316" index="316">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’m happy when I’m playing!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00317" index="317">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’m happy when I’m working hard!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00318" index="318">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’m happy when I’m sleeping.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00319" index="319">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’m happy when I’m eating!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00320" index="320">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say my allowance.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00321" index="321">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say school.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00322" index="322">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say my fitness.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00323" index="323">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI’d have to say my friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00324" index="324">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSchool, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00325" index="325">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nMy diet, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00326" index="326">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nRomance, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00327" index="327">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nMy training, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00328" index="328">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nAny team sports!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00329" index="329">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nRunning, for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00330" index="330">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSwimming, for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00331" index="331">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nDancing, for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00332" index="332">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be a pro athlete.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00333" index="333">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be an inventor.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00334" index="334">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be a musician.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00335" index="335">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThat would be a comedian.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00336" index="336">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a very convenient place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00337" index="337">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThere’s lots of nature here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00338" index="338">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s very quiet here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00339" index="339">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThere are rare things and events here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00340" index="340">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a hot place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00341" index="341">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a warm place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00342" index="342">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a cold place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00343" index="343">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s a cool place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00344" index="344">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI can hear voices.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00345" index="345">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI can hear music.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00346" index="346">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI can hear a TV.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00347" index="347">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nIt’s very quiet here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00348" index="348">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... I smell some food.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00349" index="349">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... I smell people.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00350" index="350">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... The scents of the season.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00351" index="351">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nEww... There’s an unpleasant stench.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00352" index="352">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThe latest toys, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00353" index="353">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nFashionable clothes, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00354" index="354">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nTomorrow’s weather, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00355" index="355">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nNew pop stars, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00356" index="356">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHmm... That’s hard to say...\fI’m sorry, I can’t answer that.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00357" index="357">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, your favorite color’s red.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00358" index="358">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, your favorite color’s blue.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00359" index="359">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, your favorite color’s yellow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00360" index="360">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, your favorite color’s green.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00361" index="361">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, you like tough-looking Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00362" index="362">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, you like cute Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00363" index="363">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, you like pretty Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00364" index="364">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, you like weird Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00365" index="365">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, it’s sunny over there.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00366" index="366">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, it’s cloudy over there.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00367" index="367">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, it’s rainy over there.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00368" index="368">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, it’s hailing over there!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00369" index="369">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you were sleeping.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00370" index="370">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you were out.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00371" index="371">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you were working.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00372" index="372">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you were eating.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00373" index="373">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, nothing planned.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00374" index="374">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you’re going to be busy.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00375" index="375">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you have a holiday tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00376" index="376">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh? You can’t tell me?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00377" index="377">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA warm place...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00378" index="378">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA cold place...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00379" index="379">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA place with lots of people...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00380" index="380">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA place without any people...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00381" index="381">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou look like your older brother?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00382" index="382">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou look like your older sister?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00383" index="383">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou look like your uncle?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00384" index="384">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou look like your aunt?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00385" index="385">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nTime, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00386" index="386">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nMoney, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00387" index="387">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nFriends, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00388" index="388">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nDinner, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00389" index="389">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo school’s hard for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00390" index="390">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo sports are hard for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00391" index="391">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo waking up early’s tough for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00392" index="392">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo housecleaning’s tough for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00393" index="393">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you like to play at a park.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00394" index="394">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA department store?\fYou must like shopping.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00395" index="395">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nAn amusement park! Of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00396" index="396">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA theater sounds entertaining!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00397" index="397">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you’re good at SWALOT Plop!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00398" index="398">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you’re good at MIME JR. Top!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00399" index="399">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you’re good at WOBBUFFET Pop!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00400" index="400">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh. You’ve never played any.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00401" index="401">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nTV and music! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00402" index="402">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nGames and computers! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00403" index="403">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSchool and sports! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00404" index="404">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nFashion and romance! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00405" index="405">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you like to work out.\fThat’s good.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00406" index="406">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you’re a good thinker.\fThat’s neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00407" index="407">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re good at standing out?\fYou’re an attention getter.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00408" index="408">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re good at making friends?\fThat’s a good thing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00409" index="409">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou can’t give up reading books!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00410" index="410">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou can’t give up music!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00411" index="411">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou can’t be without computers!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00412" index="412">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou can’t go without staying up late!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00413" index="413">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you have a thing for fashion.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00414" index="414">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so interior design’s your thing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00415" index="415">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so gourmet dining is your thing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00416" index="416">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so your passion is for life.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00417" index="417">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re off to play a Plaza Game.\fHave fun!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00418" index="418">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re going to play with Footprint\fStamp. That’s neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00419" index="419">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nVisitor Profiles?\fYou can see where people are from.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00420" index="420">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re going to check out the Plaza\fNews? It’s informative.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00421" index="421">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you see your neighbor’s house.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00422" index="422">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you’re near some shops.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00423" index="423">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou live near a big factory? Wow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00424" index="424">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you’re out among nature.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00425" index="425">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you play sports with your\ffriends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00426" index="426">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nCool. You play games with your friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00427" index="427">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, chatting is what you do with your\ffriends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00428" index="428">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you shop with your friends for\ffun.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00429" index="429">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYour family’s important to you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00430" index="430">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYour friends are important to you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00431" index="431">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYourself, huh? It’s only natural.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00432" index="432">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA secret? That’s intriguing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00433" index="433">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, people think you’re cheerful.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00434" index="434">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, people think you’re funny.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00435" index="435">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, people think you’re kind.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00436" index="436">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo, people think you’re mysterious.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00437" index="437">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re happy when you’re playing.\fThat makes sense.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00438" index="438">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re happy when you’re working hard.\fYou’re a go-getter!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00439" index="439">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re happy when you’re sleeping.\fThat’s nice.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00440" index="440">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re happy when you’re eating.\fThat’s nice.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00441" index="441">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYour allowance is a worry? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00442" index="442">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSchool worries you? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00443" index="443">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYour fitness is a concern? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00444" index="444">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYour friends worry you? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00445" index="445">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re studying hard for school?\fGood for you!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00446" index="446">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re working hard on your diet?\fBe good to yourself.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00447" index="447">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOoh, you’re working hard on romance?\fThat must be nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00448" index="448">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re working hard on your training?\fGood luck with that!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00449" index="449">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSo you’re good at all kinds of\fteam sports. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00450" index="450">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re a good runner. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00451" index="451">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re a good swimmer. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00452" index="452">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou’re a good dancer. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00453" index="453">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou want to be a pro athlete.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00454" index="454">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou want to be an inventor.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00455" index="455">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou want to be a musician.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00456" index="456">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou want to be a comedian.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00457" index="457">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA very convenient place?\fThat must be cool.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00458" index="458">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA place with lots of nature?\fThat must be cool.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00459" index="459">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA very quiet place?\fIt must be nice.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00460" index="460">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nA place with rare things and events?\fThat must be cool.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00461" index="461">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI see. You’re in a hot place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00462" index="462">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI see. You’re in a warm place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00463" index="463">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI see. You’re in a cold place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00464" index="464">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nI see. You’re in a cool place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00465" index="465">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so there are other people.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00466" index="466">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you can hear music.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00467" index="467">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so there’s a TV somewhere close.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00468" index="468">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, so you don’t hear very much.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00469" index="469">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you smell something cooking?\fSounds nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00470" index="470">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you smell other people? OK.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00471" index="471">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh, you smell the scents of the season,\fhuh? That’s neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00472" index="472">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nSomething stinks there? Eww.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00473" index="473">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThe latest toys interest you the most?\fThat’s interesting.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00474" index="474">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nFashionable clothes interest you the\fmost? That’s interesting.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00475" index="475">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nTomorrow’s weather concerns you the\fmost? OK.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00476" index="476">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nNew pop stars are what interest you\fmost? Neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00477" index="477">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00478" index="478">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00479" index="479">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about your side?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00480" index="480">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00481" index="481">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00482" index="482">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00483" index="483">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00484" index="484">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00485" index="485">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00486" index="486">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00487" index="487">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00488" index="488">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow about your side?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00489" index="489">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00490" index="490">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00491" index="491">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00492" index="492">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00493" index="493">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow about your side?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00494" index="494">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00495" index="495">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00496" index="496">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00497" index="497">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00498" index="498">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00499" index="499">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00500" index="500">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00501" index="501">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00502" index="502">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00503" index="503">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00504" index="504">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00505" index="505">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00506" index="506">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00507" index="507">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nOh! You’ve got a {STRVAR_6 0, 1, 0}\fjust like me.\rThat’s pretty nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00508" index="508">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYour Tap Toy is a {STRVAR_6 2, 1, 0}?\rMine is a {STRVAR_6 2, 2, 0}.\nWould you like me to share it with you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00509" index="509">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThere you go!\fHave fun with it!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00510" index="510">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Received a {STRVAR_6 2, 1, 0} from\n{STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00511" index="511">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nYou have a {STRVAR_6 0, 1, 0}?\fThat must be nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00512" index="512">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\n...Can you share your\f{STRVAR_6 0, 1, 0} with me?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00513" index="513">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shared the {STRVAR_6 2, 1, 0} with\n{STRVAR_1 3, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00514" index="514">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nThank you! I’ll take good care of it!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00515" index="515">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TAP TOYS</language>
+	</row>
+	<row id="pl_msg_00000662_00516" index="516">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHAT</language>
+	</row>
+	<row id="pl_msg_00000662_00517" index="517">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000662_00518" index="518">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GET</language>
+	</row>
+	<row id="pl_msg_00000662_00519" index="519">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite color?</language>
+	</row>
+	<row id="pl_msg_00000662_00520" index="520">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite kind of Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000662_00521" index="521">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Today’s weather?</language>
+	</row>
+	<row id="pl_msg_00000662_00522" index="522">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What were you doing?</language>
+	</row>
+	<row id="pl_msg_00000662_00523" index="523">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tomorrow’s plans?</language>
+	</row>
+	<row id="pl_msg_00000662_00524" index="524">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Destination during break?</language>
+	</row>
+	<row id="pl_msg_00000662_00525" index="525">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Who do you look like?</language>
+	</row>
+	<row id="pl_msg_00000662_00526" index="526">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Most wanted thing?</language>
+	</row>
+	<row id="pl_msg_00000662_00527" index="527">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s difficult?</language>
+	</row>
+	<row id="pl_msg_00000662_00528" index="528">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Where do you play?</language>
+	</row>
+	<row id="pl_msg_00000662_00529" index="529">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your best Plaza Game?</language>
+	</row>
+	<row id="pl_msg_00000662_00530" index="530">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s popular?</language>
+	</row>
+	<row id="pl_msg_00000662_00531" index="531">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What are you good at?</language>
+	</row>
+	<row id="pl_msg_00000662_00532" index="532">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What can’t you give up?</language>
+	</row>
+	<row id="pl_msg_00000662_00533" index="533">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s your hidden passion?</language>
+	</row>
+	<row id="pl_msg_00000662_00534" index="534">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What will you do next?</language>
+	</row>
+	<row id="pl_msg_00000662_00535" index="535">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s near your house?</language>
+	</row>
+	<row id="pl_msg_00000662_00536" index="536">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What do you do with friends?</language>
+	</row>
+	<row id="pl_msg_00000662_00537" index="537">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Who is important to you?</language>
+	</row>
+	<row id="pl_msg_00000662_00538" index="538">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How do people describe you?</language>
+	</row>
+	<row id="pl_msg_00000662_00539" index="539">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When do you feel happy?</language>
+	</row>
+	<row id="pl_msg_00000662_00540" index="540">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What worries you?</language>
+	</row>
+	<row id="pl_msg_00000662_00541" index="541">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What are you working hard at?</language>
+	</row>
+	<row id="pl_msg_00000662_00542" index="542">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What sports are you good at?</language>
+	</row>
+	<row id="pl_msg_00000662_00543" index="543">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your dream job?</language>
+	</row>
+	<row id="pl_msg_00000662_00544" index="544">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s special there?</language>
+	</row>
+	<row id="pl_msg_00000662_00545" index="545">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How warm is it?</language>
+	</row>
+	<row id="pl_msg_00000662_00546" index="546">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What can you hear?</language>
+	</row>
+	<row id="pl_msg_00000662_00547" index="547">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What do you smell?</language>
+	</row>
+	<row id="pl_msg_00000662_00548" index="548">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What interests you most?</language>
+	</row>
+	<row id="pl_msg_00000662_00549" index="549">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHello! Nice to meet you.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00550" index="550">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHi, {STRVAR_1 3, 1, 0}!\fIt’s good to see you again!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00551" index="551">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSee you again!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00552" index="552">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nAnother thing...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00553" index="553">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry! Something’s come up!\nI can’t talk now!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00554" index="554">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYes? What’s up?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00555" index="555">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHi, do you have a moment?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00556" index="556">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSorry! That’s hard to say.\fI can’t answer that.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00557" index="557">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nDon’t worry. You don’t have to answer\fif you don’t want to.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00558" index="558">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00559" index="559">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat’s the same as me!\fThat’s pretty nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00560" index="560">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThanks for answering!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00561" index="561">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nMoving on...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00562" index="562">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIs there anything else?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00563" index="563">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat’s your favorite color?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00564" index="564">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat kind of Pokémon do you like?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00565" index="565">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow’s the weather today?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00566" index="566">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat were you doing before this?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00567" index="567">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nDo you have any plans for tomorrow?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00568" index="568">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhere would you like to go\fduring your break?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00569" index="569">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWho do you look like?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00570" index="570">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat do you most want now?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00571" index="571">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat do you find hard?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00572" index="572">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhere would you go out to play?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00573" index="573">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00574" index="574">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00575" index="575">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00576" index="576">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00577" index="577">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00578" index="578">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00579" index="579">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00580" index="580">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00581" index="581">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00582" index="582">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00583" index="583">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say red.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00584" index="584">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say blue.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00585" index="585">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say yellow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00586" index="586">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say green.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00587" index="587">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI like tough-looking Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00588" index="588">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI like cute Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00589" index="589">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI like pretty Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00590" index="590">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI like weird Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00591" index="591">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s sunny here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00592" index="592">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s cloudy here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00593" index="593">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s rainy here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00594" index="594">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s hailing here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00595" index="595">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nUm... Sleeping, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00596" index="596">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nUm... I think I went out.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00597" index="597">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nUm... I think I was working.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00598" index="598">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nUm... I think I was eating.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00599" index="599">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’ve got no plans for tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00600" index="600">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’ll be busy tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00601" index="601">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a holiday tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00602" index="602">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a secret.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00603" index="603">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go to a warm place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00604" index="604">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go to a cold place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00605" index="605">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go where there are lots of\fpeople.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00606" index="606">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go where there aren’t any\fpeople.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00607" index="607">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI guess I look like my older brother.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00608" index="608">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI guess I look like my older sister.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00609" index="609">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI guess I look like my uncle.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00610" index="610">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI guess I look like my aunt.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00611" index="611">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say time.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00612" index="612">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say money.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00613" index="613">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00614" index="614">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say dinner.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00615" index="615">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell... School, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00616" index="616">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell... Sports, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00617" index="617">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell... Waking up early, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00618" index="618">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell... Housecleaning, I guess...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00619" index="619">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go to a park.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00620" index="620">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go to a department store.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00621" index="621">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go to an amusement park.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00622" index="622">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d like to go to a theater.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00623" index="623">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... That’s hard to say...\fI’m sorry, I can’t answer that.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00624" index="624">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, your favorite color’s red.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00625" index="625">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, your favorite color’s blue.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00626" index="626">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, your favorite color’s yellow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00627" index="627">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, your favorite color’s green.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00628" index="628">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, you like tough-looking Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00629" index="629">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, you like cute Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00630" index="630">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, you like pretty Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00631" index="631">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, you like weird Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00632" index="632">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, it’s sunny over there.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00633" index="633">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, it’s cloudy over there.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00634" index="634">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, it’s rainy over there.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00635" index="635">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, it’s hailing over there!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00636" index="636">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you were sleeping.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00637" index="637">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you were out.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00638" index="638">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you were working.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00639" index="639">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you were eating.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00640" index="640">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, nothing planned.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00641" index="641">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you’re going to be busy.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00642" index="642">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you have a holiday tomorrow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00643" index="643">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh? You can’t tell me?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00644" index="644">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA warm place...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00645" index="645">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA cold place...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00646" index="646">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA place with lots of people...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00647" index="647">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA place without any people...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00648" index="648">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou look like your older brother?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00649" index="649">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou look like your older sister?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00650" index="650">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou look like your uncle?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00651" index="651">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou look like your aunt?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00652" index="652">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nTime, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00653" index="653">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nMoney, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00654" index="654">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nFriends, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00655" index="655">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nDinner, huh? I see...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00656" index="656">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo school’s hard for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00657" index="657">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo sports are hard for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00658" index="658">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo waking up early’s tough for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00659" index="659">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo housecleaning’s tough for you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00660" index="660">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you like to play at a park.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00661" index="661">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA department store?\fYou must like shopping.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00662" index="662">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nAn amusement park! Of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00663" index="663">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA theater sounds entertaining!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00664" index="664">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00665" index="665">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00666" index="666">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about your side?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00667" index="667">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00668" index="668">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00669" index="669">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00670" index="670">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00671" index="671">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00672" index="672">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00673" index="673">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00674" index="674">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh! You’ve got a {STRVAR_6 0, 1, 0}\fjust like me.\rThat’s pretty nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00675" index="675">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYour Tap Toy is a {STRVAR_6 2, 1, 0}?\rMine is a {STRVAR_6 2, 2, 0}.\nWould you like me to share it with you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00676" index="676">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThere you go!\fHave fun with it!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00677" index="677">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Received a {STRVAR_6 2, 1, 0} from\n{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00678" index="678">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou have a {STRVAR_6 0, 1, 0}?\fThat must be nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00679" index="679">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\n...Can you share your\f{STRVAR_6 0, 1, 0} with me?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00680" index="680">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThank you! I’ll take good care of it!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00681" index="681">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nHi, {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}!\fIt’s good to see you again!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00682" index="682">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHi, {COLOR 2}{STRVAR_1 3, 1, 0}{COLOR 0}!\fIt’s good to see you again!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00683" index="683">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nWhat’s wrong? Are you OK?</language>
+	</row>
+	<row id="pl_msg_00000662_00684" index="684">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nUmm... Hold on a second...</language>
+	</row>
+	<row id="pl_msg_00000662_00685" index="685">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat’s wrong? Are you OK?</language>
+	</row>
+	<row id="pl_msg_00000662_00686" index="686">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nUmm... Hold on a second...</language>
+	</row>
+	<row id="pl_msg_00000662_00687" index="687">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nLet’s chat!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00688" index="688">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s chat!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00689" index="689">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhich Plaza Game are you good at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00690" index="690">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat’s popular around you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00691" index="691">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat are you good at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00692" index="692">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat can’t you give up?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00693" index="693">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat’s your hidden passion?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00694" index="694">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat will you do next?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00695" index="695">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat’s near your house?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00696" index="696">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat do you do with friends?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00697" index="697">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWho is important to you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00698" index="698">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow do people describe you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00699" index="699">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhen do you feel really happy?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00700" index="700">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat worries you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00701" index="701">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat are you working hard at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00702" index="702">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat physical activity are you good at?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00703" index="703">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat’s your dream job?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00704" index="704">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat makes where you live special?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00705" index="705">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat is the temperature like there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00706" index="706">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat sounds can you hear around you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00707" index="707">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat does it smell like around you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00708" index="708">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat interests you most?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00709" index="709">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00710" index="710">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00711" index="711">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00712" index="712">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00713" index="713">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00714" index="714">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00715" index="715">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00716" index="716">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00717" index="717">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00718" index="718">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00719" index="719">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00720" index="720">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00721" index="721">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00722" index="722">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00723" index="723">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00724" index="724">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00725" index="725">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00726" index="726">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00727" index="727">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nLet’s see... Over here...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00728" index="728">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWell, if it were me...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00729" index="729">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say SWALOT Plop.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00730" index="730">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say MIME JR. Top.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00731" index="731">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d say WOBBUFFET Pop.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00732" index="732">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’ve never played one.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00733" index="733">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nTV and music, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00734" index="734">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nGames and computers, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00735" index="735">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSchool and sports, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00736" index="736">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nFashion and romance, I guess.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00737" index="737">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nPhysical activities, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00738" index="738">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nUsing my brain, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00739" index="739">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’m really good at standing out.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00740" index="740">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nMaking friends, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00741" index="741">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be reading books.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00742" index="742">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be music.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00743" index="743">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be computers.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00744" index="744">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be staying up late.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00745" index="745">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat’s fashion, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00746" index="746">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat’s interior design, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00747" index="747">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat’s gourmet dining, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00748" index="748">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat’s life, of course!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00749" index="749">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA Plaza Game, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00750" index="750">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA Footprint Stamp, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00751" index="751">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nVisitor Profiles, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00752" index="752">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThe Plaza News, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00753" index="753">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI can see someone’s house.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00754" index="754">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI can see a variety of shops.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00755" index="755">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI can see a big factory.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00756" index="756">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThere’s lots of nature around here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00757" index="757">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Sports, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00758" index="758">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Games, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00759" index="759">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Chatting, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00760" index="760">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Shopping, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00761" index="761">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say family.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00762" index="762">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00763" index="763">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say myself, of course.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00764" index="764">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say that’s a secret.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00765" index="765">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Cheerful, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00766" index="766">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Funny, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00767" index="767">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Kind, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00768" index="768">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... Mysterious, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00769" index="769">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’m happy when I’m playing!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00770" index="770">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’m happy when I’m working hard!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00771" index="771">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’m happy when I’m sleeping.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00772" index="772">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’m happy when I’m eating!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00773" index="773">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say my allowance.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00774" index="774">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say school.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00775" index="775">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say my fitness.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00776" index="776">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI’d have to say my friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00777" index="777">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSchool, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00778" index="778">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nMy diet, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00779" index="779">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nRomance, maybe?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00780" index="780">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nMy training, I think.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00781" index="781">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nAny team sports!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00782" index="782">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nRunning, for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00783" index="783">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSwimming, for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00784" index="784">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}:\nDancing, for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00785" index="785">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be a pro athlete.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00786" index="786">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be an inventor.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00787" index="787">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be a musician.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00788" index="788">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThat would be a comedian.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00789" index="789">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a very convenient place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00790" index="790">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThere’s lots of nature here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00791" index="791">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s very quiet here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00792" index="792">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThere are rare things and events here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00793" index="793">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a hot place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00794" index="794">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a warm place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00795" index="795">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a cold place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00796" index="796">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s a cool place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00797" index="797">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI can hear voices.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00798" index="798">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI can hear music.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00799" index="799">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI can hear a TV.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00800" index="800">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nIt’s very quiet here.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00801" index="801">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... I smell some food.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00802" index="802">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... I smell people.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00803" index="803">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHmm... The scents of the season.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00804" index="804">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nEww... There’s an unpleasant stench.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00805" index="805">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThe latest toys, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00806" index="806">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nFashionable clothes, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00807" index="807">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nTomorrow’s weather, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00808" index="808">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nNew pop stars, I’d say.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00809" index="809">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you’re good at SWALOT Plop!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00810" index="810">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you’re good at MIME JR. Top!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00811" index="811">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you’re good at WOBBUFFET Pop!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00812" index="812">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh. You’ve never played any.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00813" index="813">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nTV and music! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00814" index="814">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nGames and computers! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00815" index="815">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSchool and sports! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00816" index="816">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nFashion and romance! I see.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00817" index="817">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you like to work out.\fThat’s good.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00818" index="818">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you’re a good thinker.\fThat’s neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00819" index="819">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re good at standing out?\fYou’re an attention getter.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00820" index="820">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re good at making friends?\fThat’s a good thing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00821" index="821">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou can’t give up reading books!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00822" index="822">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou can’t give up music!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00823" index="823">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou can’t be without computers!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00824" index="824">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou can’t go without staying up late!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00825" index="825">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you have a thing for fashion.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00826" index="826">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so interior design’s your thing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00827" index="827">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so gourmet dining is your thing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00828" index="828">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so your passion is for life.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00829" index="829">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re off to play a Plaza Game.\fHave fun!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00830" index="830">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re going to play with the Footprint\fStamp. That’s neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00831" index="831">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nVisitor Profiles?\fYou can see where people are from.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00832" index="832">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re going to check out the Plaza\fNews? It’s informative.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00833" index="833">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you see your neighbor’s house.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00834" index="834">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you’re near some shops.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00835" index="835">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou live near a big factory? Wow.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00836" index="836">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you’re out among nature.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00837" index="837">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you play sports with your\ffriends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00838" index="838">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nCool. You play games with your friends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00839" index="839">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, chatting is what you do with your\ffriends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00840" index="840">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you like to shop with your\ffriends.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00841" index="841">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYour family’s important to you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00842" index="842">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYour friends are important to you...\r</language>
+	</row>
+	<row id="pl_msg_00000662_00843" index="843">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYourself, huh? It’s only natural.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00844" index="844">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA secret? That’s intriguing.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00845" index="845">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, people think you’re cheerful.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00846" index="846">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, people think you’re funny.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00847" index="847">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, people think you’re kind.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00848" index="848">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo, people think you’re mysterious.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00849" index="849">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re happy when you’re playing.\fThat makes sense.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00850" index="850">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re happy when you’re working hard.\fYou’re a go-getter!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00851" index="851">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re happy when you’re sleeping.\fThat’s nice.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00852" index="852">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re happy when you’re eating.\fThat’s nice.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00853" index="853">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYour allowance is a worry? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00854" index="854">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSchool worries you? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00855" index="855">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYour fitness is a concern? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00856" index="856">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYour friends worry you? Ouch.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00857" index="857">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re studying hard for school?\fGood for you!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00858" index="858">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re working hard on your diet?\fBe good to yourself.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00859" index="859">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOoh, you’re working hard on romance?\fThat must be nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00860" index="860">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re working hard on your training?\fGood luck with that!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00861" index="861">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSo you’re good at all kinds of\fteam sports. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00862" index="862">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re a good runner. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00863" index="863">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re a good swimmer. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00864" index="864">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou’re a good dancer. Gotcha.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00865" index="865">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou want to be a pro athlete.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00866" index="866">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou want to be an inventor.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00867" index="867">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou want to be a musician.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00868" index="868">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nYou want to be a comedian.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00869" index="869">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA very convenient place?\fThat must be cool.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00870" index="870">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA place with lots of nature?\fThat must be cool.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00871" index="871">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA very quiet place?\fIt must be nice.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00872" index="872">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nA place with rare things and events?\fThat must be cool.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00873" index="873">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI see. You’re in a hot place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00874" index="874">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI see. You’re in a warm place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00875" index="875">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI see. You’re in a cold place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00876" index="876">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nI see. You’re in a cool place.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00877" index="877">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so there are other people.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00878" index="878">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you can hear music.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00879" index="879">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so there’s a TV somewhere close.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00880" index="880">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, so you don’t hear very much.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00881" index="881">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you smell something cooking?\fSounds nice!\r</language>
+	</row>
+	<row id="pl_msg_00000662_00882" index="882">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you smell other people? OK.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00883" index="883">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nOh, you smell the season, huh?\fThat’s neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00884" index="884">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nSomething stinks there? Eww.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00885" index="885">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nThe latest toys interest you the most?\fThat’s interesting.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00886" index="886">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nFashionable clothes interest you the\fmost? That’s interesting.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00887" index="887">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nTomorrow’s weather concerns you the\fmost? OK.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00888" index="888">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nNew pop stars are what interest you\fmost? Neat.\r</language>
+	</row>
+	<row id="pl_msg_00000662_00889" index="889">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00890" index="890">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow about your side?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00891" index="891">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00892" index="892">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00893" index="893">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00894" index="894">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00895" index="895">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow about your side?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00896" index="896">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00897" index="897">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00898" index="898">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00899" index="899">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00900" index="900">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00901" index="901">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00902" index="902">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00903" index="903">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00904" index="904">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00905" index="905">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00906" index="906">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00907" index="907">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nHow about over there?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00908" index="908">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}:\nWhat about you?\r</language>
+	</row>
+	<row id="pl_msg_00000662_00909" index="909">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shared the {STRVAR_6 2, 1, 0} with\n{COLOR 2}{STRVAR_1 3, 0, 0}{COLOR 0}.\r</language>
+	</row>
+</body>

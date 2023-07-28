@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000526_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, dear, are your Pokémon feeling\ntired?\rYou should rest up.\nYes, good idea! Rest up here!</language>
+	</row>
+	<row id="pl_msg_00000526_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes, yes, that’s right.\nGet some well-earned rest.\r</language>
+	</row>
+	<row id="pl_msg_00000526_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’re still looking tired.\nYou’re still needing rest, are you?\rYou should rest up again.\nYes, good idea! Rest up here!</language>
+	</row>
+	<row id="pl_msg_00000526_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is that right?\nYou’re sure now?\rI’m only concerned for your sake. No\nneed to worry about putting me out!</language>
+	</row>
+</body>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000137_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a pair of binoculars...\nPut $100 in it?</language>
+	</row>
+	<row id="pl_msg_00000137_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Not enough money...</language>
+	</row>
+	<row id="pl_msg_00000137_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tell me I’m not imagining this...\rThe Great Marsh’s Pokémon seem to be\ndifferent from the ones yesterday...</language>
+	</row>
+	<row id="pl_msg_00000137_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Use a pair of binoculars to look out\nover the Great Marsh.\rYou can see what kinds of Pokémon\ncan be caught, and where they are.</language>
+	</row>
+	<row id="pl_msg_00000137_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are shuttle trains in the\nmarsh called Quick Trams.\rYou should take those if you’re going\nto a deeper area in the marsh.</language>
+	</row>
+	<row id="pl_msg_00000137_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you’re walking on the bog,\nyou sometimes sink right in...\rThere’s something pretty cool\nabout it, though.\rIf you turn while you’re stuck,\nsometimes Pokémon may pop out.</language>
+	</row>
+</body>

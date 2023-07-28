@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000056_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah!\nThat’s Oreburgh’s Gym Badge!\rI see, I see!\nYou’ve defeated my son.\rBut that’s no surprise.\nHe still has much to learn.\rIn place of my son Roark, I, Byron,\nwill take your challenge!\r</language>
+	</row>
+	<row id="pl_msg_00000056_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You were strong enough to take down\nmy prized team of Pokémon.\rIn recognition of that power,\nI give you this: the Mine Badge!\r</language>
+	</row>
+	<row id="pl_msg_00000056_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Mine Badge from Byron!</language>
+	</row>
+	<row id="pl_msg_00000056_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Having the Mine Badge enables you to\nuse the hidden move Strength anytime\foutside of battle.\rAnd you now have six Gym Badges.\rThat means all Pokémon up to Lv. 70\nwill obey you without question.\rHere!\nTake this, too!\r</language>
+	</row>
+	<row id="pl_msg_00000056_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0} contains the move\n{STRVAR_1 6, 1, 0}.\rIf it hits, it may also lower the\ntarget’s Special Defense.</language>
+	</row>
+	<row id="pl_msg_00000056_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gwahahahaha!\nThe Sinnoh region is vast!\rTough Trainers like you and\n{STRVAR_1 3, 1, 0} crop up constantly\fto challenge the old guard!\rWith more young Trainers like my son\nand you two taking charge, the\ffuture of Pokémon is bright!\rBut I’m not stepping aside just yet!\rI merely need to rededicate myself\nto training on Iron Island.</language>
+	</row>
+	<row id="pl_msg_00000056_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nChamp-to-be!\rThe Gym Leader here uses Steel-type\nPokémon.\rSteel-type Pokémon have high Defense,\nso you’d have to hit them hard!</language>
+	</row>
+	<row id="pl_msg_00000056_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nYou’ve beaten the Gym Leader!\rGood going!\nThat makes it six Gym Badges!\rI tell you what, you’re really turning\ninto one fine Trainer.\rIf you were to say you’re going to\ntry to become the Pokémon Champ...\rNo one’d laugh at you now!\nI’m in your corner, kiddo!</language>
+	</row>
+	<row id="pl_msg_00000056_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave City Pokémon Gym\nLeader: Byron\rCertified Trainers:\n{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000056_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave City Pokémon Gym\nLeader: Byron\rCertified Trainers:\n{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+</body>

@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000253_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In Amity Square, you may go for\na stroll with a cute Pokémon.\rThe permitted Pokémon are: \nTURTWIG,{CURSOR_X 70}GROTLE,{CURSOR_X 140}TORTERRA,\fCHIMCHAR,{CURSOR_X 70}MONFERNO,{CURSOR_X 140}INFERNAPE,\fPIPLUP,{CURSOR_X 70}PRINPLUP,{CURSOR_X 140}EMPOLEON,\fPIKACHU,{CURSOR_X 70}CLEFAIRY,{CURSOR_X 140}PSYDUCK,\fPACHIRISU,{CURSOR_X 70}HAPPINY,{CURSOR_X 140}BUNEARY,\fand DRIFLOON!\rPlease do come back with one!\r</language>
+	</row>
+	<row id="pl_msg_00000253_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In Amity Square, you may go for\na stroll with a cute Pokémon.\rThe permitted Pokémon are: \nTURTWIG,{CURSOR_X 70}GROTLE,{CURSOR_X 140}TORTERRA,\fCHIMCHAR,{CURSOR_X 70}MONFERNO,{CURSOR_X 140}INFERNAPE,\fPIPLUP,{CURSOR_X 70}PRINPLUP,{CURSOR_X 140}EMPOLEON,\fPIKACHU,{CURSOR_X 70}CLEFAIRY,{CURSOR_X 140}PSYDUCK,\fPACHIRISU,{CURSOR_X 70}HAPPINY,{CURSOR_X 140}BUNEARY,\fDRIFLOON,{CURSOR_X 70}JIGGLYPUFF,{CURSOR_X 140}TORCHIC,\fSKITTY,{CURSOR_X 70}and SHROOMISH!\rPlease do come back with one!\r</language>
+	</row>
+	<row id="pl_msg_00000253_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In Amity Square, you may go for\na stroll with a cute Pokémon.\rOK? Would you like to go for\na stroll with your {STRVAR_1 1, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000253_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please do enjoy your time together,\njust the two of you! OK?\r</language>
+	</row>
+	<row id="pl_msg_00000253_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, OK? Then you would rather go\nfor a stroll with your {STRVAR_1 1, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000253_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see. Please come back if you happen\nto have a change of heart. OK?\r</language>
+	</row>
+	<row id="pl_msg_00000253_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you feeling refreshed?\nPlease come again! OK?\r</language>
+	</row>
+	<row id="pl_msg_00000253_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your {STRVAR_1 1, 0, 0} looks quite pleased\nfollowing you around.\rIt really is adorable!</language>
+	</row>
+	<row id="pl_msg_00000253_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK? The owner of Amity Square?\rI’m sure the owner is somewhere on\nthe grounds.\rSeeing Trainers with their Pokémon\nmakes our owner happy.</language>
+	</row>
+	<row id="pl_msg_00000253_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may find useful items on the ground.\rThey’re quite small, however.\nYour Pokémon may find them.\rYou should try talking to your\nPokémon every so often. OK?</language>
+	</row>
+	<row id="pl_msg_00000253_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you enjoying your stroll?\rYou should try talking to your\nPokémon. It will be happy you did.</language>
+	</row>
+	<row id="pl_msg_00000253_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It makes me happy seeing all the\ncute Pokémon and their kind\fTrainers.</language>
+	</row>
+	<row id="pl_msg_00000253_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may spend all the time you\nlike in Amity Square. OK?</language>
+	</row>
+	<row id="pl_msg_00000253_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is happily keeping up.</language>
+	</row>
+	<row id="pl_msg_00000253_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} appears to be very\nhappy.</language>
+	</row>
+	<row id="pl_msg_00000253_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} appears to be feeling\ngood.</language>
+	</row>
+	<row id="pl_msg_00000253_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is looking endearingly\nat you.</language>
+	</row>
+	<row id="pl_msg_00000253_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is picking at the ground\nfor some reason...</language>
+	</row>
+	<row id="pl_msg_00000253_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} almost tripped!</language>
+	</row>
+	<row id="pl_msg_00000253_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is skipping happily.</language>
+	</row>
+	<row id="pl_msg_00000253_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} seems to be so happy\nit can’t keep still.</language>
+	</row>
+	<row id="pl_msg_00000253_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} seems to be enjoying\nthe walk.</language>
+	</row>
+	<row id="pl_msg_00000253_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh?\n{STRVAR_1 1, 0, 0} is holding something!\r</language>
+	</row>
+	<row id="pl_msg_00000253_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is following along, relaxed\nand casual.</language>
+	</row>
+	<row id="pl_msg_00000253_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} snuggled up close.</language>
+	</row>
+	<row id="pl_msg_00000253_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} pretended to trip.</language>
+	</row>
+	<row id="pl_msg_00000253_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} gave a contented yawn.</language>
+	</row>
+	<row id="pl_msg_00000253_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is sniffing at the grass.</language>
+	</row>
+	<row id="pl_msg_00000253_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">These ruins are from a long, long\ntime ago.</language>
+	</row>
+	<row id="pl_msg_00000253_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DRIFLOON: Foon!</language>
+	</row>
+	<row id="pl_msg_00000253_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I come here with my HAPPINY\nevery single day!\rI can let it run free without any\nworries at all.</language>
+	</row>
+	<row id="pl_msg_00000253_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">HAPPINY appears to be drowsy.</language>
+	</row>
+	<row id="pl_msg_00000253_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ooh, I just can’t believe it!\nI’m so overjoyed with my PIKACHU!\rWherever I go, my PIKACHU follows\nme without hesitation!\rAhaha! It’s just the two of us!\nWoohoo!</language>
+	</row>
+	<row id="pl_msg_00000253_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pikka pika!</language>
+	</row>
+	<row id="pl_msg_00000253_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You should talk to your Pokémon.\nIt can occasionally find things.</language>
+	</row>
+	<row id="pl_msg_00000253_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is something shiny in CLEFAIRY’s\nhands...</language>
+	</row>
+	<row id="pl_msg_00000253_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, how do you do!\rI love this park.\nIt’s why I try to keep it neat and tidy.\rI don’t mind the cleaning at all.\nI find all sorts of items doing so.\rIt’s quite fun, even exciting.\nOh, I know.\r</language>
+	</row>
+	<row id="pl_msg_00000253_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know the item {STRVAR_1 8, 0, 0}?\nI found some. Would you like them?</language>
+	</row>
+	<row id="pl_msg_00000253_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, it’s no problem to me.\nThey’re yours if you want, OK?</language>
+	</row>
+	<row id="pl_msg_00000253_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hahahah!\nPerhaps I’ll see you again tomorrow!</language>
+	</row>
+	<row id="pl_msg_00000253_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\n5 {STRVAR_1 8, 1, 0}!</language>
+	</row>
+</body>

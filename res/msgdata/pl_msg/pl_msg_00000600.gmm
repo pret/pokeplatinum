@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000600_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How may we serve you today?\nPerhaps a spa treatment?\rOur spa treatment will make your\n{STRVAR_1 1, 1, 0} grow more friendly.\rWould you care to have a spa\ntreatment, {STRVAR_1 3, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000600_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We hope to see you again.</language>
+	</row>
+	<row id="pl_msg_00000600_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, yes.\nRight this way, please...\r</language>
+	</row>
+	<row id="pl_msg_00000600_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re ready to begin.\nPlease, relax all your muscles.\r</language>
+	</row>
+	<row id="pl_msg_00000600_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This oil contains dissolved diamonds\nfor enhanced effectiveness.\r</language>
+	</row>
+	<row id="pl_msg_00000600_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This foam contains an extract taken\nfrom pearls.\r</language>
+	</row>
+	<row id="pl_msg_00000600_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The body’s toxins are forced out with\na foreign massage technique.\r</language>
+	</row>
+	<row id="pl_msg_00000600_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The salon’s air is perfumed by an\nherbal aroma for relaxation.\r</language>
+	</row>
+	<row id="pl_msg_00000600_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There.\nAll done.\rOur treatment has made your pampered\nbaby much more friendly to you.</language>
+	</row>
+	<row id="pl_msg_00000600_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, I do apologize.\rWe can only provide one spa\nsession a day to our members.</language>
+	</row>
+	<row id="pl_msg_00000600_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There.\nAll done.\rOur treatment has made your pampered\nbaby more friendly to you.</language>
+	</row>
+	<row id="pl_msg_00000600_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There.\nAll done.\rOur treatment has made your pampered\nbaby a little more friendly to you.</language>
+	</row>
+	<row id="pl_msg_00000600_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We keep our clients and Pokémon from\nseeing others.\rThat way, all our clients and their\nPokémon can fully relax.</language>
+	</row>
+	<row id="pl_msg_00000600_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our service is very exclusive.\nWe only accept five members a day.</language>
+	</row>
+	<row id="pl_msg_00000600_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ve developed a reputation for\nbringing our members closer to\ftheir Pokémon.</language>
+	</row>
+</body>

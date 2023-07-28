@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000067_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome!\nThis is the Oreburgh Pokémon Gym!\rI’m Roark, the Gym Leader!\rI’m but one Trainer who decided to\nwalk proudly with Rock-type Pokémon!\rAs the Gym Leader, I need to see\nyour potential as a Trainer.\rAnd, I’ll need to see the toughness\nof the Pokémon that battle with you!\r</language>
+	</row>
+	<row id="pl_msg_00000067_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is embarrassing...\rI went and lost to a Trainer who\ndidn’t have a single Gym Badge...\rBut that’s tough. You were strong,\nand I was weak. That’s all there is.\rAccording to Pokémon League rules,\nI have to give you our Gym Badge\fsince you’ve beaten me, the Leader.\rHere’s your official Pokémon League\nCoal Badge.\r</language>
+	</row>
+	<row id="pl_msg_00000067_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Coal Badge from Roark!</language>
+	</row>
+	<row id="pl_msg_00000067_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Having that Coal Badge means your\nPokémon can now use the hidden move\fRock Smash outside of battle.\rYou should also take this, too.\r</language>
+	</row>
+	<row id="pl_msg_00000067_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0} contains\nthe move Stealth Rock.\rIt’s a move that inflicts damage on\nfoes that switch into battle.\rIncidentally, a TM will teach its move\nto a Pokémon instantly.\rBut a TM will break when you use it,\nso make certain you want a Pokémon\fto learn that move.</language>
+	</row>
+	<row id="pl_msg_00000067_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In this region of Sinnoh, there are\nseven other Gym Leaders.\rI should warn you--they’re a lot\ntougher than I am!</language>
+	</row>
+	<row id="pl_msg_00000067_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy!\nHow’s it going, Champ-to-be?\rThat’s what I said to a really\nimpatient boy earlier, too.\rThe Gym Leader is a user of\nRock-type Pokémon.\rWell, listen. Rock-type Pokémon\nreally hate water, all right?\rThey’re also weak to Grass-type\nmoves.\rGee, they sure have weaknesses!\rBut don’t think it will be easy.\rYou don’t get to be a Gym Leader\nwithout covering for weaknesses.\rGoing after a Rock-type Pokémon\nwith a Fire-type Pokémon won’t be\feasy, either.\rThat’s all the advice I can give.\nThanks for listening!</language>
+	</row>
+	<row id="pl_msg_00000067_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nYou’ve taken care of the Gym Leader!\rSo, did my advice come in handy\nor what?\rIf my advice was useful, it’d be\ngreat if you’d become my fan!</language>
+	</row>
+	<row id="pl_msg_00000067_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh City Pokémon Gym\nLeader: Roark\rCertified Trainers:\n{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000067_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh City Pokémon Gym\nLeader: Roark\rCertified Trainers:\n{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+</body>

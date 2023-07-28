@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000176_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Only the chosen may enter\nthe Snowpoint Temple.\rI’m sorry, but you will have to\nleave.\r</language>
+	</row>
+	<row id="pl_msg_00000176_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Only the chosen may enter\nthe Snowpoint Temple.\rI’m sorry, but you will have to\nleave.</language>
+	</row>
+	<row id="pl_msg_00000176_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The temple is said to have been\nbuilt in ancient times.\rIt pays homage to the Pokémon of rock,\nice, and steel that shape the land.\rSo it is told.</language>
+	</row>
+	<row id="pl_msg_00000176_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: It’s OK!\nYou can let that person in.\r</language>
+	</row>
+	<row id="pl_msg_00000176_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I heard from Cynthia.\rYou’re working on a Pokédex,\naren’t you?\rThere should be many rare Pokémon\nin the temple.\rEnjoy your exploring!</language>
+	</row>
+	<row id="pl_msg_00000176_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Brrr... This snowbound town is always\nfreezing cold.\rBut the spirits of the Trainers and\ntheir Pokémon burn hot and bright.\rEspecially the Gym Leader.</language>
+	</row>
+	<row id="pl_msg_00000176_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your scarf looks nice and warm.\nI wish I had one like it.</language>
+	</row>
+	<row id="pl_msg_00000176_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I want to take a look around in the\nSnowpoint Temple.\rBut only really tough Trainers are\nallowed inside.</language>
+	</row>
+	<row id="pl_msg_00000176_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon are said to have dragged\nSnowpoint City here.\rThe Snowpoint Temple is their resting\nplace, they say.</language>
+	</row>
+	<row id="pl_msg_00000176_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice is teaching me about Pokémon.\rShe says I have to start by making\nfriends with Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000176_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it? Do you want to sail\nto the Battle Zone?</language>
+	</row>
+	<row id="pl_msg_00000176_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aye, aye, then!\nLet’s set sail!\r</language>
+	</row>
+	<row id="pl_msg_00000176_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it?\nThe Battle Zone’s rough to get to.\rThe sea around it is always roiling\nwith choppy waves.\rYou can’t go there using Surf,\nthat’s for sure.</language>
+	</row>
+	<row id="pl_msg_00000176_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A great Trainer recognized by\nthe Pokémon League...\rI look forward to carrying someone\nlike that on this ship!</language>
+	</row>
+	<row id="pl_msg_00000176_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is nothing exceptional here.\nThat makes Snowpoint unique.\rThere’s nothing exceptional about me.\nThat’s what makes me stand out!</language>
+	</row>
+	<row id="pl_msg_00000176_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I thought you would come.\nI’m glad I waited for you!\r</language>
+	</row>
+	<row id="pl_msg_00000176_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I think it’s good that our\nworld is constantly changing.\rOf course, I don’t want it to become\nwhat only one person wants.\rA world like Cyrus envisions...\nNo one would want that.\rThe kind of world I want to see is where\neveryone can share their joy.\rWhere Pokémon and the people around\nthem can be happy for each other.\rI want the world to become a place\nwhere everyone is smiling.\rThe world could be so much better\nif we all tried to make it that way.\r</language>
+	</row>
+	<row id="pl_msg_00000176_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I want you to keep traveling to many\nfar-off places.\rI want you to keep meeting all kinds of\npeople and Pokémon.\rI came all the way here just so I could\nsay that to you.\rYour horizons will expand again if you\nvisit the Fight Area as well.\rI hope our paths cross again!\r</language>
+	</row>
+	<row id="pl_msg_00000176_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snowpoint City\nCity of Snow</language>
+	</row>
+	<row id="pl_msg_00000176_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snowpoint City Pokémon Gym\nLeader: Candice\fThe Diamond Dust Girl!</language>
+	</row>
+</body>

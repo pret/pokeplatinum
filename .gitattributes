@@ -8,6 +8,7 @@
 *.py text eol=lf
 *.sha1 text eol=lf
 *.json text eol=lf
+*.gmm text eol=lf
 meson.build text eol=lf
 
 .gitattributes text eol=lf

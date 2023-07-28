@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000532_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SINGLE BATTLES</language>
+	</row>
+	<row id="pl_msg_00000532_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DOUBLE BATTLES</language>
+	</row>
+	<row id="pl_msg_00000532_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MULTI BATTLES</language>
+	</row>
+	<row id="pl_msg_00000532_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LINK MULTI BATTLES</language>
+	</row>
+	<row id="pl_msg_00000532_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WI-FI BATTLE ROOM</language>
+	</row>
+	<row id="pl_msg_00000532_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">AVG WIN STREAK</language>
+	</row>
+	<row id="pl_msg_00000532_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON DEFEATED</language>
+	</row>
+	<row id="pl_msg_00000532_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON CAUGHT</language>
+	</row>
+	<row id="pl_msg_00000532_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON EGGS</language>
+	</row>
+	<row id="pl_msg_00000532_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ENCOUNTERED WHILE FISHING</language>
+	</row>
+	<row id="pl_msg_00000532_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONTEST WINS</language>
+	</row>
+	<row id="pl_msg_00000532_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONTEST WIN %</language>
+	</row>
+	<row id="pl_msg_00000532_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RIBBONS</language>
+	</row>
+	<row id="pl_msg_00000532_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000532_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 0, 0}. {STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000532_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 53, 0, 0} wins</language>
+	</row>
+	<row id="pl_msg_00000532_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 0, 0} wins</language>
+	</row>
+	<row id="pl_msg_00000532_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 54, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000532_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000532_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000532_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 52, 0, 0}%</language>
+	</row>
+	<row id="pl_msg_00000532_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 53, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000532_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which record would you like to see?</language>
+	</row>
+	<row id="pl_msg_00000532_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Tower’s win-streak record\nin Single Battles.</language>
+	</row>
+	<row id="pl_msg_00000532_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Tower’s win-streak record\nin Double Battles.</language>
+	</row>
+	<row id="pl_msg_00000532_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Tower’s win-streak record\nin Multi Battles.</language>
+	</row>
+	<row id="pl_msg_00000532_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Tower’s win-streak record\nin Link Multi Battles.</language>
+	</row>
+	<row id="pl_msg_00000532_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Tower’s win-streak record\nin Wi-Fi Battles.</language>
+	</row>
+	<row id="pl_msg_00000532_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The average win-streak record\nat the Battle Tower.</language>
+	</row>
+	<row id="pl_msg_00000532_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The number of Pokémon defeated.</language>
+	</row>
+	<row id="pl_msg_00000532_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The number of Pokémon caught using\nPoké Balls.</language>
+	</row>
+	<row id="pl_msg_00000532_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The number of Pokémon that were\nhatched from Eggs.</language>
+	</row>
+	<row id="pl_msg_00000532_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The number of Pokémon that were\ncaught fishing.</language>
+	</row>
+	<row id="pl_msg_00000532_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The number of Contest wins.</language>
+	</row>
+	<row id="pl_msg_00000532_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The winning percentage of Contests.</language>
+	</row>
+	<row id="pl_msg_00000532_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The number of Ribbons won in\nContests.</language>
+	</row>
+	<row id="pl_msg_00000532_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DEL RECORD</language>
+	</row>
+	<row id="pl_msg_00000532_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Select the record you want to\ndelete, then press the A Button.</language>
+	</row>
+	<row id="pl_msg_00000532_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Delete this record?</language>
+	</row>
+	<row id="pl_msg_00000532_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your own record can’t be deleted.</language>
+	</row>
+</body>

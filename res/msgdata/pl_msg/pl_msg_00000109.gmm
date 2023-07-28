@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000109_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Ohohoho!!{SIZE 100}\rFinally, you have arrived!\rSince I came to this country, always\nI try to learn new things.\rThey hold Contests in this city?\nI say to myself, enfin, I will excel.\rThat is why I dress this way.\nC’est une performance!\rAlso, I study Pokémon very much.\nI have come to be Gym Leader.\rAnd, uh, so it shall be that you\nchallenge me.\rBut I shall win.\nThat is what a Gym Leader does, non?\r</language>
+	</row>
+	<row id="pl_msg_00000109_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I am dumbfounded!\rSo very, very strong!\nYou, your Pokémon, so strong!\rYour power is admirable!\nI shall honor it with this Gym Badge!\r</language>
+	</row>
+	<row id="pl_msg_00000109_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Relic Badge from Fantina!</language>
+	</row>
+	<row id="pl_msg_00000109_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Badge will let you use the\nhidden move Defog outside of battle.\rAlso, you can make use of this\nTechnical Machine.\rThat is what I think.\r</language>
+	</row>
+	<row id="pl_msg_00000109_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0}...\nIt contains {STRVAR_1 6, 1, 0}.\rA very startling move it is.\nIts hits turn critical often!</language>
+	</row>
+	<row id="pl_msg_00000109_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Three Gym Badges...\rBut you must not forget this.\nThere are many other Trainers.\rStrong Trainers, too.\nThere are many more in Sinnoh.\rHave patience! You must become\nstronger, one at a time.</language>
+	</row>
+	<row id="pl_msg_00000109_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000109_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000109_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+</body>

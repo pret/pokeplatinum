@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000608_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MORNING</language>
+	</row>
+	<row id="pl_msg_00000608_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DAY</language>
+	</row>
+	<row id="pl_msg_00000608_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EVENING</language>
+	</row>
+	<row id="pl_msg_00000608_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NIGHT</language>
+	</row>
+	<row id="pl_msg_00000608_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LATE NIGHT</language>
+	</row>
+</body>

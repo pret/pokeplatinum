@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000588_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I must bear down and train...\nAnd for that, time is unimportant.\rTherefore, I have no need for\na watch. Take this from me!\r</language>
+	</row>
+	<row id="pl_msg_00000588_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Analog or digital: which kind of watch\ndo you prefer?\rPersonally, I like using an hourglass\nmyself.</language>
+	</row>
+	<row id="pl_msg_00000588_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">HAPPINY: Pinny haaa!</language>
+	</row>
+</body>

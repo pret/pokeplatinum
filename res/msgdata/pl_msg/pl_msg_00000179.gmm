@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000179_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Brrr...\rOh, hi, {STRVAR_1 3, 0, 0}!\nAre you taking the Gym challenge now?\rI’m hoping to see Candice soon, but I’m\nstaying put until I warm up again first.\rOh, you should know that Candice is\na user of Ice-type Pokémon.\rI really admire Candice.\nShe’s so studious.\rShe wanted to practice against me to\nlearn about the Fighting type.\rIt’s because the Ice type matches up\nbadly against the Fighting type.\n</language>
+	</row>
+	<row id="pl_msg_00000179_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Oh! That’s the Icicle Badge!\nYou must have beaten Candice.\rWith that Badge, aren’t you allowed to\nuse the hidden move Rock Climb?\rRock Climb can be learned by Rock-type\nor Fighting-type Pokémon, I think.</language>
+	</row>
+	<row id="pl_msg_00000179_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know how there are many Ice-type\nPokémon around Snowpoint City?\fI wonder if they also live in the temple?</language>
+	</row>
+	<row id="pl_msg_00000179_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sound gets swallowed up by the snow.\nThat’s why it’s very quiet here.</language>
+	</row>
+	<row id="pl_msg_00000179_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PSYDUCK: Gaga guwawa!</language>
+	</row>
+	<row id="pl_msg_00000179_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for coming to Grace’s live\nshow in Snowpoint!\rI’m so happy you came to see me!\nI’ll battle you as my thank-you!</language>
+	</row>
+	<row id="pl_msg_00000179_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll let you join my fan club if you can\nbeat me!\r</language>
+	</row>
+	<row id="pl_msg_00000179_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But my song!\nIt’s nicer than that Crasher Wake’s!</language>
+	</row>
+	<row id="pl_msg_00000179_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My dream is to be the top Idol!\rTo win everyone’s heart, I’ll sing my\nheart out in snowy Snowpoint!\r...To a crowd of none.\n...This is Grace. Thanks for listening...</language>
+	</row>
+</body>

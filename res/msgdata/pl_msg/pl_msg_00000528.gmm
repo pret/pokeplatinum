@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000528_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A strong, but a solitary presence...\nOr the weak that mass together...\rWho can say which is better?</language>
+	</row>
+	<row id="pl_msg_00000528_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve been wondering about this, but\nno one can tell me.\rWhy doesn’t anyone study the molting\nof Pokémon?\rI think there would be a lot you could\ntell from their molts.</language>
+	</row>
+</body>

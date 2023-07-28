@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000302_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000302_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What the...\r</language>
+	</row>
+	<row id="pl_msg_00000302_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoops, sorry about that!\nI was in a rush.\r</language>
+	</row>
+	<row id="pl_msg_00000302_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, wait a second...\nAren’t you...\rYou’re {STRVAR_1 3, 1, 0} from Twinleaf!\nWow, that brings back memories!\rSo, if you’re here, he can’t be far\nbehind...\rThis should be fun.\nSee you!\r</language>
+	</row>
+	<row id="pl_msg_00000302_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000302_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What the...\rOh, hey, {STRVAR_1 3, 1, 0}!\rYou came to the Battle Tower too,\nhuh?\rI decided I’ll see how I measure up\nbefore going to Stark Mountain.\rBut that guy you were just talking\nto...\r...Nah, it’s all right!\nI got here on my own power.\fIt won’t take long before I see him.\rSee ya, {STRVAR_1 3, 1, 0}!\nI’m going to toughen up here!\r</language>
+	</row>
+	<row id="pl_msg_00000302_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What the...\rOh, hey, {STRVAR_1 3, 1, 0}!\rYou came to the Battle Tower too,\nhuh?\rI decided I’ll see how I measure up\nfor my quest to be the greatest!\rBut that guy you were just talking\nto...\r...Nah, it’s all right!\nI got here on my own power.\fIt won’t take long before I see him.\rSee ya, {STRVAR_1 3, 1, 0}!\nI’m going to toughen up here!\r</language>
+	</row>
+	<row id="pl_msg_00000302_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Exchange Service Corner\nA Cornucopia of Fabulous Prizes!</language>
+	</row>
+	<row id="pl_msg_00000302_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Tower\nGather, All Ye Greatest!</language>
+	</row>
+	<row id="pl_msg_00000302_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Battle Rooms, the seventh\nTrainer you face is the room’s boss.\rYou’ll need to stay focused if you\nwant to win!</language>
+	</row>
+	<row id="pl_msg_00000302_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you get a big win streak at the\nBattle Tower, you get to battle\fsome real superstars.</language>
+	</row>
+	<row id="pl_msg_00000302_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mwahahaha! We earned a lot of BP\nat the Battle Tower.\rNow I can exchange them for\nloads of prizes!</language>
+	</row>
+	<row id="pl_msg_00000302_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aah.</language>
+	</row>
+	<row id="pl_msg_00000302_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m a babysitting Trainer!\rI’m off to the Multi Battle Rooms\nwith my beloved son!</language>
+	</row>
+	<row id="pl_msg_00000302_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I heard that the world’s best\ngather here for battles.\rThis is my chance to get global\nfame and recognition!</language>
+	</row>
+	<row id="pl_msg_00000302_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The types of Pokémon!\rThe moves to be taught and used!\rThe items to be held!\rTo become number one here, there is \nno detail that can be overlooked!</language>
+	</row>
+	<row id="pl_msg_00000302_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’d love to hook up with a Beauty\nfor the Multi Battle Rooms.</language>
+	</row>
+</body>

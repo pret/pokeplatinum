@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000504_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000504_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do unto others as they do unto\nyou... Yup, it’s Payback!\rIt’s good for Pokémon battles,\nbut if you do that in real life...\rThere’ll be no end to the fighting,\nthat’s for sure.\r</language>
+	</row>
+	<row id="pl_msg_00000504_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As I said, Payback is harsh.\rUse it after the foe, and its power\ngets doubled!</language>
+	</row>
+	<row id="pl_msg_00000504_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jogging is good for you, but you have\nto make sure you’re not overdoing it!</language>
+	</row>
+	<row id="pl_msg_00000504_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I slow down and stop at times, sure.\nI’m only human, after all.</language>
+	</row>
+	<row id="pl_msg_00000504_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Celestic Town\nSolaceon Town</language>
+	</row>
+	<row id="pl_msg_00000504_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 215\nVeilstone City</language>
+	</row>
+	<row id="pl_msg_00000504_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rPokémon attacks are classified as\nbeing either physical or special.\rA physical attack is based on the\nAttack stat of the Pokémon.\rLikewise, a special attack is based\non the Special Attack stat.</language>
+	</row>
+</body>

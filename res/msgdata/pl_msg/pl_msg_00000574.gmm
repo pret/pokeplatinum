@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000574_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Floaroma Town was a barren, desolate\nhill long ago, avoided even by Pokémon.\rPeople started planting flowers on it\nbecause it was such a sad place.\rBut nothing would grow...\nPeople didn’t know what to do...\rAnd then one day, someone expressed\nthanks for the blessings of nature.\rThen, the whole hill burst into bloom.</language>
+	</row>
+	<row id="pl_msg_00000574_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you think it’s cute how\nPokémon pluck Berries?</language>
+	</row>
+	<row id="pl_msg_00000574_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes! You agreed!\nHere’s the TM for the move Pluck!\r</language>
+	</row>
+	<row id="pl_msg_00000574_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh...\nI guess I just like weird things...</language>
+	</row>
+	<row id="pl_msg_00000574_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When a Pokémon uses Pluck, it eats\na Berry held by its foe in battle.\rI like how it steals a Berry.\nIt’s so cute!</language>
+	</row>
+	<row id="pl_msg_00000574_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Rii?</language>
+	</row>
+</body>

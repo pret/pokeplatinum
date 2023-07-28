@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000353_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There appears to be a problem...</language>
+	</row>
+	<row id="pl_msg_00000353_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Waiting for {STRVAR_1 3, 1, 0}’s\nresponse...</language>
+	</row>
+	<row id="pl_msg_00000353_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Asking {STRVAR_1 3, 1, 0} to do member\nregistration. Please wait.</language>
+	</row>
+	<row id="pl_msg_00000353_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you want to leave the group?</language>
+	</row>
+	<row id="pl_msg_00000353_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} replied, “OK.”</language>
+	</row>
+	<row id="pl_msg_00000353_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} refused...\r</language>
+	</row>
+	<row id="pl_msg_00000353_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have left the group.</language>
+	</row>
+	<row id="pl_msg_00000353_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000353_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Single Battle!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Double Battle!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Multi Battle!\nAwaiting contact from your friends.</language>
+	</row>
+	<row id="pl_msg_00000353_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mix Battle!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When the group is ready:\nA Button: Proceed   B Button: Cancel</language>
+	</row>
+	<row id="pl_msg_00000353_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record Corner!\nAwaiting contact from your friend(s).</language>
+	</row>
+	<row id="pl_msg_00000353_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When the group is ready:\nA Button: Proceed   B Button: Cancel</language>
+	</row>
+	<row id="pl_msg_00000353_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Tower!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Factory--Level 50!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Factory--Open Level!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Hall!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Castle!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Arcade!\nAwaiting contact from your friend.</language>
+	</row>
+	<row id="pl_msg_00000353_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nWould you like to trade?</language>
+	</row>
+	<row id="pl_msg_00000353_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart a Single Battle?</language>
+	</row>
+	<row id="pl_msg_00000353_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart a Double Battle?</language>
+	</row>
+	<row id="pl_msg_00000353_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart a Mix Battle?</language>
+	</row>
+	<row id="pl_msg_00000353_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nLet {STRVAR_1 3, 1, 0} join your group?</language>
+	</row>
+	<row id="pl_msg_00000353_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nTake the Battle Tower challenge?</language>
+	</row>
+	<row id="pl_msg_00000353_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart the Battle Factory challenge?</language>
+	</row>
+	<row id="pl_msg_00000353_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart the Battle Hall challenge?</language>
+	</row>
+	<row id="pl_msg_00000353_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart the Battle Castle challenge?</language>
+	</row>
+	<row id="pl_msg_00000353_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nStart the Battle Arcade challenge?</language>
+	</row>
+	<row id="pl_msg_00000353_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} has contacted you.\nLet {STRVAR_1 3, 1, 0} join your group?</language>
+	</row>
+	<row id="pl_msg_00000353_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Multi Battle!\nIs this group OK?</language>
+	</row>
+	<row id="pl_msg_00000353_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is this group OK?</language>
+	</row>
+	<row id="pl_msg_00000353_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record Corner!\nIs this group OK?</language>
+	</row>
+	<row id="pl_msg_00000353_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Contest!\nIs this group OK?</language>
+	</row>
+	<row id="pl_msg_00000353_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cancel a Multi Battle involving this\ngroup?</language>
+	</row>
+	<row id="pl_msg_00000353_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cancel the cooking session?</language>
+	</row>
+	<row id="pl_msg_00000353_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cancel mixing records with this group?</language>
+	</row>
+	<row id="pl_msg_00000353_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cancel holding a Contest with this\ngroup?</language>
+	</row>
+	<row id="pl_msg_00000353_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend that you want to\ntrade Pokémon with.</language>
+	</row>
+	<row id="pl_msg_00000353_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the Single Battle you would\nlike to join.</language>
+	</row>
+	<row id="pl_msg_00000353_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the Double Battle you would\nlike to join.</language>
+	</row>
+	<row id="pl_msg_00000353_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the Multi Battle you would\nlike to join.</language>
+	</row>
+	<row id="pl_msg_00000353_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the Mix Battle you would\nlike to join.</language>
+	</row>
+	<row id="pl_msg_00000353_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend(s) you want to\ncook with.</language>
+	</row>
+	<row id="pl_msg_00000353_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend(s) you want to\nmix records with.</language>
+	</row>
+	<row id="pl_msg_00000353_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friends you want to\nhold a Contest with.</language>
+	</row>
+	<row id="pl_msg_00000353_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend you want to take\nto the Battle Tower.</language>
+	</row>
+	<row id="pl_msg_00000353_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend you want to play\nwith at the Battle Factory--Level 50.</language>
+	</row>
+	<row id="pl_msg_00000353_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend you want to play with\nat the Battle Factory--Open Level.</language>
+	</row>
+	<row id="pl_msg_00000353_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend you want to play\nwith in the Battle Hall.</language>
+	</row>
+	<row id="pl_msg_00000353_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend you want to play\nwith at the Battle Castle.</language>
+	</row>
+	<row id="pl_msg_00000353_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose the friend you want to play\nwith at the Battle Arcade.</language>
+	</row>
+	<row id="pl_msg_00000353_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A member has dropped out.\rPlease repeat the registration\nprocess from the beginning.</language>
+	</row>
+	<row id="pl_msg_00000353_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record mixing with this group will\nbe canceled.</language>
+	</row>
+	<row id="pl_msg_00000353_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Contest involving this group will\nbe canceled.</language>
+	</row>
+	<row id="pl_msg_00000353_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Replied “OK” to {STRVAR_1 3, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000353_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Multi Battle!\nWaiting for the rest of the group.</language>
+	</row>
+	<row id="pl_msg_00000353_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Waiting for the rest of the group.</language>
+	</row>
+	<row id="pl_msg_00000353_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record Corner!\nWaiting for the rest of the group.</language>
+	</row>
+	<row id="pl_msg_00000353_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Contest!\nWaiting for the rest of the group.</language>
+	</row>
+	<row id="pl_msg_00000353_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}\nID{STRVAR_1 54, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 51, 0, 0}:{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 51, 0, 0}:</language>
+	</row>
+	<row id="pl_msg_00000353_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ID{STRVAR_1 54, 2, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 0, 0} more\nneeded.</language>
+	</row>
+	<row id="pl_msg_00000353_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 0, 0} Players</language>
+	</row>
+	<row id="pl_msg_00000353_00069" index="69">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">X</language>
+	</row>
+	<row id="pl_msg_00000353_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">STANDARD</language>
+	</row>
+	<row id="pl_msg_00000353_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">FANCY</language>
+	</row>
+	<row id="pl_msg_00000353_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LITTLE</language>
+	</row>
+	<row id="pl_msg_00000353_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LIGHT</language>
+	</row>
+	<row id="pl_msg_00000353_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DOUBLE</language>
+	</row>
+	<row id="pl_msg_00000353_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Pokémon:</language>
+	</row>
+	<row id="pl_msg_00000353_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon level:</language>
+	</row>
+	<row id="pl_msg_00000353_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Total levels:</language>
+	</row>
+	<row id="pl_msg_00000353_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Height:</language>
+	</row>
+	<row id="pl_msg_00000353_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Weight:</language>
+	</row>
+	<row id="pl_msg_00000353_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Evolved Pokémon:</language>
+	</row>
+	<row id="pl_msg_00000353_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Special Pokémon:</language>
+	</row>
+	<row id="pl_msg_00000353_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Same Pokémon:</language>
+	</row>
+	<row id="pl_msg_00000353_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Same items:</language>
+	</row>
+	<row id="pl_msg_00000353_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max. {STRVAR_1 52, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max. {STRVAR_1 52, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000353_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max. {STRVAR_1 50, 0, 0}’ {STRVAR_1 50, 1, 0}”</language>
+	</row>
+	<row id="pl_msg_00000353_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Min. {STRVAR_1 50, 0, 0}’ {STRVAR_1 50, 1, 0}”</language>
+	</row>
+	<row id="pl_msg_00000353_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max. {STRVAR_1 51, 0, 0} lbs.</language>
+	</row>
+	<row id="pl_msg_00000353_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Min. {STRVAR_1 51, 0, 0} lbs.</language>
+	</row>
+	<row id="pl_msg_00000353_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Permitted</language>
+	</row>
+	<row id="pl_msg_00000353_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Banned</language>
+	</row>
+	<row id="pl_msg_00000353_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Permitted</language>
+	</row>
+	<row id="pl_msg_00000353_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Banned</language>
+	</row>
+	<row id="pl_msg_00000353_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 26, 0, 0} Cup</language>
+	</row>
+	<row id="pl_msg_00000353_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO RESTRICTIONS</language>
+	</row>
+	<row id="pl_msg_00000353_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Players have chosen different rules.\nThe same rules must be chosen.</language>
+	</row>
+	<row id="pl_msg_00000353_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool Contest!\nAwaiting contact from another player.</language>
+	</row>
+	<row id="pl_msg_00000353_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beauty Contest!\nAwaiting contact from another player.</language>
+	</row>
+	<row id="pl_msg_00000353_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cute Contest!\nAwaiting contact from another player.</language>
+	</row>
+	<row id="pl_msg_00000353_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smart Contest!\nAwaiting contact from another player.</language>
+	</row>
+	<row id="pl_msg_00000353_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tough Contest!\nAwaiting contact from another player.</language>
+	</row>
+	<row id="pl_msg_00000353_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool Contest!\nPlease choose the leader.</language>
+	</row>
+	<row id="pl_msg_00000353_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beauty Contest!\nPlease choose the leader.</language>
+	</row>
+	<row id="pl_msg_00000353_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cute Contest!\nPlease choose the leader.</language>
+	</row>
+	<row id="pl_msg_00000353_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smart Contest!\nPlease choose the leader.</language>
+	</row>
+	<row id="pl_msg_00000353_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tough Contest!\nPlease choose the leader.</language>
+	</row>
+	<row id="pl_msg_00000353_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool Contest! Awaiting contact.\nA Button: When everyone’s ready.</language>
+	</row>
+	<row id="pl_msg_00000353_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beauty Contest! Awaiting contact.\nA Button: When everyone’s ready.</language>
+	</row>
+	<row id="pl_msg_00000353_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cute Contest! Awaiting contact.\nA Button: When everyone’s ready.</language>
+	</row>
+	<row id="pl_msg_00000353_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smart Contest! Awaiting contact.\nA Button: When everyone’s ready.</language>
+	</row>
+	<row id="pl_msg_00000353_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tough Contest! Awaiting contact.\nA Button: When everyone’s ready.</language>
+	</row>
+	<row id="pl_msg_00000353_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool Contest!\nAwaiting other members!</language>
+	</row>
+	<row id="pl_msg_00000353_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beauty Contest!\nAwaiting other members!</language>
+	</row>
+	<row id="pl_msg_00000353_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cute Contest!\nAwaiting other members!</language>
+	</row>
+	<row id="pl_msg_00000353_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smart Contest!\nAwaiting other members!</language>
+	</row>
+	<row id="pl_msg_00000353_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tough Contest!\nAwaiting other members!</language>
+	</row>
+	<row id="pl_msg_00000353_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Cool Contest with\nthese members will be canceled.</language>
+	</row>
+	<row id="pl_msg_00000353_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Beauty Contest with\nthese members will be canceled.</language>
+	</row>
+	<row id="pl_msg_00000353_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Cute Contest with\nthese members will be canceled.</language>
+	</row>
+	<row id="pl_msg_00000353_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Smart Contest with\nthese members will be canceled.</language>
+	</row>
+	<row id="pl_msg_00000353_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Tough Contest with\nthese members will be canceled.</language>
+	</row>
+</body>

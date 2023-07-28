@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000567_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} checked the PC screen.\rAdventure Rule No. 1\nThe X Button opens the menu!\rAdventure Rule No. 2\nRecord your progress with SAVE.\rThere is nothing else on here...</language>
+	</row>
+</body>

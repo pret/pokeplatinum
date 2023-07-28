@@ -1,0 +1,1979 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000717_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">－－－－－</language>
+	</row>
+	<row id="pl_msg_00000717_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００１  フシギダネ</language>
+	</row>
+	<row id="pl_msg_00000717_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００２  フシギソウ</language>
+	</row>
+	<row id="pl_msg_00000717_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００３  フシギバナ</language>
+	</row>
+	<row id="pl_msg_00000717_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００４  ヒトカゲ</language>
+	</row>
+	<row id="pl_msg_00000717_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００５  リザ－ド</language>
+	</row>
+	<row id="pl_msg_00000717_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００６  リザ－ドン</language>
+	</row>
+	<row id="pl_msg_00000717_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００７  ゼニガメ</language>
+	</row>
+	<row id="pl_msg_00000717_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００８  カメ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">００９  カメックス</language>
+	</row>
+	<row id="pl_msg_00000717_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１０  キャタピ－</language>
+	</row>
+	<row id="pl_msg_00000717_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１１  トランセル</language>
+	</row>
+	<row id="pl_msg_00000717_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１２  バタフリ－</language>
+	</row>
+	<row id="pl_msg_00000717_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１３  ビ－ドル</language>
+	</row>
+	<row id="pl_msg_00000717_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１４  コク－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１５  スピア－</language>
+	</row>
+	<row id="pl_msg_00000717_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１６  ポッポ</language>
+	</row>
+	<row id="pl_msg_00000717_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１７  ピジョン</language>
+	</row>
+	<row id="pl_msg_00000717_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１８  ピジョット</language>
+	</row>
+	<row id="pl_msg_00000717_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０１９  コラッタ</language>
+	</row>
+	<row id="pl_msg_00000717_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２０  ラッタ</language>
+	</row>
+	<row id="pl_msg_00000717_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２１  オニスズメ</language>
+	</row>
+	<row id="pl_msg_00000717_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２２  オニドリル</language>
+	</row>
+	<row id="pl_msg_00000717_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２３  ア－ボ</language>
+	</row>
+	<row id="pl_msg_00000717_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２４  ア－ボック</language>
+	</row>
+	<row id="pl_msg_00000717_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２５  ピカチュウ</language>
+	</row>
+	<row id="pl_msg_00000717_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２６  ライチュウ</language>
+	</row>
+	<row id="pl_msg_00000717_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２７  サンド</language>
+	</row>
+	<row id="pl_msg_00000717_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２８  サンドパン</language>
+	</row>
+	<row id="pl_msg_00000717_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０２９  ニドラン㊛</language>
+	</row>
+	<row id="pl_msg_00000717_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３０  ニドリ－ナ</language>
+	</row>
+	<row id="pl_msg_00000717_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３１  ニドクイン</language>
+	</row>
+	<row id="pl_msg_00000717_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３２  ニドラン㊚</language>
+	</row>
+	<row id="pl_msg_00000717_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３３  ニドリ－ノ</language>
+	</row>
+	<row id="pl_msg_00000717_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３４  ニドキング</language>
+	</row>
+	<row id="pl_msg_00000717_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３５  ピッピ</language>
+	</row>
+	<row id="pl_msg_00000717_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３６  ピクシ－</language>
+	</row>
+	<row id="pl_msg_00000717_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３７  ロコン</language>
+	</row>
+	<row id="pl_msg_00000717_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３８  キュウコン</language>
+	</row>
+	<row id="pl_msg_00000717_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０３９  プリン</language>
+	</row>
+	<row id="pl_msg_00000717_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４０  プクリン</language>
+	</row>
+	<row id="pl_msg_00000717_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４１  ズバット</language>
+	</row>
+	<row id="pl_msg_00000717_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４２  ゴルバット</language>
+	</row>
+	<row id="pl_msg_00000717_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４３  ナゾノクサ</language>
+	</row>
+	<row id="pl_msg_00000717_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４４  クサイハナ</language>
+	</row>
+	<row id="pl_msg_00000717_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４５  ラフレシア</language>
+	</row>
+	<row id="pl_msg_00000717_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４６  パラス</language>
+	</row>
+	<row id="pl_msg_00000717_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４７  パラセクト</language>
+	</row>
+	<row id="pl_msg_00000717_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４８  コンパン</language>
+	</row>
+	<row id="pl_msg_00000717_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０４９  モルフォン</language>
+	</row>
+	<row id="pl_msg_00000717_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５０  ディグダ</language>
+	</row>
+	<row id="pl_msg_00000717_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５１  ダグトリオ</language>
+	</row>
+	<row id="pl_msg_00000717_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５２  ニャ－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５３  ペルシアン</language>
+	</row>
+	<row id="pl_msg_00000717_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５４  コダック</language>
+	</row>
+	<row id="pl_msg_00000717_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５５  ゴルダック</language>
+	</row>
+	<row id="pl_msg_00000717_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５６  マンキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５７  オコリザル</language>
+	</row>
+	<row id="pl_msg_00000717_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５８  ガ－ディ</language>
+	</row>
+	<row id="pl_msg_00000717_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０５９  ウインディ</language>
+	</row>
+	<row id="pl_msg_00000717_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６０  ニョロモ</language>
+	</row>
+	<row id="pl_msg_00000717_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６１  ニョロゾ</language>
+	</row>
+	<row id="pl_msg_00000717_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６２  ニョロボン</language>
+	</row>
+	<row id="pl_msg_00000717_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６３  ケ－シィ</language>
+	</row>
+	<row id="pl_msg_00000717_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６４  ユンゲラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６５  フ－ディン</language>
+	</row>
+	<row id="pl_msg_00000717_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６６  ワンリキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６７  ゴ－リキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６８  カイリキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０６９  マダツボミ</language>
+	</row>
+	<row id="pl_msg_00000717_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７０  ウツドン</language>
+	</row>
+	<row id="pl_msg_00000717_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７１  ウツボット</language>
+	</row>
+	<row id="pl_msg_00000717_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７２  メノクラゲ</language>
+	</row>
+	<row id="pl_msg_00000717_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７３  ドククラゲ</language>
+	</row>
+	<row id="pl_msg_00000717_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７４  イシツブテ</language>
+	</row>
+	<row id="pl_msg_00000717_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７５  ゴロ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７６  ゴロ－ニャ</language>
+	</row>
+	<row id="pl_msg_00000717_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７７  ポニ－タ</language>
+	</row>
+	<row id="pl_msg_00000717_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７８  ギャロップ</language>
+	</row>
+	<row id="pl_msg_00000717_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０７９  ヤドン</language>
+	</row>
+	<row id="pl_msg_00000717_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８０  ヤドラン</language>
+	</row>
+	<row id="pl_msg_00000717_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８１  コイル</language>
+	</row>
+	<row id="pl_msg_00000717_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８２  レアコイル</language>
+	</row>
+	<row id="pl_msg_00000717_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８３  カモネギ</language>
+	</row>
+	<row id="pl_msg_00000717_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８４  ド－ド－</language>
+	</row>
+	<row id="pl_msg_00000717_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８５  ド－ドリオ</language>
+	</row>
+	<row id="pl_msg_00000717_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８６  パウワウ</language>
+	</row>
+	<row id="pl_msg_00000717_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８７  ジュゴン</language>
+	</row>
+	<row id="pl_msg_00000717_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８８  ベトベタ－</language>
+	</row>
+	<row id="pl_msg_00000717_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０８９  ベトベトン</language>
+	</row>
+	<row id="pl_msg_00000717_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９０  シェルダ－</language>
+	</row>
+	<row id="pl_msg_00000717_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９１  パルシェン</language>
+	</row>
+	<row id="pl_msg_00000717_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９２  ゴ－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９３  ゴ－スト</language>
+	</row>
+	<row id="pl_msg_00000717_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９４  ゲンガ－</language>
+	</row>
+	<row id="pl_msg_00000717_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９５  イワ－ク</language>
+	</row>
+	<row id="pl_msg_00000717_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９６  スリ－プ</language>
+	</row>
+	<row id="pl_msg_00000717_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９７  スリ－パ－</language>
+	</row>
+	<row id="pl_msg_00000717_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９８  クラブ</language>
+	</row>
+	<row id="pl_msg_00000717_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">０９９  キングラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１００  ビリリダマ</language>
+	</row>
+	<row id="pl_msg_00000717_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０１  マルマイン</language>
+	</row>
+	<row id="pl_msg_00000717_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０２  タマタマ</language>
+	</row>
+	<row id="pl_msg_00000717_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０３  ナッシ－</language>
+	</row>
+	<row id="pl_msg_00000717_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０４  カラカラ</language>
+	</row>
+	<row id="pl_msg_00000717_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０５  ガラガラ</language>
+	</row>
+	<row id="pl_msg_00000717_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０６  サワムラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０７  エビワラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０８  ベロリンガ</language>
+	</row>
+	<row id="pl_msg_00000717_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１０９  ドガ－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１０  マタドガス</language>
+	</row>
+	<row id="pl_msg_00000717_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１１  サイホ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１２  サイドン</language>
+	</row>
+	<row id="pl_msg_00000717_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１３  ラッキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１４  モンジャラ</language>
+	</row>
+	<row id="pl_msg_00000717_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１５  ガル－ラ</language>
+	</row>
+	<row id="pl_msg_00000717_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１６  タッツ－</language>
+	</row>
+	<row id="pl_msg_00000717_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１７  シ－ドラ</language>
+	</row>
+	<row id="pl_msg_00000717_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１８  トサキント</language>
+	</row>
+	<row id="pl_msg_00000717_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１１９  アズマオウ</language>
+	</row>
+	<row id="pl_msg_00000717_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２０  ヒトデマン</language>
+	</row>
+	<row id="pl_msg_00000717_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２１  スタ－ミ－</language>
+	</row>
+	<row id="pl_msg_00000717_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２２  バリヤ－ド</language>
+	</row>
+	<row id="pl_msg_00000717_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２３  ストライク</language>
+	</row>
+	<row id="pl_msg_00000717_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２４  ル－ジュラ</language>
+	</row>
+	<row id="pl_msg_00000717_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２５  エレブ－</language>
+	</row>
+	<row id="pl_msg_00000717_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２６  ブ－バ－</language>
+	</row>
+	<row id="pl_msg_00000717_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２７  カイロス</language>
+	</row>
+	<row id="pl_msg_00000717_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２８  ケンタロス</language>
+	</row>
+	<row id="pl_msg_00000717_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１２９  コイキング</language>
+	</row>
+	<row id="pl_msg_00000717_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３０  ギャラドス</language>
+	</row>
+	<row id="pl_msg_00000717_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３１  ラプラス</language>
+	</row>
+	<row id="pl_msg_00000717_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３２  メタモン</language>
+	</row>
+	<row id="pl_msg_00000717_00133" index="133">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３３  イ－ブイ</language>
+	</row>
+	<row id="pl_msg_00000717_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３４  シャワ－ズ</language>
+	</row>
+	<row id="pl_msg_00000717_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３５  サンダ－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00136" index="136">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３６  ブ－スタ－</language>
+	</row>
+	<row id="pl_msg_00000717_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３７  ポリゴン</language>
+	</row>
+	<row id="pl_msg_00000717_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３８  オムナイト</language>
+	</row>
+	<row id="pl_msg_00000717_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１３９  オムスタ－</language>
+	</row>
+	<row id="pl_msg_00000717_00140" index="140">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４０  カブト</language>
+	</row>
+	<row id="pl_msg_00000717_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４１  カブトプス</language>
+	</row>
+	<row id="pl_msg_00000717_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４２  プテラ</language>
+	</row>
+	<row id="pl_msg_00000717_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４３  カビゴン</language>
+	</row>
+	<row id="pl_msg_00000717_00144" index="144">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４４  フリ－ザ－</language>
+	</row>
+	<row id="pl_msg_00000717_00145" index="145">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４５  サンダ－</language>
+	</row>
+	<row id="pl_msg_00000717_00146" index="146">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４６  ファイヤ－</language>
+	</row>
+	<row id="pl_msg_00000717_00147" index="147">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４７  ミニリュウ</language>
+	</row>
+	<row id="pl_msg_00000717_00148" index="148">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４８  ハクリュ－</language>
+	</row>
+	<row id="pl_msg_00000717_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１４９  カイリュ－</language>
+	</row>
+	<row id="pl_msg_00000717_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５０  ミュウツ－</language>
+	</row>
+	<row id="pl_msg_00000717_00151" index="151">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５１  ミュウ</language>
+	</row>
+	<row id="pl_msg_00000717_00152" index="152">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５２  チコリ－タ</language>
+	</row>
+	<row id="pl_msg_00000717_00153" index="153">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５３  ベイリ－フ</language>
+	</row>
+	<row id="pl_msg_00000717_00154" index="154">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５４  メガニウム</language>
+	</row>
+	<row id="pl_msg_00000717_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５５  ヒノアラシ</language>
+	</row>
+	<row id="pl_msg_00000717_00156" index="156">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５６  マグマラシ</language>
+	</row>
+	<row id="pl_msg_00000717_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５７  バクフ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５８  ワニノコ</language>
+	</row>
+	<row id="pl_msg_00000717_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１５９  アリゲイツ</language>
+	</row>
+	<row id="pl_msg_00000717_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６０  オ－ダイル</language>
+	</row>
+	<row id="pl_msg_00000717_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６１  オタチ</language>
+	</row>
+	<row id="pl_msg_00000717_00162" index="162">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６２  オオタチ</language>
+	</row>
+	<row id="pl_msg_00000717_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６３  ホ－ホ－</language>
+	</row>
+	<row id="pl_msg_00000717_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６４  ヨルノズク</language>
+	</row>
+	<row id="pl_msg_00000717_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６５  レディバ</language>
+	</row>
+	<row id="pl_msg_00000717_00166" index="166">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６６  レディアン</language>
+	</row>
+	<row id="pl_msg_00000717_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６７  イトマル</language>
+	</row>
+	<row id="pl_msg_00000717_00168" index="168">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６８  アリアドス</language>
+	</row>
+	<row id="pl_msg_00000717_00169" index="169">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１６９  クロバット</language>
+	</row>
+	<row id="pl_msg_00000717_00170" index="170">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７０  チョンチ－</language>
+	</row>
+	<row id="pl_msg_00000717_00171" index="171">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７１  ランタ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00172" index="172">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７２  ピチュ－</language>
+	</row>
+	<row id="pl_msg_00000717_00173" index="173">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７３  ピィ</language>
+	</row>
+	<row id="pl_msg_00000717_00174" index="174">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７４  ププリン</language>
+	</row>
+	<row id="pl_msg_00000717_00175" index="175">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７５  トゲピ－</language>
+	</row>
+	<row id="pl_msg_00000717_00176" index="176">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７６  トゲチック</language>
+	</row>
+	<row id="pl_msg_00000717_00177" index="177">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７７  ネイティ</language>
+	</row>
+	<row id="pl_msg_00000717_00178" index="178">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７８  ネイティオ</language>
+	</row>
+	<row id="pl_msg_00000717_00179" index="179">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１７９  メリ－プ</language>
+	</row>
+	<row id="pl_msg_00000717_00180" index="180">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８０  モココ</language>
+	</row>
+	<row id="pl_msg_00000717_00181" index="181">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８１  デンリュウ</language>
+	</row>
+	<row id="pl_msg_00000717_00182" index="182">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８２  キレイハナ</language>
+	</row>
+	<row id="pl_msg_00000717_00183" index="183">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８３  マリル</language>
+	</row>
+	<row id="pl_msg_00000717_00184" index="184">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８４  マリルリ</language>
+	</row>
+	<row id="pl_msg_00000717_00185" index="185">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８５  ウソッキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00186" index="186">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８６  ニョロトノ</language>
+	</row>
+	<row id="pl_msg_00000717_00187" index="187">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８７  ハネッコ</language>
+	</row>
+	<row id="pl_msg_00000717_00188" index="188">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８８  ポポッコ</language>
+	</row>
+	<row id="pl_msg_00000717_00189" index="189">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１８９  ワタッコ</language>
+	</row>
+	<row id="pl_msg_00000717_00190" index="190">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９０  エイパム</language>
+	</row>
+	<row id="pl_msg_00000717_00191" index="191">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９１  ヒマナッツ</language>
+	</row>
+	<row id="pl_msg_00000717_00192" index="192">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９２  キマワリ</language>
+	</row>
+	<row id="pl_msg_00000717_00193" index="193">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９３  ヤンヤンマ</language>
+	</row>
+	<row id="pl_msg_00000717_00194" index="194">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９４  ウパ－</language>
+	</row>
+	<row id="pl_msg_00000717_00195" index="195">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９５  ヌオ－</language>
+	</row>
+	<row id="pl_msg_00000717_00196" index="196">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９６  エ－フィ</language>
+	</row>
+	<row id="pl_msg_00000717_00197" index="197">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９７  ブラッキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00198" index="198">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９８  ヤミカラス</language>
+	</row>
+	<row id="pl_msg_00000717_00199" index="199">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">１９９  ヤドキング</language>
+	</row>
+	<row id="pl_msg_00000717_00200" index="200">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２００  ムウマ</language>
+	</row>
+	<row id="pl_msg_00000717_00201" index="201">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０１  アンノ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00202" index="202">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０２  ソ－ナンス</language>
+	</row>
+	<row id="pl_msg_00000717_00203" index="203">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０３  キリンリキ</language>
+	</row>
+	<row id="pl_msg_00000717_00204" index="204">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０４  クヌギダマ</language>
+	</row>
+	<row id="pl_msg_00000717_00205" index="205">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０５  フォレトス</language>
+	</row>
+	<row id="pl_msg_00000717_00206" index="206">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０６  ノコッチ</language>
+	</row>
+	<row id="pl_msg_00000717_00207" index="207">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０７  グライガ－</language>
+	</row>
+	<row id="pl_msg_00000717_00208" index="208">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０８  ハガネ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00209" index="209">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２０９  ブル－</language>
+	</row>
+	<row id="pl_msg_00000717_00210" index="210">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１０  グランブル</language>
+	</row>
+	<row id="pl_msg_00000717_00211" index="211">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１１  ハリ－セン</language>
+	</row>
+	<row id="pl_msg_00000717_00212" index="212">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１２  ハッサム</language>
+	</row>
+	<row id="pl_msg_00000717_00213" index="213">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１３  ツボツボ</language>
+	</row>
+	<row id="pl_msg_00000717_00214" index="214">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１４  ヘラクロス</language>
+	</row>
+	<row id="pl_msg_00000717_00215" index="215">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１５  ニュ－ラ</language>
+	</row>
+	<row id="pl_msg_00000717_00216" index="216">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１６  ヒメグマ</language>
+	</row>
+	<row id="pl_msg_00000717_00217" index="217">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１７  リングマ</language>
+	</row>
+	<row id="pl_msg_00000717_00218" index="218">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１８  マグマッグ</language>
+	</row>
+	<row id="pl_msg_00000717_00219" index="219">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２１９  マグカルゴ</language>
+	</row>
+	<row id="pl_msg_00000717_00220" index="220">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２０  ウリム－</language>
+	</row>
+	<row id="pl_msg_00000717_00221" index="221">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２１  イノム－</language>
+	</row>
+	<row id="pl_msg_00000717_00222" index="222">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２２  サニ－ゴ</language>
+	</row>
+	<row id="pl_msg_00000717_00223" index="223">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２３  テッポウオ</language>
+	</row>
+	<row id="pl_msg_00000717_00224" index="224">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２４  オクタン</language>
+	</row>
+	<row id="pl_msg_00000717_00225" index="225">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２５  デリバ－ド</language>
+	</row>
+	<row id="pl_msg_00000717_00226" index="226">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２６  マンタイン</language>
+	</row>
+	<row id="pl_msg_00000717_00227" index="227">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２７  エア－ムド</language>
+	</row>
+	<row id="pl_msg_00000717_00228" index="228">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２８  デルビル</language>
+	</row>
+	<row id="pl_msg_00000717_00229" index="229">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２２９  ヘルガ－</language>
+	</row>
+	<row id="pl_msg_00000717_00230" index="230">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３０  キングドラ</language>
+	</row>
+	<row id="pl_msg_00000717_00231" index="231">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３１  ゴマゾウ</language>
+	</row>
+	<row id="pl_msg_00000717_00232" index="232">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３２  ドンファン</language>
+	</row>
+	<row id="pl_msg_00000717_00233" index="233">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３３  ポリゴン２</language>
+	</row>
+	<row id="pl_msg_00000717_00234" index="234">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３４  オドシシ</language>
+	</row>
+	<row id="pl_msg_00000717_00235" index="235">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３５  ド－ブル</language>
+	</row>
+	<row id="pl_msg_00000717_00236" index="236">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３６  バルキ－</language>
+	</row>
+	<row id="pl_msg_00000717_00237" index="237">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３７  カポエラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00238" index="238">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３８  ムチュ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00239" index="239">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２３９  エレキッド</language>
+	</row>
+	<row id="pl_msg_00000717_00240" index="240">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４０  ブビィ</language>
+	</row>
+	<row id="pl_msg_00000717_00241" index="241">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４１  ミルタンク</language>
+	</row>
+	<row id="pl_msg_00000717_00242" index="242">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４２  ハピナス</language>
+	</row>
+	<row id="pl_msg_00000717_00243" index="243">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４３  ライコウ</language>
+	</row>
+	<row id="pl_msg_00000717_00244" index="244">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４４  エンテイ</language>
+	</row>
+	<row id="pl_msg_00000717_00245" index="245">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４５  スイクン</language>
+	</row>
+	<row id="pl_msg_00000717_00246" index="246">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４６  ヨ－ギラス</language>
+	</row>
+	<row id="pl_msg_00000717_00247" index="247">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４７  サナギラス</language>
+	</row>
+	<row id="pl_msg_00000717_00248" index="248">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４８  バンギラス</language>
+	</row>
+	<row id="pl_msg_00000717_00249" index="249">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２４９  ルギア</language>
+	</row>
+	<row id="pl_msg_00000717_00250" index="250">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５０  ホウオウ</language>
+	</row>
+	<row id="pl_msg_00000717_00251" index="251">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５１  セレビィ</language>
+	</row>
+	<row id="pl_msg_00000717_00252" index="252">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５２  キモリ</language>
+	</row>
+	<row id="pl_msg_00000717_00253" index="253">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５３  ジュプトル</language>
+	</row>
+	<row id="pl_msg_00000717_00254" index="254">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５４  ジュカイン</language>
+	</row>
+	<row id="pl_msg_00000717_00255" index="255">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５５  アチャモ</language>
+	</row>
+	<row id="pl_msg_00000717_00256" index="256">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５６  ワカシャモ</language>
+	</row>
+	<row id="pl_msg_00000717_00257" index="257">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５７  バシャ－モ</language>
+	</row>
+	<row id="pl_msg_00000717_00258" index="258">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５８  ミズゴロウ</language>
+	</row>
+	<row id="pl_msg_00000717_00259" index="259">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２５９  ヌマクロ－</language>
+	</row>
+	<row id="pl_msg_00000717_00260" index="260">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６０  ラグラ－ジ</language>
+	</row>
+	<row id="pl_msg_00000717_00261" index="261">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６１  ポチエナ</language>
+	</row>
+	<row id="pl_msg_00000717_00262" index="262">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６２  グラエナ</language>
+	</row>
+	<row id="pl_msg_00000717_00263" index="263">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６３  ジグザグマ</language>
+	</row>
+	<row id="pl_msg_00000717_00264" index="264">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６４  マッスグマ</language>
+	</row>
+	<row id="pl_msg_00000717_00265" index="265">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６５  ケムッソ</language>
+	</row>
+	<row id="pl_msg_00000717_00266" index="266">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６６  カラサリス</language>
+	</row>
+	<row id="pl_msg_00000717_00267" index="267">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６７  アゲハント</language>
+	</row>
+	<row id="pl_msg_00000717_00268" index="268">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６８  マユルド</language>
+	</row>
+	<row id="pl_msg_00000717_00269" index="269">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２６９  ドクケイル</language>
+	</row>
+	<row id="pl_msg_00000717_00270" index="270">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７０  ハスボ－</language>
+	</row>
+	<row id="pl_msg_00000717_00271" index="271">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７１  ハスブレロ</language>
+	</row>
+	<row id="pl_msg_00000717_00272" index="272">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７２  ルンパッパ</language>
+	</row>
+	<row id="pl_msg_00000717_00273" index="273">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７３  タネボ－</language>
+	</row>
+	<row id="pl_msg_00000717_00274" index="274">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７４  コノハナ</language>
+	</row>
+	<row id="pl_msg_00000717_00275" index="275">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７５  ダ－テング</language>
+	</row>
+	<row id="pl_msg_00000717_00276" index="276">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７６  スバメ</language>
+	</row>
+	<row id="pl_msg_00000717_00277" index="277">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７７  オオスバメ</language>
+	</row>
+	<row id="pl_msg_00000717_00278" index="278">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７８  キャモメ</language>
+	</row>
+	<row id="pl_msg_00000717_00279" index="279">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２７９  ペリッパ－</language>
+	</row>
+	<row id="pl_msg_00000717_00280" index="280">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８０  ラルトス</language>
+	</row>
+	<row id="pl_msg_00000717_00281" index="281">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８１  キルリア</language>
+	</row>
+	<row id="pl_msg_00000717_00282" index="282">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８２  サ－ナイト</language>
+	</row>
+	<row id="pl_msg_00000717_00283" index="283">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８３  アメタマ</language>
+	</row>
+	<row id="pl_msg_00000717_00284" index="284">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８４  アメモ－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00285" index="285">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８５  キノココ</language>
+	</row>
+	<row id="pl_msg_00000717_00286" index="286">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８６  キノガッサ</language>
+	</row>
+	<row id="pl_msg_00000717_00287" index="287">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８７  ナマケロ</language>
+	</row>
+	<row id="pl_msg_00000717_00288" index="288">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８８  ヤルキモノ</language>
+	</row>
+	<row id="pl_msg_00000717_00289" index="289">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２８９  ケッキング</language>
+	</row>
+	<row id="pl_msg_00000717_00290" index="290">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９０  ツチニン</language>
+	</row>
+	<row id="pl_msg_00000717_00291" index="291">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９１  テッカニン</language>
+	</row>
+	<row id="pl_msg_00000717_00292" index="292">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９２  ヌケニン</language>
+	</row>
+	<row id="pl_msg_00000717_00293" index="293">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９３  ゴニョニョ</language>
+	</row>
+	<row id="pl_msg_00000717_00294" index="294">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９４  ドゴ－ム</language>
+	</row>
+	<row id="pl_msg_00000717_00295" index="295">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９５  バクオング</language>
+	</row>
+	<row id="pl_msg_00000717_00296" index="296">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９６  マクノシタ</language>
+	</row>
+	<row id="pl_msg_00000717_00297" index="297">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９７  ハリテヤマ</language>
+	</row>
+	<row id="pl_msg_00000717_00298" index="298">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９８  ルリリ</language>
+	</row>
+	<row id="pl_msg_00000717_00299" index="299">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">２９９  ノズパス</language>
+	</row>
+	<row id="pl_msg_00000717_00300" index="300">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３００  エネコ</language>
+	</row>
+	<row id="pl_msg_00000717_00301" index="301">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０１  エネコロロ</language>
+	</row>
+	<row id="pl_msg_00000717_00302" index="302">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０２  ヤミラミ</language>
+	</row>
+	<row id="pl_msg_00000717_00303" index="303">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０３  クチ－ト</language>
+	</row>
+	<row id="pl_msg_00000717_00304" index="304">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０４  ココドラ</language>
+	</row>
+	<row id="pl_msg_00000717_00305" index="305">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０５  コドラ</language>
+	</row>
+	<row id="pl_msg_00000717_00306" index="306">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０６  ボスゴドラ</language>
+	</row>
+	<row id="pl_msg_00000717_00307" index="307">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０７  アサナン</language>
+	</row>
+	<row id="pl_msg_00000717_00308" index="308">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０８  チャ－レム</language>
+	</row>
+	<row id="pl_msg_00000717_00309" index="309">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３０９  ラクライ</language>
+	</row>
+	<row id="pl_msg_00000717_00310" index="310">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１０  ライボルト</language>
+	</row>
+	<row id="pl_msg_00000717_00311" index="311">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１１  プラスル</language>
+	</row>
+	<row id="pl_msg_00000717_00312" index="312">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１２  マイナン</language>
+	</row>
+	<row id="pl_msg_00000717_00313" index="313">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１３  バルビ－ト</language>
+	</row>
+	<row id="pl_msg_00000717_00314" index="314">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１４  イルミ－ゼ</language>
+	</row>
+	<row id="pl_msg_00000717_00315" index="315">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１５  ロゼリア</language>
+	</row>
+	<row id="pl_msg_00000717_00316" index="316">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１６  ゴクリン</language>
+	</row>
+	<row id="pl_msg_00000717_00317" index="317">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１７  マルノ－ム</language>
+	</row>
+	<row id="pl_msg_00000717_00318" index="318">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１８  キバニア</language>
+	</row>
+	<row id="pl_msg_00000717_00319" index="319">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３１９  サメハダ－</language>
+	</row>
+	<row id="pl_msg_00000717_00320" index="320">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２０  ホエルコ</language>
+	</row>
+	<row id="pl_msg_00000717_00321" index="321">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２１  ホエルオ－</language>
+	</row>
+	<row id="pl_msg_00000717_00322" index="322">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２２  ドンメル</language>
+	</row>
+	<row id="pl_msg_00000717_00323" index="323">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２３  バク－ダ</language>
+	</row>
+	<row id="pl_msg_00000717_00324" index="324">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２４  コ－タス</language>
+	</row>
+	<row id="pl_msg_00000717_00325" index="325">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２５  バネブ－</language>
+	</row>
+	<row id="pl_msg_00000717_00326" index="326">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２６  ブ－ピッグ</language>
+	</row>
+	<row id="pl_msg_00000717_00327" index="327">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２７  パッチ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00328" index="328">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２８  ナックラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00329" index="329">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３２９  ビブラ－バ</language>
+	</row>
+	<row id="pl_msg_00000717_00330" index="330">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３０  フライゴン</language>
+	</row>
+	<row id="pl_msg_00000717_00331" index="331">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３１  サボネア</language>
+	</row>
+	<row id="pl_msg_00000717_00332" index="332">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３２  ノクタス</language>
+	</row>
+	<row id="pl_msg_00000717_00333" index="333">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３３  チルット</language>
+	</row>
+	<row id="pl_msg_00000717_00334" index="334">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３４  チルタリス</language>
+	</row>
+	<row id="pl_msg_00000717_00335" index="335">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３５  ザング－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00336" index="336">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３６  ハブネ－ク</language>
+	</row>
+	<row id="pl_msg_00000717_00337" index="337">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３７  ルナト－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00338" index="338">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３８  ソルロック</language>
+	</row>
+	<row id="pl_msg_00000717_00339" index="339">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３３９  ドジョッチ</language>
+	</row>
+	<row id="pl_msg_00000717_00340" index="340">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４０  ナマズン</language>
+	</row>
+	<row id="pl_msg_00000717_00341" index="341">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４１  ヘイガニ</language>
+	</row>
+	<row id="pl_msg_00000717_00342" index="342">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４２  シザリガ－</language>
+	</row>
+	<row id="pl_msg_00000717_00343" index="343">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４３  ヤジロン</language>
+	</row>
+	<row id="pl_msg_00000717_00344" index="344">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４４  ネンド－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00345" index="345">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４５  リリ－ラ</language>
+	</row>
+	<row id="pl_msg_00000717_00346" index="346">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４６  ユレイドル</language>
+	</row>
+	<row id="pl_msg_00000717_00347" index="347">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４７  アノプス</language>
+	</row>
+	<row id="pl_msg_00000717_00348" index="348">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４８  ア－マルド</language>
+	</row>
+	<row id="pl_msg_00000717_00349" index="349">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３４９  ヒンバス</language>
+	</row>
+	<row id="pl_msg_00000717_00350" index="350">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５０  ミロカロス</language>
+	</row>
+	<row id="pl_msg_00000717_00351" index="351">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５１  ポワルン</language>
+	</row>
+	<row id="pl_msg_00000717_00352" index="352">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５２  カクレオン</language>
+	</row>
+	<row id="pl_msg_00000717_00353" index="353">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５３  カゲボウズ</language>
+	</row>
+	<row id="pl_msg_00000717_00354" index="354">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５４  ジュペッタ</language>
+	</row>
+	<row id="pl_msg_00000717_00355" index="355">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５５  ヨマワル</language>
+	</row>
+	<row id="pl_msg_00000717_00356" index="356">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５６  サマヨ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00357" index="357">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５７  トロピウス</language>
+	</row>
+	<row id="pl_msg_00000717_00358" index="358">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５８  チリ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00359" index="359">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３５９  アブソル</language>
+	</row>
+	<row id="pl_msg_00000717_00360" index="360">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６０  ソ－ナノ</language>
+	</row>
+	<row id="pl_msg_00000717_00361" index="361">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６１  ユキワラシ</language>
+	</row>
+	<row id="pl_msg_00000717_00362" index="362">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６２  オニゴ－リ</language>
+	</row>
+	<row id="pl_msg_00000717_00363" index="363">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６３  タマザラシ</language>
+	</row>
+	<row id="pl_msg_00000717_00364" index="364">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６４  トドグラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00365" index="365">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６５  トドゼルガ</language>
+	</row>
+	<row id="pl_msg_00000717_00366" index="366">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６６  パ－ルル</language>
+	</row>
+	<row id="pl_msg_00000717_00367" index="367">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６７  ハンテ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00368" index="368">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６８  サクラビス</language>
+	</row>
+	<row id="pl_msg_00000717_00369" index="369">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３６９  ジ－ランス</language>
+	</row>
+	<row id="pl_msg_00000717_00370" index="370">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７０  ラブカス</language>
+	</row>
+	<row id="pl_msg_00000717_00371" index="371">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７１  タツベイ</language>
+	</row>
+	<row id="pl_msg_00000717_00372" index="372">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７２  コモル－</language>
+	</row>
+	<row id="pl_msg_00000717_00373" index="373">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７３  ボ－マンダ</language>
+	</row>
+	<row id="pl_msg_00000717_00374" index="374">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７４  ダンバル</language>
+	</row>
+	<row id="pl_msg_00000717_00375" index="375">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７５  メタング</language>
+	</row>
+	<row id="pl_msg_00000717_00376" index="376">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７６  メタグロス</language>
+	</row>
+	<row id="pl_msg_00000717_00377" index="377">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７７  レジロック</language>
+	</row>
+	<row id="pl_msg_00000717_00378" index="378">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７８  レジアイス</language>
+	</row>
+	<row id="pl_msg_00000717_00379" index="379">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３７９  レジスチル</language>
+	</row>
+	<row id="pl_msg_00000717_00380" index="380">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８０  ラティアス</language>
+	</row>
+	<row id="pl_msg_00000717_00381" index="381">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８１  ラティオス</language>
+	</row>
+	<row id="pl_msg_00000717_00382" index="382">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８２  カイオ－ガ</language>
+	</row>
+	<row id="pl_msg_00000717_00383" index="383">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８３  グラ－ドン</language>
+	</row>
+	<row id="pl_msg_00000717_00384" index="384">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８４  レックウザ</language>
+	</row>
+	<row id="pl_msg_00000717_00385" index="385">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８５  ジラ－チ</language>
+	</row>
+	<row id="pl_msg_00000717_00386" index="386">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８６  デオキシス</language>
+	</row>
+	<row id="pl_msg_00000717_00387" index="387">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８７  ナエトル</language>
+	</row>
+	<row id="pl_msg_00000717_00388" index="388">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８８  ハヤシガメ</language>
+	</row>
+	<row id="pl_msg_00000717_00389" index="389">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３８９  ドダイトス</language>
+	</row>
+	<row id="pl_msg_00000717_00390" index="390">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９０  ヒコザル</language>
+	</row>
+	<row id="pl_msg_00000717_00391" index="391">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９１  モウカザル</language>
+	</row>
+	<row id="pl_msg_00000717_00392" index="392">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９２  ゴウカザル</language>
+	</row>
+	<row id="pl_msg_00000717_00393" index="393">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９３  ポッチャマ</language>
+	</row>
+	<row id="pl_msg_00000717_00394" index="394">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９４  ポッタイシ</language>
+	</row>
+	<row id="pl_msg_00000717_00395" index="395">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９５  エンペルト</language>
+	</row>
+	<row id="pl_msg_00000717_00396" index="396">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９６  ムックル</language>
+	</row>
+	<row id="pl_msg_00000717_00397" index="397">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９７  ムクバ－ド</language>
+	</row>
+	<row id="pl_msg_00000717_00398" index="398">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９８  ムクホ－ク</language>
+	</row>
+	<row id="pl_msg_00000717_00399" index="399">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">３９９  ビッパ</language>
+	</row>
+	<row id="pl_msg_00000717_00400" index="400">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４００  ビ－ダル</language>
+	</row>
+	<row id="pl_msg_00000717_00401" index="401">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０１  コロボ－シ</language>
+	</row>
+	<row id="pl_msg_00000717_00402" index="402">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０２  コロトック</language>
+	</row>
+	<row id="pl_msg_00000717_00403" index="403">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０３  コリンク</language>
+	</row>
+	<row id="pl_msg_00000717_00404" index="404">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０４  ルクシオ</language>
+	</row>
+	<row id="pl_msg_00000717_00405" index="405">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０５  レントラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00406" index="406">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０６  スボミ－</language>
+	</row>
+	<row id="pl_msg_00000717_00407" index="407">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０７  ロズレイド</language>
+	</row>
+	<row id="pl_msg_00000717_00408" index="408">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０８  ズガイドス</language>
+	</row>
+	<row id="pl_msg_00000717_00409" index="409">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４０９  ラムパルド</language>
+	</row>
+	<row id="pl_msg_00000717_00410" index="410">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１０  タテトプス</language>
+	</row>
+	<row id="pl_msg_00000717_00411" index="411">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１１  トリデプス</language>
+	</row>
+	<row id="pl_msg_00000717_00412" index="412">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１２  ミノムッチ</language>
+	</row>
+	<row id="pl_msg_00000717_00413" index="413">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１３  ミノマダム</language>
+	</row>
+	<row id="pl_msg_00000717_00414" index="414">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１４  ガ－メイル</language>
+	</row>
+	<row id="pl_msg_00000717_00415" index="415">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１５  ミツハニ－</language>
+	</row>
+	<row id="pl_msg_00000717_00416" index="416">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１６  ビ－クイン</language>
+	</row>
+	<row id="pl_msg_00000717_00417" index="417">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１７  パチリス</language>
+	</row>
+	<row id="pl_msg_00000717_00418" index="418">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１８  ブイゼル</language>
+	</row>
+	<row id="pl_msg_00000717_00419" index="419">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４１９  フロ－ゼル</language>
+	</row>
+	<row id="pl_msg_00000717_00420" index="420">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２０  チェリンボ</language>
+	</row>
+	<row id="pl_msg_00000717_00421" index="421">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２１  チェリム</language>
+	</row>
+	<row id="pl_msg_00000717_00422" index="422">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２２  カラナクシ</language>
+	</row>
+	<row id="pl_msg_00000717_00423" index="423">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２３  トリトドン</language>
+	</row>
+	<row id="pl_msg_00000717_00424" index="424">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２４  エテボ－ス</language>
+	</row>
+	<row id="pl_msg_00000717_00425" index="425">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２５  フワンテ</language>
+	</row>
+	<row id="pl_msg_00000717_00426" index="426">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２６  フワライド</language>
+	</row>
+	<row id="pl_msg_00000717_00427" index="427">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２７  ミミロル</language>
+	</row>
+	<row id="pl_msg_00000717_00428" index="428">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２８  ミミロップ</language>
+	</row>
+	<row id="pl_msg_00000717_00429" index="429">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４２９  ムウマ－ジ</language>
+	</row>
+	<row id="pl_msg_00000717_00430" index="430">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３０  ドンカラス</language>
+	</row>
+	<row id="pl_msg_00000717_00431" index="431">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３１  ニャルマ－</language>
+	</row>
+	<row id="pl_msg_00000717_00432" index="432">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３２  ブニャット</language>
+	</row>
+	<row id="pl_msg_00000717_00433" index="433">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３３  リ－シャン</language>
+	</row>
+	<row id="pl_msg_00000717_00434" index="434">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３４  スカンプ－</language>
+	</row>
+	<row id="pl_msg_00000717_00435" index="435">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３５  スカタンク</language>
+	</row>
+	<row id="pl_msg_00000717_00436" index="436">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３６  ド－ミラ－</language>
+	</row>
+	<row id="pl_msg_00000717_00437" index="437">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３７  ド－タクン</language>
+	</row>
+	<row id="pl_msg_00000717_00438" index="438">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３８  ウソハチ</language>
+	</row>
+	<row id="pl_msg_00000717_00439" index="439">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４３９  マネネ</language>
+	</row>
+	<row id="pl_msg_00000717_00440" index="440">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４０  ピンプク</language>
+	</row>
+	<row id="pl_msg_00000717_00441" index="441">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４１  ペラップ</language>
+	</row>
+	<row id="pl_msg_00000717_00442" index="442">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４２  ミカルゲ</language>
+	</row>
+	<row id="pl_msg_00000717_00443" index="443">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４３  フカマル</language>
+	</row>
+	<row id="pl_msg_00000717_00444" index="444">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４４  ガバイト</language>
+	</row>
+	<row id="pl_msg_00000717_00445" index="445">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４５  ガブリアス</language>
+	</row>
+	<row id="pl_msg_00000717_00446" index="446">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４６  ゴンベ</language>
+	</row>
+	<row id="pl_msg_00000717_00447" index="447">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４７  リオル</language>
+	</row>
+	<row id="pl_msg_00000717_00448" index="448">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４８  ルカリオ</language>
+	</row>
+	<row id="pl_msg_00000717_00449" index="449">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４４９  ヒポポタス</language>
+	</row>
+	<row id="pl_msg_00000717_00450" index="450">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５０  カバルドン</language>
+	</row>
+	<row id="pl_msg_00000717_00451" index="451">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５１  スコルピ</language>
+	</row>
+	<row id="pl_msg_00000717_00452" index="452">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５２  ドラピオン</language>
+	</row>
+	<row id="pl_msg_00000717_00453" index="453">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５３  グレッグル</language>
+	</row>
+	<row id="pl_msg_00000717_00454" index="454">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５４  ドクロッグ</language>
+	</row>
+	<row id="pl_msg_00000717_00455" index="455">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５５  マスキッパ</language>
+	</row>
+	<row id="pl_msg_00000717_00456" index="456">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５６  ケイコウオ</language>
+	</row>
+	<row id="pl_msg_00000717_00457" index="457">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５７  ネオラント</language>
+	</row>
+	<row id="pl_msg_00000717_00458" index="458">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５８  タマンタ</language>
+	</row>
+	<row id="pl_msg_00000717_00459" index="459">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４５９  ユキカブリ</language>
+	</row>
+	<row id="pl_msg_00000717_00460" index="460">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６０  ユキノオ－</language>
+	</row>
+	<row id="pl_msg_00000717_00461" index="461">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６１  マニュ－ラ</language>
+	</row>
+	<row id="pl_msg_00000717_00462" index="462">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６２  ジバコイル</language>
+	</row>
+	<row id="pl_msg_00000717_00463" index="463">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６３  ベロベルト</language>
+	</row>
+	<row id="pl_msg_00000717_00464" index="464">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６４  ドサイドン</language>
+	</row>
+	<row id="pl_msg_00000717_00465" index="465">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６５  モジャンボ</language>
+	</row>
+	<row id="pl_msg_00000717_00466" index="466">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６６  エレキブル</language>
+	</row>
+	<row id="pl_msg_00000717_00467" index="467">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６７  ブ－バ－ン</language>
+	</row>
+	<row id="pl_msg_00000717_00468" index="468">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６８  トゲキッス</language>
+	</row>
+	<row id="pl_msg_00000717_00469" index="469">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４６９  メガヤンマ</language>
+	</row>
+	<row id="pl_msg_00000717_00470" index="470">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７０  リ－フィア</language>
+	</row>
+	<row id="pl_msg_00000717_00471" index="471">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７１  グレイシア</language>
+	</row>
+	<row id="pl_msg_00000717_00472" index="472">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７２  グライオン</language>
+	</row>
+	<row id="pl_msg_00000717_00473" index="473">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７３  マンム－</language>
+	</row>
+	<row id="pl_msg_00000717_00474" index="474">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７４  ポリゴンＺ</language>
+	</row>
+	<row id="pl_msg_00000717_00475" index="475">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７５  エルレイド</language>
+	</row>
+	<row id="pl_msg_00000717_00476" index="476">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７６  ダイノ－ズ</language>
+	</row>
+	<row id="pl_msg_00000717_00477" index="477">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７７  ヨノワ－ル</language>
+	</row>
+	<row id="pl_msg_00000717_00478" index="478">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７８  ユキメノコ</language>
+	</row>
+	<row id="pl_msg_00000717_00479" index="479">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４７９  ロトム</language>
+	</row>
+	<row id="pl_msg_00000717_00480" index="480">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８０  ユクシ－</language>
+	</row>
+	<row id="pl_msg_00000717_00481" index="481">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８１  エムリット</language>
+	</row>
+	<row id="pl_msg_00000717_00482" index="482">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８２  アグノム</language>
+	</row>
+	<row id="pl_msg_00000717_00483" index="483">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８３  ディアルガ</language>
+	</row>
+	<row id="pl_msg_00000717_00484" index="484">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８４  パルキア</language>
+	</row>
+	<row id="pl_msg_00000717_00485" index="485">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８５  ヒ－ドラン</language>
+	</row>
+	<row id="pl_msg_00000717_00486" index="486">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８６  レジギガス</language>
+	</row>
+	<row id="pl_msg_00000717_00487" index="487">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８７  ギラティナ</language>
+	</row>
+	<row id="pl_msg_00000717_00488" index="488">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８８  クレセリア</language>
+	</row>
+	<row id="pl_msg_00000717_00489" index="489">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４８９  フィオネ</language>
+	</row>
+	<row id="pl_msg_00000717_00490" index="490">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４９０  マナフィ</language>
+	</row>
+	<row id="pl_msg_00000717_00491" index="491">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４９１  ダ－クライ</language>
+	</row>
+	<row id="pl_msg_00000717_00492" index="492">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４９２  シェイミ</language>
+	</row>
+	<row id="pl_msg_00000717_00493" index="493">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">４９３  アルセウス</language>
+	</row>
+</body>

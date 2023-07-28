@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000098_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve had this TM Recycle for such\na long time now.\rIt’s not anything that I have much\nuse for these days.\rI do hope you’ll put it to good\nuse, young Trainer.\r</language>
+	</row>
+	<row id="pl_msg_00000098_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Folks like me have a long history\nwe can look back on.\rYoung people like you have only the\nfuture to look forward to.</language>
+	</row>
+	<row id="pl_msg_00000098_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia, our Gym Leader, goes out\nto Eterna Forest every so often.\rI always wonder what she does there.</language>
+	</row>
+	<row id="pl_msg_00000098_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The move Recycle is to be used during\nbattle.\rWhen you use Recycle, a Pokémon can\nuse its item once again.</language>
+	</row>
+</body>

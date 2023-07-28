@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000074_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Listen, listen. Do you have a Pokémon\ncalled MACHOP?\rWould you be willing to trade your\nMACHOP for my ABRA?</language>
+	</row>
+	<row id="pl_msg_00000074_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Be nice to my ABRA!\rI’ll be sure to look after your MACHOP\nin return!</language>
+	</row>
+	<row id="pl_msg_00000074_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What I asked for was a MACHOP...</language>
+	</row>
+	<row id="pl_msg_00000074_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, OK...\nWell, I can’t make you trade me.\rBut if you change your mind,\nI’ll be right here waiting!</language>
+	</row>
+	<row id="pl_msg_00000074_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks to Pokémon, I got to be\nfriends with you!</language>
+	</row>
+	<row id="pl_msg_00000074_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon obtained in a trade grows\nquickly.\rBut if a Pokémon grows too much, it may\nignore the Trainer.\rOf course, it won’t matter if you have\nlots of Gym Badges.</language>
+	</row>
+	<row id="pl_msg_00000074_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you trade a Pokémon, the item it’s\nholding is traded as well.\rThat’s pretty cool, huh?\rIt means you can send an item as a gift\nalong with your Pokémon in a trade!</language>
+	</row>
+</body>

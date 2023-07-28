@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000268_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Bishaan!\r</language>
+	</row>
+	<row id="pl_msg_00000268_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIRATINA disappeared...</language>
+	</row>
+	<row id="pl_msg_00000268_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a portal leading to the\nDistortion World...\rWould you like to leap into the portal\nand go to the Distortion World?</language>
+	</row>
+	<row id="pl_msg_00000268_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} leapt into the portal.\r</language>
+	</row>
+	<row id="pl_msg_00000268_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is...\rThat where life sparkles...\nThat where life has faded...\rA place where two worlds overlap...</language>
+	</row>
+</body>

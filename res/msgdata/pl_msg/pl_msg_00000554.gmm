@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000554_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000554_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What was that about?!\rOh, hey, {STRVAR_1 3, 1, 0}!\rHey! I’m going to see Prof. Rowan!\nYou should come, too! And quickly!\r</language>
+	</row>
+	<row id="pl_msg_00000554_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, jeez!\nForgot something!\r</language>
+	</row>
+	<row id="pl_msg_00000554_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hiya, {STRVAR_1 3, 0, 0}.\n{STRVAR_1 3, 1, 0} was looking for you.\rI think he’s home now.\nWhy don’t you go check it out?\r</language>
+	</row>
+	<row id="pl_msg_00000554_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hiya, {STRVAR_1 3, 0, 0}.\n{STRVAR_1 3, 1, 0} was looking for you.\rI think he’s home now.\nWhy don’t you go check it out?</language>
+	</row>
+	<row id="pl_msg_00000554_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hiya, {STRVAR_1 3, 0, 0}.\nYou’re looking for {STRVAR_1 3, 1, 0}?\rHe just went tearing off a little\nwhile ago.\rHe’s probably not gone too far.\nWhy not go chase after him?</language>
+	</row>
+	<row id="pl_msg_00000554_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}? He went tearing off\nin a huge rush a while ago.\r...Ouch. He ran right into me earlier.\nIt’s still hurting.\fThat kid’s growing up tough.</language>
+	</row>
+	<row id="pl_msg_00000554_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone goes off on adventures,\nand then they gradually grow up...</language>
+	</row>
+	<row id="pl_msg_00000554_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s true that wild Pokémon do attack\npeople sometimes...\rBut, Pokémon also open their hearts\nto you, so you can become friends.</language>
+	</row>
+	<row id="pl_msg_00000554_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! A Pokémon!\nYou look good together!</language>
+	</row>
+	<row id="pl_msg_00000554_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’re helping put together\na Pokédex?\rThat means you’re going to travel\nall over the place with Pokémon!\rThat sounds like a lot of fun!\nI’m a little envious, to be honest!</language>
+	</row>
+	<row id="pl_msg_00000554_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Technology just blows me away!\rI mean, now you can play with people\naround the world...wirelessly!</language>
+	</row>
+	<row id="pl_msg_00000554_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Twinleaf Town\nFresh and Free!</language>
+	</row>
+	<row id="pl_msg_00000554_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}’s House</language>
+	</row>
+	<row id="pl_msg_00000554_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}’s House</language>
+	</row>
+</body>

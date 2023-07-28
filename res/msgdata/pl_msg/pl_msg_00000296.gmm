@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000296_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The mission is proceeding without\na hitch. The boss should be pleased.\rEverything is for everyone, and\nfor the good of Team Galactic!\r</language>
+	</row>
+	<row id="pl_msg_00000296_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I recognize your face!\rYou’re the child who raided the Team\nGalactic building in Eterna!\rHumph! Jupiter should be ashamed of\nherself, being beaten by a child.\rBut anything and anyone that opposes\nTeam Galactic must be crushed!\rEven the very thought of opposition\nwill not be tolerated!\r</language>
+	</row>
+	<row id="pl_msg_00000296_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gah! Even I, a Commander, only\nmanaged to buy us time?\rBut that’s fine.\rA child like you will never be able to\nstem the flow of time!\rTeam Galactic will get the three\nlegendary Pokémon of the lakes!\rWith their power, we will create an\nentirely new universe!\rBy now, Mars should have captured\nthe Pokémon of Lake Verity...\r</language>
+	</row>
+	<row id="pl_msg_00000296_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Kyuuun...\r</language>
+	</row>
+	<row id="pl_msg_00000296_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">AZELF disappeared deep into\nthe cavern...</language>
+	</row>
+</body>

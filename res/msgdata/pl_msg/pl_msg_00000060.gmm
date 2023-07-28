@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000060_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\nOver here! This way!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: OK, gramps!\nI brought {STRVAR_1 3, 1, 0} like I said!\rAll right, I’ll be outta here!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: ...\n...\r...\n...\r...\n...\r</language>
+	</row>
+	<row id="pl_msg_00000060_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: ...OK...\nI get it...\r</language>
+	</row>
+	<row id="pl_msg_00000060_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm! Everyone’s here finally.\n{STRVAR_1 3, 0, 0}, everyone, listen.\rYou may have forgotten already, but\nI study the evolution of Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But the more I study, the more\nmysteries appear and multiply.\rPokémon that evolve, and those that\ndon’t...\rWhat makes them different from each\nother?\rDo those that are immature as living\nbeings evolve to ones more mature?\rIf so, what do we make of the\nlegendary Pokémon that don’t evolve?\rAre we to assume that the legendary\nPokémon are complete as creatures?\r</language>
+	</row>
+	<row id="pl_msg_00000060_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is where you three come in.\rIn the three lakes of Sinnoh, there\nare said to be mirage Pokémon.\rIf we can obtain data on them,\nit may shed some light on how the\fprocess of Pokémon evolution works.\rI need help from each one of you\non this grand undertaking.\rHelp me find these Pokémon that are\nconsidered to be mirages.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What are you saying?\nI didn’t get a Pokédex!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: ...And who was it that bolted\nfrom the lab before I had a chance\fto give you a Pokédex?\rBut that’s water under the bridge!\rSeeing Pokémon with your own eyes is\nimportant for you in becoming a better\fTrainer, too.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: You can count on me!\nIt will help with my Pokédex, too.\r{STRVAR_1 3, 0, 0}, you’ll go, too,\nwon’t you?\r</language>
+	</row>
+	<row id="pl_msg_00000060_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: You bet, Professor!\rThis will add to the Pokédex\ndatabase and help advance your\fresearch.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm! I would have made all of\nyou go regardless... Anyway.\rNow, there are three lakes.\nFortuitously, there are three of you.\rYou should therefore split up and\ninvestigate the lakes individually.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Dawn, you go to Lake Verity.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Will do!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Lucas, you go to Lake Verity.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Yes, sir!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: {STRVAR_1 3, 0, 0}, I want you to\ninvestigate Lake Acuity.\rThat would take you almost to\nSnowpoint City.\rThe road there is harsh. I need\na tough Trainer to go.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Uh... Yeah, of course!\nGramps, you know how to call it!\fYou can tell I’m the hotness!\rAnd, you know what? I was going to\ncatch those legendary Pokémon for you.\rYou know, as thanks for giving us our\nPokémon back on Route 201.\r...Even though I forgot completely\nabout it until just now.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Very well.\nI’m counting on you.\rAnd that leaves {STRVAR_1 3, 0, 0} with\nLake Valor.\rThe lake is between Veilstone\nand Pastoria, if memory serves...\r</language>
+	</row>
+	<row id="pl_msg_00000060_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}DDDOOOMMM!!</language>
+	</row>
+	<row id="pl_msg_00000060_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: ...\n...Has it stopped?\rAre all of you unharmed?\r</language>
+	</row>
+	<row id="pl_msg_00000060_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What was that about?!\rNo, wait, I mean, TV! The TV!\nNews! Anything!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: What you’ve just witnessed\nis actual footage from the scene.\rIt was taken by a cameraman who\nhappened to be there.\rNewscaster: It’s certainly impressive.\rWho knows what the explosion could\nexpose at the lake?\r</language>
+	</row>
+	<row id="pl_msg_00000060_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Gramps!\nThey said it was an explosion?!\r</language>
+	</row>
+	<row id="pl_msg_00000060_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hmm...\nBut why at Lake Valor...?\rLet’s get outside.\nI’m concerned about the town.\rYou kids, be careful going down the\nstairs.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: {STRVAR_1 3, 1, 0}.\nYou should leave now, too.\r...There may be aftershocks, however.\nBe alert always.\r</language>
+	</row>
+	<row id="pl_msg_00000060_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Every book contains someone’s\nmemories of various places and times.\rLibraries aren’t just buildings where\nbooks are kept, you know.\rThey’re where different places\nand times are gathered together.</language>
+	</row>
+	<row id="pl_msg_00000060_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">W-was that an earthquake?\nI didn’t imagine it?</language>
+	</row>
+	<row id="pl_msg_00000060_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Someone’s always checked out the\nbook I want to read...</language>
+	</row>
+	<row id="pl_msg_00000060_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m feeling wobbly...\rEven though the tremor has ended,\nmy knees still feel like jelly...</language>
+	</row>
+	<row id="pl_msg_00000060_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This book is titled “Sinnoh\nMyth.” Want to read it?</language>
+	</row>
+	<row id="pl_msg_00000060_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Sinnoh Myth”\rBetray not your anger, lest ??? will\ncome.\rWeep not with sorrow, or ??? will\ndraw near.\rWhen joy and enjoyment come natural\nas the very air, that is happiness.\rLet such be blessed by the hand\nof Master ???.\rThose words were spoken often\nas customary.</language>
+	</row>
+	<row id="pl_msg_00000060_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This book is titled “Sinnoh Region’s\nMythology.” Want to read it?</language>
+	</row>
+	<row id="pl_msg_00000060_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Sinnoh Region’s Mythology”\rLong ago, when Sinnoh had just been\nmade, Pokémon and humans led\fseparate lives.\rThat is not to say they did not help\neach other. No, indeed they did.\rThey supplied each other with goods,\nand supported each other.\rA Pokémon proposed to the others\nto always be ready to help humans.\rIt asked that Pokémon be ready to\nappear before humans always.\rThus, to this day, Pokémon appear\nto us if we venture into tall grass.</language>
+	</row>
+	<row id="pl_msg_00000060_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This book is titled “Sinnoh’s\nMyth.” Want to read it?</language>
+	</row>
+	<row id="pl_msg_00000060_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Sinnoh’s Myth”\rThree Pokémon there were.\rInto the lakes they dove.\nDeep, deep, drawing no breath.\rDeeper, deeper they dove.\nInto suffocating depths they dove.\rDeeper, then deepest they alight.\nFrom the lake floor they rise.\rBearing with them the power to make\nvast lands, they rise again.</language>
+	</row>
+	<row id="pl_msg_00000060_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This book is titled “Veilstone’s\nMyth.” Want to read it?</language>
+	</row>
+	<row id="pl_msg_00000060_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Veilstone’s Myth”\rA young man, callow and foolish in\ninnocence, came to own a sword.\rWith it, he smote Pokémon, which gave\nsustenance, with carefree abandon.\rThose not taken as food, he\ndiscarded, with no afterthought.\rThe following year, no Pokémon\nappeared. Larders grew bare.\r...Would you like to keep reading?</language>
+	</row>
+	<row id="pl_msg_00000060_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The young man, seeking the missing\nPokémon, journeyed afar.\rLong did he search. And far and wide,\ntoo, until one he did find.\rAsked he, “Why do you hide?”\nTo which the Pokémon replied...\r“If you bear your sword to bring\nharm upon us, with claws and\ffangs, we will exact a toll.\r“From your kind we will take our\ntoll, for it must be done.\r“Done it must be to guard ourselves\nand for it, I apologize.”\r...Would you like to keep reading?</language>
+	</row>
+	<row id="pl_msg_00000060_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To the skies, the young man shouted\nhis dismay.\r“In having found the sword, I have\nlost so much.\r“Gorged with power, I grew blind\nto Pokémon being alive.\r“I will never fall savage again.\nThis sword I denounce and forsake.\r“I plead for forgiveness,\nfor I was but a fool.”\rSo saying, the young man hurled the\nsword to the ground, snapping it.\rSeeing this, the Pokémon disappeared\nto a place beyond seeing...</language>
+	</row>
+	<row id="pl_msg_00000060_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This ancient book is titled “The\nOriginal Story.” Want to read it?</language>
+	</row>
+	<row id="pl_msg_00000060_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the beginning, there was only\na churning turmoil of chaos.\rAt the heart of chaos, where all\nthings became one, appeared an Egg.\rHaving tumbled from the vortex, the\nEgg gave rise to the Original One.\r...Would you like to keep reading?</language>
+	</row>
+	<row id="pl_msg_00000060_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">From itself, two beings the Original\nOne did make.\rTime started to spin.\nSpace began to expand.\rFrom itself again, three living things\nthe Original One did make.\r...Would you like to keep reading?</language>
+	</row>
+	<row id="pl_msg_00000060_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The two beings wished, and from them,\nmatter came to be.\rThe three living things wished, and\nfrom them, spirit came to be.\rThe world created, the Original One\ntook to unyielding sleep...</language>
+	</row>
+	<row id="pl_msg_00000060_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This book is titled “A Horrific\nMyth.” Want to read it?</language>
+	</row>
+	<row id="pl_msg_00000060_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Look not into the Pokémon’s eyes.\rIn but an instant, you’ll have no\nrecollection of who you are.\rReturn home, but how?\nWhen there is nothing to remember?\rDare not touch the Pokémon’s body.\rIn but three short days, all emotions\nwill drain away.\rAbove all, above all, harm not\nthe Pokémon.\rIn a scant five days, the offender\nwill grow immobile in entirety.</language>
+	</row>
+	<row id="pl_msg_00000060_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This book is titled “Sinnoh Folk\nStories.”\r</language>
+	</row>
+	<row id="pl_msg_00000060_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which story would you like to read?</language>
+	</row>
+	<row id="pl_msg_00000060_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the book back.</language>
+	</row>
+	<row id="pl_msg_00000060_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Sinnoh Folk Story 1”\rPick clean the bones of Pokémon\ncaught in the sea or stream.\rThank them for the meals they\nprovide, and pick their bones clean.\rWhen the bones are as clean as can\nbe, set them free in the water from\fwhich they came.\rThe Pokémon will return, fully\nfleshed, and it begins anew.</language>
+	</row>
+	<row id="pl_msg_00000060_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Sinnoh Folk Story 2”\rThere lived a Pokémon in a forest.\rIn the forest, the Pokémon shed its\nhide to sleep as a human.\rAwakened, the human dons the\nPokémon hide to roam villages.</language>
+	</row>
+	<row id="pl_msg_00000060_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Sinnoh Folk Story 3”\rThere once were Pokémon that\nbecame very close to humans.\rThere once were humans and Pokémon\nthat ate together at the same table.\rIt was a time when there existed no\ndifferences to distinguish the two.</language>
+	</row>
+	<row id="pl_msg_00000060_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">On this floor, you will find many\nbooks on the myths and legends of\fthe Sinnoh region.</language>
+	</row>
+</body>

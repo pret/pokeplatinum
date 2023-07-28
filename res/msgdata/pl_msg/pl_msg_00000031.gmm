@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000031_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I don’t know what to do.\rWhat Accessories will go well with\nmy dress today?</language>
+	</row>
+	<row id="pl_msg_00000031_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The star of tomorrow is... You!\nYour Pokémon has a glow about it!\rSo, a gift for our future star!\r</language>
+	</row>
+	<row id="pl_msg_00000031_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s a {STRVAR_1 31, 0, 0}!\rI hope you get into collecting\nAccessories for your Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000031_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The room at the back is our dreamy\nfitting room.\rOnce you’re done in there, get our\ndreamy Hiker to take a dreamy photo!</language>
+	</row>
+</body>

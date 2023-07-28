@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000142_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, there!\rLet me examine your Pokémon to see\nif it’s worthy of a scarf!\r</language>
+	</row>
+	<row id="pl_msg_00000142_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmhm...\nI see...\r</language>
+	</row>
+	<row id="pl_msg_00000142_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This isn’t what I had hoped to see...\rI can’t lie to you, so I’ll just have\nto tell it to you straight.\rThis Pokémon’s not bad, but it’s not\ngood, either. It’s just so-so.\rIf you want to improve this one’s\ncondition, feed it some more Poffins!</language>
+	</row>
+	<row id="pl_msg_00000142_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon is growing up really well.\nMy hat’s off to you.\rI was going to give you a scarf, but\nyour Bag’s full.</language>
+	</row>
+	<row id="pl_msg_00000142_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your {STRVAR_1 0, 0, 0}’s looking good!\nI’d say it’s pretty impressive!\rI’ll tell you what, I’ll give you this\n{STRVAR_1 8, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000142_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Red Scarf stands for passion!\rLet a Pokémon hold it to give it an edge\nin Cool Contests.</language>
+	</row>
+	<row id="pl_msg_00000142_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Blue Scarf represents the vastness\nof the sea!\rLet a Pokémon hold it to give it an edge\nin Beauty Contests.</language>
+	</row>
+	<row id="pl_msg_00000142_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pink Scarf represents charm!\rLet a Pokémon hold it to give it an edge\nin Cute Contests.</language>
+	</row>
+	<row id="pl_msg_00000142_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Green Scarf represents the spring\nbreeze!\rLet a Pokémon hold it to give it an edge\nin Smart Contests.</language>
+	</row>
+	<row id="pl_msg_00000142_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Yellow Scarf stands for toughness!\rLet a Pokémon hold it to give it an edge\nin Tough Contests.</language>
+	</row>
+	<row id="pl_msg_00000142_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m out of scarves to give you!\nI’m out of things to say, too!</language>
+	</row>
+	<row id="pl_msg_00000142_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My brother’s girlfriend is the\nMassage Girl in Veilstone City.\rThey stay in touch by having Pokémon\nhold Mail for each other.</language>
+	</row>
+	<row id="pl_msg_00000142_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU: Suuu pasuu!</language>
+	</row>
+</body>

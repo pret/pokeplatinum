@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000198_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Zone used to attract only\nthe hardiest of the Trainers.\rThey were considered eccentric for\ngathering at a place like this.\rIt’s hard to believe how much it’s\nchanged since then.\rPlaces like the Fight Area and the\nSurvival Area just seemed to spring\fup overnight.</language>
+	</row>
+	<row id="pl_msg_00000198_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">He was one of those early eccentrics\nwho were around during the early days\rof the Battle Zone. Well, I was too.</language>
+	</row>
+	<row id="pl_msg_00000198_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TORCHIC: Chiic chic!</language>
+	</row>
+	<row id="pl_msg_00000198_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I am the Item Expert!\nI have mastery in the way of items!\rYour Pokémon...\nDo they hold items?\rThe better the item they hold, the \nstronger they become.\rThere are items that are worthy of my\nrecommendation. Care to know?\r</language>
+	</row>
+	<row id="pl_msg_00000198_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which item would you like me to\ndescribe?</language>
+	</row>
+	<row id="pl_msg_00000198_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a great variety of other items,\nof course.\rThe kinds of items to be held will also\ndepend on your battle strategy.\rAll I can say in conclusion is that\nyou’ll never know until you try!</language>
+	</row>
+	<row id="pl_msg_00000198_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lum Berry!\rWhen held by a Pokémon, it instantly\nheals status problems.\rLike sleep, paralysis, confusion, that\nsort of thing.\rIt’s a berry, though, so it’s gone if\nit’s used.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Focus Sash!\rThis hold item will prevent a Pokémon\nwith full HP from a one-hit KO.\rThe holding Pokémon will survive an\nattack like that leaving just one HP.\rBeing able to get one turn in has huge\nimplications for battle strategists!\r</language>
+	</row>
+	<row id="pl_msg_00000198_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Expert Belt!\rThis hold item boosts the power of a\nsuper-effective move to 120%.\rIt’d be useful for a Pokémon that knows\ndifferent types of moves.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Life Orb!\rThis hold item boosts the power of\nall the Pokémon’s moves to 130%!\rHowever! It also takes 10% of the\nholder’s HP every time a move is used.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choice Scarf!\rThis hold item boosts the Speed of the\nPokémon to 150%!\rHowever, and beware of this, it will\nonly allow one move to be used.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choice Band!\rThis hold item boosts the Attack stat\nof the Pokémon to 150%.\rBeware, it has no effect on the Special\nAttack stat. Make no mistake of it.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choice Specs!\rThis hold item boosts the Special Attack\nstat of the Pokémon to 150%.\rBeware, it has no effect on the Attack\nstat. Make no mistake of it.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Leftovers!\rAt the end of a turn, after both sides\nhave made their moves, this hold item\frestores HP by about 6%.\rThe recovered HP could well be the\ndifference in a tight battle.\r</language>
+	</row>
+	<row id="pl_msg_00000198_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LUM BERRY</language>
+	</row>
+	<row id="pl_msg_00000198_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">FOCUS SASH</language>
+	</row>
+	<row id="pl_msg_00000198_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXPERT BELT</language>
+	</row>
+	<row id="pl_msg_00000198_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LIFE ORB</language>
+	</row>
+	<row id="pl_msg_00000198_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHOICE SCARF</language>
+	</row>
+	<row id="pl_msg_00000198_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHOICE BAND</language>
+	</row>
+	<row id="pl_msg_00000198_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHOICE SPECS</language>
+	</row>
+	<row id="pl_msg_00000198_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LEFTOVERS</language>
+	</row>
+	<row id="pl_msg_00000198_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+</body>

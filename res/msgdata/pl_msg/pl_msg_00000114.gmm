@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000114_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are the Contests!\nThen, we have Amity Square!\rHearthome gets visitors from all over,\nso things have to be nice and clean!</language>
+	</row>
+	<row id="pl_msg_00000114_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">People all over the world follow\nPokémon Contests.\rWhat should I do?\nI could captivate the whole world!</language>
+	</row>
+	<row id="pl_msg_00000114_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My SHROOMISH finds Berries and things\nwhen we go to Amity Square.</language>
+	</row>
+	<row id="pl_msg_00000114_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SHROOMISH: Pofwaaah!</language>
+	</row>
+</body>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000066_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Badges that Pokémon Gyms give you\nare a measure of a Trainer’s worth.\rBy getting more Badges, you get to\nbuy more items in Poké Marts.</language>
+	</row>
+	<row id="pl_msg_00000066_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Poké Mart is staffed by a lady and\na young fellow.\rThey offer different kinds of\nmerchandise. Did you know?</language>
+	</row>
+</body>

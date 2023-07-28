@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000525_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\nOut training right away, are you?\rSo, uh, since you’re training anyway,\ncan you do me a favor?\rI’d like you to patrol Stark Mountain\nfor me.</language>
+	</row>
+	<row id="pl_msg_00000525_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Up past here, there’s this\nvolcano. It’s Stark Mountain.\rDeep inside it is this special rock called\nthe Magma Stone.\rI can’t explain it well, but it’s really\nimportant. It keeps a Pokémon asleep.\rBut lately, I’ve been hearing rumors\nabout vandals in Stark Mountain.\rThey say goons in space suits are\ncausing trouble there.\r</language>
+	</row>
+	<row id="pl_msg_00000525_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh?\nWhat, me?\rI was on my way to the Pokémon Center\nbecause my Pokémon’s low on HP.\rSo, if you could get up to Stark\nMountain now, that’d be great. Thanks!\r</language>
+	</row>
+	<row id="pl_msg_00000525_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll keep asking the same thing over and\nover until you say “Yes!”\r</language>
+	</row>
+	<row id="pl_msg_00000525_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: OK! You’re in charge!\nPatrol Stark Mountain for me!\rDon’t worry about me.\nNot even a little bit, OK?</language>
+	</row>
+	<row id="pl_msg_00000525_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Oh, if it isn’t {STRVAR_1 3, 0, 0}!\nIt’s been a while!\rYou’ve grown so tough that you’re\ntraining out here now...\rEveryone keeps getting tougher and\ntougher...\rAnd, in doing that, they develop\ncloser bonds with their Pokémon...\r</language>
+	</row>
+	<row id="pl_msg_00000525_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}: That’s my master!\nThose are words of wisdom!\r</language>
+	</row>
+	<row id="pl_msg_00000525_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: What? Are you still having trouble\nunderstanding?\rI don’t for a second ever recall\naccepting you as an apprentice!\rI mean, if it’s wrestling moves, I can\nshow you all you like, but...\r</language>
+	</row>
+	<row id="pl_msg_00000525_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}: Awww, master, don’t be\nthat way!\rYou’ve got to get me into that club\nin the Survival Area!\r</language>
+	</row>
+	<row id="pl_msg_00000525_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: ...How’d I get involved in this...?\rSo, anyway, {STRVAR_1 3, 0, 0}.\nYou’re going to Stark Mountain?\rEven the wild Pokémon there are very,\nvery tough...\rIf your Pokémon aren’t well trained,\nthey’ll have a miserable time...\rThen again, that kind of challenge\nis an exciting prospect...\rBut no matter what, you’d better\nbe fully prepared!\rI’ve got to get ready for another\ntournament. Farewell!\r</language>
+	</row>
+	<row id="pl_msg_00000525_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}: You know, I think I got\na little tougher again.\rThat’s why I’m off to the Battle\nFrontier so I can make some challenges!\r</language>
+	</row>
+	<row id="pl_msg_00000525_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Master!\nWait for me!\r</language>
+	</row>
+	<row id="pl_msg_00000525_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 227\nStark Mountain</language>
+	</row>
+</body>

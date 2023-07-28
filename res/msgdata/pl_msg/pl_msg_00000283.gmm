@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000283_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a bed...\nWant to take a rest?</language>
+	</row>
+	<row id="pl_msg_00000283_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} quickly fell asleep\nin the bed...\r</language>
+	</row>
+	<row id="pl_msg_00000283_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} and the Pokémon\nbecame fully healed from the rest!</language>
+	</row>
+	<row id="pl_msg_00000283_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a report titled “The Pokémon\nStatues of Eterna.”\rWould you like to read it?</language>
+	</row>
+	<row id="pl_msg_00000283_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the report back.</language>
+	</row>
+	<row id="pl_msg_00000283_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon statue plate text no. 1\n(from stolen plate):\r“{COLOR 2}The{COLOR 0} creation of DIA{COLOR 2}LGA,\nthe{COLOR 0} giver of time...\r“In laughter, there is tears...\nAnd, likewise {COLOR 2}it is with time.{COLOR 0}\r“The same time flows {COLOR 2}on.{COLOR 0}\n{COLOR 2}For it is{COLOR 0} the blessing of DIA{COLOR 2}LGA.{COLOR 0}”\rThe blue text has been extracted using\na high-tech device made by the boss.\rWould you like to keep reading?</language>
+	</row>
+	<row id="pl_msg_00000283_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon statue plate text no. 2\n(from stolen plate):\r“{COLOR 2}The{COLOR 0} birth of PAL{COLOR 2}KIA.{COLOR 0}\n{COLOR 2}The {COLOR 0}creator of parallel dimensions...\r“Alive, yet not alive...\n{COLOR 2}Everything d{COLOR 0}rifts in space...\r“To arrive in the same univer{COLOR 2}se.{COLOR 0}\n{COLOR 2}It is {COLOR 0}the blessing of PAL{COLOR 2}KIA.{COLOR 0}”\rThe blue text has been extracted using\na high-tech device made by the boss.\r</language>
+	</row>
+	<row id="pl_msg_00000283_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic Nap Room\rEnsure the bed is unoccupied\nbefore getting into it!</language>
+	</row>
+	<row id="pl_msg_00000283_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic TV Room\rState-of-the-art audio &amp; video\nsystem for member use only!\rOnward to a new universe!\nTeam Galactic!</language>
+	</row>
+	<row id="pl_msg_00000283_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Team Galactic credo!\nEverything belongs to Team Galactic!\rLook beyond the world--space will\nbecome Team Galactic’s!</language>
+	</row>
+	<row id="pl_msg_00000283_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a notice tacked on to\nthe kitchen sink.\r“Health and prosperity through\nthe partaking of favorite foods!”\rFoul, unidentifiable substances are\ncaked around the sink...</language>
+	</row>
+	<row id="pl_msg_00000283_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a notice taped on to\nthe refrigerator.\r“Drink all you wish and gain the\nenergy to move us forward!”\rThe refrigerator is filled with murky,\nsinister drinks and nothing else...</language>
+	</row>
+</body>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000164_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rLet me check out your Trainer Case.\nLet’s see how many Badges you have.\rOne, two, three...\nWhoa! Wow! You’ve already got seven!\rThat means if you can beat this Gym\nLeader, you’re on your way to the\fPokémon League next.\rThat also means this is the last time\nI get to give you advice.\rThis is it, kiddo!\nListen carefully...one last time!\rThe Gym Leader here is a master of\nElectric-type Pokémon!\rThat’s all I have to say.\nThe rest is up to you!</language>
+	</row>
+	<row id="pl_msg_00000164_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nDid you beat the Gym Leader?\fWell, of course you did!\rBut, you know what?\nYou haven’t made it in my mind yet!\rDo you know why?\rBecause you and your Pokémon are\ncapable of achieving so much more!\rBut, I am proud of you!\nEight Sinnoh Badges!\fWay to go, kiddo!</language>
+	</row>
+	<row id="pl_msg_00000164_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore City Pokémon Gym\rLeader: Volkner</language>
+	</row>
+	<row id="pl_msg_00000164_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore City Pokémon Gym\rLeader: Volkner\nCertified Trainers:\f{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000164_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore City Pokémon Gym\rLeader: Volkner\nCertified Trainers:\f{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+</body>

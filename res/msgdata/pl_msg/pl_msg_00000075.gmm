@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000075_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All Pokémon have a special power\ncalled an ability.</language>
+	</row>
+	<row id="pl_msg_00000075_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My favorite Pokémon ability is my\nPACHIRISU’s Pickup.\rMy darling picks up a lot of dropped\nitems without me noticing!</language>
+	</row>
+	<row id="pl_msg_00000075_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The view is good from the second floor,\nbut it’s a pain going outside.\rIf you don’t mind, how about showing me\na Pokémon called GEODUDE?</language>
+	</row>
+	<row id="pl_msg_00000075_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The view is good from the second floor,\nbut it’s a pain going outside.\rIf you don’t mind, how about showing me\na Pokémon called GEODUDE?\rOh! That Pokémon!\nThat’s a GEODUDE!\rWow, that’s cool...\nIt’s so cute...\rThat does it!\nI’ll go out and catch Pokémon, too!\rThank you, my friend!\nThis is a token of my thanks!\r</language>
+	</row>
+	<row id="pl_msg_00000075_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yeah, there are so many kinds of\nPokémon out in the world.\rI want to see them all now!</language>
+	</row>
+</body>

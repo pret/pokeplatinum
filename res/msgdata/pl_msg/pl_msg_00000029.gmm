@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000029_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you have a Pokétch?\rThere’s a girl’s model and a boy’s\nmodel, each in different colors.</language>
+	</row>
+	<row id="pl_msg_00000029_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My husband’s the president.\rWe started out in a small workshop\nwhere he made what he liked.\rNow we’re making something that makes\nthe world happy. Imagine that!</language>
+	</row>
+	<row id="pl_msg_00000029_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">People everywhere make Pokétch apps.\rYou’ll be able to get new apps from\nsurprising sources.\rThe PCs here have guides on the\nvarious Pokétch apps.</language>
+	</row>
+	<row id="pl_msg_00000029_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are descriptions of Pokétch\napps.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokétch app would\nyou like to read about?</language>
+	</row>
+	<row id="pl_msg_00000029_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are descriptions of Pokétch\napps.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokétch app would\nyou like to read about?</language>
+	</row>
+	<row id="pl_msg_00000029_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are descriptions of Pokétch\napps.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokétch app would you like\nto read about?</language>
+	</row>
+	<row id="pl_msg_00000029_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are descriptions of Pokétch\napps.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokétch app would you like\nto read about?</language>
+	</row>
+	<row id="pl_msg_00000029_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Digital Watch displays the\ncurrent time.\rDon’t be late for meetings with\nyour friends!\r</language>
+	</row>
+	<row id="pl_msg_00000029_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Analog Watch displays the\ncurrent time.\rThe short hand indicates the hour,\nand the long hand shows the minute!\r</language>
+	</row>
+	<row id="pl_msg_00000029_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Alarm Clock can be set to sound\nevery 24 hours.\rSet the alarm time with the lower\nbutton. The top button turns it on.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Stopwatch is used for measuring\ntime precisely.\rHow quickly can you zip through\nthe Cycling Road?\r</language>
+	</row>
+	<row id="pl_msg_00000029_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Kitchen Timer can count down from\nup to 99 minutes, but not precisely.\rSet the time with the center button,\nthen start the countdown.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Use the monthly Calendar to make\na note of important dates.\rTouch any date to change its color.\nTouch it again to turn it back.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Calculator can handle up to\nten digits.\rIt’s perfect for figuring out math\nquestions that might pop up.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon List indicates the\nstatuses of your team’s Pokémon.\rTouch them to hear their cries.\nTheir HP bar is also displayed.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Friendship Checker indicates how\nfriendly your Pokémon are to you.\rTouch the screen. The Pokémon that\nlike you will come closer.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Day-Care Checker shows the\nPokémon you have in the Day Care.\rCheck and see how your Pokémon are\ndoing with the Day-Care Couple.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Matchup Checker tests the\nattraction between Pokémon.\rThe greater the number of hearts,\nthe better likelihood of Eggs.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon History keeps track of\nthe Pokémon you have obtained.\rIt shows the last twelve kinds of\nPokémon you obtained.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Berry Searcher is a map that\nshows the locations of Berries.\rIt indicates the presence of Berries\nin areas you have already visited.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Memo Pad is useful for jotting\ndown a note, or just doodling.\rThere’s an eraser, too, just in case\nyou make a mistake.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Dot Artist lets you draw pictures\nin a mosaic style.\rTouching the same dot makes its\ncolor turn darker.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Color Changer changes the\nPokétch’s display color.\rSlide the switch to select one\nof eight colors.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Marking Map lets you mark\nintriguing locations.\rDrag marks to places on the map\nthat you want to remember.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Roulette features a wheel\nthat can be written on.\rDraw numbers, items, or whatever on\nthe wheel and give it a spin!\r</language>
+	</row>
+	<row id="pl_msg_00000029_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Coin Toss flips a coin that\ncomes up heads or tails.\rIf you can’t choose between two\nchoices, a coin toss might be handy.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pedometer keeps a count of\nthe number of steps traveled.\rIt automatically counts steps.\nTouch the button to reset it.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Dowsing Machine searches for\nhidden or obscured items.\rTouch the radar screen. If there is\nan item nearby, it will respond.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Counter is used for counting\nthings one at a time.\rTouch the button and count whatever\nneeds counting.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Trainer Counter tracks the\nperformance of the Poké Radar.\rIt shows how often you have met\nthe same kind of Pokémon in a row.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Link Searcher searches for\nplayers on wireless communications.\rTouch the screen to get a list of\npeople using wireless communications.\r</language>
+	</row>
+	<row id="pl_msg_00000029_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Move Tester checks how effective\nmoves are by type.\rSwitch the attacker and defender\ntypes to see what is effective.\r</language>
+	</row>
+</body>

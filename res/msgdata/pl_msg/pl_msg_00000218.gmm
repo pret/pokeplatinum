@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000218_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: That’s it, folks!\nAll judging has been completed!\rWhich Pokémon will be crowned the\nwinner?\rLet’s announce the results!\r</language>
+	</row>
+	<row id="pl_msg_00000218_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">First, the results of the Visual\nCompetition!\r</language>
+	</row>
+	<row id="pl_msg_00000218_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Next, let’s have the results of the\nDance Competition!\r</language>
+	</row>
+	<row id="pl_msg_00000218_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">And finally, here are the results of\nthe Acting Competition!\r</language>
+	</row>
+	<row id="pl_msg_00000218_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: The winner is...\nEntry number {STRVAR_1 50, 0, 0}!\r{STRVAR_1 3, 1, 0} and {STRVAR_1 0, 2, 0}!\nCongratulations!\r</language>
+	</row>
+	<row id="pl_msg_00000218_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">And now, it’s time to announce the\nresults of the individual categories!\r</language>
+	</row>
+</body>

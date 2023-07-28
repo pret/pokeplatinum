@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000584_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would compel a young person like\nyou to come somewhere so rustic?\rBe sure to see the cave painting since\nyou’re already here.</language>
+	</row>
+	<row id="pl_msg_00000584_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say this town has been here\nsince Sinnoh was made.</language>
+	</row>
+	<row id="pl_msg_00000584_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? Hm, hm...\nYour Pokémon is quite interesting!\r</language>
+	</row>
+	<row id="pl_msg_00000584_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It clearly likes you very much.\nYou can have this!\r</language>
+	</row>
+	<row id="pl_msg_00000584_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s about trust between the Trainer\nand the Pokémon.\rDeveloping trust in each other is\nthe key to victory.</language>
+	</row>
+	<row id="pl_msg_00000584_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s warming up to you in \na very nice way.\rIt will grow even more friendly if\nyou travel with it some more.</language>
+	</row>
+	<row id="pl_msg_00000584_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s not very used to you yet.\rYou both need to develop trust for\none another as Trainer and Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000584_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As a clown, I like to show off Pokémon\nthat are a little out of the ordinary.\rWant to battle and see for yourself?</language>
+	</row>
+	<row id="pl_msg_00000584_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, how shall we do this?\nShall we do something fantastical?\r</language>
+	</row>
+	<row id="pl_msg_00000584_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, how shall I say this...?\nIt makes me all lonely, I say...</language>
+	</row>
+	<row id="pl_msg_00000584_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here’s a piece of useless trivia.\nFear of clowns is also known as\fcoulrophobia!</language>
+	</row>
+</body>

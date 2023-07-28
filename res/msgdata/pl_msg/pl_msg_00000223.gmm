@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000223_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, stand back and watch this.\rUsing the hidden move Rock Smash,\na boulder blocking your way...\r</language>
+	</row>
+	<row id="pl_msg_00000223_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fallen boulders need to be smashed\nso they’re out of the way.\rIf you could get the Badge from\nthe Gym in town, you’d be able\fto do this too.\rOf course, you’d have to beat the\nGym Leader first. That’d be me!\r</language>
+	</row>
+	<row id="pl_msg_00000223_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MACHOP: Maaacho!</language>
+	</row>
+	<row id="pl_msg_00000223_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MACHOP: Chopchop!</language>
+	</row>
+	<row id="pl_msg_00000223_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MACHOP: Chopmacho!</language>
+	</row>
+	<row id="pl_msg_00000223_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I met these MACHOP on Route 207.\rThey’ve now become my most trusted\npartners!</language>
+	</row>
+</body>

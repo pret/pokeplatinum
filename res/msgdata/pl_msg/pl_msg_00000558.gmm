@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000558_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That concludes our special program,\n“Let’s Ask Prof. Rowan!”\rBrought to you by Jubilife TV on\nNationwide Net!\r</language>
+	</row>
+	<row id="pl_msg_00000558_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">See you next week, same time,\nsame channel!</language>
+	</row>
+	<row id="pl_msg_00000558_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom bought this TV as a gift.</language>
+	</row>
+	<row id="pl_msg_00000558_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The X Button\nopens the menu!</language>
+	</row>
+	<row id="pl_msg_00000558_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a Wii!\nIt’s controlled by a Wii Remote!</language>
+	</row>
+	<row id="pl_msg_00000558_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} checked the PC.\rPokémon Basics...\rPeople live alongside Pokémon in\nthis world.\rThe people that battle Pokémon are\ncalled Pokémon Trainers.</language>
+	</row>
+	<row id="pl_msg_00000558_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: There you are!\r</language>
+	</row>
+	<row id="pl_msg_00000558_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, {STRVAR_1 3, 1, 0}!\nDid you just see the TV? Sure you did!\rProf. Rowan’s that really important\nguy who studies Pokémon, right?\rThat means he must have lots and lots\nof Pokémon.\rSo, if we ask him, I bet he’d give us\nsome Pokémon!\r</language>
+	</row>
+	<row id="pl_msg_00000558_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, hey!\nIs this a new PC?!\r</language>
+	</row>
+	<row id="pl_msg_00000558_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Uh...\nWhere was I?\r</language>
+	</row>
+	<row id="pl_msg_00000558_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, right, right! We’re going to go see\nProf. Rowan and get some Pokémon.\rI’ll be waiting outside.\rOK, {STRVAR_1 3, 1, 0}? If you’re late, I’m\nfining you $10 million!\r</language>
+	</row>
+</body>

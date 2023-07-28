@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000276_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...You are?\rOK, you’re {STRVAR_1 3, 0, 0}.\nI’m Riley.\rI’m a Trainer, and yes, it is a bit\nodd that I would be training here.\rAnyway, it’s always nice to meet\nanother Trainer. Here’s a gift.\r</language>
+	</row>
+	<row id="pl_msg_00000276_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: That Hidden Machine contains\nthe move Strength.\rTo use it out of battle, you need the\nBadge from Canalave Gym...\rOh, never mind, you’ve already got the\nMine Badge. My bad.\rI’ll be training inside.\nYou can join me if you’d like.\r</language>
+	</row>
+	<row id="pl_msg_00000276_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: That Hidden Machine contains\nthe move Strength.\rTo use it out of battle, you need the\nMine Badge from Canalave Gym.\rI’ll be training inside.\nYou can join me if you’d like.\r</language>
+	</row>
+	<row id="pl_msg_00000276_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you want to sail somewhere?</language>
+	</row>
+	<row id="pl_msg_00000276_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aye, aye!\nAnchors aweigh!\r</language>
+	</row>
+	<row id="pl_msg_00000276_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You just go on and tell me whenever\nyou want to set sail again!</language>
+	</row>
+</body>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000197_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Even from here, we could see the\npeak of Mt. Coronet.\rMost people didn’t notice what\nhappened up there, but I did.\rBut I don’t know what took place\nexactly, or anything like that.</language>
+	</row>
+	<row id="pl_msg_00000197_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone’s fanatical about battling\nhere.</language>
+	</row>
+	<row id="pl_msg_00000197_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">People are people, and I’m me.\nI don’t like to be compared.\rBut comparing with other people reveals\nthings about yourself sometimes, too.\rThat’s why you should check out the\nGlobal Terminal in Jubilife City.</language>
+	</row>
+</body>

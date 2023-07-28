@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000191_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: It’s been a long while since\nI last entered this room...\r</language>
+	</row>
+	<row id="pl_msg_00000191_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: No matter how many times\nI come here, I always find myself\fstanding up straighter than usual.\r</language>
+	</row>
+	<row id="pl_msg_00000191_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: If your last time here was\nwhen I became Champion, then yes,\fthat would be quite a long time ago.\r</language>
+	</row>
+	<row id="pl_msg_00000191_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: It’s a natural reaction,\nProfessor.\rThis room is a legacy to the hopes,\ndreams, and struggles of Pokémon\fand their Trainers to excel.\r</language>
+	</row>
+	<row id="pl_msg_00000191_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: {STRVAR_1 3, 0, 0}, welcome\nto the Hall of Fame.\r</language>
+	</row>
+	<row id="pl_msg_00000191_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: {STRVAR_1 3, 0, 0}, welcome\nto the Hall of Fame.\r</language>
+	</row>
+	<row id="pl_msg_00000191_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your names will be recorded for\nposterity here.\rWhat you are leaving are the memories\nof your adventure so far.\rIt’s time to record your names.\nYou and your Pokémon.\rRemember, your Pokémon are partners\nthat grew with you through\fmany challenging battles.\rThis machine will make a permanent\nrecord of your achievement.\r</language>
+	</row>
+</body>

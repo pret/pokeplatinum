@@ -1,0 +1,1119 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000626_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="pl_msg_00000626_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC</language>
+	</row>
+	<row id="pl_msg_00000626_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC</language>
+	</row>
+	<row id="pl_msg_00000626_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC</language>
+	</row>
+	<row id="pl_msg_00000626_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC</language>
+	</row>
+	<row id="pl_msg_00000626_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC</language>
+	</row>
+	<row id="pl_msg_00000626_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Boulder</language>
+	</row>
+	<row id="pl_msg_00000626_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yellow Cushion</language>
+	</row>
+	<row id="pl_msg_00000626_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blue Cushion</language>
+	</row>
+	<row id="pl_msg_00000626_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wooden Chair</language>
+	</row>
+	<row id="pl_msg_00000626_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Table</language>
+	</row>
+	<row id="pl_msg_00000626_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Plain Table</language>
+	</row>
+	<row id="pl_msg_00000626_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Small Table</language>
+	</row>
+	<row id="pl_msg_00000626_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Long Table</language>
+	</row>
+	<row id="pl_msg_00000626_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wide Table</language>
+	</row>
+	<row id="pl_msg_00000626_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poké Table</language>
+	</row>
+	<row id="pl_msg_00000626_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Bookshelf</language>
+	</row>
+	<row id="pl_msg_00000626_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Small Bookshelf</language>
+	</row>
+	<row id="pl_msg_00000626_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Research Shelf</language>
+	</row>
+	<row id="pl_msg_00000626_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bike Rack</language>
+	</row>
+	<row id="pl_msg_00000626_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shop Shelf</language>
+	</row>
+	<row id="pl_msg_00000626_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Display Shelf</language>
+	</row>
+	<row id="pl_msg_00000626_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cupboard</language>
+	</row>
+	<row id="pl_msg_00000626_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wood Dresser</language>
+	</row>
+	<row id="pl_msg_00000626_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pink Dresser</language>
+	</row>
+	<row id="pl_msg_00000626_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TV</language>
+	</row>
+	<row id="pl_msg_00000626_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Refrigerator</language>
+	</row>
+	<row id="pl_msg_00000626_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pretty Sink</language>
+	</row>
+	<row id="pl_msg_00000626_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Feathery Bed</language>
+	</row>
+	<row id="pl_msg_00000626_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trash Can</language>
+	</row>
+	<row id="pl_msg_00000626_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cardboard Box</language>
+	</row>
+	<row id="pl_msg_00000626_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Crate</language>
+	</row>
+	<row id="pl_msg_00000626_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Container</language>
+	</row>
+	<row id="pl_msg_00000626_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oil Drum</language>
+	</row>
+	<row id="pl_msg_00000626_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Oil Drum</language>
+	</row>
+	<row id="pl_msg_00000626_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Iron Beam</language>
+	</row>
+	<row id="pl_msg_00000626_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Potted Plant</language>
+	</row>
+	<row id="pl_msg_00000626_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poké Flower</language>
+	</row>
+	<row id="pl_msg_00000626_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Healing Machine</language>
+	</row>
+	<row id="pl_msg_00000626_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lab Machine</language>
+	</row>
+	<row id="pl_msg_00000626_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Test Machine</language>
+	</row>
+	<row id="pl_msg_00000626_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Game System</language>
+	</row>
+	<row id="pl_msg_00000626_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Vending Machine</language>
+	</row>
+	<row id="pl_msg_00000626_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Red Bike</language>
+	</row>
+	<row id="pl_msg_00000626_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Green Bike</language>
+	</row>
+	<row id="pl_msg_00000626_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Binoculars</language>
+	</row>
+	<row id="pl_msg_00000626_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Globe</language>
+	</row>
+	<row id="pl_msg_00000626_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gym Statue</language>
+	</row>
+	<row id="pl_msg_00000626_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Red Tent</language>
+	</row>
+	<row id="pl_msg_00000626_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blue Tent</language>
+	</row>
+	<row id="pl_msg_00000626_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clear Tent</language>
+	</row>
+	<row id="pl_msg_00000626_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maze Block 1</language>
+	</row>
+	<row id="pl_msg_00000626_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maze Block 2</language>
+	</row>
+	<row id="pl_msg_00000626_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maze Block 3</language>
+	</row>
+	<row id="pl_msg_00000626_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maze Block 4</language>
+	</row>
+	<row id="pl_msg_00000626_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maze Block 5</language>
+	</row>
+	<row id="pl_msg_00000626_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hole Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pit Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smoke Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Smoke Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rock Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rockfall Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Foam Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bubble Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Tool 1</language>
+	</row>
+	<row id="pl_msg_00000626_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Tool 2</language>
+	</row>
+	<row id="pl_msg_00000626_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Tool 3</language>
+	</row>
+	<row id="pl_msg_00000626_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Tool 4</language>
+	</row>
+	<row id="pl_msg_00000626_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Leaf Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flower Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ember Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fire Tool</language>
+	</row>
+	<row id="pl_msg_00000626_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cute Cup</language>
+	</row>
+	<row id="pl_msg_00000626_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool Cup</language>
+	</row>
+	<row id="pl_msg_00000626_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beauty Cup</language>
+	</row>
+	<row id="pl_msg_00000626_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tough Cup</language>
+	</row>
+	<row id="pl_msg_00000626_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clever Cup</language>
+	</row>
+	<row id="pl_msg_00000626_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blue Crystal</language>
+	</row>
+	<row id="pl_msg_00000626_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pink Crystal</language>
+	</row>
+	<row id="pl_msg_00000626_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Red Crystal</language>
+	</row>
+	<row id="pl_msg_00000626_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yellow Crystal</language>
+	</row>
+	<row id="pl_msg_00000626_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pretty Gem</language>
+	</row>
+	<row id="pl_msg_00000626_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shiny Gem</language>
+	</row>
+	<row id="pl_msg_00000626_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mystic Gem</language>
+	</row>
+	<row id="pl_msg_00000626_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Glitter Gem</language>
+	</row>
+	<row id="pl_msg_00000626_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bronze Trophy</language>
+	</row>
+	<row id="pl_msg_00000626_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Silver Trophy</language>
+	</row>
+	<row id="pl_msg_00000626_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gold Trophy</language>
+	</row>
+	<row id="pl_msg_00000626_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Trophy</language>
+	</row>
+	<row id="pl_msg_00000626_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ball Ornament</language>
+	</row>
+	<row id="pl_msg_00000626_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Round Ornament</language>
+	</row>
+	<row id="pl_msg_00000626_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clear Ornament</language>
+	</row>
+	<row id="pl_msg_00000626_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHARMANDER Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BULBASAUR Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SQUIRTLE Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CYNDAQUIL Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHIKORITA Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TOTODILE Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TORCHIC Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TREECKO Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MUDKIP Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHIMCHAR Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TURTWIG Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIPLUP Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PLUSLE Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MINUN Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">JIGGLYPUFF Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WOBBUFFET Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MEOWTH Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SKITTY Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GLAMEOW Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BUNEARY Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WEAVILE Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MUNCHLAX Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BONSLY Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MIME JR. Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LUCARIO Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MANTYKE Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BUIZEL Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHATOT Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MANAPHY Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SNORLAX Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WAILORD Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MAGNEZONE Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DRIFLOON Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">HAPPINY Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU Doll</language>
+	</row>
+	<row id="pl_msg_00000626_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00133" index="133">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wide Sofa</language>
+	</row>
+	<row id="pl_msg_00000626_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bonsai</language>
+	</row>
+	<row id="pl_msg_00000626_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dainty Flowers</language>
+	</row>
+	<row id="pl_msg_00000626_00136" index="136">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lovely Flowers</language>
+	</row>
+	<row id="pl_msg_00000626_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pretty Flowers</language>
+	</row>
+	<row id="pl_msg_00000626_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lavish Flowers</language>
+	</row>
+	<row id="pl_msg_00000626_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Close the Bag.</language>
+	</row>
+	<row id="pl_msg_00000626_00140" index="140">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">dummy</language>
+	</row>
+	<row id="pl_msg_00000626_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">dummy</language>
+	</row>
+	<row id="pl_msg_00000626_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">dummy</language>
+	</row>
+	<row id="pl_msg_00000626_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">dummy</language>
+	</row>
+	<row id="pl_msg_00000626_00144" index="144">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">dummy</language>
+	</row>
+	<row id="pl_msg_00000626_00145" index="145">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A yellow cushion that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00146" index="146">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A blue cushion that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00147" index="147">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small wooden chair that can be\nplaced inside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00148" index="148">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A very big table that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An ordinary table that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A very small table that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00151" index="151">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A vertically long table that can be\nplaced inside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00152" index="152">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A horizontally wide table that can be\nplaced inside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00153" index="153">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A glass-topped table that can be\nseen in Pokémon Centers.</language>
+	</row>
+	<row id="pl_msg_00000626_00154" index="154">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big bookshelf that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small bookshelf that can be placed\ninside your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000626_00156" index="156">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rack that is perfect for storing\nall kinds of research documents.</language>
+	</row>
+	<row id="pl_msg_00000626_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rack of tools like those seen\nin the Cycle Shop.</language>
+	</row>
+	<row id="pl_msg_00000626_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A shelf stocked full of merchandise\nlike at any Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000626_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A shelf stocked with a variety of\nmerchandise like at any Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000626_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fancy cupboard for storing all\nsorts of kitchenware.</language>
+	</row>
+	<row id="pl_msg_00000626_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A wooden dresser with a\ndistinguished air.</language>
+	</row>
+	<row id="pl_msg_00000626_00162" index="162">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fashionable dresser in a pretty\npink color.</language>
+	</row>
+	<row id="pl_msg_00000626_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big toy TV.\nIt is very well made.</language>
+	</row>
+	<row id="pl_msg_00000626_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big, white toy refrigerator.\nIt is very well made.</language>
+	</row>
+	<row id="pl_msg_00000626_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A toy sink.\nIt is very well made.</language>
+	</row>
+	<row id="pl_msg_00000626_00166" index="166">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A very fluffy bed where one can\nenjoy pleasant dreams.</language>
+	</row>
+	<row id="pl_msg_00000626_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A round, green-colored trash can.</language>
+	</row>
+	<row id="pl_msg_00000626_00168" index="168">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small cardboard box. It is\nconvenient for storing things.</language>
+	</row>
+	<row id="pl_msg_00000626_00169" index="169">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A large wooden crate that is filled\nwith all sorts of things.</language>
+	</row>
+	<row id="pl_msg_00000626_00170" index="170">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A large container that is filled with\na variety of things.</language>
+	</row>
+	<row id="pl_msg_00000626_00171" index="171">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A red oil drum like those seen in\nfactories.</language>
+	</row>
+	<row id="pl_msg_00000626_00172" index="172">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cluster of oil drums like those\nseen in factories.</language>
+	</row>
+	<row id="pl_msg_00000626_00173" index="173">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A red iron beam like those seen at\nbuilding construction sites.</language>
+	</row>
+	<row id="pl_msg_00000626_00174" index="174">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A potted plant that adds a touch\nof wild nature.</language>
+	</row>
+	<row id="pl_msg_00000626_00175" index="175">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small flower like those seen at\nany Pokémon Center.</language>
+	</row>
+	<row id="pl_msg_00000626_00176" index="176">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A machine used to heal Pokémon like\nthose at any Pokémon Center.</language>
+	</row>
+	<row id="pl_msg_00000626_00177" index="177">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A brightly illuminated machine used\nfor Pokémon research.</language>
+	</row>
+	<row id="pl_msg_00000626_00178" index="178">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A flickering, illuminated machine\nused for conducting experiments.</language>
+	</row>
+	<row id="pl_msg_00000626_00179" index="179">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A brand-new game system like the\none at home.</language>
+	</row>
+	<row id="pl_msg_00000626_00180" index="180">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A toy replica of a vending machine.\nIt doesn’t actually work.</language>
+	</row>
+	<row id="pl_msg_00000626_00181" index="181">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A red Bicycle replica. It is like\nthose displayed at the Cycle Shop.</language>
+	</row>
+	<row id="pl_msg_00000626_00182" index="182">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A green Bicycle replica. It is like\nthose displayed at the Cycle Shop.</language>
+	</row>
+	<row id="pl_msg_00000626_00183" index="183">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pair of high-powered\nreplica binoculars.</language>
+	</row>
+	<row id="pl_msg_00000626_00184" index="184">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It attests to the fact that you have\nfriends from all over.</language>
+	</row>
+	<row id="pl_msg_00000626_00185" index="185">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A stone statue of a Pokémon like\nthose at Pokémon Gyms.</language>
+	</row>
+	<row id="pl_msg_00000626_00186" index="186">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A large red tent.\nYou can hide inside it.</language>
+	</row>
+	<row id="pl_msg_00000626_00187" index="187">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A large blue tent.\nYou can hide inside it.</language>
+	</row>
+	<row id="pl_msg_00000626_00188" index="188">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A large transparent tent.\nYou can go inside it.</language>
+	</row>
+	<row id="pl_msg_00000626_00189" index="189">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A block for constructing a maze.\nIt is blocked at the top.</language>
+	</row>
+	<row id="pl_msg_00000626_00190" index="190">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A block for constructing a maze.\nIt is blocked at the right.</language>
+	</row>
+	<row id="pl_msg_00000626_00191" index="191">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A block for constructing a maze.\nIt is blocked at the bottom.</language>
+	</row>
+	<row id="pl_msg_00000626_00192" index="192">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A block for constructing a maze.\nIt is blocked at the left.</language>
+	</row>
+	<row id="pl_msg_00000626_00193" index="193">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A block for constructing a maze.\nIt is not blocked anywhere.</language>
+	</row>
+	<row id="pl_msg_00000626_00194" index="194">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that makes a big pitfall\nto immobilize the victim.</language>
+	</row>
+	<row id="pl_msg_00000626_00195" index="195">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that makes a huge pitfall\nto immobilize the victim.</language>
+	</row>
+	<row id="pl_msg_00000626_00196" index="196">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that releases obscuring smoke.\nThe smoke can be rubbed away.</language>
+	</row>
+	<row id="pl_msg_00000626_00197" index="197">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that releases billowing smoke.\nThe smoke can be rubbed away.</language>
+	</row>
+	<row id="pl_msg_00000626_00198" index="198">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that makes blocking boulders.\nBreak the boulders to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00199" index="199">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that makes Big Boulders.\nBreak the boulders to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00200" index="200">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that releases bubbles.\nPop the bubbles to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00201" index="201">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Tool that releases a mass of\nbubbles. Pop them to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00202" index="202">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Tool sends \ngreetings to everyone near you.</language>
+	</row>
+	<row id="pl_msg_00000626_00203" index="203">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Tool sends\nfarewells to everyone near you.</language>
+	</row>
+	<row id="pl_msg_00000626_00204" index="204">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Tool tells all nearby\nthat you are going to the Union Room.</language>
+	</row>
+	<row id="pl_msg_00000626_00205" index="205">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Tool alerts everyone\nto gather around you.</language>
+	</row>
+	<row id="pl_msg_00000626_00206" index="206">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Tool releases immobilizing leaves.\nBlow the leaves away to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00207" index="207">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Tool releases many flowers.\nBlow the flowers away to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00208" index="208">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Tool releases immobilizing embers.\nBlow the embers away to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00209" index="209">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Tool releases billowing flames.\nBlow the flames away to get free.</language>
+	</row>
+	<row id="pl_msg_00000626_00210" index="210">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winner’s cup that is awarded only\nto a truly cute Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00211" index="211">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winner’s cup that is awarded only\nto a truly cool Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00212" index="212">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winner’s cup that is awarded only\nto a truly beautiful Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00213" index="213">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winner’s cup that is awarded only\nto a truly tough Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00214" index="214">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winner’s cup that is awarded only\nto a truly smart Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00215" index="215">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rare blue crystal awarded to\nhelpful people.</language>
+	</row>
+	<row id="pl_msg_00000626_00216" index="216">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rare pink crystal awarded to\nkindhearted people.</language>
+	</row>
+	<row id="pl_msg_00000626_00217" index="217">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rare red crystal that is awarded\nto hardworking people.</language>
+	</row>
+	<row id="pl_msg_00000626_00218" index="218">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rare yellow crystal awarded to\nsteady, determined people.</language>
+	</row>
+	<row id="pl_msg_00000626_00219" index="219">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pretty gem that has been cut\nbeautifully.</language>
+	</row>
+	<row id="pl_msg_00000626_00220" index="220">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A gleaming gem that has been polished\nlike a mirror.</language>
+	</row>
+	<row id="pl_msg_00000626_00221" index="221">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A gem that casts a mystic light.\nIt is difficult to obtain.</language>
+	</row>
+	<row id="pl_msg_00000626_00222" index="222">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An extremely valuable gem that\nglitters dazzlingly.</language>
+	</row>
+	<row id="pl_msg_00000626_00223" index="223">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A trophy made of bronze that is\nawarded only to tough Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00224" index="224">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A silver-colored trophy that is\nawarded only to very tough Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00225" index="225">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A gold-colored trophy that is awarded\nonly to fantastically tough Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00226" index="226">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An impressive trophy awarded only to\nseemingly indefatigable Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000626_00227" index="227">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A commemorative object modeled\nafter a Poké Ball.</language>
+	</row>
+	<row id="pl_msg_00000626_00228" index="228">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A very valuable round object that\nglows in seven colors.</language>
+	</row>
+	<row id="pl_msg_00000626_00229" index="229">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A very valuable object that is\ncrystal clear.</language>
+	</row>
+	<row id="pl_msg_00000626_00230" index="230">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute CHARMANDER Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00231" index="231">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute BULBASAUR Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00232" index="232">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute SQUIRTLE Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00233" index="233">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute CYNDAQUIL Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00234" index="234">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute CHIKORITA Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00235" index="235">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute TOTODILE Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00236" index="236">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute TORCHIC Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00237" index="237">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute TREECKO Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00238" index="238">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute MUDKIP Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00239" index="239">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute CHIMCHAR Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00240" index="240">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute TURTWIG Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00241" index="241">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute PIPLUP Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00242" index="242">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute PIKACHU Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00243" index="243">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute PLUSLE Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00244" index="244">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute MINUN Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00245" index="245">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute CLEFAIRY Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00246" index="246">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute JIGGLYPUFF Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00247" index="247">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute WOBBUFFET Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00248" index="248">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute MEOWTH Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00249" index="249">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute SKITTY Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00250" index="250">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute GLAMEOW Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00251" index="251">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute BUNEARY Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00252" index="252">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute WEAVILE Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00253" index="253">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute MUNCHLAX Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00254" index="254">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute BONSLY Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00255" index="255">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute MIME JR. Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00256" index="256">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rare LUCARIO Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00257" index="257">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute MANTYKE Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00258" index="258">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute BUIZEL Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00259" index="259">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute CHATOT Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00260" index="260">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rare MANAPHY Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00261" index="261">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big SNORLAX Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00262" index="262">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big WAILORD Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00263" index="263">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big MAGNEZONE Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00264" index="264">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute DRIFLOON Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00265" index="265">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute HAPPINY Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00266" index="266">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A cute PACHIRISU Doll.</language>
+	</row>
+	<row id="pl_msg_00000626_00267" index="267">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00268" index="268">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00269" index="269">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00270" index="270">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English"> -</language>
+	</row>
+	<row id="pl_msg_00000626_00271" index="271">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A wide, blue sofa.\nIt has room for two.</language>
+	</row>
+	<row id="pl_msg_00000626_00272" index="272">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A restrained and evocative miniature\ntree shaped by a master.</language>
+	</row>
+	<row id="pl_msg_00000626_00273" index="273">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pot of very pretty flowers.</language>
+	</row>
+	<row id="pl_msg_00000626_00274" index="274">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pot of very beautiful flowers.</language>
+	</row>
+	<row id="pl_msg_00000626_00275" index="275">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pot of very cute flowers.</language>
+	</row>
+	<row id="pl_msg_00000626_00276" index="276">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A planter that is bursting with a\ngorgeous selection of flowers.</language>
+	</row>
+	<row id="pl_msg_00000626_00277" index="277">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000626_00278" index="278">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Exit from decorating.</language>
+	</row>
+</body>

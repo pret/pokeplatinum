@@ -2,6 +2,7 @@
 subdir('csv2bin')
 subdir('fixrom')
 subdir('knarc')
+subdir('msgenc')
 subdir('postconf')
 
 # Prebuilt tools

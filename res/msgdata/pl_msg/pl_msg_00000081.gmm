@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000081_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hiya! Your Pokémon could use some\ntoughening up.\rWhy not try training in\nthe Oreburgh Mine?</language>
+	</row>
+	<row id="pl_msg_00000081_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I always have a rotten time trying\nto decide which moves my Pokémon\fshould learn.</language>
+	</row>
+	<row id="pl_msg_00000081_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You remind me so much of the time\nI got my first Pokémon.</language>
+	</row>
+</body>
