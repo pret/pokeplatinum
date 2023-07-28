@@ -740,7 +740,6 @@ foreach gmm, key : pl_msg_gmm_keys_dict
                         '-c', charmap_txt,
                         '@INPUT0@',
                         '@OUTPUT0@'
-                    ],
-                    build_by_default: true
+                    ]
                 )
 endforeach

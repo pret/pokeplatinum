@@ -7,8 +7,7 @@ pl_msg_narc = custom_target('pl_msg.narc',
         knarc_exe,
         '-d', '@OUTDIR@/pl_msg',
         '-p', '@OUTPUT0@'
-    ],
-    build_by_default: true
+    ]
 )
 
 nitrofs_files += pl_msg_narc

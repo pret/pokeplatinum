@@ -7,9 +7,10 @@ mmodel_narc = custom_target('mmodel.narc',
         knarc_exe,
         '-d', '@CURRENT_SOURCE_DIR@/mmodel',
         '-p', '@OUTPUT0@'
-    ],
-    build_by_default: true
+    ]
 )
+
+nitrofs_files += mmodel_narc
 
 prebuilt_files = [
     'fldeff.narc'

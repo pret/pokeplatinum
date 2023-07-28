@@ -15,10 +15,10 @@ pl_enc_data_narc = custom_target('pl_enc_data.narc',
         '@INPUT0@',
         '--narc',
         '-i', '@SOURCE_ROOT@/include'
-    ],
-    build_by_default: true
+    ]
 )
 
+nitrofs_files += pl_enc_data_narc
 
 prebuilt_files = [
     'd_enc_data.narc',
