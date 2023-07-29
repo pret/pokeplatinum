@@ -81,6 +81,8 @@ protected:
 
 public:
     MessagesConverter(Options &options) :
+        textfilename(options.posargs[0]),
+        binfilename(options.posargs[1]),
         mode(options.mode),
         charmapfilename(options.charmap),
         headerfilename(options.gmm_header),

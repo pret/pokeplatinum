@@ -16,10 +16,7 @@ class MessagesEncoder : public MessagesConverter
     void CharmapRegisterCharacter(string& code, uint16_t value) override;
     void CmdmapRegisterCommand(string& command, uint16_t value) override;
 public:
-    MessagesEncoder(Options &options) : MessagesConverter(options) {
-        textfilename = options.posargs[0];
-        binfilename = options.posargs[1];
-    }
+    MessagesEncoder(Options &options) : MessagesConverter(options) {}
     void ReadInput() override;
     void Convert() override;
     void WriteOutput() override;
