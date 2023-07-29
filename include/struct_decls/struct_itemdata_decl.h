@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0207D3B0_DECL_H
 #define POKEPLATINUM_STRUCT_0207D3B0_DECL_H
 
-typedef struct UnkStruct_0207D3B0_t UnkStruct_0207D3B0;
+typedef struct ItemData ItemData;
 
 #endif // POKEPLATINUM_STRUCT_0207D3B0_DECL_H

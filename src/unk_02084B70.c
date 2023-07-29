@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/struct_0207D3B0_decl.h"
+#include "struct_decls/struct_itemdata_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0207F248.h"
@@ -53,7 +53,7 @@ static int sub_020860AC(void * param0);
 
 static u8 sub_02084B70 (u16 param0)
 {
-    UnkStruct_0207D3B0 * v0;
+    ItemData * v0;
     s32 v1;
 
     v0 = Item_LoadDataOrGFX(param0, 0, 12);

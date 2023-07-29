@@ -5,15 +5,13 @@
 #include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0207CDEC.h"
-#include "struct_defs/struct_0207D3B0.h"
-
-#include "struct_defs/struct_0207D0B0.h"
 
 #include "narc.h"
 #include "unk_0200AC5C.h"
 #include "heap.h"
 #include "item.h"
 
+#include "constants/items.h"
 #include "constants/moves.h"
 
 typedef struct {
@@ -23,7 +21,7 @@ typedef struct {
     u16 gen3ID;
 } UnkStruct_020F0CC4;
 
-static s32 sub_0207D0B0(UnkStruct_0207D0B0 * param0, u16 param1);
+static s32 GetPartyAttribute(ItemPartyParam * param0, u16 param1);
 
 const UnkStruct_020F0CC4 sItemNarcIDs[] = {
 	{ 0x0, 0x2C3, 0x2C4, 0x0 },
@@ -600,85 +598,85 @@ static const u16 sMovesTMHM[] = {
 };
 
 const u16 sMailItemIDs[] = {
-	0x89,
-	0x8A,
-	0x8B,
-	0x8C,
-	0x8D,
-	0x8E,
-	0x8F,
-	0x90,
-	0x91,
-	0x92,
-	0x93,
-	0x94
+	ITEM_GRASS_MAIL,
+	ITEM_FLAME_MAIL,
+	ITEM_BUBBLE_MAIL,
+	ITEM_BLOOM_MAIL,
+	ITEM_TUNNEL_MAIL,
+	ITEM_STEEL_MAIL,
+	ITEM_HEART_MAIL,
+	ITEM_SNOW_MAIL,
+	ITEM_SPACE_MAIL,
+	ITEM_AIR_MAIL,
+	ITEM_MOSAIC_MAIL,
+	ITEM_BRICK_MAIL
 };
 
 const u16 sBerryItemIDs[] = {
-	0x95,
-	0x96,
-	0x97,
-	0x98,
-	0x99,
-	0x9A,
-	0x9B,
-	0x9C,
-	0x9D,
-	0x9E,
-	0x9F,
-	0xA0,
-	0xA1,
-	0xA2,
-	0xA3,
-	0xA4,
-	0xA5,
-	0xA6,
-	0xA7,
-	0xA8,
-	0xA9,
-	0xAA,
-	0xAB,
-	0xAC,
-	0xAD,
-	0xAE,
-	0xAF,
-	0xB0,
-	0xB1,
-	0xB2,
-	0xB3,
-	0xB4,
-	0xB5,
-	0xB6,
-	0xB7,
-	0xB8,
-	0xB9,
-	0xBA,
-	0xBB,
-	0xBC,
-	0xBD,
-	0xBE,
-	0xBF,
-	0xC0,
-	0xC1,
-	0xC2,
-	0xC3,
-	0xC4,
-	0xC5,
-	0xC6,
-	0xC7,
-	0xC8,
-	0xC9,
-	0xCA,
-	0xCB,
-	0xCC,
-	0xCD,
-	0xCE,
-	0xCF,
-	0xD0,
-	0xD1,
-	0xD2,
-	0xD3,
-	0xD4
+	ITEM_CHERI_BERRY,
+	ITEM_CHESTO_BERRY,
+	ITEM_PECHA_BERRY,
+	ITEM_RAWST_BERRY,
+	ITEM_ASPEAR_BERRY,
+	ITEM_LEPPA_BERRY,
+	ITEM_ORAN_BERRY,
+	ITEM_PERSIM_BERRY,
+	ITEM_LUM_BERRY,
+	ITEM_SITRUS_BERRY,
+	ITEM_FIGY_BERRY,
+	ITEM_WIKI_BERRY,
+	ITEM_MAGO_BERRY,
+	ITEM_AGUAV_BERRY,
+	ITEM_IAPAPA_BERRY,
+	ITEM_RAZZ_BERRY,
+	ITEM_BLUK_BERRY,
+	ITEM_NANAB_BERRY,
+	ITEM_WEPEAR_BERRY,
+	ITEM_PINAP_BERRY,
+	ITEM_POMEG_BERRY,
+	ITEM_KELPSY_BERRY,
+	ITEM_QUALOT_BERRY,
+	ITEM_HONDEW_BERRY,
+	ITEM_GREPA_BERRY,
+	ITEM_TAMATO_BERRY,
+	ITEM_CORNN_BERRY,
+	ITEM_MAGOST_BERRY,
+	ITEM_RABUTA_BERRY,
+	ITEM_NOMEL_BERRY,
+	ITEM_SPELON_BERRY,
+	ITEM_PAMTRE_BERRY,
+	ITEM_WATMEL_BERRY,
+	ITEM_DURIN_BERRY,
+	ITEM_BELUE_BERRY,
+	ITEM_OCCA_BERRY,
+	ITEM_PASSHO_BERRY,
+	ITEM_WACAN_BERRY,
+	ITEM_RINDO_BERRY,
+	ITEM_YACHE_BERRY,
+	ITEM_CHOPLE_BERRY,
+	ITEM_KEBIA_BERRY,
+	ITEM_SHUCA_BERRY,
+	ITEM_COBA_BERRY,
+	ITEM_PAYAPA_BERRY,
+	ITEM_TANGA_BERRY,
+	ITEM_CHARTI_BERRY,
+	ITEM_KASIB_BERRY,
+	ITEM_HABAN_BERRY,
+	ITEM_COLBUR_BERRY,
+	ITEM_BABIRI_BERRY,
+	ITEM_CHILAN_BERRY,
+	ITEM_LIECHI_BERRY,
+	ITEM_GANLON_BERRY,
+	ITEM_SALAC_BERRY,
+	ITEM_PETAYA_BERRY,
+	ITEM_APICOT_BERRY,
+	ITEM_LANSAT_BERRY,
+	ITEM_STARF_BERRY,
+	ITEM_ENIGMA_BERRY,
+	ITEM_MICLE_BERRY,
+	ITEM_CUSTAP_BERRY,
+	ITEM_JABOCA_BERRY,
+	ITEM_ROWAP_BERRY
 };
 
 void sub_0207CDEC (void * param0, u16 param1, u16 param2)
@@ -808,152 +806,152 @@ void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
 
 s32 Item_GetAttribute (u16 itemID, u16 attributeID, u32 heapID)
 {
-    UnkStruct_0207D3B0 * v0;
+    ItemData * v0;
     s32 v1;
 
-    v0 = (UnkStruct_0207D3B0 *)Item_LoadDataOrGFX(itemID, 0, heapID);
+    v0 = (ItemData *)Item_LoadDataOrGFX(itemID, 0, heapID);
     v1 = Item_GetAttributeFromStruct(v0, attributeID);
     Heap_FreeToHeapExplicit(heapID, v0);
 
     return v1;
 }
 
-s32 Item_GetAttributeFromStruct (UnkStruct_0207D3B0 * itemData, u16 attributeID)
+s32 Item_GetAttributeFromStruct (ItemData * itemData, u16 attributeID)
 {
     switch (attributeID) {
     case 0:
-        return (s32)itemData->unk_00;
+        return (s32)itemData->price;
     case 1:
-        return (s32)itemData->unk_02;
+        return (s32)itemData->holdEffect;
     case 2:
-        return (s32)itemData->unk_03;
+        return (s32)itemData->holdEffectParam;
     case 3:
-        return (s32)itemData->unk_08_5;
+        return (s32)itemData->preventToss;
     case 4:
-        return (s32)itemData->unk_08_6;
+        return (s32)itemData->isSelectable;
     case 5:
-        return (s32)itemData->unk_08_7;
+        return (s32)itemData->fieldPocket;
     case 6:
-        return (s32)itemData->unk_0A;
+        return (s32)itemData->fieldUseFunc;
     case 7:
-        return (s32)itemData->unk_0B;
+        return (s32)itemData->battleUseFunc;
     case 8:
-        return (s32)itemData->unk_04;
+        return (s32)itemData->pluckEffect;
     case 9:
-        return (s32)itemData->unk_05;
+        return (s32)itemData->flingEffect;
     case 10:
-        return (s32)itemData->unk_06;
+        return (s32)itemData->flingPower;
     case 11:
-        return (s32)itemData->unk_07;
+        return (s32)itemData->naturalGiftPower;
     case 12:
-        return (s32)itemData->unk_08_0;
+        return (s32)itemData->naturalGiftType;
     case 13:
-        return (s32)itemData->unk_08_11;
+        return (s32)itemData->battlePocket;
     case 14:
-        return (s32)itemData->unk_0C;
+        return (s32)itemData->partyUse;
     default:
-        switch (itemData->unk_0C) {
+        switch (itemData->partyUse) {
         case 0:
-            return (s32)itemData->unk_0E[0];
+            return itemData->dummy;
         case 1:
-            return sub_0207D0B0((UnkStruct_0207D0B0 *)itemData->unk_0E, attributeID);
+            return GetPartyAttribute(&itemData->partyUseParam, attributeID);
         }
     }
 
     return 0;
 }
 
-static s32 sub_0207D0B0 (UnkStruct_0207D0B0 * param0, u16 param1)
+static s32 GetPartyAttribute (ItemPartyParam * partyParam, u16 attributeID)
 {
-    switch (param1) {
+    switch (attributeID) {
     case 15:
-        return (s32)param0->unk_00_0;
+        return (s32)partyParam->slp_heal;
     case 16:
-        return (s32)param0->unk_00_1;
+        return (s32)partyParam->psn_heal;
     case 17:
-        return (s32)param0->unk_00_2;
+        return (s32)partyParam->brn_heal;
     case 18:
-        return (s32)param0->unk_00_3;
+        return (s32)partyParam->frz_heal;
     case 19:
-        return (s32)param0->unk_00_4;
+        return (s32)partyParam->prz_heal;
     case 20:
-        return (s32)param0->unk_00_5;
+        return (s32)partyParam->cfs_heal;
     case 21:
-        return (s32)param0->unk_00_6;
+        return (s32)partyParam->inf_heal;
     case 22:
-        return (s32)param0->unk_00_7;
+        return (s32)partyParam->guard_spec;
     case 23:
-        return (s32)param0->unk_01_0;
+        return (s32)partyParam->revive;
     case 24:
-        return (s32)param0->unk_01_1;
+        return (s32)partyParam->revive_all;
     case 25:
-        return (s32)param0->unk_01_2;
+        return (s32)partyParam->level_up;
     case 26:
-        return (s32)param0->unk_01_3;
+        return (s32)partyParam->evolve;
     case 27:
-        return (s32)param0->unk_01_4;
+        return (s32)partyParam->atk_stages;
     case 28:
-        return (s32)param0->unk_02_0;
+        return (s32)partyParam->def_stages;
     case 29:
-        return (s32)param0->unk_02_4;
+        return (s32)partyParam->spatk_stages;
     case 30:
-        return (s32)param0->unk_03_0;
+        return (s32)partyParam->spdef_stages;
     case 31:
-        return (s32)param0->unk_03_4;
+        return (s32)partyParam->speed_stages;
     case 32:
-        return (s32)param0->unk_04_0;
+        return (s32)partyParam->accuracy_stages;
     case 33:
-        return (s32)param0->unk_04_4;
+        return (s32)partyParam->critrate_stages;
     case 34:
-        return (s32)param0->unk_04_6;
+        return (s32)partyParam->pp_up;
     case 35:
-        return (s32)param0->unk_04_7;
+        return (s32)partyParam->pp_max;
     case 36:
-        return (s32)param0->unk_05_0;
+        return (s32)partyParam->pp_restore;
     case 37:
-        return (s32)param0->unk_05_1;
+        return (s32)partyParam->pp_restore_all;
     case 38:
-        return (s32)param0->unk_05_2;
+        return (s32)partyParam->hp_restore;
     case 39:
-        return (s32)param0->unk_05_3;
+        return (s32)partyParam->hp_ev_up;
     case 40:
-        return (s32)param0->unk_05_4;
+        return (s32)partyParam->atk_ev_up;
     case 41:
-        return (s32)param0->unk_05_5;
+        return (s32)partyParam->def_ev_up;
     case 42:
-        return (s32)param0->unk_05_6;
+        return (s32)partyParam->speed_ev_up;
     case 43:
-        return (s32)param0->unk_05_7;
+        return (s32)partyParam->spatk_ev_up;
     case 44:
-        return (s32)param0->unk_06_0;
+        return (s32)partyParam->spdef_ev_up;
     case 45:
-        return (s32)param0->unk_06_1;
+        return (s32)partyParam->friendship_mod_lo;
     case 46:
-        return (s32)param0->unk_06_2;
+        return (s32)partyParam->friendship_mod_med;
     case 47:
-        return (s32)param0->unk_06_3;
+        return (s32)partyParam->friendship_mod_hi;
     case 48:
-        return (s32)param0->unk_07;
+        return (s32)partyParam->hp_ev_up_param;
     case 49:
-        return (s32)param0->unk_08;
+        return (s32)partyParam->atk_ev_up_param;
     case 50:
-        return (s32)param0->unk_09;
+        return (s32)partyParam->def_ev_up_param;
     case 51:
-        return (s32)param0->unk_0A;
+        return (s32)partyParam->speed_ev_up_param;
     case 52:
-        return (s32)param0->unk_0B;
+        return (s32)partyParam->spatk_ev_up_param;
     case 53:
-        return (s32)param0->unk_0C;
+        return (s32)partyParam->spdef_ev_up_param;
     case 54:
-        return (s32)param0->unk_0D;
+        return (s32)partyParam->hp_restore_param;
     case 55:
-        return (s32)param0->unk_0E;
+        return (s32)partyParam->pp_restore_param;
     case 56:
-        return (s32)param0->unk_0F;
+        return (s32)partyParam->friendship_mod_lo_param;
     case 57:
-        return (s32)param0->unk_10;
+        return (s32)partyParam->friendship_mod_med_param;
     case 58:
-        return (s32)param0->unk_11;
+        return (s32)partyParam->friendship_mod_hi_param;
     }
 
     return 0;
@@ -1058,7 +1056,7 @@ u16 sub_0207D354 (u8 param0)
 }
 
 u8 Item_IsHerbalMedicine (u16 itemID)
-{	
+{
 	if ((itemID == 34) || (itemID == 35) || (itemID == 36) || (itemID == 37)) {
         return TRUE;
     }
@@ -1072,12 +1070,12 @@ void * sub_0207D388 (int param0)
     return NARC_AllocAndReadFromMemberByIndexPair(15, 0, param0, 0, 36 * v0);
 }
 
-UnkStruct_0207D3B0 * sub_0207D3B0 (UnkStruct_0207D3B0 * param0, u16 param1)
+ItemData * sub_0207D3B0 (ItemData * param0, u16 param1)
 {
     u8 * v0;
 
     v0 = (u8 *)param0;
     v0 += param1 * 36;
 
-    return (UnkStruct_0207D3B0 *)v0;
+    return (ItemData *)v0;
 }

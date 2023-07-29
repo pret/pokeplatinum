@@ -6,7 +6,7 @@
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
-#include "struct_decls/struct_0207D3B0_decl.h"
+#include "struct_decls/struct_itemdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_sub3_decl.h"
@@ -6968,7 +6968,7 @@ BOOL ov16_0225B0C0 (UnkStruct_ov16_0224B9DC * param0, u16 param1)
 
 s32 ov16_0225B0FC (UnkStruct_ov16_0224B9DC * param0, u16 param1, u16 param2)
 {
-    UnkStruct_0207D3B0 * v0;
+    ItemData * v0;
     u16 v1;
 
     v1 = sub_0207CE78(param1, 0);
