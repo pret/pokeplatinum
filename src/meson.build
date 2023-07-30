@@ -318,7 +318,7 @@ pokeplatinum_c = files(
     'unk_020961E8.c',
     'unk_02096420.c',
     'unk_020972FC.c',
-    'unk_0209739C.c',
+    'berry_data.c',
     'unk_0209747C.c',
     'unk_02097624.c',
     'unk_02097B18.c',

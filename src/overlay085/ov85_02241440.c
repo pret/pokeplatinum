@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_020973A8_decl.h"
+#include "struct_decls/struct_berry_data_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020972FC.h"
@@ -41,7 +41,7 @@
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020972FC.h"
-#include "unk_0209739C.h"
+#include "berry_data.h"
 #include "overlay085/ov85_02241440.h"
 
 typedef struct {
@@ -63,7 +63,7 @@ typedef struct {
     UnkStruct_ov85_022420A8 unk_194[4];
     u32 unk_1F4;
     UnkStruct_020972FC * unk_1F8;
-    UnkStruct_020973A8 * unk_1FC;
+    BerryData * unk_1FC;
     u8 unk_200;
     u8 unk_201;
 } UnkStruct_ov85_022417E4;
@@ -234,7 +234,7 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
     v0->unk_1F8 = sub_02006840(param0);
     v0->unk_00 = sub_02018340(36);
-    v0->unk_1FC = sub_020973B8(v0->unk_1F8->unk_08, 36);
+    v0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(v0->unk_1F8->unk_08, 36);
 
     sub_0208C120(0, 36);
 
@@ -561,7 +561,7 @@ static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
     Strbuf_Free(v1);
     Strbuf_Free(v2);
 
-    v1 = sub_0209742C(param0->unk_1F8->unk_08, 36);
+    v1 = BerryData_AllocAndGetName(param0->unk_1F8->unk_08, 36);
 
     sub_0201D78C(v0, 0, v1, 40, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -577,7 +577,7 @@ static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
 
     sub_0201ADA4(v0, 0);
 
-    v1 = sub_02097454(param0->unk_1F8->unk_08, 36);
+    v1 = BerryData_AllocAndGetDescription(param0->unk_1F8->unk_08, 36);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -608,7 +608,7 @@ static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
 
     sub_0201ADA4(v0, 0);
 
-    v2 = sub_020973D4(param0->unk_1FC, 1);
+    v2 = BerryData_GetAttribute(param0->unk_1FC, 1);
 
     if (v2 != 0) {
         v2--;
@@ -646,7 +646,7 @@ static void ov85_02241B9C (UnkStruct_ov85_022417E4 * param0)
 
     sub_0201ADA4(v0, 0);
 
-    v3 = sub_020973D4(param0->unk_1FC, 0);
+    v3 = BerryData_GetAttribute(param0->unk_1FC, 0);
     v3 = (((v3 * 1000) / 254 + 5) / 10);
     v1 = sub_0200B1EC(param0->unk_C4, 9);
     v2 = Strbuf_Init(32, 36);
@@ -865,7 +865,7 @@ static void ov85_02241F0C (UnkStruct_ov85_022417E4 * param0)
     NARC * v0;
 
     Heap_FreeToHeap(param0->unk_1FC);
-    param0->unk_1FC = sub_020973B8(param0->unk_1F8->unk_08, 36);
+    param0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 
     v0 = NARC_ctor(53, 36);
@@ -1035,25 +1035,25 @@ static void ov85_02242578 (UnkStruct_ov85_022417E4 * param0)
 {
     u32 v0;
 
-    ov85_022423A0(&Unk_ov85_02242938[0][0], &param0->unk_194[0].unk_00, sub_020973D4(param0->unk_1FC, 5));
-    ov85_022423A0(&Unk_ov85_02242938[0][1], &param0->unk_194[0].unk_06, sub_020973D4(param0->unk_1FC, 6));
-    ov85_022423A0(&Unk_ov85_02242938[0][2], &param0->unk_194[0].unk_12, sub_020973D4(param0->unk_1FC, 7));
+    ov85_022423A0(&Unk_ov85_02242938[0][0], &param0->unk_194[0].unk_00, BerryData_GetAttribute(param0->unk_1FC, 5));
+    ov85_022423A0(&Unk_ov85_02242938[0][1], &param0->unk_194[0].unk_06, BerryData_GetAttribute(param0->unk_1FC, 6));
+    ov85_022423A0(&Unk_ov85_02242938[0][2], &param0->unk_194[0].unk_12, BerryData_GetAttribute(param0->unk_1FC, 7));
     ov85_022423A0(&Unk_ov85_02242938[0][3], &param0->unk_194[0].unk_0C, 0);
 
-    ov85_022423A0(&Unk_ov85_02242938[1][0], &param0->unk_194[1].unk_00, sub_020973D4(param0->unk_1FC, 9));
-    ov85_022423A0(&Unk_ov85_02242938[1][1], &param0->unk_194[1].unk_06, sub_020973D4(param0->unk_1FC, 5));
+    ov85_022423A0(&Unk_ov85_02242938[1][0], &param0->unk_194[1].unk_00, BerryData_GetAttribute(param0->unk_1FC, 9));
+    ov85_022423A0(&Unk_ov85_02242938[1][1], &param0->unk_194[1].unk_06, BerryData_GetAttribute(param0->unk_1FC, 5));
     ov85_022423A0(&Unk_ov85_02242938[1][2], &param0->unk_194[1].unk_12, 0);
-    ov85_022423A0(&Unk_ov85_02242938[1][3], &param0->unk_194[1].unk_0C, sub_020973D4(param0->unk_1FC, 8));
+    ov85_022423A0(&Unk_ov85_02242938[1][3], &param0->unk_194[1].unk_0C, BerryData_GetAttribute(param0->unk_1FC, 8));
 
-    ov85_022423A0(&Unk_ov85_02242938[2][0], &param0->unk_194[2].unk_00, sub_020973D4(param0->unk_1FC, 9));
+    ov85_022423A0(&Unk_ov85_02242938[2][0], &param0->unk_194[2].unk_00, BerryData_GetAttribute(param0->unk_1FC, 9));
     ov85_022423A0(&Unk_ov85_02242938[2][1], &param0->unk_194[2].unk_06, 0);
-    ov85_022423A0(&Unk_ov85_02242938[2][2], &param0->unk_194[2].unk_12, sub_020973D4(param0->unk_1FC, 7));
-    ov85_022423A0(&Unk_ov85_02242938[2][3], &param0->unk_194[2].unk_0C, sub_020973D4(param0->unk_1FC, 8));
+    ov85_022423A0(&Unk_ov85_02242938[2][2], &param0->unk_194[2].unk_12, BerryData_GetAttribute(param0->unk_1FC, 7));
+    ov85_022423A0(&Unk_ov85_02242938[2][3], &param0->unk_194[2].unk_0C, BerryData_GetAttribute(param0->unk_1FC, 8));
 
     ov85_022423A0(&Unk_ov85_02242938[3][0], &param0->unk_194[3].unk_00, 0);
-    ov85_022423A0(&Unk_ov85_02242938[3][1], &param0->unk_194[3].unk_06, sub_020973D4(param0->unk_1FC, 6));
-    ov85_022423A0(&Unk_ov85_02242938[3][2], &param0->unk_194[3].unk_12, sub_020973D4(param0->unk_1FC, 7));
-    ov85_022423A0(&Unk_ov85_02242938[3][3], &param0->unk_194[3].unk_0C, sub_020973D4(param0->unk_1FC, 8));
+    ov85_022423A0(&Unk_ov85_02242938[3][1], &param0->unk_194[3].unk_06, BerryData_GetAttribute(param0->unk_1FC, 6));
+    ov85_022423A0(&Unk_ov85_02242938[3][2], &param0->unk_194[3].unk_12, BerryData_GetAttribute(param0->unk_1FC, 7));
+    ov85_022423A0(&Unk_ov85_02242938[3][3], &param0->unk_194[3].unk_0C, BerryData_GetAttribute(param0->unk_1FC, 8));
 
     for (v0 = 0; v0 < 4; v0++) {
         ov85_022423FC(&param0->unk_D4[v0].unk_00, &param0->unk_194[v0].unk_00, &param0->unk_134[v0].unk_00);

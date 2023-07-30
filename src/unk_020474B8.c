@@ -36,7 +36,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_020923C0.h"
-#include "unk_0209739C.h"
+#include "berry_data.h"
 
 #include <nitro/code16.h>
 
@@ -390,7 +390,7 @@ BOOL sub_02047BB8 (UnkStruct_0203E724 * param0)
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
-    Strbuf* v4 = sub_0209742C(v2 - 149, 32);
+    Strbuf* v4 = BerryData_AllocAndGetName(v2 - 149, 32);
 
     sub_0200B48C(*v0, v1, v4, 0, (v3 < 2 ? 1 : 0), GAME_LANGUAGE);
     Strbuf_Free(v4);
