@@ -28,7 +28,7 @@ is_wsl_accessing_windows() {
     fi
 }
 
-mkdir -p "$build"
+mkdir -p -- "$build"
 
 root="$PWD"
 if [ -n "$MSYSTEM" -a "$MSYSTEM" != MSYS ]; then
@@ -53,7 +53,7 @@ else
     cross_file="cross.ini"
 fi
 
-export MWCONFIG="$(realpath "$build/.mwconfig")"
+export MWCONFIG="$(realpath -- "$build/.mwconfig")"
 
 if [ "$native_file" = "native_unix.ini" ]; then
     wrap_wine="$(command -v "${WINELOADER:-wine}")"
@@ -69,4 +69,4 @@ elif is_wsl_accessing_windows; then
 fi
 
 # Launch meson
-"${MESON:-meson}" setup "$build" --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini" "$@"
+"${MESON:-meson}" setup --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini" "$@" -- "$build"
