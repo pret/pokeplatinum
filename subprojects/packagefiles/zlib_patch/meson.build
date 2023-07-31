@@ -6,7 +6,7 @@ project(
   meson_version: '>=0.49.0',
 )
 
-cc = meson.get_compiler('c')
+cc = meson.get_compiler('c', native: true)
 
 link_args = cc.get_supported_link_arguments(
   '-Wl,--version-script,@0@/zlib.map'.format(meson.current_source_dir()),
@@ -40,7 +40,7 @@ src = files(
 
 headers = files('zconf.h', 'zlib.h')
 
-if host_machine.system() == 'windows'
+if build_machine.system() == 'windows'
   win = import('windows')
   win_args = []
   if cc.get_argument_syntax() != 'msvc'
@@ -51,7 +51,7 @@ endif
 
 solo_args = []
 if get_option('solo')
-  if host_machine.system() == 'windows' and get_option('default_library') != 'static'
+  if build_machine.system() == 'windows' and get_option('default_library') != 'static'
     error('-Dsolo=true is incompatible with building a DLL')
   endif
   solo_args = ['-DZ_SOLO']

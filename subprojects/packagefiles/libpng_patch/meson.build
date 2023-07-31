@@ -12,13 +12,13 @@ png_micro_version = png_versions[2]
 png_libname = 'png@0@@1@'.format(png_major_version, png_minor_version)
 png_libversion = '@0@@1@.@2@.0'.format(png_major_version, png_minor_version, png_micro_version)
 
-cc = meson.get_compiler('c')
+cc = meson.get_compiler('c', native: true)
 
 include = include_directories('.')
 
 c_args = []
 
-if host_machine.system() == 'windows'
+if build_machine.system() == 'windows'
   add_project_arguments(
     '-D_CRT_NONSTDC_NO_DEPRECATE',
     '-D_CRT_SECURE_NO_DEPRECATE',
@@ -53,7 +53,7 @@ png_src = files(
 )
 
 
-if host_machine.cpu_family() == 'aarch64' or cc.get_define('__ARM_NEON').strip() != ''
+if build_machine.cpu_family() == 'aarch64' or cc.get_define('__ARM_NEON').strip() != ''
   png_src += files(
     'arm/arm_init.c',
     'arm/filter_neon_intrinsics.c',
@@ -79,7 +79,7 @@ if host_machine.cpu_family() == 'aarch64' or cc.get_define('__ARM_NEON').strip()
   endif
 
   c_args += '-DPNG_ARM_NEON_OPT=2'
-elif host_machine.cpu_family() in ['x86', 'x86_64']
+elif build_machine.cpu_family() in ['x86', 'x86_64']
   png_src += files(
     'intel/filter_sse2_intrinsics.c',
     'intel/intel_init.c',
