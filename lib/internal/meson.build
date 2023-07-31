@@ -1,2 +1,0 @@
-subdir('libgds')
-subdir('libspl')

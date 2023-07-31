@@ -54,7 +54,7 @@ def nasm_to_asm(fileString: str) -> str:
 
 def relativize_pch_paths(fileString: str) -> str:
     '''Make paths to headers to be precompiled relative (for WSL)'''
-    return re.sub(r'c_PCH [\w/]+?lib', r'c_PCH ../lib', fileString)
+    return re.sub(r'c_PCH [\w/]+?subprojects', r'c_PCH ../subprojects', fileString)
 
 
 if __name__ == '__main__':

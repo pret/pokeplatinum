@@ -1,5 +1,4 @@
 project('pokeplatinum', ['c', 'cpp', 'nasm'],
-    subproject_dir: 'lib/external',
     version: '1.0',
     meson_version: '>=1.2.0',
     default_options : [
@@ -92,7 +91,7 @@ libsyscall_dep  = dependency('libsyscall',  fallback : ['libsyscall', 'libsyscal
 ############################################################
 ###                  INTERNAL LIBRARIES                  ###
 ############################################################
-subdir('lib/internal')
+subdir('lib')
 
 
 ############################################################
