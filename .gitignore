@@ -4,6 +4,11 @@
 /tools/cw/mwrap
 /tools/cw/mwrap.exe
 
+# Wrapped subprojects folders
+/subprojects/libpng-*/
+/subprojects/zlib-*/
+/subprojects/packagecache
+
 # CLion folders
 .idea/
 cmake-build-debug/
