@@ -72,7 +72,6 @@ zlib = library(
   src,
   c_args: compile_args,
   link_args: link_args,
-  vs_module_defs: 'win32/zlib.def',
   native: true,
   install: false,
 )
