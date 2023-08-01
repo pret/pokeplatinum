@@ -5,6 +5,7 @@
 /tools/cw/mwrap.exe
 
 # Wrapped subprojects folders
+/subprojects/nitrogfx/
 /subprojects/libpng-*/
 /subprojects/zlib-*/
 /subprojects/packagecache
