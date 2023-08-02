@@ -69,4 +69,4 @@ elif is_wsl_accessing_windows; then
 fi
 
 # Launch meson
-"${MESON:-meson}" setup -Dnitrogfx:native=true --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini" "$@" -- "$build"
+"${MESON:-meson}" setup --native-file=meson/"$native_file" --native-file="$build/root.ini" --cross-file=meson/"$cross_file" --cross-file="$build/root.ini" "$@" -- "$build"
