@@ -11,4 +11,4 @@ makelcf_exe = find_program('makelcf', native: true)
 makerom_exe = find_program('makerom', native: true)
 
 # External tools
-nitrogfx_exe = subproject('nitrogfx').get_variable('nitrogfx_exe')
+nitrogfx_exe = find_program('nitrogfx', native: true)
