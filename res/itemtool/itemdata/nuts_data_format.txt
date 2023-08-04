@@ -1,0 +1,12 @@
+berry:skip:constants/items.h:ITEM_
+size:u16
+firmness:u8:berry_data.h:FIRMNESS_
+yieldCategory:u8
+stageDuration:u8
+moistureDrainRate:u8
+spiciness:u8
+dryness:u8
+sweetness:u8
+bitterness:u8
+sourness:u8
+smoothness:u8

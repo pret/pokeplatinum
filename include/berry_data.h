@@ -5,6 +5,12 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_berry_data_decl.h"
 
+#define FIRMNESS_VERY_SOFT     1
+#define FIRMNESS_SOFT          2
+#define FIRMNESS_HARD          3
+#define FIRMNESS_VERY_HARD     4
+#define FIRMNESS_SUPER_HARD    5
+
 /*
  * Constructs a new NARC which contains an open FSFile to the berry data archive.
  *
