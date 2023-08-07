@@ -14,7 +14,7 @@
 #include "unk_0202D7A8.h"
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
-#include "unk_0206C33C.h"
+#include "roaming_pokemon.h"
 #include "unk_02073C2C.h"
 #include "party.h"
 #include "overlay006/ov6_02246034.h"

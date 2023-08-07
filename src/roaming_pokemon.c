@@ -3,6 +3,8 @@
 
 #include "inlines.h"
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -14,7 +16,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_0202D7A8.h"
-#include "unk_0206C33C.h"
+#include "roaming_pokemon.h"
 #include "unk_02073C2C.h"
 
 typedef struct {
@@ -145,7 +147,7 @@ static const UnkStruct_020EFBB8 Unk_020EFBB8[29] = {
     }
 };
 
-static const int Unk_020EFB44[29] = {
+static const int RoamingPokemonRoutes[29] = {
     0x156,
     0x157,
     0x158,
@@ -219,20 +221,20 @@ void sub_0206C37C (UnkStruct_0202D7B0 * param0)
 int sub_0206C3C8 (const u8 param0)
 {
     GF_ASSERT(param0 < 29);
-    return Unk_020EFB44[param0];
+    return RoamingPokemonRoutes[param0];
 }
 
 BOOL sub_0206C3E0 (UnkStruct_0202D7B0 * param0)
 {
-    u8 v0;
+    u8 i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
-            return 1;
+    for (i = 0; i < ROAMING_SLOT_MAX; i++) {
+        if (sub_0202D8F8(param0, i)) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0206C404 (UnkStruct_0202D7B0 * param0, const int param1)
@@ -242,57 +244,57 @@ void sub_0206C404 (UnkStruct_0202D7B0 * param0, const int param1)
     }
 }
 
-void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
+void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 roamingSlot)
 {
     Pokemon * v0;
     UnkStruct_0206C638 * v1;
     UnkStruct_0202D7B0 * v2;
-    int v3;
+    int previouslyVisitedMapID;
     UnkStruct_02025E6C * v4;
-    int v5;
-    u8 v6;
+    int speciesID;
+    u8 level;
 
-    v2 = sub_0202D834(param0);
-    v1 = sub_0202D924(v2, param1);
+    v2 = sub_0202D834(saveData);
+    v1 = sub_0202D924(v2, roamingSlot);
 
-    switch (param1) {
-    case 0:
-        v5 = 481;
-        v6 = 50;
+    switch (roamingSlot) {
+    case ROAMING_SLOT_MESPRIT:
+        speciesID = SPECIES_MESPRIT;
+        level = 50;
         break;
-    case 1:
-        v5 = 488;
-        v6 = 50;
+    case ROAMING_SLOT_CRESSELIA:
+        speciesID = SPECIES_CRESSELIA;
+        level = 50;
         break;
-    case 2:
-        v5 = 491;
-        v6 = 40;
+    case ROAMING_SLOT_DARKRAI:
+        speciesID = SPECIES_DARKRAI;
+        level = 40;
         break;
-    case 3:
-        v5 = 146;
-        v6 = 60;
+    case ROAMING_SLOT_MOLTRES:
+        speciesID = SPECIES_MOLTRES;
+        level = 60;
         break;
-    case 4:
-        v5 = 145;
-        v6 = 60;
+    case ROAMING_SLOT_ZAPDOS:
+        speciesID = SPECIES_ZAPDOS;
+        level = 60;
         break;
-    case 5:
-        v5 = 144;
-        v6 = 60;
+    case ROAMING_SLOT_ARTICUNO:
+        speciesID = SPECIES_ARTICUNO;
+        level = 60;
         break;
     default:
         GF_ASSERT(0);
         return;
     }
 
-    sub_0202D980(v1, 4, v5);
-    sub_0202D980(v1, 6, v6);
+    sub_0202D980(v1, 4, speciesID);
+    sub_0202D980(v1, 6, level);
 
-    v4 = sub_02025E38(param0);
+    v4 = sub_02025E38(saveData);
     v0 = AllocMonZeroed(4);
 
     ZeroMonData(v0);
-    sub_02073D80(v0, v5, v6, 32, 0, 0, 1, sub_02025F24(v4));
+    sub_02073D80(v0, speciesID, level, 32, 0, 0, 1, sub_02025F24(v4));
     sub_0202D980(v1, 7, 0);
     sub_0202D980(v1, 8, 1);
     sub_0202D980(v1, 2, GetMonData(v0, MON_DATA_175, NULL));
@@ -300,8 +302,8 @@ void sub_0206C41C (UnkStruct_021C0794 * param0, const u8 param1)
     sub_0202D980(v1, 5, GetMonData(v0, MON_DATA_164, NULL));
     Heap_FreeToHeap(v0);
 
-    v3 = sub_0202D8BC(v2);
-    sub_0206C538(v2, param1, v3);
+    previouslyVisitedMapID = sub_0202D8BC(v2);
+    sub_0206C538(v2, roamingSlot, previouslyVisitedMapID);
 }
 
 static void sub_0206C538 (UnkStruct_0202D7B0 * param0, const u8 param1, const int param2)
@@ -310,11 +312,11 @@ static void sub_0206C538 (UnkStruct_0202D7B0 * param0, const u8 param1, const in
     int v1;
     int v2;
 
-    v1 = Unk_020EFB44[sub_0202D8C4(param0, param1)];
+    v1 = RoamingPokemonRoutes[sub_0202D8C4(param0, param1)];
 
     while (TRUE) {
         v0 = inline_020564D0(29);
-        v2 = Unk_020EFB44[v0];
+        v2 = RoamingPokemonRoutes[v0];
 
         if ((v2 != param2) && (v2 != v1)) {
             sub_0206C638(param0, param1, v0, v2);
@@ -333,7 +335,7 @@ static void sub_0206C588 (UnkStruct_0202D7B0 * param0, const u8 param1, const in
 
     if (v0->unk_00 == 1) {
         v1 = v0->unk_02[0];
-        v2 = Unk_020EFB44[v1];
+        v2 = RoamingPokemonRoutes[v1];
 
         if (v2 == param2) {
             sub_0206C538(param0, param1, param2);
@@ -346,7 +348,7 @@ static void sub_0206C588 (UnkStruct_0202D7B0 * param0, const u8 param1, const in
         while (TRUE) {
             v3 = inline_020564D0(v0->unk_00);
             v1 = v0->unk_02[v3];
-            v2 = Unk_020EFB44[v1];
+            v2 = RoamingPokemonRoutes[v1];
 
             if (v2 != param2) {
                 sub_0206C638(param0, param1, v1, v2);

@@ -174,7 +174,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206C0E8.h"
-#include "unk_0206C33C.h"
+#include "roaming_pokemon.h"
 #include "unk_0206C660.h"
 #include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
@@ -6647,7 +6647,7 @@ static BOOL sub_02044CCC (UnkStruct_0203E724 * param0)
 {
     u8 v0 = (*((param0)->unk_08++));
 
-    sub_0206C41C(param0->unk_34->unk_0C, v0);
+    RoamingPokemon_ActivateSlot(param0->unk_34->unk_0C, v0);
     return 0;
 }
 
