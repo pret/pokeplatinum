@@ -58,7 +58,7 @@
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206A8DC.h"
-#include "unk_0206C33C.h"
+#include "roaming_pokemon.h"
 #include "unk_0206CCB0.h"
 #include "unk_02071CFC.h"
 #include "unk_02073C2C.h"

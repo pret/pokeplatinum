@@ -39,7 +39,7 @@
 #include "unk_0206940C.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
-#include "unk_0206C33C.h"
+#include "roaming_pokemon.h"
 #include "unk_02073C2C.h"
 #include "unk_02079170.h"
 #include "party.h"

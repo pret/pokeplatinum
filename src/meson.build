@@ -256,7 +256,7 @@ pokeplatinum_c = files(
     'unk_0206B9D8.c',
     'unk_0206C0E8.c',
     'unk_0206C2D0.c',
-    'unk_0206C33C.c',
+    'roaming_pokemon.c',
     'unk_0206C660.c',
     'unk_0206C784.c',
     'unk_0206CCB0.c',

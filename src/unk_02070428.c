@@ -21,7 +21,7 @@
 #include "unk_020556C4.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
-#include "unk_0206C33C.h"
+#include "roaming_pokemon.h"
 #include "unk_02070428.h"
 
 static BOOL sub_020705DC(UnkStruct_0203CDB0 * param0);
