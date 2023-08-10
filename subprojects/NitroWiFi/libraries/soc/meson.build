@@ -24,7 +24,7 @@ libsoc = static_library('soc',
     sources: [libsoc_srcs],
     c_args: [c_args, sdk_args],
     include_directories: [public_includes, libsoc_internal_includes],
-    dependencies: [msl_dep, nitrosdk_dep],
+    dependencies: nitrosdk_dep,
     c_pch: nitro_pch,
     pic: false
 )

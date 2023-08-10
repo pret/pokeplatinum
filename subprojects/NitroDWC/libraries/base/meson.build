@@ -18,7 +18,6 @@ libdwcbase = static_library('dwcbase',
     c_args: [c_args, sdk_args],
     nasm_args: asm_args,
     dependencies: [
-        msl_dep,
         gamespy_dep,
         nitrosdk_dep,
         nitrosystem_dep,

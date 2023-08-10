@@ -32,11 +32,6 @@ KEEP_SECTION
 	.sinit
 }
 
-KEEP_SECTION
-{
-	.exception
-}
-
 SECTIONS
 {
 	############################ STATIC #################################

@@ -3,10 +3,10 @@
 .public abort
 .public memmove
 .public printf
-.public sub_020DFBDC
+.public _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 .public _u32_div_f
-.public sub_020E3FD4
-.public sub_020E4000
+.public _ZnamRKSt9nothrow_t
+.public _ZdaPv
 .public DWC_Free
 .public DWC_GetDateTime
 .public ov66_02234FC4

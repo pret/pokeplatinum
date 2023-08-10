@@ -984,7 +984,7 @@ ov66_0224290C: ; 0x0224290C
 	mov r5, r0
 	cmp r4, r1
 	bls _02242928
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _02242928:
 	mov r0, r4, lsl #2
 	bl ov66_02246290
@@ -1004,7 +1004,7 @@ ov66_0224293C: ; 0x0224293C
 	sub r0, r0, r4
 	cmp r1, r0
 	bls _02242964
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _02242964:
 	ldr r0, _02242A00 ; =0x15555555
 	cmp r4, r0
@@ -1166,7 +1166,7 @@ ov66_02242B88: ; 0x02242B88
 	mov r5, r0
 	cmp r4, r1
 	bls _02242BA4
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _02242BA4:
 	mov r0, r4, lsl #2
 	bl ov66_02246290

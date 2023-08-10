@@ -412,6 +412,26 @@ void fix_depfile(_TCHAR *fname, const char *path_unx, const char *path_win)
     free(file);
 }
 
+char *replace_str(char *str, char *orig, char *rep, int start)
+{
+    static char temp[4096];
+    static char buffer[4096];
+    char *p;
+
+    strcpy(temp, str + start);
+
+    if(!(p = strstr(temp, orig)))  // Is 'orig' even in 'temp'?
+        return temp;
+
+    strncpy(buffer, temp, p-temp); // Copy characters from 'temp' start to 'orig' str
+    buffer[p-temp] = '\0';
+
+    sprintf(buffer + (p - temp), "%s%s", rep, p + strlen(orig));
+    sprintf(str + start, "%s", buffer);
+
+    return str;
+}
+
 int _tmain(int argc, _TCHAR *argv[])
 {
     if (argc < 2) {
@@ -454,9 +474,36 @@ int _tmain(int argc, _TCHAR *argv[])
         new_argv[0] = wine;
     }
 
+    _TCHAR *pathsep = malloc(sizeof(_TCHAR));
+
+#ifdef _WIN32
+    pathsep = _T(";");
+#else
+    pathsep = ":";
+#endif
+
+    // Build standard library paths for environment variables
+    size_t mwcincludes_size = _tcslen(tool_dir) + 140;
+    _TCHAR *MWCIncludes = malloc(sizeof(_TCHAR) * mwcincludes_size);
+    _sntprintf(MWCIncludes, mwcincludes_size, _T(
+        FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS),
+        tool_dir, _T("include"), pathsep, tool_dir, _T("include/MSL_C"), pathsep, tool_dir, _T("include/MSL_Extras"));
+
+    size_t mwclibraries_size = _tcslen(tool_dir) + 5;
+    _TCHAR *MWLibraries = malloc(sizeof(_TCHAR) * mwclibraries_size);
+    _sntprintf(MWLibraries, mwclibraries_size, _T(FMT_TS "/" FMT_TS), tool_dir, _T("lib"));
+
+    size_t mwclibraryfiles_size = 107;
+    _TCHAR *MWLibraryFiles = malloc(sizeof(_TCHAR) * mwclibraryfiles_size);
+    _sntprintf(MWLibraryFiles, mwclibraryfiles_size, _T(
+        "MSL_C_NITRO_Ai_LE.a"FMT_TS"MSL_Extras_NITRO_Ai_LE.a"FMT_TS"MSL_CPP_NITRO_Ai_LE.a"FMT_TS"FP_fastI_v5t_LE.a"FMT_TS"NITRO_Runtime_Ai_LE.a"),
+        pathsep, pathsep, pathsep, pathsep);
+
 #ifdef _WIN32
     // Set up the environment
-    SetEnvironmentVariable(_T("MWLibraries"), _T(";"));
+    SetEnvironmentVariable(_T("MWCIncludes"), MWCIncludes);
+    SetEnvironmentVariable(_T("MWLibraries"), MWLibraries);
+    SetEnvironmentVariable(_T("MWLibraryFiles"), MWLibraryFiles);
 
     // Execute the tool
     _TCHAR *argv_quoted = win_argv_build((const _TCHAR **)new_argv);
@@ -480,7 +527,14 @@ int _tmain(int argc, _TCHAR *argv[])
     free(argv_quoted);
 #else
     // Set up the environment
-    setenv("MWLibraries", ";", true);
+    setenv("MWCIncludes", MWCIncludes, true);
+    setenv("MWLibraries", MWLibraries, true);
+    setenv("MWLibraryFiles", MWLibraryFiles, true);
+
+    #ifndef __CYGWIN__
+        // Pass environment variables to Windows if running in WSL
+        setenv("WSLENV", "MWCIncludes/p:MWLibraries/p:MWLibraryFiles", true);
+    #endif
 
     // Execute the tool
     if (args.wrap_dbg) {
@@ -503,6 +557,10 @@ int _tmain(int argc, _TCHAR *argv[])
     free(tool);
     free(new_argv);
     free(tool_dir);
+
+    free(MWCIncludes);
+    free(MWLibraries);
+    free(MWLibraryFiles);
 
     // Fix dependency file if generated
     if (cfg.path_unx && cfg.path_win) {

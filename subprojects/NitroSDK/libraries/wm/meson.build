@@ -15,7 +15,6 @@ libwm = static_library('wm',
     sources: [libwm_srcs, fx_const_h],
     c_args: [c_args, sdk_args],
     nasm_args: asm_args,
-    dependencies: msl_dep,
     include_directories: [public_includes, libwm_internal_includes],
     c_pch: nitro_pch,
     pic: false

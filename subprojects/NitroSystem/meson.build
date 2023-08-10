@@ -14,7 +14,7 @@ c_args = [
     '-inline', 'on,noauto',
     '-char', 'signed',
     '-nosyspath',
-    '-nostdinc'
+    '-stdinc'
 ]
 
 asm_args = [
@@ -34,7 +34,6 @@ sdk_args = [
 ]
 
 # Dependencies
-msl_dep = dependency('msl', fallback: ['msl', 'msl_dep'])
 nitrosdk_dep = dependency('NitroSDK', fallback : ['NitroSDK', 'nitrosdk_dep'])
 
 # Public includes

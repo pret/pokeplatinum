@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/sb_server.inc"
 
-	.extern Unk_020FE764
+	.extern __lower_mapC
 
 	.text
 
@@ -561,7 +561,7 @@ _021FE734:
 	mov r0, r1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FE744: .word Unk_020FE764
+_021FE744: .word __lower_mapC
 _021FE748: .word 0x9CCF9319
 	arm_func_end ov4_021FE6F4
 

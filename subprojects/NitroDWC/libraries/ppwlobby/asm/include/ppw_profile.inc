@@ -4,7 +4,7 @@
 .public memset
 .public memcmp
 .public printf
-.public sub_020DFBDC
+.public _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 .public DWC_Free
 .public DWC_GetDateTime
 .public ov66_02234FC4

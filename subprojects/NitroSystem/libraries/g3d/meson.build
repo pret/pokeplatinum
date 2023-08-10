@@ -31,7 +31,7 @@ libnnsg3d = static_library('nnsg3d',
     nasm_args: asm_args,
     include_directories: [public_includes, libnnsg3d_internal_includes],
     c_pch: nitro_pch,
-    dependencies: [msl_dep, nitrosdk_dep],
+    dependencies: nitrosdk_dep,
     pic: false
 )
 

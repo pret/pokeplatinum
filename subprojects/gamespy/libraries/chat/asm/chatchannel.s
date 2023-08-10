@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/chatchannel.inc"
 
-	.extern Unk_020FE764
+	.extern __lower_mapC
 
 	.text
 
@@ -53,7 +53,7 @@ _0224B4A0: .word Unk_ov66_0225980C
 _0224B4A4: .word Unk_ov66_02259818
 _0224B4A8: .word Unk_ov66_02259568
 _0224B4AC: .word Unk_ov66_02259828
-_0224B4B0: .word Unk_020FE764
+_0224B4B0: .word __lower_mapC
 	arm_func_end ov66_0224B414
 
 	arm_func_start ov66_0224B4B4

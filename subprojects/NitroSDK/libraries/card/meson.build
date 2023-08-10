@@ -14,7 +14,6 @@ libcard = static_library('card',
     c_args: [c_args, sdk_args],
     include_directories: [public_includes, libcard_internal_includes],
     nasm_args: asm_args,
-    dependencies: msl_dep,
     c_pch: nitro_pch,
     pic: false
 )

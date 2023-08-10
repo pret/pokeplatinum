@@ -15,7 +15,7 @@ c_args = [
     '-inline', 'on,noauto',
     '-char', 'signed',
     '-nosyspath',
-    '-nostdinc'
+    '-stdinc'
 ]
 
 asm_args = [
@@ -37,9 +37,6 @@ sdk_args = [
 # Public includes
 public_includes = [include_directories('include')]
 nitro_pch = meson.current_source_dir() / 'include/pch/nitro_pch.h'
-
-# Dependencies
-msl_dep = dependency('msl', fallback: ['msl', 'msl_dep'])
 
 # arm7 components
 subdir('components')
