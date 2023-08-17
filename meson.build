@@ -32,7 +32,7 @@ c_args = [
     '-inline', 'on,noauto',
     '-char', 'signed',
     '-nosyspath',
-    '-nostdinc'
+    '-stdinc'
 ]
 
 pokeplatinum_args = [
@@ -56,9 +56,8 @@ link_args = [
     '-map', 'closure,unused',
     '-symtab', 'sort',
     '-msgstyle' ,'gcc',
-    '-nostdlib',
     '-m', '_start',
-    '-force_active', 'DGTi_hash2_arm4_small,Exception_Table_Index,Unk_02101B00,Unk_02101CE4'
+    '-force_active', 'DGTi_hash2_arm4_small'
 ]
 
 
@@ -79,7 +78,6 @@ subdir('platinum.us')
 ############################################################
 gamespy_dep     = dependency('gamespy',     fallback : ['gamespy', 'gamespy_dep'])
 libvct_dep      = dependency('libVCT',      fallback : ['libVCT', 'libvct_dep'])
-msl_dep         = dependency('msl',         fallback : ['msl', 'msl_dep'])
 nitrosdk_dep    = dependency('NitroSDK',    fallback : ['NitroSDK', 'nitrosdk_dep'])
 nitrosystem_dep = dependency('NitroSystem', fallback : ['NitroSystem', 'nitrosystem_dep'])
 nitrowifi_dep   = dependency('NitroWiFi',   fallback : ['NitroWiFi', 'nitrowifi_dep'])
@@ -121,7 +119,6 @@ main = executable('main',
     dependencies: [
         gamespy_dep,
         libvct_dep,
-        msl_dep,
         nitrosdk_dep,
         nitrosystem_dep,
         nitrowifi_dep,

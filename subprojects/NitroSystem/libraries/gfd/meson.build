@@ -16,7 +16,7 @@ libnnsgfd = static_library('nnsgfd',
     c_args: [c_args, sdk_args],
     include_directories: [public_includes, libnnsgfd_internal_includes],
     c_pch: nitro_pch,
-    dependencies: [msl_dep, nitrosdk_dep],
+    dependencies: nitrosdk_dep,
     pic: false
 )
 

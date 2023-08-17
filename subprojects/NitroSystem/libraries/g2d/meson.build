@@ -35,7 +35,7 @@ libnnsg2d = static_library('nnsg2d',
     c_args: [c_args, sdk_args],
     include_directories: [public_includes, libnnsg2d_internal_includes],
     c_pch: nitro_pch,
-    dependencies: [msl_dep, nitrosdk_dep],
+    dependencies: nitrosdk_dep,
     pic: false
 )
 

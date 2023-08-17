@@ -1,5 +1,0 @@
-subdir('Mathlib')
-subdir('MSL_C')
-subdir('MSL_C++')
-subdir('MSL_Extras')
-subdir('MSL_Runtime')

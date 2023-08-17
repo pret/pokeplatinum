@@ -13,7 +13,7 @@
 .public strlen
 .public strncpy
 .public strcmp
-.public sub_020DFBDC
+.public _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 .public _u32_div_f
 .public DWC_ClearError
 .public DWC_Alloc

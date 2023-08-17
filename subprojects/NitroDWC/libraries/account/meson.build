@@ -7,7 +7,6 @@ libdwcaccount = static_library('dwcaccount',
     sources: [libdwcaccount_srcs],
     c_args: [c_args, sdk_args],
     dependencies: [
-        msl_dep,
         gamespy_dep,
         nitrosdk_dep,
         nitrosystem_dep,

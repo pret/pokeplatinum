@@ -9,7 +9,6 @@ asm_args = [
 public_includes = include_directories('include')
 
 # Dependencies
-msl_dep = dependency('msl', fallback: ['msl', 'msl_dep'])
 nitrosdk_dep = dependency('NitroSDK', fallback : ['NitroSDK', 'nitrosdk_dep'])
 nitrosystem_dep = dependency('NitroSystem', fallback : ['NitroSystem', 'nitrosystem_dep'])
 nitrowifi_dep = dependency('NitroWiFi', fallback : ['NitroWiFi', 'nitrowifi_dep'])
@@ -22,7 +21,6 @@ subdir('libraries')
 gamespy_dep = declare_dependency(
     compile_args: '-D_NITRO',
     dependencies: [
-        msl_dep,
         nitrosdk_dep,
         nitrosystem_dep,
         nitrowifi_dep

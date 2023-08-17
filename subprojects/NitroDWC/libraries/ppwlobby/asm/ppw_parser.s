@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/ppw_parser.inc"
 
-	.extern Unk_020FE764
+	.extern __lower_mapC
 
 	.text
 
@@ -375,7 +375,7 @@ ov66_022416BC: ; 0x022416BC
 	ldrb r0, [r1, r0]
 	bx lr
 	; .align 2, 0
-_022416D8: .word Unk_020FE764
+_022416D8: .word __lower_mapC
 	arm_func_end ov66_022416BC
 
 	arm_func_start ov66_022416DC

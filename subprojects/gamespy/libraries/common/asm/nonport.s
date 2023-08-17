@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/nonport.inc"
 
-	.extern Unk_020FE764
+	.extern __lower_mapC
 
 	.text
 
@@ -92,7 +92,7 @@ _021EA918:
 	mov r0, r2
 	bx lr
 	; .align 2, 0
-_021EA920: .word Unk_020FE764
+_021EA920: .word __lower_mapC
 	arm_func_end ov4_021EA8E0
 
 	arm_func_start ov4_021EA924

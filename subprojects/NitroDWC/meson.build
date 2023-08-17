@@ -14,7 +14,7 @@ c_args = [
     '-inline', 'on,noauto',
     '-char', 'signed',
     '-nosyspath',
-    '-nostdinc'
+    '-stdinc'
 ]
 
 asm_args = [
@@ -34,7 +34,6 @@ sdk_args = [
 ]
 
 # Dependencies
-msl_dep = dependency('msl', fallback: ['msl', 'msl_dep'])
 gamespy_dep = dependency('gamespy', fallback : ['gamespy', 'gamespy_dep'])
 nitrosdk_dep = dependency('NitroSDK', fallback : ['NitroSDK', 'nitrosdk_dep'])
 nitrosystem_dep = dependency('NitroSystem', fallback : ['NitroSystem', 'nitrosystem_dep'])
@@ -52,7 +51,6 @@ subdir('libraries')
 nitrodwc_dep = declare_dependency(
     compile_args: sdk_args,
     dependencies: [
-        msl_dep,
         gamespy_dep,
         nitrosdk_dep,
         nitrosystem_dep,

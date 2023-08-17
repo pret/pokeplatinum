@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/ppw_innerinfo.inc"
 
-	.extern Unk_021D0D60
+	.extern _ZSt7nothrow
 	
 
 	.text
@@ -536,7 +536,7 @@ ov66_0223D0F4: ; 0x0223D0F4
 	ldmia r2, {r2, r3}
 	bl ov66_0223D19C
 	ldr r0, [sp, #0x2c]
-	bl sub_020E4000
+	bl _ZdaPv
 	add sp, sp, #0x30
 	ldmia sp!, {r4, lr}
 	add sp, sp, #0x10
@@ -2252,7 +2252,7 @@ ov66_0223E988: ; 0x0223E988
 _0223E9B4:
 	mov r1, r4
 	mov r0, r5, lsl #3
-	bl sub_020E3FD4
+	bl _ZnamRKSt9nothrow_t
 	str r0, [r6, #0]
 	cmp r0, #0
 	strne r5, [r6, #4]
@@ -2264,7 +2264,7 @@ _0223E9B4:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _0223E9E4: .word Unk_ov66_02259098
-_0223E9E8: .word Unk_021D0D60
+_0223E9E8: .word _ZSt7nothrow
 	arm_func_end ov66_0223E988
 
 	arm_func_start ov66_0223E9EC
@@ -3612,7 +3612,7 @@ ov66_0223FC9C: ; 0x0223FC9C
 	sub r0, r0, r4
 	cmp r1, r0
 	bls _0223FCC4
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _0223FCC4:
 	ldr r0, _0223FD60 ; =0x0AAAAAAA
 	cmp r4, r0
@@ -3705,7 +3705,7 @@ ov66_0223FDD8: ; 0x0223FDD8
 	sub r0, r0, r4
 	cmp r1, r0
 	bls _0223FE00
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _0223FE00:
 	ldr r0, _0223FE9C ; =0x0AAAAAAA
 	cmp r4, r0
@@ -4771,7 +4771,7 @@ ov66_02240D38: ; 0x02240D38
 	mov r5, r0
 	cmp r4, r1
 	bls _02240D54
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _02240D54:
 	mov r0, r4, lsl #3
 	bl ov66_02246290
@@ -4788,7 +4788,7 @@ ov66_02240D68: ; 0x02240D68
 	mov r5, r0
 	cmp r4, r1
 	bls _02240D84
-	bl sub_020DFBDC
+	bl _ZNSt15__vector_commonILb1EE18throw_length_errorEv
 _02240D84:
 	mov r0, r4, lsl #3
 	bl ov66_02246290
