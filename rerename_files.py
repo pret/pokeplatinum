@@ -27,7 +27,6 @@ import replacelib
 import pathlib
 import rename_file
 
-
 def main():
     code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
 

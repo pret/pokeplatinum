@@ -19,22 +19,22 @@ typedef struct {
     u32 len;
 } MessageParam;
 
-typedef struct UnkStruct_0200AC5C_t {
+typedef struct MessageData_t {
     u16 msgCount;
     u16 rand;
     MessageParam params[];
-} UnkStruct_0200AC5C;
+} MessageData;
 
-typedef struct UnkStruct_0200B144_t {
+typedef struct MessageFormatter_t {
     u16 type;
     u16 heapID;
     u16 narcID;
     u16 dataID;
     union {
-        UnkStruct_0200AC5C *data;
+        MessageData *data;
         NARC *narc;
     };
-} UnkStruct_0200B144;
+} MessageFormatter;
 
 /**
  * @brief Copies a source string into the destination buffer, copy as many
@@ -46,19 +46,19 @@ typedef struct UnkStruct_0200B144_t {
  */
 static void MessageData_Strcpy(charcode_t *dst, const charcode_t *src, const MessageParam *param);
 
-UnkStruct_0200AC5C* sub_0200AC5C (u32 narcID, u32 dataID, u32 heapID)
+MessageData* MessageData_Load (u32 narcID, u32 dataID, u32 heapID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, dataID, heapID);
 }
 
-void sub_0200AC64 (UnkStruct_0200AC5C *messageData)
+void MessageData_Free (MessageData *messageData)
 {
     Heap_FreeToHeap(messageData);
 }
 
 static inline int CalcParamOffset (u32 msgID)
 {
-    return sizeof(UnkStruct_0200AC5C) + sizeof(MessageParam) * msgID;
+    return sizeof(MessageData) + sizeof(MessageParam) * msgID;
 }
 
 static inline void DecodeParam (MessageParam *param, u32 msgID, u32 rand)
@@ -81,7 +81,7 @@ static inline void DecodeString (charcode_t *str, u32 len, u32 msgID, u16 rand)
     }
 }
 
-void sub_0200AC6C (const UnkStruct_0200AC5C *messageData, u32 msgID, charcode_t *dst)
+void MessageData_Get (const MessageData *messageData, u32 msgID, charcode_t *dst)
 {
     if (msgID < messageData->msgCount) {
         MessageParam param = messageData->params[msgID];
@@ -97,13 +97,13 @@ void sub_0200AC6C (const UnkStruct_0200AC5C *messageData, u32 msgID, charcode_t 
     GF_ASSERT(FALSE);
 }
 
-void sub_0200ACF0 (u32 narcID, u32 dataID, u32 msgID, u32 heapID, charcode_t *dst)
+void MessageData_GetFromNARC (u32 narcID, u32 dataID, u32 msgID, u32 heapID, charcode_t *dst)
 {
     NARC *narc = NARC_ctor(narcID, heapID);
 
     if (narc) {
-        UnkStruct_0200AC5C data;
-        NARC_ReadFromMember(narc, dataID, 0, sizeof(UnkStruct_0200AC5C), &data);
+        MessageData data;
+        NARC_ReadFromMember(narc, dataID, 0, sizeof(MessageData), &data);
 
         MessageParam param;
         NARC_ReadFromMember(narc, dataID, CalcParamOffset(msgID), sizeof(MessageParam), &param);
@@ -123,7 +123,7 @@ static void MessageData_Strcpy (charcode_t *dst, const charcode_t *src, const Me
     MI_CpuCopy16(src, dst, param->len * sizeof(charcode_t));
 }
 
-void sub_0200ADAC (const UnkStruct_0200AC5C *messageData, u32 msgID, Strbuf *strbuf)
+void MessageData_GetStrbuf (const MessageData *messageData, u32 msgID, Strbuf *strbuf)
 {
     if (msgID < messageData->msgCount) {
         MessageParam param = messageData->params[msgID];
@@ -147,7 +147,7 @@ void sub_0200ADAC (const UnkStruct_0200AC5C *messageData, u32 msgID, Strbuf *str
     Strbuf_Clear(strbuf);
 }
 
-Strbuf* sub_0200AE5C (const UnkStruct_0200AC5C *messageData, u32 msgID, u32 heapID)
+Strbuf* MessageData_AllocStrbuf (const MessageData *messageData, u32 msgID, u32 heapID)
 {
     if (msgID < messageData->msgCount) {
         MessageParam param = messageData->params[msgID];
@@ -176,20 +176,20 @@ Strbuf* sub_0200AE5C (const UnkStruct_0200AC5C *messageData, u32 msgID, u32 heap
     return Strbuf_Init(4, heapID);
 }
 
-void sub_0200AF20 (u32 narcID, u32 dataID, u32 msgID, u32 heapID, Strbuf *dst)
+void MessageData_GetStrbufFromNARC (u32 narcID, u32 dataID, u32 msgID, u32 heapID, Strbuf *dst)
 {
     NARC *narc = NARC_ctor(narcID, heapID);
 
     if (narc) {
-        sub_0200AF48(narc, dataID, msgID, heapID, dst);
+        MessageData_GetStrbufFromNARCHandle(narc, dataID, msgID, heapID, dst);
         NARC_dtor(narc);
     }
 }
 
-void sub_0200AF48 (NARC *narc, u32 dataID, u32 msgID, u32 heapID, Strbuf *dst)
+void MessageData_GetStrbufFromNARCHandle (NARC *narc, u32 dataID, u32 msgID, u32 heapID, Strbuf *dst)
 {
-    UnkStruct_0200AC5C data;
-    NARC_ReadFromMember(narc, dataID, 0, sizeof(UnkStruct_0200AC5C), &data);
+    MessageData data;
+    NARC_ReadFromMember(narc, dataID, 0, sizeof(MessageData), &data);
 
     if (msgID < data.msgCount) {
         MessageParam param;
@@ -212,13 +212,13 @@ void sub_0200AF48 (NARC *narc, u32 dataID, u32 msgID, u32 heapID, Strbuf *dst)
     Strbuf_Clear(dst);
 }
 
-Strbuf* sub_0200B010 (u32 narcID, u32 dataID, u32 msgID, u32 heapID)
+Strbuf* MessageData_AllocStrbufFromNARC (u32 narcID, u32 dataID, u32 msgID, u32 heapID)
 {
     NARC *narc = NARC_ctor(narcID, heapID);
 
     Strbuf *strbuf;
     if (narc) {
-        strbuf = sub_0200B044(narc, dataID, msgID, heapID);
+        strbuf = MessageData_AllocStrbufFromNARCHandle(narc, dataID, msgID, heapID);
         NARC_dtor(narc);
     } else {
         strbuf = Strbuf_Init(4, heapID);
@@ -227,10 +227,10 @@ Strbuf* sub_0200B010 (u32 narcID, u32 dataID, u32 msgID, u32 heapID)
     return strbuf;
 }
 
-Strbuf* sub_0200B044 (NARC *narc, u32 dataID, u32 msgID, u32 heapID)
+Strbuf* MessageData_AllocStrbufFromNARCHandle (NARC *narc, u32 dataID, u32 msgID, u32 heapID)
 {
-    UnkStruct_0200AC5C data;
-    NARC_ReadFromMember(narc, dataID, 0, sizeof(UnkStruct_0200AC5C), &data);
+    MessageData data;
+    NARC_ReadFromMember(narc, dataID, 0, sizeof(MessageData), &data);
 
     if (msgID < data.msgCount) {
         MessageParam param;
@@ -257,25 +257,25 @@ Strbuf* sub_0200B044 (NARC *narc, u32 dataID, u32 msgID, u32 heapID)
     return Strbuf_Init(4, heapID);
 }
 
-u32 sub_0200B120 (const UnkStruct_0200AC5C *data)
+u32 MessageData_MessageCount (const MessageData *data)
 {
     return data->msgCount;
 }
 
-u32 sub_0200B124 (u32 narcID, u32 dataID)
+u32 MessageData_MessageCountFromNARC (u32 narcID, u32 dataID)
 {
-    UnkStruct_0200AC5C data;
-    NARC_ReadFromMemberByIndexPair(&data, narcID, dataID, 0, sizeof(UnkStruct_0200AC5C));
+    MessageData data;
+    NARC_ReadFromMemberByIndexPair(&data, narcID, dataID, 0, sizeof(MessageData));
     return data.msgCount;
 }
 
-UnkStruct_0200B144* sub_0200B144 (enum MessageFormatterType loadType, u32 narcID, u32 dataID, u32 heapID)
+MessageFormatter* MessageFormatter_Init (enum MessageFormatterType loadType, u32 narcID, u32 dataID, u32 heapID)
 {
-    UnkStruct_0200B144 *formatter = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_0200B144));
+    MessageFormatter *formatter = Heap_AllocFromHeapAtEnd(heapID, sizeof(MessageFormatter));
 
     if (formatter) {
         if (loadType == FORMATTER_STORE_MESSAGE_DATA) {
-            formatter->data = sub_0200AC5C(narcID, dataID, heapID);
+            formatter->data = MessageData_Load(narcID, dataID, heapID);
 
             if (formatter->data == NULL) {
                 Heap_FreeToHeap(formatter);
@@ -294,7 +294,7 @@ UnkStruct_0200B144* sub_0200B144 (enum MessageFormatterType loadType, u32 narcID
     return formatter;
 }
 
-void sub_0200B190 (UnkStruct_0200B144 *formatter)
+void MessageFormatter_Free (MessageFormatter *formatter)
 {
     if (formatter == NULL) {
         return;
@@ -302,7 +302,7 @@ void sub_0200B190 (UnkStruct_0200B144 *formatter)
 
     switch (formatter->type) {
         case FORMATTER_STORE_MESSAGE_DATA:
-            sub_0200AC64(formatter->data);
+            MessageData_Free(formatter->data);
             break;
         case FORMATTER_STORE_NARC_HANDLE:
             NARC_dtor(formatter->narc);
@@ -312,58 +312,58 @@ void sub_0200B190 (UnkStruct_0200B144 *formatter)
     Heap_FreeToHeap(formatter);
 }
 
-void sub_0200B1B8 (const UnkStruct_0200B144 *formatter, u32 msgID, Strbuf *dst)
+void MessageFormatter_LoadStrbuf (const MessageFormatter *formatter, u32 msgID, Strbuf *dst)
 {
     switch (formatter->type) {
         case FORMATTER_STORE_MESSAGE_DATA:
-            sub_0200ADAC(formatter->data, msgID, dst);
+            MessageData_GetStrbuf(formatter->data, msgID, dst);
             break;
         case FORMATTER_STORE_NARC_HANDLE:
-            sub_0200AF48(formatter->narc, formatter->dataID, msgID, formatter->heapID, dst);
+            MessageData_GetStrbufFromNARCHandle(formatter->narc, formatter->dataID, msgID, formatter->heapID, dst);
             break;
     }
 }
 
-Strbuf* sub_0200B1EC (const UnkStruct_0200B144 *formatter, u32 msgID)
+Strbuf* MessageFormatter_AllocStrbuf (const MessageFormatter *formatter, u32 msgID)
 {
     switch (formatter->type) {
         case FORMATTER_STORE_MESSAGE_DATA:
-            return sub_0200AE5C(formatter->data, msgID, formatter->heapID);
+            return MessageData_AllocStrbuf(formatter->data, msgID, formatter->heapID);
         case FORMATTER_STORE_NARC_HANDLE:
-            return sub_0200B044(formatter->narc, formatter->dataID, msgID, formatter->heapID);
+            return MessageData_AllocStrbufFromNARCHandle(formatter->narc, formatter->dataID, msgID, formatter->heapID);
     }
 
     return NULL;
 }
 
-u32 sub_0200B218 (const UnkStruct_0200B144 *formatter)
+u32 MessageFormatter_MessageCount (const MessageFormatter *formatter)
 {
     switch (formatter->type) {
         case FORMATTER_STORE_MESSAGE_DATA:
-            return sub_0200B120(formatter->data);
+            return MessageData_MessageCount(formatter->data);
         case FORMATTER_STORE_NARC_HANDLE:
-            return sub_0200B124(formatter->narcID, formatter->dataID);
+            return MessageData_MessageCountFromNARC(formatter->narcID, formatter->dataID);
     }
 
     return 0;
 }
 
-void sub_0200B240 (const UnkStruct_0200B144 *formatter, u32 msgID, charcode_t *dst)
+void MessageFormatter_LoadString (const MessageFormatter *formatter, u32 msgID, charcode_t *dst)
 {
     switch (formatter->type) {
         case FORMATTER_STORE_MESSAGE_DATA:
-            sub_0200AC6C(formatter->data, msgID, dst);
+            MessageData_Get(formatter->data, msgID, dst);
             break;
         case FORMATTER_STORE_NARC_HANDLE:
-            sub_0200ACF0(formatter->narcID, formatter->dataID, msgID, formatter->heapID, dst);
+            MessageData_GetFromNARC(formatter->narcID, formatter->dataID, msgID, formatter->heapID, dst);
             break;
     }
 }
 
-void sub_0200B274 (u32 species, u32 heapID, charcode_t *dst)
+void MessageFormatter_LoadSpeciesName (u32 species, u32 heapID, charcode_t *dst)
 {
-    UnkStruct_0200B144 *formatter = sub_0200B144(FORMATTER_STORE_NARC_HANDLE, MSG_DATA, MSG_DATA_SPECIES_NAMES, heapID);
+    MessageFormatter *formatter = MessageFormatter_Init(FORMATTER_STORE_NARC_HANDLE, MSG_DATA, MSG_DATA_SPECIES_NAMES, heapID);
 
-    sub_0200B240(formatter, species, dst);
-    sub_0200B190(formatter);
+    MessageFormatter_LoadString(formatter, species, dst);
+    MessageFormatter_Free(formatter);
 }

@@ -325,12 +325,21 @@ class FilesMultiReplacer:
             with open_l(filename, "w+") as f:
                 f.write(replace_result)
 
-    def unreplace(self, filenames):
+    @staticmethod
+    def remove_ignored_files_from_filenames(filenames, ignored_files):
+        if ignored_files is None:
+            return filenames
+
+        filenames_dict = {filename: True for filename in filenames if filename not in ignored_files}
+        return list(filenames_dict.keys())
+
+    def unreplace(self, filenames, ignored_files=None):
+        filenames = FilesMultiReplacer.remove_ignored_files_from_filenames(filenames, ignored_files)
         rep_dict = self.create_rep_dict(self.resolved_data, True)
-        print(f"unreplace rep_dict: {rep_dict}")
         self.replace_multiple(filenames, rep_dict)
 
-    def rereplace(self, filenames):
+    def rereplace(self, filenames, ignored_files=None):
+        filenames = FilesMultiReplacer.remove_ignored_files_from_filenames(filenames, ignored_files)
         rep_dict = self.create_rep_dict(self.resolved_data, False)
         self.replace_multiple(filenames, rep_dict)
 
