@@ -1,0 +1,15 @@
+struct_decls/struct_02006C24_decl.h,struct_decls/narc.h
+struct_decls/struct_02023790_decl.h,struct_decls/strbuf.h
+include/unk_0200AC5C.h,include/message_data.h
+unk_0200AC5C.h,message_data.h
+UnkStruct_0200B144,MessageFormatter
+UnkStruct_0200AC5C,MessageData
+struct_decls/struct_0200B144_decl.h,struct_decls/message_formatter.h
+sub_0200B144,MessageFormatter_Init
+
+sub_0200B1EC,MessageFormatter_AllocStrbuf
+
+sub_0200B190,MessageFormatter_Free
+
+struct_defs/struct_party.h,struct_defs/party.h
+

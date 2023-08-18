@@ -1,0 +1,1 @@
+{{asm,include,lib,src,subprojects/{gamespy,libcrypto,libsyscall,libVCT,NitroDWC,NitroSDK,NitroSystem,NitroWiFi},tools/cw/include/MSL_Extras}/**/*.{c,h,inc,s},tools/cw/include/MSL_C/!(*.mch)}
