@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -37,7 +37,7 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     UnkStruct_0203D9B8 * unk_20;
     UnkStruct_02018340 * unk_24;
     UnkStruct_020158A8 * unk_28;
-    MessageFormatter * unk_2C;
+    UnkStruct_0200B144 * unk_2C;
     UnkStruct_ov79_021D0E1C_sub1 unk_30;
     u16 unk_80;
     u16 unk_82;

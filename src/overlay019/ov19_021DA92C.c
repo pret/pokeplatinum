@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -19,7 +19,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200C440.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -62,7 +62,7 @@ static void ov19_021DAE60(UnkStruct_0205AA50 * param0, UnkStruct_ov19_021DA9E0 *
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 * param0);
 static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 * param0, u8 param1);
 
-BOOL ov19_021DA92C (UnkStruct_ov19_021DA9E0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, const MessageFormatter * param5, NARC * param6)
+BOOL ov19_021DA92C (UnkStruct_ov19_021DA9E0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, const UnkStruct_0200B144 * param5, NARC * param6)
 {
     int v0;
 
@@ -83,8 +83,8 @@ BOOL ov19_021DA92C (UnkStruct_ov19_021DA9E0 * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_1C = sub_0200C440(1, 2, 15, 10);
     param0->unk_28 = sub_02007204(param6, 16, 1, &(param0->unk_2C), 10);
     param0->unk_30 = NULL;
-    param0->unk_44 = MessageFormatter_AllocStrbuf(param5, 21);
-    param0->unk_48 = MessageFormatter_AllocStrbuf(param5, 22);
+    param0->unk_44 = sub_0200B1EC(param5, 21);
+    param0->unk_48 = sub_0200B1EC(param5, 22);
     param0->unk_34 = sub_02006FA0(sub_0207C944(), sub_0207C924(), 1, &(param0->unk_38), 10);
 
     for (v0 = 0; v0 < 2; v0++) {

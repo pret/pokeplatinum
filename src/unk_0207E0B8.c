@@ -4,9 +4,9 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_itemdata_decl.h"
 
@@ -32,7 +32,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -674,7 +674,7 @@ static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
         Strbuf_Free(v0->unk_6AC[v1]);
     }
 
-    MessageFormatter_Free(v0->unk_69C);
+    sub_0200B190(v0->unk_69C);
     sub_0200C560(v0->unk_698);
     sub_0200B3F0(v0->unk_6A0);
 
@@ -969,7 +969,7 @@ static UnkStruct_0207F248 * sub_0207ECC0 (UnkStruct_020067E8 * param0)
         v0->unk_B20 = NULL;
     }
 
-    v0->unk_69C = MessageFormatter_Init(0, 26, 453, 12);
+    v0->unk_69C = sub_0200B144(0, 26, 453, 12);
     v0->unk_698 = sub_0200C440(15, 14, 0, 12);
     v0->unk_6A0 = sub_0200B358(12);
 
@@ -2121,7 +2121,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
             Strbuf* v1;
             int v2;
 
-            v1 = MessageFormatter_AllocStrbuf(param0->unk_69C, 184);
+            v1 = sub_0200B1EC(param0->unk_69C, 184);
             v2 = sub_02026074(param0->unk_5A4->unk_14, 3);
 
             sub_0200B60C(param0->unk_6A0, 0, v2, 3, 0, 1);
@@ -2463,7 +2463,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
             UnkStruct_0203CDB0 * v3;
 
             v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-            v1 = MessageFormatter_AllocStrbuf(param0->unk_69C, 64);
+            v1 = sub_0200B1EC(param0->unk_69C, 64);
 
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B60C(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);

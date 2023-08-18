@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV17_022413D8_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_02095C48.h"

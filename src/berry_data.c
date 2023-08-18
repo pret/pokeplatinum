@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "narc.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "berry_data.h"
 
 typedef struct BerryData {
@@ -80,24 +80,24 @@ u32 BerryData_GetAttribute (BerryData * berryData, u32 attributeID)
 
 Strbuf* BerryData_AllocAndGetName (u16 index, u32 heapID)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     Strbuf* v1;
 
-    v0 = MessageFormatter_Init(1, 26, 424, heapID);
-    v1 = MessageFormatter_AllocStrbuf(v0, index);
+    v0 = sub_0200B144(1, 26, 424, heapID);
+    v1 = sub_0200B1EC(v0, index);
 
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
     return v1;
 }
 
 Strbuf* BerryData_AllocAndGetDescription (u16 index, u16 heapID)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     Strbuf* v1;
 
-    v0 = MessageFormatter_Init(1, 26, 423, heapID);
-    v1 = MessageFormatter_AllocStrbuf(v0, index);
+    v0 = sub_0200B144(1, 26, 423, heapID);
+    v1 = sub_0200B1EC(v0, index);
 
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
     return v1;
 }

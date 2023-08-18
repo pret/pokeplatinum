@@ -3,9 +3,9 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_02017E74.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -17,7 +17,7 @@
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -95,7 +95,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
 {
     UnkStruct_02018340 * bgConfig;
     UnkStruct_0205AA50 window;
-    MessageFormatter * errorMsgData;
+    UnkStruct_0200B144 * errorMsgData;
     Strbuf* errorString;
     int v4;
     int v5 = 0;
@@ -148,7 +148,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);
 
-    errorMsgData = MessageFormatter_Init(1, 26, 214, v5);
+    errorMsgData = sub_0200B144(1, 26, 214, v5);
     errorString = Strbuf_Init(0x180, v5);
 
     sub_0201D710();
@@ -191,7 +191,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0200F344(1, 0x7fff);
 
     sub_0201A8FC(&window);
-    MessageFormatter_Free(errorMsgData);
+    sub_0200B190(errorMsgData);
     Heap_FreeToHeap(bgConfig);
 
     OS_ResetSystem(0);

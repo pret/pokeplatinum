@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_MESSAGE_DATA_H
 #define POKEPLATINUM_STRUCT_MESSAGE_DATA_H
 
-typedef struct MessageData_t MessageData;
+typedef struct MessageData_t UnkStruct_0200AC5C;
 
 #endif // POKEPLATINUM_STRUCT_MESSAGE_DATA_H

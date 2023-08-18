@@ -17,7 +17,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_0202D05C.h"

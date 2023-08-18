@@ -7,10 +7,10 @@
 #include "assert.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -910,7 +910,7 @@ void ov16_0225D8AC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225D8F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2EC * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     v1 = ov16_0223E060(param0);
@@ -932,7 +932,7 @@ void ov16_0225D8F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225D958 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
 
     v1 = ov16_0223E05C(param0);
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
@@ -1158,7 +1158,7 @@ void ov16_0225DD7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225DDD8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C3F8 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_02263C1C(param0, param1, param2, &v2);
@@ -1177,7 +1177,7 @@ void ov16_0225DDD8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225DE30 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C40C * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_02263CF0(param0, param1, param2, &v2);
@@ -1196,7 +1196,7 @@ void ov16_0225DE30 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225DE88 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_02263DD0(param0, param1, &v2);
@@ -1215,7 +1215,7 @@ void ov16_0225DE88 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225DEDC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C430 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_02263E7C(param0, param1, param2, &v2);
@@ -1249,7 +1249,7 @@ void ov16_0225DF34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225DF6C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C454 * param2)
 {
     UnkStruct_ov16_0225DF6C * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
 
     if (param1->unk_192 == 0x0) {
         v1 = ov16_0223E05C(param0);
@@ -1415,7 +1415,7 @@ void ov16_0225E200 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 
 void ov16_0225E23C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     UnkStruct_ov16_0225C300 v1;
 
     if (param1->unk_192 == 0x0) {
@@ -1475,7 +1475,7 @@ void ov16_0225E300 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225E338 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_022641B4(param0, param1, &v2);
@@ -1494,7 +1494,7 @@ void ov16_0225E338 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225E38C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C9F0 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_02264270(param0, param1, param2, &v2);
@@ -1513,7 +1513,7 @@ void ov16_0225E38C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225E3E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov16_0225C300 v2;
 
     ov16_02264360(param0, param1, &v2);
@@ -2959,7 +2959,7 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
 
     case 1:
     {
-        MessageFormatter * v9;
+        UnkStruct_0200B144 * v9;
         UnkStruct_ov16_0225C300 v10;
 
         v9 = ov16_0223E05C(v0->unk_00);
@@ -3303,7 +3303,7 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         {
-            MessageFormatter * v6;
+            UnkStruct_0200B144 * v6;
             UnkStruct_ov16_0225C300 v7;
 
             v6 = ov16_0223E05C(v0->unk_00);
@@ -3873,7 +3873,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 9:
     {
-        MessageFormatter * v8;
+        UnkStruct_0200B144 * v8;
         UnkStruct_ov16_0225C300 v9;
 
         v9.unk_02 = 1206;
@@ -3935,7 +3935,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 15:
     {
-        MessageFormatter * v14;
+        UnkStruct_0200B144 * v14;
         UnkStruct_ov16_0225C300 v15;
 
         v15.unk_02 = 1203;
@@ -4032,7 +4032,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 23:
     {
-        MessageFormatter * v24;
+        UnkStruct_0200B144 * v24;
         UnkStruct_ov16_0225C300 v25;
         int v26;
 
@@ -4060,7 +4060,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     {
         UnkStruct_ov16_022674C4 * v27;
         int v28;
-        MessageFormatter * v29;
+        UnkStruct_0200B144 * v29;
         UnkStruct_ov16_0225C300 v30;
         int v31;
         int v32 = 0;
@@ -4520,7 +4520,7 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
         if (v0->unk_10) {
             {
                 UnkStruct_0205AA50 * v6;
-                MessageFormatter * v7;
+                UnkStruct_0200B144 * v7;
                 UnkStruct_ov16_0225C300 v8;
 
                 v7 = ov16_0223E05C(v0->unk_00);

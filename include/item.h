@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0207CDEC_H
 #define POKEPLATINUM_UNK_0207CDEC_H
 
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_itemdata_decl.h"
 
 typedef struct ItemPartyParam {

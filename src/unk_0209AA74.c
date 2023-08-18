@@ -3,9 +3,9 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -16,7 +16,7 @@
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -79,7 +79,7 @@ void sub_0209AA74 (int param0, int param1)
 {
     UnkStruct_02018340 * v0;
     UnkStruct_0205AA50 v1;
-    MessageFormatter * v2;
+    UnkStruct_0200B144 * v2;
     Strbuf* v3;
     int v4;
 
@@ -122,7 +122,7 @@ void sub_0209AA74 (int param0, int param1)
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);
 
-    v2 = MessageFormatter_Init(1, 26, 6, param0);
+    v2 = sub_0200B144(1, 26, 6, param0);
     v3 = Strbuf_Init(0x180, param0);
 
     sub_0201D710();
@@ -143,7 +143,7 @@ void sub_0209AA74 (int param0, int param1)
     }
 
     sub_0201A8FC(&v1);
-    MessageFormatter_Free(v2);
+    sub_0200B190(v2);
     sub_02019120(0, 0);
     sub_02019120(1, 0);
     sub_02019120(2, 0);

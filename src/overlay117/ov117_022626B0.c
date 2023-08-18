@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 #include "inlines.h"
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay104/struct_ov104_0223F9E0.h"

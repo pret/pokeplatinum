@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026224_decl.h"
@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_02017038.h"

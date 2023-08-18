@@ -3,9 +3,9 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -23,7 +23,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
@@ -68,7 +68,7 @@ typedef struct {
     UnkStruct_ov61_0222BDAC_1 * unk_718;
     UnkStruct_ov62_0223DF10 * unk_71C;
     UnkStruct_ov62_0223D518_sub1 unk_720;
-    MessageFormatter * unk_744;
+    UnkStruct_0200B144 * unk_744;
     Strbuf* unk_748;
     UnkStruct_ov62_02249380 unk_74C[3][20];
     UnkStruct_ov62_02248CDC unk_B0C;
@@ -200,7 +200,7 @@ asm static void ov62_0223CAEC (UnkStruct_0208C06C * param0)
     ldrb r1, [r3, r1]
     ldr r0, [r5, #0x4c]
     add r1, #0x5e
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     ldr r1, = 0x748
     str r0, [r4, r1]
  _0223CB46:
@@ -345,7 +345,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
         v2 += (Unk_ov62_02248EA0[v3][2] * Unk_ov62_02248EA0[v3][3]);
         sub_0201ADA4(v1, 0x0);
 
-        v5 = MessageFormatter_AllocStrbuf(param0->unk_14.unk_34, 80 + v3);
+        v5 = sub_0200B1EC(param0->unk_14.unk_34, 80 + v3);
         v4 = ov62_0223429C(v1, v5);
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -397,7 +397,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
 
         sub_0201ADA4(v1, 0x0);
 
-        v5 = MessageFormatter_AllocStrbuf(param0->unk_14.unk_34, 67);
+        v5 = sub_0200B1EC(param0->unk_14.unk_34, 67);
         v4 = 0;
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -568,7 +568,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     mul r2, r3
     ldrb r1, [r1, r2]
     sub r1, r1, #1
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     b _0223D1BA
  _0223D1A6:
     ldr r1, = 0x714
@@ -579,7 +579,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     mul r2, r3
     ldrb r1, [r1, r2]
     sub r1, r1, #1
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
  _0223D1BA:
     mov r1, #0
     add r7, r0, #0
@@ -609,11 +609,11 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bne _0223D200
     ldr r1, [r4, #0x14]
     add r1, #0x52
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     b _0223D206
  _0223D200:
     mov r1, #0x5b
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
  _0223D206:
     mov r1, #0
     add r7, r0, #0
@@ -656,7 +656,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x20]
     ldr r0, [r5, #0x48]
     mov r1, #0x55
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     add r7, r0, #0
     ldr r0, [sp, #0x20]
     mov r1, #4
@@ -664,7 +664,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r1, r0, #0
     ldr r0, = 0x744
     ldr r0, [r4, r0]
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     str r0, [sp, #0x1c]
     mov r0, #1
     str r0, [sp]
@@ -683,7 +683,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x24]
     ldr r0, [r5, #0x48]
     mov r1, #0x56
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     add r7, r0, #0
     mov r0, #0xff
     mov r1, #0x66
@@ -705,7 +705,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x28]
     ldr r0, [r5, #0x48]
     mov r1, #0x57
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     add r7, r0, #0
     ldr r0, [sp, #0x28]
     cmp r0, #0
@@ -731,7 +731,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
  _0223D308:
     ldr r0, [r5, #0x48]
     mov r1, #0x15
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     str r0, [sp, #0x1c]
  _0223D312:
     mov r0, #1

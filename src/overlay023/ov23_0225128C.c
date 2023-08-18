@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -22,7 +22,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -368,10 +368,10 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v3;
+        UnkStruct_0200B144 * v3;
         int v4 = 0;
 
-        v3 = MessageFormatter_Init(0, 26, 639, 4);
+        v3 = sub_0200B144(0, 26, 639, 4);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
@@ -381,7 +381,7 @@ static void ov23_022515D8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
             }
         }
 
-        MessageFormatter_Free(v3);
+        sub_0200B190(v3);
     }
 
     MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
@@ -414,10 +414,10 @@ static void ov23_022516E8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v3;
+        UnkStruct_0200B144 * v3;
         int v4 = 0;
 
-        v3 = MessageFormatter_Init(0, 26, 639, 4);
+        v3 = sub_0200B144(0, 26, 639, 4);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
@@ -427,7 +427,7 @@ static void ov23_022516E8 (UnkStruct_ov23_02250CD4 * param0, int param1, int par
             }
         }
 
-        MessageFormatter_Free(v3);
+        sub_0200B190(v3);
     }
 
     MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));

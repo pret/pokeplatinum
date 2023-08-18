@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_0225A0E4_H
 #define POKEPLATINUM_STRUCT_OV22_0225A0E4_H
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_0200C738.h"

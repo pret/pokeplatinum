@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0209739C_H
 #define POKEPLATINUM_UNK_0209739C_H
 
-#include "struct_decls/narc.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_020973A8_decl.h"
 
 NARC * sub_0209739C(u32 param0);

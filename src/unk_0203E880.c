@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -24,7 +24,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "narc.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -516,7 +516,7 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
 
 static void sub_0203EA50 (UnkStruct_0203E724 * param0)
 {
-    MessageFormatter_Free(param0->unk_2C);
+    sub_0200B190(param0->unk_2C);
     Heap_FreeToHeap(param0->unk_30);
     Heap_FreeToHeap(param0);
 
@@ -683,7 +683,7 @@ static void sub_0203EF14 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * para
     u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(10, param2, 11);
 
     param1->unk_30 = (u8 *)v0;
-    param1->unk_2C = MessageFormatter_Init(1, 26, param3, 11);
+    param1->unk_2C = sub_0200B144(1, 26, param3, 11);
 
     return;
 }
@@ -693,7 +693,7 @@ static void sub_0203EF38 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * para
     u8 * v0 = sub_0203F0FC(param0->unk_1C->unk_00);
 
     param1->unk_30 = (u8 *)v0;
-    param1->unk_2C = MessageFormatter_Init(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
+    param1->unk_2C = sub_0200B144(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
 
     return;
 }

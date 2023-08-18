@@ -6,15 +6,15 @@
 #include "enums.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 
@@ -43,7 +43,7 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
@@ -100,7 +100,7 @@ typedef struct {
     UnkStruct_0200B358 * unk_1C44;
     Strbuf* unk_1C48;
     Strbuf* unk_1C4C;
-    MessageFormatter * unk_1C50;
+    UnkStruct_0200B144 * unk_1C50;
     NARC * unk_1C54;
 } UnkStruct_ov86_0223B3C8;
 
@@ -192,7 +192,7 @@ typedef struct {
     UnkStruct_0200B358 * unk_14;
     Strbuf* unk_18;
     Strbuf* unk_1C;
-    MessageFormatter * unk_20;
+    UnkStruct_0200B144 * unk_20;
     Pokemon * unk_24;
     const UnkStruct_02025E6C * unk_28;
     int unk_2C;
@@ -315,7 +315,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
 
     v0->unk_0C = sub_02006840(param0);
-    v0->unk_1C50 = MessageFormatter_Init(0, 26, 351, 63);
+    v0->unk_1C50 = sub_0200B144(0, 26, 351, 63);
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
@@ -379,7 +379,7 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200B3F0(v0->unk_1C44);
         Strbuf_Free(v0->unk_1C48);
         Strbuf_Free(v0->unk_1C4C);
-        MessageFormatter_Free(v0->unk_1C50);
+        sub_0200B190(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
         sub_02006830(param0);
         Heap_Destroy(63);

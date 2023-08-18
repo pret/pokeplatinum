@@ -5,12 +5,12 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/pokemon.h"
@@ -36,7 +36,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -101,7 +101,7 @@ typedef struct {
     u8 unk_1A;
     u8 unk_1B;
     UnkStruct_02072EB8 unk_1C[20];
-    MessageFormatter * unk_10C;
+    UnkStruct_0200B144 * unk_10C;
     UnkStruct_02072334_sub1 unk_110;
     u8 unk_138;
     u8 unk_139;
@@ -1029,18 +1029,18 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
 
 static void sub_02073130 (UnkStruct_02072334 * param0)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     int v1;
     Strbuf* v2;
 
-    param0->unk_10C = MessageFormatter_Init(1, 26, 408, param0->unk_00);
+    param0->unk_10C = sub_0200B144(1, 26, 408, param0->unk_00);
     param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->unk_00);
-    param0->unk_110.unk_08 = MessageFormatter_AllocStrbuf(param0->unk_10C, 4);
-    param0->unk_110.unk_0C = MessageFormatter_AllocStrbuf(param0->unk_10C, 0);
+    param0->unk_110.unk_08 = sub_0200B1EC(param0->unk_10C, 4);
+    param0->unk_110.unk_0C = sub_0200B1EC(param0->unk_10C, 0);
 
     for (v1 = 0; v1 < 6; v1++) {
-        param0->unk_110.unk_10[v1] = MessageFormatter_AllocStrbuf(param0->unk_10C, 6 + v1);
+        param0->unk_110.unk_10[v1] = sub_0200B1EC(param0->unk_10C, 6 + v1);
     }
 }
 
@@ -1056,7 +1056,7 @@ static void sub_020731A4 (UnkStruct_02072334 * param0)
     Strbuf_Free(param0->unk_110.unk_08);
     Strbuf_Free(param0->unk_110.unk_04);
     sub_0200B3F0(param0->unk_110.unk_00);
-    MessageFormatter_Free(param0->unk_10C);
+    sub_0200B190(param0->unk_10C);
 }
 
 static void sub_020731F4 (UnkStruct_02072334 * param0)

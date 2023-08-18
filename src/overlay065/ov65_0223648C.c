@@ -7,13 +7,13 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -47,7 +47,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -113,7 +113,7 @@ typedef struct {
 typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    MessageFormatter * unk_08;
+    UnkStruct_0200B144 * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
     u8 unk_14;
@@ -803,7 +803,7 @@ static void ov65_02236B90 (UnkStruct_ov65_02236840 * param0, u32 param1)
 static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)
 {
     param0->unk_04 = sub_0200B358(param2);
-    param0->unk_08 = MessageFormatter_Init(0, 26, 674, param2);
+    param0->unk_08 = sub_0200B144(0, 26, 674, param2);
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
@@ -814,7 +814,7 @@ static void ov65_02236C5C (UnkStruct_ov65_02236840 * param0)
 {
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
-    MessageFormatter_Free(param0->unk_08);
+    sub_0200B190(param0->unk_08);
     sub_0200B3F0(param0->unk_04);
 }
 

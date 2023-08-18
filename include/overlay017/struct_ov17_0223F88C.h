@@ -4,14 +4,14 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
@@ -27,10 +27,10 @@ typedef struct {
     UnkStruct_ov12_0221FCDC * unk_20;
     UnkStruct_02018340 * unk_24;
     UnkStruct_0205AA50 unk_28[1];
-    MessageFormatter * unk_38;
-    MessageFormatter * unk_3C;
-    MessageFormatter * unk_40;
-    MessageFormatter * unk_44;
+    UnkStruct_0200B144 * unk_38;
+    UnkStruct_0200B144 * unk_3C;
+    UnkStruct_0200B144 * unk_40;
+    UnkStruct_0200B144 * unk_44;
     UnkStruct_0200B358 * unk_48;
     Strbuf* unk_4C;
     UnkStruct_02002F38 * unk_50;

@@ -5,11 +5,11 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -72,7 +72,7 @@
 
 #include "unk_02001AF4.h"
 #include "unk_020041CC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
@@ -2147,28 +2147,28 @@ static BOOL sub_0203FD5C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_0203FD70 (UnkStruct_0203E724 * param0)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
 
-    v0 = MessageFormatter_Init(1, 26, v1, 32);
+    v0 = sub_0200B144(1, 26, v1, 32);
 
     ov5_021DD498(param0, v0, v2);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
 
     return 0;
 }
 
 static BOOL sub_0203FDBC (UnkStruct_0203E724 * param0)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     u16 v1 = inline_02049538(param0);
     u16 v2 = inline_02049538(param0);
 
-    v0 = MessageFormatter_Init(1, 26, v1, 32);
+    v0 = sub_0200B144(1, 26, v1, 32);
     ov5_021DD444(param0, v0, v2, 1, NULL);
 
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
     sub_0203E764(param0, sub_02040014);
 
     return 1;
@@ -2202,7 +2202,7 @@ static BOOL sub_0203FEAC (UnkStruct_0203E724 * param0)
 {
     u16 * v0;
     UnkStruct_0204AFC4 * v1;
-    MessageFormatter * v2;
+    UnkStruct_0200B144 * v2;
     u16 v3 = (*((param0)->unk_08++));
 
     v1 = param0->unk_34->unk_AC;
@@ -2214,9 +2214,9 @@ static BOOL sub_0203FEAC (UnkStruct_0203E724 * param0)
     v0 = v1->unk_78[v3].unk_00.unk_18;
 
     if (v0[0] == 0xFFFF) {
-        v2 = MessageFormatter_Init(1, 26, 613, 32);
+        v2 = sub_0200B144(1, 26, 613, 32);
         ov5_021DD444(param0, v2, v0[1], 1, NULL);
-        MessageFormatter_Free(v2);
+        sub_0200B190(v2);
     } else {
         ov5_021DD4CC(param0, v0[0], v0[1], v0[2], v0[3], 1);
     }
@@ -7761,7 +7761,7 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     UnkStruct_0200B358 * v6 = sub_0200B358(32);
-    MessageFormatter * v7 = MessageFormatter_Init(0, 26, 372, 32);
+    UnkStruct_0200B144 * v7 = sub_0200B144(0, 26, 372, 32);
     Strbuf* v8;
     Strbuf* v9;
 
@@ -7771,12 +7771,12 @@ static BOOL sub_02045F48 (UnkStruct_0203E724 * param0)
     sub_0200BE48(v6, 3, v5);
 
     v8 = sub_0200B29C(v6, v7, 1, 32);
-    v9 = MessageFormatter_AllocStrbuf(v7, 0);
+    v9 = sub_0200B1EC(v7, 0);
     *v1 = (Strbuf_Compare(v8, v9) == 0);
 
     Strbuf_Free(v8);
     Strbuf_Free(v9);
-    MessageFormatter_Free(v7);
+    sub_0200B190(v7);
     sub_0200B3F0(v6);
 
     return 0;

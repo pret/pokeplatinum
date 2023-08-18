@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
@@ -29,7 +29,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -488,15 +488,15 @@ static void sub_0208C86C (void)
 
 static void sub_0208C884 (UnkStruct_0208D7BC * param0)
 {
-    param0->unk_688 = MessageFormatter_Init(0, 26, 455, 19);
-    param0->unk_68C = MessageFormatter_Init(1, 26, 535, 19);
+    param0->unk_688 = sub_0200B144(0, 26, 455, 19);
+    param0->unk_68C = sub_0200B144(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
     param0->unk_690 = sub_0200B358(19);
     param0->unk_250.unk_00 = Strbuf_Init(12, 19);
     param0->unk_250.unk_04 = Strbuf_Init(12, 19);
     param0->unk_250.unk_08 = Strbuf_Init(8, 19);
     param0->unk_694 = Strbuf_Init(128, 19);
-    param0->unk_69C = MessageFormatter_Init(0, 26, 647, 19);
+    param0->unk_69C = sub_0200B144(0, 26, 647, 19);
     param0->unk_698 = Strbuf_Init(7 + 1, 19);
 
     if (param0->unk_24C->unk_08 != NULL) {
@@ -506,9 +506,9 @@ static void sub_0208C884 (UnkStruct_0208D7BC * param0)
 
 static void sub_0208C950 (UnkStruct_0208D7BC * param0)
 {
-    MessageFormatter_Free(param0->unk_69C);
-    MessageFormatter_Free(param0->unk_68C);
-    MessageFormatter_Free(param0->unk_688);
+    sub_0200B190(param0->unk_69C);
+    sub_0200B190(param0->unk_68C);
+    sub_0200B190(param0->unk_688);
     sub_0200C560(param0->unk_684);
     sub_0200B3F0(param0->unk_690);
     Strbuf_Free(param0->unk_250.unk_00);

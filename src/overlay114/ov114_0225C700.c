@@ -5,10 +5,10 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
@@ -16,7 +16,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -113,7 +113,7 @@ typedef struct {
 } UnkStruct_ov114_0225CEF0;
 
 typedef struct {
-    MessageFormatter * unk_00;
+    UnkStruct_0200B144 * unk_00;
     UnkStruct_0200B358 * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
@@ -1433,7 +1433,7 @@ static void ov114_0225D07C (UnkStruct_ov114_0225CFCC * param0)
 
 static void ov114_0225D084 (UnkStruct_ov114_0225D084 * param0, u32 param1)
 {
-    param0->unk_00 = MessageFormatter_Init(0, 26, 411, param1);
+    param0->unk_00 = sub_0200B144(0, 26, 411, param1);
     param0->unk_04 = sub_0200B368(8, 64, param1);
     param0->unk_08 = Strbuf_Init(128, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
@@ -1447,7 +1447,7 @@ static void ov114_0225D0D8 (UnkStruct_ov114_0225D084 * param0)
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_04);
-    MessageFormatter_Free(param0->unk_00);
+    sub_0200B190(param0->unk_00);
 }
 
 static void ov114_0225D0F8 (UnkStruct_ov114_0225D084 * param0)

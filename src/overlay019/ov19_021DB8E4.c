@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -19,7 +19,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200C440.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -125,7 +125,7 @@ BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_3C.unk_00 = param0->unk_18->pRawData;
     param0->unk_3C.unk_04 = 32;
     param0->unk_3C.unk_06 = 32;
-    param0->unk_4BF8 = MessageFormatter_Init(1, 26, 391, 10);
+    param0->unk_4BF8 = sub_0200B144(1, 26, 391, 10);
 
     for (v0 = 0; v0 < 18; v0++) {
         param0->unk_48[v0] = NULL;
@@ -160,7 +160,7 @@ void ov19_021DBA9C (UnkStruct_ov19_021DBA9C * param0)
 void ov19_021DBAD0 (UnkStruct_ov19_021DBA9C * param0)
 {
     if (param0->unk_4BF8) {
-        MessageFormatter_Free(param0->unk_4BF8);
+        sub_0200B190(param0->unk_4BF8);
     }
 
     if (param0->unk_14) {

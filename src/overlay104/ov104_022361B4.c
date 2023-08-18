@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -22,7 +22,7 @@
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -800,11 +800,11 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
 
 static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     Strbuf* v1 = Strbuf_Init((10 * 2), param0->unk_34);
     Strbuf* v2 = Strbuf_Init((10 * 2), param0->unk_34);
 
-    v0 = MessageFormatter_Init(0, 26, 199, 11);
+    v0 = sub_0200B144(0, 26, 199, 11);
 
     sub_0200B60C(param0->unk_44, 0, param3, 4, 1, 1);
     MessageFormatter_LoadStrbuf(v0, 2, v1);
@@ -820,7 +820,7 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA5
 
     Strbuf_Free(v1);
     Strbuf_Free(v2);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
 
     sub_0201A954(param1);
 

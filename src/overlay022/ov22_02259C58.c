@@ -2,9 +2,9 @@
 #include <string.h>
 
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/union_02022594_020225E0.h"
@@ -25,7 +25,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -512,13 +512,13 @@ static void ov22_0225A338 (UnkStruct_ov22_02259C58 * param0, int param1, int par
 
 static UnkStruct_0205AA50 * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32 param1, u32 param2, u32 param3, int param4, int param5)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     Strbuf* v1;
     UnkStruct_0205AA50 * v2;
 
-    v0 = MessageFormatter_Init(0, param1, param2, 13);
+    v0 = sub_0200B144(0, param1, param2, 13);
     GF_ASSERT(v0);
-    v1 = MessageFormatter_AllocStrbuf(v0, param3);
+    v1 = sub_0200B1EC(v0, param3);
 
     v2 = sub_0201A778(14, 1);
     sub_0201A7A0(v2);
@@ -530,7 +530,7 @@ static UnkStruct_0205AA50 * ov22_0225A348 (UnkStruct_ov22_0225A0E4 * param0, u32
     }
 
     Strbuf_Free(v1);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
 
     return v2;
 }

@@ -1,17 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 #include "overlay061/struct_ov61_0222C884.h"
 
 #include "unk_02002B7C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -74,7 +74,7 @@ static const int Unk_ov71_0223D644[] = {
 void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1)
 {
     u8 v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     Strbuf* v2;
 
     sub_0201AE78(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
@@ -85,7 +85,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     sub_0201AE78(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
     sub_0201AE78(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
-    v1 = MessageFormatter_Init(0, 26, 616, 25);
+    v1 = sub_0200B144(0, 26, 616, 25);
     v2 = Strbuf_Init(32, 25);
 
     for (v0 = 0; v0 < 7; v0++) {
@@ -166,7 +166,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     }
 
     Strbuf_Free(v2);
-    MessageFormatter_Free(v1);
+    sub_0200B190(v1);
 }
 
 asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1)
@@ -220,7 +220,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     mov r1, #0x1a
     lsl r2, r2, #2
     mov r3, #0x19
-    bl MessageFormatter_Init
+    bl sub_0200B144
     add r7, r0, #0
     mov r0, #0x20
     mov r1, #0x19
@@ -518,7 +518,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     add r0, r5, #0
     bl Strbuf_Free
     add r0, r7, #0
-    bl MessageFormatter_Free
+    bl sub_0200B190
     add sp, #0x18
     pop {r3, r4, r5, r6, r7, pc}
 }
@@ -565,7 +565,7 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
 
     {
         u32 v1;
-        MessageFormatter * v2 = MessageFormatter_Init(0, 26, 616, 25);
+        UnkStruct_0200B144 * v2 = sub_0200B144(0, 26, 616, 25);
         Strbuf* v3 = Strbuf_Init(32, 25);
         Strbuf* v4 = Strbuf_Init(32, 25);
         UnkStruct_0200B358 * v5 = sub_0200B368((1 + 1), 32, 25);
@@ -577,7 +577,7 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
         v1 = (8 * 28) - sub_02002D7C(0, v3, 0);
         sub_0201D78C(&param0[5], 0, v3, v1, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 
-        MessageFormatter_Free(v2);
+        sub_0200B190(v2);
         Strbuf_Free(v3);
         Strbuf_Free(v4);
         sub_0200B3F0(v5);

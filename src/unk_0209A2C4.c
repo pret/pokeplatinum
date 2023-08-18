@@ -5,9 +5,9 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CC84.h"
@@ -21,7 +21,7 @@
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_020067E8.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -42,7 +42,7 @@ typedef struct {
     int unk_10;
     Strbuf* unk_14;
     UnkStruct_02018340 * unk_18;
-    MessageFormatter * unk_1C;
+    UnkStruct_0200B144 * unk_1C;
     UnkStruct_0205AA50 unk_20;
     UnkStruct_02001AF4 * unk_30;
     UnkStruct_021C0794 * unk_34;
@@ -218,7 +218,7 @@ static void sub_0209A490 (UnkStruct_0209A3D0 * param0)
 
 static void sub_0209A4E4 (UnkStruct_0209A3D0 * param0)
 {
-    param0->unk_1C = MessageFormatter_Init(1, 26, 406, param0->unk_00);
+    param0->unk_1C = sub_0200B144(1, 26, 406, param0->unk_00);
     sub_0201D710();
     param0->unk_0C = 0;
 
@@ -229,7 +229,7 @@ static void sub_0209A4E4 (UnkStruct_0209A3D0 * param0)
 static void sub_0209A530 (UnkStruct_0209A3D0 * param0)
 {
     sub_0201A8FC(&param0->unk_20);
-    MessageFormatter_Free(param0->unk_1C);
+    sub_0200B190(param0->unk_1C);
 }
 
 static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)

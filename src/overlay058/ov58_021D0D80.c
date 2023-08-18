@@ -4,10 +4,10 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02095EAC_decl.h"
 
@@ -36,7 +36,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -186,7 +186,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_00 = sub_02018340(39);
 
         v0->unk_0C = sub_0200B358(39);
-        v0->unk_10 = MessageFormatter_Init(0, 26, 425, 39);
+        v0->unk_10 = sub_0200B144(0, 26, 425, 39);
 
         sub_02017DD4(4, 8);
 
@@ -338,7 +338,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
         ov58_021D13F0(v0->unk_00);
 
         sub_0201E530();
-        MessageFormatter_Free(v0->unk_10);
+        sub_0200B190(v0->unk_10);
         sub_0200B3F0(v0->unk_0C);
         (*param1)++;
         break;

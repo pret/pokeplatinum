@@ -4,10 +4,10 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -21,7 +21,7 @@
 #include "unk_0200112C.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
@@ -53,7 +53,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_44;
     UnkStruct_0205AA50 unk_54;
     UnkStruct_0200B358 * unk_64;
-    MessageFormatter * unk_68;
+    UnkStruct_0200B144 * unk_68;
     UnkStruct_02098700 * unk_6C;
     u16 * unk_70;
     int unk_74;
@@ -322,7 +322,7 @@ static u8 Unk_ov7_0224F4CC[] = {
 
 static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     UnkStruct_0200B358 * v1 = param0->unk_64;
     Strbuf* v2;
     Strbuf* v3;
@@ -334,7 +334,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = MessageFormatter_Init(0, 26, 353, 4);
+    v0 = sub_0200B144(0, 26, 353, 4);
     v2 = Strbuf_Init((90 * 2), 4);
     v3 = Strbuf_Init((90 * 2), 4);
     v4 = &param0->unk_24;
@@ -418,7 +418,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
     Strbuf_Free(v2);
     Strbuf_Free(v3);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
     sub_0201A954(v4);
 }
 
@@ -542,7 +542,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
         ov7_0224B6AC(v1);
         ov7_0224B558(v1, 0);
         sub_0200B3F0(v1->unk_64);
-        MessageFormatter_Free(v1->unk_68);
+        sub_0200B190(v1->unk_68);
         Strbuf_Free(v1->unk_14);
         Strbuf_Free(v1->unk_18);
         Strbuf_Free(v1->unk_1C);
@@ -567,7 +567,7 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (UnkStruct_0203CDB0 * param0)
     v0->unk_10 = param0;
     v0->unk_10->unk_B0 = NULL;
     v0->unk_64 = sub_0200B358(4);
-    v0->unk_68 = MessageFormatter_Init(0, 26, 221, 4);
+    v0->unk_68 = sub_0200B144(0, 26, 221, 4);
     v0->unk_14 = Strbuf_Init((90 * 2), 4);
     v0->unk_18 = Strbuf_Init((90 * 2), 4);
     v0->unk_1C = Strbuf_Init((90 * 2), 4);

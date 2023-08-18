@@ -5,8 +5,8 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -17,7 +17,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_0200679C.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -143,7 +143,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_0205AA50 unk_B7C;
     UnkStruct_0205AA50 unk_B8C;
     GXBG0As unk_B9C;
-    MessageFormatter * unk_BA0;
+    UnkStruct_0200B144 * unk_BA0;
     UnkStruct_0200B358 * unk_BA4;
     Strbuf* unk_BA8;
     int unk_BAC;
@@ -705,7 +705,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
         param0->unk_B70 = 4;
         param0->unk_B71 = 2;
         param0->unk_B68 = 12;
-        param0->unk_BA0 = MessageFormatter_Init(0, 26, 605, param0->unk_00->unk_24);
+        param0->unk_BA0 = sub_0200B144(0, 26, 605, param0->unk_00->unk_24);
         param0->unk_BA4 = sub_0200B358(param0->unk_00->unk_24);
         param0->unk_BA8 = Strbuf_Init((2 * 160), param0->unk_00->unk_24);
         param0->unk_BB0 = 1;
@@ -1418,7 +1418,7 @@ static void ov10_02220DFC (UnkStruct_ov10_0221FB28 * param0)
     }
 
     if (param0->unk_BA0 != NULL) {
-        MessageFormatter_Free(param0->unk_BA0);
+        sub_0200B190(param0->unk_BA0);
     }
 }
 
@@ -2257,7 +2257,7 @@ static void ov10_022223E8 (UnkStruct_ov10_0221FB28 * param0)
     }
 }
 
-static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
     UnkStruct_0205AA50 * v1;
@@ -2271,7 +2271,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * 
         v0 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_04[2], param5 - 3);
     }
 
-    v2 = MessageFormatter_AllocStrbuf(param1, 8 + param5);
+    v2 = sub_0200B1EC(param1, 8 + param5);
 
     sub_0200B5CC(param3, 0, sub_02076B10(v0));
     sub_0200C388(param3, param4, v2);
@@ -2289,7 +2289,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * 
     }
 }
 
-static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
     UnkStruct_0205AA50 * v0;
     Strbuf* v1;
@@ -2299,7 +2299,7 @@ static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * 
     sub_0200C648(param2, 1, param0->unk_214[param5].unk_0C, 3, 0, v0, 0, 5 - 3);
 }
 
-static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
     UnkStruct_0205AA50 * v0;
     Strbuf* v1;
@@ -2348,7 +2348,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
     sub_0201AE78(v0, 10, 0, 5, v1, 1);
 }
 
-static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
+static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
     UnkStruct_0205AA50 * v1;
@@ -2375,13 +2375,13 @@ static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageFormatter * 
 
 static void ov10_02222720 (UnkStruct_ov10_0221FB28 * param0)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     UnkStruct_0200C440 * v1;
     UnkStruct_0200B358 * v2;
     Strbuf* v3;
     u32 v4;
 
-    v0 = MessageFormatter_Init(0, 26, 453, param0->unk_00->unk_24);
+    v0 = sub_0200B144(0, 26, 453, param0->unk_00->unk_24);
     v1 = sub_0200C440(15, 14, 0, param0->unk_00->unk_24);
     v2 = sub_0200B358(param0->unk_00->unk_24);
     v3 = Strbuf_Init(32, param0->unk_00->unk_24);
@@ -2395,7 +2395,7 @@ static void ov10_02222720 (UnkStruct_ov10_0221FB28 * param0)
     }
 
     Strbuf_Free(v3);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
     sub_0200C560(v1);
     sub_0200B3F0(v2);
 }

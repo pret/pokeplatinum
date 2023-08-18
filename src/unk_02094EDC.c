@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -19,7 +19,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -633,18 +633,18 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
 
     {
         Strbuf* v3, * v4;
-        MessageFormatter * v5;
+        UnkStruct_0200B144 * v5;
 
-        v5 = MessageFormatter_Init(1, 26, 205, param2);
-        v3 = MessageFormatter_AllocStrbuf(v5, param0->unk_16);
-        v4 = MessageFormatter_AllocStrbuf(v5, param0->unk_18);
+        v5 = sub_0200B144(1, 26, 205, param2);
+        v3 = sub_0200B1EC(v5, param0->unk_16);
+        v4 = sub_0200B1EC(v5, param0->unk_18);
 
         sub_02074B30(param1, 119, v3);
         sub_02074B30(param1, 145, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
-        MessageFormatter_Free(v5);
+        sub_0200B190(v5);
     }
 
     {

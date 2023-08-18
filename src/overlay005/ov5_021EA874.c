@@ -3,10 +3,10 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -21,7 +21,7 @@
 #include "unk_0200112C.h"
 #include "unk_02001AF4.h"
 #include "unk_02005474.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
@@ -53,7 +53,7 @@ typedef struct {
     UnkStruct_0203CDB0 * unk_30;
     UnkStruct_021C0794 * unk_34;
     UnkStruct_0200B358 * unk_38;
-    MessageFormatter * unk_3C;
+    UnkStruct_0200B144 * unk_3C;
     int unk_40;
     UnkStruct_02001AF4 * unk_44;
     int unk_48;
@@ -274,7 +274,7 @@ static BOOL ov5_021EAB58 (UnkStruct_ov5_021EAE78 * param0)
     sub_0200DC48(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v4;
+        UnkStruct_0200B144 * v4;
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {
@@ -456,14 +456,14 @@ static void ov5_021EAEE0 (UnkStruct_ov5_021EAE78 * param0)
     MI_CpuClear8(param0, sizeof(UnkStruct_ov5_021EAE78));
 
     param0->unk_38 = sub_0200B358(4);
-    param0->unk_3C = MessageFormatter_Init(0, 26, 675, 4);
+    param0->unk_3C = sub_0200B144(0, 26, 675, 4);
     param0->unk_0C = Strbuf_Init(110, 4);
     param0->unk_08 = Strbuf_Init(110, 4);
 }
 
 static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
 {
-    MessageFormatter_Free(param0->unk_3C);
+    sub_0200B190(param0->unk_3C);
     sub_0200B3F0(param0->unk_38);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_08);

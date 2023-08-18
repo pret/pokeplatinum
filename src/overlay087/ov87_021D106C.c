@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 #include "overlay087/struct_ov87_021D0D80_decl.h"
 
@@ -30,7 +30,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -57,9 +57,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_02022550 * unk_1C4[6];
     void * unk_1DC;
     void * unk_1E0;
-    MessageFormatter * unk_1E4;
-    MessageFormatter * unk_1E8;
-    MessageFormatter * unk_1EC;
+    UnkStruct_0200B144 * unk_1E4;
+    UnkStruct_0200B144 * unk_1E8;
+    UnkStruct_0200B144 * unk_1EC;
     UnkStruct_0200B358 * unk_1F0;
     Strbuf* unk_1F4;
     Strbuf* unk_1F8;
@@ -108,9 +108,9 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
         v0->unk_34 = sub_020095C4(64, &v0->unk_38, 61);
-        v0->unk_1E4 = MessageFormatter_Init(0, 26, 352, 61);
-        v0->unk_1E8 = MessageFormatter_Init(1, 26, 412, 61);
-        v0->unk_1EC = MessageFormatter_Init(1, 26, 647, 61);
+        v0->unk_1E4 = sub_0200B144(0, 26, 352, 61);
+        v0->unk_1E8 = sub_0200B144(1, 26, 412, 61);
+        v0->unk_1EC = sub_0200B144(1, 26, 647, 61);
         v0->unk_1F0 = sub_0200B358(61);
         v0->unk_1F4 = Strbuf_Init(256, 61);
         v0->unk_1F8 = Strbuf_Init(256, 61);
@@ -130,9 +130,9 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
         sub_0200B3F0(param0->unk_1F0);
-        MessageFormatter_Free(param0->unk_1EC);
-        MessageFormatter_Free(param0->unk_1E8);
-        MessageFormatter_Free(param0->unk_1E4);
+        sub_0200B190(param0->unk_1EC);
+        sub_0200B190(param0->unk_1E8);
+        sub_0200B190(param0->unk_1E4);
         sub_02021964(param0->unk_34);
         sub_0200A878();
         Heap_FreeToHeap(param0->unk_10);

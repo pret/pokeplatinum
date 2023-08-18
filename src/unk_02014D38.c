@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -123,7 +123,7 @@ static const struct {
 
 typedef struct UnkStruct_02014D38_t {
     u32 unk_00;
-    MessageFormatter * unk_04[11];
+    UnkStruct_0200B144 * unk_04[11];
 } UnkStruct_02014D38;
 
 typedef struct UnkStruct_02014EC4_t {
@@ -151,7 +151,7 @@ UnkStruct_02014D38 * sub_02014D38 (u32 param0)
 
     for (v0 = 0; v0 < 11; v0++) {
         v1->unk_00 = param0;
-        v1->unk_04[v0] = MessageFormatter_Init(1, 26, Unk_020E550C[v0], param0);
+        v1->unk_04[v0] = sub_0200B144(1, 26, Unk_020E550C[v0], param0);
     }
 
     return v1;
@@ -162,7 +162,7 @@ void sub_02014D70 (UnkStruct_02014D38 * param0)
     int v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        MessageFormatter_Free(param0->unk_04[v0]);
+        sub_0200B190(param0->unk_04[v0]);
     }
 
     Heap_FreeToHeap(param0);

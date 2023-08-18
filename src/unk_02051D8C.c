@@ -5,8 +5,8 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -29,7 +29,7 @@
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
 
 #include "unk_020021B0.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -161,19 +161,19 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
 {
     UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
-    MessageFormatter * v2;
+    UnkStruct_0200B144 * v2;
     Strbuf* v3;
     BattleParams * v4;
     Pokemon * v5;
 
     v4 = sub_02051D8C(param0, 0x400);
-    v2 = MessageFormatter_Init(1, 26, 553, param0);
+    v2 = sub_0200B144(1, 26, 553, param0);
     v3 = Strbuf_Init(8, param0);
 
     MessageFormatter_LoadStrbuf(v2, sub_02025F30(v0) ^ 1, v3);
     sub_02025EC0(v4->unk_D0[0], Strbuf_GetData(v3));
     Strbuf_Free(v3);
-    MessageFormatter_Free(v2);
+    sub_0200B190(v2);
     sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
     sub_0205281C(v4, param1);
     sub_02027A10(v1, v4->unk_108);

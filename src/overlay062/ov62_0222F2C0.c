@@ -23,7 +23,7 @@
 #include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
@@ -133,8 +133,8 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
 
     {
         param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, 102);
-        param0->unk_14.unk_34 = MessageFormatter_Init(0, 26, 10, 102);
-        param0->unk_14.unk_38 = MessageFormatter_Init(0, 26, 20, 102);
+        param0->unk_14.unk_34 = sub_0200B144(0, 26, 10, 102);
+        param0->unk_14.unk_38 = sub_0200B144(0, 26, 20, 102);
     }
 
     ov62_022338A8(param0);
@@ -203,8 +203,8 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
 
     {
         sub_020127BC(param0->unk_14.unk_3C);
-        MessageFormatter_Free(param0->unk_14.unk_34);
-        MessageFormatter_Free(param0->unk_14.unk_38);
+        sub_0200B190(param0->unk_14.unk_34);
+        sub_0200B190(param0->unk_14.unk_38);
     }
 
     sub_020242C4(param0->unk_14.unk_4C);

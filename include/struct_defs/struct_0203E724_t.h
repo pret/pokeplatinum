@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203E724_T_H
 #define POKEPLATINUM_STRUCT_0203E724_T_H
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "functypes/funcptr_0203E724.h"
 
@@ -17,7 +17,7 @@ struct UnkStruct_0203E724_t {
     u32 unk_14;
     u32 unk_18[4];
     void * unk_28;
-    MessageFormatter * unk_2C;
+    UnkStruct_0200B144 * unk_2C;
     u8 * unk_30;
     UnkStruct_0203CDB0 * unk_34;
 };

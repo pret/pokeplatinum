@@ -10,10 +10,10 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -58,7 +58,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -717,8 +717,8 @@ static void ov65_0222E01C (UnkStruct_ov65_0222EBE0 * param0)
 
     param0->unk_15C = sub_02018340(54);
     param0->unk_164 = sub_0200B358(54);
-    param0->unk_168 = MessageFormatter_Init(0, 26, 674, 54);
-    param0->unk_16C = MessageFormatter_Init(0, 26, 695, 54);
+    param0->unk_168 = sub_0200B144(0, 26, 674, 54);
+    param0->unk_16C = sub_0200B144(0, 26, 695, 54);
 
     ov65_0222E618();
     ov65_0222E638(param0->unk_15C);
@@ -888,8 +888,8 @@ static void ov65_0222E47C (UnkStruct_ov65_0222EBE0 * param0)
     ov65_0222EF4C(param0);
     ov65_0222EC5C(param0->unk_15C);
 
-    MessageFormatter_Free(param0->unk_16C);
-    MessageFormatter_Free(param0->unk_168);
+    sub_0200B190(param0->unk_16C);
+    sub_0200B190(param0->unk_168);
     sub_0200B3F0(param0->unk_164);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }

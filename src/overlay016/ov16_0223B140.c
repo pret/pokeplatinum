@@ -6,11 +6,11 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "overlay016/struct_ov16_0224B9DC_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -624,8 +624,8 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_0C = MessageFormatter_Init(1, 26, 368, 5);
-    v0->unk_10 = MessageFormatter_Init(1, 26, 0, 5);
+    v0->unk_0C = sub_0200B144(1, 26, 368, 5);
+    v0->unk_10 = sub_0200B144(1, 26, 0, 5);
     v0->unk_14 = sub_0200B358(5);
     v0->unk_18 = Strbuf_Init((2 * 160), 5);
 
@@ -769,8 +769,8 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_02002FA0(v0->unk_28, 2);
     sub_02002FA0(v0->unk_28, 3);
     sub_02002F54(v0->unk_28);
-    MessageFormatter_Free(v0->unk_0C);
-    MessageFormatter_Free(v0->unk_10);
+    sub_0200B190(v0->unk_0C);
+    sub_0200B190(v0->unk_10);
     sub_0200B3F0(v0->unk_14);
     sub_02015FB8(v0->unk_1C4);
     sub_020141E4();
@@ -1745,17 +1745,17 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
     sub_0200E060(v0->unk_08, 0, 1, 10);
 
     {
-        MessageFormatter * v5;
+        UnkStruct_0200B144 * v5;
         Strbuf* v6;
 
-        v5 = MessageFormatter_Init(1, 26, 368, 5);
+        v5 = sub_0200B144(1, 26, 368, 5);
         v6 = Strbuf_Init(0x100, 5);
 
         MessageFormatter_LoadStrbuf(v5, 923, v6);
         sub_0201D738(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);
-        MessageFormatter_Free(v5);
+        sub_0200B190(v5);
     }
 
     sub_02017798(ov16_0223CF1C, v0);

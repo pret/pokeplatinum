@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02009714_H
 #define POKEPLATINUM_UNK_02009714_H
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_decls/struct_02009DC8_decl.h"

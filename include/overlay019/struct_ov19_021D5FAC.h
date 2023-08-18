@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021D5FAC_H
 #define POKEPLATINUM_STRUCT_OV19_021D5FAC_H
 
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 typedef struct {
     void * unk_00;

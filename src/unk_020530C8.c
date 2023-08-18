@@ -5,9 +5,9 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_0200A9DC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
@@ -1172,10 +1172,10 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
     switch (v1->unk_00) {
     case 0:
     {
-        MessageFormatter * v2 = MessageFormatter_Init(1, 26, 221, 11);
+        UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 221, 11);
 
-        v1->unk_34 = MessageFormatter_AllocStrbuf(v2, 124);
-        MessageFormatter_Free(v2);
+        v1->unk_34 = sub_0200B1EC(v2, 124);
+        sub_0200B190(v2);
     }
         sub_0205D8F4(v0->unk_08, &v1->unk_24, 3);
         sub_0205D944(&v1->unk_24, sub_02025E44(v0->unk_0C));

@@ -5,12 +5,12 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020279FC.h"
@@ -28,7 +28,7 @@
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
 #include "narc.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -64,7 +64,7 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     UnkStruct_02018340 * unk_14;
     UnkStruct_0203D8EC unk_18;
     UnkStruct_020279FC * unk_1C;
-    MessageFormatter * unk_20;
+    UnkStruct_0200B144 * unk_20;
     void * unk_24;
     NNSG2dScreenData * unk_28;
     UnkStruct_0205AA50 unk_2C[3];
@@ -285,7 +285,7 @@ static int ov74_021D1178 (UnkStruct_ov74_021D0D80 * param0)
         break;
     case 1:
         ov74_021D1390(param0);
-        param0->unk_20 = MessageFormatter_Init(1, 26, 220, param0->unk_00);
+        param0->unk_20 = sub_0200B144(1, 26, 220, param0->unk_00);
         ov74_021D1720(param0);
         break;
     case 2:
@@ -318,7 +318,7 @@ static int ov74_021D122C (UnkStruct_ov74_021D0D80 * param0)
             }
         }
 
-        MessageFormatter_Free(param0->unk_20);
+        sub_0200B190(param0->unk_20);
         ov74_021D14E8(param0);
         ov74_021D135C(param0);
         break;
@@ -599,7 +599,7 @@ static void ov74_021D1720 (UnkStruct_ov74_021D0D80 * param0)
         param0->unk_5C[v0].unk_00 = v3[v0];
 
         for (v1 = 0; v1 < v3[v0]; v1++) {
-            param0->unk_5C[v0].unk_04[v1] = MessageFormatter_AllocStrbuf(param0->unk_20, v2[v0] + v1);
+            param0->unk_5C[v0].unk_04[v1] = sub_0200B1EC(param0->unk_20, v2[v0] + v1);
         }
     }
 

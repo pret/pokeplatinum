@@ -4,10 +4,10 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
 #include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"
@@ -37,7 +37,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
@@ -977,10 +977,10 @@ u32 ov21_021D1C88 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
 Strbuf* ov21_021D1CE0 (int param0, int param1)
 {
     Strbuf* v0;
-    MessageFormatter * v1 = MessageFormatter_Init(0, 26, 697, param1);
+    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
-    v0 = MessageFormatter_AllocStrbuf(v1, param0);
-    MessageFormatter_Free(v1);
+    v0 = sub_0200B1EC(v1, param0);
+    sub_0200B190(v1);
 
     return v0;
 }

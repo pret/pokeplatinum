@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_02014A84.h"
@@ -92,7 +92,7 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
 {
     Strbuf* v0;
     UnkStruct_0200B358 * v1;
-    MessageFormatter * v2;
+    UnkStruct_0200B144 * v2;
     int v3;
 
     v1 = sub_0200B358(param1);
@@ -105,10 +105,10 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
         }
     }
 
-    v2 = MessageFormatter_Init(1, 26, Unk_020E5498[param0->unk_00], param1);
+    v2 = sub_0200B144(1, 26, Unk_020E5498[param0->unk_00], param1);
     v0 = sub_0200B29C(v1, v2, param0->unk_02, param1);
 
-    MessageFormatter_Free(v2);
+    sub_0200B190(v2);
     sub_0200B3F0(v1);
 
     return v0;

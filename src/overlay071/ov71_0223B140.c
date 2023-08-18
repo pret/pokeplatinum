@@ -4,8 +4,8 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -21,7 +21,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -414,12 +414,12 @@ static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
     param0->unk_3370 = Strbuf_Init(5, 25);
 
     {
-        MessageFormatter * v0;
+        UnkStruct_0200B144 * v0;
 
-        v0 = MessageFormatter_Init(0, 26, 616, 25);
+        v0 = sub_0200B144(0, 26, 616, 25);
 
         MessageFormatter_LoadStrbuf(v0, 11, param0->unk_3370);
-        MessageFormatter_Free(v0);
+        sub_0200B190(v0);
     }
 }
 

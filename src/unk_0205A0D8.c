@@ -3,10 +3,10 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/pokemon.h"
@@ -24,7 +24,7 @@
 #include "struct_defs/struct_02098D38.h"
 
 #include "unk_02005474.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -66,7 +66,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_14;
     UnkStruct_0203CDB0 * unk_24;
     UnkStruct_0200B358 * unk_28;
-    MessageFormatter * unk_2C;
+    UnkStruct_0200B144 * unk_2C;
     int unk_30;
     int unk_34;
     int unk_38;
@@ -102,7 +102,7 @@ typedef struct {
     Strbuf* unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0200B358 * unk_18;
-    MessageFormatter * unk_1C;
+    UnkStruct_0200B144 * unk_1C;
     int unk_20;
     int unk_24;
     int unk_28;
@@ -674,7 +674,7 @@ void sub_0205AB10 (UnkStruct_0203CDB0 * param0, UnkFuncPtr_0205AB10 * param1)
     v0->unk_24 = param0;
     v0->unk_08 = param1;
     v0->unk_28 = sub_0200B358(11);
-    v0->unk_2C = MessageFormatter_Init(0, 26, 11, 11);
+    v0->unk_2C = sub_0200B144(0, 26, 11, 11);
     v0->unk_0C = Strbuf_Init((100 * 2), 11);
     v0->unk_10 = Strbuf_Init((100 * 2), 11);
 
@@ -735,7 +735,7 @@ static void sub_0205AC28 (UnkStruct_0205A0D8 * param0)
         Heap_FreeToHeap(param0->unk_48);
     }
 
-    MessageFormatter_Free(param0->unk_2C);
+    sub_0200B190(param0->unk_2C);
     sub_0200B3F0(param0->unk_28);
     Strbuf_Free(param0->unk_0C);
     Strbuf_Free(param0->unk_10);
@@ -877,9 +877,9 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
 
     if (sub_0201A7CC(v0) == 0) {
         int v1, v2, v3;
-        MessageFormatter * v4;
+        UnkStruct_0200B144 * v4;
 
-        v4 = MessageFormatter_Init(1, 26, 412, 4);
+        v4 = sub_0200B144(1, 26, 412, 4);
         v3 = sub_02076AF0();
 
         sub_0201A7E8(param0->unk_24->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
@@ -895,7 +895,7 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
 
         MessageFormatter_LoadStrbuf(param0->unk_2C, 21, param0->unk_0C);
         sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
-        MessageFormatter_Free(v4);
+        sub_0200B190(v4);
     }
 
     sub_0201AE78(v0, 15, 0, 0, 16, v0->unk_08 * 8);
@@ -1021,7 +1021,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     switch (v1->unk_28) {
     case 0:
         v1->unk_18 = sub_0200B358(4);
-        v1->unk_1C = MessageFormatter_Init(0, 26, 11, 4);
+        v1->unk_1C = sub_0200B144(0, 26, 11, 4);
         v1->unk_00 = Strbuf_Init((100 * 2), 4);
         v1->unk_04 = Strbuf_Init((100 * 2), 4);
 
@@ -1037,7 +1037,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
     case 1:
         if (sub_0205DA04(v1->unk_20)) {
             if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
-                MessageFormatter_Free(v1->unk_1C);
+                sub_0200B190(v1->unk_1C);
                 sub_0200B3F0(v1->unk_18);
                 Strbuf_Free(v1->unk_00);
                 Strbuf_Free(v1->unk_04);

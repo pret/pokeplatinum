@@ -4,11 +4,11 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -32,7 +32,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_0200A9DC.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -491,7 +491,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v3;
+        UnkStruct_0200B144 * v3;
         int v4;
 
         v3 = ov23_02253E3C(ov23_0224219C());
@@ -748,7 +748,7 @@ static void ov23_0224FBFC (UnkStruct_ov23_02250CD4 * param0, int param1)
     sub_0200DC48(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v7;
+        UnkStruct_0200B144 * v7;
         int v8;
 
         v7 = ov23_02253E3C(ov23_0224219C());
@@ -860,7 +860,7 @@ static void ov23_0224FE38 (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v5;
+        UnkStruct_0200B144 * v5;
         int v6 = 0;
 
         v5 = ov23_02253E3C(ov23_022421DC());
@@ -1052,7 +1052,7 @@ static void ov23_0225021C (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v6;
+        UnkStruct_0200B144 * v6;
         int v7;
 
         v6 = ov23_02253E3C(ov23_022421DC());
@@ -1228,7 +1228,7 @@ static void ov23_022505EC (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v5;
+        UnkStruct_0200B144 * v5;
         int v6 = 0;
 
         v5 = ov23_02253E3C(ov23_022421DC());
@@ -1629,7 +1629,7 @@ static void ov23_02250D90 (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        MessageFormatter * v5;
+        UnkStruct_0200B144 * v5;
         int v6 = 0;
 
         v5 = ov23_02253E3C(ov23_022421DC());

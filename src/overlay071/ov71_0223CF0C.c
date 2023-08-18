@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"

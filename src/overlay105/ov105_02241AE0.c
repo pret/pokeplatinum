@@ -6,14 +6,14 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
@@ -49,7 +49,7 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -110,7 +110,7 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_19;
     u8 unk_1A;
     u8 unk_1B;
-    MessageFormatter * unk_1C;
+    UnkStruct_0200B144 * unk_1C;
     UnkStruct_0200B358 * unk_20;
     Strbuf* unk_24;
     Strbuf* unk_28;
@@ -2800,17 +2800,17 @@ static void ov105_022450DC (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
 {
     u8 v0;
     u32 v1, v2;
-    MessageFormatter * v3;
+    UnkStruct_0200B144 * v3;
     Strbuf* v4;
     Pokemon * v5;
     u16 v6[(10 + 1)];
 
     sub_0201ADA4(param1, param6);
 
-    v3 = MessageFormatter_Init(1, 26, 412, 93);
-    v4 = MessageFormatter_AllocStrbuf(v3, param8);
+    v3 = sub_0200B144(1, 26, 412, 93);
+    v4 = sub_0200B1EC(v3, param8);
 
-    MessageFormatter_Free(v3);
+    sub_0200B190(v3);
     sub_0201D78C(param1, param7, v4, param2, param3, 0xff, (u32)((((param4) & 0xff) << 16) | (((param5) & 0xff) << 8) | (((param6) & 0xff) << 0)), NULL);
 
     v0 = sub_0201C294(param1) - 1;
@@ -2861,7 +2861,7 @@ static void ov105_022451B4 (UnkStruct_ov105_02241FF4 * param0)
     }
 
     sub_02007B6C(param0->unk_128);
-    MessageFormatter_Free(param0->unk_1C);
+    sub_0200B190(param0->unk_1C);
     sub_0200B3F0(param0->unk_20);
     Strbuf_Free(param0->unk_24);
     Strbuf_Free(param0->unk_28);
@@ -2917,7 +2917,7 @@ static void ov105_0224531C (UnkStruct_ov105_02241FF4 * param0)
     ov105_02244678(param0);
     ov105_0224472C(param0);
 
-    param0->unk_1C = MessageFormatter_Init(1, 26, 364, 93);
+    param0->unk_1C = sub_0200B144(1, 26, 364, 93);
     param0->unk_20 = sub_0200B358(93);
     param0->unk_24 = Strbuf_Init(800, 93);
     param0->unk_28 = Strbuf_Init(800, 93);

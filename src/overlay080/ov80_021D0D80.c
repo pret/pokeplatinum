@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "struct_defs/struct_0203D8AC.h"
@@ -16,7 +16,7 @@
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
 #include "narc.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -222,8 +222,8 @@ static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
 
         param0->unk_18 = param0->unk_20;
         param0->unk_1C = param0->unk_24;
-        param0->unk_80 = MessageFormatter_Init(1, 26, 433, param0->unk_04);
-        param0->unk_84 = MessageFormatter_Init(1, 26, 615, param0->unk_04);
+        param0->unk_80 = sub_0200B144(1, 26, 433, param0->unk_04);
+        param0->unk_84 = sub_0200B144(1, 26, 615, param0->unk_04);
         param0->unk_88 = Strbuf_Init(22, param0->unk_04);
         param0->unk_30 = sub_02039EBC(param0->unk_04);
         param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->unk_04);
@@ -269,8 +269,8 @@ static void ov80_021D0FF4 (UnkStruct_ov80_021D2A08 * param0)
     ov80_021D2E10(param0->unk_40);
     sub_02039EF0(param0->unk_30);
     Strbuf_Free(param0->unk_88);
-    MessageFormatter_Free(param0->unk_84);
-    MessageFormatter_Free(param0->unk_80);
+    sub_0200B190(param0->unk_84);
+    sub_0200B190(param0->unk_80);
 }
 
 static void ov80_021D1068 (UnkStruct_ov80_021D2A08 * param0)

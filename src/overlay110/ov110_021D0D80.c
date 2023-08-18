@@ -5,11 +5,11 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -57,7 +57,7 @@ typedef struct {
     u16 unk_0A;
     UnkStruct_02018340 * unk_0C;
     UnkStruct_0205AA50 unk_10[16];
-    MessageFormatter * unk_110;
+    UnkStruct_0200B144 * unk_110;
     UnkStruct_0200B358 * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
@@ -133,7 +133,7 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     ov110_021D1180(v1);
 
-    v1->unk_110 = MessageFormatter_Init(1, 26, 16, 114);
+    v1->unk_110 = sub_0200B144(1, 26, 16, 114);
     v1->unk_114 = sub_0200B358(114);
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
@@ -182,7 +182,7 @@ int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_120 = NULL;
 
-    MessageFormatter_Free(v1->unk_110);
+    sub_0200B190(v1->unk_110);
     sub_0200B3F0(v1->unk_114);
     Strbuf_Free(v1->unk_118);
     Strbuf_Free(v1->unk_11C);
@@ -1229,13 +1229,13 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     Strbuf* v1;
 
-    v0 = MessageFormatter_Init(1, 26, 412, 114);
-    v1 = MessageFormatter_AllocStrbuf(v0, param0->unk_08);
+    v0 = sub_0200B144(1, 26, 412, 114);
+    v1 = sub_0200B1EC(v0, param0->unk_08);
 
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
     sub_0200B48C(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
     Strbuf_Free(v1);
 

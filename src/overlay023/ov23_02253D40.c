@@ -3,11 +3,11 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 
@@ -15,7 +15,7 @@
 #include "overlay023/struct_ov23_02253F60.h"
 #include "overlay084/struct_ov84_02240FA8.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     UnkStruct_02018340 * unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
     UnkStruct_0201CD38 * unk_20;
-    MessageFormatter * unk_24;
+    UnkStruct_0200B144 * unk_24;
     UnkStruct_0200B358 * unk_28;
     int unk_2C;
     int unk_30;
@@ -91,7 +91,7 @@ UnkStruct_ov23_02253E2C * ov23_02253D48 (int param0, int param1, UnkStruct_02018
     v1->unk_04 = Strbuf_Init(v0, param1);
     v1->unk_28 = sub_0200B358(param1);
     v1->unk_2C = param0;
-    v1->unk_24 = MessageFormatter_Init(1, 26, param0, param1);
+    v1->unk_24 = sub_0200B144(1, 26, param0, param1);
     v1->unk_34 = param1;
     v1->unk_18 = param2;
 
@@ -112,7 +112,7 @@ void ov23_02253DD8 (UnkStruct_ov23_02253E2C * param0)
     Strbuf_Free(param0->unk_00);
     Strbuf_Free(param0->unk_04);
     sub_0200B3F0(param0->unk_28);
-    MessageFormatter_Free(param0->unk_24);
+    sub_0200B190(param0->unk_24);
     Heap_FreeToHeap(param0);
 }
 
@@ -120,9 +120,9 @@ void ov23_02253DFC (UnkStruct_ov23_02253E2C * param0, int param1, int param2)
 {
     if (param0->unk_2C != param1) {
         param0->unk_2C = param1;
-        MessageFormatter_Free(param0->unk_24);
+        sub_0200B190(param0->unk_24);
 
-        param0->unk_24 = MessageFormatter_Init(param2, 26, param1, param0->unk_34);
+        param0->unk_24 = sub_0200B144(param2, 26, param1, param0->unk_34);
         GF_ASSERT(param0->unk_24 != NULL);
     }
 }
@@ -134,7 +134,7 @@ void ov23_02253E2C (UnkStruct_ov23_02253E2C * param0, UnkStruct_02018340 * param
     param0->unk_40 = param3;
 }
 
-MessageFormatter * ov23_02253E3C (UnkStruct_ov23_02253E2C * param0)
+UnkStruct_0200B144 * ov23_02253E3C (UnkStruct_ov23_02253E2C * param0)
 {
     return param0->unk_24;
 }

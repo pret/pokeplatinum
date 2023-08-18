@@ -4,12 +4,12 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -24,7 +24,7 @@
 #include "unk_02002F38.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_020170BC.h"
@@ -396,15 +396,15 @@ void ov116_02261F70 (UnkStruct_ov116_02262A8C * param0)
     sub_0201ADA4(&param0->unk_1FC8, 0xFF);
 
     {
-        MessageFormatter * v0;
+        UnkStruct_0200B144 * v0;
         Strbuf* v1;
 
-        v0 = MessageFormatter_Init(0, 26, 410, 106);
-        v1 = MessageFormatter_AllocStrbuf(v0, 0);
+        v0 = sub_0200B144(0, 26, 410, 106);
+        v1 = sub_0200B1EC(v0, 0);
 
         sub_0201D738(&param0->unk_1FC8, 0, v1, 0, 0, 0, NULL);
         Strbuf_Free(v1);
-        MessageFormatter_Free(v0);
+        sub_0200B190(v0);
     }
 
     sub_0200DC48(&param0->unk_1FC8, 0, 180, 13);

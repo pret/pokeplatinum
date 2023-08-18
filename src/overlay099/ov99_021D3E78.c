@@ -1,16 +1,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002B7C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -274,14 +274,14 @@ struct UnkStruct_ov99_021D3E78_t {
     UnkStruct_02018340 * unk_20;
     UnkStruct_0205AA50 * unk_24;
     UnkStruct_0205AA50 * unk_28;
-    MessageFormatter * unk_2C;
+    UnkStruct_0200B144 * unk_2C;
     Strbuf* unk_30;
     UnkStruct_0201CD38 * unk_34;
 };
 
 static void ov99_021D4104(UnkStruct_0201CD38 * param0, void * param1);
 
-UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1, int param2, int param3, MessageFormatter * param4)
+UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1, int param2, int param3, UnkStruct_0200B144 * param4)
 {
     UnkStruct_ov99_021D3E78 * v0 = Heap_AllocFromHeap(75, sizeof(UnkStruct_ov99_021D3E78));
 

@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0201378C.h"
 #include "unk_02017038.h"
@@ -38,7 +38,7 @@ UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02090800));
     v0->unk_00 = param2;
-    v0->unk_04 = MessageFormatter_Init(1, 26, 455, v0->unk_00);
+    v0->unk_04 = sub_0200B144(1, 26, 455, v0->unk_00);
     v0->unk_08 = sub_0200B368(9, 32, v0->unk_00);
     v0->unk_0C = param0;
     v0->unk_10 = param1;
@@ -314,7 +314,7 @@ void sub_0209282C (UnkStruct_02090800 * param0)
     }
 
     sub_0200B3F0(param0->unk_08);
-    MessageFormatter_Free(param0->unk_04);
+    sub_0200B190(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 

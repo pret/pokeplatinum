@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_020158A8_H
 
 #include "struct_defs/struct_020158A8.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 UnkStruct_020158A8 * sub_020158A8(int param0);
 void sub_020158F4(UnkStruct_020158A8 * param0);

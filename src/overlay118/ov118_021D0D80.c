@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0207F248.h"
@@ -13,7 +13,7 @@
 #include "spl.h"
 
 #include "unk_02005474.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_02014000.h"
 #include "heap.h"
@@ -144,7 +144,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
     {
         Strbuf* v2;
 
-        v2 = MessageFormatter_AllocStrbuf(param0->unk_69C, 202);
+        v2 = sub_0200B1EC(param0->unk_69C, 202);
 
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v1));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v2);

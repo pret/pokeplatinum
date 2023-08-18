@@ -3,11 +3,11 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -26,7 +26,7 @@
 #include "unk_0200679C.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -413,7 +413,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             Strbuf* v4;
 
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);
-            v4 = MessageFormatter_AllocStrbuf(param0->unk_10, 46);
+            v4 = sub_0200B1EC(param0->unk_10, 46);
 
             sub_0200B5CC(param0->unk_14, 0, sub_02076B10(v3));
             sub_0200B630(param0->unk_14, 1, 373);
@@ -434,15 +434,15 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
                 return 13;
             } else {
-                MessageFormatter * v5;
+                UnkStruct_0200B144 * v5;
                 Strbuf* v6;
 
-                v5 = MessageFormatter_Init(1, 26, 213, v0->unk_0C);
-                v6 = MessageFormatter_AllocStrbuf(v5, 36);
+                v5 = sub_0200B144(1, 26, 213, v0->unk_0C);
+                v6 = sub_0200B1EC(v5, 36);
                 sub_0200B498(param0->unk_14, 0, v0->unk_04);
                 sub_0200C388(param0->unk_14, param0->unk_18, v6);
                 Strbuf_Free(v6);
-                MessageFormatter_Free(v5);
+                sub_0200B190(v5);
                 ov13_022279F4(param0);
                 param0->unk_114B = 8;
                 return 9;
@@ -765,7 +765,7 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
 {
-    param0->unk_10 = MessageFormatter_Init(0, 26, 2, param0->unk_00->unk_0C);
+    param0->unk_10 = sub_0200B144(0, 26, 2, param0->unk_00->unk_0C);
     param0->unk_0C = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
     param0->unk_14 = sub_0200B358(param0->unk_00->unk_0C);
     param0->unk_18 = Strbuf_Init(512, param0->unk_00->unk_0C);
@@ -773,7 +773,7 @@ static void ov13_022270B8 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_022270F8 (UnkStruct_ov13_02227244 * param0)
 {
-    MessageFormatter_Free(param0->unk_10);
+    sub_0200B190(param0->unk_10);
     sub_0200C560(param0->unk_0C);
     sub_0200B3F0(param0->unk_14);
     Strbuf_Free(param0->unk_18);

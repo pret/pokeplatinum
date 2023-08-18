@@ -7,13 +7,13 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -47,7 +47,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
@@ -254,8 +254,8 @@ struct UnkStruct_ov107_02241D6C_t {
     u16 unk_16;
     u16 unk_18;
     u16 unk_1A;
-    MessageFormatter * unk_1C;
-    MessageFormatter * unk_20;
+    UnkStruct_0200B144 * unk_1C;
+    UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
@@ -1414,8 +1414,8 @@ static void ov107_02242E14 (UnkStruct_ov107_02241D6C * param0)
 
     ov107_02249954(&param0->unk_1D8);
 
-    MessageFormatter_Free(param0->unk_20);
-    MessageFormatter_Free(param0->unk_1C);
+    sub_0200B190(param0->unk_20);
+    sub_0200B190(param0->unk_1C);
     sub_0200B3F0(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
@@ -1460,8 +1460,8 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     ov107_02243324(param0);
     ov107_02243384(param0);
 
-    param0->unk_20 = MessageFormatter_Init(1, 26, 199, 100);
-    param0->unk_1C = MessageFormatter_Init(1, 26, 391, 100);
+    param0->unk_20 = sub_0200B144(1, 26, 199, 100);
+    param0->unk_1C = sub_0200B144(1, 26, 391, 100);
     param0->unk_24 = sub_0200B358(100);
     param0->unk_28 = Strbuf_Init(600, 100);
     param0->unk_2C = Strbuf_Init(600, 100);
@@ -2659,7 +2659,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     u8 v0, v1, v2;
     u16 v3;
     int v4;
-    MessageFormatter * v5;
+    UnkStruct_0200B144 * v5;
 
     ov107_0224503C(param0, param0->unk_0D, 1);
     v2 = ov107_02249C98(param0->unk_14, param0->unk_0D);
@@ -2674,7 +2674,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     ov107_02249BAC(param0->unk_3EC, 1);
     ov107_02249BAC(param0->unk_434, 1);
 
-    v5 = MessageFormatter_Init(1, 26, 392, 100);
+    v5 = sub_0200B144(1, 26, 392, 100);
     v0 = ov107_02249CAC(param0->unk_1CC, param0->unk_09, 1);
 
     if (param1 == 6) {
@@ -2711,7 +2711,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     param0->unk_198 = sub_0200112C(&param0->unk_1A0, 0, 0, 100);
 
     ov107_02245650(param0, &param0->unk_50[5]);
-    MessageFormatter_Free(v5);
+    sub_0200B190(v5);
 
     return;
 }

@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -12,7 +12,7 @@
 #include "overlay006/struct_ov6_02246254.h"
 
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
@@ -149,10 +149,10 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
 static Strbuf* ov6_022462E4 (u32 param0, u32 param1)
 {
     Strbuf* v0;
-    MessageFormatter * v1 = MessageFormatter_Init(0, 26, 370, param0);
+    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 370, param0);
 
-    v0 = MessageFormatter_AllocStrbuf(v1, param1);
-    MessageFormatter_Free(v1);
+    v0 = sub_0200B1EC(v1, param1);
+    sub_0200B190(v1);
     return v0;
 }
 

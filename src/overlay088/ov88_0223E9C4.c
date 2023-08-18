@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_020279FC.h"
@@ -135,7 +135,7 @@ void ov88_0223EC78 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u32
     sub_0201D78C(param0, 0, param1, v0, param5, param3, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 }
 
-int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, MessageFormatter * param3, UnkStruct_0200B358 * param4)
+int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruct_0200B144 * param3, UnkStruct_0200B358 * param4)
 {
     Strbuf* v0;
     int v1;

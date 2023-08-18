@@ -6,11 +6,11 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"
@@ -40,7 +40,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -139,7 +139,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_00 = sub_02018340(39);
         v1 = NARC_ctor(95, 39);
         v0->unk_10 = sub_0200B358(39);
-        v0->unk_14 = MessageFormatter_Init(0, 26, 425, 39);
+        v0->unk_14 = sub_0200B144(0, 26, 425, 39);
 
         sub_02017DD4(4, 8);
         ov72_0223DA70();
@@ -238,7 +238,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002C60(2);
     ov72_0223DC6C(v0->unk_00);
     sub_0201E530();
-    MessageFormatter_Free(v0->unk_14);
+    sub_0200B190(v0->unk_14);
     sub_0200B3F0(v0->unk_10);
     ov72_0223DC34(v0);
     sub_02006830(param0);

@@ -4,10 +4,10 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/pokemon.h"
@@ -22,7 +22,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -284,9 +284,9 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     UnkStruct_0200B358 * v5;
     Strbuf* v6;
     Strbuf* v7;
-    MessageFormatter * v8;
+    UnkStruct_0200B144 * v8;
 
-    v8 = MessageFormatter_Init(0, 26, 385, 13);
+    v8 = sub_0200B144(0, 26, 385, 13);
     GF_ASSERT(v8);
     v5 = sub_0200B358(13);
 
@@ -310,7 +310,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     sub_0200BE48(v5, 0, v4);
 
     v7 = Strbuf_Init(200, 13);
-    v6 = MessageFormatter_AllocStrbuf(v8, 45);
+    v6 = sub_0200B1EC(v8, 45);
     sub_0200C388(v5, v7, v6);
 
     v3 = sub_02002D7C(0, v7, 0);
@@ -320,7 +320,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     sub_0201D78C(param0->unk_200, 0, v7, v1, v2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v7);
     Strbuf_Free(v6);
-    MessageFormatter_Free(v8);
+    sub_0200B190(v8);
     sub_0200B3F0(v5);
 }
 
@@ -333,7 +333,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     int v4;
     Pokemon * v5;
     BoxPokemon * v6;
-    MessageFormatter * v7;
+    UnkStruct_0200B144 * v7;
     int v8, v9;
     int v10;
 
@@ -356,10 +356,10 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0200B5CC(v1, 4, v6);
     Heap_FreeToHeap(v5);
 
-    v7 = MessageFormatter_Init(0, 26, 385, 13);
+    v7 = sub_0200B144(0, 26, 385, 13);
     GF_ASSERT(v7);
 
-    v3 = MessageFormatter_AllocStrbuf(v7, 43);
+    v3 = sub_0200B1EC(v7, 43);
     sub_0200C388(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
@@ -367,7 +367,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     v9 = 7;
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v3 = MessageFormatter_AllocStrbuf(v7, 44);
+    v3 = sub_0200B1EC(v7, 44);
     sub_0200C388(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
@@ -376,6 +376,6 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v2);
-    MessageFormatter_Free(v7);
+    sub_0200B190(v7);
     sub_0200B3F0(v1);
 }

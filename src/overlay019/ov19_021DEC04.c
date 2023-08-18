@@ -3,13 +3,13 @@
 
 #include "inlines.h"
 
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/box_pokemon.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
@@ -23,7 +23,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -52,8 +52,8 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dCellDataBank * unk_60;
     void * unk_64;
     NNSG2dAnimBankData * unk_68;
-    MessageFormatter * unk_6C;
-    MessageFormatter * unk_70;
+    UnkStruct_0200B144 * unk_6C;
+    UnkStruct_0200B144 * unk_70;
     Strbuf* unk_74;
     UnkStruct_0205AA50 unk_78[7];
     u8 unk_E8[640];
@@ -90,7 +90,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF930(UnkStruct_0201CD38 * param0, void * param1);
 
-BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, MessageFormatter * param5, NARC * param6)
+BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, UnkStruct_0200B144 * param5, NARC * param6)
 {
     if (ov19_021D5E08(param2) != 4) {
         *param0 = NULL;
@@ -107,7 +107,7 @@ BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_370 = sub_020071D0(param6, 7, 1, &(v0->unk_368), 10);
             v0->unk_374 = sub_020071D0(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
-            v0->unk_70 = MessageFormatter_Init(1, 26, 647, 10);
+            v0->unk_70 = sub_0200B144(1, 26, 647, 10);
             v0->unk_74 = Strbuf_Init(32, 10);
             v0->unk_380 = NULL;
             *param0 = v0;
@@ -123,7 +123,7 @@ void ov19_021DECAC (UnkStruct_ov19_021DEC04 * param0)
     if (param0) {
         Heap_FreeToHeap(param0->unk_370);
         Heap_FreeToHeap(param0->unk_374);
-        MessageFormatter_Free(param0->unk_70);
+        sub_0200B190(param0->unk_70);
         ov19_021DF7D0(param0);
         ov19_021DF03C(param0);
         Strbuf_Free(param0->unk_74);

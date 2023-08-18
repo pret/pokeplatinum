@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -11,7 +11,7 @@
 #include "overlay061/struct_ov61_0222C884.h"
 
 #include "unk_02002B7C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
@@ -272,7 +272,7 @@ void sub_0208FF3C (UnkStruct_0208D7BC * param0)
     if (param0->unk_250.unk_50_28 == 0) {
         sub_0200C578(param0->unk_684, 1, v0, 0, 5);
 
-        v1 = MessageFormatter_AllocStrbuf(param0->unk_688, 3);
+        v1 = sub_0200B1EC(param0->unk_688, 3);
 
         sub_0200B60C(param0->unk_690, 0, param0->unk_250.unk_12_0, 3, 0, 1);
         sub_0200C388(param0->unk_690, param0->unk_694, v1);
@@ -291,7 +291,7 @@ void sub_0208FFE0 (UnkStruct_0208D7BC * param0)
 
     if (param0->unk_250.unk_0E != 0) {
         sub_0200B70C(param0->unk_690, 0, param0->unk_250.unk_0E);
-        v0 = MessageFormatter_AllocStrbuf(param0->unk_688, 5);
+        v0 = sub_0200B1EC(param0->unk_688, 5);
         sub_0200C388(param0->unk_690, param0->unk_694, v0);
         Strbuf_Free(v0);
     } else {
@@ -358,7 +358,7 @@ static void sub_02090184 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u
 {
     Strbuf* v0;
 
-    v0 = MessageFormatter_AllocStrbuf(param0->unk_688, param1);
+    v0 = sub_0200B1EC(param0->unk_688, param1);
     sub_0200B60C(param0->unk_690, 0, param2, param3, param4, 1);
     sub_0200C388(param0->unk_690, param0->unk_694, v0);
     Strbuf_Free(v0);
@@ -626,19 +626,19 @@ static void sub_0209093C (UnkStruct_0208D7BC * param0)
     sub_020900D8(param0, &param0->unk_244[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
 
     {
-        MessageFormatter * v1;
+        UnkStruct_0200B144 * v1;
         Strbuf* v2;
 
         sub_0200B6A0(param0->unk_690, 0, param0->unk_250.unk_32);
 
-        v2 = MessageFormatter_AllocStrbuf(param0->unk_688, 125);
+        v2 = sub_0200B1EC(param0->unk_688, 125);
         sub_0200C388(param0->unk_690, param0->unk_694, v2);
         Strbuf_Free(v2);
         sub_020900D8(param0, &param0->unk_244[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-        v1 = MessageFormatter_Init(1, 26, 612, 19);
+        v1 = sub_0200B144(1, 26, 612, 19);
         MessageFormatter_LoadStrbuf(v1, param0->unk_250.unk_32, param0->unk_694);
-        MessageFormatter_Free(v1);
+        sub_0200B190(v1);
         sub_020900D8(param0, &param0->unk_244[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     }
 
@@ -778,7 +778,7 @@ void sub_02090F84 (UnkStruct_0208D7BC * param0)
 
     sub_0201ADA4(&param0->unk_244[1], 0);
 
-    v0 = MessageFormatter_AllocStrbuf(param0->unk_688, 186);
+    v0 = sub_0200B1EC(param0->unk_688, 186);
 
     sub_0200B60C(param0->unk_690, 0, param0->unk_6B1, 3, 0, 1);
     sub_0200C388(param0->unk_690, param0->unk_694, v0);
@@ -789,14 +789,14 @@ void sub_02090F84 (UnkStruct_0208D7BC * param0)
 
     sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v0 = MessageFormatter_AllocStrbuf(param0->unk_688, 185);
+    v0 = sub_0200B1EC(param0->unk_688, 185);
     v2 = sub_02002D7C(0, v0, 0);
     v1 -= v2;
 
     sub_0201D78C(&param0->unk_244[1], 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
 
-    v0 = MessageFormatter_AllocStrbuf(param0->unk_688, 184);
+    v0 = sub_0200B1EC(param0->unk_688, 184);
 
     sub_0200B60C(param0->unk_690, 0, param0->unk_6AF + param0->unk_6B0 * 4 + 1, 3, 0, 1);
     sub_0200C388(param0->unk_690, param0->unk_694, v0);
@@ -860,7 +860,7 @@ static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
 
 void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     u32 v1;
     u32 v2;
 
@@ -892,11 +892,11 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
 
     sub_020900D8(param0, &param0->unk_244[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    v0 = MessageFormatter_Init(1, 26, 646, 19);
+    v0 = sub_0200B144(1, 26, 646, 19);
 
     MessageFormatter_LoadStrbuf(v0, param1, param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
 
     sub_0201A9A4(&param0->unk_244[5]);
     sub_0201A9A4(&param0->unk_244[6]);
@@ -963,7 +963,7 @@ void sub_020914F8 (UnkStruct_0208D7BC * param0)
 
 void sub_02091570 (UnkStruct_0208D7BC * param0, u32 param1)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
     u32 v1;
     u32 v2;
 
@@ -971,12 +971,12 @@ void sub_02091570 (UnkStruct_0208D7BC * param0, u32 param1)
 
     v1 = MoveTable_GetMoveAttribute(param1, 10);
     v2 = sub_0209577C(v1);
-    v0 = MessageFormatter_Init(0, 26, 210, 19);
+    v0 = sub_0200B144(0, 26, 210, 19);
 
     MessageFormatter_LoadStrbuf(v0, v2, param0->unk_694);
     sub_0201D78C(&param0->unk_244[5], 0, param0->unk_694, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
 
     sub_0201A9A4(&param0->unk_04[29]);
     sub_0201A9A4(&param0->unk_244[5]);

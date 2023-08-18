@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D1FA4_H
 #define POKEPLATINUM_OV21_021D1FA4_H
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"

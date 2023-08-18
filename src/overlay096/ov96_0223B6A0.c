@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "overlay096/struct_ov96_0223BF40_decl.h"
 
@@ -27,7 +27,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -95,9 +95,9 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         v0->unk_BCC = sub_0200B368(11, 32, 68);
-        v0->unk_BD0 = MessageFormatter_Init(0, 26, 670, 68);
-        v0->unk_BD4 = MessageFormatter_Init(0, 26, 674, 68);
-        v0->unk_BD8 = MessageFormatter_Init(0, 26, 695, 68);
+        v0->unk_BD0 = sub_0200B144(0, 26, 670, 68);
+        v0->unk_BD4 = sub_0200B144(0, 26, 674, 68);
+        v0->unk_BD8 = sub_0200B144(0, 26, 695, 68);
 
         sub_02017DD4(4, 8);
         ov96_0223B980(v0, param0);
@@ -179,9 +179,9 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
 
     ov96_0223BC8C(v0);
 
-    MessageFormatter_Free(v0->unk_BD8);
-    MessageFormatter_Free(v0->unk_BD4);
-    MessageFormatter_Free(v0->unk_BD0);
+    sub_0200B190(v0->unk_BD8);
+    sub_0200B190(v0->unk_BD4);
+    sub_0200B190(v0->unk_BD0);
     sub_0200B3F0(v0->unk_BCC);
 
     ov96_0223B99C(v0);

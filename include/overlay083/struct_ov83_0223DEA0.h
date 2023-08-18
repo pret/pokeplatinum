@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223DEA0_H
 #define POKEPLATINUM_STRUCT_OV83_0223DEA0_H
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 typedef struct {
-    MessageFormatter * unk_00;
+    UnkStruct_0200B144 * unk_00;
     UnkStruct_0200B358 * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;

@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -24,7 +24,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "strbuf.h"
 #include "unk_0202440C.h"

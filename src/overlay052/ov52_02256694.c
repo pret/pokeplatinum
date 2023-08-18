@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -19,7 +19,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -38,7 +38,7 @@ struct UnkStruct_ov52_02256694_t {
     UnkStruct_ov25_022555E8 * unk_30;
     UnkStruct_ov25_022558C4 * unk_34[4];
     UnkStruct_ov25_02255958 unk_44;
-    MessageFormatter * unk_58;
+    UnkStruct_0200B144 * unk_58;
     Strbuf* unk_5C;
 };
 
@@ -68,7 +68,7 @@ BOOL ov52_02256694 (UnkStruct_ov52_02256694 ** param0, const UnkStruct_ov52_0225
         v0->unk_00 = param1;
         v0->unk_04 = ov25_02254674();
         v0->unk_30 = ov25_02254664();
-        v0->unk_58 = MessageFormatter_Init(1, 26, 461, 8);
+        v0->unk_58 = sub_0200B144(1, 26, 461, 8);
         v0->unk_5C = Strbuf_Init(96, 8);
         ov52_0225670C(v0, param1);
         *param0 = v0;
@@ -83,7 +83,7 @@ void ov52_022566EC (UnkStruct_ov52_02256694 * param0)
 {
     if (param0 != NULL) {
         Strbuf_Free(param0->unk_5C);
-        MessageFormatter_Free(param0->unk_58);
+        sub_0200B190(param0->unk_58);
         ov52_0225677C(param0);
         Heap_FreeToHeap(param0);
     }

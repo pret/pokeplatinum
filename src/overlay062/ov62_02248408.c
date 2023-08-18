@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202F264.h"
@@ -13,7 +13,7 @@
 #include "overlay006/battle_params.h"
 
 #include "unk_02002B7C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -97,14 +97,14 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int para
 
 static void ov62_0224856C (Strbuf *param0, int param1)
 {
-    MessageFormatter * v0;
+    UnkStruct_0200B144 * v0;
 
     Strbuf_Clear(param0);
 
-    v0 = MessageFormatter_Init(1, 26, 10, param1);
+    v0 = sub_0200B144(1, 26, 10, param1);
 
     MessageFormatter_LoadStrbuf(v0, 332, param0);
-    MessageFormatter_Free(v0);
+    sub_0200B190(v0);
 }
 
 int ov62_02248598 (UnkStruct_021C0794 * param0, int param1, u8 param2, u16 * param3, u16 * param4)

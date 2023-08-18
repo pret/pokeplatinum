@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -36,7 +36,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
@@ -2272,7 +2272,7 @@ asm void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
     add r0, #0x80
     ldr r0, [r0, #0]
     add r1, r1, #4
-    bl MessageFormatter_AllocStrbuf
+    bl sub_0200B1EC
     str r0, [sp, #0x34]
     ldr r0, [sp, #0x2c]
     mov r1, #0xa

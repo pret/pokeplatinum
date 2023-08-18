@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021DB6F0_H
 #define POKEPLATINUM_STRUCT_OV19_021DB6F0_H
 
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -16,8 +16,8 @@ typedef struct {
     u8 padding_04[4];
     const UnkStruct_ov19_021D4DF0 * unk_08;
     UnkStruct_ov19_021D61B0 * unk_0C;
-    MessageFormatter * unk_10;
-    MessageFormatter * unk_14;
+    UnkStruct_0200B144 * unk_10;
+    UnkStruct_0200B144 * unk_14;
     UnkStruct_0205AA50 * unk_18;
     u16 unk_1C;
     u16 unk_1E;

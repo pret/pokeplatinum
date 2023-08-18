@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -17,7 +17,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_020149F0.h"
@@ -53,7 +53,7 @@ typedef struct UnkStruct_ov20_021D30F8_t {
     UnkStruct_02022550 * unk_3C;
     UnkStruct_02022550 * unk_40;
     UnkStruct_02022550 * unk_44;
-    MessageFormatter * unk_48;
+    UnkStruct_0200B144 * unk_48;
     Strbuf* unk_4C;
     UnkStruct_020149F0 * unk_50;
     UnkStruct_ov20_021D34CC unk_54[2];
@@ -88,7 +88,7 @@ UnkStruct_ov20_021D30F8 * ov20_021D2EA4 (UnkStruct_ov20_021D2128 * param0, const
     v0->unk_40 = NULL;
     v0->unk_44 = NULL;
     v0->unk_4C = Strbuf_Init(128, 35);
-    v0->unk_48 = MessageFormatter_Init(0, 26, 437, 35);
+    v0->unk_48 = sub_0200B144(0, 26, 437, 35);
     v0->unk_50 = sub_020149F0(35);
 
     return v0;
@@ -113,7 +113,7 @@ void ov20_021D2EF0 (UnkStruct_ov20_021D30F8 * param0)
     }
 
     if (param0->unk_48) {
-        MessageFormatter_Free(param0->unk_48);
+        sub_0200B190(param0->unk_48);
     }
 
     if (param0->unk_4C) {

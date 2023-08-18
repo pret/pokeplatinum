@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV71_0223CF0C_H
 #define POKEPLATINUM_OV71_0223CF0C_H
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "overlay071/struct_ov71_0223D238.h"
 
 void ov71_0223CF0C(UnkStruct_ov71_0223D238 * param0, NARC * param1);

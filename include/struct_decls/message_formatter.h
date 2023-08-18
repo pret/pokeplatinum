@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_MESSAGE_FORMATTER_H
 #define POKEPLATINUM_STRUCT_MESSAGE_FORMATTER_H
 
-typedef struct MessageFormatter_t MessageFormatter;
+typedef struct MessageFormatter_t UnkStruct_0200B144;
 
 #endif // POKEPLATINUM_STRUCT_MESSAGE_FORMATTER_H

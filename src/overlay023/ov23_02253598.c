@@ -4,12 +4,12 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -23,7 +23,7 @@
 #include "overlay084/struct_ov84_02240FA8.h"
 
 #include "unk_02005474.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -120,7 +120,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
-asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageFormatter * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3)
+asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x20
@@ -357,7 +357,7 @@ static void ov23_0225381C (UnkStruct_0201CD38 * param0, void * param1)
 void ov23_02253834 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
 {
     UnkStruct_0202855C * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
     UnkStruct_ov23_022537D4 * v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
@@ -370,7 +370,7 @@ void ov23_02253834 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, Un
     sub_0201A7E8(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     sub_0200DC48(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageFormatter_Init(0, 26, 640, 4);
+    v1 = sub_0200B144(0, 26, 640, 4);
     sub_0201ADA4(&v4->unk_08, 15);
 
     if (param4) {
@@ -387,7 +387,7 @@ void ov23_02253834 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, Un
     Unk_ov23_022577BC->unk_04 = sub_0200D9E8(ov23_0225381C, v4, 10);
     Unk_ov23_022577BC->unk_00 = v4;
 
-    MessageFormatter_Free(v1);
+    sub_0200B190(v1);
 }
 
 void ov23_022538FC (int param0)
@@ -474,7 +474,7 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageFormatter * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
+static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -540,7 +540,7 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageFormatter * param
 void * ov23_02253C64 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, UnkStruct_020298B0 * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
 {
     UnkStruct_0202855C * v0;
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     UnkStruct_ov84_02240FA8 v2;
     int v3 = 10;
     UnkStruct_ov23_022537D4 * v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
@@ -553,7 +553,7 @@ void * ov23_02253C64 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, 
     sub_0201A7E8(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
     sub_0200DC48(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
-    v1 = MessageFormatter_Init(0, 26, 639, 4);
+    v1 = sub_0200B144(0, 26, 639, 4);
     sub_0201ADA4(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
@@ -561,7 +561,7 @@ void * ov23_02253C64 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, 
 
     sub_02005748(1533);
     sub_0201A9A4(&v4->unk_08);
-    MessageFormatter_Free(v1);
+    sub_0200B190(v1);
 
     return v4;
 }

@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_MESSAGE_DATA_H
 #define POKEPLATINUM_MESSAGE_DATA_H
 
-#include "struct_decls/message_data.h"
-#include "struct_decls/message_formatter.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/unk_0200AC5C.h"
+#include "struct_decls/struct_0200B144_decl.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_02023790_decl.h"
 
 #include "strbuf.h"
 
@@ -21,14 +21,14 @@ enum MessageFormatterType {
  * @param heapID 
  * @return Loaded message data.
  */
-MessageData* MessageData_Load(u32 narcID, u32 dataID, u32 heapID);
+UnkStruct_0200AC5C* MessageData_Load(u32 narcID, u32 dataID, u32 heapID);
 
 /**
  * @brief Free allocated message data.
  * 
  * @param messageData
  */
-void MessageData_Free(MessageData *messageData);
+void MessageData_Free(UnkStruct_0200AC5C *messageData);
 
 /**
  * @brief Get a given message out of the message data structure.
@@ -37,7 +37,7 @@ void MessageData_Free(MessageData *messageData);
  * @param msgID 
  * @param dst Destination buffer for the extracted string.
  */
-void MessageData_Get(const MessageData *messageData, u32 msgID, charcode_t *dst);
+void MessageData_Get(const UnkStruct_0200AC5C *messageData, u32 msgID, charcode_t *dst);
 
 /**
  * @brief Get a given message from the specified NARC.
@@ -57,7 +57,7 @@ void MessageData_GetFromNARC(u32 narcID, u32 dataID, u32 msgID, u32 heapID, char
  * @param msgID 
  * @param strbuf Destination for the extracted string.
  */
-void MessageData_GetStrbuf(const MessageData *messageData, u32 msgID, Strbuf *strbuf);
+void MessageData_GetStrbuf(const UnkStruct_0200AC5C *messageData, u32 msgID, Strbuf *strbuf);
 
 /**
  * @brief Get a given message out of the message data structure as a Strbuf.
@@ -68,7 +68,7 @@ void MessageData_GetStrbuf(const MessageData *messageData, u32 msgID, Strbuf *st
  * @param heapID 
  * @return The newly-allocated Strbuf.
  */
-Strbuf* MessageData_AllocStrbuf(const MessageData *messageData, u32 msgID, u32 heapID);
+Strbuf* MessageData_AllocStrbuf(const UnkStruct_0200AC5C *messageData, u32 msgID, u32 heapID);
 
 /**
  * @brief Load the given NARC and get a string out from the loaded NARC.
@@ -122,7 +122,7 @@ Strbuf* MessageData_AllocStrbufFromNARCHandle(NARC *narc, u32 dataID, u32 msgID,
  * @param data
  * @return u32 
  */
-u32 MessageData_MessageCount(const MessageData *data);
+u32 MessageData_MessageCount(const UnkStruct_0200AC5C *data);
 
 /**
  * @brief Return the number of messages referenced by a data header stored
@@ -135,7 +135,7 @@ u32 MessageData_MessageCount(const MessageData *data);
 u32 MessageData_MessageCountFromNARC(u32 narcID, u32 dataID);
 
 /**
- * @brief Initialize and return a new MessageFormatter according to the given
+ * @brief Initialize and return a new UnkStruct_0200B144 according to the given
  * load type.
  * 
  * @param loadType If FORMATTER_STORE_MESSAGE_DATA, store message data in the struct.
@@ -143,16 +143,16 @@ u32 MessageData_MessageCountFromNARC(u32 narcID, u32 dataID);
  * @param narcID 
  * @param dataID 
  * @param heapID 
- * @return MessageFormatter* 
+ * @return UnkStruct_0200B144* 
  */
-MessageFormatter* MessageFormatter_Init(enum MessageFormatterType loadType, u32 narcID, u32 dataID, u32 heapID);
+UnkStruct_0200B144* sub_0200B144(enum MessageFormatterType loadType, u32 narcID, u32 dataID, u32 heapID);
 
 /**
- * @brief Free a MessageFormatter back to its owning heap.
+ * @brief Free a UnkStruct_0200B144 back to its owning heap.
  * 
  * @param formatter
  */
-void MessageFormatter_Free(MessageFormatter *formatter);
+void sub_0200B190(UnkStruct_0200B144 *formatter);
 
 /**
  * @brief Load a message string with the given ID into a previously-alloc'd
@@ -162,7 +162,7 @@ void MessageFormatter_Free(MessageFormatter *formatter);
  * @param msgID 
  * @param dst 
  */
-void MessageFormatter_LoadStrbuf(const MessageFormatter *formatter, u32 msgID, Strbuf *dst);
+void MessageFormatter_LoadStrbuf(const UnkStruct_0200B144 *formatter, u32 msgID, Strbuf *dst);
 
 /**
  * @brief Load a message string with the given ID and return a new Strbuf
@@ -172,7 +172,7 @@ void MessageFormatter_LoadStrbuf(const MessageFormatter *formatter, u32 msgID, S
  * @param msgID 
  * @return Strbuf* 
  */
-Strbuf* MessageFormatter_AllocStrbuf(const MessageFormatter *formatter, u32 msgID);
+Strbuf* sub_0200B1EC(const UnkStruct_0200B144 *formatter, u32 msgID);
 
 /**
  * @brief Return the number of messages managed by the given formatter.
@@ -180,7 +180,7 @@ Strbuf* MessageFormatter_AllocStrbuf(const MessageFormatter *formatter, u32 msgI
  * @param formatter 
  * @return u32 
  */
-u32 MessageFormatter_MessageCount(const MessageFormatter *formatter);
+u32 MessageFormatter_MessageCount(const UnkStruct_0200B144 *formatter);
 
 /**
  * @brief Load a message string with the given ID into a destination buffer.
@@ -189,7 +189,7 @@ u32 MessageFormatter_MessageCount(const MessageFormatter *formatter);
  * @param msgID 
  * @param dst 
  */
-void MessageFormatter_LoadString(const MessageFormatter *formatter, u32 msgID, charcode_t *dst);
+void MessageFormatter_LoadString(const UnkStruct_0200B144 *formatter, u32 msgID, charcode_t *dst);
 
 /**
  * @brief Load the name of a given species into a destination buffer.

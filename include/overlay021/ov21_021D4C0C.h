@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021D4C0C_H
 #define POKEPLATINUM_OV21_021D4C0C_H
 
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"

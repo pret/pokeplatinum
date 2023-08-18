@@ -58,7 +58,7 @@ class Replacer:
     @contextmanager
     @staticmethod
     def open_and_write(filename):
-        file_obj = open(filename, "r+")
+        file_obj = open(filename, "r+", encoding="utf-8")
         string_container = StringContainer(file_obj.read())
         try:
             yield string_container
@@ -93,7 +93,7 @@ class Replacer:
 
     @staticmethod
     def multiple_replace_for_file_result_only(filename, rep_dict):
-        with open(filename, "r") as f:
+        with open(filename, "r", encoding="utf-8") as f:
             contents = f.read()
 
         return Replacer.multiple_replace(contents, rep_dict)
@@ -157,7 +157,7 @@ class FilesSingleReplacer:
     def replace_single(filenames, replace_from, replace_to, replacements_filename):
         pathlib.Path(replacements_filename).touch()
 
-        with open(replacements_filename, "r") as f:
+        with open(replacements_filename, "r", encoding="utf-8") as f:
             replacements_reader = csv.reader(f)
             replacements_data = [x for x in list(replacements_reader) if len(x) != 0]
         #print(f"replacements_data: {replacements_data}")
@@ -180,10 +180,10 @@ class FilesSingleReplacer:
 
         print(f"Writing files, do not interrupt!")
         for filename, replace_result in replace_results.items():
-            with open(filename, "w+") as f:
+            with open(filename, "w+", encoding="utf-8") as f:
                 f.write(replace_result)
 
-        with open(replacements_filename, "a") as f:
+        with open(replacements_filename, "a", encoding="utf-8") as f:
             replacements_writer = csv.writer(f)
             replacements_writer.writerow([replace_from, replace_to])
 
@@ -191,9 +191,9 @@ class FilesMultiReplacer:
     __slots__ = ("replacements_filename", "data")
 
     def __init__(self, replacements_filename):
-        with open(replacements_filename, "r") as f:
+        with open(replacements_filename, "r", encoding="utf-8") as f:
             replacements_reader = csv.reader(f)
-            data = list(replacements_reader)
+            data = [x for x in list(replacements_reader) if len(x) != 0]
 
         self.replacements_filename = replacements_filename
         self.data = data
@@ -210,14 +210,16 @@ class FilesMultiReplacer:
         replace_results = {}
         rep_dict = self.create_rep_dict(swapped)
 
+        print(f"Searching through files!")
         for filename in filenames:
-            replace_results[filename], num_replacements = Replacer.multiple_replace_for_file_result_only(filename, rep_dict)
+            #print(f"filename: {filename}")
+            replace_result, num_replacements = Replacer.multiple_replace_for_file_result_only(filename, rep_dict)
             if num_replacements != 0:
                 replace_results[filename] = replace_result
 
         print(f"Writing files, do not interrupt!")
         for filename, replace_result in replace_results.items():
-            with open(filename, "w+") as f:
+            with open(filename, "w+", encoding="utf-8") as f:
                 f.write(replace_result)
 
     def clear_csv(self):
@@ -227,7 +229,7 @@ class FilesMultiReplacer:
 # pokeheartgold is "{asm,include,lib,src,sub}/**/*.{c,h,inc,s}"
 
 def read_in_all_code_files(code_files_glob_filename):
-    with open(code_files_glob_filename, "r") as f:
+    with open(code_files_glob_filename, "r", encoding="utf-8") as f:
         glob_specifier = f.read().strip()
 
     return wcmatch_glob.glob(glob_specifier, flags=(wcmatch_glob.GLOBSTAR | wcmatch_glob.BRACE | wcmatch_glob.NEGATE))

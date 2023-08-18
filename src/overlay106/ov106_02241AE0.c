@@ -6,13 +6,13 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/narc.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200DA60.h"
@@ -99,7 +99,7 @@ struct UnkStruct_ov106_02243118_t {
     u16 unk_1C;
     u8 unk_1E;
     u8 unk_1F;
-    MessageFormatter * unk_20;
+    UnkStruct_0200B144 * unk_20;
     UnkStruct_0200B358 * unk_24;
     Strbuf* unk_28;
     Strbuf* unk_2C;
@@ -764,7 +764,7 @@ static void ov106_022423E8 (UnkStruct_ov106_02243118 * param0)
 
     ov106_02243570(&param0->unk_C0);
 
-    MessageFormatter_Free(param0->unk_20);
+    sub_0200B190(param0->unk_20);
     sub_0200B3F0(param0->unk_24);
     Strbuf_Free(param0->unk_28);
     Strbuf_Free(param0->unk_2C);
@@ -820,7 +820,7 @@ static void ov106_02242500 (UnkStruct_ov106_02243118 * param0)
     ov106_0224262C(param0);
     ov106_02242688(param0);
 
-    param0->unk_20 = MessageFormatter_Init(1, 26, 549, 98);
+    param0->unk_20 = sub_0200B144(1, 26, 549, 98);
     param0->unk_24 = sub_0200B358(98);
     param0->unk_28 = Strbuf_Init(600, 98);
     param0->unk_2C = Strbuf_Init(600, 98);
@@ -1164,11 +1164,11 @@ static void ov106_02242B38 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
 {
     int v0, v1;
     Strbuf* v2;
-    MessageFormatter * v3;
+    UnkStruct_0200B144 * v3;
 
     sub_0201ADA4(param1, param4);
 
-    v3 = MessageFormatter_Init(1, 26, 624, 98);
+    v3 = sub_0200B144(1, 26, 624, 98);
     v2 = Strbuf_Init((10 + 1), 98);
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -1182,7 +1182,7 @@ static void ov106_02242B38 (UnkStruct_ov106_02243118 * param0, UnkStruct_0205AA5
     }
 
     Strbuf_Free(v2);
-    MessageFormatter_Free(v3);
+    sub_0200B190(v3);
     sub_0201A954(param1);
 
     return;

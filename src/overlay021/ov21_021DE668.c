@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/narc.h"
+#include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/message_formatter.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/strbuf.h"
+#include "struct_decls/struct_02023790_decl.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
@@ -29,7 +29,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "message_data.h"
+#include "unk_0200AC5C.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -433,7 +433,7 @@ static void ov21_021DEB58 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
 void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf* v0 = Strbuf_Init(64, param2);
-    MessageFormatter * v1 = MessageFormatter_Init(0, 26, 697, param2);
+    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
 
     MessageFormatter_LoadStrbuf(v1, 9, v0);
     sub_0201D78C(param0, 0, v0, 152, 88, 0, param4, NULL);
@@ -441,7 +441,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
     MessageFormatter_LoadStrbuf(v1, 10, v0);
     sub_0201D78C(param0, 0, v0, 152, 104, 0, param4, NULL);
     Strbuf_Free(v0);
-    MessageFormatter_Free(v1);
+    sub_0200B190(v1);
 
     ov21_021DEC2C(param0, param2, param1, param4);
     ov21_021DEC80(param0, param2, param1, param4);
@@ -451,31 +451,31 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
 static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     int v2;
 
     v2 = sub_020989D0();
-    v1 = MessageFormatter_Init(0, 26, v2, param1);
+    v1 = sub_0200B144(0, 26, v2, param1);
 
     MessageFormatter_LoadStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
     Strbuf_Free(v0);
-    MessageFormatter_Free(v1);
+    sub_0200B190(v1);
 }
 
 static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
-    MessageFormatter * v1;
+    UnkStruct_0200B144 * v1;
     int v2;
 
     v2 = sub_020989C4();
-    v1 = MessageFormatter_Init(0, 26, v2, param1);
+    v1 = sub_0200B144(0, 26, v2, param1);
 
     MessageFormatter_LoadStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);
     Strbuf_Free(v0);
-    MessageFormatter_Free(v1);
+    sub_0200B190(v1);
 }
 
 static void ov21_021DECD4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
