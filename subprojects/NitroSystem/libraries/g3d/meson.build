@@ -11,7 +11,7 @@ libnnsg3d_srcs = [
     'src/model.c',
     'src/binres/res_struct_accessor.c',
     'src/binres/res_struct_accessor_anm.c',
-    'asm/nsbca.s',
+    'src/anm/nsbca.c',
     'src/anm/nsbma.c',
     'src/anm/nsbta.c',
     'src/anm/nsbtp.c',
